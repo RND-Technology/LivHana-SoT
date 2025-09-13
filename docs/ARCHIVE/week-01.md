@@ -1,5 +1,1 @@
-# Archive – Week 01
-
-## Summary
-- Repo reset completed.
-- Memory archive structure created (docs/ARCHIVE + CURRENT_STATUS.md).
+# Archive – Week 01\n\n## Summary\n- Initial setup of LivHana-SoT memory archive.
