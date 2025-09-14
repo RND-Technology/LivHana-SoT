@@ -1,0 +1,49 @@
+🔥 Immediate Replit3 Task Queue
+
+Repo Scaffold & CI/CD
+
+Push highnoon scaffold + workflows from Deployment Canvas.
+
+Add .github/workflows/wizzbang-cya-ci.yaml for build/test/deploy.
+
+Enable GitHub→GCP WIF, Artifact Registry, Cloud Run.
+
+Cartoon Gen Engine
+
+Deploy scriptwright (episode draft job) + creditsmith (credits) on Cloud Run.
+
+Scheduler: auto-draft at T-90, lock script at T-30, publish at High Noon daily.
+
+Consent flow wired via WhatsApp webhook + attribution ledger.
+
+Data & Context
+
+Pipe all canon files into AlloyDB vector store: gpt_master_canvas_updated.md, high_noon_master_updated.pdf, THCASOP.pdf, OPS glossary.
+
+Index daily news/YouTube/WhatsApp (data refinery).
+
+Website + SEO Upgrade
+
+Update ReggieAndDro.com (commerce), HighNoonCartoon.com (uncensored satire), OnePlantSolution.com (compliant OPS).
+
+Texas Takeover SEO anchors: Texas, THC, Wall of Weed, A Texas THC Tale, Stay TOONED.
+
+Add Blue Dream raffle funnel + membership/subscription hooks.
+
+Social / Profile Makeover
+
+Refresh YouTube, IG, TikTok, X:
+
+Bio = “High Noon Cartoon — A Texas THC Tale. Deschedule now. Grow, Sell, Heal.”
+
+Banner art: Wall of Weed + “Stay TOONED.”
+
+Pin teaser + raffle link.
+
+Subtle brand placement only (no direct sales CTAs).
+
+Agent Swarm Scale-Up
+
+Run DeepSeek + Liv swarm orchestration in hub-and-spoke (Replit3 = controller, Cartoon Gen = spoke).
+
+Target ramp: 7→500 tasks/day (cartoon, SEO, data ingestion); then 7→50,000 with autoscaling.
