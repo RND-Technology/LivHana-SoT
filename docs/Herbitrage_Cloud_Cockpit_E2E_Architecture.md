@@ -1,5 +1,3 @@
-# 🌐 HERBITRAGE CLOUD COCKPIT - FULL E2E ARCHITECTURE
-
 HERBITRAGE CLOUD COCKPIT
 ┌─────────────────────┐    ┌─────────────────────┐    ┌─────────────────────┐    ┌─────────────────────┐
 │ R&D LAYER           │    │ HNC LAYER           │    │ OPS LAYER           │    │ HERB LAYER          │
