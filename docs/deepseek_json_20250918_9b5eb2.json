@@ -1,0 +1,17 @@
+{
+    "name": "Liv Hana AI Builder",
+    "dockerComposeFile": "../docker-compose.yml",
+    "service": "mcp-core", // Use the core service as the primary container
+    "workspaceFolder": "/workspace",
+    "customizations": {
+        "vscode": {
+            "extensions": ["ms-python.python", "ms-azuretools.vscode-docker", "hashicorp.terraform"]
+        }
+    },
+    "forwardPorts": [8000, 8001, 11434],
+    "postCreateCommand": "pip install -r requirements.txt && ./scripts/setup_memory.sh",
+    "remoteEnv": {
+        "OLLAMA_FLASH_ATTENTION": "1",
+        "OLLAMA_KV_CACHE_TYPE": "q8_0"
+    }
+}
