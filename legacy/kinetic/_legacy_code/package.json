@@ -1,0 +1,91 @@
+{
+  "name": "livhana-mcp-server",
+  "version": "1.0.0",
+  "description": "Sovereign AI Agent Swarm with Local LLM Integration and Truth Verification - MCP Server",
+  "main": "src/core/mcp_server.py",
+  "scripts": {
+    "start": "python src/core/mcp_server.py",
+    "dev": "python src/core/mcp_server.py",
+    "test": "python -m pytest",
+    "lint": "black src/ && flake8 src/",
+    "format": "black src/",
+    "health": "curl -f http://localhost:8765/health || exit 1",
+    "mcp:list-tools": "python -c \"from src.core.mcp_server import mcp_server; print('Available tools:', [tool.__name__ for tool in mcp_server._tools.values()])\"",
+    "mcp:status": "curl -s http://localhost:8765/status | python -m json.tool",
+    "setup": "pip install -r requirements.txt && echo '✅ LivHana MCP Server setup complete'",
+    "clean": "rm -rf __pycache__ *.pyc src/__pycache__ src/**/*.pyc"
+  },
+  "keywords": [
+    "mcp",
+    "ai-agent",
+    "livhana",
+    "sovereign-ai",
+    "truth-verification",
+    "cannabis",
+    "compliance",
+    "deepseek",
+    "llama-cpp",
+    "replit"
+  ],
+  "author": "Jesse Niesen <jesse@reggieanddro.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RND-Technology/LivHana-SoT.git"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "python": ">=3.11.0"
+  },
+  "dependencies": {
+    "mcp-servers": "^1.0.0",
+    "fastmcp": "^0.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0",
+    "@types/node": "^20.0.0"
+  },
+  "replit": {
+    "run": "python src/core/mcp_server.py",
+    "port": 8765,
+    "env": {
+      "MCP_ENABLED": "true",
+      "MCP_HOST": "0.0.0.0",
+      "MCP_PORT": "8765",
+      "MCP_SERVER_NAME": "LivHana-MCP-Server",
+      "API_BASE_URL": "http://localhost:8000"
+    },
+    "features": {
+      "enableLSP": true,
+      "enableVscode": true,
+      "enableMCP": true
+    }
+  },
+  "mcp": {
+    "server": {
+      "name": "LivHana-MCP-Server",
+      "version": "1.0.0",
+      "description": "Sovereign AI Agent Swarm with Local LLM Integration and Truth Verification",
+      "capabilities": [
+        "tools",
+        "resources",
+        "logging"
+      ],
+      "tools": [
+        "chat_with_agent",
+        "get_system_health",
+        "list_agents",
+        "get_metrics",
+        "verify_truth",
+        "get_agent_response"
+      ],
+      "resources": [
+        "system://status",
+        "system://agents",
+        "system://config",
+        "compliance://rules"
+      ]
+    }
+  }
+}

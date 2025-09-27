@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+source "$(dirname "$0")/common.sh"
+
+log_info "Triggering full data-layer refresh"
+
+"$ROOT_DIR/data-layer/alloydb-ingestion.sh" "$@"
+
+log_info "Data-layer refresh script completed"
