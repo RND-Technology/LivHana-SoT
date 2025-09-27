@@ -1,34 +1,32 @@
-# LivHana-SoT – Clean Repository Structure
+# LivHana-SoT – Repository Structure
 
+```
 LivHana-SoT/
-├── .gitignore
-├── README.md
-├── Dockerfile
-├── package.json
-├── package-lock.json  # optional
+├── README.md                     # project overview
+├── CURRENT_STATUS.md             # live status tracker
+├── SYSTEM_PROMPT.md / ADRs       # foundational docs
 │
-├── src/               # Frontend app source
-│   ├── App.jsx
-│   ├── main.jsx
-│   └── index.css
+├── frontend/                     # web clients
+│   └── vibe-cockpit/             # React/Tailwind cockpit (migrated from LivHana-Kinetic)
 │
-├── public/            # Static assets
-│   └── index.html
+├── backend/                      # API / worker services (placeholder)
 │
-├── backend/           # API / microservices
-│   ├── main.py
-│   └── requirements.txt
+├── automation/                   # operational automation stack
+│   ├── scripts/                  # compliance/context helpers
+│   ├── schedulers/               # T-90/T-30/High-Noon cadence scripts
+│   ├── data-pipelines/           # AlloyDB + ingestion tooling
+│   └── swarm/                    # DeepSeek↔Liv swarm orchestration
 │
-├── infra/             # IaC / deployment
-│   ├── cloudbuild.yaml
-│   └── terraform/
+├── infra/
+│   └── cloud-run/                # Cloud Run manifests & infra configs
 │
-├── scripts/           # Utility scripts
-│   ├── deploy_with_truth.sh
-│   └── setup_cockpit.sh
+├── docs/                         # active architecture & mission documents
+│   └── web-surfaces/             # site/SEO upgrade materials
 │
-├── tests/             # Unit/integration tests
-│   └── test_app.py
-│
-└── docs/              # Architecture & team notes
-    └── HIGH_FIVE_ARCHITECTURE.md
+└── legacy/                       # archive of retired repos
+    ├── kinetic/                  # assets from LivHana-Kinetic
+    ├── potential/                # automation/logs from LivHana-Potential
+    └── entropic/                 # artifacts from LivHana-Entropic
+```
+
+The `legacy/` tree is reference-only; all active development lives under the top-level `frontend/`, `backend/`, `automation/`, `infra/`, and `docs/` directories.

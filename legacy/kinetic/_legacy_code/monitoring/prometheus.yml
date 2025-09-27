@@ -1,0 +1,35 @@
+# LivHana-SoT: Prometheus Configuration
+# Monitoring configuration for AI Agent Swarm
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+rule_files:
+  - "livhana_rules.yml"
+
+scrape_configs:
+  # LivHana API metrics
+  - job_name: 'livhana-api'
+    static_configs:
+      - targets: ['livhana-api:8000']
+    metrics_path: '/metrics'
+    scrape_interval: 10s
+
+  # Prometheus self-monitoring
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # Node exporter (if available)
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets: ['node-exporter:9100']
+    scrape_interval: 30s
+
+# Alerting configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          - alertmanager:9093
