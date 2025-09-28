@@ -1,0 +1,37 @@
+# ADR: Copilot Custom Organization Instructions & Verification Principle
+
+## Status
+Accepted
+
+## Context
+
+RND-Technology applies organization-wide Copilot custom instructions to ensure code safety, guardrails, and consistent practices.  
+Reference: [GitHub Docs - Adding organization custom instructions for GitHub Copilot](https://docs.github.com/en/copilot/customizing-copilot/adding-organization-custom-instructions-for-github-copilot)
+
+## Decision
+
+1. **Copilot Custom Organization Instructions**
+    - Copilot is configured to follow RND-Technology’s custom instructions for code generation, safety, and operational guardrails.
+    - These instructions are versioned and maintained in this repository for visibility and compliance.
+
+2. **Default Principle: Verification over Generation**
+    - When encountering a call (e.g., `./scripts/check_trinity_status.sh`), either:
+        - Implement the referenced script, or
+        - Refactor the caller to remove the dependency.
+    - Always prefer shell-safe patterns.
+    - Respect all “21+ guardrails” as defined by organizational policy.
+    - Documentation must be maintained in issues/ and docs/ for traceability and SSoT.
+
+3. **Durable Knowledge Management**
+    - All critical architectural or decision content surfaced in chat or team communication must be transcribed into version-controlled docs (ADRs, playbooks, runbooks) in docs/copilot/.
+    - Durable documentation ensures discoverability and supports Single Source of Truth (SSoT) practices.
+
+## Consequences
+
+- Durable architectural and operational principles are version-controlled.
+- Copilot usage reflects organizational safety, verification, and documentation standards.
+- All new architectural decisions or operational practices surfaced in team communications must be transcribed into ADRs or issues immediately.
+
+## References
+
+- [GitHub Docs - Adding organization custom instructions for GitHub Copilot](https://docs.github.com/en/copilot/customizing-copilot/adding-organization-custom-instructions-for-github-copilot)
