@@ -1,0 +1,21 @@
+{
+  "name": "data-pipelines",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "square:pull": "ts-node square_pull.ts",
+    "square:full": "ts-node square_ingest_all.ts",
+    "lightspeed:ingest": "ts-node lightspeed_ingest.ts"
+  },
+  "dependencies": {
+    "@google-cloud/bigquery": "^7.4.0",
+    "axios": "^1.7.7",
+    "dotenv": "^17.2.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.8.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  }
+}
