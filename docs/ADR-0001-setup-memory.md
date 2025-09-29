@@ -1,3 +1,5 @@
+# Preface
+
 Crystal clear. No assumptions. No skipping steps. Here’s how a **Google Sr Eng would hand a naïve but hungry grasshopper** a **step-by-step tech doc** for creating and running `setup_memory.sh` **in Cloud Shell**, ADR-style, with all prerequisites laid out.
 
 ---
@@ -103,7 +105,7 @@ chmod +x setup_memory.sh
 
 ---
 
-## 📂 After running, repo will contain:
+## 📂 After running, repo will contain
 
 * `docs/ARCHIVE/week-01.md`
 * `docs/CURRENT_STATUS.md`

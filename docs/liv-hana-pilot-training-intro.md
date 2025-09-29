@@ -1,4 +1,5 @@
 # Liv Hana AI EA Pilot Training Program
+
 ## **Welcome Charlie Day, Andrew Aparicio & Christopher Rocha**
 
 ```
@@ -155,6 +156,7 @@ Welcome to the most innovative cannabis business training program in America. Yo
 ## **WHO'S IN YOUR CORNER**
 
 ### **The Leadership Team**
+
 ```yaml
 Jesse Niesen - CEO & Mission Commander:
   - 🎖️ Marine veteran with honor & discipline
@@ -184,6 +186,7 @@ Andrea Steel - Legal Counsel & Safety Net:
 ```
 
 ### **Your Fellow Pilots - Cohort 1 Founding Class**
+
 ```yaml
 Charlie Day:
   - Unique perspective & creative energy
@@ -211,6 +214,7 @@ Christopher Rocha:
 ## **THE FOUR-LAYER EMPIRE YOU'LL MASTER**
 
 ### **Layer 1: R&D (Reggie & Dro) - Revenue Engine**
+
 ```yaml
 Business Scope:
   - 💰 $2M+ annual revenue stream
@@ -237,6 +241,7 @@ Skills You'll Develop:
 ```
 
 ### **Layer 2: HNC (High Noon Cartoon) - Content Empire**
+
 ```yaml
 Creative Mission:
   - 🎬 Daily satirical content engine
@@ -271,6 +276,7 @@ Skills You'll Develop:
 ```
 
 ### **Layer 3: OPS (One Plant Solution) - Policy Engine**
+
 ```yaml
 Advocacy Mission:
   - 🏛️ Cannabis policy reform leadership
@@ -304,6 +310,7 @@ Skills You'll Develop:
 ```
 
 ### **Layer 4: HERB (Herbitrage) - Commerce Engine**
+
 ```yaml
 Business Development:
   - 💻 E-commerce platform optimization
@@ -341,6 +348,7 @@ Skills You'll Develop:
 ## **WHAT'S IN IT FOR YOU? 🎯**
 
 ### **Immediate Value (Week 1-4) - Foundation Building**
+
 ```yaml
 Skills You'll Gain:
   - 🤖 AI-assisted executive operations mastery
@@ -370,6 +378,7 @@ Professional Development:
 ```
 
 ### **Career Transformation (Month 2-6) - Professional Growth**
+
 ```yaml
 Professional Opportunities:
   - 🏆 Certified Liv Hana AI EA operator credentials
@@ -399,6 +408,7 @@ Career Advancement Paths:
 ```
 
 ### **Long-term Impact (Year 1+) - Legacy Building**
+
 ```yaml
 Mission Participation - Historic Change:
   - 🇺🇸 Help deschedule Cannabis sativa L nationwide
@@ -430,6 +440,7 @@ Personal Fulfillment:
 ## **WEEK 1 TRAINING ROADMAP - DETAILED SCHEDULE**
 
 ### **Monday: Foundation Day - Mission Context & Framework**
+
 ```yaml
 Morning Session (9:00 AM - 12:00 PM):
   9:00-9:30   | Opening Ceremony & Team Bonding
@@ -454,6 +465,7 @@ Evening Assignment:
 ```
 
 ### **Tuesday: Content Engine Day - HNC Satirical Mastery**
+
 ```yaml
 Morning Session (9:00 AM - 12:00 PM):
   9:00-9:15   | Daily Standup & Progress Check
@@ -478,6 +490,7 @@ Evening Assignment:
 ```
 
 ### **Wednesday: Policy & Advocacy Day - OPS Legislative Mastery**
+
 ```yaml
 Morning Session (9:00 AM - 12:00 PM):
   9:00-9:15   | Daily Standup & Progress Check
@@ -502,6 +515,7 @@ Evening Assignment:
 ```
 
 ### **Thursday: Commerce & Optimization Day - HERB Revenue Mastery**
+
 ```yaml
 Morning Session (9:00 AM - 12:00 PM):
   9:00-9:15   | Daily Standup & Progress Check
@@ -526,6 +540,7 @@ Evening Assignment:
 ```
 
 ### **Friday: Integration & Assessment Day - Mastery Demonstration**
+
 ```yaml
 Morning Session (9:00 AM - 12:00 PM):
   9:00-9:15   | Daily Standup & Week 1 Reflection
@@ -554,6 +569,7 @@ Evening Assessment:
 ## **PRE-TRAINING THOUGHT PROVOKERS 🤔**
 
 ### **Strategic Thinking Questions**
+
 *Spend 15-20 minutes reflecting on each question. Write down your honest thoughts - no right or wrong answers, just authentic reflection that will help you engage meaningfully tomorrow.*
 
 **1. Vision & Mission Alignment**
@@ -627,6 +643,7 @@ What aspect of this training program will most likely push you outside your comf
 ## **SLACK MCP INTRODUCTION TODAY 📱**
 
 ### **What to Expect in Today's Live Slack Session**
+
 ```yaml
 Timing: Sunday afternoon/evening (flexible based on everyone's availability)
 Format: Live group introduction and mission briefing
@@ -651,6 +668,7 @@ Session Flow:
 ```
 
 ### **How to Prepare for Today's Slack Introduction**
+
 ```yaml
 Before the Session:
   1. 📝 Complete your reflection notes from the thought-provoking questions
@@ -678,6 +696,7 @@ Mental Preparation:
 ```
 
 ### **Team Communication Protocols We'll Establish**
+
 ```yaml
 Slack Channels We'll Set Up:
   #cohort-1-general     | Main coordination and updates
@@ -703,6 +722,7 @@ Communication Expectations:
 ## **SUCCESS METRICS & CLEAR EXPECTATIONS**
 
 ### **Week 1 Goals - Foundation Mastery**
+
 ```yaml
 Knowledge Acquisition Targets:
   ✓ Comprehensive understanding of all four business layers
@@ -727,6 +747,7 @@ Team Integration Indicators:
 ```
 
 ### **Assessment Criteria - How You'll Be Evaluated**
+
 ```yaml
 Comprehension Assessment (25%):
   - Do you understand the complexity and magnitude of the opportunity?
@@ -754,6 +775,7 @@ Innovation & Initiative (25%):
 ```
 
 ### **Performance Standards - What Excellence Looks Like**
+
 ```yaml
 Reliability Standards:
   - Consistent attendance and punctuality for all sessions
@@ -866,6 +888,7 @@ WEEK 9-12: MASTERY & CERTIFICATION PREPARATION
 ```
 
 ### **Certification Benefits & Opportunities**
+
 ```yaml
 Professional Recognition:
   🏆 Official Liv Hana AI EA Operator certification
@@ -935,6 +958,7 @@ What You're Fighting Against:
 **"Grow baby grow and sell baby sell"** isn't just a catchy slogan - it's your **rallying cry** to expand freedom, create prosperity, and heal a nation torn apart by failed drug policies.
 
 **"Grow, Sell, Heal"** represents the **complete cycle** of cannabis freedom:
+
 - **Grow**: Cultivation rights, agricultural freedom, economic development
 - **Sell**: Commerce rights, free market principles, entrepreneurial opportunity  
 - **Heal**: Medical access, criminal justice reform, social healing
@@ -959,6 +983,7 @@ This is **pioneer training** for people who will **settle new territory**.
 ## **FINAL PREPARATION CHECKLIST**
 
 ### **Before Monday's First Session:**
+
 ```yaml
 Intellectual Preparation:
   ☐ Complete all 20 thought-provoking questions with written responses
@@ -990,6 +1015,7 @@ Professional Preparation:
 ```
 
 ### **Success Mindset Preparation:**
+
 ```yaml
 Growth Mindset Activation:
   🧠 "I'm here to learn, grow, and contribute to historic change"

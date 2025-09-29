@@ -1,0 +1,12 @@
+{
+  "name": "livhana-playwright-tests",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "test": "playwright test",
+    "test:report": "playwright show-report"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.55.1"
+  }
+}

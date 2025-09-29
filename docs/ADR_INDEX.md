@@ -6,6 +6,7 @@ Each ADR is immutable once accepted. Superseded ADRs are noted.
 ---
 
 ## ADR-0001: E2E Mission
+
 - **Date:** 2025-09-12
 - **Status:** Accepted
 - **Summary:** Defines the End-to-End Mission of the Liv Hana project:
@@ -13,5 +14,37 @@ Each ADR is immutable once accepted. Superseded ADRs are noted.
 
 ---
 
-## ADR-0002: (Reserved)
-- Will define stack decisions, repo structure, or orchestration logic.
+## ADR-0002: Repository Structure (Reserved)
+
+- **Status:** Proposed
+- **Summary:** Placeholder for any future repo re-architecture decisions.
+
+---
+
+## ADR-001 — Herbitrage API 5xx Error Policy (Enhanced)
+
+- **Status:** Accepted
+
+---
+
+## ADR-002 — Voice Mode Queue Architecture & Guardrails
+
+- **Date:** 2025-09-28
+- **Status:** Accepted
+- **Summary:** Establishes BullMQ + Redis queue isolation, JWT/guardrail enforcement, memory + feedback modules, and SSE streaming between voice-service and reasoning-gateway.
+
+---
+
+## ADR-003 — Playwright MCP + Deterministic CI Pipeline
+
+- **Date:** 2025-09-28
+- **Status:** Accepted
+- **Summary:** Codifies deterministic Playwright testing, CI taxonomy, secrets handling via 1Password `op run`, and artifact collection.
+
+---
+
+## ADR-004 — Product Experience & Loyalty Integration
+
+- **Date:** 2025-09-28
+- **Status:** Accepted
+- **Summary:** Defines product page module structure, loyalty data flows, Lightspeed/Square integration boundaries, and testing requirements.

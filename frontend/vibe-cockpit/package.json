@@ -7,6 +7,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:unit": "vitest run",
     "eject": "react-scripts eject",
     "dev": "react-scripts start",
     "serve": "serve -s build -l 3000",
@@ -14,14 +15,11 @@
     "video": "echo 'Live video mode activated'"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.3",
-    "@emotion/styled": "^11.11.0",
-    "@mui/icons-material": "^5.15.3",
-    "@mui/material": "^5.15.3",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "axios": "^1.7.7",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/icons-material": "^5.18.0",
+    "@mui/material": "^5.11.12",
+    "axios": "^1.12.2",
     "chart.js": "^4.2.1",
     "elevenlabs": "^1.59.0",
     "framer-motion": "^10.8.5",
@@ -58,9 +56,14 @@
     "zustand": "^4.3.7"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.8.0",
+    "@testing-library/react": "^16.3.0",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
-    "serve": "^14.2.0"
+    "axios-mock-adapter": "^2.1.0",
+    "jsdom": "^27.0.0",
+    "serve": "^14.2.0",
+    "vitest": "^3.2.4"
   },
   "browserslist": {
     "production": [

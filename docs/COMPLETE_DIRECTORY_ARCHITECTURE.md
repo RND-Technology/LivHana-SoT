@@ -1,4 +1,5 @@
 # 🏗️ COMPLETE VISIONEERING CASCADE DIRECTORY STRUCTURE
+
 ## Folder/File Naming Convention: Top-to-Bottom Cascading Framework
 
 ```
@@ -172,15 +173,18 @@ liv-hana-e2e-pipeline/
 
 ### **Pattern**: `[timestamp]_[framework_level]_[category]_[progression]_[context].md`
 
-### **Examples**:
+### **Examples**
+
 - `20250914_rpm_primary_results_Q4_cannabis_descheduling.md`
 - `20250914_aom_leadership_now_to_next_testimony_prep.md`
 - `20250914_coi_operations_veriff_integration_priority.md`
 - `20250914_high_five_finger_1_rpm_alignment_validation.md`
 - `20250914_wheel_level_next_revenue_recovery_100k.md`
 
-### **Cascading Context Integration**:
+### **Cascading Context Integration**
+
 Every file name captures:
+
 1. **When** (timestamp)
 2. **Which framework level** (RPM, AOM, COI, High Five)
 3. **What category** (Leadership, Operations, etc.)
@@ -189,7 +193,8 @@ Every file name captures:
 
 ## 🚀 VISIONEERING FABRIC INTEGRATION
 
-### **Data Flows Through Framework Levels**:
+### **Data Flows Through Framework Levels**
+
 ```
 SESSION CAPTURE → BEHAVIORAL SNAPSHOTS → RPM PRIMARY → AOM ANALYSIS → 
 COI VALIDATION → RPM SECONDARY → HIGH FIVE APPLICATION → 
@@ -197,7 +202,8 @@ WHEEL OF LIFE PROGRESSION → R&D PHASES → OPS EXECUTION →
 SHIPPING DEPLOYMENT → SCALE OUT EXPANSION
 ```
 
-### **Context Preservation Rules**:
+### **Context Preservation Rules**
+
 1. **Zero Truncation**: Every decision Jesse has made is preserved
 2. **Zero Assumption**: Only use data directly from Jesse's account
 3. **Complete Traceability**: Every file links back to source conversations

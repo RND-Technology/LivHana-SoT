@@ -1,0 +1,45 @@
+# ADR-004 — Product Experience & Loyalty Integration
+
+**Status:** Proposed • **Date:** 2025-09-28 • **Owner:** Liv Hana (Codex)
+
+## 1. Context
+
+- Wireframes define a rich product page for Reggie & Dro: live inventory, compliance messaging, incentivized reviews, and loyalty credits.
+- Existing stack (voice/reasoning) lacks commerce modules, and Square is being phased out in favor of Lightspeed + custom UI.
+
+## 2. Decision
+
+Adopt a composable product experience with the following pillars:
+
+1. **Frontend Module** — New React module (`frontend/vibe-cockpit/src/modules/product`) hosting product page, review modal, loyalty widgets.
+2. **Product Service** — Dedicated backend service (`backend/product-service`) exposing REST APIs for product details, reviews, loyalty, and rewards.
+3. **Data Pipelines** — Dual connectors for Square (legacy) and Lightspeed (target) writing to BigQuery/AlloyDB with nightly + on-demand sync jobs.
+4. **Loyalty Engine** — Points + free gram credit ledger with tier thresholds (Member/Bronze/Silver/Gold) and reward redemption API.
+5. **Testing & Observability** — Unit + Playwright coverage, monitoring dashboards for review velocity, loyalty redemptions, and inventory health.
+
+## 3. Consequences
+
+- Enables rapid iterations on the product experience without blocking voice/reasoning services.
+- Introduces additional services (product-service, ingestion workers) to operate and monitor.
+- Requires new schema migrations and secrets management for Lightspeed API credentials.
+
+## 4. Implementation Snapshot
+
+- `ProductPage_SPEC.md` consolidates UX + data requirements.
+- Create `backend/product-service` with Express, Prisma (or Knex), and JWT auth.
+- Build ingestion scripts in `automation/data-pipelines/` for Lightspeed and Square. → Implemented scaffolds `square_pull.ts`, `lightspeed_ingest.ts` feeding BigQuery.
+- Add Playwright coverage for product interactions (review submission → rewards).
+- Update monitoring pack with loyalty metrics.
+
+## 5. Risks & Mitigations
+
+- **Lightspeed API limits** → implement rate limiting + caching; fallback to Square data until parity achieved.
+- **Loyalty abuse** → enforce per-member per-SKU reward limits and audit logs.
+- **Data drift** → schedule reconciliation jobs between Lightspeed, BigQuery, and product-service DB.
+
+## 6. Acceptance Criteria
+
+- Product page reads live inventory and compliance info from Lightspeed.
+- Reviews store L/S/T/E metrics and update loyalty credits instantly.
+- Loyalty panel shows accurate tier/points; redemption endpoint issues rewards.
+- Square ingestion pipeline retired once Lightspeed integration verified in CI + production.

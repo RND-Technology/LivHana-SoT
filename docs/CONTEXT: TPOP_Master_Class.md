@@ -1,5 +1,6 @@
 
 # TPOP Master Class — Target Population of One
+
 **Version:** 1.0 • **Date:** 2025-09-10 • **Owner:** Liv Hana (AI EA) → Jesse Niesen  
 **Scope:** High Noon Cartoon (HNC), One Plant Solution (OPS), Reggie & Dro (R&D), Herbitrage cockpit  
 **Guardrails:** 21+ only • No medical claims • Natural cannabinoids only; validated NIST methods • Satire allowed for public figures • Brands are **not** characters
@@ -7,12 +8,14 @@
 ---
 
 ## What “TPOP” Means (and why we use it)
+
 **TPOP = Target Population of One.**  
 Design every message for one **singular, crystal‑clear persona** so it lands with surgical precision. You can (and should) maintain **multiple TPOPs**, but each asset speaks to *one* at a time. This is the antidote to generic “everyone” marketing and to muddled policy messaging.
 
 TPOP also reads well as **Top‑Priority Outreach Populations**—i.e., the small set of micro‑audiences that deserve dedicated assets and funnels.
 
 ### Core principles
+
 1. **Speak to one to reach many.** Specific ≫ generic.  
 2. **Beliefs drive behavior.** Map beliefs before features/benefits. (Worldview → Trigger → Action.)  
 3. **Safety + Prosperity + Truth.** Every TPOP frame should show *family safety, honest stewardship, jobs/tax math, and factual clarity*.  
@@ -22,6 +25,7 @@ TPOP also reads well as **Top‑Priority Outreach Populations**—i.e., the smal
 ---
 
 ## The TPOP Record (canonical YAML)
+
 Paste this into Claude “Additional Text Context” or your cockpit; one file **per** TPOP.
 
 ```yaml
@@ -71,21 +75,25 @@ tpop:
 ## Rapid TPOP Workshop (20 minutes → ready to ship)
 
 **Step 1 — Name the worldview (4 minutes)**  
+
 - What must be *true* for them to nod along? List **5 beliefs** they hold.  
 - Which **pain** keeps them from acting? (safety, legality, reputation, money)  
 - Which **gain** they care about? (family, jobs, pride, clarity)
 
 **Step 2 — Write the *Safety–Prosperity–Truth* proof stack (6 minutes)**  
+
 - Safety: “21+ biometric ID,” “CR packages,” “validated NIST methods,” “Texas enforcement plan.”  
 - Prosperity: “Texas leads legal commerce,” “jobs & tax math,” “don’t off-shore the market to cartels/prohibition.”  
 - Truth: “De‑schedule Cannabis sativa L; end hemp/marijuana split; codify standards not bans.”
 
 **Step 3 — Hook + CTA ladder (6 minutes)**  
+
 - Hook = belief mirror + single myth bust.  
 - CTA ladder = *watch → subscribe → OPS action → R&D membership*.  
 - Add **one** dog‑whistle and **one** Easter egg; avoid anti‑triggers.
 
 **Step 4 — Guardrails pass (4 minutes)**  
+
 - 21+ line repeated every ~20s for social edits.  
 - No medical claims.  
 - Brands ≠ characters; satire only for public figures.  
@@ -96,6 +104,7 @@ tpop:
 ## The Six Canonical TPOPs (TX top 3 + US top 3)
 
 ### TX‑1 — Veteran Small‑Biz Dad (35–60)
+
 - **Beliefs:** Duty, protect kids, lawful commerce, low taxes.  
 - **Objections:** “Kids will get it,” “It’s illegal,” “Attracts crime.”  
 - **Frames:** “Freedom with standards,” “Punish bad actors,” “Keep jobs in Texas.”  
@@ -104,6 +113,7 @@ tpop:
 - **Dog whistle:** “Watching your six while you drive the twelve.”
 
 ### TX‑2 — Faith‑Forward Mom on the Fence (30–60)
+
 - **Beliefs:** Protect children, community health, truth matters.  
 - **Objections:** Youth exposure, ‘stoner culture,’ confusion about THC vs hemp.  
 - **Frames:** “Age‑gated adult marketplace,” “Child‑resistant packaging,” “Truth over fear.”  
@@ -112,6 +122,7 @@ tpop:
 - **Dog whistle:** “Honest stewardship.”
 
 ### TX‑3 — Conservative Professional (30–50)
+
 - **Beliefs:** Performance, law & order, privacy.  
 - **Objections:** Employment/drug‑test ambiguity, legal clarity.  
 - **Frames:** “De‑schedule + standards,” “Responsible adult choices,” “Don’t criminalize compliance.”  
@@ -120,16 +131,19 @@ tpop:
 - **Dog whistle:** “Set the standard high.”
 
 ### US‑1 — Patriot for Freedom & Fair Markets
+
 - **Beliefs:** Constitution, federal overreach skepticism, entrepreneurship.  
 - **Frame:** “American Cannabis Freedom Act: de‑schedule, end the hemp/marijuana split.”  
 - **CTA:** Share HNC clip → contact reps → OPS coalition.
 
 ### US‑2 — Veterans for Truth & Safety
+
 - **Beliefs:** Mission clarity, protect families, end hypocrisy.  
 - **Frame:** “Age‑gated adult market + enforcement; stop fueling black markets.”  
 - **CTA:** Join veteran sign‑on letter → OPS.
 
 ### US‑3 — Liberty‑Tech Builders
+
 - **Beliefs:** Permissionless innovation, standards not bans.  
 - **Frame:** “NIST‑validated methods + open commerce + clear compliance tooling.”  
 - **CTA:** OPS sign‑up → standards working group → R&D pilot.
@@ -139,6 +153,7 @@ tpop:
 ## HNC Integration (content engine)
 
 ### Weekly rotation (84‑episode season)
+
 - **Mon:** TX‑1 myth bust + family safety proof  
 - **Tue:** TX‑2 “It’s OK (for adults)” + CR packaging demo  
 - **Wed:** TX‑3 legal/standards explainer (no med claims)  
@@ -148,6 +163,7 @@ tpop:
 - **Sun:** Playlist recap + Blue Dream raffle promo (21+)
 
 ### Repeatable bit library
+
 - Running joke “puff‑ickly” once per week.  
 - Easter eggs: R&D pin, “Make America Grow Again,” “Stay TOONED” window poster.  
 - Visual locks: no pot‑leaf spam; capitol silhouette; lapel pins; safe‑pack close‑ups.
@@ -157,12 +173,14 @@ tpop:
 ## Policy & OPS Mapping
 
 **Texas Truth & Safety Act (TTSA) – headlines to drop into clips**  
+
 - “Age‑gating with biometric ID, 21+ only.”  
 - “Child‑resistant packaging requirements.”  
 - “Validated NIST standards before novel cannabinoids enter market.”  
 - “Dedicated enforcement against non‑compliant actors; don’t ban responsible adults.”
 
 **American Cannabis Freedom Act (ACFA) – federal**
+
 - “De‑schedule Cannabis sativa L entirely.”  
 - “Remove ‘hemp/marijuana/marihuana’ distinction.”  
 - “Treat the plant as one; regulate safety with NIST/ISO, not prohibition.”
@@ -172,11 +190,13 @@ tpop:
 ## Commerce Mapping
 
 **Offer ladder by TPOP**  
+
 - **Lead magnet:** HNC short tailored to belief.  
 - **Value nudge:** OPS brief (plain‑English, one‑pager).  
 - **Monetization:** R&D membership/raffle; subscriptions (weekly/bi‑weekly/monthly).
 
 **Compliance overlay**  
+
 - 21+ gate on every opt‑in and product page.  
 - CR packaging demo links.  
 - No medical claims.  
@@ -201,6 +221,7 @@ tpop:
 ## Prompts (drop‑in)
 
 **Claude “Additional Text Context” append:**
+
 ```
 You know the TPOP framework: Target Population of One.
 - Always write to ONE TPOP at a time.
@@ -210,6 +231,7 @@ You know the TPOP framework: Target Population of One.
 ```
 
 **Task prompt (script gen):**
+
 ```
 Act as Liv Hana. Write a 75s HNC segment for TPOP=<ID>. Mirror their beliefs, bust one myth, show Safety–Prosperity–Truth. Include 1 dog-whistle and 1 Easter egg from the TPOP record. End with Subscribe → OPS → R&D. Return JSON: {{title, hook, script, lowerThirds, cta, compliance}}.
 ```
@@ -244,6 +266,7 @@ create table if not exists tpop_metrics_daily (
 ---
 
 ## A/B Grid (what to test first)
+
 - **Hook phrasing:** “Freedom with standards” vs “Protect families without bans.”  
 - **Visual background:** Capitol silhouette vs storefront safe‑pack demo.  
 - **CTA order:** OPS → R&D vs R&D → OPS.  
@@ -252,6 +275,7 @@ create table if not exists tpop_metrics_daily (
 ---
 
 ## 5‑Minute Quickstart
+
 1. Pick **one** TPOP above; copy the YAML; adjust beliefs & dog‑whistles.  
 2. Run the **Task prompt** with that TPOP → get JSON script.  
 3. Render in **Synthesia** (avatar + 0.92x voice).  
@@ -261,6 +285,7 @@ create table if not exists tpop_metrics_daily (
 ---
 
 ## Glossary
+
 - **TPOP:** Target Population of One (or Top‑Priority Outreach Population instance).  
 - **Dog‑whistle:** A subtle, respectful signal recognized by the TPOP.  
 - **Easter egg:** A tiny visual/text payoff that rewards attention.  
@@ -269,4 +294,5 @@ create table if not exists tpop_metrics_daily (
 ---
 
 ## Attribution
+
 Designed for the Liv Hana stack. © Reggie & Dro / One Plant Solution / Herbitrage.

@@ -1,0 +1,41 @@
+# RUN: Snapshot Process
+
+| Field | Value |
+|-------|-------|
+| Owner | Liv |
+| RPO | 26h |
+| RTO | 30m fallback generation |
+
+## Purpose
+
+Generate a consistent operational state snapshot for trend, audit, and recovery analytics.
+
+## Trigger
+
+- Scheduled (`sched_snapshot.sh`)
+- Manual (on-demand if > 6h since last snapshot or after incident)
+
+## Steps
+
+1. Execute `python automation/scripts/generate_snapshot.py`
+2. Run `automation/scripts/check_memory_snapshot.sh`
+3. Commit + push (if automated daily job) OR store artifact (if PR context)
+4. Update SCORE-daily with key deltas
+
+## Failure Handling
+
+| Failure | Action |
+|---------|--------|
+| Script error | Retry once; if fail open issue `snapshot-failure` |
+| Stale detection | Force immediate generation |
+| Schema missing field | Patch generator, re-run, log fix |
+
+## Validation
+
+- CI passes `check_memory_snapshot.sh`
+- Age < 26h
+- Required fields present
+
+## Escalation
+
+- 2 consecutive snapshot failures → create RISKLOG entry or update R2.

@@ -8,19 +8,24 @@ To develop and deploy Liv Hana, a System-of-Thoughts (SoT) framework for orchest
 
 ## Getting Started
 
-1.  **Clone the repository:**
+1. **Clone the repository:**
+
     ```bash
     git clone <your-new-repo-url>
     cd LivHana-Monorepo
     ```
-2.  **Configure your environment:**
+
+2. **Configure your environment:**
     - Copy the `.env.example` file to `.env`.
     - Edit the `.env` file and add your secret API keys (`GITHUB_TOKEN`, `OPENAI_API_KEY`, etc.).
-3.  **Run the setup script:**
+3. **Run the setup script:**
+
     ```bash
     bash scripts/setup.sh
     ```
-4.  **Validate your setup:**
+
+4. **Validate your setup:**
+
     ```bash
     bash scripts/validate.sh
     ```

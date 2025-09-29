@@ -137,3 +137,9 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+.DS_Store
+frontend/vibe-cockpit/build/
+replit_import/
+Liv-Hana.zip
+.markdownlintignore

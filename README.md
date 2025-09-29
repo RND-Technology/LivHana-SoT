@@ -18,6 +18,28 @@ See [`CLEAN_REPO_STRUCTURE.md`](CLEAN_REPO_STRUCTURE.md) for a detailed tree.
 1. Clone the repo.
 2. Install and run the `frontend/vibe-cockpit` app with the usual Node/Vite flow (`npm install && npm run build`).
 3. Use the automation scripts under `automation/` for context sync, compliance checks, and deployment cadences.
+4. Run quality gates:
+   - `npm run lint`
+   - `npm run test` in `backend/common` and `backend/reasoning-gateway`
+   - `npm run test:unit` in `frontend/vibe-cockpit`
+   - `npx markdownlint-cli2 "**/*.md" --fix`
+5. Docker voice stack: `/infra/scripts/start_voice_mode_stack.sh` (requires ElevenLabs/DeepSeek JWT envs); stop with `/infra/scripts/stop_voice_mode_stack.sh`.
+
+## Environment Samples
+
+Create a `.env.example` (root) and `.env.docker.sample` (under `infra/docker/`) containing:
+
+```
+JWT_SECRET=your-local-secret
+REASONING_GATEWAY_BASE_URL=http://localhost:4002/api/reasoning
+REASONING_QUEUE_NAME=voice-mode-reasoning-jobs
+ELEVENLABS_API_KEY=op://LivHana-Ops-Keys/ELEVENLABS_API_KEY/credential
+ELEVENLABS_MODEL_ID=eleven_multilingual_v3
+ELEVENLABS_DEFAULT_VOICE_ID=VOICE_ID
+DEEPSEEK_API_KEY=op://LivHana-Ops-Keys/DEEPSEEK_API_KEY/credential
+```
+
+For data pipelines, add `automation/data-pipelines/.env.square` and `.env.lightspeed` (see README in that directory) populated via `op run`.
 
 ## Migration Notes
 

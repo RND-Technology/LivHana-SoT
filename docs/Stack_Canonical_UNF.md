@@ -1,5 +1,6 @@
 
 # Canonical Stack — UNF-2 (Hardened)
+
 **Date:** 2025-09-13 • **Owner:** Jesse Niesen • **Maintainer:** Liv Hana (AI EA)**  
 **Scope:** HNC / OPS / R&D / Herbitrage, single-cloud (GCP), single SoT, production-ready.
 
@@ -10,6 +11,7 @@
 ## 1) Keep / Kill / Adopt Matrix (single source of truth)
 
 ### KEEP (Canonical)
+
 - **Cloud Run** — API + Cockpit (Next.js)  
 - **AlloyDB (Postgres 15)** — **sole OLTP** (replaces Supabase)  
 - **BigQuery** — analytics tiles (ROI, funnel, policy KPIs)  
@@ -21,11 +23,13 @@
 - **Identity Platform** — 21+ age-gate; OIDC for cockpit
 
 ### ADOPT
+
 - **Lightspeed** — POS/e-com target (migrate from Square)  
 - **Vertex AI (eval/tooling)** — embeddings/evals as needed  
 - **M4 MCP Orchestrator** — multi-agent planning/execution brain
 
 ### PHASE-OUT / CANCEL
+
 - **Supabase** — **CANCEL** (OLTP → AlloyDB, Auth → Identity, Storage → GCS)  
 - **Render** — **PHASE-OUT** (use Cloud Run)  
 - **Zapier/Make/IFTTT** — **PHASE-OUT** (Cloud Workflows + Pub/Sub)  
@@ -48,6 +52,7 @@ Identity Platform(21+) → Cockpit auth → API OIDC → policy & store CTAs
 ## 3) Minimal Contracts
 
 **API**  
+
 - `POST /v1/video/kickoff` → `{topic, audience, durationSec}` → `{id, synthesiaId}`  
 - `POST /v1/webhooks/synthesia` (HMAC) → `204`  
 - `GET /api/roi` → `{ revenue, cost, roi, period }` (via BigQuery)  
@@ -55,12 +60,14 @@ Identity Platform(21+) → Cockpit auth → API OIDC → policy & store CTAs
 - `GET /healthz` → `{ ok: true }`
 
 **DB (AlloyDB)**  
+
 - `videos(id, title, script, status, url, provider_id)`  
 - `tpop(id, label, record jsonb, active)`  
 - `tpop_metrics_daily(tpop_id, date, views, ctr_ops, signups_ops, joins_rd)`  
 - `cockpit_prefs(user_id, settings jsonb)`
 
 **Analytics (BigQuery)**  
+
 - `fact_transactions` (source: POS)  
 - `fact_content` (views, watch time)  
 - `dim_channel`, `dim_tpop`, `dim_offer`  
@@ -104,11 +111,13 @@ Identity Platform(21+) → Cockpit auth → API OIDC → policy & store CTAs
 ## 7) Replit-Ready Dev (so Replit can build/deploy)
 
 **.replit** (Node/PNPM)
+
 ```
 run = "pnpm -w dev"
 ```
 
 **replit.nix**
+
 ```nix
 { pkgs }: {
   deps = [
@@ -121,6 +130,7 @@ run = "pnpm -w dev"
 ```
 
 **Dev bootstrap**
+
 ```bash
 pnpm i -w
 pnpm -w build
@@ -131,6 +141,7 @@ psql herbitrage < docs/AlloyDB_Schema.sql
 ```
 
 **Deploy from Replit → GCP**  
+
 - Use a Cloud Build trigger on `main`.  
 - Push from Replit; Cloud Build builds & deploys Cloud Run (API + Cockpit).  
 - Secrets pulled at runtime via Secret Manager.
@@ -140,6 +151,7 @@ psql herbitrage < docs/AlloyDB_Schema.sql
 ## 8) Migration Plan (Supabase → AlloyDB; Square → Lightspeed)
 
 **Supabase**  
+
 - `pg_dump` data-only → `psql` into AlloyDB (Auth Proxy).  
 - Remove Supabase keys; cancel project.  
 **Square → Lightspeed**  
@@ -159,6 +171,7 @@ psql herbitrage < docs/AlloyDB_Schema.sql
 ---
 
 ## 10) Appendix — Color/Brand Locks (for media surfaces)
+
 - R&D Green `#16A34A`, Capitol Gold `#F59E0B`, Night Sky `#0F172A`, Cloud `#F8FAFC`.  
 - Badges in corners only; no pot-leaf spam; lapel pin “R&D”.
 

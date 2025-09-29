@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import {
   Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, Typography,
   Card, CardContent, IconButton, Select, MenuItem, FormControl, InputLabel,
@@ -41,7 +41,7 @@ const VideoMode = ({
   const peerConnectionRef = useRef(null);
   const screenShareStreamRef = useRef(null);
 
-  const iceServers = {
+  const iceServers = useMemo(() => ({
     iceServers: [
       {
         urls: TURN_SERVER_URL,
@@ -52,9 +52,11 @@ const VideoMode = ({
         urls: 'stun:stun.l.google.com:19302'
       }
     ]
-  };
+  }), []);
 
-  const startVideoCall = async () => {
+  const startVideoCall = useCallback(async () => {
+    if (isConnected) return;
+
     try {
       setConnectionStatus('connecting');
       setAgentStatus('connecting');
@@ -128,9 +130,14 @@ const VideoMode = ({
       setConnectionStatus('error');
       setAgentStatus('error');
     }
-  };
+  }, [isConnected, videoQuality, iceServers, setConnectionStatus, setAgentStatus]);
 
-  const endVideoCall = () => {
+  const endVideoCall = useCallback(() => {
+    setIsConnected(false);
+    setIsVideoOn(false);
+    setIsMuted(false); // Reset mute state
+    setIsScreenSharing(false);
+
     if (peerConnectionRef.current) {
       peerConnectionRef.current.close();
       peerConnectionRef.current = null;
@@ -143,15 +150,13 @@ const VideoMode = ({
 
     if (screenShareStreamRef.current) {
       screenShareStreamRef.current.getTracks().forEach(track => track.stop());
-      setIsScreenSharing(false);
       screenShareStreamRef.current = null;
     }
 
     setRemoteStream(null);
-    setIsConnected(false);
     setConnectionStatus('disconnected');
     setAgentStatus('ready');
-  };
+  }, [localStream, setIsConnected, setIsVideoOn, setIsMuted, setIsScreenSharing, setRemoteStream, setConnectionStatus, setAgentStatus]);
 
   const toggleMute = () => {
     if (localStream) {
@@ -173,7 +178,7 @@ const VideoMode = ({
     }
   };
 
-  const toggleScreenShare = async () => {
+  const toggleScreenShare = useCallback(async () => {
     if (!isScreenSharing) {
       try {
         const screenStream = await navigator.mediaDevices.getDisplayMedia({
@@ -206,9 +211,9 @@ const VideoMode = ({
     } else {
       stopScreenShare();
     }
-  };
+  }, [isScreenSharing, stopScreenShare]);
 
-  const stopScreenShare = () => {
+  const stopScreenShare = useCallback(() => {
     if (screenShareStreamRef.current) {
       screenShareStreamRef.current.getTracks().forEach(track => track.stop());
       screenShareStreamRef.current = null;
@@ -225,9 +230,10 @@ const VideoMode = ({
     }
 
     setIsScreenSharing(false);
-  };
 
-  const toggleFullscreen = () => {
+  }, [localStream]);
+
+  const toggleFullscreen = useCallback(() => {
     if (!document.fullscreenElement) {
       document.documentElement.requestFullscreen();
       setIsFullscreen(true);
@@ -235,7 +241,7 @@ const VideoMode = ({
       document.exitFullscreen();
       setIsFullscreen(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     if (videoModeActive && !isConnected) {
@@ -247,7 +253,7 @@ const VideoMode = ({
     return () => {
       endVideoCall();
     };
-  }, [videoModeActive]);
+  }, [videoModeActive, endVideoCall, isConnected, startVideoCall]);
 
   useEffect(() => {
     const handleFullscreenChange = () => {

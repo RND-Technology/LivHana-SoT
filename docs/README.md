@@ -5,6 +5,7 @@
 This system organizes ALL Liv Hana AI EA context, development, and deployment using Jesse Niesen's RPM (Results-Purpose-Massive Action) framework with the specific structure:
 
 **R&D.6.Ops.3.Shipping SO**
+
 - R&D = Research & Development (6 iterations/phases)
 - Ops = Operations (3 core operational areas)  
 - Shipping = Delivery/Deployment
@@ -22,7 +23,9 @@ liv-hana-e2e-pipeline/
 ```
 
 ## Core Mission
+
 Transform Liv Hana from concept to fully operational agentic AI EA capable of:
+
 - Voice cloning pipeline integration
 - 10,000+ daily customer outreach calls
 - Complex business process automation

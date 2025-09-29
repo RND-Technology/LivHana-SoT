@@ -1,17 +1,22 @@
 
 # Identity Platform — 21+ Addendum (UNF-3)
+
 **Purpose:** Enforce 21+ gating across cockpit and store using Google Identity Platform (Firebase Auth-compatible), with verifiable claims and OIDC propagation to APIs.
 
 ## 0) Outcomes
+
 - Only users **age ≥ 21** can access cockpit/store actions.
 - Tokens carry `age_verified: true` (custom claim) and optional `dob`.
 - Cockpit (Next.js) performs edge-gate; API (Cloud Run) verifies OIDC token for each request.
 
 ## 1) Enable & Configure Identity Platform
+
 1. Enable APIs (idempotent):
+
    ```bash
    gcloud services enable identitytoolkit.googleapis.com iam.googleapis.com
    ```
+
 2. In Console → **Identity Platform**:
    - Add **Email/Password** provider (baseline).
    - (Optional) Add Google/Apple OIDC providers if desired.
@@ -20,8 +25,10 @@
    - Grant `roles/iam.serviceAccountTokenCreator` and `roles/identitytoolkit.admin`
 
 ## 2) Age Verification Flow
+
 - **Sign-up form** collects DoB (YYYY-MM-DD) and explicit 21+ attestation.
 - Backend verifies age (>= 21). If valid, it sets custom claims:
+
   ```js
   // functions/claims.ts (Cloud Run or Cloud Functions)
   import { initializeApp, applicationDefault } from 'firebase-admin/app';
@@ -36,9 +43,11 @@
     return { ok: true };
   }
   ```
+
 - If you integrate 3rd-party KYC later (e.g., ID check), use its success callback to call `setAgeVerified`.
 
 ## 3) Cockpit (Next.js) Edge Gate (middleware.ts)
+
 ```ts
 // apps/cockpit/middleware.ts
 import { NextResponse } from 'next/server';
@@ -84,6 +93,7 @@ export const config = {
 ```
 
 ## 4) API Verification (Cloud Run, Node)
+
 ```ts
 // apps/api/src/auth.ts
 import * as jose from 'jose';
@@ -100,14 +110,17 @@ export async function verifyIdToken(idToken: string, projectId: string) {
 ```
 
 Usage in handlers:
+
 ```ts
 const idToken = req.headers['authorization']?.replace('Bearer ', '') || req.headers['x-id-token'];
 const user = await verifyIdToken(idToken!, process.env.GCP_PROJECT!);
 ```
 
 ## 5) Age-Gate Page (cockpit)
+
 - `/public/age-gate` form: DoB (YYYY-MM-DD) + consent checkbox.
 - On submit: call `/api/auth/verify-age`:
+
 ```ts
 // apps/cockpit/app/api/auth/verify-age/route.ts
 import { NextResponse } from 'next/server';
@@ -126,10 +139,12 @@ export async function POST(req: Request) {
 ```
 
 ## 6) Secrets & Env
+
 - Cockpit: `NEXT_PUBLIC_GCP_PROJECT`, `ADMIN_API_URL`
 - API: `GCP_PROJECT`
 - Both: served behind HTTPS; no PII in logs.
 
 ## 7) Acceptance
+
 - Under-21 cannot pass middleware.
 - Valid 21+ user receives `age_verified: true` and can hit API with OIDC token.

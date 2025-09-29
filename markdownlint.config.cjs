@@ -1,0 +1,8 @@
+export default {
+  default: true,
+  MD013: false,
+  MD025: false,
+  MD033: false,
+  MD036: false,
+  MD040: false
+};

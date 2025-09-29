@@ -3,7 +3,7 @@ import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import pino from 'pino';
-import createVoiceRouter from './voice-router.js';
+import voiceRouter from './voice-router.js';
 import { createHealthRouter } from './voice-health.js';
 import { authMiddleware } from '../../common/auth/middleware.js';
 import { requestLogger, errorLogger } from '../../common/logging/logger.js';
@@ -30,15 +30,9 @@ app.get('/healthz', (_req, res) => {
   res.status(200).json({ status: 'ok' });
 });
 
-// Auth middleware - skip in development mode for testing
-if (process.env.NODE_ENV === 'production') {
-  app.use(authMiddleware({ logger }));
-} else {
-  logger.warn('AUTH DISABLED - Development mode');
-}
-
+app.use(authMiddleware({ logger }));
 app.use('/health', createHealthRouter({ logger, queue: reasoningQueue }));
-app.use('/api', createVoiceRouter({ logger, queue: reasoningQueue }));
+app.use('/api', voiceRouter({ logger, queue: reasoningQueue }));
 
 app.use(errorLogger(logger));
 

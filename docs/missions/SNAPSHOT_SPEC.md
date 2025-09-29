@@ -1,0 +1,106 @@
+# SNAPSHOT_SPEC — Liv Hana Memory Archive
+
+**Status:** Draft • **Owner:** Liv Hana (Codex) • **Last Updated:** 2025-09-28
+
+## 1. Purpose
+
+Standardize machine-verifiable memory snapshots capturing orchestration, revenue, compliance, workflow coverage, and infra drift for Tier‑1 operations.
+
+## 2. Scope
+
+Snapshots include:
+
+- Orchestration metrics (runs, success/fail, latency)
+- Revenue / conversion aggregates (non-PII)
+- Compliance checks (age gate, COA scan)
+- Workflow coverage (defined vs verified)
+- Infra drift summary
+- Risk flags referencing `docs/governance/RISKLOG.md`
+
+## 3. Directory Layout
+
+```
+docs/snapshots/
+  YYYY/
+    MM/
+      snapshot_YYYY-MM-DD_HHMMZ.json
+      manifest.json  # rolling index (latest pointer, checksum)
+```
+
+## 4. JSON Schema (High Level)
+
+```jsonc
+{
+  "version": "1.0",
+  "timestamp_utc": "ISO8601",
+  "orchestration": {
+    "runs": { "success": 0, "failed": 0, "p95_latency_ms": 0 }
+  },
+  "revenue": {
+    "day_gross_usd": 0,
+    "checkout_success_rate": 0.0
+  },
+  "compliance": {
+    "age_gate_present": true,
+    "coa_scan_pass": true
+  },
+  "workflow_coverage": {
+    "defined": 0,
+    "verified": 0,
+    "total_target": 25
+  },
+  "infra": {
+    "drift_detected": false
+  },
+  "router": {
+    "p95_latency_ms": 0,
+    "fallback_rate": 0.0
+  },
+  "risk_flags": ["R1", "R2"],
+  "notes": []
+}
+```
+
+Formal schema stored at `automation/scripts/snapshot_schema.json` (future task).
+
+## 5. Cadence
+
+- **Daily** at 00:05Z via `automation/schedulers/sched_snapshot.sh`
+- **On-demand** allowed if >6h since last snapshot (`FORCE=1` flag)
+
+## 6. Verification
+
+`automation/scripts/check_memory_snapshot.sh` fails if:
+
+- Latest snapshot age > 26h
+- Required fields missing / schema invalid
+- `infra.drift_detected` true without open risk entry
+
+## 7. Promotion & Retention
+
+- Daily snapshots: retain 30 days
+- Weekly rollup (`SCORE-weekly-YYYY-MM-DD.md`): retain 6 months
+- Monthly rollup (`SCORE-monthly-YYYY-MM.md`): retain indefinitely
+- Summaries link to `docs/scorecards/`
+
+## 8. Security & PII
+
+- No raw identifiers; aggregated metrics only
+- Secrets resolved at runtime; never written to disk
+- Snapshot JSON added to `.gitattributes` for diff-friendly formatting (todo)
+
+## 9. Failure Handling
+
+If snapshot generation fails:
+
+1. Retry once automatically
+2. Log to `automation/swarm/runtime_state.json`
+3. Open issue with label `snapshot-failure`
+4. Flag in risk log (R2 escalation) if two consecutive failures
+
+## 10. Open Tasks
+
+- [ ] Implement JSON schema file + validator hook
+- [ ] Extend snapshot generator (`generate_snapshot.py`) to emit full structure
+- [ ] Update CI to lint snapshots against schema
+- [ ] Add retention cleanup script (`automation/scripts/prune_snapshots.sh`)

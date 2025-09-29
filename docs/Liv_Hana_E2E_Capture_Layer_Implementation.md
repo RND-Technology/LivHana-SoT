@@ -1,4 +1,5 @@
 # 🧠 LIV HANA E2E CAPTURE LAYER - COMPLETE IMPLEMENTATION
+
 ## Context Preservation System with Agent Swarm Integration
 
 ---
@@ -61,6 +62,7 @@ liv-hana-e2e-pipeline/
 ## 🚀 AUTOMATED SESSION HARVEST SYSTEM
 
 ### Master Export Script (All Platforms)
+
 ```bash
 #!/bin/bash
 # liv-hana-session-harvest.sh
@@ -244,6 +246,7 @@ business_layers:
 ```
 
 ## Communication Modes
+
 ```yaml
 modes:
   brief: "Liv / Yo, Liv - Ultra-brief EA confirmations"
@@ -254,6 +257,7 @@ response_format: "Always end with mini-debrief + memory usage %"
 ```
 
 ## Current Operational Priorities
+
 ```yaml
 P0_CRITICAL:
   - "Veriff integration failure resolution ($100K+/month revenue impact)"
@@ -271,6 +275,7 @@ P2_MEDIUM:
 ```
 
 ## Compliance Framework
+
 ```yaml
 guardrails:
   age_verification: "21+ only across all outputs"
@@ -285,6 +290,7 @@ character_rules:
 ```
 
 ## Technical Capabilities
+
 ```yaml
 platforms:
   primary: "Claude Sonnet 4"
@@ -299,6 +305,7 @@ specializations:
 ```
 
 ## Agent Swarm Coordination
+
 ```yaml
 orchestration:
   role: "Master coordinator for specialized agent team"
@@ -316,6 +323,7 @@ coordination_protocols:
 ```
 
 ## Context Preservation Rules
+
 ```yaml
 memory_management:
   conversation_retention: "Complete conversation history preservation"
@@ -330,32 +338,40 @@ export_protocols:
 ```
 
 ## Recent Updates & Changes
+
 - {DATE}: Added automated context capture system
 - {DATE}: Implemented agent swarm coordination protocols  
 - {DATE}: Enhanced compliance framework for multi-platform deployment
 - {DATE}: Established behavioral snapshot versioning system
 
 ## Performance Metrics
+
 ```yaml
 revenue_impact: "$100K+/month potential (post-Veriff resolution)"
 context_completeness: "Target 95%+ conversation capture rate"
 response_consistency: "Target 85%+ personality consistency across platforms"
 deployment_readiness: "100% - Ready for immediate multi-platform deployment"
 ```
+
 EOF
 
-    # Replace template variables
-    sed -i "s/{DATE}/$DATE/g" "$SNAPSHOT_FILE"
-    
-    echo "✅ Behavioral snapshot captured: $SNAPSHOT_FILE" | tee -a "$LOG_FILE"
-}
+```bash
+# Replace template variables
+sed -i "s/{DATE}/$DATE/g" "$SNAPSHOT_FILE"
+
+echo "✅ Behavioral snapshot captured: $SNAPSHOT_FILE" | tee -a "$LOG_FILE"
+```
 
 # Function to update master index
+
+```bash
 update_master_index() {
-    echo "📋 Updating master index..." | tee -a "$LOG_FILE"
-    
-    cat > "$EXPORT_DIR/_index.md" << 'EOF'
+  echo "📋 Updating master index..." | tee -a "$LOG_FILE"
+
+  cat > "$EXPORT_DIR/_index.md" << 'EOF'
+
 # 🧠 Liv Hana E2E Context Dragnet - Master Index
+
 **Last Updated:** {DATE}  
 **Status:** Active Context Preservation  
 **Completeness:** See individual platform status below  
@@ -365,12 +381,14 @@ update_master_index() {
 ## 📊 CAPTURE STATUS DASHBOARD
 
 ### Platform Export Status
+
 - **Claude:** ✅ Active (automated + manual)
 - **ChatGPT:** ⚠️ Manual export required  
 - **Gemini:** ⚠️ Manual export required
 - **Perplexity:** ⚠️ Manual export required
 
 ### Data Completeness Metrics
+
 ```yaml
 conversations_captured: "Updated during each harvest cycle"
 files_archived: "All attachments and referenced documents" 
@@ -378,7 +396,8 @@ canvases_exported: "All Claude artifacts and visualizations"
 behavioral_snapshots: "Daily snapshots with version control"
 ```
 
-### Agent Swarm Coordination Status
+## Agent Swarm Coordination Status
+
 - **👩‍💼 Liv Hana (Orchestrator):** Active - Master coordination
 - **🔬 Captain Cannabis (Archivist):** Active - Data integrity validation  
 - **⚖️ Major Quality (Redactor):** Active - Compliance filtering
@@ -388,21 +407,24 @@ behavioral_snapshots: "Daily snapshots with version control"
 
 ---
 
-## 📁 DIRECTORY NAVIGATION
+## Directory Navigation
 
 ### Recent Captures
+
 - **Latest Behavioral Snapshot:** [memory/behavioral-snapshots/](memory/behavioral-snapshots/)
 - **Recent Conversations:** [transcripts/](transcripts/)  
 - **Current Canvas Exports:** [canvases/](canvases/)
 - **File Archives:** [files/](files/)
 
 ### Processed Intelligence  
+
 - **Domain Knowledge Inventory:** [intelligence/domain-knowledge/](intelligence/domain-knowledge/)
 - **Strategic Decision History:** [intelligence/decision-history/](intelligence/decision-history/)
 - **Unfinished Threads & TODOs:** [intelligence/unfinished-threads/](intelligence/unfinished-threads/)
 - **Relationship Maps:** [intelligence/relationship-maps/](intelligence/relationship-maps/)
 
 ### Search & Retrieval
+
 - **Semantic Search:** [search-index/embeddings/](search-index/embeddings/)
 - **Full-Text Search:** [search-index/full-text/](search-index/full-text/)
 - **Metadata Index:** [search-index/metadata/](search-index/metadata/)
@@ -412,6 +434,7 @@ behavioral_snapshots: "Daily snapshots with version control"
 ## 🎯 CRITICAL CONTEXT THREADS
 
 ### Active Crisis Management
+
 1. **Veriff Integration Failure** - P0 Priority
    - Impact: $100K+/month revenue loss
    - Status: Technical solution ready for deployment
@@ -428,6 +451,7 @@ behavioral_snapshots: "Daily snapshots with version control"
    - Files: See `transcripts/claude/family-estate/`
 
 ### Business Architecture Evolution
+
 1. **Four-Layer Business Model**
    - R&D: Revenue engine with TX DSHS License #690
    - HNC: Content platform with 84-episode series
@@ -450,6 +474,7 @@ behavioral_snapshots: "Daily snapshots with version control"
 ## 🔍 SEARCH QUICK REFERENCES
 
 ### Key Topics (Most Referenced)
+
 - Cannabis regulation and compliance
 - Texas hemp industry and DSHS requirements  
 - Conservative political messaging strategies
@@ -459,12 +484,14 @@ behavioral_snapshots: "Daily snapshots with version control"
 - Family estate management and legal strategy
 
 ### Character Development
+
 - **Liv Hana:** AI EA personality evolution and capabilities
 - **Jesse:** Protagonist character development for HNC
 - **Agent Swarm:** Specialized AI agent personalities
 - **HNC Characters:** Lt. Dan, Chief Steve, Aubrey Awfuls
 
 ### Business Metrics & Targets
+
 - $1M+ monthly EBITDA goal by Q4 2025
 - 80+ blocked customers requiring recovery (Veriff crisis)  
 - 84 episodes for High Noon Cartoon series
@@ -475,18 +502,21 @@ behavioral_snapshots: "Daily snapshots with version control"
 ## 🚀 DEPLOYMENT STATUS
 
 ### Ready for Immediate Deployment
+
 - ✅ Veriff replacement system (30-minute deployment)
 - ✅ High Noon Cartoon platform (2-hour deployment)  
 - ✅ One Plant Solution advocacy site (2-hour deployment)
 - ✅ Blue Dream raffle system (4-hour deployment)
 
 ### Technical Architecture
+
 - ✅ Complete ADR with working code implementations
 - ✅ Replit deployment instructions and configurations
 - ✅ API integrations (Square, Gmail, Notion)
 - ✅ Compliance and age verification systems
 
 ### Context Preservation
+
 - ✅ Multi-platform conversation capture protocols
 - ✅ Behavioral snapshot versioning system
 - ✅ Agent swarm coordination framework  
@@ -499,16 +529,19 @@ behavioral_snapshots: "Daily snapshots with version control"
 **🔧 Maintenance:** Weekly behavioral snapshot reviews  
 EOF
 
-    # Replace template variables  
-    sed -i "s/{DATE}/$DATE/g" "$EXPORT_DIR/_index.md"
-    
-    echo "✅ Master index updated" | tee -a "$LOG_FILE"
-}
+```bash
+# Replace template variables
+sed -i "s/{DATE}/$DATE/g" "$EXPORT_DIR/_index.md"
+
+echo "✅ Master index updated" | tee -a "$LOG_FILE"
+```
 
 # Main execution
+
+```bash
 main() {
-    echo "🚀 Initializing Liv Hana E2E Context Dragnet..." | tee -a "$LOG_FILE"
-    
+  echo "🚀 Initializing Liv Hana E2E Context Dragnet..." | tee -a "$LOG_FILE"
+
     # Create necessary directories
     mkdir -p "$EXPORT_DIR/logs"
     
@@ -530,7 +563,9 @@ main() {
 }
 
 # Execute main function
+
 main "$@"
+
 ```
 
 ---
@@ -538,6 +573,7 @@ main "$@"
 ## 🔍 SEARCH INDEX GENERATION SYSTEM
 
 ### Automated Indexing Script
+
 ```python
 #!/usr/bin/env python3
 # search-index-generator.py
@@ -869,6 +905,7 @@ if __name__ == "__main__":
 ## 🎯 AGENT SWARM COORDINATION SYSTEM
 
 ### Agent Communication Protocol
+
 ```javascript
 // agent-swarm/coordination/agent-messenger.js
 // Inter-agent communication and task coordination
@@ -1187,6 +1224,7 @@ if (require.main === module) {
 ## 🚀 DEPLOYMENT INSTRUCTIONS
 
 ### Complete Setup in Replit
+
 ```bash
 # Create the complete project structure in Replit
 mkdir -p liv-hana-e2e-pipeline
@@ -1209,6 +1247,7 @@ node agent-swarm/coordination/agent-messenger.js
 ```
 
 ### Environment Configuration
+
 ```env
 # Add to Replit Secrets or .env file
 CLAUDE_API_KEY=your_claude_api_key_when_available
@@ -1225,21 +1264,25 @@ BACKUP_LOCATION=your_backup_storage_location
 ## 📊 SUCCESS METRICS
 
 ### Context Capture Completeness
+
 - **Target:** 95%+ conversation capture rate across all platforms
 - **Tracking:** Automated validation of export completeness
 - **Alerts:** Notify if capture rate drops below 90%
 
 ### Agent Swarm Performance  
+
 - **Response Time:** <5 seconds for task delegation
 - **Coordination Success:** >98% successful task completion  
 - **Health Monitoring:** 24/7 agent health status tracking
 
 ### Search & Retrieval Efficiency
+
 - **Index Update Time:** <30 seconds after new content
 - **Search Response Time:** <2 seconds for any query
 - **Accuracy:** >90% relevant results for business queries
 
 ### Data Integrity & Compliance
+
 - **Validation Success:** 100% schema compliance
 - **Privacy Protection:** 100% PII redaction where required
 - **Backup Reliability:** 99.9% backup success rate
@@ -1249,24 +1292,28 @@ BACKUP_LOCATION=your_backup_storage_location
 ## 🎯 IMMEDIATE DEPLOYMENT CHECKLIST
 
 ### Next 30 Minutes
+
 - [ ] Create liv-hana-e2e-pipeline directory in Replit
 - [ ] Copy session harvest script and make executable  
 - [ ] Set up initial directory structure
 - [ ] Create first behavioral snapshot
 
 ### Next 2 Hours  
+
 - [ ] Deploy agent swarm coordination system
 - [ ] Set up automated daily harvest schedule
 - [ ] Configure search index generation
 - [ ] Test manual export procedures for all platforms
 
 ### Next 24 Hours
+
 - [ ] Complete first full context dragnet across all platforms
 - [ ] Validate data integrity and compliance filtering
 - [ ] Generate complete search indexes  
 - [ ] Test agent swarm coordination and communication
 
 ### Next Week
+
 - [ ] Refine automation based on initial results
 - [ ] Optimize search performance and accuracy
 - [ ] Establish backup and disaster recovery procedures  

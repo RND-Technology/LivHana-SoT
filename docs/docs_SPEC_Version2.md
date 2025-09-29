@@ -14,4 +14,5 @@ To create a "System-of-Thoughts" (SoT) framework capable of orchestrating multip
 - **MCP (Mission Control Protocol):** A standardized communication protocol for inter-agent messaging.
 
 ## 3. Key Features
+
 - ...
