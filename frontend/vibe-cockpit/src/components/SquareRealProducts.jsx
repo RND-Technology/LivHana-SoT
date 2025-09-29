@@ -201,13 +201,22 @@ const AgeGate = ({ currentDomain, onVerify }) => (
           className="w-full p-4 bg-black border-2 border-green-500 rounded-lg text-green-400"
           max={new Date(new Date().setFullYear(new Date().getFullYear() - 21)).toISOString().split('T')[0]}
           onChange={(e) => {
+            if (!e.target.value) return;
             const birthDate = new Date(e.target.value);
-            const age = Math.floor((Date.now() - birthDate) / (365.25 * 24 * 60 * 60 * 1000));
+            const age = Math.floor((Date.now() - birthDate.getTime()) / (365.25 * 24 * 60 * 60 * 1000));
             if (age >= 21) {
-              setTimeout(onVerify, 500);
+              setAgeVerified(true);
             }
           }}
         />
+        <motion.button
+          onClick={() => setAgeVerified(true)}
+          className="w-full py-4 bg-gradient-to-r from-green-500 to-green-600 text-black font-bold rounded-lg"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          VERIFY AGE & ENTER
+        </motion.button>
 
         <p className="text-xs text-gray-500 text-center">
           By entering, you agree to our Terms of Service and Privacy Policy. Square securely processes all transactions.
