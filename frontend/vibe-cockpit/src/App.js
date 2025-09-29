@@ -15,6 +15,7 @@ import AgentSwarm from './components/AgentSwarm';
 import EmpireSystems from './components/EmpireSystems';
 import PilotTraining from './components/PilotTraining';
 import Settings from './components/Settings';
+import EmpireDashboard from './components/EmpireDashboard'; // NEW EMPIRE DASHBOARD
 
 // Import Context
 import { AppProvider } from './context/AppContext';
@@ -198,7 +199,17 @@ function App() {
               }}
             >
               <Container maxWidth="xl" sx={{ mt: 2 }}>
-                {renderCurrentView()}
+                <Routes>
+                  <Route path="/" element={<Dashboard />} />
+                  <Route path="/voice" element={<VoiceMode />} />
+                  <Route path="/video" element={<VideoMode />} />
+                  <Route path="/vibe-coding" element={<VibeCoding />} />
+                  <Route path="/agent-swarm" element={<AgentSwarm />} />
+                  <Route path="/empire-systems" element={<EmpireSystems />} />
+                  <Route path="/empire-dashboard" element={<EmpireDashboard />} /> {/* NEW ROUTE */}
+                  <Route path="/pilot-training" element={<PilotTraining />} />
+                  <Route path="/settings" element={<Settings />} />
+                </Routes>
               </Container>
             </Box>
 
