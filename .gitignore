@@ -148,3 +148,10 @@ legacy/potential/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Tier-1 Additions
+.archive/
+*.log
+*.tmp
+.DS_Store
+coverage/

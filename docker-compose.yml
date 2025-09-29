@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  cannabis-service:
+    build: ./backend/cannabis-service
+    ports:
+      - "3003:3000"
+    environment:
+      - NODE_ENV=development
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - redis
+
+  payment-service:
+    build: ./backend/payment-service
+    ports:
+      - "3004:3000"
+    environment:
+      - NODE_ENV=development
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - redis
+
+  voice-service:
+    build: ./backend/voice-service
+    ports:
+      - "3001:3000"
+    environment:
+      - NODE_ENV=development
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - redis
+
+  reasoning-gateway:
+    build: ./backend/reasoning-gateway
+    ports:
+      - "3002:3000"
+    environment:
+      - NODE_ENV=development
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+volumes:
+  redis_data:
