@@ -2,12 +2,14 @@ import React, { useState, useRef, useEffect } from 'react';
 import {
   Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, Typography,
   Card, CardContent, IconButton, Select, MenuItem, FormControl, InputLabel,
-  Chip, Slider, LinearProgress, CircularProgress, Paper
+  Chip, Slider, LinearProgress, CircularProgress, Paper, TextField
 } from '@mui/material';
 import {
   Mic, MicOff, VolumeUp, VolumeDown, Person, VoiceChat, Settings,
   PlayArrow, Stop, Refresh
 } from '@mui/icons-material';
+import { useReasoningJob } from '../hooks/useReasoningJob.js';
+import { HealthBanner } from './HealthBanner.js';
 
 const ELEVENLABS_BASE_URL = 'https://api.elevenlabs.io';
 const ELEVENLABS_API_KEY = process.env.REACT_APP_ELEVENLABS_API_KEY || 'your_elevenlabs_api_key_here';
@@ -63,13 +65,65 @@ const VoiceMode = ({
   const [stability, setStability] = useState(50);
   const [similarityBoost, setSimilarityBoost] = useState(80);
   const [isTesting, setIsTesting] = useState(false);
+  const [reasoningPrompt, setReasoningPrompt] = useState('Summarize the latest operations status for Liv Hana.');
   const audioRef = useRef(null);
+  const reasoning = useReasoningJob();
+  const [healthStatus, setHealthStatus] = useState({
+    voice: 'unknown',
+    reasoning: 'unknown',
+    queueDepth: 'unknown',
+  });
 
   const currentVoice = voiceOptions.find(voice => voice.id === selectedVoice);
 
   useEffect(() => {
     localStorage.setItem('selectedVoice', selectedVoice);
   }, [selectedVoice]);
+
+  useEffect(() => {
+    if (reasoning.status === 'completed') {
+      setHealthStatus((prev) => ({ ...prev, reasoning: 'healthy' }));
+    }
+
+    if (['failed', 'error', 'timeout'].includes(reasoning.status)) {
+      setHealthStatus((prev) => ({ ...prev, reasoning: 'down' }));
+    }
+
+    if (reasoning.status === 'progress') {
+      setHealthStatus((prev) => ({ ...prev, reasoning: 'degraded' }));
+    }
+  }, [reasoning.status]);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const fetchQueueHealth = async () => {
+      try {
+        const data = await reasoning.fetchHealth();
+        if (!cancelled) {
+          setHealthStatus((prev) => ({
+            ...prev,
+            voice: data.voiceStatus ?? prev.voice,
+            reasoning: data.reasoningStatus ?? prev.reasoning,
+            queueDepth: data.queueDepth ?? prev.queueDepth,
+          }));
+        }
+      } catch (error) {
+        console.error('Failed to fetch voice mode health', error);
+        if (!cancelled) {
+          setHealthStatus((prev) => ({ ...prev, voice: 'down', reasoning: 'degraded' }));
+        }
+      }
+    };
+
+    fetchQueueHealth();
+    const interval = setInterval(fetchQueueHealth, 30000);
+
+    return () => {
+      cancelled = true;
+      clearInterval(interval);
+    };
+  }, [reasoning]);
 
   const handleVoiceChange = (event) => {
     setSelectedVoice(event.target.value);
@@ -84,6 +138,7 @@ const VoiceMode = ({
     try {
       setIsSpeaking(true);
       setAgentStatus('speaking');
+      setHealthStatus((prev) => ({ ...prev, voice: 'healthy' }));
 
       const response = await fetch(`${ELEVENLABS_BASE_URL}/v1/text-to-speech/${selectedVoice}`, {
         method: 'POST',
@@ -114,6 +169,7 @@ const VoiceMode = ({
       audio.onended = () => {
         setIsSpeaking(false);
         setAgentStatus('ready');
+        setHealthStatus((prev) => ({ ...prev, voice: 'healthy' }));
         URL.revokeObjectURL(audioUrl);
       };
 
@@ -121,6 +177,7 @@ const VoiceMode = ({
         console.error('Audio playback error');
         setIsSpeaking(false);
         setAgentStatus('error');
+        setHealthStatus((prev) => ({ ...prev, voice: 'down' }));
         URL.revokeObjectURL(audioUrl);
       };
 
@@ -130,6 +187,7 @@ const VoiceMode = ({
       console.error('ElevenLabs TTS error:', error);
       setIsSpeaking(false);
       setAgentStatus('error');
+      setHealthStatus((prev) => ({ ...prev, voice: 'down' }));
       alert(`Voice synthesis failed: ${error.message}`);
     }
   };
@@ -156,6 +214,7 @@ const VoiceMode = ({
       audioRef.current.currentTime = 0;
       setIsSpeaking(false);
       setAgentStatus('ready');
+      setHealthStatus((prev) => ({ ...prev, voice: 'healthy' }));
     }
   };
 
@@ -185,6 +244,11 @@ const VoiceMode = ({
           <Typography variant="body1" sx={{ mb: 2, color: '#E5E7EB' }}>
             Configure Liv Hana's voice synthesis settings and test different voices in real-time.
           </Typography>
+          <HealthBanner
+            voiceStatus={healthStatus.voice}
+            reasoningStatus={healthStatus.reasoning}
+            queueDepth={healthStatus.queueDepth}
+          />
         </Box>
 
         <Box sx={{ display: 'flex', gap: 3, flexDirection: { xs: 'column', md: 'row' } }}>
@@ -309,6 +373,75 @@ const VoiceMode = ({
               </CardContent>
             </Card>
           </Box>
+
+          {/* Reasoning Job Status Panel */}
+          <Box sx={{ flex: 1 }}>
+            <Card sx={{ backgroundColor: '#2d2d2d', mb: 3 }}>
+              <CardContent>
+                <Typography variant="h6" sx={{ color: '#16A34A', mb: 2 }}>
+                  Reasoning Job Status
+                </Typography>
+                <TextField
+                  label="Reasoning Prompt"
+                  value={reasoningPrompt}
+                  onChange={(event) => setReasoningPrompt(event.target.value)}
+                  multiline
+                  minRows={3}
+                  fullWidth
+                  sx={{ mb: 2 }}
+                  inputProps={{ 'data-testid': 'reasoning-prompt-input' }}
+                />
+                <Button
+                  variant="contained"
+                  color="primary"
+                  sx={{ mb: 2, backgroundColor: '#16A34A', '&:hover': { backgroundColor: '#15803D' } }}
+                  onClick={async () => {
+                    try {
+                      await reasoning.submitJob({ prompt: reasoningPrompt, sessionId: 'voice-mode', metadata: { source: 'voice-panel' } });
+                    } catch (error) {
+                      console.error('Failed to submit reasoning job', error);
+                    }
+                  }}
+                  disabled={['submitting', 'queued', 'progress'].includes(reasoning.status)}
+                  data-testid="reasoning-submit-button"
+                >
+                  {reasoning.status === 'submitting' ? 'Submitting…' : 'Request Reasoning'}
+                </Button>
+                <Typography variant="body2" sx={{ color: '#E5E7EB', mb: 1 }} data-testid="reasoning-status-text">
+                  Status: {reasoning.status}
+                </Typography>
+                {reasoning.jobId && (
+                  <Typography variant="body2" sx={{ color: '#9CA3AF', mb: 1 }} data-testid="reasoning-job-id">
+                    Job ID: {reasoning.jobId}
+                  </Typography>
+                )}
+                {reasoning.error && (
+                  <Typography variant="body2" sx={{ color: '#F87171', mb: 1 }} data-testid="reasoning-error">
+                    Error: {reasoning.error}
+                  </Typography>
+                )}
+                {reasoning.result?.partial && (
+                  <Typography variant="body2" sx={{ color: '#E5E7EB', mb: 1 }} data-testid="reasoning-partial">
+                    Partial: {reasoning.result.partial}
+                  </Typography>
+                )}
+                {reasoning.result?.final && (
+                  <Typography variant="body2" sx={{ color: '#16A34A', mb: 1 }} data-testid="reasoning-final">
+                    Final: {reasoning.result.final}
+                  </Typography>
+                )}
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  sx={{ mt: 2, borderColor: '#16A34A', color: '#16A34A' }}
+                  onClick={reasoning.reset}
+                  data-testid="reasoning-reset-button"
+                >
+                  Reset
+                </Button>
+              </CardContent>
+            </Card>
+          </Box>
         </Box>
 
         {/* Test Controls */}
@@ -323,6 +456,7 @@ const VoiceMode = ({
               '&:hover': { backgroundColor: '#15803D' },
               minWidth: 200
             }}
+            data-testid="test-voice-button"
           >
             {isTesting ? 'Testing Voice...' : `Test ${currentVoice?.name || 'Voice'}`}
           </Button>
@@ -338,13 +472,14 @@ const VoiceMode = ({
               '&:hover': { borderColor: '#DC2626', color: '#DC2626' },
               minWidth: 150
             }}
+            data-testid="stop-speaking-button"
           >
             Stop Speaking
           </Button>
         </Box>
 
         {/* Status Display */}
-        <Paper sx={{ mt: 3, p: 2, backgroundColor: '#374151' }}>
+        <Paper sx={{ mt: 3, p: 2, backgroundColor: '#374151' }} data-testid="voice-mode-status">
           <Typography variant="h6" sx={{ color: '#16A34A', mb: 1 }}>
             System Status
           </Typography>
@@ -356,6 +491,11 @@ const VoiceMode = ({
             <Chip
               label={`Agent Status: ${agentStatus}`}
               color={agentStatus === 'ready' ? 'success' : agentStatus === 'speaking' ? 'warning' : 'error'}
+            />
+            <Chip
+              label={`Reasoning Status: ${reasoning.status}`}
+              color={['completed', 'idle'].includes(reasoning.status) ? 'success' : reasoning.status === 'error' ? 'error' : 'warning'}
+              data-testid="reasoning-status-chip"
             />
             <Chip
               label={`API Key: ${ELEVENLABS_API_KEY && ELEVENLABS_API_KEY !== 'your_elevenlabs_api_key_here' ? 'Configured' : 'Missing'}`}
@@ -370,6 +510,7 @@ const VoiceMode = ({
           onClick={onClose}
           variant="outlined"
           sx={{ borderColor: '#374151', color: '#E5E7EB' }}
+          data-testid="close-voice-mode"
         >
           Close
         </Button>
@@ -385,6 +526,7 @@ const VoiceMode = ({
                 backgroundColor: voiceModeActive ? '#DC2626' : '#15803D'
               }
             }}
+            data-testid="toggle-voice-mode"
           >
             {voiceModeActive ? 'Disable Voice Mode' : 'Enable Voice Mode'}
           </Button>
