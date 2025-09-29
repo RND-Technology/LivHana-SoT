@@ -20,7 +20,13 @@ app.use(helmet());
 app.use(cors({ origin: process.env.ALLOWED_ORIGINS?.split(',').map((origin) => origin.trim()) ?? '*', credentials: true }));
 app.use(express.json({ limit: '1mb' }));
 app.use(requestLogger(logger));
-app.use(authMiddleware({ logger }));
+
+// Auth middleware - skip in development mode for testing
+if (process.env.NODE_ENV === 'production') {
+  app.use(authMiddleware({ logger }));
+} else {
+  logger.warn('AUTH DISABLED - Development mode');
+}
 
 const queueName = process.env.REASONING_QUEUE_NAME ?? 'voice-mode-reasoning-jobs';
 const queueOptions = createQueueOptions();
