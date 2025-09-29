@@ -1,0 +1,59 @@
+# 📚 DOCUMENTATION STANDARDS
+
+## 📝 DOCUMENTATION HIERARCHY
+```
+docs/
+├── architecture/      # ADRs and system design
+├── governance/        # System prompts and policies
+├── voice/            # Voice service documentation
+├── deepseek/         # AI reasoning documentation
+├── api/              # API specifications
+├── guides/           # User and developer guides
+└── compliance/       # Regulatory documentation
+```
+
+## 🎯 REQUIRED DOCUMENTATION
+Every service MUST have:
+1. **README.md** - Overview, setup, usage
+2. **API.md** - Endpoint documentation
+3. **ARCHITECTURE.md** - Design decisions
+4. **TESTING.md** - Test strategy
+5. **DEPLOYMENT.md** - Deployment guide
+
+## 📊 KEY STATUS DOCUMENTS
+- [CURRENT_STATUS.md](mdc:CURRENT_STATUS.md) - Live operational dashboard
+- [CLEAN_REPO_STRUCTURE.md](mdc:CLEAN_REPO_STRUCTURE.md) - Repository organization
+- [E2E_MISSION.md](mdc:E2E_MISSION.md) - Mission objectives
+- [TPOP_VALUE_CREATION_ENGINE.md](mdc:TPOP_VALUE_CREATION_ENGINE.md) - Value/profit strategy
+
+## ✍️ DOCUMENTATION RULES
+- **Update Immediately**: Document changes as you make them
+- **Use Emojis**: Visual markers for sections (🚀 🎯 ⚠️ ✅ ❌)
+- **Include Examples**: Code samples for every feature
+- **Version Everything**: Track documentation versions
+- **Review Quarterly**: Scheduled documentation audits
+
+## 🔄 CHANGE LOG REQUIREMENTS
+Every PR must update:
+```markdown
+## [Version] - YYYY-MM-DD
+### Added
+- New features
+### Changed
+- Modified functionality
+### Fixed
+- Bug fixes
+### Security
+- Security updates
+```
+
+## 📐 ADR (Architecture Decision Record) FORMAT
+```markdown
+# ADR-XXX: Title
+## Status: [Proposed|Accepted|Deprecated]
+## Context: Why this decision is needed
+## Decision: What we're doing
+## Consequences: Impact and trade-offs
+```
+alwaysApply: true
+---

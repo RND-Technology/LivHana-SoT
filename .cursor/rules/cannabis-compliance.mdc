@@ -1,0 +1,42 @@
+# 💚 CANNABIS COMPLIANCE & PAYMENT RULES
+
+## 🔒 COMPLIANCE REQUIREMENTS
+- **Age Verification**: MANDATORY 21+ check via [backend/cannabis-service](mdc:backend/cannabis-service)
+- **State Regulations**: Track per-state compliance rules
+- **License Validation**: Verify dispensary licenses
+- **Transaction Limits**: Enforce daily/monthly purchase limits
+- **Audit Trail**: Complete transaction history required
+
+## 💳 PAYMENT PROCESSING
+- **Primary**: Stripe Connect for compliant transactions
+- **Secondary**: Square for backup processing
+- **Cannabis-Specific**: Integrated high-risk processor support
+- **Split Payments**: Support for tax remittance
+- **Reconciliation**: Daily automated reconciliation
+
+## 📊 COMPLIANCE MONITORING
+```javascript
+// Required checks for every transaction
+{
+  ageVerified: true,        // 21+ confirmed
+  licenseValid: true,       // Dispensary license active
+  stateCompliant: true,     // Meets state regulations
+  limitCheck: true,         // Within purchase limits
+  auditLogged: true,        // Transaction recorded
+  taxCalculated: true       // Proper tax applied
+}
+```
+
+## 🚨 SECURITY REQUIREMENTS
+- **PCI DSS**: Level 1 compliance required
+- **Encryption**: AES-256 for all sensitive data
+- **Tokenization**: Never store raw card data
+- **2FA**: Required for admin access
+- **Monitoring**: Real-time fraud detection
+
+## 📁 KEY FILES
+- [backend/cannabis-service/src/compliance.js](mdc:backend/cannabis-service/src/compliance.js)
+- [backend/payment-service/src/processor.js](mdc:backend/payment-service/src/processor.js)
+- [docs/architecture/ADR-002_Cannabis_Compliance.md](mdc:docs/architecture/ADR-002_Cannabis_Compliance.md)
+alwaysApply: true
+---
