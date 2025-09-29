@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { renderHook } from '@testing-library/react';
-import { useSoundCue } from './useSoundCue.js';
+import { useSoundCue } from './useSoundCue.jsx';
 
 const mockAudioContext = () => {
   const destination = {};

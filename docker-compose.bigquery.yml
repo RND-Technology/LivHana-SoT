@@ -1,0 +1,143 @@
+version: '3.8'
+
+services:
+  # ============================================
+  # BIGQUERY SYNC SERVICE - TIER-1 FAST AF!
+  # ============================================
+  
+  bigquery-sync:
+    build:
+      context: .
+      dockerfile: ./infra/docker/bigquery-sync/Dockerfile
+    container_name: bigquery-sync
+    ports:
+      - "3005:3005"
+    environment:
+      # Square API
+      - SQUARE_ACCESS_TOKEN=${SQUARE_ACCESS_TOKEN}
+      - SQUARE_LOCATION_ID=${SQUARE_LOCATION_ID}
+      - SQUARE_PAYMENTS_BEGIN=2018-01-01T00:00:00Z
+      
+      # BigQuery
+      - GCP_PROJECT_ID=${GCP_PROJECT_ID}
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/credentials/gcp-key.json
+      - BQ_DATASET=commerce
+      - BQ_LOCATION=US
+      - BQ_TABLE_PAYMENTS=${BQ_TABLE_PAYMENTS:-square_payments}
+      - BQ_TABLE_CUSTOMERS=${BQ_TABLE_CUSTOMERS:-square_customers}
+      - BQ_TABLE_ITEMS=${BQ_TABLE_ITEMS:-square_items}
+      - BIGQUERY_ENABLED=${BIGQUERY_ENABLED:-true}
+      
+      # Service Config
+      - NODE_ENV=production
+      - PORT=3005
+      - LOG_LEVEL=info
+      
+      # Redis for caching
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      
+    volumes:
+      # Mount GCP credentials
+      - ${GOOGLE_APPLICATION_CREDENTIALS}:/app/credentials/gcp-key.json:ro
+      # Mount logs
+      - ./logs/bigquery:/var/log
+      # Mount data for local development
+      - ./automation/data-pipelines:/app/automation/data-pipelines
+      - ./backend/integration-service:/app/backend/integration-service
+      
+    depends_on:
+      - redis
+      
+    restart: always
+    
+    networks:
+      - empire-network
+      
+    labels:
+      - "com.livhana.service=bigquery-sync"
+      - "com.livhana.tier=1"
+      - "com.livhana.critical=true"
+
+  # ============================================
+  # DEEPSEEK 33B LOCAL - YOUR BLACK BOX!
+  # ============================================
+  
+  deepseek:
+    image: ollama/ollama:latest
+    container_name: deepseek-33b
+    ports:
+      - "11434:11434"
+    environment:
+      - OLLAMA_MODELS=/models
+      - OLLAMA_HOST=0.0.0.0
+    volumes:
+      - deepseek-models:/models
+      - ./infra/docker/deepseek-config:/config
+    command: ["serve"]
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    restart: always
+    networks:
+      - empire-network
+    labels:
+      - "com.livhana.service=deepseek"
+      - "com.livhana.model=33b-coder"
+      - "com.livhana.tier=1"
+
+  # ============================================
+  # REDIS - FAST AF CACHING
+  # ============================================
+  
+  redis:
+    image: redis:7-alpine
+    container_name: redis-cache
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: ["redis-server", "--appendonly", "yes", "--maxmemory", "2gb", "--maxmemory-policy", "allkeys-lru"]
+    restart: always
+    networks:
+      - empire-network
+    labels:
+      - "com.livhana.service=redis"
+      - "com.livhana.tier=1"
+
+  # ============================================
+  # LIVE COCKPIT - REAL-TIME DASHBOARD
+  # ============================================
+  
+  live-cockpit:
+    build:
+      context: ./frontend/vibe-cockpit
+      dockerfile: Dockerfile
+    container_name: live-cockpit
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_URL=http://bigquery-sync:3005
+      - VITE_BIGQUERY_ENABLED=true
+      - VITE_REFRESH_INTERVAL=5000
+    depends_on:
+      - bigquery-sync
+    restart: always
+    networks:
+      - empire-network
+    labels:
+      - "com.livhana.service=cockpit"
+      - "com.livhana.tier=1"
+
+volumes:
+  redis-data:
+  deepseek-models:
+  
+networks:
+  empire-network:
+    name: empire-network
+    driver: bridge

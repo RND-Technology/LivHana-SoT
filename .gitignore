@@ -155,3 +155,4 @@ Thumbs.db
 *.tmp
 .DS_Store
 coverage/
+.cursor-backups/

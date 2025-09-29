@@ -1,45 +1,56 @@
 const express = require('express');
+const cors = require('cors');
 const { createLogger } = require('../../common/logging');
+const { router: bigqueryRoutes, getBigQueryStatus } = require('./bigquery_live');
+const squareCatalog = require('./square_catalog');
+
 const app = express();
 const PORT = process.env.PORT || 3005;
 const logger = createLogger('integration-service');
 
-// Middleware
+app.use(cors({
+  origin: process.env.CORS_ORIGINS ? process.env.CORS_ORIGINS.split(',') : ['http://localhost:5173', 'http://localhost:3000'],
+  credentials: true
+}));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Health check endpoint
 app.get('/health', (req, res) => {
-  res.json({ 
+  const status = getBigQueryStatus();
+  res.json({
     status: 'healthy',
     service: 'integration-service',
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
+    bigQuery: status,
+    square: {
+      enabled: squareCatalog.isLive(),
+      mode: squareCatalog.getMode()
+    }
   });
 });
 
-// Lightspeed sync endpoint
+app.use(bigqueryRoutes);
+app.use(squareCatalog.router);
+
 app.post('/api/sync/lightspeed', (req, res) => {
-  const { storeId, lastSync } = req.body;
-  // Lightspeed integration implemented in lightspeed.py
-  res.json({ 
-    success: true, 
+  res.json({
+    success: true,
     itemsSynced: 42,
     nextSync: new Date(Date.now() + 3600000).toISOString()
   });
 });
 
-// Square sync endpoint
 app.post('/api/sync/square', (req, res) => {
-  const { merchantId, lastSync } = req.body;
-  // Square integration implemented in business_api.js
-  res.json({ 
-    success: true, 
-    transactionsSynced: 17,
-    nextSync: new Date(Date.now() + 3600000).toISOString()
+  const status = getBigQueryStatus();
+  res.json({
+    success: status.enabled,
+    message: status.enabled ? 'Square data syncing via BigQuery pipeline' : 'BigQuery sync disabled; mock data in use',
+    lastRefresh: status.lastRefresh,
+    mode: status.mode
   });
 });
 
-// Start server
 app.listen(PORT, () => {
-  logger.info(`🔌 Integration Service running on port ${PORT}`);
+  logger.info({ port: PORT }, 'Integration Service running');
 });

@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { act, renderHook } from '@testing-library/react';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import { useReasoningJob } from './useReasoningJob.js';
+import { useReasoningJob } from './useReasoningJob.jsx';
 
 const mock = new MockAdapter(axios);
 

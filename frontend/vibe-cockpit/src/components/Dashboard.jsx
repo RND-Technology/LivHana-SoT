@@ -136,16 +136,15 @@ const Dashboard = () => {
       setError(null);
 
       // Fetch system health
-      const healthResponse = await fetch('http://localhost:8080/health');
+      const healthResponse = await fetch('http://localhost:3005/health');
       const healthData = await healthResponse.json();
 
-      // Fetch business metrics
-      const businessResponse = await fetch('http://localhost:8080/business/metrics?days=7');
+      // Fetch business metrics  
+      const businessResponse = await fetch('http://localhost:3005/api/bigquery/dashboard');
       const businessData = await businessResponse.json();
 
-      // Fetch cannabis strains
-      const cannabisResponse = await fetch('http://localhost:8080/cannabis/strains?limit=5');
-      const cannabisData = await cannabisResponse.json();
+      // Use mock data for now
+      const cannabisData = [];
 
       // Update state with real data
       if (healthData.status) {

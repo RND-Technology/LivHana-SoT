@@ -8,11 +8,11 @@ import {
   Mic, MicOff, VolumeUp, VolumeDown, Person, VoiceChat, Settings,
   PlayArrow, Stop, Refresh
 } from '@mui/icons-material';
-import { useReasoningJob } from '../hooks/useReasoningJob.js';
-import { HealthBanner } from './HealthBanner.js';
+import { useReasoningJob } from '../hooks/useReasoningJob';
+import { HealthBanner } from './HealthBanner.jsx';
 
 const ELEVENLABS_BASE_URL = 'https://api.elevenlabs.io';
-const ELEVENLABS_API_KEY = process.env.REACT_APP_ELEVENLABS_API_KEY || 'your_elevenlabs_api_key_here';
+const ELEVENLABS_API_KEY = import.meta.env.REACT_APP_ELEVENLABS_API_KEY || 'your_elevenlabs_api_key_here';
 
 const voiceOptions = [
   {

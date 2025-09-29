@@ -4,7 +4,7 @@ import { ProductHero } from './ProductHero.jsx';
 import { ComplianceBanner } from './ComplianceBanner.jsx';
 import { ReviewStream } from './ReviewStream.jsx';
 import { LoyaltyPanel } from './LoyaltyPanel.jsx';
-import { useProductData } from '../hooks/useProductData.js';
+import { useProductData } from '../hooks/useProductData.jsx';
 import { ReviewModal } from './ReviewModal.jsx';
 
 export const ProductPage = ({ productId, memberId }) => {

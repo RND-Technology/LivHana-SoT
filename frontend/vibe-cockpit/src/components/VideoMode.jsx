@@ -10,9 +10,9 @@ import {
   SignalWifi4Bar, SignalWifi0Bar, Refresh, Fullscreen, FullscreenExit
 } from '@mui/icons-material';
 
-const TURN_SERVER_URL = process.env.REACT_APP_WEBRTC_TURN_SERVER || 'turn:openrelay.metered.ca:80';
-const TURN_USERNAME = process.env.REACT_APP_WEBRTC_TURN_USERNAME || 'openrelayproject';
-const TURN_PASSWORD = process.env.REACT_APP_WEBRTC_TURN_PASSWORD || 'openrelayproject';
+const TURN_SERVER_URL = import.meta.env.REACT_APP_WEBRTC_TURN_SERVER || 'turn:openrelay.metered.ca:80';
+const TURN_USERNAME = import.meta.env.REACT_APP_WEBRTC_TURN_USERNAME || 'openrelayproject';
+const TURN_PASSWORD = import.meta.env.REACT_APP_WEBRTC_TURN_PASSWORD || 'openrelayproject';
 
 const VideoMode = ({
   open,

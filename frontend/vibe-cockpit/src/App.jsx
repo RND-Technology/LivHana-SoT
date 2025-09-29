@@ -16,6 +16,8 @@ import EmpireSystems from './components/EmpireSystems';
 import PilotTraining from './components/PilotTraining';
 import Settings from './components/Settings';
 import EmpireDashboard from './components/EmpireDashboard'; // NEW EMPIRE DASHBOARD
+import SquareRealProducts from './components/SquareRealProducts'; // REAL SQUARE PRODUCTS
+import SquareLiveCockpit from './components/SquareLiveCockpit'; // SQUARE LIVE COCKPIT
 
 // Import Context
 import { AppProvider } from './context/AppContext';
@@ -207,6 +209,8 @@ function App() {
                   <Route path="/agent-swarm" element={<AgentSwarm />} />
                   <Route path="/empire-systems" element={<EmpireSystems />} />
                   <Route path="/empire-dashboard" element={<EmpireDashboard />} /> {/* NEW ROUTE */}
+                  <Route path="/products" element={<SquareRealProducts />} /> {/* REAL PRODUCTS */}
+                  <Route path="/cockpit" element={<SquareLiveCockpit />} /> {/* LIVE COCKPIT */}
                   <Route path="/pilot-training" element={<PilotTraining />} />
                   <Route path="/settings" element={<Settings />} />
                 </Routes>

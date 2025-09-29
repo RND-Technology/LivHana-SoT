@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, Stack, Slider, Typography } from '@mui/material';
 import axios from 'axios';
-import { useSoundCue } from '../hooks/useSoundCue.js';
+import { useSoundCue } from '../hooks/useSoundCue.jsx';
 
 const metricMarks = [
   { value: 1, label: '1' },

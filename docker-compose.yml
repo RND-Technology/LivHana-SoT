@@ -1,52 +1,31 @@
 version: '3.8'
-
 services:
-  cannabis-service:
-    build: ./backend/cannabis-service
+  frontend:
+    build: ./frontend/vibe-cockpit
     ports:
-      - "3003:3000"
+      - "5173:5173"
     environment:
-      - NODE_ENV=development
-      - REDIS_URL=redis://redis:6379
+      - VITE_API_URL=http://backend:3005
+    depends_on:
+      - backend
+      
+  backend:
+    build: ./backend/integration-service
+    ports:
+      - "3005:3005"
+    environment:
+      - NODE_ENV=production
+      - LOG_LEVEL=info
+      - REDIS_HOST=redis
     depends_on:
       - redis
-
-  payment-service:
-    build: ./backend/payment-service
-    ports:
-      - "3004:3000"
-    environment:
-      - NODE_ENV=development
-      - REDIS_URL=redis://redis:6379
-    depends_on:
-      - redis
-
-  voice-service:
-    build: ./backend/voice-service
-    ports:
-      - "3001:3000"
-    environment:
-      - NODE_ENV=development
-      - REDIS_URL=redis://redis:6379
-    depends_on:
-      - redis
-
-  reasoning-gateway:
-    build: ./backend/reasoning-gateway
-    ports:
-      - "3002:3000"
-    environment:
-      - NODE_ENV=development
-      - REDIS_URL=redis://redis:6379
-    depends_on:
-      - redis
-
+      
   redis:
     image: redis:7-alpine
     ports:
       - "6379:6379"
     volumes:
-      - redis_data:/data
-
+      - redis-data:/data
+      
 volumes:
-  redis_data:
+  redis-data:

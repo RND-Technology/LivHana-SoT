@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 
-const API_BASE = process.env.REACT_APP_REASONING_API_BASE ?? '/api/reasoning';
-const STREAM_TIMEOUT_MS = Number(process.env.REACT_APP_REASONING_STREAM_TIMEOUT_MS ?? 60000);
+const API_BASE = import.meta.env.REACT_APP_REASONING_API_BASE ?? '/api/reasoning';
+const STREAM_TIMEOUT_MS = Number(import.meta.env.REACT_APP_REASONING_STREAM_TIMEOUT_MS ?? 60000);
 
 export const useReasoningJob = () => {
   const [jobId, setJobId] = useState(null);
