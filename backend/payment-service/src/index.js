@@ -1,6 +1,8 @@
 const express = require('express');
+const { createLogger } = require('../../common/logging');
 const app = express();
 const PORT = process.env.PORT || 3004;
+const logger = createLogger('payment-service');
 
 // Middleware
 app.use(express.json());
@@ -40,5 +42,5 @@ app.post('/api/payment/refund', (req, res) => {
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`💳 Payment Service running on port ${PORT}`);
+  logger.info(`💳 Payment Service running on port ${PORT}`);
 });

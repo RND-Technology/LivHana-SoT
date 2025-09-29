@@ -1,6 +1,8 @@
 const express = require('express');
+const { createLogger } = require('../../common/logging');
 const app = express();
 const PORT = process.env.PORT || 3003;
+const logger = createLogger('cannabis-service');
 
 // Middleware
 app.use(express.json());
@@ -63,5 +65,5 @@ app.post('/api/compliance/check', (req, res) => {
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`🌿 Cannabis Service running on port ${PORT}`);
+  logger.info(`🌿 Cannabis Service running on port ${PORT}`);
 });

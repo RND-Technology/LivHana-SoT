@@ -1,6 +1,8 @@
 const express = require('express');
+const { createLogger } = require('../../common/logging');
 const app = express();
 const PORT = process.env.PORT || 3005;
+const logger = createLogger('integration-service');
 
 // Middleware
 app.use(express.json());
@@ -39,5 +41,5 @@ app.post('/api/sync/square', (req, res) => {
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`🔌 Integration Service running on port ${PORT}`);
+  logger.info(`🔌 Integration Service running on port ${PORT}`);
 });
