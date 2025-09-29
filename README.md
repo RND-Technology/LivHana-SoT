@@ -51,3 +51,4 @@ For data pipelines, add `automation/data-pipelines/.env.square` and `.env.lights
 
 - Wire backend services into `backend/` (migrating from existing microservices).
 - Continue deduplicating docs from the legacy archives into the active `docs/` tree.
+# TIMESTAMP UPDATE: Mon Sep 29 02:03:57 PDT 2025
