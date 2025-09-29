@@ -138,8 +138,13 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
+# Legacy archives (separate git repos)
+legacy/kinetic/full_snapshot/
+legacy/potential/full_snapshot/
+legacy/replit/
+legacy/kinetic/
+legacy/potential/
+
+# OS files
 .DS_Store
-frontend/vibe-cockpit/build/
-replit_import/
-Liv-Hana.zip
-.markdownlintignore
+Thumbs.db
