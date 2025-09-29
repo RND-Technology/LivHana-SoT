@@ -18,15 +18,47 @@ app.get('/health', (req, res) => {
 // Age verification endpoint
 app.post('/api/verify/age', (req, res) => {
   const { dateOfBirth } = req.body;
-  // TODO: Implement age verification logic
-  res.json({ verified: true, age: 21 });
+  
+  if (!dateOfBirth) {
+    return res.status(400).json({ error: 'Date of birth required' });
+  }
+  
+  const age = Math.floor((Date.now() - new Date(dateOfBirth).getTime()) / (365.25 * 24 * 60 * 60 * 1000));
+  const minAge = Number(process.env.MIN_AGE || 21);
+  
+  res.json({ 
+    verified: age >= minAge,
+    age,
+    minAge,
+    message: age >= minAge ? 'Age verified' : `Must be ${minAge} or older`
+  });
 });
 
 // Compliance check endpoint
 app.post('/api/compliance/check', (req, res) => {
   const { state, productType, quantity } = req.body;
-  // TODO: Implement compliance logic
-  res.json({ compliant: true, restrictions: [] });
+  
+  if (!state || !productType || !quantity) {
+    return res.status(400).json({ error: 'State, product type, and quantity required' });
+  }
+  
+  // State-specific compliance rules
+  const stateRules = {
+    'CA': { maxQuantity: 28.5, allowedTypes: ['flower', 'edible', 'concentrate'] },
+    'CO': { maxQuantity: 28, allowedTypes: ['flower', 'edible', 'concentrate', 'topical'] },
+    'OR': { maxQuantity: 56, allowedTypes: ['flower', 'edible', 'concentrate', 'topical'] },
+    // Add more states as needed
+  };
+  
+  const rules = stateRules[state] || { maxQuantity: 28, allowedTypes: ['flower'] };
+  const compliant = quantity <= rules.maxQuantity && rules.allowedTypes.includes(productType);
+  
+  res.json({ 
+    compliant,
+    maxQuantity: rules.maxQuantity,
+    allowedTypes: rules.allowedTypes,
+    restrictions: compliant ? [] : [`Quantity exceeds ${rules.maxQuantity}g limit or product type not allowed`]
+  });
 });
 
 // Start server
