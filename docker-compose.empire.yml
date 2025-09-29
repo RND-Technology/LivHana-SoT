@@ -1,0 +1,258 @@
+version: '3.8'
+
+services:
+  # ============================================
+  # CORE EMPIRE SERVICES
+  # ============================================
+  
+  # Voice Service - Already Running
+  voice-service:
+    build: ./backend/voice-service
+    ports:
+      - "4001:4001"
+    environment:
+      - ELEVENLABS_API_KEY=${ELEVENLABS_API_KEY}
+      - REDIS_HOST=redis
+    depends_on:
+      - redis
+    restart: always
+
+  # Reasoning Gateway - Already Running  
+  reasoning-gateway:
+    build: ./backend/reasoning-gateway
+    ports:
+      - "4002:4002"
+    environment:
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY}
+      - REDIS_HOST=redis
+    depends_on:
+      - redis
+    restart: always
+
+  # Cannabis Service
+  cannabis-service:
+    build: ./backend/cannabis-service
+    ports:
+      - "3003:3003"
+    environment:
+      - NODE_ENV=production
+      - REDIS_HOST=redis
+    depends_on:
+      - redis
+      - postgres
+    restart: always
+
+  # Payment Service
+  payment-service:
+    build: ./backend/payment-service
+    ports:
+      - "3004:3004"
+    environment:
+      - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
+      - SQUARE_ACCESS_TOKEN=${SQUARE_ACCESS_TOKEN}
+    depends_on:
+      - redis
+      - postgres
+    restart: always
+
+  # Integration Service
+  integration-service:
+    build: ./backend/integration-service
+    ports:
+      - "3005:3005"
+    environment:
+      - LIGHTSPEED_API_KEY=${LIGHTSPEED_API_KEY}
+      - BUSINESS_API_KEY=${BUSINESS_API_KEY}
+    depends_on:
+      - redis
+    restart: always
+
+  # ============================================
+  # NEW EMPIRE-EMPIRE ENGINES
+  # ============================================
+
+  # AI Crisis Consultation Engine
+  crisis-engine:
+    build:
+      context: .
+      dockerfile: ./empire/crisis-engine/Dockerfile
+    ports:
+      - "5001:5001"
+    environment:
+      - SERVICE_NAME=crisis-engine
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY}
+      - CRISIS_DOMAINS=aicrisiscoach.com,aicrisisconsult.com
+    depends_on:
+      - redis
+      - postgres
+    restart: always
+
+  # LinkedIn Strategy Engine
+  linkedin-engine:
+    build:
+      context: .
+      dockerfile: ./empire/linkedin-engine/Dockerfile
+    ports:
+      - "5002:5002"
+    environment:
+      - LINKEDIN_API_KEY=${LINKEDIN_API_KEY}
+      - POST_SCHEDULE=*/30 * * * *
+      - TARGET_DOMAINS=bizflowsi.com,autocodesi.com
+    depends_on:
+      - redis
+    restart: always
+
+  # Compliance Checker Engine
+  compliance-engine:
+    build:
+      context: .
+      dockerfile: ./empire/compliance-engine/Dockerfile
+    ports:
+      - "5003:5003"
+    environment:
+      - SERVICE_NAME=compliance-engine
+      - FREE_TIER=true
+      - COMPLIANCE_DOMAINS=ageverifysi.com,clinicaldataai.com
+    depends_on:
+      - redis
+      - postgres
+    restart: always
+
+  # 50 State Analysis Engine
+  state-analysis-engine:
+    build:
+      context: .
+      dockerfile: ./empire/state-analysis/Dockerfile
+    ports:
+      - "5004:5004"
+    environment:
+      - SERVICE_NAME=state-analysis
+      - STATES_COUNT=50
+      - UPDATE_FREQUENCY=hourly
+    depends_on:
+      - redis
+      - postgres
+    restart: always
+
+  # TXCOA Network Engine
+  txcoa-engine:
+    build:
+      context: .
+      dockerfile: ./empire/txcoa-engine/Dockerfile
+    ports:
+      - "5005:5005"
+    environment:
+      - SERVICE_NAME=txcoa-network
+      - MEMBER_PORTAL=true
+      - TEXAS_DOMAINS=freeweedtexas.com,freelegalweedsanantonio.com
+    depends_on:
+      - redis
+      - postgres
+    restart: always
+
+  # HCN Content Engine
+  content-engine:
+    build:
+      context: .
+      dockerfile: ./empire/content-engine/Dockerfile
+    ports:
+      - "5006:5006"
+    environment:
+      - SERVICE_NAME=hcn-content
+      - CONTENT_TYPE=animated,memes,nfts
+      - HCN_DOMAIN=highnooncartoon.com
+    depends_on:
+      - redis
+      - minio
+    restart: always
+
+  # ============================================
+  # INFRASTRUCTURE SERVICES
+  # ============================================
+
+  # Redis - Message Queue & Cache
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    restart: always
+
+  # PostgreSQL - Primary Database
+  postgres:
+    image: postgres:15-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=empire
+      - POSTGRES_USER=emperor
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: always
+
+  # MinIO - Object Storage (for content)
+  minio:
+    image: minio/minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      - MINIO_ROOT_USER=${MINIO_USER}
+      - MINIO_ROOT_PASSWORD=${MINIO_PASSWORD}
+    volumes:
+      - minio-data:/data
+    command: server /data --console-address ":9001"
+    restart: always
+
+  # Nginx - Reverse Proxy & Load Balancer
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./empire/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./empire/nginx/sites:/etc/nginx/sites-enabled
+    depends_on:
+      - voice-service
+      - reasoning-gateway
+      - cannabis-service
+      - payment-service
+    restart: always
+
+  # Prometheus - Metrics
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./empire/monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    restart: always
+
+  # Grafana - Dashboards
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
+    volumes:
+      - grafana-data:/var/lib/grafana
+    depends_on:
+      - prometheus
+    restart: always
+
+volumes:
+  redis-data:
+  postgres-data:
+  minio-data:
+  prometheus-data:
+  grafana-data:
+
+networks:
+  default:
+    name: empire-network
+    driver: bridge
