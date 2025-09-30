@@ -441,7 +441,7 @@ behavioral_snapshots: "Daily snapshots with version control"
    - Files: See `transcripts/claude/veriff-crisis/`
 
 2. **Texas Legislative Testimony** - April 7, 2025
-   - Target: SB3/HB28 Opposition  
+   - Target: ✅ COMPLETED: SB3/HB28 Opposition testimony  
    - Status: Framework developed, needs implementation
    - Files: See `intelligence/domain-knowledge/legislative-strategy/`
 

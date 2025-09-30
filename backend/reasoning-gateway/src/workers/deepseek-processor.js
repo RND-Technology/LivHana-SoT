@@ -35,15 +35,16 @@ const createInferencePayload = ({ prompt, metadata }) => ({
 });
 
 const streamDeepSeekResponse = async ({ client, payload, onDelta }) => {
-  const stream = await client.responses.stream(payload);
+  const stream = await client.chat.completions.create(payload);
 
-  for await (const event of stream) {
-    if (event.type === 'response.output_text.delta') {
-      onDelta?.(event.delta);
+  for await (const chunk of stream) {
+    const content = chunk.choices?.[0]?.delta?.content;
+    if (content) {
+      onDelta?.(content);
     }
-
-    if (event.type === 'response.completed') {
-      return event.response;
+    
+    if (chunk.choices?.[0]?.finish_reason === 'stop') {
+      return chunk;
     }
   }
 

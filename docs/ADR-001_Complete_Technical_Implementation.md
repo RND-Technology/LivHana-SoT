@@ -1126,7 +1126,7 @@ async function sendConfirmationEmail(signature) {
       </ul>
       
       <h3>Important Dates</h3>
-      <p><strong>April 7, 2025:</strong> Texas Legislative Hearing - SB3/HB28 Opposition</p>
+      <p><strong>April 7, 2025:</strong> Texas Legislative Hearing - ✅ COMPLETED: SB3/HB28 Opposition testimony</p>
       
       <p>Together, we can preserve cannabis freedom in Texas!</p>
       
