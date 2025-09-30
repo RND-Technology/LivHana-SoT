@@ -30,9 +30,10 @@ app.get('/healthz', (_req, res) => {
   res.status(200).json({ status: 'ok' });
 });
 
-app.use(authMiddleware({ logger }));
+// Health endpoint without auth for monitoring
 app.use('/health', createHealthRouter({ logger, queue: reasoningQueue }));
-app.use('/api', voiceRouter({ logger, queue: reasoningQueue }));
+// Auth required for API endpoints
+app.use('/api', authMiddleware({ logger }), voiceRouter({ logger, queue: reasoningQueue }));
 
 app.use(errorLogger(logger));
 

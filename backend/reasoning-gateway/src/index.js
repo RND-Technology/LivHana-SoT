@@ -20,7 +20,6 @@ app.use(helmet());
 app.use(cors({ origin: process.env.ALLOWED_ORIGINS?.split(',').map((origin) => origin.trim()) ?? '*', credentials: true }));
 app.use(express.json({ limit: '1mb' }));
 app.use(requestLogger(logger));
-app.use(authMiddleware({ logger }));
 
 const queueName = process.env.REASONING_QUEUE_NAME ?? 'voice-mode-reasoning-jobs';
 const queueOptions = createQueueOptions();
@@ -29,11 +28,16 @@ const reasoningQueue = new Queue(queueName, queueOptions);
 const queueEvents = new QueueEvents(queueName, queueOptions);
 const reasoningWorker = new Worker(queueName, createDeepSeekWorkerProcessor({ logger }), queueOptions);
 
+// Health endpoints without auth
 app.get('/healthz', (_req, res) => {
   res.status(200).json({ status: 'ok' });
 });
+app.get('/health', (_req, res) => {
+  res.status(200).json({ status: 'healthy', service: 'reasoning-gateway', queue: queueName });
+});
 
-app.use('/api/reasoning', createReasoningRouter({ logger, queue: reasoningQueue, queueEvents }));
+// API endpoints with auth
+app.use('/api/reasoning', authMiddleware({ logger }), createReasoningRouter({ logger, queue: reasoningQueue, queueEvents }));
 app.use(errorLogger(logger));
 
 const port = Number(process.env.PORT ?? 4002);
