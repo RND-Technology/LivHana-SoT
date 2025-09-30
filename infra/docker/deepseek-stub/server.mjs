@@ -22,6 +22,10 @@ app.get('/healthz', (_req, res) => {
   res.json({ status: 'ok' });
 });
 
+app.get('/health', (_req, res) => {
+  res.json({ status: 'healthy', service: 'deepseek-stub', model: 'local' });
+});
+
 const port = Number(process.env.PORT ?? 8080);
 app.listen(port, () => {
   console.log(`Deepseek stub listening on port ${port}`);

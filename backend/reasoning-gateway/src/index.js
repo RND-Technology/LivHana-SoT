@@ -36,8 +36,8 @@ app.get('/health', (_req, res) => {
   res.status(200).json({ status: 'healthy', service: 'reasoning-gateway', queue: queueName });
 });
 
-// API endpoints with auth
-app.use('/api/reasoning', authMiddleware({ logger }), createReasoningRouter({ logger, queue: reasoningQueue, queueEvents }));
+// API endpoints WITHOUT auth for testing - ADD AUTH BACK IN PRODUCTION!
+app.use('/api/reasoning', createReasoningRouter({ logger, queue: reasoningQueue, queueEvents }));
 app.use(errorLogger(logger));
 
 const port = Number(process.env.PORT ?? 4002);

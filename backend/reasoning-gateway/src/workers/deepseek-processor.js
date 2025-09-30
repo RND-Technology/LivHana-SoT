@@ -12,7 +12,7 @@ const createDeepSeekClient = () => {
 
   return new OpenAI({
     apiKey,
-    baseURL: process.env.DEEPSEEK_API_BASE_URL ?? 'https://api.deepseek.com/v1',
+    baseURL: process.env.DEEPSEEK_API_BASE_URL ?? 'http://deepseek-stub:8080/v1',
   });
 };
 

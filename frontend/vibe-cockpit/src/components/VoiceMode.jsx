@@ -12,7 +12,7 @@ import { useReasoningJob } from '../hooks/useReasoningJob';
 import { HealthBanner } from './HealthBanner.jsx';
 
 const ELEVENLABS_BASE_URL = 'https://api.elevenlabs.io';
-const ELEVENLABS_API_KEY = import.meta.env.REACT_APP_ELEVENLABS_API_KEY || 'your_elevenlabs_api_key_here';
+const ELEVENLABS_API_KEY = import.meta.env.VITE_ELEVENLABS_API_KEY || import.meta.env.REACT_APP_ELEVENLABS_API_KEY || '';
 
 const voiceOptions = [
   {
@@ -130,8 +130,9 @@ const VoiceMode = ({
   };
 
   const speakWithElevenLabs = async (text) => {
-    if (!ELEVENLABS_API_KEY || ELEVENLABS_API_KEY === 'your_elevenlabs_api_key_here') {
-      alert('Please add your ElevenLabs API key to .env.local file');
+    if (!ELEVENLABS_API_KEY) {
+      console.error('ElevenLabs API key not configured');
+      setHealthStatus((prev) => ({ ...prev, voice: 'down' }));
       return;
     }
 
@@ -193,8 +194,9 @@ const VoiceMode = ({
   };
 
   const handleTestVoice = async () => {
-    if (!ELEVENLABS_API_KEY || ELEVENLABS_API_KEY === 'your_elevenlabs_api_key_here') {
-      alert('Please add your ElevenLabs API key to .env.local file');
+    if (!ELEVENLABS_API_KEY) {
+      console.error('ElevenLabs API key missing from environment');
+      setHealthStatus((prev) => ({ ...prev, voice: 'down' }));
       return;
     }
 
