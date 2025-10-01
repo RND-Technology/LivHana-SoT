@@ -1,3 +1,4 @@
+/* eslint-env jest */
 import { describe, it, expect, vi, beforeEach, beforeAll } from 'vitest';
 import { createDeepSeekWorkerProcessor } from './deepseek-processor.js';
 

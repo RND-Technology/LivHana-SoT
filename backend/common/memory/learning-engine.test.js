@@ -91,7 +91,7 @@ describe('MemoryLearningEngine', () => {
         timestamp: new Date('2025-01-01T08:00:00Z').toISOString(),
       };
 
-      const profile = await engine.learnFromInteraction('customer-123', morningInteraction);
+      await engine.learnFromInteraction('customer-123', morningInteraction);
 
       const timeOfDay = engine.getTimeOfDayBucket(morningInteraction.timestamp);
       expect(timeOfDay).toBe('morning');

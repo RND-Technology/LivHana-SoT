@@ -4,8 +4,7 @@
 
 const {
   MEMBERSHIP_TIERS,
-  calculateMembershipDiscount,
-  calculateMembershipMetrics
+  calculateMembershipDiscount
 } = require('./membership');
 
 describe('Membership System', () => {
@@ -375,7 +374,6 @@ describe('KAJA Payment Gateway Integration', () => {
 
   test('transaction ID format should be consistent', () => {
     const mockTxnId = `TXN_${Date.now()}_xyz789`;
-    const txnIdPattern = /^TXN_\d+_[a-f0-9]+$/;
 
     // Relaxed pattern for testing
     expect(mockTxnId).toMatch(/^TXN_/);

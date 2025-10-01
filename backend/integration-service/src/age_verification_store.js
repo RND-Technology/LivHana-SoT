@@ -81,42 +81,11 @@ class AgeVerificationStore {
       const dataset = this.client.dataset(DATASET);
 
       // Create age_verifications table
-      const verificationsSchema = [
-        { name: 'verification_id', type: 'STRING', mode: 'REQUIRED' },
-        { name: 'customer_id', type: 'STRING', mode: 'REQUIRED' },
-        { name: 'customer_id_hash', type: 'STRING', mode: 'REQUIRED' },
-        { name: 'full_name', type: 'STRING', mode: 'REQUIRED' },
-        { name: 'date_of_birth', type: 'DATE', mode: 'REQUIRED' },
-        { name: 'age', type: 'INTEGER', mode: 'REQUIRED' },
-        { name: 'state', type: 'STRING', mode: 'REQUIRED' },
-        { name: 'verified', type: 'BOOLEAN', mode: 'REQUIRED' },
-        { name: 'verification_method', type: 'STRING', mode: 'REQUIRED' },
-        { name: 'verified_at', type: 'TIMESTAMP', mode: 'REQUIRED' },
-        { name: 'expires_at', type: 'TIMESTAMP', mode: 'REQUIRED' },
-        { name: 'metadata', type: 'STRING', mode: 'NULLABLE' }, // Encrypted sensitive data
-        { name: 'created_at', type: 'TIMESTAMP', mode: 'REQUIRED' },
-        { name: 'updated_at', type: 'TIMESTAMP', mode: 'REQUIRED' },
-      ];
-
-      const [verificationsTable] = await dataset.table(TABLE_NAME).get({ autoCreate: true });
+      await dataset.table(TABLE_NAME).get({ autoCreate: true });
       logger.info({ table: TABLE_NAME }, 'Verifications table ready');
 
       // Create age_verification_attempts table (audit log)
-      const attemptsSchema = [
-        { name: 'attempt_id', type: 'STRING', mode: 'REQUIRED' },
-        { name: 'verification_id', type: 'STRING', mode: 'NULLABLE' },
-        { name: 'customer_id', type: 'STRING', mode: 'REQUIRED' },
-        { name: 'customer_id_hash', type: 'STRING', mode: 'REQUIRED' },
-        { name: 'verified', type: 'BOOLEAN', mode: 'REQUIRED' },
-        { name: 'method', type: 'STRING', mode: 'REQUIRED' },
-        { name: 'reason', type: 'STRING', mode: 'NULLABLE' },
-        { name: 'failed_field', type: 'STRING', mode: 'NULLABLE' },
-        { name: 'ip_address', type: 'STRING', mode: 'NULLABLE' },
-        { name: 'user_agent', type: 'STRING', mode: 'NULLABLE' },
-        { name: 'created_at', type: 'TIMESTAMP', mode: 'REQUIRED' },
-      ];
-
-      const [attemptsTable] = await dataset.table(TABLE_ATTEMPTS).get({ autoCreate: true });
+      await dataset.table(TABLE_ATTEMPTS).get({ autoCreate: true });
       logger.info({ table: TABLE_ATTEMPTS }, 'Attempts table ready');
 
     } catch (error) {

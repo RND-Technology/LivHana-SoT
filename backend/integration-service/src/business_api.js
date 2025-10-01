@@ -1,5 +1,4 @@
 // Business Integration Service
-const express = require('express');
 const axios = require('axios');
 const { TrinityComm } = require('../trinity_comm_interface');
 const { createLogger } = require('../../common/logging');
@@ -22,11 +21,7 @@ class BusinessIntegration {
             const orders = await axios.get(ecommerce.api_endpoints.orders, {
                 headers: { 'X-API-Key': ecommerce.api_key }
             });
-            
-            const products = await axios.get(ecommerce.api_endpoints.products, {
-                headers: { 'X-API-Key': ecommerce.api_key }
-            });
-            
+
             await this.trinity.updateEntropicData('orders', orders);
             
             logger.info('✅ E-commerce data synchronized');
@@ -38,16 +33,9 @@ class BusinessIntegration {
     // HighNoonCartoon.com Marketing Integration  
     async syncMarketingData() {
         logger.info('📢 Syncing HighNoonCartoon.com marketing data...');
-        
-        const marketing = this.integrations.business_integrations.highnoonCartoon_com;
-        
+
         try {
-            const campaigns = {
-                active: marketing.campaigns.active,
-                scheduled: marketing.campaigns.scheduled,
-                performance: marketing.campaigns.performance_metrics
-            }
-            
+
             logger.info('✅ Marketing data synchronized');  
         } catch (error) {
             logger.error('❌ Marketing sync failed:', error);

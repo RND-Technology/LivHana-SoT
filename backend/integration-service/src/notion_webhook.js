@@ -151,7 +151,7 @@ function extractTitle(page) {
       return page.properties.Name.title[0].plain_text;
     }
     return 'Untitled';
-  } catch (error) {
+  } catch {
     return 'Untitled';
   }
 }
@@ -159,7 +159,7 @@ function extractTitle(page) {
 /**
  * Fetch full page content from Notion API
  */
-async function fetchPageContent(pageId) {
+async function fetchPageContent() {
   // This would use @notionhq/client to fetch blocks
   // For now, return placeholder (implement in notion_ingest.js)
   return 'Content extraction pending';

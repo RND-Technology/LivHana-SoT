@@ -3,7 +3,7 @@
  * Extends the base auth middleware to require admin role
  */
 
-export const adminMiddleware = ({ logger, config = {} } = {}) => {
+export const adminMiddleware = ({ logger } = {}) => {
   return (req, res, next) => {
     // At this point, req.user should already be set by authMiddleware
     if (!req.user) {

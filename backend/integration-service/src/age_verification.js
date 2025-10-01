@@ -221,7 +221,7 @@ function validateFullName(fullName) {
   }
 
   // Basic pattern check - letters, spaces, hyphens, apostrophes
-  const namePattern = /^[a-zA-Z\s\-'\.]+$/;
+  const namePattern = /^[a-zA-Z\s'-.]+$/;
   if (!namePattern.test(trimmedName)) {
     return {
       valid: false,

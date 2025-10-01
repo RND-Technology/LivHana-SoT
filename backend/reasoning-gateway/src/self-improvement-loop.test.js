@@ -1,3 +1,4 @@
+/* eslint-env jest */
 /**
  * Self-Improvement Loop Tests
  */

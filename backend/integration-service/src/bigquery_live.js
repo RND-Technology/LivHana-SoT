@@ -9,7 +9,6 @@ const PROJECT_ID = process.env.GCP_PROJECT_ID;
 const DATASET = process.env.BQ_DATASET || 'commerce';
 const LOCATION = process.env.BQ_LOCATION || 'US';
 const PAYMENTS_TABLE = process.env.BQ_TABLE_PAYMENTS || 'square_payments';
-const CUSTOMERS_TABLE = process.env.BQ_TABLE_CUSTOMERS || 'square_customers';
 const ITEMS_TABLE = process.env.BQ_TABLE_ITEMS || 'square_items';
 const CACHE_TTL_MS = Number(process.env.BQ_CACHE_TTL_MS || 30_000);
 

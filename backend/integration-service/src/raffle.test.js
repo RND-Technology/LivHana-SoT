@@ -1,3 +1,4 @@
+/* eslint-env jest */
 // LivHana Raffle System - Comprehensive Tests
 // Tests for raffle management, ticket sales, drawings, and compliance
 

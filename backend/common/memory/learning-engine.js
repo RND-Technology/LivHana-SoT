@@ -481,7 +481,7 @@ export class MemoryLearningEngine {
     };
   }
 
-  async getRecommendations(customerId, context = {}) {
+  async getRecommendations(customerId) {
     const profile = await this.getProfile(customerId);
     const recommendations = [];
 
