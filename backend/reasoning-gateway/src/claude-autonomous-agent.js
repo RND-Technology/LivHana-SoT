@@ -124,12 +124,20 @@ Provide a detailed analysis including:
 
 ${analysis.analysis}
 
+IMPORTANT: For execute_bash actions, use ONLY real shell commands like:
+- "ls -la" (list files)
+- "cat file.txt" (read file)
+- "echo 'content' > file.txt" (write file)
+- "test -f file.txt && echo exists || echo missing" (check file exists)
+
+DO NOT use pseudo-commands like "check_existing_file" - they don't exist!
+
 Format the plan as JSON with this structure:
 {
   "steps": [
     {
       "action": "read_file|write_file|execute_bash|etc",
-      "target": "file/command",
+      "target": "file path OR actual bash command (no pseudo-commands!)",
       "parameters": {},
       "successCriteria": "how to verify this step worked"
     }
@@ -235,9 +243,17 @@ Format the plan as JSON with this structure:
   }
 
   async executeBashAction(command, parameters = {}) {
+    // Validate command is not a pseudo-command
+    const invalidCommands = ['check_existing_file', 'create_file', 'check_status'];
+    const firstWord = command.split(' ')[0];
+    if (invalidCommands.includes(firstWord)) {
+      throw new Error(`Invalid pseudo-command: ${firstWord}. Use real bash commands like 'test -f', 'echo', 'cat', etc.`);
+    }
+
     const { stdout, stderr } = await execAsync(command, {
       cwd: parameters.cwd || join(process.cwd(), '../..'),
-      timeout: parameters.timeout || 60000
+      timeout: parameters.timeout || 60000,
+      shell: '/bin/bash'
     });
 
     return { stdout, stderr, command };

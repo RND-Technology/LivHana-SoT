@@ -925,9 +925,18 @@ Format as JSON with complete bug report and fix.`
   /**
    * 9. SCHEDULED JOBS
    * Runs improvement cycles on schedule
+   *
+   * IMPORTANT: JavaScript setTimeout/setInterval max safe value is 2^31-1 (2,147,483,647ms = ~24.8 days)
+   * For intervals > 24 days, we use recursive setTimeout to avoid overflow
    */
   async startScheduledJobs() {
     this.logger.info('Starting scheduled improvement jobs');
+
+    // Constants for safe intervals (under 32-bit limit)
+    const MAX_SAFE_INTERVAL = 2147483647; // 2^31-1 milliseconds
+    const ONE_DAY = 24 * 60 * 60 * 1000;
+    const SEVEN_DAYS = 7 * ONE_DAY;
+    const THIRTY_DAYS = 30 * ONE_DAY;
 
     // Daily: Analyze yesterday's interactions
     setInterval(async () => {
@@ -938,7 +947,7 @@ Format as JSON with complete bug report and fix.`
       }
     }, this.config.analysisInterval);
 
-    // Weekly: Generate improvement proposals
+    // Weekly: Generate improvement proposals (safe - under 24.8 days)
     setInterval(async () => {
       try {
         const proposals = await this.generateWeeklyReport();
@@ -946,16 +955,22 @@ Format as JSON with complete bug report and fix.`
       } catch (error) {
         this.logger.error({ error: error.message }, 'Weekly report generation failed');
       }
-    }, 7 * 24 * 60 * 60 * 1000); // 7 days
+    }, SEVEN_DAYS);
 
     // Monthly: Major refactoring suggestions
-    setInterval(async () => {
-      try {
-        await this.generateMonthlyRefactoringReport();
-      } catch (error) {
-        this.logger.error({ error: error.message }, 'Monthly refactoring report failed');
-      }
-    }, 30 * 24 * 60 * 60 * 1000); // 30 days
+    // Use recursive setTimeout to avoid 32-bit overflow (30 days > 24.8 days max)
+    const scheduleMonthlyReport = () => {
+      setTimeout(async () => {
+        try {
+          await this.generateMonthlyRefactoringReport();
+        } catch (error) {
+          this.logger.error({ error: error.message }, 'Monthly refactoring report failed');
+        }
+        // Re-schedule for next month
+        scheduleMonthlyReport();
+      }, Math.min(THIRTY_DAYS, MAX_SAFE_INTERVAL));
+    };
+    scheduleMonthlyReport();
 
     this.logger.info('Scheduled jobs started');
   }

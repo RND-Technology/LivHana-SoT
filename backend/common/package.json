@@ -1,6 +1,7 @@
 {
   "name": "backend-common",
   "version": "1.0.0",
+  "type": "module",
   "scripts": {
     "test": "vitest"
   },
