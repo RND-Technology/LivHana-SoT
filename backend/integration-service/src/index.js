@@ -35,8 +35,10 @@ app.get('/health', (req, res) => {
   });
 });
 
-// All API routes require authentication
-app.use('/api', authMiddleware({ logger }));
+// All API routes require authentication (DISABLED for local dev)
+if (process.env.NODE_ENV === 'production') {
+  app.use('/api', authMiddleware({ logger }));
+}
 
 // Protected routes - BigQuery and Square data (routers already include /api prefix)
 app.use(bigqueryRoutes);
