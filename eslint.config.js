@@ -24,9 +24,11 @@ export default [
       '.claude/**/*',
       'frontend/vibe-cockpit/dist/**',
       'frontend/vibe-cockpit/.next/**',
+      'docs/**/*', // Skip docs - TypeScript parsing issues
     ],
   },
   js.configs.recommended,
+  // Frontend React code
   {
     files: ['frontend/vibe-cockpit/**/*.{js,jsx}'],
     languageOptions: {
@@ -103,6 +105,61 @@ export default [
     },
     rules: {
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+    },
+  },
+  // Empire services (Node.js with CommonJS require/module)
+  {
+    files: ['empire/**/*.{js,mjs}'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: {
+        ...globals.node,
+        process: 'readonly',
+        Buffer: 'readonly',
+        require: 'readonly',
+        module: 'readonly',
+        exports: 'readonly',
+        __dirname: 'readonly',
+        __filename: 'readonly',
+      },
+    },
+    rules: {
+      'no-console': 'off',
+      'no-unused-vars': 'warn',
+    },
+  },
+  // Infrastructure (Docker, Node.js scripts)
+  {
+    files: ['infra/**/*.{js,mjs}'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: {
+        ...globals.node,
+        process: 'readonly',
+        console: 'readonly',
+        Buffer: 'readonly',
+      },
+    },
+    rules: {
+      'no-console': 'off',
+    },
+  },
+  // CommonJS config files
+  {
+    files: ['**/*.cjs'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'commonjs',
+      globals: {
+        ...globals.node,
+        require: 'readonly',
+        module: 'readonly',
+        exports: 'readonly',
+        __dirname: 'readonly',
+        __filename: 'readonly',
+      },
     },
   },
 ];
