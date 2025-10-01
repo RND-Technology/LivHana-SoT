@@ -30,6 +30,9 @@ export default [
       'automation/data-pipelines/**/*', // Skip pipelines - ingestion code with many catch blocks
       'automation/tests/**/*', // Skip tests - Playwright tests with specific patterns
       'automation/validators/**/*', // Skip validators - utility scripts with console.log
+      'backend/integration-service/verify-age-setup.js', // Skip setup script - has console.log for demo
+      'backend/reasoning-gateway/example-sse-client.js', // Skip example - has console.log for demo
+      'check-cursor-problems.js', // Skip temp script
     ],
   },
   js.configs.recommended,

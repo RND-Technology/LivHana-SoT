@@ -78,6 +78,7 @@ const SquareRealProducts = () => {
     if (ageVerified) {
       fetchSquareProducts();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ageVerified]);
 
   const extractPotency = (description, compound) => {

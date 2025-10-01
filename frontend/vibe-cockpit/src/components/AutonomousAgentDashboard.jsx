@@ -169,6 +169,7 @@ const AutonomousAgentDashboard = () => {
         eventSourceRef.current.close();
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const connectSSE = () => {

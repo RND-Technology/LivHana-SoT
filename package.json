@@ -12,9 +12,11 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
     "globals": "^16.4.0",
-    "markdownlint-cli2": "^0.18.1"
+    "markdownlint-cli2": "^0.18.1",
+    "playwright": "^1.55.1"
   },
   "dependencies": {
+    "@playwright/test": "^1.55.1",
     "jsonwebtoken": "^9.0.2"
   }
 }
