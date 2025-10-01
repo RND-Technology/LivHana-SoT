@@ -1,4 +1,4 @@
-const pino = require('pino');
+import pino from 'pino';
 
 const createLogger = (serviceName) => {
   // Use pino-pretty in development, JSON in production
@@ -31,4 +31,4 @@ const createLogger = (serviceName) => {
   });
 };
 
-module.exports = { createLogger };
+export { createLogger };

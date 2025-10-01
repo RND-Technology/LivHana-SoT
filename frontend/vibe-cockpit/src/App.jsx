@@ -170,7 +170,12 @@ function App() {
     <AppProvider>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Router>
+        <Router
+          future={{
+            v7_startTransition: true,
+            v7_relativeSplatPath: true
+          }}
+        >
           <Box sx={{ display: 'flex', height: '100vh' }}>
             {/* Header */}
             <Header
@@ -195,10 +200,12 @@ function App() {
               sx={{
                 flexGrow: 1,
                 p: 3,
+                pt: '80px', // Account for fixed header height
                 background: 'linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%)',
                 overflow: 'auto',
                 transition: 'margin 0.3s ease',
                 marginLeft: sidebarOpen ? 0 : '-240px',
+                minHeight: '100vh',
               }}
             >
               <Container maxWidth="xl" sx={{ mt: 2 }}>
