@@ -28,6 +28,8 @@ export default [
       'frontend/vibe-cockpit/.next/**',
       'docs/**/*', // Skip docs - TypeScript parsing issues
       'automation/data-pipelines/**/*', // Skip pipelines - ingestion code with many catch blocks
+      'automation/tests/**/*', // Skip tests - Playwright tests with specific patterns
+      'automation/validators/**/*', // Skip validators - utility scripts with console.log
     ],
   },
   js.configs.recommended,

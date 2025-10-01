@@ -18,6 +18,7 @@ import Settings from './components/Settings';
 import EmpireDashboard from './components/EmpireDashboard'; // NEW EMPIRE DASHBOARD
 import SquareRealProducts from './components/SquareRealProducts'; // REAL SQUARE PRODUCTS
 import SquareLiveCockpit from './components/SquareLiveCockpit'; // SQUARE LIVE COCKPIT
+import UltimateCockpit from './components/UltimateCockpit'; // 🚀 ULTIMATE CLOUD COCKPIT
 
 // Import Context
 import { AppProvider } from './context/AppContext';
@@ -202,7 +203,9 @@ function App() {
             >
               <Container maxWidth="xl" sx={{ mt: 2 }}>
                 <Routes>
-                  <Route path="/" element={<Dashboard />} />
+                  <Route path="/" element={<UltimateCockpit />} /> {/* 🚀 ULTIMATE COCKPIT AS DEFAULT */}
+                  <Route path="/ultimate" element={<UltimateCockpit />} /> {/* 🚀 DIRECT ACCESS */}
+                  <Route path="/dashboard" element={<Dashboard />} />
                   <Route path="/voice" element={<VoiceMode />} />
                   <Route path="/video" element={<VideoMode />} />
                   <Route path="/vibe-coding" element={<VibeCoding />} />

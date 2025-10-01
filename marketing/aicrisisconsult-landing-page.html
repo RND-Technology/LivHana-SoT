@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Crisis Consult - Stop Losing $100K+ to AI Integration Failures</title>
+    <meta name="description" content="Cannabis industry expert who solved $100K Veriff disaster in 36 hours. Emergency AI crisis resolution for cannabis businesses.">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0F172A;
+            color: #F8FAFC;
+            line-height: 1.6;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #16A34A 0%, #059669 100%);
+            padding: 80px 0;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        .hero .subheadline {
+            font-size: 24px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        .cta-button {
+            display: inline-block;
+            background: #FBBF24;
+            color: #1F2937;
+            padding: 18px 40px;
+            font-size: 20px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.3);
+        }
+
+        /* Credibility Bar */
+        .credibility {
+            background: #1E293B;
+            padding: 30px 0;
+            text-align: center;
+            border-bottom: 1px solid #334155;
+        }
+        .credibility-items {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+        .credibility-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .credibility-number {
+            font-size: 36px;
+            font-weight: 900;
+            color: #10B981;
+        }
+        .credibility-label {
+            font-size: 14px;
+            color: #94A3B8;
+            text-transform: uppercase;
+        }
+
+        /* Pain Points Section */
+        .pain-points {
+            background: #0F172A;
+            padding: 80px 0;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            font-weight: 900;
+            margin-bottom: 60px;
+        }
+        .pain-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        .pain-card {
+            background: #1E293B;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 30px;
+            transition: border-color 0.3s;
+        }
+        .pain-card:hover {
+            border-color: #EF4444;
+        }
+        .pain-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        .pain-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #EF4444;
+            margin-bottom: 10px;
+        }
+
+        /* Solution Section */
+        .solution {
+            background: linear-gradient(135deg, #1E293B 0%, #334155 100%);
+            padding: 80px 0;
+        }
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .solution-card {
+            background: #0F172A;
+            border-left: 4px solid #10B981;
+            padding: 30px;
+            border-radius: 8px;
+        }
+        .check-icon {
+            color: #10B981;
+            font-size: 24px;
+            margin-right: 10px;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            background: #0F172A;
+            padding: 80px 0;
+        }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        .pricing-card {
+            background: #1E293B;
+            border: 2px solid #334155;
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            border-color: #10B981;
+        }
+        .pricing-card.featured {
+            border-color: #10B981;
+            background: linear-gradient(135deg, #1E293B 0%, #16A34A20 100%);
+        }
+        .tier-name {
+            font-size: 14px;
+            text-transform: uppercase;
+            color: #94A3B8;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .price {
+            font-size: 48px;
+            font-weight: 900;
+            color: #10B981;
+            margin-bottom: 10px;
+        }
+        .price-period {
+            font-size: 16px;
+            color: #64748B;
+            margin-bottom: 30px;
+        }
+        .feature-list {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+        .feature-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #334155;
+        }
+
+        /* Social Proof */
+        .social-proof {
+            background: #1E293B;
+            padding: 80px 0;
+        }
+        .testimonial {
+            background: #0F172A;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 30px 0;
+            border-left: 4px solid #FBBF24;
+        }
+        .testimonial-text {
+            font-size: 20px;
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        .testimonial-author {
+            font-weight: 700;
+            color: #10B981;
+        }
+
+        /* CTA Section */
+        .final-cta {
+            background: linear-gradient(135deg, #16A34A 0%, #059669 100%);
+            padding: 100px 0;
+            text-align: center;
+        }
+        .final-cta h2 {
+            font-size: 42px;
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+        .urgency {
+            font-size: 18px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background: #0F172A;
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid #334155;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 32px; }
+            .hero .subheadline { font-size: 18px; }
+            .section-title { font-size: 32px; }
+            .credibility-items { gap: 30px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Stop Losing $100K+ Monthly to AI Integration Failures</h1>
+            <p class="subheadline">Cannabis industry expert who solved the Veriff disaster can fix your AI crisis in 48 hours</p>
+            <a href="#pricing" class="cta-button">Book Emergency Consultation →</a>
+        </div>
+    </section>
+
+    <!-- Credibility Bar -->
+    <section class="credibility">
+        <div class="container">
+            <div class="credibility-items">
+                <div class="credibility-item">
+                    <div class="credibility-number">27</div>
+                    <div class="credibility-label">Years Experience</div>
+                </div>
+                <div class="credibility-item">
+                    <div class="credibility-number">247</div>
+                    <div class="credibility-label">Consultations</div>
+                </div>
+                <div class="credibility-item">
+                    <div class="credibility-number">94.7%</div>
+                    <div class="credibility-label">Success Rate</div>
+                </div>
+                <div class="credibility-item">
+                    <div class="credibility-number">#690</div>
+                    <div class="credibility-label">TX DSHS License</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pain Points -->
+    <section class="pain-points">
+        <div class="container">
+            <h2 class="section-title">Is This You?</h2>
+            <div class="pain-grid">
+                <div class="pain-card">
+                    <div class="pain-icon">❌</div>
+                    <h3 class="pain-title">Age Verification Crashing</h3>
+                    <p>Veriff, Yoti, or other systems failing. Customers can't complete purchases. Revenue lost daily.</p>
+                </div>
+                <div class="pain-card">
+                    <div class="pain-icon">💳</div>
+                    <h3 class="pain-title">Payment Processing Failures</h3>
+                    <p>Shopify, Square, or custom checkout broken. Abandoned carts. Money left on the table.</p>
+                </div>
+                <div class="pain-card">
+                    <div class="pain-icon">📋</div>
+                    <h3 class="pain-title">Compliance Automation Broken</h3>
+                    <p>Manual COA validation. License tracking chaos. Audit nightmares. Regulatory risk.</p>
+                </div>
+                <div class="pain-card">
+                    <div class="pain-icon">😰</div>
+                    <h3 class="pain-title">Conservative Customers Afraid</h3>
+                    <p>Your traditional customers don't trust AI. Need simple, safe, compliant solutions.</p>
+                </div>
+                <div class="pain-card">
+                    <div class="pain-icon">📉</div>
+                    <h3 class="pain-title">Losing to Tech-Savvy Competitors</h3>
+                    <p>Other dispensaries have better UX, faster checkout, automated compliance. You're falling behind.</p>
+                </div>
+                <div class="pain-card">
+                    <div class="pain-icon">💸</div>
+                    <h3 class="pain-title">$10K-$50K Monthly Losses</h3>
+                    <p>Every day of downtime = thousands in lost revenue. Can't afford another failed integration.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution -->
+    <section class="solution">
+        <div class="container">
+            <h2 class="section-title">The Solution: Cannabis AI Crisis Resolution</h2>
+            <div class="solution-grid">
+                <div class="solution-card">
+                    <h3><span class="check-icon">✓</span> 24-48 Hour Turnaround</h3>
+                    <p>Emergency resolution. We start immediately. Working solution delivered in 1-2 days. No waiting.</p>
+                </div>
+                <div class="solution-card">
+                    <h3><span class="check-icon">✓</span> Cannabis Compliance Guaranteed</h3>
+                    <p>27 years cannabis experience. Texas DSHS License #690. California CDFA testimony. We know the rules.</p>
+                </div>
+                <div class="solution-card">
+                    <h3><span class="check-icon">✓</span> Conservative-Friendly</h3>
+                    <p>Simple solutions your traditional customers will love. No scary tech. Just works.</p>
+                </div>
+                <div class="solution-card">
+                    <h3><span class="check-icon">✓</span> Proven $100K+ Recovery</h3>
+                    <p>Solved Veriff disaster. Recovered $80K+ monthly revenue. Real results, not promises.</p>
+                </div>
+                <div class="solution-card">
+                    <h3><span class="check-icon">✓</span> Complete Documentation</h3>
+                    <p>Technical docs, staff training, maintenance plan, ROI report. Everything you need.</p>
+                </div>
+                <div class="solution-card">
+                    <h3><span class="check-icon">✓</span> Ongoing Support</h3>
+                    <p>Not just "fix and forget". We monitor, optimize, and ensure continued success.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title">Choose Your Resolution Path</h2>
+            <div class="pricing-grid">
+                <!-- Tier 1: Emergency -->
+                <div class="pricing-card featured">
+                    <div class="tier-name">Tier 1: Emergency</div>
+                    <div class="price">$5,000</div>
+                    <div class="price-period">One-time project fee</div>
+                    <ul class="feature-list">
+                        <li>✓ 24-48 hour resolution</li>
+                        <li>✓ Technical audit</li>
+                        <li>✓ Implementation & testing</li>
+                        <li>✓ Documentation & training</li>
+                        <li>✓ ROI report</li>
+                        <li>✓ 30-day support</li>
+                    </ul>
+                    <a href="mailto:high@reggieanddro.com?subject=CRISIS - Emergency AI Consultation&body=Business Name:%0D%0ACurrent Problem:%0D%0AMonthly Revenue Loss:%0D%0APhone:%0D%0ABest Time to Call:" class="cta-button">Book Emergency Call</a>
+                </div>
+
+                <!-- Tier 2: Strategic -->
+                <div class="pricing-card">
+                    <div class="tier-name">Tier 2: Strategic</div>
+                    <div class="price">$2,500</div>
+                    <div class="price-period">3-day intensive</div>
+                    <ul class="feature-list">
+                        <li>✓ AI integration roadmap</li>
+                        <li>✓ Technology architecture</li>
+                        <li>✓ 90-day deployment plan</li>
+                        <li>✓ ROI projections</li>
+                        <li>✓ Vendor selection</li>
+                        <li>✓ Budget planning</li>
+                    </ul>
+                    <a href="mailto:high@reggieanddro.com?subject=STRATEGIC - AI Integration Planning&body=Business Name:%0D%0ARevenue (annual):%0D%0ACurrent Tech Stack:%0D%0APhone:%0D%0ABest Time to Call:" class="cta-button">Schedule Strategy Session</a>
+                </div>
+
+                <!-- Tier 3: Assessment -->
+                <div class="pricing-card">
+                    <div class="tier-name">Free Assessment</div>
+                    <div class="price">$0</div>
+                    <div class="price-period">30-minute call</div>
+                    <ul class="feature-list">
+                        <li>✓ Problem diagnosis</li>
+                        <li>✓ Revenue impact calc</li>
+                        <li>✓ Solution overview</li>
+                        <li>✓ Timeline estimate</li>
+                        <li>✓ No obligation</li>
+                        <li>✓ Book now</li>
+                    </ul>
+                    <a href="mailto:high@reggieanddro.com?subject=FREE - 30-Minute AI Crisis Assessment&body=Business Name:%0D%0ACurrent Problem (brief):%0D%0APhone:%0D%0ABest Time to Call:" class="cta-button">Book Free Call</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="social-proof">
+        <div class="container">
+            <h2 class="section-title">The $100K Veriff Disaster Story</h2>
+            <div class="testimonial">
+                <p class="testimonial-text">
+                    "We integrated Veriff for age verification. It crashed. Customers couldn't buy. We were losing $100K+ monthly.
+                    Tech support said 'wait 6 weeks for a fix'. Jesse came in, replaced it with Square-native verification in 36 hours.
+                    Revenue recovered. Customers happy. Problem solved."
+                </p>
+                <div class="testimonial-author">— Jesse Niesen (That's me. This is my story.)</div>
+            </div>
+
+            <div style="text-align: center; margin-top: 60px;">
+                <h3 style="font-size: 32px; margin-bottom: 20px;">Why I Started This Service</h3>
+                <p style="font-size: 18px; max-width: 800px; margin: 0 auto; line-height: 1.8;">
+                    After solving my own $100K disaster, I realized: Every cannabis business faces AI integration failures.
+                    Most don't have 27 years of experience or technical expertise to fix it themselves.
+                    I built this service to help conservative cannabis entrepreneurs adopt AI safely, compliantly, and profitably.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Ready to Fix Your AI Crisis?</h2>
+            <p class="urgency">Every day of downtime = thousands in lost revenue. Book your call now.</p>
+            <a href="mailto:high@reggieanddro.com?subject=CRISIS - Emergency AI Consultation&body=Business Name:%0D%0ACurrent Problem:%0D%0AMonthly Revenue Loss:%0D%0APhone:%0D%0ABest Time to Call:" class="cta-button" style="background: white; color: #16A34A;">Book Emergency Consultation →</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p><strong>Jesse Niesen</strong> | Cannabis AI Integration Specialist</p>
+            <p>Texas DSHS License #690 | 27 Years Cannabis Experience | California CDFA Testimony (April 2025)</p>
+            <p style="margin-top: 20px;">
+                <a href="mailto:high@reggieanddro.com" style="color: #10B981; text-decoration: none;">high@reggieanddro.com</a>
+            </p>
+            <p style="margin-top: 20px; font-size: 14px; color: #64748B;">
+                © 2025 AI Crisis Consult. All rights reserved. | LivHana Empire
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
