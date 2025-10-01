@@ -73,7 +73,7 @@ const SERVICES = [
   { name: 'Product Service', port: 3002, key: 'product' },
 ];
 
-const BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost';
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost';
 const REFRESH_INTERVAL = 30000; // 30 seconds
 
 const ExecutiveDashboard = () => {
