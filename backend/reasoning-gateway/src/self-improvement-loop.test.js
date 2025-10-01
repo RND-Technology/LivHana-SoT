@@ -15,7 +15,7 @@ describe('SelfImprovementLoop', () => {
   beforeAll(async () => {
     // Skip tests if no API key
     if (!process.env.ANTHROPIC_API_KEY) {
-      console.log('Skipping tests - ANTHROPIC_API_KEY not set');
+      console.info('Skipping tests - ANTHROPIC_API_KEY not set');
       return;
     }
 

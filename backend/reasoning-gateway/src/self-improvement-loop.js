@@ -403,7 +403,7 @@ Suggest specific refactorings with before/after code.`
         if (opportunities.refactorings?.length > 0) {
           refactorings.push({ file, opportunities });
         }
-      } catch (error) {
+      } catch {
         // Skip files that can't be analyzed
         continue;
       }

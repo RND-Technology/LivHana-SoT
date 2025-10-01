@@ -24,7 +24,7 @@ vi.mock('openai', () => ({
       this.opts = opts;
       this.chat = {
         completions: {
-          create: async function* (payload) {
+          create: async function* () {
             yield { choices: [{ delta: { content: 'Chunk 1' } }] };
             yield { choices: [{ delta: { content: 'Chunk 2' } }] };
             yield { choices: [{ finish_reason: 'stop' }] };

@@ -183,7 +183,7 @@ const executeTaskWithProgress = async (taskId, taskDescription, context, logger,
   }
 };
 
-export const createAutonomousRouter = ({ logger, queue }) => {
+export const createAutonomousRouter = ({ logger }) => {
   const router = Router();
 
   // Apply admin middleware to all autonomous routes
@@ -415,8 +415,6 @@ export const createAutonomousRouter = ({ logger, queue }) => {
 
       // Execute deployment (simplified)
       try {
-        const agent = getAgent(contextLogger);
-
         // In production, this would trigger your actual deployment pipeline
         contextLogger.info({ taskId, changes: task.result.changes }, 'Deploying approved changes');
 
