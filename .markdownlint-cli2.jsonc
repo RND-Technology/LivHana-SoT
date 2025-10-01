@@ -6,5 +6,15 @@
     "MD033": false,
     "MD036": false,
     "MD040": false
-  }
+  },
+  "ignores": [
+    ".claude/**",
+    "node_modules/**",
+    "reports/**",
+    "**/node_modules/**",
+    "**/*.min.js",
+    "legacy/**",
+    "CLEANUP_PLAN_AND_STATUS.md",
+    "CLEAN_START_GUIDE_AFTER_REBOOT.md"
+  ]
 }
