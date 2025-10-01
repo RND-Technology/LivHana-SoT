@@ -1,3 +1,4 @@
+/* eslint-env jest */
 // Membership System Tests
 // Comprehensive test suite for membership subscription system
 

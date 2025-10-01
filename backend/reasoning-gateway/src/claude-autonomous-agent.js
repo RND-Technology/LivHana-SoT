@@ -8,7 +8,7 @@
 import Anthropic from '@anthropic-ai/sdk';
 import { exec } from 'child_process';
 import { promisify } from 'util';
-import { readFile, writeFile, readdir } from 'fs/promises';
+import { readFile, writeFile } from 'fs/promises';
 import { join } from 'path';
 
 const execAsync = promisify(exec);

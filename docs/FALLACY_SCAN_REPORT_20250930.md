@@ -90,7 +90,7 @@ LightSpeed integration status verified:
 ### Fallacy #1: Unused Stripe Dependency
 
 **Type:** Dormant Dependency
-**Severity:** Low (technical debt, not functional error)
+**Severity:** Low (technical debt)
 **Status:** ✅ FIXED
 
 **Details:**
