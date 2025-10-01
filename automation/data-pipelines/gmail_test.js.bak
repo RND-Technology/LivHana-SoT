@@ -248,7 +248,7 @@ async function testCategoryDetection() {
   // Mock functions for testing
   function detectCategory(headers, body) {
     const subject = headers.subject?.toLowerCase() || '';
-    // const fromEmail = headers.from?.toLowerCase() || '';
+    const fromEmail = headers.from?.toLowerCase() || '';
     const text = body.text?.toLowerCase() || '';
 
     const cannabisKeywords = ['cannabis', 'marijuana', 'dispensary'];

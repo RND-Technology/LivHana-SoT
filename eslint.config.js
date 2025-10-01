@@ -22,9 +22,12 @@ export default [
       'LivHana-Entropic/**/*',
       'reports/**/*',
       '.claude/**/*',
+      '.cursor-backups/**/*', // Cursor backup files
+      '.venv/**/*', // Python virtual environment
       'frontend/vibe-cockpit/dist/**',
       'frontend/vibe-cockpit/.next/**',
       'docs/**/*', // Skip docs - TypeScript parsing issues
+      'automation/data-pipelines/**/*', // Skip pipelines - ingestion code with many catch blocks
     ],
   },
   js.configs.recommended,

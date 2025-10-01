@@ -83,7 +83,7 @@ app.post('/api/compliance/verify-age', (req, res) => {
 
 // FREE State Compliance Check
 app.post('/api/compliance/check-state', (req, res) => {
-  const { state, productType, quantity } = req.body;
+  const { state, quantity } = req.body;
   
   const rules = STATE_RULES[state];
   
@@ -111,7 +111,7 @@ app.post('/api/compliance/check-state', (req, res) => {
 
 // FREE Label Compliance Checker
 app.post('/api/compliance/check-label', (req, res) => {
-  const { labelText, state } = req.body;
+  const { labelText } = req.body;
   
   const requiredElements = [
     'THC content',

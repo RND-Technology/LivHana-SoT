@@ -205,12 +205,12 @@ const AgeGate = ({ currentDomain, onVerify }) => (
             const birthDate = new Date(e.target.value);
             const age = Math.floor((Date.now() - birthDate.getTime()) / (365.25 * 24 * 60 * 60 * 1000));
             if (age >= 21) {
-              setAgeVerified(true);
+              onVerify();
             }
           }}
         />
         <motion.button
-          onClick={() => setAgeVerified(true)}
+          onClick={onVerify}
           className="w-full py-4 bg-gradient-to-r from-green-500 to-green-600 text-black font-bold rounded-lg"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}

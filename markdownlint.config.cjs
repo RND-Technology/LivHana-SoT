@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   default: true,
   MD013: false,
   MD025: false,

@@ -33,10 +33,10 @@ const GCP_PROJECT_ID = process.env.GCP_PROJECT_ID;
 const BIGQUERY_DATASET = process.env.BQ_DATASET || 'communications';
 const GCS_BUCKET = process.env.GCS_GMAIL_BUCKET || 'livhana-gmail-attachments';
 // const GMAIL_SCOPES = [
-//   'https://www.googleapis.com/auth/gmail.readonly',
-//   'https://www.googleapis.com/auth/gmail.labels',
-//   'https://www.googleapis.com/auth/gmail.metadata'
-// ];
+  'https://www.googleapis.com/auth/gmail.readonly',
+  'https://www.googleapis.com/auth/gmail.labels',
+  'https://www.googleapis.com/auth/gmail.metadata'
+];
 
 // Accounts to ingest
 const ACCOUNTS = [
@@ -113,7 +113,7 @@ async function withRetry(fn, context = '', retries = MAX_RETRIES) {
   for (let attempt = 1; attempt <= retries; attempt++) {
     try {
       return await fn();
-    } catch {
+    } catch (error) {
       const isLastAttempt = attempt === retries;
       const isRateLimitError = error.code === 429 || error.message?.includes('rate limit');
       const isServerError = error.code >= 500 && error.code < 600;
@@ -224,7 +224,7 @@ async function messageExists(messageHash) {
   try {
     const [rows] = await bigquery.query(options);
     return rows[0].count > 0;
-  } catch {
+  } catch (error) {
     // Table might not exist yet
     return false;
   }
@@ -396,7 +396,7 @@ async function downloadAttachment(gmail, messageId, attachmentId, filename, acco
       size: data.length,
       gcsPath: publicUrl
     };
-  } catch {
+  } catch (error) {
     log.error(`Failed to download attachment`, error, {
       messageId,
       attachmentId,
@@ -680,7 +680,7 @@ async function ensureBigQuerySchema() {
         location: 'US'
       });
     }
-  } catch {
+  } catch (error) {
     log.warn(`Dataset check warning`, { error: error.message });
   }
 
@@ -773,7 +773,7 @@ async function ensureBigQuerySchema() {
         });
         log.info(`Table created: ${BIGQUERY_DATASET}.${tableConfig.name}`);
       }
-    } catch {
+    } catch (error) {
       log.error(`Failed to ensure table ${tableConfig.name}`, error);
       throw error;
     }
@@ -806,7 +806,7 @@ async function insertMessages(messages) {
         batchSize: batch.length,
         totalInserted: Math.min(i + BATCH_SIZE, messages.length)
       });
-    } catch {
+    } catch (error) {
       log.error(`Failed to insert message batch`, error, {
         batchNumber: Math.floor(i / BATCH_SIZE) + 1
       });
@@ -840,7 +840,7 @@ async function insertAttachments(attachments) {
         batchNumber: Math.floor(i / BATCH_SIZE) + 1,
         batchSize: batch.length
       });
-    } catch {
+    } catch (error) {
       log.error(`Failed to insert attachment batch`, error);
       // Don't throw - attachments are supplementary
     }
@@ -897,7 +897,7 @@ async function buildThreadSummaries(account) {
   try {
     await bigquery.query(options);
     log.info('Thread summaries built successfully', { account: account.email });
-  } catch {
+  } catch (error) {
     log.error('Failed to build thread summaries', error, { account: account.email });
   }
 }
@@ -979,7 +979,7 @@ async function ingestAccount(account, options = {}) {
             skipped
           });
         }
-      } catch {
+      } catch (error) {
         log.error(`Failed to process message`, error, {
           messageId: msg.id,
           account: account.email
@@ -1066,7 +1066,7 @@ async function main() {
       try {
         const result = await ingestAccount(account, { fullSync, maxMessages });
         results.push({ account: account.email, ...result });
-      } catch {
+      } catch (error) {
         log.error(`Failed to ingest account`, error, { account: account.email });
         results.push({ account: account.email, error: error.message });
       }
@@ -1079,7 +1079,7 @@ async function main() {
       durationSeconds: duration
     });
 
-  } catch {
+  } catch (error) {
     log.error('Gmail ingestion failed', error);
     process.exit(1);
   }

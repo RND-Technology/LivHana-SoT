@@ -77,7 +77,7 @@ function loadCredentials(credentialsPath) {
         encoding: 'utf-8'
       });
       return JSON.parse(credentials);
-    } catch {
+    } catch (error) {
       console.error('❌ Failed to fetch credentials from 1Password:', error.message);
       console.error('💡 Make sure 1Password CLI is installed and you are signed in');
       console.error('   Install: https://1password.com/downloads/command-line/');
@@ -147,7 +147,7 @@ async function authorize(account) {
   // Open browser
   try {
     await open(authUrl);
-  } catch {
+  } catch (error) {
     console.warn('⚠️  Could not open browser automatically');
   }
 
@@ -214,20 +214,20 @@ async function authorize(account) {
           server.close();
           resolve(tokens);
         }
-      } catch (authError) {
-        console.error('❌ Error during authorization:', authError.message);
+      } catch (error) {
+        console.error('❌ Error during authorization:', error.message);
         res.writeHead(500, { 'Content-Type': 'text/html' });
         res.end(`
           <html>
             <body style="font-family: sans-serif; text-align: center; padding: 50px;">
               <h1>❌ Authorization Failed</h1>
-              <p>${authError.message}</p>
+              <p>${error.message}</p>
               <p>You can close this window and try again.</p>
             </body>
           </html>
         `);
         server.close();
-        reject(authError);
+        reject(error);
       }
     });
 
@@ -282,8 +282,8 @@ async function main() {
   try {
     await authorize(account);
     process.exit(0);
-  } catch (finalError) {
-    console.error('❌ Authorization failed:', finalError.message);
+  } catch (error) {
+    console.error('❌ Authorization failed:', error.message);
     process.exit(1);
   }
 }
