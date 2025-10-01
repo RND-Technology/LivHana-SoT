@@ -101,7 +101,7 @@ class CannabisPaymentProcessor {
     }
 
     // Charge card through Authorize.Net
-    async chargeCard(paymentData) {
+    async chargeCard() {
         // This would integrate with Authorize.Net API
         // Simplified for demonstration
         const transactionId = 'TXN_' + crypto.randomBytes(8).toString('hex');

@@ -19,19 +19,19 @@ app.get('/health', (req, res) => {
 
 // Process payment endpoint
 app.post('/api/payment/process', (req, res) => {
-  const { amount, currency, paymentMethod } = req.body;
+  const { amount, currency } = req.body;
   // Stripe/Square integration implemented in processor.py
-  res.json({ 
-    success: true, 
+  res.json({
+    success: true,
     transactionId: `txn_${Date.now()}`,
     amount,
-    currency 
+    currency
   });
 });
 
 // Refund endpoint
 app.post('/api/payment/refund', (req, res) => {
-  const { transactionId, amount } = req.body;
+  const { amount } = req.body;
   // Refund logic implemented with transaction validation
   res.json({ 
     success: true, 

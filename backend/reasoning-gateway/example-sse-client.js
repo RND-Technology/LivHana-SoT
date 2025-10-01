@@ -225,7 +225,7 @@ async function connectToStream() {
               console.log(`${colors.bright}Task has finished. Exiting...${colors.reset}`);
               setTimeout(() => process.exit(0), 2000);
             }
-          } catch (error) {
+          } catch {
             // Ignore parse errors (heartbeats, etc.)
           }
         }

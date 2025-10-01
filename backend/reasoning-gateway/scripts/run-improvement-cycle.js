@@ -64,24 +64,26 @@ async function main() {
         results = await improvementLoop.runImprovementCycle();
         break;
 
-      case 'weekly':
+      case 'weekly': {
         logger.info('Running weekly improvement cycle');
         results = await improvementLoop.runImprovementCycle();
         const weeklyReport = await improvementLoop.generateWeeklyReport();
         results.weeklyReport = weeklyReport;
         break;
+      }
 
       case 'monthly':
         logger.info('Running monthly refactoring analysis');
         results = await improvementLoop.generateMonthlyRefactoringReport();
         break;
 
-      case 'full':
+      case 'full': {
         logger.info('Running full improvement analysis');
         results = await improvementLoop.runImprovementCycle();
         const fullReport = await improvementLoop.getMetricsDashboard();
         results.dashboard = fullReport;
         break;
+      }
 
       default:
         throw new Error(`Unknown cycle type: ${options.type}`);

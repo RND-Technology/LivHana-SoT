@@ -367,7 +367,7 @@ describe('Age Verification System', () => {
         expired: false,
       };
 
-      const checkCache = async (customerId) => cachedVerification;
+      const checkCache = async () => cachedVerification;
 
       const result = await performVerification(validCustomerData, {
         checkCache,
@@ -388,7 +388,7 @@ describe('Age Verification System', () => {
         expired: true,
       };
 
-      const checkCache = async (customerId) => expiredCached;
+      const checkCache = async () => expiredCached;
 
       const result = await performVerification(validCustomerData, {
         checkCache,

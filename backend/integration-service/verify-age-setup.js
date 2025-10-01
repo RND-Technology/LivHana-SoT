@@ -63,7 +63,7 @@ try {
   console.log('  ✓ Storage module loaded');
 
   // Test instantiation
-  const store = new AgeVerificationStore({ mockMode: true });
+  new AgeVerificationStore({ mockMode: true });
   console.log('  ✓ Storage instance created (mock mode)');
 
 } catch (error) {
@@ -74,7 +74,7 @@ try {
 // Check 3: Verify routes module exists
 console.log('\n✓ Checking routes module...');
 try {
-  const { router } = require('./src/age_verification_routes');
+  require('./src/age_verification_routes');
   console.log('  ✓ Routes module loaded');
 } catch (error) {
   console.log('  ✗ Failed to load routes module:', error.message);
