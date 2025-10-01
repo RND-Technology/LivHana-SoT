@@ -1,8 +1,12 @@
 const express = require('express');
 const cors = require('cors');
 const { createLogger } = require('../../common/logging');
+const { authMiddleware } = require('../../common/auth/middleware');
 const { router: bigqueryRoutes, getBigQueryStatus } = require('./bigquery_live');
 const squareCatalog = require('./square_catalog');
+const { router: membershipRoutes } = require('./membership');
+const { router: ageVerificationRoutes } = require('./age_verification_routes');
+const { router: raffleRoutes } = require('./raffle');
 
 const app = express();
 const PORT = process.env.PORT || 3005;
@@ -16,6 +20,7 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Health endpoint - no auth required for monitoring
 app.get('/health', (req, res) => {
   const status = getBigQueryStatus();
   res.json({
@@ -30,10 +35,19 @@ app.get('/health', (req, res) => {
   });
 });
 
+// All API routes require authentication
+app.use('/api', authMiddleware({ logger }));
+
+// Protected routes - BigQuery and Square data (routers already include /api prefix)
 app.use(bigqueryRoutes);
 app.use(squareCatalog.router);
+app.use(membershipRoutes);
+app.use(ageVerificationRoutes);
+app.use(raffleRoutes);
 
+// Protected sync endpoints
 app.post('/api/sync/lightspeed', (req, res) => {
+  logger.info({ user: req.user }, 'LightSpeed sync triggered');
   res.json({
     success: true,
     itemsSynced: 42,
@@ -42,6 +56,7 @@ app.post('/api/sync/lightspeed', (req, res) => {
 });
 
 app.post('/api/sync/square', (req, res) => {
+  logger.info({ user: req.user }, 'Square sync triggered');
   const status = getBigQueryStatus();
   res.json({
     success: status.enabled,

@@ -4,8 +4,8 @@ import bigqueryPkg from '@google-cloud/bigquery';
 
 const { BigQuery } = bigqueryPkg;
 
-const LIGHTSPEED_API_KEY = process.env.LIGHTSPEED_API_KEY;
-const LIGHTSPEED_ACCOUNT_ID = process.env.LIGHTSPEED_ACCOUNT_ID;
+const LIGHTSPEED_API_KEY = process.env.KAJA_API_KEY || process.env.LIGHTSPEED_API_KEY;
+const LIGHTSPEED_ACCOUNT_ID = process.env.KAJA_GATEWAY_ID || process.env.LIGHTSPEED_ACCOUNT_ID;
 const BIGQUERY_DATASET = process.env.BQ_DATASET ?? 'commerce';
 const BIGQUERY_TABLE = process.env.BQ_LIGHTSPEED_TABLE ?? 'lightspeed_inventory';
 

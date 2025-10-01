@@ -22,14 +22,16 @@ vi.mock('openai', () => ({
   default: class MockOpenAI {
     constructor(opts) {
       this.opts = opts;
+      this.chat = {
+        completions: {
+          create: async function* (payload) {
+            yield { choices: [{ delta: { content: 'Chunk 1' } }] };
+            yield { choices: [{ delta: { content: 'Chunk 2' } }] };
+            yield { choices: [{ finish_reason: 'stop' }] };
+          }
+        }
+      };
     }
-    responses = {
-      stream: async function* () {
-        yield { type: 'response.output_text.delta', delta: 'Chunk 1' };
-        yield { type: 'response.output_text.delta', delta: 'Chunk 2' };
-        yield { type: 'response.completed', response: { id: 'mock-response' } };
-      },
-    };
   },
 }));
 

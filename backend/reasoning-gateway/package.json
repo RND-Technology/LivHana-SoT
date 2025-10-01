@@ -7,9 +7,20 @@
   "scripts": {
     "dev": "node --watch src/index.js",
     "start": "node src/index.js",
-    "test": "vitest"
+    "test": "vitest",
+    "test:autonomous": "bash test-autonomous-api.sh",
+    "autonomous:monitor": "node example-sse-client.js",
+    "improvement:daily": "node scripts/run-improvement-cycle.js --type=daily",
+    "improvement:weekly": "node scripts/run-improvement-cycle.js --type=weekly",
+    "improvement:monthly": "node scripts/run-improvement-cycle.js --type=monthly",
+    "improvement:full": "node scripts/run-improvement-cycle.js --type=full",
+    "improvement:auto": "node scripts/run-improvement-cycle.js --type=daily --auto-execute",
+    "improvement:dry-run": "node scripts/run-improvement-cycle.js --type=daily --dry-run",
+    "setup:cron": "bash scripts/setup-cron.sh"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.30.0",
+    "@google-cloud/bigquery": "^7.9.4",
     "backend-common": "file:../common",
     "bullmq": "^5.12.6",
     "cors": "^2.8.5",
@@ -19,6 +30,7 @@
     "jsonwebtoken": "^9.0.2",
     "openai": "^4.67.3",
     "pino": "^9.3.2",
+    "redis": "^4.7.0",
     "ws": "^8.18.0"
   },
   "devDependencies": {

@@ -1,13 +1,8 @@
 import jwt from 'jsonwebtoken';
-
-const defaultConfig = {
-  audience: process.env.JWT_AUDIENCE,
-  issuer: process.env.JWT_ISSUER,
-  algorithms: (process.env.JWT_ALGORITHMS || 'HS256').split(',').map(a => a.trim()),
-};
+import { JWT_CONFIG } from './config.js';
 
 export const authMiddleware = ({ logger, config = {} } = {}) => {
-  const mergedConfig = { ...defaultConfig, ...config };
+  const mergedConfig = { ...JWT_CONFIG, ...config };
 
   return (req, res, next) => {
     const authHeader = req.headers.authorization;

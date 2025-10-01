@@ -156,3 +156,9 @@ Thumbs.db
 .DS_Store
 coverage/
 .cursor-backups/
+
+# Gmail Ingestion Pipeline - Sensitive Files
+gmail_credentials_*.json
+gmail_token_*.json
+.gmail_sync_*.json
+.env.gmail

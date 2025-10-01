@@ -8,7 +8,10 @@ import { authMiddleware } from '../../common/auth/middleware.js';
 import { requestLogger, errorLogger } from '../../common/logging/logger.js';
 import { ensureRedisEnv, createQueueOptions } from '../../common/queue/index.js';
 import { createReasoningRouter } from './routes/reasoning.js';
+import { createMemoryRouter } from './routes/memory.js';
+import { createAutonomousRouter } from './routes/autonomous.js';
 import { createDeepSeekWorkerProcessor } from './workers/deepseek-processor.js';
+import { createSelfImprovementLoop, createSelfImprovementRouter } from './self-improvement-loop.js';
 
 const logger = pino({ level: process.env.LOG_LEVEL ?? 'info' });
 
@@ -36,8 +39,26 @@ app.get('/health', (_req, res) => {
   res.status(200).json({ status: 'healthy', service: 'reasoning-gateway', queue: queueName });
 });
 
-// API endpoints WITHOUT auth for testing - ADD AUTH BACK IN PRODUCTION!
-app.use('/api/reasoning', createReasoningRouter({ logger, queue: reasoningQueue, queueEvents }));
+// Initialize self-improvement loop (async)
+let improvementLoop = null;
+if (process.env.ENABLE_SELF_IMPROVEMENT === 'true') {
+  createSelfImprovementLoop({ logger })
+    .then(loop => {
+      improvementLoop = loop;
+      logger.info('Self-improvement loop started');
+
+      // Add self-improvement routes
+      app.use('/api/improvements', authMiddleware({ logger }), createSelfImprovementRouter({ logger, improvementLoop: loop }));
+    })
+    .catch(error => {
+      logger.error({ error: error.message }, 'Failed to start self-improvement loop');
+    });
+}
+
+// API endpoints WITH authentication enabled
+app.use('/api/reasoning', authMiddleware({ logger }), createReasoningRouter({ logger, queue: reasoningQueue, queueEvents }));
+app.use('/api/memory', authMiddleware({ logger }), createMemoryRouter({ logger }));
+app.use('/api/autonomous', authMiddleware({ logger }), createAutonomousRouter({ logger, queue: reasoningQueue }));
 app.use(errorLogger(logger));
 
 const port = Number(process.env.PORT ?? 4002);
@@ -51,4 +72,31 @@ reasoningWorker.on('failed', (job, error) => {
 
 reasoningWorker.on('completed', (job) => {
   logger.info({ jobId: job.id }, 'reasoning job completed');
+});
+
+// Graceful shutdown
+process.on('SIGTERM', async () => {
+  logger.info('SIGTERM received, shutting down gracefully');
+
+  await reasoningWorker.close();
+  await reasoningQueue.close();
+
+  if (improvementLoop) {
+    await improvementLoop.shutdown();
+  }
+
+  process.exit(0);
+});
+
+process.on('SIGINT', async () => {
+  logger.info('SIGINT received, shutting down gracefully');
+
+  await reasoningWorker.close();
+  await reasoningQueue.close();
+
+  if (improvementLoop) {
+    await improvementLoop.shutdown();
+  }
+
+  process.exit(0);
 });

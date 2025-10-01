@@ -3,6 +3,7 @@ import { withRequestContext } from '../../../common/logging/context.js';
 import { evaluateGuardrails } from '../../../common/guardrails/index.js';
 import { createMemoryStore } from '../../../common/memory/store.js';
 import { recordFeedback } from '../../../common/feedback/index.js';
+import { enrichReasoningContext, learnFromReasoningResult } from '../memory_learning.js';
 
 const createDeepSeekClient = () => {
   const apiKey = process.env.DEEPSEEK_API_KEY;
@@ -70,7 +71,26 @@ export const createDeepSeekWorkerProcessor = ({ logger }) => {
 
     await memoryStore.appendHistory(job.id, { type: 'guardrail-pass', timestamp: new Date().toISOString() });
 
-    const payload = createInferencePayload({ prompt, metadata });
+    let enrichedPrompt = prompt;
+    let learningContext = null;
+
+    if (metadata?.customerId && process.env.ENABLE_MEMORY_LEARNING === 'true') {
+      try {
+        const enrichment = await enrichReasoningContext({
+          customerId: metadata.customerId,
+          sessionId,
+          prompt,
+          logger: contextLogger,
+        });
+        enrichedPrompt = enrichment.enrichedPrompt;
+        learningContext = enrichment.context;
+        contextLogger?.info?.({ customerId: metadata.customerId }, 'Enriched prompt with customer context');
+      } catch (error) {
+        contextLogger?.warn?.({ error: error.message }, 'Failed to enrich context, using original prompt');
+      }
+    }
+
+    const payload = createInferencePayload({ prompt: enrichedPrompt, metadata });
 
     let aggregatedText = '';
     const response = await streamDeepSeekResponse({
@@ -94,6 +114,26 @@ export const createDeepSeekWorkerProcessor = ({ logger }) => {
 
     await memoryStore.set(job.id, { ...resultPayload, guardrailResult });
     await recordFeedback({ jobId: job.id, prompt, response: aggregatedText });
+
+    if (metadata?.customerId && process.env.ENABLE_MEMORY_LEARNING === 'true') {
+      try {
+        await learnFromReasoningResult({
+          customerId: metadata.customerId,
+          sessionId,
+          prompt,
+          response: aggregatedText,
+          metadata: {
+            ...metadata,
+            jobId: job.id,
+            context: learningContext,
+          },
+          logger: contextLogger,
+        });
+        contextLogger?.info?.({ customerId: metadata.customerId }, 'Learned from reasoning result');
+      } catch (error) {
+        contextLogger?.warn?.({ error: error.message }, 'Failed to learn from reasoning result');
+      }
+    }
 
     return resultPayload;
   };

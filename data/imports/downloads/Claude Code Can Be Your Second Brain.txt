@@ -1,0 +1,69 @@
+Claude Code Can Be Your Second Brain
+	Introduction
+		Noah Brier has engineered a unique Claude Code setup by running a home server in his basement with Obsidian vault synced to it.
+		This setup allows him to think, research, write, and even ship code directly from his phone, effectively using Claude Code as a true second brain.
+		Claude Code functions as a thinking partner that asks sharp questions, pulls research from his entire note archive and the web, and keeps a running log of his learnings and best ideas.
+		The episode aims to explore Noah’s complete stack and workflow, showcasing practical uses of Claude Code for deep work and note-taking.
+	How you can do deep work on your phone
+		Noah highlights the dramatic shift AI has enabled in doing productive writing, coding, and research on phones, which traditionally were inadequate for deep work.
+		He explains that phones were not considered suitable for deep cognitive tasks, but Claude Code paired with Obsidian and AI tools like Grok voice mode have transformed this.
+		Being able to sign in on the phone to fix or update code remotely is revolutionary for his workflow.
+		He also mentions integrating Grok voice mode into his Tesla, enabling him to conduct research and hold complex intellectual conversations using just voice while driving.
+		This phone-based workflow maximizes convenience and productivity by liberating work from the desktop environment.
+	Why Noah thinks Grok has the best voice AI
+		Noah argues that Grok’s voice mode surpasses other voice AI models like ChatGPT’s or Gemini’s in intelligence and tool-calling capabilities.
+		He gives a detailed comparison, noting Grok’s superior real-time API integration and smarter responses during extended research conversations.
+		An example includes a 5-hour solo drive in New Hampshire where he spent two hours conducting deep research with Grok via Bluetooth.
+		He praises Grok’s voice AI for delivering the best explanations he’s encountered, such as an hour-long session on transformer models and self-attention mechanisms.
+		The conversational style of Grok makes it feel like a personalized podcast tailored to his interests, enhancing the learning experience during activities like driving.
+	The nuts and bolts of Noah’s Claude Code-Obsidian setup
+		Noah uses Obsidian as the core of his note-taking system, which stores notes as local markdown files organized in folders and versioned with Git.
+		Claude Code runs as an overlay on his entire Obsidian vault, enabling intelligent interactions with notes and research materials.
+		He follows the Parah method for organization, maintaining separate folders for chats, daily progress, research articles, PDFs, and conclusions.
+		Noah begins research projects by feeding Claude Code with prior talks, general ideas, and existing notes, explicitly instructing it to remain in thinking mode and not generate drafts prematurely.
+		He uses sub-agents within Claude Code, such as a “thinking partner,” which facilitates complex problem exploration by asking questions and logging insights without actually writing content.
+		Example: Preparing a conference talk on the Office of Strategic Services’ Simple Sabotage Field Manual, linking historical research to AI bureaucracy analogies.
+		His workflow includes saving transcripts from conversations with various AIs (ChatGPT, Claude, Grok) into Obsidian for ongoing reflection and integration.
+		Noah emphasizes the importance of AI’s reading ability to deeply understand his stored knowledge rather than rushing to creation, which helps maintain a genuine thinking partnership.
+	Using an agent in Claude Code as a “thinking partner”
+		Noah configures a sub-agent to act as a collaborative thinking partner specialized in exploring complex problems, explicitly instructed not to draft content but to facilitate thought.
+		This agent asks probing questions, takes notes on the discussion, and keeps a running log of ideas and reflections during the research process.
+		He demonstrates how after working on a topic for a few days, he can ask Claude Code to summarize recent developments, allowing him to seamlessly pick up deep work after interruptions.
+		This method addresses the common challenge of re-entering a complex project after being away by enabling quick context refreshes.
+		Noah provides insights into his ideological perspective on AI and bureaucracy; he theorizes bureaucracy as a form of positional encoding and explores parallels between AI’s parallel processing and organizational autonomy.
+		He discusses how AI can help large organizations retain diverse workflows without forcing centralized system changes, thanks to AI’s ability to interpret data agnostically across platforms.
+		Example: Within Every, the company Noah is involved with, different products use different tech stacks and AI facilitates tacit code sharing and productivity gains without modularizing code bases.
+	Noah’s Thomas’ English Muffin theory of AI
+		Noah shares his epiphany upon accessing ChatGPT’s plugin system, noting how software integration flipped conventional notions by using manifest JSON files and simple contracts.
+		He terms his optimistic view “Thomas’s English Muffin theory of AI,” describing AI’s ability to permeate the nooks and crannies of existing workflows without forcing drastic changes.
+		He contrasts this with traditional software adoption challenges where organizations had to overhaul structures, leading to resistance and inefficiency.
+		Noah explores the challenge of building new intuitions to interact with probabilistic, nondeterministic AI systems, which behave differently from deterministic computers historically used.
+		He draws analogies to quantum physics and human social interactions, reflecting on the need to develop new vocabularies and mental models to understand AI’s probabilistic nature.
+		Noah and the host discuss the frontier nature of current AI understanding, emphasizing exploratory experimentation to build intuition rather than relying solely on theoretical reasoning.
+	The white space still left to explore in AI
+		Noah stresses that despite AI’s rapid progress, there remains vast unexplored potential (“white space”) in how people can use and integrate these tools.
+		He warns against the misconception that AI has already “solved” major challenges, encouraging individuals and organizations to experiment and find novel uses.
+		Example: Fortune 50 companies often feel behind but can still pioneer unique AI applications simply by creatively using available tools like ChatGPT.
+		He highlights an example from his company Every, which operates six distinct products on different stacks, leveraging AI to share learnings organically without heavy centralization.
+		Noah also references internal AI-powered tools like “Intelligence,” which aggregates CRM and operational data and serves as a testbed for AI solutions.
+		The conversation encourages embracing the uncertainty and building experiential knowledge, reflecting on the rewarding intellectual engagement at the AI frontier.
+	How Noah is preparing his kids for AI
+		Noah has introduced his children (ages 7 and 10) to AI tools, including voice models like Grok, integrating playful learning experiences such as asking questions during car rides.
+		He shares an inspiring story where his 10-year-old built a Secret Santa app using Vercel’s VZero vibe coding platform, learning data modeling and programming concepts intuitively.
+		Noah rejects valuation-based skepticism about vibe coding platforms, arguing that enabling kids to build apps is a fundamental breakthrough, not a bubble.
+		He discusses the importance of media literacy and education in the AI era, focusing on empowering kids and adults to critically evaluate information and recognize AI hallucinations.
+		Noah recounts conversations with educators concerned about AI cheating, offering a perspective that the focus should be on fostering a love for writing and thinking rather than policing AI use.
+		He plans to teach a university course titled “Code is Essay,” advocating coding as a new expressive medium akin to traditional writing forms.
+		An example cited is “The Truth Detective,” a media literacy book designed for kids that teaches skepticism and critical thinking, which Noah plans to read annually with his children.
+		Noah emphasizes that AI challenges expose existing flaws in education and that meta-skills like evaluating reliability are becoming more crucial than rote memorization.
+	How he brought his Claude Code setup to mobile
+		Noah demonstrates accessing his Claude Code-Obsidian setup remotely via Termius, a terminal app on his phone connected through a private VPN to his basement mini PC.
+		The Obsidian vault is synced via private GitHub repositories, allowing seamless synchronization of notes and code across devices.
+		This mobile setup empowers him to perform deep research, note-taking, and even code editing directly from his phone, allowing him to work anywhere, such as during breakfast or outside by a pond.
+		He recounts a recent experience where he fixed a broken link on a conference website by pulling the repo on his phone, diagnosing the issue, and pushing a code change—all without leaving his outdoor seat.
+		Noah has extended access to trusted friends by partitioning his mini PC, enabling them to run Claude Code on their phones through the same infrastructure.
+		He contemplates whether running everything on Linux with Claude Code as a backend might be the ideal workflow, at least in the short term.
+		Noah also shows how he uses Claude Code helpers for Linux configuration tasks, like installing plugins, cleaning up package managers, or setting up new boxes with personalized settings.
+		This intensive command-line integration illustrates how Claude Code enhances his productivity and system administration.
+		Noah remains focused on incremental improvements and enjoys the “happy place” of tinkering and building tools that suit his workflows, serving both personal and large enterprise clients.
+		For further engagement, Noah directs listeners to Alfic (alfic.com) and the Brand BRXND.AI conference and newsletter, which focus on AI and marketing intersections.

@@ -1,0 +1,31 @@
+[Unit]
+Description=Liv Hana Self-Improvement Loop Service
+After=network.target redis.service
+Wants=redis.service
+
+[Service]
+Type=simple
+User=livhana
+Group=livhana
+WorkingDirectory=/opt/livhana/backend/reasoning-gateway
+Environment="NODE_ENV=production"
+EnvironmentFile=/opt/livhana/.env
+ExecStart=/usr/local/bin/node src/index.js
+Restart=always
+RestartSec=10
+StandardOutput=append:/var/log/livhana-improvement.log
+StandardError=append:/var/log/livhana-improvement-error.log
+
+# Resource limits
+MemoryLimit=2G
+CPUQuota=50%
+
+# Security hardening
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/livhana /var/log
+
+[Install]
+WantedBy=multi-user.target

@@ -32,8 +32,8 @@ app.get('/healthz', (_req, res) => {
 
 // Health endpoint without auth for monitoring
 app.use('/health', createHealthRouter({ logger, queue: reasoningQueue }));
-// API endpoints WITHOUT auth for testing - ADD AUTH BACK IN PRODUCTION!
-app.use('/api', voiceRouter({ logger, queue: reasoningQueue }));
+// API endpoints WITH authentication enabled
+app.use('/api', authMiddleware({ logger }), voiceRouter({ logger, queue: reasoningQueue }));
 
 app.use(errorLogger(logger));
 

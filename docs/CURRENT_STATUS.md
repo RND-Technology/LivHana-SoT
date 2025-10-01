@@ -19,12 +19,12 @@ Verifier: Codex (Tier‑1 Orchestrator)
 | Health telemetry UI | Frontend | `HealthBanner` not wired / tests absent | Integrate banner into VoicePanel + add RTL spec | Liv | +3h |
 | NSM matrix coverage | Governance | 25 workflows/owners not populated | Complete `docs/scorecards/NSM_matrix.md` | Liv | +4h |
 | Funnel spec | Mission | TPOP stage definitions undefined | Draft `docs/missions/FUNNEL_TPOP_SPEC.md` | Liv | +4h |
-| Lightspeed ingestion | Data | OAuth token pending; worker returns 401 (await KAJA approval) | Retry once token active | Liv | Blocked on token |
+| Lightspeed ingestion | Data | ✅ KAJA APPROVED 9/30/25 - OAuth active, ready for 10/1 launch | Test end-to-end transaction | Liv | Ready |
 | Docker health checks | Infra | Containers start but `/common` module installs still require manual env secrets; health script reports 401 | Add JWT/queue envs to `.env.docker.sample`, document manual token injection | Liv | +1h |
 
 ## 🚧 Blockers
 
-- Lightspeed OAuth approval (KAJA pending) required before `lightspeed_ingest.ts` can run end-to-end.
+- ✅ **RESOLVED:** Lightspeed OAuth + KAJA approved 9/30/25 - Online cannabis sales launch 10/1/25
 
 ## Ingestion Tracker
 
@@ -32,7 +32,7 @@ Verifier: Codex (Tier‑1 Orchestrator)
 |--------|----------|------------------|-------|
 | `automation/data-pipelines/square_pull.ts` | Repo | Complete | 39 transactions ingested (rolling 24h) |
 | `automation/data-pipelines/square_ingest_all.ts` | Repo | Complete | 33,317 transactions, 11,348 customers, 7 bank accounts loaded into commerce dataset |
-| `automation/data-pipelines/lightspeed_ingest.ts` | Repo | Blocked | Awaiting Lightspeed OAuth token (KAJA) |
+| `automation/data-pipelines/lightspeed_ingest.ts` | Repo | ✅ READY | KAJA approved 9/30/25, OAuth active, launch 10/1/25 |
 | `legacy/replit/liv-hana-20250922/Liv-Hana` | Legacy bundle | Pending extraction | Production APIs, Trinity configs, ops snapshots queued for parsing |
 | `/Users/jesseniesen/Downloads/RND-Product-Page-Dashboard-Wire-Frames.pdf` | Local downloads | Pending mapping | Dashboard widgets + telemetry specs align to monitoring pack |
 | Agentic Pattern PDFs (`Master ALL 20 Agentic AI Design Patterns`, `Agentic Design Patterns`) | Legacy attached assets | Pending synthesis | Roles + guardrail prompts feed agent role matrix |
