@@ -413,37 +413,37 @@ const UltimateCockpit = () => {
         <Grid item xs={12} sm={6} md={3}>
           <QuickMetricCard
             title="Today's Revenue"
-            value={`$${(liveData.revenue || 34483).toLocaleString()}`}
+            value={`$${(liveData.revenue || 0).toLocaleString()}`}
             icon={<AttachMoney />}
             color="#10B981"
-            trend="+12.5%"
+            trend={liveData.revenueTrend || "No data"}
           />
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
           <QuickMetricCard
             title="Active Customers"
-            value={(liveData.customers || 1247).toLocaleString()}
+            value={(liveData.customers || 0).toLocaleString()}
             icon={<People />}
             color="#3B82F6"
-            trend="+8.3%"
+            trend={liveData.customersTrend || "No data"}
           />
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
           <QuickMetricCard
             title="Total Orders"
-            value={(liveData.orders || 523).toLocaleString()}
+            value={(liveData.orders || 0).toLocaleString()}
             icon={<Storefront />}
             color="#F59E0B"
-            trend="+15.7%"
+            trend={liveData.ordersTrend || "No data"}
           />
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
           <QuickMetricCard
             title="Crisis Consults"
-            value={(liveData.crisisConsults || 247).toLocaleString()}
+            value={(liveData.crisisConsults || 0).toLocaleString()}
             icon={<Security />}
             color="#EC4899"
-            trend="+24.1%"
+            trend={liveData.consultsTrend || "No data"}
           />
         </Grid>
       </Grid>
