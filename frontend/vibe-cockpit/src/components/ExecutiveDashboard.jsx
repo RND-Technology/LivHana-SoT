@@ -291,31 +291,33 @@ const ExecutiveDashboard = () => {
     }
   };
 
-  // Mock compliance data (would come from cannabis-service in production)
+  // TODO: Replace with real API call to cannabis-service
+  // GET /api/compliance/metrics
   const fetchComplianceData = async () => {
-    setComplianceMetrics({
-      ageVerificationRate: 98.5,
-      coaValidationRate: 100,
-      activeLicenses: 12,
-      expiringLicenses: [
-        { name: 'Texas Retail License', expiresIn: 45, type: 'retail' },
-        { name: 'California Distribution', expiresIn: 90, type: 'distribution' },
-      ],
-    });
+    try {
+      // PRODUCTION: Fetch from real compliance API
+      // const response = await fetch('http://localhost:3006/api/compliance/metrics', {
+      //   headers: { 'Authorization': `Bearer ${token}` }
+      // });
+      // const data = await response.json();
 
-    // Check for expiring licenses
-    const licenseAlerts = [];
-    complianceMetrics.expiringLicenses.forEach(license => {
-      if (license.expiresIn <= 60) {
-        licenseAlerts.push({
-          message: `${license.name} expires in ${license.expiresIn} days`,
-          severity: license.expiresIn <= 30 ? 'error' : 'warning',
-        });
-      }
-    });
+      // TEMPORARY: Show empty state until cannabis-service is deployed
+      setComplianceMetrics({
+        ageVerificationRate: null, // Will show "N/A" in UI
+        coaValidationRate: null,
+        activeLicenses: null,
+        expiringLicenses: [],
+      });
 
-    if (licenseAlerts.length > 0) {
-      setAlerts(prev => ({ ...prev, licenses: licenseAlerts }));
+      // No mock alerts - only real compliance data
+    } catch (error) {
+      console.error('Failed to fetch compliance data:', error);
+      setComplianceMetrics({
+        ageVerificationRate: null,
+        coaValidationRate: null,
+        activeLicenses: null,
+        expiringLicenses: [],
+      });
     }
   };
 
@@ -395,7 +397,6 @@ const ExecutiveDashboard = () => {
     } finally {
       setLoading(false);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Initial load

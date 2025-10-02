@@ -222,5 +222,5 @@ export function createMemoryClient(options) {
 // // Check churn risk
 // const predictions = await memory.predict('customer-123', 'churn-risk');
 // if (predictions.churnRisk.churnRisk > 0.7) {
-//   console.log('Customer at risk!');
+//   console.info('Customer at risk!');
 // }
