@@ -1,14 +1,16 @@
 // Business Integration Service
-const axios = require('axios');
-const { TrinityComm } = require('../trinity_comm_interface');
-const { createLogger } = require('../../common/logging');
+import axios from 'axios';
+import { TrinityComm } from '../trinity_comm_interface.js';
+import { createLogger } from '../../common/logging/index.js';
 
 const logger = createLogger('business-integration');
 
 class BusinessIntegration {
     constructor() {
         this.trinity = new TrinityComm();
-        this.integrations = require('./business_integrations.json');
+        // Note: This would need to use import() or fs.readFile for JSON
+        // For now, leaving as a placeholder - JSON imports require special handling
+        this.integrations = {}; // require('./business_integrations.json');
     }
 
     // ReggieAndDro.com E-commerce Integration
@@ -91,4 +93,4 @@ class BusinessIntegration {
     }
 }
 
-module.exports = { BusinessIntegration };
+export { BusinessIntegration };

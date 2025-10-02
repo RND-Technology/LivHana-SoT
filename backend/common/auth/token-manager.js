@@ -3,10 +3,10 @@
  * Handles JWT creation, validation, refresh, and revocation
  */
 
-const jwt = require('jsonwebtoken');
-const crypto = require('crypto');
-const { createClient } = require('redis');
-const { logAuditEvent, AUDIT_EVENTS, SEVERITY } = require('../logging/audit-logger.js');
+import jwt from 'jsonwebtoken';
+import crypto from 'crypto';
+import { createClient } from 'redis';
+import { logAuditEvent, AUDIT_EVENTS, SEVERITY } from '../logging/audit-logger.js';
 
 class TokenManager {
   constructor({ jwtSecret, redisClient, logger }) {
@@ -357,7 +357,4 @@ const createTokenManager = async ({ jwtSecret, logger }) => {
   return new TokenManager({ jwtSecret, redisClient, logger });
 };
 
-module.exports = {
-  TokenManager,
-  createTokenManager
-};
+export { TokenManager, createTokenManager };

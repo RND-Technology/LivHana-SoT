@@ -1,6 +1,6 @@
-const express = require('express');
-const axios = require('axios');
-const { createLogger } = require('../../common/logging');
+import express from 'express';
+import axios from 'axios';
+import { createLogger } from '../../common/logging/index.js';
 
 const router = express.Router();
 const logger = createLogger('square-catalog');
@@ -189,7 +189,7 @@ router.get('/api/square/transactions', async (req, res) => {
   }
 });
 
-module.exports = {
+export default {
   router,
   isLive: () => squareEnabled,
   getMode: () => mode

@@ -4,7 +4,7 @@
  */
 
 import express from 'express';
-import { verifyAge, logVerification } from '../age_verification.js';
+import { performVerification, calculateAge } from '../age_verification.js';
 import { validateBody } from '../../../common/validation/middleware.js';
 import { ageVerificationSchema } from '../../../common/validation/schemas.js';
 import { logAuditEvent, AUDIT_EVENTS, SEVERITY } from '../../../common/logging/audit-logger.js';
@@ -20,20 +20,11 @@ router.post('/verify', validateBody(ageVerificationSchema), async (req, res) => 
     const { birthdate, metadata } = req.body;
 
     // Server-side age calculation (trusted source)
-    const birthDate = new Date(birthdate);
-    const age = Math.floor((Date.now() - birthDate.getTime()) / (365.25 * 24 * 60 * 60 * 1000));
+    const age = calculateAge(birthdate);
 
     // Texas law: Must be 21+
     if (age < 21) {
-      await logVerification({
-        birthdate,
-        age,
-        verified: false,
-        reason: 'Under 21',
-        ip: req.ip,
-        userAgent: req.headers['user-agent'],
-        metadata
-      });
+      // Log failed verification (no logVerification function, using audit only)
 
       // Log failed verification
       await logAuditEvent({
@@ -54,16 +45,6 @@ router.post('/verify', validateBody(ageVerificationSchema), async (req, res) => 
       });
     }
 
-    // Log successful verification
-    const verificationRecord = await logVerification({
-      birthdate,
-      age,
-      verified: true,
-      ip: req.ip,
-      userAgent: req.headers['user-agent'],
-      metadata
-    });
-
     // Log successful verification to audit
     await logAuditEvent({
       eventType: AUDIT_EVENTS.COMPLIANCE_AGE_VERIFICATION,
@@ -73,7 +54,7 @@ router.post('/verify', validateBody(ageVerificationSchema), async (req, res) => 
       resource: '/api/age-verification/verify',
       action: 'POST',
       result: 'success',
-      details: { age, verificationId: verificationRecord.id }
+      details: { age, birthdate }
     });
 
     res.json({

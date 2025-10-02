@@ -1,7 +1,7 @@
-const express = require('express');
-const { BigQuery } = require('@google-cloud/bigquery');
-const { createClient } = require('redis');
-const { createLogger } = require('../../common/logging');
+import express from 'express';
+import { BigQuery } from '@google-cloud/bigquery';
+import { createClient } from 'redis';
+import { createLogger } from '../../common/logging/index.js';
 
 const router = express.Router();
 const logger = createLogger('bigquery-live');
@@ -622,7 +622,4 @@ const getBigQueryStatus = () => ({
   }
 })();
 
-module.exports = {
-  router,
-  getBigQueryStatus
-};
+export { router, getBigQueryStatus };

@@ -9,8 +9,8 @@
  * CRITICAL: This system unblocks $80K/month revenue stuck due to Veriff failures
  */
 
-const crypto = require('crypto');
-const { createLogger } = require('../../common/logging');
+import crypto from 'crypto';
+import { createLogger } from '../../common/logging/index.js';
 
 const logger = createLogger('age-verification');
 
@@ -498,7 +498,7 @@ function isVerificationExpired(expiresAt) {
   return new Date(expiresAt) < new Date();
 }
 
-module.exports = {
+export {
   performVerification,
   validateDateOfBirth,
   validateIdNumber,

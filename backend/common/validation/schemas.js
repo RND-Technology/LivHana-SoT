@@ -3,7 +3,7 @@
  * Prevents injection attacks and ensures data integrity
  */
 
-const Joi = require('joi');
+import Joi from 'joi';
 
 /**
  * Age Verification Schema
@@ -226,7 +226,7 @@ const dateRangeSchema = Joi.object({
   'date.greater': 'End date must be after start date'
 });
 
-module.exports = {
+export {
   ageVerificationSchema,
   userRegistrationSchema,
   loginSchema,

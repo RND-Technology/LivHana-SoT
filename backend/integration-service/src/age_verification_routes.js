@@ -11,10 +11,10 @@
  * Rate Limiting: 3 attempts per customer per 24 hours
  */
 
-const express = require('express');
-const { createLogger } = require('../../common/logging');
-const { performVerification } = require('./age_verification');
-const AgeVerificationStore = require('./age_verification_store');
+import express from 'express';
+import { createLogger } from '../../common/logging/index.js';
+import { performVerification } from './age_verification.js';
+import AgeVerificationStore from './age_verification_store.js';
 
 const router = express.Router();
 const logger = createLogger('age-verification-api');
@@ -324,4 +324,4 @@ router.get('/health/age-verification', (req, res) => {
   });
 });
 
-module.exports = { router, store };
+export { router, store };

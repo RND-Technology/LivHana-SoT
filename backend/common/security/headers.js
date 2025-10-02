@@ -3,7 +3,8 @@
  * Implements production-grade security headers using helmet.js
  */
 
-const helmet = require('helmet');
+import helmet from 'helmet';
+import cors from 'cors';
 
 /**
  * Create security headers middleware with strict CSP
@@ -81,8 +82,6 @@ const createSecurityHeaders = ({ logger, config = {} } = {}) => {
  * Create CORS middleware with security options
  */
 const createSecureCORS = ({ logger, allowedOrigins = [] } = {}) => {
-  const cors = require('cors');
-
   const defaultOrigins = [
     'http://localhost:5173',
     'http://localhost:3000',
@@ -233,9 +232,4 @@ const createSecurityAuditor = ({ logger } = {}) => {
   };
 };
 
-module.exports = {
-  createSecurityHeaders,
-  createSecureCORS,
-  createRequestSanitizer,
-  createSecurityAuditor
-};
+export { createSecurityHeaders, createSecureCORS, createRequestSanitizer, createSecurityAuditor };

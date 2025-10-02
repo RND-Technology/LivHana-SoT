@@ -3,8 +3,8 @@
  * Provides comprehensive health and readiness checks
  */
 
-const { Router } = require('express');
-const { metricsHandler } = require('../../../common/monitoring/prometheus.js');
+import { Router } from 'express';
+import { metricsHandler } from '../../../common/monitoring/prometheus.js';
 
 function createHealthRoutes(options = {}) {
   const {
@@ -151,4 +151,4 @@ function createHealthRoutes(options = {}) {
   return router;
 }
 
-module.exports = { createHealthRoutes };
+export { createHealthRoutes };

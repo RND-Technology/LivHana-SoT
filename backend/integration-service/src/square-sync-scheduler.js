@@ -1,7 +1,7 @@
-const cron = require('node-cron');
-const { spawn } = require('child_process');
-const { createLogger } = require('../../common/logging');
-const path = require('path');
+import cron from 'node-cron';
+import { spawn } from 'child_process';
+import { createLogger } from '../../common/logging/index.js';
+import path from 'path';
 
 const logger = createLogger('square-sync-scheduler');
 
@@ -188,4 +188,4 @@ function startSquareSyncScheduler() {
   logger.info('Square sync scheduler started - async mode with retry logic enabled');
 }
 
-module.exports = { startSquareSyncScheduler };
+export { startSquareSyncScheduler };

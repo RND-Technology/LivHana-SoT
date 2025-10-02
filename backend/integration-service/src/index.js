@@ -1,34 +1,34 @@
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const { createLogger } = require('../../common/logging');
-const { authMiddleware } = require('../../common/auth/middleware');
-const { router: bigqueryRoutes, getBigQueryStatus } = require('./bigquery_live');
-const squareCatalog = require('./square_catalog');
-const { router: membershipRoutes } = require('./membership');
-const { router: ageVerificationRoutes } = require('./age_verification_routes');
-const { router: raffleRoutes } = require('./raffle');
-const { startSquareSyncScheduler } = require('./square-sync-scheduler');
-const { startLightspeedSyncScheduler } = require('./lightspeed-sync-scheduler');
+import 'dotenv/config';
+import express from 'express';
+import cors from 'cors';
+import { createLogger } from '../../common/logging/index.js';
+import { authMiddleware } from '../../common/auth/middleware.js';
+import { router as bigqueryRoutes, getBigQueryStatus } from './bigquery_live.js';
+import squareCatalog from './square_catalog.js';
+import { router as membershipRoutes } from './membership.js';
+import { router as ageVerificationRoutes } from './age_verification_routes.js';
+import { router as raffleRoutes } from './raffle.js';
+import { startSquareSyncScheduler } from './square-sync-scheduler.js';
+import { startLightspeedSyncScheduler } from './lightspeed-sync-scheduler.js';
 
 // Import compliance API routes
 import complianceRoutes from './routes/compliance-api.js';
 import ageVerificationAPIRoutes from './routes/age-verification-api.js';
 
 // Import security middleware
-const {
+import {
   createRedisClient,
   createTieredRateLimiter,
   createHealthCheckLimiter,
   createMonitoringRoutes
-} = require('../../common/rate-limit/index.cjs');
-const {
+} from '../../common/rate-limit/index.cjs';
+import {
   createSecurityHeaders,
   createSecureCORS,
   createRequestSanitizer,
   createSecurityAuditor
-} = require('../../common/security/headers.js');
-const { createAuditMiddleware } = require('../../common/logging/audit-logger.js');
+} from '../../common/security/headers.js';
+import { createAuditMiddleware } from '../../common/logging/audit-logger.js';
 
 const app = express();
 const PORT = process.env.PORT || 3005;

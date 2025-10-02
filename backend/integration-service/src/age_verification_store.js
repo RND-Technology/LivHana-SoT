@@ -10,9 +10,9 @@
  * - Privacy: Encrypted sensitive data
  */
 
-const { BigQuery } = require('@google-cloud/bigquery');
-const { createLogger } = require('../../common/logging');
-const { hashCustomerId, isVerificationExpired } = require('./age_verification');
+import { BigQuery } from '@google-cloud/bigquery';
+import { createLogger } from '../../common/logging/index.js';
+import { hashCustomerId, isVerificationExpired } from './age_verification.js';
 
 const logger = createLogger('age-verification-store');
 
@@ -436,4 +436,4 @@ class AgeVerificationStore {
   }
 }
 
-module.exports = AgeVerificationStore;
+export default AgeVerificationStore;

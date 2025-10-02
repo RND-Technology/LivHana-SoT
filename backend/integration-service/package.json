@@ -1,6 +1,7 @@
 {
   "name": "integration-service",
   "version": "1.0.0",
+  "type": "module",
   "description": "Integration Service for Square, BigQuery, and External APIs",
   "main": "src/index.js",
   "scripts": {

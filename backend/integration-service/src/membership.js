@@ -1,11 +1,11 @@
 // LivHana Membership System
 // Three-tier subscription system with BigQuery storage and KAJA payment integration
 
-const express = require('express');
-const crypto = require('crypto');
-const { BigQuery } = require('@google-cloud/bigquery');
-const { createLogger } = require('../../common/logging');
-const axios = require('axios');
+import express from 'express';
+import crypto from 'crypto';
+import { BigQuery } from '@google-cloud/bigquery';
+import { createLogger } from '../../common/logging/index.js';
+import axios from 'axios';
 
 const router = express.Router();
 const logger = createLogger('membership-service');
@@ -734,7 +734,7 @@ router.get('/api/memberships/discount/:customerId', async (req, res) => {
 });
 
 // Export router and utilities
-module.exports = {
+export {
   router,
   MEMBERSHIP_TIERS,
   calculateMembershipDiscount,

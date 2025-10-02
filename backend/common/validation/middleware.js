@@ -124,9 +124,4 @@ const validateHeaders = (schema) => {
   };
 };
 
-module.exports = {
-  validateBody,
-  validateQuery,
-  validateParams,
-  validateHeaders
-};
+export { validateBody, validateQuery, validateParams, validateHeaders };

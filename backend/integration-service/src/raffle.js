@@ -2,11 +2,11 @@
 // Complete raffle management with BigQuery storage, KAJA payment integration,
 // cryptographically secure drawing, and TX gambling law compliance
 
-const express = require('express');
-const crypto = require('crypto');
-const { BigQuery } = require('@google-cloud/bigquery');
-const { createLogger } = require('../../common/logging');
-const axios = require('axios');
+import express from 'express';
+import crypto from 'crypto';
+import { BigQuery } from '@google-cloud/bigquery';
+import { createLogger } from '../../common/logging/index.js';
+import axios from 'axios';
 
 const router = express.Router();
 const logger = createLogger('raffle-service');
@@ -1603,7 +1603,7 @@ router.delete('/api/raffles/:raffleId/cancel', async (req, res) => {
 
 // ==================== EXPORTS ====================
 
-module.exports = {
+export {
   router,
   RAFFLE_STATUS,
   COMPLIANCE,

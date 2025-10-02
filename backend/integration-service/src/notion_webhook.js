@@ -1,7 +1,7 @@
-const express = require('express');
-const { createLogger } = require('../../common/logging');
-const { BigQuery } = require('@google-cloud/bigquery');
-const crypto = require('crypto');
+import express from 'express';
+import { createLogger } from '../../common/logging/index.js';
+import { BigQuery } from '@google-cloud/bigquery';
+import crypto from 'crypto';
 
 const logger = createLogger('notion-webhook');
 const bigquery = new BigQuery();
@@ -174,4 +174,4 @@ async function syncDatabase(databaseId) {
   // Call notion_ingest.js functions
 }
 
-module.exports = { router };
+export { router };

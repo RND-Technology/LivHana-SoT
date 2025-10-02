@@ -9,8 +9,8 @@
  * - Use table aliases and explicit column selection
  */
 
-const { BigQuery } = require('@google-cloud/bigquery');
-const { createClient } = require('redis');
+import { BigQuery } from '@google-cloud/bigquery';
+import { createClient } from 'redis';
 
 const bigquery = new BigQuery();
 let redisClient;
@@ -206,7 +206,7 @@ async function invalidateCache(pattern) {
   }
 }
 
-module.exports = {
+export {
   executeOptimizedQuery,
   getRecentTransactions,
   getCustomerMetrics,

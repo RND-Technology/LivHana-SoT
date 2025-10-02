@@ -1,6 +1,6 @@
-const cron = require('node-cron');
-const { execSync } = require('child_process');
-const { createLogger } = require('../../common/logging');
+import cron from 'node-cron';
+import { execSync } from 'child_process';
+import { createLogger } from '../../common/logging/index.js';
 
 const logger = createLogger('lightspeed-sync-scheduler');
 
@@ -34,4 +34,4 @@ function startLightspeedSyncScheduler() {
   logger.info('Lightspeed sync scheduler started - runs every 15 minutes');
 }
 
-module.exports = { startLightspeedSyncScheduler };
+export { startLightspeedSyncScheduler };

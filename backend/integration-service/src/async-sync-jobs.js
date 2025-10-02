@@ -8,8 +8,8 @@
  * - Allow API to return immediately while sync runs in background
  */
 
-const Queue = require('bull');
-const { createLogger } = require('../../common/logging');
+import Queue from 'bull';
+import { createLogger } from '../../common/logging/index.js';
 
 const logger = createLogger('async-sync-jobs');
 
@@ -58,7 +58,7 @@ squareSyncQueue.process(async (job) => {
 
   try {
     // Import sync logic (only when processing, not on queue creation)
-    const { syncSquareData } = require('./square-sync-scheduler');
+    const { syncSquareData } = await import('./square-sync-scheduler.js');
 
     const result = await syncSquareData(options);
 
@@ -90,7 +90,7 @@ lightspeedSyncQueue.process(async (job) => {
   logger.info({ syncType, jobId: job.id }, 'Starting LightSpeed sync job');
 
   try {
-    const { syncLightspeedData } = require('./lightspeed-sync-scheduler');
+    const { syncLightspeedData } = await import('./lightspeed-sync-scheduler.js');
 
     const result = await syncLightspeedData(options);
 
@@ -206,7 +206,7 @@ async function getQueueStats(queueType = 'square') {
   };
 }
 
-module.exports = {
+export {
   queueSquareSync,
   queueLightspeedSync,
   getJobStatus,

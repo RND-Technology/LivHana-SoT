@@ -3,8 +3,8 @@
  * Logs security-critical events for compliance and forensics
  */
 
-const { createLogger } = require('./index.js');
-const { BigQuery } = require('@google-cloud/bigquery');
+import { createLogger } from './index.js';
+import { BigQuery } from '@google-cloud/bigquery';
 
 const auditLogger = createLogger('security-audit');
 const bigquery = new BigQuery();
@@ -349,10 +349,4 @@ const queryAuditLogs = async ({
   return rows;
 };
 
-module.exports = {
-  AUDIT_EVENTS,
-  SEVERITY,
-  logAuditEvent,
-  createAuditMiddleware,
-  queryAuditLogs
-};
+export { AUDIT_EVENTS, SEVERITY, logAuditEvent, createAuditMiddleware, queryAuditLogs };
