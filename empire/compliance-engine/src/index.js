@@ -205,8 +205,9 @@ app.listen(PORT, () => {
   logger.info(`✅ Compliance Engine operational on port ${PORT}`);
   logger.info('FREE tier active - Domains: ageverifysi.com, clinicaldataai.com');
 });
-// Last optimized: 2025-10-02
 
 // Optimized: 2025-10-02
 
 // Last updated: 2025-10-02
+
+// Last optimized: 2025-10-02

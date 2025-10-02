@@ -50,4 +50,5 @@ spec:
   traffic:
   - percent: 100
     latestRevision: true
+
 # Last optimized: 2025-10-02

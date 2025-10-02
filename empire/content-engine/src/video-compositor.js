@@ -238,8 +238,9 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   await fs.mkdir(path.dirname(outputPath), { recursive: true });
   await compositor.createTestVideo(imagePath, text, outputPath);
 }
-// Last optimized: 2025-10-02
 
 // Optimized: 2025-10-02
 
 // Last updated: 2025-10-02
+
+// Last optimized: 2025-10-02

@@ -67,8 +67,9 @@ app.post('/api/compliance/check', (req, res) => {
 app.listen(PORT, () => {
   logger.info(`🌿 Cannabis Service running on port ${PORT}`);
 });
-// Last optimized: 2025-10-02
 
 // Optimized: 2025-10-02
 
 // Last updated: 2025-10-02
+
+// Last optimized: 2025-10-02

@@ -16,3 +16,5 @@ echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) - ledger_refresh" >> "$LEDGER_FILE"
 printf 'Updated attribution ledger (%s)\n' "$LEDGER_FILE"
 
 # Last updated: 2025-10-02
+
+# Last optimized: 2025-10-02

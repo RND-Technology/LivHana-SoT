@@ -217,3 +217,5 @@ print_info "To monitor real-time progress, use SSE endpoint:"
 print_info "  curl -N ${BASE_URL}/api/autonomous/stream/TASK_ID -H 'Authorization: Bearer \$ADMIN_TOKEN'"
 
 # Last updated: 2025-10-02
+
+# Last optimized: 2025-10-02

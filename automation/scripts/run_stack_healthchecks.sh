@@ -45,3 +45,5 @@ check_http "Square cockpit" "$FRONTEND_BASE/cockpit" "200"
 printf "\nHealthcheck sweep complete.\n"
 
 # Last updated: 2025-10-02
+
+# Last optimized: 2025-10-02

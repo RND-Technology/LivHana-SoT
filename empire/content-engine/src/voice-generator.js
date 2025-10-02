@@ -137,8 +137,9 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 
   await generator.testVoice(character, text);
 }
-// Last optimized: 2025-10-02
 
 // Optimized: 2025-10-02
 
 // Last updated: 2025-10-02
+
+// Last optimized: 2025-10-02

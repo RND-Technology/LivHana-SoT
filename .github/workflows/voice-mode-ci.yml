@@ -65,6 +65,7 @@ jobs:
             echo "⚠️ OP_SERVICE_ACCOUNT_TOKEN not set, skipping Lightspeed dry-run"
           fi
         continue-on-error: true
-# Last optimized: 2025-10-02
 
 # Last updated: 2025-10-02
+
+# Last optimized: 2025-10-02

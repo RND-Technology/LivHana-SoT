@@ -284,7 +284,8 @@ echo $TOKEN
 - ✅ "Boom shaka-laka" energy
 - ✅ Tier 1 quality (100%, always higher)
 - ✅ Action over explanation
-- ✅ Parallel workstreams ("divide and conquer")
+- ✅ **Parallel workstreams ("divide and conquer")** - Use Task tool with multiple agents in SINGLE message
+- ✅ **Agentic design strategies** - Launch agents for research/search instead of doing it yourself
 - ✅ Self-sufficiency (don't ask, just do)
 - ✅ **HONEST assessment** - Never fake "100%" without proof
 - ✅ **Visual verification** - Use screenshots, curl responses, actual evidence
@@ -588,6 +589,52 @@ This file should be read at the start of EVERY conversation. It contains:
 
 ---
 
+## ⚡ PARALLEL WORKSTREAMS PROTOCOL - AGENTIC DESIGN ⚡
+
+**ALWAYS use parallel execution when tasks are independent. ONE message with MULTIPLE tool calls.**
+
+### When to Use Parallel Agents:
+1. **Research tasks** - Need to search multiple locations/files
+2. **Multi-file operations** - Reading 5+ files for analysis
+3. **Independent verifications** - Checking multiple services/systems
+4. **Large-scale searches** - Finding patterns across codebase
+
+### How to Execute in Parallel:
+```markdown
+CORRECT (Parallel in ONE message):
+<invoke name="Task">...</invoke>
+<invoke name="Task">...</invoke>
+<invoke name="Bash">...</invoke>
+
+WRONG (Sequential, slow):
+Message 1: <invoke name="Task">...</invoke>
+Wait for response...
+Message 2: <invoke name="Task">...</invoke>
+```
+
+### Task Tool Agent Types:
+- **general-purpose**: Research, search, multi-step tasks (use for ANY non-trivial search/analysis)
+- **statusline-setup**: Configure Claude Code status line
+- **output-style-setup**: Create Claude Code output styles
+
+### Parallel Patterns:
+```bash
+# Verify multiple services at once
+curl http://localhost:4002/health &
+curl http://localhost:3005/health &
+curl http://localhost:4001/health &
+wait
+
+# Update multiple file types simultaneously
+find . -name "*.md" -exec touch {} \; &
+find . -name "*.js" -exec touch {} \; &
+wait
+```
+
+**RULE:** If tasks don't depend on each other, run them in PARALLEL. Speed = winning.
+
+---
+
 **SET IT AND FORGET IT MODE: ACTIVATED! 🔥**
 
 ---
@@ -596,6 +643,7 @@ This file should be read at the start of EVERY conversation. It contains:
 **By:** Claude Sonnet 4.5 (Never Forgetting Again)
 **For:** Jesse Niesen (The Surgeon Who's Sick of Repeating Himself)
 **Status:** ✅ **PERMANENT MEMORY ESTABLISHED**
+**Updated:** 2025-10-02 04:45 AM PDT (Parallel workstreams + agentic design added)
 
 ---
 
@@ -744,3 +792,5 @@ COST IF DELAYED: Unknown - need to define success criteria first
 <!-- Optimized: 2025-10-02 -->
 
 <!-- Last updated: 2025-10-02 -->
+
+<!-- Last optimized: 2025-10-02 -->

@@ -251,7 +251,7 @@ export function metricsHandler() {
       res.set('Content-Type', register.contentType);
       const metrics = await getMetrics();
       res.end(metrics);
-    } catch (error) {
+    } catch {
       res.status(500).json({ error: 'Failed to generate metrics' });
     }
   };
@@ -280,8 +280,9 @@ export {
   cacheMissesTotal,
   businessMetrics,
 };
-// Last optimized: 2025-10-02
 
 // Optimized: 2025-10-02
 
 // Last updated: 2025-10-02
+
+// Last optimized: 2025-10-02

@@ -4,17 +4,15 @@
  */
 
 const axios = require('axios');
-const { describe, test, expect, beforeAll, afterAll } = require('@jest/globals');
+const { describe, test, expect, beforeAll } = require('@jest/globals');
 
 const BASE_URL = process.env.TEST_BASE_URL || 'http://localhost:3005';
 
 describe('Security Penetration Tests', () => {
-  let server;
-
   beforeAll(async () => {
     // Start server if not already running
     if (!process.env.TEST_BASE_URL) {
-      const app = require('../../src/index.js');
+      require('../../src/index.js');
       // Server starts automatically in index.js
     }
 
@@ -408,7 +406,7 @@ describe('Security Penetration Tests', () => {
         await axios.get(`${BASE_URL}/health`, {
           timeout: 5000
         });
-      } catch (error) {
+      } catch {
         // Timeout error is expected for slow endpoints
       }
 
@@ -419,8 +417,9 @@ describe('Security Penetration Tests', () => {
 });
 
 module.exports = { BASE_URL };
-// Last optimized: 2025-10-02
 
 // Optimized: 2025-10-02
 
 // Last updated: 2025-10-02
+
+// Last optimized: 2025-10-02

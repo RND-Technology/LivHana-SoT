@@ -360,3 +360,4 @@ class CannabisComplianceChecker:
                 "daily_limits": "Automatic enforcement"
             }
         }
+# Last optimized: 2025-10-02

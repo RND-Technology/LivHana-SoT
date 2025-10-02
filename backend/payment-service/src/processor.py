@@ -375,3 +375,4 @@ class KAJAPaymentProcessor:
             "merchant_category": self.cannabis_merchant_category,
             "available_methods": len(self.get_payment_methods())
         }
+# Last optimized: 2025-10-02
