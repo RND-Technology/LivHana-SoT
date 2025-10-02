@@ -198,3 +198,4 @@ screenshots/
 *.code-workspace
 
 # Last updated: 2025-10-02
+venv/
