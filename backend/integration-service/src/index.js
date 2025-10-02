@@ -1,6 +1,5 @@
 import 'dotenv/config';
 import express from 'express';
-import cors from 'cors';
 import { createLogger } from '../../common/logging/index.js';
 import { authMiddleware } from '../../common/auth/middleware.js';
 import { router as bigqueryRoutes, getBigQueryStatus } from './bigquery_live.js';

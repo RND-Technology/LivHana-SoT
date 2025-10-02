@@ -4,7 +4,7 @@
  */
 
 import express from 'express';
-import { performVerification, calculateAge } from '../age_verification.js';
+import { calculateAge } from '../age_verification.js';
 import { validateBody } from '../../../common/validation/middleware.js';
 import { ageVerificationSchema } from '../../../common/validation/schemas.js';
 import { logAuditEvent, AUDIT_EVENTS, SEVERITY } from '../../../common/logging/audit-logger.js';
@@ -17,7 +17,7 @@ const router = express.Router();
  */
 router.post('/verify', validateBody(ageVerificationSchema), async (req, res) => {
   try {
-    const { birthdate, metadata } = req.body;
+    const { birthdate } = req.body;
 
     // Server-side age calculation (trusted source)
     const age = calculateAge(birthdate);
@@ -61,7 +61,6 @@ router.post('/verify', validateBody(ageVerificationSchema), async (req, res) => 
       success: true,
       verified: true,
       age,
-      verificationId: verificationRecord.id,
       expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString() // 24 hours
     });
 
