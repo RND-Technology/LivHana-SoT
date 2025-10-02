@@ -25,6 +25,7 @@ const EmpireDashboard = lazy(() => import('./components/EmpireDashboard'));
 const SquareRealProducts = lazy(() => import('./components/SquareRealProducts'));
 const SquareLiveCockpit = lazy(() => import('./components/SquareLiveCockpit'));
 const UltimateCockpit = lazy(() => import('./components/UltimateCockpit'));
+const RPMVisioneeringDashboard = lazy(() => import('./components/RPMVisioneeringDashboard'));
 
 // Loading Component
 const LoadingFallback = () => (
@@ -219,6 +220,7 @@ function App() {
                         <Route path="/agent-swarm" element={<ErrorBoundary componentName="AgentSwarm"><AgentSwarm /></ErrorBoundary>} />
                         <Route path="/empire-systems" element={<ErrorBoundary componentName="EmpireSystems"><EmpireSystems /></ErrorBoundary>} />
                         <Route path="/empire-dashboard" element={<ErrorBoundary componentName="EmpireDashboard"><EmpireDashboard /></ErrorBoundary>} />
+                        <Route path="/rpm-visioneering" element={<ErrorBoundary componentName="RPMVisioneeringDashboard"><RPMVisioneeringDashboard /></ErrorBoundary>} />
                         <Route path="/products" element={<ErrorBoundary componentName="SquareRealProducts"><SquareRealProducts /></ErrorBoundary>} />
                         <Route path="/cockpit" element={<ErrorBoundary componentName="SquareLiveCockpit"><SquareLiveCockpit /></ErrorBoundary>} />
                         <Route path="/pilot-training" element={<ErrorBoundary componentName="PilotTraining"><PilotTraining /></ErrorBoundary>} />

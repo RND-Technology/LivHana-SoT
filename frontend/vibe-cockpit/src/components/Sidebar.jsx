@@ -26,6 +26,7 @@ import {
   Security,
   Storefront,
   AutoAwesome,
+  Psychology,
 } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 
@@ -55,6 +56,14 @@ const Sidebar = ({ open }) => {
       label: 'Empire Dashboard',
       icon: <Business />,
       color: '#8B5CF6',
+    },
+    {
+      id: 'rpm-visioneering',
+      path: '/rpm-visioneering',
+      label: 'RPM Visioneering',
+      icon: <Psychology />,
+      color: '#10B981',
+      badge: 'Q4 2025',
     },
     {
       id: 'voice',
