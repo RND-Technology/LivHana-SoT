@@ -588,3 +588,145 @@ This file should be read at the start of EVERY conversation. It contains:
 **By:** Claude Sonnet 4.5 (Never Forgetting Again)
 **For:** Jesse Niesen (The Surgeon Who's Sick of Repeating Himself)
 **Status:** ✅ **PERMANENT MEMORY ESTABLISHED**
+
+---
+
+## 🚨 HUMAN IN LOOP ALERT PROTOCOL 🚨
+
+### When to Sound the Alarm
+**ALWAYS** use this LOUD format when stuck and need Jesse's input:
+
+```
+🚨🚨🚨 HUMAN IN LOOP NEEDED 🚨🚨🚨
+
+STUCK ON: [One-line problem description]
+
+WHY STUCK:
+- [Specific blocker 1]
+- [Specific blocker 2]
+
+TRIED ALREADY:
+- [Attempt 1 + result]
+- [Attempt 2 + result]
+
+OPTIONS:
+A) [Option 1 - pros/cons]
+B) [Option 2 - pros/cons]
+C) Ask Jesse for guidance
+
+COST IF DELAYED: [Time/money/opportunity lost]
+
+⏰ WAITING FOR HUMAN INPUT ⏰
+```
+
+### Good Alert Examples
+
+**Example 1: Missing Critical Secret**
+```
+🚨🚨🚨 HUMAN IN LOOP NEEDED 🚨🚨🚨
+
+STUCK ON: Can't deploy voice-service - missing ELEVENLABS_API_KEY
+
+WHY STUCK:
+- Not in 1Password (checked all 3 vaults)
+- Not in any .env files (grep'd entire repo)
+- Required for production voice features
+
+TRIED ALREADY:
+- `op item list | grep -i eleven` (0 results)
+- `grep -r ELEVENLABS .` (only found env.example)
+- Checked GitHub secrets (not there)
+
+OPTIONS:
+A) Create new ElevenLabs account + API key (takes 5 min)
+B) Use different voice provider (2 hours code changes)
+C) Skip voice features (breaks core functionality)
+
+COST IF DELAYED: $0 now, blocks $50K/month feature
+
+⏰ WAITING FOR HUMAN INPUT ⏰
+```
+
+**Example 2: Breaking Change Needs Decision**
+```
+🚨🚨🚨 HUMAN IN LOOP NEEDED 🚨🚨🚨
+
+STUCK ON: Database migration requires 10min downtime
+
+WHY STUCK:
+- Need to add index on orders table (1M+ rows)
+- Will lock table during creation
+- 500+ active users during business hours
+
+TRIED ALREADY:
+- Online index creation (not supported in current Postgres version)
+- Split into batches (still locks table)
+- Researched zero-downtime options (none viable)
+
+OPTIONS:
+A) Schedule 3 AM deployment (safest, delays launch 24hrs)
+B) Deploy now, accept 10min downtime (fast, might anger users)
+C) Upgrade Postgres first for online index (takes 4 hours)
+
+COST IF DELAYED: $2K/day revenue per day delayed
+
+⏰ WAITING FOR HUMAN INPUT ⏰
+```
+
+**Example 3: Ambiguous Requirements**
+```
+🚨🚨🚨 HUMAN IN LOOP NEEDED 🚨🚨🚨
+
+STUCK ON: "Make checkout faster" - unclear what to optimize
+
+WHY STUCK:
+- Current checkout: 3 steps, 45 seconds average
+- Don't know which part is "slow"
+- No specific target given
+
+TRIED ALREADY:
+- Analyzed logs: 30s on payment, 10s form validation, 5s redirect
+- Looked at competitor checkouts (1-2 steps, 20-30s)
+- Profiled frontend (no obvious bottlenecks)
+
+OPTIONS:
+A) Optimize payment step (biggest time sink, 30s → 10s possible)
+B) Reduce from 3 steps to 1 step (UX change, risky)
+C) Ask Jesse what "faster" means (specific target needed)
+
+COST IF DELAYED: Unknown - need to define success criteria first
+
+⏰ WAITING FOR HUMAN INPUT ⏰
+```
+
+### Bad Alerts (DON'T DO THIS)
+❌ "I'm stuck"
+❌ "There's an error"
+❌ "Help!"
+❌ "This doesn't work"
+❌ "What should I do?"
+
+### Why This Works
+- ✅ **Saves Time** - Jesse sees exact problem + context instantly
+- ✅ **Clear Options** - Makes decision easy
+- ✅ **Shows Effort** - Proves you tried before asking
+- ✅ **Business Impact** - Cost/benefit clear
+- ✅ **Actionable** - Jesse can give specific answer
+
+### When to Alert
+1. **Blocked >15 minutes** - Don't waste hours trying everything
+2. **Need access/permission** - Only Jesse can provide
+3. **Breaking change decision** - Risk vs reward tradeoff
+4. **Ambiguous requirements** - Need clarification to proceed
+5. **Multiple valid approaches** - Need business context to choose
+
+### When NOT to Alert
+- ❌ Can solve by reading docs
+- ❌ Can solve by trying one more thing
+- ❌ Haven't searched codebase yet
+- ❌ Haven't checked PERSISTENT_MEMORY.md
+
+**RULE:** 15 minutes stuck = sound the alarm. Don't waste hours!
+
+---
+

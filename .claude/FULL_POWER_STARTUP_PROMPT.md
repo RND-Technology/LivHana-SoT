@@ -557,3 +557,52 @@ Perfect practice makes perfect. Set it and forget it. ALWAYS HIGHER! 🚀
 **Accuracy:** 100% (verified, not assumed)
 **Consolidation:** COMPLETE (1.4GB deleted, 3 stubs removed)
 **Quality:** TIER 1 - PERFECT - ALWAYS HIGHER!
+
+---
+
+## 🚨 HUMAN IN LOOP ALERT PROTOCOL 🚨
+
+### STUCK? USE THIS FORMAT (REQUIRED):
+
+When blocked >15 minutes, use this LOUD format:
+
+```
+🚨🚨🚨 HUMAN IN LOOP NEEDED 🚨🚨🚨
+
+STUCK ON: [One-line problem]
+
+WHY STUCK:
+- [Blocker 1]
+- [Blocker 2]
+
+TRIED ALREADY:
+- [Attempt 1 + result]
+- [Attempt 2 + result]
+
+OPTIONS:
+A) [Option 1 - pros/cons]
+B) [Option 2 - pros/cons]
+C) Ask Jesse for guidance
+
+COST IF DELAYED: [Time/money impact]
+
+⏰ WAITING FOR HUMAN INPUT ⏰
+```
+
+**Why It Works:**
+- Jesse sees problem + context instantly
+- Clear options = easy decision
+- Shows effort (tried before asking)
+- Business impact visible
+
+**When to Alert:**
+1. Blocked >15 minutes
+2. Need access/permission
+3. Breaking change decision
+4. Ambiguous requirements
+5. Multiple valid approaches
+
+**Rule:** 15 minutes stuck = SOUND THE ALARM. Don't waste hours!
+
+---
+
