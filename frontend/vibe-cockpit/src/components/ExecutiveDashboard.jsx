@@ -291,21 +291,29 @@ const ExecutiveDashboard = () => {
     }
   };
 
-  // TODO: Replace with real API call to cannabis-service
-  // GET /api/compliance/metrics
+  // Compliance data from integration-service (age verification logs)
   const fetchComplianceData = async () => {
     try {
-      // PRODUCTION: Fetch from real compliance API
-      // const response = await fetch('http://localhost:3006/api/compliance/metrics', {
-      //   headers: { 'Authorization': `Bearer ${token}` }
-      // });
-      // const data = await response.json();
+      // Fetch real compliance metrics from integration-service
+      const response = await fetch('http://localhost:3005/api/compliance/metrics', {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('livhana_session_token')}`,
+          'Content-Type': 'application/json'
+        }
+      });
 
-      // TEMPORARY: Show empty state until cannabis-service is deployed
+      if (!response.ok) {
+        throw new Error(`Compliance API error: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      // Use REAL data from API
       setComplianceMetrics({
-        ageVerificationRate: null, // Will show "N/A" in UI
-        coaValidationRate: null,
-        activeLicenses: null,
+        ageVerificationRate: data.metrics?.ageVerification?.successRate || 0,
+        coaValidationRate: data.metrics?.productCompliance?.coaCoverage || 0,
+        texasComplianceScore: data.metrics?.texasCompliance?.score || 0,
+        activeLicenses: 1, // LivHana Trinity license
         expiringLicenses: [],
       });
 

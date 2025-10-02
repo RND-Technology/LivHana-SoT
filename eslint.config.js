@@ -33,6 +33,8 @@ export default [
       'backend/integration-service/verify-age-setup.js', // Skip setup script - has console.log for demo
       'backend/reasoning-gateway/example-sse-client.js', // Skip example - has console.log for demo
       'check-cursor-problems.js', // Skip temp script
+      'backend/integration-service/scripts/**/*', // Skip utility scripts - have console.log for output
+      'backend/reasoning-gateway/scripts/**/*', // Skip utility scripts - have console.log for output
     ],
   },
   js.configs.recommended,

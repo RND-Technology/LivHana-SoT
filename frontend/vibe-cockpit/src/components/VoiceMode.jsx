@@ -11,7 +11,7 @@ import {
 import { useReasoningJob } from '../hooks/useReasoningJob';
 import { HealthBanner } from './HealthBanner.jsx';
 
-const ELEVENLABS_BASE_URL = 'https://api.elevenlabs.io';
+const VOICE_SERVICE_BASE = import.meta.env.VITE_VOICE_API_BASE || 'http://localhost:4001/api';
 const ELEVENLABS_API_KEY = import.meta.env.VITE_ELEVENLABS_API_KEY || import.meta.env.REACT_APP_ELEVENLABS_API_KEY || '';
 
 const voiceOptions = [
@@ -130,28 +130,28 @@ const VoiceMode = ({
   };
 
   const speakWithElevenLabs = async (text) => {
-    if (!ELEVENLABS_API_KEY) {
-      console.error('ElevenLabs API key not configured');
-      setHealthStatus((prev) => ({ ...prev, voice: 'down' }));
-      return;
-    }
-
     try {
       setIsSpeaking(true);
       setAgentStatus('speaking');
       setHealthStatus((prev) => ({ ...prev, voice: 'healthy' }));
 
-      const response = await fetch(`${ELEVENLABS_BASE_URL}/v1/text-to-speech/${selectedVoice}`, {
+      // SECURITY: Validate token exists before making request
+      const token = localStorage.getItem('livhana_session_token');
+      if (!token) {
+        throw new Error('Authentication required. Please log in.');
+      }
+
+      const response = await fetch(`${VOICE_SERVICE_BASE}/elevenlabs/synthesize`, {
         method: 'POST',
         headers: {
           'Accept': 'audio/mpeg',
           'Content-Type': 'application/json',
-          'xi-api-key': ELEVENLABS_API_KEY
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({
           text: text,
-          model_id: 'eleven_monolingual_v1',
-          voice_settings: {
+          voiceId: selectedVoice,
+          voiceSettings: {
             stability: stability / 100,
             similarity_boost: similarityBoost / 100
           }
@@ -159,7 +159,8 @@ const VoiceMode = ({
       });
 
       if (!response.ok) {
-        throw new Error(`ElevenLabs API error: ${response.status} ${response.statusText}`);
+        const errorText = await response.text();
+        throw new Error(`Voice synthesis error: ${response.status} ${response.statusText} - ${errorText}`);
       }
 
       const audioBlob = await response.blob();
@@ -185,7 +186,7 @@ const VoiceMode = ({
       await audio.play();
 
     } catch (error) {
-      console.error('ElevenLabs TTS error:', error);
+      console.error('Voice TTS error:', error);
       setIsSpeaking(false);
       setAgentStatus('error');
       setHealthStatus((prev) => ({ ...prev, voice: 'down' }));
@@ -194,11 +195,6 @@ const VoiceMode = ({
   };
 
   const handleTestVoice = async () => {
-    if (!ELEVENLABS_API_KEY) {
-      console.error('ElevenLabs API key missing from environment');
-      setHealthStatus((prev) => ({ ...prev, voice: 'down' }));
-      return;
-    }
 
     setIsTesting(true);
     const testText = "Hello! This is a test of the ElevenLabs voice synthesis system. I'm speaking with the selected voice.";
@@ -500,8 +496,8 @@ const VoiceMode = ({
               data-testid="reasoning-status-chip"
             />
             <Chip
-              label={`API Key: ${ELEVENLABS_API_KEY && ELEVENLABS_API_KEY !== 'your_elevenlabs_api_key_here' ? 'Configured' : 'Missing'}`}
-              color={ELEVENLABS_API_KEY && ELEVENLABS_API_KEY !== 'your_elevenlabs_api_key_here' ? 'success' : 'error'}
+              label={`Voice Service: ${healthStatus.voice === 'healthy' || healthStatus.voice === 'degraded' ? 'Connected' : 'Disconnected'}`}
+              color={healthStatus.voice === 'healthy' ? 'success' : healthStatus.voice === 'degraded' ? 'warning' : 'error'}
             />
           </Box>
         </Paper>

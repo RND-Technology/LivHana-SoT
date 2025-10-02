@@ -1,1 +1,13 @@
-ec7402f6b0aac66db6a71a96a4b6043dbf8d72de
+{
+  "type": "service_account",
+  "project_id": "reggieanddrodispensary",
+  "private_key_id": "6sfseedqsuvppuz5nw4qmv6gw4",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCxXGjCP5gpmHt5\nGLMf/S3QlrFauFuKObuCJwbTU60DZCBMWCDJCq5GgYVnxAmL+VjygblN5ZYChvCQ\n8hNnDbYDSvglLfiXvbjz5a7ox7ZbjioqsG8AKs9tCVFqsrG34cOP/XuIrzNKFapr\nmh/7sBm40VhGYrntKtDaHWW4pOiGZfYYw6WPN/X2dKRBjIk8y8J2T/KjcLfCD+m2\nXMSU4QX1TOO7T6t/9jm37v5/qdV3sx0Ky9cjevMTf+PeEhrudZxz01Cisd9PtJHH\nqH+YezfnKh1i0KqYkoT6DyN6GRP1YK9OMs2XoFEblCKXABthbTngtJcwGhTX0lnd\nLNHIN4VBAgMBAAECggEAUB3SJIzdi0yZ2eXSZEzVeTfY/YXxs8rIbM58QtG1gaal\nAFd+19G/T5IKVQk01snX6BO5RPrEfHfAC3mOUirbYTloRkMx3DmTZnkGPZiZQ1pA\nqe/w9D5iXHqtEGmP5eRRlqWGPAQIQxruVJTWhbbSp63JFmJaYkvI8/37iSDU+IAr\nl+dXK66D+JDn+s26CsXeoaV8wBkc6lk20jzrsZiQ92sU9AgBFhQNOrZ9/swlSDRG\nx6DK2WeHHwUESPSJp/jI2x3tFeB2vK+Q87ASgp7KPWVmFo+518deDXElnjOqneqP\ni22VP8/mPcIrRKqAUk3d76th05pQBb9OxU8F+8yIkQKBgQD4ZbReqNRnALHbf92e\nDQu134KeqVjRrOin4cBKo2CJDiFgisyLRXJzv5qwNdEv+FayTr+B+CYSeuz8Ps+L\nN/HJ/rqi5wQZXU3k98NJ6alLw9jRFMAMJubahHLg//XM8KYICmFRF9V8TZVwy3je\n8XENcOhcaGw4iFUynYKoERW6fwKBgQC2yhsUgso5bVSlKoK0mWxUVS8Xz7Rf8pRg\n0+vygIdrFt56PQaF+V9AmhvZVCuOzbGWCr5zCTSQ2B1FPW6+paYGPUdfj8VS2zS2\nic6sMwLty/JRkB2wvxKFO9FLTZwGFFqD7nDNOFHRZohsNc7LSW7WS2XUnDLK+v3S\nxlejNJFgPwKBgDqgZo3g8yDMfS39Y+Ul1xm6Ay5HcfsrAE5/bc8v+FzgxOfwWo6U\neYrwMiZczV6xEmVLSM/4LaQ29zAh8wI81giC4rIILGOALh5Yi/Mp/xcuxkGy0BEO\nLXZtxF9uiikwsz86k/V71ptcBGV24LRd7/zoJS+KReCh7NnhazEXtzUpAoGAVDpn\nJhlqg/HcOkuPdRbpcybZj3hXXosSUlf09obBX9hm5h7uvZd+i+83e/qsI56nAUOs\nJKgOP9xGCJzZRiJgkal1FRTT0W1PKfnwcSsEY31CCNGGzOYO67P3qmJ1zdtdJkQe\nWIJmOT6tCGf3BXeuCjMuFj1vrlbf1VsuEPdtMdMCgYEAt5rNN3x5ecIo0HFiP1bt\ng+opFqX2AbtCezmXBwnG2s3ajk1aQb3xwbSE16sOLtTd3+mOUhJjzouA7LFGPlTO\nCI0MKJbnrQAAarIUJayFwufGz9p0wv5SaNTKEBuH8uOECu5OMTYn32Lk7BfGQk7j\nhAUndjIwiIqNw0civ3WoiUY=\n-----END PRIVATE KEY-----\n",
+  "client_email": "gcp-bigquery-sa-json@reggieanddrodispensary.iam.gserviceaccount.com",
+  "client_id": "reggieanddrodispensary",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/gcp-bigquery-sa-json%40reggieanddrodispensary.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

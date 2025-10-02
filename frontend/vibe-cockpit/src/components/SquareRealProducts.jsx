@@ -199,19 +199,37 @@ const AgeGate = ({ currentDomain, onVerify }) => (
       <div className="space-y-4">
         <input
           type="date"
+          id="birthdate-input"
+          required
           className="w-full p-4 bg-black border-2 border-green-500 rounded-lg text-green-400"
           max={new Date(new Date().setFullYear(new Date().getFullYear() - 21)).toISOString().split('T')[0]}
           onChange={(e) => {
             if (!e.target.value) return;
             const birthDate = new Date(e.target.value);
             const age = Math.floor((Date.now() - birthDate.getTime()) / (365.25 * 24 * 60 * 60 * 1000));
-            if (age >= 21) {
+
+            // SECURITY: Prevent bypass - validate both client-side AND will validate server-side
+            if (age >= 21 && e.target.value) {
               onVerify();
             }
           }}
         />
         <motion.button
-          onClick={onVerify}
+          onClick={() => {
+            // SECURITY: Enforce age verification - cannot bypass by clicking button
+            const input = document.getElementById('birthdate-input');
+            if (!input?.value) {
+              alert('Please enter your date of birth to verify you are 21+');
+              return;
+            }
+            const birthDate = new Date(input.value);
+            const age = Math.floor((Date.now() - birthDate.getTime()) / (365.25 * 24 * 60 * 60 * 1000));
+            if (age >= 21) {
+              onVerify();
+            } else {
+              alert('You must be 21 or older to access this content.');
+            }
+          }}
           className="w-full py-4 bg-gradient-to-r from-green-500 to-green-600 text-black font-bold rounded-lg"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}

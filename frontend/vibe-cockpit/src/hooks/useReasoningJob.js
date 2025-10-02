@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 
-const API_BASE = import.meta.env.REACT_APP_REASONING_API_BASE ?? '/api/reasoning';
-const STREAM_TIMEOUT_MS = Number(import.meta.env.REACT_APP_REASONING_STREAM_TIMEOUT_MS ?? 60000);
+const API_BASE = import.meta.env.VITE_REASONING_API_BASE ?? import.meta.env.REACT_APP_REASONING_API_BASE ?? '/api/reasoning';
+const STREAM_TIMEOUT_MS = Number(import.meta.env.VITE_REASONING_STREAM_TIMEOUT_MS ?? import.meta.env.REACT_APP_REASONING_STREAM_TIMEOUT_MS ?? 60000);
 
 export const useReasoningJob = () => {
   const [jobId, setJobId] = useState(null);
@@ -100,7 +100,9 @@ export const useReasoningJob = () => {
   }, []);
 
   const fetchHealth = useCallback(async () => {
-    const response = await axios.get('/api/health/voice-mode');
+    const voiceServiceBase = import.meta.env.VITE_VOICE_API_BASE || 'http://localhost:4001/api';
+    const healthUrl = voiceServiceBase.replace('/api', '/health/voice-mode');
+    const response = await axios.get(healthUrl);
     return response.data;
   }, []);
 

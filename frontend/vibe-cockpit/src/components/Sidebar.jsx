@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import {
   Drawer,
   List,
@@ -19,63 +20,111 @@ import {
   MilitaryTech,
   Business,
   School,
-  Settings,
+  Settings as SettingsIcon,
   Cloud,
   TrendingUp,
   Security,
+  Storefront,
+  AutoAwesome,
 } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 
-const Sidebar = ({ open, currentView, setCurrentView }) => {
+const Sidebar = ({ open }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const menuItems = [
     {
+      id: 'ultimate',
+      path: '/ultimate',
+      label: 'Ultimate Cockpit',
+      icon: <Cloud />,
+      color: '#10B981',
+      badge: 'NEW',
+    },
+    {
       id: 'dashboard',
-      label: 'Empire Dashboard',
+      path: '/dashboard',
+      label: 'Core Dashboard',
       icon: <Dashboard />,
       color: '#16A34A',
     },
     {
-      id: 'voice-mode',
+      id: 'empire-dashboard',
+      path: '/empire-dashboard',
+      label: 'Empire Dashboard',
+      icon: <Business />,
+      color: '#8B5CF6',
+    },
+    {
+      id: 'voice',
+      path: '/voice',
       label: 'Voice Mode',
       icon: <VolumeUp />,
       color: '#F59E0B',
       badge: 'ElevenLabs',
     },
     {
-      id: 'video-mode',
+      id: 'video',
+      path: '/video',
       label: 'Video Mode',
       icon: <Videocam />,
       color: '#3B82F6',
     },
     {
       id: 'vibe-coding',
+      path: '/vibe-coding',
       label: 'Vibe Coding',
       icon: <Code />,
       color: '#8B5CF6',
     },
     {
       id: 'agent-swarm',
+      path: '/agent-swarm',
       label: 'Agent Swarm',
       icon: <MilitaryTech />,
       color: '#EF4444',
       badge: '1072 Agents',
     },
     {
+      id: 'products',
+      path: '/products',
+      label: 'Square Products',
+      icon: <Storefront />,
+      color: '#10B981',
+    },
+    {
+      id: 'cockpit',
+      path: '/cockpit',
+      label: 'Square Live Cockpit',
+      icon: <AutoAwesome />,
+      color: '#F59E0B',
+    },
+    {
       id: 'empire-systems',
+      path: '/empire-systems',
       label: 'Empire Systems',
       icon: <Business />,
       color: '#10B981',
     },
     {
       id: 'pilot-training',
+      path: '/pilot-training',
       label: 'Pilot Training',
       icon: <School />,
       color: '#F97316',
     },
+    {
+      id: 'settings',
+      path: '/settings',
+      label: 'Settings',
+      icon: <SettingsIcon />,
+      color: '#64748B',
+    },
   ];
 
-  const handleMenuClick = (viewId) => {
-    setCurrentView(viewId);
+  const handleMenuClick = (path) => {
+    navigate(path);
   };
 
   return (
@@ -129,70 +178,75 @@ const Sidebar = ({ open, currentView, setCurrentView }) => {
 
         {/* Menu Items */}
         <List>
-          {menuItems.map((item, index) => (
-            <ListItem key={item.id} disablePadding sx={{ mb: 1 }}>
-              <ListItemButton
-                onClick={() => handleMenuClick(item.id)}
-                selected={currentView === item.id}
-                component={motion.div}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                sx={{
-                  borderRadius: 2,
-                  backgroundColor: currentView === item.id
-                    ? `${item.color}20`
-                    : 'transparent',
-                  '&:hover': {
-                    backgroundColor: `${item.color}15`,
-                  },
-                  '&.Mui-selected': {
-                    backgroundColor: `${item.color}20`,
-                    '& .MuiListItemIcon-root': {
-                      color: item.color,
-                    },
-                    '& .MuiTypography-root': {
-                      color: item.color,
-                      fontWeight: 600,
-                    },
-                  },
-                  mb: 1,
-                }}
-              >
-                <ListItemIcon
+          {menuItems.map((item, index) => {
+            // Handle root path - both "/" and "/ultimate" should select Ultimate Cockpit
+            const isSelected = location.pathname === item.path ||
+                             (location.pathname === '/' && item.path === '/ultimate');
+            return (
+              <ListItem key={item.id} disablePadding sx={{ mb: 1 }}>
+                <ListItemButton
+                  onClick={() => handleMenuClick(item.path)}
+                  selected={isSelected}
+                  component={motion.div}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                   sx={{
-                    color: currentView === item.id ? item.color : '#94A3B8',
-                    minWidth: 40,
+                    borderRadius: 2,
+                    backgroundColor: isSelected
+                      ? `${item.color}20`
+                      : 'transparent',
+                    '&:hover': {
+                      backgroundColor: `${item.color}15`,
+                    },
+                    '&.Mui-selected': {
+                      backgroundColor: `${item.color}20`,
+                      '& .MuiListItemIcon-root': {
+                        color: item.color,
+                      },
+                      '& .MuiTypography-root': {
+                        color: item.color,
+                        fontWeight: 600,
+                      },
+                    },
+                    mb: 1,
                   }}
                 >
-                  {item.icon}
-                </ListItemIcon>
-                <ListItemText
-                  primary={item.label}
-                  secondary={item.badge && (
-                    <Chip
-                      label={item.badge}
-                      size="small"
-                      sx={{
-                        height: 16,
-                        fontSize: '0.6rem',
-                        backgroundColor: item.color,
-                        color: 'white',
-                      }}
-                    />
-                  )}
-                  sx={{
-                    '& .MuiListItemText-primary': {
-                      color: currentView === item.id ? item.color : '#F8FAFC',
-                      fontWeight: currentView === item.id ? 600 : 400,
-                    },
-                    '& .MuiListItemText-secondary': {
-                      marginTop: 0,
-                    },
-                  }}
-                />
-              </ListItemButton>
-            </ListItem>
-          ))}
+                  <ListItemIcon
+                    sx={{
+                      color: isSelected ? item.color : '#94A3B8',
+                      minWidth: 40,
+                    }}
+                  >
+                    {item.icon}
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={item.label}
+                    secondary={item.badge && (
+                      <Chip
+                        label={item.badge}
+                        size="small"
+                        sx={{
+                          height: 16,
+                          fontSize: '0.6rem',
+                          backgroundColor: item.color,
+                          color: 'white',
+                        }}
+                      />
+                    )}
+                    sx={{
+                      '& .MuiListItemText-primary': {
+                        color: isSelected ? item.color : '#F8FAFC',
+                        fontWeight: isSelected ? 600 : 400,
+                      },
+                      '& .MuiListItemText-secondary': {
+                        marginTop: 0,
+                      },
+                    }}
+                  />
+                </ListItemButton>
+              </ListItem>
+            );
+          })}
         </List>
 
         <Divider sx={{ borderColor: 'rgba(148, 163, 184, 0.1)', my: 2 }} />

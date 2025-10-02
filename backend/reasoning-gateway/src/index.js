@@ -12,12 +12,46 @@ import { createMemoryRouter } from './routes/memory.js';
 import { createAutonomousRouter } from './routes/autonomous.js';
 import { createDeepSeekWorkerProcessor } from './workers/deepseek-processor.js';
 import { createSelfImprovementLoop, createSelfImprovementRouter } from './self-improvement-loop.js';
+import {
+  createRedisClient,
+  createTieredRateLimiter,
+  createHealthCheckLimiter,
+  createMonitoringRoutes
+} from '../../common/rate-limit/index.mjs';
 
 const logger = pino({ level: process.env.LOG_LEVEL ?? 'info' });
 
 ensureRedisEnv({ logger });
 
 const app = express();
+
+// Initialize rate limiting
+let rateLimitMiddleware = null;
+let healthRateLimitMiddleware = null;
+
+(async () => {
+  try {
+    const redisClient = await createRedisClient({ logger });
+
+    // Create tiered rate limiter for API routes
+    rateLimitMiddleware = createTieredRateLimiter({
+      redisClient,
+      logger,
+      serviceName: 'reasoning-gateway'
+    });
+
+    // Create rate limiter for health checks
+    healthRateLimitMiddleware = createHealthCheckLimiter({
+      redisClient,
+      logger,
+      serviceName: 'reasoning-gateway'
+    });
+
+    logger.info('Rate limiting initialized successfully');
+  } catch (error) {
+    logger.error({ error: error.message }, 'Failed to initialize rate limiting - continuing without it');
+  }
+})();
 
 app.use(helmet());
 app.use(cors({ origin: process.env.ALLOWED_ORIGINS?.split(',').map((origin) => origin.trim()) ?? '*', credentials: true }));
@@ -31,13 +65,35 @@ const reasoningQueue = new Queue(queueName, queueOptions);
 const queueEvents = new QueueEvents(queueName, queueOptions);
 const reasoningWorker = new Worker(queueName, createDeepSeekWorkerProcessor({ logger }), queueOptions);
 
-// Health endpoints without auth
-app.get('/healthz', (_req, res) => {
+// Health endpoints with lenient rate limiting
+app.get('/healthz', (req, res, next) => {
+  if (healthRateLimitMiddleware) {
+    return healthRateLimitMiddleware(req, res, next);
+  }
+  next();
+}, (_req, res) => {
   res.status(200).json({ status: 'ok' });
 });
-app.get('/health', (_req, res) => {
+
+app.get('/health', (req, res, next) => {
+  if (healthRateLimitMiddleware) {
+    return healthRateLimitMiddleware(req, res, next);
+  }
+  next();
+}, (_req, res) => {
   res.status(200).json({ status: 'healthy', service: 'reasoning-gateway', queue: queueName });
 });
+
+// Apply rate limiting to all API routes
+app.use('/api', (req, res, next) => {
+  if (rateLimitMiddleware) {
+    return rateLimitMiddleware(req, res, next);
+  }
+  next();
+});
+
+// Rate limit monitoring endpoints (no auth for monitoring)
+app.use('/api/monitoring', createMonitoringRoutes({ logger }));
 
 // Initialize self-improvement loop (async)
 let improvementLoop = null;

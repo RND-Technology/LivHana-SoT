@@ -1,27 +1,46 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { Box, Container } from '@mui/material';
+import { Box, Container, CircularProgress } from '@mui/material';
 
-// Import Components
+// Import Critical Components (loaded immediately)
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
-import Dashboard from './components/Dashboard';
-import VoiceMode from './components/VoiceMode';
-import VideoMode from './components/VideoMode';
-import VibeCoding from './components/VibeCoding';
-import AgentSwarm from './components/AgentSwarm';
-import EmpireSystems from './components/EmpireSystems';
-import PilotTraining from './components/PilotTraining';
-import Settings from './components/Settings';
-import EmpireDashboard from './components/EmpireDashboard'; // NEW EMPIRE DASHBOARD
-import SquareRealProducts from './components/SquareRealProducts'; // REAL SQUARE PRODUCTS
-import SquareLiveCockpit from './components/SquareLiveCockpit'; // SQUARE LIVE COCKPIT
-import UltimateCockpit from './components/UltimateCockpit'; // 🚀 ULTIMATE CLOUD COCKPIT
 
 // Import Context
 import { AppProvider } from './context/AppContext';
+
+// Lazy Load Route Components (loaded on demand)
+const Dashboard = lazy(() => import('./components/Dashboard'));
+const VoiceMode = lazy(() => import('./components/VoiceMode'));
+const VideoMode = lazy(() => import('./components/VideoMode'));
+const VibeCoding = lazy(() => import('./components/VibeCoding'));
+const AgentSwarm = lazy(() => import('./components/AgentSwarm'));
+const EmpireSystems = lazy(() => import('./components/EmpireSystems'));
+const PilotTraining = lazy(() => import('./components/PilotTraining'));
+const Settings = lazy(() => import('./components/Settings'));
+const EmpireDashboard = lazy(() => import('./components/EmpireDashboard'));
+const SquareRealProducts = lazy(() => import('./components/SquareRealProducts'));
+const SquareLiveCockpit = lazy(() => import('./components/SquareLiveCockpit'));
+const UltimateCockpit = lazy(() => import('./components/UltimateCockpit'));
+
+// Loading Component
+const LoadingFallback = () => (
+  <Box
+    sx={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      minHeight: '60vh',
+      flexDirection: 'column',
+      gap: 2,
+    }}
+  >
+    <CircularProgress size={60} sx={{ color: '#16A34A' }} />
+    <Box sx={{ color: '#94A3B8', fontSize: '0.875rem' }}>Loading component...</Box>
+  </Box>
+);
 
 // Create Theme
 const theme = createTheme({
@@ -126,7 +145,6 @@ const theme = createTheme({
 
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [currentView, setCurrentView] = useState('dashboard');
   const [voiceModeActive, setVoiceModeActive] = useState(false);
   const [videoModeActive, setVideoModeActive] = useState(false);
 
@@ -140,30 +158,6 @@ function App() {
   const toggleVideoMode = () => {
     setVideoModeActive(!videoModeActive);
     setVoiceModeActive(false); // Disable voice when video is enabled
-  };
-
-  // Render current view
-  const renderCurrentView = () => {
-    switch (currentView) {
-      case 'dashboard':
-        return <Dashboard />;
-      case 'voice-mode':
-        return <VoiceMode />;
-      case 'video-mode':
-        return <VideoMode />;
-      case 'vibe-coding':
-        return <VibeCoding />;
-      case 'agent-swarm':
-        return <AgentSwarm />;
-      case 'empire-systems':
-        return <EmpireSystems />;
-      case 'pilot-training':
-        return <PilotTraining />;
-      case 'settings':
-        return <Settings />;
-      default:
-        return <Dashboard />;
-    }
   };
 
   return (
@@ -190,8 +184,6 @@ function App() {
             {/* Sidebar */}
             <Sidebar
               open={sidebarOpen}
-              currentView={currentView}
-              setCurrentView={setCurrentView}
             />
 
             {/* Main Content */}
@@ -209,46 +201,52 @@ function App() {
               }}
             >
               <Container maxWidth="xl" sx={{ mt: 2 }}>
-                <Routes>
-                  <Route path="/" element={<UltimateCockpit />} /> {/* 🚀 ULTIMATE COCKPIT AS DEFAULT */}
-                  <Route path="/ultimate" element={<UltimateCockpit />} /> {/* 🚀 DIRECT ACCESS */}
-                  <Route path="/dashboard" element={<Dashboard />} />
-                  <Route path="/voice" element={<VoiceMode />} />
-                  <Route path="/video" element={<VideoMode />} />
-                  <Route path="/vibe-coding" element={<VibeCoding />} />
-                  <Route path="/agent-swarm" element={<AgentSwarm />} />
-                  <Route path="/empire-systems" element={<EmpireSystems />} />
-                  <Route path="/empire-dashboard" element={<EmpireDashboard />} /> {/* NEW ROUTE */}
-                  <Route path="/products" element={<SquareRealProducts />} /> {/* REAL PRODUCTS */}
-                  <Route path="/cockpit" element={<SquareLiveCockpit />} /> {/* LIVE COCKPIT */}
-                  <Route path="/pilot-training" element={<PilotTraining />} />
-                  <Route path="/settings" element={<Settings />} />
-                </Routes>
+                <Suspense fallback={<LoadingFallback />}>
+                  <Routes>
+                    <Route path="/" element={<UltimateCockpit />} /> {/* 🚀 ULTIMATE COCKPIT AS DEFAULT */}
+                    <Route path="/ultimate" element={<UltimateCockpit />} /> {/* 🚀 DIRECT ACCESS */}
+                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/voice" element={<VoiceMode />} />
+                    <Route path="/video" element={<VideoMode />} />
+                    <Route path="/vibe-coding" element={<VibeCoding />} />
+                    <Route path="/agent-swarm" element={<AgentSwarm />} />
+                    <Route path="/empire-systems" element={<EmpireSystems />} />
+                    <Route path="/empire-dashboard" element={<EmpireDashboard />} /> {/* NEW ROUTE */}
+                    <Route path="/products" element={<SquareRealProducts />} /> {/* REAL PRODUCTS */}
+                    <Route path="/cockpit" element={<SquareLiveCockpit />} /> {/* LIVE COCKPIT */}
+                    <Route path="/pilot-training" element={<PilotTraining />} />
+                    <Route path="/settings" element={<Settings />} />
+                  </Routes>
+                </Suspense>
               </Container>
             </Box>
 
             {/* Voice Mode Overlay */}
             {voiceModeActive && (
-              <VoiceMode
-                open={voiceModeActive}
-                onClose={() => setVoiceModeActive(false)}
-                voiceModeActive={voiceModeActive}
-                toggleVoiceMode={toggleVoiceMode}
-                agentStatus="ready"
-                setAgentStatus={() => {}}
-              />
+              <Suspense fallback={null}>
+                <VoiceMode
+                  open={voiceModeActive}
+                  onClose={() => setVoiceModeActive(false)}
+                  voiceModeActive={voiceModeActive}
+                  toggleVoiceMode={toggleVoiceMode}
+                  agentStatus="ready"
+                  setAgentStatus={() => {}}
+                />
+              </Suspense>
             )}
 
             {/* Video Mode Overlay */}
             {videoModeActive && (
-              <VideoMode
-                open={videoModeActive}
-                onClose={() => setVideoModeActive(false)}
-                videoModeActive={videoModeActive}
-                toggleVideoMode={toggleVideoMode}
-                agentStatus="ready"
-                setAgentStatus={() => {}}
-              />
+              <Suspense fallback={null}>
+                <VideoMode
+                  open={videoModeActive}
+                  onClose={() => setVideoModeActive(false)}
+                  videoModeActive={videoModeActive}
+                  toggleVideoMode={toggleVideoMode}
+                  agentStatus="ready"
+                  setAgentStatus={() => {}}
+                />
+              </Suspense>
             )}
           </Box>
         </Router>

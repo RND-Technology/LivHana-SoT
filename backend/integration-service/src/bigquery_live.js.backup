@@ -1,0 +1,319 @@
+const express = require('express');
+const { BigQuery } = require('@google-cloud/bigquery');
+const { createLogger } = require('../../common/logging');
+
+const router = express.Router();
+const logger = createLogger('bigquery-live');
+
+const PROJECT_ID = process.env.GCP_PROJECT_ID;
+const DATASET = process.env.BQ_DATASET || 'commerce';
+const LOCATION = process.env.BQ_LOCATION || 'US';
+const PAYMENTS_TABLE = process.env.BQ_TABLE_PAYMENTS || 'square_payments';
+const ITEMS_TABLE = process.env.BQ_TABLE_ITEMS || 'square_items';
+const CACHE_TTL_MS = Number(process.env.BQ_CACHE_TTL_MS || 30_000);
+
+const bigQueryEnabled = Boolean(
+  PROJECT_ID &&
+  process.env.GOOGLE_APPLICATION_CREDENTIALS &&
+  process.env.BIGQUERY_ENABLED !== 'false'
+);
+
+let client;
+if (bigQueryEnabled) {
+  try {
+    client = new BigQuery({ projectId: PROJECT_ID });
+    logger.info('BigQuery client initialised');
+  } catch (error) {
+    logger.error('Failed to initialise BigQuery client', error);
+  }
+}
+
+const cache = {
+  dashboard: null,
+  historical: null,
+  products: null,
+  expiresAt: 0,
+  lastError: null,
+  lastRefresh: null,
+  mode: bigQueryEnabled ? 'live' : 'mock'
+};
+
+const mockResponse = {
+  dashboard: {
+    lastUpdate: new Date().toISOString(),
+    metrics: {
+      todayRevenue: 0,
+      weekRevenue: 0,
+      monthRevenue: 0,
+      yearRevenue: 0,
+      totalTransactions: 0,
+      totalCustomers: 0,
+      avgOrderValue: 0
+    },
+    topProducts: [],
+    recentTransactions: []
+  },
+  historical: {
+    historical: [],
+    daily: [],
+    monthly: []
+  },
+  products: {
+    products: [],
+    topSellers: []
+  }
+};
+
+const buildTableRef = (table) => `\`${PROJECT_ID}.${DATASET}.${table}\``;
+
+async function fetchDashboardData() {
+  const startTime = Date.now();
+
+  // OPTIMIZED: Push ALL aggregations to BigQuery, eliminate client-side filtering
+  const metricsQuery = `
+    WITH time_ranges AS (
+      SELECT
+        TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 DAY) AS day_start,
+        TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 7 DAY) AS week_start,
+        TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY) AS month_start,
+        TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 365 DAY) AS year_start
+    )
+    SELECT
+      -- Today metrics
+      SUM(CASE WHEN created_at >= (SELECT day_start FROM time_ranges) THEN amount ELSE 0 END) / 100 AS todayRevenue,
+      -- Week metrics
+      SUM(CASE WHEN created_at >= (SELECT week_start FROM time_ranges) THEN amount ELSE 0 END) / 100 AS weekRevenue,
+      -- Month metrics
+      SUM(CASE WHEN created_at >= (SELECT month_start FROM time_ranges) THEN amount ELSE 0 END) / 100 AS monthRevenue,
+      -- Year metrics (180 day window)
+      SUM(amount) / 100 AS yearRevenue,
+      COUNT(*) AS totalTransactions,
+      COUNT(DISTINCT customer_id) AS totalCustomers,
+      -- Average order value
+      SAFE_DIVIDE(SUM(amount), COUNT(*)) / 100 AS avgOrderValue
+    FROM ${buildTableRef(PAYMENTS_TABLE)}
+    WHERE created_at >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 180 DAY)
+      AND status = 'COMPLETED'
+  `;
+
+  // OPTIMIZED: Separate query for recent transactions with specific columns only
+  const recentQuery = `
+    SELECT
+      id,
+      amount,
+      created_at,
+      status,
+      customer_id
+    FROM ${buildTableRef(PAYMENTS_TABLE)}
+    WHERE created_at >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY)
+      AND status = 'COMPLETED'
+    ORDER BY created_at DESC
+    LIMIT 25
+  `;
+
+  // Execute queries in parallel for maximum performance
+  const [metricsResult, recentResult] = await Promise.all([
+    client.query({ query: metricsQuery, location: LOCATION }),
+    client.query({ query: recentQuery, location: LOCATION })
+  ]);
+
+  const metrics = metricsResult[0][0] || {};
+  const recentTransactions = recentResult[0].map((p) => ({
+    id: p.id,
+    amount: Number(p.amount || 0) / 100,
+    created_at: p.created_at,
+    status: p.status,
+    customer_id: p.customer_id
+  }));
+
+  const queryTime = Date.now() - startTime;
+  logger.info(`Dashboard query completed in ${queryTime}ms`);
+
+  return {
+    lastUpdate: new Date().toISOString(),
+    queryTimeMs: queryTime,
+    metrics: {
+      todayRevenue: Number(metrics.todayRevenue || 0),
+      weekRevenue: Number(metrics.weekRevenue || 0),
+      monthRevenue: Number(metrics.monthRevenue || 0),
+      yearRevenue: Number(metrics.yearRevenue || 0),
+      totalTransactions: Number(metrics.totalTransactions || 0),
+      totalCustomers: Number(metrics.totalCustomers || 0),
+      avgOrderValue: Number(metrics.avgOrderValue || 0)
+    },
+    topProducts: [],
+    recentTransactions
+  };
+}
+
+async function fetchHistoricalData() {
+  const startTime = Date.now();
+
+  // OPTIMIZED: Add status filter and performance tracking
+  const dailyQuery = `
+    SELECT
+      DATE(created_at) AS date,
+      COUNT(*) AS transactions,
+      SUM(amount) / 100 AS revenue,
+      COUNT(DISTINCT customer_id) AS customers
+    FROM ${buildTableRef(PAYMENTS_TABLE)}
+    WHERE DATE(created_at) >= DATE_SUB(CURRENT_DATE(), INTERVAL 180 DAY)
+      AND status = 'COMPLETED'
+    GROUP BY date
+    ORDER BY date DESC
+    LIMIT 180
+  `;
+
+  // OPTIMIZED: Add status filter for monthly aggregation
+  const monthlyQuery = `
+    SELECT
+      FORMAT_DATE('%Y-%m', DATE_TRUNC(DATE(created_at), MONTH)) AS month,
+      COUNT(*) AS transactions,
+      SUM(amount) / 100 AS revenue,
+      COUNT(DISTINCT customer_id) AS customers
+    FROM ${buildTableRef(PAYMENTS_TABLE)}
+    WHERE DATE(created_at) >= DATE_SUB(CURRENT_DATE(), INTERVAL 24 MONTH)
+      AND status = 'COMPLETED'
+    GROUP BY month
+    ORDER BY month DESC
+    LIMIT 24
+  `;
+
+  const [daily, monthly] = await Promise.all([
+    client.query({ query: dailyQuery, location: LOCATION }),
+    client.query({ query: monthlyQuery, location: LOCATION })
+  ]);
+
+  const queryTime = Date.now() - startTime;
+  logger.info(`Historical query completed in ${queryTime}ms`);
+
+  return {
+    historical: daily[0].slice(0, 90),
+    daily: daily[0],
+    monthly: monthly[0],
+    queryTimeMs: queryTime
+  };
+}
+
+async function fetchProductData() {
+  const startTime = Date.now();
+
+  // OPTIMIZED: Add performance tracking and filter only available products
+  const catalogQuery = `
+    SELECT
+      id,
+      name,
+      category,
+      sku,
+      price,
+      available,
+      created_at,
+      updated_at
+    FROM ${buildTableRef(ITEMS_TABLE)}
+    WHERE name IS NOT NULL
+      AND available = true
+    ORDER BY updated_at DESC
+    LIMIT 200
+  `;
+
+  const [items] = await client.query({ query: catalogQuery, location: LOCATION });
+
+  const queryTime = Date.now() - startTime;
+  logger.info(`Product query completed in ${queryTime}ms`);
+
+  return {
+    products: items.map((item) => ({
+      id: item.id,
+      name: item.name,
+      description: '',
+      price: item.price ? Number(item.price) / 100 : 0,
+      sku: item.sku || '',
+      category: item.category || 'Hemp Product',
+      updated_at: item.updated_at
+    })),
+    topSellers: [],
+    queryTimeMs: queryTime
+  };
+}
+
+async function refreshCache() {
+  if (!bigQueryEnabled || !client) {
+    cache.dashboard = mockResponse.dashboard;
+    cache.historical = mockResponse.historical;
+    cache.products = mockResponse.products;
+    cache.mode = 'mock';
+    cache.lastRefresh = new Date().toISOString();
+    return;
+  }
+
+  try {
+    const [dashboard, historical, products] = await Promise.all([
+      fetchDashboardData(),
+      fetchHistoricalData(),
+      fetchProductData()
+    ]);
+
+    cache.dashboard = dashboard;
+    cache.historical = historical;
+    cache.products = products;
+    cache.mode = 'live';
+    cache.lastRefresh = new Date().toISOString();
+    cache.lastError = null;
+    cache.expiresAt = Date.now() + CACHE_TTL_MS;
+  } catch (error) {
+    cache.lastError = error.message;
+    cache.mode = 'degraded';
+    logger.error('Failed to refresh BigQuery cache', error);
+
+    if (!cache.dashboard) {
+      cache.dashboard = mockResponse.dashboard;
+      cache.historical = mockResponse.historical;
+    }
+
+    if (!cache.products) {
+      cache.products = mockResponse.products;
+    }
+
+    cache.expiresAt = Date.now() + CACHE_TTL_MS;
+  }
+}
+
+async function ensureFreshCache() {
+  if (!cache.lastRefresh || Date.now() > cache.expiresAt) {
+    await refreshCache();
+  }
+}
+
+router.get('/api/bigquery/dashboard', async (req, res) => {
+  await ensureFreshCache();
+  res.json({ ...cache.dashboard, mode: cache.mode, lastRefresh: cache.lastRefresh, error: cache.lastError });
+});
+
+router.get('/api/bigquery/historical', async (req, res) => {
+  await ensureFreshCache();
+  res.json({ ...cache.historical, mode: cache.mode, lastRefresh: cache.lastRefresh, error: cache.lastError });
+});
+
+router.get('/api/bigquery/products', async (req, res) => {
+  await ensureFreshCache();
+  res.json({ ...cache.products, mode: cache.mode, lastRefresh: cache.lastRefresh, error: cache.lastError });
+});
+
+const getBigQueryStatus = () => ({
+  enabled: bigQueryEnabled && Boolean(client),
+  mode: cache.mode,
+  lastRefresh: cache.lastRefresh,
+  lastError: cache.lastError
+});
+
+// Eager cache initialization on startup (prevent cold start delays)
+if (bigQueryEnabled && client) {
+  refreshCache()
+    .then(() => logger.info('BigQuery cache pre-initialized on startup'))
+    .catch(err => logger.error('Initial cache refresh failed (will retry on first request)', err));
+}
+
+module.exports = {
+  router,
+  getBigQueryStatus
+};
