@@ -16,10 +16,7 @@ import { AppProvider } from './context/AppContext';
 const Dashboard = lazy(() => import('./components/Dashboard'));
 const VoiceMode = lazy(() => import('./components/VoiceMode'));
 const VideoMode = lazy(() => import('./components/VideoMode'));
-const VibeCoding = lazy(() => import('./components/VibeCoding'));
-const AgentSwarm = lazy(() => import('./components/AgentSwarm'));
 const EmpireSystems = lazy(() => import('./components/EmpireSystems'));
-const PilotTraining = lazy(() => import('./components/PilotTraining'));
 const Settings = lazy(() => import('./components/Settings'));
 const EmpireDashboard = lazy(() => import('./components/EmpireDashboard'));
 const SquareRealProducts = lazy(() => import('./components/SquareRealProducts'));
@@ -216,14 +213,11 @@ function App() {
                         <Route path="/dashboard" element={<ErrorBoundary componentName="Dashboard"><Dashboard /></ErrorBoundary>} />
                         <Route path="/voice" element={<ErrorBoundary componentName="VoiceMode"><VoiceMode /></ErrorBoundary>} />
                         <Route path="/video" element={<ErrorBoundary componentName="VideoMode"><VideoMode /></ErrorBoundary>} />
-                        <Route path="/vibe-coding" element={<ErrorBoundary componentName="VibeCoding"><VibeCoding /></ErrorBoundary>} />
-                        <Route path="/agent-swarm" element={<ErrorBoundary componentName="AgentSwarm"><AgentSwarm /></ErrorBoundary>} />
                         <Route path="/empire-systems" element={<ErrorBoundary componentName="EmpireSystems"><EmpireSystems /></ErrorBoundary>} />
                         <Route path="/empire-dashboard" element={<ErrorBoundary componentName="EmpireDashboard"><EmpireDashboard /></ErrorBoundary>} />
                         <Route path="/rpm-visioneering" element={<ErrorBoundary componentName="RPMVisioneeringDashboard"><RPMVisioneeringDashboard /></ErrorBoundary>} />
                         <Route path="/products" element={<ErrorBoundary componentName="SquareRealProducts"><SquareRealProducts /></ErrorBoundary>} />
                         <Route path="/cockpit" element={<ErrorBoundary componentName="SquareLiveCockpit"><SquareLiveCockpit /></ErrorBoundary>} />
-                        <Route path="/pilot-training" element={<ErrorBoundary componentName="PilotTraining"><PilotTraining /></ErrorBoundary>} />
                         <Route path="/settings" element={<ErrorBoundary componentName="Settings"><Settings /></ErrorBoundary>} />
                       </Routes>
                     </Suspense>
