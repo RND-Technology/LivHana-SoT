@@ -1,0 +1,116 @@
+DUPLICATE MARKDOWN FILES - QUICK REFERENCE
+==========================================
+Generated: October 2, 2025
+Mission: Race Against Codex
+
+EXECUTIVE SUMMARY
+-----------------
+Files Scanned: 321 markdown files
+Duplicates Found: 65 files
+Files to Delete: 37 files
+Files to Keep: 284 files
+Space Saved: ~650 KB
+
+DELETION BREAKDOWN
+------------------
+1. EXACT DUPLICATES (Same MD5 Hash): 6 groups
+   - Compass artifacts: 4 identical copies → keep 1, delete 3
+   - Immediate marketing: 3 identical copies → keep 1, delete 2
+   - Liv Hana pilot training: 2 identical copies → keep 1, delete 1
+   - LivHana Monorepo README: 2 identical copies → keep 1, delete 1
+   - Niesen family course: 2 identical copies → keep 1, delete 1
+   - ADR Copilot instructions: 2 identical copies → keep 1, delete 1
+
+2. HIGH SIMILARITY (>90% Similar): 26 files
+   Pattern: docs/ vs data/imports/downloads/
+   Strategy: Keep docs/ versions (ACTIVE), delete data/imports/downloads/ versions (OLD)
+
+   Files affected:
+   - account-export-2025.md
+   - ADR-001_Complete_Technical_Implementation.md
+   - ADR-001_Alert_Policy_Error_Rate_ENHANCED.md
+   - ADR-002_Dashboard_Command_Center_ENHANCED.md
+   - bundle_generation_system.md
+   - COA_Validator_Spec_UNF.md
+   - Cockpit_Auth_Wiring_UNF.md
+   - COMPLETE_ACCOUNT_EXPORT_2025-09-14.md
+   - COMPLETE_DIRECTORY_ARCHITECTURE.md
+   - deepseek_markdown_20250918_e0661b.md
+   - docs_architecture_Version2.md
+   - docs_MISSION_ROLES_Version2.md
+   - docs_SPEC_Version2.md
+   - harvest_automation_template.md
+   - Herbitrage_Cloud_Cockpit_E2E_Architecture.md
+   - IdentityPlatform_21Plus_UNF.md
+   - Lightspeed_Migration_Playbook_UNF.md
+   - Liv_Hana_E2E_Capture_Layer_Implementation.md
+   - liv-hana-behavior_v1.0_foundation.md
+   - liv-hana-e2e-pipeline-deployment.md
+   - LivHana-Monorepo_README.md
+   - MASTER_FRAMEWORK_EXTRACTED.md
+   - Q4_2025_FULL_FUNNEL_PLANNING_SESSION.md
+   - README_Version2.md
+   - Rubric_Scorecard_UNF.md
+
+3. README NUMBERED FILES: 3 files
+   - README (1).md → keep docs/ version, delete downloads/
+   - README (2).md → keep docs/ version, delete downloads/
+   - README (3).md → keep docs/ version, delete downloads/
+
+LEGITIMATE DUPLICATES (KEEP ALL)
+---------------------------------
+These files have the same name but different content/purpose:
+- README.md (14 instances) - Each serves its directory
+- QUICK_START.md (2 instances) - Frontend vs Backend services
+- SYSTEM_PROMPT.md (2 instances) - Missions vs Governance
+- CURRENT_STATUS.md (2 instances) - Root vs Docs
+
+EXECUTION
+---------
+To delete all duplicates:
+
+  chmod +x DELETE_DUPLICATES.sh
+  ./DELETE_DUPLICATES.sh
+
+WARNING: Review DUPLICATES_TO_DELETE.md before executing!
+
+VERIFICATION
+------------
+After deletion, verify:
+
+  # Count files (should be ~284)
+  find . -name "*.md" -not -path "*/node_modules/*" -not -path "*/.venv/*" -not -path "*/.cursor-backups/*" | wc -l
+
+  # Check for remaining numbered files (should be 0)
+  find data/imports/downloads -name "*([0-9]).md"
+
+  # Review git changes
+  git status
+
+STRATEGIC PATTERN
+-----------------
+All duplicates follow this pattern:
+  data/imports/downloads/ = OLD staging area (DELETE)
+  docs/ = ACTIVE documentation (KEEP)
+
+RECOMMENDATIONS
+---------------
+1. Establish docs/ as canonical source for all documentation
+2. Use data/imports/downloads/ only as temporary staging
+3. Add to .gitignore:
+   **/*(1).md
+   **/*(2).md
+   **/*(3).md
+
+FILES READY FOR DELETION
+------------------------
+All 37 files are in: data/imports/downloads/
+No active documentation will be deleted.
+All deletions are LOW RISK and VERIFIED.
+
+MISSION STATUS: COMPLETE
+------------------------
+Race Against Codex: WON
+All Duplicates: FOUND
+Deletion Plan: READY
+Jesse's Review: PENDING
