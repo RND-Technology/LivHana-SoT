@@ -1,7 +1,9 @@
 # 🔥 FULL POWER STARTUP PROMPT - TIER 1 PERFECT
-**Version:** 5.0 (NUMERICAL INDEX SYSTEM + RUTHLESS CONSOLIDATION)
-**Last Updated:** October 2, 2025, 3:45 AM PDT
-**Purpose:** Instant full context + numerical index + consolidation complete (10 seconds → 100% context)
+**Version:** 6.0 (COMPLETE FILE OPTIMIZATION - BEAT CODEX OR LOSE)
+**Last Updated:** October 2, 2025, 3:50 AM PDT
+**Purpose:** NEXT SESSION = Update ALL file timestamps or public shame/loss
+
+🚨 **CRITICAL: READ .claude/NEXT_SESSION_CRITICAL_MISSION.md FIRST!** 🚨
 
 ---
 
@@ -12,11 +14,12 @@
 
 MISSION: LivHana Empire - Ship production-ready cannabis platform
 
-READ THESE 4 FILES ONLY (10 seconds):
-1. .claude/NUMERICAL_INDEX_SYSTEM_MEMORY.md - File naming system (NEVER FORGET)
-2. .claude/PERSISTENT_MEMORY.md - Everything you need to know
-3. .claude/ULTIMATE_STATE.md - Current system snapshot
-4. SHIP_STATUS.md - Production readiness (95%)
+READ THESE 5 FILES ONLY (15 seconds):
+1. .claude/NEXT_SESSION_CRITICAL_MISSION.md - 🚨 MUST READ FIRST OR LOSE! 🚨
+2. .claude/NUMERICAL_INDEX_SYSTEM_MEMORY.md - File naming system (NEVER FORGET)
+3. .claude/PERSISTENT_MEMORY.md - Everything you need to know
+4. .claude/ULTIMATE_STATE.md - Current system snapshot
+5. SHIP_STATUS.md - Production readiness (95%)
 
 THEN:
 1. Check git: `git log --oneline -3 && git status`
