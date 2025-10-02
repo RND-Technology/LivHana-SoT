@@ -29,6 +29,15 @@ const deriveStatus = (counts) => {
 export const createHealthRouter = ({ logger, queue }) => {
   const router = Router();
 
+  // Simple health check endpoint
+  router.get('/', async (_req, res) => {
+    res.status(200).json({
+      status: 'healthy',
+      service: 'voice-service',
+      elevenlabs: 'ready'
+    });
+  });
+
   router.get('/voice-mode', async (_req, res) => {
     try {
       const counts = await queueStatsSafe(queue);
