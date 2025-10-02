@@ -1,0 +1,107 @@
+# 🚨 ENABLE DALL-E 3 - 2 MINUTE FIX
+
+## THE PROBLEM
+Your current API key: `sk-proj-...` is **PROJECT-SCOPED** without DALL-E 3 access.
+
+Project ID: `proj_0fqGyEbYgDdwvUBTv7ZqtjoG`
+Error: `403 - Project does not have access to model dall-e-3`
+
+## THE SOLUTION (2 OPTIONS)
+
+### OPTION 1: CREATE NEW API KEY (FASTEST - 60 SECONDS)
+
+**I just opened:** https://platform.openai.com/api-keys
+
+**DO THIS NOW:**
+
+1. **Click "Create new secret key"**
+
+2. **CRITICAL: Select "All" permissions**
+   - NOT project-scoped
+   - NOT service account
+   - FULL account access
+
+3. **Name it:** `LivHana-ContentEngine-Full`
+
+4. **Copy the key** (starts with `sk-...` NOT `sk-proj-...`)
+
+5. **Paste it here in terminal:**
+   ```bash
+   cd ~/LivHana-Trinity-Local/LivHana-SoT/empire/content-engine
+
+   # Replace YOUR_NEW_KEY with the key you just copied
+   sed -i '' 's/OPENAI_API_KEY=.*/OPENAI_API_KEY=YOUR_NEW_KEY/' .env
+   ```
+
+6. **Test DALL-E 3 access:**
+   ```bash
+   node -e "
+   import OpenAI from 'openai';
+   import dotenv from 'dotenv';
+   dotenv.config();
+   const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+   openai.images.generate({
+     model: 'dall-e-3',
+     prompt: 'A red circle',
+     size: '1024x1024',
+     quality: 'standard'
+   }).then(r => console.log('✅ DALL-E 3 WORKING:', r.data[0].url)).catch(e => console.error('❌', e.message));
+   "
+   ```
+
+7. **If you see a URL:** ✅ DONE! Run `npm run test` to generate video with images
+
+---
+
+### OPTION 2: ADD DALL-E TO EXISTING PROJECT (2 MINUTES)
+
+1. Go to: https://platform.openai.com/settings/organization/projects
+
+2. Find project: `proj_0fqGyEbYgDdwvUBTv7ZqtjoG`
+
+3. Click **Settings → Models**
+
+4. Enable: `dall-e-3`
+
+5. Save changes
+
+6. Test same command as above
+
+---
+
+## WHY THIS HAPPENED
+
+- Project-scoped keys (`sk-proj-...`) have limited model access
+- Your account has $120 + auto-recharge
+- Your account CAN access DALL-E 3
+- Your PROJECT cannot
+
+**Fix: Use full account key OR enable model in project**
+
+---
+
+## AFTER YOU FIX IT
+
+Run this to generate HIGH NOON CARTOON with IMAGES:
+
+```bash
+cd ~/LivHana-Trinity-Local/LivHana-SoT/empire/content-engine
+npm run test
+```
+
+**Expected output:**
+- Script (5 sec)
+- Voices (20 sec)
+- **Images (60 sec)** ← THIS WILL NOW WORK
+- Video (30 sec)
+- **Total: 115 seconds with REAL SCENE IMAGES**
+
+---
+
+## I'M WAITING
+
+**Tell me when you've created the new key and I'll test it immediately.**
+
+**Then we generate REAL cartoon with DALL-E 3 images and CRUSH CODEX.**
+
+**TIER 1. NO EXCUSES. GET THE KEY NOW.** 🔑

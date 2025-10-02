@@ -1,0 +1,6 @@
+file 'output/audio/episode-test-001/scene-1/01-jesse.mp3'
+file 'output/audio/episode-test-001/scene-1/01-narrator-(v.o.).mp3'
+file 'output/audio/episode-test-001/scene-1/02-jesse.mp3'
+file 'output/audio/episode-test-001/scene-1/02-liv-hana.mp3'
+file 'output/audio/episode-test-001/scene-1/03-committee-chairman-(o.s.).mp3'
+file 'output/audio/episode-test-001/scene-1/03-liv-hana.mp3'
