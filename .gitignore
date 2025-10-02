@@ -162,3 +162,7 @@ gmail_credentials_*.json
 gmail_token_*.json
 .gmail_sync_*.json
 .env.gmail
+.DS_Store
+**/.DS_Store
+*.bak
+*.old
