@@ -166,3 +166,33 @@ gmail_token_*.json
 **/.DS_Store
 *.bak
 *.old
+
+# Logs and temp files
+*.log
+*.tmp
+*.swp
+
+# Python
+*.pyc
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+*.egg-info/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
+test-results/
+playwright-report/
+screenshots/
+.playwright/
+
+# IDE
+.cursor-backups/
+.vscode/
+*.code-workspace
