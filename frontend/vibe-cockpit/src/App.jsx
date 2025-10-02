@@ -7,6 +7,7 @@ import { Box, Container, CircularProgress } from '@mui/material';
 // Import Critical Components (loaded immediately)
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
+import ErrorBoundary from './components/ErrorBoundary';
 
 // Import Context
 import { AppProvider } from './context/AppContext';
@@ -161,97 +162,109 @@ function App() {
   };
 
   return (
-    <AppProvider>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Router
-          future={{
-            v7_startTransition: true,
-            v7_relativeSplatPath: true
-          }}
-        >
-          <Box sx={{ display: 'flex', height: '100vh' }}>
-            {/* Header */}
-            <Header
-              sidebarOpen={sidebarOpen}
-              setSidebarOpen={setSidebarOpen}
-              voiceModeActive={voiceModeActive}
-              videoModeActive={videoModeActive}
-              toggleVoiceMode={toggleVoiceMode}
-              toggleVideoMode={toggleVideoMode}
-            />
-
-            {/* Sidebar */}
-            <Sidebar
-              open={sidebarOpen}
-            />
-
-            {/* Main Content */}
-            <Box
-              component="main"
-              sx={{
-                flexGrow: 1,
-                p: 3,
-                pt: '80px', // Account for fixed header height
-                background: 'linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%)',
-                overflow: 'auto',
-                transition: 'margin 0.3s ease',
-                marginLeft: sidebarOpen ? 0 : '-240px',
-                minHeight: '100vh',
-              }}
-            >
-              <Container maxWidth="xl" sx={{ mt: 2 }}>
-                <Suspense fallback={<LoadingFallback />}>
-                  <Routes>
-                    <Route path="/" element={<UltimateCockpit />} /> {/* 🚀 ULTIMATE COCKPIT AS DEFAULT */}
-                    <Route path="/ultimate" element={<UltimateCockpit />} /> {/* 🚀 DIRECT ACCESS */}
-                    <Route path="/dashboard" element={<Dashboard />} />
-                    <Route path="/voice" element={<VoiceMode />} />
-                    <Route path="/video" element={<VideoMode />} />
-                    <Route path="/vibe-coding" element={<VibeCoding />} />
-                    <Route path="/agent-swarm" element={<AgentSwarm />} />
-                    <Route path="/empire-systems" element={<EmpireSystems />} />
-                    <Route path="/empire-dashboard" element={<EmpireDashboard />} /> {/* NEW ROUTE */}
-                    <Route path="/products" element={<SquareRealProducts />} /> {/* REAL PRODUCTS */}
-                    <Route path="/cockpit" element={<SquareLiveCockpit />} /> {/* LIVE COCKPIT */}
-                    <Route path="/pilot-training" element={<PilotTraining />} />
-                    <Route path="/settings" element={<Settings />} />
-                  </Routes>
-                </Suspense>
-              </Container>
-            </Box>
-
-            {/* Voice Mode Overlay */}
-            {voiceModeActive && (
-              <Suspense fallback={null}>
-                <VoiceMode
-                  open={voiceModeActive}
-                  onClose={() => setVoiceModeActive(false)}
+    <ErrorBoundary componentName="App Root">
+      <AppProvider>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Router
+            future={{
+              v7_startTransition: true,
+              v7_relativeSplatPath: true
+            }}
+          >
+            <Box sx={{ display: 'flex', height: '100vh' }}>
+              {/* Header */}
+              <ErrorBoundary componentName="Header">
+                <Header
+                  sidebarOpen={sidebarOpen}
+                  setSidebarOpen={setSidebarOpen}
                   voiceModeActive={voiceModeActive}
-                  toggleVoiceMode={toggleVoiceMode}
-                  agentStatus="ready"
-                  setAgentStatus={() => {}}
-                />
-              </Suspense>
-            )}
-
-            {/* Video Mode Overlay */}
-            {videoModeActive && (
-              <Suspense fallback={null}>
-                <VideoMode
-                  open={videoModeActive}
-                  onClose={() => setVideoModeActive(false)}
                   videoModeActive={videoModeActive}
+                  toggleVoiceMode={toggleVoiceMode}
                   toggleVideoMode={toggleVideoMode}
-                  agentStatus="ready"
-                  setAgentStatus={() => {}}
                 />
-              </Suspense>
-            )}
-          </Box>
-        </Router>
-      </ThemeProvider>
-    </AppProvider>
+              </ErrorBoundary>
+
+              {/* Sidebar */}
+              <ErrorBoundary componentName="Sidebar">
+                <Sidebar
+                  open={sidebarOpen}
+                />
+              </ErrorBoundary>
+
+              {/* Main Content */}
+              <Box
+                component="main"
+                sx={{
+                  flexGrow: 1,
+                  p: 3,
+                  pt: '80px', // Account for fixed header height
+                  background: 'linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%)',
+                  overflow: 'auto',
+                  transition: 'margin 0.3s ease',
+                  marginLeft: sidebarOpen ? 0 : '-240px',
+                  minHeight: '100vh',
+                }}
+              >
+                <Container maxWidth="xl" sx={{ mt: 2 }}>
+                  <ErrorBoundary componentName="Routes">
+                    <Suspense fallback={<LoadingFallback />}>
+                      <Routes>
+                        <Route path="/" element={<ErrorBoundary componentName="UltimateCockpit"><UltimateCockpit /></ErrorBoundary>} />
+                        <Route path="/ultimate" element={<ErrorBoundary componentName="UltimateCockpit"><UltimateCockpit /></ErrorBoundary>} />
+                        <Route path="/dashboard" element={<ErrorBoundary componentName="Dashboard"><Dashboard /></ErrorBoundary>} />
+                        <Route path="/voice" element={<ErrorBoundary componentName="VoiceMode"><VoiceMode /></ErrorBoundary>} />
+                        <Route path="/video" element={<ErrorBoundary componentName="VideoMode"><VideoMode /></ErrorBoundary>} />
+                        <Route path="/vibe-coding" element={<ErrorBoundary componentName="VibeCoding"><VibeCoding /></ErrorBoundary>} />
+                        <Route path="/agent-swarm" element={<ErrorBoundary componentName="AgentSwarm"><AgentSwarm /></ErrorBoundary>} />
+                        <Route path="/empire-systems" element={<ErrorBoundary componentName="EmpireSystems"><EmpireSystems /></ErrorBoundary>} />
+                        <Route path="/empire-dashboard" element={<ErrorBoundary componentName="EmpireDashboard"><EmpireDashboard /></ErrorBoundary>} />
+                        <Route path="/products" element={<ErrorBoundary componentName="SquareRealProducts"><SquareRealProducts /></ErrorBoundary>} />
+                        <Route path="/cockpit" element={<ErrorBoundary componentName="SquareLiveCockpit"><SquareLiveCockpit /></ErrorBoundary>} />
+                        <Route path="/pilot-training" element={<ErrorBoundary componentName="PilotTraining"><PilotTraining /></ErrorBoundary>} />
+                        <Route path="/settings" element={<ErrorBoundary componentName="Settings"><Settings /></ErrorBoundary>} />
+                      </Routes>
+                    </Suspense>
+                  </ErrorBoundary>
+                </Container>
+              </Box>
+
+              {/* Voice Mode Overlay */}
+              {voiceModeActive && (
+                <ErrorBoundary componentName="VoiceMode Overlay">
+                  <Suspense fallback={null}>
+                    <VoiceMode
+                      open={voiceModeActive}
+                      onClose={() => setVoiceModeActive(false)}
+                      voiceModeActive={voiceModeActive}
+                      toggleVoiceMode={toggleVoiceMode}
+                      agentStatus="ready"
+                      setAgentStatus={() => {}}
+                    />
+                  </Suspense>
+                </ErrorBoundary>
+              )}
+
+              {/* Video Mode Overlay */}
+              {videoModeActive && (
+                <ErrorBoundary componentName="VideoMode Overlay">
+                  <Suspense fallback={null}>
+                    <VideoMode
+                      open={videoModeActive}
+                      onClose={() => setVideoModeActive(false)}
+                      videoModeActive={videoModeActive}
+                      toggleVideoMode={toggleVideoMode}
+                      agentStatus="ready"
+                      setAgentStatus={() => {}}
+                    />
+                  </Suspense>
+                </ErrorBoundary>
+              )}
+            </Box>
+          </Router>
+        </ThemeProvider>
+      </AppProvider>
+    </ErrorBoundary>
   );
 }
 

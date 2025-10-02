@@ -1,0 +1,2584 @@
+{
+  "config": {
+    "configFile": "/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/frontend/vibe-cockpit/playwright.config.ts",
+    "rootDir": "/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/frontend/vibe-cockpit/tests",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {},
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        {
+          "outputFolder": "playwright-report"
+        }
+      ],
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "playwright-report/results.json"
+        }
+      ],
+      [
+        "junit",
+        {
+          "outputFile": "playwright-report/junit.xml"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/frontend/vibe-cockpit/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/frontend/vibe-cockpit/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.55.1",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run dev",
+      "url": "http://localhost:5174",
+      "reuseExistingServer": true,
+      "timeout": 120000
+    }
+  },
+  "suites": [
+    {
+      "title": "api-authentication.spec.ts",
+      "file": "api-authentication.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "API Authentication - JWT Flow",
+          "file": "api-authentication.spec.ts",
+          "line": 10,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Valid JWT token grants access",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a0f3919a12416c83bf02-f949f6e996d5c3b92e84",
+              "file": "api-authentication.spec.ts",
+              "line": 11,
+              "column": 3
+            },
+            {
+              "title": "Invalid JWT token is rejected",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a0f3919a12416c83bf02-1760b40ce7a55e61523b",
+              "file": "api-authentication.spec.ts",
+              "line": 21,
+              "column": 3
+            },
+            {
+              "title": "Expired JWT token is rejected",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a0f3919a12416c83bf02-85f536e04e0048fc4fc6",
+              "file": "api-authentication.spec.ts",
+              "line": 34,
+              "column": 3
+            },
+            {
+              "title": "Missing auth header returns 401",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a0f3919a12416c83bf02-0781ff1a2d5eb8aaa565",
+              "file": "api-authentication.spec.ts",
+              "line": 47,
+              "column": 3
+            },
+            {
+              "title": "Health endpoints do not require auth",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a0f3919a12416c83bf02-b6264596b87490c4f029",
+              "file": "api-authentication.spec.ts",
+              "line": 56,
+              "column": 3
+            },
+            {
+              "title": "User role permissions",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a0f3919a12416c83bf02-c8b53a5a31f24b30a941",
+              "file": "api-authentication.spec.ts",
+              "line": 67,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "api-bigquery-queries.spec.ts",
+      "file": "api-bigquery-queries.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "BigQuery Data Pipeline",
+          "file": "api-bigquery-queries.spec.ts",
+          "line": 10,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Cache initializes on first request",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "eb5f82e185f35d15e723-fee5e4afcd9ad298896c",
+              "file": "api-bigquery-queries.spec.ts",
+              "line": 15,
+              "column": 3
+            },
+            {
+              "title": "Cache serves data quickly on subsequent requests",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "eb5f82e185f35d15e723-cef927df5723a5c2be95",
+              "file": "api-bigquery-queries.spec.ts",
+              "line": 32,
+              "column": 3
+            },
+            {
+              "title": "BigQuery status endpoint",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "eb5f82e185f35d15e723-852bbe81d976cfb92cc2",
+              "file": "api-bigquery-queries.spec.ts",
+              "line": 50,
+              "column": 3
+            },
+            {
+              "title": "Historical data query",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "eb5f82e185f35d15e723-f58281867b8c9cbeb59f",
+              "file": "api-bigquery-queries.spec.ts",
+              "line": 67,
+              "column": 3
+            },
+            {
+              "title": "Product data sync from BigQuery",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "eb5f82e185f35d15e723-3eebf9f06b15636c5bbd",
+              "file": "api-bigquery-queries.spec.ts",
+              "line": 84,
+              "column": 3
+            },
+            {
+              "title": "Degraded mode handling",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "eb5f82e185f35d15e723-d111d3c78b4d595f3ec5",
+              "file": "api-bigquery-queries.spec.ts",
+              "line": 101,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "e2e-age-verification.spec.ts",
+      "file": "e2e-age-verification.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Age Verification - Server-Side Security",
+          "file": "e2e-age-verification.spec.ts",
+          "line": 8,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should enforce 21+ requirement with server validation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "eff91b503ea8fe5b1eea-831b16b3b80f25cd366b",
+              "file": "e2e-age-verification.spec.ts",
+              "line": 9,
+              "column": 3
+            },
+            {
+              "title": "should allow 21+ users with valid birthdate",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "eff91b503ea8fe5b1eea-fa3a8542c54bb82d5cf1",
+              "file": "e2e-age-verification.spec.ts",
+              "line": 28,
+              "column": 3
+            },
+            {
+              "title": "should log verification attempt to BigQuery",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "eff91b503ea8fe5b1eea-875b3bb3da045801f859",
+              "file": "e2e-age-verification.spec.ts",
+              "line": 43,
+              "column": 3
+            },
+            {
+              "title": "should reject under-21 via API (cannot bypass)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "eff91b503ea8fe5b1eea-c6a515494533650fce8b",
+              "file": "e2e-age-verification.spec.ts",
+              "line": 63,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "e2e-autonomous-agent.spec.ts",
+      "file": "e2e-autonomous-agent.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Autonomous Agent - Full Lifecycle",
+          "file": "e2e-autonomous-agent.spec.ts",
+          "line": 11,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Execute task with approval required",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a2abd308055471132702-f5a6b56d9faf4b0a5565",
+              "file": "e2e-autonomous-agent.spec.ts",
+              "line": 16,
+              "column": 3
+            },
+            {
+              "title": "Execute task without approval (auto-execute)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a2abd308055471132702-49965c306980178bc658",
+              "file": "e2e-autonomous-agent.spec.ts",
+              "line": 46,
+              "column": 3
+            },
+            {
+              "title": "Cancel in-progress task",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a2abd308055471132702-c19bb823e99a9660fd1b",
+              "file": "e2e-autonomous-agent.spec.ts",
+              "line": 66,
+              "column": 3
+            },
+            {
+              "title": "Rollback completed task",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a2abd308055471132702-2e43915d632a8b505fdc",
+              "file": "e2e-autonomous-agent.spec.ts",
+              "line": 77,
+              "column": 3
+            },
+            {
+              "title": "Agent capabilities discovery",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a2abd308055471132702-92c2f9cb160fe9291ba2",
+              "file": "e2e-autonomous-agent.spec.ts",
+              "line": 89,
+              "column": 3
+            },
+            {
+              "title": "Agent status check",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a2abd308055471132702-d55462fe196f19c6c4bc",
+              "file": "e2e-autonomous-agent.spec.ts",
+              "line": 107,
+              "column": 3
+            },
+            {
+              "title": "Agent task history",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a2abd308055471132702-fc6e33ff316b602dcd2c",
+              "file": "e2e-autonomous-agent.spec.ts",
+              "line": 124,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "e2e-compliance-api.spec.ts",
+      "file": "e2e-compliance-api.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Compliance API - Real Data",
+          "file": "e2e-compliance-api.spec.ts",
+          "line": 8,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should return real compliance metrics from BigQuery",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ff9025c6cffe0b9ff786-ad095673135b6af484b6",
+              "file": "e2e-compliance-api.spec.ts",
+              "line": 9,
+              "column": 3
+            },
+            {
+              "title": "should display real compliance data in dashboard",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ff9025c6cffe0b9ff786-2444af07e03f0aa5f6f2",
+              "file": "e2e-compliance-api.spec.ts",
+              "line": 41,
+              "column": 3
+            },
+            {
+              "title": "should gracefully degrade if BigQuery unavailable",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ff9025c6cffe0b9ff786-28e1f9c52a663d26bb3e",
+              "file": "e2e-compliance-api.spec.ts",
+              "line": 56,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "e2e-full-suite.spec.ts",
+      "file": "e2e-full-suite.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "LivHana Empire - Full System Test Suite",
+          "file": "e2e-full-suite.spec.ts",
+          "line": 14,
+          "column": 6,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Visual & Layout Verification",
+              "file": "e2e-full-suite.spec.ts",
+              "line": 17,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Homepage loads with correct branding and layout",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "4ee7f61c95d5fb9646c9-2387c25b77666c018226",
+                  "file": "e2e-full-suite.spec.ts",
+                  "line": 19,
+                  "column": 5
+                },
+                {
+                  "title": "Sidebar contains all 12 navigation items",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "4ee7f61c95d5fb9646c9-7d428cde816c112a98a2",
+                  "file": "e2e-full-suite.spec.ts",
+                  "line": 33,
+                  "column": 5
+                },
+                {
+                  "title": "Color scheme and theming is consistent",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "4ee7f61c95d5fb9646c9-ec3e37177d733f62a0e6",
+                  "file": "e2e-full-suite.spec.ts",
+                  "line": 59,
+                  "column": 5
+                }
+              ]
+            },
+            {
+              "title": "Navigation Functionality",
+              "file": "e2e-full-suite.spec.ts",
+              "line": 76,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "All navigation links work and load correct components",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "4ee7f61c95d5fb9646c9-de0d82f01f2fc6fcc484",
+                  "file": "e2e-full-suite.spec.ts",
+                  "line": 78,
+                  "column": 5
+                },
+                {
+                  "title": "Browser back/forward navigation works",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "4ee7f61c95d5fb9646c9-e45a9e0ceae1bb54d9db",
+                  "file": "e2e-full-suite.spec.ts",
+                  "line": 103,
+                  "column": 5
+                }
+              ]
+            },
+            {
+              "title": "Real Data Verification",
+              "file": "e2e-full-suite.spec.ts",
+              "line": 123,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Square Live Cockpit shows real revenue data",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "4ee7f61c95d5fb9646c9-dde8e8ed954c913abe10",
+                  "file": "e2e-full-suite.spec.ts",
+                  "line": 125,
+                  "column": 5
+                },
+                {
+                  "title": "Transaction count is non-zero and accurate",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "4ee7f61c95d5fb9646c9-cf5a41222fe01ec3dedb",
+                  "file": "e2e-full-suite.spec.ts",
+                  "line": 148,
+                  "column": 5
+                },
+                {
+                  "title": "Customer count is accurate",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "4ee7f61c95d5fb9646c9-d367c744636c613e1493",
+                  "file": "e2e-full-suite.spec.ts",
+                  "line": 168,
+                  "column": 5
+                },
+                {
+                  "title": "BigQuery API returns real data",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "4ee7f61c95d5fb9646c9-7d1e21da89eb1eb79c92",
+                  "file": "e2e-full-suite.spec.ts",
+                  "line": 182,
+                  "column": 5
+                }
+              ]
+            },
+            {
+              "title": "User Interactions",
+              "file": "e2e-full-suite.spec.ts",
+              "line": 203,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Voice Mode button opens modal",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "4ee7f61c95d5fb9646c9-1d7d3b81170e39dcffed",
+                  "file": "e2e-full-suite.spec.ts",
+                  "line": 205,
+                  "column": 5
+                },
+                {
+                  "title": "Video Mode interface renders correctly",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "4ee7f61c95d5fb9646c9-cacfe2ee9551a21dd15d",
+                  "file": "e2e-full-suite.spec.ts",
+                  "line": 218,
+                  "column": 5
+                },
+                {
+                  "title": "Sidebar menu items highlight when active",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "4ee7f61c95d5fb9646c9-39b27967683d7b110fd4",
+                  "file": "e2e-full-suite.spec.ts",
+                  "line": 230,
+                  "column": 5
+                }
+              ]
+            },
+            {
+              "title": "Performance & Load Times",
+              "file": "e2e-full-suite.spec.ts",
+              "line": 250,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Page load time is under 3 seconds",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "4ee7f61c95d5fb9646c9-0dc5d78d02a4c3994869",
+                  "file": "e2e-full-suite.spec.ts",
+                  "line": 252,
+                  "column": 5
+                },
+                {
+                  "title": "API response time is under 1 second",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "4ee7f61c95d5fb9646c9-cf66b8cb3a1ec32b08d6",
+                  "file": "e2e-full-suite.spec.ts",
+                  "line": 262,
+                  "column": 5
+                }
+              ]
+            },
+            {
+              "title": "Backend Services Health",
+              "file": "e2e-full-suite.spec.ts",
+              "line": 274,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Integration Service (3005) is healthy",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "4ee7f61c95d5fb9646c9-c109578d9c9c26608a99",
+                  "file": "e2e-full-suite.spec.ts",
+                  "line": 276,
+                  "column": 5
+                },
+                {
+                  "title": "Reasoning Gateway (4002) is healthy",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "4ee7f61c95d5fb9646c9-c084d5962358e7e35d08",
+                  "file": "e2e-full-suite.spec.ts",
+                  "line": 285,
+                  "column": 5
+                },
+                {
+                  "title": "Voice Service (4001) is healthy",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "4ee7f61c95d5fb9646c9-27513128d079137ff481",
+                  "file": "e2e-full-suite.spec.ts",
+                  "line": 297,
+                  "column": 5
+                }
+              ]
+            },
+            {
+              "title": "Error Handling",
+              "file": "e2e-full-suite.spec.ts",
+              "line": 311,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "404 page handles gracefully",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "4ee7f61c95d5fb9646c9-b19562840298e705507a",
+                  "file": "e2e-full-suite.spec.ts",
+                  "line": 313,
+                  "column": 5
+                },
+                {
+                  "title": "Dashboard handles API errors gracefully",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "4ee7f61c95d5fb9646c9-dccdaccd92d989b4eade",
+                  "file": "e2e-full-suite.spec.ts",
+                  "line": 321,
+                  "column": 5
+                }
+              ]
+            },
+            {
+              "title": "Responsive Design",
+              "file": "e2e-full-suite.spec.ts",
+              "line": 334,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Layout adapts to mobile viewport",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "4ee7f61c95d5fb9646c9-50f9320898b916996a08",
+                  "file": "e2e-full-suite.spec.ts",
+                  "line": 336,
+                  "column": 5
+                },
+                {
+                  "title": "Layout adapts to tablet viewport",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "4ee7f61c95d5fb9646c9-34bcb7739015eeea1179",
+                  "file": "e2e-full-suite.spec.ts",
+                  "line": 344,
+                  "column": 5
+                }
+              ]
+            },
+            {
+              "title": "Accessibility Standards",
+              "file": "e2e-full-suite.spec.ts",
+              "line": 354,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Page has proper ARIA labels",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "4ee7f61c95d5fb9646c9-b2d84a92bb7c6c52c3a3",
+                  "file": "e2e-full-suite.spec.ts",
+                  "line": 356,
+                  "column": 5
+                },
+                {
+                  "title": "Keyboard navigation works",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "4ee7f61c95d5fb9646c9-3e547edb9d63d1486194",
+                  "file": "e2e-full-suite.spec.ts",
+                  "line": 366,
+                  "column": 5
+                }
+              ]
+            },
+            {
+              "title": "Visual Regression Tests",
+              "file": "e2e-full-suite.spec.ts",
+              "line": 384,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Ultimate Cockpit visual snapshot",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "4ee7f61c95d5fb9646c9-cb9563510e199f42c399",
+                  "file": "e2e-full-suite.spec.ts",
+                  "line": 386,
+                  "column": 5
+                },
+                {
+                  "title": "Square Live Cockpit visual snapshot",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "4ee7f61c95d5fb9646c9-d4f18a00d879157c5a3f",
+                  "file": "e2e-full-suite.spec.ts",
+                  "line": 396,
+                  "column": 5
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "e2e-full-system.spec.ts",
+      "file": "e2e-full-system.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "LivHana Trinity - Full System E2E Test",
+          "file": "e2e-full-system.spec.ts",
+          "line": 5,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Full system health check and functionality verification",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "352304d470700fa3f541-c9596ec99a490870f83a",
+              "file": "e2e-full-system.spec.ts",
+              "line": 37,
+              "column": 3
+            },
+            {
+              "title": "Error handling and edge cases",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "352304d470700fa3f541-2443ee122eeeb4df34e8",
+              "file": "e2e-full-system.spec.ts",
+              "line": 268,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "e2e-membership-system.spec.ts",
+      "file": "e2e-membership-system.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Membership System - Complete User Journey",
+          "file": "e2e-membership-system.spec.ts",
+          "line": 11,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Create Bronze membership subscription",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "afa3289dc679a282ccb2-157285d0ea64db2767ac",
+              "file": "e2e-membership-system.spec.ts",
+              "line": 16,
+              "column": 3
+            },
+            {
+              "title": "Upgrade Bronze to Silver membership",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "afa3289dc679a282ccb2-0fce9cc8813e69f87d3c",
+              "file": "e2e-membership-system.spec.ts",
+              "line": 38,
+              "column": 3
+            },
+            {
+              "title": "Apply membership discount at checkout",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "afa3289dc679a282ccb2-bcf237e12396fb39212c",
+              "file": "e2e-membership-system.spec.ts",
+              "line": 56,
+              "column": 3
+            },
+            {
+              "title": "Cancel membership and stop billing",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "afa3289dc679a282ccb2-1950201d061d68c297e7",
+              "file": "e2e-membership-system.spec.ts",
+              "line": 73,
+              "column": 3
+            },
+            {
+              "title": "Membership stats dashboard for admin",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "afa3289dc679a282ccb2-3c835a9825a384cbfa4c",
+              "file": "e2e-membership-system.spec.ts",
+              "line": 91,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "e2e-performance.spec.ts",
+      "file": "e2e-performance.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Performance - Optimizations Verified",
+          "file": "e2e-performance.spec.ts",
+          "line": 8,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should load dashboard in under 3 seconds",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "190b377999d994a2be10-7474a9ff1fee14c14fe8",
+              "file": "e2e-performance.spec.ts",
+              "line": 9,
+              "column": 3
+            },
+            {
+              "title": "should fetch BigQuery data in under 2 seconds",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "190b377999d994a2be10-33302688aae8547bc6c1",
+              "file": "e2e-performance.spec.ts",
+              "line": 25,
+              "column": 3
+            },
+            {
+              "title": "should benefit from Redis caching on second request",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "190b377999d994a2be10-4ea3866457bc4f6bda97",
+              "file": "e2e-performance.spec.ts",
+              "line": 44,
+              "column": 3
+            },
+            {
+              "title": "should have JavaScript bundle under 1.5MB",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "190b377999d994a2be10-04341e0a49a01461f3b1",
+              "file": "e2e-performance.spec.ts",
+              "line": 67,
+              "column": 3
+            },
+            {
+              "title": "should handle 10 concurrent requests without degradation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "190b377999d994a2be10-b7f2b658e7b07e0e838b",
+              "file": "e2e-performance.spec.ts",
+              "line": 93,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "e2e-raffle-system.spec.ts",
+      "file": "e2e-raffle-system.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Raffle System - Complete Flow",
+          "file": "e2e-raffle-system.spec.ts",
+          "line": 10,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Create new raffle (admin)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ab923ec9999357ca24f3-a2d1a787615db765ff61",
+              "file": "e2e-raffle-system.spec.ts",
+              "line": 15,
+              "column": 3
+            },
+            {
+              "title": "Purchase raffle tickets",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ab923ec9999357ca24f3-1f618c76e7d3dc3976c6",
+              "file": "e2e-raffle-system.spec.ts",
+              "line": 38,
+              "column": 3
+            },
+            {
+              "title": "Conduct raffle drawing",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ab923ec9999357ca24f3-632cc57a6fe973afd7cc",
+              "file": "e2e-raffle-system.spec.ts",
+              "line": 58,
+              "column": 3
+            },
+            {
+              "title": "Cancel raffle and process refunds",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ab923ec9999357ca24f3-82dadaedc255f8dcf1f8",
+              "file": "e2e-raffle-system.spec.ts",
+              "line": 75,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "e2e-square-integration.spec.ts",
+      "file": "e2e-square-integration.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Square API Integration - Full Lifecycle",
+          "file": "e2e-square-integration.spec.ts",
+          "line": 10,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Fetch product catalog from Square API",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ca8929eeea282ab885f0-71e407b33a45fdd6605d",
+              "file": "e2e-square-integration.spec.ts",
+              "line": 15,
+              "column": 3
+            },
+            {
+              "title": "Handle Square API rate limiting gracefully",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ca8929eeea282ab885f0-d0d950035f24605286f1",
+              "file": "e2e-square-integration.spec.ts",
+              "line": 44,
+              "column": 3
+            },
+            {
+              "title": "Fallback to mock data when Square API is unavailable",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ca8929eeea282ab885f0-61406424d6f5c1ec047c",
+              "file": "e2e-square-integration.spec.ts",
+              "line": 64,
+              "column": 3
+            },
+            {
+              "title": "Display Square transaction history with filtering",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ca8929eeea282ab885f0-9a64b0fd242951a07ad2",
+              "file": "e2e-square-integration.spec.ts",
+              "line": 86,
+              "column": 3
+            },
+            {
+              "title": "Sync Square inventory updates",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ca8929eeea282ab885f0-6621fb3138b71da910a2",
+              "file": "e2e-square-integration.spec.ts",
+              "line": 106,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "e2e-voice-mode.spec.ts",
+      "file": "e2e-voice-mode.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Voice Mode - Complete User Experience",
+          "file": "e2e-voice-mode.spec.ts",
+          "line": 10,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Open voice mode and select voice",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "18a435045678fedc8661-04f15bdb5d6c7c51caef",
+              "file": "e2e-voice-mode.spec.ts",
+              "line": 15,
+              "column": 3
+            },
+            {
+              "title": "Test voice synthesis API endpoint",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "18a435045678fedc8661-bf998d858bf31385c404",
+              "file": "e2e-voice-mode.spec.ts",
+              "line": 37,
+              "column": 3
+            },
+            {
+              "title": "Get available voices",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "18a435045678fedc8661-f091a475ea93f0a00161",
+              "file": "e2e-voice-mode.spec.ts",
+              "line": 55,
+              "column": 3
+            },
+            {
+              "title": "Voice settings persistence",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "18a435045678fedc8661-fc843c0b702f1f8c9745",
+              "file": "e2e-voice-mode.spec.ts",
+              "line": 72,
+              "column": 3
+            },
+            {
+              "title": "Voice mode error handling",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "18a435045678fedc8661-192d1158abea39d82c39",
+              "file": "e2e-voice-mode.spec.ts",
+              "line": 96,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "error-invalid-inputs.spec.ts",
+      "file": "error-invalid-inputs.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Invalid Input Validation",
+          "file": "error-invalid-inputs.spec.ts",
+          "line": 10,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Reject malformed request payloads",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "321a801f2319ab7c2477-22a1b44b3433abe38ec3",
+              "file": "error-invalid-inputs.spec.ts",
+              "line": 15,
+              "column": 3
+            },
+            {
+              "title": "Reject missing required fields",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "321a801f2319ab7c2477-9f2fbfa54cfe5f2c1ff2",
+              "file": "error-invalid-inputs.spec.ts",
+              "line": 28,
+              "column": 3
+            },
+            {
+              "title": "Reject invalid data types",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "321a801f2319ab7c2477-84219ea732b7bca81e1a",
+              "file": "error-invalid-inputs.spec.ts",
+              "line": 41,
+              "column": 3
+            },
+            {
+              "title": "Handle empty request body",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "321a801f2319ab7c2477-79005fbf5ecd08f85f15",
+              "file": "error-invalid-inputs.spec.ts",
+              "line": 54,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "error-network-failures.spec.ts",
+      "file": "error-network-failures.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Network Failure Resilience",
+          "file": "error-network-failures.spec.ts",
+          "line": 9,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Handle API timeout gracefully",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "df3f6336df99259393fd-f65b4af59270c34a71fe",
+              "file": "error-network-failures.spec.ts",
+              "line": 14,
+              "column": 3
+            },
+            {
+              "title": "Handle connection refused gracefully",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "df3f6336df99259393fd-2693b8bdf91e2fc8df68",
+              "file": "error-network-failures.spec.ts",
+              "line": 30,
+              "column": 3
+            },
+            {
+              "title": "Handle partial response gracefully",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "df3f6336df99259393fd-32e34e9bd8be916cc136",
+              "file": "error-network-failures.spec.ts",
+              "line": 46,
+              "column": 3
+            },
+            {
+              "title": "Handle offline/online transitions",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "df3f6336df99259393fd-f34aeae819207f049dc6",
+              "file": "error-network-failures.spec.ts",
+              "line": 66,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "error-timeout-scenarios.spec.ts",
+      "file": "error-timeout-scenarios.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Timeout Scenarios",
+          "file": "error-timeout-scenarios.spec.ts",
+          "line": 10,
+          "column": 6,
+          "specs": [
+            {
+              "title": "BigQuery timeout handling (90s limit)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1c514c44ee04e2583663-ecd809261d7cca707384",
+              "file": "error-timeout-scenarios.spec.ts",
+              "line": 15,
+              "column": 3
+            },
+            {
+              "title": "Reasoning job timeout handling",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1c514c44ee04e2583663-34bdcedb1c6a03240461",
+              "file": "error-timeout-scenarios.spec.ts",
+              "line": 30,
+              "column": 3
+            },
+            {
+              "title": "Voice synthesis timeout handling",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1c514c44ee04e2583663-cd3c63711caa8444cb38",
+              "file": "error-timeout-scenarios.spec.ts",
+              "line": 49,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "performance-concurrent-users.spec.ts",
+      "file": "performance-concurrent-users.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Concurrent Users Simulation",
+          "file": "performance-concurrent-users.spec.ts",
+          "line": 10,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Handle multiple simultaneous dashboard loads",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "fdf7ffd094496a8958c4-409da73e5dcce0c82a2f",
+              "file": "performance-concurrent-users.spec.ts",
+              "line": 15,
+              "column": 3
+            },
+            {
+              "title": "Handle multiple simultaneous API requests",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "fdf7ffd094496a8958c4-17a3fabc82d1d3a42826",
+              "file": "performance-concurrent-users.spec.ts",
+              "line": 42,
+              "column": 3
+            },
+            {
+              "title": "System remains responsive under load",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "fdf7ffd094496a8958c4-41b92b2470922a2a1f12",
+              "file": "performance-concurrent-users.spec.ts",
+              "line": 67,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "performance-load-testing.spec.ts",
+      "file": "performance-load-testing.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Performance Load Testing",
+          "file": "performance-load-testing.spec.ts",
+          "line": 10,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Dashboard loads within performance budget",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "56c0a0828c808f882515-140dba9cdbddd026efe6",
+              "file": "performance-load-testing.spec.ts",
+              "line": 15,
+              "column": 3
+            },
+            {
+              "title": "API response times are acceptable",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "56c0a0828c808f882515-cb9f99c434ce6132164e",
+              "file": "performance-load-testing.spec.ts",
+              "line": 28,
+              "column": 3
+            },
+            {
+              "title": "Multiple concurrent requests",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "56c0a0828c808f882515-593c34245cd01ceab6c9",
+              "file": "performance-load-testing.spec.ts",
+              "line": 42,
+              "column": 3
+            },
+            {
+              "title": "Memory usage remains stable",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "56c0a0828c808f882515-a8438f86155757642664",
+              "file": "performance-load-testing.spec.ts",
+              "line": 60,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "ui-executive-dashboard.spec.ts",
+      "file": "ui-executive-dashboard.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Executive Dashboard UI",
+          "file": "ui-executive-dashboard.spec.ts",
+          "line": 9,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Dashboard loads and displays key metrics",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5d453fdb9857cccdd120-c04335a1661ee7ca2c03",
+              "file": "ui-executive-dashboard.spec.ts",
+              "line": 16,
+              "column": 3
+            },
+            {
+              "title": "Navigation menu is accessible",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5d453fdb9857cccdd120-6a6a808e8ad1f9b56532",
+              "file": "ui-executive-dashboard.spec.ts",
+              "line": 26,
+              "column": 3
+            },
+            {
+              "title": "Dashboard is responsive",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5d453fdb9857cccdd120-6631ac406cc9858004a9",
+              "file": "ui-executive-dashboard.spec.ts",
+              "line": 35,
+              "column": 3
+            },
+            {
+              "title": "No critical console errors on dashboard",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5d453fdb9857cccdd120-ad50453287945bac52f4",
+              "file": "ui-executive-dashboard.spec.ts",
+              "line": 50,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "ui-product-catalog.spec.ts",
+      "file": "ui-product-catalog.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Product Catalog UI",
+          "file": "ui-product-catalog.spec.ts",
+          "line": 9,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Product catalog displays items",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a384d2ec087642eb8488-d10eae2d52aa0278ec4e",
+              "file": "ui-product-catalog.spec.ts",
+              "line": 16,
+              "column": 3
+            },
+            {
+              "title": "Product search functionality",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a384d2ec087642eb8488-a36b73826322ce2032a9",
+              "file": "ui-product-catalog.spec.ts",
+              "line": 26,
+              "column": 3
+            },
+            {
+              "title": "Product details are visible",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a384d2ec087642eb8488-be8585164fdaad1461b6",
+              "file": "ui-product-catalog.spec.ts",
+              "line": 40,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "ui-voice-command-center.spec.ts",
+      "file": "ui-voice-command-center.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Voice Command Center UI",
+          "file": "ui-voice-command-center.spec.ts",
+          "line": 9,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Voice mode is accessible",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "928a08ad5a5be6954924-89b23e2fd5d3ac6855ca",
+              "file": "ui-voice-command-center.spec.ts",
+              "line": 16,
+              "column": 3
+            },
+            {
+              "title": "Voice controls are interactive",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "928a08ad5a5be6954924-6d677d7c22dd2a1cc8fa",
+              "file": "ui-voice-command-center.spec.ts",
+              "line": 28,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-10-02T03:20:09.340Z",
+    "duration": 53.69300000000004,
+    "expected": 0,
+    "skipped": 104,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

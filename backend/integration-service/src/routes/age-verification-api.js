@@ -5,6 +5,9 @@
 
 import express from 'express';
 import { verifyAge, logVerification } from '../age_verification.js';
+import { validateBody } from '../../../common/validation/middleware.js';
+import { ageVerificationSchema } from '../../../common/validation/schemas.js';
+import { logAuditEvent, AUDIT_EVENTS, SEVERITY } from '../../../common/logging/audit-logger.js';
 
 const router = express.Router();
 
@@ -12,16 +15,9 @@ const router = express.Router();
  * POST /api/age-verification/verify
  * Verify age on server-side (cannot be bypassed by client manipulation)
  */
-router.post('/verify', async (req, res) => {
+router.post('/verify', validateBody(ageVerificationSchema), async (req, res) => {
   try {
     const { birthdate, metadata } = req.body;
-
-    if (!birthdate) {
-      return res.status(400).json({
-        success: false,
-        error: 'Birthdate required'
-      });
-    }
 
     // Server-side age calculation (trusted source)
     const birthDate = new Date(birthdate);
@@ -39,6 +35,18 @@ router.post('/verify', async (req, res) => {
         metadata
       });
 
+      // Log failed verification
+      await logAuditEvent({
+        eventType: AUDIT_EVENTS.COMPLIANCE_AGE_VERIFICATION_FAILURE,
+        severity: SEVERITY.WARNING,
+        ip: req.ip,
+        userAgent: req.headers['user-agent'],
+        resource: '/api/age-verification/verify',
+        action: 'POST',
+        result: 'failure',
+        details: { age, reason: 'Under 21' }
+      });
+
       return res.status(403).json({
         success: false,
         error: 'Must be 21+ to access cannabis products',
@@ -54,6 +62,18 @@ router.post('/verify', async (req, res) => {
       ip: req.ip,
       userAgent: req.headers['user-agent'],
       metadata
+    });
+
+    // Log successful verification to audit
+    await logAuditEvent({
+      eventType: AUDIT_EVENTS.COMPLIANCE_AGE_VERIFICATION,
+      severity: SEVERITY.INFO,
+      ip: req.ip,
+      userAgent: req.headers['user-agent'],
+      resource: '/api/age-verification/verify',
+      action: 'POST',
+      result: 'success',
+      details: { age, verificationId: verificationRecord.id }
     });
 
     res.json({

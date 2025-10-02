@@ -2,7 +2,7 @@ import pino from 'pino';
 
 const createLogger = (serviceName) => {
   // Use pino-pretty in development, JSON in production
-  const transport = process.env.NODE_ENV === 'development' 
+  const transport = process.env.NODE_ENV === 'development'
     ? {
         target: 'pino-pretty',
         options: {
@@ -27,8 +27,16 @@ const createLogger = (serviceName) => {
       req: pino.stdSerializers.req,
       res: pino.stdSerializers.res,
       err: pino.stdSerializers.err
+    },
+    // Add base context
+    base: {
+      service: serviceName,
+      environment: process.env.NODE_ENV || 'development',
+      version: process.env.npm_package_version || '1.0.0',
     }
   });
 };
 
 export { createLogger };
+export * from './logger.js';
+export * from './context.js';

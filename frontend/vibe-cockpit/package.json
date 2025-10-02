@@ -8,7 +8,19 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+    "test:e2e": "playwright test",
+    "test:e2e:smoke": "playwright test e2e-full-system.spec.ts e2e-full-suite.spec.ts",
+    "test:e2e:critical": "playwright test e2e-square-integration.spec.ts e2e-membership-system.spec.ts e2e-age-verification.spec.ts e2e-autonomous-agent.spec.ts",
+    "test:e2e:api": "playwright test api-*.spec.ts",
+    "test:e2e:ui": "playwright test ui-*.spec.ts",
+    "test:e2e:errors": "playwright test error-*.spec.ts",
+    "test:e2e:performance": "playwright test performance-*.spec.ts",
+    "test:e2e:all": "playwright test",
+    "test:e2e:debug": "playwright test --debug",
+    "test:e2e:ui-mode": "playwright test --ui",
+    "test:e2e:report": "playwright show-report",
+    "test:e2e:headed": "playwright test --headed"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",

@@ -291,15 +291,17 @@ const ExecutiveDashboard = () => {
     }
   };
 
-  // Compliance data from integration-service (age verification logs)
+  // P0 FIX: Compliance data from integration-service (age verification logs)
   const fetchComplianceData = async () => {
     try {
       // Fetch real compliance metrics from integration-service
+      const token = localStorage.getItem('livhana_session_token');
       const response = await fetch('http://localhost:3005/api/compliance/metrics', {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('livhana_session_token')}`,
+          'Authorization': token ? `Bearer ${token}` : '',
           'Content-Type': 'application/json'
-        }
+        },
+        signal: AbortSignal.timeout(10000), // P0 FIX: 10 second timeout
       });
 
       if (!response.ok) {
@@ -308,7 +310,7 @@ const ExecutiveDashboard = () => {
 
       const data = await response.json();
 
-      // Use REAL data from API
+      // P0 FIX: Use REAL data from API - NO MOCK DATA
       setComplianceMetrics({
         ageVerificationRate: data.metrics?.ageVerification?.successRate || 0,
         coaValidationRate: data.metrics?.productCompliance?.coaCoverage || 0,
@@ -320,12 +322,23 @@ const ExecutiveDashboard = () => {
       // No mock alerts - only real compliance data
     } catch (error) {
       console.error('Failed to fetch compliance data:', error);
+
+      // P0 FIX: Graceful degradation - show N/A instead of fake data
       setComplianceMetrics({
         ageVerificationRate: null,
         coaValidationRate: null,
         activeLicenses: null,
         expiringLicenses: [],
       });
+
+      // P0 FIX: Alert user about compliance data unavailability
+      setAlerts(prev => ({
+        ...prev,
+        system: [...prev.system, {
+          message: 'Compliance data unavailable - service may be offline',
+          severity: 'warning'
+        }]
+      }));
     }
   };
 
@@ -916,20 +929,26 @@ const ExecutiveDashboard = () => {
                   <Typography variant="body2" color="textSecondary">
                     Age Verification Pass Rate
                   </Typography>
-                  <Typography variant="h6" fontWeight="bold" color="#16A34A">
-                    {complianceMetrics.ageVerificationRate}%
+                  <Typography variant="h6" fontWeight="bold" color={complianceMetrics.ageVerificationRate !== null ? "#16A34A" : "#94A3B8"}>
+                    {complianceMetrics.ageVerificationRate !== null ? `${complianceMetrics.ageVerificationRate}%` : 'N/A'}
                   </Typography>
                 </Box>
-                <LinearProgress
-                  variant="determinate"
-                  value={complianceMetrics.ageVerificationRate}
-                  sx={{
-                    height: 8,
-                    borderRadius: 1,
-                    bgcolor: 'rgba(148, 163, 184, 0.1)',
-                    '& .MuiLinearProgress-bar': { bgcolor: '#16A34A' },
-                  }}
-                />
+                {complianceMetrics.ageVerificationRate !== null ? (
+                  <LinearProgress
+                    variant="determinate"
+                    value={complianceMetrics.ageVerificationRate}
+                    sx={{
+                      height: 8,
+                      borderRadius: 1,
+                      bgcolor: 'rgba(148, 163, 184, 0.1)',
+                      '& .MuiLinearProgress-bar': { bgcolor: '#16A34A' },
+                    }}
+                  />
+                ) : (
+                  <Typography variant="caption" color="textSecondary">
+                    Data unavailable - service may be offline
+                  </Typography>
+                )}
               </Box>
 
               <Box mb={3}>
@@ -937,20 +956,26 @@ const ExecutiveDashboard = () => {
                   <Typography variant="body2" color="textSecondary">
                     COA Validation Rate
                   </Typography>
-                  <Typography variant="h6" fontWeight="bold" color="#16A34A">
-                    {complianceMetrics.coaValidationRate}%
+                  <Typography variant="h6" fontWeight="bold" color={complianceMetrics.coaValidationRate !== null ? "#16A34A" : "#94A3B8"}>
+                    {complianceMetrics.coaValidationRate !== null ? `${complianceMetrics.coaValidationRate}%` : 'N/A'}
                   </Typography>
                 </Box>
-                <LinearProgress
-                  variant="determinate"
-                  value={complianceMetrics.coaValidationRate}
-                  sx={{
-                    height: 8,
-                    borderRadius: 1,
-                    bgcolor: 'rgba(148, 163, 184, 0.1)',
-                    '& .MuiLinearProgress-bar': { bgcolor: '#16A34A' },
-                  }}
-                />
+                {complianceMetrics.coaValidationRate !== null ? (
+                  <LinearProgress
+                    variant="determinate"
+                    value={complianceMetrics.coaValidationRate}
+                    sx={{
+                      height: 8,
+                      borderRadius: 1,
+                      bgcolor: 'rgba(148, 163, 184, 0.1)',
+                      '& .MuiLinearProgress-bar': { bgcolor: '#16A34A' },
+                    }}
+                  />
+                ) : (
+                  <Typography variant="caption" color="textSecondary">
+                    Data unavailable - service may be offline
+                  </Typography>
+                )}
               </Box>
 
               <Divider sx={{ my: 2, borderColor: 'rgba(148, 163, 184, 0.1)' }} />
@@ -961,8 +986,8 @@ const ExecutiveDashboard = () => {
                   <Typography variant="body1">Active Licenses</Typography>
                 </Box>
                 <Chip
-                  label={complianceMetrics.activeLicenses}
-                  color="success"
+                  label={complianceMetrics.activeLicenses !== null ? complianceMetrics.activeLicenses : 'N/A'}
+                  color={complianceMetrics.activeLicenses !== null ? "success" : "default"}
                   size="small"
                 />
               </Box>

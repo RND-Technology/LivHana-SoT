@@ -59,17 +59,45 @@ const SquareRealProducts = () => {
   useEffect(() => {
     const fetchSquareProducts = async () => {
       try {
-        const { data } = await axios.get(`${API_URL}/api/square/catalog`);
+        // P0 FIX: Add timeout for API calls
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+
+        const { data } = await axios.get(`${API_URL}/api/square/catalog`, {
+          signal: controller.signal,
+          timeout: 10000,
+        });
+
+        clearTimeout(timeout);
+
         const transformed = data.products && Array.isArray(data.products)
           ? data.products
           : transformSquareObjects(data.objects || []);
 
-        setProducts(transformed.length ? transformed : getDemoProducts());
-        setSource(data.source || 'mock');
+        // P0 FIX: Graceful degradation - show demo products if API returns empty
+        if (transformed.length === 0) {
+          console.warn('API returned no products, showing demo products');
+          setProducts(getDemoProducts());
+          setSource('demo-fallback');
+        } else {
+          setProducts(transformed);
+          setSource(data.source || 'square-api');
+        }
       } catch (error) {
+        // P0 FIX: Better error logging and graceful fallback
         console.error('Failed to fetch Square products:', error);
+
+        if (error.code === 'ECONNABORTED' || error.message.includes('timeout')) {
+          console.error('API timeout - falling back to demo products');
+        } else if (error.response?.status === 401) {
+          console.error('Authentication failed - user may need to log in');
+        } else if (error.response?.status >= 500) {
+          console.error('Server error - Square service may be down');
+        }
+
+        // P0 FIX: Show demo products as graceful fallback
         setProducts(getDemoProducts());
-        setSource('mock');
+        setSource('offline-fallback');
       } finally {
         setLoading(false);
       }
@@ -139,9 +167,10 @@ const SquareRealProducts = () => {
     return <AgeGate currentDomain={currentDomain} onVerify={() => setAgeVerified(true)} />;
   }
 
+  // P0 FIX: Enhanced loading state with message
   if (loading) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
+      <div className="min-h-screen bg-black flex items-center justify-center flex-col gap-4">
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
@@ -149,6 +178,12 @@ const SquareRealProducts = () => {
         >
           🌿
         </motion.div>
+        <div className="text-green-400 text-lg font-semibold">
+          Loading products...
+        </div>
+        <div className="text-gray-500 text-sm">
+          Fetching real-time inventory from Square
+        </div>
       </div>
     );
   }
@@ -245,43 +280,60 @@ const AgeGate = ({ currentDomain, onVerify }) => (
   </motion.div>
 );
 
-const Header = ({ currentDomain, cartItems, source }) => (
-  <header className="border-b border-gray-800 py-6">
-    <div className="container mx-auto px-6">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center space-x-4">
-          <span className="text-4xl">{currentDomain.logo}</span>
-          <div>
-            <h1 className="text-2xl font-bold" style={{ color: currentDomain.primaryColor }}>
-              {currentDomain.brand}
-            </h1>
-            <p className="text-sm text-gray-400">{currentDomain.tagline}</p>
-            <p className="text-xs text-gray-500 uppercase tracking-wide">
-              Data source: {source}
-            </p>
-          </div>
-        </div>
+const Header = ({ currentDomain, cartItems, source }) => {
+  // P0 FIX: Show data source status with appropriate styling
+  const getSourceColor = () => {
+    if (source === 'square-api') return 'text-green-400';
+    if (source === 'offline-fallback') return 'text-red-400';
+    if (source === 'demo-fallback') return 'text-yellow-400';
+    return 'text-gray-500';
+  };
 
-        <div className="flex items-center space-x-6">
-          <div className="text-right">
-            <p className="text-sm text-gray-400">Cart Items</p>
-            <p className="text-2xl font-bold" style={{ color: currentDomain.primaryColor }}>
-              {cartItems.length}
-            </p>
+  const getSourceLabel = () => {
+    if (source === 'square-api') return 'Live Square Data';
+    if (source === 'offline-fallback') return 'Offline - Demo Products';
+    if (source === 'demo-fallback') return 'Empty Catalog - Demo Products';
+    return source;
+  };
+
+  return (
+    <header className="border-b border-gray-800 py-6">
+      <div className="container mx-auto px-6">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-4">
+            <span className="text-4xl">{currentDomain.logo}</span>
+            <div>
+              <h1 className="text-2xl font-bold" style={{ color: currentDomain.primaryColor }}>
+                {currentDomain.brand}
+              </h1>
+              <p className="text-sm text-gray-400">{currentDomain.tagline}</p>
+              <p className={`text-xs uppercase tracking-wide font-semibold ${getSourceColor()}`}>
+                {getSourceLabel()}
+              </p>
+            </div>
           </div>
-          <motion.button
-            className="px-6 py-3 font-bold rounded-lg text-black"
-            style={{ backgroundColor: currentDomain.primaryColor }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            CHECKOUT
-          </motion.button>
+
+          <div className="flex items-center space-x-6">
+            <div className="text-right">
+              <p className="text-sm text-gray-400">Cart Items</p>
+              <p className="text-2xl font-bold" style={{ color: currentDomain.primaryColor }}>
+                {cartItems.length}
+              </p>
+            </div>
+            <motion.button
+              className="px-6 py-3 font-bold rounded-lg text-black"
+              style={{ backgroundColor: currentDomain.primaryColor }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              CHECKOUT
+            </motion.button>
+          </div>
         </div>
       </div>
-    </div>
-  </header>
-);
+    </header>
+  );
+};
 
 const ProductGrid = ({ products, currentDomain, cartItems, setCartItems, setSelectedProduct }) => (
   <div className="container mx-auto px-6 py-12">

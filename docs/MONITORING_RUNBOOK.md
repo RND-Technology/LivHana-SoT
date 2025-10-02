@@ -1,0 +1,611 @@
+# LivHana Monitoring Runbook
+
+## Overview
+
+This runbook provides comprehensive guidance for monitoring, alerting, and troubleshooting the LivHana backend services.
+
+## Table of Contents
+
+1. [Monitoring Stack](#monitoring-stack)
+2. [Alert Response Procedures](#alert-response-procedures)
+3. [Dashboard Access](#dashboard-access)
+4. [Common Issues](#common-issues)
+5. [Escalation Procedures](#escalation-procedures)
+6. [Performance Baselines](#performance-baselines)
+7. [Cost Management](#cost-management)
+
+---
+
+## Monitoring Stack
+
+### APM: New Relic
+
+**Access**: https://one.newrelic.com/
+
+**Login**: Use company SSO or credentials stored in 1Password
+
+**Services Monitored**:
+- `LivHana-Integration-Service` (Port 3005)
+- `LivHana-Reasoning-Gateway` (Port 4002)
+- `LivHana-Voice-Service` (Port 4001)
+
+**Key Features**:
+- Automatic instrumentation for Node.js
+- Distributed tracing across services
+- AI monitoring for OpenAI/Anthropic calls
+- Real-time performance metrics
+- Error tracking and stack traces
+
+### Error Tracking: Sentry
+
+**Access**: https://sentry.io/
+
+**Login**: Use company SSO or credentials stored in 1Password
+
+**Projects**:
+- `livhana-integration-service`
+- `livhana-reasoning-gateway`
+- `livhana-voice-service`
+
+**Key Features**:
+- Real-time error tracking
+- Source map support for stack traces
+- Release tracking
+- Performance profiling
+- Custom breadcrumbs for debugging
+
+### Metrics: Prometheus
+
+**Endpoints**:
+- Integration Service: `http://localhost:3005/metrics`
+- Reasoning Gateway: `http://localhost:4002/metrics`
+- Voice Service: `http://localhost:4001/metrics`
+
+**Key Metrics**:
+- `http_request_duration_seconds` - API response times
+- `http_requests_total` - Total API requests
+- `db_query_duration_seconds` - Database query times
+- `job_processing_duration_seconds` - Background job times
+- `queue_depth` - Job queue depth
+
+### Health Checks
+
+**Endpoints**:
+
+Basic Liveness:
+- `/health` - Returns 200 if service is running
+- `/healthz` - Kubernetes-style liveness probe
+
+Readiness with Dependencies:
+- `/ready` - Returns 200 only if all dependencies are healthy
+
+**Expected Response Times**:
+- `/health`: < 50ms
+- `/ready`: < 500ms (includes dependency checks)
+
+---
+
+## Alert Response Procedures
+
+### P0 - Critical (Immediate Response Required)
+
+#### Alert: Service Down
+
+**Trigger**: Health check endpoint returns 503 or is unreachable
+
+**Impact**: Service is unavailable to users
+
+**Response**:
+1. Check service logs: `docker logs <container_name>`
+2. Check if process is running: `pm2 list` or `systemctl status <service>`
+3. Check resource usage: `htop` or `docker stats`
+4. Restart service if crashed: `pm2 restart <service>` or `systemctl restart <service>`
+5. Check recent deployments - rollback if necessary
+6. Investigate root cause in logs and monitoring
+
+**Escalation**: If not resolved in 15 minutes, escalate to DevOps lead
+
+#### Alert: High Error Rate (>5%)
+
+**Trigger**: Error rate exceeds 5% of total requests
+
+**Impact**: Users experiencing errors
+
+**Response**:
+1. Check Sentry for error details and frequency
+2. Identify common error patterns
+3. Check if errors are from specific endpoint
+4. Review recent code changes
+5. Check external dependency status (Redis, BigQuery, Square API)
+6. If widespread, consider rolling back recent deployment
+7. Apply hotfix if quick resolution available
+
+**Escalation**: If error rate continues to climb, escalate immediately
+
+#### Alert: Database Connection Lost
+
+**Trigger**: Redis or BigQuery health check fails
+
+**Impact**: Service cannot access data, requests failing
+
+**Response**:
+1. Check database connectivity: `redis-cli ping` or BigQuery console
+2. Verify credentials and connection strings
+3. Check firewall rules and network connectivity
+4. Check database service status
+5. Restart application to re-establish connections
+6. If Redis is down, check if backup/replica is available
+
+**Escalation**: Escalate to infrastructure team if database issue
+
+---
+
+### P1 - High Priority (Response within 1 hour)
+
+#### Alert: High Response Time (P95 > 2s)
+
+**Trigger**: 95th percentile response time exceeds 2 seconds
+
+**Impact**: Degraded user experience
+
+**Response**:
+1. Check New Relic APM for slow transactions
+2. Identify slow database queries or external API calls
+3. Check if specific endpoint is causing slowdown
+4. Review recent code changes
+5. Check system resources (CPU, memory, disk I/O)
+6. Consider scaling horizontally if traffic spike
+7. Optimize slow queries or add caching
+
+**Resolution**: Optimize performance or scale resources
+
+#### Alert: Queue Depth High (>1000 jobs)
+
+**Trigger**: BullMQ queue has more than 1000 waiting jobs
+
+**Impact**: Background jobs experiencing delays
+
+**Response**:
+1. Check queue metrics: `/ready` endpoint
+2. Check if workers are processing jobs
+3. Review failed job count and reasons
+4. Scale up workers if needed
+5. Check for stuck jobs or infinite loops
+6. Clear failed jobs if they're blocking: `queue.clean(1000, 'failed')`
+
+**Resolution**: Scale workers or fix job processing issues
+
+#### Alert: Memory Usage High (>80%)
+
+**Trigger**: Container/process memory usage exceeds 80%
+
+**Impact**: Risk of OOM kills and service crashes
+
+**Response**:
+1. Check memory usage: `docker stats` or `ps aux --sort=-%mem | head`
+2. Look for memory leaks in New Relic
+3. Check if memory usage is growing over time
+4. Review recent code changes for memory issues
+5. Restart service to clear memory (temporary fix)
+6. Scale up memory allocation if consistent high usage
+7. Profile application for memory leaks
+
+**Resolution**: Fix memory leak or scale resources
+
+---
+
+### P2 - Medium Priority (Response within 4 hours)
+
+#### Alert: Elevated Error Rate (1-5%)
+
+**Trigger**: Error rate between 1-5% of total requests
+
+**Impact**: Some users experiencing errors
+
+**Response**:
+1. Review Sentry for error patterns
+2. Check if errors are from specific user actions
+3. Determine if errors are transient or persistent
+4. Create ticket to investigate and fix
+5. Monitor to ensure doesn't escalate
+
+#### Alert: External API Slow (>5s)
+
+**Trigger**: Square API or BigQuery calls taking longer than 5 seconds
+
+**Impact**: Some requests experiencing delays
+
+**Response**:
+1. Check external service status pages
+2. Verify API rate limits not exceeded
+3. Consider implementing timeout and retry logic
+4. Add circuit breaker if not present
+5. Contact external service support if persistent
+
+---
+
+### P3 - Low Priority (Response within 24 hours)
+
+#### Alert: Cache Miss Rate High (>50%)
+
+**Trigger**: Redis cache miss rate exceeds 50%
+
+**Impact**: Minor performance degradation
+
+**Response**:
+1. Review cache invalidation logic
+2. Check if cache TTL is appropriate
+3. Consider warming cache on startup
+4. Optimize cache key structure
+
+---
+
+## Dashboard Access
+
+### New Relic Dashboards
+
+**System Health Overview**
+- URL: `https://one.newrelic.com/dashboards/livhana-system-health`
+- Shows: Service health, error rates, response times
+- Refresh: Real-time
+
+**API Performance**
+- URL: `https://one.newrelic.com/dashboards/livhana-api-performance`
+- Shows: Endpoint response times, throughput, errors
+- Refresh: Real-time
+
+**Business Metrics**
+- URL: `https://one.newrelic.com/dashboards/livhana-business-metrics`
+- Shows: Revenue, active users, transaction volume
+- Refresh: 1 minute
+
+**Infrastructure**
+- URL: `https://one.newrelic.com/infrastructure`
+- Shows: CPU, memory, disk, network
+- Refresh: Real-time
+
+### Sentry Dashboards
+
+**Error Tracking**
+- URL: `https://sentry.io/organizations/livhana/issues/`
+- Shows: Recent errors, frequency, affected users
+- Refresh: Real-time
+
+**Performance Issues**
+- URL: `https://sentry.io/organizations/livhana/performance/`
+- Shows: Slow transactions, N+1 queries
+- Refresh: Real-time
+
+---
+
+## Common Issues
+
+### Issue: Service Won't Start
+
+**Symptoms**: Service fails to start or crashes immediately
+
+**Causes**:
+- Missing environment variables
+- Port already in use
+- Database connection failure
+- Syntax error in code
+
+**Resolution**:
+1. Check logs for error messages
+2. Verify all required environment variables are set
+3. Check if port is available: `lsof -i :3005`
+4. Test database connections manually
+5. Run linter: `npm run lint`
+
+### Issue: Intermittent 503 Errors
+
+**Symptoms**: Occasional 503 Service Unavailable errors
+
+**Causes**:
+- Connection pool exhausted
+- Worker overloaded
+- Resource limits reached
+- Dependency timeout
+
+**Resolution**:
+1. Check connection pool settings
+2. Scale up workers or increase limits
+3. Add circuit breaker for dependencies
+4. Implement request queuing
+
+### Issue: Memory Leak
+
+**Symptoms**: Memory usage grows over time, eventual crash
+
+**Causes**:
+- Event listeners not removed
+- Circular references
+- Large object retention
+- Cache not expiring
+
+**Resolution**:
+1. Profile with Chrome DevTools or clinic.js
+2. Check for event listener leaks
+3. Review cache TTL settings
+4. Use weak references where appropriate
+
+### Issue: Database Query Slow
+
+**Symptoms**: High database query latency
+
+**Causes**:
+- Missing indexes
+- Large result sets
+- N+1 query problem
+- Database overloaded
+
+**Resolution**:
+1. Analyze query with EXPLAIN
+2. Add appropriate indexes
+3. Implement query result caching
+4. Use pagination for large result sets
+5. Consider read replicas
+
+---
+
+## Escalation Procedures
+
+### On-Call Rotation
+
+**Primary On-Call**: Check PagerDuty schedule
+**Secondary On-Call**: Check PagerDuty schedule
+**DevOps Lead**: [Contact in 1Password]
+**CTO**: [Contact in 1Password]
+
+### Escalation Path
+
+1. **P0 Alert** → Primary On-Call (immediate)
+2. **Not Resolved in 15 min** → Secondary On-Call
+3. **Not Resolved in 30 min** → DevOps Lead
+4. **Critical Business Impact** → CTO
+
+### Communication Channels
+
+**Slack Channels**:
+- `#alerts` - Automated alerts from monitoring
+- `#incidents` - Active incident coordination
+- `#engineering` - General engineering discussion
+
+**Status Page**:
+- Update at: `https://status.livhana.com`
+- Use for customer-facing incidents
+
+### Incident Response Template
+
+```markdown
+## Incident: [Brief Description]
+
+**Severity**: P0 / P1 / P2 / P3
+**Status**: Investigating / Identified / Monitoring / Resolved
+**Started**: [Timestamp]
+**Resolved**: [Timestamp]
+
+**Impact**:
+- Services affected:
+- Users affected:
+- Business impact:
+
+**Timeline**:
+- [Time] - Incident detected
+- [Time] - Investigation started
+- [Time] - Root cause identified
+- [Time] - Fix applied
+- [Time] - Monitoring for recurrence
+- [Time] - Resolved
+
+**Root Cause**:
+[Detailed explanation]
+
+**Resolution**:
+[What was done to fix]
+
+**Action Items**:
+- [ ] Post-mortem scheduled
+- [ ] Monitoring improved
+- [ ] Documentation updated
+- [ ] Preventive measures implemented
+```
+
+---
+
+## Performance Baselines
+
+### API Response Times (P95)
+
+| Endpoint | Target | Warning | Critical |
+|----------|--------|---------|----------|
+| `/health` | <50ms | >100ms | >500ms |
+| `/ready` | <500ms | >1s | >2s |
+| `/api/products` | <200ms | >500ms | >1s |
+| `/api/orders` | <300ms | >800ms | >2s |
+| `/api/reasoning/*` | <5s | >10s | >20s |
+
+### Error Rates
+
+| Service | Target | Warning | Critical |
+|---------|--------|---------|----------|
+| Integration Service | <0.1% | >1% | >5% |
+| Reasoning Gateway | <0.5% | >2% | >10% |
+| Voice Service | <0.5% | >2% | >10% |
+
+### Queue Metrics
+
+| Metric | Target | Warning | Critical |
+|--------|--------|---------|----------|
+| Queue Depth | <100 | >500 | >1000 |
+| Processing Time | <5s | >30s | >60s |
+| Failed Jobs | <1% | >5% | >10% |
+
+### Resource Usage
+
+| Resource | Target | Warning | Critical |
+|----------|--------|---------|----------|
+| CPU | <50% | >70% | >90% |
+| Memory | <60% | >80% | >95% |
+| Disk | <70% | >85% | >95% |
+
+---
+
+## Cost Management
+
+### New Relic Costs
+
+**Free Tier**:
+- 100 GB/month data ingest
+- 1 full platform user
+- Unlimited basic users
+
+**Estimated Production Costs** (after free tier):
+- Data ingest: ~150 GB/month = $0.30/GB = $15/month
+- Full platform users: 2 users = $99/user = $198/month
+- **Total**: ~$213/month
+
+**Cost Optimization**:
+- Use log sampling for high-volume logs
+- Disable AI content recording (enabled)
+- Use data dropping rules for unnecessary data
+- Monitor data ingest in dashboard
+
+### Sentry Costs
+
+**Free Tier**:
+- 5,000 errors/month
+- 10,000 performance units/month
+- 7-day data retention
+
+**Developer Plan**: $29/month
+- 50,000 errors/month
+- 100,000 performance units/month
+- 90-day retention
+
+**Estimated Production Costs**: $29/month (Developer plan sufficient)
+
+**Cost Optimization**:
+- Filter out common/expected errors
+- Sample performance transactions (10% rate)
+- Use issue grouping to reduce duplication
+- Set up rate limiting per issue
+
+### Total Estimated Monthly Cost
+
+| Service | Cost |
+|---------|------|
+| New Relic | $50/month (using free tier + 1 user) |
+| Sentry | $29/month |
+| Prometheus (self-hosted) | $0/month |
+| **Total** | **$79/month** |
+
+**Budget Target**: <$100/month ✅
+
+---
+
+## Quick Reference Commands
+
+### Service Management
+
+```bash
+# Check service status
+pm2 status
+
+# View logs
+pm2 logs <service-name>
+
+# Restart service
+pm2 restart <service-name>
+
+# Check health
+curl http://localhost:3005/health
+curl http://localhost:4002/health
+```
+
+### Redis
+
+```bash
+# Check connectivity
+redis-cli ping
+
+# Get queue length
+redis-cli LLEN bull:voice-mode-reasoning-jobs:wait
+
+# Clear failed jobs
+redis-cli DEL bull:voice-mode-reasoning-jobs:failed
+```
+
+### Docker
+
+```bash
+# View running containers
+docker ps
+
+# View logs
+docker logs <container-name> --tail 100 -f
+
+# Check resource usage
+docker stats
+
+# Restart container
+docker restart <container-name>
+```
+
+### System
+
+```bash
+# Check disk space
+df -h
+
+# Check memory
+free -h
+
+# Check CPU
+top
+
+# Check network
+netstat -tulpn | grep LISTEN
+```
+
+---
+
+## Post-Incident Review
+
+After resolving a P0 or P1 incident, schedule a post-incident review within 48 hours.
+
+**Agenda**:
+1. Timeline review
+2. Root cause analysis
+3. What went well
+4. What could be improved
+5. Action items
+
+**Attendees**:
+- On-call engineer(s)
+- Service owner
+- DevOps lead
+- Engineering manager
+
+**Outputs**:
+- Post-mortem document
+- Action items with owners
+- Monitoring improvements
+- Documentation updates
+
+---
+
+## Additional Resources
+
+- [New Relic Documentation](https://docs.newrelic.com/)
+- [Sentry Documentation](https://docs.sentry.io/)
+- [Prometheus Documentation](https://prometheus.io/docs/)
+- [Internal Architecture Docs](./ARCHITECTURE.md)
+- [Deployment Guide](./DEPLOYMENT.md)
+- [Security Runbook](./SECURITY_RUNBOOK.md)
+
+---
+
+**Last Updated**: October 2025
+**Owner**: DevOps Team
+**Review Frequency**: Monthly

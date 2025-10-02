@@ -14,12 +14,21 @@ const { startLightspeedSyncScheduler } = require('./lightspeed-sync-scheduler');
 // Import compliance API routes
 import complianceRoutes from './routes/compliance-api.js';
 import ageVerificationAPIRoutes from './routes/age-verification-api.js';
+
+// Import security middleware
 const {
   createRedisClient,
   createTieredRateLimiter,
   createHealthCheckLimiter,
   createMonitoringRoutes
 } = require('../../common/rate-limit/index.cjs');
+const {
+  createSecurityHeaders,
+  createSecureCORS,
+  createRequestSanitizer,
+  createSecurityAuditor
+} = require('../../common/security/headers.js');
+const { createAuditMiddleware } = require('../../common/logging/audit-logger.js');
 
 const app = express();
 const PORT = process.env.PORT || 3005;
@@ -53,13 +62,23 @@ let healthRateLimitMiddleware = null;
   }
 })();
 
-app.use(cors({
-  origin: process.env.CORS_ORIGINS ? process.env.CORS_ORIGINS.split(',') : ['http://localhost:5173', 'http://localhost:3000'],
-  credentials: true
-}));
+// Security headers - MUST come first
+app.use(createSecurityHeaders({ logger }));
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// CORS with security
+const allowedOrigins = process.env.CORS_ORIGINS ?
+  process.env.CORS_ORIGINS.split(',') :
+  ['http://localhost:5173', 'http://localhost:3000'];
+app.use(createSecureCORS({ logger, allowedOrigins }));
+
+// Body parsing with size limits
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+
+// Security middleware
+app.use(createRequestSanitizer({ logger }));
+app.use(createSecurityAuditor({ logger }));
+app.use(createAuditMiddleware({ logger }));
 
 // Health endpoint - with lenient rate limiting for monitoring
 app.get('/health', (req, res, next) => {

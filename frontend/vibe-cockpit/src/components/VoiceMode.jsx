@@ -135,10 +135,24 @@ const VoiceMode = ({
       setAgentStatus('speaking');
       setHealthStatus((prev) => ({ ...prev, voice: 'healthy' }));
 
-      // SECURITY: Validate token exists before making request
+      // SECURITY P0 FIX: Validate token exists before making request
       const token = localStorage.getItem('livhana_session_token');
       if (!token) {
         throw new Error('Authentication required. Please log in.');
+      }
+
+      // Validate token is not expired (if JWT format)
+      try {
+        const tokenParts = token.split('.');
+        if (tokenParts.length === 3) {
+          const payload = JSON.parse(atob(tokenParts[1]));
+          if (payload.exp && payload.exp * 1000 < Date.now()) {
+            throw new Error('Token expired. Please log in again.');
+          }
+        }
+      } catch (tokenError) {
+        console.warn('Token validation warning:', tokenError.message);
+        // Continue anyway - server will validate
       }
 
       const response = await fetch(`${VOICE_SERVICE_BASE}/elevenlabs/synthesize`, {
@@ -157,6 +171,11 @@ const VoiceMode = ({
           }
         })
       });
+
+      // SECURITY P0 FIX: Handle 401 Unauthorized - token refresh needed
+      if (response.status === 401) {
+        throw new Error('Unauthorized: Your session has expired. Please log in again.');
+      }
 
       if (!response.ok) {
         const errorText = await response.text();
@@ -190,11 +209,22 @@ const VoiceMode = ({
       setIsSpeaking(false);
       setAgentStatus('error');
       setHealthStatus((prev) => ({ ...prev, voice: 'down' }));
-      alert(`Voice synthesis failed: ${error.message}`);
+
+      // SECURITY P0 FIX: Better error messaging for auth failures
+      if (error.message.includes('Authentication') || error.message.includes('Unauthorized')) {
+        alert(`Authentication Error: ${error.message}\n\nPlease log in to use voice features.`);
+      } else {
+        alert(`Voice synthesis failed: ${error.message}`);
+      }
     }
   };
 
   const handleTestVoice = async () => {
+    // SECURITY P0 FIX: Prevent test if already speaking (button spam protection)
+    if (isSpeaking) {
+      alert('Please wait for current audio to finish.');
+      return;
+    }
 
     setIsTesting(true);
     const testText = "Hello! This is a test of the ElevenLabs voice synthesis system. I'm speaking with the selected voice.";

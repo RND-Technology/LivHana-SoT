@@ -7,8 +7,20 @@ test.describe('LivHana Trinity - Full System E2E Test', () => {
     // Warm up services before running tests (pre-initialize BigQuery cache)
     console.log('🔥 Warming up services...');
     try {
-      await request.get('http://localhost:4002/health');
-      await request.get('http://localhost:3005/health', { timeout: 60000 });
+      await request.get('http://localhost:4002/health', { timeout: 30000 });
+      await request.get('http://localhost:3005/health', { timeout: 90000 }); // Increased to 90s for BigQuery cold start
+
+      // Trigger BigQuery cache initialization
+      try {
+        await request.get('http://localhost:3005/api/bigquery/dashboard', {
+          timeout: 90000,
+          headers: { 'Authorization': `Bearer ${TEST_TOKEN}` }
+        });
+        console.log('  ✓ BigQuery cache initialized');
+      } catch (e) {
+        console.warn('  ⚠️ BigQuery cache warm-up failed (may be in mock mode)');
+      }
+
       console.log('✅ Services warmed up');
     } catch (error) {
       console.warn('⚠️ Service warm-up failed:', error.message);
@@ -39,7 +51,7 @@ test.describe('LivHana Trinity - Full System E2E Test', () => {
     // Integration Service (port 3005)
     console.log('🔍 Testing Integration Service...');
     const integrationHealthResponse = await page.request.get('http://localhost:3005/health', {
-      timeout: 60000  // 60s for cold start (BigQuery cache initialization)
+      timeout: 90000  // 90s for cold start (BigQuery cache initialization)
     });
     expect(integrationHealthResponse.ok()).toBeTruthy();
     const integrationHealth = await integrationHealthResponse.json();
