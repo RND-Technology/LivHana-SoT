@@ -416,7 +416,7 @@ cat .env | grep ANTHROPIC
 # Should show: ANTHROPIC_API_KEY=sk-ant-api03-...
 
 # If missing, re-add:
-echo "ANTHROPIC_API_KEY=***REMOVED***" >> .env
+echo "ANTHROPIC_API_KEY=$(op item get vpxxhnpqtsc6wxgnfm444b52p4 --reveal --fields credential)" >> .env
 ```
 
 ---

@@ -35,7 +35,7 @@ redis-cli ping           # ✅ PONG!
 ### ✅ **Anthropic API Key Retrieved**
 ```bash
 op item get ANTHROPIC_API_KEY --reveal
-# ✅ Key: ***REMOVED***
+# ✅ Key: [Retrieved from 1Password - op item get vpxxhnpqtsc6wxgnfm444b52p4]
 # ✅ Added to: backend/reasoning-gateway/.env
 ```
 
