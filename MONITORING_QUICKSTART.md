@@ -263,6 +263,7 @@ Tests:
 - Optimization: 10% performance sampling, log filtering
 
 **Sentry** ($29/month):
+
 - 50K errors/month included
 - Optimization: Filter expected errors, sample performance
 

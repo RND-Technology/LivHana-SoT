@@ -167,6 +167,7 @@ curl http://localhost:3005/api/bigquery/products
 - Visual charts with Chart.js
 
 ### Alerts System
+
 - Low inventory warnings
 - Expiring licenses (< 60 days)
 - Failed transactions
@@ -262,6 +263,7 @@ Currently integrated with:
 3. Check for console errors
 
 ### Authentication errors
+
 **Solution:**
 1. Check auth middleware configuration
 2. Verify credentials are being sent with requests
