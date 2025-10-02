@@ -38,3 +38,4 @@ Each service MUST have:
 - Housekeeping: [automation/scripts/check_housekeeping_queue.sh](mdc:automation/scripts/check_housekeeping_queue.sh)
 alwaysApply: true
 ---
+<!-- Last optimized: 2025-10-02 -->

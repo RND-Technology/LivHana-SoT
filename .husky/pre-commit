@@ -12,3 +12,4 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "✅ Fallacy scan passed - commit allowed"
+# Last optimized: 2025-10-02

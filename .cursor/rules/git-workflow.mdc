@@ -80,3 +80,4 @@ git branch --merged | grep -v main | xargs git branch -d
 - **NEVER** rewrite public history
 alwaysApply: true
 ---
+<!-- Last optimized: 2025-10-02 -->

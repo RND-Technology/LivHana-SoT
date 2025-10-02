@@ -2,6 +2,7 @@
 # ============================================
 # LIVHANA EMPIRE - ONE COMMAND STARTUP
 # ============================================
+# Last optimized: 2025-10-02
 # Usage: ./START.sh [mode]
 # Modes: dev (default), full, voice, test
 # ============================================
