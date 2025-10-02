@@ -43,3 +43,5 @@ Adopt a shared voice/reasoning queue architecture with the following pillars:
 - Guardrails logged (allowed/blocked) per job.
 - Memory/feedback logs generated for each reasoning completion.
 - New Playwright deterministic mocks cover enqueue → stream → final flow.
+
+<!-- Last verified: 2025-10-02 -->

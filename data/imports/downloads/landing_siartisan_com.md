@@ -26,3 +26,5 @@ Next.js, Tailwind, Workers, vector DBs.
   "description": "Custom agent UIs & flows | Edge inference + workers for speed | Observability baked in"
 }
 ```
+
+<!-- Last verified: 2025-10-02 -->

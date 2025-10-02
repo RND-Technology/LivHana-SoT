@@ -55,3 +55,5 @@ create index on coa (sku, batch);
 - 95% accurate method extraction on sample COAs.
 - 100% block on novel cannabinoids lacking NIST validation.
 - Zero medical claims in UI copy.
+
+<!-- Last verified: 2025-10-02 -->

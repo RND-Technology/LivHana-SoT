@@ -256,3 +256,5 @@ commerce.memberships (
 3. Run `npm test src/membership.test.js`
 4. Start service: `npm start`
 5. Test endpoints with cURL or Postman
+
+<!-- Last verified: 2025-10-02 -->

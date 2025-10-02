@@ -176,3 +176,5 @@ psql herbitrage < docs/AlloyDB_Schema.sql
 - Badges in corners only; no pot-leaf spam; lapel pin “R&D”.
 
 **This file is canonical; earlier lists are superseded.**
+
+<!-- Last verified: 2025-10-02 -->

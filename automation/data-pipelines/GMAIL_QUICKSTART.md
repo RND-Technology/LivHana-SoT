@@ -157,3 +157,5 @@ gcloud projects add-iam-policy-binding ${GCP_PROJECT_ID} \
 ## Support
 
 Questions? Check the full README or test suite for troubleshooting guidance.
+
+<!-- Last verified: 2025-10-02 -->

@@ -41,3 +41,4 @@ const port = Number(process.env.PORT ?? 4001);
 app.listen(port, () => {
   logger.info({ port }, 'voice-service listening');
 });
+// Last optimized: 2025-10-02

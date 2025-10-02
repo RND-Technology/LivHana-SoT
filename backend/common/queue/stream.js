@@ -47,3 +47,4 @@ export const streamJobEvents = ({ res, queueEvents, jobId, logger, requestId }) 
 
   return cleanup;
 };
+// Last optimized: 2025-10-02

@@ -324,3 +324,5 @@ gcloud iam service-accounts get-iam-policy SERVICE_ACCOUNT@PROJECT_ID.iam.gservi
 - [GCP Secret Manager Documentation](https://cloud.google.com/secret-manager/docs)
 - [Best Practices for Secret Management](https://cloud.google.com/secret-manager/docs/best-practices)
 - [Secret Manager IAM Roles](https://cloud.google.com/secret-manager/docs/access-control)
+
+<!-- Last verified: 2025-10-02 -->

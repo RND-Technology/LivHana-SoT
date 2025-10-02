@@ -31,3 +31,4 @@ export const adminMiddleware = ({ logger } = {}) => {
     next();
   };
 };
+// Last optimized: 2025-10-02

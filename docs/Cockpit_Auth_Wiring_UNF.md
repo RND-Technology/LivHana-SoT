@@ -51,3 +51,5 @@ app.get('/api/roi', async (req, res) => {
 
 - Unauthorized or under-21 blocked at middleware.
 - Authenticated, age-verified requests succeed (`/api/roi`, `/v1/video/kickoff`).
+
+<!-- Last verified: 2025-10-02 -->

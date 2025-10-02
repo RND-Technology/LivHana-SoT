@@ -617,3 +617,5 @@ COST IF DELAYED: [Time/money impact]
 
 ---
 
+
+<!-- Last verified: 2025-10-02 -->

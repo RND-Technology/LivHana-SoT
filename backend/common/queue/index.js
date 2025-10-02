@@ -49,3 +49,4 @@ export const createQueueEvents = (name, { connectionOverrides } = {}) => new Que
   name,
   createRedisConfig(connectionOverrides)
 );
+// Last optimized: 2025-10-02

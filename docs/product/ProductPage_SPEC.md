@@ -58,3 +58,5 @@
 - Need final design for audio cues on review success/fail states.
 - Confirm membership tier names + thresholds with stakeholders.
 - Determine service boundaries (extend existing backend vs new service).
+
+<!-- Last verified: 2025-10-02 -->

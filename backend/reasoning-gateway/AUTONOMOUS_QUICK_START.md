@@ -361,3 +361,5 @@ Health Check:     GET    /api/autonomous/health
 ---
 
 **Pro Tip:** Bookmark this guide and keep your `ADMIN_JWT_TOKEN` in your environment for quick access!
+
+<!-- Last verified: 2025-10-02 -->

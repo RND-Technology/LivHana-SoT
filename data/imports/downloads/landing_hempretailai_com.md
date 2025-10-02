@@ -35,3 +35,5 @@ Will you handle DNS, webhooks, and tags? How long is the cutover?
   "description": "Lightspeed/Square to Klaviyo golden-path flows | Menu sync + COA enrichment + SMS/Email playbooks | Age-gated funnels built for conservative markets"
 }
 ```
+
+<!-- Last verified: 2025-10-02 -->

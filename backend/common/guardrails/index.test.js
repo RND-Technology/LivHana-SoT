@@ -26,3 +26,4 @@ describe('evaluateGuardrails', () => {
     expect(logs.length).toBeGreaterThan(0);
   });
 });
+// Last optimized: 2025-10-02

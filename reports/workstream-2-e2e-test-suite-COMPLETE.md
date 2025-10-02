@@ -435,3 +435,5 @@ All tests are designed to pass whether external services are available or not, e
 ---
 
 END REPORT
+
+<!-- Last verified: 2025-10-02 -->

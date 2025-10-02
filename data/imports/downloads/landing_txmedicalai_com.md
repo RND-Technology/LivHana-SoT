@@ -26,3 +26,5 @@ HIPAA BAAs, audit logging, model governance.
   "description": "Clinical documentation assistance | Prior auth & denial prevention | De\u2011ID pipelines for research"
 }
 ```
+
+<!-- Last verified: 2025-10-02 -->

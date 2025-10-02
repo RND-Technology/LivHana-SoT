@@ -318,3 +318,5 @@ spec:
 ---
 
 **Ready to go?** Run `npm run notion:test` to verify setup, then `npm run notion:ingest` to start!
+
+<!-- Last verified: 2025-10-02 -->

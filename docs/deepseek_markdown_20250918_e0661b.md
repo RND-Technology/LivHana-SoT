@@ -25,3 +25,5 @@ We will adopt a multi-stage Docker build process for all services, orchestrated 
 * **Positive:** Builds are reproducible across any machine with Docker installed. The setup is optimized for the target M4 Max hardware.
 * **Negative:** Mac-hosted Ollama creates a slight hybrid deployment model. Full containerization of Ollama would require a Linux host with NVIDIA GPUs for a pure Docker environment.
 * **Risk:** The "one-shot" script must handle the complexity of configuring both the containerized services and the host-level Ollama process. Automation must be robust.
+
+<!-- Last verified: 2025-10-02 -->

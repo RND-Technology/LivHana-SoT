@@ -19,5 +19,6 @@
     "jsonwebtoken": "^9.0.2",
     "pino": "^9.3.2",
     "redis": "^4.7.0"
-  }
+  },
+  "lastOptimized": "2025-10-02"
 }

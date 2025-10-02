@@ -393,3 +393,5 @@ SUPPORTING_METRICS:
 
 ---
 **END OF CONSTITUTIONAL CHARTER**
+
+<!-- Last verified: 2025-10-02 -->

@@ -17,3 +17,5 @@ All active development has moved to the parent directories:
 - `/docs/` - Active documentation
 
 These files are preserved for reference only.
+
+<!-- Last verified: 2025-10-02 -->

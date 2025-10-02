@@ -32,3 +32,5 @@ Will you coordinate counsel? Do you offer media training?
   "description": "Prebuilt comms + escalation matrices | Regulatory-safe response templates | Tabletop exercises and retained response"
 }
 ```
+
+<!-- Last verified: 2025-10-02 -->

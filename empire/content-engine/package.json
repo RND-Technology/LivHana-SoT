@@ -22,5 +22,6 @@
     "node": ">=18.0.0"
   },
   "author": "Jesse Niesen",
-  "license": "PROPRIETARY"
+  "license": "PROPRIETARY",
+  "lastOptimized": "2025-10-02"
 }

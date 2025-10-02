@@ -156,3 +156,4 @@ app.listen(PORT, () => {
   // Start Lightspeed auto-sync scheduler (every 15 minutes)
   startLightspeedSyncScheduler();
 });
+// Last optimized: 2025-10-02

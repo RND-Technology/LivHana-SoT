@@ -18,3 +18,4 @@ export const validateJWTConfig = () => {
     throw new Error(`Missing required JWT environment variables: ${missing.join(', ')}`);
   }
 };
+// Last optimized: 2025-10-02

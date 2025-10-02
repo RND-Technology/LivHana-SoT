@@ -20,3 +20,5 @@
 - Added `npm run test` scripts for `backend/common` and `backend/reasoning-gateway`; fixed logger mocks and dependency gaps.
 - Updated Playwright SSE mock to use deterministic Redis queue helper.
 - Documented current stack status, ADR index, and pipeline state in `docs/CURRENT_STATUS.md` and `docs/ADR_INDEX.md`.
+
+<!-- Last verified: 2025-10-02 -->

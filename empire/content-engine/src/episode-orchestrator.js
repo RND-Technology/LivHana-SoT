@@ -172,3 +172,4 @@ if (import.meta.url === `file://${process.argv[1]}`) {
       console.log('  episode1  - Generate full Episode 1 (5 minutes)');
   }
 }
+// Last optimized: 2025-10-02

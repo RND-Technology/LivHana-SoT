@@ -995,3 +995,5 @@ The journey from conflict to command requires dedication, courage, and the willi
 *Marine Veteran • Cannabis Industry Pioneer • Family Legacy Builder*
 
 **"From Conflict to Command: The transformation begins now."**
+
+<!-- Last verified: 2025-10-02 -->

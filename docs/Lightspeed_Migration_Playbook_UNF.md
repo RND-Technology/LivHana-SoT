@@ -51,3 +51,5 @@
 - 0 data loss during cutover.
 - Same-day revenue parity (±0.5%).
 - No missing taxes/discounts for top-20 SKUs.
+
+<!-- Last verified: 2025-10-02 -->

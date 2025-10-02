@@ -11,3 +11,5 @@
 **Legend**  Likelihood/Impact: L=Low, M=Medium, H=High. Status: Open | Monitored | Watch | Mitigated | Closed.
 
 **Review cadence:** Weekly (High Noon T-30 cycle). Update `Reviewed` column each session. Continuous mitigation required before Go-Live.
+
+<!-- Last verified: 2025-10-02 -->

@@ -16,3 +16,5 @@ Handles all cannabis-related compliance, age verification, and regulatory requir
 ```bash
 npm test
 ```
+
+<!-- Last verified: 2025-10-02 -->

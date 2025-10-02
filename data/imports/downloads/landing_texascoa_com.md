@@ -29,3 +29,5 @@ How to interpret cannabinoids, terpenes, residuals.
   "description": "Search COAs by brand, batch, or QR | Education on reading lab results | Retailer badges and API"
 }
 ```
+
+<!-- Last verified: 2025-10-02 -->

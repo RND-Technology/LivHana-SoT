@@ -569,3 +569,5 @@ Sign-off required before production deployment:
 - [ ] Technical Lead: _________________ Date: _______
 - [ ] Product Owner: _________________ Date: _______
 - [ ] Compliance Officer: _____________ Date: _______
+
+<!-- Last verified: 2025-10-02 -->

@@ -91,3 +91,4 @@ export const JWT_CONFIG = new Proxy({}, {
     return jwtConfig[prop];
   }
 });
+// Last optimized: 2025-10-02

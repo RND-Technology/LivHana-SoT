@@ -77,3 +77,5 @@ Bind a Pub/Sub push from Alerting to a Cloud Function or Cloud Run endpoint that
 
 - Disable auto-remediation trigger; keep L1 paging.  
 - Revert to last known good revision: `gcloud run services update-traffic --to-revisions <rev>=100`.
+
+<!-- Last verified: 2025-10-02 -->

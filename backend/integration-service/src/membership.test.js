@@ -409,3 +409,4 @@ describe('BigQuery Integration', () => {
     expect(isAvailable).toBe(false);
   });
 });
+// Last optimized: 2025-10-02

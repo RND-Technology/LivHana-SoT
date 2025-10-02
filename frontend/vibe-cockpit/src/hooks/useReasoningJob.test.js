@@ -84,3 +84,4 @@ describe('useReasoningJob', () => {
     expect(result.current.error).toBe('bad');
   });
 });
+// Last optimized: 2025-10-02

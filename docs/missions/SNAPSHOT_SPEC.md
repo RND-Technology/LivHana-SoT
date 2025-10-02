@@ -104,3 +104,5 @@ If snapshot generation fails:
 - [ ] Extend snapshot generator (`generate_snapshot.py`) to emit full structure
 - [ ] Update CI to lint snapshots against schema
 - [ ] Add retention cleanup script (`automation/scripts/prune_snapshots.sh`)
+
+<!-- Last verified: 2025-10-02 -->

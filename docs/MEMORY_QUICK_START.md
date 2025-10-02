@@ -312,3 +312,5 @@ bq ls
 The memory system is now live and learning from every interaction. Watch your customers' profiles grow smarter over time!
 
 **THIS IS WHAT MAKES US A UNICORN - NO COMPETITOR HAS THIS.**
+
+<!-- Last verified: 2025-10-02 -->

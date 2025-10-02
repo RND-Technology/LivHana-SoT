@@ -35,3 +35,5 @@ What is THCa? Is it legal in Texas? How do I read a COA?
   "description": "Texas-legal THCa flower & products | Fast local pickup, statewide shipping (where allowed) | Lab-tested COAs and transparent sourcing"
 }
 ```
+
+<!-- Last verified: 2025-10-02 -->

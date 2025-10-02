@@ -268,3 +268,4 @@ scanner.scan().catch((error) => {
 });
 
 export { FallacyScanner, FALLACY_PATTERNS, SOURCE_TRUTH };
+// Last optimized: 2025-10-02

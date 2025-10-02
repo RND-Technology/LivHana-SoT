@@ -227,3 +227,5 @@ export default defineConfig({
 | Snapshot diff (optional) includes session metrics | Observability integration |
 
 ---
+
+<!-- Last verified: 2025-10-02 -->

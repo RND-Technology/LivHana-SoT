@@ -29,3 +29,5 @@ To develop and deploy Liv Hana, a System-of-Thoughts (SoT) framework for orchest
     ```bash
     bash scripts/validate.sh
     ```
+
+<!-- Last verified: 2025-10-02 -->

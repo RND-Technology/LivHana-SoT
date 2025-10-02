@@ -107,4 +107,4 @@ jobs:
           echo "Frontend Lint/Build: ${{ needs.lint-frontend.result }}"
           if [ "${{ needs.verify.result }}" != "success" ]; then
             echo "::warning::Verification job did not fully succeed."
-          fi
+          fi# Last optimized: 2025-10-02

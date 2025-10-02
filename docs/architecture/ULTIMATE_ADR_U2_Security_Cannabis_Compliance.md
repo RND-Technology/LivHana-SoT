@@ -365,3 +365,5 @@ const COMPLIANCE_METRICS = {
 ---
 
 **REGULATORY AUTHORITY**: This ADR ensures 100% compliance with applicable cannabis regulations and supersedes all non-compliant implementations.
+
+<!-- Last verified: 2025-10-02 -->

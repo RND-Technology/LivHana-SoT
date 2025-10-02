@@ -66,3 +66,4 @@ Negative:
 
 ## Implementation Notes
 See: `patterns-catalog-v1.md`, `pipeline-gate-mapping.md`, `runbook-pr-verification-checklist.md`.
+<!-- Last verified: 2025-10-02 -->

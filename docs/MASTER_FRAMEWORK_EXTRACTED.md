@@ -309,3 +309,5 @@ This is your **"Remembering the Future" Visioneering Cascade** that cycles throu
 **NOW - FILL IN THE BLANKS SO WE CAN COMPLETE YOUR Q4 2025 FULL FUNNEL PLANNING SESSION!**
 
 What are your honest Level NOW scores (0-10) for each of the 8 AOM categories?
+
+<!-- Last verified: 2025-10-02 -->

@@ -32,3 +32,5 @@ Can you maintain our automations? How do you handle auth?
   "description": "Turn messy processes into 1\u2011click SOPs | RPA where it counts (orders, tickets, finance) | Audit\u2011ready logs for ops & compliance"
 }
 ```
+
+<!-- Last verified: 2025-10-02 -->

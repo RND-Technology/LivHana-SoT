@@ -27,3 +27,5 @@
 - **Memory hooks**: Reasoning worker updates BullMQ progress for partial deltas.
 - **Reflection**: SSE stream exposes incremental reasoning for downstream UI reflection.
 - **Guardrails**: Shared module blocks invalid/banned prompts prior to DeepSeek invocation.
+
+<!-- Last verified: 2025-10-02 -->

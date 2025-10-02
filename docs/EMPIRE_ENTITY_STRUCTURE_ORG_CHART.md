@@ -536,3 +536,5 @@ Living Trust (Jesse Niesen Family Trust)
 
 *Empire Entity Structure Complete - September 30, 2025*
 *Jesse Niesen Cannabis Empire - "We Takin Ova" 🇺🇸*
+
+<!-- Last verified: 2025-10-02 -->

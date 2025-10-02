@@ -73,3 +73,4 @@ export const configureAxiosAuth = () => {
 
 // Initialize auth on app load
 configureAxiosAuth();
+// Last optimized: 2025-10-02

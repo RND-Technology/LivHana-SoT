@@ -128,3 +128,5 @@ You can now re-run `./setup_memory.sh` any time — it won’t break, won’t ov
 ---
 
 Do you want me to **generate that ADR file right now** and give you a working download link so you can drop it directly into `docs/ADR/`?
+
+<!-- Last verified: 2025-10-02 -->

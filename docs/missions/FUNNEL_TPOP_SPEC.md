@@ -109,3 +109,5 @@ Each retains dog-whistle triads (MAGA Lab, Craft Collie, Skeptic Greyhound, Past
 - Automated persona aging/retirement rules (inactive >90 days?).
 
 > This spec supersedes prior informal notes; updates require simultaneous edits to `NSM_matrix.md` and dashboard definitions.
+
+<!-- Last verified: 2025-10-02 -->

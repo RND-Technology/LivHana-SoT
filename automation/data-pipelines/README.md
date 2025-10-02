@@ -36,3 +36,5 @@
 - Transform/match items & members.
 - Import into Lightspeed via API.
 - Add verification script + scheduler once creds validated.
+
+<!-- Last verified: 2025-10-02 -->

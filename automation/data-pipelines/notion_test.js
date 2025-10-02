@@ -218,3 +218,4 @@ if (results.failed.length > 0) {
   console.log('Or:');
   console.log('  node notion_ingest.js\n');
 }
+// Last optimized: 2025-10-02

@@ -39,3 +39,5 @@ Generate a consistent operational state snapshot for trend, audit, and recovery 
 ## Escalation
 
 - 2 consecutive snapshot failures → create RISKLOG entry or update R2.
+
+<!-- Last verified: 2025-10-02 -->

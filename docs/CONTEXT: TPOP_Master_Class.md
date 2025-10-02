@@ -296,3 +296,5 @@ create table if not exists tpop_metrics_daily (
 ## Attribution
 
 Designed for the Liv Hana stack. © Reggie & Dro / One Plant Solution / Herbitrage.
+
+<!-- Last verified: 2025-10-02 -->

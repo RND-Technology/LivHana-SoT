@@ -26,3 +26,5 @@ SCADA/AMI ingestion, weather, market pricing feeds.
   "description": "Load forecasting & anomaly detection | Field ops NLP for work orders | Regulatory-ready reliability reports"
 }
 ```
+
+<!-- Last verified: 2025-10-02 -->

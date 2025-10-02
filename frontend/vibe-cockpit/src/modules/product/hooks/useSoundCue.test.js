@@ -52,3 +52,4 @@ describe('useSoundCue', () => {
     expect(mockCtx.createOscillator).toHaveBeenCalledTimes(2);
   });
 });
+// Last optimized: 2025-10-02

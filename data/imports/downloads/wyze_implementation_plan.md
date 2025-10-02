@@ -205,3 +205,5 @@ Answer each question to determine your starting point:
 **Ready to start? Complete the assessment questionnaire above, then begin Week 1 immediately.**
 
 **Next Step:** Send me your assessment scores and I'll create a customized 30-day implementation plan specific to your locations and business needs.
+
+<!-- Last verified: 2025-10-02 -->

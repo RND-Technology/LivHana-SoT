@@ -201,3 +201,5 @@ LivHana-Entropic/
 ---
 
 **CONSTITUTIONAL AUTHORITY**: This ADR represents the foundational governance for all Trinity operations and supersedes all conflicting documentation.
+
+<!-- Last verified: 2025-10-02 -->

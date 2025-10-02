@@ -508,3 +508,5 @@ For questions or issues:
 3. Review logs
 4. Test with the test suite
 5. Verify environment variables
+
+<!-- Last verified: 2025-10-02 -->

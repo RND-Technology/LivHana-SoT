@@ -74,3 +74,5 @@ await writeGauge('custom.googleapis.com/herbitrage/age_gate_pass_rate', 0.97);
 ## 7) Rollback
 
 - Revert to base `dashboard.json`. Remove custom-metric writers.
+
+<!-- Last verified: 2025-10-02 -->

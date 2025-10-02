@@ -877,3 +877,5 @@ setInterval(checkMetrics, 15 * 60 * 1000);
 ---
 
 These integration examples show how to use the age verification system in real-world scenarios. Each example is production-ready and can be adapted to your specific needs.
+
+<!-- Last verified: 2025-10-02 -->

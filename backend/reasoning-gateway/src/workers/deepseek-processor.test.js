@@ -90,3 +90,4 @@ describe('createDeepSeekWorkerProcessor', () => {
     await expect(processor(job)).rejects.toThrow('Guardrail blocked reasoning job: BANNED');
   });
 });
+// Last optimized: 2025-10-02

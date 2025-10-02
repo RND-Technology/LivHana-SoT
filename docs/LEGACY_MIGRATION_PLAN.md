@@ -21,3 +21,5 @@ This document maps existing code/assets in the legacy repositories to their dest
 | `LivHana-Entropic/artifacts`, `products`, `logs` | AI outputs / artifacts | Archive (reference only) | `legacy/entropic/` |
 
 We will build the target structure first, then move/clean in phases to avoid accidental loss.
+
+<!-- Last verified: 2025-10-02 -->

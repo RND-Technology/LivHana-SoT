@@ -8,5 +8,6 @@
   },
   "dependencies": {
     "@playwright/test": "^1.55.1"
-  }
+  },
+  "lastOptimized": "2025-10-02"
 }

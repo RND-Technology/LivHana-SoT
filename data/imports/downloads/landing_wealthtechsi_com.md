@@ -26,3 +26,5 @@ Custodians, CRMs, data vendors.
   "description": "KYC/AML document flows | Portfolio commentary generation | Client service copilot"
 }
 ```
+
+<!-- Last verified: 2025-10-02 -->

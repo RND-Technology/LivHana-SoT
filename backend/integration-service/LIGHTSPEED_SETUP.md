@@ -114,3 +114,5 @@ node -e "const {BigQuery} = require('@google-cloud/bigquery'); const bq = new Bi
 3. Set `LIGHTSPEED_USE_MOCK=false`
 4. Run manual sync to test: `node scripts/sync-lightspeed-to-bigquery.js`
 5. Restart server to enable automatic 15-minute syncs
+
+<!-- Last verified: 2025-10-02 -->

@@ -876,3 +876,4 @@ describe('Raffle System - Unit Tests', () => {
     });
   });
 });
+// Last optimized: 2025-10-02

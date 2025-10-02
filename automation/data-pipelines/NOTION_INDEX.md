@@ -533,3 +533,5 @@ This is a **complete, production-ready** Notion ingestion pipeline with:
 **Total deliverable: 2,341 lines across 8 files**
 
 Ready to use immediately with `npm run notion:test` and `npm run notion:ingest`.
+
+<!-- Last verified: 2025-10-02 -->

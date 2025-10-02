@@ -148,3 +148,5 @@ export async function POST(req: Request) {
 
 - Under-21 cannot pass middleware.
 - Valid 21+ user receives `age_verified: true` and can hit API with OIDC token.
+
+<!-- Last verified: 2025-10-02 -->

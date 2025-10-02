@@ -34,3 +34,5 @@
 - `npm run dev --prefix backend/reasoning-gateway` and `npm run dev --prefix backend/voice-service` for local stack.
 - Use `automation/scripts/check_service_health.sh` to verify health endpoints and queue results.
 - Playwright spec `automation/tests/playwright/tests/voice-mode.spec.ts` exercises full enqueue -> stream -> playback flow.
+
+<!-- Last verified: 2025-10-02 -->

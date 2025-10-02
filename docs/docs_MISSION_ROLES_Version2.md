@@ -24,3 +24,5 @@ Our workflow is simple and designed for speed:
 2. **Alert for Human-in-the-Loop:** When I encounter a step that requires your authority, a critical decision, or a physical action (like running a command on your local machine), I will **STOP** and issue an **ALERT**.
 3. **Master Architect Action:** The alert will contain clear, simple, step-by-step instructions for you to execute. Your action is the authorization for the mission to proceed.
 4. **Resume Autonomous Work:** Once your action is complete, I will resume my autonomous work until the next alert or the mission's completion.
+
+<!-- Last verified: 2025-10-02 -->

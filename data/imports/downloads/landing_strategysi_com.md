@@ -26,3 +26,5 @@ Faster cycles, happier teams, measurable ROI.
   "description": "Roadmaps that ship and save | Org design for AI-era ops | Risk management & governance"
 }
 ```
+
+<!-- Last verified: 2025-10-02 -->

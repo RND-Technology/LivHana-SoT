@@ -90,3 +90,4 @@ This ADR compiles critical architectural, operational, and decision content from
 
 - [2025-09-28] Policy audits, troubleshooting, and chat synthesis completed.
 - [2025-09-28] ADR transcribed and pushed to docs/copilot/adr-chat-20250928.md in RND-Technology/LivHana-SoT-20250926.
+<!-- Last verified: 2025-10-02 -->

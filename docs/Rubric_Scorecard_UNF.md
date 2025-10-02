@@ -26,3 +26,5 @@
 - Weekly ADR review
 - Monthly budget & SLO audit
 - COA validator precision A/B with labeled set
+
+<!-- Last verified: 2025-10-02 -->

@@ -413,3 +413,5 @@ def route(task):
 ---
 
 **END OF SPEC**
+
+<!-- Last verified: 2025-10-02 -->

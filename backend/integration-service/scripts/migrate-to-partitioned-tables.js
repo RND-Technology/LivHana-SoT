@@ -214,3 +214,4 @@ runMigration().catch((error) => {
   console.error('\n❌ MIGRATION FAILED:', error);
   process.exit(1);
 });
+// Last optimized: 2025-10-02

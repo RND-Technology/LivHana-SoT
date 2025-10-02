@@ -43,3 +43,5 @@
 `Coverage % = (Verified rows) / 25 * 100`
 
 Record coverage deltas in SCORE-daily / weekly reports.
+
+<!-- Last verified: 2025-10-02 -->

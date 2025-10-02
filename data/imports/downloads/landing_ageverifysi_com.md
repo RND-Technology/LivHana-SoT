@@ -32,3 +32,5 @@ Does it block crawlers? How do I log consent?
   "description": "Copy-paste embed, 5 minutes live | ID scan optional; privacy-first mode | Auto-redirect minors to education page"
 }
 ```
+
+<!-- Last verified: 2025-10-02 -->

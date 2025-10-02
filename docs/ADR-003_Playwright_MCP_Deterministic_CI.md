@@ -47,3 +47,5 @@ Adopt a CI pipeline with the following characteristics:
 - Playwright report artifact accessible via GitHub UI.
 - Tests run without hitting live Redis/DeepSeek/ElevenLabs.
 - Documented in `docs/testing/playwright_mcp.md` with command references.
+
+<!-- Last verified: 2025-10-02 -->

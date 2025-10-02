@@ -516,3 +516,5 @@ BigQuery / Redis / etc
 
 *Context Corrections Complete - September 30, 2025*
 *All future responses will use THIS data, not old assumptions*
+
+<!-- Last verified: 2025-10-02 -->

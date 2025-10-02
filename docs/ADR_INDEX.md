@@ -48,3 +48,5 @@ Each ADR is immutable once accepted. Superseded ADRs are noted.
 - **Date:** 2025-09-28
 - **Status:** Accepted
 - **Summary:** Defines product page module structure, loyalty data flows, Lightspeed/Square integration boundaries, and testing requirements.
+
+<!-- Last verified: 2025-10-02 -->

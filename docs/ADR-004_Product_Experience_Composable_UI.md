@@ -43,3 +43,5 @@ Adopt a composable product experience with the following pillars:
 - Reviews store L/S/T/E metrics and update loyalty credits instantly.
 - Loyalty panel shows accurate tier/points; redemption endpoint issues rewards.
 - Square ingestion pipeline retired once Lightspeed integration verified in CI + production.
+
+<!-- Last verified: 2025-10-02 -->

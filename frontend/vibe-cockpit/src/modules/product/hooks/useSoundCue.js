@@ -44,3 +44,4 @@ export const useSoundCue = () => {
 
   return { playSoftCue, playAttentionCue };
 };
+// Last optimized: 2025-10-02

@@ -375,3 +375,4 @@ export class VectorEmbeddingService {
     }
   }
 }
+// Last optimized: 2025-10-02

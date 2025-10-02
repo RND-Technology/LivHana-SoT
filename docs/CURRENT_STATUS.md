@@ -40,3 +40,5 @@ Verifier: Codex (Tier‑1 Orchestrator)
 | `.cursor/autopilot.md` | Repo | Complete | Immediate build queue synced with Tier‑1 scope |
 | `docs/ADR-002_Voice_Mode_Queue_Architecture.md` | Repo | Complete | Queue guardrails + memory wiring captured |
 | `docs/ADR-003_Playwright_MCP_Deterministic_CI.md` | Repo | Complete | CI workflow requirements codified |
+
+<!-- Last verified: 2025-10-02 -->
