@@ -131,7 +131,7 @@ const createSecureCORS = ({ logger, allowedOrigins = [] } = {}) => {
 /**
  * Request sanitization middleware - prevents injection attacks
  */
-const createRequestSanitizer = ({ logger } = {}) => {
+const createRequestSanitizer = () => {
   return (req, res, next) => {
     // Sanitize query parameters
     if (req.query) {
@@ -233,8 +233,9 @@ const createSecurityAuditor = ({ logger } = {}) => {
 };
 
 export { createSecurityHeaders, createSecureCORS, createRequestSanitizer, createSecurityAuditor };
-// Last optimized: 2025-10-02
 
 // Optimized: 2025-10-02
 
 // Last updated: 2025-10-02
+
+// Last optimized: 2025-10-02

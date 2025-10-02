@@ -191,3 +191,5 @@ echo -e "${GREEN}DDoS protection is ACTIVE${NC}"
 echo ""
 
 # Last updated: 2025-10-02
+
+# Last optimized: 2025-10-02

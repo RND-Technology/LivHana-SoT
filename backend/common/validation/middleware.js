@@ -99,7 +99,7 @@ const validateParams = (schema) => {
  */
 const validateHeaders = (schema) => {
   return (req, res, next) => {
-    const { error, value } = schema.validate(req.headers, {
+    const { error } = schema.validate(req.headers, {
       abortEarly: false,
       stripUnknown: true,
       convert: true
@@ -125,8 +125,9 @@ const validateHeaders = (schema) => {
 };
 
 export { validateBody, validateQuery, validateParams, validateHeaders };
-// Last optimized: 2025-10-02
 
 // Optimized: 2025-10-02
 
 // Last updated: 2025-10-02
+
+// Last optimized: 2025-10-02

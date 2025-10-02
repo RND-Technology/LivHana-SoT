@@ -33,10 +33,11 @@ done
 # Update all YAML files
 find . -name "*.yml" -o -name "*.yaml" | grep -v node_modules | while read file; do
   if ! grep -q "last_optimized:" "$file"; then
-    echo "# Last optimized: $DATE" >> "$file"
   fi
 done
 
 echo "✅ All files optimized with timestamp: $DATE"
 
 # Last updated: 2025-10-02
+
+# Last optimized: 2025-10-02

@@ -19,3 +19,5 @@ if [ -z "$OPENAI_API_KEY" ]; then echo "❌ OPENAI_API_KEY not set in .env"; els
 
 echo "🎯 Validation complete."
 # Last updated: 2025-10-02
+
+# Last optimized: 2025-10-02
