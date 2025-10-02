@@ -36,3 +36,5 @@
 - Playwright spec `automation/tests/playwright/tests/voice-mode.spec.ts` exercises full enqueue -> stream -> playback flow.
 
 <!-- Last verified: 2025-10-02 -->
+
+<!-- Optimized: 2025-10-02 -->

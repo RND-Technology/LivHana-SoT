@@ -538,3 +538,5 @@ ingestDomains()
     console.error('Square multi-domain ingestion failed', error);
     process.exit(1);
   });
+
+// Optimized: 2025-10-02

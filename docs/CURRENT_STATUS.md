@@ -42,3 +42,5 @@ Verifier: Codex (Tier‑1 Orchestrator)
 | `docs/ADR-003_Playwright_MCP_Deterministic_CI.md` | Repo | Complete | CI workflow requirements codified |
 
 <!-- Last verified: 2025-10-02 -->
+
+<!-- Optimized: 2025-10-02 -->

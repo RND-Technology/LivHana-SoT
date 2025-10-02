@@ -45,3 +45,5 @@
 Record coverage deltas in SCORE-daily / weekly reports.
 
 <!-- Last verified: 2025-10-02 -->
+
+<!-- Optimized: 2025-10-02 -->

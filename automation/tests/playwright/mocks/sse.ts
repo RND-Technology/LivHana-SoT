@@ -23,3 +23,5 @@ export const createReasoningSSEPayload = ({ job = createMockRedisJob() }: Create
 
   return lines.join('\n');
 };
+
+// Optimized: 2025-10-02

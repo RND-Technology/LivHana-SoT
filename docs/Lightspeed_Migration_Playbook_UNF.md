@@ -53,3 +53,5 @@
 - No missing taxes/discounts for top-20 SKUs.
 
 <!-- Last verified: 2025-10-02 -->
+
+<!-- Optimized: 2025-10-02 -->

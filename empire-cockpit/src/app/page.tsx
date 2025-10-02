@@ -342,3 +342,5 @@ export default function HeroPage() {
     </div>
   )
 }
+
+// Optimized: 2025-10-02

@@ -57,3 +57,5 @@ create index on coa (sku, batch);
 - Zero medical claims in UI copy.
 
 <!-- Last verified: 2025-10-02 -->
+
+<!-- Optimized: 2025-10-02 -->

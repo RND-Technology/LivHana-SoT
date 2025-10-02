@@ -93,3 +93,5 @@ export async function waitForCondition(
     `Timeout waiting for condition${options.description ? ': ' + options.description : ''} after ${timeout}ms`
   );
 }
+
+// Optimized: 2025-10-02

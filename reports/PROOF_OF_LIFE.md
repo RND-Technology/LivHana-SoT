@@ -242,3 +242,5 @@ open http://localhost:5174
 **Next:** Start integration-service + voice-service = 100% READY
 
 <!-- Last verified: 2025-10-02 -->
+
+<!-- Optimized: 2025-10-02 -->

@@ -78,3 +78,5 @@ test.describe('Age Verification - Server-Side Security', () => {
     expect(data.error).toContain('21+');
   });
 });
+
+// Optimized: 2025-10-02

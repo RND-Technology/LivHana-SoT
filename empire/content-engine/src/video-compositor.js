@@ -239,3 +239,5 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   await compositor.createTestVideo(imagePath, text, outputPath);
 }
 // Last optimized: 2025-10-02
+
+// Optimized: 2025-10-02

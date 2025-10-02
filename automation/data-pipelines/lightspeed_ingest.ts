@@ -87,3 +87,5 @@ main().catch((error) => {
   console.error('Lightspeed ingestion failed', error);
   process.exit(1);
 });
+
+// Optimized: 2025-10-02

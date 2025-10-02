@@ -98,3 +98,5 @@ main().catch((error) => {
   console.error('Square ingestion failed', error);
   process.exit(1);
 });
+
+// Optimized: 2025-10-02

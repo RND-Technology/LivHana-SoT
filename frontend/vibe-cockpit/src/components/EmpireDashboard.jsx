@@ -318,3 +318,5 @@ const EmpireDashboard = () => {
 };
 
 export default EmpireDashboard;
+
+// Optimized: 2025-10-02

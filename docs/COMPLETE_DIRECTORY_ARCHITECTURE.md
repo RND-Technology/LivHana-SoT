@@ -219,3 +219,5 @@ Every piece of context from your account is now organized in the cascading visio
 **Ready to fill in the blanks and complete your Q4 2025 Full Funnel Planning Session?**
 
 <!-- Last verified: 2025-10-02 -->
+
+<!-- Optimized: 2025-10-02 -->

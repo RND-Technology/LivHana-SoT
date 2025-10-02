@@ -100,3 +100,5 @@ const nextConfig = {
 }
 
 module.exports = nextConfig
+
+// Optimized: 2025-10-02

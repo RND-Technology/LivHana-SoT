@@ -19,3 +19,5 @@ export function getAuthHeader(role: 'admin' | 'user' = 'admin'): { Authorization
     Authorization: `Bearer ${getTestToken(role)}`
   };
 }
+
+// Optimized: 2025-10-02

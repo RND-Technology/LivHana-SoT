@@ -23,3 +23,5 @@ This document maps existing code/assets in the legacy repositories to their dest
 We will build the target structure first, then move/clean in phases to avoid accidental loss.
 
 <!-- Last verified: 2025-10-02 -->
+
+<!-- Optimized: 2025-10-02 -->

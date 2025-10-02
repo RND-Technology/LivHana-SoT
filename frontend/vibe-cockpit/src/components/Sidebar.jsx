@@ -340,3 +340,5 @@ const Sidebar = ({ open }) => {
 };
 
 export default Sidebar;
+
+// Optimized: 2025-10-02

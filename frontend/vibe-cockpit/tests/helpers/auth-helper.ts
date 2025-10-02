@@ -63,3 +63,5 @@ export async function waitForAuth(page: Page, timeout: number = 5000): Promise<v
 export async function setupAuthenticatedTest(context: BrowserContext, role: 'admin' | 'user' = 'admin') {
   await setAuthToken(context, getTestToken(role));
 }
+
+// Optimized: 2025-10-02

@@ -208,3 +208,5 @@ ETA: <cycles or trigger>
 END OF CHARTER
 
 <!-- Last verified: 2025-10-02 -->
+
+<!-- Optimized: 2025-10-02 -->

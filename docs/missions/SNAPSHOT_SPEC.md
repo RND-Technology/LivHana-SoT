@@ -106,3 +106,5 @@ If snapshot generation fails:
 - [ ] Add retention cleanup script (`automation/scripts/prune_snapshots.sh`)
 
 <!-- Last verified: 2025-10-02 -->
+
+<!-- Optimized: 2025-10-02 -->

@@ -43,3 +43,5 @@ test.describe('PIMP AF Dashboard Visual Capture', () => {
     console.log('✅ Square Cockpit captured!');
   });
 });
+
+// Optimized: 2025-10-02

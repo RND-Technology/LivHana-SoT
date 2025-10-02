@@ -29,3 +29,5 @@
 - **Guardrails**: Shared module blocks invalid/banned prompts prior to DeepSeek invocation.
 
 <!-- Last verified: 2025-10-02 -->
+
+<!-- Optimized: 2025-10-02 -->

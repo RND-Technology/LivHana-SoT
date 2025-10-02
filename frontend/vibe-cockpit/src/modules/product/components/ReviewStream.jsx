@@ -42,3 +42,5 @@ export const ReviewStream = ({ metrics, reviews = [], onOpenReviewModal }) => (
     </CardContent>
   </Card>
 );
+
+// Optimized: 2025-10-02

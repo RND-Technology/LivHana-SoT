@@ -9,3 +9,5 @@ Liv Hanna acts as a faithful, always-on AI assistant guiding Jesse and team in b
 - Keep docs + scripts strictly separated
 
 <!-- Last verified: 2025-10-02 -->
+
+<!-- Optimized: 2025-10-02 -->

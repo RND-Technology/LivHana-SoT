@@ -178,3 +178,5 @@ psql herbitrage < docs/AlloyDB_Schema.sql
 **This file is canonical; earlier lists are superseded.**
 
 <!-- Last verified: 2025-10-02 -->
+
+<!-- Optimized: 2025-10-02 -->

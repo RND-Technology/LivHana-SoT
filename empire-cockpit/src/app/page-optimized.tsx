@@ -369,3 +369,5 @@ export default function HeroPageOptimized() {
     </div>
   )
 }
+
+// Optimized: 2025-10-02

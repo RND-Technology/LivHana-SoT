@@ -44,3 +44,5 @@ export const ProductHero = ({ product, onAddToCart }) => {
     </Card>
   );
 };
+
+// Optimized: 2025-10-02

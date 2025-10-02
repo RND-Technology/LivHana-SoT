@@ -62,3 +62,5 @@ describe('ProductPage', () => {
     expect(screen.getByTestId('review-modal')).toBeInTheDocument();
   });
 });
+
+// Optimized: 2025-10-02

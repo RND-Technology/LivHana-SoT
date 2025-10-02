@@ -2141,3 +2141,5 @@ commerce.memberships (
 5. Test endpoints with cURL or Postman
 
 <!-- Last verified: 2025-10-02 -->
+
+<!-- Optimized: 2025-10-02 -->

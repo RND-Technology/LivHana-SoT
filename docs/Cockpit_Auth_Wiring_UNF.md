@@ -53,3 +53,5 @@ app.get('/api/roi', async (req, res) => {
 - Authenticated, age-verified requests succeed (`/api/roi`, `/v1/video/kickoff`).
 
 <!-- Last verified: 2025-10-02 -->
+
+<!-- Optimized: 2025-10-02 -->

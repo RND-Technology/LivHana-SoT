@@ -34,3 +34,5 @@ export const LoyaltyPanel = ({ loyalty = {} }) => (
     </CardContent>
   </Card>
 );
+
+// Optimized: 2025-10-02

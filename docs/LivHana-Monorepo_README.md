@@ -35,3 +35,5 @@ To develop and deploy Liv Hana, a System-of-Thoughts (SoT) framework for orchest
 This monorepo is optimized for AI-driven development. Use the `.cursorrules` file with Cursor and provide the entire repository as context to your local LLM. The master plan for development is located in `docs/SPEC.md`.
 
 <!-- Last verified: 2025-10-02 -->
+
+<!-- Optimized: 2025-10-02 -->

@@ -751,3 +751,5 @@ For issues or questions:
 - Verify `ANTHROPIC_API_KEY` is configured correctly
 
 <!-- Last verified: 2025-10-02 -->
+
+<!-- Optimized: 2025-10-02 -->

@@ -36,3 +36,5 @@ Reference: [GitHub Docs - Adding organization custom instructions for GitHub Cop
 
 - [GitHub Docs - Adding organization custom instructions for GitHub Copilot](https://docs.github.com/en/copilot/customizing-copilot/adding-organization-custom-instructions-for-github-copilot)
 <!-- Last verified: 2025-10-02 -->
+
+<!-- Optimized: 2025-10-02 -->

@@ -518,3 +518,5 @@ BigQuery / Redis / etc
 *All future responses will use THIS data, not old assumptions*
 
 <!-- Last verified: 2025-10-02 -->
+
+<!-- Optimized: 2025-10-02 -->

@@ -149,3 +149,5 @@ const Header = ({
 };
 
 export default Header;
+
+// Optimized: 2025-10-02

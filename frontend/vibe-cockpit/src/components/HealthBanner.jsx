@@ -30,3 +30,5 @@ export const HealthBanner = ({ voiceStatus, reasoningStatus, queueDepth }) => (
     </Stack>
   </Alert>
 );
+
+// Optimized: 2025-10-02

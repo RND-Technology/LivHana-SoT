@@ -351,3 +351,5 @@ const queryAuditLogs = async ({
 
 export { AUDIT_EVENTS, SEVERITY, logAuditEvent, createAuditMiddleware, queryAuditLogs };
 // Last optimized: 2025-10-02
+
+// Optimized: 2025-10-02

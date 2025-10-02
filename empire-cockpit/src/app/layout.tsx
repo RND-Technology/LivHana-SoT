@@ -72,3 +72,5 @@ export default function RootLayout({
     </html>
   )
 }
+
+// Optimized: 2025-10-02

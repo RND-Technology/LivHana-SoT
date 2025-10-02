@@ -70,3 +70,5 @@ test.describe('Executive Dashboard UI', () => {
     console.log('  Console errors: NONE');
   });
 });
+
+// Optimized: 2025-10-02

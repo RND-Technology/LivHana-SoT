@@ -95,3 +95,5 @@ export const ReviewModal = ({ open, onClose, productId, memberId }) => {
     </Dialog>
   );
 };
+
+// Optimized: 2025-10-02

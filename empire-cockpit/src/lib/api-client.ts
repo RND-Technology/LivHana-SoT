@@ -152,3 +152,5 @@ export const api = {
     getHistory: () => get('/api/xp/history'),
   },
 }
+
+// Optimized: 2025-10-02

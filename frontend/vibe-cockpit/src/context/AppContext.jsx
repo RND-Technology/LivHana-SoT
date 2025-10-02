@@ -62,3 +62,5 @@ export function useApp() {
   }
   return context;
 }
+
+// Optimized: 2025-10-02

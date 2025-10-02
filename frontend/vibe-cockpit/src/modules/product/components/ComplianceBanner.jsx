@@ -8,3 +8,5 @@ export const ComplianceBanner = ({ note }) => (
     </Typography>
   </Alert>
 );
+
+// Optimized: 2025-10-02

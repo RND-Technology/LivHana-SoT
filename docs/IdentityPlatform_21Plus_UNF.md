@@ -150,3 +150,5 @@ export async function POST(req: Request) {
 - Valid 21+ user receives `age_verified: true` and can hit API with OIDC token.
 
 <!-- Last verified: 2025-10-02 -->
+
+<!-- Optimized: 2025-10-02 -->

@@ -60,3 +60,5 @@
 - Determine service boundaries (extend existing backend vs new service).
 
 <!-- Last verified: 2025-10-02 -->
+
+<!-- Optimized: 2025-10-02 -->

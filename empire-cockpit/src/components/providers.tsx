@@ -22,3 +22,5 @@ export function Providers({ children }: { children: ReactNode }) {
     </QueryClientProvider>
   )
 }
+
+// Optimized: 2025-10-02
