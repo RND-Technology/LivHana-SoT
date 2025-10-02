@@ -16,3 +16,4 @@ if [ -f "packages/liv-hana-sot/package.json" ]; then
 fi
 
 echo "✅ Environment setup complete. Run 'bash scripts/validate.sh' to verify."
+# Last updated: 2025-10-02

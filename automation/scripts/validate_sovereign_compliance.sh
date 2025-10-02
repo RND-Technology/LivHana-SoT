@@ -25,3 +25,5 @@ if [ "$found" -eq 0 ]; then
 fi
 
 log_info "Sovereign compliance validation finished"
+
+# Last updated: 2025-10-02

@@ -52,3 +52,4 @@ if (( missing_field )); then
 fi
 
 ok "Snapshot valid & fresh (${age_hours}h old): $latest_file"
+# Last updated: 2025-10-02

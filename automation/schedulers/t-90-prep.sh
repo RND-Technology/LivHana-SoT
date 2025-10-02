@@ -53,3 +53,5 @@ Generated: $(date -u +%Y-%m-%dT%H:%M:%SZ)
 EOF
 
 echo "✅ T-90 Preparation Complete!"
+
+# Last updated: 2025-10-02

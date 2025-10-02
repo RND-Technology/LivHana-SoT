@@ -18,3 +18,5 @@ for manifest in "$ROOT_DIR"/cloud-run/*.yaml; do
 done
 
 log_info "Service deployment validation complete"
+
+# Last updated: 2025-10-02

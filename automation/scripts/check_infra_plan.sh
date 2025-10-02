@@ -43,3 +43,4 @@ if [[ -d "$TERRAFORM_DIR" ]]; then
 else
   warn "No terraform directory; skipping infra drift check."
 fi
+# Last updated: 2025-10-02

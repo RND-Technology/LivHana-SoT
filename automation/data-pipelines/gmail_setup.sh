@@ -203,3 +203,5 @@ echo "   ${BLUE}npm run gmail:test${NC}"
 echo ""
 echo "See GMAIL_INGEST_README.md for full documentation."
 echo ""
+
+# Last updated: 2025-10-02

@@ -11,3 +11,5 @@ echo "BigQuery Dashboard:"
 curl -s http://localhost:3005/api/bigquery/dashboard | jq '.metrics | {todayRevenue, totalTransactions}'
 echo ""
 echo "✅ All endpoints tested!"
+
+# Last updated: 2025-10-02

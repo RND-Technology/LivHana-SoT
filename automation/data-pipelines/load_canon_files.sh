@@ -38,3 +38,5 @@ for spec_file in SPECS/SPEC-*.md; do
 done
 
 echo "✅ Canon files loaded successfully!"
+
+# Last updated: 2025-10-02

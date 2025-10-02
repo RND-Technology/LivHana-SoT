@@ -74,3 +74,5 @@ curl http://localhost:4002/health
 sleep 5
 curl -sf http://localhost:3005/health >/dev/null && echo "✅ Integration Service: UP" || echo "⚠️ Integration Service: Starting..."
 curl -sf http://localhost:4002/health >/dev/null && echo "✅ Reasoning Gateway: UP" || echo "⚠️ Reasoning Gateway: Starting..."
+
+# Last updated: 2025-10-02

@@ -63,3 +63,5 @@ echo ""
 echo "To view current cron jobs: crontab -l"
 echo "To edit cron jobs: crontab -e"
 echo "To remove cron jobs: crontab -r"
+
+# Last updated: 2025-10-02

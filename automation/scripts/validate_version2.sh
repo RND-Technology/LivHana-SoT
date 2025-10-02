@@ -18,3 +18,4 @@ if [ -z "$OPENAI_API_KEY" ]; then echo "❌ OPENAI_API_KEY not set in .env"; els
 [ -d ".github/workflows" ] && echo "✅ Workflows directory found" || echo "❌ Workflows directory missing"
 
 echo "🎯 Validation complete."
+# Last updated: 2025-10-02

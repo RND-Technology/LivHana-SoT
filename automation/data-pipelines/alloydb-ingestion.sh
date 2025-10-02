@@ -105,3 +105,5 @@ EOF_REPORT
 fi
 
 log_info "✅ AlloyDB ingestion pipeline finished"
+
+# Last updated: 2025-10-02

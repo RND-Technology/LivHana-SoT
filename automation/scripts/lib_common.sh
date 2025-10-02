@@ -51,3 +51,5 @@ need_cmd() {
 # 1–20 = generic script logic errors
 # 30 = validation failure (counts as CI fail)
 # 90+ = environment/precondition errors
+
+# Last updated: 2025-10-02

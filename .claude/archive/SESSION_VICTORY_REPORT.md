@@ -234,3 +234,5 @@ All screenshots saved to `/tmp/cursor-*.png` for verification.
 <!-- Last verified: 2025-10-02 -->
 
 <!-- Optimized: 2025-10-02 -->
+
+<!-- Last updated: 2025-10-02 -->

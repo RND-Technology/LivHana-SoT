@@ -14,3 +14,5 @@ log_info "Running dry-run ingestion"
 "$ROOT_DIR/data-layer/alloydb-ingestion.sh" --dry-run
 
 log_info "Ingestion dry-run complete"
+
+# Last updated: 2025-10-02

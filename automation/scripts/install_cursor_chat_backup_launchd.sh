@@ -19,3 +19,5 @@ launchctl load -w "$PLIST_DEST"
 
 echo "LaunchAgent installed. Daily backups scheduled at 02:00 local time." 
 echo "Use 'launchctl list | grep com.livhana.cursor-chat-backup' to verify." 
+
+# Last updated: 2025-10-02

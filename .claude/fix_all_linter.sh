@@ -40,3 +40,5 @@ echo "📊 Monitor:"
 echo "   curl -s http://localhost:4002/api/autonomous/tasks/$TASK_ID -H \"Authorization: Bearer \$TOKEN\" | jq '.status'"
 echo ""
 echo "Expected: 30-60 min for 88 fixes + tests"
+
+# Last updated: 2025-10-02

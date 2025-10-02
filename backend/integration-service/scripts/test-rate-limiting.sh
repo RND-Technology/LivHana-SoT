@@ -189,3 +189,5 @@ echo "  - ${REASONING_GATEWAY_URL}/api/monitoring/rate-limit/config"
 echo ""
 echo -e "${GREEN}DDoS protection is ACTIVE${NC}"
 echo ""
+
+# Last updated: 2025-10-02

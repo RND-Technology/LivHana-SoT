@@ -15,3 +15,5 @@ echo "Processing WhatsApp messages..."
 # Store compliant data in database
 
 echo "✅ WhatsApp data ingestion complete!"
+
+# Last updated: 2025-10-02

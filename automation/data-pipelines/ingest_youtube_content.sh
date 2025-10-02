@@ -25,3 +25,5 @@ for channel_id in "${YOUTUBE_CHANNELS[@]}"; do
 done
 
 echo "✅ YouTube content ingestion complete!"
+
+# Last updated: 2025-10-02

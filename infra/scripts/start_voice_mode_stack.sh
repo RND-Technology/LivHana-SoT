@@ -11,3 +11,5 @@ docker compose -f docker-compose.voice-mode.yml up --build -d
 echo "Voice mode stack started."
 
 popd >/dev/null
+
+# Last updated: 2025-10-02

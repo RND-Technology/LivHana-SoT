@@ -24,3 +24,5 @@ for source in "${NEWS_SOURCES[@]}"; do
 done
 
 echo "✅ Daily news ingestion complete!"
+
+# Last updated: 2025-10-02

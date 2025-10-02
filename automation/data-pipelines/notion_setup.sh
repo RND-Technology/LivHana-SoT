@@ -133,3 +133,5 @@ else
     echo "  node notion_ingest.js"
     echo ""
 fi
+
+# Last updated: 2025-10-02

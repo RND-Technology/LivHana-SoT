@@ -11,3 +11,5 @@ docker compose -f docker-compose.voice-mode.yml down
 echo "Voice mode stack stopped."
 
 popd >/dev/null
+
+# Last updated: 2025-10-02

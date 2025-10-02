@@ -15,3 +15,5 @@ mkdir -p "$ROOT_DIR/logs"
 } >> "$audit_log"
 
 log_info "Compliance audit logged to $audit_log"
+
+# Last updated: 2025-10-02

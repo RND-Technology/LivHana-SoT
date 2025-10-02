@@ -102,3 +102,5 @@ elif [ -x "$SYNC_SCRIPT" ]; then
 else
   note "No sync command or script configured. Skipping off-site sync."
 fi
+
+# Last updated: 2025-10-02

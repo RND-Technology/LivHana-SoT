@@ -32,3 +32,4 @@ if (( missing_any )); then
   exit 30
 fi
 ok "All age gate sentinels present."
+# Last updated: 2025-10-02
