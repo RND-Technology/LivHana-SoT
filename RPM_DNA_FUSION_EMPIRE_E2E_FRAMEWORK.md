@@ -372,56 +372,64 @@ Every business element cycles through:
 
 ## 📁 FILE NAMING SYSTEM - THE DNA
 
-### **Pattern**
+### **CORRECTED Pattern (Date goes LAST for better sorting!)**
 
 ```
-[timestamp]_[layer]_[framework]_[category]_[level]_[context].md
+[layer]_[framework]_[category]_[level]_[context]_[timestamp].md
 ```
 
 ### **Components**
 
-1. **Timestamp**: `YYYYMMDD` (e.g., `20251002`)
-2. **Layer**: `rnd` | `hnc` | `ops` | `herb` | `empire` (cross-layer)
-3. **Framework**: `rpm` | `aom` | `coi` | `highfive` | `wheel`
-4. **Category**: `leadership` | `operations` | `marketing` | `sales` | `finance` | `technology` | `culture` | `sop`
-5. **Level**: `0` | `now` | `next` | `10`
-6. **Context**: Brief descriptor (e.g., `veriff_resolution`, `testimony_prep`)
+1. **Layer**: `rnd` | `hnc` | `ops` | `herb` | `empire` (cross-layer)
+2. **Framework**: `rpm` | `aom` | `coi` | `highfive` | `wheel`
+3. **Category**: `leadership` | `operations` | `marketing` | `sales` | `finance` | `technology` | `culture` | `sop`
+4. **Level**: `0` | `now` | `next` | `10` (for Wheel progression)
+5. **Context**: Brief descriptor (e.g., `veriff_resolution`, `testimony_prep`, `autotoon_engine`)
+6. **Timestamp**: `YYYYMMDD` (e.g., `20251002`) - **GOES LAST!**
 
-### **Examples**
+### **CORRECT Examples**
 
 **RPM Primary Planning**:
 ```
-20251002_empire_rpm_primary_results_Q4_texas_takeover.md
-20251002_empire_rpm_primary_purpose_conservative_leadership.md
-20251002_empire_rpm_primary_massive_action_automation_deployment.md
+empire_rpm_primary_results_Q4_texas_takeover_20251002.md
+empire_rpm_primary_purpose_conservative_leadership_20251002.md
+empire_rpm_primary_massive_action_automation_deployment_20251002.md
 ```
 
 **AOM Category Analysis**:
 ```
-20251002_rnd_aom_operations_now_veriff_crisis_management.md
-20251002_rnd_aom_operations_next_customer_onboarding_automated.md
-20251002_rnd_aom_operations_10_franchise_ready_systems.md
+rnd_aom_operations_now_veriff_crisis_management_20251002.md
+rnd_aom_operations_next_customer_onboarding_automated_20251002.md
+rnd_aom_operations_10_franchise_ready_systems_20251002.md
 ```
 
 **COI Improvement Tracking**:
 ```
-20251002_hnc_coi_marketing_improvement_conservative_messaging.md
-20251002_herb_coi_technology_improvement_voice_pipeline.md
+hnc_coi_marketing_improvement_conservative_messaging_20251002.md
+hnc_coi_marketing_autotoon_engine_production_20251002.md
+herb_coi_technology_improvement_voice_pipeline_20251002.md
 ```
 
 **High Five Validation**:
 ```
-20251002_empire_highfive_finger1_rpm_alignment_Q4_validated.md
-20251002_empire_highfive_finger4_execution_feasibility_confirmed.md
+empire_highfive_finger1_rpm_alignment_Q4_validated_20251002.md
+empire_highfive_finger4_execution_feasibility_confirmed_20251002.md
 ```
 
 **Wheel of Life Progression**:
 ```
-20251002_ops_wheel_level0_baseline_policy_opposition.md
-20251002_ops_wheel_now_testimony_prepared_april_7.md
-20251002_ops_wheel_next_conservative_coalition_growing.md
-20251002_ops_wheel_10_cannabis_descheduled_texas_model.md
+ops_wheel_level0_baseline_policy_opposition_20251002.md
+ops_wheel_now_testimony_prepared_april_7_20251002.md
+ops_wheel_next_conservative_coalition_growing_20251002.md
+ops_wheel_10_cannabis_descheduled_texas_model_20251002.md
 ```
+
+**WHY THIS IS BETTER**:
+- ✅ Files sort by layer/framework/category FIRST
+- ✅ Easy to find all "aom_operations" files together
+- ✅ Date is secondary metadata, not primary key
+- ✅ More human-readable when browsing directories
+- ✅ Aligns with natural project organization
 
 ---
 
