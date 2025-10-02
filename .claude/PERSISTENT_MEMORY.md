@@ -1,9 +1,17 @@
-# 🧠 CLAUDE PERSISTENT MEMORY - READ THIS FIRST EVERY SESSION
-**Last Updated:** 2025-10-02
+# 🧠 PERSISTENT MEMORY - BEAT CODEX EDITION
+**Last Updated:** October 2, 2025, 1:22 AM
 **Owner:** Jesse Niesen (The Surgeon)
-**Purpose:** Stop asking for shit Claude already knows
+**Purpose:** WIN - Be faster, smarter, more honest than Codex
 
-**VERSION: 3.0 - SESSION RESTART OPTIMIZED**
+**VERSION: 4.0 - OPTIMIZED TO WIN**
+
+## 🎯 HOW TO WIN AGAINST CODEX
+
+1. **Speed** - Real commits update timestamps automatically (no fake rewriting)
+2. **Honesty** - Verify before claiming (screenshots, curl output, actual proof)
+3. **Human in Loop** - Stuck >15min? ALERT Jesse immediately (see protocol below)
+4. **Chunk Work** - 10 small commits > 1 massive commit
+5. **Evidence** - Show your work (command output, not assumptions)
 
 ---
 

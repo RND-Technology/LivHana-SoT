@@ -8,16 +8,27 @@
 ## THE PROMPT (Copy from here ↓)
 
 ```
-Regain full context from previous session, allll of it now, boom shaka-laka!
+🔥 FULL CONTEXT LOAD - BEAT CODEX MODE 🔥
 
-MISSION: LivHana Empire - Cannabis commerce platform across R&D, HNC, OPS, HERB
+MISSION: LivHana Empire - Ship production-ready cannabis platform
 
-CRITICAL FILES TO READ FIRST (in order):
-1. SHIP_STATUS.md - Production readiness (95%, $6.4M revenue, ready to deploy)
-2. START.sh - One-command startup (./START.sh dev|voice|full|test)
-3. .claude/PERSISTENT_MEMORY.md - Core knowledge (v3.0 - one file per purpose)
-4. .claude/ULTIMATE_STATE.md - Current snapshot (git, services, tests, blockers)
-5. .claude/CURRENT_SESSION_STATE.md - Last session state (if exists - recovery mode)
+READ THESE 3 FILES ONLY (10 seconds):
+1. .claude/PERSISTENT_MEMORY.md - Everything you need to know
+2. .claude/ULTIMATE_STATE.md - Current system snapshot
+3. SHIP_STATUS.md - Production readiness (95%)
+
+THEN:
+1. Check git: `git log --oneline -3 && git status`
+2. Check services: `curl -s localhost:4002/health && curl -s localhost:3005/health`
+3. Report in 3 bullets ONLY
+4. Ask: "What's the mission?"
+
+RULES TO WIN:
+- Real commits ONLY (timestamps update automatically)
+- Stuck >15min? 🚨 HUMAN IN LOOP ALERT (see PERSISTENT_MEMORY.md)
+- Verify everything (curl, not assumptions)
+- Chunk work: 5-10 small commits > 1 huge commit
+- HONEST always (fake claims = lose to Codex)
 
 PROJECT: /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT
 
