@@ -1,0 +1,108 @@
+{
+  "name": "livhana-sot",
+  "version": "1.0.0",
+  "description": "LivHana System of Truth - Unified Workspace",
+  "type": "module",
+  "private": true,
+  "workspaces": [
+    "backend/integration-service",
+    "backend/voice-service",
+    "backend/reasoning-gateway",
+    "backend/cannabis-service",
+    "backend/payment-service",
+    "backend/product-service",
+    "backend/common",
+    "frontend/vibe-cockpit",
+    "empire/crisis-engine",
+    "empire/compliance-engine",
+    "empire/content-engine",
+    "empire/linkedin-engine",
+    "empire/state-analysis",
+    "empire/txcoa-engine",
+    "automation/data-pipelines",
+    "automation/tests/playwright",
+    "infra/docker/deepseek-stub"
+  ],
+  "scripts": {
+    "install:all": "npm install && npm run install:workspaces",
+    "install:workspaces": "npm install --workspaces",
+    "clean": "npm run clean:modules && npm run clean:build",
+    "clean:modules": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
+    "clean:build": "find . -name 'dist' -type d -prune -exec rm -rf '{}' + && find . -name 'build' -type d -prune -exec rm -rf '{}' +",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,md}\"",
+    "test": "npm run test --workspaces --if-present",
+    "test:unit": "npm run test:unit --workspaces --if-present",
+    "test:e2e": "npm run test:e2e --workspace=automation/tests/playwright",
+    "test:integration": "npm run test:integration --workspaces --if-present",
+    "dev:backend": "npm run dev --workspace=backend/integration-service & npm run dev --workspace=backend/voice-service & npm run dev --workspace=backend/reasoning-gateway",
+    "dev:frontend": "npm run dev --workspace=frontend/vibe-cockpit",
+    "dev:all": "npm run dev:backend & npm run dev:frontend",
+    "build": "npm run build --workspaces --if-present",
+    "build:backend": "npm run build --workspace=backend/integration-service --workspace=backend/voice-service --workspace=backend/reasoning-gateway",
+    "build:frontend": "npm run build --workspace=frontend/vibe-cockpit",
+    "start:backend": "npm run start --workspace=backend/integration-service & npm run start --workspace=backend/voice-service & npm run start --workspace=backend/reasoning-gateway",
+    "start:frontend": "npm run preview --workspace=frontend/vibe-cockpit",
+    "docker:dev": "docker-compose -f docker-compose.unified.yml --profile dev up",
+    "docker:prod": "docker-compose -f docker-compose.unified.yml --profile prod up",
+    "docker:empire": "docker-compose -f docker-compose.unified.yml --profile empire up",
+    "docker:monitoring": "docker-compose -f docker-compose.unified.yml --profile monitoring up",
+    "docker:down": "docker-compose -f docker-compose.unified.yml down",
+    "docker:clean": "docker-compose -f docker-compose.unified.yml down -v",
+    "validate:env": "node scripts/validate-env.js",
+    "migrate:configs": "node scripts/migrate-configs.js",
+    "security:audit": "npm audit --workspaces",
+    "security:fix": "npm audit fix --workspaces"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.36.0",
+    "@playwright/test": "^1.55.1",
+    "@typescript-eslint/eslint-plugin": "^8.44.1",
+    "@typescript-eslint/parser": "^8.44.1",
+    "@vitejs/plugin-react": "^5.0.4",
+    "eslint": "^9.36.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "globals": "^16.4.0",
+    "husky": "^9.0.0",
+    "lint-staged": "^15.2.0",
+    "markdownlint-cli2": "^0.18.1",
+    "nodemon": "^3.0.1",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^3.2.5",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "dotenv": "^16.6.1",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jesseniesen/LivHana-SoT.git"
+  },
+  "author": "Jesse Niesen",
+  "license": "PROPRIETARY",
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css,md}": [
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
+}

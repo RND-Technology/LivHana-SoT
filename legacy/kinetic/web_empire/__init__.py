@@ -1,2 +1,0 @@
-"""Web empire application components."""
-

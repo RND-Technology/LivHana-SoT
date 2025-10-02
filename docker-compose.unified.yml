@@ -1,0 +1,458 @@
+version: '3.9'
+
+# ============================================
+# LivHana Unified Docker Compose
+# ONE FILE TO RULE THEM ALL
+# ============================================
+# Usage:
+#   docker-compose -f docker-compose.unified.yml --profile dev up
+#   docker-compose -f docker-compose.unified.yml --profile test up
+#   docker-compose -f docker-compose.unified.yml --profile prod up
+#   docker-compose -f docker-compose.unified.yml --profile monitoring up
+#   docker-compose -f docker-compose.unified.yml --profile empire up
+# ============================================
+
+services:
+  # ============================================
+  # INFRASTRUCTURE (Always Required)
+  # ============================================
+
+  redis:
+    image: redis:7-alpine
+    container_name: livhana-redis
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redis-data:/data
+    command: ["redis-server", "--appendonly", "yes", "--maxmemory", "2gb", "--maxmemory-policy", "allkeys-lru"]
+    restart: unless-stopped
+    networks:
+      - livhana-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: livhana-postgres
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-empire}
+      POSTGRES_USER: ${POSTGRES_USER:-emperor}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - livhana-network
+    profiles:
+      - prod
+      - empire
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-emperor}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ============================================
+  # BACKEND SERVICES
+  # ============================================
+
+  integration-service:
+    build:
+      context: ./backend/integration-service
+      dockerfile: Dockerfile
+    container_name: livhana-integration
+    ports:
+      - "${PORT_INTEGRATION_SERVICE:-3005}:3005"
+    env_file:
+      - .env.master
+    environment:
+      NODE_ENV: ${NODE_ENV:-development}
+      PORT: 3005
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    volumes:
+      - ${GOOGLE_APPLICATION_CREDENTIALS}:/app/credentials/gcp-key.json:ro
+      - ./backend/integration-service:/app
+      - /app/node_modules
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - livhana-network
+    profiles:
+      - dev
+      - prod
+
+  voice-service:
+    build:
+      context: ./backend/voice-service
+      dockerfile: Dockerfile
+    container_name: livhana-voice
+    ports:
+      - "${PORT_VOICE_SERVICE:-4001}:4001"
+    env_file:
+      - .env.master
+    environment:
+      PORT: 4001
+      REDIS_HOST: redis
+      REASONING_GATEWAY_BASE_URL: http://reasoning-gateway:4002/api/reasoning
+    volumes:
+      - ./backend/voice-service:/app
+      - /app/node_modules
+    depends_on:
+      redis:
+        condition: service_healthy
+      reasoning-gateway:
+        condition: service_started
+    restart: unless-stopped
+    networks:
+      - livhana-network
+    profiles:
+      - dev
+      - prod
+
+  reasoning-gateway:
+    build:
+      context: ./backend/reasoning-gateway
+      dockerfile: Dockerfile
+    container_name: livhana-reasoning
+    ports:
+      - "${PORT_REASONING_GATEWAY:-4002}:4002"
+    env_file:
+      - .env.master
+    environment:
+      PORT: 4002
+      REDIS_HOST: redis
+      DEEPSEEK_API_BASE_URL: http://deepseek-stub:8080/v1
+    volumes:
+      - ./backend/reasoning-gateway:/app
+      - /app/node_modules
+    depends_on:
+      redis:
+        condition: service_healthy
+      deepseek-stub:
+        condition: service_started
+    restart: unless-stopped
+    networks:
+      - livhana-network
+    profiles:
+      - dev
+      - prod
+
+  cannabis-service:
+    build:
+      context: ./backend/cannabis-service
+      dockerfile: Dockerfile
+    container_name: livhana-cannabis
+    ports:
+      - "${PORT_CANNABIS_SERVICE:-3003}:3003"
+    env_file:
+      - .env.master
+    environment:
+      PORT: 3003
+      REDIS_HOST: redis
+      POSTGRES_HOST: postgres
+    volumes:
+      - ./backend/cannabis-service:/app
+      - /app/node_modules
+    depends_on:
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - livhana-network
+    profiles:
+      - prod
+      - empire
+
+  payment-service:
+    build:
+      context: ./backend/payment-service
+      dockerfile: Dockerfile
+    container_name: livhana-payment
+    ports:
+      - "${PORT_PAYMENT_SERVICE:-3004}:3004"
+    env_file:
+      - .env.master
+    environment:
+      PORT: 3004
+      REDIS_HOST: redis
+      POSTGRES_HOST: postgres
+    volumes:
+      - ./backend/payment-service:/app
+      - /app/node_modules
+    depends_on:
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - livhana-network
+    profiles:
+      - prod
+      - empire
+
+  # ============================================
+  # FRONTEND
+  # ============================================
+
+  vibe-cockpit:
+    build:
+      context: ./frontend/vibe-cockpit
+      dockerfile: Dockerfile
+    container_name: livhana-cockpit
+    ports:
+      - "${PORT_VIBE_COCKPIT:-5173}:5173"
+    env_file:
+      - .env.master
+    environment:
+      VITE_API_URL: http://integration-service:3005
+      VITE_REASONING_API_BASE: http://reasoning-gateway:4002/api/reasoning
+      VITE_VOICE_API_BASE: http://voice-service:4001/api
+    volumes:
+      - ./frontend/vibe-cockpit:/app
+      - /app/node_modules
+      - /app/dist
+    depends_on:
+      - integration-service
+    restart: unless-stopped
+    networks:
+      - livhana-network
+    profiles:
+      - dev
+      - prod
+
+  # ============================================
+  # DEVELOPMENT TOOLS
+  # ============================================
+
+  deepseek-stub:
+    build:
+      context: ./infra/docker/deepseek-stub
+      dockerfile: Dockerfile
+    container_name: livhana-deepseek-stub
+    ports:
+      - "${PORT_DEEPSEEK_STUB:-8080}:8080"
+    environment:
+      PORT: 8080
+    restart: unless-stopped
+    networks:
+      - livhana-network
+    profiles:
+      - dev
+      - test
+
+  # ============================================
+  # EMPIRE ENGINES (Production Only)
+  # ============================================
+
+  crisis-engine:
+    build:
+      context: ./empire/crisis-engine
+      dockerfile: Dockerfile
+    container_name: empire-crisis
+    ports:
+      - "${PORT_CRISIS_ENGINE:-5001}:5001"
+    env_file:
+      - .env.master
+    environment:
+      PORT: 5001
+      SERVICE_NAME: crisis-engine
+      REDIS_HOST: redis
+      POSTGRES_HOST: postgres
+    volumes:
+      - ./empire/crisis-engine:/app
+      - /app/node_modules
+    depends_on:
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - livhana-network
+    profiles:
+      - empire
+
+  compliance-engine:
+    build:
+      context: ./empire/compliance-engine
+      dockerfile: Dockerfile
+    container_name: empire-compliance
+    ports:
+      - "${PORT_COMPLIANCE_ENGINE:-5003}:5003"
+    env_file:
+      - .env.master
+    environment:
+      PORT: 5003
+      SERVICE_NAME: compliance-engine
+      REDIS_HOST: redis
+      POSTGRES_HOST: postgres
+    volumes:
+      - ./empire/compliance-engine:/app
+      - /app/node_modules
+    depends_on:
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - livhana-network
+    profiles:
+      - empire
+
+  content-engine:
+    build:
+      context: ./empire/content-engine
+      dockerfile: Dockerfile
+    container_name: empire-content
+    ports:
+      - "${PORT_CONTENT_ENGINE:-5006}:5006"
+    env_file:
+      - .env.master
+    environment:
+      PORT: 5006
+      SERVICE_NAME: hcn-content
+      REDIS_HOST: redis
+    volumes:
+      - ./empire/content-engine:/app
+      - /app/node_modules
+      - content-output:/app/output
+    depends_on:
+      redis:
+        condition: service_healthy
+      minio:
+        condition: service_started
+    restart: unless-stopped
+    networks:
+      - livhana-network
+    profiles:
+      - empire
+
+  # ============================================
+  # OBJECT STORAGE (Empire Only)
+  # ============================================
+
+  minio:
+    image: minio/minio
+    container_name: livhana-minio
+    ports:
+      - "${MINIO_PORT:-9000}:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_PASSWORD}
+    volumes:
+      - minio-data:/data
+    command: server /data --console-address ":9001"
+    restart: unless-stopped
+    networks:
+      - livhana-network
+    profiles:
+      - empire
+
+  # ============================================
+  # MONITORING STACK (Optional)
+  # ============================================
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: livhana-prometheus
+    ports:
+      - "${PORT_PROMETHEUS:-9090}:9090"
+    volumes:
+      - ./infra/monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    restart: unless-stopped
+    networks:
+      - livhana-network
+    profiles:
+      - monitoring
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: livhana-grafana
+    ports:
+      - "${PORT_GRAFANA:-3000}:3000"
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD}
+      GF_SERVER_ROOT_URL: http://localhost:3000
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./infra/monitoring/grafana-dashboards:/etc/grafana/provisioning/dashboards:ro
+    depends_on:
+      - prometheus
+    restart: unless-stopped
+    networks:
+      - livhana-network
+    profiles:
+      - monitoring
+
+  # ============================================
+  # REVERSE PROXY (Production Only)
+  # ============================================
+
+  nginx:
+    image: nginx:alpine
+    container_name: livhana-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./infra/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./infra/nginx/sites:/etc/nginx/sites-enabled:ro
+      - nginx-logs:/var/log/nginx
+    depends_on:
+      - integration-service
+      - voice-service
+      - reasoning-gateway
+      - vibe-cockpit
+    restart: unless-stopped
+    networks:
+      - livhana-network
+    profiles:
+      - prod
+
+# ============================================
+# VOLUMES
+# ============================================
+
+volumes:
+  redis-data:
+    name: livhana-redis-data
+  postgres-data:
+    name: livhana-postgres-data
+  minio-data:
+    name: livhana-minio-data
+  prometheus-data:
+    name: livhana-prometheus-data
+  grafana-data:
+    name: livhana-grafana-data
+  content-output:
+    name: livhana-content-output
+  nginx-logs:
+    name: livhana-nginx-logs
+
+# ============================================
+# NETWORKS
+# ============================================
+
+networks:
+  livhana-network:
+    name: livhana-network
+    driver: bridge
