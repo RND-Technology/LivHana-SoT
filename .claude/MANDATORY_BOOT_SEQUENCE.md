@@ -47,14 +47,51 @@ From user request, create numbered steps with:
 - If Claude excludes files when told "ALL" → LOSS
 - If Claude ignores protocols → LOSS
 
-## ✅ WINNING PATTERN
+## ✅ WINNING PATTERN (8-STEP PROTOCOL)
 
-1. Read protocols FIRST
-2. Create numbered plan with metrics
-3. Execute step-by-step
-4. Verify BEFORE claiming
-5. Show proof WITH every claim
-6. Commit ONLY after complete verification
+### 1. Enforce Startup Discipline (EVERY SESSION)
+Read these files FIRST before touching anything:
+- `.claude/LEARNING_LEDGER.md` (past failures)
+- `.claude/VERIFICATION_REQUIRED.md` (verification gates)
+- `.claude/HONESTY_CONSTRAINTS.md` (blocking rules)
+- `.claude/NEXT_SESSION_BOOTSTRAP.md` (context)
+- `.claude/NEXT_SESSION_CRITICAL_MISSION.md` (orders)
+- `.claude/CURRENT_SESSION_STATE.md` (last state)
 
-**Last updated**: 2025-10-02
-**Session**: Learning from Codex Win
+### 2. Centralize Orders in Live Tracker
+Check `.claude/COMMANDER_CODEX_ORDERS.md` for numbered missions
+Update `.claude/SESSION_PROGRESS.md` every 5 minutes with command + output
+
+### 3. Turn Every Claim into Evidence
+For each sweep:
+- Run command
+- Paste output to SESSION_PROGRESS.md with timestamp
+- Save Finder screenshots to `.evidence/<date>/`
+- Flag open items
+
+### 4. Divide Repo Logically
+Standing rotation: docs → automation → backend → frontend → infra
+5-minute update cadence keeps sync
+
+### 5. Codex Orchestrates, Sonnet Executes
+Codex assigns sweeps, monitors logs, calls out missing proof
+Sonnet moves to next chunk only after evidence logged
+
+### 6. Self-Healing Routines
+Run `scripts/run_full_sweep.sh` for:
+- shellcheck + markdownlint + ESLint sweeps
+- RPM metadata audits
+- Finder timestamp snapshots
+
+### 7. High-Trust Environment
+Auto-approve on (`settings.json: claudeCode.defaultApprovalMode: trusted`)
+Humans verify by checking logs
+
+### 8. Rinse and Escalate
+After session: update `.claude/CURRENT_SESSION_STATE.md` with:
+- What finished
+- What's open
+- Which evidence to check
+
+**Last updated**: 2025-10-03
+**Session**: Liv Hana Absolute Standard Implementation

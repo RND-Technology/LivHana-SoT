@@ -1,0 +1,6 @@
+total 48
+-rw-r--r--@ 1 jesseniesen  staff  3236 Oct  3 02:33 index.d.ts
+-rw-r--r--@ 1 jesseniesen  staff   747 Oct  3 02:33 package.json
+-rw-r--r--@ 1 jesseniesen  staff  3658 Oct  3 02:33 readme.md
+-rw-r--r--@ 1 jesseniesen  staff  5347 Oct  3 02:33 index.js
+-rw-r--r--@ 1 jesseniesen  staff  1109 Oct  3 02:33 license

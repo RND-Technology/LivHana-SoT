@@ -5,7 +5,7 @@ Session: Dual-AI Collaboration - Final Sweep
 -->
 # 🦄 UNICORN RACE PROGRESS TRACKER
 
-**Updated:** October 03, 2025, 00:50 AM PDT
+**Updated:** October 03, 2025, 02:43 AM PDT
 **Strategy:** ELEPHANT_STRATEGY.md (5 parallel agents)
 **Target:** 4,644 files total
 
@@ -280,3 +280,85 @@ Next actions before 00:55:
 1. Quote `$OPTS` invocations in backup sync script.
 2. Swap `grep|wc -l` with `grep -c` in workflow/housekeeping scripts.
 3. Continue frontend fusion sweep (`src/modules/*`) in parallel.
+
+
+---
+
+## 🧹 Automation Super-Sweep (shellcheck + lint rerun)
+
+**Timestamp:** October 03, 2025, 02:43 AM PDT
+
+```
+COMMAND: bash scripts/run_full_sweep.sh
+OUTPUT: (.evidence/2025-10-03/run_full_sweep_October_03,_2025,_02-43_AM_PDT.log)
+```
+
+Key shellcheck findings still open:
+- Quote `$OPTS` in `automation/scripts/sync_cursor_backups.sh` (SC2086).
+- Replace `grep|wc -l`/`ls|wc -l` with `grep -c` / `find` (SC2126/SC2012).
+- Address info-level `SC1091` by calling `shellcheck -x` once shared helpers are validated.
+
+Next actions (Sonnet executing now):
+1. Patch `$OPTS` usage and rerun shellcheck.
+2. Update workflow/housekeeping scripts to use `grep -c`.
+3. Continue docs markdownlint burn-down.
+
+---
+
+## [02:46] Shellcheck Sweep Complete
+**COMMAND:** `find . -name "*.sh" ! -path "*/node_modules/*" ! -path "*/.git/*" -type f -exec shellcheck -x {} + 2>&1 | tee .evidence/2025-10-03/lint-reports/shellcheck-024550.txt`
+**OUTPUT:**
+```
+Total lines: 367
+Total warnings: 77
+Affected files: 68
+```
+**KEY FINDINGS:**
+- SC2164 (warning): pushd/popd without || exit (6 occurrences)
+- SC2059 (info): printf format string variables (4 occurrences)
+- SC2086 (warning): Unquoted variables
+- SC2012 (info): ls parsing issues
+
+**STATUS:** ✅ REPORT SAVED
+**EVIDENCE:** `.evidence/2025-10-03/lint-reports/shellcheck-024550.txt`
+**NEXT:** Continue with markdownlint sweep
+
+
+---
+
+## [02:47] Markdownlint Sweep Complete
+**COMMAND:** `npx markdownlint-cli2 "**/*.md" "!node_modules" "!.git"`
+**OUTPUT:**
+```
+Linting: 7,124 files
+Summary: 163,353 errors
+```
+**KEY ERROR TYPES:**
+- MD022: Headings need blank lines (most common)
+- MD032: Lists need blank lines
+- MD031: Fenced code blocks need blank lines
+- MD040: Fenced code blocks need language specified
+
+**STATUS:** ✅ REPORT SAVED
+**EVIDENCE:** `.evidence/2025-10-03/lint-reports/markdownlint-024650.txt`
+**NEXT:** Run ESLint sweep
+
+
+---
+
+## [02:48] ESLint Sweep Complete
+**COMMAND:** `npx eslint . --ext .js,.jsx,.ts,.tsx`
+**OUTPUT:**
+```
+✖ 344 problems (245 errors, 99 warnings)
+```
+**KEY ISSUES:**
+- Warnings: console.log statements in CLI utilities (99)
+- Errors: 'console' not defined in test files (Playwright config issue)
+- Errors: 'process' not defined in Next.js config (2)
+- Errors: Parsing errors in some TypeScript files
+
+**STATUS:** ✅ REPORT SAVED
+**EVIDENCE:** `.evidence/2025-10-03/lint-reports/eslint-024750.txt`
+**NEXT:** Create self-healing automation
+
