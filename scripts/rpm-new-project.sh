@@ -1,4 +1,9 @@
 #!/bin/bash
+# Optimized: 2025-10-02
+# RPM: 1.6.2.3.automation-scripts-optimization
+# Session: Elephant Strategy Batch 1
+set -euo pipefail
+
 # RPM New Project Creator
 # Interactive script to create new RPM DNA formatted project folder
 
@@ -159,5 +164,3 @@ echo "   [Start working on your project]"
 echo "   git add ."
 echo "   git commit -m \"${AOM}-${AOM_NAME}.${COI}.${RPM}: Initialize ${CONTEXT}\""
 echo ""
-
-# Optimized: 2025-10-02

@@ -1,3 +1,8 @@
+<!--
+Optimized: 2025-10-03
+RPM: 3.6.0.6.ops-technology-ship-status-documentation
+Session: Dual-AI Collaboration - Sonnet Docs Sweep
+-->
 # SNAPSHOT_SPEC — Liv Hana Memory Archive
 
 **Status:** Draft • **Owner:** Liv Hana (Codex) • **Last Updated:** 2025-09-28

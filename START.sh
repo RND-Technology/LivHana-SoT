@@ -1,4 +1,9 @@
 #!/bin/bash
+# Optimized: 2025-10-02
+# RPM: 1.6.2.3.automation-scripts-optimization
+# Session: Elephant Strategy Batch 1
+set -euo pipefail
+
 # ============================================
 # LIVHANA EMPIRE - ONE COMMAND STARTUP
 # ============================================
@@ -77,5 +82,3 @@ curl -sf http://localhost:4002/health >/dev/null && echo "✅ Reasoning Gateway:
 # Last updated: 2025-10-02
 
 # Last optimized: 2025-10-02
-
-# Optimized: 2025-10-02

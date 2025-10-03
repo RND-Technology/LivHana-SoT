@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
+# Optimized: 2025-10-02
+# RPM: 1.6.2.3.automation-scripts-optimization
+# Session: Elephant Strategy Batch 1
+
 # Runs terraform plan (if terraform/ exists) or cloud-run diff placeholder.
 # Fails if drift detected (non-empty plan) unless allowed by ALLOW_INFRA_DRIFT=true
-set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 . "${SCRIPT_DIR}/lib_common.sh"
 
@@ -46,5 +49,3 @@ fi
 # Last updated: 2025-10-02
 
 # Last optimized: 2025-10-02
-
-# Optimized: 2025-10-02

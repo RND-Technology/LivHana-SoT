@@ -1,4 +1,16 @@
 /**
+ * Optimized: 2025-10-02
+ * RPM: 1.6.2.3.backend-common-optimization
+ * Session: Elephant Strategy Batch 1
+ */
+
+/**
+ * Optimized: 2025-10-02
+ * RPM: 1.6.2.3.backend-common-optimization
+ * Session: Elephant Strategy Batch 1
+ */
+
+/**
  * Sentry Error Tracking Configuration
  * Centralizes error tracking across all services
  */
@@ -74,7 +86,7 @@ export function initSentry(options = {}) {
     debug: environment === 'development',
   });
 
-  console.log(`[${serviceName}] Sentry initialized for ${environment}`);
+  console.info(`[${serviceName}] Sentry initialized for ${environment}`);
   return Sentry;
 }
 

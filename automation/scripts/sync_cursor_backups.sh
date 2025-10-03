@@ -1,4 +1,9 @@
 #!/bin/bash
+# Optimized: 2025-10-02
+# RPM: 1.6.2.3.automation-scripts-optimization
+# Session: Elephant Strategy Batch 1
+set -euo pipefail
+
 # Synchronise the Cursor backup archive directory to remote storage.
 # Configuration is provided via $CURSOR_BACKUP_SYNC_CONFIG (defaults to
 # ~/.cursor-backup-sync.conf). The config file can define the following:
@@ -15,7 +20,6 @@
 #   CURSOR_BACKUP_REMOTE="gs://livhana-backups/cursor"
 #   CURSOR_BACKUP_SYNC_TOOL="gsutil"
 #
-set -euo pipefail
 
 BACKUP_ROOT="${1:-.cursor-backups}"
 CONFIG_FILE="${CURSOR_BACKUP_SYNC_CONFIG:-$HOME/.cursor-backup-sync.conf}"
@@ -84,12 +88,10 @@ case "$TOOL" in
     log "Unsupported sync tool: $TOOL"
     exit 1
     ;;
-endcase
+esac
 
 log "Sync complete"
 
 # Last updated: 2025-10-02
 
 # Last optimized: 2025-10-02
-
-# Optimized: 2025-10-02

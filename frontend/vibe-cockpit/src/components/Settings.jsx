@@ -1,3 +1,8 @@
+/**
+ * Optimized: 2025-10-03
+ * RPM: 2.6.4.2.frontend-vibe-cockpit-components
+ * Session: Dual-AI Mission - Sonnet Frontend Sweep
+ */
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 

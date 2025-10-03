@@ -1,7 +1,12 @@
+/**
+ * Optimized: 2025-10-03
+ * RPM: 2.6.4.2.frontend-vibe-cockpit-components
+ * Session: Dual-AI Mission - Sonnet Frontend Sweep
+ */
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import axios from 'axios';
-import { 
+import {
   LineChart, Line, BarChart, Bar, PieChart, Pie, Cell,
   XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
   Area, AreaChart

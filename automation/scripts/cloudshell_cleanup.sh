@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
+# Optimized: 2025-10-02
+# RPM: 1.6.2.3.automation-scripts-optimization
+# Session: Elephant Strategy Batch 1
+
 # Liv Hana Cloud Shell housekeeping utility.
 # Usage: bash cloudshell_cleanup.sh [--nuke]
 #   --nuke : also delete all files in $HOME except livhana truth artifacts.
 
-set -euo pipefail
 
 STAMP=$(date -u +%Y%m%d_%H%M%S)
 WORKDIR="$HOME/livhana_cleanup"
@@ -58,5 +61,3 @@ printf '✅ Cleanup scan finished. Review logs in %s.\n' "$LOGDIR"
 # Last updated: 2025-10-02
 
 # Last optimized: 2025-10-02
-
-# Optimized: 2025-10-02

@@ -1,8 +1,11 @@
 #!/bin/bash
+# Optimized: 2025-10-02
+# RPM: 1.6.2.3.automation-scripts-optimization
+# Session: Elephant Strategy Batch 1
+
 # Cursor chat backup helper. Copies relevant Cursor data into a timestamped archive
 # so chat history and related context are preserved outside the IDE.
 
-set -euo pipefail
 
 BACKUP_ROOT="${1:-.cursor-backups}"
 TIMESTAMP="$(date -u +%Y%m%dT%H%M%SZ)"
@@ -106,5 +109,3 @@ fi
 # Last updated: 2025-10-02
 
 # Last optimized: 2025-10-02
-
-# Optimized: 2025-10-02

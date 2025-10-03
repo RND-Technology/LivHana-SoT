@@ -1,4 +1,9 @@
 #!/bin/bash
+# Optimized: 2025-10-02
+# RPM: 1.6.2.3.automation-scripts-optimization
+# Session: Elephant Strategy Batch 1
+set -euo pipefail
+
 # Optimize files in batch with markers + timestamps
 # Usage: ./optimize-batch.sh <directory> <file-pattern> <marker-prefix>
 
@@ -35,5 +40,3 @@ find "$TARGET_DIR" -type f -name "$FILE_PATTERN" ! -path "*/node_modules/*" | wh
 done
 
 echo "✅ Complete: $PROCESSED files optimized"
-
-# Optimized: 2025-10-02

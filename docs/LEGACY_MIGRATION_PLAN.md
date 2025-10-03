@@ -1,3 +1,8 @@
+<!--
+Optimized: 2025-10-03
+RPM: 3.6.0.6.ops-technology-ship-status-documentation
+Session: Dual-AI Collaboration - Sonnet Docs Sweep
+-->
 # Legacy Asset Migration Plan
 
 This document maps existing code/assets in the legacy repositories to their destination inside the consolidated `LivHana-SoT` repo.
