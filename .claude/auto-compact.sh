@@ -96,8 +96,8 @@ $(git branch -a)
 \`\`\`
 
 ### Uncommitted Changes Count
-- Modified: $(git status --short | grep '^ M' | wc -l | tr -d ' ')
-- Untracked: $(git status --short | grep '^??' | wc -l | tr -d ' ')
+- Modified: $(git status --short | grep -c '^ M' || echo "0")
+- Untracked: $(git status --short | grep -c '^??' || echo "0")
 - Total: $(git status --short | wc -l | tr -d ' ')
 
 ---

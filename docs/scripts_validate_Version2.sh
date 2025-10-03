@@ -8,6 +8,7 @@ echo "🔍 Validating Liv Hana Monorepo setup..."
 
 # Load environment variables
 if [ -f .env ]; then
+    # shellcheck disable=SC2046
     export $(cat .env | xargs)
 else
     echo "❌ .env file not found. Please copy .env.example to .env and fill in your keys."

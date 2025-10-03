@@ -53,8 +53,8 @@ echo ""
 # Strategy
 echo "🎯 Current Strategy:"
 echo "  ✅ Use personal API key in Cursor (bypasses weekly limit)"
-echo "  ✅ Monitor Anthropic balance ($100 prepaid)"
-echo "  ✅ Auto-reload at $50 → $100 (configured)"
+echo "  ✅ Monitor Anthropic balance (\$100 prepaid)"
+echo "  ✅ Auto-reload at \$50 → \$100 (configured)"
 echo "  ✅ Switch back to Cursor on Monday 00:00 UTC"
 echo ""
 
