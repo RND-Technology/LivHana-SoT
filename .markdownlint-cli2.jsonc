@@ -13,5 +13,15 @@
     "MD052": false
   },
   "globs": ["**/*.md"],
-  "ignores": ["node_modules/**"]
+  "ignores": [
+    "node_modules/**",
+    "frontend/**/node_modules/**",
+    "**/.next/**",
+    ".venv/**",
+    "**/.venv/**",
+    "dist/**",
+    ".evidence/**",
+    "coverage/**",
+    "logs/**"
+  ]
 }

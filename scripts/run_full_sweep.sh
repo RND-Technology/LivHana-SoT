@@ -16,22 +16,37 @@ echo ""
 
 # 1. Shellcheck sweep
 echo "[1/5] Running shellcheck..."
-find . -name "*.sh" ! -path "*/node_modules/*" ! -path "*/.git/*" -type f \
-  -exec shellcheck -x {} + 2>&1 | tee "$EVIDENCE_DIR/lint-reports/shellcheck-$TIMESTAMP.txt" | head -20
+find . -name "*.sh" \
+  ! -path "*/node_modules/*" \
+  ! -path "*/.git/*" \
+  ! -path "*/.venv/*" \
+  ! -path "*/dist/*" \
+  ! -path "*/.evidence/*" \
+  -type f \
+  -exec shellcheck -x {} + 2>&1 | tee "$EVIDENCE_DIR/lint-reports/shellcheck-$TIMESTAMP.txt" || true
+sed -n '1,20p' "$EVIDENCE_DIR/lint-reports/shellcheck-$TIMESTAMP.txt"
 SHELLCHECK_WARNINGS=$(grep -c "SC[0-9]" "$EVIDENCE_DIR/lint-reports/shellcheck-$TIMESTAMP.txt" || echo "0")
 echo "✅ Shellcheck: $SHELLCHECK_WARNINGS warnings"
 echo ""
 
 # 2. Markdownlint sweep
 echo "[2/5] Running markdownlint..."
-npx markdownlint-cli2 "**/*.md" "!node_modules" "!.git" 2>&1 | tee "$EVIDENCE_DIR/lint-reports/markdownlint-$TIMESTAMP.txt" | head -20
+npx markdownlint-cli2 --config .markdownlint-cli2.jsonc 2>&1 | tee "$EVIDENCE_DIR/lint-reports/markdownlint-$TIMESTAMP.txt" || true
+sed -n '1,20p' "$EVIDENCE_DIR/lint-reports/markdownlint-$TIMESTAMP.txt"
 MDLINT_ERRORS=$(grep -c "error(s)" "$EVIDENCE_DIR/lint-reports/markdownlint-$TIMESTAMP.txt" || echo "0")
 echo "✅ Markdownlint: report saved"
 echo ""
 
 # 3. ESLint sweep
 echo "[3/5] Running ESLint..."
-npx eslint . --ext .js,.jsx,.ts,.tsx 2>&1 | tee "$EVIDENCE_DIR/lint-reports/eslint-$TIMESTAMP.txt" | tail -5
+npx eslint . --ext .js,.jsx,.ts,.tsx \
+  --ignore-pattern node_modules \
+  --ignore-pattern .git \
+  --ignore-pattern .venv \
+  --ignore-pattern dist \
+  --ignore-pattern .evidence \
+ 2>&1 | tee "$EVIDENCE_DIR/lint-reports/eslint-$TIMESTAMP.txt" || true
+tail -5 "$EVIDENCE_DIR/lint-reports/eslint-$TIMESTAMP.txt"
 ESLINT_PROBLEMS=$(grep -c "problems" "$EVIDENCE_DIR/lint-reports/eslint-$TIMESTAMP.txt" || echo "0")
 echo "✅ ESLint: report saved"
 echo ""

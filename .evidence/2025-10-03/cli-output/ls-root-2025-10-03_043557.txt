@@ -1,0 +1,10 @@
+total 1104
+drwxr-xr-x@  15 jesseniesen  staff     480 Oct  3 03:54 backend
+-rw-r--r--@   1 jesseniesen  staff    4847 Oct  3 03:31 eslint.config.js
+-rw-r--r--@   1 jesseniesen  staff   39833 Oct  3 03:15 VERIFF_LOYALTY_AUTOMATION_TIER1.md
+-rw-r--r--@   1 jesseniesen  staff   18632 Oct  3 03:15 LIGHTSPEED_MAX_CONVERSION_MAKEOVER.md
+-rw-r--r--@   1 jesseniesen  staff   13063 Oct  3 03:15 README.md
+-rw-r--r--@   1 jesseniesen  staff   10236 Oct  3 03:15 LOCAL_STATUS_REPORT_20251002_0445AM.md
+-rw-r--r--@   1 jesseniesen  staff    2048 Oct  3 03:15 FINAL_SUMMARY.md
+-rw-r--r--@   1 jesseniesen  staff    1929 Oct  3 03:15 CONSOLIDATION_PLAN.md
+-rw-r--r--@   1 jesseniesen  staff   12634 Oct  3 03:15 DNS_CLEANUP_REGGIEANDDRO_TIER1.md

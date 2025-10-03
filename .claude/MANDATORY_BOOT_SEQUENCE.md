@@ -66,8 +66,8 @@ Read these files FIRST before touching anything:
 - `.claude/LEARNING_LEDGER.md` (past failures)
 - `.claude/VERIFICATION_REQUIRED.md` (verification gates)
 - `.claude/HONESTY_CONSTRAINTS.md` (blocking rules)
-- `.claude/NEXT_SESSION_BOOTSTRAP.md` (context)
-- `.claude/NEXT_SESSION_CRITICAL_MISSION.md` (orders)
+- `.claude/ULTIMATE_FUSION_STARTUP.md` (session launch flow)
+- `.claude/COMMANDER_CODEX_ORDERS.md` (active missions)
 - `.claude/CURRENT_SESSION_STATE.md` (last state)
 
 ### 2. Centralize Orders in Live Tracker
