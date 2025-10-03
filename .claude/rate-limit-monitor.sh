@@ -47,6 +47,7 @@ echo ""
 echo "📊 Cursor Limit Status:"
 echo "  - Current day: $CURRENT_DAY"
 echo "  - Reset day: $CURSOR_RESET_DAY $CURSOR_RESET_TIME"
+echo "  - Threshold to switch back to Cursor: \$$ANTHROPIC_BALANCE_THRESHOLD remaining"
 echo "  - Days until reset: $(( (7 - $(date +%u)) % 7 )) days"
 echo ""
 

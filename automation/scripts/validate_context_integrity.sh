@@ -4,6 +4,7 @@
 # Session: Elephant Strategy Batch 1
 
 
+# shellcheck source=automation/scripts/common.sh
 source "$(dirname "$0")/common.sh"
 
 manifest="$ROOT_DIR/highnoon/context_manifest.yaml"

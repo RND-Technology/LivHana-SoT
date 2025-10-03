@@ -11,9 +11,8 @@ set -e
 
 REPO_ROOT="/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT"
 TODAY=$(date +%Y-%m-%d)
-TIMESTAMP=$(date +%Y%m%d)
 
-cd "$REPO_ROOT"
+cd "$REPO_ROOT" || exit
 
 echo "🔥 OPTIMIZING ENTIRE REPO - NO FILE LEFT BEHIND"
 echo "================================================"

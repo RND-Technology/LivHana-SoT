@@ -1,0 +1,18 @@
+
+/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/empire/content-engine/src/text-video-generator.js
+  26:11  warning  'audioDir' is assigned a value but never used  no-unused-vars
+  97:77  warning  'duration' is defined but never used           no-unused-vars
+
+/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/empire/content-engine/src/video-compositor.js
+   15:7   warning  '__dirname' is assigned a value but never used  no-unused-vars
+  109:23  warning  'command' is defined but never used             no-unused-vars
+
+/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/empire/content-engine/src/visual-generator.js
+  75:13  warning  'style' is assigned a value but never used  no-unused-vars
+
+/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/empire/content-engine/src/voice-generator.js
+  10:10  warning  'Readable' is defined but never used  no-unused-vars
+  11:10  warning  'finished' is defined but never used  no-unused-vars
+
+✖ 7 problems (0 errors, 7 warnings)
+

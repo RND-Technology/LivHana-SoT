@@ -13,7 +13,7 @@ set -e
 TODAY=$(date +%Y%m%d)
 REPO_ROOT=$(git rev-parse --show-toplevel)
 
-cd "$REPO_ROOT"
+cd "$REPO_ROOT" || exit
 
 echo "🔄 RPM WEEKLY UPDATE - $(date +%Y-%m-%d)"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
@@ -24,12 +24,9 @@ UPDATED=0
 UNCHANGED=0
 
 # Find all RPM DNA formatted directories at root level
-find . -maxdepth 1 -type d -name "[0-9]-*.*.*.*.*.*" | sort | while read dir; do
+while IFS= read -r dir; do
   # Extract all components except timestamp
   base=$(echo "$dir" | sed -E 's/\.[0-9]{8}$//')
-
-  # Get current timestamp from directory name
-  old_date=$(echo "$dir" | grep -oE '[0-9]{8}$' || echo "none")
 
   # Build new name with today's date
   new_name="${base}.${TODAY}"
@@ -42,7 +39,7 @@ find . -maxdepth 1 -type d -name "[0-9]-*.*.*.*.*.*" | sort | while read dir; do
     echo "⏭️  Unchanged: $(basename "$dir")"
     UNCHANGED=$((UNCHANGED + 1))
   fi
-done
+done < <(find . -maxdepth 1 -type d -name "[0-9]-*.*.*.*.*.*" | sort)
 
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
@@ -52,7 +49,8 @@ echo "   Unchanged: $UNCHANGED folders"
 echo ""
 echo "🎯 CURRENT PRIORITY STACK RANK:"
 echo ""
-ls -1 | grep -E "^[0-9]-" | head -10 | nl -w2 -s'. '
+find . -maxdepth 1 -type d -name "[0-9]-*" -print | sort | head -10 |
+  nl -w2 -s'. '
 echo ""
 echo "💡 TIP: Focus on top 3 this week"
 echo "📝 Next: Run weekly planning session and commit changes"

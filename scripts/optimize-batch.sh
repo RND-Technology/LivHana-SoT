@@ -29,9 +29,11 @@ PROCESSED=0
 
 find "$TARGET_DIR" -type f -name "$FILE_PATTERN" ! -path "*/node_modules/*" | while IFS= read -r file; do
     if ! grep -q "Optimized: $TIMESTAMP" "$file" 2>/dev/null; then
-        echo "" >> "$file"
-        echo "${MARKER_PREFIX} Optimized: $TIMESTAMP" >> "$file"
-        echo "${MARKER_PREFIX} RPM: 1.6.2.3.batch-optimization" >> "$file"
+        {
+            echo ""
+            echo "${MARKER_PREFIX} Optimized: $TIMESTAMP"
+            echo "${MARKER_PREFIX} RPM: 1.6.2.3.batch-optimization"
+        } >> "$file"
     fi
     touch "$file"
     git add "$file"

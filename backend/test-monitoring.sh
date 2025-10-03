@@ -43,7 +43,6 @@ test_endpoint() {
 
   response=$(curl -s -w "\n%{http_code}" "$url" 2>/dev/null || echo "000")
   status_code=$(echo "$response" | tail -n 1)
-  body=$(echo "$response" | head -n -1)
 
   if [ "$status_code" = "$expected_status" ]; then
     echo -e "${GREEN}✓ PASS${NC} ($status_code)"
@@ -69,7 +68,8 @@ test_json_response() {
   response=$(curl -s "$url" 2>/dev/null || echo "{}")
 
   if echo "$response" | jq -e ".$json_key" > /dev/null 2>&1; then
-    local value=$(echo "$response" | jq -r ".$json_key")
+    local value
+    value=$(echo "$response" | jq -r ".$json_key")
     echo -e "${GREEN}✓ PASS${NC} (value: $value)"
     TESTS_PASSED=$((TESTS_PASSED + 1))
     return 0
@@ -92,7 +92,7 @@ test_prometheus_metrics() {
   response=$(curl -s "$url" 2>/dev/null || echo "")
 
   if echo "$response" | grep -q "# HELP"; then
-    metric_count=$(echo "$response" | grep "# HELP" | wc -l)
+    metric_count=$(echo "$response" | grep -c "# HELP")
     echo -e "${GREEN}✓ PASS${NC} ($metric_count metrics)"
     TESTS_PASSED=$((TESTS_PASSED + 1))
     return 0
@@ -182,7 +182,7 @@ echo "----------------"
 
 # Generate some load for metrics
 echo -n "Generating load (100 requests) ... "
-for i in {1..100}; do
+for _ in {1..100}; do
   curl -s "$INTEGRATION_SERVICE_URL/health" > /dev/null 2>&1 &
 done
 wait

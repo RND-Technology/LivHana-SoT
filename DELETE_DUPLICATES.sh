@@ -19,7 +19,7 @@ echo ""
 echo "This script will delete 37 duplicate markdown files."
 echo "All deletions have been verified and documented."
 echo ""
-read -p "Are you sure you want to proceed? (type 'YES' to confirm): " confirmation
+read -r -p "Are you sure you want to proceed? (type 'YES' to confirm): " confirmation
 
 if [ "$confirmation" != "YES" ]; then
     echo "Deletion cancelled. No files were deleted."

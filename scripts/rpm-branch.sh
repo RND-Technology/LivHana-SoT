@@ -23,10 +23,11 @@ if [ -z "$1" ]; then
 fi
 
 REPO_ROOT=$(git rev-parse --show-toplevel)
-cd "$REPO_ROOT"
+cd "$REPO_ROOT" || exit
 
 # Get top priority folder prefix (AOM.COI.RPM)
-TOP_FOLDER=$(ls -1 | grep -E "^[0-9]-" | head -1)
+TOP_FOLDER=$(find . -maxdepth 1 -type d -name '[0-9]-*' -print | sort | head -1)
+TOP_FOLDER=${TOP_FOLDER#./}
 
 if [ -z "$TOP_FOLDER" ]; then
   echo "❌ No RPM DNA formatted folders found"

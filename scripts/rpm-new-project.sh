@@ -10,7 +10,7 @@ set -euo pipefail
 set -e
 
 REPO_ROOT=$(git rev-parse --show-toplevel 2>/dev/null || pwd)
-cd "$REPO_ROOT"
+cd "$REPO_ROOT" || exit
 
 echo ""
 echo "🚀 RPM DNA NEW PROJECT CREATOR"
@@ -27,7 +27,7 @@ echo "   5 = Learning/Growth"
 echo "   6 = Contribution/Legacy"
 echo "   7 = Recreation/Adventure"
 echo "   8 = Environment/Lifestyle"
-read -p "   Enter AOM number (1-8): " AOM
+read -r -p "   Enter AOM number (1-8): " AOM
 
 case $AOM in
   1) AOM_NAME="FIN" ;;
@@ -51,7 +51,7 @@ echo "   OPS = One Plant Solution (Growth Engine)"
 echo "   HRB = Herbitrage (Incubator)"
 echo "   CCO = CannaCo (Incubator)"
 echo "   SYS = System-wide"
-read -p "   Enter COI code: " COI
+read -r -p "   Enter COI code: " COI
 COI=$(echo "$COI" | tr '[:lower:]' '[:upper:]')
 
 echo ""
@@ -65,7 +65,7 @@ echo "   500-599 = RESEARCH (future potential)"
 echo "   600-699 = DELEGATED (others responsible)"
 echo "   700-799 = WAITING (blocked)"
 echo "   800-899 = SOMEDAY/MAYBE (backlog)"
-read -p "   Enter RPM number (001-899): " RPM
+read -r -p "   Enter RPM number (001-899): " RPM
 
 # Validate RPM format (3 digits)
 if ! [[ "$RPM" =~ ^[0-9]{3}$ ]]; then
@@ -77,13 +77,13 @@ echo ""
 echo "4️⃣  SELECT ACTION VERB:"
 echo "   Common: BUILD, LAUNCH, OPTIMIZE, FIX, DEPLOY, DESIGN,"
 echo "           RESEARCH, DOCUMENT, TEST, INTEGRATE, AUTOMATE"
-read -p "   Enter action verb: " ACTION
+read -r -p "   Enter action verb: " ACTION
 ACTION=$(echo "$ACTION" | tr '[:lower:]' '[:upper:]')
 
 echo ""
 echo "5️⃣  DESCRIBE CONTEXT (kebab-case):"
 echo "   Examples: delivery-api, leafly-profile, episode-1"
-read -p "   Enter context: " CONTEXT
+read -r -p "   Enter context: " CONTEXT
 CONTEXT=$(echo "$CONTEXT" | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
 
 DATE=$(date +%Y%m%d)
@@ -96,7 +96,7 @@ echo "━━━━━━━━━━━━━━━━━━━━━━━━�
 echo "📁 CREATING PROJECT:"
 echo "   $FOLDER"
 echo ""
-read -p "   Proceed? (y/n): " CONFIRM
+read -r -p "   Proceed? (y/n): " CONFIRM
 
 if [ "$CONFIRM" != "y" ] && [ "$CONFIRM" != "Y" ]; then
   echo "❌ Cancelled"
@@ -156,7 +156,7 @@ echo "📁 Location: $FOLDER"
 echo "📝 README: $FOLDER/README.md"
 echo ""
 echo "🎯 Current stack rank:"
-ls -1 | grep -E "^[0-9]-" | head -5 | nl -w2 -s'. '
+find . -maxdepth 1 -type d -name "[0-9]-*" -print | sort | head -5 | nl -w2 -s'. '
 echo ""
 echo "💡 Next steps:"
 echo "   cd $FOLDER"
