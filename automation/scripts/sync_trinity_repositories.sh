@@ -4,6 +4,7 @@
 # Session: Elephant Strategy Batch 1
 
 
+# shellcheck source=automation/scripts/common.sh
 source "$(dirname "$0")/common.sh"
 
 IFS=',' read -r -a repos <<< "${SOVEREIGN_TRINITY:-LivHana-SoT,LivHana-Kinetic,LivHana-Potential}"

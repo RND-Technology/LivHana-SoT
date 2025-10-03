@@ -1,0 +1,403 @@
+
+In ./backend/test-monitoring.sh line 46:
+  body=$(echo "$response" | head -n -1)
+  ^--^ SC2034 (warning): body appears unused. Verify use (or export if used externally).
+
+
+In ./backend/test-monitoring.sh line 72:
+    local value=$(echo "$response" | jq -r ".$json_key")
+          ^---^ SC2155 (warning): Declare and assign separately to avoid masking return values.
+
+
+In ./backend/test-monitoring.sh line 85:
+  local service=$1
+        ^-----^ SC2034 (warning): service appears unused. Verify use (or export if used externally).
+
+
+In ./backend/test-monitoring.sh line 95:
+    metric_count=$(echo "$response" | grep "# HELP" | wc -l)
+                                      ^-----------^ SC2126 (style): Consider using 'grep -c' instead of 'grep|wc -l'.
+
+
+In ./backend/test-monitoring.sh line 185:
+for i in {1..100}; do
+^-^ SC2034 (warning): i appears unused. Verify use (or export if used externally).
+
+
+In ./scripts/run_full_sweep.sh line 62:
+ls -lt | head -10 | tee "$EVIDENCE_DIR/cli-output/ls-root-$TIMESTAMP.txt"
+^----^ SC2012 (info): Use find instead of ls to better handle non-alphanumeric filenames.
+
+
+In ./scripts/optimize-batch.sh line 32:
+        echo "" >> "$file"
+        ^----------------^ SC2129 (style): Consider using { cmd1; cmd2; } >> file instead of individual redirects.
+
+
+In ./scripts/rpm-new-project.sh line 30:
+read -p "   Enter AOM number (1-8): " AOM
+^--^ SC2162 (info): read without -r will mangle backslashes.
+
+
+In ./scripts/rpm-new-project.sh line 54:
+read -p "   Enter COI code: " COI
+^--^ SC2162 (info): read without -r will mangle backslashes.
+
+
+In ./scripts/rpm-new-project.sh line 68:
+read -p "   Enter RPM number (001-899): " RPM
+^--^ SC2162 (info): read without -r will mangle backslashes.
+
+
+In ./scripts/rpm-new-project.sh line 80:
+read -p "   Enter action verb: " ACTION
+^--^ SC2162 (info): read without -r will mangle backslashes.
+
+
+In ./scripts/rpm-new-project.sh line 86:
+read -p "   Enter context: " CONTEXT
+^--^ SC2162 (info): read without -r will mangle backslashes.
+
+
+In ./scripts/rpm-new-project.sh line 99:
+read -p "   Proceed? (y/n): " CONFIRM
+^--^ SC2162 (info): read without -r will mangle backslashes.
+
+
+In ./scripts/rpm-new-project.sh line 159:
+ls -1 | grep -E "^[0-9]-" | head -5 | nl -w2 -s'. '
+^-- SC2010 (warning): Don't use ls | grep. Use a glob or a for loop with a condition to allow non-alphanumeric filenames.
+
+
+In ./automation/scripts/check_trinity_status.sh line 7:
+source "$(dirname "$0")/common.sh"
+       ^-------------------------^ SC1091 (info): Not following: ./common.sh: openBinaryFile: does not exist (No such file or directory)
+
+
+In ./automation/scripts/common.sh line 10:
+TRINITY_ROOT="$(cd "$ROOT_DIR/.." && pwd)"
+^----------^ SC2034 (warning): TRINITY_ROOT appears unused. Verify use (or export if used externally).
+
+
+In ./automation/scripts/check_age_gate.sh line 9:
+. "${SCRIPT_DIR}/lib_common.sh"
+  ^---------------------------^ SC1091 (info): Not following: ./lib_common.sh: openBinaryFile: does not exist (No such file or directory)
+
+
+In ./automation/scripts/update_sovereign_context.sh line 7:
+source "$(dirname "$0")/common.sh"
+       ^-------------------------^ SC1091 (info): Not following: ./common.sh: openBinaryFile: does not exist (No such file or directory)
+
+
+In ./automation/scripts/check_memory_snapshot.sh line 9:
+. "${SCRIPT_DIR}/lib_common.sh"
+  ^---------------------------^ SC1091 (info): Not following: ./lib_common.sh: openBinaryFile: does not exist (No such file or directory)
+
+
+In ./automation/scripts/lib_common.sh line 28:
+    printf '"%s":"%s"' "$(echo "$k" | sed 's/"/\\"/g')" "$(echo "$v" | sed 's/"/\\"/g')"
+                          ^-------------------------^ SC2001 (style): See if you can use ${variable//search/replace} instead.
+                                                           ^-------------------------^ SC2001 (style): See if you can use ${variable//search/replace} instead.
+
+
+In ./automation/scripts/setup_version2.sh line 13:
+    source .env
+           ^--^ SC1094 (warning): Parsing of sourced file failed. Ignoring it.
+
+
+In ./automation/scripts/prep_ingestion_data.sh line 7:
+source "$(dirname "$0")/common.sh"
+       ^-------------------------^ SC1091 (info): Not following: ./common.sh: openBinaryFile: does not exist (No such file or directory)
+
+
+In ./automation/scripts/validate_context_integrity.sh line 7:
+source "$(dirname "$0")/common.sh"
+       ^-------------------------^ SC1091 (info): Not following: ./common.sh: openBinaryFile: does not exist (No such file or directory)
+
+
+In ./automation/scripts/validate_sovereign_compliance.sh line 7:
+source "$(dirname "$0")/common.sh"
+       ^-------------------------^ SC1091 (info): Not following: ./common.sh: openBinaryFile: does not exist (No such file or directory)
+
+
+In ./automation/scripts/check_router_health.sh line 9:
+. "${SCRIPT_DIR}/lib_common.sh"
+  ^---------------------------^ SC1091 (info): Not following: ./lib_common.sh: openBinaryFile: does not exist (No such file or directory)
+
+
+In ./automation/scripts/check_workflow_inventory.sh line 9:
+. "${SCRIPT_DIR}/lib_common.sh"
+  ^---------------------------^ SC1091 (info): Not following: ./lib_common.sh: openBinaryFile: does not exist (No such file or directory)
+
+
+In ./automation/scripts/check_workflow_inventory.sh line 27:
+rows_total=$(grep -E '^\|[^-]+' "$MANIFEST_PATH" | grep -v '^| *Workflow' | wc -l | tr -d ' ')
+                                                   ^--------------------^ SC2126 (style): Consider using 'grep -c' instead of 'grep|wc -l'.
+
+
+In ./automation/scripts/check_workflow_inventory.sh line 28:
+defined_count=$(grep -E '\| *Y *\|' "$MANIFEST_PATH" | wc -l | tr -d ' ' || true)
+                ^-- SC2126 (style): Consider using 'grep -c' instead of 'grep|wc -l'.
+
+
+In ./automation/scripts/check_infra_plan.sh line 9:
+. "${SCRIPT_DIR}/lib_common.sh"
+  ^---------------------------^ SC1091 (info): Not following: ./lib_common.sh: openBinaryFile: does not exist (No such file or directory)
+
+
+In ./automation/scripts/check_service_health.sh line 7:
+source "$(dirname "$0")/common.sh"
+       ^-------------------------^ SC1091 (info): Not following: ./common.sh: openBinaryFile: does not exist (No such file or directory)
+
+
+In ./automation/scripts/check_service_readiness.sh line 7:
+source "$(dirname "$0")/common.sh"
+       ^-------------------------^ SC1091 (info): Not following: ./common.sh: openBinaryFile: does not exist (No such file or directory)
+
+
+In ./automation/scripts/verify_data_integrity.sh line 7:
+source "$(dirname "$0")/common.sh"
+       ^-------------------------^ SC1091 (info): Not following: ./common.sh: openBinaryFile: does not exist (No such file or directory)
+
+
+In ./automation/scripts/verify_data_integrity.sh line 16:
+latest_report=$(ls -1t "$REPORT_DIR"/data_ingestion_report_*.md 2>/dev/null | head -n 1 || true)
+                ^-- SC2012 (info): Use find instead of ls to better handle non-alphanumeric filenames.
+
+
+In ./automation/scripts/tier1_repo_restructure.sh line 11:
+RED='\033[0;31m'
+^-^ SC2034 (warning): RED appears unused. Verify use (or export if used externally).
+
+
+In ./automation/scripts/tier1_repo_restructure.sh line 20:
+cd "$WORKSPACE_ROOT"
+^------------------^ SC2164 (warning): Use 'cd ... || exit' or 'cd ... || return' in case cd fails.
+
+Did you mean:
+cd "$WORKSPACE_ROOT" || exit
+
+
+In ./automation/scripts/tier1_repo_restructure.sh line 120:
+    mv *SYSTEM_PROMPT*.md docs/governance/ 2>/dev/null || true
+       ^-- SC2035 (info): Use ./*glob* or -- *glob* so names with dashes won't become options.
+
+
+In ./automation/scripts/validate_compliance.sh line 7:
+source "$(dirname "$0")/common.sh"
+       ^-------------------------^ SC1091 (info): Not following: ./common.sh: openBinaryFile: does not exist (No such file or directory)
+
+
+In ./automation/scripts/refresh_data_layer.sh line 7:
+source "$(dirname "$0")/common.sh"
+       ^-------------------------^ SC1091 (info): Not following: ./common.sh: openBinaryFile: does not exist (No such file or directory)
+
+
+In ./automation/scripts/check_housekeeping_queue.sh line 12:
+source "${SCRIPT_DIR}/lib_common.sh" 2>/dev/null || true
+       ^---------------------------^ SC1091 (info): Not following: ./lib_common.sh: openBinaryFile: does not exist (No such file or directory)
+
+
+In ./automation/scripts/check_housekeeping_queue.sh line 22:
+cd "$WORKSPACE_ROOT"
+^------------------^ SC2164 (warning): Use 'cd ... || exit' or 'cd ... || return' in case cd fails.
+
+Did you mean:
+cd "$WORKSPACE_ROOT" || exit
+
+
+In ./automation/scripts/check_housekeeping_queue.sh line 156:
+MODIFIED_COUNT=$(git status --porcelain | grep -E "^ M" | wc -l | tr -d ' ')
+                                          ^-----------^ SC2126 (style): Consider using 'grep -c' instead of 'grep|wc -l'.
+
+
+In ./automation/scripts/check_housekeeping_queue.sh line 163:
+STAGED_COUNT=$(git status --porcelain | grep -E "^[AM]" | wc -l | tr -d ' ')
+                                        ^-------------^ SC2126 (style): Consider using 'grep -c' instead of 'grep|wc -l'.
+
+
+In ./automation/scripts/sync_trinity_repositories.sh line 7:
+source "$(dirname "$0")/common.sh"
+       ^-------------------------^ SC1091 (info): Not following: ./common.sh: openBinaryFile: does not exist (No such file or directory)
+
+
+In ./automation/scripts/validate_version2.sh line 13:
+    source .env
+           ^--^ SC1094 (warning): Parsing of sourced file failed. Ignoring it.
+
+
+In ./automation/scripts/validate_service_deployments.sh line 7:
+source "$(dirname "$0")/common.sh"
+       ^-------------------------^ SC1091 (info): Not following: ./common.sh: openBinaryFile: does not exist (No such file or directory)
+
+
+In ./automation/scripts/run_compliance_audit.sh line 7:
+source "$(dirname "$0")/common.sh"
+       ^-------------------------^ SC1091 (info): Not following: ./common.sh: openBinaryFile: does not exist (No such file or directory)
+
+
+In ./automation/scripts/empire_empire_audit.sh line 16:
+MAGENTA='\033[0;35m'
+^-----^ SC2034 (warning): MAGENTA appears unused. Verify use (or export if used externally).
+
+
+In ./automation/scripts/empire_empire_audit.sh line 20:
+cd "$WORKSPACE_ROOT"
+^------------------^ SC2164 (warning): Use 'cd ... || exit' or 'cd ... || return' in case cd fails.
+
+Did you mean:
+cd "$WORKSPACE_ROOT" || exit
+
+
+In ./automation/scripts/empire_empire_audit.sh line 37:
+NEW_EMPIRE_DOMAINS=(
+^----------------^ SC2034 (warning): NEW_EMPIRE_DOMAINS appears unused. Verify use (or export if used externally).
+
+
+In ./automation/scripts/tier1_comprehensive_audit.sh line 17:
+cd "$WORKSPACE_ROOT"
+^------------------^ SC2164 (warning): Use 'cd ... || exit' or 'cd ... || return' in case cd fails.
+
+Did you mean:
+cd "$WORKSPACE_ROOT" || exit
+
+
+In ./automation/scripts/tier1_comprehensive_audit.sh line 43:
+            echo -e "  ${GREEN}✓${NC} $(basename $service) has Dockerfile"
+                                                 ^------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean:
+            echo -e "  ${GREEN}✓${NC} $(basename "$service") has Dockerfile"
+
+
+In ./automation/scripts/tier1_comprehensive_audit.sh line 46:
+            echo -e "  ${RED}✗${NC} $(basename $service) missing Dockerfile"
+                                               ^------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean:
+            echo -e "  ${RED}✗${NC} $(basename "$service") missing Dockerfile"
+
+
+In ./automation/scripts/tier1_comprehensive_audit.sh line 57:
+            echo -e "  ${GREEN}✓${NC} $(basename $service) has index.js"
+                                                 ^------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean:
+            echo -e "  ${GREEN}✓${NC} $(basename "$service") has index.js"
+
+
+In ./automation/scripts/tier1_comprehensive_audit.sh line 60:
+            echo -e "  ${RED}✗${NC} $(basename $service) missing index.js"
+                                               ^------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean:
+            echo -e "  ${RED}✗${NC} $(basename "$service") missing index.js"
+
+
+In ./automation/scripts/tier1_comprehensive_audit.sh line 136:
+RULE_COUNT=$(ls -1 .cursor/rules/*.mdc 2>/dev/null | wc -l || echo "0")
+             ^-- SC2012 (info): Use find instead of ls to better handle non-alphanumeric filenames.
+
+
+In ./automation/data-pipelines/ingest_whatsapp_data.sh line 12:
+WHATSAPP_API_URL="https://graph.facebook.com/v17.0"
+^--------------^ SC2034 (warning): WHATSAPP_API_URL appears unused. Verify use (or export if used externally).
+
+
+In ./automation/data-pipelines/gmail_setup.sh line 64:
+read -p "Enter GCP Project ID (or press Enter to skip): " GCP_PROJECT_ID
+^--^ SC2162 (info): read without -r will mangle backslashes.
+
+
+In ./automation/data-pipelines/gmail_setup.sh line 70:
+read -p "Enter BigQuery dataset name [communications]: " BQ_DATASET
+^--^ SC2162 (info): read without -r will mangle backslashes.
+
+
+In ./automation/data-pipelines/gmail_setup.sh line 75:
+read -p "Enter Cloud Storage bucket for attachments [livhana-gmail-attachments]: " GCS_BUCKET
+^--^ SC2162 (info): read without -r will mangle backslashes.
+
+
+In ./automation/data-pipelines/gmail_setup.sh line 170:
+read -p "Authenticate jesseniesen@gmail.com? (y/n): " AUTH_JESSEN
+^--^ SC2162 (info): read without -r will mangle backslashes.
+
+
+In ./automation/data-pipelines/gmail_setup.sh line 176:
+read -p "Authenticate high@reggieanddro.com? (y/n): " AUTH_HIGH
+^--^ SC2162 (info): read without -r will mangle backslashes.
+
+
+In ./automation/data-pipelines/notion_setup.sh line 48:
+    source "$ENV_FILE"
+           ^---------^ SC1090 (warning): ShellCheck can't follow non-constant source. Use a directive to specify location.
+
+
+In ./automation/schedulers/t-90-prep.sh line 43:
+cat > t90_report_$(date +%Y%m%d_%H%M%S).md << EOF
+                 ^--------------------^ SC2046 (warning): Quote this to prevent word splitting.
+
+
+In ./automation/schedulers/t-30-final-check.sh line 36:
+cat > t30_readiness_report_$(date +%Y%m%d_%H%M%S).md << EOF
+                           ^--------------------^ SC2046 (warning): Quote this to prevent word splitting.
+
+
+In ./empire/content-engine/make-video-tier1.sh line 16:
+SCRIPT="output/scripts/${EPISODE}.json"
+^----^ SC2034 (warning): SCRIPT appears unused. Verify use (or export if used externally).
+
+
+In ./empire/content-engine/make-video-tier1.sh line 32:
+AUDIO_FILES=($(ls -1 "$AUDIO_DIR"/*.mp3 | grep -v manifest | head -6))
+             ^-- SC2207 (warning): Prefer mapfile or read -a to split command output (or quote to avoid splitting).
+               ^-- SC2010 (warning): Don't use ls | grep. Use a glob or a for loop with a condition to allow non-alphanumeric filenames.
+
+
+In ./empire/content-engine/make-video-tier1.sh line 45:
+  echo "[$(($i+1))/${#AUDIO_FILES[@]}] Processing: $(basename "$AUDIO")"
+            ^-- SC2004 (style): $/${} is unnecessary on arithmetic variables.
+
+
+In ./empire/content-engine/make-video-tier1.sh line 59:
+  echo "   ✅ Created segment $(($i+1))"
+                                ^-- SC2004 (style): $/${} is unnecessary on arithmetic variables.
+
+
+In ./empire/content-engine/generate-professional-video.sh line 16:
+SCRIPT="output/scripts/${EPISODE}.json"
+^----^ SC2034 (warning): SCRIPT appears unused. Verify use (or export if used externally).
+
+
+In ./empire/content-engine/generate-professional-video.sh line 21:
+AUDIO_FILES=($(ls -1 "$AUDIO_DIR"/*.mp3 | grep -v manifest | sort | head -6))
+             ^-- SC2207 (warning): Prefer mapfile or read -a to split command output (or quote to avoid splitting).
+               ^-- SC2010 (warning): Don't use ls | grep. Use a glob or a for loop with a condition to allow non-alphanumeric filenames.
+
+
+In ./empire/content-engine/generate-professional-video.sh line 64:
+echo "   Duration: $(printf '%.1f' $DURATION)s"
+                                   ^-------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean:
+echo "   Duration: $(printf '%.1f' "$DURATION")s"
+
+
+In ./empire/content-engine/make-video-simple.sh line 23:
+AUDIO_FILES=($(ls -1 "$AUDIO_DIR"/*.mp3 | grep -v manifest | sort | head -6))
+             ^-- SC2207 (warning): Prefer mapfile or read -a to split command output (or quote to avoid splitting).
+               ^-- SC2010 (warning): Don't use ls | grep. Use a glob or a for loop with a condition to allow non-alphanumeric filenames.
+
+
+In ./empire/content-engine/make-video-simple.sh line 64:
+echo "   ⏱️  Duration: $(printf '%.1f' $DURATION)s"
+                                       ^-------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean:
+echo "   ⏱️  Duration: $(printf '%.1f' "$DURATION")s"
+
+For more information:
+  https://www.shellcheck.net/wiki/SC1090 -- ShellCheck can't follow non-const...
+  https://www.shellcheck.net/wiki/SC1094 -- Parsing of sourced file failed. I...
+  https://www.shellcheck.net/wiki/SC2010 -- Don't use ls | grep. Use a glob o...
