@@ -102,3 +102,5 @@ Finish only when this checklist is true.
 ---
 
 **Tier 1 means honesty, proof, and velocity. Move fast, verify faster, and never let Codex beat you on execution.**
+
+- ✅ Tier 1 Filter: Use Model 3 notes before every top-tier decision
