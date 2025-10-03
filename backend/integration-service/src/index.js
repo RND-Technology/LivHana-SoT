@@ -9,6 +9,7 @@ import { router as ageVerificationRoutes } from './age_verification_routes.js';
 import { router as raffleRoutes } from './raffle.js';
 import { startSquareSyncScheduler } from './square-sync-scheduler.js';
 import { startLightspeedSyncScheduler } from './lightspeed-sync-scheduler.js';
+import { startLeaflySyncScheduler } from './leafly-sync-scheduler.js';
 
 // Import compliance API routes
 import complianceRoutes from './routes/compliance-api.js';
@@ -147,6 +148,15 @@ app.post('/api/sync/square', (req, res) => {
   });
 });
 
+app.post('/api/sync/leafly', (req, res) => {
+  logger.info({ user: req.user }, 'Leafly sync triggered');
+  res.json({
+    success: true,
+    message: 'Leafly menu/deals sync initiated',
+    nextSync: new Date(Date.now() + 1800000).toISOString() // 30 min
+  });
+});
+
 app.listen(PORT, () => {
   logger.info({ port: PORT }, 'Integration Service running');
 
@@ -155,6 +165,9 @@ app.listen(PORT, () => {
 
   // Start Lightspeed auto-sync scheduler (every 15 minutes)
   startLightspeedSyncScheduler();
+
+  // Start Leafly auto-sync scheduler (every 30 minutes)
+  startLeaflySyncScheduler();
 });
 
 // Optimized: 2025-10-02

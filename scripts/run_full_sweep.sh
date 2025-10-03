@@ -41,9 +41,14 @@ echo ""
 echo "[3/5] Running ESLint..."
 npx eslint . --ext .js,.jsx,.ts,.tsx \
   --ignore-pattern node_modules \
+  --ignore-pattern '**/node_modules/**' \
   --ignore-pattern .git \
   --ignore-pattern .venv \
+  --ignore-pattern '**/.venv/**' \
   --ignore-pattern dist \
+  --ignore-pattern '**/dist/**' \
+  --ignore-pattern build \
+  --ignore-pattern '**/build/**' \
   --ignore-pattern .evidence \
  2>&1 | tee "$EVIDENCE_DIR/lint-reports/eslint-$TIMESTAMP.txt" || true
 tail -5 "$EVIDENCE_DIR/lint-reports/eslint-$TIMESTAMP.txt"

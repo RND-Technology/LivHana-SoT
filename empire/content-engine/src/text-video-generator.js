@@ -23,7 +23,6 @@ class TextVideoGenerator {
     console.log(`\n🎬 Generating video for ${episodeId}...`);
 
     const scriptPath = path.join(this.outputDir, 'scripts', `${episodeId}.json`);
-    const audioDir = path.join(this.outputDir, 'audio', episodeId);
     const videoDir = path.join(this.outputDir, 'videos', episodeId);
 
     // Load script
@@ -74,8 +73,7 @@ class TextVideoGenerator {
         audioPath,
         text: `${dialogue.character}:\n"${dialogue.line}"`,
         outputPath: segmentPath,
-        sceneHeading: scene.heading,
-        duration: dialogueFile.duration
+        sceneHeading: scene.heading
       });
 
       segments.push(segmentPath);
@@ -94,7 +92,7 @@ class TextVideoGenerator {
   /**
    * Create a single video segment with text overlay
    */
-  async createTextVideoSegment({ audioPath, text, outputPath, sceneHeading, duration }) {
+  async createTextVideoSegment({ audioPath, text, outputPath, sceneHeading }) {
     return new Promise((resolve, reject) => {
       // Get audio duration
       ffmpeg.ffprobe(audioPath, (err, metadata) => {

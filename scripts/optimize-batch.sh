@@ -27,7 +27,7 @@ echo "Marker: $MARKER_PREFIX"
 
 PROCESSED=0
 
-find "$TARGET_DIR" -type f -name "$FILE_PATTERN" ! -path "*/node_modules/*" | while IFS= read -r file; do
+while IFS= read -r file; do
     if ! grep -q "Optimized: $TIMESTAMP" "$file" 2>/dev/null; then
         {
             echo ""
@@ -39,6 +39,6 @@ find "$TARGET_DIR" -type f -name "$FILE_PATTERN" ! -path "*/node_modules/*" | wh
     git add "$file"
     PROCESSED=$((PROCESSED + 1))
     echo "Processed: $file"
-done
+done < <(find "$TARGET_DIR" -type f -name "$FILE_PATTERN" ! -path "*/node_modules/*")
 
 echo "✅ Complete: $PROCESSED files optimized"

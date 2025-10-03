@@ -17,7 +17,7 @@ CYAN='\033[0;36m'
 NC='\033[0m'
 
 WORKSPACE_ROOT="/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT"
-cd "$WORKSPACE_ROOT"
+cd "$WORKSPACE_ROOT" || exit
 
 echo "═══════════════════════════════════════════════════════════════"
 echo "       🚀 TIER-1 REPOSITORY RESTRUCTURING INITIATED"
@@ -117,7 +117,7 @@ done
 
 if [[ -f "SYSTEM_PROMPT.md" ]] || [[ -f "ULTIMATE_SYSTEM_PROMPT_Constitutional_Charter.md" ]]; then
     mkdir -p docs/governance
-    mv *SYSTEM_PROMPT*.md docs/governance/ 2>/dev/null || true
+    mv ./*SYSTEM_PROMPT*.md docs/governance/ 2>/dev/null || true
     echo -e "  ${GREEN}✓${NC} Moved system prompts → docs/governance/"
 fi
 

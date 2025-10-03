@@ -7,6 +7,7 @@
 
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+# shellcheck disable=SC2034
 TRINITY_ROOT="$(cd "$ROOT_DIR/.." && pwd)"
 
 log_info() {

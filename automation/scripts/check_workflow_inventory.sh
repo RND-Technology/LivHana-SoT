@@ -6,6 +6,7 @@
 # Verifies workflow inventory manifest completeness & ownership.
 # Fails (exit 30) if manifest missing required fields or target count mismatch.
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=automation/scripts/lib_common.sh
 . "${SCRIPT_DIR}/lib_common.sh"
 
 TARGET_COUNT="${WORKFLOW_TARGET_COUNT:-25}"
@@ -24,8 +25,8 @@ fi
 
 # Expect table rows like: | workflow_id | Defined | Verified | Automated | Owner |
 # Skip header & separator lines.
-rows_total=$(grep -E '^\|[^-]+' "$MANIFEST_PATH" | grep -v '^| *Workflow' | wc -l | tr -d ' ')
-defined_count=$(grep -E '\| *Y *\|' "$MANIFEST_PATH" | wc -l | tr -d ' ' || true)
+rows_total=$(awk -F'|' '/^\|[^-]/{if ($0 !~ /^\| *Workflow/) count++} END{print count+0}' "$MANIFEST_PATH")
+defined_count=$(awk -F'|' '/^\|[^-]/{if ($0 ~ /\| *Y *\|/) count++} END{print count+0}' "$MANIFEST_PATH")
 
 missing_owner=$(awk -F'|' '/^\|[^-]/{ if (NF>=6) { gsub(/^[ \t]+|[ \t]+$/,"",$6); if($6==""){print} } }' "$MANIFEST_PATH" | wc -l | tr -d ' ')
 if (( missing_owner > 0 )); then

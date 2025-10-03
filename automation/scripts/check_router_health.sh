@@ -6,6 +6,7 @@
 # Evaluates router health from runtime_state.json (or similar).
 # Expects JSON with recent_runs array of objects: { "latency_ms": N, "ok": true/false }
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=automation/scripts/lib_common.sh
 . "${SCRIPT_DIR}/lib_common.sh"
 
 STATE_FILE="${ROUTER_STATE_FILE:-automation/swarm/runtime_state.json}"

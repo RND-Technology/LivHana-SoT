@@ -4,6 +4,7 @@
 # Session: Elephant Strategy Batch 1
 
 
+# shellcheck source=automation/scripts/common.sh
 source "$(dirname "$0")/common.sh"
 
 log_info "Verifying data integrity artifacts"
@@ -13,7 +14,11 @@ if [ ! -d "$REPORT_DIR" ]; then
   mkdir -p "$REPORT_DIR"
 fi
 
-latest_report=$(ls -1t "$REPORT_DIR"/data_ingestion_report_*.md 2>/dev/null | head -n 1 || true)
+latest_report=$(find "$REPORT_DIR" -type f -name 'data_ingestion_report_*.md' -print0 2>/dev/null \
+  | xargs -0 stat -f "%m %N" 2>/dev/null \
+  | sort -nr \
+  | head -n 1 \
+  | cut -d' ' -f2-)
 if [ -z "$latest_report" ]; then
   log_warn "No ingestion reports found"
 else

@@ -14,7 +14,7 @@ BLUE='\033[0;34m'
 NC='\033[0m'
 
 WORKSPACE_ROOT="/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT"
-cd "$WORKSPACE_ROOT"
+cd "$WORKSPACE_ROOT" || exit
 
 ISSUES_FOUND=0
 CHECKS_PASSED=0
@@ -40,10 +40,10 @@ echo -e "${YELLOW}🐳 Checking Dockerfiles...${NC}"
 for service in backend/*/; do
     if [[ -d "$service" ]] && [[ ! "$service" =~ "common" ]] && [[ ! "$service" =~ "shared" ]]; then
         if [[ -f "$service/Dockerfile" ]]; then
-            echo -e "  ${GREEN}✓${NC} $(basename $service) has Dockerfile"
+            echo -e "  ${GREEN}✓${NC} $(basename "$service") has Dockerfile"
             ((CHECKS_PASSED++))
         else
-            echo -e "  ${RED}✗${NC} $(basename $service) missing Dockerfile"
+            echo -e "  ${RED}✗${NC} $(basename "$service") missing Dockerfile"
             ((ISSUES_FOUND++))
         fi
     fi
@@ -54,10 +54,10 @@ echo -e "${YELLOW}📦 Checking service entry points...${NC}"
 for service in backend/*/; do
     if [[ -d "$service/src" ]]; then
         if [[ -f "$service/src/index.js" ]]; then
-            echo -e "  ${GREEN}✓${NC} $(basename $service) has index.js"
+            echo -e "  ${GREEN}✓${NC} $(basename "$service") has index.js"
             ((CHECKS_PASSED++))
         else
-            echo -e "  ${RED}✗${NC} $(basename $service) missing index.js"
+            echo -e "  ${RED}✗${NC} $(basename "$service") missing index.js"
             ((ISSUES_FOUND++))
         fi
     fi

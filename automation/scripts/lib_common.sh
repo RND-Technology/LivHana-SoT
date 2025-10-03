@@ -25,7 +25,7 @@ json_kv() {
     local k v
     k="${!i}"; ((i++))
     v="${!i}"; ((i++))
-    printf '"%s":"%s"' "$(echo "$k" | sed 's/"/\\"/g')" "$(echo "$v" | sed 's/"/\\"/g')"
+    printf '"%s":"%s"' "${k//"/\\"}" "${v//"/\\"}"
     (( i <= total )) && printf ','
   done
   printf '}\n'

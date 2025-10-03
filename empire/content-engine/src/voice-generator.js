@@ -7,9 +7,6 @@ import { ElevenLabsClient } from 'elevenlabs';
 import dotenv from 'dotenv';
 import fs from 'fs/promises';
 import path from 'path';
-import { Readable } from 'stream';
-import { finished } from 'stream/promises';
-
 dotenv.config();
 
 class VoiceGenerator {
