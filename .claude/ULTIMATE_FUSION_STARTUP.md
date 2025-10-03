@@ -25,11 +25,18 @@
 
 **Acknowledge:**
 ```
-Learning Ledger read: <failures #>
+Learning Ledger read: <failures #> (focus on Failure #7: Stale Verification)
 Verification Protocol read: <gates #>
 Honesty Constraints read: <rules #>
+Current Achilles Heels: [list from ledger]
 ```
-Then restate mission in numbered steps with metrics + proof targets.
+Then restate mission in numbered steps with concrete metrics + proof targets + verification timestamps.
+
+**CRITICAL LESSON FROM FAILURE #7:**
+- NEVER make claims >5 minutes after verification
+- Include timestamp with every claim: "Verified: YYYY-MM-DD HH:MM:SS"
+- Evidence BEFORE claims, not after
+- Run verification commands IMMEDIATELY before reporting
 
 ---
 
@@ -58,20 +65,30 @@ bash scripts/run_full_sweep.sh
 ---
 
 ## 4. SESSION OPERATING LOOP (CODEX ↔ SONNET)
-1. **Codex** assigns micro-mission (<=15 min) referencing `COMMANDER_CODEX_ORDERS.md`.  
-2. **Sonnet** executes command bundle, logs proof within 5 minutes, cross-links evidence.  
-3. **Codex** verifies via `watch` dashboards + evidence folder, then moves to next mission.  
-4. After each chunk, Sonnet updates: `git status`, `ls .evidence/<date>` and relevant diffs.  
-5. Both agents monitor `scripts/run_full_sweep.sh` logs for regression; rerun on every significant change.
+1. **Codex** assigns micro-mission (<=15 min) referencing `COMMANDER_CODEX_ORDERS.md`.
+2. **Sonnet** executes command bundle using numbered steps with concrete metrics.
+3. **Sonnet** verifies results IMMEDIATELY (<5 min) and logs proof with timestamp.
+4. **Sonnet** cross-links evidence, then reports with verification timestamp included.
+5. **Codex** verifies via `watch` dashboards + evidence folder, then moves to next mission.
+6. After each chunk, Sonnet updates: `git status`, `ls .evidence/<date>` and relevant diffs.
+7. Both agents monitor `scripts/run_full_sweep.sh` logs for regression; rerun on every significant change.
+
+**5-MINUTE VERIFICATION RULE (Failure #7 Prevention):**
+- Execute → Verify (<5 min) → Claim with timestamp
+- If >5 min elapsed: Re-verify before claiming
+- Example: "Shellcheck: 107 warnings (Verified: Oct 3 05:15:42)"
 
 ---
 
 ## 5. EVIDENCE PROTOCOL (NON-NEGOTIABLE)
-- Finder screenshots for timestamp-sensitive work saved under `.evidence/<date>/finder/`.  
-- CLI transcripts saved under `.evidence/<date>/cli/`.  
-- Lint/test outputs saved under `.evidence/<date>/lint/` & `.evidence/<date>/tests/`.  
-- Link every artifact from `.claude/SESSION_PROGRESS.md` with relative paths.  
+- **Evidence FIRST, claims SECOND** - show proof in same message as claim
+- Finder screenshots for timestamp-sensitive work saved under `.evidence/<date>/finder-screenshots/`.
+- CLI transcripts saved under `.evidence/<date>/cli-output/`.
+- Lint/test outputs saved under `.evidence/<date>/lint-reports/`.
+- Link every artifact from `.claude/SESSION_PROGRESS.md` with relative paths.
 - If automation generates reports (e.g., sweep log), ensure file path is logged with checksum (`shasum -a 256 <file>`).
+- **Include verification timestamp** with every claim: "Verified: Oct 3 05:15:42"
+- **Re-verify if >5 min elapsed** since last check before making new claims
 
 ---
 
@@ -112,10 +129,15 @@ bash .claude/auto-compact.sh
 ---
 
 ## SUCCESS CRITERIA
-- Mission steps executed in order with 5-minute proof cadence.  
-- `scripts/run_full_sweep.sh` exits 0 at start and end.  
-- `.claude/SESSION_PROGRESS.md` + `.evidence/<date>/` contain cross-linked artifacts.  
-- `CURRENT_SESSION_STATE.md` + `ULTIMATE_STATE.md` refreshed within 2 minutes of session end.  
+- Mission steps executed in order with 5-minute proof cadence.
+- Every claim includes verification timestamp within <5 minutes of execution.
+- Evidence shown BEFORE or WITH claims (never after).
+- Concrete metrics in every report: "X of Y files", "N warnings", "M errors".
+- Numbered steps with checkpoints for systematic execution.
+- `scripts/run_full_sweep.sh` exits 0 at start and end.
+- `.claude/SESSION_PROGRESS.md` + `.evidence/<date>/` contain cross-linked artifacts.
+- `CURRENT_SESSION_STATE.md` + `ULTIMATE_STATE.md` refreshed within 2 minutes of session end.
 - No manual approvals triggered, no protocol violations logged.
+- Zero Achilles Heel violations from LEARNING_LEDGER.md.
 
-**Result:** Claude Sonnet jumps in at Tier 1 Option A, fully fused with Codex orchestration, delivering Absolute Liv Hana standards from command one.
+**Result:** Claude Sonnet jumps in at Tier 1 Option A, fully fused with Codex orchestration, delivering Absolute Liv Hana standards from command one with verifiable proof discipline learned from past failures.
