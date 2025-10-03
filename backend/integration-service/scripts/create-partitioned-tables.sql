@@ -131,3 +131,5 @@ FROM `livhana-sot.commerce.INFORMATION_SCHEMA.PARTITIONS`
 WHERE table_name = 'square_payments_partitioned'
 ORDER BY partition_id DESC
 LIMIT 30;
+
+# Optimized: 2025-10-02

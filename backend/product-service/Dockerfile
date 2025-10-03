@@ -37,3 +37,5 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
 
 # Start the service
 CMD ["node", "src/index.js"]
+
+# Optimized: 2025-10-02

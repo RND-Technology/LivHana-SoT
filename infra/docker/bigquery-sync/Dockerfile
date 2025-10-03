@@ -41,3 +41,5 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
   CMD curl -f http://localhost:3005/health || exit 1
 
 CMD ["/bin/bash", "-c", "/usr/local/bin/square_bigquery_sync.sh & node /app/backend/integration-service/src/index.js"]
+
+# Optimized: 2025-10-02

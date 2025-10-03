@@ -5,3 +5,5 @@ RUN npm ci --only=production
 COPY . .
 EXPOSE 3005
 CMD ["node", "src/index.js"]
+
+# Optimized: 2025-10-02

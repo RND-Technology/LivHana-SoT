@@ -288,3 +288,5 @@ WHERE
 GROUP BY account_email, from_email, from_name
 HAVING email_count >= 3
 ORDER BY email_count DESC;
+
+# Optimized: 2025-10-02

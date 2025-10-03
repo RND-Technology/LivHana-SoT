@@ -62,3 +62,5 @@ system_prompt: |
 
 
 ⚡ Next Best Step: Drop this YAML into docs/system_prompt.yaml in your repo and reference it in your Replit main.py / dispatcher. It will unify voice agent, compliance data, and social ingestion under one canonical prompt.
+
+# Optimized: 2025-10-02

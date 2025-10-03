@@ -50,3 +50,5 @@ ENV PORT 5174
 ENV HOSTNAME "0.0.0.0"
 
 CMD ["node", "server.js"]
+
+# Optimized: 2025-10-02

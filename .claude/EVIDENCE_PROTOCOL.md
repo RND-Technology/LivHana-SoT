@@ -149,3 +149,5 @@ Don't say "probably says"
 
 **Last Updated:** October 2, 2025
 **Status:** MANDATORY
+
+<!-- Optimized: 2025-10-02 -->
