@@ -42,7 +42,7 @@ CRON_JOBS="
 
 # Backup existing crontab
 echo "Backing up existing crontab..."
-crontab -l > /tmp/crontab-backup-$(date +%Y%m%d-%H%M%S).txt 2>/dev/null || true
+crontab -l > "/tmp/crontab-backup-$(date +%Y%m%d-%H%M%S).txt" 2>/dev/null || true
 
 # Check if our cron jobs already exist
 if crontab -l 2>/dev/null | grep -q "Liv Hana Self-Improvement Loop"; then

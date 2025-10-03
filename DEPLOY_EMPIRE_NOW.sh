@@ -16,6 +16,7 @@ echo "════════════════════════�
 echo ""
 
 # Load ALL secrets from 1Password
+# shellcheck disable=SC2046
 export $(op document get "LivHana-SoT.env" --vault "LivHana-Ops-Keys" | xargs)
 
 # PHASE 1: Infrastructure

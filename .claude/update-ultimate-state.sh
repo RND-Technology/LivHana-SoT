@@ -17,6 +17,7 @@ echo "🔄 Updating ULTIMATE_STATE.md..."
 # Get git status
 GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "unknown")
 GIT_STATUS=$(git status --porcelain 2>/dev/null | wc -l | tr -d ' ')
+# shellcheck disable=SC1083
 GIT_AHEAD=$(git rev-list --count @{u}..HEAD 2>/dev/null || echo "0")
 GIT_LATEST_COMMIT=$(git log -1 --format="%h - %s" 2>/dev/null || echo "No commits")
 

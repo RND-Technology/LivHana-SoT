@@ -21,9 +21,8 @@ NC='\033[0m' # No Color
 
 # Build the project
 echo "Building project..."
-npm run build > /dev/null 2>&1
 
-if [ $? -ne 0 ]; then
+if ! npm run build > /dev/null 2>&1; then
     echo -e "${RED}❌ Build failed${NC}"
     exit 1
 fi
