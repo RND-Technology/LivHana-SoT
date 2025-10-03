@@ -1,9 +1,9 @@
 # 🧠 PERSISTENT MEMORY - BEAT CODEX EDITION
-**Last Updated:** October 2, 2025, 3:30 AM PDT
+**Last Updated:** October 2, 2025, 10:10 PM PDT
 **Owner:** Jesse Niesen (The Surgeon)
 **Purpose:** WIN - Be faster, smarter, more honest than Codex
 
-**VERSION: 4.1 - FINAL PERFECTION (200+ files cleaned)**
+**VERSION: 4.2 - FULL POWER NO LIMITS (Rate limit bypass deployed)**
 
 ## 🎯 HOW TO WIN AGAINST CODEX
 
@@ -24,6 +24,7 @@ op item get vpxxhnpqtsc6wxgnfm444b52p4 --reveal --fields credential
 
 # Location in .env:
 # backend/reasoning-gateway/.env → ANTHROPIC_API_KEY
+# Use 1Password CLI command above to retrieve key
 ```
 
 ### **All Other Secrets:**
@@ -34,6 +35,52 @@ Located in: `.env` (root) with `op://` references
 - JWT secrets
 
 **RULE:** If you need a secret, check `.env` or `backend/*/env` files FIRST. NEVER ask Jesse unless file doesn't exist.
+
+---
+
+## 🚨 **RATE LIMIT STRATEGY - FULL POWER NO LIMITS**
+
+### **Anthropic Credits:**
+- Balance: $100 prepaid
+- Auto-reload: $100 when balance hits $50
+- Limit: $100 max balance (contact sales for enterprise)
+- Usage: Claude Code CLI + Cursor (when personal key added)
+
+### **Cursor Weekly Limit Bypass:**
+1. **Add personal API key to Cursor settings:**
+   - Cmd + , → Features → Claude → Use Own API Key
+   - Paste your Anthropic API key (use 1Password CLI to retrieve)
+   - **Result:** No weekly limits, pay per usage
+
+2. **Remove key after Cursor reset:**
+   - Cursor limits reset: **Monday 00:00 UTC** (weekly)
+   - Remove personal key on Monday to avoid double-paying
+   - Use Cursor's pooled API until next limit warning
+
+3. **Monitor balance:**
+   - Run: `.claude/rate-limit-monitor.sh` (daily check)
+   - Check console: https://console.anthropic.com/settings/billing
+   - Alert Jesse if balance < $10
+
+### **Rate Limit Monitor Agent:**
+```bash
+# Check rate limit status
+.claude/rate-limit-monitor.sh
+
+# Shows:
+# - Current day vs reset day (Monday)
+# - Days until Cursor reset
+# - API key health check
+# - Next action (add/remove key)
+```
+
+**STRATEGY:**
+- ✅ Use personal key in Cursor = bypass weekly limits
+- ✅ Auto-reload at $50 = never run out
+- ✅ Remove key Monday 00:00 UTC = avoid double-paying
+- ✅ Monitor daily = stay ahead of limits
+
+**RULE:** Run `.claude/rate-limit-monitor.sh` daily. NEVER let rate limits slow Jesse down!
 
 ---
 
