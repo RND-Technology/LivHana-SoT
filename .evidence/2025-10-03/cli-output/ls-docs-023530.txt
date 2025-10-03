@@ -1,0 +1,20 @@
+total 8584
+-rw-r--r--@  1 jesseniesen  staff    33170 Oct  3 02:33 SETUP_GUIDE.md
+-rw-r--r--@  1 jesseniesen  staff    23397 Oct  3 02:33 MASTER_PROMPT_TIER1_COCKPIT.md
+-rw-r--r--@  1 jesseniesen  staff     7262 Oct  3 02:33 MEMORY_QUICK_START.md
+-rw-r--r--@  1 jesseniesen  staff     9926 Oct  3 02:33 Q4_2025_FULL_FUNNEL_PLANNING_SESSION.md
+-rw-r--r--@  1 jesseniesen  staff     9191 Oct  3 02:33 FALLACY_SCAN_REPORT_20250930.md
+-rw-r--r--@  1 jesseniesen  staff      714 Oct  3 02:33 scripts_setup_Version2.sh
+-rw-r--r--@  1 jesseniesen  staff    13123 Oct  3 02:33 MASTER_FRAMEWORK_EXTRACTED.md
+-rw-r--r--@  1 jesseniesen  staff    29454 Oct  3 02:33 COMPLETE_ACCOUNT_EXPORT_2025-09-14.md
+-rw-r--r--@  1 jesseniesen  staff     3642 Oct  3 02:33 CURRENT_STATUS.md
+-rw-r--r--@  1 jesseniesen  staff     2721 Oct  3 02:33 src_todo-local-storage_Version2.tsx
+-rw-r--r--@  1 jesseniesen  staff    16182 Oct  3 02:33 TEXAS_TAKEOVER_LIGHTSPEED_MAKEOVER.md
+-rw-r--r--@  1 jesseniesen  staff    29360 Oct  3 02:33 CEO_MASTERCLASS_FROM_CLAUDE.md
+-rw-r--r--@  1 jesseniesen  staff    16538 Oct  3 02:33 VIP_REPORTS_ANDREW_CHARLIE.md
+-rw-r--r--@  1 jesseniesen  staff      983 Oct  3 02:33 scripts_validate_Version2.sh
+-rw-r--r--@  1 jesseniesen  staff    17390 Oct  3 02:33 TEXAS_TAKEOVER_PLAYBOOK_TIER1.md
+-rw-r--r--@  1 jesseniesen  staff    15359 Oct  3 02:33 CONTEXT_CORRECTIONS_AND_CRITICAL_DATA.md
+-rw-r--r--@  1 jesseniesen  staff    15907 Oct  3 02:33 liv-hana-e2e-pipeline-deployment.md
+-rw-r--r--@  1 jesseniesen  staff     4178 Oct  3 02:33 CONTEXT: Liv HanAlways-On -Voice-Agent
+-rw-r--r--@  1 jesseniesen  staff     8973 Oct  3 02:33 00-START-HERE.md
