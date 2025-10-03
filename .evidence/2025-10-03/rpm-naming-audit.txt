@@ -1,0 +1,20 @@
+# RPM NAMING AUDIT - 2025-10-03
+
+## ROOT LEVEL .MD FILES
+
+### RPM-Compliant (Already following X.Y.Z.N pattern):
+$(ls *.md 2>/dev/null | grep "^[0-9]" || echo "None found")
+
+### Non-Compliant (Need review):
+$(ls *.md 2>/dev/null | grep -v "^[0-9]" | grep -v "README.md" || echo "None found")
+
+### Special Cases (Keep as-is):
+- README.md (GitHub standard, keep)
+
+## RECOMMENDATION:
+1. Keep README.md (standard)
+2. Move DNS_* files to docs/operations/dns/
+3. Move *_TIER1.md files to docs/ with RPM naming
+4. Move status reports to docs/reports/
+5. Keep RPM-named files in root or move to docs/
+
