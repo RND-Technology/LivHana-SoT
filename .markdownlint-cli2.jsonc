@@ -2,21 +2,9 @@
   "config": {
     "default": true,
     "MD013": false,
-    "MD025": false,
     "MD033": false,
-    "MD036": false,
-    "MD040": false
+    "MD041": false
   },
-  "ignores": [
-    ".claude/**",
-    "node_modules/**",
-    "reports/**",
-    "**/node_modules/**",
-    "**/*.min.js",
-    "legacy/**",
-    "CLEANUP_PLAN_AND_STATUS.md",
-    "CLEAN_START_GUIDE_AFTER_REBOOT.md"
-  ]
+  "globs": ["**/*.md"],
+  "ignores": ["node_modules/**"]
 }
-
-# Last updated: 2025-10-02
