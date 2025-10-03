@@ -441,3 +441,5 @@ class LightSpeedClient:
             "created_at": self._token_cache.created_at.isoformat()
         }
 # Last optimized: 2025-10-02
+
+# Optimized: 2025-10-02

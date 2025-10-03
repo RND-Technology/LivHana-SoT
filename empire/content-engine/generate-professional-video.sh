@@ -60,3 +60,5 @@ echo "   Duration: $(printf '%.1f' $DURATION)s"
 echo ""
 echo "🎬 OPENING VIDEO NOW..."
 open "$FINAL"
+
+# Optimized: 2025-10-02
