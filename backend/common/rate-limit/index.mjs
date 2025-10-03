@@ -283,3 +283,5 @@ export const createMonitoringRoutes = ({ logger }) => {
 
   return router;
 };
+
+// Optimized: 2025-10-02
