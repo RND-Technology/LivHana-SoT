@@ -7,13 +7,13 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
 
-pushd "$PROJECT_ROOT/infra/docker" >/dev/null
+pushd "$PROJECT_ROOT/infra/docker" >/dev/null || exit
 
 docker compose -f docker-compose.voice-mode.yml up --build -d
 
 echo "Voice mode stack started."
 
-popd >/dev/null
+popd >/dev/null || exit
 
 # Last updated: 2025-10-02
 

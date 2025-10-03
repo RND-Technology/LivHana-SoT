@@ -17,18 +17,18 @@ printf '════════════════════════
 
 printf 'Frontend check... '
 if curl -fsS http://localhost:5173 >/dev/null 2>&1; then
-  printf "${GREEN}OK${NC}\n"
+  printf "%s\n" "${GREEN}OK${NC}"
 else
-  printf "${RED}UNREACHABLE${NC}\n"
+  printf "%s\n" "${RED}UNREACHABLE${NC}"
 fi
 
 printf 'Backend health... '
 HEALTH=$(curl -fsS http://localhost:3005/health 2>/dev/null || true)
 if [ -n "$HEALTH" ]; then
   MODE=$(echo "$HEALTH" | grep -o '"mode":"[^"]*"' | head -n1 | cut -d'"' -f4)
-  printf "${GREEN}OK${NC} (mode: ${MODE:-unknown})\n"
+  printf "%s (mode: %s)\n" "${GREEN}OK${NC}" "${MODE:-unknown}"
 else
-  printf "${YELLOW}PENDING${NC} (service not responding)\n"
+  printf "%s (service not responding)\n" "${YELLOW}PENDING${NC}"
 fi
 
 printf '\nRoutes available:\n'
