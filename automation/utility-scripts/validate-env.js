@@ -7,6 +7,8 @@
  * Usage: node scripts/validate-env.js [--service=SERVICE_NAME] [--strict]
  */
 
+/* eslint no-console: ["error", { allow: ["info", "warn", "error", "log"] }] */
+
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';

@@ -7,6 +7,8 @@
  * Usage: node scripts/migrate-configs.js [--dry-run] [--backup]
  */
 
+/* eslint no-console: ["error", { allow: ["info", "warn", "error", "log"] }] */
+
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';

@@ -17,7 +17,7 @@ MAGENTA='\033[0;35m'
 NC='\033[0m'
 
 WORKSPACE_ROOT="/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT"
-cd "$WORKSPACE_ROOT"
+cd "$WORKSPACE_ROOT" || exit
 
 echo "═══════════════════════════════════════════════════════════════"
 echo "     🚀 EMPIRE-EMPIRE DEPLOYMENT SEQUENCE"

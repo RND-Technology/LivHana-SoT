@@ -16,7 +16,6 @@ echo ""
 # Colors
 GREEN='\033[0;32m'
 RED='\033[0;31m'
-YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 # Build the project
@@ -71,15 +70,20 @@ else
 fi
 
 # Count chunks
-CHUNK_COUNT=$(ls dist/assets/*.js 2>/dev/null | wc -l | tr -d ' ')
-echo -e "${GREEN}✅ PASS: ${CHUNK_COUNT} chunks created (code splitting working)${NC}"
+mapfile -t JS_CHUNKS < <(find dist/assets -maxdepth 1 -type f -name '*.js' -print 2>/dev/null)
+CHUNK_COUNT=${#JS_CHUNKS[@]}
+if [ "$CHUNK_COUNT" -gt 0 ]; then
+    echo -e "${GREEN}✅ PASS: ${CHUNK_COUNT} chunks created (code splitting working)${NC}"
+else
+    echo -e "${RED}❌ FAIL: No JavaScript chunks detected in dist/assets${NC}"
+fi
 
 # Check for large chunks
 echo ""
 echo "Large Chunks (> 100KB):"
-for file in dist/assets/*.js; do
-    size=$(stat -f%z "$file" 2>/dev/null)
-    if [ $size -gt 102400 ]; then
+for file in "${JS_CHUNKS[@]}"; do
+    size=$(stat -f%z "$file" 2>/dev/null || echo 0)
+    if [ "$size" -gt 102400 ]; then
         name=$(basename "$file")
         kb=$(echo "scale=2; $size / 1024" | bc)
         echo "  - $name: ${kb} KB"
