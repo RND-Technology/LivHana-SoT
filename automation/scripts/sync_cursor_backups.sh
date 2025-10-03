@@ -58,7 +58,7 @@ case "$TOOL" in
       exit 1
     fi
     log "Syncing backups to $REMOTE via aws s3 sync"
-    aws s3 sync "$BACKUP_ROOT/" "$REMOTE" --delete $OPTS >>"$LOG_PATH" 2>&1
+    aws s3 sync "$BACKUP_ROOT/" "$REMOTE" --delete "$OPTS" >>"$LOG_PATH" 2>&1
     ;;
   gsutil)
     if ! command -v gsutil >/dev/null 2>&1; then
@@ -66,7 +66,7 @@ case "$TOOL" in
       exit 1
     fi
     log "Syncing backups to $REMOTE via gsutil rsync"
-    gsutil -m rsync -r "$BACKUP_ROOT" "$REMOTE" $OPTS >>"$LOG_PATH" 2>&1
+    gsutil -m rsync -r "$BACKUP_ROOT" "$REMOTE" "$OPTS" >>"$LOG_PATH" 2>&1
     ;;
   rclone)
     if ! command -v rclone >/dev/null 2>&1; then
@@ -74,7 +74,7 @@ case "$TOOL" in
       exit 1
     fi
     log "Syncing backups to $REMOTE via rclone sync"
-    rclone sync "$BACKUP_ROOT" "$REMOTE" $OPTS >>"$LOG_PATH" 2>&1
+    rclone sync "$BACKUP_ROOT" "$REMOTE" "$OPTS" >>"$LOG_PATH" 2>&1
     ;;
   rsync)
     if ! command -v rsync >/dev/null 2>&1; then
@@ -82,7 +82,7 @@ case "$TOOL" in
       exit 1
     fi
     log "Syncing backups to $REMOTE via rsync"
-    rsync -az --delete $OPTS "$BACKUP_ROOT/" "$REMOTE" >>"$LOG_PATH" 2>&1
+    rsync -az --delete "$OPTS" "$BACKUP_ROOT/" "$REMOTE" >>"$LOG_PATH" 2>&1
     ;;
   *)
     log "Unsupported sync tool: $TOOL"
