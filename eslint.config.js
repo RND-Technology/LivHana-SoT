@@ -15,6 +15,7 @@ export default [
       '**/coverage/**',
       '**/*.min.js',
       '**/*.bundle.js',
+      '**/*.d.ts', // TypeScript declaration files
       'legacy/**/*',
       'replit_import/**/*',
       'LivHana-Kinetic/**/*',
@@ -22,19 +23,29 @@ export default [
       'LivHana-Entropic/**/*',
       'reports/**/*',
       '.claude/**/*',
-      '.cursor-backups/**/*', // Cursor backup files
-      '.venv/**/*', // Python virtual environment
+      '.cursor-backups/**/*',
+      '.venv/**/*',
       'frontend/vibe-cockpit/dist/**',
       'frontend/vibe-cockpit/.next/**',
-      'docs/**/*', // Skip docs - TypeScript parsing issues
-      'automation/data-pipelines/**/*', // Skip pipelines - ingestion code with many catch blocks
-      'automation/tests/**/*', // Skip tests - Playwright tests with specific patterns
-      'automation/validators/**/*', // Skip validators - utility scripts with console.log
-      'backend/integration-service/verify-age-setup.js', // Skip setup script - has console.log for demo
-      'backend/reasoning-gateway/example-sse-client.js', // Skip example - has console.log for demo
-      'check-cursor-problems.js', // Skip temp script
-      'backend/integration-service/scripts/**/*', // Skip utility scripts - have console.log for output
-      'backend/reasoning-gateway/scripts/**/*', // Skip utility scripts - have console.log for output
+      'frontend/vibe-cockpit/postcss.config.js',
+      'frontend/vibe-cockpit/tailwind.config.js',
+      'frontend/vibe-cockpit/**/*.ts',
+      'frontend/vibe-cockpit/**/*.tsx',
+      'empire-cockpit/**/*.ts',
+      'empire-cockpit/**/*.tsx',
+      'empire-cockpit/**/*.js',
+      'docs/**/*',
+      'automation/data-pipelines/**/*',
+      'automation/tests/**/*',
+      'automation/validators/**/*',
+      'backend/integration-service/verify-age-setup.js',
+      'backend/reasoning-gateway/example-sse-client.js',
+      'backend/**/test/**/*', // Test files in any backend service
+      'backend/**/*.test.js', // Test files
+      'backend/**/*.spec.js', // Spec files
+      'check-cursor-problems.js',
+      'backend/integration-service/scripts/**/*',
+      'backend/reasoning-gateway/scripts/**/*',
     ],
   },
   js.configs.recommended,
