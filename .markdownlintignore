@@ -1,4 +1,8 @@
+node_modules
+**/node_modules/**
 .cursor-backups/**/*.md
 data/imports/downloads/**/*.md
+.venv
+**/.venv/**
 
-# Last updated: 2025-10-02
+# Last updated: 2025-10-03
