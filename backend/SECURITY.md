@@ -110,6 +110,7 @@ app.use('/api', rateLimitMiddleware);
 #### Token Structure
 
 **Access Token:**
+
 ```json
 {
   "id": "user-uuid",
@@ -125,6 +126,7 @@ app.use('/api', rateLimitMiddleware);
 ```
 
 **Refresh Token:**
+
 ```json
 {
   "id": "user-uuid",
@@ -236,11 +238,13 @@ if (process.env.NODE_ENV === 'development') {
 #### Request Sanitization
 
 Automatic sanitization of:
+
 - Query parameters
 - Request body
 - Headers
 
 Removed patterns:
+
 - `<script>`, `</script>`
 - `javascript:` protocol
 - `onerror=`, `onload=`, etc.
@@ -330,6 +334,7 @@ router.post('/verify',
 #### Migration Priority
 
 **P0 - Critical (Migrate First):**
+
 - `JWT_SECRET`
 - `JWT_AUDIENCE`
 - `JWT_ISSUER`
@@ -337,17 +342,20 @@ router.post('/verify',
 - `DATABASE_PASSWORD`
 
 **P1 - API Keys:**
+
 - `SQUARE_ACCESS_TOKEN`
 - `ANTHROPIC_API_KEY`
 - `DEEPSEEK_API_KEY`
 - `OPENAI_API_KEY`
 
 **P2 - Integrations:**
+
 - `NOTION_API_KEY`
 - `TWILIO_AUTH_TOKEN`
 - `STRIPE_SECRET_KEY`
 
 **P3 - Monitoring:**
+
 - `SENTRY_DSN`
 - `NEWRELIC_LICENSE_KEY`
 
@@ -385,6 +393,7 @@ node backend/common/secrets/migrate-to-gcp.js \
 #### Logged Events
 
 **Authentication Events:**
+
 - Login success/failure
 - Logout
 - Token refresh
@@ -392,17 +401,20 @@ node backend/common/secrets/migrate-to-gcp.js \
 - Password changes
 
 **Authorization Events:**
+
 - Access denied
 - Permission grants/revokes
 - Role changes
 
 **Admin Actions:**
+
 - User creation/deletion/updates
 - Configuration changes
 - Data exports
 - System commands
 
 **Security Events:**
+
 - Rate limit exceeded
 - Suspicious requests
 - Injection attempts
@@ -410,6 +422,7 @@ node backend/common/secrets/migrate-to-gcp.js \
 - Anomalies
 
 **Compliance Events:**
+
 - Age verifications
 - COA access
 - Data requests
@@ -459,6 +472,7 @@ await logAuditEvent({
 #### Audit Middleware
 
 Automatic audit logging for:
+
 - All `/admin/*` routes
 - All `/auth/*` routes
 - All `/compliance/*` routes
@@ -613,6 +627,7 @@ npm test -- tests/security/penetration-tests.js
 ### Incident Logging
 
 All security incidents logged to:
+
 - BigQuery: `security_audit.incidents`
 - Sentry: Error tracking
 - PagerDuty: Critical alerts
@@ -653,6 +668,7 @@ All security incidents logged to:
 ### Monitoring & Alerting
 
 Configure alerts for:
+
 - [ ] Rate limit exceeded (sustained)
 - [ ] Failed authentication attempts (>10/min)
 - [ ] Suspicious request patterns
@@ -676,28 +692,33 @@ Configure alerts for:
 ### Regular Tasks
 
 **Daily:**
+
 - Review critical audit logs
 - Monitor error rates
 - Check rate limit statistics
 
 **Weekly:**
+
 - Review security alerts
 - Analyze failed authentication attempts
 - Check dependency updates
 
 **Monthly:**
+
 - Run NPM audit
 - Review access control lists
 - Analyze suspicious patterns
 - Update security documentation
 
 **Quarterly:**
+
 - Conduct security audit
 - Run penetration tests
 - Review incident response procedures
 - Update security training
 
 **Annually:**
+
 - Comprehensive security review
 - Third-party security audit
 - Disaster recovery drill
@@ -708,17 +729,20 @@ Configure alerts for:
 ## Additional Resources
 
 ### Documentation
+
 - [GCP Secret Manager Migration Guide](./common/secrets/gcp-migration-guide.md)
 - [Rate Limiting Configuration](./common/rate-limit/README.md)
 - [Authentication Flow](./common/auth/README.md)
 - [Audit Logging Guide](./common/logging/README.md)
 
 ### Security Best Practices
+
 - [OWASP Top 10](https://owasp.org/www-project-top-ten/)
 - [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework)
 - [CIS Controls](https://www.cisecurity.org/controls/)
 
 ### Compliance Resources
+
 - [Texas Cannabis Regulations](https://www.texas.gov/living-in-texas/cannabis/)
 - [GDPR Compliance](https://gdpr.eu/)
 - [PCI DSS Requirements](https://www.pcisecuritystandards.org/)

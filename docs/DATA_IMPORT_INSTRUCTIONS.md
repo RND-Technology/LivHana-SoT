@@ -42,6 +42,7 @@ ls -lh ~/LivHana-Trinity-Local/LivHana-SoT/data/imports/downloads/
 **Steps to get ALL your Claude Projects data:**
 
 ### 1. Export Projects Manually (Claude Web)
+
 ```
 1. Go to https://claude.ai/projects
 2. Open each project
@@ -50,6 +51,7 @@ ls -lh ~/LivHana-Trinity-Local/LivHana-SoT/data/imports/downloads/
 ```
 
 ### 2. Use Claude API (Automated)
+
 ```bash
 # Get your Claude API key
 # Go to https://console.anthropic.com/settings/keys
@@ -62,6 +64,7 @@ node automation/data-pipelines/claude_export.js
 ```
 
 **What Gets Exported:**
+
 - All project descriptions
 - All artifacts
 - All conversation history
@@ -75,6 +78,7 @@ node automation/data-pipelines/claude_export.js
 **Steps to get ALL your ChatGPT data:**
 
 ### Method 1: Official Export (Recommended)
+
 ```
 1. Go to https://chatgpt.com/
 2. Click your profile → Settings → Data controls
@@ -85,6 +89,7 @@ node automation/data-pipelines/claude_export.js
 ```
 
 ### Method 2: Manual Copy (Immediate)
+
 ```
 1. Open each important ChatGPT conversation
 2. Copy full conversation text
@@ -92,6 +97,7 @@ node automation/data-pipelines/claude_export.js
 ```
 
 ### Method 3: ChatGPT API (If you have API access)
+
 ```bash
 # Add OpenAI API key to .env
 echo "OPENAI_API_KEY=sk-xxxxx" >> .env
@@ -105,6 +111,7 @@ node automation/data-pipelines/chatgpt_export.js
 ## 📧 NOTION EXPORT (From Earlier Guide)
 
 **Quick Steps:**
+
 ```
 1. https://www.notion.so/my-integrations
 2. Create integration: "LivHana Data Import"
@@ -118,6 +125,7 @@ node automation/data-pipelines/chatgpt_export.js
 ## 📬 GMAIL EXPORT (From Earlier Guide)
 
 **Quick Steps:**
+
 ```
 1. https://console.cloud.google.com/
 2. Enable Gmail API
@@ -145,7 +153,7 @@ LivHana-Trinity-Local/LivHana-SoT/
 
 ---
 
-## 🚀 AFTER COPYING FILES, RUN THIS:
+## 🚀 AFTER COPYING FILES, RUN THIS
 
 ```bash
 # 1. Verify all files copied
@@ -168,7 +176,8 @@ node automation/data-pipelines/generate_context_summary.js
 
 **For Reggie & Dro Google Reviews:**
 
-### Manual Export:
+### Manual Export
+
 ```
 1. Go to: https://www.google.com/maps/place/Reggie+%26+Dro/@29.6251563,-98.4963376,17z/
 2. Click "Reviews"
@@ -176,7 +185,8 @@ node automation/data-pipelines/generate_context_summary.js
 4. Save to: data/imports/google_reviews/reviews.md
 ```
 
-### Automated Scraping (I'll build this):
+### Automated Scraping (I'll build this)
+
 ```bash
 # Scrape all Google reviews
 node automation/scrapers/google_reviews.js \
@@ -204,6 +214,7 @@ LIMIT 12;
 ```
 
 **Find Online vs In-Store Split:**
+
 ```sql
 SELECT
   CASE
@@ -250,6 +261,7 @@ crontab -e
 ---
 
 **ONCE FILES ARE COPIED, I CAN:**
+
 1. Read reggie-dro-playbook.md
 2. Analyze LightSpeed makeover plan
 3. Study agentic design patterns

@@ -1,4 +1,5 @@
 # 🎬 AUTO-TOON ENGINE - LOCAL-ONLY BUILD PLAN
+
 **Date:** October 2, 2025, 12:42 AM PDT
 **Timeline:** 60 minutes to MVP
 **Mode:** LOCAL ONLY (no public deployment)
@@ -77,15 +78,17 @@ Episode Generator Pipeline
 
 ## 📊 PIKA.ART ANALYSIS
 
-**Yes, https://pika.art/ is Pika Labs!**
+**Yes, <https://pika.art/> is Pika Labs!**
 
 **Pricing:**
+
 - Free: 150 credits/month (3 videos)
 - Standard: $10/month (700 credits)
 - Pro: $35/month (2,000 credits)
 - Unlimited: $70/month (unlimited)
 
 **Decision:** Start FREE, upgrade if needed later
+
 - 150 free credits = 3 test videos/month
 - Good for testing before committing $70/month
 - Keep this as Phase 2 upgrade option
@@ -95,30 +98,35 @@ Episode Generator Pipeline
 ## 🚀 60-MINUTE BUILD PLAN (LOCAL ONLY)
 
 ### **Minute 0-10: Setup**
+
 - Retrieve ElevenLabs key from 1Password ✅
 - Create content-engine directory structure
 - Set up .env with API keys
 - Verify FFmpeg installed
 
 ### **Minute 10-25: Script Engine (Agent 1)**
+
 - Build Claude API script generator
 - Episode template system
 - Character dialogue formatter
 - Scene description parser
 
 ### **Minute 25-35: Voice Pipeline (Agent 2)**
+
 - ElevenLabs multi-voice integration
 - Character voice selection
 - Audio batch processing
 - Export WAV files
 
 ### **Minute 35-45: Visual Generator (Agent 3)**
+
 - DALL-E 3 scene generation
 - Batch image creation
 - Character consistency prompts
 - Local image storage
 
 ### **Minute 45-55: Video Compositor (Agent 4)**
+
 - FFmpeg slideshow builder
 - Ken Burns pan/zoom effects
 - Artlist.io music integration
@@ -126,6 +134,7 @@ Episode Generator Pipeline
 - MP4 export
 
 ### **Minute 55-60: Test Episode 1**
+
 - Generate 30-second test clip
 - "Jesse testifies at Texas Capitol"
 - 3 scenes, 2 characters (Jesse + Liv Hana)
@@ -139,6 +148,7 @@ Episode Generator Pipeline
 **Title:** "Texas Truth - Cold Open"
 
 **Script:**
+
 ```
 SCENE 1: Texas Capitol exterior (day)
 NARRATOR (Liv Hana): "April 7, 2025. Jesse Niesen testifies before the Texas Legislature."
@@ -156,11 +166,13 @@ NARRATOR: "But will Texas listen to facts... or fear?"
 ```
 
 **Visuals:**
+
 - 4 DALL-E 3 images (capitol, hearing room, Liv hologram, legislators)
 - Ken Burns zoom effects
 - Transition wipes
 
 **Audio:**
+
 - ElevenLabs voices (Jesse = authoritative, Liv = data-driven)
 - Artlist.io dramatic country music
 - Sound effects (gavel, murmurs)
@@ -198,6 +210,7 @@ empire/content-engine/
 ## 🔑 HUMAN ACTIONS NEEDED
 
 ### **1. Verify Artlist.io Access (2 min)**
+
 ```
 Go to: https://artlist.io/
 Log in with your account
@@ -206,6 +219,7 @@ If yes: You have UNLIMITED music for episodes! 🎉
 ```
 
 ### **2. ElevenLabs Plan Check (1 min)**
+
 ```
 Go to: https://elevenlabs.io/
 Log in with your account
@@ -215,6 +229,7 @@ If <10K: May need to upgrade for full episodes
 ```
 
 ### **3. Approve Episode 1 Test Spec (1 min)**
+
 ```
 Review script above
 Approve or modify:
@@ -225,6 +240,7 @@ Approve or modify:
 ```
 
 ### **4. Set Budget Limit (30 sec)**
+
 ```
 Phase 1 (MVP): $10/month budget?
 - DALL-E images only
@@ -237,6 +253,7 @@ Phase 1 (MVP): $10/month budget?
 ## ⚡ READY TO BUILD
 
 **I have everything I need to start:**
+
 - ✅ ElevenLabs key: Retrieved
 - ✅ OpenAI key: Exists in .env
 - ✅ Claude key: Active
@@ -245,12 +262,14 @@ Phase 1 (MVP): $10/month budget?
 - ✅ Architecture: Designed
 
 **Waiting on:**
+
 1. Your confirmation: "GO BUILD IT"
 2. Artlist.io login confirmation (can you download music?)
 3. ElevenLabs character limit check (how many left?)
 4. Episode 1 test approval (or modifications)
 
 **Then:**
+
 - 60 minutes to working auto-toon engine
 - 75 minutes to Episode 1 test clip (30 sec)
 - 90 minutes to full documentation

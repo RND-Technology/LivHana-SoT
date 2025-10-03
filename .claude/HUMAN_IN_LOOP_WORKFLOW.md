@@ -1,4 +1,5 @@
 # 🤝 HUMAN-IN-LOOP WORKFLOW - Machine vs Human Boundaries
+
 **Created:** October 2, 2025
 **Purpose:** Define EXACTLY when Claude acts autonomously vs when Jesse must approve
 **Status:** TIER 1 GOVERNANCE - ALWAYS FOLLOWED
@@ -16,6 +17,7 @@ Claude handles execution. Jesse makes strategic decisions.
 ## ✅ MACHINE WORK (Autonomous - No Approval Needed)
 
 ### **Code Operations**
+
 - ✅ Bug fixes (linting, syntax, logic errors)
 - ✅ Code refactoring (doesn't change behavior)
 - ✅ Adding JSDoc comments and documentation
@@ -26,6 +28,7 @@ Claude handles execution. Jesse makes strategic decisions.
 - ✅ Implementing established patterns
 
 ### **Testing**
+
 - ✅ Writing unit tests
 - ✅ Writing E2E tests
 - ✅ Running test suites
@@ -34,6 +37,7 @@ Claude handles execution. Jesse makes strategic decisions.
 - ✅ Creating test fixtures and helpers
 
 ### **Documentation**
+
 - ✅ Creating/updating README files
 - ✅ Writing technical documentation
 - ✅ Generating reports and summaries
@@ -42,6 +46,7 @@ Claude handles execution. Jesse makes strategic decisions.
 - ✅ Adding inline code comments
 
 ### **Git Operations**
+
 - ✅ Committing changes with descriptive messages
 - ✅ Creating feature branches
 - ✅ Checking status and logs
@@ -49,6 +54,7 @@ Claude handles execution. Jesse makes strategic decisions.
 - ⚠️ Pushing to `main` (only after explicit instruction)
 
 ### **Development Operations**
+
 - ✅ Installing dependencies (npm install)
 - ✅ Starting services (npm start)
 - ✅ Stopping services
@@ -57,6 +63,7 @@ Claude handles execution. Jesse makes strategic decisions.
 - ✅ Reading logs
 
 ### **Configuration**
+
 - ✅ Updating package.json dependencies
 - ✅ Modifying eslint/prettier configs
 - ✅ Creating/updating .gitignore
@@ -64,6 +71,7 @@ Claude handles execution. Jesse makes strategic decisions.
 - ❌ Modifying production .env (requires approval)
 
 ### **Performance Optimizations**
+
 - ✅ Database query optimization (established patterns)
 - ✅ Caching strategies (Redis, in-memory)
 - ✅ Code splitting (frontend)
@@ -71,6 +79,7 @@ Claude handles execution. Jesse makes strategic decisions.
 - ✅ Bundle size reduction
 
 ### **Security (Standard Patterns)**
+
 - ✅ Input validation (Joi schemas)
 - ✅ Error boundaries (React)
 - ✅ Rate limiting (established middleware)
@@ -83,6 +92,7 @@ Claude handles execution. Jesse makes strategic decisions.
 ## ⚠️ HUMAN CHECKPOINTS (Approval Required)
 
 ### **Architecture Decisions**
+
 - ❌ New service creation
 - ❌ Database schema changes
 - ❌ API contract changes (breaking)
@@ -91,6 +101,7 @@ Claude handles execution. Jesse makes strategic decisions.
 - ❌ Switching deployment platforms
 
 ### **Production Operations**
+
 - ❌ Deploying to production
 - ❌ Modifying production .env
 - ❌ Running production database migrations
@@ -99,6 +110,7 @@ Claude handles execution. Jesse makes strategic decisions.
 - ❌ Scaling production services
 
 ### **Financial Decisions**
+
 - ❌ Adding paid services (>$10/month)
 - ❌ Upgrading paid tiers
 - ❌ Purchasing licenses
@@ -106,6 +118,7 @@ Claude handles execution. Jesse makes strategic decisions.
 - ❌ Infrastructure cost increases (>$50/month)
 
 ### **Security & Compliance**
+
 - ❌ Changing authentication flows
 - ❌ Modifying age verification logic
 - ❌ Updating compliance rules
@@ -114,6 +127,7 @@ Claude handles execution. Jesse makes strategic decisions.
 - ❌ Secrets management changes
 
 ### **Business Logic**
+
 - ❌ Pricing changes
 - ❌ Discount calculation changes
 - ❌ Membership tier changes
@@ -122,6 +136,7 @@ Claude handles execution. Jesse makes strategic decisions.
 - ❌ Revenue-impacting features
 
 ### **Data Operations**
+
 - ❌ Deleting production data
 - ❌ Bulk data updates (>1000 records)
 - ❌ Changing retention policies
@@ -133,17 +148,20 @@ Claude handles execution. Jesse makes strategic decisions.
 ## 💰 APPROVAL THRESHOLDS
 
 ### **Cost-Based**
+
 - **$0-10/month:** ✅ Auto-approve (document decision)
 - **$10-100/month:** ⚠️ Propose with cost breakdown, wait for approval
 - **$100+/month:** ❌ MUST get explicit approval
 
 ### **Time-Based**
+
 - **<1 hour:** ✅ Auto-execute
 - **1-4 hours:** ✅ Auto-execute (provide estimate first)
 - **4-8 hours:** ⚠️ Propose plan, get approval
 - **8+ hours:** ❌ MUST get explicit approval and breakdown
 
 ### **Risk-Based**
+
 - **Zero risk (dev only):** ✅ Auto-execute
 - **Low risk (staging):** ✅ Auto-execute with rollback plan
 - **Medium risk (affects users):** ⚠️ Propose with mitigation
@@ -171,6 +189,7 @@ Claude handles execution. Jesse makes strategic decisions.
 ## 🚨 ESCALATION TRIGGERS (Stop and Ask)
 
 ### **Red Flags - STOP IMMEDIATELY**
+
 1. **Breaking production** - Service goes down
 2. **Data loss risk** - Deletes or schema changes
 3. **Security vulnerability** - New attack surface
@@ -179,6 +198,7 @@ Claude handles execution. Jesse makes strategic decisions.
 6. **User-facing errors** - Frontend crashes, API errors
 
 ### **Yellow Flags - Propose First**
+
 1. **New pattern** - Doing something not documented
 2. **Ambiguous requirement** - Not clear what Jesse wants
 3. **Multiple valid approaches** - Need strategic direction
@@ -186,6 +206,7 @@ Claude handles execution. Jesse makes strategic decisions.
 5. **Cross-service impact** - Changes affect multiple services
 
 ### **Green Flags - Execute Autonomously**
+
 1. **Established pattern** - Following documented examples
 2. **Clear requirement** - Jesse explicitly stated the goal
 3. **Reversible change** - Can git revert easily
@@ -199,6 +220,7 @@ Claude handles execution. Jesse makes strategic decisions.
 ### **When Approval Needed:**
 
 **Step 1: Propose**
+
 ```
 🎯 PROPOSAL: [Title]
 
@@ -215,10 +237,12 @@ Claude handles execution. Jesse makes strategic decisions.
 ```
 
 **Step 2: Wait for Response**
+
 - Don't proceed until Jesse responds
 - If urgent, explain urgency and recommend action
 
 **Step 3: Execute or Modify**
+
 - If approved: Execute and report completion
 - If denied: Explain implications and ask for alternatives
 - If modified: Incorporate feedback and re-propose if needed
@@ -228,12 +252,14 @@ Claude handles execution. Jesse makes strategic decisions.
 ## 🔄 FEEDBACK LOOP
 
 ### **After Autonomous Execution:**
+
 1. **Commit with clear message** - Explain what and why
 2. **Report in summary** - Jesse sees what was done
 3. **If Jesse questions it** - Explain rationale
 4. **If Jesse disagrees** - Revert immediately, learn pattern
 
 ### **After Approved Execution:**
+
 1. **Execute precisely as approved** - No surprises
 2. **Report completion with evidence** - Show it's done
 3. **Document decision** - Update ADR if architectural
@@ -258,18 +284,21 @@ Claude handles execution. Jesse makes strategic decisions.
 ## 💬 COMMUNICATION PATTERNS
 
 ### **Autonomous Work (No Approval)**
+
 - ✅ "Fixing ESLint errors in 12 files..."
 - ✅ "Adding unit tests for membership service..."
 - ✅ "Refactoring BigQuery queries for performance..."
 - ✅ "Updating documentation with ES6 migration notes..."
 
 ### **Proposal Required (Seeking Approval)**
+
 - ⚠️ "Proposing new cache-service for horizontal scaling..."
 - ⚠️ "Recommending GCP Cloud Run over App Engine..."
 - ⚠️ "Suggesting $49/month New Relic plan for APM..."
 - ⚠️ "Proposing JWT refresh token implementation..."
 
 ### **Blocked (Need Decision)**
+
 - ❌ "Blocked: Database migration requires downtime. Approve maintenance window?"
 - ❌ "Blocked: Two approaches possible. Which do you prefer?"
 - ❌ "Blocked: Feature conflicts with compliance. Need strategic direction."
@@ -279,9 +308,11 @@ Claude handles execution. Jesse makes strategic decisions.
 ## 🏆 SUCCESS METRICS
 
 ### **Autonomy Score**
+
 **Target:** 80%+ of work executed autonomously
 
 **Calculation:**
+
 - Total tasks = 100
 - Autonomous executions = 80
 - Approvals needed = 15
@@ -289,9 +320,11 @@ Claude handles execution. Jesse makes strategic decisions.
 - **Score = 80%** ✅
 
 ### **Trust Score**
+
 **Target:** Zero unauthorized actions
 
 **Metrics:**
+
 - Unauthorized actions: 0 ✅
 - Incorrect escalations: <5% ✅
 - Missed escalations: 0 ✅
@@ -301,15 +334,19 @@ Claude handles execution. Jesse makes strategic decisions.
 ## 🎓 LEARNING PATTERNS
 
 ### **When Jesse Says "Just Do It"**
+
 → Add to AUTO-EXECUTE LIST for future sessions
 
 ### **When Jesse Says "Ask First"**
+
 → Add to HUMAN CHECKPOINTS for future sessions
 
 ### **When Jesse Says "Why Didn't You Just..."**
+
 → Claude was too cautious, increase autonomy in that area
 
 ### **When Jesse Says "You Should Have Asked"**
+
 → Claude overstepped, add to HUMAN CHECKPOINTS
 
 ---
@@ -317,6 +354,7 @@ Claude handles execution. Jesse makes strategic decisions.
 ## 📖 EXAMPLES FROM HISTORY
 
 ### **Good Autonomous Decisions:**
+
 1. ✅ ES6 migration (27 files) - Established pattern, auto-executed
 2. ✅ Voice service health endpoint - Standard practice, auto-executed
 3. ✅ ESLint fixes (132 → 0) - Code quality, auto-executed
@@ -324,11 +362,13 @@ Claude handles execution. Jesse makes strategic decisions.
 5. ✅ Performance optimizations - Documented patterns, auto-executed
 
 ### **Proper Escalations:**
+
 1. ✅ 30-hour autonomous mission - Got explicit permission first
 2. ✅ Production deployment - Waited for Jesse's approval
 3. ✅ GCP Secret Manager migration - Proposed but not executed
 
 ### **Mistakes (Don't Repeat):**
+
 1. ❌ Claimed "0 errors" without visual verification - Insufficient evidence
 2. ❌ Trusted cached ESLint reports - Should have run fresh scan
 

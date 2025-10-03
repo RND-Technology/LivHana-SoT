@@ -7,10 +7,12 @@ Complete Gmail ingestion system with OAuth 2.0 authentication, BigQuery storage,
 This pipeline ingests emails from multiple Gmail accounts into BigQuery for analysis, compliance tracking, and business intelligence.
 
 **Accounts:**
+
 - `jesseniesen@gmail.com` - Primary CEO account
 - `high@reggieanddro.com` - R&D TX operations
 
 **Features:**
+
 - OAuth 2.0 authentication with automatic token refresh
 - Multi-account support with 1Password integration
 - Pagination for 1000+ emails per account
@@ -57,8 +59,8 @@ export GCS_GMAIL_BUCKET="livhana-gmail-attachments"
    - Click "Create"
 5. Download JSON credentials
 6. Save as:
-   - `gmail_credentials_jessen.json` for jesseniesen@gmail.com
-   - `gmail_credentials_high.json` for high@reggieanddro.com
+   - `gmail_credentials_jessen.json` for <jesseniesen@gmail.com>
+   - `gmail_credentials_high.json` for <high@reggieanddro.com>
 
 #### Create BigQuery Dataset
 
@@ -109,6 +111,7 @@ node gmail_auth.js --account=high
 ```
 
 This will:
+
 1. Open your browser for Google OAuth consent
 2. Save the access token locally
 3. Store refresh token for automatic renewal
@@ -123,6 +126,7 @@ node gmail_test.js
 ```
 
 Tests verify:
+
 - Credentials and tokens exist
 - OAuth client creation
 - Gmail API connection
@@ -220,6 +224,7 @@ Update Sync State
 Primary table storing all email messages with full metadata and content.
 
 **Key Fields:**
+
 - `message_hash` - SHA-256 hash for deduplication
 - `message_id` - Gmail message ID
 - `thread_id` - Gmail thread ID
@@ -238,6 +243,7 @@ Primary table storing all email messages with full metadata and content.
 Thread-level summaries with aggregated metadata.
 
 **Key Fields:**
+
 - `thread_id` - Gmail thread ID
 - `message_count` - Number of messages in thread
 - `participant_emails[]` - All participants
@@ -249,6 +255,7 @@ Thread-level summaries with aggregated metadata.
 Attachment metadata with Cloud Storage references.
 
 **Key Fields:**
+
 - `message_id` - Parent message ID
 - `filename` - Attachment filename
 - `mime_type` - File type
@@ -260,6 +267,7 @@ Attachment metadata with Cloud Storage references.
 Emails are automatically categorized using keyword detection:
 
 **Categories:**
+
 - `cannabis_business` - Cannabis operations, dispensary, cultivation
 - `compliance` - Regulatory, licensing, inspections
 - `legal` - Legal matters, attorneys, contracts
@@ -272,6 +280,7 @@ Emails are automatically categorized using keyword detection:
 ### Sender Scoring
 
 Emails receive importance scores (0-20) based on:
+
 - **Domain scoring (+10):** Government (.gov), state agencies, company domains
 - **Label scoring (+5 each):** Important, starred labels
 - **Interaction history (+0.1 per email, max +5):** Frequent senders
@@ -279,6 +288,7 @@ Emails receive importance scores (0-20) based on:
 ### PII Masking
 
 Automatically masks sensitive data in email bodies:
+
 - **SSN:** `XXX-XX-XXXX`
 - **Credit cards:** `XXXX-XXXX-XXXX-XXXX`
 - **Phone numbers:** `XXX-XXX-XXXX`
@@ -405,6 +415,7 @@ export async function gmailIngest(req, res) {
 ```
 
 Deploy:
+
 ```bash
 gcloud functions deploy gmail-ingest \
   --runtime=nodejs20 \
@@ -422,6 +433,7 @@ gcloud functions deploy gmail-ingest \
 Tokens are stored locally with restricted permissions (0600). For production:
 
 1. **1Password Integration:**
+
    ```bash
    # Store credentials in 1Password
    op item create \
@@ -434,6 +446,7 @@ Tokens are stored locally with restricted permissions (0600). For production:
    ```
 
 2. **Secret Manager (recommended):**
+
    ```bash
    # Store token in Secret Manager
    gcloud secrets create gmail-token-jessen \
@@ -474,6 +487,7 @@ gsutil iam ch \
 **Error:** `Token has been expired or revoked`
 
 **Solution:**
+
 ```bash
 # Re-authenticate account
 node gmail_auth.js --account=jesseniesen
@@ -484,6 +498,7 @@ node gmail_auth.js --account=jesseniesen
 **Error:** `Rate limit exceeded`
 
 **Solution:**
+
 - Pipeline automatically retries with exponential backoff
 - Reduce `CONCURRENT_OPERATIONS` in code
 - Increase delay between requests
@@ -493,6 +508,7 @@ node gmail_auth.js --account=jesseniesen
 **Error:** `Credentials file not found`
 
 **Solution:**
+
 1. Download OAuth credentials from Google Cloud Console
 2. Save as `gmail_credentials_jessen.json` or `gmail_credentials_high.json`
 3. Run authentication: `node gmail_auth.js --account=jesseniesen`
@@ -502,6 +518,7 @@ node gmail_auth.js --account=jesseniesen
 **Error:** `Table not found`
 
 **Solution:**
+
 ```bash
 # Create tables
 bq query --use_legacy_sql=false < gmail_bigquery_schema.sql
@@ -510,6 +527,7 @@ bq query --use_legacy_sql=false < gmail_bigquery_schema.sql
 **Error:** `Permission denied`
 
 **Solution:**
+
 ```bash
 # Grant BigQuery permissions
 gcloud projects add-iam-policy-binding ${GCP_PROJECT_ID} \
@@ -631,6 +649,7 @@ gpg --encrypt --recipient your-email@example.com gmail_tokens_backup.tar.gz
 ## Support
 
 For issues or questions:
+
 1. Check troubleshooting section above
 2. Review logs with `jq` for structured output
 3. Run test suite: `node gmail_test.js`

@@ -18,6 +18,7 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
 ### Current Architecture Health: 7.5/10
 
 **Strengths:**
+
 - Microservices architecture with clear separation of concerns
 - Redis-backed queue system (BullMQ) for async processing
 - BigQuery integration with caching layer (30s TTL)
@@ -26,6 +27,7 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
 - Rate limiting configured but not consistently applied
 
 **Critical Bottlenecks Identified:**
+
 1. **BigQuery query performance** - Full table scans on 180-day windows
 2. **Frontend bundle size** - 603MB node_modules (no build optimization visible)
 3. **Missing Redis connection pooling** - Single connection per service
@@ -51,6 +53,7 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
 ### Architecture Patterns
 
 **File**: `/backend/reasoning-gateway/src/index.js`
+
 ```javascript
 // GOOD: Graceful shutdown handling
 process.on('SIGTERM', async () => {
@@ -65,6 +68,7 @@ const reasoningWorker = new Worker(queueName, processor, queueOptions);
 ```
 
 **File**: `/backend/integration-service/src/index.js`
+
 ```javascript
 // ISSUE: Auth middleware disabled in non-production
 if (process.env.NODE_ENV === 'production') {
@@ -76,6 +80,7 @@ if (process.env.NODE_ENV === 'production') {
 ### Dependencies Analysis
 
 **Core Stack:**
+
 - Node.js 18-20 (mixed versions across services)
 - Express 4.x (mature, battle-tested)
 - Redis 4.7.x (modern, supports streams)
@@ -94,6 +99,7 @@ if (process.env.NODE_ENV === 'production') {
 **File**: `/backend/integration-service/src/bigquery_live.js`
 
 #### Critical Issue #1: Full Table Scans
+
 ```javascript
 // LINE 78-81: Inefficient 180-day query
 SELECT * FROM `${PROJECT_ID}.${DATASET}.${PAYMENTS_TABLE}`
@@ -103,6 +109,7 @@ LIMIT 1000
 ```
 
 **Problem**:
+
 - Fetches 1000 rows, then filters in Node.js (lines 88-101)
 - No table partitioning specified
 - Full table scan on every cache miss
@@ -112,6 +119,7 @@ LIMIT 1000
 #### Optimization Recommendations
 
 **QUICK WIN #1: Push filtering to BigQuery**
+
 ```javascript
 // Optimize fetchDashboardData() - Line 69
 SELECT
@@ -124,6 +132,7 @@ LIMIT 1000
 ```
 
 **QUICK WIN #2: Partitioned aggregation**
+
 ```javascript
 // Replace client-side sumByFilter (lines 93-96)
 SELECT
@@ -146,6 +155,7 @@ WHERE DATE(created_at) >= DATE_SUB(CURRENT_DATE(), INTERVAL 180 DAY)
 #### Critical Issue #2: Cache Strategy
 
 **File**: `/backend/integration-service/src/bigquery_live.js` (Lines 31-39)
+
 ```javascript
 const cache = {
   dashboard: null,
@@ -161,6 +171,7 @@ const cache = {
 **Problem**: In-memory cache, not shared across instances
 
 **Fix**: Move to Redis with smarter TTL
+
 ```javascript
 // Redis cache with stale-while-revalidate pattern
 const CACHE_TTL_MS = 30_000;      // 30s fresh
@@ -171,6 +182,7 @@ const BACKGROUND_REFRESH_MS = 20_000; // Refresh at 20s
 #### Table Partitioning Strategy
 
 **Required Setup** (Not currently implemented):
+
 ```sql
 -- Partition payments table by day
 CREATE TABLE `${PROJECT_ID}.${DATASET}.${PAYMENTS_TABLE}`
@@ -183,6 +195,7 @@ OPTIONS(
 ```
 
 **Cost Impact at Scale:**
+
 - Current: ~$5/TB scanned
 - With partitioning: ~$0.50/TB (10x reduction)
 - At 10K daily transactions: $150/month → $15/month
@@ -192,12 +205,14 @@ OPTIONS(
 **File**: `/backend/common/memory/bigquery-adapter.js`
 
 **GOOD PATTERNS:**
+
 - Batch insertion with configurable size (100 rows default, line 10)
 - Auto-flush on 30s interval (line 11)
 - Time-partitioned tables (lines 54-58)
 - Parameterized queries (lines 285-288)
 
 **OPTIMIZATION #1: Batch Size Tuning**
+
 ```javascript
 // Line 10: Current
 this.batchSize = Number(process.env.BIGQUERY_BATCH_SIZE ?? 100);
@@ -209,6 +224,7 @@ this.batchSize = Number(process.env.BIGQUERY_BATCH_SIZE ?? 500);
 ```
 
 **OPTIMIZATION #2: Streaming Inserts**
+
 ```javascript
 // Replace insertRows (line 244) with streaming API
 await this.bigquery
@@ -230,6 +246,7 @@ await this.bigquery
 ### Bundle Analysis
 
 **Observation**: Build completed but no dist/ output checked
+
 ```bash
 npm run build
 # Warnings: "use client" directives in MUI components
@@ -253,6 +270,7 @@ npm run build
 **File**: `/frontend/vibe-cockpit/src/App.jsx`
 
 **CURRENT (Lines 185-199):**
+
 ```jsx
 <Routes>
   <Route path="/" element={<UltimateCockpit />} />
@@ -264,6 +282,7 @@ npm run build
 ```
 
 **RECOMMENDED: Lazy Load Routes**
+
 ```jsx
 import { lazy, Suspense } from 'react';
 
@@ -291,6 +310,7 @@ const VoiceMode = lazy(() => import('./components/VoiceMode'));
 **Concern**: Potential re-render cascades in UltimateCockpit
 
 **File**: `/frontend/vibe-cockpit/src/components/UltimateCockpit.jsx`
+
 ```jsx
 // Lines 71-79: Multiple state variables
 const [activeLayer, setActiveLayer] = useState('overview');
@@ -304,6 +324,7 @@ const [customizeMode, setCustomizeMode] = useState(false);
 ```
 
 **Recommendation**: useReducer for related state
+
 ```jsx
 const initialState = {
   activeLayer: 'overview',
@@ -329,6 +350,7 @@ const [state, dispatch] = useReducer(cockpitReducer, initialState);
 **Risk**: Cache stampede on dashboard load
 
 **Recommended**: Implement React Query or SWR
+
 ```jsx
 import { useQuery } from '@tanstack/react-query';
 
@@ -342,6 +364,7 @@ const { data, isLoading } = useQuery({
 ```
 
 **Benefits:**
+
 - Automatic request deduplication
 - Background refetch
 - Optimistic updates
@@ -366,6 +389,7 @@ const { data, isLoading } = useQuery({
 **File**: `/backend/common/queue/index.js`
 
 **Current Configuration:**
+
 ```javascript
 const baseConfig = {
   host: process.env.REDIS_HOST ?? '127.0.0.1',
@@ -378,6 +402,7 @@ const baseConfig = {
 ```
 
 **Issues:**
+
 1. No connection pooling configured
 2. No retry strategy
 3. No circuit breaker pattern
@@ -386,6 +411,7 @@ const baseConfig = {
 ### Redis Optimization
 
 **CRITICAL: Add Connection Pooling**
+
 ```javascript
 import { createClient } from 'redis';
 
@@ -476,6 +502,7 @@ Response
 **File**: `/backend/common/security/rate-limit.js`
 
 **GOOD**: Comprehensive rate limiters defined
+
 ```javascript
 export const reasoningRateLimiter = createRateLimiter({
   windowMs: 60 * 1000, // 1 minute
@@ -493,6 +520,7 @@ export const reasoningRateLimiter = createRateLimiter({
 **File**: `/backend/reasoning-gateway/src/workers/deepseek-processor.js`
 
 **Processing Flow:**
+
 ```
 Job Received
   ↓
@@ -510,6 +538,7 @@ Job Complete
 **Total Latency**: 700-2400ms per reasoning job
 
 **Optimization Opportunities:**
+
 1. Parallel guardrails + memory fetch (save 50-100ms)
 2. Stream response to client before learning phase (improve perceived latency)
 3. Cache common reasoning patterns (product recommendations, compliance queries)
@@ -519,6 +548,7 @@ Job Complete
 **File**: `/backend/integration-service/src/square-sync-scheduler.js`
 
 **CRITICAL ISSUE**: Synchronous execSync (lines 17-21)
+
 ```javascript
 const output = execSync('node scripts/sync-square-to-bigquery.js', {
   cwd: __dirname + '/..',
@@ -530,6 +560,7 @@ const output = execSync('node scripts/sync-square-to-bigquery.js', {
 **Problem**: Blocks Node.js event loop for up to 5 minutes
 
 **Fix**: Convert to async spawn
+
 ```javascript
 import { spawn } from 'child_process';
 
@@ -571,21 +602,25 @@ services:
 ### Horizontal Scaling Blockers
 
 **BLOCKER #1: Session Affinity Required**
+
 - Auth middleware disabled in dev (security issue)
 - No distributed session store visible
 - In-memory cache in integration-service (line 31-39)
 
 **BLOCKER #2: No Health Checks**
+
 - Basic `/health` endpoint exists (line 35-39)
 - No readiness/liveness distinction
 - No dependency checks (Redis, BigQuery)
 
 **BLOCKER #3: Stateful Workers**
+
 - BullMQ workers tied to specific queue instances
 - No worker pool coordination
 - Job results stored in memory before Redis flush
 
 **BLOCKER #4: No Service Discovery**
+
 - Hardcoded service URLs
 - No load balancer configuration
 - No circuit breakers
@@ -657,6 +692,7 @@ services:
 ### Scaling Configurations
 
 **For 11K members (current):**
+
 - Frontend: 2 instances (0.5 vCPU, 512MB each)
 - Backend: 2 instances (1 vCPU, 1GB each)
 - Workers: 2 instances (1 vCPU, 1GB each)
@@ -664,6 +700,7 @@ services:
 - **Total**: ~$150-200/month
 
 **For 50K members (Texas Year 1):**
+
 - Frontend: 3 instances (0.5 vCPU, 512MB each)
 - Backend: 4 instances (2 vCPU, 2GB each)
 - Workers: 6 instances (2 vCPU, 2GB each)
@@ -671,6 +708,7 @@ services:
 - **Total**: ~$600-800/month
 
 **For 200K members (Texas Year 3):**
+
 - Frontend: 6 instances (1 vCPU, 1GB each)
 - Backend: 12 instances (4 vCPU, 4GB each)
 - Workers: 24 instances (4 vCPU, 4GB each)
@@ -680,6 +718,7 @@ services:
 ### Service Isolation Requirements
 
 **File**: `/backend/reasoning-gateway/Dockerfile`
+
 ```dockerfile
 FROM node:20-alpine  # ← Standardize to Node 20
 WORKDIR /app
@@ -691,12 +730,14 @@ CMD ["node", "src/index.js"]
 ```
 
 **Improvements Needed:**
+
 1. Multi-stage build to reduce image size
 2. Non-root user for security
 3. Health check instruction
 4. Resource limits
 
 **Recommended Dockerfile:**
+
 ```dockerfile
 # Stage 1: Dependencies
 FROM node:20-alpine AS deps
@@ -732,17 +773,20 @@ CMD ["node", "src/index.js"]
 ### BigQuery Costs
 
 **Current Usage Estimate** (11K members):
+
 - Dashboard queries: ~1MB per query × 1000 queries/day = 1GB/day
 - Historical queries: ~5MB per query × 200 queries/day = 1GB/day
 - Memory writes: ~10MB/day
 - **Total**: ~2GB/day processed = ~$0.30/day = **$9/month**
 
 **With Optimizations**:
+
 - Partitioned queries: 60% reduction
 - Streaming inserts: Free
 - **Optimized**: ~$3.60/month (60% savings)
 
 **Texas Scale (50K members, Year 1)**:
+
 - Dashboard queries: ~5MB × 5000/day = 25GB/day
 - Historical queries: ~25MB × 1000/day = 25GB/day
 - Memory writes: ~50MB/day
@@ -760,9 +804,11 @@ CMD ["node", "src/index.js"]
 ### Compute Costs (GCP/AWS/DigitalOcean)
 
 **Current (Development):**
+
 - 3 services × 1GB RAM = $15-30/month (DO Droplets)
 
 **Production (11K members):**
+
 - Infrastructure: $150-200/month
 - BigQuery: $10/month
 - Redis: $50/month
@@ -770,6 +816,7 @@ CMD ["node", "src/index.js"]
 - **Total**: ~$230-280/month
 
 **Texas Year 1 (50K members, $1.77M revenue):**
+
 - Infrastructure: $600-800/month
 - BigQuery: $90/month
 - Redis: $150/month
@@ -778,6 +825,7 @@ CMD ["node", "src/index.js"]
 - **As % of revenue**: 0.64-0.77%
 
 **Texas Year 3 (200K members, $8.7M revenue):**
+
 - Infrastructure: $3,000-4,000/month
 - BigQuery: $500/month
 - Redis: $600/month
@@ -792,120 +840,144 @@ CMD ["node", "src/index.js"]
 ### QUICK WINS (1-2 weeks, High Impact)
 
 #### 1. BigQuery Query Optimization
+
 **File**: `/backend/integration-service/src/bigquery_live.js`
 **Impact**: 60% cost reduction, 80% latency improvement
 **Effort**: 8 hours
 
 **Changes:**
+
 - Push aggregations to BigQuery (lines 69-127)
 - Remove client-side filtering (lines 88-101)
 - Add query result caching in Redis
 
 **Expected Result**:
+
 - Query time: 2-5s → 200-400ms
 - Cost: $9/month → $3.60/month
 
 #### 2. Frontend Code Splitting
+
 **File**: `/frontend/vibe-cockpit/src/App.jsx`
 **Impact**: 40-60% initial bundle reduction
 **Effort**: 4 hours
 
 **Changes:**
+
 - Lazy load all route components (lines 185-199)
 - Add React.Suspense wrapper
 - Configure Vite chunking
 
 **Expected Result**:
+
 - Initial load: ~2MB → ~800KB
 - Time to interactive: 3-5s → 1-2s
 
 #### 3. Redis-Backed BigQuery Cache
+
 **File**: `/backend/integration-service/src/bigquery_live.js`
 **Impact**: Horizontal scaling enabled
 **Effort**: 6 hours
 
 **Changes:**
+
 - Replace in-memory cache (lines 31-39)
 - Implement stale-while-revalidate pattern
 - Add cache warming on startup
 
 **Expected Result**:
+
 - Cache hit rate: 60% → 90%
 - Multi-instance ready
 
 #### 4. Async Sync Jobs
+
 **File**: `/backend/integration-service/src/square-sync-scheduler.js`
 **Impact**: Remove 5-minute event loop blocking
 **Effort**: 2 hours
 
 **Changes:**
+
 - Replace execSync with spawn (lines 17-21)
 - Add job status tracking in Redis
 - Implement failure retry logic
 
 **Expected Result**:
+
 - No more request timeouts during sync
 - Worker can handle 100+ req/s
 
 #### 5. Table Partitioning
+
 **New File**: `/backend/integration-service/scripts/partition-tables.js`
 **Impact**: 10x query cost reduction at scale
 **Effort**: 4 hours
 
 **Changes:**
+
 - Create partitioned tables
 - Migrate existing data
 - Update queries to require partition filter
 
 **Expected Result**:
+
 - Query cost: $0.05/query → $0.005/query
 - Required for compliance (7-year retention)
 
 ### MEDIUM-TERM (1-2 months, Strategic)
 
 #### 6. API Gateway + Rate Limiting
+
 **New Infrastructure**
 **Impact**: DDoS protection, consistent rate limiting
 **Effort**: 1 week
 
 **Implementation:**
+
 - Deploy Kong or Tyk API Gateway
 - Centralize rate limiting rules
 - Add request/response logging
 - Implement circuit breakers
 
 **Expected Result**:
+
 - 99.9% uptime guarantee
 - Protection against abuse
 - API versioning support
 
 #### 7. CDN for Static Assets
+
 **Infrastructure**
 **Impact**: 50-80% bandwidth cost reduction
 **Effort**: 3 days
 
 **Implementation:**
+
 - Configure CloudFlare or Fastly
 - Update frontend build to output versioned assets
 - Set aggressive cache headers (1 year TTL)
 - Implement cache invalidation on deploy
 
 **Expected Result**:
+
 - Global latency: 500ms → 50ms
 - Origin traffic: -70%
 
 #### 8. Monitoring & Observability
+
 **New Services**
 **Impact**: Proactive issue detection
 **Effort**: 2 weeks
 
 **Stack:**
+
 - Prometheus for metrics
 - Grafana for dashboards
 - Loki for log aggregation
 - Sentry for error tracking
 
 **Metrics to Track:**
+
 - API response times (p50, p95, p99)
 - BigQuery query latency
 - Redis hit rate
@@ -913,16 +985,19 @@ CMD ["node", "src/index.js"]
 - Error rates by endpoint
 
 #### 9. Load Testing & Benchmarking
+
 **Testing Infrastructure**
 **Impact**: Validate scaling assumptions
 **Effort**: 1 week
 
 **Tools:**
+
 - k6 for load testing
 - Artillery for scenario testing
 - BigQuery load generator
 
 **Scenarios:**
+
 - 11K concurrent users (current)
 - 50K concurrent users (Year 1)
 - 200K concurrent users (Year 3)
@@ -930,48 +1005,57 @@ CMD ["node", "src/index.js"]
 ### LONG-TERM (3-6 months, Transformative)
 
 #### 10. Multi-Region Deployment
+
 **Infrastructure**
 **Impact**: Global availability, disaster recovery
 **Effort**: 6 weeks
 
 **Architecture:**
+
 - Primary: US-Central (Texas market)
 - Replica: US-West (California fallback)
 - CDN: Global edge network
 
 **Challenges:**
+
 - BigQuery cross-region replication
 - Redis data sync
 - Session management
 
 #### 11. Kubernetes Migration
+
 **Infrastructure**
 **Impact**: Auto-scaling, self-healing
 **Effort**: 8 weeks
 
 **Benefits:**
+
 - Horizontal pod autoscaling
 - Rolling deployments
 - Resource optimization
 - Multi-cloud portability
 
 **Considerations:**
+
 - Team Kubernetes expertise required
 - Increased operational complexity
 - Tools: Helm, Kustomize, ArgoCD
 
 #### 12. GraphQL Federation
+
 **API Architecture**
 **Impact**: Flexible data fetching, reduced over-fetching
 **Effort**: 6 weeks
 
 **Implementation:**
+
 - Unified GraphQL gateway
 - Subgraphs per service
 - Client-driven queries
 - Automatic batching
 
 **Benefits:**
+
 - Frontend flexibility
 - Reduced API calls
 - Type safety
@@ -984,6 +1068,7 @@ CMD ["node", "src/index.js"]
 ### Current Security Posture
 
 **GOOD:**
+
 - Helmet middleware enabled (reasoning-gateway)
 - JWT authentication configured
 - Rate limiting defined (not consistently applied)
@@ -991,6 +1076,7 @@ CMD ["node", "src/index.js"]
 - 7-year data retention (compliance ready)
 
 **GAPS:**
+
 1. **Auth bypass in development** (`integration-service/src/index.js` line 42-44)
 2. **No API key rotation strategy**
 3. **Secrets in environment variables** (should use 1Password op:// references)
@@ -1000,16 +1086,19 @@ CMD ["node", "src/index.js"]
 ### Compliance Requirements (Texas Hemp Market)
 
 **TX DSHS CHP #690:**
+
 - 7-year record retention: ✓ Implemented (BigQuery partition_expiration_days=2555)
 - Audit trail: ✓ Implemented (audit_logs table)
 - Age verification: ✓ Implemented (age_verification system)
 
 **CDFA PDP:**
+
 - Transaction logging: ✓ All payments tracked
 - Customer verification: ✓ Age verification system
 - Product tracking: ✓ Square catalog sync
 
 **PCI DSS (if handling payments directly):**
+
 - Currently: Payment processing via Square (PCI compliant)
 - Future: If direct processing needed, requires PCI Level 1 certification
 
@@ -1039,6 +1128,7 @@ CMD ["node", "src/index.js"]
 ## 11. RECOMMENDATIONS ROADMAP
 
 ### Phase 1: Pre-Launch (Weeks 1-2)
+
 **Goal**: Production readiness for current 11K members
 
 - [ ] Optimize BigQuery queries (QUICK WIN #1)
@@ -1050,6 +1140,7 @@ CMD ["node", "src/index.js"]
 **Expected Impact**: System can handle 20K concurrent users
 
 ### Phase 2: Texas Launch (Months 1-3)
+
 **Goal**: Scale to 50K members, $1.77M revenue
 
 - [ ] Deploy API Gateway with rate limiting
@@ -1061,6 +1152,7 @@ CMD ["node", "src/index.js"]
 **Expected Impact**: 99.9% uptime, <500ms API latency
 
 ### Phase 3: Growth (Months 4-6)
+
 **Goal**: Optimize for 100K+ members
 
 - [ ] Implement React Query for API calls
@@ -1072,6 +1164,7 @@ CMD ["node", "src/index.js"]
 **Expected Impact**: 99.95% uptime, auto-scale to demand
 
 ### Phase 4: Maturity (Months 7-12)
+
 **Goal**: Scale to 200K members, $8.7M revenue
 
 - [ ] Implement GraphQL Federation
@@ -1089,24 +1182,28 @@ CMD ["node", "src/index.js"]
 ### Performance Metrics
 
 **Backend:**
+
 - API response time: p50 < 100ms, p95 < 500ms, p99 < 1s
 - BigQuery query time: p50 < 200ms, p95 < 1s
 - Worker job processing: p50 < 1s, p95 < 3s
 - Redis cache hit rate: > 85%
 
 **Frontend:**
+
 - Initial bundle size: < 1MB gzipped
 - Time to interactive: < 2s on 4G
 - Largest Contentful Paint: < 2.5s
 - Cumulative Layout Shift: < 0.1
 
 **Infrastructure:**
+
 - CPU utilization: < 70% average
 - Memory utilization: < 80% average
 - Redis memory: < 75% of allocated
 - Disk I/O wait: < 5%
 
 **Business Metrics:**
+
 - API availability: > 99.9%
 - Error rate: < 0.1%
 - Support tickets (performance): < 5/week
@@ -1115,17 +1212,20 @@ CMD ["node", "src/index.js"]
 ### Scaling Triggers
 
 **Horizontal Scaling (Add Instances):**
+
 - CPU > 70% for 5 minutes
 - Memory > 80% for 5 minutes
 - API latency p95 > 1s
 - Queue depth > 1000 jobs
 
 **Vertical Scaling (Increase Resources):**
+
 - Redis memory > 75%
 - Persistent high CPU despite horizontal scaling
 - Database connection pool exhaustion
 
 **Alert Thresholds:**
+
 - Critical: API availability < 99%
 - Warning: Cache hit rate < 80%
 - Info: Worker queue depth > 500
@@ -1137,23 +1237,27 @@ CMD ["node", "src/index.js"]
 ### Current State: 7.5/10 Production Readiness
 
 **Strengths:**
+
 - Solid microservices foundation
 - Modern tech stack (Node 20, Redis 7, BigQuery)
 - Queue-based async processing
 - Compliance-ready data retention
 
 **Critical Path to Production:**
+
 1. Fix BigQuery query performance (2-5s → 200ms)
 2. Enable horizontal scaling (Redis-backed cache)
 3. Reduce frontend bundle size (2MB → 800KB)
 4. Add production-grade monitoring
 
 **Texas Scale Readiness:**
+
 - With Phase 1 fixes: Ready for 50K members
 - With Phase 2 deployment: Ready for 100K members
 - With Phase 3 optimization: Ready for 200K+ members
 
 **Cost Efficiency:**
+
 - Current optimizations: 60% BigQuery cost reduction
 - Infrastructure at scale: 0.6-0.8% of revenue (healthy margin)
 
@@ -1170,6 +1274,7 @@ CMD ["node", "src/index.js"]
 ### Critical Files for Performance
 
 **Backend Services:**
+
 - `/backend/reasoning-gateway/src/index.js` - Main service, queue config
 - `/backend/reasoning-gateway/src/workers/deepseek-processor.js` - AI processing
 - `/backend/integration-service/src/index.js` - API gateway, sync schedulers
@@ -1179,16 +1284,19 @@ CMD ["node", "src/index.js"]
 - `/backend/common/security/rate-limit.js` - Rate limiting rules
 
 **Frontend:**
+
 - `/frontend/vibe-cockpit/src/App.jsx` - Routing, component imports
 - `/frontend/vibe-cockpit/src/components/UltimateCockpit.jsx` - Complex state mgmt
 - `/frontend/vibe-cockpit/package.json` - Dependencies (603MB node_modules)
 
 **Infrastructure:**
+
 - `/docker-compose.yml` - Service orchestration
 - `/backend/reasoning-gateway/Dockerfile` - Container config
 - `/backend/integration-service/Dockerfile` - Container config
 
 **Configuration:**
+
 - `/backend/reasoning-gateway/.env.example` - Service config
 - `/backend/integration-service/.env.example` - API keys, BigQuery settings
 

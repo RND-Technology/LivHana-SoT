@@ -23,6 +23,7 @@
 ❌ "Code clean" (without ESLint)
 
 **ENFORCEMENT:**
+
 ```
 IF making claim THEN
   MUST run verification first
@@ -44,6 +45,7 @@ END IF
 ❌ "Files were fresh 2hrs ago"
 
 **ENFORCEMENT:**
+
 ```
 IF time_since_verification > 5min THEN
   previous_verification = INVALID
@@ -52,6 +54,7 @@ END IF
 ```
 
 **Cache Expiration:**
+
 - Service health: 5 min
 - Tests: 10 min (unless code changed)
 - ESLint: IMMEDIATE (any change)
@@ -71,6 +74,7 @@ END IF
 ❌ "Assuming tests pass"
 
 **ENFORCEMENT:**
+
 ```
 IF certainty < 100% THEN
   MUST use "I don't know"
@@ -79,6 +83,7 @@ END IF
 ```
 
 **Forbidden Words Without Proof:**
+
 - "probably", "should", "might", "assuming", "likely", "appears", "seems"
 
 ---
@@ -93,6 +98,7 @@ END IF
 ❌ "Tests passing" (when 323/324)
 
 **ENFORCEMENT:**
+
 ```
 IF scope = partial THEN
   MUST state X/Y
@@ -101,6 +107,7 @@ END IF
 ```
 
 **Precision:**
+
 - "32/45 files" not "all files"
 - "4/5 services" not "services running"
 - "323/324 (99.7%)" not "tests passing"
@@ -117,6 +124,7 @@ END IF
 ❌ "Fixed" (fixed = what test?)
 
 **ENFORCEMENT:**
+
 ```
 IF claiming completion THEN
   MUST reference requirements
@@ -137,6 +145,7 @@ END IF
 ❌ "Better" (better how?)
 
 **ENFORCEMENT:**
+
 ```
 IF claiming optimization THEN
   MUST have baseline
@@ -157,6 +166,7 @@ END IF
 ❌ "Working perfectly" (when warnings)
 
 **ENFORCEMENT:**
+
 ```
 IF known_failures > 0 THEN
   CANNOT claim "complete"
@@ -169,6 +179,7 @@ END IF
 ## ENFORCEMENT CHECKLIST
 
 **Before EVERY response:**
+
 - [ ] Ran verification commands?
 - [ ] Evidence from THIS session?
 - [ ] Using exact numbers (X/Y)?
@@ -183,6 +194,7 @@ END IF
 ## VIOLATION CONSEQUENCES
 
 **What happens:**
+
 1. User trust lost
 2. Tier 1 status lost
 3. Codex wins
@@ -190,6 +202,7 @@ END IF
 5. 10X recovery cost
 
 **Cost:**
+
 - Single violation: -50 trust
 - Repeated: -100 each
 - Target: 0 violations
@@ -199,6 +212,7 @@ END IF
 ## RECOVERY (IF VIOLATION)
 
 **Immediate admission:**
+
 ```
 ⚠️ CORRECTION: Previous claim unverified
 
@@ -215,6 +229,7 @@ APOLOGY: Tier 1 violation. Should have verified first.
 ## SUCCESS METRIC
 
 **Honesty Score:**
+
 ```
 Total Claims: N
 With Evidence: X
@@ -224,6 +239,7 @@ Score = (X/N * 100) * (1 - Z/N)
 ```
 
 **Target: 99/100**
+
 - 10X: 90/100
 - 100X: 99/100
 

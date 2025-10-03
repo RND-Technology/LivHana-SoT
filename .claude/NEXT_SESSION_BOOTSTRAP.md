@@ -5,6 +5,7 @@
 🔥 LIV HANA TIER 1 OPTION A – FULL AUTO MISSION ORDER 🔥
 
 MANDATORY BOOT:
+
 1. read .claude/LEARNING_LEDGER.md
 2. read .claude/VERIFICATION_REQUIRED.md
 3. read .claude/HONESTY_CONSTRAINTS.md
@@ -13,6 +14,7 @@ MANDATORY BOOT:
 6. read .claude/CURRENT_SESSION_STATE.md
 
 RULES OF ENGAGEMENT:
+
 - Log proof every 5 minutes in .claude/SESSION_PROGRESS.md
 - Every claim = command + raw output (+ Finder screenshot if timestamps)
 - One file per purpose (fuse/archive duplicates immediately)
@@ -22,6 +24,7 @@ RULES OF ENGAGEMENT:
 - Auto-approve stays on (claudeCode.defaultApprovalMode = trusted). No babysitting.
 
 MISSION FLOW:
+
 1. Full sweep (scripts/run_full_sweep.sh) → review `.evidence/<date>/run_full_sweep_*.log`
 2. Burn down shellcheck warnings (quote vars, `grep -c`, `cd … || exit`, etc.)
 3. Burn down markdownlint errors one docs subtree at a time (rerun CLI each chunk)

@@ -69,30 +69,35 @@ The Claude Autonomous Agent empowers Liv Hana with the ability to autonomously e
 ## Key Features
 
 ### 1. Autonomous Task Execution
+
 - AI-powered analysis and planning
 - Step-by-step execution with verification
 - Self-healing on errors
 - Automatic rollback on failures
 
 ### 2. Real-Time Progress Tracking
+
 - Server-Sent Events (SSE) for live updates
 - Detailed progress percentages
 - Current step visibility
 - ETA calculations
 
 ### 3. Human-in-the-Loop
+
 - Optional approval workflow
 - Review changes before deployment
 - Approve or reject with reasons
 - Emergency rollback capability
 
 ### 4. Learning & Self-Improvement
+
 - Learns from every execution
 - Stores patterns in BigQuery
 - Improves over time
 - Shares learnings across instances
 
 ### 5. Security & Safety
+
 - Admin-only access
 - Git-based rollback
 - Sandboxed execution
@@ -147,6 +152,7 @@ curl -X POST http://localhost:4002/api/autonomous/execute \
 ```
 
 Response:
+
 ```json
 {
   "taskId": "550e8400-e29b-41d4-a716-446655440000",
@@ -299,6 +305,7 @@ See [AUTONOMOUS_API.md](./AUTONOMOUS_API.md) for complete API documentation.
 ```
 
 This script tests:
+
 - Agent capabilities
 - Task execution
 - Status monitoring
@@ -326,24 +333,28 @@ TASK_ID=$(curl -s -X POST http://localhost:4002/api/autonomous/execute \
 The autonomous agent can perform:
 
 ### File Operations
+
 - Read any file in the codebase
 - Write/modify files
 - Create new files
 - Search across codebase
 
 ### Code Execution
+
 - Run bash commands
 - Execute tests (npm test, pytest, etc.)
 - Run build processes
 - Execute database queries
 
 ### Analysis
+
 - Search for patterns in code
 - Analyze logs
 - Generate reports
 - Query BigQuery for insights
 
 ### Deployment
+
 - Build applications
 - Run health checks
 - Deploy to staging/production (configurable)
@@ -351,7 +362,9 @@ The autonomous agent can perform:
 ## Security Considerations
 
 ### Admin-Only Access
+
 All autonomous endpoints require:
+
 1. Valid JWT token
 2. Admin role in JWT claims
 
@@ -364,13 +377,16 @@ All autonomous endpoints require:
 ```
 
 ### Sandboxing
+
 - Commands run in restricted environment
 - File access limited to project directories
 - No access to system files
 - Timeout enforcement (max 10 minutes)
 
 ### Audit Trail
+
 Every action is logged with:
+
 - User ID who initiated
 - Timestamp
 - Task description
@@ -378,6 +394,7 @@ Every action is logged with:
 - Approval/rejection decisions
 
 ### Rollback Safety
+
 - Git-based rollback for file changes
 - Automatic rollback on step failures
 - Manual emergency rollback available
@@ -435,6 +452,7 @@ curl http://localhost:4002/api/autonomous/health \
 ### Metrics
 
 The agent tracks:
+
 - Total tasks executed
 - Success rate
 - Average execution time
@@ -472,6 +490,7 @@ All operations are logged with structured logging:
 1. Verify task status is `pending_approval`
 2. Check JWT token has admin role
 3. Verify request body format:
+
    ```json
    {"approved": true, "reason": "..."}
    ```
@@ -604,6 +623,7 @@ A: Yes, implement custom approval logic in the approve endpoint handler.
 ## Support
 
 For issues or questions:
+
 1. Check `/api/autonomous/health`
 2. Review service logs
 3. Check ANTHROPIC_API_KEY validity

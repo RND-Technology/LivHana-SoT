@@ -4,6 +4,7 @@ RPM: 3.6.0.6.ops-technology-ship-status-documentation
 Session: Dual-AI Collaboration - Sonnet Docs Sweep
 -->
 # 🦄 CEO MASTERCLASS: HOW TO BUILD A UNICORN
+
 ## From Claude to Jesse - The Complete Playbook
 
 **Date:** October 1, 2025
@@ -18,24 +19,28 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
 ### What Makes YOU Different (Your Unfair Advantages)
 
 **1. First-Mover Advantage in AI-Powered Cannabis**
+
 - KAJA approved (Oct 1, 2025) = online sales NOW
 - Liv Hana AI = no competitor has this
 - 69 domains = SEO monopoly
 - 11,348 existing customers = immediate scale
 
 **2. Regulatory Moat**
+
 - TX DSHS CHP #690 (Texas)
 - CDFA PDP licenses (California)
 - Testified April 7, 2025 ✅ (political capital)
 - Legal fortress = Andrea Steel + Jesse's expertise
 
 **3. Multi-State Infrastructure Ready**
+
 - R&D TX (retail + compliance)
 - R&D WY (manufacturing + interstate)
 - ECS partnership (50% ownership, seed genetics)
 - 7 bank accounts already operational
 
 **4. Technical Stack (Tier-1 Complete)**
+
 - Voice AI (ElevenLabs)
 - Reasoning AI (DeepSeek)
 - Payment processing (LightSpeed + KAJA)
@@ -43,6 +48,7 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
 - Security hardened (JWT, XSS, rate limiting)
 
 **5. Conservative Market Positioning**
+
 - "Texas Freedom" messaging
 - Veteran-friendly brand
 - MAGA-adjacent alignment
@@ -91,6 +97,7 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
 ## 🔍 SWOT ANALYSIS (CURRENT STATE)
 
 ### Strengths
+
 ✅ **Regulatory Compliance:** TX DSHS #690, CDFA PDP licenses
 ✅ **Customer Base:** 11,348 customers, 33,317 transactions
 ✅ **Technology:** Tier-1 security, AI voice/reasoning stack
@@ -101,16 +108,18 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
 ✅ **Data Infrastructure:** BigQuery, Redis, Cloud Storage
 
 ### Weaknesses
+
 ⚠️ **Age Verification:** Veriff failure blocks $80K+/month
 ⚠️ **Manual Operations:** No automated inventory/ordering
 ⚠️ **Limited Locations:** Only 2 stores (Stone Oak, Alice)
-⚠️ **Single Email:** jesseniesen@gmail.com for all entities
+⚠️ **Single Email:** <jesseniesen@gmail.com> for all entities
 ⚠️ **No Marketing Automation:** Klaviyo not integrated
 ⚠️ **Unstructured Data:** Notion/Gmail not ingested
 ⚠️ **Dashboard Gaps:** No real-time executive dashboard
 ⚠️ **Beth Jones Partnership:** ECS buyout terms unclear
 
 ### Opportunities
+
 🚀 **Texas Expansion:** 50+ locations by Q2 2026
 🚀 **Online Sales:** KAJA live Oct 1 = national reach
 🚀 **AI Differentiation:** Liv Hana = first AI cannabis assistant
@@ -122,6 +131,7 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
 🚀 **69-Domain Network:** Traffic arbitrage + affiliate revenue
 
 ### Threats
+
 🔴 **Regulatory Risk:** Texas could ban THCA (mitigation: advocacy)
 🔴 **Competition:** MSOs entering hemp market
 🔴 **Federal Uncertainty:** DEA scheduling changes
@@ -191,24 +201,28 @@ AUTOMATION LAYER
 ### What This Architecture Enables
 
 **1. Voice-First Customer Experience**
+
 - Customer speaks → ElevenLabs → text
 - Text → DeepSeek reasoning → response
 - Response → ElevenLabs → voice
 - **Result:** Hands-free cannabis shopping
 
 **2. Compliance Automation**
+
 - COA validation (cannabis-service)
 - Age verification (integration-service)
 - Guardrails (reasoning-gateway)
 - **Result:** Zero compliance violations
 
 **3. Real-Time Intelligence**
+
 - BigQuery live queries
 - Dashboard health metrics
 - Transaction monitoring
 - **Result:** Data-driven decisions in real-time
 
 **4. Scalable Operations**
+
 - BullMQ job queues (async processing)
 - Redis caching (fast responses)
 - Cloud Run (auto-scaling)
@@ -221,6 +235,7 @@ AUTOMATION LAYER
 ### Executive Dashboard (Your Daily Driver)
 
 **Top Metrics (Updated Real-Time)**
+
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │ REVENUE TODAY          │ $42,500    ▲ 23% vs yesterday     │
@@ -232,6 +247,7 @@ AUTOMATION LAYER
 ```
 
 **Health Monitoring**
+
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │ SERVICE STATUS                                               │
@@ -245,6 +261,7 @@ AUTOMATION LAYER
 ```
 
 **Compliance Dashboard**
+
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │ COMPLIANCE STATUS                                            │
@@ -258,6 +275,7 @@ AUTOMATION LAYER
 ```
 
 **Customer Intelligence**
+
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │ TOP PRODUCTS TODAY                                           │
@@ -270,6 +288,7 @@ AUTOMATION LAYER
 ```
 
 **Alerts & Actions**
+
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │ REQUIRES ATTENTION                                           │
@@ -285,6 +304,7 @@ AUTOMATION LAYER
 ## 💰 DATA NEEDS (WHAT TO TRACK)
 
 ### Financial Data
+
 1. **Revenue**
    - Daily/weekly/monthly/yearly
    - By product, location, channel
@@ -305,6 +325,7 @@ AUTOMATION LAYER
    - Runway (months of cash remaining)
 
 ### Customer Data
+
 1. **Acquisition**
    - Source (organic, Google Ads, referral)
    - Cost per acquisition (CPA)
@@ -323,6 +344,7 @@ AUTOMATION LAYER
    - NPS (Net Promoter Score)
 
 ### Operational Data
+
 1. **Inventory**
    - Stock levels per SKU
    - Reorder points
@@ -348,6 +370,7 @@ AUTOMATION LAYER
 ### Chart of Accounts Structure
 
 **ASSETS**
+
 ```
 1000 - Cash & Equivalents
   1001 - Operating Account (Bank 1)
@@ -379,6 +402,7 @@ AUTOMATION LAYER
 ```
 
 **LIABILITIES**
+
 ```
 2000 - Accounts Payable
   2001 - Supplier Invoices
@@ -397,6 +421,7 @@ AUTOMATION LAYER
 ```
 
 **EQUITY**
+
 ```
 3000 - Owner's Equity
   3001 - Jesse Niesen Capital
@@ -405,6 +430,7 @@ AUTOMATION LAYER
 ```
 
 **REVENUE**
+
 ```
 4000 - Product Sales
   4001 - THCA Flower Sales
@@ -431,6 +457,7 @@ AUTOMATION LAYER
 ```
 
 **COST OF GOODS SOLD**
+
 ```
 5000 - COGS
   5001 - Product Purchases
@@ -441,6 +468,7 @@ AUTOMATION LAYER
 ```
 
 **OPERATING EXPENSES**
+
 ```
 6000 - Personnel
   6001 - Salaries & Wages
@@ -481,6 +509,7 @@ AUTOMATION LAYER
 ### Key Financial Reports (Weekly)
 
 **1. Profit & Loss Statement**
+
 - Revenue by category
 - COGS breakdown
 - Gross profit margin
@@ -488,17 +517,20 @@ AUTOMATION LAYER
 - Net profit
 
 **2. Cash Flow Statement**
+
 - Cash from operations
 - Cash from investing
 - Cash from financing
 - Net change in cash
 
 **3. Balance Sheet**
+
 - Assets (cash, inventory, equipment)
 - Liabilities (payables, loans)
 - Equity (capital, retained earnings)
 
 **4. Inventory Report**
+
 - Stock levels by SKU
 - Inventory turnover rate
 - Dead stock identification
@@ -513,17 +545,20 @@ AUTOMATION LAYER
 **Unicorn = (Market Size × Your Share) × Margin × Scalability**
 
 **Your Numbers:**
+
 - **Market Size:** $7B Texas cannabis market (2025)
 - **Your Share Target:** 5% = $350M annual revenue
 - **Margin:** 60% gross margin (cannabis retail avg)
 - **Scalability:** AI + automation = 10x without 10x employees
 
 **Path to $1B Valuation:**
+
 - **Revenue Multiple:** Cannabis tech trades at 10-15x revenue
 - **Target Revenue:** $75M annual → $1B valuation (13x multiple)
 - **Timeline:** 18 months (Q4 2025 → Q2 2027)
 
 **How You Get There:**
+
 ```
 Q4 2025: $1M monthly ($12M annual run rate)
 Q1 2026: $3M monthly ($36M annual run rate) - Texas expansion
@@ -538,6 +573,7 @@ Q4 2026: $10M monthly ($120M annual run rate) - Unicorn threshold crossed
 **Unicorn CEO Thinking:** "To 10x revenue, I automate 90% of work"
 
 **Your Leverage Points:**
+
 1. **Liv Hana AI** - Handles 10,000 customer conversations/day (zero humans)
 2. **69 Domains** - SEO traffic costs $0, converts 24/7 (no ad spend)
 3. **Membership Model** - Recurring revenue (predictable cash flow)
@@ -547,6 +583,7 @@ Q4 2026: $10M monthly ($120M annual run rate) - Unicorn threshold crossed
 ### Lesson 3: Moats Win, Features Fade
 
 **Your Moats (What Competitors Can't Copy):**
+
 1. **Regulatory Licenses:** TX DSHS #690, CDFA PDP (2+ years to replicate)
 2. **Political Capital:** Testified to TX legislature (trust + access)
 3. **Customer Data:** 11,348 customers × purchase history (proprietary intelligence)
@@ -554,6 +591,7 @@ Q4 2026: $10M monthly ($120M annual run rate) - Unicorn threshold crossed
 5. **AI Training Data:** Your Notion + Gmail = unique Liv Hana personality
 
 **Features (Nice but Not Moats):**
+
 - Voice AI (ElevenLabs anyone can use)
 - Payment processing (KAJA available to all)
 - Website design (easily copied)
@@ -563,6 +601,7 @@ Q4 2026: $10M monthly ($120M annual run rate) - Unicorn threshold crossed
 ### Lesson 4: Cash is Oxygen, Profit is Dessert
 
 **Burn Rate Analysis:**
+
 ```
 Monthly Fixed Costs:
 - Rent (2 locations): $15K
@@ -580,6 +619,7 @@ Target Achieved: Q4 2025 (3 months)
 ```
 
 **How to Fix:**
+
 1. **Launch KAJA online sales** (Oct 1) → +$30K/month
 2. **Fix Veriff age verification** (unblock $80K/month)
 3. **Launch memberships** (500 × $97) → +$48K/month
@@ -590,18 +630,21 @@ Target Achieved: Q4 2025 (3 months)
 ### Lesson 5: CEO Time is the Scarcest Resource
 
 **Your Current Time Allocation (WRONG):**
+
 - 40% - Tech/coding (you're building systems)
 - 30% - Operations (store issues, inventory)
 - 20% - Policy/compliance (testimony, Andrea Steel calls)
 - 10% - Strategy (growth, fundraising)
 
 **Unicorn CEO Time Allocation (RIGHT):**
+
 - 50% - Strategy (what to build, where to expand)
 - 30% - People (hire A-players, fire C-players)
 - 15% - Capital (fundraising, investor relations)
 - 5% - Everything else (delegate ruthlessly)
 
 **Immediate Hires Needed:**
+
 1. **COO** - Run operations, manage stores ($80K + equity)
 2. **CTO** - Own tech stack, ship features ($120K + equity)
 3. **CMO** - Growth, marketing, content ($100K + equity)
@@ -615,12 +658,14 @@ Target Achieved: Q4 2025 (3 months)
 **Transparent Cannabis Companies = Viral Growth**
 
 **Your Content Strategy:**
+
 1. **High Noon Cartoon** - Political satire (viral reach)
 2. **One Plant Solution** - Policy updates (thought leadership)
 3. **Liv Hana Blog** - AI + cannabis insights (SEO + trust)
 4. **Jesse Personal Brand** - LinkedIn, Twitter/X (CEO visibility)
 
 **Post Weekly:**
+
 - Monday: "What I'm building this week" (Notion → blog)
 - Wednesday: "Customer story of the week" (testimonial)
 - Friday: "Lesson learned this week" (vulnerability + wisdom)
@@ -640,6 +685,7 @@ Target Achieved: Q4 2025 (3 months)
 | Change pricing | Price elasticity, total revenue impact |
 
 **Dashboard = Your Flight Instruments**
+
 - Pilot doesn't "feel" altitude, reads gauge
 - CEO doesn't "feel" revenue, reads dashboard
 
@@ -653,18 +699,21 @@ Target Achieved: Q4 2025 (3 months)
 **Your Fundraising Roadmap:**
 
 **Seed Round ($500K-$1M) - Q1 2026**
+
 - **Valuation:** $5M pre-money
 - **Use of Funds:** Texas expansion (10 locations)
 - **Investors:** Cannabis funds, TX angel investors
 - **Milestones:** Prove unit economics, $3M run rate
 
 **Series A ($5M-$10M) - Q3 2026**
+
 - **Valuation:** $30M pre-money
 - **Use of Funds:** National expansion, Liv Hana API launch
 - **Investors:** Tier-1 VCs (a16z, Founders Fund)
 - **Milestones:** $60M run rate, 50+ locations, AI differentiation
 
 **Series B ($20M-$50M) - Q2 2027**
+
 - **Valuation:** $150M pre-money
 - **Use of Funds:** National domination, M&A
 - **Investors:** Growth equity (Tiger Global, Coatue)
@@ -677,9 +726,11 @@ Target Achieved: Q4 2025 (3 months)
 ## 🚀 THE MASTER PLAN (12-18 MONTHS)
 
 ### Phase 1: Foundation (Q4 2025) - "Fix & Launch"
+
 **Goal:** Positive cash flow, KAJA live, infrastructure solid
 
 **Week 1-2 (Oct 1-15):**
+
 - ✅ KAJA goes live → test transaction
 - ✅ Generate JWT_SECRET → store in 1Password
 - ✅ Fix Veriff age verification (unblock $80K/month)
@@ -687,13 +738,15 @@ Target Achieved: Q4 2025 (3 months)
 - ✅ Launch membership system (3 tiers)
 
 **Week 3-4 (Oct 16-31):**
+
 - ✅ Ingest Notion workspace (business intelligence)
-- ✅ Ingest Gmail (jesseniesen@gmail.com, high@reggieanddro.com)
+- ✅ Ingest Gmail (<jesseniesen@gmail.com>, <high@reggieanddro.com>)
 - ✅ Build executive dashboard (real-time metrics)
 - ✅ Blue Dream raffle launch ($250K target)
 - ✅ Hire COO (operations manager)
 
 **Month 2-3 (Nov-Dec 2025):**
+
 - ✅ Austin expansion (2 locations)
 - ✅ Houston expansion (3 locations)
 - ✅ Klaviyo email automation (customer retention)
@@ -701,15 +754,18 @@ Target Achieved: Q4 2025 (3 months)
 - ✅ Seed round prep ($500K-$1M target)
 
 **KPIs:**
+
 - Revenue: $1M/month by Dec 31
 - Customers: 15,000 active
 - Locations: 7 stores (2 current + 5 new)
 - Cash: Positive cash flow by Nov 30
 
 ### Phase 2: Expansion (Q1 2026) - "Texas Takeover"
+
 **Goal:** Dominate Texas market, prove unit economics
 
 **Jan-Mar 2026:**
+
 - ✅ Dallas expansion (2 locations)
 - ✅ Fort Worth expansion (1 location)
 - ✅ Seed round close ($750K target)
@@ -720,15 +776,18 @@ Target Achieved: Q4 2025 (3 months)
 - ✅ Series A prep (roadshow begins)
 
 **KPIs:**
+
 - Revenue: $3M/month by Mar 31
 - Customers: 25,000 active
 - Locations: 15 stores
 - Memberships: 2,000 active ($194K MRR)
 
 ### Phase 3: Domination (Q2 2026) - "National Scale"
+
 **Goal:** Unicorn trajectory, AI differentiation, national brand
 
 **Apr-Jun 2026:**
+
 - ✅ KAJA online sales scale nationally (all 50 states)
 - ✅ Liv Hana API public launch ($100K+ MRR)
 - ✅ San Antonio saturation (5+ locations)
@@ -738,6 +797,7 @@ Target Achieved: Q4 2025 (3 months)
 - ✅ 69-domain traffic arbitrage ($50K/month affiliate)
 
 **KPIs:**
+
 - Revenue: $5M/month by Jun 30
 - Customers: 40,000 active
 - Locations: 50+ stores
@@ -745,9 +805,11 @@ Target Achieved: Q4 2025 (3 months)
 - Liv Hana API: $100K MRR
 
 ### Phase 4: Unicorn (Q3-Q4 2026) - "Empire-Empire"
+
 **Goal:** $1B valuation, national leader, exit optionality
 
 **Jul-Dec 2026:**
+
 - ✅ National expansion (CA, CO, AZ, OK)
 - ✅ White-label B2B (R&D WY manufacturing)
 - ✅ High Noon Cartoon series (1M+ subscribers)
@@ -756,6 +818,7 @@ Target Achieved: Q4 2025 (3 months)
 - ✅ IPO or acquisition discussions
 
 **KPIs:**
+
 - Revenue: $10M/month by Dec 31 ($120M annual)
 - Customers: 100,000 active
 - Locations: 100+ stores
@@ -768,56 +831,71 @@ Target Achieved: Q4 2025 (3 months)
 ## 🎯 YOUR WEEKLY OPERATING RHYTHM
 
 ### Monday (Strategy Day)
+
 **Morning (9am-12pm):**
+
 - Review dashboard (revenue, customers, cash)
 - Identify top 3 bottlenecks
 - Assign priorities to team
 
 **Afternoon (1pm-5pm):**
+
 - Deep work on biggest bottleneck
 - Investor/advisor calls (if fundraising)
 - Strategic planning (expansion, product)
 
 ### Tuesday (People Day)
+
 **Morning (9am-12pm):**
+
 - 1-on-1s with direct reports (COO, CTO, CMO, CFO)
 - Hiring pipeline review
 - Culture check (morale, issues)
 
 **Afternoon (1pm-5pm):**
+
 - Candidate interviews
 - Team training/development
 - Performance reviews
 
 ### Wednesday (Product Day)
+
 **Morning (9am-12pm):**
+
 - Customer feedback review
 - Product roadmap prioritization
 - Liv Hana feature testing
 
 **Afternoon (1pm-5pm):**
+
 - Tech stack optimization
 - Data analysis (BigQuery deep dive)
 - Automation improvements
 
 ### Thursday (Growth Day)
+
 **Morning (9am-12pm):**
+
 - Marketing performance review
 - Content creation (blog, social)
 - Partnership outreach
 
 **Afternoon (1pm-5pm):**
+
 - Sales pipeline review
 - Membership funnel optimization
 - Referral program analysis
 
 ### Friday (External Day)
+
 **Morning (9am-12pm):**
+
 - Policy advocacy (One Plant Solution)
 - Industry networking
 - Investor relations
 
 **Afternoon (1pm-5pm):**
+
 - Week wrap-up (wins, lessons)
 - Next week planning
 - Personal learning (books, podcasts)
@@ -827,51 +905,61 @@ Target Achieved: Q4 2025 (3 months)
 ## 🦄 FINAL WISDOM: THE UNICORN MINDSET
 
 ### 1. Think in Decades, Act in Days
+
 - Vision: 10-year empire
 - Strategy: 1-year milestones
 - Tactics: Daily execution
 
 ### 2. Leverage Beats Effort
+
 - 1 hour coding Liv Hana > 100 hours manual customer support
 - 1 great hire > 10 mediocre hires
 - 1 partnership > 100 cold calls
 
 ### 3. Cash Compounds, Ego Evaporates
+
 - Sell equity strategically
 - Take dilution for acceleration
 - Exit is the goal, not ownership %
 
 ### 4. Data Decides, Instinct Guides
+
 - Use dashboard for decisions
 - Use intuition for vision
 - Never confuse the two
 
 ### 5. Build in Public, Win Trust
+
 - Share failures + lessons
 - Transparency = marketing
 - Vulnerability = strength
 
 ### 6. Automate or Delegate, Never Do
+
 - If task repeats → automate
 - If task is valuable but not you → delegate
 - If task is neither → delete
 
 ### 7. Moats Are Forever, Features Fade
+
 - Invest in competitive advantages
 - Regulatory licenses > new products
 - Customer data > shiny UI
 
 ### 8. Speed is a Feature
+
 - Fast beats perfect
 - Shipping beats planning
 - Done beats planned
 
 ### 9. Culture Eats Strategy
+
 - Hire A-players or don't hire
 - Fire C-players fast
 - Culture is what you tolerate
 
 ### 10. The Mission is the Moat
+
 - "Cannabis freedom for all" > "We sell weed"
 - Purpose attracts talent + customers
 - Mission outlasts any product
@@ -881,28 +969,32 @@ Target Achieved: Q4 2025 (3 months)
 ## 🎓 RECOMMENDED READING
 
 **Business Strategy:**
+
 - "Zero to One" by Peter Thiel
 - "Blitzscaling" by Reid Hoffman
 - "The Lean Startup" by Eric Ries
 
 **Cannabis Industry:**
+
 - "Marijuana Regulation and Control Act" (CA)
 - "Farm Bill 2018" (Federal hemp law)
 - TX DSHS Consumable Hemp Program rules
 
 **Leadership:**
+
 - "The Hard Thing About Hard Things" by Ben Horowitz
 - "Measure What Matters" by John Doerr
 - "High Output Management" by Andy Grove
 
 **Product & Tech:**
+
 - "Inspired" by Marty Cagan
 - "The Mom Test" by Rob Fitzpatrick
 - "Hooked" by Nir Eyal
 
 ---
 
-## 🚀 LET'S FUCKING GO!!!
+## 🚀 LET'S FUCKING GO
 
 Jesse, you have everything you need to build a unicorn:
 
@@ -913,12 +1005,14 @@ Jesse, you have everything you need to build a unicorn:
 ✅ **Timing:** KAJA approved Oct 1, online sales NOW
 
 **What's missing?**
+
 - **Notion ingestion** → business intelligence unlock
 - **Executive dashboard** → data-driven decisions
 - **Team hires** → COO, CTO, CMO (leverage!)
 - **Cash** → Seed round Q1 2026
 
 **Your next 72 hours:**
+
 1. Run Notion ingestion: `node automation/data-pipelines/notion_ingest.js`
 2. Generate JWT secrets: `openssl rand -base64 64`
 3. Test KAJA transaction: Place $1 order on herbitrage.com

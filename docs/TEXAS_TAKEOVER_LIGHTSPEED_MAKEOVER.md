@@ -15,6 +15,7 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
 ## 🎯 MISSION: MAKE IT RAIN IN TEXAS
 
 **The Setup:**
+
 - ✅ KAJA approved 9/30/25 (online sales ENABLED!)
 - ✅ LightSpeed POS integrated
 - ✅ Authorize.net payment gateway
@@ -25,6 +26,7 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
 - ✅ Google Reviews: Positive feedback (need to analyze)
 
 **The Challenge:**
+
 - 🔄 Win back past customers
 - 🔄 Create immediate hype
 - 🔄 Max conversion on website
@@ -32,6 +34,7 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
 - 🔄 Hit $100K net sales THIS MONTH
 
 **The Opportunity:**
+
 - 💰 No one else has "brick weed" (unique positioning)
 - 💰 Value + high-end product range (price tiers)
 - 💰 Existing customer base (11,348 to re-engage)
@@ -42,15 +45,18 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
 
 ## 🛒 LIGHTSPEED STORE MAKEOVER - MAX CONVERSION
 
-### Current Sites:
-1. **Company Site:** https://reggieanddro.company.site/products
-2. **Web Store:** https://reggieanddro.company.site/products
+### Current Sites
+
+1. **Company Site:** <https://reggieanddro.company.site/products>
+2. **Web Store:** <https://reggieanddro.company.site/products>
 3. **Custom Domain (Next):** ReggieAndDro.com
 
 ### Phase 1: LightSpeed Optimization (THIS WEEK)
 
 #### A. 21+ Age Gate (MUST HAVE - Banking Compliance)
+
 **Popup on First Visit:**
+
 ```html
 <div class="age-gate-modal">
   <h1>Welcome to Reggie & Dro</h1>
@@ -72,6 +78,7 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
 ```
 
 **Features:**
+
 - ✅ Session cookie (don't ask again this session)
 - ✅ "Remember me" option (30-day cookie)
 - ✅ Mobile-optimized
@@ -79,6 +86,7 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
 - ✅ Redirects "No" clicks to AgeVerify.com or similar
 
 #### B. Homepage Hero (Above the Fold)
+
 ```
 ┌─────────────────────────────────────────────────┐
 │  🌿 LEGAL WEED. TEXAS STRONG. 🌿                │
@@ -94,6 +102,7 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
 ```
 
 **Key Messages:**
+
 1. "Legal Hemp Flower - Federally Compliant"
 2. "Ship to Texas & All 50 States"
 3. "Same-Day Pickup in San Antonio"
@@ -102,18 +111,21 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
 #### C. Product Categorization (Price Tiers)
 
 **Tier 1: BRICK WEED ($50-75/oz)**
+
 - Position: "Big Bang for Your Buck"
 - Target: Budget-conscious, bulk buyers
 - USP: "No one else has this - only at R&D"
 - Sample Names: "Texas Shake," "Brick Break," "OG Budget"
 
 **Tier 2: VALUE FLOWER ($100-150/oz)**
+
 - Position: "Best Quality-to-Price Ratio"
 - Target: Regular customers, daily users
 - USP: "Premium quality without premium prices"
 - Sample Names: "Texas Gold," "San Antonio Sativa," "Hill Country Hybrid"
 
 **Tier 3: TOP SHELF ($200-300/oz)**
+
 - Position: "The Finest Legal Weed in Texas"
 - Target: Connoisseurs, special occasions
 - USP: "Craft-grown, COA-tested, terpene-rich"
@@ -122,6 +134,7 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
 #### D. Product Page Enhancements
 
 **MUST HAVES:**
+
 1. ✅ High-res product photos (5+ angles)
 2. ✅ COA badge (click to view Certificate of Analysis)
 3. ✅ THC% display (under 0.3% federally legal)
@@ -134,6 +147,7 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
 10. ✅ Subscription option: "Subscribe & Save 15%"
 
 **Example Product Page Layout:**
+
 ```
 ┌─────────────────────────────────────────────────┐
 │  [Product Photo Gallery]  │  Texas Gold         │
@@ -166,12 +180,14 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
 **2-Phase Age Verification Strategy:**
 
 **Phase 1: Order Placement (No Verification Required)**
+
 - Allow guest checkout OR quick account creation
 - Collect: Name, Email, Phone, Shipping Address
 - Payment via KAJA + Authorize.net
 - Check database for existing Veriff approval
 
 **Phase 2: Post-Order Verification (If Needed)**
+
 - **IF Veriff approved:** Ship immediately
 - **IF NOT verified:**
   - Email: "Complete age verification to ship your order"
@@ -181,6 +197,7 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
   - Auto-refund after 72 hours if not verified
 
 **Membership Agreement:**
+
 - **IF signed:** Ship order
 - **IF NOT signed:**
   - Email: "Review and sign membership agreement"
@@ -189,6 +206,7 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
   - Auto-refund if not signed
 
 **Checkout Flow:**
+
 ```
 1. Cart → Review Order
 2. Enter Email (check for existing account)
@@ -208,9 +226,11 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
 ### Campaign Timeline: October 1-7, 2025
 
 #### Day 1 (Oct 1) - LAUNCH DAY
+
 **Email Subject:** "🚀 WE'RE BACK ONLINE! Legal Weed Ships to Texas (+ Free Gift)"
 
 **Email Body:**
+
 ```
 Hey [FirstName],
 
@@ -234,15 +254,18 @@ P.S. First 100 orders get a FREE pre-roll!
 ```
 
 **Social Media Posts:**
+
 - Facebook: Live video announcing launch + shop tour
 - Instagram: Carousel post with product photos + TEXAS25 code
 - TikTok: "POV: Legal weed ships to your door in Texas"
 - Twitter/X: "Online sales LIVE. Texas, we're shipping. LFG 🌿"
 
 #### Day 2-3 (Oct 2-3) - PRODUCT SHOWCASE
+
 **Email:** Individual strain spotlights (3 emails, staggered)
 
 **Brick Weed Email:**
+
 ```
 Subject: "The Return of Brick Weed (No One Else Has This)"
 
@@ -269,9 +292,11 @@ Only at Reggie & Dro. Only in Texas (and nationwide).
 **Social Media:** Product videos, customer testimonials, behind-the-scenes
 
 #### Day 4-5 (Oct 4-5) - REVIEW INCENTIVE PUSH
+
 **Email Subject:** "Earn FREE Weed - Review Any Strain, Get 100 Points"
 
 **Email Body:**
+
 ```
 Here's the deal:
 
@@ -293,9 +318,11 @@ Every strain you try. Every review you leave. Stacks up.
 **Social Media:** UGC (user-generated content) from reviews, before/after points balance
 
 #### Day 6-7 (Oct 6-7) - REFERRAL PROGRAM LAUNCH
+
 **Email Subject:** "Give $25, Get $25 - Refer Your Friends"
 
 **Email Body:**
+
 ```
 Sharing is caring (and profitable):
 
@@ -320,6 +347,7 @@ Share it. Earn it. Smoke it.
 ### Point System
 
 **Earn Points:**
+
 - Sign up: 50 points
 - First purchase: 100 points
 - Every $1 spent: 1 point
@@ -330,6 +358,7 @@ Share it. Earn it. Smoke it.
 - Social media share: 25 points
 
 **Redeem Points:**
+
 - 100 points = $10 off
 - 250 points = Free pre-roll
 - 500 points = Free eighth (3.5g)
@@ -337,6 +366,7 @@ Share it. Earn it. Smoke it.
 - 2500 points = Free oz (28g)
 
 **VIP Tiers:**
+
 - **Silver** (0-999 points): Standard benefits
 - **Gold** (1000-4999 points): 5% bonus points, early access to new strains
 - **Platinum** (5000+ points): 10% bonus points, exclusive strains, free shipping
@@ -350,12 +380,14 @@ Share it. Earn it. Smoke it.
 **Subscription Packages:**
 
 **1. Daily Driver - $99/month**
+
 - 1 oz value flower (your choice of strain)
 - 10% discount vs one-time purchase
 - Free shipping
 - Cancel anytime
 
 **2. Variety Pack - $149/month**
+
 - 4 strains (7g each = 28g total)
 - Curated selection or build your own
 - 15% discount
@@ -363,6 +395,7 @@ Share it. Earn it. Smoke it.
 - Bonus: 1 free pre-roll
 
 **3. Connoisseur Club - $249/month**
+
 - 1 oz top-shelf flower
 - Exclusive strains (not available to non-subscribers)
 - 20% discount
@@ -371,6 +404,7 @@ Share it. Earn it. Smoke it.
 - Bonus: Monthly surprise gift
 
 **Subscription Benefits:**
+
 - Pause/resume anytime
 - Change strains monthly
 - Double loyalty points
@@ -387,6 +421,7 @@ Share it. Earn it. Smoke it.
 **Profit Goal:** $100,000 (requires 100% margin - achievable with hemp flower)
 
 **Customer Acquisition Math:**
+
 - Average order value (AOV): $150
 - Orders needed: 667 orders
 - Customers: ~500 (assuming some repeat purchases)
@@ -394,6 +429,7 @@ Share it. Earn it. Smoke it.
 - From new customers: ~100 (via referrals, ads)
 
 **Weekly Breakdown:**
+
 - Week 1 (Oct 1-7): $30K (launch hype)
 - Week 2 (Oct 8-14): $25K (momentum)
 - Week 3 (Oct 15-21): $25K (mid-month push)
@@ -404,6 +440,7 @@ Share it. Earn it. Smoke it.
 ### Traffic & Conversion Targets
 
 **Email Campaign:**
+
 - List size: 11,348 customers
 - Open rate: 30% = 3,404 opens
 - Click rate: 10% of opens = 340 clicks
@@ -411,12 +448,14 @@ Share it. Earn it. Smoke it.
 - AOV: $150 → $2,550/day from email
 
 **Social Media:**
+
 - Organic reach: 5,000/day (Facebook, Instagram, TikTok)
 - Click-through: 2% = 100 clicks/day
 - Conversion: 3% = 3 orders/day
 - AOV: $150 → $450/day from social
 
 **Google Ads (Optional):**
+
 - Budget: $100/day
 - CPC: $2
 - Clicks: 50/day
@@ -425,6 +464,7 @@ Share it. Earn it. Smoke it.
 - ROI: 3:1
 
 **Walk-in Traffic:**
+
 - San Antonio location: 10 orders/day (existing foot traffic)
 - AOV: $100 (smaller in-person orders)
 - Revenue: $1,000/day
@@ -438,6 +478,7 @@ Share it. Earn it. Smoke it.
 ### Top Customer Segments (Need to analyze Square data)
 
 **Segment 1: Budget Buyers**
+
 - **Profile:** Price-sensitive, bulk purchasers
 - **Product:** Brick Weed ($50/oz)
 - **Pain Points:** Cost, consistency
@@ -445,6 +486,7 @@ Share it. Earn it. Smoke it.
 - **LTV:** $600/year
 
 **Segment 2: Daily Users**
+
 - **Profile:** Regular consumption, quality matters
 - **Product:** Value Flower ($100-150/oz)
 - **Pain Points:** Running out, variety
@@ -452,6 +494,7 @@ Share it. Earn it. Smoke it.
 - **LTV:** $1,800/year
 
 **Segment 3: Connoisseurs**
+
 - **Profile:** Quality > price, discerning taste
 - **Product:** Top Shelf ($200-300/oz)
 - **Pain Points:** Finding premium products, trust
@@ -459,6 +502,7 @@ Share it. Earn it. Smoke it.
 - **LTV:** $3,600/year
 
 **Segment 4: Occasional Users**
+
 - **Profile:** Buy 1-2x/month, gift buyers
 - **Product:** Pre-rolls, small quantities
 - **Pain Points:** Intimidation, education
@@ -469,7 +513,8 @@ Share it. Earn it. Smoke it.
 
 ## 🚀 NEXT STEPS - TONIGHT'S ACTION PLAN
 
-### Jesse To-Do (Manual):
+### Jesse To-Do (Manual)
+
 1. ✅ Copy Downloads files to repo (so I can read them)
 2. 🔄 Log into LightSpeed dashboard
 3. 🔄 Enable age gate popup (code provided above)
@@ -481,7 +526,8 @@ Share it. Earn it. Smoke it.
 9. 🔄 Test checkout flow (place test order)
 10. 🔄 Verify KAJA payment processing
 
-### Claude Code To-Do (Automated - once I can read files):
+### Claude Code To-Do (Automated - once I can read files)
+
 1. 🔄 Analyze reggie-dro-playbook.md
 2. 🔄 Read LightSpeed makeover action plan
 3. 🔄 Study agentic design patterns

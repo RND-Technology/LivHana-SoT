@@ -86,23 +86,27 @@ empire-cockpit/
 ## 🎮 KEY FEATURES
 
 ### Gamification Engine
+
 - **4 Ranks**: Seedling → Cultivator → Truth Farmer → Wall Rider
 - **XP System**: Earn XP for missions, orders, referrals
 - **Mission Types**: Watch episodes, sign petitions, complete orders
 - **Level Progression**: Dynamic XP requirements per level
 
 ### Commerce System
+
 - **Wall of Weed**: POS-integrated product catalog
 - **Herbitrage Greeks**: Delta, Theta, Gamma, Vega analytics (VIP feature)
 - **Order Management**: Full order lifecycle with payment status
 - **COA Verification**: NIST-compliant Certificate of Analysis tracking
 
 ### Policy & Advocacy
+
 - **Petition System**: Sign SB3 public comments, track signatures
 - **Mission Integration**: XP rewards for policy engagement
 - **Compliance Tracking**: Age verification (21+), THC limits (≤0.3% Δ9)
 
 ### Content Delivery
+
 - **High Noon Cartoon**: YouTube API integration for episodes
 - **Episode Missions**: Watch-to-earn XP system
 - **Shoutouts & Social**: Community engagement features
@@ -165,11 +169,13 @@ docker-compose up -d
 ### Google Cloud Platform (Recommended)
 
 1. **Build & push to Container Registry**:
+
    ```bash
    gcloud builds submit --tag gcr.io/PROJECT_ID/empire-cockpit
    ```
 
 2. **Deploy to Cloud Run**:
+
    ```bash
    gcloud run deploy empire-cockpit \
      --image gcr.io/PROJECT_ID/empire-cockpit \
@@ -247,15 +253,18 @@ docker-compose up -d
 ## 🔗 INTEGRATIONS
 
 ### POS Systems
+
 - **Square**: Payment processing + inventory sync
 - **Lightspeed X-Series**: Real-time POS integration
 
 ### APIs
+
 - **YouTube Data API v3**: Episode content delivery
 - **AgeChecker.net**: Biometric age verification
 - **SendGrid/Resend**: Email notifications
 
 ### Cloud Services
+
 - **Google Cloud Platform**: AlloyDB, Cloud Run, Secret Manager
 - **Redis**: Caching layer for performance
 
@@ -276,6 +285,7 @@ docker-compose up -d
 Built with Marine Corps precision by Jesse Niesen (USMC Veteran) and LivHana AI.
 
 **Standards**:
+
 - ✅ Zero errors in production code
 - ✅ 100% TypeScript type safety
 - ✅ Comprehensive documentation
@@ -299,6 +309,7 @@ Copyright (c) 2025 Reggie & Dro LLC
 - **LivHana AI EA** - Autonomous execution system
 
 **Rally Cries**:
+
 - "Grow baby grow and sell baby sell"
 - "Grow, Sell, Heal"
 - "TIER 1 - ALWAYS HIGHER"

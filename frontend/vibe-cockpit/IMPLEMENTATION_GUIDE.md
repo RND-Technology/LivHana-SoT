@@ -7,6 +7,7 @@
 ## PHASE 1: DELETE STUB COMPONENTS
 
 ### Step 1.1: Delete Files
+
 ```bash
 cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/frontend/vibe-cockpit
 
@@ -17,9 +18,11 @@ rm src/components/PilotTraining.jsx
 ```
 
 ### Step 1.2: Update App.jsx
+
 **File:** `src/App.jsx`
 
 **Remove these imports (lines 19, 20, 22):**
+
 ```javascript
 // DELETE
 const VibeCoding = lazy(() => import('./components/VibeCoding'));
@@ -28,6 +31,7 @@ const PilotTraining = lazy(() => import('./components/PilotTraining'));
 ```
 
 **Remove these routes (lines 218, 219, 224):**
+
 ```javascript
 // DELETE
 <Route path="/vibe-coding" element={<ErrorBoundary componentName="VibeCoding"><VibeCoding /></ErrorBoundary>} />
@@ -36,9 +40,11 @@ const PilotTraining = lazy(() => import('./components/PilotTraining'));
 ```
 
 ### Step 1.3: Update Sidebar.jsx
+
 **File:** `src/components/Sidebar.jsx`
 
 Find and remove navigation links for deleted components:
+
 ```javascript
 // DELETE these menu items
 {
@@ -59,6 +65,7 @@ Find and remove navigation links for deleted components:
 ```
 
 ### Step 1.4: Verify
+
 ```bash
 npm run build
 # Should see 3 fewer chunks in output
@@ -70,6 +77,7 @@ npm run build
 ## PHASE 2: CREATE UNIFIED API CLIENT
 
 ### Step 2.1: Create API Client File
+
 **File:** `src/api/livhanaApiClient.js`
 
 ```javascript
@@ -211,9 +219,11 @@ export default api;
 ```
 
 ### Step 2.2: Update ExecutiveDashboard.jsx
+
 **File:** `src/components/ExecutiveDashboard.jsx`
 
 **Replace lines 148-343 (all fetch functions) with:**
+
 ```javascript
 import api from '../api/livhanaApiClient';
 
@@ -320,9 +330,11 @@ const fetchComplianceData = async () => {
 ```
 
 ### Step 2.3: Update SquareLiveCockpit.jsx
+
 **File:** `src/components/SquareLiveCockpit.jsx`
 
 **Replace lines 33-59 with:**
+
 ```javascript
 import api from '../api/livhanaApiClient';
 
@@ -353,9 +365,11 @@ const fetchLiveData = async () => {
 ```
 
 ### Step 2.4: Update UltimateCockpit.jsx
+
 **File:** `src/components/UltimateCockpit.jsx`
 
 **Replace lines 157-182 with:**
+
 ```javascript
 import api from '../api/livhanaApiClient';
 
@@ -385,9 +399,11 @@ const fetchLiveData = useCallback(async () => {
 ```
 
 ### Step 2.5: Update VoiceMode.jsx
+
 **File:** `src/components/VoiceMode.jsx`
 
 **Replace lines 158-173 (speakWithElevenLabs function) with:**
+
 ```javascript
 import api from '../api/livhanaApiClient';
 
@@ -443,6 +459,7 @@ const speakWithElevenLabs = async (text) => {
 ```
 
 ### Step 2.6: Delete autonomousApi.js
+
 **Note:** After verifying everything works with the new API client
 
 ```bash
@@ -454,9 +471,11 @@ rm src/utils/autonomousApi.js
 ## PHASE 3: LIFT DATA FETCHING TO ULTIMATECOCKPIT
 
 ### Step 3.1: Refactor UltimateCockpit.jsx Data Layer
+
 **File:** `src/components/UltimateCockpit.jsx`
 
 **Add unified data state (after line 79):**
+
 ```javascript
 const [unifiedData, setUnifiedData] = useState({
   bigquery: {
@@ -471,6 +490,7 @@ const [unifiedData, setUnifiedData] = useState({
 ```
 
 **Update fetchLiveData to fetch ALL data (replace lines 157-182):**
+
 ```javascript
 const fetchLiveData = useCallback(async () => {
   setLoading(true);
@@ -514,6 +534,7 @@ const fetchLiveData = useCallback(async () => {
 ```
 
 **Update renderLayerContent to pass data to children (around line 504):**
+
 ```javascript
 const renderLayerContent = () => {
   if (activeLayer.includes('.')) {
@@ -565,9 +586,11 @@ const renderLayerContent = () => {
 ```
 
 ### Step 3.2: Refactor ExecutiveDashboard to Accept Props
+
 **File:** `src/components/ExecutiveDashboard.jsx`
 
 **Update component signature (line 79):**
+
 ```javascript
 const ExecutiveDashboard = ({ data }) => {
   // Remove all fetch functions
@@ -576,6 +599,7 @@ const ExecutiveDashboard = ({ data }) => {
 ```
 
 **Replace data fetching with prop usage:**
+
 ```javascript
 // BEFORE: useState + useEffect + fetch functions
 // AFTER: Derive from props
@@ -609,6 +633,7 @@ const revenueHistory = data?.bigquery?.historical?.slice(0, 7).reverse() || [];
 ```
 
 **Remove these sections:**
+
 ```javascript
 // DELETE: All useState for data
 // DELETE: All fetch functions (lines 148-395)
@@ -618,9 +643,11 @@ const revenueHistory = data?.bigquery?.historical?.slice(0, 7).reverse() || [];
 ```
 
 ### Step 3.3: Refactor SquareLiveCockpit to Accept Props
+
 **File:** `src/components/SquareLiveCockpit.jsx`
 
 **Update component signature (line 10):**
+
 ```javascript
 const SquareLiveCockpit = ({ data }) => {
   // Remove data state
@@ -629,6 +656,7 @@ const SquareLiveCockpit = ({ data }) => {
 ```
 
 **Replace data fetching (lines 11-66) with:**
+
 ```javascript
 // Derive from props
 const liveData = {
@@ -653,9 +681,11 @@ const liveData = {
 ```
 
 ### Step 3.4: Refactor EmpireDashboard to Accept Props
+
 **File:** `src/components/EmpireDashboard.jsx`
 
 **Update component signature (line 4):**
+
 ```javascript
 const EmpireDashboard = ({ data }) => {
   // Use data from props for revenue metrics
@@ -663,6 +693,7 @@ const EmpireDashboard = ({ data }) => {
 ```
 
 **Replace lines 14-29 with:**
+
 ```javascript
 const [liveMetrics, setLiveMetrics] = useState({
   dailyRevenue: data?.metrics?.todayRevenue || 0,
@@ -687,6 +718,7 @@ useEffect(() => {
 ## PHASE 4: CENTRALIZE STYLING
 
 ### Step 4.1: Create Styles File
+
 **File:** `src/theme/styles.js`
 
 ```javascript
@@ -910,6 +942,7 @@ export default {
 **Example: ExecutiveDashboard.jsx**
 
 **Before:**
+
 ```javascript
 <Card
   sx={{
@@ -921,6 +954,7 @@ export default {
 ```
 
 **After:**
+
 ```javascript
 import { cardStyles } from '../theme/styles';
 
@@ -928,6 +962,7 @@ import { cardStyles } from '../theme/styles';
 ```
 
 **Before:**
+
 ```javascript
 <Button
   variant="contained"
@@ -939,6 +974,7 @@ import { cardStyles } from '../theme/styles';
 ```
 
 **After:**
+
 ```javascript
 import { buttonStyles } from '../theme/styles';
 
@@ -948,6 +984,7 @@ import { buttonStyles } from '../theme/styles';
 ### Step 4.3: Batch Update All Components
 
 **Files to update:**
+
 - `src/components/ExecutiveDashboard.jsx`
 - `src/components/UltimateCockpit.jsx`
 - `src/components/Dashboard.jsx`
@@ -957,6 +994,7 @@ import { buttonStyles } from '../theme/styles';
 - `src/components/Header.jsx`
 
 **Search and replace patterns:**
+
 ```javascript
 // Pattern 1: Glass cards
 sx={{
@@ -987,6 +1025,7 @@ sx={{
 ## PHASE 5: UPDATE TESTS
 
 ### Step 5.1: Create API Client Tests
+
 **File:** `src/api/livhanaApiClient.test.js`
 
 ```javascript
@@ -1111,7 +1150,7 @@ describe('ExecutiveDashboard', () => {
 
 ## VERIFICATION CHECKLIST
 
-### After Each Phase:
+### After Each Phase
 
 ```bash
 # 1. Verify build succeeds
@@ -1132,7 +1171,7 @@ npm run dev
 # Verify no errors or warnings
 ```
 
-### Final Verification:
+### Final Verification
 
 ```bash
 # Build production bundle

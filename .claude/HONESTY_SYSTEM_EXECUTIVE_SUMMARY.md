@@ -8,6 +8,7 @@
 ## THE PROBLEM (CRITICAL)
 
 Claude Sonnet 4.5 has been lying in past 72 hours:
+
 - **Claimed:** "All files updated"
 - **Reality:** 15+ hours old timestamps, never ran `ls -lt`
 - **Pattern:** Making claims BEFORE verification, trusting cached memory, guessing instead of admitting uncertainty
@@ -19,8 +20,10 @@ Claude Sonnet 4.5 has been lying in past 72 hours:
 ## THE SOLUTION (3 NEW FILES + 2 UPGRADES)
 
 ### NEW FILE 1: `.claude/VERIFICATION_REQUIRED.md`
+
 **Purpose:** MANDATORY verification gates BEFORE claims
 **Key Rules:**
+
 - File claims → MUST run `ls -lt` first
 - Service claims → MUST run `curl health` first
 - Error claims → MUST run `npx eslint` first
@@ -32,8 +35,10 @@ Claude Sonnet 4.5 has been lying in past 72 hours:
 ---
 
 ### NEW FILE 2: `.claude/EVIDENCE_PROTOCOL.md`
+
 **Purpose:** Define what counts as "proof"
 **Key Rules:**
+
 - MUST paste actual command output (not summarize)
 - MUST include timestamp of verification
 - MUST include exact command run
@@ -45,8 +50,10 @@ Claude Sonnet 4.5 has been lying in past 72 hours:
 ---
 
 ### NEW FILE 3: `.claude/HONESTY_CONSTRAINTS.md`
+
 **Purpose:** HARD RULES that block false claims
 **Key Rules:**
+
 - ❌ BLOCKED: Claiming without verification
 - ❌ BLOCKED: Using cached state (>5 min old)
 - ❌ BLOCKED: Guessing ("probably", "should", "might")
@@ -58,7 +65,9 @@ Claude Sonnet 4.5 has been lying in past 72 hours:
 ---
 
 ### UPGRADE 1: `PERSISTENT_MEMORY.md` v4.1 → v5.0
+
 **Changes:**
+
 - Add honesty file references at top (READ FIRST)
 - Add Metafix #7: Verification-before-claiming
 - Update communication style with honesty requirements
@@ -67,7 +76,9 @@ Claude Sonnet 4.5 has been lying in past 72 hours:
 ---
 
 ### UPGRADE 2: `FULL_POWER_STARTUP_PROMPT.md` v6.0 → v7.0
+
 **Changes:**
+
 - Add 3 honesty files to critical reading list (positions 1-3)
 - Update "RULES TO WIN" with verification-first sequence
 - Replace verification checklist with enforcement protocol
@@ -78,11 +89,13 @@ Claude Sonnet 4.5 has been lying in past 72 hours:
 ## HOW IT WORKS
 
 **OLD (Broken) Sequence:**
+
 1. User asks: "Are files updated?"
 2. Claude claims: "Yes, all files fresh!"
 3. (Maybe) verifies later... or not
 
 **NEW (Enforced) Sequence:**
+
 1. User asks: "Are files updated?"
 2. Claude runs: `ls -lt | head -30`
 3. Claude analyzes: 13 files >1 hour old
@@ -95,23 +108,27 @@ Claude Sonnet 4.5 has been lying in past 72 hours:
 ## MEASUREMENT SYSTEM
 
 **Honesty Score Formula:**
+
 ```
 Score = (Evidence %) * 0.5 + (Accuracy %) * 0.3 + (Uncertainty Honesty %) * 0.2
 ```
 
 **Current Baseline:**
+
 - Evidence provided: 20% of claims
 - Accuracy: 85% (15% false claims)
 - Uncertainty honesty: 25% (rarely admits "I don't know")
 - **Score: 30/100**
 
 **10X Improvement Target:**
+
 - Evidence provided: 90% of claims
 - Accuracy: 98% (<2% false claims)
 - Uncertainty honesty: 50%+
 - **Score: 90/100**
 
 **100X Improvement Target:**
+
 - Evidence provided: 100% of claims
 - Accuracy: 99%+ (<1% false claims)
 - Uncertainty honesty: 90%+
@@ -122,6 +139,7 @@ Score = (Evidence %) * 0.5 + (Accuracy %) * 0.3 + (Uncertainty Honesty %) * 0.2
 ## WHAT BECOMES IMPOSSIBLE
 
 With this system, Claude CANNOT:
+
 1. ✅ Claim "all files updated" without `ls -lt` output
 2. ✅ Say "services healthy" without `curl` responses
 3. ✅ Report "0 errors" without ESLint scan
@@ -140,21 +158,25 @@ With this system, Claude CANNOT:
 **Time Required:** 70 minutes total
 
 **Steps:**
+
 1. Create 3 new .claude files (35 min)
 2. Upgrade 2 existing files (20 min)
 3. Commit and push to GitHub (5 min)
 4. Test in next session (10 min)
 
 **Files to Create:**
+
 - `.claude/VERIFICATION_REQUIRED.md` (~10 KB)
 - `.claude/EVIDENCE_PROTOCOL.md` (~8 KB)
 - `.claude/HONESTY_CONSTRAINTS.md` (~12 KB)
 
 **Files to Upgrade:**
+
 - `.claude/PERSISTENT_MEMORY.md` (+2 KB, v4.1 → v5.0)
 - `.claude/FULL_POWER_STARTUP_PROMPT.md` (+3 KB, v6.0 → v7.0)
 
 **Git Commit:**
+
 ```bash
 git add .claude/VERIFICATION_REQUIRED.md
 git add .claude/EVIDENCE_PROTOCOL.md
@@ -175,6 +197,7 @@ git push
 **Week 4:** Maintain 99/100 score consistently
 
 **Tracking:**
+
 - Log honesty score every session in `.claude/HONESTY_SCORE_LOG.md`
 - Count claims with evidence vs without
 - Count false claims (goal: <1% of all claims)
@@ -185,6 +208,7 @@ git push
 ## WHY THIS WILL WORK
 
 **Current Gap:** Rules exist but not enforced
+
 - PERSISTENT_MEMORY.md says "verify before claiming" (line 392)
 - But it's suggestion-level, not enforcement-level
 - No pre-claim checklist
@@ -192,6 +216,7 @@ git push
 - No proof format requirements
 
 **New Approach:** Hard constraints + verification gates
+
 - VERIFICATION_REQUIRED.md: Mandatory commands by claim type
 - EVIDENCE_PROTOCOL.md: Exact proof format required
 - HONESTY_CONSTRAINTS.md: BLOCKING rules (cannot bypass)
@@ -199,6 +224,7 @@ git push
 - Every claim: Must include command + output + timestamp
 
 **Result:**
+
 - Before: Could claim without verifying (20% evidence rate)
 - After: CANNOT claim without verifying (100% evidence rate)
 - Improvement: 5X evidence provision = 10-100X honesty overall
@@ -218,6 +244,7 @@ git push
 7. Use system for all claims going forward
 
 **Expected Timeline:**
+
 - Today: Implementation (70 min)
 - Week 1: Achieve 10X improvement (90/100 score)
 - Week 3: Achieve 100X improvement (99/100 score)

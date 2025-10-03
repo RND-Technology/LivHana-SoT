@@ -14,7 +14,7 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
 ## 🎯 OBJECTIVES
 
 1. **Notion:** Thorough crawl, read, ingestion, organization of all Notion data
-2. **Gmail:** Search and ingest emails from jesseniesen@gmail.com and high@reggieanddro.com
+2. **Gmail:** Search and ingest emails from <jesseniesen@gmail.com> and <high@reggieanddro.com>
 3. **Automation:** Set up continuous sync for future updates
 
 ---
@@ -26,6 +26,7 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
 **Steps:**
 
 1. **Create Notion Integration:**
+
    ```
    1. Go to https://www.notion.so/my-integrations
    2. Click "+ New integration"
@@ -35,6 +36,7 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
    ```
 
 2. **Share Pages with Integration:**
+
    ```
    1. Open each Notion page/database you want to ingest
    2. Click "•••" (three dots) → "Add connections"
@@ -43,18 +45,21 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
    ```
 
 3. **Set Up Environment Variable:**
+
    ```bash
    # Add to .env
    NOTION_API_KEY="secret_xxxxxxxxxxxxx"
    ```
 
 4. **Run Notion Ingestion Script:**
+
    ```bash
    cd automation/data-pipelines
    node notion_ingest.js
    ```
 
 **What Gets Ingested:**
+
 - All pages (title, content, properties)
 - All databases (rows, columns, relations)
 - File attachments (URLs)
@@ -62,6 +67,7 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
 - Page hierarchy and structure
 
 **Output:**
+
 - BigQuery table: `knowledge.notion_pages`
 - BigQuery table: `knowledge.notion_databases`
 - Local markdown exports: `data/notion_export/`
@@ -71,6 +77,7 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
 **Steps:**
 
 1. **Export from Notion:**
+
    ```
    1. Go to Settings & members → Settings → Export all workspace content
    2. Format: Markdown & CSV
@@ -79,6 +86,7 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
    ```
 
 2. **Import to Repo:**
+
    ```bash
    # Copy export to repo
    cp -r ~/Downloads/Notion_Export data/notion_export/
@@ -96,6 +104,7 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
 **Steps:**
 
 1. **Enable Gmail API:**
+
    ```
    1. Go to https://console.cloud.google.com/
    2. Select project: (your GCP project)
@@ -105,6 +114,7 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
    ```
 
 2. **Set Up OAuth:**
+
    ```bash
    # Copy credentials to repo
    cp ~/Downloads/credentials.json automation/data-pipelines/gmail_credentials.json
@@ -114,6 +124,7 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
    ```
 
 3. **Run Gmail Ingestion:**
+
    ```bash
    # Ingest jesseniesen@gmail.com
    GMAIL_ACCOUNT="jesseniesen@gmail.com" node automation/data-pipelines/gmail_ingest.js
@@ -123,6 +134,7 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
    ```
 
 **What Gets Ingested:**
+
 - All email subjects and bodies
 - Sender/recipient information
 - Attachments (saved to Cloud Storage)
@@ -131,6 +143,7 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
 - Date/time metadata
 
 **Output:**
+
 - BigQuery table: `communications.gmail_messages`
 - BigQuery table: `communications.gmail_threads`
 - BigQuery table: `communications.gmail_attachments`
@@ -140,6 +153,7 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
 **Steps:**
 
 1. **Export from Google:**
+
    ```
    1. Go to https://takeout.google.com/
    2. Deselect all → Select only Gmail
@@ -148,6 +162,7 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
    ```
 
 2. **Import to BigQuery:**
+
    ```bash
    # Extract MBOX files
    python automation/data-pipelines/mbox_parser.py ~/Downloads/Takeout/Mail/*.mbox
@@ -344,6 +359,7 @@ ingestGmail().catch(console.error);
 ## 🔒 SECURITY CONSIDERATIONS
 
 ### API Keys & Credentials
+
 ```bash
 # Store in 1Password
 op item create \\
@@ -364,6 +380,7 @@ op item create \\
 ```
 
 ### Data Privacy
+
 - ✅ Email content stored in BigQuery with encryption at rest
 - ✅ OAuth tokens never committed to git (add to .gitignore)
 - ✅ Notion content exported to private repo only
@@ -374,6 +391,7 @@ op item create \\
 ## 🔄 CONTINUOUS SYNC SETUP
 
 ### Daily Notion Sync (Cloud Scheduler)
+
 ```bash
 # Create Cloud Scheduler job
 gcloud scheduler jobs create http notion-daily-sync \\
@@ -384,6 +402,7 @@ gcloud scheduler jobs create http notion-daily-sync \\
 ```
 
 ### Daily Gmail Sync (Cloud Scheduler)
+
 ```bash
 # Create Cloud Scheduler job
 gcloud scheduler jobs create http gmail-daily-sync \\
@@ -398,6 +417,7 @@ gcloud scheduler jobs create http gmail-daily-sync \\
 ## 📊 BIGQUERY SCHEMA
 
 ### knowledge.notion_pages
+
 ```sql
 CREATE TABLE knowledge.notion_pages (
   id STRING NOT NULL,
@@ -412,6 +432,7 @@ CREATE TABLE knowledge.notion_pages (
 ```
 
 ### communications.gmail_messages
+
 ```sql
 CREATE TABLE communications.gmail_messages (
   id STRING NOT NULL,
@@ -458,8 +479,8 @@ bq query --use_legacy_sql=false 'SELECT COUNT(*) FROM communications.gmail_messa
 ## 📝 NEXT STEPS
 
 1. **Get API Keys:**
-   - Create Notion integration at https://www.notion.so/my-integrations
-   - Enable Gmail API at https://console.cloud.google.com/
+   - Create Notion integration at <https://www.notion.so/my-integrations>
+   - Enable Gmail API at <https://console.cloud.google.com/>
 
 2. **Run Initial Ingestion:**
    - Execute Notion ingestion script

@@ -14,12 +14,14 @@ The reasoning-gateway service has been successfully integrated with the vibe-coc
 ## System Overview
 
 ### Backend: Reasoning Gateway
+
 - **Port**: 4002
 - **Base URL**: `http://localhost:4002`
 - **Status**: Running and healthy
 - **Service**: reasoning-gateway with Claude Sonnet 4.5 autonomous agent
 
 ### Frontend: Vibe Cockpit Dashboard
+
 - **Component**: `AutonomousAgentDashboard.jsx`
 - **API Client**: `autonomousApi.js` (utilities)
 - **Authentication**: JWT with admin role required
@@ -29,7 +31,9 @@ The reasoning-gateway service has been successfully integrated with the vibe-coc
 ## API Endpoints Verified
 
 ### 1. Health & Status
+
 - **GET** `/health` - Service health check (no auth)
+
   ```bash
   curl http://localhost:4002/health
   # Response: {"status":"healthy","service":"reasoning-gateway","queue":"voice-mode-reasoning-jobs"}
@@ -38,13 +42,16 @@ The reasoning-gateway service has been successfully integrated with the vibe-coc
 ### 2. Autonomous Agent Endpoints (Require Admin Auth)
 
 All autonomous endpoints require:
+
 - JWT token with `role: "admin"` or `roles: ["admin"]`
 - Bearer token authentication
 - Audience: `livhana-local`
 - Issuer: `livhana-local`
 
 #### Capabilities
+
 - **GET** `/api/autonomous/capabilities`
+
   ```json
   {
     "actions": ["read_file", "write_file", "execute_bash", "search_codebase", "run_tests", "deploy_code", "query_database", "analyze_logs", "generate_reports"],
@@ -73,7 +80,9 @@ All autonomous endpoints require:
   ```
 
 #### Task Management
+
 - **POST** `/api/autonomous/execute` - Execute new autonomous task
+
   ```json
   {
     "task": "Task description here",
@@ -87,6 +96,7 @@ All autonomous endpoints require:
   ```
 
 - **GET** `/api/autonomous/tasks` - List all tasks (paginated)
+
   ```json
   {
     "tasks": [],
@@ -103,7 +113,9 @@ All autonomous endpoints require:
 - **DELETE** `/api/autonomous/tasks/:taskId` - Cancel running task
 
 #### Human-in-the-Loop
+
 - **POST** `/api/autonomous/approve/:taskId` - Approve/reject task changes
+
   ```json
   {
     "approved": true,
@@ -114,7 +126,9 @@ All autonomous endpoints require:
 - **POST** `/api/autonomous/rollback/:taskId` - Emergency rollback
 
 #### Learning & Analytics
+
 - **GET** `/api/autonomous/learnings` - Get patterns learned
+
   ```json
   {
     "learnings": [],
@@ -124,6 +138,7 @@ All autonomous endpoints require:
   ```
 
 - **GET** `/api/autonomous/health` - Agent health status
+
   ```json
   {
     "status": "healthy",
@@ -147,14 +162,17 @@ All autonomous endpoints require:
   ```
 
 #### Real-Time Updates
+
 - **GET** `/api/autonomous/stream/:taskId` - SSE stream for live progress
 
 ### 3. Reasoning API (Standard Auth)
+
 - **POST** `/api/reasoning/enqueue` - Queue reasoning job
 - **GET** `/api/reasoning/result/:jobId` - Get job result
 - **GET** `/api/reasoning/stream/:jobId` - Stream job events
 
 ### 4. Memory & Learning
+
 - **POST** `/api/memory/learn` - Learn from interaction
 - **GET** `/api/memory/context/:customerId` - Get customer context
 - **POST** `/api/memory/predict/:customerId` - Generate predictions
@@ -165,12 +183,15 @@ All autonomous endpoints require:
 ## Authentication Setup
 
 ### JWT Token Generation
+
 A valid development token has been generated and embedded in the frontend:
 
 **Location**: `frontend/vibe-cockpit/src/utils/auth.js`
 
 **Token Details**:
+
 - **Payload**:
+
   ```json
   {
     "sub": "dev-user-local",
@@ -186,12 +207,14 @@ A valid development token has been generated and embedded in the frontend:
   ```
 
 **Regenerate Token**:
+
 ```bash
 cd backend/reasoning-gateway
 node scripts/generate-dev-token.js
 ```
 
 ### Testing Authentication
+
 ```bash
 # Set token
 export TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkZXYtdXNlci1sb2NhbCIsImlkIjoiZGV2LXVzZXItaWQiLCJyb2xlIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbiIsInVzZXIiXSwibmFtZSI6IkxvY2FsIERldiBVc2VyIiwiZW1haWwiOiJkZXZAbGl2aGFuYS5sb2NhbCIsImlhdCI6MTc1OTM1NjgwMiwiZXhwIjoxNzU5OTYxNjAyLCJhdWQiOiJsaXZoYW5hLWxvY2FsIiwiaXNzIjoibGl2aGFuYS1sb2NhbCJ9.dCCP6cVdSFLNeMQ9dYP8ycMsmUmqFIvdn4C3cesmU64"
@@ -215,6 +238,7 @@ curl -X POST \
 ## Frontend Configuration
 
 ### Environment Variables
+
 **File**: `frontend/vibe-cockpit/.env.local`
 
 ```env
@@ -227,9 +251,11 @@ VITE_SQUARE_ENABLED=true
 ```
 
 ### API Client Utility
+
 **File**: `frontend/vibe-cockpit/src/utils/autonomousApi.js`
 
 Provides typed API methods:
+
 - `autonomousAPI.executeTask(task, context, requireApproval)`
 - `autonomousAPI.getTask(taskId)`
 - `autonomousAPI.getTasks(params)`
@@ -243,6 +269,7 @@ Provides typed API methods:
 - `autonomousAPI.createEventSource(taskId)`
 
 ### Usage Example
+
 ```javascript
 import { autonomousAPI } from '@/utils/autonomousApi';
 
@@ -268,11 +295,13 @@ console.log('Progress:', task.progress);
 ## Dashboard Integration Status
 
 ### AutonomousAgentDashboard Component
+
 **Location**: `frontend/vibe-cockpit/src/components/AutonomousAgentDashboard.jsx`
 
 **Current State**: Component exists with full UI but needs API integration update
 
 **Features Available**:
+
 1. Task Execution Panel - Submit new autonomous tasks
 2. Active Tasks List - Monitor running tasks with progress
 3. Approval Queue - Human-in-the-loop approvals
@@ -285,6 +314,7 @@ console.log('Progress:', task.progress);
 10. Metrics & Charts - Performance analytics
 
 **Next Steps**:
+
 - Update component to use `autonomousAPI` utility instead of hardcoded fetch calls
 - Replace `/api/agent/*` paths with proper autonomous API endpoints
 - Add proper error handling for authentication failures
@@ -295,12 +325,14 @@ console.log('Progress:', task.progress);
 ## Testing Checklist
 
 ### Backend Health
+
 - [x] Reasoning-gateway running on port 4002
 - [x] Health endpoint accessible
 - [x] JWT authentication working
 - [x] Admin middleware enforcing role checks
 
 ### API Endpoints
+
 - [x] GET /api/autonomous/capabilities - Returns agent capabilities
 - [x] GET /api/autonomous/tasks - Returns task list (empty initially)
 - [x] GET /api/autonomous/learnings - Returns learnings (empty initially)
@@ -310,6 +342,7 @@ console.log('Progress:', task.progress);
 - [ ] POST /api/autonomous/approve/:taskId - Approval workflow (needs testing)
 
 ### Frontend Setup
+
 - [x] VITE_AUTONOMOUS_API_BASE environment variable added
 - [x] JWT token generated and embedded in auth.js
 - [x] autonomousApi.js utility created with all methods
@@ -317,6 +350,7 @@ console.log('Progress:', task.progress);
 - [ ] Dashboard tested in browser with live backend
 
 ### End-to-End
+
 - [ ] Submit test task from dashboard
 - [ ] Monitor task progress in real-time
 - [ ] Approve/reject task changes
@@ -328,23 +362,28 @@ console.log('Progress:', task.progress);
 ## Known Issues & Solutions
 
 ### Issue 1: "Unauthorized" Errors
+
 **Symptom**: API returns 401 Unauthorized
 
 **Causes**:
+
 1. Token expired (current token valid for 7 days)
 2. Token not properly signed with JWT_SECRET
 3. Token missing from request headers
 
 **Solutions**:
+
 1. Regenerate token using `node scripts/generate-dev-token.js`
 2. Clear localStorage and refresh browser
 3. Check Authorization header format: `Bearer <token>`
 4. Verify JWT_SECRET matches in backend .env file
 
 ### Issue 2: SSE Not Working with Auth
+
 **Symptom**: EventSource cannot send Authorization headers
 
 **Solution**:
+
 - EventSource spec doesn't support custom headers
 - Options:
   1. Use WebSocket instead
@@ -355,9 +394,11 @@ console.log('Progress:', task.progress);
 **Current Implementation**: Uses EventSource with note that backend must accept alternative auth method
 
 ### Issue 3: CORS Errors
+
 **Symptom**: Browser blocks cross-origin requests
 
 **Solution**:
+
 - Reasoning-gateway has CORS enabled with `ALLOWED_ORIGINS` env var
 - Current: `http://localhost:5173,http://localhost:3000`
 - Add dashboard URL if different
@@ -367,16 +408,19 @@ console.log('Progress:', task.progress);
 ## File Changes Summary
 
 ### New Files Created
+
 1. `/backend/reasoning-gateway/scripts/generate-dev-token.js` - JWT token generator
 2. `/backend/reasoning-gateway/scripts/test-jwt.js` - JWT validator utility
 3. `/frontend/vibe-cockpit/src/utils/autonomousApi.js` - API client for autonomous endpoints
 4. `/REASONING_DASHBOARD_INTEGRATION.md` - This documentation
 
 ### Files Modified
+
 1. `/frontend/vibe-cockpit/.env.local` - Added VITE_AUTONOMOUS_API_BASE
 2. `/frontend/vibe-cockpit/src/utils/auth.js` - Updated to use valid JWT token
 
 ### Files to Update
+
 1. `/frontend/vibe-cockpit/src/components/AutonomousAgentDashboard.jsx` - Replace fetch with autonomousAPI
 
 ---
@@ -384,6 +428,7 @@ console.log('Progress:', task.progress);
 ## Quick Start Guide
 
 ### 1. Start Backend Services
+
 ```bash
 # Terminal 1: Reasoning Gateway
 cd backend/reasoning-gateway
@@ -394,6 +439,7 @@ curl http://localhost:4002/health
 ```
 
 ### 2. Start Frontend Dashboard
+
 ```bash
 # Terminal 2: Vibe Cockpit
 cd frontend/vibe-cockpit
@@ -403,11 +449,13 @@ npm run dev
 ```
 
 ### 3. Navigate to Autonomous Agent Dashboard
+
 - Click "Autonomous Agent" in sidebar
 - Should see full dashboard with 10 tabs
 - Initially will show empty states (no tasks yet)
 
 ### 4. Test Basic Functionality
+
 ```bash
 # In Terminal 3: Test with curl
 export TOKEN="<get from scripts/generate-dev-token.js>"
@@ -429,6 +477,7 @@ curl -X POST \
 ## Production Considerations
 
 ### Security
+
 1. Replace dev JWT token with proper auth service
 2. Implement token refresh mechanism
 3. Add rate limiting to prevent abuse
@@ -436,6 +485,7 @@ curl -X POST \
 5. Require MFA for high-risk actions
 
 ### Scalability
+
 1. Move task storage from in-memory to Redis
 2. Implement proper queue with priorities
 3. Add worker pool for concurrent execution
@@ -443,6 +493,7 @@ curl -X POST \
 5. Implement distributed tracing
 
 ### Monitoring
+
 1. Add Prometheus metrics for:
    - Task execution time
    - Success/failure rates
@@ -459,6 +510,7 @@ curl -X POST \
 ## Support & Troubleshooting
 
 ### Logs
+
 ```bash
 # Backend logs
 cd backend/reasoning-gateway
@@ -469,6 +521,7 @@ grep -i "auth\|jwt\|unauthorized" logs/debug.log
 ```
 
 ### Debug Mode
+
 ```bash
 # Enable verbose logging
 export LOG_LEVEL=debug
@@ -477,6 +530,7 @@ npm run dev
 ```
 
 ### Common Commands
+
 ```bash
 # Regenerate JWT token
 cd backend/reasoning-gateway && node scripts/generate-dev-token.js

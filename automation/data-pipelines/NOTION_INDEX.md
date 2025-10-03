@@ -30,6 +30,7 @@
 ## Features Implemented
 
 ### Core Functionality ✅
+
 - [x] Notion API integration using @notionhq/client
 - [x] Search all pages and databases in workspace
 - [x] Extract full page content (all blocks, recursively)
@@ -44,6 +45,7 @@
 - [x] Idempotent operation (safe to re-run)
 
 ### Block Types Supported ✅
+
 - Text: paragraph, heading_1/2/3, quote, callout
 - Lists: bulleted_list_item, numbered_list_item, to_do, toggle
 - Code: code blocks with syntax highlighting
@@ -54,6 +56,7 @@
 - Special: template, unsupported
 
 ### Production Features ✅
+
 - Environment variable configuration
 - BigQuery streaming inserts with batching (500 rows)
 - Graceful error recovery (continues on page failures)
@@ -66,6 +69,7 @@
 - Parent-child relationship tracking
 
 ### Testing & Validation ✅
+
 - Connectivity test script
 - Environment validation
 - Notion API authentication check
@@ -75,6 +79,7 @@
 - Block retrieval testing
 
 ### Documentation ✅
+
 - Quick start guide (5 min setup)
 - Full implementation docs
 - 30+ example SQL queries
@@ -208,10 +213,12 @@ node notion_query_example.js "search term"
 ## Data Flow
 
 ### Input
+
 - Notion workspace (pages + databases)
 - Environment variables (NOTION_API_KEY, BQ_DATASET)
 
 ### Processing
+
 1. **Search**: Paginated search of all pages/databases
 2. **Fetch**: Retrieve all blocks for each page (recursive)
 3. **Convert**: Transform blocks to markdown
@@ -219,6 +226,7 @@ node notion_query_example.js "search term"
 5. **Batch**: Group rows for efficient insertion
 
 ### Output
+
 1. **Markdown Files** (`data/notion_export/*.md`)
    - One file per page
    - Full content in markdown format
@@ -263,6 +271,7 @@ node notion_query_example.js "search term"
 ## Performance
 
 ### Benchmarks
+
 | Workspace Size | Pages | Time | Rate |
 |----------------|-------|------|------|
 | Small | 50 pages | 2-3 min | ~20 pages/min |
@@ -270,11 +279,13 @@ node notion_query_example.js "search term"
 | Large | 5000 pages | 3-4 hours | ~25 pages/min |
 
 ### Rate Limits
+
 - Notion API: ~3 requests/second
 - BigQuery: 100,000 rows/second (streaming)
 - Script includes automatic retry with exponential backoff
 
 ### Optimization
+
 - Pagination: 100 items per request (max)
 - Batch size: 500 rows per BigQuery insert
 - Retry delay: 1s → 2s → 4s (exponential)
@@ -285,18 +296,21 @@ node notion_query_example.js "search term"
 ## Error Handling
 
 ### Retry Logic
+
 - Rate limits (429): Auto-retry with backoff
 - Server errors (500, 503): Auto-retry
 - Network timeouts: Auto-retry
 - Max retries: 3 per operation
 
 ### Graceful Degradation
+
 - Failed pages: Log and continue
 - Batch insert failure: Fall back to row-by-row
 - Nested block failure: Log but preserve parent content
 - Missing properties: Default to null
 
 ### Logging
+
 - Structured JSON format
 - Timestamp on every log
 - Context included (page_id, operation, etc.)
@@ -307,17 +321,20 @@ node notion_query_example.js "search term"
 ## Security
 
 ### Credentials
+
 - Never commit `.env` files
 - Use environment variables
 - Support service account keys
 - Application default credentials
 
 ### API Keys
+
 - NOTION_API_KEY: Keep secret (starts with `secret_`)
 - Store in environment variables
 - Rotate periodically
 
 ### Data Privacy
+
 - Raw JSON includes all page data
 - Content markdown has full text
 - Consider data retention policies
@@ -327,6 +344,7 @@ node notion_query_example.js "search term"
 ## Maintenance
 
 ### Regular Tasks
+
 - Run ingestion daily (cron job)
 - Monitor logs for errors
 - Check BigQuery storage costs
@@ -334,6 +352,7 @@ node notion_query_example.js "search term"
 - Review archived pages monthly
 
 ### Cleanup Queries
+
 ```sql
 -- Remove old duplicates (keep latest per page)
 DELETE FROM `knowledge.notion_pages`
@@ -383,11 +402,13 @@ All dependencies are production-ready and actively maintained.
 ## Testing
 
 ### Pre-run Test
+
 ```bash
 npm run notion:test
 ```
 
 Tests:
+
 1. Environment variables set
 2. Notion API authentication
 3. Notion API features (search, blocks)
@@ -396,6 +417,7 @@ Tests:
 6. Export directory access
 
 ### Post-run Validation
+
 ```bash
 # Check markdown files
 ls -lh data/notion_export/
@@ -413,6 +435,7 @@ bq query --use_legacy_sql=false \
 ## Production Deployment
 
 ### Cron Job
+
 ```bash
 # Daily at 2 AM
 0 2 * * * cd /path/to/automation/data-pipelines && \
@@ -420,6 +443,7 @@ bq query --use_legacy_sql=false \
 ```
 
 ### Cloud Function
+
 ```javascript
 exports.notionIngest = async (req, res) => {
   const { main } = await import('./notion_ingest.js');
@@ -429,6 +453,7 @@ exports.notionIngest = async (req, res) => {
 ```
 
 ### Docker
+
 ```dockerfile
 FROM node:18-alpine
 WORKDIR /app
@@ -443,6 +468,7 @@ CMD ["node", "notion_ingest.js"]
 ## Example Queries
 
 ### Search Content
+
 ```sql
 SELECT title, url, content_length
 FROM `knowledge.notion_pages`
@@ -451,6 +477,7 @@ ORDER BY last_edited_time DESC;
 ```
 
 ### Recent Activity
+
 ```sql
 SELECT title, last_edited_time, content_length
 FROM `knowledge.notion_pages`
@@ -484,16 +511,19 @@ Total: 2,341 lines
 ## Support
 
 ### Documentation
+
 - Quick Start: `NOTION_QUICKSTART.md`
 - Full Docs: `NOTION_INGEST_README.md`
 - SQL Queries: `NOTION_BIGQUERY_QUERIES.sql`
 - This Index: `NOTION_INDEX.md`
 
 ### Testing
+
 - Connectivity: `npm run notion:test`
 - Examples: `npm run notion:query`
 
 ### Resources
+
 - [Notion API Docs](https://developers.notion.com/)
 - [BigQuery Docs](https://cloud.google.com/bigquery/docs)
 - [@notionhq/client](https://github.com/makenotion/notion-sdk-js)
@@ -503,6 +533,7 @@ Total: 2,341 lines
 ## Version History
 
 ### v1.0.0 (October 1, 2025)
+
 - Initial production release
 - All 10 requirements implemented
 - Complete documentation
@@ -520,6 +551,7 @@ Proprietary - LivHana Trinity System
 ## Summary
 
 This is a **complete, production-ready** Notion ingestion pipeline with:
+
 - 652 lines of production code
 - 30+ block types supported
 - Comprehensive error handling

@@ -46,6 +46,7 @@ The Memory Learning System is an advanced AI-powered customer intelligence platf
 Each customer has a comprehensive profile that tracks:
 
 ### 1. Preferences
+
 - **Strains**: Weighted list of preferred strains (Blue Dream, OG Kush, etc.)
 - **Products**: Purchase history by product type
 - **Budget**: Min/max spending range and average order value
@@ -54,6 +55,7 @@ Each customer has a comprehensive profile that tracks:
 - **Consumption Methods**: Flower, edibles, concentrates, vapes
 
 ### 2. Behavioral Patterns
+
 - **Purchase Frequency**: Days between purchases
 - **Average Order Value**: Typical spending per order
 - **Preferred Time of Day**: Morning, afternoon, evening, night
@@ -63,11 +65,13 @@ Each customer has a comprehensive profile that tracks:
 - **Lifetime Value**: Total revenue from customer
 
 ### 3. Medical Needs (if disclosed)
+
 - **Conditions**: Medical conditions (anxiety, chronic pain, insomnia)
 - **Symptoms**: Specific symptoms seeking relief
 - **Effectiveness Ratings**: What works for them
 
 ### 4. Communication Style
+
 - **Style**: Formal vs casual tone preference
 - **Preferred Channel**: Voice, chat, email
 - **Response Time**: Engagement patterns
@@ -75,6 +79,7 @@ Each customer has a comprehensive profile that tracks:
 - **Sentiment**: Overall sentiment (-1 to 1)
 
 ### 5. Conversation History
+
 - **Total Interactions**: Lifetime conversation count
 - **Topics**: Frequency map of discussed topics
 - **Questions**: Recent questions asked (last 50)
@@ -82,6 +87,7 @@ Each customer has a comprehensive profile that tracks:
 - **Last Interaction Date**: Most recent conversation
 
 ### 6. Predictions
+
 - **Next Purchase Date**: ML prediction with confidence score
 - **Next Purchase Confidence**: 0-1 probability
 - **Churn Risk**: 0-1 probability of customer leaving
@@ -92,9 +98,11 @@ Each customer has a comprehensive profile that tracks:
 ### Learning & Context
 
 #### POST /api/memory/learn
+
 Record and learn from a customer interaction.
 
 **Request:**
+
 ```json
 {
   "customerId": "customer-123",
@@ -114,6 +122,7 @@ Record and learn from a customer interaction.
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -127,15 +136,18 @@ Record and learn from a customer interaction.
 ```
 
 #### GET /api/memory/context/:customerId
+
 Retrieve comprehensive customer context.
 
 **Query Parameters:**
+
 - `sessionId` (optional): Include session context
 - `depth` (optional): `summary` | `full` (default: `summary`)
 - `includeRecommendations` (optional): `true` | `false`
 - `currentMessage` (optional): Current message for vector context
 
 **Response:**
+
 ```json
 {
   "customerId": "customer-123",
@@ -163,9 +175,11 @@ Retrieve comprehensive customer context.
 ### Predictions
 
 #### POST /api/memory/predict/:customerId
+
 Generate predictions for customer behavior.
 
 **Request:**
+
 ```json
 {
   "predictionType": "all"  // or "next-purchase", "churn-risk", "recommendations"
@@ -173,6 +187,7 @@ Generate predictions for customer behavior.
 ```
 
 **Response:**
+
 ```json
 {
   "customerId": "customer-123",
@@ -205,9 +220,11 @@ Generate predictions for customer behavior.
 ### Purchase Tracking
 
 #### POST /api/memory/purchase/:customerId
+
 Record a customer purchase.
 
 **Request:**
+
 ```json
 {
   "purchase": {
@@ -228,6 +245,7 @@ Record a customer purchase.
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -239,9 +257,11 @@ Record a customer purchase.
 ### Profile Management
 
 #### GET /api/memory/profile/:customerId
+
 Retrieve full customer profile.
 
 **Response:**
+
 ```json
 {
   "customerId": "customer-123",
@@ -251,9 +271,11 @@ Retrieve full customer profile.
 ```
 
 #### DELETE /api/memory/forget/:customerId
+
 Delete all customer data (GDPR compliance).
 
 **Request:**
+
 ```json
 {
   "reason": "User requested deletion"
@@ -261,6 +283,7 @@ Delete all customer data (GDPR compliance).
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -272,9 +295,11 @@ Delete all customer data (GDPR compliance).
 ### Vector Search
 
 #### POST /api/memory/vector/search
+
 Semantic search for products or conversations.
 
 **Request:**
+
 ```json
 {
   "query": "something relaxing for anxiety",
@@ -290,6 +315,7 @@ Semantic search for products or conversations.
 ```
 
 **Response:**
+
 ```json
 {
   "query": "something relaxing for anxiety",
@@ -308,9 +334,11 @@ Semantic search for products or conversations.
 ```
 
 #### POST /api/memory/vector/product
+
 Store product embedding for semantic search.
 
 **Request:**
+
 ```json
 {
   "product": {
@@ -327,13 +355,16 @@ Store product embedding for semantic search.
 ### Analytics
 
 #### GET /api/memory/analytics/insights
+
 Aggregate customer insights over time period.
 
 **Query Parameters:**
+
 - `startDate`: ISO 8601 date
 - `endDate`: ISO 8601 date
 
 **Response:**
+
 ```json
 {
   "startDate": "2025-01-01",
@@ -351,12 +382,15 @@ Aggregate customer insights over time period.
 ```
 
 #### GET /api/memory/analytics/churn-cohort
+
 Identify customers at risk of churning.
 
 **Query Parameters:**
+
 - `riskThreshold`: 0-1 (default: 0.7)
 
 **Response:**
+
 ```json
 {
   "riskThreshold": 0.7,
@@ -374,9 +408,11 @@ Identify customers at risk of churning.
 ```
 
 #### GET /api/memory/analytics/ltv/:customerId
+
 Calculate customer lifetime value.
 
 **Response:**
+
 ```json
 {
   "customerId": "customer-123",
@@ -399,11 +435,13 @@ The memory system is automatically integrated with the DeepSeek reasoning proces
 3. **Tracks conversation patterns** for better recommendations
 
 **Enable in environment:**
+
 ```bash
 ENABLE_MEMORY_LEARNING=true
 ```
 
 **Usage in reasoning jobs:**
+
 ```javascript
 // In job metadata, include customerId
 await reasoningQueue.add('reasoning-task', {
@@ -438,6 +476,7 @@ async function handleVoiceInteraction(customerId, transcript, aiResponse) {
 ### 3. BigQuery Integration
 
 **Enable in environment:**
+
 ```bash
 ENABLE_BIGQUERY_MEMORY=true
 GCP_PROJECT_ID=your-project-id
@@ -447,6 +486,7 @@ BIGQUERY_FLUSH_INTERVAL_MS=30000
 ```
 
 The BigQuery adapter automatically:
+
 - Batches writes for efficiency
 - Creates partitioned tables
 - Stores profiles, interactions, purchases, predictions, and audit logs
@@ -455,6 +495,7 @@ The BigQuery adapter automatically:
 ### 4. Vector Embeddings Integration
 
 **Enable in environment:**
+
 ```bash
 ENABLE_VECTOR_EMBEDDINGS=true
 OPENAI_API_KEY=your-openai-key
@@ -465,6 +506,7 @@ CONVERSATION_VECTOR_TTL_DAYS=90
 ```
 
 Features:
+
 - Semantic product search
 - Similar conversation retrieval
 - Context-aware recommendations
@@ -493,6 +535,7 @@ const results = await vectorService.findSimilarProducts(
 ## Environment Variables
 
 ### Core Settings
+
 ```bash
 # Redis connection
 MEMORY_REDIS_URL=redis://localhost:6379
@@ -512,6 +555,7 @@ ENABLE_VECTOR_EMBEDDINGS=true
 ```
 
 ### BigQuery Settings
+
 ```bash
 GCP_PROJECT_ID=livhana-prod
 MEMORY_DATASET_ID=customer_memory
@@ -520,6 +564,7 @@ BIGQUERY_FLUSH_INTERVAL_MS=30000
 ```
 
 ### Vector Settings
+
 ```bash
 OPENAI_API_KEY=sk-...
 EMBEDDING_MODEL=text-embedding-3-small
@@ -531,21 +576,25 @@ CONVERSATION_VECTOR_TTL_DAYS=90
 ## Performance Optimization
 
 ### 1. Profile Caching
+
 - Profiles are cached in-memory for 10 seconds
 - Sub-10ms retrieval for hot profiles
 - Automatic cache invalidation on updates
 
 ### 2. Async Learning
+
 - Learning happens asynchronously
 - Does not block AI responses
 - Background processing with BullMQ
 
 ### 3. Batch Processing
+
 - BigQuery writes are batched (100 rows or 30s interval)
 - Reduces API calls and costs
 - Configurable batch size and interval
 
 ### 4. Redis Vector Indexes
+
 - FLAT algorithm for fast similarity search
 - COSINE distance metric
 - Automatic index creation on startup
@@ -553,21 +602,25 @@ CONVERSATION_VECTOR_TTL_DAYS=90
 ## Privacy & Compliance
 
 ### 1. Data Encryption
+
 - AES-256-GCM encryption for sensitive data
 - Environment-based encryption keys
 - Encrypted at rest in Redis
 
 ### 2. Right to be Forgotten
+
 - Complete data deletion via `/api/memory/forget/:customerId`
 - Removes from Redis and BigQuery
 - Audit log entry for compliance
 
 ### 3. Data Retention
+
 - Cannabis regulations: 7 years (2555 days)
 - Configurable retention periods
 - Automatic TTL enforcement
 
 ### 4. Audit Logging
+
 - All operations logged
 - Customer-specific audit trails
 - Immutable audit records in BigQuery
@@ -582,6 +635,7 @@ npm test memory/learning-engine.test.js
 ```
 
 Tests cover:
+
 - Profile management
 - Learning from interactions
 - Purchase history tracking
@@ -593,11 +647,13 @@ Tests cover:
 ## Monitoring & Observability
 
 ### Health Check
+
 ```bash
 GET /api/memory/health
 ```
 
 Returns status of:
+
 - Memory Engine
 - BigQuery Adapter
 - Vector Service
@@ -606,6 +662,7 @@ Returns status of:
 ### Logging
 
 All operations are logged with structured logging:
+
 - Customer ID
 - Operation type
 - Timestamps
@@ -613,6 +670,7 @@ All operations are logged with structured logging:
 - Performance metrics
 
 Example:
+
 ```json
 {
   "level": "info",
@@ -633,6 +691,7 @@ Example:
 ## Roadmap
 
 ### Phase 1 (Current)
+
 - ✅ Core memory engine
 - ✅ Profile management
 - ✅ Learning algorithms
@@ -642,6 +701,7 @@ Example:
 - ✅ API endpoints
 
 ### Phase 2 (Next)
+
 - 🔄 Advanced ML models (TensorFlow.js)
 - 🔄 Real-time recommendation engine
 - 🔄 A/B testing framework
@@ -650,6 +710,7 @@ Example:
 - 🔄 Lifetime value optimization
 
 ### Phase 3 (Future)
+
 - 📋 Fine-tuned Liv Hana personality model
 - 📋 Multi-modal learning (voice, text, images)
 - 📋 Predictive inventory management
@@ -659,6 +720,7 @@ Example:
 ## Support
 
 For questions or issues:
+
 - Technical Lead: Jesse Niesen
 - Documentation: `/docs/MEMORY_LEARNING_SYSTEM.md`
 - Tests: `/backend/common/memory/*.test.js`

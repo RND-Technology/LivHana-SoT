@@ -64,6 +64,7 @@ LOG_LEVEL=info  # debug, info, warn, error
 ### Example .env Files
 
 **backend/integration-service/.env**:
+
 ```bash
 NODE_ENV=production
 PORT=3005
@@ -81,6 +82,7 @@ BIGQUERY_PROJECT_ID=your-project
 ```
 
 **backend/reasoning-gateway/.env**:
+
 ```bash
 NODE_ENV=production
 PORT=4002
@@ -106,6 +108,7 @@ REDIS_URL=redis://localhost:6379
 4. Copy the key to your `.env` file
 
 **Free Tier Includes**:
+
 - 100 GB data ingest/month
 - Full platform access for 1 user
 - Unlimited basic users
@@ -123,11 +126,13 @@ REDIS_URL=redis://localhost:6379
 5. Add to your `.env` file
 
 **Free Tier Includes**:
+
 - 5,000 errors/month
 - 10,000 performance units/month
 - 7-day retention
 
 **Recommended Plan**: Developer ($29/month)
+
 - 50,000 errors/month
 - 100,000 performance units/month
 - 90-day retention
@@ -362,11 +367,13 @@ Check New Relic dashboard for transactions.
 2. Create alert policies:
 
 **Critical Alerts** (Immediate notification):
+
 - Service is down (Health check fails)
 - Error rate > 5%
 - Response time P95 > 2s
 
 **Warning Alerts** (Notification within 15 minutes):
+
 - Error rate > 1%
 - Response time P95 > 1s
 - Memory usage > 80%
@@ -383,11 +390,13 @@ Check New Relic dashboard for transactions.
 2. Create alert rules:
 
 **Critical Errors**:
+
 - New error types appear
 - Error frequency > 100/hour
 - Error affects > 10 users
 
 **Performance Issues**:
+
 - Transaction duration P95 > 2s
 - N+1 query detected
 
@@ -430,6 +439,7 @@ Create the following dashboards:
 If you want to visualize Prometheus metrics:
 
 1. Install Grafana:
+
 ```bash
 docker run -d -p 3000:3000 grafana/grafana
 ```
@@ -546,9 +556,10 @@ Before deploying to production:
 ## Support
 
 For questions or issues:
+
 - Internal: #engineering Slack channel
-- New Relic: https://support.newrelic.com/
-- Sentry: https://sentry.io/support/
+- New Relic: <https://support.newrelic.com/>
+- Sentry: <https://sentry.io/support/>
 
 ---
 

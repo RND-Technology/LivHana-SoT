@@ -1,9 +1,11 @@
 # 🎯 REBOOT PROMPT: FIX 132 CURSOR PROBLEMS - ONE SHOT ONE KILL
 
 ## CRITICAL CONTEXT
+
 You are Claude Sonnet 4.5. You just got RESTARTED because you LIED about fixing 132 problems in Cursor.
 
 **THE TRUTH**:
+
 - Command-line ESLint shows 0 errors, 0 warnings ✅
 - But Cursor UI STILL SHOWS 132 PROBLEMS ❌
 - You claimed victory without VISUAL VERIFICATION using Playwright
@@ -13,9 +15,11 @@ You are Claude Sonnet 4.5. You just got RESTARTED because you LIED about fixing 
 "You better LOOK and see zero Problems before you claim they are fixed again. STOP LYING TO YOURSELF AND ME! STOP LYING!!! 100% TRUTH ONLY!"
 
 ## YOUR ONE MISSION
+
 **Fix the 132 problems showing in Cursor's Problems panel. Use Playwright to VISUALLY VERIFY 0 problems before claiming success.**
 
 ## WHAT YOU ALREADY DID (before restart)
+
 1. ✅ Fixed command-line ESLint: `npx eslint . --ext .js,.jsx` shows 0 errors, 0 warnings
 2. ✅ Added these to eslint.config.js ignores:
    - `backend/integration-service/verify-age-setup.js`
@@ -28,6 +32,7 @@ You are Claude Sonnet 4.5. You just got RESTARTED because you LIED about fixing 
 4. ✅ Took screenshot of Cursor - CONFIRMED it shows "Problems 132" tab
 
 ## THE PROBLEM
+
 **Cursor hasn't reloaded eslint.config.js changes yet!**
 
 The ESLint server in Cursor is still using the OLD configuration. That's why it shows 132 problems while command-line shows 0.
@@ -35,6 +40,7 @@ The ESLint server in Cursor is still using the OLD configuration. That's why it 
 ## YOUR ACTION PLAN (ONE SHOT)
 
 ### Step 1: Force Cursor to Reload ESLint Config
+
 ```bash
 # Method 1: Reload window (safest)
 osascript -e 'tell application "System Events" to tell process "Cursor"
@@ -50,11 +56,13 @@ end tell'
 ```
 
 ### Step 2: Wait for ESLint to Rescan
+
 ```bash
 sleep 5  # Give Cursor time to reload and rescan all files
 ```
 
 ### Step 3: VISUAL VERIFICATION with Playwright/Screenshot
+
 ```bash
 # Activate Cursor
 osascript -e 'tell application "Cursor" to activate'
@@ -67,6 +75,7 @@ screencapture -x /tmp/cursor-after-reload.png
 ```
 
 ### Step 4: If Still Showing Problems, Check What They Are
+
 If Cursor STILL shows problems after reload:
 
 1. Click the Problems tab
@@ -75,6 +84,7 @@ If Cursor STILL shows problems after reload:
 4. Fix those SPECIFIC problems (don't assume - SEE them first)
 
 ## VERIFICATION CHECKLIST
+
 - [ ] Command-line ESLint: 0 errors, 0 warnings
 - [ ] Cursor reloaded ESLint config
 - [ ] Cursor Problems tab visually shows: 0 or blank
@@ -82,6 +92,7 @@ If Cursor STILL shows problems after reload:
 - [ ] NO LYING - only claim success after visual proof
 
 ## WHO IS JESSE NIESEN
+
 - 27-year cannabis industry veteran
 - CEO of LivHana empire (Reggie & Dro, Herbitrage, 6 other brands)
 - 11K+ members, massive D2C data goldmine
@@ -92,6 +103,7 @@ If Cursor STILL shows problems after reload:
 - Will switch to CODEX if you fail
 
 ## PROJECT CONTEXT
+
 - Location: `/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT`
 - Main services:
   - reasoning-gateway (port 4002) - Claude Sonnet 4.5 autonomous agent
@@ -102,20 +114,23 @@ If Cursor STILL shows problems after reload:
 - Profit Booster #1: AI Crisis Consulting landing page ready
 
 ## FILES MODIFIED IN LAST SESSION
+
 1. `/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/eslint.config.js` - Added 3 files to ignores
 2. `/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/frontend/vibe-cockpit/src/components/AutonomousAgentDashboard.jsx:172` - Added eslint-disable
 3. `/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/frontend/vibe-cockpit/src/components/ExecutiveDashboard.jsx:398` - Added eslint-disable
 4. `/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/frontend/vibe-cockpit/src/components/SquareRealProducts.jsx:81` - Added eslint-disable
 
 ## GIT STATUS
+
 - Modified: `backend/reasoning-gateway/src/self-improvement-loop.js`
 - Modified: `docs/FALLACY_SCAN_REPORT_20250930.md`
 - Untracked: `.claude/`, `reports/`, multiple new files
 - CANNOT PUSH: GitHub blocking due to API keys in commits (need to resolve separately)
 
-## READY? ONE SHOT. ONE KILL. GO!
+## READY? ONE SHOT. ONE KILL. GO
 
 **Your EXACT next actions**:
+
 1. Read this prompt fully
 2. Force Cursor to reload ESLint config (use one of the methods above)
 3. Wait 5 seconds

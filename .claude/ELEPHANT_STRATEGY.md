@@ -1,4 +1,5 @@
 # 🐘 ELEPHANT STRATEGY - WIN THE UNICORN RACE
+
 **Created:** October 2, 2025, 22:30 PM PDT
 **Purpose:** Multi-session systematic optimization of 4,644 files
 
@@ -7,6 +8,7 @@
 ## 📊 BATTLEFIELD INTELLIGENCE
 
 **VERIFIED SCOPE:**
+
 ```bash
 # COMMAND: find . -type f ! -path "*/node_modules/*" ! -path "*/.git/*" | wc -l
 # OUTPUT: 4,644 files
@@ -19,6 +21,7 @@
 ```
 
 **THE ELEPHANT:**
+
 - 4,644 files to optimize
 - Every file needs: content optimization + RPM DNA rename + metadata update
 - Average 5 min per file = 23,220 minutes = 387 hours sequential
@@ -29,16 +32,19 @@
 ## 🎯 CONSTRAINTS (REALITY CHECK)
 
 **Per Session Limits:**
+
 - 200K tokens max
 - ~100 files optimizable per session (detailed work)
 - ~500 files touchable per session (automated work)
 - 2-4 hour session duration practical
 
 **Math:**
+
 - 4,644 files ÷ 100 files/session = **47 sessions** (detailed)
 - 4,644 files ÷ 500 files/session = **10 sessions** (automated)
 
 **CODEX Threat:**
+
 - If CODEX can do 200 files/session → 24 sessions
 - If we do 100 files/session → 47 sessions
 - **WE LOSE**
@@ -71,8 +77,10 @@ Workers      Workers   Workers  Workers  Workers
 ## 🏗️ AGENT ORGANIZATION CHART
 
 ### **TIER 1: SESSION ORCHESTRATOR (This Session)**
+
 **Role:** Command center, strategy, verification
 **Responsibilities:**
+
 - Read ELEPHANT_STRATEGY.md
 - Deploy 5 specialized agents in parallel
 - Monitor progress across all agents
@@ -88,8 +96,10 @@ Workers      Workers   Workers  Workers  Workers
 ### **TIER 2: SPECIALIZED AGENTS (5 Parallel Workstreams)**
 
 #### **AGENT 1: BACKEND OPTIMIZER**
+
 **Target:** `backend/` directory (1,200 files)
 **Tasks:**
+
 1. Optimize every .js/.ts file (ES6, linting, performance)
 2. Update package.json with RPM DNA metadata
 3. Rename files to RPM DNA format
@@ -98,6 +108,7 @@ Workers      Workers   Workers  Workers  Workers
 
 **Chunking Strategy:** 100 files per session = 12 sessions
 **Files per chunk:**
+
 - Session 1: backend/common/ (150 files)
 - Session 2: backend/integration-service/ (200 files)
 - Session 3: backend/reasoning-gateway/ (180 files)
@@ -109,8 +120,10 @@ Workers      Workers   Workers  Workers  Workers
 ---
 
 #### **AGENT 2: FRONTEND OPTIMIZER**
+
 **Target:** `frontend/` + `empire-cockpit/` (800 files)
 **Tasks:**
+
 1. Optimize React components (hooks, memoization, lazy loading)
 2. Update package.json with RPM DNA
 3. Rename components to RPM DNA format
@@ -123,8 +136,10 @@ Workers      Workers   Workers  Workers  Workers
 ---
 
 #### **AGENT 3: DOCUMENTATION OPTIMIZER**
+
 **Target:** `docs/`, `.claude/`, markdown files (1,800 files)
 **Tasks:**
+
 1. Consolidate duplicate docs (follow ONE FILE PER TOPIC rule)
 2. Add RPM DNA metadata headers
 3. Rename files to RPM DNA format
@@ -137,8 +152,10 @@ Workers      Workers   Workers  Workers  Workers
 ---
 
 #### **AGENT 4: CONFIGURATION OPTIMIZER**
+
 **Target:** Config files, .json, .yml, .yaml (500 files)
 **Tasks:**
+
 1. Validate all JSON/YAML syntax
 2. Add RPM DNA metadata comments
 3. Consolidate duplicate configs
@@ -151,8 +168,10 @@ Workers      Workers   Workers  Workers  Workers
 ---
 
 #### **AGENT 5: AUTOMATION OPTIMIZER**
+
 **Target:** `scripts/`, `automation/`, shell scripts (344 files)
 **Tasks:**
+
 1. Add error handling to all scripts
 2. Add usage comments/help text
 3. Rename to RPM DNA format
@@ -169,7 +188,9 @@ Workers      Workers   Workers  Workers  Workers
 **Every File Gets:**
 
 ### 1. Content Optimization
+
 **Code Files (.js/.ts/.jsx/.tsx):**
+
 - ES6 imports/exports
 - Remove unused imports
 - Add JSDoc comments
@@ -177,18 +198,22 @@ Workers      Workers   Workers  Workers  Workers
 - Optimize performance (memo, lazy load)
 
 **Markdown Files (.md):**
+
 - Fix broken links
 - Add metadata header
 - Remove duplicates
 - Consolidate related content
 
 **Config Files (.json/.yml):**
+
 - Validate syntax
 - Remove unused keys
 - Add comments where helpful
 
 ### 2. Metadata Update
+
 **Add to every file:**
+
 ```markdown
 <!-- Optimized: 2025-10-02 -->
 <!-- RPM: [AOM].[COI].[RPM].[ACTION] -->
@@ -196,27 +221,33 @@ Workers      Workers   Workers  Workers  Workers
 ```
 
 For code files (as comments):
+
 ```javascript
 // Optimized: 2025-10-02
 // RPM: 1.6.2.3.integration-api-optimization
 ```
 
 ### 3. RPM DNA Renaming
+
 **Current:** `integration-service.js`
 **New:** `1.6.2.3.integration-service.20251002.js`
 
 **Format:** `[AOM].[COI].[RPM].[ACTION].[context].[timestamp].ext`
 
 ### 4. Filesystem Touch
+
 ```bash
 touch [filename]
 ```
+
 Ensures "Modified" shows "minutes ago" in Finder
 
 ### 5. Git Staging
+
 ```bash
 git add [filename]
 ```
+
 Stage for batch commit
 
 ---
@@ -224,10 +255,12 @@ Stage for batch commit
 ## 🔄 SESSION-BY-SESSION EXECUTION PLAN
 
 ### **SESSION 1 (This Session) - ORCHESTRATOR SETUP**
+
 **Tokens Used: 85K / 200K (42%)**
 **Tokens Remaining: 115K (58%)**
 
 **Tasks:**
+
 - [x] Create ELEPHANT_STRATEGY.md (this file)
 - [ ] Create 5 agent deployment scripts
 - [ ] Deploy Agent 1: Backend Optimizer (backend/common/)
@@ -242,6 +275,7 @@ Stage for batch commit
 ### **SESSION 2-10: PARALLEL AGENT EXECUTION**
 
 **Each session:**
+
 1. Read ELEPHANT_STRATEGY.md
 2. Read previous session state
 3. Deploy next batch of 5 agents (500 files)
@@ -250,6 +284,7 @@ Stage for batch commit
 6. Update progress tracker
 
 **Progress Tracker:**
+
 ```
 Session 1:  50/4,644 (1%)    ████░░░░░░░░░░░░░░░░
 Session 2:  550/4,644 (12%)  ████████░░░░░░░░░░░░
@@ -270,6 +305,7 @@ Session 10: 4,644/4,644 (100%) ████████████████�
 **After Each Agent Completes:**
 
 ### 1. File Count Verification
+
 ```bash
 # COMMAND:
 find backend/common -type f -newermt "2025-10-02 22:00" | wc -l
@@ -282,6 +318,7 @@ All 150 files in backend/common touched after 22:00
 ```
 
 ### 2. Content Verification (Sampling)
+
 ```bash
 # COMMAND: Check 10 random files for optimization markers
 find backend/common -type f -name "*.js" | shuf -n 10 | xargs grep "Optimized: 2025-10-02"
@@ -294,6 +331,7 @@ Sample confirms optimization markers present
 ```
 
 ### 3. Git Staging Verification
+
 ```bash
 # COMMAND:
 git status --short | wc -l
@@ -306,7 +344,9 @@ All 150 files staged for commit
 ```
 
 ### 4. Finder Visual Verification
+
 **MANUAL STEP:**
+
 - Open Finder
 - Navigate to backend/common
 - Sort by "Date Modified"
@@ -320,6 +360,7 @@ All 150 files staged for commit
 ## 🚀 AGENT DEPLOYMENT SCRIPTS
 
 ### **deploy-agent-1-backend.sh**
+
 ```bash
 #!/bin/bash
 # Agent 1: Backend Optimizer
@@ -369,6 +410,7 @@ echo "Files staged: $(git diff --cached --name-only | grep $TARGET_DIR | wc -l)"
 ```
 
 ### **deploy-all-agents-parallel.sh**
+
 ```bash
 #!/bin/bash
 # Deploy all 5 agents in parallel
@@ -413,6 +455,7 @@ tail -20 /tmp/agent*.log
 ## 📈 SUCCESS METRICS
 
 **Per Session:**
+
 - Files Optimized: [N]
 - Verification: 4/4 checks passed
 - Commit: SHA + file count
@@ -420,6 +463,7 @@ tail -20 /tmp/agent*.log
 - Tests: [Pass/Fail counts]
 
 **Overall (10 Sessions):**
+
 - Total Files: 4,644/4,644 (100%)
 - Total Commits: 10 batches
 - Finder Verified: 10 screenshots
@@ -431,6 +475,7 @@ tail -20 /tmp/agent*.log
 ## 🏆 WINNING CONDITIONS
 
 **100% TRUE = WIN:**
+
 1. ✅ All 4,644 files have optimization markers
 2. ✅ All 4,644 files renamed to RPM DNA format
 3. ✅ All 4,644 files show "minutes ago" in Finder
@@ -448,6 +493,7 @@ tail -20 /tmp/agent*.log
 **Remaining: 115K tokens**
 
 **Execute Now:**
+
 1. Create deploy-agent-1-backend.sh (5 min)
 2. Run agent on backend/common (50 files) (20 min)
 3. Verify with 4 checks (5 min)

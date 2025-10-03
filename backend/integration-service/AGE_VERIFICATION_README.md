@@ -13,6 +13,7 @@
 This complete age verification system replaces Veriff with:
 
 ### 1. Core Verification Module
+
 **File:** `src/age_verification.js`
 
 - Age validation (21+ requirement)
@@ -23,6 +24,7 @@ This complete age verification system replaces Veriff with:
 - Customer ID hashing (SHA-256)
 
 ### 2. Storage Layer
+
 **File:** `src/age_verification_store.js`
 
 - BigQuery integration
@@ -34,9 +36,11 @@ This complete age verification system replaces Veriff with:
 - Mock mode for development
 
 ### 3. REST API
+
 **File:** `src/age_verification_routes.js`
 
 Endpoints:
+
 - `POST /api/age-verification/verify` - Verify age
 - `GET /api/age-verification/status/:customerId` - Check status
 - `POST /api/age-verification/resubmit` - Resubmit verification
@@ -44,6 +48,7 @@ Endpoints:
 - `GET /health/age-verification` - Health check
 
 ### 4. Comprehensive Tests
+
 **File:** `tests/age_verification.test.js`
 
 - 50 unit tests covering all functionality
@@ -51,6 +56,7 @@ Endpoints:
 - All tests passing
 
 ### 5. Documentation
+
 - **AGE_VERIFICATION_API.md** - Complete API documentation with examples
 - **AGE_VERIFICATION_DEPLOYMENT.md** - Step-by-step deployment guide
 - **AGE_VERIFICATION_README.md** - This file (quick reference)
@@ -60,6 +66,7 @@ Endpoints:
 ## Quick Start
 
 ### 1. Install & Test
+
 ```bash
 cd backend/integration-service
 npm install
@@ -69,6 +76,7 @@ npm test -- tests/age_verification.test.js
 Expected: All 50 tests passing
 
 ### 2. Configure Environment
+
 ```bash
 # Generate encryption key (32 bytes)
 node -e "console.log(require('crypto').randomBytes(32).toString('hex').substring(0, 32))"
@@ -83,11 +91,13 @@ BQ_DATASET=commerce
 ```
 
 ### 3. Start Service
+
 ```bash
 npm start
 ```
 
 ### 4. Test API
+
 ```bash
 # Health check
 curl http://localhost:3005/health/age-verification
@@ -110,6 +120,7 @@ curl -X POST http://localhost:3005/api/age-verification/verify \
 ## Key Features
 
 ### Security
+
 - AES-256-GCM encryption for sensitive data
 - SHA-256 hashing for customer IDs
 - JWT authentication required
@@ -117,23 +128,27 @@ curl -X POST http://localhost:3005/api/age-verification/verify \
 - Audit logging with 7-year retention
 
 ### Performance
+
 - In-memory caching (< 10ms for cached lookups)
 - Full verification in < 100ms
 - Graceful degradation to mock mode
 - No external API dependencies (except BigQuery)
 
 ### Compliance
+
 - TX DSHS CHP #690 compliant
 - CDFA PDP compliant
 - 7-year record retention
 - Complete audit trail
 
 ### Rate Limiting
+
 - 3 attempts per customer per 24 hours
 - Prevents abuse
 - Clear error messages with reset time
 
 ### Reliability
+
 - Comprehensive error handling
 - Mock mode fallback
 - Health check endpoint
@@ -144,6 +159,7 @@ curl -X POST http://localhost:3005/api/age-verification/verify \
 ## API Quick Reference
 
 ### Verify Age
+
 ```javascript
 POST /api/age-verification/verify
 Authorization: Bearer <jwt>
@@ -180,6 +196,7 @@ Authorization: Bearer <jwt>
 ```
 
 ### Check Status
+
 ```javascript
 GET /api/age-verification/status/:customerId
 Authorization: Bearer <jwt>
@@ -197,6 +214,7 @@ Authorization: Bearer <jwt>
 ## Integration Examples
 
 ### Checkout Flow
+
 ```javascript
 // Before allowing checkout
 const response = await fetch(`/api/age-verification/status/${customerId}`, {
@@ -213,6 +231,7 @@ if (verified && !expired) {
 ```
 
 ### Admin Dashboard
+
 ```javascript
 // Get statistics
 const response = await fetch('/api/age-verification/statistics?days=30', {
@@ -228,22 +247,26 @@ const { statistics } = await response.json();
 ## Validation Rules
 
 ### Age
+
 - Must be 21+ years old
 - Format: YYYY-MM-DD
 - Cannot be in the future
 - Reasonable date (not > 120 years ago)
 
 ### ID Number
+
 - Exactly 4 digits (last 4 of government ID)
 - Only numeric characters
 - Privacy: Full ID never collected
 
 ### Full Name
+
 - Minimum 2 words (first + last)
 - Letters, spaces, hyphens, apostrophes, periods only
 - 2-100 characters
 
 ### State
+
 - Valid 2-letter US state code
 - All 50 states + DC supported
 - Case insensitive
@@ -253,17 +276,20 @@ const { statistics } = await response.json();
 ## Monitoring
 
 ### Key Metrics
+
 - **Success Rate:** Target > 95%
 - **Processing Time:** Target < 100ms (p95)
 - **Cache Hit Rate:** Target > 80%
 - **Rate Limit Hits:** Alert if > 10/hour
 
 ### Health Check
+
 ```bash
 curl http://localhost:3005/health/age-verification
 ```
 
 ### BigQuery Monitoring
+
 ```sql
 -- Success rate (last 24 hours)
 SELECT
@@ -279,24 +305,31 @@ WHERE created_at >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 24 HOUR);
 ## Troubleshooting
 
 ### Issue: "Encryption key must be exactly 32 bytes"
+
 **Solution:** Regenerate key with correct length
+
 ```bash
 node -e "console.log(require('crypto').randomBytes(32).toString('hex').substring(0, 32))"
 ```
 
 ### Issue: "Failed to initialize BigQuery client"
+
 **Solution:** Check credentials
+
 ```bash
 ls -la $GOOGLE_APPLICATION_CREDENTIALS
 ```
 
 ### Issue: Tests failing
+
 **Solution:** Run in mock mode
+
 ```bash
 BIGQUERY_ENABLED=false npm test
 ```
 
 ### Issue: Rate limit false positives
+
 **Solution:** Clear rate limit cache (add admin endpoint if needed)
 
 ---
@@ -304,6 +337,7 @@ BIGQUERY_ENABLED=false npm test
 ## Files Changed/Created
 
 ### Created Files
+
 1. `/backend/integration-service/src/age_verification.js` - Core verification logic
 2. `/backend/integration-service/src/age_verification_store.js` - Storage layer
 3. `/backend/integration-service/src/age_verification_routes.js` - REST API
@@ -313,6 +347,7 @@ BIGQUERY_ENABLED=false npm test
 7. `/backend/integration-service/AGE_VERIFICATION_README.md` - This file
 
 ### Modified Files
+
 1. `/backend/integration-service/src/index.js` - Added age verification routes
 2. `/backend/integration-service/.env.example` - Added configuration
 
@@ -321,24 +356,28 @@ BIGQUERY_ENABLED=false npm test
 ## Next Steps
 
 ### Immediate (Before Deployment)
+
 1. Generate encryption key and store in 1Password
 2. Run all tests: `npm test`
 3. Test health endpoint: `curl http://localhost:3005/health/age-verification`
 4. Review deployment guide: `AGE_VERIFICATION_DEPLOYMENT.md`
 
 ### Week 1 (Post-Deployment)
+
 1. Monitor success rate (target > 95%)
 2. Monitor processing time (target < 100ms)
 3. Track revenue recovery (target $20K week 1)
 4. Fix any customer-reported issues
 
 ### Week 2-4
+
 1. Optimize cache hit rate
 2. Add email notifications
 3. Integrate with admin dashboard
 4. Scale to full $80K/month capacity
 
 ### Future Enhancements (Optional)
+
 1. Third-party API integration (AgeChecker.net)
 2. Document scanning (OCR)
 3. Selfie verification
@@ -349,6 +388,7 @@ BIGQUERY_ENABLED=false npm test
 ## Success Criteria
 
 System is successful when:
+
 - [ ] All 50 tests passing
 - [ ] Success rate > 95%
 - [ ] Processing time < 100ms (p95)
@@ -360,6 +400,7 @@ System is successful when:
 ## Support
 
 For issues or questions:
+
 - Review API docs: `AGE_VERIFICATION_API.md`
 - Review deployment guide: `AGE_VERIFICATION_DEPLOYMENT.md`
 - Check service logs: Integration service logs tagged with `age-verification`
@@ -370,6 +411,7 @@ For issues or questions:
 ## License & Compliance
 
 This system is designed for compliance with:
+
 - TX DSHS CHP #690 (Texas hemp/cannabis regulations)
 - CDFA PDP (California Department of Food & Agriculture)
 - 7-year record retention requirements

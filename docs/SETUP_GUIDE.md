@@ -5,6 +5,7 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
 -->
 
 # 🚀 CLEAN START GUIDE - POST REBOOT
+
 **Date:** October 1, 2025
 **For:** Jesse Niesen (Doctor/Surgeon)
 **Status:** System ready for reboot + clean restart
@@ -50,12 +51,14 @@ sudo reboot
 Open a NEW terminal (NOT Cursor yet) and verify clean slate:
 
 ### **2A. Check No Node Processes Running**
+
 ```bash
 ps aux | grep node
 # Should ONLY show: "grep node" (not actual node processes)
 ```
 
 ### **2B. Verify Redis Is Running**
+
 ```bash
 redis-cli ping
 # Expected: PONG
@@ -64,6 +67,7 @@ brew services start redis
 ```
 
 ### **2C. Check Git Status**
+
 ```bash
 cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT
 git status
@@ -75,6 +79,7 @@ git status
 ## 🎯 **STEP 3: OPEN CURSOR & SET YOUR ENVIRONMENT**
 
 ### **3A. Launch Cursor**
+
 ```bash
 # From terminal:
 cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT
@@ -84,6 +89,7 @@ cursor .
 **OR:** Just open Cursor app and open the LivHana-SoT folder
 
 ### **3B. Open Cursor's Integrated Terminal**
+
 In Cursor: ``Ctrl+` `` (backtick) or `View → Terminal`
 
 **IMPORTANT:** All commands below run in **Cursor's terminal**, not system terminal!
@@ -93,11 +99,13 @@ In Cursor: ``Ctrl+` `` (backtick) or `View → Terminal`
 ## 🚀 **STEP 4: START REASONING-GATEWAY (The Autonomous Agent)**
 
 ### **4A. Navigate to Service**
+
 ```bash
 cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/backend/reasoning-gateway
 ```
 
 ### **4B. Verify Environment**
+
 ```bash
 # Check .env exists and has API key
 cat .env | grep ANTHROPIC_API_KEY
@@ -105,11 +113,13 @@ cat .env | grep ANTHROPIC_API_KEY
 ```
 
 ### **4C. Start the Service**
+
 ```bash
 npm start
 ```
 
 **Expected Output:**
+
 ```
 > reasoning-gateway@0.1.0 start
 > node src/index.js
@@ -120,6 +130,7 @@ npm start
 ```
 
 **What to Look For:**
+
 - ✅ "reasoning-gateway listening" on port 4002
 - ✅ "Self-improvement loop started" (if enabled)
 - ✅ NO "spawn /bin/sh EAGAIN" errors
@@ -128,6 +139,7 @@ npm start
 **If You See Spawn Errors:** Self-improvement bug fix didn't work. Tag me in!
 
 ### **4D. Leave Service Running**
+
 **DO NOT close this terminal!** Keep it open to monitor logs.
 
 ---
@@ -135,14 +147,17 @@ npm start
 ## 🧪 **STEP 5: TEST AUTONOMOUS AGENT (New Cursor Terminal)**
 
 ### **5A. Open Second Terminal Tab**
+
 In Cursor: `Cmd+Shift+P` → "Terminal: Create New Terminal"
 
 ### **5B. Test Health Endpoint**
+
 ```bash
 curl -s http://localhost:4002/health | jq .
 ```
 
 **Expected:**
+
 ```json
 {
   "status": "healthy",
@@ -152,6 +167,7 @@ curl -s http://localhost:4002/health | jq .
 ```
 
 ### **5C. Generate Test JWT Token**
+
 ```bash
 cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/backend/reasoning-gateway
 
@@ -168,12 +184,14 @@ echo "Token: $TOKEN"
 ```
 
 ### **5D. Test Autonomous Capabilities**
+
 ```bash
 curl -s "http://localhost:4002/api/autonomous/capabilities" \
   -H "Authorization: Bearer $TOKEN" | jq .
 ```
 
 **Expected:**
+
 ```json
 {
   "capabilities": [
@@ -193,6 +211,7 @@ curl -s "http://localhost:4002/api/autonomous/capabilities" \
 ```
 
 **If You Get:**
+
 - `{"error":"Invalid token"}` → Token generation failed, check JWT_SECRET in .env
 - `Error: ANTHROPIC_API_KEY environment variable required` → API key not loaded
 - Connection refused → Service not running on port 4002
@@ -202,6 +221,7 @@ curl -s "http://localhost:4002/api/autonomous/capabilities" \
 ## 🎯 **STEP 6: EXECUTE FIRST AUTONOMOUS TASK**
 
 ### **6A. Create Simple Test Task**
+
 ```bash
 curl -X POST "http://localhost:4002/api/autonomous/execute" \
   -H "Authorization: Bearer $TOKEN" \
@@ -217,6 +237,7 @@ curl -X POST "http://localhost:4002/api/autonomous/execute" \
 ```
 
 **Expected Response:**
+
 ```json
 {
   "taskId": "task-abc123",
@@ -226,6 +247,7 @@ curl -X POST "http://localhost:4002/api/autonomous/execute" \
 ```
 
 ### **6B. Monitor Task Progress (Real-Time)**
+
 ```bash
 # Replace {taskId} with actual taskId from above
 curl -N "http://localhost:4002/api/autonomous/stream/{taskId}" \
@@ -233,6 +255,7 @@ curl -N "http://localhost:4002/api/autonomous/stream/{taskId}" \
 ```
 
 **What You'll See:**
+
 ```
 data: {"type":"analysis","content":"Analyzing task requirements..."}
 data: {"type":"plan","steps":2}
@@ -242,6 +265,7 @@ data: {"type":"complete","success":true,"changes":["hello.txt"]}
 ```
 
 ### **6C. Verify File Was Created**
+
 ```bash
 cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT
 cat hello.txt
@@ -257,6 +281,7 @@ cat hello.txt
 If you want the self-improvement loop to run:
 
 ### **7A. Edit .env**
+
 ```bash
 cd backend/reasoning-gateway
 nano .env
@@ -271,6 +296,7 @@ ENABLE_SELF_IMPROVEMENT=true
 ```
 
 ### **7B. Restart Service**
+
 ```bash
 # In the first terminal where npm start is running:
 # Press Ctrl+C to stop
@@ -280,7 +306,9 @@ npm start
 ```
 
 ### **7C. Verify No Spawn Errors**
+
 Watch logs for 30 seconds. Should see:
+
 - ✅ "Self-improvement loop started"
 - ✅ "Scheduled jobs started"
 - ✅ NO spawn errors
@@ -292,6 +320,7 @@ Watch logs for 30 seconds. Should see:
 Now that autonomous agent is verified working, let's use it to audit and clean the codebase!
 
 ### **8A. Generate Cleanup Audit**
+
 ```bash
 curl -X POST "http://localhost:4002/api/autonomous/execute" \
   -H "Authorization: Bearer $TOKEN" \
@@ -307,6 +336,7 @@ curl -X POST "http://localhost:4002/api/autonomous/execute" \
 ```
 
 ### **8B. Review Audit Report**
+
 ```bash
 # Get taskId from response, then fetch result:
 curl -s "http://localhost:4002/api/autonomous/tasks/{taskId}" \
@@ -314,6 +344,7 @@ curl -s "http://localhost:4002/api/autonomous/tasks/{taskId}" \
 ```
 
 ### **8C. Execute Cleanup (If Approved)**
+
 ```bash
 curl -X POST "http://localhost:4002/api/autonomous/execute" \
   -H "Authorization: Bearer $TOKEN" \
@@ -333,11 +364,13 @@ curl -X POST "http://localhost:4002/api/autonomous/execute" \
 ## 📊 **WHAT'S NOW AVAILABLE**
 
 ### **Services Running:**
+
 - ✅ Redis (localhost:6379)
 - ✅ Reasoning Gateway (localhost:4002)
 - ✅ Autonomous Agent (Claude Sonnet 4.5)
 
 ### **Capabilities:**
+
 - ✅ Read/write files
 - ✅ Execute bash commands
 - ✅ Search codebase
@@ -347,6 +380,7 @@ curl -X POST "http://localhost:4002/api/autonomous/execute" \
 - ✅ Self-improvement (optional)
 
 ### **API Endpoints:**
+
 ```
 GET  /health                              - Service health
 GET  /api/autonomous/capabilities         - List capabilities
@@ -363,12 +397,14 @@ POST /api/autonomous/rollback/:taskId     - Emergency rollback
 ## 🎯 **MEMORY TOOL MASTERY - WHAT YOU NEED TO SEE**
 
 ### **SET:**
+
 - **Location:** Cursor terminal in `backend/reasoning-gateway`
 - **Command:** `npm start`
 - **Service:** Runs on `localhost:4002`
 - **Logs:** Watch first terminal for real-time events
 
 ### **SETTING:**
+
 - **Environment:** Local dev (Mac M4)
 - **Redis:** Required, runs via brew services
 - **API Key:** In `.env`, loaded from 1Password
@@ -376,6 +412,7 @@ POST /api/autonomous/rollback/:taskId     - Emergency rollback
 - **Tests:** 17/17 passing
 
 ### **TO SEE:**
+
 1. Service logs (first terminal)
 2. Health status: `curl http://localhost:4002/health`
 3. Capabilities: Use token to query `/api/autonomous/capabilities`
@@ -387,6 +424,7 @@ POST /api/autonomous/rollback/:taskId     - Emergency rollback
 ## 🚨 **TROUBLESHOOTING**
 
 ### **Problem: Service won't start**
+
 ```bash
 # Check if port is in use
 lsof -ti:4002
@@ -398,6 +436,7 @@ npm start
 ```
 
 ### **Problem: Redis connection failed**
+
 ```bash
 # Start Redis
 brew services start redis
@@ -408,13 +447,16 @@ redis-cli ping
 ```
 
 ### **Problem: Spawn errors still happening**
+
 The bug fix didn't work. Check logs:
+
 ```bash
 cat backend/reasoning-gateway/src/self-improvement-loop.js | grep -A 5 "startScheduledJobs"
 # Verify the Math.min() fix is there
 ```
 
 ### **Problem: API key not found**
+
 ```bash
 cd backend/reasoning-gateway
 cat .env | grep ANTHROPIC
@@ -442,6 +484,7 @@ You'll know everything is working when:
 ## 🚀 **NEXT STEPS AFTER CLEAN START**
 
 ### **Immediate (Today):**
+
 1. ✅ Reboot Mac
 2. ✅ Start services clean
 3. ✅ Test autonomous agent
@@ -449,12 +492,14 @@ You'll know everything is working when:
 5. ⏳ Audit codebase for cleanup
 
 ### **This Week:**
+
 1. Clean Copilot/Codex legacy code
 2. Deploy to GCP (Cloud Run)
 3. Set up monitoring (Datadog)
 4. Launch VIP pilot training
 
 ### **This Month:**
+
 1. Lightspeed integration (KAJA approved 9/30!)
 2. Age verification ($80K/month unlocked)
 3. Raffle system live
@@ -465,17 +510,20 @@ You'll know everything is working when:
 ## 📚 **REFERENCE DOCS**
 
 **Critical Files:**
+
 - This guide: `CLEAN_START_GUIDE_AFTER_REBOOT.md`
 - Status report: `CLEANUP_PLAN_AND_STATUS.md`
 - Bug fix: `backend/reasoning-gateway/SPAWN_BUG_FIX_REPORT.md`
 - Agent code: `backend/reasoning-gateway/src/claude-autonomous-agent.js`
 
 **Environment Files:**
+
 - Main: `.env` (root, has Square/BigQuery/KAJA config)
 - Service: `backend/reasoning-gateway/.env` (has Anthropic key)
 - Example: `backend/reasoning-gateway/.env.example` (template)
 
 **Docker (Alternative to npm start):**
+
 - `docker-compose.yml` (frontend + integration-service + redis)
 - `docker-compose.empire.yml` (full empire stack)
 - `docker-compose.bigquery.yml` (with data pipelines)
@@ -485,6 +533,7 @@ You'll know everything is working when:
 ## 🏆 **BOOM SHAKA-LAKA! YOU'RE READY!**
 
 **Memory Tool Mastery Achieved:**
+
 - ✅ SET: Cursor terminal, backend/reasoning-gateway, npm start
 - ✅ SETTING: Mac M4, local dev, Redis + API key ready
 - ✅ SEE: Health endpoint, capabilities list, real-time SSE logs
@@ -499,18 +548,19 @@ You'll know everything is working when:
 **Status:** ✅ **TIER 1 - 100% - HIGHER!**
 
 <!-- Last verified: 2025-10-02 -->
-# 🚀 LIV HANA × CURSOR ULTRA = FULL SONNET 4.5 POWER!
+# 🚀 LIV HANA × CURSOR ULTRA = FULL SONNET 4.5 POWER
 
-## THE WORKAROUND:
+## THE WORKAROUND
 
 **Anthropic API broken? NO PROBLEM!**
 **Cursor Ultra = Your Claude Sonnet 4.5 proxy!**
 
-## IMMEDIATE SETUP (10 Minutes):
+## IMMEDIATE SETUP (10 Minutes)
 
 ### Step 1: Enable Cursor's API Mode
 
 Add to your `.cursor/config.json`:
+
 ```json
 {
   "enableMCPServer": true,
@@ -523,6 +573,7 @@ Add to your `.cursor/config.json`:
 ### Step 2: Point Liv Hana to Cursor
 
 Create `backend/reasoning-gateway/.env.local`:
+
 ```bash
 # Cursor Ultra Bypass Mode
 DEEPSEEK_API_KEY=cursor-ultra-proxy
@@ -534,15 +585,16 @@ CURSOR_ULTRA_MODE=true
 ### Step 3: Test Voice → Cursor → Liv Response
 
 **Run this test:**
+
 ```bash
 curl -X POST http://localhost:4002/api/reasoning/enqueue \
   -H "Content-Type: application/json" \
   -d '{"prompt":"Hello Liv via Cursor Ultra","sessionId":"test"}'
 ```
 
-## VOICE MODE INTEGRATION:
+## VOICE MODE INTEGRATION
 
-### Quick Voice Coding (Available NOW):
+### Quick Voice Coding (Available NOW)
 
 1. Open Cursor
 2. Press `Cmd+K` (Cursor command)
@@ -550,7 +602,7 @@ curl -X POST http://localhost:4002/api/reasoning/enqueue \
 4. Say: "Create a new React component for hemp product display"
 5. **Cursor Sonnet 4.5 executes it!**
 
-### Full Autonomous Liv Hana (1 hour setup):
+### Full Autonomous Liv Hana (1 hour setup)
 
 **Create voice command router:**
 
@@ -591,7 +643,7 @@ class LivHanaCursorBridge {
 module.exports = { LivHanaCursorBridge };
 ```
 
-## THE FULL POWER STACK:
+## THE FULL POWER STACK
 
 ```
 Your Voice
@@ -609,7 +661,7 @@ Code Execution
 Voice Feedback
 ```
 
-## AUTONOMOUS AGENT CONFIG:
+## AUTONOMOUS AGENT CONFIG
 
 **Add to
 
@@ -636,13 +688,15 @@ Full production monitoring and observability for LivHana backend services:
 ### 1. Get Your API Keys
 
 **New Relic** (FREE):
-1. Sign up at https://newrelic.com/signup
+
+1. Sign up at <https://newrelic.com/signup>
 2. Go to Account Settings → API Keys
 3. Create a LICENSE key (INGEST type)
 4. Copy the key
 
 **Sentry** ($29/month):
-1. Sign up at https://sentry.io/signup/
+
+1. Sign up at <https://sentry.io/signup/>
 2. Create a new project for each service
 3. Select "Node.js" as platform
 4. Copy the DSN from project settings
@@ -750,21 +804,25 @@ cd ..
 ### 5. Import Dashboards
 
 **New Relic**:
-1. Go to https://one.newrelic.com/dashboards
+
+1. Go to <https://one.newrelic.com/dashboards>
 2. Click "Import dashboard"
 3. Upload `/docs/NEW_RELIC_DASHBOARDS.json`
 
 **Sentry**:
+
 1. Go to your project → Alerts
 2. Follow instructions in `/docs/SENTRY_ALERTS.md`
 
 ### 6. Set Up Notifications
 
 **Slack**:
+
 - New Relic: Settings → Alert Policies → Notification Channels → Slack
 - Sentry: Settings → Integrations → Slack
 
 **PagerDuty** (for P0 alerts):
+
 - Create PagerDuty account
 - Add integration keys to New Relic and Sentry
 
@@ -775,6 +833,7 @@ cd ..
 ### Dashboards
 
 **New Relic** (Real-time):
+
 - System Health Overview
 - API Performance
 - Infrastructure Metrics
@@ -782,6 +841,7 @@ cd ..
 - AI Monitoring
 
 **Sentry** (Real-time):
+
 - Error tracking with stack traces
 - Performance monitoring
 - User impact analysis
@@ -790,6 +850,7 @@ cd ..
 ### Endpoints
 
 All services now have:
+
 - `GET /health` - Basic health check
 - `GET /healthz` - Kubernetes liveness
 - `GET /ready` - Readiness with dependency checks
@@ -798,6 +859,7 @@ All services now have:
 ### Alerts
 
 Configured for:
+
 - Service down (P0)
 - High error rate (P0)
 - Slow response times (P1)
@@ -809,6 +871,7 @@ Configured for:
 ### Logging
 
 All requests now include:
+
 - Unique request ID (x-request-id header)
 - Structured JSON logs in production
 - Automatic log forwarding to New Relic
@@ -821,10 +884,12 @@ All requests now include:
 ### Implementation Files
 
 **Monitoring Module**:
+
 - `/backend/common/monitoring/` - Complete monitoring infrastructure
 - `/backend/common/monitoring/README.md` - API reference
 
 **Service Configuration**:
+
 - `/backend/integration-service/newrelic.js`
 - `/backend/reasoning-gateway/newrelic.js`
 - `/backend/*/src/routes/health.js`
@@ -832,11 +897,13 @@ All requests now include:
 ### Documentation
 
 **Must Read**:
+
 1. `/docs/MONITORING_RUNBOOK.md` - Operations guide (alert response, troubleshooting)
 2. `/docs/MONITORING_SETUP.md` - Detailed setup instructions
 3. `/docs/MONITORING_IMPLEMENTATION_REPORT.md` - Complete implementation report
 
 **Reference**:
+
 - `/docs/SENTRY_ALERTS.md` - Alert configuration guide
 - `/docs/NEW_RELIC_DASHBOARDS.json` - Dashboard definitions
 - `/backend/.env.monitoring.template` - Environment variables
@@ -853,6 +920,7 @@ cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/backend
 ```
 
 Tests:
+
 - ✅ Health endpoints (all services)
 - ✅ Readiness checks with dependencies
 - ✅ Prometheus metrics format
@@ -875,6 +943,7 @@ Tests:
 ### Staying Within Budget
 
 **New Relic** (free tier = 100 GB/month):
+
 - Currently using ~80 GB/month
 - Optimization: 10% performance sampling, log filtering
 
@@ -884,6 +953,7 @@ Tests:
 - Optimization: Filter expected errors, sample performance
 
 **Monitor costs**:
+
 - New Relic: Dashboard → Data Management
 - Sentry: Settings → Usage & Billing
 
@@ -892,14 +962,16 @@ Tests:
 ## Support
 
 ### Internal
+
 - **Runbook**: `/docs/MONITORING_RUNBOOK.md`
 - **Slack**: #engineering
 - **On-Call**: Check PagerDuty schedule
 
 ### External
-- **New Relic Docs**: https://docs.newrelic.com/
-- **Sentry Docs**: https://docs.sentry.io/
-- **Prometheus Docs**: https://prometheus.io/docs/
+
+- **New Relic Docs**: <https://docs.newrelic.com/>
+- **Sentry Docs**: <https://docs.sentry.io/>
+- **Prometheus Docs**: <https://prometheus.io/docs/>
 
 ---
 
@@ -1000,6 +1072,7 @@ Production-grade rate limiting has been implemented across all backend services 
 ### Key Features
 
 #### 1. Redis Store
+
 ```javascript
 // Shared rate limit state across all instances
 const redisClient = await createRedisClient({ logger });
@@ -1011,13 +1084,16 @@ const rateLimiter = createTieredRateLimiter({
 ```
 
 #### 2. Tiered Rate Limiting
+
 Rate limits automatically adjust based on user authentication:
+
 - Extracts user info from `req.user` (set by auth middleware)
 - Admin users get 1000 req/min
 - Authenticated users get 300 req/min
 - Public/unauthenticated get 100 req/min
 
 #### 3. IP-based Tracking
+
 ```javascript
 // Uses IP for unauthenticated, user ID for authenticated
 keyGenerator: (req) => {
@@ -1029,7 +1105,9 @@ keyGenerator: (req) => {
 ```
 
 #### 4. Standard Headers
+
 All responses include rate limit information:
+
 ```
 RateLimit-Limit: 100
 RateLimit-Remaining: 87
@@ -1037,6 +1115,7 @@ RateLimit-Reset: 1696281600
 ```
 
 #### 5. 429 Response Format
+
 ```json
 {
   "error": "Too many requests",
@@ -1066,6 +1145,7 @@ RATE_LIMIT_ENABLED=true
 ```
 
 ### Integration Service (.env)
+
 ```bash
 # Add to backend/integration-service/.env
 REDIS_HOST=localhost
@@ -1075,6 +1155,7 @@ RATE_LIMIT_ENABLED=true
 ```
 
 ### Reasoning Gateway (.env)
+
 ```bash
 # Add to backend/reasoning-gateway/.env
 REDIS_HOST=localhost
@@ -1086,6 +1167,7 @@ RATE_LIMIT_ENABLED=true
 ## Monitoring Endpoints
 
 ### Get Rate Limit Statistics
+
 ```bash
 # Integration Service
 curl http://localhost:3005/api/monitoring/rate-limit/stats
@@ -1113,6 +1195,7 @@ curl http://localhost:4002/api/monitoring/rate-limit/stats
 ```
 
 ### Get Rate Limit Configuration
+
 ```bash
 # Integration Service
 curl http://localhost:3005/api/monitoring/rate-limit/config
@@ -1139,6 +1222,7 @@ curl http://localhost:4002/api/monitoring/rate-limit/config
 ```
 
 ### Reset Statistics (Admin Only)
+
 ```bash
 curl -X POST http://localhost:3005/api/monitoring/rate-limit/stats/reset \
   -H "Authorization: Bearer <admin-token>"
@@ -1147,6 +1231,7 @@ curl -X POST http://localhost:3005/api/monitoring/rate-limit/stats/reset \
 ## Testing
 
 ### Run Automated Tests
+
 ```bash
 # Unit tests
 cd backend/integration-service
@@ -1160,6 +1245,7 @@ cd backend/integration-service
 ### Manual Testing
 
 #### Test Public Rate Limit (100 req/min)
+
 ```bash
 # Make 110 requests quickly
 for i in {1..110}; do
@@ -1168,6 +1254,7 @@ done
 ```
 
 #### Test with Authentication
+
 ```bash
 # With JWT token (300 req/min)
 TOKEN="your-jwt-token"
@@ -1177,6 +1264,7 @@ done
 ```
 
 #### Test Admin Limits
+
 ```bash
 # Admin user (1000 req/min)
 ADMIN_TOKEN="admin-jwt-token"
@@ -1208,6 +1296,7 @@ rate-limit:<service>:<tier>:<identifier>
 ```
 
 Examples:
+
 ```
 rate-limit:integration-service:public:192.168.1.100
 rate-limit:integration-service:authenticated:user:user123
@@ -1217,6 +1306,7 @@ rate-limit:reasoning-gateway:admin:user:admin456
 ## Production Deployment
 
 ### 1. Ensure Redis is Running
+
 ```bash
 # Check Redis connectivity
 redis-cli ping
@@ -1224,6 +1314,7 @@ redis-cli ping
 ```
 
 ### 2. Configure Environment
+
 ```bash
 # Set production Redis host
 export REDIS_HOST=your-redis-host.com
@@ -1233,6 +1324,7 @@ export REDIS_RATE_LIMIT_DB=1
 ```
 
 ### 3. Start Services
+
 ```bash
 # Integration Service
 cd backend/integration-service
@@ -1244,6 +1336,7 @@ npm start
 ```
 
 ### 4. Verify Rate Limiting
+
 ```bash
 # Check configuration
 curl http://localhost:3005/api/monitoring/rate-limit/config
@@ -1257,17 +1350,20 @@ watch -n 5 'curl -s http://localhost:3005/api/monitoring/rate-limit/stats | jq .
 ### Rate Limiting Not Working
 
 1. **Check Redis Connection**
+
    ```bash
    redis-cli -h localhost -p 6379 ping
    ```
 
 2. **Check Environment Variables**
+
    ```bash
    echo $REDIS_HOST
    echo $RATE_LIMIT_ENABLED
    ```
 
 3. **Check Logs**
+
    ```bash
    # Should see: "Rate limiting initialized successfully"
    tail -f backend/integration-service/logs/app.log | grep "rate"
@@ -1276,6 +1372,7 @@ watch -n 5 'curl -s http://localhost:3005/api/monitoring/rate-limit/stats | jq .
 ### Too Many 429 Errors
 
 1. **Increase Rate Limits** (if legitimate traffic)
+
    ```javascript
    // Edit backend/common/rate-limit/index.js
    const RATE_LIMITS = {
@@ -1323,6 +1420,7 @@ If using AWS, monitor these metrics:
 ### Grafana Dashboard
 
 Create dashboard with:
+
 - Rate limit hits over time
 - Blocks by tier (public/authenticated/admin)
 - Block rate percentage
@@ -1376,6 +1474,7 @@ Create dashboard with:
 ## Support
 
 For issues or questions:
+
 1. Check logs for rate limiting errors
 2. Verify Redis connectivity
 3. Test monitoring endpoints

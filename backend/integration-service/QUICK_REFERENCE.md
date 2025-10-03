@@ -39,15 +39,18 @@ curl http://localhost:3005/api/square/catalog
 ## Key Endpoints
 
 ### Most Used
+
 - `GET /api/bigquery/dashboard` - Revenue metrics
 - `GET /api/square/catalog` - Product catalog
 - `GET /api/square/transactions` - Payment history
 
 ### Sync Operations
+
 - `POST /api/sync/square` - Trigger Square sync
 - `POST /api/sync/lightspeed` - Trigger Lightspeed sync
 
 ### Monitoring
+
 - `GET /health` - Service health
 - `GET /api/bigquery/cache-stats` - Cache stats
 - `POST /api/bigquery/cache/invalidate` - Clear cache
@@ -137,12 +140,14 @@ tail -f logs/integration-service.log
 ## Live Metrics (Real-Time)
 
 **Revenue (as of Oct 2, 2025):**
+
 - Today: $38,645.56
 - Week: $425,534.11
 - Month: $1,289,479.21
 - Year: $6,453,075.91
 
 **Transactions:**
+
 - Total: 100,184
 - Customers: 1,732
 - Avg Order: $64.41
@@ -152,13 +157,16 @@ tail -f logs/integration-service.log
 ## Next Actions
 
 ### HIGH PRIORITY
+
 1. ⚠️ **Activate Lightspeed** (needs API credentials)
 
 ### MEDIUM PRIORITY
+
 2. 🔧 **Run partition migration** (30% performance boost)
 3. 📊 **Set up monitoring alerts**
 
 ### LOW PRIORITY
+
 4. 📧 **Integrate email pipeline**
 5. 📝 **Activate Notion webhooks**
 
@@ -167,12 +175,14 @@ tail -f logs/integration-service.log
 ## Troubleshooting
 
 **Service not responding?**
+
 ```bash
 cd /backend/integration-service
 npm start
 ```
 
 **BigQuery errors?**
+
 ```bash
 # Check credentials
 echo $GOOGLE_APPLICATION_CREDENTIALS
@@ -180,6 +190,7 @@ cat .bigquery-key.json
 ```
 
 **Redis not working?**
+
 ```bash
 # Start Redis
 redis-server
@@ -189,6 +200,7 @@ redis-cli ping
 ```
 
 **Slow queries?**
+
 ```bash
 # Run partition migration
 node scripts/migrate-to-partitioned-tables.js

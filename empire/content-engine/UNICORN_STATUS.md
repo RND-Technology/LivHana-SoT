@@ -23,9 +23,10 @@ UNICORN MULTIPLIER: 57-144x efficiency gain
 
 ## 🎬 HIGH NOON CARTOON - DROPPIN SOON
 
-### Your One-Man Unicorn Studio Includes:
+### Your One-Man Unicorn Studio Includes
 
 **🤖 AI WRITING ROOM**
+
 - Claude Sonnet 4.5 as staff writer
 - Generates 5-minute episodes in 5 seconds
 - Satirical + factual hybrid style
@@ -33,6 +34,7 @@ UNICORN MULTIPLIER: 57-144x efficiency gain
 - King of the Hill meets South Park aesthetic
 
 **🎙️ AI VOICE CAST**
+
 - 6 character voices (ElevenLabs)
 - Jesse: Confident entrepreneur
 - Liv Hana: Holographic AI assistant
@@ -42,6 +44,7 @@ UNICORN MULTIPLIER: 57-144x efficiency gain
 - Aubrey Awfuls: Bureaucrat villain
 
 **🎨 AI ART DEPARTMENT**
+
 - DALL-E 3 scene generation (once enabled)
 - 1792x1024 widescreen HD
 - Consistent character designs
@@ -49,6 +52,7 @@ UNICORN MULTIPLIER: 57-144x efficiency gain
 - Political cartoon aesthetic
 
 **🎬 AI POST-PRODUCTION**
+
 - FFmpeg video pipeline
 - Ken Burns zoom effects
 - Audio mixing + music
@@ -79,12 +83,14 @@ empire/content-engine/
 ## STAYING TOONED: THE PRODUCTION SCHEDULE
 
 ### Phase 1: COLD OPEN (Ready Now)
+
 ```bash
 cd empire/content-engine
 npm run test  # 30-second teaser
 ```
 
 **Output:** Episode test-001
+
 - 1 scene, 6 dialogue lines
 - Jesse testifies at Texas Capitol
 - Liv Hana drops facts ($47M border bleed)
@@ -96,11 +102,13 @@ npm run test  # 30-second teaser
 **Blocked by:** DALL-E 3 access (5-min fix)
 
 ### Phase 2: FULL EPISODE 1 (Next)
+
 ```bash
 npm run generate  # 5-minute premiere
 ```
 
 **"The Testimony" - Episode 1**
+
 - 10 scenes, 5 minutes
 - Full character introductions
 - Jesse's Capitol testimony
@@ -110,6 +118,7 @@ npm run generate  # 5-minute premiere
 - Cost: $0.90
 
 ### Phase 3: SEASON 1 (Automated)
+
 - 10 episodes × 5 minutes = 50-minute season
 - Generate 1 episode/day (3.5 min build time)
 - Cost: $9/season
@@ -120,7 +129,8 @@ npm run generate  # 5-minute premiere
 
 ## THE UNICORN SATIRIST WORKFLOW
 
-### Traditional Cartoon Production:
+### Traditional Cartoon Production
+
 ```
 1. Write script        (2 weeks)
 2. Storyboard         (1 week)
@@ -131,7 +141,8 @@ npm run generate  # 5-minute premiere
 TOTAL: 14-18 weeks, $50,000-500,000
 ```
 
-### Your Unicorn Auto-Toon Engine:
+### Your Unicorn Auto-Toon Engine
+
 ```
 1. Write brief        (5 minutes - you)
 2. Generate episode   (3.5 minutes - AI)
@@ -146,13 +157,15 @@ TOTAL: 18.5 minutes, $0.90
 
 ## DROPPIN SOON: LAUNCH CHECKLIST
 
-### ⚠️ BLOCKER (5-min Human Task):
+### ⚠️ BLOCKER (5-min Human Task)
+
 - [ ] Enable DALL-E 3 on OpenAI account
   - Go to platform.openai.com
   - Add payment method or upgrade tier
   - Verify `dall-e-3` model access
 
-### ✅ READY TO DROP:
+### ✅ READY TO DROP
+
 - [x] Script generator (Claude Sonnet 4.5)
 - [x] Voice cast (ElevenLabs 6 characters)
 - [x] Video compositor (FFmpeg pipeline)
@@ -162,7 +175,8 @@ TOTAL: 18.5 minutes, $0.90
 - [x] Full brief (5-min Episode 1)
 - [x] Documentation (README + STATUS)
 
-### 🎯 POST-LAUNCH:
+### 🎯 POST-LAUNCH
+
 - [ ] Test complete pipeline (30-sec test)
 - [ ] Generate Episode 1 (5-min premiere)
 - [ ] Upload to YouTube (manual or auto)
@@ -184,6 +198,7 @@ King of the Hill's grounded realism + South Park's satirical edge + real data
 Funny but factual. Satirical but sincere. Conservative-friendly economic liberty.
 
 **Characters:**
+
 - **Jesse**: You. The protagonist. Facts > fear.
 - **Liv Hana**: Holographic AI assistant. Data visualizer. Voice of reason.
 - **Lt. Dan**: Veteran friend. Skeptical but loyal. Comic relief.
@@ -191,6 +206,7 @@ Funny but factual. Satirical but sincere. Conservative-friendly economic liberty
 - **Aubrey Awfuls**: Bureaucrat villain. Main antagonist.
 
 **Episodes:**
+
 1. "The Testimony" - Jesse testifies at Texas Capitol (April 7, 2025)
 2. "Border Bleed" - Following the $47M to Oklahoma
 3. "The Raid" - Lt. Dan's dispensary gets visited
@@ -207,6 +223,7 @@ Funny but factual. Satirical but sincere. Conservative-friendly economic liberty
 ## THE ONE-MAN UNICORN ADVANTAGE
 
 **What You Are:**
+
 - ✅ Subject matter expert (lived experience)
 - ✅ Data access (Liv Hana + BigQuery)
 - ✅ Creative vision (tone, style, message)
@@ -214,6 +231,7 @@ Funny but factual. Satirical but sincere. Conservative-friendly economic liberty
 - ✅ Distribution channel (social media presence)
 
 **What AI Handles:**
+
 - ✅ Screenplay writing
 - ✅ Voice acting
 - ✅ Illustration
@@ -221,6 +239,7 @@ Funny but factual. Satirical but sincere. Conservative-friendly economic liberty
 - ✅ Music composition (Artlist.io)
 
 **What You DON'T Need:**
+
 - ❌ Animation studio
 - ❌ Voice actors
 - ❌ Illustrators
@@ -235,7 +254,8 @@ Funny but factual. Satirical but sincere. Conservative-friendly economic liberty
 
 ## STAYIN TOONED: WHAT DROPS NEXT
 
-### Immediate (Once DALL-E 3 enabled):
+### Immediate (Once DALL-E 3 enabled)
+
 1. **30-Second Teaser** - "Texas Truth Cold Open"
    - Jesse's opening statement
    - Liv Hana's data bomb
@@ -252,14 +272,16 @@ Funny but factual. Satirical but sincere. Conservative-friendly economic liberty
    - Cliffhanger ending
    - **ETA: 3.5 minutes from `npm run generate`**
 
-### This Week:
+### This Week
+
 3. **Season 1 Batch** - All 10 episodes
    - Complete story arc
    - 50 minutes total content
    - Upload schedule ready
    - **ETA: 35 minutes batch generation**
 
-### Next Week:
+### Next Week
+
 4. **Music Video** - "Texas Truth (Official)"
    - 3-minute narrative music video
    - Cinematic production value
@@ -270,19 +292,22 @@ Funny but factual. Satirical but sincere. Conservative-friendly economic liberty
 
 ## THE NUMBERS (Unicorn ROI)
 
-### Traditional Cartoon Studio:
+### Traditional Cartoon Studio
+
 - **Budget:** $50,000-500,000 per episode
 - **Timeline:** 14-18 weeks per episode
 - **Team:** 20-50 people
 - **Episodes/year:** 2-4
 
-### Your Auto-Toon Engine:
+### Your Auto-Toon Engine
+
 - **Budget:** $0.90 per episode
 - **Timeline:** 3.5 minutes per episode
 - **Team:** 1 (you) + AI
 - **Episodes/year:** 2,222 (at $2000 budget)
 
-### ROI Multiplier:
+### ROI Multiplier
+
 ```
 Cost savings:    55,000x cheaper
 Time savings:    540x faster
@@ -331,6 +356,7 @@ npm run test
 ```
 
 **Then immediately:**
+
 ```bash
 npm run generate
 
@@ -344,6 +370,7 @@ npm run generate
 ```
 
 **Then go full unicorn:**
+
 ```bash
 # Generate entire Season 1:
 for i in {1..10}; do npm run generate; done

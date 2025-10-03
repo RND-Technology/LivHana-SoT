@@ -42,6 +42,7 @@ The Self-Improvement Loop is Liv Hana's autonomous learning and optimization sys
 ## Features
 
 ### 1. Continuous Learning
+
 - Monitors all customer interactions via BigQuery
 - Extracts successful conversation patterns
 - Identifies failure modes and knowledge gaps
@@ -49,6 +50,7 @@ The Self-Improvement Loop is Liv Hana's autonomous learning and optimization sys
 - Learns from sentiment and outcomes
 
 ### 2. Performance Optimization
+
 - Tracks API response times
 - Identifies slow endpoints
 - Suggests database query optimizations
@@ -56,6 +58,7 @@ The Self-Improvement Loop is Liv Hana's autonomous learning and optimization sys
 - Auto-generates performance improvements
 
 ### 3. Code Quality Improvements
+
 - Analyzes test coverage gaps
 - Suggests new unit and integration tests
 - Identifies refactoring opportunities
@@ -63,6 +66,7 @@ The Self-Improvement Loop is Liv Hana's autonomous learning and optimization sys
 - Auto-generates JSDoc documentation
 
 ### 4. Feature Discovery
+
 - Analyzes customer requests from conversations
 - Identifies common feature requests
 - Clusters similar requests into themes
@@ -70,6 +74,7 @@ The Self-Improvement Loop is Liv Hana's autonomous learning and optimization sys
 - Auto-generates feature specifications
 
 ### 5. Bug Detection
+
 - Monitors error logs in BigQuery and Redis
 - Correlates errors with recent code changes
 - Analyzes error patterns and frequencies
@@ -77,18 +82,21 @@ The Self-Improvement Loop is Liv Hana's autonomous learning and optimization sys
 - Auto-generates bug reports with test cases
 
 ### 6. Integration with Memory Learning
+
 - Uses customer interaction data from memory engine
 - Learns from conversation patterns
 - Improves AI responses over time
 - Builds customer preference models
 
 ### 7. Scheduled Jobs
+
 - **Daily (2 AM)**: Analyze yesterday's interactions
 - **Weekly (Monday 6 AM)**: Generate improvement proposals
 - **Monthly (1st at 8 AM)**: Major refactoring suggestions
 - **Hourly**: Auto-execute approved improvements
 
 ### 8. Approval Workflow
+
 - Generates detailed proposals with implementation plans
 - Sends to Jesse for review via dashboard/API
 - Tracks approval status in Redis
@@ -96,6 +104,7 @@ The Self-Improvement Loop is Liv Hana's autonomous learning and optimization sys
 - Reports success metrics
 
 ### 9. Metrics Dashboard
+
 - Improvements proposed/approved/implemented
 - Performance gains achieved
 - Features added, bugs fixed
@@ -103,6 +112,7 @@ The Self-Improvement Loop is Liv Hana's autonomous learning and optimization sys
 - Recent activity timeline
 
 ### 10. Safety Rails
+
 - Never deploys to production without approval
 - Always runs tests before proposing changes
 - Rollback capability for all changes
@@ -124,12 +134,14 @@ export GOOGLE_APPLICATION_CREDENTIALS="/path/to/bigquery-credentials.json"
 ### Installation
 
 1. **Install Dependencies**
+
 ```bash
 cd backend/reasoning-gateway
 npm install @anthropic-ai/sdk
 ```
 
 2. **Setup BigQuery Tables** (if not already done)
+
 ```sql
 -- Create learning dataset
 CREATE SCHEMA IF NOT EXISTS ai_learning;
@@ -164,6 +176,7 @@ CREATE TABLE IF NOT EXISTS logs.error_logs (
 ```
 
 3. **Setup Cron Jobs**
+
 ```bash
 cd backend/reasoning-gateway/scripts
 chmod +x setup-cron.sh run-improvement-cycle.js
@@ -171,6 +184,7 @@ chmod +x setup-cron.sh run-improvement-cycle.js
 ```
 
 4. **Setup Systemd Service** (for production)
+
 ```bash
 # Copy service files
 sudo cp scripts/livhana-improvement.service /etc/systemd/system/
@@ -186,6 +200,7 @@ sudo systemctl status livhana-improvement.timer
 ```
 
 5. **Start the Reasoning Gateway**
+
 ```bash
 npm start
 ```
@@ -197,12 +212,14 @@ npm start
 All endpoints require authentication via `authMiddleware`.
 
 #### Get Metrics Dashboard
+
 ```bash
 curl -H "Authorization: Bearer $TOKEN" \
   http://localhost:4002/api/improvements/metrics
 ```
 
 Response:
+
 ```json
 {
   "metrics": {
@@ -234,18 +251,21 @@ Response:
 ```
 
 #### Get All Proposals
+
 ```bash
 curl -H "Authorization: Bearer $TOKEN" \
   http://localhost:4002/api/improvements/proposals
 ```
 
 #### Get Single Proposal
+
 ```bash
 curl -H "Authorization: Bearer $TOKEN" \
   http://localhost:4002/api/improvements/proposals/{proposalId}
 ```
 
 #### Approve Proposal
+
 ```bash
 curl -X POST \
   -H "Authorization: Bearer $TOKEN" \
@@ -255,6 +275,7 @@ curl -X POST \
 ```
 
 #### Reject Proposal
+
 ```bash
 curl -X POST \
   -H "Authorization: Bearer $TOKEN" \
@@ -264,6 +285,7 @@ curl -X POST \
 ```
 
 #### Execute Approved Proposal
+
 ```bash
 curl -X POST \
   -H "Authorization: Bearer $TOKEN" \
@@ -271,6 +293,7 @@ curl -X POST \
 ```
 
 #### Trigger Manual Analysis
+
 ```bash
 curl -X POST \
   -H "Authorization: Bearer $TOKEN" \
@@ -280,6 +303,7 @@ curl -X POST \
 ### Command Line
 
 #### Run Manual Improvement Cycle
+
 ```bash
 # Daily analysis
 node scripts/run-improvement-cycle.js --type=daily
@@ -303,16 +327,19 @@ node scripts/run-improvement-cycle.js --type=daily --auto-execute
 ### Cron Schedule
 
 View installed cron jobs:
+
 ```bash
 crontab -l
 ```
 
 Edit cron jobs:
+
 ```bash
 crontab -e
 ```
 
 View logs:
+
 ```bash
 tail -f /var/log/livhana-improvement-daily.log
 tail -f /var/log/livhana-improvement-weekly.log
@@ -349,18 +376,21 @@ this.safetyChecks = {
 ## Proposal Types
 
 ### Learning Proposals
+
 - Based on customer interaction analysis
 - Improves response patterns and knowledge base
 - Priority: Medium
 - Usually requires approval
 
 ### Performance Proposals
+
 - Optimizes slow endpoints
 - Suggests caching and query improvements
 - Priority: High
 - Requires approval for significant changes
 
 ### Code Quality Proposals
+
 - Adds missing tests
 - Refactors complex code
 - Generates documentation
@@ -368,12 +398,14 @@ this.safetyChecks = {
 - Tests and docs can auto-generate
 
 ### Feature Proposals
+
 - New features based on customer requests
 - Includes technical specifications
 - Priority: Medium-High
 - Always requires approval
 
 ### Bug Fix Proposals
+
 - Fixes recurring errors
 - Includes root cause analysis and tests
 - Priority: High-Critical
@@ -383,6 +415,7 @@ this.safetyChecks = {
 ## Safety Features
 
 ### 1. Approval Workflow
+
 - All proposals are stored in Redis
 - Status tracking: pending → approved/rejected → implemented/failed
 - Approval required for:
@@ -392,24 +425,28 @@ this.safetyChecks = {
   - New features
 
 ### 2. Testing Requirements
+
 - All changes must include tests
 - Tests run before implementation
 - Failed tests prevent deployment
 - Test coverage tracked
 
 ### 3. Rollback Capability
+
 - Git stash created before changes
 - Automatic rollback on failure
 - Rollback plans generated for each proposal
 - Full audit trail maintained
 
 ### 4. Resource Limits
+
 - Max changes per proposal
 - Max lines per change
 - Max auto-fixes per day
 - Memory and CPU limits in systemd
 
 ### 5. Audit Trail
+
 - All proposals stored in Redis (30 days)
 - Execution history tracked
 - Success/failure metrics logged
@@ -418,11 +455,13 @@ this.safetyChecks = {
 ## Monitoring
 
 ### Health Check
+
 ```bash
 curl http://localhost:4002/api/improvements/health
 ```
 
 ### Logs
+
 ```bash
 # Service logs
 sudo journalctl -u livhana-improvement -f
@@ -433,6 +472,7 @@ tail -f /var/log/livhana-improvement-error.log
 ```
 
 ### Redis Keys
+
 ```bash
 # All proposals
 redis-cli KEYS "improvement:proposal:*"
@@ -445,6 +485,7 @@ redis-cli KEYS "knowledge:*"
 ```
 
 ### BigQuery Monitoring
+
 ```sql
 -- Recent improvement executions
 SELECT * FROM ai_learning.agent_executions
@@ -464,6 +505,7 @@ ORDER BY date DESC;
 ## Troubleshooting
 
 ### Self-Improvement Not Starting
+
 ```bash
 # Check environment variables
 echo $ENABLE_SELF_IMPROVEMENT
@@ -477,6 +519,7 @@ tail -f logs/reasoning-gateway.log
 ```
 
 ### Proposals Not Generating
+
 ```bash
 # Check BigQuery connection
 gcloud auth application-default login
@@ -494,6 +537,7 @@ node scripts/run-improvement-cycle.js --type=daily
 ```
 
 ### Executions Failing
+
 ```bash
 # Check test failures
 npm test
@@ -535,6 +579,7 @@ redis-cli GET "improvement:proposal:{id}"
 ## Integration with Other Systems
 
 ### Memory Learning Engine
+
 ```javascript
 import { getMemoryLearningEngine } from './memory_learning.js';
 
@@ -544,6 +589,7 @@ const context = await memoryEngine.getContext(customerId);
 ```
 
 ### Claude Autonomous Agent
+
 ```javascript
 import { createClaudeAgent } from './claude-autonomous-agent.js';
 
@@ -568,10 +614,11 @@ await agent.executeTask('Implement improvement proposal', { proposalId });
 ## Support
 
 For issues or questions:
+
 - Check logs first: `/var/log/livhana-improvement*.log`
 - Review Redis data: `redis-cli KEYS "improvement:*"`
 - Check BigQuery: Query `ai_learning.agent_executions`
-- Contact: jesse@livhana.com
+- Contact: <jesse@livhana.com>
 
 ## License
 

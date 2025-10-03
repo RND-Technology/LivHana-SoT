@@ -17,22 +17,27 @@
 **When Required:** Service health, errors, tests, git, commands
 
 **Format:**
+
 ```
 COMMAND: [exact command]
 TIMESTAMP: [when run]
 OUTPUT:
 ```
+
 [full terminal output]
+
 ```
 ```
 
 **Requirements:**
+
 - MUST be actual output (not paraphrased)
 - MUST include command
 - MUST include timestamp
 - MUST be complete (or show first 50 + last 20 if >100 lines)
 
 **Example:**
+
 ```
 COMMAND: curl -s http://localhost:4002/health | jq .
 TIMESTAMP: 2025-10-02 21:25 PDT
@@ -40,6 +45,7 @@ OUTPUT:
 ```json
 {"status":"healthy","service":"reasoning-gateway"}
 ```
+
 ```
 
 ---
@@ -50,18 +56,22 @@ OUTPUT:
 
 **Format:**
 ```
+
 COMMAND: ls -lt [path]
 TIMESTAMP: [when run]
 OUTPUT:
+
 ```
 [paste ls output]
 ```
 
 SUMMARY:
+
 - Total files: [N]
 - Files <1hr old: [N]
 - Files >1hr old: [N]
 - Oldest: [filename] ([age])
+
 ```
 
 ---
@@ -72,14 +82,17 @@ SUMMARY:
 
 **Format:**
 ```
+
 FILES CHANGED: [list]
 COMMAND: git diff [range]
 DIFF:
+
 ```diff
 [paste git diff]
 ```
 
 SUMMARY: [description]
+
 ```
 
 ---

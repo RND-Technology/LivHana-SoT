@@ -18,6 +18,7 @@ This document describes the recommended Sentry alert rules for LivHana backend s
 **Notification**: Slack #alerts channel
 
 **Configuration**:
+
 ```yaml
 When: A new issue is created
 If: All environments
@@ -35,6 +36,7 @@ Then: Send notification to #alerts
 **Notification**: Slack #alerts + Email on-call
 
 **Configuration**:
+
 ```yaml
 When: An issue's frequency is more than 100 events in 1 hour
 If: Environment is production
@@ -54,6 +56,7 @@ Then:
 **Notification**: Slack #engineering
 
 **Configuration**:
+
 ```yaml
 When: An issue changes state from resolved to unresolved
 If: Environment is production
@@ -71,6 +74,7 @@ Then: Send notification to #engineering
 **Notification**: Slack #alerts + PagerDuty
 
 **Configuration**:
+
 ```yaml
 When: An issue is seen by more than 10 users in 1 hour
 If: Environment is production
@@ -90,6 +94,7 @@ Then:
 **Notification**: PagerDuty + Slack #incidents
 
 **Configuration**:
+
 ```yaml
 When: An issue's tags match critical-path
 If: Environment is production AND tags contain "critical-path"
@@ -99,6 +104,7 @@ Then:
 ```
 
 **Tags to use**:
+
 - `critical-path:checkout`
 - `critical-path:payment`
 - `critical-path:authentication`
@@ -114,6 +120,7 @@ Then:
 **Notification**: Slack #engineering
 
 **Configuration**:
+
 ```yaml
 When: The 95th percentile transaction duration is greater than 2000ms
 If: Environment is production
@@ -131,6 +138,7 @@ Then: Send notification to #engineering
 **Notification**: Slack #engineering
 
 **Configuration**:
+
 ```yaml
 When: A performance issue of type "N+1 Query" is detected
 If: All environments
@@ -148,6 +156,7 @@ Then: Send notification to #engineering
 **Notification**: Slack #alerts + Email
 
 **Configuration**:
+
 ```yaml
 When: An issue's frequency increases by 50% in 1 hour
 If: Environment is production
@@ -288,6 +297,7 @@ Should appear in performance monitoring.
 ### Escalation
 
 If unable to resolve within:
+
 - **P0**: 15 minutes → Escalate to Senior Engineer
 - **P1**: 1 hour → Escalate to Engineering Manager
 - **P2**: 4 hours → Create ticket, schedule fix
@@ -309,12 +319,14 @@ Review alert effectiveness monthly:
 ## Best Practices
 
 1. **Use Tags**: Tag errors with business context
+
    ```javascript
    Sentry.setTag('payment_processor', 'stripe');
    Sentry.setTag('user_tier', 'premium');
    ```
 
 2. **Add Context**: Include relevant data
+
    ```javascript
    Sentry.setContext('order', {
      id: orderId,
@@ -324,6 +336,7 @@ Review alert effectiveness monthly:
    ```
 
 3. **Set User**: Identify affected users
+
    ```javascript
    Sentry.setUser({
      id: user.id,
@@ -332,6 +345,7 @@ Review alert effectiveness monthly:
    ```
 
 4. **Breadcrumbs**: Add debugging trail
+
    ```javascript
    Sentry.addBreadcrumb({
      category: 'payment',
@@ -341,6 +355,7 @@ Review alert effectiveness monthly:
    ```
 
 5. **Release Tracking**: Deploy with releases
+
    ```bash
    export SENTRY_RELEASE=$(git rev-parse HEAD)
    # Sentry will automatically track by release

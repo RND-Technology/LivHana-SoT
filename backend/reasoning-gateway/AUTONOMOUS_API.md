@@ -23,6 +23,7 @@ Execute an autonomous task with AI-powered planning and execution.
 **Endpoint:** `POST /api/autonomous/execute`
 
 **Request Body:**
+
 ```json
 {
   "task": "Add a new endpoint to handle user preferences",
@@ -40,6 +41,7 @@ Execute an autonomous task with AI-powered planning and execution.
 ```
 
 **Response:** `202 Accepted`
+
 ```json
 {
   "taskId": "550e8400-e29b-41d4-a716-446655440000",
@@ -51,6 +53,7 @@ Execute an autonomous task with AI-powered planning and execution.
 ```
 
 **Example cURL:**
+
 ```bash
 curl -X POST http://localhost:4002/api/autonomous/execute \
   -H "Authorization: Bearer $ADMIN_TOKEN" \
@@ -74,6 +77,7 @@ Retrieve current status, progress, and results of a task.
 **Endpoint:** `GET /api/autonomous/tasks/:taskId`
 
 **Response:** `200 OK`
+
 ```json
 {
   "id": "550e8400-e29b-41d4-a716-446655440000",
@@ -100,6 +104,7 @@ Retrieve current status, progress, and results of a task.
 ```
 
 **Task Statuses:**
+
 - `queued` - Task is waiting to be processed
 - `analyzing` - AI is analyzing the task requirements
 - `planning` - Creating execution plan
@@ -115,6 +120,7 @@ Retrieve current status, progress, and results of a task.
 - `cancelled` - Task was cancelled
 
 **Example cURL:**
+
 ```bash
 curl http://localhost:4002/api/autonomous/tasks/550e8400-e29b-41d4-a716-446655440000 \
   -H "Authorization: Bearer $ADMIN_TOKEN"
@@ -145,6 +151,7 @@ data: {"id":"550e8400...","status":"completed","progress":100}
 ```
 
 **Example JavaScript:**
+
 ```javascript
 const eventSource = new EventSource(
   'http://localhost:4002/api/autonomous/stream/550e8400-e29b-41d4-a716-446655440000',
@@ -172,6 +179,7 @@ eventSource.onerror = (error) => {
 ```
 
 **Example cURL:**
+
 ```bash
 curl -N http://localhost:4002/api/autonomous/stream/550e8400-e29b-41d4-a716-446655440000 \
   -H "Authorization: Bearer $ADMIN_TOKEN"
@@ -186,10 +194,12 @@ Retrieve patterns and insights learned from past task executions.
 **Endpoint:** `GET /api/autonomous/learnings`
 
 **Query Parameters:**
+
 - `limit` (optional, default: 50) - Maximum number of learnings to return
 - `successful` (optional) - Filter by success status (`true` or `false`)
 
 **Response:** `200 OK`
+
 ```json
 {
   "learnings": [
@@ -215,6 +225,7 @@ Retrieve patterns and insights learned from past task executions.
 ```
 
 **Example cURL:**
+
 ```bash
 curl "http://localhost:4002/api/autonomous/learnings?limit=10&successful=true" \
   -H "Authorization: Bearer $ADMIN_TOKEN"
@@ -229,6 +240,7 @@ Get comprehensive list of what the autonomous agent can do.
 **Endpoint:** `GET /api/autonomous/capabilities`
 
 **Response:** `200 OK`
+
 ```json
 {
   "actions": [
@@ -267,6 +279,7 @@ Get comprehensive list of what the autonomous agent can do.
 ```
 
 **Example cURL:**
+
 ```bash
 curl http://localhost:4002/api/autonomous/capabilities \
   -H "Authorization: Bearer $ADMIN_TOKEN"
@@ -281,6 +294,7 @@ Approve or reject changes from a task execution before deployment.
 **Endpoint:** `POST /api/autonomous/approve/:taskId`
 
 **Request Body:**
+
 ```json
 {
   "approved": true,
@@ -289,6 +303,7 @@ Approve or reject changes from a task execution before deployment.
 ```
 
 **Response:** `200 OK`
+
 ```json
 {
   "success": true,
@@ -304,6 +319,7 @@ Approve or reject changes from a task execution before deployment.
 ```
 
 **Rejection Example:**
+
 ```json
 {
   "approved": false,
@@ -312,6 +328,7 @@ Approve or reject changes from a task execution before deployment.
 ```
 
 **Example cURL (Approve):**
+
 ```bash
 curl -X POST http://localhost:4002/api/autonomous/approve/550e8400-e29b-41d4-a716-446655440000 \
   -H "Authorization: Bearer $ADMIN_TOKEN" \
@@ -323,6 +340,7 @@ curl -X POST http://localhost:4002/api/autonomous/approve/550e8400-e29b-41d4-a71
 ```
 
 **Example cURL (Reject):**
+
 ```bash
 curl -X POST http://localhost:4002/api/autonomous/approve/550e8400-e29b-41d4-a716-446655440000 \
   -H "Authorization: Bearer $ADMIN_TOKEN" \
@@ -342,6 +360,7 @@ Rollback changes from a completed task execution.
 **Endpoint:** `POST /api/autonomous/rollback/:taskId`
 
 **Request Body:**
+
 ```json
 {
   "reason": "Production bug introduced by this change"
@@ -349,6 +368,7 @@ Rollback changes from a completed task execution.
 ```
 
 **Response:** `200 OK`
+
 ```json
 {
   "success": true,
@@ -367,6 +387,7 @@ Rollback changes from a completed task execution.
 ```
 
 **Example cURL:**
+
 ```bash
 curl -X POST http://localhost:4002/api/autonomous/rollback/550e8400-e29b-41d4-a716-446655440000 \
   -H "Authorization: Bearer $ADMIN_TOKEN" \
@@ -385,11 +406,13 @@ Get paginated list of all tasks with optional filtering.
 **Endpoint:** `GET /api/autonomous/tasks`
 
 **Query Parameters:**
+
 - `status` (optional) - Filter by task status
 - `limit` (optional, default: 50) - Number of results per page
 - `offset` (optional, default: 0) - Pagination offset
 
 **Response:** `200 OK`
+
 ```json
 {
   "tasks": [
@@ -417,6 +440,7 @@ Get paginated list of all tasks with optional filtering.
 ```
 
 **Example cURL:**
+
 ```bash
 curl "http://localhost:4002/api/autonomous/tasks?status=completed&limit=20" \
   -H "Authorization: Bearer $ADMIN_TOKEN"
@@ -431,6 +455,7 @@ Cancel a queued or running task.
 **Endpoint:** `DELETE /api/autonomous/tasks/:taskId`
 
 **Response:** `200 OK`
+
 ```json
 {
   "success": true,
@@ -445,6 +470,7 @@ Cancel a queued or running task.
 ```
 
 **Example cURL:**
+
 ```bash
 curl -X DELETE http://localhost:4002/api/autonomous/tasks/550e8400-e29b-41d4-a716-446655440000 \
   -H "Authorization: Bearer $ADMIN_TOKEN"
@@ -459,6 +485,7 @@ Check health status of the autonomous agent system.
 **Endpoint:** `GET /api/autonomous/health`
 
 **Response:** `200 OK`
+
 ```json
 {
   "status": "healthy",
@@ -482,6 +509,7 @@ Check health status of the autonomous agent system.
 ```
 
 **Example cURL:**
+
 ```bash
 curl http://localhost:4002/api/autonomous/health \
   -H "Authorization: Bearer $ADMIN_TOKEN"
@@ -492,6 +520,7 @@ curl http://localhost:4002/api/autonomous/health \
 ## Complete Workflow Example
 
 ### 1. Execute a Task
+
 ```bash
 TASK_ID=$(curl -X POST http://localhost:4002/api/autonomous/execute \
   -H "Authorization: Bearer $ADMIN_TOKEN" \
@@ -509,6 +538,7 @@ echo "Task ID: $TASK_ID"
 ```
 
 ### 2. Monitor Progress (Polling)
+
 ```bash
 while true; do
   STATUS=$(curl -s http://localhost:4002/api/autonomous/tasks/$TASK_ID \
@@ -525,12 +555,14 @@ done
 ```
 
 ### 3. Review Results
+
 ```bash
 curl http://localhost:4002/api/autonomous/tasks/$TASK_ID \
   -H "Authorization: Bearer $ADMIN_TOKEN" | jq
 ```
 
 ### 4. Approve Changes
+
 ```bash
 curl -X POST http://localhost:4002/api/autonomous/approve/$TASK_ID \
   -H "Authorization: Bearer $ADMIN_TOKEN" \
@@ -542,6 +574,7 @@ curl -X POST http://localhost:4002/api/autonomous/approve/$TASK_ID \
 ```
 
 ### 5. (If needed) Rollback
+
 ```bash
 curl -X POST http://localhost:4002/api/autonomous/rollback/$TASK_ID \
   -H "Authorization: Bearer $ADMIN_TOKEN" \
@@ -558,6 +591,7 @@ curl -X POST http://localhost:4002/api/autonomous/rollback/$TASK_ID \
 All endpoints return standard error responses:
 
 **400 Bad Request:**
+
 ```json
 {
   "error": "Task description is required"
@@ -565,6 +599,7 @@ All endpoints return standard error responses:
 ```
 
 **401 Unauthorized:**
+
 ```json
 {
   "error": "Unauthorized"
@@ -572,6 +607,7 @@ All endpoints return standard error responses:
 ```
 
 **403 Forbidden:**
+
 ```json
 {
   "error": "Forbidden",
@@ -580,6 +616,7 @@ All endpoints return standard error responses:
 ```
 
 **404 Not Found:**
+
 ```json
 {
   "error": "Task not found"
@@ -587,6 +624,7 @@ All endpoints return standard error responses:
 ```
 
 **500 Internal Server Error:**
+
 ```json
 {
   "error": "Task execution failed",
@@ -745,6 +783,7 @@ print(f"Task completed: {final_status}")
 ## Support
 
 For issues or questions:
+
 - Check health endpoint: `/api/autonomous/health`
 - Review learnings: `/api/autonomous/learnings`
 - Monitor logs in `reasoning-gateway` service

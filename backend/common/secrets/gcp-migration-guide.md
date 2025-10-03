@@ -1,9 +1,11 @@
 # GCP Secret Manager Migration Guide
 
 ## Overview
+
 This guide provides step-by-step instructions for migrating secrets from `.env` files to GCP Secret Manager for production deployment.
 
 ## Why GCP Secret Manager?
+
 - **Security**: Encrypted at rest and in transit
 - **Audit Logging**: Track all secret access
 - **Versioning**: Maintain secret history
@@ -33,6 +35,7 @@ gcloud projects add-iam-policy-binding PROJECT_ID \
 ## Secrets Inventory
 
 ### Critical Secrets (Migrate First - P0)
+
 - `JWT_SECRET` - JSON Web Token signing key
 - `JWT_AUDIENCE` - JWT audience claim
 - `JWT_ISSUER` - JWT issuer claim
@@ -40,6 +43,7 @@ gcloud projects add-iam-policy-binding PROJECT_ID \
 - `DATABASE_PASSWORD` - Database credentials
 
 ### API Keys (P1)
+
 - `SQUARE_ACCESS_TOKEN` - Square API access
 - `SQUARE_APPLICATION_ID` - Square application ID
 - `LIGHTSPEED_API_KEY` - Lightspeed integration
@@ -48,12 +52,14 @@ gcloud projects add-iam-policy-binding PROJECT_ID \
 - `OPENAI_API_KEY` - OpenAI API key
 
 ### Integration Secrets (P2)
+
 - `NOTION_API_KEY` - Notion integration
 - `TWILIO_AUTH_TOKEN` - Twilio SMS/voice
 - `SMTP_PASSWORD` - Email service
 - `STRIPE_SECRET_KEY` - Payment processing
 
 ### Monitoring & Observability (P3)
+
 - `SENTRY_DSN` - Error tracking
 - `NEWRELIC_LICENSE_KEY` - APM monitoring
 - `DATADOG_API_KEY` - Metrics/logs
@@ -112,6 +118,7 @@ const config = {
 ### Step 4: Update Deployment Configuration
 
 **Cloud Run**:
+
 ```yaml
 # cloud-run.yaml
 apiVersion: serving.knative.dev/v1
@@ -135,6 +142,7 @@ spec:
 ```
 
 **Kubernetes**:
+
 ```yaml
 # k8s-deployment.yaml
 apiVersion: v1
@@ -195,6 +203,7 @@ node backend/common/secrets/migrate-to-gcp.js \
 If issues occur during migration:
 
 1. **Immediate Rollback**: Re-enable `.env` files
+
 ```bash
 # Set environment variable to disable Secret Manager
 export ENABLE_SECRET_MANAGER=false
@@ -204,6 +213,7 @@ kubectl rollout restart deployment/integration-service
 ```
 
 2. **Restore Previous Version**:
+
 ```bash
 # Rollback to previous secret version
 gcloud secrets versions disable latest --secret=JWT_SECRET
@@ -239,24 +249,30 @@ setInterval(async () => {
 ## Best Practices
 
 ### 1. Secret Naming Convention
+
 - Use UPPER_SNAKE_CASE
 - Prefix with service name if service-specific: `INTEGRATION_SERVICE_API_KEY`
 - Suffix with environment if needed: `JWT_SECRET_PROD`
 
 ### 2. Labels
+
 Always add labels to secrets:
+
 ```bash
 gcloud secrets update SECRET_NAME \
   --update-labels=environment=production,service=integration-service,tier=p0,owner=platform-team
 ```
 
 ### 3. Access Control
+
 - Use least-privilege principle
 - Create service-specific service accounts
 - Never use personal accounts for production secrets
 
 ### 4. Audit Logging
+
 Enable audit logs for Secret Manager:
+
 ```bash
 # View audit logs
 gcloud logging read "resource.type=secretmanager.googleapis.com/Secret" \
@@ -265,7 +281,9 @@ gcloud logging read "resource.type=secretmanager.googleapis.com/Secret" \
 ```
 
 ### 5. Monitoring
+
 Set up alerts for:
+
 - Failed secret access attempts
 - Unusual access patterns
 - Secret version changes
@@ -289,10 +307,12 @@ Before going live:
 ## Cost Considerations
 
 GCP Secret Manager pricing:
+
 - **Secret versions**: $0.06 per active secret version per month
 - **Access operations**: $0.03 per 10,000 operations
 
 Example monthly cost for 50 secrets:
+
 - 50 secrets × $0.06 = $3.00/month
 - 1M access operations × $0.03 = $3.00/month
 - **Total: ~$6/month**
@@ -302,18 +322,21 @@ Example monthly cost for 50 secrets:
 ### Common Issues
 
 **Issue**: "Permission denied" when accessing secret
+
 ```bash
 # Solution: Check IAM permissions
 gcloud secrets get-iam-policy SECRET_NAME
 ```
 
 **Issue**: Secret not found
+
 ```bash
 # Solution: Verify secret exists and service account has access
 gcloud secrets list --filter="name:SECRET_NAME"
 ```
 
 **Issue**: Application not loading secrets
+
 ```bash
 # Solution: Check service account configuration
 gcloud iam service-accounts get-iam-policy SERVICE_ACCOUNT@PROJECT_ID.iam.gserviceaccount.com

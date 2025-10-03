@@ -7,6 +7,7 @@ The LivHana Membership System provides a three-tier subscription model with recu
 ## Membership Tiers
 
 ### Bronze - $47/month
+
 - **Discount:** 10% on all products
 - **Benefits:**
   - 10% discount on all products
@@ -15,6 +16,7 @@ The LivHana Membership System provides a three-tier subscription model with recu
 - **Break-even:** Customer needs to spend $470/month to break even
 
 ### Silver - $97/month
+
 - **Discount:** 20% on all products
 - **Benefits:**
   - 20% discount on all products
@@ -25,6 +27,7 @@ The LivHana Membership System provides a three-tier subscription model with recu
 - **Break-even:** Customer needs to spend $485/month to break even
 
 ### Gold - $197/month
+
 - **Discount:** 30% on all products
 - **Benefits:**
   - 30% discount on all products
@@ -45,6 +48,7 @@ Authorization: Bearer <your-jwt-token>
 ```
 
 The token must be signed with the `JWT_SECRET` and include the following claims:
+
 - `aud`: JWT_AUDIENCE
 - `iss`: JWT_ISSUER
 
@@ -57,6 +61,7 @@ Create a new membership subscription for a customer.
 **Endpoint:** `POST /api/memberships/subscribe`
 
 **Request Body:**
+
 ```json
 {
   "customerId": "CUST_12345",
@@ -71,6 +76,7 @@ Create a new membership subscription for a customer.
 ```
 
 **Response (201 Created):**
+
 ```json
 {
   "success": true,
@@ -94,6 +100,7 @@ Create a new membership subscription for a customer.
 ```
 
 **Error Responses:**
+
 - `400 Bad Request`: Missing required fields or customer already has active membership
 - `401 Unauthorized`: Invalid or missing JWT token
 - `500 Internal Server Error`: Payment processing or database error
@@ -109,6 +116,7 @@ Retrieve the current membership details for a customer.
 **Example:** `GET /api/memberships/CUST_12345`
 
 **Response (200 OK):**
+
 ```json
 {
   "success": true,
@@ -139,6 +147,7 @@ Retrieve the current membership details for a customer.
 ```
 
 **Error Responses:**
+
 - `404 Not Found`: No membership found for customer
 - `401 Unauthorized`: Invalid or missing JWT token
 - `500 Internal Server Error`: Database error
@@ -152,6 +161,7 @@ Upgrade a customer's membership to a higher tier with prorated billing.
 **Endpoint:** `PUT /api/memberships/:customerId/upgrade`
 
 **Request Body:**
+
 ```json
 {
   "newTier": "GOLD"
@@ -159,6 +169,7 @@ Upgrade a customer's membership to a higher tier with prorated billing.
 ```
 
 **Response (200 OK):**
+
 ```json
 {
   "success": true,
@@ -183,12 +194,14 @@ Upgrade a customer's membership to a higher tier with prorated billing.
 ```
 
 **Error Responses:**
+
 - `400 Bad Request`: Missing newTier, invalid tier, or not an upgrade
 - `404 Not Found`: No active membership found
 - `401 Unauthorized`: Invalid or missing JWT token
 - `500 Internal Server Error`: Payment processing error
 
 **Notes:**
+
 - The prorated amount is charged immediately
 - Proration = (New Tier Price - Current Tier Price)
 - Full new tier price will be charged on next billing date
@@ -202,6 +215,7 @@ Cancel a customer's membership. Subscription remains active until end of current
 **Endpoint:** `PUT /api/memberships/:customerId/cancel`
 
 **Request Body:**
+
 ```json
 {
   "reason": "Customer requested cancellation"
@@ -209,6 +223,7 @@ Cancel a customer's membership. Subscription remains active until end of current
 ```
 
 **Response (200 OK):**
+
 ```json
 {
   "success": true,
@@ -234,6 +249,7 @@ Cancel a customer's membership. Subscription remains active until end of current
 ```
 
 **Error Responses:**
+
 - `404 Not Found`: No active membership found
 - `401 Unauthorized`: Invalid or missing JWT token
 - `500 Internal Server Error`: Payment gateway error
@@ -249,6 +265,7 @@ Retrieve comprehensive membership statistics and analytics.
 **Authorization:** Requires admin role in JWT token
 
 **Response (200 OK):**
+
 ```json
 {
   "success": true,
@@ -272,11 +289,13 @@ Retrieve comprehensive membership statistics and analytics.
 ```
 
 **Error Responses:**
+
 - `403 Forbidden`: User does not have admin role
 - `401 Unauthorized`: Invalid or missing JWT token
 - `500 Internal Server Error`: Database error
 
 **Metrics Explained:**
+
 - **MRR (Monthly Recurring Revenue):** Total monthly revenue from all active subscriptions
 - **Active Members:** Count of customers with active subscriptions
 - **Churn Rate:** Percentage of members who cancelled in last 30 days
@@ -292,11 +311,13 @@ Calculate the membership discount for a given order subtotal.
 **Endpoint:** `GET /api/memberships/discount/:customerId?subtotal=100.00`
 
 **Query Parameters:**
+
 - `subtotal` (required): Order subtotal before discount
 
 **Example:** `GET /api/memberships/discount/CUST_12345?subtotal=150.00`
 
 **Response (200 OK) - With Membership:**
+
 ```json
 {
   "success": true,
@@ -309,6 +330,7 @@ Calculate the membership discount for a given order subtotal.
 ```
 
 **Response (200 OK) - No Membership:**
+
 ```json
 {
   "success": true,
@@ -320,12 +342,14 @@ Calculate the membership discount for a given order subtotal.
 ```
 
 **Error Responses:**
+
 - `400 Bad Request`: Missing subtotal parameter
 - `401 Unauthorized`: Invalid or missing JWT token
 - `500 Internal Server Error`: Database error
 
 **Usage:**
 This endpoint should be called during checkout to:
+
 1. Check if customer has active membership
 2. Calculate discount amount
 3. Display savings to customer
@@ -473,15 +497,18 @@ CREATE INDEX idx_tier ON `commerce.memberships`(tier);
 The system sends automated emails for the following events:
 
 ### 1. Welcome Email
+
 - **Trigger:** New subscription created
 - **Template:** `membership_welcome`
 - **Includes:** Tier benefits, pricing, next billing date
 
 ### 2. Upgrade Confirmation (Future Enhancement)
+
 - **Trigger:** Tier upgrade completed
 - **Includes:** New benefits, prorated charge amount
 
 ### 3. Cancellation Confirmation (Future Enhancement)
+
 - **Trigger:** Subscription cancelled
 - **Includes:** Effective end date, access until billing period ends
 
@@ -603,6 +630,7 @@ A complete three-tier subscription membership system has been implemented at `/b
 ## Files Created
 
 ### Core Implementation
+
 1. **`/backend/integration-service/src/membership.js`** (820 lines)
    - Complete membership system implementation
    - REST API endpoints for all membership operations
@@ -613,6 +641,7 @@ A complete three-tier subscription membership system has been implemented at `/b
    - Comprehensive metrics and analytics
 
 ### Tests
+
 2. **`/backend/integration-service/src/membership.test.js`** (370 lines)
    - 39 comprehensive tests (all passing)
    - Tests for tier configurations, discounts, business logic
@@ -622,6 +651,7 @@ A complete three-tier subscription membership system has been implemented at `/b
    - Date handling and edge cases
 
 ### Documentation
+
 3. **`MEMBERSHIP_API.md`** (Complete API documentation)
    - All 6 REST endpoints documented
    - Request/response examples
@@ -657,6 +687,7 @@ A complete three-tier subscription membership system has been implemented at `/b
 The membership system has been fully integrated into the integration-service:
 
 **Modified Files:**
+
 - `/backend/integration-service/src/index.js` (Lines 7, 43)
   - Import: `const { router: membershipRoutes } = require('./membership');`
   - Mount: `app.use(membershipRoutes);`
@@ -713,6 +744,7 @@ All endpoints require JWT authentication:
 ## Features Implemented
 
 ### ✅ Core Features
+
 - [x] Three membership tiers (Bronze, Silver, Gold)
 - [x] Monthly recurring billing
 - [x] Automatic discount calculation at checkout
@@ -721,6 +753,7 @@ All endpoints require JWT authentication:
 - [x] Membership status tracking
 
 ### ✅ Payment Integration
+
 - [x] KAJA/Authorize.Net gateway integration
 - [x] Subscription creation
 - [x] Recurring billing support
@@ -728,12 +761,14 @@ All endpoints require JWT authentication:
 - [x] Payment method tokenization
 
 ### ✅ Data Storage
+
 - [x] BigQuery table schema
 - [x] Automatic table creation
 - [x] Membership data persistence
 - [x] Query optimization
 
 ### ✅ Analytics & Metrics
+
 - [x] Monthly Recurring Revenue (MRR)
 - [x] Churn rate calculation
 - [x] Tier distribution tracking
@@ -741,17 +776,20 @@ All endpoints require JWT authentication:
 - [x] Active member count
 
 ### ✅ Email Notifications
+
 - [x] Welcome email integration
 - [x] Email service API calls
 - [x] Template data structure
 
 ### ✅ Security
+
 - [x] JWT authentication on all endpoints
 - [x] Admin role authorization for stats
 - [x] Input validation
 - [x] Error handling
 
 ### ✅ Testing
+
 - [x] 39 comprehensive tests
 - [x] 100% test pass rate
 - [x] Business logic validation
@@ -762,6 +800,7 @@ All endpoints require JWT authentication:
 ### 1. Install Dependencies
 
 All required dependencies are already in `package.json`:
+
 - `@google-cloud/bigquery` - BigQuery client
 - `express` - Web framework
 - `axios` - HTTP client for email service
@@ -778,6 +817,7 @@ cp .env.membership.example .env
 ```
 
 Required variables:
+
 - `GCP_PROJECT_ID` - Google Cloud project ID
 - `GOOGLE_APPLICATION_CREDENTIALS` - Path to service account key
 - `AUTHORIZE_NET_API_LOGIN_ID` - KAJA gateway login
@@ -791,6 +831,7 @@ npm test src/membership.test.js
 ```
 
 Expected output:
+
 ```
 Test Suites: 1 passed, 1 total
 Tests:       39 passed, 39 total
@@ -870,6 +911,7 @@ CREATE INDEX idx_status ON `your-project.commerce.memberships`(status);
    - Set `AUTHORIZE_NET_SANDBOX=false` for production
 
 3. **Test connectivity:**
+
    ```javascript
    // The KAJA gateway will log connection attempts
    // Check logs for: "Creating KAJA subscription"
@@ -1035,6 +1077,7 @@ logger.info('Membership cancelled', {
 ### Issue: "BigQuery not configured"
 
 **Solution:** Set required environment variables:
+
 ```bash
 export GCP_PROJECT_ID="your-project-id"
 export GOOGLE_APPLICATION_CREDENTIALS="/path/to/key.json"
@@ -1044,6 +1087,7 @@ export BIGQUERY_ENABLED=true
 ### Issue: "Payment processing failed"
 
 **Solution:** Check KAJA credentials:
+
 ```bash
 # Verify credentials are set
 echo $AUTHORIZE_NET_API_LOGIN_ID
@@ -1056,6 +1100,7 @@ echo $AUTHORIZE_NET_SANDBOX  # Should be 'true' for testing
 ### Issue: "Invalid token"
 
 **Solution:** Verify JWT configuration:
+
 ```bash
 # Ensure JWT secret is set
 echo $JWT_SECRET
@@ -1067,6 +1112,7 @@ echo $JWT_SECRET
 ### Issue: "Insufficient permissions"
 
 **Solution:** For admin endpoints, JWT must include admin role:
+
 ```javascript
 // JWT payload must include:
 {
@@ -1080,16 +1126,19 @@ echo $JWT_SECRET
 ## Performance Considerations
 
 ### Caching
+
 - Membership data is cached in BigQuery
 - Consider adding Redis cache for frequently accessed memberships
 - Cache discount calculations for active sessions
 
 ### Database Optimization
+
 - Index on `customer_id` for fast lookups
 - Index on `status` for analytics queries
 - Consider partitioning by date for large datasets
 
 ### Rate Limiting
+
 - Implement rate limiting on subscription creation
 - Limit admin stats queries to prevent abuse
 - Cache stats data for 5-minute intervals
@@ -1120,6 +1169,7 @@ Priority features for next iteration:
 ## Support and Maintenance
 
 ### Regular Tasks
+
 - Monitor MRR and churn rate weekly
 - Review failed payments daily
 - Update tier benefits based on customer feedback
@@ -1127,6 +1177,7 @@ Priority features for next iteration:
 - Optimize break-even points quarterly
 
 ### Code Maintenance
+
 - Update dependencies monthly
 - Review and update tests
 - Monitor API response times
@@ -1144,6 +1195,7 @@ Priority features for next iteration:
 ## Contact
 
 For questions or issues:
+
 - Technical Issues: Backend team
 - Payment Gateway: KAJA/Authorize.Net support
 - BigQuery: Data engineering team
@@ -1154,6 +1206,7 @@ For questions or issues:
 **Implementation Status:** ✅ COMPLETE
 
 All requirements have been successfully implemented and tested:
+
 - ✅ Three membership tiers with pricing
 - ✅ REST API endpoints (6 total)
 - ✅ KAJA payment gateway integration
@@ -1176,6 +1229,7 @@ All requirements have been successfully implemented and tested:
 ### 1. Customer Subscribes to Silver Membership
 
 **Frontend Flow:**
+
 1. Customer selects Silver tier ($97/month)
 2. Customer enters payment method
 3. Frontend calls subscribe endpoint
@@ -1215,6 +1269,7 @@ const subscribeToMembership = async () => {
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -1238,6 +1293,7 @@ const subscribeToMembership = async () => {
 ### 2. Apply Membership Discount at Checkout
 
 **Checkout Flow:**
+
 1. Customer adds items to cart
 2. System checks for membership
 3. Discount automatically applied
@@ -1430,6 +1486,7 @@ const upgradeMembership = async (customerId, newTier) => {
 ```
 
 **Timeline Example:**
+
 - Oct 1: Customer subscribes to Bronze ($47/month)
 - Oct 15: Customer upgrades to Gold
   - Immediate charge: $150 (proration: $197 - $47)
@@ -1512,6 +1569,7 @@ const MembershipDashboard = () => {
 ```
 
 **Example Output:**
+
 ```
 Membership Analytics
 
@@ -1664,10 +1722,12 @@ console.log(order);
 **Scenario:** Customer spends $500/month on products
 
 **Without Membership:**
+
 - Monthly spend: $500
 - Annual spend: $6,000
 
 **With Bronze ($47/month, 10% off):**
+
 - Product cost: $500 × 0.90 = $450
 - Membership: $47
 - Total: $497/month
@@ -1675,6 +1735,7 @@ console.log(order);
 - **Savings: $36/year**
 
 **With Silver ($97/month, 20% off):**
+
 - Product cost: $500 × 0.80 = $400
 - Membership: $97
 - Total: $497/month
@@ -1682,6 +1743,7 @@ console.log(order);
 - **Savings: $36/year**
 
 **With Gold ($197/month, 30% off):**
+
 - Product cost: $500 × 0.70 = $350
 - Membership: $197
 - Total: $547/month
@@ -1697,12 +1759,14 @@ console.log(order);
 **Scenario:** Customer spends $800/month, values exclusive access
 
 **With Gold ($197/month, 30% off):**
+
 - Product cost: $800 × 0.70 = $560
 - Membership: $197
 - Total: $757/month
 - Annual total: $9,084
 
 **Without Membership:**
+
 - Annual spend: $9,600
 
 **Annual savings: $516 + VIP benefits**
@@ -1714,10 +1778,12 @@ console.log(order);
 **Scenario:** Customer spends $100/month on products
 
 **Without Membership:**
+
 - Monthly spend: $100
 - Annual spend: $1,200
 
 **With Bronze ($47/month, 10% off):**
+
 - Product cost: $100 × 0.90 = $90
 - Membership: $47
 - Total: $137/month
@@ -1921,6 +1987,7 @@ Import this collection:
 ## Quick Examples
 
 ### Subscribe
+
 ```bash
 curl -X POST http://localhost:3005/api/memberships/subscribe \
   -H "Authorization: Bearer TOKEN" \
@@ -1934,18 +2001,21 @@ curl -X POST http://localhost:3005/api/memberships/subscribe \
 ```
 
 ### Get Membership
+
 ```bash
 curl http://localhost:3005/api/memberships/CUST_123 \
   -H "Authorization: Bearer TOKEN"
 ```
 
 ### Calculate Discount
+
 ```bash
 curl "http://localhost:3005/api/memberships/discount/CUST_123?subtotal=200" \
   -H "Authorization: Bearer TOKEN"
 ```
 
 ### Upgrade
+
 ```bash
 curl -X PUT http://localhost:3005/api/memberships/CUST_123/upgrade \
   -H "Authorization: Bearer TOKEN" \
@@ -1954,6 +2024,7 @@ curl -X PUT http://localhost:3005/api/memberships/CUST_123/upgrade \
 ```
 
 ### Cancel
+
 ```bash
 curl -X PUT http://localhost:3005/api/memberships/CUST_123/cancel \
   -H "Authorization: Bearer TOKEN" \
@@ -1962,6 +2033,7 @@ curl -X PUT http://localhost:3005/api/memberships/CUST_123/cancel \
 ```
 
 ### Stats (Admin)
+
 ```bash
 curl http://localhost:3005/api/memberships/stats \
   -H "Authorization: Bearer ADMIN_TOKEN"
@@ -2010,6 +2082,7 @@ const finalTotal = subtotal - discountAmount;
 ```
 
 Example:
+
 - Subtotal: $200.00
 - Silver (20%): -$40.00
 - Total: $160.00
@@ -2041,6 +2114,7 @@ backend/integration-service/
 ## Integration Points
 
 ### Frontend Checkout
+
 ```javascript
 // 1. Get discount
 const discount = await fetch(`/api/memberships/discount/${customerId}?subtotal=${total}`);
@@ -2052,6 +2126,7 @@ if (discount.hasDiscount) {
 ```
 
 ### Backend Order Processing
+
 ```javascript
 const { calculateMembershipDiscount } = require('./membership');
 
@@ -2063,6 +2138,7 @@ const discount = membership
 ```
 
 ### Admin Dashboard
+
 ```javascript
 // Display metrics
 const { stats } = await fetch('/api/memberships/stats');
@@ -2125,6 +2201,7 @@ commerce.memberships (
 ## Status
 
 ✅ **COMPLETE AND TESTED**
+
 - 742 lines of production code
 - 412 lines of test code
 - 39/39 tests passing
@@ -2134,6 +2211,7 @@ commerce.memberships (
 ---
 
 **Quick Start:**
+
 1. Copy `.env.membership.example` to `.env`
 2. Configure environment variables
 3. Run `npm test src/membership.test.js`

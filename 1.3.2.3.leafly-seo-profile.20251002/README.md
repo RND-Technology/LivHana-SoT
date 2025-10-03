@@ -6,9 +6,11 @@
 **Created:** 2025-10-02
 
 ## Objective
+
 Optimize Leafly dispensary profile to rank #1 for "San Antonio dispensary" and drive +500 profile views/month with 20% conversion to in-store visits
 
 ## Success Criteria
+
 - [ ] Business description rewritten (SEO-optimized, 300+ words)
 - [ ] All product descriptions optimized (100 products)
 - [ ] 5 compelling weekly deals created
@@ -19,7 +21,9 @@ Optimize Leafly dispensary profile to rank #1 for "San Antonio dispensary" and d
 - [ ] Deal redemption: 15-25% rate
 
 ## Strategic Context
+
 **Why Priority #020:**
+
 - **Traffic Source:** Leafly = #1 discovery platform for cannabis
 - **Revenue Impact:** +$10K monthly (500 views × 20% conversion × $100 avg order)
 - **Competitive Position:** Currently #3, need to be #1
@@ -27,12 +31,14 @@ Optimize Leafly dispensary profile to rank #1 for "San Antonio dispensary" and d
 - **Zero Cost:** Profile optimization is free
 
 ## Timeline
+
 - **Start:** 2025-10-02
 - **Optimization:** 2025-10-03 (2 hours work)
 - **Review period:** 2025-10-03 to 2025-10-10
 - **Live:** 2025-10-10
 
 ## ROI Estimate
+
 - **Investment:** 2 hours optimization
 - **Monthly Revenue:** +$10K (incremental)
 - **Annual Revenue:** +$120K
@@ -40,13 +46,16 @@ Optimize Leafly dispensary profile to rank #1 for "San Antonio dispensary" and d
 - **ROI:** Infinite (free traffic)
 
 ## Current Profile Status
+
 **What's Good:**
+
 - ✅ Live integration (Jesse built it with Peter, Leafly CEO)
 - ✅ Product catalog synced from LightSpeed
 - ✅ Location and hours correct
 - ✅ Basic business info present
 
 **What Needs Work:**
+
 - ❌ Generic business description (not SEO optimized)
 - ❌ Thin product descriptions (just strain names)
 - ❌ No weekly deals active
@@ -55,7 +64,9 @@ Optimize Leafly dispensary profile to rank #1 for "San Antonio dispensary" and d
 - ❌ Not optimized for local search
 
 ## Tasks
+
 ### Phase 1: Content Optimization (Today)
+
 - [ ] Rewrite business description:
   - Include "San Antonio dispensary" keyword 3-5x
   - Highlight unique selling points (DSHS licensed, veteran-owned, quality focus)
@@ -81,6 +92,7 @@ Optimize Leafly dispensary profile to rank #1 for "San Antonio dispensary" and d
   - First-Time Friday: 20% off entire order (new customers)
 
 ### Phase 2: Review Generation (This Week)
+
 - [ ] SMS review request after purchase:
   "Thanks for visiting Reggie & Dro! Share your experience on Leafly: [link]"
 
@@ -93,6 +105,7 @@ Optimize Leafly dispensary profile to rank #1 for "San Antonio dispensary" and d
 - [ ] Target: 5 reviews/week = 50+ reviews in 10 weeks
 
 ### Phase 3: Visual Refresh (Next Week)
+
 - [ ] New storefront photos (exterior, entrance, signage)
 - [ ] Interior photos (sales floor, display cases, checkout)
 - [ ] Product photography (top 20 products, professional lighting)
@@ -100,24 +113,29 @@ Optimize Leafly dispensary profile to rank #1 for "San Antonio dispensary" and d
 - [ ] Upload 15-20 high-quality photos
 
 ## SEO Keywords to Target
+
 **Primary:**
+
 - "San Antonio dispensary"
 - "San Antonio cannabis"
 - "San Antonio THC-A"
 
 **Secondary:**
+
 - "Stone Oak dispensary"
 - "North San Antonio cannabis"
 - "Bexar County dispensary"
 - "Texas cannabis shop"
 
 **Long-tail:**
+
 - "best dispensary San Antonio"
 - "veteran-owned dispensary Texas"
 - "organic cannabis San Antonio"
 - "same-day delivery dispensary SA" (when live)
 
 ## Prompt for Claude Code (Ready to Execute)
+
 ```
 Optimize Reggie & Dro Leafly profile for SEO dominance:
 
@@ -155,17 +173,21 @@ Target: #1 ranking "San Antonio dispensary", +500 views/month, 4.5+ stars
 ```
 
 ## Success Metrics
+
 **Week 1:**
+
 - Profile views: Baseline measurement
 - Search ranking: Track position for target keywords
 - Deal redemptions: Count how many customers use deals
 
 **Week 2-4:**
+
 - Profile views: +25% increase
 - Reviews: 15 new reviews
 - Search ranking: Move from #3 to #2
 
 **Week 4-8:**
+
 - Profile views: +50% increase (500+ new views)
 - Reviews: 50+ total reviews
 - Search ranking: #1 for "San Antonio dispensary"
@@ -173,6 +195,7 @@ Target: #1 ranking "San Antonio dispensary", +500 views/month, 4.5+ stars
 - Revenue: +$10K monthly
 
 ## Next Actions (Tomorrow)
+
 1. Execute Claude Code optimization prompt in Cursor
 2. Review generated content
 3. Upload to Leafly profile
@@ -180,10 +203,12 @@ Target: #1 ranking "San Antonio dispensary", +500 views/month, 4.5+ stars
 5. Monitor analytics daily
 
 ## Notes
+
 **Jesse's Leafly Connection:**
 Built integration with Peter (Leafly CEO) = direct line for support/features
 
 **Competitive Landscape:**
+
 - Competitor #1: Generic profile, weak descriptions
 - Competitor #2: Good photos, thin content
 - Reggie & Dro: Can dominate with better content + reviews

@@ -19,14 +19,16 @@ LivHana's LightSpeed integration is currently in **MOCK MODE** with a functional
 
 **BOTTOM LINE:** The technical infrastructure is solid. The revenue optimization layer is missing.
 
-### Key Findings:
+### Key Findings
+
 - ✅ **Technical Foundation:** Sound architecture matching Square implementation
 - ⚠️ **Conversion Gaps:** Missing 7 critical revenue drivers worth $50K+/month
 - ⚠️ **Customer Experience:** No loyalty, subscription, or checkout optimization
 - ⚠️ **Data Intelligence:** Limited customer enrichment and segmentation
 - ⚠️ **Payment Speed:** Single-gateway dependency, no funnel optimization
 
-### ROI Potential:
+### ROI Potential
+
 - **Quick Wins (Week 1):** +15-25% conversion rate → $15K-25K additional revenue
 - **Medium-term (Month 1):** +40-60% AOV through optimization → $40K-60K additional revenue
 - **Long-term (Quarter 1):** 3x LTV through retention features → $300K+ additional annual revenue
@@ -38,6 +40,7 @@ LivHana's LightSpeed integration is currently in **MOCK MODE** with a functional
 ### 1.1 Architecture Overview
 
 **Files Analyzed:**
+
 - `/backend/integration-service/src/lightspeed-sync-scheduler.js` (Lines 1-38)
 - `/backend/integration-service/scripts/sync-lightspeed-to-bigquery.js` (Lines 1-356)
 - `/backend/integration-service/LIGHTSPEED_SETUP.md` (Complete documentation)
@@ -60,6 +63,7 @@ LivHana's LightSpeed integration is currently in **MOCK MODE** with a functional
 ```
 
 **Data Flow:**
+
 1. **Scheduler** (`lightspeed-sync-scheduler.js:13-32`): Cron job every 15 minutes
 2. **Sync Script** (`sync-lightspeed-to-bigquery.js:329-353`): Fetches transactions + products
 3. **BigQuery Storage** (`bigquery_live.js:67-127`): Analytics queries and caching
@@ -68,6 +72,7 @@ LivHana's LightSpeed integration is currently in **MOCK MODE** with a functional
 ### 1.2 Data Schema Analysis
 
 **LightSpeed Transactions Table** (Lines 66-76 in LIGHTSPEED_SETUP.md):
+
 ```sql
 analytics.lightspeed_transactions
 ├─ id: STRING (Transaction ID)
@@ -81,6 +86,7 @@ analytics.lightspeed_transactions
 ```
 
 **LightSpeed Products Table** (Lines 78-88 in LIGHTSPEED_SETUP.md):
+
 ```sql
 analytics.lightspeed_products
 ├─ id: STRING (Product ID)
@@ -119,6 +125,7 @@ analytics.lightspeed_products
 ### 2.1 Product Sync Efficiency (Priority: MEDIUM)
 
 **Current Implementation** (`sync-lightspeed-to-bigquery.js:239-305`):
+
 ```javascript
 // Fetches ALL products every sync
 while (hasMore) {
@@ -135,11 +142,13 @@ while (hasMore) {
 **BOTTLENECK:** Full catalog sync every 15 minutes wastes API calls and processing time.
 
 **IMPACT ON CONVERSION:**
+
 - Slow product updates (15min lag on price changes)
 - API rate limits could block critical syncs during high-traffic periods
 - No real-time inventory for "low stock" urgency messaging
 
 **OPTIMIZATION OPPORTUNITY:**
+
 ```javascript
 // Incremental sync with change detection
 const lastSync = await getLastSyncTimestamp();
@@ -151,6 +160,7 @@ const params = {
 ```
 
 **ROI PROJECTION:**
+
 - **Dev Time:** 4 hours
 - **Revenue Impact:** +$5K/month from real-time inventory urgency
 - **Cost Savings:** 80% reduction in API calls (avoid rate limits)
@@ -160,6 +170,7 @@ const params = {
 **Current Gap:** Customer ID captured but no enrichment for segmentation.
 
 **Missing Fields:**
+
 - Email (for remarketing)
 - Phone (for SMS campaigns)
 - First/last purchase date (for win-back campaigns)
@@ -168,6 +179,7 @@ const params = {
 - Preferred product categories (for personalization)
 
 **CONVERSION IMPACT:**
+
 - Cannot identify high-value customers for VIP treatment
 - No data for "win back lapsed customers" campaign (11,348 past customers!)
 - Missing segmentation for targeted email campaigns
@@ -176,6 +188,7 @@ const params = {
 **Code Location:** `sync-lightspeed-to-bigquery.js:194-205`
 
 **OPTIMIZATION OPPORTUNITY:**
+
 ```javascript
 // Current transaction sync (Line 194-205)
 transactions.push({
@@ -209,6 +222,7 @@ transactions.push({
 ```
 
 **BigQuery Schema Enhancement:**
+
 ```sql
 -- Add to lightspeed_transactions table
 ALTER TABLE analytics.lightspeed_transactions
@@ -221,6 +235,7 @@ ADD COLUMN line_items INTEGER;
 ```
 
 **ROI PROJECTION:**
+
 - **Dev Time:** 8 hours
 - **Revenue Impact:** +$30K/month from targeted remarketing to 11,348 customers
 - **Conversion Rate:** 4.4% email conversion (per Texas Takeover plan) = 500 customers × $150 AOV = $75K/month potential
@@ -230,6 +245,7 @@ ADD COLUMN line_items INTEGER;
 **Current Gap:** No funnel tracking between product view → cart → checkout → purchase.
 
 **Missing Analytics:**
+
 - Product page views
 - Add-to-cart events
 - Cart abandonment rate
@@ -237,6 +253,7 @@ ADD COLUMN line_items INTEGER;
 - Payment failures
 
 **CONVERSION IMPACT:**
+
 - Cannot identify drop-off points in sales funnel
 - No cart abandonment recovery (typically 70% of carts abandoned!)
 - Missing A/B test data for product page optimization
@@ -245,6 +262,7 @@ ADD COLUMN line_items INTEGER;
 **Code Location:** None (feature doesn't exist)
 
 **OPTIMIZATION OPPORTUNITY:**
+
 ```javascript
 // NEW FILE: backend/integration-service/scripts/sync-lightspeed-events.js
 async function syncFunnelEvents() {
@@ -262,6 +280,7 @@ async function syncFunnelEvents() {
 ```
 
 **BigQuery Schema:**
+
 ```sql
 CREATE TABLE analytics.lightspeed_funnel_events (
   event_id STRING,
@@ -274,6 +293,7 @@ CREATE TABLE analytics.lightspeed_funnel_events (
 ```
 
 **ROI PROJECTION:**
+
 - **Dev Time:** 12 hours
 - **Revenue Impact:** +$20K/month from cart abandonment recovery (10% recovery × 70% abandon rate × $3,226/day × 30 days)
 - **Conversion Rate Boost:** 5-10% from identifying and fixing funnel drop-offs
@@ -283,6 +303,7 @@ CREATE TABLE analytics.lightspeed_funnel_events (
 **Current Implementation:** KAJA payment gateway only (via membership.js integration).
 
 **Single Gateway Risk:**
+
 - Payment failures = lost sales
 - No fallback if KAJA/Authorize.net has downtime
 - No A/B testing of payment processors for conversion rate
@@ -290,6 +311,7 @@ CREATE TABLE analytics.lightspeed_funnel_events (
 **Code Location:** `backend/integration-service/src/membership.js:134-223`
 
 **OPTIMIZATION OPPORTUNITY:**
+
 ```javascript
 // Multi-gateway support with failover
 class PaymentGatewayManager {
@@ -315,6 +337,7 @@ class PaymentGatewayManager {
 ```
 
 **ROI PROJECTION:**
+
 - **Dev Time:** 16 hours
 - **Revenue Impact:** +$10K/month from prevented payment failures (2-3% failure rate typical)
 - **Uptime:** 99.99% vs 99.9% (10x fewer payment outages)
@@ -324,6 +347,7 @@ class PaymentGatewayManager {
 **Current Gap:** Membership system exists but not integrated with LightSpeed sync.
 
 **Missing Features:**
+
 - Automatic loyalty points for purchases
 - Subscription discount application at checkout
 - Member tier visibility in LightSpeed
@@ -332,12 +356,14 @@ class PaymentGatewayManager {
 **Code Location:** `backend/integration-service/src/membership.js:328-335` (discount calculation exists but not automated)
 
 **CONVERSION IMPACT:**
+
 - Manual discount application = friction = lower conversion
 - No automated loyalty = lower LTV
 - Missing review generation = no social proof
 - Subscription value not visible at checkout
 
 **OPTIMIZATION OPPORTUNITY:**
+
 ```javascript
 // NEW FILE: backend/integration-service/src/lightspeed-loyalty-sync.js
 async function syncPurchaseToLoyalty(transaction) {
@@ -360,6 +386,7 @@ async function syncPurchaseToLoyalty(transaction) {
 ```
 
 **ROI PROJECTION:**
+
 - **Dev Time:** 20 hours
 - **Revenue Impact:** +$40K/month from loyalty-driven repeat purchases (Texas Takeover plan: 500 points = free eighth = incentive to spend $500)
 - **LTV Increase:** 3x (per membership.js:397 - 12-month LTV calculation)
@@ -370,6 +397,7 @@ async function syncPurchaseToLoyalty(transaction) {
 **Current Gap:** Generic product catalog with no Texas-specific positioning.
 
 **Missing Features:**
+
 - Texas-themed product categorization ("Brick Weed," "Texas Gold," "Lone Star OG")
 - Compliance labeling (THC%, COA badge, age gate)
 - Local pickup optimization (Stone Oak + Alice locations)
@@ -378,6 +406,7 @@ async function syncPurchaseToLoyalty(transaction) {
 **Code Location:** `sync-lightspeed-to-bigquery.js:284-294` (product mapping)
 
 **OPTIMIZATION OPPORTUNITY:**
+
 ```javascript
 // Enhanced product mapping with Texas positioning
 products.push({
@@ -419,6 +448,7 @@ function getTexasTierName(category) {
 ```
 
 **ROI PROJECTION:**
+
 - **Dev Time:** 6 hours
 - **Revenue Impact:** +$15K/month from Texas-specific positioning (unique "Brick Weed" messaging per Texas Takeover plan)
 - **Conversion Rate:** +5-8% from veteran discount visibility
@@ -430,11 +460,13 @@ function getTexasTierName(category) {
 **Code Location:** `lightspeed-sync-scheduler.js:8` (sync interval hardcoded)
 
 **CONVERSION IMPACT:**
+
 - Cannot display real-time low-stock warnings
 - Missing FOMO (fear of missing out) conversion driver
 - Product sells out before customers see it's in stock
 
 **OPTIMIZATION OPPORTUNITY:**
+
 ```javascript
 // backend/integration-service/src/lightspeed-realtime-inventory.js
 const EventEmitter = require('events');
@@ -487,6 +519,7 @@ io.on('connection', (socket) => {
 ```
 
 **ROI PROJECTION:**
+
 - **Dev Time:** 10 hours
 - **Revenue Impact:** +$12K/month from urgency-driven conversions (3-5% lift typical for FOMO messaging)
 - **Conversion Rate:** +3-5% on low-stock items
@@ -501,6 +534,7 @@ io.on('connection', (socket) => {
 **Lines:** 40-72
 
 **Current Issue:**
+
 ```javascript
 // Line 41-44: API Key stored in plain env var
 if (LIGHTSPEED_API_KEY) {
@@ -510,6 +544,7 @@ if (LIGHTSPEED_API_KEY) {
 ```
 
 **Improvement:**
+
 ```javascript
 // Use encrypted secrets with rotation
 const { SecretManagerServiceClient } = require('@google-cloud/secret-manager');
@@ -531,6 +566,7 @@ async function authenticate() {
 ```
 
 **Security ROI:**
+
 - Prevents API key leakage in logs
 - Enables key rotation without code changes
 - Compliance with PCI-DSS requirements for payment systems
@@ -541,6 +577,7 @@ async function authenticate() {
 **Lines:** 16-31
 
 **Current Issue:**
+
 ```javascript
 try {
   const output = execSync('node scripts/sync-lightspeed-to-bigquery.js', {
@@ -556,6 +593,7 @@ try {
 ```
 
 **Improvement:**
+
 ```javascript
 async function executeSyncWithRetry(maxRetries = 3, delay = 5000) {
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
@@ -594,6 +632,7 @@ async function executeSyncWithRetry(maxRetries = 3, delay = 5000) {
 ```
 
 **Reliability ROI:**
+
 - Prevents data gaps from transient API failures
 - Reduces ops team alert fatigue (auto-recovery)
 - Maintains sync continuity during LightSpeed API hiccups
@@ -604,6 +643,7 @@ async function executeSyncWithRetry(maxRetries = 3, delay = 5000) {
 **Lines:** 217-227
 
 **Current Implementation:**
+
 ```javascript
 // Batch size hardcoded to 1000
 const BATCH_SIZE = 1000;
@@ -616,6 +656,7 @@ for (let i = 0; i < transactions.length; i += BATCH_SIZE) {
 ```
 
 **Improvement:**
+
 ```javascript
 // Dynamic batch sizing based on row complexity
 function calculateOptimalBatchSize(rows) {
@@ -647,6 +688,7 @@ async function insertInOptimalBatches(table, rows) {
 ```
 
 **Performance ROI:**
+
 - 3-5x faster sync for large datasets
 - Reduces sync time from 5 minutes to ~1 minute
 - Prevents timeout errors during high-volume periods
@@ -659,6 +701,7 @@ async function insertInOptimalBatches(table, rows) {
 **Current Issue:** No validation before BigQuery insert = data quality issues.
 
 **Improvement:**
+
 ```javascript
 const Joi = require('joi');
 
@@ -699,6 +742,7 @@ await table.insert(validTransactions, {
 ```
 
 **Quality ROI:**
+
 - Prevents bad data from polluting analytics
 - Easier debugging of data issues
 - Compliance with data quality SLAs
@@ -761,6 +805,7 @@ function optimizeProductForTexas(product) {
 ```
 
 **ROI Projection:**
+
 - **Revenue Impact:** +$25K/month from tier-optimized messaging
 - **Conversion Rate:** +10-15% on "Brick Weed" tier (unique positioning)
 - **AOV Increase:** +$20 from strategic upselling (Brick → Value → Top Shelf)
@@ -830,6 +875,7 @@ async function sendWinBackCampaign(segment, tier) {
 ```
 
 **ROI Projection (Per Texas Takeover Plan):**
+
 - **Target:** 4.4% conversion of 11,348 customers = 500 orders
 - **AOV:** $150 per order
 - **Revenue:** 500 orders × $150 = $75,000 in Month 1
@@ -877,6 +923,7 @@ async function syncTransactions() {
 ```
 
 **ROI Projection:**
+
 - **Cost:** 10% discount on ~5% of orders = 0.5% revenue reduction
 - **Benefit:** Goodwill marketing + viral growth (veterans share discount)
 - **Net Impact:** +2-3% conversion rate from veteran community word-of-mouth
@@ -947,6 +994,7 @@ router.get('/api/pickup/availability/:productId/:location', async (req, res) => 
 ```
 
 **ROI Projection:**
+
 - **Conversion Lift:** +15-20% for local customers (same-day pickup urgency)
 - **Revenue Impact:** +$10K/month from local pickup conversions
 - **Cost Savings:** No shipping costs on pickup orders (~$5/order × 200 orders = $1K/month saved)
@@ -988,6 +1036,7 @@ router.get('/api/pickup/availability/:productId/:location', async (req, res) => 
 ### 5.4 Cumulative Impact Summary
 
 **Month 1 (Quick + Medium Wins Deployed):**
+
 - Total Dev Time: 84 hours (~2 weeks with 1 developer)
 - Revenue Increase: +$152K/month
 - Conversion Rate Boost: +25-40%
@@ -995,6 +1044,7 @@ router.get('/api/pickup/availability/:productId/:location', async (req, res) => 
 - **Net:** $152K revenue - $50K costs (dev + marketing) = **$102K net profit**
 
 **Quarter 1 (All Improvements Deployed):**
+
 - Total Dev Time: 184 hours (~1 month with 1 developer)
 - Annual Revenue Increase: +$525K/year
 - LTV Increase: 3x (from $600 → $1,800 per customer)
@@ -1002,6 +1052,7 @@ router.get('/api/pickup/availability/:productId/:location', async (req, res) => 
 - **Net:** $525K revenue - $100K costs = **$425K net profit increase**
 
 **Texas Takeover Goal Achievement:**
+
 - Target: $100K net sales + $100K profit in October 2025
 - Projected: $152K revenue + $102K profit in October 2025
 - **Result: 52% ABOVE TARGET** ✅
@@ -1015,6 +1066,7 @@ router.get('/api/pickup/availability/:productId/:location', async (req, res) => 
 **Focus:** Maximum ROI with minimal dev time
 
 **Day 1-3: Customer Enrichment**
+
 ```bash
 # File: sync-lightspeed-to-bigquery.js
 # Changes: Lines 194-205 (add customer fields)
@@ -1023,6 +1075,7 @@ router.get('/api/pickup/availability/:productId/:location', async (req, res) => 
 ```
 
 **Day 4-5: Texas Tier Positioning**
+
 ```bash
 # File: NEW - texas-market-optimizer.js
 # Integration: Product sync pipeline
@@ -1031,6 +1084,7 @@ router.get('/api/pickup/availability/:productId/:location', async (req, res) => 
 ```
 
 **Day 6-8: Real-Time Inventory**
+
 ```bash
 # File: NEW - lightspeed-realtime-inventory.js
 # Integration: WebSocket server for frontend
@@ -1039,6 +1093,7 @@ router.get('/api/pickup/availability/:productId/:location', async (req, res) => 
 ```
 
 **Day 9-10: Veteran Discount**
+
 ```bash
 # File: NEW - veteran-discount.js
 # Integration: Transaction sync pipeline
@@ -1049,6 +1104,7 @@ router.get('/api/pickup/availability/:productId/:location', async (req, res) => 
 ### Phase 2: Conversion Optimization (Week 3-4)
 
 **Week 3: Loyalty Integration**
+
 ```bash
 # File: NEW - lightspeed-loyalty-sync.js
 # Integration: Connect membership.js to sync pipeline
@@ -1057,6 +1113,7 @@ router.get('/api/pickup/availability/:productId/:location', async (req, res) => 
 ```
 
 **Week 3: Funnel Tracking**
+
 ```bash
 # File: NEW - sync-lightspeed-events.js
 # Integration: Event log API sync
@@ -1065,6 +1122,7 @@ router.get('/api/pickup/availability/:productId/:location', async (req, res) => 
 ```
 
 **Week 4: Local Pickup Optimization**
+
 ```bash
 # File: NEW - local-pickup-optimizer.js
 # Integration: Product API endpoints
@@ -1073,6 +1131,7 @@ router.get('/api/pickup/availability/:productId/:location', async (req, res) => 
 ```
 
 **Week 4: Payment Gateway Failover**
+
 ```bash
 # File: membership.js enhancement
 # Integration: Multi-gateway manager class
@@ -1083,24 +1142,28 @@ router.get('/api/pickup/availability/:productId/:location', async (req, res) => 
 ### Phase 3: Long-Term Growth (Month 2-3)
 
 **Month 2: Subscription System**
+
 - Build subscription management UI
 - Integrate with LightSpeed recurring billing
 - Launch 3-tier subscription plans
 - Marketing campaign: "Never Run Out" messaging
 
 **Month 2: Win-Back Automation**
+
 - Build customer segmentation queries
 - Create email campaign templates
 - Deploy win-back automation workflow
 - Target 11,348 past customers
 
 **Month 3: Referral Program**
+
 - Build referral tracking system
 - Create unique referral links per customer
 - Launch "Give $25, Get $25" campaign
 - Viral growth incentive: 1 lb free weed prize
 
 **Month 3: Advanced Segmentation**
+
 - Build RFM (Recency, Frequency, Monetary) analysis
 - Create customer persona dashboards
 - Deploy predictive LTV modeling
@@ -1116,11 +1179,13 @@ router.get('/api/pickup/availability/:productId/:location', async (req, res) => 
 **Impact:** HIGH (sync failures = data gaps)
 
 **Current Exposure:**
+
 - 15-minute sync interval = 96 API calls/day
 - Full catalog fetch = ~500 products × 96 = 48K API calls/day
 - LightSpeed limit: Unknown (need to check docs)
 
 **Mitigation:**
+
 ```javascript
 // Implement incremental sync (Lines 239-305 optimization)
 // Add rate limit monitoring
@@ -1145,11 +1210,13 @@ app.use('/api/lightspeed', apiLimiter);
 **Impact:** MEDIUM ($500-1000/month potential cost)
 
 **Current Exposure:**
+
 - 96 syncs/day × 1000 rows/sync = 96K rows/day = 2.88M rows/month
 - BigQuery pricing: $0.02/GB scanned (first 1TB free)
 - Estimated cost: ~$100/month at current volume
 
 **Mitigation:**
+
 ```javascript
 // Implement query result caching (30-second TTL already in place)
 // Partition tables by date for efficient queries
@@ -1178,11 +1245,13 @@ await table.create(options);
 **Impact:** HIGH (bad data = bad decisions)
 
 **Current Exposure:**
+
 - No validation before BigQuery insert
 - Missing fields = null values = incomplete analytics
 - Type mismatches = insert failures
 
 **Mitigation:**
+
 - Implement schema validation (Section 3.4)
 - Add data quality monitoring dashboard
 - Alert on anomalies (e.g., sudden drop in transactions)
@@ -1220,11 +1289,13 @@ async function monitorDataQuality() {
 **Impact:** CRITICAL (sync stops = no data)
 
 **Current Exposure:**
+
 - OAuth2 refresh token stored in env var
 - No automatic renewal on expiration
 - Manual intervention required to restore sync
 
 **Mitigation:**
+
 ```javascript
 // Implement automatic token refresh monitoring
 async function monitorTokenHealth() {
@@ -1253,6 +1324,7 @@ setInterval(monitorTokenHealth, 6 * 60 * 60 * 1000);
 ### Key Performance Indicators (KPIs)
 
 **Conversion Metrics:**
+
 ```javascript
 // backend/integration-service/src/conversion-metrics.js
 
@@ -1286,6 +1358,7 @@ async function calculateConversionMetrics() {
 ```
 
 **Success Targets (Month 1):**
+
 - Conversion Rate: 3% → 4.5% (+50%)
 - Average Order Value: $150 → $210 (+40%)
 - Cart Abandonment Recovery: 0% → 10%
@@ -1293,6 +1366,7 @@ async function calculateConversionMetrics() {
 - Customer LTV: $600 → $1,200 (+100%)
 
 **Dashboard Metrics:**
+
 ```javascript
 {
   "conversion_optimization": {
@@ -1338,6 +1412,7 @@ async function calculateConversionMetrics() {
 LivHana's LightSpeed integration has a **solid technical foundation** but is missing **7 critical revenue drivers** worth an estimated **$152K/month** in additional revenue.
 
 **The juice is worth the squeeze:**
+
 - 184 hours of dev time (~1 month)
 - $152K/month revenue increase
 - 52% above Texas Takeover goal
@@ -1372,6 +1447,7 @@ LivHana's LightSpeed integration has a **solid technical foundation** but is mis
 The Texas Takeover opportunity is time-sensitive (October 2025 = now). Quick wins in customer enrichment + Texas positioning can capture $72K/month with just 28 hours of dev work.
 
 **Priority Order:**
+
 1. Customer enrichment → Enables win-back campaign for 11,348 customers
 2. Texas tier positioning → Unique "Brick Weed" differentiator
 3. Real-time inventory → FOMO conversion driver
@@ -1409,17 +1485,20 @@ The Texas Takeover opportunity is time-sensitive (October 2025 = now). Quick win
 ## APPENDIX B: REVENUE CALCULATION DETAILS
 
 **Texas Takeover Goal:**
+
 - Target: $100K net sales in October 2025
 - Orders needed: 667 orders (at $150 AOV)
 - Daily target: 21.5 orders/day
 
 **Optimized Projection:**
+
 - Quick wins: +15-25% conversion → 25 orders/day
 - Medium wins: +40-60% AOV → $210 AOV
 - Monthly revenue: 25 orders/day × $210 × 31 days = **$162,750/month**
 - **Result:** 62.75% above target ✅
 
 **Profit Margin:**
+
 - Hemp flower: 50-70% margin (high margin product)
 - Cost of goods: $50-70/oz
 - Selling price: $50-300/oz (depending on tier)
@@ -1427,6 +1506,7 @@ The Texas Takeover opportunity is time-sensitive (October 2025 = now). Quick win
 - **Projected profit:** $162,750 × 0.60 = **$97,650/month**
 
 **Comparison to Goal:**
+
 - Revenue target: $100K → Actual: $162.75K (+62.75%)
 - Profit target: $100K → Actual: $97.65K (-2.35%, within margin of error)
 

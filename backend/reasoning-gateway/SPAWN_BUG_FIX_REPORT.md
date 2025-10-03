@@ -13,6 +13,7 @@
 ## 🎯 PROBLEM SUMMARY
 
 **Symptom:**
+
 - Self-improvement loop spawns 200+ bash processes on startup
 - `spawn /bin/sh EAGAIN` error (resource temporarily unavailable)
 - System becomes unresponsive
@@ -22,6 +23,7 @@
 JavaScript `setInterval()` has a maximum safe value of **2^31-1 = 2,147,483,647 milliseconds** (~24.8 days).
 
 The monthly refactoring job used:
+
 ```javascript
 setInterval(async () => {
   await this.generateMonthlyRefactoringReport();
@@ -31,12 +33,14 @@ setInterval(async () => {
 **2,592,000,000ms > 2,147,483,647ms** → **INTEGER OVERFLOW!**
 
 Node.js warns:
+
 ```
 TimeoutOverflowWarning: 2592000000 does not fit into a 32-bit signed integer.
 Timeout duration was set to 1.
 ```
 
 The interval becomes **1ms** instead of **30 days**, causing:
+
 - Job runs every millisecond
 - Each run spawns bash processes
 - Process table exhausts in seconds
@@ -47,6 +51,7 @@ The interval becomes **1ms** instead of **30 days**, causing:
 ## ✅ SOLUTION APPLIED (TIER 1)
 
 ### **Fix 1: Safe Interval Constants**
+
 ```javascript
 // Added explicit constants with documentation
 const MAX_SAFE_INTERVAL = 2147483647; // 2^31-1 milliseconds
@@ -56,6 +61,7 @@ const THIRTY_DAYS = 30 * ONE_DAY; // UNSAFE: 2,592,000,000ms > MAX
 ```
 
 ### **Fix 2: Recursive setTimeout for Long Intervals**
+
 For intervals > 24.8 days, use recursive `setTimeout` instead of `setInterval`:
 
 ```javascript
@@ -80,6 +86,7 @@ scheduleMonthlyReport();
 ```
 
 ### **Fix 3: Comprehensive Documentation**
+
 Added JSDoc comments explaining the 32-bit limit and why recursive setTimeout is used for long intervals.
 
 ---
@@ -91,6 +98,7 @@ Added JSDoc comments explaining the 32-bit limit and why recursive setTimeout is
 **Lines Changed:** 925-976 (52 lines)
 
 **Before:**
+
 ```javascript
 async startScheduledJobs() {
   this.logger.info('Starting scheduled improvement jobs');
@@ -116,6 +124,7 @@ async startScheduledJobs() {
 ```
 
 **After:**
+
 ```javascript
 /**
  * 9. SCHEDULED JOBS
@@ -176,6 +185,7 @@ async startScheduledJobs() {
 ## 🧪 TESTING
 
 ### **Unit Test Added:**
+
 ```javascript
 it('should use safe intervals for scheduled jobs', () => {
   const MAX_SAFE_INTERVAL = 2147483647;
@@ -192,6 +202,7 @@ it('should use safe intervals for scheduled jobs', () => {
 ```
 
 ### **Manual Testing:**
+
 ```bash
 # 1. Enable self-improvement
 echo "ENABLE_SELF_IMPROVEMENT=true" >> .env
@@ -228,6 +239,7 @@ watch -n 1 'ps aux | grep node | wc -l'
 ## 📊 IMPACT ASSESSMENT
 
 ### **Before Fix:**
+
 - ❌ Service crashes immediately on startup
 - ❌ 200+ bash processes spawned in 10 seconds
 - ❌ System resource exhaustion (`EAGAIN`)
@@ -235,6 +247,7 @@ watch -n 1 'ps aux | grep node | wc -l'
 - ❌ Self-improvement loop non-functional
 
 ### **After Fix:**
+
 - ✅ Service starts cleanly
 - ✅ 1-2 stable node processes
 - ✅ No spawn errors
@@ -248,6 +261,7 @@ watch -n 1 'ps aux | grep node | wc -l'
 ## 🚀 DEPLOYMENT STEPS
 
 ### **1. Update .env**
+
 ```bash
 cd backend/reasoning-gateway
 
@@ -256,12 +270,14 @@ sed -i '' 's/ENABLE_SELF_IMPROVEMENT=false/ENABLE_SELF_IMPROVEMENT=true/' .env
 ```
 
 ### **2. Run Tests**
+
 ```bash
 npm test
 # All 17 tests should pass, including new overflow test
 ```
 
 ### **3. Restart Service**
+
 ```bash
 # Kill any running instances
 lsof -ti:4002 | xargs kill -9
@@ -275,6 +291,7 @@ tail -f logs/*.log | grep -i "spawn\|EAGAIN\|overflow"
 ```
 
 ### **4. Monitor for 5 Minutes**
+
 ```bash
 # Watch process count
 watch -n 5 'ps aux | grep node'
@@ -284,6 +301,7 @@ watch -n 5 'ps aux | grep node'
 ```
 
 ### **5. Verify Scheduled Jobs**
+
 ```bash
 # Check logs for confirmation
 curl -s http://localhost:4002/api/improvements/metrics \
@@ -300,6 +318,7 @@ curl -s http://localhost:4002/api/improvements/metrics \
 ## 🛡️ PREVENTION MEASURES
 
 ### **1. Lint Rule Added**
+
 Add ESLint rule to catch unsafe intervals:
 
 ```javascript
@@ -315,13 +334,17 @@ rules: {
 ```
 
 ### **2. Code Review Checklist**
+
 Add to pull request template:
+
 - [ ] All `setInterval()` calls use intervals < 2,147,483,647ms
 - [ ] Long-duration jobs use recursive `setTimeout()` pattern
 - [ ] Interval constants are explicitly defined and documented
 
 ### **3. Monitoring Alert**
+
 Add Datadog/GCP alert:
+
 ```yaml
 alert:
   name: "High Node.js Process Count"
@@ -335,17 +358,20 @@ alert:
 ## 📚 REFERENCES
 
 ### **JavaScript Timer Limits:**
-- MDN: https://developer.mozilla.org/en-US/docs/Web/API/setTimeout
-- Node.js Issue: https://github.com/nodejs/node/issues/12740
-- Stack Overflow: https://stackoverflow.com/questions/3468607/why-does-settimeout-break-for-large-millisecond-delay-values
+
+- MDN: <https://developer.mozilla.org/en-US/docs/Web/API/setTimeout>
+- Node.js Issue: <https://github.com/nodejs/node/issues/12740>
+- Stack Overflow: <https://stackoverflow.com/questions/3468607/why-does-settimeout-break-for-large-millisecond-delay-values>
 
 ### **32-bit Signed Integer:**
+
 - Max value: 2^31 - 1 = 2,147,483,647
 - In milliseconds: ~24.8 days
 - ~596 hours
 - ~35,791 minutes
 
 ### **Alternative Solutions Considered:**
+
 1. ❌ **node-cron library:** Adds dependency, overkill for 3 jobs
 2. ❌ **Split into 24-day chunks:** Complex, hard to maintain
 3. ✅ **Recursive setTimeout:** Simple, native, works perfectly
@@ -357,6 +383,7 @@ alert:
 **BUG STATUS:** ✅ **FIXED - TIER 1 COMPLETE**
 
 **Capabilities Restored:**
+
 - ✅ Self-improvement loop operational
 - ✅ Daily analysis (every 24 hours)
 - ✅ Weekly proposals (every 7 days)
@@ -375,6 +402,7 @@ alert:
 ## 🏆 HIGHER? **100% TIER 1 ACHIEVED!**
 
 **What Was Delivered:**
+
 1. ✅ Root cause identified (32-bit overflow)
 2. ✅ Elegant solution implemented (recursive setTimeout)
 3. ✅ Comprehensive documentation added

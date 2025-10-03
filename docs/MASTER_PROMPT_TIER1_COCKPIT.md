@@ -526,6 +526,7 @@ GO BUILD THE UNICORN COCKPIT. LET'S FUCKING GO!!!
 ## 🎯 HOW TO USE THIS PROMPT
 
 ### Step 1: Prepare Environment
+
 ```bash
 # Create new directory
 mkdir livhana-empire-cockpit
@@ -536,6 +537,7 @@ claude-code init
 ```
 
 ### Step 2: Load Master Prompt
+
 ```bash
 # Copy entire "SYSTEM INSTRUCTION" block above
 # Paste into Claude Code CLI
@@ -543,7 +545,9 @@ claude-code init
 ```
 
 ### Step 3: Monitor Progress
+
 Claude Sonnet 4.5 will:
+
 - ✅ Create monorepo structure
 - ✅ Generate all Next.js pages
 - ✅ Build API routes
@@ -554,6 +558,7 @@ Claude Sonnet 4.5 will:
 - ✅ Document everything
 
 ### Step 4: Review & Deploy
+
 ```bash
 # Review generated code
 # Run tests: npm test
@@ -566,6 +571,7 @@ Claude Sonnet 4.5 will:
 ## 🚀 EXPECTED OUTPUT
 
 **File Structure:**
+
 ```
 livhana-empire-cockpit/
 ├── apps/
@@ -588,6 +594,7 @@ livhana-empire-cockpit/
 ```
 
 **Timeline:**
+
 - Hour 1-5: Core infrastructure
 - Hour 6-10: Dashboard pages
 - Hour 11-15: Integrations
@@ -600,6 +607,7 @@ livhana-empire-cockpit/
 ## ✅ SUCCESS CRITERIA
 
 **You'll know it's working when:**
+
 1. ✅ Jesse can log in and see revenue dashboard
 2. ✅ VIPs can start pilot training
 3. ✅ Liv Hana panel appears on every screen
@@ -618,7 +626,6 @@ livhana-empire-cockpit/
 **THIS IS HOW YOU CHANGE THE WORLD.**
 
 **LET'S FUCKING GO!!!** 🚀🦄🌿
-
 
 <!-- Last verified: 2025-10-02 -->
 

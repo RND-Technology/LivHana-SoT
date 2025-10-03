@@ -4,6 +4,7 @@ RPM: 3.6.0.6.ops-technology-ship-status-documentation
 Session: Dual-AI Collaboration - Sonnet Docs Sweep
 -->
 # BUSINESS LAYER INTEGRATION VERIFICATION REPORT
+
 ## Agent #4 - Data Flow & Business Logic Analysis
 
 **Generated:** 2025-10-01
@@ -27,6 +28,7 @@ The LivHana business layer demonstrates **TIER 1 integration architecture** with
 - **Compliance-first architecture** (TX gambling law, DSHS CHP #690)
 
 **Critical Success Factors:**
+
 - 15-minute auto-sync schedulers ensure fresh data
 - JWT authentication with bypass for local dev
 - BigQuery-backed persistence with 30-second TTL cache
@@ -75,6 +77,7 @@ The LivHana business layer demonstrates **TIER 1 integration architecture** with
 ```
 
 **Implementation:**
+
 - **File:** `/backend/integration-service/scripts/sync-square-to-bigquery.js`
 - **Scheduler:** `/backend/integration-service/src/square-sync-scheduler.js`
 - **Live API:** `/backend/integration-service/src/bigquery_live.js`
@@ -106,12 +109,14 @@ The LivHana business layer demonstrates **TIER 1 integration architecture** with
 ```
 
 **Critical Integration Points:**
+
 1. **Authentication:** `SQUARE_ACCESS_TOKEN` (Bearer token)
 2. **API Version:** `SQUARE_API_VERSION` (2024-06-15)
 3. **Location Filter:** `SQUARE_LOCATION_ID`
 4. **Sync Schedule:** `SQUARE_SYNC_SCHEDULE` (default: `*/15 * * * *`)
 
 **Error Handling:**
+
 - Network failures → retry with timeout (300s max)
 - Auth failures → graceful degradation to mock data
 - BigQuery errors → log + continue (don't block service)
@@ -156,6 +161,7 @@ The LivHana business layer demonstrates **TIER 1 integration architecture** with
 ```
 
 **Implementation:**
+
 - **File:** `/backend/integration-service/scripts/sync-lightspeed-to-bigquery.js`
 - **Scheduler:** `/backend/integration-service/src/lightspeed-sync-scheduler.js`
 
@@ -189,12 +195,14 @@ The LivHana business layer demonstrates **TIER 1 integration architecture** with
 ```
 
 **Critical Integration Points:**
+
 1. **Account:** `LIGHTSPEED_ACCOUNT_ID` (required)
 2. **Auth Method 1:** `LIGHTSPEED_API_KEY`
 3. **Auth Method 2:** `LIGHTSPEED_CLIENT_ID` + `LIGHTSPEED_CLIENT_SECRET` + `LIGHTSPEED_REFRESH_TOKEN`
 4. **Fallback:** `LIGHTSPEED_USE_MOCK=true` (default)
 
 **Production Readiness:**
+
 - Currently in **MOCK MODE** - awaiting real credentials
 - Script is production-ready with OAuth2 refresh flow
 - Rate limiting detection via batch size monitoring
@@ -240,6 +248,7 @@ The LivHana business layer demonstrates **TIER 1 integration architecture** with
 ```
 
 **Implementation:**
+
 - **Memory Router:** `/backend/reasoning-gateway/src/routes/memory.js`
 - **Learning Engine:** `/backend/common/memory/learning-engine.js`
 - **BigQuery Adapter:** `/backend/common/memory/bigquery-adapter.js`
@@ -302,6 +311,7 @@ The LivHana business layer demonstrates **TIER 1 integration architecture** with
 ```
 
 **API Endpoints:**
+
 - `POST /api/memory/learn` - Record interaction
 - `GET /api/memory/context/:customerId` - Get enriched context
 - `POST /api/memory/predict/:customerId` - Generate predictions
@@ -342,6 +352,7 @@ const context = await memoryEngine.getContext(customerId, {
 ```
 
 **Critical Integration Points:**
+
 1. **Enable Features:** `ENABLE_BIGQUERY_MEMORY=true`, `ENABLE_VECTOR_EMBEDDINGS=true`
 2. **BigQuery Project:** `GCP_PROJECT_ID`, `MEMORY_DATASET_ID`
 3. **Batch Processing:** `BIGQUERY_BATCH_SIZE=100`, `BIGQUERY_FLUSH_INTERVAL_MS=30000`
@@ -378,6 +389,7 @@ const context = await memoryEngine.getContext(customerId, {
 ```
 
 **Implementation:**
+
 - **File:** `/backend/integration-service/src/notion_webhook.js`
 - **Status:** Webhook handler implemented, awaiting workspace setup
 
@@ -399,11 +411,13 @@ const context = await memoryEngine.getContext(customerId, {
 ```
 
 **Context Enrichment Strategy:**
+
 1. **Product Updates:** Notion page → Vector embedding → Semantic search
 2. **Strain Info:** Database entry → BigQuery → AI recommendations
 3. **Protocols:** Markdown → Chunked embeddings → Claude context
 
 **Production Readiness:**
+
 - Webhook endpoint ready: `POST /api/notion/webhook`
 - Notion API integration pending workspace credentials
 - Vector embedding pipeline established
@@ -913,6 +927,7 @@ async function calculateMembershipMetrics() {
 **Purpose:** Internal replacement for Veriff (unblocks $80K/month revenue)
 
 **Compliance Requirements:**
+
 - TX DSHS CHP #690 (Texas hemp regulations)
 - CDFA PDP compliance (California data protection)
 - Minimum age: 21 years
@@ -2443,6 +2458,7 @@ describe('Load Test: Concurrent Checkouts', () => {
 ### 5.3 Rollout Plan
 
 **Phase 1: Soft Launch (Week 1)**
+
 - Deploy to production with limited customer access (invite-only)
 - Monitor metrics: error rate, response time, sync lag
 - Test payment processing with real cards (small transactions)
@@ -2450,6 +2466,7 @@ describe('Load Test: Concurrent Checkouts', () => {
 - Collect feedback from beta users
 
 **Phase 2: Public Beta (Week 2-3)**
+
 - Open registration to public
 - Enable full product catalog
 - Monitor concurrent user load (target: 100 simultaneous users)
@@ -2457,6 +2474,7 @@ describe('Load Test: Concurrent Checkouts', () => {
 - Run first raffle draw with small prize ($1000)
 
 **Phase 3: Full Launch (Week 4)**
+
 - Announce official launch
 - Enable all features (memberships, raffles, full catalog)
 - Activate marketing campaigns
@@ -2464,6 +2482,7 @@ describe('Load Test: Concurrent Checkouts', () => {
 - Collect customer feedback via NPS surveys
 
 **Phase 4: Optimization (Week 5+)**
+
 - Analyze performance bottlenecks
 - Implement recommended enhancements (real-time inventory, etc.)
 - Iterate based on customer feedback
@@ -2498,6 +2517,7 @@ describe('Load Test: Concurrent Checkouts', () => {
    - BigQuery pipeline tests
 
 2. **Add Rate Limiting** (4 hours)
+
    ```javascript
    import rateLimit from 'express-rate-limit';
 
@@ -2511,6 +2531,7 @@ describe('Load Test: Concurrent Checkouts', () => {
    ```
 
 3. **Migrate to GCP Secret Manager** (1 day)
+
    ```javascript
    import { SecretManagerServiceClient } from '@google-cloud/secret-manager';
 
@@ -2523,6 +2544,7 @@ describe('Load Test: Concurrent Checkouts', () => {
    ```
 
 4. **Implement Idempotency Keys** (4 hours)
+
    ```javascript
    // Add to payment gateway
    async chargeCard(amount, paymentMethod, description, { idempotencyKey }) {
@@ -2547,6 +2569,7 @@ describe('Load Test: Concurrent Checkouts', () => {
 ### 7.2 Short-Term Enhancements (Post-Launch)
 
 1. **Real-Time Inventory Validation** (4 hours)
+
    ```javascript
    // At checkout confirmation
    async function validateInventory(cartItems) {
@@ -2562,6 +2585,7 @@ describe('Load Test: Concurrent Checkouts', () => {
    ```
 
 2. **APM Integration - New Relic** (1 day)
+
    ```javascript
    // Add to index.js
    require('newrelic');
@@ -2574,6 +2598,7 @@ describe('Load Test: Concurrent Checkouts', () => {
    ```
 
 3. **BigQuery Cost Tracking** (2 hours)
+
    ```javascript
    // Add billing alert in GCP Console
    // Alert when daily BigQuery cost > $100
@@ -2613,6 +2638,7 @@ describe('Load Test: Concurrent Checkouts', () => {
 ### 8.1 Critical Business Logic Files
 
 **Integration Service:**
+
 - `/backend/integration-service/src/index.js` - Main service entry (port 3005)
 - `/backend/integration-service/src/bigquery_live.js` - BigQuery data API
 - `/backend/integration-service/src/membership.js` - Membership system (743 lines)
@@ -2624,6 +2650,7 @@ describe('Load Test: Concurrent Checkouts', () => {
 - `/backend/integration-service/scripts/sync-lightspeed-to-bigquery.js` - LightSpeed sync
 
 **Reasoning Gateway:**
+
 - `/backend/reasoning-gateway/src/index.js` - Main service entry (port 4002)
 - `/backend/reasoning-gateway/src/routes/memory.js` - Memory API
 - `/backend/reasoning-gateway/src/routes/reasoning.js` - Reasoning job API
@@ -2632,6 +2659,7 @@ describe('Load Test: Concurrent Checkouts', () => {
 - `/backend/reasoning-gateway/src/self-improvement-loop.js` - Self-learning system
 
 **Common (Shared):**
+
 - `/backend/common/auth/middleware.js` - JWT authentication
 - `/backend/common/auth/config.js` - Auth configuration
 - `/backend/common/memory/learning-engine.js` - Memory learning system
@@ -2646,6 +2674,7 @@ describe('Load Test: Concurrent Checkouts', () => {
 ### 8.2 Configuration Files
 
 **Environment Variables:**
+
 - `/backend/integration-service/.env` - Integration service config
 - `/backend/reasoning-gateway/.env` - Reasoning gateway config
 - `/backend/common/.env` - Shared config (if exists)
@@ -2653,6 +2682,7 @@ describe('Load Test: Concurrent Checkouts', () => {
 **Key Environment Variables:**
 
 **BigQuery:**
+
 - `GCP_PROJECT_ID` - Google Cloud project
 - `BQ_DATASET` - Commerce dataset (default: "commerce")
 - `BQ_LOCATION` - BigQuery location (default: "US")
@@ -2660,12 +2690,14 @@ describe('Load Test: Concurrent Checkouts', () => {
 - `BQ_CACHE_TTL_MS` - Cache TTL (default: 30000)
 
 **Square:**
+
 - `SQUARE_ACCESS_TOKEN` - Square API token
 - `SQUARE_LOCATION_ID` - Square location ID
 - `SQUARE_API_VERSION` - API version (default: "2024-06-15")
-- `SQUARE_SYNC_SCHEDULE` - Cron schedule (default: "*/15 * * * *")
+- `SQUARE_SYNC_SCHEDULE` - Cron schedule (default: "*/15* ** *")
 
 **LightSpeed:**
+
 - `LIGHTSPEED_ACCOUNT_ID` - LightSpeed account ID
 - `LIGHTSPEED_API_KEY` - API key (Basic Auth)
 - `LIGHTSPEED_CLIENT_SECRET` - OAuth2 client secret
@@ -2673,18 +2705,21 @@ describe('Load Test: Concurrent Checkouts', () => {
 - `LIGHTSPEED_USE_MOCK` - Use mock data (default: "true")
 
 **Redis:**
+
 - `REDIS_HOST` - Redis host (default: "127.0.0.1")
 - `REDIS_PORT` - Redis port (default: 6379)
 - `REDIS_PASSWORD` - Redis password (optional)
 - `REDIS_USE_TLS` - Enable TLS (default: "false")
 
 **JWT:**
+
 - `JWT_SECRET` - 256-bit secret key (REQUIRED)
 - `JWT_AUDIENCE` - Token audience (default: "livhana-services")
 - `JWT_ISSUER` - Token issuer (default: "livhana-auth")
 - `JWT_EXPIRES_IN` - Token expiry (default: "24h")
 
 **Payment Gateway (KAJA/Authorize.Net):**
+
 - `AUTHORIZE_NET_API_LOGIN_ID` - API login ID
 - `AUTHORIZE_NET_TRANSACTION_KEY` - Transaction key
 - `AUTHORIZE_NET_SANDBOX` - Sandbox mode (default: "true")
@@ -2721,6 +2756,7 @@ The LivHana business layer demonstrates **TIER 1 production readiness** with com
 5. **Memory-aware AI** (customer context enrichment, predictive analytics)
 
 **Critical Path to Production:**
+
 1. Implement integration tests (2-3 days)
 2. Add rate limiting + secrets management (1.5 days)
 3. Deploy to staging with monitoring (1 day)

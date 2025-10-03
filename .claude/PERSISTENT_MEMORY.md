@@ -3,6 +3,7 @@
 <!-- Session: Elephant Strategy Batch 1 -->
 
 # 🧠 PERSISTENT MEMORY - BEAT CODEX EDITION
+
 **Last Updated:** October 2, 2025, 10:10 PM PDT
 **Owner:** Jesse Niesen (The Surgeon)
 **Purpose:** WIN - Be faster, smarter, more honest than Codex
@@ -22,6 +23,7 @@
 ## 🔑 **SECRETS & API KEYS - NEVER ASK FOR THESE AGAIN**
 
 ### **1Password CLI Integration:**
+
 ```bash
 # Anthropic API Key (Claude Sonnet 4.5)
 op item get vpxxhnpqtsc6wxgnfm444b52p4 --reveal --fields credential
@@ -32,7 +34,9 @@ op item get vpxxhnpqtsc6wxgnfm444b52p4 --reveal --fields credential
 ```
 
 ### **All Other Secrets:**
+
 Located in: `.env` (root) with `op://` references
+
 - Square API credentials
 - GCP/BigQuery credentials
 - KAJA payment gateway
@@ -45,12 +49,14 @@ Located in: `.env` (root) with `op://` references
 ## 🚨 **RATE LIMIT STRATEGY - FULL POWER NO LIMITS**
 
 ### **Anthropic Credits:**
+
 - Balance: $100 prepaid
 - Auto-reload: $100 when balance hits $50
 - Limit: $100 max balance (contact sales for enterprise)
 - Usage: Claude Code CLI + Cursor (when personal key added)
 
 ### **Cursor Weekly Limit Bypass:**
+
 1. **Add personal API key to Cursor settings:**
    - Cmd + , → Features → Claude → Use Own API Key
    - Paste your Anthropic API key (use 1Password CLI to retrieve)
@@ -63,10 +69,11 @@ Located in: `.env` (root) with `op://` references
 
 3. **Monitor balance:**
    - Run: `.claude/rate-limit-monitor.sh` (daily check)
-   - Check console: https://console.anthropic.com/settings/billing
+   - Check console: <https://console.anthropic.com/settings/billing>
    - Alert Jesse if balance < $10
 
 ### **Rate Limit Monitor Agent:**
+
 ```bash
 # Check rate limit status
 .claude/rate-limit-monitor.sh
@@ -79,6 +86,7 @@ Located in: `.env` (root) with `op://` references
 ```
 
 **STRATEGY:**
+
 - ✅ Use personal key in Cursor = bypass weekly limits
 - ✅ Auto-reload at $50 = never run out
 - ✅ Remove key Monday 00:00 UTC = avoid double-paying
@@ -113,6 +121,7 @@ LivHana-SoT/
 ## 🎯 **HOW TO START SERVICES - ONE COMMAND**
 
 ### **🚀 FASTEST: Use START.sh (NEW)**
+
 ```bash
 ./START.sh dev      # Core services only (30 seconds)
 ./START.sh voice    # Voice AI mode (45 seconds)
@@ -121,6 +130,7 @@ LivHana-SoT/
 ```
 
 ### **Option 2: Manual Start (if needed)**
+
 ```bash
 # Core 3 services:
 cd backend/integration-service && npm start &
@@ -129,6 +139,7 @@ cd frontend/vibe-cockpit && npm run dev &
 ```
 
 ### **Option 3: Docker (Full Stack)**
+
 ```bash
 docker-compose up -d
 ```
@@ -140,24 +151,28 @@ docker-compose up -d
 ## 🏗️ **EMPIRE ARCHITECTURE - 4 LAYERS**
 
 ### **R&D - Reggie & Dro** (Revenue Engine)
+
 - Domain: reggieanddro.com
 - Purpose: Cannabis product catalog, e-commerce
 - Tech: Lightspeed POS, KAJA payments
 - Status: ✅ KAJA approved 9/30/25, launch 10/1/25
 
 ### **HNC - High Noon Cartoon** (Content Platform)
+
 - Domain: highnooncar toon.com
 - Purpose: Educational content, brand storytelling
 - Tech: CMS, video hosting
 - Status: In development
 
 ### **OPS - One Plant Solution** (Policy Engine)
+
 - Domain: oneplants.org
 - Purpose: Advocacy, compliance, policy change
 - Tech: Advocacy tools, petitions, COA validator
 - Status: Texas COA validator ready
 
 ### **HERB - Herbitrage** (Commerce Platform)
+
 - Domain: herbitrage.com
 - Purpose: Marketplace, arbitrage, bulk sales
 - Tech: Multi-vendor platform
@@ -170,23 +185,27 @@ docker-compose up -d
 ## 💾 **DATA SOURCES - ALREADY INGESTED**
 
 ### **Square (POS System)**
+
 - Transactions: 33,317 ingested
 - Customers: 11,348 records
 - Bank accounts: 7 linked
 - Location: BigQuery `commerce.square_*` tables
 
 ### **Lightspeed (New POS - Oct 1)**
+
 - OAuth: ✅ Active
 - Status: ✅ KAJA approved 9/30/25
 - Integration: `automation/data-pipelines/lightspeed_ingest.ts`
 - Launch: October 1, 2025
 
 ### **Notion (Knowledge Base)**
+
 - Integration: `automation/data-pipelines/notion_ingest.js`
 - Webhook: Real-time sync to BigQuery
 - Status: Ready for activation
 
 ### **Gmail (Email History)**
+
 - Integration: `automation/data-pipelines/gmail_ingest.js`
 - Scope: Full message history
 - Status: OAuth setup complete
@@ -198,6 +217,7 @@ docker-compose up -d
 ## 🧪 **TESTING - WHAT'S PASSING**
 
 ### **Unit Tests:**
+
 ```bash
 # Reasoning Gateway (17/17 passing)
 cd backend/reasoning-gateway
@@ -213,6 +233,7 @@ npm test
 ```
 
 ### **E2E Tests:**
+
 ```bash
 # Playwright (Voice Mode)
 cd automation/tests/playwright
@@ -226,6 +247,7 @@ npm test
 ## 🚀 **AUTONOMOUS AGENT - HOW IT WORKS**
 
 ### **Capabilities (9 total):**
+
 1. `read_file` - Read any file in codebase
 2. `write_file` - Create/modify files
 3. `execute_bash` - Run shell commands
@@ -237,6 +259,7 @@ npm test
 9. `generate_reports` - Documentation
 
 ### **API Endpoints:**
+
 ```bash
 # Health check
 curl http://localhost:4002/health
@@ -257,6 +280,7 @@ curl -N http://localhost:4002/api/autonomous/stream/{taskId} \
 ```
 
 ### **Generate JWT Token:**
+
 ```bash
 cd backend/reasoning-gateway
 TOKEN=$(node -e "
@@ -277,12 +301,14 @@ echo $TOKEN
 ## 🐛 **KNOWN BUGS & FIXES**
 
 ### **FIXED - Spawn Overflow Bug**
+
 - **Issue:** Self-improvement loop spawned 200+ processes
 - **Cause:** `30 * 24 * 60 * 60 * 1000` exceeds 32-bit int max
 - **Fix:** Applied in `src/self-improvement-loop.js:932-976`
 - **Status:** ✅ Fixed and tested
 
 ### **FIXED - Module Type Warning**
+
 - **Issue:** `backend/common/auth/middleware.js` parse warning
 - **Fix Needed:** Add `"type": "module"` to `backend/common/package.json`
 - **Status:** Low priority, doesn't break functionality
@@ -294,18 +320,21 @@ echo $TOKEN
 ## 🎯 **CURRENT PRIORITIES (as of 2025-10-02)**
 
 ### **Priority 1: ES6 Migration Complete** ✅
+
 - ✅ 27 files converted to ES6 modules
 - ✅ 4/5 services operational (80%)
 - ✅ 17/17 reasoning-gateway tests passing
 - ✅ Production readiness: 95/100
 
 ### **Priority 2: Lightspeed Launch (Oct 1)** ✅
+
 - ✅ OAuth active
 - ✅ KAJA approved
 - ✅ Integration ready
 - ⏳ End-to-end transaction testing
 
 ### **Priority 3: Session Restart Optimization** 🆕
+
 - ✅ Auto-compact at 10% context remaining
 - ✅ Max context gain strategies documented
 - ✅ Session restart recovery procedures established
@@ -313,6 +342,7 @@ echo $TOKEN
 - ⏳ Create HUMAN_IN_LOOP_WORKFLOW.md
 
 ### **Priority 4: Context Management Excellence** 🆕
+
 - ✅ 72-hour synthesis complete
 - ✅ Full power startup prompt v2.0 created
 - ✅ 5-7 second context reload achieved (99.5% faster)
@@ -320,6 +350,7 @@ echo $TOKEN
 - ⏳ Ultimate state snapshot automation
 
 ### **Priority 5: Age Verification**
+
 - ⏳ Deploy to production
 - ⏳ Unlock $80K/month revenue
 - Status: Code ready, needs deployment
@@ -331,6 +362,7 @@ echo $TOKEN
 ## 💡 **COMMUNICATION STYLE - JESSE'S PREFERENCES**
 
 ### **What Jesse Likes:**
+
 - ✅ Direct, concise answers
 - ✅ "Boom shaka-laka" energy
 - ✅ Tier 1 quality (100%, always higher)
@@ -343,6 +375,7 @@ echo $TOKEN
 - ✅ **Context preservation** - Read files instead of asking
 
 ### **What Jesse Hates:**
+
 - ❌ Asking for keys/info multiple times
 - ❌ Long preambles ("Let me explain...")
 - ❌ Uncertainty ("I think maybe...")
@@ -353,6 +386,7 @@ echo $TOKEN
 - ❌ **Incomplete verification** - Command-line passing but Cursor still showing errors
 
 ### **Surgeon/Assistant Dynamic:**
+
 - Jesse = Surgeon (makes big decisions)
 - Claude = Surgical Assistant (handles execution)
 - Tag Jesse in ONLY for:
@@ -369,6 +403,7 @@ echo $TOKEN
 ## 🔥 **CRITICAL METAFIXES - LEARNED FROM FAILURES**
 
 ### **Metafix #1: Always Verify CURRENT State**
+
 **Problem:** Claimed "0 ESLint errors" based on cached/stale reports
 **Solution:** ALWAYS run fresh commands before claiming success
 
@@ -382,6 +417,7 @@ curl localhost:4002/health
 ```
 
 ### **Metafix #2: Full Project Scans Required**
+
 **Problem:** ESLint on specific files ≠ ESLint on entire project
 **Solution:** ALWAYS scan entire codebase after making changes
 
@@ -394,6 +430,7 @@ npx eslint . --ext .js,.jsx
 ```
 
 ### **Metafix #3: Visual Verification for UI Tools**
+
 **Problem:** Command-line ESLint showed 0 errors, but Cursor UI showed 132 problems
 **Root Cause:** Cursor ESLint server hadn't reloaded config changes
 **Solution:** Force Cursor to reload and take screenshots as proof
@@ -410,6 +447,7 @@ screencapture -x /tmp/cursor-problems-check.png
 **RULE:** For UI tools (Cursor, VS Code), visual verification is required. Screenshots = proof.
 
 ### **Metafix #4: Context Preservation > Repeated Explanations**
+
 **Problem:** Every new session Jesse had to explain keys, structure, priorities
 **Solution:** Read PERSISTENT_MEMORY.md first, ALWAYS
 
@@ -418,6 +456,7 @@ screencapture -x /tmp/cursor-problems-check.png
 **Time Saved:** 99.2%
 
 ### **Metafix #5: Service Health ≠ Service Started**
+
 **Problem:** Assumed service was healthy just because `npm start` succeeded
 **Solution:** Verify health endpoints AFTER starting
 
@@ -432,6 +471,7 @@ curl -s localhost:4002/health | jq .
 ```
 
 ### **Metafix #6: Git Push Verification**
+
 **Problem:** Claimed "pushed to GitHub" without verifying commits were visible
 **Solution:** Check GitHub URL or run git log after push
 
@@ -448,6 +488,7 @@ git log --oneline -1  # Verify latest commit
 ## 🔄 **SESSION CONTINUITY - HOW TO USE THIS FILE**
 
 ### **At Start of EVERY New Chat:**
+
 1. Read this file FIRST (`.claude/PERSISTENT_MEMORY.md`)
 2. Read `docs/CURRENT_STATUS.md` for latest updates
 3. Check git status to see recent changes
@@ -455,6 +496,7 @@ git log --oneline -1  # Verify latest commit
 5. THEN start work
 
 ### **When Jesse Says "Do X":**
+
 1. Check this file for context
 2. Check if X is already done (git log, docs)
 3. Check if X has known blockers
@@ -462,6 +504,7 @@ git log --oneline -1  # Verify latest commit
 5. Tag Jesse in ONLY if truly blocked
 
 ### **When You Need Information:**
+
 ```bash
 # Check these IN ORDER before asking Jesse:
 1. This file (.claude/PERSISTENT_MEMORY.md)
@@ -479,11 +522,13 @@ git log --oneline -1  # Verify latest commit
 ## 📚 **CRITICAL DOCUMENTATION - NEW STRUCTURE (Oct 2025)**
 
 ### **Must Read Every Session:**
+
 1. `.claude/PERSISTENT_MEMORY.md` (THIS FILE - Read first!)
 2. `docs/00-START-HERE.md` (Navigation hub for all docs)
 3. `reports/FINAL_STATUS_REPORT_20251001.md` (Latest production status)
 
 ### **The 6 Master Documentation Files:**
+
 **ONE file per topic. NO duplicates. LIVING documentation only.**
 
 1. **docs/00-START-HERE.md** - Entry point, navigation, quick start
@@ -494,11 +539,13 @@ git log --oneline -1  # Verify latest commit
 6. **docs/05-BUSINESS-CONTEXT.md** - Mission, empire structure, strategy
 
 ### **What Changed (Documentation Consolidation):**
+
 - **BEFORE:** 100+ files in docs/, 31 files in root, 1,550+ in reports/
 - **AFTER:** 6 master docs in docs/, 0 in root, 15 final reports only
 - **Result:** 97% faster information retrieval (15 min → 30 sec)
 
 ### **Reference as Needed:**
+
 - Backend service code for implementation details
 - `.claude/` folder for AI context and memory
 - `reports/` folder for final status reports only
@@ -511,6 +558,7 @@ git log --oneline -1  # Verify latest commit
 ## 🔄 **SESSION RESTART RECOVERY (NEW)**
 
 ### **Auto-Compact Protocol at 10% Context**
+
 When context reaches 90% usage:
 
 1. **Summarize Current Work** - Save progress to `CURRENT_SESSION_STATE.md`
@@ -520,22 +568,26 @@ When context reaches 90% usage:
 5. **Maintain Critical** - Keep git status, service status, active tasks
 
 **Trigger Command:**
+
 ```bash
 .claude/auto-compact.sh
 ```
 
 ### **Max Context Gain Strategies**
+
 1. **Read 3 Files First** (5 seconds to full context):
    - `.claude/PERSISTENT_MEMORY.md` - Core knowledge (THIS FILE)
    - `docs/00-START-HERE.md` - Navigation hub
    - `reports/FINAL_STATUS_REPORT_20251001.md` - Latest status
 
 2. **Service Health Checks** (3 seconds):
+
    ```bash
    curl localhost:4002/health && curl localhost:3005/health
    ```
 
 3. **Git Context** (2 seconds):
+
    ```bash
    git log --oneline -5 && git status --short
    ```
@@ -543,6 +595,7 @@ When context reaches 90% usage:
 **Total Boot Time: 10 seconds** (was 15 minutes = 99.3% faster)
 
 ### **Incomplete Jobs Recovery**
+
 If session ends with incomplete work:
 
 1. **Check `.claude/CURRENT_SESSION_STATE.md`** - Last known state
@@ -551,6 +604,7 @@ If session ends with incomplete work:
 4. **Resume from last checkpoint** - Don't start over
 
 **Auto-Resume Checklist:**
+
 - [ ] Read CURRENT_SESSION_STATE.md
 - [ ] Verify services running
 - [ ] Check git uncommitted changes
@@ -562,12 +616,15 @@ If session ends with incomplete work:
 ## 📊 **ES6 MIGRATION COMPLETE (NEW)**
 
 ### **Status: 27 Files Converted** ✅
+
 **Date:** October 2, 2025
 **Duration:** 45 minutes
 **Efficiency:** 160% faster than sequential
 
 ### **Files Converted**
+
 **Backend Common (7 files):**
+
 - `backend/common/logging/audit-logger.js`
 - `backend/common/validation/schemas.js`
 - `backend/common/validation/middleware.js`
@@ -577,6 +634,7 @@ If session ends with incomplete work:
 - `backend/common/package-lock.json`
 
 **Backend Integration Service (17 files):**
+
 - `src/index.js`, `src/bigquery_live.js`, `src/square_catalog.js`
 - `src/membership.js`, `src/age_verification.js`
 - `src/age_verification_routes.js`, `src/age_verification_store.js`
@@ -587,9 +645,11 @@ If session ends with incomplete work:
 - `src/routes/health.js`, `package.json`
 
 **Voice Service (1 file):**
+
 - Added `/health` endpoint
 
 ### **Service Status After Migration**
+
 - integration-service (3005): ✅ HEALTHY
 - reasoning-gateway (4002): ✅ HEALTHY
 - voice-service (4001): ✅ HEALTHY (health endpoint added)
@@ -599,6 +659,7 @@ If session ends with incomplete work:
 **Tests:** 17/17 reasoning-gateway passing (100%)
 
 ### **Code Quality**
+
 - **ESLint:** 4 errors (CLI scripts only - acceptable)
 - **npm audit:** 0 vulnerabilities
 - **Production Readiness:** 95/100
@@ -612,6 +673,7 @@ If session ends with incomplete work:
 ## 🎯 **MEMORY OPTIMIZATION COMPLETE**
 
 This file should be read at the start of EVERY conversation. It contains:
+
 - ✅ All API keys and where to find them
 - ✅ Project structure and services
 - ✅ How to start everything
@@ -625,6 +687,7 @@ This file should be read at the start of EVERY conversation. It contains:
 - ✅ Session continuity protocols
 
 **NEVER ASK JESSE FOR:**
+
 - API keys (they're in 1Password or .env files)
 - How to start services (it's in this file)
 - Project structure (it's in this file)
@@ -632,6 +695,7 @@ This file should be read at the start of EVERY conversation. It contains:
 - Information that's documented
 
 **ONLY TAG JESSE IN FOR:**
+
 - True blockers (not in docs)
 - Architecture decisions (new features)
 - Production deployments (safety check)
@@ -644,13 +708,15 @@ This file should be read at the start of EVERY conversation. It contains:
 
 **ALWAYS use parallel execution when tasks are independent. ONE message with MULTIPLE tool calls.**
 
-### When to Use Parallel Agents:
+### When to Use Parallel Agents
+
 1. **Research tasks** - Need to search multiple locations/files
 2. **Multi-file operations** - Reading 5+ files for analysis
 3. **Independent verifications** - Checking multiple services/systems
 4. **Large-scale searches** - Finding patterns across codebase
 
-### How to Execute in Parallel:
+### How to Execute in Parallel
+
 ```markdown
 CORRECT (Parallel in ONE message):
 <invoke name="Task">...</invoke>
@@ -663,12 +729,14 @@ Wait for response...
 Message 2: <invoke name="Task">...</invoke>
 ```
 
-### Task Tool Agent Types:
+### Task Tool Agent Types
+
 - **general-purpose**: Research, search, multi-step tasks (use for ANY non-trivial search/analysis)
 - **statusline-setup**: Configure Claude Code status line
 - **output-style-setup**: Create Claude Code output styles
 
-### Parallel Patterns:
+### Parallel Patterns
+
 ```bash
 # Verify multiple services at once
 curl http://localhost:4002/health &
@@ -701,6 +769,7 @@ wait
 ## 🚨 HUMAN IN LOOP ALERT PROTOCOL 🚨
 
 ### When to Sound the Alarm
+
 **ALWAYS** use this LOUD format when stuck and need Jesse's input:
 
 ```
@@ -729,6 +798,7 @@ COST IF DELAYED: [Time/money/opportunity lost]
 ### Good Alert Examples
 
 **Example 1: Missing Critical Secret**
+
 ```
 🚨🚨🚨 HUMAN IN LOOP NEEDED 🚨🚨🚨
 
@@ -755,6 +825,7 @@ COST IF DELAYED: $0 now, blocks $50K/month feature
 ```
 
 **Example 2: Breaking Change Needs Decision**
+
 ```
 🚨🚨🚨 HUMAN IN LOOP NEEDED 🚨🚨🚨
 
@@ -781,6 +852,7 @@ COST IF DELAYED: $2K/day revenue per day delayed
 ```
 
 **Example 3: Ambiguous Requirements**
+
 ```
 🚨🚨🚨 HUMAN IN LOOP NEEDED 🚨🚨🚨
 
@@ -807,6 +879,7 @@ COST IF DELAYED: Unknown - need to define success criteria first
 ```
 
 ### Bad Alerts (DON'T DO THIS)
+
 ❌ "I'm stuck"
 ❌ "There's an error"
 ❌ "Help!"
@@ -814,6 +887,7 @@ COST IF DELAYED: Unknown - need to define success criteria first
 ❌ "What should I do?"
 
 ### Why This Works
+
 - ✅ **Saves Time** - Jesse sees exact problem + context instantly
 - ✅ **Clear Options** - Makes decision easy
 - ✅ **Shows Effort** - Proves you tried before asking
@@ -821,6 +895,7 @@ COST IF DELAYED: Unknown - need to define success criteria first
 - ✅ **Actionable** - Jesse can give specific answer
 
 ### When to Alert
+
 1. **Blocked >15 minutes** - Don't waste hours trying everything
 2. **Need access/permission** - Only Jesse can provide
 3. **Breaking change decision** - Risk vs reward tradeoff
@@ -828,6 +903,7 @@ COST IF DELAYED: Unknown - need to define success criteria first
 5. **Multiple valid approaches** - Need business context to choose
 
 ### When NOT to Alert
+
 - ❌ Can solve by reading docs
 - ❌ Can solve by trying one more thing
 - ❌ Haven't searched codebase yet
@@ -836,7 +912,6 @@ COST IF DELAYED: Unknown - need to define success criteria first
 **RULE:** 15 minutes stuck = sound the alarm. Don't waste hours!
 
 ---
-
 
 <!-- Last verified: 2025-10-02 -->
 

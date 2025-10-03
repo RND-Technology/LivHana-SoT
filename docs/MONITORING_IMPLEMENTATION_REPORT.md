@@ -18,6 +18,7 @@ Full production monitoring and observability infrastructure has been deployed fo
 ### 1. APM: New Relic ✅
 
 **Why New Relic**:
+
 - Superior Node.js support with automatic instrumentation
 - Built-in AI monitoring for OpenAI/Anthropic calls
 - More cost-effective for startups ($50/month vs Datadog $700/month)
@@ -25,6 +26,7 @@ Full production monitoring and observability infrastructure has been deployed fo
 - All-in-one pricing (no per-feature charges like Datadog)
 
 **Features Implemented**:
+
 - Automatic Node.js instrumentation
 - Distributed tracing across services
 - AI model call tracking (Claude, GPT-4, DeepSeek)
@@ -34,11 +36,13 @@ Full production monitoring and observability infrastructure has been deployed fo
 - Real-time alerting
 
 **Configuration Files**:
+
 - `/backend/integration-service/newrelic.js`
 - `/backend/reasoning-gateway/newrelic.js`
 - `/backend/common/monitoring/newrelic-config.template.js`
 
 **Services Monitored**:
+
 - LivHana-Integration-Service (Port 3005)
 - LivHana-Reasoning-Gateway (Port 4002)
 - LivHana-Voice-Service (Port 4001)
@@ -48,6 +52,7 @@ Full production monitoring and observability infrastructure has been deployed fo
 ### 2. Error Tracking: Sentry ✅
 
 **Features Implemented**:
+
 - Real-time error capture and aggregation
 - Source map support for accurate stack traces
 - Performance profiling (CPU, memory)
@@ -58,12 +63,14 @@ Full production monitoring and observability infrastructure has been deployed fo
 - Smart error filtering (PII, sensitive data)
 
 **Configuration**:
+
 - `/backend/common/monitoring/sentry.js`
 - Integrated into all services
 - beforeSend filtering for sensitive data
 - 10% performance sampling to control costs
 
 **Projects Created**:
+
 - livhana-integration-service
 - livhana-reasoning-gateway
 - livhana-voice-service
@@ -73,6 +80,7 @@ Full production monitoring and observability infrastructure has been deployed fo
 ### 3. Metrics: Prometheus ✅
 
 **Features Implemented**:
+
 - Standard HTTP request metrics
 - Database query performance tracking
 - Background job processing metrics
@@ -83,6 +91,7 @@ Full production monitoring and observability infrastructure has been deployed fo
 - Cache hit/miss rates
 
 **Metrics Exposed**:
+
 - `http_request_duration_seconds` - API response times (histogram)
 - `http_requests_total` - Total requests (counter)
 - `db_query_duration_seconds` - Database query times (histogram)
@@ -92,11 +101,13 @@ Full production monitoring and observability infrastructure has been deployed fo
 - Plus all default Node.js metrics (CPU, memory, event loop, etc.)
 
 **Endpoints**:
+
 - Integration Service: `http://localhost:3005/metrics`
 - Reasoning Gateway: `http://localhost:4002/metrics`
 - Voice Service: `http://localhost:4001/metrics`
 
 **Configuration**:
+
 - `/backend/common/monitoring/prometheus.js`
 
 ---
@@ -104,6 +115,7 @@ Full production monitoring and observability infrastructure has been deployed fo
 ### 4. Custom Performance Monitoring ✅
 
 **Features Implemented**:
+
 - Automatic API response time tracking
 - Database query performance monitoring
 - Background job timing
@@ -114,9 +126,11 @@ Full production monitoring and observability infrastructure has been deployed fo
 - Express middleware integration
 
 **Configuration**:
+
 - `/backend/common/monitoring/performance.js`
 
 **Thresholds Set**:
+
 - API: 1 second warning
 - Database: 500ms warning
 - Jobs: 5 seconds warning
@@ -136,6 +150,7 @@ Full production monitoring and observability infrastructure has been deployed fo
 | `/metrics` | Prometheus metrics | <100ms |
 
 **Dependency Checks**:
+
 - Redis connectivity ✅
 - BigQuery connectivity ✅
 - Square API connectivity ✅
@@ -143,6 +158,7 @@ Full production monitoring and observability infrastructure has been deployed fo
 - Memory usage monitoring ✅
 
 **Configuration**:
+
 - `/backend/common/monitoring/health.js`
 - `/backend/integration-service/src/routes/health.js`
 - `/backend/reasoning-gateway/src/routes/health.js`
@@ -152,6 +168,7 @@ Full production monitoring and observability infrastructure has been deployed fo
 ### 6. Structured Logging with Request Correlation ✅
 
 **Features Implemented**:
+
 - Request ID generation/propagation
 - JSON structured logging (production)
 - Pretty logging (development)
@@ -161,6 +178,7 @@ Full production monitoring and observability infrastructure has been deployed fo
 - Automatic log forwarding to New Relic
 
 **Request ID Flow**:
+
 1. Generate unique ID or use x-request-id header
 2. Attach to all logs for that request
 3. Include in error responses
@@ -168,6 +186,7 @@ Full production monitoring and observability infrastructure has been deployed fo
 5. Forward to external services
 
 **Configuration**:
+
 - `/backend/common/logging/logger.js` (enhanced)
 - `/backend/common/logging/index.js` (enhanced)
 
@@ -178,7 +197,9 @@ Full production monitoring and observability infrastructure has been deployed fo
 ### New Relic Dashboards
 
 #### 1. System Health Overview
+
 **Metrics**:
+
 - Service availability (up/down)
 - Error rate by service (%)
 - Response time P95 by service
@@ -190,7 +211,9 @@ Full production monitoring and observability infrastructure has been deployed fo
 **URL**: Import from `/docs/NEW_RELIC_DASHBOARDS.json`
 
 #### 2. API Performance Dashboard
+
 **Metrics**:
+
 - Endpoint response times (P50/P95/P99)
 - Endpoint throughput by route
 - Error rate by endpoint
@@ -201,7 +224,9 @@ Full production monitoring and observability infrastructure has been deployed fo
 **Refresh**: Real-time
 
 #### 3. Infrastructure Dashboard
+
 **Metrics**:
+
 - CPU usage by host
 - Memory usage by host
 - Disk I/O
@@ -211,7 +236,9 @@ Full production monitoring and observability infrastructure has been deployed fo
 **Refresh**: Real-time
 
 #### 4. Queue & Jobs Dashboard
+
 **Metrics**:
+
 - Queue depth over time
 - Job processing time (P50/P95/P99)
 - Jobs processed (success/failed)
@@ -221,7 +248,9 @@ Full production monitoring and observability infrastructure has been deployed fo
 **Refresh**: Real-time
 
 #### 5. AI Monitoring Dashboard
+
 **Metrics**:
+
 - AI model call frequency
 - Token usage by model
 - AI response times
@@ -248,17 +277,20 @@ Full production monitoring and observability infrastructure has been deployed fo
 ### New Relic Alert Policies
 
 #### Critical Alerts (P0)
+
 - **Service Down**: Health check returns 503 or unreachable
 - **High Error Rate**: Error rate > 5% for 5 minutes
 - **Database Connection Lost**: Redis/BigQuery unavailable
 
 #### High Priority Alerts (P1)
+
 - **Elevated Response Time**: P95 > 2 seconds for 10 minutes
 - **Memory Critical**: Memory usage > 90%
 - **Queue Backup**: Queue depth > 1000 jobs
 - **Error Rate Warning**: Error rate 1-5%
 
 #### Medium Priority Alerts (P2)
+
 - **Performance Degraded**: P95 > 1 second for 15 minutes
 - **Memory Warning**: Memory usage > 80%
 - **External API Slow**: External API calls > 5 seconds
@@ -280,6 +312,7 @@ Full production monitoring and observability infrastructure has been deployed fo
 ### Notification Channels
 
 **Configured**:
+
 - Slack #alerts (automated alerts)
 - Slack #incidents (P0/P1 only)
 - Slack #engineering (P2/P3)
@@ -287,6 +320,7 @@ Full production monitoring and observability infrastructure has been deployed fo
 - PagerDuty (P0 only)
 
 **Setup Required** (post-deployment):
+
 - Set up PagerDuty account
 - Configure Slack webhooks
 - Set up on-call rotation
@@ -331,6 +365,7 @@ Full production monitoring and observability infrastructure has been deployed fo
 **Actual Cost**: $29/month ✅✅ (71% under budget!)
 
 **Cost Optimization Strategies**:
+
 - Using New Relic free tier effectively
 - 10% performance sampling in Sentry
 - Self-hosting Prometheus
@@ -338,6 +373,7 @@ Full production monitoring and observability infrastructure has been deployed fo
 - Smart log sampling
 
 **Projected Production Cost** (after scaling):
+
 - New Relic: ~$50/month (1 additional user + some overage)
 - Sentry: $29/month
 - **Total**: ~$79/month (still under budget!)
@@ -404,6 +440,7 @@ Full production monitoring and observability infrastructure has been deployed fo
 ### New Files Created
 
 **Monitoring Infrastructure** (7 files):
+
 - `/backend/common/monitoring/index.js` - Main exports
 - `/backend/common/monitoring/sentry.js` - Sentry configuration
 - `/backend/common/monitoring/performance.js` - Performance monitoring
@@ -413,6 +450,7 @@ Full production monitoring and observability infrastructure has been deployed fo
 - `/backend/common/monitoring/README.md` - Module documentation
 
 **Service Configuration** (5 files):
+
 - `/backend/integration-service/newrelic.js` - Service config
 - `/backend/integration-service/src/routes/health.js` - Health routes
 - `/backend/reasoning-gateway/newrelic.js` - Service config
@@ -420,6 +458,7 @@ Full production monitoring and observability infrastructure has been deployed fo
 - `/backend/.env.monitoring.template` - Environment variables
 
 **Documentation** (5 files):
+
 - `/docs/MONITORING_RUNBOOK.md` - Operations runbook
 - `/docs/MONITORING_SETUP.md` - Setup guide
 - `/docs/SENTRY_ALERTS.md` - Alert configuration
@@ -427,11 +466,13 @@ Full production monitoring and observability infrastructure has been deployed fo
 - `/docs/MONITORING_IMPLEMENTATION_REPORT.md` - This report
 
 **Testing** (1 file):
+
 - `/backend/test-monitoring.sh` - Integration test script
 
 ### Modified Files
 
 **Enhanced Logging** (2 files):
+
 - `/backend/common/logging/logger.js` - Added request ID correlation
 - `/backend/common/logging/index.js` - Added exports and context
 
@@ -442,6 +483,7 @@ Full production monitoring and observability infrastructure has been deployed fo
 ## Implementation Checklist
 
 ### Core Infrastructure
+
 - [x] Install monitoring dependencies (Sentry, New Relic, prom-client)
 - [x] Create centralized monitoring module
 - [x] Implement Sentry error tracking
@@ -451,6 +493,7 @@ Full production monitoring and observability infrastructure has been deployed fo
 - [x] Create health check utilities
 
 ### Service Integration
+
 - [x] Configure Integration Service monitoring
 - [x] Configure Reasoning Gateway monitoring
 - [x] Create health endpoints for all services
@@ -459,6 +502,7 @@ Full production monitoring and observability infrastructure has been deployed fo
 - [x] Enhance structured logging
 
 ### Documentation
+
 - [x] Write monitoring runbook
 - [x] Write setup guide
 - [x] Configure alert rules
@@ -467,6 +511,7 @@ Full production monitoring and observability infrastructure has been deployed fo
 - [x] Create environment variable template
 
 ### Testing
+
 - [x] Create integration test script
 - [x] Test health endpoints
 - [x] Test metrics endpoints
@@ -475,6 +520,7 @@ Full production monitoring and observability infrastructure has been deployed fo
 - [x] Test request correlation
 
 ### Deployment Preparation
+
 - [x] Document cost estimates
 - [x] Define alert thresholds
 - [x] Create escalation procedures
@@ -486,6 +532,7 @@ Full production monitoring and observability infrastructure has been deployed fo
 ## Production Readiness Checklist
 
 ### Configuration
+
 - [ ] Add NEW_RELIC_LICENSE_KEY to production .env
 - [ ] Add SENTRY_DSN to production .env
 - [ ] Set NODE_ENV=production
@@ -494,6 +541,7 @@ Full production monitoring and observability infrastructure has been deployed fo
 - [ ] Configure Slack webhooks
 
 ### New Relic Setup
+
 - [ ] Create New Relic account (free tier)
 - [ ] Create application monitoring for each service
 - [ ] Import dashboard JSON configurations
@@ -502,6 +550,7 @@ Full production monitoring and observability infrastructure has been deployed fo
 - [ ] Add team members
 
 ### Sentry Setup
+
 - [ ] Create Sentry account (Developer plan $29/month)
 - [ ] Create project for each service
 - [ ] Configure alert rules
@@ -510,6 +559,7 @@ Full production monitoring and observability infrastructure has been deployed fo
 - [ ] Set up release tracking
 
 ### Team Preparation
+
 - [ ] Train team on monitoring dashboards
 - [ ] Set up on-call rotation
 - [ ] Test alert notifications
@@ -517,6 +567,7 @@ Full production monitoring and observability infrastructure has been deployed fo
 - [ ] Review runbook with team
 
 ### Monitoring
+
 - [ ] Monitor for 1 week in staging
 - [ ] Adjust alert thresholds based on data
 - [ ] Fine-tune performance sampling rates
@@ -530,12 +581,14 @@ Full production monitoring and observability infrastructure has been deployed fo
 ### Integration Tests
 
 Run the test suite:
+
 ```bash
 cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/backend
 ./test-monitoring.sh
 ```
 
 **Test Coverage**:
+
 - Health endpoint availability ✅
 - Readiness checks with dependencies ✅
 - Prometheus metrics format ✅
@@ -545,6 +598,7 @@ cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/backend
 - Metrics aggregation ✅
 
 **Expected Results**:
+
 - All health checks return 200
 - Metrics exposed in Prometheus format
 - Request IDs generated and propagated
@@ -651,16 +705,19 @@ The monitoring infrastructure is fully implemented, tested, and ready for produc
 ## Support & Resources
 
 ### Internal
+
 - **Runbook**: `/docs/MONITORING_RUNBOOK.md`
 - **Setup Guide**: `/docs/MONITORING_SETUP.md`
 - **Slack**: #engineering channel
 
 ### External
-- **New Relic**: https://docs.newrelic.com/
-- **Sentry**: https://docs.sentry.io/
-- **Prometheus**: https://prometheus.io/docs/
+
+- **New Relic**: <https://docs.newrelic.com/>
+- **Sentry**: <https://docs.sentry.io/>
+- **Prometheus**: <https://prometheus.io/docs/>
 
 ### Emergency Contacts
+
 - **On-Call Engineer**: See PagerDuty schedule
 - **DevOps Lead**: [In 1Password]
 - **CTO**: [In 1Password]

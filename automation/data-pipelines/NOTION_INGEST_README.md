@@ -24,7 +24,7 @@ A production-ready script for ingesting Notion workspace content into BigQuery a
 ## Prerequisites
 
 1. **Notion Integration**:
-   - Create an integration at https://www.notion.so/my-integrations
+   - Create an integration at <https://www.notion.so/my-integrations>
    - Copy the "Internal Integration Token"
    - Share your workspace pages with the integration
 
@@ -57,19 +57,19 @@ BQ_DATASET=knowledge                 # Default: knowledge
 
 ## Usage
 
-### Run the ingestion:
+### Run the ingestion
 
 ```bash
 npm run notion:ingest
 ```
 
-### Or directly:
+### Or directly
 
 ```bash
 node notion_ingest.js
 ```
 
-### With environment variables:
+### With environment variables
 
 ```bash
 NOTION_API_KEY=secret_xxx BQ_DATASET=my_dataset node notion_ingest.js
@@ -80,11 +80,13 @@ NOTION_API_KEY=secret_xxx BQ_DATASET=my_dataset node notion_ingest.js
 ### 1. Markdown Files
 
 Exported to `data/notion_export/` with naming pattern:
+
 ```
 {sanitized_title}_{page_id}.md
 ```
 
 Example:
+
 ```
 data/notion_export/
   ├── product_roadmap_a1b2c3d4.md
@@ -134,23 +136,27 @@ JSON-formatted logs with context:
 ## Block Type Support
 
 ### Text Content
+
 - Paragraph
 - Heading 1, 2, 3
 - Quote
 - Callout (with emoji)
 
 ### Lists
+
 - Bulleted list
 - Numbered list
 - To-do list (with checkbox state)
 - Toggle
 
 ### Code & Formatting
+
 - Code blocks (with language syntax)
 - Inline code
 - Divider
 
 ### Media
+
 - Images (with captions)
 - Videos
 - Files
@@ -159,6 +165,7 @@ JSON-formatted logs with context:
 - Link previews
 
 ### Advanced
+
 - Tables & table rows
 - Equations (LaTeX)
 - Column layouts
@@ -171,6 +178,7 @@ JSON-formatted logs with context:
 ## Error Handling
 
 ### Retry Logic
+
 - **Max Retries**: 3 attempts per operation
 - **Backoff**: Exponential (1s, 2s, 4s)
 - **Retryable Errors**:
@@ -179,12 +187,15 @@ JSON-formatted logs with context:
   - Network timeouts
 
 ### Error Recovery
+
 - Failed pages are logged but don't stop the pipeline
 - Batch insert failures fall back to row-by-row insertion
 - Nested block failures are logged but parent content is preserved
 
 ### Logging
+
 All errors include:
+
 - Error message and stack trace
 - Page/block context
 - Operation being performed
@@ -198,6 +209,7 @@ All errors include:
 - **Rate Limits**: Notion API allows ~3 requests/second
 
 ### Expected Duration
+
 - Small workspace (50 pages): ~2-3 minutes
 - Medium workspace (500 pages): ~20-30 minutes
 - Large workspace (5000 pages): ~3-4 hours
@@ -205,6 +217,7 @@ All errors include:
 ## Idempotency
 
 The script is safe to run multiple times:
+
 - BigQuery uses streaming inserts (no deduplication)
 - For idempotent upserts, modify the script to use MERGE queries
 - Markdown files are overwritten with latest content
@@ -212,19 +225,23 @@ The script is safe to run multiple times:
 ## Troubleshooting
 
 ### "Notion API key is not set"
+
 ```bash
 export NOTION_API_KEY=secret_yourkey
 ```
 
 ### "Page not found" errors
+
 - Ensure the integration has access to the page
 - Share the page with your integration in Notion
 
 ### Rate limit errors (429)
+
 - The script automatically retries with backoff
 - For large workspaces, consider adding delays between pages
 
 ### BigQuery permission errors
+
 ```bash
 # Set up application default credentials
 gcloud auth application-default login
@@ -234,6 +251,7 @@ export GOOGLE_APPLICATION_CREDENTIALS=/path/to/service-account.json
 ```
 
 ### Missing block types
+
 - Check logs for "Unknown block type" warnings
 - Open an issue with the block type details
 
@@ -263,6 +281,7 @@ export async function handler(req, res) {
 ### Monitoring
 
 Key metrics to track:
+
 - Total pages processed
 - Failed pages count
 - Execution duration
@@ -334,6 +353,7 @@ ORDER BY level, title;
 ## Contributing
 
 When adding support for new block types:
+
 1. Add case to `blockToMarkdown()` switch statement
 2. Test with actual Notion content
 3. Update this README with the new type

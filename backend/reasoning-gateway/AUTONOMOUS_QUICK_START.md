@@ -300,11 +300,13 @@ curl -X POST http://localhost:4002/api/autonomous/execute \
 ## Best Practices
 
 1. **Always use approval for production changes**
+
    ```javascript
    { "requireApproval": true }
    ```
 
 2. **Provide detailed context**
+
    ```javascript
    {
      "task": "Fix bug",
@@ -317,16 +319,19 @@ curl -X POST http://localhost:4002/api/autonomous/execute \
    ```
 
 3. **Monitor in real-time**
+
    ```bash
    ./example-sse-client.js $TASK_ID $ADMIN_JWT_TOKEN
    ```
 
 4. **Review learnings regularly**
+
    ```bash
    curl http://localhost:4002/api/autonomous/learnings | jq
    ```
 
 5. **Test in dev first**
+
    ```bash
    # Always test autonomous tasks in development before production
    ```

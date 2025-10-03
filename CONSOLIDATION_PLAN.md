@@ -4,6 +4,7 @@
 
 **Action:** Consolidated 4 repos → 1 repo
 **Result:**
+
 - Archived: LivHana-Potential (216MB), LivHana-Kinetic (1.3GB), LivHana-Entropic (140K)
 - Archive: `LivHana-Trinity-Experimental-Archive-20251002-041500.tar.gz` (388MB)
 - Kept: LivHana-SoT only (3.0GB, production-ready)
@@ -12,6 +13,7 @@
 ## ✅ Q2: IDEAL FOLDER STRUCTURE - DEFINED
 
 **Current Problems:**
+
 1. empire/ + empire-cockpit/ - Duplicate/confusing
 2. automation/ + scripts/ - Overlapping purpose  
 3. reports/ - Should be in docs/
@@ -20,6 +22,7 @@
 6. marketing/ - Unclear purpose
 
 **Ideal Structure:**
+
 ```
 ├── .claude/      # AI context
 ├── backend/      # All services
@@ -35,7 +38,7 @@
 **Action:** Count and categorize all files
 **Purpose:** Identify files without purpose, delete or consolidate
 
-## 📋 EXECUTION STEPS (Next):
+## 📋 EXECUTION STEPS (Next)
 
 1. **Move scripts/ → automation/scripts/**
 2. **Move reports/ → docs/reports/**
@@ -46,7 +49,7 @@
 7. **Commit with honest message**
 8. **Push to GitHub**
 
-## 🎯 SUCCESS CRITERIA:
+## 🎯 SUCCESS CRITERIA
 
 ✅ One repo only (LivHana-SoT)
 ✅ Clear folder structure  

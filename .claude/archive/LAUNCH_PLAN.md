@@ -1,4 +1,5 @@
 # 🚀 AUTONOMOUS AGENT LAUNCH PLAN - MAXIMUM SCALE
+
 **Date:** October 1, 2025, 03:35 AM PDT
 **Mission:** Launch reasoning-gateway + Deploy 100+ parallel workstreams
 **Status:** Ready to execute
@@ -11,6 +12,7 @@
 > "1544 pending changes, 88 problems... need 100 parallel workstreams fired up as gold miners to mine all the gold from my entire Claude account"
 
 **What We're Delivering:**
+
 1. ✅ Autonomous agent bugs FIXED (bash validation + spawn overflow)
 2. ✅ Module type warning FIXED
 3. ✅ Changes committed (6 files, 1,392 insertions)
@@ -28,11 +30,13 @@ npm start
 ```
 
 **Expected output:**
+
 ```json
 {"level":30,"port":4002,"msg":"reasoning-gateway listening"}
 ```
 
 **Verify healthy:**
+
 ```bash
 curl -s http://localhost:4002/health | jq .
 # Should return: {"status":"healthy","service":"reasoning-gateway"}
@@ -45,6 +49,7 @@ curl -s http://localhost:4002/health | jq .
 Once service is running, execute this script:
 
 ### **Generate Token First:**
+
 ```bash
 cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/backend/reasoning-gateway
 
@@ -130,6 +135,7 @@ curl -X POST "http://localhost:4002/api/autonomous/execute" \
 ```
 
 ### **Monitor Progress:**
+
 ```bash
 # Watch all audits
 watch -n 10 'curl -s http://localhost:4002/api/autonomous/tasks \
@@ -151,6 +157,7 @@ watch -n 10 'curl -s http://localhost:4002/api/autonomous/tasks \
    - Save to: `/Users/jesseniesen/Downloads/claude-exports/`
 
 2. **Organize exports:**
+
 ```bash
 cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT
 
@@ -166,6 +173,7 @@ cp -r ~/Downloads/claude-exports/artifacts/* .claude/account/artifacts/raw/
 ### **B. Deploy 100 Context Miners:**
 
 **Option 1: Mine Codebase (No manual export needed):**
+
 ```bash
 cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT
 
@@ -215,6 +223,7 @@ echo "✅ Deployed $counter mining agents"
 ```
 
 **Option 2: Mine Claude Account (After manual export):**
+
 ```bash
 # Run the account-wide mining script from ACCOUNT_WIDE_MINING_PLAN.md
 # See: .claude/ACCOUNT_WIDE_MINING_PLAN.md for full details
@@ -225,6 +234,7 @@ echo "✅ Deployed $counter mining agents"
 ## 📊 STEP 4: SYNTHESIZE FINDINGS (After Audits Complete)
 
 ### **Wait for All Audits to Complete:**
+
 ```bash
 # Check how many are still running
 curl -s http://localhost:4002/api/autonomous/tasks \
@@ -233,6 +243,7 @@ curl -s http://localhost:4002/api/autonomous/tasks \
 ```
 
 ### **Deploy Synthesis Agent:**
+
 ```bash
 curl -X POST "http://localhost:4002/api/autonomous/execute" \
   -H "Authorization: Bearer $TOKEN" \
@@ -248,6 +259,7 @@ curl -X POST "http://localhost:4002/api/autonomous/execute" \
 ```
 
 ### **Deploy Context Synthesis (If Mining Ran):**
+
 ```bash
 curl -X POST "http://localhost:4002/api/autonomous/execute" \
   -H "Authorization: Bearer $TOKEN" \
@@ -267,11 +279,13 @@ curl -X POST "http://localhost:4002/api/autonomous/execute" \
 ## 🎯 STEP 5: REVIEW & EXECUTE FIXES
 
 ### **Read Master Audit:**
+
 ```bash
 cat reports/MASTER_AUDIT_REPORT.md
 ```
 
 ### **Execute High-Priority Fixes:**
+
 ```bash
 # Deploy fix agent for each critical issue
 curl -X POST "http://localhost:4002/api/autonomous/execute" \
@@ -309,12 +323,14 @@ curl -X POST "http://localhost:4002/api/autonomous/execute" \
 ## 🏆 SUCCESS CRITERIA
 
 **Immediate (5 Audits):**
+
 - ✅ 5 audit reports generated
 - ✅ Master synthesis created
 - ✅ Critical issues identified
 - ✅ Fix execution plan ready
 
 **Extended (100 Context Miners):**
+
 - ✅ 100 file summaries created
 - ✅ Synthesized knowledge base built
 - ✅ All secrets/keys documented
@@ -326,6 +342,7 @@ curl -X POST "http://localhost:4002/api/autonomous/execute" \
 ## 🚨 TROUBLESHOOTING
 
 ### **Service Won't Start:**
+
 ```bash
 # Kill existing process
 lsof -ti:4002 | xargs kill -9
@@ -338,6 +355,7 @@ npm start
 ```
 
 ### **Agent Execution Fails:**
+
 ```bash
 # Check logs
 tail -f /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/backend/reasoning-gateway/logs/*.log
@@ -348,6 +366,7 @@ curl -s "http://localhost:4002/api/autonomous/tasks/{taskId}" \
 ```
 
 ### **Token Expired:**
+
 ```bash
 # Generate new token (24 hour expiry)
 TOKEN=$(node -e "const jwt = require('jsonwebtoken'); console.log(jwt.sign({ userId: 'jesse-admin', role: 'admin' }, 'local-dev-secret-change-in-production', { expiresIn: '24h', audience: 'livhana-local', issuer: 'livhana-local' }));")
@@ -355,21 +374,24 @@ TOKEN=$(node -e "const jwt = require('jsonwebtoken'); console.log(jwt.sign({ use
 
 ---
 
-## 🎉 BOOM SHAKA-LAKA! READY TO LAUNCH!
+## 🎉 BOOM SHAKA-LAKA! READY TO LAUNCH
 
 **What's Fixed:**
+
 - ✅ Autonomous agent bash bug (no more pseudo-commands)
 - ✅ Spawn overflow bug (no more EAGAIN errors)
 - ✅ Module type warning (performance improved)
 - ✅ All changes committed
 
 **What's Ready:**
+
 - 🚀 5 immediate audit workstreams
 - 🚀 100 context mining agents (optional)
 - 🚀 Synthesis agents
 - 🚀 Fix execution agents
 
 **Your Next Action:**
+
 ```bash
 # Just start the service:
 cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/backend/reasoning-gateway

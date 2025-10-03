@@ -6,7 +6,7 @@ Get up and running with Gmail ingestion in 10 minutes.
 
 - Node.js 18+ installed
 - Google Cloud account with billing enabled
-- Access to jesseniesen@gmail.com and high@reggieanddro.com
+- Access to <jesseniesen@gmail.com> and <high@reggieanddro.com>
 
 ## Step 1: Install Dependencies (2 minutes)
 
@@ -82,6 +82,7 @@ npm run gmail:test
 ```
 
 Expected output:
+
 ```
 Testing: Environment variables... ✅ PASS
 Testing: Account configuration... ✅ PASS
@@ -103,7 +104,7 @@ npm run gmail:ingest -- --max=10
 npm run gmail:ingest:full
 ```
 
-## That's it!
+## That's it
 
 Your Gmail data is now in BigQuery. Query it:
 
@@ -134,13 +135,17 @@ gcloud scheduler jobs create http gmail-daily-sync \
 ## Troubleshooting
 
 ### "Credentials file not found"
+
 Download OAuth credentials from Google Cloud Console and save as `gmail_credentials_*.json`
 
 ### "Token has been expired"
+
 Re-authenticate: `npm run gmail:auth:jessen`
 
 ### "Permission denied" on BigQuery
+
 Grant permissions:
+
 ```bash
 gcloud projects add-iam-policy-binding ${GCP_PROJECT_ID} \
   --member="serviceAccount:YOUR_SERVICE_ACCOUNT" \

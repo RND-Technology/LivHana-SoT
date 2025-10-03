@@ -1,6 +1,7 @@
 # 🚨 ENABLE DALL-E 3 - 2 MINUTE FIX
 
 ## THE PROBLEM
+
 Your current API key: `sk-proj-...` is **PROJECT-SCOPED** without DALL-E 3 access.
 
 Project ID: `proj_0fqGyEbYgDdwvUBTv7ZqtjoG`
@@ -10,7 +11,7 @@ Error: `403 - Project does not have access to model dall-e-3`
 
 ### OPTION 1: CREATE NEW API KEY (FASTEST - 60 SECONDS)
 
-**I just opened:** https://platform.openai.com/api-keys
+**I just opened:** <https://platform.openai.com/api-keys>
 
 **DO THIS NOW:**
 
@@ -26,6 +27,7 @@ Error: `403 - Project does not have access to model dall-e-3`
 4. **Copy the key** (starts with `sk-...` NOT `sk-proj-...`)
 
 5. **Paste it here in terminal:**
+
    ```bash
    cd ~/LivHana-Trinity-Local/LivHana-SoT/empire/content-engine
 
@@ -34,6 +36,7 @@ Error: `403 - Project does not have access to model dall-e-3`
    ```
 
 6. **Test DALL-E 3 access:**
+
    ```bash
    node -e "
    import OpenAI from 'openai';
@@ -55,7 +58,7 @@ Error: `403 - Project does not have access to model dall-e-3`
 
 ### OPTION 2: ADD DALL-E TO EXISTING PROJECT (2 MINUTES)
 
-1. Go to: https://platform.openai.com/settings/organization/projects
+1. Go to: <https://platform.openai.com/settings/organization/projects>
 
 2. Find project: `proj_0fqGyEbYgDdwvUBTv7ZqtjoG`
 
@@ -90,6 +93,7 @@ npm run test
 ```
 
 **Expected output:**
+
 - Script (5 sec)
 - Voices (20 sec)
 - **Images (60 sec)** ← THIS WILL NOW WORK
