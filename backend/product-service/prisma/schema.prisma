@@ -58,3 +58,5 @@ model LoyaltyTransaction {
 
   member Member @relation(fields: [memberId], references: [id])
 }
+
+# Optimized: 2025-10-02

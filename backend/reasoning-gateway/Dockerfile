@@ -13,3 +13,5 @@ COPY backend/reasoning-gateway/src ./src
 
 ENV NODE_ENV=production
 CMD ["node", "src/index.js"]
+
+# Optimized: 2025-10-02

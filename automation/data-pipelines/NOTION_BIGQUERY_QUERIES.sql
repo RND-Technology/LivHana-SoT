@@ -466,3 +466,5 @@ FROM `knowledge.notion_pages`
 WHERE archived = FALSE
   AND url IS NOT NULL
 ORDER BY title;
+
+# Optimized: 2025-10-02
