@@ -9,14 +9,13 @@
 
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
-BLUE='\033[0;34m'
 CYAN='\033[0;36m'
 MAGENTA='\033[0;35m'
 RED='\033[0;31m'
 NC='\033[0m'
 
 WORKSPACE_ROOT="/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT"
-cd "$WORKSPACE_ROOT"
+cd "$WORKSPACE_ROOT" || exit
 
 LIVE_REQUIREMENTS=(
   "SQUARE_ACCESS_TOKEN"
@@ -79,7 +78,7 @@ fi
 
 echo ""
 echo -e "${MAGENTA}━━━━━━━━━━━━━━━ PHASE 2: OPTIONAL DEEPSEEK ━━━━━━━━━━━━${NC}"
-read -p "Launch DeepSeek 33B locally? (y/N): " -r reply
+read -r -p "Launch DeepSeek 33B locally? (y/N): " reply
 echo
 if [[ $reply =~ ^[Yy]$ ]]; then
   docker-compose -f docker-compose.bigquery.yml up -d deepseek
@@ -90,14 +89,15 @@ fi
 
 echo ""
 echo -e "${MAGENTA}━━━━━━━━━━━━━━━ PHASE 3: FRONTEND ━━━━━━━━━━━━━━━━━━━${NC}"
-cd frontend/vibe-cockpit
+cd frontend/vibe-cockpit || exit
 if [ ! -d node_modules ]; then
   echo "Installing frontend dependencies..."
   npm install
 fi
 npm run dev -- --host 0.0.0.0 --port 5173 &
 COCKPIT_PID=$!
-cd ../..
+trap 'kill "$COCKPIT_PID" 2>/dev/null || true' EXIT
+cd ../.. || exit
 
 echo ""
 echo -e "${GREEN}Stack status:${NC}"

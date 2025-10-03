@@ -93,9 +93,9 @@ bash scripts/run_full_sweep.sh
 ---
 
 ## QUICK COMMAND CHEATSHEET
-```
+```bash
 # Launch status dashboards
-./START.sh status
+cd LivHana-SoT && ./START.sh status
 git status --short
 
 # Full verification sweep

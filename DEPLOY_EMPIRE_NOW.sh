@@ -32,11 +32,12 @@ curl -s http://localhost:3005/health | jq '.square.mode'
 
 # PHASE 3: Start Frontend
 echo "🎨 PHASE 3: Starting Frontend..."
-cd frontend/vibe-cockpit
+cd frontend/vibe-cockpit || exit
 npm install --legacy-peer-deps 2>/dev/null || true
 npm run dev &
 FRONTEND_PID=$!
-cd ../..
+trap 'kill "$FRONTEND_PID" 2>/dev/null || true' EXIT
+cd ../.. || exit
 
 # PHASE 4: Deploy Critical Fix (Veriff → Square)
 echo "💰 PHASE 4: CRITICAL - Deploying Age Verification Fix..."
@@ -50,8 +51,8 @@ curl -s http://localhost:3005/api/square/catalog | jq '.products | length'
 
 # PHASE 6: Launch Voice Agent
 echo "🎤 PHASE 6: Launching Liv Hana Voice Agent..."
-python3 -m venv venv 2>/dev/null || true
-source venv/bin/activate
+python3 -m venv .venv 2>/dev/null || true
+source .venv/bin/activate
 pip install --quiet SpeechRecognition 2>/dev/null || true
 echo "✅ Voice agent ready (run: python liv-hana-voice-agent.py)"
 
