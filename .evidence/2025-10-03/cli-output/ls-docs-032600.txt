@@ -1,0 +1,20 @@
+total 8584
+-rw-r--r--@  1 jesseniesen  staff    15574 Oct  3 03:15 TIER1_COMPLETE_ASSESSMENT_20250930.md
+-rw-r--r--@  1 jesseniesen  staff    16598 Oct  3 03:15 VIP_REPORTS_ANDREW_CHARLIE.md
+-rw-r--r--@  1 jesseniesen  staff    33273 Oct  3 03:15 SETUP_GUIDE.md
+-rw-r--r--@  1 jesseniesen  staff    10617 Oct  3 03:15 TIER1_OPTIMIZATION_SUMMARY.md
+-rw-r--r--@  1 jesseniesen  staff    17419 Oct  3 03:15 TEXAS_TAKEOVER_PLAYBOOK_TIER1.md
+-rw-r--r--@  1 jesseniesen  staff    14864 Oct  3 03:15 TIER1_COMPLETE_DEPLOYMENT_READY.md
+-rw-r--r--@  1 jesseniesen  staff     8415 Oct  3 03:15 SECURITY_HARDENING_GUIDE.md
+-rw-r--r--@  1 jesseniesen  staff    16229 Oct  3 03:15 TEXAS_TAKEOVER_LIGHTSPEED_MAKEOVER.md
+-rw-r--r--@  1 jesseniesen  staff     8108 Oct  3 03:15 SENTRY_ALERTS.md
+-rw-r--r--@  1 jesseniesen  staff    11970 Oct  3 03:15 REPLIT_AGENTIC_ARCHITECTURE_EXTRACT.md
+-rw-r--r--@  1 jesseniesen  staff    12116 Oct  3 03:15 NOTION_GMAIL_INTEGRATION_GUIDE.md
+-rw-r--r--@  1 jesseniesen  staff    18427 Oct  3 03:15 MONITORING_IMPLEMENTATION_REPORT.md
+-rw-r--r--@  1 jesseniesen  staff    12722 Oct  3 03:15 MONITORING_SETUP.md
+-rw-r--r--@  1 jesseniesen  staff     7272 Oct  3 03:15 MEMORY_QUICK_START.md
+-rw-r--r--@  1 jesseniesen  staff    19056 Oct  3 03:15 HOW_LIV_HANA_GETS_CLAUDE_POWERS.md
+-rw-r--r--@  1 jesseniesen  staff    14898 Oct  3 03:15 MONITORING_RUNBOOK.md
+-rw-r--r--@  1 jesseniesen  staff    15818 Oct  3 03:15 MEMORY_LEARNING_SYSTEM.md
+-rw-r--r--@  1 jesseniesen  staff    23404 Oct  3 03:15 MASTER_PROMPT_TIER1_COCKPIT.md
+-rw-r--r--@  1 jesseniesen  staff    15320 Oct  3 03:15 GCP_SECRET_MANAGER_MIGRATION.md

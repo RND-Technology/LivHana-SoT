@@ -1,0 +1,20 @@
+total 0
+drwxr-xr-x@  8 jesseniesen  staff   256 Oct  2 22:58 path-scurry
+drwxr-xr-x@  6 jesseniesen  staff   192 Oct  2 22:58 inflight
+drwxr-xr-x@  3 jesseniesen  staff    96 Oct  2 22:58 @esbuild
+drwxr-xr-x@ 19 jesseniesen  staff   608 Oct  2 22:58 es-object-atoms
+drwxr-xr-x@ 10 jesseniesen  staff   320 Oct  2 22:58 isexe
+drwxr-xr-x@  8 jesseniesen  staff   256 Oct  2 22:58 mime-db
+drwxr-xr-x@  8 jesseniesen  staff   256 Oct  2 22:58 source-map-js
+drwxr-xr-x@  8 jesseniesen  staff   256 Oct  2 22:58 internmap
+drwxr-xr-x@  6 jesseniesen  staff   192 Oct  2 22:58 glob-parent
+drwxr-xr-x@  6 jesseniesen  staff   192 Oct  2 22:58 debug
+drwxr-xr-x@  7 jesseniesen  staff   224 Oct  2 22:58 get-func-name
+drwxr-xr-x@ 14 jesseniesen  staff   448 Oct  2 22:58 electron-to-chromium
+drwxr-xr-x@  8 jesseniesen  staff   256 Oct  2 22:58 react-router
+drwxr-xr-x@  6 jesseniesen  staff   192 Oct  2 22:58 shebang-command
+drwxr-xr-x@ 10 jesseniesen  staff   320 Oct  2 22:58 fast-deep-equal
+drwxr-xr-x@  7 jesseniesen  staff   224 Oct  2 22:58 rollup-plugin-visualizer
+drwxr-xr-x@  8 jesseniesen  staff   256 Oct  2 22:58 fsevents
+drwxr-xr-x@  6 jesseniesen  staff   192 Oct  2 22:58 normalize-path
+drwxr-xr-x@ 19 jesseniesen  staff   608 Oct  2 22:58 object.assign

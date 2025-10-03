@@ -1,0 +1,12 @@
+total 88
+-rw-r--r--@  1 jesseniesen  staff  13128 Oct  3 03:15 SECURITY_REPORT.md
+-rw-r--r--@  1 jesseniesen  staff  18382 Oct  3 03:15 SECURITY.md
+-rwxr-xr-x@  1 jesseniesen  staff   8015 Oct  3 02:33 test-monitoring.sh
+drwxr-xr-x@ 28 jesseniesen  staff    896 Oct  2 20:58 integration-service
+drwxr-xr-x@ 17 jesseniesen  staff    544 Oct  2 05:03 common
+drwxr-xr-x@ 24 jesseniesen  staff    768 Oct  2 05:03 reasoning-gateway
+drwxr-xr-x@  3 jesseniesen  staff     96 Oct  2 04:37 shared
+drwxr-xr-x@  5 jesseniesen  staff    160 Oct  2 04:37 cannabis-service
+drwxr-xr-x@  5 jesseniesen  staff    160 Oct  2 04:37 payment-service
+drwxr-xr-x@ 11 jesseniesen  staff    352 Oct  2 04:37 voice-service
+drwxr-xr-x@  8 jesseniesen  staff    256 Oct  2 04:37 product-service
