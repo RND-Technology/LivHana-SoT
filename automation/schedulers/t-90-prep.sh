@@ -40,7 +40,8 @@ echo "✅ Validating Service Readiness..."
 
 # 6. Generate T-90 Report
 echo "📝 Generating T-90 Report..."
-cat > t90_report_$(date +%Y%m%d_%H%M%S).md << EOF
+report_file="t90_report_$(date +%Y%m%d_%H%M%S).md"
+cat > "$report_file" << EOF
 # T-90 Preparation Report
 Generated: $(date -u +%Y-%m-%dT%H:%M:%SZ)
 

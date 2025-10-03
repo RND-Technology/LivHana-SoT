@@ -12,7 +12,7 @@ echo "💬 Ingesting WhatsApp data..."
 WHATSAPP_API_URL="https://graph.facebook.com/v17.0"
 
 # Process incoming messages
-echo "Processing WhatsApp messages..."
+echo "Processing WhatsApp messages via $WHATSAPP_API_URL"
 
 # Validate 21+ consent
 # Check consent status for each user

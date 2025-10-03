@@ -33,7 +33,8 @@ echo "📋 Final Compliance Audit..."
 
 # 5. Generate Deployment Readiness Report
 echo "📊 Generating Deployment Readiness Report..."
-cat > t30_readiness_report_$(date +%Y%m%d_%H%M%S).md << EOF
+report_file="t30_readiness_report_$(date +%Y%m%d_%H%M%S).md"
+cat > "$report_file" << EOF
 # T-30 Deployment Readiness Report
 Generated: $(date -u +%Y-%m-%dT%H:%M:%SZ)
 

@@ -13,12 +13,11 @@ echo ""
 EPISODE="episode-test-001"
 AUDIO_DIR="output/audio/${EPISODE}/scene-1"
 VIDEO_DIR="output/videos/${EPISODE}"
-SCRIPT="output/scripts/${EPISODE}.json"
 
 mkdir -p "$VIDEO_DIR"
 
 # Get all audio files
-AUDIO_FILES=($(ls -1 "$AUDIO_DIR"/*.mp3 | grep -v manifest | sort | head -6))
+mapfile -t AUDIO_FILES < <(find "$AUDIO_DIR" -maxdepth 1 -type f -name '*.mp3' ! -name '*manifest*' | sort | head -6)
 
 echo "🎙️ Found ${#AUDIO_FILES[@]} audio files"
 echo "📝 Creating professional video with animated titles..."
@@ -28,7 +27,7 @@ echo ""
 CONCAT_FILE="$VIDEO_DIR/audio-list.txt"
 rm -f "$CONCAT_FILE"
 for AUDIO in "${AUDIO_FILES[@]}"; do
-  echo "file '$AUDIO'" >> "$CONCAT_FILE"
+  printf "file '%s'\n" "$AUDIO" >> "$CONCAT_FILE"
 done
 
 # Combine all audio
@@ -61,7 +60,7 @@ echo ""
 echo "✅ PROFESSIONAL VIDEO COMPLETE!"
 echo "   File: $FINAL"
 echo "   Size: $SIZE"
-echo "   Duration: $(printf '%.1f' $DURATION)s"
+echo "   Duration: $(printf '%.1f' "$DURATION")s"
 echo ""
 echo "🎬 OPENING VIDEO NOW..."
 open "$FINAL"

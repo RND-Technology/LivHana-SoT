@@ -61,18 +61,18 @@ echo ""
 echo "${BLUE}Configuration:${NC}"
 echo ""
 
-read -p "Enter GCP Project ID (or press Enter to skip): " GCP_PROJECT_ID
+read -r -p "Enter GCP Project ID (or press Enter to skip): " GCP_PROJECT_ID
 if [ -n "$GCP_PROJECT_ID" ]; then
     export GCP_PROJECT_ID
     echo "GCP_PROJECT_ID=${GCP_PROJECT_ID}" >> .env.gmail
 fi
 
-read -p "Enter BigQuery dataset name [communications]: " BQ_DATASET
+read -r -p "Enter BigQuery dataset name [communications]: " BQ_DATASET
 BQ_DATASET=${BQ_DATASET:-communications}
 export BQ_DATASET
 echo "BQ_DATASET=${BQ_DATASET}" >> .env.gmail
 
-read -p "Enter Cloud Storage bucket for attachments [livhana-gmail-attachments]: " GCS_BUCKET
+read -r -p "Enter Cloud Storage bucket for attachments [livhana-gmail-attachments]: " GCS_BUCKET
 GCS_BUCKET=${GCS_BUCKET:-livhana-gmail-attachments}
 export GCS_GMAIL_BUCKET=$GCS_BUCKET
 echo "GCS_GMAIL_BUCKET=${GCS_GMAIL_BUCKET}" >> .env.gmail
@@ -167,13 +167,13 @@ echo "You need to authenticate each Gmail account."
 echo "This will open your browser for OAuth consent."
 echo ""
 
-read -p "Authenticate jesseniesen@gmail.com? (y/n): " AUTH_JESSEN
+read -r -p "Authenticate jesseniesen@gmail.com? (y/n): " AUTH_JESSEN
 if [[ $AUTH_JESSEN == "y" || $AUTH_JESSEN == "Y" ]]; then
     node gmail_auth.js --account=jesseniesen || true
 fi
 
 echo ""
-read -p "Authenticate high@reggieanddro.com? (y/n): " AUTH_HIGH
+read -r -p "Authenticate high@reggieanddro.com? (y/n): " AUTH_HIGH
 if [[ $AUTH_HIGH == "y" || $AUTH_HIGH == "Y" ]]; then
     node gmail_auth.js --account=high || true
 fi

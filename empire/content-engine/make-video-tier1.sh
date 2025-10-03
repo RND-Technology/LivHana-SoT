@@ -13,7 +13,6 @@ echo ""
 EPISODE="episode-test-001"
 AUDIO_DIR="output/audio/${EPISODE}/scene-1"
 VIDEO_DIR="output/videos/${EPISODE}"
-SCRIPT="output/scripts/${EPISODE}.json"
 
 # Create video directory
 mkdir -p "$VIDEO_DIR"
@@ -29,7 +28,7 @@ DIALOGUE=(
 )
 
 # Get audio files
-AUDIO_FILES=($(ls -1 "$AUDIO_DIR"/*.mp3 | grep -v manifest | head -6))
+mapfile -t AUDIO_FILES < <(find "$AUDIO_DIR" -maxdepth 1 -type f -name '*.mp3' ! -name '*manifest*' | sort | head -6)
 
 echo "📝 Found ${#AUDIO_FILES[@]} audio files"
 echo "💬 Found ${#DIALOGUE[@]} dialogue lines"
@@ -42,7 +41,7 @@ for i in "${!AUDIO_FILES[@]}"; do
   TEXT="${DIALOGUE[$i]}"
   SEGMENT="$VIDEO_DIR/segment-$i.mp4"
 
-  echo "[$(($i+1))/${#AUDIO_FILES[@]}] Processing: $(basename "$AUDIO")"
+  echo "[$((i+1))/${#AUDIO_FILES[@]}] Processing: $(basename "$AUDIO")"
 
   # Get audio duration
   DURATION=$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$AUDIO")
@@ -56,7 +55,7 @@ for i in "${!AUDIO_FILES[@]}"; do
     "$SEGMENT"
 
   SEGMENTS+=("$SEGMENT")
-  echo "   ✅ Created segment $(($i+1))"
+  echo "   ✅ Created segment $((i+1))"
 done
 
 echo ""
@@ -66,7 +65,7 @@ echo "🎞️ Concatenating ${#SEGMENTS[@]} segments..."
 CONCAT_FILE="$VIDEO_DIR/concat.txt"
 rm -f "$CONCAT_FILE"
 for SEG in "${SEGMENTS[@]}"; do
-  echo "file '$(basename "$SEG")'" >> "$CONCAT_FILE"
+  printf "file '%s'\n" "$(basename "$SEG")" >> "$CONCAT_FILE"
 done
 
 # Concatenate

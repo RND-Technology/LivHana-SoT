@@ -39,17 +39,8 @@ echo ""
 
 # 3. ESLint sweep
 echo "[3/5] Running ESLint..."
-npx eslint . --ext .js,.jsx,.ts,.tsx \
-  --ignore-pattern node_modules \
-  --ignore-pattern '**/node_modules/**' \
-  --ignore-pattern .git \
-  --ignore-pattern .venv \
-  --ignore-pattern '**/.venv/**' \
-  --ignore-pattern dist \
-  --ignore-pattern '**/dist/**' \
-  --ignore-pattern build \
-  --ignore-pattern '**/build/**' \
-  --ignore-pattern .evidence \
+npx eslint backend empire scripts --ext .js,.jsx,.ts,.tsx \
+  --ignore-path .eslintignore \
  2>&1 | tee "$EVIDENCE_DIR/lint-reports/eslint-$TIMESTAMP.txt" || true
 tail -5 "$EVIDENCE_DIR/lint-reports/eslint-$TIMESTAMP.txt"
 ESLINT_PROBLEMS=$(grep -c "problems" "$EVIDENCE_DIR/lint-reports/eslint-$TIMESTAMP.txt" || echo "0")

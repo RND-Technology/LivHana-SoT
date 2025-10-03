@@ -37,6 +37,7 @@
 **Verified:** October 3, 2025, 04:42 AM PDT
 
 **VERIFICATION:**
+
 ```bash
 # From scripts/run_full_sweep.sh output
 Shellcheck warnings: 115
@@ -63,6 +64,7 @@ Evidence: .evidence/2025-10-03/lint-reports/shellcheck-2025-10-03_044206.txt
 **Verified:** October 3, 2025, 04:42 AM PDT
 
 **VERIFICATION:**
+
 ```bash
 # From scripts/run_full_sweep.sh output
 Summary: 5350 error(s)
@@ -90,6 +92,7 @@ Evidence: .evidence/2025-10-03/lint-reports/markdownlint-2025-10-03_044206.txt
 **Verified:** October 3, 2025, 04:42 AM PDT
 
 **VERIFICATION:**
+
 ```bash
 # From scripts/run_full_sweep.sh output
 ✖ 99 problems (0 errors, 99 warnings)
@@ -119,6 +122,7 @@ Evidence: .evidence/2025-10-03/lint-reports/eslint-2025-10-03_044206.txt
 **Verified:** October 3, 2025, 05:11 AM PDT
 
 **VERIFICATION:**
+
 ```bash
 # Found 26 .md duplicates in .cursor-backups/ (Sep 29 backup artifacts)
 # Archived: .archive/cursor-backups-all-20251003/
@@ -132,6 +136,7 @@ Evidence: .evidence/2025-10-03/lint-reports/eslint-2025-10-03_044206.txt
 - ✅ Git commit: d82b849
 
 **Verification:**
+
 - [x] Find duplicate files by content hash
 - [x] Identify canonical version for each
 - [x] Delete duplicates (archived to .archive/)
@@ -161,6 +166,7 @@ Evidence: .evidence/2025-10-03/lint-reports/eslint-2025-10-03_044206.txt
 - ✅ Git commit: 18cf44c
 
 **Exemption Policy Documented:**
+
 1. .claude/ operational files (17): EXEMPT (boot sequence dependencies)
 2. Conventional names: EXEMPT (README.md, CHANGELOG.md, etc.)
 3. Service/component docs (160): ACCEPTABLE (module-local documentation)

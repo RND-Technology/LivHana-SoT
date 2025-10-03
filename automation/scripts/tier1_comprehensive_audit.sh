@@ -133,7 +133,7 @@ fi
 
 # 10. Check Cursor rules
 echo -e "${YELLOW}📚 Checking Cursor rules...${NC}"
-RULE_COUNT=$(ls -1 .cursor/rules/*.mdc 2>/dev/null | wc -l || echo "0")
+RULE_COUNT=$(find .cursor/rules -type f -name '*.mdc' 2>/dev/null | wc -l | tr -d ' ')
 if [[ "$RULE_COUNT" -ge 10 ]]; then
     echo -e "  ${GREEN}✓${NC} $RULE_COUNT Cursor rules configured"
     ((CHECKS_PASSED++))
