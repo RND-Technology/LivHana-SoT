@@ -25,14 +25,11 @@ echo "     69 DOMAINS | 9 ENGINES | \$34,483/DAY TARGET"
 echo "═══════════════════════════════════════════════════════════════"
 echo ""
 
-# Phase tracking
-PHASE=1
 ENGINES_DEPLOYED=0
 
 # Function to deploy engine
 deploy_engine() {
     local engine_name=$1
-    local port=$2
     echo -e "${CYAN}🔧 Deploying ${engine_name}...${NC}"
     
     # Check if service directory exists
@@ -70,12 +67,12 @@ echo -e "${BLUE}PHASE 2: EMPIRE ENGINE DEPLOYMENT${NC}"
 echo -e "${MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 
 # Deploy each engine
-deploy_engine "crisis-engine" 5001
-deploy_engine "linkedin-engine" 5002
-deploy_engine "compliance-engine" 5003
-deploy_engine "state-analysis" 5004
-deploy_engine "txcoa-engine" 5005
-deploy_engine "content-engine" 5006
+deploy_engine "crisis-engine"
+deploy_engine "linkedin-engine"
+deploy_engine "compliance-engine"
+deploy_engine "state-analysis"
+deploy_engine "txcoa-engine"
+deploy_engine "content-engine"
 
 # PHASE 3: REVENUE PROJECTION
 echo ""
