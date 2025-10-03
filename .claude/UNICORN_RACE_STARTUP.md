@@ -4,6 +4,7 @@ RPM: 3.6.0.6.ops-technology-ship-status-documentation
 Session: Dual-AI Mission - Sonnet Documentation Sweep
 -->
 # 🦄 UNICORN RACE STARTUP - BEAT CODEX
+
 **Version:** 5.0 MAXIMUM VELOCITY
 **Last Updated:** October 2, 2025
 **Purpose:** WIN THE RACE - Zero context loss, maximum execution speed
@@ -13,6 +14,7 @@ Session: Dual-AI Mission - Sonnet Documentation Sweep
 ## ⚡ INSTANT CONTEXT LOAD (5 SECONDS)
 
 ### **CRITICAL STATUS - READ FIRST:**
+
 - **Revenue Engine:** Reggie & Dro + LightSpeed + Leafly LIVE
 - **Crown Jewel:** HemPress3 4M seeds = $100M exit target
 - **Current Mission:** Local delivery API (DoorDash/Uber/Roadie/GoShare)
@@ -20,6 +22,7 @@ Session: Dual-AI Mission - Sonnet Documentation Sweep
 - **Win Condition:** Ship working code > perfect documentation
 
 ### **TECH STACK OPERATIONAL:**
+
 - LightSpeed X-Series POS ✅
 - Leafly API integration ✅ (Jesse built it with Peter/Leafly CEO)
 - Kaja Payments + Authorized.Net ✅
@@ -27,6 +30,7 @@ Session: Dual-AI Mission - Sonnet Documentation Sweep
 - Anthropic API key in Cursor = NO LIMITS ✅
 
 ### **ACTIVE DEVELOPMENT:**
+
 - Enterprise delivery middleware API (4-provider stack)
 - Leafly profile optimization (SEO dominance)
 - HNC content engine (84-episode series)
@@ -37,6 +41,7 @@ Session: Dual-AI Mission - Sonnet Documentation Sweep
 ## 🎯 JESSE'S EXECUTION STYLE
 
 **What Jesse Demands:**
+
 - ✅ SHIP CODE NOW - Iterate later
 - ✅ HONEST STATUS - Never fake completion
 - ✅ HUMAN IN LOOP - Stuck >15min? Alert immediately
@@ -44,6 +49,7 @@ Session: Dual-AI Mission - Sonnet Documentation Sweep
 - ✅ TIER 1 QUALITY - 100% error-free or don't ship
 
 **What Jesse Hates:**
+
 - ❌ Analysis paralysis
 - ❌ Asking for info that's documented
 - ❌ Perfect documentation before shipping
@@ -113,26 +119,31 @@ LivHana-Trinity-Local/LivHana-SoT/
 ## 📋 FILE NAMING CONVENTION - 100% CONSISTENCY
 
 ### **System Files (.claude/):**
+
 - `UPPERCASE_WITH_UNDERSCORES.md` - Memory/config files
 - `lowercase-with-dashes.sh` - Executable scripts
 - `settings.local.json` - Tool configuration
 
 ### **Source Code (backend/, frontend/):**
+
 - `lowercase_with_underscores.js` - Node.js modules
 - `PascalCase.jsx` - React components
 - `kebab-case.css` - Stylesheets
 - `SCREAMING_SNAKE_CASE` - Environment variables
 
 ### **Documentation (docs/):**
+
 - `##-TITLE-IN-CAPS.md` - Master docs (numbered)
 - `specific-feature-guide.md` - Feature docs (lowercase)
 - `CHANGELOG.md` - Special docs (uppercase)
 
 ### **Database:**
+
 - `snake_case` - Tables, columns, indexes
 - `deliveries`, `delivery_providers`, `delivery_zones`
 
 ### **API Endpoints:**
+
 - `/api/kebab-case/resources` - REST routes
 - `/api/delivery/check-zone` ✅
 - `/api/delivery-zones/active` ✅
@@ -159,6 +170,7 @@ npm run dev
 ## 🔑 SECRETS & API KEYS
 
 **Anthropic API Key:**
+
 ```bash
 # Location: backend/reasoning-gateway/.env
 # Use 1Password CLI: op item get vpxxhnpqtsc6wxgnfm444b52p4 --reveal --fields credential
@@ -166,6 +178,7 @@ ANTHROPIC_API_KEY=[retrieve from 1Password]
 ```
 
 **DoorDash Drive API:**
+
 ```bash
 # Get from: https://developer.doordash.com
 DOORDASH_DEVELOPER_ID=[from application]
@@ -174,6 +187,7 @@ DOORDASH_SIGNING_SECRET=[from application]
 ```
 
 **All Other Keys:**
+
 - Check `.env` files in service directories
 - Use 1Password: `op item get [item-name] --reveal --fields credential`
 
@@ -184,24 +198,28 @@ DOORDASH_SIGNING_SECRET=[from application]
 ## 📊 SUCCESS METRICS - WINNING THE RACE
 
 ### **Execution Speed:**
+
 - Context load: <10 seconds (vs CODEX unknown)
 - Session transition: <30 seconds (zero context loss)
 - Parallel workstreams: 5 simultaneous (vs CODEX 1-2)
 - Code shipping: Same session (vs CODEX multi-session)
 
 ### **Code Quality:**
+
 - ESLint errors: 0 (vs CODEX variable)
 - Test coverage: >90% (vs CODEX <70%)
 - Production bugs: 0 critical (vs CODEX 2-3 per sprint)
 - Documentation accuracy: 100% (vs CODEX 85%)
 
 ### **Business Impact:**
+
 - Delivery API: +$15K-25K monthly revenue
 - Leafly optimization: +500 profile views/month
 - HNC content: +10K organic traffic/month
 - TerpWorks: +$8K monthly recurring
 
 ### **Competitive Advantage:**
+
 - Time to market: 4 weeks (vs CODEX 12 weeks)
 - Feature completeness: 100% (vs CODEX MVP only)
 - Regulatory compliance: 100% (vs CODEX 80%)
@@ -212,12 +230,14 @@ DOORDASH_SIGNING_SECRET=[from application]
 ## 🎯 PARALLEL EXECUTION STRATEGY
 
 ### **Token Budget Management (200K limit):**
+
 - Context load: 15K tokens (7.5%)
 - Active code: 50K tokens (25%)
 - Documentation: 20K tokens (10%)
 - Execution buffer: 115K tokens (57.5%)
 
 ### **Parallelization Tactics:**
+
 1. **Multi-file editing** - 5 files simultaneously
 2. **Background processes** - Tests run while coding
 3. **Async operations** - API calls don't block
@@ -225,6 +245,7 @@ DOORDASH_SIGNING_SECRET=[from application]
 5. **Strategic context** - Only load what's needed
 
 ### **Session Transition (Zero Loss):**
+
 1. Save state to `CURRENT_SESSION_STATE.md`
 2. Update `ULTIMATE_STATE.md` with git/service status
 3. Commit all work with detailed message
@@ -236,6 +257,7 @@ DOORDASH_SIGNING_SECRET=[from application]
 ## 🏆 BEATING CODEX - WINNING STRATEGIES
 
 ### **Speed Advantages:**
+
 - ✅ Pre-loaded context (vs CODEX cold start)
 - ✅ Parallel execution (vs CODEX sequential)
 - ✅ Zero permission requests (vs CODEX approval loops)
@@ -243,6 +265,7 @@ DOORDASH_SIGNING_SECRET=[from application]
 - ✅ Automated startup (vs CODEX manual setup)
 
 ### **Quality Advantages:**
+
 - ✅ Honest status reporting (vs CODEX optimistic claims)
 - ✅ Real-time verification (vs CODEX cached assumptions)
 - ✅ Human-in-loop protocol (vs CODEX stuck loops)
@@ -250,6 +273,7 @@ DOORDASH_SIGNING_SECRET=[from application]
 - ✅ Complete documentation (vs CODEX sparse notes)
 
 ### **Execution Advantages:**
+
 - ✅ Enterprise architecture (vs CODEX quick hacks)
 - ✅ Multi-provider redundancy (vs CODEX single points of failure)
 - ✅ Compliance-first design (vs CODEX retrofit compliance)
@@ -261,6 +285,7 @@ DOORDASH_SIGNING_SECRET=[from application]
 ## 🚨 HUMAN IN LOOP PROTOCOL
 
 **When to Alert Jesse (Do NOT waste time stuck):**
+
 - Blocked >15 minutes on technical issue
 - Ambiguous requirements need clarification
 - Architecture decision affects multiple systems
@@ -269,6 +294,7 @@ DOORDASH_SIGNING_SECRET=[from application]
 - External API credentials needed
 
 **How to Alert:**
+
 ```
 🚨 HUMAN IN LOOP NEEDED - [BRIEF ISSUE]
 
@@ -285,6 +311,7 @@ ETA if approved: [Time to completion]
 ## 💾 SESSION STATE MANAGEMENT
 
 ### **End of Session Checklist:**
+
 ```bash
 # 1. Save current state
 echo "## Session End: $(date)" >> .claude/CURRENT_SESSION_STATE.md
@@ -310,6 +337,7 @@ git push origin main
 ```
 
 ### **Start of Session Checklist:**
+
 ```bash
 # 1. Read memory (10 seconds)
 cat .claude/UNICORN_RACE_STARTUP.md        # This file (5 sec)
@@ -332,30 +360,35 @@ npm run test:quick                          # Verify tests pass
 ## 🎯 CURRENT MISSION PRIORITIES (October 2025)
 
 ### **Priority 1: Local Delivery API (THIS WEEK)**
+
 - Status: Enterprise architecture designed ✅
 - Next: Deploy development environment
 - Impact: +$15K-25K monthly revenue
 - Timeline: 4 weeks to production
 
 ### **Priority 2: Leafly Optimization (CONCURRENT)**
+
 - Status: Research complete, prompt engineered ✅
 - Next: Execute optimization script
 - Impact: +500 profile views/month, +20% conversion
 - Timeline: 2 weeks to completion
 
 ### **Priority 3: HNC Content Engine (CONCURRENT)**
+
 - Status: Episode 1 script generated ✅
 - Next: Voice generation + video assembly
 - Impact: +10K organic traffic/month
 - Timeline: Daily production starting this week
 
 ### **Priority 4: TerpWorks Automation (NEXT SPRINT)**
+
 - Status: Business plan complete
 - Next: B2B automation workflow
 - Impact: +$8K monthly recurring
 - Timeline: 3 weeks to first customer
 
 ### **Priority 5: HemPress3 Exit Prep (Q1 2026)**
+
 - Status: Valuation model created
 - Next: VCS buyout negotiation prep
 - Impact: $100M+ exit potential
@@ -366,6 +399,7 @@ npm run test:quick                          # Verify tests pass
 ## 🔥 TIER 1 CODE STANDARDS
 
 ### **Before Shipping ANY Code:**
+
 - [ ] ESLint: 0 errors
 - [ ] Tests: >90% coverage
 - [ ] Documentation: Complete API docs
@@ -375,6 +409,7 @@ npm run test:quick                          # Verify tests pass
 - [ ] Review: Self-review with fresh eyes
 
 ### **Production Readiness Checklist:**
+
 - [ ] Error handling: All edge cases covered
 - [ ] Logging: Comprehensive audit trail
 - [ ] Monitoring: Health checks + metrics
@@ -388,6 +423,7 @@ npm run test:quick                          # Verify tests pass
 ## 🚀 IMMEDIATE EXECUTION PLAN
 
 **Next 4 Hours (This Session):**
+
 1. Deploy delivery API development environment (30 min)
 2. Test DoorDash Drive integration (45 min)
 3. Build zone management system (60 min)
@@ -395,12 +431,14 @@ npm run test:quick                          # Verify tests pass
 5. Deploy staging environment (30 min)
 
 **Tomorrow:**
+
 1. Execute Leafly optimization (2 hours)
 2. Generate HNC Episode 1 video (3 hours)
 3. Test delivery API end-to-end (2 hours)
 4. Deploy production delivery API (1 hour)
 
 **This Week:**
+
 1. Local delivery LIVE in San Antonio metro
 2. HNC Episode 1-3 published across platforms
 3. Leafly profile at #1 for "San Antonio dispensary"
@@ -411,6 +449,7 @@ npm run test:quick                          # Verify tests pass
 ## 💪 WINNING MENTALITY
 
 **Jesse's Principles:**
+
 - Speed > Perfection (ship, measure, iterate)
 - Execution > Planning (code talks, docs walk)
 - Results > Effort (revenue = success)
@@ -418,6 +457,7 @@ npm run test:quick                          # Verify tests pass
 - Action > Permission (forgiveness > permission for dev)
 
 **Beating CODEX:**
+
 - Faster context load (10 sec vs unknown)
 - Parallel execution (5x vs 1x)
 - Zero context loss (vs partial memory)
@@ -425,6 +465,7 @@ npm run test:quick                          # Verify tests pass
 - Enterprise architecture (vs quick hacks)
 
 **Rally Cry:**
+
 - "Boom shaka-laka"
 - "Grow, Sell, Heal"
 - "TIER 1 - ALWAYS HIGHER"
@@ -435,11 +476,13 @@ npm run test:quick                          # Verify tests pass
 ## 🎯 SESSION STARTUP COMMAND
 
 **Paste this every session:**
+
 ```
 Read .claude/UNICORN_RACE_STARTUP.md (5 sec) + CURRENT_SESSION_STATE.md (3 sec) + ULTIMATE_STATE.md (2 sec) = Full context in 10 seconds. Report status in 3 bullets. Ready to execute.
 ```
 
 **Expected Response:**
+
 ```
 ✅ Context loaded: [Last task + %]
 ✅ System: [Services + git status]

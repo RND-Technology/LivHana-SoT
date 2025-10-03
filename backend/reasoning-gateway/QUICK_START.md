@@ -23,6 +23,7 @@ npm run setup:cron
 ## What You Get
 
 A fully autonomous system that:
+
 - Learns from every customer interaction
 - Finds and fixes bugs automatically
 - Discovers new features customers want
@@ -89,6 +90,7 @@ npm run setup:cron
 ```
 
 This sets up:
+
 - Daily at 2 AM: Analyze interactions
 - Weekly Monday 6 AM: Generate proposals
 - Monthly 1st at 8 AM: Refactoring report
@@ -136,12 +138,14 @@ curl -X POST \
 ## Safety Features
 
 ### Always Enabled
+
 - Tests required before any code changes
 - Rollback on failure (automatic)
 - Approval required for critical changes
 - Audit trail of all actions
 
 ### Configuration
+
 ```javascript
 // In self-improvement-loop.js
 this.safetyChecks = {
@@ -156,6 +160,7 @@ this.safetyChecks = {
 ## Example Workflow
 
 ### Day 1: Initial Setup
+
 ```bash
 # Setup and first run
 npm install
@@ -166,6 +171,7 @@ curl -H "Authorization: Bearer $TOKEN" \
 ```
 
 ### Daily: Review & Approve
+
 ```bash
 # Check new proposals
 curl -H "Authorization: Bearer $TOKEN" \
@@ -177,6 +183,7 @@ curl -X POST -H "Authorization: Bearer $TOKEN" \
 ```
 
 ### Weekly: Check Metrics
+
 ```bash
 # View dashboard
 curl -H "Authorization: Bearer $TOKEN" \
@@ -222,6 +229,7 @@ npm run improvement:dry-run
 ## Monitoring
 
 ### View Logs
+
 ```bash
 # Service logs
 tail -f /var/log/livhana-improvement-daily.log
@@ -231,6 +239,7 @@ sudo journalctl -u livhana-improvement -f
 ```
 
 ### Check Redis
+
 ```bash
 # View all proposals
 redis-cli KEYS "improvement:proposal:*"
@@ -243,6 +252,7 @@ redis-cli GET "improvement:proposal:PROPOSAL_ID" | jq
 ```
 
 ### BigQuery Queries
+
 ```sql
 -- Recent executions
 SELECT * FROM ai_learning.agent_executions
@@ -262,6 +272,7 @@ ORDER BY date DESC;
 ## Troubleshooting
 
 ### No proposals generated
+
 ```bash
 # Check if there's enough data
 # Need 100+ interactions, 5+ errors, or 3+ feature requests
@@ -271,6 +282,7 @@ npm run improvement:full
 ```
 
 ### Execution failing
+
 ```bash
 # Check tests
 npm test
@@ -283,6 +295,7 @@ redis-cli GET "improvement:proposal:PROPOSAL_ID" | jq .status
 ```
 
 ### Service not starting
+
 ```bash
 # Check environment variables
 env | grep IMPROVEMENT
@@ -309,26 +322,31 @@ curl https://api.anthropic.com/v1/messages \
 ## What Gets Improved?
 
 ### Learning
+
 - Response patterns that work well
 - Knowledge gaps to fill
 - Customer preferences and needs
 
 ### Performance
+
 - Slow API endpoints (>2s response time)
 - Database query optimizations
 - Caching opportunities
 
 ### Code Quality
+
 - Missing test coverage
 - Complex functions to refactor
 - Undocumented code
 
 ### Features
+
 - Commonly requested features
 - Customer pain points
 - Integration opportunities
 
 ### Bugs
+
 - Recurring errors (5+ occurrences)
 - Root cause analysis
 - Preventive measures
@@ -344,10 +362,11 @@ curl https://api.anthropic.com/v1/messages \
 ## Support
 
 Questions? Check:
+
 - Full guide: [SELF_IMPROVEMENT_GUIDE.md](./SELF_IMPROVEMENT_GUIDE.md)
 - Logs: `/var/log/livhana-improvement*.log`
 - Redis: `redis-cli KEYS "improvement:*"`
-- Email: jesse@livhana.com
+- Email: <jesse@livhana.com>
 
 ## License
 

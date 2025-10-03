@@ -9,6 +9,7 @@
 ## THE PROBLEM JESSE IDENTIFIED
 
 **Current Behavior:**
+
 - Hit 10% context → Start compacting → SLOW → Hit limit anyway
 - Sequential compression = bottleneck
 - No runway extension = hard stop
@@ -21,16 +22,20 @@
 ## THE SOLUTION - INTELLIGENT SCALING
 
 ### Stage 1: Early Warning (20% context remaining)
+
 **Trigger:** Context usage hits 80%
 **Action:** Start background cleanup (non-blocking)
+
 - Compress old bash output
 - Clear completed background processes
 - Archive old tool results
 **Impact:** Buys 5-10% extra runway
 
 ### Stage 2: Smart Compression (10% context remaining)
+
 **Trigger:** Context usage hits 90%
 **Action:** Launch 3 PARALLEL workstreams
+
 1. **Summarize Current Work** (10 sec)
    - Extract key findings
    - Save to CURRENT_SESSION_STATE.md
@@ -51,8 +56,10 @@
 **Runway Extended:** Enough to complete current task
 
 ### Stage 3: Aggressive Scaling (5% context remaining)
+
 **Trigger:** Context usage hits 95%
 **Action:** Emergency mode - 5 PARALLEL workstreams
+
 1. **Critical State Preservation** (5 sec)
 2. **Maximum Compression** (5 sec)
 3. **Service Status Snapshot** (5 sec)
@@ -68,7 +75,9 @@
 ## IMPLEMENTATION
 
 ### Auto-Detection
+
 Claude monitors context usage after every tool call:
+
 ```javascript
 if (contextUsage >= 0.80) {
   // Stage 1: Early cleanup (background)
@@ -97,7 +106,9 @@ if (contextUsage >= 0.95) {
 ```
 
 ### What Gets Compressed
+
 **High Value (Keep):**
+
 - Current task context
 - Git status
 - Service health
@@ -106,6 +117,7 @@ if (contextUsage >= 0.95) {
 - Blocker information
 
 **Low Value (Compress/Remove):**
+
 - Old bash output (>10 tools ago)
 - Completed background processes
 - Historical file reads
@@ -113,7 +125,9 @@ if (contextUsage >= 0.95) {
 - Repeated tool results
 
 ### What Gets Saved
+
 **Always Preserve:**
+
 1. Current working directory
 2. Uncommitted git changes
 3. Services running (ports, PIDs)
@@ -126,14 +140,17 @@ if (contextUsage >= 0.95) {
 ## PERFORMANCE TARGETS
 
 **Before (Sequential Compression):**
+
 - Detect 10% → Start compress → 60 seconds → Hit limit anyway
 - Result: Hard stop, loss of context
 
 **After (Parallel Scaling):**
+
 - 20% warning → 10% parallel (3 streams) → 5% emergency (5 streams)
 - Result: 30-40% runway extension, graceful completion
 
 **Speed Improvement:**
+
 - Context regain: 60s → 15s = **75% faster**
 - Runway extension: 0% → 30-40% = **Infinite improvement**
 - Task completion: 40% success → 100% success = **150% improvement**
@@ -143,6 +160,7 @@ if (contextUsage >= 0.95) {
 ## USAGE EXAMPLES
 
 ### Example 1: Normal Session
+
 ```
 [80% context] → Stage 1 cleanup → +5% runway
 [Continue work normally]
@@ -152,6 +170,7 @@ if (contextUsage >= 0.95) {
 ```
 
 ### Example 2: Heavy Workload
+
 ```
 [80% context] → Stage 1 cleanup → +5% runway
 [Continue heavy work]
@@ -163,6 +182,7 @@ if (contextUsage >= 0.95) {
 ```
 
 ### Example 3: Unexpected Load Spike
+
 ```
 [75% context] → Sudden large file read
 [95% context in 2 tools] → Stage 3 emergency immediately
@@ -175,6 +195,7 @@ if (contextUsage >= 0.95) {
 ## INTEGRATION WITH FULL POWER STARTUP
 
 **Session End (This Session):**
+
 ```bash
 # Auto-compact runs at 10%
 # Saves to:
@@ -184,6 +205,7 @@ if (contextUsage >= 0.95) {
 ```
 
 **Session Start (Next Session):**
+
 ```bash
 # Full Power Startup v3.0 reads:
 1. PERSISTENT_MEMORY.md (core knowledge)
@@ -199,6 +221,7 @@ if (contextUsage >= 0.95) {
 ## MEMORY TOOL COMMIT
 
 **Add to PERSISTENT_MEMORY.md:**
+
 ```markdown
 ## 🚀 SMART AUTO-COMPACT PROTOCOL
 
@@ -213,6 +236,7 @@ if (contextUsage >= 0.95) {
 ```
 
 **Add to FULL_POWER_STARTUP_PROMPT.md v3.0:**
+
 ```markdown
 ## Context Management
 - Auto-compact triggers at 90% (not 10%)
@@ -228,6 +252,7 @@ if (contextUsage >= 0.95) {
 **Jesse said:** "So fast and then sooooooo sloowwww"
 
 **Claude delivers:**
+
 - ✅ Early warning at 20% (not waiting for 10%)
 - ✅ Parallel compression (3-5 workstreams, not 1)
 - ✅ Intelligent scaling (more aggressive as limit approaches)

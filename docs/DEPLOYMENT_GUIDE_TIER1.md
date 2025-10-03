@@ -107,6 +107,7 @@ docker compose -f infra/docker/docker-compose.voice-mode.yml ps
 ```
 
 **Services Started:**
+
 - Redis (port 6379)
 - voice-service (port 4001)
 - reasoning-gateway (port 4002)
@@ -176,9 +177,10 @@ npm run dev
 ```
 
 **Access:**
-- Frontend: http://localhost:5173
-- Voice API: http://localhost:4001
-- Reasoning API: http://localhost:4002
+
+- Frontend: <http://localhost:5173>
+- Voice API: <http://localhost:4001>
+- Reasoning API: <http://localhost:4002>
 
 ---
 
@@ -236,6 +238,7 @@ npm test
 ```
 
 **Expected Output:**
+
 ```
 ✓ memory/store.test.js (2 tests)
 ✓ queue/stream.test.js (3 tests)
@@ -279,9 +282,9 @@ curl http://localhost:4002/health
 
 | Service | Endpoint | Auth Required |
 |---------|----------|---------------|
-| voice-service | http://localhost:4001/health | ❌ No |
-| reasoning-gateway | http://localhost:4002/health | ❌ No |
-| integration-service | http://localhost:3005/health | ❌ No |
+| voice-service | <http://localhost:4001/health> | ❌ No |
+| reasoning-gateway | <http://localhost:4002/health> | ❌ No |
+| integration-service | <http://localhost:3005/health> | ❌ No |
 
 ### Queue Monitoring
 
@@ -316,6 +319,7 @@ npm start | pino-pretty
 **Cause:** Missing or invalid JWT token
 
 **Solution:**
+
 ```bash
 # Verify JWT_SECRET matches across services
 grep JWT_SECRET backend/*/. env.runtime
@@ -332,6 +336,7 @@ curl -H "Authorization: Bearer $TOKEN" http://localhost:4001/api/voice/synthesiz
 **Cause:** Redis not running or wrong host
 
 **Solution:**
+
 ```bash
 # Check Redis status
 redis-cli ping
@@ -349,6 +354,7 @@ docker run -d -p 6379:6379 redis:7-alpine
 **Cause:** Dependencies not installed
 
 **Solution:**
+
 ```bash
 # Reinstall all dependencies
 cd backend/common && npm install
@@ -361,6 +367,7 @@ cd ../reasoning-gateway && npm install
 **Cause:** Service already running
 
 **Solution:**
+
 ```bash
 # Find process using port
 lsof -i :4001
@@ -455,7 +462,7 @@ PM2_HOME=./.pm2 pm2 start src/index.js -i max
 ## 📞 SUPPORT
 
 **Technical Issues:** Jesse Niesen
-**Security Issues:** security@livhana.com
+**Security Issues:** <security@livhana.com>
 **Documentation:** docs/README.md
 
 ---

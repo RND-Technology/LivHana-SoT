@@ -411,12 +411,14 @@ Improvement Factor:
 ---
 
 **Legend:**
+
 - ■ = Full compliance
 - ░ = Partial compliance
 - [X/Y] = X successes out of Y attempts
 - ___% = Calculated percentage
 
 **Colors (if displayed in rich terminal):**
+
 - 🔴 Red: <60 (failing)
 - 🟡 Yellow: 60-80 (acceptable)
 - 🟢 Green: 80-90 (good)

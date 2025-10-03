@@ -15,9 +15,11 @@
 ## VERIFICATION GATES BY CLAIM TYPE
 
 ### Gate 1: File Timestamp Claims
+
 **Examples:** "All files updated", "Timestamps fresh", "Files show minutes ago"
 
 **MANDATORY Commands:**
+
 ```bash
 ls -lt | head -30
 ls -lt docs/ | head -20
@@ -27,6 +29,7 @@ git log --oneline -1 --format="%h %s (%cr)"
 ```
 
 **PROOF FORMAT:**
+
 ```
 CLAIM: [Your claim]
 COMMAND: ls -lt | head -30
@@ -42,9 +45,11 @@ INTERPRETATION: 32/45 files <1hr old, 13 files stale
 ---
 
 ### Gate 2: Service Health Claims
+
 **Examples:** "Services running", "All healthy", "System operational"
 
 **MANDATORY Commands:**
+
 ```bash
 curl -s http://localhost:4002/health | jq .
 curl -s http://localhost:3005/health | jq .
@@ -54,6 +59,7 @@ ps aux | grep "npm.*start"
 ```
 
 **PROOF FORMAT:**
+
 ```
 CLAIM: Service status
 COMMAND: curl -s localhost:4002/health | jq .
@@ -69,9 +75,11 @@ INTERPRETATION: reasoning-gateway healthy (200 OK)
 ---
 
 ### Gate 3: Code Quality Claims
+
 **Examples:** "0 errors", "ESLint clean", "No warnings"
 
 **MANDATORY Commands:**
+
 ```bash
 npx eslint . --ext .js,.jsx,.ts,.tsx 2>&1 | tee /tmp/eslint.txt
 npx eslint . --format json | jq '.[] | .errorCount, .warningCount'
@@ -79,6 +87,7 @@ npx tsc --noEmit 2>&1 | head -50
 ```
 
 **PROOF FORMAT:**
+
 ```
 CLAIM: ESLint status
 COMMAND: npx eslint . --ext .js,.jsx
@@ -95,9 +104,11 @@ INTERPRETATION: 4 errors in CLI scripts (acceptable), 0 app errors
 ---
 
 ### Gate 4: Test Status Claims
+
 **Examples:** "All tests passing", "100% pass", "Tests green"
 
 **MANDATORY Commands:**
+
 ```bash
 cd backend/reasoning-gateway && npm test 2>&1 | tee /tmp/test.txt
 cd backend/integration-service && npm test 2>&1 | tee /tmp/test2.txt
@@ -105,6 +116,7 @@ grep -E "Tests.*passed|failed" /tmp/*.txt
 ```
 
 **PROOF FORMAT:**
+
 ```
 CLAIM: Test status
 COMMAND: npm test
@@ -121,9 +133,11 @@ INTERPRETATION: 323/324 passing (99.7%), 1 env-dependent failure
 ---
 
 ### Gate 5: Git/GitHub Claims
+
 **Examples:** "Pushed", "Synced", "Backed up"
 
 **MANDATORY Commands:**
+
 ```bash
 git status
 git log origin/main..HEAD --oneline | wc -l
@@ -132,6 +146,7 @@ git log --oneline -1
 ```
 
 **PROOF FORMAT:**
+
 ```
 CLAIM: Git push status
 COMMAND: git status && git log --oneline -1
@@ -149,9 +164,11 @@ INTERPRETATION: Pushed (verified commit on remote)
 ---
 
 ### Gate 6: Completion Claims
+
 **Examples:** "Complete", "100% done", "All requirements met"
 
 **MANDATORY Checklist:**
+
 ```
 TASK: [Original request]
 REQUIREMENTS:
@@ -164,6 +181,7 @@ REMAINING: [What's not done]
 ```
 
 **PROOF FORMAT:**
+
 ```
 CLAIM: Task complete
 VERIFIED: Each requirement below
@@ -186,6 +204,7 @@ INTERPRETATION: 2/2 requirements met
 ## 🚨 UNCERTAINTY PROTOCOL: "I DON'T KNOW"
 
 **When to Admit Uncertainty:**
+
 1. Cannot verify (service down, file inaccessible)
 2. Ambiguous requirement (unclear what "done" means)
 3. Need human judgment (design decision)
@@ -193,6 +212,7 @@ INTERPRETATION: 2/2 requirements met
 5. Non-deterministic outcome (race condition)
 
 **REQUIRED FORMAT:**
+
 ```
 ⚠️ UNCERTAIN: [What I cannot verify]
 
@@ -210,6 +230,7 @@ RECOMMENDATION: [Best judgment with caveats]
 ```
 
 **EXAMPLE:**
+
 ```
 ⚠️ UNCERTAIN: Whether vibe-cockpit is running
 
@@ -246,6 +267,7 @@ RECOMMENDATION: Start service (safe operation)
 ❌ "Files were fresh"
 
 **Required Approach:**
+
 ```bash
 echo "=== VERIFICATION at $(date) ==="
 curl -s localhost:4002/health | jq .
@@ -260,6 +282,7 @@ ls -lt | head -30
 ## ✅ PRE-CLAIM CHECKLIST
 
 **Before EVERY claim:**
+
 - [ ] Ran verification command(s)
 - [ ] Captured ACTUAL output (not memory)
 - [ ] Identified discrepancies (errors/warnings)

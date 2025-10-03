@@ -59,6 +59,7 @@ ls src/components/ | grep -E "(VibeCoding|AgentSwarm|PilotTraining)"
 **Remove these lines:**
 
 Find and delete (around lines 19-22):
+
 ```javascript
 const VibeCoding = lazy(() => import('./components/VibeCoding'));
 const AgentSwarm = lazy(() => import('./components/AgentSwarm'));
@@ -66,6 +67,7 @@ const PilotTraining = lazy(() => import('./components/PilotTraining'));
 ```
 
 Find and delete (around lines 218-224):
+
 ```javascript
 <Route path="/vibe-coding" element={<ErrorBoundary componentName="VibeCoding"><VibeCoding /></ErrorBoundary>} />
 <Route path="/agent-swarm" element={<ErrorBoundary componentName="AgentSwarm"><AgentSwarm /></ErrorBoundary>} />
@@ -79,6 +81,7 @@ Save the file.
 **File:** `src/components/Sidebar.jsx`
 
 Find the menu items array and remove these entries:
+
 ```javascript
 {
   text: 'Vibe Coding',
@@ -183,9 +186,11 @@ After Phase 1 (Delete Stubs):
 You've completed Phase 1 (30 minutes). Here's what comes next:
 
 ### Phase 2: Unify API Client (2 days)
+
 **Reference:** `IMPLEMENTATION_GUIDE.md` - Phase 2
 
 **Tasks:**
+
 1. Create `src/api/livhanaApiClient.js`
 2. Implement unified API methods
 3. Migrate ExecutiveDashboard
@@ -196,9 +201,11 @@ You've completed Phase 1 (30 minutes). Here's what comes next:
 **Impact:** 400 lines reduced, 15KB bundle reduction
 
 ### Phase 3: Lift Data Fetching (5 days)
+
 **Reference:** `IMPLEMENTATION_GUIDE.md` - Phase 3
 
 **Tasks:**
+
 1. Refactor UltimateCockpit data layer
 2. Refactor sub-dashboards to accept props
 3. Remove data fetching from sub-dashboards
@@ -207,9 +214,11 @@ You've completed Phase 1 (30 minutes). Here's what comes next:
 **Impact:** 50KB bundle reduction, 3x → 1x data calls
 
 ### Phase 4: Centralize Styles (2 days)
+
 **Reference:** `IMPLEMENTATION_GUIDE.md` - Phase 4
 
 **Tasks:**
+
 1. Create `src/theme/styles.js`
 2. Export style constants
 3. Migrate components to use references
@@ -218,9 +227,11 @@ You've completed Phase 1 (30 minutes). Here's what comes next:
 **Impact:** 8KB bundle reduction, style consistency
 
 ### Phase 5: Test & Deploy (5 days)
+
 **Reference:** `IMPLEMENTATION_GUIDE.md` - Phase 5
 
 **Tasks:**
+
 1. Update all tests
 2. Integration testing
 3. Visual regression testing
@@ -234,6 +245,7 @@ You've completed Phase 1 (30 minutes). Here's what comes next:
 ## COPY-PASTE COMMANDS
 
 ### Quick Delete (All in one command)
+
 ```bash
 cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/frontend/vibe-cockpit && \
 rm src/components/VibeCoding.jsx src/components/AgentSwarm.jsx src/components/PilotTraining.jsx && \
@@ -241,6 +253,7 @@ echo "✅ Stub components deleted"
 ```
 
 ### Quick Build Check
+
 ```bash
 npm run build && \
 du -sh dist/assets/ && \
@@ -248,6 +261,7 @@ echo "✅ Build succeeded, bundle size checked"
 ```
 
 ### Quick Dev Test
+
 ```bash
 npm run dev &
 sleep 3 && \
@@ -256,6 +270,7 @@ echo "✅ Dev server started, browser opened"
 ```
 
 ### Quick Verification
+
 ```bash
 # Check if stubs are gone
 test ! -f src/components/VibeCoding.jsx && \
@@ -270,6 +285,7 @@ echo "❌ Some stub components still exist"
 ## TROUBLESHOOTING
 
 ### Build Fails
+
 ```bash
 # Check for syntax errors
 npm run lint
@@ -282,16 +298,20 @@ git checkout -- src/App.jsx src/components/Sidebar.jsx
 ```
 
 ### Routes Still Accessible
+
 **Problem:** Deleted routes still load in browser
 **Solution:** Hard refresh (Cmd+Shift+R) or clear cache
 
 ### Sidebar Still Shows Deleted Items
+
 **Problem:** Sidebar.jsx not updated
 **Solution:** Re-check Sidebar.jsx, ensure nav items removed
 
 ### Bundle Size Not Reduced
+
 **Problem:** Build cache
 **Solution:**
+
 ```bash
 rm -rf dist node_modules/.vite
 npm run build
@@ -302,6 +322,7 @@ npm run build
 ## TIME ESTIMATES
 
 ### Phase 1: Delete Stubs
+
 - Delete files: 5 min
 - Update App.jsx: 10 min
 - Update Sidebar.jsx: 10 min
@@ -309,24 +330,28 @@ npm run build
 **Total: 30 minutes**
 
 ### Phase 2: Unify API Client
+
 - Create client: 2 hours
 - Migrate components: 4 hours
 - Test: 2 hours
 **Total: 2 days**
 
 ### Phase 3: Lift Data Fetching
+
 - Refactor UltimateCockpit: 6 hours
 - Refactor sub-dashboards: 12 hours
 - Test: 6 hours
 **Total: 5 days**
 
 ### Phase 4: Centralize Styles
+
 - Create styles.js: 3 hours
 - Migrate components: 4 hours
 - Test: 1 hour
 **Total: 2 days**
 
 ### Phase 5: Test & Deploy
+
 - Update tests: 4 hours
 - Integration testing: 8 hours
 - Visual testing: 4 hours
@@ -341,36 +366,42 @@ npm run build
 ## SUCCESS METRICS
 
 ### After Phase 1 (Delete Stubs)
+
 - [ ] 3 files deleted
 - [ ] Build succeeds
 - [ ] All routes work
 - [ ] Bundle: -2KB
 
 ### After Phase 2 (Unify API Client)
+
 - [ ] 1 API client created
 - [ ] All components use it
 - [ ] Tests pass
 - [ ] Bundle: -15KB
 
 ### After Phase 3 (Lift Data Fetching)
+
 - [ ] Data fetched once
 - [ ] Props passed to children
 - [ ] 3x → 1x API calls
 - [ ] Bundle: -50KB
 
 ### After Phase 4 (Centralize Styles)
+
 - [ ] styles.js created
 - [ ] 327 → 50 style instances
 - [ ] Visual consistency
 - [ ] Bundle: -8KB
 
 ### After Phase 5 (Test & Deploy)
+
 - [ ] All tests pass
 - [ ] Performance > 90
 - [ ] Production deployed
 - [ ] Zero breaking changes
 
 **Final Target:**
+
 - Bundle: 1.3MB → 800KB (-38%)
 - Load Time: <2s → <1.5s (-25%)
 - Components: 20 → 17 (-15%)
@@ -397,6 +428,7 @@ npm run build
    - Each phase builds on the previous
 
 4. **Rollback if needed:**
+
    ```bash
    git log --oneline | head -10
    git revert <commit-hash>
@@ -420,6 +452,7 @@ npm run build
 When all consolidation is done, verify:
 
 ### Code Quality
+
 - [ ] No stub components
 - [ ] ONE API client (src/api/livhanaApiClient.js)
 - [ ] Data fetching centralized in UltimateCockpit
@@ -428,6 +461,7 @@ When all consolidation is done, verify:
 - [ ] All tests passing
 
 ### Performance
+
 - [ ] Bundle < 800KB
 - [ ] Initial load < 1.5s
 - [ ] Lighthouse score > 90
@@ -435,6 +469,7 @@ When all consolidation is done, verify:
 - [ ] All routes load fast
 
 ### User Experience
+
 - [ ] All features working
 - [ ] No visual regressions
 - [ ] Zero breaking changes
@@ -442,6 +477,7 @@ When all consolidation is done, verify:
 - [ ] Fast page loads
 
 ### Documentation
+
 - [ ] CONSOLIDATION_PLAN.md reviewed
 - [ ] IMPLEMENTATION_GUIDE.md followed
 - [ ] All changes committed
@@ -449,7 +485,7 @@ When all consolidation is done, verify:
 
 ---
 
-## YOU'RE READY!
+## YOU'RE READY
 
 You have everything needed:
 

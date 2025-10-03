@@ -368,10 +368,10 @@ SENTRY_ENVIRONMENT=production
 ### Contact
 
 - **CEO**: Jesse Niesen (USMC Veteran)
-- **Email**: jesseniesen@gmail.com
+- **Email**: <jesseniesen@gmail.com>
 - **GitHub**: [@jesseniesen](https://github.com/jesseniesen)
 - **Company**: Reggie & Dro LLC
-- **Repository**: https://github.com/RND-Technology/LivHana-SoT
+- **Repository**: <https://github.com/RND-Technology/LivHana-SoT>
 
 ### Documentation
 

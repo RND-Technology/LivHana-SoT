@@ -26,6 +26,7 @@ npm run improvement:dry-run
 ## 📋 What It Does
 
 ### Automatic Analysis
+
 - **Learning**: Extracts patterns from 1000s of customer interactions
 - **Performance**: Identifies slow endpoints and suggests optimizations
 - **Code Quality**: Finds test gaps, refactoring needs, docs to add
@@ -33,6 +34,7 @@ npm run improvement:dry-run
 - **Bugs**: Detects recurring errors and generates fixes
 
 ### Autonomous Improvements
+
 - Generates detailed improvement proposals
 - Sends to you for approval (via API/dashboard)
 - Executes approved changes with tests
@@ -40,6 +42,7 @@ npm run improvement:dry-run
 - Tracks success metrics
 
 ### Safety First
+
 - ✅ Tests required for all changes
 - ✅ Approval required for critical changes
 - ✅ Automatic rollback on failure
@@ -102,6 +105,7 @@ Performance Gains:
 ## 📂 Files Created
 
 ### Core Implementation
+
 - **`src/self-improvement-loop.js`** - Main implementation (1,300+ lines)
   - Learning analysis
   - Performance optimization
@@ -113,12 +117,14 @@ Performance Gains:
   - Metrics tracking
 
 ### Integration
+
 - **`src/index.js`** - Integrated with reasoning gateway
   - Conditional initialization via env var
   - Graceful shutdown handling
   - API routes mounted
 
 ### Scripts
+
 - **`scripts/run-improvement-cycle.js`** - CLI tool for manual runs
   - Daily/weekly/monthly cycles
   - Dry-run mode
@@ -131,10 +137,12 @@ Performance Gains:
   - Hourly auto-execution
 
 ### Systemd (Production)
+
 - **`scripts/livhana-improvement.service`** - Systemd service
 - **`scripts/livhana-improvement.timer`** - Systemd timer
 
 ### Documentation
+
 - **`SELF_IMPROVEMENT_GUIDE.md`** - Complete guide (400+ lines)
   - Architecture overview
   - All features explained
@@ -151,6 +159,7 @@ Performance Gains:
 - **`README_SELF_IMPROVEMENT.md`** - This file
 
 ### Tests
+
 - **`src/self-improvement-loop.test.js`** - Unit tests
   - Initialization tests
   - Proposal management
@@ -159,12 +168,14 @@ Performance Gains:
   - JSON extraction
 
 ### Configuration
+
 - **`.env.example`** - Updated with self-improvement vars
 - **`package.json`** - Added dependencies and scripts
 
 ## 🎯 Key Features
 
 ### 1. Continuous Learning
+
 ```javascript
 // Analyzes customer interactions
 const learning = await analyzeLearningOpportunities();
@@ -172,6 +183,7 @@ const learning = await analyzeLearningOpportunities();
 ```
 
 ### 2. Performance Optimization
+
 ```javascript
 // Finds slow endpoints
 const perf = await analyzePerformanceOptimizations();
@@ -179,6 +191,7 @@ const perf = await analyzePerformanceOptimizations();
 ```
 
 ### 3. Code Quality
+
 ```javascript
 // Improves code quality
 const quality = await analyzeCodeQualityImprovements();
@@ -186,6 +199,7 @@ const quality = await analyzeCodeQualityImprovements();
 ```
 
 ### 4. Feature Discovery
+
 ```javascript
 // Discovers what customers want
 const features = await analyzeFeatureDiscovery();
@@ -193,6 +207,7 @@ const features = await analyzeFeatureDiscovery();
 ```
 
 ### 5. Bug Detection
+
 ```javascript
 // Detects and fixes bugs
 const bugs = await analyzeBugDetection();
@@ -217,6 +232,7 @@ All endpoints at `/api/improvements`:
 ## 📈 Scheduled Jobs
 
 ### Cron Schedule
+
 ```bash
 # Daily at 2 AM - Analyze yesterday's data
 0 2 * * * npm run improvement:daily
@@ -232,6 +248,7 @@ All endpoints at `/api/improvements`:
 ```
 
 ### Manual Runs
+
 ```bash
 npm run improvement:daily      # Daily analysis
 npm run improvement:weekly     # Weekly proposals
@@ -244,12 +261,14 @@ npm run improvement:dry-run    # Test mode, no changes
 ## 🛡️ Safety Features
 
 ### Always Enabled
+
 1. **Tests Required** - All code changes must include tests
 2. **Rollback Capability** - Automatic rollback on failure
 3. **Audit Trail** - All actions logged and tracked
 4. **Resource Limits** - Max changes per proposal, max lines per file
 
 ### Configurable
+
 ```javascript
 safetyChecks: {
   requireApproval: true,           // Approve before execution
@@ -280,6 +299,7 @@ safetyChecks: {
 ## 🗄️ Data Storage
 
 ### Redis Keys
+
 ```
 improvement:proposal:{id}           # Individual proposals
 improvement:proposals:summary       # Quick summary
@@ -287,6 +307,7 @@ knowledge:{category}:{timestamp}    # Knowledge base entries
 ```
 
 ### BigQuery Tables
+
 ```sql
 ai_learning.customer_interactions   # Customer data
 ai_learning.agent_executions        # Improvement executions
@@ -297,6 +318,7 @@ logs.error_logs                     # Error logs
 ## 🔍 Example Proposals
 
 ### Bug Fix Proposal
+
 ```json
 {
   "id": "bugfix-1234567890",
@@ -320,6 +342,7 @@ logs.error_logs                     # Error logs
 ```
 
 ### Performance Proposal
+
 ```json
 {
   "id": "performance-1234567890",
@@ -376,18 +399,21 @@ graph TD
 ## 🔗 Integration Points
 
 ### Memory Learning Engine
+
 ```javascript
 import { getMemoryLearningEngine } from './memory_learning.js';
 // Self-improvement learns from customer interactions
 ```
 
 ### Claude Autonomous Agent
+
 ```javascript
 import { createClaudeAgent } from './claude-autonomous-agent.js';
 // Can execute complex improvement proposals
 ```
 
 ### Reasoning Gateway
+
 ```javascript
 // Integrated directly into main service
 // Available at /api/improvements when enabled
@@ -396,6 +422,7 @@ import { createClaudeAgent } from './claude-autonomous-agent.js';
 ## 📝 Configuration
 
 ### Environment Variables
+
 ```bash
 # Enable/disable
 ENABLE_SELF_IMPROVEMENT=true
@@ -421,16 +448,19 @@ IMPROVEMENT_ALLOW_PRODUCTION_DEPLOY=false
 ## 🐛 Troubleshooting
 
 ### No proposals generated
+
 - Check data availability in BigQuery
 - Verify thresholds are met (100+ interactions, 5+ errors, etc.)
 - Run with `--dry-run` to see analysis without execution
 
 ### Execution failures
+
 - Check test output: `npm test`
 - Review rollback logs
 - Verify proposal status in Redis
 
 ### Service not starting
+
 - Verify `ENABLE_SELF_IMPROVEMENT=true`
 - Check `ANTHROPIC_API_KEY` is set
 - Ensure Redis is running
@@ -446,6 +476,7 @@ IMPROVEMENT_ALLOW_PRODUCTION_DEPLOY=false
 ## 🎉 Success Stories
 
 ### After 1 Week
+
 - 15 proposals generated
 - 12 approved and implemented
 - 5 bugs fixed automatically
@@ -453,6 +484,7 @@ IMPROVEMENT_ALLOW_PRODUCTION_DEPLOY=false
 - 20 tests added
 
 ### After 1 Month
+
 - 60+ proposals processed
 - 30+ improvements live
 - Response times improved by 40%
@@ -471,6 +503,7 @@ IMPROVEMENT_ALLOW_PRODUCTION_DEPLOY=false
 ## 🤝 Contributing
 
 This system improves itself! When you have ideas:
+
 1. The system will discover them from customer feedback
 2. Or manually trigger: `npm run improvement:analyze`
 3. Review generated proposals
@@ -482,7 +515,7 @@ Proprietary - Liv Hana / Trinity Empire
 
 ## 💬 Support
 
-- Email: jesse@livhana.com
+- Email: <jesse@livhana.com>
 - Docs: [SELF_IMPROVEMENT_GUIDE.md](./SELF_IMPROVEMENT_GUIDE.md)
 - Logs: `/var/log/livhana-improvement*.log`
 

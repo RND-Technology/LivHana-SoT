@@ -170,11 +170,13 @@ if (churn.churnRisk > 0.7) {
 ### Enable BigQuery (for analytics)
 
 1. Set up GCP credentials:
+
 ```bash
 export GOOGLE_APPLICATION_CREDENTIALS=/path/to/credentials.json
 ```
 
 2. Enable in .env:
+
 ```bash
 ENABLE_BIGQUERY_MEMORY=true
 GCP_PROJECT_ID=livhana-prod
@@ -184,15 +186,17 @@ GCP_PROJECT_ID=livhana-prod
 
 ### Enable Vector Search (for semantic product matching)
 
-1. Get OpenAI API key from https://platform.openai.com
+1. Get OpenAI API key from <https://platform.openai.com>
 
 2. Enable in .env:
+
 ```bash
 ENABLE_VECTOR_EMBEDDINGS=true
 OPENAI_API_KEY=sk-...
 ```
 
 3. Index products:
+
 ```bash
 curl -X POST http://localhost:4002/api/memory/vector/product \
   -H "Authorization: Bearer YOUR_JWT_TOKEN" \
@@ -209,6 +213,7 @@ curl -X POST http://localhost:4002/api/memory/vector/product \
 ```
 
 4. Search semantically:
+
 ```bash
 curl -X POST http://localhost:4002/api/memory/vector/search \
   -H "Authorization: Bearer YOUR_JWT_TOKEN" \
@@ -230,6 +235,7 @@ openssl rand -hex 32
 ```
 
 Add to `.env.runtime`:
+
 ```bash
 MEMORY_ENCRYPTION_KEY=your-64-character-hex-key-here
 ```
@@ -257,6 +263,7 @@ Configure JWT in `backend/common/auth/config.js`.
 ## 🐛 Troubleshooting
 
 ### Redis Connection Error
+
 ```bash
 # Check Redis is running
 redis-cli ping
@@ -267,6 +274,7 @@ echo $MEMORY_REDIS_URL
 ```
 
 ### Memory Engine Not Learning
+
 ```bash
 # Check feature flag
 echo $ENABLE_MEMORY_LEARNING
@@ -277,6 +285,7 @@ tail -f logs/reasoning-gateway.log | grep memory
 ```
 
 ### BigQuery Errors
+
 ```bash
 # Verify credentials
 gcloud auth application-default login
@@ -312,7 +321,7 @@ bq ls
 4. **Encryption is automatic** - When `MEMORY_ENCRYPTION_KEY` is set
 5. **Data retention** - 7 years for cannabis compliance (configurable)
 
-## 🎉 You're Ready!
+## 🎉 You're Ready
 
 The memory system is now live and learning from every interaction. Watch your customers' profiles grow smarter over time!
 

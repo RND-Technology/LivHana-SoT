@@ -15,7 +15,8 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
 
 **CRITICAL:** I incorrectly referenced `livhana.com` in previous docs. Here's the ACTUAL domain strategy:
 
-### Primary Deployment Domains:
+### Primary Deployment Domains
+
 - **herbitrage.com** - PRIMARY LAUNCH (Liv Hana customer-facing platform)
 - **livhana.ai** - CORE AI PLATFORM (Liv Hana intelligence engine spinoff)
 - **reggieanddro.com** - MAIN BUSINESS (R&D revenue engine)
@@ -67,12 +68,14 @@ graph TD
 ### 🏛️ TIER 0: ASSET PROTECTION LAYER
 
 #### **Living Trust** (Jesse Niesen Family Trust)
+
 - **Purpose:** Asset protection, estate planning, tax optimization
 - **Assets:** All business entities, real estate, investments
 - **Jurisdiction:** California/Texas (TBD based on tax strategy)
 - **Status:** Requires immediate setup if not exists
 
 #### **Holding Company LLC** (Recommended: Delaware or Wyoming)
+
 - **Purpose:** Centralized entity management, liability shield
 - **Role:** Owns all operating entities
 - **Jurisdiction:** Delaware (flexibility) or Wyoming (privacy)
@@ -84,18 +87,21 @@ graph TD
 ### 🌱 TIER 1: FOUNDATIONAL ENTITIES (PARENT OPERATIONS)
 
 #### **R&D TX (Reggie & Dro LLC - Texas)**
+
 **Legal Entity:** Reggie & Dro LLC
 **Jurisdiction:** Texas
 **License:** TX DSHS CHP #690
 **Domain:** reggieanddro.com
 
 **Operations:**
+
 - Retail locations: Stone Oak, Alice, TX
 - Hemp products: THCA flower, CBD, delta products
 - Revenue: $1M+ monthly target
 - Employees: 15-20 FTEs
 
 **Products/Projects:**
+
 - Cheetah Piss (premium THCA)
 - Banana Pancakes (indoor flower)
 - Lavender Jack (hybrid)
@@ -103,6 +109,7 @@ graph TD
 - Membership system (3-tier: $97/month target)
 
 **AOM Focus:**
+
 - **Leadership:** Jesse Niesen (CEO), Store Managers
 - **Operations:** Retail mgmt, inventory, compliance
 - **Marketing:** Local SEO, Google Ads, in-store
@@ -113,24 +120,28 @@ graph TD
 - **SOP/Systems:** Compliance protocols, COA tracking
 
 #### **R&D WY (Wyoming Manufacturing/Distribution LLC)**
+
 **Legal Entity:** [TBD - Needs Formation]
 **Jurisdiction:** Wyoming (interstate commerce legal structure)
 **License:** Hemp manufacturing/distribution
 **Domain:** N/A (backend operations)
 
 **Operations:**
+
 - White-label THCA production
 - Interstate commerce compliance
 - B2B distribution to Texas retail
 - Manufacturing partnerships
 
 **Products/Projects:**
+
 - White-label flower production
 - Bulk THCA distribution
 - Manufacturing partnerships
 - Interstate shipping compliance
 
 **AOM Focus:**
+
 - **Leadership:** Jesse Niesen (Owner), Operations Manager
 - **Operations:** Manufacturing, quality control, shipping
 - **Marketing:** B2B relationships, trade shows
@@ -145,12 +156,14 @@ graph TD
 ### 🚀 TIER 2: SPIN-OFF ENTITIES (CHILDREN OF R&D)
 
 #### **HERBITRAGE (Commerce Platform)**
+
 **Legal Entity:** Herbitrage LLC (or subsidiary of R&D WY)
 **Jurisdiction:** Wyoming (recommended for privacy)
 **Domain:** **herbitrage.com** ← PRIMARY LAUNCH DOMAIN
 **Relationship:** Spun off from R&D WY
 
 **Operations:**
+
 - E-commerce platform for cannabis products
 - Membership subscription systems
 - Raffle/gaming mechanics
@@ -158,6 +171,7 @@ graph TD
 - Multi-domain deployment hub
 
 **Products/Projects:**
+
 - **Liv Hana Deployment** on herbitrage.com (customer-facing AI)
 - Membership tiers (Bronze $47, Silver $97, Gold $197/month)
 - Quarterly raffles ($250K Blue Dream)
@@ -165,6 +179,7 @@ graph TD
 - Age verification system
 
 **AOM Focus:**
+
 - **Leadership:** Jesse Niesen (Founder), Tech Lead
 - **Operations:** Platform dev, customer support, fulfillment
 - **Marketing:** SEO (69 domain network), social ads
@@ -175,6 +190,7 @@ graph TD
 - **SOP/Systems:** DevOps, CI/CD, monitoring
 
 **Technology Stack:**
+
 - Backend: Node.js microservices (voice, reasoning, integration)
 - Frontend: React (vibe-cockpit)
 - Database: BigQuery (analytics), Redis (cache/queue)
@@ -185,18 +201,21 @@ graph TD
 ---
 
 #### **LIV HANA CORE (AI Platform Spinoff)**
+
 **Legal Entity:** Liv Hana AI LLC (future formation)
 **Jurisdiction:** Delaware (tech company standard)
 **Domain:** **livhana.ai** ← CORE AI PLATFORM
 **Relationship:** Spun off from Herbitrage (B2B AI services)
 
 **Operations:**
+
 - AI voice assistant technology
 - Enterprise AI solutions
 - White-label AI for cannabis industry
 - API services for external clients
 
 **Products/Projects:**
+
 - **Liv Hana Voice Assistant** (ElevenLabs integration)
 - **AI Reasoning Engine** (DeepSeek/LLM)
 - **Compliance AI** (COA analysis, regulatory tracking)
@@ -204,6 +223,7 @@ graph TD
 - **API Platform** (B2B licensing)
 
 **AOM Focus:**
+
 - **Leadership:** Jesse Niesen (Founder), AI Lead
 - **Operations:** API infrastructure, model training
 - **Marketing:** B2B partnerships, white papers
@@ -214,6 +234,7 @@ graph TD
 - **SOP/Systems:** ML ops, model versioning, A/B testing
 
 **Future Vision:**
+
 - Spin out as standalone AI company
 - Licensing to non-cannabis industries
 - Exit opportunity (acquisition target)
@@ -222,18 +243,21 @@ graph TD
 ---
 
 #### **HIGH NOON CARTOON (Content/Media Entity)**
+
 **Legal Entity:** High Noon Productions LLC (or subsidiary of R&D TX)
 **Jurisdiction:** Texas (content production)
 **Domain:** highnooncartoon.com
 **Relationship:** Spun off from R&D TX (marketing arm)
 
 **Operations:**
+
 - 84-episode satirical cartoon series
 - Character avatar development
 - Content distribution platform
 - Merchandise/licensing
 
 **Products/Projects:**
+
 - **Texas THC Tale** (12-week time capsule series)
 - **Character Avatars:** Jesse, Liv Hana, Lt. Dan, Chief Steve, Aubrey Awfuls
 - **Predictive Engine Content** (political forecasting via satire)
@@ -241,6 +265,7 @@ graph TD
 - **Merchandise** (T-shirts, stickers, NFTs)
 
 **AOM Focus:**
+
 - **Leadership:** Jesse Niesen (Creator), Content Director
 - **Operations:** Animation production, platform hosting
 - **Marketing:** Viral clips (TikTok, IG, YouTube Shorts)
@@ -251,6 +276,7 @@ graph TD
 - **SOP/Systems:** Content calendar, production pipeline
 
 **Distribution Strategy:**
+
 - **Top Funnel:** Censored clips (social media)
 - **Mid Funnel:** Full episodes (highnooncartoon.com)
 - **Bottom Funnel:** Uncensored content (membership)
@@ -258,18 +284,21 @@ graph TD
 ---
 
 #### **ONE PLANT SOLUTION (Policy/Advocacy Entity)**
+
 **Legal Entity:** One Plant Solution LLC or PAC
 **Jurisdiction:** Texas (political action)
 **Domain:** oneplantsolution.com
 **Relationship:** Spun off from R&D TX (advocacy arm)
 
 **Operations:**
+
 - Policy advocacy & lobbying
 - PAC formation & petition drives
 - Legislative testimony (Jesse testified April 7, 2025 ✅)
 - Conservative coalition building
 
 **Products/Projects:**
+
 - **Texas Truth & Safety Act** (hemp regulation framework)
 - **American Cannabis Freedom Act** (federal "Golden Ticket")
 - **Petition Infrastructure** (voter mobilization)
@@ -277,6 +306,7 @@ graph TD
 - **Conservative Messaging Toolkit**
 
 **AOM Focus:**
+
 - **Leadership:** Jesse Niesen (Advocate), Andrea Steel (Legal Counsel)
 - **Operations:** Campaign mgmt, grassroots organizing
 - **Marketing:** Conservative messaging, earned media
@@ -291,12 +321,14 @@ graph TD
 ### 🏡 TIER 3: REAL ESTATE & ASSET HOLDINGS
 
 #### **Real Estate Holdings LLC**
+
 **Legal Entity:** [TBD - Asset Protection Vehicle]
 **Jurisdiction:** California/Texas
 **Assets:** Bear Yuba Ranch, other properties
 **Purpose:** Separate real estate from operating risk
 
 **Properties:**
+
 - Bear Yuba Land Trust decision (family estate crisis)
 - Texas retail locations (owned or leased?)
 - Future expansion properties
@@ -305,14 +337,16 @@ graph TD
 
 ## 🌐 EMPIRE-EMPIRE: 69-DOMAIN DEPLOYMENT STRATEGY
 
-### Core Deployment Domains (Tier-1 Priority):
+### Core Deployment Domains (Tier-1 Priority)
+
 1. **herbitrage.com** - PRIMARY LAUNCH (Liv Hana + commerce)
 2. **livhana.ai** - AI PLATFORM (tech spinoff)
 3. **reggieanddro.com** - MAIN BUSINESS (existing revenue)
 4. **highnooncartoon.com** - CONTENT (viral growth)
 5. **oneplantsolution.com** - POLICY (advocacy)
 
-### Secondary Domains (Empire-Empire Network - All 69 Owned):
+### Secondary Domains (Empire-Empire Network - All 69 Owned)
+
 - **Cannabis:** cannabisretailai.com, freeweedtexas.com, cannabiscookiestexas.com
 - **Hemp:** exoticcbdhempflower.com, hempretailai.com, firecbdbuds.com
 - **AI:** aicrisiscoach.com, californiaenergyai.com, clinicaldataai.com
@@ -320,7 +354,8 @@ graph TD
 - **Texas:** freelegalweedsanantonio.com, freeweedsanantonio.com
 - **Plus 50+ more** - ALL OWNED, READY FOR DEPLOYMENT
 
-### Multi-Domain Architecture (Technical):
+### Multi-Domain Architecture (Technical)
+
 - **Multi-tenancy:** domain_id/tenant_id in database
 - **Domain routing:** Middleware-based configuration per domain
 - **CORS:** Whitelist all 69 domains
@@ -332,6 +367,7 @@ graph TD
 ## 🎯 TEXAS TAKEOVER: IMMEDIATE ACTION PLAN
 
 ### Phase 1: Entity Formation & Cleanup (30 days)
+
 1. ✅ **Establish Holding Company LLC** (Delaware or WY)
 2. ✅ **Form R&D WY LLC** (Wyoming manufacturing entity)
 3. ✅ **Form Herbitrage LLC** under R&D WY
@@ -344,6 +380,7 @@ graph TD
 10. ✅ **Transfer domain ownership** to appropriate entities
 
 ### Phase 2: Operational Launch (60 days)
+
 1. ✅ **Deploy Liv Hana on herbitrage.com** (primary customer platform)
 2. ✅ **Launch livhana.ai** (AI platform marketing site)
 3. ✅ **Deploy 69-domain network** (phase 1: top 10 domains)
@@ -356,6 +393,7 @@ graph TD
 10. ✅ **High Noon Cartoon launch** (first 12 episodes)
 
 ### Phase 3: Texas Market Domination (90 days)
+
 1. ✅ **Expand retail locations** (San Antonio, Austin, Houston)
 2. ✅ **Launch SEO blitz** (69-domain network effect)
 3. ✅ **Conservative coalition** (One Plant Solution PAC)
@@ -371,7 +409,8 @@ graph TD
 
 ## 📋 ENTITY COMPARISON: NOW vs NEAR FUTURE
 
-### NOW (September 2025):
+### NOW (September 2025)
+
 ```
 Living Trust (??)
 └── R&D TX (Reggie & Dro LLC) [TX DSHS #690]
@@ -381,6 +420,7 @@ Living Trust (??)
 ```
 
 **Issues:**
+
 - ❌ All operations under one entity = single point of failure
 - ❌ No interstate commerce structure (WY entity missing)
 - ❌ No spin-off entities for IP protection
@@ -388,7 +428,8 @@ Living Trust (??)
 - ❌ Liv Hana AI not spun out (exit opportunity missed)
 - ❌ Real estate mixed with operations (liability risk)
 
-### NEAR FUTURE (Q1 2026 Target):
+### NEAR FUTURE (Q1 2026 Target)
+
 ```
 Living Trust (Jesse Niesen Family Trust)
 └── Holding Company LLC (DE or WY)
@@ -409,6 +450,7 @@ Living Trust (Jesse Niesen Family Trust)
 ```
 
 **Benefits:**
+
 - ✅ Liability isolation per entity
 - ✅ Interstate commerce compliant (WY structure)
 - ✅ IP protected in separate entities (exit-ready)
@@ -422,21 +464,24 @@ Living Trust (Jesse Niesen Family Trust)
 
 ## 🔧 TECHNOLOGY DEPLOYMENT MAP
 
-### herbitrage.com (Primary Launch):
+### herbitrage.com (Primary Launch)
+
 - **Backend:** All 3 services (voice, reasoning, integration) ✅ READY
 - **Frontend:** vibe-cockpit React app ✅ READY
 - **Auth:** JWT tier-1 hardened ✅ COMPLETE
 - **APIs:** Square, BigQuery, ElevenLabs, DeepSeek ✅ INTEGRATED
 - **Deployment:** Docker + GCP Cloud Run ✅ CONFIGURED
 
-### livhana.ai (AI Platform):
+### livhana.ai (AI Platform)
+
 - **Landing Page:** Marketing site (Next.js or static)
 - **API Gateway:** B2B access to Liv Hana services
 - **Documentation:** Developer docs, API reference
 - **Pricing:** SaaS tiers for external clients
 - **Demo:** Interactive AI assistant showcase
 
-### 69-Domain Network:
+### 69-Domain Network
+
 - **Multi-tenancy:** Database domain_id architecture
 - **Content Strategy:** Unique content per domain (SEO)
 - **Link Network:** Cross-domain SEO boost
@@ -447,21 +492,24 @@ Living Trust (Jesse Niesen Family Trust)
 
 ## 🎖️ NEXT ACTIONS FOR JESSE
 
-### CRITICAL (This Week):
+### CRITICAL (This Week)
+
 1. **Choose entity structure:** Delaware holding company or Wyoming?
 2. **Engage lawyer:** Entity formation, operating agreements
 3. **Open bank accounts:** Separate accounts per entity
 4. **Transfer domains:** Assign to appropriate entities
 5. **Deploy herbitrage.com:** Launch Liv Hana customer platform
 
-### IMPORTANT (This Month):
+### IMPORTANT (This Month)
+
 6. **Form R&D WY LLC:** Interstate commerce structure
 7. **Launch livhana.ai:** AI platform marketing site
 8. **Deploy 69-domain network:** Phase 1 (top 10 domains)
 9. **Membership system:** 3-tier launch on herbitrage.com
 10. **Blue Dream raffle:** Q4 2025 prep ($250K target)
 
-### STRATEGIC (Next Quarter):
+### STRATEGIC (Next Quarter)
+
 11. **Spin out Liv Hana AI:** Separate entity formation
 12. **Texas expansion:** New retail locations
 13. **Legislative push:** Texas Truth & Safety Act
@@ -472,7 +520,8 @@ Living Trust (Jesse Niesen Family Trust)
 
 ## 📊 AOM (AREAS OF MASTERY) SUMMARY PER ENTITY
 
-### R&D TX (Reggie & Dro):
+### R&D TX (Reggie & Dro)
+
 - **Leadership:** Jesse (CEO), Store Managers
 - **Operations:** Retail, inventory, compliance
 - **Marketing:** Local SEO, Google Ads
@@ -482,7 +531,8 @@ Living Trust (Jesse Niesen Family Trust)
 - **Culture:** Veteran, conservative values
 - **SOP/Systems:** Compliance, COA tracking
 
-### Herbitrage:
+### Herbitrage
+
 - **Leadership:** Jesse (Founder), Tech Lead
 - **Operations:** Platform dev, customer support
 - **Marketing:** SEO (69-domain network)
@@ -492,7 +542,8 @@ Living Trust (Jesse Niesen Family Trust)
 - **Culture:** Innovation, iteration
 - **SOP/Systems:** DevOps, CI/CD
 
-### Liv Hana AI:
+### Liv Hana AI
+
 - **Leadership:** Jesse (Founder), AI Lead
 - **Operations:** API infrastructure
 - **Marketing:** B2B partnerships
@@ -502,7 +553,8 @@ Living Trust (Jesse Niesen Family Trust)
 - **Culture:** Research, cutting-edge
 - **SOP/Systems:** ML ops, model versioning
 
-### High Noon Cartoon:
+### High Noon Cartoon
+
 - **Leadership:** Jesse (Creator), Content Dir
 - **Operations:** Animation production
 - **Marketing:** Viral clips (social)
@@ -512,7 +564,8 @@ Living Trust (Jesse Niesen Family Trust)
 - **Culture:** Creative, satirical
 - **SOP/Systems:** Content calendar
 
-### One Plant Solution:
+### One Plant Solution
+
 - **Leadership:** Jesse (Advocate), Legal Counsel
 - **Operations:** Campaign mgmt
 - **Marketing:** Conservative messaging
@@ -529,6 +582,7 @@ Living Trust (Jesse Niesen Family Trust)
 **Jesse - your entity structure is now MAPPED, ORGANIZED, and READY FOR TEXAS TAKEOVER.**
 
 **Key Corrections:**
+
 - ✅ herbitrage.com = PRIMARY LAUNCH (NOT livhana.com)
 - ✅ livhana.ai = CORE AI PLATFORM (spinoff potential)
 - ✅ All 69 domains = OWNED & READY TO DEPLOY

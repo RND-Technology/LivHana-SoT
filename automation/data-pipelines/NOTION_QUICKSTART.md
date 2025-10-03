@@ -19,7 +19,7 @@ automation/data-pipelines/
 
 ### 1. Create Notion Integration
 
-1. Go to https://www.notion.so/my-integrations
+1. Go to <https://www.notion.so/my-integrations>
 2. Click "+ New integration"
 3. Name it (e.g., "LivHana Data Pipeline")
 4. Select your workspace
@@ -37,6 +37,7 @@ automation/data-pipelines/
 ### 3. Set Up Google Cloud
 
 Already configured if you have:
+
 - BigQuery API enabled
 - Application default credentials set up
 - Or service account key file
@@ -72,11 +73,13 @@ cp .env.notion .env
 ### Step 3: Test & Run
 
 Test connectivity:
+
 ```bash
 npm run notion:test
 ```
 
 Run ingestion:
+
 ```bash
 npm run notion:ingest
 ```
@@ -93,6 +96,7 @@ npm run notion:ingest
 ## Output Locations
 
 ### Markdown Files
+
 ```
 data/notion_export/
 ├── product_roadmap_abc123.md
@@ -101,6 +105,7 @@ data/notion_export/
 ```
 
 ### BigQuery Table
+
 ```
 knowledge.notion_pages
 - 19 columns including page_id, title, content_markdown, properties
@@ -111,12 +116,14 @@ knowledge.notion_pages
 ## Verify Results
 
 ### Check Markdown Files
+
 ```bash
 ls -lh data/notion_export/
 cat data/notion_export/*.md | head -50
 ```
 
 ### Query BigQuery
+
 ```bash
 bq query --use_legacy_sql=false \
   'SELECT title, content_length, last_edited_time
@@ -124,20 +131,23 @@ bq query --use_legacy_sql=false \
    LIMIT 10'
 ```
 
-Or in Console: https://console.cloud.google.com/bigquery
+Or in Console: <https://console.cloud.google.com/bigquery>
 
 ## Common Issues
 
 ### "NOTION_API_KEY not set"
+
 ```bash
 export NOTION_API_KEY=secret_your_key_here
 ```
 
 ### "Page not found" errors
+
 - Share more pages with your integration
 - Check integration has access in Notion settings
 
 ### BigQuery permission errors
+
 ```bash
 gcloud auth application-default login
 # Or set service account:
@@ -145,6 +155,7 @@ export GOOGLE_APPLICATION_CREDENTIALS=/path/to/key.json
 ```
 
 ### Rate limit (429) errors
+
 - Script automatically retries with exponential backoff
 - For very large workspaces, this is normal
 
@@ -153,6 +164,7 @@ export GOOGLE_APPLICATION_CREDENTIALS=/path/to/key.json
 ### Schedule Daily Ingestion
 
 Add to crontab:
+
 ```bash
 0 2 * * * cd /path/to/automation/data-pipelines && node notion_ingest.js >> /var/log/notion.log 2>&1
 ```
@@ -180,6 +192,7 @@ bq query --use_legacy_sql=false \
 ## Advanced Usage
 
 ### Custom Dataset
+
 ```bash
 export BQ_DATASET=my_custom_dataset
 npm run notion:ingest
@@ -188,6 +201,7 @@ npm run notion:ingest
 ### Filter Specific Pages
 
 Edit `notion_ingest.js` line 387:
+
 ```javascript
 const response = await notion.search({
   filter: { property: 'object', value: 'page' },
@@ -200,6 +214,7 @@ const response = await notion.search({
 ### Add Retry Delay
 
 Edit line 13:
+
 ```javascript
 const RETRY_DELAY_MS = 2000;  // 2 seconds instead of 1
 ```

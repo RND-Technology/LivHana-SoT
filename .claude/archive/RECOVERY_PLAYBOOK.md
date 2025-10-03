@@ -1,4 +1,5 @@
 # 🚨 RECOVERY PLAYBOOK
+
 **Version:** 1.0
 **Created:** October 1, 2025
 **Purpose:** How to recover from any failure (immediate action guide)
@@ -8,6 +9,7 @@
 ## 🎯 QUICK RECOVERY INDEX
 
 Jump to scenario:
+
 - [Session Restart (Cursor Close/Crash)](#session-restart)
 - [Services Won't Start](#services-wont-start)
 - [ESLint Explosion](#eslint-explosion)
@@ -25,6 +27,7 @@ Jump to scenario:
 ### Scenario: Cursor Closed/Crashed Mid-Work
 
 **Symptoms:**
+
 - Session ended unexpectedly
 - Work may be uncommitted
 - Services may still be running
@@ -33,6 +36,7 @@ Jump to scenario:
 **Recovery Steps:**
 
 1. **Load Context (12 seconds)**
+
 ```bash
 # Read state files
 cat .claude/ULTIMATE_STATE.md
@@ -51,6 +55,7 @@ redis-cli ping 2>/dev/null || echo "stopped"
 ```
 
 2. **Assess Damage**
+
 ```bash
 # Uncommitted changes?
 git status --short | wc -l
@@ -63,6 +68,7 @@ npx eslint . --ext .js,.jsx 2>&1 | tail -2
 ```
 
 3. **Resume Work**
+
 ```bash
 # If CURRENT_SESSION_STATE.md exists:
 cat .claude/CURRENT_SESSION_STATE.md
@@ -72,6 +78,7 @@ cat .claude/CURRENT_SESSION_STATE.md
 ```
 
 **Prevention:**
+
 - Update ULTIMATE_STATE.md every 30 minutes
 - Commit frequently (every 15-30 minutes)
 - Save CURRENT_SESSION_STATE.md when starting risky work
@@ -83,6 +90,7 @@ cat .claude/CURRENT_SESSION_STATE.md
 ### Scenario: npm start fails or services crash
 
 **Common Causes:**
+
 1. Port already in use
 2. Missing dependencies
 3. Environment variables missing
@@ -92,6 +100,7 @@ cat .claude/CURRENT_SESSION_STATE.md
 **Recovery Steps:**
 
 #### Check #1: Port Conflicts
+
 ```bash
 # Find what's using the port
 lsof -i :4002  # reasoning-gateway
@@ -107,6 +116,7 @@ cd backend/reasoning-gateway && npm start
 ```
 
 #### Check #2: Dependencies
+
 ```bash
 # Reinstall dependencies
 cd backend/reasoning-gateway
@@ -118,6 +128,7 @@ npm install 2>&1 | grep -i error
 ```
 
 #### Check #3: Environment Variables
+
 ```bash
 # Check .env exists
 ls -la backend/reasoning-gateway/.env*
@@ -130,6 +141,7 @@ op item get vpxxhnpqtsc6wxgnfm444b52p4 --reveal --fields credential
 ```
 
 #### Check #4: Redis
+
 ```bash
 # Check if Redis is running
 redis-cli ping
@@ -142,6 +154,7 @@ docker run -d -p 6379:6379 redis:latest
 ```
 
 #### Check #5: Module Errors
+
 ```bash
 # Check for CommonJS/ES6 mismatch
 grep '"type"' backend/*/package.json
@@ -154,6 +167,7 @@ grep '"type"' backend/*/package.json
 ```
 
 **Prevention:**
+
 - Keep services running during development
 - Check service health before starting work
 - Commit .env.example files (no secrets)
@@ -165,6 +179,7 @@ grep '"type"' backend/*/package.json
 ### Scenario: ESLint shows 50+ errors suddenly
 
 **Common Causes:**
+
 1. New files created without scanning
 2. ESLint config changed
 3. Cursor ESLint server stale
@@ -174,6 +189,7 @@ grep '"type"' backend/*/package.json
 **Recovery Steps:**
 
 #### Step 1: Verify Actual State
+
 ```bash
 # Run fresh ESLint scan
 npx eslint . --ext .js,.jsx
@@ -186,6 +202,7 @@ npx eslint . --ext .js,.jsx --format compact
 ```
 
 #### Step 2: Reload Cursor ESLint
+
 ```bash
 # Force Cursor to reload ESLint
 osascript -e 'tell application "System Events" to keystroke "p" using {command down, shift down}'
@@ -197,6 +214,7 @@ open /tmp/cursor-eslint-check.png
 ```
 
 #### Step 3: Fix Common Patterns
+
 ```bash
 # Fix unused variables
 npx eslint . --ext .js,.jsx --fix
@@ -210,6 +228,7 @@ find backend -name "*.js" ! -path "*/node_modules/*" ! -path "*/scripts/*" \
 ```
 
 #### Step 4: Ignore CLI Scripts (if needed)
+
 ```javascript
 // .eslintrc.js - Add to ignorePatterns
 ignorePatterns: [
@@ -222,6 +241,7 @@ ignorePatterns: [
 ```
 
 **Prevention:**
+
 - Always run full ESLint scan AFTER creating new files
 - Never trust cached/stale reports
 - Use visual verification for UI tools (screenshots)
@@ -233,6 +253,7 @@ ignorePatterns: [
 ### Scenario: Tests that were passing now fail
 
 **Common Causes:**
+
 1. Environment setup missing
 2. Dependencies changed
 3. Database state dirty
@@ -242,6 +263,7 @@ ignorePatterns: [
 **Recovery Steps:**
 
 #### Step 1: Identify Failures
+
 ```bash
 # Run tests with verbose output
 cd backend/reasoning-gateway
@@ -255,6 +277,7 @@ npm test 2>&1 | grep -A 5 "FAIL"
 ```
 
 #### Step 2: Check Environment
+
 ```bash
 # Verify test environment
 grep -E "NODE_ENV|TEST" .env
@@ -268,6 +291,7 @@ npm install --save-dev jest @jest/globals
 ```
 
 #### Step 3: Clear State
+
 ```bash
 # Clear Jest cache
 npx jest --clearCache
@@ -280,6 +304,7 @@ rm -rf /tmp/test-*
 ```
 
 #### Step 4: Fix Common Issues
+
 ```javascript
 // Timeout issues
 jest.setTimeout(30000);  // Increase to 30 seconds
@@ -293,6 +318,7 @@ beforeEach(() => jest.clearAllMocks());
 ```
 
 **Prevention:**
+
 - Run tests before committing
 - Keep test environment isolated
 - Mock external dependencies
@@ -307,6 +333,7 @@ beforeEach(() => jest.clearAllMocks());
 **Recovery Steps:**
 
 #### Option 1: Accept Ours (Keep Local)
+
 ```bash
 # If local changes are correct
 git checkout --ours path/to/file
@@ -315,6 +342,7 @@ git commit
 ```
 
 #### Option 2: Accept Theirs (Keep Remote)
+
 ```bash
 # If remote changes are correct
 git checkout --theirs path/to/file
@@ -323,6 +351,7 @@ git commit
 ```
 
 #### Option 3: Manual Resolution
+
 ```bash
 # Open file, resolve conflicts between <<<< and >>>>
 # Then:
@@ -331,6 +360,7 @@ git commit
 ```
 
 #### Option 4: Abort and Start Over
+
 ```bash
 # If conflicts are too complex
 git merge --abort
@@ -348,6 +378,7 @@ git stash pop
 ```
 
 **Prevention:**
+
 - Pull frequently
 - Commit frequently
 - Push to personal branches for experiments
@@ -362,6 +393,7 @@ git stash pop
 **Recovery Steps:**
 
 #### Step 1: Read State Files
+
 ```bash
 # Check ultimate state
 cat .claude/ULTIMATE_STATE.md
@@ -374,6 +406,7 @@ grep -A 10 "CURRENT PRIORITIES" .claude/PERSISTENT_MEMORY.md
 ```
 
 #### Step 2: Check Git History
+
 ```bash
 # Recent commits
 git log -10 --oneline --stat
@@ -389,6 +422,7 @@ git diff HEAD~5 --stat
 ```
 
 #### Step 3: Check Service Logs
+
 ```bash
 # Reasoning gateway logs
 tail -100 backend/reasoning-gateway/logs/app.log
@@ -401,6 +435,7 @@ tail -100 /var/log/system.log | grep -i livhana
 ```
 
 #### Step 4: Reconstruct Context
+
 ```markdown
 **Based on evidence:**
 - Last commit: [message] - [time ago]
@@ -415,6 +450,7 @@ tail -100 /var/log/system.log | grep -i livhana
 ```
 
 **Prevention:**
+
 - Update ULTIMATE_STATE.md frequently
 - Commit with descriptive messages
 - Use CURRENT_SESSION_STATE.md for risky work
@@ -426,6 +462,7 @@ tail -100 /var/log/system.log | grep -i livhana
 ### Scenario: Session restarted with incomplete work
 
 **Detection:**
+
 - CURRENT_SESSION_STATE.md exists
 - Git has uncommitted changes
 - ULTIMATE_STATE.md shows "In Progress"
@@ -433,6 +470,7 @@ tail -100 /var/log/system.log | grep -i livhana
 **Recovery Steps:**
 
 #### Step 1: Load Recovery State
+
 ```bash
 # Read recovery file
 cat .claude/CURRENT_SESSION_STATE.md
@@ -442,6 +480,7 @@ grep -A 20 "IN PROGRESS" .claude/ULTIMATE_STATE.md
 ```
 
 #### Step 2: Assess Current State
+
 ```bash
 # What files were modified
 git diff --name-only
@@ -454,12 +493,14 @@ curl localhost:4002/health && curl localhost:3005/health
 ```
 
 #### Step 3: Resume from Checkpoint
+
 ```bash
 # Follow resume instructions from CURRENT_SESSION_STATE.md
 # Execute the "Resume Command" section
 ```
 
 #### Step 4: Verify Recovery
+
 ```bash
 # Run tests if they were passing before
 npm test
@@ -472,6 +513,7 @@ curl localhost:4002/health
 ```
 
 **Prevention:**
+
 - Save CURRENT_SESSION_STATE.md when starting complex work
 - Update it every 15-30 minutes
 - Commit frequently with WIP markers
@@ -483,6 +525,7 @@ curl localhost:4002/health
 ### Scenario: Context at 90%+ or system slowing down
 
 **Detection:**
+
 - Conversation feels sluggish
 - Responses take longer
 - System memory high
@@ -491,6 +534,7 @@ curl localhost:4002/health
 **Recovery Steps:**
 
 #### Step 1: Auto-Compact Protocol
+
 ```bash
 # Execute auto-compact script
 .claude/auto-compact.sh
@@ -503,6 +547,7 @@ curl localhost:4002/health
 ```
 
 #### Step 2: Save Critical State
+
 ```markdown
 # Save to CURRENT_SESSION_STATE.md:
 ## CRITICAL STATE (Pre-Compact)
@@ -524,6 +569,7 @@ curl localhost:4002/health
 ```
 
 #### Step 3: Clean Up
+
 ```bash
 # Clear old logs
 find . -name "*.log" -mtime +7 -delete
@@ -540,6 +586,7 @@ npm cache clean --force
 ```
 
 #### Step 4: Restart Session
+
 ```bash
 # End session properly
 # Update ULTIMATE_STATE.md
@@ -551,6 +598,7 @@ npm cache clean --force
 ```
 
 **Prevention:**
+
 - Monitor context usage
 - Commit frequently
 - Archive old reports
@@ -565,6 +613,7 @@ npm cache clean --force
 **IMMEDIATE ACTIONS:**
 
 #### Step 1: Assess Impact (30 seconds)
+
 ```bash
 # Check what's down
 curl https://api.livhana.com/health
@@ -578,6 +627,7 @@ curl https://livhana.com/health
 ```
 
 #### Step 2: Notify (1 minute)
+
 ```markdown
 🚨 PRODUCTION INCIDENT
 
@@ -591,6 +641,7 @@ curl https://livhana.com/health
 ```
 
 #### Step 3: Triage (2 minutes)
+
 ```bash
 # Check recent deployments
 git log origin/main -10 --oneline --since="1 hour ago"
@@ -606,6 +657,7 @@ git log origin/main -10 --oneline --since="1 hour ago"
 ```
 
 #### Step 4: Quick Fix or Rollback (5 minutes)
+
 ```bash
 # Option A: Quick fix
 # Fix bug, deploy hotfix
@@ -619,6 +671,7 @@ git revert [commit-hash]
 ```
 
 #### Step 5: Monitor Recovery (10 minutes)
+
 ```bash
 # Verify service up
 curl https://api.livhana.com/health
@@ -634,6 +687,7 @@ curl https://api.livhana.com/health
 ```
 
 #### Step 6: Post-Incident Report (30 minutes)
+
 ```markdown
 # PRODUCTION INCIDENT REPORT
 
@@ -663,6 +717,7 @@ curl https://api.livhana.com/health
 ```
 
 **Prevention:**
+
 - Require approval for production deployments
 - Run tests before deploying
 - Use feature flags for risky changes
@@ -675,21 +730,25 @@ curl https://api.livhana.com/health
 For each scenario, recovery is successful when:
 
 ✅ **System State Verified**
+
 - Services: Expected state (running/stopped)
 - Code: ESLint clean, tests passing
 - Git: Clean or understood uncommitted changes
 
 ✅ **Context Restored**
+
 - Know what was being done
 - Know what's next
 - Know any blockers
 
 ✅ **Work Preserved**
+
 - No code lost
 - Commits saved
 - State documented
 
 ✅ **Ready to Continue**
+
 - Can resume immediately
 - No repeated questions
 - No context loss

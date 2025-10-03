@@ -4,6 +4,7 @@ RPM: 3.6.0.6.ops-technology-ship-status-documentation
 Session: Dual-AI Collaboration - Sonnet Docs Sweep
 -->
 # Agent 3: E2E Test Coverage Analysis Report
+
 ## LivHana Trinity System - 100% Test Coverage Strategy
 
 **Generated:** 2025-10-02
@@ -16,12 +17,14 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
 ## Executive Summary
 
 After comprehensive analysis of the LivHana Trinity system, I have identified:
+
 - **ROOT CAUSE** of Playwright health check hanging (RESOLVED)
 - **CRITICAL GAPS** in test coverage (33% coverage currently)
 - **MISSING TEST SUITES** for core business flows (67% untested)
 - **PRODUCTION-READY** testing strategy with fixtures and CI/CD integration
 
 **Current Test Status:**
+
 - ✅ 2 E2E test files exist
 - ⚠️ Only basic smoke tests implemented
 - ❌ No integration flow tests
@@ -35,6 +38,7 @@ After comprehensive analysis of the LivHana Trinity system, I have identified:
 ### Technical Deep Dive
 
 #### THE PROBLEM
+
 The `/health` endpoint on integration-service (port 3005) works perfectly with `curl` but **appears to hang** when called from Playwright's `page.request.get()`.
 
 #### ROOT CAUSE IDENTIFIED
@@ -81,6 +85,7 @@ async function ensureFreshCache() {
 #### PROOF OF ROOT CAUSE
 
 Testing confirms service responds immediately after warm-up:
+
 ```bash
 # First call (cold start): 5-30 seconds
 curl http://localhost:3005/health
@@ -90,6 +95,7 @@ curl http://localhost:3005/health
 ```
 
 Node.js HTTP test:
+
 ```
 StatusCode: 200
 Headers: {
@@ -110,11 +116,13 @@ Body: {"status":"healthy",...}
 **File:** `/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/frontend/vibe-cockpit/tests/e2e-full-system.spec.ts`
 
 **Current code (line 29):**
+
 ```typescript
 const integrationHealthResponse = await page.request.get('http://localhost:3005/health');
 ```
 
 **FIXED CODE:**
+
 ```typescript
 // Integration Service (port 3005) - Allow time for BigQuery cache initialization
 console.log('🔍 Testing Integration Service...');
@@ -129,6 +137,7 @@ expect(integrationHealthResponse.ok()).toBeTruthy();
 **File:** `/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/frontend/vibe-cockpit/tests/e2e-full-system.spec.ts`
 
 **Add global setup:**
+
 ```typescript
 import { test, expect } from '@playwright/test';
 
@@ -182,6 +191,7 @@ test.describe('LivHana Trinity - Full System E2E Test', () => {
 **Problem:** Health check calls `getBigQueryStatus()` which reads cache state. If cache is being initialized in another request, there's no issue. But we can make it even safer:
 
 **IMPROVED HEALTH ENDPOINT:**
+
 ```javascript
 // Health endpoint - no auth required for monitoring
 app.get('/health', (req, res) => {
@@ -213,6 +223,7 @@ app.get('/health', (req, res) => {
 **File:** `/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/backend/integration-service/src/bigquery_live.js`
 
 **Add startup initialization:**
+
 ```javascript
 // At end of module, after all function definitions
 if (bigQueryEnabled && client) {
@@ -236,6 +247,7 @@ This ensures cache starts warming up immediately when service starts, rather tha
 #### Existing Tests
 
 **File 1:** `/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/frontend/vibe-cockpit/tests/e2e-full-system.spec.ts`
+
 - ✅ Backend health checks (3 services)
 - ✅ JWT authentication verification
 - ✅ Frontend dashboard loading
@@ -252,6 +264,7 @@ This ensures cache starts warming up immediately when service starts, rather tha
 **Coverage:** ~25% of critical user flows
 
 **File 2:** `/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/frontend/vibe-cockpit/tests/e2e-full-suite.spec.ts`
+
 - ✅ Visual regression tests
 - ✅ Navigation functionality
 - ✅ Real data verification (BigQuery)
@@ -442,6 +455,7 @@ tests/
 **Purpose:** Verify complete Square API integration lifecycle
 
 **Test Cases:**
+
 ```typescript
 test.describe('Square API Integration - Full Lifecycle', () => {
 
@@ -497,6 +511,7 @@ test.describe('Square API Integration - Full Lifecycle', () => {
 **Purpose:** Verify BigQuery cache, data integrity, and fallback mechanisms
 
 **Test Cases:**
+
 ```typescript
 test.describe('BigQuery Data Pipeline', () => {
 
@@ -560,6 +575,7 @@ test.describe('BigQuery Data Pipeline', () => {
 **Purpose:** Verify complete membership lifecycle from signup to cancellation
 
 **Test Cases:**
+
 ```typescript
 test.describe('Membership System - Complete User Journey', () => {
 
@@ -617,6 +633,7 @@ test.describe('Membership System - Complete User Journey', () => {
 **Purpose:** Verify voice synthesis, reasoning integration, and real-time streaming
 
 **Test Cases:**
+
 ```typescript
 test.describe('Voice Mode - Complete User Experience', () => {
 
@@ -680,6 +697,7 @@ test.describe('Voice Mode - Complete User Experience', () => {
 **Purpose:** Verify autonomous agent task execution, approval, and learning
 
 **Test Cases:**
+
 ```typescript
 test.describe('Autonomous Agent - Full Lifecycle', () => {
 
@@ -756,6 +774,7 @@ test.describe('Autonomous Agent - Full Lifecycle', () => {
 **Purpose:** Verify graceful degradation when network or APIs fail
 
 **Test Cases:**
+
 ```typescript
 test.describe('Network Failure Resilience', () => {
 
@@ -805,6 +824,7 @@ test.describe('Network Failure Resilience', () => {
 **Purpose:** Verify age verification submission and compliance workflow
 
 **Test Cases:**
+
 ```typescript
 test.describe('Age Verification System (Compliance Critical)', () => {
 
@@ -849,6 +869,7 @@ test.describe('Age Verification System (Compliance Critical)', () => {
 **Purpose:** Verify raffle creation, ticket purchase, and drawing execution
 
 **Test Cases:**
+
 ```typescript
 test.describe('Raffle System - Complete Flow', () => {
 
@@ -893,6 +914,7 @@ test.describe('Raffle System - Complete Flow', () => {
 ### Fixture Architecture
 
 **File:** `tests/fixtures/auth-tokens.ts`
+
 ```typescript
 export const TEST_TOKENS = {
   VALID_ADMIN: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...',
@@ -907,6 +929,7 @@ export function getTestToken(role: 'admin' | 'user' = 'admin') {
 ```
 
 **File:** `tests/fixtures/mock-data.ts`
+
 ```typescript
 export const MOCK_SQUARE_PRODUCTS = [
   {
@@ -937,6 +960,7 @@ export const MOCK_BIGQUERY_DASHBOARD = {
 ```
 
 **File:** `tests/fixtures/test-users.ts`
+
 ```typescript
 export const TEST_USERS = {
   ADMIN: {
@@ -962,6 +986,7 @@ export const TEST_USERS = {
 ### API Client Helper
 
 **File:** `tests/helpers/api-client.ts`
+
 ```typescript
 import axios from 'axios';
 import { getTestToken } from '../fixtures/auth-tokens';
@@ -1004,6 +1029,7 @@ export const voiceAPI = new TestAPIClient('http://localhost:4001');
 ### Database Seeder
 
 **File:** `tests/helpers/db-seeder.ts`
+
 ```typescript
 import { BigQuery } from '@google-cloud/bigquery';
 
@@ -1055,6 +1081,7 @@ export class TestDBSeeder {
 ### GitHub Actions Workflow
 
 **File:** `.github/workflows/e2e-tests.yml`
+
 ```yaml
 name: E2E Tests
 
@@ -1192,6 +1219,7 @@ export default defineConfig({
 ### Pre-commit Hooks
 
 **File:** `.husky/pre-commit`
+
 ```bash
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
@@ -1268,6 +1296,7 @@ npm run test:e2e:smoke || {
 ## Part 7: Implementation Priority
 
 ### Phase 1: IMMEDIATE (Week 1)
+
 1. ✅ Fix Playwright health check timeout (Apply Fix #1 & #2)
 2. ✅ Fix Playwright config output folder conflict
 3. ✅ Create test fixtures and helpers
@@ -1275,6 +1304,7 @@ npm run test:e2e:smoke || {
 5. ✅ Implement BigQuery pipeline tests
 
 ### Phase 2: CRITICAL (Week 2)
+
 6. ✅ Membership flow tests
 7. ✅ Voice mode E2E tests
 8. ✅ Autonomous agent tests
@@ -1282,6 +1312,7 @@ npm run test:e2e:smoke || {
 10. ✅ Age verification tests
 
 ### Phase 3: COMPREHENSIVE (Week 3)
+
 11. ✅ Raffle system tests
 12. ✅ Authentication failure tests
 13. ✅ Performance/load tests
@@ -1289,6 +1320,7 @@ npm run test:e2e:smoke || {
 15. ✅ CI/CD pipeline setup
 
 ### Phase 4: OPTIMIZATION (Week 4)
+
 16. ✅ Test parallelization
 17. ✅ Test data seeding automation
 18. ✅ Reporting dashboard
@@ -1320,18 +1352,21 @@ npm run test:e2e:smoke || {
 ## Conclusion
 
 ### Current State
+
 - **33% coverage** (smoke tests only)
 - **2 test files**
 - **No integration flow coverage**
 - **Playwright hang issue** identified and solved
 
 ### Target State (100% Coverage)
+
 - **100% coverage** (all critical flows)
 - **30+ test files** (organized by domain)
 - **Complete integration flow coverage**
 - **Production-ready CI/CD pipeline**
 
 ### Next Steps
+
 1. Apply immediate fixes to existing tests
 2. Create test fixtures and helpers (infrastructure)
 3. Implement Phase 1 tests (Square + BigQuery)
@@ -1339,6 +1374,7 @@ npm run test:e2e:smoke || {
 5. Iterate through Phases 2-4
 
 ### Estimated Timeline
+
 - **Phase 1:** 1 week (5 business days)
 - **Phase 2:** 1 week (5 business days)
 - **Phase 3:** 1 week (5 business days)
@@ -1350,11 +1386,13 @@ npm run test:e2e:smoke || {
 ## Appendix: Key File Paths
 
 ### Existing Files
+
 - `/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/frontend/vibe-cockpit/tests/e2e-full-system.spec.ts`
 - `/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/frontend/vibe-cockpit/tests/e2e-full-suite.spec.ts`
 - `/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/frontend/vibe-cockpit/playwright.config.ts`
 
 ### Backend Services
+
 - `/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/backend/integration-service/src/index.js`
 - `/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/backend/integration-service/src/bigquery_live.js`
 - `/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/backend/integration-service/src/square_catalog.js`
@@ -1362,6 +1400,7 @@ npm run test:e2e:smoke || {
 - `/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/backend/reasoning-gateway/src/routes/autonomous.js`
 
 ### Frontend Components
+
 - `/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/frontend/vibe-cockpit/src/components/VoiceMode.jsx`
 - `/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/frontend/vibe-cockpit/src/hooks/useReasoningJob.js`
 - `/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/frontend/vibe-cockpit/src/utils/autonomousApi.js`

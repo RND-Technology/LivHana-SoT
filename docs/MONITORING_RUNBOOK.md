@@ -25,16 +25,18 @@ This runbook provides comprehensive guidance for monitoring, alerting, and troub
 
 ### APM: New Relic
 
-**Access**: https://one.newrelic.com/
+**Access**: <https://one.newrelic.com/>
 
 **Login**: Use company SSO or credentials stored in 1Password
 
 **Services Monitored**:
+
 - `LivHana-Integration-Service` (Port 3005)
 - `LivHana-Reasoning-Gateway` (Port 4002)
 - `LivHana-Voice-Service` (Port 4001)
 
 **Key Features**:
+
 - Automatic instrumentation for Node.js
 - Distributed tracing across services
 - AI monitoring for OpenAI/Anthropic calls
@@ -43,16 +45,18 @@ This runbook provides comprehensive guidance for monitoring, alerting, and troub
 
 ### Error Tracking: Sentry
 
-**Access**: https://sentry.io/
+**Access**: <https://sentry.io/>
 
 **Login**: Use company SSO or credentials stored in 1Password
 
 **Projects**:
+
 - `livhana-integration-service`
 - `livhana-reasoning-gateway`
 - `livhana-voice-service`
 
 **Key Features**:
+
 - Real-time error tracking
 - Source map support for stack traces
 - Release tracking
@@ -62,11 +66,13 @@ This runbook provides comprehensive guidance for monitoring, alerting, and troub
 ### Metrics: Prometheus
 
 **Endpoints**:
+
 - Integration Service: `http://localhost:3005/metrics`
 - Reasoning Gateway: `http://localhost:4002/metrics`
 - Voice Service: `http://localhost:4001/metrics`
 
 **Key Metrics**:
+
 - `http_request_duration_seconds` - API response times
 - `http_requests_total` - Total API requests
 - `db_query_duration_seconds` - Database query times
@@ -78,13 +84,16 @@ This runbook provides comprehensive guidance for monitoring, alerting, and troub
 **Endpoints**:
 
 Basic Liveness:
+
 - `/health` - Returns 200 if service is running
 - `/healthz` - Kubernetes-style liveness probe
 
 Readiness with Dependencies:
+
 - `/ready` - Returns 200 only if all dependencies are healthy
 
 **Expected Response Times**:
+
 - `/health`: < 50ms
 - `/ready`: < 500ms (includes dependency checks)
 
@@ -101,6 +110,7 @@ Readiness with Dependencies:
 **Impact**: Service is unavailable to users
 
 **Response**:
+
 1. Check service logs: `docker logs <container_name>`
 2. Check if process is running: `pm2 list` or `systemctl status <service>`
 3. Check resource usage: `htop` or `docker stats`
@@ -117,6 +127,7 @@ Readiness with Dependencies:
 **Impact**: Users experiencing errors
 
 **Response**:
+
 1. Check Sentry for error details and frequency
 2. Identify common error patterns
 3. Check if errors are from specific endpoint
@@ -134,6 +145,7 @@ Readiness with Dependencies:
 **Impact**: Service cannot access data, requests failing
 
 **Response**:
+
 1. Check database connectivity: `redis-cli ping` or BigQuery console
 2. Verify credentials and connection strings
 3. Check firewall rules and network connectivity
@@ -154,6 +166,7 @@ Readiness with Dependencies:
 **Impact**: Degraded user experience
 
 **Response**:
+
 1. Check New Relic APM for slow transactions
 2. Identify slow database queries or external API calls
 3. Check if specific endpoint is causing slowdown
@@ -171,6 +184,7 @@ Readiness with Dependencies:
 **Impact**: Background jobs experiencing delays
 
 **Response**:
+
 1. Check queue metrics: `/ready` endpoint
 2. Check if workers are processing jobs
 3. Review failed job count and reasons
@@ -187,6 +201,7 @@ Readiness with Dependencies:
 **Impact**: Risk of OOM kills and service crashes
 
 **Response**:
+
 1. Check memory usage: `docker stats` or `ps aux --sort=-%mem | head`
 2. Look for memory leaks in New Relic
 3. Check if memory usage is growing over time
@@ -208,6 +223,7 @@ Readiness with Dependencies:
 **Impact**: Some users experiencing errors
 
 **Response**:
+
 1. Review Sentry for error patterns
 2. Check if errors are from specific user actions
 3. Determine if errors are transient or persistent
@@ -221,6 +237,7 @@ Readiness with Dependencies:
 **Impact**: Some requests experiencing delays
 
 **Response**:
+
 1. Check external service status pages
 2. Verify API rate limits not exceeded
 3. Consider implementing timeout and retry logic
@@ -238,6 +255,7 @@ Readiness with Dependencies:
 **Impact**: Minor performance degradation
 
 **Response**:
+
 1. Review cache invalidation logic
 2. Check if cache TTL is appropriate
 3. Consider warming cache on startup
@@ -250,21 +268,25 @@ Readiness with Dependencies:
 ### New Relic Dashboards
 
 **System Health Overview**
+
 - URL: `https://one.newrelic.com/dashboards/livhana-system-health`
 - Shows: Service health, error rates, response times
 - Refresh: Real-time
 
 **API Performance**
+
 - URL: `https://one.newrelic.com/dashboards/livhana-api-performance`
 - Shows: Endpoint response times, throughput, errors
 - Refresh: Real-time
 
 **Business Metrics**
+
 - URL: `https://one.newrelic.com/dashboards/livhana-business-metrics`
 - Shows: Revenue, active users, transaction volume
 - Refresh: 1 minute
 
 **Infrastructure**
+
 - URL: `https://one.newrelic.com/infrastructure`
 - Shows: CPU, memory, disk, network
 - Refresh: Real-time
@@ -272,11 +294,13 @@ Readiness with Dependencies:
 ### Sentry Dashboards
 
 **Error Tracking**
+
 - URL: `https://sentry.io/organizations/livhana/issues/`
 - Shows: Recent errors, frequency, affected users
 - Refresh: Real-time
 
 **Performance Issues**
+
 - URL: `https://sentry.io/organizations/livhana/performance/`
 - Shows: Slow transactions, N+1 queries
 - Refresh: Real-time
@@ -290,12 +314,14 @@ Readiness with Dependencies:
 **Symptoms**: Service fails to start or crashes immediately
 
 **Causes**:
+
 - Missing environment variables
 - Port already in use
 - Database connection failure
 - Syntax error in code
 
 **Resolution**:
+
 1. Check logs for error messages
 2. Verify all required environment variables are set
 3. Check if port is available: `lsof -i :3005`
@@ -307,12 +333,14 @@ Readiness with Dependencies:
 **Symptoms**: Occasional 503 Service Unavailable errors
 
 **Causes**:
+
 - Connection pool exhausted
 - Worker overloaded
 - Resource limits reached
 - Dependency timeout
 
 **Resolution**:
+
 1. Check connection pool settings
 2. Scale up workers or increase limits
 3. Add circuit breaker for dependencies
@@ -323,12 +351,14 @@ Readiness with Dependencies:
 **Symptoms**: Memory usage grows over time, eventual crash
 
 **Causes**:
+
 - Event listeners not removed
 - Circular references
 - Large object retention
 - Cache not expiring
 
 **Resolution**:
+
 1. Profile with Chrome DevTools or clinic.js
 2. Check for event listener leaks
 3. Review cache TTL settings
@@ -339,12 +369,14 @@ Readiness with Dependencies:
 **Symptoms**: High database query latency
 
 **Causes**:
+
 - Missing indexes
 - Large result sets
 - N+1 query problem
 - Database overloaded
 
 **Resolution**:
+
 1. Analyze query with EXPLAIN
 2. Add appropriate indexes
 3. Implement query result caching
@@ -372,11 +404,13 @@ Readiness with Dependencies:
 ### Communication Channels
 
 **Slack Channels**:
+
 - `#alerts` - Automated alerts from monitoring
 - `#incidents` - Active incident coordination
 - `#engineering` - General engineering discussion
 
 **Status Page**:
+
 - Update at: `https://status.livhana.com`
 - Use for customer-facing incidents
 
@@ -461,16 +495,19 @@ Readiness with Dependencies:
 ### New Relic Costs
 
 **Free Tier**:
+
 - 100 GB/month data ingest
 - 1 full platform user
 - Unlimited basic users
 
 **Estimated Production Costs** (after free tier):
+
 - Data ingest: ~150 GB/month = $0.30/GB = $15/month
 - Full platform users: 2 users = $99/user = $198/month
 - **Total**: ~$213/month
 
 **Cost Optimization**:
+
 - Use log sampling for high-volume logs
 - Disable AI content recording (enabled)
 - Use data dropping rules for unnecessary data
@@ -479,11 +516,13 @@ Readiness with Dependencies:
 ### Sentry Costs
 
 **Free Tier**:
+
 - 5,000 errors/month
 - 10,000 performance units/month
 - 7-day data retention
 
 **Developer Plan**: $29/month
+
 - 50,000 errors/month
 - 100,000 performance units/month
 - 90-day retention
@@ -491,6 +530,7 @@ Readiness with Dependencies:
 **Estimated Production Costs**: $29/month (Developer plan sufficient)
 
 **Cost Optimization**:
+
 - Filter out common/expected errors
 - Sample performance transactions (10% rate)
 - Use issue grouping to reduce duplication
@@ -580,6 +620,7 @@ netstat -tulpn | grep LISTEN
 After resolving a P0 or P1 incident, schedule a post-incident review within 48 hours.
 
 **Agenda**:
+
 1. Timeline review
 2. Root cause analysis
 3. What went well
@@ -587,12 +628,14 @@ After resolving a P0 or P1 incident, schedule a post-incident review within 48 h
 5. Action items
 
 **Attendees**:
+
 - On-call engineer(s)
 - Service owner
 - DevOps lead
 - Engineering manager
 
 **Outputs**:
+
 - Post-mortem document
 - Action items with owners
 - Monitoring improvements

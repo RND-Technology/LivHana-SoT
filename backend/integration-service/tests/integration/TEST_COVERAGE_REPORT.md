@@ -8,6 +8,7 @@
 ## Test Coverage Summary
 
 ### 1. OAuth2 Refresh Token Flow (3 tests)
+
 - ✅ Successfully refresh access token with valid credentials
 - ✅ Fail gracefully when OAuth credentials are expired
 - ✅ Handle OAuth token refresh with network timeout
@@ -15,6 +16,7 @@
 **Coverage:** Full OAuth2 flow including success, expiration, and timeout scenarios
 
 ### 2. Transaction History Fetch (3 tests)
+
 - ✅ Fetch and transform transactions correctly
 - ✅ Handle pagination for large transaction sets (150 records across 2 pages)
 - ✅ Filter transactions by timestamp (incremental sync - last 2 years)
@@ -22,12 +24,14 @@
 **Coverage:** Data fetching, transformation, pagination logic, and date filtering
 
 ### 3. Product Catalog Sync (2 tests)
+
 - ✅ Fetch and transform products correctly
 - ✅ Handle products with multiple shop locations
 
 **Coverage:** Product fetching, transformation, and multi-location handling
 
 ### 4. BigQuery Insertion (4 tests)
+
 - ✅ Batch insert transactions in chunks of 1000
 - ✅ Handle BigQuery insertion errors gracefully
 - ✅ Use correct BigQuery table names (lightspeed_transactions, lightspeed_products)
@@ -36,6 +40,7 @@
 **Coverage:** Batching logic, error handling, table configuration, and insertion options
 
 ### 5. Error Handling (3 tests)
+
 - ✅ Handle API rate limit (429) errors
 - ✅ Handle network errors gracefully (ENOTFOUND)
 - ✅ Handle malformed API responses
@@ -43,6 +48,7 @@
 **Coverage:** HTTP errors, network failures, and data validation
 
 ### 6. Mock Mode Fallback (4 tests)
+
 - ✅ Use mock data when LIGHTSPEED_USE_MOCK is true
 - ✅ Generate realistic mock transaction data (50 transactions)
 - ✅ Generate realistic mock product data (25 products)
@@ -51,6 +57,7 @@
 **Coverage:** Mock data generation and fallback mechanisms
 
 ### 7. Incremental Sync Logic (3 tests)
+
 - ✅ Query only recent transactions (last 2 years)
 - ✅ Support full refresh mode when needed
 - ✅ Stop pagination when no more results (smart pagination)
@@ -58,6 +65,7 @@
 **Coverage:** Timestamp filtering, pagination boundaries, and incremental vs full sync
 
 ### 8. API Client Configuration (2 tests)
+
 - ✅ Create client with correct base URL and headers
 - ✅ Use API Key authentication when provided (Basic Auth fallback)
 
@@ -66,6 +74,7 @@
 ## Requirements Verification
 
 ### REQUIRED TEST COVERAGE ✅
+
 1. **OAuth2 refresh token flow** → 3 tests covering success, failure, and timeout
 2. **Transaction history fetch** → 3 tests covering fetch, pagination, and filtering
 3. **Product catalog sync** → 2 tests covering basic and multi-location scenarios
@@ -121,21 +130,25 @@ Tests:       24 passed, 24 total
 ## Key Features Tested
 
 ### Data Transformation
+
 - Transaction mapping from LightSpeed format to BigQuery schema
 - Product mapping with category, pricing, and inventory data
 - Null handling for optional fields (customer_id, description)
 
 ### Authentication Strategies
+
 - OAuth2 with refresh token (primary method)
 - API Key with Basic Auth (fallback method)
 - Token expiration handling
 
 ### Pagination & Performance
+
 - Offset-based pagination with limit=100
 - Smart stop when results < limit
 - Batch insertion (1000 records per batch)
 
 ### Error Resilience
+
 - Network timeouts
 - API rate limits (429)
 - Authentication failures (401)
@@ -143,6 +156,7 @@ Tests:       24 passed, 24 total
 - Malformed responses
 
 ### Configuration Testing
+
 - Environment variable handling
 - Base URL construction
 - Dataset and table name validation
@@ -164,6 +178,7 @@ npm test -- tests/integration/lightspeed-sync.test.js --coverage
 ## Test Strategy
 
 All tests use:
+
 - **Jest** as the test framework
 - **Mocked modules** (axios, @google-cloud/bigquery)
 - **Isolated modules** to prevent cross-contamination

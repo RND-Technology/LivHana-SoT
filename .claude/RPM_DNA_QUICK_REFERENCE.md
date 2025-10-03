@@ -5,6 +5,7 @@ RPM: 3.6.0.6.ops-technology-ship-status-documentation
 Session: Dual-AI Collaboration - Final Consolidation
 -->
 # 🧬 RPM DNA QUICK REFERENCE
+
 **Version:** 3.0
 **Updated:** October 3, 2025
 **Status:** Authoritative source of truth for RPM DNA naming (ZERO ERRORS ALLOWED)
@@ -13,6 +14,7 @@ Session: Dual-AI Collaboration - Final Consolidation
 ---
 
 ## ⚠️ NON-NEGOTIABLE RULES
+
 - This file is the authoritative source of truth for all RPM DNA values.
 - Use the numeric codes exactly as listed below; never invent new ones.
 - Every file/dir name must follow `AOM.COI.RPM.ACTION.context.timestamp` (all lower-case context, YYYYMMDD timestamp).
@@ -20,6 +22,7 @@ Session: Dual-AI Collaboration - Final Consolidation
 ---
 
 ## 🏛️ AOM (AREA OF MASTERY) — 5 BUSINESS LAYERS
+
 | Code | Name | Description |
 | --- | --- | --- |
 | `1` | RND | Reggie & Dro — revenue engine (reggieanddro.com) |
@@ -31,6 +34,7 @@ Session: Dual-AI Collaboration - Final Consolidation
 ---
 
 ## 🧱 COI (CIRCLE OF IMPROVEMENT) — 8 CRITICAL CAPABILITIES
+
 | Code | Name | Scope |
 | --- | --- | --- |
 | `1` | LEADERSHIP | Vision, strategy, decision velocity |
@@ -45,6 +49,7 @@ Session: Dual-AI Collaboration - Final Consolidation
 ---
 
 ## 🎯 RPM (RESULT / PURPOSE / MASSIVE ACTION) — PRIORITY RINGS
+
 `RPM` is a single digit (0–9). Lower is higher urgency.
 
 | Code | Label | Definition |
@@ -63,6 +68,7 @@ Session: Dual-AI Collaboration - Final Consolidation
 ---
 
 ## 🛠️ ACTION (MODE OF EXECUTION)
+
 | Code | Verb | Definition |
 | --- | --- | --- |
 | `0` | CRISIS | Hotfix or stop-the-bleed intervention. |
@@ -79,9 +85,11 @@ Session: Dual-AI Collaboration - Final Consolidation
 ---
 
 ## 📐 NAMING FORMAT
+
 ```
 AOM.COI.RPM.ACTION.context-slug.timestamp
 ```
+
 - `AOM` = single digit (1–5)
 - `COI` = single digit (1–8)
 - `RPM` = single digit (0–9)
@@ -90,14 +98,17 @@ AOM.COI.RPM.ACTION.context-slug.timestamp
 - `timestamp` = `YYYYMMDD`
 
 **Example:**
+
 ```
 1.2.1.8.local-delivery-api.20251002
 ```
+
 → AOM=RND, COI=OPERATIONS, RPM=MUST, ACTION=DEPLOY, Context=`local-delivery-api`, Dated Oct 2 2025.
 
 ---
 
 ## ✅ PRE-COMMIT VALIDATION CHECKLIST
+
 - [ ] Confirm AOM code with `.claude/RPM_DNA_CORRECT_DEFINITIONS.md`.
 - [ ] Confirm COI code (1–8) from the table above.
 - [ ] Verify RPM and ACTION digits represent the current priority and work type.
@@ -111,6 +122,7 @@ AOM.COI.RPM.ACTION.context-slug.timestamp
 ---
 
 ## 🗂️ CURRENT TOP PRIORITIES (Oct 2, 2025)
+
 Cross-check with `ULTIMATE_STATE.md` for the live stack rank.
 
 | Name | Description |
@@ -124,6 +136,7 @@ Cross-check with `ULTIMATE_STATE.md` for the live stack rank.
 ---
 
 ## 🚫 ZERO-TOLERANCE ERROR LIST
+
 - ❌ Re-using Tony Robbins life categories (FIN/BIZ/…) — obsolete here.
 - ❌ Mixing digits with text (e.g., `1-RND` or `RND.1`).
 - ❌ Dropping required dots (`1.2.1.8` not `1-2-1-8`).

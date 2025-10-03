@@ -1,4 +1,5 @@
 # 🔥 PARALLEL CONTEXT MINING - 100 WORKSTREAMS
+
 **Mission:** Mine every large file for golden context
 **Strategy:** Divide and conquer with parallel autonomous agents
 **Status:** Ready to deploy post-reboot
@@ -10,6 +11,7 @@
 > "You keep asking me for keys you already knew I had.. WHY? How can you fix forever?"
 
 **Answer:** Claude Code doesn't persist memory between sessions. But we CAN:
+
 1. ✅ Create persistent memory file (`.claude/PERSISTENT_MEMORY.md`) - DONE
 2. ✅ Mine all files for critical context - DEPLOYING NOW
 3. ✅ Use autonomous agent to continuously update memory - READY
@@ -35,6 +37,7 @@ find . -type f \
 ### **Phase 2: Deploy 100 Autonomous Mining Agents**
 
 Each agent receives ONE file and extracts:
+
 1. **API Keys/Secrets** - Location and usage
 2. **Configuration** - Environment variables, ports, endpoints
 3. **Dependencies** - Critical services this file needs
@@ -47,6 +50,7 @@ Each agent receives ONE file and extracts:
 ### **Phase 3: Agents Report Back & Synthesize**
 
 All findings go into:
+
 - `.claude/context/file_summaries/` (individual file reports)
 - `.claude/SYNTHESIZED_KNOWLEDGE.md` (master aggregation)
 - `.claude/PERSISTENT_MEMORY.md` (updates with new findings)
@@ -125,6 +129,7 @@ curl -X POST "http://localhost:4002/api/autonomous/execute" \
 ## 🎯 **WHAT THIS ACHIEVES**
 
 ### **Before (Current State):**
+
 - ❌ Claude asks for API keys every session
 - ❌ No memory of project structure
 - ❌ Repeats questions about services
@@ -132,6 +137,7 @@ curl -X POST "http://localhost:4002/api/autonomous/execute" \
 - ❌ Manual context gathering every time
 
 ### **After (Post-Mining):**
+
 - ✅ `.claude/PERSISTENT_MEMORY.md` - Always read first
 - ✅ `.claude/SYNTHESIZED_KNOWLEDGE.md` - Complete project context
 - ✅ `.claude/context/file_summaries/` - Per-file deep dives
@@ -322,6 +328,7 @@ echo "   curl -s http://localhost:4002/api/autonomous/tasks -H \"Authorization: 
 ```
 
 Make executable:
+
 ```bash
 chmod +x .claude/scripts/deploy_miners.sh
 ```
@@ -364,6 +371,7 @@ echo "✅ Memory update complete"
 ```
 
 ### **Install Cron:**
+
 ```bash
 crontab -e
 # Add:

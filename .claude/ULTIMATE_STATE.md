@@ -3,12 +3,14 @@
 <!-- Session: Elephant Strategy Batch 1 -->
 
 # 🎯 ULTIMATE STATE SNAPSHOT
+
 **Updated:** October 02, 2025, 22:30 PM PDT
 **Purpose:** Ground truth for the repo and operations—everything here comes with live commands so nothing relies on memory.
 
 ---
 
 ## ✅ ALWAYS VERIFY FIRST
+
 1. Run the commands under *Live Git Status* and *Service Health* below.
 2. Re-read `.claude/PERSISTENT_MEMORY.md` for operating rules and secret retrieval.
 3. Update `.claude/SESSION_PROGRESS.md` with anything new you discover.
@@ -18,6 +20,7 @@ This file never replaces proof; it only points you to what needs verification.
 ---
 
 ## 🧾 LIVE GIT STATUS (run before trusting)
+
 ```
 # Working tree
  git status -sb
@@ -37,7 +40,9 @@ This file never replaces proof; it only points you to what needs verification.
 ?? .claude/MANDATORY_BOOT_SEQUENCE.md
 ?? .claude/archive/NEXT_SESSION_BOOTSTRAP_V2.0.md
 ```
+
 Actions:
+
 - Stage or revert intentionally modified files once verified.
 - Decide whether to keep or archive the new `.claude/*` files after review.
 
@@ -50,20 +55,24 @@ e9ddcaa 🦄 UNICORN RACE WIN - 2,190 FILES OPTIMIZED
 b006dcd 📊 SESSION 1 PROGRESS: 450 files optimized, 9 sessions remaining
 772290e 🐘 ELEPHANT STRATEGY: Multi-session systematic optimization
 ```
+
 Note: Do **not** trust commit messages without inspecting diffs; several claims need re-verification.
 
 ---
 
 ## 🌐 SERVICE HEALTH CHECKS
+
 ```
 # Run on demand (do not assume running)
 echo "=== SERVICES ===" &&   curl -s http://localhost:4002/health 2>/dev/null || echo "reasoning-gateway DOWN" &&   curl -s http://localhost:3005/health 2>/dev/null || echo "integration-service DOWN" &&   curl -s http://localhost:4001/health 2>/dev/null || echo "voice-service DOWN"
 ```
+
 If any endpoint fails, log it in `SESSION_PROGRESS.md`, investigate (logs under `logs/`), and escalate per `.claude/HUMAN_IN_LOOP_WORKFLOW.md` if blocked >15 minutes.
 
 ---
 
 ## 🗂️ PRIORITY WORKSTREAMS (cross-check with RPM naming)
+
 | Directory / File | Result Target | Immediate Action |
 | --- | --- | --- |
 | `1.2.1.8.local-delivery-api.20251002/` | Delivery API live in dev/staging | Bring up Docker stack, run integration health, capture proof. |
@@ -77,6 +86,7 @@ All names already conform to RPM DNA; use `.claude/RPM_DNA_QUICK_REFERENCE.md` b
 ---
 
 ## 🧠 MEMORY & HONESTY SYSTEM (single source files)
+
 | File | Purpose | Status |
 | --- | --- | --- |
 | `.claude/PERSISTENT_MEMORY.md` | Operating rules, secrets handling. | Updated with metadata header—needs expansion review. |
@@ -89,6 +99,7 @@ If a new file duplicates an existing purpose, merge it or move it to `.claude/ar
 ---
 
 ## 📋 SESSION LOGGING EXPECTATIONS
+
 - Update `.claude/SESSION_PROGRESS.md` with timestamped command output as work progresses.
 - Save Finder screenshots in `.evidence/` (create if missing) when visual proof is required.
 - Use RPM metadata comments at the top of every modified file (already standardized).
@@ -96,7 +107,9 @@ If a new file duplicates an existing purpose, merge it or move it to `.claude/ar
 ---
 
 ## ⏳ AUTO-COMPACT & SAVING STATE
+
 When token usage >85% or before stepping away:
+
 1. Write key findings to `.claude/CURRENT_SESSION_STATE.md`.
 2. Run `./auto-compact.sh` if log noise is high.
 3. Ensure services are stopped (`docker compose down`) unless required to stay up.
@@ -104,6 +117,7 @@ When token usage >85% or before stepping away:
 ---
 
 ## 🚨 WHEN TO STOP EVERYTHING
+
 - A health check fails in production or staging environments.
 - Evidence protocol cannot be satisfied (e.g., missing logs).
 - RPM naming ambiguity remains after checking definitions.

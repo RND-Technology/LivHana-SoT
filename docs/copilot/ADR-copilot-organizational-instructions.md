@@ -6,6 +6,7 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
 # ADR: Copilot Custom Organization Instructions & Verification Principle
 
 ## Status
+
 Accepted
 
 ## Context

@@ -1,4 +1,5 @@
 # 🎯 SESSION END CHECKLIST
+
 **Version:** 1.0
 **Created:** October 1, 2025
 **Purpose:** Preserve context and state before session ends (30 seconds execution)
@@ -258,7 +259,8 @@ Save to: `reports/SESSION_END_[YYYYMMDD]_[HHMM].md`
 
 ## 🎯 DECISION TREE: Should I Commit?
 
-### YES - Commit Now:
+### YES - Commit Now
+
 - ✅ Feature complete and tested
 - ✅ All tests passing
 - ✅ ESLint clean
@@ -267,7 +269,8 @@ Save to: `reports/SESSION_END_[YYYYMMDD]_[HHMM].md`
 - ✅ Bug fixed and verified
 - ✅ Documentation updated
 
-### MAYBE - Evaluate:
+### MAYBE - Evaluate
+
 - ⚠️ Feature partially complete but coherent
 - ⚠️ Tests passing but more tests needed
 - ⚠️ ESLint clean but warnings present
@@ -275,7 +278,8 @@ Save to: `reports/SESSION_END_[YYYYMMDD]_[HHMM].md`
 
 **Decision:** Commit with clear message about partial state
 
-### NO - Don't Commit Yet:
+### NO - Don't Commit Yet
+
 - ❌ Code doesn't compile
 - ❌ Tests failing
 - ❌ ESLint errors present
@@ -340,6 +344,7 @@ git stash push -m "WIP: [Task] - [What's done] - [What's left]"
 ```bash
 # [Exact command to continue work]
 ```
+
 ```
 
 ### 3. Create CURRENT_SESSION_STATE.md
@@ -405,6 +410,7 @@ Save detailed recovery info:
 
 **Auto-Resume:** [Yes/No]
 **Estimated Completion:** [X minutes remaining]
+
 ```
 
 ---
@@ -492,7 +498,7 @@ Every session end should produce:
 
 ---
 
-## 🔥 BOOM SHAKA-LAKA SESSION CLOSED!
+## 🔥 BOOM SHAKA-LAKA SESSION CLOSED
 
 **Checklist complete = Context fully preserved**
 
@@ -500,6 +506,7 @@ Every session end should produce:
 **Time saved next session:** 15 minutes (99.7% savings)
 
 **Benefits:**
+
 - ✅ Zero context loss on restart
 - ✅ Instant resume (<30 seconds)
 - ✅ Clear next actions

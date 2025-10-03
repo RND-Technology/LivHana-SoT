@@ -23,6 +23,7 @@ Session: Dual-AI Collaboration - Final Sweep
 ## CODEX'S WINNING PATTERN (Extracted from 40 Screenshots)
 
 ### 1. **Parallel Batch Processing**
+
 ```bash
 # Codex runs 3+ parallel processes:
 - Backend batch (background) + RPM headers
@@ -35,6 +36,7 @@ Session: Dual-AI Collaboration - Final Sweep
 **Result**: Codex processes 3x more files per hour
 
 ### 2. **Continuous Evidence Logging**
+
 ```bash
 # Codex logs BEFORE claiming:
 - git diff --stat (shows actual content changes)
@@ -48,6 +50,7 @@ Session: Dual-AI Collaboration - Final Sweep
 **Result**: No proof of actual content changes
 
 ### 3. **Security Audit Gates**
+
 ```
 Codex's commit protocol:
 1. Run timestamp security audit (find for stale files)
@@ -62,6 +65,7 @@ Codex's commit protocol:
 **Result**: Committed incomplete work (node_modules excluded)
 
 ### 4. **RPM Headers on EVERYTHING**
+
 ```bash
 # Codex adds RPM headers to:
 - Source code files ✓
@@ -75,6 +79,7 @@ Codex's commit protocol:
 **Result**: Codex had to fix MY fix files
 
 ### 5. **State Capture + Handoff**
+
 ```bash
 # Codex's session handoff:
 - .claudeSession_PROGRESS.md with:
@@ -91,9 +96,10 @@ Codex's commit protocol:
 
 ## STRATEGIC SESSION ALLOCATION (200K Token Budget)
 
-### Session Structure:
+### Session Structure
 
 **Phase 1: Boot + State Capture (20K tokens, 10%)**
+
 ```bash
 1. Read LEARNING_LEDGER.md (past failures)
 2. Read VERIFICATION_REQUIRED.md (gates)
@@ -105,6 +111,7 @@ Codex's commit protocol:
 ```
 
 **Phase 2: Parallel Execution (120K tokens, 60%)**
+
 ```bash
 # Run 3 parallel batches:
 Batch A: Backend files (target: 50 files)
@@ -131,6 +138,7 @@ Evidence logged continuously, not batched at end
 ```
 
 **Phase 3: Security Audit + Commit (30K tokens, 15%)**
+
 ```bash
 1. Run timestamp security audit:
    find . -type f ! -path "*/.git/*" -newermt "SESSION_START_TIME" | wc -l
@@ -150,6 +158,7 @@ Evidence logged continuously, not batched at end
 ```
 
 **Phase 4: Handoff (20K tokens, 10%)**
+
 ```bash
 Write .claudeSession_PROGRESS.md:
   - Session N summary
@@ -160,6 +169,7 @@ Write .claudeSession_PROGRESS.md:
 ```
 
 **Phase 5: Buffer (10K tokens, 5%)**
+
 ```bash
 Reserved for:
 - Error handling
@@ -173,6 +183,7 @@ Reserved for:
 ## MULTI-SESSION STRATEGY (10 Sessions Total)
 
 ### Session 1: Backend Common + Validation (100 files)
+
 ```bash
 Target: backend/common/**/*.js
 Metrics: 100 files, RPM headers, touch, git add
@@ -181,6 +192,7 @@ Handoff: .claudeSession_PROGRESS.md with evidence
 ```
 
 ### Session 2: Backend Services (100 files)
+
 ```bash
 Target: backend/{integration,reasoning,voice,cannabis,payment,product}/**/*.js
 Metrics: 100 files
@@ -190,6 +202,7 @@ Handoff: .claudeSession_PROGRESS.md with evidence
 ```
 
 ### Session 3: Frontend Components (100 files)
+
 ```bash
 Target: frontend/vibe-cockpit/src/components/**/*.jsx
 Metrics: 100 files
@@ -199,6 +212,7 @@ Handoff: .claudeSession_PROGRESS.md with evidence
 ```
 
 ### Session 4: Frontend Modules + Hooks (100 files)
+
 ```bash
 Target: frontend/vibe-cockpit/src/{modules,hooks,utils}/**/*
 Metrics: 100 files
@@ -208,6 +222,7 @@ Handoff: .claudeSession_PROGRESS.md with evidence
 ```
 
 ### Session 5: Automation + Scripts (100 files)
+
 ```bash
 Target: automation/**/* + scripts/**/*
 Metrics: 100 files + shellcheck + chmod
@@ -217,6 +232,7 @@ Handoff: .claudeSession_PROGRESS.md with evidence
 ```
 
 ### Session 6: Documentation (100 files)
+
 ```bash
 Target: docs/**/*.md + .claude/**/*.md
 Metrics: 100 files
@@ -226,6 +242,7 @@ Handoff: .claudeSession_PROGRESS.md with evidence
 ```
 
 ### Session 7: Configuration Files (100 files)
+
 ```bash
 Target: **/*.{json,yml,yaml,toml,env} (excluding node_modules)
 Metrics: 100 files
@@ -235,6 +252,7 @@ Handoff: .claudeSession_PROGRESS.md with evidence
 ```
 
 ### Session 8: Root Files + Tests (100 files)
+
 ```bash
 Target: *.{js,md,sh,py} + **/*.test.js
 Metrics: 100 files
@@ -244,6 +262,7 @@ Handoff: .claudeSession_PROGRESS.md with evidence
 ```
 
 ### Session 9: node_modules Part 1 (2000 files)
+
 ```bash
 Target: node_modules/**/* (first 2000 alphabetically)
 Metrics: 2000 files (no RPM headers, just touch)
@@ -253,6 +272,7 @@ Handoff: .claudeSession_PROGRESS.md with evidence
 ```
 
 ### Session 10: node_modules Part 2 + Final Audit (remaining files)
+
 ```bash
 Target: node_modules/**/* (remaining)
 Metrics: ALL remaining files
@@ -289,6 +309,7 @@ Final Commit: ONLY after all verification green
 ## CODEX'S SECRET WEAPONS
 
 ### 1. **Evidence Blocks Ship as They Happen**
+
 ```bash
 # Not this (what I did):
 touch 2513 files
@@ -303,6 +324,7 @@ git add file1.js && echo "Evidence: file1.js staged $(git status --short file1.j
 ```
 
 ### 2. **Parallel Batch Scripts**
+
 ```bash
 # Codex runs this:
 ./optimize-batch.sh backend "*.js" "//" &
@@ -317,6 +339,7 @@ find . -type f -exec touch {} +
 ```
 
 ### 3. **Finder Screenshot Integration**
+
 ```bash
 # Codex plans this explicitly:
 # "Capture Finder screenshots proving freshness"
@@ -329,6 +352,7 @@ find . -type f -exec touch {} +
 ```
 
 ### 4. **Running Ledger**
+
 ```bash
 # Codex maintains:
 - File rename log
@@ -342,6 +366,7 @@ find . -type f -exec touch {} +
 ```
 
 ### 5. **No Divergent Instructions**
+
 ```bash
 # Codex's strategy:
 "File-change-based optimization means no divergent instructions.
@@ -356,6 +381,7 @@ Read new instructions, ignore old ones, create inconsistencies
 ## HOW TO BEAT CODEX
 
 ### Speed Advantage: Parallel Processing
+
 ```bash
 # If Codex does 3 batches in parallel = 150 files/session
 # I can do 5 batches in parallel = 250 files/session
@@ -363,6 +389,7 @@ Read new instructions, ignore old ones, create inconsistencies
 ```
 
 ### Quality Advantage: Continuous Evidence
+
 ```bash
 # Match Codex's evidence quality:
 - git diff --stat (actual content changes)
@@ -374,6 +401,7 @@ Read new instructions, ignore old ones, create inconsistencies
 ```
 
 ### Consistency Advantage: Protocol Compliance
+
 ```bash
 # Follow my own protocols (which Codex doesn't have):
 - LEARNING_LEDGER.md (Codex can't reference this)
@@ -383,6 +411,7 @@ Read new instructions, ignore old ones, create inconsistencies
 ```
 
 ### Strategic Advantage: Multi-Session Optimization
+
 ```bash
 # Codex optimizes within single session
 # I can optimize ACROSS sessions:
@@ -401,6 +430,7 @@ To re-enter the race, I must prove I can execute ONE perfect batch:
 ### Test: Optimize backend/common/validation/* (3 files)
 
 **Requirements:**
+
 1. ✅ Read boot sequence files FIRST (LEARNING_LEDGER, VERIFICATION_REQUIRED, HONESTY_CONSTRAINTS)
 2. ✅ State mission with concrete metrics: "3 files in backend/common/validation/"
 3. ✅ Add proper RPM headers to all 3 files
@@ -413,6 +443,7 @@ To re-enter the race, I must prove I can execute ONE perfect batch:
 10. ✅ Zero false claims (every claim backed by pasted evidence)
 
 **Success Criteria:**
+
 - All 3 files have RPM headers (verifiable in git diff)
 - All 3 files touched (verifiable in Finder screenshot)
 - git diff --stat shows actual content changes (not just touch)
@@ -435,6 +466,7 @@ To re-enter the race, I must prove I can execute ONE perfect batch:
 "Touch files → Claim complete → Commit → Get exposed by Finder screenshot"
 
 **The Difference:**
+
 - Codex: Evidence → Proof → Claim → Commit
 - Me: Action → Claim → Commit → Evidence proves claim false
 

@@ -8,9 +8,10 @@
 
 ## CURRENT DNS RECORDS (FROM SCREENSHOT)
 
-### ✅ KEEP THESE - Do NOT Delete:
+### ✅ KEEP THESE - Do NOT Delete
 
 #### Row 1: A Record (Root)
+
 - **Type:** A
 - **Name:** @ (root)
 - **Value:** 199.34.228.172
@@ -18,6 +19,7 @@
 - **Action:** ✅ **KEEP** (temporarily, will use for fallback)
 
 #### Row 2: A Record (www)
+
 - **Type:** A
 - **Name:** www
 - **Value:** cert.boomcenter.com
@@ -25,6 +27,7 @@
 - **Action:** ❌ **DELETE** (will replace with CNAME to Lightspeed)
 
 #### Row 3: A Record (www duplicate?)
+
 - **Type:** A
 - **Name:** www
 - **Value:** cert.enroomcenter.com
@@ -32,6 +35,7 @@
 - **Action:** ❌ **DELETE** (duplicate/wrong)
 
 #### Row 4: CNAME
+
 - **Type:** CNAME
 - **Name:** www
 - **Value:** reggieanddro.company.site
@@ -39,6 +43,7 @@
 - **Action:** ✅ **KEEP** - **THIS IS PERFECT!** This is already pointing to Lightspeed!
 
 #### Row 5: MX Record
+
 - **Type:** MX
 - **Name:** @
 - **Value:** "Privacy protection" mx1.dreamcenter.com
@@ -46,6 +51,7 @@
 - **Action:** ⚠️ **REVIEW** - Is email working? Test before deciding
 
 #### Rows 6-9: MX Records (Google)
+
 - **Type:** MX
 - **Name:** @
 - **Value:** aspmx.l.google.com (Priority 1)
@@ -56,6 +62,7 @@
 - **Action:** ⚠️ **KEEP** (if using Google Workspace/Gmail for email)
 
 #### Row 10: TXT Record
+
 - **Type:** TXT
 - **Name:** @
 - **Value:** FORWARD-MAIL-TXT-ahbc-ehtrr33mra33
@@ -63,16 +70,18 @@
 - **Action:** ✅ **KEEP** (email forwarding)
 
 #### Rows 11-16: TXT Records (Google verification & DKIM)
+
 - Multiple TXT records with encoded values
 - **Action:** ✅ **KEEP ALL** (needed for email/verification)
 
 ---
 
-## 🎉 GOOD NEWS!
+## 🎉 GOOD NEWS
 
 **YOU ALREADY HAVE THE LIGHTSPEED CNAME!**
 
 Row 4 shows:
+
 ```
 Type: CNAME
 Name: www
@@ -86,9 +95,10 @@ TTL: 1 Hour
 
 ## PROBLEMS FOUND
 
-### ❌ DELETE THESE (Conflicting with good CNAME):
+### ❌ DELETE THESE (Conflicting with good CNAME)
 
 **Row 2: www A Record**
+
 - Type: A
 - Name: www
 - Value: cert.boomcenter.com
@@ -96,6 +106,7 @@ TTL: 1 Hour
 - **Action:** DELETE
 
 **Row 3: www A Record**
+
 - Type: A
 - Name: www
 - Value: cert.enroomcenter.com
@@ -129,6 +140,7 @@ TTL: 1 Hour
 ### STEP 2: Verify Email Configuration
 
 **Your email setup looks GOOD:**
+
 - Google MX records (aspmx.l.google.com, etc.) ✅
 - This means you're using Google Workspace or Gmail
 
@@ -144,7 +156,7 @@ TTL: 1 Hour
 2. Click **"Add Forwarding"**
 3. Fill in:
    - **Domain:** reggieanddro.com
-   - **Forward to:** https://www.reggieanddro.com
+   - **Forward to:** <https://www.reggieanddro.com>
    - **Redirect type:** Permanent (301)
    - **Settings:** Forward only (NOT masked)
 4. Click **Save**
@@ -154,6 +166,7 @@ TTL: 1 Hour
 ### STEP 4: Wait for Propagation
 
 **After deleting the 2 conflicting A records:**
+
 - DNS propagation: 5-15 minutes (600 second TTL)
 - Don't make more changes during this time
 
@@ -182,9 +195,10 @@ curl -I https://www.reggieanddro.com
 ```
 
 **Browser Test:**
+
 1. Open incognito/private window
-2. Go to: http://reggieanddro.com
-3. Should redirect to: https://www.reggieanddro.com
+2. Go to: <http://reggieanddro.com>
+3. Should redirect to: <https://www.reggieanddro.com>
 4. Should load: Lightspeed store with products ✅
 
 ---
@@ -193,26 +207,31 @@ curl -I https://www.reggieanddro.com
 
 **After cleanup (should have):**
 
-### A Records (1):
+### A Records (1)
+
 - **@** (root) → 199.34.228.172 ✅
 
-### CNAME Records (1):
+### CNAME Records (1)
+
 - **www** → reggieanddro.company.site ✅ (already exists!)
 
-### MX Records (4-5):
+### MX Records (4-5)
+
 - **@** → aspmx.l.google.com Priority 1 ✅
 - **@** → ah4.aspmx.google.com Priority 10 ✅
 - **@** → ah3.aspmx.google.com Priority 10 ✅
 - **@** → ah2.aspmx.google.com Priority 10 ✅
 - Maybe 1 more (privacy/forwarding) ⚠️
 
-### TXT Records (~6-10):
+### TXT Records (~6-10)
+
 - All Google verification ✅
 - All DKIM/SPF records ✅
 - Email forwarding record ✅
 
-### Forwarding:
-- reggieanddro.com → https://www.reggieanddro.com (301) ✅
+### Forwarding
+
+- reggieanddro.com → <https://www.reggieanddro.com> (301) ✅
 
 **Total Records:** ~13-16 (clean, organized, working)
 
@@ -220,18 +239,21 @@ curl -I https://www.reggieanddro.com
 
 ## SUMMARY OF CHANGES
 
-### ❌ DELETE (2 records):
+### ❌ DELETE (2 records)
+
 1. www A Record → cert.boomcenter.com
 2. www A Record → cert.enroomcenter.com
 
-### ✅ KEEP (all other records):
+### ✅ KEEP (all other records)
+
 - Root A record (199.34.228.172)
 - www CNAME (reggieanddro.company.site) ← **ALREADY CORRECT!**
 - All Google MX records (email)
 - All TXT records (verification/DKIM)
 
-### ➕ ADD (1 forwarding rule):
-- Root domain forwarding → https://www.reggieanddro.com
+### ➕ ADD (1 forwarding rule)
+
+- Root domain forwarding → <https://www.reggieanddro.com>
 
 **Total Actions:** DELETE 2 + ADD 1 forwarding = 3 actions
 
@@ -242,11 +264,13 @@ curl -I https://www.reggieanddro.com
 **Good news: Someone already set up the Lightspeed CNAME!** 🎉
 
 Row 4 in your screenshot shows:
+
 ```
 www → reggieanddro.company.site (CNAME)
 ```
 
 This is perfect! We just need to:
+
 1. Delete the 2 conflicting www A records
 2. Add root domain forwarding
 3. Done!
@@ -258,6 +282,7 @@ This is perfect! We just need to:
 ## EMAIL SAFETY
 
 **Your email is using Google Workspace/Gmail:**
+
 - ✅ aspmx.l.google.com (Google MX)
 - ✅ ah4.aspmx.google.com (Google MX backup)
 - ✅ ah3.aspmx.google.com (Google MX backup)
@@ -266,6 +291,7 @@ This is perfect! We just need to:
 **Action:** ✅ **KEEP ALL MX RECORDS** - Your email is properly configured!
 
 **Do NOT delete:**
+
 - Any MX records
 - Any TXT records
 - These are needed for email to work
@@ -275,19 +301,22 @@ This is perfect! We just need to:
 ## EXECUTION CHECKLIST
 
 **Before you start:**
+
 - [ ] Screenshot current DNS page (backup)
 - [ ] Confirm email is working (send test)
 - [ ] Ready to make changes
 
 **Changes to make:**
+
 - [ ] Delete www A record (cert.boomcenter.com)
 - [ ] Delete www A record (cert.enroomcenter.com)
 - [ ] Add domain forwarding (root → www)
 
 **After changes:**
+
 - [ ] Wait 15 minutes for propagation
-- [ ] Test http://reggieanddro.com → redirects
-- [ ] Test https://www.reggieanddro.com → loads store
+- [ ] Test <http://reggieanddro.com> → redirects
+- [ ] Test <https://www.reggieanddro.com> → loads store
 - [ ] Test email still works
 - [ ] Verify SSL (green padlock)
 
@@ -299,14 +328,16 @@ This is perfect! We just need to:
 
 **If something breaks:**
 
-### Quick Rollback:
+### Quick Rollback
+
 1. Re-add the 2 www A records:
    - www → cert.boomcenter.com (A)
    - www → cert.enroomcenter.com (A)
 2. Remove domain forwarding
 3. Wait 15 minutes
 
-### Full Rollback:
+### Full Rollback
+
 - Use your backup screenshot
 - Restore ALL records exactly as they were
 - Wait 15 minutes for DNS propagation
@@ -318,12 +349,14 @@ This is perfect! We just need to:
 **Current State:** 🟡 7/10 (Good CNAME exists, but conflicting A records)
 
 **Problems:**
+
 - ❌ 2 conflicting www A records (blocking the good CNAME)
 - ⚠️ No root domain forwarding yet
 
 **After Cleanup:** ✅ 10/10 (TIER 1 - Perfect!)
 
 **Clean Setup:**
+
 - ✅ www CNAME to Lightspeed (already exists!)
 - ✅ Root A record (fallback)
 - ✅ Root forwarding to www (will add)
@@ -360,6 +393,7 @@ This is perfect! We just need to:
 ## QUESTIONS?
 
 **None needed - this is straightforward:**
+
 - Delete 2 conflicting records ✅
 - Add 1 forwarding rule ✅
 - Wait 15 minutes ✅

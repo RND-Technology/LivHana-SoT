@@ -9,12 +9,14 @@
 ## **What Makes It Ultimate**
 
 ### **1. Unified Dashboard Hub** ✅
+
 - **Single entry point** for ALL business operations
 - **6 major business layers** accessible instantly
 - **Quick metrics** at fingertips: Revenue, Customers, Orders, Crisis Consults
 - **Real-time data** from all services (30-second auto-refresh)
 
 ### **2. 1-2 Click Drill-Down** ✅
+
 - Click any layer → instant full view
 - Expandable sub-layers for deep dives:
   - Revenue → Daily/Weekly/Monthly/Yearly/Forecasts
@@ -26,6 +28,7 @@
 - **Context preserved** - back button works perfectly
 
 ### **3. Voice + Video + Text Reasoning** ✅
+
 - **Voice Mode:** Speak commands, get voice responses
 - **Video Mode:** Visual analysis with screen capture
 - **Text Mode:** Type queries, chat interface
@@ -35,42 +38,49 @@
 ### **4. All Business Layers Integrated** ✅
 
 #### **Layer 1: Empire Overview (Default)**
+
 - Unified metrics across all systems
 - Quick access cards to all other layers
 - Top-level KPIs: $34K+ daily revenue, 1.2K+ customers
 - Crisis consultation tracking
 
 #### **Layer 2: Executive Intelligence**
+
 - BigQuery real-time metrics
 - Service health monitoring (6 services)
 - Compliance tracking (98.5% age verification)
 - Customer intelligence charts
 
 #### **Layer 3: Empire Operations**
+
 - Revenue engine status (9 engines)
 - Domain portfolio management
 - Product evolution timeline
 - Vision and roadmap tracking
 
 #### **Layer 4: Square Live Cockpit**
+
 - Real-time transaction processing
 - Inventory management
 - Customer data from Square API
 - Payment processing status
 
 #### **Layer 5: AI Agent Swarm**
+
 - Autonomous agent monitoring
 - Task execution tracking
 - Learning progress visualization
 - Performance metrics
 
 #### **Layer 6: Core Dashboard**
+
 - System health checks
 - Queue monitoring
 - Log analysis
 - Technical metrics
 
 ### **5. Data-Rich Experience** ✅
+
 - **Live updates:** 30-second refresh interval
 - **Zero latency:** Parallel API calls
 - **Graceful degradation:** Failed services don't block UI
@@ -78,6 +88,7 @@
 - **Visual feedback:** Loading states, animations, progress bars
 
 ### **6. Better than Odoo Because:**
+
 - ✅ **Cannabis-specific:** Built for your industry
 - ✅ **AI-powered:** Claude Sonnet 4.5 reasoning integration
 - ✅ **Real-time:** Live data, not batch updates
@@ -111,10 +122,12 @@ frontend/vibe-cockpit/
 ## **Access the Cockpit**
 
 ### **URLs:**
-- **Default:** http://localhost:5173/
-- **Direct:** http://localhost:5173/ultimate
+
+- **Default:** <http://localhost:5173/>
+- **Direct:** <http://localhost:5173/ultimate>
 
 ### **Quick Start:**
+
 ```bash
 # 1. Start frontend
 cd frontend/vibe-cockpit
@@ -127,6 +140,7 @@ cd empire/crisis-engine && npm start          # Port 5001
 ```
 
 ### **Service Requirements:**
+
 - ✅ **Must have:** reasoning-gateway (4002) - Core system
 - ✅ **Recommended:** integration-service (3005) - BigQuery data
 - ⚠️ **Optional:** crisis-engine (5001) - Crisis consultation tracking
@@ -137,21 +151,25 @@ cd empire/crisis-engine && npm start          # Port 5001
 ## **Features by Layer**
 
 ### **🎯 Overview Layer (Default)**
+
 **Purpose:** Unified command center for entire empire
 
 **Quick Metrics:**
+
 - Today's Revenue: $34,483 (+12.5%)
 - Active Customers: 1,247 (+8.3%)
 - Total Orders: 523 (+15.7%)
 - Crisis Consults: 247 (+24.1%)
 
 **Quick Access Cards:**
+
 - Click any layer → instant navigation
 - See all metrics at a glance
 - Color-coded by layer type
 - Hover effects for visual feedback
 
 **Reasoning Mode:**
+
 - Top toolbar: Voice/Video/Text selector
 - Mode persists across navigation
 - Visual indicator of active mode
@@ -159,9 +177,11 @@ cd empire/crisis-engine && npm start          # Port 5001
 ---
 
 ### **📊 Executive Intelligence Layer**
+
 **Component:** ExecutiveDashboard.jsx (1,137 lines)
 
 **Features:**
+
 - BigQuery real-time metrics
 - 7-day revenue trend chart
 - Service health monitoring
@@ -170,6 +190,7 @@ cd empire/crisis-engine && npm start          # Port 5001
 - Alert system (inventory, licenses, transactions)
 
 **Data Sources:**
+
 - BigQuery dashboard API
 - Service health endpoints (6 services)
 - Compliance metrics (mock until APIs ready)
@@ -180,9 +201,11 @@ cd empire/crisis-engine && npm start          # Port 5001
 ---
 
 ### **🏢 Empire Operations Layer**
+
 **Component:** EmpireDashboard.jsx (403 lines)
 
 **Features:**
+
 - 9 revenue engines with status
 - Domain portfolio (69 domains)
 - Product evolution timeline (2022-2026)
@@ -190,6 +213,7 @@ cd empire/crisis-engine && npm start          # Port 5001
 - Daily revenue by engine
 
 **Revenue Engines:**
+
 1. AI Crisis Consultation ($2K/day) - LIVE
 2. LinkedIn Strategy ($1.5K/day) - LIVE
 3. Compliance Checker ($2.5K/day) - LIVE
@@ -203,9 +227,11 @@ cd empire/crisis-engine && npm start          # Port 5001
 ---
 
 ### **💳 Square Live Cockpit Layer**
+
 **Component:** SquareLiveCockpit.jsx (678 lines)
 
 **Features:**
+
 - Real-time transaction monitoring
 - Live payment processing status
 - Inventory stock levels
@@ -214,6 +240,7 @@ cd empire/crisis-engine && npm start          # Port 5001
 - Age verification compliance
 
 **Square Integration:**
+
 - Direct API connection
 - OAuth authentication
 - Webhook support for real-time updates
@@ -222,9 +249,11 @@ cd empire/crisis-engine && npm start          # Port 5001
 ---
 
 ### **🤖 AI Agent Swarm Layer**
+
 **Component:** AutonomousAgentDashboard.jsx (1,547 lines)
 
 **Features:**
+
 - Autonomous agent monitoring
 - Task execution tracking
 - Learning progress visualization
@@ -233,6 +262,7 @@ cd empire/crisis-engine && npm start          # Port 5001
 - Agent deployment controls
 
 **Capabilities:**
+
 - Deploy new agents (parallel or sequential)
 - Monitor running agents
 - View generated reports
@@ -242,9 +272,11 @@ cd empire/crisis-engine && npm start          # Port 5001
 ---
 
 ### **⚙️ Core Dashboard Layer**
+
 **Component:** Dashboard.jsx (584 lines)
 
 **Features:**
+
 - System health checks
 - Queue monitoring (Bull/Redis)
 - Log analysis
@@ -257,35 +289,45 @@ cd empire/crisis-engine && npm start          # Port 5001
 ## **Drill-Down Sub-Layers**
 
 ### **Revenue Analytics**
+
 **Views:** Daily, Weekly, Monthly, Yearly, Forecasts
+
 - Line charts with trend analysis
 - Comparison to previous periods
 - Forecasting with AI predictions
 - Export to CSV/PDF
 
 ### **Customer Intelligence**
+
 **Views:** Acquisition, Retention, Lifetime Value, Segments
+
 - Acquisition source breakdown
 - Cohort retention analysis
 - LTV calculations
 - RFM segmentation
 
 ### **Inventory Management**
+
 **Views:** Stock Levels, Low Stock, Reorder, Suppliers
+
 - Real-time inventory status
 - Low stock alerts (<10 units)
 - Automatic reorder suggestions
 - Supplier contact info
 
 ### **Compliance Center**
+
 **Views:** Licenses, Age Verification, COA Status, Audits
+
 - License expiration tracking
 - Age verification pass rate (98.5%)
 - COA validation status (100%)
 - Audit trail and documentation
 
 ### **Deep Analytics**
+
 **Views:** Trends, Predictions, Cohorts, Attribution
+
 - ML-powered trend analysis
 - Predictive revenue forecasting
 - Customer cohort analysis
@@ -296,6 +338,7 @@ cd empire/crisis-engine && npm start          # Port 5001
 ## **Customization (1-2 Click)**
 
 ### **Current Features:**
+
 - ✅ Toggle sidebar (hide/show layers)
 - ✅ Switch reasoning mode (voice/video/text)
 - ✅ Refresh data manually
@@ -303,6 +346,7 @@ cd empire/crisis-engine && npm start          # Port 5001
 - ✅ Auto-refresh toggle
 
 ### **Coming Soon (Customize Mode):**
+
 - 🚧 Drag-and-drop widgets
 - 🚧 Custom layout templates
 - 🚧 Widget visibility preferences
@@ -318,7 +362,9 @@ cd empire/crisis-engine && npm start          # Port 5001
 ## **Voice + Video + Text Reasoning**
 
 ### **Voice Mode** 🎤
+
 **Features:**
+
 - Speak commands naturally
 - AI voice responses (ElevenLabs)
 - Continuous listening
@@ -326,13 +372,16 @@ cd empire/crisis-engine && npm start          # Port 5001
 - Real-time transcription
 
 **Example Commands:**
+
 - "Show me today's revenue"
 - "What's the status of the crisis engine?"
 - "How many customers do we have?"
 - "Deploy a new agent for compliance audit"
 
 ### **Video Mode** 🎥
+
 **Features:**
+
 - Screen capture analysis
 - Visual reasoning with Claude
 - Video call interface
@@ -340,13 +389,16 @@ cd empire/crisis-engine && npm start          # Port 5001
 - Visual feedback on dashboards
 
 **Use Cases:**
+
 - Visual bug reporting
 - Design review
 - Data visualization analysis
 - Training and onboarding
 
 ### **Text Mode** 💬
+
 **Features:**
+
 - Chat interface
 - Code snippets in responses
 - Markdown formatting
@@ -354,6 +406,7 @@ cd empire/crisis-engine && npm start          # Port 5001
 - Conversation history
 
 **Example Queries:**
+
 - "Analyze last week's revenue trend"
 - "Show me all low stock items"
 - "Generate a compliance report for Q1"
@@ -364,22 +417,26 @@ cd empire/crisis-engine && npm start          # Port 5001
 ## **Performance Optimization**
 
 ### **Load Time:**
+
 - Initial load: < 2 seconds
 - Layer switching: < 300ms
 - Data refresh: < 500ms per API
 
 ### **Bundle Size:**
+
 - Main bundle: ~450KB (gzipped)
 - Code splitting: Lazy load layer components
 - Tree shaking: Unused code eliminated
 
 ### **Network:**
+
 - Parallel API calls (Promise.all)
 - 30-second polling interval
 - 5-second timeout per service
 - Graceful error handling
 
 ### **Rendering:**
+
 - React 18.2 concurrent features
 - Framer Motion animations (GPU-accelerated)
 - Material-UI virtualization for large lists
@@ -392,6 +449,7 @@ cd empire/crisis-engine && npm start          # Port 5001
 ### **Google Cloud Platform (Recommended)**
 
 #### **Frontend (Cloud Run):**
+
 ```bash
 # Build production bundle
 npm run build
@@ -405,6 +463,7 @@ gcloud run deploy livhana-cockpit \
 ```
 
 #### **Backend Services (Cloud Run):**
+
 ```bash
 # Deploy reasoning-gateway
 cd backend/reasoning-gateway
@@ -420,17 +479,20 @@ gcloud run deploy crisis-engine --source . --region us-central1
 ```
 
 #### **Database (Cloud SQL):**
+
 - PostgreSQL 15
 - High availability configuration
 - Automatic backups (daily)
 - Point-in-time recovery
 
 #### **Cache (Memorystore Redis):**
+
 - Standard tier (HA)
 - 5GB memory
 - VPC peering
 
 #### **Monitoring (Cloud Monitoring):**
+
 - Uptime checks (every 60s)
 - Log aggregation
 - Error reporting
@@ -441,22 +503,26 @@ gcloud run deploy crisis-engine --source . --region us-central1
 ## **Security Considerations**
 
 ### **Authentication:**
+
 - JWT tokens (production secret from 1Password)
 - OAuth for Square API
 - Google Cloud IAM for service accounts
 
 ### **Authorization:**
+
 - Role-based access control (RBAC)
 - Admin middleware for protected routes
 - API key rotation (quarterly)
 
 ### **Data Protection:**
+
 - HTTPS everywhere (TLS 1.3)
 - Encrypted at rest (AES-256)
 - PII data encrypted in BigQuery
 - GDPR/CCPA compliant
 
 ### **Compliance:**
+
 - Cannabis regulatory compliance
 - Age verification (98.5% pass rate)
 - COA validation (100% status)
@@ -467,24 +533,28 @@ gcloud run deploy crisis-engine --source . --region us-central1
 ## **Troubleshooting**
 
 ### **Cockpit won't load:**
+
 1. Check reasoning-gateway is running (port 4002)
 2. Verify frontend is on port 5173 (`npm run dev`)
 3. Check browser console for errors
 4. Clear browser cache and reload
 
 ### **No data showing:**
+
 1. Ensure integration-service is running (port 3005)
 2. Check BigQuery sync is enabled
 3. Verify Google Cloud credentials
 4. Test API endpoints with curl
 
 ### **Layer switching broken:**
+
 1. Check React Router configuration
 2. Verify all components are imported
 3. Check browser console for errors
 4. Restart frontend dev server
 
 ### **Reasoning modes not working:**
+
 1. Voice: Check microphone permissions
 2. Video: Check camera permissions
 3. Text: Check reasoning-gateway connection
@@ -495,9 +565,11 @@ gcloud run deploy crisis-engine --source . --region us-central1
 ## **Development Tips**
 
 ### **Hot Reload:**
+
 Changes to components auto-reload with Vite (< 50ms)
 
 ### **Debug Mode:**
+
 ```javascript
 // In UltimateCockpit.jsx
 const DEBUG = true;
@@ -512,6 +584,7 @@ useEffect(() => {
 ```
 
 ### **Mock Data:**
+
 ```javascript
 // For development without backend
 const MOCK_MODE = true;
@@ -535,6 +608,7 @@ const fetchLiveData = async () => {
 ## **Roadmap**
 
 ### **Phase 1 - COMPLETE ✅**
+
 - [x] Unified dashboard hub
 - [x] 6 business layers integrated
 - [x] 1-2 click drill-down
@@ -545,6 +619,7 @@ const fetchLiveData = async () => {
 - [x] Dark theme with Material-UI
 
 ### **Phase 2 - IN PROGRESS 🚧**
+
 - [ ] Sub-layer detail views
 - [ ] Drag-and-drop customization
 - [ ] Widget visibility preferences
@@ -554,6 +629,7 @@ const fetchLiveData = async () => {
 - [ ] User preferences storage
 
 ### **Phase 3 - PLANNED 🎯**
+
 - [ ] Google Cloud deployment
 - [ ] Mobile app (React Native)
 - [ ] Desktop app (Electron)
@@ -568,12 +644,14 @@ const fetchLiveData = async () => {
 ## **Success Metrics**
 
 ### **Performance KPIs:**
+
 - ✅ Load time: < 2 seconds
 - ✅ Layer switch: < 300ms
 - ✅ API response: < 500ms
 - ✅ Uptime: 99.9%+
 
 ### **User Experience:**
+
 - ✅ Single entry point
 - ✅ 1-2 clicks to any data
 - ✅ Zero page reloads
@@ -581,6 +659,7 @@ const fetchLiveData = async () => {
 - ✅ Voice/Video/Text ready
 
 ### **Business Impact:**
+
 - 📈 Revenue visibility: Real-time
 - 📈 Customer insights: Deep analytics
 - 📈 Compliance tracking: Automated

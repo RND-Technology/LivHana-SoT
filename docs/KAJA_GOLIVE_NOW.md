@@ -3,9 +3,9 @@ Optimized: 2025-10-03
 RPM: 3.6.0.6.ops-technology-ship-status-documentation
 Session: Dual-AI Collaboration - Sonnet Docs Sweep
 -->
-# 🚨 KAJA APPROVED - ONLINE SALES GO LIVE NOW!
+# 🚨 KAJA APPROVED - ONLINE SALES GO LIVE NOW
 
-## IMMEDIATE ACTIONS (Execute in Order):
+## IMMEDIATE ACTIONS (Execute in Order)
 
 ### 1. VERIFY KAJA CREDENTIALS IN 1PASSWORD ✅
 
@@ -17,10 +17,11 @@ op item get "KAJA_GATEWAY_ID" --vault "LivHana-Ops-Keys"
 
 ### 2. UPDATE DNS - POINT TO NEW SITE
 
-**Current:** https://reggieanddro.company.site (Square site)
+**Current:** <https://reggieanddro.company.site> (Square site)
 **Target:** Make this THE ReggieAndDro.com
 
 **DNS Changes Needed:**
+
 ```
 1. Login to GoDaddy (domain registrar for reggieanddro.com)
 2. DNS Settings → A Record
@@ -29,6 +30,7 @@ op item get "KAJA_GATEWAY_ID" --vault "LivHana-Ops-Keys"
 ```
 
 **OR Use Cloudflare (Recommended):**
+
 ```
 1. Add reggieanddro.com to Cloudflare
 2. Update nameservers at GoDaddy
@@ -42,6 +44,7 @@ op item get "KAJA_GATEWAY_ID" --vault "LivHana-Ops-Keys"
 **Subject:** 🎉 HUGE NEWS: Online Sales Now Live at ReggieAndDro.com!
 
 **Body:**
+
 ```
 Hey [First Name],
 
@@ -69,6 +72,7 @@ P.S. - In-store pickup still available at Stone Oak!
 ```
 
 **Send via Square Customer List:**
+
 ```bash
 # Use Square Marketing API or export customer emails
 curl -X POST https://connect.squareup.com/v2/marketing/campaigns \
@@ -85,7 +89,7 @@ curl -X POST https://connect.squareup.com/v2/marketing/campaigns \
 
 ### 4. UPDATE WEBSITE - ADD KAJA PAYMENT
 
-**On https://reggieanddro.company.site:**
+**On <https://reggieanddro.company.site>:**
 
 1. Square Dashboard → Online Store → Checkout Settings
 2. Add Payment Method → KAJA Payments
@@ -96,6 +100,7 @@ curl -X POST https://connect.squareup.com/v2/marketing/campaigns \
 ### 5. CONFIGURE SHIPPING
 
 **Square Shipping Setup:**
+
 ```
 1. Square Dashboard → Items & Orders → Shipping
 2. Add shipping zones (Texas, USA)
@@ -112,11 +117,13 @@ curl -X POST https://connect.squareup.com/v2/marketing/campaigns \
 **CRITICAL:** Every online order needs 21+ verification
 
 **Options:**
+
 - Square's built-in age verification
 - KAJA's compliance tools
 - Third-party: AgeChecker.net integration
 
 **Implementation:**
+
 ```javascript
 // Add to checkout flow
 if (customer.age_verified !== true) {
@@ -127,6 +134,7 @@ if (customer.age_verified !== true) {
 ### 7. INVENTORY SYNC
 
 **Ensure Square inventory is accurate:**
+
 ```bash
 # Run inventory sync
 cd automation/data-pipelines
@@ -155,6 +163,7 @@ npm run sync:square:inventory
 **Immediate Revenue:** $41,250
 
 **Monthly Projection:**
+
 - Daily orders: 20-50
 - Average: $75
 - Monthly: $45K - $112K
@@ -163,6 +172,7 @@ npm run sync:square:inventory
 ### 10. MONITORING
 
 **Track These Metrics:**
+
 - Orders per day
 - Conversion rate (visitors → purchases)
 - Average order value
@@ -172,12 +182,11 @@ npm run sync:square:inventory
 
 ---
 
-## 🚀 ONE-COMMAND DEPLOY:
+## 🚀 ONE-COMMAND DEPLOY
 
 I'll create the automated deployment script that does ALL of this!
 
 **SEMPER FI - WE'RE GOING LIVE! 🇺🇸**
-
 
 <!-- Last verified: 2025-10-02 -->
 

@@ -12,6 +12,7 @@
 > "We NEED automated Veriff approval and membership agreement status immediately after successful transaction, when order is placed, prior to fulfillment, with email sequence on 72 hours count down to automating referal IF veriff approval, and membership are not current and approved, and ALSO we need an automated way to ADD ADD Verified Current member customers to LS Loyalty program. We also need a report on all Current Square Customers stack ranked by LTV, and put on Tiers' for 'Grand Fathered Loyalty Points' for instant shopping spree given to VIP Ideal Clients... Retroactive ALL TIME to July 2023 for WIN BACK Campaign."
 
 **What This Delivers:**
+
 1. ✅ **Post-Purchase Verification Gate** - Block fulfillment until Veriff + membership approved
 2. ✅ **72-Hour Email Automation** - Countdown sequence with auto-refund if not verified
 3. ✅ **Lightspeed Loyalty Auto-Enrollment** - Verified members instantly added to LS Loyalty
@@ -19,6 +20,7 @@
 5. ✅ **Grand Fathered Loyalty Migration** - Retroactive points for VIP win-back (July 2023+)
 
 **Business Impact:**
+
 - **Compliance:** 100% age-verified purchases (Texas law requirement)
 - **Revenue Recovery:** $47K-$97K from win-back campaign (estimated 2-5% of dormant Square customers)
 - **Automation ROI:** 15 hours/week saved on manual verification checks
@@ -924,6 +926,7 @@ main().catch(console.error);
 **Subject:** Action Required: Complete Your Age Verification
 
 **Body:**
+
 ```
 Hi {firstName},
 
@@ -952,6 +955,7 @@ Jesse @ Reggie & Dro
 **Subject:** ⏰ 48 Hours Left: Verify Your Age to Get Your Order
 
 **Body:**
+
 ```
 Hi {firstName},
 
@@ -978,6 +982,7 @@ Jesse @ Reggie & Dro
 **Subject:** ⚠️ Last 24 Hours: Complete Verification or Lose Your Order
 
 **Body:**
+
 ```
 Hi {firstName},
 
@@ -1000,6 +1005,7 @@ Jesse @ Reggie & Dro
 **Subject:** 🚨 FINAL NOTICE: 6 Hours to Save Your Order
 
 **Body:**
+
 ```
 Hi {firstName},
 
@@ -1026,6 +1032,7 @@ Jesse @ Reggie & Dro
 ### Prerequisites
 
 **Environment Variables:**
+
 ```bash
 # Lightspeed API
 LIGHTSPEED_API_KEY=your_api_key
@@ -1162,15 +1169,18 @@ curl -X POST http://localhost:3005/api/verification/check/CUST_TEST_001 \
 ### Business Metrics
 
 **Compliance:**
+
 - ✅ 100% Texas-compliant age verification
 - ✅ Zero risk of underage sales
 - ✅ Automated membership agreement tracking
 
 **Automation Savings:**
+
 - **Manual verification time:** 15 hours/week → 0 hours
 - **Cost savings:** $45/hour × 15 hours = $675/week = $35,100/year
 
 **Win-Back Campaign Revenue:**
+
 - **Square customers:** 11,348 total
 - **Dormant customers (90+ days):** ~40% = 4,539 customers
 - **Estimated re-activation:** 2-5% = 91-227 customers
@@ -1179,12 +1189,14 @@ curl -X POST http://localhost:3005/api/verification/check/CUST_TEST_001 \
 - **Annual LTV:** $47,000 - $118,000 (assuming 20% retention)
 
 **Grand Fathered Points Redemption:**
+
 - **Total points issued:** ~8.5M points (across 11,348 customers)
 - **Estimated redemption rate:** 30% first quarter
 - **Redemption value:** $25,500 (assuming $0.01/point)
 - **Expected incremental purchases:** 2.5x redemption value = $63,750
 
 **ROI Summary:**
+
 - **Total annual benefit:** $145,850 - $216,850
 - **Implementation cost:** 40 hours × $150/hour = $6,000
 - **ROI:** 2,331% - 3,514%
@@ -1219,6 +1231,7 @@ curl -X POST http://localhost:3005/api/verification/check/CUST_TEST_001 \
 ### Dashboards
 
 **BigQuery Dashboard Query:**
+
 ```sql
 SELECT
   DATE(created_at) AS order_date,
@@ -1239,6 +1252,7 @@ ORDER BY order_date DESC;
 **Status:** ✅ READY TO EXECUTE
 
 **What's Delivered:**
+
 1. ✅ Complete order verification automation code (`order-verification.js`)
 2. ✅ Lightspeed Loyalty auto-enrollment system (integrated in webhook)
 3. ✅ Square customer LTV report query (`square_customer_ltv_report.sql`)
@@ -1252,6 +1266,7 @@ ORDER BY order_date DESC;
 **Estimated Annual ROI:** $145K - $217K
 
 **Next Actions:**
+
 1. Deploy `order-verification.js` to integration-service
 2. Configure Lightspeed webhook endpoint
 3. Create BigQuery verification_status table

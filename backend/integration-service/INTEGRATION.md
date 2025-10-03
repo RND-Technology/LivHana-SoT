@@ -903,6 +903,7 @@ These integration examples show how to use the age verification system in real-w
 ## API Integration Status
 
 ### 1. Square API
+
 ```
 ┌─────────────────────────────────────────┐
 │ SQUARE API                              │
@@ -930,6 +931,7 @@ These integration examples show how to use the age verification system in real-w
 ```
 
 ### 2. Lightspeed API
+
 ```
 ┌─────────────────────────────────────────┐
 │ LIGHTSPEED API                          │
@@ -956,6 +958,7 @@ These integration examples show how to use the age verification system in real-w
 ```
 
 ### 3. BigQuery Database
+
 ```
 ┌─────────────────────────────────────────┐
 │ GOOGLE BIGQUERY                         │
@@ -985,6 +988,7 @@ These integration examples show how to use the age verification system in real-w
 ```
 
 ### 4. Redis Cache
+
 ```
 ┌─────────────────────────────────────────┐
 │ REDIS CACHE                             │
@@ -1011,6 +1015,7 @@ These integration examples show how to use the age verification system in real-w
 ## Live Metrics (Real-Time)
 
 ### Revenue & Transactions
+
 ```
 ╔═══════════════════════════════════════════════════════╗
 ║  LIVE BUSINESS METRICS (as of Oct 2, 2025 06:23 UTC) ║
@@ -1027,6 +1032,7 @@ These integration examples show how to use the age verification system in real-w
 ```
 
 ### Query Performance
+
 ```
 ╔═══════════════════════════════════════════════════════╗
 ║  QUERY PERFORMANCE (Last Request)                     ║
@@ -1112,6 +1118,7 @@ These integration examples show how to use the age verification system in real-w
 ## API Endpoints (30+ Total)
 
 ### Core Data Endpoints
+
 ```
 GET  /health                           ✅ Service health check
 GET  /api/bigquery/dashboard           ✅ Revenue & metrics
@@ -1128,6 +1135,7 @@ POST /api/sync/square                  ✅ Trigger Square sync
 ```
 
 ### Membership System
+
 ```
 POST /api/memberships/subscribe        ✅ Create membership
 GET  /api/memberships/:customerId      ✅ Get membership status
@@ -1138,6 +1146,7 @@ GET  /api/memberships/discount/:customerId   ✅ Member discounts
 ```
 
 ### Age Verification & Compliance
+
 ```
 POST /api/age-verification/verify      ✅ Verify customer age
 GET  /api/age-verification/status/:id  ✅ Check verification
@@ -1147,6 +1156,7 @@ GET  /api/compliance/metrics           ✅ Compliance metrics
 ```
 
 ### Raffle System
+
 ```
 GET  /api/raffles                      ✅ List raffles
 GET  /api/raffles/:raffleId            ✅ Raffle details
@@ -1250,6 +1260,7 @@ GET  /api/raffles/stats                ✅ Raffle statistics
 ## Next Actions (Priority Order)
 
 ### 🔴 HIGH PRIORITY
+
 ```
 1. Activate Lightspeed Live Mode
    • Obtain API credentials
@@ -1262,6 +1273,7 @@ GET  /api/raffles/stats                ✅ Raffle statistics
 ```
 
 ### 🟡 MEDIUM PRIORITY
+
 ```
 2. Run BigQuery Partition Migration
    • Execute: node scripts/migrate-to-partitioned-tables.js
@@ -1281,6 +1293,7 @@ GET  /api/raffles/stats                ✅ Raffle statistics
 ```
 
 ### 🟢 LOW PRIORITY
+
 ```
 4. Integrate Email Pipeline (gmail_ingest.js)
    ETA: 1 week
@@ -1416,17 +1429,20 @@ The integration service is **100% operational** and functioning correctly. All m
 ### Status: ⚠️ CONFIGURED BUT NOT AUTHENTICATED (Mock Mode)
 
 **Configuration Found:**
+
 - Client ID: `9KjCEhIldhMMxWZcW2WQzPJE1dRJBYEB`
 - Account ID: `020b2c2a-4661-11ef-e88b-b42e5d3b90cc`
 - API Base: `https://api.lightspeedapp.com`
 - Username: `jesseniesen@gmail.com`
 
 **Endpoints Implemented:**
+
 1. `/API/V3/Account/{accountId}/Sale.json` - Transaction history
 2. `/API/V3/Account/{accountId}/Item.json` - Product catalog
 3. OAuth2 refresh token flow
 
 **Data Being Pulled (When Live):**
+
 - Transactions (Sales data)
   - `saleID`, `calcSubtotal`, `calcTax`, `calcTotal`
   - `customerID`, `completed` status
@@ -1438,6 +1454,7 @@ The integration service is **100% operational** and functioning correctly. All m
   - Category, create/update timestamps
 
 **Current State:**
+
 - Running in MOCK mode (generates test data)
 - Mock data: 50 transactions, 25 products
 - Sync scheduler configured (every 15 minutes)
@@ -1446,6 +1463,7 @@ The integration service is **100% operational** and functioning correctly. All m
 **Error Rate:** 0% (mock mode has no errors)
 
 **To Activate Live Mode:**
+
 ```bash
 # Set environment variables:
 LIGHTSPEED_USE_MOCK=false
@@ -1456,6 +1474,7 @@ LIGHTSPEED_REFRESH_TOKEN=<token>
 ```
 
 **BigQuery Tables:**
+
 - `lightspeed_transactions` - All sales data
 - `lightspeed_products` - Inventory catalog
 
@@ -1466,6 +1485,7 @@ LIGHTSPEED_REFRESH_TOKEN=<token>
 ### Status: ✅ LIVE AND WORKING
 
 **Configuration:**
+
 - Access Token: ✅ Configured (`EAAAl3kTfPhP3SokT1_15Qycm8SpY25ilVhMNFHVlmLWd_GkAoFJj53xAhDXOEds`)
 - Location ID: `LT3HXY6PGVDA4`
 - API Version: `2024-06-15`
@@ -1496,6 +1516,7 @@ LIGHTSPEED_REFRESH_TOKEN=<token>
    - Data: ID, name, category, SKU, price, availability
 
 **Data Sync Pipeline:**
+
 - **Scheduler:** Every 15 minutes (cron: `*/15 * * * *`)
 - **Sync Script:** `/backend/integration-service/scripts/sync-square-to-bigquery.js`
 - **Performance:**
@@ -1505,11 +1526,13 @@ LIGHTSPEED_REFRESH_TOKEN=<token>
 - **Success Rate:** High (with automatic retries)
 
 **Payment Processing:**
+
 - Status: ✅ Operational
 - Mode: Production
 - Transaction sync: Real-time to BigQuery
 
 **Customer Data Sync:**
+
 - Status: ✅ Operational
 - Data: Customer IDs tracked with transactions
 - Privacy: Compliant with data retention policies
@@ -1517,6 +1540,7 @@ LIGHTSPEED_REFRESH_TOKEN=<token>
 **Error Rate:** <1% (with retry logic)
 
 **BigQuery Tables:**
+
 - `square_payments` - All payment transactions
   - Schema: id, amount, currency, status, customer_id, location_id, created_at, updated_at, source_type, card_brand, receipt_url
   - Rows: 100,184 transactions
@@ -1528,6 +1552,7 @@ LIGHTSPEED_REFRESH_TOKEN=<token>
   - Size: ~2MB
 
 **Live Test Results (as of Oct 2, 2025 06:22 UTC):**
+
 ```json
 {
   "todayRevenue": 38645.56,
@@ -1547,6 +1572,7 @@ LIGHTSPEED_REFRESH_TOKEN=<token>
 ### Status: ✅ LIVE AND OPTIMIZED
 
 **Connection:**
+
 - Project ID: `reggieanddrodispensary`
 - Dataset: `analytics` (primary) / `commerce` (secondary)
 - Location: `US`
@@ -1562,6 +1588,7 @@ LIGHTSPEED_REFRESH_TOKEN=<token>
 | `lightspeed_products` | Catalog | 0 (mock) | ⚠️ No | Lightspeed inventory |
 
 **Sync Mode:**
+
 - ✅ Real-time sync (every 15 minutes)
 - Square: Async with retry logic
 - Lightspeed: Mock mode (ready for live)
@@ -1577,6 +1604,7 @@ LIGHTSPEED_REFRESH_TOKEN=<token>
 | Product Catalog | 300ms | 180ms | ✅ Exceeds target |
 
 **Optimization Applied (Oct 1, 2025):**
+
 - ✅ SQL aggregations (push-down compute to BigQuery)
 - ✅ Status filtering (`WHERE status = 'COMPLETED'`)
 - ✅ Parallel query execution
@@ -1585,21 +1613,25 @@ LIGHTSPEED_REFRESH_TOKEN=<token>
 - ✅ Performance monitoring built-in
 
 **Query Performance:**
+
 - Average: 300ms (80% reduction from 2-5 seconds)
 - Cache hit rate: 0% (service recently restarted)
 - Error rate: 0%
 
 **Real-time vs Batch:**
+
 - **Real-time:** Dashboard queries (cached 30 seconds)
 - **Batch:** Sync operations (every 15 minutes)
 - **Hybrid:** Stale-while-revalidate (serve cached, refresh in background)
 
 **Cost Reduction:**
+
 - Original: ~$1,500/month (full table scans)
 - Current: ~$0.15/month (optimized queries + caching)
 - **Savings:** $1,485/month = $17,820/year
 
 **Next Step - Partitioning (Planned):**
+
 - Partition by `DATE(created_at)`
 - Cluster by `customer_id`, `status`
 - Expected improvement: Additional 20-30% speed boost
@@ -1612,6 +1644,7 @@ LIGHTSPEED_REFRESH_TOKEN=<token>
 ### Status: ✅ LIVE AND HEALTHY
 
 **Health Check:**
+
 ```json
 {
   "status": "healthy",
@@ -1634,6 +1667,7 @@ LIGHTSPEED_REFRESH_TOKEN=<token>
 **Endpoints Available:**
 
 ### BigQuery Data API
+
 - `GET /api/bigquery/dashboard` - Revenue metrics, transactions, customers
 - `GET /api/bigquery/historical` - Daily/monthly trends
 - `GET /api/bigquery/products` - Product catalog
@@ -1641,14 +1675,17 @@ LIGHTSPEED_REFRESH_TOKEN=<token>
 - `POST /api/bigquery/cache/invalidate` - Manual cache refresh
 
 ### Square API
+
 - `GET /api/square/catalog` - Live Square product catalog
 - `GET /api/square/transactions` - Recent payment transactions
 
 ### Sync Operations
+
 - `POST /api/sync/lightspeed` - Trigger Lightspeed sync
 - `POST /api/sync/square` - Trigger Square sync
 
 ### Membership System
+
 - `POST /api/memberships/subscribe` - Create new membership
 - `GET /api/memberships/:customerId` - Get membership status
 - `PUT /api/memberships/:customerId/upgrade` - Upgrade membership
@@ -1657,6 +1694,7 @@ LIGHTSPEED_REFRESH_TOKEN=<token>
 - `GET /api/memberships/discount/:customerId` - Get member discounts
 
 ### Age Verification
+
 - `POST /api/age-verification/verify` - Verify customer age
 - `GET /api/age-verification/status/:customerId` - Check verification status
 - `POST /api/age-verification/resubmit` - Resubmit verification
@@ -1664,11 +1702,13 @@ LIGHTSPEED_REFRESH_TOKEN=<token>
 - `GET /health/age-verification` - Age verification health
 
 ### Compliance API
+
 - `GET /api/compliance/metrics` - Compliance metrics
 - `POST /api/age-verification/verify` - Age verification (duplicate endpoint)
 - `GET /api/age-verification/status` - Status check
 
 ### Raffle System
+
 - `GET /api/raffles` - List all raffles
 - `GET /api/raffles/:raffleId` - Get raffle details
 - `GET /api/raffles/:raffleId/progress` - Raffle progress
@@ -1681,9 +1721,11 @@ LIGHTSPEED_REFRESH_TOKEN=<token>
 - `DELETE /api/raffles/:raffleId/cancel` - Cancel raffle
 
 ### Notion Integration
+
 - `POST /api/notion/webhook` - Notion webhook receiver
 
 ### Monitoring
+
 - `GET /health` - Service health check
 - `GET /api/monitoring/*` - Rate limit monitoring
 
@@ -1700,6 +1742,7 @@ LIGHTSPEED_REFRESH_TOKEN=<token>
 ```
 
 **Security:**
+
 - ✅ Helmet security headers
 - ✅ CORS configured (localhost:5173, localhost:3000)
 - ✅ Rate limiting (Redis-backed)
@@ -1708,6 +1751,7 @@ LIGHTSPEED_REFRESH_TOKEN=<token>
 - ✅ Authentication middleware (disabled in dev, enabled in production)
 
 **Performance:**
+
 - ✅ Async sync jobs (non-blocking)
 - ✅ Exponential backoff retry logic
 - ✅ Redis caching (sub-10ms responses)
@@ -1721,6 +1765,7 @@ LIGHTSPEED_REFRESH_TOKEN=<token>
 ### Source → Transform → Destination
 
 #### Pipeline 1: Square → BigQuery
+
 ```
 Square API (Production)
   ↓ (every 15 min)
@@ -1742,12 +1787,14 @@ Dashboard/API Consumers
 ```
 
 **Performance:**
+
 - Sync frequency: 15 minutes
 - Batch size: 1,000 records
 - Retry logic: 3 attempts with exponential backoff
 - Success rate: >99%
 
 #### Pipeline 2: Lightspeed → BigQuery
+
 ```
 Lightspeed API (Mock Mode - Ready for Live)
   ↓ (every 15 min)
@@ -1770,11 +1817,13 @@ Dashboard/API Consumers
 ```
 
 **Status:**
+
 - ⚠️ Mock mode (awaiting credentials)
 - Generates 50 test transactions, 25 test products
 - Ready to activate with API credentials
 
 #### Pipeline 3: BigQuery → Dashboard (Optimized)
+
 ```
 BigQuery
   ↓ (optimized SQL)
@@ -1792,6 +1841,7 @@ Frontend Dashboard / Mobile App / API Consumers
 ```
 
 **Performance:**
+
 - Cache hit: <10ms
 - Cache miss: 200-400ms
 - Background revalidation: Stale-while-revalidate pattern
@@ -1801,7 +1851,7 @@ Frontend Dashboard / Mobile App / API Consumers
 
 ## 6. MISSING INTEGRATIONS
 
-### Identified Gaps:
+### Identified Gaps
 
 1. **Email Service Integration**
    - Located: `/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/automation/data-pipelines/gmail_ingest.js`
@@ -1837,9 +1887,10 @@ Frontend Dashboard / Mobile App / API Consumers
 
 ## 7. PERFORMANCE METRICS
 
-### Current State (Oct 2, 2025):
+### Current State (Oct 2, 2025)
 
 **Query Performance:**
+
 | Metric | Value | Target | Status |
 |--------|-------|--------|--------|
 | Avg query time | 300ms | <500ms | ✅ Exceeds |
@@ -1848,6 +1899,7 @@ Frontend Dashboard / Mobile App / API Consumers
 | Sync duration | ~2-5 min | <10 min | ✅ Good |
 
 **System Health:**
+
 | Metric | Value | Status |
 |--------|-------|--------|
 | Service uptime | 60+ min (current session) | ✅ Stable |
@@ -1857,6 +1909,7 @@ Frontend Dashboard / Mobile App / API Consumers
 | Query success rate | 100% | ✅ Perfect |
 
 **Data Volume:**
+
 | Source | Records | Size | Last Updated |
 |--------|---------|------|--------------|
 | Square Payments | 100,184 | ~10MB | Live sync |
@@ -1864,6 +1917,7 @@ Frontend Dashboard / Mobile App / API Consumers
 | Lightspeed (mock) | 50 txns, 25 products | ~1MB | Mock data |
 
 **Cost Analysis:**
+
 - BigQuery queries: $0.15/month (optimized)
 - Redis hosting: $0 (localhost)
 - API calls: Included in Square plan
@@ -1873,7 +1927,8 @@ Frontend Dashboard / Mobile App / API Consumers
 
 ## 8. NEXT STEPS TO 100% OPERATIONAL
 
-### Immediate (Week 1):
+### Immediate (Week 1)
+
 1. ✅ **Square Integration** - COMPLETE (already live)
 2. ✅ **BigQuery Optimization** - COMPLETE (80% faster)
 3. ✅ **Redis Caching** - COMPLETE (live)
@@ -1883,8 +1938,10 @@ Frontend Dashboard / Mobile App / API Consumers
    - Test connection: `node scripts/sync-lightspeed-to-bigquery.js`
    - Verify data in BigQuery
 
-### Short Term (Week 2-3):
+### Short Term (Week 2-3)
+
 5. **Run BigQuery Partition Migration**
+
    ```bash
    cd /backend/integration-service
    node scripts/migrate-to-partitioned-tables.js
@@ -1893,6 +1950,7 @@ Frontend Dashboard / Mobile App / API Consumers
    # BQ_TABLE_ITEMS=square_items_partitioned
    npm restart
    ```
+
    - Expected: Additional 20-30% performance improvement
    - Expected: 90% cost reduction on queries
 
@@ -1907,7 +1965,8 @@ Frontend Dashboard / Mobile App / API Consumers
    - Verify retry logic works
    - Test fallback to cached data
 
-### Medium Term (Month 1):
+### Medium Term (Month 1)
+
 8. **Integrate Email Pipeline**
    - Move `gmail_ingest.js` to integration service
    - Add cron schedule or webhook trigger
@@ -1923,7 +1982,8 @@ Frontend Dashboard / Mobile App / API Consumers
     - Integrate with existing payment flows
     - Add to sync pipeline
 
-### Long Term (Month 2-3):
+### Long Term (Month 2-3)
+
 11. **DeepSeek AI Integration**
     - Connect to production API
     - Build insight generation endpoints
@@ -1943,7 +2003,7 @@ Frontend Dashboard / Mobile App / API Consumers
 
 ## 9. RISK ASSESSMENT
 
-### Current Risks:
+### Current Risks
 
 | Risk | Severity | Likelihood | Mitigation |
 |------|----------|------------|------------|
@@ -1953,7 +2013,7 @@ Frontend Dashboard / Mobile App / API Consumers
 | Square API rate limit | Low | Low | Batch operations with pagination |
 | Cost spike | Low | Very Low | Caching + optimizations keep costs at $0.15/month |
 
-### Security Considerations:
+### Security Considerations
 
 | Area | Status | Notes |
 |------|--------|-------|
@@ -1968,9 +2028,10 @@ Frontend Dashboard / Mobile App / API Consumers
 
 ## 10. TESTING COVERAGE
 
-### Integration Tests:
+### Integration Tests
 
 **Square Sync:** `/backend/integration-service/tests/integration/square-sync.test.js`
+
 - ✅ API connection & authentication
 - ✅ Payment data fetch with pagination
 - ✅ Catalog sync with variations
@@ -1980,6 +2041,7 @@ Frontend Dashboard / Mobile App / API Consumers
 - ✅ Large dataset handling (>1000 records)
 
 **Lightspeed Sync:** `/backend/integration-service/tests/integration/lightspeed-sync.test.js`
+
 - ✅ OAuth2 refresh token flow
 - ✅ Transaction history fetch
 - ✅ Product catalog sync
@@ -1990,7 +2052,7 @@ Frontend Dashboard / Mobile App / API Consumers
 
 **Test Coverage:** ~80% (comprehensive integration coverage)
 
-### Manual Test Results:
+### Manual Test Results
 
 ```bash
 # Health check: ✅ PASS
@@ -2018,7 +2080,7 @@ redis-cli ping
 
 ## 11. DOCUMENTATION STATUS
 
-### Existing Documentation:
+### Existing Documentation
 
 | Document | Location | Status |
 |----------|----------|--------|
@@ -2031,7 +2093,8 @@ redis-cli ping
 | Integration Examples | `INTEGRATION_EXAMPLES.md` | ✅ Complete |
 | Test Coverage | `tests/integration/TEST_COVERAGE_REPORT.md` | ✅ Complete |
 
-### Missing Documentation:
+### Missing Documentation
+
 - ⚠️ Square API integration guide (not documented)
 - ⚠️ Redis caching architecture (mentioned but not detailed)
 - ⚠️ Deployment guide (not found)
@@ -2046,6 +2109,7 @@ redis-cli ping
 The integration service is **production-ready** and performing exceptionally well:
 
 **Achievements:**
+
 - ✅ Square API fully integrated and syncing (100,184 transactions)
 - ✅ BigQuery optimized to enterprise-grade (80% faster, 99% cheaper)
 - ✅ Redis caching operational (sub-10ms responses)
@@ -2055,6 +2119,7 @@ The integration service is **production-ready** and performing exceptionally wel
 - ✅ Monitoring built-in (query timing, cache stats)
 
 **Operational Status:**
+
 - Service: ✅ 100% operational
 - Square: ✅ 100% operational (live data flowing)
 - BigQuery: ✅ 100% operational (real-time queries working)
@@ -2062,12 +2127,14 @@ The integration service is **production-ready** and performing exceptionally wel
 - Lightspeed: ⚠️ 80% complete (awaiting credentials)
 
 **Performance:**
+
 - All queries <500ms target (most <400ms)
 - 0% error rate
 - 99% cost reduction achieved
 - Real-time data sync every 15 minutes
 
 **Next Action Items (Priority Order):**
+
 1. **HIGH:** Activate Lightspeed live mode (credentials needed)
 2. **MEDIUM:** Run BigQuery partition migration (additional 30% performance boost)
 3. **MEDIUM:** Set up monitoring alerts
@@ -2075,6 +2142,7 @@ The integration service is **production-ready** and performing exceptionally wel
 5. **LOW:** Build KAJA payment gateway integration
 
 **Business Impact:**
+
 - Real-time revenue tracking: $6.4M+ annual revenue visible
 - Customer insights: 1,732 unique customers tracked
 - Cost savings: $17,820/year from BigQuery optimization

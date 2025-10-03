@@ -22,25 +22,30 @@ This document outlines the security hardening measures implemented across the Li
 ### 1. Authentication & Authorization
 
 #### JWT-Based Authentication
+
 All API endpoints (except health checks) now require valid JWT tokens.
 
 **Affected Services:**
+
 - ✅ `voice-service` (port 4001)
 - ✅ `reasoning-gateway` (port 4002)
 - ⚠️ `integration-service` (partially protected)
 
 **Implementation:**
+
 ```javascript
 // All /api routes now use authMiddleware
 app.use('/api', authMiddleware({ logger }), apiRouter);
 ```
 
 **Token Format:**
+
 ```
 Authorization: Bearer <jwt_token>
 ```
 
 **Token Claims:**
+
 ```json
 {
   "sub": "user_id",
@@ -56,9 +61,11 @@ Authorization: Bearer <jwt_token>
 ### 2. Secret Management
 
 #### 1Password Integration
+
 All secrets are now managed via 1Password references in production.
 
 **Before (INSECURE):**
+
 ```bash
 # .env.runtime (committed to Git)
 JWT_SECRET=gdvl2Puzc6JuUijONska2ORN9Sl+hrh+n1lC4f+r3WcGAWU0WvfjkPSl+XjlRGCC
@@ -66,6 +73,7 @@ ELEVENLABS_API_KEY=a9d8a07c88ac733063857300fec256c8...
 ```
 
 **After (SECURE):**
+
 ```bash
 # .env.docker (1Password references)
 JWT_SECRET=op://LivHana-Ops-Keys/JWT_SECRET/password
@@ -73,6 +81,7 @@ ELEVENLABS_API_KEY=op://LivHana-Ops-Keys/ELEVENLABS_API_KEY/credential
 ```
 
 **Setup Instructions:**
+
 ```bash
 # Install 1Password CLI
 brew install --cask 1password-cli
@@ -86,6 +95,7 @@ op run --env-file=.env.docker -- npm start
 ### 3. Unified JWT Configuration
 
 #### Shared Secret Across Services
+
 All services now use the same JWT configuration to ensure interoperability.
 
 **Configuration File:**
@@ -102,6 +112,7 @@ export const JWT_CONFIG = {
 ```
 
 **Required Environment Variables:**
+
 - `JWT_SECRET` - Shared secret key (min 32 bytes)
 - `JWT_AUDIENCE` - API identifier
 - `JWT_ISSUER` - Auth service identifier
@@ -112,9 +123,11 @@ export const JWT_CONFIG = {
 ### 4. CORS Configuration
 
 #### Strict Origin Whitelist
+
 CORS now enforces a strict whitelist of allowed origins.
 
 **Configuration:**
+
 ```javascript
 const ALLOWED_ORIGINS = process.env.ALLOWED_ORIGINS?.split(',') || [];
 
@@ -125,11 +138,13 @@ app.use(cors({
 ```
 
 **Production Example:**
+
 ```bash
 ALLOWED_ORIGINS=https://livhana.com,https://api.livhana.com,https://admin.livhana.com
 ```
 
 **Development Example:**
+
 ```bash
 ALLOWED_ORIGINS=http://localhost:5173,http://localhost:3000
 ```
@@ -207,6 +222,7 @@ app.use(helmet({
 ## 🔐 SECRET ROTATION PROCEDURE
 
 ### When to Rotate Secrets
+
 - Immediately if a secret is compromised
 - Every 90 days as a best practice
 - When an employee with access leaves
@@ -215,11 +231,13 @@ app.use(helmet({
 ### How to Rotate JWT Secrets
 
 1. **Generate New Secret:**
+
 ```bash
 openssl rand -base64 64 | tr -d '\n'
 ```
 
 2. **Update 1Password:**
+
 ```bash
 op item edit "JWT_SECRET" password="<new_secret>"
 ```
@@ -231,6 +249,7 @@ op item edit "JWT_SECRET" password="<new_secret>"
    - Deploy final version with only new secret
 
 4. **Verify:**
+
 ```bash
 # Test with new token
 curl -H "Authorization: Bearer <new_token>" https://api.livhana.com/health
@@ -241,24 +260,30 @@ curl -H "Authorization: Bearer <new_token>" https://api.livhana.com/health
 ## 🛡️ ATTACK VECTOR MITIGATION
 
 ### 1. SQL Injection
+
 **Status:** ✅ Not Applicable (No SQL database, using BigQuery with parameterized queries)
 
 ### 2. XSS (Cross-Site Scripting)
+
 **Status:** ⚠️ Partial (Frontend uses React which auto-escapes, but API responses not sanitized)
 **Recommendation:** Add DOMPurify for user-generated content
 
 ### 3. CSRF (Cross-Site Request Forgery)
+
 **Status:** ✅ Mitigated (JWT tokens in Authorization header, not cookies)
 
 ### 4. DDoS (Distributed Denial of Service)
+
 **Status:** ⚠️ Exposed (No rate limiting yet)
 **Recommendation:** Implement rate limiting + use Cloudflare
 
 ### 5. JWT Token Theft
+
 **Status:** ✅ Mitigated (HttpOnly cookies not used, tokens stored in memory)
 **Enhancement:** Implement refresh tokens with short-lived access tokens
 
 ### 6. Man-in-the-Middle
+
 **Status:** ✅ Mitigated (HTTPS enforced in production)
 **Verify:** All API calls use https://
 
@@ -320,7 +345,7 @@ curl -H "Authorization: Bearer <new_token>" https://api.livhana.com/health
 ## 📞 SECURITY CONTACTS
 
 **Security Lead:** Jesse Niesen (CEO)
-**Email:** security@livhana.com (to be created)
+**Email:** <security@livhana.com> (to be created)
 **1Password Vault:** LivHana-Ops-Keys
 **Incident Response:** See INCIDENT_RESPONSE.md (to be created)
 

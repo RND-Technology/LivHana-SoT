@@ -57,6 +57,7 @@ Visual representation of the consolidation changes
 ```
 
 ### API Pattern Chaos
+
 ```
 ┌──────────────────────────────────────────────────────────────────┐
 │                      API PATTERNS (3x)                            │
@@ -82,6 +83,7 @@ Visual representation of the consolidation changes
 ```
 
 ### Data Flow Problems
+
 ```
 Component: ExecutiveDashboard
 │
@@ -111,6 +113,7 @@ TOTAL: 3x fetch of same BigQuery data = WASTE
 ```
 
 ### Styling Chaos
+
 ```
 327 Inline Style Instances:
 
@@ -197,6 +200,7 @@ PROBLEM: Same styles defined 327 times across files
 ```
 
 ### Unified API Client
+
 ```
 ┌──────────────────────────────────────────────────────────────────┐
 │              src/api/livhanaApiClient.js                          │
@@ -233,6 +237,7 @@ PROBLEM: Same styles defined 327 times across files
 ```
 
 ### Data Flow Solution
+
 ```
 Component: UltimateCockpit (DATA ORCHESTRATOR)
 │
@@ -273,6 +278,7 @@ TOTAL: 1x fetch of BigQuery data (shared across all dashboards)
 ```
 
 ### Centralized Styling
+
 ```
 src/theme/styles.js (SINGLE SOURCE OF TRUTH)
 
@@ -321,6 +327,7 @@ RESULT: 327 inline instances → ~50 references
 ## SIDE-BY-SIDE COMPARISON
 
 ### Component Count
+
 ```
 BEFORE:                          AFTER:
 ├─ 20 components                 ├─ 17 components (-3 stubs)
@@ -330,6 +337,7 @@ BEFORE:                          AFTER:
 ```
 
 ### API Patterns
+
 ```
 BEFORE:                          AFTER:
 ├─ 3 different patterns          ├─ 1 unified client
@@ -340,6 +348,7 @@ BEFORE:                          AFTER:
 ```
 
 ### Data Fetching
+
 ```
 BEFORE:                          AFTER:
 ├─ Each component fetches        ├─ UltimateCockpit fetches
@@ -349,6 +358,7 @@ BEFORE:                          AFTER:
 ```
 
 ### Styling
+
 ```
 BEFORE:                          AFTER:
 ├─ 327 inline sx={{}}            ├─ ~50 style references
@@ -357,6 +367,7 @@ BEFORE:                          AFTER:
 ```
 
 ### Bundle Size
+
 ```
 BEFORE:                          AFTER:
 ├─ Initial: 558 KB               ├─ Initial: 450 KB (-19%)
@@ -365,6 +376,7 @@ BEFORE:                          AFTER:
 ```
 
 ### Load Time
+
 ```
 BEFORE:                          AFTER:
 └─ < 2 seconds                   └─ < 1.5 seconds (-25%)
@@ -375,6 +387,7 @@ BEFORE:                          AFTER:
 ## ARCHITECTURAL PRINCIPLES
 
 ### BEFORE (Problems)
+
 ❌ Data fetching scattered across components
 ❌ Multiple API patterns (fetch, axios, autonomousApi)
 ❌ Duplicate data fetching (3x same calls)
@@ -384,6 +397,7 @@ BEFORE:                          AFTER:
 ❌ Inconsistent authentication
 
 ### AFTER (Solutions)
+
 ✅ Data fetching centralized in UltimateCockpit
 ✅ ONE unified API client (api.*)
 ✅ Single fetch, shared data (1x calls)
@@ -397,6 +411,7 @@ BEFORE:                          AFTER:
 ## COMPONENT HIERARCHY
 
 ### BEFORE: Scattered Data Fetching
+
 ```
 App
 ├─ UltimateCockpit
@@ -419,6 +434,7 @@ PROBLEM: Same data fetched 3-4x depending on route
 ```
 
 ### AFTER: Centralized Data Fetching
+
 ```
 App
 ├─ UltimateCockpit (DATA LAYER)
@@ -449,6 +465,7 @@ SOLUTION: Data fetched once, shared across all dashboards
 ## FILE STRUCTURE
 
 ### BEFORE
+
 ```
 src/
 ├─ components/
@@ -479,6 +496,7 @@ PROBLEMS:
 ```
 
 ### AFTER
+
 ```
 src/
 ├─ api/
@@ -593,22 +611,27 @@ IMPROVEMENTS:
 ## KEY ARCHITECTURAL DECISIONS
 
 ### Decision 1: Keep UltimateCockpit as Master Container
+
 **Rationale:** It already imports and embeds all sub-dashboards. This is good architecture.
 **Action:** Enhance it with centralized data fetching, don't replace it.
 
 ### Decision 2: Refactor Sub-Dashboards to Props-Based
+
 **Rationale:** Removes duplicate data fetching while keeping distinct UIs.
 **Action:** Lift data to UltimateCockpit, pass down as props.
 
 ### Decision 3: Create ONE Unified API Client
+
 **Rationale:** Eliminates 3 different patterns (fetch, axios, autonomousApi).
 **Action:** Create src/api/livhanaApiClient.js with all methods.
 
 ### Decision 4: Delete Stub Components Immediately
+
 **Rationale:** They provide zero value and take up space.
 **Action:** rm VibeCoding.jsx, AgentSwarm.jsx, PilotTraining.jsx
 
 ### Decision 5: Centralize Styles in theme/styles.js
+
 **Rationale:** 327 inline styles = duplication and maintenance burden.
 **Action:** Export style constants, reference them in components.
 

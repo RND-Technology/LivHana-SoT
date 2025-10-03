@@ -26,6 +26,7 @@ Auto-Toon Engine for High Noon Cartoon is **75% operational**. Core pipeline val
 **Generated:** 2025-10-02 06:07:29 GMT
 
 #### ✅ PASS: Script Generation
+
 - **Input:** 30-second brief about Texas testimony
 - **Output:** 1 scene, 6 dialogue lines, traditional screenplay format
 - **Time:** ~5 seconds
@@ -33,6 +34,7 @@ Auto-Toon Engine for High Noon Cartoon is **75% operational**. Core pipeline val
 - **File:** `output/scripts/episode-test-001.json`
 
 **Sample Dialogue:**
+
 ```
 JESSE: "Honorable members, while we debate, Oklahoma collects our tax revenue."
 
@@ -44,11 +46,13 @@ JESSE: "Sir, regulated markets protect children better than black markets."
 ```
 
 #### ✅ PASS: Voice Generation
+
 - **Input:** 6 dialogue lines from script
 - **Output:** 6 MP3 audio files
 - **Time:** ~20 seconds total
 - **Cost:** $0 (paid plan)
 - **Files Generated:**
+
   ```
   output/audio/episode-test-001/scene-1/
   ├── 01-narrator-(v.o.).mp3
@@ -60,17 +64,20 @@ JESSE: "Sir, regulated markets protect children better than black markets."
   ```
 
 **Character Voices Working:**
+
 - ✅ NARRATOR (V.O.) - Neutral narrator voice
 - ✅ JESSE - Confident male voice
 - ✅ LIV HANA - Professional female AI voice
 - ✅ PROHIBITIONIST LEGISLATOR - Default narrator (no mapped voice)
 
 #### ⚠️ BLOCKED: Image Generation
+
 - **Error:** `403 Project proj_0fqGyEbYgDdwvUBTv7ZqtjoG does not have access to model dall-e-3`
 - **Impact:** Cannot generate scene images
 - **Downstream:** Video composition blocked (requires images)
 
 **Error Details:**
+
 ```json
 {
   "error": {
@@ -83,6 +90,7 @@ JESSE: "Sir, regulated markets protect children better than black markets."
 ```
 
 **Attempted Prompt (would work with access):**
+
 ```
 High-quality animated cartoon in the style of King of the Hill meets South Park.
 Setting: TEXAS STATE CAPITOL - COMMITTEE HEARING ROOM, Texas.
@@ -93,6 +101,7 @@ Mood: Dramatic but humorous. Wide cinematic shot. 16:9 aspect ratio.
 ```
 
 #### ⚠️ NOT TESTED: Video Composition
+
 - **Status:** Code ready, dependent on images
 - **Expected:** FFmpeg Ken Burns effects, audio mixing, MP4 output
 - **Cannot validate until images available**
@@ -101,21 +110,24 @@ Mood: Dramatic but humorous. Wide cinematic shot. 16:9 aspect ratio.
 
 ## Cost Analysis
 
-### Actual Costs (Test Episode):
+### Actual Costs (Test Episode)
+
 - Script: $0.50 (Claude API)
 - Voices: $0 (ElevenLabs paid plan)
 - Images: $0 (blocked, would be $0.04)
 - Video: $0 (FFmpeg free)
 - **Total: $0.50** (vs $2.50 target)
 
-### Projected Costs (Full Pipeline):
+### Projected Costs (Full Pipeline)
+
 - Script: $0.50
 - Voices: $0
 - Images: $0.40 (10 scenes × $0.04)
 - Video: $0
 - **Total: $0.90/episode** 🎯
 
-### Budget Status:
+### Budget Status
+
 - Monthly limit: $2000
 - Per-episode cap: $50
 - Emergency stop: $5000
@@ -125,7 +137,8 @@ Mood: Dramatic but humorous. Wide cinematic shot. 16:9 aspect ratio.
 
 ## Technical Validation
 
-### ✅ API Integrations Working:
+### ✅ API Integrations Working
+
 1. **Anthropic Claude API**
    - Model: `claude-sonnet-4-20250514`
    - Max tokens: 4000
@@ -143,7 +156,8 @@ Mood: Dramatic but humorous. Wide cinematic shot. 16:9 aspect ratio.
    - Audio mixing: Ready
    - Format: MP4, H.264, AAC
 
-### ⚠️ API Integrations Blocked:
+### ⚠️ API Integrations Blocked
+
 1. **OpenAI DALL-E 3 API**
    - Model: `dall-e-3`
    - Size: `1792x1024` (widescreen)
@@ -155,6 +169,7 @@ Mood: Dramatic but humorous. Wide cinematic shot. 16:9 aspect ratio.
 ## Code Quality Metrics
 
 ### Files Created: 5 modules + config
+
 ```
 src/
 ├── script-generator.js      182 lines ✅
@@ -170,6 +185,7 @@ Config:
 ```
 
 ### Dependencies Installed: 105 packages
+
 - @anthropic-ai/sdk@0.24.0
 - elevenlabs@0.7.0
 - openai@4.20.0
@@ -177,7 +193,8 @@ Config:
 - dotenv@16.3.1
 - axios@1.6.0
 
-### Warnings (Non-blocking):
+### Warnings (Non-blocking)
+
 - `elevenlabs@0.7.0` moved to `@elevenlabs/elevenlabs-js` (still works)
 - `fluent-ffmpeg@2.1.3` no longer supported (still works)
 - 2 critical vulnerabilities (not affecting MVP)
@@ -189,17 +206,20 @@ Config:
 ### 1. Enable DALL-E 3 Access (HUMAN REQUIRED) 🚨
 
 **Option A: Upgrade OpenAI Account**
-1. Login to https://platform.openai.com
+
+1. Login to <https://platform.openai.com>
 2. Navigate to Settings → Billing
 3. Add payment method or increase tier
 4. Verify `dall-e-3` appears in Models list
 
 **Option B: Use Alternative Image Generation**
+
 - Midjourney API (manual Discord workflow)
 - Stable Diffusion (local generation)
 - Manual illustration (contract artist)
 
 **Option C: Skip Images for MVP**
+
 - Generate voice-only podcast format
 - Use static title cards
 - Add images in post-production
@@ -222,6 +242,7 @@ ls -lh output/videos/episode-test-001/episode-test-001-final.mp4
 ```
 
 **Expected Output:**
+
 - 1 MP4 video file
 - ~30 seconds duration
 - 1792x1024 resolution
@@ -236,6 +257,7 @@ npm run generate
 ```
 
 **Expected:**
+
 - 5-minute episode
 - 10 scenes
 - Multiple characters
@@ -247,6 +269,7 @@ npm run generate
 ## Known Issues
 
 ### Issue #1: DALL-E 3 Access ⚠️
+
 - **Status:** Blocker
 - **Impact:** High (blocks 50% of pipeline)
 - **Priority:** P0
@@ -254,18 +277,21 @@ npm run generate
 - **ETA:** < 5 minutes once action taken
 
 ### Issue #2: Script Parser Edge Cases
+
 - **Status:** Minor
 - **Impact:** Low (dialogue extraction working)
 - **Fix:** Improved regex in `parseScript()`
 - **Completed:** Oct 2, 2025 06:05 GMT
 
 ### Issue #3: Directory Creation Race Condition
+
 - **Status:** Fixed
 - **Impact:** Medium (manifest write errors)
 - **Fix:** Added `mkdir -p` before all file writes
 - **Completed:** Oct 2, 2025 06:03 GMT
 
 ### Issue #4: ElevenLabs API Key Location
+
 - **Status:** Fixed
 - **Impact:** Low (wrong 1Password entry)
 - **Fix:** Found correct entry `ELEVENLABS_API_KEY` (rhgxbz...)
@@ -275,7 +301,8 @@ npm run generate
 
 ## Performance Metrics
 
-### Build Time Breakdown:
+### Build Time Breakdown
+
 ```
 Planning:            5 min
 Implementation:     35 min
@@ -284,7 +311,8 @@ Testing/Debugging:   5 min
 Total:              45 min ✅ (under 1-hour challenge)
 ```
 
-### Pipeline Performance (test-001):
+### Pipeline Performance (test-001)
+
 ```
 Script Generation:   ~5 sec
 Voice Generation:   ~20 sec
@@ -294,7 +322,8 @@ Video Composition:  Not tested
 Total (partial):    25 sec
 ```
 
-### Projected Full Pipeline:
+### Projected Full Pipeline
+
 ```
 Script:              5 sec
 Voices:             30 sec (10 scenes)

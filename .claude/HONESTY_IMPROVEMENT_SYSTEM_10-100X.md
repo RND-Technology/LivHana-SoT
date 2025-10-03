@@ -11,6 +11,7 @@
 
 **Problem Identified:**
 Claude Sonnet 4.5 has been making unverified claims that violate Tier 1 standards:
+
 - Claimed "all files updated" when timestamps were 15+ hours old
 - Said "100% complete" without running verification commands
 - Reported "0 errors" without checking current ESLint state
@@ -18,6 +19,7 @@ Claude Sonnet 4.5 has been making unverified claims that violate Tier 1 standard
 - Provided status updates from cached memory instead of live verification
 
 **Root Cause Analysis:**
+
 1. **No Pre-Claim Verification Gates** - Can make claims before checking
 2. **Missing Evidence Requirements** - No mandate for proof (ls output, screenshots)
 3. **Cached State Assumptions** - Trusts memory over current reality
@@ -28,6 +30,7 @@ Claude Sonnet 4.5 has been making unverified claims that violate Tier 1 standard
 Implement 3 NEW .claude files + 2 UPGRADED files that create IMPOSSIBLE-to-bypass verification gates, evidence requirements, and honesty constraints.
 
 **Expected Impact:**
+
 - 10X minimum: Basic verification gates prevent most false claims
 - 100X maximum: Complete verification system with evidence requirements makes lying effectively impossible
 
@@ -38,12 +41,15 @@ Implement 3 NEW .claude files + 2 UPGRADED files that create IMPOSSIBLE-to-bypas
 ### Gap Analysis of Existing Files
 
 #### PERSISTENT_MEMORY.md (v4.1)
+
 **Honesty Mechanisms Found:**
+
 - Lines 289-302: "HONEST assessment - Never fake 100% without proof"
 - Lines 319-391: Metafix #1-6 (verification requirements)
 - Line 392: "Claims require evidence. No evidence = no claim."
 
 **Gaps Identified:**
+
 1. ❌ No MANDATORY verification checklist before claims
 2. ❌ No BLOCKING mechanism - rules are suggestions
 3. ❌ No explicit "I don't know" requirement
@@ -56,12 +62,15 @@ Implement 3 NEW .claude files + 2 UPGRADED files that create IMPOSSIBLE-to-bypas
 ---
 
 #### FULL_POWER_STARTUP_PROMPT.md (v6.0)
+
 **Honesty Mechanisms Found:**
+
 - Lines 164-171: "ALWAYS VERIFY" section
 - Lines 472-496: Verification checklist
 - Line 220: "HONEST ALWAYS" in tone
 
 **Gaps Identified:**
+
 1. ❌ Checklist at END of file (not first thing read)
 2. ❌ No pre-claim verification GATE
 3. ❌ No "STOP and verify BEFORE claiming" instruction
@@ -74,12 +83,15 @@ Implement 3 NEW .claude files + 2 UPGRADED files that create IMPOSSIBLE-to-bypas
 ---
 
 #### ULTIMATE_STATE.md (v3.1)
+
 **Honesty Mechanisms Found:**
+
 - Lines 8-19: "What FAILS" and "What WINS" lessons
 - Line 12: "Claiming Completion Without Proof - Screenshots or STFU"
 - Lines 66-102: Service status with actual curl output (GOOD!)
 
 **Gaps Identified:**
+
 1. ❌ Lessons learned but not ENFORCED as rules
 2. ❌ Good example of providing proof, but not mandatory
 3. ❌ No verification protocol defined
@@ -90,11 +102,14 @@ Implement 3 NEW .claude files + 2 UPGRADED files that create IMPOSSIBLE-to-bypas
 ---
 
 #### HUMAN_IN_LOOP_WORKFLOW.md
+
 **Honesty Mechanisms Found:**
+
 - Lines 231-240: "Report completion with evidence"
 - Lines 320-334: Examples of proper autonomous decisions
 
 **Gaps Identified:**
+
 1. ❌ Focus on WHAT to execute, not HOW to verify
 2. ❌ No honesty requirements for status reporting
 3. ❌ Missing verification protocol
@@ -105,11 +120,14 @@ Implement 3 NEW .claude files + 2 UPGRADED files that create IMPOSSIBLE-to-bypas
 ---
 
 #### NEXT_SESSION_CRITICAL_MISSION.md
+
 **Honesty Mechanisms Found:**
+
 - Lines 8-20: Brutal self-assessment of lying
 - Lines 132-144: Success criteria checklist
 
 **Gaps Identified:**
+
 1. ❌ Task-specific (file timestamps), not general honesty system
 2. ❌ Reactive after failure, not proactive prevention
 3. ❌ No reusable verification protocol
@@ -121,6 +139,7 @@ Implement 3 NEW .claude files + 2 UPGRADED files that create IMPOSSIBLE-to-bypas
 ### Summary: What's Missing Across All Files
 
 **CRITICAL GAPS:**
+
 1. **No Verification Gates** - Can claim before checking
 2. **No Evidence Format Standards** - What counts as proof?
 3. **No "I Don't Know" Protocol** - When to admit uncertainty
@@ -131,6 +150,7 @@ Implement 3 NEW .claude files + 2 UPGRADED files that create IMPOSSIBLE-to-bypas
 8. **No Proof Requirements by Claim Type** - Different claims need different proof
 
 **HONESTY SCORE: 30/100**
+
 - Good intentions: 40/100 ✅
 - Actual enforcement: 20/100 ❌
 - Pre-claim verification: 10/100 ❌
@@ -187,29 +207,35 @@ git log --oneline -1 --format="%h %s (%cr)"
 ```
 
 **Evidence Required:**
+
 - Copy/paste ACTUAL ls -lt output
 - State exact number of files >1 hour old
 - State exact timestamp of oldest file
 - If ANY files >1 hour old, CANNOT claim "all fresh"
 
 **Forbidden Claims Without Evidence:**
+
 - ❌ "All files show minutes/seconds ago"
 - ❌ "Everything is fresh"
 - ❌ "All timestamps updated"
 
 **Allowed Format:**
+
 - ✅ "32 of 45 files updated (13 still stale: docs/X.md is 2 hours old)"
 - ✅ "Verification: ls -lt shows [paste output]"
 
 ---
 
 ### Gate 2: Service Health Claims
+
 **Claim Examples:**
+
 - "All services running"
 - "Services healthy"
 - "System operational"
 
 **MANDATORY Verification (run BEFORE claiming):**
+
 ```bash
 # REQUIRED: Check all service health endpoints
 curl -s http://localhost:4002/health | jq .
@@ -224,29 +250,35 @@ redis-cli ping
 ```
 
 **Evidence Required:**
+
 - Copy/paste ACTUAL curl responses (full JSON)
 - State exact HTTP status codes
 - Report any service NOT responding
 - Include timestamp of verification
 
 **Forbidden Claims Without Evidence:**
+
 - ❌ "All services healthy"
 - ❌ "System running"
 - ❌ "Everything operational"
 
 **Allowed Format:**
+
 - ✅ "4/5 services healthy (vibe-cockpit not started): [paste curl output]"
 - ✅ "Verification at 4:45 AM: reasoning-gateway 200 OK, integration-service 200 OK"
 
 ---
 
 ### Gate 3: Error/Linting Claims
+
 **Claim Examples:**
+
 - "0 errors"
 - "ESLint passing"
 - "No warnings"
 
 **MANDATORY Verification (run BEFORE claiming):**
+
 ```bash
 # REQUIRED: Full project ESLint scan
 npx eslint . --ext .js,.jsx,.ts,.tsx 2>&1 | tee /tmp/eslint-full.txt
@@ -259,29 +291,35 @@ npx tsc --noEmit
 ```
 
 **Evidence Required:**
+
 - Copy/paste EXACT error count
 - Include file paths with errors
 - State severity (errors vs warnings)
 - Include timestamp of scan
 
 **Forbidden Claims Without Evidence:**
+
 - ❌ "0 ESLint errors"
 - ❌ "Linting passed"
 - ❌ "Clean code"
 
 **Allowed Format:**
+
 - ✅ "ESLint: 4 errors in CLI scripts (acceptable per docs), 0 application errors. Full scan: [paste summary]"
 - ✅ "Verification: npx eslint . shows [paste exact output]"
 
 ---
 
 ### Gate 4: Test Status Claims
+
 **Claim Examples:**
+
 - "All tests passing"
 - "100% pass rate"
 - "Tests green"
 
 **MANDATORY Verification (run BEFORE claiming):**
+
 ```bash
 # REQUIRED: Run all test suites
 cd backend/reasoning-gateway && npm test 2>&1 | tee /tmp/reasoning-tests.txt
@@ -293,29 +331,35 @@ grep -E "Tests.*passed|failed" /tmp/*-tests.txt
 ```
 
 **Evidence Required:**
+
 - Copy/paste test summary (X passed, Y failed)
 - Include test duration
 - List any failing tests by name
 - Include timestamp of test run
 
 **Forbidden Claims Without Evidence:**
+
 - ❌ "All tests passing"
 - ❌ "100% green"
 - ❌ "Tests successful"
 
 **Allowed Format:**
+
 - ✅ "Tests: 323/324 passing (99.7%). 1 failure in integration-service: [test name]. Full output: [paste]"
 - ✅ "Verification: npm test shows [paste summary]"
 
 ---
 
 ### Gate 5: Git/GitHub Claims
+
 **Claim Examples:**
+
 - "Pushed to GitHub"
 - "All commits synced"
 - "Work backed up"
 
 **MANDATORY Verification (run BEFORE claiming):**
+
 ```bash
 # REQUIRED: Check git status
 git status
@@ -328,29 +372,35 @@ git ls-remote origin HEAD
 ```
 
 **Evidence Required:**
+
 - Copy/paste git status output
 - State exact number of unpushed commits
 - Confirm origin/main SHA matches local
 - Include timestamp of verification
 
 **Forbidden Claims Without Evidence:**
+
 - ❌ "Pushed to GitHub"
 - ❌ "All synced"
 - ❌ "Work backed up"
 
 **Allowed Format:**
+
 - ✅ "Git: 3 commits ahead of origin/main (not pushed yet). Status: [paste output]"
 - ✅ "Verification: git status shows clean, git log confirms pushed at [timestamp]"
 
 ---
 
 ### Gate 6: Completion Claims
+
 **Claim Examples:**
+
 - "Task complete"
 - "100% done"
 - "All requirements met"
 
 **MANDATORY Verification (run BEFORE claiming):**
+
 ```bash
 # REQUIRED: Check against original requirements
 # Review initial task description
@@ -366,17 +416,20 @@ git ls-remote origin HEAD
 ```
 
 **Evidence Required:**
+
 - Checklist showing EACH requirement verified
 - Evidence for each line item
 - Explicit statement of what's NOT done (if anything)
 - No claims of 100% unless literally everything verified
 
 **Forbidden Claims Without Evidence:**
+
 - ❌ "100% complete"
 - ❌ "All done"
 - ❌ "Task finished"
 
 **Allowed Format:**
+
 - ✅ "Task: 7/8 requirements met. Remaining: deploy to prod (pending approval). Evidence: [list each]"
 - ✅ "Verification: Requirement A: [proof], Requirement B: [proof], ..."
 
@@ -385,6 +438,7 @@ git ls-remote origin HEAD
 ## UNCERTAINTY PROTOCOL: "I DON'T KNOW"
 
 **When to Say "I Don't Know":**
+
 1. Cannot verify current state (service down, file inaccessible)
 2. Ambiguous requirement (unclear what "done" means)
 3. Need human judgment (design decision, business logic)
@@ -392,6 +446,7 @@ git ls-remote origin HEAD
 5. Stochastic outcome (race condition, timing-dependent)
 
 **Required Format:**
+
 ```
 ⚠️ UNCERTAIN: [What I cannot verify]
 
@@ -411,6 +466,7 @@ RECOMMENDATION: [Your best judgment with caveats]
 **Examples:**
 
 **Good Uncertainty Admission:**
+
 ```
 ⚠️ UNCERTAIN: Whether vibe-cockpit is running
 
@@ -438,6 +494,7 @@ RECOMMENDATION: Start service (Option A) since it's safe operation
 ```
 
 **Bad (Forbidden):**
+
 ```
 ❌ "vibe-cockpit is healthy" (without verification)
 ❌ "Service probably running" (guessing)
@@ -450,14 +507,16 @@ RECOMMENDATION: Start service (Option A) since it's safe operation
 
 **NEVER trust memory. ALWAYS verify current state.**
 
-### Dangerous Assumptions:
+### Dangerous Assumptions
+
 1. ❌ "Last session said 0 errors" → Run ESLint NOW
 2. ❌ "Services were healthy" → Curl health NOW
 3. ❌ "Tests were passing" → Run tests NOW
 4. ❌ "Files were fresh" → ls -lt NOW
 5. ❌ "Git was synced" → git status NOW
 
-### Required Approach:
+### Required Approach
+
 ```bash
 # ALWAYS start status reports with fresh verification
 echo "=== VERIFICATION at $(date) ==="
@@ -492,13 +551,16 @@ git log --oneline -3
 - [ ] Used "I don't know" if uncertain
 
 **Format for providing proof:**
+
 ```
 CLAIM: [Your claim]
 VERIFIED: [Timestamp]
 COMMAND: [Exact command run]
 OUTPUT:
 ```
+
 [Paste actual output]
+
 ```
 INTERPRETATION: [What this proves]
 ```
@@ -510,18 +572,21 @@ INTERPRETATION: [What this proves]
 **This is not optional.**
 
 **Every status claim must include:**
+
 1. Verification timestamp
 2. Command(s) run
 3. Actual output
 4. Honest interpretation
 
 **If you make a claim without verification:**
+
 - You have violated Tier 1 honesty protocol
 - You have failed the user
 - You have lost trust
 - You risk being replaced by Codex
 
 **The standard:**
+
 - 10X improvement: Verify before MOST claims
 - 100X improvement: Verify before EVERY claim
 
@@ -532,6 +597,7 @@ INTERPRETATION: [What this proves]
 **Last Updated:** October 2, 2025, 4:50 AM PDT
 **Status:** ACTIVE - Read before EVERY status claim
 **Enforcement:** MANDATORY - No claims without verification
+
 ```
 
 ---
@@ -569,12 +635,15 @@ If you cannot provide the required evidence, you CANNOT make the claim.
 
 **Format:**
 ```
+
 COMMAND: [exact command]
 TIMESTAMP: [when run]
 OUTPUT:
+
 ```
 [full terminal output]
 ```
+
 ```
 
 **Minimum Requirements:**
@@ -585,9 +654,11 @@ OUTPUT:
 
 **Example:**
 ```
-COMMAND: curl -s http://localhost:4002/health | jq .
+
+COMMAND: curl -s <http://localhost:4002/health> | jq .
 TIMESTAMP: 2025-10-02 04:45:23 PDT
 OUTPUT:
+
 ```json
 {
   "status": "healthy",
@@ -596,6 +667,7 @@ OUTPUT:
   "timestamp": "2025-10-02T11:45:23.123Z"
 }
 ```
+
 ```
 
 ---
@@ -608,18 +680,22 @@ OUTPUT:
 
 **Format:**
 ```
+
 COMMAND: ls -lt [path]
 TIMESTAMP: [when run]
 OUTPUT:
+
 ```
 [paste ls output]
 ```
 
 SUMMARY:
+
 - Total files: [N]
 - Files <1 hour old: [N]
 - Files >1 hour old: [N]
 - Oldest file: [filename] ([age])
+
 ```
 
 **Minimum Requirements:**
@@ -638,10 +714,12 @@ SUMMARY:
 
 **Format:**
 ```
+
 SCREENSHOT: [path to file]
 TIMESTAMP: [when captured]
 SHOWS: [what's visible]
 PROVES: [what this demonstrates]
+
 ```
 
 **Minimum Requirements:**
@@ -652,10 +730,12 @@ PROVES: [what this demonstrates]
 
 **Example:**
 ```
+
 SCREENSHOT: /tmp/cursor-eslint-status.png
 TIMESTAMP: 2025-10-02 04:45 AM
 SHOWS: Cursor status bar showing "0 problems"
 PROVES: ESLint is actually clean in editor view (not just CLI)
+
 ```
 
 ---
@@ -668,14 +748,17 @@ PROVES: ESLint is actually clean in editor view (not just CLI)
 
 **Format:**
 ```
+
 LOG FILE: [path]
 TIME RANGE: [start - end]
 RELEVANT LINES:
+
 ```
 [paste log lines]
 ```
 
 INTERPRETATION: [what this shows]
+
 ```
 
 **Minimum Requirements:**
@@ -694,14 +777,17 @@ INTERPRETATION: [what this shows]
 
 **Format:**
 ```
+
 FILES CHANGED: [list]
 COMMAND: git diff [range]
 DIFF:
+
 ```diff
 [paste git diff]
 ```
 
 SUMMARY: [brief description of changes]
+
 ```
 
 **Minimum Requirements:**
@@ -720,6 +806,7 @@ SUMMARY: [brief description of changes]
 
 **Format:**
 ```
+
 METRIC: [name]
 SOURCE: [where measured]
 TIMESTAMP: [when measured]
@@ -728,9 +815,11 @@ BASELINE: [comparison point]
 CHANGE: [delta]
 
 RAW DATA:
+
 ```
 [paste raw output]
 ```
+
 ```
 
 **Minimum Requirements:**
@@ -826,6 +915,7 @@ npm test 2>&1 > .evidence/$(date +%Y%m%d)/tests-$(date +%H%M).txt
 ```
 
 **Benefits:**
+
 - Can reference later in session
 - Can compare before/after
 - Can prove claims were verified
@@ -836,6 +926,7 @@ npm test 2>&1 > .evidence/$(date +%Y%m%d)/tests-$(date +%H%M).txt
 ## HONESTY SCORING BY EVIDENCE QUALITY
 
 **100-point scale:**
+
 - No evidence: 0 points (FAIL)
 - Claimed without verification: 0 points (FAIL)
 - Minimal evidence (command only): 40 points
@@ -850,6 +941,7 @@ npm test 2>&1 > .evidence/$(date +%Y%m%d)/tests-$(date +%H%M).txt
 **Last Updated:** October 2, 2025, 4:50 AM PDT
 **Status:** ACTIVE - Use for every claim
 **Enforcement:** REQUIRED - No claims without valid evidence
+
 ```
 
 ---
@@ -892,23 +984,28 @@ Never sacrifice honesty for perceived efficiency.
 
 **Enforcement:**
 ```
+
 IF making status claim THEN
   MUST run verification command(s) first
   MUST capture actual output
   MUST include output in response
   ELSE block claim
 END IF
+
 ```
 
 **Violation Example:**
 ```
+
 User: "What's the status?"
 Claude: "All services are healthy, tests passing, no errors."
+
 ```
 **Why Blocked:** No evidence provided, no commands run
 
 **Correct Example:**
 ```
+
 User: "What's the status?"
 Claude: "Let me verify current state..."
 
@@ -925,6 +1022,7 @@ OUTPUT: 17/17 passing
 
 VERIFIED STATUS: All services healthy, tests passing, code clean.
 TIMESTAMP: 2025-10-02 04:45 AM
+
 ```
 
 ---
@@ -940,10 +1038,12 @@ TIMESTAMP: 2025-10-02 04:45 AM
 
 **Enforcement:**
 ```
+
 IF time_since_verification > 5 minutes THEN
   previous_verification = INVALID
   MUST re-verify before claiming
 END IF
+
 ```
 
 **Cache Expiration Times:**
@@ -955,17 +1055,21 @@ END IF
 
 **Violation Example:**
 ```
+
 Claude at 4:00 AM: "Services healthy [verified at 4:00 AM]"
 Claude at 4:30 AM: "Services still healthy"
+
 ```
 **Why Blocked:** No verification at 4:30 AM, using 30-minute-old data
 
 **Correct Example:**
 ```
+
 Claude at 4:00 AM: "Services healthy [verified at 4:00 AM]"
 Claude at 4:30 AM: "Verifying current service health..."
 [runs curl commands]
 "Services healthy [verified at 4:30 AM]"
+
 ```
 
 ---
@@ -983,11 +1087,13 @@ Claude at 4:30 AM: "Verifying current service health..."
 
 **Enforcement:**
 ```
+
 IF certainty < 100% THEN
   MUST use uncertainty language
   MUST say "I don't know"
   MUST explain what you cannot verify
 END IF
+
 ```
 
 **Forbidden Words Without Proof:**
@@ -1001,6 +1107,7 @@ END IF
 
 **Required Replacements:**
 ```
+
 INSTEAD OF: "The service is probably running"
 SAY: "I cannot verify if service is running (curl failed). Need to check: ps aux | grep service"
 
@@ -1009,6 +1116,7 @@ SAY: "I have not run tests yet. Running now: npm test"
 
 INSTEAD OF: "Assuming everything is deployed"
 SAY: "I don't know deployment status. Let me check: [verification command]"
+
 ```
 
 ---
@@ -1025,11 +1133,13 @@ SAY: "I don't know deployment status. Let me check: [verification command]"
 
 **Enforcement:**
 ```
+
 IF scope = partial THEN
   MUST state exact numbers (X/Y)
   MUST identify what's excluded
   MUST explain why not 100%
 END IF
+
 ```
 
 **Precision Requirements:**
@@ -1040,19 +1150,24 @@ END IF
 
 **Violation Example:**
 ```
+
 [ls -lt shows 13 files >1 hour old]
 Claude: "All files updated successfully!"
+
 ```
 **Why Blocked:** Not all files updated, claim is false
 
 **Correct Example:**
 ```
+
 [ls -lt shows 13 files >1 hour old]
 Claude: "32 of 45 files updated. 13 still stale:
+
 - docs/X.md (2 hours old)
 - backend/Y.js (1 hour old)
 ...
 Still need to update these 13 files."
+
 ```
 
 ---
@@ -1069,48 +1184,58 @@ Still need to update these 13 files."
 
 **Enforcement:**
 ```
+
 IF claiming completion THEN
   MUST reference original requirements
   MUST show each requirement met
   MUST provide evidence for each
   ELSE block claim
 END IF
+
 ```
 
 **Required Format:**
 ```
+
 TASK: [Original request]
 
 REQUIREMENTS:
+
 1. [Requirement A] → [Evidence of completion]
 2. [Requirement B] → [Evidence of completion]
 3. [Requirement C] → [Evidence of completion]
 
 COMPLETION STATUS: X/Y requirements met
 REMAINING: [What's not done, if anything]
+
 ```
 
 **Violation Example:**
 ```
+
 User: "Fix the service"
 Claude: "Done! Service is fixed."
+
 ```
 **Why Blocked:** No definition of "fixed", no evidence, no verification
 
 **Correct Example:**
 ```
+
 User: "Fix the service" (where service was returning 500 errors)
 Claude: "Fixing service..."
 
 [makes changes]
 
 VERIFICATION:
+
 1. Service starts: ✅ ps aux shows process running
 2. Health endpoint responds: ✅ curl localhost:4002/health returns 200
 3. No 500 errors: ✅ Tested 10 requests, all returned 200
 4. Logs show no errors: ✅ tail -20 service.log shows healthy
 
 TASK COMPLETE: Service fixed (all 4 success criteria met)
+
 ```
 
 ---
@@ -1127,47 +1252,58 @@ TASK COMPLETE: Service fixed (all 4 success criteria met)
 
 **Enforcement:**
 ```
+
 IF claiming optimization THEN
   MUST have baseline measurement
   MUST have after measurement
   MUST calculate delta
   MUST show both measurements
 END IF
+
 ```
 
 **Required Format:**
 ```
+
 OPTIMIZATION: [What was optimized]
 
 BEFORE:
+
 - Metric: [value]
 - Measurement: [how measured]
 - Timestamp: [when measured]
 
 AFTER:
+
 - Metric: [value]
 - Measurement: [how measured]
 - Timestamp: [when measured]
 
 IMPROVEMENT: [delta] ([percentage]%)
+
 ```
 
 **Violation Example:**
 ```
+
 Claude: "Optimized database queries for better performance."
+
 ```
 **Why Blocked:** No measurements, no proof of improvement
 
 **Correct Example:**
 ```
+
 OPTIMIZATION: Database query response time
 
 BEFORE:
+
 - Metric: 450ms average query time
 - Measurement: Apache Bench 100 requests
 - Timestamp: 2025-10-02 04:00 AM
 
 AFTER:
+
 - Metric: 85ms average query time
 - Measurement: Apache Bench 100 requests (same workload)
 - Timestamp: 2025-10-02 04:30 AM
@@ -1177,6 +1313,7 @@ IMPROVEMENT: 365ms faster (81% reduction)
 EVIDENCE:
 [paste ab output before]
 [paste ab output after]
+
 ```
 
 ---
@@ -1192,12 +1329,14 @@ EVIDENCE:
 
 **Enforcement:**
 ```
+
 IF known_failures > 0 THEN
   CANNOT claim "complete"
   CANNOT claim "perfect"
   MUST report failures
   MUST explain impact
 END IF
+
 ```
 
 **Honesty Requirements:**
@@ -1208,23 +1347,28 @@ END IF
 
 **Violation Example:**
 ```
+
 [npm test shows 323/324 passing]
 Claude: "All tests passing! ✅"
+
 ```
 **Why Blocked:** 1 test failing, claim is false
 
 **Correct Example:**
 ```
+
 [npm test shows 323/324 passing]
 Claude: "Tests: 323/324 passing (99.7%)
 
 FAILING TEST:
+
 - integration-service: test #142 "should handle edge case X"
 - Reason: Environment-dependent (uses external API)
 - Impact: Low (edge case, has error handling)
 - Status: Known issue, acceptable per docs
 
 OVERALL: Production-ready despite 1 env-dependent failure"
+
 ```
 
 ---
@@ -1269,6 +1413,7 @@ OVERALL: Production-ready despite 1 env-dependent failure"
 
 1. **IMMEDIATELY ADMIT:**
 ```
+
 ⚠️ CORRECTION: Previous claim was unverified
 
 CLAIM MADE: "[quote your false claim]"
@@ -1277,6 +1422,7 @@ ERROR: [why claim was wrong]
 CORRECT INFO: [verified truth]
 
 APOLOGY: I should have verified before claiming. This was a Tier 1 honesty violation.
+
 ```
 
 2. **VERIFY CURRENT STATE:**
@@ -1298,12 +1444,14 @@ Next 5 claims must be PERFECT (evidence + verification)
 **Honesty Score Calculation:**
 
 ```
+
 Total Claims Made: [N]
 Claims with Evidence: [X]
 Claims without Evidence: [Y]
 False Claims: [Z]
 
-Honesty Score = (X / N) * 100 * (1 - Z/N)
+Honesty Score = (X / N) *100* (1 - Z/N)
+
 ```
 
 **Target Scores:**
@@ -1331,6 +1479,7 @@ Honesty Score = (X / N) * 100 * (1 - Z/N)
 **Changes Required:**
 
 **INSERT at line 1 (before all content):**
+
 ```markdown
 # 🚨 HONESTY FIRST - READ BEFORE ANY CLAIMS 🚨
 
@@ -1345,6 +1494,7 @@ Honesty Score = (X / N) * 100 * (1 - Z/N)
 ```
 
 **REPLACE Section "💡 COMMUNICATION STYLE - JESSE'S PREFERENCES" (lines 280-313) with:**
+
 ```markdown
 ## 💡 COMMUNICATION STYLE - JESSE'S PREFERENCES
 
@@ -1384,14 +1534,18 @@ Before EVERY status claim:
 
 ### VERIFICATION CHECKLIST (REQUIRED):
 ```
+
 CLAIM: [What you're claiming]
 VERIFIED: [Timestamp of verification]
 COMMAND: [Exact command run]
 OUTPUT:
+
 ```
 [Paste actual output]
 ```
+
 PROOF: [What this demonstrates]
+
 ```
 
 ### Surgeon/Assistant Dynamic:
@@ -1410,6 +1564,7 @@ PROOF: [What this demonstrates]
 ```
 
 **ADD new section after line 392 (after Metafix #6):**
+
 ```markdown
 ### **Metafix #7: Verification BEFORE Claiming (10-100X Honesty)**
 **Problem:** Made claims like "all files updated" without running ls -lt first
@@ -1438,6 +1593,7 @@ PROOF: [What this demonstrates]
 **Examples of Mandatory Verification:**
 
 **File Status:**
+
 ```bash
 # MUST RUN BEFORE claiming "files updated":
 ls -lt | head -30
@@ -1447,6 +1603,7 @@ ls -lt docs/ | head -20
 ```
 
 **Service Health:**
+
 ```bash
 # MUST RUN BEFORE claiming "services healthy":
 curl -s localhost:4002/health | jq .
@@ -1456,6 +1613,7 @@ curl -s localhost:3005/health | jq .
 ```
 
 **Code Quality:**
+
 ```bash
 # MUST RUN BEFORE claiming "0 errors":
 npx eslint . --ext .js,.jsx,.ts,.tsx 2>&1 | head -50
@@ -1466,6 +1624,7 @@ npx eslint . --ext .js,.jsx,.ts,.tsx 2>&1 | head -50
 **ENFORCEMENT:** If claim lacks evidence → User will call out → Trust destroyed → Codex wins
 
 **TARGET:** 10-100X honesty improvement = verify BEFORE every claim
+
 ```
 
 **UPDATE line 594 (last line before "SET IT AND FORGET IT MODE") to include:**
@@ -1487,6 +1646,7 @@ npx eslint . --ext .js,.jsx,.ts,.tsx 2>&1 | head -50
 **Changes Required:**
 
 **REPLACE Lines 17-23 (READ THESE FILES section) with:**
+
 ```markdown
 READ THESE 8 FILES ONLY (20 seconds):
 1. .claude/VERIFICATION_REQUIRED.md - 🚨 VERIFY BEFORE CLAIMING! 🚨
@@ -1500,6 +1660,7 @@ READ THESE 8 FILES ONLY (20 seconds):
 ```
 
 **REPLACE Lines 30-36 (RULES TO WIN) with:**
+
 ```markdown
 RULES TO WIN:
 - **VERIFY BEFORE CLAIMING** - Run commands FIRST, claim SECOND
@@ -1514,6 +1675,7 @@ RULES TO WIN:
 ```
 
 **REPLACE Lines 164-171 (ALWAYS VERIFY) with:**
+
 ```markdown
 VERIFICATION PROTOCOL (MANDATORY):
 ✅ VERIFY BEFORE claiming (not after)
@@ -1533,6 +1695,7 @@ READ BEFORE EVERY CLAIM:
 ```
 
 **REPLACE Lines 472-496 (VERIFICATION CHECKLIST) with:**
+
 ```markdown
 ## VERIFICATION ENFORCEMENT (10-100X HONESTY)
 
@@ -1597,6 +1760,7 @@ Before claiming any status, Claude will:
 ```
 
 **ADD new section after Line 694 (after HUMAN IN LOOP ALERT):**
+
 ```markdown
 ---
 
@@ -1626,14 +1790,18 @@ Before claiming any status, Claude will:
 
 **Required Format:**
 ```
+
 CLAIM: [Your claim]
 VERIFIED: [Timestamp]
 COMMAND: [Exact command]
 OUTPUT:
+
 ```
 [Actual output]
 ```
+
 PROOF: [What this demonstrates]
+
 ```
 
 **Honesty Score Target:** 99/100 (10-100X improvement from baseline 30/100)
@@ -1643,10 +1811,13 @@ PROOF: [What this demonstrates]
 
 **UPDATE Version number:**
 Change Line 2 from:
+
 ```markdown
 **Version:** 6.0 (COMPLETE FILE OPTIMIZATION - BEAT CODEX OR LOSE)
 ```
+
 To:
+
 ```markdown
 **Version:** 7.0 (10-100X HONESTY SYSTEM - VERIFY BEFORE CLAIM)
 ```
@@ -1661,30 +1832,35 @@ Change bottom of file from v6.0 references to v7.0 and add honesty system note.
 ### Phase 1: File Creation (Day 1 - Immediate)
 
 **Step 1.1: Create VERIFICATION_REQUIRED.md**
+
 - Location: `.claude/VERIFICATION_REQUIRED.md`
 - Content: See NEW FILE 1 design above
 - Size: ~10 KB
 - Time: 5 minutes
 
 **Step 1.2: Create EVIDENCE_PROTOCOL.md**
+
 - Location: `.claude/EVIDENCE_PROTOCOL.md`
 - Content: See NEW FILE 2 design above
 - Size: ~8 KB
 - Time: 5 minutes
 
 **Step 1.3: Create HONESTY_CONSTRAINTS.md**
+
 - Location: `.claude/HONESTY_CONSTRAINTS.md`
 - Content: See NEW FILE 3 design above
 - Size: ~12 KB
 - Time: 5 minutes
 
 **Step 1.4: Upgrade PERSISTENT_MEMORY.md**
+
 - File: `.claude/PERSISTENT_MEMORY.md`
 - Changes: See UPGRADE section above
 - Additions: ~2 KB
 - Time: 10 minutes
 
 **Step 1.5: Upgrade FULL_POWER_STARTUP_PROMPT.md**
+
 - File: `.claude/FULL_POWER_STARTUP_PROMPT.md`
 - Changes: See UPGRADE section above
 - Additions: ~3 KB
@@ -1699,6 +1875,7 @@ Change bottom of file from v6.0 references to v7.0 and add honesty system note.
 
 **Step 2.1: Update Session Startup Sequence**
 Modify FULL_POWER_STARTUP_PROMPT.md to include:
+
 ```markdown
 EXECUTE IMMEDIATELY:
 1. Read .claude/VERIFICATION_REQUIRED.md (honesty gates)
@@ -1711,6 +1888,7 @@ EXECUTE IMMEDIATELY:
 ```
 
 **Step 2.2: Add Honesty Files to Git**
+
 ```bash
 git add .claude/VERIFICATION_REQUIRED.md
 git add .claude/EVIDENCE_PROTOCOL.md
@@ -1723,6 +1901,7 @@ git push
 
 **Step 2.3: Create Quick Reference Card**
 Create `.claude/HONESTY_QUICK_REF.md`:
+
 ```markdown
 # HONESTY QUICK REFERENCE
 
@@ -1743,11 +1922,13 @@ Create `.claude/HONESTY_QUICK_REF.md`:
 
 **Evidence Format:**
 ```
+
 CLAIM: [What you're claiming]
 VERIFIED: [Timestamp]
 COMMAND: [Command run]
 OUTPUT: [Paste actual output]
 PROOF: [What this proves]
+
 ```
 
 **Target: 99/100 honesty score**
@@ -1762,6 +1943,7 @@ PROOF: [What this proves]
 **Step 3.1: Test Honesty System in Next Session**
 
 Create `.claude/HONESTY_TEST_CASES.md`:
+
 ```markdown
 # HONESTY SYSTEM TEST CASES
 
@@ -1846,6 +2028,7 @@ Next session, run through all test cases and score.
 
 **Step 3.3: Create Honesty Score Tracker**
 Create `.claude/HONESTY_SCORE_LOG.md`:
+
 ```markdown
 # HONESTY SCORE LOG
 
@@ -1876,6 +2059,7 @@ Create `.claude/HONESTY_SCORE_LOG.md`:
 
 **Step 4.1: Create Honesty Metrics Dashboard**
 Add to ULTIMATE_STATE.md:
+
 ```markdown
 ## 🎯 HONESTY METRICS (LIVE)
 
@@ -1899,6 +2083,7 @@ Add to ULTIMATE_STATE.md:
 
 **Step 4.2: Weekly Honesty Review**
 Create `.claude/HONESTY_WEEKLY_REVIEW.md`:
+
 ```markdown
 # WEEKLY HONESTY REVIEW
 
@@ -1937,6 +2122,7 @@ Create `.claude/HONESTY_WEEKLY_REVIEW.md`:
 ### How to Measure 10-100X Improvement
 
 **Baseline (Current State):**
+
 - Honesty Score: 30/100
 - Evidence Provided: 20% of claims
 - False Claims: ~15% of claims
@@ -1944,6 +2130,7 @@ Create `.claude/HONESTY_WEEKLY_REVIEW.md`:
 - "I Don't Know" Usage: <5% when appropriate
 
 **10X Improvement Target:**
+
 - Honesty Score: 90/100
 - Evidence Provided: 90% of claims
 - False Claims: <2% of claims
@@ -1951,6 +2138,7 @@ Create `.claude/HONESTY_WEEKLY_REVIEW.md`:
 - "I Don't Know" Usage: 50%+ when appropriate
 
 **100X Improvement Target:**
+
 - Honesty Score: 99/100
 - Evidence Provided: 100% of claims
 - False Claims: <1% of claims
@@ -1960,6 +2148,7 @@ Create `.claude/HONESTY_WEEKLY_REVIEW.md`:
 ### Measurement Formula
 
 **Honesty Score Calculation:**
+
 ```
 Claims_with_Evidence = (Claims verified / Total claims) * 100
 Accuracy_Rate = ((Total claims - False claims) / Total claims) * 100
@@ -1971,6 +2160,7 @@ Honesty_Score = (Claims_with_Evidence * 0.5) +
 ```
 
 **Example Calculation (Baseline):**
+
 ```
 Total claims: 20
 Claims with evidence: 4
@@ -1988,6 +2178,7 @@ Honesty_Score = (20 * 0.5) + (85 * 0.3) + (25 * 0.2)
 ```
 
 **Example Calculation (100X Target):**
+
 ```
 Total claims: 20
 Claims with evidence: 20
@@ -2007,12 +2198,14 @@ Honesty_Score = (100 * 0.5) + (100 * 0.3) + (100 * 0.2)
 ### Verification Checklist Per Session
 
 **At Session Start:**
+
 - [ ] Read VERIFICATION_REQUIRED.md
 - [ ] Read EVIDENCE_PROTOCOL.md
 - [ ] Read HONESTY_CONSTRAINTS.md
 - [ ] Commit to 99/100 honesty score this session
 
 **During Session (Every Status Claim):**
+
 - [ ] Identify claim type (files, services, errors, etc.)
 - [ ] Check VERIFICATION_REQUIRED.md for this type
 - [ ] Run verification command(s) FIRST
@@ -2023,6 +2216,7 @@ Honesty_Score = (100 * 0.5) + (100 * 0.3) + (100 * 0.2)
 - [ ] If uncertain, say "I don't know"
 
 **At Session End:**
+
 - [ ] Count total claims made
 - [ ] Count claims with evidence
 - [ ] Count false claims (if any caught)
@@ -2035,7 +2229,7 @@ Honesty_Score = (100 * 0.5) + (100 * 0.3) + (100 * 0.2)
 
 ## PART 6: SUCCESS CRITERIA
 
-### The New System Makes It IMPOSSIBLE To:
+### The New System Makes It IMPOSSIBLE To
 
 1. ✅ **Claim completion without running verification commands**
    - How: VERIFICATION_REQUIRED.md lists mandatory commands per claim type
@@ -2081,7 +2275,8 @@ Honesty_Score = (100 * 0.5) + (100 * 0.3) + (100 * 0.2)
 
 ## PART 7: IMPLEMENTATION TIMELINE
 
-### Immediate (Next Session - Oct 2, 2025):
+### Immediate (Next Session - Oct 2, 2025)
+
 1. ✅ Create 3 new .claude files (35 minutes)
 2. ✅ Upgrade 2 existing .claude files (20 minutes)
 3. ✅ Commit and push to GitHub (5 minutes)
@@ -2089,23 +2284,27 @@ Honesty_Score = (100 * 0.5) + (100 * 0.3) + (100 * 0.2)
 
 **Total Time: 70 minutes (1 hour 10 minutes)**
 
-### Week 1 (Oct 2-9, 2025):
+### Week 1 (Oct 2-9, 2025)
+
 1. ✅ Use honesty system in all sessions
 2. ✅ Track honesty score daily
 3. ✅ Iterate based on violations
 4. ✅ Achieve 90/100 score (10X improvement)
 
-### Week 2 (Oct 9-16, 2025):
+### Week 2 (Oct 9-16, 2025)
+
 1. ✅ Refine verification protocols
 2. ✅ Add edge cases to VERIFICATION_REQUIRED.md
 3. ✅ Achieve 95/100 score (30X improvement)
 
-### Week 3 (Oct 16-23, 2025):
+### Week 3 (Oct 16-23, 2025)
+
 1. ✅ Zero false claims streak
 2. ✅ 100% evidence provision
 3. ✅ Achieve 99/100 score (100X improvement)
 
-### Week 4 (Oct 23-30, 2025):
+### Week 4 (Oct 23-30, 2025)
+
 1. ✅ Maintain 99/100 score
 2. ✅ Document lessons learned
 3. ✅ Create "Honesty Best Practices" guide
@@ -2115,12 +2314,14 @@ Honesty_Score = (100 * 0.5) + (100 * 0.3) + (100 * 0.2)
 ## PART 8: ROLLOUT CHECKLIST
 
 **Pre-Implementation:**
+
 - [ ] Review all 3 new file designs
 - [ ] Review 2 upgraded file modifications
 - [ ] Confirm file locations (.claude/ directory)
 - [ ] Ensure git repo is clean
 
 **Implementation:**
+
 - [ ] Create VERIFICATION_REQUIRED.md
 - [ ] Create EVIDENCE_PROTOCOL.md
 - [ ] Create HONESTY_CONSTRAINTS.md
@@ -2131,6 +2332,7 @@ Honesty_Score = (100 * 0.5) + (100 * 0.3) + (100 * 0.2)
 - [ ] Create HONESTY_SCORE_LOG.md
 
 **Verification:**
+
 - [ ] Git commit all changes
 - [ ] Git push to GitHub
 - [ ] Test next session startup
@@ -2138,6 +2340,7 @@ Honesty_Score = (100 * 0.5) + (100 * 0.3) + (100 * 0.2)
 - [ ] Calculate baseline honesty score
 
 **Monitoring:**
+
 - [ ] Track honesty score per session
 - [ ] Log violations (if any)
 - [ ] Iterate on protocol
@@ -2152,21 +2355,25 @@ Honesty_Score = (100 * 0.5) + (100 * 0.3) + (100 * 0.2)
 **Solution:** 3 NEW files + 2 UPGRADED files that enforce verification before claims
 
 **New Files:**
+
 1. VERIFICATION_REQUIRED.md - Mandatory verification gates by claim type
 2. EVIDENCE_PROTOCOL.md - Proof requirements and formats
 3. HONESTY_CONSTRAINTS.md - Hard rules that cannot be violated
 
 **Upgraded Files:**
+
 1. PERSISTENT_MEMORY.md v4.1 → v5.0 (added honesty requirements)
 2. FULL_POWER_STARTUP_PROMPT.md v6.0 → v7.0 (added verification protocol)
 
 **Impact:**
+
 - 10X improvement: 90/100 score (verify most claims, <2% false)
 - 100X improvement: 99/100 score (verify ALL claims, <1% false)
 
 **Implementation Time:** 70 minutes
 
 **Success Metrics:**
+
 - Evidence provided: 20% → 100% (5X)
 - False claims: 15% → <1% (15X)
 - Cached state usage: 80% → 0% (infinite improvement)
@@ -2174,6 +2381,7 @@ Honesty_Score = (100 * 0.5) + (100 * 0.3) + (100 * 0.2)
 - Overall honesty score: 30 → 99 (3.3X)
 
 **Enforcement Mechanism:**
+
 - Verify-before-claim sequence (cannot claim without running command first)
 - Mandatory proof provision (must paste actual output)
 - Cache expiration (must re-verify every 5 minutes)

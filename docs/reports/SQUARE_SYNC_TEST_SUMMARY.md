@@ -14,14 +14,18 @@ Comprehensive integration test suite for Square → BigQuery sync pipeline succe
 ## DELIVERABLES
 
 ### 1. Test File Created
+
 **Location:** `/backend/integration-service/tests/integration/square-sync.test.js`
+
 - **Lines of Code:** 738
 - **Test Suites:** 12
 - **Test Cases:** 27
 - **Status:** ALL PASSING ✓
 
 ### 2. Documentation Created
+
 **Location:** `/backend/integration-service/tests/integration/README.md`
+
 - Comprehensive test coverage documentation
 - Running instructions
 - Architecture overview
@@ -29,6 +33,7 @@ Comprehensive integration test suite for Square → BigQuery sync pipeline succe
 - Future enhancement roadmap
 
 ### 3. Dependencies Installed
+
 - `nock@^14.0.10` - HTTP mocking library
 - `@types/jest@^30.0.0` - Jest TypeScript definitions
 - `sinon@^21.0.0` - Additional mocking capabilities
@@ -38,53 +43,65 @@ Comprehensive integration test suite for Square → BigQuery sync pipeline succe
 ## TEST COVERAGE BREAKDOWN
 
 ### 1. Square API Connection & Authentication (2 tests)
+
 ✓ Valid credentials (200 OK)
 ✓ Invalid credentials (401 Unauthorized)
 
 ### 2. Product Catalog Fetch (2 tests)
+
 ✓ Successful catalog fetch (200 OK)
 ✓ Paginated fetch with cursor
 
 ### 3. Payment History Fetch - 180 Days (2 tests)
+
 ✓ Fetch payment history for 180-day window
 ✓ Handle empty payment history
 
 ### 4. BigQuery Insertion - Payments Table (2 tests)
+
 ✓ Insert payment data successfully
 ✓ Batch insert large datasets (2500+ records, 1000/batch)
 
 ### 5. BigQuery Insertion - Items Table (2 tests)
+
 ✓ Insert catalog items successfully
 ✓ Handle items with missing optional fields
 
 ### 6. Error Handling - Square API Unavailable (3 tests)
+
 ✓ Handle 500 Internal Server Error
 ✓ Handle network timeouts (ECONNABORTED)
 ✓ Handle rate limiting (429 Too Many Requests)
 
 ### 7. Error Handling - BigQuery Unavailable (3 tests)
+
 ✓ Handle insertion errors gracefully
 ✓ Handle authentication errors
 ✓ Handle partial insertion failures
 
 ### 8. Idempotency - Duplicate Sync Prevention (3 tests)
+
 ✓ Detect and skip duplicate records
 ✓ Allow re-sync of updated records
 ✓ Track last sync timestamp
 
 ### 9. Mock Fallback - Degraded Mode (2 tests)
+
 ✓ Fallback to mock data when API unavailable
 ✓ Indicate degraded mode in metadata
 
 ### 10. End-to-End Sync Cycle (2 tests)
+
 ✓ Complete full sync: Square → Transform → BigQuery
 ✓ Handle partial failures during sync
 
 ### 11. Data Transformation Validation (2 tests)
+
 ✓ Transform Square payment to BigQuery schema
 ✓ Transform Square catalog item to BigQuery schema
 
 ### 12. Concurrent Sync Prevention (2 tests)
+
 ✓ Prevent multiple simultaneous syncs
 ✓ Use lock/mutex mechanism
 
@@ -93,12 +110,14 @@ Comprehensive integration test suite for Square → BigQuery sync pipeline succe
 ## PERFORMANCE METRICS
 
 ### Test Execution Performance
+
 - **Total Execution Time:** ~400-500ms
 - **Average Test Time:** 1-6ms per test
 - **Concurrent Sync Test:** ~200ms (simulates actual async)
 - **Batch Insert Test:** ~2ms (handles 2500 records)
 
 ### Test Results
+
 ```
 PASS tests/integration/square-sync.test.js
   Square → BigQuery Sync Pipeline Integration Tests
@@ -117,16 +136,19 @@ Time:        0.401 s
 ## TESTING STRATEGY
 
 ### Mocking Architecture
+
 - **axios:** Mocked Square API responses
 - **@google-cloud/bigquery:** Mocked BigQuery client
 - **Environment Variables:** Programmatically set for isolation
 
 ### Test Isolation
+
 - Clean setup/teardown with `beforeEach`/`afterEach`
 - No test pollution via `jest.clearAllMocks()`
 - Independent test execution (can run in parallel)
 
 ### Coverage Areas
+
 - ✓ Happy path scenarios
 - ✓ Error handling (API failures, network issues, rate limits)
 - ✓ Edge cases (empty data, null values, large datasets)
@@ -140,6 +162,7 @@ Time:        0.401 s
 ## KEY FEATURES TESTED
 
 ### 1. Square API Integration
+
 - Authentication and authorization
 - Product catalog fetching
 - Payment history retrieval (180-day window)
@@ -147,6 +170,7 @@ Time:        0.401 s
 - Error response handling
 
 ### 2. BigQuery Integration
+
 - Payment table insertion
 - Items table insertion
 - Batch processing (1000 records/batch)
@@ -154,12 +178,14 @@ Time:        0.401 s
 - Authentication error handling
 
 ### 3. Data Transformation
+
 - Square payment → BigQuery schema mapping
 - Square catalog item → BigQuery schema mapping
 - Null/missing field handling
 - Currency amount formatting
 
 ### 4. Error Resilience
+
 - Square API downtime
 - BigQuery unavailability
 - Network timeouts
@@ -167,6 +193,7 @@ Time:        0.401 s
 - Partial failures
 
 ### 5. Operational Safety
+
 - Idempotency (duplicate prevention)
 - Concurrent sync prevention
 - Last sync timestamp tracking
@@ -177,22 +204,26 @@ Time:        0.401 s
 ## RUNNING THE TESTS
 
 ### Basic Run
+
 ```bash
 cd backend/integration-service
 npm test -- tests/integration/square-sync.test.js
 ```
 
 ### Verbose Output
+
 ```bash
 npm test -- tests/integration/square-sync.test.js --verbose
 ```
 
 ### With Coverage
+
 ```bash
 npm test -- tests/integration/square-sync.test.js --coverage
 ```
 
 ### Specific Test Suite
+
 ```bash
 npm test -- tests/integration/square-sync.test.js -t "Square API Connection"
 ```
@@ -202,6 +233,7 @@ npm test -- tests/integration/square-sync.test.js -t "Square API Connection"
 ## CODE QUALITY
 
 ### Test Code Statistics
+
 - **Total Lines:** 738
 - **Test Suites:** 12
 - **Test Cases:** 27
@@ -209,6 +241,7 @@ npm test -- tests/integration/square-sync.test.js -t "Square API Connection"
 - **Mock Data:** Realistic Square API response structures
 
 ### Best Practices Implemented
+
 ✓ Descriptive test names
 ✓ Arrange-Act-Assert pattern
 ✓ Comprehensive error scenarios
@@ -223,12 +256,14 @@ npm test -- tests/integration/square-sync.test.js -t "Square API Connection"
 ## RELATED FILES
 
 ### Implementation Files
+
 - `/backend/integration-service/scripts/sync-square-to-bigquery.js` - Sync script
 - `/backend/integration-service/src/square-sync-scheduler.js` - Cron scheduler
 - `/backend/integration-service/src/square_catalog.js` - Square API client
 - `/backend/integration-service/src/bigquery_live.js` - BigQuery client
 
 ### Test Files
+
 - `/backend/integration-service/tests/integration/square-sync.test.js` - Test suite
 - `/backend/integration-service/tests/integration/README.md` - Documentation
 - `/backend/integration-service/jest.config.js` - Jest configuration
@@ -238,6 +273,7 @@ npm test -- tests/integration/square-sync.test.js -t "Square API Connection"
 ## FUTURE ENHANCEMENTS
 
 ### Planned Improvements
+
 - [ ] Integration with Square sandbox API (live testing)
 - [ ] BigQuery emulator integration
 - [ ] Performance benchmarks for large datasets
@@ -247,6 +283,7 @@ npm test -- tests/integration/square-sync.test.js -t "Square API Connection"
 - [ ] Monitoring and alerting tests
 
 ### Potential Additions
+
 - [ ] Load testing (stress test with 100k+ records)
 - [ ] Chaos engineering tests (simulate random failures)
 - [ ] Contract testing with Pact
@@ -258,6 +295,7 @@ npm test -- tests/integration/square-sync.test.js -t "Square API Connection"
 ## VERIFICATION CHECKLIST
 
 ### Requirements Met
+
 - [x] Square API connection & auth testing
 - [x] Product catalog fetch (200 OK)
 - [x] Payment history fetch (180 days)
@@ -272,6 +310,7 @@ npm test -- tests/integration/square-sync.test.js -t "Square API Connection"
 - [x] Comprehensive documentation
 
 ### Bonus Deliverables
+
 - [x] 12 test suites (requested 8+)
 - [x] 27 test cases (3.5x requirement)
 - [x] Concurrent sync prevention tests
@@ -285,6 +324,7 @@ npm test -- tests/integration/square-sync.test.js -t "Square API Connection"
 ## EXECUTION TIME
 
 ### Budget vs Actual
+
 - **Time Budget:** 24 hours work → 10 minutes execution
 - **Actual Implementation Time:** ~10 minutes
 - **Test Execution Time:** 0.4 seconds
@@ -295,6 +335,7 @@ npm test -- tests/integration/square-sync.test.js -t "Square API Connection"
 ## SUCCESS METRICS
 
 ### Test Suite Quality
+
 - **Coverage:** 12 test suites across all critical paths
 - **Reliability:** 100% pass rate (27/27)
 - **Speed:** <1 second execution time
@@ -302,6 +343,7 @@ npm test -- tests/integration/square-sync.test.js -t "Square API Connection"
 - **Extensibility:** Easy to add new test cases
 
 ### Code Quality
+
 - **Clean Code:** Descriptive names, clear structure
 - **DRY Principle:** Reusable mock setup
 - **SOLID Principles:** Single responsibility per test
@@ -321,6 +363,7 @@ Mission accomplished. Comprehensive integration test suite for Square → BigQue
 - **Comprehensive documentation** for maintainability
 
 The test suite provides robust validation of:
+
 1. Square API integration
 2. BigQuery data insertion
 3. Error handling and resilience
@@ -336,7 +379,7 @@ All tests are deterministic, isolated, fast, and maintainable. The suite is prod
 
 **Generated:** 2025-10-01
 **Location:** LivHana-Trinity-Local/LivHana-SoT
-**Repository:** https://github.com/LivHana/LivHana-SoT
+**Repository:** <https://github.com/LivHana/LivHana-SoT>
 
 <!-- Last verified: 2025-10-02 -->
 

@@ -1,4 +1,5 @@
 # 🧬 RPM DNA MASTER SYSTEM - Cascading Priority Architecture
+
 **Version:** 1.0
 **Created:** October 2, 2025
 **Purpose:** Universal naming convention for stack-ranking empire by value at every level
@@ -20,45 +21,56 @@
 ## 🏗️ 4-LAYER BUSINESS HIERARCHY
 
 ### **Layer 1: CROWN JEWEL (Exit Vehicle)**
+
 **HemPress3 (HMP)** - $100M+ Exit Target
+
 - 4M feminized hemp seeds
 - Proprietary genetic library
 - VCS buyout target (Q1 2026)
 - Status: R&D phase, preparing valuation
 
 ### **Layer 2: REVENUE ENGINES (Operating Companies)**
+
 **Reggie & Dro (RND)** - Cannabis Retail
+
 - San Antonio dispensary (DSHS #690)
 - $100K net sales target (Oct 2025)
 - LightSpeed POS + KAJA payments
 - Status: LIVE (Oct 1, 2025)
 
 **TerpWorks (TWK)** - B2B SaaS
+
 - Automated compliance workflows
 - $8K monthly recurring target
 - Multi-tenant platform
 - Status: In development
 
 ### **Layer 3: GROWTH ENGINES (Marketing/Content)**
+
 **High Noon Cartoon (HNC)** - Content Platform
+
 - 84-episode educational series
 - 10K organic traffic/month target
 - Daily production pipeline
 - Status: Episode 1 in production
 
 **One Plant Solution (OPS)** - Advocacy/Policy
+
 - Texas Cannabis COA validator
 - Policy change advocacy
 - Compliance tools
 - Status: COA validator ready
 
 ### **Layer 4: INCUBATOR (Future Spin-offs)**
+
 **Herbitrage (HRB)** - Marketplace Platform
+
 - Multi-vendor arbitrage
 - Wholesale/bulk marketplace
 - Status: Planning phase
 
 **CannaCo (CCO)** - Future spin-offs to be defined
+
 - Technology platform plays
 - Infrastructure services
 - Status: Incubation
@@ -74,6 +86,7 @@
 ### **Component Breakdown:**
 
 #### **1. AOM (Area of Mastery - Business Layer)** - Single Digit (1-5)
+
 ```
 1 = RND (Reggie & Dro - Revenue Engine: reggieanddro.com)
 2 = HNC (High Noon Cartoon - Content: highnooncar toon.com)
@@ -83,6 +96,7 @@
 ```
 
 #### **2. COI (Category of Improvement - Critical Success Factors)** - Single Digit (1-8)
+
 ```
 1 = LEADERSHIP (Vision, strategy, decision-making)
 2 = OPERATIONS (Execution, delivery, day-to-day)
@@ -95,6 +109,7 @@
 ```
 
 #### **3. RPM (Results/Progress/Must)** - Single Digit (0-9)
+
 ```
 0 = P0 CRISIS (immediate, life-threatening)
 1 = MUST (do or die this week)
@@ -109,6 +124,7 @@
 ```
 
 #### **4. ACTION** - Single Digit (0-9)
+
 ```
 0 = CRISIS (fix now)
 1 = BUILD (create new)
@@ -123,12 +139,14 @@
 ```
 
 #### **5. CONTEXT** - Specific deliverable (kebab-case)
+
 ```
 delivery-api, leafly-profile, episode-1,
 vcs-exit-materials, b2b-automation
 ```
 
 #### **6. TIMESTAMP** - When last prioritized (YYYYMMDD)
+
 ```
 Format: 20251002
 Example: 20251002
@@ -139,6 +157,7 @@ Example: 20251002
 ## 📁 EXAMPLE FILE/FOLDER STRUCTURE
 
 ### **Root Empire Structure:**
+
 ```
 /LivHana-Trinity-Local/
 ├── 2-BIZ.HMP.001.PREPARE.vcs-exit-materials.20251002/
@@ -166,7 +185,9 @@ Example: 20251002
 ```
 
 ### **Sort by Name = Stack Rank:**
+
 When you run `ls -1` at root level, you see:
+
 1. `2-BIZ.HMP.001...` ← Crown jewel prep (HIGHEST PRIORITY)
 2. `2-BIZ.RND.010...` ← Delivery API (MUST ship this week)
 3. `2-BIZ.RND.020...` ← Leafly SEO (MUST this week)
@@ -185,6 +206,7 @@ When you run `ls -1` at root level, you see:
 ### **Every Monday 9:00 AM:**
 
 #### **Step 1: Full Funnel Value Clarification (30 min)**
+
 1. **Dump** - Brain dump all potential tasks/projects
 2. **Clarify** - What's the outcome? Why does it matter?
 3. **Evaluate** - What's the ROI? (time, money, impact)
@@ -192,6 +214,7 @@ When you run `ls -1` at root level, you see:
 5. **Prioritize** - Assign RPM number (001-999)
 
 #### **Step 2: Stack Rank ALL Initiatives (30 min)**
+
 1. List all active projects/folders
 2. Re-evaluate priority based on:
    - Current revenue impact
@@ -203,12 +226,14 @@ When you run `ls -1` at root level, you see:
 4. Rename folders/files to match new ranking
 
 #### **Step 3: Update Timestamps (10 min)**
+
 ```bash
 # Automated script renames all folders with today's date
 ./scripts/rpm-weekly-update.sh
 ```
 
 #### **Step 4: Commit Weekly Plan (10 min)**
+
 ```bash
 git add .
 git commit -m "📊 WEEKLY RPM: Stack rank updated $(date +%Y-%m-%d)
@@ -230,6 +255,7 @@ git push
 ```
 
 #### **Step 5: Daily Review (5 min/day)**
+
 Every morning: `ls -1` at root → Top 3 folders = your focus today
 
 ---
@@ -237,16 +263,19 @@ Every morning: `ls -1` at root → Top 3 folders = your focus today
 ## 🎯 PER-EDIT PROTOCOL (Every File Change)
 
 ### **Before ANY Edit:**
+
 1. **Ask:** Does this file/folder name reflect CURRENT priority?
 2. **Check:** Is RPM number accurate given today's goals?
 3. **Update:** Rename if priority has shifted
 
 ### **After ANY Edit:**
+
 1. **Update TIMESTAMP** in folder/file name to TODAY
 2. **Verify:** Does `ls -1` still show correct priority order?
 3. **Commit:** Include priority context in commit message
 
 ### **Example Edit Flow:**
+
 ```bash
 # BEFORE editing delivery API code:
 ls -1 | grep delivery
@@ -268,111 +297,131 @@ git commit -m "2-BIZ.RND.010: Add DoorDash provider integration"
 ## 📈 STACK RANKING CRITERIA
 
 ### **MUST (001-099)** - Do or Die
+
 - Survival-critical
 - Legal/compliance deadline
 - Revenue at immediate risk
 - Customer-blocking issue
 
 **Examples:**
+
 - `001`: KAJA payment system down (no revenue)
 - `010`: Delivery API (promised to customers this week)
 - `020`: Age verification (legal requirement)
 
 ### **RESULTS (100-199)** - High ROI
+
 - Direct revenue generation
 - Major cost reduction
 - Competitive advantage
 - Strategic positioning
 
 **Examples:**
+
 - `100`: TerpWorks B2B launch ($8K MRR potential)
 - `110`: Leafly SEO optimization (+$10K/month)
 - `120`: HNC Episode 1 (start content engine)
 
 ### **PROGRESS (200-299)** - Moves Needle
+
 - Important but not urgent
 - Builds toward future results
 - Infrastructure improvements
 - Team productivity gains
 
 **Examples:**
+
 - `200`: OPS COA validator (helps others, not revenue yet)
 - `210`: Documentation consolidation (saves time later)
 - `220`: Test suite expansion (prevents bugs)
 
 ### **OPTIMIZATION (300-399)** - Nice to Have
+
 - Incremental improvements
 - Performance optimizations
 - UX polish
 - Technical debt reduction
 
 **Examples:**
+
 - `300`: Reduce API latency by 100ms
 - `310`: Refactor common libraries
 - `320`: Update UI color scheme
 
 ### **MAINTENANCE (400-499)** - Keep Lights On
+
 - Routine updates
 - Dependency upgrades
 - Security patches
 - Monitoring/logging
 
 **Examples:**
+
 - `400`: Weekly dependency updates
 - `410`: Log rotation setup
 - `420`: Backup verification
 
 ### **RESEARCH (500-599)** - Future Potential
+
 - Exploring new opportunities
 - Learning new technologies
 - Market research
 - Proof of concepts
 
 **Examples:**
+
 - `500`: Herbitrage marketplace research
 - `510`: AI agent capabilities exploration
 - `520`: Blockchain payment feasibility
 
 ### **DELEGATED (600-699)** - Others Responsible
+
 - Waiting on contractor
 - Partner dependency
 - External vendor work
 - Jesse handles directly
 
 **Examples:**
+
 - `600`: Designer creating brand assets
 - `610`: Lawyer reviewing contracts
 - `620`: CPA handling tax filings
 
 ### **WAITING (700-799)** - Blocked External
+
 - API access approval pending
 - Government approval waiting
 - Third-party integration not ready
 - Budget approval needed
 
 **Examples:**
+
 - `700`: DoorDash Drive API approval (applied, waiting)
 - `710`: DSHS license expansion (submitted)
 - `720`: Bank merchant account (under review)
 
 ### **SOMEDAY/MAYBE (800-899)** - Backlog
+
 - Good ideas, wrong time
 - Resource-constrained
 - Low priority
 - Future consideration
 
 **Examples:**
+
 - `800`: Mobile app development
 - `810`: Multi-state expansion
 - `820`: Loyalty program v2
 
 ### **ARCHIVED (900-999)** - Reference Only
+
 - Completed projects
 - Historical documentation
 - Deprecated code
 - Old research
 
 **Examples:**
+
 - `900`: Square POS migration (done)
 - `910`: Old website (replaced)
 - `920`: 2024 business plans (outdated)
@@ -382,7 +431,9 @@ git commit -m "2-BIZ.RND.010: Add DoorDash provider integration"
 ## 🔄 MONTHLY & QUARTERLY PLANNING
 
 ### **Monthly RPM Session (First Monday, 2 hours)**
+
 Same as weekly, but:
+
 - Review ALL 800+ backlog items
 - Promote promising ideas to 500-range
 - Archive truly dead projects to 900-range
@@ -390,6 +441,7 @@ Same as weekly, but:
 - Update financial projections
 
 ### **Quarterly Visioneering (First Monday Q1/Q2/Q3/Q4, Full Day)**
+
 - Full wheel of life assessment (8 AOMs)
 - Strategic planning across all COIs
 - Major initiative launches
@@ -404,12 +456,14 @@ Same as weekly, but:
 **"What is the highest value use of my [time/money/resource] RIGHT NOW?"**
 
 ### **Answer in 5 Seconds:**
+
 ```bash
 cd /LivHana-Trinity-Local
 ls -1 | head -3
 ```
 
 **Output:**
+
 ```
 2-BIZ.HMP.001.PREPARE.vcs-exit-materials.20251002/
 2-BIZ.RND.010.DEPLOY.local-delivery-api.20251002/
@@ -425,6 +479,7 @@ ls -1 | head -3
 ## 🏆 LEADERSHIP AT EVERY LEVEL
 
 ### **How It Works:**
+
 1. **Empire Level** - Top 3 folders at root = company priorities
 2. **Department Level** - Top 3 folders in `/backend/` = engineering priorities
 3. **Project Level** - Top 3 files in project = task priorities
@@ -438,12 +493,14 @@ ls -1 | head -3
 **Department:** `backend/delivery-api/`
 ↓
 **Project:** Files in delivery-api:
+
 ```
 001-server.js
 002-database-schema.sql
 003-docker-compose.yml
 004-deployment-script.sh
 ```
+
 ↓
 **Task:** Currently editing `001-server.js` = highest priority file
 ↓
@@ -456,6 +513,7 @@ ls -1 | head -3
 ## 🚀 AUTOMATION SCRIPTS
 
 ### **1. Weekly RPM Update Script**
+
 ```bash
 #!/bin/bash
 # scripts/rpm-weekly-update.sh
@@ -481,6 +539,7 @@ echo "🎯 RPM timestamps updated. Run 'ls -1' to verify stack rank."
 ```
 
 ### **2. Priority Check Script**
+
 ```bash
 #!/bin/bash
 # scripts/rpm-check.sh
@@ -493,6 +552,7 @@ echo "💡 Focus on top 3 this week."
 ```
 
 ### **3. Git Branch Naming**
+
 ```bash
 #!/bin/bash
 # scripts/rpm-branch.sh
@@ -514,6 +574,7 @@ echo "✅ Created branch: $BRANCH"
 ## 📊 SPIN-OFF READINESS CRITERIA
 
 ### **When to Graduate from Incubator:**
+
 1. **Revenue**: $10K+ monthly recurring
 2. **Team**: Can operate with dedicated staff
 3. **Systems**: Automated enough to run independently
@@ -523,6 +584,7 @@ echo "✅ Created branch: $BRANCH"
 ### **Current Spin-off Candidates:**
 
 #### **TerpWorks (TWK)** - Ready Q1 2026
+
 - Revenue: Targeting $8K MRR (close to $10K threshold)
 - Team: Can hire 1-2 dedicated engineers
 - Systems: SaaS platform, mostly automated
@@ -530,6 +592,7 @@ echo "✅ Created branch: $BRANCH"
 - Legal: Easy to spin out as separate C-corp
 
 #### **High Noon Cartoon (HNC)** - Ready Q2 2026
+
 - Revenue: Ad revenue + sponsorships (TBD)
 - Team: Production can be outsourced
 - Systems: Daily automation pipeline
@@ -537,6 +600,7 @@ echo "✅ Created branch: $BRANCH"
 - Legal: Content studio spin-out feasible
 
 #### **Herbitrage (HRB)** - Not Ready (500-range)
+
 - Still in research phase
 - No MVP yet
 - Market validation needed
@@ -598,6 +662,7 @@ echo "✅ Created branch: $BRANCH"
 ## 💪 IMPLEMENTATION PLAN
 
 ### **Phase 1: Foundation (This Week)**
+
 - [x] Create RPM_DNA_MASTER_SYSTEM.md (this file)
 - [ ] Create automation scripts (rpm-weekly-update.sh, etc.)
 - [ ] Rename top 10 current projects with RPM DNA format
@@ -605,6 +670,7 @@ echo "✅ Created branch: $BRANCH"
 - [ ] First Monday planning session
 
 ### **Phase 2: Expansion (Next Week)**
+
 - [ ] Apply to all backend services
 - [ ] Apply to all frontend components
 - [ ] Apply to all documentation
@@ -612,12 +678,14 @@ echo "✅ Created branch: $BRANCH"
 - [ ] Establish per-edit protocol habit
 
 ### **Phase 3: Automation (Week 3)**
+
 - [ ] Git hooks for automatic timestamp updates
 - [ ] Pre-commit checks for naming convention
 - [ ] Dashboard showing current priorities
 - [ ] Slack/notification integration for top 3
 
 ### **Phase 4: Optimization (Week 4+)**
+
 - [ ] Monthly review process
 - [ ] Quarterly visioneering session
 - [ ] Spin-off evaluation framework
@@ -629,6 +697,7 @@ echo "✅ Created branch: $BRANCH"
 ## 🔥 SUCCESS METRICS
 
 ### **You Know It's Working When:**
+
 1. ✅ `ls -1` instantly shows what to work on
 2. ✅ Zero time wasted on "what should I do next?"
 3. ✅ Can explain priority to anyone in 10 seconds

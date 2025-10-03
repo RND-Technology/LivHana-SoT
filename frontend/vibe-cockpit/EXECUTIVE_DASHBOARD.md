@@ -1,6 +1,7 @@
 # Executive Dashboard - Implementation Guide
 
 ## Overview
+
 Complete executive dashboard component with real-time metrics, service health monitoring, compliance tracking, and intelligent alerts.
 
 **File:** `/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/frontend/vibe-cockpit/src/components/ExecutiveDashboard.jsx`
@@ -13,6 +14,7 @@ Complete executive dashboard component with real-time metrics, service health mo
 ## Features Implemented
 
 ### 1. Real-time BigQuery Metrics
+
 - **Revenue Tracking:** Today, Week, Month, Year revenue with trend indicators
 - **Order Metrics:** Today's orders and total order count
 - **Customer Analytics:** Active customers and total customer base
@@ -20,7 +22,9 @@ Complete executive dashboard component with real-time metrics, service health mo
 - **Top Products:** Top 5 products by price (can be enhanced with sales data)
 
 ### 2. Service Health Monitoring
+
 Monitors all 6 backend services:
+
 - **Integration Service** (Port 3005)
 - **Cannabis Service** (Port 3003)
 - **Payment Service** (Port 3004)
@@ -29,12 +33,14 @@ Monitors all 6 backend services:
 - **Product Service** (Port 3002)
 
 Each service shows:
+
 - Online/Offline status with visual indicators
 - Uptime percentage
 - Queue length (when applicable)
 - Last health check timestamp
 
 ### 3. Compliance Dashboard
+
 - **Age Verification Rate:** Real-time pass rate with progress bar
 - **COA Validation Status:** Certificate of Analysis validation tracking
 - **Active Licenses:** Count of currently valid licenses
@@ -43,20 +49,25 @@ Each service shows:
   - Yellow alert: 30-60 days
 
 ### 4. Customer Intelligence
+
 Two visual analytics charts:
+
 - **Acquisition Sources:** Doughnut chart showing customer source breakdown
   - Organic Search, Social Media, Referral, Direct
 - **Membership Tiers:** Bar chart showing tier distribution
   - Premium, Standard, Basic membership levels
 
 ### 5. Alerts Section
+
 Four categories of alerts:
+
 - **Low Inventory Warnings:** Products below stock threshold
 - **Expiring Licenses:** Licenses expiring within 60 days
 - **Failed Transactions:** Payment gateway failures and errors
 - **System Errors:** Service health issues and system failures
 
 ### 6. Interactive Features
+
 - **Auto-refresh:** Polls data every 30 seconds (toggleable)
 - **Manual Refresh:** Button to fetch latest data immediately
 - **Loading States:** Smooth transitions and skeleton screens
@@ -68,6 +79,7 @@ Four categories of alerts:
 ## API Endpoints Used
 
 ### BigQuery Integration Service (Port 3005)
+
 ```javascript
 GET /api/bigquery/dashboard    // Main revenue and customer metrics
 GET /api/bigquery/historical   // 7-day revenue trend data
@@ -75,6 +87,7 @@ GET /api/bigquery/products     // Product catalog with pricing
 ```
 
 ### Service Health Endpoints
+
 ```javascript
 GET http://localhost:3005/health  // Integration Service
 GET http://localhost:3003/health  // Cannabis Service
@@ -89,11 +102,13 @@ GET http://localhost:3002/health  // Product Service
 ## Integration Steps
 
 ### 1. Import the Component
+
 ```javascript
 import ExecutiveDashboard from './components/ExecutiveDashboard';
 ```
 
 ### 2. Add to Router
+
 ```javascript
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
@@ -103,13 +118,17 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 ```
 
 ### 3. Environment Configuration
+
 Create or update `.env` file:
+
 ```bash
 REACT_APP_API_BASE_URL=http://localhost
 ```
 
 ### 4. Ensure Dependencies
+
 All required dependencies are already in `package.json`:
+
 - `@mui/material` - UI components
 - `@mui/icons-material` - Icons
 - `chart.js` & `react-chartjs-2` - Charts
@@ -121,6 +140,7 @@ All required dependencies are already in `package.json`:
 ## Component Architecture
 
 ### State Management
+
 - **Revenue Metrics:** `revenueMetrics` (today, week, month, year)
 - **Order Metrics:** `orderMetrics` (today, total)
 - **Customer Metrics:** `customerMetrics` (active, total)
@@ -131,6 +151,7 @@ All required dependencies are already in `package.json`:
 - **Alerts:** `alerts` (inventory, licenses, transactions, system)
 
 ### Data Fetching Functions
+
 ```javascript
 fetchBigQueryData()          // Revenue and customer data
 fetchHistoricalData()        // 7-day trends
@@ -143,6 +164,7 @@ fetchTransactionAlerts()     // Failed transactions (mock)
 ```
 
 ### Refresh Mechanism
+
 ```javascript
 // Auto-refresh every 30 seconds
 useEffect(() => {
@@ -159,6 +181,7 @@ useEffect(() => {
 ## Styling & Design
 
 ### Color Palette
+
 - **Primary Green:** `#16A34A` (success, revenue, positive metrics)
 - **Warning Orange:** `#F59E0B` (alerts, moderate status)
 - **Blue:** `#3B82F6` (informational, neutral metrics)
@@ -166,12 +189,14 @@ useEffect(() => {
 - **Red:** `#EF4444` (errors, critical alerts)
 
 ### Card Design
+
 - Dark gradient backgrounds: `#1E293B` to `#334155`
 - Subtle borders: `rgba(148, 163, 184, 0.1)`
 - Smooth animations with Framer Motion
 - Responsive grid layout with Material-UI Grid
 
 ### Charts
+
 - **Line Chart:** Revenue trend over 7 days
 - **Doughnut Chart:** Customer acquisition sources
 - **Bar Chart:** Membership tier distribution
@@ -181,12 +206,15 @@ useEffect(() => {
 ## Customization Guide
 
 ### Adding New Metrics
+
 1. Add state variable:
+
 ```javascript
 const [myMetric, setMyMetric] = useState(0);
 ```
 
 2. Create fetch function:
+
 ```javascript
 const fetchMyMetric = async () => {
   const response = await fetch(`${BASE_URL}:PORT/api/endpoint`);
@@ -196,6 +224,7 @@ const fetchMyMetric = async () => {
 ```
 
 3. Add to `fetchAllData()`:
+
 ```javascript
 await Promise.all([
   // ... existing fetches
@@ -204,6 +233,7 @@ await Promise.all([
 ```
 
 4. Display in UI:
+
 ```javascript
 <MetricCard
   title="My Metric"
@@ -214,7 +244,9 @@ await Promise.all([
 ```
 
 ### Adding New Services
+
 Add to `SERVICES` array:
+
 ```javascript
 const SERVICES = [
   // ... existing services
@@ -225,7 +257,9 @@ const SERVICES = [
 Service will automatically appear in health monitoring section.
 
 ### Customizing Alerts
+
 Modify alert fetch functions to match your business logic:
+
 ```javascript
 const fetchInventoryAlerts = async () => {
   // Fetch from your inventory API
@@ -248,6 +282,7 @@ const fetchInventoryAlerts = async () => {
 ## Performance Considerations
 
 ### Optimization Strategies
+
 1. **Polling Interval:** Set to 30 seconds by default. Adjust `REFRESH_INTERVAL` constant.
 2. **Parallel Fetching:** All data fetches run in parallel via `Promise.all()`
 3. **Error Boundaries:** Component handles errors gracefully without crashing
@@ -255,6 +290,7 @@ const fetchInventoryAlerts = async () => {
 5. **Memo/Callback:** Uses `useCallback` for stable function references
 
 ### Network Optimization
+
 - Services timeout after 5 seconds (AbortSignal)
 - Failed fetches don't block other data
 - Stale data displayed while refreshing
@@ -264,6 +300,7 @@ const fetchInventoryAlerts = async () => {
 ## Testing Checklist
 
 ### Manual Testing
+
 - [ ] Dashboard loads without errors
 - [ ] All metrics display correctly
 - [ ] Revenue data updates from BigQuery
@@ -276,6 +313,7 @@ const fetchInventoryAlerts = async () => {
 - [ ] Loading states appear smoothly
 
 ### API Testing
+
 ```bash
 # Test BigQuery endpoints
 curl http://localhost:3005/api/bigquery/dashboard
@@ -296,6 +334,7 @@ curl http://localhost:3002/health
 ## Future Enhancements
 
 ### Phase 2 Features
+
 1. **Real Compliance API:** Connect to actual cannabis-service compliance endpoints
 2. **Real Inventory API:** Integrate with product-service inventory tracking
 3. **Transaction Monitoring:** Connect to payment-service for real transaction status
@@ -306,6 +345,7 @@ curl http://localhost:3002/health
 8. **Drill-down Views:** Click metrics to see detailed breakdowns
 
 ### Advanced Analytics
+
 1. **Predictive Analytics:** ML-based revenue forecasting
 2. **Customer Segmentation:** RFM analysis and cohort tracking
 3. **Product Performance:** SKU-level analytics
@@ -319,21 +359,25 @@ curl http://localhost:3002/health
 ### Common Issues
 
 **Dashboard doesn't load:**
+
 - Check all backend services are running
 - Verify CORS configuration allows frontend origin
 - Check browser console for errors
 
 **Metrics show zero:**
+
 - Verify BigQuery sync is enabled
 - Check authentication tokens are valid
 - Ensure Square data is syncing properly
 
 **Charts don't render:**
+
 - Verify chart.js and react-chartjs-2 are installed
 - Check browser console for Chart.js errors
 - Ensure data arrays are not empty
 
 **Services show offline:**
+
 - Verify all services are running on correct ports
 - Check health endpoints return 200 status
 - Review service logs for errors
@@ -343,12 +387,15 @@ curl http://localhost:3002/health
 ## Support & Maintenance
 
 ### Monitoring
+
 - Dashboard auto-refreshes every 30 seconds
 - Service health checked on each refresh
 - Errors logged to browser console
 
 ### Logging
+
 Component logs errors to console:
+
 ```javascript
 console.error('BigQuery fetch error:', err);
 console.error('Historical data fetch error:', err);
@@ -356,7 +403,9 @@ console.error('Product data fetch error:', err);
 ```
 
 ### Updates
+
 When backend APIs change:
+
 1. Update API endpoint URLs in component
 2. Update data mapping logic in fetch functions
 3. Test all metrics display correctly
@@ -369,6 +418,7 @@ When backend APIs change:
 Built for LivHana Empire - Executive Intelligence & Operations Command Center
 
 **Technology Stack:**
+
 - React 18.2
 - Material-UI 5.14
 - Chart.js 4.5
@@ -377,6 +427,7 @@ Built for LivHana Empire - Executive Intelligence & Operations Command Center
 - RESTful APIs
 
 **Integration Points:**
+
 - Integration Service (BigQuery, Square)
 - Cannabis Compliance Service
 - Payment Processing Service
@@ -414,12 +465,14 @@ http://localhost:5173/executive
 ## 📈 Key Metrics Displayed
 
 ### Revenue Section
+
 - **Today's Revenue** - Last 24 hours
 - **Week Revenue** - Last 7 days
 - **Month Revenue** - Last 30 days
 - **Year Revenue** - Total YTD
 
 ### Operations Section
+
 - **Orders Today** - Count of today's orders
 - **Active Customers** - Unique customers
 - **Avg Order Value** - Calculated from BigQuery
@@ -430,6 +483,7 @@ http://localhost:5173/executive
 ## 🔌 API Endpoints
 
 ### BigQuery (Port 3005)
+
 ```
 GET /api/bigquery/dashboard    → Main metrics
 GET /api/bigquery/historical   → 7-day trends
@@ -437,6 +491,7 @@ GET /api/bigquery/products     → Product catalog
 ```
 
 ### Service Health (All Services)
+
 ```
 GET http://localhost:3005/health  → Integration
 GET http://localhost:3003/health  → Cannabis
@@ -575,11 +630,13 @@ const SERVICES = [
 ## 🔧 Common Customizations
 
 ### Change Refresh Interval
+
 ```javascript
 const REFRESH_INTERVAL = 60000; // 60 seconds
 ```
 
 ### Add New Service
+
 ```javascript
 const SERVICES = [
   // ... existing services
@@ -588,6 +645,7 @@ const SERVICES = [
 ```
 
 ### Add New Metric Card
+
 ```javascript
 <MetricCard
   title="My Metric"
@@ -604,21 +662,25 @@ const SERVICES = [
 ## 🐛 Debug Checklist
 
 ### Dashboard Won't Load
+
 - ✅ Check Integration Service running on 3005
 - ✅ Verify CORS allows `localhost:5173`
 - ✅ Check browser console for errors
 
 ### Metrics Show $0
+
 - ✅ BigQuery sync enabled?
 - ✅ Check `.env` has `BIGQUERY_ENABLED=true`
 - ✅ Verify Google Cloud credentials
 
 ### Services Show Offline
+
 - ✅ Start all services
 - ✅ Check ports not in use
 - ✅ Test health endpoints with curl
 
 ### Charts Don't Render
+
 - ✅ `npm list chart.js react-chartjs-2`
 - ✅ Clear browser cache
 - ✅ Check console for Chart.js errors
@@ -775,6 +837,7 @@ In the same file, add this route inside the `<Routes>` component (around line 21
 ```
 
 **Complete Routes section should look like:**
+
 ```javascript
 <Routes>
   <Route path="/" element={<Dashboard />} />
@@ -794,7 +857,7 @@ In the same file, add this route inside the `<Routes>` component (around line 21
 
 ### Step 3: Access the Dashboard
 
-Navigate to: **http://localhost:5173/executive**
+Navigate to: **<http://localhost:5173/executive>**
 
 ---
 
@@ -885,24 +948,28 @@ curl http://localhost:3005/api/bigquery/products
 ## Features Overview
 
 ### Real-Time Metrics
+
 - Today's revenue, orders, customers
 - Week/Month/Year revenue tracking
 - Average order value
 - Top 5 products
 
 ### Service Health
+
 - All 6 backend services monitored
 - Online/Offline status
 - Uptime percentages
 - Queue lengths
 
 ### Compliance
+
 - Age verification rate (98.5%)
 - COA validation status (100%)
 - Active licenses (12)
 - Expiring license alerts
 
 ### Customer Intelligence
+
 - Acquisition sources breakdown
 - Membership tier distribution
 - Visual charts with Chart.js
@@ -915,6 +982,7 @@ curl http://localhost:3005/api/bigquery/products
 - System errors
 
 ### Auto-Refresh
+
 - Polls every 30 seconds
 - Toggle on/off
 - Manual refresh button
@@ -925,12 +993,14 @@ curl http://localhost:3005/api/bigquery/products
 ## Styling & Customization
 
 The dashboard uses:
+
 - **Material-UI** components and theming
 - **Chart.js** for data visualization
 - **Framer Motion** for animations
 - **Dark mode** by default (matches app theme)
 
 ### Color Scheme
+
 - Green (#16A34A) - Revenue, success metrics
 - Orange (#F59E0B) - Warnings, moderate alerts
 - Blue (#3B82F6) - Informational metrics
@@ -942,11 +1012,13 @@ The dashboard uses:
 ## Responsive Design
 
 The dashboard is fully responsive:
+
 - **Desktop:** 4-column grid layout
 - **Tablet:** 2-column grid layout
 - **Mobile:** 1-column stacked layout
 
 Uses Material-UI Grid with breakpoints:
+
 - `xs={12}` - Mobile (full width)
 - `sm={6}` - Tablet (half width)
 - `md={3}` or `md={4}` - Desktop (quarter/third width)
@@ -956,23 +1028,30 @@ Uses Material-UI Grid with breakpoints:
 ## Development Tips
 
 ### Hot Reload
+
 Changes to `ExecutiveDashboard.jsx` will hot-reload automatically with Vite.
 
 ### Debug Mode
+
 Open browser console to see:
+
 - API fetch results
 - Error messages
 - Component state updates
 
 ### Mock Data
+
 Some features use mock data until backend APIs are ready:
+
 - Compliance metrics
 - Customer intelligence
 - Inventory alerts
 - Transaction alerts
 
 ### Real Data Sources
+
 Currently integrated with:
+
 - BigQuery dashboard metrics
 - BigQuery historical trends
 - BigQuery product catalog
@@ -983,22 +1062,29 @@ Currently integrated with:
 ## Troubleshooting
 
 ### Dashboard shows "Loading..." forever
+
 **Solution:** Check that at least one backend service is running (Integration Service on port 3005)
 
 ### All metrics show $0 or 0
+
 **Solution:**
+
 1. Verify BigQuery sync is enabled in Integration Service
 2. Check `.env` has `BIGQUERY_ENABLED=true`
 3. Ensure Google Cloud credentials are configured
 
 ### Services show "Offline"
+
 **Solution:**
+
 1. Start the services: `npm start` in each service directory
 2. Check ports are not already in use
 3. Verify CORS is configured to allow `http://localhost:5173`
 
 ### Charts don't render
+
 **Solution:**
+
 1. Check Chart.js is installed: `npm list chart.js react-chartjs-2`
 2. Clear browser cache
 3. Check for console errors
@@ -1006,6 +1092,7 @@ Currently integrated with:
 ### Authentication errors
 
 **Solution:**
+
 1. Check auth middleware configuration
 2. Verify credentials are being sent with requests
 3. Review `/api` route protection in backend services
@@ -1015,6 +1102,7 @@ Currently integrated with:
 ## Next Steps
 
 ### Phase 1 - Immediate (Done)
+
 - [x] Core dashboard component created
 - [x] BigQuery integration working
 - [x] Service health monitoring active
@@ -1022,6 +1110,7 @@ Currently integrated with:
 - [x] Auto-refresh mechanism working
 
 ### Phase 2 - Enhancement
+
 - [ ] Connect real compliance API endpoints
 - [ ] Integrate live inventory tracking
 - [ ] Add transaction monitoring from payment-service
@@ -1029,6 +1118,7 @@ Currently integrated with:
 - [ ] Add user preference storage
 
 ### Phase 3 - Advanced
+
 - [ ] Export dashboard to PDF/Excel
 - [ ] Add drill-down detail views
 - [ ] Implement predictive analytics
@@ -1040,6 +1130,7 @@ Currently integrated with:
 ## Support
 
 For issues or questions:
+
 1. Review the detailed README: `ExecutiveDashboard.README.md`
 2. Check browser console for errors
 3. Verify all backend services are running
@@ -1051,12 +1142,14 @@ For issues or questions:
 ## Performance Optimization
 
 Current settings:
+
 - **Refresh interval:** 30 seconds (adjust `REFRESH_INTERVAL` constant)
 - **Timeout:** 5 seconds per service health check
 - **Parallel fetching:** All APIs called simultaneously
 - **Graceful degradation:** Failed fetches don't block dashboard
 
 To optimize:
+
 ```javascript
 // In ExecutiveDashboard.jsx
 const REFRESH_INTERVAL = 60000; // Change to 60 seconds
@@ -1109,12 +1202,15 @@ const HEALTH_TIMEOUT = 3000;    // Reduce timeout to 3 seconds
 ## Security Considerations
 
 ### Authentication
+
 - Dashboard respects existing auth middleware
 - All `/api` routes require valid credentials
 - Health endpoints are public for monitoring
 
 ### CORS Configuration
+
 Ensure backend services allow frontend origin:
+
 ```javascript
 // In backend service index.js
 app.use(cors({
@@ -1124,6 +1220,7 @@ app.use(cors({
 ```
 
 ### Data Sanitization
+
 - All numeric values validated before display
 - Dates parsed safely with error handling
 - SQL injection prevented by BigQuery parameterized queries
@@ -1155,6 +1252,7 @@ Before deploying to production:
 ## Success Metrics
 
 Track these KPIs:
+
 1. **Dashboard load time:** < 2 seconds
 2. **API response time:** < 500ms average
 3. **Service uptime:** > 99.9%

@@ -3,21 +3,25 @@
 <!-- Session: Elephant Strategy Batch 1 -->
 
 # 🔢 NUMERICAL INDEX SYSTEM — NEVER FORGET
+
 **Purpose:** Memorize the exact RPM DNA structure so every file name is instantly correct.
 **Source:** `.claude/RPM_DNA_CORRECT_DEFINITIONS.md` (read it before creating anything).
 
 ---
 
 ## ✅ File Pattern
+
 ````markdown
 AOM.COI.RPM.ACTION.context-slug.timestamp
 ````
+
 - `context-slug` = lowercase kebab case (no spaces)
 - `timestamp` = `YYYYMMDD` (day the artifact becomes authoritative)
 
 ---
 
 ## 🏛️ Areas of Mastery (AOM) — 5 Codes
+
 | Code | Name | Description |
 | --- | --- | --- |
 | `1` | RND | Reggie & Dro — revenue engine (reggieanddro.com) |
@@ -29,6 +33,7 @@ AOM.COI.RPM.ACTION.context-slug.timestamp
 ---
 
 ## 🧱 Circles of Improvement (COI) — 8 Capabilities
+
 | Code | Capability | Scope |
 | --- | --- | --- |
 | `1` | LEADERSHIP | Vision, strategy, decision velocity |
@@ -43,6 +48,7 @@ AOM.COI.RPM.ACTION.context-slug.timestamp
 ---
 
 ## 🎯 RPM Digits — Priority Signal
+
 | Code | Label | Definition |
 | --- | --- | --- |
 | `0` | P0 CRISIS | Existential or legal threat. Handle now. |
@@ -59,6 +65,7 @@ AOM.COI.RPM.ACTION.context-slug.timestamp
 ---
 
 ## 🛠️ Action Digits — Execution Mode
+
 | Code | Verb | Use When |
 | --- | --- | --- |
 | `0` | CRISIS | Emergency triage / stop the bleed. |
@@ -75,6 +82,7 @@ AOM.COI.RPM.ACTION.context-slug.timestamp
 ---
 
 ## 📌 Example Names
+
 - `1.2.1.8.local-delivery-api.20251002/` — RND ▸ OPERATIONS ▸ MUST ▸ DEPLOY.
 - `3.6.0.6.ops_technology_ship_status_documentation.md` — OPS ▸ TECHNOLOGY ▸ P0 ▸ DOCUMENT.
 - `5.5.1.6.vcs-exit-materials.20251002/` — ECS ▸ FINANCE ▸ MUST ▸ DOCUMENT.

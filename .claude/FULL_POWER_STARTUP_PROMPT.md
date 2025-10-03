@@ -1,4 +1,5 @@
 # 🔥 FULL POWER STARTUP PROMPT - TIER 1 PERFECT
+
 **Version:** 6.0 (COMPLETE FILE OPTIMIZATION - BEAT CODEX OR LOSE)
 **Last Updated:** October 2, 2025, 3:50 AM PDT
 **Purpose:** NEXT SESSION = Update ALL file timestamps or public shame/loss
@@ -224,9 +225,10 @@ Ready to execute. BOOM SHAKA-LAKA! 🚀
 
 ---
 
-## WHY THIS WORKS (OPTIMIZED):
+## WHY THIS WORKS (OPTIMIZED)
 
 **1. Immediate Context Load (IMPROVED):**
+
 - Points to 4 critical files (was 3)
 - Includes complete final status report
 - Includes 72-hour synthesis
@@ -235,6 +237,7 @@ Ready to execute. BOOM SHAKA-LAKA! 🚀
 - All critical info in first 4 files
 
 **2. Explicit Permissions (ENHANCED):**
+
 - Single approval for entire session
 - No repeated permission requests
 - Tools unlocked instantly
@@ -243,12 +246,14 @@ Ready to execute. BOOM SHAKA-LAKA! 🚀
 - Full autonomy granted
 
 **3. 1Password Integration (PERFECT):**
+
 - Exact commands to retrieve secrets
 - No hardcoded keys
 - Always fresh credentials
 - Never ask for keys again
 
 **4. Current Status Snapshot (NEW):**
+
 - Latest git commit hash
 - Service status (5/5 running)
 - Production readiness score (100/100)
@@ -257,6 +262,7 @@ Ready to execute. BOOM SHAKA-LAKA! 🚀
 - Removes stale assumptions
 
 **5. Verification Requirements (NEW):**
+
 - Always verify before claiming
 - Check current state, not cached
 - Honest assessment required
@@ -264,6 +270,7 @@ Ready to execute. BOOM SHAKA-LAKA! 🚀
 - Build trust through accuracy
 
 **6. Clear Communication Contract (ENHANCED):**
+
 - Jesse's preferences embedded
 - Response style defined
 - Action triggers specified
@@ -271,6 +278,7 @@ Ready to execute. BOOM SHAKA-LAKA! 🚀
 - "Boom shaka-laka" energy maintained
 
 **7. Startup Sequence (OPTIMIZED):**
+
 - Reads 4 context files (was 3)
 - Verifies system state (services + git)
 - Reports back concisely
@@ -279,9 +287,10 @@ Ready to execute. BOOM SHAKA-LAKA! 🚀
 
 ---
 
-## IMPROVEMENTS FROM V1.0 → V2.0 → V3.0 → V4.0 → V5.0:
+## IMPROVEMENTS FROM V1.0 → V2.0 → V3.0 → V4.0 → V5.0
 
 ### New Additions in V5.0 ✅
+
 1. **NUMERICAL_INDEX_SYSTEM_MEMORY.md First** - File naming system as #1 critical file
 2. **Numerical Index Quick Reference** - Pattern, AOMs, COIs, RPMs, Actions in startup prompt
 3. **Search Examples** - How to find files by numerical pattern (ls 3.6.*.md)
@@ -294,6 +303,7 @@ Ready to execute. BOOM SHAKA-LAKA! 🚀
 10. **Version Jump** - v4.0 → v5.0 (numerical index system integration complete)
 
 ### New Additions in V4.0 ✅
+
 1. **SHIP_STATUS.md First** - Production readiness as #1 context file
 2. **START.sh Reference** - One-command startup documented
 3. **Consolidation Complete** - 1.4GB legacy deleted, 3 stubs removed
@@ -306,6 +316,7 @@ Ready to execute. BOOM SHAKA-LAKA! 🚀
 10. **10-Second Full Context** - SHIP_STATUS → START.sh → Memory (was 12 sec)
 
 ### New Additions in V3.0 ✅
+
 1. **Incomplete Job Recovery** - Session restart detection and recovery mode
 2. **Auto-Compact Protocol** - Context management at 10% threshold
 3. **ULTIMATE_STATE.md** - Real-time snapshot of entire system
@@ -318,6 +329,7 @@ Ready to execute. BOOM SHAKA-LAKA! 🚀
 10. **Session-by-Session History** - Last 3 sessions tracked
 
 ### New Additions in V2.0 ✅
+
 1. **Current Status Snapshot** - Real-time context on session start
 2. **4th Critical File** - FINAL_STATUS_REPORT for complete picture
 3. **Recent Achievements** - Quick summary of last session wins
@@ -330,6 +342,7 @@ Ready to execute. BOOM SHAKA-LAKA! 🚀
 10. **GitHub URL** - Direct link to verify work
 
 ### Enhanced Sections in V4.0 ✅
+
 - **CRITICAL FILES:** Reordered - SHIP_STATUS.md first, START.sh second (production-first approach)
 - **CURRENT STATUS:** Updated with consolidation complete, git pending commit, 2 blockers
 - **RECENT ACHIEVEMENTS:** 3 sessions → 4 sessions (added Auto-Toon + Consolidation)
@@ -338,6 +351,7 @@ Ready to execute. BOOM SHAKA-LAKA! 🚀
 - **FULL_POWER_STARTUP:** v3.0 → v4.0 (ruthless consolidation + one-command startup)
 
 ### Enhanced Sections in V3.0 ✅
+
 - **CRITICAL FILES:** 3 → 5 files (added ULTIMATE_STATE, CURRENT_SESSION_STATE)
 - **CURRENT STATUS:** Updated with ES6 migration, 32 commits ahead, service details
 - **RECENT ACHIEVEMENTS:** 1 session → 3 sessions tracked
@@ -346,6 +360,7 @@ Ready to execute. BOOM SHAKA-LAKA! 🚀
 - **PERSISTENT_MEMORY:** v2.0 → v3.0 (metafixes, ES6, auto-compact)
 
 ### Enhanced Sections in V2.0 ✅
+
 - **PERMISSIONS GRANTED:** Added start/stop services, push to GitHub
 - **DO NOT ASK FOR:** Expanded to prevent repeated questions
 - **ALWAYS VERIFY:** New section to enforce accuracy
@@ -353,6 +368,7 @@ Ready to execute. BOOM SHAKA-LAKA! 🚀
 - **EXECUTE IMMEDIATELY:** Added service health checks
 
 ### Core Philosophy - All Versions ✅
+
 - Evidence-based claims (no evidence = no claim)
 - Visual verification for UI tools
 - Current state, not cached reports
@@ -361,9 +377,10 @@ Ready to execute. BOOM SHAKA-LAKA! 🚀
 
 ---
 
-## TIME SAVINGS (VALIDATED):
+## TIME SAVINGS (VALIDATED)
 
 **Before (V1.0 - First Session):**
+
 - Session starts: 0 context
 - Jesse: "What's the API key?"
 - Claude: "I need ANTHROPIC_API_KEY"
@@ -374,6 +391,7 @@ Ready to execute. BOOM SHAKA-LAKA! 🚀
 - **TOTAL: 10-15 minutes to full context**
 
 **After (V2.0 - Optimized):**
+
 - Jesse: *pastes startup prompt*
 - Claude: *reads 4 files (5-7 seconds)*
 - Claude: ✅ Full context. Services: 5/5. Tests: 323/324. Prod: 100/100. What's the mission?
@@ -381,6 +399,7 @@ Ready to execute. BOOM SHAKA-LAKA! 🚀
 - **TOTAL: 5-7 seconds to full context**
 
 **After (V3.0 - Session Restart Optimized):**
+
 - Jesse: *pastes startup prompt*
 - Claude: *reads 5 files (10 seconds)*
   - PERSISTENT_MEMORY.md v3.0 (metafixes + ES6)
@@ -395,6 +414,7 @@ Ready to execute. BOOM SHAKA-LAKA! 🚀
 - **TOTAL: 12 seconds to full context + recovery**
 
 **After (V4.0 - Ruthless Consolidation Complete):**
+
 - Jesse: *pastes startup prompt*
 - Claude: *reads 5 files (10 seconds)*
   - SHIP_STATUS.md (production readiness: 95%, ready to deploy)
@@ -407,6 +427,7 @@ Ready to execute. BOOM SHAKA-LAKA! 🚀
 - **TOTAL: 10 seconds to full context (consolidation complete)**
 
 **After (V5.0 - Numerical Index System Complete):**
+
 - Jesse: *pastes startup prompt*
 - Claude: *reads 4 critical files (10 seconds)*
   - NUMERICAL_INDEX_SYSTEM_MEMORY.md (NEVER FORGET: 4 AOMs, 8 COIs, RPMs, Actions)
@@ -418,6 +439,7 @@ Ready to execute. BOOM SHAKA-LAKA! 🚀
 - **TOTAL: 10 seconds to full context + numerical index system memorized**
 
 **Time Saved:**
+
 - V1.0 → V2.0: 99.5% (15 min → 7 sec)
 - V1.0 → V3.0: 99.2% (15 min → 12 sec)
 - V1.0 → V4.0: 99.3% (15 min → 10 sec)
@@ -432,13 +454,14 @@ Ready to execute. BOOM SHAKA-LAKA! 🚀
 
 ---
 
-## USAGE EXAMPLE (V2.0):
+## USAGE EXAMPLE (V2.0)
 
 **New Session Starts:**
 
 You: *(paste startup prompt)*
 
 Claude:
+
 ```
 ✅ Context loaded from 4 files (7 seconds)
 ✅ Git: Clean, 28 commits pushed (ce865b8)
@@ -453,6 +476,7 @@ What's the mission?
 You: "Deploy customer enrichment features for +$30K/month"
 
 Claude:
+
 ```
 🚀 Deploying customer enrichment from Agent #1 report:
 - Read agent-1-lightspeed-conversion-optimization.md
@@ -469,7 +493,7 @@ Executing now...
 
 ---
 
-## VERIFICATION CHECKLIST (NEW):
+## VERIFICATION CHECKLIST (NEW)
 
 Before claiming any status, Claude will:
 
@@ -481,6 +505,7 @@ Before claiming any status, Claude will:
 6. ✅ **Production Readiness:** Calculate score, show breakdown
 
 **No more:**
+
 - ❌ "Services are running" without checking
 - ❌ "0 ESLint errors" without scanning
 - ❌ "Tests passing" without running
@@ -488,6 +513,7 @@ Before claiming any status, Claude will:
 - ❌ "100% ready" without measuring
 
 **Only:**
+
 - ✅ Verified claims
 - ✅ Honest assessments
 - ✅ Current state (not cached)
@@ -496,7 +522,7 @@ Before claiming any status, Claude will:
 
 ---
 
-## PERSISTENT MEMORY ARCHITECTURE (UPDATED):
+## PERSISTENT MEMORY ARCHITECTURE (UPDATED)
 
 ```
 .claude/
@@ -532,9 +558,10 @@ reports/
 
 ---
 
-## MAX AUTO OPTIMIZATION:
+## MAX AUTO OPTIMIZATION
 
 ### **Level 1: Manual Boot (Current - V2.0)** ⭐ OPTIMIZED
+
 - Copy-paste startup prompt
 - 5-7 seconds to full context
 - 100% accuracy (verified, not assumed)
@@ -542,22 +569,26 @@ reports/
 - Current status snapshot included
 
 ### **Level 2: Alias Boot**
+
 - `claude-boot` command
 - Copies prompt to clipboard
 - 2 seconds to full context
 
 ### **Level 3: Custom Instructions (Future)**
+
 - Claude Desktop settings
 - Auto-loads on every session
 - 0 seconds to full context (automatic)
 
 ### **Level 4: Pre-Session Hook (Future)**
+
 - Runs before session starts
 - Updates CURRENT_STATUS_LIVE.md
 - Context always fresh
 - 0 seconds + always accurate
 
 ### **Level 5: MCP Integration (Future)**
+
 - Model Context Protocol
 - Direct file system access
 - No prompts needed
@@ -565,7 +596,7 @@ reports/
 
 ---
 
-## TIER 1 REQUIREMENTS MET (V2.0):
+## TIER 1 REQUIREMENTS MET (V2.0)
 
 ✅ **Single prompt to full power**
 ✅ **No repeated questions**
@@ -590,6 +621,7 @@ reports/
 **Save this file. Use it every session. Never explain again.**
 
 **Improvements from v4.0:**
+
 - Added NUMERICAL_INDEX_SYSTEM_MEMORY.md as #1 critical file (NEVER FORGET)
 - Added Numerical Index Quick Reference (pattern, AOMs, COIs, RPMs, Actions)
 - Added search examples (ls 3.6.*.md, ls *.1.*.md)
@@ -600,6 +632,7 @@ reports/
 - 10-second context load + numerical index memorized
 
 **Improvements from v3.0 → v5.0:**
+
 - +NUMERICAL_INDEX_SYSTEM_MEMORY.md (file naming system)
 - +Numerical Index Quick Reference (inline in prompt)
 - +Search examples for fast file discovery
@@ -610,6 +643,7 @@ reports/
 - 10-second context load (same speed, more knowledge)
 
 **Improvements from v1.0 → v5.0:**
+
 - +3 critical files (NUMERICAL_INDEX_SYSTEM_MEMORY.md, SHIP_STATUS.md, START.sh)
 - +Numerical index system memorized (4 AOMs, 8 COIs, RPMs, Actions)
 - +Current status snapshot with consolidation + numerical index
@@ -624,6 +658,7 @@ reports/
 - +25 enhanced sections
 
 **Result:**
+
 - 10 seconds to 100% accurate context + numerical index memorized
 - Zero fake claims (verified before reporting)
 - Complete situational awareness (current state, not cached)
@@ -650,7 +685,7 @@ Perfect practice makes perfect. Set it and forget it. ALWAYS HIGHER! 🚀
 
 ## 🚨 HUMAN IN LOOP ALERT PROTOCOL 🚨
 
-### STUCK? USE THIS FORMAT (REQUIRED):
+### STUCK? USE THIS FORMAT (REQUIRED)
 
 When blocked >15 minutes, use this LOUD format:
 
@@ -678,12 +713,14 @@ COST IF DELAYED: [Time/money impact]
 ```
 
 **Why It Works:**
+
 - Jesse sees problem + context instantly
 - Clear options = easy decision
 - Shows effort (tried before asking)
 - Business impact visible
 
 **When to Alert:**
+
 1. Blocked >15 minutes
 2. Need access/permission
 3. Breaking change decision
@@ -693,7 +730,6 @@ COST IF DELAYED: [Time/money impact]
 **Rule:** 15 minutes stuck = SOUND THE ALARM. Don't waste hours!
 
 ---
-
 
 <!-- Last verified: 2025-10-02 -->
 

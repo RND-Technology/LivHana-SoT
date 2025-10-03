@@ -7,42 +7,50 @@
 
 ## VERIFICATION RESULTS
 
-### ✅ WORKING - www subdomain:
+### ✅ WORKING - www subdomain
 
 **COMMAND:** `dig www.reggieanddro.com CNAME +short`
 **TIMESTAMP:** October 2, 2025 12:00 PM PDT
 **OUTPUT:**
+
 ```
 reggieanddro.company.site.
 ```
+
 **PROOF:** CNAME correctly points to Lightspeed ✅
 
 **COMMAND:** `curl -Ik https://www.reggieanddro.com`
 **OUTPUT:**
+
 ```
 HTTP/2 302
 date: Thu, 02 Oct 2025 19:00:04 GMT
 location: https://reggieanddro.com/
 ```
-**PROOF:** www.reggieanddro.com is responding, but redirecting to root domain
+
+**PROOF:** <www.reggieanddro.com> is responding, but redirecting to root domain
 
 ---
 
-### ⚠️ ISSUE - Root domain:
+### ⚠️ ISSUE - Root domain
 
 **COMMAND:** `curl -I http://reggieanddro.com`
 **OUTPUT:**
+
 ```
 HTTP/1.1 405 Not Allowed
 Server: awselb/2.0
 ```
+
 **PROBLEM:** Root domain returning 405 error (Method Not Allowed)
 
 **COMMAND:** `curl -IL http://reggieanddro.com` (follow redirects)
 **OUTPUT:**
+
 ```
 HTTP/1.1 405 Not Allowed
 ```
+
 **PROBLEM:** Forwarding may not be active yet, OR needs different configuration
 
 ---
@@ -51,12 +59,14 @@ HTTP/1.1 405 Not Allowed
 
 **From live DNS queries:**
 
-### Root Domain (@):
+### Root Domain (@)
+
 - **IPs:** 3.33.152.147, 15.197.142.173
 - **Server:** AWS ELB (awselb/2.0)
 - **Status:** Returning 405 errors
 
-### WWW Subdomain:
+### WWW Subdomain
+
 - **CNAME:** reggieanddro.company.site ✅
 - **Resolves to:** 34.226.237.225, 35.175.6.152, 3.222.48.75 (Lightspeed IPs) ✅
 - **Status:** Responding with 302 redirect
@@ -65,9 +75,9 @@ HTTP/1.1 405 Not Allowed
 
 ## ANALYSIS
 
-### What's Happening:
+### What's Happening
 
-1. **www.reggieanddro.com:**
+1. **<www.reggieanddro.com>:**
    - ✅ CNAME to Lightspeed is correct
    - ⚠️ But Lightspeed is redirecting BACK to root domain
    - This creates a redirect loop potential
@@ -78,7 +88,7 @@ HTTP/1.1 405 Not Allowed
    - ⚠️ OR forwarding needs SSL/HTTPS configuration
 
 3. **SSL Certificate:**
-   - ⚠️ Lightspeed may not have SSL cert for www.reggieanddro.com
+   - ⚠️ Lightspeed may not have SSL cert for <www.reggieanddro.com>
    - This is why curl shows "unable to get local issuer certificate"
    - Need to configure custom domain in Lightspeed
 
@@ -106,11 +116,13 @@ HTTP/1.1 405 Not Allowed
 ### 2. Wait for DNS Propagation (Forwarding)
 
 **The forwarding you just added may take time:**
+
 - Minimum: 5-15 minutes
 - Typical: 30-60 minutes
 - Maximum: 2 hours
 
 **Check propagation:**
+
 ```bash
 # Run this every 5 minutes to check
 curl -I http://reggieanddro.com
@@ -125,6 +137,7 @@ curl -I http://reggieanddro.com
 ### 3. Verify SSL Certificate
 
 **After Lightspeed provisions SSL, test:**
+
 ```bash
 # Should work without -k flag
 curl -I https://www.reggieanddro.com
@@ -163,6 +176,7 @@ curl -I https://www.reggieanddro.com
 ### Priority 2: Wait for DNS Propagation
 
 **The forwarding you added needs time:**
+
 - Check again in 15 minutes
 - Then every 30 minutes
 - Should be fully propagated within 2 hours
@@ -192,16 +206,19 @@ open http://reggieanddro.com
 ## CURRENT STATUS SUMMARY
 
 ### ✅ DNS Configuration: CORRECT
+
 - Root A records: Set (old IPs, but forwarding added)
 - www CNAME: ✅ Correctly points to reggieanddro.company.site
 - Forwarding: Added (waiting for propagation)
 
 ### ⚠️ Lightspeed Configuration: NEEDED
+
 - Custom domain NOT configured in Lightspeed yet
 - SSL certificate NOT provisioned yet
 - Store doesn't know to serve on reggieanddro.com
 
 ### ⏳ Propagation: IN PROGRESS
+
 - DNS forwarding: 0-15 minutes elapsed (needs 15-60 more)
 - Full effect: May take up to 2 hours
 
@@ -209,17 +226,20 @@ open http://reggieanddro.com
 
 ## WHAT TO EXPECT
 
-### In 15 minutes:
+### In 15 minutes
+
 - DNS forwarding should be active
 - Root domain should 301 redirect to www
 - www will still have SSL errors (until Lightspeed configured)
 
-### In 30-60 minutes (after configuring Lightspeed):
+### In 30-60 minutes (after configuring Lightspeed)
+
 - SSL certificate should be provisioned
-- www.reggieanddro.com should load store with green padlock
+- <www.reggieanddro.com> should load store with green padlock
 - Root domain should redirect correctly
 
-### Final working state:
+### Final working state
+
 1. User visits: `http://reggieanddro.com`
 2. GoDaddy forwards: → `https://www.reggieanddro.com`
 3. Lightspeed serves: Store content with SSL ✅
@@ -230,19 +250,23 @@ open http://reggieanddro.com
 
 **Where to find custom domain settings:**
 
-### Option 1: Lightspeed Retail (R-Series):
+### Option 1: Lightspeed Retail (R-Series)
+
 - Settings → Online Store → Domains
 - Or: E-commerce → Settings → Domains
 
-### Option 2: Lightspeed E-Series:
+### Option 2: Lightspeed E-Series
+
 - Admin → Settings → Domains
 - Or: Store settings → Custom domain
 
-### Option 3: Lightspeed eCom:
+### Option 3: Lightspeed eCom
+
 - Dashboard → Settings → Domains
 - Add domain → Enter reggieanddro.com
 
 **If you can't find it:**
+
 - Contact Lightspeed support
 - Tell them: "I need to add a custom domain: reggieanddro.com"
 - They can enable it for you
@@ -251,9 +275,10 @@ open http://reggieanddro.com
 
 ## TROUBLESHOOTING
 
-### If forwarding still doesn't work after 2 hours:
+### If forwarding still doesn't work after 2 hours
 
 **Check GoDaddy forwarding settings:**
+
 1. Go back to GoDaddy DNS/Forwarding
 2. Verify forwarding is active
 3. Check it's set to:
@@ -261,24 +286,26 @@ open http://reggieanddro.com
    - TO: `https://www.reggieanddro.com`
    - Type: `301 Permanent`
 
-### If SSL still errors after configuring Lightspeed:
+### If SSL still errors after configuring Lightspeed
 
 **Wait longer:**
+
 - SSL provisioning can take up to 24 hours
 - Let's Encrypt (what Lightspeed uses) needs time to verify
 
 **Or contact Lightspeed support:**
+
 - They can manually trigger SSL certificate generation
 
 ---
 
 ## FINAL RECOMMENDATION
 
-### DO THIS NOW:
+### DO THIS NOW
 
 1. ✅ **Configure custom domain in Lightspeed** (Priority 1)
    - Add reggieanddro.com
-   - Add www.reggieanddro.com
+   - Add <www.reggieanddro.com>
    - Enable SSL
 
 2. ⏳ **Wait 30-60 minutes** for:
@@ -286,19 +313,21 @@ open http://reggieanddro.com
    - SSL certificate to provision
 
 3. ✅ **Test in browser** after waiting:
-   - Visit http://reggieanddro.com
+   - Visit <http://reggieanddro.com>
    - Should redirect and load store
 
 ---
 
-## YOU'RE 90% THERE!
+## YOU'RE 90% THERE
 
 **What's done:**
+
 - ✅ DNS CNAME configured correctly
 - ✅ Forwarding added in GoDaddy
 - ✅ Lightspeed store verified live
 
 **What's left:**
+
 - ⏳ Configure custom domain in Lightspeed (5 minutes)
 - ⏳ Wait for DNS/SSL propagation (30-60 minutes)
 - ✅ Test and celebrate!
@@ -316,18 +345,21 @@ open http://reggieanddro.com
 ## QUESTIONS?
 
 **"How do I configure custom domain in Lightspeed?"**
+
 - Login to Lightspeed dashboard
 - Look for Settings → Domains or Online Store
 - Add reggieanddro.com
 - If stuck, contact Lightspeed support
 
 **"How long does SSL take?"**
+
 - Usually 10-30 minutes
 - Can take up to 24 hours in rare cases
 - Lightspeed handles this automatically
 
 **"Can I test now?"**
-- www.reggieanddro.com may work but show SSL errors
+
+- <www.reggieanddro.com> may work but show SSL errors
 - Wait for Lightspeed to provision SSL certificate
 - Then test thoroughly
 

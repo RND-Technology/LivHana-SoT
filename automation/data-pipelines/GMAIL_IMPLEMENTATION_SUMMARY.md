@@ -8,7 +8,7 @@ Complete Gmail ingestion system delivered for LivHana cannabis operations.
 
 1. **`gmail_ingest.js`** (30 KB) - Main ingestion pipeline
    - OAuth 2.0 authentication with automatic token refresh
-   - Multi-account support (jesseniesen@gmail.com, high@reggieanddro.com)
+   - Multi-account support (<jesseniesen@gmail.com>, <high@reggieanddro.com>)
    - Pagination for 1000+ emails
    - Full content extraction (HTML to plain text, attachments)
    - Thread relationship tracking
@@ -126,6 +126,7 @@ Update Sync State (.gmail_sync_*.json)
 ## Key Features Implemented
 
 ### 1. OAuth 2.0 Authentication
+
 - Secure browser-based consent flow
 - Automatic token refresh (no manual re-auth needed)
 - Multi-account support with separate tokens
@@ -133,6 +134,7 @@ Update Sync State (.gmail_sync_*.json)
 - Token files protected with 0600 permissions
 
 ### 2. Email Ingestion
+
 - **Pagination**: Handles unlimited emails with automatic pagination
 - **Full content extraction**: HTML emails converted to plain text
 - **Attachments**: Downloaded and stored in Cloud Storage
@@ -140,12 +142,14 @@ Update Sync State (.gmail_sync_*.json)
 - **Label organization**: Preserves Gmail labels (INBOX, SENT, IMPORTANT, etc.)
 
 ### 3. Content Extraction
+
 - **HTML to plain text**: Uses html-to-text library for clean conversion
 - **Inline images**: Extracted and stored
 - **Attachment download**: Concurrent downloads to Cloud Storage
 - **Email structure**: Preserves quoted replies and signatures
 
 ### 4. BigQuery Storage
+
 - **Three tables**:
   - `gmail_messages`: Primary email data with full metadata
   - `gmail_threads`: Thread-level summaries with participant tracking
@@ -156,6 +160,7 @@ Update Sync State (.gmail_sync_*.json)
 - **Pre-built views**: 6 views for common business intelligence queries
 
 ### 5. Smart Filtering
+
 - **Skip spam/trash**: Automatically excluded from ingestion
 - **Priority folders**: Focus on INBOX, SENT, IMPORTANT
 - **Category detection**:
@@ -166,18 +171,21 @@ Update Sync State (.gmail_sync_*.json)
 - **Sender scoring**: 0-20 score based on domain, labels, and interaction history
 
 ### 6. Deduplication
+
 - **SHA-256 hashing**: Unique hash per message (account_email + message_id)
 - **Exists check**: Queries BigQuery before processing
 - **Incremental sync**: Only fetches new emails after initial load
 - **Sync state tracking**: JSON files track last sync time per account
 
 ### 7. Rate Limiting
+
 - **Gmail API limits**: 250 quota units/user/second respected
 - **Exponential backoff**: 5 retry attempts with increasing delays
 - **Concurrent operations**: Configurable (default: 10)
 - **Batch operations**: BigQuery inserts in batches of 500
 
 ### 8. Business Intelligence Extraction
+
 - **Customer communications**: Detected via category analysis
 - **Compliance threads**: Tracked for regulatory purposes
 - **Vendor/supplier emails**: Identified and tagged
@@ -185,6 +193,7 @@ Update Sync State (.gmail_sync_*.json)
 - **Financial transactions**: Extracted for accounting
 
 ### 9. Security & Privacy
+
 - **PII masking**: SSN, credit cards, phone numbers automatically masked
 - **Encrypted storage**: Sensitive tokens protected
 - **Audit logging**: All operations logged with timestamps
@@ -192,6 +201,7 @@ Update Sync State (.gmail_sync_*.json)
 - **Token security**: Files not committed to git
 
 ### 10. Automation
+
 - **Cloud Scheduler ready**: Can be triggered via HTTP
 - **Cloud Functions compatible**: Deployable as serverless function
 - **Incremental sync**: Daily updates with minimal API usage
@@ -200,13 +210,13 @@ Update Sync State (.gmail_sync_*.json)
 
 ## Accounts Configured
 
-1. **jesseniesen@gmail.com**
+1. **<jesseniesen@gmail.com>**
    - Primary CEO account
    - Token: `gmail_token_jessen.json`
    - Credentials: `gmail_credentials_jessen.json`
    - Sync state: `.gmail_sync_jessen.json`
 
-2. **high@reggieanddro.com**
+2. **<high@reggieanddro.com>**
    - R&D TX operations account
    - Token: `gmail_token_high.json`
    - Credentials: `gmail_credentials_high.json`
@@ -217,6 +227,7 @@ Update Sync State (.gmail_sync_*.json)
 ### Table: `communications.gmail_messages`
 
 **Schema**: 32 fields including:
+
 - Primary identifiers: message_hash, message_id, thread_id, account_email
 - Email metadata: subject, from_email, to_email, date, timestamp
 - Content: snippet, body_text, body_html
@@ -232,6 +243,7 @@ Update Sync State (.gmail_sync_*.json)
 ### Table: `communications.gmail_threads`
 
 **Schema**: 11 fields including:
+
 - Thread identifiers: thread_id, account_email
 - Metadata: subject, message_count, participant_emails[]
 - Timeline: first_message_date, last_message_date
@@ -243,6 +255,7 @@ Update Sync State (.gmail_sync_*.json)
 ### Table: `communications.gmail_attachments`
 
 **Schema**: 10 fields including:
+
 - References: message_hash, message_id, thread_id
 - Attachment metadata: attachment_id, filename, mime_type, size_bytes
 - Storage: gcs_path (Cloud Storage reference)
@@ -373,6 +386,7 @@ gcloud scheduler jobs create http gmail-daily-sync \
 ## Troubleshooting Guide
 
 See [GMAIL_INGEST_README.md](./GMAIL_INGEST_README.md) for detailed troubleshooting, including:
+
 - Authentication errors
 - Rate limit handling
 - BigQuery permission issues
@@ -440,6 +454,7 @@ automation/data-pipelines/
 ## Support
 
 For questions or issues:
+
 1. Check [GMAIL_QUICKSTART.md](./GMAIL_QUICKSTART.md) for quick setup
 2. Read [GMAIL_INGEST_README.md](./GMAIL_INGEST_README.md) for detailed docs
 3. Run `npm run gmail:test` to verify setup

@@ -1,4 +1,5 @@
 # The Cannabis AI Integration Disaster Report
+
 ## Why 73% of Cannabis Businesses Fail at AI Integration (And How to Be in the 27% That Succeed)
 
 **By Jesse Niesen**
@@ -25,6 +26,7 @@ I called Veriff support. "We're working on it. Give us 6 weeks."
 **Six weeks?** At $100K/month loss, that's $150K down the drain.
 
 I had two choices:
+
 1. Wait and bleed money
 2. Fix it myself
 
@@ -50,6 +52,7 @@ After solving my own disaster, I started researching. Here's what I found:
 Not "struggle". Not "have delays". **FAIL.**
 
 **Common failures:**
+
 - Age verification systems crashing (Veriff, Yoti, ID.me)
 - Payment processing broken (Shopify, Square, custom checkouts)
 - Compliance automation failing (COA validation, license tracking)
@@ -69,6 +72,7 @@ Not "struggle". Not "have delays". **FAIL.**
 **1. Regulatory Complexity**
 
 Cannabis isn't like selling t-shirts. Every state has different rules:
+
 - Texas: DSHS licensing, COA requirements, age verification mandates
 - California: Track-and-trace systems, CDFA compliance
 - Colorado: METRC integration, seed-to-sale tracking
@@ -78,6 +82,7 @@ Off-the-shelf AI solutions don't understand cannabis compliance. They break. You
 **2. Conservative Customer Base**
 
 Cannabis customers (especially in newly legal states) are risk-averse:
+
 - They don't trust complex technology
 - They value simplicity and safety
 - They abandon carts if checkout is confusing
@@ -87,6 +92,7 @@ Your "cutting-edge AI solution" might be scaring away 50% of your customers.
 **3. Limited Technical Resources**
 
 Most cannabis entrepreneurs are:
+
 - Cannabis experts (not tech experts)
 - Small teams (no in-house developers)
 - Bootstrap budgets (can't afford $200K integrations)
@@ -96,6 +102,7 @@ When AI fails, they have no one to call. Vendors ghost them. Money bleeds.
 **4. High Stakes**
 
 Unlike other industries, cannabis businesses can't just "shut down for maintenance":
+
 - Regulatory deadlines (license renewals, audit submissions)
 - Perishable inventory (products expire, waste is costly)
 - Thin margins (can't afford 6 weeks of downtime)
@@ -109,12 +116,14 @@ Unlike other industries, cannabis businesses can't just "shut down for maintenan
 Here's the dirty secret: **Most "AI solutions" for cannabis are bullshit.**
 
 **What vendors promise:**
+
 - "Plug-and-play integration"
 - "Works out of the box"
 - "No technical expertise needed"
 - "Compliant in all 50 states"
 
 **What you actually get:**
+
 - Weeks of setup and debugging
 - Constant crashes and bugs
 - "Sorry, we don't support your state's regulations"
@@ -148,6 +157,7 @@ After solving my Veriff disaster, I consulted with 247 cannabis businesses. Here
 **Good:** Solutions built BY cannabis businesses FOR cannabis businesses
 
 Example: Square age verification
+
 - Built by Square (payments company that works with cannabis)
 - Native integration (no third-party APIs that break)
 - Actually tested with cannabis dispensaries
@@ -159,6 +169,7 @@ Example: Square age verification
 **Good:** AI that solves ONE problem extremely well
 
 Example: Automated COA validation
+
 - Take photo of COA → AI extracts data → Auto-checks compliance → Done
 - One task. Zero complexity. High reliability.
 
@@ -168,6 +179,7 @@ Example: Automated COA validation
 **Good:** 24-hour emergency response plan
 
 Successful cannabis businesses have:
+
 - **Backup systems** (if primary AI fails, fallback to manual)
 - **Emergency contacts** (consultant who can fix it in 24-48 hours)
 - **Documentation** (how to rollback if needed)
@@ -178,6 +190,7 @@ Successful cannabis businesses have:
 **Good:** A/B test with customer segments
 
 Example:
+
 - Group A (tech-savvy customers): New AI checkout
 - Group B (conservative customers): Simple manual checkout
 - Compare conversion rates
@@ -189,6 +202,7 @@ Example:
 **Good:** Retainer with an expert ($2K-$5K/month)
 
 Think of it like:
+
 - You have fire insurance, even though your building probably won't burn down
 - You have an AI consultant, even though your system probably won't crash
 
@@ -204,9 +218,11 @@ Think of it like:
 Looking back, here's what I should have done BEFORE integrating Veriff:
 
 ### **Step 1: Cannabis Compliance Audit**
+
 *"Does this tool actually support Texas DSHS regulations?"*
 
 **What I should have checked:**
+
 - Does Veriff understand Texas-specific age verification rules?
 - Have they worked with other Texas cannabis businesses?
 - What happens if Texas rules change mid-contract?
@@ -215,23 +231,28 @@ Looking back, here's what I should have done BEFORE integrating Veriff:
 Veriff's sales rep said "We support all states!" but couldn't name a single Texas cannabis client.
 
 ### **Step 2: Conservative Customer Testing**
+
 *"Will my traditional customers actually use this?"*
 
 **What I should have done:**
+
 - Beta test with 10 customers
 - Watch them go through Veriff checkout
 - Ask: "Was this easy? Would you complete this purchase?"
 
 **Red flag I missed:**
 Veriff required:
+
 - Selfie video (scary for privacy-conscious customers)
 - Government ID scan (many customers don't want to upload)
 - 3-minute verification process (abandoned carts)
 
 ### **Step 3: Backup System Ready**
+
 *"What if Veriff crashes tomorrow?"*
 
 **What I should have built:**
+
 - Simple manual age verification form
 - Toggle switch to disable Veriff, enable manual
 - 5-minute rollback plan
@@ -240,9 +261,11 @@ Veriff required:
 When Veriff crashed, I had NO backup. Spent 36 hours building replacement from scratch.
 
 ### **Step 4: Emergency Support Contract**
+
 *"Who do I call at 2am if this breaks?"*
 
 **What I should have done:**
+
 - Retained an AI consultant ($3K/month)
 - 24-hour emergency response guarantee
 - Pre-authorized budget for emergency fixes
@@ -261,6 +284,7 @@ After my $100K disaster, I built a service I wish existed when I needed it:
 ### **What I Offer:**
 
 **Tier 1: Emergency Consultation ($5,000)**
+
 - 24-48 hour turnaround
 - Technical audit of your broken system
 - Working replacement solution delivered
@@ -269,6 +293,7 @@ After my $100K disaster, I built a service I wish existed when I needed it:
 - 30-day ongoing support
 
 **Tier 2: Strategic Planning ($2,500)**
+
 - 3-day AI integration roadmap
 - Technology architecture design
 - 90-day deployment plan with milestones
@@ -277,6 +302,7 @@ After my $100K disaster, I built a service I wish existed when I needed it:
 - Risk mitigation and compliance review
 
 **Tier 3: Free Assessment ($0)**
+
 - 30-minute diagnostic call
 - Problem identification
 - Revenue impact calculation
@@ -326,6 +352,7 @@ I'm not here to sell you the latest shiny technology. I'm here to solve your cri
 **73% of cannabis businesses will experience at least one major AI failure in the next 12 months.**
 
 **You can either:**
+
 - Hope it doesn't happen to you (and lose $100K+ when it does)
 - Prepare now with emergency support (and fix it in 24 hours when it does)
 
@@ -335,9 +362,10 @@ I'm not here to sell you the latest shiny technology. I'm here to solve your cri
 
 ## Book Your Free Assessment
 
-**Reply "CRISIS" to this post or email me: high@reggieanddro.com**
+**Reply "CRISIS" to this post or email me: <high@reggieanddro.com>**
 
 I'll spend 30 minutes:
+
 - Diagnosing your current AI setup
 - Identifying failure risks
 - Giving you actionable recommendations (even if you don't hire me)
@@ -352,7 +380,7 @@ Texas DSHS License #690
 27 Years Cannabis Experience
 California CDFA Testimony (April 2025)
 
-📧 high@reggieanddro.com
+📧 <high@reggieanddro.com>
 🌐 aicrisisconsult.com
 
 ---

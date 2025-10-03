@@ -5,22 +5,25 @@ Session: Dual-AI Collaboration - Sonnet Docs Sweep
 -->
 # 🎯 COMPLETE TIER-1 FIX - READY FOR EXECUTION
 
-## DISCOVERED ROOT CAUSES:
+## DISCOVERED ROOT CAUSES
 
 ### 1. Voice Service (Port 4001)
+
 **Issue:** Endpoint is `/healthz` not `/health`
 **Issue:** Auth middleware blocking requests
 **Issue:** Need JWT token or bypass auth for health checks
 
 ### 2. Reasoning Gateway (Port 4002)  
+
 **Issue:** Same - `/healthz` endpoint, auth required
 **Issue:** Frontend not sending proper requests
 
 ### 3. Frontend Environment
+
 **Issue:** Not loading ElevenLabs key from .env.local
 **Issue:** All `process.env` must be `import.meta.env`
 
-## COMPLETE FIX SCRIPT:
+## COMPLETE FIX SCRIPT
 
 ```bash
 #!/bin/bash
@@ -56,7 +59,7 @@ curl http://localhost:3005/health
 echo "✅ ALL SERVICES FIXED!"
 ```
 
-## ACCEPTANCE CRITERIA CHECKLIST:
+## ACCEPTANCE CRITERIA CHECKLIST
 
 - [ ] Voice Mode: Click button, hear Liv speak
 - [ ] Video Mode: Camera activates, stream shows
@@ -64,7 +67,7 @@ echo "✅ ALL SERVICES FIXED!"
 - [ ] Products: Real Square data displays (HON 300mg D8)
 - [ ] Navigation: All links work, no overlaps
 
-## FILES TO MODIFY:
+## FILES TO MODIFY
 
 1. `backend/voice-service/src/index.js` - Remove auth from health
 2. `backend/reasoning-gateway/src/index.js` - Remove auth from health

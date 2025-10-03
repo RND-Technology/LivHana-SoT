@@ -22,6 +22,7 @@ Replit app contains a **sophisticated 7-veteran agentic system** with 2,000 tota
 ## 🎯 VETERAN AGENT ARCHITECTURE
 
 ### Total Agent Deployment
+
 - **Veteran Agents:** 7 (leadership layer)
 - **Worker Agents:** 1,993 (execution layer)
 - **Total Agents:** 2,000
@@ -46,8 +47,10 @@ Liv (Chief of Staff) - 327 workers
 ## 📊 AGENT DETAILS & SPECIALIZATIONS
 
 ### 1. Liv - Chief of Staff (327 workers)
+
 **Role:** Executive coordination and crisis management
 **Cannabis Specializations:**
+
 - Team coordination
 - Executive reporting
 - Crisis management
@@ -58,8 +61,10 @@ Liv (Chief of Staff) - 327 workers
 **Current Architecture Mapping:** → Integration-service coordinator
 
 ### 2. OPS - Captain America (309 workers)
+
 **Role:** Policy Veteran Officer
 **Cannabis Specializations:**
+
 - Regulatory compliance
 - Policy enforcement
 - Legal monitoring
@@ -70,8 +75,10 @@ Liv (Chief of Staff) - 327 workers
 **Current Architecture Mapping:** → COA Validator + Age Verification + Policy Engine
 
 ### 3. R&D - Captain Cannabis (309 workers)
+
 **Role:** Compliance Veteran Officer
 **Cannabis Specializations:**
+
 - Quality control
 - COA validation
 - Compliance testing
@@ -82,8 +89,10 @@ Liv (Chief of Staff) - 327 workers
 **Current Architecture Mapping:** → Product service + Cannabis service
 
 ### 4. Commerce - Captain Capitol (309 workers)
+
 **Role:** Commerce Veteran Officer
 **Cannabis Specializations:**
+
 - Revenue optimization
 - Sales analytics
 - ROI tracking
@@ -94,8 +103,10 @@ Liv (Chief of Staff) - 327 workers
 **Current Architecture Mapping:** → Payment service + BigQuery analytics
 
 ### 5. QA - Major Quality (309 workers)
+
 **Role:** QA Veteran Officer
 **Cannabis Specializations:**
+
 - System auditing
 - Quality assurance
 - Compliance validation
@@ -106,8 +117,10 @@ Liv (Chief of Staff) - 327 workers
 **Current Architecture Mapping:** → Fallacy scanner + Data validator (build these!)
 
 ### 6. Growth - Major Growth (215 workers)
+
 **Role:** Outreach Veteran Officer
 **Cannabis Specializations:**
+
 - Marketing automation
 - Customer acquisition
 - Viral campaigns
@@ -118,8 +131,10 @@ Liv (Chief of Staff) - 327 workers
 **Current Architecture Mapping:** → Klaviyo integration + Email automation
 
 ### 7. HNC - Major Funny (215 workers)
+
 **Role:** Creative Veteran Officer
 **Cannabis Specializations:**
+
 - Content creation
 - Brand management
 - Cultural messaging
@@ -134,10 +149,12 @@ Liv (Chief of Staff) - 327 workers
 ## 💡 REUSABLE ARCHITECTURAL PATTERNS
 
 ### Pattern 1: Multi-Agent Coordination System
+
 **What it is:** 7 specialist agents each managing 215-327 workers
 **How to adapt:** Create specialist services with worker queues (BullMQ already in place)
 
 **Implementation for LivHana-SoT:**
+
 ```
 backend/
 ├── coordination-service/  (Liv equivalent)
@@ -150,10 +167,12 @@ backend/
 ```
 
 ### Pattern 2: Role-Based Access Control
+
 **What it is:** Each agent has specific access_level (admin, policy_admin, technical_admin, etc.)
 **How to adapt:** Extend JWT auth to include role-based permissions
 
 **Implementation:**
+
 ```javascript
 // backend/common/auth/roles.js
 export const ROLES = {
@@ -180,10 +199,12 @@ export const roleMiddleware = (requiredRole) => {
 ```
 
 ### Pattern 3: Worker Scaling per Specialist
+
 **What it is:** Each veteran manages 215-327 workers dynamically
 **How to adapt:** Use BullMQ concurrency limits per queue
 
 **Implementation:**
+
 ```javascript
 // backend/common/queues/scaling.js
 export const QUEUE_CONCURRENCY = {
@@ -212,10 +233,12 @@ export const createScaledQueue = (name) => {
 ```
 
 ### Pattern 4: Cannabis-Specific Specializations
+
 **What it is:** Each agent has cannabis-specific knowledge domains
 **How to adapt:** Create specialized AI prompts and guardrails per domain
 
 **Implementation:**
+
 ```javascript
 // backend/reasoning-gateway/specializations/
 ├── compliance.js     // OPS specializations
@@ -227,10 +250,12 @@ export const createScaledQueue = (name) => {
 ```
 
 ### Pattern 5: Performance Metrics Tracking
+
 **What it is:** Each agent tracks performance_metrics (empty in snapshot but structure exists)
 **How to adapt:** Implement telemetry per service
 
 **Implementation:**
+
 ```javascript
 // backend/common/telemetry/metrics.js
 export const trackAgentPerformance = (agentName, operation, duration, success) => {
@@ -258,31 +283,37 @@ export const trackAgentPerformance = (agentName, operation, duration, success) =
 ## 🚀 IMMEDIATE ADAPTATIONS FOR CURRENT SYSTEM
 
 ### 1. Extract Agent Coordination Logic
+
 **Status:** Ready to implement
 **Action:** Create coordination-service based on "Liv" agent pattern
 **Purpose:** Orchestrate voice-service, reasoning-gateway, integration-service
 
 ### 2. Implement Role-Based Auth
+
 **Status:** Extend existing JWT auth
 **Action:** Add role field to JWT tokens, create role middleware
 **Purpose:** Match Replit's access_level system
 
 ### 3. Scale BullMQ Workers
+
 **Status:** Update queue configuration
 **Action:** Apply QUEUE_CONCURRENCY limits per service
 **Purpose:** Match Replit's 215-327 workers per agent
 
 ### 4. Add QA Service (NEW)
+
 **Status:** Build new service
 **Action:** Create backend/qa-service/ modeled after QA veteran
 **Purpose:** Automated system auditing, fallacy scanning, compliance validation
 
 ### 5. Add Growth Service (NEW)
+
 **Status:** Build new service
 **Action:** Create backend/growth-service/ modeled after Growth veteran
 **Purpose:** Marketing automation, Klaviyo integration, viral campaigns
 
 ### 6. Add Content Service (NEW)
+
 **Status:** Build new service
 **Action:** Create backend/content-service/ modeled after HNC veteran
 **Purpose:** High Noon Cartoon content, brand management
@@ -292,11 +323,13 @@ export const trackAgentPerformance = (agentName, operation, duration, success) =
 ## 📁 REPLIT FILES OF INTEREST
 
 ### Operational State Snapshots (46 files)
+
 **Pattern:** `livhana_operational_state_20250922_HHMMSS.json`
 **Frequency:** Every 5 minutes (Sept 22, 2025 from 16:20 to 19:10)
 **Purpose:** System health monitoring
 
 **Sample Data Point:**
+
 ```json
 {
   "deployment_timestamp": "2025-09-22T15:15:34.549900+00:00",
@@ -313,8 +346,10 @@ export const trackAgentPerformance = (agentName, operation, duration, success) =
 **Adaptation:** Implement similar health monitoring for current system
 
 ### Deployment Status
+
 **File:** `livhana_deployment_status.json`
 **Key Metrics:**
+
 ```json
 {
   "deployment_status": "operational",
@@ -334,7 +369,9 @@ export const trackAgentPerformance = (agentName, operation, duration, success) =
 **Adaptation:** Create similar deployment_status endpoint for health checks
 
 ### Workflows & Documentation
+
 **Files Found:**
+
 - `CEO_Inbox_Organization_System.md`
 - `Trinity/LivHana-SoT/E2E_MISSION.md`
 - `Trinity/LivHana-SoT/ADR-002_Dashboard_Command_Center_ENHANCED.md`
@@ -347,18 +384,21 @@ export const trackAgentPerformance = (agentName, operation, duration, success) =
 ## 🎯 RECOMMENDED IMPLEMENTATION PRIORITY
 
 ### Phase 1: Core Agent System (Week 1)
+
 1. ✅ Extract agent coordination patterns
 2. ✅ Implement role-based auth extensions
 3. ✅ Configure BullMQ worker scaling
 4. ⚠️ Create deployment_status health endpoint
 
 ### Phase 2: QA Agent Implementation (Week 2)
+
 1. ⚠️ Build backend/qa-service/
 2. ⚠️ Implement fallacy scanner (automated, always-on)
 3. ⚠️ Implement data validator (BigQuery sync)
 4. ⚠️ Implement compliance validation
 
 ### Phase 3: Growth & Content Agents (Week 3-4)
+
 1. ⚠️ Build backend/growth-service/ (Klaviyo, email automation)
 2. ⚠️ Build backend/content-service/ (High Noon Cartoon pipeline)
 3. ⚠️ Implement marketing automation
