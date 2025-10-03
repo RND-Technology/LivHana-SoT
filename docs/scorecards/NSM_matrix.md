@@ -1,3 +1,8 @@
+<!--
+Optimized: 2025-10-03
+RPM: 3.6.0.6.ops-technology-ship-status-documentation
+Session: Dual-AI Collaboration - Sonnet Docs Sweep
+-->
 # NSM Matrix – Critical Workflow Coverage
 
 > Track 25 Tier‑1 workflows. Columns: Defined (Y/N), Verified (Y/N), Automated Test (Y/N), Owner.

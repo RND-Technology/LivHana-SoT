@@ -1,8 +1,11 @@
 #!/bin/bash
+# Optimized: 2025-10-02
+# RPM: 1.6.2.3.automation-scripts-optimization
+# Session: Elephant Strategy Batch 1
+set -euo pipefail
+
 # 📸 EMPIRE-EMPIRE VISUAL CAPTURE WITH PLAYWRIGHT
 # Captures product wireframes, dashboard screenshots, and generates reports
-
-set -euo pipefail
 
 # Colors
 GREEN='\033[0;32m'
@@ -13,7 +16,7 @@ MAGENTA='\033[0;35m'
 NC='\033[0m'
 
 WORKSPACE_ROOT="/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT"
-cd "$WORKSPACE_ROOT"
+cd "$WORKSPACE_ROOT" || exit
 
 echo "═══════════════════════════════════════════════════════════════"
 echo "     📸 PLAYWRIGHT VISUAL CAPTURE SYSTEM"
@@ -33,9 +36,12 @@ if curl -s http://localhost:5173 > /dev/null; then
     echo -e "${GREEN}✓${NC} Frontend is running"
 else
     echo -e "${YELLOW}⚠${NC} Starting frontend..."
-    cd frontend/vibe-cockpit
+    cd frontend/vibe-cockpit || exit
     npm run dev &
     FRONTEND_PID=$!
+    if [ -z "${FRONTEND_PID}" ]; then
+      echo "Failed to capture frontend PID"
+    fi
     sleep 5
     cd ../..
 fi
@@ -44,7 +50,7 @@ fi
 echo -e "${CYAN}📦 Checking Playwright installation...${NC}"
 if ! command -v playwright &> /dev/null; then
     echo "Installing Playwright..."
-    cd automation/tests/playwright
+    cd automation/tests/playwright || exit
     npm install @playwright/test
     npx playwright install chromium
     cd ../../..
@@ -58,7 +64,7 @@ echo -e "${MAGENTA}━━━━━━━━━━━━━━━━━━━━�
 echo -e "${BLUE}CAPTURING VISUALS${NC}"
 echo -e "${MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 
-cd automation/tests/playwright
+cd automation/tests/playwright || exit
 
 # Run specific test suites
 echo -e "${CYAN}📸 Capturing Product Wireframes 2022-2025...${NC}"
@@ -85,7 +91,7 @@ echo -e "${BLUE}CAPTURED FILES${NC}"
 echo -e "${MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 
 echo -e "${GREEN}📸 Screenshots:${NC}"
-ls -la automation/tests/playwright/screenshots/*.png 2>/dev/null | tail -5 || echo "  No screenshots yet"
+find automation/tests/playwright/screenshots -maxdepth 1 -name "*.png" -print 2>/dev/null | sort | tail -5 || echo "  No screenshots yet"
 
 echo ""
 echo -e "${GREEN}📄 Reports:${NC}"
@@ -205,5 +211,3 @@ echo -e "${GREEN}💯 NO STOOPID FUCKED UP SHIT - COOL AF DASHBOARD!${NC}"
 # Last updated: 2025-10-02
 
 # Last optimized: 2025-10-02
-
-# Optimized: 2025-10-02

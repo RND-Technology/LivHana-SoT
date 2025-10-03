@@ -1,269 +1,137 @@
+
+<!--
+Optimized: 2025-10-03
+RPM: 3.6.0.6.ops-technology-ship-status-documentation
+Session: Dual-AI Collaboration - Final Consolidation
+-->
 # 🧬 RPM DNA QUICK REFERENCE
-**Version:** 1.0
-**Created:** October 2, 2025
-**Purpose:** Fast lookup for correct AOMs and COIs - ZERO ERRORS ALLOWED
+**Version:** 3.0
+**Updated:** October 3, 2025
+**Status:** Authoritative source of truth for RPM DNA naming (ZERO ERRORS ALLOWED)
+**Purpose:** Instant lookup for the only valid RPM DNA values—zero guesswork, zero errors.
 
 ---
 
-## ⚠️ CRITICAL: USE EXACT DEFINITIONS ONLY
-
-**DO NOT make up AOMs or COIs**
-**DO NOT change the definitions**
-**100% accuracy required to WIN**
-
----
-
-## 📊 AOMs (Areas of Mastery) - 8 Life Categories
-
-**EXACTLY as defined by Tony Robbins RPM system:**
-
-```
-1-FIN = Financial (Money, wealth, investments, budgeting)
-2-BIZ = Business/Career (Work, professional growth, empire building)
-3-REL = Relationships/Love (Family, friends, romantic, social)
-4-HEA = Health/Fitness (Physical health, exercise, nutrition, wellness)
-5-LEA = Learning/Growth (Education, skills, personal development)
-6-CON = Contribution/Legacy (Giving back, impact, community, purpose)
-7-FUN = Recreation/Adventure (Hobbies, travel, entertainment, joy)
-8-ENV = Environment/Lifestyle (Home, workspace, surroundings, aesthetics)
-```
-
-**Most common for business:** `2-BIZ` (99% of empire work)
+## ⚠️ NON-NEGOTIABLE RULES
+- This file is the authoritative source of truth for all RPM DNA values.
+- Use the numeric codes exactly as listed below; never invent new ones.
+- Every file/dir name must follow `AOM.COI.RPM.ACTION.context.timestamp` (all lower-case context, YYYYMMDD timestamp).
 
 ---
 
-## 🏢 COIs (Circles of Influence) - Business Entities
-
-**EXACTLY as defined in the empire structure:**
-
-### **Crown Jewel (Exit Vehicle)**
-```
-HMP = HemPress3
-- 4M feminized hemp seeds
-- $100M+ exit target
-- VCS buyout Q1 2026
-```
-
-### **Revenue Engines (Operating Companies)**
-```
-RND = Reggie & Dro
-- Cannabis retail dispensary
-- San Antonio, TX (DSHS #690)
-- LightSpeed POS + KAJA payments
-- Primary revenue source
-
-TWK = TerpWorks
-- B2B SaaS compliance platform
-- Multi-tenant workflow automation
-- $8K MRR target
-```
-
-### **Growth Engines (Marketing/Content)**
-```
-HNC = High Noon Cartoon
-- Educational content platform
-- 84-episode series
-- 10K organic traffic/month target
-
-OPS = One Plant Solution
-- Policy advocacy platform
-- Texas Cannabis COA validator
-- Compliance tools
-```
-
-### **Incubator (Future Spin-offs)**
-```
-HRB = Herbitrage
-- Cannabis business arbitrage platform
-- Creating value between problems/solutions
-- Marketplace for needs/satisfaction matching
-- Most highly profitable value creation
-
-CCO = CannaCo
-- Future technology/infrastructure spin-offs
-- Not yet defined
-```
-
-### **System-Wide**
-```
-SYS = System-wide
-- Affects all entities
-- Infrastructure
-- Cross-cutting concerns
-```
+## 🏛️ AOM (AREA OF MASTERY) — 5 BUSINESS LAYERS
+| Code | Name | Description |
+| --- | --- | --- |
+| `1` | RND | Reggie & Dro — revenue engine (reggieanddro.com) |
+| `2` | HNC | High Noon Cartoon — content/GTM engine |
+| `3` | OPS | One Plant Solution — policy & compliance |
+| `4` | HERB | Herbitrage — commerce platform incubation |
+| `5` | ECS | Hempress 3 — crown jewel exit vehicle |
 
 ---
 
-## 🎯 RPM Priority Ranges (001-999)
-
-**EXACT definitions - DO NOT deviate:**
-
-```
-001-099 = MUST (Do or die, survival-critical, legal deadline)
-100-199 = RESULTS (High ROI, direct revenue, competitive advantage)
-200-299 = PROGRESS (Important, moves needle, builds future)
-300-399 = OPTIMIZATION (Nice to have, incremental improvement)
-400-499 = MAINTENANCE (Keep lights on, routine updates)
-500-599 = RESEARCH (Future potential, exploration, POCs)
-600-699 = DELEGATED (Others responsible, contractor work)
-700-799 = WAITING (Blocked external, approval pending)
-800-899 = SOMEDAY/MAYBE (Backlog, good ideas wrong time)
-900-999 = ARCHIVED (Completed, historical, reference only)
-```
+## 🧱 COI (CIRCLE OF IMPROVEMENT) — 8 CRITICAL CAPABILITIES
+| Code | Name | Scope |
+| --- | --- | --- |
+| `1` | LEADERSHIP | Vision, strategy, decision velocity |
+| `2` | OPERATIONS | Execution, delivery, service quality |
+| `3` | MARKETING | Growth, content, demand generation |
+| `4` | SALES | Conversion, revenue, customer success |
+| `5` | FINANCE | Cash flow, funding, profitability |
+| `6` | TECHNOLOGY | Infra, DevOps, engineering systems |
+| `7` | CULTURE | Team, rituals, talent, accountability |
+| `8` | SOP_SYSTEMS | Standards, processes, automation |
 
 ---
 
-## 📁 CURRENT EMPIRE STRUCTURE (Oct 2, 2025)
+## 🎯 RPM (RESULT / PURPOSE / MASSIVE ACTION) — PRIORITY RINGS
+`RPM` is a single digit (0–9). Lower is higher urgency.
 
-**Active Projects (Stack Ranked):**
+| Code | Label | Definition |
+| --- | --- | --- |
+| `0` | P0 CRISIS | Existential, legal, or uptime threat (handle now). |
+| `1` | MUST | Do-or-die this week; direct revenue or survival. |
+| `2` | RESULTS | Measurable ROI this month; high-value leverage. |
+| `3` | PROGRESS | Builds medium-term capability; important this quarter. |
+| `4` | OPTIMIZATION | Incremental improvement; improves efficiency. |
+| `5` | RESEARCH | Exploration / future upside / prototyping. |
+| `6` | DELEGATED | Owned by partner or contractor (still tracked). |
+| `7` | WAITING | Blocked by external dependency or approval. |
+| `8` | BACKLOG | Someday/maybe backlog—no current resourcing. |
+| `9` | ARCHIVED | Historical reference only (completed or shelved). |
 
+---
+
+## 🛠️ ACTION (MODE OF EXECUTION)
+| Code | Verb | Definition |
+| --- | --- | --- |
+| `0` | CRISIS | Hotfix or stop-the-bleed intervention. |
+| `1` | BUILD | Create net-new capability or asset. |
+| `2` | LAUNCH | Ship to production/live environment. |
+| `3` | OPTIMIZE | Improve an existing asset or flow. |
+| `4` | FIX | Repair a broken or regressed capability. |
+| `5` | RESEARCH | Investigate, validate, or discover insight. |
+| `6` | DOCUMENT | Capture knowledge, SOPs, reporting. |
+| `7` | TEST | Validate behavior with automated or manual tests. |
+| `8` | DEPLOY | Release across environments (prod / staging). |
+| `9` | MAINTAIN | Keep healthy via recurring caretaking. |
+
+---
+
+## 📐 NAMING FORMAT
 ```
-1. 2-BIZ.HMP.001.PREPARE.vcs-exit-materials.20251002
-   └─ Crown jewel exit prep ($100M+ value)
-
-2. 2-BIZ.RND.010.DEPLOY.local-delivery-api.20251002
-   └─ Same-day delivery (+$15K-25K/month)
-
-3. 2-BIZ.RND.020.OPTIMIZE.leafly-seo-profile.20251002
-   └─ SEO dominance (+$10K/month)
-
-4. 2-BIZ.HNC.030.PRODUCE.episode-001-texas-intro.20251002
-   └─ Content engine launch (+10K traffic/month)
-
-5. 2-BIZ.TWK.110.BUILD.b2b-automation-workflow.20251001
-   └─ B2B SaaS platform ($8K MRR)
-
-6. 2-BIZ.OPS.200.LAUNCH.coa-validator-texas.20250930
-   └─ Compliance tool (advocacy value)
-
-7. 2-BIZ.HRB.500.RESEARCH.marketplace-architecture.20250925
-   └─ Future platform research
+AOM.COI.RPM.ACTION.context-slug.timestamp
 ```
+- `AOM` = single digit (1–5)
+- `COI` = single digit (1–8)
+- `RPM` = single digit (0–9)
+- `ACTION` = single digit (0–9)
+- `context-slug` = lowercase kebab case, concise
+- `timestamp` = `YYYYMMDD`
 
----
-
-## ✅ VALIDATION CHECKLIST
-
-**Before creating ANY RPM DNA folder/file:**
-
-- [ ] AOM is one of: 1-8 (FIN/BIZ/REL/HEA/LEA/CON/FUN/ENV)
-- [ ] COI is one of: HMP/RND/TWK/HNC/OPS/HRB/CCO/SYS
-- [ ] RPM is 3 digits: 001-999
-- [ ] ACTION is clear verb: BUILD/LAUNCH/OPTIMIZE/etc
-- [ ] CONTEXT is kebab-case: delivery-api, leafly-profile
-- [ ] TIMESTAMP is YYYYMMDD: 20251002
-
-**Format:** `AOM.COI.RPM.ACTION.CONTEXT.TIMESTAMP`
-
-**Example:** `2-BIZ.RND.010.DEPLOY.local-delivery-api.20251002`
-
----
-
-## 🚫 COMMON ERRORS (DO NOT DO THIS)
-
-**Wrong AOM:**
-❌ `3-BUS` (doesn't exist, should be `2-BIZ`)
-❌ `BUSINESS` (should be `2-BIZ`)
-❌ `9-OTHER` (only 1-8 exist)
-
-**Wrong COI:**
-❌ `R&D` (should be `RND`)
-❌ `HighNoon` (should be `HNC`)
-❌ `OPA` (should be `OPS`)
-❌ `HERB` (should be `HRB`)
-
-**Wrong RPM:**
-❌ `10` (must be 3 digits: `010`)
-❌ `1` (must be 3 digits: `001`)
-❌ `1000` (max is `999`)
-
-**Wrong Format:**
-❌ `BIZ.RND.010` (missing AOM number prefix)
-❌ `2_BIZ.RND.010` (underscore not dash)
-❌ `2-BIZ-RND-010` (dots not dashes for separation)
-
----
-
-## 💡 RPM DNA AS DECISION-MAKING ALGORITHM
-
-**Jesse's clarification:**
-> RPM DNA is framework for enterprise-wide decision-making algorithms and budgeting/investing of biz dev spend for max ROI/$/day internally.
-
-**Translation:**
-1. **Algorithm:** Sort by name = instant priority ranking
-2. **Budget Allocation:** Higher RPM (001-099) = more resources
-3. **ROI Optimization:** Every project has clear RPM = clear value
-4. **Daily Decisions:** "What should I work on?" = `ls -1 | head -3`
-5. **Investment:** Capital flows to lowest RPM numbers first
-
-**Formula:**
+**Example:**
 ```
-ROI per $ per day = (Expected Return / Investment) / Timeline
-
-Projects ranked by: (ROI × Strategic Importance × Time Sensitivity)
-
-Result = RPM number (001 = highest value, 999 = lowest)
+1.2.1.8.local-delivery-api.20251002
 ```
+→ AOM=RND, COI=OPERATIONS, RPM=MUST, ACTION=DEPLOY, Context=`local-delivery-api`, Dated Oct 2 2025.
 
 ---
 
-## 🎯 HERBITRAGE DEFINITION (CORRECT)
-
-**From Jesse:**
-> Herbitrage = Cannabis business arbitrage, creating value between problems and solutions, needs and satisfaction, most highly profitably.
-
-**Breakdown:**
-- **Arbitrage:** Finding price/value discrepancies in market
-- **Problems → Solutions:** Identify pain points, build fixes
-- **Needs → Satisfaction:** Match supply with demand
-- **Profitably:** Focus on highest-margin opportunities
-- **Cannabis Business:** Specific to cannabis/hemp industry
-
-**Examples:**
-- Dispensary can't deliver → Build delivery marketplace
-- Customer can't verify COA → Build COA validator
-- Business needs compliance → Build TerpWorks automation
-- Finding inefficiencies → Creating profitable solutions
-
-**RPM DNA:**
-```
-2-BIZ.HRB.500.RESEARCH.marketplace-architecture.20250925
-```
-(Currently in research phase, will move to lower RPM when ready)
+## ✅ PRE-COMMIT VALIDATION CHECKLIST
+- [ ] Confirm AOM code with `.claude/RPM_DNA_CORRECT_DEFINITIONS.md`.
+- [ ] Confirm COI code (1–8) from the table above.
+- [ ] Verify RPM and ACTION digits represent the current priority and work type.
+- [ ] Context slug is unique, descriptive, and kebab-case.
+- [ ] Timestamp reflects the day the artifact becomes authoritative.
+- [ ] Add metadata comments to the file head:
+  - `<!-- Optimized: YYYY-MM-DD -->`
+  - `<!-- RPM: AOM.COI.RPM.ACTION -->`
+  - `<!-- Session: [descriptor] -->`
 
 ---
 
-## 🔥 WINNING = ZERO ERRORS
+## 🗂️ CURRENT TOP PRIORITIES (Oct 2, 2025)
+Cross-check with `ULTIMATE_STATE.md` for the live stack rank.
 
-**Stakes:**
-- Incorrect AOM/COI = broken sort order
-- Broken sort order = wrong priorities
-- Wrong priorities = wasted time/money
-- Wasted resources = LOSING to Codex
-
-**Standard:**
-- 100% accuracy on naming
-- 100% consistency across empire
-- 100% compliance with definitions
-- ZERO tolerance for made-up values
-
-**When in doubt:**
-1. Check this file FIRST
-2. Do NOT guess
-3. Do NOT create new AOMs/COIs
-4. Ask human if truly unclear
-5. Better to stop than to error
+| Name | Description |
+| --- | --- |
+| `1.2.1.8.local-delivery-api.20251002/` | Deploy Local Delivery API (+$15K-25K MRR). |
+| `1.3.2.3.leafly-seo-profile.20251002/` | Optimize Leafly presence (+$10K MRR). |
+| `2.3.1.1.episode-001-texas-intro.20251002/` | Launch High Noon Cartoon Episode 1. |
+| `3.6.0.6.ops_technology_ship_status_documentation.md` | Maintain ship status truth source. |
+| `5.5.1.6.vcs-exit-materials.20251002/` | Prepare Hempress 3 exit materials ($100M+). |
 
 ---
 
-**REMEMBER:** Precision = Priority = Performance = WINNING 🏆
+## 🚫 ZERO-TOLERANCE ERROR LIST
+- ❌ Re-using Tony Robbins life categories (FIN/BIZ/…) — obsolete here.
+- ❌ Mixing digits with text (e.g., `1-RND` or `RND.1`).
+- ❌ Dropping required dots (`1.2.1.8` not `1-2-1-8`).
+- ❌ Using stale timestamps when priorities change.
+- ❌ Claiming completion without evidence (timestamp, diff, lint/test output).
 
 ---
 
-**Generated:** October 2, 2025
-**By:** Claude Sonnet 4.5
-**For:** Jesse Niesen - The Surgeon
-**Purpose:** Eliminate errors, ensure 100% RPM DNA compliance
-**Status:** TIER 1 - ALWAYS HIGHER 🚀
+**Always verify against the source definitions file. Any ambiguity → escalate fast.**
 
-<!-- Optimized: 2025-10-02 -->
+<!-- Session evidence: updated after aligning with authoritative definitions. -->

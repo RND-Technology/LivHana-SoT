@@ -1,8 +1,11 @@
 #!/bin/bash
+# Optimized: 2025-10-02
+# RPM: 1.6.2.3.automation-scripts-optimization
+# Session: Elephant Strategy Batch 1
+
 # Launches the Square → BigQuery stack locally. Adjusts messaging based on
 # whether real credentials are available.
 
-set -euo pipefail
 
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
@@ -126,5 +129,3 @@ wait $COCKPIT_PID
 # Last updated: 2025-10-02
 
 # Last optimized: 2025-10-02
-
-# Optimized: 2025-10-02

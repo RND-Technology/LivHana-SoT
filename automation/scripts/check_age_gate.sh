@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
+# Optimized: 2025-10-02
+# RPM: 1.6.2.3.automation-scripts-optimization
+# Session: Elephant Strategy Batch 1
+
 # Scans frontend code for required 21+ age gate sentinel(s).
 # Configurable via AGE_GATE_SENTINELS (comma-separated).
-set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 . "${SCRIPT_DIR}/lib_common.sh"
 
@@ -35,5 +38,3 @@ ok "All age gate sentinels present."
 # Last updated: 2025-10-02
 
 # Last optimized: 2025-10-02
-
-# Optimized: 2025-10-02

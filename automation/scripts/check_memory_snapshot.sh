@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
+# Optimized: 2025-10-02
+# RPM: 1.6.2.3.automation-scripts-optimization
+# Session: Elephant Strategy Batch 1
+
 # Validates latest snapshot freshness & required JSON fields.
 # Expects snapshots at docs/snapshots/YYYY/MM/snapshot_*.json
-set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 . "${SCRIPT_DIR}/lib_common.sh"
 
@@ -55,5 +58,3 @@ ok "Snapshot valid & fresh (${age_hours}h old): $latest_file"
 # Last updated: 2025-10-02
 
 # Last optimized: 2025-10-02
-
-# Optimized: 2025-10-02

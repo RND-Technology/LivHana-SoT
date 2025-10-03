@@ -1,3 +1,8 @@
+/**
+ * Optimized: 2025-10-03
+ * RPM: 2.6.4.2.frontend-vibe-cockpit-components
+ * Session: Dual-AI Mission - Sonnet Frontend Sweep
+ */
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import axios from 'axios';

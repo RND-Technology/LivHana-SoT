@@ -1,3 +1,9 @@
+/**
+ * Optimized: 2025-10-02
+ * RPM: 1.6.2.3.backend-common-optimization
+ * Session: Elephant Strategy Batch 1
+ */
+
 import { withRequestContext } from '../logging/context.js';
 
 export const formatSSEEvent = (event, data) => `event: ${event}\ndata: ${JSON.stringify(data)}\n\n`;

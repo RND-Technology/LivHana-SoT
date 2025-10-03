@@ -1,9 +1,17 @@
 #!/bin/bash
+# Optimized: 2025-10-02
+# RPM: 1.6.2.3.automation-scripts-optimization
+# Session: Elephant Strategy Batch 1
+set -euo pipefail
+
 echo "🔍 Validating Liv Hana Monorepo setup..."
 
 # Load environment variables
 if [ -f .env ]; then
-    export $(cat .env | xargs)
+    set -a
+    # shellcheck disable=SC1091
+    source .env
+    set +a
 else
     echo "❌ .env file not found. Please copy .env.example to .env and fill in your keys."
     exit 1
@@ -21,5 +29,3 @@ echo "🎯 Validation complete."
 # Last updated: 2025-10-02
 
 # Last optimized: 2025-10-02
-
-# Optimized: 2025-10-02

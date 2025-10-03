@@ -1,3 +1,8 @@
+<!--
+Optimized: 2025-10-03
+RPM: 3.6.0.6.ops-technology-ship-status-documentation
+Session: Dual-AI Collaboration - Sonnet Docs Sweep
+-->
 # Liv Hana – System Prompt (Tier 1 Constitutional Charter)
 
 Version: 1.0  

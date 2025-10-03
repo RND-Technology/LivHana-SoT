@@ -1,3 +1,9 @@
+/**
+ * Optimized: 2025-10-02
+ * RPM: 1.6.2.3.backend-common-optimization
+ * Session: Elephant Strategy Batch 1
+ */
+
 import { Queue, QueueEvents } from 'bullmq';
 
 export const REQUIRED_REDIS_ENV_VARS = ['REDIS_HOST', 'REDIS_PORT'];

@@ -1,3 +1,8 @@
+<!--
+Optimized: 2025-10-03
+RPM: 3.6.0.6.ops-technology-ship-status-documentation
+Session: Dual-AI Collaboration - Sonnet Docs Sweep
+-->
 # Liv Hana Monorepo: The Unified Source of Truth
 
 This repository is the single, unified source of truth for the Liv Hana project. It contains all code, documentation, pipelines, and configurations necessary for local development and eventual cloud deployment.

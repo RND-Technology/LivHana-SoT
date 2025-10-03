@@ -1,78 +1,84 @@
-# 🔢 NUMERICAL INDEX SYSTEM - COMMITTED TO MEMORY
-
-**NEVER FORGET THIS AGAIN!**
-
----
-
-## ✅ PATTERN
-
-`[AOM#].[COI#].[RPM#].[ACTION#]_descriptive_name_timestamp.md`
-
----
-
-## YOUR 4 AOMs (FROM YOUR EMPIRE)
-
-1. **RND** - R&D - Reggie & Dro (reggieanddro.com)
-2. **HNC** - High Noon Cartoon (highnooncar toon.com)
-3. **OPS** - One Plant Solution (oneplants.org)
-4. **HERB** - Herbitrage (herbitrage.com)
-
----
-
-## YOUR 8 COIs (FROM docs/COMPLETE_DIRECTORY_ARCHITECTURE.md)
-
-1. **LEADERSHIP** - Vision, strategy, decision-making
-2. **OPERATIONS** - Execution, delivery, day-to-day
-3. **MARKETING** - Growth, content, campaigns
-4. **SALES** - Revenue, conversion, customers
-5. **FINANCE** - Money, budgets, profitability
-6. **TECHNOLOGY** - Infrastructure, DevOps, systems
-7. **CULTURE** - Team, values, coordination
-8. **SOP_SYSTEMS** - Standards, processes, SOPs
-
----
-
-## RPM BLOCKS (Stack Ranked 1-8)
-
-1. empire_cockpit
-2. wall_of_weed
-3. gamification
-4. pos_integration
-5. age_verification
-6. herbitrage_greeks
-7. policy_tools
-8. content_delivery
-0. GLOBAL (cross-cutting)
-
----
-
-## ACTIONS (Priority 1-8)
-
-1. VISIONEERING
-2. PLANNING
-3. EXECUTION
-4. TESTING
-5. DOCUMENTATION
-6. MONITORING
-7. OPTIMIZATION
-8. ARCHIVE
-
----
-
-## EXAMPLES
-
-- `1.1.1.1` = RND / LEADERSHIP / empire_cockpit / VISIONEERING
-- `3.2.0.5` = OPS / OPERATIONS / GLOBAL / DOCUMENTATION
-- `3.6.1.3` = OPS / TECHNOLOGY / empire_cockpit / EXECUTION
-
----
-
-**SOURCE**: docs/COMPLETE_DIRECTORY_ARCHITECTURE.md (lines 13-21)
-**COMMITTED**: October 2, 2025
-**NEVER MAKE UP COIs AGAIN!**
-
 <!-- Optimized: 2025-10-02 -->
+<!-- RPM: 3.6.0.6.ops_technology_ship_status_documentation -->
+<!-- Session: Elephant Strategy Batch 1 -->
 
-<!-- Last updated: 2025-10-02 -->
+# 🔢 NUMERICAL INDEX SYSTEM — NEVER FORGET
+**Purpose:** Memorize the exact RPM DNA structure so every file name is instantly correct.
+**Source:** `.claude/RPM_DNA_CORRECT_DEFINITIONS.md` (read it before creating anything).
 
-<!-- Last optimized: 2025-10-02 -->
+---
+
+## ✅ File Pattern
+````markdown
+AOM.COI.RPM.ACTION.context-slug.timestamp
+````
+- `context-slug` = lowercase kebab case (no spaces)
+- `timestamp` = `YYYYMMDD` (day the artifact becomes authoritative)
+
+---
+
+## 🏛️ Areas of Mastery (AOM) — 5 Codes
+| Code | Name | Description |
+| --- | --- | --- |
+| `1` | RND | Reggie & Dro — revenue engine (reggieanddro.com) |
+| `2` | HNC | High Noon Cartoon — content & GTM engine |
+| `3` | OPS | One Plant Solution — policy & compliance |
+| `4` | HERB | Herbitrage — commerce platform incubation |
+| `5` | ECS | Hempress 3 — crown-jewel exit vehicle |
+
+---
+
+## 🧱 Circles of Improvement (COI) — 8 Capabilities
+| Code | Capability | Scope |
+| --- | --- | --- |
+| `1` | LEADERSHIP | Vision, strategy, decision velocity |
+| `2` | OPERATIONS | Execution, delivery, service quality |
+| `3` | MARKETING | Growth, content, demand generation |
+| `4` | SALES | Conversion, revenue, customer success |
+| `5` | FINANCE | Cash flow, funding, profitability |
+| `6` | TECHNOLOGY | Infra, DevOps, engineering systems |
+| `7` | CULTURE | Team, rituals, accountability |
+| `8` | SOP_SYSTEMS | Standards, automation, process control |
+
+---
+
+## 🎯 RPM Digits — Priority Signal
+| Code | Label | Definition |
+| --- | --- | --- |
+| `0` | P0 CRISIS | Existential or legal threat. Handle now. |
+| `1` | MUST | Do-or-die this week; survival or revenue critical. |
+| `2` | RESULTS | High ROI within the month. |
+| `3` | PROGRESS | Builds this quarter's capability. |
+| `4` | OPTIMIZATION | Incremental improvement / efficiency. |
+| `5` | RESEARCH | Explore future upside / prototype. |
+| `6` | DELEGATED | Owned by partner/contractor (still tracked). |
+| `7` | WAITING | Blocked by external dependency. |
+| `8` | BACKLOG | Someday/maybe. No active resourcing. |
+| `9` | ARCHIVED | Historical reference only. |
+
+---
+
+## 🛠️ Action Digits — Execution Mode
+| Code | Verb | Use When |
+| --- | --- | --- |
+| `0` | CRISIS | Emergency triage / stop the bleed. |
+| `1` | BUILD | Create net-new capability or asset. |
+| `2` | LAUNCH | Ship to production / go-live. |
+| `3` | OPTIMIZE | Improve an existing asset. |
+| `4` | FIX | Repair regressions or defects. |
+| `5` | RESEARCH | Investigate and learn before committing. |
+| `6` | DOCUMENT | Capture knowledge, SOPs, or status. |
+| `7` | TEST | Validate via automated or manual tests. |
+| `8` | DEPLOY | Release across environments. |
+| `9` | MAINTAIN | Perform recurring caretaking tasks. |
+
+---
+
+## 📌 Example Names
+- `1.2.1.8.local-delivery-api.20251002/` — RND ▸ OPERATIONS ▸ MUST ▸ DEPLOY.
+- `3.6.0.6.ops_technology_ship_status_documentation.md` — OPS ▸ TECHNOLOGY ▸ P0 ▸ DOCUMENT.
+- `5.5.1.6.vcs-exit-materials.20251002/` — ECS ▸ FINANCE ▸ MUST ▸ DOCUMENT.
+
+---
+
+**Rule:** never invent codes. When unsure, re-read the definitions file or pause for human confirmation. Precision wins the unicorn race.

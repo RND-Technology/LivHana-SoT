@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
+# Optimized: 2025-10-02
+# RPM: 1.6.2.3.automation-scripts-optimization
+# Session: Elephant Strategy Batch 1
+
 # Shared helper functions for Liv Hana automation scripts.
 
-set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 TRINITY_ROOT="$(cd "$ROOT_DIR/.." && pwd)"
@@ -51,5 +54,3 @@ check_repo_clean() {
 # Last updated: 2025-10-02
 
 # Last optimized: 2025-10-02
-
-# Optimized: 2025-10-02

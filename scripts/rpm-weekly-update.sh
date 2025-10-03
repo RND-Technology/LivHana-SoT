@@ -1,4 +1,9 @@
 #!/bin/bash
+# Optimized: 2025-10-02
+# RPM: 1.6.2.3.automation-scripts-optimization
+# Session: Elephant Strategy Batch 1
+set -euo pipefail
+
 # RPM Weekly Update Script
 # Updates all RPM DNA folder timestamps to current date
 # Run every Monday morning as part of weekly planning
@@ -56,5 +61,3 @@ echo "To commit:"
 echo "  git add ."
 echo "  git commit -m '📊 WEEKLY RPM: Stack rank updated $(date +%Y-%m-%d)'"
 echo "  git push"
-
-# Optimized: 2025-10-02

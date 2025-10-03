@@ -1,4 +1,9 @@
 #!/bin/bash
+# Optimized: 2025-10-02
+# RPM: 1.6.2.3.automation-scripts-optimization
+# Session: Elephant Strategy Batch 1
+set -euo pipefail
+
 # RPM Priority Check Script
 # Quickly view current empire priorities
 # Run anytime to see what you should be working on
@@ -64,5 +69,3 @@ fi
 
 echo "💡 TIP: 'ls -1 | head -3' = instant priority check"
 echo ""
-
-# Optimized: 2025-10-02

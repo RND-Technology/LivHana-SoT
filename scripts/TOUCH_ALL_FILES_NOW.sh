@@ -1,4 +1,9 @@
 #!/bin/bash
+# Optimized: 2025-10-02
+# RPM: 1.6.2.3.automation-scripts-optimization
+# Session: Elephant Strategy Batch 1
+set -euo pipefail
+
 # TOUCH ALL FILES - Update filesystem modification timestamps
 # This makes Finder show today's time for ALL files
 
@@ -32,5 +37,3 @@ echo "✅ ALL FILES TOUCHED"
 echo ""
 echo "Verify in Finder: All files should show current time"
 echo ""
-
-# Optimized: 2025-10-02

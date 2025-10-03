@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 /**
- * GCP Secret Manager Migration Script
- * Migrates secrets from .env files to GCP Secret Manager
+ * Optimized: 2025-10-02
+ * RPM: 1.6.2.3.backend-common-optimization
+ * Session: Elephant Strategy Batch 1
  */
-
 const fs = require('fs');
 const { SecretManagerServiceClient } = require('@google-cloud/secret-manager');
 
@@ -79,12 +79,12 @@ class SecretMigrator {
       const secretPath = `${parent}/secrets/${name}`;
       try {
         await this.client.getSecret({ name: secretPath });
-        console.log(`  ✓ Secret ${name} already exists, adding new version`);
+        console.info(`  ✓ Secret ${name} already exists, adding new version`);
       } catch (error) {
         if (error.code === 5) { // NOT_FOUND
           // Create new secret
           if (this.dryRun) {
-            console.log(`  [DRY RUN] Would create secret: ${name}`);
+            console.info(`  [DRY RUN] Would create secret: ${name}`);
           } else {
             await this.client.createSecret({
               parent,
@@ -96,7 +96,7 @@ class SecretMigrator {
                 labels
               }
             });
-            console.log(`  ✓ Created secret: ${name}`);
+            console.info(`  ✓ Created secret: ${name}`);
           }
         } else {
           throw error;
@@ -105,7 +105,7 @@ class SecretMigrator {
 
       // Add secret version
       if (this.dryRun) {
-        console.log(`  [DRY RUN] Would add version to ${name} (value length: ${value.length} chars)`);
+        console.info(`  [DRY RUN] Would add version to ${name} (value length: ${value.length} chars)`);
       } else {
         await this.client.addSecretVersion({
           parent: secretPath,
@@ -113,7 +113,7 @@ class SecretMigrator {
             data: Buffer.from(value, 'utf8')
           }
         });
-        console.log(`  ✓ Added version to secret: ${name}`);
+        console.info(`  ✓ Added version to secret: ${name}`);
       }
 
       return true;
@@ -127,22 +127,22 @@ class SecretMigrator {
    * Migrate secrets from .env file
    */
   async migrate(envFilePath, serviceName, environment = 'production') {
-    console.log('\n=== GCP Secret Manager Migration ===\n');
-    console.log(`Project ID: ${this.projectId}`);
-    console.log(`Service: ${serviceName}`);
-    console.log(`Environment: ${environment}`);
-    console.log(`Env File: ${envFilePath}`);
-    console.log(`Dry Run: ${this.dryRun ? 'YES' : 'NO'}\n`);
+    console.info('\n=== GCP Secret Manager Migration ===\n');
+    console.info(`Project ID: ${this.projectId}`);
+    console.info(`Service: ${serviceName}`);
+    console.info(`Environment: ${environment}`);
+    console.info(`Env File: ${envFilePath}`);
+    console.info(`Dry Run: ${this.dryRun ? 'YES' : 'NO'}\n`);
 
     if (this.dryRun) {
-      console.log('⚠️  DRY RUN MODE - No changes will be made\n');
+      console.info('⚠️  DRY RUN MODE - No changes will be made\n');
     }
 
     // Parse .env file
     const secrets = this.parseEnvFile(envFilePath);
     const secretCount = Object.keys(secrets).length;
 
-    console.log(`Found ${secretCount} secrets in .env file\n`);
+    console.info(`Found ${secretCount} secrets in .env file\n`);
 
     // Group secrets by priority
     const secretsByPriority = {};
@@ -155,14 +155,14 @@ class SecretMigrator {
     });
 
     // Display summary
-    console.log('Secrets by Priority:');
+    console.info('Secrets by Priority:');
     ['p0', 'p1', 'p2', 'p3', 'p4'].forEach(priority => {
       const count = secretsByPriority[priority]?.length || 0;
       if (count > 0) {
-        console.log(`  ${priority.toUpperCase()}: ${count} secrets`);
+        console.info(`  ${priority.toUpperCase()}: ${count} secrets`);
       }
     });
-    console.log('');
+    console.info('');
 
     // Migrate secrets
     const results = {
@@ -175,21 +175,21 @@ class SecretMigrator {
       const secretKeys = secretsByPriority[priority] || [];
       if (secretKeys.length === 0) continue;
 
-      console.log(`\nMigrating ${priority.toUpperCase()} secrets (${secretKeys.length}):`);
+      console.info(`\nMigrating ${priority.toUpperCase()} secrets (${secretKeys.length}):`);
 
       for (const key of secretKeys) {
         const value = secrets[key];
 
         // Skip empty values
         if (!value || value.trim() === '') {
-          console.log(`  ⊘ Skipping ${key} (empty value)`);
+          console.info(`  ⊘ Skipping ${key} (empty value)`);
           results.skipped++;
           continue;
         }
 
         // Skip non-secret values
         if (key.includes('_URL') || key.includes('_HOST') || key.includes('_PORT')) {
-          console.log(`  ⊘ Skipping ${key} (not a secret)`);
+          console.info(`  ⊘ Skipping ${key} (not a secret)`);
           results.skipped++;
           continue;
         }
@@ -212,22 +212,22 @@ class SecretMigrator {
     }
 
     // Summary
-    console.log('\n=== Migration Summary ===\n');
-    console.log(`Total secrets processed: ${secretCount}`);
-    console.log(`✓ Successfully migrated: ${results.success}`);
-    console.log(`⊘ Skipped: ${results.skipped}`);
-    console.log(`✗ Failed: ${results.failed}`);
+    console.info('\n=== Migration Summary ===\n');
+    console.info(`Total secrets processed: ${secretCount}`);
+    console.info(`✓ Successfully migrated: ${results.success}`);
+    console.info(`⊘ Skipped: ${results.skipped}`);
+    console.info(`✗ Failed: ${results.failed}`);
 
     if (this.dryRun) {
-      console.log('\n⚠️  This was a DRY RUN - no changes were made');
-      console.log('Run without --dry-run to perform actual migration\n');
+      console.info('\n⚠️  This was a DRY RUN - no changes were made');
+      console.info('Run without --dry-run to perform actual migration\n');
     } else {
-      console.log('\n✓ Migration complete!\n');
-      console.log('Next steps:');
-      console.log('1. Grant service account access to secrets');
-      console.log('2. Update deployment configuration to use Secret Manager');
-      console.log('3. Test application with secrets from Secret Manager');
-      console.log('4. Remove .env file from production deployment\n');
+      console.info('\n✓ Migration complete!\n');
+      console.info('Next steps:');
+      console.info('1. Grant service account access to secrets');
+      console.info('2. Update deployment configuration to use Secret Manager');
+      console.info('3. Test application with secrets from Secret Manager');
+      console.info('4. Remove .env file from production deployment\n');
     }
 
     return results;
@@ -240,7 +240,7 @@ class SecretMigrator {
     const secretPath = `projects/${this.projectId}/secrets/${secretName}`;
 
     if (this.dryRun) {
-      console.log(`[DRY RUN] Would grant access to ${serviceAccountEmail} for ${secretName}`);
+      console.info(`[DRY RUN] Would grant access to ${serviceAccountEmail} for ${secretName}`);
       return true;
     }
 
@@ -257,7 +257,7 @@ class SecretMigrator {
         }
       });
 
-      console.log(`✓ Granted access to ${serviceAccountEmail} for ${secretName}`);
+      console.info(`✓ Granted access to ${serviceAccountEmail} for ${secretName}`);
       return true;
     } catch (error) {
       console.error(`✗ Failed to grant access for ${secretName}:`, error.message);
@@ -285,7 +285,7 @@ if (require.main === module) {
   const help = hasFlag('--help') || hasFlag('-h');
 
   if (help) {
-    console.log(`
+    console.info(`
 GCP Secret Manager Migration Script
 
 Usage:

@@ -1,4 +1,9 @@
 #!/bin/bash
+# Optimized: 2025-10-02
+# RPM: 1.6.2.3.automation-scripts-optimization
+# Session: Elephant Strategy Batch 1
+set -euo pipefail
+
 # Rate Limit Monitor - Ensures FULL POWER NO LIMITS
 # Auto-switches between Cursor's pooled API and personal API key
 # Run this daily via cron or manually
@@ -72,5 +77,3 @@ fi
 echo ""
 
 echo "🔥 FULL POWER MODE ACTIVE - NO LIMITS!"
-
-# Optimized: 2025-10-02

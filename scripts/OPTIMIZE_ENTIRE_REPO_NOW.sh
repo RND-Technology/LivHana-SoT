@@ -1,4 +1,9 @@
 #!/bin/bash
+# Optimized: 2025-10-02
+# RPM: 1.6.2.3.automation-scripts-optimization
+# Session: Elephant Strategy Batch 1
+set -euo pipefail
+
 # OPTIMIZE ENTIRE REPO - Touch every file with optimization marker
 # This ensures ALL files show today's timestamp and are marked as optimized
 
@@ -97,5 +102,3 @@ echo "   Files already current: $((TOTAL - OPTIMIZED))"
 echo ""
 echo "🎯 Next: git add -A && git commit && git push"
 echo ""
-
-# Optimized: 2025-10-02

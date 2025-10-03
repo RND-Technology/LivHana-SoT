@@ -1,3 +1,8 @@
+<!--
+Optimized: 2025-10-03
+RPM: 3.6.0.6.ops-technology-ship-status-documentation
+Session: Dual-AI Collaboration - Sonnet Docs Sweep
+-->
 # Master Specification for Liv Hana
 
 This document is the single source of truth for the Liv Hana framework's functional and non-functional requirements.

@@ -1,3 +1,8 @@
+<!--
+Optimized: 2025-10-03
+RPM: 3.6.0.6.ops-technology-ship-status-documentation
+Session: Dual-AI Collaboration - Sonnet Docs Sweep
+-->
 # Product Page Experience Specification (Tier-1)
 
 **Status:** Draft • **Owner:** Liv Hana (Codex) • **Last Updated:** 2025-09-28

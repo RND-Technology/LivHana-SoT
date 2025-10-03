@@ -1,4 +1,9 @@
 #!/bin/bash
+# Optimized: 2025-10-02
+# RPM: 1.6.2.3.automation-scripts-optimization
+# Session: Elephant Strategy Batch 1
+set -euo pipefail
+
 # RPM Git Branch Creator
 # Creates git branches using RPM DNA naming convention
 # Branch name matches top priority folder for easy tracking
@@ -54,5 +59,3 @@ echo "   git add ."
 echo "   git commit -m \"${PREFIX}: ${1}\""
 echo "   git push -u origin $BRANCH"
 echo ""
-
-# Optimized: 2025-10-02

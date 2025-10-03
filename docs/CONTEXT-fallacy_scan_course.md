@@ -1,3 +1,8 @@
+<!--
+Optimized: 2025-10-03
+RPM: 3.6.0.6.ops-technology-ship-status-documentation
+Session: Dual-AI Collaboration - Sonnet Docs Sweep
+-->
 # Module 1 – Kickoff Diagnostic: Fallacy Scan on Latest Voice Transcripts
 
 **Source:** Full transcript provided (ChatGPT‑4 voice mode sessions consolidated).

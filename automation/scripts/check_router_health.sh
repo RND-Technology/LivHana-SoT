@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
+# Optimized: 2025-10-02
+# RPM: 1.6.2.3.automation-scripts-optimization
+# Session: Elephant Strategy Batch 1
+
 # Evaluates router health from runtime_state.json (or similar).
 # Expects JSON with recent_runs array of objects: { "latency_ms": N, "ok": true/false }
-set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 . "${SCRIPT_DIR}/lib_common.sh"
 
@@ -53,5 +56,3 @@ exit $exit_code
 # Last updated: 2025-10-02
 
 # Last optimized: 2025-10-02
-
-# Optimized: 2025-10-02
