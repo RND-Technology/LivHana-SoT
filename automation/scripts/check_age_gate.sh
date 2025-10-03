@@ -6,6 +6,7 @@
 # Scans frontend code for required 21+ age gate sentinel(s).
 # Configurable via AGE_GATE_SENTINELS (comma-separated).
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=automation/scripts/lib_common.sh
 . "${SCRIPT_DIR}/lib_common.sh"
 
 SENTINELS_CSV="${AGE_GATE_SENTINELS:-<AgeGatePortal/>,data-age-gate=\"active\"}"

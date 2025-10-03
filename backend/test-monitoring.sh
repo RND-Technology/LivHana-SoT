@@ -39,7 +39,7 @@ test_endpoint() {
   local description=$4
 
   TESTS_RUN=$((TESTS_RUN + 1))
-  echo -n "Testing: $description ... "
+  echo -n "Testing [$service]: $description ... "
 
   response=$(curl -s -w "\n%{http_code}" "$url" 2>/dev/null || echo "000")
   status_code=$(echo "$response" | tail -n 1)
@@ -63,7 +63,7 @@ test_json_response() {
   local description=$4
 
   TESTS_RUN=$((TESTS_RUN + 1))
-  echo -n "Testing: $description ... "
+  echo -n "Testing [$service]: $description ... "
 
   response=$(curl -s "$url" 2>/dev/null || echo "{}")
 
@@ -87,8 +87,9 @@ test_prometheus_metrics() {
   local description=$3
 
   TESTS_RUN=$((TESTS_RUN + 1))
-  echo -n "Testing: $description ... "
+  echo -n "Testing [$service]: $description ... "
 
+  local response
   response=$(curl -s "$url" 2>/dev/null || echo "")
 
   if echo "$response" | grep -q "# HELP"; then

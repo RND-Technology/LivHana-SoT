@@ -6,6 +6,7 @@
 # Runs terraform plan (if terraform/ exists) or cloud-run diff placeholder.
 # Fails if drift detected (non-empty plan) unless allowed by ALLOW_INFRA_DRIFT=true
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=automation/scripts/lib_common.sh
 . "${SCRIPT_DIR}/lib_common.sh"
 
 ALLOW_INFRA_DRIFT="${ALLOW_INFRA_DRIFT:-false}"

@@ -9,7 +9,7 @@ echo "🚀 Setting up the Liv Hana Monorepo environment..."
 # Load environment variables if .env file exists
 if [ -f .env ]; then
     set -a
-    # shellcheck disable=SC1091
+    # shellcheck disable=SC1091,SC1094
     source .env
     set +a
 fi

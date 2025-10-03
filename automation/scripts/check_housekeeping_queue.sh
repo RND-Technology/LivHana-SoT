@@ -9,6 +9,7 @@
 
 # Source common utilities
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=automation/scripts/lib_common.sh
 source "${SCRIPT_DIR}/lib_common.sh" 2>/dev/null || true
 
 # Colors for output
@@ -19,7 +20,7 @@ NC='\033[0m' # No Color
 
 # Workspace root
 WORKSPACE_ROOT="/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT"
-cd "$WORKSPACE_ROOT"
+cd "$WORKSPACE_ROOT" || exit
 
 echo "═══════════════════════════════════════════════════════════════"
 echo "          Liv Hana Tier-1 Housekeeping Queue Check"
@@ -153,14 +154,14 @@ else
 fi
 
 # Modified files
-MODIFIED_COUNT=$(git status --porcelain | grep -E "^ M" | wc -l | tr -d ' ')
+MODIFIED_COUNT=$(git status --porcelain | awk '/^ M/{count++} END{print count+0}')
 if [[ "$MODIFIED_COUNT" -gt 0 ]]; then
     echo -e "Modified: ${YELLOW}$MODIFIED_COUNT files${NC}"
     git status --porcelain | grep -E "^ M" | head -3 | sed 's/^ M /  - /'
 fi
 
 # Staged files
-STAGED_COUNT=$(git status --porcelain | grep -E "^[AM]" | wc -l | tr -d ' ')
+STAGED_COUNT=$(git status --porcelain | awk '/^[AM]/{count++} END{print count+0}')
 if [[ "$STAGED_COUNT" -gt 0 ]]; then
     echo -e "Staged: ${GREEN}$STAGED_COUNT files${NC}"
 fi

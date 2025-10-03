@@ -17,7 +17,7 @@ MAGENTA='\033[0;35m'
 NC='\033[0m'
 
 WORKSPACE_ROOT="/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT"
-cd "$WORKSPACE_ROOT"
+cd "$WORKSPACE_ROOT" || exit
 
 echo "═══════════════════════════════════════════════════════════════"
 echo "     🌐 EMPIRE-EMPIRE DOMAIN PORTFOLIO AUDIT"
@@ -31,16 +31,6 @@ CORE_DOMAINS=(
     "herbitrage.com"
     "oneplantsolution.com"
     "highnooncartoon.com"
-)
-
-# New Empire Domains (sample from 69)
-NEW_EMPIRE_DOMAINS=(
-    "cannabisretailai.com"
-    "freeweedtexas.com"
-    "hempretailai.com"
-    "exoticcbdhempflower.com"
-    "ageverifysi.com"
-    "californiaenergyai.com"
 )
 
 ISSUES_FOUND=0

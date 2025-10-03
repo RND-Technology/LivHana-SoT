@@ -44,12 +44,14 @@ Evidence: .evidence/2025-10-03/lint-reports/shellcheck-2025-10-03_044206.txt
 ```
 
 **Results:**
+
 - ✅ Critical errors: 0 (down from multiple)
 - ⚠️ Warnings: 115 (mostly SC2034 unused vars, SC2012 ls usage)
 - ✅ All scripts executable and parseable
 - ✅ Evidence saved to .evidence/2025-10-03/
 
 **Remaining Work:**
+
 - 115 warnings (low-priority: unused variables, info-level suggestions)
 
 ---
@@ -69,12 +71,14 @@ Evidence: .evidence/2025-10-03/lint-reports/markdownlint-2025-10-03_044206.txt
 ```
 
 **Results:**
+
 - ✅ Auto-fixed: 110,413 errors (67% in first pass)
 - ✅ Config tuning: Additional 107,622 errors suppressed (noisy rules disabled)
 - ⚠️ Remaining: 5,350 errors (MD026, MD022, MD032 - formatting preferences)
 - ✅ Evidence saved to .evidence/2025-10-03/
 
 **Remaining Work:**
+
 - 5,350 errors (mostly node_modules/ vendor files + style preferences)
 
 ---
@@ -93,12 +97,14 @@ Evidence: .evidence/2025-10-03/lint-reports/eslint-2025-10-03_044206.txt
 ```
 
 **Results:**
+
 - ✅ Errors: 0 (down from 245)
 - ⚠️ Warnings: 99 (all acceptable: console.log in CLI utilities + unused imports)
 - ✅ Config fixed: TypeScript files ignored, test file globals added
 - ✅ Evidence saved to .evidence/2025-10-03/
 
 **Remaining Work:**
+
 - 99 warnings (acceptable: console.log in automation scripts, unused vars in dev code)
 - [ ] Fix app errors (target: 0)
 - [ ] Document acceptable CLI errors

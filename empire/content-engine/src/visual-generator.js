@@ -84,6 +84,7 @@ class VisualGenerator {
     prompt += `Characters visible: ${characters}. `;
     prompt += `Scene: ${visualDescription || heading}. `;
     prompt += `Art style: Clean lines, vibrant colors, satirical political cartoon aesthetic. `;
+    prompt += `Style guide reference: ${style}. `;
     prompt += `Mood: Dramatic but humorous. Wide cinematic shot. 16:9 aspect ratio.`;
 
     return prompt;

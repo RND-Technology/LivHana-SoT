@@ -9,7 +9,7 @@ echo "🔍 Validating Liv Hana Monorepo setup..."
 # Load environment variables
 if [ -f .env ]; then
     set -a
-    # shellcheck disable=SC1091
+    # shellcheck disable=SC1091,SC1094
     source .env
     set +a
 else

@@ -6,6 +6,7 @@
 # Validates latest snapshot freshness & required JSON fields.
 # Expects snapshots at docs/snapshots/YYYY/MM/snapshot_*.json
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=automation/scripts/lib_common.sh
 . "${SCRIPT_DIR}/lib_common.sh"
 
 SNAP_DIR="docs/snapshots"
