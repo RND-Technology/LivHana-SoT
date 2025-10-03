@@ -151,6 +151,7 @@ Thumbs.db
 
 # Tier-1 Additions
 .archive/
+.evidence/
 *.log
 *.tmp
 .DS_Store

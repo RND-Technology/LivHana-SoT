@@ -7,7 +7,8 @@
 ---
 
 ## 0. PRE-SESSION CHECK (HUMAN / CODEX)
-- Confirm reggieanddro.com DNS cutover email pending (no manual monitoring needed).  
+
+- Confirm reggieanddro.com DNS cutover email pending (no manual monitoring needed).
 - Ensure macOS update deferred (Sequoia/Tahoe queued but not running).  
 - Plug in power + stable network, disable sleep.  
 - Unlock 1Password and verify `op` CLI signed in.  
@@ -16,6 +17,7 @@
 ---
 
 ## 1. HARD BOOT SEQUENCE (CLAUDE SONNET MUST EXECUTE IN ORDER)
+
 1. `cat LivHana-SoT/.claude/LEARNING_LEDGER.md`
 2. `cat LivHana-SoT/.claude/VERIFICATION_REQUIRED.md`
 3. `cat LivHana-SoT/.claude/HONESTY_CONSTRAINTS.md`
@@ -41,6 +43,7 @@ Then restate mission in numbered steps with concrete metrics + proof targets + v
 ---
 
 ## 2. LIVE SYSTEM SNAPSHOT (CLAUDE SONNET)
+
 Run the fused info sweep before touching code:
 ```bash
 cd LivHana-SoT
@@ -54,6 +57,7 @@ git status --short
 ---
 
 ## 3. FULL POWER ACTIVATION SCRIPT (CLAUDE SONNET)
+
 Kick the autonomous harness:
 ```bash
 bash scripts/run_full_sweep.sh
@@ -65,6 +69,7 @@ bash scripts/run_full_sweep.sh
 ---
 
 ## 4. SESSION OPERATING LOOP (CODEX ↔ SONNET)
+
 1. **Codex** assigns micro-mission (<=15 min) referencing `COMMANDER_CODEX_ORDERS.md`.
 2. **Sonnet** executes command bundle using numbered steps with concrete metrics.
 3. **Sonnet** verifies results IMMEDIATELY (<5 min) and logs proof with timestamp.
@@ -81,6 +86,7 @@ bash scripts/run_full_sweep.sh
 ---
 
 ## 5. EVIDENCE PROTOCOL (NON-NEGOTIABLE)
+
 - **Evidence FIRST, claims SECOND** - show proof in same message as claim
 - Finder screenshots for timestamp-sensitive work saved under `.evidence/<date>/finder-screenshots/`.
 - CLI transcripts saved under `.evidence/<date>/cli-output/`.
@@ -93,6 +99,7 @@ bash scripts/run_full_sweep.sh
 ---
 
 ## 6. FAILSAFE & RECOVERY
+
 - If Cursor crashes or context overload triggers, run `.claude/auto-compact.sh` manually; this refreshes `CURRENT_SESSION_STATE.md` + `ULTIMATE_STATE.md`.  
 - If services die, run `./START.sh dev` (boot) or `./START.sh stop` (reset).  
 - Use rollback snippet in `CLOUDFLARE_ACTIVATION_NOW.md` only if DNS alert indicates failure.  
@@ -101,6 +108,7 @@ bash scripts/run_full_sweep.sh
 ---
 
 ## 7. SESSION CLOSE-OUT (CLAUDE SONNET)
+
 1. Run `bash scripts/run_full_sweep.sh` (final pass).  
 2. Update `.claude/CURRENT_SESSION_STATE.md` with summary, open items, evidence map.  
 3. Update `.claude/ULTIMATE_STATE.md` via `./.claude/update-ultimate-state.sh` (or manual edit if script fails).  
@@ -110,6 +118,7 @@ bash scripts/run_full_sweep.sh
 ---
 
 ## QUICK COMMAND CHEATSHEET
+
 ```bash
 # Launch status dashboards
 cd LivHana-SoT && ./START.sh status
@@ -129,6 +138,7 @@ bash .claude/auto-compact.sh
 ---
 
 ## SUCCESS CRITERIA
+
 - Mission steps executed in order with 5-minute proof cadence.
 - Every claim includes verification timestamp within <5 minutes of execution.
 - Evidence shown BEFORE or WITH claims (never after).

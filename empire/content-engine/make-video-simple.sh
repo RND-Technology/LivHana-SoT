@@ -20,13 +20,13 @@ mkdir -p "$VIDEO_DIR"
 echo "📁 Concatenating audio files..."
 
 # Get audio files in order
-AUDIO_FILES=($(ls -1 "$AUDIO_DIR"/*.mp3 | grep -v manifest | sort | head -6))
+mapfile -t AUDIO_FILES < <(find "$AUDIO_DIR" -maxdepth 1 -type f -name '*.mp3' ! -name '*manifest*' | sort | head -6)
 
 # Create concat file for audio
 AUDIO_CONCAT="$VIDEO_DIR/audio-concat.txt"
 rm -f "$AUDIO_CONCAT"
 for AUDIO in "${AUDIO_FILES[@]}"; do
-  echo "file '$AUDIO'" >> "$AUDIO_CONCAT"
+  printf "file '%s'\n" "$AUDIO" >> "$AUDIO_CONCAT"
 done
 
 # Combine all audio
@@ -61,7 +61,7 @@ echo "✅ SUCCESS! HIGH NOON CARTOON VIDEO COMPLETE"
 echo "================================================"
 echo "   📹 Video: $FINAL"
 echo "   📊 Size: $SIZE"
-echo "   ⏱️  Duration: $(printf '%.1f' $DURATION)s"
+echo "   ⏱️  Duration: $(printf '%.1f' "$DURATION")s"
 echo "   💰 Cost: \$0"
 echo ""
 echo "🎉 TIER 1 - 100% FUNCTIONAL - NO API BLOCKS"

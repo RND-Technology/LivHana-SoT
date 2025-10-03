@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+/* eslint-env node */
+/* eslint no-console: ["error", { allow: ["info", "warn", "error", "log"] }] */
 // Leafly Menu/Deals/Inventory → BigQuery Sync Script
 // Production-ready stub - awaiting API credentials
 

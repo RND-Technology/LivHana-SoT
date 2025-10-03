@@ -45,6 +45,7 @@ echo ""
 # Check for environment variables
 if [ -f "$ENV_FILE" ]; then
     echo "📄 Found .env.notion file"
+    # shellcheck disable=SC1090
     source "$ENV_FILE"
 else
     echo "⚠️  No .env.notion file found"

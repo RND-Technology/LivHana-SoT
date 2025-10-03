@@ -59,13 +59,13 @@ class VideoCompositor {
         .audioCodec('aac')
         .format(this.format)
         .on('start', (command) => {
-          console.log(`🎬 FFmpeg command: ${command}`);
+          console.info(`🎬 FFmpeg command: ${command}`);
         })
         .on('progress', (progress) => {
-          console.log(`⏳ Processing: ${progress.percent?.toFixed(1)}%`);
+          console.info(`⏳ Processing: ${progress.percent?.toFixed(1)}%`);
         })
         .on('end', () => {
-          console.log(`✅ Scene video created: ${outputPath}`);
+          console.info(`✅ Scene video created: ${outputPath}`);
           resolve(outputPath);
         })
         .on('error', (err) => {
@@ -102,10 +102,10 @@ class VideoCompositor {
         .audioCodec('aac')
         .format(this.format)
         .on('start', (command) => {
-          console.log(`🎬 Concatenating ${sceneVideos.length} scenes...`);
+          console.info(`🎬 Concatenating ${sceneVideos.length} scenes...`);
         })
         .on('progress', (progress) => {
-          console.log(`⏳ Processing: ${progress.percent?.toFixed(1)}%`);
+          console.info(`⏳ Processing: ${progress.percent?.toFixed(1)}%`);
         })
         .on('end', () => {
           console.log(`✅ Final video created: ${outputPath}`);
