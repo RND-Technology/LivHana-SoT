@@ -14,6 +14,11 @@ import { startLeaflySyncScheduler } from './leafly-sync-scheduler.js';
 // Import compliance API routes
 import complianceRoutes from './routes/compliance-api.js';
 import ageVerificationAPIRoutes from './routes/age-verification-api.js';
+import lightspeedAPIRoutes from './routes/lightspeed-api.js';
+import reviewsAPIRoutes from './routes/reviews-api.js';
+import customerVerificationRoutes from './routes/customer-verification.js';
+import postPurchaseVerificationRoutes from './routes/post-purchase-verification.js';
+import veriffWebhookRoutes from './routes/veriff-webhook.js';
 
 // Import security middleware
 import {
@@ -126,6 +131,20 @@ app.use(raffleRoutes);
 // Compliance & age verification APIs
 app.use('/api/compliance', complianceRoutes);
 app.use('/api/age-verification', ageVerificationAPIRoutes);
+
+// LightSpeed & Reviews APIs
+app.use('/api/lightspeed', lightspeedAPIRoutes);
+app.use('/api/reviews', reviewsAPIRoutes);
+
+// Customer Verification API (LightSpeed integration)
+app.use('/api/v1/customer', customerVerificationRoutes);
+app.use('/api/v1/order', customerVerificationRoutes);
+
+// Post-Purchase Verification System (72hr countdown + auto-refund)
+app.use('/api/v1/post-purchase', postPurchaseVerificationRoutes);
+
+// Veriff Age Verification Webhooks
+app.use('/api/v1/veriff', veriffWebhookRoutes);
 
 // Protected sync endpoints
 app.post('/api/sync/lightspeed', (req, res) => {
