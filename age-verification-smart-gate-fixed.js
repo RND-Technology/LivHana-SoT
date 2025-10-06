@@ -32,8 +32,8 @@ app.use((req, res, next) => {
         .container { max-width: 400px; margin: 0 auto; }
         button { background: #4CAF50; color: white; padding: 15px 30px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; margin: 10px; }
         button:hover { background: #45a049; }
-        .products-link { background: #2196F3; }
-        .products-link:hover { background: #1976D2; }
+        button.products-link { background: #2196F3; }
+        button.products-link:hover { background: #1976D2; }
       </style>
     </head>
     <body>
@@ -41,7 +41,7 @@ app.use((req, res, next) => {
         <h1>Age Verification Required</h1>
         <p>You must be 21+ to access this site.</p>
         <button onclick="verifyAge()">I am 21 or older</button>
-        <button class="products-link" onclick="window.location.href='https://reggieanddro.com/products'">Shop Premium Flower</button>
+        <button class="products-link" onclick="window.location.href='/products'">Shop Premium Flower</button>
       </div>
       <script>
         function verifyAge() {
