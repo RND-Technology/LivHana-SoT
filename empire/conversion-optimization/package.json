@@ -1,0 +1,20 @@
+{
+  "name": "conversion-optimization",
+  "version": "1.0.0",
+  "description": "Conversion optimization strategy E2E with A/B testing",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "start": "node main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Cheetah",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "uuid": "^9.0.1"
+  }
+}
