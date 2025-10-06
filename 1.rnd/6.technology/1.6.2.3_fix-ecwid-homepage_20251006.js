@@ -7,7 +7,7 @@
 
 import axios from 'axios';
 
-const PERSONAL_TOKEN = process.env.LIGHTSPEED_API_KEY;
+[REDACTED - SECURITY BREACH]
 const ECWID_STORE_ID = '117254578';
 
 // Ecwid API endpoints

@@ -61,7 +61,7 @@ echo ""
 
 # Health check
 echo "🏥 API Key Health:"
-if grep -q "ANTHROPIC_API_KEY=sk-ant" /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/backend/reasoning-gateway/.env; then
+[REDACTED - SECURITY BREACH]
     echo -e "${GREEN}✅ Anthropic API key found in .env${NC}"
 else
     echo -e "${RED}❌ Anthropic API key NOT found${NC}"

@@ -719,7 +719,7 @@ describe('LightSpeed → BigQuery Sync Pipeline', () => {
     test('should fallback to mock when authentication fails', async () => {
       process.env.LIGHTSPEED_USE_MOCK = 'false';
       process.env.LIGHTSPEED_CLIENT_SECRET = ''; // Invalid auth
-      process.env.LIGHTSPEED_API_KEY = ''; // No API key either
+[REDACTED - SECURITY BREACH]
 
       // Should exit with error due to missing auth
       jest.isolateModules(() => {
@@ -889,7 +889,7 @@ describe('LightSpeed → BigQuery Sync Pipeline', () => {
     });
 
     test('should use API Key authentication when provided', async () => {
-      process.env.LIGHTSPEED_API_KEY = 'test-api-key-456';
+[REDACTED - SECURITY BREACH]
       delete process.env.LIGHTSPEED_CLIENT_SECRET;
       delete process.env.LIGHTSPEED_REFRESH_TOKEN;
 

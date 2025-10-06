@@ -11,14 +11,14 @@ const logger = createLogger('veriff-client');
  * API Docs: https://developers.veriff.com/
  *
  * Environment Variables Required:
- * - VERIFF_API_KEY: API key from Veriff dashboard
+[REDACTED - SECURITY BREACH]
  * - VERIFF_API_SECRET: Secret for webhook signature verification (if available)
  * - VERIFF_BASE_URL: API base URL (production or sandbox)
  */
 
 export class VeriffClient {
   constructor() {
-    this.apiKey = process.env.VERIFF_API_KEY;
+[REDACTED - SECURITY BREACH]
     this.apiSecret = process.env.VERIFF_API_SECRET || null;
     this.baseUrl = process.env.VERIFF_BASE_URL || 'https://stationapi.veriff.com';
     this.callbackUrl = process.env.API_BASE_URL
@@ -26,7 +26,7 @@ export class VeriffClient {
       : 'https://integration-service.run.app/api/v1/veriff/webhook';
 
     if (!this.apiKey) {
-      throw new Error('VERIFF_API_KEY environment variable is required');
+[REDACTED - SECURITY BREACH]
     }
 
     logger.info('Veriff client initialized', {

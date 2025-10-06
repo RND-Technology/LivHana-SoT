@@ -22,7 +22,7 @@
 **Tasks:**
 - [ ] Sign up for Veriff account (veriff.com)
 - [ ] Get API key from Veriff dashboard
-- [ ] Add `VERIFF_API_KEY` to GCP Secret Manager
+[REDACTED - SECURITY BREACH]
 - [ ] Install Veriff SDK: `npm install @veriff/js-sdk`
 - [ ] Build `startVeriffSession()` function
 - [ ] Build `/veriff-webhook` endpoint
@@ -37,7 +37,7 @@ export async function createVeriffSession(customerEmail, orderId) {
   const response = await fetch('https://stationapi.veriff.com/v1/sessions', {
     method: 'POST',
     headers: {
-      'X-AUTH-CLIENT': process.env.VERIFF_API_KEY,
+[REDACTED - SECURITY BREACH]
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
