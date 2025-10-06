@@ -1,0 +1,18 @@
+{
+  "name": "ops-public-comments",
+  "version": "1.0.0",
+  "description": "OPS Public Commenting System - Policy By The People For The People",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "start": "node main.js",
+    "dev": "node main.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
