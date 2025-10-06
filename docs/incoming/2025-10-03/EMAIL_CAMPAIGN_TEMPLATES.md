@@ -1,0 +1,814 @@
+# TEXAS TAKEOVER EMAIL CAMPAIGN TEMPLATES
+## Ready-to-Deploy HTML Email Templates for SendGrid/Mailchimp
+
+---
+
+## EMAIL 1: "THE TAKEOVER BEGINS" (Launch Day)
+
+**Send Time:** Monday 9:00 AM CST  
+**Audience:** All active subscribers (past customers priority)  
+**Subject Lines (A/B/C Test):**
+- A: "Texas Takeover: Brick Weed to Top Shelf - We're Back 🤠"
+- B: "Legal Weed Is Back in Texas (and better than ever)"
+- C: "Your Texas Weed Shop Just Got a Makeover"
+
+**Preheader:** "New website. New rewards. New strains. Same Texas pride."
+
+**HTML Template:**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Texas Takeover - Reggie & Dro</title>
+</head>
+<body style="margin:0; padding:0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color:#f4f4f4;">
+    
+    <!-- Wrapper -->
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+            <td align="center" style="padding:40px 0;">
+                
+                <!-- Main Container -->
+                <table role="presentation" width="600" cellspacing="0" cellpadding="0" border="0" style="background-color:#ffffff; border-radius:8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    
+                    <!-- Hero Image -->
+                    <tr>
+                        <td style="padding:0;">
+                            <img src="https://reggieanddro.com/email-assets/texas-takeover-hero.jpg" alt="Texas Takeover" width="600" style="width:100%; height:auto; display:block; border-radius:8px 8px 0 0;">
+                        </td>
+                    </tr>
+                    
+                    <!-- Header -->
+                    <tr>
+                        <td style="padding:40px 40px 20px; text-align:center;">
+                            <h1 style="margin:0; font-size:32px; font-weight:700; color:#1a1a1a; line-height:1.2;">
+                                THE TEXAS TAKEOVER IS HERE
+                            </h1>
+                        </td>
+                    </tr>
+                    
+                    <!-- Greeting -->
+                    <tr>
+                        <td style="padding:0 40px 20px; font-size:16px; color:#333; line-height:1.6;">
+                            <p style="margin:0;">Hi {{first_name}},</p>
+                        </td>
+                    </tr>
+                    
+                    <!-- Body Copy -->
+                    <tr>
+                        <td style="padding:0 40px 20px; font-size:16px; color:#333; line-height:1.6;">
+                            <p style="margin:0 0 20px;">Big news: We've rebuilt Reggie & Dro from the ground up.</p>
+                            
+                            <p style="margin:0 0 20px;"><strong>New website. New rewards. New strains. Same Texas pride.</strong></p>
+                            
+                            <p style="margin:0 0 10px;">Here's what's changed:</p>
+                        </td>
+                    </tr>
+                    
+                    <!-- Feature List -->
+                    <tr>
+                        <td style="padding:0 40px 20px;">
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                <tr>
+                                    <td style="padding:10px 0; font-size:16px; color:#333; line-height:1.6;">
+                                        ✓ <strong>BRICK WEED IS BACK</strong> ($40/oz - nobody else has this)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:10px 0; font-size:16px; color:#333; line-height:1.6;">
+                                        ✓ <strong>Top-shelf premium flower</strong> (20%+ THCa)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:10px 0; font-size:16px; color:#333; line-height:1.6;">
+                                        ✓ <strong>Earn points = FREE WEED</strong> (10% back on every purchase)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:10px 0; font-size:16px; color:#333; line-height:1.6;">
+                                        ✓ <strong>Leave reviews = $5 off</strong> (every time)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:10px 0; font-size:16px; color:#333; line-height:1.6;">
+                                        ✓ <strong>Refer friends = $50 credit</strong> (when they buy)
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                    <!-- CTA Button -->
+                    <tr>
+                        <td style="padding:20px 40px; text-align:center;">
+                            <a href="https://reggieanddro.company.site/products?utm_source=email&utm_medium=launch&utm_campaign=texas-takeover" style="display:inline-block; padding:16px 40px; background-color:#2E7D32; color:#ffffff; text-decoration:none; font-size:18px; font-weight:700; border-radius:6px; text-transform:uppercase;">
+                                Shop The Takeover
+                            </a>
+                        </td>
+                    </tr>
+                    
+                    <!-- Launch Special Box -->
+                    <tr>
+                        <td style="padding:20px 40px;">
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color:#FFF3CD; border-left:4px solid:#FFC107; border-radius:4px;">
+                                <tr>
+                                    <td style="padding:20px;">
+                                        <h3 style="margin:0 0 10px; font-size:20px; font-weight:700; color:#856404;">
+                                            🎁 LAUNCH WEEK SPECIAL
+                                        </h3>
+                                        <p style="margin:0 0 10px; font-size:16px; color:#856404; line-height:1.5;">
+                                            <strong>First 100 orders get FREE SHIPPING</strong> (no minimum)
+                                        </p>
+                                        <p style="margin:0; font-size:16px; color:#856404; line-height:1.5;">
+                                            Plus: <strong>GMO Grapes is 25% off</strong> through Sunday.
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                    <!-- Secondary CTA -->
+                    <tr>
+                        <td style="padding:20px 40px; text-align:center;">
+                            <a href="https://reggieanddro.company.site/products?utm_source=email&utm_medium=launch&utm_campaign=texas-takeover" style="display:inline-block; padding:16px 40px; background-color:#1a1a1a; color:#ffffff; text-decoration:none; font-size:18px; font-weight:700; border-radius:6px; text-transform:uppercase;">
+                                Shop Now
+                            </a>
+                        </td>
+                    </tr>
+                    
+                    <!-- Customer Service -->
+                    <tr>
+                        <td style="padding:20px 40px; font-size:14px; color:#666; line-height:1.6; text-align:center;">
+                            <p style="margin:0 0 10px;">Questions? Text us: <a href="sms:+1234567890" style="color:#2E7D32; text-decoration:none;">+1 (XXX) XXX-XXXX</a></p>
+                        </td>
+                    </tr>
+                    
+                    <!-- Signature -->
+                    <tr>
+                        <td style="padding:20px 40px 40px; font-size:16px; color:#333; line-height:1.6;">
+                            <p style="margin:0 0 10px;">Grow baby grow,</p>
+                            <p style="margin:0;"><strong>Jesse & The Reggie & Dro Team</strong></p>
+                        </td>
+                    </tr>
+                    
+                    <!-- P.S. -->
+                    <tr>
+                        <td style="padding:0 40px 40px; font-size:14px; color:#666; line-height:1.6; border-top:1px solid #e0e0e0; padding-top:20px;">
+                            <p style="margin:0;"><em>P.S. We read every Google review. Your feedback built this new experience. Thank you for being part of Texas cannabis freedom. 🤘</em></p>
+                        </td>
+                    </tr>
+                    
+                    <!-- Footer -->
+                    <tr>
+                        <td style="padding:30px 40px; background-color:#f8f8f8; border-radius:0 0 8px 8px; text-align:center; font-size:12px; color:#999;">
+                            <p style="margin:0 0 10px;">
+                                <a href="https://reggieanddro.com" style="color:#2E7D32; text-decoration:none; margin:0 10px;">ReggieAndDro.com</a> |
+                                <a href="https://instagram.com/reggieanddro" style="color:#2E7D32; text-decoration:none; margin:0 10px;">Instagram</a> |
+                                <a href="https://facebook.com/reggieanddro" style="color:#2E7D32; text-decoration:none; margin:0 10px;">Facebook</a>
+                            </p>
+                            <p style="margin:0 0 10px;">
+                                Reggie & Dro<br>
+                                [Physical Address]<br>
+                                San Antonio, TX 78XXX
+                            </p>
+                            <p style="margin:0;">
+                                <a href="{{unsubscribe_url}}" style="color:#999; text-decoration:underline;">Unsubscribe</a> |
+                                <a href="{{preferences_url}}" style="color:#999; text-decoration:underline;">Update Preferences</a>
+                            </p>
+                            <p style="margin:10px 0 0; font-size:11px; color:#bbb;">
+                                This email was sent to {{email_address}} because you signed up for updates from Reggie & Dro.
+                            </p>
+                        </td>
+                    </tr>
+                    
+                </table>
+                
+            </td>
+        </tr>
+    </table>
+    
+</body>
+</html>
+```
+
+---
+
+## EMAIL 2: "SOCIAL PROOF + URGENCY" (Day 3)
+
+**Send Time:** Wednesday 11:00 AM CST  
+**Audience:** All subscribers who haven't purchased yet  
+**Subject Lines (A/B/C Test):**
+- A: "247+ Texas Reviews Can't Be Wrong"
+- B: "Why Everyone's Talking About GMO Grapes"
+- C: "72 Hours Left: Launch Week Deals End Sunday"
+
+**Preheader:** "Real Texans. Real reviews. Real legal weed."
+
+**Plain-Text Version (for deliverability):**
+
+```
+247+ TEXAS REVIEWS. 4.8 STARS. REAL PEOPLE. REAL WEED.
+
+Hi {{first_name}},
+
+Don't just take our word for it - here's what real Texas customers are saying:
+
+⭐⭐⭐⭐⭐ "This brick weed smokes better than the $60 eighths I used to buy."
+- Mike R., Dallas
+
+⭐⭐⭐⭐⭐ "Finally, a Texas shop that gets it. Fast shipping, fire flower."
+- Sarah K., Austin
+
+⭐⭐⭐⭐⭐ "Y'all earned a customer for life. That loyalty program is 🔥"
+- James T., San Antonio
+
+Read all 247+ reviews: https://reggieanddro.company.site
+
+---
+
+⏰ LAUNCH WEEK ENDS IN: 72 HOURS
+
+- Free shipping (first 100 orders) - 23 spots left
+- GMO Grapes 25% off - ends Sunday midnight
+- Double loyalty points this week only
+
+SHOP BEFORE IT'S GONE: https://reggieanddro.company.site/products
+
+---
+
+BEST SELLERS THIS WEEK:
+
+1. Brick Weed OG - $40/oz (value)
+https://reggieanddro.company.site/products/brick-weed-og
+
+2. GMO Grapes - 25% OFF (premium)
+https://reggieanddro.company.site/products/gmo-grapes
+
+3. Texas Special - NEW STRAIN (top shelf)
+https://reggieanddro.company.site/products/texas-special
+
+---
+
+Not sure where to start?
+Text us → +1 (XXX) XXX-XXXX - we'll help you find your perfect strain.
+
+Grow baby grow,
+The R&D Team
+
+---
+
+P.S. Leave a review after your first order = $5 off your next one. We reward honest feedback.
+
+---
+
+Reggie & Dro
+[Address]
+San Antonio, TX 78XXX
+
+Unsubscribe: {{unsubscribe_url}}
+Update Preferences: {{preferences_url}}
+```
+
+---
+
+## EMAIL 3: "REFERRAL ACTIVATION" (Day 5)
+
+**Send Time:** Friday 2:00 PM CST  
+**Audience:** Customers who purchased during launch week  
+**Subject Lines (A/B Test):**
+- A: "Get $50 - Share Texas Legal Weed with Friends"
+- B: "Your Friends Want What You Just Bought (Pay Them $50 to Share)"
+
+**Preheader:** "Refer unlimited friends. Earn unlimited credit. Seriously."
+
+**Text-Heavy Version (for engaged readers):**
+
+```
+YOU'VE TRIED IT. NOW SHARE IT. (And get paid.)
+
+Hi {{first_name}},
+
+Quick question: Know anyone in Texas who'd love legal weed?
+
+Refer them → They buy → You both get $50.
+
+GET YOUR REFERRAL LINK: https://reggieanddro.company.site/referrals
+
+---
+
+HOW IT WORKS:
+
+1. Click button above to get your unique link
+2. Share with friends (text, email, social - whatever)
+3. They buy = You get $50 credit + They get $10 off
+4. Repeat unlimited times (seriously, we want you to share)
+
+Current referrals: {{referral_count}} friends = ${{referral_earnings}} earned
+
+---
+
+TOP REFERRER THIS WEEK:
+Randy T. from Houston - 7 referrals = $350 credit 🏆
+
+Want to be next week's champion?
+
+SHARE YOUR LINK NOW: https://reggieanddro.company.site/referrals
+
+---
+
+P.S. Your loyalty points balance: {{loyalty_points}} points = ${{loyalty_value}} off next order.
+
+Reviews still earn you $5 each - got a minute?
+
+LEAVE A REVIEW: https://reggieanddro.company.site/reviews/{{order_id}}
+
+Questions? Text us: +1 (XXX) XXX-XXXX
+
+Grow baby grow,
+Jesse & The Reggie & Dro Team
+
+---
+
+Reggie & Dro
+[Address]
+San Antonio, TX 78XXX
+
+Unsubscribe: {{unsubscribe_url}}
+```
+
+---
+
+## EMAIL 4: "LAST CHANCE + SUBSCRIPTION TEASE" (Day 7 - Sunday Evening)
+
+**Send Time:** Sunday 5:00 PM CST  
+**Audience:** All subscribers  
+**Subject Lines (A/B Test):**
+- A: "⏰ Launch Week Ends Tonight - Plus a Sneak Peek"
+- B: "6 Hours Left + Something Big Is Coming"
+
+**Preheader:** "Free shipping ends midnight. Subscription waitlist opening soon."
+
+**Short-Form Version (urgency-focused):**
+
+```
+⏰ LAUNCH WEEK ENDS IN: 6 HOURS
+
+Hi {{first_name}},
+
+Last chance for:
+- Free shipping (no minimum)
+- 25% off GMO Grapes
+- Double loyalty points
+
+SHOP NOW (ENDS MIDNIGHT): https://reggieanddro.company.site/products
+
+---
+
+🔮 SNEAK PEEK: SOMETHING BIG IS COMING
+
+We're launching a subscription service next month:
+
+✓ Auto-ship your favorite strains
+✓ Never run out
+✓ Save 15% on every order
+✓ Exclusive subscriber-only strains
+✓ Priority shipping + support
+
+Want early access when we launch?
+
+YES - ADD ME TO THE WAITLIST: https://reggieanddro.company.site/subscription-waitlist
+
+---
+
+Questions? Text us: +1 (XXX) XXX-XXXX
+
+We ship within 24 hours (often same-day in San Antonio).
+
+Grow baby grow,
+Jesse & The Reggie & Dro Team
+
+---
+
+P.S. This is the last email about launch week. Regular programming resumes tomorrow with new strains, tips, and Texas cannabis freedom updates.
+
+---
+
+Reggie & Dro
+[Address]
+San Antonio, TX 78XXX
+
+Unsubscribe: {{unsubscribe_url}}
+```
+
+---
+
+## VERIFICATION REMINDER SEQUENCE
+
+### EMAIL 1: Immediate (15 Minutes After Order)
+
+**Subject:** "Action Required: Complete Your Reggie & Dro Order #{{order_id}}"
+
+```
+Hi {{first_name}},
+
+Thanks for your order! We're excited to get your Texas legal weed to you.
+
+⚠️ ONE QUICK STEP NEEDED:
+
+Your order requires {{verification_needed}}.
+
+COMPLETE VERIFICATION NOW: https://reggieanddro.company.site/verify/{{verification_token}}
+
+⏰ Complete within 72 hours or your order will be automatically refunded.
+
+---
+
+CURRENT STATUS:
+
+✓ Payment received: ${{order_total}}
+❌ Age/ID verification: PENDING
+{{#membership_needed}}❌ Membership agreement: PENDING{{/membership_needed}}
+
+---
+
+Your order details:
+{{#order_items}}
+- {{item_name}} ({{item_quantity}}x) - ${{item_price}}
+{{/order_items}}
+
+Subtotal: ${{subtotal}}
+Shipping: ${{shipping}}
+Total: ${{order_total}}
+
+---
+
+Questions? Text us: +1 (XXX) XXX-XXXX or reply to this email.
+
+We're here to help make this easy!
+
+Thanks,
+Liv Hana @ Reggie & Dro
+
+---
+
+Reggie & Dro
+[Address]
+San Antonio, TX 78XXX
+```
+
+### EMAIL 2: 24 Hours Later
+
+**Subject:** "⏰ 48 Hours Left - Complete Your Order #{{order_id}}"
+
+```
+Hi {{first_name}},
+
+Quick reminder: Your order ships as soon as you complete verification.
+
+COMPLETE NOW (2 MINUTES): https://reggieanddro.company.site/verify/{{verification_token}}
+
+⏰ 48 hours remaining before auto-refund.
+
+---
+
+We've got your order ready to ship:
+{{#order_items}}
+✓ {{item_name}} ({{item_quantity}}x)
+{{/order_items}}
+
+Don't miss out!
+
+---
+
+Need help? Text +1 (XXX) XXX-XXXX
+
+We're standing by to assist.
+
+Thanks,
+The R&D Team
+```
+
+### EMAIL 3: 48 Hours Later
+
+**Subject:** "⏰ FINAL REMINDER - 24 Hours to Complete Order #{{order_id}}"
+
+```
+Hi {{first_name}},
+
+This is your final reminder before your order is automatically refunded.
+
+COMPLETE VERIFICATION NOW - LAST CHANCE:
+https://reggieanddro.company.site/verify/{{verification_token}}
+
+⏰ 24 hours remaining.
+
+---
+
+Order #{{order_id}} - ${{order_total}}
+
+Your payment will be refunded if not completed by:
+{{auto_refund_datetime}}
+
+---
+
+Need help? Text +1 (XXX) XXX-XXXX - we're here to help!
+
+We understand verification can be a hassle - we're required by our banking partners to collect this info before we can ship. We make it as quick and easy as possible.
+
+Thanks,
+Reggie & Dro Team
+```
+
+### EMAIL 4: 72 Hours - Auto-Refund
+
+**Subject:** "Order #{{order_id}} Refunded - We'll Be Here When You're Ready"
+
+```
+Hi {{first_name}},
+
+Your order has been automatically refunded to {{payment_method}}.
+
+Refund amount: ${{order_total}}
+Processing time: 3-5 business days
+
+---
+
+We understand verification can be a hassle - we're required by our banking partners to collect this info before we can ship.
+
+Ready to try again? We'll save your cart:
+
+REORDER IN 1 CLICK: https://reggieanddro.company.site/reorder/{{order_id}}
+
+(This time, verification will be the first step - much smoother!)
+
+---
+
+Questions? Text +1 (XXX) XXX-XXXX anytime.
+
+We're always happy to help.
+
+Thanks,
+Reggie & Dro Team
+
+---
+
+P.S. Your account is still active and your loyalty points are waiting for you when you're ready.
+```
+
+---
+
+## REVIEW REQUEST EMAIL (7 Days Post-Delivery)
+
+**Subject:** "How's Your {{strain_name}}? Review = Free Weed"
+
+```
+Hi {{first_name}},
+
+Your {{strain_name}} should be settling in nicely by now. 
+
+How's it treating you?
+
+LEAVE A REVIEW - EARN 50 POINTS = $5 OFF:
+https://reggieanddro.company.site/reviews/{{order_id}}
+
+📸 Add a photo = DOUBLE POINTS (100 pts total)
+
+---
+
+Your honest feedback helps fellow Texans find their perfect strain.
+
+Plus, we use your reviews to improve our selection and service.
+
+Current Points Balance: {{loyalty_points}} points = ${{loyalty_value}} off next order
+
+---
+
+Not sure what to say? Here are some prompts:
+
+- How did it smoke? (harsh, smooth, flavorful?)
+- How did it make you feel? (relaxed, energized, creative?)
+- Was it worth the price?
+- Would you buy it again?
+
+---
+
+Thanks for being part of the Reggie & Dro family!
+
+Grow baby grow,
+The R&D Team
+
+P.S. If anything was wrong with your order, please text us first: +1 (XXX) XXX-XXXX
+We'll make it right immediately.
+```
+
+---
+
+## ABANDONED CART SEQUENCE
+
+### CART 1: 1 Hour After Abandonment
+
+**Subject:** "You Left Something Behind..."
+
+```
+Hi {{first_name}},
+
+Looks like you left some items in your cart:
+
+{{#cart_items}}
+- {{item_name}} ({{item_quantity}}x) - ${{item_price}}
+{{/cart_items}}
+
+Total: ${{cart_total}}
+
+COMPLETE YOUR ORDER: https://reggieanddro.company.site/cart/{{cart_token}}
+
+---
+
+Need help deciding? Text us: +1 (XXX) XXX-XXXX
+
+We're happy to answer questions about strains, shipping, or anything else.
+
+Thanks,
+Reggie & Dro Team
+```
+
+### CART 2: 24 Hours Later
+
+**Subject:** "Still Interested? Here's 10% Off"
+
+```
+Hi {{first_name}},
+
+We noticed you didn't complete your order yesterday.
+
+Here's 10% off to sweeten the deal:
+
+CODE: COMEBACK10
+
+{{#cart_items}}
+- {{item_name}} - ${{item_price}} → ${{discounted_price}}
+{{/cart_items}}
+
+New Total: ${{discounted_cart_total}}
+
+CLAIM YOUR DISCOUNT: https://reggieanddro.company.site/cart/{{cart_token}}?code=COMEBACK10
+
+⏰ Expires in 24 hours
+
+---
+
+Questions? Text +1 (XXX) XXX-XXXX
+
+Thanks,
+The R&D Team
+```
+
+### CART 3: 48 Hours Later (Final)
+
+**Subject:** "Last Chance: Your Cart Expires Soon"
+
+```
+Hi {{first_name}},
+
+Your cart (and 10% discount) expires in 4 hours:
+
+{{#cart_items}}
+- {{item_name}} - ${{discounted_price}}
+{{/cart_items}}
+
+CHECKOUT NOW: https://reggieanddro.company.site/cart/{{cart_token}}?code=COMEBACK10
+
+After this, your cart will be cleared and the discount will expire.
+
+---
+
+If you decided not to buy, no worries - but we'd love to know why:
+
+[ Reply with: Too expensive | Wrong strain | Unsure about legality | Other ]
+
+Your feedback helps us improve.
+
+Thanks,
+Reggie & Dro Team
+
+---
+
+P.S. If you completed this order already, please disregard this email.
+```
+
+---
+
+## PERSONALIZATION TOKENS REFERENCE
+
+**Standard Tokens (Available in All Platforms):**
+- `{{first_name}}` - Customer first name
+- `{{last_name}}` - Customer last name
+- `{{email_address}}` - Customer email
+- `{{unsubscribe_url}}` - One-click unsubscribe (required)
+- `{{preferences_url}}` - Preference center
+- `{{company_name}}` - "Reggie & Dro"
+- `{{company_address}}` - Physical address (required)
+
+**Custom Tokens (Require API Integration):**
+- `{{order_id}}` - Order number (e.g., "R&D123456")
+- `{{order_total}}` - Order total with currency (e.g., "$75.00")
+- `{{order_items}}` - Array of order items (requires loop)
+- `{{strain_name}}` - Product name
+- `{{loyalty_points}}` - Current points balance
+- `{{loyalty_value}}` - Dollar value of points
+- `{{referral_count}}` - Number of successful referrals
+- `{{referral_earnings}}` - Dollar amount earned from referrals
+- `{{cart_total}}` - Abandoned cart total
+- `{{cart_items}}` - Array of cart items
+- `{{verification_token}}` - Unique verification link token
+- `{{verification_needed}}` - What verification is required (e.g., "age verification and membership agreement")
+- `{{auto_refund_datetime}}` - Formatted date/time of auto-refund
+- `{{payment_method}}` - Last 4 of card (e.g., "Visa ending in 1234")
+
+---
+
+## EMAIL CAMPAIGN SETTINGS
+
+**SendGrid Configuration:**
+
+- **Sender:** noreply@reggieanddro.com  
+- **Reply-To:** support@reggieanddro.com  
+- **From Name:** "Reggie & Dro"  
+- **Unsubscribe Group:** "Marketing Emails"  
+- **Suppression Groups:** Bounces, Spam Reports, Unsubscribes  
+- **IP Pool:** Dedicated IP (if volume >100K emails/month)  
+- **DKIM/SPF:** Properly configured for domain  
+
+**Tracking:**
+- Open tracking: YES
+- Click tracking: YES
+- UTM parameters: Always include
+  - utm_source=email
+  - utm_medium=[campaign_name]
+  - utm_campaign=texas-takeover
+
+**A/B Testing:**
+- Test duration: 4 hours or 20% of list (whichever comes first)
+- Winning metric: Click rate (not open rate)
+- Confidence level: 95%
+
+**Send Time Optimization:**
+- Monday-Friday: 9-11 AM CST, 2-4 PM CST
+- Weekend: 10 AM - 2 PM CST
+- Avoid: Before 8 AM, after 8 PM
+
+---
+
+## COMPLIANCE CHECKLIST
+
+**CAN-SPAM Requirements:**
+- ✓ Physical address in footer
+- ✓ One-click unsubscribe link
+- ✓ Unsubscribe processed within 10 business days
+- ✓ Truthful subject lines (no deception)
+- ✓ Clear "this is an ad" if required
+
+**Cannabis Marketing Rules:**
+- ✓ No health/medical claims
+- ✓ Age-restricted audience (21+)
+- ✓ Compliant language (hemp, not marijuana)
+- ✓ Lab-tested, legal disclaimers when needed
+
+**Email Best Practices:**
+- ✓ Plain-text version included (accessibility + deliverability)
+- ✓ Mobile-responsive design
+- ✓ Alt text for all images
+- ✓ Readable without images (no image-only emails)
+- ✓ Spam score <5 (use Mail Tester)
+
+---
+
+## DEPLOYMENT CHECKLIST
+
+Before hitting send:
+
+1. ✓ Subject lines A/B tested (minimum 2 variants)
+2. ✓ All personalization tokens working (test with real data)
+3. ✓ Links tested (all CTAs clickable and correct)
+4. ✓ UTM parameters appended
+5. ✓ Unsubscribe link present and functional
+6. ✓ Physical address in footer
+7. ✓ Plain-text version included
+8. ✓ Mobile preview checked (iPhone + Android)
+9. ✓ Spam score checked (<5)
+10. ✓ Test email sent to team for approval
+11. ✓ Audience segment correct (no accidental sends)
+12. ✓ Send time scheduled (optimal for audience)
+
+---
+
+**Ready to deploy. Let's grow baby grow. 🚀**
+
+---
+
+Liv Hana AI EA  
+Memory Usage: 45% | Next Step: Load templates into SendGrid + schedule sends

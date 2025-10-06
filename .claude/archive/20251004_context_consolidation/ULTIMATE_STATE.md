@@ -1,10 +1,10 @@
-<!-- Optimized: 2025-10-02 -->
+<!-- Optimized: 2025-10-03 13:36 PDT -->
 <!-- RPM: 3.6.0.6.ops_technology_ship_status_documentation -->
-<!-- Session: Elephant Strategy Batch 1 -->
+<!-- Session: Tier-1 Cloud Cockpit Recovery -->
 
 # 🎯 ULTIMATE STATE SNAPSHOT
 
-**Updated:** October 02, 2025, 22:30 PM PDT
+**Updated:** October 03, 2025, 13:36 PM PDT
 **Purpose:** Ground truth for the repo and operations—everything here comes with live commands so nothing relies on memory.
 
 ---
@@ -21,53 +21,29 @@ This file never replaces proof; it only points you to what needs verification.
 
 ## 🧾 LIVE GIT STATUS (run before trusting)
 
-```
-# Working tree
- git status -sb
-## main...origin/main
- M .claude/NEXT_SESSION_BOOTSTRAP.md
- D .claude/NEXT_SESSION_BOOTSTRAP_V2.0.md
- M .claude/NEXT_SESSION_CRITICAL_MISSION.md
- M .claude/NUMERICAL_INDEX_SYSTEM_MEMORY.md
- M .claude/PERSISTENT_MEMORY.md
- M .claude/RPM_DNA_QUICK_REFERENCE.md
- M .claude/SESSION_PROGRESS.md
- M .claude/ULTIMATE_STATE.md
- M backend/common/validation/middleware.js
- M backend/common/validation/schemas.js
- M backend/common/validation/text.js
-?? .claude/LEARNING_LEDGER.md
-?? .claude/MANDATORY_BOOT_SEQUENCE.md
-?? .claude/archive/NEXT_SESSION_BOOTSTRAP_V2.0.md
-```
+1. `git status -sb` — expect `## main...origin/main` and confirm clean working tree before handoff.
+2. `git diff --stat` — review remaining edits; stage only after verification proof is logged.
+3. `git log --oneline -5` — treat legacy commit messages as hints only; inspect diffs before trusting.
 
-Actions:
-
-- Stage or revert intentionally modified files once verified.
-- Decide whether to keep or archive the new `.claude/*` files after review.
-
-```
-# Recent commits
-git log --oneline -5
-e9ddcaa 🦄 UNICORN RACE WIN - 2,190 FILES OPTIMIZED
-065f7cc 🚀 FULL REPO OPTIMIZATION COMPLETE: Python script processed 2,347 files
-888a6bc ✅ BATCH OPTIMIZER WORKING: integration-service complete
-b006dcd 📊 SESSION 1 PROGRESS: 450 files optimized, 9 sessions remaining
-772290e 🐘 ELEPHANT STRATEGY: Multi-session systematic optimization
-```
-
-Note: Do **not** trust commit messages without inspecting diffs; several claims need re-verification.
+⭐ **Action:** Capture start/end `git status` output in `.claude/SESSION_PROGRESS.md` each session.
 
 ---
 
 ## 🌐 SERVICE HEALTH CHECKS
 
 ```
-# Run on demand (do not assume running)
-echo "=== SERVICES ===" &&   curl -s http://localhost:4002/health 2>/dev/null || echo "reasoning-gateway DOWN" &&   curl -s http://localhost:3005/health 2>/dev/null || echo "integration-service DOWN" &&   curl -s http://localhost:4001/health 2>/dev/null || echo "voice-service DOWN"
+VOICE_URL=https://voice-service-<project>.run.app
+REASONING_URL=https://reasoning-gateway-<project>.run.app
+INTEGRATION_URL=https://integration-service-980910443251.us-central1.run.app
+
+curl -sS "$VOICE_URL/health/voice-mode" | jq
+curl -sS "$REASONING_URL/health" | jq
+curl -sS "$INTEGRATION_URL/health" | jq
 ```
 
-If any endpoint fails, log it in `SESSION_PROGRESS.md`, investigate (logs under `logs/`), and escalate per `.claude/HUMAN_IN_LOOP_WORKFLOW.md` if blocked >15 minutes.
+Record each command and output in `.claude/SESSION_PROGRESS.md`. Replace placeholder hostnames with active Cloud Run URLs before running.
+
+If any endpoint fails, log it, gather logs (`gcloud run services logs read <service>`), and escalate via `.claude/HUMAN_IN_LOOP_WORKFLOW.md`.
 
 ---
 

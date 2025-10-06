@@ -22,7 +22,9 @@ const EmpireDashboard = lazy(() => import('./components/EmpireDashboard'));
 const SquareRealProducts = lazy(() => import('./components/SquareRealProducts'));
 const SquareLiveCockpit = lazy(() => import('./components/SquareLiveCockpit'));
 const UltimateCockpit = lazy(() => import('./components/UltimateCockpit'));
+const TexasTakeoverMVP = lazy(() => import('./components/TexasTakeoverMVP'));
 const RPMVisioneeringDashboard = lazy(() => import('./components/RPMVisioneeringDashboard'));
+const LivHanaChatPanel = lazy(() => import('./components/LivHanaChatPanel'));
 
 // Loading Component
 const LoadingFallback = () => (
@@ -36,22 +38,22 @@ const LoadingFallback = () => (
       gap: 2,
     }}
   >
-    <CircularProgress size={60} sx={{ color: '#16A34A' }} />
+    <CircularProgress size={60} sx={{ color: '#DC2626' }} />
     <Box sx={{ color: '#94A3B8', fontSize: '0.875rem' }}>Loading component...</Box>
   </Box>
 );
 
-// Create Theme
+// Create Theme - Texas Takeover Colors
 const theme = createTheme({
   palette: {
     mode: 'dark',
     primary: {
-      main: '#16A34A',
-      light: '#4ADE80',
-      dark: '#15803D',
+      main: '#DC2626', // Texas Red
+      light: '#EF4444',
+      dark: '#B91C1C',
     },
     secondary: {
-      main: '#F59E0B',
+      main: '#F59E0B', // Texas Gold
       light: '#FCD34D',
       dark: '#D97706',
     },
@@ -146,6 +148,7 @@ function App() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [voiceModeActive, setVoiceModeActive] = useState(false);
   const [videoModeActive, setVideoModeActive] = useState(false);
+  const [chatPanelOpen, setChatPanelOpen] = useState(true); // Liv Hana Chat Panel
 
   // Handle voice mode toggle
   const toggleVoiceMode = () => {
@@ -159,6 +162,11 @@ function App() {
     setVoiceModeActive(false); // Disable voice when video is enabled
   };
 
+  // Handle chat panel toggle
+  const toggleChatPanel = () => {
+    setChatPanelOpen(!chatPanelOpen);
+  };
+
   return (
     <ErrorBoundary componentName="App Root">
       <AppProvider>
@@ -170,19 +178,22 @@ function App() {
               v7_relativeSplatPath: true
             }}
           >
-            <Box sx={{ display: 'flex', height: '100vh' }}>
-              {/* Header */}
-              <ErrorBoundary componentName="Header">
-                <Header
-                  sidebarOpen={sidebarOpen}
-                  setSidebarOpen={setSidebarOpen}
-                  voiceModeActive={voiceModeActive}
-                  videoModeActive={videoModeActive}
-                  toggleVoiceMode={toggleVoiceMode}
-                  toggleVideoMode={toggleVideoMode}
-                />
-              </ErrorBoundary>
+            {/* Header - fixed position */}
+            <ErrorBoundary componentName="Header">
+              <Header
+                sidebarOpen={sidebarOpen}
+                setSidebarOpen={setSidebarOpen}
+                voiceModeActive={voiceModeActive}
+                videoModeActive={videoModeActive}
+                chatPanelOpen={chatPanelOpen}
+                toggleVoiceMode={toggleVoiceMode}
+                toggleVideoMode={toggleVideoMode}
+                toggleChatPanel={toggleChatPanel}
+              />
+            </ErrorBoundary>
 
+            {/* Content area - flex container below header */}
+            <Box sx={{ display: 'flex', marginTop: '64px', height: 'calc(100vh - 64px)' }}>
               {/* Sidebar */}
               <ErrorBoundary componentName="Sidebar">
                 <Sidebar
@@ -196,19 +207,19 @@ function App() {
                 sx={{
                   flexGrow: 1,
                   p: 3,
-                  pt: '80px', // Account for fixed header height
                   background: 'linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%)',
                   overflow: 'auto',
                   transition: 'margin 0.3s ease',
-                  marginLeft: sidebarOpen ? 0 : '-240px',
-                  minHeight: '100vh',
+                  marginLeft: sidebarOpen ? 0 : '-280px',
+                  width: sidebarOpen ? 'calc(100% - 280px)' : '100%',
                 }}
               >
-                <Container maxWidth="xl" sx={{ mt: 2 }}>
+                <Container maxWidth="xl">
                   <ErrorBoundary componentName="Routes">
                     <Suspense fallback={<LoadingFallback />}>
                       <Routes>
-                        <Route path="/" element={<ErrorBoundary componentName="UltimateCockpit"><UltimateCockpit /></ErrorBoundary>} />
+                        <Route path="/" element={<ErrorBoundary componentName="TexasTakeoverMVP"><TexasTakeoverMVP /></ErrorBoundary>} />
+                        <Route path="/texas-takeover" element={<ErrorBoundary componentName="TexasTakeoverMVP"><TexasTakeoverMVP /></ErrorBoundary>} />
                         <Route path="/ultimate" element={<ErrorBoundary componentName="UltimateCockpit"><UltimateCockpit /></ErrorBoundary>} />
                         <Route path="/dashboard" element={<ErrorBoundary componentName="Dashboard"><Dashboard /></ErrorBoundary>} />
                         <Route path="/voice" element={<ErrorBoundary componentName="VoiceMode"><VoiceMode /></ErrorBoundary>} />
@@ -256,6 +267,16 @@ function App() {
                   </Suspense>
                 </ErrorBoundary>
               )}
+
+              {/* Liv Hana Chat Panel - Always accessible */}
+              <ErrorBoundary componentName="LivHanaChatPanel">
+                <Suspense fallback={null}>
+                  <LivHanaChatPanel
+                    open={chatPanelOpen}
+                    onClose={() => setChatPanelOpen(false)}
+                  />
+                </Suspense>
+              </ErrorBoundary>
             </Box>
           </Router>
         </ThemeProvider>

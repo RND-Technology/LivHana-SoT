@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import { createLogger } from '../../../common/logging/index.js';
+import { createLogger } from '../../common/logging/index.js';
 
 const logger = createLogger('sendgrid-client');
 

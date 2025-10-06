@@ -1,0 +1,261 @@
+# TERMS OF SERVICE - REGGIE & DRO
+## Premium Hemp. Zero Hassle. 100% Legal.
+
+**Last Updated:** October 4, 2025
+
+---
+
+## THE SLIPPERY SLOPE TO THE ROYAL ROAD OF RICHES
+
+Listen up, Texas. We're making it **STUPID EASY** to get the best legal hemp flower in the state. No forms. No barriers. No bullshit.
+
+### HOW IT WORKS (The Easy Way):
+
+1. **Browse & Buy** - See something you like? Add it to cart. That's it.
+2. **Checkout in 60 Seconds** - Pay and you're done. Order confirmed.
+3. **We Handle the Rest** - You've got 72 hours to verify your age. We'll send you an email with a simple link.
+
+That's it. **No upfront verification. No ID upload before checkout. No friction.**
+
+We verify AFTER you buy because we respect your time and want you to get what you need FAST.
+
+---
+
+## THE 72-HOUR GRACE PERIOD (Customer-Friendly AF)
+
+After you place your order, here's what happens:
+
+✅ **Order confirmed immediately** - Payment processed, order locked in
+✅ **Email sent with verification link** - Click, verify, done (2 minutes max)
+✅ **72 hours to complete** - That's 3 full days. No rush.
+✅ **Auto-refund if you don't verify** - No hard feelings. Full refund to your card.
+
+**Why 72 hours?** Because shit happens. You're busy. We get it. But Texas law requires age verification, so we give you plenty of time to make it happen.
+
+---
+
+## AGE VERIFICATION (Required by Law, Made Easy by Us)
+
+**You must be 21+ to purchase.** Period. No exceptions.
+
+By clicking "I Agree" on our age gate, you're confirming:
+
+1. You're 21 years or older
+2. You'll complete age verification within 72 hours of purchase
+3. You understand that failure to verify = automatic refund
+
+**Verification Methods:**
+- **Existing Members:** Already verified? You're good. Auto-approved.
+- **New Customers:** Click the link in your confirmation email. Takes 2 minutes.
+- **Veriff Integration:** Secure, biometric ID check. Bank-level security.
+
+**What Happens If You Don't Verify:**
+- Your order gets auto-refunded after 72 hours
+- Full refund to original payment method (3-5 business days)
+- No cancellation fee. No restocking fee. No bullshit.
+
+---
+
+## MEMBERSHIP (Optional, But You'd Be Crazy Not To)
+
+When you verify your age, we'll ask if you want to become a member. **It's free. It's instant. And it's worth it.**
+
+**Member Benefits:**
+- 🎁 **Free gram on first order** (for real, not a gimmick)
+- 💰 **Exclusive member pricing** (5-15% off retail)
+- 🌿 **Early access to new strains** (before we announce on social)
+- 🎂 **Birthday rewards** (we'll remember even if your friends don't)
+- 🚀 **Free product testing program** (get free samples, leave reviews)
+
+**Opt-In = Auto-Enrollment:**
+Check "Yes, make me a member" during verification and you're automatically enrolled in our loyalty program. No extra steps.
+
+**Opt-Out = Still Cool:**
+Don't want to be a member? No problem. You still get your order. You just miss out on the perks.
+
+---
+
+## PAYMENTS (Secure, Fast, No Sketchy Shit)
+
+We accept:
+- 💳 Credit/Debit Cards (Visa, Mastercard, Amex, Discover)
+- 🏦 ACH/Bank Transfer (via KAJA/Authorize.Net)
+- 📱 Digital Wallets (coming soon)
+
+**Payment Processing:**
+- All transactions processed via **KAJA Payments** (cannabis-friendly, PCI-compliant)
+- Your payment is captured immediately at checkout
+- If you don't verify within 72 hours, we auto-refund to your original payment method
+
+**No Hidden Fees:**
+- What you see at checkout is what you pay
+- Free shipping on orders $75+ (Texas only)
+- No "age verification fee" or other bullshit charges
+
+---
+
+## SHIPPING & DELIVERY (Fast AF)
+
+**Texas Only:** We ship to all legal addresses in Texas. No PO boxes.
+
+**Shipping Speed:**
+- 🚀 **Same-Day Pickup** (Austin location) - Order by 2pm, pick up by 5pm
+- 📦 **1-2 Day Delivery** (Texas) - Orders ship within 24 hours
+- 🎁 **Free Shipping** on orders $75+ (otherwise $10 flat rate)
+
+**What We Ship:**
+- Lab-tested hemp flower (≤0.3% Delta-9 THC)
+- Pre-rolls, edibles, beverages, accessories
+- COA (Certificate of Analysis) included with every order
+
+**Discreet Packaging:**
+- Plain boxes, no "WEED INSIDE" stickers (obviously)
+- Return address says "R&D Supply Co." (not "Reggie & Dro Weed Shop")
+
+---
+
+## RETURNS & REFUNDS (All Sales Final, With Exceptions)
+
+**Standard Policy: All Sales Final**
+
+Once you've received your order and it's been verified, **no returns or refunds**. Why? Because you can't return smoked flower. That's just common sense.
+
+**Exceptions (When We'll Refund You):**
+1. **You don't verify within 72 hours** - Auto-refund, no questions asked
+2. **Product defect or damage** - Email us with photos, we'll replace or refund
+3. **Wrong product shipped** - Our bad. We'll fix it.
+4. **Lab test shows >0.3% Delta-9 THC** - Full refund + we pull the batch
+
+**To Request Exception Refund:**
+- Email: high@reggieanddro.com
+- Include: Order number, photos, reason
+- Response time: 24-48 hours
+
+---
+
+## LEGAL COMPLIANCE (We're Legit, You Should Be Too)
+
+**Federal Law:**
+- All products comply with the **2018 Farm Bill**
+- All products contain ≤0.3% Delta-9 THC (lab tested)
+- All products derived from legal hemp (Cannabis sativa L.)
+
+**Texas Law:**
+- Licensed by Texas DSHS (#690)
+- All products legal for sale and possession in Texas
+- Age restriction: 21+ (enforced via post-purchase verification)
+
+**Your Responsibilities:**
+- Don't use our products for illegal purposes
+- Don't drive under the influence (duh)
+- Don't resell our products (we're the retailer, not you)
+- Don't make medical claims about our products (we don't either)
+
+**We Reserve the Right To:**
+- Refuse service to anyone (for any legal reason)
+- Cancel orders suspected of fraud or resale intent
+- Update these terms at any time (we'll notify you via email)
+
+---
+
+## PRIVACY & DATA (We Don't Sell Your Info)
+
+**What We Collect:**
+- Name, email, phone, address (for shipping)
+- Age verification data (ID scan via Veriff)
+- Payment info (processed by KAJA, not stored by us)
+- Order history, preferences, loyalty points
+
+**What We Do With It:**
+- Fulfill orders
+- Send you verification emails and order updates
+- Offer you member perks and promotions
+- Analyze trends to improve our products
+
+**What We DON'T Do:**
+- Sell your data to advertisers
+- Share your info with law enforcement (unless legally required)
+- Spam you with bullshit emails (you can unsubscribe anytime)
+
+---
+
+## LIMITATION OF LIABILITY (The Legal CYA Stuff)
+
+**Disclaimers:**
+- These products are not FDA-approved
+- These products are not intended to diagnose, treat, cure, or prevent any disease
+- Effects may vary by individual
+- Consult a doctor before use if you have medical conditions
+
+**Use at Your Own Risk:**
+- We're not responsible for misuse, overconsumption, or adverse reactions
+- We're not responsible for legal issues in states where hemp is restricted
+- We're not responsible for failed drug tests (hemp products may contain trace THC)
+
+**Maximum Liability:**
+If you have a legit complaint and we're at fault, our liability is capped at the price of your order. That's it. No million-dollar lawsuits for getting too high.
+
+---
+
+## CONTACT & SUPPORT
+
+**Got Questions? Hit Us Up:**
+- **Email:** high@reggieanddro.com
+- **Phone:** (512) XXX-XXXX (coming soon)
+- **Address:** [Austin Location Address]
+
+**Business Hours:**
+- Mon-Sat: 10am - 8pm CST
+- Sun: 12pm - 6pm CST
+
+**We're Humans, Not Bots:**
+Real people read your emails. Real people pack your orders. Real people care about your experience.
+
+---
+
+## TL;DR (Too Long, Didn't Read)
+
+1. You can buy now, verify later (72 hours)
+2. No age verification = auto-refund (no penalty)
+3. Become a member for free perks (optional)
+4. All products lab-tested, legal, and legit
+5. Fast shipping, discreet packaging, no bullshit
+6. All sales final (except defects/damage)
+7. We respect your privacy and time
+
+**Bottom Line:** We're making it easy to get the best legal hemp in Texas. Buy first, verify after. 72 hours to complete. Auto-refund if you don't. That's the slippery slope to the royal road of riches.
+
+---
+
+## ACCEPTANCE OF TERMS
+
+By using our website or making a purchase, you agree to these Terms of Service. If you don't agree, don't buy from us. Simple.
+
+**Updated:** October 4, 2025
+**Next Review:** January 1, 2026
+
+---
+
+**Reggie & Dro LLC**
+*Premium Hemp. Zero Hassle. 100% Legal.*
+*Come for the flower, stay for the good vibes.*
+
+---
+
+## CHANGELOG
+
+**October 4, 2025:**
+- Introduced 72-hour post-purchase verification system
+- Added auto-refund policy for unverified orders
+- Clarified membership auto-enrollment process
+- Rewrote entire document in plain English (slippery slope style)
+- Removed legal jargon, added personality
+
+**Previous Version (Legacy):**
+Standard boilerplate terms with upfront verification requirement. Updated to reflect new customer-first approach.
+
+---
+
+**🔥 TEXAS TAKEOVER 2025 🔥**
+
+*LivHana Trinity + Reggie & Dro = The Future of Hemp Retail*

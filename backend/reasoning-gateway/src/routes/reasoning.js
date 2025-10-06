@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import { randomUUID } from 'crypto';
-import { validateTextPayload } from '../../../common/validation/text.js';
-import { withRequestContext } from '../../../common/logging/context.js';
-import { streamJobEvents } from '../../../common/queue/stream.js';
+import { validateTextPayload } from '../../common/validation/text.js';
+import { withRequestContext } from '../../common/logging/context.js';
+import { streamJobEvents } from '../../common/queue/stream.js';
 
 export const createReasoningRouter = ({ logger, queue, queueEvents }) => {
   const router = Router();

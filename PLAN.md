@@ -1,0 +1,3 @@
+- [ ] Update Lightspeed client to use Vend X-Series base URL (`https://api.vendhq.com/api/2.0`) and normalize payloads
+- [ ] Rerun Brick Flower rename script with new client; log proof
+- [ ] Begin storefront content overhaul via Lightspeed API (hero copy, compliance text, receipts)

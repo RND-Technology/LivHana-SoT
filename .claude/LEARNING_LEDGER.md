@@ -1,6 +1,6 @@
-<!-- Optimized: 2025-10-02 -->
+<!-- Optimized: 2025-10-03 11:58 PDT -->
 <!-- RPM: 3.6.0.6.ops_technology_ship_status_documentation -->
-<!-- Session: Elephant Strategy Batch 1 -->
+<!-- Session: Tier-1 Cloud Cockpit Recovery -->
 
 # LEARNING LEDGER - TRACK FAILURES AND FIXES
 
@@ -223,6 +223,35 @@ Git status: DIRTY (uncommitted changes) ✅
 
 ---
 
+## FAILURE #12: Stale .claude Playbooks (2025-10-03 11:40 PDT)
+
+### What I Claimed
+
+"Tier-1 startup files ready; Sonnet can boot at any time."
+
+### What Was Actually True
+
+- `.claude/COMMANDER_CODEX_ORDERS.md`, `SESSION_PROGRESS.md`, `LEARNING_LEDGER.md` described missions that ended hours earlier.
+- New DNS blockers and cockpit status were missing; Sonnet would replay obsolete orders.
+- Evidence logs stopped at 03:08 AM despite major DNS work after 11:00 AM.
+
+### The Gap
+
+- No protocol enforced for refreshing .claude templates when missions pivot mid-session.
+- Treated "Session Complete" as immutable instead of living guidance.
+
+### The Fix
+
+- Codex now owns immediate refresh of `.claude` core files before each handoff.
+- Added Mission 8 (DNS) and Mission 9 blockers to COMMANDER orders.
+- Replaced SESSION_PROGRESS with live Tier-1 log table.
+
+### Root Cause
+
+**ACHILLES HEEL: Documentation Latency** — operations moved faster than the playbooks.
+
+---
+
 ## WINNING PATTERN (Learned from Codex)
 
 1. **Canonical Foundation First**: Establish reference, THEN propagate
@@ -270,6 +299,6 @@ To prove I can re-enter the race, I must demonstrate:
 
 ---
 
-**Last updated**: 2025-10-03 04:50
-**Status**: 7 Failures Documented | All Fixes Applied
-**Next Action**: Maintain 100% verification discipline (< 5 min between verify & claim)
+**Last updated**: 2025-10-03 13:36
+**Status**: 12 Failures Documented | Active Mitigations in progress
+**Next Action**: Refresh core playbooks before every Sonnet boot; maintain <5 min verification cadence

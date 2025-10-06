@@ -1,8 +1,8 @@
 import OpenAI from 'openai';
-import { withRequestContext } from '../../../common/logging/context.js';
-import { evaluateGuardrails } from '../../../common/guardrails/index.js';
-import { createMemoryStore } from '../../../common/memory/store.js';
-import { recordFeedback } from '../../../common/feedback/index.js';
+import { withRequestContext } from '../../common/logging/context.js';
+import { evaluateGuardrails } from '../../common/guardrails/index.js';
+import { createMemoryStore } from '../../common/memory/store.js';
+import { recordFeedback } from '../../common/feedback/index.js';
 import { enrichReasoningContext, learnFromReasoningResult } from '../memory_learning.js';
 
 const createDeepSeekClient = () => {

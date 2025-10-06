@@ -33,7 +33,7 @@ import {
   Refresh,
   TrendingUp,
   CheckCircle,
-  Target,
+  GpsFixed as Target,
   EmojiEvents,
   Psychology,
   BusinessCenter,

@@ -1,7 +1,7 @@
 import express from 'express';
 import { BigQuery } from '@google-cloud/bigquery';
 import { createClient } from 'redis';
-import { createLogger } from '../../common/logging/index.js';
+import { createLogger } from '../common/logging/index.js';
 
 const router = express.Router();
 const logger = createLogger('bigquery-live');
@@ -9,7 +9,7 @@ const logger = createLogger('bigquery-live');
 const PROJECT_ID = process.env.GCP_PROJECT_ID;
 const DATASET = process.env.BQ_DATASET || 'commerce';
 const LOCATION = process.env.BQ_LOCATION || 'US';
-const PAYMENTS_TABLE = process.env.BQ_TABLE_PAYMENTS || 'square_payments';
+const PAYMENTS_TABLE = process.env.BQ_TABLE_PAYMENTS || 'square_transactions';
 const ITEMS_TABLE = process.env.BQ_TABLE_ITEMS || 'square_items';
 const CACHE_TTL_MS = Number(process.env.BQ_CACHE_TTL_MS || 30_000);
 const CACHE_NAMESPACE = 'bigquery:cache:';
@@ -24,7 +24,24 @@ const bigQueryEnabled = Boolean(
 let client;
 if (bigQueryEnabled) {
   try {
-    client = new BigQuery({ projectId: PROJECT_ID });
+    // Handle service account key from Cloud Run secrets
+    let credentials = null;
+    if (process.env.GOOGLE_APPLICATION_CREDENTIALS) {
+      try {
+        // Try to parse as JSON first (Cloud Run secrets)
+        credentials = JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS);
+        logger.info('Using service account credentials from environment');
+      } catch (parseError) {
+        // Fall back to file path
+        credentials = process.env.GOOGLE_APPLICATION_CREDENTIALS;
+        logger.info('Using service account credentials from file path');
+      }
+    }
+    
+    client = new BigQuery({ 
+      projectId: PROJECT_ID,
+      credentials: credentials
+    });
     logger.info('BigQuery client initialised');
   } catch (error) {
     logger.error('Failed to initialise BigQuery client', error);
@@ -502,7 +519,7 @@ async function getProductData() {
 }
 
 // API Routes
-router.get('/api/bigquery/dashboard', async (req, res) => {
+router.get('/dashboard', async (req, res) => {
   try {
     const data = await getDashboardData();
     res.json({
@@ -518,7 +535,7 @@ router.get('/api/bigquery/dashboard', async (req, res) => {
   }
 });
 
-router.get('/api/bigquery/historical', async (req, res) => {
+router.get('/historical', async (req, res) => {
   try {
     const data = await getHistoricalData();
     res.json({
@@ -534,7 +551,7 @@ router.get('/api/bigquery/historical', async (req, res) => {
   }
 });
 
-router.get('/api/bigquery/products', async (req, res) => {
+router.get('/products', async (req, res) => {
   try {
     const data = await getProductData();
     res.json({
@@ -551,7 +568,7 @@ router.get('/api/bigquery/products', async (req, res) => {
 });
 
 // Cache statistics endpoint
-router.get('/api/bigquery/cache-stats', (req, res) => {
+router.get('/cache-stats', (req, res) => {
   const metrics = getCacheMetrics();
   res.json({
     status: 'operational',
