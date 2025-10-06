@@ -129,7 +129,7 @@ test.describe('Empire-Empire Visual Testing Suite', () => {
           fullPage: true
         });
       } catch (error) {
-        console.log(`Could not capture ${domain}: ${error.message}`);
+        console.log(`Could not capture ${domain}: ${error instanceof Error ? error.message : 'Unknown error'}`);
       } finally {
         await newPage.close();
       }

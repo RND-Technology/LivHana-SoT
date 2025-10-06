@@ -23,8 +23,7 @@
     }
   },
   "include": [
-    "*.ts",
-    "*.tsx"
+    "1.rnd/6.technology/1.6.2.1_empire-visual-spec_20251006.ts"
   ],
   "exclude": [
     "node_modules",
