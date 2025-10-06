@@ -1,0 +1,82 @@
+# Monitoring Configuration Template
+# Copy relevant sections to your service .env file
+
+# ====================
+# New Relic APM
+# ====================
+NEW_RELIC_LICENSE_KEY=your_license_key_here
+NEW_RELIC_APP_NAME=LivHana-Your-Service-Name
+NEW_RELIC_LOG_LEVEL=info
+# Optional: Enable distributed tracing
+NEW_RELIC_DISTRIBUTED_TRACING_ENABLED=true
+# Optional: Custom attributes
+NEW_RELIC_LABELS=environment:production;datacenter:us-west
+
+# ====================
+# Sentry Error Tracking
+# ====================
+SENTRY_DSN=https://your-key@o123456.ingest.us.sentry.io/789
+SENTRY_ENVIRONMENT=production
+SENTRY_RELEASE=${GIT_COMMIT}
+# Sample rate for performance monitoring (0.0 to 1.0)
+SENTRY_TRACES_SAMPLE_RATE=0.1
+# Sample rate for profiling (0.0 to 1.0)
+SENTRY_PROFILES_SAMPLE_RATE=0.1
+# Enable debug mode (development only)
+SENTRY_DEBUG=false
+
+# ====================
+# Logging
+# ====================
+LOG_LEVEL=info
+# Use JSON format in production, pretty format in development
+LOG_FORMAT=json
+# Enable request ID correlation
+ENABLE_REQUEST_ID=true
+
+# ====================
+# Prometheus Metrics
+# ====================
+# Metrics are automatically exposed at /metrics endpoint
+# No additional configuration needed
+
+# ====================
+# Performance Monitoring
+# ====================
+# Enable detailed performance tracking
+ENABLE_PERFORMANCE_MONITORING=true
+# Performance alert thresholds (milliseconds)
+PERFORMANCE_THRESHOLD_API=1000
+PERFORMANCE_THRESHOLD_DB=500
+PERFORMANCE_THRESHOLD_JOB=5000
+PERFORMANCE_THRESHOLD_EXTERNAL_API=2000
+
+# ====================
+# Health Checks
+# ====================
+# Health check configuration
+HEALTH_CHECK_TIMEOUT=5000
+HEALTH_CHECK_RETRIES=3
+
+# ====================
+# Alert Configuration
+# ====================
+# Webhook URL for custom alerts (optional)
+ALERT_WEBHOOK_URL=https://your-webhook-url.com/alerts
+# Slack webhook for alerts (optional)
+SLACK_WEBHOOK_URL=https://hooks.slack.com/services/YOUR/WEBHOOK/URL
+
+# ====================
+# Git Commit (for release tracking)
+# ====================
+# Set this in CI/CD pipeline
+GIT_COMMIT=$(git rev-parse HEAD)
+GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+# ====================
+# Cost Limits (optional)
+# ====================
+# Maximum data ingest per month (GB)
+NEW_RELIC_DATA_LIMIT_GB=100
+# Maximum errors per month
+SENTRY_ERROR_LIMIT=50000

@@ -1,9 +1,11 @@
-# 🔥 LivHana-SoT - TIER-1 CANNABIS AI PLATFORM
+# 🔥 LivHana-SoT - TIER-1 CANNABIS AI PLATFORM + FINANCE LAYER UNLOCKED
+## Sovereign Life OS Master Monday Edition
 
 ![Status](https://img.shields.io/badge/Status-OPERATIONAL-green)
 ![Services](https://img.shields.io/badge/Services-7%2F7-brightgreen)
 ![Tests](https://img.shields.io/badge/Tests-100%25-success)
 ![Compliance](https://img.shields.io/badge/Compliance-100%25-blue)
+![Finance](https://img.shields.io/badge/Finance-LAYER_UNLOCKED-gold)
 
 ## 🎯 MISSION CRITICAL
 
@@ -13,6 +15,7 @@ Built with Marine Corps precision by **Jesse Niesen** (USMC Veteran), CEO of **R
 
 ### 🔥 TIER-1 FEATURES
 
+- **Finance Layer**: Sovereign Life OS with personal finance automation (Jesse pilot)
 - **Voice AI**: Real-time voice commands via ElevenLabs v3
 - **Intelligent Reasoning**: DeepSeek 33B local LLM with autonomous decision-making
 - **AI Memory System**: Learns from every interaction, predicts customer behavior
