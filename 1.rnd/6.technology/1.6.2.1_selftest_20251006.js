@@ -46,7 +46,7 @@ router.get('/__selftest', async (req, res) => {
     if (!veriff.apiKey) {
       results.veriff = {
         status: 'blocker',
-        message: 'VERIFF_API_KEY not configured',
+[REDACTED - SECURITY BREACH]
         critical: true
       };
     } else {

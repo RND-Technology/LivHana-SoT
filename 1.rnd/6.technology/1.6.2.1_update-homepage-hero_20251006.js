@@ -13,7 +13,7 @@ const logger = {
   debug: (msg, meta) => {} // silent
 };
 
-const PERSONAL_TOKEN = process.env.LIGHTSPEED_API_KEY;
+[REDACTED - SECURITY BREACH]
 const API_BASE = 'https://reggieanddro.vendhq.com/api/2.0';
 const WRITE_API_BASE = 'https://reggieanddro.retail.lightspeed.app/api/2.1';
 

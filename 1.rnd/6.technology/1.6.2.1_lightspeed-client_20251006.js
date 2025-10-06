@@ -11,7 +11,7 @@ const logger = createLogger('lightspeed-client');
 class LightspeedClient {
   constructor(options = {}) {
     // X-Series Personal Token (lsxs_pt_*)
-    this.personalToken = options.personalToken || process.env.LIGHTSPEED_API_KEY || process.env.LIGHTSPEED_CLIENT_ID;
+[REDACTED - SECURITY BREACH]
 
     // API base URL for X-Series
     // For reads: Use vendhq.com/api/2.0
@@ -28,7 +28,7 @@ class LightspeedClient {
     this.configured = !!this.personalToken;
 
     if (!this.configured) {
-      logger.warn('LIGHTSPEED_API_KEY (Personal Token) is required');
+[REDACTED - SECURITY BREACH]
     } else {
       logger.info('LightSpeed X-Series client initialized (Vend API)', {
         apiBase: this.apiBase,

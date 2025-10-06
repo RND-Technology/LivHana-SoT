@@ -223,7 +223,7 @@ spec:
             secretKeyRef:
               name: db-password
               key: latest
-        - name: VERIFF_API_KEY
+[REDACTED - SECURITY BREACH]
           valueFrom:
             secretKeyRef:
               name: veriff-api-key
@@ -248,7 +248,7 @@ spec:
             secretKeyRef:
               name: kaja-api-secret
               key: latest
-        - name: LIGHTSPEED_API_KEY
+[REDACTED - SECURITY BREACH]
           valueFrom:
             secretKeyRef:
               name: lightspeed-api-key

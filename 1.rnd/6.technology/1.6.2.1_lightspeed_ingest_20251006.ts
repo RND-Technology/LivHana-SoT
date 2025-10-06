@@ -4,13 +4,13 @@ import bigqueryPkg from '@google-cloud/bigquery';
 
 const { BigQuery } = bigqueryPkg;
 
-const LIGHTSPEED_API_KEY = process.env.KAJA_API_KEY || process.env.LIGHTSPEED_API_KEY;
+[REDACTED - SECURITY BREACH]
 const LIGHTSPEED_ACCOUNT_ID = process.env.KAJA_GATEWAY_ID || process.env.LIGHTSPEED_ACCOUNT_ID;
 const BIGQUERY_DATASET = process.env.BQ_DATASET ?? 'commerce';
 const BIGQUERY_TABLE = process.env.BQ_LIGHTSPEED_TABLE ?? 'lightspeed_inventory';
 
-if (!LIGHTSPEED_API_KEY || !LIGHTSPEED_ACCOUNT_ID) {
-  throw new Error('Missing Lightspeed credentials (LIGHTSPEED_API_KEY, LIGHTSPEED_ACCOUNT_ID)');
+[REDACTED - SECURITY BREACH]
+[REDACTED - SECURITY BREACH]
 }
 
 const bigquery = new BigQuery();
@@ -29,7 +29,7 @@ const fetchItems = async () => {
         load_relations: 'ItemShops,ItemECommerce,Category,ItemPrices',
       },
       headers: {
-        Authorization: `Bearer ${LIGHTSPEED_API_KEY}`,
+[REDACTED - SECURITY BREACH]
         Accept: 'application/json',
       },
     });

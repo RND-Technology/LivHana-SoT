@@ -9,7 +9,7 @@ const DATASET = process.env.BQ_DATASET || 'analytics';
 const bigquery = new BigQuery({ projectId: PROJECT_ID });
 
 // Lightspeed setup
-const LIGHTSPEED_API_KEY = process.env.LIGHTSPEED_API_KEY;
+[REDACTED - SECURITY BREACH]
 const LIGHTSPEED_REFRESH_TOKEN = process.env.LIGHTSPEED_REFRESH_TOKEN;
 const LIGHTSPEED_CLIENT_ID = process.env.LIGHTSPEED_CLIENT_ID;
 const LIGHTSPEED_CLIENT_SECRET = process.env.LIGHTSPEED_CLIENT_SECRET;
@@ -18,7 +18,7 @@ const LIGHTSPEED_API_BASE = process.env.LIGHTSPEED_API_BASE || 'https://api.ligh
 const USE_MOCK_DATA = process.env.LIGHTSPEED_USE_MOCK || 'true'; // Default to mock until real credentials are set
 
 // Check if we have valid credentials
-const hasValidAuth = (LIGHTSPEED_API_KEY || (LIGHTSPEED_CLIENT_SECRET && LIGHTSPEED_REFRESH_TOKEN));
+[REDACTED - SECURITY BREACH]
 
 if (!LIGHTSPEED_ACCOUNT_ID) {
   console.error('❌ LIGHTSPEED_ACCOUNT_ID not found in environment');
@@ -28,7 +28,7 @@ if (!LIGHTSPEED_ACCOUNT_ID) {
 if (!hasValidAuth && USE_MOCK_DATA !== 'true') {
   console.error('❌ Lightspeed authentication not configured');
   console.error('   Need one of:');
-  console.error('   - LIGHTSPEED_API_KEY (for Basic Auth)');
+[REDACTED - SECURITY BREACH]
   console.error('   - LIGHTSPEED_CLIENT_SECRET + LIGHTSPEED_REFRESH_TOKEN (for OAuth2)');
   console.error('   Or set LIGHTSPEED_USE_MOCK=true to use mock data for testing');
   process.exit(1);
@@ -38,9 +38,9 @@ let lightspeedAccessToken = null;
 
 // OAuth2 authentication with refresh token
 async function authenticate() {
-  if (LIGHTSPEED_API_KEY) {
+[REDACTED - SECURITY BREACH]
     console.log('🔐 Using API Key authentication');
-    return LIGHTSPEED_API_KEY;
+[REDACTED - SECURITY BREACH]
   }
 
   if (LIGHTSPEED_CLIENT_SECRET && LIGHTSPEED_REFRESH_TOKEN) {
@@ -73,8 +73,8 @@ async function authenticate() {
 
 // Create Lightspeed API client
 function createLightspeedClient() {
-  const authHeader = LIGHTSPEED_API_KEY
-    ? `Basic ${Buffer.from(`${LIGHTSPEED_API_KEY}:apikey`).toString('base64')}`
+[REDACTED - SECURITY BREACH]
+[REDACTED - SECURITY BREACH]
     : `Bearer ${lightspeedAccessToken}`;
 
   return axios.create({

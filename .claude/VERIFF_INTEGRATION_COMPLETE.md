@@ -72,7 +72,7 @@ GET    /api/v1/veriff/decision/:id      # Get decision details (debug)
 
 **Secrets Uploaded:**
 ```
-VERIFF_API_KEY=05106e32-c632-4674-95e4-433bd1053db1
+[REDACTED - SECURITY BREACH]
 VERIFF_SECRET_KEY=b95e9b8e-0820-4946-9913-1f72577c92b8
 VERIFF_BASE_URL=https://stationapi.veriff.com
 ```
@@ -87,10 +87,10 @@ cd ~/LivHana-Trinity-Local/LivHana-SoT
 
 ## 📋 CREDENTIALS (VERIFIED IN 1PASSWORD)
 
-### ✅ VERIFF_API_KEY
+[REDACTED - SECURITY BREACH]
 - **Value:** `05106e32-c632-4674-95e4-433bd1053db1`
 - **Used for:** API authentication (X-AUTH-CLIENT header)
-- **1Password:** `op://LivHana-Ops-Keys/VERIFF_API_KEY/credential`
+[REDACTED - SECURITY BREACH]
 
 ### ✅ VERIFF_SECRET_KEY
 - **Value:** `b95e9b8e-0820-4946-9913-1f72577c92b8`
@@ -114,7 +114,7 @@ cd ~/LivHana-Trinity-Local/LivHana-SoT
 
 **Expected Output:**
 ```
-✅ VERIFF_API_KEY uploaded
+[REDACTED - SECURITY BREACH]
 ✅ VERIFF_SECRET_KEY uploaded
 ✅ VERIFF_BASE_URL uploaded
 ```
@@ -140,7 +140,7 @@ gcloud run deploy integration-service \
   --project=reggieanddrodispensary \
   --region=us-central1 \
   --image=us-central1-docker.pkg.dev/reggieanddrodispensary/backend/integration-service:latest \
-  --set-secrets="VERIFF_API_KEY=VERIFF_API_KEY:latest,VERIFF_SECRET_KEY=VERIFF_SECRET_KEY:latest,VERIFF_BASE_URL=VERIFF_BASE_URL:latest" \
+[REDACTED - SECURITY BREACH]
   --memory=1Gi \
   --cpu=1 \
   --timeout=60 \
@@ -350,10 +350,10 @@ scripts/upload-veriff-secrets.sh                                (100 lines) ✅
 
 ## 🎯 ANSWER TO YOUR QUESTION
 
-**Q: "VERIFF_API_KEY is in op, do you also need base url and secret key?"**
+[REDACTED - SECURITY BREACH]
 
 **A: YES, ALL THREE:**
-- ✅ VERIFF_API_KEY (found: `05106e32...`)
+[REDACTED - SECURITY BREACH]
 - ✅ VERIFF_SECRET_KEY (found: `b95e9b8e...`)
 - ✅ VERIFF_BASE_URL (hardcoded: `https://stationapi.veriff.com`)
 
