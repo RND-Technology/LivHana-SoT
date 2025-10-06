@@ -4,9 +4,9 @@ import cors from 'cors';
 import helmet from 'helmet';
 import pino from 'pino';
 import { Queue, QueueEvents, Worker } from 'bullmq';
-import { authMiddleware } from '../../common/auth/middleware.js';
-import { requestLogger, errorLogger } from '../../common/logging/logger.js';
-import { ensureRedisEnv, createQueueOptions } from '../../common/queue/index.js';
+import { authMiddleware } from '../common/auth/middleware.js';
+import { requestLogger, errorLogger } from '../common/logging/logger.js';
+import { ensureRedisEnv, createQueueOptions } from '../common/queue/index.js';
 import { createReasoningRouter } from './routes/reasoning.js';
 import { createMemoryRouter } from './routes/memory.js';
 import { createAutonomousRouter } from './routes/autonomous.js';
@@ -17,11 +17,16 @@ import {
   createTieredRateLimiter,
   createHealthCheckLimiter,
   createMonitoringRoutes
-} from '../../common/rate-limit/index.mjs';
+} from '../common/rate-limit/index.mjs';
 
 const logger = pino({ level: process.env.LOG_LEVEL ?? 'info' });
 
-ensureRedisEnv({ logger });
+// In SAFE_MODE, skip Redis initialization
+if (process.env.SAFE_MODE === 'true') {
+  logger.warn('Reasoning Gateway running in SAFE_MODE - Redis disabled');
+} else {
+  ensureRedisEnv({ logger });
+}
 
 const app = express();
 
@@ -29,41 +34,56 @@ const app = express();
 let rateLimitMiddleware = null;
 let healthRateLimitMiddleware = null;
 
-(async () => {
-  try {
-    const redisClient = await createRedisClient({ logger });
+if (process.env.SAFE_MODE !== 'true') {
+  (async () => {
+    try {
+      const redisClient = await createRedisClient({ logger });
 
-    // Create tiered rate limiter for API routes
-    rateLimitMiddleware = createTieredRateLimiter({
-      redisClient,
-      logger,
-      serviceName: 'reasoning-gateway'
-    });
+      // Create tiered rate limiter for API routes
+      rateLimitMiddleware = createTieredRateLimiter({
+        redisClient,
+        logger,
+        serviceName: 'reasoning-gateway'
+      });
 
-    // Create rate limiter for health checks
-    healthRateLimitMiddleware = createHealthCheckLimiter({
-      redisClient,
-      logger,
-      serviceName: 'reasoning-gateway'
-    });
+      // Create rate limiter for health checks
+      healthRateLimitMiddleware = createHealthCheckLimiter({
+        redisClient,
+        logger,
+        serviceName: 'reasoning-gateway'
+      });
 
-    logger.info('Rate limiting initialized successfully');
-  } catch (error) {
-    logger.error({ error: error.message }, 'Failed to initialize rate limiting - continuing without it');
-  }
-})();
+      logger.info('Rate limiting initialized successfully');
+    } catch (error) {
+      logger.error({ error: error.message }, 'Failed to initialize rate limiting - continuing without it');
+    }
+  })();
+} else {
+  logger.warn('SAFE_MODE: Rate limiting disabled');
+}
 
 app.use(helmet());
 app.use(cors({ origin: process.env.ALLOWED_ORIGINS?.split(',').map((origin) => origin.trim()) ?? '*', credentials: true }));
 app.use(express.json({ limit: '1mb' }));
 app.use(requestLogger(logger));
 
-const queueName = process.env.REASONING_QUEUE_NAME ?? 'voice-mode-reasoning-jobs';
-const queueOptions = createQueueOptions();
+// Initialize queues and workers
+let reasoningQueue = null;
+let queueEvents = null;
+let reasoningWorker = null;
 
-const reasoningQueue = new Queue(queueName, queueOptions);
-const queueEvents = new QueueEvents(queueName, queueOptions);
-const reasoningWorker = new Worker(queueName, createDeepSeekWorkerProcessor({ logger }), queueOptions);
+if (process.env.SAFE_MODE !== 'true') {
+  const queueName = process.env.REASONING_QUEUE_NAME ?? 'voice-mode-reasoning-jobs';
+  const queueOptions = createQueueOptions();
+
+  reasoningQueue = new Queue(queueName, queueOptions);
+  queueEvents = new QueueEvents(queueName, queueOptions);
+  reasoningWorker = new Worker(queueName, createDeepSeekWorkerProcessor({ logger }), queueOptions);
+  
+  logger.info('Reasoning queue and worker initialized');
+} else {
+  logger.warn('SAFE_MODE: Reasoning queue and worker disabled');
+}
 
 // Health endpoints with lenient rate limiting
 app.get('/healthz', (req, res, next) => {
@@ -81,7 +101,12 @@ app.get('/health', (req, res, next) => {
   }
   next();
 }, (_req, res) => {
-  res.status(200).json({ status: 'healthy', service: 'reasoning-gateway', queue: queueName });
+  res.status(200).json({ 
+    status: 'healthy', 
+    service: 'reasoning-gateway', 
+    queue: process.env.SAFE_MODE === 'true' ? 'disabled' : (process.env.REASONING_QUEUE_NAME ?? 'voice-mode-reasoning-jobs'),
+    safeMode: process.env.SAFE_MODE === 'true'
+  });
 });
 
 // Apply rate limiting to all API routes
@@ -111,31 +136,41 @@ if (process.env.ENABLE_SELF_IMPROVEMENT === 'true') {
     });
 }
 
-// API endpoints WITH authentication enabled
-app.use('/api/reasoning', authMiddleware({ logger }), createReasoningRouter({ logger, queue: reasoningQueue, queueEvents }));
-app.use('/api/memory', authMiddleware({ logger }), createMemoryRouter({ logger }));
-app.use('/api/autonomous', authMiddleware({ logger }), createAutonomousRouter({ logger, queue: reasoningQueue }));
+// API endpoints WITHOUT authentication (for now - add back later with login system)
+app.use('/api/reasoning', createReasoningRouter({ logger, queue: reasoningQueue, queueEvents }));
+app.use('/api/memory', createMemoryRouter({ logger }));
+app.use('/api/autonomous', createAutonomousRouter({ logger, queue: reasoningQueue }));
 app.use(errorLogger(logger));
 
 const port = Number(process.env.PORT ?? 4002);
 app.listen(port, () => {
-  logger.info({ port, queueName }, 'reasoning-gateway listening');
+  logger.info({ 
+    port, 
+    queueName: process.env.SAFE_MODE === 'true' ? 'disabled' : (process.env.REASONING_QUEUE_NAME ?? 'voice-mode-reasoning-jobs'),
+    safeMode: process.env.SAFE_MODE === 'true'
+  }, 'reasoning-gateway listening');
 });
 
-reasoningWorker.on('failed', (job, error) => {
-  logger.error({ jobId: job.id, error: error.message }, 'reasoning job failed');
-});
+if (reasoningWorker) {
+  reasoningWorker.on('failed', (job, error) => {
+    logger.error({ jobId: job.id, error: error.message }, 'reasoning job failed');
+  });
 
-reasoningWorker.on('completed', (job) => {
-  logger.info({ jobId: job.id }, 'reasoning job completed');
-});
+  reasoningWorker.on('completed', (job) => {
+    logger.info({ jobId: job.id }, 'reasoning job completed');
+  });
+}
 
 // Graceful shutdown
 process.on('SIGTERM', async () => {
   logger.info('SIGTERM received, shutting down gracefully');
 
-  await reasoningWorker.close();
-  await reasoningQueue.close();
+  if (reasoningWorker) {
+    await reasoningWorker.close();
+  }
+  if (reasoningQueue) {
+    await reasoningQueue.close();
+  }
 
   if (improvementLoop) {
     await improvementLoop.shutdown();

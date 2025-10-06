@@ -4,7 +4,7 @@
  */
 
 import { Router } from 'express';
-import { metricsHandler } from '../../../common/monitoring/prometheus.js';
+import { metricsHandler } from '../../common/monitoring/prometheus.js';
 
 function createHealthRoutes(options = {}) {
   const {

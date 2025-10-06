@@ -1,5 +1,5 @@
 import express from 'express';
-import { createLogger } from '../../../common/logging/index.js';
+import { createLogger } from '../../common/logging/index.js';
 import LightspeedClient from '../lib/lightspeed-client.js';
 import { getSendGridClient } from '../lib/sendgrid-client.js';
 import { getKAJARefundClient } from '../lib/kaja-refund-client.js';
@@ -34,8 +34,9 @@ const logger = createLogger('post-purchase-verification');
  * - Auto-refund if not verified (legal compliance)
  */
 
-// In-memory order tracking (replace with Redis/BigQuery in production)
-const pendingVerifications = new Map();
+// Durable state management (replaces in-memory Map)
+import durableState from '../lib/durable-state.js';
+import cloudTasks from '../lib/cloud-tasks.js';
 
 // Initialize LightSpeed client
 let lightspeedClient = null;
@@ -74,6 +75,19 @@ router.post('/webhook', async (req, res) => {
 
   try {
     const { event, orderId, customerId, customerEmail, orderTotal, createdAt } = req.body;
+    
+    // Check idempotency - prevent duplicate processing
+    const eventId = `${event}-${orderId}`;
+    const provider = 'lightspeed';
+    
+    if (await durableState.isWebhookProcessed(eventId, provider)) {
+      logger.info('Webhook already processed (idempotent)', { eventId, provider });
+      return res.status(200).json({
+        success: true,
+        idempotent: true,
+        message: 'Event already processed'
+      });
+    }
 
     // Validate webhook event
     if (event !== 'order.created') {
@@ -100,7 +114,7 @@ router.post('/webhook', async (req, res) => {
     const deadline = Date.now() + (72 * 60 * 60 * 1000); // 72 hours from now
     const deadlineISO = new Date(deadline).toISOString();
 
-    // Store pending verification
+    // Store pending verification in durable storage
     const verificationRecord = {
       orderId,
       customerId,
@@ -115,7 +129,29 @@ router.post('/webhook', async (req, res) => {
       ageVerified: false
     };
 
-    pendingVerifications.set(orderId, verificationRecord);
+    await durableState.setVerificationSession(orderId, verificationRecord);
+    
+    // Schedule 72-hour countdown timer with Cloud Tasks
+    const taskName = await cloudTasks.scheduleCountdownTimer(orderId, customerEmail, {
+      orderId,
+      customerId,
+      orderTotal,
+      deadline: deadlineISO
+    });
+    
+    // Store task reference for cancellation if needed
+    await durableState.createCountdownTimer(orderId, 'verification-timeout', deadlineISO, taskName);
+
+    // Mark webhook as processed for idempotency
+    await durableState.markWebhookProcessed(eventId, provider, event, req.body);
+    
+    // Log event for BigQuery
+    await durableState.logEvent('lightspeed_webhook', orderId, customerId, {
+      event,
+      orderTotal,
+      customerEmail,
+      processedAt: new Date().toISOString()
+    });
 
     logger.info('✅ Verification timer started', {
       orderId,
@@ -246,7 +282,7 @@ router.post('/verify', async (req, res) => {
     });
 
     // Check if order exists in pending verifications
-    const verificationRecord = pendingVerifications.get(orderId);
+    const verificationRecord = await durableState.getVerificationSession(orderId);
 
     if (!verificationRecord) {
       logger.warn('Order not found in pending verifications', { orderId });
@@ -278,15 +314,18 @@ router.post('/verify', async (req, res) => {
       });
     }
 
-    // Update verification status
-    verificationRecord.ageVerified = ageVerified;
-    verificationRecord.membershipOptIn = membershipOptIn;
-    verificationRecord.verificationMethod = verificationMethod;
-    verificationRecord.verifiedAt = new Date().toISOString();
-    verificationRecord.status = 'verified';
-    verificationRecord.verificationAttempts += 1;
+    // Update verification status in durable storage
+    const updatedRecord = {
+      ...verificationRecord,
+      ageVerified: ageVerified,
+      membershipOptIn: membershipOptIn,
+      verificationMethod: verificationMethod,
+      verifiedAt: new Date().toISOString(),
+      status: 'verified',
+      verificationAttempts: verificationRecord.verificationAttempts + 1
+    };
 
-    pendingVerifications.set(orderId, verificationRecord);
+    await durableState.setVerificationSession(orderId, updatedRecord);
 
     logger.info('✅ Verification successful', {
       orderId,
@@ -382,7 +421,7 @@ router.get('/status/:orderId', async (req, res) => {
 
     logger.info('Status check', { orderId });
 
-    const verificationRecord = pendingVerifications.get(orderId);
+    const verificationRecord = await durableState.getVerificationSession(orderId);
 
     if (!verificationRecord) {
       return res.status(404).json({
@@ -400,11 +439,11 @@ router.get('/status/:orderId', async (req, res) => {
       success: true,
       orderId,
       status: verificationRecord.status,
-      ageVerified: verificationRecord.ageVerified,
-      membershipOptIn: verificationRecord.membershipOptIn,
+      ageVerified: verificationRecord.age_verified,
+      membershipOptIn: verificationRecord.membership_opt_in,
       deadline: verificationRecord.deadline,
       hoursRemaining: parseFloat(hoursRemaining),
-      verificationAttempts: verificationRecord.verificationAttempts,
+      verificationAttempts: verificationRecord.verification_attempts,
       timestamp: new Date().toISOString()
     });
 
@@ -438,57 +477,63 @@ router.post('/check-expired', async (req, res) => {
     const now = Date.now();
     const expiredOrders = [];
 
-    // Check all pending verifications
-    for (const [orderId, record] of pendingVerifications.entries()) {
-      if (record.status !== 'pending_verification') {
-        continue; // Skip already verified orders
-      }
+    // Get expired verifications from durable storage
+    const expiredVerifications = await durableState.getExpiredVerifications();
 
-      const deadline = new Date(record.deadline).getTime();
+    for (const record of expiredVerifications) {
+      logger.warn('⏰ Verification expired - triggering auto-refund', {
+        orderId: record.order_id,
+        customerEmail: record.customer_email,
+        orderTotal: record.order_total,
+        hoursOverdue: ((now - new Date(record.deadline).getTime()) / (1000 * 60 * 60)).toFixed(2)
+      });
 
-      if (now > deadline) {
-        logger.warn('⏰ Verification expired - triggering auto-refund', {
-          orderId,
-          customerEmail: record.customerEmail,
-          orderTotal: record.orderTotal,
-          hoursOverdue: ((now - deadline) / (1000 * 60 * 60)).toFixed(2)
+      try {
+        // Trigger auto-refund
+        const refundResult = await processAutoRefund(record);
+
+        // Update status in durable storage
+        await durableState.setVerificationSession(record.order_id, {
+          ...record,
+          status: 'refunded_unverified',
+          refundedAt: new Date().toISOString(),
+          refundAmount: refundResult.refundAmount
         });
 
-        try {
-          // Trigger auto-refund
-          const refundResult = await processAutoRefund(record);
+        expiredOrders.push({
+          orderId: record.order_id,
+          customerEmail: record.customer_email,
+          refundAmount: refundResult.refundAmount,
+          status: 'refunded'
+        });
 
-          // Update status
-          record.status = 'refunded_unverified';
-          record.refundedAt = new Date().toISOString();
-          record.refundAmount = refundResult.refundAmount;
-          pendingVerifications.set(orderId, record);
+        logger.info('✅ Auto-refund processed', {
+          orderId: record.order_id,
+          refundAmount: refundResult.refundAmount
+        });
 
-          expiredOrders.push({
-            orderId,
-            customerEmail: record.customerEmail,
-            refundAmount: refundResult.refundAmount,
-            status: 'refunded'
-          });
+        // Mark countdown timer as completed
+        await durableState.markCountdownCompleted(record.order_id, 'verification-timeout');
 
-          logger.info('✅ Auto-refund processed', {
-            orderId,
-            refundAmount: refundResult.refundAmount
-          });
+        // Log event for BigQuery
+        await durableState.logEvent('verification_expired', record.order_id, record.customer_id, {
+          orderTotal: record.order_total,
+          refundAmount: refundResult.refundAmount,
+          expiredAt: new Date().toISOString()
+        });
 
-        } catch (refundError) {
-          logger.error('Auto-refund failed', {
-            orderId,
-            error: refundError.message
-          });
+      } catch (refundError) {
+        logger.error('Auto-refund failed', {
+          orderId: record.order_id,
+          error: refundError.message
+        });
 
-          expiredOrders.push({
-            orderId,
-            customerEmail: record.customerEmail,
-            status: 'refund_failed',
-            error: refundError.message
-          });
-        }
+        expiredOrders.push({
+          orderId: record.order_id,
+          customerEmail: record.customer_email,
+          status: 'refund_failed',
+          error: refundError.message
+        });
       }
     }
 
@@ -500,8 +545,7 @@ router.post('/check-expired', async (req, res) => {
 
     res.json({
       success: true,
-      expiredCount: expiredOrders.length,
-      expiredOrders,
+      expiredProcessed: expiredOrders.length,
       elapsed: `${elapsed}ms`,
       timestamp: new Date().toISOString()
     });
@@ -527,47 +571,47 @@ router.post('/check-expired', async (req, res) => {
 async function enrollInLoyaltyProgram(verificationRecord) {
   try {
     logger.info('Enrolling customer in loyalty program', {
-      orderId: verificationRecord.orderId,
-      customerEmail: verificationRecord.customerEmail,
-      customerId: verificationRecord.customerId
+      orderId: verificationRecord.order_id,
+      customerEmail: verificationRecord.customer_email,
+      customerId: verificationRecord.customer_id
     });
 
     const lightspeed = getLightspeedClient();
 
     // Get customer details from LightSpeed
-    const customer = await lightspeed.getCustomer(verificationRecord.customerId);
+    const customer = await lightspeed.getCustomer(verificationRecord.customer_id);
 
     if (!customer) {
-      throw new Error(`Customer ${verificationRecord.customerId} not found in LightSpeed`);
+      throw new Error(`Customer ${verificationRecord.customer_id} not found in LightSpeed`);
     }
 
     // Enroll in loyalty program via LightSpeed API
     // Note: LightSpeed has loyalty program API at /customers/{id}/loyalty
     const loyaltyEnrollment = await lightspeed.enrollCustomerInLoyalty(
-      verificationRecord.customerId,
+      verificationRecord.customer_id,
       {
         programId: process.env.LIGHTSPEED_LOYALTY_PROGRAM_ID || 'default',
         tierLevel: 'silver', // Start at silver tier
         points: 100, // Welcome bonus
         metadata: {
           enrolledVia: 'age_verification',
-          orderId: verificationRecord.orderId,
+          orderId: verificationRecord.order_id,
           enrolledAt: new Date().toISOString()
         }
       }
     );
 
     logger.info('Loyalty enrollment successful', {
-      orderId: verificationRecord.orderId,
-      customerId: verificationRecord.customerId,
+      orderId: verificationRecord.order_id,
+      customerId: verificationRecord.customer_id,
       loyaltyId: loyaltyEnrollment.id
     });
 
     return {
       success: true,
       loyaltyId: loyaltyEnrollment.id,
-      customerId: verificationRecord.customerId,
-      customerEmail: verificationRecord.customerEmail,
+      customerId: verificationRecord.customer_id,
+      customerEmail: verificationRecord.customer_email,
       tierLevel: loyaltyEnrollment.tier_level,
       points: loyaltyEnrollment.points,
       enrolledAt: loyaltyEnrollment.created_at,
@@ -582,21 +626,21 @@ async function enrollInLoyaltyProgram(verificationRecord) {
   } catch (error) {
     logger.error('Loyalty enrollment failed', {
       error: error.message,
-      orderId: verificationRecord.orderId,
-      customerId: verificationRecord.customerId
+      orderId: verificationRecord.order_id,
+      customerId: verificationRecord.customer_id
     });
 
     // If LightSpeed enrollment fails, return mock enrollment
     // so verification still completes successfully
     logger.warn('Falling back to mock loyalty enrollment', {
-      orderId: verificationRecord.orderId
+      orderId: verificationRecord.order_id
     });
 
     return {
       success: true,
       loyaltyId: `PENDING-${Date.now()}`,
-      customerId: verificationRecord.customerId,
-      customerEmail: verificationRecord.customerEmail,
+      customerId: verificationRecord.customer_id,
+      customerEmail: verificationRecord.customer_email,
       tierLevel: 'silver',
       points: 100,
       enrolledAt: new Date().toISOString(),
@@ -617,26 +661,26 @@ async function enrollInLoyaltyProgram(verificationRecord) {
 async function processAutoRefund(verificationRecord) {
   try {
     logger.info('Processing auto-refund', {
-      orderId: verificationRecord.orderId,
-      orderTotal: verificationRecord.orderTotal
+      orderId: verificationRecord.order_id,
+      orderTotal: verificationRecord.order_total
     });
 
     const kajaClient = getKAJARefundClient();
 
     // Get transaction ID from order
     // In production, this would be stored when order was created
-    const transactionId = verificationRecord.transactionId || `TXN-${verificationRecord.orderId}`;
+    const transactionId = verificationRecord.transaction_id || `TXN-${verificationRecord.order_id}`;
 
     // Process refund via KAJA
     const refundResult = await kajaClient.processRefund({
       transactionId,
-      amount: verificationRecord.orderTotal,
+      amount: verificationRecord.order_total,
       reason: 'Age verification not completed within 72 hours',
-      orderId: verificationRecord.orderId
+      orderId: verificationRecord.order_id
     });
 
     logger.info('KAJA refund processed successfully', {
-      orderId: verificationRecord.orderId,
+      orderId: verificationRecord.order_id,
       refundId: refundResult.refundId,
       amount: refundResult.amount
     });
@@ -647,27 +691,27 @@ async function processAutoRefund(verificationRecord) {
 
       if (sendgrid.isAvailable()) {
         await sendgrid.sendRefundEmail({
-          to: verificationRecord.customerEmail,
-          orderId: verificationRecord.orderId,
+          to: verificationRecord.customer_email,
+          orderId: verificationRecord.order_id,
           refundAmount: refundResult.amount
         });
 
         logger.info('Refund notification email sent', {
-          orderId: verificationRecord.orderId,
-          email: verificationRecord.customerEmail
+          orderId: verificationRecord.order_id,
+          email: verificationRecord.customer_email
         });
       }
     } catch (emailError) {
       logger.error('Failed to send refund email', {
         error: emailError.message,
-        orderId: verificationRecord.orderId
+        orderId: verificationRecord.order_id
       });
       // Don't fail refund if email fails
     }
 
     return {
       success: true,
-      orderId: verificationRecord.orderId,
+      orderId: verificationRecord.order_id,
       refundId: refundResult.refundId,
       refundAmount: refundResult.amount,
       refundMethod: refundResult.method,
@@ -679,8 +723,8 @@ async function processAutoRefund(verificationRecord) {
   } catch (error) {
     logger.error('Auto-refund failed', {
       error: error.message,
-      orderId: verificationRecord.orderId,
-      orderTotal: verificationRecord.orderTotal
+      orderId: verificationRecord.order_id,
+      orderTotal: verificationRecord.order_total
     });
 
     throw error;
@@ -694,8 +738,12 @@ async function processAutoRefund(verificationRecord) {
  */
 router.get('/stats', async (req, res) => {
   try {
+    // Get stats from durable storage
+    const pendingVerifications = await durableState.getAllPendingVerifications();
+    const expiredVerifications = await durableState.getExpiredVerifications();
+    
     const stats = {
-      totalOrders: pendingVerifications.size,
+      totalOrders: pendingVerifications.length,
       verified: 0,
       pending: 0,
       refunded: 0,
@@ -703,12 +751,15 @@ router.get('/stats', async (req, res) => {
       verificationRate: 0
     };
 
-    for (const [, record] of pendingVerifications.entries()) {
+    for (const record of pendingVerifications) {
       if (record.status === 'verified') stats.verified++;
       if (record.status === 'pending_verification') stats.pending++;
       if (record.status === 'refunded_unverified') stats.refunded++;
-      if (record.membershipOptIn) stats.membershipOptIns++;
+      if (record.membership_opt_in) stats.membershipOptIns++;
     }
+    
+    // Add expired verifications to refunded count
+    stats.refunded += expiredVerifications.length;
 
     stats.verificationRate = stats.totalOrders > 0
       ? ((stats.verified / stats.totalOrders) * 100).toFixed(2)

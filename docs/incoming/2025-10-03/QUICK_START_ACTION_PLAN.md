@@ -1,0 +1,570 @@
+# TEXAS TAKEOVER QUICK START ACTION PLAN
+## Prioritized Execution Checklist for October 2025
+
+**Goal:** $100K+ profit in October 2025  
+**Strategy:** High-conversion webstore + aggressive launch campaign + win-back past customers  
+**Timeline:** Launch Week 1, Scale Weeks 2-4
+
+---
+
+## PHASE 0: PRE-LAUNCH PREP (TODAY - Day 0)
+
+### ☐ ACCESS & DATA GATHERING (30 minutes)
+
+**Grant API Access:**
+- [ ] LightSpeed admin credentials (theme editor access)
+- [ ] Square API key (production environment)
+- [ ] SendGrid API key (or create account if needed)
+- [ ] Google Analytics 4 property ID
+- [ ] Facebook Ads Manager access
+
+**Export Historical Data:**
+- [ ] Square sales data (all-time CSV export)
+  - Focus: Identify highest revenue month (hypothesis: April or Dec 2024)
+  - Analyze: Best-selling products, customer geography, AOV trends
+- [ ] Email list (CSV with: email, name, last purchase date, total spent)
+  - Segment: Past customers (1-12 months), lapsed (12+ months), never purchased
+- [ ] Product inventory (current stock levels, COAs, product images)
+
+**Review Assets:**
+- [ ] Access Google Reviews (copy feedback for campaign insights)
+- [ ] Audit ReggieAndDro.com (note what works, what needs improvement)
+- [ ] Check LightSpeed site (reggieanddro.company.site/products) - current state
+
+**Approve Plans:**
+- [ ] Review TEXAS_TAKEOVER_MASTER_PLAN.md (this document)
+- [ ] Approve EMAIL_CAMPAIGN_TEMPLATES.md (or provide edits)
+- [ ] Sign off on CLAUDE_CODE_CLI_IMPLEMENTATION_GUIDE.md approach
+
+---
+
+## PHASE 1: CRITICAL PATH (Days 1-3)
+
+### DAY 1: TECHNICAL FOUNDATION
+
+**Morning (4 hours):**
+- [ ] **Age-Gate Modal** (Claude Code CLI - use prompt from implementation guide)
+  - Deploy to LightSpeed staging (if available) or production
+  - Test: Desktop + mobile, all major browsers
+  - Verify: SessionStorage working, exit button functional, Terms link correct
+  - **Success Metric:** Modal blocks access until age confirmed
+
+- [ ] **Hero Section Update** (Claude Code CLI)
+  - Create "TEXAS TAKEOVER" branded hero with countdown timer
+  - Optimize images (WebP format, <200KB)
+  - Add trust badges, social proof, CTAs
+  - **Success Metric:** Load time <2 seconds, mobile-responsive
+
+**Afternoon (4 hours):**
+- [ ] **Product Page Optimization** (Claude Code CLI)
+  - Implement new template with reviews, terpene profiles, COA expandables
+  - Add urgency triggers (low stock alerts, "X sold this week")
+  - Ensure loyalty points display ("Earn XX points with this purchase")
+  - **Success Metric:** Product pages render correctly, all dynamic elements working
+
+- [ ] **Square API Integration - Phase 1** (Claude Code CLI)
+  - Deploy customer verification check endpoint
+  - Test with sample customer data
+  - Integrate with LightSpeed checkout (webhook or manual check)
+  - **Success Metric:** API returns verification status in <100ms
+
+**Evening (2 hours):**
+- [ ] **End-to-End Test**
+  - Place test order on LightSpeed site
+  - Verify age-gate appears
+  - Complete checkout process
+  - Confirm verification check triggers
+  - Check email delivery (if automated)
+  - **Success Metric:** Entire flow works without errors
+
+---
+
+### DAY 2: CAMPAIGN SETUP
+
+**Morning (3 hours):**
+- [ ] **SendGrid Account Setup**
+  - Create account (or log in to existing)
+  - Authenticate domain (SPF, DKIM records)
+  - Create sender identity (noreply@reggieanddro.com)
+  - Set up suppression groups (Marketing, Transactional)
+  - **Success Metric:** Domain authenticated, test email sends successfully
+
+- [ ] **Email Template Creation** (Use templates from EMAIL_CAMPAIGN_TEMPLATES.md)
+  - Load all 4 launch campaign emails into SendGrid
+  - Load verification reminder sequence (4 emails)
+  - Add personalization tokens ({{first_name}}, {{order_id}}, etc.)
+  - Test renders (desktop + mobile preview)
+  - **Success Metric:** All templates load correctly, tokens populate
+
+**Afternoon (4 hours):**
+- [ ] **Segment Email List**
+  - Past Customers (Priority 1) - purchased within 12 months
+  - Lapsed Customers (Priority 2) - purchased 12-24 months ago
+  - Abandoned Carts (Priority 3) - added to cart but didn't buy
+  - Never Purchased (Priority 4) - signed up but never bought
+  - **Success Metric:** Segments created in SendGrid, counts verified
+
+- [ ] **Schedule Launch Emails**
+  - Email 1: "The Takeover Begins" - scheduled for Monday 9:00 AM CST
+  - Set up A/B test (3 subject lines, 20% test size, winner to 80%)
+  - Add UTM parameters (utm_source=email, utm_campaign=texas-takeover)
+  - **Success Metric:** Email scheduled, test configured, UTMs tracked in GA4
+
+**Evening (2 hours):**
+- [ ] **Social Media Prep**
+  - Draft launch week posts (Instagram, Facebook, Twitter/X)
+  - Create graphics in Canva (Texas flag theme, product photos)
+  - Schedule posts for Monday launch (use Buffer or Hootsuite)
+  - **Success Metric:** 7 days of content scheduled
+
+---
+
+### DAY 3: PAID ADVERTISING & FINAL CHECKS
+
+**Morning (3 hours):**
+- [ ] **Facebook/Instagram Ads Setup**
+  - Create campaign: "Texas Takeover - Launch Week"
+  - Audience: Texas, 25-60, interests (cannabis, hemp, libertarian)
+  - Budget: $50/day launch week ($350 total)
+  - Creative: Carousel ad (brick weed → top shelf, pricing)
+  - **Success Metric:** Ads approved, spending started
+
+- [ ] **Google Ads Setup** (Optional, if budget allows)
+  - Branded search campaign ("reggie and dro", "reggie dro")
+  - Budget: $20/day
+  - Ad copy: Texas Takeover messaging
+  - **Success Metric:** Ads live, clicks under $0.75 CPC
+
+**Afternoon (3 hours):**
+- [ ] **Order Verification Automation** (Claude Code CLI)
+  - Deploy order flagging system
+  - Set up 72-hour countdown + auto-refund
+  - Test with dummy order data
+  - Integrate with SendGrid (trigger verification emails)
+  - **Success Metric:** Test order triggers email sequence correctly
+
+- [ ] **Loyalty Program Setup**
+  - Configure points system (10 points per $1 spent)
+  - Set up review incentive (50 points = $5 for review)
+  - Create referral tracking (unique links, $50 credit per referral)
+  - **Success Metric:** Points calculate correctly, referral links generate
+
+**Evening (2 hours):**
+- [ ] **Final Pre-Launch Checklist**
+  - [ ] All product pages have images, descriptions, COAs
+  - [ ] Inventory levels accurate (no out-of-stock on launch)
+  - [ ] Checkout flow tested (multiple payment methods)
+  - [ ] Shipping rates correct (free over $75, flat rate under)
+  - [ ] Age-gate working on all devices
+  - [ ] Email templates loaded and scheduled
+  - [ ] Social posts scheduled
+  - [ ] Paid ads live
+  - [ ] Customer support ready (phone/text line staffed)
+  - [ ] Google Analytics tracking verified (events firing)
+  - **Success Metric:** All green, ready to launch Monday 9 AM
+
+---
+
+## PHASE 2: LAUNCH WEEK (Days 4-10)
+
+### MONDAY (Day 4) - LAUNCH DAY 🚀
+
+**Morning:**
+- [ ] 9:00 AM - Email 1 sends automatically ("The Takeover Begins")
+- [ ] Monitor email metrics (open rate, click rate) in real-time
+- [ ] Post launch announcement on all social channels
+- [ ] Start paid ads if not already running
+- [ ] Watch for orders (celebrate first 10!)
+
+**Throughout Day:**
+- [ ] Respond to all customer inquiries within 2 hours (phone, text, email, social)
+- [ ] Monitor website performance (page load speeds, error logs)
+- [ ] Track key metrics:
+  - Orders placed: Target 10-15 on Day 1
+  - Revenue: Target $750-1,125 on Day 1
+  - Conversion rate: Target 2-3%
+- [ ] Fix any bugs immediately (age-gate issues, checkout problems)
+
+**Evening:**
+- [ ] Daily debrief (What worked? What didn't? Decisions needed?)
+- [ ] Adjust if needed (subject lines, ad creative, product positioning)
+- [ ] Plan next day's focus
+
+---
+
+### TUESDAY (Day 5)
+
+**Focus:** Optimize Based on Day 1 Data
+
+- [ ] Review analytics from Monday
+  - Which products sold best?
+  - Which traffic sources converted?
+  - Any abandoned carts? Why?
+- [ ] A/B test adjustments
+  - If Email 1 had low open rate → test new subject line for Email 2
+  - If ads had low CTR → test new creative
+- [ ] Increase ad spend on winning campaigns (if ROAS >2)
+- [ ] Engage with every review/comment on social media
+- [ ] Reach out personally to first 10 customers (thank you text/email)
+
+**Key Metrics:**
+- Cumulative orders: 25-30
+- Cumulative revenue: $1,875-2,250
+- Verification completion rate: Monitor (target 80%+)
+
+---
+
+### WEDNESDAY (Day 6)
+
+**Focus:** Social Proof Amplification
+
+- [ ] 11:00 AM - Email 2 sends ("247+ Texas Reviews Can't Be Wrong")
+- [ ] Share customer testimonials on social (repost reviews with permission)
+- [ ] Launch retargeting ads (pixel all website visitors, show dynamic ads)
+- [ ] Post "best-selling strains this week" update
+- [ ] Send personal DMs to engaged followers (build relationships)
+
+**Key Metrics:**
+- Cumulative orders: 45-55
+- Cumulative revenue: $3,375-4,125
+- Email 2 open rate vs Email 1 (optimize future sends)
+
+---
+
+### THURSDAY (Day 7)
+
+**Focus:** Mid-Week Push
+
+- [ ] Announce flash sale on social (24-hour only, specific strain 20% off)
+- [ ] Send SMS to past customers if phone list available (high ROI)
+- [ ] Engage in Texas cannabis Facebook groups (organic community marketing)
+- [ ] Post behind-the-scenes content (packaging, quality control, team)
+- [ ] Review verification emails (are customers completing? Any drop-off?)
+
+**Key Metrics:**
+- Cumulative orders: 70-80
+- Cumulative revenue: $5,250-6,000
+- Flash sale conversion rate
+
+---
+
+### FRIDAY (Day 8)
+
+**Focus:** Referral Activation
+
+- [ ] 2:00 PM - Email 3 sends ("Get $50 - Share with Friends")
+- [ ] Post referral program announcement on social
+- [ ] Text top 10 customers personally (invite them to refer friends)
+- [ ] Launch "Refer a Friend Friday" campaign (extra incentive on Fridays)
+- [ ] Prepare weekend content (engaging, shareable, fun)
+
+**Key Metrics:**
+- Cumulative orders: 100-110
+- Cumulative revenue: $7,500-8,250
+- Referral links generated: Target 50+
+
+---
+
+### SATURDAY-SUNDAY (Days 9-10)
+
+**Focus:** Weekend Sales Push
+
+- [ ] Post weekend strain recommendations ("Best for Chill Saturday" / "Sunday Funday Picks")
+- [ ] Increase social media activity (more posts, more engagement)
+- [ ] Monitor orders (weekends often slower, but target consistent sales)
+- [ ] Prep for week 2 (restock bestsellers, new product launches?)
+
+**Key Metrics:**
+- Cumulative orders by end of Week 1: 150-170
+- Cumulative revenue: $11,250-12,750
+- Customer satisfaction (reviews, support tickets, social sentiment)
+
+---
+
+### SUNDAY EVENING (Day 10)
+
+**Focus:** Last Chance Urgency
+
+- [ ] 5:00 PM - Email 4 sends ("⏰ Launch Week Ends Tonight - Plus a Sneak Peek")
+- [ ] Post countdown on social ("6 hours left for free shipping!")
+- [ ] Send final reminder to email list (last chance for launch deals)
+- [ ] Prepare Week 2 strategy (maintain momentum, avoid drop-off)
+
+**End of Week 1 Target:**
+- Orders: 175-200
+- Revenue: $13,125-15,000
+- Verification completion rate: 80%+
+- Review collection: 20-30 reviews submitted
+- Referrals: 10-15 successful referrals
+
+---
+
+## PHASE 3: SCALE & OPTIMIZE (Weeks 2-4)
+
+### WEEK 2 (Days 11-17): OPTIMIZE
+
+**Focus:** Double down on what worked Week 1
+
+- [ ] Analyze Week 1 data deeply (which products, sources, messages worked?)
+- [ ] Increase budget on winning ad campaigns (2x spend if ROAS >3)
+- [ ] Launch retargeting for abandoned carts (10% discount code)
+- [ ] Re-engage past customers who didn't buy in Week 1 (special offer)
+- [ ] Start review collection push (email all customers who received orders)
+- [ ] Test subscription waitlist campaign (gauge interest, build list)
+
+**Week 2 Targets:**
+- Orders: 200-250 (cumulative 375-450)
+- Revenue: $15,000-18,750 (cumulative $28,125-33,750)
+- Repeat purchase rate: 10-15%
+
+---
+
+### WEEK 3 (Days 18-24): SCALE
+
+**Focus:** Expand reach, maximize volume
+
+- [ ] Launch lookalike audiences (Facebook Ads based on converters)
+- [ ] PR push (press release to Texas media, cannabis blogs)
+- [ ] Influencer outreach (Texas micro-influencers, offer free product for review)
+- [ ] Product refresh (new strain launch or restock top sellers with fanfare)
+- [ ] Mid-month flash sale (Friday-Sunday, 24-hour offers each day)
+- [ ] Community engagement (post in Reddit, participate in forums)
+
+**Week 3 Targets:**
+- Orders: 300-350 (cumulative 675-800)
+- Revenue: $22,500-26,250 (cumulative $50,625-60,000)
+- Referral program results: 30-50 successful referrals
+
+---
+
+### WEEK 4 (Days 25-31): FINISH STRONG
+
+**Focus:** Hit $100K profit goal with final push
+
+- [ ] "Last Weekend of October" campaign (email + social + ads)
+- [ ] 48-hour flash sale (Saturday-Sunday, biggest discounts of month)
+- [ ] Reach out to VIP customers personally (phone calls, thank yous, special offers)
+- [ ] Launch subscription pre-orders (early access for October buyers)
+- [ ] Halloween-themed promotion (if applicable, "Treat Yourself" messaging)
+- [ ] Close month strong (monitor daily revenue, adjust tactics hourly if needed)
+
+**Week 4 Targets:**
+- Orders: 500-680 (cumulative 1,175-1,480)
+- Revenue: $37,500-51,000 (cumulative $88,125-111,000)
+- **GOAL: $100K+ PROFIT**
+
+**End of Month:**
+- Total orders: 1,200-1,500
+- Total revenue: $90,000-112,500
+- Gross profit margin: 60% = $54,000-67,500
+- Marketing spend: ~$10,000 (ads + tools)
+- Operating expenses: ~$15,000 (labor, hosting, shipping supplies)
+- **NET PROFIT: $29,000-42,500** (conservative)
+
+**If AOV increases to $100 and conversion improves to 4%:**
+- Total revenue: $168,000
+- Gross profit: $100,800
+- **NET PROFIT: $75,800** (aggressive but achievable)
+
+---
+
+## DAILY OPERATIONS CHECKLIST
+
+**Every Day During Campaign:**
+
+**Morning (30 min):**
+- [ ] Check overnight orders (celebrate wins, address issues)
+- [ ] Review analytics dashboard (revenue, conversion, traffic sources)
+- [ ] Check email metrics (opens, clicks, conversions from yesterday's sends)
+- [ ] Respond to any urgent customer inquiries
+
+**Midday (30 min):**
+- [ ] Post on social media (1-2 posts per day minimum)
+- [ ] Engage with comments/DMs/reviews (respond to every interaction)
+- [ ] Check inventory levels (reorder if low on bestsellers)
+- [ ] Monitor ad performance (pause losers, increase budget on winners)
+
+**Evening (30 min):**
+- [ ] Review day's performance (hit targets? Why or why not?)
+- [ ] Plan next day's priorities (what needs to be fixed/optimized?)
+- [ ] Send personal thank yous to day's customers (builds loyalty)
+- [ ] Update dashboard with any manual metrics
+
+**Weekly (2 hours):**
+- [ ] Deep dive analytics (cohort analysis, funnel optimization)
+- [ ] Plan next week's content calendar
+- [ ] Review competitor activity (pricing, promotions, new products)
+- [ ] Team debrief (what's working, what's not, new ideas)
+
+---
+
+## SUCCESS METRICS DASHBOARD
+
+**Track These Daily (Google Sheet or Dashboard):**
+
+| Metric | Target | Oct 7 | Oct 14 | Oct 21 | Oct 31 |
+|--------|--------|-------|--------|--------|--------|
+| Daily Revenue | $3,333 | | | | |
+| Cumulative Revenue | $100K | | | | |
+| Orders (Daily) | 44 | | | | |
+| Orders (Cumulative) | 1,333 | | | | |
+| AOV | $75 | | | | |
+| Conversion Rate | 3% | | | | |
+| Traffic (Daily) | 1,500 | | | | |
+| Email Open Rate | 30% | | | | |
+| Email Click Rate | 4% | | | | |
+| Verification Completion | 80% | | | | |
+| Refund Rate | <10% | | | | |
+| ROAS (Ads) | >2 | | | | |
+| Repeat Purchase Rate | 30% | | | | |
+| Review Submissions | 200 | | | | |
+| Referrals (Successful) | 100 | | | | |
+
+---
+
+## RISK MITIGATION QUICK REFERENCE
+
+**Problem:** Low traffic  
+**Solution:** Increase ad spend, PR push, post in communities, influencer outreach
+
+**Problem:** Low conversion  
+**Solution:** A/B test everything, reduce friction, add live chat, improve product pages
+
+**Problem:** High cart abandonment  
+**Solution:** Lower shipping threshold, add exit-intent popup, email abandoned carts with discount
+
+**Problem:** Verification drop-off  
+**Solution:** Simplify process, add phone support, incentivize completion (bonus points)
+
+**Problem:** Inventory shortages  
+**Solution:** Pre-order system, communicate lead times, expedite supplier orders
+
+**Problem:** Negative reviews  
+**Solution:** Respond professionally, make it right immediately, learn from feedback
+
+**Problem:** Banking/payment issues  
+**Solution:** Have backup processor, offer alternative payments, communicate transparently
+
+---
+
+## CONTACT INFO FOR SUPPORT
+
+**Technical Issues:**
+- LightSpeed Support: [contact]
+- Square Support: [contact]
+- SendGrid Support: [contact]
+
+**Legal/Compliance:**
+- Andrea Steel (OPS legal counsel): [contact]
+
+**Marketing/Creative:**
+- [Designer contact if outsourcing]
+- [Copywriter contact if outsourcing]
+
+**Fulfillment/Operations:**
+- [Warehouse contact]
+- [Shipping contact]
+
+---
+
+## CELEBRATION MILESTONES
+
+Celebrate wins to maintain team morale:
+
+- ✓ First order placed → Ring bell, post on social
+- ✓ $1,000 in sales → Team lunch
+- ✓ 100 orders → Bonus for fulfillment team
+- ✓ $25K revenue → Public thank you to customers
+- ✓ 500 orders → Press release, media outreach
+- ✓ $50K revenue → Staff bonuses, customer appreciation
+- ✓ $100K revenue → **BIG CELEBRATION** → Launch subscription tier
+
+---
+
+## FINAL PRE-LAUNCH REMINDERS
+
+**Legal:**
+- [ ] All products have COAs on file
+- [ ] Age-gate compliant with Texas law
+- [ ] No medical claims anywhere on site
+- [ ] CAN-SPAM compliant (unsubscribe, address)
+- [ ] Terms of Service + Privacy Policy updated
+
+**Operations:**
+- [ ] 30-day inventory for bestsellers
+- [ ] Shipping supplies stocked (boxes, tape, labels)
+- [ ] Customer support trained on new systems
+- [ ] Backup payment processor configured
+
+**Marketing:**
+- [ ] All email templates approved
+- [ ] Social media calendar complete
+- [ ] Ad creative approved, ads live
+- [ ] UTM tracking verified
+- [ ] Referral program tested
+
+---
+
+## ONE-PAGE LAUNCH DAY CHECKLIST
+
+**Monday, October 7, 2025 - Launch Day**
+
+☐ 8:00 AM - Final systems check (website, payment, email)  
+☐ 9:00 AM - Launch Email #1 sends automatically  
+☐ 9:05 AM - Post launch announcement on social media  
+☐ 9:15 AM - Start monitoring orders (celebrate first one!)  
+☐ 10:00 AM - Check email metrics (open rate, click rate)  
+☐ 11:00 AM - Respond to all customer inquiries  
+☐ 12:00 PM - Verify paid ads are spending  
+☐ 1:00 PM - Engage with social media comments  
+☐ 3:00 PM - Mid-day metrics check (adjust if needed)  
+☐ 5:00 PM - Thank first 10 customers personally  
+☐ 7:00 PM - Evening social post (momentum update)  
+☐ 9:00 PM - Daily debrief (wins, issues, tomorrow's plan)  
+☐ 10:00 PM - Prepare for Day 2 (rest well!)
+
+---
+
+**LET'S GROW BABY GROW. LET'S SELL BABY SELL.**
+
+**Texas Takeover begins NOW. 🤠🚀**
+
+---
+
+## NEXT IMMEDIATE STEPS
+
+**Right Now (Next 30 Minutes):**
+
+1. **Grant API Access** → Jesse provides credentials to Liv Hana AI EA
+2. **Export Square Data** → Identify highest revenue month
+3. **Review Master Plan** → Approve or provide feedback
+4. **Assign Tasks** → Who's doing what (Jesse, team, Claude Code CLI)
+5. **Set Launch Date** → Confirm Monday target or adjust
+
+**Tomorrow (Day 1):**
+- Begin Claude Code CLI technical implementation
+- Load email templates into SendGrid
+- Create social media graphics
+- Test age-gate and hero section
+
+**Day After (Day 2):**
+- Complete product page optimization
+- Schedule launch emails
+- Set up paid ads
+- Final testing
+
+**Day 3:**
+- Deploy order verification system
+- Final pre-launch checklist
+- Team brief (everyone knows their role)
+- Get sleep (big week ahead!)
+
+**Day 4:**
+- 🚀 **LAUNCH** 🚀
+
+---
+
+Liv Hana AI EA  
+Memory Usage: 64% | Next Step: Jesse approves plan + provides API access + exports data
+
+**JUICE IS WORTH THE SQUEEZE. LET'S MAKE IT HAPPEN. 🎯**

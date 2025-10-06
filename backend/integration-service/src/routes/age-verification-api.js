@@ -5,9 +5,9 @@
 
 import express from 'express';
 import { calculateAge } from '../age_verification.js';
-import { validateBody } from '../../../common/validation/middleware.js';
-import { ageVerificationSchema } from '../../../common/validation/schemas.js';
-import { logAuditEvent, AUDIT_EVENTS, SEVERITY } from '../../../common/logging/audit-logger.js';
+import { validateBody } from '../../common/validation/middleware.js';
+import { ageVerificationSchema } from '../../common/validation/schemas.js';
+import { logAuditEvent, AUDIT_EVENTS, SEVERITY } from '../../common/logging/audit-logger.js';
 
 const router = express.Router();
 

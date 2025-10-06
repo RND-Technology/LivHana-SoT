@@ -23,6 +23,7 @@ import {
   VolumeUp,
   Videocam,
   Dashboard,
+  Chat,
 } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 
@@ -31,8 +32,10 @@ const Header = ({
   setSidebarOpen,
   voiceModeActive,
   videoModeActive,
+  chatPanelOpen,
   toggleVoiceMode,
   toggleVideoMode,
+  toggleChatPanel,
 }) => {
   return (
     <AppBar
@@ -63,7 +66,7 @@ const Header = ({
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             sx={{
-              background: 'linear-gradient(135deg, #16A34A 0%, #F59E0B 100%)',
+              background: 'linear-gradient(135deg, #DC2626 0%, #F59E0B 50%, #16A34A 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
@@ -71,15 +74,15 @@ const Header = ({
               mr: 2,
             }}
           >
-            🚀 LivHana Empire Cockpit
+            🤠 Texas Takeover Cockpit
           </Typography>
 
           <Badge
             badgeContent="LIVE"
-            color="success"
+            color="error"
             sx={{
               '& .MuiBadge-badge': {
-                backgroundColor: '#16A34A',
+                backgroundColor: '#DC2626',
                 color: 'white',
                 fontWeight: 'bold',
                 fontSize: '0.7rem',
@@ -87,7 +90,7 @@ const Header = ({
             }}
           >
             <Typography variant="body2" color="textSecondary">
-              1072 Agents Active
+              Lone Star Agents Active
             </Typography>
           </Badge>
         </Box>
@@ -120,6 +123,21 @@ const Header = ({
               }}
             >
               <Videocam />
+            </IconButton>
+          </Tooltip>
+
+          <Tooltip title="Chat with Liv Hana">
+            <IconButton
+              color={chatPanelOpen ? 'primary' : 'inherit'}
+              onClick={toggleChatPanel}
+              sx={{
+                backgroundColor: chatPanelOpen ? 'rgba(22, 163, 74, 0.1)' : 'transparent',
+                '&:hover': {
+                  backgroundColor: 'rgba(22, 163, 74, 0.2)',
+                },
+              }}
+            >
+              <Chat />
             </IconButton>
           </Tooltip>
 

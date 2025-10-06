@@ -1,6 +1,7 @@
 import express from 'express';
-import { createLogger } from '../../../common/logging/index.js';
+import { createLogger } from '../../common/logging/index.js';
 import { getVeriffClient } from '../lib/veriff-client.js';
+import durableState from '../lib/durable-state.js';
 
 const router = express.Router();
 const logger = createLogger('veriff-webhook');
@@ -44,6 +45,19 @@ router.post('/webhook', async (req, res) => {
   try {
     const signature = req.headers['x-hmac-signature'];
     const payload = req.body;
+    
+    // Check idempotency - prevent duplicate processing
+    const eventId = payload.id;
+    const provider = 'veriff';
+    
+    if (await durableState.isWebhookProcessed(eventId, provider)) {
+      logger.info('Webhook already processed (idempotent)', { eventId, provider });
+      return res.status(200).json({
+        success: true,
+        idempotent: true,
+        message: 'Event already processed'
+      });
+    }
 
     logger.info('Veriff webhook received', {
       action: payload.action,
@@ -140,6 +154,17 @@ router.post('/webhook', async (req, res) => {
           orderId
         });
     }
+
+    // Mark webhook as processed for idempotency
+    await durableState.markWebhookProcessed(eventId, provider, payload.action, payload);
+    
+    // Log event for BigQuery
+    await durableState.logEvent('veriff_webhook', orderId, null, {
+      action: payload.action,
+      sessionId: payload.id,
+      vendorData: payload.vendorData,
+      processedAt: new Date().toISOString()
+    });
 
     const elapsed = Date.now() - startTime;
     logger.info('Webhook processed successfully', {

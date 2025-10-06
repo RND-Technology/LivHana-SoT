@@ -41,12 +41,20 @@ const Sidebar = ({ open }) => {
 
   const menuItems = [
     {
+      id: 'texas-takeover',
+      path: '/texas-takeover',
+      label: 'Texas Takeover MVP',
+      icon: <Cloud />,
+      color: '#DC2626',
+      badge: 'MVP',
+    },
+    {
       id: 'ultimate',
       path: '/ultimate',
-      label: 'Ultimate Cockpit',
-      icon: <Cloud />,
-      color: '#10B981',
-      badge: 'NEW',
+      label: 'Legacy Cockpit',
+      icon: <Dashboard />,
+      color: '#64748B',
+      badge: null,
     },
     {
       id: 'dashboard',
@@ -154,7 +162,8 @@ const Sidebar = ({ open }) => {
           boxSizing: 'border-box',
           background: 'linear-gradient(180deg, #1E293B 0%, #334155 100%)',
           borderRight: '1px solid rgba(148, 163, 184, 0.1)',
-          paddingTop: '64px', // Account for header
+          position: 'relative', // Changed from default to prevent overlap
+          paddingTop: 0, // Removed padding since header is now outside
         },
       }}
     >

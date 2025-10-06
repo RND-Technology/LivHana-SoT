@@ -11,6 +11,8 @@ const BIGQUERY_LOCATION = process.env.BQ_LOCATION ?? 'US';
 const GCP_PROJECT_ID = process.env.GCP_PROJECT_ID;
 const SQUARE_PAYMENTS_BEGIN = process.env.SQUARE_PAYMENTS_BEGIN ?? '2018-01-01T00:00:00Z';
 const SQUARE_PAYMENTS_END = process.env.SQUARE_PAYMENTS_END;
+const SQUARE_ORDERS_BEGIN = process.env.SQUARE_ORDERS_BEGIN ?? SQUARE_PAYMENTS_BEGIN;
+const SQUARE_ORDERS_END = process.env.SQUARE_ORDERS_END ?? SQUARE_PAYMENTS_END;
 
 if (!SQUARE_ACCESS_TOKEN) {
   throw new Error('Missing Square credentials (SQUARE_ACCESS_TOKEN)');
@@ -49,6 +51,202 @@ const chunk = <T>(items: T[], size: number): T[][] => {
   return result;
 };
 
+const getAmount = (money: { amount?: number } | null | undefined) => Number(money?.amount ?? 0);
+
+const toIso = (input: string | Date) => {
+  const value = typeof input === 'string' ? new Date(input) : input;
+  return new Date(value.getTime()).toISOString();
+};
+
+const buildMonthlyRanges = (startIso: string, endIso?: string) => {
+  const ranges: Array<{ start: string; end: string }> = [];
+  const startDate = new Date(startIso);
+  const endDate = endIso ? new Date(endIso) : new Date();
+
+  let cursor = new Date(Date.UTC(startDate.getUTCFullYear(), startDate.getUTCMonth(), 1));
+
+  while (cursor <= endDate) {
+    const periodStart = cursor < startDate ? startDate : cursor;
+    const nextMonth = new Date(Date.UTC(cursor.getUTCFullYear(), cursor.getUTCMonth() + 1, 1));
+    const periodEndMs = Math.min(nextMonth.getTime() - 1, endDate.getTime());
+    const periodEnd = new Date(periodEndMs);
+
+    ranges.push({ start: toIso(periodStart), end: toIso(periodEnd) });
+    cursor = nextMonth;
+  }
+
+  return ranges;
+};
+
+const weightRegexes: Array<{ test: RegExp; grams: number }> = [
+  { test: /(half\s*pound|\bhp\b|0\.5\s?lb)/i, grams: 226.796 },
+  { test: /(quarter\s*pound|\bqp\b|0\.25\s?lb)/i, grams: 113.398 },
+  { test: /(ounce|oz)/i, grams: 28.3495 },
+  { test: /(half\s*ounce|1\/2\s*oz)/i, grams: 14.1748 },
+  { test: /(quarter|1\/4|¼)/i, grams: 7 },
+  { test: /(eighth|1\/8|⅛)/i, grams: 3.5 },
+];
+
+const inferWeightFromText = (text: string) => {
+  if (!text) return { grams: 0, bucket: 'OTHER' } as const;
+
+  const normalized = text.toLowerCase();
+
+  const lbMatch = normalized.match(/([0-9]+(?:\.[0-9]+)?)\s*(lb|lbs|pound|pounds)/i);
+  if (lbMatch) {
+    const pounds = parseFloat(lbMatch[1]);
+    const grams = pounds * 453.59237;
+    return { grams, bucket: 'Z' as const };
+  }
+
+  const ozMatch = normalized.match(/([0-9]+(?:\.[0-9]+)?)\s*(oz|ounce|ounces)/i);
+  if (ozMatch) {
+    const ounces = parseFloat(ozMatch[1]);
+    const grams = ounces * 28.3495;
+    return { grams, bucket: grams >= 14 ? 'Z' : grams >= 6 ? 'Q' : grams >= 3 ? 'E' : 'G' } as const;
+  }
+
+  const gramMatch = normalized.match(/([0-9]+(?:\.[0-9]+)?)\s*(g|gram|grams)/i);
+  if (gramMatch) {
+    const grams = parseFloat(gramMatch[1]);
+    return {
+      grams,
+      bucket: grams >= 28 ? 'Z' : grams >= 6 ? 'Q' : grams >= 3 ? 'E' : 'G',
+    } as const;
+  }
+
+  for (const candidate of weightRegexes) {
+    if (candidate.test.test(normalized)) {
+      const grams = candidate.grams;
+      return {
+        grams,
+        bucket: grams >= 28 ? 'Z' : grams >= 6 ? 'Q' : grams >= 3 ? 'E' : 'G',
+      } as const;
+    }
+  }
+
+  return { grams: 0, bucket: 'OTHER' } as const;
+};
+
+let cachedOrderPayload: { orders: Row[]; lineItems: Row[] } | null = null;
+
+const fetchOrdersAndLineItems = async (): Promise<{ orders: Row[]; lineItems: Row[] }> => {
+  if (cachedOrderPayload) {
+    return cachedOrderPayload;
+  }
+
+  console.log('Fetching Square orders via orders/search');
+  const orderRows: Row[] = [];
+  const lineItemRows: Row[] = [];
+  const ranges = buildMonthlyRanges(SQUARE_ORDERS_BEGIN, SQUARE_ORDERS_END);
+
+  for (const range of ranges) {
+    let cursor: string | undefined;
+
+    do {
+      const payload: Record<string, unknown> = {
+        limit: 100,
+        query: {
+          filter: {
+            date_time_filter: {
+              created_at: {
+                start_at: range.start,
+                end_at: range.end,
+              },
+            },
+          },
+        },
+      };
+
+      if (SQUARE_LOCATION_ID) {
+        payload.location_ids = [SQUARE_LOCATION_ID];
+      }
+
+      if (cursor) {
+        payload.cursor = cursor;
+      }
+
+      const response = await axios.post('https://connect.squareup.com/v2/orders/search', payload, {
+        headers: commonHeaders,
+      });
+
+      const orders = response.data?.orders ?? [];
+
+      for (const order of orders) {
+        orderRows.push({
+          id: order.id,
+          location_id: order.location_id ?? null,
+          state: order.state ?? null,
+          version: order.version ?? null,
+          source: order.source?.name ?? null,
+          total_money: getAmount(order.total_money),
+          net_total_money: getAmount(order.net_amounts?.total_money),
+          total_tax_money: getAmount(order.total_tax_money),
+          total_discount_money: getAmount(order.total_discount_money),
+          total_tip_money: getAmount(order.total_tip_money),
+          total_service_charge_money: getAmount(order.total_service_charge_money),
+          created_at: order.created_at ?? null,
+          updated_at: order.updated_at ?? null,
+          closed_at: order.closed_at ?? null,
+          customer_id: order.customer_id ?? null,
+          employee_id: order.employee_id ?? null,
+          net_amount_due_money: getAmount(order.net_amount_due_money),
+          data: safeStringify(order),
+        });
+
+        const orderCreatedAt = order.created_at ?? null;
+        const orderUpdatedAt = order.updated_at ?? null;
+
+        for (const item of order.line_items ?? []) {
+          const quantity = parseFloat(item.quantity ?? '0');
+          const descriptorParts = [item.name, item.variation_name, item.note].filter(Boolean).join(' ');
+          const { grams, bucket } = inferWeightFromText(descriptorParts);
+
+          lineItemRows.push({
+            order_id: order.id,
+            location_id: order.location_id ?? null,
+            line_item_uid: item.uid ?? null,
+            catalog_object_id: item.catalog_object_id ?? null,
+            catalog_version: item.catalog_version ?? null,
+            name: item.name ?? null,
+            variation_name: item.variation_name ?? null,
+            item_type: item.item_type ?? null,
+            quantity,
+            quantity_unit: item.quantity_unit?.measurement_unit?.unit ?? null,
+            measurement_precision: item.quantity_unit?.precision ?? null,
+            base_price_money_amount: getAmount(item.base_price_money),
+            gross_sales_money_amount: getAmount(item.gross_sales_money),
+            total_tax_money_amount: getAmount(item.total_tax_money),
+            total_discount_money_amount: getAmount(item.total_discount_money),
+            total_money_amount: getAmount(item.total_money),
+            variation_total_price_money_amount: getAmount(item.variation_total_price_money),
+            cost_money_amount: getAmount(item.cost_money),
+            order_created_at,
+            order_updated_at,
+            note: item.note ?? null,
+            applied_tax_uids: safeStringify(item.applied_taxes ?? []),
+            applied_discount_uids: safeStringify(item.applied_discounts ?? []),
+            modifiers: safeStringify(item.modifiers ?? []),
+            parsed_weight_grams: grams,
+            parsed_weight_bucket: bucket,
+            is_brickweed: /brick\s*weed/i.test(descriptorParts),
+            data: safeStringify(item),
+          });
+        }
+      }
+
+      cursor = response.data?.cursor;
+
+      if (cursor) {
+        await sleep(100);
+      }
+    } while (cursor);
+  }
+
+  cachedOrderPayload = { orders: orderRows, lineItems: lineItemRows };
+  return cachedOrderPayload;
+};
+
 const truncateTable = async (table: string) => {
   const tableReference = `\`${GCP_PROJECT_ID}.${BIGQUERY_DATASET}.${table}\``;
   console.log(`Truncating ${tableReference}`);
@@ -74,6 +272,16 @@ const insertRows = async (table: string, rows: Row[]) => {
   }
 
   console.log(`Loaded ${rows.length} rows into ${BIGQUERY_DATASET}.${table}`);
+};
+
+const fetchOrders = async (): Promise<Row[]> => {
+  const { orders } = await fetchOrdersAndLineItems();
+  return orders;
+};
+
+const fetchOrderLineItems = async (): Promise<Row[]> => {
+  const { lineItems } = await fetchOrdersAndLineItems();
+  return lineItems;
 };
 
 const fetchPaymentsViaSearch = async (): Promise<Row[]> => {
@@ -405,6 +613,66 @@ const fetchTeamMembers = async (): Promise<Row[]> => {
 };
 
 const domains: DomainConfig[] = [
+  {
+    name: 'orders',
+    table: 'square_orders',
+    fetch: fetchOrders,
+    schema: [
+      { name: 'id', type: 'STRING' },
+      { name: 'location_id', type: 'STRING' },
+      { name: 'state', type: 'STRING' },
+      { name: 'version', type: 'INTEGER' },
+      { name: 'source', type: 'STRING' },
+      { name: 'total_money', type: 'INTEGER' },
+      { name: 'net_total_money', type: 'INTEGER' },
+      { name: 'total_tax_money', type: 'INTEGER' },
+      { name: 'total_discount_money', type: 'INTEGER' },
+      { name: 'total_tip_money', type: 'INTEGER' },
+      { name: 'total_service_charge_money', type: 'INTEGER' },
+      { name: 'net_amount_due_money', type: 'INTEGER' },
+      { name: 'customer_id', type: 'STRING' },
+      { name: 'employee_id', type: 'STRING' },
+      { name: 'created_at', type: 'TIMESTAMP' },
+      { name: 'updated_at', type: 'TIMESTAMP' },
+      { name: 'closed_at', type: 'TIMESTAMP' },
+      { name: 'data', type: 'STRING' },
+    ],
+  },
+  {
+    name: 'order_line_items',
+    table: 'square_order_line_items',
+    fetch: fetchOrderLineItems,
+    schema: [
+      { name: 'order_id', type: 'STRING' },
+      { name: 'location_id', type: 'STRING' },
+      { name: 'line_item_uid', type: 'STRING' },
+      { name: 'catalog_object_id', type: 'STRING' },
+      { name: 'catalog_version', type: 'INTEGER' },
+      { name: 'name', type: 'STRING' },
+      { name: 'variation_name', type: 'STRING' },
+      { name: 'item_type', type: 'STRING' },
+      { name: 'quantity', type: 'FLOAT' },
+      { name: 'quantity_unit', type: 'STRING' },
+      { name: 'measurement_precision', type: 'INTEGER' },
+      { name: 'base_price_money_amount', type: 'INTEGER' },
+      { name: 'gross_sales_money_amount', type: 'INTEGER' },
+      { name: 'total_tax_money_amount', type: 'INTEGER' },
+      { name: 'total_discount_money_amount', type: 'INTEGER' },
+      { name: 'total_money_amount', type: 'INTEGER' },
+      { name: 'variation_total_price_money_amount', type: 'INTEGER' },
+      { name: 'cost_money_amount', type: 'INTEGER' },
+      { name: 'order_created_at', type: 'TIMESTAMP' },
+      { name: 'order_updated_at', type: 'TIMESTAMP' },
+      { name: 'note', type: 'STRING' },
+      { name: 'applied_tax_uids', type: 'STRING' },
+      { name: 'applied_discount_uids', type: 'STRING' },
+      { name: 'modifiers', type: 'STRING' },
+      { name: 'parsed_weight_grams', type: 'FLOAT' },
+      { name: 'parsed_weight_bucket', type: 'STRING' },
+      { name: 'is_brickweed', type: 'BOOL' },
+      { name: 'data', type: 'STRING' },
+    ],
+  },
   {
     name: 'transactions',
     table: 'square_transactions',

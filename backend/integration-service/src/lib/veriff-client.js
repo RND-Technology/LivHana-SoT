@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 import crypto from 'crypto';
-import { createLogger } from '../../../common/logging/index.js';
+import { createLogger } from '../../common/logging/index.js';
 
 const logger = createLogger('veriff-client');
 

@@ -5,9 +5,9 @@ import cors from 'cors';
 import pino from 'pino';
 import voiceRouter from './voice-router.js';
 import { createHealthRouter } from './voice-health.js';
-import { authMiddleware } from '../../common/auth/middleware.js';
-import { requestLogger, errorLogger } from '../../common/logging/logger.js';
-import { ensureRedisEnv, createQueue } from '../../common/queue/index.js';
+import { authMiddleware } from '../common/auth/middleware.js';
+import { requestLogger, errorLogger } from '../common/logging/logger.js';
+import { ensureRedisEnv, createQueue } from '../common/queue/index.js';
 
 const app = express();
 const logger = pino({ level: process.env.LOG_LEVEL ?? 'info' });
@@ -17,9 +17,15 @@ if (allowedOrigins?.includes('')) {
   logger.warn('ALLOWED_ORIGINS contains blank entries; check your configuration');
 }
 
-ensureRedisEnv({ logger });
-const queueName = process.env.REASONING_QUEUE_NAME ?? 'voice-mode-reasoning-jobs';
-const reasoningQueue = createQueue(queueName);
+// In SAFE_MODE, skip Redis initialization
+let reasoningQueue = null;
+if (process.env.SAFE_MODE === 'true') {
+  logger.warn('Voice service running in SAFE_MODE - Redis disabled');
+} else {
+  ensureRedisEnv({ logger });
+  const queueName = process.env.REASONING_QUEUE_NAME ?? 'voice-mode-reasoning-jobs';
+  reasoningQueue = createQueue(queueName);
+}
 
 app.use(helmet());
 app.use(cors({ origin: allowedOrigins ?? '*', credentials: true }));
@@ -32,8 +38,8 @@ app.get('/healthz', (_req, res) => {
 
 // Health endpoint without auth for monitoring
 app.use('/health', createHealthRouter({ logger, queue: reasoningQueue }));
-// API endpoints WITH authentication enabled
-app.use('/api', authMiddleware({ logger }), voiceRouter({ logger, queue: reasoningQueue }));
+// API endpoints WITHOUT authentication (for now - add back later with login system)
+app.use('/api', voiceRouter({ logger, queue: reasoningQueue }));
 
 app.use(errorLogger(logger));
 

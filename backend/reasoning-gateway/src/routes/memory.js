@@ -1,9 +1,9 @@
 import { Router } from 'express';
 import { randomUUID } from 'crypto';
-import { withRequestContext } from '../../../common/logging/context.js';
-import { MemoryLearningEngine } from '../../../common/memory/learning-engine.js';
-import { BigQueryMemoryAdapter } from '../../../common/memory/bigquery-adapter.js';
-import { VectorEmbeddingService } from '../../../common/memory/vector-embeddings.js';
+import { withRequestContext } from '../../common/logging/context.js';
+import { MemoryLearningEngine } from '../../common/memory/learning-engine.js';
+import { BigQueryMemoryAdapter } from '../../common/memory/bigquery-adapter.js';
+import { VectorEmbeddingService } from '../../common/memory/vector-embeddings.js';
 
 let memoryEngine = null;
 let bigQueryAdapter = null;

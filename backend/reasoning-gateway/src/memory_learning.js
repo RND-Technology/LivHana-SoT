@@ -1,6 +1,6 @@
-import { MemoryLearningEngine } from '../../common/memory/learning-engine.js';
-import { VectorEmbeddingService } from '../../common/memory/vector-embeddings.js';
-import { BigQueryMemoryAdapter } from '../../common/memory/bigquery-adapter.js';
+import { MemoryLearningEngine } from '../common/memory/learning-engine.js';
+import { VectorEmbeddingService } from '../common/memory/vector-embeddings.js';
+import { BigQueryMemoryAdapter } from '../common/memory/bigquery-adapter.js';
 
 let engineInstance = null;
 let vectorInstance = null;

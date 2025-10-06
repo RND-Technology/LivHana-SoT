@@ -66,12 +66,17 @@ const VoiceMode = ({
     return localStorage.getItem('selectedVoice') || '21m00Tcm4TlvDq8ikWAM';
   });
   const [isSpeaking, setIsSpeaking] = useState(false);
+  const [isListening, setIsListening] = useState(false);
+  const [isTranscribing, setIsTranscribing] = useState(false);
+  const [transcript, setTranscript] = useState('');
   const [audioLevel, setAudioLevel] = useState(50);
   const [stability, setStability] = useState(50);
   const [similarityBoost, setSimilarityBoost] = useState(80);
   const [isTesting, setIsTesting] = useState(false);
   const [reasoningPrompt, setReasoningPrompt] = useState('Summarize the latest operations status for Liv Hana.');
   const audioRef = useRef(null);
+  const mediaRecorderRef = useRef(null);
+  const audioChunksRef = useRef([]);
   const reasoning = useReasoningJob();
   const [healthStatus, setHealthStatus] = useState({
     voice: 'unknown',
@@ -140,32 +145,11 @@ const VoiceMode = ({
       setAgentStatus('speaking');
       setHealthStatus((prev) => ({ ...prev, voice: 'healthy' }));
 
-      // SECURITY P0 FIX: Validate token exists before making request
-      const token = localStorage.getItem('livhana_session_token');
-      if (!token) {
-        throw new Error('Authentication required. Please log in.');
-      }
-
-      // Validate token is not expired (if JWT format)
-      try {
-        const tokenParts = token.split('.');
-        if (tokenParts.length === 3) {
-          const payload = JSON.parse(atob(tokenParts[1]));
-          if (payload.exp && payload.exp * 1000 < Date.now()) {
-            throw new Error('Token expired. Please log in again.');
-          }
-        }
-      } catch (tokenError) {
-        console.warn('Token validation warning:', tokenError.message);
-        // Continue anyway - server will validate
-      }
-
       const response = await fetch(`${VOICE_SERVICE_BASE}/elevenlabs/synthesize`, {
         method: 'POST',
         headers: {
           'Accept': 'audio/mpeg',
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           text: text,
@@ -176,11 +160,6 @@ const VoiceMode = ({
           }
         })
       });
-
-      // SECURITY P0 FIX: Handle 401 Unauthorized - token refresh needed
-      if (response.status === 401) {
-        throw new Error('Unauthorized: Your session has expired. Please log in again.');
-      }
 
       if (!response.ok) {
         const errorText = await response.text();
@@ -214,13 +193,7 @@ const VoiceMode = ({
       setIsSpeaking(false);
       setAgentStatus('error');
       setHealthStatus((prev) => ({ ...prev, voice: 'down' }));
-
-      // SECURITY P0 FIX: Better error messaging for auth failures
-      if (error.message.includes('Authentication') || error.message.includes('Unauthorized')) {
-        alert(`Authentication Error: ${error.message}\n\nPlease log in to use voice features.`);
-      } else {
-        alert(`Voice synthesis failed: ${error.message}`);
-      }
+      alert(`Voice synthesis failed: ${error.message}`);
     }
   };
 
@@ -250,6 +223,110 @@ const VoiceMode = ({
       setHealthStatus((prev) => ({ ...prev, voice: 'healthy' }));
     }
   };
+
+  const handleStartListening = async () => {
+    try {
+      // Request microphone permission
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+
+      // Create MediaRecorder
+      const mediaRecorder = new MediaRecorder(stream, {
+        mimeType: 'audio/webm;codecs=opus'
+      });
+
+      mediaRecorderRef.current = mediaRecorder;
+      audioChunksRef.current = [];
+
+      mediaRecorder.ondataavailable = (event) => {
+        if (event.data.size > 0) {
+          audioChunksRef.current.push(event.data);
+        }
+      };
+
+      mediaRecorder.onstop = async () => {
+        // Stop all tracks
+        stream.getTracks().forEach(track => track.stop());
+
+        // Create audio blob
+        const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
+
+        // Send to Whisper API
+        await transcribeAudio(audioBlob);
+      };
+
+      // Start recording
+      mediaRecorder.start();
+      setIsListening(true);
+      setAgentStatus('listening');
+      setHealthStatus((prev) => ({ ...prev, voice: 'healthy' }));
+
+    } catch (error) {
+      console.error('Microphone access error:', error);
+      alert(`Microphone access failed: ${error.message}`);
+      setHealthStatus((prev) => ({ ...prev, voice: 'down' }));
+    }
+  };
+
+  const handleStopListening = () => {
+    if (mediaRecorderRef.current && mediaRecorderRef.current.state === 'recording') {
+      mediaRecorderRef.current.stop();
+      setIsListening(false);
+      setAgentStatus('processing');
+    }
+  };
+
+  const transcribeAudio = async (audioBlob) => {
+    setIsTranscribing(true);
+    setAgentStatus('transcribing');
+
+    try {
+      // Create FormData
+      const formData = new FormData();
+      formData.append('audio', audioBlob, 'recording.webm');
+
+      // Send to Whisper API
+      const response = await fetch(`${VOICE_SERVICE_BASE}/whisper/transcribe`, {
+        method: 'POST',
+        body: formData
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Transcription error: ${response.status} ${response.statusText} - ${errorText}`);
+      }
+
+      const result = await response.json();
+      const transcribedText = result.text;
+
+      setTranscript(transcribedText);
+      setReasoningPrompt(transcribedText);
+      setHealthStatus((prev) => ({ ...prev, voice: 'healthy' }));
+
+      // Auto-trigger reasoning job
+      if (transcribedText && transcribedText.trim().length > 0) {
+        await reasoning.submitJob({
+          prompt: transcribedText,
+          sessionId: 'voice-mode',
+          metadata: { source: 'voice-input' }
+        });
+      }
+
+    } catch (error) {
+      console.error('Transcription error:', error);
+      setHealthStatus((prev) => ({ ...prev, voice: 'down' }));
+      alert(`Transcription failed: ${error.message}`);
+    } finally {
+      setIsTranscribing(false);
+      setAgentStatus('ready');
+    }
+  };
+
+  // Auto-play TTS when reasoning completes
+  useEffect(() => {
+    if (reasoning.status === 'completed' && reasoning.result?.final && voiceModeActive) {
+      speakWithElevenLabs(reasoning.result.final);
+    }
+  }, [reasoning.status, reasoning.result?.final, voiceModeActive]);
 
   return (
     <Dialog
@@ -477,13 +554,33 @@ const VoiceMode = ({
           </Box>
         </Box>
 
-        {/* Test Controls */}
+        {/* Voice Input Controls */}
         <Box sx={{ mt: 3, display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap' }}>
+          <Button
+            variant="contained"
+            startIcon={isListening ? <MicOff /> : <Mic />}
+            onClick={isListening ? handleStopListening : handleStartListening}
+            disabled={isSpeaking || isTranscribing}
+            sx={{
+              backgroundColor: isListening ? '#EF4444' : '#16A34A',
+              '&:hover': { backgroundColor: isListening ? '#DC2626' : '#15803D' },
+              minWidth: 200,
+              animation: isListening ? 'pulse 1.5s ease-in-out infinite' : 'none',
+              '@keyframes pulse': {
+                '0%, 100%': { opacity: 1 },
+                '50%': { opacity: 0.7 }
+              }
+            }}
+            data-testid="voice-input-button"
+          >
+            {isListening ? 'Stop Listening' : 'Start Voice Input'}
+          </Button>
+
           <Button
             variant="contained"
             startIcon={isTesting ? <CircularProgress size={20} /> : <PlayArrow />}
             onClick={handleTestVoice}
-            disabled={isSpeaking || isTesting}
+            disabled={isSpeaking || isTesting || isListening || isTranscribing}
             sx={{
               backgroundColor: '#16A34A',
               '&:hover': { backgroundColor: '#15803D' },
@@ -511,6 +608,18 @@ const VoiceMode = ({
           </Button>
         </Box>
 
+        {/* Transcription Display */}
+        {(isTranscribing || transcript) && (
+          <Paper sx={{ mt: 3, p: 2, backgroundColor: '#2d2d2d' }}>
+            <Typography variant="h6" sx={{ color: '#16A34A', mb: 1 }}>
+              {isTranscribing ? 'Transcribing...' : 'Last Transcription'}
+            </Typography>
+            <Typography variant="body2" sx={{ color: '#E5E7EB' }}>
+              {isTranscribing ? <CircularProgress size={20} /> : transcript}
+            </Typography>
+          </Paper>
+        )}
+
         {/* Status Display */}
         <Paper sx={{ mt: 3, p: 2, backgroundColor: '#374151' }} data-testid="voice-mode-status">
           <Typography variant="h6" sx={{ color: '#16A34A', mb: 1 }}>
@@ -523,7 +632,11 @@ const VoiceMode = ({
             />
             <Chip
               label={`Agent Status: ${agentStatus}`}
-              color={agentStatus === 'ready' ? 'success' : agentStatus === 'speaking' ? 'warning' : 'error'}
+              color={
+                agentStatus === 'ready' ? 'success' :
+                ['speaking', 'listening', 'transcribing'].includes(agentStatus) ? 'warning' :
+                'error'
+              }
             />
             <Chip
               label={`Reasoning Status: ${reasoning.status}`}
@@ -534,6 +647,25 @@ const VoiceMode = ({
               label={`Voice Service: ${healthStatus.voice === 'healthy' || healthStatus.voice === 'degraded' ? 'Connected' : 'Disconnected'}`}
               color={healthStatus.voice === 'healthy' ? 'success' : healthStatus.voice === 'degraded' ? 'warning' : 'error'}
             />
+            {isListening && (
+              <Chip
+                label="🎤 LISTENING"
+                sx={{
+                  backgroundColor: '#EF4444',
+                  color: 'white',
+                  animation: 'pulse 1.5s ease-in-out infinite'
+                }}
+              />
+            )}
+            {isTranscribing && (
+              <Chip
+                label="✍️ TRANSCRIBING"
+                sx={{
+                  backgroundColor: '#F59E0B',
+                  color: 'white'
+                }}
+              />
+            )}
           </Box>
         </Paper>
       </DialogContent>

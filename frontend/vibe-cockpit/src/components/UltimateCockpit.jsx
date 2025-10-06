@@ -59,7 +59,7 @@ import SquareLiveCockpit from './SquareLiveCockpit';
 import AutonomousAgentDashboard from './AutonomousAgentDashboard';
 
 /**
- * 🚀 ULTIMATE CLOUD COCKPIT - Better than Odoo
+ * 🤠 TEXAS TAKEOVER COCKPIT - Lone Star Empire Command
  *
  * Features:
  * - Unified dashboard hub with ALL business layers
@@ -69,7 +69,7 @@ import AutonomousAgentDashboard from './AutonomousAgentDashboard';
  * - Real-time performance monitoring
  * - Customizable layouts with drag-drop (future)
  *
- * Philosophy: "Catch all the data, drill to any layer, always peak performance"
+ * Philosophy: "Everything's bigger in Texas - including our data empire"
  */
 
 const UltimateCockpit = () => {
@@ -86,9 +86,9 @@ const UltimateCockpit = () => {
   // Business layers structure
   const businessLayers = {
     overview: {
-      name: 'Empire Overview',
+      name: 'Texas Takeover Overview',
       icon: <BusinessCenter />,
-      color: '#10B981',
+      color: '#DC2626',
       component: null, // Custom overview
       metrics: ['revenue', 'customers', 'orders', 'compliance']
     },
@@ -567,7 +567,7 @@ const UltimateCockpit = () => {
         }}>
           <Box>
             <Typography variant="h4" sx={{ color: 'white', fontWeight: 'bold' }}>
-              {businessLayers[activeLayer.split('.')[0]]?.name || 'Empire Overview'}
+              {businessLayers[activeLayer.split('.')[0]]?.name || 'Texas Takeover Overview'}
             </Typography>
             <Typography variant="body2" sx={{ color: '#64748B' }}>
               Real-time intelligence • {new Date().toLocaleString()} • Mode: {reasoningMode.toUpperCase()}

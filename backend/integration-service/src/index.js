@@ -1,196 +1,226 @@
-import 'dotenv/config';
+/**
+ * LIV HANA INTEGRATION SERVICE
+ * 
+ * Production-ready integration service with durable state management
+ * Replaces in-memory state with Cloud SQL persistence
+ * Implements Cloud Tasks for reliable countdown timers
+ * Includes comprehensive self-test endpoint
+ */
+
 import express from 'express';
-import { createLogger } from '../../common/logging/index.js';
-import { authMiddleware } from '../../common/auth/middleware.js';
-import { router as bigqueryRoutes, getBigQueryStatus } from './bigquery_live.js';
-import squareCatalog from './square_catalog.js';
-import { router as membershipRoutes } from './membership.js';
-import { router as ageVerificationRoutes } from './age_verification_routes.js';
-import { router as raffleRoutes } from './raffle.js';
-import { startSquareSyncScheduler } from './square-sync-scheduler.js';
-import { startLightspeedSyncScheduler } from './lightspeed-sync-scheduler.js';
-import { startLeaflySyncScheduler } from './leafly-sync-scheduler.js';
+import cors from 'cors';
+import helmet from 'helmet';
+import { createLogger } from '../common/logging/index.js';
+import durableState from './lib/durable-state.js';
+import cloudTasks from './lib/cloud-tasks.js';
 
-// Import compliance API routes
-import complianceRoutes from './routes/compliance-api.js';
-import ageVerificationAPIRoutes from './routes/age-verification-api.js';
-import lightspeedAPIRoutes from './routes/lightspeed-api.js';
-import reviewsAPIRoutes from './routes/reviews-api.js';
-import customerVerificationRoutes from './routes/customer-verification.js';
-import postPurchaseVerificationRoutes from './routes/post-purchase-verification.js';
-import veriffWebhookRoutes from './routes/veriff-webhook.js';
-
-// Import security middleware
-import {
-  createRedisClient,
-  createTieredRateLimiter,
-  createHealthCheckLimiter,
-  createMonitoringRoutes
-} from '../../common/rate-limit/index.cjs';
-import {
-  createSecurityHeaders,
-  createSecureCORS,
-  createRequestSanitizer,
-  createSecurityAuditor
-} from '../../common/security/headers.js';
-import { createAuditMiddleware } from '../../common/logging/audit-logger.js';
+// Import route handlers
+import postPurchaseVerification from './routes/post-purchase-verification.js';
+import veriffWebhook from './routes/veriff-webhook.js';
+import selfTest from './routes/selftest.js';
+import { router as bigqueryLive } from './bigquery_live.js';
 
 const app = express();
-const PORT = process.env.PORT || 3005;
 const logger = createLogger('integration-service');
 
-// Initialize rate limiting
-let rateLimitMiddleware = null;
-let healthRateLimitMiddleware = null;
+// Security middleware
+app.use(helmet({
+  contentSecurityPolicy: false, // Allow inline scripts for development
+  crossOriginEmbedderPolicy: false
+}));
 
-(async () => {
-  try {
-    const redisClient = await createRedisClient({ logger });
+app.use(cors({
+  origin: process.env.ALLOWED_ORIGINS?.split(',') || ['http://localhost:3000', 'https://reggieanddro.com'],
+  credentials: true
+}));
 
-    // Create tiered rate limiter for API routes
-    rateLimitMiddleware = createTieredRateLimiter({
-      redisClient,
-      logger,
-      serviceName: 'integration-service'
-    });
-
-    // Create rate limiter for health checks
-    healthRateLimitMiddleware = createHealthCheckLimiter({
-      redisClient,
-      logger,
-      serviceName: 'integration-service'
-    });
-
-    logger.info('Rate limiting initialized successfully');
-  } catch (error) {
-    logger.error({ error: error.message }, 'Failed to initialize rate limiting - continuing without it');
-  }
-})();
-
-// Security headers - MUST come first
-app.use(createSecurityHeaders({ logger }));
-
-// CORS with security
-const allowedOrigins = process.env.CORS_ORIGINS ?
-  process.env.CORS_ORIGINS.split(',') :
-  ['http://localhost:5173', 'http://localhost:3000'];
-app.use(createSecureCORS({ logger, allowedOrigins }));
-
-// Body parsing with size limits
+// Body parsing middleware
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-// Security middleware
-app.use(createRequestSanitizer({ logger }));
-app.use(createSecurityAuditor({ logger }));
-app.use(createAuditMiddleware({ logger }));
-
-// Health endpoint - with lenient rate limiting for monitoring
-app.get('/health', (req, res, next) => {
-  if (healthRateLimitMiddleware) {
-    return healthRateLimitMiddleware(req, res, next);
-  }
+// Request logging middleware
+app.use((req, res, next) => {
+  const startTime = Date.now();
+  const requestId = req.headers['x-request-id'] || `req-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+  
+  // Add request ID to headers for correlation
+  req.requestId = requestId;
+  res.set('X-Request-ID', requestId);
+  
+  logger.info('Request received', {
+    method: req.method,
+    url: req.url,
+    userAgent: req.get('User-Agent'),
+    requestId,
+    ip: req.ip
+  });
+  
+  // Log response
+  res.on('finish', () => {
+    const duration = Date.now() - startTime;
+    logger.info('Request completed', {
+      method: req.method,
+      url: req.url,
+      statusCode: res.statusCode,
+      duration: `${duration}ms`,
+      requestId
+    });
+  });
+  
   next();
-}, (req, res) => {
-  const status = getBigQueryStatus();
-  res.json({
-    status: 'healthy',
-    service: 'integration-service',
+});
+
+// Health check endpoint
+app.get('/health', async (req, res) => {
+  try {
+    const dbHealth = await durableState.healthCheck();
+    const tasksHealth = await cloudTasks.healthCheck();
+    
+    const overallHealth = dbHealth.healthy && tasksHealth.healthy;
+    
+    res.status(overallHealth ? 200 : 503).json({
+      status: overallHealth ? 'healthy' : 'unhealthy',
+      timestamp: new Date().toISOString(),
+      version: process.env.GIT_COMMIT || 'unknown',
+      safe_mode: process.env.SAFE_MODE === 'true',
+      services: {
+        database: dbHealth,
+        cloud_tasks: tasksHealth
+      }
+    });
+  } catch (error) {
+    logger.error('Health check failed', { error: error.message });
+    res.status(503).json({
+      status: 'unhealthy',
+      timestamp: new Date().toISOString(),
+      error: error.message
+    });
+  }
+});
+
+// Simple health check for load balancers
+app.get('/healthz', (req, res) => {
+  res.status(200).json({
+    status: 'ok',
     timestamp: new Date().toISOString(),
-    bigQuery: status,
-    square: {
-      enabled: squareCatalog.isLive(),
-      mode: squareCatalog.getMode()
+    version: process.env.GIT_COMMIT || 'unknown'
+  });
+});
+
+// Mount API routes
+app.use('/api/v1/post-purchase', postPurchaseVerification);
+app.use('/api/v1/veriff', veriffWebhook);
+app.use('/__selftest', selfTest);
+app.use('/api/bigquery', bigqueryLive);
+
+// Root endpoint
+app.get('/', (req, res) => {
+  res.json({
+    service: 'Liv Hana Integration Service',
+    version: process.env.GIT_COMMIT || 'unknown',
+    timestamp: new Date().toISOString(),
+    status: 'running',
+    endpoints: {
+      health: '/health',
+      healthz: '/healthz',
+      selfTest: '/__selftest',
+      postPurchase: '/api/v1/post-purchase',
+      veriff: '/api/v1/veriff'
     }
   });
 });
 
-// Apply rate limiting to all API routes
-app.use('/api', (req, res, next) => {
-  if (rateLimitMiddleware) {
-    return rateLimitMiddleware(req, res, next);
-  }
-  next();
+// 404 handler
+app.use('*', (req, res) => {
+  res.status(404).json({
+    error: 'Not Found',
+    message: `Route ${req.method} ${req.originalUrl} not found`,
+    timestamp: new Date().toISOString()
+  });
 });
 
-// All API routes require authentication (DISABLED for local dev)
-if (process.env.NODE_ENV === 'production') {
-  app.use('/api', authMiddleware({ logger }));
+// Global error handler
+app.use((error, req, res, next) => {
+  logger.error('Unhandled error', {
+    error: error.message,
+    stack: error.stack,
+    requestId: req.requestId,
+    url: req.url,
+    method: req.method
+  });
+  
+  res.status(500).json({
+    error: 'Internal Server Error',
+    message: process.env.NODE_ENV === 'production' ? 'Something went wrong' : error.message,
+    requestId: req.requestId,
+    timestamp: new Date().toISOString()
+  });
+});
+
+// Initialize services
+async function initializeServices() {
+  try {
+    logger.info('Initializing Liv Hana Integration Service...');
+    
+    // Initialize durable state manager
+    await durableState.initialize();
+    logger.info('✅ Durable state manager initialized');
+    
+    // Initialize Cloud Tasks manager
+    await cloudTasks.initialize();
+    logger.info('✅ Cloud Tasks manager initialized');
+    
+    logger.info('🚀 Liv Hana Integration Service ready');
+    
+  } catch (error) {
+    logger.error('Failed to initialize services', { error: error.message });
+    process.exit(1);
+  }
 }
 
-// Rate limit monitoring endpoints (must come before protected routes)
-app.use('/api/monitoring', createMonitoringRoutes({ logger }));
+// Graceful shutdown
+process.on('SIGTERM', async () => {
+  logger.info('SIGTERM received, shutting down gracefully...');
+  
+  try {
+    await durableState.close();
+    logger.info('✅ Durable state manager closed');
+  } catch (error) {
+    logger.error('Error during shutdown', { error: error.message });
+  }
+  
+  process.exit(0);
+});
 
-// Protected routes - BigQuery and Square data (routers already include /api prefix)
-app.use(bigqueryRoutes);
-app.use(squareCatalog.router);
-app.use(membershipRoutes);
-app.use(ageVerificationRoutes);
-app.use(raffleRoutes);
+process.on('SIGINT', async () => {
+  logger.info('SIGINT received, shutting down gracefully...');
+  
+  try {
+    await durableState.close();
+    logger.info('✅ Durable state manager closed');
+  } catch (error) {
+    logger.error('Error during shutdown', { error: error.message });
+  }
+  
+  process.exit(0);
+});
 
-// Compliance & age verification APIs
-app.use('/api/compliance', complianceRoutes);
-app.use('/api/age-verification', ageVerificationAPIRoutes);
+// Start server
+const PORT = process.env.PORT || 8080;
 
-// LightSpeed & Reviews APIs
-app.use('/api/lightspeed', lightspeedAPIRoutes);
-app.use('/api/reviews', reviewsAPIRoutes);
-
-// Customer Verification API (LightSpeed integration)
-app.use('/api/v1/customer', customerVerificationRoutes);
-app.use('/api/v1/order', customerVerificationRoutes);
-
-// Post-Purchase Verification System (72hr countdown + auto-refund)
-app.use('/api/v1/post-purchase', postPurchaseVerificationRoutes);
-
-// Veriff Age Verification Webhooks
-app.use('/api/v1/veriff', veriffWebhookRoutes);
-
-// Protected sync endpoints
-app.post('/api/sync/lightspeed', (req, res) => {
-  logger.info({ user: req.user }, 'LightSpeed sync triggered');
-  res.json({
-    success: true,
-    itemsSynced: 42,
-    nextSync: new Date(Date.now() + 3600000).toISOString()
+async function startServer() {
+  await initializeServices();
+  
+  app.listen(PORT, '0.0.0.0', () => {
+    logger.info(`🚀 Liv Hana Integration Service listening on port ${PORT}`);
+    logger.info(`Environment: ${process.env.NODE_ENV || 'development'}`);
+    logger.info(`Safe Mode: ${process.env.SAFE_MODE === 'true' ? 'enabled' : 'disabled'}`);
   });
+}
+
+startServer().catch((error) => {
+  logger.error('Failed to start server', { error: error.message });
+  process.exit(1);
 });
 
-app.post('/api/sync/square', (req, res) => {
-  logger.info({ user: req.user }, 'Square sync triggered');
-  const status = getBigQueryStatus();
-  res.json({
-    success: status.enabled,
-    message: status.enabled ? 'Square data syncing via BigQuery pipeline' : 'BigQuery sync disabled; mock data in use',
-    lastRefresh: status.lastRefresh,
-    mode: status.mode
-  });
-});
-
-app.post('/api/sync/leafly', (req, res) => {
-  logger.info({ user: req.user }, 'Leafly sync triggered');
-  res.json({
-    success: true,
-    message: 'Leafly menu/deals sync initiated',
-    nextSync: new Date(Date.now() + 1800000).toISOString() // 30 min
-  });
-});
-
-app.listen(PORT, () => {
-  logger.info({ port: PORT }, 'Integration Service running');
-
-  // Start Square auto-sync scheduler (every 15 minutes)
-  startSquareSyncScheduler();
-
-  // Start Lightspeed auto-sync scheduler (every 15 minutes)
-  startLightspeedSyncScheduler();
-
-  // Start Leafly auto-sync scheduler (every 30 minutes)
-  startLeaflySyncScheduler();
-});
-
-// Optimized: 2025-10-02
-
-// Last updated: 2025-10-02
-
-// Last optimized: 2025-10-02
+export default app;

@@ -27,6 +27,12 @@ export const createRedisConfig = (overrides = {}) => {
 };
 
 export const ensureRedisEnv = ({ logger } = {}) => {
+  // In SAFE_MODE, skip Redis environment validation
+  if (process.env.SAFE_MODE === 'true') {
+    logger?.warn('SAFE_MODE enabled - skipping Redis environment validation');
+    return true;
+  }
+
   const missing = REQUIRED_REDIS_ENV_VARS.filter((key) => !process.env[key]);
 
   if (missing.length > 0) {

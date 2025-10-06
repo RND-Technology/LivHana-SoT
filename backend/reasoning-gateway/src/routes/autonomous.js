@@ -9,8 +9,8 @@
 
 import { Router } from 'express';
 import { randomUUID } from 'crypto';
-import { withRequestContext } from '../../../common/logging/context.js';
-import { adminMiddleware } from '../../../common/auth/admin-middleware.js';
+import { withRequestContext } from '../../common/logging/context.js';
+import { adminMiddleware } from '../../common/auth/admin-middleware.js';
 import { createClaudeAgent } from '../claude-autonomous-agent.js';
 
 // In-memory task storage (in production, use Redis or database)

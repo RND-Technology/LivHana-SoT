@@ -2,16 +2,18 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-COPY backend/voice-service/package*.json ./
-RUN npm install --omit=dev
+# Copy voice-service package files first for better caching
+COPY voice-service/package*.json ./
+RUN npm ci --only=production
 
-COPY backend/common/package.json /common/package.json
-RUN npm install --omit=dev --prefix /common
+# Copy common directory
+COPY ../common ./common
 
-COPY backend/common /common
-COPY backend/voice-service/src ./src
+# Copy voice-service source code
+COPY voice-service/src ./src
 
 ENV NODE_ENV=production
+EXPOSE 4001
 CMD ["node", "src/index.js"]
 
 # Optimized: 2025-10-02
