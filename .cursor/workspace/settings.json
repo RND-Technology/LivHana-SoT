@@ -1,3 +1,17 @@
 {
-  "claudeCode.defaultApprovalMode": "trusted"
+  "claudeCode.defaultApprovalMode": "trusted",
+  "claudeCode.maxTokens": 200000,
+  "claudeCode.contextWindow": "extended",
+  "claudeCode.parallelProcessing": true,
+  "claudeCode.autoComplete": "aggressive",
+  "claudeCode.smartIndexing": true,
+  "claudeCode.codebaseAnalysis": "deep",
+  "claudeCode.patternRecognition": "enhanced",
+  "claudeCode.memoryOptimization": true,
+  "claudeCode.cacheStrategy": "intelligent",
+  "claudeCode.tier1Mode": true,
+  "claudeCode.livHanaOptimization": true,
+  "claudeCode.maximumPower": true,
+  "claudeCode.enterpriseGrade": true,
+  "claudeCode.productionReady": true
 }
