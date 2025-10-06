@@ -1,0 +1,13 @@
+PORT=4002
+LOG_LEVEL=info
+REDIS_HOST=redis
+REDIS_PORT=6379
+REASONING_QUEUE_NAME=voice-mode-reasoning-jobs
+DEEPSEEK_API_KEY=op://LivHana-Ops-Keys/DEEPSEEK_API_KEY/credential
+JWT_SECRET=op://LivHana-Ops-Keys/r7sirydmvkajdggqjcitmvld3a/password
+JWT_AUDIENCE=op://LivHana-Ops-Keys/JWT_AUDIENCE/password
+JWT_ISSUER=op://LivHana-Ops-Keys/JWT_ISSUER/password
+JWT_ALGORITHMS=HS256
+REASONING_JWT_SECRET=op://LivHana-Ops-Keys/r7sirydmvkajdggqjcitmvld3a/password
+REASONING_JWT_AUDIENCE=op://LivHana-Ops-Keys/JWT_AUDIENCE/password
+REASONING_JWT_ISSUER=op://LivHana-Ops-Keys/JWT_ISSUER/password

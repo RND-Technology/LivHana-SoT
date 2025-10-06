@@ -1,0 +1,39 @@
+# LivHana Membership System Environment Variables
+# Copy this file to .env and fill in your actual values
+
+# BigQuery Configuration
+GCP_PROJECT_ID=your-project-id
+GOOGLE_APPLICATION_CREDENTIALS=/path/to/service-account-key.json
+BQ_DATASET=commerce
+BQ_TABLE_MEMBERSHIPS=memberships
+BQ_LOCATION=US
+BIGQUERY_ENABLED=true
+
+# KAJA Payment Gateway (Authorize.Net)
+AUTHORIZE_NET_API_LOGIN_ID=your-api-login-id
+AUTHORIZE_NET_TRANSACTION_KEY=your-transaction-key
+AUTHORIZE_NET_SANDBOX=true
+
+# Stripe Price IDs (for payment links)
+STRIPE_BRONZE_PRICE_ID=price_bronze_monthly
+STRIPE_SILVER_PRICE_ID=price_silver_monthly
+STRIPE_GOLD_PRICE_ID=price_gold_monthly
+
+# JWT Configuration
+JWT_SECRET=your-super-secret-jwt-key-change-this
+JWT_AUDIENCE=livhana-api
+JWT_ISSUER=livhana-auth
+
+# Email Service
+EMAIL_SERVICE_URL=http://localhost:3007/api/email/send
+
+# CORS Configuration
+CORS_ORIGINS=http://localhost:5173,http://localhost:3000
+
+# Service Configuration
+PORT=3005
+NODE_ENV=development
+LOG_LEVEL=info
+
+# BigQuery Cache Configuration
+BQ_CACHE_TTL_MS=30000

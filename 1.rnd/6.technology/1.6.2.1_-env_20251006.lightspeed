@@ -1,0 +1,4 @@
+LIGHTSPEED_API_KEY=op://LivHana-Ops-Keys/LIGHTSPEED_CLIENT_ID/credential
+LIGHTSPEED_ACCOUNT_ID=op://LivHana-Ops-Keys/LIGHTSPEED_CLIENT_ID/username
+BQ_DATASET=commerce
+BQ_LIGHTSPEED_TABLE=lightspeed_inventory

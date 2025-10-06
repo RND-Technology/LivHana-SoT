@@ -31,6 +31,13 @@
 
 ### **Layer 2: REVENUE ENGINES (Operating Companies)**
 
+**Finance Layer (FIN)** - Sovereign Life OS
+
+- Personal finance automation (Jesse pilot)
+- $1B unicorn path target (18 months)
+- Account aggregation + AI categorization
+- Status: LAUNCHED (Oct 6, 2025)
+
 **Reggie & Dro (RND)** - Cannabis Retail
 
 - San Antonio dispensary (DSHS #690)
@@ -318,8 +325,9 @@ git commit -m "2-BIZ.RND.010: Add DoorDash provider integration"
 
 **Examples:**
 
-- `100`: TerpWorks B2B launch ($8K MRR potential)
-- `110`: Leafly SEO optimization (+$10K/month)
+- `100`: Finance layer pilot (Jesse personal finance automation)
+- `110`: TerpWorks B2B launch ($8K MRR potential)
+- `120`: Leafly SEO optimization (+$10K/month)
 - `120`: HNC Episode 1 (start content engine)
 
 ### **PROGRESS (200-299)** - Moves Needle
