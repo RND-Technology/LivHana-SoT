@@ -59,6 +59,12 @@ import { motion } from 'framer-motion';
 // Import our new components
 import TexasCOAChecker from './TexasCOAChecker';
 import ComplianceChecker from './ComplianceChecker';
+import VoiceMode from './VoiceMode';
+import VideoMode from './VideoMode';
+import ChatMode from './ChatMode';
+import NotificationsPanel from './NotificationsPanel';
+import SettingsPanel from './SettingsPanel';
+import ProfilePanel from './ProfilePanel';
 
 const TexasTakeoverMVP = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -165,7 +171,13 @@ const TexasTakeoverMVP = () => {
     { label: 'Overview', icon: <Dashboard /> },
     { label: 'COA Checker', icon: <CameraAlt /> },
     { label: 'Compliance', icon: <Shield /> },
-    { label: 'Analytics', icon: <TrendingUp /> }
+    { label: 'Analytics', icon: <TrendingUp /> },
+    { label: 'Voice Mode', icon: <Mic /> },
+    { label: 'Video Mode', icon: <Videocam /> },
+    { label: 'Chat Mode', icon: <Chat /> },
+    { label: 'Notifications', icon: <Security /> },
+    { label: 'Settings', icon: <Security /> },
+    { label: 'Profile', icon: <People /> }
   ];
 
   const renderOverview = () => (
