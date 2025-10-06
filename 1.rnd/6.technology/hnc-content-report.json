@@ -1,0 +1,202 @@
+{
+  "timestamp": "2025-10-06T16:02:55.010Z",
+  "project": "Reggie & Dro",
+  "content": "HNC Content Engine",
+  "status": "LAUNCHED",
+  "episodes": [
+    {
+      "id": "episode_001",
+      "title": "Jesse Meets Liv Hana",
+      "day": 1,
+      "format": "60-second short",
+      "platforms": [
+        "YouTube Shorts",
+        "TikTok",
+        "IG Reels",
+        "X"
+      ],
+      "scriptBeat": [
+        "Jesse: \"Yo, I need some help running this empire...\"",
+        "Liv Hana AI EA appears: \"Live and faithful, boss. What's the mission?\"",
+        "Jesse: \"Deschedule cannabis, make Texas free, and sell some flower.\"",
+        "Liv: \"Roger that. Let's grow.\""
+      ],
+      "seoAnchors": [
+        "#TexasTHC",
+        "#StayTOONED",
+        "#ReggieAndDro"
+      ],
+      "cta": "Stay TOONED for more Texas THC Tales!",
+      "status": "published"
+    },
+    {
+      "id": "episode_002",
+      "title": "Chief Steve Lie/Dye's Dilemma",
+      "day": 2,
+      "format": "60-second short",
+      "platforms": [
+        "YouTube Shorts",
+        "TikTok",
+        "IG Reels",
+        "X"
+      ],
+      "scriptBeat": [
+        "Chief Steve: \"We gotta crack down on this hemp stuff...\"",
+        "Jesse: \"Chief, it's legal. 0.3% THC, DSHS licensed.\"",
+        "Chief: \"But... but... the optics!\"",
+        "Liv Hana: \"Facts > optics, Chief. Read the law.\""
+      ],
+      "seoAnchors": [
+        "#TexasHemp",
+        "#LegalTHCa",
+        "#ChiefSteve"
+      ],
+      "cta": "Stay TOONED for more Texas THC Tales!",
+      "status": "published"
+    },
+    {
+      "id": "episode_003",
+      "title": "Brick Weed Origins Story",
+      "day": 3,
+      "format": "60-second short",
+      "platforms": [
+        "YouTube Shorts",
+        "TikTok",
+        "IG Reels",
+        "X"
+      ],
+      "scriptBeat": [
+        "Narrator: \"Once upon a time, in the land of Texas...\"",
+        "Jesse: \"Everyone wanted premium flower. But some of us remember the OG days.\"",
+        "Flashback: 90s brick weed imagery (compressed, nostalgic)",
+        "Jesse: \"That's why we brought it back. $40/oz. Because we remember.\""
+      ],
+      "seoAnchors": [
+        "#BrickWeed",
+        "#TexasHemp",
+        "#Nostalgia"
+      ],
+      "cta": "Get your brick at ReggieAndDro.com!",
+      "status": "published"
+    },
+    {
+      "id": "episode_004",
+      "title": "Lt. Dan's Compliance Lecture",
+      "day": 4,
+      "format": "60-second short",
+      "platforms": [
+        "YouTube Shorts",
+        "TikTok",
+        "IG Reels",
+        "X"
+      ],
+      "scriptBeat": [
+        "Lt. Dan: \"Alright listen up! Here's how we stay legal in Texas...\"",
+        "Jesse: \"Lt. Dan, nobody wants a compliance lecture.\"",
+        "Lt. Dan: \"You WILL when DSHS shows up! ≤0.3% Δ9 THC, 21+ only!\"",
+        "Liv Hana: \"He's right. COAs or GTFO.\""
+      ],
+      "seoAnchors": [
+        "#Compliance",
+        "#LegalHemp",
+        "#TexasDSHS"
+      ],
+      "cta": "Stay legal, stay TOONED!",
+      "status": "published"
+    },
+    {
+      "id": "episode_005",
+      "title": "Aubrey Awfuls' First Appearance",
+      "day": 5,
+      "format": "60-second short",
+      "platforms": [
+        "YouTube Shorts",
+        "TikTok",
+        "IG Reels",
+        "X"
+      ],
+      "scriptBeat": [
+        "Jesse: \"Who's this new character?\"",
+        "Aubrey Awfuls: \"I'm the villain, obviously. Here to shut down your little hemp empire.\"",
+        "Liv Hana: \"Not on my watch, buddy.\"",
+        "Aubrey: \"We'll see about that...\" (dramatic exit)"
+      ],
+      "seoAnchors": [
+        "#AubreyAwfuls",
+        "#Villain",
+        "#TexasTHCTale"
+      ],
+      "cta": "Who will win? Stay TOONED!",
+      "status": "published"
+    },
+    {
+      "id": "episode_006",
+      "title": "Texas THC Tale Begins",
+      "day": 6,
+      "format": "90-second short",
+      "platforms": [
+        "YouTube Shorts",
+        "TikTok",
+        "IG Reels",
+        "X"
+      ],
+      "scriptBeat": [
+        "Narrator: \"In the great state of Texas, a revolution is brewing...\"",
+        "Jesse: \"They said we couldn't do it. Legal THC in Texas?\"",
+        "Liv Hana: \"We're doing it. And we're documenting every step.\"",
+        "Montage: Store, products, customers, legislative hearings",
+        "Jesse: \"This is the Texas THC Tale. Stay TOONED.\""
+      ],
+      "seoAnchors": [
+        "#TexasTHCTale",
+        "#HempRevolution",
+        "#TexasFreedom"
+      ],
+      "cta": "Subscribe for the full story!",
+      "status": "published"
+    },
+    {
+      "id": "episode_007",
+      "title": "Wall of Weed Unveiled",
+      "day": 7,
+      "format": "60-second short",
+      "platforms": [
+        "YouTube Shorts",
+        "TikTok",
+        "IG Reels",
+        "X"
+      ],
+      "scriptBeat": [
+        "Jesse: \"Alright, it's time. Let me show you the Wall of Weed.\"",
+        "Camera pans: Shelves stocked floor-to-ceiling with flower jars",
+        "Customer voiceover: \"This is heaven.\"",
+        "Jesse: \"Every strain. Every day. That's the promise.\""
+      ],
+      "seoAnchors": [
+        "#WallOfWeed",
+        "#TexasHemp",
+        "#StrainSelection"
+      ],
+      "cta": "Find your favorite at ReggieAndDro.com!",
+      "status": "published"
+    }
+  ],
+  "summary": {
+    "total": 7,
+    "published": 7,
+    "pending": 0
+  },
+  "platforms": {
+    "youtubeShorts": "Active",
+    "tiktok": "Active",
+    "instagramReels": "Active",
+    "xTwitter": "Active"
+  },
+  "expectedResults": {
+    "totalViews": "50,000+",
+    "engagementRate": "8%+",
+    "newSubscribers": "1,000+",
+    "websiteTraffic": "5,000+",
+    "conversions": "100+"
+  }
+}

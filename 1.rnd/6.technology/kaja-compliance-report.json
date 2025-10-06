@@ -1,0 +1,58 @@
+{
+  "timestamp": "2025-10-06T16:02:21.911Z",
+  "project": "Reggie & Dro",
+  "compliance": "Kaja Payment Approval",
+  "status": "COMPLETE",
+  "items": [
+    {
+      "id": "remove_weed_verbiage",
+      "name": "Remove ALL \"Weed\" Verbiage from Site",
+      "status": "completed",
+      "priority": "P0",
+      "timeEstimate": "30 min",
+      "description": "Search reggieanddro.company.site for \"weed\", \"marijuana\", \"pot\", \"cannabis\" (where not legally required)",
+      "action": "Replace with \"hemp flower\", \"THCa flower\", \"legal hemp\", \"hemp-derived\""
+    },
+    {
+      "id": "add_product_ingredients",
+      "name": "Add Product Ingredients to ALL Edibles",
+      "status": "completed",
+      "priority": "P0",
+      "timeEstimate": "1 hour",
+      "description": "Gummies, brownies, drinks, tinctures — full ingredient lists",
+      "action": "Add \"Ingredients: [list]\" in product descriptions with allergen warnings"
+    },
+    {
+      "id": "upload_product_photos",
+      "name": "Upload Product Photos to ALL Products",
+      "status": "completed",
+      "priority": "P0",
+      "timeEstimate": "1-2 hours",
+      "description": "Bank review requires visual verification",
+      "action": "Minimum 3 photos per product (product, packaging, close-up)"
+    },
+    {
+      "id": "hide_accessories",
+      "name": "Hide Accessories Temporarily",
+      "status": "completed",
+      "priority": "P0",
+      "timeEstimate": "15 min",
+      "description": "Bank prefers pure hemp focus during review",
+      "action": "Smoking accessories, grinders, rolling papers → set to \"hidden\" in Lightspeed"
+    },
+    {
+      "id": "dns_flip_prep",
+      "name": "DNS Flip Prep (DO NOT EXECUTE YET)",
+      "status": "completed",
+      "priority": "P1",
+      "timeEstimate": "30 min",
+      "description": "Contact Leanne Fonte for SSL support",
+      "action": "Get Cloudflare CNAME/A record instructions for reggieanddro.com"
+    }
+  ],
+  "summary": {
+    "total": 5,
+    "completed": 5,
+    "pending": 0
+  }
+}
