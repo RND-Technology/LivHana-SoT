@@ -27,7 +27,7 @@ last-reviewed: 2025-10-06
 - [Governance](#governance) (2 files)
 - [Operations](#operations) (8 files)
 - [Strategy](#strategy) (2 files)
-- [Analysis](#analysis) (1 file)
+- [Analysis](#analysis) (3 files)
 - [Archived](#archived) (9 files)
 
 ---
@@ -97,6 +97,8 @@ last-reviewed: 2025-10-06
 - [`strategy/ARCHITECTURE_BEFORE_AFTER_20251006.md`](./strategy/ARCHITECTURE_BEFORE_AFTER_20251006.md) - Architecture evolution explanation
 - [`strategy/REPLIT_AGENTIC_ARCHITECTURE_EXTRACT_20251006.md`](./strategy/REPLIT_AGENTIC_ARCHITECTURE_EXTRACT_20251006.md) - Agentic architecture explanation
 - [`analysis/N8N_CRITICAL_CRITIQUE.md`](./analysis/N8N_CRITICAL_CRITIQUE.md) - N8N critique explanation
+- [`analysis/ATC_ABSOLUTE_TRUTH_CONTEXT_20251006.md`](./analysis/ATC_ABSOLUTE_TRUTH_CONTEXT_20251006.md) - Absolute truth context
+- [`analysis/MEETING_INTELLIGENCE_EXTRACT_20251006.md`](./analysis/MEETING_INTELLIGENCE_EXTRACT_20251006.md) - Meeting intelligence extract
 - [`archived/DNS_CLEANUP_REGGIEANDDRO_TIER1.md`](./archived/DNS_CLEANUP_REGGIEANDDRO_TIER1.md) - DNS cleanup explanation
 
 ### Liv Hana (Codex Tier‑1)
@@ -139,15 +141,15 @@ last-reviewed: 2025-10-06
 | **Tutorial** | 2 | 5% |
 | **How-to** | 8 | 20% |
 | **Reference** | 18 | 45% |
-| **Explanation** | 13 | 33% |
-| **Total** | 41 | 100% |
+| **Explanation** | 15 | 33% |
+| **Total** | 43 | 100% |
 
 | Owner | Count | Percentage |
 |-------|-------|------------|
-| **Jesse Niesen (CEO)** | 27 | 66% |
-| **Liv Hana (Codex Tier‑1)** | 8 | 20% |
-| **System** | 6 | 15% |
-| **Total** | 41 | 100% |
+| **Jesse Niesen (CEO)** | 29 | 67% |
+| **Liv Hana (Codex Tier‑1)** | 8 | 19% |
+| **System** | 6 | 14% |
+| **Total** | 43 | 100% |
 
 ---
 
@@ -182,5 +184,5 @@ last-reviewed: 2025-10-06
 ---
 
 **Last Updated**: 2025-10-06  
-**Total Documents**: 41 files  
+**Total Documents**: 43 files  
 **Framework**: Diátaxis + Owner-based organization
