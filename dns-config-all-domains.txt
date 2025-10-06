@@ -1,0 +1,89 @@
+# E2E EMPIRE DNS CONFIGURATION - 100% DEPLOYMENT
+# Generated: Mon Oct  6 16:54:02 PDT 2025
+# Integration Service: https://integration-service-plad5efvha-uc.a.run.app
+
+# DNS RECORD TEMPLATE FOR ALL DOMAINS:
+# Type: CNAME
+# Name: @
+# Value: integration-service-plad5efvha-uc.a.run.app
+# TTL: 300
+
+# DOMAINS REQUIRING DNS CONFIGURATION:
+
+# DOMAINS REQUIRING DNS CONFIGURATION (      23 domains):
+# - aaacbdhempflower.com
+# - cannabiscookiestexas.com
+# - exoticcanopysolutions.com
+# - exoticcbdhempflower.com
+# - freeweedsanantonio.com
+# - freeweedtexas.com
+# - getlooseyoga.com
+# - herbitrage.com
+# - highfromhemp.com
+# - jesseniesen.com
+# - loudcbdbuds.com
+# - loudcbdflower.com
+# - oneplantsolution.com
+# - smokingyoga.com
+# - terpwerk.com
+# - texascannabiscookies.com
+# - thcacannabisdispensary.com
+# - thcaflowerstx.com
+# - thcaflowertx.com
+# - thcasanantonio.com
+# - tier1treecare.com
+# - tokinyoga.com
+# - www.herbitrage.com
+
+# REGISTRAR-SPECIFIC INSTRUCTIONS:
+
+## Cloudflare:
+1. Login to Cloudflare Dashboard
+2. Select domain
+3. Go to DNS > Records
+4. Add CNAME record:
+   - Type: CNAME
+   - Name: @
+   - Target: integration-service-plad5efvha-uc.a.run.app
+   - TTL: Auto
+5. Save
+
+## GoDaddy:
+1. Login to GoDaddy Domain Manager
+2. Select domain
+3. Go to DNS Management
+4. Add CNAME record:
+   - Type: CNAME
+   - Host: @
+   - Points to: integration-service-plad5efvha-uc.a.run.app
+   - TTL: 1 Hour
+5. Save
+
+## Namecheap:
+1. Login to Namecheap
+2. Domain List > Manage
+3. Advanced DNS tab
+4. Add CNAME record:
+   - Type: CNAME Record
+   - Host: @
+   - Value: integration-service-plad5efvha-uc.a.run.app
+   - TTL: 5 min
+5. Save
+
+## Generic DNS Provider:
+1. Access DNS management
+2. Add CNAME record:
+   - Type: CNAME
+   - Name: @ (or root domain)
+   - Value: integration-service-plad5efvha-uc.a.run.app
+   - TTL: 300 seconds
+3. Save
+
+# VALIDATION COMMANDS:
+# Test DNS resolution:
+# nslookup [domain] | grep integration-service-plad5efvha-uc.a.run.app
+
+# Test service accessibility:
+# curl -I https://[domain] | grep "200 OK"
+
+# BULK VALIDATION SCRIPT:
