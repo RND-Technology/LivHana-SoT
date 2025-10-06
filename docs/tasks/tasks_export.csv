@@ -1,0 +1,11 @@
+Task ID,Priority,Status,Task Name,Owner,Assigned To,Due Date,Effort (Hours),Risk,Dependencies,Notes
+TASK-001,P0,BLOCKED,Fix Age Gate Link,Jesse Niesen,Development Team,2025-10-07,4,HIGH,None,Buttons non-functional - blocking customer access
+TASK-002,P0,IN PROGRESS,Connect Kaja Payment to Square,Jesse Niesen,Jesse + Romeo Trevino,2025-10-08,12,HIGH,Romeo Trevino (Square access),Revenue blocking - payment integration critical
+TASK-003,P0,NOT STARTED,Obtain Twilio Dedicated Number,Jesse Niesen,Jesse Niesen,2025-10-08,2,MEDIUM,Twilio account,Business operations requirement
+TASK-004,P1,ACTIVE,Ruthless Editing - AI Output,Jesse Niesen,Jesse + Content Team,Ongoing,4,LOW,None,AI output requires human refinement
+TASK-005,P1,PLANNED,Implement A/B Testing Framework,Jesse Niesen,Development Team,2025-10-11,12,MEDIUM,GA4 setup,Conversion optimization testing
+TASK-006,P1,IN PROGRESS,Legal Entity Structure Review,Jesse Niesen,Jesse + Legal Counsel,2025-10-11,8,MEDIUM,Legal counsel,Separate entities for business functions
+TASK-007,P2,ACTIVE,Daily Domain Verification System,Liv Hana (System),Automated System,Ongoing,2,LOW,None,69 domains verified daily
+TASK-008,P2,ACTIVE,Voice Mode Refinement,Jesse Niesen,Development Team,2025-10-13,6,LOW,Voice integration,Audio clarity for team interaction
+TASK-009,P3,PLANNED,Execute Domain Linking Strategy,Jesse Niesen,Development Team,2025-10-20,12,LOW,DNS access,Multi-domain integration
+TASK-010,P3,ACTIVE,Notion Tasks Management,Claude/Jesse,Claude + Jesse,Ongoing,1,LOW,Notion API,Claude-assisted task review
