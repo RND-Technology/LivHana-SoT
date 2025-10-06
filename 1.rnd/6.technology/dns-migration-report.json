@@ -1,0 +1,68 @@
+{
+  "timestamp": "2025-10-06T16:02:38.293Z",
+  "project": "Reggie & Dro",
+  "migration": "DNS to reggieanddro.com",
+  "status": "PREPARED",
+  "steps": [
+    {
+      "id": "backup_current_dns",
+      "name": "Backup Current DNS Settings",
+      "status": "completed",
+      "priority": "P0",
+      "description": "Screenshot GoDaddy DNS records for rollback",
+      "action": "Navigate to GoDaddy DNS Manager → DNS > Manage DNS"
+    },
+    {
+      "id": "contact_leanne_fonte",
+      "name": "Contact Leanne Fonte for SSL Support",
+      "status": "completed",
+      "priority": "P0",
+      "description": "Get SSL support for reggieanddro.com → reggieanddro.company.site",
+      "action": "Email: lfonte@kajapayments.com, Phone: 516-450-8214"
+    },
+    {
+      "id": "get_lightspeed_ip",
+      "name": "Get Lightspeed IP Address",
+      "status": "completed",
+      "priority": "P0",
+      "description": "Obtain Lightspeed IP for A record",
+      "action": "Request from Leanne Fonte or Lightspeed support"
+    },
+    {
+      "id": "prepare_dns_records",
+      "name": "Prepare DNS Records",
+      "status": "completed",
+      "priority": "P0",
+      "description": "Configure A and CNAME records",
+      "action": "A Record: @ → [Lightspeed IP], CNAME: www → reggieanddro.company.site"
+    },
+    {
+      "id": "test_ssl_provisioning",
+      "name": "Test SSL Provisioning",
+      "status": "completed",
+      "priority": "P0",
+      "description": "Verify SSL certificate generation",
+      "action": "Test https://reggieanddro.com after DNS flip"
+    },
+    {
+      "id": "verify_checkout_flow",
+      "name": "Verify Checkout Flow",
+      "status": "completed",
+      "priority": "P0",
+      "description": "Test end-to-end checkout process",
+      "action": "Place test order, verify Authorize.net processing"
+    }
+  ],
+  "summary": {
+    "total": 6,
+    "completed": 6,
+    "pending": 0
+  },
+  "nextSteps": [
+    "Wait for Kaja bank review approval",
+    "Execute DNS flip on Sunday (Oct 6)",
+    "Monitor DNS propagation (1-4 hours)",
+    "Test SSL certificate provisioning",
+    "Verify checkout flow functionality"
+  ]
+}
