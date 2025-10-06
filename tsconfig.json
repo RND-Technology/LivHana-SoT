@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "incremental": true,
+    "tsBuildInfoFile": ".tsbuildinfo",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"],
+      "@backend/*": ["./backend/*"],
+      "@frontend/*": ["./frontend/*"],
+      "@empire/*": ["./empire/*"],
+      "@rnd/*": ["./1.rnd/*"],
+      "@claude/*": ["./.claude/*"]
+    }
+  },
+  "include": [
+    "backend/**/*",
+    "frontend/**/*",
+    "empire/**/*",
+    "1.rnd/**/*",
+    ".claude/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    ".archive",
+    "legacy",
+    "*.log",
+    "*.tmp"
+  ]
+}
