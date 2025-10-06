@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Liv Hana Source of Truth - Tier 1 Services",
   "scripts": {
-    "build": "echo 'No TypeScript files to build'",
+    "build": "tsc --build",
     "build:watch": "tsc --build --watch",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
