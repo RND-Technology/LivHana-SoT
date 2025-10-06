@@ -6,7 +6,7 @@
 let logger;
 const IASTUtil = require('./IASTUtils');
 module.exports.handler = function handler (json) {
-    let deletionList =  json.arguments;
+    const deletionList =  json.arguments;
     let count = 0;
     deletionList.forEach(element => {
         count++;

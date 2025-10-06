@@ -1,17 +1,17 @@
 "use strict";
 'use client';
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+const _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = useSlot;
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
-var _useForkRef = _interopRequireDefault(require("@mui/utils/useForkRef"));
-var _appendOwnerState = _interopRequireDefault(require("@mui/utils/appendOwnerState"));
-var _resolveComponentProps = _interopRequireDefault(require("@mui/utils/resolveComponentProps"));
-var _mergeSlotProps2 = _interopRequireDefault(require("@mui/utils/mergeSlotProps"));
+const _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+const _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+const _useForkRef = _interopRequireDefault(require("@mui/utils/useForkRef"));
+const _appendOwnerState = _interopRequireDefault(require("@mui/utils/appendOwnerState"));
+const _resolveComponentProps = _interopRequireDefault(require("@mui/utils/resolveComponentProps"));
+const _mergeSlotProps2 = _interopRequireDefault(require("@mui/utils/mergeSlotProps"));
 const _excluded = ["className", "elementType", "ownerState", "externalForwardedProps", "getSlotOwnerState", "internalForwardedProps"],
   _excluded2 = ["component", "slots", "slotProps"],
   _excluded3 = ["component"];

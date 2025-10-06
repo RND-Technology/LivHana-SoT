@@ -1,11 +1,11 @@
 'use strict';
 
-var floor = require('./floor');
-var modulo = require('./modulo');
+const floor = require('./floor');
+const modulo = require('./modulo');
 
-var timeConstants = require('../helpers/timeConstants');
-var msPerSecond = timeConstants.msPerSecond;
-var SecondsPerMinute = timeConstants.SecondsPerMinute;
+const timeConstants = require('../helpers/timeConstants');
+const msPerSecond = timeConstants.msPerSecond;
+const SecondsPerMinute = timeConstants.SecondsPerMinute;
 
 // https://262.ecma-international.org/5.1/#sec-15.9.1.10
 

@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
 exports.listTeamMemberWagesResponseSchema = void 0;
-var schema_1 = require("../schema");
-var error_1 = require("./error");
-var teamMemberWage_1 = require("./teamMemberWage");
+const schema_1 = require("../schema");
+const error_1 = require("./error");
+const teamMemberWage_1 = require("./teamMemberWage");
 exports.listTeamMemberWagesResponseSchema = (0, schema_1.object)({
     teamMemberWages: [
         'team_member_wages',

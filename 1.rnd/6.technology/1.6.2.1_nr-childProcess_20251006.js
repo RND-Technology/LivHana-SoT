@@ -91,7 +91,7 @@ function spawnHook(shim, childProcess, moduleName) {
   shim.wrap(childProcess, "spawn", function makeWrapper(shim, fn) {
     logger.debug(`Instrumenting ${moduleName}.spawn`);
     return function wrapper() {
-      let param = [];
+      const param = [];
       param.push(arguments[0]);
       if (arguments[1]) {
         param.push(arguments[1].toString());

@@ -1,12 +1,12 @@
-var arrayReduce = require('./_arrayReduce'),
+const arrayReduce = require('./_arrayReduce'),
     deburr = require('./deburr'),
     words = require('./words');
 
 /** Used to compose unicode capture groups. */
-var rsApos = "['\u2019]";
+const rsApos = "['\u2019]";
 
 /** Used to match apostrophes. */
-var reApos = RegExp(rsApos, 'g');
+const reApos = RegExp(rsApos, 'g');
 
 /**
  * Creates a function like `_.camelCase`.

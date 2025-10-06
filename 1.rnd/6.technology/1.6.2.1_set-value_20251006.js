@@ -30,7 +30,7 @@ function setLastValue (context, step, currentValue, entryValue) {
 function setValue (context, step, currentValue, entryValue) {
   if (step.last) return setLastValue(context, step, currentValue, entryValue)
 
-  var obj
+  let obj
   switch (valueType(currentValue)) {
     case 'undefined':
       if (step.nextType === 'array') {

@@ -182,7 +182,7 @@ class WeightedRoundRobinLoadBalancer {
         return count;
     }
     updateWeight(entry, loadReport) {
-        var _a, _b;
+        let _a, _b;
         const qps = loadReport.rps_fractional;
         let utilization = loadReport.application_utilization;
         if (utilization > 0 && qps > 0) {
@@ -275,7 +275,7 @@ class WeightedRoundRobinLoadBalancer {
         this.channelControlHelper.updateState(newState, picker, errorMessage);
     }
     updateAddressList(maybeEndpointList, lbConfig, options, resolutionNote) {
-        var _a, _b;
+        let _a, _b;
         if (!(lbConfig instanceof WeightedRoundRobinLoadBalancingConfig)) {
             return false;
         }

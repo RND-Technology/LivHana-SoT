@@ -2,9 +2,9 @@
 
 
 
-var _tokenizer = require('./parser/tokenizer');
+const _tokenizer = require('./parser/tokenizer');
 
-var _types = require('./parser/tokenizer/types');
+const _types = require('./parser/tokenizer/types');
 
 
 /**

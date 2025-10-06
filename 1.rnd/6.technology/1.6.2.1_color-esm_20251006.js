@@ -31,8 +31,8 @@ const h2 = b => hex[(b & 0xF0) >> 4] + hex[b & 0xF];
 const eq = b => ((b & 0xF0) >> 4) === (b & 0xF);
 const isShort = v => eq(v.r) && eq(v.g) && eq(v.b) && eq(v.a);
 function hexParse(str) {
-  var len = str.length;
-  var ret;
+  const len = str.length;
+  let ret;
   if (str[0] === '#') {
     if (len === 4 || len === 5) {
       ret = {
@@ -54,7 +54,7 @@ function hexParse(str) {
 }
 const alpha = (a, f) => a < 255 ? f(a) : '';
 function hexString(v) {
-  var f = isShort(v) ? h1 : h2;
+  const f = isShort(v) ? h1 : h2;
   return v
     ? '#' + f(v.r) + f(v.g) + f(v.b) + alpha(v.a, f)
     : undefined;
@@ -157,7 +157,7 @@ function hueParse(str) {
   };
 }
 function rotate(v, deg) {
-  var h = rgb2hsl(v);
+  let h = rgb2hsl(v);
   h[0] = hue(h[0] + deg);
   h = hsl2rgb(h);
   v.r = h[0];
@@ -449,7 +449,7 @@ function clone(v, proto) {
   return v ? Object.assign(proto || {}, v) : v;
 }
 function fromObject(input) {
-  var v = {r: 0, g: 0, b: 0, a: 255};
+  let v = {r: 0, g: 0, b: 0, a: 255};
   if (Array.isArray(input)) {
     if (input.length >= 3) {
       v = {r: input[0], g: input[1], b: input[2], a: 255};
@@ -488,7 +488,7 @@ class Color {
     return this._valid;
   }
   get rgb() {
-    var v = clone(this._rgb);
+    const v = clone(this._rgb);
     if (v) {
       v.a = b2n(v.a);
     }

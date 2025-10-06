@@ -1,14 +1,14 @@
 "use strict";
 exports.__esModule = true;
 exports.tenderSchema = void 0;
-var schema_1 = require("../schema");
-var additionalRecipient_1 = require("./additionalRecipient");
-var money_1 = require("./money");
-var tenderBankAccountDetails_1 = require("./tenderBankAccountDetails");
-var tenderBuyNowPayLaterDetails_1 = require("./tenderBuyNowPayLaterDetails");
-var tenderCardDetails_1 = require("./tenderCardDetails");
-var tenderCashDetails_1 = require("./tenderCashDetails");
-var tenderSquareAccountDetails_1 = require("./tenderSquareAccountDetails");
+const schema_1 = require("../schema");
+const additionalRecipient_1 = require("./additionalRecipient");
+const money_1 = require("./money");
+const tenderBankAccountDetails_1 = require("./tenderBankAccountDetails");
+const tenderBuyNowPayLaterDetails_1 = require("./tenderBuyNowPayLaterDetails");
+const tenderCardDetails_1 = require("./tenderCardDetails");
+const tenderCashDetails_1 = require("./tenderCashDetails");
+const tenderSquareAccountDetails_1 = require("./tenderSquareAccountDetails");
 exports.tenderSchema = (0, schema_1.object)({
     id: ['id', (0, schema_1.optional)((0, schema_1.string)())],
     locationId: ['location_id', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.string)()))],

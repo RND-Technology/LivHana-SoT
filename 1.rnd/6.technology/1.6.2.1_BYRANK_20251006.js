@@ -11,5 +11,5 @@ function transformArguments(key, ranks) {
     return args;
 }
 exports.transformArguments = transformArguments;
-var _1 = require(".");
+const _1 = require(".");
 Object.defineProperty(exports, "transformReply", { enumerable: true, get: function () { return _1.transformDoublesReply; } });

@@ -1,11 +1,11 @@
 'use strict';
 
-var callBind = require('call-bind-apply-helpers');
-var gOPD = require('gopd');
-var $TypeError = require('es-errors/type');
+const callBind = require('call-bind-apply-helpers');
+const gOPD = require('gopd');
+const $TypeError = require('es-errors/type');
 
 /** @type {{ __proto__?: object | null }} */
-var obj = {};
+const obj = {};
 try {
 	obj.__proto__ = null; // eslint-disable-line no-proto
 } catch (e) {
@@ -14,10 +14,10 @@ try {
 	}
 }
 
-var hasProtoMutator = !('toString' in obj);
+const hasProtoMutator = !('toString' in obj);
 
 // eslint-disable-next-line no-extra-parens
-var desc = gOPD && gOPD(Object.prototype, /** @type {keyof typeof Object.prototype} */ ('__proto__'));
+const desc = gOPD && gOPD(Object.prototype, /** @type {keyof typeof Object.prototype} */ ('__proto__'));
 
 /** @type {import('./set')} */
 module.exports = hasProtoMutator && (

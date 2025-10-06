@@ -1,4 +1,4 @@
-var LodashWrapper = require('./_LodashWrapper'),
+const LodashWrapper = require('./_LodashWrapper'),
     flatRest = require('./_flatRest'),
     getData = require('./_getData'),
     getFuncName = require('./_getFuncName'),
@@ -6,10 +6,10 @@ var LodashWrapper = require('./_LodashWrapper'),
     isLaziable = require('./_isLaziable');
 
 /** Error message constants. */
-var FUNC_ERROR_TEXT = 'Expected a function';
+const FUNC_ERROR_TEXT = 'Expected a function';
 
 /** Used to compose bitmasks for function metadata. */
-var WRAP_CURRY_FLAG = 8,
+const WRAP_CURRY_FLAG = 8,
     WRAP_PARTIAL_FLAG = 32,
     WRAP_ARY_FLAG = 128,
     WRAP_REARG_FLAG = 256;
@@ -23,7 +23,7 @@ var WRAP_CURRY_FLAG = 8,
  */
 function createFlow(fromRight) {
   return flatRest(function(funcs) {
-    var length = funcs.length,
+    let length = funcs.length,
         index = length,
         prereq = LodashWrapper.prototype.thru;
 
@@ -43,7 +43,7 @@ function createFlow(fromRight) {
     while (++index < length) {
       func = funcs[index];
 
-      var funcName = getFuncName(func),
+      const funcName = getFuncName(func),
           data = funcName == 'wrapper' ? getData(func) : undefined;
 
       if (data && isLaziable(data[0]) &&
@@ -58,13 +58,13 @@ function createFlow(fromRight) {
       }
     }
     return function() {
-      var args = arguments,
+      const args = arguments,
           value = args[0];
 
       if (wrapper && args.length == 1 && isArray(value)) {
         return wrapper.plant(value).value();
       }
-      var index = 0,
+      let index = 0,
           result = length ? funcs[index].apply(this, args) : value;
 
       while (++index < length) {

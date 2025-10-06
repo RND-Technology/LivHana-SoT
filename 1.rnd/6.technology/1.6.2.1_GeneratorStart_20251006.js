@@ -1,12 +1,12 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var CreateIterResultObject = require('es-abstract/2024/CreateIterResultObject');
-var IsCallable = require('es-abstract/2024/IsCallable');
-var Type = require('es-abstract/2024/Type');
+const CreateIterResultObject = require('es-abstract/2024/CreateIterResultObject');
+const IsCallable = require('es-abstract/2024/IsCallable');
+const Type = require('es-abstract/2024/Type');
 
-var SLOT = require('internal-slot');
+const SLOT = require('internal-slot');
 
 module.exports = function GeneratorStart(generator, closure) {
 	SLOT.assert(generator, '[[GeneratorState]]');
@@ -19,13 +19,13 @@ module.exports = function GeneratorStart(generator, closure) {
 		throw new $TypeError('`closure` must be a function that takes no arguments');
 	}
 
-	var sentinel = SLOT.get(closure, '[[Sentinel]]');
+	const sentinel = SLOT.get(closure, '[[Sentinel]]');
 	if (Type(sentinel) !== 'Object') {
 		throw new $TypeError('`closure.[[Sentinel]]` must be an object');
 	}
 	SLOT.set(generator, '[[GeneratorContext]]', function () { // steps 2-5
 		try {
-			var result = closure();
+			const result = closure();
 			if (result === sentinel) {
 				SLOT.set(generator, '[[GeneratorState]]', 'completed');
 				SLOT.set(generator, '[[GeneratorContext]]', null);

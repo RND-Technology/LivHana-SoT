@@ -6,25 +6,25 @@ const __filename = __cjs_fileURLToPath(import.meta.url);
 const __dirname = __cjs_dirname(__filename);
 const require = __cjs_createRequire(import.meta.url);
 const __require = require;
-var openParentheses = "(".charCodeAt(0);
-var closeParentheses = ")".charCodeAt(0);
-var singleQuote = "'".charCodeAt(0);
-var doubleQuote = '"'.charCodeAt(0);
-var backslash = "\\".charCodeAt(0);
-var slash = "/".charCodeAt(0);
-var comma = ",".charCodeAt(0);
-var colon = ":".charCodeAt(0);
-var star = "*".charCodeAt(0);
-var uLower = "u".charCodeAt(0);
-var uUpper = "U".charCodeAt(0);
-var plus = "+".charCodeAt(0);
-var isUnicodeRange = /^[a-f0-9?-]+$/i;
+const openParentheses = "(".charCodeAt(0);
+const closeParentheses = ")".charCodeAt(0);
+const singleQuote = "'".charCodeAt(0);
+const doubleQuote = '"'.charCodeAt(0);
+const backslash = "\\".charCodeAt(0);
+const slash = "/".charCodeAt(0);
+const comma = ",".charCodeAt(0);
+const colon = ":".charCodeAt(0);
+const star = "*".charCodeAt(0);
+const uLower = "u".charCodeAt(0);
+const uUpper = "U".charCodeAt(0);
+const plus = "+".charCodeAt(0);
+const isUnicodeRange = /^[a-f0-9?-]+$/i;
 
-var parse$1 = function(input) {
-  var tokens = [];
-  var value = input;
+const parse$1 = function(input) {
+  let tokens = [];
+  let value = input;
 
-  var next,
+  let next,
     quote,
     prev,
     token,
@@ -32,16 +32,16 @@ var parse$1 = function(input) {
     escapePos,
     whitespacePos,
     parenthesesOpenPos;
-  var pos = 0;
-  var code = value.charCodeAt(pos);
-  var max = value.length;
-  var stack = [{ nodes: tokens }];
-  var balanced = 0;
-  var parent;
+  let pos = 0;
+  let code = value.charCodeAt(pos);
+  const max = value.length;
+  const stack = [{ nodes: tokens }];
+  let balanced = 0;
+  let parent;
 
-  var name = "";
-  var before = "";
-  var after = "";
+  let name = "";
+  let before = "";
+  let after = "";
 
   while (pos < max) {
     // Whitespaces
@@ -328,8 +328,8 @@ var parse$1 = function(input) {
   return stack[0].nodes;
 };
 
-var walk$1 = function walk(nodes, cb, bubble) {
-  var i, max, node, result;
+const walk$1 = function walk(nodes, cb, bubble) {
+  let i, max, node, result;
 
   for (i = 0, max = nodes.length; i < max; i += 1) {
     node = nodes[i];
@@ -352,10 +352,10 @@ var walk$1 = function walk(nodes, cb, bubble) {
 };
 
 function stringifyNode(node, custom) {
-  var type = node.type;
-  var value = node.value;
-  var buf;
-  var customResult;
+  const type = node.type;
+  const value = node.value;
+  let buf;
+  let customResult;
 
   if (custom && (customResult = custom(node)) !== undefined) {
     return customResult;
@@ -386,7 +386,7 @@ function stringifyNode(node, custom) {
 }
 
 function stringify$1(nodes, custom) {
-  var result, i;
+  let result, i;
 
   if (Array.isArray(nodes)) {
     result = "";
@@ -398,25 +398,25 @@ function stringify$1(nodes, custom) {
   return stringifyNode(nodes, custom);
 }
 
-var stringify_1 = stringify$1;
+const stringify_1 = stringify$1;
 
-var unit;
-var hasRequiredUnit;
+let unit;
+let hasRequiredUnit;
 
 function requireUnit () {
 	if (hasRequiredUnit) return unit;
 	hasRequiredUnit = 1;
-	var minus = "-".charCodeAt(0);
-	var plus = "+".charCodeAt(0);
-	var dot = ".".charCodeAt(0);
-	var exp = "e".charCodeAt(0);
-	var EXP = "E".charCodeAt(0);
+	const minus = "-".charCodeAt(0);
+	const plus = "+".charCodeAt(0);
+	const dot = ".".charCodeAt(0);
+	const exp = "e".charCodeAt(0);
+	const EXP = "E".charCodeAt(0);
 
 	// Check if three code points would start a number
 	// https://www.w3.org/TR/css-syntax-3/#starts-with-a-number
 	function likeNumber(value) {
-	  var code = value.charCodeAt(0);
-	  var nextCode;
+	  const code = value.charCodeAt(0);
+	  let nextCode;
 
 	  if (code === plus || code === minus) {
 	    nextCode = value.charCodeAt(1);
@@ -425,7 +425,7 @@ function requireUnit () {
 	      return true;
 	    }
 
-	    var nextNextCode = value.charCodeAt(2);
+	    const nextNextCode = value.charCodeAt(2);
 
 	    if (nextCode === dot && nextNextCode >= 48 && nextNextCode <= 57) {
 	      return true;
@@ -454,11 +454,11 @@ function requireUnit () {
 	// Consume a number
 	// https://www.w3.org/TR/css-syntax-3/#consume-number
 	unit = function(value) {
-	  var pos = 0;
-	  var length = value.length;
-	  var code;
-	  var nextCode;
-	  var nextNextCode;
+	  let pos = 0;
+	  const length = value.length;
+	  let code;
+	  let nextCode;
+	  let nextNextCode;
 
 	  if (length === 0 || !likeNumber(value)) {
 	    return false;
@@ -529,9 +529,9 @@ function requireUnit () {
 	return unit;
 }
 
-var parse = parse$1;
-var walk = walk$1;
-var stringify = stringify_1;
+const parse = parse$1;
+const walk = walk$1;
+const stringify = stringify_1;
 
 function ValueParser(value) {
   if (this instanceof ValueParser) {
@@ -556,6 +556,6 @@ ValueParser.walk = walk;
 
 ValueParser.stringify = stringify;
 
-var lib = ValueParser;
+const lib = ValueParser;
 
 export { lib as l };

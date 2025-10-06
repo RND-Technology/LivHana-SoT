@@ -15,11 +15,11 @@ exports.createAnimateManager = createAnimateManager;
  */
 
 function createAnimateManager(timeoutController) {
-  var currStyle;
-  var handleChange = () => null;
-  var shouldStop = false;
-  var cancelTimeout = null;
-  var setStyle = _style => {
+  let currStyle;
+  let handleChange = () => null;
+  let shouldStop = false;
+  let cancelTimeout = null;
+  const setStyle = _style => {
     if (shouldStop) {
       return;
     }
@@ -27,8 +27,8 @@ function createAnimateManager(timeoutController) {
       if (!_style.length) {
         return;
       }
-      var styles = _style;
-      var [curr, ...restStyles] = styles;
+      const styles = _style;
+      const [curr, ...restStyles] = styles;
       if (typeof curr === 'number') {
         cancelTimeout = timeoutController.setTimeout(setStyle.bind(null, restStyles), curr);
         return;

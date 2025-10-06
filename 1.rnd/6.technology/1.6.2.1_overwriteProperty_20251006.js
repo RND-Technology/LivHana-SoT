@@ -4,10 +4,10 @@
  * MIT Licensed
  */
 
-var chai = require('../../chai');
-var flag = require('./flag');
-var isProxyEnabled = require('./isProxyEnabled');
-var transferFlags = require('./transferFlags');
+const chai = require('../../chai');
+const flag = require('./flag');
+const isProxyEnabled = require('./isProxyEnabled');
+const transferFlags = require('./transferFlags');
 
 /**
  * ### .overwriteProperty(ctx, name, fn)
@@ -44,7 +44,7 @@ var transferFlags = require('./transferFlags');
  */
 
 module.exports = function overwriteProperty(ctx, name, getter) {
-  var _get = Object.getOwnPropertyDescriptor(ctx, name)
+  let _get = Object.getOwnPropertyDescriptor(ctx, name)
     , _super = function () {};
 
   if (_get && 'function' === typeof _get.get)
@@ -74,16 +74,16 @@ module.exports = function overwriteProperty(ctx, name, getter) {
         // Setting the `lockSsfi` flag to `true` prevents the overwritten
         // assertion from changing the `ssfi` flag. By this point, the `ssfi`
         // flag is already set to the correct starting point for this assertion.
-        var origLockSsfi = flag(this, 'lockSsfi');
+        const origLockSsfi = flag(this, 'lockSsfi');
         flag(this, 'lockSsfi', true);
-        var result = getter(_super).call(this);
+        const result = getter(_super).call(this);
         flag(this, 'lockSsfi', origLockSsfi);
 
         if (result !== undefined) {
           return result;
         }
 
-        var newAssertion = new chai.Assertion();
+        const newAssertion = new chai.Assertion();
         transferFlags(this, newAssertion);
         return newAssertion;
       }

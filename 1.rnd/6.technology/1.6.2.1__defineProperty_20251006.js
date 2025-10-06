@@ -1,8 +1,8 @@
-var getNative = require('./_getNative');
+const getNative = require('./_getNative');
 
-var defineProperty = (function() {
+const defineProperty = (function() {
   try {
-    var func = getNative(Object, 'defineProperty');
+    const func = getNative(Object, 'defineProperty');
     func({}, '', {});
     return func;
   } catch (e) {}

@@ -96,14 +96,14 @@ async function run(files, config, environment, executor) {
     setupChaiConfig(config.chaiConfig);
   const runner = await resolveTestRunner(config, executor);
   workerState.onCancel.then((reason) => {
-    var _a;
+    let _a;
     closeInspector(config);
     (_a = runner.onCancel) == null ? void 0 : _a.call(runner, reason);
   });
   workerState.durations.prepare = performance.now() - workerState.durations.prepare;
   workerState.durations.environment = performance.now();
   await withEnv(environment, environment.options || config.environmentOptions || {}, async () => {
-    var _a, _b, _c, _d;
+    let _a, _b, _c, _d;
     workerState.durations.environment = performance.now() - workerState.durations.environment;
     for (const file of files) {
       const isIsolatedThreads = config.pool === "threads" && (((_b = (_a = config.poolOptions) == null ? void 0 : _a.threads) == null ? void 0 : _b.isolate) ?? true);

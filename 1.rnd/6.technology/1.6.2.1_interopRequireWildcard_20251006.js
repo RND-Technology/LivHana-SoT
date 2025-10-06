@@ -13,12 +13,12 @@ function _interopRequireWildcard(obj, nodeInterop) {
     if (!nodeInterop && obj && obj.__esModule) {
       return obj;
     }
-    var _;
-    var newObj = {
+    let _;
+    const newObj = {
       __proto__: null,
       default: obj
     };
-    var desc;
+    let desc;
     if (obj === null || typeof obj !== "object" && typeof obj !== "function") {
       return newObj;
     }

@@ -1,21 +1,21 @@
 'use strict';
 
-var $abs = require('math-intrinsics/abs');
-var $floor = require('math-intrinsics/floor');
-var $pow = require('math-intrinsics/pow');
+const $abs = require('math-intrinsics/abs');
+const $floor = require('math-intrinsics/floor');
+const $pow = require('math-intrinsics/pow');
 
-var isFinite = require('math-intrinsics/isFinite');
-var isNaN = require('math-intrinsics/isNaN');
-var isNegativeZero = require('math-intrinsics/isNegativeZero');
+const isFinite = require('math-intrinsics/isFinite');
+const isNaN = require('math-intrinsics/isNaN');
+const isNegativeZero = require('math-intrinsics/isNegativeZero');
 
-var maxFiniteFloat32 = 3.4028234663852886e+38; // roughly 2 ** 128 - 1
+const maxFiniteFloat32 = 3.4028234663852886e+38; // roughly 2 ** 128 - 1
 
 module.exports = function valueToFloat32Bytes(value, isLittleEndian) {
 	if (isNaN(value)) {
 		return isLittleEndian ? [0, 0, 192, 127] : [127, 192, 0, 0]; // hardcoded
 	}
 
-	var leastSig;
+	let leastSig;
 
 	if (value === 0) {
 		leastSig = isNegativeZero(value) ? 0x80 : 0;
@@ -27,10 +27,10 @@ module.exports = function valueToFloat32Bytes(value, isLittleEndian) {
 		return isLittleEndian ? [0, 0, 128, leastSig] : [leastSig, 128, 0, 0];
 	}
 
-	var sign = value < 0 ? 1 : 0;
+	const sign = value < 0 ? 1 : 0;
 	value = $abs(value); // eslint-disable-line no-param-reassign
 
-	var exponent = 0;
+	let exponent = 0;
 	while (value >= 2) {
 		exponent += 1;
 		value /= 2; // eslint-disable-line no-param-reassign
@@ -41,24 +41,24 @@ module.exports = function valueToFloat32Bytes(value, isLittleEndian) {
 		value *= 2; // eslint-disable-line no-param-reassign
 	}
 
-	var mantissa = value - 1;
+	let mantissa = value - 1;
 	mantissa *= $pow(2, 23) + 0.5;
 	mantissa = $floor(mantissa);
 
 	exponent += 127;
 	exponent <<= 23;
 
-	var result = (sign << 31)
+	let result = (sign << 31)
         | exponent
         | mantissa;
 
-	var byte0 = result & 255;
+	const byte0 = result & 255;
 	result >>= 8;
-	var byte1 = result & 255;
+	const byte1 = result & 255;
 	result >>= 8;
-	var byte2 = result & 255;
+	const byte2 = result & 255;
 	result >>= 8;
-	var byte3 = result & 255;
+	const byte3 = result & 255;
 
 	if (isLittleEndian) {
 		return [byte0, byte1, byte2, byte3];

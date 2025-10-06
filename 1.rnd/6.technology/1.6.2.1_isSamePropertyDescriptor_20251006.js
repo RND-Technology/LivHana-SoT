@@ -1,9 +1,9 @@
 'use strict';
 
-var every = require('./every');
+const every = require('./every');
 
 module.exports = function isSamePropertyDescriptor(ES, D1, D2) {
-	var fields = [
+	const fields = [
 		'[[Configurable]]',
 		'[[Enumerable]]',
 		'[[Get]]',

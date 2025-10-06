@@ -1,7 +1,7 @@
-var Symbol = require('./_Symbol');
+const Symbol = require('./_Symbol');
 
 /** Used to convert symbols to primitives and strings. */
-var symbolProto = Symbol ? Symbol.prototype : undefined,
+const symbolProto = Symbol ? Symbol.prototype : undefined,
     symbolValueOf = symbolProto ? symbolProto.valueOf : undefined;
 
 /**

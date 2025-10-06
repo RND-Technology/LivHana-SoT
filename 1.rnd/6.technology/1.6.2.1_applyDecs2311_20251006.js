@@ -4,24 +4,24 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = applyDecs2311;
-var _checkInRHS = require("./checkInRHS.js");
-var _setFunctionName = require("./setFunctionName.js");
-var _toPropertyKey = require("./toPropertyKey.js");
+const _checkInRHS = require("./checkInRHS.js");
+const _setFunctionName = require("./setFunctionName.js");
+const _toPropertyKey = require("./toPropertyKey.js");
 function applyDecs2311(targetClass, classDecs, memberDecs, classDecsHaveThis, instanceBrand, parentClass) {
-  var symbolMetadata = Symbol.metadata || Symbol["for"]("Symbol.metadata");
-  var defineProperty = Object.defineProperty;
-  var create = Object.create;
-  var metadata;
-  var existingNonFields = [create(null), create(null)];
-  var hasClassDecs = classDecs.length;
-  var _;
+  const symbolMetadata = Symbol.metadata || Symbol["for"]("Symbol.metadata");
+  const defineProperty = Object.defineProperty;
+  const create = Object.create;
+  let metadata;
+  const existingNonFields = [create(null), create(null)];
+  const hasClassDecs = classDecs.length;
+  let _;
   function createRunInitializers(initializers, useStaticThis, hasValue) {
     return function (thisArg, value) {
       if (useStaticThis) {
         value = thisArg;
         thisArg = targetClass;
       }
-      for (var i = 0; i < initializers.length; i++) {
+      for (let i = 0; i < initializers.length; i++) {
         value = initializers[i].apply(thisArg, hasValue ? [value] : []);
       }
       return hasValue ? value : thisArg;
@@ -41,13 +41,13 @@ function applyDecs2311(targetClass, classDecs, memberDecs, classDecsHaveThis, in
         throw new TypeError("Attempted to access private element on non-instance");
       }
     }
-    var decs = [].concat(decInfo[0]),
+    const decs = [].concat(decInfo[0]),
       decVal = decInfo[3],
       isClass = !ret;
-    var isAccessor = kind === 1;
-    var isGetter = kind === 3;
-    var isSetter = kind === 4;
-    var isMethod = kind === 2;
+    const isAccessor = kind === 1;
+    const isGetter = kind === 3;
+    const isSetter = kind === 4;
+    const isMethod = kind === 2;
     function _bindPropCall(name, useStaticThis, before) {
       return function (_this, value) {
         if (useStaticThis) {
@@ -91,12 +91,12 @@ function applyDecs2311(targetClass, classDecs, memberDecs, classDecsHaveThis, in
         existingNonFields[+isStatic][name] = kind < 3 ? 1 : kind;
       }
     }
-    var newValue = Class;
-    for (var i = decs.length - 1; i >= 0; i -= decoratorsHaveThis ? 2 : 1) {
-      var dec = assertCallable(decs[i], "A decorator", "be", true),
+    let newValue = Class;
+    for (let i = decs.length - 1; i >= 0; i -= decoratorsHaveThis ? 2 : 1) {
+      const dec = assertCallable(decs[i], "A decorator", "be", true),
         decThis = decoratorsHaveThis ? decs[i - 1] : void 0;
-      var decoratorFinishedRef = {};
-      var ctx = {
+      const decoratorFinishedRef = {};
+      const ctx = {
         kind: ["field", "accessor", "method", "getter", "setter", "class"][kind],
         name: name,
         metadata: metadata,
@@ -180,23 +180,23 @@ function applyDecs2311(targetClass, classDecs, memberDecs, classDecsHaveThis, in
     return newValue;
   }
   function applyMemberDecs() {
-    var ret = [];
-    var protoInitializers;
-    var staticInitializers;
-    var pushInitializers = function (initializers) {
+    const ret = [];
+    let protoInitializers;
+    let staticInitializers;
+    const pushInitializers = function (initializers) {
       if (initializers) {
         ret.push(createRunInitializers(initializers));
       }
     };
-    var applyMemberDecsOfKind = function (isStatic, isField) {
-      for (var i = 0; i < memberDecs.length; i++) {
-        var decInfo = memberDecs[i];
-        var kind = decInfo[1];
-        var kindOnly = kind & 7;
+    const applyMemberDecsOfKind = function (isStatic, isField) {
+      for (let i = 0; i < memberDecs.length; i++) {
+        const decInfo = memberDecs[i];
+        const kind = decInfo[1];
+        const kindOnly = kind & 7;
         if ((kind & 8) == isStatic && !kindOnly == isField) {
-          var name = decInfo[2];
-          var isPrivate = !!decInfo[3];
-          var decoratorsHaveThis = kind & 16;
+          const name = decInfo[2];
+          const isPrivate = !!decInfo[3];
+          const decoratorsHaveThis = kind & 16;
           applyDec(isStatic ? targetClass : targetClass.prototype, decInfo, decoratorsHaveThis, isPrivate ? "#" + name : (0, _toPropertyKey.default)(name), kindOnly, kindOnly < 2 ? [] : isStatic ? staticInitializers = staticInitializers || [] : protoInitializers = protoInitializers || [], ret, !!isStatic, isPrivate, isField, isStatic && isPrivate ? function (_) {
             return (0, _checkInRHS.default)(_) === targetClass;
           } : instanceBrand);
@@ -227,7 +227,7 @@ function applyDecs2311(targetClass, classDecs, memberDecs, classDecsHaveThis, in
   return {
     e: _,
     get c() {
-      var initializers = [];
+      const initializers = [];
       return hasClassDecs && [defineMetadata(targetClass = applyDec(targetClass, [classDecs], classDecsHaveThis, targetClass.name, 5, initializers)), createRunInitializers(initializers, 1)];
     }
   };

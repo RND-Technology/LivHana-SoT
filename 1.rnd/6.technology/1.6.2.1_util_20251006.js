@@ -488,7 +488,7 @@ class Util {
      * @param {function} callback - The callback function.
      */
     makeRequest(reqOpts, config, callback) {
-        var _a, _b, _c, _d, _e, _f, _g;
+        let _a, _b, _c, _d, _e, _f, _g;
         let autoRetryValue = AUTO_RETRY_DEFAULT;
         if (config.autoRetry !== undefined &&
             ((_a = config.retryOptions) === null || _a === void 0 ? void 0 : _a.autoRetry) !== undefined) {
@@ -515,7 +515,7 @@ class Util {
             retries: autoRetryValue !== false ? maxRetryValue : 0,
             noResponseRetries: autoRetryValue !== false ? maxRetryValue : 0,
             shouldRetryFn(httpRespMessage) {
-                var _a, _b;
+                let _a, _b;
                 const err = util.parseHttpRespMessage(httpRespMessage).err;
                 if ((_a = config.retryOptions) === null || _a === void 0 ? void 0 : _a.retryableErrorFn) {
                     return err && ((_b = config.retryOptions) === null || _b === void 0 ? void 0 : _b.retryableErrorFn(err));

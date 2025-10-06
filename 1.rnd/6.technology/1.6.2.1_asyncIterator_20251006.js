@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = _asyncIterator;
 function _asyncIterator(iterable) {
-  var method,
+  let method,
     async,
     sync,
     retry = 2;
@@ -37,7 +37,7 @@ function AsyncFromSyncIterator(s) {
       return AsyncFromSyncIteratorContinuation(this.n.apply(this.s, arguments));
     },
     return: function (value) {
-      var ret = this.s["return"];
+      const ret = this.s["return"];
       if (ret === undefined) {
         return Promise.resolve({
           value: value,
@@ -47,7 +47,7 @@ function AsyncFromSyncIterator(s) {
       return AsyncFromSyncIteratorContinuation(ret.apply(this.s, arguments));
     },
     throw: function (maybeError) {
-      var thr = this.s["return"];
+      const thr = this.s["return"];
       if (thr === undefined) {
         return Promise.reject(maybeError);
       }
@@ -58,7 +58,7 @@ function AsyncFromSyncIterator(s) {
     if (Object(r) !== r) {
       return Promise.reject(new TypeError(r + " is not an object."));
     }
-    var done = r.done;
+    const done = r.done;
     return Promise.resolve(r.value).then(function (value) {
       return {
         value: value,

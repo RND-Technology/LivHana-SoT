@@ -30,7 +30,7 @@ const resolver_1 = require("./resolver");
 const uri_parser_1 = require("./uri-parser");
 class SubchannelCallWrapper {
     constructor(subchannel, method, filterStackFactory, options, callNumber) {
-        var _a, _b;
+        let _a, _b;
         this.subchannel = subchannel;
         this.method = method;
         this.options = options;
@@ -80,7 +80,7 @@ class SubchannelCallWrapper {
         }
     }
     getPeer() {
-        var _a, _b;
+        let _a, _b;
         return (_b = (_a = this.childCall) === null || _a === void 0 ? void 0 : _a.getPeer()) !== null && _b !== void 0 ? _b : this.subchannel.getAddress();
     }
     async start(metadata, listener) {

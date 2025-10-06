@@ -3,17 +3,17 @@
 exports.__esModule = true;
 exports.default = void 0;
 
-var _propTypes = _interopRequireDefault(require("prop-types"));
+const _propTypes = _interopRequireDefault(require("prop-types"));
 
-var _react = _interopRequireDefault(require("react"));
+const _react = _interopRequireDefault(require("react"));
 
-var _reactDom = _interopRequireDefault(require("react-dom"));
+const _reactDom = _interopRequireDefault(require("react-dom"));
 
-var _TransitionGroup = _interopRequireDefault(require("./TransitionGroup"));
+const _TransitionGroup = _interopRequireDefault(require("./TransitionGroup"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; const target = {}; const sourceKeys = Object.keys(source); let key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
 function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
 
@@ -28,11 +28,11 @@ function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.crea
  * </ReplaceTransition>
  * ```
  */
-var ReplaceTransition = /*#__PURE__*/function (_React$Component) {
+const ReplaceTransition = /*#__PURE__*/function (_React$Component) {
   _inheritsLoose(ReplaceTransition, _React$Component);
 
   function ReplaceTransition() {
-    var _this;
+    let _this;
 
     for (var _len = arguments.length, _args = new Array(_len), _key = 0; _key < _len; _key++) {
       _args[_key] = arguments[_key];
@@ -91,30 +91,30 @@ var ReplaceTransition = /*#__PURE__*/function (_React$Component) {
     return _this;
   }
 
-  var _proto = ReplaceTransition.prototype;
+  const _proto = ReplaceTransition.prototype;
 
   _proto.handleLifecycle = function handleLifecycle(handler, idx, originalArgs) {
-    var _child$props;
+    let _child$props;
 
-    var children = this.props.children;
+    const children = this.props.children;
 
-    var child = _react.default.Children.toArray(children)[idx];
+    const child = _react.default.Children.toArray(children)[idx];
 
     if (child.props[handler]) (_child$props = child.props)[handler].apply(_child$props, originalArgs);
 
     if (this.props[handler]) {
-      var maybeNode = child.props.nodeRef ? undefined : _reactDom.default.findDOMNode(this);
+      const maybeNode = child.props.nodeRef ? undefined : _reactDom.default.findDOMNode(this);
       this.props[handler](maybeNode);
     }
   };
 
   _proto.render = function render() {
-    var _this$props = this.props,
+    const _this$props = this.props,
         children = _this$props.children,
         inProp = _this$props.in,
         props = _objectWithoutPropertiesLoose(_this$props, ["children", "in"]);
 
-    var _React$Children$toArr = _react.default.Children.toArray(children),
+    const _React$Children$toArr = _react.default.Children.toArray(children),
         first = _React$Children$toArr[0],
         second = _React$Children$toArr[1];
 
@@ -147,6 +147,6 @@ ReplaceTransition.propTypes = process.env.NODE_ENV !== "production" ? {
     return null;
   }
 } : {};
-var _default = ReplaceTransition;
+const _default = ReplaceTransition;
 exports.default = _default;
 module.exports = exports.default;

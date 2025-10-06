@@ -1,6 +1,6 @@
 "use strict";
 // Adapted from https://github.com/mathiasbynens/he/blob/36afe179392226cf1b6ccdb16ebbb7a5a844d93a/src/he.js#L106-L134
-var _a;
+let _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.fromCodePoint = void 0;
 exports.replaceCodePoint = replaceCodePoint;
@@ -57,7 +57,7 @@ exports.fromCodePoint =
  * point unchanged.
  */
 function replaceCodePoint(codePoint) {
-    var _a;
+    let _a;
     if ((codePoint >= 55296 && codePoint <= 57343) ||
         codePoint > 1114111) {
         return 65533;

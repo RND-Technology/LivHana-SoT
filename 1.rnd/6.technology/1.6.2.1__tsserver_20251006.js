@@ -15,22 +15,22 @@ and limitations under the License.
 
 
 "use strict";
-var __create = Object.create;
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getProtoOf = Object.getPrototypeOf;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __copyProps = (to, from, except, desc) => {
+const __create = Object.create;
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __getProtoOf = Object.getPrototypeOf;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __reExport = (target, mod, secondTarget) => (__copyProps(target, mod, "default"), secondTarget && __copyProps(secondTarget, mod, "default"));
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+const __reExport = (target, mod, secondTarget) => (__copyProps(target, mod, "default"), secondTarget && __copyProps(secondTarget, mod, "default"));
+const __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
   // If the importer is in node compatibility mode or this is not an ESM
   // file that has been converted to a CommonJS file using a Babel-
   // compatible transform (i.e. "__esModule" has not been set), then set
@@ -40,18 +40,18 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 
 // src/tsserver/server.ts
-var import_os2 = __toESM(require("os"));
+const import_os2 = __toESM(require("os"));
 
 // src/typescript/typescript.ts
-var typescript_exports = {};
+const typescript_exports = {};
 __reExport(typescript_exports, require("./typescript.js"));
 
 // src/tsserver/nodeServer.ts
-var import_child_process = __toESM(require("child_process"));
-var import_fs = __toESM(require("fs"));
-var import_net = __toESM(require("net"));
-var import_os = __toESM(require("os"));
-var import_readline = __toESM(require("readline"));
+const import_child_process = __toESM(require("child_process"));
+const import_fs = __toESM(require("fs"));
+const import_net = __toESM(require("net"));
+const import_os = __toESM(require("os"));
+const import_readline = __toESM(require("readline"));
 
 // src/tsserver/common.ts
 function getLogLevel(level) {
@@ -279,7 +279,7 @@ function initializeNodeSystem() {
   sys4.clearImmediate = clearImmediate;
   if (typeof global !== "undefined" && global.gc) {
     sys4.gc = () => {
-      var _a;
+      let _a;
       return (_a = global.gc) == null ? void 0 : _a.call(global);
     };
   }
@@ -429,7 +429,7 @@ function startNodeSession(options, logger, cancellationToken) {
   // It would be preferable to base our limit on the amount of space left in the
   // buffer, but we have yet to find a way to retrieve that value.
   _NodeTypingsInstallerAdapter.maxActiveRequestCount = 10;
-  let NodeTypingsInstallerAdapter = _NodeTypingsInstallerAdapter;
+  const NodeTypingsInstallerAdapter = _NodeTypingsInstallerAdapter;
   class IOSession extends typescript_exports.server.Session {
     constructor() {
       const event = (body, eventName) => {
@@ -483,7 +483,7 @@ function startNodeSession(options, logger, cancellationToken) {
       this.eventSocket.write(typescript_exports.server.formatMessage(typescript_exports.server.toEvent(eventName, body), this.logger, this.byteLength, this.host.newLine), "utf8");
     }
     exit() {
-      var _a;
+      let _a;
       this.logger.info("Exiting...");
       this.projectService.closeLog();
       (_a = typescript_exports.tracing) == null ? void 0 : _a.stopTracing();

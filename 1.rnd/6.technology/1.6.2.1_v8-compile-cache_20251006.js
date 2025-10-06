@@ -208,7 +208,7 @@ class NativeCompileCache {
     // https://github.com/nodejs/node/blob/v7.5.0/lib/module.js#L511
 
     // Remove shebang
-    var contLen = content.length;
+    const contLen = content.length;
     if (contLen >= 2) {
       if (content.charCodeAt(0) === 35/*#*/ &&
           content.charCodeAt(1) === 33/*!*/) {
@@ -217,9 +217,9 @@ class NativeCompileCache {
           content = '';
         } else {
           // Find end of shebang line and slice it off
-          var i = 2;
+          let i = 2;
           for (; i < contLen; ++i) {
-            var code = content.charCodeAt(i);
+            const code = content.charCodeAt(i);
             if (code === 10/*\n*/ || code === 13/*\r*/) break;
           }
           if (i === contLen) {
@@ -235,16 +235,16 @@ class NativeCompileCache {
     }
 
     // create wrapper function
-    var wrapper = Module.wrap(content);
+    const wrapper = Module.wrap(content);
 
-    var invalidationKey = crypto
+    const invalidationKey = crypto
       .createHash('sha1')
       .update(content, 'utf8')
       .digest('hex');
 
-    var buffer = this._cacheStore.get(filename, invalidationKey);
+    const buffer = this._cacheStore.get(filename, invalidationKey);
 
-    var script = new vm.Script(wrapper, {
+    const script = new vm.Script(wrapper, {
       filename: filename,
       lineOffset: 0,
       displayErrors: true,
@@ -258,7 +258,7 @@ class NativeCompileCache {
       this._cacheStore.delete(filename);
     }
 
-    var compiledWrapper = script.runInThisContext({
+    const compiledWrapper = script.runInThisContext({
       filename: filename,
       lineOffset: 0,
       columnOffset: 0,

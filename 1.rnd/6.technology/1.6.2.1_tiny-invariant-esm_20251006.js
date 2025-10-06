@@ -1,5 +1,5 @@
-var isProduction = process.env.NODE_ENV === 'production';
-var prefix = 'Invariant failed';
+const isProduction = process.env.NODE_ENV === 'production';
+const prefix = 'Invariant failed';
 function invariant(condition, message) {
     if (condition) {
         return;
@@ -7,8 +7,8 @@ function invariant(condition, message) {
     if (isProduction) {
         throw new Error(prefix);
     }
-    var provided = typeof message === 'function' ? message() : message;
-    var value = provided ? "".concat(prefix, ": ").concat(provided) : prefix;
+    const provided = typeof message === 'function' ? message() : message;
+    const value = provided ? "".concat(prefix, ": ").concat(provided) : prefix;
     throw new Error(value);
 }
 

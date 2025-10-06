@@ -1,4 +1,4 @@
-var baseIndexOf = require('./_baseIndexOf');
+const baseIndexOf = require('./_baseIndexOf');
 
 /**
  * A specialized version of `_.includes` for arrays without support for
@@ -10,7 +10,7 @@ var baseIndexOf = require('./_baseIndexOf');
  * @returns {boolean} Returns `true` if `target` is found, else `false`.
  */
 function arrayIncludes(array, value) {
-  var length = array == null ? 0 : array.length;
+  const length = array == null ? 0 : array.length;
   return !!length && baseIndexOf(array, value, 0) > -1;
 }
 

@@ -1,4 +1,4 @@
-var coreJsData = require('./_coreJsData'),
+const coreJsData = require('./_coreJsData'),
     isFunction = require('./isFunction'),
     stubFalse = require('./stubFalse');
 
@@ -9,6 +9,6 @@ var coreJsData = require('./_coreJsData'),
  * @param {*} value The value to check.
  * @returns {boolean} Returns `true` if `func` is maskable, else `false`.
  */
-var isMaskable = coreJsData ? isFunction : stubFalse;
+const isMaskable = coreJsData ? isFunction : stubFalse;
 
 module.exports = isMaskable;

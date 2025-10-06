@@ -4,30 +4,30 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.XAxis = void 0;
-var _react = _interopRequireWildcard(require("react"));
-var React = _react;
-var _clsx = require("clsx");
-var _CartesianAxis = require("./CartesianAxis");
-var _hooks = require("../state/hooks");
-var _cartesianAxisSlice = require("../state/cartesianAxisSlice");
-var _axisSelectors = require("../state/selectors/axisSelectors");
-var _selectChartOffsetInternal = require("../state/selectors/selectChartOffsetInternal");
-var _PanoramaContext = require("../context/PanoramaContext");
-var _ShallowEqual = require("../util/ShallowEqual");
-var _resolveDefaultProps = require("../util/resolveDefaultProps");
-var _excluded = ["dangerouslySetInnerHTML", "ticks"],
+const _react = _interopRequireWildcard(require("react"));
+const React = _react;
+const _clsx = require("clsx");
+const _CartesianAxis = require("./CartesianAxis");
+const _hooks = require("../state/hooks");
+const _cartesianAxisSlice = require("../state/cartesianAxisSlice");
+const _axisSelectors = require("../state/selectors/axisSelectors");
+const _selectChartOffsetInternal = require("../state/selectors/selectChartOffsetInternal");
+const _PanoramaContext = require("../context/PanoramaContext");
+const _ShallowEqual = require("../util/ShallowEqual");
+const _resolveDefaultProps = require("../util/resolveDefaultProps");
+const _excluded = ["dangerouslySetInnerHTML", "ticks"],
   _excluded2 = ["id"],
   _excluded3 = ["domain"],
   _excluded4 = ["domain"];
 /**
  * @fileOverview X Axis
  */
-function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
-function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-function _objectWithoutProperties(e, t) { if (null == e) return {}; var o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { var n = Object.getOwnPropertySymbols(e); for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
-function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t = {}; for (var n in r) if ({}.hasOwnProperty.call(r, n)) { if (-1 !== e.indexOf(n)) continue; t[n] = r[n]; } return t; }
+function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; let o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (const _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (let e = 1; e < arguments.length; e++) { const t = arguments[e]; for (const r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+function _objectWithoutProperties(e, t) { if (null == e) return {}; let o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { const n = Object.getOwnPropertySymbols(e); for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
+function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; const t = {}; for (const n in r) if ({}.hasOwnProperty.call(r, n)) { if (-1 !== e.indexOf(n)) continue; t[n] = r[n]; } return t; }
 function SetXAxisSettings(settings) {
-  var dispatch = (0, _hooks.useAppDispatch)();
+  const dispatch = (0, _hooks.useAppDispatch)();
   (0, _react.useEffect)(() => {
     dispatch((0, _cartesianAxisSlice.addXAxis)(settings));
     return () => {
@@ -36,34 +36,34 @@ function SetXAxisSettings(settings) {
   }, [settings, dispatch]);
   return null;
 }
-var XAxisImpl = props => {
-  var {
+const XAxisImpl = props => {
+  const {
     xAxisId,
     className
   } = props;
-  var viewBox = (0, _hooks.useAppSelector)(_selectChartOffsetInternal.selectAxisViewBox);
-  var isPanorama = (0, _PanoramaContext.useIsPanorama)();
-  var axisType = 'xAxis';
-  var scale = (0, _hooks.useAppSelector)(state => (0, _axisSelectors.selectAxisScale)(state, axisType, xAxisId, isPanorama));
-  var cartesianTickItems = (0, _hooks.useAppSelector)(state => (0, _axisSelectors.selectTicksOfAxis)(state, axisType, xAxisId, isPanorama));
-  var axisSize = (0, _hooks.useAppSelector)(state => (0, _axisSelectors.selectXAxisSize)(state, xAxisId));
-  var position = (0, _hooks.useAppSelector)(state => (0, _axisSelectors.selectXAxisPosition)(state, xAxisId));
+  const viewBox = (0, _hooks.useAppSelector)(_selectChartOffsetInternal.selectAxisViewBox);
+  const isPanorama = (0, _PanoramaContext.useIsPanorama)();
+  const axisType = 'xAxis';
+  const scale = (0, _hooks.useAppSelector)(state => (0, _axisSelectors.selectAxisScale)(state, axisType, xAxisId, isPanorama));
+  const cartesianTickItems = (0, _hooks.useAppSelector)(state => (0, _axisSelectors.selectTicksOfAxis)(state, axisType, xAxisId, isPanorama));
+  const axisSize = (0, _hooks.useAppSelector)(state => (0, _axisSelectors.selectXAxisSize)(state, xAxisId));
+  const position = (0, _hooks.useAppSelector)(state => (0, _axisSelectors.selectXAxisPosition)(state, xAxisId));
   /*
    * Here we select settings from the store and prefer to use them instead of the actual props
    * so that the chart is consistent. If we used the props directly, some components will use axis settings
    * from state and some from props and because there is a render step between these two, they might be showing different things.
    * https://github.com/recharts/recharts/issues/6257
    */
-  var synchronizedSettings = (0, _hooks.useAppSelector)(state => (0, _axisSelectors.selectXAxisSettingsNoDefaults)(state, xAxisId));
+  const synchronizedSettings = (0, _hooks.useAppSelector)(state => (0, _axisSelectors.selectXAxisSettingsNoDefaults)(state, xAxisId));
   if (axisSize == null || position == null || synchronizedSettings == null) {
     return null;
   }
-  var {
+  let {
       dangerouslySetInnerHTML,
       ticks
     } = props,
     allOtherProps = _objectWithoutProperties(props, _excluded);
-  var {
+  let {
       id
     } = synchronizedSettings,
     restSynchronizedSettings = _objectWithoutProperties(synchronizedSettings, _excluded2);
@@ -78,7 +78,7 @@ var XAxisImpl = props => {
     ticks: cartesianTickItems
   }));
 };
-var xAxisDefaultProps = {
+const xAxisDefaultProps = {
   allowDataOverflow: _axisSelectors.implicitXAxis.allowDataOverflow,
   allowDecimals: _axisSelectors.implicitXAxis.allowDecimals,
   allowDuplicatedCategory: _axisSelectors.implicitXAxis.allowDuplicatedCategory,
@@ -93,9 +93,9 @@ var xAxisDefaultProps = {
   type: _axisSelectors.implicitXAxis.type,
   xAxisId: 0
 };
-var XAxisSettingsDispatcher = outsideProps => {
-  var _props$interval, _props$includeHidden, _props$angle, _props$minTickGap, _props$tick;
-  var props = (0, _resolveDefaultProps.resolveDefaultProps)(outsideProps, xAxisDefaultProps);
+const XAxisSettingsDispatcher = outsideProps => {
+  let _props$interval, _props$includeHidden, _props$angle, _props$minTickGap, _props$tick;
+  const props = (0, _resolveDefaultProps.resolveDefaultProps)(outsideProps, xAxisDefaultProps);
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(SetXAxisSettings, {
     interval: (_props$interval = props.interval) !== null && _props$interval !== void 0 ? _props$interval : 'preserveEnd',
     id: props.xAxisId,
@@ -123,12 +123,12 @@ var XAxisSettingsDispatcher = outsideProps => {
     tickFormatter: props.tickFormatter
   }), /*#__PURE__*/React.createElement(XAxisImpl, props));
 };
-var XAxisMemoComparator = (prevProps, nextProps) => {
-  var {
+const XAxisMemoComparator = (prevProps, nextProps) => {
+  let {
       domain: prevDomain
     } = prevProps,
     prevRest = _objectWithoutProperties(prevProps, _excluded3);
-  var {
+  let {
       domain: nextDomain
     } = nextProps,
     nextRest = _objectWithoutProperties(nextProps, _excluded4);
@@ -144,5 +144,5 @@ var XAxisMemoComparator = (prevProps, nextProps) => {
     domain: nextDomain
   });
 };
-var XAxis = exports.XAxis = /*#__PURE__*/React.memo(XAxisSettingsDispatcher, XAxisMemoComparator);
+const XAxis = exports.XAxis = /*#__PURE__*/React.memo(XAxisSettingsDispatcher, XAxisMemoComparator);
 XAxis.displayName = 'XAxis';

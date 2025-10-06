@@ -1,18 +1,18 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var IsArray = require('./IsArray');
-var IsInteger = require('./IsInteger');
+const IsArray = require('./IsArray');
+const IsInteger = require('./IsInteger');
 
-var every = require('../helpers/every');
-var regexTester = require('safe-regex-test');
+const every = require('../helpers/every');
+const regexTester = require('safe-regex-test');
 
-var isChar = function isChar(c) {
+const isChar = function isChar(c) {
 	return typeof c === 'string' && c.length === 1;
 };
 
-var isWordCharacter = regexTester(/^[a-zA-Z0-9_]$/);
+const isWordCharacter = regexTester(/^[a-zA-Z0-9_]$/);
 
 // https://262.ecma-international.org/6.0/#sec-runtime-semantics-iswordchar-abstract-operation
 
@@ -31,7 +31,7 @@ module.exports = function IsWordChar(e, InputLength, Input) {
 		return false; // step 1
 	}
 
-	var c = Input[e]; // step 2
+	const c = Input[e]; // step 2
 
 	return isWordCharacter(c); // steps 3-4
 };

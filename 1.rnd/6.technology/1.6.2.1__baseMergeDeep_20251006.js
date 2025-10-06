@@ -1,4 +1,4 @@
-var assignMergeValue = require('./_assignMergeValue'),
+const assignMergeValue = require('./_assignMergeValue'),
     cloneBuffer = require('./_cloneBuffer'),
     cloneTypedArray = require('./_cloneTypedArray'),
     copyArray = require('./_copyArray'),
@@ -30,7 +30,7 @@ var assignMergeValue = require('./_assignMergeValue'),
  *  counterparts.
  */
 function baseMergeDeep(object, source, key, srcIndex, mergeFunc, customizer, stack) {
-  var objValue = safeGet(object, key),
+  const objValue = safeGet(object, key),
       srcValue = safeGet(source, key),
       stacked = stack.get(srcValue);
 
@@ -38,14 +38,14 @@ function baseMergeDeep(object, source, key, srcIndex, mergeFunc, customizer, sta
     assignMergeValue(object, key, stacked);
     return;
   }
-  var newValue = customizer
+  let newValue = customizer
     ? customizer(objValue, srcValue, (key + ''), object, source, stack)
     : undefined;
 
-  var isCommon = newValue === undefined;
+  let isCommon = newValue === undefined;
 
   if (isCommon) {
-    var isArr = isArray(srcValue),
+    const isArr = isArray(srcValue),
         isBuff = !isArr && isBuffer(srcValue),
         isTyped = !isArr && !isBuff && isTypedArray(srcValue);
 

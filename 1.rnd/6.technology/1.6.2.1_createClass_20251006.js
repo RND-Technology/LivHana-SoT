@@ -4,10 +4,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = _createClass;
-var _toPropertyKey = require("./toPropertyKey.js");
+const _toPropertyKey = require("./toPropertyKey.js");
 function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
+  for (let i = 0; i < props.length; i++) {
+    const descriptor = props[i];
     descriptor.enumerable = descriptor.enumerable || false;
     descriptor.configurable = true;
     if ("value" in descriptor) descriptor.writable = true;

@@ -1,11 +1,11 @@
 "use strict";
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+const _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 exports.__esModule = true;
 exports.default = closest;
 
-var _matches = _interopRequireDefault(require("./matches"));
+const _matches = _interopRequireDefault(require("./matches"));
 
 /**
  * Returns the closest parent element that matches a given selector.
@@ -16,7 +16,7 @@ var _matches = _interopRequireDefault(require("./matches"));
  */
 function closest(node, selector, stopAt) {
   if (node.closest && !stopAt) node.closest(selector);
-  var nextNode = node;
+  let nextNode = node;
 
   do {
     if ((0, _matches.default)(nextNode, selector)) return nextNode;

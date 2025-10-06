@@ -1,9 +1,9 @@
 import {basis} from "./basis.js";
 
 export default function(values) {
-  var n = values.length;
+  const n = values.length;
   return function(t) {
-    var i = Math.floor(((t %= 1) < 0 ? ++t : t) * n),
+    const i = Math.floor(((t %= 1) < 0 ? ++t : t) * n),
         v0 = values[(i + n - 1) % n],
         v1 = values[i % n],
         v2 = values[(i + 1) % n],

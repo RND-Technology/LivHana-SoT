@@ -2,7 +2,7 @@
  * Represents a logger implementation that does not perform any logging.
  * Messages logged using this logger are effectively ignored.
  */
-var NullLogger =
+const NullLogger =
 /*#__PURE__*/
 /** @class */
 function () {

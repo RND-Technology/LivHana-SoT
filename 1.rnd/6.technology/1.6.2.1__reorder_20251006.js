@@ -1,8 +1,8 @@
-var copyArray = require('./_copyArray'),
+const copyArray = require('./_copyArray'),
     isIndex = require('./_isIndex');
 
 /* Built-in method references for those with the same name as other `lodash` methods. */
-var nativeMin = Math.min;
+const nativeMin = Math.min;
 
 /**
  * Reorder `array` according to the specified indexes where the element at
@@ -15,12 +15,12 @@ var nativeMin = Math.min;
  * @returns {Array} Returns `array`.
  */
 function reorder(array, indexes) {
-  var arrLength = array.length,
+  let arrLength = array.length,
       length = nativeMin(indexes.length, arrLength),
       oldArray = copyArray(array);
 
   while (length--) {
-    var index = indexes[length];
+    const index = indexes[length];
     array[length] = isIndex(index, arrLength) ? oldArray[index] : undefined;
   }
   return array;

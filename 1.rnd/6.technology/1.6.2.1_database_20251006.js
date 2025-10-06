@@ -40,7 +40,7 @@ module.exports = function createDbSegment(agent, otelSpan, rule) {
     name = transformTemplate(segmentTransformation.name.template, parsedStatement)
     recorder = getRecorder({ operation: false, parsed: parsedStatement, system })
   } else if (operation) {
-    ;[operation] = operation.split(' ')
+    [operation] = operation.split(' ')
     name = transformTemplate(segmentTransformation.name.template, { type: system, operation })
     recorder = getRecorder({ operation: true, system })
   // fallback to just use system as name

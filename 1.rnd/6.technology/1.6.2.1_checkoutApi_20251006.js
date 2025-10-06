@@ -1,25 +1,25 @@
 "use strict";
 exports.__esModule = true;
 exports.CheckoutApi = void 0;
-var tslib_1 = require("tslib");
-var createCheckoutRequest_1 = require("../models/createCheckoutRequest");
-var createCheckoutResponse_1 = require("../models/createCheckoutResponse");
-var createPaymentLinkRequest_1 = require("../models/createPaymentLinkRequest");
-var createPaymentLinkResponse_1 = require("../models/createPaymentLinkResponse");
-var deletePaymentLinkResponse_1 = require("../models/deletePaymentLinkResponse");
-var listPaymentLinksResponse_1 = require("../models/listPaymentLinksResponse");
-var retrieveLocationSettingsResponse_1 = require("../models/retrieveLocationSettingsResponse");
-var retrieveMerchantSettingsResponse_1 = require("../models/retrieveMerchantSettingsResponse");
-var retrievePaymentLinkResponse_1 = require("../models/retrievePaymentLinkResponse");
-var updateLocationSettingsRequest_1 = require("../models/updateLocationSettingsRequest");
-var updateLocationSettingsResponse_1 = require("../models/updateLocationSettingsResponse");
-var updateMerchantSettingsRequest_1 = require("../models/updateMerchantSettingsRequest");
-var updateMerchantSettingsResponse_1 = require("../models/updateMerchantSettingsResponse");
-var updatePaymentLinkRequest_1 = require("../models/updatePaymentLinkRequest");
-var updatePaymentLinkResponse_1 = require("../models/updatePaymentLinkResponse");
-var schema_1 = require("../schema");
-var baseApi_1 = require("./baseApi");
-var CheckoutApi = /** @class */ (function (_super) {
+const tslib_1 = require("tslib");
+const createCheckoutRequest_1 = require("../models/createCheckoutRequest");
+const createCheckoutResponse_1 = require("../models/createCheckoutResponse");
+const createPaymentLinkRequest_1 = require("../models/createPaymentLinkRequest");
+const createPaymentLinkResponse_1 = require("../models/createPaymentLinkResponse");
+const deletePaymentLinkResponse_1 = require("../models/deletePaymentLinkResponse");
+const listPaymentLinksResponse_1 = require("../models/listPaymentLinksResponse");
+const retrieveLocationSettingsResponse_1 = require("../models/retrieveLocationSettingsResponse");
+const retrieveMerchantSettingsResponse_1 = require("../models/retrieveMerchantSettingsResponse");
+const retrievePaymentLinkResponse_1 = require("../models/retrievePaymentLinkResponse");
+const updateLocationSettingsRequest_1 = require("../models/updateLocationSettingsRequest");
+const updateLocationSettingsResponse_1 = require("../models/updateLocationSettingsResponse");
+const updateMerchantSettingsRequest_1 = require("../models/updateMerchantSettingsRequest");
+const updateMerchantSettingsResponse_1 = require("../models/updateMerchantSettingsResponse");
+const updatePaymentLinkRequest_1 = require("../models/updatePaymentLinkRequest");
+const updatePaymentLinkResponse_1 = require("../models/updatePaymentLinkResponse");
+const schema_1 = require("../schema");
+const baseApi_1 = require("./baseApi");
+const CheckoutApi = /** @class */ (function (_super) {
     tslib_1.__extends(CheckoutApi, _super);
     function CheckoutApi() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -43,7 +43,7 @@ var CheckoutApi = /** @class */ (function (_super) {
      */
     CheckoutApi.prototype.createCheckout = function (locationId, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({
@@ -67,7 +67,7 @@ var CheckoutApi = /** @class */ (function (_super) {
      */
     CheckoutApi.prototype.retrieveLocationSettings = function (locationId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({ locationId: [locationId, (0, schema_1.string)()] });
@@ -88,7 +88,7 @@ var CheckoutApi = /** @class */ (function (_super) {
      */
     CheckoutApi.prototype.updateLocationSettings = function (locationId, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('PUT');
                 mapped = req.prepareArgs({
@@ -110,7 +110,7 @@ var CheckoutApi = /** @class */ (function (_super) {
      */
     CheckoutApi.prototype.retrieveMerchantSettings = function (requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req;
+            let req;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET', '/v2/online-checkout/merchant-settings');
                 req.authenticate([{ global: true }]);
@@ -128,7 +128,7 @@ var CheckoutApi = /** @class */ (function (_super) {
      */
     CheckoutApi.prototype.updateMerchantSettings = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('PUT', '/v2/online-checkout/merchant-settings');
                 mapped = req.prepareArgs({
@@ -156,7 +156,7 @@ var CheckoutApi = /** @class */ (function (_super) {
      */
     CheckoutApi.prototype.listPaymentLinks = function (cursor, limit, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET', '/v2/online-checkout/payment-links');
                 mapped = req.prepareArgs({
@@ -180,7 +180,7 @@ var CheckoutApi = /** @class */ (function (_super) {
      */
     CheckoutApi.prototype.createPaymentLink = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/online-checkout/payment-links');
                 mapped = req.prepareArgs({
@@ -201,7 +201,7 @@ var CheckoutApi = /** @class */ (function (_super) {
      */
     CheckoutApi.prototype.deletePaymentLink = function (id, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('DELETE');
                 mapped = req.prepareArgs({ id: [id, (0, schema_1.string)()] });
@@ -219,7 +219,7 @@ var CheckoutApi = /** @class */ (function (_super) {
      */
     CheckoutApi.prototype.retrievePaymentLink = function (id, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({ id: [id, (0, schema_1.string)()] });
@@ -241,7 +241,7 @@ var CheckoutApi = /** @class */ (function (_super) {
      */
     CheckoutApi.prototype.updatePaymentLink = function (id, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('PUT');
                 mapped = req.prepareArgs({
@@ -259,5 +259,5 @@ var CheckoutApi = /** @class */ (function (_super) {
     return CheckoutApi;
 }(baseApi_1.BaseApi));
 exports.CheckoutApi = CheckoutApi;
-var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6;
+let templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6;
 //# sourceMappingURL=checkoutApi.js.map

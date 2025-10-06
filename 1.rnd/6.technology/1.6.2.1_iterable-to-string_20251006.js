@@ -1,8 +1,8 @@
 "use strict";
 
-var slice = require("@sinonjs/commons").prototypes.string.slice;
-var typeOf = require("@sinonjs/commons").typeOf;
-var valueToString = require("@sinonjs/commons").valueToString;
+const slice = require("@sinonjs/commons").prototypes.string.slice;
+const typeOf = require("@sinonjs/commons").typeOf;
+const valueToString = require("@sinonjs/commons").valueToString;
 
 /**
  * Creates a string represenation of an iterable object
@@ -27,7 +27,7 @@ function iterableToString(obj) {
  * @returns {string}     A string representation
  */
 function mapToString(map) {
-    var representation = "";
+    let representation = "";
 
     // eslint-disable-next-line @sinonjs/no-prototype-methods/no-prototype-methods
     map.forEach(function (value, key) {
@@ -46,7 +46,7 @@ function mapToString(map) {
  * @returns {string}          A string representation
  */
 function genericIterableToString(iterable) {
-    var representation = "";
+    let representation = "";
 
     // eslint-disable-next-line @sinonjs/no-prototype-methods/no-prototype-methods
     iterable.forEach(function (value) {

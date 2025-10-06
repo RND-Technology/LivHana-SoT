@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
 exports.deviceAttributesSchema = void 0;
-var schema_1 = require("../schema");
+const schema_1 = require("../schema");
 exports.deviceAttributesSchema = (0, schema_1.object)({
     type: ['type', (0, schema_1.string)()],
     manufacturer: ['manufacturer', (0, schema_1.string)()],

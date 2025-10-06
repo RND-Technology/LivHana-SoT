@@ -19,11 +19,11 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 // USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-var common = require('./common');
-var test = require('tape');
-var assert = require('assert');
-var EventEmitter = require('../').EventEmitter;
-var util = require('util');
+const common = require('./common');
+const test = require('tape');
+const assert = require('assert');
+const EventEmitter = require('../').EventEmitter;
+const util = require('util');
 
 util.inherits(MyEE, EventEmitter);
 
@@ -34,7 +34,7 @@ function MyEE(cb) {
   EventEmitter.call(this);
 }
 
-var myee = new MyEE(common.mustCall());
+const myee = new MyEE(common.mustCall());
 
 
 util.inherits(ErrorEE, EventEmitter);
@@ -58,8 +58,8 @@ function MyEE2() {
 
 MyEE2.prototype = new EventEmitter();
 
-var ee1 = new MyEE2();
-var ee2 = new MyEE2();
+const ee1 = new MyEE2();
+const ee2 = new MyEE2();
 
 ee1.on('x', function() {});
 

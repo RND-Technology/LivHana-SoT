@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
 exports.catalogSubscriptionPlanVariationSchema = void 0;
-var schema_1 = require("../schema");
-var subscriptionPhase_1 = require("./subscriptionPhase");
+const schema_1 = require("../schema");
+const subscriptionPhase_1 = require("./subscriptionPhase");
 exports.catalogSubscriptionPlanVariationSchema = (0, schema_1.object)({
     name: ['name', (0, schema_1.string)()],
     phases: ['phases', (0, schema_1.array)((0, schema_1.lazy)(function () { return subscriptionPhase_1.subscriptionPhaseSchema; }))],

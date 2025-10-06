@@ -5,14 +5,14 @@ import { fileURLToPath } from "node:url";
 import readline from "node:readline";
 
 //#region ../../node_modules/.pnpm/picocolors@1.1.1/node_modules/picocolors/picocolors.js
-var require_picocolors = /* @__PURE__ */ __commonJS({ "../../node_modules/.pnpm/picocolors@1.1.1/node_modules/picocolors/picocolors.js": ((exports, module) => {
-	let p = process || {}, argv = p.argv || [], env = p.env || {};
-	let isColorSupported = !(!!env.NO_COLOR || argv.includes("--no-color")) && (!!env.FORCE_COLOR || argv.includes("--color") || p.platform === "win32" || (p.stdout || {}).isTTY && env.TERM !== "dumb" || !!env.CI);
-	let formatter = (open, close, replace = open) => (input) => {
-		let string = "" + input, index = string.indexOf(close, open.length);
+const require_picocolors = /* @__PURE__ */ __commonJS({ "../../node_modules/.pnpm/picocolors@1.1.1/node_modules/picocolors/picocolors.js": ((exports, module) => {
+	const p = process || {}, argv = p.argv || [], env = p.env || {};
+	const isColorSupported = !(!!env.NO_COLOR || argv.includes("--no-color")) && (!!env.FORCE_COLOR || argv.includes("--color") || p.platform === "win32" || (p.stdout || {}).isTTY && env.TERM !== "dumb" || !!env.CI);
+	const formatter = (open, close, replace = open) => (input) => {
+		const string = "" + input, index = string.indexOf(close, open.length);
 		return ~index ? open + replaceClose(string, close, replace, index) + close : open + string + close;
 	};
-	let replaceClose = (string, close, replace, index) => {
+	const replaceClose = (string, close, replace, index) => {
 		let result = "", cursor = 0;
 		do {
 			result += string.substring(cursor, index) + replace;
@@ -21,8 +21,8 @@ var require_picocolors = /* @__PURE__ */ __commonJS({ "../../node_modules/.pnpm/
 		} while (~index);
 		return result + string.substring(cursor);
 	};
-	let createColors = (enabled = isColorSupported) => {
-		let f = enabled ? formatter : () => String;
+	const createColors = (enabled = isColorSupported) => {
+		const f = enabled ? formatter : () => String;
 		return {
 			isColorSupported: enabled,
 			reset: f("\x1B[0m", "\x1B[0m"),
@@ -219,7 +219,7 @@ const ERR_FILE_NOT_FOUND_IN_OPTIMIZED_DEP_DIR = "ERR_FILE_NOT_FOUND_IN_OPTIMIZED
 
 //#endregion
 //#region src/node/logger.ts
-var import_picocolors = /* @__PURE__ */ __toESM(require_picocolors(), 1);
+const import_picocolors = /* @__PURE__ */ __toESM(require_picocolors(), 1);
 const LogLevels = {
 	silent: 0,
 	error: 1,

@@ -1,19 +1,19 @@
 'use strict';
 
-var test = require('tape');
-var gPO = require('reflect.getprototypeof/polyfill')();
-var gOPD = require('gopd');
+const test = require('tape');
+const gPO = require('reflect.getprototypeof/polyfill')();
+const gOPD = require('gopd');
 
-var hasProto = require('../');
-var hasProtoMutator = require('../mutator');
+const hasProto = require('../');
+const hasProtoMutator = require('../mutator');
 
-var getter = require('dunder-proto/get');
+const getter = require('dunder-proto/get');
 
 test('hasProtoMutator', function (t) {
-	var result = hasProtoMutator();
+	const result = hasProtoMutator();
 	t.equal(typeof result, 'boolean', 'returns a boolean (' + result + ')');
 
-	var obj = { __proto__: null };
+	const obj = { __proto__: null };
 	if (result) {
 		t.notOk('toString' in obj, 'null object lacks toString');
 		t.equal(gPO(obj), null);

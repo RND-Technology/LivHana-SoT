@@ -1,19 +1,19 @@
-var reFirstKey = /^[^\[]*/
-var reDigitPath = /^\[(\d+)\]/
-var reNormalPath = /^\[([^\]]+)\]/
+const reFirstKey = /^[^\[]*/
+const reDigitPath = /^\[(\d+)\]/
+const reNormalPath = /^\[([^\]]+)\]/
 
 function parsePath (key) {
   function failure () {
     return [{ type: 'object', key: key, last: true }]
   }
 
-  var firstKey = reFirstKey.exec(key)[0]
+  const firstKey = reFirstKey.exec(key)[0]
   if (!firstKey) return failure()
 
-  var len = key.length
-  var pos = firstKey.length
-  var tail = { type: 'object', key: firstKey }
-  var steps = [tail]
+  const len = key.length
+  let pos = firstKey.length
+  let tail = { type: 'object', key: firstKey }
+  const steps = [tail]
 
   while (pos < len) {
     var m

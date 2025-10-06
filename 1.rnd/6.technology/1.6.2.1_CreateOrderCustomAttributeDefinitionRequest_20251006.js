@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
 exports.createOrderCustomAttributeDefinitionRequestSchema = void 0;
-var schema_1 = require("../schema");
-var customAttributeDefinition_1 = require("./customAttributeDefinition");
+const schema_1 = require("../schema");
+const customAttributeDefinition_1 = require("./customAttributeDefinition");
 exports.createOrderCustomAttributeDefinitionRequestSchema = (0, schema_1.object)({
     customAttributeDefinition: [
         'custom_attribute_definition',

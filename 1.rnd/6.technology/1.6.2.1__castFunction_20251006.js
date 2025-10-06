@@ -1,4 +1,4 @@
-var identity = require('./identity');
+const identity = require('./identity');
 
 /**
  * Casts `value` to `identity` if it's not a function.

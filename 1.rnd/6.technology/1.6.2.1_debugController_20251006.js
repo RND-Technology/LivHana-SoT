@@ -1,38 +1,38 @@
 "use strict";
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __export = (target, all) => {
+  for (const name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var debugController_exports = {};
+const __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+const debugController_exports = {};
 __export(debugController_exports, {
   DebugController: () => DebugController
 });
 module.exports = __toCommonJS(debugController_exports);
-var import_instrumentation = require("./instrumentation");
-var import_processLauncher = require("./utils/processLauncher");
-var import_recorder = require("./recorder");
-var import_utils = require("../utils");
-var import_ariaSnapshot = require("../utils/isomorphic/ariaSnapshot");
-var import_utilsBundle = require("../utilsBundle");
-var import_locatorParser = require("../utils/isomorphic/locatorParser");
-var import_language = require("./codegen/language");
-var import_recorderUtils = require("./recorder/recorderUtils");
-var import_javascript = require("./codegen/javascript");
-var import_frames = require("./frames");
-var import_page = require("./page");
+const import_instrumentation = require("./instrumentation");
+const import_processLauncher = require("./utils/processLauncher");
+const import_recorder = require("./recorder");
+const import_utils = require("../utils");
+const import_ariaSnapshot = require("../utils/isomorphic/ariaSnapshot");
+const import_utilsBundle = require("../utilsBundle");
+const import_locatorParser = require("../utils/isomorphic/locatorParser");
+const import_language = require("./codegen/language");
+const import_recorderUtils = require("./recorder/recorderUtils");
+const import_javascript = require("./codegen/javascript");
+const import_frames = require("./frames");
+const import_page = require("./page");
 class DebugController extends import_instrumentation.SdkObject {
   constructor(playwright) {
     super({ attribution: { isInternalPlaywright: true }, instrumentation: (0, import_instrumentation.createInstrumentation)() }, void 0, "DebugController");

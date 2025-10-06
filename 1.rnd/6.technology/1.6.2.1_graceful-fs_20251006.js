@@ -1,13 +1,13 @@
-var fs = require('fs')
-var polyfills = require('./polyfills.js')
-var legacy = require('./legacy-streams.js')
-var clone = require('./clone.js')
+const fs = require('fs')
+const polyfills = require('./polyfills.js')
+const legacy = require('./legacy-streams.js')
+const clone = require('./clone.js')
 
-var util = require('util')
+const util = require('util')
 
 /* istanbul ignore next - node 0.x polyfill */
-var gracefulQueue
-var previousSymbol
+let gracefulQueue
+let previousSymbol
 
 /* istanbul ignore else - node 0.x polyfill */
 if (typeof Symbol === 'function' && typeof Symbol.for === 'function') {
@@ -29,12 +29,12 @@ function publishQueue(context, queue) {
   })
 }
 
-var debug = noop
+let debug = noop
 if (util.debuglog)
   debug = util.debuglog('gfs4')
 else if (/\bgfs4\b/i.test(process.env.NODE_DEBUG || ''))
   debug = function() {
-    var m = util.format.apply(util, arguments)
+    let m = util.format.apply(util, arguments)
     m = 'GFS4: ' + m.split(/\n/).join('\nGFS4: ')
     console.error(m)
   }
@@ -42,7 +42,7 @@ else if (/\bgfs4\b/i.test(process.env.NODE_DEBUG || ''))
 // Once time initialization
 if (!fs[gracefulQueue]) {
   // This queue can be shared by multiple loaded instances
-  var queue = global[gracefulQueue] || []
+  const queue = global[gracefulQueue] || []
   publishQueue(fs, queue)
 
   // Patch fs.close/closeSync to shared queue version, because we need
@@ -106,7 +106,7 @@ function patch (fs) {
 
   fs.createReadStream = createReadStream
   fs.createWriteStream = createWriteStream
-  var fs$readFile = fs.readFile
+  const fs$readFile = fs.readFile
   fs.readFile = readFile
   function readFile (path, options, cb) {
     if (typeof options === 'function')
@@ -126,7 +126,7 @@ function patch (fs) {
     }
   }
 
-  var fs$writeFile = fs.writeFile
+  const fs$writeFile = fs.writeFile
   fs.writeFile = writeFile
   function writeFile (path, data, options, cb) {
     if (typeof options === 'function')
@@ -146,7 +146,7 @@ function patch (fs) {
     }
   }
 
-  var fs$appendFile = fs.appendFile
+  const fs$appendFile = fs.appendFile
   if (fs$appendFile)
     fs.appendFile = appendFile
   function appendFile (path, data, options, cb) {
@@ -167,7 +167,7 @@ function patch (fs) {
     }
   }
 
-  var fs$copyFile = fs.copyFile
+  const fs$copyFile = fs.copyFile
   if (fs$copyFile)
     fs.copyFile = copyFile
   function copyFile (src, dest, flags, cb) {
@@ -189,14 +189,14 @@ function patch (fs) {
     }
   }
 
-  var fs$readdir = fs.readdir
+  const fs$readdir = fs.readdir
   fs.readdir = readdir
-  var noReaddirOptionVersions = /^v[0-5]\./
+  const noReaddirOptionVersions = /^v[0-5]\./
   function readdir (path, options, cb) {
     if (typeof options === 'function')
       cb = options, options = null
 
-    var go$readdir = noReaddirOptionVersions.test(process.version)
+    const go$readdir = noReaddirOptionVersions.test(process.version)
       ? function go$readdir (path, options, cb, startTime) {
         return fs$readdir(path, fs$readdirCallback(
           path, options, cb, startTime
@@ -232,18 +232,18 @@ function patch (fs) {
   }
 
   if (process.version.substr(0, 4) === 'v0.8') {
-    var legStreams = legacy(fs)
+    const legStreams = legacy(fs)
     ReadStream = legStreams.ReadStream
     WriteStream = legStreams.WriteStream
   }
 
-  var fs$ReadStream = fs.ReadStream
+  const fs$ReadStream = fs.ReadStream
   if (fs$ReadStream) {
     ReadStream.prototype = Object.create(fs$ReadStream.prototype)
     ReadStream.prototype.open = ReadStream$open
   }
 
-  var fs$WriteStream = fs.WriteStream
+  const fs$WriteStream = fs.WriteStream
   if (fs$WriteStream) {
     WriteStream.prototype = Object.create(fs$WriteStream.prototype)
     WriteStream.prototype.open = WriteStream$open
@@ -271,7 +271,7 @@ function patch (fs) {
   })
 
   // legacy names
-  var FileReadStream = ReadStream
+  let FileReadStream = ReadStream
   Object.defineProperty(fs, 'FileReadStream', {
     get: function () {
       return FileReadStream
@@ -282,7 +282,7 @@ function patch (fs) {
     enumerable: true,
     configurable: true
   })
-  var FileWriteStream = WriteStream
+  let FileWriteStream = WriteStream
   Object.defineProperty(fs, 'FileWriteStream', {
     get: function () {
       return FileWriteStream
@@ -302,7 +302,7 @@ function patch (fs) {
   }
 
   function ReadStream$open () {
-    var that = this
+    const that = this
     open(that.path, that.flags, that.mode, function (err, fd) {
       if (err) {
         if (that.autoClose)
@@ -325,7 +325,7 @@ function patch (fs) {
   }
 
   function WriteStream$open () {
-    var that = this
+    const that = this
     open(that.path, that.flags, that.mode, function (err, fd) {
       if (err) {
         that.destroy()
@@ -345,7 +345,7 @@ function patch (fs) {
     return new fs.WriteStream(path, options)
   }
 
-  var fs$open = fs.open
+  const fs$open = fs.open
   fs.open = open
   function open (path, flags, mode, cb) {
     if (typeof mode === 'function')
@@ -375,14 +375,14 @@ function enqueue (elem) {
 }
 
 // keep track of the timeout between retry() calls
-var retryTimer
+let retryTimer
 
 // reset the startTime and lastTime to now
 // this resets the start of the 60 second overall timeout as well as the
 // delay between attempts so that we'll retry these jobs sooner
 function resetQueue () {
-  var now = Date.now()
-  for (var i = 0; i < fs[gracefulQueue].length; ++i) {
+  const now = Date.now()
+  for (let i = 0; i < fs[gracefulQueue].length; ++i) {
     // entries that are only a length of 2 are from an older version, don't
     // bother modifying those since they'll be retried anyway.
     if (fs[gracefulQueue][i].length > 2) {
@@ -402,13 +402,13 @@ function retry () {
   if (fs[gracefulQueue].length === 0)
     return
 
-  var elem = fs[gracefulQueue].shift()
-  var fn = elem[0]
-  var args = elem[1]
+  const elem = fs[gracefulQueue].shift()
+  const fn = elem[0]
+  const args = elem[1]
   // these items may be unset if they were added by an older graceful-fs
-  var err = elem[2]
-  var startTime = elem[3]
-  var lastTime = elem[4]
+  const err = elem[2]
+  const startTime = elem[3]
+  const lastTime = elem[4]
 
   // if we don't have a startTime we have no way of knowing if we've waited
   // long enough, so go ahead and retry this item now
@@ -418,18 +418,18 @@ function retry () {
   } else if (Date.now() - startTime >= 60000) {
     // it's been more than 60 seconds total, bail now
     debug('TIMEOUT', fn.name, args)
-    var cb = args.pop()
+    const cb = args.pop()
     if (typeof cb === 'function')
       cb.call(null, err)
   } else {
     // the amount of time between the last attempt and right now
-    var sinceAttempt = Date.now() - lastTime
+    const sinceAttempt = Date.now() - lastTime
     // the amount of time between when we first tried, and when we last tried
     // rounded up to at least 1
-    var sinceStart = Math.max(lastTime - startTime, 1)
+    const sinceStart = Math.max(lastTime - startTime, 1)
     // backoff. wait longer than the total time we've been retrying, but only
     // up to a maximum of 100ms
-    var desiredDelay = Math.min(sinceStart * 1.2, 100)
+    const desiredDelay = Math.min(sinceStart * 1.2, 100)
     // it's been long enough since the last retry, do it again
     if (sinceAttempt >= desiredDelay) {
       debug('RETRY', fn.name, args)

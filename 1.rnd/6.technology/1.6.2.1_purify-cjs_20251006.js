@@ -98,7 +98,7 @@ function unconstruct(Func) {
  * @returns The modified set with added elements.
  */
 function addToSet(set, array) {
-  let transformCaseFunc = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : stringToLowerCase;
+  const transformCaseFunc = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : stringToLowerCase;
   if (setPrototypeOf) {
     // Make 'in' and truthy checks like Boolean(set.constructor)
     // independent of any properties defined on Object.prototype.
@@ -218,7 +218,7 @@ const ATTR_WHITESPACE = seal(/[\u0000-\u0020\u00A0\u1680\u180E\u2000-\u2029\u205
 const DOCTYPE_NAME = seal(/^html$/i);
 const CUSTOM_ELEMENT = seal(/^[a-z][.\w]*(-[.\w]+)+$/i);
 
-var EXPRESSIONS = /*#__PURE__*/Object.freeze({
+const EXPRESSIONS = /*#__PURE__*/Object.freeze({
   __proto__: null,
   ARIA_ATTR: ARIA_ATTR,
   ATTR_WHITESPACE: ATTR_WHITESPACE,
@@ -305,7 +305,7 @@ const _createHooksMap = function _createHooksMap() {
   };
 };
 function createDOMPurify() {
-  let window = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : getGlobal();
+  const window = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : getGlobal();
   const DOMPurify = root => createDOMPurify(root);
   DOMPurify.version = '3.2.7';
   DOMPurify.removed = [];
@@ -1184,7 +1184,7 @@ function createDOMPurify() {
   };
   // eslint-disable-next-line complexity
   DOMPurify.sanitize = function (dirty) {
-    let cfg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    const cfg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
     let body = null;
     let importedNode = null;
     let currentNode = null;
@@ -1315,7 +1315,7 @@ function createDOMPurify() {
     return trustedTypesPolicy && RETURN_TRUSTED_TYPE ? trustedTypesPolicy.createHTML(serializedHTML) : serializedHTML;
   };
   DOMPurify.setConfig = function () {
-    let cfg = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    const cfg = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
     _parseConfig(cfg);
     SET_CONFIG = true;
   };
@@ -1353,7 +1353,7 @@ function createDOMPurify() {
   };
   return DOMPurify;
 }
-var purify = createDOMPurify();
+const purify = createDOMPurify();
 
 module.exports = purify;
 //# sourceMappingURL=purify.cjs.js.map

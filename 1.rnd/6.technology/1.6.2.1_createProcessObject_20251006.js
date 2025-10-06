@@ -4,7 +4,7 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 exports.default = createProcessObject;
-var _deepCyclicCopy = _interopRequireDefault(require('./deepCyclicCopy'));
+const _deepCyclicCopy = _interopRequireDefault(require('./deepCyclicCopy'));
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {default: obj};
 }

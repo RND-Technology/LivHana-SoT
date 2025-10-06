@@ -1,11 +1,11 @@
 "use strict";
 exports.__esModule = true;
 exports.inventoryChangeSchema = void 0;
-var schema_1 = require("../schema");
-var catalogMeasurementUnit_1 = require("./catalogMeasurementUnit");
-var inventoryAdjustment_1 = require("./inventoryAdjustment");
-var inventoryPhysicalCount_1 = require("./inventoryPhysicalCount");
-var inventoryTransfer_1 = require("./inventoryTransfer");
+const schema_1 = require("../schema");
+const catalogMeasurementUnit_1 = require("./catalogMeasurementUnit");
+const inventoryAdjustment_1 = require("./inventoryAdjustment");
+const inventoryPhysicalCount_1 = require("./inventoryPhysicalCount");
+const inventoryTransfer_1 = require("./inventoryTransfer");
 exports.inventoryChangeSchema = (0, schema_1.object)({
     type: ['type', (0, schema_1.optional)((0, schema_1.string)())],
     physicalCount: [

@@ -1,11 +1,11 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
-var isObject = require('es-object-atoms/isObject');
+const $TypeError = require('es-errors/type');
+const isObject = require('es-object-atoms/isObject');
 
-var DefinePropertyOrThrow = require('./DefinePropertyOrThrow');
+const DefinePropertyOrThrow = require('./DefinePropertyOrThrow');
 
-var isPropertyKey = require('../helpers/isPropertyKey');
+const isPropertyKey = require('../helpers/isPropertyKey');
 
 // https://262.ecma-international.org/13.0/#sec-createnonenumerabledatapropertyorthrow
 
@@ -18,7 +18,7 @@ module.exports = function CreateNonEnumerableDataPropertyOrThrow(O, P, V) {
 		throw new $TypeError('Assertion failed: P is not a Property Key');
 	}
 
-	var newDesc = {
+	const newDesc = {
 		'[[Configurable]]': true,
 		'[[Enumerable]]': false,
 		'[[Value]]': V,

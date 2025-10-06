@@ -1,8 +1,8 @@
 'use strict';
 
-var result = require('./')();
+const result = require('./')();
 
-var test = {
+const test = {
 	__proto__: null,
 	foo: {}
 };

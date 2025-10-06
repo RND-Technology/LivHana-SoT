@@ -1,12 +1,12 @@
 'use strict';
 
-var callBound = require('call-bound');
-var $TypeError = require('es-errors/type');
-var isInteger = require('math-intrinsics/isInteger');
+const callBound = require('call-bound');
+const $TypeError = require('es-errors/type');
+const isInteger = require('math-intrinsics/isInteger');
 
-var StringToCodePoints = require('./StringToCodePoints');
+const StringToCodePoints = require('./StringToCodePoints');
 
-var $indexOf = callBound('String.prototype.indexOf');
+const $indexOf = callBound('String.prototype.indexOf');
 
 // https://262.ecma-international.org/13.0/#sec-getstringindex
 
@@ -21,7 +21,7 @@ module.exports = function GetStringIndex(S, e) {
 	if (S === '') {
 		return 0;
 	}
-	var codepoints = StringToCodePoints(S);
-	var eUTF = e >= codepoints.length ? S.length : $indexOf(S, codepoints[e]);
+	const codepoints = StringToCodePoints(S);
+	const eUTF = e >= codepoints.length ? S.length : $indexOf(S, codepoints[e]);
 	return eUTF;
 };

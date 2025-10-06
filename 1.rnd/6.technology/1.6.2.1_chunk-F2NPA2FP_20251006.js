@@ -2,24 +2,24 @@
 
 
 
-var _chunkXX6WKANUjs = require('./chunk-XX6WKANU.js');
+const _chunkXX6WKANUjs = require('./chunk-XX6WKANU.js');
 
 
 
 
 
-var _chunkT7TBRNJZjs = require('./chunk-T7TBRNJZ.js');
+const _chunkT7TBRNJZjs = require('./chunk-T7TBRNJZ.js');
 
 
-var _chunkPFGO5BSMjs = require('./chunk-PFGO5BSM.js');
+const _chunkPFGO5BSMjs = require('./chunk-PFGO5BSM.js');
 
 
 
-var _chunkTIPR373Rjs = require('./chunk-TIPR373R.js');
+const _chunkTIPR373Rjs = require('./chunk-TIPR373R.js');
 
 // src/interceptors/fetch/index.ts
-var _outvariant = require('outvariant');
-var _deferredpromise = require('@open-draft/deferred-promise');
+const _outvariant = require('outvariant');
+const _deferredpromise = require('@open-draft/deferred-promise');
 
 // src/interceptors/fetch/utils/createNetworkError.ts
 function createNetworkError(cause) {
@@ -29,14 +29,14 @@ function createNetworkError(cause) {
 }
 
 // src/interceptors/fetch/utils/followRedirect.ts
-var REQUEST_BODY_HEADERS = [
+const REQUEST_BODY_HEADERS = [
   "content-encoding",
   "content-language",
   "content-location",
   "content-type",
   "content-length"
 ];
-var kRedirectCount = Symbol("kRedirectCount");
+const kRedirectCount = Symbol("kRedirectCount");
 async function followFetchRedirect(request, response) {
   if (response.status !== 303 && request.body != null) {
     return Promise.reject(createNetworkError());
@@ -97,7 +97,7 @@ function sameOrigin(left, right) {
 }
 
 // src/interceptors/fetch/utils/brotli-decompress.browser.ts
-var BrotliDecompressionStream = class extends TransformStream {
+const BrotliDecompressionStream = class extends TransformStream {
   constructor() {
     console.warn(
       "[Interceptors]: Brotli decompression of response streams is not supported in the browser"
@@ -111,7 +111,7 @@ var BrotliDecompressionStream = class extends TransformStream {
 };
 
 // src/interceptors/fetch/utils/decompression.ts
-var PipelineStream = class extends TransformStream {
+const PipelineStream = class extends TransformStream {
   constructor(transformStreams, ...strategies) {
     super({}, ...strategies);
     const readable = [super.readable, ...transformStreams].reduce(
@@ -287,7 +287,7 @@ var _FetchInterceptor = class extends _chunkTIPR373Rjs.Interceptor {
     });
   }
 };
-var FetchInterceptor = _FetchInterceptor;
+const FetchInterceptor = _FetchInterceptor;
 FetchInterceptor.symbol = Symbol("fetch");
 
 

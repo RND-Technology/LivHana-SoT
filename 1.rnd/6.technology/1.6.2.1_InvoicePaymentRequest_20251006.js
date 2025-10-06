@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
 exports.invoicePaymentRequestSchema = void 0;
-var schema_1 = require("../schema");
-var invoicePaymentReminder_1 = require("./invoicePaymentReminder");
-var money_1 = require("./money");
+const schema_1 = require("../schema");
+const invoicePaymentReminder_1 = require("./invoicePaymentReminder");
+const money_1 = require("./money");
 exports.invoicePaymentRequestSchema = (0, schema_1.object)({
     uid: ['uid', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.string)()))],
     requestMethod: ['request_method', (0, schema_1.optional)((0, schema_1.string)())],

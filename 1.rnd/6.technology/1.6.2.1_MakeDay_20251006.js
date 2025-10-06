@@ -1,18 +1,18 @@
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+const GetIntrinsic = require('get-intrinsic');
 
-var $DateUTC = GetIntrinsic('%Date.UTC%');
+const $DateUTC = GetIntrinsic('%Date.UTC%');
 
-var $isFinite = require('math-intrinsics/isFinite');
+const $isFinite = require('math-intrinsics/isFinite');
 
-var DateFromTime = require('./DateFromTime');
-var Day = require('./Day');
-var floor = require('./floor');
-var modulo = require('./modulo');
-var MonthFromTime = require('./MonthFromTime');
-var ToInteger = require('./ToInteger');
-var YearFromTime = require('./YearFromTime');
+const DateFromTime = require('./DateFromTime');
+const Day = require('./Day');
+const floor = require('./floor');
+const modulo = require('./modulo');
+const MonthFromTime = require('./MonthFromTime');
+const ToInteger = require('./ToInteger');
+const YearFromTime = require('./YearFromTime');
 
 // https://262.ecma-international.org/5.1/#sec-15.9.1.12
 
@@ -20,12 +20,12 @@ module.exports = function MakeDay(year, month, date) {
 	if (!$isFinite(year) || !$isFinite(month) || !$isFinite(date)) {
 		return NaN;
 	}
-	var y = ToInteger(year);
-	var m = ToInteger(month);
-	var dt = ToInteger(date);
-	var ym = y + floor(m / 12);
-	var mn = modulo(m, 12);
-	var t = $DateUTC(ym, mn, 1);
+	const y = ToInteger(year);
+	const m = ToInteger(month);
+	const dt = ToInteger(date);
+	const ym = y + floor(m / 12);
+	const mn = modulo(m, 12);
+	const t = $DateUTC(ym, mn, 1);
 	if (YearFromTime(t) !== ym || MonthFromTime(t) !== mn || DateFromTime(t) !== 1) {
 		return NaN;
 	}

@@ -1,14 +1,14 @@
-var path = require('path');
-var test = require('tape');
-var resolve = require('../');
+const path = require('path');
+const test = require('tape');
+const resolve = require('../');
 
 test('mock', function (t) {
     t.plan(4);
 
-    var files = {};
+    const files = {};
     files[path.resolve('/foo/bar/baz.js')] = 'beep';
 
-    var dirs = {};
+    const dirs = {};
     dirs[path.resolve('/foo/bar')] = true;
     dirs[path.resolve('/foo/node_modules')] = true;
 
@@ -52,13 +52,13 @@ test('mock', function (t) {
 test('mock package', function (t) {
     t.plan(1);
 
-    var files = {};
+    const files = {};
     files[path.resolve('/foo/node_modules/bar/baz.js')] = 'beep';
     files[path.resolve('/foo/node_modules/bar/package.json')] = JSON.stringify({
         main: './baz.js'
     });
 
-    var dirs = {};
+    const dirs = {};
     dirs[path.resolve('/foo')] = true;
     dirs[path.resolve('/foo/node_modules')] = true;
 
@@ -89,11 +89,11 @@ test('mock package', function (t) {
 test('symlinked', function (t) {
     t.plan(2);
 
-    var files = {};
+    const files = {};
     files[path.resolve('/foo/bar/baz.js')] = 'beep';
     files[path.resolve('/foo/bar/symlinked/baz.js')] = 'beep';
 
-    var dirs = {};
+    const dirs = {};
     dirs[path.resolve('/foo/bar')] = true;
     dirs[path.resolve('/foo/bar/symlinked')] = true;
 
@@ -111,17 +111,17 @@ test('symlinked', function (t) {
                 return files[path.resolve(file)];
             },
             realpathSync: function (file) {
-                var resolved = path.resolve(file);
+                const resolved = path.resolve(file);
 
                 if (resolved.indexOf('symlinked') >= 0) {
                     return resolved;
                 }
 
-                var ext = path.extname(resolved);
+                const ext = path.extname(resolved);
 
                 if (ext) {
-                    var dir = path.dirname(resolved);
-                    var base = path.basename(resolved);
+                    const dir = path.dirname(resolved);
+                    const base = path.basename(resolved);
                     return path.join(dir, 'symlinked', base);
                 }
                 return path.join(resolved, 'symlinked');
@@ -143,14 +143,14 @@ test('symlinked', function (t) {
 test('readPackageSync', function (t) {
     t.plan(3);
 
-    var files = {};
+    const files = {};
     files[path.resolve('/foo/node_modules/bar/something-else.js')] = 'beep';
     files[path.resolve('/foo/node_modules/bar/package.json')] = JSON.stringify({
         main: './baz.js'
     });
     files[path.resolve('/foo/node_modules/bar/baz.js')] = 'boop';
 
-    var dirs = {};
+    const dirs = {};
     dirs[path.resolve('/foo')] = true;
     dirs[path.resolve('/foo/node_modules')] = true;
 
@@ -180,7 +180,7 @@ test('readPackageSync', function (t) {
         );
     });
 
-    var readPackageSync = function (readFileSync, file) {
+    const readPackageSync = function (readFileSync, file) {
         if (file.indexOf(path.join('bar', 'package.json')) >= 0) {
             return { main: './something-else.js' };
         }
@@ -190,7 +190,7 @@ test('readPackageSync', function (t) {
     t.test('with readPackage', function (st) {
         st.plan(1);
 
-        var options = opts('/foo');
+        const options = opts('/foo');
         delete options.readFileSync;
         options.readPackageSync = readPackageSync;
 
@@ -203,7 +203,7 @@ test('readPackageSync', function (t) {
     t.test('with readFile and readPackage', function (st) {
         st.plan(1);
 
-        var options = opts('/foo');
+        const options = opts('/foo');
         options.readPackageSync = readPackageSync;
         st.throws(
             function () { resolve.sync('bar', options); },

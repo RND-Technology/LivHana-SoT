@@ -4,14 +4,14 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.combineTooltipPayload = void 0;
-var _DataUtils = require("../../../util/DataUtils");
-var _ChartUtils = require("../../../util/ChartUtils");
-var _getSliced = require("../../../util/getSliced");
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+const _DataUtils = require("../../../util/DataUtils");
+const _ChartUtils = require("../../../util/ChartUtils");
+const _getSliced = require("../../../util/getSliced");
+function ownKeys(e, r) { const t = Object.keys(e); if (Object.getOwnPropertySymbols) { let o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (let r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _toPropertyKey(t) { const i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; const e = t[Symbol.toPrimitive]; if (void 0 !== e) { const i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 function selectFinalData(dataDefinedOnItem, dataDefinedOnChart) {
   /*
    * If a payload has data specified directly from the graphical item, prefer that.
@@ -22,29 +22,29 @@ function selectFinalData(dataDefinedOnItem, dataDefinedOnChart) {
   }
   return dataDefinedOnChart;
 }
-var combineTooltipPayload = (tooltipPayloadConfigurations, activeIndex, chartDataState, tooltipAxisDataKey, activeLabel, tooltipPayloadSearcher, tooltipEventType) => {
+const combineTooltipPayload = (tooltipPayloadConfigurations, activeIndex, chartDataState, tooltipAxisDataKey, activeLabel, tooltipPayloadSearcher, tooltipEventType) => {
   if (activeIndex == null || tooltipPayloadSearcher == null) {
     return undefined;
   }
-  var {
+  const {
     chartData,
     computedData,
     dataStartIndex,
     dataEndIndex
   } = chartDataState;
-  var init = [];
+  const init = [];
   return tooltipPayloadConfigurations.reduce((agg, _ref) => {
-    var _settings$dataKey;
-    var {
+    let _settings$dataKey;
+    const {
       dataDefinedOnItem,
       settings
     } = _ref;
-    var finalData = selectFinalData(dataDefinedOnItem, chartData);
-    var sliced = Array.isArray(finalData) ? (0, _getSliced.getSliced)(finalData, dataStartIndex, dataEndIndex) : finalData;
-    var finalDataKey = (_settings$dataKey = settings === null || settings === void 0 ? void 0 : settings.dataKey) !== null && _settings$dataKey !== void 0 ? _settings$dataKey : tooltipAxisDataKey;
+    const finalData = selectFinalData(dataDefinedOnItem, chartData);
+    const sliced = Array.isArray(finalData) ? (0, _getSliced.getSliced)(finalData, dataStartIndex, dataEndIndex) : finalData;
+    const finalDataKey = (_settings$dataKey = settings === null || settings === void 0 ? void 0 : settings.dataKey) !== null && _settings$dataKey !== void 0 ? _settings$dataKey : tooltipAxisDataKey;
     // BaseAxisProps does not support nameKey but it could!
-    var finalNameKey = settings === null || settings === void 0 ? void 0 : settings.nameKey; // ?? tooltipAxis?.nameKey;
-    var tooltipPayload;
+    const finalNameKey = settings === null || settings === void 0 ? void 0 : settings.nameKey; // ?? tooltipAxis?.nameKey;
+    let tooltipPayload;
     if (tooltipAxisDataKey && Array.isArray(sliced) &&
     /*
      * findEntryInArray won't work for Scatter because Scatter provides an array of arrays
@@ -81,7 +81,7 @@ var combineTooltipPayload = (tooltipPayloadConfigurations, activeIndex, chartDat
     }
     if (Array.isArray(tooltipPayload)) {
       tooltipPayload.forEach(item => {
-        var newSettings = _objectSpread(_objectSpread({}, settings), {}, {
+        const newSettings = _objectSpread(_objectSpread({}, settings), {}, {
           name: item.name,
           unit: item.unit,
           // color and fill are erased to keep 100% the identical behaviour to recharts 2.x - but there's nothing stopping us from returning them here. It's technically a breaking change.
@@ -99,7 +99,7 @@ var combineTooltipPayload = (tooltipPayloadConfigurations, activeIndex, chartDat
         }));
       });
     } else {
-      var _getValueByDataKey;
+      let _getValueByDataKey;
       // I am not quite sure why these two branches (Array vs Array of Arrays) have to behave differently - I imagine we should unify these. 3.x breaking change?
       agg.push((0, _ChartUtils.getTooltipEntry)({
         tooltipEntrySettings: settings,

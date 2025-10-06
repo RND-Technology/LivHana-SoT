@@ -4,17 +4,17 @@ function formatProdErrorMessage(code) {
 }
 
 // src/utils/symbol-observable.ts
-var $$observable = /* @__PURE__ */ (() => typeof Symbol === "function" && Symbol.observable || "@@observable")();
-var symbol_observable_default = $$observable;
+const $$observable = /* @__PURE__ */ (() => typeof Symbol === "function" && Symbol.observable || "@@observable")();
+const symbol_observable_default = $$observable;
 
 // src/utils/actionTypes.ts
-var randomString = () => Math.random().toString(36).substring(7).split("").join(".");
-var ActionTypes = {
+const randomString = () => Math.random().toString(36).substring(7).split("").join(".");
+const ActionTypes = {
   INIT: `@@redux/INIT${/* @__PURE__ */ randomString()}`,
   REPLACE: `@@redux/REPLACE${/* @__PURE__ */ randomString()}`,
   PROBE_UNKNOWN_ACTION: () => `@@redux/PROBE_UNKNOWN_ACTION${randomString()}`
 };
-var actionTypes_default = ActionTypes;
+const actionTypes_default = ActionTypes;
 
 // src/utils/isPlainObject.ts
 function isPlainObject(obj) {

@@ -42,7 +42,7 @@ class Subchannel {
      *     connection
      */
     constructor(channelTarget, subchannelAddress, options, credentials, connector) {
-        var _a;
+        let _a;
         this.channelTarget = channelTarget;
         this.subchannelAddress = subchannelAddress;
         this.options = options;
@@ -186,7 +186,7 @@ class Subchannel {
      * @returns True if the state changed, false otherwise
      */
     transitionToState(oldStates, newState, errorMessage) {
-        var _a, _b;
+        let _a, _b;
         if (oldStates.indexOf(this.connectivityState) === -1) {
             return false;
         }

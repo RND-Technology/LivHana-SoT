@@ -21,10 +21,10 @@
 
 'use strict';
 require('./common');
-var assert = require('assert');
-var events = require('../');
+const assert = require('assert');
+const events = require('../');
 
-var E = events.EventEmitter.prototype;
+const E = events.EventEmitter.prototype;
 assert.strictEqual(E.constructor.name, 'EventEmitter');
 assert.strictEqual(E.on, E.addListener);  // Same method.
 assert.strictEqual(E.off, E.removeListener);  // Same method.

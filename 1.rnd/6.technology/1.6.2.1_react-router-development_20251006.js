@@ -58,11 +58,11 @@ function useHref(to, {
   // TODO: This error is probably because they somehow have 2 versions of the
   // router loaded. We can help them understand how to avoid that.
   `useHref() may be used only in the context of a <Router> component.`)  : void 0;
-  let {
+  const {
     basename,
     navigator
   } = React.useContext(NavigationContext);
-  let {
+  const {
     hash,
     pathname,
     search
@@ -129,7 +129,7 @@ function useMatch(pattern) {
   // TODO: This error is probably because they somehow have 2 versions of the
   // router loaded. We can help them understand how to avoid that.
   `useMatch() may be used only in the context of a <Router> component.`)  : void 0;
-  let {
+  const {
     pathname
   } = useLocation();
   return React.useMemo(() => matchPath(pattern, UNSAFE_decodePath(pathname)), [pathname, pattern]);
@@ -137,7 +137,7 @@ function useMatch(pattern) {
 const navigateEffectWarning = `You should call navigate() in a React.useEffect(), not when ` + `your component is first rendered.`;
 // Mute warnings for calls to useNavigate in SSR environments
 function useIsomorphicLayoutEffect(cb) {
-  let isStatic = React.useContext(NavigationContext).static;
+  const isStatic = React.useContext(NavigationContext).static;
   if (!isStatic) {
     // We should be able to get rid of this once react 18.3 is released
     // See: https://github.com/facebook/react/pull/26395
@@ -152,7 +152,7 @@ function useIsomorphicLayoutEffect(cb) {
  * @see https://reactrouter.com/v6/hooks/use-navigate
  */
 function useNavigate() {
-  let {
+  const {
     isDataRoute
   } = React.useContext(RouteContext);
   // Conditional usage is OK here because the usage of a data router is static
@@ -164,24 +164,24 @@ function useNavigateUnstable() {
   // TODO: This error is probably because they somehow have 2 versions of the
   // router loaded. We can help them understand how to avoid that.
   `useNavigate() may be used only in the context of a <Router> component.`)  : void 0;
-  let dataRouterContext = React.useContext(DataRouterContext);
-  let {
+  const dataRouterContext = React.useContext(DataRouterContext);
+  const {
     basename,
     future,
     navigator
   } = React.useContext(NavigationContext);
-  let {
+  const {
     matches
   } = React.useContext(RouteContext);
-  let {
+  const {
     pathname: locationPathname
   } = useLocation();
-  let routePathnamesJson = JSON.stringify(UNSAFE_getResolveToMatches(matches, future.v7_relativeSplatPath));
-  let activeRef = React.useRef(false);
+  const routePathnamesJson = JSON.stringify(UNSAFE_getResolveToMatches(matches, future.v7_relativeSplatPath));
+  const activeRef = React.useRef(false);
   useIsomorphicLayoutEffect(() => {
     activeRef.current = true;
   });
-  let navigate = React.useCallback((to, options = {}) => {
+  const navigate = React.useCallback((to, options = {}) => {
     UNSAFE_warning(activeRef.current, navigateEffectWarning) ;
     // Short circuit here since if this happens on first render the navigate
     // is useless because we haven't wired up our history listener yet
@@ -190,7 +190,7 @@ function useNavigateUnstable() {
       navigator.go(to);
       return;
     }
-    let path = resolveTo(to, JSON.parse(routePathnamesJson), locationPathname, options.relative === "path");
+    const path = resolveTo(to, JSON.parse(routePathnamesJson), locationPathname, options.relative === "path");
     // If we're operating within a basename, prepend it to the pathname prior
     // to handing off to history (but only if we're not in a data router,
     // otherwise it'll prepend the basename inside of the router).
@@ -200,7 +200,7 @@ function useNavigateUnstable() {
     if (dataRouterContext == null && basename !== "/") {
       path.pathname = path.pathname === "/" ? basename : joinPaths([basename, path.pathname]);
     }
-    (!!options.replace ? navigator.replace : navigator.push)(path, options.state, options);
+    (options.replace ? navigator.replace : navigator.push)(path, options.state, options);
   }, [basename, navigator, routePathnamesJson, locationPathname, dataRouterContext]);
   return navigate;
 }
@@ -220,7 +220,7 @@ function useOutletContext() {
  * @see https://reactrouter.com/v6/hooks/use-outlet
  */
 function useOutlet(context) {
-  let outlet = React.useContext(RouteContext).outlet;
+  const outlet = React.useContext(RouteContext).outlet;
   if (outlet) {
     return /*#__PURE__*/React.createElement(OutletContext.Provider, {
       value: context
@@ -235,10 +235,10 @@ function useOutlet(context) {
  * @see https://reactrouter.com/v6/hooks/use-params
  */
 function useParams() {
-  let {
+  const {
     matches
   } = React.useContext(RouteContext);
-  let routeMatch = matches[matches.length - 1];
+  const routeMatch = matches[matches.length - 1];
   return routeMatch ? routeMatch.params : {};
 }
 /**
@@ -249,16 +249,16 @@ function useParams() {
 function useResolvedPath(to, {
   relative
 } = {}) {
-  let {
+  const {
     future
   } = React.useContext(NavigationContext);
-  let {
+  const {
     matches
   } = React.useContext(RouteContext);
-  let {
+  const {
     pathname: locationPathname
   } = useLocation();
-  let routePathnamesJson = JSON.stringify(UNSAFE_getResolveToMatches(matches, future.v7_relativeSplatPath));
+  const routePathnamesJson = JSON.stringify(UNSAFE_getResolveToMatches(matches, future.v7_relativeSplatPath));
   return React.useMemo(() => resolveTo(to, JSON.parse(routePathnamesJson), locationPathname, relative === "path"), [to, routePathnamesJson, locationPathname, relative]);
 }
 /**
@@ -278,17 +278,17 @@ function useRoutesImpl(routes, locationArg, dataRouterState, future) {
   // TODO: This error is probably because they somehow have 2 versions of the
   // router loaded. We can help them understand how to avoid that.
   `useRoutes() may be used only in the context of a <Router> component.`)  : void 0;
-  let {
+  const {
     navigator
   } = React.useContext(NavigationContext);
-  let {
+  const {
     matches: parentMatches
   } = React.useContext(RouteContext);
-  let routeMatch = parentMatches[parentMatches.length - 1];
-  let parentParams = routeMatch ? routeMatch.params : {};
-  let parentPathname = routeMatch ? routeMatch.pathname : "/";
-  let parentPathnameBase = routeMatch ? routeMatch.pathnameBase : "/";
-  let parentRoute = routeMatch && routeMatch.route;
+  const routeMatch = parentMatches[parentMatches.length - 1];
+  const parentParams = routeMatch ? routeMatch.params : {};
+  const parentPathname = routeMatch ? routeMatch.pathname : "/";
+  const parentPathnameBase = routeMatch ? routeMatch.pathnameBase : "/";
+  const parentRoute = routeMatch && routeMatch.route;
   {
     // You won't get a warning about 2 different <Routes> under a <Route>
     // without a trailing *, but this is a best-effort warning anyway since we
@@ -310,19 +310,19 @@ function useRoutesImpl(routes, locationArg, dataRouterState, future) {
     //     </Routes>
     //   );
     // }
-    let parentPath = parentRoute && parentRoute.path || "";
+    const parentPath = parentRoute && parentRoute.path || "";
     warningOnce(parentPathname, !parentRoute || parentPath.endsWith("*"), `You rendered descendant <Routes> (or called \`useRoutes()\`) at ` + `"${parentPathname}" (under <Route path="${parentPath}">) but the ` + `parent route path has no trailing "*". This means if you navigate ` + `deeper, the parent won't match anymore and therefore the child ` + `routes will never render.\n\n` + `Please change the parent <Route path="${parentPath}"> to <Route ` + `path="${parentPath === "/" ? "*" : `${parentPath}/*`}">.`);
   }
-  let locationFromContext = useLocation();
+  const locationFromContext = useLocation();
   let location;
   if (locationArg) {
-    let parsedLocationArg = typeof locationArg === "string" ? parsePath(locationArg) : locationArg;
+    const parsedLocationArg = typeof locationArg === "string" ? parsePath(locationArg) : locationArg;
     !(parentPathnameBase === "/" || parsedLocationArg.pathname?.startsWith(parentPathnameBase)) ? UNSAFE_invariant(false, `When overriding the location using \`<Routes location>\` or \`useRoutes(routes, location)\`, ` + `the location pathname must begin with the portion of the URL pathname that was ` + `matched by all parent routes. The current pathname base is "${parentPathnameBase}" ` + `but pathname "${parsedLocationArg.pathname}" was given in the \`location\` prop.`)  : void 0;
     location = parsedLocationArg;
   } else {
     location = locationFromContext;
   }
-  let pathname = location.pathname || "/";
+  const pathname = location.pathname || "/";
   let remainingPathname = pathname;
   if (parentPathnameBase !== "/") {
     // Determine the remaining pathname by removing the # of URL segments the
@@ -339,18 +339,18 @@ function useRoutesImpl(routes, locationArg, dataRouterState, future) {
     //   parentPathnameBase: "/descendant/a%b"
     //
     // And the direct substring removal approach won't work :/
-    let parentSegments = parentPathnameBase.replace(/^\//, "").split("/");
-    let segments = pathname.replace(/^\//, "").split("/");
+    const parentSegments = parentPathnameBase.replace(/^\//, "").split("/");
+    const segments = pathname.replace(/^\//, "").split("/");
     remainingPathname = "/" + segments.slice(parentSegments.length).join("/");
   }
-  let matches = matchRoutes(routes, {
+  const matches = matchRoutes(routes, {
     pathname: remainingPathname
   });
   {
     UNSAFE_warning(parentRoute || matches != null, `No routes matched location "${location.pathname}${location.search}${location.hash}" `) ;
     UNSAFE_warning(matches == null || matches[matches.length - 1].route.element !== undefined || matches[matches.length - 1].route.Component !== undefined || matches[matches.length - 1].route.lazy !== undefined, `Matched leaf route at location "${location.pathname}${location.search}${location.hash}" ` + `does not have an element or Component. This means it will render an <Outlet /> with a ` + `null value by default resulting in an "empty" page.`) ;
   }
-  let renderedMatches = _renderMatches(matches && matches.map(match => Object.assign({}, match, {
+  const renderedMatches = _renderMatches(matches && matches.map(match => Object.assign({}, match, {
     params: Object.assign({}, parentParams, match.params),
     pathname: joinPaths([parentPathnameBase,
     // Re-encode pathnames that were decoded inside matchRoutes
@@ -380,15 +380,15 @@ function useRoutesImpl(routes, locationArg, dataRouterState, future) {
   return renderedMatches;
 }
 function DefaultErrorComponent() {
-  let error = useRouteError();
-  let message = isRouteErrorResponse(error) ? `${error.status} ${error.statusText}` : error instanceof Error ? error.message : JSON.stringify(error);
-  let stack = error instanceof Error ? error.stack : null;
-  let lightgrey = "rgba(200,200,200, 0.5)";
-  let preStyles = {
+  const error = useRouteError();
+  const message = isRouteErrorResponse(error) ? `${error.status} ${error.statusText}` : error instanceof Error ? error.message : JSON.stringify(error);
+  const stack = error instanceof Error ? error.stack : null;
+  const lightgrey = "rgba(200,200,200, 0.5)";
+  const preStyles = {
     padding: "0.5rem",
     backgroundColor: lightgrey
   };
-  let codeStyles = {
+  const codeStyles = {
     padding: "2px 4px",
     backgroundColor: lightgrey
   };
@@ -467,7 +467,7 @@ function RenderedRoute({
   match,
   children
 }) {
-  let dataRouterContext = React.useContext(DataRouterContext);
+  const dataRouterContext = React.useContext(DataRouterContext);
   // Track how deep we got in our render pass to emulate SSR componentDidCatch
   // in a DataStaticRouter
   if (dataRouterContext && dataRouterContext.static && dataRouterContext.staticContext && (match.route.errorElement || match.route.ErrorBoundary)) {
@@ -500,9 +500,9 @@ function _renderMatches(matches, parentMatches = [], dataRouterState = null, fut
   }
   let renderedMatches = matches;
   // If we have data errors, trim matches to the highest error boundary
-  let errors = dataRouterState?.errors;
+  const errors = dataRouterState?.errors;
   if (errors != null) {
-    let errorIndex = renderedMatches.findIndex(m => m.route.id && errors?.[m.route.id] !== undefined);
+    const errorIndex = renderedMatches.findIndex(m => m.route.id && errors?.[m.route.id] !== undefined);
     !(errorIndex >= 0) ? UNSAFE_invariant(false, `Could not find a matching route for errors on route IDs: ${Object.keys(errors).join(",")}`)  : void 0;
     renderedMatches = renderedMatches.slice(0, Math.min(renderedMatches.length, errorIndex + 1));
   }
@@ -512,17 +512,17 @@ function _renderMatches(matches, parentMatches = [], dataRouterState = null, fut
   let fallbackIndex = -1;
   if (dataRouterState && future && future.v7_partialHydration) {
     for (let i = 0; i < renderedMatches.length; i++) {
-      let match = renderedMatches[i];
+      const match = renderedMatches[i];
       // Track the deepest fallback up until the first route without data
       if (match.route.HydrateFallback || match.route.hydrateFallbackElement) {
         fallbackIndex = i;
       }
       if (match.route.id) {
-        let {
+        const {
           loaderData,
           errors: _errors
         } = dataRouterState;
-        let needsToRunLoader = match.route.loader && loaderData[match.route.id] === undefined && (!_errors || _errors[match.route.id] === undefined);
+        const needsToRunLoader = match.route.loader && loaderData[match.route.id] === undefined && (!_errors || _errors[match.route.id] === undefined);
         if (match.route.lazy || needsToRunLoader) {
           // We found the first route that's not ready to render (waiting on
           // lazy, or has a loader that hasn't run yet).  Flag that we need to
@@ -558,8 +558,8 @@ function _renderMatches(matches, parentMatches = [], dataRouterState = null, fut
         }
       }
     }
-    let matches = parentMatches.concat(renderedMatches.slice(0, index + 1));
-    let getChildren = () => {
+    const matches = parentMatches.concat(renderedMatches.slice(0, index + 1));
+    const getChildren = () => {
       let children;
       if (error) {
         children = errorElement;
@@ -605,13 +605,13 @@ function _renderMatches(matches, parentMatches = [], dataRouterState = null, fut
     }) : getChildren();
   }, null);
 }
-var DataRouterHook;
+let DataRouterHook;
 (function (DataRouterHook) {
   DataRouterHook["UseBlocker"] = "useBlocker";
   DataRouterHook["UseRevalidator"] = "useRevalidator";
   DataRouterHook["UseNavigateStable"] = "useNavigate";
 })(DataRouterHook || (DataRouterHook = {}));
-var DataRouterStateHook;
+let DataRouterStateHook;
 (function (DataRouterStateHook) {
   DataRouterStateHook["UseBlocker"] = "useBlocker";
   DataRouterStateHook["UseLoaderData"] = "useLoaderData";
@@ -628,24 +628,24 @@ function getDataRouterConsoleError(hookName) {
   return `${hookName} must be used within a data router.  See https://reactrouter.com/v6/routers/picking-a-router.`;
 }
 function useDataRouterContext(hookName) {
-  let ctx = React.useContext(DataRouterContext);
+  const ctx = React.useContext(DataRouterContext);
   !ctx ? UNSAFE_invariant(false, getDataRouterConsoleError(hookName))  : void 0;
   return ctx;
 }
 function useDataRouterState(hookName) {
-  let state = React.useContext(DataRouterStateContext);
+  const state = React.useContext(DataRouterStateContext);
   !state ? UNSAFE_invariant(false, getDataRouterConsoleError(hookName))  : void 0;
   return state;
 }
 function useRouteContext(hookName) {
-  let route = React.useContext(RouteContext);
+  const route = React.useContext(RouteContext);
   !route ? UNSAFE_invariant(false, getDataRouterConsoleError(hookName))  : void 0;
   return route;
 }
 // Internal version with hookName-aware debugging
 function useCurrentRouteId(hookName) {
-  let route = useRouteContext(hookName);
-  let thisRoute = route.matches[route.matches.length - 1];
+  const route = useRouteContext(hookName);
+  const thisRoute = route.matches[route.matches.length - 1];
   !thisRoute.route.id ? UNSAFE_invariant(false, `${hookName} can only be used on routes that contain a unique "id"`)  : void 0;
   return thisRoute.route.id;
 }
@@ -660,7 +660,7 @@ function useRouteId() {
  * no navigation is in progress
  */
 function useNavigation() {
-  let state = useDataRouterState(DataRouterStateHook.UseNavigation);
+  const state = useDataRouterState(DataRouterStateHook.UseNavigation);
   return state.navigation;
 }
 /**
@@ -668,8 +668,8 @@ function useNavigation() {
  * as the current state of any manual revalidations
  */
 function useRevalidator() {
-  let dataRouterContext = useDataRouterContext(DataRouterHook.UseRevalidator);
-  let state = useDataRouterState(DataRouterStateHook.UseRevalidator);
+  const dataRouterContext = useDataRouterContext(DataRouterHook.UseRevalidator);
+  const state = useDataRouterState(DataRouterStateHook.UseRevalidator);
   return React.useMemo(() => ({
     revalidate: dataRouterContext.router.revalidate,
     state: state.revalidation
@@ -680,7 +680,7 @@ function useRevalidator() {
  * parent/child routes or the route "handle" property
  */
 function useMatches() {
-  let {
+  const {
     matches,
     loaderData
   } = useDataRouterState(DataRouterStateHook.UseMatches);
@@ -690,8 +690,8 @@ function useMatches() {
  * Returns the loader data for the nearest ancestor Route loader
  */
 function useLoaderData() {
-  let state = useDataRouterState(DataRouterStateHook.UseLoaderData);
-  let routeId = useCurrentRouteId(DataRouterStateHook.UseLoaderData);
+  const state = useDataRouterState(DataRouterStateHook.UseLoaderData);
+  const routeId = useCurrentRouteId(DataRouterStateHook.UseLoaderData);
   if (state.errors && state.errors[routeId] != null) {
     console.error(`You cannot \`useLoaderData\` in an errorElement (routeId: ${routeId})`);
     return undefined;
@@ -702,15 +702,15 @@ function useLoaderData() {
  * Returns the loaderData for the given routeId
  */
 function useRouteLoaderData(routeId) {
-  let state = useDataRouterState(DataRouterStateHook.UseRouteLoaderData);
+  const state = useDataRouterState(DataRouterStateHook.UseRouteLoaderData);
   return state.loaderData[routeId];
 }
 /**
  * Returns the action data for the nearest ancestor Route action
  */
 function useActionData() {
-  let state = useDataRouterState(DataRouterStateHook.UseActionData);
-  let routeId = useCurrentRouteId(DataRouterStateHook.UseLoaderData);
+  const state = useDataRouterState(DataRouterStateHook.UseActionData);
+  const routeId = useCurrentRouteId(DataRouterStateHook.UseLoaderData);
   return state.actionData ? state.actionData[routeId] : undefined;
 }
 /**
@@ -719,9 +719,9 @@ function useActionData() {
  * ErrorBoundary/errorElement to display a proper error message.
  */
 function useRouteError() {
-  let error = React.useContext(RouteErrorContext);
-  let state = useDataRouterState(DataRouterStateHook.UseRouteError);
-  let routeId = useCurrentRouteId(DataRouterStateHook.UseRouteError);
+  const error = React.useContext(RouteErrorContext);
+  const state = useDataRouterState(DataRouterStateHook.UseRouteError);
+  const routeId = useCurrentRouteId(DataRouterStateHook.UseRouteError);
   // If this was a render error, we put it in a RouteError context inside
   // of RenderErrorBoundary
   if (error !== undefined) {
@@ -734,14 +734,14 @@ function useRouteError() {
  * Returns the happy-path data from the nearest ancestor `<Await />` value
  */
 function useAsyncValue() {
-  let value = React.useContext(AwaitContext);
+  const value = React.useContext(AwaitContext);
   return value?._data;
 }
 /**
  * Returns the error from the nearest ancestor `<Await />` value
  */
 function useAsyncError() {
-  let value = React.useContext(AwaitContext);
+  const value = React.useContext(AwaitContext);
   return value?._error;
 }
 let blockerId = 0;
@@ -752,13 +752,13 @@ let blockerId = 0;
  * cross-origin navigations.
  */
 function useBlocker(shouldBlock) {
-  let {
+  const {
     router,
     basename
   } = useDataRouterContext(DataRouterHook.UseBlocker);
-  let state = useDataRouterState(DataRouterStateHook.UseBlocker);
-  let [blockerKey, setBlockerKey] = React.useState("");
-  let blockerFunction = React.useCallback(arg => {
+  const state = useDataRouterState(DataRouterStateHook.UseBlocker);
+  const [blockerKey, setBlockerKey] = React.useState("");
+  const blockerFunction = React.useCallback(arg => {
     if (typeof shouldBlock !== "function") {
       return !!shouldBlock;
     }
@@ -768,7 +768,7 @@ function useBlocker(shouldBlock) {
     // If they provided us a function and we've got an active basename, strip
     // it from the locations we expose to the user to match the behavior of
     // useLocation
-    let {
+    const {
       currentLocation,
       nextLocation,
       historyAction
@@ -788,7 +788,7 @@ function useBlocker(shouldBlock) {
   // This effect is in charge of blocker key assignment and deletion (which is
   // tightly coupled to the key)
   React.useEffect(() => {
-    let key = String(++blockerId);
+    const key = String(++blockerId);
     setBlockerKey(key);
     return () => router.deleteBlocker(key);
   }, [router]);
@@ -810,15 +810,15 @@ function useBlocker(shouldBlock) {
  * a RouterProvider.
  */
 function useNavigateStable() {
-  let {
+  const {
     router
   } = useDataRouterContext(DataRouterHook.UseNavigateStable);
-  let id = useCurrentRouteId(DataRouterStateHook.UseNavigateStable);
-  let activeRef = React.useRef(false);
+  const id = useCurrentRouteId(DataRouterStateHook.UseNavigateStable);
+  const activeRef = React.useRef(false);
   useIsomorphicLayoutEffect(() => {
     activeRef.current = true;
   });
-  let navigate = React.useCallback((to, options = {}) => {
+  const navigate = React.useCallback((to, options = {}) => {
     UNSAFE_warning(activeRef.current, navigateEffectWarning) ;
     // Short circuit here since if this happens on first render the navigate
     // is useless because we haven't wired up our router subscriber yet
@@ -904,11 +904,11 @@ function RouterProvider({
   router,
   future
 }) {
-  let [state, setStateImpl] = React.useState(router.state);
-  let {
+  const [state, setStateImpl] = React.useState(router.state);
+  const {
     v7_startTransition
   } = future || {};
-  let setState = React.useCallback(newState => {
+  const setState = React.useCallback(newState => {
     if (v7_startTransition && startTransitionImpl) {
       startTransitionImpl(() => setStateImpl(newState));
     } else {
@@ -923,7 +923,7 @@ function RouterProvider({
     // Only log this once on initial mount
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  let navigator = React.useMemo(() => {
+  const navigator = React.useMemo(() => {
     return {
       createHref: router.createHref,
       encodeLocation: router.encodeLocation,
@@ -939,8 +939,8 @@ function RouterProvider({
       })
     };
   }, [router]);
-  let basename = router.basename || "/";
-  let dataRouterContext = React.useMemo(() => ({
+  const basename = router.basename || "/";
+  const dataRouterContext = React.useMemo(() => ({
     router,
     navigator,
     static: false,
@@ -990,7 +990,7 @@ function MemoryRouter({
   initialIndex,
   future
 }) {
-  let historyRef = React.useRef();
+  const historyRef = React.useRef();
   if (historyRef.current == null) {
     historyRef.current = createMemoryHistory({
       initialEntries,
@@ -998,15 +998,15 @@ function MemoryRouter({
       v5Compat: true
     });
   }
-  let history = historyRef.current;
-  let [state, setStateImpl] = React.useState({
+  const history = historyRef.current;
+  const [state, setStateImpl] = React.useState({
     action: history.action,
     location: history.location
   });
-  let {
+  const {
     v7_startTransition
   } = future || {};
-  let setState = React.useCallback(newState => {
+  const setState = React.useCallback(newState => {
     v7_startTransition && startTransitionImpl ? startTransitionImpl(() => setStateImpl(newState)) : setStateImpl(newState);
   }, [setStateImpl, v7_startTransition]);
   React.useLayoutEffect(() => history.listen(setState), [history, setState]);
@@ -1039,22 +1039,22 @@ function Navigate({
   // TODO: This error is probably because they somehow have 2 versions of
   // the router loaded. We can help them understand how to avoid that.
   `<Navigate> may be used only in the context of a <Router> component.`)  : void 0;
-  let {
+  const {
     future,
     static: isStatic
   } = React.useContext(NavigationContext);
   UNSAFE_warning(!isStatic, `<Navigate> must not be used on the initial render in a <StaticRouter>. ` + `This is a no-op, but you should modify your code so the <Navigate> is ` + `only ever rendered in response to some user interaction or state change.`) ;
-  let {
+  const {
     matches
   } = React.useContext(RouteContext);
-  let {
+  const {
     pathname: locationPathname
   } = useLocation();
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   // Resolve the path outside of the effect so that when effects run twice in
   // StrictMode they navigate to the same place
-  let path = resolveTo(to, UNSAFE_getResolveToMatches(matches, future.v7_relativeSplatPath), locationPathname, relative === "path");
-  let jsonPath = JSON.stringify(path);
+  const path = resolveTo(to, UNSAFE_getResolveToMatches(matches, future.v7_relativeSplatPath), locationPathname, relative === "path");
+  const jsonPath = JSON.stringify(path);
   React.useEffect(() => navigate(JSON.parse(jsonPath), {
     replace,
     state,
@@ -1096,11 +1096,11 @@ function Router({
   static: staticProp = false,
   future
 }) {
-  !!useInRouterContext() ? UNSAFE_invariant(false, `You cannot render a <Router> inside another <Router>.` + ` You should never have more than one in your app.`)  : void 0;
+  useInRouterContext() ? UNSAFE_invariant(false, `You cannot render a <Router> inside another <Router>.` + ` You should never have more than one in your app.`)  : void 0;
   // Preserve trailing slashes on basename, so we can let the user control
   // the enforcement of trailing slashes throughout the app
-  let basename = basenameProp.replace(/^\/*/, "/");
-  let navigationContext = React.useMemo(() => ({
+  const basename = basenameProp.replace(/^\/*/, "/");
+  const navigationContext = React.useMemo(() => ({
     basename,
     navigator,
     static: staticProp,
@@ -1112,15 +1112,15 @@ function Router({
   if (typeof locationProp === "string") {
     locationProp = parsePath(locationProp);
   }
-  let {
+  const {
     pathname = "/",
     search = "",
     hash = "",
     state = null,
     key = "default"
   } = locationProp;
-  let locationContext = React.useMemo(() => {
-    let trailingPathname = stripBasename(pathname, basename);
+  const locationContext = React.useMemo(() => {
+    const trailingPathname = stripBasename(pathname, basename);
     if (trailingPathname == null) {
       return null;
     }
@@ -1172,7 +1172,7 @@ function Await({
     errorElement: errorElement
   }, /*#__PURE__*/React.createElement(ResolveAwait, null, children));
 }
-var AwaitRenderStatus;
+let AwaitRenderStatus;
 (function (AwaitRenderStatus) {
   AwaitRenderStatus[AwaitRenderStatus["pending"] = 0] = "pending";
   AwaitRenderStatus[AwaitRenderStatus["success"] = 1] = "success";
@@ -1195,7 +1195,7 @@ class AwaitErrorBoundary extends React.Component {
     console.error("<Await> caught the following error during render", error, errorInfo);
   }
   render() {
-    let {
+    const {
       children,
       errorElement,
       resolve
@@ -1215,7 +1215,7 @@ class AwaitErrorBoundary extends React.Component {
     } else if (this.state.error) {
       // Caught a render error, provide it as a rejected promise
       status = AwaitRenderStatus.error;
-      let renderError = this.state.error;
+      const renderError = this.state.error;
       promise = Promise.reject().catch(() => {}); // Avoid unhandled rejection warnings
       Object.defineProperty(promise, "_tracked", {
         get: () => true
@@ -1272,8 +1272,8 @@ class AwaitErrorBoundary extends React.Component {
 function ResolveAwait({
   children
 }) {
-  let data = useAsyncValue();
-  let toRender = typeof children === "function" ? children(data) : children;
+  const data = useAsyncValue();
+  const toRender = typeof children === "function" ? children(data) : children;
   return /*#__PURE__*/React.createElement(React.Fragment, null, toRender);
 }
 ///////////////////////////////////////////////////////////////////////////////
@@ -1287,14 +1287,14 @@ function ResolveAwait({
  * @see https://reactrouter.com/v6/utils/create-routes-from-children
  */
 function createRoutesFromChildren(children, parentPath = []) {
-  let routes = [];
+  const routes = [];
   React.Children.forEach(children, (element, index) => {
     if (! /*#__PURE__*/React.isValidElement(element)) {
       // Ignore non-elements. This allows people to more easily inline
       // conditionals in their route config.
       return;
     }
-    let treePath = [...parentPath, index];
+    const treePath = [...parentPath, index];
     if (element.type === React.Fragment) {
       // Transparently support React.Fragment and its children.
       routes.push.apply(routes, createRoutesFromChildren(element.props.children, treePath));
@@ -1302,7 +1302,7 @@ function createRoutesFromChildren(children, parentPath = []) {
     }
     !(element.type === Route) ? UNSAFE_invariant(false, `[${typeof element.type === "string" ? element.type : element.type.name}] is not a <Route> component. All component children of <Routes> must be a <Route> or <React.Fragment>`)  : void 0;
     !(!element.props.index || !element.props.children) ? UNSAFE_invariant(false, "An index route cannot have child routes.")  : void 0;
-    let route = {
+    const route = {
       id: element.props.id || treePath.join("-"),
       caseSensitive: element.props.caseSensitive,
       element: element.props.element,
@@ -1333,7 +1333,7 @@ function renderMatches(matches) {
 }
 
 function mapRouteProperties(route) {
-  let updates = {
+  const updates = {
     // Note: this check also occurs in createRoutesFromChildren so update
     // there if you change this -- please and thank you!
     hasErrorBoundary: route.ErrorBoundary != null || route.errorElement != null

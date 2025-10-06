@@ -1,16 +1,16 @@
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+const GetIntrinsic = require('get-intrinsic');
 
-var $BigInt = GetIntrinsic('%BigInt%', true);
-var $Number = GetIntrinsic('%Number%');
-var $TypeError = require('es-errors/type');
-var $SyntaxError = require('es-errors/syntax');
+const $BigInt = GetIntrinsic('%BigInt%', true);
+const $Number = GetIntrinsic('%Number%');
+const $TypeError = require('es-errors/type');
+const $SyntaxError = require('es-errors/syntax');
 
-var StringToBigInt = require('./StringToBigInt');
-var ToPrimitive = require('./ToPrimitive');
+const StringToBigInt = require('./StringToBigInt');
+const ToPrimitive = require('./ToPrimitive');
 
-var isNaN = require('math-intrinsics/isNaN');
+const isNaN = require('math-intrinsics/isNaN');
 
 // https://262.ecma-international.org/11.0/#sec-tobigint
 
@@ -19,7 +19,7 @@ module.exports = function ToBigInt(argument) {
 		throw new $SyntaxError('BigInts are not supported in this environment');
 	}
 
-	var prim = ToPrimitive(argument, $Number);
+	const prim = ToPrimitive(argument, $Number);
 
 	if (prim == null) {
 		throw new $TypeError('Cannot convert null or undefined to a BigInt');
@@ -34,7 +34,7 @@ module.exports = function ToBigInt(argument) {
 	}
 
 	if (typeof prim === 'string') {
-		var n = StringToBigInt(prim);
+		const n = StringToBigInt(prim);
 		if (isNaN(n)) {
 			throw new $TypeError('Failed to parse String to BigInt');
 		}

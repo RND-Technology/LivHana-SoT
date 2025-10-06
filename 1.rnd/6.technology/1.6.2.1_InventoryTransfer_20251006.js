@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
 exports.inventoryTransferSchema = void 0;
-var schema_1 = require("../schema");
-var sourceApplication_1 = require("./sourceApplication");
+const schema_1 = require("../schema");
+const sourceApplication_1 = require("./sourceApplication");
 exports.inventoryTransferSchema = (0, schema_1.object)({
     id: ['id', (0, schema_1.optional)((0, schema_1.string)())],
     referenceId: ['reference_id', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.string)()))],

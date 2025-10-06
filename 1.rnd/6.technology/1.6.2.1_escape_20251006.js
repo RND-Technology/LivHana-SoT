@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.escapeText = exports.escapeAttribute = exports.escapeUTF8 = exports.escape = exports.encodeXML = exports.getCodePoint = exports.xmlReplacer = void 0;
 exports.xmlReplacer = /["&'<>$\x80-\uFFFF]/g;
-var xmlCodeMap = new Map([
+const xmlCodeMap = new Map([
     [34, "&quot;"],
     [38, "&amp;"],
     [39, "&apos;"],
@@ -31,13 +31,13 @@ String.prototype.codePointAt != null
  * numeric hexadecimal reference (eg. `&#xfc;`) will be used.
  */
 function encodeXML(str) {
-    var ret = "";
-    var lastIdx = 0;
-    var match;
+    let ret = "";
+    let lastIdx = 0;
+    let match;
     while ((match = exports.xmlReplacer.exec(str)) !== null) {
-        var i = match.index;
-        var char = str.charCodeAt(i);
-        var next = xmlCodeMap.get(char);
+        const i = match.index;
+        const char = str.charCodeAt(i);
+        const next = xmlCodeMap.get(char);
         if (next !== undefined) {
             ret += str.substring(lastIdx, i) + next;
             lastIdx = i + 1;
@@ -73,9 +73,9 @@ exports.escape = encodeXML;
  */
 function getEscaper(regex, map) {
     return function escape(data) {
-        var match;
-        var lastIdx = 0;
-        var result = "";
+        let match;
+        let lastIdx = 0;
+        let result = "";
         while ((match = regex.exec(data))) {
             if (lastIdx !== match.index) {
                 result += data.substring(lastIdx, match.index);

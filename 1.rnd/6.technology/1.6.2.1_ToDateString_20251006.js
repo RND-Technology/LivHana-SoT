@@ -1,12 +1,12 @@
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+const GetIntrinsic = require('get-intrinsic');
 
-var $TypeError = require('es-errors/type');
-var $Date = GetIntrinsic('%Date%');
-var $String = GetIntrinsic('%String%');
+const $TypeError = require('es-errors/type');
+const $Date = GetIntrinsic('%Date%');
+const $String = GetIntrinsic('%String%');
 
-var $isNaN = require('math-intrinsics/isNaN');
+const $isNaN = require('math-intrinsics/isNaN');
 
 // https://262.ecma-international.org/6.0/#sec-todatestring
 

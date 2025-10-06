@@ -49,7 +49,7 @@ import { makePredicate } from "../utils/index.js";
 
 function make_nested_lookup(obj) {
     const out = new Map();
-    for (var key of Object.keys(obj)) {
+    for (const key of Object.keys(obj)) {
         out.set(key, makePredicate(obj[key]));
     }
 

@@ -6,7 +6,7 @@
  * @returns {Array} Returns the converted array.
  */
 function iteratorToArray(iterator) {
-  var data,
+  let data,
       result = [];
 
   while (!(data = iterator.next()).done) {

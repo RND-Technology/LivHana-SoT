@@ -1,13 +1,13 @@
 'use strict';
 
-var Type = require('../type');
+const Type = require('../type');
 
-var YAML_DATE_REGEXP = new RegExp(
+const YAML_DATE_REGEXP = new RegExp(
   '^([0-9][0-9][0-9][0-9])'          + // [1] year
   '-([0-9][0-9])'                    + // [2] month
   '-([0-9][0-9])$');                   // [3] day
 
-var YAML_TIMESTAMP_REGEXP = new RegExp(
+const YAML_TIMESTAMP_REGEXP = new RegExp(
   '^([0-9][0-9][0-9][0-9])'          + // [1] year
   '-([0-9][0-9]?)'                   + // [2] month
   '-([0-9][0-9]?)'                   + // [3] day
@@ -27,7 +27,7 @@ function resolveYamlTimestamp(data) {
 }
 
 function constructYamlTimestamp(data) {
-  var match, year, month, day, hour, minute, second, fraction = 0,
+  let match, year, month, day, hour, minute, second, fraction = 0,
       delta = null, tz_hour, tz_minute, date;
 
   match = YAML_DATE_REGEXP.exec(data);

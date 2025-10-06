@@ -4,13 +4,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.removeRadiusAxis = exports.removeAngleAxis = exports.polarAxisReducer = exports.addRadiusAxis = exports.addAngleAxis = void 0;
-var _toolkit = require("@reduxjs/toolkit");
-var _immer = require("immer");
-var initialState = {
+const _toolkit = require("@reduxjs/toolkit");
+const _immer = require("immer");
+const initialState = {
   radiusAxis: {},
   angleAxis: {}
 };
-var polarAxisSlice = (0, _toolkit.createSlice)({
+const polarAxisSlice = (0, _toolkit.createSlice)({
   name: 'polarAxis',
   initialState,
   reducers: {
@@ -28,7 +28,7 @@ var polarAxisSlice = (0, _toolkit.createSlice)({
     }
   }
 });
-var {
+const {
   addRadiusAxis,
   removeRadiusAxis,
   addAngleAxis,
@@ -38,4 +38,4 @@ exports.removeAngleAxis = removeAngleAxis;
 exports.addAngleAxis = addAngleAxis;
 exports.removeRadiusAxis = removeRadiusAxis;
 exports.addRadiusAxis = addRadiusAxis;
-var polarAxisReducer = exports.polarAxisReducer = polarAxisSlice.reducer;
+const polarAxisReducer = exports.polarAxisReducer = polarAxisSlice.reducer;

@@ -11,7 +11,7 @@ import { getMirroredCharacter } from './mirroring.js'
  * @return {number[][]} - the list of start/end segments that should be flipped, in order.
  */
 export function getReorderSegments(string, embeddingLevelsResult, start, end) {
-  let strLen = string.length
+  const strLen = string.length
   start = Math.max(0, start == null ? 0 : +start)
   end = Math.min(strLen - 1, end == null ? strLen - 1 : +end)
 

@@ -1,5 +1,5 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
+const __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -65,7 +65,7 @@ const outputRawData = (strData) => {
     return JSON.stringify(data, null, 2);
 };
 const outputPlainTextList = (strData) => {
-    var _a;
+    let _a;
     const data = JSON.parse(strData);
     const bundles = {};
     for (const meta of Object.values(data.nodeMetas)) {

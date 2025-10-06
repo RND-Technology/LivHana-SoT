@@ -403,7 +403,7 @@ class Table extends common_1.ServiceObject {
      * @returns {*} The converted value.
      */
     static encodeValue_(value) {
-        var _a;
+        let _a;
         if (typeof value === 'undefined' || value === null) {
             return null;
         }

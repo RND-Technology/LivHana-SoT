@@ -1,12 +1,12 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
-var isObject = require('es-object-atoms/isObject');
-var regexExec = require('call-bound')('RegExp.prototype.exec');
+const $TypeError = require('es-errors/type');
+const isObject = require('es-object-atoms/isObject');
+const regexExec = require('call-bound')('RegExp.prototype.exec');
 
-var Call = require('./Call');
-var Get = require('./Get');
-var IsCallable = require('./IsCallable');
+const Call = require('./Call');
+const Get = require('./Get');
+const IsCallable = require('./IsCallable');
 
 // https://262.ecma-international.org/6.0/#sec-regexpexec
 
@@ -17,9 +17,9 @@ module.exports = function RegExpExec(R, S) {
 	if (typeof S !== 'string') {
 		throw new $TypeError('Assertion failed: `S` must be a String');
 	}
-	var exec = Get(R, 'exec');
+	const exec = Get(R, 'exec');
 	if (IsCallable(exec)) {
-		var result = Call(exec, R, [S]);
+		const result = Call(exec, R, [S]);
 		if (result === null || isObject(result)) {
 			return result;
 		}

@@ -1,5 +1,5 @@
 (function(window) {
-    var re = {
+    const re = {
         not_string: /[^s]/,
         number: /[diefg]/,
         json: /[j]/,
@@ -14,7 +14,7 @@
     }
 
     function sprintf() {
-        var key = arguments[0], cache = sprintf.cache
+        const key = arguments[0], cache = sprintf.cache
         if (!(cache[key] && cache.hasOwnProperty(key))) {
             cache[key] = sprintf.parse(key)
         }
@@ -22,7 +22,7 @@
     }
 
     sprintf.format = function(parse_tree, argv) {
-        var cursor = 1, tree_length = parse_tree.length, node_type = "", arg, output = [], i, k, match, pad, pad_character, pad_length, is_positive = true, sign = ""
+        let cursor = 1, tree_length = parse_tree.length, node_type = "", arg, output = [], i, k, match, pad, pad_character, pad_length, is_positive = true, sign = ""
         for (i = 0; i < tree_length; i++) {
             node_type = get_type(parse_tree[i])
             if (node_type === "string") {
@@ -121,7 +121,7 @@
     sprintf.cache = {}
 
     sprintf.parse = function(fmt) {
-        var _fmt = fmt, match = [], parse_tree = [], arg_names = 0
+        let _fmt = fmt, match = [], parse_tree = [], arg_names = 0
         while (_fmt) {
             if ((match = re.text.exec(_fmt)) !== null) {
                 parse_tree[parse_tree.length] = match[0]
@@ -132,7 +132,7 @@
             else if ((match = re.placeholder.exec(_fmt)) !== null) {
                 if (match[2]) {
                     arg_names |= 1
-                    var field_list = [], replacement_field = match[2], field_match = []
+                    let field_list = [], replacement_field = match[2], field_match = []
                     if ((field_match = re.key.exec(replacement_field)) !== null) {
                         field_list[field_list.length] = field_match[1]
                         while ((replacement_field = replacement_field.substring(field_match[0].length)) !== "") {
@@ -168,7 +168,7 @@
         return parse_tree
     }
 
-    var vsprintf = function(fmt, argv, _argv) {
+    const vsprintf = function(fmt, argv, _argv) {
         _argv = (argv || []).slice(0)
         _argv.splice(0, 0, fmt)
         return sprintf.apply(null, _argv)

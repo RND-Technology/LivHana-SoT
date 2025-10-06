@@ -1,4 +1,4 @@
-let Declaration = require('../declaration')
+const Declaration = require('../declaration')
 
 class ImageRendering extends Declaration {
   /**

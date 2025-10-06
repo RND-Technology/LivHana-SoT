@@ -19,7 +19,7 @@ exports.sts_v1beta = void 0;
 /* eslint-disable @typescript-eslint/no-namespace */
 /* eslint-disable no-irregular-whitespace */
 const googleapis_common_1 = require("googleapis-common");
-var sts_v1beta;
+let sts_v1beta;
 (function (sts_v1beta) {
     /**
      * Security Token Service API

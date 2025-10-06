@@ -21,7 +21,6 @@ VALIDATED_FILES=0
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
-BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 # Function to log validation results
@@ -45,8 +44,8 @@ log_result() {
 # Function to validate JavaScript/TypeScript files
 validate_js_files() {
     echo "🔍 Validating JavaScript/TypeScript files..."
-    
-    find . -type f \( -name "*.js" -o -name "*.ts" -o -name "*.jsx" -o -name "*.tsx" \) | while read file; do
+
+    while read -r file; do
         ((TOTAL_FILES++))
         echo "📄 Validating: $file"
         
@@ -95,14 +94,14 @@ validate_js_files() {
         else
             log_result "WARNING" "Prettier not available" "$file"
         fi
-    done
+    done < <(find . -type f \( -name "*.js" -o -name "*.ts" -o -name "*.jsx" -o -name "*.tsx" \))
 }
 
 # Function to validate Python files
 validate_python_files() {
     echo "🔍 Validating Python files..."
-    
-    find . -type f -name "*.py" | while read file; do
+
+    while read -r file; do
         ((TOTAL_FILES++))
         echo "📄 Validating: $file"
         
@@ -127,14 +126,14 @@ validate_python_files() {
         else
             log_result "WARNING" "Flake8 not available" "$file"
         fi
-    done
+    done < <(find . -type f -name "*.py")
 }
 
 # Function to validate Shell scripts
 validate_shell_files() {
     echo "🔍 Validating Shell scripts..."
-    
-    find . -type f \( -name "*.sh" -o -name "*.bash" \) | while read file; do
+
+    while read -r file; do
         ((TOTAL_FILES++))
         echo "📄 Validating: $file"
         
@@ -155,14 +154,14 @@ validate_shell_files() {
         else
             log_result "WARNING" "ShellCheck not available" "$file"
         fi
-    done
+    done < <(find . -type f \( -name "*.sh" -o -name "*.bash" \))
 }
 
 # Function to validate JSON files
 validate_json_files() {
     echo "🔍 Validating JSON files..."
-    
-    find . -type f -name "*.json" | while read file; do
+
+    while read -r file; do
         ((TOTAL_FILES++))
         echo "📄 Validating: $file"
         
@@ -176,14 +175,14 @@ validate_json_files() {
         else
             log_result "WARNING" "Python3 not available for JSON validation" "$file"
         fi
-    done
+    done < <(find . -type f -name "*.json")
 }
 
 # Function to validate YAML files
 validate_yaml_files() {
     echo "🔍 Validating YAML files..."
-    
-    find . -type f \( -name "*.yml" -o -name "*.yaml" \) | while read file; do
+
+    while read -r file; do
         ((TOTAL_FILES++))
         echo "📄 Validating: $file"
         
@@ -197,14 +196,14 @@ validate_yaml_files() {
         else
             log_result "WARNING" "Python3 not available for YAML validation" "$file"
         fi
-    done
+    done < <(find . -type f \( -name "*.yml" -o -name "*.yaml" \))
 }
 
 # Function to validate Markdown files
 validate_markdown_files() {
     echo "🔍 Validating Markdown files..."
-    
-    find . -type f -name "*.md" | while read file; do
+
+    while read -r file; do
         ((TOTAL_FILES++))
         echo "📄 Validating: $file"
         
@@ -221,14 +220,14 @@ validate_markdown_files() {
         else
             log_result "WARNING" "Markdown missing headers" "$file"
         fi
-    done
+    done < <(find . -type f -name "*.md")
 }
 
 # Function to validate file permissions
 validate_permissions() {
     echo "🔍 Validating file permissions..."
-    
-    find . -type f | while read file; do
+
+    while read -r file; do
         ((TOTAL_FILES++))
         
         # Check if file is readable
@@ -244,15 +243,16 @@ validate_permissions() {
         else
             log_result "WARNING" "File is not writable" "$file"
         fi
-    done
+    done < <(find . -type f)
 }
 
 # Function to validate RPM DNA naming
 validate_rpm_dna_naming() {
     echo "🔍 Validating RPM DNA naming..."
-    
-    find . -type f | while read file; do
-        local basename=$(basename "$file")
+
+    while read -r file; do
+        local basename
+        basename=$(basename "$file")
         
         # Check if file follows RPM DNA pattern
         if [[ "$basename" =~ ^[1-5]\.[1-8]\.[0-9]\.[1-5]_[a-zA-Z0-9_-]+_[0-9]{8}\.[a-zA-Z0-9]+$ ]]; then
@@ -260,7 +260,7 @@ validate_rpm_dna_naming() {
         else
             log_result "WARNING" "RPM DNA naming not followed" "$file"
         fi
-    done
+    done < <(find . -type f)
 }
 
 # Function to generate validation report

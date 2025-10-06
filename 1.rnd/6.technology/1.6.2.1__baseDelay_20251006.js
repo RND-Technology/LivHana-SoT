@@ -1,5 +1,5 @@
 /** Error message constants. */
-var FUNC_ERROR_TEXT = 'Expected a function';
+const FUNC_ERROR_TEXT = 'Expected a function';
 
 /**
  * The base implementation of `_.delay` and `_.defer` which accepts `args`

@@ -1,11 +1,11 @@
 "use strict";
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+const _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 exports.__esModule = true;
 exports.default = isWindow;
 
-var _isDocument = _interopRequireDefault(require("./isDocument"));
+const _isDocument = _interopRequireDefault(require("./isDocument"));
 
 function isWindow(node) {
   if ('window' in node && node.window === node) return node;

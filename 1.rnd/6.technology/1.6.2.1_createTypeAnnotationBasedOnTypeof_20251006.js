@@ -4,8 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _index = require("../generated/index.js");
-var _default = exports.default = createTypeAnnotationBasedOnTypeof;
+const _index = require("../generated/index.js");
+const _default = exports.default = createTypeAnnotationBasedOnTypeof;
 function createTypeAnnotationBasedOnTypeof(type) {
   switch (type) {
     case "string":

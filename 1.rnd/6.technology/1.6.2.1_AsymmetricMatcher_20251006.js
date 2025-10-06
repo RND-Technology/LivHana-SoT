@@ -4,8 +4,8 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 exports.test = exports.serialize = exports.default = void 0;
-var _collections = require('../collections');
-var Symbol = globalThis['jest-symbol-do-not-touch'] || globalThis.Symbol;
+const _collections = require('../collections');
+const Symbol = globalThis['jest-symbol-do-not-touch'] || globalThis.Symbol;
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -85,5 +85,5 @@ const plugin = {
   serialize,
   test
 };
-var _default = plugin;
+const _default = plugin;
 exports.default = _default;

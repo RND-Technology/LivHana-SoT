@@ -4,14 +4,14 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.updateYAxisWidth = exports.removeZAxis = exports.removeYAxis = exports.removeXAxis = exports.defaultAxisId = exports.cartesianAxisReducer = exports.addZAxis = exports.addYAxis = exports.addXAxis = void 0;
-var _toolkit = require("@reduxjs/toolkit");
-var _immer = require("immer");
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+const _toolkit = require("@reduxjs/toolkit");
+const _immer = require("immer");
+function ownKeys(e, r) { const t = Object.keys(e); if (Object.getOwnPropertySymbols) { let o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (let r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-var defaultAxisId = exports.defaultAxisId = 0;
+function _toPropertyKey(t) { const i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; const e = t[Symbol.toPrimitive]; if (void 0 !== e) { const i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+const defaultAxisId = exports.defaultAxisId = 0;
 
 /**
  * Properties shared in X, Y, and Z axes
@@ -29,7 +29,7 @@ var defaultAxisId = exports.defaultAxisId = 0;
  * but it never displays ticks anywhere.
  */
 
-var initialState = {
+const initialState = {
   xAxis: {},
   yAxis: {},
   zAxis: {}
@@ -39,7 +39,7 @@ var initialState = {
  * This is the slice where each individual Axis element pushes its own configuration.
  * Prefer to use this one instead of axisSlice.
  */
-var cartesianAxisSlice = (0, _toolkit.createSlice)({
+const cartesianAxisSlice = (0, _toolkit.createSlice)({
   name: 'cartesianAxis',
   initialState,
   reducers: {
@@ -62,7 +62,7 @@ var cartesianAxisSlice = (0, _toolkit.createSlice)({
       delete state.zAxis[action.payload.id];
     },
     updateYAxisWidth(state, action) {
-      var {
+      const {
         id,
         width
       } = action.payload;
@@ -74,7 +74,7 @@ var cartesianAxisSlice = (0, _toolkit.createSlice)({
     }
   }
 });
-var {
+const {
   addXAxis,
   removeXAxis,
   addYAxis,
@@ -90,4 +90,4 @@ exports.removeYAxis = removeYAxis;
 exports.addYAxis = addYAxis;
 exports.removeXAxis = removeXAxis;
 exports.addXAxis = addXAxis;
-var cartesianAxisReducer = exports.cartesianAxisReducer = cartesianAxisSlice.reducer;
+const cartesianAxisReducer = exports.cartesianAxisReducer = cartesianAxisSlice.reducer;

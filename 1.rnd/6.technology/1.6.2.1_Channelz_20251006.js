@@ -456,7 +456,7 @@ function GetSubchannel(call, callback) {
     callback(null, { subchannel: subchannelMessage });
 }
 function subchannelAddressToAddressMessage(subchannelAddress) {
-    var _a;
+    let _a;
     if ((0, subchannel_address_1.isTcpSubchannelAddress)(subchannelAddress)) {
         return {
             address: 'tcpip_address',
@@ -476,7 +476,7 @@ function subchannelAddressToAddressMessage(subchannelAddress) {
     }
 }
 function GetSocket(call, callback) {
-    var _a, _b, _c, _d, _e;
+    let _a, _b, _c, _d, _e;
     const socketId = parseInt(call.request.socket_id, 10);
     const socketEntry = entityMaps["socket" /* EntityTypes.socket */].getElementByKey(socketId);
     if (socketEntry === undefined) {

@@ -1,34 +1,34 @@
 "use strict";
 'use client';
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+const _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = exports.SliderValueLabel = exports.SliderTrack = exports.SliderThumb = exports.SliderRoot = exports.SliderRail = exports.SliderMarkLabel = exports.SliderMark = void 0;
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-var React = _interopRequireWildcard(require("react"));
-var _propTypes = _interopRequireDefault(require("prop-types"));
-var _clsx = _interopRequireDefault(require("clsx"));
-var _chainPropTypes = _interopRequireDefault(require("@mui/utils/chainPropTypes"));
-var _composeClasses = _interopRequireDefault(require("@mui/utils/composeClasses"));
-var _colorManipulator = require("@mui/system/colorManipulator");
-var _RtlProvider = require("@mui/system/RtlProvider");
-var _useSlotProps = _interopRequireDefault(require("@mui/utils/useSlotProps"));
-var _isHostComponent = _interopRequireDefault(require("@mui/utils/isHostComponent"));
-var _useSlider = require("./useSlider");
-var _zeroStyled = require("../zero-styled");
-var _DefaultPropsProvider = require("../DefaultPropsProvider");
-var _slotShouldForwardProp = _interopRequireDefault(require("../styles/slotShouldForwardProp"));
-var _shouldSpreadAdditionalProps = _interopRequireDefault(require("../utils/shouldSpreadAdditionalProps"));
-var _capitalize = _interopRequireDefault(require("../utils/capitalize"));
-var _SliderValueLabel = _interopRequireDefault(require("./SliderValueLabel"));
-var _sliderClasses = _interopRequireWildcard(require("./sliderClasses"));
-var _jsxRuntime = require("react/jsx-runtime");
+const _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+const _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+const React = _interopRequireWildcard(require("react"));
+const _propTypes = _interopRequireDefault(require("prop-types"));
+const _clsx = _interopRequireDefault(require("clsx"));
+const _chainPropTypes = _interopRequireDefault(require("@mui/utils/chainPropTypes"));
+const _composeClasses = _interopRequireDefault(require("@mui/utils/composeClasses"));
+const _colorManipulator = require("@mui/system/colorManipulator");
+const _RtlProvider = require("@mui/system/RtlProvider");
+const _useSlotProps = _interopRequireDefault(require("@mui/utils/useSlotProps"));
+const _isHostComponent = _interopRequireDefault(require("@mui/utils/isHostComponent"));
+const _useSlider = require("./useSlider");
+const _zeroStyled = require("../zero-styled");
+const _DefaultPropsProvider = require("../DefaultPropsProvider");
+const _slotShouldForwardProp = _interopRequireDefault(require("../styles/slotShouldForwardProp"));
+const _shouldSpreadAdditionalProps = _interopRequireDefault(require("../utils/shouldSpreadAdditionalProps"));
+const _capitalize = _interopRequireDefault(require("../utils/capitalize"));
+const _SliderValueLabel = _interopRequireDefault(require("./SliderValueLabel"));
+const _sliderClasses = _interopRequireWildcard(require("./sliderClasses"));
+const _jsxRuntime = require("react/jsx-runtime");
 const _excluded = ["aria-label", "aria-valuetext", "aria-labelledby", "component", "components", "componentsProps", "color", "classes", "className", "disableSwap", "disabled", "getAriaLabel", "getAriaValueText", "marks", "max", "min", "name", "onChange", "onChangeCommitted", "orientation", "shiftStep", "size", "step", "scale", "slotProps", "slots", "tabIndex", "track", "value", "valueLabelDisplay", "valueLabelFormat"];
-function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
-function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; const r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; const t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); const n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (const u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { const i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 function Identity(x) {
   return x;
 }
@@ -44,7 +44,7 @@ const SliderRoot = exports.SliderRoot = (0, _zeroStyled.styled)('span', {
 })(({
   theme
 }) => {
-  var _theme$vars;
+  let _theme$vars;
   return {
     borderRadius: 12,
     boxSizing: 'content-box',
@@ -67,7 +67,7 @@ const SliderRoot = exports.SliderRoot = (0, _zeroStyled.styled)('span', {
       }
     },
     variants: [...Object.keys(((_theme$vars = theme.vars) != null ? _theme$vars : theme).palette).filter(key => {
-      var _theme$vars2;
+      let _theme$vars2;
       return ((_theme$vars2 = theme.vars) != null ? _theme$vars2 : theme).palette[key].main;
     }).map(color => ({
       props: {
@@ -185,7 +185,7 @@ const SliderTrack = exports.SliderTrack = (0, _zeroStyled.styled)('span', {
 })(({
   theme
 }) => {
-  var _theme$vars3;
+  let _theme$vars3;
   return {
     display: 'block',
     position: 'absolute',
@@ -228,7 +228,7 @@ const SliderTrack = exports.SliderTrack = (0, _zeroStyled.styled)('span', {
         display: 'none'
       }
     }, ...Object.keys(((_theme$vars3 = theme.vars) != null ? _theme$vars3 : theme).palette).filter(key => {
-      var _theme$vars4;
+      let _theme$vars4;
       return ((_theme$vars4 = theme.vars) != null ? _theme$vars4 : theme).palette[key].main;
     }).map(color => ({
       props: {
@@ -261,7 +261,7 @@ const SliderThumb = exports.SliderThumb = (0, _zeroStyled.styled)('span', {
 })(({
   theme
 }) => {
-  var _theme$vars5;
+  let _theme$vars5;
   return {
     position: 'absolute',
     width: 20,
@@ -328,7 +328,7 @@ const SliderThumb = exports.SliderThumb = (0, _zeroStyled.styled)('span', {
         transform: 'translate(-50%, 50%)'
       }
     }, ...Object.keys(((_theme$vars5 = theme.vars) != null ? _theme$vars5 : theme).palette).filter(key => {
-      var _theme$vars6;
+      let _theme$vars6;
       return ((_theme$vars6 = theme.vars) != null ? _theme$vars6 : theme).palette[key].main;
     }).map(color => ({
       props: {
@@ -555,7 +555,7 @@ const Forward = ({
   children
 }) => children;
 const Slider = /*#__PURE__*/React.forwardRef(function Slider(inputProps, ref) {
-  var _ref, _slots$root, _ref2, _slots$rail, _ref3, _slots$track, _ref4, _slots$thumb, _ref5, _slots$valueLabel, _ref6, _slots$mark, _ref7, _slots$markLabel, _ref8, _slots$input, _slotProps$root, _slotProps$rail, _slotProps$track, _slotProps$thumb, _slotProps$valueLabel, _slotProps$mark, _slotProps$markLabel, _slotProps$input;
+  let _ref, _slots$root, _ref2, _slots$rail, _ref3, _slots$track, _ref4, _slots$thumb, _ref5, _slots$valueLabel, _ref6, _slots$mark, _ref7, _slots$markLabel, _ref8, _slots$input, _slotProps$root, _slotProps$rail, _slotProps$track, _slotProps$thumb, _slotProps$valueLabel, _slotProps$mark, _slotProps$markLabel, _slotProps$input;
   const props = (0, _DefaultPropsProvider.useDefaultProps)({
     props: inputProps,
     name: 'MuiSlider'
@@ -1047,4 +1047,4 @@ process.env.NODE_ENV !== "production" ? Slider.propTypes /* remove-proptypes */ 
    */
   valueLabelFormat: _propTypes.default.oneOfType([_propTypes.default.func, _propTypes.default.string])
 } : void 0;
-var _default = exports.default = Slider;
+const _default = exports.default = Slider;

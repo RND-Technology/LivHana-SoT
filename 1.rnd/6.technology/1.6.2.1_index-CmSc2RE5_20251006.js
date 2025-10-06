@@ -294,7 +294,7 @@ function populateGlobal(global, win, options = {}) {
 	};
 }
 
-var edge = {
+const edge = {
 	name: "edge-runtime",
 	transformMode: "ssr",
 	async setupVM() {
@@ -337,7 +337,7 @@ async function teardownWindow(win) {
 		win.close();
 	} else win.happyDOM.cancelAsync();
 }
-var happy = {
+const happy = {
 	name: "happy-dom",
 	transformMode: "web",
 	async setupVM({ happyDOM = {} }) {
@@ -415,7 +415,7 @@ function catchWindowErrors(window) {
 		window.removeEventListener("error", throwUnhandlerError);
 	};
 }
-var jsdom = {
+const jsdom = {
 	name: "jsdom",
 	transformMode: "web",
 	async setupVM({ jsdom = {} }) {
@@ -507,7 +507,7 @@ const nodeGlobals = new Map(Object.getOwnPropertyNames(globalThis).filter((globa
 	if (!descriptor) throw new Error(`No property descriptor for ${nodeGlobalsKey}, this is a bug in Vitest.`);
 	return [nodeGlobalsKey, descriptor];
 }));
-var node = {
+const node = {
 	name: "node",
 	transformMode: "ssr",
 	async setupVM() {

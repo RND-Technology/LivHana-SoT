@@ -2,9 +2,9 @@
 
 // undocumented cb() API, needed for core, not for public API
 function destroy(err, cb) {
-  var _this = this;
-  var readableDestroyed = this._readableState && this._readableState.destroyed;
-  var writableDestroyed = this._writableState && this._writableState.destroyed;
+  const _this = this;
+  const readableDestroyed = this._readableState && this._readableState.destroyed;
+  const writableDestroyed = this._writableState && this._writableState.destroyed;
   if (readableDestroyed || writableDestroyed) {
     if (cb) {
       cb(err);
@@ -85,8 +85,8 @@ function errorOrDestroy(stream, err) {
   // the error to be emitted nextTick. In a future
   // semver major update we should change the default to this.
 
-  var rState = stream._readableState;
-  var wState = stream._writableState;
+  const rState = stream._readableState;
+  const wState = stream._writableState;
   if (rState && rState.autoDestroy || wState && wState.autoDestroy) stream.destroy(err);else stream.emit('error', err);
 }
 module.exports = {

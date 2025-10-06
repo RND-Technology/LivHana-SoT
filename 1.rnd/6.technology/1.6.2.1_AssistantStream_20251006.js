@@ -1,7 +1,7 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+const __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
+    let desc = Object.getOwnPropertyDescriptor(m, k);
     if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
       desc = { enumerable: true, get: function() { return m[k]; } };
     }
@@ -10,30 +10,30 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
 }));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+const __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
     Object.defineProperty(o, "default", { enumerable: true, value: v });
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || function (mod) {
+const __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    const result = {};
+    if (mod != null) for (const k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
     __setModuleDefault(result, mod);
     return result;
 };
-var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (receiver, state, kind, f) {
+const __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (receiver, state, kind, f) {
     if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
     return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 };
-var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
+const __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
     if (kind === "m") throw new TypeError("Private method is not writable");
     if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
     return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 };
-var _AssistantStream_instances, _AssistantStream_events, _AssistantStream_runStepSnapshots, _AssistantStream_messageSnapshots, _AssistantStream_messageSnapshot, _AssistantStream_finalRun, _AssistantStream_currentContentIndex, _AssistantStream_currentContent, _AssistantStream_currentToolCallIndex, _AssistantStream_currentToolCall, _AssistantStream_currentEvent, _AssistantStream_currentRunSnapshot, _AssistantStream_currentRunStepSnapshot, _AssistantStream_addEvent, _AssistantStream_endRequest, _AssistantStream_handleMessage, _AssistantStream_handleRunStep, _AssistantStream_handleEvent, _AssistantStream_accumulateRunStep, _AssistantStream_accumulateMessage, _AssistantStream_accumulateContent, _AssistantStream_handleRun;
+let _AssistantStream_instances, _AssistantStream_events, _AssistantStream_runStepSnapshots, _AssistantStream_messageSnapshots, _AssistantStream_messageSnapshot, _AssistantStream_finalRun, _AssistantStream_currentContentIndex, _AssistantStream_currentContent, _AssistantStream_currentToolCallIndex, _AssistantStream_currentToolCall, _AssistantStream_currentEvent, _AssistantStream_currentRunSnapshot, _AssistantStream_currentRunStepSnapshot, _AssistantStream_addEvent, _AssistantStream_endRequest, _AssistantStream_handleMessage, _AssistantStream_handleRunStep, _AssistantStream_handleEvent, _AssistantStream_accumulateRunStep, _AssistantStream_accumulateMessage, _AssistantStream_accumulateContent, _AssistantStream_handleRun;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AssistantStream = void 0;
 const Core = __importStar(require("../core.js"));
@@ -392,8 +392,8 @@ _AssistantStream_addEvent = function _AssistantStream_addEvent(event) {
                 for (const content of event.data.delta.content) {
                     //If it is text delta, emit a text delta event
                     if (content.type == 'text' && content.text) {
-                        let textDelta = content.text;
-                        let snapshot = accumulatedMessage.content[content.index];
+                        const textDelta = content.text;
+                        const snapshot = accumulatedMessage.content[content.index];
                         if (snapshot && snapshot.type == 'text') {
                             this._emit('textDelta', textDelta, snapshot.text);
                         }
@@ -496,11 +496,11 @@ _AssistantStream_addEvent = function _AssistantStream_addEvent(event) {
             __classPrivateFieldGet(this, _AssistantStream_runStepSnapshots, "f")[event.data.id] = event.data;
             return event.data;
         case 'thread.run.step.delta':
-            let snapshot = __classPrivateFieldGet(this, _AssistantStream_runStepSnapshots, "f")[event.data.id];
+            const snapshot = __classPrivateFieldGet(this, _AssistantStream_runStepSnapshots, "f")[event.data.id];
             if (!snapshot) {
                 throw Error('Received a RunStepDelta before creation of a snapshot');
             }
-            let data = event.data;
+            const data = event.data;
             if (data.delta) {
                 const accumulated = AssistantStream.accumulateDelta(snapshot, data.delta);
                 __classPrivateFieldGet(this, _AssistantStream_runStepSnapshots, "f")[event.data.id] = accumulated;
@@ -518,7 +518,7 @@ _AssistantStream_addEvent = function _AssistantStream_addEvent(event) {
         return __classPrivateFieldGet(this, _AssistantStream_runStepSnapshots, "f")[event.data.id];
     throw new Error('No snapshot available');
 }, _AssistantStream_accumulateMessage = function _AssistantStream_accumulateMessage(event, snapshot) {
-    let newContent = [];
+    const newContent = [];
     switch (event.event) {
         case 'thread.message.created':
             //On creation the snapshot is just the initial message
@@ -527,12 +527,12 @@ _AssistantStream_addEvent = function _AssistantStream_addEvent(event) {
             if (!snapshot) {
                 throw Error('Received a delta with no existing snapshot (there should be one from message creation)');
             }
-            let data = event.data;
+            const data = event.data;
             //If this delta does not have content, nothing to process
             if (data.delta.content) {
                 for (const contentElement of data.delta.content) {
                     if (contentElement.index in snapshot.content) {
-                        let currentContent = snapshot.content[contentElement.index];
+                        const currentContent = snapshot.content[contentElement.index];
                         snapshot.content[contentElement.index] = __classPrivateFieldGet(this, _AssistantStream_instances, "m", _AssistantStream_accumulateContent).call(this, contentElement, currentContent);
                     }
                     else {

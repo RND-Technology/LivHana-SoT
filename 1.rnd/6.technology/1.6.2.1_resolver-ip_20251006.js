@@ -36,7 +36,7 @@ const IPV6_SCHEME = 'ipv6';
 const DEFAULT_PORT = 443;
 class IpResolver {
     constructor(target, listener, channelOptions) {
-        var _a;
+        let _a;
         this.listener = listener;
         this.endpoints = [];
         this.error = null;

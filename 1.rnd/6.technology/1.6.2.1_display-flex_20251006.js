@@ -1,6 +1,6 @@
-let OldValue = require('../old-value')
-let Value = require('../value')
-let flexSpec = require('./flex-spec')
+const OldValue = require('../old-value')
+const Value = require('../value')
+const flexSpec = require('./flex-spec')
 
 class DisplayFlex extends Value {
   constructor(name, prefixes) {
@@ -21,7 +21,7 @@ class DisplayFlex extends Value {
    * Change value for old specs
    */
   old(prefix) {
-    let prefixed = this.prefixed(prefix)
+    const prefixed = this.prefixed(prefix)
     if (!prefixed) return undefined
     return new OldValue(this.name, prefixed)
   }

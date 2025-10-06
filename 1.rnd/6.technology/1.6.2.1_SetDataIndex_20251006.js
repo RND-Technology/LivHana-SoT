@@ -1,11 +1,11 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var CanonicalizeKeyedCollectionKey = require('./CanonicalizeKeyedCollectionKey');
-var SameValue = require('./SameValue');
+const CanonicalizeKeyedCollectionKey = require('./CanonicalizeKeyedCollectionKey');
+const SameValue = require('./SameValue');
 
-var isArray = require('../helpers/IsArray');
+const isArray = require('../helpers/IsArray');
 
 // https://262.ecma-international.org/16.0/#sec-setdataindex
 
@@ -14,14 +14,14 @@ module.exports = function SetDataIndex(setData, value) {
 		throw new $TypeError('Assertion failed: `setData` must be a List or ~EMPTY~');
 	}
 
-	var canonValue = CanonicalizeKeyedCollectionKey(value); // step 1
+	const canonValue = CanonicalizeKeyedCollectionKey(value); // step 1
 
-	var size = setData.length; // step 2
+	const size = setData.length; // step 2
 
-	var index = 0; // step 3
+	let index = 0; // step 3
 
 	while (index < size) { // step 4
-		var e = setData[index]; // step 4.a
+		const e = setData[index]; // step 4.a
 		if (/* e !== ~EMPTY~ && */ SameValue(e, canonValue)) { // step 4.b
 			return index; // step 4.b.i
 		}

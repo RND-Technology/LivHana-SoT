@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
 exports.disputeEvidenceSchema = void 0;
-var schema_1 = require("../schema");
-var disputeEvidenceFile_1 = require("./disputeEvidenceFile");
+const schema_1 = require("../schema");
+const disputeEvidenceFile_1 = require("./disputeEvidenceFile");
 exports.disputeEvidenceSchema = (0, schema_1.object)({
     evidenceId: ['evidence_id', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.string)()))],
     id: ['id', (0, schema_1.optional)((0, schema_1.string)())],

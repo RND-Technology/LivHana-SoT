@@ -55,7 +55,7 @@ export function getSiblings(elem) {
  * @returns The element's attribute value, or `undefined`.
  */
 export function getAttributeValue(elem, name) {
-    var _a;
+    let _a;
     return (_a = elem.attribs) === null || _a === void 0 ? void 0 : _a[name];
 }
 /**

@@ -92,7 +92,7 @@ function abortError(command) {
 // example, if the queue looks like this: [2, 3, 4, 0, 1, 2] then after
 // aborting and purging we'll have a queue that looks like this: [0, 1, 2]
 function abortIncompletePipelines(commandQueue) {
-    var _a;
+    let _a;
     let expectedIndex = 0;
     for (let i = 0; i < commandQueue.length;) {
         const command = (_a = commandQueue.peekAt(i)) === null || _a === void 0 ? void 0 : _a.command;
@@ -112,7 +112,7 @@ function abortIncompletePipelines(commandQueue) {
 // we have to abort any transaction fragments that may have ended up in the
 // offline queue
 function abortTransactionFragments(commandQueue) {
-    var _a;
+    let _a;
     for (let i = 0; i < commandQueue.length;) {
         const command = (_a = commandQueue.peekAt(i)) === null || _a === void 0 ? void 0 : _a.command;
         if (command.name === "multi") {
@@ -199,7 +199,7 @@ function errorHandler(self) {
 exports.errorHandler = errorHandler;
 function readyHandler(self) {
     return function () {
-        var _a, _b;
+        let _a, _b;
         self.setStatus("ready");
         self.retryAttempts = 0;
         if (self.options.monitor) {

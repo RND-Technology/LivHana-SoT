@@ -9,12 +9,12 @@
  */
 
 "use strict";
-var React = require("react"),
+const React = require("react"),
   shim = require("use-sync-external-store/shim");
 function is(x, y) {
   return (x === y && (0 !== x || 1 / x === 1 / y)) || (x !== x && y !== y);
 }
-var objectIs = "function" === typeof Object.is ? Object.is : is,
+const objectIs = "function" === typeof Object.is ? Object.is : is,
   useSyncExternalStore = shim.useSyncExternalStore,
   useRef = React.useRef,
   useEffect = React.useEffect,
@@ -27,7 +27,7 @@ exports.useSyncExternalStoreWithSelector = function (
   selector,
   isEqual
 ) {
-  var instRef = useRef(null);
+  let instRef = useRef(null);
   if (null === instRef.current) {
     var inst = { hasValue: !1, value: null };
     instRef.current = inst;
@@ -48,7 +48,7 @@ exports.useSyncExternalStoreWithSelector = function (
         }
         currentSelection = memoizedSelection;
         if (objectIs(memoizedSnapshot, nextSnapshot)) return currentSelection;
-        var nextSelection = selector(nextSnapshot);
+        const nextSelection = selector(nextSnapshot);
         if (void 0 !== isEqual && isEqual(currentSelection, nextSelection))
           return (memoizedSnapshot = nextSnapshot), currentSelection;
         memoizedSnapshot = nextSnapshot;
@@ -72,7 +72,7 @@ exports.useSyncExternalStoreWithSelector = function (
     },
     [getSnapshot, getServerSnapshot, selector, isEqual]
   );
-  var value = useSyncExternalStore(subscribe, instRef[0], instRef[1]);
+  const value = useSyncExternalStore(subscribe, instRef[0], instRef[1]);
   useEffect(
     function () {
       inst.hasValue = !0;

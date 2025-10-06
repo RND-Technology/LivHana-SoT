@@ -1,5 +1,5 @@
 //.CommonJS
-var CSSOM = {
+const CSSOM = {
   CSSRule: require("./CSSRule").CSSRule,
   CSSGroupingRule: require("./CSSGroupingRule").CSSGroupingRule
 };

@@ -1,4 +1,4 @@
-var Stack = require('./_Stack'),
+const Stack = require('./_Stack'),
     arrayEach = require('./_arrayEach'),
     assignValue = require('./_assignValue'),
     baseAssign = require('./_baseAssign'),
@@ -22,12 +22,12 @@ var Stack = require('./_Stack'),
     keysIn = require('./keysIn');
 
 /** Used to compose bitmasks for cloning. */
-var CLONE_DEEP_FLAG = 1,
+const CLONE_DEEP_FLAG = 1,
     CLONE_FLAT_FLAG = 2,
     CLONE_SYMBOLS_FLAG = 4;
 
 /** `Object#toString` result references. */
-var argsTag = '[object Arguments]',
+const argsTag = '[object Arguments]',
     arrayTag = '[object Array]',
     boolTag = '[object Boolean]',
     dateTag = '[object Date]',
@@ -43,7 +43,7 @@ var argsTag = '[object Arguments]',
     symbolTag = '[object Symbol]',
     weakMapTag = '[object WeakMap]';
 
-var arrayBufferTag = '[object ArrayBuffer]',
+const arrayBufferTag = '[object ArrayBuffer]',
     dataViewTag = '[object DataView]',
     float32Tag = '[object Float32Array]',
     float64Tag = '[object Float64Array]',
@@ -56,7 +56,7 @@ var arrayBufferTag = '[object ArrayBuffer]',
     uint32Tag = '[object Uint32Array]';
 
 /** Used to identify `toStringTag` values supported by `_.clone`. */
-var cloneableTags = {};
+const cloneableTags = {};
 cloneableTags[argsTag] = cloneableTags[arrayTag] =
 cloneableTags[arrayBufferTag] = cloneableTags[dataViewTag] =
 cloneableTags[boolTag] = cloneableTags[dateTag] =
@@ -88,7 +88,7 @@ cloneableTags[weakMapTag] = false;
  * @returns {*} Returns the cloned value.
  */
 function baseClone(value, bitmask, customizer, key, object, stack) {
-  var result,
+  let result,
       isDeep = bitmask & CLONE_DEEP_FLAG,
       isFlat = bitmask & CLONE_FLAT_FLAG,
       isFull = bitmask & CLONE_SYMBOLS_FLAG;
@@ -102,14 +102,14 @@ function baseClone(value, bitmask, customizer, key, object, stack) {
   if (!isObject(value)) {
     return value;
   }
-  var isArr = isArray(value);
+  const isArr = isArray(value);
   if (isArr) {
     result = initCloneArray(value);
     if (!isDeep) {
       return copyArray(value, result);
     }
   } else {
-    var tag = getTag(value),
+    const tag = getTag(value),
         isFunc = tag == funcTag || tag == genTag;
 
     if (isBuffer(value)) {
@@ -131,7 +131,7 @@ function baseClone(value, bitmask, customizer, key, object, stack) {
   }
   // Check for circular references and return its corresponding clone.
   stack || (stack = new Stack);
-  var stacked = stack.get(value);
+  const stacked = stack.get(value);
   if (stacked) {
     return stacked;
   }
@@ -147,11 +147,11 @@ function baseClone(value, bitmask, customizer, key, object, stack) {
     });
   }
 
-  var keysFunc = isFull
+  const keysFunc = isFull
     ? (isFlat ? getAllKeysIn : getAllKeys)
     : (isFlat ? keysIn : keys);
 
-  var props = isArr ? undefined : keysFunc(value);
+  const props = isArr ? undefined : keysFunc(value);
   arrayEach(props || value, function(subValue, key) {
     if (props) {
       key = subValue;

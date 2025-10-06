@@ -4,23 +4,23 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.selectScatterPoints = void 0;
-var _reselect = require("reselect");
-var _Scatter = require("../../cartesian/Scatter");
-var _dataSelectors = require("./dataSelectors");
-var _axisSelectors = require("./axisSelectors");
-var selectXAxisWithScale = (state, xAxisId, _yAxisId, _zAxisId, _id, _cells, isPanorama) => (0, _axisSelectors.selectAxisWithScale)(state, 'xAxis', xAxisId, isPanorama);
-var selectXAxisTicks = (state, xAxisId, _yAxisId, _zAxisId, _id, _cells, isPanorama) => (0, _axisSelectors.selectTicksOfGraphicalItem)(state, 'xAxis', xAxisId, isPanorama);
-var selectYAxisWithScale = (state, _xAxisId, yAxisId, _zAxisId, _id, _cells, isPanorama) => (0, _axisSelectors.selectAxisWithScale)(state, 'yAxis', yAxisId, isPanorama);
-var selectYAxisTicks = (state, _xAxisId, yAxisId, _zAxisId, _id, _cells, isPanorama) => (0, _axisSelectors.selectTicksOfGraphicalItem)(state, 'yAxis', yAxisId, isPanorama);
-var selectZAxis = (state, _xAxisId, _yAxisId, zAxisId) => (0, _axisSelectors.selectZAxisWithScale)(state, 'zAxis', zAxisId, false);
-var pickScatterId = (_state, _xAxisId, _yAxisId, _zAxisId, id) => id;
-var pickCells = (_state, _xAxisId, _yAxisId, _zAxisId, _id, cells) => cells;
-var scatterChartDataSelector = (state, xAxisId, yAxisId, _zAxisId, _id, _cells, isPanorama) => (0, _dataSelectors.selectChartDataWithIndexesIfNotInPanorama)(state, xAxisId, yAxisId, isPanorama);
-var selectSynchronisedScatterSettings = (0, _reselect.createSelector)([_axisSelectors.selectUnfilteredCartesianItems, pickScatterId], (graphicalItems, id) => {
+const _reselect = require("reselect");
+const _Scatter = require("../../cartesian/Scatter");
+const _dataSelectors = require("./dataSelectors");
+const _axisSelectors = require("./axisSelectors");
+const selectXAxisWithScale = (state, xAxisId, _yAxisId, _zAxisId, _id, _cells, isPanorama) => (0, _axisSelectors.selectAxisWithScale)(state, 'xAxis', xAxisId, isPanorama);
+const selectXAxisTicks = (state, xAxisId, _yAxisId, _zAxisId, _id, _cells, isPanorama) => (0, _axisSelectors.selectTicksOfGraphicalItem)(state, 'xAxis', xAxisId, isPanorama);
+const selectYAxisWithScale = (state, _xAxisId, yAxisId, _zAxisId, _id, _cells, isPanorama) => (0, _axisSelectors.selectAxisWithScale)(state, 'yAxis', yAxisId, isPanorama);
+const selectYAxisTicks = (state, _xAxisId, yAxisId, _zAxisId, _id, _cells, isPanorama) => (0, _axisSelectors.selectTicksOfGraphicalItem)(state, 'yAxis', yAxisId, isPanorama);
+const selectZAxis = (state, _xAxisId, _yAxisId, zAxisId) => (0, _axisSelectors.selectZAxisWithScale)(state, 'zAxis', zAxisId, false);
+const pickScatterId = (_state, _xAxisId, _yAxisId, _zAxisId, id) => id;
+const pickCells = (_state, _xAxisId, _yAxisId, _zAxisId, _id, cells) => cells;
+const scatterChartDataSelector = (state, xAxisId, yAxisId, _zAxisId, _id, _cells, isPanorama) => (0, _dataSelectors.selectChartDataWithIndexesIfNotInPanorama)(state, xAxisId, yAxisId, isPanorama);
+const selectSynchronisedScatterSettings = (0, _reselect.createSelector)([_axisSelectors.selectUnfilteredCartesianItems, pickScatterId], (graphicalItems, id) => {
   return graphicalItems.filter(item => item.type === 'scatter').find(item => item.id === id);
 });
-var selectScatterPoints = exports.selectScatterPoints = (0, _reselect.createSelector)([scatterChartDataSelector, selectXAxisWithScale, selectXAxisTicks, selectYAxisWithScale, selectYAxisTicks, selectZAxis, selectSynchronisedScatterSettings, pickCells], (_ref, xAxis, xAxisTicks, yAxis, yAxisTicks, zAxis, scatterSettings, cells) => {
-  var {
+const selectScatterPoints = exports.selectScatterPoints = (0, _reselect.createSelector)([scatterChartDataSelector, selectXAxisWithScale, selectXAxisTicks, selectYAxisWithScale, selectYAxisTicks, selectZAxis, selectSynchronisedScatterSettings, pickCells], (_ref, xAxis, xAxisTicks, yAxis, yAxisTicks, zAxis, scatterSettings, cells) => {
+  const {
     chartData,
     dataStartIndex,
     dataEndIndex
@@ -28,7 +28,7 @@ var selectScatterPoints = exports.selectScatterPoints = (0, _reselect.createSele
   if (scatterSettings == null) {
     return undefined;
   }
-  var displayedData;
+  let displayedData;
   if ((scatterSettings === null || scatterSettings === void 0 ? void 0 : scatterSettings.data) != null && scatterSettings.data.length > 0) {
     displayedData = scatterSettings.data;
   } else {

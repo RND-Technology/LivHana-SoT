@@ -1,4 +1,4 @@
-var shuffleSelf = require('./_shuffleSelf'),
+const shuffleSelf = require('./_shuffleSelf'),
     values = require('./values');
 
 /**

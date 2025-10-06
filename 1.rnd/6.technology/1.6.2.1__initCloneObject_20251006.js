@@ -1,4 +1,4 @@
-var baseCreate = require('./_baseCreate'),
+const baseCreate = require('./_baseCreate'),
     getPrototype = require('./_getPrototype'),
     isPrototype = require('./_isPrototype');
 

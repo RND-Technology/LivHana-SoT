@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
 exports.fulfillmentDeliveryDetailsSchema = void 0;
-var schema_1 = require("../schema");
-var fulfillmentRecipient_1 = require("./fulfillmentRecipient");
+const schema_1 = require("../schema");
+const fulfillmentRecipient_1 = require("./fulfillmentRecipient");
 exports.fulfillmentDeliveryDetailsSchema = (0, schema_1.object)({
     recipient: ['recipient', (0, schema_1.optional)((0, schema_1.lazy)(function () { return fulfillmentRecipient_1.fulfillmentRecipientSchema; }))],
     scheduleType: ['schedule_type', (0, schema_1.optional)((0, schema_1.string)())],

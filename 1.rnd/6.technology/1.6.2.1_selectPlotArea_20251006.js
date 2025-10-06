@@ -4,10 +4,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.selectPlotArea = void 0;
-var _reselect = require("reselect");
-var _selectChartOffset = require("./selectChartOffset");
-var _containerSelectors = require("./containerSelectors");
-var selectPlotArea = exports.selectPlotArea = (0, _reselect.createSelector)([_selectChartOffset.selectChartOffset, _containerSelectors.selectChartWidth, _containerSelectors.selectChartHeight], (offset, chartWidth, chartHeight) => {
+const _reselect = require("reselect");
+const _selectChartOffset = require("./selectChartOffset");
+const _containerSelectors = require("./containerSelectors");
+const selectPlotArea = exports.selectPlotArea = (0, _reselect.createSelector)([_selectChartOffset.selectChartOffset, _containerSelectors.selectChartWidth, _containerSelectors.selectChartHeight], (offset, chartWidth, chartHeight) => {
   if (!offset || chartWidth == null || chartHeight == null) {
     return undefined;
   }

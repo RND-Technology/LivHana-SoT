@@ -2,8 +2,8 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var ReactJSXRuntimeDev = require('react/jsx-dev-runtime');
-var emotionElement = require('../../dist/emotion-element-a1829a1e.cjs.js');
+const ReactJSXRuntimeDev = require('react/jsx-dev-runtime');
+const emotionElement = require('../../dist/emotion-element-a1829a1e.cjs.js');
 require('react');
 require('@emotion/cache');
 require('@babel/runtime/helpers/extends');
@@ -16,11 +16,11 @@ require('@emotion/use-insertion-effect-with-fallbacks');
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
-  var n = Object.create(null);
+  const n = Object.create(null);
   if (e) {
     Object.keys(e).forEach(function (k) {
       if (k !== 'default') {
-        var d = Object.getOwnPropertyDescriptor(e, k);
+        const d = Object.getOwnPropertyDescriptor(e, k);
         Object.defineProperty(n, k, d.get ? d : {
           enumerable: true,
           get: function () { return e[k]; }
@@ -32,10 +32,10 @@ function _interopNamespace(e) {
   return Object.freeze(n);
 }
 
-var ReactJSXRuntimeDev__namespace = /*#__PURE__*/_interopNamespace(ReactJSXRuntimeDev);
+const ReactJSXRuntimeDev__namespace = /*#__PURE__*/_interopNamespace(ReactJSXRuntimeDev);
 
-var Fragment = ReactJSXRuntimeDev__namespace.Fragment;
-var jsxDEV = function jsxDEV(type, props, key, isStaticChildren, source, self) {
+const Fragment = ReactJSXRuntimeDev__namespace.Fragment;
+const jsxDEV = function jsxDEV(type, props, key, isStaticChildren, source, self) {
   if (!emotionElement.hasOwn.call(props, 'css')) {
     return ReactJSXRuntimeDev__namespace.jsxDEV(type, props, key, isStaticChildren, source, self);
   }

@@ -1,4 +1,4 @@
-var isSymbol = require('./isSymbol');
+const isSymbol = require('./isSymbol');
 
 /**
  * The base implementation of methods like `_.max` and `_.min` which accepts a
@@ -11,11 +11,11 @@ var isSymbol = require('./isSymbol');
  * @returns {*} Returns the extremum value.
  */
 function baseExtremum(array, iteratee, comparator) {
-  var index = -1,
+  let index = -1,
       length = array.length;
 
   while (++index < length) {
-    var value = array[index],
+    const value = array[index],
         current = iteratee(value);
 
     if (current != null && (computed === undefined

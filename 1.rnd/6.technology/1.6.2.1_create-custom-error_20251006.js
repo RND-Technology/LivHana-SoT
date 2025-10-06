@@ -11,4 +11,4 @@ export function createCustomError(name, message) {
             return (errorStack.stack || '').replace(/^(.+\n){1,3}/, `${name}: ${message}\n`);
         }
     });
-};
+}

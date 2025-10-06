@@ -1,6 +1,6 @@
 'use strict'
 
-let Node = require('./node')
+const Node = require('./node')
 
 class Declaration extends Node {
   get variable() {

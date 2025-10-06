@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.transformReply = exports.transformArguments = exports.IS_READ_ONLY = void 0;
 const SUGGET_1 = require("./SUGGET");
-var SUGGET_2 = require("./SUGGET");
+const SUGGET_2 = require("./SUGGET");
 Object.defineProperty(exports, "IS_READ_ONLY", { enumerable: true, get: function () { return SUGGET_2.IS_READ_ONLY; } });
 function transformArguments(key, prefix, options) {
     return [

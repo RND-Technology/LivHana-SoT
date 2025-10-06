@@ -24,7 +24,7 @@ exports.convert = (globalObject, value, { context = "The provided value" } = {})
 
     observer = utils.tryWrapperForImpl(observer);
 
-    let callResult = Reflect.construct(value, [mutations, observer]);
+    const callResult = Reflect.construct(value, [mutations, observer]);
   };
 
   invokeTheCallbackFunction[utils.wrapperSymbol] = value;

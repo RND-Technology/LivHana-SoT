@@ -19,7 +19,7 @@ exports.searchads360_v0 = void 0;
 /* eslint-disable @typescript-eslint/no-namespace */
 /* eslint-disable no-irregular-whitespace */
 const googleapis_common_1 = require("googleapis-common");
-var searchads360_v0;
+let searchads360_v0;
 (function (searchads360_v0) {
     /**
      * Search Ads 360 Reporting API

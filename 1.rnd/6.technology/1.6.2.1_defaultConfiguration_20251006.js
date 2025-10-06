@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
 exports.DEFAULT_RETRY_CONFIG = exports.DEFAULT_CONFIGURATION = void 0;
-var configuration_1 = require("./configuration");
+const configuration_1 = require("./configuration");
 /** Default values for the configuration parameters of the client. */
 exports.DEFAULT_CONFIGURATION = {
     timeout: 60000,

@@ -4,18 +4,18 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.combineCoordinateForDefaultIndex = void 0;
-var combineCoordinateForDefaultIndex = (width, height, layout, offset, tooltipTicks, defaultIndex, tooltipConfigurations, tooltipPayloadSearcher) => {
+const combineCoordinateForDefaultIndex = (width, height, layout, offset, tooltipTicks, defaultIndex, tooltipConfigurations, tooltipPayloadSearcher) => {
   if (defaultIndex == null || tooltipPayloadSearcher == null) {
     return undefined;
   }
   // With defaultIndex alone, we don't have enough information to decide _which_ of the multiple tooltips to display. So we choose the first one.
-  var firstConfiguration = tooltipConfigurations[0];
+  const firstConfiguration = tooltipConfigurations[0];
   // @ts-expect-error we need to rethink the tooltipPayloadSearcher type
-  var maybePosition = firstConfiguration == null ? undefined : tooltipPayloadSearcher(firstConfiguration.positions, defaultIndex);
+  const maybePosition = firstConfiguration == null ? undefined : tooltipPayloadSearcher(firstConfiguration.positions, defaultIndex);
   if (maybePosition != null) {
     return maybePosition;
   }
-  var tick = tooltipTicks === null || tooltipTicks === void 0 ? void 0 : tooltipTicks[Number(defaultIndex)];
+  const tick = tooltipTicks === null || tooltipTicks === void 0 ? void 0 : tooltipTicks[Number(defaultIndex)];
   if (!tick) {
     return undefined;
   }

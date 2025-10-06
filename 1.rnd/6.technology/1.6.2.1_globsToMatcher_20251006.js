@@ -11,7 +11,7 @@ function _picomatch() {
   };
   return data;
 }
-var _replacePathSepForGlob = _interopRequireDefault(
+const _replacePathSepForGlob = _interopRequireDefault(
   require('./replacePathSepForGlob')
 );
 function _interopRequireDefault(obj) {

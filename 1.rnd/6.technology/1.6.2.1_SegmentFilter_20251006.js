@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
 exports.segmentFilterSchema = void 0;
-var schema_1 = require("../schema");
-var filterValue_1 = require("./filterValue");
+const schema_1 = require("../schema");
+const filterValue_1 = require("./filterValue");
 exports.segmentFilterSchema = (0, schema_1.object)({
     serviceVariationId: ['service_variation_id', (0, schema_1.string)()],
     teamMemberIdFilter: [

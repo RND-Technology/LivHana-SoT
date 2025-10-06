@@ -1,10 +1,10 @@
-var path = require('path');
-var test = require('tape');
-var resolve = require('../');
+const path = require('path');
+const test = require('tape');
+const resolve = require('../');
 
 test('dotdot', function (t) {
     t.plan(4);
-    var dir = path.join(__dirname, '/dotdot/abc');
+    const dir = path.join(__dirname, '/dotdot/abc');
 
     resolve('..', { basedir: dir }, function (err, res, pkg) {
         t.ifError(err);
@@ -19,11 +19,11 @@ test('dotdot', function (t) {
 
 test('dotdot sync', function (t) {
     t.plan(2);
-    var dir = path.join(__dirname, '/dotdot/abc');
+    const dir = path.join(__dirname, '/dotdot/abc');
 
-    var a = resolve.sync('..', { basedir: dir });
+    const a = resolve.sync('..', { basedir: dir });
     t.equal(a, path.join(__dirname, 'dotdot/index.js'));
 
-    var b = resolve.sync('.', { basedir: dir });
+    const b = resolve.sync('.', { basedir: dir });
     t.equal(b, path.join(dir, 'index.js'));
 });

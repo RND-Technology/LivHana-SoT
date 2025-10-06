@@ -41,10 +41,10 @@
 // Maximum search depth for cyclic rational numbers. 2000 should be more than enough.
 // Example: 1/7 = 0.(142857) has 6 repeating decimal places.
 // If MAX_CYCLE_LEN gets reduced, long cycles will not be detected and toString() only gets the first 10 digits
-var MAX_CYCLE_LEN = 2000;
+const MAX_CYCLE_LEN = 2000;
 
 // Parsed data to avoid calling "new" all the time
-var P = {
+const P = {
   "s": 1,
   "n": 0,
   "d": 1
@@ -65,12 +65,12 @@ function newFraction(n, d) {
     throw DivisionByZero();
   }
 
-  var f = Object.create(Fraction.prototype);
+  const f = Object.create(Fraction.prototype);
   f["s"] = n < 0 ? -1 : 1;
 
   n = n < 0 ? -n : n;
 
-  var a = gcd(n, d);
+  const a = gcd(n, d);
 
   f["n"] = n / a;
   f["d"] = d / a;
@@ -79,11 +79,11 @@ function newFraction(n, d) {
 
 function factorize(num) {
 
-  var factors = {};
+  const factors = {};
 
-  var n = num;
-  var i = 2;
-  var s = 4;
+  let n = num;
+  let i = 2;
+  let s = 4;
 
   while (s <= n) {
 
@@ -103,16 +103,16 @@ function factorize(num) {
   return factors;
 }
 
-var parse = function(p1, p2) {
+const parse = function(p1, p2) {
 
-  var n = 0, d = 1, s = 1;
-  var v = 0, w = 0, x = 0, y = 1, z = 1;
+  let n = 0, d = 1, s = 1;
+  let v = 0, w = 0, x = 0, y = 1, z = 1;
 
-  var A = 0, B = 1;
-  var C = 1, D = 1;
+  let A = 0, B = 1;
+  let C = 1, D = 1;
 
-  var N = 10000000;
-  var M;
+  const N = 10000000;
+  let M;
 
   if (p1 === undefined || p1 === null) {
     /* void */
@@ -277,7 +277,7 @@ var parse = function(p1, p2) {
 
 function modpow(b, e, m) {
 
-  var r = 1;
+  let r = 1;
   for (; e > 0; b = (b * b) % m, e >>= 1) {
 
     if (e & 1) {
@@ -306,8 +306,8 @@ function cycleLen(n, d) {
   // However, we don't need such large numbers and MAX_CYCLE_LEN should be the capstone,
   // as we want to translate the numbers to strings.
 
-  var rem = 10 % d;
-  var t = 1;
+  let rem = 10 % d;
+  let t = 1;
 
   for (; rem !== 1; t++) {
     rem = rem * 10 % d;
@@ -321,10 +321,10 @@ function cycleLen(n, d) {
 
 function cycleStart(n, d, len) {
 
-  var rem1 = 1;
-  var rem2 = modpow(10, len, d);
+  let rem1 = 1;
+  let rem2 = modpow(10, len, d);
 
-  for (var t = 0; t < 300; t++) { // s < ~log10(Number.MAX_VALUE)
+  for (let t = 0; t < 300; t++) { // s < ~log10(Number.MAX_VALUE)
     // Solve 10^s == 10^(s+t) (mod d)
 
     if (rem1 === rem2)
@@ -351,7 +351,7 @@ function gcd(a, b) {
     if (!b)
       return a;
   }
-};
+}
 
 /**
  * Module constructor
@@ -642,12 +642,12 @@ Fraction.prototype = {
     if (this['s'] < 0) return null;
 
     // Now prime factor n and d
-    var N = factorize(this['n']);
-    var D = factorize(this['d']);
+    const N = factorize(this['n']);
+    const D = factorize(this['d']);
 
     // Exponentiate and take root for n and d individually
-    var n = 1;
-    var d = 1;
+    let n = 1;
+    let d = 1;
     for (var k in N) {
       if (k === '1') continue;
       if (k === '0') {
@@ -697,7 +697,7 @@ Fraction.prototype = {
   "compare": function(a, b) {
 
     parse(a, b);
-    var t = (this["s"] * this["n"] * P["d"] - P["s"] * P["n"] * this["d"]);
+    const t = (this["s"] * this["n"] * P["d"] - P["s"] * P["n"] * this["d"]);
     return (0 < t) - (t < 0);
   },
 
@@ -709,13 +709,13 @@ Fraction.prototype = {
 
     eps = eps || 0.001;
 
-    var thisABS = this['abs']();
-    var cont = thisABS['toContinued']();
+    const thisABS = this['abs']();
+    const cont = thisABS['toContinued']();
 
-    for (var i = 1; i < cont.length; i++) {
+    for (let i = 1; i < cont.length; i++) {
 
-      var s = newFraction(cont[i - 1], 1);
-      for (var k = i - 2; k >= 0; k--) {
+      let s = newFraction(cont[i - 1], 1);
+      for (let k = i - 2; k >= 0; k--) {
         s = s['inverse']()['add'](cont[k]);
       }
 
@@ -754,9 +754,9 @@ Fraction.prototype = {
    **/
   'toFraction': function(excludeWhole) {
 
-    var whole, str = "";
-    var n = this["n"];
-    var d = this["d"];
+    let whole, str = "";
+    let n = this["n"];
+    const d = this["d"];
     if (this["s"] < 0) {
       str+= '-';
     }
@@ -785,9 +785,9 @@ Fraction.prototype = {
    **/
   'toLatex': function(excludeWhole) {
 
-    var whole, str = "";
-    var n = this["n"];
-    var d = this["d"];
+    let whole, str = "";
+    let n = this["n"];
+    const d = this["d"];
     if (this["s"] < 0) {
       str+= '-';
     }
@@ -817,10 +817,10 @@ Fraction.prototype = {
    */
   'toContinued': function() {
 
-    var t;
-    var a = this['n'];
-    var b = this['d'];
-    var res = [];
+    let t;
+    let a = this['n'];
+    let b = this['d'];
+    const res = [];
 
     if (isNaN(a) || isNaN(b)) {
       return res;
@@ -843,8 +843,8 @@ Fraction.prototype = {
    **/
   'toString': function(dec) {
 
-    var N = this["n"];
-    var D = this["d"];
+    let N = this["n"];
+    const D = this["d"];
 
     if (isNaN(N) || isNaN(D)) {
       return "NaN";
@@ -852,10 +852,10 @@ Fraction.prototype = {
 
     dec = dec || 15; // 15 = decimal places when no repetation
 
-    var cycLen = cycleLen(N, D); // Cycle length
-    var cycOff = cycleStart(N, D, cycLen); // Cycle start
+    const cycLen = cycleLen(N, D); // Cycle length
+    const cycOff = cycleStart(N, D, cycLen); // Cycle start
 
-    var str = this['s'] < 0 ? "-" : "";
+    let str = this['s'] < 0 ? "-" : "";
 
     str+= N / D | 0;
 

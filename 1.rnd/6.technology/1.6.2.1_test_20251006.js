@@ -1,13 +1,13 @@
 /*jshint node:true */
 'use strict';
 
-var bufferEq = require('./index');
-var assert = require('assert');
+const bufferEq = require('./index');
+const assert = require('assert');
 
 describe('buffer-equal-constant-time', function() {
-  var a = new Buffer('asdfasdf123456');
-  var b = new Buffer('asdfasdf123456');
-  var c = new Buffer('asdfasdf');
+  const a = new Buffer('asdfasdf123456');
+  const b = new Buffer('asdfasdf123456');
+  const c = new Buffer('asdfasdf');
 
   describe('bufferEq', function() {
     it('says a == b', function() {
@@ -28,7 +28,7 @@ describe('buffer-equal-constant-time', function() {
     });
 
     it('installed an .equal method', function() {
-      var SlowBuffer = require('buffer').SlowBuffer;
+      const SlowBuffer = require('buffer').SlowBuffer;
       assert.ok(Buffer.prototype.equal);
       assert.ok(SlowBuffer.prototype.equal);
     });

@@ -17,7 +17,7 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ConnectivityState = void 0;
-var ConnectivityState;
+let ConnectivityState;
 (function (ConnectivityState) {
     ConnectivityState[ConnectivityState["IDLE"] = 0] = "IDLE";
     ConnectivityState[ConnectivityState["CONNECTING"] = 1] = "CONNECTING";

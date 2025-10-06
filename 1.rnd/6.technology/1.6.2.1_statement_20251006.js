@@ -1,6 +1,6 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true});/* eslint max-len: 0 */
 
-var _index = require('../index');
+const _index = require('../index');
 
 
 
@@ -17,7 +17,7 @@ var _index = require('../index');
 
 
 
-var _flow = require('../plugins/flow');
+const _flow = require('../plugins/flow');
 
 
 
@@ -36,7 +36,7 @@ var _flow = require('../plugins/flow');
 
 
 
-var _typescript = require('../plugins/typescript');
+const _typescript = require('../plugins/typescript');
 
 
 
@@ -49,12 +49,12 @@ var _typescript = require('../plugins/typescript');
 
 
 
-var _tokenizer = require('../tokenizer');
-var _keywords = require('../tokenizer/keywords');
-var _state = require('../tokenizer/state');
-var _types = require('../tokenizer/types');
-var _charcodes = require('../util/charcodes');
-var _base = require('./base');
+const _tokenizer = require('../tokenizer');
+const _keywords = require('../tokenizer/keywords');
+const _state = require('../tokenizer/state');
+const _types = require('../tokenizer/types');
+const _charcodes = require('../util/charcodes');
+const _base = require('./base');
 
 
 
@@ -67,13 +67,13 @@ var _base = require('./base');
 
 
 
-var _expression = require('./expression');
+const _expression = require('./expression');
 
 
 
 
 
-var _lval = require('./lval');
+const _lval = require('./lval');
 
 
 
@@ -86,7 +86,7 @@ var _lval = require('./lval');
 
 
 
-var _util = require('./util');
+const _util = require('./util');
 
  function parseTopLevel() {
   parseBlockBody(_types.TokenType.eof);

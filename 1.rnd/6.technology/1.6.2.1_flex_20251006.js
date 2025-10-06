@@ -1,7 +1,7 @@
-let list = require('postcss').list
+const list = require('postcss').list
 
-let Declaration = require('../declaration')
-let flexSpec = require('./flex-spec')
+const Declaration = require('../declaration')
+const flexSpec = require('./flex-spec')
 
 class Flex extends Declaration {
   /**
@@ -28,14 +28,14 @@ class Flex extends Declaration {
    * Spec 2012 disallows unitless basis
    */
   set(decl, prefix) {
-    let spec = flexSpec(prefix)[0]
+    const spec = flexSpec(prefix)[0]
     if (spec === 2009) {
       decl.value = list.space(decl.value)[0]
       decl.value = Flex.oldValues[decl.value] || decl.value
       return super.set(decl, prefix)
     }
     if (spec === 2012) {
-      let components = list.space(decl.value)
+      const components = list.space(decl.value)
       if (components.length === 3 && components[2] === '0') {
         decl.value = components.slice(0, 2).concat('0px').join(' ')
       }

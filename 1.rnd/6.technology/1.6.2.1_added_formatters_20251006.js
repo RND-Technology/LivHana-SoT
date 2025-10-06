@@ -1,12 +1,12 @@
 'use strict';
 
-var util    = require('util');
+const util    = require('util');
 
 // Constants
-var c = require('../const');
+const c = require('../const');
 
-var $$ = require('../utils');
-var HelpFormatter = require('./formatter.js');
+const $$ = require('../utils');
+const HelpFormatter = require('./formatter.js');
 
 /**
  * new RawDescriptionHelpFormatter(options)
@@ -25,10 +25,10 @@ function ArgumentDefaultsHelpFormatter(options) {
 util.inherits(ArgumentDefaultsHelpFormatter, HelpFormatter);
 
 ArgumentDefaultsHelpFormatter.prototype._getHelpString = function (action) {
-  var help = action.help;
+  let help = action.help;
   if (action.help.indexOf('%(defaultValue)s') === -1) {
     if (action.defaultValue !== c.SUPPRESS) {
-      var defaulting_nargs = [ c.OPTIONAL, c.ZERO_OR_MORE ];
+      const defaulting_nargs = [ c.OPTIONAL, c.ZERO_OR_MORE ];
       if (action.isOptional() || (defaulting_nargs.indexOf(action.nargs) >= 0)) {
         help += ' (default: %(defaultValue)s)';
       }
@@ -56,7 +56,7 @@ function RawDescriptionHelpFormatter(options) {
 util.inherits(RawDescriptionHelpFormatter, HelpFormatter);
 
 RawDescriptionHelpFormatter.prototype._fillText = function (text, width, indent) {
-  var lines = text.split('\n');
+  let lines = text.split('\n');
   lines = lines.map(function (line) {
     return $$.trimEnd(indent + line);
   });

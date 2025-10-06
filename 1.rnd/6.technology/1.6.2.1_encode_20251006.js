@@ -1,12 +1,12 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
+const __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.encodeNonAsciiHTML = exports.encodeHTML = void 0;
-var encode_html_js_1 = __importDefault(require("./generated/encode-html.js"));
-var escape_js_1 = require("./escape.js");
-var htmlReplacer = /[\t\n!-,./:-@[-`\f{-}$\x80-\uFFFF]/g;
+const encode_html_js_1 = __importDefault(require("./generated/encode-html.js"));
+const escape_js_1 = require("./escape.js");
+const htmlReplacer = /[\t\n!-,./:-@[-`\f{-}$\x80-\uFFFF]/g;
 /**
  * Encodes all characters in the input using HTML entities. This includes
  * characters that are valid ASCII characters in HTML documents, such as `#`.
@@ -35,19 +35,19 @@ function encodeNonAsciiHTML(data) {
 }
 exports.encodeNonAsciiHTML = encodeNonAsciiHTML;
 function encodeHTMLTrieRe(regExp, str) {
-    var ret = "";
-    var lastIdx = 0;
-    var match;
+    let ret = "";
+    let lastIdx = 0;
+    let match;
     while ((match = regExp.exec(str)) !== null) {
-        var i = match.index;
+        const i = match.index;
         ret += str.substring(lastIdx, i);
-        var char = str.charCodeAt(i);
-        var next = encode_html_js_1.default.get(char);
+        const char = str.charCodeAt(i);
+        let next = encode_html_js_1.default.get(char);
         if (typeof next === "object") {
             // We are in a branch. Try to match the next char.
             if (i + 1 < str.length) {
-                var nextChar = str.charCodeAt(i + 1);
-                var value = typeof next.n === "number"
+                const nextChar = str.charCodeAt(i + 1);
+                const value = typeof next.n === "number"
                     ? next.n === nextChar
                         ? next.o
                         : undefined
@@ -66,7 +66,7 @@ function encodeHTMLTrieRe(regExp, str) {
             lastIdx = i + 1;
         }
         else {
-            var cp = (0, escape_js_1.getCodePoint)(str, i);
+            const cp = (0, escape_js_1.getCodePoint)(str, i);
             ret += "&#x".concat(cp.toString(16), ";");
             // Increase by 1 if we have a surrogate pair
             lastIdx = regExp.lastIndex += Number(cp !== char);

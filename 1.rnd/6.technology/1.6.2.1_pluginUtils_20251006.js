@@ -40,7 +40,7 @@ function resolveArbitraryValue(modifier, validate) {
     return undefined
   }
 
-  let value = modifier.slice(1, -1)
+  const value = modifier.slice(1, -1)
 
   if (!validate(value)) {
     return undefined
@@ -50,14 +50,14 @@ function resolveArbitraryValue(modifier, validate) {
 }
 
 function asNegativeValue(modifier, lookup = {}, validate) {
-  let positiveValue = lookup[modifier]
+  const positiveValue = lookup[modifier]
 
   if (positiveValue !== undefined) {
     return negateValue(positiveValue)
   }
 
   if (isArbitraryValue(modifier)) {
-    let resolved = resolveArbitraryValue(modifier, validate)
+    const resolved = resolveArbitraryValue(modifier, validate)
 
     if (resolved === undefined) {
       return undefined
@@ -68,7 +68,7 @@ function asNegativeValue(modifier, lookup = {}, validate) {
 }
 
 export function asValue(modifier, options = {}, { validate = () => true } = {}) {
-  let value = options.values?.[modifier]
+  const value = options.values?.[modifier]
 
   if (value !== undefined) {
     return value
@@ -90,10 +90,10 @@ function splitUtilityModifier(modifier) {
 
   // If the `/` is inside an arbitrary, we want to find the previous one if any
   // This logic probably isn't perfect but it should work for most cases
-  let arbitraryStartIdx = modifier.lastIndexOf('[', slashIdx)
-  let arbitraryEndIdx = modifier.indexOf(']', slashIdx)
+  const arbitraryStartIdx = modifier.lastIndexOf('[', slashIdx)
+  const arbitraryEndIdx = modifier.indexOf(']', slashIdx)
 
-  let isNextToArbitrary = modifier[slashIdx - 1] === ']' || modifier[slashIdx + 1] === '['
+  const isNextToArbitrary = modifier[slashIdx - 1] === ']' || modifier[slashIdx + 1] === '['
 
   // Backtrack to the previous `/` if the one we found was inside an arbitrary
   if (!isNextToArbitrary) {
@@ -108,7 +108,7 @@ function splitUtilityModifier(modifier) {
     return [modifier, undefined]
   }
 
-  let arbitrary = isArbitraryValue(modifier)
+  const arbitrary = isArbitraryValue(modifier)
 
   // The modifier could be of the form `[foo]/[bar]`
   // We want to handle this case properly
@@ -122,7 +122,7 @@ function splitUtilityModifier(modifier) {
 
 export function parseColorFormat(value) {
   if (typeof value === 'string' && value.includes('<alpha-value>')) {
-    let oldValue = value
+    const oldValue = value
 
     return ({ opacityValue = 1 }) => oldValue.replace(/<alpha-value>/g, opacityValue)
   }
@@ -141,7 +141,7 @@ export function asColor(modifier, options = {}, { tailwindConfig = {} } = {}) {
 
   // TODO: Hoist this up to getMatchingTypes or something
   // We do this here because we need the alpha value (if any)
-  let [color, alpha] = splitUtilityModifier(modifier)
+  const [color, alpha] = splitUtilityModifier(modifier)
 
   if (alpha !== undefined) {
     let normalizedColor =
@@ -177,7 +177,7 @@ function guess(validate) {
   }
 }
 
-export let typeMap = {
+export const typeMap = {
   any: asValue,
   color: asColor,
   url: guess(url),
@@ -196,18 +196,18 @@ export let typeMap = {
   size: guess(backgroundSize),
 }
 
-let supportedTypes = Object.keys(typeMap)
+const supportedTypes = Object.keys(typeMap)
 
 function splitAtFirst(input, delim) {
-  let idx = input.indexOf(delim)
+  const idx = input.indexOf(delim)
   if (idx === -1) return [undefined, input]
   return [input.slice(0, idx), input.slice(idx + 1)]
 }
 
 export function coerceValue(types, modifier, options, tailwindConfig) {
   if (options.values && modifier in options.values) {
-    for (let { type } of types ?? []) {
-      let result = typeMap[type](modifier, options, {
+    for (const { type } of types ?? []) {
+      const result = typeMap[type](modifier, options, {
         tailwindConfig,
       })
 
@@ -220,7 +220,7 @@ export function coerceValue(types, modifier, options, tailwindConfig) {
   }
 
   if (isArbitraryValue(modifier)) {
-    let arbitraryValue = modifier.slice(1, -1)
+    const arbitraryValue = modifier.slice(1, -1)
     let [explicitType, value] = splitAtFirst(arbitraryValue, ':')
 
     // It could be that this resolves to `url(https` which is not a valid
@@ -240,10 +240,10 @@ export function coerceValue(types, modifier, options, tailwindConfig) {
     }
   }
 
-  let matches = getMatchingTypes(types, modifier, options, tailwindConfig)
+  const matches = getMatchingTypes(types, modifier, options, tailwindConfig)
 
   // Find first matching type
-  for (let match of matches) {
+  for (const match of matches) {
     return match
   }
 
@@ -259,11 +259,11 @@ export function coerceValue(types, modifier, options, tailwindConfig) {
  * @returns {Iterator<[value: string, type: string, modifier: string | null]>}
  */
 export function* getMatchingTypes(types, rawModifier, options, tailwindConfig) {
-  let modifiersEnabled = flagEnabled(tailwindConfig, 'generalizedModifiers')
+  const modifiersEnabled = flagEnabled(tailwindConfig, 'generalizedModifiers')
 
   let [modifier, utilityModifier] = splitUtilityModifier(rawModifier)
 
-  let canUseUtilityModifier =
+  const canUseUtilityModifier =
     modifiersEnabled &&
     options.modifiers != null &&
     (options.modifiers === 'any' ||
@@ -284,7 +284,7 @@ export function* getMatchingTypes(types, rawModifier, options, tailwindConfig) {
   // TODO: Move to asValue… somehow
   if (utilityModifier !== undefined) {
     if (typeof options.modifiers === 'object') {
-      let configValue = options.modifiers?.[utilityModifier] ?? null
+      const configValue = options.modifiers?.[utilityModifier] ?? null
       if (configValue !== null) {
         utilityModifier = configValue
       } else if (isArbitraryValue(utilityModifier)) {
@@ -293,8 +293,8 @@ export function* getMatchingTypes(types, rawModifier, options, tailwindConfig) {
     }
   }
 
-  for (let { type } of types ?? []) {
-    let result = typeMap[type](modifier, options, {
+  for (const { type } of types ?? []) {
+    const result = typeMap[type](modifier, options, {
       tailwindConfig,
     })
 

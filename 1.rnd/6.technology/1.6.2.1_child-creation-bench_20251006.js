@@ -28,42 +28,42 @@ require('bole').output({
 const run = bench([
   function benchBunyanCreation (cb) {
     const child = blog.child({ a: 'property' })
-    for (var i = 0; i < max; i++) {
+    for (let i = 0; i < max; i++) {
       child.info({ hello: 'world' })
     }
     setImmediate(cb)
   },
   function benchBoleCreation (cb) {
     const child = bole('child')
-    for (var i = 0; i < max; i++) {
+    for (let i = 0; i < max; i++) {
       child.info({ hello: 'world' })
     }
     setImmediate(cb)
   },
   function benchPinoCreation (cb) {
     const child = plogDest.child({ a: 'property' })
-    for (var i = 0; i < max; i++) {
+    for (let i = 0; i < max; i++) {
       child.info({ hello: 'world' })
     }
     setImmediate(cb)
   },
   function benchPinoMinLengthCreation (cb) {
     const child = plogMinLength.child({ a: 'property' })
-    for (var i = 0; i < max; i++) {
+    for (let i = 0; i < max; i++) {
       child.info({ hello: 'world' })
     }
     setImmediate(cb)
   },
   function benchPinoNodeStreamCreation (cb) {
     const child = plogNodeStream.child({ a: 'property' })
-    for (var i = 0; i < max; i++) {
+    for (let i = 0; i < max; i++) {
       child.info({ hello: 'world' })
     }
     setImmediate(cb)
   },
   function benchPinoCreationWithOption (cb) {
     const child = plogDest.child({ a: 'property' }, { redact: [] })
-    for (var i = 0; i < max; i++) {
+    for (let i = 0; i < max; i++) {
       child.info({ hello: 'world' })
     }
     setImmediate(cb)

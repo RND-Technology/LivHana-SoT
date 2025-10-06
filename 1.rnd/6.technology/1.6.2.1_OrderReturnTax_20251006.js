@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
 exports.orderReturnTaxSchema = void 0;
-var schema_1 = require("../schema");
-var money_1 = require("./money");
+const schema_1 = require("../schema");
+const money_1 = require("./money");
 exports.orderReturnTaxSchema = (0, schema_1.object)({
     uid: ['uid', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.string)()))],
     sourceTaxUid: ['source_tax_uid', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.string)()))],

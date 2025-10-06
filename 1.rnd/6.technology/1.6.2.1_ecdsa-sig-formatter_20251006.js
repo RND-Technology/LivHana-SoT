@@ -1,10 +1,10 @@
 'use strict';
 
-var Buffer = require('safe-buffer').Buffer;
+const Buffer = require('safe-buffer').Buffer;
 
-var getParamBytesForAlg = require('./param-bytes-for-alg');
+const getParamBytesForAlg = require('./param-bytes-for-alg');
 
-var MAX_OCTET = 0x80,
+const MAX_OCTET = 0x80,
 	CLASS_UNIVERSAL = 0,
 	PRIMITIVE_BIT = 0x20,
 	TAG_SEQ = 0x10,
@@ -31,20 +31,20 @@ function signatureAsBuffer(signature) {
 
 function derToJose(signature, alg) {
 	signature = signatureAsBuffer(signature);
-	var paramBytes = getParamBytesForAlg(alg);
+	const paramBytes = getParamBytesForAlg(alg);
 
 	// the DER encoded param should at most be the param size, plus a padding
 	// zero, since due to being a signed integer
-	var maxEncodedParamLength = paramBytes + 1;
+	const maxEncodedParamLength = paramBytes + 1;
 
-	var inputLength = signature.length;
+	const inputLength = signature.length;
 
-	var offset = 0;
+	let offset = 0;
 	if (signature[offset++] !== ENCODED_TAG_SEQ) {
 		throw new Error('Could not find expected "seq"');
 	}
 
-	var seqLength = signature[offset++];
+	let seqLength = signature[offset++];
 	if (seqLength === (MAX_OCTET | 1)) {
 		seqLength = signature[offset++];
 	}
@@ -57,7 +57,7 @@ function derToJose(signature, alg) {
 		throw new Error('Could not find expected "int" for "r"');
 	}
 
-	var rLength = signature[offset++];
+	const rLength = signature[offset++];
 
 	if (inputLength - offset - 2 < rLength) {
 		throw new Error('"r" specified length of "' + rLength + '", only "' + (inputLength - offset - 2) + '" available');
@@ -67,14 +67,14 @@ function derToJose(signature, alg) {
 		throw new Error('"r" specified length of "' + rLength + '", max of "' + maxEncodedParamLength + '" is acceptable');
 	}
 
-	var rOffset = offset;
+	const rOffset = offset;
 	offset += rLength;
 
 	if (signature[offset++] !== ENCODED_TAG_INT) {
 		throw new Error('Could not find expected "int" for "s"');
 	}
 
-	var sLength = signature[offset++];
+	const sLength = signature[offset++];
 
 	if (inputLength - offset !== sLength) {
 		throw new Error('"s" specified length of "' + sLength + '", expected "' + (inputLength - offset) + '"');
@@ -84,17 +84,17 @@ function derToJose(signature, alg) {
 		throw new Error('"s" specified length of "' + sLength + '", max of "' + maxEncodedParamLength + '" is acceptable');
 	}
 
-	var sOffset = offset;
+	const sOffset = offset;
 	offset += sLength;
 
 	if (offset !== inputLength) {
 		throw new Error('Expected to consume entire buffer, but "' + (inputLength - offset) + '" bytes remain');
 	}
 
-	var rPadding = paramBytes - rLength,
+	const rPadding = paramBytes - rLength,
 		sPadding = paramBytes - sLength;
 
-	var dst = Buffer.allocUnsafe(rPadding + rLength + sPadding + sLength);
+	let dst = Buffer.allocUnsafe(rPadding + rLength + sPadding + sLength);
 
 	for (offset = 0; offset < rPadding; ++offset) {
 		dst[offset] = 0;
@@ -103,7 +103,7 @@ function derToJose(signature, alg) {
 
 	offset = paramBytes;
 
-	for (var o = offset; offset < o + sPadding; ++offset) {
+	for (let o = offset; offset < o + sPadding; ++offset) {
 		dst[offset] = 0;
 	}
 	signature.copy(dst, offset, sOffset + Math.max(-sPadding, 0), sOffset + sLength);
@@ -115,12 +115,12 @@ function derToJose(signature, alg) {
 }
 
 function countPadding(buf, start, stop) {
-	var padding = 0;
+	let padding = 0;
 	while (start + padding < stop && buf[start + padding] === 0) {
 		++padding;
 	}
 
-	var needsSign = buf[start + padding] >= MAX_OCTET;
+	const needsSign = buf[start + padding] >= MAX_OCTET;
 	if (needsSign) {
 		--padding;
 	}
@@ -130,25 +130,25 @@ function countPadding(buf, start, stop) {
 
 function joseToDer(signature, alg) {
 	signature = signatureAsBuffer(signature);
-	var paramBytes = getParamBytesForAlg(alg);
+	const paramBytes = getParamBytesForAlg(alg);
 
-	var signatureBytes = signature.length;
+	const signatureBytes = signature.length;
 	if (signatureBytes !== paramBytes * 2) {
 		throw new TypeError('"' + alg + '" signatures must be "' + paramBytes * 2 + '" bytes, saw "' + signatureBytes + '"');
 	}
 
-	var rPadding = countPadding(signature, 0, paramBytes);
-	var sPadding = countPadding(signature, paramBytes, signature.length);
-	var rLength = paramBytes - rPadding;
-	var sLength = paramBytes - sPadding;
+	const rPadding = countPadding(signature, 0, paramBytes);
+	const sPadding = countPadding(signature, paramBytes, signature.length);
+	const rLength = paramBytes - rPadding;
+	const sLength = paramBytes - sPadding;
 
-	var rsBytes = 1 + 1 + rLength + 1 + 1 + sLength;
+	const rsBytes = 1 + 1 + rLength + 1 + 1 + sLength;
 
-	var shortLength = rsBytes < MAX_OCTET;
+	const shortLength = rsBytes < MAX_OCTET;
 
-	var dst = Buffer.allocUnsafe((shortLength ? 2 : 3) + rsBytes);
+	const dst = Buffer.allocUnsafe((shortLength ? 2 : 3) + rsBytes);
 
-	var offset = 0;
+	let offset = 0;
 	dst[offset++] = ENCODED_TAG_SEQ;
 	if (shortLength) {
 		// Bit 8 has value "0"

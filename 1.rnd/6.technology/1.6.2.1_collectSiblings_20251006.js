@@ -1,11 +1,11 @@
 "use strict";
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+const _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 exports.__esModule = true;
 exports.default = collectSiblings;
 
-var _matches = _interopRequireDefault(require("./matches"));
+const _matches = _interopRequireDefault(require("./matches"));
 
 function collectSiblings(node, refNode, selector) {
   if (refNode === void 0) {
@@ -16,7 +16,7 @@ function collectSiblings(node, refNode, selector) {
     selector = null;
   }
 
-  var siblings = [];
+  const siblings = [];
 
   for (; node; node = node.nextElementSibling) {
     if (node !== refNode) {

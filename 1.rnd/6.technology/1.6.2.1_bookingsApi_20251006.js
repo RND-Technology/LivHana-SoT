@@ -1,29 +1,29 @@
 "use strict";
 exports.__esModule = true;
 exports.BookingsApi = void 0;
-var tslib_1 = require("tslib");
-var bulkRetrieveBookingsRequest_1 = require("../models/bulkRetrieveBookingsRequest");
-var bulkRetrieveBookingsResponse_1 = require("../models/bulkRetrieveBookingsResponse");
-var bulkRetrieveTeamMemberBookingProfilesRequest_1 = require("../models/bulkRetrieveTeamMemberBookingProfilesRequest");
-var bulkRetrieveTeamMemberBookingProfilesResponse_1 = require("../models/bulkRetrieveTeamMemberBookingProfilesResponse");
-var cancelBookingRequest_1 = require("../models/cancelBookingRequest");
-var cancelBookingResponse_1 = require("../models/cancelBookingResponse");
-var createBookingRequest_1 = require("../models/createBookingRequest");
-var createBookingResponse_1 = require("../models/createBookingResponse");
-var listBookingsResponse_1 = require("../models/listBookingsResponse");
-var listLocationBookingProfilesResponse_1 = require("../models/listLocationBookingProfilesResponse");
-var listTeamMemberBookingProfilesResponse_1 = require("../models/listTeamMemberBookingProfilesResponse");
-var retrieveBookingResponse_1 = require("../models/retrieveBookingResponse");
-var retrieveBusinessBookingProfileResponse_1 = require("../models/retrieveBusinessBookingProfileResponse");
-var retrieveLocationBookingProfileResponse_1 = require("../models/retrieveLocationBookingProfileResponse");
-var retrieveTeamMemberBookingProfileResponse_1 = require("../models/retrieveTeamMemberBookingProfileResponse");
-var searchAvailabilityRequest_1 = require("../models/searchAvailabilityRequest");
-var searchAvailabilityResponse_1 = require("../models/searchAvailabilityResponse");
-var updateBookingRequest_1 = require("../models/updateBookingRequest");
-var updateBookingResponse_1 = require("../models/updateBookingResponse");
-var schema_1 = require("../schema");
-var baseApi_1 = require("./baseApi");
-var BookingsApi = /** @class */ (function (_super) {
+const tslib_1 = require("tslib");
+const bulkRetrieveBookingsRequest_1 = require("../models/bulkRetrieveBookingsRequest");
+const bulkRetrieveBookingsResponse_1 = require("../models/bulkRetrieveBookingsResponse");
+const bulkRetrieveTeamMemberBookingProfilesRequest_1 = require("../models/bulkRetrieveTeamMemberBookingProfilesRequest");
+const bulkRetrieveTeamMemberBookingProfilesResponse_1 = require("../models/bulkRetrieveTeamMemberBookingProfilesResponse");
+const cancelBookingRequest_1 = require("../models/cancelBookingRequest");
+const cancelBookingResponse_1 = require("../models/cancelBookingResponse");
+const createBookingRequest_1 = require("../models/createBookingRequest");
+const createBookingResponse_1 = require("../models/createBookingResponse");
+const listBookingsResponse_1 = require("../models/listBookingsResponse");
+const listLocationBookingProfilesResponse_1 = require("../models/listLocationBookingProfilesResponse");
+const listTeamMemberBookingProfilesResponse_1 = require("../models/listTeamMemberBookingProfilesResponse");
+const retrieveBookingResponse_1 = require("../models/retrieveBookingResponse");
+const retrieveBusinessBookingProfileResponse_1 = require("../models/retrieveBusinessBookingProfileResponse");
+const retrieveLocationBookingProfileResponse_1 = require("../models/retrieveLocationBookingProfileResponse");
+const retrieveTeamMemberBookingProfileResponse_1 = require("../models/retrieveTeamMemberBookingProfileResponse");
+const searchAvailabilityRequest_1 = require("../models/searchAvailabilityRequest");
+const searchAvailabilityResponse_1 = require("../models/searchAvailabilityResponse");
+const updateBookingRequest_1 = require("../models/updateBookingRequest");
+const updateBookingResponse_1 = require("../models/updateBookingResponse");
+const schema_1 = require("../schema");
+const baseApi_1 = require("./baseApi");
+const BookingsApi = /** @class */ (function (_super) {
     tslib_1.__extends(BookingsApi, _super);
     function BookingsApi() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -52,7 +52,7 @@ var BookingsApi = /** @class */ (function (_super) {
      */
     BookingsApi.prototype.listBookings = function (limit, cursor, customerId, teamMemberId, locationId, startAtMin, startAtMax, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET', '/v2/bookings');
                 mapped = req.prepareArgs({
@@ -100,7 +100,7 @@ var BookingsApi = /** @class */ (function (_super) {
      */
     BookingsApi.prototype.createBooking = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/bookings');
                 mapped = req.prepareArgs({
@@ -126,7 +126,7 @@ var BookingsApi = /** @class */ (function (_super) {
      */
     BookingsApi.prototype.searchAvailability = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/bookings/availability/search');
                 mapped = req.prepareArgs({
@@ -153,7 +153,7 @@ var BookingsApi = /** @class */ (function (_super) {
      */
     BookingsApi.prototype.bulkRetrieveBookings = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/bookings/bulk-retrieve');
                 mapped = req.prepareArgs({
@@ -173,7 +173,7 @@ var BookingsApi = /** @class */ (function (_super) {
      */
     BookingsApi.prototype.retrieveBusinessBookingProfile = function (requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req;
+            let req;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET', '/v2/bookings/business-booking-profile');
                 req.authenticate([{ global: true }]);
@@ -191,7 +191,7 @@ var BookingsApi = /** @class */ (function (_super) {
      */
     BookingsApi.prototype.listLocationBookingProfiles = function (limit, cursor, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET', '/v2/bookings/location-booking-profiles');
                 mapped = req.prepareArgs({
@@ -213,7 +213,7 @@ var BookingsApi = /** @class */ (function (_super) {
      */
     BookingsApi.prototype.retrieveLocationBookingProfile = function (locationId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({ locationId: [locationId, (0, schema_1.string)()] });
@@ -237,7 +237,7 @@ var BookingsApi = /** @class */ (function (_super) {
      */
     BookingsApi.prototype.listTeamMemberBookingProfiles = function (bookableOnly, limit, cursor, locationId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET', '/v2/bookings/team-member-booking-profiles');
                 mapped = req.prepareArgs({
@@ -266,7 +266,7 @@ var BookingsApi = /** @class */ (function (_super) {
      */
     BookingsApi.prototype.bulkRetrieveTeamMemberBookingProfiles = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/bookings/team-member-booking-profiles/bulk-retrieve');
                 mapped = req.prepareArgs({
@@ -287,7 +287,7 @@ var BookingsApi = /** @class */ (function (_super) {
      */
     BookingsApi.prototype.retrieveTeamMemberBookingProfile = function (teamMemberId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({ teamMemberId: [teamMemberId, (0, schema_1.string)()] });
@@ -310,7 +310,7 @@ var BookingsApi = /** @class */ (function (_super) {
      */
     BookingsApi.prototype.retrieveBooking = function (bookingId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({ bookingId: [bookingId, (0, schema_1.string)()] });
@@ -339,7 +339,7 @@ var BookingsApi = /** @class */ (function (_super) {
      */
     BookingsApi.prototype.updateBooking = function (bookingId, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('PUT');
                 mapped = req.prepareArgs({
@@ -373,7 +373,7 @@ var BookingsApi = /** @class */ (function (_super) {
      */
     BookingsApi.prototype.cancelBooking = function (bookingId, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({
@@ -391,5 +391,5 @@ var BookingsApi = /** @class */ (function (_super) {
     return BookingsApi;
 }(baseApi_1.BaseApi));
 exports.BookingsApi = BookingsApi;
-var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5;
+let templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5;
 //# sourceMappingURL=bookingsApi.js.map

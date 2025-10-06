@@ -19,7 +19,7 @@ exports.videointelligence_v1p3beta1 = void 0;
 /* eslint-disable @typescript-eslint/no-namespace */
 /* eslint-disable no-irregular-whitespace */
 const googleapis_common_1 = require("googleapis-common");
-var videointelligence_v1p3beta1;
+let videointelligence_v1p3beta1;
 (function (videointelligence_v1p3beta1) {
     /**
      * Cloud Video Intelligence API

@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
 exports.customerCustomAttributeFilterSchema = void 0;
-var schema_1 = require("../schema");
-var customerCustomAttributeFilterValue_1 = require("./customerCustomAttributeFilterValue");
-var timeRange_1 = require("./timeRange");
+const schema_1 = require("../schema");
+const customerCustomAttributeFilterValue_1 = require("./customerCustomAttributeFilterValue");
+const timeRange_1 = require("./timeRange");
 exports.customerCustomAttributeFilterSchema = (0, schema_1.object)({
     key: ['key', (0, schema_1.string)()],
     filter: [

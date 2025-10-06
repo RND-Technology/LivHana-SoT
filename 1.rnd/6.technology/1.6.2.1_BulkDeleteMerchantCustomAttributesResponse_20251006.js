@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
 exports.bulkDeleteMerchantCustomAttributesResponseSchema = void 0;
-var schema_1 = require("../schema");
-var bulkDeleteMerchantCustomAttributesResponseMerchantCustomAttributeDeleteResponse_1 = require("./bulkDeleteMerchantCustomAttributesResponseMerchantCustomAttributeDeleteResponse");
-var error_1 = require("./error");
+const schema_1 = require("../schema");
+const bulkDeleteMerchantCustomAttributesResponseMerchantCustomAttributeDeleteResponse_1 = require("./bulkDeleteMerchantCustomAttributesResponseMerchantCustomAttributeDeleteResponse");
+const error_1 = require("./error");
 exports.bulkDeleteMerchantCustomAttributesResponseSchema = (0, schema_1.object)({
     values: [
         'values',

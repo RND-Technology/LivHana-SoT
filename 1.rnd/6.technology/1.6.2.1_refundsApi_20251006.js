@@ -1,14 +1,14 @@
 "use strict";
 exports.__esModule = true;
 exports.RefundsApi = void 0;
-var tslib_1 = require("tslib");
-var getPaymentRefundResponse_1 = require("../models/getPaymentRefundResponse");
-var listPaymentRefundsResponse_1 = require("../models/listPaymentRefundsResponse");
-var refundPaymentRequest_1 = require("../models/refundPaymentRequest");
-var refundPaymentResponse_1 = require("../models/refundPaymentResponse");
-var schema_1 = require("../schema");
-var baseApi_1 = require("./baseApi");
-var RefundsApi = /** @class */ (function (_super) {
+const tslib_1 = require("tslib");
+const getPaymentRefundResponse_1 = require("../models/getPaymentRefundResponse");
+const listPaymentRefundsResponse_1 = require("../models/listPaymentRefundsResponse");
+const refundPaymentRequest_1 = require("../models/refundPaymentRequest");
+const refundPaymentResponse_1 = require("../models/refundPaymentResponse");
+const schema_1 = require("../schema");
+const baseApi_1 = require("./baseApi");
+const RefundsApi = /** @class */ (function (_super) {
     tslib_1.__extends(RefundsApi, _super);
     function RefundsApi() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -50,7 +50,7 @@ var RefundsApi = /** @class */ (function (_super) {
      */
     RefundsApi.prototype.listPaymentRefunds = function (beginTime, endTime, sortOrder, cursor, locationId, status, sourceType, limit, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET', '/v2/refunds');
                 mapped = req.prepareArgs({
@@ -88,7 +88,7 @@ var RefundsApi = /** @class */ (function (_super) {
      */
     RefundsApi.prototype.refundPayment = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/refunds');
                 mapped = req.prepareArgs({
@@ -109,7 +109,7 @@ var RefundsApi = /** @class */ (function (_super) {
      */
     RefundsApi.prototype.getPaymentRefund = function (refundId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({ refundId: [refundId, (0, schema_1.string)()] });
@@ -122,5 +122,5 @@ var RefundsApi = /** @class */ (function (_super) {
     return RefundsApi;
 }(baseApi_1.BaseApi));
 exports.RefundsApi = RefundsApi;
-var templateObject_1;
+let templateObject_1;
 //# sourceMappingURL=refundsApi.js.map

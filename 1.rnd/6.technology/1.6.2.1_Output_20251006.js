@@ -263,7 +263,7 @@ class Rope {
 
 function OutputStream(options) {
 
-    var readonly = !options;
+    const readonly = !options;
     options = defaults(options, {
         ascii_only           : false,
         beautify             : false,
@@ -298,11 +298,11 @@ function OutputStream(options) {
         options.shorthand = options.ecma > 5;
 
     // Convert comment option to RegExp if necessary and set up comments filter
-    var comment_filter = return_false; // Default case, throw all comments away
+    let comment_filter = return_false; // Default case, throw all comments away
     if (options.comments) {
         let comments = options.comments;
         if (typeof options.comments === "string" && /^\/.*\/[a-zA-Z]*$/.test(options.comments)) {
-            var regex_pos = options.comments.lastIndexOf("/");
+            const regex_pos = options.comments.lastIndexOf("/");
             comments = new RegExp(
                 options.comments.substr(1, regex_pos - 1),
                 options.comments.substr(regex_pos + 1)
@@ -324,28 +324,28 @@ function OutputStream(options) {
     }
 
     if (options.preserve_annotations) {
-        let prev_comment_filter = comment_filter;
+        const prev_comment_filter = comment_filter;
         comment_filter = function (comment) {
             return r_annotation.test(comment.value) || prev_comment_filter.apply(this, arguments);
         };
     }
 
-    var indentation = 0;
-    var current_col = 0;
-    var current_line = 1;
-    var current_pos = 0;
-    var OUTPUT = new Rope();
-    let printed_comments = new Set();
+    let indentation = 0;
+    let current_col = 0;
+    let current_line = 1;
+    let current_pos = 0;
+    const OUTPUT = new Rope();
+    const printed_comments = new Set();
 
-    var to_utf8 = options.ascii_only ? function(str, identifier = false, regexp = false) {
+    const to_utf8 = options.ascii_only ? function(str, identifier = false, regexp = false) {
         if (options.ecma >= 2015 && !options.safari10 && !regexp) {
             str = str.replace(/[\ud800-\udbff][\udc00-\udfff]/g, function(ch) {
-                var code = get_full_char_code(ch, 0).toString(16);
+                const code = get_full_char_code(ch, 0).toString(16);
                 return "\\u{" + code + "}";
             });
         }
         return str.replace(/[\u0000-\u001f\u007f-\uffff]/g, function(ch) {
-            var code = ch.charCodeAt(0).toString(16);
+            let code = ch.charCodeAt(0).toString(16);
             if (code.length <= 2 && !identifier) {
                 while (code.length < 2) code = "0" + code;
                 return "\\x" + code;
@@ -364,7 +364,7 @@ function OutputStream(options) {
     };
 
     function make_string(str, quote) {
-        var dq = 0, sq = 0;
+        let dq = 0, sq = 0;
         str = str.replace(/[\\\b\f\n\r\v\t\x22\x27\u2028\u2029\0\ufeff]/g,
           function(s, i) {
             switch (s) {
@@ -409,7 +409,7 @@ function OutputStream(options) {
     }
 
     function encode_string(str, quote) {
-        var ret = make_string(str, quote);
+        let ret = make_string(str, quote);
         if (options.inline_script) {
             ret = ret.replace(/<\x2f(script)([>\/\t\n\f\r ])/gi, "<\\/$1$2");
             ret = ret.replace(/\x3c!--/g, "\\x3c!--");
@@ -430,17 +430,17 @@ function OutputStream(options) {
 
     /* -----[ beautification/minification ]----- */
 
-    var has_parens = false;
-    var might_need_space = false;
-    var might_need_semicolon = false;
-    var might_add_newline = 0;
-    var need_newline_indented = false;
-    var need_space = false;
-    var newline_insert = -1;
-    var last = "";
-    var mapping_token, mapping_name, mappings = options.source_map && [];
+    let has_parens = false;
+    let might_need_space = false;
+    let might_need_semicolon = false;
+    let might_add_newline = 0;
+    let need_newline_indented = false;
+    let need_space = false;
+    let newline_insert = -1;
+    let last = "";
+    let mapping_token, mapping_name, mappings = options.source_map && [];
 
-    var do_add_mapping = mappings ? function() {
+    const do_add_mapping = mappings ? function() {
         mappings.forEach(function(mapping) {
             try {
                 let { name, token } = mapping;
@@ -464,13 +464,13 @@ function OutputStream(options) {
         mappings = [];
     } : noop;
 
-    var ensure_line_len = options.max_line_len ? function() {
+    const ensure_line_len = options.max_line_len ? function() {
         if (current_col > options.max_line_len) {
             if (might_add_newline) {
                 OUTPUT.insertAt("\n", might_add_newline);
                 const len_after_newline = OUTPUT.length() - might_add_newline - 1;
                 if (mappings) {
-                    var delta = len_after_newline - current_col;
+                    const delta = len_after_newline - current_col;
                     mappings.forEach(function(mapping) {
                         mapping.line++;
                         mapping.col += delta;
@@ -487,11 +487,11 @@ function OutputStream(options) {
         }
     } : noop;
 
-    var requireSemicolonChars = makePredicate("( [ + * / - , . `");
+    const requireSemicolonChars = makePredicate("( [ + * / - , . `");
 
     function print(str) {
         str = String(str);
-        var ch = get_full_char(str, 0);
+        const ch = get_full_char(str, 0);
         if (need_newline_indented && ch) {
             need_newline_indented = false;
             if (ch !== "\n") {
@@ -506,7 +506,7 @@ function OutputStream(options) {
             }
         }
         newline_insert = -1;
-        var prev = last.charAt(last.length - 1);
+        const prev = last.charAt(last.length - 1);
         if (might_need_semicolon) {
             might_need_semicolon = false;
 
@@ -563,7 +563,7 @@ function OutputStream(options) {
         OUTPUT.append(str);
         has_parens = str[str.length - 1] == "(";
         current_pos += str.length;
-        var a = str.split(/\r?\n/), n = a.length - 1;
+        const a = str.split(/\r?\n/), n = a.length - 1;
         current_line += n;
         current_col += a[0].length;
         if (n > 0) {
@@ -573,7 +573,7 @@ function OutputStream(options) {
         last = str;
     }
 
-    var star = function() {
+    const star = function() {
         print("*");
     };
 
@@ -589,16 +589,16 @@ function OutputStream(options) {
         }
     } : noop;
 
-    var with_indent = options.beautify ? function(col, cont) {
+    const with_indent = options.beautify ? function(col, cont) {
         if (col === true) col = next_indent();
-        var save_indentation = indentation;
+        const save_indentation = indentation;
         indentation = col;
-        var ret = cont();
+        const ret = cont();
         indentation = save_indentation;
         return ret;
     } : function(col, cont) { return cont(); };
 
-    var newline = options.beautify ? function() {
+    const newline = options.beautify ? function() {
         if (newline_insert < 0) return print("\n");
         if (OUTPUT.charAt(newline_insert) != "\n") {
             OUTPUT.insertAt("\n", newline_insert);
@@ -611,7 +611,7 @@ function OutputStream(options) {
         might_add_newline = OUTPUT.length();
     } : noop;
 
-    var semicolon = options.beautify ? function() {
+    const semicolon = options.beautify ? function() {
         print(";");
     } : function() {
         might_need_semicolon = true;
@@ -627,7 +627,7 @@ function OutputStream(options) {
     }
 
     function with_block(cont) {
-        var ret;
+        let ret;
         print("{");
         newline();
         with_indent(next_indent(), function() {
@@ -642,7 +642,7 @@ function OutputStream(options) {
         print("(");
         //XXX: still nice to have that for argument lists
         //var ret = with_indent(current_col, cont);
-        var ret = cont();
+        const ret = cont();
         print(")");
         return ret;
     }
@@ -650,7 +650,7 @@ function OutputStream(options) {
     function with_square(cont) {
         print("[");
         //var ret = with_indent(current_col, cont);
-        var ret = cont();
+        const ret = cont();
         print("]");
         return ret;
     }
@@ -665,7 +665,7 @@ function OutputStream(options) {
         space();
     }
 
-    var add_mapping = mappings ? function(token, name) {
+    const add_mapping = mappings ? function(token, name) {
         mapping_token = token;
         mapping_name = name;
     } : noop;
@@ -688,10 +688,10 @@ function OutputStream(options) {
     }
 
     function prepend_comments(node) {
-        var self = this;
-        var start = node.start;
+        const self = this;
+        const start = node.start;
         if (!start) return;
-        var printed_comments = self.printed_comments;
+        const printed_comments = self.printed_comments;
 
         // There cannot be a newline between return/yield and its value.
         const keyword_with_value = 
@@ -710,7 +710,7 @@ function OutputStream(options) {
             }
         }
 
-        var comments = start.comments_before;
+        let comments = start.comments_before;
         if (!comments) {
             comments = start.comments_before = [];
         }
@@ -718,7 +718,7 @@ function OutputStream(options) {
 
         if (keyword_with_value) {
             var tw = new TreeWalker(function(node) {
-                var parent = tw.parent();
+                const parent = tw.parent();
                 if (parent instanceof AST_Exit
                     || parent instanceof AST_Await
                     || parent instanceof AST_Yield
@@ -730,7 +730,7 @@ function OutputStream(options) {
                     || parent instanceof AST_Sub && parent.expression === node
                     || parent instanceof AST_UnaryPostfix) {
                     if (!node.start) return;
-                    var text = node.start.comments_before;
+                    const text = node.start.comments_before;
                     if (text && !printed_comments.has(text)) {
                         printed_comments.add(text);
                         comments = comments.concat(text);
@@ -749,7 +749,7 @@ function OutputStream(options) {
                 print("#!" + comments.shift().value + "\n");
                 indent();
             }
-            var preamble = options.preamble;
+            const preamble = options.preamble;
             if (preamble) {
                 print(preamble.replace(/\r\n?|[\n\u2028\u2029]|\s*$/g, "\n"));
             }
@@ -757,7 +757,7 @@ function OutputStream(options) {
 
         comments = comments.filter(comment_filter, node).filter(c => !printed_comments.has(c));
         if (comments.length == 0) return;
-        var last_nlb = OUTPUT.hasNLB();
+        let last_nlb = OUTPUT.hasNLB();
         comments.forEach(function(c, i) {
             printed_comments.add(c);
             if (!last_nlb) {
@@ -796,17 +796,17 @@ function OutputStream(options) {
     }
 
     function append_comments(node, tail) {
-        var self = this;
-        var token = node.end;
+        const self = this;
+        const token = node.end;
         if (!token) return;
-        var printed_comments = self.printed_comments;
-        var comments = token[tail ? "comments_before" : "comments_after"];
+        const printed_comments = self.printed_comments;
+        const comments = token[tail ? "comments_before" : "comments_after"];
         if (!comments || printed_comments.has(comments)) return;
         if (!(node instanceof AST_Statement || comments.every((c) =>
             !/comment[134]/.test(c.type)
         ))) return;
         printed_comments.add(comments);
-        var insert = OUTPUT.length();
+        const insert = OUTPUT.length();
         comments.filter(comment_filter, node).forEach(function(c, i) {
             if (printed_comments.has(c)) return;
             printed_comments.add(c);
@@ -850,7 +850,7 @@ function OutputStream(options) {
         }
         : noop;
 
-    var stack = [];
+    const stack = [];
     return {
         get             : get,
         toString        : get,
@@ -874,7 +874,7 @@ function OutputStream(options) {
         to_utf8         : to_utf8,
         print_name      : function(name) { print(make_name(name)); },
         print_string    : function(str, quote, escape_directive) {
-            var encoded = encode_string(str, quote);
+            const encoded = encode_string(str, quote);
             if (escape_directive === true && !encoded.includes("\\")) {
                 // Insert semicolons to break directive prologue
                 if (!OUTPUT.expectDirective()) {
@@ -885,7 +885,7 @@ function OutputStream(options) {
             print(encoded);
         },
         print_template_string_chars: function(str) {
-            var encoded = encode_string(str, "`").replace(/\${/g, "\\${");
+            const encoded = encode_string(str, "`").replace(/\${/g, "\\${");
             return print(encoded.substr(1, encoded.length - 2));
         },
         encode_string   : encode_string,
@@ -923,7 +923,7 @@ function OutputStream(options) {
     }
 
     AST_Node.DEFMETHOD("print", function(output, force_parens) {
-        var self = this, generator = self._codegen;
+        const self = this, generator = self._codegen;
         if (self instanceof AST_Scope) {
             output.active_scope = self;
         } else if (!output.use_asm && self instanceof AST_Directive && self.value == "use asm") {
@@ -949,7 +949,7 @@ function OutputStream(options) {
     AST_Node.DEFMETHOD("_print", AST_Node.prototype.print);
 
     AST_Node.DEFMETHOD("print_to_string", function(options) {
-        var output = OutputStream(options);
+        const output = OutputStream(options);
         this.print(output);
         return output.get();
     });
@@ -1000,7 +1000,7 @@ function OutputStream(options) {
     });
 
     PARENS(AST_Arrow, function(output) {
-        var p = output.parent();
+        const p = output.parent();
 
         if (
             output.option("wrap_func_args")
@@ -1022,7 +1022,7 @@ function OutputStream(options) {
     PARENS(AST_ClassExpression, first_in_statement);
 
     PARENS(AST_Unary, function(output) {
-        var p = output.parent();
+        const p = output.parent();
         return p instanceof AST_PropAccess && p.expression === this
             || p instanceof AST_Call && p.expression === this
             || p instanceof AST_Binary
@@ -1034,7 +1034,7 @@ function OutputStream(options) {
     });
 
     PARENS(AST_Await, function(output) {
-        var p = output.parent();
+        const p = output.parent();
         return p instanceof AST_PropAccess && p.expression === this
             || p instanceof AST_Call && p.expression === this
             || p instanceof AST_Binary && p.operator === "**" && p.left === this
@@ -1042,7 +1042,7 @@ function OutputStream(options) {
     });
 
     PARENS(AST_Sequence, function(output) {
-        var p = output.parent();
+        const p = output.parent();
         return p instanceof AST_Call                          // (foo, bar)() or foo(1, (2, 3), 4)
             || p instanceof AST_Unary                         // !(foo, bar, baz)
             || p instanceof AST_Binary                        // 1 + (2, 3) + 4 ==> 8
@@ -1062,7 +1062,7 @@ function OutputStream(options) {
     });
 
     PARENS(AST_Binary, function(output) {
-        var p = output.parent();
+        const p = output.parent();
         // (foo && bar)()
         if (p instanceof AST_Call && p.expression === this)
             return true;
@@ -1105,7 +1105,7 @@ function OutputStream(options) {
     });
 
     PARENS(AST_PrivateIn, function(output) {
-        var p = output.parent();
+        const p = output.parent();
         // (#x in this)()
         if (p instanceof AST_Call && p.expression === this) {
             return true;
@@ -1137,7 +1137,7 @@ function OutputStream(options) {
     });
 
     PARENS(AST_Yield, function(output) {
-        var p = output.parent();
+        const p = output.parent();
         // (yield 1) + (yield 2)
         // a = yield 3
         if (p instanceof AST_Binary && p.operator !== "=")
@@ -1159,13 +1159,13 @@ function OutputStream(options) {
     });
 
     PARENS(AST_Chain, function(output) {
-        var p = output.parent();
+        const p = output.parent();
         if (!(p instanceof AST_Call || p instanceof AST_PropAccess)) return false;
         return p.expression === this;
     });
 
     PARENS(AST_PropAccess, function(output) {
-        var p = output.parent();
+        const p = output.parent();
         if (p instanceof AST_New && p.expression === this) {
             // i.e. new (foo.bar().baz)
             //
@@ -1183,7 +1183,7 @@ function OutputStream(options) {
     });
 
     PARENS(AST_Call, function(output) {
-        var p = output.parent(), p1;
+        let p = output.parent(), p1;
         if (p instanceof AST_New && p.expression === this
             || p instanceof AST_Export && p.is_default && this.expression instanceof AST_Function)
             return true;
@@ -1198,7 +1198,7 @@ function OutputStream(options) {
     });
 
     PARENS(AST_New, function(output) {
-        var p = output.parent();
+        const p = output.parent();
         if (this.args.length === 0
             && (p instanceof AST_PropAccess // (new Date).getTime(), (new Date)["getTime"]()
                 || p instanceof AST_Call && p.expression === this
@@ -1207,9 +1207,9 @@ function OutputStream(options) {
     });
 
     PARENS(AST_Number, function(output) {
-        var p = output.parent();
+        const p = output.parent();
         if (p instanceof AST_PropAccess && p.expression === this) {
-            var value = this.getValue();
+            const value = this.getValue();
             if (value < 0 || /^0/.test(make_num(value))) {
                 return true;
             }
@@ -1217,9 +1217,9 @@ function OutputStream(options) {
     });
 
     PARENS(AST_BigInt, function(output) {
-        var p = output.parent();
+        const p = output.parent();
         if (p instanceof AST_PropAccess && p.expression === this) {
-            var value = this.getValue();
+            const value = this.getValue();
             if (value.startsWith("-")) {
                 return true;
             }
@@ -1227,7 +1227,7 @@ function OutputStream(options) {
     });
 
     PARENS([ AST_Assign, AST_Conditional ], function(output) {
-        var p = output.parent();
+        const p = output.parent();
         // !(a = false) → true
         if (p instanceof AST_Unary)
             return true;
@@ -1262,7 +1262,7 @@ function OutputStream(options) {
 
     DEFPRINT(AST_Destructuring, function (self, output) {
         output.print(self.is_array ? "[" : "{");
-        var len = self.names.length;
+        const len = self.names.length;
         self.names.forEach(function (name, i) {
             if (i > 0) output.comma();
             name.print(output);
@@ -1282,7 +1282,7 @@ function OutputStream(options) {
     /* -----[ statements ]----- */
 
     function display_body(body, is_toplevel, output, allow_directives) {
-        var last = body.length - 1;
+        const last = body.length - 1;
         output.in_directive = allow_directives;
         body.forEach(function(stmt, i) {
             if (output.in_directive === true && !(stmt instanceof AST_Directive ||
@@ -1431,7 +1431,7 @@ function OutputStream(options) {
 
     /* -----[ functions ]----- */
     AST_Lambda.DEFMETHOD("_do_print", function(output, nokeyword) {
-        var self = this;
+        const self = this;
         if (!nokeyword) {
             if (self.async) {
                 output.print("async");
@@ -1467,8 +1467,8 @@ function OutputStream(options) {
     });
 
     DEFPRINT(AST_PrefixedTemplateString, function(self, output) {
-        var tag = self.prefix;
-        var parenthesize_tag = tag instanceof AST_Lambda
+        const tag = self.prefix;
+        const parenthesize_tag = tag instanceof AST_Lambda
             || tag instanceof AST_Binary
             || tag instanceof AST_Conditional
             || tag instanceof AST_Sequence
@@ -1480,10 +1480,10 @@ function OutputStream(options) {
         self.template_string.print(output);
     });
     DEFPRINT(AST_TemplateString, function(self, output) {
-        var is_tagged = output.parent() instanceof AST_PrefixedTemplateString;
+        const is_tagged = output.parent() instanceof AST_PrefixedTemplateString;
 
         output.print("`");
-        for (var i = 0; i < self.segments.length; i++) {
+        for (let i = 0; i < self.segments.length; i++) {
             if (!(self.segments[i] instanceof AST_TemplateSegment)) {
                 output.print("${");
                 self.segments[i].print(output);
@@ -1501,9 +1501,9 @@ function OutputStream(options) {
     });
 
     AST_Arrow.DEFMETHOD("_do_print", function(output) {
-        var self = this;
-        var parent = output.parent();
-        var needs_parens = (parent instanceof AST_Binary &&
+        const self = this;
+        const parent = output.parent();
+        const needs_parens = (parent instanceof AST_Binary &&
                 !(parent instanceof AST_Assign) &&
                 !(parent instanceof AST_DefaultAssign)) ||
             parent instanceof AST_Unary ||
@@ -1574,7 +1574,7 @@ function OutputStream(options) {
     /* -----[ yield ]----- */
 
     DEFPRINT(AST_Yield, function(self, output) {
-        var star = self.is_star ? "*" : "";
+        const star = self.is_star ? "*" : "";
         output.print("yield" + star);
         if (self.expression) {
             output.space();
@@ -1585,8 +1585,8 @@ function OutputStream(options) {
     DEFPRINT(AST_Await, function(self, output) {
         output.print("await");
         output.space();
-        var e = self.expression;
-        var parens = !(
+        const e = self.expression;
+        const parens = !(
                e instanceof AST_Call
             || e instanceof AST_SymbolRef
             || e instanceof AST_PropAccess
@@ -1618,7 +1618,7 @@ function OutputStream(options) {
 
     /* -----[ if ]----- */
     function make_then(self, output) {
-        var b = self.body;
+        let b = self.body;
         if (output.option("braces")
             || output.option("ie8") && b instanceof AST_Do)
             return make_block(b, output);
@@ -1672,7 +1672,7 @@ function OutputStream(options) {
             self.expression.print(output);
         });
         output.space();
-        var last = self.body.length - 1;
+        const last = self.body.length - 1;
         if (last < 0) print_braced_empty(self, output);
         else output.with_block(function() {
             self.body.forEach(function(branch, i) {
@@ -1745,9 +1745,9 @@ function OutputStream(options) {
             if (i) output.comma();
             def.print(output);
         });
-        var p = output.parent();
-        var in_for = p instanceof AST_For || p instanceof AST_ForIn;
-        var output_semicolon = !in_for || p && p.init !== this;
+        const p = output.parent();
+        const in_for = p instanceof AST_For || p instanceof AST_ForIn;
+        const output_semicolon = !in_for || p && p.init !== this;
         if (output_semicolon)
             output.semicolon();
     });
@@ -1808,10 +1808,10 @@ function OutputStream(options) {
     });
 
     DEFPRINT(AST_NameMapping, function(self, output) {
-        var is_import = output.parent() instanceof AST_Import;
-        var definition = self.name.definition();
-        var foreign_name = self.foreign_name;
-        var names_are_different =
+        const is_import = output.parent() instanceof AST_Import;
+        const definition = self.name.definition();
+        const foreign_name = self.foreign_name;
+        let names_are_different =
             (definition && definition.mangled_name || self.name.name) !==
             foreign_name.name;
         if (!names_are_different &&
@@ -1820,7 +1820,7 @@ function OutputStream(options) {
                 // export * as "*"
             names_are_different = true;
         }
-        var foreign_name_is_name = !foreign_name.quote;
+        const foreign_name_is_name = !foreign_name.quote;
         if (names_are_different) {
             if (is_import) {
                 if (foreign_name_is_name) {
@@ -1909,7 +1909,7 @@ function OutputStream(options) {
     });
 
     function parenthesize_for_noin(node, output, noin) {
-        var parens = false;
+        let parens = false;
         // need to take some precautions here:
         //    https://github.com/mishoo/UglifyJS2/issues/60
         if (noin) {
@@ -1936,8 +1936,8 @@ function OutputStream(options) {
             output.space();
             output.print("=");
             output.space();
-            var p = output.parent(1);
-            var noin = p instanceof AST_For || p instanceof AST_ForIn;
+            const p = output.parent(1);
+            const noin = p instanceof AST_For || p instanceof AST_ForIn;
             parenthesize_for_noin(self.value, output, noin);
         }
     });
@@ -1988,10 +1988,10 @@ function OutputStream(options) {
         // }
     });
     DEFPRINT(AST_Dot, function(self, output) {
-        var expr = self.expression;
+        const expr = self.expression;
         expr.print(output);
-        var prop = self.property;
-        var print_computed = ALL_RESERVED_WORDS.has(prop)
+        const prop = self.property;
+        const print_computed = ALL_RESERVED_WORDS.has(prop)
             ? output.option("ie8")
             : !is_identifier_string(
                 prop,
@@ -2018,9 +2018,9 @@ function OutputStream(options) {
         }
     });
     DEFPRINT(AST_DotHash, function(self, output) {
-        var expr = self.expression;
+        const expr = self.expression;
         expr.print(output);
-        var prop = self.property;
+        const prop = self.property;
 
         if (self.optional) output.print("?");
         output.print(".#");
@@ -2038,7 +2038,7 @@ function OutputStream(options) {
         self.expression.print(output);
     });
     DEFPRINT(AST_UnaryPrefix, function(self, output) {
-        var op = self.operator;
+        const op = self.operator;
         if (op === "--" && output.last().endsWith("!")) {
             // avoid printing "<!--"
             output.print(" ");
@@ -2057,7 +2057,7 @@ function OutputStream(options) {
         output.print(self.operator);
     });
     DEFPRINT(AST_Binary, function(self, output) {
-        var op = self.operator;
+        const op = self.operator;
         self.left.print(output);
         if (op[0] == ">" /* ">>" ">>>" ">" ">=" */
             && output.last().endsWith("--")) {
@@ -2085,7 +2085,7 @@ function OutputStream(options) {
     /* -----[ literals ]----- */
     DEFPRINT(AST_Array, function(self, output) {
         output.with_square(function() {
-            var a = self.elements, len = a.length;
+            const a = self.elements, len = a.length;
             if (len > 0) output.space();
             a.forEach(function(exp, i) {
                 if (i) output.comma();
@@ -2121,7 +2121,7 @@ function OutputStream(options) {
             output.space();
         }
         if (self.extends) {
-            var parens = (
+            const parens = (
                    !(self.extends instanceof AST_SymbolRef)
                 && !(self.extends instanceof AST_PropAccess)
                 && !(self.extends instanceof AST_ClassExpression)
@@ -2170,7 +2170,7 @@ function OutputStream(options) {
             output.print(make_num(key));
             return false;
         }
-        var print_string = ALL_RESERVED_WORDS.has(key)
+        const print_string = ALL_RESERVED_WORDS.has(key)
             ? output.option("ie8")
             : (
                 output.option("ecma") < 2015 || output.option("safari10")
@@ -2187,7 +2187,7 @@ function OutputStream(options) {
 
     DEFPRINT(AST_ObjectKeyVal, function(self, output) {
         function get_name(self) {
-            var def = self.definition();
+            const def = self.definition();
             return def ? def.mangled_name || def.name : self.name;
         }
 
@@ -2269,7 +2269,7 @@ function OutputStream(options) {
         output.semicolon();
     });
     AST_ObjectProperty.DEFMETHOD("_print_getter_setter", function(type, is_private, output) {
-        var self = this;
+        const self = this;
         if (self.static) {
             output.print("static");
             output.space();
@@ -2302,7 +2302,7 @@ function OutputStream(options) {
         self._print_getter_setter("get", true, output);
     });
     DEFPRINT(AST_ConciseMethod, function(self, output) {
-        var type;
+        let type;
         if (self.value.is_generator && self.value.async) {
             type = "async*";
         } else if (self.value.is_generator) {
@@ -2313,7 +2313,7 @@ function OutputStream(options) {
         self._print_getter_setter(type, false, output);
     });
     DEFPRINT(AST_PrivateMethod, function(self, output) {
-        var type;
+        let type;
         if (self.value.is_generator && self.value.async) {
             type = "async*";
         } else if (self.value.is_generator) {
@@ -2339,7 +2339,7 @@ function OutputStream(options) {
         print_braced(self, output);
     });
     AST_Symbol.DEFMETHOD("_do_print", function(output) {
-        var def = this.definition();
+        const def = this.definition();
         output.print_name(def ? def.mangled_name || def.name : this.name);
     });
     DEFPRINT(AST_Symbol, function (self, output) {
@@ -2414,8 +2414,8 @@ function OutputStream(options) {
     }
 
     function best_of(a) {
-        var best = a[0], len = best.length;
-        for (var i = 1; i < a.length; ++i) {
+        let best = a[0], len = best.length;
+        for (let i = 1; i < a.length; ++i) {
             if (a[i].length < len) {
                 best = a[i];
                 len = best.length;
@@ -2425,8 +2425,8 @@ function OutputStream(options) {
     }
 
     function make_num(num) {
-        var str = num.toString(10).replace(/^0\./, ".").replace("e+", "e");
-        var candidates = [ str ];
+        const str = num.toString(10).replace(/^0\./, ".").replace("e+", "e");
+        const candidates = [ str ];
         if (Math.floor(num) === num) {
             if (num < 0) {
                 candidates.push("-0x" + (-num).toString(16).toLowerCase());
@@ -2434,7 +2434,7 @@ function OutputStream(options) {
                 candidates.push("0x" + num.toString(16).toLowerCase());
             }
         }
-        var match, len, digits;
+        let match, len, digits;
         if (match = /^\.0+/.exec(str)) {
             len = match[0].length;
             digits = str.slice(len);

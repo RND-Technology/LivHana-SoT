@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
 exports.paymentLinkSchema = void 0;
-var schema_1 = require("../schema");
-var checkoutOptions_1 = require("./checkoutOptions");
-var prePopulatedData_1 = require("./prePopulatedData");
+const schema_1 = require("../schema");
+const checkoutOptions_1 = require("./checkoutOptions");
+const prePopulatedData_1 = require("./prePopulatedData");
 exports.paymentLinkSchema = (0, schema_1.object)({
     id: ['id', (0, schema_1.optional)((0, schema_1.string)())],
     version: ['version', (0, schema_1.number)()],

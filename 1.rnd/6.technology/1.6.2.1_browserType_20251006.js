@@ -1,37 +1,37 @@
 "use strict";
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __export = (target, all) => {
+  for (const name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var browserType_exports = {};
+const __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+const browserType_exports = {};
 __export(browserType_exports, {
   BrowserType: () => BrowserType
 });
 module.exports = __toCommonJS(browserType_exports);
-var import_browser = require("./browser");
-var import_browserContext = require("./browserContext");
-var import_channelOwner = require("./channelOwner");
-var import_clientHelper = require("./clientHelper");
-var import_events = require("./events");
-var import_assert = require("../utils/isomorphic/assert");
-var import_headers = require("../utils/isomorphic/headers");
-var import_time = require("../utils/isomorphic/time");
-var import_timeoutRunner = require("../utils/isomorphic/timeoutRunner");
-var import_webSocket = require("./webSocket");
-var import_timeoutSettings = require("./timeoutSettings");
+const import_browser = require("./browser");
+const import_browserContext = require("./browserContext");
+const import_channelOwner = require("./channelOwner");
+const import_clientHelper = require("./clientHelper");
+const import_events = require("./events");
+const import_assert = require("../utils/isomorphic/assert");
+const import_headers = require("../utils/isomorphic/headers");
+const import_time = require("../utils/isomorphic/time");
+const import_timeoutRunner = require("../utils/isomorphic/timeoutRunner");
+const import_webSocket = require("./webSocket");
+const import_timeoutSettings = require("./timeoutSettings");
 class BrowserType extends import_channelOwner.ChannelOwner {
   constructor() {
     super(...arguments);

@@ -1,5 +1,5 @@
 /*! decimal.js-light v2.5.1 https://github.com/MikeMcl/decimal.js-light/LICENCE */
-;(function (globalScope) {
+(function (globalScope) {
   'use strict';
 
 
@@ -17,7 +17,7 @@
 
     // The limit on the value of `precision`, and on the value of the first argument to
     // `toDecimalPlaces`, `toExponential`, `toFixed`, `toPrecision` and `toSignificantDigits`.
-  var MAX_DIGITS = 1e9,                        // 0 to 1e9
+  let MAX_DIGITS = 1e9,                        // 0 to 1e9
 
 
     // The initial configuration properties of the Decimal constructor.
@@ -133,7 +133,7 @@
    *
    */
   P.absoluteValue = P.abs = function () {
-    var x = new this.constructor(this);
+    const x = new this.constructor(this);
     if (x.s) x.s = 1;
     return x;
   };
@@ -147,7 +147,7 @@
    *
    */
   P.comparedTo = P.cmp = function (y) {
-    var i, j, xdL, ydL,
+    let i, j, xdL, ydL,
       x = this;
 
     y = new x.constructor(y);
@@ -176,7 +176,7 @@
    *
    */
   P.decimalPlaces = P.dp = function () {
-    var x = this,
+    let x = this,
       w = x.d.length - 1,
       dp = (w - x.e) * LOG_BASE;
 
@@ -204,7 +204,7 @@
    *
    */
   P.dividedToIntegerBy = P.idiv = function (y) {
-    var x = this,
+    const x = this,
       Ctor = x.constructor;
     return round(divide(x, new Ctor(y), 0, 1), Ctor.precision);
   };
@@ -316,7 +316,7 @@
    *
    */
   P.logarithm = P.log = function (base) {
-    var r,
+    let r,
       x = this,
       Ctor = x.constructor,
       pr = Ctor.precision,
@@ -355,7 +355,7 @@
    *
    */
   P.minus = P.sub = function (y) {
-    var x = this;
+    const x = this;
     y = new x.constructor(y);
     return x.s == y.s ? subtract(x, y) : add(x, (y.s = -y.s, y));
   };
@@ -367,7 +367,7 @@
    *
    */
   P.modulo = P.mod = function (y) {
-    var q,
+    let q,
       x = this,
       Ctor = x.constructor,
       pr = Ctor.precision;
@@ -416,7 +416,7 @@
    *
    */
   P.negated = P.neg = function () {
-    var x = new this.constructor(this);
+    const x = new this.constructor(this);
     x.s = -x.s || 0;
     return x;
   };
@@ -428,7 +428,7 @@
    *
    */
   P.plus = P.add = function (y) {
-    var x = this;
+    const x = this;
     y = new x.constructor(y);
     return x.s == y.s ? add(x, y) : subtract(x, (y.s = -y.s, y));
   };
@@ -441,7 +441,7 @@
    *
    */
   P.precision = P.sd = function (z) {
-    var e, sd, w,
+    let e, sd, w,
       x = this;
 
     if (z !== void 0 && z !== !!z && z !== 1 && z !== 0) throw Error(invalidArgument + z);
@@ -471,7 +471,7 @@
    *
    */
   P.squareRoot = P.sqrt = function () {
-    var e, n, pr, r, s, t, wpr,
+    let e, n, pr, r, s, t, wpr,
       x = this,
       Ctor = x.constructor;
 
@@ -552,7 +552,7 @@
    *
    */
   P.times = P.mul = function (y) {
-    var carry, e, i, k, r, rL, t, xdL, ydL,
+    let carry, e, i, k, r, rL, t, xdL, ydL,
       x = this,
       Ctor = x.constructor,
       xd = x.d,
@@ -617,7 +617,7 @@
    *
    */
   P.toDecimalPlaces = P.todp = function (dp, rm) {
-    var x = this,
+    let x = this,
       Ctor = x.constructor;
 
     x = new Ctor(x);
@@ -641,7 +641,7 @@
    *
    */
   P.toExponential = function (dp, rm) {
-    var str,
+    let str,
       x = this,
       Ctor = x.constructor;
 
@@ -678,7 +678,7 @@
    *
    */
   P.toFixed = function (dp, rm) {
-    var str, y,
+    let str, y,
       x = this,
       Ctor = x.constructor;
 
@@ -704,7 +704,7 @@
    *
    */
   P.toInteger = P.toint = function () {
-    var x = this,
+    const x = this,
       Ctor = x.constructor;
     return round(new Ctor(x), getBase10Exponent(x) + 1, Ctor.rounding);
   };
@@ -733,7 +733,7 @@
    *
    */
   P.toPower = P.pow = function (y) {
-    var e, k, pr, r, sign, yIsInt,
+    let e, k, pr, r, sign, yIsInt,
       x = this,
       Ctor = x.constructor,
       guard = 12,
@@ -823,7 +823,7 @@
    *
    */
   P.toPrecision = function (sd, rm) {
-    var e, str,
+    let e, str,
       x = this,
       Ctor = x.constructor;
 
@@ -855,7 +855,7 @@
    *
    */
   P.toSignificantDigits = P.tosd = function (sd, rm) {
-    var x = this,
+    const x = this,
       Ctor = x.constructor;
 
     if (sd === void 0) {
@@ -880,7 +880,7 @@
    *
    */
   P.toString = P.valueOf = P.val = P.toJSON = function () {
-    var x = this,
+    const x = this,
       e = getBase10Exponent(x),
       Ctor = x.constructor;
 
@@ -916,7 +916,7 @@
 
 
   function add(x, y) {
-    var carry, d, e, i, k, len, xd, yd,
+    let carry, d, e, i, k, len, xd, yd,
       Ctor = x.constructor,
       pr = Ctor.precision;
 
@@ -1007,7 +1007,7 @@
 
 
   function digitsToString(d) {
-    var i, k, ws,
+    let i, k, ws,
       indexOfLastWord = d.length - 1,
       str = '',
       w = d[0];
@@ -1040,7 +1040,7 @@
 
     // Assumes non-zero x and k, and hence non-zero result.
     function multiplyInteger(x, k) {
-      var temp,
+      let temp,
         carry = 0,
         i = x.length;
 
@@ -1056,7 +1056,7 @@
     }
 
     function compare(a, b, aL, bL) {
-      var i, r;
+      let i, r;
 
       if (aL != bL) {
         r = aL > bL ? 1 : -1;
@@ -1073,7 +1073,7 @@
     }
 
     function subtract(a, b, aL) {
-      var i = 0;
+      let i = 0;
 
       // Subtract b from a.
       for (; aL--;) {
@@ -1087,7 +1087,7 @@
     }
 
     return function (x, y, pr, dp) {
-      var cmp, e, i, k, prod, prodL, q, qd, rem, remL, rem0, sd, t, xi, xL, yd0, yL, yz,
+      let cmp, e, i, k, prod, prodL, q, qd, rem, remL, rem0, sd, t, xi, xL, yd0, yL, yz,
         Ctor = x.constructor,
         sign = x.s == y.s ? 1 : -1,
         xd = x.d,
@@ -1286,7 +1286,7 @@
    *
    */
   function exp(x, sd) {
-    var denominator, guard, pow, sum, t, wpr,
+    let denominator, guard, pow, sum, t, wpr,
       i = 0,
       k = 0,
       Ctor = x.constructor,
@@ -1335,7 +1335,7 @@
 
   // Calculate the base 10 exponent from the base 1e7 exponent.
   function getBase10Exponent(x) {
-    var e = x.e * LOG_BASE,
+    let e = x.e * LOG_BASE,
       w = x.d[0];
 
     // Add the number of digits of the first word of the digits array.
@@ -1360,7 +1360,7 @@
 
 
   function getZeroString(k) {
-    var zs = '';
+    let zs = '';
     for (; k--;) zs += '0';
     return zs;
   }
@@ -1374,7 +1374,7 @@
    *
    */
   function ln(y, sd) {
-    var c, c0, denominator, e, numerator, sum, t, wpr, x2,
+    let c, c0, denominator, e, numerator, sum, t, wpr, x2,
       n = 1,
       guard = 10,
       x = y,
@@ -1481,7 +1481,7 @@
    * Parse the value of a new Decimal `x` from string `str`.
    */
   function parseDecimal(x, str) {
-    var e, i, len;
+    let e, i, len;
 
     // Decimal point?
     if ((e = str.indexOf('.')) > -1) str = str.replace('.', '');
@@ -1548,7 +1548,7 @@
    * Round `x` to `sd` significant digits, using rounding mode `rm` if present (truncate otherwise).
    */
    function round(x, sd, rm) {
-    var i, j, k, n, rd, doRound, w, xdi,
+    let i, j, k, n, rd, doRound, w, xdi,
       xd = x.d;
 
     // rd: the rounding digit, i.e. the digit after the digit that may be rounded up.
@@ -1674,7 +1674,7 @@
 
 
   function subtract(x, y) {
-    var d, e, i, j, k, len, xd, xe, xLTy, yd,
+    let d, e, i, j, k, len, xd, xe, xLTy, yd,
       Ctor = x.constructor,
       pr = Ctor.precision;
 
@@ -1787,7 +1787,7 @@
 
 
   function toString(x, isExp, sd) {
-    var k,
+    let k,
       e = getBase10Exponent(x),
       str = digitsToString(x.d),
       len = str.length;
@@ -1842,7 +1842,7 @@
    *
    */
   function clone(obj) {
-    var i, p, ps;
+    let i, p, ps;
 
     /*
      * The Decimal constructor and exported function.
@@ -1852,7 +1852,7 @@
      *
      */
     function Decimal(value) {
-      var x = this;
+      const x = this;
 
       // Decimal called without new.
       if (!(x instanceof Decimal)) return new Decimal(value);
@@ -1956,7 +1956,7 @@
     if (!obj || typeof obj !== 'object') {
       throw Error(decimalError + 'Object expected');
     }
-    var i, p, v,
+    let i, p, v,
       ps = [
         'precision', 1, MAX_DIGITS,
         'rounding', 0, 8,

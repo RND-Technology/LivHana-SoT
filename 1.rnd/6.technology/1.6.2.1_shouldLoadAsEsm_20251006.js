@@ -19,7 +19,7 @@ function _vm() {
   };
   return data;
 }
-var _fileWalkers = require('./fileWalkers');
+const _fileWalkers = require('./fileWalkers');
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *

@@ -109,7 +109,7 @@ class FileBatches extends resource_1.APIResource {
         // This code is based on this design. The libraries don't accommodate our environment limits.
         // https://stackoverflow.com/questions/40639432/what-is-the-best-way-to-limit-concurrency-when-using-es6s-promise-all
         async function processFiles(iterator) {
-            for (let item of iterator) {
+            for (const item of iterator) {
                 const fileObj = await client.files.create({ file: item, purpose: 'assistants' }, options);
                 allFileIds.push(fileObj.id);
             }

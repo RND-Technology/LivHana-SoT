@@ -1,10 +1,10 @@
-var baseToPairs = require('./_baseToPairs'),
+const baseToPairs = require('./_baseToPairs'),
     getTag = require('./_getTag'),
     mapToArray = require('./_mapToArray'),
     setToPairs = require('./_setToPairs');
 
 /** `Object#toString` result references. */
-var mapTag = '[object Map]',
+const mapTag = '[object Map]',
     setTag = '[object Set]';
 
 /**
@@ -16,7 +16,7 @@ var mapTag = '[object Map]',
  */
 function createToPairs(keysFunc) {
   return function(object) {
-    var tag = getTag(object);
+    const tag = getTag(object);
     if (tag == mapTag) {
       return mapToArray(object);
     }

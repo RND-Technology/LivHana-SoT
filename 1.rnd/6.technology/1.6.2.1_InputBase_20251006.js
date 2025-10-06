@@ -1,37 +1,37 @@
 "use strict";
 'use client';
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+const _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.rootOverridesResolver = exports.inputOverridesResolver = exports.default = exports.InputBaseRoot = exports.InputBaseComponent = void 0;
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-var _formatMuiErrorMessage2 = _interopRequireDefault(require("@mui/utils/formatMuiErrorMessage"));
-var React = _interopRequireWildcard(require("react"));
-var _propTypes = _interopRequireDefault(require("prop-types"));
-var _clsx = _interopRequireDefault(require("clsx"));
-var _elementTypeAcceptingRef = _interopRequireDefault(require("@mui/utils/elementTypeAcceptingRef"));
-var _refType = _interopRequireDefault(require("@mui/utils/refType"));
-var _composeClasses = _interopRequireDefault(require("@mui/utils/composeClasses"));
-var _isHostComponent = _interopRequireDefault(require("@mui/utils/isHostComponent"));
-var _TextareaAutosize = _interopRequireDefault(require("../TextareaAutosize"));
-var _formControlState = _interopRequireDefault(require("../FormControl/formControlState"));
-var _FormControlContext = _interopRequireDefault(require("../FormControl/FormControlContext"));
-var _useFormControl = _interopRequireDefault(require("../FormControl/useFormControl"));
-var _styled = _interopRequireDefault(require("../styles/styled"));
-var _DefaultPropsProvider = require("../DefaultPropsProvider");
-var _capitalize = _interopRequireDefault(require("../utils/capitalize"));
-var _useForkRef = _interopRequireDefault(require("../utils/useForkRef"));
-var _useEnhancedEffect = _interopRequireDefault(require("../utils/useEnhancedEffect"));
-var _GlobalStyles = _interopRequireDefault(require("../GlobalStyles"));
-var _utils = require("./utils");
-var _inputBaseClasses = _interopRequireWildcard(require("./inputBaseClasses"));
-var _jsxRuntime = require("react/jsx-runtime");
+const _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+const _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+const _formatMuiErrorMessage2 = _interopRequireDefault(require("@mui/utils/formatMuiErrorMessage"));
+const React = _interopRequireWildcard(require("react"));
+const _propTypes = _interopRequireDefault(require("prop-types"));
+const _clsx = _interopRequireDefault(require("clsx"));
+const _elementTypeAcceptingRef = _interopRequireDefault(require("@mui/utils/elementTypeAcceptingRef"));
+const _refType = _interopRequireDefault(require("@mui/utils/refType"));
+const _composeClasses = _interopRequireDefault(require("@mui/utils/composeClasses"));
+const _isHostComponent = _interopRequireDefault(require("@mui/utils/isHostComponent"));
+const _TextareaAutosize = _interopRequireDefault(require("../TextareaAutosize"));
+const _formControlState = _interopRequireDefault(require("../FormControl/formControlState"));
+const _FormControlContext = _interopRequireDefault(require("../FormControl/FormControlContext"));
+const _useFormControl = _interopRequireDefault(require("../FormControl/useFormControl"));
+const _styled = _interopRequireDefault(require("../styles/styled"));
+const _DefaultPropsProvider = require("../DefaultPropsProvider");
+const _capitalize = _interopRequireDefault(require("../utils/capitalize"));
+const _useForkRef = _interopRequireDefault(require("../utils/useForkRef"));
+const _useEnhancedEffect = _interopRequireDefault(require("../utils/useEnhancedEffect"));
+const _GlobalStyles = _interopRequireDefault(require("../GlobalStyles"));
+const _utils = require("./utils");
+const _inputBaseClasses = _interopRequireWildcard(require("./inputBaseClasses"));
+const _jsxRuntime = require("react/jsx-runtime");
 const _excluded = ["aria-describedby", "autoComplete", "autoFocus", "className", "color", "components", "componentsProps", "defaultValue", "disabled", "disableInjectingGlobalStyles", "endAdornment", "error", "fullWidth", "id", "inputComponent", "inputProps", "inputRef", "margin", "maxRows", "minRows", "multiline", "name", "onBlur", "onChange", "onClick", "onFocus", "onKeyDown", "onKeyUp", "placeholder", "readOnly", "renderSuffix", "rows", "size", "slotProps", "slots", "startAdornment", "type", "value"];
-function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
-function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; const r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; const t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); const n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (const u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { const i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 const rootOverridesResolver = (props, styles) => {
   const {
     ownerState
@@ -221,7 +221,7 @@ const inputGlobalStyles = /*#__PURE__*/(0, _jsxRuntime.jsx)(_GlobalStyles.defaul
  * It contains a load of style reset and some state logic.
  */
 const InputBase = /*#__PURE__*/React.forwardRef(function InputBase(inProps, ref) {
-  var _slotProps$input;
+  let _slotProps$input;
   const props = (0, _DefaultPropsProvider.useDefaultProps)({
     props: inProps,
     name: 'MuiInputBase'
@@ -716,4 +716,4 @@ process.env.NODE_ENV !== "production" ? InputBase.propTypes /* remove-proptypes 
    */
   value: _propTypes.default.any
 } : void 0;
-var _default = exports.default = InputBase;
+const _default = exports.default = InputBase;

@@ -7,13 +7,13 @@
  * @returns {boolean} Returns `true` if `object` conforms, else `false`.
  */
 function baseConformsTo(object, source, props) {
-  var length = props.length;
+  let length = props.length;
   if (object == null) {
     return !length;
   }
   object = Object(object);
   while (length--) {
-    var key = props[length],
+    const key = props[length],
         predicate = source[key],
         value = object[key];
 

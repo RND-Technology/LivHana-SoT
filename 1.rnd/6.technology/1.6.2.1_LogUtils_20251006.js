@@ -5,8 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.warn = void 0;
 /* eslint no-console: 0 */
-var isDev = process.env.NODE_ENV !== 'production';
-var warn = exports.warn = function warn(condition, format) {
+const isDev = process.env.NODE_ENV !== 'production';
+const warn = exports.warn = function warn(condition, format) {
   for (var _len = arguments.length, args = new Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
     args[_key - 2] = arguments[_key];
   }
@@ -18,7 +18,7 @@ var warn = exports.warn = function warn(condition, format) {
       if (format === undefined) {
         console.warn('Minified exception occurred; use the non-minified dev environment ' + 'for the full error message and additional helpful warnings.');
       } else {
-        var argIndex = 0;
+        let argIndex = 0;
         console.warn(format.replace(/%s/g, () => args[argIndex++]));
       }
     }

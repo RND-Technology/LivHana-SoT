@@ -1,5 +1,5 @@
-let Selector = require('../selector')
-let utils = require('../utils')
+const Selector = require('../selector')
+const utils = require('../utils')
 
 class FileSelectorButton extends Selector {
   constructor(name, prefixes, all) {

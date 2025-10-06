@@ -26,14 +26,14 @@ import { readFileWithRetries } from './utils.js'
  * }}
  */
 export function createWatcher(args, { state, rebuild }) {
-  let shouldPoll = args['--poll']
-  let shouldCoalesceWriteEvents = shouldPoll || process.platform === 'win32'
+  const shouldPoll = args['--poll']
+  const shouldCoalesceWriteEvents = shouldPoll || process.platform === 'win32'
 
   // Polling interval in milliseconds
   // Used only when polling or coalescing add/change events on Windows
-  let pollInterval = 10
+  const pollInterval = 10
 
-  let watcher = chokidar.watch([], {
+  const watcher = chokidar.watch([], {
     // Force checking for atomic writes in all situations
     // This causes chokidar to wait up to 100ms for a file to re-added after it's been unlinked
     // This only works when watching directories though
@@ -58,7 +58,7 @@ export function createWatcher(args, { state, rebuild }) {
    *
    * @type {{file: string, content: () => Promise<string>, extension: string}[]}
    */
-  let changedContent = []
+  const changedContent = []
 
   /**
    * A list of files for which a rebuild has already been queued.
@@ -66,7 +66,7 @@ export function createWatcher(args, { state, rebuild }) {
    * The rebuilt file is cleared from this list when it's associated rebuild has _started_
    * This is because if the file is changed during a rebuild it won't trigger a new rebuild which it should
    **/
-  let pendingRebuilds = new Set()
+  const pendingRebuilds = new Set()
 
   let _timer
   let _reject
@@ -76,7 +76,7 @@ export function createWatcher(args, { state, rebuild }) {
    * complete regardless of whether it was successful or not
    */
   async function rebuildAndContinue() {
-    let changes = changedContent.splice(0)
+    const changes = changedContent.splice(0)
 
     // There are no changes to rebuild so we can just do nothing
     if (changes.length === 0) {
@@ -168,7 +168,7 @@ export function createWatcher(args, { state, rebuild }) {
       return
     }
 
-    let watchedPath = meta.watchedPath
+    const watchedPath = meta.watchedPath
 
     // Watched path might be the file itself
     // Or the directory it is in
@@ -194,7 +194,7 @@ export function createWatcher(args, { state, rebuild }) {
         // We need to read the file as early as possible outside of the chain
         // because it may be gone by the time we get to it. doing the read
         // immediately increases the chance that the file is still there
-        let content = await readFileWithRetries(path.resolve(filePath))
+        const content = await readFileWithRetries(path.resolve(filePath))
 
         if (content === undefined) {
           return

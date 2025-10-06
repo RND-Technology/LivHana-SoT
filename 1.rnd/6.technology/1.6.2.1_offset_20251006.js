@@ -1,17 +1,17 @@
 "use strict";
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+const _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 exports.__esModule = true;
 exports.default = offset;
 
-var _contains = _interopRequireDefault(require("./contains"));
+const _contains = _interopRequireDefault(require("./contains"));
 
-var _ownerDocument = _interopRequireDefault(require("./ownerDocument"));
+const _ownerDocument = _interopRequireDefault(require("./ownerDocument"));
 
-var _scrollLeft = _interopRequireDefault(require("./scrollLeft"));
+const _scrollLeft = _interopRequireDefault(require("./scrollLeft"));
 
-var _scrollTop = _interopRequireDefault(require("./scrollTop"));
+const _scrollTop = _interopRequireDefault(require("./scrollTop"));
 
 /**
  * Returns the offset of a given element, including top and left positions, width and height.
@@ -19,14 +19,14 @@ var _scrollTop = _interopRequireDefault(require("./scrollTop"));
  * @param node the element
  */
 function offset(node) {
-  var doc = (0, _ownerDocument.default)(node);
-  var box = {
+  const doc = (0, _ownerDocument.default)(node);
+  let box = {
     top: 0,
     left: 0,
     height: 0,
     width: 0
   };
-  var docElem = doc && doc.documentElement; // Make sure it's not a disconnected DOM node
+  const docElem = doc && doc.documentElement; // Make sure it's not a disconnected DOM node
 
   if (!docElem || !(0, _contains.default)(docElem, node)) return box;
   if (node.getBoundingClientRect !== undefined) box = node.getBoundingClientRect();

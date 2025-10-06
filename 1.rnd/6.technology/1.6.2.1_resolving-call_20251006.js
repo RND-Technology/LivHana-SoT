@@ -131,7 +131,7 @@ class ResolvingCall {
                 '"');
             this.statusWatchers.forEach(watcher => watcher(filteredStatus));
             process.nextTick(() => {
-                var _a;
+                let _a;
                 (_a = this.listener) === null || _a === void 0 ? void 0 : _a.onReceiveStatus(filteredStatus);
             });
         }
@@ -242,7 +242,7 @@ class ResolvingCall {
         });
     }
     reportResolverError(status) {
-        var _a;
+        let _a;
         if ((_a = this.metadata) === null || _a === void 0 ? void 0 : _a.getOptions().waitForReady) {
             this.channel.queueCallForConfig(this);
         }
@@ -251,7 +251,7 @@ class ResolvingCall {
         }
     }
     cancelWithStatus(status, details) {
-        var _a;
+        let _a;
         this.trace('cancelWithStatus code: ' + status + ' details: "' + details + '"');
         (_a = this.child) === null || _a === void 0 ? void 0 : _a.cancelWithStatus(status, details);
         this.outputStatus({
@@ -261,7 +261,7 @@ class ResolvingCall {
         });
     }
     getPeer() {
-        var _a, _b;
+        let _a, _b;
         return (_b = (_a = this.child) === null || _a === void 0 ? void 0 : _a.getPeer()) !== null && _b !== void 0 ? _b : this.channel.getTarget();
     }
     start(metadata, listener) {

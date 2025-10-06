@@ -10,7 +10,7 @@
         return;
       }
 
-      var text = "Warning: " + message;
+      const text = "Warning: " + message;
 
       if (typeof console !== 'undefined') {
         console.warn(text);

@@ -1,12 +1,12 @@
 "use strict";
 exports.__esModule = true;
 exports.CustomerSegmentsApi = void 0;
-var tslib_1 = require("tslib");
-var listCustomerSegmentsResponse_1 = require("../models/listCustomerSegmentsResponse");
-var retrieveCustomerSegmentResponse_1 = require("../models/retrieveCustomerSegmentResponse");
-var schema_1 = require("../schema");
-var baseApi_1 = require("./baseApi");
-var CustomerSegmentsApi = /** @class */ (function (_super) {
+const tslib_1 = require("tslib");
+const listCustomerSegmentsResponse_1 = require("../models/listCustomerSegmentsResponse");
+const retrieveCustomerSegmentResponse_1 = require("../models/retrieveCustomerSegmentResponse");
+const schema_1 = require("../schema");
+const baseApi_1 = require("./baseApi");
+const CustomerSegmentsApi = /** @class */ (function (_super) {
     tslib_1.__extends(CustomerSegmentsApi, _super);
     function CustomerSegmentsApi() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -27,7 +27,7 @@ var CustomerSegmentsApi = /** @class */ (function (_super) {
      */
     CustomerSegmentsApi.prototype.listCustomerSegments = function (cursor, limit, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET', '/v2/customers/segments');
                 mapped = req.prepareArgs({
@@ -49,7 +49,7 @@ var CustomerSegmentsApi = /** @class */ (function (_super) {
      */
     CustomerSegmentsApi.prototype.retrieveCustomerSegment = function (segmentId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({ segmentId: [segmentId, (0, schema_1.string)()] });
@@ -62,5 +62,5 @@ var CustomerSegmentsApi = /** @class */ (function (_super) {
     return CustomerSegmentsApi;
 }(baseApi_1.BaseApi));
 exports.CustomerSegmentsApi = CustomerSegmentsApi;
-var templateObject_1;
+let templateObject_1;
 //# sourceMappingURL=customerSegmentsApi.js.map

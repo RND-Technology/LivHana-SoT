@@ -9,18 +9,18 @@ exports._markRemoved = _markRemoved;
 exports._remove = _remove;
 exports._removeFromScope = _removeFromScope;
 exports.remove = remove;
-var _removalHooks = require("./lib/removal-hooks.js");
-var _cache = require("../cache.js");
-var _replacement = require("./replacement.js");
-var _index = require("./index.js");
-var _t = require("@babel/types");
-var _modification = require("./modification.js");
-var _context = require("./context.js");
+const _removalHooks = require("./lib/removal-hooks.js");
+const _cache = require("../cache.js");
+const _replacement = require("./replacement.js");
+const _index = require("./index.js");
+const _t = require("@babel/types");
+const _modification = require("./modification.js");
+const _context = require("./context.js");
 const {
   getBindingIdentifiers
 } = _t;
 function remove() {
-  var _this$opts;
+  let _this$opts;
   _assertUnremoved.call(this);
   _context.resync.call(this);
   if (_callRemovalHooks.call(this)) {
@@ -56,7 +56,7 @@ function _remove() {
 function _markRemoved() {
   this._traverseFlags |= _index.SHOULD_SKIP | _index.REMOVED;
   if (this.parent) {
-    var _getCachedPaths;
+    let _getCachedPaths;
     (_getCachedPaths = (0, _cache.getCachedPaths)(this)) == null || _getCachedPaths.delete(this.node);
   }
   this.node = null;

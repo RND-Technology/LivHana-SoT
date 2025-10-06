@@ -1,4 +1,4 @@
-var baseIteratee = require('./_baseIteratee'),
+const baseIteratee = require('./_baseIteratee'),
     baseSortedUniq = require('./_baseSortedUniq');
 
 /**

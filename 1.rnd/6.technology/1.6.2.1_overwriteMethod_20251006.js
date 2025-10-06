@@ -4,11 +4,11 @@
  * MIT Licensed
  */
 
-var addLengthGuard = require('./addLengthGuard');
-var chai = require('../../chai');
-var flag = require('./flag');
-var proxify = require('./proxify');
-var transferFlags = require('./transferFlags');
+const addLengthGuard = require('./addLengthGuard');
+const chai = require('../../chai');
+const flag = require('./flag');
+const proxify = require('./proxify');
+const transferFlags = require('./transferFlags');
 
 /**
  * ### .overwriteMethod(ctx, name, fn)
@@ -45,7 +45,7 @@ var transferFlags = require('./transferFlags');
  */
 
 module.exports = function overwriteMethod(ctx, name, method) {
-  var _method = ctx[name]
+  let _method = ctx[name]
     , _super = function () {
       throw new Error(name + ' is not a function');
     };
@@ -53,7 +53,7 @@ module.exports = function overwriteMethod(ctx, name, method) {
   if (_method && 'function' === typeof _method)
     _super = _method;
 
-  var overwritingMethodWrapper = function () {
+  const overwritingMethodWrapper = function () {
     // Setting the `ssfi` flag to `overwritingMethodWrapper` causes this
     // function to be the starting point for removing implementation frames from
     // the stack trace of a failed assertion.
@@ -73,16 +73,16 @@ module.exports = function overwriteMethod(ctx, name, method) {
     // Setting the `lockSsfi` flag to `true` prevents the overwritten assertion
     // from changing the `ssfi` flag. By this point, the `ssfi` flag is already
     // set to the correct starting point for this assertion.
-    var origLockSsfi = flag(this, 'lockSsfi');
+    const origLockSsfi = flag(this, 'lockSsfi');
     flag(this, 'lockSsfi', true);
-    var result = method(_super).apply(this, arguments);
+    const result = method(_super).apply(this, arguments);
     flag(this, 'lockSsfi', origLockSsfi);
 
     if (result !== undefined) {
       return result;
     }
 
-    var newAssertion = new chai.Assertion();
+    const newAssertion = new chai.Assertion();
     transferFlags(this, newAssertion);
     return newAssertion;
   }

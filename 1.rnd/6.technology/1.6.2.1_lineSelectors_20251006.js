@@ -4,23 +4,23 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.selectLinePoints = void 0;
-var _reselect = require("reselect");
-var _Line = require("../../cartesian/Line");
-var _dataSelectors = require("./dataSelectors");
-var _chartLayoutContext = require("../../context/chartLayoutContext");
-var _axisSelectors = require("./axisSelectors");
-var _ChartUtils = require("../../util/ChartUtils");
-var selectXAxisWithScale = (state, xAxisId, _yAxisId, isPanorama) => (0, _axisSelectors.selectAxisWithScale)(state, 'xAxis', xAxisId, isPanorama);
-var selectXAxisTicks = (state, xAxisId, _yAxisId, isPanorama) => (0, _axisSelectors.selectTicksOfGraphicalItem)(state, 'xAxis', xAxisId, isPanorama);
-var selectYAxisWithScale = (state, _xAxisId, yAxisId, isPanorama) => (0, _axisSelectors.selectAxisWithScale)(state, 'yAxis', yAxisId, isPanorama);
-var selectYAxisTicks = (state, _xAxisId, yAxisId, isPanorama) => (0, _axisSelectors.selectTicksOfGraphicalItem)(state, 'yAxis', yAxisId, isPanorama);
-var selectBandSize = (0, _reselect.createSelector)([_chartLayoutContext.selectChartLayout, selectXAxisWithScale, selectYAxisWithScale, selectXAxisTicks, selectYAxisTicks], (layout, xAxis, yAxis, xAxisTicks, yAxisTicks) => {
+const _reselect = require("reselect");
+const _Line = require("../../cartesian/Line");
+const _dataSelectors = require("./dataSelectors");
+const _chartLayoutContext = require("../../context/chartLayoutContext");
+const _axisSelectors = require("./axisSelectors");
+const _ChartUtils = require("../../util/ChartUtils");
+const selectXAxisWithScale = (state, xAxisId, _yAxisId, isPanorama) => (0, _axisSelectors.selectAxisWithScale)(state, 'xAxis', xAxisId, isPanorama);
+const selectXAxisTicks = (state, xAxisId, _yAxisId, isPanorama) => (0, _axisSelectors.selectTicksOfGraphicalItem)(state, 'xAxis', xAxisId, isPanorama);
+const selectYAxisWithScale = (state, _xAxisId, yAxisId, isPanorama) => (0, _axisSelectors.selectAxisWithScale)(state, 'yAxis', yAxisId, isPanorama);
+const selectYAxisTicks = (state, _xAxisId, yAxisId, isPanorama) => (0, _axisSelectors.selectTicksOfGraphicalItem)(state, 'yAxis', yAxisId, isPanorama);
+const selectBandSize = (0, _reselect.createSelector)([_chartLayoutContext.selectChartLayout, selectXAxisWithScale, selectYAxisWithScale, selectXAxisTicks, selectYAxisTicks], (layout, xAxis, yAxis, xAxisTicks, yAxisTicks) => {
   if ((0, _ChartUtils.isCategoricalAxis)(layout, 'xAxis')) {
     return (0, _ChartUtils.getBandSizeOfAxis)(xAxis, xAxisTicks, false);
   }
   return (0, _ChartUtils.getBandSizeOfAxis)(yAxis, yAxisTicks, false);
 });
-var pickLineId = (_state, _xAxisId, _yAxisId, _isPanorama, id) => id;
+const pickLineId = (_state, _xAxisId, _yAxisId, _isPanorama, id) => id;
 function isLineSettings(item) {
   return item.type === 'line';
 }
@@ -33,9 +33,9 @@ function isLineSettings(item) {
  *
  * So here instead of reading the dataKey from the props, we always read it from the state.
  */
-var selectSynchronisedLineSettings = (0, _reselect.createSelector)([_axisSelectors.selectUnfilteredCartesianItems, pickLineId], (graphicalItems, id) => graphicalItems.filter(isLineSettings).find(x => x.id === id));
-var selectLinePoints = exports.selectLinePoints = (0, _reselect.createSelector)([_chartLayoutContext.selectChartLayout, selectXAxisWithScale, selectYAxisWithScale, selectXAxisTicks, selectYAxisTicks, selectSynchronisedLineSettings, selectBandSize, _dataSelectors.selectChartDataWithIndexesIfNotInPanorama], (layout, xAxis, yAxis, xAxisTicks, yAxisTicks, lineSettings, bandSize, _ref) => {
-  var {
+const selectSynchronisedLineSettings = (0, _reselect.createSelector)([_axisSelectors.selectUnfilteredCartesianItems, pickLineId], (graphicalItems, id) => graphicalItems.filter(isLineSettings).find(x => x.id === id));
+const selectLinePoints = exports.selectLinePoints = (0, _reselect.createSelector)([_chartLayoutContext.selectChartLayout, selectXAxisWithScale, selectYAxisWithScale, selectXAxisTicks, selectYAxisTicks, selectSynchronisedLineSettings, selectBandSize, _dataSelectors.selectChartDataWithIndexesIfNotInPanorama], (layout, xAxis, yAxis, xAxisTicks, yAxisTicks, lineSettings, bandSize, _ref) => {
+  const {
     chartData,
     dataStartIndex,
     dataEndIndex
@@ -43,11 +43,11 @@ var selectLinePoints = exports.selectLinePoints = (0, _reselect.createSelector)(
   if (lineSettings == null || xAxis == null || yAxis == null || xAxisTicks == null || yAxisTicks == null || xAxisTicks.length === 0 || yAxisTicks.length === 0 || bandSize == null) {
     return undefined;
   }
-  var {
+  const {
     dataKey,
     data
   } = lineSettings;
-  var displayedData;
+  let displayedData;
   if (data != null && data.length > 0) {
     displayedData = data;
   } else {

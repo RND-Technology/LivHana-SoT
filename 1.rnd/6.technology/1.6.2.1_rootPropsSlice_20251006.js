@@ -4,13 +4,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.updateOptions = exports.rootPropsReducer = exports.initialState = void 0;
-var _toolkit = require("@reduxjs/toolkit");
+const _toolkit = require("@reduxjs/toolkit");
 /**
  * These are chart options that users can choose - which means they can also
  * choose to change them which should trigger a re-render.
  */
 
-var initialState = exports.initialState = {
+const initialState = exports.initialState = {
   accessibilityLayer: true,
   barCategoryGap: '10%',
   barGap: 4,
@@ -21,12 +21,12 @@ var initialState = exports.initialState = {
   syncId: undefined,
   syncMethod: 'index'
 };
-var rootPropsSlice = (0, _toolkit.createSlice)({
+const rootPropsSlice = (0, _toolkit.createSlice)({
   name: 'rootProps',
   initialState,
   reducers: {
     updateOptions: (state, action) => {
-      var _action$payload$barGa;
+      let _action$payload$barGa;
       state.accessibilityLayer = action.payload.accessibilityLayer;
       state.barCategoryGap = action.payload.barCategoryGap;
       state.barGap = (_action$payload$barGa = action.payload.barGap) !== null && _action$payload$barGa !== void 0 ? _action$payload$barGa : initialState.barGap;
@@ -39,8 +39,8 @@ var rootPropsSlice = (0, _toolkit.createSlice)({
     }
   }
 });
-var rootPropsReducer = exports.rootPropsReducer = rootPropsSlice.reducer;
-var {
+const rootPropsReducer = exports.rootPropsReducer = rootPropsSlice.reducer;
+const {
   updateOptions
 } = rootPropsSlice.actions;
 exports.updateOptions = updateOptions;

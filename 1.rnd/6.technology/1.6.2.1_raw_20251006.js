@@ -10,11 +10,11 @@
  * Module dependencies.
  */
 
-var debug = require('debug')('body-parser:raw')
-var isFinished = require('on-finished').isFinished
-var read = require('../read')
-var typeis = require('type-is')
-var { normalizeOptions } = require('../utils')
+const debug = require('debug')('body-parser:raw')
+const isFinished = require('on-finished').isFinished
+const read = require('../read')
+const typeis = require('type-is')
+const { normalizeOptions } = require('../utils')
 
 /**
  * Module exports.
@@ -31,7 +31,7 @@ module.exports = raw
  */
 
 function raw (options) {
-  var { inflate, limit, verify, shouldParse } = normalizeOptions(options, 'application/octet-stream')
+  const { inflate, limit, verify, shouldParse } = normalizeOptions(options, 'application/octet-stream')
 
   function parse (buf) {
     return buf

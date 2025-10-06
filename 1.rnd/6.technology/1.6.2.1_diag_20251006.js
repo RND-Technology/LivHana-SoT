@@ -44,7 +44,7 @@ class DiagAPI {
         const self = this;
         // DiagAPI specific functions
         const setLogger = (logger, optionsOrLogLevel = { logLevel: types_1.DiagLogLevel.INFO }) => {
-            var _a, _b, _c;
+            let _a, _b, _c;
             if (logger === self) {
                 // There isn't much we can do here.
                 // Logging to the console might break the user application.

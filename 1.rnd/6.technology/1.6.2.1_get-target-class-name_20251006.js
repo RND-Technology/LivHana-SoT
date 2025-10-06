@@ -4,7 +4,7 @@ import nodePath from 'path'
 import hashString from '@emotion/hash'
 import escapeRegexp from 'escape-string-regexp'
 
-let hashArray = (arr /*: Array<string> */) => hashString(arr.join(''))
+const hashArray = (arr /*: Array<string> */) => hashString(arr.join(''))
 
 const unsafeRequire = require
 

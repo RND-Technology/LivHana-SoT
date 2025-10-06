@@ -1,21 +1,21 @@
 "use strict";
 exports.__esModule = true;
 exports.InventoryApi = void 0;
-var tslib_1 = require("tslib");
-var batchChangeInventoryRequest_1 = require("../models/batchChangeInventoryRequest");
-var batchChangeInventoryResponse_1 = require("../models/batchChangeInventoryResponse");
-var batchRetrieveInventoryChangesRequest_1 = require("../models/batchRetrieveInventoryChangesRequest");
-var batchRetrieveInventoryChangesResponse_1 = require("../models/batchRetrieveInventoryChangesResponse");
-var batchRetrieveInventoryCountsRequest_1 = require("../models/batchRetrieveInventoryCountsRequest");
-var batchRetrieveInventoryCountsResponse_1 = require("../models/batchRetrieveInventoryCountsResponse");
-var retrieveInventoryAdjustmentResponse_1 = require("../models/retrieveInventoryAdjustmentResponse");
-var retrieveInventoryChangesResponse_1 = require("../models/retrieveInventoryChangesResponse");
-var retrieveInventoryCountResponse_1 = require("../models/retrieveInventoryCountResponse");
-var retrieveInventoryPhysicalCountResponse_1 = require("../models/retrieveInventoryPhysicalCountResponse");
-var retrieveInventoryTransferResponse_1 = require("../models/retrieveInventoryTransferResponse");
-var schema_1 = require("../schema");
-var baseApi_1 = require("./baseApi");
-var InventoryApi = /** @class */ (function (_super) {
+const tslib_1 = require("tslib");
+const batchChangeInventoryRequest_1 = require("../models/batchChangeInventoryRequest");
+const batchChangeInventoryResponse_1 = require("../models/batchChangeInventoryResponse");
+const batchRetrieveInventoryChangesRequest_1 = require("../models/batchRetrieveInventoryChangesRequest");
+const batchRetrieveInventoryChangesResponse_1 = require("../models/batchRetrieveInventoryChangesResponse");
+const batchRetrieveInventoryCountsRequest_1 = require("../models/batchRetrieveInventoryCountsRequest");
+const batchRetrieveInventoryCountsResponse_1 = require("../models/batchRetrieveInventoryCountsResponse");
+const retrieveInventoryAdjustmentResponse_1 = require("../models/retrieveInventoryAdjustmentResponse");
+const retrieveInventoryChangesResponse_1 = require("../models/retrieveInventoryChangesResponse");
+const retrieveInventoryCountResponse_1 = require("../models/retrieveInventoryCountResponse");
+const retrieveInventoryPhysicalCountResponse_1 = require("../models/retrieveInventoryPhysicalCountResponse");
+const retrieveInventoryTransferResponse_1 = require("../models/retrieveInventoryTransferResponse");
+const schema_1 = require("../schema");
+const baseApi_1 = require("./baseApi");
+const InventoryApi = /** @class */ (function (_super) {
     tslib_1.__extends(InventoryApi, _super);
     function InventoryApi() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -31,7 +31,7 @@ var InventoryApi = /** @class */ (function (_super) {
      */
     InventoryApi.prototype.deprecatedRetrieveInventoryAdjustment = function (adjustmentId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({ adjustmentId: [adjustmentId, (0, schema_1.string)()] });
@@ -51,7 +51,7 @@ var InventoryApi = /** @class */ (function (_super) {
      */
     InventoryApi.prototype.retrieveInventoryAdjustment = function (adjustmentId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({ adjustmentId: [adjustmentId, (0, schema_1.string)()] });
@@ -74,7 +74,7 @@ var InventoryApi = /** @class */ (function (_super) {
      */
     InventoryApi.prototype.deprecatedBatchChangeInventory = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/inventory/batch-change');
                 mapped = req.prepareArgs({
@@ -101,7 +101,7 @@ var InventoryApi = /** @class */ (function (_super) {
      */
     InventoryApi.prototype.deprecatedBatchRetrieveInventoryChanges = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/inventory/batch-retrieve-changes');
                 mapped = req.prepareArgs({
@@ -128,7 +128,7 @@ var InventoryApi = /** @class */ (function (_super) {
      */
     InventoryApi.prototype.deprecatedBatchRetrieveInventoryCounts = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/inventory/batch-retrieve-counts');
                 mapped = req.prepareArgs({
@@ -156,7 +156,7 @@ var InventoryApi = /** @class */ (function (_super) {
      */
     InventoryApi.prototype.batchChangeInventory = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/inventory/changes/batch-create');
                 mapped = req.prepareArgs({
@@ -186,7 +186,7 @@ var InventoryApi = /** @class */ (function (_super) {
      */
     InventoryApi.prototype.batchRetrieveInventoryChanges = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/inventory/changes/batch-retrieve');
                 mapped = req.prepareArgs({
@@ -219,7 +219,7 @@ var InventoryApi = /** @class */ (function (_super) {
      */
     InventoryApi.prototype.batchRetrieveInventoryCounts = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/inventory/counts/batch-retrieve');
                 mapped = req.prepareArgs({
@@ -243,7 +243,7 @@ var InventoryApi = /** @class */ (function (_super) {
      */
     InventoryApi.prototype.deprecatedRetrieveInventoryPhysicalCount = function (physicalCountId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({
@@ -265,7 +265,7 @@ var InventoryApi = /** @class */ (function (_super) {
      */
     InventoryApi.prototype.retrieveInventoryPhysicalCount = function (physicalCountId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({
@@ -286,7 +286,7 @@ var InventoryApi = /** @class */ (function (_super) {
      */
     InventoryApi.prototype.retrieveInventoryTransfer = function (transferId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({ transferId: [transferId, (0, schema_1.string)()] });
@@ -313,7 +313,7 @@ var InventoryApi = /** @class */ (function (_super) {
      */
     InventoryApi.prototype.retrieveInventoryCount = function (catalogObjectId, locationIds, cursor, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({
@@ -357,7 +357,7 @@ var InventoryApi = /** @class */ (function (_super) {
      */
     InventoryApi.prototype.retrieveInventoryChanges = function (catalogObjectId, locationIds, cursor, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({
@@ -377,5 +377,5 @@ var InventoryApi = /** @class */ (function (_super) {
     return InventoryApi;
 }(baseApi_1.BaseApi));
 exports.InventoryApi = InventoryApi;
-var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6, templateObject_7;
+let templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6, templateObject_7;
 //# sourceMappingURL=inventoryApi.js.map

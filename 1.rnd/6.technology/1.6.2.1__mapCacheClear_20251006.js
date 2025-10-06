@@ -1,4 +1,4 @@
-var Hash = require('./_Hash'),
+const Hash = require('./_Hash'),
     ListCache = require('./_ListCache'),
     Map = require('./_Map');
 

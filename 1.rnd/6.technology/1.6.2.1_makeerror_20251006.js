@@ -1,4 +1,4 @@
-var tmpl = require('tmpl')
+const tmpl = require('tmpl')
 
 module.exports = makeError
 
@@ -40,7 +40,7 @@ function makeError(name, defaultMessage, defaultData) {
   if (defaultData.proto && !(defaultData.proto instanceof BaseError))
     throw new Error('The custom "proto" must be an Error created via makeError')
 
-  var CustomError = function(message, data) {
+  const CustomError = function(message, data) {
     if (!(this instanceof CustomError)) return new CustomError(message, data)
 
     if (typeof message !== 'string' && !data) {
@@ -57,7 +57,7 @@ function makeError(name, defaultMessage, defaultData) {
       this.message = defaultMessage(this.data)
     }
 
-    var er = new Error()
+    const er = new Error()
     this.stack = er.stack
     if (this.stack) {
       // remove TWO stack level:

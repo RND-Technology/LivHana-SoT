@@ -1,10 +1,10 @@
 "use strict";
 exports.__esModule = true;
 exports.terminalCheckoutSchema = void 0;
-var schema_1 = require("../schema");
-var deviceCheckoutOptions_1 = require("./deviceCheckoutOptions");
-var money_1 = require("./money");
-var paymentOptions_1 = require("./paymentOptions");
+const schema_1 = require("../schema");
+const deviceCheckoutOptions_1 = require("./deviceCheckoutOptions");
+const money_1 = require("./money");
+const paymentOptions_1 = require("./paymentOptions");
 exports.terminalCheckoutSchema = (0, schema_1.object)({
     id: ['id', (0, schema_1.optional)((0, schema_1.string)())],
     amountMoney: ['amount_money', (0, schema_1.lazy)(function () { return money_1.moneySchema; })],

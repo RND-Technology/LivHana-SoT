@@ -1,15 +1,15 @@
-let p = process || {}, argv = p.argv || [], env = p.env || {}
-let isColorSupported =
+const p = process || {}, argv = p.argv || [], env = p.env || {}
+const isColorSupported =
 	!(!!env.NO_COLOR || argv.includes("--no-color")) &&
 	(!!env.FORCE_COLOR || argv.includes("--color") || p.platform === "win32" || ((p.stdout || {}).isTTY && env.TERM !== "dumb") || !!env.CI)
 
-let formatter = (open, close, replace = open) =>
+const formatter = (open, close, replace = open) =>
 	input => {
-		let string = "" + input, index = string.indexOf(close, open.length)
+		const string = "" + input, index = string.indexOf(close, open.length)
 		return ~index ? open + replaceClose(string, close, replace, index) + close : open + string + close
 	}
 
-let replaceClose = (string, close, replace, index) => {
+const replaceClose = (string, close, replace, index) => {
 	let result = "", cursor = 0
 	do {
 		result += string.substring(cursor, index) + replace
@@ -19,8 +19,8 @@ let replaceClose = (string, close, replace, index) => {
 	return result + string.substring(cursor)
 }
 
-let createColors = (enabled = isColorSupported) => {
-	let f = enabled ? formatter : () => String
+const createColors = (enabled = isColorSupported) => {
+	const f = enabled ? formatter : () => String
 	return {
 		isColorSupported: enabled,
 		reset: f("\x1b[0m", "\x1b[0m"),

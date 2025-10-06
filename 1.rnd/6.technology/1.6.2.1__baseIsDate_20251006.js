@@ -1,8 +1,8 @@
-var baseGetTag = require('./_baseGetTag'),
+const baseGetTag = require('./_baseGetTag'),
     isObjectLike = require('./isObjectLike');
 
 /** `Object#toString` result references. */
-var dateTag = '[object Date]';
+const dateTag = '[object Date]';
 
 /**
  * The base implementation of `_.isDate` without Node.js optimizations.

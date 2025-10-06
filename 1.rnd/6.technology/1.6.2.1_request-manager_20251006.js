@@ -65,9 +65,9 @@ function getRequest(shim) {
         return getRequestFromId(transactionId);
     }
     else if (shim.agent.getLinkingMetadata()) {
-        let linkingMetadata = shim.agent.getLinkingMetadata();
+        const linkingMetadata = shim.agent.getLinkingMetadata();
         if (linkingMetadata['trace.id']) {
-            let traceId = linkingMetadata['trace.id'];
+            const traceId = linkingMetadata['trace.id'];
             return getRequestFromId(traceId);
         }
     }
@@ -90,9 +90,9 @@ function updateRequestBody(shim, data, isTruncated) {
         }
     }
     if (shim.agent.getLinkingMetadata()) {
-        let linkingMetadata = shim.agent.getLinkingMetadata();
+        const linkingMetadata = shim.agent.getLinkingMetadata();
         if (linkingMetadata['trace.id']) {
-            let traceId = linkingMetadata['trace.id'];
+            const traceId = linkingMetadata['trace.id'];
             const requestData = getRequestFromId(traceId);
             if (requestData) {
                 requestData.body = data;
@@ -108,8 +108,8 @@ function updateRequestBody(shim, data, isTruncated) {
  * @param {*} transactionId 
  */
 function gcRequestMap(transaction) {
-    let transactionId = transaction.id;
-    let traceId = transaction._traceId;
+    const transactionId = transaction.id;
+    const traceId = transaction._traceId;
     if (requestMap.has(transactionId)) {
         requestMap.delete(transactionId);
     }

@@ -19,7 +19,7 @@ exports.pubsub_v1beta1a = void 0;
 /* eslint-disable @typescript-eslint/no-namespace */
 /* eslint-disable no-irregular-whitespace */
 const googleapis_common_1 = require("googleapis-common");
-var pubsub_v1beta1a;
+let pubsub_v1beta1a;
 (function (pubsub_v1beta1a) {
     /**
      * Cloud Pub/Sub API

@@ -1,4 +1,4 @@
-var baseToNumber = require('./_baseToNumber'),
+const baseToNumber = require('./_baseToNumber'),
     baseToString = require('./_baseToString');
 
 /**
@@ -11,7 +11,7 @@ var baseToNumber = require('./_baseToNumber'),
  */
 function createMathOperation(operator, defaultValue) {
   return function(value, other) {
-    var result;
+    let result;
     if (value === undefined && other === undefined) {
       return defaultValue;
     }

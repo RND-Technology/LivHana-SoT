@@ -658,7 +658,7 @@
         return x !== x;
     };
 
-    var _a, _b, _c;
+    let _a, _b, _c;
     function CreateArrayFromList(elements) {
         // We use arrays to represent lists, so this is basically a no-op.
         // Do a slice though just in case we happen to depend on the unique-ness.
@@ -1549,7 +1549,7 @@
         return mode;
     }
     function convertByobReadOptions(options, context) {
-        var _a;
+        let _a;
         assertDictionary(options, context);
         const min = (_a = options === null || options === void 0 ? void 0 : options.min) !== null && _a !== void 0 ? _a : 1;
         return {
@@ -2010,7 +2010,7 @@
         return true;
     }
     function WritableStreamAbort(stream, reason) {
-        var _a;
+        let _a;
         if (stream._state === 'closed' || stream._state === 'errored') {
             return promiseResolvedWith(undefined);
         }

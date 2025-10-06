@@ -1,5 +1,5 @@
-var test = require('tape');
-var resolve = require('../');
+const test = require('tape');
+const resolve = require('../');
 
 test('nonstring', function (t) {
     t.plan(1);

@@ -1,23 +1,23 @@
 "use strict";
-var __create = Object.create;
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getProtoOf = Object.getPrototypeOf;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
+const __create = Object.create;
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __getProtoOf = Object.getPrototypeOf;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __export = (target, all) => {
+  for (const name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+const __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
   // If the importer is in node compatibility mode or this is not an ESM
   // file that has been converted to a CommonJS file using a Babel-
   // compatible transform (i.e. "__esModule" has not been set), then set
@@ -25,28 +25,28 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
   mod
 ));
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var recorder_exports = {};
+const __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+const recorder_exports = {};
 __export(recorder_exports, {
   Recorder: () => Recorder,
   RecorderEvent: () => RecorderEvent
 });
 module.exports = __toCommonJS(recorder_exports);
-var import_events = __toESM(require("events"));
-var import_fs = __toESM(require("fs"));
-var import_utils = require("../utils");
-var import_browserContext = require("./browserContext");
-var import_debugger = require("./debugger");
-var import_recorderUtils = require("./recorder/recorderUtils");
-var import_locatorParser = require("../utils/isomorphic/locatorParser");
-var import_selectorParser = require("../utils/isomorphic/selectorParser");
-var import_progress = require("./progress");
-var import_recorderSignalProcessor = require("./recorder/recorderSignalProcessor");
-var rawRecorderSource = __toESM(require("./../generated/pollingRecorderSource"));
-var import_utils2 = require("./../utils");
-var import_frames = require("./frames");
-var import_page = require("./page");
-var import_recorderRunner = require("./recorder/recorderRunner");
+const import_events = __toESM(require("events"));
+const import_fs = __toESM(require("fs"));
+const import_utils = require("../utils");
+const import_browserContext = require("./browserContext");
+const import_debugger = require("./debugger");
+const import_recorderUtils = require("./recorder/recorderUtils");
+const import_locatorParser = require("../utils/isomorphic/locatorParser");
+const import_selectorParser = require("../utils/isomorphic/selectorParser");
+const import_progress = require("./progress");
+const import_recorderSignalProcessor = require("./recorder/recorderSignalProcessor");
+const rawRecorderSource = __toESM(require("./../generated/pollingRecorderSource"));
+const import_utils2 = require("./../utils");
+const import_frames = require("./frames");
+const import_page = require("./page");
+const import_recorderRunner = require("./recorder/recorderRunner");
 const recorderSymbol = Symbol("recorderSymbol");
 const RecorderEvent = {
   PausedStateChanged: "pausedStateChanged",

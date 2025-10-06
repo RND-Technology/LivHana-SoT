@@ -1,11 +1,11 @@
 "use strict";
 exports.__esModule = true;
 exports.orderFulfillmentSchema = void 0;
-var schema_1 = require("../schema");
-var orderFulfillmentDeliveryDetails_1 = require("./orderFulfillmentDeliveryDetails");
-var orderFulfillmentFulfillmentEntry_1 = require("./orderFulfillmentFulfillmentEntry");
-var orderFulfillmentPickupDetails_1 = require("./orderFulfillmentPickupDetails");
-var orderFulfillmentShipmentDetails_1 = require("./orderFulfillmentShipmentDetails");
+const schema_1 = require("../schema");
+const orderFulfillmentDeliveryDetails_1 = require("./orderFulfillmentDeliveryDetails");
+const orderFulfillmentFulfillmentEntry_1 = require("./orderFulfillmentFulfillmentEntry");
+const orderFulfillmentPickupDetails_1 = require("./orderFulfillmentPickupDetails");
+const orderFulfillmentShipmentDetails_1 = require("./orderFulfillmentShipmentDetails");
 exports.orderFulfillmentSchema = (0, schema_1.object)({
     uid: ['uid', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.string)()))],
     type: ['type', (0, schema_1.optional)((0, schema_1.string)())],

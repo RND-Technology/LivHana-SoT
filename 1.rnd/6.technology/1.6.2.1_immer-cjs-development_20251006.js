@@ -1,24 +1,24 @@
 "use strict";
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __export = (target, all) => {
+  for (const name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+const __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/immer.ts
-var immer_exports = {};
+const immer_exports = {};
 __export(immer_exports, {
   Immer: () => Immer2,
   applyPatches: () => applyPatches,
@@ -45,10 +45,10 @@ module.exports = __toCommonJS(immer_exports);
 // src/utils/env.ts
 var NOTHING = Symbol.for("immer-nothing");
 var DRAFTABLE = Symbol.for("immer-draftable");
-var DRAFT_STATE = Symbol.for("immer-state");
+const DRAFT_STATE = Symbol.for("immer-state");
 
 // src/utils/errors.ts
-var errors = process.env.NODE_ENV !== "production" ? [
+const errors = process.env.NODE_ENV !== "production" ? [
   // All error codes, starting by 0:
   function(plugin) {
     return `The plugin for '${plugin}' has not been loaded into Immer. To enable the plugin, import and call \`enable${plugin}()\` when initializing your application.`;
@@ -91,7 +91,7 @@ function die(error, ...args) {
 }
 
 // src/utils/common.ts
-var getPrototypeOf = Object.getPrototypeOf;
+const getPrototypeOf = Object.getPrototypeOf;
 function isDraft(value) {
   return !!value && !!value[DRAFT_STATE];
 }
@@ -100,7 +100,7 @@ function isDraftable(value) {
     return false;
   return isPlainObject(value) || Array.isArray(value) || !!value[DRAFTABLE] || !!value.constructor?.[DRAFTABLE] || isMap(value) || isSet(value);
 }
-var objectCtorString = Object.prototype.constructor.toString();
+const objectCtorString = Object.prototype.constructor.toString();
 function isPlainObject(value) {
   if (!value || typeof value !== "object")
     return false;
@@ -175,7 +175,7 @@ function shallowCopy(base, strict) {
   if (strict === true || strict === "class_only" && !isPlain) {
     const descriptors = Object.getOwnPropertyDescriptors(base);
     delete descriptors[DRAFT_STATE];
-    let keys = Reflect.ownKeys(descriptors);
+    const keys = Reflect.ownKeys(descriptors);
     for (let i = 0; i < keys.length; i++) {
       const key = keys[i];
       const desc = descriptors[key];
@@ -226,7 +226,7 @@ function isFrozen(obj) {
 }
 
 // src/utils/plugins.ts
-var plugins = {};
+const plugins = {};
 function getPlugin(pluginKey) {
   const plugin = plugins[pluginKey];
   if (!plugin) {
@@ -240,7 +240,7 @@ function loadPlugin(pluginKey, implementation) {
 }
 
 // src/core/scope.ts
-var currentScope;
+let currentScope;
 function getCurrentScope() {
   return currentScope;
 }
@@ -796,7 +796,7 @@ function enablePatches() {
     let { base_, assigned_ } = state;
     let copy_ = state.copy_;
     if (copy_.length < base_.length) {
-      ;
+      
       [base_, copy_] = [copy_, base_];
       [patches, inversePatches] = [inversePatches, patches];
     }
@@ -851,7 +851,7 @@ function enablePatches() {
     });
   }
   function generateSetPatches(state, basePath, patches, inversePatches) {
-    let { base_, copy_ } = state;
+    const { base_, copy_ } = state;
     let i = 0;
     base_.forEach((value) => {
       if (!copy_.has(value)) {
@@ -1240,7 +1240,7 @@ function enableMapSet() {
 }
 
 // src/immer.ts
-var immer = new Immer2();
+const immer = new Immer2();
 var produce = immer.produce;
 var produceWithPatches = /* @__PURE__ */ immer.produceWithPatches.bind(
   immer

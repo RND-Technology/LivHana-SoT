@@ -1,11 +1,11 @@
 "use strict";
 exports.__esModule = true;
 exports.checkoutLocationSettingsSchema = void 0;
-var schema_1 = require("../schema");
-var checkoutLocationSettingsBranding_1 = require("./checkoutLocationSettingsBranding");
-var checkoutLocationSettingsCoupons_1 = require("./checkoutLocationSettingsCoupons");
-var checkoutLocationSettingsPolicy_1 = require("./checkoutLocationSettingsPolicy");
-var checkoutLocationSettingsTipping_1 = require("./checkoutLocationSettingsTipping");
+const schema_1 = require("../schema");
+const checkoutLocationSettingsBranding_1 = require("./checkoutLocationSettingsBranding");
+const checkoutLocationSettingsCoupons_1 = require("./checkoutLocationSettingsCoupons");
+const checkoutLocationSettingsPolicy_1 = require("./checkoutLocationSettingsPolicy");
+const checkoutLocationSettingsTipping_1 = require("./checkoutLocationSettingsTipping");
 exports.checkoutLocationSettingsSchema = (0, schema_1.object)({
     locationId: ['location_id', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.string)()))],
     customerNotesEnabled: [

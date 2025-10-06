@@ -1,4 +1,4 @@
-var baseSortedUniq = require('./_baseSortedUniq');
+const baseSortedUniq = require('./_baseSortedUniq');
 
 /**
  * This method is like `_.uniq` except that it's designed and optimized

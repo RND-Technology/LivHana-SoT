@@ -1,14 +1,14 @@
 'use strict';
 
-var $abs = require('math-intrinsics/abs');
-var $floor = require('math-intrinsics/floor');
-var $pow = require('math-intrinsics/pow');
+const $abs = require('math-intrinsics/abs');
+const $floor = require('math-intrinsics/floor');
+const $pow = require('math-intrinsics/pow');
 
-var isFinite = require('math-intrinsics/isFinite');
-var isNaN = require('math-intrinsics/isNaN');
-var isNegativeZero = require('math-intrinsics/isNegativeZero');
+const isFinite = require('math-intrinsics/isFinite');
+const isNaN = require('math-intrinsics/isNaN');
+const isNegativeZero = require('math-intrinsics/isNegativeZero');
 
-var maxFiniteFloat16 = 65504; // 2**16 - 2**5
+const maxFiniteFloat16 = 65504; // 2**16 - 2**5
 
 module.exports = function valueToFloat16Bytes(value, isLittleEndian) {
 	// NaN → exponent=all-ones, mantissa MSB=1 → 0x7e00
@@ -18,7 +18,7 @@ module.exports = function valueToFloat16Bytes(value, isLittleEndian) {
 			: [0x7e, 0x00];
 	}
 
-	var leastSig;
+	let leastSig;
 
 	// ±0 → just the sign bit
 	if (value === 0) {
@@ -36,11 +36,11 @@ module.exports = function valueToFloat16Bytes(value, isLittleEndian) {
 			: [leastSig, 0x00];
 	}
 
-	var sign = value < 0 ? 1 : 0;
+	const sign = value < 0 ? 1 : 0;
 	value = $abs(value); // eslint-disable-line no-param-reassign
 
 	// normalize to [1,2)
-	var exponent = 0;
+	let exponent = 0;
 	while (value >= 2) {
 		exponent += 1;
 		value /= 2; // eslint-disable-line no-param-reassign
@@ -51,7 +51,7 @@ module.exports = function valueToFloat16Bytes(value, isLittleEndian) {
 	}
 
 	// build mantissa (10 bits)
-	var mantissa = value - 1;
+	let mantissa = value - 1;
 	mantissa *= $pow(2, 10) + 0.5;
 	mantissa = $floor(mantissa);
 
@@ -60,12 +60,12 @@ module.exports = function valueToFloat16Bytes(value, isLittleEndian) {
 	exponent <<= 10;
 
 	// pack sign, exponent, mantissa
-	var result = (sign << 15) | exponent | mantissa;
+	let result = (sign << 15) | exponent | mantissa;
 
 	// split into two bytes
-	var byte0 = result & 0xFF;
+	const byte0 = result & 0xFF;
 	result >>= 8;
-	var byte1 = result & 0xFF;
+	const byte1 = result & 0xFF;
 
 	return isLittleEndian
 		? [byte0, byte1]

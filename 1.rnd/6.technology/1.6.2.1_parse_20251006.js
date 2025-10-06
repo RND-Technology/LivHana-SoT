@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _validate = _interopRequireDefault(require("./validate.js"));
+const _validate = _interopRequireDefault(require("./validate.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -41,5 +41,5 @@ function parse(uuid) {
   return arr;
 }
 
-var _default = parse;
+const _default = parse;
 exports.default = _default;

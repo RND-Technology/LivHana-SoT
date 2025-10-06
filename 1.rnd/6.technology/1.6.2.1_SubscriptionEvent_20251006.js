@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
 exports.subscriptionEventSchema = void 0;
-var schema_1 = require("../schema");
-var phase_1 = require("./phase");
-var subscriptionEventInfo_1 = require("./subscriptionEventInfo");
+const schema_1 = require("../schema");
+const phase_1 = require("./phase");
+const subscriptionEventInfo_1 = require("./subscriptionEventInfo");
 exports.subscriptionEventSchema = (0, schema_1.object)({
     id: ['id', (0, schema_1.string)()],
     subscriptionEventType: ['subscription_event_type', (0, schema_1.string)()],

@@ -19,7 +19,7 @@ exports.readerrevenuesubscriptionlinking_v1 = void 0;
 /* eslint-disable @typescript-eslint/no-namespace */
 /* eslint-disable no-irregular-whitespace */
 const googleapis_common_1 = require("googleapis-common");
-var readerrevenuesubscriptionlinking_v1;
+let readerrevenuesubscriptionlinking_v1;
 (function (readerrevenuesubscriptionlinking_v1) {
     /**
      * Reader Revenue Subscription Linking API

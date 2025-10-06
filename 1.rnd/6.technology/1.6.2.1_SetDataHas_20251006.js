@@ -1,12 +1,12 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var CanonicalizeKeyedCollectionKey = require('./CanonicalizeKeyedCollectionKey');
-var IsArray = require('./IsArray');
-var SameValue = require('./SameValue');
+const CanonicalizeKeyedCollectionKey = require('./CanonicalizeKeyedCollectionKey');
+const IsArray = require('./IsArray');
+const SameValue = require('./SameValue');
 
-var some = require('../helpers/some');
+const some = require('../helpers/some');
 
 // https://262.ecma-international.org/16.0/#sec-setdatahas
 
@@ -18,7 +18,7 @@ module.exports = function SetDataHas(setData, value) {
 	// if (SetDataIndex(setData, value) === 'NOT-FOUND') { return false; } // step 1
 	// return true; // step 2
 
-	var canonValue = CanonicalizeKeyedCollectionKey(value);
+	const canonValue = CanonicalizeKeyedCollectionKey(value);
 
 	return some(setData, function (e) {
 		return SameValue(e, canonValue);

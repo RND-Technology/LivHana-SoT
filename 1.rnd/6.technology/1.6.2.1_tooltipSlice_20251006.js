@@ -4,8 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.tooltipReducer = exports.setTooltipSettingsState = exports.setSyncInteraction = exports.setMouseOverAxisIndex = exports.setMouseClickAxisIndex = exports.setKeyboardInteraction = exports.setActiveMouseOverItemIndex = exports.setActiveClickItemIndex = exports.removeTooltipEntrySettings = exports.noInteraction = exports.mouseLeaveItem = exports.mouseLeaveChart = exports.initialState = exports.addTooltipEntrySettings = void 0;
-var _toolkit = require("@reduxjs/toolkit");
-var _immer = require("immer");
+const _toolkit = require("@reduxjs/toolkit");
+const _immer = require("immer");
 /**
  * One Tooltip can display multiple TooltipPayloadEntries at a time.
  */
@@ -59,7 +59,7 @@ var _immer = require("immer");
  * and then the selectors and Tooltip will decide which of the interaction states to use.
  */
 
-var noInteraction = exports.noInteraction = {
+const noInteraction = exports.noInteraction = {
   active: false,
   index: null,
   dataKey: undefined,
@@ -74,7 +74,7 @@ var noInteraction = exports.noInteraction = {
  * - The data that individual graphical items wish to be displayed in case the tooltip gets activated
  */
 
-var initialState = exports.initialState = {
+const initialState = exports.initialState = {
   itemInteraction: {
     click: noInteraction,
     hover: noInteraction
@@ -100,7 +100,7 @@ var initialState = exports.initialState = {
     defaultIndex: undefined
   }
 };
-var tooltipSlice = (0, _toolkit.createSlice)({
+const tooltipSlice = (0, _toolkit.createSlice)({
   name: 'tooltip',
   initialState,
   reducers: {
@@ -108,7 +108,7 @@ var tooltipSlice = (0, _toolkit.createSlice)({
       state.tooltipItemPayloads.push((0, _immer.castDraft)(action.payload));
     },
     removeTooltipEntrySettings(state, action) {
-      var index = (0, _toolkit.current)(state).tooltipItemPayloads.indexOf((0, _immer.castDraft)(action.payload));
+      const index = (0, _toolkit.current)(state).tooltipItemPayloads.indexOf((0, _immer.castDraft)(action.payload));
       if (index > -1) {
         state.tooltipItemPayloads.splice(index, 1);
       }
@@ -173,7 +173,7 @@ var tooltipSlice = (0, _toolkit.createSlice)({
     }
   }
 });
-var {
+const {
   addTooltipEntrySettings,
   removeTooltipEntrySettings,
   setTooltipSettingsState,
@@ -197,4 +197,4 @@ exports.setActiveMouseOverItemIndex = setActiveMouseOverItemIndex;
 exports.setTooltipSettingsState = setTooltipSettingsState;
 exports.removeTooltipEntrySettings = removeTooltipEntrySettings;
 exports.addTooltipEntrySettings = addTooltipEntrySettings;
-var tooltipReducer = exports.tooltipReducer = tooltipSlice.reducer;
+const tooltipReducer = exports.tooltipReducer = tooltipSlice.reducer;

@@ -7,7 +7,7 @@ exports.default = getModuleName;
 {
   const originalGetModuleName = getModuleName;
   exports.default = getModuleName = function getModuleName(rootOpts, pluginOpts) {
-    var _pluginOpts$moduleId, _pluginOpts$moduleIds, _pluginOpts$getModule, _pluginOpts$moduleRoo;
+    let _pluginOpts$moduleId, _pluginOpts$moduleIds, _pluginOpts$getModule, _pluginOpts$moduleRoo;
     return originalGetModuleName(rootOpts, {
       moduleId: (_pluginOpts$moduleId = pluginOpts.moduleId) != null ? _pluginOpts$moduleId : rootOpts.moduleId,
       moduleIds: (_pluginOpts$moduleIds = pluginOpts.moduleIds) != null ? _pluginOpts$moduleIds : rootOpts.moduleIds,

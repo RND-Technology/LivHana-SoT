@@ -1,5 +1,5 @@
 //.CommonJS
-var CSSOM = {
+const CSSOM = {
 	CSSRule: require("./CSSRule").CSSRule
 };
 ///CommonJS
@@ -25,8 +25,8 @@ CSSOM.CSSKeyframesRule.prototype.type = 7;
 // http://www.opensource.apple.com/source/WebCore/WebCore-955.66.1/css/WebKitCSSKeyframesRule.cpp
 Object.defineProperty(CSSOM.CSSKeyframesRule.prototype, "cssText", {
   get: function() {
-    var cssTexts = [];
-    for (var i=0, length=this.cssRules.length; i < length; i++) {
+    const cssTexts = [];
+    for (let i=0, length=this.cssRules.length; i < length; i++) {
       cssTexts.push("  " + this.cssRules[i].cssText);
     }
     return "@" + (this._vendorPrefix || '') + "keyframes " + this.name + " { \n" + cssTexts.join("\n") + "\n}";

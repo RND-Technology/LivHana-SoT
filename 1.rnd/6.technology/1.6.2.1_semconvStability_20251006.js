@@ -16,7 +16,7 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.semconvStabilityFromStr = exports.SemconvStability = void 0;
-var SemconvStability;
+let SemconvStability;
 (function (SemconvStability) {
     /** Emit only stable semantic conventions. */
     SemconvStability[SemconvStability["STABLE"] = 1] = "STABLE";

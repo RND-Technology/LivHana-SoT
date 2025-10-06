@@ -1,6 +1,6 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true});// Generated file, do not edit! Run "yarn generate" to re-generate this file.
-var _keywords = require('./keywords');
-var _types = require('./types');
+const _keywords = require('./keywords');
+const _types = require('./types');
 
 // prettier-ignore
  const READ_WORD_TREE = new Int32Array([

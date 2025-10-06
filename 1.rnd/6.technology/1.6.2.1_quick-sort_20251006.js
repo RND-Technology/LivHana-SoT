@@ -28,7 +28,7 @@ function SortTemplate(comparator) {
  *        The index of the second item.
  */
 function swap(ary, x, y) {
-  var temp = ary[x];
+  const temp = ary[x];
   ary[x] = ary[y];
   ary[y] = temp;
 }
@@ -74,11 +74,11 @@ function doQuickSort(ary, comparator, p, r) {
 
     // Always choose a random pivot so that an input array which is reverse
     // sorted does not cause O(n^2) running time.
-    var pivotIndex = randomIntInRange(p, r);
-    var i = p - 1;
+    const pivotIndex = randomIntInRange(p, r);
+    let i = p - 1;
 
     swap(ary, pivotIndex, r);
-    var pivot = ary[r];
+    const pivot = ary[r];
 
     // Immediately after `j` is incremented in this loop, the following hold
     // true:
@@ -94,7 +94,7 @@ function doQuickSort(ary, comparator, p, r) {
     }
 
     swap(ary, i + 1, j);
-    var q = i + 1;
+    const q = i + 1;
 
     // (2) Recurse on each half.
 
@@ -107,8 +107,8 @@ function doQuickSort(ary, comparator, p, r) {
 }
 
 function cloneSort(comparator) {
-  let template = SortTemplate.toString();
-  let templateFn = new Function(`return ${template}`)();
+  const template = SortTemplate.toString();
+  const templateFn = new Function(`return ${template}`)();
   return templateFn(comparator);
 }
 
@@ -121,7 +121,7 @@ function cloneSort(comparator) {
  *        Function to use to compare two items.
  */
 
-let sortCache = new WeakMap();
+const sortCache = new WeakMap();
 exports.quickSort = function (ary, comparator, start = 0) {
   let doQuickSort = sortCache.get(comparator);
   if (doQuickSort === void 0) {

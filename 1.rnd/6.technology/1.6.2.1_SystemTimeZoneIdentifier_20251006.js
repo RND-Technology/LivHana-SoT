@@ -1,10 +1,10 @@
 'use strict';
 
-var callBind = require('call-bind');
+const callBind = require('call-bind');
 
-var I402 = typeof Intl === 'undefined' ? null : Intl;
-var DateTimeFormat = I402 && I402.DateTimeFormat;
-var resolvedOptions = DateTimeFormat && callBind(DateTimeFormat.prototype.resolvedOptions);
+const I402 = typeof Intl === 'undefined' ? null : Intl;
+const DateTimeFormat = I402 && I402.DateTimeFormat;
+const resolvedOptions = DateTimeFormat && callBind(DateTimeFormat.prototype.resolvedOptions);
 
 // https://262.ecma-international.org/15.0/#sec-systemtimezoneidentifier
 

@@ -1,10 +1,10 @@
 "use strict";
 exports.__esModule = true;
 exports.SitesApi = void 0;
-var tslib_1 = require("tslib");
-var listSitesResponse_1 = require("../models/listSitesResponse");
-var baseApi_1 = require("./baseApi");
-var SitesApi = /** @class */ (function (_super) {
+const tslib_1 = require("tslib");
+const listSitesResponse_1 = require("../models/listSitesResponse");
+const baseApi_1 = require("./baseApi");
+const SitesApi = /** @class */ (function (_super) {
     tslib_1.__extends(SitesApi, _super);
     function SitesApi() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -22,7 +22,7 @@ var SitesApi = /** @class */ (function (_super) {
      */
     SitesApi.prototype.listSites = function (requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req;
+            let req;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET', '/v2/sites');
                 req.authenticate([{ global: true }]);

@@ -1,5 +1,7 @@
 # RPM WEEKLY PLAN — OCTOBER 4-12, 2025
+
 ## Reggie & Dro / Liv Hana Empire
+
 ### "Grow Baby Grow and Sell Baby Sell"
 
 ---
@@ -20,6 +22,7 @@
 ## 💪 PURPOSE (Why This Matters)
 
 ### **Strategic Imperatives:**
+
 1. **Revenue Recovery:** Failed age verification system cost $100K+ in blocked customers — time to reclaim
 2. **Payment Sovereignty:** Break Square dependency, establish Kaja as high-risk processor champion
 3. **Scale Foundation:** $100K October → $250K November → $500K+ by Q1 2026
@@ -27,6 +30,7 @@
 5. **Texas Leadership:** Prove compliant, profitable hemp model for national replication
 
 ### **Rally Cries:**
+
 - "Grow baby grow and sell baby sell"
 - "Grow, Sell, Heal"
 - "Stay TOONED"
@@ -44,11 +48,13 @@
 ## 📅 FRIDAY, OCTOBER 10, 2025 — R&D TEAM MEETING
 
 ### 🎯 **R&D TEAM MEETING AGENDA**
+
 **Location:** Reggie & Dro  
 **Time:** 7:30-9:30 PM CST  
 **Duration:** 2 hours
 
 #### **In-Person Attendees:**
+
 - Christopher Rocha
 - Dylan Rocha  
 - Gabriela Rodriguez
@@ -56,6 +62,7 @@
 - Darren Greene
 
 #### **Virtual Attendees:**
+
 - Savanna Miller
 
 #### **Meeting Agenda:**
@@ -96,6 +103,7 @@
    - Marketing campaigns and promotions
 
 #### **Expected Outcomes:**
+
 - Standardized operational procedures
 - Clear event planning roadmap
 - Compliance documentation updates
@@ -139,13 +147,14 @@
    - **Time:** 15 minutes
 
 5. **DNS Flip Prep (DO NOT EXECUTE YET)**
-   - **Contact:** Leanne Fonte (lfonte@kajapayments.com, 516-450-8214)
+   - **Contact:** Leanne Fonte (<lfonte@kajapayments.com>, 516-450-8214)
    - **Request:** SSL support for reggieanddro.com → reggieanddro.company.site
    - **Get:** Cloudflare CNAME/A record instructions
    - **Critical:** DO NOT flip DNS until Kaja confirms ready for review
    - **Time:** 30 minutes (email + phone follow-up)
 
 #### **Success Metric:**
+
 ✅ Site 100% compliant for bank review by 6pm PDT Friday
 
 ---
@@ -171,7 +180,7 @@
    - **Time:** 30 minutes research
 
 3. **Order Shipping Supplies**
-   - **Items:** 
+   - **Items:**
      - Poly mailers (500 count, smell-proof)
      - Circle stickers (1000 count, R&D logo)
      - Packing tape (12 rolls)
@@ -181,6 +190,7 @@
    - **Timing:** Order today for Monday delivery
 
 #### **Success Metric:**
+
 ✅ Lightspeed shipping functional, supplies ordered, Pirate Ship decision made
 
 ---
@@ -203,6 +213,7 @@
    - **Contents:** Scan schedule, certificate storage, renewal dates
 
 #### **Success Metric:**
+
 ✅ PCI scan complete, certificate on file
 
 ---
@@ -228,6 +239,7 @@
 #### **Email Announcement Prep:**
 
 **Platform Decision:** Square vs. Klaviyo
+
 - **Square:** If staying with current system (free, basic)
 - **Klaviyo:** If upgrading for advanced automation (paid, $20-60/mo)
 - **Recommendation:** Start with Square, migrate to Klaviyo after $100K milestone
@@ -263,6 +275,7 @@ Unsubscribe | Update Preferences
 ```
 
 #### **Success Metric:**
+
 ✅ Social posts drafted, email ready to send Monday 9am
 
 ---
@@ -281,6 +294,7 @@ Unsubscribe | Update Preferences
 4. **Resolve:** Dispute any unauthorized charges, update payment method if needed
 
 #### **Success Metric:**
+
 ✅ Leafly billing confirmed accurate, phantom charges refunded if applicable
 
 ---
@@ -340,6 +354,7 @@ CEO, Reggie & Dro
 ```
 
 #### **Success Metric:**
+
 ✅ Bank review initiated by EOD Saturday
 
 ---
@@ -354,7 +369,7 @@ CEO, Reggie & Dro
 
 1. **Staff Communication (Slack/Email):**
    - **Message:** "Online sales launching Monday! Here's what to expect..."
-   - **Details:** 
+   - **Details:**
      - Order volume spike expected (200+ orders first week)
      - Shipping process walk-through
      - Customer service responses for common questions
@@ -366,6 +381,7 @@ CEO, Reggie & Dro
    - **Materials:** Prep SOPs, screen recordings, FAQ doc
 
 #### **Success Metric:**
+
 ✅ Staff briefed, Liv Hana training materials ready
 
 ---
@@ -381,6 +397,7 @@ CEO, Reggie & Dro
 **Format:** 60-second short  
 **Platforms:** YouTube Shorts, TikTok, IG Reels, X  
 **Script Beat:**
+
 - Jesse: "Yo, I need some help running this empire..."
 - Liv Hana AI EA appears: "Live and faithful, boss. What's the mission?"
 - Jesse: "Deschedule cannabis, make Texas free, and sell some flower."
@@ -390,6 +407,7 @@ CEO, Reggie & Dro
 **CTA:** "Stay TOONED for more Texas THC Tales!"
 
 #### **Success Metric:**
+
 ✅ Day 1 episode published across all platforms
 
 ---
@@ -420,7 +438,7 @@ CEO, Reggie & Dro
      - Name: @
      - Value: [Lightspeed IP from Leanne]
      - TTL: 600 (10 minutes)
-   
+
    - **CNAME Record:**
      - Name: www
      - Value: reggieanddro.company.site
@@ -429,7 +447,7 @@ CEO, Reggie & Dro
 3. **Verify SSL Provisioning:**
    - Lightspeed auto-generates SSL certificate
    - Allow 5-10 minutes for provisioning
-   - Test: https://reggieanddro.com (should load without certificate warning)
+   - Test: <https://reggieanddro.com> (should load without certificate warning)
 
 4. **Test Checkout Flow:**
    - Place test order
@@ -439,7 +457,7 @@ CEO, Reggie & Dro
 
 #### **DNS Propagation Monitoring:**
 
-- **Tool:** https://dnschecker.org
+- **Tool:** <https://dnschecker.org>
 - **Check:** reggieanddro.com resolves to Lightspeed IP globally
 - **Timeline:** 1-4 hours for most regions, up to 48 hours for full global propagation
 
@@ -450,6 +468,7 @@ CEO, Reggie & Dro
 3. Contact Leanne Fonte for troubleshooting
 
 #### **Success Metric:**
+
 ✅ reggieanddro.com live with functional checkout, SSL verified
 
 ---
@@ -489,6 +508,7 @@ CEO, Reggie & Dro
    - **Social Media:** Showcase delivery radius map
 
 #### **Success Metric:**
+
 ✅ Local delivery system operational, 20+ deliveries first week
 
 ---
@@ -502,6 +522,7 @@ CEO, Reggie & Dro
 **Format:** 60-second short  
 **Platforms:** YouTube Shorts, TikTok, IG Reels, X  
 **Script Beat:**
+
 - Chief Steve: "We gotta crack down on this hemp stuff..."
 - Jesse: "Chief, it's legal. 0.3% THC, DSHS licensed."
 - Chief: "But... but... the optics!"
@@ -511,6 +532,7 @@ CEO, Reggie & Dro
 **CTA:** "Stay TOONED for more Texas THC Tales!"
 
 #### **Success Metric:**
+
 ✅ Day 2 episode published across all platforms
 
 ---
@@ -568,6 +590,7 @@ CEO, Reggie & Dro
 - Meeting notes: Ingest all previous meeting notes from the week
 
 #### **Success Metric:**
+
 ✅ Clear priorities established, ownership assigned, blockers identified
 
 ---
@@ -699,6 +722,7 @@ Unsubscribe | Update Preferences
    - Jesse/Andrew give feedback
 
 #### **Success Metric:**
+
 ✅ Team confident in full funnel, <5 minute average order processing time
 
 ---
@@ -712,6 +736,7 @@ Unsubscribe | Update Preferences
 **Format:** 60-second short  
 **Platforms:** YouTube Shorts, TikTok, IG Reels, X  
 **Script Beat:**
+
 - Narrator: "Once upon a time, in the land of Texas..."
 - Jesse: "Everyone wanted premium flower. But some of us remember the OG days."
 - Flashback: 90s brick weed imagery (compressed, nostalgic)
@@ -721,6 +746,7 @@ Unsubscribe | Update Preferences
 **CTA:** "Get your brick at ReggieAndDro.com!"
 
 #### **Success Metric:**
+
 ✅ Day 3 episode published across all platforms
 
 ---
@@ -737,12 +763,14 @@ Unsubscribe | Update Preferences
 
 **Hypothesis:** 1-page checkout reduces friction, increases conversion  
 **Test Setup:**
+
 - **Variant A (Control):** Current 2-page checkout
 - **Variant B:** Condensed 1-page checkout (billing + shipping combined)
 - **Duration:** 7 days
 - **Success Metric:** >10% conversion rate lift
 
 **Implementation:**
+
 - Use Lightspeed's built-in A/B testing (if available) or Google Optimize
 - Track: Checkout abandonment rate, time-to-purchase, form field errors
 
@@ -751,6 +779,7 @@ Unsubscribe | Update Preferences
 #### **Abandoned Cart Recovery Automation**
 
 **Sequence:**
+
 1. **1 Hour:** "Did you forget something?" (plain text, friendly)
 2. **24 Hours:** "$5 off to complete your order" (discount code)
 3. **72 Hours:** "Last chance — 10% off expires tonight!" (urgency)
@@ -763,11 +792,13 @@ Unsubscribe | Update Preferences
 #### **Upsell Bundle Creation**
 
 **Bundle 1:** "Texas Sampler"
+
 - 1oz brick weed + 1/8oz premium strain + grinder
 - Price: $75 (vs. $85 separately)
 - Margin: 45%
 
 **Bundle 2:** "Wall of Weed Starter Pack"
+
 - 2oz flower (mix & match) + tips jar + R&D sticker pack
 - Price: $120 (vs. $135 separately)
 - Margin: 42%
@@ -775,6 +806,7 @@ Unsubscribe | Update Preferences
 **Promotion:** "Save 10%+ when you bundle!"
 
 #### **Success Metric:**
+
 ✅ 8-12% conversion rate, $150+ AOV, 20%+ cart recovery
 
 ---
@@ -792,15 +824,18 @@ Unsubscribe | Update Preferences
 **Cost:** $0.015/message (bulk rates)
 
 **Opt-In Incentive:**
+
 - **Popup:** "Get 10% off your first order via text!"
 - **Checkbox:** "Yes, text me exclusive deals" (at checkout)
 
 **Welcome Series:**
+
 1. **Immediate:** "Welcome! Here's your 10% off code: TEXT10"
 2. **Day 3:** "Have you tried our brick weed yet? $40/oz"
 3. **Day 7:** "New drop alert: [Product name] just restocked"
 
 #### **Success Metric:**
+
 ✅ 500+ SMS subscribers first week, 25%+ open rate, 10%+ click-through rate
 
 ---
@@ -814,6 +849,7 @@ Unsubscribe | Update Preferences
 **Format:** 60-second short  
 **Platforms:** YouTube Shorts, TikTok, IG Reels, X  
 **Script Beat:**
+
 - Lt. Dan: "Alright listen up! Here's how we stay legal in Texas..."
 - Jesse: "Lt. Dan, nobody wants a compliance lecture."
 - Lt. Dan: "You WILL when DSHS shows up! ≤0.3% Δ9 THC, 21+ only!"
@@ -823,6 +859,7 @@ Unsubscribe | Update Preferences
 **CTA:** "Stay legal, stay TOONED!"
 
 #### **Success Metric:**
+
 ✅ Day 4 episode published across all platforms
 
 ---
@@ -838,18 +875,22 @@ Unsubscribe | Update Preferences
 #### **Target List (Dream 100 for Terpenes):**
 
 **Category 1: Hemp Processors (B2B Bulk)**
+
 - Extraction labs in CO, OR, CA (myrcene for reintroduction)
 - Target: 10 outreach emails/calls
 
 **Category 2: Vape Manufacturers (B2B Formulation)**
+
 - Vape cartridge brands needing terpene profiles
 - Target: 10 outreach emails/calls
 
 **Category 3: Edibles Brands (B2B Flavoring)**
+
 - Gummy/chocolate manufacturers wanting natural terpenes
 - Target: 10 outreach emails/calls
 
 **Category 4: MSOs (Multi-State Operators)**
+
 - Large cannabis companies needing consistent terpene supply
 - Target: 5 outreach emails (higher deal size, longer sales cycle)
 
@@ -896,6 +937,7 @@ jesse@terpworks.com
 - **Day 14:** Final email: "Still interested? Last chance for sample pricing."
 
 #### **Success Metric:**
+
 ✅ 5 B2B inquiries, 2 sample orders, 1 bulk purchase commitment
 
 ---
@@ -932,6 +974,7 @@ jesse@terpworks.com
    - **Ask:** "Co-sponsor Texas Truth & Safety Act when filed"
 
 #### **Success Metric:**
+
 ✅ Public comment drafted, 3+ legislative allies briefed
 
 ---
@@ -945,6 +988,7 @@ jesse@terpworks.com
 **Format:** 60-second short  
 **Platforms:** YouTube Shorts, TikTok, IG Reels, X  
 **Script Beat:**
+
 - Jesse: "Who's this new character?"
 - Aubrey Awfuls: "I'm the villain, obviously. Here to shut down your little hemp empire."
 - Liv Hana: "Not on my watch, buddy."
@@ -954,6 +998,7 @@ jesse@terpworks.com
 **CTA:** "Who will win? Stay TOONED!"
 
 #### **Success Metric:**
+
 ✅ Day 5 episode published across all platforms
 
 ---
@@ -969,24 +1014,28 @@ jesse@terpworks.com
 #### **Metrics to Analyze:**
 
 **Revenue:**
+
 - Total sales (Oct 4-10)
 - AOV (average order value)
 - New vs. returning customer ratio
 - Revenue by traffic source (email, social, organic, paid)
 
 **Conversion:**
+
 - Site traffic (sessions, users)
 - Conversion rate overall
 - Conversion rate by device (mobile vs. desktop)
 - Checkout abandonment rate
 
 **Customer Acquisition:**
+
 - Email open rates (win-back campaigns)
 - Email click-through rates
 - Social media engagement (likes, comments, shares)
 - Cost per acquisition (if running paid ads)
 
 **Fulfillment:**
+
 - Average time to ship
 - Delivery success rate
 - Customer service inquiries (volume + topics)
@@ -1016,6 +1065,7 @@ jesse@terpworks.com
    - Upgrade to commercial thermal printer (faster labels)
 
 #### **Success Metric:**
+
 ✅ Clear action plan for Week 2 based on Week 1 data
 
 ---
@@ -1039,6 +1089,7 @@ jesse@terpworks.com
 **Format:** 90-second short (extended pilot intro)  
 **Platforms:** YouTube Shorts, TikTok, IG Reels, X  
 **Script Beat:**
+
 - Narrator: "In the great state of Texas, a revolution is brewing..."
 - Jesse: "They said we couldn't do it. Legal THC in Texas?"
 - Liv Hana: "We're doing it. And we're documenting every step."
@@ -1049,6 +1100,7 @@ jesse@terpworks.com
 **CTA:** "Subscribe for the full story!"
 
 #### **Success Metric:**
+
 ✅ Day 6 episode published across all platforms
 
 ---
@@ -1087,6 +1139,7 @@ jesse@terpworks.com
    - What to test next
 
 #### **Success Metric:**
+
 ✅ Clear Week 2 priorities established
 
 ---
@@ -1104,6 +1157,7 @@ jesse@terpworks.com
 4. **OPS:** DSHS permanent rules comment draft
 
 #### **Success Metric:**
+
 ✅ Week 2 RPM plan drafted
 
 ---
@@ -1117,6 +1171,7 @@ jesse@terpworks.com
 **Format:** 60-second short  
 **Platforms:** YouTube Shorts, TikTok, IG Reels, X  
 **Script Beat:**
+
 - Jesse: "Alright, it's time. Let me show you the Wall of Weed."
 - Camera pans: Shelves stocked floor-to-ceiling with flower jars
 - Customer voiceover: "This is heaven."
@@ -1126,6 +1181,7 @@ jesse@terpworks.com
 **CTA:** "Find your favorite at ReggieAndDro.com!"
 
 #### **Success Metric:**
+
 ✅ Day 7 episode published across all platforms
 
 ---
@@ -1155,6 +1211,7 @@ jesse@terpworks.com
    - TerpWork.com synergy (can we offer terpene-infused flower?)
 
 #### **Success Metric:**
+
 ✅ Zero out-of-stocks on top 10 SKUs, 2+ new products identified for Q4
 
 ---
@@ -1168,6 +1225,7 @@ jesse@terpworks.com
 **Format:** 60-second short  
 **Platforms:** YouTube Shorts, TikTok, IG Reels, X  
 **Script Beat:**
+
 - Jesse: "You order, we pack. Here's how it goes down."
 - Montage: Picking flower, weighing, sealing, labeling, shipping
 - Team member: "Every order gets the same love."
@@ -1177,6 +1235,7 @@ jesse@terpworks.com
 **CTA:** "Order yours at ReggieAndDro.com!"
 
 #### **Success Metric:**
+
 ✅ Day 8 episode published across all platforms
 
 ---
@@ -1233,6 +1292,7 @@ jesse@terpworks.com
 ## 🚀 CRITICAL PATH SUMMARY (ONE-PAGE VIEW)
 
 ### **MUST-DO TODAY (FRIDAY, OCT 4):**
+
 1. ✅ Remove "weed" verbiage from site (30 min)
 2. ✅ Add product ingredients to edibles (1 hr)
 3. ✅ Upload product photos (1-2 hrs)
@@ -1250,6 +1310,7 @@ jesse@terpworks.com
 ---
 
 ### **MUST-DO SATURDAY (OCT 5):**
+
 1. ✅ Trigger Kaja bank review (15 min email)
 2. ✅ Brief staff on launch expectations (1 hr)
 3. ✅ Prep Liv Hana training materials (1 hr)
@@ -1261,6 +1322,7 @@ jesse@terpworks.com
 ---
 
 ### **MUST-DO SUNDAY (OCT 6):**
+
 1. ✅ DNS flip to reggieanddro.com (5 min config, 24-48 hrs propagation)
 2. ✅ Test checkout flow (30 min)
 3. ✅ Monitor DNS propagation (ongoing)
@@ -1273,6 +1335,7 @@ jesse@terpworks.com
 ---
 
 ### **MUST-DO MONDAY (OCT 7):**
+
 1. ✅ R&D Management Call (1 hr, 8-9am PDT)
 2. ✅ Email win-back campaigns (2 hrs setup)
 3. ✅ Liv Hana training session (3 hrs)
@@ -1286,14 +1349,17 @@ jesse@terpworks.com
 ## 🎯 NORTH STAR REMINDERS
 
 ### **Mission:**
+
 Deschedule Cannabis sativa L entirely. Make Texas the global model for cannabis freedom, safety, and prosperity.
 
 ### **Rally Cries:**
+
 - "Grow baby grow and sell baby sell"
 - "Grow, Sell, Heal"
 - "Stay TOONED"
 
 ### **Core Values:**
+
 - **Truth 100% Fallacy-Free:** No assumptions, no speculation, only verified facts
 - **One Shot One Kill:** Complete solutions, not iterative prototypes
 - **Sovereignty First:** Own your infrastructure, control your destiny
@@ -1305,6 +1371,7 @@ Deschedule Cannabis sativa L entirely. Make Texas the global model for cannabis 
 ## 💪 FINAL DEBRIEF
 
 **Shipped:**
+
 - Emergency DSHS rule analysis (no response required to DSHS)
 - Complete RPM Weekly Plan (Oct 4-12, 2025)
 - Kaja payment approval unblocking checklist (4 compliance items + DNS prep)
@@ -1322,6 +1389,7 @@ Deschedule Cannabis sativa L entirely. Make Texas the global model for cannabis 
 - Critical path summary (one-page view, day-by-day execution)
 
 **Decisions:**
+
 - DSHS emergency rule is informational announcement, not requiring written response
 - Prioritize Kaja approval over all other initiatives (blocking $100K+ revenue)
 - DNS flip on Sunday (Oct 6) post-bank review approval
@@ -1334,6 +1402,7 @@ Deschedule Cannabis sativa L entirely. Make Texas the global model for cannabis 
 - HNC daily content cadence (60-90 second shorts, multi-platform distribution)
 
 **Memory Updates:**
+
 - DSHS emergency rules effective immediately (Oct 3, 2025): 21+ age gate, ID verification required, penalties for violations
 - Kaja payment approval critical path: remove "weed" verbiage, add product ingredients, upload photos, hide accessories, flip DNS post-approval
 - R&D Management Call: Monday Oct 7, 8-9am PDT (agenda: Kaja status, DNS migration, revenue projections, TerpWork launch, HNC cadence, OPS legislative monitoring)
@@ -1346,6 +1415,7 @@ Deschedule Cannabis sativa L entirely. Make Texas the global model for cannabis 
 - Meeting notes ingestion + PDF sharing protocol for context continuity
 
 **Next Best Steps (Execute Immediately):**
+
 1. ✅ Remove "weed" verbiage from reggieanddro.company.site (30 min)
 2. ✅ Add product ingredients to all edibles (1 hr)
 3. ✅ Upload product photos (3+ per product) (1-2 hrs)
@@ -1358,6 +1428,7 @@ Deschedule Cannabis sativa L entirely. Make Texas the global model for cannabis 
 10. ✅ Send Lightspeed billing link to Jesse via Slack (Andrew, 5 min)
 
 **Risks:**
+
 - Bank review delays beyond 48 hours (mitigation: daily Sam Wahba check-ins)
 - DNS propagation issues (mitigation: Cloudflare monitoring, rollback plan ready)
 - Customer win-back low response rate (mitigation: A/B test offers, segment more granularly)

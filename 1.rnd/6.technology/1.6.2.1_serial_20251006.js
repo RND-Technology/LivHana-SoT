@@ -1,4 +1,4 @@
-var serialOrdered = require('./serialOrdered.js');
+const serialOrdered = require('./serialOrdered.js');
 
 // Public API
 module.exports = serial;

@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
 exports.deviceComponentDetailsWiFiDetailsSchema = void 0;
-var schema_1 = require("../schema");
-var deviceComponentDetailsMeasurement_1 = require("./deviceComponentDetailsMeasurement");
+const schema_1 = require("../schema");
+const deviceComponentDetailsMeasurement_1 = require("./deviceComponentDetailsMeasurement");
 exports.deviceComponentDetailsWiFiDetailsSchema = (0, schema_1.object)({
     active: ['active', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.boolean)()))],
     ssid: ['ssid', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.string)()))],

@@ -16,7 +16,7 @@ const sandbox = (processFile, childPool) => {
                         child = await childPool.retain(processFile);
                         child.on('exit', exitHandler);
                         msgHandler = async (msg) => {
-                            var _a, _b, _c, _d, _e;
+                            let _a, _b, _c, _d, _e;
                             try {
                                 switch (msg.cmd) {
                                     case enums_1.ParentCommand.Completed:

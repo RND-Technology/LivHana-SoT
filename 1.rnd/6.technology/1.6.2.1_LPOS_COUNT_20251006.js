@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.transformArguments = exports.IS_READ_ONLY = exports.FIRST_KEY_INDEX = void 0;
-var LPOS_1 = require("./LPOS");
+const LPOS_1 = require("./LPOS");
 Object.defineProperty(exports, "FIRST_KEY_INDEX", { enumerable: true, get: function () { return LPOS_1.FIRST_KEY_INDEX; } });
 Object.defineProperty(exports, "IS_READ_ONLY", { enumerable: true, get: function () { return LPOS_1.IS_READ_ONLY; } });
 function transformArguments(key, element, count, options) {

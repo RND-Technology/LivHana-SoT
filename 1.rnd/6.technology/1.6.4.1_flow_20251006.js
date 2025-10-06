@@ -77,9 +77,9 @@ exports.Variance = Variance;
 exports.VoidTypeAnnotation = VoidTypeAnnotation;
 exports._interfaceish = _interfaceish;
 exports._variance = _variance;
-var _t = require("@babel/types");
-var _modules = require("./modules.js");
-var _index = require("../node/index.js");
+const _t = require("@babel/types");
+const _modules = require("./modules.js");
+const _index = require("../node/index.js");
 var _types2 = require("./types.js");
 const {
   isDeclareExportDeclaration,
@@ -356,7 +356,7 @@ function InterfaceExtends(node) {
   this.print(node.typeParameters, true);
 }
 function _interfaceish(node) {
-  var _node$extends;
+  let _node$extends;
   this.print(node.id);
   this.print(node.typeParameters);
   if ((_node$extends = node.extends) != null && _node$extends.length) {
@@ -366,7 +366,7 @@ function _interfaceish(node) {
     this.printList(node.extends);
   }
   if (node.type === "DeclareClass") {
-    var _node$mixins, _node$implements;
+    let _node$mixins, _node$implements;
     if ((_node$mixins = node.mixins) != null && _node$mixins.length) {
       this.space();
       this.word("mixins");
@@ -384,7 +384,7 @@ function _interfaceish(node) {
   this.print(node.body);
 }
 function _variance(node) {
-  var _node$variance;
+  let _node$variance;
   const kind = (_node$variance = node.variance) == null ? void 0 : _node$variance.kind;
   if (kind != null) {
     if (kind === "plus") {
@@ -405,7 +405,7 @@ function andSeparator(occurrenceCount) {
   this.space();
 }
 function InterfaceTypeAnnotation(node) {
-  var _node$extends2;
+  let _node$extends2;
   this.word("interface");
   if ((_node$extends2 = node.extends) != null && _node$extends2.length) {
     this.space();

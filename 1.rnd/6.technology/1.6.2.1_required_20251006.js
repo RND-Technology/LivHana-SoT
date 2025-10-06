@@ -1,15 +1,15 @@
 'use strict';
 module.exports = function generate_required(it, $keyword, $ruleType) {
-  var out = ' ';
-  var $lvl = it.level;
-  var $dataLvl = it.dataLevel;
-  var $schema = it.schema[$keyword];
-  var $schemaPath = it.schemaPath + it.util.getProperty($keyword);
-  var $errSchemaPath = it.errSchemaPath + '/' + $keyword;
-  var $breakOnError = !it.opts.allErrors;
-  var $data = 'data' + ($dataLvl || '');
-  var $valid = 'valid' + $lvl;
-  var $isData = it.opts.$data && $schema && $schema.$data,
+  let out = ' ';
+  const $lvl = it.level;
+  const $dataLvl = it.dataLevel;
+  const $schema = it.schema[$keyword];
+  const $schemaPath = it.schemaPath + it.util.getProperty($keyword);
+  const $errSchemaPath = it.errSchemaPath + '/' + $keyword;
+  const $breakOnError = !it.opts.allErrors;
+  const $data = 'data' + ($dataLvl || '');
+  const $valid = 'valid' + $lvl;
+  let $isData = it.opts.$data && $schema && $schema.$data,
     $schemaValue;
   if ($isData) {
     out += ' var schema' + ($lvl) + ' = ' + (it.util.getData($schema.$data, $dataLvl, it.dataPathArr)) + '; ';
@@ -17,17 +17,17 @@ module.exports = function generate_required(it, $keyword, $ruleType) {
   } else {
     $schemaValue = $schema;
   }
-  var $vSchema = 'schema' + $lvl;
+  const $vSchema = 'schema' + $lvl;
   if (!$isData) {
     if ($schema.length < it.opts.loopRequired && it.schema.properties && Object.keys(it.schema.properties).length) {
       var $required = [];
-      var arr1 = $schema;
+      const arr1 = $schema;
       if (arr1) {
-        var $property, i1 = -1,
+        let $property, i1 = -1,
           l1 = arr1.length - 1;
         while (i1 < l1) {
           $property = arr1[i1 += 1];
-          var $propertySch = it.schema.properties[$property];
+          const $propertySch = it.schema.properties[$property];
           if (!($propertySch && (it.opts.strictKeywords ? (typeof $propertySch == 'object' && Object.keys($propertySch).length > 0) || $propertySch === false : it.util.schemaHasRules($propertySch, it.RULES.all)))) {
             $required[$required.length] = $property;
           }
@@ -38,7 +38,7 @@ module.exports = function generate_required(it, $keyword, $ruleType) {
     }
   }
   if ($isData || $required.length) {
-    var $currentErrorPath = it.errorPath,
+    const $currentErrorPath = it.errorPath,
       $loopRequired = $isData || $required.length >= it.opts.loopRequired,
       $ownProperties = it.opts.ownProperties;
     if ($breakOnError) {
@@ -102,7 +102,7 @@ module.exports = function generate_required(it, $keyword, $ruleType) {
         out += ' } else { ';
       } else {
         out += ' if ( ';
-        var arr2 = $required;
+        const arr2 = $required;
         if (arr2) {
           var $propertyKey, $i = -1,
             l2 = arr2.length - 1;
@@ -222,7 +222,7 @@ module.exports = function generate_required(it, $keyword, $ruleType) {
           out += '  }  ';
         }
       } else {
-        var arr3 = $required;
+        const arr3 = $required;
         if (arr3) {
           var $propertyKey, i3 = -1,
             l3 = arr3.length - 1;

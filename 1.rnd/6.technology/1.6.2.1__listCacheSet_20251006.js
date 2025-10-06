@@ -1,4 +1,4 @@
-var assocIndexOf = require('./_assocIndexOf');
+const assocIndexOf = require('./_assocIndexOf');
 
 /**
  * Sets the list cache `key` to `value`.
@@ -11,7 +11,7 @@ var assocIndexOf = require('./_assocIndexOf');
  * @returns {Object} Returns the list cache instance.
  */
 function listCacheSet(key, value) {
-  var data = this.__data__,
+  const data = this.__data__,
       index = assocIndexOf(data, key);
 
   if (index < 0) {

@@ -1,9 +1,9 @@
-var baseGetTag = require('./_baseGetTag'),
+const baseGetTag = require('./_baseGetTag'),
     isLength = require('./isLength'),
     isObjectLike = require('./isObjectLike');
 
 /** `Object#toString` result references. */
-var argsTag = '[object Arguments]',
+const argsTag = '[object Arguments]',
     arrayTag = '[object Array]',
     boolTag = '[object Boolean]',
     dateTag = '[object Date]',
@@ -17,7 +17,7 @@ var argsTag = '[object Arguments]',
     stringTag = '[object String]',
     weakMapTag = '[object WeakMap]';
 
-var arrayBufferTag = '[object ArrayBuffer]',
+const arrayBufferTag = '[object ArrayBuffer]',
     dataViewTag = '[object DataView]',
     float32Tag = '[object Float32Array]',
     float64Tag = '[object Float64Array]',
@@ -30,7 +30,7 @@ var arrayBufferTag = '[object ArrayBuffer]',
     uint32Tag = '[object Uint32Array]';
 
 /** Used to identify `toStringTag` values of typed arrays. */
-var typedArrayTags = {};
+const typedArrayTags = {};
 typedArrayTags[float32Tag] = typedArrayTags[float64Tag] =
 typedArrayTags[int8Tag] = typedArrayTags[int16Tag] =
 typedArrayTags[int32Tag] = typedArrayTags[uint8Tag] =

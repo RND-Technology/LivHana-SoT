@@ -1,4 +1,4 @@
-/* Sinon.JS 21.0.0, 2025-06-13, @license BSD-3 */let sinon;(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+/* Sinon.JS 21.0.0, 2025-06-13, @license BSD-3 */let sinon;(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){const c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);const a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}const p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){const n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 "use strict";
 
 const behavior = require("./sinon/behavior");
@@ -4894,7 +4894,7 @@ exports.timers = timers;
 },{"./core/extend":26,"@sinonjs/commons":47,"@sinonjs/fake-timers":60}],41:[function(require,module,exports){
 "use strict";
 
-var every = require("./prototypes/array").every;
+const every = require("./prototypes/array").every;
 
 /**
  * @private
@@ -4911,7 +4911,7 @@ function hasCallsLeft(callMap, spy) {
  * @private
  */
 function checkAdjacentCalls(callMap, spy, index, spies) {
-    var calledBeforeNext = true;
+    let calledBeforeNext = true;
 
     if (index !== spies.length - 1) {
         calledBeforeNext = spy.calledBefore(spies[index + 1]);
@@ -4939,9 +4939,9 @@ function checkAdjacentCalls(callMap, spy, index, spies) {
  * @returns {boolean} true when spies are called in order, false otherwise
  */
 function calledInOrder(spies) {
-    var callMap = {};
+    const callMap = {};
     // eslint-disable-next-line no-underscore-dangle
-    var _spies = arguments.length > 1 ? arguments : spies;
+    const _spies = arguments.length > 1 ? arguments : spies;
 
     return every(_spies, checkAdjacentCalls.bind(null, callMap));
 }
@@ -4975,7 +4975,7 @@ module.exports = className;
  * @returns {Function}
  */
 exports.wrap = function (func, msg) {
-    var wrapped = function () {
+    const wrapped = function () {
         exports.printWarning(msg);
         return func.apply(this, arguments);
     };
@@ -5024,7 +5024,7 @@ exports.printWarning = function (msg) {
  * @returns {boolean}
  */
 module.exports = function every(obj, fn) {
-    var pass = true;
+    let pass = true;
 
     try {
         // eslint-disable-next-line @sinonjs/no-prototype-methods/no-prototype-methods
@@ -5078,7 +5078,7 @@ module.exports = function functionName(func) {
  * A reference to the global object
  * @type {object} globalObject
  */
-var globalObject;
+let globalObject;
 
 /* istanbul ignore else */
 if (typeof global !== "undefined") {
@@ -5113,18 +5113,18 @@ module.exports = {
 },{"./called-in-order":41,"./class-name":42,"./deprecated":43,"./every":44,"./function-name":45,"./global":46,"./order-by-first-call":48,"./prototypes":52,"./type-of":58,"./value-to-string":59}],48:[function(require,module,exports){
 "use strict";
 
-var sort = require("./prototypes/array").sort;
-var slice = require("./prototypes/array").slice;
+const sort = require("./prototypes/array").sort;
+const slice = require("./prototypes/array").slice;
 
 /**
  * @private
  */
 function comparator(a, b) {
     // uuid, won't ever be equal
-    var aCall = a.getCall(0);
-    var bCall = b.getCall(0);
-    var aId = (aCall && aCall.callId) || -1;
-    var bId = (bCall && bCall.callId) || -1;
+    const aCall = a.getCall(0);
+    const bCall = b.getCall(0);
+    const aId = (aCall && aCall.callId) || -1;
+    const bId = (bCall && bCall.callId) || -1;
 
     return aId < bId ? -1 : 1;
 }
@@ -5149,17 +5149,17 @@ module.exports = orderByFirstCall;
 },{"./prototypes/array":49}],49:[function(require,module,exports){
 "use strict";
 
-var copyPrototype = require("./copy-prototype-methods");
+const copyPrototype = require("./copy-prototype-methods");
 
 module.exports = copyPrototype(Array.prototype);
 
 },{"./copy-prototype-methods":50}],50:[function(require,module,exports){
 "use strict";
 
-var call = Function.call;
-var throwsOnProto = require("./throws-on-proto");
+const call = Function.call;
+const throwsOnProto = require("./throws-on-proto");
 
-var disallowedProperties = [
+const disallowedProperties = [
     // ignore size because it throws from Map
     "size",
     "caller",
@@ -5198,7 +5198,7 @@ module.exports = function copyPrototypeMethods(prototype) {
 },{"./throws-on-proto":57}],51:[function(require,module,exports){
 "use strict";
 
-var copyPrototype = require("./copy-prototype-methods");
+const copyPrototype = require("./copy-prototype-methods");
 
 module.exports = copyPrototype(Function.prototype);
 
@@ -5217,28 +5217,28 @@ module.exports = {
 },{"./array":49,"./function":51,"./map":53,"./object":54,"./set":55,"./string":56}],53:[function(require,module,exports){
 "use strict";
 
-var copyPrototype = require("./copy-prototype-methods");
+const copyPrototype = require("./copy-prototype-methods");
 
 module.exports = copyPrototype(Map.prototype);
 
 },{"./copy-prototype-methods":50}],54:[function(require,module,exports){
 "use strict";
 
-var copyPrototype = require("./copy-prototype-methods");
+const copyPrototype = require("./copy-prototype-methods");
 
 module.exports = copyPrototype(Object.prototype);
 
 },{"./copy-prototype-methods":50}],55:[function(require,module,exports){
 "use strict";
 
-var copyPrototype = require("./copy-prototype-methods");
+const copyPrototype = require("./copy-prototype-methods");
 
 module.exports = copyPrototype(Set.prototype);
 
 },{"./copy-prototype-methods":50}],56:[function(require,module,exports){
 "use strict";
 
-var copyPrototype = require("./copy-prototype-methods");
+const copyPrototype = require("./copy-prototype-methods");
 
 module.exports = copyPrototype(String.prototype);
 
@@ -5271,7 +5271,7 @@ module.exports = throwsOnProto;
 },{}],58:[function(require,module,exports){
 "use strict";
 
-var type = require("type-detect");
+const type = require("type-detect");
 
 /**
  * Returns the lower-case result of running type from type-detect on the value
@@ -7468,7 +7468,7 @@ exports.withGlobal = withGlobal;
 },{"@sinonjs/commons":47,"timers":undefined,"timers/promises":undefined,"util":91}],61:[function(require,module,exports){
 "use strict";
 
-var ARRAY_TYPES = [
+const ARRAY_TYPES = [
     Array,
     Int8Array,
     Uint8Array,
@@ -7486,31 +7486,31 @@ module.exports = ARRAY_TYPES;
 },{}],62:[function(require,module,exports){
 "use strict";
 
-var arrayProto = require("@sinonjs/commons").prototypes.array;
-var deepEqual = require("./deep-equal").use(createMatcher); // eslint-disable-line no-use-before-define
-var every = require("@sinonjs/commons").every;
-var functionName = require("@sinonjs/commons").functionName;
-var get = require("lodash.get");
-var iterableToString = require("./iterable-to-string");
-var objectProto = require("@sinonjs/commons").prototypes.object;
-var typeOf = require("@sinonjs/commons").typeOf;
-var valueToString = require("@sinonjs/commons").valueToString;
+const arrayProto = require("@sinonjs/commons").prototypes.array;
+const deepEqual = require("./deep-equal").use(createMatcher); // eslint-disable-line no-use-before-define
+const every = require("@sinonjs/commons").every;
+const functionName = require("@sinonjs/commons").functionName;
+const get = require("lodash.get");
+const iterableToString = require("./iterable-to-string");
+const objectProto = require("@sinonjs/commons").prototypes.object;
+const typeOf = require("@sinonjs/commons").typeOf;
+const valueToString = require("@sinonjs/commons").valueToString;
 
-var assertMatcher = require("./create-matcher/assert-matcher");
-var assertMethodExists = require("./create-matcher/assert-method-exists");
-var assertType = require("./create-matcher/assert-type");
-var isIterable = require("./create-matcher/is-iterable");
-var isMatcher = require("./create-matcher/is-matcher");
+const assertMatcher = require("./create-matcher/assert-matcher");
+const assertMethodExists = require("./create-matcher/assert-method-exists");
+const assertType = require("./create-matcher/assert-type");
+const isIterable = require("./create-matcher/is-iterable");
+const isMatcher = require("./create-matcher/is-matcher");
 
-var matcherPrototype = require("./create-matcher/matcher-prototype");
+const matcherPrototype = require("./create-matcher/matcher-prototype");
 
-var arrayIndexOf = arrayProto.indexOf;
-var some = arrayProto.some;
+const arrayIndexOf = arrayProto.indexOf;
+const some = arrayProto.some;
 
-var hasOwnProperty = objectProto.hasOwnProperty;
-var objectToString = objectProto.toString;
+const hasOwnProperty = objectProto.hasOwnProperty;
+const objectToString = objectProto.toString;
 
-var TYPE_MAP = require("./create-matcher/type-map")(createMatcher); // eslint-disable-line no-use-before-define
+const TYPE_MAP = require("./create-matcher/type-map")(createMatcher); // eslint-disable-line no-use-before-define
 
 /**
  * Creates a matcher object for the passed expectation
@@ -7521,8 +7521,8 @@ var TYPE_MAP = require("./create-matcher/type-map")(createMatcher); // eslint-di
  * @returns {object} A matcher object
  */
 function createMatcher(expectation, message) {
-    var m = Object.create(matcherPrototype);
-    var type = typeOf(expectation);
+    const m = Object.create(matcherPrototype);
+    const type = typeOf(expectation);
 
     if (message !== undefined && typeof message !== "string") {
         throw new TypeError("Message should be a string");
@@ -7639,8 +7639,8 @@ createMatcher.instanceOf = function (type) {
 function createPropertyMatcher(propertyTest, messagePrefix) {
     return function (property, value) {
         assertType(property, "string", "property");
-        var onlyProperty = arguments.length === 1;
-        var message = `${messagePrefix}("${property}"`;
+        const onlyProperty = arguments.length === 1;
+        let message = `${messagePrefix}("${property}"`;
         if (!onlyProperty) {
             message += `, ${valueToString(value)}`;
         }
@@ -7671,8 +7671,8 @@ createMatcher.hasOwn = createPropertyMatcher(function (actual, property) {
 
 createMatcher.hasNested = function (property, value) {
     assertType(property, "string", "property");
-    var onlyProperty = arguments.length === 1;
-    var message = `hasNested("${property}"`;
+    const onlyProperty = arguments.length === 1;
+    let message = `hasNested("${property}"`;
     if (!onlyProperty) {
         message += `, ${valueToString(value)}`;
     }
@@ -7689,7 +7689,7 @@ createMatcher.hasNested = function (property, value) {
     }, message);
 };
 
-var jsonParseResultTypes = {
+const jsonParseResultTypes = {
     null: true,
     boolean: true,
     number: true,
@@ -7701,9 +7701,9 @@ createMatcher.json = function (value) {
     if (!jsonParseResultTypes[typeOf(value)]) {
         throw new TypeError("Value cannot be the result of JSON.parse");
     }
-    var message = `json(${JSON.stringify(value, null, "  ")})`;
+    const message = `json(${JSON.stringify(value, null, "  ")})`;
     return createMatcher(function (actual) {
-        var parsed;
+        let parsed;
         try {
             parsed = JSON.parse(actual);
         } catch (e) {
@@ -7757,12 +7757,12 @@ createMatcher.array.deepEquals = function (expectation) {
     return createMatcher(
         function (actual) {
             // Comparing lengths is the fastest way to spot a difference before iterating through every item
-            var sameLength = actual.length === expectation.length;
+            const sameLength = actual.length === expectation.length;
             return (
                 typeOf(actual) === "array" &&
                 sameLength &&
                 every(actual, function (element, index) {
-                    var expected = expectation[index];
+                    const expected = expectation[index];
                     return typeOf(expected) === "array" &&
                         typeOf(element) === "array"
                         ? createMatcher.array.deepEquals(expected).test(element)
@@ -7792,7 +7792,7 @@ createMatcher.array.endsWith = function (expectation) {
     return createMatcher(
         function (actual) {
             // This indicates the index in which we should start matching
-            var offset = actual.length - expectation.length;
+            const offset = actual.length - expectation.length;
 
             return (
                 typeOf(actual) === "array" &&
@@ -7825,7 +7825,7 @@ createMatcher.map.deepEquals = function mapDeepEquals(expectation) {
     return createMatcher(
         function (actual) {
             // Comparing lengths is the fastest way to spot a difference before iterating through every item
-            var sameLength = actual.size === expectation.size;
+            const sameLength = actual.size === expectation.size;
             return (
                 typeOf(actual) === "map" &&
                 sameLength &&
@@ -7860,7 +7860,7 @@ createMatcher.set.deepEquals = function setDeepEquals(expectation) {
     return createMatcher(
         function (actual) {
             // Comparing lengths is the fastest way to spot a difference before iterating through every item
-            var sameLength = actual.size === expectation.size;
+            const sameLength = actual.size === expectation.size;
             return (
                 typeOf(actual) === "set" &&
                 sameLength &&
@@ -7901,7 +7901,7 @@ module.exports = createMatcher;
 },{"./create-matcher/assert-matcher":63,"./create-matcher/assert-method-exists":64,"./create-matcher/assert-type":65,"./create-matcher/is-iterable":66,"./create-matcher/is-matcher":67,"./create-matcher/matcher-prototype":69,"./create-matcher/type-map":70,"./deep-equal":71,"./iterable-to-string":85,"@sinonjs/commons":47,"lodash.get":93}],63:[function(require,module,exports){
 "use strict";
 
-var isMatcher = require("./is-matcher");
+const isMatcher = require("./is-matcher");
 
 /**
  * Throws a TypeError when `value` is not a matcher
@@ -7941,7 +7941,7 @@ module.exports = assertMethodExists;
 },{}],65:[function(require,module,exports){
 "use strict";
 
-var typeOf = require("@sinonjs/commons").typeOf;
+const typeOf = require("@sinonjs/commons").typeOf;
 
 /**
  * Ensures that value is of type
@@ -7954,7 +7954,7 @@ var typeOf = require("@sinonjs/commons").typeOf;
  * @returns {undefined}
  */
 function assertType(value, type, name) {
-    var actual = typeOf(value);
+    const actual = typeOf(value);
     if (actual !== type) {
         throw new TypeError(
             `Expected type of ${name} to be ${type}, but was ${actual}`,
@@ -7967,7 +7967,7 @@ module.exports = assertType;
 },{"@sinonjs/commons":47}],66:[function(require,module,exports){
 "use strict";
 
-var typeOf = require("@sinonjs/commons").typeOf;
+const typeOf = require("@sinonjs/commons").typeOf;
 
 /**
  * Returns `true` for iterables
@@ -7985,9 +7985,9 @@ module.exports = isIterable;
 },{"@sinonjs/commons":47}],67:[function(require,module,exports){
 "use strict";
 
-var isPrototypeOf = require("@sinonjs/commons").prototypes.object.isPrototypeOf;
+const isPrototypeOf = require("@sinonjs/commons").prototypes.object.isPrototypeOf;
 
-var matcherPrototype = require("./matcher-prototype");
+const matcherPrototype = require("./matcher-prototype");
 
 /**
  * Returns `true` when `object` is a matcher
@@ -8005,17 +8005,17 @@ module.exports = isMatcher;
 },{"./matcher-prototype":69,"@sinonjs/commons":47}],68:[function(require,module,exports){
 "use strict";
 
-var every = require("@sinonjs/commons").prototypes.array.every;
-var concat = require("@sinonjs/commons").prototypes.array.concat;
-var typeOf = require("@sinonjs/commons").typeOf;
+const every = require("@sinonjs/commons").prototypes.array.every;
+const concat = require("@sinonjs/commons").prototypes.array.concat;
+const typeOf = require("@sinonjs/commons").typeOf;
 
-var deepEqualFactory = require("../deep-equal").use;
+const deepEqualFactory = require("../deep-equal").use;
 
-var identical = require("../identical");
-var isMatcher = require("./is-matcher");
+const identical = require("../identical");
+const isMatcher = require("./is-matcher");
 
-var keys = Object.keys;
-var getOwnPropertySymbols = Object.getOwnPropertySymbols;
+const keys = Object.keys;
+const getOwnPropertySymbols = Object.getOwnPropertySymbols;
 
 /**
  * Matches `actual` with `expectation`
@@ -8027,20 +8027,20 @@ var getOwnPropertySymbols = Object.getOwnPropertySymbols;
  * @returns {boolean} Returns true when `actual` matches all properties in `expectation`
  */
 function matchObject(actual, expectation, matcher) {
-    var deepEqual = deepEqualFactory(matcher);
+    const deepEqual = deepEqualFactory(matcher);
     if (actual === null || actual === undefined) {
         return false;
     }
 
-    var expectedKeys = keys(expectation);
+    let expectedKeys = keys(expectation);
     /* istanbul ignore else: cannot collect coverage for engine that doesn't support Symbol */
     if (typeOf(getOwnPropertySymbols) === "function") {
         expectedKeys = concat(expectedKeys, getOwnPropertySymbols(expectation));
     }
 
     return every(expectedKeys, function (key) {
-        var exp = expectation[key];
-        var act = actual[key];
+        const exp = expectation[key];
+        const act = actual[key];
 
         if (isMatcher(exp)) {
             if (!exp.test(act)) {
@@ -8066,25 +8066,25 @@ module.exports = matchObject;
 },{"../deep-equal":71,"../identical":73,"./is-matcher":67,"@sinonjs/commons":47}],69:[function(require,module,exports){
 "use strict";
 
-var matcherPrototype = {
+const matcherPrototype = {
     toString: function () {
         return this.message;
     },
 };
 
 matcherPrototype.or = function (valueOrMatcher) {
-    var createMatcher = require("../create-matcher");
-    var isMatcher = createMatcher.isMatcher;
+    const createMatcher = require("../create-matcher");
+    const isMatcher = createMatcher.isMatcher;
 
     if (!arguments.length) {
         throw new TypeError("Matcher expected");
     }
 
-    var m2 = isMatcher(valueOrMatcher)
+    const m2 = isMatcher(valueOrMatcher)
         ? valueOrMatcher
         : createMatcher(valueOrMatcher);
-    var m1 = this;
-    var or = Object.create(matcherPrototype);
+    const m1 = this;
+    const or = Object.create(matcherPrototype);
     or.test = function (actual) {
         return m1.test(actual) || m2.test(actual);
     };
@@ -8093,18 +8093,18 @@ matcherPrototype.or = function (valueOrMatcher) {
 };
 
 matcherPrototype.and = function (valueOrMatcher) {
-    var createMatcher = require("../create-matcher");
-    var isMatcher = createMatcher.isMatcher;
+    const createMatcher = require("../create-matcher");
+    const isMatcher = createMatcher.isMatcher;
 
     if (!arguments.length) {
         throw new TypeError("Matcher expected");
     }
 
-    var m2 = isMatcher(valueOrMatcher)
+    const m2 = isMatcher(valueOrMatcher)
         ? valueOrMatcher
         : createMatcher(valueOrMatcher);
-    var m1 = this;
-    var and = Object.create(matcherPrototype);
+    const m1 = this;
+    const and = Object.create(matcherPrototype);
     and.test = function (actual) {
         return m1.test(actual) && m2.test(actual);
     };
@@ -8117,15 +8117,15 @@ module.exports = matcherPrototype;
 },{"../create-matcher":62}],70:[function(require,module,exports){
 "use strict";
 
-var functionName = require("@sinonjs/commons").functionName;
-var join = require("@sinonjs/commons").prototypes.array.join;
-var map = require("@sinonjs/commons").prototypes.array.map;
-var stringIndexOf = require("@sinonjs/commons").prototypes.string.indexOf;
-var valueToString = require("@sinonjs/commons").valueToString;
+const functionName = require("@sinonjs/commons").functionName;
+const join = require("@sinonjs/commons").prototypes.array.join;
+const map = require("@sinonjs/commons").prototypes.array.map;
+const stringIndexOf = require("@sinonjs/commons").prototypes.string.indexOf;
+const valueToString = require("@sinonjs/commons").valueToString;
 
-var matchObject = require("./match-object");
+const matchObject = require("./match-object");
 
-var createTypeMap = function (match) {
+const createTypeMap = function (match) {
     return {
         function: function (m, expectation, message) {
             m.test = expectation;
@@ -8138,7 +8138,7 @@ var createTypeMap = function (match) {
             };
         },
         object: function (m, expectation) {
-            var array = [];
+            let array = [];
 
             if (typeof expectation.test === "function") {
                 m.test = function (actual) {
@@ -8181,35 +8181,35 @@ module.exports = createTypeMap;
 },{"./match-object":68,"@sinonjs/commons":47}],71:[function(require,module,exports){
 "use strict";
 
-var valueToString = require("@sinonjs/commons").valueToString;
-var className = require("@sinonjs/commons").className;
-var typeOf = require("@sinonjs/commons").typeOf;
-var arrayProto = require("@sinonjs/commons").prototypes.array;
-var objectProto = require("@sinonjs/commons").prototypes.object;
-var mapForEach = require("@sinonjs/commons").prototypes.map.forEach;
+const valueToString = require("@sinonjs/commons").valueToString;
+const className = require("@sinonjs/commons").className;
+const typeOf = require("@sinonjs/commons").typeOf;
+const arrayProto = require("@sinonjs/commons").prototypes.array;
+const objectProto = require("@sinonjs/commons").prototypes.object;
+const mapForEach = require("@sinonjs/commons").prototypes.map.forEach;
 
-var getClass = require("./get-class");
-var identical = require("./identical");
-var isArguments = require("./is-arguments");
-var isArrayType = require("./is-array-type");
-var isDate = require("./is-date");
-var isElement = require("./is-element");
-var isIterable = require("./is-iterable");
-var isMap = require("./is-map");
-var isNaN = require("./is-nan");
-var isObject = require("./is-object");
-var isSet = require("./is-set");
-var isSubset = require("./is-subset");
+const getClass = require("./get-class");
+const identical = require("./identical");
+const isArguments = require("./is-arguments");
+const isArrayType = require("./is-array-type");
+const isDate = require("./is-date");
+const isElement = require("./is-element");
+const isIterable = require("./is-iterable");
+const isMap = require("./is-map");
+const isNaN = require("./is-nan");
+const isObject = require("./is-object");
+const isSet = require("./is-set");
+const isSubset = require("./is-subset");
 
-var concat = arrayProto.concat;
-var every = arrayProto.every;
-var push = arrayProto.push;
+const concat = arrayProto.concat;
+const every = arrayProto.every;
+const push = arrayProto.push;
 
-var getTime = Date.prototype.getTime;
-var hasOwnProperty = objectProto.hasOwnProperty;
-var indexOf = arrayProto.indexOf;
-var keys = Object.keys;
-var getOwnPropertySymbols = Object.getOwnPropertySymbols;
+const getTime = Date.prototype.getTime;
+const hasOwnProperty = objectProto.hasOwnProperty;
+const indexOf = arrayProto.indexOf;
+const keys = Object.keys;
+const getOwnPropertySymbols = Object.getOwnPropertySymbols;
 
 /**
  * Deep equal comparison. Two values are "deep equal" when:
@@ -8231,16 +8231,16 @@ var getOwnPropertySymbols = Object.getOwnPropertySymbols;
 function deepEqualCyclic(actual, expectation, match) {
     // used for cyclic comparison
     // contain already visited objects
-    var actualObjects = [];
-    var expectationObjects = [];
+    const actualObjects = [];
+    const expectationObjects = [];
     // contain pathes (position in the object structure)
     // of the already visited objects
     // indexes same as in objects arrays
-    var actualPaths = [];
-    var expectationPaths = [];
+    const actualPaths = [];
+    const expectationPaths = [];
     // contains combinations of already compared objects
     // in the manner: { "$1['ref']$2['ref']": true }
-    var compared = {};
+    const compared = {};
 
     // does the recursion for the deep equal check
     // eslint-disable-next-line complexity
@@ -8260,8 +8260,8 @@ function deepEqualCyclic(actual, expectation, match) {
             return expectationObj.test(actualObj);
         }
 
-        var actualType = typeof actualObj;
-        var expectationType = typeof expectationObj;
+        const actualType = typeof actualObj;
+        const expectationType = typeof expectationObj;
 
         if (
             actualObj === expectationObj ||
@@ -8282,8 +8282,8 @@ function deepEqualCyclic(actual, expectation, match) {
             return false;
         }
 
-        var isActualDate = isDate(actualObj);
-        var isExpectationDate = isDate(expectationObj);
+        const isActualDate = isDate(actualObj);
+        const isExpectationDate = isDate(expectationObj);
         if (isActualDate || isExpectationDate) {
             if (
                 !isActualDate ||
@@ -8308,18 +8308,18 @@ function deepEqualCyclic(actual, expectation, match) {
             return actualObj === expectationObj;
         }
 
-        var actualClass = getClass(actualObj);
-        var expectationClass = getClass(expectationObj);
-        var actualKeys = keys(actualObj);
-        var expectationKeys = keys(expectationObj);
-        var actualName = className(actualObj);
-        var expectationName = className(expectationObj);
-        var expectationSymbols =
+        const actualClass = getClass(actualObj);
+        const expectationClass = getClass(expectationObj);
+        const actualKeys = keys(actualObj);
+        const expectationKeys = keys(expectationObj);
+        const actualName = className(actualObj);
+        const expectationName = className(expectationObj);
+        const expectationSymbols =
             typeOf(getOwnPropertySymbols) === "function"
                 ? getOwnPropertySymbols(expectationObj)
                 : /* istanbul ignore next: cannot collect coverage for engine that doesn't support Symbol */
                   [];
-        var expectationKeysAndSymbols = concat(
+        const expectationKeysAndSymbols = concat(
             expectationKeys,
             expectationSymbols,
         );
@@ -8362,7 +8362,7 @@ function deepEqualCyclic(actual, expectation, match) {
                 return false;
             }
 
-            var mapsDeeplyEqual = true;
+            let mapsDeeplyEqual = true;
             mapForEach(actualObj, function (value, key) {
                 mapsDeeplyEqual =
                     mapsDeeplyEqual &&
@@ -8385,22 +8385,22 @@ function deepEqualCyclic(actual, expectation, match) {
             return actualObj.is(expectationObj);
         }
 
-        var isActualNonArrayIterable =
+        const isActualNonArrayIterable =
             isIterable(actualObj) &&
             !isArrayType(actualObj) &&
             !isArguments(actualObj);
-        var isExpectationNonArrayIterable =
+        const isExpectationNonArrayIterable =
             isIterable(expectationObj) &&
             !isArrayType(expectationObj) &&
             !isArguments(expectationObj);
         if (isActualNonArrayIterable || isExpectationNonArrayIterable) {
-            var actualArray = Array.from(actualObj);
-            var expectationArray = Array.from(expectationObj);
+            const actualArray = Array.from(actualObj);
+            const expectationArray = Array.from(expectationObj);
             if (actualArray.length !== expectationArray.length) {
                 return false;
             }
 
-            var arrayDeeplyEquals = true;
+            let arrayDeeplyEquals = true;
             every(actualArray, function (key) {
                 arrayDeeplyEquals =
                     arrayDeeplyEquals &&
@@ -8415,32 +8415,32 @@ function deepEqualCyclic(actual, expectation, match) {
                 return false;
             }
 
-            var actualValue = actualObj[key];
-            var expectationValue = expectationObj[key];
-            var actualObject = isObject(actualValue);
-            var expectationObject = isObject(expectationValue);
+            const actualValue = actualObj[key];
+            const expectationValue = expectationObj[key];
+            const actualObject = isObject(actualValue);
+            const expectationObject = isObject(expectationValue);
             // determines, if the objects were already visited
             // (it's faster to check for isObject first, than to
             // get -1 from getIndex for non objects)
-            var actualIndex = actualObject
+            const actualIndex = actualObject
                 ? indexOf(actualObjects, actualValue)
                 : -1;
-            var expectationIndex = expectationObject
+            const expectationIndex = expectationObject
                 ? indexOf(expectationObjects, expectationValue)
                 : -1;
             // determines the new paths of the objects
             // - for non cyclic objects the current path will be extended
             //   by current property name
             // - for cyclic objects the stored path is taken
-            var newActualPath =
+            const newActualPath =
                 actualIndex !== -1
                     ? actualPaths[actualIndex]
                     : `${actualPath}[${JSON.stringify(key)}]`;
-            var newExpectationPath =
+            const newExpectationPath =
                 expectationIndex !== -1
                     ? expectationPaths[expectationIndex]
                     : `${expectationPath}[${JSON.stringify(key)}]`;
-            var combinedPath = newActualPath + newExpectationPath;
+            const combinedPath = newActualPath + newExpectationPath;
 
             // stop recursion if current objects are already compared
             if (compared[combinedPath]) {
@@ -8487,7 +8487,7 @@ module.exports = deepEqualCyclic;
 },{"./get-class":72,"./identical":73,"./is-arguments":74,"./is-array-type":75,"./is-date":76,"./is-element":77,"./is-iterable":78,"./is-map":79,"./is-nan":80,"./is-object":82,"./is-set":83,"./is-subset":84,"@sinonjs/commons":47}],72:[function(require,module,exports){
 "use strict";
 
-var toString = require("@sinonjs/commons").prototypes.object.toString;
+const toString = require("@sinonjs/commons").prototypes.object.toString;
 
 /**
  * Returns the internal `Class` by calling `Object.prototype.toString`
@@ -8507,8 +8507,8 @@ module.exports = getClass;
 },{"@sinonjs/commons":47}],73:[function(require,module,exports){
 "use strict";
 
-var isNaN = require("./is-nan");
-var isNegZero = require("./is-neg-zero");
+const isNaN = require("./is-nan");
+const isNegZero = require("./is-neg-zero");
 
 /**
  * Strict equality check according to EcmaScript Harmony's `egal`.
@@ -8540,7 +8540,7 @@ module.exports = identical;
 },{"./is-nan":80,"./is-neg-zero":81}],74:[function(require,module,exports){
 "use strict";
 
-var getClass = require("./get-class");
+const getClass = require("./get-class");
 
 /**
  * Returns `true` when `object` is an `arguments` object, `false` otherwise
@@ -8558,11 +8558,11 @@ module.exports = isArguments;
 },{"./get-class":72}],75:[function(require,module,exports){
 "use strict";
 
-var functionName = require("@sinonjs/commons").functionName;
-var indexOf = require("@sinonjs/commons").prototypes.array.indexOf;
-var map = require("@sinonjs/commons").prototypes.array.map;
-var ARRAY_TYPES = require("./array-types");
-var type = require("type-detect");
+const functionName = require("@sinonjs/commons").functionName;
+const indexOf = require("@sinonjs/commons").prototypes.array.indexOf;
+const map = require("@sinonjs/commons").prototypes.array.map;
+const ARRAY_TYPES = require("./array-types");
+const type = require("type-detect");
 
 /**
  * Returns `true` when `object` is an array type, `false` otherwise
@@ -8596,7 +8596,7 @@ module.exports = isDate;
 },{}],77:[function(require,module,exports){
 "use strict";
 
-var div = typeof document !== "undefined" && document.createElement("div");
+const div = typeof document !== "undefined" && document.createElement("div");
 
 /**
  * Returns `true` when `object` is a DOM element node.
@@ -8749,7 +8749,7 @@ module.exports = isSet;
 },{}],84:[function(require,module,exports){
 "use strict";
 
-var forEach = require("@sinonjs/commons").prototypes.set.forEach;
+const forEach = require("@sinonjs/commons").prototypes.set.forEach;
 
 /**
  * Returns `true` when `s1` is a subset of `s2`, `false` otherwise
@@ -8762,9 +8762,9 @@ var forEach = require("@sinonjs/commons").prototypes.set.forEach;
  * @returns {boolean} Returns `true` when `s1` is a subset of `s2`, `false`` otherwise
  */
 function isSubset(s1, s2, compare) {
-    var allContained = true;
+    let allContained = true;
     forEach(s1, function (v1) {
-        var includes = false;
+        let includes = false;
         forEach(s2, function (v2) {
             if (compare(v2, v1)) {
                 includes = true;
@@ -8781,9 +8781,9 @@ module.exports = isSubset;
 },{"@sinonjs/commons":47}],85:[function(require,module,exports){
 "use strict";
 
-var slice = require("@sinonjs/commons").prototypes.string.slice;
-var typeOf = require("@sinonjs/commons").typeOf;
-var valueToString = require("@sinonjs/commons").valueToString;
+const slice = require("@sinonjs/commons").prototypes.string.slice;
+const typeOf = require("@sinonjs/commons").typeOf;
+const valueToString = require("@sinonjs/commons").valueToString;
 
 /**
  * Creates a string represenation of an iterable object
@@ -8808,7 +8808,7 @@ function iterableToString(obj) {
  * @returns {string}     A string representation
  */
 function mapToString(map) {
-    var representation = "";
+    let representation = "";
 
     // eslint-disable-next-line @sinonjs/no-prototype-methods/no-prototype-methods
     map.forEach(function (value, key) {
@@ -8827,7 +8827,7 @@ function mapToString(map) {
  * @returns {string}          A string representation
  */
 function genericIterableToString(iterable) {
-    var representation = "";
+    let representation = "";
 
     // eslint-disable-next-line @sinonjs/no-prototype-methods/no-prototype-methods
     iterable.forEach(function (value) {
@@ -8854,16 +8854,16 @@ module.exports = iterableToString;
 },{"@sinonjs/commons":47}],86:[function(require,module,exports){
 "use strict";
 
-var valueToString = require("@sinonjs/commons").valueToString;
-var indexOf = require("@sinonjs/commons").prototypes.string.indexOf;
-var forEach = require("@sinonjs/commons").prototypes.array.forEach;
-var type = require("type-detect");
+const valueToString = require("@sinonjs/commons").valueToString;
+const indexOf = require("@sinonjs/commons").prototypes.string.indexOf;
+const forEach = require("@sinonjs/commons").prototypes.array.forEach;
+const type = require("type-detect");
 
-var engineCanCompareMaps = typeof Array.from === "function";
-var deepEqual = require("./deep-equal").use(match); // eslint-disable-line no-use-before-define
-var isArrayType = require("./is-array-type");
-var isSubset = require("./is-subset");
-var createMatcher = require("./create-matcher");
+const engineCanCompareMaps = typeof Array.from === "function";
+const deepEqual = require("./deep-equal").use(match); // eslint-disable-line no-use-before-define
+const isArrayType = require("./is-array-type");
+const isSubset = require("./is-subset");
+const createMatcher = require("./create-matcher");
 
 /**
  * Returns true when `array` contains all of `subset` as defined by the `compare`
@@ -8879,7 +8879,7 @@ function arrayContains(array, subset, compare) {
     if (subset.length === 0) {
         return true;
     }
-    var i, l, j, k;
+    let i, l, j, k;
     for (i = 0, l = array.length; i < l; ++i) {
         if (compare(array[i], subset[0])) {
             for (j = 0, k = subset.length; j < k; ++j) {
@@ -8989,10 +8989,10 @@ function match(object, matcherOrValue) {
         if (typeof object !== "object") {
             return false;
         }
-        var prop;
+        let prop;
         // eslint-disable-next-line guard-for-in
         for (prop in matcherOrValue) {
-            var value = object[prop];
+            let value = object[prop];
             if (
                 typeof value === "undefined" &&
                 typeof object.getAttribute === "function"
@@ -9033,15 +9033,15 @@ module.exports = match;
 /**
  * @module samsam
  */
-var identical = require("./identical");
-var isArguments = require("./is-arguments");
-var isElement = require("./is-element");
-var isNegZero = require("./is-neg-zero");
-var isSet = require("./is-set");
-var isMap = require("./is-map");
-var match = require("./match");
-var deepEqualCyclic = require("./deep-equal").use(match);
-var createMatcher = require("./create-matcher");
+const identical = require("./identical");
+const isArguments = require("./is-arguments");
+const isElement = require("./is-element");
+const isNegZero = require("./is-neg-zero");
+const isSet = require("./is-set");
+const isMap = require("./is-map");
+const match = require("./match");
+const deepEqualCyclic = require("./deep-equal").use(match);
+const createMatcher = require("./create-matcher");
 
 module.exports = {
     createMatcher: createMatcher,
@@ -9062,8 +9062,8 @@ module.exports = {
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.typeDetect = factory());
 })(this, (function () { 'use strict';
 
-    var promiseExists = typeof Promise === 'function';
-    var globalObject = (function (Obj) {
+    const promiseExists = typeof Promise === 'function';
+    const globalObject = (function (Obj) {
         if (typeof globalThis === 'object') {
             return globalThis;
         }
@@ -9073,30 +9073,30 @@ module.exports = {
             },
             configurable: true,
         });
-        var global = typeDetectGlobalObject;
+        const global = typeDetectGlobalObject;
         delete Obj.typeDetectGlobalObject;
         return global;
     })(Object.prototype);
-    var symbolExists = typeof Symbol !== 'undefined';
-    var mapExists = typeof Map !== 'undefined';
-    var setExists = typeof Set !== 'undefined';
-    var weakMapExists = typeof WeakMap !== 'undefined';
-    var weakSetExists = typeof WeakSet !== 'undefined';
-    var dataViewExists = typeof DataView !== 'undefined';
-    var symbolIteratorExists = symbolExists && typeof Symbol.iterator !== 'undefined';
-    var symbolToStringTagExists = symbolExists && typeof Symbol.toStringTag !== 'undefined';
-    var setEntriesExists = setExists && typeof Set.prototype.entries === 'function';
-    var mapEntriesExists = mapExists && typeof Map.prototype.entries === 'function';
-    var setIteratorPrototype = setEntriesExists && Object.getPrototypeOf(new Set().entries());
-    var mapIteratorPrototype = mapEntriesExists && Object.getPrototypeOf(new Map().entries());
-    var arrayIteratorExists = symbolIteratorExists && typeof Array.prototype[Symbol.iterator] === 'function';
-    var arrayIteratorPrototype = arrayIteratorExists && Object.getPrototypeOf([][Symbol.iterator]());
-    var stringIteratorExists = symbolIteratorExists && typeof String.prototype[Symbol.iterator] === 'function';
-    var stringIteratorPrototype = stringIteratorExists && Object.getPrototypeOf(''[Symbol.iterator]());
-    var toStringLeftSliceLength = 8;
-    var toStringRightSliceLength = -1;
+    const symbolExists = typeof Symbol !== 'undefined';
+    const mapExists = typeof Map !== 'undefined';
+    const setExists = typeof Set !== 'undefined';
+    const weakMapExists = typeof WeakMap !== 'undefined';
+    const weakSetExists = typeof WeakSet !== 'undefined';
+    const dataViewExists = typeof DataView !== 'undefined';
+    const symbolIteratorExists = symbolExists && typeof Symbol.iterator !== 'undefined';
+    const symbolToStringTagExists = symbolExists && typeof Symbol.toStringTag !== 'undefined';
+    const setEntriesExists = setExists && typeof Set.prototype.entries === 'function';
+    const mapEntriesExists = mapExists && typeof Map.prototype.entries === 'function';
+    const setIteratorPrototype = setEntriesExists && Object.getPrototypeOf(new Set().entries());
+    const mapIteratorPrototype = mapEntriesExists && Object.getPrototypeOf(new Map().entries());
+    const arrayIteratorExists = symbolIteratorExists && typeof Array.prototype[Symbol.iterator] === 'function';
+    const arrayIteratorPrototype = arrayIteratorExists && Object.getPrototypeOf([][Symbol.iterator]());
+    const stringIteratorExists = symbolIteratorExists && typeof String.prototype[Symbol.iterator] === 'function';
+    const stringIteratorPrototype = stringIteratorExists && Object.getPrototypeOf(''[Symbol.iterator]());
+    const toStringLeftSliceLength = 8;
+    const toStringRightSliceLength = -1;
     function typeDetect(obj) {
-        var typeofObj = typeof obj;
+        const typeofObj = typeof obj;
         if (typeofObj !== 'object') {
             return typeofObj;
         }
@@ -9141,11 +9141,11 @@ module.exports = {
                 }
             }
         }
-        var stringTag = (symbolToStringTagExists && obj[Symbol.toStringTag]);
+        const stringTag = (symbolToStringTagExists && obj[Symbol.toStringTag]);
         if (typeof stringTag === 'string') {
             return stringTag;
         }
-        var objPrototype = Object.getPrototypeOf(obj);
+        const objPrototype = Object.getPrototypeOf(obj);
         if (objPrototype === RegExp.prototype) {
             return 'RegExp';
         }
@@ -9214,7 +9214,7 @@ if (typeof Object.create === 'function') {
   // old school shim for old browsers
   module.exports = function inherits(ctor, superCtor) {
     ctor.super_ = superCtor
-    var TempCtor = function () {}
+    const TempCtor = function () {}
     TempCtor.prototype = superCtor.prototype
     ctor.prototype = new TempCtor()
     ctor.prototype.constructor = ctor
@@ -9250,10 +9250,10 @@ module.exports = function isBuffer(arg) {
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 // USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-var formatRegExp = /%[sdj%]/g;
+const formatRegExp = /%[sdj%]/g;
 exports.format = function(f) {
   if (!isString(f)) {
-    var objects = [];
+    const objects = [];
     for (var i = 0; i < arguments.length; i++) {
       objects.push(inspect(arguments[i]));
     }
@@ -9261,9 +9261,9 @@ exports.format = function(f) {
   }
 
   var i = 1;
-  var args = arguments;
-  var len = args.length;
-  var str = String(f).replace(formatRegExp, function(x) {
+  const args = arguments;
+  const len = args.length;
+  let str = String(f).replace(formatRegExp, function(x) {
     if (x === '%%') return '%';
     if (i >= len) return x;
     switch (x) {
@@ -9279,7 +9279,7 @@ exports.format = function(f) {
         return x;
     }
   });
-  for (var x = args[i]; i < len; x = args[++i]) {
+  for (let x = args[i]; i < len; x = args[++i]) {
     if (isNull(x) || !isObject(x)) {
       str += ' ' + x;
     } else {
@@ -9305,7 +9305,7 @@ exports.deprecate = function(fn, msg) {
     return fn;
   }
 
-  var warned = false;
+  let warned = false;
   function deprecated() {
     if (!warned) {
       if (process.throwDeprecation) {
@@ -9324,17 +9324,17 @@ exports.deprecate = function(fn, msg) {
 };
 
 
-var debugs = {};
-var debugEnviron;
+const debugs = {};
+let debugEnviron;
 exports.debuglog = function(set) {
   if (isUndefined(debugEnviron))
     debugEnviron = process.env.NODE_DEBUG || '';
   set = set.toUpperCase();
   if (!debugs[set]) {
     if (new RegExp('\\b' + set + '\\b', 'i').test(debugEnviron)) {
-      var pid = process.pid;
+      const pid = process.pid;
       debugs[set] = function() {
-        var msg = exports.format.apply(exports, arguments);
+        const msg = exports.format.apply(exports, arguments);
         console.error('%s %d: %s', set, pid, msg);
       };
     } else {
@@ -9355,7 +9355,7 @@ exports.debuglog = function(set) {
 /* legacy: obj, showHidden, depth, colors*/
 function inspect(obj, opts) {
   // default options
-  var ctx = {
+  const ctx = {
     seen: [],
     stylize: stylizeNoColor
   };
@@ -9412,7 +9412,7 @@ inspect.styles = {
 
 
 function stylizeWithColor(str, styleType) {
-  var style = inspect.styles[styleType];
+  const style = inspect.styles[styleType];
 
   if (style) {
     return '\u001b[' + inspect.colors[style][0] + 'm' + str +
@@ -9429,7 +9429,7 @@ function stylizeNoColor(str, styleType) {
 
 
 function arrayToHash(array) {
-  var hash = {};
+  const hash = {};
 
   array.forEach(function(val, idx) {
     hash[val] = true;
@@ -9449,7 +9449,7 @@ function formatValue(ctx, value, recurseTimes) {
       value.inspect !== exports.inspect &&
       // Also filter out any prototype objects using the circular check.
       !(value.constructor && value.constructor.prototype === value)) {
-    var ret = value.inspect(recurseTimes, ctx);
+    let ret = value.inspect(recurseTimes, ctx);
     if (!isString(ret)) {
       ret = formatValue(ctx, ret, recurseTimes);
     }
@@ -9457,14 +9457,14 @@ function formatValue(ctx, value, recurseTimes) {
   }
 
   // Primitive types cannot have properties
-  var primitive = formatPrimitive(ctx, value);
+  const primitive = formatPrimitive(ctx, value);
   if (primitive) {
     return primitive;
   }
 
   // Look up the keys of the object.
-  var keys = Object.keys(value);
-  var visibleKeys = arrayToHash(keys);
+  let keys = Object.keys(value);
+  const visibleKeys = arrayToHash(keys);
 
   if (ctx.showHidden) {
     keys = Object.getOwnPropertyNames(value);
@@ -9480,7 +9480,7 @@ function formatValue(ctx, value, recurseTimes) {
   // Some type of object without properties can be shortcutted.
   if (keys.length === 0) {
     if (isFunction(value)) {
-      var name = value.name ? ': ' + value.name : '';
+      const name = value.name ? ': ' + value.name : '';
       return ctx.stylize('[Function' + name + ']', 'special');
     }
     if (isRegExp(value)) {
@@ -9494,7 +9494,7 @@ function formatValue(ctx, value, recurseTimes) {
     }
   }
 
-  var base = '', array = false, braces = ['{', '}'];
+  let base = '', array = false, braces = ['{', '}'];
 
   // Make Array say that they are Array
   if (isArray(value)) {
@@ -9504,7 +9504,7 @@ function formatValue(ctx, value, recurseTimes) {
 
   // Make functions say that they are functions
   if (isFunction(value)) {
-    var n = value.name ? ': ' + value.name : '';
+    const n = value.name ? ': ' + value.name : '';
     base = ' [Function' + n + ']';
   }
 
@@ -9537,7 +9537,7 @@ function formatValue(ctx, value, recurseTimes) {
 
   ctx.seen.push(value);
 
-  var output;
+  let output;
   if (array) {
     output = formatArray(ctx, value, recurseTimes, visibleKeys, keys);
   } else {
@@ -9556,7 +9556,7 @@ function formatPrimitive(ctx, value) {
   if (isUndefined(value))
     return ctx.stylize('undefined', 'undefined');
   if (isString(value)) {
-    var simple = '\'' + JSON.stringify(value).replace(/^"|"$/g, '')
+    const simple = '\'' + JSON.stringify(value).replace(/^"|"$/g, '')
                                              .replace(/'/g, "\\'")
                                              .replace(/\\"/g, '"') + '\'';
     return ctx.stylize(simple, 'string');
@@ -9577,8 +9577,8 @@ function formatError(value) {
 
 
 function formatArray(ctx, value, recurseTimes, visibleKeys, keys) {
-  var output = [];
-  for (var i = 0, l = value.length; i < l; ++i) {
+  const output = [];
+  for (let i = 0, l = value.length; i < l; ++i) {
     if (hasOwnProperty(value, String(i))) {
       output.push(formatProperty(ctx, value, recurseTimes, visibleKeys,
           String(i), true));
@@ -9597,7 +9597,7 @@ function formatArray(ctx, value, recurseTimes, visibleKeys, keys) {
 
 
 function formatProperty(ctx, value, recurseTimes, visibleKeys, key, array) {
-  var name, str, desc;
+  let name, str, desc;
   desc = Object.getOwnPropertyDescriptor(value, key) || { value: value[key] };
   if (desc.get) {
     if (desc.set) {
@@ -9656,8 +9656,8 @@ function formatProperty(ctx, value, recurseTimes, visibleKeys, key, array) {
 
 
 function reduceToSingleString(output, base, braces) {
-  var numLinesEst = 0;
-  var length = output.reduce(function(prev, cur) {
+  let numLinesEst = 0;
+  const length = output.reduce(function(prev, cur) {
     numLinesEst++;
     if (cur.indexOf('\n') >= 0) numLinesEst++;
     return prev + cur.replace(/\u001b\[\d\d?m/g, '').length + 1;
@@ -9766,13 +9766,13 @@ function pad(n) {
 }
 
 
-var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep',
+const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep',
               'Oct', 'Nov', 'Dec'];
 
 // 26 Feb 16:19:34
 function timestamp() {
-  var d = new Date();
-  var time = [pad(d.getHours()),
+  const d = new Date();
+  const time = [pad(d.getHours()),
               pad(d.getMinutes()),
               pad(d.getSeconds())].join(':');
   return [d.getDate(), months[d.getMonth()], time].join(' ');
@@ -9804,8 +9804,8 @@ exports._extend = function(origin, add) {
   // Don't do anything if add isn't an object
   if (!add || !isObject(add)) return origin;
 
-  var keys = Object.keys(add);
-  var i = keys.length;
+  const keys = Object.keys(add);
+  let i = keys.length;
   while (i--) {
     origin[keys[i]] = add[keys[i]];
   }
@@ -9862,14 +9862,14 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   function Diff() {}
   Diff.prototype = {
     diff: function diff(oldString, newString) {
-      var _options$timeout;
-      var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-      var callback = options.callback;
+      let _options$timeout;
+      let options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+      let callback = options.callback;
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      var self = this;
+      const self = this;
       function done(value) {
         value = self.postProcess(value, options);
         if (callback) {
@@ -9887,22 +9887,22 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       newString = this.castInput(newString, options);
       oldString = this.removeEmpty(this.tokenize(oldString, options));
       newString = this.removeEmpty(this.tokenize(newString, options));
-      var newLen = newString.length,
+      const newLen = newString.length,
         oldLen = oldString.length;
-      var editLength = 1;
-      var maxEditLength = newLen + oldLen;
+      let editLength = 1;
+      let maxEditLength = newLen + oldLen;
       if (options.maxEditLength != null) {
         maxEditLength = Math.min(maxEditLength, options.maxEditLength);
       }
-      var maxExecutionTime = (_options$timeout = options.timeout) !== null && _options$timeout !== void 0 ? _options$timeout : Infinity;
-      var abortAfterTimestamp = Date.now() + maxExecutionTime;
-      var bestPath = [{
+      const maxExecutionTime = (_options$timeout = options.timeout) !== null && _options$timeout !== void 0 ? _options$timeout : Infinity;
+      const abortAfterTimestamp = Date.now() + maxExecutionTime;
+      const bestPath = [{
         oldPos: -1,
         lastComponent: undefined
       }];
 
       // Seed editLength = 0, i.e. the content starts with the same values
-      var newPos = this.extractCommon(bestPath[0], newString, oldString, 0, options);
+      let newPos = this.extractCommon(bestPath[0], newString, oldString, 0, options);
       if (bestPath[0].oldPos + 1 >= oldLen && newPos + 1 >= newLen) {
         // Identity per the equality and tokenizer
         return done(buildValues(self, bestPath[0].lastComponent, newString, oldString, self.useLongestToken));
@@ -9925,26 +9925,26 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       // where the new text simply appends d characters on the end of the
       // original text of length n, the true Myers algorithm will take O(n+d^2)
       // time while this optimization needs only O(n+d) time.
-      var minDiagonalToConsider = -Infinity,
+      let minDiagonalToConsider = -Infinity,
         maxDiagonalToConsider = Infinity;
 
       // Main worker method. checks all permutations of a given edit length for acceptance.
       function execEditLength() {
-        for (var diagonalPath = Math.max(minDiagonalToConsider, -editLength); diagonalPath <= Math.min(maxDiagonalToConsider, editLength); diagonalPath += 2) {
-          var basePath = void 0;
-          var removePath = bestPath[diagonalPath - 1],
+        for (let diagonalPath = Math.max(minDiagonalToConsider, -editLength); diagonalPath <= Math.min(maxDiagonalToConsider, editLength); diagonalPath += 2) {
+          let basePath = void 0;
+          const removePath = bestPath[diagonalPath - 1],
             addPath = bestPath[diagonalPath + 1];
           if (removePath) {
             // No one else is going to attempt to use this value, clear it
             bestPath[diagonalPath - 1] = undefined;
           }
-          var canAdd = false;
+          let canAdd = false;
           if (addPath) {
             // what newPos will be after we do an insertion:
-            var addPathNewPos = addPath.oldPos - diagonalPath;
+            const addPathNewPos = addPath.oldPos - diagonalPath;
             canAdd = addPath && 0 <= addPathNewPos && addPathNewPos < newLen;
           }
-          var canRemove = removePath && removePath.oldPos + 1 < oldLen;
+          const canRemove = removePath && removePath.oldPos + 1 < oldLen;
           if (!canAdd && !canRemove) {
             // If this path is a terminal then prune
             bestPath[diagonalPath] = undefined;
@@ -9993,7 +9993,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         })();
       } else {
         while (editLength <= maxEditLength && Date.now() <= abortAfterTimestamp) {
-          var ret = execEditLength();
+          const ret = execEditLength();
           if (ret) {
             return ret;
           }
@@ -10001,7 +10001,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       }
     },
     addToPath: function addToPath(path, added, removed, oldPosInc, options) {
-      var last = path.lastComponent;
+      const last = path.lastComponent;
       if (last && !options.oneChangePerToken && last.added === added && last.removed === removed) {
         return {
           oldPos: path.oldPos + oldPosInc,
@@ -10025,7 +10025,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       }
     },
     extractCommon: function extractCommon(basePath, newString, oldString, diagonalPath, options) {
-      var newLen = newString.length,
+      let newLen = newString.length,
         oldLen = oldString.length,
         oldPos = basePath.oldPos,
         newPos = oldPos - diagonalPath,
@@ -10062,8 +10062,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       }
     },
     removeEmpty: function removeEmpty(array) {
-      var ret = [];
-      for (var i = 0; i < array.length; i++) {
+      const ret = [];
+      for (let i = 0; i < array.length; i++) {
         if (array[i]) {
           ret.push(array[i]);
         }
@@ -10086,8 +10086,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   function buildValues(diff, lastComponent, newString, oldString, useLongestToken) {
     // First we convert our linked list of components in reverse order to an
     // array in the right order:
-    var components = [];
-    var nextComponent;
+    const components = [];
+    let nextComponent;
     while (lastComponent) {
       components.push(lastComponent);
       nextComponent = lastComponent.previousComponent;
@@ -10095,17 +10095,17 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       lastComponent = nextComponent;
     }
     components.reverse();
-    var componentPos = 0,
+    let componentPos = 0,
       componentLen = components.length,
       newPos = 0,
       oldPos = 0;
     for (; componentPos < componentLen; componentPos++) {
-      var component = components[componentPos];
+      const component = components[componentPos];
       if (!component.removed) {
         if (!component.added && useLongestToken) {
-          var value = newString.slice(newPos, newPos + component.count);
+          let value = newString.slice(newPos, newPos + component.count);
           value = value.map(function (value, i) {
-            var oldValue = oldString[oldPos + i];
+            const oldValue = oldString[oldPos + i];
             return oldValue.length > value.length ? oldValue : value;
           });
           component.value = diff.join(value);
@@ -10126,13 +10126,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     return components;
   }
 
-  var characterDiff = new Diff();
+  const characterDiff = new Diff();
   function diffChars(oldStr, newStr, options) {
     return characterDiff.diff(oldStr, newStr, options);
   }
 
   function longestCommonPrefix(str1, str2) {
-    var i;
+    let i;
     for (i = 0; i < str1.length && i < str2.length; i++) {
       if (str1[i] != str2[i]) {
         return str1.slice(0, i);
@@ -10141,7 +10141,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     return str1.slice(0, i);
   }
   function longestCommonSuffix(str1, str2) {
-    var i;
+    let i;
 
     // Unlike longestCommonPrefix, we need a special case to handle all scenarios
     // where we return the empty string since str1.slice(-0) will return the
@@ -10184,21 +10184,21 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   // Nicked from https://stackoverflow.com/a/60422853/1709587
   function overlapCount(a, b) {
     // Deal with cases where the strings differ in length
-    var startA = 0;
+    let startA = 0;
     if (a.length > b.length) {
       startA = a.length - b.length;
     }
-    var endB = b.length;
+    let endB = b.length;
     if (a.length < b.length) {
       endB = a.length;
     }
     // Create a back-reference for each index
     //   that should be followed in case of a mismatch.
     //   We only need B to make these references:
-    var map = Array(endB);
-    var k = 0; // Index that lags behind j
+    const map = Array(endB);
+    let k = 0; // Index that lags behind j
     map[0] = 0;
-    for (var j = 1; j < endB; j++) {
+    for (let j = 1; j < endB; j++) {
       if (b[j] == b[k]) {
         map[j] = map[k]; // skip over the same character (optional optimisation)
       } else {
@@ -10213,7 +10213,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     }
     // Phase 2: use these references while iterating over A
     k = 0;
-    for (var i = startA; i < a.length; i++) {
+    for (let i = startA; i < a.length; i++) {
       while (k > 0 && a[i] != b[k]) {
         k = map[k];
       }
@@ -10256,7 +10256,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   //  - U+02DC  ˜ &#732;  Small Tilde
   //  - U+02DD  ˝ &#733;  Double Acute Accent
   // Latin Extended Additional, 1E00–1EFF
-  var extendedWordChars = "a-zA-Z0-9_\\u{C0}-\\u{FF}\\u{D8}-\\u{F6}\\u{F8}-\\u{2C6}\\u{2C8}-\\u{2D7}\\u{2DE}-\\u{2FF}\\u{1E00}-\\u{1EFF}";
+  const extendedWordChars = "a-zA-Z0-9_\\u{C0}-\\u{FF}\\u{D8}-\\u{F6}\\u{F8}-\\u{2C6}\\u{2C8}-\\u{2D7}\\u{2DE}-\\u{2FF}\\u{1E00}-\\u{1EFF}";
 
   // Each token is one of the following:
   // - A punctuation mark plus the surrounding whitespace
@@ -10283,8 +10283,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   // Instead, it gives runs of whitespace their own "token". The tokenize method
   // then handles stitching whitespace tokens onto adjacent word or punctuation
   // tokens.
-  var tokenizeIncludingWhitespace = new RegExp("[".concat(extendedWordChars, "]+|\\s+|[^").concat(extendedWordChars, "]"), 'ug');
-  var wordDiff = new Diff();
+  const tokenizeIncludingWhitespace = new RegExp("[".concat(extendedWordChars, "]+|\\s+|[^").concat(extendedWordChars, "]"), 'ug');
+  const wordDiff = new Diff();
   wordDiff.equals = function (left, right, options) {
     if (options.ignoreCase) {
       left = left.toLowerCase();
@@ -10293,8 +10293,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     return left.trim() === right.trim();
   };
   wordDiff.tokenize = function (value) {
-    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    var parts;
+    const options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    let parts;
     if (options.intlSegmenter) {
       if (options.intlSegmenter.resolvedOptions().granularity != 'word') {
         throw new Error('The segmenter passed must have a granularity of "word"');
@@ -10305,8 +10305,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     } else {
       parts = value.match(tokenizeIncludingWhitespace) || [];
     }
-    var tokens = [];
-    var prevPart = null;
+    const tokens = [];
+    let prevPart = null;
     parts.forEach(function (part) {
       if (/\s/.test(part)) {
         if (prevPart == null) {
@@ -10345,11 +10345,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     if (!changes || options.oneChangePerToken) {
       return changes;
     }
-    var lastKeep = null;
+    let lastKeep = null;
     // Change objects representing any insertion or deletion since the last
     // "keep" change object. There can be at most one of each.
-    var insertion = null;
-    var deletion = null;
+    let insertion = null;
+    let deletion = null;
     changes.forEach(function (change) {
       if (change.added) {
         insertion = change;
@@ -10424,18 +10424,18 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     // * Just a "delete"
     // We handle the three cases separately.
     if (deletion && insertion) {
-      var oldWsPrefix = deletion.value.match(/^\s*/)[0];
-      var oldWsSuffix = deletion.value.match(/\s*$/)[0];
-      var newWsPrefix = insertion.value.match(/^\s*/)[0];
-      var newWsSuffix = insertion.value.match(/\s*$/)[0];
+      const oldWsPrefix = deletion.value.match(/^\s*/)[0];
+      const oldWsSuffix = deletion.value.match(/\s*$/)[0];
+      const newWsPrefix = insertion.value.match(/^\s*/)[0];
+      const newWsSuffix = insertion.value.match(/\s*$/)[0];
       if (startKeep) {
-        var commonWsPrefix = longestCommonPrefix(oldWsPrefix, newWsPrefix);
+        const commonWsPrefix = longestCommonPrefix(oldWsPrefix, newWsPrefix);
         startKeep.value = replaceSuffix(startKeep.value, newWsPrefix, commonWsPrefix);
         deletion.value = removePrefix(deletion.value, commonWsPrefix);
         insertion.value = removePrefix(insertion.value, commonWsPrefix);
       }
       if (endKeep) {
-        var commonWsSuffix = longestCommonSuffix(oldWsSuffix, newWsSuffix);
+        const commonWsSuffix = longestCommonSuffix(oldWsSuffix, newWsSuffix);
         endKeep.value = replacePrefix(endKeep.value, newWsSuffix, commonWsSuffix);
         deletion.value = removeSuffix(deletion.value, commonWsSuffix);
         insertion.value = removeSuffix(insertion.value, commonWsSuffix);
@@ -10455,19 +10455,19 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       }
       // otherwise we've got a deletion and no insertion
     } else if (startKeep && endKeep) {
-      var newWsFull = endKeep.value.match(/^\s*/)[0],
+      const newWsFull = endKeep.value.match(/^\s*/)[0],
         delWsStart = deletion.value.match(/^\s*/)[0],
         delWsEnd = deletion.value.match(/\s*$/)[0];
 
       // Any whitespace that comes straight after startKeep in both the old and
       // new texts, assign to startKeep and remove from the deletion.
-      var newWsStart = longestCommonPrefix(newWsFull, delWsStart);
+      const newWsStart = longestCommonPrefix(newWsFull, delWsStart);
       deletion.value = removePrefix(deletion.value, newWsStart);
 
       // Any whitespace that comes straight before endKeep in both the old and
       // new texts, and hasn't already been assigned to startKeep, assign to
       // endKeep and remove from the deletion.
-      var newWsEnd = longestCommonSuffix(removePrefix(newWsFull, newWsStart), delWsEnd);
+      const newWsEnd = longestCommonSuffix(removePrefix(newWsFull, newWsStart), delWsEnd);
       deletion.value = removeSuffix(deletion.value, newWsEnd);
       endKeep.value = replacePrefix(endKeep.value, newWsFull, newWsEnd);
 
@@ -10478,28 +10478,28 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       // We are at the start of the text. Preserve all the whitespace on
       // endKeep, and just remove whitespace from the end of deletion to the
       // extent that it overlaps with the start of endKeep.
-      var endKeepWsPrefix = endKeep.value.match(/^\s*/)[0];
-      var deletionWsSuffix = deletion.value.match(/\s*$/)[0];
-      var overlap = maximumOverlap(deletionWsSuffix, endKeepWsPrefix);
+      const endKeepWsPrefix = endKeep.value.match(/^\s*/)[0];
+      const deletionWsSuffix = deletion.value.match(/\s*$/)[0];
+      const overlap = maximumOverlap(deletionWsSuffix, endKeepWsPrefix);
       deletion.value = removeSuffix(deletion.value, overlap);
     } else if (startKeep) {
       // We are at the END of the text. Preserve all the whitespace on
       // startKeep, and just remove whitespace from the start of deletion to
       // the extent that it overlaps with the end of startKeep.
-      var startKeepWsSuffix = startKeep.value.match(/\s*$/)[0];
-      var deletionWsPrefix = deletion.value.match(/^\s*/)[0];
-      var _overlap = maximumOverlap(startKeepWsSuffix, deletionWsPrefix);
+      const startKeepWsSuffix = startKeep.value.match(/\s*$/)[0];
+      const deletionWsPrefix = deletion.value.match(/^\s*/)[0];
+      const _overlap = maximumOverlap(startKeepWsSuffix, deletionWsPrefix);
       deletion.value = removePrefix(deletion.value, _overlap);
     }
   }
-  var wordWithSpaceDiff = new Diff();
+  const wordWithSpaceDiff = new Diff();
   wordWithSpaceDiff.tokenize = function (value) {
     // Slightly different to the tokenizeIncludingWhitespace regex used above in
     // that this one treats each individual newline as a distinct tokens, rather
     // than merging them into other surrounding whitespace. This was requested
     // in https://github.com/kpdecker/jsdiff/issues/180 &
     //    https://github.com/kpdecker/jsdiff/issues/211
-    var regex = new RegExp("(\\r?\\n)|[".concat(extendedWordChars, "]+|[^\\S\\n\\r]+|[^").concat(extendedWordChars, "]"), 'ug');
+    const regex = new RegExp("(\\r?\\n)|[".concat(extendedWordChars, "]+|[^\\S\\n\\r]+|[^").concat(extendedWordChars, "]"), 'ug');
     return value.match(regex) || [];
   };
   function diffWordsWithSpace(oldStr, newStr, options) {
@@ -10510,7 +10510,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     if (typeof options === 'function') {
       defaults.callback = options;
     } else if (options) {
-      for (var name in options) {
+      for (const name in options) {
         /* istanbul ignore else */
         if (options.hasOwnProperty(name)) {
           defaults[name] = options[name];
@@ -10520,13 +10520,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     return defaults;
   }
 
-  var lineDiff = new Diff();
+  const lineDiff = new Diff();
   lineDiff.tokenize = function (value, options) {
     if (options.stripTrailingCr) {
       // remove one \r before \n to match GNU diff's --strip-trailing-cr behavior
       value = value.replace(/\r\n/g, '\n');
     }
-    var retLines = [],
+    const retLines = [],
       linesAndNewlines = value.split(/(\n|\r\n)/);
 
     // Ignore the final empty token that occurs if the string ends with a new line
@@ -10535,8 +10535,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     }
 
     // Merge the content and line separators into single tokens
-    for (var i = 0; i < linesAndNewlines.length; i++) {
-      var line = linesAndNewlines[i];
+    for (let i = 0; i < linesAndNewlines.length; i++) {
+      const line = linesAndNewlines[i];
       if (i % 2 && !options.newlineIsToken) {
         retLines[retLines.length - 1] += line;
       } else {
@@ -10581,13 +10581,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   // `ignoreWhitespace: true` instead) but we keep it around to maintain
   // compatibility with code that used old versions.
   function diffTrimmedLines(oldStr, newStr, callback) {
-    var options = generateOptions(callback, {
+    const options = generateOptions(callback, {
       ignoreWhitespace: true
     });
     return lineDiff.diff(oldStr, newStr, options);
   }
 
-  var sentenceDiff = new Diff();
+  const sentenceDiff = new Diff();
   sentenceDiff.tokenize = function (value) {
     return value.split(/(\S.+?[.!?])(?=\s+|$)/);
   };
@@ -10595,7 +10595,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     return sentenceDiff.diff(oldStr, newStr, callback);
   }
 
-  var cssDiff = new Diff();
+  const cssDiff = new Diff();
   cssDiff.tokenize = function (value) {
     return value.split(/([{}:;,]|\s+)/);
   };
@@ -10604,9 +10604,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   }
 
   function ownKeys(e, r) {
-    var t = Object.keys(e);
+    const t = Object.keys(e);
     if (Object.getOwnPropertySymbols) {
-      var o = Object.getOwnPropertySymbols(e);
+      let o = Object.getOwnPropertySymbols(e);
       r && (o = o.filter(function (r) {
         return Object.getOwnPropertyDescriptor(e, r).enumerable;
       })), t.push.apply(t, o);
@@ -10614,7 +10614,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     return t;
   }
   function _objectSpread2(e) {
-    for (var r = 1; r < arguments.length; r++) {
+    for (let r = 1; r < arguments.length; r++) {
       var t = null != arguments[r] ? arguments[r] : {};
       r % 2 ? ownKeys(Object(t), !0).forEach(function (r) {
         _defineProperty(e, r, t[r]);
@@ -10626,16 +10626,16 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   }
   function _toPrimitive(t, r) {
     if ("object" != typeof t || !t) return t;
-    var e = t[Symbol.toPrimitive];
+    const e = t[Symbol.toPrimitive];
     if (void 0 !== e) {
-      var i = e.call(t, r || "default");
+      const i = e.call(t, r || "default");
       if ("object" != typeof i) return i;
       throw new TypeError("@@toPrimitive must return a primitive value.");
     }
     return ("string" === r ? String : Number)(t);
   }
   function _toPropertyKey(t) {
-    var i = _toPrimitive(t, "string");
+    const i = _toPrimitive(t, "string");
     return "symbol" == typeof i ? i : i + "";
   }
   function _typeof(o) {
@@ -10673,7 +10673,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   function _unsupportedIterableToArray(o, minLen) {
     if (!o) return;
     if (typeof o === "string") return _arrayLikeToArray(o, minLen);
-    var n = Object.prototype.toString.call(o).slice(8, -1);
+    let n = Object.prototype.toString.call(o).slice(8, -1);
     if (n === "Object" && o.constructor) n = o.constructor.name;
     if (n === "Map" || n === "Set") return Array.from(o);
     if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
@@ -10687,13 +10687,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
   }
 
-  var jsonDiff = new Diff();
+  const jsonDiff = new Diff();
   // Discriminate between two lines of pretty-printed, serialized JSON where one of them has a
   // dangling comma and the other doesn't. Turns out including the dangling comma yields the nicest output:
   jsonDiff.useLongestToken = true;
   jsonDiff.tokenize = lineDiff.tokenize;
   jsonDiff.castInput = function (value, options) {
-    var undefinedReplacement = options.undefinedReplacement,
+    const undefinedReplacement = options.undefinedReplacement,
       _options$stringifyRep = options.stringifyReplacer,
       stringifyReplacer = _options$stringifyRep === void 0 ? function (k, v) {
         return typeof v === 'undefined' ? undefinedReplacement : v;
@@ -10715,13 +10715,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     if (replacer) {
       obj = replacer(key, obj);
     }
-    var i;
+    let i;
     for (i = 0; i < stack.length; i += 1) {
       if (stack[i] === obj) {
         return replacementStack[i];
       }
     }
-    var canonicalizedObj;
+    let canonicalizedObj;
     if ('[object Array]' === Object.prototype.toString.call(obj)) {
       stack.push(obj);
       canonicalizedObj = new Array(obj.length);
@@ -10740,7 +10740,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       stack.push(obj);
       canonicalizedObj = {};
       replacementStack.push(canonicalizedObj);
-      var sortedKeys = [],
+      let sortedKeys = [],
         _key;
       for (_key in obj) {
         /* istanbul ignore else */
@@ -10761,7 +10761,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     return canonicalizedObj;
   }
 
-  var arrayDiff = new Diff();
+  const arrayDiff = new Diff();
   arrayDiff.tokenize = function (value) {
     return value.slice();
   };
@@ -10780,7 +10780,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       hunks: patch.hunks.map(function (hunk) {
         return _objectSpread2(_objectSpread2({}, hunk), {}, {
           lines: hunk.lines.map(function (line, i) {
-            var _hunk$lines;
+            let _hunk$lines;
             return line.startsWith('\\') || line.endsWith('\r') || (_hunk$lines = hunk.lines[i + 1]) !== null && _hunk$lines !== void 0 && _hunk$lines.startsWith('\\') ? line : line + '\r';
           })
         });
@@ -10835,7 +10835,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     }) && patch.every(function (index) {
       return index.hunks.every(function (hunk) {
         return hunk.lines.every(function (line, i) {
-          var _hunk$lines2;
+          let _hunk$lines2;
           return line.startsWith('\\') || line.endsWith('\r') || ((_hunk$lines2 = hunk.lines[i + 1]) === null || _hunk$lines2 === void 0 ? void 0 : _hunk$lines2.startsWith('\\'));
         });
       });
@@ -10843,16 +10843,16 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   }
 
   function parsePatch(uniDiff) {
-    var diffstr = uniDiff.split(/\n/),
+    let diffstr = uniDiff.split(/\n/),
       list = [],
       i = 0;
     function parseIndex() {
-      var index = {};
+      const index = {};
       list.push(index);
 
       // Parse diff metadata
       while (i < diffstr.length) {
-        var line = diffstr[i];
+        const line = diffstr[i];
 
         // File header found, end parsing diff metadata
         if (/^(\-\-\-|\+\+\+|@@)\s/.test(line)) {
@@ -10860,7 +10860,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         }
 
         // Diff index
-        var header = /^(?:Index:|diff(?: -r \w+)+)\s+(.+?)\s*$/.exec(line);
+        const header = /^(?:Index:|diff(?: -r \w+)+)\s+(.+?)\s*$/.exec(line);
         if (header) {
           index.index = header[1];
         }
@@ -10875,7 +10875,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       // Parse hunks
       index.hunks = [];
       while (i < diffstr.length) {
-        var _line = diffstr[i];
+        const _line = diffstr[i];
         if (/^(Index:\s|diff\s|\-\-\-\s|\+\+\+\s|===================================================================)/.test(_line)) {
           break;
         } else if (/^@@/.test(_line)) {
@@ -10891,11 +10891,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     // Parses the --- and +++ headers, if none are found, no lines
     // are consumed.
     function parseFileHeader(index) {
-      var fileHeader = /^(---|\+\+\+)\s+(.*)\r?$/.exec(diffstr[i]);
+      const fileHeader = /^(---|\+\+\+)\s+(.*)\r?$/.exec(diffstr[i]);
       if (fileHeader) {
-        var keyPrefix = fileHeader[1] === '---' ? 'old' : 'new';
-        var data = fileHeader[2].split('\t', 2);
-        var fileName = data[0].replace(/\\\\/g, '\\');
+        const keyPrefix = fileHeader[1] === '---' ? 'old' : 'new';
+        const data = fileHeader[2].split('\t', 2);
+        let fileName = data[0].replace(/\\\\/g, '\\');
         if (/^".*"$/.test(fileName)) {
           fileName = fileName.substr(1, fileName.length - 2);
         }
@@ -10908,10 +10908,10 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     // Parses a hunk
     // This assumes that we are at the start of a hunk.
     function parseHunk() {
-      var chunkHeaderIndex = i,
+      const chunkHeaderIndex = i,
         chunkHeaderLine = diffstr[i++],
         chunkHeader = chunkHeaderLine.split(/@@ -(\d+)(?:,(\d+))? \+(\d+)(?:,(\d+))? @@/);
-      var hunk = {
+      const hunk = {
         oldStart: +chunkHeader[1],
         oldLines: typeof chunkHeader[2] === 'undefined' ? 1 : +chunkHeader[2],
         newStart: +chunkHeader[3],
@@ -10928,11 +10928,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       if (hunk.newLines === 0) {
         hunk.newStart += 1;
       }
-      var addCount = 0,
+      let addCount = 0,
         removeCount = 0;
       for (; i < diffstr.length && (removeCount < hunk.oldLines || addCount < hunk.newLines || (_diffstr$i = diffstr[i]) !== null && _diffstr$i !== void 0 && _diffstr$i.startsWith('\\')); i++) {
         var _diffstr$i;
-        var operation = diffstr[i].length == 0 && i != diffstr.length - 1 ? ' ' : diffstr[i][0];
+        const operation = diffstr[i].length == 0 && i != diffstr.length - 1 ? ' ' : diffstr[i][0];
         if (operation === '+' || operation === '-' || operation === ' ' || operation === '\\') {
           hunk.lines.push(diffstr[i]);
           if (operation === '+') {
@@ -10975,7 +10975,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   // by distance from a given start position. I.e. for [0, 4], with
   // start of 2, this will iterate 2, 3, 1, 4, 0.
   function distanceIterator (start, minLine, maxLine) {
-    var wantForward = true,
+    let wantForward = true,
       backwardExhausted = false,
       forwardExhausted = false,
       localOffset = 1;
@@ -11014,7 +11014,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   }
 
   function applyPatch(source, uniDiff) {
-    var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+    const options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
     if (typeof uniDiff === 'string') {
       uniDiff = parsePatch(uniDiff);
     }
@@ -11033,7 +11033,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     }
 
     // Apply the diff to the input
-    var lines = source.split('\n'),
+    let lines = source.split('\n'),
       hunks = uniDiff.hunks,
       compareLine = options.compareLine || function (lineNumber, line, operation, patchContent) {
         return line === patchContent;
@@ -11054,11 +11054,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     // newline that already exists - then we either return false and fail to apply the patch (if
     // fuzzFactor is 0) or simply ignore the problem and do nothing (if fuzzFactor is >0).
     // If we do need to remove/add a newline at EOF, this will always be in the final hunk:
-    var prevLine = '',
+    let prevLine = '',
       removeEOFNL = false,
       addEOFNL = false;
-    for (var i = 0; i < hunks[hunks.length - 1].lines.length; i++) {
-      var line = hunks[hunks.length - 1].lines[i];
+    for (let i = 0; i < hunks[hunks.length - 1].lines.length; i++) {
+      const line = hunks[hunks.length - 1].lines[i];
       if (line[0] == '\\') {
         if (prevLine[0] == '+') {
           removeEOFNL = true;
@@ -11102,14 +11102,14 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
      * `replacementLines`. Otherwise, returns null.
      */
     function applyHunk(hunkLines, toPos, maxErrors) {
-      var hunkLinesI = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
-      var lastContextLineMatched = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : true;
-      var patchedLines = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : [];
-      var patchedLinesLength = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : 0;
-      var nConsecutiveOldContextLines = 0;
-      var nextContextLineMustMatch = false;
+      let hunkLinesI = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
+      let lastContextLineMatched = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : true;
+      const patchedLines = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : [];
+      let patchedLinesLength = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : 0;
+      let nConsecutiveOldContextLines = 0;
+      let nextContextLineMustMatch = false;
       for (; hunkLinesI < hunkLines.length; hunkLinesI++) {
-        var hunkLine = hunkLines[hunkLinesI],
+        const hunkLine = hunkLines[hunkLinesI],
           operation = hunkLine.length > 0 ? hunkLine[0] : ' ',
           content = hunkLine.length > 0 ? hunkLine.substr(1) : hunkLine;
         if (operation === '-') {
@@ -11168,18 +11168,18 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         oldLineLastI: toPos - 1
       };
     }
-    var resultLines = [];
+    const resultLines = [];
 
     // Search best fit offsets for each hunk based on the previous ones
-    var prevHunkOffset = 0;
-    for (var _i = 0; _i < hunks.length; _i++) {
-      var hunk = hunks[_i];
-      var hunkResult = void 0;
-      var maxLine = lines.length - hunk.oldLines + fuzzFactor;
-      var toPos = void 0;
-      for (var maxErrors = 0; maxErrors <= fuzzFactor; maxErrors++) {
+    let prevHunkOffset = 0;
+    for (let _i = 0; _i < hunks.length; _i++) {
+      const hunk = hunks[_i];
+      let hunkResult = void 0;
+      const maxLine = lines.length - hunk.oldLines + fuzzFactor;
+      let toPos = void 0;
+      for (let maxErrors = 0; maxErrors <= fuzzFactor; maxErrors++) {
         toPos = hunk.oldStart + prevHunkOffset - 1;
-        var iterator = distanceIterator(toPos, minLine, maxLine);
+        const iterator = distanceIterator(toPos, minLine, maxLine);
         for (; toPos !== undefined; toPos = iterator()) {
           hunkResult = applyHunk(hunk.lines, toPos, maxErrors);
           if (hunkResult) {
@@ -11195,13 +11195,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       }
 
       // Copy everything from the end of where we applied the last hunk to the start of this hunk
-      for (var _i2 = minLine; _i2 < toPos; _i2++) {
+      for (let _i2 = minLine; _i2 < toPos; _i2++) {
         resultLines.push(lines[_i2]);
       }
 
       // Add the lines produced by applying the hunk:
-      for (var _i3 = 0; _i3 < hunkResult.patchedLines.length; _i3++) {
-        var _line = hunkResult.patchedLines[_i3];
+      for (let _i3 = 0; _i3 < hunkResult.patchedLines.length; _i3++) {
+        const _line = hunkResult.patchedLines[_i3];
         resultLines.push(_line);
       }
 
@@ -11215,7 +11215,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     }
 
     // Copy over the rest of the lines from the old text
-    for (var _i4 = minLine; _i4 < lines.length; _i4++) {
+    for (let _i4 = minLine; _i4 < lines.length; _i4++) {
       resultLines.push(lines[_i4]);
     }
     return resultLines.join('\n');
@@ -11226,9 +11226,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     if (typeof uniDiff === 'string') {
       uniDiff = parsePatch(uniDiff);
     }
-    var currentIndex = 0;
+    let currentIndex = 0;
     function processIndex() {
-      var index = uniDiff[currentIndex++];
+      const index = uniDiff[currentIndex++];
       if (!index) {
         return options.complete();
       }
@@ -11236,7 +11236,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         if (err) {
           return options.complete(err);
         }
-        var updatedContent = applyPatch(data, index, options);
+        const updatedContent = applyPatch(data, index, options);
         options.patched(index, updatedContent, function (err) {
           if (err) {
             return options.complete(err);
@@ -11266,11 +11266,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     if (!options.callback) {
       return diffLinesResultToPatch(diffLines(oldStr, newStr, options));
     } else {
-      var _options = options,
+      const _options = options,
         _callback = _options.callback;
       diffLines(oldStr, newStr, _objectSpread2(_objectSpread2({}, options), {}, {
         callback: function callback(diff) {
-          var patch = diffLinesResultToPatch(diff);
+          const patch = diffLinesResultToPatch(diff);
           _callback(patch);
         }
       }));
@@ -11292,21 +11292,21 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
           return ' ' + entry;
         });
       }
-      var hunks = [];
-      var oldRangeStart = 0,
+      const hunks = [];
+      let oldRangeStart = 0,
         newRangeStart = 0,
         curRange = [],
         oldLine = 1,
         newLine = 1;
-      var _loop = function _loop() {
-        var current = diff[i],
+      const _loop = function _loop() {
+        const current = diff[i],
           lines = current.lines || splitLines(current.value);
         current.lines = lines;
         if (current.added || current.removed) {
-          var _curRange;
+          let _curRange;
           // If we have previous context, start with that
           if (!oldRangeStart) {
-            var prev = diff[i - 1];
+            const prev = diff[i - 1];
             oldRangeStart = oldLine;
             newRangeStart = newLine;
             if (prev) {
@@ -11332,15 +11332,15 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
           if (oldRangeStart) {
             // Close out any changes that have been output (or join overlapping)
             if (lines.length <= options.context * 2 && i < diff.length - 2) {
-              var _curRange2;
+              let _curRange2;
               // Overlapping
               (_curRange2 = curRange).push.apply(_curRange2, _toConsumableArray(contextLines(lines)));
             } else {
-              var _curRange3;
+              let _curRange3;
               // end the range and output
-              var contextSize = Math.min(lines.length, options.context);
+              const contextSize = Math.min(lines.length, options.context);
               (_curRange3 = curRange).push.apply(_curRange3, _toConsumableArray(contextLines(lines.slice(0, contextSize))));
-              var _hunk = {
+              const _hunk = {
                 oldStart: oldRangeStart,
                 oldLines: oldLine - oldRangeStart + contextSize,
                 newStart: newRangeStart,
@@ -11363,9 +11363,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
       // Step 2: eliminate the trailing `\n` from each line of each hunk, and, where needed, add
       //         "\ No newline at end of file".
-      for (var _i = 0, _hunks = hunks; _i < _hunks.length; _i++) {
-        var hunk = _hunks[_i];
-        for (var _i2 = 0; _i2 < hunk.lines.length; _i2++) {
+      for (let _i = 0, _hunks = hunks; _i < _hunks.length; _i++) {
+        const hunk = _hunks[_i];
+        for (let _i2 = 0; _i2 < hunk.lines.length; _i2++) {
           if (hunk.lines[_i2].endsWith('\n')) {
             hunk.lines[_i2] = hunk.lines[_i2].slice(0, -1);
           } else {
@@ -11387,15 +11387,15 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     if (Array.isArray(diff)) {
       return diff.map(formatPatch).join('\n');
     }
-    var ret = [];
+    const ret = [];
     if (diff.oldFileName == diff.newFileName) {
       ret.push('Index: ' + diff.oldFileName);
     }
     ret.push('===================================================================');
     ret.push('--- ' + diff.oldFileName + (typeof diff.oldHeader === 'undefined' ? '' : '\t' + diff.oldHeader));
     ret.push('+++ ' + diff.newFileName + (typeof diff.newHeader === 'undefined' ? '' : '\t' + diff.newHeader));
-    for (var i = 0; i < diff.hunks.length; i++) {
-      var hunk = diff.hunks[i];
+    for (let i = 0; i < diff.hunks.length; i++) {
+      const hunk = diff.hunks[i];
       // Unified Diff Format quirk: If the chunk size is 0,
       // the first number is one lower than one would expect.
       // https://www.artima.com/weblogs/viewpost.jsp?thread=164293
@@ -11411,20 +11411,20 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     return ret.join('\n') + '\n';
   }
   function createTwoFilesPatch(oldFileName, newFileName, oldStr, newStr, oldHeader, newHeader, options) {
-    var _options2;
+    let _options2;
     if (typeof options === 'function') {
       options = {
         callback: options
       };
     }
     if (!((_options2 = options) !== null && _options2 !== void 0 && _options2.callback)) {
-      var patchObj = structuredPatch(oldFileName, newFileName, oldStr, newStr, oldHeader, newHeader, options);
+      const patchObj = structuredPatch(oldFileName, newFileName, oldStr, newStr, oldHeader, newHeader, options);
       if (!patchObj) {
         return;
       }
       return formatPatch(patchObj);
     } else {
-      var _options3 = options,
+      const _options3 = options,
         _callback2 = _options3.callback;
       structuredPatch(oldFileName, newFileName, oldStr, newStr, oldHeader, newHeader, _objectSpread2(_objectSpread2({}, options), {}, {
         callback: function callback(patchObj) {
@@ -11445,8 +11445,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
    * Split `text` into an array of lines, including the trailing newline character (where present)
    */
   function splitLines(text) {
-    var hasTrailingNl = text.endsWith('\n');
-    var result = text.split('\n').map(function (line) {
+    const hasTrailingNl = text.endsWith('\n');
+    const result = text.split('\n').map(function (line) {
       return line + '\n';
     });
     if (hasTrailingNl) {
@@ -11467,7 +11467,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     if (start.length > array.length) {
       return false;
     }
-    for (var i = 0; i < start.length; i++) {
+    for (let i = 0; i < start.length; i++) {
       if (start[i] !== array[i]) {
         return false;
       }
@@ -11476,7 +11476,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   }
 
   function calcLineCount(hunk) {
-    var _calcOldNewLineCount = calcOldNewLineCount(hunk.lines),
+    const _calcOldNewLineCount = calcOldNewLineCount(hunk.lines),
       oldLines = _calcOldNewLineCount.oldLines,
       newLines = _calcOldNewLineCount.newLines;
     if (oldLines !== undefined) {
@@ -11493,7 +11493,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   function merge(mine, theirs, base) {
     mine = loadPatch(mine, base);
     theirs = loadPatch(theirs, base);
-    var ret = {};
+    const ret = {};
 
     // For index we just let it pass through as it doesn't have any necessary meaning.
     // Leaving sanity checks on this to the API consumer that may know more about the
@@ -11523,12 +11523,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       }
     }
     ret.hunks = [];
-    var mineIndex = 0,
+    let mineIndex = 0,
       theirsIndex = 0,
       mineOffset = 0,
       theirsOffset = 0;
     while (mineIndex < mine.hunks.length || theirsIndex < theirs.hunks.length) {
-      var mineCurrent = mine.hunks[mineIndex] || {
+      const mineCurrent = mine.hunks[mineIndex] || {
           oldStart: Infinity
         },
         theirsCurrent = theirs.hunks[theirsIndex] || {
@@ -11546,7 +11546,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         mineOffset += theirsCurrent.newLines - theirsCurrent.oldLines;
       } else {
         // Overlap, merge as best we can
-        var mergedHunk = {
+        const mergedHunk = {
           oldStart: Math.min(mineCurrent.oldStart, theirsCurrent.oldStart),
           oldLines: 0,
           newStart: Math.min(mineCurrent.newStart + mineOffset, theirsCurrent.oldStart + theirsOffset),
@@ -11602,7 +11602,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   function mergeLines(hunk, mineOffset, mineLines, theirOffset, theirLines) {
     // This will generally result in a conflicted hunk, but there are cases where the context
     // is the only overlap where we can successfully merge the content here.
-    var mine = {
+    const mine = {
         offset: mineOffset,
         lines: mineLines,
         index: 0
@@ -11619,7 +11619,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
     // Now in the overlap content. Scan through and select the best changes from each.
     while (mine.index < mine.lines.length && their.index < their.lines.length) {
-      var mineCurrent = mine.lines[mine.index],
+      const mineCurrent = mine.lines[mine.index],
         theirCurrent = their.lines[their.index];
       if ((mineCurrent[0] === '-' || mineCurrent[0] === '+') && (theirCurrent[0] === '-' || theirCurrent[0] === '+')) {
         // Both modified ...
@@ -11655,31 +11655,31 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     calcLineCount(hunk);
   }
   function mutualChange(hunk, mine, their) {
-    var myChanges = collectChange(mine),
+    const myChanges = collectChange(mine),
       theirChanges = collectChange(their);
     if (allRemoves(myChanges) && allRemoves(theirChanges)) {
       // Special case for remove changes that are supersets of one another
       if (arrayStartsWith(myChanges, theirChanges) && skipRemoveSuperset(their, myChanges, myChanges.length - theirChanges.length)) {
-        var _hunk$lines3;
+        let _hunk$lines3;
         (_hunk$lines3 = hunk.lines).push.apply(_hunk$lines3, _toConsumableArray(myChanges));
         return;
       } else if (arrayStartsWith(theirChanges, myChanges) && skipRemoveSuperset(mine, theirChanges, theirChanges.length - myChanges.length)) {
-        var _hunk$lines4;
+        let _hunk$lines4;
         (_hunk$lines4 = hunk.lines).push.apply(_hunk$lines4, _toConsumableArray(theirChanges));
         return;
       }
     } else if (arrayEqual(myChanges, theirChanges)) {
-      var _hunk$lines5;
+      let _hunk$lines5;
       (_hunk$lines5 = hunk.lines).push.apply(_hunk$lines5, _toConsumableArray(myChanges));
       return;
     }
     conflict(hunk, myChanges, theirChanges);
   }
   function removal(hunk, mine, their, swap) {
-    var myChanges = collectChange(mine),
+    const myChanges = collectChange(mine),
       theirChanges = collectContext(their, myChanges);
     if (theirChanges.merged) {
-      var _hunk$lines6;
+      let _hunk$lines6;
       (_hunk$lines6 = hunk.lines).push.apply(_hunk$lines6, _toConsumableArray(theirChanges.merged));
     } else {
       conflict(hunk, swap ? theirChanges : myChanges, swap ? myChanges : theirChanges);
@@ -11695,22 +11695,22 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   }
   function insertLeading(hunk, insert, their) {
     while (insert.offset < their.offset && insert.index < insert.lines.length) {
-      var line = insert.lines[insert.index++];
+      const line = insert.lines[insert.index++];
       hunk.lines.push(line);
       insert.offset++;
     }
   }
   function insertTrailing(hunk, insert) {
     while (insert.index < insert.lines.length) {
-      var line = insert.lines[insert.index++];
+      const line = insert.lines[insert.index++];
       hunk.lines.push(line);
     }
   }
   function collectChange(state) {
-    var ret = [],
+    let ret = [],
       operation = state.lines[state.index][0];
     while (state.index < state.lines.length) {
-      var line = state.lines[state.index];
+      const line = state.lines[state.index];
 
       // Group additions that are immediately after subtractions and treat them as one "atomic" modify change.
       if (operation === '-' && line[0] === '+') {
@@ -11726,13 +11726,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     return ret;
   }
   function collectContext(state, matchChanges) {
-    var changes = [],
+    let changes = [],
       merged = [],
       matchIndex = 0,
       contextChanges = false,
       conflicted = false;
     while (matchIndex < matchChanges.length && state.index < state.lines.length) {
-      var change = state.lines[state.index],
+      let change = state.lines[state.index],
         match = matchChanges[matchIndex];
 
       // Once we've hit our add, then we are done
@@ -11779,8 +11779,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     }, true);
   }
   function skipRemoveSuperset(state, removeChanges, delta) {
-    for (var i = 0; i < delta; i++) {
-      var changeContent = removeChanges[removeChanges.length - delta + i].substr(1);
+    for (let i = 0; i < delta; i++) {
+      const changeContent = removeChanges[removeChanges.length - delta + i].substr(1);
       if (state.lines[state.index + i] !== ' ' + changeContent) {
         return false;
       }
@@ -11789,12 +11789,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     return true;
   }
   function calcOldNewLineCount(lines) {
-    var oldLines = 0;
-    var newLines = 0;
+    let oldLines = 0;
+    let newLines = 0;
     lines.forEach(function (line) {
       if (typeof line !== 'string') {
-        var myCount = calcOldNewLineCount(line.mine);
-        var theirCount = calcOldNewLineCount(line.theirs);
+        const myCount = calcOldNewLineCount(line.mine);
+        const theirCount = calcOldNewLineCount(line.theirs);
         if (oldLines !== undefined) {
           if (myCount.oldLines === theirCount.oldLines) {
             oldLines += myCount.oldLines;
@@ -11855,10 +11855,10 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   // See: http://code.google.com/p/google-diff-match-patch/wiki/API
   function convertChangesToDMP(changes) {
-    var ret = [],
+    let ret = [],
       change,
       operation;
-    for (var i = 0; i < changes.length; i++) {
+    for (let i = 0; i < changes.length; i++) {
       change = changes[i];
       if (change.added) {
         operation = 1;
@@ -11873,9 +11873,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   }
 
   function convertChangesToXML(changes) {
-    var ret = [];
-    for (var i = 0; i < changes.length; i++) {
-      var change = changes[i];
+    const ret = [];
+    for (let i = 0; i < changes.length; i++) {
+      const change = changes[i];
       if (change.added) {
         ret.push('<ins>');
       } else if (change.removed) {
@@ -11891,7 +11891,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     return ret.join('');
   }
   function escapeHTML(s) {
-    var n = s;
+    let n = s;
     n = n.replace(/&/g, '&amp;');
     n = n.replace(/</g, '&lt;');
     n = n.replace(/>/g, '&gt;');
@@ -11935,21 +11935,21 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 /** Used as the `TypeError` message for "Functions" methods. */
-var FUNC_ERROR_TEXT = 'Expected a function';
+const FUNC_ERROR_TEXT = 'Expected a function';
 
 /** Used to stand-in for `undefined` hash values. */
-var HASH_UNDEFINED = '__lodash_hash_undefined__';
+const HASH_UNDEFINED = '__lodash_hash_undefined__';
 
 /** Used as references for various `Number` constants. */
-var INFINITY = 1 / 0;
+const INFINITY = 1 / 0;
 
 /** `Object#toString` result references. */
-var funcTag = '[object Function]',
+const funcTag = '[object Function]',
     genTag = '[object GeneratorFunction]',
     symbolTag = '[object Symbol]';
 
 /** Used to match property names within property paths. */
-var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,
+const reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,
     reIsPlainProp = /^\w*$/,
     reLeadingDot = /^\./,
     rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g;
@@ -11958,22 +11958,22 @@ var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,
  * Used to match `RegExp`
  * [syntax characters](http://ecma-international.org/ecma-262/7.0/#sec-patterns).
  */
-var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
+const reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
 
 /** Used to match backslashes in property paths. */
-var reEscapeChar = /\\(\\)?/g;
+const reEscapeChar = /\\(\\)?/g;
 
 /** Used to detect host constructors (Safari). */
-var reIsHostCtor = /^\[object .+?Constructor\]$/;
+const reIsHostCtor = /^\[object .+?Constructor\]$/;
 
 /** Detect free variable `global` from Node.js. */
-var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
+const freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
 
 /** Detect free variable `self`. */
-var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+const freeSelf = typeof self == 'object' && self && self.Object === Object && self;
 
 /** Used as a reference to the global object. */
-var root = freeGlobal || freeSelf || Function('return this')();
+const root = freeGlobal || freeSelf || Function('return this')();
 
 /**
  * Gets the value at `key` of `object`.
@@ -11997,7 +11997,7 @@ function getValue(object, key) {
 function isHostObject(value) {
   // Many host objects are `Object` objects that can coerce to strings
   // despite having improperly defined `toString` methods.
-  var result = false;
+  let result = false;
   if (value != null && typeof value.toString != 'function') {
     try {
       result = !!(value + '');
@@ -12007,48 +12007,48 @@ function isHostObject(value) {
 }
 
 /** Used for built-in method references. */
-var arrayProto = Array.prototype,
+const arrayProto = Array.prototype,
     funcProto = Function.prototype,
     objectProto = Object.prototype;
 
 /** Used to detect overreaching core-js shims. */
-var coreJsData = root['__core-js_shared__'];
+const coreJsData = root['__core-js_shared__'];
 
 /** Used to detect methods masquerading as native. */
-var maskSrcKey = (function() {
-  var uid = /[^.]+$/.exec(coreJsData && coreJsData.keys && coreJsData.keys.IE_PROTO || '');
+const maskSrcKey = (function() {
+  const uid = /[^.]+$/.exec(coreJsData && coreJsData.keys && coreJsData.keys.IE_PROTO || '');
   return uid ? ('Symbol(src)_1.' + uid) : '';
 }());
 
 /** Used to resolve the decompiled source of functions. */
-var funcToString = funcProto.toString;
+const funcToString = funcProto.toString;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty = objectProto.hasOwnProperty;
+const hasOwnProperty = objectProto.hasOwnProperty;
 
 /**
  * Used to resolve the
  * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
  * of values.
  */
-var objectToString = objectProto.toString;
+const objectToString = objectProto.toString;
 
 /** Used to detect if a method is native. */
-var reIsNative = RegExp('^' +
+const reIsNative = RegExp('^' +
   funcToString.call(hasOwnProperty).replace(reRegExpChar, '\\$&')
   .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$'
 );
 
 /** Built-in value references. */
-var Symbol = root.Symbol,
+const Symbol = root.Symbol,
     splice = arrayProto.splice;
 
 /* Built-in method references that are verified to be native. */
-var Map = getNative(root, 'Map'),
+const Map = getNative(root, 'Map'),
     nativeCreate = getNative(Object, 'create');
 
 /** Used to convert symbols to primitives and strings. */
-var symbolProto = Symbol ? Symbol.prototype : undefined,
+const symbolProto = Symbol ? Symbol.prototype : undefined,
     symbolToString = symbolProto ? symbolProto.toString : undefined;
 
 /**
@@ -12059,12 +12059,12 @@ var symbolProto = Symbol ? Symbol.prototype : undefined,
  * @param {Array} [entries] The key-value pairs to cache.
  */
 function Hash(entries) {
-  var index = -1,
+  let index = -1,
       length = entries ? entries.length : 0;
 
   this.clear();
   while (++index < length) {
-    var entry = entries[index];
+    const entry = entries[index];
     this.set(entry[0], entry[1]);
   }
 }
@@ -12104,9 +12104,9 @@ function hashDelete(key) {
  * @returns {*} Returns the entry value.
  */
 function hashGet(key) {
-  var data = this.__data__;
+  const data = this.__data__;
   if (nativeCreate) {
-    var result = data[key];
+    const result = data[key];
     return result === HASH_UNDEFINED ? undefined : result;
   }
   return hasOwnProperty.call(data, key) ? data[key] : undefined;
@@ -12122,7 +12122,7 @@ function hashGet(key) {
  * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
  */
 function hashHas(key) {
-  var data = this.__data__;
+  const data = this.__data__;
   return nativeCreate ? data[key] !== undefined : hasOwnProperty.call(data, key);
 }
 
@@ -12137,7 +12137,7 @@ function hashHas(key) {
  * @returns {Object} Returns the hash instance.
  */
 function hashSet(key, value) {
-  var data = this.__data__;
+  const data = this.__data__;
   data[key] = (nativeCreate && value === undefined) ? HASH_UNDEFINED : value;
   return this;
 }
@@ -12157,12 +12157,12 @@ Hash.prototype.set = hashSet;
  * @param {Array} [entries] The key-value pairs to cache.
  */
 function ListCache(entries) {
-  var index = -1,
+  let index = -1,
       length = entries ? entries.length : 0;
 
   this.clear();
   while (++index < length) {
-    var entry = entries[index];
+    const entry = entries[index];
     this.set(entry[0], entry[1]);
   }
 }
@@ -12188,13 +12188,13 @@ function listCacheClear() {
  * @returns {boolean} Returns `true` if the entry was removed, else `false`.
  */
 function listCacheDelete(key) {
-  var data = this.__data__,
+  const data = this.__data__,
       index = assocIndexOf(data, key);
 
   if (index < 0) {
     return false;
   }
-  var lastIndex = data.length - 1;
+  const lastIndex = data.length - 1;
   if (index == lastIndex) {
     data.pop();
   } else {
@@ -12213,7 +12213,7 @@ function listCacheDelete(key) {
  * @returns {*} Returns the entry value.
  */
 function listCacheGet(key) {
-  var data = this.__data__,
+  const data = this.__data__,
       index = assocIndexOf(data, key);
 
   return index < 0 ? undefined : data[index][1];
@@ -12243,7 +12243,7 @@ function listCacheHas(key) {
  * @returns {Object} Returns the list cache instance.
  */
 function listCacheSet(key, value) {
-  var data = this.__data__,
+  const data = this.__data__,
       index = assocIndexOf(data, key);
 
   if (index < 0) {
@@ -12269,12 +12269,12 @@ ListCache.prototype.set = listCacheSet;
  * @param {Array} [entries] The key-value pairs to cache.
  */
 function MapCache(entries) {
-  var index = -1,
+  let index = -1,
       length = entries ? entries.length : 0;
 
   this.clear();
   while (++index < length) {
-    var entry = entries[index];
+    const entry = entries[index];
     this.set(entry[0], entry[1]);
   }
 }
@@ -12364,7 +12364,7 @@ MapCache.prototype.set = mapCacheSet;
  * @returns {number} Returns the index of the matched value, else `-1`.
  */
 function assocIndexOf(array, key) {
-  var length = array.length;
+  let length = array.length;
   while (length--) {
     if (eq(array[length][0], key)) {
       return length;
@@ -12384,7 +12384,7 @@ function assocIndexOf(array, key) {
 function baseGet(object, path) {
   path = isKey(path, object) ? [path] : castPath(path);
 
-  var index = 0,
+  let index = 0,
       length = path.length;
 
   while (object != null && index < length) {
@@ -12405,7 +12405,7 @@ function baseIsNative(value) {
   if (!isObject(value) || isMasked(value)) {
     return false;
   }
-  var pattern = (isFunction(value) || isHostObject(value)) ? reIsNative : reIsHostCtor;
+  const pattern = (isFunction(value) || isHostObject(value)) ? reIsNative : reIsHostCtor;
   return pattern.test(toSource(value));
 }
 
@@ -12425,7 +12425,7 @@ function baseToString(value) {
   if (isSymbol(value)) {
     return symbolToString ? symbolToString.call(value) : '';
   }
-  var result = (value + '');
+  const result = (value + '');
   return (result == '0' && (1 / value) == -INFINITY) ? '-0' : result;
 }
 
@@ -12449,7 +12449,7 @@ function castPath(value) {
  * @returns {*} Returns the map data.
  */
 function getMapData(map, key) {
-  var data = map.__data__;
+  const data = map.__data__;
   return isKeyable(key)
     ? data[typeof key == 'string' ? 'string' : 'hash']
     : data.map;
@@ -12464,7 +12464,7 @@ function getMapData(map, key) {
  * @returns {*} Returns the function if it's native, else `undefined`.
  */
 function getNative(object, key) {
-  var value = getValue(object, key);
+  const value = getValue(object, key);
   return baseIsNative(value) ? value : undefined;
 }
 
@@ -12480,7 +12480,7 @@ function isKey(value, object) {
   if (isArray(value)) {
     return false;
   }
-  var type = typeof value;
+  const type = typeof value;
   if (type == 'number' || type == 'symbol' || type == 'boolean' ||
       value == null || isSymbol(value)) {
     return true;
@@ -12497,7 +12497,7 @@ function isKey(value, object) {
  * @returns {boolean} Returns `true` if `value` is suitable, else `false`.
  */
 function isKeyable(value) {
-  var type = typeof value;
+  const type = typeof value;
   return (type == 'string' || type == 'number' || type == 'symbol' || type == 'boolean')
     ? (value !== '__proto__')
     : (value === null);
@@ -12524,7 +12524,7 @@ function isMasked(func) {
 var stringToPath = memoize(function(string) {
   string = toString(string);
 
-  var result = [];
+  const result = [];
   if (reLeadingDot.test(string)) {
     result.push('');
   }
@@ -12545,7 +12545,7 @@ function toKey(value) {
   if (typeof value == 'string' || isSymbol(value)) {
     return value;
   }
-  var result = (value + '');
+  const result = (value + '');
   return (result == '0' && (1 / value) == -INFINITY) ? '-0' : result;
 }
 
@@ -12616,15 +12616,15 @@ function memoize(func, resolver) {
   if (typeof func != 'function' || (resolver && typeof resolver != 'function')) {
     throw new TypeError(FUNC_ERROR_TEXT);
   }
-  var memoized = function() {
-    var args = arguments,
+  const memoized = function() {
+    const args = arguments,
         key = resolver ? resolver.apply(this, args) : args[0],
         cache = memoized.cache;
 
     if (cache.has(key)) {
       return cache.get(key);
     }
-    var result = func.apply(this, args);
+    const result = func.apply(this, args);
     memoized.cache = cache.set(key, result);
     return result;
   };
@@ -12716,7 +12716,7 @@ var isArray = Array.isArray;
 function isFunction(value) {
   // The use of `Object#toString` avoids issues with the `typeof` operator
   // in Safari 8-9 which returns 'object' for typed array and other constructors.
-  var tag = isObject(value) ? objectToString.call(value) : '';
+  const tag = isObject(value) ? objectToString.call(value) : '';
   return tag == funcTag || tag == genTag;
 }
 
@@ -12746,7 +12746,7 @@ function isFunction(value) {
  * // => false
  */
 function isObject(value) {
-  var type = typeof value;
+  const type = typeof value;
   return !!value && (type == 'object' || type == 'function');
 }
 
@@ -12851,7 +12851,7 @@ function toString(value) {
  * // => 'default'
  */
 function get(object, path, defaultValue) {
-  var result = object == null ? undefined : baseGet(object, path);
+  const result = object == null ? undefined : baseGet(object, path);
   return result === undefined ? defaultValue : result;
 }
 
@@ -12876,29 +12876,29 @@ module.exports = {
  * Copyright(c) 2013 jake luer <jake@alogicalparadox.com>
  * MIT Licensed
  */
-var promiseExists = typeof Promise === 'function';
+const promiseExists = typeof Promise === 'function';
 
 /* eslint-disable no-undef */
-var globalObject = typeof self === 'object' ? self : global; // eslint-disable-line id-blacklist
+const globalObject = typeof self === 'object' ? self : global; // eslint-disable-line id-blacklist
 
-var symbolExists = typeof Symbol !== 'undefined';
-var mapExists = typeof Map !== 'undefined';
-var setExists = typeof Set !== 'undefined';
-var weakMapExists = typeof WeakMap !== 'undefined';
-var weakSetExists = typeof WeakSet !== 'undefined';
-var dataViewExists = typeof DataView !== 'undefined';
-var symbolIteratorExists = symbolExists && typeof Symbol.iterator !== 'undefined';
-var symbolToStringTagExists = symbolExists && typeof Symbol.toStringTag !== 'undefined';
-var setEntriesExists = setExists && typeof Set.prototype.entries === 'function';
-var mapEntriesExists = mapExists && typeof Map.prototype.entries === 'function';
-var setIteratorPrototype = setEntriesExists && Object.getPrototypeOf(new Set().entries());
-var mapIteratorPrototype = mapEntriesExists && Object.getPrototypeOf(new Map().entries());
-var arrayIteratorExists = symbolIteratorExists && typeof Array.prototype[Symbol.iterator] === 'function';
-var arrayIteratorPrototype = arrayIteratorExists && Object.getPrototypeOf([][Symbol.iterator]());
-var stringIteratorExists = symbolIteratorExists && typeof String.prototype[Symbol.iterator] === 'function';
-var stringIteratorPrototype = stringIteratorExists && Object.getPrototypeOf(''[Symbol.iterator]());
-var toStringLeftSliceLength = 8;
-var toStringRightSliceLength = -1;
+const symbolExists = typeof Symbol !== 'undefined';
+const mapExists = typeof Map !== 'undefined';
+const setExists = typeof Set !== 'undefined';
+const weakMapExists = typeof WeakMap !== 'undefined';
+const weakSetExists = typeof WeakSet !== 'undefined';
+const dataViewExists = typeof DataView !== 'undefined';
+const symbolIteratorExists = symbolExists && typeof Symbol.iterator !== 'undefined';
+const symbolToStringTagExists = symbolExists && typeof Symbol.toStringTag !== 'undefined';
+const setEntriesExists = setExists && typeof Set.prototype.entries === 'function';
+const mapEntriesExists = mapExists && typeof Map.prototype.entries === 'function';
+const setIteratorPrototype = setEntriesExists && Object.getPrototypeOf(new Set().entries());
+const mapIteratorPrototype = mapEntriesExists && Object.getPrototypeOf(new Map().entries());
+const arrayIteratorExists = symbolIteratorExists && typeof Array.prototype[Symbol.iterator] === 'function';
+const arrayIteratorPrototype = arrayIteratorExists && Object.getPrototypeOf([][Symbol.iterator]());
+const stringIteratorExists = symbolIteratorExists && typeof String.prototype[Symbol.iterator] === 'function';
+const stringIteratorPrototype = stringIteratorExists && Object.getPrototypeOf(''[Symbol.iterator]());
+const toStringLeftSliceLength = 8;
+const toStringRightSliceLength = -1;
 /**
  * ### typeOf (obj)
  *
@@ -12924,7 +12924,7 @@ function typeDetect(obj) {
    *   undefined          x 32,363,368 ops/sec ±1.07% (82 runs sampled)
    *   function           x 31,296,870 ops/sec ±0.96% (83 runs sampled)
    */
-  var typeofObj = typeof obj;
+  const typeofObj = typeof obj;
   if (typeofObj !== 'object') {
     return typeofObj;
   }
@@ -13102,12 +13102,12 @@ function typeDetect(obj) {
   *   Int8Array          x 6,606,078 ops/sec ±1.74% (81 runs sampled)
   *   Uint8ClampedArray  x 6,602,224 ops/sec ±1.77% (83 runs sampled)
   */
-  var stringTag = (symbolToStringTagExists && obj[Symbol.toStringTag]);
+  const stringTag = (symbolToStringTagExists && obj[Symbol.toStringTag]);
   if (typeof stringTag === 'string') {
     return stringTag;
   }
 
-  var objPrototype = Object.getPrototypeOf(obj);
+  const objPrototype = Object.getPrototypeOf(obj);
   /* ! Speed optimisation
   * Pre:
   *   regex literal      x 1,772,385 ops/sec ±1.85% (77 runs sampled)

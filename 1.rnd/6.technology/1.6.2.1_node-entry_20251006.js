@@ -16,7 +16,7 @@ import { performance } from 'node:perf_hooks';
 import * as promises from 'node:fs/promises';
 
 function _mergeNamespaces(n, m) {
-  for (var i = 0; i < m.length; i++) {
+  for (let i = 0; i < m.length; i++) {
     const e = m[i];
     if (typeof e !== 'string' && !Array.isArray(e)) { for (const k in e) {
       if (k !== 'default' && !(k in n)) {
@@ -27,14 +27,14 @@ function _mergeNamespaces(n, m) {
   return Object.defineProperty(n, Symbol.toStringTag, { value: 'Module' });
 }
 
-var version = "4.52.3";
+const version = "4.52.3";
 
 // src/vlq.ts
-var comma = ",".charCodeAt(0);
-var semicolon = ";".charCodeAt(0);
-var chars$1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-var intToChar = new Uint8Array(64);
-var charToInt = new Uint8Array(128);
+const comma = ",".charCodeAt(0);
+const semicolon = ";".charCodeAt(0);
+const chars$1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+const intToChar = new Uint8Array(64);
+const charToInt = new Uint8Array(128);
 for (let i = 0; i < chars$1.length; i++) {
   const c = chars$1.charCodeAt(i);
   intToChar[i] = c;
@@ -74,8 +74,8 @@ function hasMoreVlq(reader, max) {
 }
 
 // src/strings.ts
-var bufLength = 1024 * 16;
-var td = typeof TextDecoder !== "undefined" ? /* @__PURE__ */ new TextDecoder() : typeof Buffer !== "undefined" ? {
+const bufLength = 1024 * 16;
+const td = typeof TextDecoder !== "undefined" ? /* @__PURE__ */ new TextDecoder() : typeof Buffer !== "undefined" ? {
   decode(buf) {
     const out = Buffer.from(buf.buffer, buf.byteOffset, buf.byteLength);
     return out.toString();
@@ -89,7 +89,7 @@ var td = typeof TextDecoder !== "undefined" ? /* @__PURE__ */ new TextDecoder() 
     return out;
   }
 };
-var StringWriter = class {
+const StringWriter = class {
   constructor() {
     this.pos = 0;
     this.out = "";
@@ -108,7 +108,7 @@ var StringWriter = class {
     return pos > 0 ? out + td.decode(buffer.subarray(0, pos)) : out;
   }
 };
-var StringReader = class {
+const StringReader = class {
   constructor(buffer) {
     this.pos = 0;
     this.buffer = buffer;
@@ -215,7 +215,7 @@ class BitSet {
 	}
 }
 
-let Chunk$1 = class Chunk {
+const Chunk$1 = class Chunk {
 	constructor(start, end, content) {
 		this.start = start;
 		this.end = end;
@@ -1496,7 +1496,7 @@ class MagicString {
 
 const hasOwnProp = Object.prototype.hasOwnProperty;
 
-let Bundle$1 = class Bundle {
+const Bundle$1 = class Bundle {
 	constructor(options = {}) {
 		this.intro = options.intro || '';
 		this.separator = options.separator !== undefined ? options.separator : '\n';
@@ -9077,10 +9077,10 @@ function getDefaultExportFromCjs (x) {
 
 function getAugmentedNamespace(n) {
   if (Object.prototype.hasOwnProperty.call(n, '__esModule')) return n;
-  var f = n.default;
+  const f = n.default;
 	if (typeof f == "function") {
 		var a = function a () {
-			var isInstance = false;
+			let isInstance = false;
       try {
         isInstance = this instanceof a;
       } catch {}
@@ -9093,7 +9093,7 @@ function getAugmentedNamespace(n) {
   } else a = {};
   Object.defineProperty(a, '__esModule', {value: true});
 	Object.keys(n).forEach(function (k) {
-		var d = Object.getOwnPropertyDescriptor(n, k);
+		const d = Object.getOwnPropertyDescriptor(n, k);
 		Object.defineProperty(a, k, d.get ? d : {
 			enumerable: true,
 			get: function () {
@@ -9104,10 +9104,10 @@ function getAugmentedNamespace(n) {
 	return a;
 }
 
-var utils = {};
+const utils = {};
 
-var constants;
-var hasRequiredConstants;
+let constants;
+let hasRequiredConstants;
 
 function requireConstants () {
 	if (hasRequiredConstants) return constants;
@@ -9296,7 +9296,7 @@ function requireConstants () {
 
 /*global navigator*/
 
-var hasRequiredUtils;
+let hasRequiredUtils;
 
 function requireUtils () {
 	if (hasRequiredUtils) return utils;
@@ -9376,8 +9376,8 @@ function requireUtils () {
 	return utils;
 }
 
-var scan_1;
-var hasRequiredScan;
+let scan_1;
+let hasRequiredScan;
 
 function requireScan () {
 	if (hasRequiredScan) return scan_1;
@@ -9775,8 +9775,8 @@ function requireScan () {
 	return scan_1;
 }
 
-var parse_1;
-var hasRequiredParse;
+let parse_1;
+let hasRequiredParse;
 
 function requireParse () {
 	if (hasRequiredParse) return parse_1;
@@ -10861,8 +10861,8 @@ function requireParse () {
 	return parse_1;
 }
 
-var picomatch_1$1;
-var hasRequiredPicomatch$1;
+let picomatch_1$1;
+let hasRequiredPicomatch$1;
 
 function requirePicomatch$1 () {
 	if (hasRequiredPicomatch$1) return picomatch_1$1;
@@ -11210,8 +11210,8 @@ function requirePicomatch$1 () {
 	return picomatch_1$1;
 }
 
-var picomatch_1;
-var hasRequiredPicomatch;
+let picomatch_1;
+let hasRequiredPicomatch;
 
 function requirePicomatch () {
 	if (hasRequiredPicomatch) return picomatch_1;
@@ -11235,7 +11235,7 @@ function requirePicomatch () {
 	return picomatch_1;
 }
 
-var picomatchExports = /*@__PURE__*/ requirePicomatch();
+const picomatchExports = /*@__PURE__*/ requirePicomatch();
 const picomatch = /*@__PURE__*/getDefaultExportFromCjs(picomatchExports);
 
 const extractors = {
@@ -16463,7 +16463,7 @@ class ExportShimVariable extends Variable {
     }
 }
 
-var BuildPhase;
+let BuildPhase;
 (function (BuildPhase) {
     BuildPhase[BuildPhase["LOAD_AND_PARSE"] = 0] = "LOAD_AND_PARSE";
     BuildPhase[BuildPhase["ANALYSE"] = 1] = "ANALYSE";
@@ -20690,8 +20690,8 @@ function addModuleToManualChunk(alias, module, manualChunkAliasByEntry) {
 }
 
 function flru (max) {
-	var num, curr, prev;
-	var limit = max;
+	let num, curr, prev;
+	const limit = max;
 
 	function keep(key, value) {
 		if (++num > limit) {
@@ -20716,7 +20716,7 @@ function flru (max) {
 			return curr[key] !== void 0 || prev[key] !== void 0;
 		},
 		get: function (key) {
-			var val = curr[key];
+			let val = curr[key];
 			if (val !== void 0) return val;
 			if ((val=prev[key]) !== void 0) {
 				keep(key, val);
@@ -23447,7 +23447,7 @@ function createOutput(outputBundle) {
         output: Object.values(outputBundle).filter(outputFile => Object.keys(outputFile).length > 0).sort((outputFileA, outputFileB) => getSortingFileType(outputFileA) - getSortingFileType(outputFileB))
     };
 }
-var SortingFileType;
+let SortingFileType;
 (function (SortingFileType) {
     SortingFileType[SortingFileType["ENTRY_CHUNK"] = 0] = "ENTRY_CHUNK";
     SortingFileType[SortingFileType["SECONDARY_CHUNK"] = 1] = "SECONDARY_CHUNK";
@@ -23478,25 +23478,25 @@ function defineConfig(options) {
     return options;
 }
 
-var picocolors = {exports: {}};
+const picocolors = {exports: {}};
 
-var hasRequiredPicocolors;
+let hasRequiredPicocolors;
 
 function requirePicocolors () {
 	if (hasRequiredPicocolors) return picocolors.exports;
 	hasRequiredPicocolors = 1;
-	let p = process || {}, argv = p.argv || [], env = p.env || {};
-	let isColorSupported =
+	const p = process || {}, argv = p.argv || [], env = p.env || {};
+	const isColorSupported =
 		!(!!env.NO_COLOR || argv.includes("--no-color")) &&
 		(!!env.FORCE_COLOR || argv.includes("--color") || p.platform === "win32" || ((p.stdout || {}).isTTY && env.TERM !== "dumb") || !!env.CI);
 
-	let formatter = (open, close, replace = open) =>
+	const formatter = (open, close, replace = open) =>
 		input => {
-			let string = "" + input, index = string.indexOf(close, open.length);
+			const string = "" + input, index = string.indexOf(close, open.length);
 			return ~index ? open + replaceClose(string, close, replace, index) + close : open + string + close
 		};
 
-	let replaceClose = (string, close, replace, index) => {
+	const replaceClose = (string, close, replace, index) => {
 		let result = "", cursor = 0;
 		do {
 			result += string.substring(cursor, index) + replace;
@@ -23506,8 +23506,8 @@ function requirePicocolors () {
 		return result + string.substring(cursor)
 	};
 
-	let createColors = (enabled = isColorSupported) => {
-		let f = enabled ? formatter : () => String;
+	const createColors = (enabled = isColorSupported) => {
+		const f = enabled ? formatter : () => String;
 		return {
 			isColorSupported: enabled,
 			reset: f("\x1b[0m", "\x1b[0m"),
@@ -23563,7 +23563,7 @@ function requirePicocolors () {
 	return picocolors.exports;
 }
 
-var picocolorsExports = /*@__PURE__*/ requirePicocolors();
+const picocolorsExports = /*@__PURE__*/ requirePicocolors();
 const pc = /*@__PURE__*/getDefaultExportFromCjs(picocolorsExports);
 
 // @see https://no-color.org

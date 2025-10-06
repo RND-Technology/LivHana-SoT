@@ -1,9 +1,9 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-var _types = require('../parser/tokenizer/types');
+const _types = require('../parser/tokenizer/types');
 
-var _isIdentifier = require('../util/isIdentifier'); var _isIdentifier2 = _interopRequireDefault(_isIdentifier);
+const _isIdentifier = require('../util/isIdentifier'); const _isIdentifier2 = _interopRequireDefault(_isIdentifier);
 
-var _Transformer = require('./Transformer'); var _Transformer2 = _interopRequireDefault(_Transformer);
+const _Transformer = require('./Transformer'); const _Transformer2 = _interopRequireDefault(_Transformer);
 
  class TypeScriptTransformer extends _Transformer2.default {
   constructor(
@@ -11,7 +11,7 @@ var _Transformer = require('./Transformer'); var _Transformer2 = _interopRequire
      tokens,
      isImportsTransformEnabled,
   ) {
-    super();this.rootTransformer = rootTransformer;this.tokens = tokens;this.isImportsTransformEnabled = isImportsTransformEnabled;;
+    super();this.rootTransformer = rootTransformer;this.tokens = tokens;this.isImportsTransformEnabled = isImportsTransformEnabled;
   }
 
   process() {

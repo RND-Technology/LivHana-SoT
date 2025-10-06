@@ -1,8 +1,8 @@
-let { execSync } = require('child_process')
-let pico = require('picocolors')
+const { execSync } = require('child_process')
+const pico = require('picocolors')
 
 try {
-  let version = parseInt(execSync('npm -v'))
+  const version = parseInt(execSync('npm -v'))
   if (version <= 6) {
     process.stderr.write(
       pico.red(

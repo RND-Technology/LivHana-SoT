@@ -19,14 +19,14 @@ exports.stringNotMatching =
   exports.objectContaining =
   exports.notCloseTo =
     void 0;
-var _expectUtils = require('@jest/expect-utils');
-var matcherUtils = _interopRequireWildcard(require('jest-matcher-utils'));
-var _jestUtil = require('jest-util');
-var _jestMatchersObject = require('./jestMatchersObject');
+const _expectUtils = require('@jest/expect-utils');
+const matcherUtils = _interopRequireWildcard(require('jest-matcher-utils'));
+const _jestUtil = require('jest-util');
+const _jestMatchersObject = require('./jestMatchersObject');
 function _getRequireWildcardCache(nodeInterop) {
   if (typeof WeakMap !== 'function') return null;
-  var cacheBabelInterop = new WeakMap();
-  var cacheNodeInterop = new WeakMap();
+  const cacheBabelInterop = new WeakMap();
+  const cacheNodeInterop = new WeakMap();
   return (_getRequireWildcardCache = function (nodeInterop) {
     return nodeInterop ? cacheNodeInterop : cacheBabelInterop;
   })(nodeInterop);
@@ -38,16 +38,16 @@ function _interopRequireWildcard(obj, nodeInterop) {
   if (obj === null || (typeof obj !== 'object' && typeof obj !== 'function')) {
     return {default: obj};
   }
-  var cache = _getRequireWildcardCache(nodeInterop);
+  const cache = _getRequireWildcardCache(nodeInterop);
   if (cache && cache.has(obj)) {
     return cache.get(obj);
   }
-  var newObj = {};
-  var hasPropertyDescriptor =
+  const newObj = {};
+  const hasPropertyDescriptor =
     Object.defineProperty && Object.getOwnPropertyDescriptor;
-  for (var key in obj) {
+  for (const key in obj) {
     if (key !== 'default' && Object.prototype.hasOwnProperty.call(obj, key)) {
-      var desc = hasPropertyDescriptor
+      const desc = hasPropertyDescriptor
         ? Object.getOwnPropertyDescriptor(obj, key)
         : null;
       if (desc && (desc.get || desc.set)) {
@@ -63,7 +63,7 @@ function _interopRequireWildcard(obj, nodeInterop) {
   }
   return newObj;
 }
-var Symbol = globalThis['jest-symbol-do-not-touch'] || globalThis.Symbol;
+const Symbol = globalThis['jest-symbol-do-not-touch'] || globalThis.Symbol;
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *

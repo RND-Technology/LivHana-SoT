@@ -1,22 +1,22 @@
 "use strict";
-var __create = Object.create;
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getProtoOf = Object.getPrototypeOf;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __commonJS = (cb, mod) => function __require() {
+const __create = Object.create;
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __getProtoOf = Object.getPrototypeOf;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+const __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
   // If the importer is in node compatibility mode or this is not an ESM
   // file that has been converted to a CommonJS file using a Babel-
   // compatible transform (i.e. "__esModule" has not been set), then set
@@ -26,14 +26,14 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 
 // ../../node_modules/.pnpm/isexe@2.0.0/node_modules/isexe/windows.js
-var require_windows = __commonJS({
+const require_windows = __commonJS({
   "../../node_modules/.pnpm/isexe@2.0.0/node_modules/isexe/windows.js"(exports2, module2) {
     "use strict";
     module2.exports = isexe;
     isexe.sync = sync;
-    var fs2 = require("fs");
+    const fs2 = require("fs");
     function checkPathExt(path2, options) {
-      var pathext = options.pathExt !== void 0 ? options.pathExt : process.env.PATHEXT;
+      let pathext = options.pathExt !== void 0 ? options.pathExt : process.env.PATHEXT;
       if (!pathext) {
         return true;
       }
@@ -41,8 +41,8 @@ var require_windows = __commonJS({
       if (pathext.indexOf("") !== -1) {
         return true;
       }
-      for (var i = 0; i < pathext.length; i++) {
-        var p = pathext[i].toLowerCase();
+      for (let i = 0; i < pathext.length; i++) {
+        const p = pathext[i].toLowerCase();
         if (p && path2.substr(-p.length).toLowerCase() === p) {
           return true;
         }
@@ -67,12 +67,12 @@ var require_windows = __commonJS({
 });
 
 // ../../node_modules/.pnpm/isexe@2.0.0/node_modules/isexe/mode.js
-var require_mode = __commonJS({
+const require_mode = __commonJS({
   "../../node_modules/.pnpm/isexe@2.0.0/node_modules/isexe/mode.js"(exports2, module2) {
     "use strict";
     module2.exports = isexe;
     isexe.sync = sync;
-    var fs2 = require("fs");
+    const fs2 = require("fs");
     function isexe(path2, options, cb) {
       fs2.stat(path2, function(er, stat) {
         cb(er, er ? false : checkStat(stat, options));
@@ -85,27 +85,27 @@ var require_mode = __commonJS({
       return stat.isFile() && checkMode(stat, options);
     }
     function checkMode(stat, options) {
-      var mod = stat.mode;
-      var uid = stat.uid;
-      var gid = stat.gid;
-      var myUid = options.uid !== void 0 ? options.uid : process.getuid && process.getuid();
-      var myGid = options.gid !== void 0 ? options.gid : process.getgid && process.getgid();
-      var u = parseInt("100", 8);
-      var g = parseInt("010", 8);
-      var o = parseInt("001", 8);
-      var ug = u | g;
-      var ret = mod & o || mod & g && gid === myGid || mod & u && uid === myUid || mod & ug && myUid === 0;
+      const mod = stat.mode;
+      const uid = stat.uid;
+      const gid = stat.gid;
+      const myUid = options.uid !== void 0 ? options.uid : process.getuid && process.getuid();
+      const myGid = options.gid !== void 0 ? options.gid : process.getgid && process.getgid();
+      const u = parseInt("100", 8);
+      const g = parseInt("010", 8);
+      const o = parseInt("001", 8);
+      const ug = u | g;
+      const ret = mod & o || mod & g && gid === myGid || mod & u && uid === myUid || mod & ug && myUid === 0;
       return ret;
     }
   }
 });
 
 // ../../node_modules/.pnpm/isexe@2.0.0/node_modules/isexe/index.js
-var require_isexe = __commonJS({
+const require_isexe = __commonJS({
   "../../node_modules/.pnpm/isexe@2.0.0/node_modules/isexe/index.js"(exports2, module2) {
     "use strict";
-    var fs2 = require("fs");
-    var core;
+    const fs2 = require("fs");
+    let core;
     if (process.platform === "win32" || global.TESTING_WINDOWS) {
       core = require_windows();
     } else {
@@ -157,15 +157,15 @@ var require_isexe = __commonJS({
 });
 
 // ../../node_modules/.pnpm/which@2.0.2/node_modules/which/which.js
-var require_which = __commonJS({
+const require_which = __commonJS({
   "../../node_modules/.pnpm/which@2.0.2/node_modules/which/which.js"(exports2, module2) {
     "use strict";
-    var isWindows = process.platform === "win32" || process.env.OSTYPE === "cygwin" || process.env.OSTYPE === "msys";
-    var path2 = require("path");
-    var COLON = isWindows ? ";" : ":";
-    var isexe = require_isexe();
-    var getNotFoundError = (cmd) => Object.assign(new Error(`not found: ${cmd}`), { code: "ENOENT" });
-    var getPathInfo = (cmd, opt) => {
+    const isWindows = process.platform === "win32" || process.env.OSTYPE === "cygwin" || process.env.OSTYPE === "msys";
+    const path2 = require("path");
+    const COLON = isWindows ? ";" : ":";
+    const isexe = require_isexe();
+    const getNotFoundError = (cmd) => Object.assign(new Error(`not found: ${cmd}`), { code: "ENOENT" });
+    const getPathInfo = (cmd, opt) => {
       const colon = opt.colon || COLON;
       const pathEnv = cmd.match(/\//) || isWindows && cmd.match(/\\/) ? [""] : [
         // windows always checks the cwd first
@@ -185,7 +185,7 @@ var require_which = __commonJS({
         pathExtExe
       };
     };
-    var which = (cmd, opt, cb) => {
+    const which = (cmd, opt, cb) => {
       if (typeof opt === "function") {
         cb = opt;
         opt = {};
@@ -219,7 +219,7 @@ var require_which = __commonJS({
       });
       return cb ? step(0).then((res) => cb(null, res), cb) : step(0);
     };
-    var whichSync = (cmd, opt) => {
+    const whichSync = (cmd, opt) => {
       opt = opt || {};
       const { pathEnv, pathExt, pathExtExe } = getPathInfo(cmd, opt);
       const found = [];
@@ -254,10 +254,10 @@ var require_which = __commonJS({
 });
 
 // ../../node_modules/.pnpm/path-key@3.1.1/node_modules/path-key/index.js
-var require_path_key = __commonJS({
+const require_path_key = __commonJS({
   "../../node_modules/.pnpm/path-key@3.1.1/node_modules/path-key/index.js"(exports2, module2) {
     "use strict";
-    var pathKey = (options = {}) => {
+    const pathKey = (options = {}) => {
       const environment = options.env || process.env;
       const platform = options.platform || process.platform;
       if (platform !== "win32") {
@@ -271,12 +271,12 @@ var require_path_key = __commonJS({
 });
 
 // ../../node_modules/.pnpm/cross-spawn@7.0.3/node_modules/cross-spawn/lib/util/resolveCommand.js
-var require_resolveCommand = __commonJS({
+const require_resolveCommand = __commonJS({
   "../../node_modules/.pnpm/cross-spawn@7.0.3/node_modules/cross-spawn/lib/util/resolveCommand.js"(exports2, module2) {
     "use strict";
-    var path2 = require("path");
-    var which = require_which();
-    var getPathKey = require_path_key();
+    const path2 = require("path");
+    const which = require_which();
+    const getPathKey = require_path_key();
     function resolveCommandAttempt(parsed, withoutPathExt) {
       const env = parsed.options.env || process.env;
       const cwd = process.cwd();
@@ -313,10 +313,10 @@ var require_resolveCommand = __commonJS({
 });
 
 // ../../node_modules/.pnpm/cross-spawn@7.0.3/node_modules/cross-spawn/lib/util/escape.js
-var require_escape = __commonJS({
+const require_escape = __commonJS({
   "../../node_modules/.pnpm/cross-spawn@7.0.3/node_modules/cross-spawn/lib/util/escape.js"(exports2, module2) {
     "use strict";
-    var metaCharsRegExp = /([()\][%!^"`<>&|;, *?])/g;
+    const metaCharsRegExp = /([()\][%!^"`<>&|;, *?])/g;
     function escapeCommand(arg) {
       arg = arg.replace(metaCharsRegExp, "^$1");
       return arg;
@@ -338,7 +338,7 @@ var require_escape = __commonJS({
 });
 
 // ../../node_modules/.pnpm/shebang-regex@3.0.0/node_modules/shebang-regex/index.js
-var require_shebang_regex = __commonJS({
+const require_shebang_regex = __commonJS({
   "../../node_modules/.pnpm/shebang-regex@3.0.0/node_modules/shebang-regex/index.js"(exports2, module2) {
     "use strict";
     module2.exports = /^#!(.*)/;
@@ -346,10 +346,10 @@ var require_shebang_regex = __commonJS({
 });
 
 // ../../node_modules/.pnpm/shebang-command@2.0.0/node_modules/shebang-command/index.js
-var require_shebang_command = __commonJS({
+const require_shebang_command = __commonJS({
   "../../node_modules/.pnpm/shebang-command@2.0.0/node_modules/shebang-command/index.js"(exports2, module2) {
     "use strict";
-    var shebangRegex = require_shebang_regex();
+    const shebangRegex = require_shebang_regex();
     module2.exports = (string = "") => {
       const match = string.match(shebangRegex);
       if (!match) {
@@ -366,11 +366,11 @@ var require_shebang_command = __commonJS({
 });
 
 // ../../node_modules/.pnpm/cross-spawn@7.0.3/node_modules/cross-spawn/lib/util/readShebang.js
-var require_readShebang = __commonJS({
+const require_readShebang = __commonJS({
   "../../node_modules/.pnpm/cross-spawn@7.0.3/node_modules/cross-spawn/lib/util/readShebang.js"(exports2, module2) {
     "use strict";
-    var fs2 = require("fs");
-    var shebangCommand = require_shebang_command();
+    const fs2 = require("fs");
+    const shebangCommand = require_shebang_command();
     function readShebang(command) {
       const size = 150;
       const buffer = Buffer.alloc(size);
@@ -388,16 +388,16 @@ var require_readShebang = __commonJS({
 });
 
 // ../../node_modules/.pnpm/cross-spawn@7.0.3/node_modules/cross-spawn/lib/parse.js
-var require_parse = __commonJS({
+const require_parse = __commonJS({
   "../../node_modules/.pnpm/cross-spawn@7.0.3/node_modules/cross-spawn/lib/parse.js"(exports2, module2) {
     "use strict";
-    var path2 = require("path");
-    var resolveCommand = require_resolveCommand();
-    var escape = require_escape();
-    var readShebang = require_readShebang();
-    var isWin = process.platform === "win32";
-    var isExecutableRegExp = /\.(?:com|exe)$/i;
-    var isCmdShimRegExp = /node_modules[\\/].bin[\\/][^\\/]+\.cmd$/i;
+    const path2 = require("path");
+    const resolveCommand = require_resolveCommand();
+    const escape = require_escape();
+    const readShebang = require_readShebang();
+    const isWin = process.platform === "win32";
+    const isExecutableRegExp = /\.(?:com|exe)$/i;
+    const isCmdShimRegExp = /node_modules[\\/].bin[\\/][^\\/]+\.cmd$/i;
     function detectShebang(parsed) {
       parsed.file = resolveCommand(parsed);
       const shebang = parsed.file && readShebang(parsed.file);
@@ -450,10 +450,10 @@ var require_parse = __commonJS({
 });
 
 // ../../node_modules/.pnpm/cross-spawn@7.0.3/node_modules/cross-spawn/lib/enoent.js
-var require_enoent = __commonJS({
+const require_enoent = __commonJS({
   "../../node_modules/.pnpm/cross-spawn@7.0.3/node_modules/cross-spawn/lib/enoent.js"(exports2, module2) {
     "use strict";
-    var isWin = process.platform === "win32";
+    const isWin = process.platform === "win32";
     function notFoundError(original, syscall) {
       return Object.assign(new Error(`${syscall} ${original.command} ENOENT`), {
         code: "ENOENT",
@@ -500,12 +500,12 @@ var require_enoent = __commonJS({
 });
 
 // ../../node_modules/.pnpm/cross-spawn@7.0.3/node_modules/cross-spawn/index.js
-var require_cross_spawn = __commonJS({
+const require_cross_spawn = __commonJS({
   "../../node_modules/.pnpm/cross-spawn@7.0.3/node_modules/cross-spawn/index.js"(exports2, module2) {
     "use strict";
-    var cp = require("child_process");
-    var parse = require_parse();
-    var enoent = require_enoent();
+    const cp = require("child_process");
+    const parse = require_parse();
+    const enoent = require_enoent();
     function spawn(command, args, options) {
       const parsed = parse(command, args, options);
       const spawned = cp.spawn(parsed.command, parsed.args, parsed.options);
@@ -527,7 +527,7 @@ var require_cross_spawn = __commonJS({
 });
 
 // ../../node_modules/.pnpm/strip-final-newline@2.0.0/node_modules/strip-final-newline/index.js
-var require_strip_final_newline = __commonJS({
+const require_strip_final_newline = __commonJS({
   "../../node_modules/.pnpm/strip-final-newline@2.0.0/node_modules/strip-final-newline/index.js"(exports2, module2) {
     "use strict";
     module2.exports = (input) => {
@@ -545,12 +545,12 @@ var require_strip_final_newline = __commonJS({
 });
 
 // ../../node_modules/.pnpm/npm-run-path@4.0.1/node_modules/npm-run-path/index.js
-var require_npm_run_path = __commonJS({
+const require_npm_run_path = __commonJS({
   "../../node_modules/.pnpm/npm-run-path@4.0.1/node_modules/npm-run-path/index.js"(exports2, module2) {
     "use strict";
-    var path2 = require("path");
-    var pathKey = require_path_key();
-    var npmRunPath = (options) => {
+    const path2 = require("path");
+    const pathKey = require_path_key();
+    const npmRunPath = (options) => {
       options = {
         cwd: process.cwd(),
         path: process.env[pathKey()],
@@ -586,10 +586,10 @@ var require_npm_run_path = __commonJS({
 });
 
 // ../../node_modules/.pnpm/mimic-fn@2.1.0/node_modules/mimic-fn/index.js
-var require_mimic_fn = __commonJS({
+const require_mimic_fn = __commonJS({
   "../../node_modules/.pnpm/mimic-fn@2.1.0/node_modules/mimic-fn/index.js"(exports2, module2) {
     "use strict";
-    var mimicFn = (to, from) => {
+    const mimicFn = (to, from) => {
       for (const prop of Reflect.ownKeys(from)) {
         Object.defineProperty(to, prop, Object.getOwnPropertyDescriptor(from, prop));
       }
@@ -601,12 +601,12 @@ var require_mimic_fn = __commonJS({
 });
 
 // ../../node_modules/.pnpm/onetime@5.1.2/node_modules/onetime/index.js
-var require_onetime = __commonJS({
+const require_onetime = __commonJS({
   "../../node_modules/.pnpm/onetime@5.1.2/node_modules/onetime/index.js"(exports2, module2) {
     "use strict";
-    var mimicFn = require_mimic_fn();
-    var calledFunctions = /* @__PURE__ */ new WeakMap();
-    var onetime = (function_, options = {}) => {
+    const mimicFn = require_mimic_fn();
+    const calledFunctions = /* @__PURE__ */ new WeakMap();
+    const onetime = (function_, options = {}) => {
       if (typeof function_ !== "function") {
         throw new TypeError("Expected a function");
       }
@@ -639,12 +639,12 @@ var require_onetime = __commonJS({
 });
 
 // ../../node_modules/.pnpm/human-signals@2.1.0/node_modules/human-signals/build/src/core.js
-var require_core = __commonJS({
+const require_core = __commonJS({
   "../../node_modules/.pnpm/human-signals@2.1.0/node_modules/human-signals/build/src/core.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.SIGNALS = void 0;
-    var SIGNALS = [
+    const SIGNALS = [
       {
         name: "SIGHUP",
         number: 1,
@@ -920,12 +920,12 @@ var require_core = __commonJS({
 });
 
 // ../../node_modules/.pnpm/human-signals@2.1.0/node_modules/human-signals/build/src/realtime.js
-var require_realtime = __commonJS({
+const require_realtime = __commonJS({
   "../../node_modules/.pnpm/human-signals@2.1.0/node_modules/human-signals/build/src/realtime.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.SIGRTMAX = exports2.getRealtimeSignals = void 0;
-    var getRealtimeSignals = function() {
+    const getRealtimeSignals = function() {
       const length = SIGRTMAX - SIGRTMIN + 1;
       return Array.from({ length }, getRealtimeSignal);
     };
@@ -946,15 +946,15 @@ var require_realtime = __commonJS({
 });
 
 // ../../node_modules/.pnpm/human-signals@2.1.0/node_modules/human-signals/build/src/signals.js
-var require_signals = __commonJS({
+const require_signals = __commonJS({
   "../../node_modules/.pnpm/human-signals@2.1.0/node_modules/human-signals/build/src/signals.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.getSignals = void 0;
-    var _os = require("os");
-    var _core = require_core();
-    var _realtime = require_realtime();
-    var getSignals = function() {
+    const _os = require("os");
+    const _core = require_core();
+    const _realtime = require_realtime();
+    const getSignals = function() {
       const realtimeSignals = (0, _realtime.getRealtimeSignals)();
       const signals = [..._core.SIGNALS, ...realtimeSignals].map(normalizeSignal);
       return signals;
@@ -979,15 +979,15 @@ var require_signals = __commonJS({
 });
 
 // ../../node_modules/.pnpm/human-signals@2.1.0/node_modules/human-signals/build/src/main.js
-var require_main = __commonJS({
+const require_main = __commonJS({
   "../../node_modules/.pnpm/human-signals@2.1.0/node_modules/human-signals/build/src/main.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.signalsByNumber = exports2.signalsByName = void 0;
-    var _os = require("os");
-    var _signals = require_signals();
-    var _realtime = require_realtime();
-    var getSignalsByName = function() {
+    const _os = require("os");
+    const _signals = require_signals();
+    const _realtime = require_realtime();
+    const getSignalsByName = function() {
       const signals = (0, _signals.getSignals)();
       return signals.reduce(getSignalByName, {});
     };
@@ -997,9 +997,9 @@ var require_main = __commonJS({
         [name]: { name, number, description, supported, action, forced, standard }
       };
     };
-    var signalsByName = getSignalsByName();
+    const signalsByName = getSignalsByName();
     exports2.signalsByName = signalsByName;
-    var getSignalsByNumber = function() {
+    const getSignalsByNumber = function() {
       const signals = (0, _signals.getSignals)();
       const length = _realtime.SIGRTMAX + 1;
       const signalsA = Array.from({ length }, (value, number) => getSignalByNumber(number, signals));
@@ -1030,17 +1030,17 @@ var require_main = __commonJS({
       }
       return signals.find((signalA) => signalA.number === number);
     };
-    var signalsByNumber = getSignalsByNumber();
+    const signalsByNumber = getSignalsByNumber();
     exports2.signalsByNumber = signalsByNumber;
   }
 });
 
 // ../../node_modules/.pnpm/execa@5.1.1/node_modules/execa/lib/error.js
-var require_error = __commonJS({
+const require_error = __commonJS({
   "../../node_modules/.pnpm/execa@5.1.1/node_modules/execa/lib/error.js"(exports2, module2) {
     "use strict";
-    var { signalsByName } = require_main();
-    var getErrorPrefix = ({ timedOut, timeout, errorCode, signal, signalDescription, exitCode, isCanceled }) => {
+    const { signalsByName } = require_main();
+    const getErrorPrefix = ({ timedOut, timeout, errorCode, signal, signalDescription, exitCode, isCanceled }) => {
       if (timedOut) {
         return `timed out after ${timeout} milliseconds`;
       }
@@ -1058,7 +1058,7 @@ var require_error = __commonJS({
       }
       return "failed";
     };
-    var makeError = ({
+    const makeError = ({
       stdout,
       stderr,
       all,
@@ -1113,12 +1113,12 @@ ${error.message}` : execaMessage;
 });
 
 // ../../node_modules/.pnpm/execa@5.1.1/node_modules/execa/lib/stdio.js
-var require_stdio = __commonJS({
+const require_stdio = __commonJS({
   "../../node_modules/.pnpm/execa@5.1.1/node_modules/execa/lib/stdio.js"(exports2, module2) {
     "use strict";
-    var aliases = ["stdin", "stdout", "stderr"];
-    var hasAlias = (options) => aliases.some((alias) => options[alias] !== void 0);
-    var normalizeStdio = (options) => {
+    const aliases = ["stdin", "stdout", "stderr"];
+    const hasAlias = (options) => aliases.some((alias) => options[alias] !== void 0);
+    const normalizeStdio = (options) => {
       if (!options) {
         return;
       }
@@ -1156,7 +1156,7 @@ var require_stdio = __commonJS({
 });
 
 // ../../node_modules/.pnpm/signal-exit@3.0.7/node_modules/signal-exit/signals.js
-var require_signals2 = __commonJS({
+const require_signals2 = __commonJS({
   "../../node_modules/.pnpm/signal-exit@3.0.7/node_modules/signal-exit/signals.js"(exports2, module2) {
     "use strict";
     module2.exports = [
@@ -1194,11 +1194,11 @@ var require_signals2 = __commonJS({
 });
 
 // ../../node_modules/.pnpm/signal-exit@3.0.7/node_modules/signal-exit/index.js
-var require_signal_exit = __commonJS({
+const require_signal_exit = __commonJS({
   "../../node_modules/.pnpm/signal-exit@3.0.7/node_modules/signal-exit/index.js"(exports2, module2) {
     "use strict";
-    var process2 = global.process;
-    var processOk = function(process3) {
+    const process2 = global.process;
+    const processOk = function(process3) {
       return process3 && typeof process3 === "object" && typeof process3.removeListener === "function" && typeof process3.emit === "function" && typeof process3.reallyExit === "function" && typeof process3.listeners === "function" && typeof process3.kill === "function" && typeof process3.pid === "number" && typeof process3.on === "function";
     };
     if (!processOk(process2)) {
@@ -1234,11 +1234,11 @@ var require_signal_exit = __commonJS({
         if (loaded === false) {
           load();
         }
-        var ev = "exit";
+        let ev = "exit";
         if (opts && opts.alwaysLast) {
           ev = "afterexit";
         }
-        var remove = function() {
+        const remove = function() {
           emitter.removeListener(ev, cb);
           if (emitter.listeners("exit").length === 0 && emitter.listeners("afterexit").length === 0) {
             unload();
@@ -1276,7 +1276,7 @@ var require_signal_exit = __commonJS({
           if (!processOk(global.process)) {
             return;
           }
-          var listeners = process2.listeners(sig);
+          const listeners = process2.listeners(sig);
           if (listeners.length === emitter.count) {
             unload();
             emit("exit", null, sig);
@@ -1327,7 +1327,7 @@ var require_signal_exit = __commonJS({
           if (arg !== void 0) {
             process2.exitCode = arg;
           }
-          var ret = originalProcessEmit.apply(this, arguments);
+          const ret = originalProcessEmit.apply(this, arguments);
           emit("exit", process2.exitCode, null);
           emit("afterexit", process2.exitCode, null);
           return ret;
@@ -1336,31 +1336,31 @@ var require_signal_exit = __commonJS({
         }
       };
     }
-    var assert;
-    var signals;
-    var isWin;
-    var EE;
-    var emitter;
-    var unload;
-    var emit;
-    var sigListeners;
-    var loaded;
-    var load;
-    var originalProcessReallyExit;
-    var processReallyExit;
-    var originalProcessEmit;
-    var processEmit;
+    let assert;
+    let signals;
+    let isWin;
+    let EE;
+    let emitter;
+    let unload;
+    let emit;
+    let sigListeners;
+    let loaded;
+    let load;
+    let originalProcessReallyExit;
+    let processReallyExit;
+    let originalProcessEmit;
+    let processEmit;
   }
 });
 
 // ../../node_modules/.pnpm/execa@5.1.1/node_modules/execa/lib/kill.js
-var require_kill = __commonJS({
+const require_kill = __commonJS({
   "../../node_modules/.pnpm/execa@5.1.1/node_modules/execa/lib/kill.js"(exports2, module2) {
     "use strict";
-    var os = require("os");
-    var onExit = require_signal_exit();
-    var DEFAULT_FORCE_KILL_TIMEOUT = 1e3 * 5;
-    var spawnedKill = (kill, signal = "SIGTERM", options = {}) => {
+    const os = require("os");
+    const onExit = require_signal_exit();
+    const DEFAULT_FORCE_KILL_TIMEOUT = 1e3 * 5;
+    const spawnedKill = (kill, signal = "SIGTERM", options = {}) => {
       const killResult = kill(signal);
       setKillTimeout(kill, signal, options, killResult);
       return killResult;
@@ -1392,17 +1392,17 @@ var require_kill = __commonJS({
       }
       return forceKillAfterTimeout;
     };
-    var spawnedCancel = (spawned, context) => {
+    const spawnedCancel = (spawned, context) => {
       const killResult = spawned.kill();
       if (killResult) {
         context.isCanceled = true;
       }
     };
-    var timeoutKill = (spawned, signal, reject) => {
+    const timeoutKill = (spawned, signal, reject) => {
       spawned.kill(signal);
       reject(Object.assign(new Error("Timed out"), { timedOut: true, signal }));
     };
-    var setupTimeout = (spawned, { timeout, killSignal = "SIGTERM" }, spawnedPromise) => {
+    const setupTimeout = (spawned, { timeout, killSignal = "SIGTERM" }, spawnedPromise) => {
       if (timeout === 0 || timeout === void 0) {
         return spawnedPromise;
       }
@@ -1417,12 +1417,12 @@ var require_kill = __commonJS({
       });
       return Promise.race([timeoutPromise, safeSpawnedPromise]);
     };
-    var validateTimeout = ({ timeout }) => {
+    const validateTimeout = ({ timeout }) => {
       if (timeout !== void 0 && (!Number.isFinite(timeout) || timeout < 0)) {
         throw new TypeError(`Expected the \`timeout\` option to be a non-negative integer, got \`${timeout}\` (${typeof timeout})`);
       }
     };
-    var setExitHandler = async (spawned, { cleanup, detached }, timedPromise) => {
+    const setExitHandler = async (spawned, { cleanup, detached }, timedPromise) => {
       if (!cleanup || detached) {
         return timedPromise;
       }
@@ -1444,10 +1444,10 @@ var require_kill = __commonJS({
 });
 
 // ../../node_modules/.pnpm/is-stream@2.0.1/node_modules/is-stream/index.js
-var require_is_stream = __commonJS({
+const require_is_stream = __commonJS({
   "../../node_modules/.pnpm/is-stream@2.0.1/node_modules/is-stream/index.js"(exports2, module2) {
     "use strict";
-    var isStream = (stream) => stream !== null && typeof stream === "object" && typeof stream.pipe === "function";
+    const isStream = (stream) => stream !== null && typeof stream === "object" && typeof stream.pipe === "function";
     isStream.writable = (stream) => isStream(stream) && stream.writable !== false && typeof stream._write === "function" && typeof stream._writableState === "object";
     isStream.readable = (stream) => isStream(stream) && stream.readable !== false && typeof stream._read === "function" && typeof stream._readableState === "object";
     isStream.duplex = (stream) => isStream.writable(stream) && isStream.readable(stream);
@@ -1457,10 +1457,10 @@ var require_is_stream = __commonJS({
 });
 
 // ../../node_modules/.pnpm/get-stream@6.0.1/node_modules/get-stream/buffer-stream.js
-var require_buffer_stream = __commonJS({
+const require_buffer_stream = __commonJS({
   "../../node_modules/.pnpm/get-stream@6.0.1/node_modules/get-stream/buffer-stream.js"(exports2, module2) {
     "use strict";
-    var { PassThrough: PassThroughStream } = require("stream");
+    const { PassThrough: PassThroughStream } = require("stream");
     module2.exports = (options) => {
       options = { ...options };
       const { array } = options;
@@ -1502,15 +1502,15 @@ var require_buffer_stream = __commonJS({
 });
 
 // ../../node_modules/.pnpm/get-stream@6.0.1/node_modules/get-stream/index.js
-var require_get_stream = __commonJS({
+const require_get_stream = __commonJS({
   "../../node_modules/.pnpm/get-stream@6.0.1/node_modules/get-stream/index.js"(exports2, module2) {
     "use strict";
-    var { constants: BufferConstants } = require("buffer");
-    var stream = require("stream");
-    var { promisify } = require("util");
-    var bufferStream = require_buffer_stream();
-    var streamPipelinePromisified = promisify(stream.pipeline);
-    var MaxBufferError = class extends Error {
+    const { constants: BufferConstants } = require("buffer");
+    const stream = require("stream");
+    const { promisify } = require("util");
+    const bufferStream = require_buffer_stream();
+    const streamPipelinePromisified = promisify(stream.pipeline);
+    const MaxBufferError = class extends Error {
       constructor() {
         super("maxBuffer exceeded");
         this.name = "MaxBufferError";
@@ -1557,13 +1557,13 @@ var require_get_stream = __commonJS({
 });
 
 // ../../node_modules/.pnpm/merge-stream@2.0.0/node_modules/merge-stream/index.js
-var require_merge_stream = __commonJS({
+const require_merge_stream = __commonJS({
   "../../node_modules/.pnpm/merge-stream@2.0.0/node_modules/merge-stream/index.js"(exports2, module2) {
     "use strict";
-    var { PassThrough } = require("stream");
+    const { PassThrough } = require("stream");
     module2.exports = function() {
-      var sources = [];
-      var output = new PassThrough({ objectMode: true });
+      let sources = [];
+      const output = new PassThrough({ objectMode: true });
       output.setMaxListeners(0);
       output.add = add;
       output.isEmpty = isEmpty;
@@ -1597,13 +1597,13 @@ var require_merge_stream = __commonJS({
 });
 
 // ../../node_modules/.pnpm/execa@5.1.1/node_modules/execa/lib/stream.js
-var require_stream = __commonJS({
+const require_stream = __commonJS({
   "../../node_modules/.pnpm/execa@5.1.1/node_modules/execa/lib/stream.js"(exports2, module2) {
     "use strict";
-    var isStream = require_is_stream();
-    var getStream = require_get_stream();
-    var mergeStream = require_merge_stream();
-    var handleInput = (spawned, input) => {
+    const isStream = require_is_stream();
+    const getStream = require_get_stream();
+    const mergeStream = require_merge_stream();
+    const handleInput = (spawned, input) => {
       if (input === void 0 || spawned.stdin === void 0) {
         return;
       }
@@ -1613,7 +1613,7 @@ var require_stream = __commonJS({
         spawned.stdin.end(input);
       }
     };
-    var makeAllStream = (spawned, { all }) => {
+    const makeAllStream = (spawned, { all }) => {
       if (!all || !spawned.stdout && !spawned.stderr) {
         return;
       }
@@ -1626,7 +1626,7 @@ var require_stream = __commonJS({
       }
       return mixed;
     };
-    var getBufferedData = async (stream, streamPromise) => {
+    const getBufferedData = async (stream, streamPromise) => {
       if (!stream) {
         return;
       }
@@ -1637,7 +1637,7 @@ var require_stream = __commonJS({
         return error.bufferedData;
       }
     };
-    var getStreamPromise = (stream, { encoding, buffer, maxBuffer }) => {
+    const getStreamPromise = (stream, { encoding, buffer, maxBuffer }) => {
       if (!stream || !buffer) {
         return;
       }
@@ -1646,7 +1646,7 @@ var require_stream = __commonJS({
       }
       return getStream.buffer(stream, { maxBuffer });
     };
-    var getSpawnedResult = async ({ stdout, stderr, all }, { encoding, buffer, maxBuffer }, processDone) => {
+    const getSpawnedResult = async ({ stdout, stderr, all }, { encoding, buffer, maxBuffer }, processDone) => {
       const stdoutPromise = getStreamPromise(stdout, { encoding, buffer, maxBuffer });
       const stderrPromise = getStreamPromise(stderr, { encoding, buffer, maxBuffer });
       const allPromise = getStreamPromise(all, { encoding, buffer, maxBuffer: maxBuffer * 2 });
@@ -1661,7 +1661,7 @@ var require_stream = __commonJS({
         ]);
       }
     };
-    var validateInputSync = ({ input }) => {
+    const validateInputSync = ({ input }) => {
       if (isStream(input)) {
         throw new TypeError("The `input` option cannot be a stream in sync mode");
       }
@@ -1676,23 +1676,23 @@ var require_stream = __commonJS({
 });
 
 // ../../node_modules/.pnpm/execa@5.1.1/node_modules/execa/lib/promise.js
-var require_promise = __commonJS({
+const require_promise = __commonJS({
   "../../node_modules/.pnpm/execa@5.1.1/node_modules/execa/lib/promise.js"(exports2, module2) {
     "use strict";
-    var nativePromisePrototype = (async () => {
+    const nativePromisePrototype = (async () => {
     })().constructor.prototype;
-    var descriptors = ["then", "catch", "finally"].map((property) => [
+    const descriptors = ["then", "catch", "finally"].map((property) => [
       property,
       Reflect.getOwnPropertyDescriptor(nativePromisePrototype, property)
     ]);
-    var mergePromise = (spawned, promise) => {
+    const mergePromise = (spawned, promise) => {
       for (const [property, descriptor] of descriptors) {
         const value = typeof promise === "function" ? (...args) => Reflect.apply(descriptor.value, promise(), args) : descriptor.value.bind(promise);
         Reflect.defineProperty(spawned, property, { ...descriptor, value });
       }
       return spawned;
     };
-    var getSpawnedPromise = (spawned) => {
+    const getSpawnedPromise = (spawned) => {
       return new Promise((resolve, reject) => {
         spawned.on("exit", (exitCode, signal) => {
           resolve({ exitCode, signal });
@@ -1715,31 +1715,31 @@ var require_promise = __commonJS({
 });
 
 // ../../node_modules/.pnpm/execa@5.1.1/node_modules/execa/lib/command.js
-var require_command = __commonJS({
+const require_command = __commonJS({
   "../../node_modules/.pnpm/execa@5.1.1/node_modules/execa/lib/command.js"(exports2, module2) {
     "use strict";
-    var normalizeArgs = (file, args = []) => {
+    const normalizeArgs = (file, args = []) => {
       if (!Array.isArray(args)) {
         return [file];
       }
       return [file, ...args];
     };
-    var NO_ESCAPE_REGEXP = /^[\w.-]+$/;
-    var DOUBLE_QUOTES_REGEXP = /"/g;
-    var escapeArg = (arg) => {
+    const NO_ESCAPE_REGEXP = /^[\w.-]+$/;
+    const DOUBLE_QUOTES_REGEXP = /"/g;
+    const escapeArg = (arg) => {
       if (typeof arg !== "string" || NO_ESCAPE_REGEXP.test(arg)) {
         return arg;
       }
       return `"${arg.replace(DOUBLE_QUOTES_REGEXP, '\\"')}"`;
     };
-    var joinCommand = (file, args) => {
+    const joinCommand = (file, args) => {
       return normalizeArgs(file, args).join(" ");
     };
-    var getEscapedCommand = (file, args) => {
+    const getEscapedCommand = (file, args) => {
       return normalizeArgs(file, args).map((arg) => escapeArg(arg)).join(" ");
     };
-    var SPACES_REGEXP = / +/g;
-    var parseCommand = (command) => {
+    const SPACES_REGEXP = / +/g;
+    const parseCommand = (command) => {
       const tokens = [];
       for (const token of command.trim().split(SPACES_REGEXP)) {
         const previousToken = tokens[tokens.length - 1];
@@ -1760,30 +1760,30 @@ var require_command = __commonJS({
 });
 
 // ../../node_modules/.pnpm/execa@5.1.1/node_modules/execa/index.js
-var require_execa = __commonJS({
+const require_execa = __commonJS({
   "../../node_modules/.pnpm/execa@5.1.1/node_modules/execa/index.js"(exports2, module2) {
     "use strict";
-    var path2 = require("path");
-    var childProcess = require("child_process");
-    var crossSpawn = require_cross_spawn();
-    var stripFinalNewline = require_strip_final_newline();
-    var npmRunPath = require_npm_run_path();
-    var onetime = require_onetime();
-    var makeError = require_error();
-    var normalizeStdio = require_stdio();
-    var { spawnedKill, spawnedCancel, setupTimeout, validateTimeout, setExitHandler } = require_kill();
-    var { handleInput, getSpawnedResult, makeAllStream, validateInputSync } = require_stream();
-    var { mergePromise, getSpawnedPromise } = require_promise();
-    var { joinCommand, parseCommand, getEscapedCommand } = require_command();
-    var DEFAULT_MAX_BUFFER = 1e3 * 1e3 * 100;
-    var getEnv = ({ env: envOption, extendEnv, preferLocal, localDir, execPath }) => {
+    const path2 = require("path");
+    const childProcess = require("child_process");
+    const crossSpawn = require_cross_spawn();
+    const stripFinalNewline = require_strip_final_newline();
+    const npmRunPath = require_npm_run_path();
+    const onetime = require_onetime();
+    const makeError = require_error();
+    const normalizeStdio = require_stdio();
+    const { spawnedKill, spawnedCancel, setupTimeout, validateTimeout, setExitHandler } = require_kill();
+    const { handleInput, getSpawnedResult, makeAllStream, validateInputSync } = require_stream();
+    const { mergePromise, getSpawnedPromise } = require_promise();
+    const { joinCommand, parseCommand, getEscapedCommand } = require_command();
+    const DEFAULT_MAX_BUFFER = 1e3 * 1e3 * 100;
+    const getEnv = ({ env: envOption, extendEnv, preferLocal, localDir, execPath }) => {
       const env = extendEnv ? { ...process.env, ...envOption } : envOption;
       if (preferLocal) {
         return npmRunPath.env({ env, cwd: localDir, execPath });
       }
       return env;
     };
-    var handleArguments = (file, args, options = {}) => {
+    const handleArguments = (file, args, options = {}) => {
       const parsed = crossSpawn._parse(file, args, options);
       file = parsed.command;
       args = parsed.args;
@@ -1810,7 +1810,7 @@ var require_execa = __commonJS({
       }
       return { file, args, options, parsed };
     };
-    var handleOutput = (options, value, error) => {
+    const handleOutput = (options, value, error) => {
       if (typeof value !== "string" && !Buffer.isBuffer(value)) {
         return error === void 0 ? void 0 : "";
       }
@@ -1819,7 +1819,7 @@ var require_execa = __commonJS({
       }
       return value;
     };
-    var execa2 = (file, args, options) => {
+    const execa2 = (file, args, options) => {
       const parsed = handleArguments(file, args, options);
       const command = joinCommand(file, args);
       const escapedCommand = getEscapedCommand(file, args);
@@ -1988,13 +1988,13 @@ var require_execa = __commonJS({
 });
 
 // src/scripts/localinstall.ts
-var import_fetch_engine = require("@prisma/fetch-engine");
-var import_package = require("@prisma/fetch-engine/package.json");
-var import_get_platform = require("@prisma/get-platform");
-var import_execa = __toESM(require_execa());
-var import_fs = __toESM(require("fs"));
-var import_path = __toESM(require("path"));
-var baseDir = import_path.default.join(__dirname, "..", "..");
+const import_fetch_engine = require("@prisma/fetch-engine");
+const import_package = require("@prisma/fetch-engine/package.json");
+const import_get_platform = require("@prisma/get-platform");
+const import_execa = __toESM(require_execa());
+const import_fs = __toESM(require("fs"));
+const import_path = __toESM(require("path"));
+const baseDir = import_path.default.join(__dirname, "..", "..");
 async function main() {
   const binaryTarget = await (0, import_get_platform.getBinaryTargetForCurrentPlatform)();
   const cacheDir = await (0, import_fetch_engine.getCacheDir)("master", "_local_", binaryTarget);

@@ -1,22 +1,22 @@
 "use strict";
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __export = (target, all) => {
+  for (const name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var urlMatch_exports = {};
+const __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+const urlMatch_exports = {};
 __export(urlMatch_exports, {
   constructURLBasedOnBaseURL: () => constructURLBasedOnBaseURL,
   globToRegexPattern: () => globToRegexPattern,
@@ -25,7 +25,7 @@ __export(urlMatch_exports, {
   urlMatchesEqual: () => urlMatchesEqual
 });
 module.exports = __toCommonJS(urlMatch_exports);
-var import_stringUtils = require("./stringUtils");
+const import_stringUtils = require("./stringUtils");
 const escapedChars = /* @__PURE__ */ new Set(["$", "^", "+", ".", "*", "(", ")", "|", "\\", "?", "{", "}", "[", "]"]);
 function globToRegexPattern(glob) {
   const tokens = ["^"];
@@ -114,13 +114,13 @@ function toWebSocketBaseUrl(baseURL) {
 }
 function resolveGlobBase(baseURL, match) {
   if (!match.startsWith("*")) {
-    let mapToken2 = function(original, replacement) {
+    const mapToken2 = function(original, replacement) {
       if (original.length === 0)
         return "";
       tokenMap.set(replacement, original);
       return replacement;
     };
-    var mapToken = mapToken2;
+    const mapToken = mapToken2;
     const tokenMap = /* @__PURE__ */ new Map();
     match = match.replaceAll(/\\\\\?/g, "?");
     if (match.startsWith("about:") || match.startsWith("data:") || match.startsWith("chrome:") || match.startsWith("edge:") || match.startsWith("file:"))

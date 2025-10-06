@@ -34,8 +34,8 @@ import { is_lhs } from "./inference.js";
             })
         });
         if (value && typeof value == "object") {
-            var props = [];
-            for (var key in value) if (HOP(value, key)) {
+            const props = [];
+            for (const key in value) if (HOP(value, key)) {
                 props.push(make_node(AST_ObjectKeyVal, orig, {
                     key: key,
                     value: to_node(value[key], orig)
@@ -52,9 +52,9 @@ import { is_lhs } from "./inference.js";
         if (!compressor.option("global_defs")) return this;
         this.figure_out_scope({ ie8: compressor.option("ie8") });
         return this.transform(new TreeTransformer(function(node) {
-            var def = node._find_defs(compressor, "");
+            const def = node._find_defs(compressor, "");
             if (!def) return;
-            var level = 0, child = node, parent;
+            let level = 0, child = node, parent;
             while (parent = this.parent(level++)) {
                 if (!(parent instanceof AST_PropAccess)) break;
                 if (parent.expression !== child) break;
@@ -78,13 +78,13 @@ import { is_lhs } from "./inference.js";
     });
     def_find_defs(AST_SymbolRef, function(compressor, suffix) {
         if (!this.global()) return;
-        var defines = compressor.option("global_defs");
-        var name = this.name + suffix;
+        const defines = compressor.option("global_defs");
+        const name = this.name + suffix;
         if (HOP(defines, name)) return to_node(defines[name], this);
     });
     def_find_defs(AST_ImportMeta, function(compressor, suffix) {
-        var defines = compressor.option("global_defs");
-        var name = "import.meta" + suffix;
+        const defines = compressor.option("global_defs");
+        const name = "import.meta" + suffix;
         if (HOP(defines, name)) return to_node(defines[name], this);
     });
 })(function(node, func) {

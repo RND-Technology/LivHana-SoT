@@ -42,7 +42,7 @@ class TypeSystemDuplicateFormat extends Error {
 }
 exports.TypeSystemDuplicateFormat = TypeSystemDuplicateFormat;
 /** Creates user defined types and formats and provides overrides for value checking behaviours */
-var TypeSystem;
+let TypeSystem;
 (function (TypeSystem) {
     // ------------------------------------------------------------------------
     // Assertion Policies

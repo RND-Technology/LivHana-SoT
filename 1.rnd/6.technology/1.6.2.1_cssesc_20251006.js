@@ -1,14 +1,14 @@
 /*! https://mths.be/cssesc v3.0.0 by @mathias */
 'use strict';
 
-var object = {};
-var hasOwnProperty = object.hasOwnProperty;
-var merge = function merge(options, defaults) {
+const object = {};
+const hasOwnProperty = object.hasOwnProperty;
+const merge = function merge(options, defaults) {
 	if (!options) {
 		return defaults;
 	}
-	var result = {};
-	for (var key in defaults) {
+	const result = {};
+	for (const key in defaults) {
 		// `if (defaults.hasOwnProperty(key) { … }` is not needed here, since
 		// only recognized option names are used.
 		result[key] = hasOwnProperty.call(options, key) ? options[key] : defaults[key];
@@ -16,33 +16,33 @@ var merge = function merge(options, defaults) {
 	return result;
 };
 
-var regexAnySingleEscape = /[ -,\.\/:-@\[-\^`\{-~]/;
-var regexSingleEscape = /[ -,\.\/:-@\[\]\^`\{-~]/;
-var regexAlwaysEscape = /['"\\]/;
-var regexExcessiveSpaces = /(^|\\+)?(\\[A-F0-9]{1,6})\x20(?![a-fA-F0-9\x20])/g;
+const regexAnySingleEscape = /[ -,\.\/:-@\[-\^`\{-~]/;
+const regexSingleEscape = /[ -,\.\/:-@\[\]\^`\{-~]/;
+const regexAlwaysEscape = /['"\\]/;
+const regexExcessiveSpaces = /(^|\\+)?(\\[A-F0-9]{1,6})\x20(?![a-fA-F0-9\x20])/g;
 
 // https://mathiasbynens.be/notes/css-escapes#css
-var cssesc = function cssesc(string, options) {
+const cssesc = function cssesc(string, options) {
 	options = merge(options, cssesc.options);
 	if (options.quotes != 'single' && options.quotes != 'double') {
 		options.quotes = 'single';
 	}
-	var quote = options.quotes == 'double' ? '"' : '\'';
-	var isIdentifier = options.isIdentifier;
+	const quote = options.quotes == 'double' ? '"' : '\'';
+	const isIdentifier = options.isIdentifier;
 
-	var firstChar = string.charAt(0);
-	var output = '';
-	var counter = 0;
-	var length = string.length;
+	const firstChar = string.charAt(0);
+	let output = '';
+	let counter = 0;
+	const length = string.length;
 	while (counter < length) {
-		var character = string.charAt(counter++);
-		var codePoint = character.charCodeAt();
-		var value = void 0;
+		const character = string.charAt(counter++);
+		let codePoint = character.charCodeAt();
+		let value = void 0;
 		// If it’s not a printable ASCII character…
 		if (codePoint < 0x20 || codePoint > 0x7E) {
 			if (codePoint >= 0xD800 && codePoint <= 0xDBFF && counter < length) {
 				// It’s a high surrogate, and there is a next character.
-				var extra = string.charCodeAt(counter++);
+				const extra = string.charCodeAt(counter++);
 				if ((extra & 0xFC00) == 0xDC00) {
 					// next character is low surrogate
 					codePoint = ((codePoint & 0x3FF) << 10) + (extra & 0x3FF) + 0x10000;

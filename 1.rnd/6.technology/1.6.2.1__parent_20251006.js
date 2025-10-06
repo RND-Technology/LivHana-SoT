@@ -1,4 +1,4 @@
-var baseGet = require('./_baseGet'),
+const baseGet = require('./_baseGet'),
     baseSlice = require('./_baseSlice');
 
 /**

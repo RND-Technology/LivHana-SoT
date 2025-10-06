@@ -4,45 +4,45 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.Brush = Brush;
-var _react = _interopRequireWildcard(require("react"));
-var React = _react;
-var _clsx = require("clsx");
-var _d3Scale = require("victory-vendor/d3-scale");
-var _range = _interopRequireDefault(require("es-toolkit/compat/range"));
-var _Layer = require("../container/Layer");
-var _Text = require("../component/Text");
-var _ChartUtils = require("../util/ChartUtils");
-var _DataUtils = require("../util/DataUtils");
-var _CssPrefixUtils = require("../util/CssPrefixUtils");
-var _chartDataContext = require("../context/chartDataContext");
-var _brushUpdateContext = require("../context/brushUpdateContext");
-var _hooks = require("../state/hooks");
-var _chartDataSlice = require("../state/chartDataSlice");
-var _brushSlice = require("../state/brushSlice");
-var _PanoramaContext = require("../context/PanoramaContext");
-var _brushSelectors = require("../state/selectors/brushSelectors");
-var _useChartSynchronisation = require("../synchronisation/useChartSynchronisation");
-var _resolveDefaultProps = require("../util/resolveDefaultProps");
-var _svgPropertiesNoEvents = require("../util/svgPropertiesNoEvents");
+const _react = _interopRequireWildcard(require("react"));
+const React = _react;
+const _clsx = require("clsx");
+const _d3Scale = require("victory-vendor/d3-scale");
+const _range = _interopRequireDefault(require("es-toolkit/compat/range"));
+const _Layer = require("../container/Layer");
+const _Text = require("../component/Text");
+const _ChartUtils = require("../util/ChartUtils");
+const _DataUtils = require("../util/DataUtils");
+const _CssPrefixUtils = require("../util/CssPrefixUtils");
+const _chartDataContext = require("../context/chartDataContext");
+const _brushUpdateContext = require("../context/brushUpdateContext");
+const _hooks = require("../state/hooks");
+const _chartDataSlice = require("../state/chartDataSlice");
+const _brushSlice = require("../state/brushSlice");
+const _PanoramaContext = require("../context/PanoramaContext");
+const _brushSelectors = require("../state/selectors/brushSelectors");
+const _useChartSynchronisation = require("../synchronisation/useChartSynchronisation");
+const _resolveDefaultProps = require("../util/resolveDefaultProps");
+const _svgPropertiesNoEvents = require("../util/svgPropertiesNoEvents");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
-function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
-function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; let o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (const _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (let e = 1; e < arguments.length; e++) { const t = arguments[e]; for (const r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+function ownKeys(e, r) { const t = Object.keys(e); if (Object.getOwnPropertySymbols) { let o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (let r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _toPropertyKey(t) { const i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; const e = t[Symbol.toPrimitive]; if (void 0 !== e) { const i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 // Why is this tickFormatter different from the other TickFormatters? This one allows to return numbers too for some reason.
 
 function DefaultTraveller(props) {
-  var {
+  const {
     x,
     y,
     width,
     height,
     stroke
   } = props;
-  var lineY = Math.floor(y + height / 2) - 1;
+  const lineY = Math.floor(y + height / 2) - 1;
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("rect", {
     x: x,
     y: y,
@@ -67,7 +67,7 @@ function DefaultTraveller(props) {
   }));
 }
 function Traveller(props) {
-  var {
+  const {
     travellerProps,
     travellerType
   } = props;
@@ -81,8 +81,8 @@ function Traveller(props) {
   return /*#__PURE__*/React.createElement(DefaultTraveller, travellerProps);
 }
 function TravellerLayer(_ref) {
-  var _data$startIndex, _data$endIndex;
-  var {
+  let _data$startIndex, _data$endIndex;
+  const {
     otherProps,
     travellerX,
     id,
@@ -94,7 +94,7 @@ function TravellerLayer(_ref) {
     onFocus,
     onBlur
   } = _ref;
-  var {
+  const {
     y,
     x: xFromProps,
     travellerWidth,
@@ -105,14 +105,14 @@ function TravellerLayer(_ref) {
     startIndex,
     endIndex
   } = otherProps;
-  var x = Math.max(travellerX, xFromProps);
-  var travellerProps = _objectSpread(_objectSpread({}, (0, _svgPropertiesNoEvents.svgPropertiesNoEvents)(otherProps)), {}, {
+  const x = Math.max(travellerX, xFromProps);
+  const travellerProps = _objectSpread(_objectSpread({}, (0, _svgPropertiesNoEvents.svgPropertiesNoEvents)(otherProps)), {}, {
     x,
     y,
     width: travellerWidth,
     height
   });
-  var ariaLabelBrush = ariaLabel || "Min value: ".concat((_data$startIndex = data[startIndex]) === null || _data$startIndex === void 0 ? void 0 : _data$startIndex.name, ", Max value: ").concat((_data$endIndex = data[endIndex]) === null || _data$endIndex === void 0 ? void 0 : _data$endIndex.name);
+  const ariaLabelBrush = ariaLabel || "Min value: ".concat((_data$startIndex = data[startIndex]) === null || _data$startIndex === void 0 ? void 0 : _data$startIndex.name, ", Max value: ").concat((_data$endIndex = data[endIndex]) === null || _data$endIndex === void 0 ? void 0 : _data$endIndex.name);
   return /*#__PURE__*/React.createElement(_Layer.Layer, {
     tabIndex: 0,
     role: "slider",
@@ -146,22 +146,22 @@ function TravellerLayer(_ref) {
  * React wants a full React.JSX.Element but that is not compatible with Text component.
  */
 function getTextOfTick(props) {
-  var {
+  const {
     index,
     data,
     tickFormatter,
     dataKey
   } = props;
   // @ts-expect-error getValueByDataKey does not validate the output type
-  var text = (0, _ChartUtils.getValueByDataKey)(data[index], dataKey, index);
+  const text = (0, _ChartUtils.getValueByDataKey)(data[index], dataKey, index);
   return typeof tickFormatter === 'function' ? tickFormatter(text, index) : text;
 }
 function getIndexInRange(valueRange, x) {
-  var len = valueRange.length;
-  var start = 0;
-  var end = len - 1;
+  const len = valueRange.length;
+  let start = 0;
+  let end = len - 1;
   while (end - start > 1) {
-    var middle = Math.floor((start + end) / 2);
+    const middle = Math.floor((start + end) / 2);
     if (valueRange[middle] > x) {
       end = middle;
     } else {
@@ -171,25 +171,25 @@ function getIndexInRange(valueRange, x) {
   return x >= valueRange[end] ? end : start;
 }
 function getIndex(_ref2) {
-  var {
+  const {
     startX,
     endX,
     scaleValues,
     gap,
     data
   } = _ref2;
-  var lastIndex = data.length - 1;
-  var min = Math.min(startX, endX);
-  var max = Math.max(startX, endX);
-  var minIndex = getIndexInRange(scaleValues, min);
-  var maxIndex = getIndexInRange(scaleValues, max);
+  const lastIndex = data.length - 1;
+  const min = Math.min(startX, endX);
+  const max = Math.max(startX, endX);
+  const minIndex = getIndexInRange(scaleValues, min);
+  const maxIndex = getIndexInRange(scaleValues, max);
   return {
     startIndex: minIndex - minIndex % gap,
     endIndex: maxIndex === lastIndex ? lastIndex : maxIndex - maxIndex % gap
   };
 }
 function Background(_ref3) {
-  var {
+  const {
     x,
     y,
     width,
@@ -207,7 +207,7 @@ function Background(_ref3) {
   });
 }
 function BrushText(_ref4) {
-  var {
+  const {
     startIndex,
     endIndex,
     y,
@@ -220,8 +220,8 @@ function BrushText(_ref4) {
     startX,
     endX
   } = _ref4;
-  var offset = 5;
-  var attrs = {
+  const offset = 5;
+  const attrs = {
     pointerEvents: 'none',
     fill: stroke
   };
@@ -250,7 +250,7 @@ function BrushText(_ref4) {
   })));
 }
 function Slide(_ref5) {
-  var {
+  const {
     y,
     height,
     stroke,
@@ -262,8 +262,8 @@ function Slide(_ref5) {
     onMouseDown,
     onTouchStart
   } = _ref5;
-  var x = Math.min(startX, endX) + travellerWidth;
-  var width = Math.max(Math.abs(endX - startX) - travellerWidth, 0);
+  const x = Math.min(startX, endX) + travellerWidth;
+  const width = Math.max(Math.abs(endX - startX) - travellerWidth, 0);
   return /*#__PURE__*/React.createElement("rect", {
     className: "recharts-brush-slide",
     onMouseEnter: onMouseEnter,
@@ -283,7 +283,7 @@ function Slide(_ref5) {
   });
 }
 function Panorama(_ref6) {
-  var {
+  const {
     x,
     y,
     width,
@@ -292,11 +292,11 @@ function Panorama(_ref6) {
     children,
     padding
   } = _ref6;
-  var isPanoramic = React.Children.count(children) === 1;
+  const isPanoramic = React.Children.count(children) === 1;
   if (!isPanoramic) {
     return null;
   }
-  var chartElement = _react.Children.only(children);
+  const chartElement = _react.Children.only(children);
   if (!chartElement) {
     return null;
   }
@@ -310,8 +310,8 @@ function Panorama(_ref6) {
     data
   });
 }
-var createScale = _ref7 => {
-  var {
+const createScale = _ref7 => {
+  const {
     data,
     startIndex,
     endIndex,
@@ -322,9 +322,9 @@ var createScale = _ref7 => {
   if (!data || !data.length) {
     return {};
   }
-  var len = data.length;
-  var scale = (0, _d3Scale.scalePoint)().domain((0, _range.default)(0, len)).range([x, x + width - travellerWidth]);
-  var scaleValues = scale.domain().map(entry => scale(entry));
+  const len = data.length;
+  const scale = (0, _d3Scale.scalePoint)().domain((0, _range.default)(0, len)).range([x, x + width - travellerWidth]);
+  const scaleValues = scale.domain().map(entry => scale(entry));
   return {
     isTextActive: false,
     isSlideMoving: false,
@@ -336,7 +336,7 @@ var createScale = _ref7 => {
     scaleValues
   };
 };
-var isTouch = e => e.changedTouches && !!e.changedTouches.length;
+const isTouch = e => e.changedTouches && !!e.changedTouches.length;
 class BrushWithState extends _react.PureComponent {
   constructor(props) {
     super(props);
@@ -361,7 +361,7 @@ class BrushWithState extends _react.PureComponent {
         isTravellerMoving: false,
         isSlideMoving: false
       }, () => {
-        var {
+        const {
           endIndex,
           onDragEnd,
           startIndex
@@ -389,7 +389,7 @@ class BrushWithState extends _react.PureComponent {
       });
     });
     _defineProperty(this, "handleSlideDragStart", e => {
-      var event = isTouch(e) ? e.changedTouches[0] : e;
+      const event = isTouch(e) ? e.changedTouches[0] : e;
       this.setState({
         isTravellerMoving: false,
         isSlideMoving: true,
@@ -398,14 +398,14 @@ class BrushWithState extends _react.PureComponent {
       this.attachDragEndListener();
     });
     _defineProperty(this, "handleTravellerMoveKeyboard", (direction, id) => {
-      var {
+      const {
         data,
         gap,
         startIndex,
         endIndex
       } = this.props;
       // scaleValues are a list of coordinates. For example: [65, 250, 435, 620, 805, 990].
-      var {
+      const {
         scaleValues,
         startX,
         endX
@@ -416,7 +416,7 @@ class BrushWithState extends _react.PureComponent {
 
       // unless we search for the closest scaleValue to the current coordinate
       // we need to move travelers via index when using the keyboard
-      var currentIndex = -1;
+      let currentIndex = -1;
       if (id === 'startX') {
         currentIndex = startIndex;
       } else if (id === 'endX') {
@@ -425,11 +425,11 @@ class BrushWithState extends _react.PureComponent {
       if (currentIndex < 0 || currentIndex >= data.length) {
         return;
       }
-      var newIndex = currentIndex + direction;
+      const newIndex = currentIndex + direction;
       if (newIndex === -1 || newIndex >= scaleValues.length) {
         return;
       }
-      var newScaleValue = scaleValues[newIndex];
+      const newScaleValue = scaleValues[newIndex];
 
       // Prevent travellers from being on top of each other or overlapping
       if (id === 'startX' && newScaleValue >= endX || id === 'endX' && newScaleValue <= startX) {
@@ -462,7 +462,7 @@ class BrushWithState extends _react.PureComponent {
     };
   }
   static getDerivedStateFromProps(nextProps, prevState) {
-    var {
+    const {
       data,
       width,
       x,
@@ -490,10 +490,10 @@ class BrushWithState extends _react.PureComponent {
         scaleValues: undefined
       });
     }
-    var prevScale = prevState.scale;
+    const prevScale = prevState.scale;
     if (prevScale && (width !== prevState.prevWidth || x !== prevState.prevX || travellerWidth !== prevState.prevTravellerWidth)) {
       prevScale.range([x, x + width - travellerWidth]);
-      var scaleValues = prevScale.domain().map(entry => prevScale(entry)).filter(value => value != null);
+      const scaleValues = prevScale.domain().map(entry => prevScale(entry)).filter(value => value != null);
       return {
         prevData: data,
         prevTravellerWidth: travellerWidth,
@@ -544,7 +544,7 @@ class BrushWithState extends _react.PureComponent {
     window.removeEventListener('mousemove', this.handleDrag, true);
   }
   handleSlideDrag(e) {
-    var {
+    const {
       slideMoveStartX,
       startX,
       endX,
@@ -553,7 +553,7 @@ class BrushWithState extends _react.PureComponent {
     if (scaleValues == null) {
       return;
     }
-    var {
+    const {
       x,
       width,
       travellerWidth,
@@ -563,13 +563,13 @@ class BrushWithState extends _react.PureComponent {
       data,
       gap
     } = this.props;
-    var delta = e.pageX - slideMoveStartX;
+    let delta = e.pageX - slideMoveStartX;
     if (delta > 0) {
       delta = Math.min(delta, x + width - travellerWidth - endX, x + width - travellerWidth - startX);
     } else if (delta < 0) {
       delta = Math.max(delta, x - startX, x - endX);
     }
-    var newIndex = getIndex({
+    const newIndex = getIndex({
       startX: startX + delta,
       endX: endX + delta,
       data,
@@ -586,7 +586,7 @@ class BrushWithState extends _react.PureComponent {
     });
   }
   handleTravellerDragStart(id, e) {
-    var event = isTouch(e) ? e.changedTouches[0] : e;
+    const event = isTouch(e) ? e.changedTouches[0] : e;
     this.setState({
       isSlideMoving: false,
       isTravellerMoving: true,
@@ -596,7 +596,7 @@ class BrushWithState extends _react.PureComponent {
     this.attachDragEndListener();
   }
   handleTravellerMove(e) {
-    var {
+    const {
       brushMoveStartX,
       movingTravellerId,
       endX,
@@ -606,8 +606,8 @@ class BrushWithState extends _react.PureComponent {
     if (movingTravellerId == null) {
       return;
     }
-    var prevValue = this.state[movingTravellerId];
-    var {
+    const prevValue = this.state[movingTravellerId];
+    const {
       x,
       width,
       travellerWidth,
@@ -615,27 +615,27 @@ class BrushWithState extends _react.PureComponent {
       gap,
       data
     } = this.props;
-    var params = {
+    const params = {
       startX: this.state.startX,
       endX: this.state.endX,
       data,
       gap,
       scaleValues
     };
-    var delta = e.pageX - brushMoveStartX;
+    let delta = e.pageX - brushMoveStartX;
     if (delta > 0) {
       delta = Math.min(delta, x + width - travellerWidth - prevValue);
     } else if (delta < 0) {
       delta = Math.max(delta, x - prevValue);
     }
     params[movingTravellerId] = prevValue + delta;
-    var newIndex = getIndex(params);
-    var {
+    const newIndex = getIndex(params);
+    const {
       startIndex,
       endIndex
     } = newIndex;
-    var isFullGap = () => {
-      var lastIndex = data.length - 1;
+    const isFullGap = () => {
+      const lastIndex = data.length - 1;
       if (movingTravellerId === 'startX' && (endX > startX ? startIndex % gap === 0 : endIndex % gap === 0) || endX < startX && endIndex === lastIndex || movingTravellerId === 'endX' && (endX > startX ? endIndex % gap === 0 : startIndex % gap === 0) || endX > startX && endIndex === lastIndex) {
         return true;
       }
@@ -655,7 +655,7 @@ class BrushWithState extends _react.PureComponent {
     });
   }
   render() {
-    var {
+    const {
       data,
       className,
       children,
@@ -674,7 +674,7 @@ class BrushWithState extends _react.PureComponent {
       dataKey,
       padding
     } = this.props;
-    var {
+    const {
       startX,
       endX,
       isTextActive,
@@ -685,9 +685,9 @@ class BrushWithState extends _react.PureComponent {
     if (!data || !data.length || !(0, _DataUtils.isNumber)(x) || !(0, _DataUtils.isNumber)(y) || !(0, _DataUtils.isNumber)(width) || !(0, _DataUtils.isNumber)(height) || width <= 0 || height <= 0) {
       return null;
     }
-    var layerClass = (0, _clsx.clsx)('recharts-brush', className);
-    var style = (0, _CssPrefixUtils.generatePrefixStyle)('userSelect', 'none');
-    var calculatedY = y + (dy !== null && dy !== void 0 ? dy : 0);
+    const layerClass = (0, _clsx.clsx)('recharts-brush', className);
+    const style = (0, _CssPrefixUtils.generatePrefixStyle)('userSelect', 'none');
+    const calculatedY = y + (dy !== null && dy !== void 0 ? dy : 0);
     return /*#__PURE__*/React.createElement(_Layer.Layer, {
       className: layerClass,
       onMouseLeave: this.handleLeaveWrapper,
@@ -776,12 +776,12 @@ class BrushWithState extends _react.PureComponent {
   }
 }
 function BrushInternal(props) {
-  var dispatch = (0, _hooks.useAppDispatch)();
-  var chartData = (0, _chartDataContext.useChartData)();
-  var dataIndexes = (0, _chartDataContext.useDataIndex)();
-  var onChangeFromContext = (0, _react.useContext)(_brushUpdateContext.BrushUpdateDispatchContext);
-  var onChangeFromProps = props.onChange;
-  var {
+  const dispatch = (0, _hooks.useAppDispatch)();
+  const chartData = (0, _chartDataContext.useChartData)();
+  const dataIndexes = (0, _chartDataContext.useDataIndex)();
+  const onChangeFromContext = (0, _react.useContext)(_brushUpdateContext.BrushUpdateDispatchContext);
+  const onChangeFromProps = props.onChange;
+  const {
     startIndex: startIndexFromProps,
     endIndex: endIndexFromProps
   } = props;
@@ -793,11 +793,11 @@ function BrushInternal(props) {
     }));
   }, [dispatch, endIndexFromProps, startIndexFromProps]);
   (0, _useChartSynchronisation.useBrushChartSynchronisation)();
-  var onChange = (0, _react.useCallback)(nextState => {
+  const onChange = (0, _react.useCallback)(nextState => {
     if (dataIndexes == null) {
       return;
     }
-    var {
+    const {
       startIndex,
       endIndex
     } = dataIndexes;
@@ -807,20 +807,20 @@ function BrushInternal(props) {
       dispatch((0, _chartDataSlice.setDataStartEndIndexes)(nextState));
     }
   }, [onChangeFromProps, onChangeFromContext, dispatch, dataIndexes]);
-  var brushDimensions = (0, _hooks.useAppSelector)(_brushSelectors.selectBrushDimensions);
+  const brushDimensions = (0, _hooks.useAppSelector)(_brushSelectors.selectBrushDimensions);
   if (brushDimensions == null || dataIndexes == null || chartData == null || !chartData.length) {
     return null;
   }
-  var {
+  const {
     startIndex,
     endIndex
   } = dataIndexes;
-  var {
+  const {
     x,
     y,
     width
   } = brushDimensions;
-  var contextProperties = {
+  const contextProperties = {
     data: chartData,
     x,
     y,
@@ -835,7 +835,7 @@ function BrushInternal(props) {
   }));
 }
 function BrushSettingsDispatcher(props) {
-  var dispatch = (0, _hooks.useAppDispatch)();
+  const dispatch = (0, _hooks.useAppDispatch)();
   (0, _react.useEffect)(() => {
     dispatch((0, _brushSlice.setBrushSettings)(props));
     return () => {
@@ -844,7 +844,7 @@ function BrushSettingsDispatcher(props) {
   }, [dispatch, props]);
   return null;
 }
-var defaultBrushProps = {
+const defaultBrushProps = {
   height: 40,
   travellerWidth: 5,
   gap: 1,
@@ -860,7 +860,7 @@ var defaultBrushProps = {
   alwaysShowText: false
 };
 function Brush(outsideProps) {
-  var props = (0, _resolveDefaultProps.resolveDefaultProps)(outsideProps, defaultBrushProps);
+  const props = (0, _resolveDefaultProps.resolveDefaultProps)(outsideProps, defaultBrushProps);
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(BrushSettingsDispatcher, {
     height: props.height,
     x: props.x,

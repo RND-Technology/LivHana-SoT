@@ -1,6 +1,6 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 // var $BigInt = GetIntrinsic('%BigInt%', true);
 // var $pow = require('math-intrinsics/pow');
 

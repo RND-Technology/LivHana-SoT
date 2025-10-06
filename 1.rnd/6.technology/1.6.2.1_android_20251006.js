@@ -1,22 +1,22 @@
 "use strict";
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __export = (target, all) => {
+  for (const name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var android_exports = {};
+const __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+const android_exports = {};
 __export(android_exports, {
   Android: () => Android,
   AndroidDevice: () => AndroidDevice,
@@ -25,17 +25,17 @@ __export(android_exports, {
   AndroidWebView: () => AndroidWebView
 });
 module.exports = __toCommonJS(android_exports);
-var import_eventEmitter = require("./eventEmitter");
-var import_browserContext = require("./browserContext");
-var import_channelOwner = require("./channelOwner");
-var import_errors = require("./errors");
-var import_events = require("./events");
-var import_waiter = require("./waiter");
-var import_timeoutSettings = require("./timeoutSettings");
-var import_rtti = require("../utils/isomorphic/rtti");
-var import_time = require("../utils/isomorphic/time");
-var import_timeoutRunner = require("../utils/isomorphic/timeoutRunner");
-var import_webSocket = require("./webSocket");
+const import_eventEmitter = require("./eventEmitter");
+const import_browserContext = require("./browserContext");
+const import_channelOwner = require("./channelOwner");
+const import_errors = require("./errors");
+const import_events = require("./events");
+const import_waiter = require("./waiter");
+const import_timeoutSettings = require("./timeoutSettings");
+const import_rtti = require("../utils/isomorphic/rtti");
+const import_time = require("../utils/isomorphic/time");
+const import_timeoutRunner = require("../utils/isomorphic/timeoutRunner");
+const import_webSocket = require("./webSocket");
 class Android extends import_channelOwner.ChannelOwner {
   static from(android) {
     return android._object;

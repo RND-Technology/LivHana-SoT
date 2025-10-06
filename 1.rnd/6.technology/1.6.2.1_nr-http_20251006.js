@@ -37,7 +37,7 @@ const CSEC_SEP = ':IAST:';
 const sep = require('path').sep;
 const find = `${sep}{{NR_CSEC_VALIDATOR_HOME_TMP}}`;
 const CSEC_HOME_TMP_CONST = new RegExp(find, 'g');
-let CSEC_HOME = NRAgent && NRAgent.config.newrelic_home ? NRAgent.config.newrelic_home : NRAgent && NRAgent.config.logging.filepath ? path.dirname(NRAgent.config.logging.filepath) : require('path').join(process.cwd());
+const CSEC_HOME = NRAgent && NRAgent.config.newrelic_home ? NRAgent.config.newrelic_home : NRAgent && NRAgent.config.logging.filepath ? path.dirname(NRAgent.config.logging.filepath) : require('path').join(process.cwd());
 const CSEC_HOME_TMP = `${CSEC_HOME}/nr-security-home/tmp/language-agent/${process.env.applicationUUID}`
 let lastTransactionId = EMPTY_STRING;
 let uncaughtExceptionReportFlag = false;
@@ -170,7 +170,7 @@ function outboundHook(shim, mod, method, moduleName) {
  * @param {*} fuzzheaders
  */
 function parseFuzzheaders(requestData, transactionId) {
-  let fuzzheaders = requestData.headers;
+  const fuzzheaders = requestData.headers;
   const policy = API.getPolicy();
   const dynamicScanningFlag = policy.data ? policy.data.vulnerabilityScan.iastScan.enabled : false;
   if (fuzzheaders[NR_CSEC_FUZZ_REQUEST_ID] && dynamicScanningFlag) {
@@ -178,16 +178,16 @@ function parseFuzzheaders(requestData, transactionId) {
       const additionalData = fuzzheaders[NR_CSEC_FUZZ_REQUEST_ID].split(CSEC_SEP);
       logger.debug('AdditionalData:', additionalData);
       if (additionalData.length >= 8) {
-        let encryptedData = additionalData[6].trim();
-        let hashVerifier = additionalData[7].trim();
+        const encryptedData = additionalData[6].trim();
+        const hashVerifier = additionalData[7].trim();
 
         if (lodash.isEmpty(encryptedData) || lodash.isEmpty(hashVerifier)) {
           return;
         }
-        let decryptedData = secUtils.decryptData(encryptedData);
-        let verifiedHash = secUtils.hashVerifier(decryptedData, hashVerifier);
+        const decryptedData = secUtils.decryptData(encryptedData);
+        const verifiedHash = secUtils.hashVerifier(decryptedData, hashVerifier);
         logger.debug("verifiedHash:", verifiedHash);
-        let filesToCreate = decryptedData.split(COMMA);
+        const filesToCreate = decryptedData.split(COMMA);
         if (verifiedHash) {
           logger.debug("Encrypted Data:", encryptedData);
           logger.debug("Decrypted Data:", decryptedData)
@@ -265,9 +265,9 @@ function addRequestData(shim, request) {
       }
       requestManager.setRequest(transactionId, data);
       if (shim.agent.getLinkingMetadata()) {
-        let linkingMetadata = shim.agent.getLinkingMetadata();
+        const linkingMetadata = shim.agent.getLinkingMetadata();
         if (linkingMetadata['trace.id']) {
-          let traceId = linkingMetadata['trace.id'];
+          const traceId = linkingMetadata['trace.id'];
           requestManager.setRequest(traceId, data)
         }
       }
@@ -343,7 +343,7 @@ function createServerHook(shim, mod, moduleName) {
           return fn
         }
         return function wrappedApp() {
-          let req = arguments[0];
+          const req = arguments[0];
           if (!requestManager.getRequest(shim)) {
             addRequestData(shim, req);
           }
@@ -459,7 +459,7 @@ function responseHook(resp, req, shim) {
       const policy = API.getPolicy();
       const dynamicScanningFlag = policy.data ? (policy.data.vulnerabilityScan?.enabled && policy.data.vulnerabilityScan.iastScan.enabled) : false;
       const type = response.getHeader(CONTENT_TYPE);
-      let isUnsupportedType = isUnsupportedContentType(type, response);
+      const isUnsupportedType = isUnsupportedContentType(type, response);
 
       if (request && (construct || dynamicScanningFlag) && !isUnsupportedType) {
         const args = [];
@@ -537,7 +537,7 @@ function isUnsupportedContentType(conType, response) {
 function responseBodyCompute(response, args) {
   let encoding = UTF8;
   const type = response.getHeader(CONTENT_TYPE);
-  let isUnsupportedType = isUnsupportedContentType(type, response);
+  const isUnsupportedType = isUnsupportedContentType(type, response);
   if (isUnsupportedType) {
     return;
   }
@@ -675,7 +675,7 @@ function responseRawHeaderParsing(headersString) {
  * @param {*} shim
  */
 function secureCookieCheck(response, shim) {
-  let cookieHeader = response.getHeader('set-cookie') ? response.getHeader('set-cookie') : responseRawHeaderParsing(response._header);
+  const cookieHeader = response.getHeader('set-cookie') ? response.getHeader('set-cookie') : responseRawHeaderParsing(response._header);
   let cookieHeaderList = [];
   if (!cookieHeader) {
     return;
@@ -686,13 +686,13 @@ function secureCookieCheck(response, shim) {
   else {
     cookieHeaderList = cookieHeaderList.concat(cookieHeader);
   }
-  let csec_request = requestManager.getRequest(shim);
+  const csec_request = requestManager.getRequest(shim);
   try {
-    let parameters = [];
+    const parameters = [];
     for (const cookieString of cookieHeaderList) {
       if (cookieString) {
         const keyValuePairs = cookieString.split(SEMI_COLON);
-        let params = {
+        const params = {
           "isHttpOnly": false,
           "isSecure": false,
           "isSameSiteStrict": false,
@@ -749,7 +749,7 @@ function truncateStringToBytes(inputString, maxBytes) {
 function trustBoundaryCheck(sessionObject, shim) {
   try {
     const request = requestManager.getRequest(shim);
-    let params = [];
+    const params = [];
     Object.keys(sessionObject).forEach(key => {
       if (sessionObject[key] && typeof sessionObject[key] != OBJECT) {
         params.push(String(key));

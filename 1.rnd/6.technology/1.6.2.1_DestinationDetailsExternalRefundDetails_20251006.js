@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
 exports.destinationDetailsExternalRefundDetailsSchema = void 0;
-var schema_1 = require("../schema");
+const schema_1 = require("../schema");
 exports.destinationDetailsExternalRefundDetailsSchema = (0, schema_1.object)({
     type: ['type', (0, schema_1.string)()],
     source: ['source', (0, schema_1.string)()],

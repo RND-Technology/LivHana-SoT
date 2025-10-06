@@ -1,8 +1,8 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 
-var _types = require('./parser/tokenizer/types');
-var _isAsyncOperation = require('./util/isAsyncOperation'); var _isAsyncOperation2 = _interopRequireDefault(_isAsyncOperation);
+const _types = require('./parser/tokenizer/types');
+const _isAsyncOperation = require('./util/isAsyncOperation'); const _isAsyncOperation2 = _interopRequireDefault(_isAsyncOperation);
 
 
 
@@ -27,7 +27,7 @@ var _isAsyncOperation = require('./util/isAsyncOperation'); var _isAsyncOperatio
      isFlowEnabled,
      disableESTransforms,
      helperManager,
-  ) {;this.code = code;this.tokens = tokens;this.isFlowEnabled = isFlowEnabled;this.disableESTransforms = disableESTransforms;this.helperManager = helperManager;TokenProcessor.prototype.__init.call(this);TokenProcessor.prototype.__init2.call(this);TokenProcessor.prototype.__init3.call(this);}
+  ) {this.code = code;this.tokens = tokens;this.isFlowEnabled = isFlowEnabled;this.disableESTransforms = disableESTransforms;this.helperManager = helperManager;TokenProcessor.prototype.__init.call(this);TokenProcessor.prototype.__init2.call(this);TokenProcessor.prototype.__init3.call(this);}
 
   /**
    * Snapshot the token state in a way that can be restored later, useful for

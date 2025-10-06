@@ -4,16 +4,16 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.useDataIndex = exports.useChartData = exports.SetComputedData = exports.ChartDataContextProvider = void 0;
-var _react = require("react");
-var _chartDataSlice = require("../state/chartDataSlice");
-var _hooks = require("../state/hooks");
-var _PanoramaContext = require("./PanoramaContext");
-var ChartDataContextProvider = props => {
-  var {
+const _react = require("react");
+const _chartDataSlice = require("../state/chartDataSlice");
+const _hooks = require("../state/hooks");
+const _PanoramaContext = require("./PanoramaContext");
+const ChartDataContextProvider = props => {
+  const {
     chartData
   } = props;
-  var dispatch = (0, _hooks.useAppDispatch)();
-  var isPanorama = (0, _PanoramaContext.useIsPanorama)();
+  const dispatch = (0, _hooks.useAppDispatch)();
+  const isPanorama = (0, _PanoramaContext.useIsPanorama)();
   (0, _react.useEffect)(() => {
     if (isPanorama) {
       // Panorama mode reuses data from the main chart, so we must not overwrite it here.
@@ -29,11 +29,11 @@ var ChartDataContextProvider = props => {
   return null;
 };
 exports.ChartDataContextProvider = ChartDataContextProvider;
-var SetComputedData = props => {
-  var {
+const SetComputedData = props => {
+  const {
     computedData
   } = props;
-  var dispatch = (0, _hooks.useAppDispatch)();
+  const dispatch = (0, _hooks.useAppDispatch)();
   (0, _react.useEffect)(() => {
     dispatch((0, _chartDataSlice.setComputedData)(computedData));
     return () => {
@@ -43,7 +43,7 @@ var SetComputedData = props => {
   return null;
 };
 exports.SetComputedData = SetComputedData;
-var selectChartData = state => state.chartData.chartData;
+const selectChartData = state => state.chartData.chartData;
 
 /**
  * "data" is the data of the chart - it has no type because this part of recharts is very flexible.
@@ -64,10 +64,10 @@ var selectChartData = state => state.chartData.chartData;
  *
  * @return data array for some charts and undefined for other
  */
-var useChartData = () => (0, _hooks.useAppSelector)(selectChartData);
+const useChartData = () => (0, _hooks.useAppSelector)(selectChartData);
 exports.useChartData = useChartData;
-var selectDataIndex = state => {
-  var {
+const selectDataIndex = state => {
+  const {
     dataStartIndex,
     dataEndIndex
   } = state.chartData;
@@ -82,7 +82,7 @@ var selectDataIndex = state => {
  *
  * @return object with startIndex and endIndex
  */
-var useDataIndex = () => {
+const useDataIndex = () => {
   return (0, _hooks.useAppSelector)(selectDataIndex);
 };
 exports.useDataIndex = useDataIndex;

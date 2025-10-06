@@ -1,12 +1,12 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var Call = require('./Call');
-var SameValue = require('./SameValue');
-var ToNumber = require('./ToNumber');
+const Call = require('./Call');
+const SameValue = require('./SameValue');
+const ToNumber = require('./ToNumber');
 
-var isNaN = require('math-intrinsics/isNaN');
+const isNaN = require('math-intrinsics/isNaN');
 
 // https://262.ecma-international.org/14.0/#sec-comparetypedarrayelements
 
@@ -19,15 +19,15 @@ module.exports = function CompareTypedArrayElements(x, y, compareFn) {
 	}
 
 	if (typeof compareFn !== 'undefined') { // step 2
-		var v = ToNumber(Call(compareFn, void undefined, [x, y])); // step 2.a
+		const v = ToNumber(Call(compareFn, void undefined, [x, y])); // step 2.a
 		if (isNaN(v)) {
 			return 0; // step 2.b
 		}
 		return v; // step 2.c
 	}
 
-	var xNaN = isNaN(x);
-	var yNaN = isNaN(y);
+	const xNaN = isNaN(x);
+	const yNaN = isNaN(y);
 	if (xNaN && yNaN) {
 		return 0; // step 3
 	}

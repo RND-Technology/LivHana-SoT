@@ -1,16 +1,16 @@
 "use strict";
 exports.__esModule = true;
 exports.unsafeUniformIntDistribution = void 0;
-var UnsafeUniformIntDistributionInternal_1 = require("./internals/UnsafeUniformIntDistributionInternal");
-var ArrayInt_1 = require("./internals/ArrayInt");
-var UnsafeUniformArrayIntDistributionInternal_1 = require("./internals/UnsafeUniformArrayIntDistributionInternal");
-var safeNumberMaxSafeInteger = Number.MAX_SAFE_INTEGER;
-var sharedA = { sign: 1, data: [0, 0] };
-var sharedB = { sign: 1, data: [0, 0] };
-var sharedC = { sign: 1, data: [0, 0] };
-var sharedData = [0, 0];
+const UnsafeUniformIntDistributionInternal_1 = require("./internals/UnsafeUniformIntDistributionInternal");
+const ArrayInt_1 = require("./internals/ArrayInt");
+const UnsafeUniformArrayIntDistributionInternal_1 = require("./internals/UnsafeUniformArrayIntDistributionInternal");
+const safeNumberMaxSafeInteger = Number.MAX_SAFE_INTEGER;
+const sharedA = { sign: 1, data: [0, 0] };
+const sharedB = { sign: 1, data: [0, 0] };
+const sharedC = { sign: 1, data: [0, 0] };
+const sharedData = [0, 0];
 function uniformLargeIntInternal(from, to, rangeSize, rng) {
-    var rangeSizeArrayIntValue = rangeSize <= safeNumberMaxSafeInteger
+    const rangeSizeArrayIntValue = rangeSize <= safeNumberMaxSafeInteger
         ? (0, ArrayInt_1.fromNumberToArrayInt64)(sharedC, rangeSize)
         : (0, ArrayInt_1.substractArrayInt64)(sharedC, (0, ArrayInt_1.fromNumberToArrayInt64)(sharedA, to), (0, ArrayInt_1.fromNumberToArrayInt64)(sharedB, from));
     if (rangeSizeArrayIntValue.data[1] === 0xffffffff) {
@@ -24,9 +24,9 @@ function uniformLargeIntInternal(from, to, rangeSize, rng) {
     return sharedData[0] * 0x100000000 + sharedData[1] + from;
 }
 function unsafeUniformIntDistribution(from, to, rng) {
-    var rangeSize = to - from;
+    const rangeSize = to - from;
     if (rangeSize <= 0xffffffff) {
-        var g = (0, UnsafeUniformIntDistributionInternal_1.unsafeUniformIntDistributionInternal)(rangeSize + 1, rng);
+        const g = (0, UnsafeUniformIntDistributionInternal_1.unsafeUniformIntDistributionInternal)(rangeSize + 1, rng);
         return g + from;
     }
     return uniformLargeIntInternal(from, to, rangeSize, rng);

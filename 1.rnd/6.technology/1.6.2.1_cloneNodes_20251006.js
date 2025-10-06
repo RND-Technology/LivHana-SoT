@@ -6,7 +6,7 @@
  */
 export default function cloneNodes(nodes, source = undefined, raws = undefined) {
   return nodes.map((node) => {
-    let cloned = node.clone()
+    const cloned = node.clone()
 
     if (raws !== undefined) {
       cloned.raws.tailwind = {
@@ -19,7 +19,7 @@ export default function cloneNodes(nodes, source = undefined, raws = undefined) 
       traverse(cloned, (node) => {
         // Do not traverse nodes that have opted
         // to preserve their original source
-        let shouldPreserveSource = node.raws.tailwind?.preserveSource === true && node.source
+        const shouldPreserveSource = node.raws.tailwind?.preserveSource === true && node.source
         if (shouldPreserveSource) {
           return false
         }

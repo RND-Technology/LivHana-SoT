@@ -1,6 +1,6 @@
 'use strict';
 
-var hasOwn = require('hasown');
+const hasOwn = require('hasown');
 
 // https://262.ecma-international.org/13.0/#sec-match-records
 

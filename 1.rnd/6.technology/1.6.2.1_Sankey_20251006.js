@@ -4,65 +4,65 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.sankeyPayloadSearcher = exports.Sankey = void 0;
-var _react = _interopRequireWildcard(require("react"));
-var React = _react;
-var _maxBy = _interopRequireDefault(require("es-toolkit/compat/maxBy"));
-var _sumBy = _interopRequireDefault(require("es-toolkit/compat/sumBy"));
-var _get = _interopRequireDefault(require("es-toolkit/compat/get"));
-var _Surface = require("../container/Surface");
-var _Layer = require("../container/Layer");
-var _Rectangle = require("../shape/Rectangle");
-var _ShallowEqual = require("../util/ShallowEqual");
-var _ReactUtils = require("../util/ReactUtils");
-var _ChartUtils = require("../util/ChartUtils");
-var _chartLayoutContext = require("../context/chartLayoutContext");
-var _tooltipPortalContext = require("../context/tooltipPortalContext");
-var _RechartsWrapper = require("./RechartsWrapper");
-var _RechartsStoreProvider = require("../state/RechartsStoreProvider");
-var _hooks = require("../state/hooks");
-var _tooltipSlice = require("../state/tooltipSlice");
-var _SetTooltipEntrySettings = require("../state/SetTooltipEntrySettings");
-var _chartDataContext = require("../context/chartDataContext");
-var _isWellBehavedNumber = require("../util/isWellBehavedNumber");
-var _svgPropertiesNoEvents = require("../util/svgPropertiesNoEvents");
-var _excluded = ["sourceX", "sourceY", "sourceControlX", "targetX", "targetY", "targetControlX", "linkWidth"],
+const _react = _interopRequireWildcard(require("react"));
+const React = _react;
+const _maxBy = _interopRequireDefault(require("es-toolkit/compat/maxBy"));
+const _sumBy = _interopRequireDefault(require("es-toolkit/compat/sumBy"));
+const _get = _interopRequireDefault(require("es-toolkit/compat/get"));
+const _Surface = require("../container/Surface");
+const _Layer = require("../container/Layer");
+const _Rectangle = require("../shape/Rectangle");
+const _ShallowEqual = require("../util/ShallowEqual");
+const _ReactUtils = require("../util/ReactUtils");
+const _ChartUtils = require("../util/ChartUtils");
+const _chartLayoutContext = require("../context/chartLayoutContext");
+const _tooltipPortalContext = require("../context/tooltipPortalContext");
+const _RechartsWrapper = require("./RechartsWrapper");
+const _RechartsStoreProvider = require("../state/RechartsStoreProvider");
+const _hooks = require("../state/hooks");
+const _tooltipSlice = require("../state/tooltipSlice");
+const _SetTooltipEntrySettings = require("../state/SetTooltipEntrySettings");
+const _chartDataContext = require("../context/chartDataContext");
+const _isWellBehavedNumber = require("../util/isWellBehavedNumber");
+const _svgPropertiesNoEvents = require("../util/svgPropertiesNoEvents");
+const _excluded = ["sourceX", "sourceY", "sourceControlX", "targetX", "targetY", "targetControlX", "linkWidth"],
   _excluded2 = ["width", "height", "className", "style", "children"];
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
-function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
-function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-function _objectWithoutProperties(e, t) { if (null == e) return {}; var o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { var n = Object.getOwnPropertySymbols(e); for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
-function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t = {}; for (var n in r) if ({}.hasOwnProperty.call(r, n)) { if (-1 !== e.indexOf(n)) continue; t[n] = r[n]; } return t; }
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; let o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (const _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (let e = 1; e < arguments.length; e++) { const t = arguments[e]; for (const r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+function _objectWithoutProperties(e, t) { if (null == e) return {}; let o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { const n = Object.getOwnPropertySymbols(e); for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
+function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; const t = {}; for (const n in r) if ({}.hasOwnProperty.call(r, n)) { if (-1 !== e.indexOf(n)) continue; t[n] = r[n]; } return t; }
+function ownKeys(e, r) { const t = Object.keys(e); if (Object.getOwnPropertySymbols) { let o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (let r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-var interpolationGenerator = (a, b) => {
-  var ka = +a;
-  var kb = b - ka;
+function _toPropertyKey(t) { const i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; const e = t[Symbol.toPrimitive]; if (void 0 !== e) { const i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+const interpolationGenerator = (a, b) => {
+  const ka = +a;
+  const kb = b - ka;
   return t => ka + kb * t;
 };
-var centerY = node => node.y + node.dy / 2;
-var getValue = entry => entry && entry.value || 0;
-var getSumOfIds = (links, ids) => ids.reduce((result, id) => result + getValue(links[id]), 0);
-var getSumWithWeightedSource = (tree, links, ids) => ids.reduce((result, id) => {
-  var link = links[id];
-  var sourceNode = tree[link.source];
+const centerY = node => node.y + node.dy / 2;
+const getValue = entry => entry && entry.value || 0;
+const getSumOfIds = (links, ids) => ids.reduce((result, id) => result + getValue(links[id]), 0);
+const getSumWithWeightedSource = (tree, links, ids) => ids.reduce((result, id) => {
+  const link = links[id];
+  const sourceNode = tree[link.source];
   return result + centerY(sourceNode) * getValue(links[id]);
 }, 0);
-var getSumWithWeightedTarget = (tree, links, ids) => ids.reduce((result, id) => {
-  var link = links[id];
-  var targetNode = tree[link.target];
+const getSumWithWeightedTarget = (tree, links, ids) => ids.reduce((result, id) => {
+  const link = links[id];
+  const targetNode = tree[link.target];
   return result + centerY(targetNode) * getValue(links[id]);
 }, 0);
-var ascendingY = (a, b) => a.y - b.y;
-var searchTargetsAndSources = (links, id) => {
-  var sourceNodes = [];
-  var sourceLinks = [];
-  var targetNodes = [];
-  var targetLinks = [];
-  for (var i = 0, len = links.length; i < len; i++) {
-    var link = links[i];
+const ascendingY = (a, b) => a.y - b.y;
+const searchTargetsAndSources = (links, id) => {
+  const sourceNodes = [];
+  const sourceLinks = [];
+  const targetNodes = [];
+  const targetLinks = [];
+  for (let i = 0, len = links.length; i < len; i++) {
+    const link = links[i];
     if (link.source === id) {
       targetNodes.push(link.target);
       targetLinks.push(i);
@@ -79,41 +79,41 @@ var searchTargetsAndSources = (links, id) => {
     targetNodes
   };
 };
-var updateDepthOfTargets = (tree, curNode) => {
-  var {
+const updateDepthOfTargets = (tree, curNode) => {
+  const {
     targetNodes
   } = curNode;
-  for (var i = 0, len = targetNodes.length; i < len; i++) {
-    var target = tree[targetNodes[i]];
+  for (let i = 0, len = targetNodes.length; i < len; i++) {
+    const target = tree[targetNodes[i]];
     if (target) {
       target.depth = Math.max(curNode.depth + 1, target.depth);
       updateDepthOfTargets(tree, target);
     }
   }
 };
-var getNodesTree = (_ref, width, nodeWidth) => {
-  var {
+const getNodesTree = (_ref, width, nodeWidth) => {
+  const {
     nodes,
     links
   } = _ref;
-  var tree = nodes.map((entry, index) => {
-    var result = searchTargetsAndSources(links, index);
+  const tree = nodes.map((entry, index) => {
+    const result = searchTargetsAndSources(links, index);
     return _objectSpread(_objectSpread(_objectSpread({}, entry), result), {}, {
       value: Math.max(getSumOfIds(links, result.sourceLinks), getSumOfIds(links, result.targetLinks)),
       depth: 0
     });
   });
-  for (var i = 0, len = tree.length; i < len; i++) {
-    var node = tree[i];
+  for (let i = 0, len = tree.length; i < len; i++) {
+    const node = tree[i];
     if (!node.sourceNodes.length) {
       updateDepthOfTargets(tree, node);
     }
   }
-  var maxDepth = (0, _maxBy.default)(tree, entry => entry.depth).depth;
+  const maxDepth = (0, _maxBy.default)(tree, entry => entry.depth).depth;
   if (maxDepth >= 1) {
-    var childWidth = (width - nodeWidth) / maxDepth;
-    for (var _i = 0, _len = tree.length; _i < _len; _i++) {
-      var _node = tree[_i];
+    const childWidth = (width - nodeWidth) / maxDepth;
+    for (let _i = 0, _len = tree.length; _i < _len; _i++) {
+      const _node = tree[_i];
       if (!_node.targetNodes.length) {
         _node.depth = maxDepth;
       }
@@ -126,10 +126,10 @@ var getNodesTree = (_ref, width, nodeWidth) => {
     maxDepth
   };
 };
-var getDepthTree = tree => {
-  var result = [];
-  for (var i = 0, len = tree.length; i < len; i++) {
-    var node = tree[i];
+const getDepthTree = tree => {
+  const result = [];
+  for (let i = 0, len = tree.length; i < len; i++) {
+    const node = tree[i];
     if (!result[node.depth]) {
       result[node.depth] = [];
     }
@@ -137,11 +137,11 @@ var getDepthTree = tree => {
   }
   return result;
 };
-var updateYOfTree = (depthTree, height, nodePadding, links) => {
-  var yRatio = Math.min(...depthTree.map(nodes => (height - (nodes.length - 1) * nodePadding) / (0, _sumBy.default)(nodes, getValue)));
-  for (var d = 0, maxDepth = depthTree.length; d < maxDepth; d++) {
-    for (var i = 0, len = depthTree[d].length; i < len; i++) {
-      var node = depthTree[d][i];
+const updateYOfTree = (depthTree, height, nodePadding, links) => {
+  const yRatio = Math.min(...depthTree.map(nodes => (height - (nodes.length - 1) * nodePadding) / (0, _sumBy.default)(nodes, getValue)));
+  for (let d = 0, maxDepth = depthTree.length; d < maxDepth; d++) {
+    for (let i = 0, len = depthTree[d].length; i < len; i++) {
+      const node = depthTree[d][i];
       node.y = i;
       node.dy = node.value * yRatio;
     }
@@ -150,29 +150,29 @@ var updateYOfTree = (depthTree, height, nodePadding, links) => {
     dy: getValue(link) * yRatio
   }));
 };
-var resolveCollisions = function resolveCollisions(depthTree, height, nodePadding) {
-  var sort = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
-  for (var i = 0, len = depthTree.length; i < len; i++) {
-    var nodes = depthTree[i];
-    var n = nodes.length;
+const resolveCollisions = function resolveCollisions(depthTree, height, nodePadding) {
+  const sort = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
+  for (let i = 0, len = depthTree.length; i < len; i++) {
+    const nodes = depthTree[i];
+    const n = nodes.length;
 
     // Sort by the value of y
     if (sort) {
       nodes.sort(ascendingY);
     }
-    var y0 = 0;
-    for (var j = 0; j < n; j++) {
-      var node = nodes[j];
-      var dy = y0 - node.y;
+    let y0 = 0;
+    for (let j = 0; j < n; j++) {
+      const node = nodes[j];
+      const dy = y0 - node.y;
       if (dy > 0) {
         node.y += dy;
       }
       y0 = node.y + node.dy + nodePadding;
     }
     y0 = height + nodePadding;
-    for (var _j = n - 1; _j >= 0; _j--) {
-      var _node2 = nodes[_j];
-      var _dy = _node2.y + _node2.dy + nodePadding - y0;
+    for (let _j = n - 1; _j >= 0; _j--) {
+      const _node2 = nodes[_j];
+      const _dy = _node2.y + _node2.dy + nodePadding - y0;
       if (_dy > 0) {
         _node2.y -= _dy;
         y0 = _node2.y;
@@ -182,50 +182,50 @@ var resolveCollisions = function resolveCollisions(depthTree, height, nodePaddin
     }
   }
 };
-var relaxLeftToRight = (tree, depthTree, links, alpha) => {
-  for (var i = 0, maxDepth = depthTree.length; i < maxDepth; i++) {
-    var nodes = depthTree[i];
-    for (var j = 0, len = nodes.length; j < len; j++) {
-      var node = nodes[j];
+const relaxLeftToRight = (tree, depthTree, links, alpha) => {
+  for (let i = 0, maxDepth = depthTree.length; i < maxDepth; i++) {
+    const nodes = depthTree[i];
+    for (let j = 0, len = nodes.length; j < len; j++) {
+      const node = nodes[j];
       if (node.sourceLinks.length) {
-        var sourceSum = getSumOfIds(links, node.sourceLinks);
-        var weightedSum = getSumWithWeightedSource(tree, links, node.sourceLinks);
-        var y = weightedSum / sourceSum;
+        const sourceSum = getSumOfIds(links, node.sourceLinks);
+        const weightedSum = getSumWithWeightedSource(tree, links, node.sourceLinks);
+        const y = weightedSum / sourceSum;
         node.y += (y - centerY(node)) * alpha;
       }
     }
   }
 };
-var relaxRightToLeft = (tree, depthTree, links, alpha) => {
-  for (var i = depthTree.length - 1; i >= 0; i--) {
-    var nodes = depthTree[i];
-    for (var j = 0, len = nodes.length; j < len; j++) {
-      var node = nodes[j];
+const relaxRightToLeft = (tree, depthTree, links, alpha) => {
+  for (let i = depthTree.length - 1; i >= 0; i--) {
+    const nodes = depthTree[i];
+    for (let j = 0, len = nodes.length; j < len; j++) {
+      const node = nodes[j];
       if (node.targetLinks.length) {
-        var targetSum = getSumOfIds(links, node.targetLinks);
-        var weightedSum = getSumWithWeightedTarget(tree, links, node.targetLinks);
-        var y = weightedSum / targetSum;
+        const targetSum = getSumOfIds(links, node.targetLinks);
+        const weightedSum = getSumWithWeightedTarget(tree, links, node.targetLinks);
+        const y = weightedSum / targetSum;
         node.y += (y - centerY(node)) * alpha;
       }
     }
   }
 };
-var updateYOfLinks = (tree, links) => {
-  for (var i = 0, len = tree.length; i < len; i++) {
-    var node = tree[i];
-    var sy = 0;
-    var ty = 0;
+const updateYOfLinks = (tree, links) => {
+  for (let i = 0, len = tree.length; i < len; i++) {
+    const node = tree[i];
+    let sy = 0;
+    let ty = 0;
     node.targetLinks.sort((a, b) => tree[links[a].target].y - tree[links[b].target].y);
     node.sourceLinks.sort((a, b) => tree[links[a].source].y - tree[links[b].source].y);
-    for (var j = 0, tLen = node.targetLinks.length; j < tLen; j++) {
-      var link = links[node.targetLinks[j]];
+    for (let j = 0, tLen = node.targetLinks.length; j < tLen; j++) {
+      const link = links[node.targetLinks[j]];
       if (link) {
         link.sy = sy;
         sy += link.dy;
       }
     }
-    for (var _j2 = 0, sLen = node.sourceLinks.length; _j2 < sLen; _j2++) {
-      var _link = links[node.sourceLinks[_j2]];
+    for (let _j2 = 0, sLen = node.sourceLinks.length; _j2 < sLen; _j2++) {
+      const _link = links[node.sourceLinks[_j2]];
       if (_link) {
         _link.ty = ty;
         ty += _link.dy;
@@ -233,8 +233,8 @@ var updateYOfLinks = (tree, links) => {
     }
   }
 };
-var computeData = _ref2 => {
-  var {
+const computeData = _ref2 => {
+  const {
     data,
     width,
     height,
@@ -243,17 +243,17 @@ var computeData = _ref2 => {
     nodePadding,
     sort
   } = _ref2;
-  var {
+  const {
     links
   } = data;
-  var {
+  const {
     tree
   } = getNodesTree(data, width, nodeWidth);
-  var depthTree = getDepthTree(tree);
-  var newLinks = updateYOfTree(depthTree, height, nodePadding, links);
+  const depthTree = getDepthTree(tree);
+  const newLinks = updateYOfTree(depthTree, height, nodePadding, links);
   resolveCollisions(depthTree, height, nodePadding, sort);
-  var alpha = 1;
-  for (var i = 1; i <= iterations; i++) {
+  let alpha = 1;
+  for (let i = 1; i <= iterations; i++) {
     relaxRightToLeft(tree, depthTree, newLinks, alpha *= 0.99);
     resolveCollisions(depthTree, height, nodePadding, sort);
     relaxLeftToRight(tree, depthTree, newLinks, alpha);
@@ -265,7 +265,7 @@ var computeData = _ref2 => {
     links: newLinks
   };
 };
-var getCoordinateOfTooltip = (item, type) => {
+const getCoordinateOfTooltip = (item, type) => {
   if (type === 'node') {
     return {
       x: +item.x + +item.width / 2,
@@ -277,8 +277,8 @@ var getCoordinateOfTooltip = (item, type) => {
     y: (item.sourceY + item.targetY) / 2
   };
 };
-var getPayloadOfTooltip = (item, type, nameKey) => {
-  var {
+const getPayloadOfTooltip = (item, type, nameKey) => {
+  const {
     payload
   } = item;
   if (type === 'node') {
@@ -289,8 +289,8 @@ var getPayloadOfTooltip = (item, type, nameKey) => {
     };
   }
   if ('source' in payload && payload.source && payload.target) {
-    var sourceName = (0, _ChartUtils.getValueByDataKey)(payload.source, nameKey, '');
-    var targetName = (0, _ChartUtils.getValueByDataKey)(payload.target, nameKey, '');
+    const sourceName = (0, _ChartUtils.getValueByDataKey)(payload.source, nameKey, '');
+    const targetName = (0, _ChartUtils.getValueByDataKey)(payload.target, nameKey, '');
     return {
       payload,
       name: "".concat(sourceName, " - ").concat(targetName),
@@ -299,21 +299,21 @@ var getPayloadOfTooltip = (item, type, nameKey) => {
   }
   return null;
 };
-var sankeyPayloadSearcher = (_, activeIndex, computedData, nameKey) => {
+const sankeyPayloadSearcher = (_, activeIndex, computedData, nameKey) => {
   if (activeIndex == null || typeof activeIndex !== 'string') {
     return undefined;
   }
-  var splitIndex = activeIndex.split('-');
-  var [targetType, index] = splitIndex;
-  var item = (0, _get.default)(computedData, "".concat(targetType, "s[").concat(index, "]"));
+  const splitIndex = activeIndex.split('-');
+  const [targetType, index] = splitIndex;
+  const item = (0, _get.default)(computedData, "".concat(targetType, "s[").concat(index, "]"));
   if (item) {
-    var payload = getPayloadOfTooltip(item, targetType, nameKey);
+    const payload = getPayloadOfTooltip(item, targetType, nameKey);
     return payload;
   }
   return undefined;
 };
 exports.sankeyPayloadSearcher = sankeyPayloadSearcher;
-var options = {
+const options = {
   chartName: 'Sankey',
   defaultTooltipEventType: 'item',
   validateTooltipEventTypes: ['item'],
@@ -321,7 +321,7 @@ var options = {
   eventEmitter: undefined
 };
 function getTooltipEntrySettings(props) {
-  var {
+  const {
     dataKey,
     nameKey,
     stroke,
@@ -349,7 +349,7 @@ function getTooltipEntrySettings(props) {
 // TODO: improve types - NodeOptions uses SankeyNode, LinkOptions uses LinkProps. Standardize.
 
 // Why is margin not a Sankey prop? No clue. Probably it should be
-var defaultSankeyMargin = {
+const defaultSankeyMargin = {
   top: 0,
   right: 0,
   bottom: 0,
@@ -362,7 +362,7 @@ function renderLinkItem(option, props) {
   if (typeof option === 'function') {
     return option(props);
   }
-  var {
+  let {
       sourceX,
       sourceY,
       sourceControlX,
@@ -381,8 +381,8 @@ function renderLinkItem(option, props) {
     strokeOpacity: "0.2"
   }, (0, _svgPropertiesNoEvents.svgPropertiesNoEvents)(others)));
 }
-var buildLinkProps = _ref3 => {
-  var {
+const buildLinkProps = _ref3 => {
+  const {
     link,
     nodes,
     left,
@@ -391,21 +391,21 @@ var buildLinkProps = _ref3 => {
     linkContent,
     linkCurvature
   } = _ref3;
-  var {
+  const {
     sy: sourceRelativeY,
     ty: targetRelativeY,
     dy: linkWidth
   } = link;
-  var sourceNode = nodes[link.source];
-  var targetNode = nodes[link.target];
-  var sourceX = sourceNode.x + sourceNode.dx + left;
-  var targetX = targetNode.x + left;
-  var interpolationFunc = interpolationGenerator(sourceX, targetX);
-  var sourceControlX = interpolationFunc(linkCurvature);
-  var targetControlX = interpolationFunc(1 - linkCurvature);
-  var sourceY = sourceNode.y + sourceRelativeY + linkWidth / 2 + top;
-  var targetY = targetNode.y + targetRelativeY + linkWidth / 2 + top;
-  var linkProps = _objectSpread({
+  const sourceNode = nodes[link.source];
+  const targetNode = nodes[link.target];
+  const sourceX = sourceNode.x + sourceNode.dx + left;
+  const targetX = targetNode.x + left;
+  const interpolationFunc = interpolationGenerator(sourceX, targetX);
+  const sourceControlX = interpolationFunc(linkCurvature);
+  const targetControlX = interpolationFunc(1 - linkCurvature);
+  const sourceY = sourceNode.y + sourceRelativeY + linkWidth / 2 + top;
+  const targetY = targetNode.y + targetRelativeY + linkWidth / 2 + top;
+  const linkProps = _objectSpread({
     sourceX,
     targetX,
     sourceY,
@@ -424,7 +424,7 @@ var buildLinkProps = _ref3 => {
   return linkProps;
 };
 function SankeyLinkElement(_ref4) {
-  var {
+  const {
     props,
     i,
     linkContent,
@@ -433,10 +433,10 @@ function SankeyLinkElement(_ref4) {
     onClick: _onClick,
     dataKey
   } = _ref4;
-  var activeCoordinate = getCoordinateOfTooltip(props, 'link');
-  var activeIndex = "link-".concat(i);
-  var dispatch = (0, _hooks.useAppDispatch)();
-  var events = {
+  const activeCoordinate = getCoordinateOfTooltip(props, 'link');
+  const activeIndex = "link-".concat(i);
+  const dispatch = (0, _hooks.useAppDispatch)();
+  const events = {
     onMouseEnter: e => {
       dispatch((0, _tooltipSlice.setActiveMouseOverItemIndex)({
         activeIndex,
@@ -461,7 +461,7 @@ function SankeyLinkElement(_ref4) {
   return /*#__PURE__*/React.createElement(_Layer.Layer, events, renderLinkItem(linkContent, props));
 }
 function AllSankeyLinkElements(_ref5) {
-  var {
+  const {
     modifiedLinks,
     links,
     linkContent,
@@ -474,7 +474,7 @@ function AllSankeyLinkElements(_ref5) {
     className: "recharts-sankey-links",
     key: "recharts-sankey-links"
   }, links.map((link, i) => {
-    var linkProps = modifiedLinks[i];
+    const linkProps = modifiedLinks[i];
     return /*#__PURE__*/React.createElement(SankeyLinkElement, {
       key: "link-".concat(link.source, "-").concat(link.target, "-").concat(link.value),
       props: linkProps,
@@ -504,21 +504,21 @@ function renderNodeItem(option, props) {
     }, (0, _svgPropertiesNoEvents.svgPropertiesNoEvents)(props)))
   );
 }
-var buildNodeProps = _ref6 => {
-  var {
+const buildNodeProps = _ref6 => {
+  const {
     node,
     nodeContent,
     top,
     left,
     i
   } = _ref6;
-  var {
+  const {
     x,
     y,
     dx,
     dy
   } = node;
-  var nodeProps = _objectSpread(_objectSpread({}, (0, _ReactUtils.filterProps)(nodeContent, false)), {}, {
+  const nodeProps = _objectSpread(_objectSpread({}, (0, _ReactUtils.filterProps)(nodeContent, false)), {}, {
     x: x + left,
     y: y + top,
     width: dx,
@@ -529,7 +529,7 @@ var buildNodeProps = _ref6 => {
   return nodeProps;
 };
 function NodeElement(_ref7) {
-  var {
+  const {
     props,
     nodeContent,
     i,
@@ -538,10 +538,10 @@ function NodeElement(_ref7) {
     onClick: _onClick2,
     dataKey
   } = _ref7;
-  var dispatch = (0, _hooks.useAppDispatch)();
-  var activeCoordinate = getCoordinateOfTooltip(props, 'node');
-  var activeIndex = "node-".concat(i);
-  var events = {
+  const dispatch = (0, _hooks.useAppDispatch)();
+  const activeCoordinate = getCoordinateOfTooltip(props, 'node');
+  const activeIndex = "node-".concat(i);
+  const events = {
     onMouseEnter: e => {
       dispatch((0, _tooltipSlice.setActiveMouseOverItemIndex)({
         activeIndex,
@@ -566,7 +566,7 @@ function NodeElement(_ref7) {
   return /*#__PURE__*/React.createElement(_Layer.Layer, events, renderNodeItem(nodeContent, props));
 }
 function AllNodeElements(_ref8) {
-  var {
+  const {
     modifiedNodes,
     nodeContent,
     onMouseEnter,
@@ -600,7 +600,7 @@ class Sankey extends _react.PureComponent {
     });
   }
   static getDerivedStateFromProps(nextProps, prevState) {
-    var {
+    const {
       data,
       width,
       height,
@@ -612,9 +612,9 @@ class Sankey extends _react.PureComponent {
       linkCurvature
     } = nextProps;
     if (data !== prevState.prevData || width !== prevState.prevWidth || height !== prevState.prevHeight || !(0, _ShallowEqual.shallowEqual)(margin, prevState.prevMargin) || iterations !== prevState.prevIterations || nodeWidth !== prevState.prevNodeWidth || nodePadding !== prevState.prevNodePadding || sort !== prevState.sort) {
-      var contentWidth = width - (margin && margin.left || 0) - (margin && margin.right || 0);
-      var contentHeight = height - (margin && margin.top || 0) - (margin && margin.bottom || 0);
-      var {
+      const contentWidth = width - (margin && margin.left || 0) - (margin && margin.right || 0);
+      const contentHeight = height - (margin && margin.top || 0) - (margin && margin.bottom || 0);
+      const {
         links,
         nodes
       } = computeData({
@@ -626,9 +626,9 @@ class Sankey extends _react.PureComponent {
         nodePadding,
         sort
       });
-      var top = (0, _get.default)(margin, 'top') || 0;
-      var left = (0, _get.default)(margin, 'left') || 0;
-      var modifiedLinks = links.map((link, i) => {
+      const top = (0, _get.default)(margin, 'top') || 0;
+      const left = (0, _get.default)(margin, 'left') || 0;
+      const modifiedLinks = links.map((link, i) => {
         return buildLinkProps({
           link,
           nodes,
@@ -639,7 +639,7 @@ class Sankey extends _react.PureComponent {
           linkCurvature
         });
       });
-      var modifiedNodes = nodes.map((node, i) => {
+      const modifiedNodes = nodes.map((node, i) => {
         return buildNodeProps({
           node,
           nodeContent: nextProps.node,
@@ -666,7 +666,7 @@ class Sankey extends _react.PureComponent {
     return null;
   }
   handleMouseEnter(item, type, e) {
-    var {
+    const {
       onMouseEnter
     } = this.props;
     if (onMouseEnter) {
@@ -674,7 +674,7 @@ class Sankey extends _react.PureComponent {
     }
   }
   handleMouseLeave(item, type, e) {
-    var {
+    const {
       onMouseLeave
     } = this.props;
     if (onMouseLeave) {
@@ -682,13 +682,13 @@ class Sankey extends _react.PureComponent {
     }
   }
   handleClick(item, type, e) {
-    var {
+    const {
       onClick
     } = this.props;
     if (onClick) onClick(item, type, e);
   }
   render() {
-    var _this$props = this.props,
+    const _this$props = this.props,
       {
         width,
         height,
@@ -700,12 +700,12 @@ class Sankey extends _react.PureComponent {
     if (!(0, _isWellBehavedNumber.isPositiveNumber)(width) || !(0, _isWellBehavedNumber.isPositiveNumber)(height)) {
       return null;
     }
-    var {
+    const {
       links,
       modifiedNodes,
       modifiedLinks
     } = this.state;
-    var attrs = (0, _svgPropertiesNoEvents.svgPropertiesNoEvents)(others);
+    const attrs = (0, _svgPropertiesNoEvents.svgPropertiesNoEvents)(others);
     return /*#__PURE__*/React.createElement(_RechartsStoreProvider.RechartsStoreProvider, {
       preloadedState: {
         options

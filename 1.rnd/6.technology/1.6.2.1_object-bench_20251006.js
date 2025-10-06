@@ -36,43 +36,43 @@ const max = 10
 
 const run = bench([
   function benchBunyanObj (cb) {
-    for (var i = 0; i < max; i++) {
+    for (let i = 0; i < max; i++) {
       blog.info({ hello: 'world' })
     }
     setImmediate(cb)
   },
   function benchWinstonObj (cb) {
-    for (var i = 0; i < max; i++) {
+    for (let i = 0; i < max; i++) {
       chill.info({ hello: 'world' })
     }
     setImmediate(cb)
   },
   function benchBoleObj (cb) {
-    for (var i = 0; i < max; i++) {
+    for (let i = 0; i < max; i++) {
       bole.info({ hello: 'world' })
     }
     setImmediate(cb)
   },
   function benchLogLevelObject (cb) {
-    for (var i = 0; i < max; i++) {
+    for (let i = 0; i < max; i++) {
       loglevel.info({ hello: 'world' })
     }
     setImmediate(cb)
   },
   function benchPinoObj (cb) {
-    for (var i = 0; i < max; i++) {
+    for (let i = 0; i < max; i++) {
       plogDest.info({ hello: 'world' })
     }
     setImmediate(cb)
   },
   function benchPinoMinLengthObj (cb) {
-    for (var i = 0; i < max; i++) {
+    for (let i = 0; i < max; i++) {
       plogMinLength.info({ hello: 'world' })
     }
     setImmediate(cb)
   },
   function benchPinoNodeStreamObj (cb) {
-    for (var i = 0; i < max; i++) {
+    for (let i = 0; i < max; i++) {
       plogNodeStream.info({ hello: 'world' })
     }
     setImmediate(cb)

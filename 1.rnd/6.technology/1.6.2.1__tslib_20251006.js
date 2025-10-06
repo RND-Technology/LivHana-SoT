@@ -42,7 +42,7 @@ function __awaiter(thisArg, _arguments, P, generator) {
   });
 }
 function __generator(thisArg, body) {
-  var _ = {
+  let _ = {
       label: 0,
       sent: function () {
         if (t[0] & 1) throw t[1];
@@ -130,7 +130,7 @@ function __generator(thisArg, body) {
   }
 }
 function __values(o) {
-  var s = typeof Symbol === "function" && Symbol.iterator,
+  let s = typeof Symbol === "function" && Symbol.iterator,
     m = s && o[s],
     i = 0;
   if (m) return m.call(o);
@@ -147,7 +147,7 @@ function __values(o) {
 }
 function __asyncValues(o) {
   if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
-  var m = o[Symbol.asyncIterator],
+  let m = o[Symbol.asyncIterator],
     i;
   return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () {
     return this;

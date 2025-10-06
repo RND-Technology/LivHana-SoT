@@ -22,5 +22,5 @@ const modifyPackageJson = ({projectPackageJson, shouldModifyScripts}) => {
   delete projectPackageJson.jest;
   return `${JSON.stringify(projectPackageJson, null, 2)}\n`;
 };
-var _default = modifyPackageJson;
+const _default = modifyPackageJson;
 exports.default = _default;

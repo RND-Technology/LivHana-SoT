@@ -1,4 +1,4 @@
-var mapCacheClear = require('./_mapCacheClear'),
+const mapCacheClear = require('./_mapCacheClear'),
     mapCacheDelete = require('./_mapCacheDelete'),
     mapCacheGet = require('./_mapCacheGet'),
     mapCacheHas = require('./_mapCacheHas'),
@@ -12,12 +12,12 @@ var mapCacheClear = require('./_mapCacheClear'),
  * @param {Array} [entries] The key-value pairs to cache.
  */
 function MapCache(entries) {
-  var index = -1,
+  let index = -1,
       length = entries == null ? 0 : entries.length;
 
   this.clear();
   while (++index < length) {
-    var entry = entries[index];
+    const entry = entries[index];
     this.set(entry[0], entry[1]);
   }
 }

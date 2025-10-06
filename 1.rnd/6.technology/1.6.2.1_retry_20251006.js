@@ -91,7 +91,7 @@ async function getRetryConfig(err) {
  * @param err The GaxiosError passed to the interceptor.
  */
 function shouldRetryRequest(err) {
-    var _a;
+    let _a;
     const config = getConfig(err);
     // node-fetch raises an AbortError if signaled:
     // https://github.com/bitinn/node-fetch#request-cancellation-with-abortsignal
@@ -151,7 +151,7 @@ function getConfig(err) {
  * @returns {number} the amount of ms to wait before the next retry attempt.
  */
 function getNextRetryDelay(config) {
-    var _a;
+    let _a;
     // Calculate time to wait with exponential backoff.
     // If this is the first retry, look for a configured retryDelay.
     const retryDelay = config.currentRetryAttempt ? 0 : (_a = config.retryDelay) !== null && _a !== void 0 ? _a : 100;

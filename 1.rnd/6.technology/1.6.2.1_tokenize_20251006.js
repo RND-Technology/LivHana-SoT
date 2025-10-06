@@ -3,15 +3,15 @@
 exports.__esModule = true;
 exports.FIELDS = void 0;
 exports["default"] = tokenize;
-var t = _interopRequireWildcard(require("./tokenTypes"));
-var _unescapable, _wordDelimiters;
-function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
-function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-var unescapable = (_unescapable = {}, _unescapable[t.tab] = true, _unescapable[t.newline] = true, _unescapable[t.cr] = true, _unescapable[t.feed] = true, _unescapable);
-var wordDelimiters = (_wordDelimiters = {}, _wordDelimiters[t.space] = true, _wordDelimiters[t.tab] = true, _wordDelimiters[t.newline] = true, _wordDelimiters[t.cr] = true, _wordDelimiters[t.feed] = true, _wordDelimiters[t.ampersand] = true, _wordDelimiters[t.asterisk] = true, _wordDelimiters[t.bang] = true, _wordDelimiters[t.comma] = true, _wordDelimiters[t.colon] = true, _wordDelimiters[t.semicolon] = true, _wordDelimiters[t.openParenthesis] = true, _wordDelimiters[t.closeParenthesis] = true, _wordDelimiters[t.openSquare] = true, _wordDelimiters[t.closeSquare] = true, _wordDelimiters[t.singleQuote] = true, _wordDelimiters[t.doubleQuote] = true, _wordDelimiters[t.plus] = true, _wordDelimiters[t.pipe] = true, _wordDelimiters[t.tilde] = true, _wordDelimiters[t.greaterThan] = true, _wordDelimiters[t.equals] = true, _wordDelimiters[t.dollar] = true, _wordDelimiters[t.caret] = true, _wordDelimiters[t.slash] = true, _wordDelimiters);
-var hex = {};
-var hexChars = "0123456789abcdefABCDEF";
-for (var i = 0; i < hexChars.length; i++) {
+const t = _interopRequireWildcard(require("./tokenTypes"));
+let _unescapable, _wordDelimiters;
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; const cacheBabelInterop = new WeakMap(); const cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { "default": obj }; } const cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } const newObj = {}; const hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (const key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { const desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+const unescapable = (_unescapable = {}, _unescapable[t.tab] = true, _unescapable[t.newline] = true, _unescapable[t.cr] = true, _unescapable[t.feed] = true, _unescapable);
+const wordDelimiters = (_wordDelimiters = {}, _wordDelimiters[t.space] = true, _wordDelimiters[t.tab] = true, _wordDelimiters[t.newline] = true, _wordDelimiters[t.cr] = true, _wordDelimiters[t.feed] = true, _wordDelimiters[t.ampersand] = true, _wordDelimiters[t.asterisk] = true, _wordDelimiters[t.bang] = true, _wordDelimiters[t.comma] = true, _wordDelimiters[t.colon] = true, _wordDelimiters[t.semicolon] = true, _wordDelimiters[t.openParenthesis] = true, _wordDelimiters[t.closeParenthesis] = true, _wordDelimiters[t.openSquare] = true, _wordDelimiters[t.closeSquare] = true, _wordDelimiters[t.singleQuote] = true, _wordDelimiters[t.doubleQuote] = true, _wordDelimiters[t.plus] = true, _wordDelimiters[t.pipe] = true, _wordDelimiters[t.tilde] = true, _wordDelimiters[t.greaterThan] = true, _wordDelimiters[t.equals] = true, _wordDelimiters[t.dollar] = true, _wordDelimiters[t.caret] = true, _wordDelimiters[t.slash] = true, _wordDelimiters);
+const hex = {};
+const hexChars = "0123456789abcdefABCDEF";
+for (let i = 0; i < hexChars.length; i++) {
   hex[hexChars.charCodeAt(i)] = true;
 }
 
@@ -21,8 +21,8 @@ for (var i = 0; i < hexChars.length; i++) {
  * @param {number} start The index into the string where word's first letter occurs
  */
 function consumeWord(css, start) {
-  var next = start;
-  var code;
+  let next = start;
+  let code;
   do {
     code = css.charCodeAt(next);
     if (wordDelimiters[code]) {
@@ -43,12 +43,12 @@ function consumeWord(css, start) {
  * @param {number} start The index into the string where escape character (`\`) occurs.
  */
 function consumeEscape(css, start) {
-  var next = start;
-  var code = css.charCodeAt(next + 1);
+  let next = start;
+  let code = css.charCodeAt(next + 1);
   if (unescapable[code]) {
     // just consume the escape char
   } else if (hex[code]) {
-    var hexDigits = 0;
+    let hexDigits = 0;
     // consume up to 6 hex chars
     do {
       next++;
@@ -65,7 +65,7 @@ function consumeEscape(css, start) {
   }
   return next;
 }
-var FIELDS = {
+const FIELDS = {
   TYPE: 0,
   START_LINE: 1,
   START_COL: 2,
@@ -76,15 +76,15 @@ var FIELDS = {
 };
 exports.FIELDS = FIELDS;
 function tokenize(input) {
-  var tokens = [];
-  var css = input.css.valueOf();
-  var _css = css,
+  const tokens = [];
+  let css = input.css.valueOf();
+  const _css = css,
     length = _css.length;
-  var offset = -1;
-  var line = 1;
-  var start = 0;
-  var end = 0;
-  var code, content, endColumn, endLine, escaped, escapePos, last, lines, next, nextLine, nextOffset, quote, tokenType;
+  let offset = -1;
+  let line = 1;
+  let start = 0;
+  let end = 0;
+  let code, content, endColumn, endLine, escaped, escapePos, last, lines, next, nextLine, nextOffset, quote, tokenType;
   function unclosed(what, fix) {
     if (input.safe) {
       // fyi: this is never set to true.

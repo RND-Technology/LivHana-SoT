@@ -2,7 +2,7 @@ import { g as getDefaultExportFromCjs } from './_commonjsHelpers.jjO7Zipk.js';
 import require$$0 from 'util';
 import p from 'path';
 
-var utils$8 = {};
+const utils$8 = {};
 
 (function (exports) {
 
@@ -37,7 +37,7 @@ var utils$8 = {};
 	 */
 
 	exports.escapeNode = (block, n = 0, type) => {
-	  let node = block.nodes[n];
+	  const node = block.nodes[n];
 	  if (!node) return;
 
 	  if ((type && node.type === type) || node.type === 'open' || node.type === 'close') {
@@ -108,7 +108,7 @@ var utils$8 = {};
 	  const result = [];
 	  const flat = arr => {
 	    for (let i = 0; i < arr.length; i++) {
-	      let ele = arr[i];
+	      const ele = arr[i];
 	      Array.isArray(ele) ? flat(ele) : ele !== void 0 && result.push(ele);
 	    }
 	    return result;
@@ -120,10 +120,10 @@ var utils$8 = {};
 
 const utils$7 = utils$8;
 
-var stringify$4 = (ast, options = {}) => {
-  let stringify = (node, parent = {}) => {
-    let invalidBlock = options.escapeInvalid && utils$7.isInvalidBrace(parent);
-    let invalidNode = node.invalid === true && options.escapeInvalid === true;
+const stringify$4 = (ast, options = {}) => {
+  const stringify = (node, parent = {}) => {
+    const invalidBlock = options.escapeInvalid && utils$7.isInvalidBrace(parent);
+    const invalidNode = node.invalid === true && options.escapeInvalid === true;
     let output = '';
 
     if (node.value) {
@@ -138,7 +138,7 @@ var stringify$4 = (ast, options = {}) => {
     }
 
     if (node.nodes) {
-      for (let child of node.nodes) {
+      for (const child of node.nodes) {
         output += stringify(child);
       }
     }
@@ -155,7 +155,7 @@ var stringify$4 = (ast, options = {}) => {
  * Released under the MIT License.
  */
 
-var isNumber$2 = function(num) {
+const isNumber$2 = function(num) {
   if (typeof num === 'number') {
     return num - num === 0;
   }
@@ -187,26 +187,26 @@ const toRegexRange$1 = (min, max, options) => {
     throw new TypeError('toRegexRange: expected the second argument to be a number.');
   }
 
-  let opts = { relaxZeros: true, ...options };
+  const opts = { relaxZeros: true, ...options };
   if (typeof opts.strictZeros === 'boolean') {
     opts.relaxZeros = opts.strictZeros === false;
   }
 
-  let relax = String(opts.relaxZeros);
-  let shorthand = String(opts.shorthand);
-  let capture = String(opts.capture);
-  let wrap = String(opts.wrap);
-  let cacheKey = min + ':' + max + '=' + relax + shorthand + capture + wrap;
+  const relax = String(opts.relaxZeros);
+  const shorthand = String(opts.shorthand);
+  const capture = String(opts.capture);
+  const wrap = String(opts.wrap);
+  const cacheKey = min + ':' + max + '=' + relax + shorthand + capture + wrap;
 
   if (toRegexRange$1.cache.hasOwnProperty(cacheKey)) {
     return toRegexRange$1.cache[cacheKey].result;
   }
 
   let a = Math.min(min, max);
-  let b = Math.max(min, max);
+  const b = Math.max(min, max);
 
   if (Math.abs(a - b) === 1) {
-    let result = min + '|' + max;
+    const result = min + '|' + max;
     if (opts.capture) {
       return `(${result})`;
     }
@@ -216,8 +216,8 @@ const toRegexRange$1 = (min, max, options) => {
     return `(?:${result})`;
   }
 
-  let isPadded = hasPadding(min) || hasPadding(max);
-  let state = { min, max, a, b };
+  const isPadded = hasPadding(min) || hasPadding(max);
+  const state = { min, max, a, b };
   let positives = [];
   let negatives = [];
 
@@ -227,7 +227,7 @@ const toRegexRange$1 = (min, max, options) => {
   }
 
   if (a < 0) {
-    let newMin = b < 0 ? Math.abs(b) : 1;
+    const newMin = b < 0 ? Math.abs(b) : 1;
     negatives = splitToPatterns(newMin, Math.abs(a), state, opts);
     a = state.a = 0;
   }
@@ -251,10 +251,10 @@ const toRegexRange$1 = (min, max, options) => {
 };
 
 function collatePatterns(neg, pos, options) {
-  let onlyNegative = filterPatterns(neg, pos, '-', false) || [];
-  let onlyPositive = filterPatterns(pos, neg, '', false) || [];
-  let intersected = filterPatterns(neg, pos, '-?', true) || [];
-  let subpatterns = onlyNegative.concat(intersected).concat(onlyPositive);
+  const onlyNegative = filterPatterns(neg, pos, '-', false) || [];
+  const onlyPositive = filterPatterns(pos, neg, '', false) || [];
+  const intersected = filterPatterns(neg, pos, '-?', true) || [];
+  const subpatterns = onlyNegative.concat(intersected).concat(onlyPositive);
   return subpatterns.join('|');
 }
 
@@ -296,13 +296,13 @@ function rangeToPattern(start, stop, options) {
     return { pattern: start, count: [], digits: 0 };
   }
 
-  let zipped = zip(start, stop);
-  let digits = zipped.length;
+  const zipped = zip(start, stop);
+  const digits = zipped.length;
   let pattern = '';
   let count = 0;
 
   for (let i = 0; i < digits; i++) {
-    let [startDigit, stopDigit] = zipped[i];
+    const [startDigit, stopDigit] = zipped[i];
 
     if (startDigit === stopDigit) {
       pattern += startDigit;
@@ -323,14 +323,14 @@ function rangeToPattern(start, stop, options) {
 }
 
 function splitToPatterns(min, max, tok, options) {
-  let ranges = splitToRanges(min, max);
-  let tokens = [];
+  const ranges = splitToRanges(min, max);
+  const tokens = [];
   let start = min;
   let prev;
 
   for (let i = 0; i < ranges.length; i++) {
-    let max = ranges[i];
-    let obj = rangeToPattern(String(start), String(max), options);
+    const max = ranges[i];
+    const obj = rangeToPattern(String(start), String(max), options);
     let zeros = '';
 
     if (!tok.isPadded && prev && prev.pattern === obj.pattern) {
@@ -358,10 +358,10 @@ function splitToPatterns(min, max, tok, options) {
 }
 
 function filterPatterns(arr, comparison, prefix, intersection, options) {
-  let result = [];
+  const result = [];
 
-  for (let ele of arr) {
-    let { string } = ele;
+  for (const ele of arr) {
+    const { string } = ele;
 
     // only push if _both_ are negative...
     if (!intersection && !contains(comparison, 'string', string)) {
@@ -381,7 +381,7 @@ function filterPatterns(arr, comparison, prefix, intersection, options) {
  */
 
 function zip(a, b) {
-  let arr = [];
+  const arr = [];
   for (let i = 0; i < a.length; i++) arr.push([a[i], b[i]]);
   return arr;
 }
@@ -403,7 +403,7 @@ function countZeros(integer, zeros) {
 }
 
 function toQuantifier(digits) {
-  let [start = 0, stop = ''] = digits;
+  const [start = 0, stop = ''] = digits;
   if (stop || start > 1) {
     return `{${start + (stop ? ',' + stop : '')}}`;
   }
@@ -423,8 +423,8 @@ function padZeros(value, tok, options) {
     return value;
   }
 
-  let diff = Math.abs(tok.maxLen - String(value).length);
-  let relax = options.relaxZeros !== false;
+  const diff = Math.abs(tok.maxLen - String(value).length);
+  const relax = options.relaxZeros !== false;
 
   switch (diff) {
     case 0:
@@ -450,7 +450,7 @@ toRegexRange$1.clearCache = () => (toRegexRange$1.cache = {});
  * Expose `toRegexRange`
  */
 
-var toRegexRange_1 = toRegexRange$1;
+const toRegexRange_1 = toRegexRange$1;
 
 /*!
  * fill-range <https://github.com/jonschlinkert/fill-range>
@@ -492,7 +492,7 @@ const stringify$3 = (start, end, options) => {
 
 const pad = (input, maxLength, toNumber) => {
   if (maxLength > 0) {
-    let dash = input[0] === '-' ? '-' : '';
+    const dash = input[0] === '-' ? '-' : '';
     if (dash) input = input.slice(1);
     input = (dash + input.padStart(dash ? maxLength - 1 : maxLength, '0'));
   }
@@ -503,7 +503,7 @@ const pad = (input, maxLength, toNumber) => {
 };
 
 const toMaxLen = (input, maxLength) => {
-  let negative = input[0] === '-' ? '-' : '';
+  const negative = input[0] === '-' ? '-' : '';
   if (negative) {
     input = input.slice(1);
     maxLength--;
@@ -516,7 +516,7 @@ const toSequence = (parts, options) => {
   parts.negatives.sort((a, b) => a < b ? -1 : a > b ? 1 : 0);
   parts.positives.sort((a, b) => a < b ? -1 : a > b ? 1 : 0);
 
-  let prefix = options.capture ? '' : '?:';
+  const prefix = options.capture ? '' : '?:';
   let positives = '';
   let negatives = '';
   let result;
@@ -547,17 +547,17 @@ const toRange = (a, b, isNumbers, options) => {
     return toRegexRange(a, b, { wrap: false, ...options });
   }
 
-  let start = String.fromCharCode(a);
+  const start = String.fromCharCode(a);
   if (a === b) return start;
 
-  let stop = String.fromCharCode(b);
+  const stop = String.fromCharCode(b);
   return `[${start}-${stop}]`;
 };
 
 const toRegex = (start, end, options) => {
   if (Array.isArray(start)) {
-    let wrap = options.wrap === true;
-    let prefix = options.capture ? '' : '?:';
+    const wrap = options.wrap === true;
+    const prefix = options.capture ? '' : '?:';
     return wrap ? `(${prefix}${start.join('|')})` : start.join('|');
   }
   return toRegexRange(start, end, options);
@@ -592,24 +592,24 @@ const fillNumbers = (start, end, step = 1, options = {}) => {
   if (a === 0) a = 0;
   if (b === 0) b = 0;
 
-  let descending = a > b;
-  let startString = String(start);
-  let endString = String(end);
-  let stepString = String(step);
+  const descending = a > b;
+  const startString = String(start);
+  const endString = String(end);
+  const stepString = String(step);
   step = Math.max(Math.abs(step), 1);
 
-  let padded = zeros(startString) || zeros(endString) || zeros(stepString);
-  let maxLen = padded ? Math.max(startString.length, endString.length, stepString.length) : 0;
-  let toNumber = padded === false && stringify$3(start, end, options) === false;
-  let format = options.transform || transform(toNumber);
+  const padded = zeros(startString) || zeros(endString) || zeros(stepString);
+  const maxLen = padded ? Math.max(startString.length, endString.length, stepString.length) : 0;
+  const toNumber = padded === false && stringify$3(start, end, options) === false;
+  const format = options.transform || transform(toNumber);
 
   if (options.toRegex && step === 1) {
     return toRange(toMaxLen(start, maxLen), toMaxLen(end, maxLen), true, options);
   }
 
-  let parts = { negatives: [], positives: [] };
-  let push = num => parts[num < 0 ? 'negatives' : 'positives'].push(Math.abs(num));
-  let range = [];
+  const parts = { negatives: [], positives: [] };
+  const push = num => parts[num < 0 ? 'negatives' : 'positives'].push(Math.abs(num));
+  const range = [];
   let index = 0;
 
   while (descending ? a >= b : a <= b) {
@@ -637,19 +637,19 @@ const fillLetters = (start, end, step = 1, options = {}) => {
   }
 
 
-  let format = options.transform || (val => String.fromCharCode(val));
+  const format = options.transform || (val => String.fromCharCode(val));
   let a = `${start}`.charCodeAt(0);
-  let b = `${end}`.charCodeAt(0);
+  const b = `${end}`.charCodeAt(0);
 
-  let descending = a > b;
-  let min = Math.min(a, b);
-  let max = Math.max(a, b);
+  const descending = a > b;
+  const min = Math.min(a, b);
+  const max = Math.max(a, b);
 
   if (options.toRegex && step === 1) {
     return toRange(min, max, false, options);
   }
 
-  let range = [];
+  const range = [];
   let index = 0;
 
   while (descending ? a >= b : a <= b) {
@@ -682,7 +682,7 @@ const fill$2 = (start, end, step, options = {}) => {
     return fill$2(start, end, 0, step);
   }
 
-  let opts = { ...options };
+  const opts = { ...options };
   if (opts.capture === true) opts.wrap = true;
   step = step || opts.step || 1;
 
@@ -698,17 +698,17 @@ const fill$2 = (start, end, step, options = {}) => {
   return fillLetters(start, end, Math.max(Math.abs(step), 1), opts);
 };
 
-var fillRange = fill$2;
+const fillRange = fill$2;
 
 const fill$1 = fillRange;
 const utils$6 = utils$8;
 
 const compile$1 = (ast, options = {}) => {
-  let walk = (node, parent = {}) => {
-    let invalidBlock = utils$6.isInvalidBrace(parent);
-    let invalidNode = node.invalid === true && options.escapeInvalid === true;
-    let invalid = invalidBlock === true || invalidNode === true;
-    let prefix = options.escapeInvalid === true ? '\\' : '';
+  const walk = (node, parent = {}) => {
+    const invalidBlock = utils$6.isInvalidBrace(parent);
+    const invalidNode = node.invalid === true && options.escapeInvalid === true;
+    const invalid = invalidBlock === true || invalidNode === true;
+    const prefix = options.escapeInvalid === true ? '\\' : '';
     let output = '';
 
     if (node.isOpen === true) {
@@ -735,8 +735,8 @@ const compile$1 = (ast, options = {}) => {
     }
 
     if (node.nodes && node.ranges > 0) {
-      let args = utils$6.reduce(node.nodes);
-      let range = fill$1(...args, { ...options, wrap: false, toRegex: true });
+      const args = utils$6.reduce(node.nodes);
+      const range = fill$1(...args, { ...options, wrap: false, toRegex: true });
 
       if (range.length !== 0) {
         return args.length > 1 && range.length > 1 ? `(${range})` : range;
@@ -744,7 +744,7 @@ const compile$1 = (ast, options = {}) => {
     }
 
     if (node.nodes) {
-      for (let child of node.nodes) {
+      for (const child of node.nodes) {
         output += walk(child, node);
       }
     }
@@ -754,14 +754,14 @@ const compile$1 = (ast, options = {}) => {
   return walk(ast);
 };
 
-var compile_1 = compile$1;
+const compile_1 = compile$1;
 
 const fill = fillRange;
 const stringify$2 = stringify$4;
 const utils$5 = utils$8;
 
 const append = (queue = '', stash = '', enclose = false) => {
-  let result = [];
+  const result = [];
 
   queue = [].concat(queue);
   stash = [].concat(stash);
@@ -771,9 +771,9 @@ const append = (queue = '', stash = '', enclose = false) => {
     return enclose ? utils$5.flatten(stash).map(ele => `{${ele}}`) : stash;
   }
 
-  for (let item of queue) {
+  for (const item of queue) {
     if (Array.isArray(item)) {
-      for (let value of item) {
+      for (const value of item) {
         result.push(append(value, stash, enclose));
       }
     } else {
@@ -787,9 +787,9 @@ const append = (queue = '', stash = '', enclose = false) => {
 };
 
 const expand$1 = (ast, options = {}) => {
-  let rangeLimit = options.rangeLimit === void 0 ? 1000 : options.rangeLimit;
+  const rangeLimit = options.rangeLimit === void 0 ? 1000 : options.rangeLimit;
 
-  let walk = (node, parent = {}) => {
+  const walk = (node, parent = {}) => {
     node.queue = [];
 
     let p = parent;
@@ -811,7 +811,7 @@ const expand$1 = (ast, options = {}) => {
     }
 
     if (node.nodes && node.ranges > 0) {
-      let args = utils$5.reduce(node.nodes);
+      const args = utils$5.reduce(node.nodes);
 
       if (utils$5.exceedsLimit(...args, options.step, rangeLimit)) {
         throw new RangeError('expanded array length exceeds range limit. Use options.rangeLimit to increase or disable the limit.');
@@ -827,7 +827,7 @@ const expand$1 = (ast, options = {}) => {
       return;
     }
 
-    let enclose = utils$5.encloseBrace(node);
+    const enclose = utils$5.encloseBrace(node);
     let queue = node.queue;
     let block = node;
 
@@ -837,7 +837,7 @@ const expand$1 = (ast, options = {}) => {
     }
 
     for (let i = 0; i < node.nodes.length; i++) {
-      let child = node.nodes[i];
+      const child = node.nodes[i];
 
       if (child.type === 'comma' && node.type === 'brace') {
         if (i === 1) queue.push('');
@@ -866,9 +866,9 @@ const expand$1 = (ast, options = {}) => {
   return utils$5.flatten(walk(ast));
 };
 
-var expand_1 = expand$1;
+const expand_1 = expand$1;
 
-var constants$3 = {
+const constants$3 = {
   MAX_LENGTH: 1024 * 64,
 
   // Digits
@@ -957,18 +957,18 @@ const parse$3 = (input, options = {}) => {
     throw new TypeError('Expected a string');
   }
 
-  let opts = options || {};
-  let max = typeof opts.maxLength === 'number' ? Math.min(MAX_LENGTH$1, opts.maxLength) : MAX_LENGTH$1;
+  const opts = options || {};
+  const max = typeof opts.maxLength === 'number' ? Math.min(MAX_LENGTH$1, opts.maxLength) : MAX_LENGTH$1;
   if (input.length > max) {
     throw new SyntaxError(`Input length (${input.length}), exceeds max characters (${max})`);
   }
 
-  let ast = { type: 'root', input, nodes: [] };
-  let stack = [ast];
+  const ast = { type: 'root', input, nodes: [] };
+  const stack = [ast];
   let block = ast;
   let prev = ast;
   let brackets = 0;
-  let length = input.length;
+  const length = input.length;
   let index = 0;
   let depth = 0;
   let value;
@@ -1088,7 +1088,7 @@ const parse$3 = (input, options = {}) => {
      */
 
     if (value === CHAR_DOUBLE_QUOTE || value === CHAR_SINGLE_QUOTE || value === CHAR_BACKTICK) {
-      let open = value;
+      const open = value;
       let next;
 
       if (options.keepQuotes !== true) {
@@ -1120,8 +1120,8 @@ const parse$3 = (input, options = {}) => {
     if (value === CHAR_LEFT_CURLY_BRACE$1) {
       depth++;
 
-      let dollar = prev.value && prev.value.slice(-1) === '$' || block.dollar === true;
-      let brace = {
+      const dollar = prev.value && prev.value.slice(-1) === '$' || block.dollar === true;
+      const brace = {
         type: 'brace',
         open: true,
         close: false,
@@ -1148,7 +1148,7 @@ const parse$3 = (input, options = {}) => {
         continue;
       }
 
-      let type = 'close';
+      const type = 'close';
       block = stack.pop();
       block.close = true;
 
@@ -1166,7 +1166,7 @@ const parse$3 = (input, options = {}) => {
     if (value === CHAR_COMMA$1 && depth > 0) {
       if (block.ranges > 0) {
         block.ranges = 0;
-        let open = block.nodes.shift();
+        const open = block.nodes.shift();
         block.nodes = [open, { type: 'text', value: stringify$1(block) }];
       }
 
@@ -1180,7 +1180,7 @@ const parse$3 = (input, options = {}) => {
      */
 
     if (value === CHAR_DOT$1 && depth > 0 && block.commas === 0) {
-      let siblings = block.nodes;
+      const siblings = block.nodes;
 
       if (depth === 0 || siblings.length === 0) {
         push({ type: 'text', value });
@@ -1207,7 +1207,7 @@ const parse$3 = (input, options = {}) => {
       if (prev.type === 'range') {
         siblings.pop();
 
-        let before = siblings[siblings.length - 1];
+        const before = siblings[siblings.length - 1];
         before.value += prev.value + value;
         prev = before;
         block.ranges--;
@@ -1240,8 +1240,8 @@ const parse$3 = (input, options = {}) => {
       });
 
       // get the location of the block on parent.nodes (block's siblings)
-      let parent = stack[stack.length - 1];
-      let index = parent.nodes.indexOf(block);
+      const parent = stack[stack.length - 1];
+      const index = parent.nodes.indexOf(block);
       // replace the (invalid) block with it's nodes
       parent.nodes.splice(index, 1, ...block.nodes);
     }
@@ -1251,7 +1251,7 @@ const parse$3 = (input, options = {}) => {
   return ast;
 };
 
-var parse_1$1 = parse$3;
+const parse_1$1 = parse$3;
 
 const stringify = stringify$4;
 const compile = compile_1;
@@ -1276,8 +1276,8 @@ const braces$1 = (input, options = {}) => {
   let output = [];
 
   if (Array.isArray(input)) {
-    for (let pattern of input) {
-      let result = braces$1.create(pattern, options);
+    for (const pattern of input) {
+      const result = braces$1.create(pattern, options);
       if (Array.isArray(result)) {
         output.push(...result);
       } else {
@@ -1420,9 +1420,9 @@ braces$1.create = (input, options = {}) => {
  * Expose "braces"
  */
 
-var braces_1 = braces$1;
+const braces_1 = braces$1;
 
-var utils$4 = {};
+const utils$4 = {};
 
 const path$1 = p;
 const WIN_SLASH = '\\\\/';
@@ -1507,7 +1507,7 @@ const POSIX_REGEX_SOURCE$1 = {
   xdigit: 'A-Fa-f0-9'
 };
 
-var constants$2 = {
+const constants$2 = {
   MAX_LENGTH: 1024 * 64,
   POSIX_REGEX_SOURCE: POSIX_REGEX_SOURCE$1,
 
@@ -2056,7 +2056,7 @@ const scan$1 = (input, options) => {
   return state;
 };
 
-var scan_1 = scan$1;
+const scan_1 = scan$1;
 
 const constants$1 = constants$2;
 const utils$2 = utils$4;
@@ -3146,7 +3146,7 @@ parse$1.fastpaths = (input, options) => {
   return source;
 };
 
-var parse_1 = parse$1;
+const parse_1 = parse$1;
 
 const path = p;
 const scan = scan_1;
@@ -3487,9 +3487,9 @@ picomatch$2.constants = constants;
  * Expose "picomatch"
  */
 
-var picomatch_1 = picomatch$2;
+const picomatch_1 = picomatch$2;
 
-var picomatch$1 = picomatch_1;
+const picomatch$1 = picomatch_1;
 
 const util = require$$0;
 const braces = braces_1;
@@ -3519,12 +3519,12 @@ const micromatch = (list, patterns, options) => {
   patterns = [].concat(patterns);
   list = [].concat(list);
 
-  let omit = new Set();
-  let keep = new Set();
-  let items = new Set();
+  const omit = new Set();
+  const keep = new Set();
+  const items = new Set();
   let negatives = 0;
 
-  let onResult = state => {
+  const onResult = state => {
     items.add(state.output);
     if (options && options.onResult) {
       options.onResult(state);
@@ -3532,14 +3532,14 @@ const micromatch = (list, patterns, options) => {
   };
 
   for (let i = 0; i < patterns.length; i++) {
-    let isMatch = picomatch(String(patterns[i]), { ...options, onResult }, true);
-    let negated = isMatch.state.negated || isMatch.state.negatedExtglob;
+    const isMatch = picomatch(String(patterns[i]), { ...options, onResult }, true);
+    const negated = isMatch.state.negated || isMatch.state.negatedExtglob;
     if (negated) negatives++;
 
-    for (let item of list) {
-      let matched = isMatch(item, true);
+    for (const item of list) {
+      const matched = isMatch(item, true);
 
-      let match = negated ? !matched.isMatch : matched.isMatch;
+      const match = negated ? !matched.isMatch : matched.isMatch;
       if (!match) continue;
 
       if (negated) {
@@ -3551,8 +3551,8 @@ const micromatch = (list, patterns, options) => {
     }
   }
 
-  let result = negatives === patterns.length ? [...items] : [...keep];
-  let matches = result.filter(item => !omit.has(item));
+  const result = negatives === patterns.length ? [...items] : [...keep];
+  const matches = result.filter(item => !omit.has(item));
 
   if (options && matches.length === 0) {
     if (options.failglob === true) {
@@ -3638,17 +3638,17 @@ micromatch.any = micromatch.isMatch;
 
 micromatch.not = (list, patterns, options = {}) => {
   patterns = [].concat(patterns).map(String);
-  let result = new Set();
-  let items = [];
+  const result = new Set();
+  const items = [];
 
-  let onResult = state => {
+  const onResult = state => {
     if (options.onResult) options.onResult(state);
     items.push(state.output);
   };
 
-  let matches = new Set(micromatch(list, patterns, { ...options, onResult }));
+  const matches = new Set(micromatch(list, patterns, { ...options, onResult }));
 
-  for (let item of items) {
+  for (const item of items) {
     if (!matches.has(item)) {
       result.add(item);
     }
@@ -3722,9 +3722,9 @@ micromatch.matchKeys = (obj, patterns, options) => {
   if (!utils.isObject(obj)) {
     throw new TypeError('Expected the first argument to be an object');
   }
-  let keys = micromatch(Object.keys(obj), patterns, options);
-  let res = {};
-  for (let key of keys) res[key] = obj[key];
+  const keys = micromatch(Object.keys(obj), patterns, options);
+  const res = {};
+  for (const key of keys) res[key] = obj[key];
   return res;
 };
 
@@ -3748,10 +3748,10 @@ micromatch.matchKeys = (obj, patterns, options) => {
  */
 
 micromatch.some = (list, patterns, options) => {
-  let items = [].concat(list);
+  const items = [].concat(list);
 
-  for (let pattern of [].concat(patterns)) {
-    let isMatch = picomatch(String(pattern), options);
+  for (const pattern of [].concat(patterns)) {
+    const isMatch = picomatch(String(pattern), options);
     if (items.some(item => isMatch(item))) {
       return true;
     }
@@ -3784,10 +3784,10 @@ micromatch.some = (list, patterns, options) => {
  */
 
 micromatch.every = (list, patterns, options) => {
-  let items = [].concat(list);
+  const items = [].concat(list);
 
-  for (let pattern of [].concat(patterns)) {
-    let isMatch = picomatch(String(pattern), options);
+  for (const pattern of [].concat(patterns)) {
+    const isMatch = picomatch(String(pattern), options);
     if (!items.every(item => isMatch(item))) {
       return false;
     }
@@ -3850,9 +3850,9 @@ micromatch.all = (str, patterns, options) => {
  */
 
 micromatch.capture = (glob, input, options) => {
-  let posix = utils.isWindows(options);
-  let regex = picomatch.makeRe(String(glob), { ...options, capture: true });
-  let match = regex.exec(posix ? utils.toPosixSlashes(input) : input);
+  const posix = utils.isWindows(options);
+  const regex = picomatch.makeRe(String(glob), { ...options, capture: true });
+  const match = regex.exec(posix ? utils.toPosixSlashes(input) : input);
 
   if (match) {
     return match.slice(1).map(v => v === void 0 ? '' : v);
@@ -3908,9 +3908,9 @@ micromatch.scan = (...args) => picomatch.scan(...args);
  */
 
 micromatch.parse = (patterns, options) => {
-  let res = [];
-  for (let pattern of [].concat(patterns || [])) {
-    for (let str of braces(String(pattern), options)) {
+  const res = [];
+  for (const pattern of [].concat(patterns || [])) {
+    for (const str of braces(String(pattern), options)) {
       res.push(picomatch.parse(str, options));
     }
   }
@@ -3955,8 +3955,8 @@ micromatch.braceExpand = (pattern, options) => {
  * Expose micromatch
  */
 
-var micromatch_1 = micromatch;
+const micromatch_1 = micromatch;
 
-var mm = /*@__PURE__*/getDefaultExportFromCjs(micromatch_1);
+const mm = /*@__PURE__*/getDefaultExportFromCjs(micromatch_1);
 
 export { micromatch_1 as a, mm as m };

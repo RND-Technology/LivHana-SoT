@@ -2,7 +2,7 @@
 
 exports.__esModule = true;
 exports.default = childNodes;
-var toArray = Function.prototype.bind.call(Function.prototype.call, [].slice);
+const toArray = Function.prototype.bind.call(Function.prototype.call, [].slice);
 /**
  * Collects all child nodes of an element.
  * 

@@ -5,4 +5,4 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 const hasSymbol = typeof Symbol === 'function' && Symbol.for;
-var _default = exports.default = hasSymbol ? Symbol.for('mui.nested') : '__THEME_NESTED__';
+const _default = exports.default = hasSymbol ? Symbol.for('mui.nested') : '__THEME_NESTED__';

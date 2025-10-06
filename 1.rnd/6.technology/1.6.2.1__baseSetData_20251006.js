@@ -1,4 +1,4 @@
-var identity = require('./identity'),
+const identity = require('./identity'),
     metaMap = require('./_metaMap');
 
 /**
@@ -9,7 +9,7 @@ var identity = require('./identity'),
  * @param {*} data The metadata.
  * @returns {Function} Returns `func`.
  */
-var baseSetData = !metaMap ? identity : function(func, data) {
+const baseSetData = !metaMap ? identity : function(func, data) {
   metaMap.set(func, data);
   return func;
 };

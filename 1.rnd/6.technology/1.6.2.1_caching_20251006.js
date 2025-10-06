@@ -15,8 +15,8 @@ function _gensync() {
   };
   return data;
 }
-var _async = require("../gensync-utils/async.js");
-var _util = require("./util.js");
+const _async = require("../gensync-utils/async.js");
+const _util = require("./util.js");
 const synchronize = gen => {
   return _gensync()(gen).sync;
 };

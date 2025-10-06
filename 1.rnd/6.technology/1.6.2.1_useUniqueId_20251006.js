@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.useUniqueId = useUniqueId;
-var _useId = require("./useId");
+const _useId = require("./useId");
 /**
  * A hook that generates a unique ID. It uses React.useId() in React 18+ for SSR safety
  * and falls back to a client-side-only unique ID generator for older versions.
@@ -20,7 +20,7 @@ function useUniqueId(prefix, customId) {
    * We have to call this hook here even if we don't use the result because
    * rules of hooks demand that hooks are never called conditionally.
    */
-  var generatedId = (0, _useId.useId)();
+  const generatedId = (0, _useId.useId)();
 
   // If a custom ID is provided, it always takes precedence.
   if (customId) {

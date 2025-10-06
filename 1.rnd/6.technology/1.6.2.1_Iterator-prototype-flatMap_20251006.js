@@ -1,26 +1,26 @@
 'use strict';
 
-var defineProperties = require('define-properties');
-var test = require('tape');
-var callBind = require('call-bind');
-var functionsHaveNames = require('functions-have-names')();
-var hasStrictMode = require('has-strict-mode')();
-var forEach = require('for-each');
-var debug = require('object-inspect');
-var v = require('es-value-fixtures');
-var hasSymbols = require('has-symbols/shams')();
-var iterate = require('iterate-iterator');
+const defineProperties = require('define-properties');
+const test = require('tape');
+const callBind = require('call-bind');
+const functionsHaveNames = require('functions-have-names')();
+const hasStrictMode = require('has-strict-mode')();
+const forEach = require('for-each');
+const debug = require('object-inspect');
+const v = require('es-value-fixtures');
+const hasSymbols = require('has-symbols/shams')();
+const iterate = require('iterate-iterator');
 
-var StringToCodePoints = require('es-abstract/2024/StringToCodePoints');
+const StringToCodePoints = require('es-abstract/2024/StringToCodePoints');
 
-var index = require('../Iterator.prototype.flatMap');
-var impl = require('../Iterator.prototype.flatMap/implementation');
+const index = require('../Iterator.prototype.flatMap');
+const impl = require('../Iterator.prototype.flatMap/implementation');
 
-var fnName = 'flatMap';
+const fnName = 'flatMap';
 
-var isEnumerable = Object.prototype.propertyIsEnumerable;
+const isEnumerable = Object.prototype.propertyIsEnumerable;
 
-var testIterator = require('./helpers/testIterator');
+const testIterator = require('./helpers/testIterator');
 
 module.exports = {
 	tests: function (flatMap, name, t) {
@@ -37,7 +37,7 @@ module.exports = {
 				debug(nonIterator) + ' is not an Object with a callable `next` method'
 			);
 
-			var badNext = { next: nonIterator };
+			const badNext = { next: nonIterator };
 			t['throws'](
 				function () { iterate(flatMap(badNext, function () {})); },
 				TypeError,
@@ -54,8 +54,8 @@ module.exports = {
 		});
 
 		t.test('actual iteration', { skip: !hasSymbols }, function (st) {
-			var arr = [1, 2, 3];
-			var iterator = callBind(arr[Symbol.iterator], arr);
+			const arr = [1, 2, 3];
+			const iterator = callBind(arr[Symbol.iterator], arr);
 
 			st['throws'](
 				function () { return new flatMap(iterator()); }, // eslint-disable-line new-cap
@@ -70,7 +70,7 @@ module.exports = {
 
 			testIterator(iterator(), [1, 2, 3], st, 'original');
 
-			var nonIterableFlatMap = flatMap(iterator(), function (x) { return x; });
+			const nonIterableFlatMap = flatMap(iterator(), function (x) { return x; });
 			st['throws'](
 				function () { nonIterableFlatMap.next(); },
 				TypeError,
@@ -100,15 +100,15 @@ module.exports = {
 			testIterator(flatMap(iterator(), function (x) { return [[2 * x, 2 * (x + 1)]][Symbol.iterator](); }), [[2, 4], [4, 6], [6, 8]], st, 'doubler mapper in nested array iterator');
 
 			testIterator(flatMap([0, 1, 2, 3][Symbol.iterator](), function (value) {
-				var result = [];
-				for (var i = 0; i < value; ++i) {
+				const result = [];
+				for (let i = 0; i < value; ++i) {
 					result.push(value);
 				}
 				return result;
 			}), [1, 2, 2, 3, 3, 3], st, 'test262: test/built-ins/Iterator/prototype/flatMap/flattens-iteratable');
 
 			testIterator(flatMap([0, 1, 2, 3][Symbol.iterator](), function (value) {
-				var i = 0;
+				let i = 0;
 				return {
 					next: function () {
 						if (i < value) {
@@ -128,9 +128,9 @@ module.exports = {
 			}), [1, 2, 2, 3, 3, 3], st, 'test262: test/built-ins/Iterator/prototype/flatMap/flattens-iterator');
 
 			testIterator(flatMap([0][Symbol.iterator](), function () {
-				var n = [0, 1, 2][Symbol.iterator]();
+				const n = [0, 1, 2][Symbol.iterator]();
 
-				var ret = {
+				const ret = {
 					next: function next() {
 						return n.next();
 					}
@@ -139,7 +139,7 @@ module.exports = {
 				return ret;
 			}), [0, 1, 2], st, 'test262: test/built-ins/Iterator/prototype/flatMap/iterable-to-iterator-fallback');
 
-			var counts = [];
+			const counts = [];
 			testIterator(flatMap(['a', 'b', 'c', 'd', 'e'][Symbol.iterator](), function (value, count) {
 				counts.push(count);
 
@@ -161,9 +161,9 @@ module.exports = {
 			st.deepEqual(counts, [0, 1, 2, 3, 4], 'count values are as expected');
 
 			st.test('return protocol', function (s2t) {
-				var returnCount = 0;
+				let returnCount = 0;
 
-				var iter = flatMap([0][Symbol.iterator](), function () {
+				const iter = flatMap([0][Symbol.iterator](), function () {
 					return {
 						next: function next() {
 							return {

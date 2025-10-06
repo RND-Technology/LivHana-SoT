@@ -19,7 +19,7 @@ exports.admin_directory_v1 = void 0;
 /* eslint-disable @typescript-eslint/no-namespace */
 /* eslint-disable no-irregular-whitespace */
 const googleapis_common_1 = require("googleapis-common");
-var admin_directory_v1;
+let admin_directory_v1;
 (function (admin_directory_v1) {
     /**
      * Admin SDK API

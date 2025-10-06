@@ -1,18 +1,18 @@
 'use strict';
 /* global describe it */
 
-var assert = require('assert');
-var crypto = require('crypto');
-var hash = require('../');
+const assert = require('assert');
+const crypto = require('crypto');
+const hash = require('../');
 
 describe('Hash', function() {
   function test(fn, cases) {
-    for (var i = 0; i < cases.length; i++) {
-      var msg = cases[i][0];
-      var res = cases[i][1];
-      var enc = cases[i][2];
+    for (let i = 0; i < cases.length; i++) {
+      const msg = cases[i][0];
+      const res = cases[i][1];
+      const enc = cases[i][2];
 
-      var dgst = fn().update(msg, enc).digest('hex');
+      let dgst = fn().update(msg, enc).digest('hex');
       assert.equal(dgst, res);
 
       // Split message

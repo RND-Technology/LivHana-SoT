@@ -25,7 +25,7 @@ class Prompt extends EventEmitter {
     if (this.in.isTTY) this.in.setRawMode(true);
     const isSelect = [ 'SelectPrompt', 'MultiselectPrompt' ].indexOf(this.constructor.name) > -1;
     const keypress = (str, key) => {
-      let a = action(key, isSelect);
+      const a = action(key, isSelect);
       if (a === false) {
         this._ && this._(str, key);
       } else if (typeof this[a] === 'function') {

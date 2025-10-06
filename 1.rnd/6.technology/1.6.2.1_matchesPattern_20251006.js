@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = matchesPattern;
-var _index = require("./generated/index.js");
+const _index = require("./generated/index.js");
 function isMemberExpressionLike(node) {
   return (0, _index.isMemberExpression)(node) || (0, _index.isMetaProperty)(node);
 }

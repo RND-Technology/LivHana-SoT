@@ -4,9 +4,9 @@
  *  Copyright (c) 2024 Michael Mclaughlin
  *  https://github.com/MikeMcl/big.js/LICENCE.md
  */
-;(function (GLOBAL) {
+(function (GLOBAL) {
   'use strict';
-  var Big,
+  let Big,
 
 
 /************************************** EDITABLE DEFAULTS *****************************************/
@@ -86,7 +86,7 @@
      * n {number|string|Big} A numeric value.
      */
     function Big(n) {
-      var x = this;
+      const x = this;
 
       // Enable constructor usage without new.
       if (!(x instanceof Big)) return n === UNDEFINED ? _Big_() : new Big(n);
@@ -136,7 +136,7 @@
    * n {number|string} A numeric value.
    */
   function parse(x, n) {
-    var e, i, nl;
+    let e, i, nl;
 
     if (!NUMERIC.test(n)) {
       throw Error(INVALID + 'number');
@@ -194,7 +194,7 @@
    * [more] {boolean} Whether the result of division was truncated.
    */
   function round(x, sd, rm, more) {
-    var xc = x.c;
+    const xc = x.c;
 
     if (rm === UNDEFINED) rm = x.constructor.RM;
     if (rm !== 0 && rm !== 1 && rm !== 2 && rm !== 3) {
@@ -259,7 +259,7 @@
    * Handles P.toExponential, P.toFixed, P.toJSON, P.toPrecision, P.toString and P.valueOf.
    */
   function stringify(x, doExponential, isNonzero) {
-    var e = x.e,
+    let e = x.e,
       s = x.c.join(''),
       n = s.length;
 
@@ -292,7 +292,7 @@
    * Return a new Big whose value is the absolute value of this Big.
    */
   P.abs = function () {
-    var x = new this.constructor(this);
+    const x = new this.constructor(this);
     x.s = 1;
     return x;
   };
@@ -304,7 +304,7 @@
    *        0 if they have the same value.
    */
   P.cmp = function (y) {
-    var isneg,
+    let isneg,
       x = this,
       xc = x.c,
       yc = (y = new x.constructor(y)).c,
@@ -341,7 +341,7 @@
    * if necessary, to a maximum of Big.DP decimal places using rounding mode Big.RM.
    */
   P.div = function (y) {
-    var x = this,
+    let x = this,
       Big = x.constructor,
       a = x.c,                  // dividend
       b = (y = new Big(y)).c,   // divisor
@@ -364,7 +364,7 @@
       return y;
     }
 
-    var bl, bt, n, cmp, ri,
+    let bl, bt, n, cmp, ri,
       bz = b.slice(),
       ai = bl = b.length,
       al = a.length,
@@ -494,7 +494,7 @@
    * Return a new Big whose value is the value of this Big minus the value of Big y.
    */
   P.minus = P.sub = function (y) {
-    var i, j, t, xlty,
+    let i, j, t, xlty,
       x = this,
       Big = x.constructor,
       a = x.s,
@@ -506,7 +506,7 @@
       return x.plus(y);
     }
 
-    var xc = x.c.slice(),
+    let xc = x.c.slice(),
       xe = x.e,
       yc = y.c,
       ye = y.e;
@@ -604,7 +604,7 @@
    * Return a new Big whose value is the value of this Big modulo the value of Big y.
    */
   P.mod = function (y) {
-    var ygtx,
+    let ygtx,
       x = this,
       Big = x.constructor,
       a = x.s,
@@ -636,7 +636,7 @@
    * Return a new Big whose value is the value of this Big negated.
    */
   P.neg = function () {
-    var x = new this.constructor(this);
+    const x = new this.constructor(this);
     x.s = -x.s;
     return x;
   };
@@ -646,7 +646,7 @@
    * Return a new Big whose value is the value of this Big plus the value of Big y.
    */
   P.plus = P.add = function (y) {
-    var e, k, t,
+    let e, k, t,
       x = this,
       Big = x.constructor;
 
@@ -658,7 +658,7 @@
       return x.minus(y);
     }
 
-    var xe = x.e,
+    let xe = x.e,
       xc = x.c,
       ye = y.e,
       yc = y.c;
@@ -730,7 +730,7 @@
    * n {number} Integer, -MAX_POWER to MAX_POWER inclusive.
    */
   P.pow = function (n) {
-    var x = this,
+    let x = this,
       one = new x.constructor('1'),
       y = one,
       isneg = n < 0;
@@ -790,7 +790,7 @@
    * necessary, to a maximum of Big.DP decimal places using rounding mode Big.RM.
    */
   P.sqrt = function () {
-    var r, c, t,
+    let r, c, t,
       x = this,
       Big = x.constructor,
       s = x.s,
@@ -836,7 +836,7 @@
    * Return a new Big whose value is the value of this Big times the value of Big y.
    */
   P.times = P.mul = function (y) {
-    var c,
+    let c,
       x = this,
       Big = x.constructor,
       xc = x.c,
@@ -911,7 +911,7 @@
    * rm? {number} Rounding mode: 0 (down), 1 (half-up), 2 (half-even) or 3 (up).
    */
   P.toExponential = function (dp, rm) {
-    var x = this,
+    let x = this,
       n = x.c[0];
 
     if (dp !== UNDEFINED) {
@@ -937,7 +937,7 @@
    * (-0).toFixed(1) is '0.0', but (-0.01).toFixed(1) is '-0.0'.
    */
   P.toFixed = function (dp, rm) {
-    var x = this,
+    let x = this,
       n = x.c[0];
 
     if (dp !== UNDEFINED) {
@@ -961,7 +961,7 @@
    * Omit the sign for negative zero.
    */
   P.toJSON = P.toString = function () {
-    var x = this,
+    const x = this,
       Big = x.constructor;
     return stringify(x, x.e <= Big.NE || x.e >= Big.PE, !!x.c[0]);
   };
@@ -971,7 +971,7 @@
    * Return the value of this Big as a primitve number.
    */
   P.toNumber = function () {
-    var n = +stringify(this, true, true);
+    const n = +stringify(this, true, true);
     if (this.constructor.strict === true && !this.eq(n.toString())) {
       throw Error(NAME + 'Imprecise conversion');
     }
@@ -989,7 +989,7 @@
    * rm? {number} Rounding mode: 0 (down), 1 (half-up), 2 (half-even) or 3 (up).
    */
   P.toPrecision = function (sd, rm) {
-    var x = this,
+    let x = this,
       Big = x.constructor,
       n = x.c[0];
 
@@ -1012,7 +1012,7 @@
    * Include the sign for negative zero.
    */
   P.valueOf = function () {
-    var x = this,
+    const x = this,
       Big = x.constructor;
     if (Big.strict === true) {
       throw Error(NAME + 'valueOf disallowed');

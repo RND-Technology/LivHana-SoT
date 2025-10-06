@@ -4,11 +4,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = _objectSpread;
-var _defineProperty = require("./defineProperty.js");
+const _defineProperty = require("./defineProperty.js");
 function _objectSpread(target) {
-  for (var i = 1; i < arguments.length; i++) {
+  for (let i = 1; i < arguments.length; i++) {
     var source = arguments[i] != null ? Object(arguments[i]) : {};
-    var ownKeys = Object.keys(source);
+    const ownKeys = Object.keys(source);
     if (typeof Object.getOwnPropertySymbols === "function") {
       ownKeys.push.apply(ownKeys, Object.getOwnPropertySymbols(source).filter(function (sym) {
         return Object.getOwnPropertyDescriptor(source, sym).enumerable;

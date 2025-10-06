@@ -1,13 +1,13 @@
 'use strict';
 
-var utils = require('./utils');
-var common = require('./common');
+const utils = require('./utils');
+const common = require('./common');
 
-var rotl32 = utils.rotl32;
-var sum32 = utils.sum32;
-var sum32_3 = utils.sum32_3;
-var sum32_4 = utils.sum32_4;
-var BlockHash = common.BlockHash;
+const rotl32 = utils.rotl32;
+const sum32 = utils.sum32;
+const sum32_3 = utils.sum32_3;
+const sum32_4 = utils.sum32_4;
+const BlockHash = common.BlockHash;
 
 function RIPEMD160() {
   if (!(this instanceof RIPEMD160))
@@ -27,17 +27,17 @@ RIPEMD160.hmacStrength = 192;
 RIPEMD160.padLength = 64;
 
 RIPEMD160.prototype._update = function update(msg, start) {
-  var A = this.h[0];
-  var B = this.h[1];
-  var C = this.h[2];
-  var D = this.h[3];
-  var E = this.h[4];
-  var Ah = A;
-  var Bh = B;
-  var Ch = C;
-  var Dh = D;
-  var Eh = E;
-  for (var j = 0; j < 80; j++) {
+  let A = this.h[0];
+  let B = this.h[1];
+  let C = this.h[2];
+  let D = this.h[3];
+  let E = this.h[4];
+  let Ah = A;
+  let Bh = B;
+  let Ch = C;
+  let Dh = D;
+  let Eh = E;
+  for (let j = 0; j < 80; j++) {
     var T = sum32(
       rotl32(
         sum32_4(A, f(j, B, C, D), msg[r[j] + start], K(j)),

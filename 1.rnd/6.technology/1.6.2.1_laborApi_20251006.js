@@ -1,32 +1,32 @@
 "use strict";
 exports.__esModule = true;
 exports.LaborApi = void 0;
-var tslib_1 = require("tslib");
-var createBreakTypeRequest_1 = require("../models/createBreakTypeRequest");
-var createBreakTypeResponse_1 = require("../models/createBreakTypeResponse");
-var createShiftRequest_1 = require("../models/createShiftRequest");
-var createShiftResponse_1 = require("../models/createShiftResponse");
-var deleteBreakTypeResponse_1 = require("../models/deleteBreakTypeResponse");
-var deleteShiftResponse_1 = require("../models/deleteShiftResponse");
-var getBreakTypeResponse_1 = require("../models/getBreakTypeResponse");
-var getEmployeeWageResponse_1 = require("../models/getEmployeeWageResponse");
-var getShiftResponse_1 = require("../models/getShiftResponse");
-var getTeamMemberWageResponse_1 = require("../models/getTeamMemberWageResponse");
-var listBreakTypesResponse_1 = require("../models/listBreakTypesResponse");
-var listEmployeeWagesResponse_1 = require("../models/listEmployeeWagesResponse");
-var listTeamMemberWagesResponse_1 = require("../models/listTeamMemberWagesResponse");
-var listWorkweekConfigsResponse_1 = require("../models/listWorkweekConfigsResponse");
-var searchShiftsRequest_1 = require("../models/searchShiftsRequest");
-var searchShiftsResponse_1 = require("../models/searchShiftsResponse");
-var updateBreakTypeRequest_1 = require("../models/updateBreakTypeRequest");
-var updateBreakTypeResponse_1 = require("../models/updateBreakTypeResponse");
-var updateShiftRequest_1 = require("../models/updateShiftRequest");
-var updateShiftResponse_1 = require("../models/updateShiftResponse");
-var updateWorkweekConfigRequest_1 = require("../models/updateWorkweekConfigRequest");
-var updateWorkweekConfigResponse_1 = require("../models/updateWorkweekConfigResponse");
-var schema_1 = require("../schema");
-var baseApi_1 = require("./baseApi");
-var LaborApi = /** @class */ (function (_super) {
+const tslib_1 = require("tslib");
+const createBreakTypeRequest_1 = require("../models/createBreakTypeRequest");
+const createBreakTypeResponse_1 = require("../models/createBreakTypeResponse");
+const createShiftRequest_1 = require("../models/createShiftRequest");
+const createShiftResponse_1 = require("../models/createShiftResponse");
+const deleteBreakTypeResponse_1 = require("../models/deleteBreakTypeResponse");
+const deleteShiftResponse_1 = require("../models/deleteShiftResponse");
+const getBreakTypeResponse_1 = require("../models/getBreakTypeResponse");
+const getEmployeeWageResponse_1 = require("../models/getEmployeeWageResponse");
+const getShiftResponse_1 = require("../models/getShiftResponse");
+const getTeamMemberWageResponse_1 = require("../models/getTeamMemberWageResponse");
+const listBreakTypesResponse_1 = require("../models/listBreakTypesResponse");
+const listEmployeeWagesResponse_1 = require("../models/listEmployeeWagesResponse");
+const listTeamMemberWagesResponse_1 = require("../models/listTeamMemberWagesResponse");
+const listWorkweekConfigsResponse_1 = require("../models/listWorkweekConfigsResponse");
+const searchShiftsRequest_1 = require("../models/searchShiftsRequest");
+const searchShiftsResponse_1 = require("../models/searchShiftsResponse");
+const updateBreakTypeRequest_1 = require("../models/updateBreakTypeRequest");
+const updateBreakTypeResponse_1 = require("../models/updateBreakTypeResponse");
+const updateShiftRequest_1 = require("../models/updateShiftRequest");
+const updateShiftResponse_1 = require("../models/updateShiftResponse");
+const updateWorkweekConfigRequest_1 = require("../models/updateWorkweekConfigRequest");
+const updateWorkweekConfigResponse_1 = require("../models/updateWorkweekConfigResponse");
+const schema_1 = require("../schema");
+const baseApi_1 = require("./baseApi");
+const LaborApi = /** @class */ (function (_super) {
     tslib_1.__extends(LaborApi, _super);
     function LaborApi() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -43,7 +43,7 @@ var LaborApi = /** @class */ (function (_super) {
      */
     LaborApi.prototype.listBreakTypes = function (locationId, limit, cursor, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET', '/v2/labor/break-types');
                 mapped = req.prepareArgs({
@@ -81,7 +81,7 @@ var LaborApi = /** @class */ (function (_super) {
      */
     LaborApi.prototype.createBreakType = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/labor/break-types');
                 mapped = req.prepareArgs({
@@ -104,7 +104,7 @@ var LaborApi = /** @class */ (function (_super) {
      */
     LaborApi.prototype.deleteBreakType = function (id, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('DELETE');
                 mapped = req.prepareArgs({ id: [id, (0, schema_1.string)()] });
@@ -122,7 +122,7 @@ var LaborApi = /** @class */ (function (_super) {
      */
     LaborApi.prototype.getBreakType = function (id, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({ id: [id, (0, schema_1.string)()] });
@@ -142,7 +142,7 @@ var LaborApi = /** @class */ (function (_super) {
      */
     LaborApi.prototype.updateBreakType = function (id, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('PUT');
                 mapped = req.prepareArgs({
@@ -170,7 +170,7 @@ var LaborApi = /** @class */ (function (_super) {
      */
     LaborApi.prototype.listEmployeeWages = function (employeeId, limit, cursor, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET', '/v2/labor/employee-wages');
                 mapped = req.prepareArgs({
@@ -196,7 +196,7 @@ var LaborApi = /** @class */ (function (_super) {
      */
     LaborApi.prototype.getEmployeeWage = function (id, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({ id: [id, (0, schema_1.string)()] });
@@ -233,7 +233,7 @@ var LaborApi = /** @class */ (function (_super) {
      */
     LaborApi.prototype.createShift = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/labor/shifts');
                 mapped = req.prepareArgs({ body: [body, createShiftRequest_1.createShiftRequestSchema] });
@@ -266,7 +266,7 @@ var LaborApi = /** @class */ (function (_super) {
      */
     LaborApi.prototype.searchShifts = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/labor/shifts/search');
                 mapped = req.prepareArgs({ body: [body, searchShiftsRequest_1.searchShiftsRequestSchema] });
@@ -285,7 +285,7 @@ var LaborApi = /** @class */ (function (_super) {
      */
     LaborApi.prototype.deleteShift = function (id, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('DELETE');
                 mapped = req.prepareArgs({ id: [id, (0, schema_1.string)()] });
@@ -303,7 +303,7 @@ var LaborApi = /** @class */ (function (_super) {
      */
     LaborApi.prototype.getShift = function (id, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({ id: [id, (0, schema_1.string)()] });
@@ -329,7 +329,7 @@ var LaborApi = /** @class */ (function (_super) {
      */
     LaborApi.prototype.updateShift = function (id, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('PUT');
                 mapped = req.prepareArgs({
@@ -356,7 +356,7 @@ var LaborApi = /** @class */ (function (_super) {
      */
     LaborApi.prototype.listTeamMemberWages = function (teamMemberId, limit, cursor, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET', '/v2/labor/team-member-wages');
                 mapped = req.prepareArgs({
@@ -380,7 +380,7 @@ var LaborApi = /** @class */ (function (_super) {
      */
     LaborApi.prototype.getTeamMemberWage = function (id, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({ id: [id, (0, schema_1.string)()] });
@@ -399,7 +399,7 @@ var LaborApi = /** @class */ (function (_super) {
      */
     LaborApi.prototype.listWorkweekConfigs = function (limit, cursor, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET', '/v2/labor/workweek-configs');
                 mapped = req.prepareArgs({
@@ -424,7 +424,7 @@ var LaborApi = /** @class */ (function (_super) {
      */
     LaborApi.prototype.updateWorkweekConfig = function (id, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('PUT');
                 mapped = req.prepareArgs({
@@ -442,5 +442,5 @@ var LaborApi = /** @class */ (function (_super) {
     return LaborApi;
 }(baseApi_1.BaseApi));
 exports.LaborApi = LaborApi;
-var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6, templateObject_7, templateObject_8, templateObject_9;
+let templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6, templateObject_7, templateObject_8, templateObject_9;
 //# sourceMappingURL=laborApi.js.map

@@ -1,5 +1,5 @@
 //.CommonJS
-var CSSOM = {};
+const CSSOM = {};
 ///CommonJS
 
 
@@ -41,7 +41,7 @@ CSSOM.CSSStyleDeclaration.prototype = {
 	setProperty: function(name, value, priority) {
 		if (this[name]) {
 			// Property already exist. Overwrite it.
-			var index = Array.prototype.indexOf.call(this, name);
+			const index = Array.prototype.indexOf.call(this, name);
 			if (index < 0) {
 				this[this.length] = name;
 				this.length++;
@@ -66,11 +66,11 @@ CSSOM.CSSStyleDeclaration.prototype = {
 		if (!(name in this)) {
 			return "";
 		}
-		var index = Array.prototype.indexOf.call(this, name);
+		const index = Array.prototype.indexOf.call(this, name);
 		if (index < 0) {
 			return "";
 		}
-		var prevValue = this[name];
+		const prevValue = this[name];
 		this[name] = "";
 
 		// That's what WebKit and Opera do
@@ -110,11 +110,11 @@ CSSOM.CSSStyleDeclaration.prototype = {
 
 	// Doesn't work in IE < 9
 	get cssText(){
-		var properties = [];
-		for (var i=0, length=this.length; i < length; ++i) {
-			var name = this[i];
-			var value = this.getPropertyValue(name);
-			var priority = this.getPropertyPriority(name);
+		const properties = [];
+		for (let i=0, length=this.length; i < length; ++i) {
+			const name = this[i];
+			const value = this.getPropertyValue(name);
+			let priority = this.getPropertyPriority(name);
 			if (priority) {
 				priority = " !" + priority;
 			}
@@ -124,7 +124,7 @@ CSSOM.CSSStyleDeclaration.prototype = {
 	},
 
 	set cssText(text){
-		var i, name;
+		let i, name;
 		for (i = this.length; i--;) {
 			name = this[i];
 			this[name] = "";
@@ -132,8 +132,8 @@ CSSOM.CSSStyleDeclaration.prototype = {
 		Array.prototype.splice.call(this, 0, this.length);
 		this._importants = {};
 
-		var dummyRule = CSSOM.parse('#bogus{' + text + '}').cssRules[0].style;
-		var length = dummyRule.length;
+		const dummyRule = CSSOM.parse('#bogus{' + text + '}').cssRules[0].style;
+		const length = dummyRule.length;
 		for (i = 0; i < length; ++i) {
 			name = dummyRule[i];
 			this.setProperty(dummyRule[i], dummyRule.getPropertyValue(name), dummyRule.getPropertyPriority(name));

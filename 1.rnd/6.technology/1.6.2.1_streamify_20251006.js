@@ -1,4 +1,4 @@
-var async = require('./async.js');
+const async = require('./async.js');
 
 // API
 module.exports = {
@@ -15,11 +15,11 @@ module.exports = {
  */
 function wrapIterator(iterator)
 {
-  var stream = this;
+  const stream = this;
 
   return function(item, key, cb)
   {
-    var aborter
+    let aborter
       , wrappedCb = async(wrapIteratorCallback.call(stream, cb, key))
       ;
 
@@ -51,9 +51,9 @@ function wrapIterator(iterator)
  */
 function wrapCallback(callback)
 {
-  var stream = this;
+  const stream = this;
 
-  var wrapped = function(error, result)
+  const wrapped = function(error, result)
   {
     return finisher.call(stream, error, result, callback);
   };
@@ -73,7 +73,7 @@ function wrapCallback(callback)
  */
 function wrapIteratorCallback(callback, key)
 {
-  var stream = this;
+  const stream = this;
 
   return function(error, output)
   {

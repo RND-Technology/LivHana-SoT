@@ -20,7 +20,7 @@ exports.adsense_v1_4 = void 0;
 /* eslint-disable @typescript-eslint/no-namespace */
 /* eslint-disable no-irregular-whitespace */
 const googleapis_common_1 = require("googleapis-common");
-var adsense_v1_4;
+let adsense_v1_4;
 (function (adsense_v1_4) {
     /**
      * AdSense Management API

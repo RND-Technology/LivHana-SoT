@@ -4,10 +4,10 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 exports.default = void 0;
-var _assert = require('assert');
-var _chalk = _interopRequireDefault(require('chalk'));
-var _jestMatcherUtils = require('jest-matcher-utils');
-var _prettyFormat = require('pretty-format');
+const _assert = require('assert');
+const _chalk = _interopRequireDefault(require('chalk'));
+const _jestMatcherUtils = require('jest-matcher-utils');
+const _prettyFormat = require('pretty-format');
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {default: obj};
 }
@@ -182,5 +182,5 @@ function isAssertionError(error) {
 function buildHintString(hint) {
   return hint ? `${hint}\n\n` : '';
 }
-var _default = formatNodeAssertErrors;
+const _default = formatNodeAssertErrors;
 exports.default = _default;

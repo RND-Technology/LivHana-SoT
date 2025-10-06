@@ -4,28 +4,28 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = _regenerator;
-var _regeneratorDefine = require("./regeneratorDefine.js");
+const _regeneratorDefine = require("./regeneratorDefine.js");
 function _regenerator() {
-  var undefined;
-  var $Symbol = typeof Symbol === "function" ? Symbol : {};
-  var iteratorSymbol = $Symbol.iterator || "@@iterator";
-  var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
-  var _;
+  let undefined;
+  const $Symbol = typeof Symbol === "function" ? Symbol : {};
+  const iteratorSymbol = $Symbol.iterator || "@@iterator";
+  const toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
+  let _;
   function wrap(innerFn, outerFn, self, tryLocsList) {
-    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
-    var generator = Object.create(protoGenerator.prototype);
+    const protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
+    const generator = Object.create(protoGenerator.prototype);
     (0, _regeneratorDefine.default)(generator, "_invoke", makeInvokeMethod(innerFn, self, tryLocsList), true);
     return generator;
   }
-  var ContinueSentinel = {};
+  const ContinueSentinel = {};
   function Generator() {}
   function GeneratorFunction() {}
   function GeneratorFunctionPrototype() {}
   _ = Object.getPrototypeOf;
-  var IteratorPrototype = [][iteratorSymbol] ? _(_([][iteratorSymbol]())) : ((0, _regeneratorDefine.default)(_ = {}, iteratorSymbol, function () {
+  const IteratorPrototype = [][iteratorSymbol] ? _(_([][iteratorSymbol]())) : ((0, _regeneratorDefine.default)(_ = {}, iteratorSymbol, function () {
     return this;
   }), _);
-  var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype);
+  const Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype);
   GeneratorFunction.prototype = GeneratorFunctionPrototype;
   (0, _regeneratorDefine.default)(Gp, "constructor", GeneratorFunctionPrototype);
   (0, _regeneratorDefine.default)(GeneratorFunctionPrototype, "constructor", GeneratorFunction);
@@ -50,7 +50,7 @@ function _regenerator() {
     return genFun;
   }
   function makeInvokeMethod(innerFn, self, tryLocsList) {
-    var state = 0;
+    let state = 0;
     function invoke(_methodName, _method, _arg) {
       if (state > 1) {
         throw TypeError("Generator is already running");
@@ -120,11 +120,11 @@ function _regenerator() {
         done: done
       };
     }
-    var tryEntries = tryLocsList || [];
+    const tryEntries = tryLocsList || [];
     var done = false;
-    var delegateIterator;
-    var method;
-    var arg;
+    let delegateIterator;
+    let method;
+    let arg;
     var ctx = {
       p: 0,
       n: 0,
@@ -143,9 +143,9 @@ function _regenerator() {
       method = _type;
       arg = _arg;
       for (_ = 0; !done && state && !shouldReturn && _ < tryEntries.length; _++) {
-        var entry = tryEntries[_];
-        var prev = ctx.p;
-        var finallyLoc = entry[2];
+        const entry = tryEntries[_];
+        const prev = ctx.p;
+        const finallyLoc = entry[2];
         var shouldReturn;
         if (_type > 3) {
           if (shouldReturn = finallyLoc === _arg) {

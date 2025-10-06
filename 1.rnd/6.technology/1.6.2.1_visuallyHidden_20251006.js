@@ -15,4 +15,4 @@ const visuallyHidden = {
   whiteSpace: 'nowrap',
   width: '1px'
 };
-var _default = exports.default = visuallyHidden;
+const _default = exports.default = visuallyHidden;

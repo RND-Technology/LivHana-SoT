@@ -1,9 +1,9 @@
 'use strict';
 
-var callBound = require('call-bound');
+const callBound = require('call-bound');
 
-var $SyntaxError = require('es-errors/syntax');
-var $bigIntValueOf = callBound('BigInt.prototype.valueOf', true);
+const $SyntaxError = require('es-errors/syntax');
+const $bigIntValueOf = callBound('BigInt.prototype.valueOf', true);
 
 // https://262.ecma-international.org/11.0/#sec-thisbigintvalue
 

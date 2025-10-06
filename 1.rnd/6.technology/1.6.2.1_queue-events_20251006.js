@@ -15,7 +15,7 @@ class QueueEvents extends queue_base_1.QueueBase {
     constructor(name, _a = {
         connection: {},
     }, Connection) {
-        var { connection, autorun = true } = _a, opts = tslib_1.__rest(_a, ["connection", "autorun"]);
+        let { connection, autorun = true } = _a, opts = tslib_1.__rest(_a, ["connection", "autorun"]);
         super(name, Object.assign(Object.assign({}, opts), { connection: (0, utils_1.isRedisInstance)(connection)
                 ? connection.duplicate()
                 : connection }), Connection, true);

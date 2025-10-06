@@ -12,7 +12,7 @@ exports.ClassPrivateProperty = ClassPrivateProperty;
 exports.ClassProperty = ClassProperty;
 exports.StaticBlock = StaticBlock;
 exports._classMethodHead = _classMethodHead;
-var _t = require("@babel/types");
+const _t = require("@babel/types");
 const {
   isExportDefaultDeclaration,
   isExportNamedDeclaration
@@ -98,7 +98,7 @@ function classBodyEmptySemicolonsPrinter(printer, node) {
 function ClassProperty(node) {
   this.printJoin(node.decorators);
   if (!node.static && !this.format.preserveFormat) {
-    var _node$key$loc;
+    let _node$key$loc;
     const endLine = (_node$key$loc = node.key.loc) == null || (_node$key$loc = _node$key$loc.end) == null ? void 0 : _node$key$loc.line;
     if (endLine) this.catchUp(endLine);
   }
@@ -127,7 +127,7 @@ function ClassProperty(node) {
   this.semicolon();
 }
 function ClassAccessorProperty(node) {
-  var _node$key$loc2;
+  let _node$key$loc2;
   this.printJoin(node.decorators);
   const endLine = (_node$key$loc2 = node.key.loc) == null || (_node$key$loc2 = _node$key$loc2.end) == null ? void 0 : _node$key$loc2.line;
   if (endLine) this.catchUp(endLine);
@@ -189,7 +189,7 @@ function ClassPrivateMethod(node) {
 function _classMethodHead(node) {
   this.printJoin(node.decorators);
   if (!this.format.preserveFormat) {
-    var _node$key$loc3;
+    let _node$key$loc3;
     const endLine = (_node$key$loc3 = node.key.loc) == null || (_node$key$loc3 = _node$key$loc3.end) == null ? void 0 : _node$key$loc3.line;
     if (endLine) this.catchUp(endLine);
   }

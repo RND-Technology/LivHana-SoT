@@ -82,7 +82,7 @@ async function resolveTestRunner(config, executor) {
   };
   const originalOnAfterRunTask = testRunner.onAfterRunTask;
   testRunner.onAfterRunTask = async (test) => {
-    var _a, _b;
+    let _a, _b;
     if (config.bail && ((_a = test.result) == null ? void 0 : _a.state) === "fail") {
       const previousFailures = await rpc().getCountOfFailedTests();
       const currentFailures = 1 + previousFailures;

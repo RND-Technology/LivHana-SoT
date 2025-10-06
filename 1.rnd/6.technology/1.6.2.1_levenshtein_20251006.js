@@ -1,20 +1,20 @@
 (function() {
   'use strict';
   
-  var collator;
+  let collator;
   try {
     collator = (typeof Intl !== "undefined" && typeof Intl.Collator !== "undefined") ? Intl.Collator("generic", { sensitivity: "base" }) : null;
   } catch (err){
     console.log("Collator could not be initialized and wouldn't be used");
   }
   // arrays to re-use
-  var prevRow = [],
+  const prevRow = [],
     str2Char = [];
   
   /**
    * Based on the algorithm at http://en.wikipedia.org/wiki/Levenshtein_distance.
    */
-  var Levenshtein = {
+  const Levenshtein = {
     /**
      * Calculate levenshtein distance of the two strings.
      *
@@ -25,9 +25,9 @@
      * @return Integer the levenshtein distance (0 and above).
      */
     get: function(str1, str2, options) {
-      var useCollator = (options && collator && options.useCollator);
+      const useCollator = (options && collator && options.useCollator);
       
-      var str1Len = str1.length,
+      const str1Len = str1.length,
         str2Len = str2.length;
       
       // base cases
@@ -35,7 +35,7 @@
       if (str2Len === 0) return str1Len;
 
       // two rows
-      var curCol, nextCol, i, j, tmp;
+      let curCol, nextCol, i, j, tmp;
 
       // initialise previous row
       for (i=0; i<str2Len; ++i) {
@@ -44,7 +44,7 @@
       }
       prevRow[str2Len] = str2Len;
 
-      var strCmp;
+      let strCmp;
       if (useCollator) {
         // calculate current row distance from previous row using collator
         for (i = 0; i < str1Len; ++i) {

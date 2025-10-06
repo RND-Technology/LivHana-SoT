@@ -14,9 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+const __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
+    let desc = Object.getOwnPropertyDescriptor(m, k);
     if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
       desc = { enumerable: true, get: function() { return m[k]; } };
     }
@@ -25,29 +25,29 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
 }));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+const __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
     Object.defineProperty(o, "default", { enumerable: true, value: v });
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || (function () {
-    var ownKeys = function(o) {
+const __importStar = (this && this.__importStar) || (function () {
+    let ownKeys = function(o) {
         ownKeys = Object.getOwnPropertyNames || function (o) {
-            var ar = [];
-            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            const ar = [];
+            for (const k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
             return ar;
         };
         return ownKeys(o);
     };
     return function (mod) {
         if (mod && mod.__esModule) return mod;
-        var result = {};
-        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        const result = {};
+        if (mod != null) for (let k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
         __setModuleDefault(result, mod);
         return result;
     };
 })();
-var __importDefault = (this && this.__importDefault) || function (mod) {
+const __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -75,28 +75,28 @@ const LocationProtos = __importStar(require("../protos/locations"));
 exports.LocationProtos = LocationProtos;
 const operationsProtos = __importStar(require("../protos/operations"));
 exports.operationsProtos = operationsProtos;
-var pathTemplate_1 = require("./pathTemplate");
+const pathTemplate_1 = require("./pathTemplate");
 Object.defineProperty(exports, "PathTemplate", { enumerable: true, get: function () { return pathTemplate_1.PathTemplate; } });
-var gax_1 = require("./gax");
+const gax_1 = require("./gax");
 Object.defineProperty(exports, "CallSettings", { enumerable: true, get: function () { return gax_1.CallSettings; } });
 Object.defineProperty(exports, "constructSettings", { enumerable: true, get: function () { return gax_1.constructSettings; } });
 Object.defineProperty(exports, "RetryOptions", { enumerable: true, get: function () { return gax_1.RetryOptions; } });
 Object.defineProperty(exports, "createDefaultBackoffSettings", { enumerable: true, get: function () { return gax_1.createDefaultBackoffSettings; } });
 exports.version = require('../../package.json').version + '-fallback';
-var descriptor_1 = require("./descriptor");
+const descriptor_1 = require("./descriptor");
 Object.defineProperty(exports, "BundleDescriptor", { enumerable: true, get: function () { return descriptor_1.BundleDescriptor; } });
 Object.defineProperty(exports, "LongrunningDescriptor", { enumerable: true, get: function () { return descriptor_1.LongrunningDescriptor; } });
 Object.defineProperty(exports, "PageDescriptor", { enumerable: true, get: function () { return descriptor_1.PageDescriptor; } });
 Object.defineProperty(exports, "StreamDescriptor", { enumerable: true, get: function () { return descriptor_1.StreamDescriptor; } });
-var streaming_2 = require("./streamingCalls/streaming");
+const streaming_2 = require("./streamingCalls/streaming");
 Object.defineProperty(exports, "StreamType", { enumerable: true, get: function () { return streaming_2.StreamType; } });
-var operationsClient_2 = require("./operationsClient");
+const operationsClient_2 = require("./operationsClient");
 Object.defineProperty(exports, "OperationsClient", { enumerable: true, get: function () { return operationsClient_2.OperationsClient; } });
-var iamService_1 = require("./iamService");
+const iamService_1 = require("./iamService");
 Object.defineProperty(exports, "IamClient", { enumerable: true, get: function () { return iamService_1.IamClient; } });
-var locationService_1 = require("./locationService");
+const locationService_1 = require("./locationService");
 Object.defineProperty(exports, "LocationsClient", { enumerable: true, get: function () { return locationService_1.LocationsClient; } });
-var util_2 = require("./util");
+const util_2 = require("./util");
 Object.defineProperty(exports, "makeUUID", { enumerable: true, get: function () { return util_2.makeUUID; } });
 exports.defaultToObjectOptions = {
     keepCase: false,
@@ -385,12 +385,12 @@ _fallback) {
     return (0, createApiCall_1.createApiCall)(func, settings, descriptor);
 }
 exports.protobufMinimal = __importStar(require("protobufjs/minimal"));
-var warnings_1 = require("./warnings");
+const warnings_1 = require("./warnings");
 Object.defineProperty(exports, "warn", { enumerable: true, get: function () { return warnings_1.warn; } });
-var longrunning_1 = require("./longRunningCalls/longrunning");
+const longrunning_1 = require("./longRunningCalls/longrunning");
 Object.defineProperty(exports, "Operation", { enumerable: true, get: function () { return longrunning_1.Operation; } });
 Object.defineProperty(exports, "operation", { enumerable: true, get: function () { return longrunning_1.operation; } });
-var googleError_1 = require("./googleError");
+const googleError_1 = require("./googleError");
 Object.defineProperty(exports, "GoogleError", { enumerable: true, get: function () { return googleError_1.GoogleError; } });
 // Different environments or bundlers may or may not respect "browser" field
 // in package.json (e.g. Electron does not respect it, but if you run the code

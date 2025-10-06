@@ -1,22 +1,22 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 
-var _tokenizer = require('../parser/tokenizer');
-var _keywords = require('../parser/tokenizer/keywords');
-var _types = require('../parser/tokenizer/types');
+const _tokenizer = require('../parser/tokenizer');
+const _keywords = require('../parser/tokenizer/keywords');
+const _types = require('../parser/tokenizer/types');
 
-var _elideImportEquals = require('../util/elideImportEquals'); var _elideImportEquals2 = _interopRequireDefault(_elideImportEquals);
-
-
-
-var _getDeclarationInfo = require('../util/getDeclarationInfo'); var _getDeclarationInfo2 = _interopRequireDefault(_getDeclarationInfo);
-var _getImportExportSpecifierInfo = require('../util/getImportExportSpecifierInfo'); var _getImportExportSpecifierInfo2 = _interopRequireDefault(_getImportExportSpecifierInfo);
-var _isExportFrom = require('../util/isExportFrom'); var _isExportFrom2 = _interopRequireDefault(_isExportFrom);
-var _removeMaybeImportAttributes = require('../util/removeMaybeImportAttributes');
-var _shouldElideDefaultExport = require('../util/shouldElideDefaultExport'); var _shouldElideDefaultExport2 = _interopRequireDefault(_shouldElideDefaultExport);
+const _elideImportEquals = require('../util/elideImportEquals'); const _elideImportEquals2 = _interopRequireDefault(_elideImportEquals);
 
 
-var _Transformer = require('./Transformer'); var _Transformer2 = _interopRequireDefault(_Transformer);
+
+const _getDeclarationInfo = require('../util/getDeclarationInfo'); const _getDeclarationInfo2 = _interopRequireDefault(_getDeclarationInfo);
+const _getImportExportSpecifierInfo = require('../util/getImportExportSpecifierInfo'); const _getImportExportSpecifierInfo2 = _interopRequireDefault(_getImportExportSpecifierInfo);
+const _isExportFrom = require('../util/isExportFrom'); const _isExportFrom2 = _interopRequireDefault(_isExportFrom);
+const _removeMaybeImportAttributes = require('../util/removeMaybeImportAttributes');
+const _shouldElideDefaultExport = require('../util/shouldElideDefaultExport'); const _shouldElideDefaultExport2 = _interopRequireDefault(_shouldElideDefaultExport);
+
+
+const _Transformer = require('./Transformer'); const _Transformer2 = _interopRequireDefault(_Transformer);
 
 /**
  * Class for editing import statements when we are transforming to commonjs.
@@ -41,7 +41,7 @@ var _Transformer = require('./Transformer'); var _Transformer2 = _interopRequire
      preserveDynamicImport,
      keepUnusedImports,
   ) {
-    super();this.rootTransformer = rootTransformer;this.tokens = tokens;this.importProcessor = importProcessor;this.nameManager = nameManager;this.helperManager = helperManager;this.reactHotLoaderTransformer = reactHotLoaderTransformer;this.enableLegacyBabel5ModuleInterop = enableLegacyBabel5ModuleInterop;this.enableLegacyTypeScriptModuleInterop = enableLegacyTypeScriptModuleInterop;this.isTypeScriptTransformEnabled = isTypeScriptTransformEnabled;this.isFlowTransformEnabled = isFlowTransformEnabled;this.preserveDynamicImport = preserveDynamicImport;this.keepUnusedImports = keepUnusedImports;CJSImportTransformer.prototype.__init.call(this);CJSImportTransformer.prototype.__init2.call(this);CJSImportTransformer.prototype.__init3.call(this);;
+    super();this.rootTransformer = rootTransformer;this.tokens = tokens;this.importProcessor = importProcessor;this.nameManager = nameManager;this.helperManager = helperManager;this.reactHotLoaderTransformer = reactHotLoaderTransformer;this.enableLegacyBabel5ModuleInterop = enableLegacyBabel5ModuleInterop;this.enableLegacyTypeScriptModuleInterop = enableLegacyTypeScriptModuleInterop;this.isTypeScriptTransformEnabled = isTypeScriptTransformEnabled;this.isFlowTransformEnabled = isFlowTransformEnabled;this.preserveDynamicImport = preserveDynamicImport;this.keepUnusedImports = keepUnusedImports;CJSImportTransformer.prototype.__init.call(this);CJSImportTransformer.prototype.__init2.call(this);CJSImportTransformer.prototype.__init3.call(this);
     this.declarationInfo = isTypeScriptTransformEnabled
       ? _getDeclarationInfo2.default.call(void 0, tokens)
       : _getDeclarationInfo.EMPTY_DECLARATION_INFO;

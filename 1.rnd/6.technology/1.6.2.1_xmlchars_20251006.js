@@ -10,9 +10,9 @@
  * @copyright Louis-Dominique Dubeau
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-var ed4 = require("./xml/1.0/ed4");
-var ed5 = require("./xml/1.0/ed5");
-var nsed3 = require("./xmlns/1.0/ed3");
+const ed4 = require("./xml/1.0/ed4");
+const ed5 = require("./xml/1.0/ed5");
+const nsed3 = require("./xmlns/1.0/ed3");
 // tslint:disable-next-line:no-console
 console.warn("DEPRECATION WARNING: the xmlchar *module* is deprecated: please \
 replace e.g. require('xmlchars') with require('xmlchars/xml/...')");
@@ -20,18 +20,18 @@ replace e.g. require('xmlchars') with require('xmlchars/xml/...')");
  * Character class utilities for XML 1.0.
  */
 // tslint:disable-next-line:no-namespace
-var XML_1_0;
+let XML_1_0;
 (function (XML_1_0) {
     /**
      * Fifth edition.
      */
-    var ED5;
+    let ED5;
     (function (ED5) {
         /**
          * Regular expression fragments. These fragments are designed to be included
          * inside square brackets in a regular expression.
          */
-        var fragments;
+        let fragments;
         (function (fragments) {
             fragments.CHAR = ed5.CHAR;
             fragments.S = ed5.S;
@@ -42,7 +42,7 @@ var XML_1_0;
          * Regular expression. These correspond to the productions of the same name
          * in the specification.
          */
-        var regexes;
+        let regexes;
         (function (regexes) {
             regexes.CHAR = ed5.CHAR_RE;
             regexes.S = ed5.S_RE;
@@ -58,7 +58,7 @@ var XML_1_0;
          * contain the set of codepoints that an XML production encompasses. Note
          * that many productions are too large to be reasonably represented as sets.
          */
-        var lists;
+        let lists;
         (function (lists) {
             lists.S = ed5.S_LIST;
         })(lists = ED5.lists || (ED5.lists = {}));
@@ -101,13 +101,13 @@ var XML_1_0;
      * standards related to XML 1.0 (e.g. XML Schema 1.0) refer to these. So they
      * are still generally useful.
      */
-    var ED4;
+    let ED4;
     (function (ED4) {
         /**
          * Regular expression fragments. These fragments are designed to be included
          * inside square brackets in a regular expression.
          */
-        var fragments;
+        let fragments;
         (function (fragments) {
             fragments.CHAR = ed4.CHAR;
             fragments.S = ed4.S;
@@ -123,7 +123,7 @@ var XML_1_0;
          * Regular expression. These correspond to the productions of the same
          * name in the specification.
          */
-        var regexes;
+        let regexes;
         (function (regexes) {
             regexes.CHAR = ed4.CHAR_RE;
             regexes.S = ed4.S_RE;
@@ -143,18 +143,18 @@ var XML_1_0;
  * Character class utilities for XML NS 1.0.
  */
 // tslint:disable-next-line:no-namespace
-var XMLNS_1_0;
+let XMLNS_1_0;
 (function (XMLNS_1_0) {
     /**
      * Third edition.
      */
-    var ED3;
+    let ED3;
     (function (ED3) {
         /**
          * Regular expression fragments. These fragments are designed to be included
          * inside square brackets in a regular expression.
          */
-        var fragments;
+        let fragments;
         (function (fragments) {
             fragments.NC_NAME_START_CHAR = nsed3.NC_NAME_START_CHAR;
             fragments.NC_NAME_CHAR = nsed3.NC_NAME_CHAR;
@@ -163,7 +163,7 @@ var XMLNS_1_0;
          * Regular expression. These correspond to the productions of the same name
          * in the specification.
          */
-        var regexes;
+        let regexes;
         (function (regexes) {
             regexes.NC_NAME_START_CHAR = nsed3.NC_NAME_START_CHAR_RE;
             regexes.NC_NAME_CHAR = nsed3.NC_NAME_CHAR_RE;

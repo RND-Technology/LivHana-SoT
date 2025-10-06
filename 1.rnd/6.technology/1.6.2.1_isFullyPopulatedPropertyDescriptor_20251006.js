@@ -1,6 +1,6 @@
 'use strict';
 
-var isPropertyDescriptor = require('./records/property-descriptor');
+const isPropertyDescriptor = require('./records/property-descriptor');
 
 module.exports = function isFullyPopulatedPropertyDescriptor(ES, Desc) {
 	return isPropertyDescriptor(Desc)

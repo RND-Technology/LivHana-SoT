@@ -4,11 +4,11 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 exports.diffStringsUnified = exports.diffStringsRaw = void 0;
-var _cleanupSemantic = require('./cleanupSemantic');
-var _diffLines = require('./diffLines');
-var _diffStrings = _interopRequireDefault(require('./diffStrings'));
-var _getAlignedDiffs = _interopRequireDefault(require('./getAlignedDiffs'));
-var _normalizeDiffOptions = require('./normalizeDiffOptions');
+const _cleanupSemantic = require('./cleanupSemantic');
+const _diffLines = require('./diffLines');
+const _diffStrings = _interopRequireDefault(require('./diffStrings'));
+const _getAlignedDiffs = _interopRequireDefault(require('./getAlignedDiffs'));
+const _normalizeDiffOptions = require('./normalizeDiffOptions');
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {default: obj};
 }

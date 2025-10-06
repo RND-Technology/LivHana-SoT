@@ -107,7 +107,7 @@ class AsyncFifoQueue {
         return this.nextPromise;
     }
     async fetch() {
-        var _a;
+        let _a;
         if (this.pending.size === 0 && this.queue.length === 0) {
             return;
         }

@@ -16,7 +16,7 @@ const { QUESTIONMARK } = require('../../core/constants');
 const API = require("../../../nr-security-api");
 const logger = API.getLogger();
 const { APPLICATION_JSON } = require('../../core/constants');
-let querystring = require('querystring');
+const querystring = require('querystring');
 
 
 module.exports = function initialize(shim, mod) {
@@ -30,13 +30,13 @@ module.exports = function initialize(shim, mod) {
       const transaction = shim.tracer.getTransaction();
       try {
         if (transaction) {
-          let request = requestManager.getRequestFromId(transaction.id);
-          let customDataType = {};
+          const request = requestManager.getRequestFromId(transaction.id);
+          const customDataType = {};
           //check for query parms
           if (request.headers['x-apollo-operation-name']) {
             const queryString = request.url.split(QUESTIONMARK)[1];
             const parsedQueryString = querystring.parse(queryString);
-            let allValues = Object.values(parsedQueryString);
+            const allValues = Object.values(parsedQueryString);
             for (let index = 0; index < allValues.length; index++) {
               const element = allValues[index];
               if (element.startsWith('query')) {

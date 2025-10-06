@@ -1,4 +1,4 @@
-var baseGet = require('./_baseGet'),
+const baseGet = require('./_baseGet'),
     baseSet = require('./_baseSet'),
     castPath = require('./_castPath');
 
@@ -12,12 +12,12 @@ var baseGet = require('./_baseGet'),
  * @returns {Object} Returns the new object.
  */
 function basePickBy(object, paths, predicate) {
-  var index = -1,
+  let index = -1,
       length = paths.length,
       result = {};
 
   while (++index < length) {
-    var path = paths[index],
+    const path = paths[index],
         value = baseGet(object, path);
 
     if (predicate(value, path)) {

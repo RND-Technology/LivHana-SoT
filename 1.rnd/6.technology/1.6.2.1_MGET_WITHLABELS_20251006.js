@@ -8,7 +8,7 @@ function transformArguments(filter, options) {
     return (0, _1.pushFilterArgument)(args, filter);
 }
 exports.transformArguments = transformArguments;
-;
+
 function transformReply(reply) {
     return reply.map(([key, labels, sample]) => ({
         key,

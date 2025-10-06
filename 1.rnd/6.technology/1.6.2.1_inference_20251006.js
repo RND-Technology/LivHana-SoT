@@ -365,7 +365,7 @@ export function is_nullish(node, compressor) {
     def_has_side_effects(AST_This, return_false);
 
     function any(list, compressor) {
-        for (var i = list.length; --i >= 0;)
+        for (let i = list.length; --i >= 0;)
             if (list[i].has_side_effects(compressor))
                 return true;
         return false;
@@ -487,7 +487,7 @@ export function is_nullish(node, compressor) {
             return true;
         }
 
-        var property = this.property.has_side_effects(compressor);
+        const property = this.property.has_side_effects(compressor);
         if (property && this.optional) return true; // "?." is a condition
 
         return property || this.expression.has_side_effects(compressor);
@@ -526,7 +526,7 @@ export function is_nullish(node, compressor) {
     def_may_throw(AST_ImportMeta, return_false);
 
     function any(list, compressor) {
-        for (var i = list.length; --i >= 0;)
+        for (let i = list.length; --i >= 0;)
             if (list[i].may_throw(compressor))
                 return true;
         return false;
@@ -677,13 +677,13 @@ export function is_nullish(node, compressor) {
                     result = false;
                     return walk_abort;
                 }
-                var def = node.definition();
+                const def = node.definition();
                 if (
                     member(def, this.enclosed)
                     && !this.variables.has(def.name)
                 ) {
                     if (scope) {
-                        var scope_def = scope.find_variable(node);
+                        const scope_def = scope.find_variable(node);
                         if (def.undeclared ? !scope_def : scope_def === def) {
                             result = "f";
                             return true;
@@ -764,7 +764,7 @@ export function is_nullish(node, compressor) {
     def_may_throw_on_access(AST_Array, return_false);
     def_may_throw_on_access(AST_Object, function(compressor) {
         if (!is_strict(compressor)) return false;
-        for (var i = this.properties.length; --i >=0;)
+        for (let i = this.properties.length; --i >=0;)
             if (this.properties[i]._dot_throw(compressor)) return true;
         return false;
     });
@@ -820,7 +820,7 @@ export function is_nullish(node, compressor) {
         if (!is_strict(compressor)) return false;
         if (is_undeclared_ref(this) && this.is_declared(compressor)) return false;
         if (this.is_immutable()) return false;
-        var fixed = this.fixed_value();
+        const fixed = this.fixed_value();
         return !fixed || fixed._dot_throw(compressor);
     });
 })(function(node, func) {
@@ -842,9 +842,9 @@ export function is_lhs(node, parent) {
         });
     }
     function best(orig, alt, first_in_statement) {
-        var negated = basic_negation(orig);
+        const negated = basic_negation(orig);
         if (first_in_statement) {
-            var stat = make_node(AST_SimpleStatement, alt, {
+            const stat = make_node(AST_SimpleStatement, alt, {
                 body: alt
             });
             return best_of_expression(negated, stat) === stat ? alt : negated;
@@ -872,18 +872,18 @@ export function is_lhs(node, parent) {
         return basic_negation(this);
     });
     def_negate(AST_Sequence, function(compressor) {
-        var expressions = this.expressions.slice();
+        const expressions = this.expressions.slice();
         expressions.push(expressions.pop().negate(compressor));
         return make_sequence(this, expressions);
     });
     def_negate(AST_Conditional, function(compressor, first_in_statement) {
-        var self = this.clone();
+        const self = this.clone();
         self.consequent = self.consequent.negate(compressor);
         self.alternative = self.alternative.negate(compressor);
         return best(this, self, first_in_statement);
     });
     def_negate(AST_Binary, function(compressor, first_in_statement) {
-        var self = this.clone(), op = this.operator;
+        const self = this.clone(), op = this.operator;
         if (compressor.option("unsafe_comps")) {
             switch (op) {
               case "<=" : self.operator = ">"  ; return self;
@@ -954,11 +954,11 @@ export function is_lhs(node, parent) {
 });
 
 // Is the callee of this function pure?
-var global_pure_fns = makePredicate("Boolean decodeURI decodeURIComponent Date encodeURI encodeURIComponent Error escape EvalError isFinite isNaN Number Object parseFloat parseInt RangeError ReferenceError String SyntaxError TypeError unescape URIError");
+const global_pure_fns = makePredicate("Boolean decodeURI decodeURIComponent Date encodeURI encodeURIComponent Error escape EvalError isFinite isNaN Number Object parseFloat parseInt RangeError ReferenceError String SyntaxError TypeError unescape URIError");
 AST_Call.DEFMETHOD("is_callee_pure", function(compressor) {
     if (compressor.option("unsafe")) {
-        var expr = this.expression;
-        var first_arg = (this.args && this.args[0] && this.args[0].evaluate(compressor));
+        const expr = this.expression;
+        const first_arg = (this.args && this.args[0] && this.args[0].evaluate(compressor));
         if (
             expr.expression && expr.expression.name === "hasOwnProperty" &&
             (first_arg == null || first_arg.thedef && first_arg.thedef.undeclared)
@@ -1013,7 +1013,7 @@ export const aborts = (thing) => thing && thing.aborts();
     def_aborts(AST_Statement, return_null);
     def_aborts(AST_Jump, return_this);
     function block_aborts() {
-        for (var i = 0; i < this.body.length; i++) {
+        for (let i = 0; i < this.body.length; i++) {
             if (aborts(this.body[i])) {
                 return this.body[i];
             }
@@ -1053,8 +1053,8 @@ AST_Node.DEFMETHOD("contains_this", function() {
 });
 
 export function is_modified(compressor, tw, node, value, level, immutable) {
-    var parent = tw.parent(level);
-    var lhs = is_lhs(node, parent);
+    const parent = tw.parent(level);
+    const lhs = is_lhs(node, parent);
     if (lhs) return lhs;
     if (!immutable
         && parent instanceof AST_Call
@@ -1070,11 +1070,11 @@ export function is_modified(compressor, tw, node, value, level, immutable) {
         return is_modified(compressor, tw, parent, parent, level + 1);
     }
     if (parent instanceof AST_ObjectKeyVal && node === parent.value) {
-        var obj = tw.parent(level + 1);
+        const obj = tw.parent(level + 1);
         return is_modified(compressor, tw, obj, obj, level + 2);
     }
     if (parent instanceof AST_PropAccess && parent.expression === node) {
-        var prop = read_property(value, parent.property);
+        const prop = read_property(value, parent.property);
         return !immutable && is_modified(compressor, tw, parent, prop, level + 1);
     }
 }

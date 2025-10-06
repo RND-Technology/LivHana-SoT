@@ -1,4 +1,4 @@
-var baseMatches = require('./_baseMatches'),
+const baseMatches = require('./_baseMatches'),
     baseMatchesProperty = require('./_baseMatchesProperty'),
     identity = require('./identity'),
     isArray = require('./isArray'),

@@ -1,4 +1,4 @@
-var convert = require('./convert'),
+const convert = require('./convert'),
     func = convert('findLastFrom', require('../findLast'));
 
 func.placeholder = require('./placeholder');

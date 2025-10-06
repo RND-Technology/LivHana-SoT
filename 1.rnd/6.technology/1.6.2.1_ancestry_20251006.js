@@ -13,7 +13,7 @@ exports.getStatementParent = getStatementParent;
 exports.inType = inType;
 exports.isAncestor = isAncestor;
 exports.isDescendant = isDescendant;
-var _t = require("@babel/types");
+const _t = require("@babel/types");
 const {
   VISITOR_KEYS
 } = _t;

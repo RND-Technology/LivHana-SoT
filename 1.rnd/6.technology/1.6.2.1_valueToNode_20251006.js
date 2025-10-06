@@ -4,9 +4,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _isValidIdentifier = require("../validators/isValidIdentifier.js");
-var _index = require("../builders/generated/index.js");
-var _default = exports.default = valueToNode;
+const _isValidIdentifier = require("../validators/isValidIdentifier.js");
+const _index = require("../builders/generated/index.js");
+const _default = exports.default = valueToNode;
 const objectToString = Function.call.bind(Object.prototype.toString);
 function isRegExp(value) {
   return objectToString(value) === "[object RegExp]";

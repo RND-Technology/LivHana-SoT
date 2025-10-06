@@ -29,7 +29,7 @@ const http2 = require("http2");
 const TRACER_NAME = 'load_balancing_call';
 class LoadBalancingCall {
     constructor(channel, callConfig, methodName, host, credentials, deadline, callNumber) {
-        var _a, _b;
+        let _a, _b;
         this.channel = channel;
         this.callConfig = callConfig;
         this.methodName = methodName;
@@ -61,7 +61,7 @@ class LoadBalancingCall {
         this.startTime = new Date();
     }
     getDeadlineInfo() {
-        var _a, _b;
+        let _a, _b;
         const deadlineInfo = [];
         if (this.childStartTime) {
             if (this.childStartTime > this.startTime) {
@@ -85,7 +85,7 @@ class LoadBalancingCall {
         logging.trace(constants_1.LogVerbosity.DEBUG, TRACER_NAME, '[' + this.callNumber + '] ' + text);
     }
     outputStatus(status, progress) {
-        var _a, _b;
+        let _a, _b;
         if (!this.ended) {
             this.ended = true;
             this.trace('ended with status: code=' +
@@ -100,7 +100,7 @@ class LoadBalancingCall {
         }
     }
     doPick() {
-        var _a, _b;
+        let _a, _b;
         if (this.ended) {
             return;
         }
@@ -130,7 +130,7 @@ class LoadBalancingCall {
                 combinedCallCredentials
                     .generateMetadata({ method_name: this.methodName, service_url: this.serviceUrl })
                     .then(credsMetadata => {
-                    var _a;
+                    let _a;
                     /* If this call was cancelled (e.g. by the deadline) before
                      * metadata generation finished, we shouldn't do anything with
                      * it. */
@@ -241,13 +241,13 @@ class LoadBalancingCall {
         }
     }
     cancelWithStatus(status, details) {
-        var _a;
+        let _a;
         this.trace('cancelWithStatus code: ' + status + ' details: "' + details + '"');
         (_a = this.child) === null || _a === void 0 ? void 0 : _a.cancelWithStatus(status, details);
         this.outputStatus({ code: status, details: details, metadata: new metadata_1.Metadata() }, 'PROCESSED');
     }
     getPeer() {
-        var _a, _b;
+        let _a, _b;
         return (_b = (_a = this.child) === null || _a === void 0 ? void 0 : _a.getPeer()) !== null && _b !== void 0 ? _b : this.channel.getTarget();
     }
     start(metadata, listener) {

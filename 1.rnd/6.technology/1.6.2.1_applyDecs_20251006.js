@@ -4,22 +4,22 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = applyDecs;
-var _setFunctionName = require("setFunctionName");
-var _toPropertyKey = require("toPropertyKey");
+const _setFunctionName = require("setFunctionName");
+const _toPropertyKey = require("toPropertyKey");
 function old_createMetadataMethodsForProperty(metadataMap, kind, property, decoratorFinishedRef) {
   return {
     getMetadata: function (key) {
       old_assertNotFinished(decoratorFinishedRef, "getMetadata");
       old_assertMetadataKey(key);
-      var metadataForKey = metadataMap[key];
+      const metadataForKey = metadataMap[key];
       if (metadataForKey === void 0) return void 0;
       if (kind === 1) {
-        var pub = metadataForKey.public;
+        const pub = metadataForKey.public;
         if (pub !== void 0) {
           return pub[property];
         }
       } else if (kind === 2) {
-        var priv = metadataForKey.private;
+        const priv = metadataForKey.private;
         if (priv !== void 0) {
           return priv.get(property);
         }
@@ -30,18 +30,18 @@ function old_createMetadataMethodsForProperty(metadataMap, kind, property, decor
     setMetadata: function (key, value) {
       old_assertNotFinished(decoratorFinishedRef, "setMetadata");
       old_assertMetadataKey(key);
-      var metadataForKey = metadataMap[key];
+      let metadataForKey = metadataMap[key];
       if (metadataForKey === void 0) {
         metadataForKey = metadataMap[key] = {};
       }
       if (kind === 1) {
-        var pub = metadataForKey.public;
+        let pub = metadataForKey.public;
         if (pub === void 0) {
           pub = metadataForKey.public = {};
         }
         pub[property] = value;
       } else if (kind === 2) {
-        var priv = metadataForKey.priv;
+        let priv = metadataForKey.priv;
         if (priv === void 0) {
           priv = metadataForKey.private = new Map();
         }
@@ -53,22 +53,22 @@ function old_createMetadataMethodsForProperty(metadataMap, kind, property, decor
   };
 }
 function old_convertMetadataMapToFinal(obj, metadataMap) {
-  var parentMetadataMap = obj[Symbol.metadata || Symbol.for("Symbol.metadata")];
-  var metadataKeys = Object.getOwnPropertySymbols(metadataMap);
+  const parentMetadataMap = obj[Symbol.metadata || Symbol.for("Symbol.metadata")];
+  const metadataKeys = Object.getOwnPropertySymbols(metadataMap);
   if (metadataKeys.length === 0) return;
-  for (var i = 0; i < metadataKeys.length; i++) {
-    var key = metadataKeys[i];
-    var metaForKey = metadataMap[key];
-    var parentMetaForKey = parentMetadataMap ? parentMetadataMap[key] : null;
-    var pub = metaForKey.public;
-    var parentPub = parentMetaForKey ? parentMetaForKey.public : null;
+  for (let i = 0; i < metadataKeys.length; i++) {
+    const key = metadataKeys[i];
+    const metaForKey = metadataMap[key];
+    const parentMetaForKey = parentMetadataMap ? parentMetadataMap[key] : null;
+    const pub = metaForKey.public;
+    const parentPub = parentMetaForKey ? parentMetaForKey.public : null;
     if (pub && parentPub) {
       Object.setPrototypeOf(pub, parentPub);
     }
-    var priv = metaForKey.private;
+    const priv = metaForKey.private;
     if (priv) {
-      var privArr = Array.from(priv.values());
-      var parentPriv = parentMetaForKey ? parentMetaForKey.private : null;
+      let privArr = Array.from(priv.values());
+      const parentPriv = parentMetaForKey ? parentMetaForKey.private : null;
       if (parentPriv) {
         privArr = privArr.concat(parentPriv);
       }
@@ -91,7 +91,7 @@ function old_createAddInitializerMethod(initializers, decoratorFinishedRef) {
   };
 }
 function old_memberDec(dec, name, desc, metadataMap, initializers, kind, isStatic, isPrivate, value) {
-  var kindStr;
+  let kindStr;
   switch (kind) {
     case 1:
       kindStr = "accessor";
@@ -108,23 +108,23 @@ function old_memberDec(dec, name, desc, metadataMap, initializers, kind, isStati
     default:
       kindStr = "field";
   }
-  var ctx = {
+  const ctx = {
     kind: kindStr,
     name: isPrivate ? "#" + name : _toPropertyKey(name),
     isStatic: isStatic,
     isPrivate: isPrivate
   };
-  var decoratorFinishedRef = {
+  const decoratorFinishedRef = {
     v: false
   };
   if (kind !== 0) {
     ctx.addInitializer = old_createAddInitializerMethod(initializers, decoratorFinishedRef);
   }
-  var metadataKind, metadataName;
+  let metadataKind, metadataName;
   if (isPrivate) {
     metadataKind = 2;
     metadataName = Symbol(name);
-    var access = {};
+    const access = {};
     if (kind === 0) {
       access.get = desc.get;
       access.set = desc.set;
@@ -171,7 +171,7 @@ function old_assertCallable(fn, hint) {
   }
 }
 function old_assertValidReturnValue(kind, value) {
-  var type = typeof value;
+  const type = typeof value;
   if (kind === 1) {
     if (type !== "object" || value === null) {
       throw new TypeError("accessor decorators must return an object with get, set, or init properties or void 0");
@@ -189,7 +189,7 @@ function old_assertValidReturnValue(kind, value) {
       old_assertCallable(value.initializer, "accessor.initializer");
     }
   } else if (type !== "function") {
-    var hint;
+    let hint;
     if (kind === 0) {
       hint = "field";
     } else if (kind === 10) {
@@ -201,15 +201,15 @@ function old_assertValidReturnValue(kind, value) {
   }
 }
 function old_getInit(desc) {
-  var initializer;
+  let initializer;
   if ((initializer = desc.init) == null && (initializer = desc.initializer) && typeof console !== "undefined") {
     console.warn(".initializer has been renamed to .init as of March 2022");
   }
   return initializer;
 }
 function old_applyMemberDec(ret, base, decInfo, name, kind, isStatic, isPrivate, metadataMap, initializers) {
-  var decs = decInfo[0];
-  var desc, initializer, prefix, value;
+  const decs = decInfo[0];
+  let desc, initializer, prefix, value;
   if (isPrivate) {
     if (kind === 0 || kind === 1) {
       desc = {
@@ -253,7 +253,7 @@ function old_applyMemberDec(ret, base, decInfo, name, kind, isStatic, isPrivate,
   } else if (kind === 4) {
     value = desc.set;
   }
-  var newValue, get, set;
+  let newValue, get, set;
   if (typeof decs === "function") {
     newValue = old_memberDec(decs, name, desc, metadataMap, initializers, kind, isStatic, isPrivate, value);
     if (newValue !== void 0) {
@@ -273,8 +273,8 @@ function old_applyMemberDec(ret, base, decInfo, name, kind, isStatic, isPrivate,
       }
     }
   } else {
-    for (var i = decs.length - 1; i >= 0; i--) {
-      var dec = decs[i];
+    for (let i = decs.length - 1; i >= 0; i--) {
+      const dec = decs[i];
       newValue = old_memberDec(dec, name, desc, metadataMap, initializers, kind, isStatic, isPrivate, value);
       if (newValue !== void 0) {
         old_assertValidReturnValue(kind, newValue);
@@ -310,16 +310,16 @@ function old_applyMemberDec(ret, base, decInfo, name, kind, isStatic, isPrivate,
         return init;
       };
     } else if (typeof initializer !== "function") {
-      var ownInitializers = initializer;
+      const ownInitializers = initializer;
       initializer = function (instance, init) {
-        var value = init;
-        for (var i = 0; i < ownInitializers.length; i++) {
+        let value = init;
+        for (let i = 0; i < ownInitializers.length; i++) {
           value = ownInitializers[i].call(instance, value);
         }
         return value;
       };
     } else {
-      var originalInitializer = initializer;
+      const originalInitializer = initializer;
       initializer = function (instance, init) {
         return originalInitializer.call(instance, init);
       };
@@ -358,17 +358,17 @@ function old_applyMemberDec(ret, base, decInfo, name, kind, isStatic, isPrivate,
   }
 }
 function old_applyMemberDecs(ret, Class, protoMetadataMap, staticMetadataMap, decInfos) {
-  var protoInitializers;
-  var staticInitializers;
-  var existingProtoNonFields = new Map();
-  var existingStaticNonFields = new Map();
-  for (var i = 0; i < decInfos.length; i++) {
-    var decInfo = decInfos[i];
+  let protoInitializers;
+  let staticInitializers;
+  const existingProtoNonFields = new Map();
+  const existingStaticNonFields = new Map();
+  for (let i = 0; i < decInfos.length; i++) {
+    const decInfo = decInfos[i];
     if (!Array.isArray(decInfo)) continue;
-    var kind = decInfo[1];
-    var name = decInfo[2];
-    var isPrivate = decInfo.length > 3;
-    var isStatic = kind >= 5;
+    let kind = decInfo[1];
+    const name = decInfo[2];
+    const isPrivate = decInfo.length > 3;
+    const isStatic = kind >= 5;
     var base;
     var metadataMap;
     var initializers;
@@ -389,8 +389,8 @@ function old_applyMemberDecs(ret, Class, protoMetadataMap, staticMetadataMap, de
       }
     }
     if (kind !== 0 && !isPrivate) {
-      var existingNonFields = isStatic ? existingStaticNonFields : existingProtoNonFields;
-      var existingKind = existingNonFields.get(name) || 0;
+      const existingNonFields = isStatic ? existingStaticNonFields : existingProtoNonFields;
+      const existingKind = existingNonFields.get(name) || 0;
       if (existingKind === true || existingKind === 3 && kind !== 4 || existingKind === 4 && kind !== 3) {
         throw new Error("Attempted to decorate a public method/accessor that has the same name as a previously decorated public method/accessor. This is not currently supported by the decorators plugin. Property name was: " + name);
       } else if (!existingKind && kind > 2) {
@@ -407,7 +407,7 @@ function old_applyMemberDecs(ret, Class, protoMetadataMap, staticMetadataMap, de
 function old_pushInitializers(ret, initializers) {
   if (initializers) {
     ret.push(function (instance) {
-      for (var i = 0; i < initializers.length; i++) {
+      for (let i = 0; i < initializers.length; i++) {
         initializers[i].call(instance);
       }
       return instance;
@@ -416,15 +416,15 @@ function old_pushInitializers(ret, initializers) {
 }
 function old_applyClassDecs(ret, targetClass, metadataMap, classDecs) {
   if (classDecs.length > 0) {
-    var initializers = [];
-    var newClass = targetClass;
-    var name = targetClass.name;
-    for (var i = classDecs.length - 1; i >= 0; i--) {
-      var decoratorFinishedRef = {
+    const initializers = [];
+    let newClass = targetClass;
+    const name = targetClass.name;
+    for (let i = classDecs.length - 1; i >= 0; i--) {
+      const decoratorFinishedRef = {
         v: false
       };
       try {
-        var ctx = Object.assign({
+        const ctx = Object.assign({
           kind: "class",
           name: name,
           addInitializer: old_createAddInitializerMethod(initializers, decoratorFinishedRef)
@@ -439,16 +439,16 @@ function old_applyClassDecs(ret, targetClass, metadataMap, classDecs) {
       }
     }
     ret.push(newClass, function () {
-      for (var i = 0; i < initializers.length; i++) {
+      for (let i = 0; i < initializers.length; i++) {
         initializers[i].call(newClass);
       }
     });
   }
 }
 function applyDecs(targetClass, memberDecs, classDecs) {
-  var ret = [];
-  var staticMetadataMap = {};
-  var protoMetadataMap = {};
+  const ret = [];
+  const staticMetadataMap = {};
+  const protoMetadataMap = {};
   old_applyMemberDecs(ret, targetClass, protoMetadataMap, staticMetadataMap, memberDecs);
   old_convertMetadataMapToFinal(targetClass.prototype, protoMetadataMap);
   old_applyClassDecs(ret, targetClass, staticMetadataMap, classDecs);

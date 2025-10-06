@@ -1,12 +1,12 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var Get = require('./Get');
-var IteratorComplete = require('./IteratorComplete');
-var IteratorNext = require('./IteratorNext');
+const Get = require('./Get');
+const IteratorComplete = require('./IteratorComplete');
+const IteratorNext = require('./IteratorNext');
 
-var isIteratorRecord = require('../helpers/records/iterator-record');
+const isIteratorRecord = require('../helpers/records/iterator-record');
 
 // https://262.ecma-international.org/15.0/#sec-iteratorstepvalue
 
@@ -16,7 +16,7 @@ module.exports = function IteratorStepValue(iteratorRecord) {
 	}
 	/* eslint no-param-reassign: 0 */
 
-	var result;
+	let result;
 	try {
 		result = IteratorNext(iteratorRecord); // step 1
 	} catch (e) { // step 2
@@ -24,7 +24,7 @@ module.exports = function IteratorStepValue(iteratorRecord) {
 		throw e; // step 2.b
 	}
 
-	var done;
+	let done;
 	try {
 		done = IteratorComplete(result); // step 4
 	} catch (e) { // step 5
@@ -37,7 +37,7 @@ module.exports = function IteratorStepValue(iteratorRecord) {
 		return 'DONE'; // step 7.b
 	}
 
-	var value;
+	let value;
 	try {
 		value = Get(result, 'value'); // step 8
 	} catch (e) { // step 9

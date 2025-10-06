@@ -3,7 +3,7 @@ import {initRange} from "./init.js";
 import ordinal from "./ordinal.js";
 
 export default function band() {
-  var scale = ordinal().unknown(undefined),
+  let scale = ordinal().unknown(undefined),
       domain = scale.domain,
       ordinalRange = scale.range,
       r0 = 0,
@@ -18,7 +18,7 @@ export default function band() {
   delete scale.unknown;
 
   function rescale() {
-    var n = domain().length,
+    let n = domain().length,
         reverse = r1 < r0,
         start = reverse ? r1 : r0,
         stop = reverse ? r0 : r1;
@@ -27,7 +27,7 @@ export default function band() {
     start += (stop - start - step * (n - paddingInner)) * align;
     bandwidth = step * (1 - paddingInner);
     if (round) start = Math.round(start), bandwidth = Math.round(bandwidth);
-    var values = sequence(n).map(function(i) { return start + step * i; });
+    const values = sequence(n).map(function(i) { return start + step * i; });
     return ordinalRange(reverse ? values.reverse() : values);
   }
 
@@ -83,7 +83,7 @@ export default function band() {
 }
 
 function pointish(scale) {
-  var copy = scale.copy;
+  const copy = scale.copy;
 
   scale.padding = scale.paddingOuter;
   delete scale.paddingInner;

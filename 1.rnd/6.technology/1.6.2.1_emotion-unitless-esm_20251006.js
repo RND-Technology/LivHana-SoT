@@ -1,4 +1,4 @@
-var unitlessKeys = {
+const unitlessKeys = {
   animationIterationCount: 1,
   aspectRatio: 1,
   borderImageOutset: 1,

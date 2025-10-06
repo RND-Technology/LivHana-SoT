@@ -3,7 +3,7 @@
 // do not edit .js files directly - edit src/index.jst
 
 
-  var envHasBigInt64Array = typeof BigInt64Array !== 'undefined';
+  const envHasBigInt64Array = typeof BigInt64Array !== 'undefined';
 
 
 module.exports = function equal(a, b) {
@@ -12,7 +12,7 @@ module.exports = function equal(a, b) {
   if (a && b && typeof a == 'object' && typeof b == 'object') {
     if (a.constructor !== b.constructor) return false;
 
-    var length, i, keys;
+    let length, i, keys;
     if (Array.isArray(a)) {
       length = a.length;
       if (length != b.length) return false;
@@ -59,7 +59,7 @@ module.exports = function equal(a, b) {
       if (!Object.prototype.hasOwnProperty.call(b, keys[i])) return false;
 
     for (i = length; i-- !== 0;) {
-      var key = keys[i];
+      const key = keys[i];
 
       if (key === '_owner' && a.$$typeof) {
         // React-specific: avoid traversing React elements' _owner.

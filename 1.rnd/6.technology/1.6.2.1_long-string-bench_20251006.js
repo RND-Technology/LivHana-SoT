@@ -41,37 +41,37 @@ const chill = winston.createLogger({
 
 const run = bench([
   function benchBunyan (cb) {
-    for (var i = 0; i < max; i++) {
+    for (let i = 0; i < max; i++) {
       blog.info(longStr)
     }
     setImmediate(cb)
   },
   function benchWinston (cb) {
-    for (var i = 0; i < max; i++) {
+    for (let i = 0; i < max; i++) {
       chill.info(longStr)
     }
     setImmediate(cb)
   },
   function benchBole (cb) {
-    for (var i = 0; i < max; i++) {
+    for (let i = 0; i < max; i++) {
       bole.info(longStr)
     }
     setImmediate(cb)
   },
   function benchPino (cb) {
-    for (var i = 0; i < max; i++) {
+    for (let i = 0; i < max; i++) {
       plogDest.info(longStr)
     }
     setImmediate(cb)
   },
   function benchPinoMinLength (cb) {
-    for (var i = 0; i < max; i++) {
+    for (let i = 0; i < max; i++) {
       plogMinLength.info(longStr)
     }
     setImmediate(cb)
   },
   function benchPinoNodeStream (cb) {
-    for (var i = 0; i < max; i++) {
+    for (let i = 0; i < max; i++) {
       plogNodeStream.info(longStr)
     }
     setImmediate(cb)

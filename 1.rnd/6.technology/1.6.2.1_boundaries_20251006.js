@@ -5,7 +5,7 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EXTENDED_PICTOGRAPHIC = exports.CLUSTER_BREAK = void 0;
-var CLUSTER_BREAK;
+let CLUSTER_BREAK;
 (function (CLUSTER_BREAK) {
     CLUSTER_BREAK[CLUSTER_BREAK["CR"] = 0] = "CR";
     CLUSTER_BREAK[CLUSTER_BREAK["LF"] = 1] = "LF";

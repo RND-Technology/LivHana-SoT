@@ -28,6 +28,6 @@ class ForksBaseWorker {
     }
   }
 }
-var forks = new ForksBaseWorker();
+const forks = new ForksBaseWorker();
 
 export { forks as default };

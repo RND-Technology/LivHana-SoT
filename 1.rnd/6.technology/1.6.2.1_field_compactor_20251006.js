@@ -29,11 +29,11 @@ function finalizeCurrentRange(results, currentRange, currentItemRange) {
 }
 
 function compactField(arr) {
-  var results = [];
-  var currentRange = undefined;
+  const results = [];
+  let currentRange = undefined;
 
-  for (var i = 0; i < arr.length; i++) {
-    var currentItem = arr[i];
+  for (let i = 0; i < arr.length; i++) {
+    const currentItem = arr[i];
     if (typeof currentItem !== 'number') {
       // String elements can't form a range
       finalizeCurrentRange(results, currentRange, buildRange(currentItem));

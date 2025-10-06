@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
 exports.customAttributeFilterSchema = void 0;
-var schema_1 = require("../schema");
-var range_1 = require("./range");
+const schema_1 = require("../schema");
+const range_1 = require("./range");
 exports.customAttributeFilterSchema = (0, schema_1.object)({
     customAttributeDefinitionId: [
         'custom_attribute_definition_id',

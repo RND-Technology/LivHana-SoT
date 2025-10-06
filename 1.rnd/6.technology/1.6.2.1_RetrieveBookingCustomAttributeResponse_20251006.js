@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
 exports.retrieveBookingCustomAttributeResponseSchema = void 0;
-var schema_1 = require("../schema");
-var customAttribute_1 = require("./customAttribute");
-var error_1 = require("./error");
+const schema_1 = require("../schema");
+const customAttribute_1 = require("./customAttribute");
+const error_1 = require("./error");
 exports.retrieveBookingCustomAttributeResponseSchema = (0, schema_1.object)({
     customAttribute: [
         'custom_attribute',

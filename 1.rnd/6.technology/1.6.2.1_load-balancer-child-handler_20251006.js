@@ -35,7 +35,7 @@ class ChildLoadBalancerHandler {
                 return this.parent.channelControlHelper.createSubchannel(subchannelAddress, subchannelArgs);
             }
             updateState(connectivityState, picker, errorMessage) {
-                var _a;
+                let _a;
                 if (this.calledByPendingChild()) {
                     if (connectivityState === connectivity_state_1.ConnectivityState.CONNECTING) {
                         return;
@@ -50,7 +50,7 @@ class ChildLoadBalancerHandler {
                 this.parent.channelControlHelper.updateState(connectivityState, picker, errorMessage);
             }
             requestReresolution() {
-                var _a;
+                let _a;
                 const latestChild = (_a = this.parent.pendingChild) !== null && _a !== void 0 ? _a : this.parent.currentChild;
                 if (this.child === latestChild) {
                     this.parent.channelControlHelper.requestReresolution();

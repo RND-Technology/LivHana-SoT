@@ -1,21 +1,21 @@
 "use strict";
 exports.__esModule = true;
 exports.PaymentsApi = void 0;
-var tslib_1 = require("tslib");
-var cancelPaymentByIdempotencyKeyRequest_1 = require("../models/cancelPaymentByIdempotencyKeyRequest");
-var cancelPaymentByIdempotencyKeyResponse_1 = require("../models/cancelPaymentByIdempotencyKeyResponse");
-var cancelPaymentResponse_1 = require("../models/cancelPaymentResponse");
-var completePaymentRequest_1 = require("../models/completePaymentRequest");
-var completePaymentResponse_1 = require("../models/completePaymentResponse");
-var createPaymentRequest_1 = require("../models/createPaymentRequest");
-var createPaymentResponse_1 = require("../models/createPaymentResponse");
-var getPaymentResponse_1 = require("../models/getPaymentResponse");
-var listPaymentsResponse_1 = require("../models/listPaymentsResponse");
-var updatePaymentRequest_1 = require("../models/updatePaymentRequest");
-var updatePaymentResponse_1 = require("../models/updatePaymentResponse");
-var schema_1 = require("../schema");
-var baseApi_1 = require("./baseApi");
-var PaymentsApi = /** @class */ (function (_super) {
+const tslib_1 = require("tslib");
+const cancelPaymentByIdempotencyKeyRequest_1 = require("../models/cancelPaymentByIdempotencyKeyRequest");
+const cancelPaymentByIdempotencyKeyResponse_1 = require("../models/cancelPaymentByIdempotencyKeyResponse");
+const cancelPaymentResponse_1 = require("../models/cancelPaymentResponse");
+const completePaymentRequest_1 = require("../models/completePaymentRequest");
+const completePaymentResponse_1 = require("../models/completePaymentResponse");
+const createPaymentRequest_1 = require("../models/createPaymentRequest");
+const createPaymentResponse_1 = require("../models/createPaymentResponse");
+const getPaymentResponse_1 = require("../models/getPaymentResponse");
+const listPaymentsResponse_1 = require("../models/listPaymentsResponse");
+const updatePaymentRequest_1 = require("../models/updatePaymentRequest");
+const updatePaymentResponse_1 = require("../models/updatePaymentResponse");
+const schema_1 = require("../schema");
+const baseApi_1 = require("./baseApi");
+const PaymentsApi = /** @class */ (function (_super) {
     tslib_1.__extends(PaymentsApi, _super);
     function PaymentsApi() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -72,7 +72,7 @@ var PaymentsApi = /** @class */ (function (_super) {
      */
     PaymentsApi.prototype.listPayments = function (beginTime, endTime, sortOrder, cursor, locationId, total, last4, cardBrand, limit, isOfflinePayment, offlineBeginTime, offlineEndTime, updatedAtBeginTime, updatedAtEndTime, sortField, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET', '/v2/payments');
                 mapped = req.prepareArgs({
@@ -128,7 +128,7 @@ var PaymentsApi = /** @class */ (function (_super) {
      */
     PaymentsApi.prototype.createPayment = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/payments');
                 mapped = req.prepareArgs({
@@ -164,7 +164,7 @@ var PaymentsApi = /** @class */ (function (_super) {
      */
     PaymentsApi.prototype.cancelPaymentByIdempotencyKey = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/payments/cancel');
                 mapped = req.prepareArgs({
@@ -185,7 +185,7 @@ var PaymentsApi = /** @class */ (function (_super) {
      */
     PaymentsApi.prototype.getPayment = function (paymentId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({ paymentId: [paymentId, (0, schema_1.string)()] });
@@ -206,7 +206,7 @@ var PaymentsApi = /** @class */ (function (_super) {
      */
     PaymentsApi.prototype.updatePayment = function (paymentId, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('PUT');
                 mapped = req.prepareArgs({
@@ -230,7 +230,7 @@ var PaymentsApi = /** @class */ (function (_super) {
      */
     PaymentsApi.prototype.cancelPayment = function (paymentId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({ paymentId: [paymentId, (0, schema_1.string)()] });
@@ -253,7 +253,7 @@ var PaymentsApi = /** @class */ (function (_super) {
      */
     PaymentsApi.prototype.completePayment = function (paymentId, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({
@@ -271,5 +271,5 @@ var PaymentsApi = /** @class */ (function (_super) {
     return PaymentsApi;
 }(baseApi_1.BaseApi));
 exports.PaymentsApi = PaymentsApi;
-var templateObject_1, templateObject_2, templateObject_3, templateObject_4;
+let templateObject_1, templateObject_2, templateObject_3, templateObject_4;
 //# sourceMappingURL=paymentsApi.js.map

@@ -1,10 +1,10 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
-var isInteger = require('math-intrinsics/isInteger');
-var callBound = require('call-bound');
+const $TypeError = require('es-errors/type');
+const isInteger = require('math-intrinsics/isInteger');
+const callBound = require('call-bound');
 
-var $slice = callBound('String.prototype.slice');
+const $slice = callBound('String.prototype.slice');
 
 // https://262.ecma-international.org/12.0/#substring
 module.exports = function substring(S, inclusiveStart, exclusiveEnd) {

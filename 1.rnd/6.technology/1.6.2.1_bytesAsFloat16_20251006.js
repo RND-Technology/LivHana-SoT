@@ -1,6 +1,6 @@
 'use strict';
 
-var $pow = require('math-intrinsics/pow');
+const $pow = require('math-intrinsics/pow');
 
 module.exports = function bytesAsFloat32(rawBytes) {
 	// return new $Float16Array(new $Uint8Array(rawBytes).buffer)[0];
@@ -10,12 +10,12 @@ module.exports = function bytesAsFloat32(rawBytes) {
         Return the Number value that corresponds to value.
     */
 
-	var bits = (rawBytes[1] << 8) | rawBytes[0];
+	const bits = (rawBytes[1] << 8) | rawBytes[0];
 
 	// extract sign, exponent, mantissa
-	var sign = bits & 0x8000 ? -1 : 1;
-	var exponent = (bits & 0x7C00) >> 10;
-	var mantissa = bits & 0x03FF;
+	const sign = bits & 0x8000 ? -1 : 1;
+	let exponent = (bits & 0x7C00) >> 10;
+	const mantissa = bits & 0x03FF;
 
 	// zero (±0)
 	if (exponent === 0 && mantissa === 0) {

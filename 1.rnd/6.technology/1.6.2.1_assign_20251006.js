@@ -1,10 +1,10 @@
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+const GetIntrinsic = require('get-intrinsic');
 
-var hasOwn = require('hasown');
+const hasOwn = require('hasown');
 
-var $assign = GetIntrinsic('%Object.assign%', true);
+const $assign = GetIntrinsic('%Object.assign%', true);
 
 module.exports = function assign(target, source) {
 	if ($assign) {
@@ -12,7 +12,7 @@ module.exports = function assign(target, source) {
 	}
 
 	// eslint-disable-next-line no-restricted-syntax
-	for (var key in source) {
+	for (const key in source) {
 		if (hasOwn(source, key)) {
 			// eslint-disable-next-line no-param-reassign
 			target[key] = source[key];

@@ -1,11 +1,11 @@
 "use strict";
 exports.__esModule = true;
 exports.cardPaymentDetailsSchema = void 0;
-var schema_1 = require("../schema");
-var card_1 = require("./card");
-var cardPaymentTimeline_1 = require("./cardPaymentTimeline");
-var deviceDetails_1 = require("./deviceDetails");
-var error_1 = require("./error");
+const schema_1 = require("../schema");
+const card_1 = require("./card");
+const cardPaymentTimeline_1 = require("./cardPaymentTimeline");
+const deviceDetails_1 = require("./deviceDetails");
+const error_1 = require("./error");
 exports.cardPaymentDetailsSchema = (0, schema_1.object)({
     status: ['status', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.string)()))],
     card: ['card', (0, schema_1.optional)((0, schema_1.lazy)(function () { return card_1.cardSchema; }))],

@@ -1,11 +1,11 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
-var isObject = require('es-object-atoms/isObject');
+const $TypeError = require('es-errors/type');
+const isObject = require('es-object-atoms/isObject');
 
-var CreateNonEnumerableDataPropertyOrThrow = require('./CreateNonEnumerableDataPropertyOrThrow');
-var Get = require('./Get');
-var HasProperty = require('./HasProperty');
+const CreateNonEnumerableDataPropertyOrThrow = require('./CreateNonEnumerableDataPropertyOrThrow');
+const Get = require('./Get');
+const HasProperty = require('./HasProperty');
 
 // https://262.ecma-international.org/13.0/#sec-installerrorcause
 
@@ -15,7 +15,7 @@ module.exports = function InstallErrorCause(O, options) {
 	}
 
 	if (isObject(options) && HasProperty(options, 'cause')) {
-		var cause = Get(options, 'cause');
+		const cause = Get(options, 'cause');
 		CreateNonEnumerableDataPropertyOrThrow(O, 'cause', cause);
 	}
 };

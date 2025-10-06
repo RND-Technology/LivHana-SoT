@@ -1,13 +1,13 @@
 "use strict";
 
-var assert = require("@sinonjs/referee-sinon").assert;
-var sinon = require("@sinonjs/referee-sinon").sinon;
-var every = require("./every");
+const assert = require("@sinonjs/referee-sinon").assert;
+const sinon = require("@sinonjs/referee-sinon").sinon;
+const every = require("./every");
 
 describe("util/core/every", function () {
     it("returns true when the callback function returns true for every element in an iterable", function () {
-        var obj = [true, true, true, true];
-        var allTrue = every(obj, function (val) {
+        const obj = [true, true, true, true];
+        const allTrue = every(obj, function (val) {
             return val;
         });
 
@@ -15,8 +15,8 @@ describe("util/core/every", function () {
     });
 
     it("returns false when the callback function returns false for any element in an iterable", function () {
-        var obj = [true, true, true, false];
-        var result = every(obj, function (val) {
+        const obj = [true, true, true, false];
+        const result = every(obj, function (val) {
             return val;
         });
 
@@ -24,9 +24,9 @@ describe("util/core/every", function () {
     });
 
     it("calls the given callback once for each item in an iterable until it returns false", function () {
-        var iterableOne = [true, true, true, true];
-        var iterableTwo = [true, true, false, true];
-        var callback = sinon.spy(function (val) {
+        const iterableOne = [true, true, true, true];
+        const iterableTwo = [true, true, false, true];
+        const callback = sinon.spy(function (val) {
             return val;
         });
 

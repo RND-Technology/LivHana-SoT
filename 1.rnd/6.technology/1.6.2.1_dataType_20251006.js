@@ -6,7 +6,7 @@ const applicability_1 = require("./applicability");
 const errors_1 = require("../errors");
 const codegen_1 = require("../codegen");
 const util_1 = require("../util");
-var DataType;
+let DataType;
 (function (DataType) {
     DataType[DataType["Correct"] = 0] = "Correct";
     DataType[DataType["Wrong"] = 1] = "Wrong";

@@ -1,11 +1,11 @@
 "use strict";
 exports.__esModule = true;
 exports.catalogCustomAttributeDefinitionSchema = void 0;
-var schema_1 = require("../schema");
-var catalogCustomAttributeDefinitionNumberConfig_1 = require("./catalogCustomAttributeDefinitionNumberConfig");
-var catalogCustomAttributeDefinitionSelectionConfig_1 = require("./catalogCustomAttributeDefinitionSelectionConfig");
-var catalogCustomAttributeDefinitionStringConfig_1 = require("./catalogCustomAttributeDefinitionStringConfig");
-var sourceApplication_1 = require("./sourceApplication");
+const schema_1 = require("../schema");
+const catalogCustomAttributeDefinitionNumberConfig_1 = require("./catalogCustomAttributeDefinitionNumberConfig");
+const catalogCustomAttributeDefinitionSelectionConfig_1 = require("./catalogCustomAttributeDefinitionSelectionConfig");
+const catalogCustomAttributeDefinitionStringConfig_1 = require("./catalogCustomAttributeDefinitionStringConfig");
+const sourceApplication_1 = require("./sourceApplication");
 exports.catalogCustomAttributeDefinitionSchema = (0, schema_1.object)({
     type: ['type', (0, schema_1.string)()],
     name: ['name', (0, schema_1.string)()],

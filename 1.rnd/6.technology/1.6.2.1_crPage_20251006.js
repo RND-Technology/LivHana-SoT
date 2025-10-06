@@ -1,23 +1,23 @@
 "use strict";
-var __create = Object.create;
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getProtoOf = Object.getPrototypeOf;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
+const __create = Object.create;
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __getProtoOf = Object.getPrototypeOf;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __export = (target, all) => {
+  for (const name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+const __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
   // If the importer is in node compatibility mode or this is not an ESM
   // file that has been converted to a CommonJS file using a Babel-
   // compatible transform (i.e. "__esModule" has not been set), then set
@@ -25,38 +25,38 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
   mod
 ));
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var crPage_exports = {};
+const __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+const crPage_exports = {};
 __export(crPage_exports, {
   CRPage: () => CRPage
 });
 module.exports = __toCommonJS(crPage_exports);
-var import_path = __toESM(require("path"));
-var import_assert = require("../../utils/isomorphic/assert");
-var import_crypto = require("../utils/crypto");
-var import_eventsHelper = require("../utils/eventsHelper");
-var import_stackTrace = require("../../utils/isomorphic/stackTrace");
-var dialog = __toESM(require("../dialog"));
-var dom = __toESM(require("../dom"));
-var frames = __toESM(require("../frames"));
-var import_helper = require("../helper");
-var network = __toESM(require("../network"));
-var import_page = require("../page");
-var import_registry = require("../registry");
-var import_crAccessibility = require("./crAccessibility");
-var import_crBrowser = require("./crBrowser");
-var import_crCoverage = require("./crCoverage");
-var import_crDragDrop = require("./crDragDrop");
-var import_crExecutionContext = require("./crExecutionContext");
-var import_crInput = require("./crInput");
-var import_crNetworkManager = require("./crNetworkManager");
-var import_crPdf = require("./crPdf");
-var import_crProtocolHelper = require("./crProtocolHelper");
-var import_defaultFontFamilies = require("./defaultFontFamilies");
-var import_videoRecorder = require("./videoRecorder");
-var import_browserContext = require("../browserContext");
-var import_errors = require("../errors");
-var import_protocolError = require("../protocolError");
+const import_path = __toESM(require("path"));
+const import_assert = require("../../utils/isomorphic/assert");
+const import_crypto = require("../utils/crypto");
+const import_eventsHelper = require("../utils/eventsHelper");
+const import_stackTrace = require("../../utils/isomorphic/stackTrace");
+const dialog = __toESM(require("../dialog"));
+const dom = __toESM(require("../dom"));
+const frames = __toESM(require("../frames"));
+const import_helper = require("../helper");
+const network = __toESM(require("../network"));
+const import_page = require("../page");
+const import_registry = require("../registry");
+const import_crAccessibility = require("./crAccessibility");
+const import_crBrowser = require("./crBrowser");
+const import_crCoverage = require("./crCoverage");
+const import_crDragDrop = require("./crDragDrop");
+const import_crExecutionContext = require("./crExecutionContext");
+const import_crInput = require("./crInput");
+const import_crNetworkManager = require("./crNetworkManager");
+const import_crPdf = require("./crPdf");
+const import_crProtocolHelper = require("./crProtocolHelper");
+const import_defaultFontFamilies = require("./defaultFontFamilies");
+const import_videoRecorder = require("./videoRecorder");
+const import_browserContext = require("../browserContext");
+const import_errors = require("../errors");
+const import_protocolError = require("../protocolError");
 class CRPage {
   constructor(client, targetId, browserContext, opener, bits) {
     this._sessions = /* @__PURE__ */ new Map();
@@ -819,7 +819,7 @@ class FrameSession {
       screenWidth: screenSize.width,
       screenHeight: screenSize.height,
       deviceScaleFactor: options.deviceScaleFactor || 1,
-      screenOrientation: !!options.isMobile ? isLandscape ? { angle: 90, type: "landscapePrimary" } : { angle: 0, type: "portraitPrimary" } : { angle: 0, type: "landscapePrimary" },
+      screenOrientation: options.isMobile ? isLandscape ? { angle: 90, type: "landscapePrimary" } : { angle: 0, type: "portraitPrimary" } : { angle: 0, type: "landscapePrimary" },
       dontSetVisibleSize: preserveWindowBoundaries
     };
     if (JSON.stringify(this._metricsOverride) === JSON.stringify(metricsOverride))

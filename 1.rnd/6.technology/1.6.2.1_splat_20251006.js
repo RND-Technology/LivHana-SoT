@@ -3,17 +3,17 @@
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); let t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
 function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
 function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
-function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
+function _defineProperties(e, r) { for (let t = 0; t < r.length; t++) { const o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
 function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-var util = require('util');
-var _require = require('triple-beam'),
+function _toPropertyKey(t) { const i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; const e = t[Symbol.toPrimitive]; if (void 0 !== e) { const i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+const util = require('util');
+const _require = require('triple-beam'),
   SPLAT = _require.SPLAT;
 
 /**
@@ -22,14 +22,14 @@ var _require = require('triple-beam'),
  * https://github.com/nodejs/node/blob/b1c8f15c5f169e021f7c46eb7b219de95fe97603/lib/util.js#L201-L230
  * @type {RegExp}
  */
-var formatRegExp = /%[scdjifoO%]/g;
+const formatRegExp = /%[scdjifoO%]/g;
 
 /**
  * Captures the number of escaped % signs in a format string (i.e. %s strings).
  * @type {RegExp}
  */
-var escapedPercent = /%%/g;
-var Splatter = /*#__PURE__*/function () {
+const escapedPercent = /%%/g;
+const Splatter = /*#__PURE__*/function () {
   function Splatter(opts) {
     _classCallCheck(this, Splatter);
     this.options = opts;
@@ -47,10 +47,10 @@ var Splatter = /*#__PURE__*/function () {
   return _createClass(Splatter, [{
     key: "_splat",
     value: function _splat(info, tokens) {
-      var msg = info.message;
-      var splat = info[SPLAT] || info.splat || [];
-      var percents = msg.match(escapedPercent);
-      var escapes = percents && percents.length || 0;
+      const msg = info.message;
+      const splat = info[SPLAT] || info.splat || [];
+      const percents = msg.match(escapedPercent);
+      const escapes = percents && percents.length || 0;
 
       // The expected splat is the number of tokens minus the number of escapes
       // e.g.
@@ -66,17 +66,17 @@ var Splatter = /*#__PURE__*/function () {
       // extraSplat = 3 - 4 = -1
       // metas = [100, 'wow', { such: 'js' }, { thisIsMeta: true }].splice(-1, -1 * -1);
       // splat = [100, 'wow', { such: 'js' }]
-      var expectedSplat = tokens.length - escapes;
-      var extraSplat = expectedSplat - splat.length;
-      var metas = extraSplat < 0 ? splat.splice(extraSplat, -1 * extraSplat) : [];
+      const expectedSplat = tokens.length - escapes;
+      const extraSplat = expectedSplat - splat.length;
+      const metas = extraSplat < 0 ? splat.splice(extraSplat, -1 * extraSplat) : [];
 
       // Now that { splat } has been separated from any potential { meta }. we
       // can assign this to the `info` object and write it to our format stream.
       // If the additional metas are **NOT** objects or **LACK** enumerable properties
       // you are going to have a bad time.
-      var metalen = metas.length;
+      const metalen = metas.length;
       if (metalen) {
-        for (var i = 0; i < metalen; i++) {
+        for (let i = 0; i < metalen; i++) {
           Object.assign(info, metas[i]);
         }
       }
@@ -96,8 +96,8 @@ var Splatter = /*#__PURE__*/function () {
   }, {
     key: "transform",
     value: function transform(info) {
-      var msg = info.message;
-      var splat = info[SPLAT] || info.splat;
+      const msg = info.message;
+      const splat = info[SPLAT] || info.splat;
 
       // No need to process anything if splat is undefined
       if (!splat || !splat.length) {
@@ -106,20 +106,20 @@ var Splatter = /*#__PURE__*/function () {
 
       // Extract tokens, if none available default to empty array to
       // ensure consistancy in expected results
-      var tokens = msg && msg.match && msg.match(formatRegExp);
+      const tokens = msg && msg.match && msg.match(formatRegExp);
 
       // This condition will take care of inputs with info[SPLAT]
       // but no tokens present
       if (!tokens && (splat || splat.length)) {
-        var metas = splat.length > 1 ? splat.splice(0) : splat;
+        const metas = splat.length > 1 ? splat.splice(0) : splat;
 
         // Now that { splat } has been separated from any potential { meta }. we
         // can assign this to the `info` object and write it to our format stream.
         // If the additional metas are **NOT** objects or **LACK** enumerable properties
         // you are going to have a bad time.
-        var metalen = metas.length;
+        const metalen = metas.length;
         if (metalen) {
-          for (var i = 0; i < metalen; i++) {
+          for (let i = 0; i < metalen; i++) {
             Object.assign(info, metas[i]);
           }
         }

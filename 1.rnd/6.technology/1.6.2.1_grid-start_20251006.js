@@ -1,11 +1,11 @@
-let Declaration = require('../declaration')
+const Declaration = require('../declaration')
 
 class GridStart extends Declaration {
   /**
    * Do not add prefix for unsupported value in IE
    */
   check(decl) {
-    let value = decl.value
+    const value = decl.value
     return !value.includes('/') && !value.includes('span')
   }
 

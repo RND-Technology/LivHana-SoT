@@ -1,4 +1,4 @@
-var LazyWrapper = require('./_LazyWrapper'),
+const LazyWrapper = require('./_LazyWrapper'),
     LodashWrapper = require('./_LodashWrapper'),
     reverse = require('./reverse'),
     thru = require('./thru');
@@ -24,9 +24,9 @@ var LazyWrapper = require('./_LazyWrapper'),
  * // => [3, 2, 1]
  */
 function wrapperReverse() {
-  var value = this.__wrapped__;
+  const value = this.__wrapped__;
   if (value instanceof LazyWrapper) {
-    var wrapped = value;
+    let wrapped = value;
     if (this.__actions__.length) {
       wrapped = new LazyWrapper(this);
     }

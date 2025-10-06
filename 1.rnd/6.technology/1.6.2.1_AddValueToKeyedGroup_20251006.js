@@ -1,16 +1,16 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var SameValue = require('./SameValue');
+const SameValue = require('./SameValue');
 
-var IsArray = require('../helpers/IsArray');
-var every = require('../helpers/every');
-var forEach = require('../helpers/forEach');
+const IsArray = require('../helpers/IsArray');
+const every = require('../helpers/every');
+const forEach = require('../helpers/forEach');
 
-var hasOwn = require('hasown');
+const hasOwn = require('hasown');
 
-var isKeyedGroup = function (group) {
+const isKeyedGroup = function (group) {
 	return hasOwn(group, '[[Key]]')
         && hasOwn(group, '[[Elements]]')
         && IsArray(group['[[Elements]]']);
@@ -23,7 +23,7 @@ module.exports = function AddValueToKeyedGroup(groups, key, value) {
 		throw new $TypeError('Assertion failed: `groups` must be a List of Records with [[Key]] and [[Elements]]');
 	}
 
-	var matched = 0;
+	let matched = 0;
 	forEach(groups, function (g) { // step 1
 		if (SameValue(g['[[Key]]'], key)) { // step 2
 			matched += 1;
@@ -31,13 +31,13 @@ module.exports = function AddValueToKeyedGroup(groups, key, value) {
 				throw new $TypeError('Assertion failed: Exactly one element of groups meets this criterion'); // step 2.a
 			}
 
-			var arr = g['[[Elements]]'];
+			const arr = g['[[Elements]]'];
 			arr[arr.length] = value; // step 2.b
 		}
 	});
 
 	if (matched === 0) {
-		var group = { '[[Key]]': key, '[[Elements]]': [value] }; // step 2
+		const group = { '[[Key]]': key, '[[Elements]]': [value] }; // step 2
 
 		// eslint-disable-next-line no-param-reassign
 		groups[groups.length] = group; // step 3

@@ -1,4 +1,4 @@
-var castSlice = require('./_castSlice'),
+const castSlice = require('./_castSlice'),
     hasUnicode = require('./_hasUnicode'),
     stringToArray = require('./_stringToArray'),
     toString = require('./toString');
@@ -14,15 +14,15 @@ function createCaseFirst(methodName) {
   return function(string) {
     string = toString(string);
 
-    var strSymbols = hasUnicode(string)
+    const strSymbols = hasUnicode(string)
       ? stringToArray(string)
       : undefined;
 
-    var chr = strSymbols
+    const chr = strSymbols
       ? strSymbols[0]
       : string.charAt(0);
 
-    var trailing = strSymbols
+    const trailing = strSymbols
       ? castSlice(strSymbols, 1).join('')
       : string.slice(1);
 

@@ -1,22 +1,22 @@
 'use strict';
 
-var fs = require('fs');
-var homedir = require('../lib/homedir');
-var path = require('path');
+const fs = require('fs');
+const homedir = require('../lib/homedir');
+const path = require('path');
 
-var test = require('tape');
-var mkdirp = require('mkdirp');
-var rimraf = require('rimraf');
-var mv = require('mv');
-var copyDir = require('copy-dir');
-var tmp = require('tmp');
+const test = require('tape');
+const mkdirp = require('mkdirp');
+const rimraf = require('rimraf');
+const mv = require('mv');
+const copyDir = require('copy-dir');
+const tmp = require('tmp');
 
-var HOME = homedir();
+const HOME = homedir();
 
-var hnm = path.join(HOME, '.node_modules');
-var hnl = path.join(HOME, '.node_libraries');
+const hnm = path.join(HOME, '.node_modules');
+const hnl = path.join(HOME, '.node_libraries');
 
-var resolve = require('../async');
+const resolve = require('../async');
 
 function makeDir(t, dir, cb) {
     mkdirp(dir, function (err) {
@@ -33,9 +33,9 @@ function makeDir(t, dir, cb) {
 
 function makeTempDir(t, dir, cb) {
     if (fs.existsSync(dir)) {
-        var tmpResult = tmp.dirSync();
+        const tmpResult = tmp.dirSync();
         t.teardown(tmpResult.removeCallback);
-        var backup = path.join(tmpResult.name, path.basename(dir));
+        const backup = path.join(tmpResult.name, path.basename(dir));
         mv(dir, backup, function (err) {
             if (err) {
                 cb(err);
@@ -60,17 +60,17 @@ test('homedir module paths', function (t) {
             return t.end();
         }
 
-        var bazHNMDir = path.join(hnm, 'baz');
-        var dotMainDir = path.join(hnm, 'dot_main');
+        const bazHNMDir = path.join(hnm, 'baz');
+        const dotMainDir = path.join(hnm, 'dot_main');
         copyDir.sync(path.join(__dirname, 'resolver/baz'), bazHNMDir);
         copyDir.sync(path.join(__dirname, 'resolver/dot_main'), dotMainDir);
 
-        var bazPkg = { name: 'baz', main: 'quux.js' };
-        var dotMainPkg = { main: 'index' };
+        const bazPkg = { name: 'baz', main: 'quux.js' };
+        const dotMainPkg = { main: 'index' };
 
-        var bazHNMmain = path.join(bazHNMDir, 'quux.js');
+        const bazHNMmain = path.join(bazHNMDir, 'quux.js');
         t.equal(require.resolve('baz'), bazHNMmain, 'sanity check: require.resolve finds HNM `baz`');
-        var dotMainMain = path.join(dotMainDir, 'index.js');
+        const dotMainMain = path.join(dotMainDir, 'index.js');
         t.equal(require.resolve('dot_main'), dotMainMain, 'sanity check: require.resolve finds `dot_main`');
 
         makeTempDir(t, hnl, function (err) {
@@ -78,12 +78,12 @@ test('homedir module paths', function (t) {
             if (err) {
                 return t.end();
             }
-            var bazHNLDir = path.join(hnl, 'baz');
+            const bazHNLDir = path.join(hnl, 'baz');
             copyDir.sync(path.join(__dirname, 'resolver/baz'), bazHNLDir);
 
-            var dotSlashMainDir = path.join(hnl, 'dot_slash_main');
-            var dotSlashMainMain = path.join(dotSlashMainDir, 'index.js');
-            var dotSlashMainPkg = { main: 'index' };
+            const dotSlashMainDir = path.join(hnl, 'dot_slash_main');
+            const dotSlashMainMain = path.join(dotSlashMainDir, 'index.js');
+            const dotSlashMainPkg = { main: 'index' };
             copyDir.sync(path.join(__dirname, 'resolver/dot_slash_main'), dotSlashMainDir);
 
             t.equal(require.resolve('baz'), bazHNMmain, 'sanity check: require.resolve finds HNM `baz`');

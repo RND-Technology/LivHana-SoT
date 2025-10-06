@@ -4,13 +4,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.removeLine = exports.removeDot = exports.removeArea = exports.referenceElementsSlice = exports.referenceElementsReducer = exports.addLine = exports.addDot = exports.addArea = void 0;
-var _toolkit = require("@reduxjs/toolkit");
-var initialState = {
+const _toolkit = require("@reduxjs/toolkit");
+const initialState = {
   dots: [],
   areas: [],
   lines: []
 };
-var referenceElementsSlice = exports.referenceElementsSlice = (0, _toolkit.createSlice)({
+const referenceElementsSlice = exports.referenceElementsSlice = (0, _toolkit.createSlice)({
   name: 'referenceElements',
   initialState,
   reducers: {
@@ -18,7 +18,7 @@ var referenceElementsSlice = exports.referenceElementsSlice = (0, _toolkit.creat
       state.dots.push(action.payload);
     },
     removeDot: (state, action) => {
-      var index = (0, _toolkit.current)(state).dots.findIndex(dot => dot === action.payload);
+      const index = (0, _toolkit.current)(state).dots.findIndex(dot => dot === action.payload);
       if (index !== -1) {
         state.dots.splice(index, 1);
       }
@@ -27,7 +27,7 @@ var referenceElementsSlice = exports.referenceElementsSlice = (0, _toolkit.creat
       state.areas.push(action.payload);
     },
     removeArea: (state, action) => {
-      var index = (0, _toolkit.current)(state).areas.findIndex(area => area === action.payload);
+      const index = (0, _toolkit.current)(state).areas.findIndex(area => area === action.payload);
       if (index !== -1) {
         state.areas.splice(index, 1);
       }
@@ -36,14 +36,14 @@ var referenceElementsSlice = exports.referenceElementsSlice = (0, _toolkit.creat
       state.lines.push(action.payload);
     },
     removeLine: (state, action) => {
-      var index = (0, _toolkit.current)(state).lines.findIndex(line => line === action.payload);
+      const index = (0, _toolkit.current)(state).lines.findIndex(line => line === action.payload);
       if (index !== -1) {
         state.lines.splice(index, 1);
       }
     }
   }
 });
-var {
+const {
   addDot,
   removeDot,
   addArea,
@@ -57,4 +57,4 @@ exports.removeArea = removeArea;
 exports.addArea = addArea;
 exports.removeDot = removeDot;
 exports.addDot = addDot;
-var referenceElementsReducer = exports.referenceElementsReducer = referenceElementsSlice.reducer;
+const referenceElementsReducer = exports.referenceElementsReducer = referenceElementsSlice.reducer;

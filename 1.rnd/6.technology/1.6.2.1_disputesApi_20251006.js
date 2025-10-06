@@ -1,21 +1,21 @@
 "use strict";
 exports.__esModule = true;
 exports.DisputesApi = void 0;
-var tslib_1 = require("tslib");
-var acceptDisputeResponse_1 = require("../models/acceptDisputeResponse");
-var createDisputeEvidenceFileRequest_1 = require("../models/createDisputeEvidenceFileRequest");
-var createDisputeEvidenceFileResponse_1 = require("../models/createDisputeEvidenceFileResponse");
-var createDisputeEvidenceTextRequest_1 = require("../models/createDisputeEvidenceTextRequest");
-var createDisputeEvidenceTextResponse_1 = require("../models/createDisputeEvidenceTextResponse");
-var deleteDisputeEvidenceResponse_1 = require("../models/deleteDisputeEvidenceResponse");
-var listDisputeEvidenceResponse_1 = require("../models/listDisputeEvidenceResponse");
-var listDisputesResponse_1 = require("../models/listDisputesResponse");
-var retrieveDisputeEvidenceResponse_1 = require("../models/retrieveDisputeEvidenceResponse");
-var retrieveDisputeResponse_1 = require("../models/retrieveDisputeResponse");
-var submitEvidenceResponse_1 = require("../models/submitEvidenceResponse");
-var schema_1 = require("../schema");
-var baseApi_1 = require("./baseApi");
-var DisputesApi = /** @class */ (function (_super) {
+const tslib_1 = require("tslib");
+const acceptDisputeResponse_1 = require("../models/acceptDisputeResponse");
+const createDisputeEvidenceFileRequest_1 = require("../models/createDisputeEvidenceFileRequest");
+const createDisputeEvidenceFileResponse_1 = require("../models/createDisputeEvidenceFileResponse");
+const createDisputeEvidenceTextRequest_1 = require("../models/createDisputeEvidenceTextRequest");
+const createDisputeEvidenceTextResponse_1 = require("../models/createDisputeEvidenceTextResponse");
+const deleteDisputeEvidenceResponse_1 = require("../models/deleteDisputeEvidenceResponse");
+const listDisputeEvidenceResponse_1 = require("../models/listDisputeEvidenceResponse");
+const listDisputesResponse_1 = require("../models/listDisputesResponse");
+const retrieveDisputeEvidenceResponse_1 = require("../models/retrieveDisputeEvidenceResponse");
+const retrieveDisputeResponse_1 = require("../models/retrieveDisputeResponse");
+const submitEvidenceResponse_1 = require("../models/submitEvidenceResponse");
+const schema_1 = require("../schema");
+const baseApi_1 = require("./baseApi");
+const DisputesApi = /** @class */ (function (_super) {
     tslib_1.__extends(DisputesApi, _super);
     function DisputesApi() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -35,7 +35,7 @@ var DisputesApi = /** @class */ (function (_super) {
      */
     DisputesApi.prototype.listDisputes = function (cursor, states, locationId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET', '/v2/disputes');
                 mapped = req.prepareArgs({
@@ -59,7 +59,7 @@ var DisputesApi = /** @class */ (function (_super) {
      */
     DisputesApi.prototype.retrieveDispute = function (disputeId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({ disputeId: [disputeId, (0, schema_1.string)()] });
@@ -81,7 +81,7 @@ var DisputesApi = /** @class */ (function (_super) {
      */
     DisputesApi.prototype.acceptDispute = function (disputeId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({ disputeId: [disputeId, (0, schema_1.string)()] });
@@ -103,7 +103,7 @@ var DisputesApi = /** @class */ (function (_super) {
      */
     DisputesApi.prototype.listDisputeEvidence = function (disputeId, cursor, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({
@@ -130,7 +130,7 @@ var DisputesApi = /** @class */ (function (_super) {
      */
     DisputesApi.prototype.createDisputeEvidenceFile = function (disputeId, request, imageFile, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({
@@ -159,7 +159,7 @@ var DisputesApi = /** @class */ (function (_super) {
      */
     DisputesApi.prototype.createDisputeEvidenceText = function (disputeId, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({
@@ -184,7 +184,7 @@ var DisputesApi = /** @class */ (function (_super) {
      */
     DisputesApi.prototype.deleteDisputeEvidence = function (disputeId, evidenceId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('DELETE');
                 mapped = req.prepareArgs({
@@ -209,7 +209,7 @@ var DisputesApi = /** @class */ (function (_super) {
      */
     DisputesApi.prototype.retrieveDisputeEvidence = function (disputeId, evidenceId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({
@@ -236,7 +236,7 @@ var DisputesApi = /** @class */ (function (_super) {
      */
     DisputesApi.prototype.submitEvidence = function (disputeId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({ disputeId: [disputeId, (0, schema_1.string)()] });
@@ -249,5 +249,5 @@ var DisputesApi = /** @class */ (function (_super) {
     return DisputesApi;
 }(baseApi_1.BaseApi));
 exports.DisputesApi = DisputesApi;
-var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6, templateObject_7, templateObject_8;
+let templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6, templateObject_7, templateObject_8;
 //# sourceMappingURL=disputesApi.js.map

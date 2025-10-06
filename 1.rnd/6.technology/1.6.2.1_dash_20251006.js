@@ -1,7 +1,7 @@
 'use strict';
 
-var parse = require('../');
-var test = require('tape');
+const parse = require('../');
+const test = require('tape');
 
 test('-', function (t) {
 	t.plan(6);

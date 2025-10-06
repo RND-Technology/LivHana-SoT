@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = _applyDecoratedDescriptor;
 function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
-  var desc = {};
+  let desc = {};
   Object.keys(descriptor).forEach(function (key) {
     desc[key] = descriptor[key];
   });

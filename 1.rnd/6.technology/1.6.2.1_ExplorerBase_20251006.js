@@ -6,11 +6,11 @@ Object.defineProperty(exports, "__esModule", {
 exports.ExplorerBase = void 0;
 exports.getExtensionDescription = getExtensionDescription;
 
-var _path = _interopRequireDefault(require("path"));
+const _path = _interopRequireDefault(require("path"));
 
-var _loaders = require("./loaders");
+const _loaders = require("./loaders");
 
-var _getPropertyByPath = require("./getPropertyByPath");
+const _getPropertyByPath = require("./getPropertyByPath");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

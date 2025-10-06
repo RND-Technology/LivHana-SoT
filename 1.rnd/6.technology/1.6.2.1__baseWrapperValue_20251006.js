@@ -1,4 +1,4 @@
-var LazyWrapper = require('./_LazyWrapper'),
+const LazyWrapper = require('./_LazyWrapper'),
     arrayPush = require('./_arrayPush'),
     arrayReduce = require('./_arrayReduce');
 
@@ -13,7 +13,7 @@ var LazyWrapper = require('./_LazyWrapper'),
  * @returns {*} Returns the resolved value.
  */
 function baseWrapperValue(value, actions) {
-  var result = value;
+  let result = value;
   if (result instanceof LazyWrapper) {
     result = result.value();
   }

@@ -1,10 +1,10 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var callBound = require('call-bound');
+const callBound = require('call-bound');
 
-var $SymbolToString = callBound('Symbol.prototype.toString', true);
+const $SymbolToString = callBound('Symbol.prototype.toString', true);
 
 // https://262.ecma-international.org/6.0/#sec-symboldescriptivestring
 

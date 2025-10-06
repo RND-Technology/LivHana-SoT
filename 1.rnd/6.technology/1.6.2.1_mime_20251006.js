@@ -38,7 +38,7 @@ function Mime() {
  */
 Mime.prototype.define = function(typeMap, force) {
   for (let type in typeMap) {
-    let extensions = typeMap[type].map(function(t) {
+    const extensions = typeMap[type].map(function(t) {
       return t.toLowerCase();
     });
     type = type.toLowerCase();
@@ -77,11 +77,11 @@ Mime.prototype.define = function(typeMap, force) {
  */
 Mime.prototype.getType = function(path) {
   path = String(path);
-  let last = path.replace(/^.*[/\\]/, '').toLowerCase();
-  let ext = last.replace(/^.*\./, '').toLowerCase();
+  const last = path.replace(/^.*[/\\]/, '').toLowerCase();
+  const ext = last.replace(/^.*\./, '').toLowerCase();
 
-  let hasPath = last.length < path.length;
-  let hasDot = ext.length < last.length - 1;
+  const hasPath = last.length < path.length;
+  const hasDot = ext.length < last.length - 1;
 
   return (hasDot || !hasPath) && this._types[ext] || null;
 };

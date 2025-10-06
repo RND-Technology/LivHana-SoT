@@ -1,10 +1,10 @@
 import { __awaiter, __generator, __asyncValues } from './_virtual/_tslib.js';
 import { convertFromStream as convertFromStream$1 } from './convertFromBlob.js';
 function convertFromStream(content) {
-  var content_1, content_1_1;
-  var e_1, _a;
+  let content_1, content_1_1;
+  let e_1, _a;
   return __awaiter(this, void 0, void 0, function () {
-    var chunks, chunk, e_1_1;
+    let chunks, chunk, e_1_1;
     return __generator(this, function (_b) {
       switch (_b.label) {
         case 0:

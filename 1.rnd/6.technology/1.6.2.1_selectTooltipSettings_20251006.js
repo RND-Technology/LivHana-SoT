@@ -4,5 +4,5 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.selectTooltipSettings = void 0;
-var selectTooltipSettings = state => state.tooltip.settings;
+const selectTooltipSettings = state => state.tooltip.settings;
 exports.selectTooltipSettings = selectTooltipSettings;

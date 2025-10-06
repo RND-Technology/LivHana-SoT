@@ -1,36 +1,36 @@
 "use strict";
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __export = (target, all) => {
+  for (const name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var electron_exports = {};
+const __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+const electron_exports = {};
 __export(electron_exports, {
   Electron: () => Electron,
   ElectronApplication: () => ElectronApplication
 });
 module.exports = __toCommonJS(electron_exports);
-var import_browserContext = require("./browserContext");
-var import_channelOwner = require("./channelOwner");
-var import_clientHelper = require("./clientHelper");
-var import_consoleMessage = require("./consoleMessage");
-var import_errors = require("./errors");
-var import_events = require("./events");
-var import_jsHandle = require("./jsHandle");
-var import_waiter = require("./waiter");
-var import_timeoutSettings = require("./timeoutSettings");
+const import_browserContext = require("./browserContext");
+const import_channelOwner = require("./channelOwner");
+const import_clientHelper = require("./clientHelper");
+const import_consoleMessage = require("./consoleMessage");
+const import_errors = require("./errors");
+const import_events = require("./events");
+const import_jsHandle = require("./jsHandle");
+const import_waiter = require("./waiter");
+const import_timeoutSettings = require("./timeoutSettings");
 class Electron extends import_channelOwner.ChannelOwner {
   static from(electron) {
     return electron._object;

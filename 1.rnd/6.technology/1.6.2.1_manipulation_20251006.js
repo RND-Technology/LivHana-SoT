@@ -18,8 +18,8 @@ function removeElement(elem) {
     if (elem.next)
         elem.next.prev = elem.prev;
     if (elem.parent) {
-        var childs = elem.parent.children;
-        var childsIndex = childs.lastIndexOf(elem);
+        const childs = elem.parent.children;
+        const childsIndex = childs.lastIndexOf(elem);
         if (childsIndex >= 0) {
             childs.splice(childsIndex, 1);
         }
@@ -36,17 +36,17 @@ function removeElement(elem) {
  * @param replacement The element to be added
  */
 function replaceElement(elem, replacement) {
-    var prev = (replacement.prev = elem.prev);
+    const prev = (replacement.prev = elem.prev);
     if (prev) {
         prev.next = replacement;
     }
-    var next = (replacement.next = elem.next);
+    const next = (replacement.next = elem.next);
     if (next) {
         next.prev = replacement;
     }
-    var parent = (replacement.parent = elem.parent);
+    const parent = (replacement.parent = elem.parent);
     if (parent) {
-        var childs = parent.children;
+        const childs = parent.children;
         childs[childs.lastIndexOf(elem)] = replacement;
         elem.parent = null;
     }
@@ -63,7 +63,7 @@ function appendChild(parent, child) {
     child.next = null;
     child.parent = parent;
     if (parent.children.push(child) > 1) {
-        var sibling = parent.children[parent.children.length - 2];
+        const sibling = parent.children[parent.children.length - 2];
         sibling.next = child;
         child.prev = sibling;
     }
@@ -80,8 +80,8 @@ function appendChild(parent, child) {
  */
 function append(elem, next) {
     removeElement(next);
-    var parent = elem.parent;
-    var currNext = elem.next;
+    const parent = elem.parent;
+    const currNext = elem.next;
     next.next = currNext;
     next.prev = elem;
     elem.next = next;
@@ -89,7 +89,7 @@ function append(elem, next) {
     if (currNext) {
         currNext.prev = next;
         if (parent) {
-            var childs = parent.children;
+            const childs = parent.children;
             childs.splice(childs.lastIndexOf(currNext), 0, next);
         }
     }
@@ -109,7 +109,7 @@ function prependChild(parent, child) {
     child.parent = parent;
     child.prev = null;
     if (parent.children.unshift(child) !== 1) {
-        var sibling = parent.children[1];
+        const sibling = parent.children[1];
         sibling.prev = child;
         child.next = sibling;
     }
@@ -126,9 +126,9 @@ function prependChild(parent, child) {
  */
 function prepend(elem, prev) {
     removeElement(prev);
-    var parent = elem.parent;
+    const parent = elem.parent;
     if (parent) {
-        var childs = parent.children;
+        const childs = parent.children;
         childs.splice(childs.indexOf(elem), 0, prev);
     }
     if (elem.prev) {

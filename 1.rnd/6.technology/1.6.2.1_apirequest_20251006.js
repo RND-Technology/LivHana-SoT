@@ -54,7 +54,7 @@ function createAPIRequest(parameters, callback) {
 }
 exports.createAPIRequest = createAPIRequest;
 async function createAPIRequestAsync(parameters) {
-    var _a, _b, _c, _d;
+    let _a, _b, _c, _d;
     // Combine the GaxiosOptions options passed with this specific
     // API call with the global options configured at the API Context
     // level, or at the global level.

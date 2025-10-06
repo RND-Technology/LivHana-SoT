@@ -24,7 +24,7 @@
 (function () {
     'use strict';
 
-    var estraverse = require('estraverse');
+    const estraverse = require('estraverse');
 
     function isNode(node) {
         if (node == null) {
@@ -56,7 +56,7 @@
      * operation, you can use it with `this.visitChildren(node)`.
      */
     Visitor.prototype.visitChildren = function (node) {
-        var type, children, i, iz, j, jz, child;
+        let type, children, i, iz, j, jz, child;
 
         if (node == null) {
             return;
@@ -93,7 +93,7 @@
 
     /* Dispatching node. */
     Visitor.prototype.visit = function (node) {
-        var type;
+        let type;
 
         if (node == null) {
             return;
@@ -110,7 +110,7 @@
     exports.version = require('./package.json').version;
     exports.Visitor = Visitor;
     exports.visit = function (node, visitor, options) {
-        var v = new Visitor(visitor, options);
+        const v = new Visitor(visitor, options);
         v.visit(node);
     };
 }());

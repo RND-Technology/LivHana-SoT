@@ -2,13 +2,15 @@
 # REGGIE & DRO LIVE DEPLOYMENT INSTRUCTIONS
 
 ## Domain: reggieanddro.com
+
 ## Status: READY FOR DEPLOYMENT
+
 ## Timestamp: 2025-10-06T22:09:10.369Z
 
-## DEPLOYMENT STEPS:
+## DEPLOYMENT STEPS
 
 1. **Access ECWID Admin Panel**
-   - Go to: https://my.ecwid.com/
+   - Go to: <https://my.ecwid.com/>
    - Login with Reggie & Dro credentials
    - Navigate to: Store Settings > Storefront > Custom Code
 
@@ -18,7 +20,7 @@
    - Save changes
 
 3. **Verify Deployment**
-   - Visit: https://reggieanddro.com/products
+   - Visit: <https://reggieanddro.com/products>
    - Add items to cart
    - Proceed to checkout
    - Verify pickup date/time selector appears
@@ -30,7 +32,8 @@
    - Complete checkout process
    - Verify pickup data is captured
 
-## VERIFICATION COMMANDS:
+## VERIFICATION COMMANDS
+
 ```bash
 # Test products page
 curl -s https://reggieanddro.com/products | grep -o "rd-pickup-section"
@@ -39,10 +42,12 @@ curl -s https://reggieanddro.com/products | grep -o "rd-pickup-section"
 curl -s https://reggieanddro.com/checkout | grep -o "Pickup Method"
 ```
 
-## ROLLBACK INSTRUCTIONS:
+## ROLLBACK INSTRUCTIONS
+
 If issues occur, remove the checkout fix code from ECWID Footer Code section.
 
-## SUCCESS CRITERIA:
+## SUCCESS CRITERIA
+
 - ✅ Pickup date selector appears on checkout
 - ✅ Pickup time selector appears on checkout
 - ✅ Date/time validation works
@@ -50,5 +55,6 @@ If issues occur, remove the checkout fix code from ECWID Footer Code section.
 - ✅ No JavaScript errors in console
 - ✅ Mobile responsive design
 
-## CONTACT:
-For issues or questions, contact: jesseniesen@gmail.com
+## CONTACT
+
+For issues or questions, contact: <jesseniesen@gmail.com>

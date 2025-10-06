@@ -1,11 +1,11 @@
-let Declaration = require('../declaration')
+const Declaration = require('../declaration')
 
 class BackgroundSize extends Declaration {
   /**
    * Duplication parameter for -webkit- browsers
    */
   set(decl, prefix) {
-    let value = decl.value.toLowerCase()
+    const value = decl.value.toLowerCase()
     if (
       prefix === '-webkit-' &&
       !value.includes(' ') &&

@@ -5,18 +5,18 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.SetLegendPayload = SetLegendPayload;
 exports.SetPolarLegendPayload = SetPolarLegendPayload;
-var _react = require("react");
-var _PanoramaContext = require("../context/PanoramaContext");
-var _chartLayoutContext = require("../context/chartLayoutContext");
-var _hooks = require("./hooks");
-var _legendSlice = require("./legendSlice");
-var noop = () => {};
+const _react = require("react");
+const _PanoramaContext = require("../context/PanoramaContext");
+const _chartLayoutContext = require("../context/chartLayoutContext");
+const _hooks = require("./hooks");
+const _legendSlice = require("./legendSlice");
+const noop = () => {};
 function SetLegendPayload(_ref) {
-  var {
+  const {
     legendPayload
   } = _ref;
-  var dispatch = (0, _hooks.useAppDispatch)();
-  var isPanorama = (0, _PanoramaContext.useIsPanorama)();
+  const dispatch = (0, _hooks.useAppDispatch)();
+  const isPanorama = (0, _PanoramaContext.useIsPanorama)();
   (0, _react.useEffect)(() => {
     if (isPanorama) {
       return noop;
@@ -29,11 +29,11 @@ function SetLegendPayload(_ref) {
   return null;
 }
 function SetPolarLegendPayload(_ref2) {
-  var {
+  const {
     legendPayload
   } = _ref2;
-  var dispatch = (0, _hooks.useAppDispatch)();
-  var layout = (0, _hooks.useAppSelector)(_chartLayoutContext.selectChartLayout);
+  const dispatch = (0, _hooks.useAppDispatch)();
+  const layout = (0, _hooks.useAppSelector)(_chartLayoutContext.selectChartLayout);
   (0, _react.useEffect)(() => {
     if (layout !== 'centric' && layout !== 'radial') {
       return noop;

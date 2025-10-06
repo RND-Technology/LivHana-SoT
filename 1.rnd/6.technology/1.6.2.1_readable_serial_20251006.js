@@ -1,4 +1,4 @@
-var serial = require('../serial.js');
+const serial = require('../serial.js');
 
 // API
 module.exports = ReadableSerial;

@@ -12,7 +12,7 @@ import createNodeEnvConditional from './create-node-env-conditional'
 const CSS_OBJECT_STRINGIFIED_ERROR =
   "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."
 
-export let transformExpressionWithStyles = (
+export const transformExpressionWithStyles = (
   { babel, state, path, shouldLabel, sourceMap = '' } /*: {
   babel,
   state,
@@ -22,7 +22,7 @@ export let transformExpressionWithStyles = (
 } */
 ) => {
   const autoLabel = state.opts.autoLabel || 'dev-only'
-  let t = babel.types
+  const t = babel.types
   if (t.isTaggedTemplateExpression(path)) {
     if (
       !sourceMap &&
@@ -65,13 +65,13 @@ export let transformExpressionWithStyles = (
       path.node.arguments.length === 1 &&
       t.isStringLiteral(path.node.arguments[0])
     ) {
-      let cssString = path.node.arguments[0].value.replace(/;$/, '')
+      const cssString = path.node.arguments[0].value.replace(/;$/, '')
       let res = serializeStyles([
         `${cssString}${
           label && autoLabel === 'always' ? `;label:${label};` : ''
         }`
       ])
-      let prodNode = t.objectExpression([
+      const prodNode = t.objectExpression([
         t.objectProperty(t.identifier('name'), t.stringLiteral(res.name)),
         t.objectProperty(t.identifier('styles'), t.stringLiteral(res.styles))
       ])
@@ -96,7 +96,7 @@ export let transformExpressionWithStyles = (
         res = serializeStyles([`${cssString};label:${label};`])
       }
 
-      let devNode = t.objectExpression(
+      const devNode = t.objectExpression(
         [
           t.objectProperty(t.identifier('name'), t.stringLiteral(res.name)),
           t.objectProperty(
@@ -133,7 +133,7 @@ export let transformExpressionWithStyles = (
     }
 
     if (sourceMap) {
-      let sourceMapConditional = createNodeEnvConditional(
+      const sourceMapConditional = createNodeEnvConditional(
         t,
         t.stringLiteral(''),
         t.stringLiteral(sourceMap)

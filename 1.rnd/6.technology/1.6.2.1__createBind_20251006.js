@@ -1,8 +1,8 @@
-var createCtor = require('./_createCtor'),
+const createCtor = require('./_createCtor'),
     root = require('./_root');
 
 /** Used to compose bitmasks for function metadata. */
-var WRAP_BIND_FLAG = 1;
+const WRAP_BIND_FLAG = 1;
 
 /**
  * Creates a function that wraps `func` to invoke it with the optional `this`
@@ -15,11 +15,11 @@ var WRAP_BIND_FLAG = 1;
  * @returns {Function} Returns the new wrapped function.
  */
 function createBind(func, bitmask, thisArg) {
-  var isBind = bitmask & WRAP_BIND_FLAG,
+  const isBind = bitmask & WRAP_BIND_FLAG,
       Ctor = createCtor(func);
 
   function wrapper() {
-    var fn = (this && this !== root && this instanceof wrapper) ? Ctor : func;
+    const fn = (this && this !== root && this instanceof wrapper) ? Ctor : func;
     return fn.apply(isBind ? thisArg : this, arguments);
   }
   return wrapper;

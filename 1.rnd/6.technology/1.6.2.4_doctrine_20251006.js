@@ -8,7 +8,7 @@
 (function () {
     'use strict';
 
-    var typed,
+    let typed,
         utility,
         jsdoc,
         esutils,
@@ -23,14 +23,14 @@
     }
 
     hasOwnProperty = (function () {
-        var func = Object.prototype.hasOwnProperty;
+        const func = Object.prototype.hasOwnProperty;
         return function hasOwnProperty(obj, name) {
             return func.call(obj, name);
         };
     }());
 
     function shallowCopy(obj) {
-        var ret = {}, key;
+        let ret = {}, key;
         for (key in obj) {
             if (obj.hasOwnProperty(key)) {
                 ret[key] = obj[key];
@@ -91,9 +91,9 @@
     }
 
     // A regex character class that contains all whitespace except linebreak characters (\r, \n, \u2028, \u2029)
-    var WHITESPACE = '[ \\f\\t\\v\\u00a0\\u1680\\u180e\\u2000-\\u200a\\u202f\\u205f\\u3000\\ufeff]';
+    const WHITESPACE = '[ \\f\\t\\v\\u00a0\\u1680\\u180e\\u2000-\\u200a\\u202f\\u205f\\u3000\\ufeff]';
 
-    var STAR_MATCHER = '(' + WHITESPACE + '*(?:\\*' + WHITESPACE + '?)?)(.+|[\r\n\u2028\u2029])';
+    const STAR_MATCHER = '(' + WHITESPACE + '*(?:\\*' + WHITESPACE + '?)?)(.+|[\r\n\u2028\u2029])';
 
     function unwrapComment(doc) {
         // JSDoc comment is following form
@@ -119,10 +119,10 @@
      * @returns {number} The index of the corresponding character in the original wrapped string
      */
     function convertUnwrappedCommentIndex(originalSource, unwrappedIndex) {
-        var replacedSource = originalSource.replace(/^\/\*\*?/, '');
-        var numSkippedChars = 0;
-        var matcher = new RegExp(STAR_MATCHER, 'g');
-        var match;
+        const replacedSource = originalSource.replace(/^\/\*\*?/, '');
+        let numSkippedChars = 0;
+        const matcher = new RegExp(STAR_MATCHER, 'g');
+        let match;
 
         while ((match = matcher.exec(replacedSource))) {
             numSkippedChars += match[1].length;
@@ -138,7 +138,7 @@
     // JSDoc Tag Parser
 
     (function (exports) {
-        var Rules,
+        let Rules,
             index,
             lineNumber,
             length,
@@ -149,7 +149,7 @@
             strict;
 
         function advance() {
-            var ch = source.charCodeAt(index);
+            const ch = source.charCodeAt(index);
             index += 1;
             if (esutils.code.isLineTerminator(ch) && !(ch === 0x0D  /* '\r' */ && source.charCodeAt(index) === 0x0A  /* '\n' */)) {
                 lineNumber += 1;
@@ -158,7 +158,7 @@
         }
 
         function scanTitle() {
-            var title = '';
+            let title = '';
             // waste '@'
             advance();
 
@@ -170,7 +170,7 @@
         }
 
         function seekContent() {
-            var ch, waiting, last = index;
+            let ch, waiting, last = index;
 
             waiting = false;
             while (last < length) {
@@ -195,7 +195,7 @@
         //
         // therefore, scanning type expression with balancing braces.
         function parseType(title, last, addRange) {
-            var ch, brace, type, startIndex, direct = false;
+            let ch, brace, type, startIndex, direct = false;
 
 
             // search '{'
@@ -255,7 +255,7 @@
         }
 
         function scanIdentifier(last) {
-            var identifier;
+            let identifier;
             if (!esutils.code.isIdentifierStartES5(source.charCodeAt(index)) && !source[index].match(/[0-9]/)) {
                 return null;
             }
@@ -273,7 +273,7 @@
         }
 
         function parseName(last, allowBrackets, allowNestedParams) {
-            var name = '',
+            let name = '',
                 useBrackets,
                 insideString;
 
@@ -326,8 +326,8 @@
                     name += advance();
                     skipWhiteSpace(last);
 
-                    var ch;
-                    var bracketDepth = 1;
+                    let ch;
+                    let bracketDepth = 1;
 
                     // scan in the default value
                     while (index < last) {
@@ -421,7 +421,7 @@
 
         // addError(err, ...)
         TagParser.prototype.addError = function addError(errorText) {
-            var args = Array.prototype.slice.call(arguments, 1),
+            const args = Array.prototype.slice.call(arguments, 1),
                 msg = errorText.replace(
                     /%(\d)/g,
                     function (whole, index) {
@@ -470,7 +470,7 @@
         };
 
         TagParser.prototype._parseNamePath = function (optional) {
-            var name;
+            let name;
             name = parseName(this._last, sloppy && isAllowedOptional(this._title), true);
             if (!name) {
                 if (!optional) {
@@ -493,7 +493,7 @@
 
 
         TagParser.prototype.parseName = function () {
-            var assign, name;
+            let assign, name;
 
             // param, property requires name
             if (isAllowedName(this._title)) {
@@ -542,7 +542,7 @@
         };
 
         TagParser.prototype.parseDescription = function parseDescription() {
-            var description = sliceSource(source, index, this._last).trim();
+            let description = sliceSource(source, index, this._last).trim();
             if (description) {
                 if ((/^-\s+/).test(description)) {
                     description = description.substring(2);
@@ -553,11 +553,11 @@
         };
 
         TagParser.prototype.parseCaption = function parseDescription() {
-            var description = sliceSource(source, index, this._last).trim();
-            var captionStartTag = '<caption>';
-            var captionEndTag = '</caption>';
-            var captionStart = description.indexOf(captionStartTag);
-            var captionEnd = description.indexOf(captionEndTag);
+            const description = sliceSource(source, index, this._last).trim();
+            const captionStartTag = '<caption>';
+            const captionEndTag = '</caption>';
+            const captionStart = description.indexOf(captionStartTag);
+            const captionEnd = description.indexOf(captionEndTag);
             if (captionStart >= 0 && captionEnd >= 0) {
                 this._tag.caption = description.substring(
                     captionStart + captionStartTag.length, captionEnd).trim();
@@ -569,7 +569,7 @@
         };
 
         TagParser.prototype.parseKind = function parseKind() {
-            var kind, kinds;
+            let kind, kinds;
             kinds = {
                 'class': true,
                 'constant': true,
@@ -594,7 +594,7 @@
         };
 
         TagParser.prototype.parseAccess = function parseAccess() {
-            var access;
+            let access;
             access = sliceSource(source, index, this._last).trim();
             this._tag.access = access;
             if (access !== 'private' && access !== 'protected' && access !== 'public') {
@@ -608,9 +608,9 @@
         TagParser.prototype.parseThis = function parseThis() {
             // this name may be a name expression (e.g. {foo.bar}),
             // an union (e.g. {foo.bar|foo.baz}) or a name path (e.g. foo.bar)
-            var value = sliceSource(source, index, this._last).trim();
+            const value = sliceSource(source, index, this._last).trim();
             if (value && value.charAt(0) === '{') {
-                var gotType = this.parseType();
+                const gotType = this.parseType();
                 if (gotType && this._tag.type.type === 'NameExpression' || this._tag.type.type === 'UnionType') {
                     this._tag.name = this._tag.type.name;
                     return true;
@@ -623,7 +623,7 @@
         };
 
         TagParser.prototype.parseVariation = function parseVariation() {
-            var variation, text;
+            let variation, text;
             text = sliceSource(source, index, this._last).trim();
             variation = parseFloat(text, 10);
             this._tag.variation = variation;
@@ -636,7 +636,7 @@
         };
 
         TagParser.prototype.ensureEnd = function () {
-            var shouldBeEmpty = sliceSource(source, index, this._last).trim();
+            const shouldBeEmpty = sliceSource(source, index, this._last).trim();
             if (shouldBeEmpty) {
                 if (!this.addError('Unknown content \'%0\'', shouldBeEmpty)) {
                     return false;
@@ -646,7 +646,7 @@
         };
 
         TagParser.prototype.epilogue = function epilogue() {
-            var description;
+            let description;
 
             description = this._tag.description;
             // un-fix potentially sloppy declaration
@@ -740,7 +740,7 @@
         };
 
         TagParser.prototype.parse = function parse() {
-            var i, iz, sequences, method;
+            let i, iz, sequences, method;
 
 
             // empty title
@@ -775,7 +775,7 @@
         };
 
         function parseTag(options) {
-            var title, parser, tag;
+            let title, parser, tag;
 
             // skip to tag
             if (!skipToTag()) {
@@ -802,7 +802,7 @@
         //
 
         function scanJSDocDescription(preserveWhitespace) {
-            var description = '', ch, atAllowed;
+            let description = '', ch, atAllowed;
 
             atAllowed = true;
             while (index < length) {
@@ -825,7 +825,7 @@
         }
 
         function parse(comment, options) {
-            var tags = [], tag, description, interestingTags, i, iz;
+            let tags = [], tag, description, interestingTags, i, iz;
 
             if (options === undefined) {
                 options = {};

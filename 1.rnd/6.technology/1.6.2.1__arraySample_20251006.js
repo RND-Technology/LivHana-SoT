@@ -1,4 +1,4 @@
-var baseRandom = require('./_baseRandom');
+const baseRandom = require('./_baseRandom');
 
 /**
  * A specialized version of `_.sample` for arrays.
@@ -8,7 +8,7 @@ var baseRandom = require('./_baseRandom');
  * @returns {*} Returns the random element.
  */
 function arraySample(array) {
-  var length = array.length;
+  const length = array.length;
   return length ? array[baseRandom(0, length - 1)] : undefined;
 }
 

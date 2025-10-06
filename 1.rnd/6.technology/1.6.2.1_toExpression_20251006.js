@@ -4,8 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _index = require("../validators/generated/index.js");
-var _default = exports.default = toExpression;
+const _index = require("../validators/generated/index.js");
+const _default = exports.default = toExpression;
 function toExpression(node) {
   if ((0, _index.isExpressionStatement)(node)) {
     node = node.expression;

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ClientType = void 0;
-var ClientType;
+let ClientType;
 (function (ClientType) {
     ClientType["blocking"] = "blocking";
     ClientType["normal"] = "normal";

@@ -4,52 +4,52 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.PolarAngleAxisWrapper = exports.PolarAngleAxis = void 0;
-var _react = _interopRequireWildcard(require("react"));
-var React = _react;
-var _clsx = require("clsx");
-var _Layer = require("../container/Layer");
-var _Dot = require("../shape/Dot");
-var _Polygon = require("../shape/Polygon");
-var _Text = require("../component/Text");
-var _types = require("../util/types");
-var _ReactUtils = require("../util/ReactUtils");
-var _PolarUtils = require("../util/PolarUtils");
-var _polarAxisSlice = require("../state/polarAxisSlice");
-var _hooks = require("../state/hooks");
-var _polarScaleSelectors = require("../state/selectors/polarScaleSelectors");
-var _polarAxisSelectors = require("../state/selectors/polarAxisSelectors");
-var _defaultPolarAngleAxisProps = require("./defaultPolarAngleAxisProps");
-var _PanoramaContext = require("../context/PanoramaContext");
-var _svgPropertiesNoEvents = require("../util/svgPropertiesNoEvents");
-var _excluded = ["children"];
-function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
-function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+const _react = _interopRequireWildcard(require("react"));
+const React = _react;
+const _clsx = require("clsx");
+const _Layer = require("../container/Layer");
+const _Dot = require("../shape/Dot");
+const _Polygon = require("../shape/Polygon");
+const _Text = require("../component/Text");
+const _types = require("../util/types");
+const _ReactUtils = require("../util/ReactUtils");
+const _PolarUtils = require("../util/PolarUtils");
+const _polarAxisSlice = require("../state/polarAxisSlice");
+const _hooks = require("../state/hooks");
+const _polarScaleSelectors = require("../state/selectors/polarScaleSelectors");
+const _polarAxisSelectors = require("../state/selectors/polarAxisSelectors");
+const _defaultPolarAngleAxisProps = require("./defaultPolarAngleAxisProps");
+const _PanoramaContext = require("../context/PanoramaContext");
+const _svgPropertiesNoEvents = require("../util/svgPropertiesNoEvents");
+const _excluded = ["children"];
+function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; let o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (const _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (let e = 1; e < arguments.length; e++) { const t = arguments[e]; for (const r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+function ownKeys(e, r) { const t = Object.keys(e); if (Object.getOwnPropertySymbols) { let o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (let r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-function _objectWithoutProperties(e, t) { if (null == e) return {}; var o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { var n = Object.getOwnPropertySymbols(e); for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
-function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t = {}; for (var n in r) if ({}.hasOwnProperty.call(r, n)) { if (-1 !== e.indexOf(n)) continue; t[n] = r[n]; } return t; }
-var eps = 1e-5;
-var COS_45 = Math.cos((0, _PolarUtils.degreeToRadian)(45));
+function _toPropertyKey(t) { const i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; const e = t[Symbol.toPrimitive]; if (void 0 !== e) { const i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _objectWithoutProperties(e, t) { if (null == e) return {}; let o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { const n = Object.getOwnPropertySymbols(e); for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
+function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; const t = {}; for (const n in r) if ({}.hasOwnProperty.call(r, n)) { if (-1 !== e.indexOf(n)) continue; t[n] = r[n]; } return t; }
+const eps = 1e-5;
+const COS_45 = Math.cos((0, _PolarUtils.degreeToRadian)(45));
 
 /**
  * These are injected from Redux, are required, but cannot be set by user.
  */
 
-var AXIS_TYPE = 'angleAxis';
+const AXIS_TYPE = 'angleAxis';
 function SetAngleAxisSettings(props) {
-  var dispatch = (0, _hooks.useAppDispatch)();
-  var settings = (0, _react.useMemo)(() => {
-    var {
+  const dispatch = (0, _hooks.useAppDispatch)();
+  const settings = (0, _react.useMemo)(() => {
+    let {
         children
       } = props,
       rest = _objectWithoutProperties(props, _excluded);
     return rest;
   }, [props]);
-  var synchronizedSettings = (0, _hooks.useAppSelector)(state => (0, _polarAxisSelectors.selectAngleAxis)(state, settings.id));
-  var settingsAreSynchronized = settings === synchronizedSettings;
+  const synchronizedSettings = (0, _hooks.useAppSelector)(state => (0, _polarAxisSelectors.selectAngleAxis)(state, settings.id));
+  const settingsAreSynchronized = settings === synchronizedSettings;
   (0, _react.useEffect)(() => {
     dispatch((0, _polarAxisSlice.addAngleAxis)(settings));
     return () => {
@@ -69,17 +69,17 @@ function SetAngleAxisSettings(props) {
  * @return (x1, y1): The point close to text,
  *         (x2, y2): The point close to axis
  */
-var getTickLineCoord = (data, props) => {
-  var {
+const getTickLineCoord = (data, props) => {
+  const {
     cx,
     cy,
     radius,
     orientation,
     tickSize
   } = props;
-  var tickLineSize = tickSize || 8;
-  var p1 = (0, _PolarUtils.polarToCartesian)(cx, cy, radius, data.coordinate);
-  var p2 = (0, _PolarUtils.polarToCartesian)(cx, cy, radius + (orientation === 'inner' ? -1 : 1) * tickLineSize, data.coordinate);
+  const tickLineSize = tickSize || 8;
+  const p1 = (0, _PolarUtils.polarToCartesian)(cx, cy, radius, data.coordinate);
+  const p2 = (0, _PolarUtils.polarToCartesian)(cx, cy, radius + (orientation === 'inner' ? -1 : 1) * tickLineSize, data.coordinate);
   return {
     x1: p1.x,
     y1: p1.y,
@@ -94,8 +94,8 @@ var getTickLineCoord = (data, props) => {
  * @param orientation of the axis ticks
  * @return text-anchor
  */
-var getTickTextAnchor = (data, orientation) => {
-  var cos = Math.cos((0, _PolarUtils.degreeToRadian)(-data.coordinate));
+const getTickTextAnchor = (data, orientation) => {
+  const cos = Math.cos((0, _PolarUtils.degreeToRadian)(-data.coordinate));
   if (cos > eps) {
     return orientation === 'outer' ? 'start' : 'end';
   }
@@ -110,9 +110,9 @@ var getTickTextAnchor = (data, orientation) => {
  * @param data Data of a tick
  * @return text vertical anchor
  */
-var getTickTextVerticalAnchor = data => {
-  var cos = Math.cos((0, _PolarUtils.degreeToRadian)(-data.coordinate));
-  var sin = Math.sin((0, _PolarUtils.degreeToRadian)(-data.coordinate));
+const getTickTextVerticalAnchor = data => {
+  const cos = Math.cos((0, _PolarUtils.degreeToRadian)(-data.coordinate));
+  const sin = Math.sin((0, _PolarUtils.degreeToRadian)(-data.coordinate));
 
   // handle top and bottom sectors: 90±45deg and 270±45deg
   if (Math.abs(cos) <= COS_45) {
@@ -121,8 +121,8 @@ var getTickTextVerticalAnchor = data => {
   }
   return 'middle';
 };
-var AxisLine = props => {
-  var {
+const AxisLine = props => {
+  const {
     cx,
     cy,
     radius,
@@ -133,7 +133,7 @@ var AxisLine = props => {
   if (!axisLine) {
     return null;
   }
-  var axisLineProps = _objectSpread(_objectSpread({}, (0, _svgPropertiesNoEvents.svgPropertiesNoEvents)(props)), {}, {
+  const axisLineProps = _objectSpread(_objectSpread({}, (0, _svgPropertiesNoEvents.svgPropertiesNoEvents)(props)), {}, {
     fill: 'none'
   }, (0, _ReactUtils.filterProps)(axisLine, false));
   if (axisLineType === 'circle') {
@@ -146,7 +146,7 @@ var AxisLine = props => {
       r: radius
     }));
   }
-  var points = ticks.map(entry => (0, _PolarUtils.polarToCartesian)(cx, cy, radius, entry.coordinate));
+  const points = ticks.map(entry => (0, _PolarUtils.polarToCartesian)(cx, cy, radius, entry.coordinate));
 
   // @ts-expect-error wrong SVG element type
   return /*#__PURE__*/React.createElement(_Polygon.Polygon, _extends({
@@ -155,8 +155,8 @@ var AxisLine = props => {
     points: points
   }));
 };
-var TickItemText = _ref => {
-  var {
+const TickItemText = _ref => {
+  const {
     tick,
     tickProps,
     value
@@ -175,24 +175,24 @@ var TickItemText = _ref => {
     className: "recharts-polar-angle-axis-tick-value"
   }), value);
 };
-var Ticks = props => {
-  var {
+const Ticks = props => {
+  const {
     tick,
     tickLine,
     tickFormatter,
     stroke,
     ticks
   } = props;
-  var axisProps = (0, _svgPropertiesNoEvents.svgPropertiesNoEvents)(props);
-  var customTickProps = (0, _ReactUtils.filterProps)(tick, false);
-  var tickLineProps = _objectSpread(_objectSpread({}, axisProps), {}, {
+  const axisProps = (0, _svgPropertiesNoEvents.svgPropertiesNoEvents)(props);
+  const customTickProps = (0, _ReactUtils.filterProps)(tick, false);
+  const tickLineProps = _objectSpread(_objectSpread({}, axisProps), {}, {
     fill: 'none'
   }, (0, _ReactUtils.filterProps)(tickLine, false));
-  var items = ticks.map((entry, i) => {
-    var lineCoord = getTickLineCoord(entry, props);
-    var textAnchor = getTickTextAnchor(entry, props.orientation);
-    var verticalAnchor = getTickTextVerticalAnchor(entry);
-    var tickProps = _objectSpread(_objectSpread(_objectSpread({}, axisProps), {}, {
+  const items = ticks.map((entry, i) => {
+    const lineCoord = getTickLineCoord(entry, props);
+    const textAnchor = getTickTextAnchor(entry, props.orientation);
+    const verticalAnchor = getTickTextVerticalAnchor(entry);
+    const tickProps = _objectSpread(_objectSpread(_objectSpread({}, axisProps), {}, {
       textAnchor,
       verticalAnchor,
       stroke: 'none',
@@ -218,18 +218,18 @@ var Ticks = props => {
     className: "recharts-polar-angle-axis-ticks"
   }, items);
 };
-var PolarAngleAxisWrapper = defaultsAndInputs => {
-  var {
+const PolarAngleAxisWrapper = defaultsAndInputs => {
+  const {
     angleAxisId
   } = defaultsAndInputs;
-  var viewBox = (0, _hooks.useAppSelector)(_polarAxisSelectors.selectPolarViewBox);
-  var scale = (0, _hooks.useAppSelector)(state => (0, _polarScaleSelectors.selectPolarAxisScale)(state, 'angleAxis', angleAxisId));
-  var isPanorama = (0, _PanoramaContext.useIsPanorama)();
-  var ticks = (0, _hooks.useAppSelector)(state => (0, _polarScaleSelectors.selectPolarAxisTicks)(state, 'angleAxis', angleAxisId, isPanorama));
+  const viewBox = (0, _hooks.useAppSelector)(_polarAxisSelectors.selectPolarViewBox);
+  const scale = (0, _hooks.useAppSelector)(state => (0, _polarScaleSelectors.selectPolarAxisScale)(state, 'angleAxis', angleAxisId));
+  const isPanorama = (0, _PanoramaContext.useIsPanorama)();
+  const ticks = (0, _hooks.useAppSelector)(state => (0, _polarScaleSelectors.selectPolarAxisTicks)(state, 'angleAxis', angleAxisId, isPanorama));
   if (viewBox == null || !ticks || !ticks.length) {
     return null;
   }
-  var props = _objectSpread(_objectSpread(_objectSpread({}, defaultsAndInputs), {}, {
+  const props = _objectSpread(_objectSpread(_objectSpread({}, defaultsAndInputs), {}, {
     scale
   }, viewBox), {}, {
     radius: viewBox.outerRadius

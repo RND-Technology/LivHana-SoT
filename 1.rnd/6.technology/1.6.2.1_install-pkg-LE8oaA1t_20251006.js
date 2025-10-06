@@ -4,31 +4,31 @@ import process from 'process';
 import { fileURLToPath } from 'url';
 import { execa } from 'execa';
 
-var __defProp = Object.defineProperty;
-var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-var __publicField = (obj, key, value) => {
+const __defProp = Object.defineProperty;
+const __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+const __publicField = (obj, key, value) => {
   __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
   return value;
 };
-var __accessCheck = (obj, member, msg) => {
+const __accessCheck = (obj, member, msg) => {
   if (!member.has(obj))
     throw TypeError("Cannot " + msg);
 };
-var __privateGet = (obj, member, getter) => {
+const __privateGet = (obj, member, getter) => {
   __accessCheck(obj, member, "read from private field");
   return getter ? getter.call(obj) : member.get(obj);
 };
-var __privateAdd = (obj, member, value) => {
+const __privateAdd = (obj, member, value) => {
   if (member.has(obj))
     throw TypeError("Cannot add the same private member more than once");
   member instanceof WeakSet ? member.add(obj) : member.set(obj, value);
 };
-var __privateSet = (obj, member, value, setter) => {
+const __privateSet = (obj, member, value, setter) => {
   __accessCheck(obj, member, "write to private field");
   setter ? setter.call(obj, value) : member.set(obj, value);
   return value;
 };
-var __privateWrapper = (obj, member, setter, getter) => ({
+const __privateWrapper = (obj, member, setter, getter) => ({
   set _(value) {
     __privateSet(obj, member, value, setter);
   },
@@ -38,15 +38,15 @@ var __privateWrapper = (obj, member, setter, getter) => ({
 });
 
 // node_modules/.pnpm/yocto-queue@1.0.0/node_modules/yocto-queue/index.js
-var Node = class {
+const Node = class {
   constructor(value) {
     __publicField(this, "value");
     __publicField(this, "next");
     this.value = value;
   }
 };
-var _head, _tail, _size;
-var Queue = class {
+let _head, _tail, _size;
+const Queue = class {
   constructor() {
     __privateAdd(this, _head, void 0);
     __privateAdd(this, _tail, void 0);
@@ -145,14 +145,14 @@ function pLimit(concurrency) {
 }
 
 // node_modules/.pnpm/p-locate@6.0.0/node_modules/p-locate/index.js
-var EndError = class extends Error {
+const EndError = class extends Error {
   constructor(value) {
     super();
     this.value = value;
   }
 };
-var testElement = async (element, tester) => tester(await element);
-var finder = async (element) => {
+const testElement = async (element, tester) => tester(await element);
+const finder = async (element) => {
   const values = await Promise.all(element);
   if (values[1] === true) {
     throw new EndError(values[0]);
@@ -177,7 +177,7 @@ async function pLocate(iterable, tester, {
 }
 
 // node_modules/.pnpm/locate-path@7.2.0/node_modules/locate-path/index.js
-var typeMappings = {
+const typeMappings = {
   directory: "isDirectory",
   file: "isFile"
 };
@@ -187,8 +187,8 @@ function checkType(type) {
   }
   throw new Error(`Invalid type specified: ${type}`);
 }
-var matchType = (type, stat) => stat[typeMappings[type]]();
-var toPath = (urlOrPath) => urlOrPath instanceof URL ? fileURLToPath(urlOrPath) : urlOrPath;
+const matchType = (type, stat) => stat[typeMappings[type]]();
+const toPath = (urlOrPath) => urlOrPath instanceof URL ? fileURLToPath(urlOrPath) : urlOrPath;
 async function locatePath(paths, {
   cwd = process.cwd(),
   type = "file",
@@ -213,7 +213,7 @@ function toPath2(urlOrPath) {
 }
 
 // node_modules/.pnpm/find-up@7.0.0/node_modules/find-up/index.js
-var findUpStop = Symbol("findUpStop");
+const findUpStop = Symbol("findUpStop");
 async function findUpMultiple(name, options = {}) {
   let directory = p.resolve(toPath2(options.cwd) ?? "");
   const { root } = p.parse(directory);
@@ -252,8 +252,8 @@ async function findUp(name, options = {}) {
 }
 
 // src/detect.ts
-var AGENTS = ["pnpm", "yarn", "npm", "pnpm@6", "yarn@berry", "bun"];
-var LOCKS = {
+const AGENTS = ["pnpm", "yarn", "npm", "pnpm@6", "yarn@berry", "bun"];
+const LOCKS = {
   "bun.lockb": "bun",
   "pnpm-lock.yaml": "pnpm",
   "yarn.lock": "yarn",

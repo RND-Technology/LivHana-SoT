@@ -12,9 +12,9 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+const __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
+    let desc = Object.getOwnPropertyDescriptor(m, k);
     if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
       desc = { enumerable: true, get: function() { return m[k]; } };
     }
@@ -23,29 +23,29 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
 }));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+const __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
     Object.defineProperty(o, "default", { enumerable: true, value: v });
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || (function () {
-    var ownKeys = function(o) {
+const __importStar = (this && this.__importStar) || (function () {
+    let ownKeys = function(o) {
         ownKeys = Object.getOwnPropertyNames || function (o) {
-            var ar = [];
-            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            const ar = [];
+            for (const k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
             return ar;
         };
         return ownKeys(o);
     };
     return function (mod) {
         if (mod && mod.__esModule) return mod;
-        var result = {};
-        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        const result = {};
+        if (mod != null) for (let k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
         __setModuleDefault(result, mod);
         return result;
     };
 })();
-var __importDefault = (this && this.__importDefault) || function (mod) {
+const __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -68,16 +68,16 @@ const storage_js_1 = require("./storage.js");
 const signer_js_1 = require("./signer.js");
 const stream_1 = require("stream");
 const url_1 = require("url");
-var BucketActionToHTTPMethod;
+let BucketActionToHTTPMethod;
 (function (BucketActionToHTTPMethod) {
     BucketActionToHTTPMethod["list"] = "GET";
 })(BucketActionToHTTPMethod || (exports.BucketActionToHTTPMethod = BucketActionToHTTPMethod = {}));
-var AvailableServiceObjectMethods;
+let AvailableServiceObjectMethods;
 (function (AvailableServiceObjectMethods) {
     AvailableServiceObjectMethods[AvailableServiceObjectMethods["setMetadata"] = 0] = "setMetadata";
     AvailableServiceObjectMethods[AvailableServiceObjectMethods["delete"] = 1] = "delete";
 })(AvailableServiceObjectMethods || (exports.AvailableServiceObjectMethods = AvailableServiceObjectMethods = {}));
-var BucketExceptionMessages;
+let BucketExceptionMessages;
 (function (BucketExceptionMessages) {
     BucketExceptionMessages["PROVIDE_SOURCE_FILE"] = "You must provide at least one source file.";
     BucketExceptionMessages["DESTINATION_FILE_NOT_SPECIFIED"] = "A destination file must be specified.";
@@ -372,7 +372,7 @@ class Bucket extends index_js_1.ServiceObject {
         return new stream_1.Readable();
     }
     constructor(storage, name, options) {
-        var _a, _b, _c, _d;
+        let _a, _b, _c, _d;
         options = options || {};
         // Allow for "gs://"-style input, and strip any trailing slashes.
         name = name.replace(/^gs:\/\//, '').replace(/\/+$/, '');
@@ -983,7 +983,7 @@ class Bucket extends index_js_1.ServiceObject {
         // The default behavior appends the previously-defined lifecycle rules with
         // the new ones just passed in by the user.
         this.getMetadata((err, metadata) => {
-            var _a, _b;
+            let _a, _b;
             if (err) {
                 callback(err);
                 return;
@@ -1067,7 +1067,7 @@ class Bucket extends index_js_1.ServiceObject {
      * ```
      */
     combine(sources, destination, optionsOrCallback, callback) {
-        var _a;
+        let _a;
         if (!Array.isArray(sources) || sources.length === 0) {
             throw new Error(BucketExceptionMessages.PROVIDE_SOURCE_FILE);
         }
@@ -2596,7 +2596,7 @@ class Bucket extends index_js_1.ServiceObject {
      * ```
      */
     makePrivate(optionsOrCallback, callback) {
-        var _a, _b, _c, _d;
+        let _a, _b, _c, _d;
         const options = typeof optionsOrCallback === 'object' ? optionsOrCallback : {};
         callback =
             typeof optionsOrCallback === 'function' ? optionsOrCallback : callback;
@@ -3356,11 +3356,11 @@ class Bucket extends index_js_1.ServiceObject {
      * Example of uploading an encrypted file:
      */
     upload(pathString, optionsOrCallback, callback) {
-        var _a, _b;
+        let _a, _b;
         const upload = (numberOfRetries) => {
             const returnValue = (0, async_retry_1.default)(async (bail) => {
                 await new Promise((resolve, reject) => {
-                    var _a, _b;
+                    let _a, _b;
                     if (numberOfRetries === 0 &&
                         ((_b = (_a = newFile === null || newFile === void 0 ? void 0 : newFile.storage) === null || _a === void 0 ? void 0 : _a.retryOptions) === null || _b === void 0 ? void 0 : _b.autoRetry)) {
                         newFile.storage.retryOptions.autoRetry = false;
@@ -3530,7 +3530,7 @@ class Bucket extends index_js_1.ServiceObject {
     coreOpts, 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     methodType, localPreconditionOptions) {
-        var _a, _b;
+        let _a, _b;
         if (typeof coreOpts === 'object' &&
             ((_b = (_a = coreOpts === null || coreOpts === void 0 ? void 0 : coreOpts.reqOpts) === null || _a === void 0 ? void 0 : _a.qs) === null || _b === void 0 ? void 0 : _b.ifMetagenerationMatch) === undefined &&
             (localPreconditionOptions === null || localPreconditionOptions === void 0 ? void 0 : localPreconditionOptions.ifMetagenerationMatch) === undefined &&

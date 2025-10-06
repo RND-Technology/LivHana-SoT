@@ -7,10 +7,10 @@ import {strlen, sizeof} from './Utility.js'
  * @return {string}
  */
 export function serialize (children, callback) {
-	var output = ''
-	var length = sizeof(children)
+	let output = ''
+	const length = sizeof(children)
 
-	for (var i = 0; i < length; i++)
+	for (let i = 0; i < length; i++)
 		output += callback(children[i], i, children, callback) || ''
 
 	return output

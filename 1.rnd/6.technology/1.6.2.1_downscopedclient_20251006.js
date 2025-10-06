@@ -200,7 +200,7 @@ class DownscopedClient extends authclient_1.AuthClient {
      * @return A promise that resolves with the fresh downscoped access token.
      */
     async refreshAccessTokenAsync() {
-        var _a;
+        let _a;
         // Retrieve GCP access token from source credential.
         const subjectToken = (await this.authClient.getAccessToken()).token;
         // Construct the STS credentials options.

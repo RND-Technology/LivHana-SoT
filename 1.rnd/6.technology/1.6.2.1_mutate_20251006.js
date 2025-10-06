@@ -43,7 +43,7 @@ class ValueMutateInvalidRootMutationError extends Error {
     }
 }
 exports.ValueMutateInvalidRootMutationError = ValueMutateInvalidRootMutationError;
-var ValueMutate;
+let ValueMutate;
 (function (ValueMutate) {
     function Object(root, path, current, next) {
         if (!is_1.Is.Object(current)) {

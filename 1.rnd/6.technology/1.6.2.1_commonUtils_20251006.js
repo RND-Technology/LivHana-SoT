@@ -24,8 +24,8 @@ let websocketHealth;
 const ringBuffer = require('ringbufferjs');
 const bufferedLogEvents = new ringBuffer(10);
 const { CronJob } = require('cron');
-let scanStartTime = 0;
-let trafficStartedTime = 0;
+const scanStartTime = 0;
+const trafficStartedTime = 0;
 const cron = require('cron');
 
 const skip_detection_category_map = {
@@ -47,7 +47,7 @@ const skip_detection_category_map = {
  * @returns UUID
  */
 function getUUID() {
-    let uuid = process.env.applicationUUID || uuidV.v4();
+    const uuid = process.env.applicationUUID || uuidV.v4();
     process.env.applicationUUID = uuid;
     return uuid;
 }
@@ -439,7 +439,7 @@ function getFramework() {
 function listSkipDetectionCategory() {
     let skipList = [];
     try {
-        let skipCataegories = NRAgent.config.security.exclude_from_iast_scan.iast_detection_category;
+        const skipCataegories = NRAgent.config.security.exclude_from_iast_scan.iast_detection_category;
         for (const key in skipCataegories) {
             if (skipCataegories[key]) {
                 skipList = skipList.concat(skip_detection_category_map[key]);
@@ -489,7 +489,7 @@ function executeCronSchedule() {
 }
 
 function honourDurationConfiguration() {
-    let durationFromConfig = parseInt(NRAgent.config.security.scan_schedule.duration);
+    const durationFromConfig = parseInt(NRAgent.config.security.scan_schedule.duration);
     let duration = durationFromConfig;
     if (isNaN(duration) || duration < 0) {
         duration = 0;

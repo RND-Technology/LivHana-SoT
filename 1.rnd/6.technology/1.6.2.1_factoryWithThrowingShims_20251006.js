@@ -7,7 +7,7 @@
 
 'use strict';
 
-var ReactPropTypesSecret = require('./lib/ReactPropTypesSecret');
+const ReactPropTypesSecret = require('./lib/ReactPropTypesSecret');
 
 function emptyFunction() {}
 function emptyFunctionWithReset() {}
@@ -19,21 +19,21 @@ module.exports = function() {
       // It is still safe when called from React.
       return;
     }
-    var err = new Error(
+    const err = new Error(
       'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
       'Use PropTypes.checkPropTypes() to call them. ' +
       'Read more at http://fb.me/use-check-prop-types'
     );
     err.name = 'Invariant Violation';
     throw err;
-  };
+  }
   shim.isRequired = shim;
   function getShim() {
     return shim;
-  };
+  }
   // Important!
   // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
-  var ReactPropTypes = {
+  const ReactPropTypes = {
     array: shim,
     bigint: shim,
     bool: shim,

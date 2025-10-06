@@ -54,7 +54,7 @@ class Impersonated extends oauth2client_1.OAuth2Client {
      * @param {string} [options.endpoint] api endpoint override.
      */
     constructor(options = {}) {
-        var _a, _b, _c, _d, _e, _f;
+        let _a, _b, _c, _d, _e, _f;
         super(options);
         // Start with an expired refresh token, which will automatically be
         // refreshed before the first API call is made.
@@ -111,7 +111,7 @@ class Impersonated extends oauth2client_1.OAuth2Client {
      * Refreshes the access token.
      */
     async refreshToken() {
-        var _a, _b, _c, _d, _e, _f;
+        let _a, _b, _c, _d, _e, _f;
         try {
             await this.sourceClient.getAccessToken();
             const name = 'projects/-/serviceAccounts/' + this.targetPrincipal;
@@ -164,7 +164,7 @@ class Impersonated extends oauth2client_1.OAuth2Client {
      * @return an OpenID Connect ID token
      */
     async fetchIdToken(targetAudience, options) {
-        var _a, _b;
+        let _a, _b;
         await this.sourceClient.getAccessToken();
         const name = `projects/-/serviceAccounts/${this.targetPrincipal}`;
         const u = `${this.endpoint}/v1/${name}:generateIdToken`;

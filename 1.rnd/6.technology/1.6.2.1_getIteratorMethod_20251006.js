@@ -1,24 +1,24 @@
 'use strict';
 
-var hasSymbols = require('has-symbols')();
-var GetIntrinsic = require('get-intrinsic');
-var callBound = require('call-bound');
-var isString = require('is-string');
+const hasSymbols = require('has-symbols')();
+const GetIntrinsic = require('get-intrinsic');
+const callBound = require('call-bound');
+const isString = require('is-string');
 
-var $iterator = GetIntrinsic('%Symbol.iterator%', true);
-var $stringSlice = callBound('String.prototype.slice');
-var $String = GetIntrinsic('%String%');
+const $iterator = GetIntrinsic('%Symbol.iterator%', true);
+const $stringSlice = callBound('String.prototype.slice');
+const $String = GetIntrinsic('%String%');
 
-var IsArray = require('./IsArray');
+const IsArray = require('./IsArray');
 
 module.exports = function getIteratorMethod(ES, iterable) {
-	var usingIterator;
+	let usingIterator;
 	if (hasSymbols) {
 		usingIterator = ES.GetMethod(iterable, $iterator);
 	} else if (IsArray(iterable)) {
 		usingIterator = function () {
-			var i = -1;
-			var arr = this; // eslint-disable-line no-invalid-this
+			let i = -1;
+			const arr = this; // eslint-disable-line no-invalid-this
 			return {
 				next: function () {
 					i += 1;
@@ -31,13 +31,13 @@ module.exports = function getIteratorMethod(ES, iterable) {
 		};
 	} else if (isString(iterable)) {
 		usingIterator = function () {
-			var i = 0;
+			let i = 0;
 			return {
 				next: function () {
-					var nextIndex = ES.AdvanceStringIndex($String(iterable), i, true);
-					var value = $stringSlice(iterable, i, nextIndex);
+					const nextIndex = ES.AdvanceStringIndex($String(iterable), i, true);
+					const value = $stringSlice(iterable, i, nextIndex);
 					i = nextIndex;
-					var done = nextIndex > iterable.length;
+					const done = nextIndex > iterable.length;
 					return {
 						done: done,
 						value: done ? void undefined : value

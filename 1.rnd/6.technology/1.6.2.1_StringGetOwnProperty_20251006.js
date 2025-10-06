@@ -1,23 +1,23 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
-var isObject = require('es-object-atoms/isObject');
+const $TypeError = require('es-errors/type');
+const isObject = require('es-object-atoms/isObject');
 
-var callBound = require('call-bound');
-var $charAt = callBound('String.prototype.charAt');
-var $stringToString = callBound('String.prototype.toString');
+const callBound = require('call-bound');
+const $charAt = callBound('String.prototype.charAt');
+const $stringToString = callBound('String.prototype.toString');
 
-var CanonicalNumericIndexString = require('./CanonicalNumericIndexString');
-var IsInteger = require('./IsInteger');
+const CanonicalNumericIndexString = require('./CanonicalNumericIndexString');
+const IsInteger = require('./IsInteger');
 
-var isPropertyKey = require('../helpers/isPropertyKey');
+const isPropertyKey = require('../helpers/isPropertyKey');
 
-var isNegativeZero = require('math-intrinsics/isNegativeZero');
+const isNegativeZero = require('math-intrinsics/isNegativeZero');
 
 // https://262.ecma-international.org/8.0/#sec-stringgetownproperty
 
 module.exports = function StringGetOwnProperty(S, P) {
-	var str;
+	let str;
 	if (isObject(S)) {
 		try {
 			str = $stringToString(S);
@@ -32,12 +32,12 @@ module.exports = function StringGetOwnProperty(S, P) {
 	if (typeof P !== 'string') {
 		return void undefined;
 	}
-	var index = CanonicalNumericIndexString(P);
-	var len = str.length;
+	const index = CanonicalNumericIndexString(P);
+	const len = str.length;
 	if (typeof index === 'undefined' || !IsInteger(index) || isNegativeZero(index) || index < 0 || len <= index) {
 		return void undefined;
 	}
-	var resultStr = $charAt(S, index);
+	const resultStr = $charAt(S, index);
 	return {
 		'[[Configurable]]': false,
 		'[[Enumerable]]': true,

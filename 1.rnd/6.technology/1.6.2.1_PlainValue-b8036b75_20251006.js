@@ -21,8 +21,8 @@ function _classCallCheck(instance, Constructor) {
 }
 
 function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
+  for (let i = 0; i < props.length; i++) {
+    const descriptor = props[i];
     descriptor.enumerable = descriptor.enumerable || false;
     descriptor.configurable = true;
     if ("value" in descriptor) descriptor.writable = true;
@@ -100,10 +100,10 @@ function _construct(Parent, args, Class) {
     _construct = Reflect.construct;
   } else {
     _construct = function _construct(Parent, args, Class) {
-      var a = [null];
+      const a = [null];
       a.push.apply(a, args);
-      var Constructor = Function.bind.apply(Parent, a);
-      var instance = new Constructor();
+      const Constructor = Function.bind.apply(Parent, a);
+      const instance = new Constructor();
       if (Class) _setPrototypeOf(instance, Class.prototype);
       return instance;
     };
@@ -117,7 +117,7 @@ function _isNativeFunction(fn) {
 }
 
 function _wrapNativeSuper(Class) {
-  var _cache = typeof Map === "function" ? new Map() : undefined;
+  const _cache = typeof Map === "function" ? new Map() : undefined;
 
   _wrapNativeSuper = function _wrapNativeSuper(Class) {
     if (Class === null || !_isNativeFunction(Class)) return Class;
@@ -167,14 +167,14 @@ function _possibleConstructorReturn(self, call) {
 }
 
 function _createSuper(Derived) {
-  var hasNativeReflectConstruct = _isNativeReflectConstruct();
+  const hasNativeReflectConstruct = _isNativeReflectConstruct();
 
   return function _createSuperInternal() {
-    var Super = _getPrototypeOf(Derived),
+    let Super = _getPrototypeOf(Derived),
         result;
 
     if (hasNativeReflectConstruct) {
-      var NewTarget = _getPrototypeOf(this).constructor;
+      const NewTarget = _getPrototypeOf(this).constructor;
 
       result = Reflect.construct(Super, arguments, NewTarget);
     } else {
@@ -199,10 +199,10 @@ function _get(target, property, receiver) {
     _get = Reflect.get;
   } else {
     _get = function _get(target, property, receiver) {
-      var base = _superPropBase(target, property);
+      const base = _superPropBase(target, property);
 
       if (!base) return;
-      var desc = Object.getOwnPropertyDescriptor(base, property);
+      const desc = Object.getOwnPropertyDescriptor(base, property);
 
       if (desc.get) {
         return desc.get.call(receiver);
@@ -233,10 +233,10 @@ function _iterableToArray(iter) {
 
 function _iterableToArrayLimit(arr, i) {
   if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
-  var _arr = [];
-  var _n = true;
-  var _d = false;
-  var _e = undefined;
+  const _arr = [];
+  let _n = true;
+  let _d = false;
+  let _e = undefined;
 
   try {
     for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
@@ -261,7 +261,7 @@ function _iterableToArrayLimit(arr, i) {
 function _unsupportedIterableToArray(o, minLen) {
   if (!o) return;
   if (typeof o === "string") return _arrayLikeToArray(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
+  let n = Object.prototype.toString.call(o).slice(8, -1);
   if (n === "Object" && o.constructor) n = o.constructor.name;
   if (n === "Map" || n === "Set") return Array.from(o);
   if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
@@ -280,14 +280,14 @@ function _nonIterableRest() {
 }
 
 function _createForOfIteratorHelper(o, allowArrayLike) {
-  var it;
+  let it;
 
   if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) {
     if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
       if (it) o = it;
-      var i = 0;
+      let i = 0;
 
-      var F = function () {};
+      const F = function () {};
 
       return {
         s: F,
@@ -310,7 +310,7 @@ function _createForOfIteratorHelper(o, allowArrayLike) {
     throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
   }
 
-  var normalCompletion = true,
+  let normalCompletion = true,
       didErr = false,
       err;
   return {
@@ -318,7 +318,7 @@ function _createForOfIteratorHelper(o, allowArrayLike) {
       it = o[Symbol.iterator]();
     },
     n: function () {
-      var step = it.next();
+      const step = it.next();
       normalCompletion = step.done;
       return step;
     },
@@ -336,14 +336,14 @@ function _createForOfIteratorHelper(o, allowArrayLike) {
   };
 }
 
-var Char = {
+const Char = {
   ANCHOR: '&',
   COMMENT: '#',
   TAG: '!',
   DIRECTIVES_END: '-',
   DOCUMENT_END: '.'
 };
-var Type = {
+const Type = {
   ALIAS: 'ALIAS',
   BLANK_LINE: 'BLANK_LINE',
   BLOCK_FOLDED: 'BLOCK_FOLDED',
@@ -362,16 +362,16 @@ var Type = {
   SEQ: 'SEQ',
   SEQ_ITEM: 'SEQ_ITEM'
 };
-var defaultTagPrefix = 'tag:yaml.org,2002:';
-var defaultTags = {
+const defaultTagPrefix = 'tag:yaml.org,2002:';
+const defaultTags = {
   MAP: 'tag:yaml.org,2002:map',
   SEQ: 'tag:yaml.org,2002:seq',
   STR: 'tag:yaml.org,2002:str'
 };
 
 function findLineStarts(src) {
-  var ls = [0];
-  var offset = src.indexOf('\n');
+  const ls = [0];
+  let offset = src.indexOf('\n');
 
   while (offset !== -1) {
     offset += 1;
@@ -383,7 +383,7 @@ function findLineStarts(src) {
 }
 
 function getSrcInfo(cst) {
-  var lineStarts, src;
+  let lineStarts, src;
 
   if (typeof cst === 'string') {
     lineStarts = findLineStarts(cst);
@@ -428,14 +428,14 @@ function getSrcInfo(cst) {
 function getLinePos(offset, cst) {
   if (typeof offset !== 'number' || offset < 0) return null;
 
-  var _getSrcInfo = getSrcInfo(cst),
+  const _getSrcInfo = getSrcInfo(cst),
       lineStarts = _getSrcInfo.lineStarts,
       src = _getSrcInfo.src;
 
   if (!lineStarts || !src || offset > src.length) return null;
 
-  for (var i = 0; i < lineStarts.length; ++i) {
-    var start = lineStarts[i];
+  for (let i = 0; i < lineStarts.length; ++i) {
+    const start = lineStarts[i];
 
     if (offset < start) {
       return {
@@ -450,7 +450,7 @@ function getLinePos(offset, cst) {
     };
   }
 
-  var line = lineStarts.length;
+  const line = lineStarts.length;
   return {
     line: line,
     col: offset - lineStarts[line - 1] + 1
@@ -471,13 +471,13 @@ function getLinePos(offset, cst) {
  */
 
 function getLine(line, cst) {
-  var _getSrcInfo2 = getSrcInfo(cst),
+  const _getSrcInfo2 = getSrcInfo(cst),
       lineStarts = _getSrcInfo2.lineStarts,
       src = _getSrcInfo2.src;
 
   if (!lineStarts || !(line >= 1) || line > lineStarts.length) return null;
-  var start = lineStarts[line - 1];
-  var end = lineStarts[line]; // undefined for last line; that's ok for slice()
+  const start = lineStarts[line - 1];
+  let end = lineStarts[line]; // undefined for last line; that's ok for slice()
 
   while (end && end > start && src[end - 1] === '\n') {
     --end;
@@ -503,26 +503,26 @@ function getLine(line, cst) {
  */
 
 function getPrettyContext(_ref, cst) {
-  var start = _ref.start,
+  const start = _ref.start,
       end = _ref.end;
-  var maxWidth = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 80;
-  var src = getLine(start.line, cst);
+  const maxWidth = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 80;
+  let src = getLine(start.line, cst);
   if (!src) return null;
-  var col = start.col;
+  let col = start.col;
 
   if (src.length > maxWidth) {
     if (col <= maxWidth - 10) {
       src = src.substr(0, maxWidth - 1) + '…';
     } else {
-      var halfWidth = Math.round(maxWidth / 2);
+      const halfWidth = Math.round(maxWidth / 2);
       if (src.length > col + halfWidth) src = src.substr(0, col + halfWidth - 1) + '…';
       col -= src.length - maxWidth;
       src = '…' + src.substr(1 - maxWidth);
     }
   }
 
-  var errLen = 1;
-  var errEnd = '';
+  let errLen = 1;
+  let errEnd = '';
 
   if (end) {
     if (end.line === start.line && col + (end.col - start.col) <= maxWidth + 1) {
@@ -533,12 +533,12 @@ function getPrettyContext(_ref, cst) {
     }
   }
 
-  var offset = col > 1 ? ' '.repeat(col - 1) : '';
-  var err = '^'.repeat(errLen);
+  const offset = col > 1 ? ' '.repeat(col - 1) : '';
+  const err = '^'.repeat(errLen);
   return "".concat(src, "\n").concat(offset).concat(err).concat(errEnd);
 }
 
-var Range = /*#__PURE__*/function () {
+const Range = /*#__PURE__*/function () {
   function Range(start, end) {
     _classCallCheck(this, Range);
 
@@ -563,7 +563,7 @@ var Range = /*#__PURE__*/function () {
   }, {
     key: "setOrigRange",
     value: function setOrigRange(cr, offset) {
-      var start = this.start,
+      const start = this.start,
           end = this.end;
 
       if (cr.length === 0 || end <= cr[0]) {
@@ -572,14 +572,14 @@ var Range = /*#__PURE__*/function () {
         return offset;
       }
 
-      var i = offset;
+      let i = offset;
 
       while (i < cr.length) {
         if (cr[i] > start) break;else ++i;
       }
 
       this.origStart = start + i;
-      var nextOffset = i;
+      const nextOffset = i;
 
       while (i < cr.length) {
         // if end was at \n, it should now be at \r
@@ -601,7 +601,7 @@ var Range = /*#__PURE__*/function () {
 
 /** Root class of all nodes */
 
-var Node = /*#__PURE__*/function () {
+const Node = /*#__PURE__*/function () {
   function Node(type, props, context) {
     _classCallCheck(this, Node);
 
@@ -621,15 +621,15 @@ var Node = /*#__PURE__*/function () {
     key: "getPropValue",
     value: function getPropValue(idx, key, skipKey) {
       if (!this.context) return null;
-      var src = this.context.src;
-      var prop = this.props[idx];
+      const src = this.context.src;
+      const prop = this.props[idx];
       return prop && src[prop.start] === key ? src.slice(prop.start + (skipKey ? 1 : 0), prop.end) : null;
     }
   }, {
     key: "anchor",
     get: function get() {
-      for (var i = 0; i < this.props.length; ++i) {
-        var anchor = this.getPropValue(i, Char.ANCHOR, true);
+      for (let i = 0; i < this.props.length; ++i) {
+        const anchor = this.getPropValue(i, Char.ANCHOR, true);
         if (anchor != null) return anchor;
       }
 
@@ -638,10 +638,10 @@ var Node = /*#__PURE__*/function () {
   }, {
     key: "comment",
     get: function get() {
-      var comments = [];
+      const comments = [];
 
-      for (var i = 0; i < this.props.length; ++i) {
-        var comment = this.getPropValue(i, Char.COMMENT, true);
+      for (let i = 0; i < this.props.length; ++i) {
+        const comment = this.getPropValue(i, Char.COMMENT, true);
         if (comment != null) comments.push(comment);
       }
 
@@ -650,19 +650,19 @@ var Node = /*#__PURE__*/function () {
   }, {
     key: "commentHasRequiredWhitespace",
     value: function commentHasRequiredWhitespace(start) {
-      var src = this.context.src;
+      const src = this.context.src;
       if (this.header && start === this.header.end) return false;
       if (!this.valueRange) return false;
-      var end = this.valueRange.end;
+      const end = this.valueRange.end;
       return start !== end || Node.atBlank(src, end - 1);
     }
   }, {
     key: "hasComment",
     get: function get() {
       if (this.context) {
-        var src = this.context.src;
+        const src = this.context.src;
 
-        for (var i = 0; i < this.props.length; ++i) {
+        for (let i = 0; i < this.props.length; ++i) {
           if (src[this.props[i].start] === Char.COMMENT) return true;
         }
       }
@@ -673,9 +673,9 @@ var Node = /*#__PURE__*/function () {
     key: "hasProps",
     get: function get() {
       if (this.context) {
-        var src = this.context.src;
+        const src = this.context.src;
 
-        for (var i = 0; i < this.props.length; ++i) {
+        for (let i = 0; i < this.props.length; ++i) {
           if (src[this.props[i].start] !== Char.COMMENT) return true;
         }
       }
@@ -690,16 +690,16 @@ var Node = /*#__PURE__*/function () {
   }, {
     key: "jsonLike",
     get: function get() {
-      var jsonLikeTypes = [Type.FLOW_MAP, Type.FLOW_SEQ, Type.QUOTE_DOUBLE, Type.QUOTE_SINGLE];
+      const jsonLikeTypes = [Type.FLOW_MAP, Type.FLOW_SEQ, Type.QUOTE_DOUBLE, Type.QUOTE_SINGLE];
       return jsonLikeTypes.indexOf(this.type) !== -1;
     }
   }, {
     key: "rangeAsLinePos",
     get: function get() {
       if (!this.range || !this.context) return undefined;
-      var start = getLinePos(this.range.start, this.context.root);
+      const start = getLinePos(this.range.start, this.context.root);
       if (!start) return undefined;
-      var end = getLinePos(this.range.end, this.context.root);
+      const end = getLinePos(this.range.end, this.context.root);
       return {
         start: start,
         end: end
@@ -709,7 +709,7 @@ var Node = /*#__PURE__*/function () {
     key: "rawValue",
     get: function get() {
       if (!this.valueRange || !this.context) return null;
-      var _this$valueRange = this.valueRange,
+      const _this$valueRange = this.valueRange,
           start = _this$valueRange.start,
           end = _this$valueRange.end;
       return this.context.src.slice(start, end);
@@ -717,8 +717,8 @@ var Node = /*#__PURE__*/function () {
   }, {
     key: "tag",
     get: function get() {
-      for (var i = 0; i < this.props.length; ++i) {
-        var tag = this.getPropValue(i, Char.TAG, false);
+      for (let i = 0; i < this.props.length; ++i) {
+        const tag = this.getPropValue(i, Char.TAG, false);
 
         if (tag != null) {
           if (tag[1] === '<') {
@@ -727,10 +727,10 @@ var Node = /*#__PURE__*/function () {
             };
           } else {
             // eslint-disable-next-line no-unused-vars
-            var _tag$match = tag.match(/^(.*!)([^!]*)$/),
+            const _tag$match = tag.match(/^(.*!)([^!]*)$/),
                 _tag$match2 = _slicedToArray(_tag$match, 3);
                 _tag$match2[0];
-                var handle = _tag$match2[1],
+                const handle = _tag$match2[1],
                 suffix = _tag$match2[2];
 
             return {
@@ -747,12 +747,12 @@ var Node = /*#__PURE__*/function () {
     key: "valueRangeContainsNewline",
     get: function get() {
       if (!this.valueRange || !this.context) return false;
-      var _this$valueRange2 = this.valueRange,
+      const _this$valueRange2 = this.valueRange,
           start = _this$valueRange2.start,
           end = _this$valueRange2.end;
-      var src = this.context.src;
+      const src = this.context.src;
 
-      for (var i = start; i < end; ++i) {
+      for (let i = start; i < end; ++i) {
         if (src[i] === '\n') return true;
       }
 
@@ -761,11 +761,11 @@ var Node = /*#__PURE__*/function () {
   }, {
     key: "parseComment",
     value: function parseComment(start) {
-      var src = this.context.src;
+      const src = this.context.src;
 
       if (src[start] === Char.COMMENT) {
-        var end = Node.endOfLine(src, start + 1);
-        var commentRange = new Range(start, end);
+        const end = Node.endOfLine(src, start + 1);
+        const commentRange = new Range(start, end);
         this.props.push(commentRange);
         return end;
       }
@@ -794,27 +794,27 @@ var Node = /*#__PURE__*/function () {
   }, {
     key: "toString",
     value: function toString() {
-      var src = this.context.src,
+      const src = this.context.src,
           range = this.range,
           value = this.value;
       if (value != null) return value;
-      var str = src.slice(range.start, range.end);
+      const str = src.slice(range.start, range.end);
       return Node.addStringTerminator(src, range.end, str);
     }
   }], [{
     key: "addStringTerminator",
     value: function addStringTerminator(src, offset, str) {
       if (str[str.length - 1] === '\n') return str;
-      var next = Node.endOfWhiteSpace(src, offset);
+      const next = Node.endOfWhiteSpace(src, offset);
       return next >= src.length || src[next] === '\n' ? str + '\n' : str;
     } // ^(---|...)
 
   }, {
     key: "atDocumentBoundary",
     value: function atDocumentBoundary(src, offset, sep) {
-      var ch0 = src[offset];
+      const ch0 = src[offset];
       if (!ch0) return true;
-      var prev = src[offset - 1];
+      const prev = src[offset - 1];
       if (prev && prev !== '\n') return false;
 
       if (sep) {
@@ -823,18 +823,18 @@ var Node = /*#__PURE__*/function () {
         if (ch0 !== Char.DIRECTIVES_END && ch0 !== Char.DOCUMENT_END) return false;
       }
 
-      var ch1 = src[offset + 1];
-      var ch2 = src[offset + 2];
+      const ch1 = src[offset + 1];
+      const ch2 = src[offset + 2];
       if (ch1 !== ch0 || ch2 !== ch0) return false;
-      var ch3 = src[offset + 3];
+      const ch3 = src[offset + 3];
       return !ch3 || ch3 === '\n' || ch3 === '\t' || ch3 === ' ';
     }
   }, {
     key: "endOfIdentifier",
     value: function endOfIdentifier(src, offset) {
-      var ch = src[offset];
-      var isVerbatim = ch === '<';
-      var notOk = isVerbatim ? ['\n', '\t', ' ', '>'] : ['\n', '\t', ' ', '[', ']', '{', '}', ','];
+      let ch = src[offset];
+      const isVerbatim = ch === '<';
+      const notOk = isVerbatim ? ['\n', '\t', ' ', '>'] : ['\n', '\t', ' ', '[', ']', '{', '}', ','];
 
       while (ch && notOk.indexOf(ch) === -1) {
         ch = src[offset += 1];
@@ -846,7 +846,7 @@ var Node = /*#__PURE__*/function () {
   }, {
     key: "endOfIndent",
     value: function endOfIndent(src, offset) {
-      var ch = src[offset];
+      let ch = src[offset];
 
       while (ch === ' ') {
         ch = src[offset += 1];
@@ -857,7 +857,7 @@ var Node = /*#__PURE__*/function () {
   }, {
     key: "endOfLine",
     value: function endOfLine(src, offset) {
-      var ch = src[offset];
+      let ch = src[offset];
 
       while (ch && ch !== '\n') {
         ch = src[offset += 1];
@@ -868,7 +868,7 @@ var Node = /*#__PURE__*/function () {
   }, {
     key: "endOfWhiteSpace",
     value: function endOfWhiteSpace(src, offset) {
-      var ch = src[offset];
+      let ch = src[offset];
 
       while (ch === '\t' || ch === ' ') {
         ch = src[offset += 1];
@@ -879,7 +879,7 @@ var Node = /*#__PURE__*/function () {
   }, {
     key: "startOfLine",
     value: function startOfLine(src, offset) {
-      var ch = src[offset - 1];
+      let ch = src[offset - 1];
       if (ch === '\n') return offset;
 
       while (ch && ch !== '\n') {
@@ -901,13 +901,13 @@ var Node = /*#__PURE__*/function () {
   }, {
     key: "endOfBlockIndent",
     value: function endOfBlockIndent(src, indent, lineStart) {
-      var inEnd = Node.endOfIndent(src, lineStart);
+      const inEnd = Node.endOfIndent(src, lineStart);
 
       if (inEnd > lineStart + indent) {
         return inEnd;
       } else {
-        var wsEnd = Node.endOfWhiteSpace(src, inEnd);
-        var ch = src[wsEnd];
+        const wsEnd = Node.endOfWhiteSpace(src, inEnd);
+        const ch = src[wsEnd];
         if (!ch || ch === '\n') return wsEnd;
       }
 
@@ -916,7 +916,7 @@ var Node = /*#__PURE__*/function () {
   }, {
     key: "atBlank",
     value: function atBlank(src, offset, endAsBlank) {
-      var ch = src[offset];
+      const ch = src[offset];
       return ch === '\n' || ch === '\t' || ch === ' ' || endAsBlank && !ch;
     }
   }, {
@@ -930,7 +930,7 @@ var Node = /*#__PURE__*/function () {
   }, {
     key: "normalizeOffset",
     value: function normalizeOffset(src, offset) {
-      var ch = src[offset];
+      const ch = src[offset];
       return !ch ? offset : ch !== '\n' && src[offset - 1] === '\n' ? offset - 1 : Node.endOfWhiteSpace(src, offset);
     } // fold single newline into space, multiple newlines to N - 1 newlines
     // presumes src[offset] === '\n'
@@ -938,10 +938,10 @@ var Node = /*#__PURE__*/function () {
   }, {
     key: "foldNewline",
     value: function foldNewline(src, offset, indent) {
-      var inCount = 0;
-      var error = false;
-      var fold = '';
-      var ch = src[offset + 1];
+      let inCount = 0;
+      let error = false;
+      let fold = '';
+      let ch = src[offset + 1];
 
       while (ch === ' ' || ch === '\t' || ch === '\n') {
         switch (ch) {
@@ -978,13 +978,13 @@ var Node = /*#__PURE__*/function () {
   return Node;
 }();
 
-var YAMLError = /*#__PURE__*/function (_Error) {
+const YAMLError = /*#__PURE__*/function (_Error) {
   _inherits(YAMLError, _Error);
 
-  var _super = _createSuper(YAMLError);
+  const _super = _createSuper(YAMLError);
 
   function YAMLError(name, source, message) {
-    var _this;
+    let _this;
 
     _classCallCheck(this, YAMLError);
 
@@ -1001,14 +1001,14 @@ var YAMLError = /*#__PURE__*/function (_Error) {
     value: function makePretty() {
       if (!this.source) return;
       this.nodeType = this.source.type;
-      var cst = this.source.context && this.source.context.root;
+      const cst = this.source.context && this.source.context.root;
 
       if (typeof this.offset === 'number') {
         this.range = new Range(this.offset, this.offset + 1);
-        var start = cst && getLinePos(this.offset, cst);
+        const start = cst && getLinePos(this.offset, cst);
 
         if (start) {
-          var end = {
+          const end = {
             line: start.line,
             col: start.col + 1
           };
@@ -1025,11 +1025,11 @@ var YAMLError = /*#__PURE__*/function (_Error) {
       }
 
       if (this.linePos) {
-        var _this$linePos$start = this.linePos.start,
+        const _this$linePos$start = this.linePos.start,
             line = _this$linePos$start.line,
             col = _this$linePos$start.col;
         this.message += " at line ".concat(line, ", column ").concat(col);
-        var ctx = cst && getPrettyContext(this.linePos, cst);
+        const ctx = cst && getPrettyContext(this.linePos, cst);
         if (ctx) this.message += ":\n\n".concat(ctx, "\n");
       }
 
@@ -1039,10 +1039,10 @@ var YAMLError = /*#__PURE__*/function (_Error) {
 
   return YAMLError;
 }( /*#__PURE__*/_wrapNativeSuper(Error));
-var YAMLReferenceError = /*#__PURE__*/function (_YAMLError) {
+const YAMLReferenceError = /*#__PURE__*/function (_YAMLError) {
   _inherits(YAMLReferenceError, _YAMLError);
 
-  var _super2 = _createSuper(YAMLReferenceError);
+  const _super2 = _createSuper(YAMLReferenceError);
 
   function YAMLReferenceError(source, message) {
     _classCallCheck(this, YAMLReferenceError);
@@ -1052,10 +1052,10 @@ var YAMLReferenceError = /*#__PURE__*/function (_YAMLError) {
 
   return YAMLReferenceError;
 }(YAMLError);
-var YAMLSemanticError = /*#__PURE__*/function (_YAMLError2) {
+const YAMLSemanticError = /*#__PURE__*/function (_YAMLError2) {
   _inherits(YAMLSemanticError, _YAMLError2);
 
-  var _super3 = _createSuper(YAMLSemanticError);
+  const _super3 = _createSuper(YAMLSemanticError);
 
   function YAMLSemanticError(source, message) {
     _classCallCheck(this, YAMLSemanticError);
@@ -1065,10 +1065,10 @@ var YAMLSemanticError = /*#__PURE__*/function (_YAMLError2) {
 
   return YAMLSemanticError;
 }(YAMLError);
-var YAMLSyntaxError = /*#__PURE__*/function (_YAMLError3) {
+const YAMLSyntaxError = /*#__PURE__*/function (_YAMLError3) {
   _inherits(YAMLSyntaxError, _YAMLError3);
 
-  var _super4 = _createSuper(YAMLSyntaxError);
+  const _super4 = _createSuper(YAMLSyntaxError);
 
   function YAMLSyntaxError(source, message) {
     _classCallCheck(this, YAMLSyntaxError);
@@ -1078,10 +1078,10 @@ var YAMLSyntaxError = /*#__PURE__*/function (_YAMLError3) {
 
   return YAMLSyntaxError;
 }(YAMLError);
-var YAMLWarning = /*#__PURE__*/function (_YAMLError4) {
+const YAMLWarning = /*#__PURE__*/function (_YAMLError4) {
   _inherits(YAMLWarning, _YAMLError4);
 
-  var _super5 = _createSuper(YAMLWarning);
+  const _super5 = _createSuper(YAMLWarning);
 
   function YAMLWarning(source, message) {
     _classCallCheck(this, YAMLWarning);
@@ -1092,10 +1092,10 @@ var YAMLWarning = /*#__PURE__*/function (_YAMLError4) {
   return YAMLWarning;
 }(YAMLError);
 
-var PlainValue = /*#__PURE__*/function (_Node) {
+const PlainValue = /*#__PURE__*/function (_Node) {
   _inherits(PlainValue, _Node);
 
-  var _super = _createSuper(PlainValue);
+  const _super = _createSuper(PlainValue);
 
   function PlainValue() {
     _classCallCheck(this, PlainValue);
@@ -1107,23 +1107,23 @@ var PlainValue = /*#__PURE__*/function (_Node) {
     key: "strValue",
     get: function get() {
       if (!this.valueRange || !this.context) return null;
-      var _this$valueRange = this.valueRange,
+      let _this$valueRange = this.valueRange,
           start = _this$valueRange.start,
           end = _this$valueRange.end;
-      var src = this.context.src;
-      var ch = src[end - 1];
+      const src = this.context.src;
+      let ch = src[end - 1];
 
       while (start < end && (ch === '\n' || ch === '\t' || ch === ' ')) {
         ch = src[--end - 1];
       }
 
-      var str = '';
+      let str = '';
 
-      for (var i = start; i < end; ++i) {
-        var _ch = src[i];
+      for (let i = start; i < end; ++i) {
+        const _ch = src[i];
 
         if (_ch === '\n') {
-          var _Node$foldNewline = Node.foldNewline(src, i, -1),
+          const _Node$foldNewline = Node.foldNewline(src, i, -1),
               fold = _Node$foldNewline.fold,
               offset = _Node$foldNewline.offset;
 
@@ -1131,8 +1131,8 @@ var PlainValue = /*#__PURE__*/function (_Node) {
           i = offset;
         } else if (_ch === ' ' || _ch === '\t') {
           // trim trailing whitespace
-          var wsStart = i;
-          var next = src[i + 1];
+          const wsStart = i;
+          let next = src[i + 1];
 
           while (i < end && (next === ' ' || next === '\t')) {
             i += 1;
@@ -1145,13 +1145,13 @@ var PlainValue = /*#__PURE__*/function (_Node) {
         }
       }
 
-      var ch0 = src[start];
+      const ch0 = src[start];
 
       switch (ch0) {
         case '\t':
           {
-            var msg = 'Plain value cannot start with a tab character';
-            var errors = [new YAMLSemanticError(this, msg)];
+            const msg = 'Plain value cannot start with a tab character';
+            const errors = [new YAMLSemanticError(this, msg)];
             return {
               errors: errors,
               str: str
@@ -1161,9 +1161,9 @@ var PlainValue = /*#__PURE__*/function (_Node) {
         case '@':
         case '`':
           {
-            var _msg = "Plain value cannot start with reserved character ".concat(ch0);
+            const _msg = "Plain value cannot start with reserved character ".concat(ch0);
 
-            var _errors = [new YAMLSemanticError(this, _msg)];
+            const _errors = [new YAMLSemanticError(this, _msg)];
             return {
               errors: _errors,
               str: str
@@ -1177,16 +1177,16 @@ var PlainValue = /*#__PURE__*/function (_Node) {
   }, {
     key: "parseBlockValue",
     value: function parseBlockValue(start) {
-      var _this$context = this.context,
+      const _this$context = this.context,
           indent = _this$context.indent,
           inFlow = _this$context.inFlow,
           src = _this$context.src;
-      var offset = start;
-      var valueEnd = start;
+      let offset = start;
+      let valueEnd = start;
 
-      for (var ch = src[offset]; ch === '\n'; ch = src[offset]) {
+      for (let ch = src[offset]; ch === '\n'; ch = src[offset]) {
         if (Node.atDocumentBoundary(src, offset + 1)) break;
-        var end = Node.endOfBlockIndent(src, indent, offset + 1);
+        const end = Node.endOfBlockIndent(src, indent, offset + 1);
         if (end === null || src[end] === '#') break;
 
         if (src[end] === '\n') {
@@ -1231,10 +1231,10 @@ var PlainValue = /*#__PURE__*/function (_Node) {
     key: "parse",
     value: function parse(context, start) {
       this.context = context;
-      var inFlow = context.inFlow,
+      const inFlow = context.inFlow,
           src = context.src;
-      var offset = start;
-      var ch = src[offset];
+      let offset = start;
+      const ch = src[offset];
 
       if (ch && ch !== '#' && ch !== '\n') {
         offset = PlainValue.endOfLine(src, start, inFlow);
@@ -1253,12 +1253,12 @@ var PlainValue = /*#__PURE__*/function (_Node) {
   }], [{
     key: "endOfLine",
     value: function endOfLine(src, start, inFlow) {
-      var ch = src[start];
-      var offset = start;
+      let ch = src[start];
+      let offset = start;
 
       while (ch && ch !== '\n') {
         if (inFlow && (ch === '[' || ch === ']' || ch === '{' || ch === '}' || ch === ',')) break;
-        var next = src[offset + 1];
+        const next = src[offset + 1];
         if (ch === ':' && (!next || next === '\n' || next === '\t' || next === ' ' || inFlow && next === ',')) break;
         if ((ch === ' ' || ch === '\t') && next === '#') break;
         offset += 1;

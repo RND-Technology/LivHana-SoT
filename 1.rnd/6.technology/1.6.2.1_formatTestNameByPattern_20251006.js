@@ -11,7 +11,7 @@ function _chalk() {
   };
   return data;
 }
-var _colorize = _interopRequireDefault(require('./colorize'));
+const _colorize = _interopRequireDefault(require('./colorize'));
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {default: obj};
 }

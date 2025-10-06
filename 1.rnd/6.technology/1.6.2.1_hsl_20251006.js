@@ -3,7 +3,7 @@ import color, {hue} from "./color.js";
 
 function hsl(hue) {
   return function(start, end) {
-    var h = hue((start = colorHsl(start)).h, (end = colorHsl(end)).h),
+    const h = hue((start = colorHsl(start)).h, (end = colorHsl(end)).h),
         s = color(start.s, end.s),
         l = color(start.l, end.l),
         opacity = color(start.opacity, end.opacity);

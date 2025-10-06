@@ -2,28 +2,28 @@ import * as regex from './regex'
 import { splitAtTopLevelOnly } from '../util/splitAtTopLevelOnly'
 
 export function defaultExtractor(context) {
-  let patterns = Array.from(buildRegExps(context))
+  const patterns = Array.from(buildRegExps(context))
 
   /**
    * @param {string} content
    */
   return (content) => {
     /** @type {(string|string)[]} */
-    let results = []
+    const results = []
 
-    for (let pattern of patterns) {
-      for (let result of content.match(pattern) ?? []) {
+    for (const pattern of patterns) {
+      for (const result of content.match(pattern) ?? []) {
         results.push(clipAtBalancedParens(result))
       }
     }
 
     // Extract any subclasses from languages like Slim and Pug, eg:
     // div.flex.px-5.underline
-    for (let result of results.slice()) {
-      let segments = splitAtTopLevelOnly(result, '.')
+    for (const result of results.slice()) {
+      const segments = splitAtTopLevelOnly(result, '.')
 
       for (let idx = 0; idx < segments.length; idx++) {
-        let segment = segments[idx]
+        const segment = segments[idx]
         if (idx >= segments.length - 1) {
           results.push(segment)
           continue
@@ -32,7 +32,7 @@ export function defaultExtractor(context) {
         // If the next segment is a number, discard both, for example seeing
         // `px-1` and `5` means the real candidate was `px-1.5` which is already
         // captured.
-        let next = Number(segments[idx + 1])
+        const next = Number(segments[idx + 1])
         if (isNaN(next)) {
           results.push(segment)
         } else {
@@ -46,13 +46,13 @@ export function defaultExtractor(context) {
 }
 
 function* buildRegExps(context) {
-  let separator = context.tailwindConfig.separator
-  let prefix =
+  const separator = context.tailwindConfig.separator
+  const prefix =
     context.tailwindConfig.prefix !== ''
       ? regex.optional(regex.pattern([/-?/, regex.escape(context.tailwindConfig.prefix)]))
       : ''
 
-  let utility = regex.any([
+  const utility = regex.any([
     // Arbitrary properties (without square brackets)
     /\[[^\s:'"`]+:[^\s\[\]]+\]/,
 
@@ -114,7 +114,7 @@ function* buildRegExps(context) {
     ]),
   ])
 
-  let variantPatterns = [
+  const variantPatterns = [
     // Without quotes
     regex.any([
       // This is here to provide special support for the `@` variant
@@ -159,8 +159,8 @@ function* buildRegExps(context) {
 
 // We want to capture any "special" characters
 // AND the characters immediately following them (if there is one)
-let SPECIALS = /([\[\]'"`])([^\[\]'"`])?/g
-let ALLOWED_CLASS_CHARACTERS = /[^"'`\s<>\]]+/
+const SPECIALS = /([\[\]'"`])([^\[\]'"`])?/g
+const ALLOWED_CLASS_CHARACTERS = /[^"'`\s<>\]]+/
 
 /**
  * Clips a string ensuring that parentheses, quotes, etc… are balanced
@@ -183,7 +183,7 @@ function clipAtBalancedParens(input) {
   }
 
   let depth = 0
-  let openStringTypes = []
+  const openStringTypes = []
 
   // Find all parens, brackets, quotes, etc
   // Stop when we end at a balanced pair
@@ -204,9 +204,9 @@ function clipAtBalancedParens(input) {
     )
   })
 
-  for (let match of matches) {
-    let char = match[0]
-    let inStringType = openStringTypes[openStringTypes.length - 1]
+  for (const match of matches) {
+    const char = match[0]
+    const inStringType = openStringTypes[openStringTypes.length - 1]
 
     if (char === inStringType) {
       openStringTypes.pop()

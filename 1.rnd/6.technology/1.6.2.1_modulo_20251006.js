@@ -1,6 +1,6 @@
 'use strict';
 
-var mod = require('../helpers/mod');
+const mod = require('../helpers/mod');
 
 // https://262.ecma-international.org/5.1/#sec-5.2
 

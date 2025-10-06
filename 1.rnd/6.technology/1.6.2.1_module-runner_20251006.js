@@ -19,7 +19,7 @@ const AsyncFunction = async function() {}.constructor;
 let asyncFunctionDeclarationPaddingLineCount;
 function getAsyncFunctionDeclarationPaddingLineCount() {
 	if (asyncFunctionDeclarationPaddingLineCount === void 0) {
-		let body = "/*code*/", source = new AsyncFunction("a", "b", body).toString();
+		const body = "/*code*/", source = new AsyncFunction("a", "b", body).toString();
 		asyncFunctionDeclarationPaddingLineCount = source.slice(0, source.indexOf(body)).split("\n").length - 1;
 	}
 	return asyncFunctionDeclarationPaddingLineCount;
@@ -46,7 +46,7 @@ const resolve = function(...arguments_) {
 	arguments_ = arguments_.map((argument) => normalizeWindowsPath(argument));
 	let resolvedPath = "", resolvedAbsolute = !1;
 	for (let index = arguments_.length - 1; index >= -1 && !resolvedAbsolute; index--) {
-		let path = index >= 0 ? arguments_[index] : cwd();
+		const path = index >= 0 ? arguments_[index] : cwd();
 		!path || path.length === 0 || (resolvedPath = `${path}/${resolvedPath}`, resolvedAbsolute = isAbsolute(path));
 	}
 	return resolvedPath = normalizeString(resolvedPath, !resolvedAbsolute), resolvedAbsolute && !isAbsolute(resolvedPath) ? `/${resolvedPath}` : resolvedPath.length > 0 ? resolvedPath : ".";
@@ -61,7 +61,7 @@ function normalizeString(path, allowAboveRoot) {
 			if (!(lastSlash === index - 1 || dots === 1)) if (dots === 2) {
 				if (res.length < 2 || lastSegmentLength !== 2 || res[res.length - 1] !== "." || res[res.length - 2] !== ".") {
 					if (res.length > 2) {
-						let lastSlashIndex = res.lastIndexOf("/");
+						const lastSlashIndex = res.lastIndexOf("/");
 						lastSlashIndex === -1 ? (res = "", lastSegmentLength = 0) : (res = res.slice(0, lastSlashIndex), lastSegmentLength = res.length - 1 - res.lastIndexOf("/")), lastSlash = index, dots = 0;
 						continue;
 					} else if (res.length > 0) {
@@ -79,7 +79,7 @@ function normalizeString(path, allowAboveRoot) {
 const isAbsolute = function(p) {
 	return _IS_ABSOLUTE_RE.test(p);
 }, dirname = function(p) {
-	let segments = normalizeWindowsPath(p).replace(/\/$/, "").split("/").slice(0, -1);
+	const segments = normalizeWindowsPath(p).replace(/\/$/, "").split("/").slice(0, -1);
 	return segments.length === 1 && _DRIVE_LETTER_RE.test(segments[0]) && (segments[0] += "/"), segments.join("/") || (isAbsolute(p) ? "/" : ".");
 }, decodeBase64 = typeof atob < "u" ? atob : (str) => Buffer.from(str, "base64").toString("utf-8"), percentRegEx = /%/g, backslashRegEx = /\\/g, newlineRegEx = /\n/g, carriageReturnRegEx = /\r/g, tabRegEx = /\t/g, questionRegex = /\?/g, hashRegex = /#/g;
 function encodePathChars(filepath) {
@@ -93,24 +93,24 @@ function posixPathToFileHref(posixPath) {
 function toWindowsPath(path) {
 	return path.replace(/\//g, "\\");
 }
-var comma = 44, chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/", intToChar = new Uint8Array(64), charToInt = new Uint8Array(128);
+const comma = 44, chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/", intToChar = new Uint8Array(64), charToInt = new Uint8Array(128);
 for (let i = 0; i < chars.length; i++) {
-	let c = chars.charCodeAt(i);
+	const c = chars.charCodeAt(i);
 	intToChar[i] = c, charToInt[c] = i;
 }
 function decodeInteger(reader, relative) {
 	let value = 0, shift = 0, integer = 0;
 	do {
-		let c = reader.next();
+		const c = reader.next();
 		integer = charToInt[c], value |= (integer & 31) << shift, shift += 5;
 	} while (integer & 32);
-	let shouldNegate = value & 1;
+	const shouldNegate = value & 1;
 	return value >>>= 1, shouldNegate && (value = -2147483648 | -value), relative + value;
 }
 function hasMoreVlq(reader, max) {
 	return reader.pos >= max ? !1 : reader.peek() !== comma;
 }
-var StringReader = class {
+const StringReader = class {
 	constructor(buffer) {
 		this.pos = 0, this.buffer = buffer;
 	}
@@ -121,7 +121,7 @@ var StringReader = class {
 		return this.buffer.charCodeAt(this.pos);
 	}
 	indexOf(char) {
-		let { buffer, pos } = this, idx = buffer.indexOf(char, pos);
+		const { buffer, pos } = this, idx = buffer.indexOf(char, pos);
 		return idx === -1 ? buffer.length : idx;
 	}
 };
@@ -154,10 +154,10 @@ function sort(line) {
 function sortComparator(a, b) {
 	return a[0] - b[0];
 }
-var COLUMN = 0, SOURCES_INDEX = 1, SOURCE_LINE = 2, SOURCE_COLUMN = 3, NAMES_INDEX = 4, found = !1;
+let COLUMN = 0, SOURCES_INDEX = 1, SOURCE_LINE = 2, SOURCE_COLUMN = 3, NAMES_INDEX = 4, found = !1;
 function binarySearch(haystack, needle, low, high) {
 	for (; low <= high;) {
-		let mid = low + (high - low >> 1), cmp = haystack[mid][COLUMN] - needle;
+		const mid = low + (high - low >> 1), cmp = haystack[mid][COLUMN] - needle;
 		if (cmp === 0) return found = !0, mid;
 		cmp < 0 ? low = mid + 1 : high = mid - 1;
 	}
@@ -179,25 +179,25 @@ function memoizedBinarySearch(haystack, needle, state, key) {
 	}
 	return state.lastKey = key, state.lastNeedle = needle, state.lastIndex = binarySearch(haystack, needle, low, high);
 }
-var LINE_GTR_ZERO = "`line` must be greater than 0 (lines start at line 1)", COL_GTR_EQ_ZERO = "`column` must be greater than or equal to 0 (columns start at column 0)", LEAST_UPPER_BOUND = -1, GREATEST_LOWER_BOUND = 1;
+const LINE_GTR_ZERO = "`line` must be greater than 0 (lines start at line 1)", COL_GTR_EQ_ZERO = "`column` must be greater than or equal to 0 (columns start at column 0)", LEAST_UPPER_BOUND = -1, GREATEST_LOWER_BOUND = 1;
 function cast(map) {
 	return map;
 }
 function decodedMappings(map) {
-	var _a;
+	let _a;
 	return (_a = cast(map))._decoded || (_a._decoded = decode(cast(map)._encoded));
 }
 function originalPositionFor(map, needle) {
 	let { line, column, bias } = needle;
 	if (line--, line < 0) throw Error(LINE_GTR_ZERO);
 	if (column < 0) throw Error(COL_GTR_EQ_ZERO);
-	let decoded = decodedMappings(map);
+	const decoded = decodedMappings(map);
 	if (line >= decoded.length) return OMapping(null, null, null, null);
-	let segments = decoded[line], index = traceSegmentInternal(segments, cast(map)._decodedMemo, line, column, bias || GREATEST_LOWER_BOUND);
+	const segments = decoded[line], index = traceSegmentInternal(segments, cast(map)._decodedMemo, line, column, bias || GREATEST_LOWER_BOUND);
 	if (index === -1) return OMapping(null, null, null, null);
-	let segment = segments[index];
+	const segment = segments[index];
 	if (segment.length === 1) return OMapping(null, null, null, null);
-	let { names, resolvedSources } = map;
+	const { names, resolvedSources } = map;
 	return OMapping(resolvedSources[segment[SOURCES_INDEX]], segment[SOURCE_LINE] + 1, segment[SOURCE_COLUMN], segment.length === 5 ? names[segment[NAMES_INDEX]] : null);
 }
 function OMapping(source, line, column, name) {
@@ -212,7 +212,7 @@ function traceSegmentInternal(segments, memo, line, column, bias) {
 	let index = memoizedBinarySearch(segments, column, memo, line);
 	return found ? index = (bias === LEAST_UPPER_BOUND ? upperBound : lowerBound)(segments, column, index) : bias === LEAST_UPPER_BOUND && index++, index === -1 || index === segments.length ? -1 : index;
 }
-var DecodedMap = class {
+const DecodedMap = class {
 	_encoded;
 	_decoded;
 	_decodedMemo;
@@ -222,7 +222,7 @@ var DecodedMap = class {
 	resolvedSources;
 	constructor(map, from) {
 		this.map = map;
-		let { mappings, names, sources } = map;
+		const { mappings, names, sources } = map;
 		this.version = map.version, this.names = names || [], this._encoded = mappings || "", this._decodedMemo = memoizedState(), this.url = from, this.resolvedSources = (sources || []).map((s) => posixResolve(s || "", from));
 	}
 };
@@ -234,11 +234,11 @@ function memoizedState() {
 	};
 }
 function getOriginalPosition(map, needle) {
-	let result = originalPositionFor(map, needle);
+	const result = originalPositionFor(map, needle);
 	return result.column == null ? null : result;
 }
 const MODULE_RUNNER_SOURCEMAPPING_REGEXP = /* @__PURE__ */ RegExp(`//# ${SOURCEMAPPING_URL}=data:application/json;base64,(.+)`);
-var EvaluatedModuleNode = class {
+const EvaluatedModuleNode = class {
 	importers = /* @__PURE__ */ new Set();
 	imports = /* @__PURE__ */ new Set();
 	evaluated = !1;
@@ -265,25 +265,25 @@ var EvaluatedModuleNode = class {
 	}
 	ensureModule(id, url) {
 		if (id = normalizeModuleId(id), this.idToModuleMap.has(id)) {
-			let moduleNode$1 = this.idToModuleMap.get(id);
+			const moduleNode$1 = this.idToModuleMap.get(id);
 			return this.urlToIdModuleMap.set(url, moduleNode$1), moduleNode$1;
 		}
-		let moduleNode = new EvaluatedModuleNode(id, url);
+		const moduleNode = new EvaluatedModuleNode(id, url);
 		this.idToModuleMap.set(id, moduleNode), this.urlToIdModuleMap.set(url, moduleNode);
-		let fileModules = this.fileToModulesMap.get(moduleNode.file) || /* @__PURE__ */ new Set();
+		const fileModules = this.fileToModulesMap.get(moduleNode.file) || /* @__PURE__ */ new Set();
 		return fileModules.add(moduleNode), this.fileToModulesMap.set(moduleNode.file, fileModules), moduleNode;
 	}
 	invalidateModule(node) {
 		node.evaluated = !1, node.meta = void 0, node.map = void 0, node.promise = void 0, node.exports = void 0, node.imports.clear();
 	}
 	getModuleSourceMapById(id) {
-		let mod = this.getModuleById(id);
+		const mod = this.getModuleById(id);
 		if (!mod) return null;
 		if (mod.map) return mod.map;
 		if (!mod.meta || !("code" in mod.meta)) return null;
-		let pattern = `//# ${SOURCEMAPPING_URL}=data:application/json;base64,`, lastIndex = mod.meta.code.lastIndexOf(pattern);
+		const pattern = `//# ${SOURCEMAPPING_URL}=data:application/json;base64,`, lastIndex = mod.meta.code.lastIndexOf(pattern);
 		if (lastIndex === -1) return null;
-		let mapString = MODULE_RUNNER_SOURCEMAPPING_REGEXP.exec(mod.meta.code.slice(lastIndex))?.[1];
+		const mapString = MODULE_RUNNER_SOURCEMAPPING_REGEXP.exec(mod.meta.code.slice(lastIndex))?.[1];
 		return mapString ? (mod.map = new DecodedMap(JSON.parse(decodeBase64(mapString)), mod.file), mod.map) : null;
 	}
 	clear() {
@@ -299,15 +299,15 @@ const prefixedBuiltins = new Set([
 function normalizeModuleId(file) {
 	return prefixedBuiltins.has(file) ? file : slash(file).replace(/^\/@fs\//, isWindows ? "" : "/").replace(/^node:/, "").replace(/^\/+/, "/").replace(/^file:\/+/, isWindows ? "" : "/");
 }
-var HMRContext = class {
+const HMRContext = class {
 	newListeners;
 	constructor(hmrClient, ownerPath) {
 		this.hmrClient = hmrClient, this.ownerPath = ownerPath, hmrClient.dataMap.has(ownerPath) || hmrClient.dataMap.set(ownerPath, {});
-		let mod = hmrClient.hotModulesMap.get(ownerPath);
+		const mod = hmrClient.hotModulesMap.get(ownerPath);
 		mod && (mod.callbacks = []);
-		let staleListeners = hmrClient.ctxToListenersMap.get(ownerPath);
-		if (staleListeners) for (let [event, staleFns] of staleListeners) {
-			let listeners = hmrClient.customListenersMap.get(event);
+		const staleListeners = hmrClient.ctxToListenersMap.get(ownerPath);
+		if (staleListeners) for (const [event, staleFns] of staleListeners) {
+			const listeners = hmrClient.customListenersMap.get(event);
 			listeners && hmrClient.customListenersMap.set(event, listeners.filter((l) => !staleFns.includes(l)));
 		}
 		this.newListeners = /* @__PURE__ */ new Map(), hmrClient.ctxToListenersMap.set(ownerPath, this.newListeners);
@@ -332,7 +332,7 @@ var HMRContext = class {
 	}
 	decline() {}
 	invalidate(message) {
-		let firstInvalidatedBy = this.hmrClient.currentFirstInvalidatedBy ?? this.ownerPath;
+		const firstInvalidatedBy = this.hmrClient.currentFirstInvalidatedBy ?? this.ownerPath;
 		this.hmrClient.notifyListeners("vite:invalidate", {
 			path: this.ownerPath,
 			message,
@@ -344,17 +344,17 @@ var HMRContext = class {
 		}), this.hmrClient.logger.debug(`invalidate ${this.ownerPath}${message ? `: ${message}` : ""}`);
 	}
 	on(event, cb) {
-		let addToMap = (map) => {
-			let existing = map.get(event) || [];
+		const addToMap = (map) => {
+			const existing = map.get(event) || [];
 			existing.push(cb), map.set(event, existing);
 		};
 		addToMap(this.hmrClient.customListenersMap), addToMap(this.newListeners);
 	}
 	off(event, cb) {
-		let removeFromMap = (map) => {
-			let existing = map.get(event);
+		const removeFromMap = (map) => {
+			const existing = map.get(event);
 			if (existing === void 0) return;
-			let pruned = existing.filter((l) => l !== cb);
+			const pruned = existing.filter((l) => l !== cb);
 			if (pruned.length === 0) {
 				map.delete(event);
 				return;
@@ -371,7 +371,7 @@ var HMRContext = class {
 		});
 	}
 	acceptDeps(deps, callback = () => {}) {
-		let mod = this.hmrClient.hotModulesMap.get(this.ownerPath) || {
+		const mod = this.hmrClient.hotModulesMap.get(this.ownerPath) || {
 			id: this.ownerPath,
 			callbacks: []
 		};
@@ -392,7 +392,7 @@ var HMRContext = class {
 		this.logger = logger, this.transport = transport, this.importUpdatedModule = importUpdatedModule;
 	}
 	async notifyListeners(event, data) {
-		let cbs = this.customListenersMap.get(event);
+		const cbs = this.customListenersMap.get(event);
 		cbs && await Promise.allSettled(cbs.map((cb) => cb(data)));
 	}
 	send(payload) {
@@ -405,10 +405,10 @@ var HMRContext = class {
 	}
 	async prunePaths(paths) {
 		await Promise.all(paths.map((path) => {
-			let disposer = this.disposeMap.get(path);
+			const disposer = this.disposeMap.get(path);
 			if (disposer) return disposer(this.dataMap.get(path));
 		})), await Promise.all(paths.map((path) => {
-			let fn = this.pruneMap.get(path);
+			const fn = this.pruneMap.get(path);
 			if (fn) return fn(this.dataMap.get(path));
 		}));
 	}
@@ -420,7 +420,7 @@ var HMRContext = class {
 	async queueUpdate(payload) {
 		if (this.updateQueue.push(this.fetchUpdate(payload)), !this.pendingUpdateQueue) {
 			this.pendingUpdateQueue = !0, await Promise.resolve(), this.pendingUpdateQueue = !1;
-			let loading = [...this.updateQueue];
+			const loading = [...this.updateQueue];
 			this.updateQueue = [], (await Promise.all(loading)).forEach((fn) => fn && fn());
 		}
 	}
@@ -429,7 +429,7 @@ var HMRContext = class {
 		if (!mod) return;
 		let fetchedModule, isSelfUpdate = path === acceptedPath, qualifiedCallbacks = mod.callbacks.filter(({ deps }) => deps.includes(acceptedPath));
 		if (isSelfUpdate || qualifiedCallbacks.length > 0) {
-			let disposer = this.disposeMap.get(acceptedPath);
+			const disposer = this.disposeMap.get(acceptedPath);
 			disposer && await disposer(this.dataMap.get(acceptedPath));
 			try {
 				fetchedModule = await this.importUpdatedModule(update);
@@ -440,8 +440,8 @@ var HMRContext = class {
 		return () => {
 			try {
 				this.currentFirstInvalidatedBy = firstInvalidatedBy;
-				for (let { deps, fn } of qualifiedCallbacks) fn(deps.map((dep) => dep === acceptedPath ? fetchedModule : void 0));
-				let loggedPath = isSelfUpdate ? path : `${acceptedPath} via ${path}`;
+				for (const { deps, fn } of qualifiedCallbacks) fn(deps.map((dep) => dep === acceptedPath ? fetchedModule : void 0));
+				const loggedPath = isSelfUpdate ? path : `${acceptedPath} via ${path}`;
 				this.logger.debug(`hot updated: ${loggedPath}`);
 			} finally {
 				this.currentFirstInvalidatedBy = void 0;
@@ -451,9 +451,9 @@ var HMRContext = class {
 };
 function analyzeImportedModDifference(mod, rawId, moduleType, metadata) {
 	if (!metadata?.isDynamicImport && metadata?.importedNames?.length) {
-		let missingBindings = metadata.importedNames.filter((s) => !(s in mod));
+		const missingBindings = metadata.importedNames.filter((s) => !(s in mod));
 		if (missingBindings.length) {
-			let lastBinding = missingBindings[missingBindings.length - 1];
+			const lastBinding = missingBindings[missingBindings.length - 1];
 			throw moduleType === "module" ? SyntaxError(`[vite] The requested module '${rawId}' does not provide an export named '${lastBinding}'`) : SyntaxError(`\
 [vite] Named export '${lastBinding}' not found. The requested module '${rawId}' is a CommonJS module, which may not support all module.exports as named exports.
 CommonJS modules can always be imported via the default export, for example using:
@@ -464,20 +464,20 @@ const {${missingBindings.join(", ")}} = pkg;
 		}
 	}
 }
-let nanoid = (size = 21) => {
+const nanoid = (size = 21) => {
 	let id = "", i = size | 0;
 	for (; i--;) id += "useandom-26T198340PX75pxJACKVERYMINDBUSHWOLF_GQZbfghjklqvwyzrict"[Math.random() * 64 | 0];
 	return id;
 };
 function reviveInvokeError(e) {
-	let error = Error(e.message || "Unknown invoke error");
+	const error = Error(e.message || "Unknown invoke error");
 	return Object.assign(error, e, { runnerError: /* @__PURE__ */ Error("RunnerError") }), error;
 }
 const createInvokeableTransport = (transport) => {
 	if (transport.invoke) return {
 		...transport,
 		async invoke(name, data) {
-			let result = await transport.invoke({
+			const result = await transport.invoke({
 				type: "custom",
 				event: "vite:invoke",
 				data: {
@@ -491,19 +491,19 @@ const createInvokeableTransport = (transport) => {
 		}
 	};
 	if (!transport.send || !transport.connect) throw Error("transport must implement send and connect when invoke is not implemented");
-	let rpcPromises = /* @__PURE__ */ new Map();
+	const rpcPromises = /* @__PURE__ */ new Map();
 	return {
 		...transport,
 		connect({ onMessage, onDisconnection }) {
 			return transport.connect({
 				onMessage(payload) {
 					if (payload.type === "custom" && payload.event === "vite:invoke") {
-						let data = payload.data;
+						const data = payload.data;
 						if (data.id.startsWith("response:")) {
-							let invokeId = data.id.slice(9), promise = rpcPromises.get(invokeId);
+							const invokeId = data.id.slice(9), promise = rpcPromises.get(invokeId);
 							if (!promise) return;
 							promise.timeoutId && clearTimeout(promise.timeoutId), rpcPromises.delete(invokeId);
-							let { error, result } = data.data;
+							const { error, result } = data.data;
 							error ? promise.reject(error) : promise.resolve(result);
 							return;
 						}
@@ -558,7 +558,7 @@ const createInvokeableTransport = (transport) => {
 				await connectingPromise;
 				return;
 			}
-			let maybePromise = invokeableTransport.connect({
+			const maybePromise = invokeableTransport.connect({
 				onMessage: onMessage ?? (() => {}),
 				onDisconnection() {
 					isConnected = !1;
@@ -586,7 +586,7 @@ const createInvokeableTransport = (transport) => {
 	let pingInterval = options.pingInterval ?? 3e4, ws, pingIntervalId;
 	return {
 		async connect({ onMessage, onDisconnection }) {
-			let socket = options.createConnection();
+			const socket = options.createConnection();
 			socket.addEventListener("message", async ({ data }) => {
 				onMessage(JSON.parse(data));
 			});
@@ -628,7 +628,7 @@ const createInvokeableTransport = (transport) => {
 	error: (error) => console.log("[vite]", error)
 };
 function createHMRHandler(handler) {
-	let queue = new Queue();
+	const queue = new Queue();
 	return (payload) => queue.enqueue(() => handler(payload));
 }
 var Queue = class {
@@ -645,7 +645,7 @@ var Queue = class {
 	}
 	dequeue() {
 		if (this.pending) return !1;
-		let item = this.queue.shift();
+		const item = this.queue.shift();
 		return item ? (this.pending = !0, item.promise().then(item.resolve).catch(item.reject).finally(() => {
 			this.pending = !1, this.dequeue();
 		}), !0) : !1;
@@ -653,7 +653,7 @@ var Queue = class {
 };
 function createHMRHandlerForRunner(runner) {
 	return createHMRHandler(async (payload) => {
-		let hmrClient = runner.hmrClient;
+		const hmrClient = runner.hmrClient;
 		if (!(!hmrClient || runner.isClosed())) switch (payload.type) {
 			case "connected":
 				hmrClient.logger.debug("connected.");
@@ -671,7 +671,7 @@ function createHMRHandlerForRunner(runner) {
 				let { triggeredBy } = payload, clearEntrypointUrls = triggeredBy ? getModulesEntrypoints(runner, getModulesByFile(runner, slash(triggeredBy))) : findAllEntrypoints(runner);
 				if (!clearEntrypointUrls.size) break;
 				hmrClient.logger.debug("program reload"), await hmrClient.notifyListeners("vite:beforeFullReload", payload), runner.evaluatedModules.clear();
-				for (let url of clearEntrypointUrls) try {
+				for (const url of clearEntrypointUrls) try {
 					await runner.import(url);
 				} catch (err) {
 					err.code !== "ERR_OUTDATED_OPTIMIZED_DEP" && hmrClient.logger.error(`An error happened during full reload\n${err.message}\n${err.stack}`);
@@ -683,7 +683,7 @@ function createHMRHandlerForRunner(runner) {
 				break;
 			case "error": {
 				await hmrClient.notifyListeners("vite:error", payload);
-				let err = payload.err;
+				const err = payload.err;
 				hmrClient.logger.error(`Internal Server Error\n${err.message}\n${err.stack}`);
 				break;
 			}
@@ -693,30 +693,30 @@ function createHMRHandlerForRunner(runner) {
 	});
 }
 function getModulesByFile(runner, file) {
-	let nodes = runner.evaluatedModules.getModulesByFile(file);
+	const nodes = runner.evaluatedModules.getModulesByFile(file);
 	return nodes ? [...nodes].map((node) => node.id) : [];
 }
 function getModulesEntrypoints(runner, modules, visited = /* @__PURE__ */ new Set(), entrypoints = /* @__PURE__ */ new Set()) {
-	for (let moduleId of modules) {
+	for (const moduleId of modules) {
 		if (visited.has(moduleId)) continue;
 		visited.add(moduleId);
-		let module = runner.evaluatedModules.getModuleById(moduleId);
+		const module = runner.evaluatedModules.getModuleById(moduleId);
 		if (!module) continue;
 		if (!module.importers.size) {
 			entrypoints.add(module.url);
 			continue;
 		}
-		for (let importer of module.importers) getModulesEntrypoints(runner, [importer], visited, entrypoints);
+		for (const importer of module.importers) getModulesEntrypoints(runner, [importer], visited, entrypoints);
 	}
 	return entrypoints;
 }
 function findAllEntrypoints(runner, entrypoints = /* @__PURE__ */ new Set()) {
-	for (let mod of runner.evaluatedModules.idToModuleMap.values()) mod.importers.size || entrypoints.add(mod.url);
+	for (const mod of runner.evaluatedModules.idToModuleMap.values()) mod.importers.size || entrypoints.add(mod.url);
 	return entrypoints;
 }
 const sourceMapCache = {}, fileContentsCache = {}, evaluatedModulesCache = /* @__PURE__ */ new Set(), retrieveFileHandlers = /* @__PURE__ */ new Set(), retrieveSourceMapHandlers = /* @__PURE__ */ new Set(), createExecHandlers = (handlers) => ((...args) => {
-	for (let handler of handlers) {
-		let result = handler(...args);
+	for (const handler of handlers) {
+		const result = handler(...args);
 		if (result) return result;
 	}
 	return null;
@@ -735,8 +735,8 @@ function supportRelativeURL(file, url) {
 	return protocol && /^\/\w:/.test(startPath) ? (protocol += "/", protocol + slash(posixResolve(startPath, url))) : protocol + posixResolve(startPath, url);
 }
 function getRunnerSourceMap(position) {
-	for (let moduleGraph of evaluatedModulesCache) {
-		let sourceMap = moduleGraph.getModuleSourceMapById(position.source);
+	for (const moduleGraph of evaluatedModulesCache) {
+		const sourceMap = moduleGraph.getModuleSourceMapById(position.source);
 		if (sourceMap) return {
 			url: position.source,
 			map: sourceMap,
@@ -747,11 +747,11 @@ function getRunnerSourceMap(position) {
 }
 function retrieveFile(path) {
 	if (path in fileContentsCache) return fileContentsCache[path];
-	let content = retrieveFileFromHandlers(path);
+	const content = retrieveFileFromHandlers(path);
 	return typeof content == "string" ? (fileContentsCache[path] = content, content) : null;
 }
 function retrieveSourceMapURL(source) {
-	let fileData = retrieveFile(source);
+	const fileData = retrieveFile(source);
 	if (!fileData) return null;
 	let re = /\/\/[@#]\s*sourceMappingURL=([^\s'"]+)\s*$|\/\*[@#]\s*sourceMappingURL=[^\s*'"]+\s*\*\/\s*$/gm, lastMatch, match;
 	for (; match = re.exec(fileData);) lastMatch = match;
@@ -759,13 +759,13 @@ function retrieveSourceMapURL(source) {
 }
 const reSourceMap = /^data:application\/json[^,]+base64,/;
 function retrieveSourceMap(source) {
-	let urlAndMap = retrieveSourceMapFromHandlers(source);
+	const urlAndMap = retrieveSourceMapFromHandlers(source);
 	if (urlAndMap) return urlAndMap;
 	let sourceMappingURL = retrieveSourceMapURL(source);
 	if (!sourceMappingURL) return null;
 	let sourceMapData;
 	if (reSourceMap.test(sourceMappingURL)) {
-		let rawData = sourceMappingURL.slice(sourceMappingURL.indexOf(",") + 1);
+		const rawData = sourceMappingURL.slice(sourceMappingURL.indexOf(",") + 1);
 		sourceMapData = Buffer.from(rawData, "base64").toString(), sourceMappingURL = source;
 	} else sourceMappingURL = supportRelativeURL(source, sourceMappingURL), sourceMapData = retrieveFile(sourceMappingURL);
 	return sourceMapData ? {
@@ -777,18 +777,18 @@ function mapSourcePosition(position) {
 	if (!position.source) return position;
 	let sourceMap = getRunnerSourceMap(position);
 	if (sourceMap ||= sourceMapCache[position.source], !sourceMap) {
-		let urlAndMap = retrieveSourceMap(position.source);
+		const urlAndMap = retrieveSourceMap(position.source);
 		if (urlAndMap && urlAndMap.map) {
-			let url = urlAndMap.url;
+			const url = urlAndMap.url;
 			sourceMap = sourceMapCache[position.source] = {
 				url,
 				map: new DecodedMap(typeof urlAndMap.map == "string" ? JSON.parse(urlAndMap.map) : urlAndMap.map, url)
 			};
-			let contents = sourceMap.map?.map.sourcesContent;
+			const contents = sourceMap.map?.map.sourcesContent;
 			sourceMap.map && contents && sourceMap.map.resolvedSources.forEach((source, i) => {
-				let content = contents[i];
+				const content = contents[i];
 				if (content && source && url) {
-					let contentUrl = supportRelativeURL(url, source);
+					const contentUrl = supportRelativeURL(url, source);
 					fileContentsCache[contentUrl] = content;
 				}
 			});
@@ -798,7 +798,7 @@ function mapSourcePosition(position) {
 		};
 	}
 	if (sourceMap.map && sourceMap.url) {
-		let originalPosition = getOriginalPosition(sourceMap.map, position);
+		const originalPosition = getOriginalPosition(sourceMap.map, position);
 		if (originalPosition && originalPosition.source != null) return originalPosition.source = supportRelativeURL(sourceMap.url, originalPosition.source), sourceMap.vite && (originalPosition._vite = !0), originalPosition;
 	}
 	return position;
@@ -806,7 +806,7 @@ function mapSourcePosition(position) {
 function mapEvalOrigin(origin) {
 	let match = /^eval at ([^(]+) \((.+):(\d+):(\d+)\)$/.exec(origin);
 	if (match) {
-		let position = mapSourcePosition({
+		const position = mapSourcePosition({
 			name: null,
 			source: match[2],
 			line: +match[3],
@@ -821,10 +821,10 @@ function CallSiteToString() {
 	if (this.isNative()) fileLocation = "native";
 	else {
 		fileName = this.getScriptNameOrSourceURL(), !fileName && this.isEval() && (fileLocation = this.getEvalOrigin(), fileLocation += ", "), fileName ? fileLocation += fileName : fileLocation += "<anonymous>";
-		let lineNumber = this.getLineNumber();
+		const lineNumber = this.getLineNumber();
 		if (lineNumber != null) {
 			fileLocation += `:${lineNumber}`;
-			let columnNumber = this.getColumnNumber();
+			const columnNumber = this.getColumnNumber();
 			columnNumber && (fileLocation += `:${columnNumber}`);
 		}
 	}
@@ -833,15 +833,15 @@ function CallSiteToString() {
 	else {
 		let typeName = this.getTypeName();
 		typeName === "[object Object]" && (typeName = "null");
-		let methodName = this.getMethodName();
+		const methodName = this.getMethodName();
 		functionName ? (typeName && functionName.indexOf(typeName) !== 0 && (line += `${typeName}.`), line += functionName, methodName && functionName.indexOf(`.${methodName}`) !== functionName.length - methodName.length - 1 && (line += ` [as ${methodName}]`)) : line += `${typeName}.${methodName || "<anonymous>"}`;
 	}
 	return addSuffix && (line += ` (${fileLocation})`), line;
 }
 function cloneCallSite(frame) {
-	let object = {};
+	const object = {};
 	return Object.getOwnPropertyNames(Object.getPrototypeOf(frame)).forEach((name) => {
-		let key = name;
+		const key = name;
 		object[key] = /^(?:is|get)/.test(name) ? function() {
 			return frame[key].call(frame);
 		} : frame[key];
@@ -852,20 +852,20 @@ function wrapCallSite(frame, state) {
 		nextPosition: null,
 		curPosition: null
 	}), frame.isNative()) return state.curPosition = null, frame;
-	let source = frame.getFileName() || frame.getScriptNameOrSourceURL();
+	const source = frame.getFileName() || frame.getScriptNameOrSourceURL();
 	if (source) {
 		let line = frame.getLineNumber(), column = frame.getColumnNumber() - 1;
 		line === 1 && column > 62 && !frame.isEval() && (column -= 62);
-		let position = mapSourcePosition({
+		const position = mapSourcePosition({
 			name: null,
 			source,
 			line,
 			column
 		});
 		state.curPosition = position, frame = cloneCallSite(frame);
-		let originalFunctionName = frame.getFunctionName;
+		const originalFunctionName = frame.getFunctionName;
 		return frame.getFunctionName = function() {
-			let name = (() => state.nextPosition == null ? originalFunctionName() : state.nextPosition.name || originalFunctionName())();
+			const name = (() => state.nextPosition == null ? originalFunctionName() : state.nextPosition.name || originalFunctionName())();
 			return name === "eval" && "_vite" in position ? null : name;
 		}, frame.getFileName = function() {
 			return position.source ?? null;
@@ -883,7 +883,7 @@ function wrapCallSite(frame, state) {
 	}, frame) : frame;
 }
 function prepareStackTrace(error, stack) {
-	let errorString = `${error.name || "Error"}: ${error.message || ""}`, state = {
+	const errorString = `${error.name || "Error"}: ${error.message || ""}`, state = {
 		nextPosition: null,
 		curPosition: null
 	}, processedStack = [];
@@ -894,12 +894,12 @@ function enableSourceMapSupport(runner) {
 	if (runner.options.sourcemapInterceptor === "node") {
 		if (typeof process > "u") throw TypeError("Cannot use \"sourcemapInterceptor: 'node'\" because global \"process\" variable is not available.");
 		if (typeof process.setSourceMapsEnabled != "function") throw TypeError("Cannot use \"sourcemapInterceptor: 'node'\" because \"process.setSourceMapsEnabled\" function is not available. Please use Node >= 16.6.0.");
-		let isEnabledAlready = process.sourceMapsEnabled ?? !1;
+		const isEnabledAlready = process.sourceMapsEnabled ?? !1;
 		return process.setSourceMapsEnabled(!0), () => !isEnabledAlready && process.setSourceMapsEnabled(!1);
 	}
 	return interceptStackTrace(runner, typeof runner.options.sourcemapInterceptor == "object" ? runner.options.sourcemapInterceptor : void 0);
 }
-var ESModulesEvaluator = class {
+const ESModulesEvaluator = class {
 	startOffset = getAsyncFunctionDeclarationPaddingLineCount();
 	async runInlinedModule(context, code) {
 		await new AsyncFunction(ssrModuleExportsKey, ssrImportMetaKey, ssrImportKey, ssrDynamicImportKey, ssrExportAllKey, ssrExportNameKey, "\"use strict\";" + code)(context[ssrModuleExportsKey], context[ssrImportMetaKey], context[ssrImportKey], context[ssrDynamicImportKey], context[ssrExportAllKey], context[ssrExportNameKey]), Object.seal(context[ssrModuleExportsKey]);
@@ -931,7 +931,7 @@ async function createImportMetaResolver() {
 	}
 	if (module?.register) {
 		try {
-			let hookModuleContent = `data:text/javascript,${encodeURI(customizationHooksModule)}`;
+			const hookModuleContent = `data:text/javascript,${encodeURI(customizationHooksModule)}`;
 			module.register(hookModuleContent);
 		} catch (e) {
 			if ("code" in e && e.code === "ERR_NETWORK_IMPORT_DISALLOWED") return;
@@ -944,7 +944,7 @@ const envProxy = new Proxy({}, { get(_, p) {
 	throw Error(`[module runner] Dynamic access of "import.meta.env" is not supported. Please, use "import.meta.env.${String(p)}" instead.`);
 } });
 function createDefaultImportMeta(modulePath) {
-	let href = posixPathToFileHref(modulePath), filename = modulePath, dirname$1 = posixDirname(modulePath);
+	const href = posixPathToFileHref(modulePath), filename = modulePath, dirname$1 = posixDirname(modulePath);
 	return {
 		filename: isWindows ? toWindowsPath(filename) : filename,
 		dirname: isWindows ? toWindowsPath(dirname$1) : dirname$1,
@@ -960,9 +960,9 @@ function createDefaultImportMeta(modulePath) {
 }
 let importMetaResolverCache;
 async function createNodeImportMeta(modulePath) {
-	let defaultMeta = createDefaultImportMeta(modulePath), href = defaultMeta.url;
+	const defaultMeta = createDefaultImportMeta(modulePath), href = defaultMeta.url;
 	importMetaResolverCache ??= createImportMetaResolver();
-	let importMetaResolver = await importMetaResolverCache;
+	const importMetaResolver = await importMetaResolverCache;
 	return {
 		...defaultMeta,
 		main: !1,
@@ -971,7 +971,7 @@ async function createNodeImportMeta(modulePath) {
 		}
 	};
 }
-var ModuleRunner = class {
+const ModuleRunner = class {
 	evaluatedModules;
 	hmrClient;
 	transport;
@@ -980,14 +980,14 @@ var ModuleRunner = class {
 	closed = !1;
 	constructor(options, evaluator = new ESModulesEvaluator(), debug) {
 		if (this.options = options, this.evaluator = evaluator, this.debug = debug, this.evaluatedModules = options.evaluatedModules ?? new EvaluatedModules(), this.transport = normalizeModuleRunnerTransport(options.transport), options.hmr !== !1) {
-			let optionsHmr = options.hmr ?? !0;
+			const optionsHmr = options.hmr ?? !0;
 			if (this.hmrClient = new HMRClient(optionsHmr === !0 || optionsHmr.logger === void 0 ? hmrLogger : optionsHmr.logger === !1 ? silentConsole : optionsHmr.logger, this.transport, ({ acceptedPath }) => this.import(acceptedPath)), !this.transport.connect) throw Error("HMR is not supported by this runner transport, but `hmr` option was set to true");
 			this.transport.connect(createHMRHandlerForRunner(this));
 		} else this.transport.connect?.();
 		options.sourcemapInterceptor !== !1 && (this.resetSourceMapSupport = enableSourceMapSupport(this));
 	}
 	async import(url) {
-		let fetchedModule = await this.cachedModule(url);
+		const fetchedModule = await this.cachedModule(url);
 		return await this.cachedRequest(url, fetchedModule);
 	}
 	clearCache() {
@@ -1001,24 +1001,24 @@ var ModuleRunner = class {
 	}
 	processImport(exports, fetchResult, metadata) {
 		if (!("externalize" in fetchResult)) return exports;
-		let { url, type } = fetchResult;
+		const { url, type } = fetchResult;
 		return type !== "module" && type !== "commonjs" || analyzeImportedModDifference(exports, url, type, metadata), exports;
 	}
 	isCircularModule(mod) {
-		for (let importedFile of mod.imports) if (mod.importers.has(importedFile)) return !0;
+		for (const importedFile of mod.imports) if (mod.importers.has(importedFile)) return !0;
 		return !1;
 	}
 	isCircularImport(importers, moduleUrl, visited = /* @__PURE__ */ new Set()) {
-		for (let importer of importers) {
+		for (const importer of importers) {
 			if (visited.has(importer)) continue;
 			if (visited.add(importer), importer === moduleUrl) return !0;
-			let mod = this.evaluatedModules.getModuleById(importer);
+			const mod = this.evaluatedModules.getModuleById(importer);
 			if (mod && mod.importers.size && this.isCircularImport(mod.importers, moduleUrl, visited)) return !0;
 		}
 		return !1;
 	}
 	async cachedRequest(url, mod, callstack = [], metadata) {
-		let meta = mod.meta, moduleId = meta.id, { importers } = mod, importee = callstack[callstack.length - 1];
+		const meta = mod.meta, moduleId = meta.id, { importers } = mod, importee = callstack[callstack.length - 1];
 		if (importee && importers.add(importee), (callstack.includes(moduleId) || this.isCircularModule(mod) || this.isCircularImport(importers, moduleId)) && mod.exports) return this.processImport(mod.exports, meta, metadata);
 		let debugTimer;
 		this.debug && (debugTimer = setTimeout(() => {
@@ -1026,7 +1026,7 @@ var ModuleRunner = class {
 		}, 2e3));
 		try {
 			if (mod.promise) return this.processImport(await mod.promise, meta, metadata);
-			let promise = this.directRequest(url, mod, callstack);
+			const promise = this.directRequest(url, mod, callstack);
 			return mod.promise = promise, mod.evaluated = !1, this.processImport(await promise, meta, metadata);
 		} finally {
 			mod.evaluated = !0, debugTimer && clearTimeout(debugTimer);
@@ -1036,7 +1036,7 @@ var ModuleRunner = class {
 		let cached = this.concurrentModuleNodePromises.get(url);
 		if (cached) this.debug?.("[module runner] using cached module info for", url);
 		else {
-			let cachedModule = this.evaluatedModules.getModuleByUrl(url);
+			const cachedModule = this.evaluatedModules.getModuleByUrl(url);
 			cached = this.getModuleInformation(url, importer, cachedModule).finally(() => {
 				this.concurrentModuleNodePromises.delete(url);
 			}), this.concurrentModuleNodePromises.set(url, cached);
@@ -1046,7 +1046,7 @@ var ModuleRunner = class {
 	async getModuleInformation(url, importer, cachedModule) {
 		if (this.closed) throw Error("Vite module runner has been closed.");
 		this.debug?.("[module runner] fetching", url);
-		let isCached = !!(typeof cachedModule == "object" && cachedModule.meta), fetchedModule = url.startsWith("data:") ? {
+		const isCached = !!(typeof cachedModule == "object" && cachedModule.meta), fetchedModule = url.startsWith("data:") ? {
 			externalize: url,
 			type: "builtin"
 		} : await this.transport.invoke("fetchModule", [
@@ -1061,26 +1061,26 @@ var ModuleRunner = class {
 			if (!cachedModule || !cachedModule.meta) throw Error(`Module "${url}" was mistakenly invalidated during fetch phase.`);
 			return cachedModule;
 		}
-		let moduleId = "externalize" in fetchedModule ? fetchedModule.externalize : fetchedModule.id, moduleUrl = "url" in fetchedModule ? fetchedModule.url : url, module = this.evaluatedModules.ensureModule(moduleId, moduleUrl);
+		const moduleId = "externalize" in fetchedModule ? fetchedModule.externalize : fetchedModule.id, moduleUrl = "url" in fetchedModule ? fetchedModule.url : url, module = this.evaluatedModules.ensureModule(moduleId, moduleUrl);
 		return "invalidate" in fetchedModule && fetchedModule.invalidate && this.evaluatedModules.invalidateModule(module), fetchedModule.url = moduleUrl, fetchedModule.id = moduleId, module.meta = fetchedModule, module;
 	}
 	async directRequest(url, mod, _callstack) {
-		let fetchResult = mod.meta, moduleId = fetchResult.id, callstack = [..._callstack, moduleId], request = async (dep, metadata) => {
-			let importer = "file" in fetchResult && fetchResult.file || moduleId, depMod = await this.cachedModule(dep, importer);
+		const fetchResult = mod.meta, moduleId = fetchResult.id, callstack = [..._callstack, moduleId], request = async (dep, metadata) => {
+			const importer = "file" in fetchResult && fetchResult.file || moduleId, depMod = await this.cachedModule(dep, importer);
 			return depMod.importers.add(moduleId), mod.imports.add(depMod.id), this.cachedRequest(dep, depMod, callstack, metadata);
 		}, dynamicRequest = async (dep) => (dep = String(dep), dep[0] === "." && (dep = posixResolve(posixDirname(url), dep)), request(dep, { isDynamicImport: !0 }));
 		if ("externalize" in fetchResult) {
-			let { externalize } = fetchResult;
+			const { externalize } = fetchResult;
 			this.debug?.("[module runner] externalizing", externalize);
-			let exports$1 = await this.evaluator.runExternalModule(externalize);
+			const exports$1 = await this.evaluator.runExternalModule(externalize);
 			return mod.exports = exports$1, exports$1;
 		}
-		let { code, file } = fetchResult;
+		const { code, file } = fetchResult;
 		if (code == null) {
-			let importer = callstack[callstack.length - 2];
+			const importer = callstack[callstack.length - 2];
 			throw Error(`[module runner] Failed to load "${url}"${importer ? ` imported from ${importer}` : ""}`);
 		}
-		let createImportMeta = this.options.createImportMeta ?? createDefaultImportMeta, modulePath = cleanUrl(file || moduleId), href = posixPathToFileHref(modulePath), meta = await createImportMeta(modulePath), exports = Object.create(null);
+		const createImportMeta = this.options.createImportMeta ?? createDefaultImportMeta, modulePath = cleanUrl(file || moduleId), href = posixPathToFileHref(modulePath), meta = await createImportMeta(modulePath), exports = Object.create(null);
 		Object.defineProperty(exports, Symbol.toStringTag, {
 			value: "Module",
 			enumerable: !1,
@@ -1097,7 +1097,7 @@ var ModuleRunner = class {
 				hotContext = value;
 			}
 		});
-		let context = {
+		const context = {
 			[ssrImportKey]: request,
 			[ssrDynamicImportKey]: dynamicRequest,
 			[ssrModuleExportsKey]: exports,
@@ -1114,7 +1114,7 @@ var ModuleRunner = class {
 };
 function exportAll(exports, sourceModule) {
 	if (exports !== sourceModule && !(isPrimitive(sourceModule) || Array.isArray(sourceModule) || sourceModule instanceof Promise)) {
-		for (let key in sourceModule) if (key !== "default" && key !== "__esModule" && !(key in exports)) try {
+		for (const key in sourceModule) if (key !== "default" && key !== "__esModule" && !(key in exports)) try {
 			Object.defineProperty(exports, key, {
 				enumerable: !0,
 				configurable: !0,

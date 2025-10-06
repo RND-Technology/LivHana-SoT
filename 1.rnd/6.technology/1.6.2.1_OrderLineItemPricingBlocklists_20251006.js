@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
 exports.orderLineItemPricingBlocklistsSchema = void 0;
-var schema_1 = require("../schema");
-var orderLineItemPricingBlocklistsBlockedDiscount_1 = require("./orderLineItemPricingBlocklistsBlockedDiscount");
-var orderLineItemPricingBlocklistsBlockedTax_1 = require("./orderLineItemPricingBlocklistsBlockedTax");
+const schema_1 = require("../schema");
+const orderLineItemPricingBlocklistsBlockedDiscount_1 = require("./orderLineItemPricingBlocklistsBlockedDiscount");
+const orderLineItemPricingBlocklistsBlockedTax_1 = require("./orderLineItemPricingBlocklistsBlockedTax");
 exports.orderLineItemPricingBlocklistsSchema = (0, schema_1.object)({
     blockedDiscounts: [
         'blocked_discounts',

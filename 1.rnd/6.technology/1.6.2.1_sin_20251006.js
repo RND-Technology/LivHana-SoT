@@ -1,4 +1,4 @@
-var pi = Math.PI,
+const pi = Math.PI,
     halfPi = pi / 2;
 
 export function sinIn(t) {

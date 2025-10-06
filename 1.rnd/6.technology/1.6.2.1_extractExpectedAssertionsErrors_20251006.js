@@ -4,8 +4,8 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 exports.default = void 0;
-var _jestMatcherUtils = require('jest-matcher-utils');
-var _jestMatchersObject = require('./jestMatchersObject');
+const _jestMatcherUtils = require('jest-matcher-utils');
+const _jestMatchersObject = require('./jestMatchersObject');
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -82,5 +82,5 @@ const extractExpectedAssertionsErrors = () => {
   }
   return result;
 };
-var _default = extractExpectedAssertionsErrors;
+const _default = extractExpectedAssertionsErrors;
 exports.default = _default;

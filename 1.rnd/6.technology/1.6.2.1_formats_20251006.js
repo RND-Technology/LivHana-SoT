@@ -1,9 +1,9 @@
 'use strict';
 
-var replace = String.prototype.replace;
-var percentTwenties = /%20/g;
+const replace = String.prototype.replace;
+const percentTwenties = /%20/g;
 
-var Format = {
+const Format = {
     RFC1738: 'RFC1738',
     RFC3986: 'RFC3986'
 };

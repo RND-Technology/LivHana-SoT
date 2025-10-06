@@ -1,8 +1,8 @@
-var path = require('path');
-var fs = require('fs');
-var test = require('tape');
-var resolve = require('../');
-var async = require('../async');
+const path = require('path');
+const fs = require('fs');
+const test = require('tape');
+const resolve = require('../');
+const async = require('../async');
 
 test('`./async` entry point', function (t) {
     t.equal(resolve, async, '`./async` entry point is the same as `main`');
@@ -11,7 +11,7 @@ test('`./async` entry point', function (t) {
 
 test('async foo', function (t) {
     t.plan(12);
-    var dir = path.join(__dirname, 'resolver');
+    const dir = path.join(__dirname, 'resolver');
 
     resolve('./foo', { basedir: dir }, function (err, res, pkg) {
         if (err) t.fail(err);
@@ -55,7 +55,7 @@ test('async foo', function (t) {
 
 test('bar', function (t) {
     t.plan(6);
-    var dir = path.join(__dirname, 'resolver');
+    const dir = path.join(__dirname, 'resolver');
 
     resolve('foo', { basedir: dir + '/bar' }, function (err, res, pkg) {
         if (err) t.fail(err);
@@ -78,7 +78,7 @@ test('bar', function (t) {
 
 test('baz', function (t) {
     t.plan(4);
-    var dir = path.join(__dirname, 'resolver');
+    const dir = path.join(__dirname, 'resolver');
 
     resolve('./baz', { basedir: dir }, function (err, res, pkg) {
         if (err) t.fail(err);
@@ -95,7 +95,7 @@ test('baz', function (t) {
 
 test('biz', function (t) {
     t.plan(24);
-    var dir = path.join(__dirname, 'resolver/biz/node_modules');
+    const dir = path.join(__dirname, 'resolver/biz/node_modules');
 
     resolve('./grux', { basedir: dir }, function (err, res, pkg) {
         if (err) t.fail(err);
@@ -172,7 +172,7 @@ test('biz', function (t) {
 
 test('quux', function (t) {
     t.plan(2);
-    var dir = path.join(__dirname, 'resolver/quux');
+    const dir = path.join(__dirname, 'resolver/quux');
 
     resolve('./foo', { basedir: dir, 'package': { main: 'quux' } }, function (err, res, pkg) {
         if (err) t.fail(err);
@@ -183,7 +183,7 @@ test('quux', function (t) {
 
 test('normalize', function (t) {
     t.plan(2);
-    var dir = path.join(__dirname, 'resolver/biz/node_modules/grux');
+    const dir = path.join(__dirname, 'resolver/biz/node_modules/grux');
 
     resolve('../grux', { basedir: dir }, function (err, res, pkg) {
         if (err) t.fail(err);
@@ -194,7 +194,7 @@ test('normalize', function (t) {
 
 test('cup', function (t) {
     t.plan(5);
-    var dir = path.join(__dirname, 'resolver');
+    const dir = path.join(__dirname, 'resolver');
 
     resolve('./cup', { basedir: dir, extensions: ['.js', '.coffee'] }, function (err, res) {
         if (err) t.fail(err);
@@ -219,7 +219,7 @@ test('cup', function (t) {
 
 test('mug', function (t) {
     t.plan(3);
-    var dir = path.join(__dirname, 'resolver');
+    const dir = path.join(__dirname, 'resolver');
 
     resolve('./mug', { basedir: dir }, function (err, res) {
         if (err) t.fail(err);
@@ -238,9 +238,9 @@ test('mug', function (t) {
 
 test('other path', function (t) {
     t.plan(6);
-    var resolverDir = path.join(__dirname, 'resolver');
-    var dir = path.join(resolverDir, 'bar');
-    var otherDir = path.join(resolverDir, 'other_path');
+    const resolverDir = path.join(__dirname, 'resolver');
+    const dir = path.join(resolverDir, 'bar');
+    const otherDir = path.join(resolverDir, 'other_path');
 
     resolve('root', { basedir: dir, paths: [otherDir] }, function (err, res) {
         if (err) t.fail(err);
@@ -266,9 +266,9 @@ test('other path', function (t) {
 test('path iterator', function (t) {
     t.plan(2);
 
-    var resolverDir = path.join(__dirname, 'resolver');
+    const resolverDir = path.join(__dirname, 'resolver');
 
-    var exactIterator = function (x, start, getPackageCandidates, opts) {
+    const exactIterator = function (x, start, getPackageCandidates, opts) {
         return [path.join(resolverDir, x)];
     };
 
@@ -282,8 +282,8 @@ test('path iterator', function (t) {
 test('empty main', function (t) {
     t.plan(1);
 
-    var resolverDir = path.join(__dirname, 'resolver');
-    var dir = path.join(resolverDir, 'empty_main');
+    const resolverDir = path.join(__dirname, 'resolver');
+    const dir = path.join(resolverDir, 'empty_main');
 
     resolve('./empty_main', { basedir: resolverDir }, function (err, res, pkg) {
         if (err) t.fail(err);
@@ -294,8 +294,8 @@ test('empty main', function (t) {
 test('incorrect main', function (t) {
     t.plan(1);
 
-    var resolverDir = path.join(__dirname, 'resolver');
-    var dir = path.join(resolverDir, 'incorrect_main');
+    const resolverDir = path.join(__dirname, 'resolver');
+    const dir = path.join(resolverDir, 'incorrect_main');
 
     resolve('./incorrect_main', { basedir: resolverDir }, function (err, res, pkg) {
         if (err) t.fail(err);
@@ -306,7 +306,7 @@ test('incorrect main', function (t) {
 test('missing index', function (t) {
     t.plan(2);
 
-    var resolverDir = path.join(__dirname, 'resolver');
+    const resolverDir = path.join(__dirname, 'resolver');
     resolve('./missing_index', { basedir: resolverDir }, function (err, res, pkg) {
         t.ok(err instanceof Error);
         t.equal(err && err.code, 'INCORRECT_PACKAGE_MAIN', 'error has correct error code');
@@ -316,8 +316,8 @@ test('missing index', function (t) {
 test('missing main', function (t) {
     t.plan(1);
 
-    var resolverDir = path.join(__dirname, 'resolver');
-    var dir = path.join(resolverDir, 'missing_main');
+    const resolverDir = path.join(__dirname, 'resolver');
+    const dir = path.join(resolverDir, 'missing_main');
 
     resolve('./missing_main', { basedir: resolverDir }, function (err, res, pkg) {
         if (err) t.fail(err);
@@ -328,8 +328,8 @@ test('missing main', function (t) {
 test('null main', function (t) {
     t.plan(1);
 
-    var resolverDir = path.join(__dirname, 'resolver');
-    var dir = path.join(resolverDir, 'null_main');
+    const resolverDir = path.join(__dirname, 'resolver');
+    const dir = path.join(resolverDir, 'null_main');
 
     resolve('./null_main', { basedir: resolverDir }, function (err, res, pkg) {
         if (err) t.fail(err);
@@ -340,8 +340,8 @@ test('null main', function (t) {
 test('main: false', function (t) {
     t.plan(2);
 
-    var basedir = path.join(__dirname, 'resolver');
-    var dir = path.join(basedir, 'false_main');
+    const basedir = path.join(__dirname, 'resolver');
+    const dir = path.join(basedir, 'false_main');
     resolve('./false_main', { basedir: basedir }, function (err, res, pkg) {
         if (err) t.fail(err);
         t.equal(
@@ -359,8 +359,8 @@ test('main: false', function (t) {
 test('without basedir', function (t) {
     t.plan(1);
 
-    var dir = path.join(__dirname, 'resolver/without_basedir');
-    var tester = require(path.join(dir, 'main.js')); // eslint-disable-line global-require
+    const dir = path.join(__dirname, 'resolver/without_basedir');
+    const tester = require(path.join(dir, 'main.js')); // eslint-disable-line global-require
 
     tester(t, function (err, res, pkg) {
         if (err) {
@@ -374,7 +374,7 @@ test('without basedir', function (t) {
 test('#52 - incorrectly resolves module-paths like "./someFolder/" when there is a file of the same name', function (t) {
     t.plan(2);
 
-    var dir = path.join(__dirname, 'resolver');
+    const dir = path.join(__dirname, 'resolver');
 
     resolve('./foo', { basedir: path.join(dir, 'same_names') }, function (err, res, pkg) {
         if (err) t.fail(err);
@@ -390,7 +390,7 @@ test('#52 - incorrectly resolves module-paths like "./someFolder/" when there is
 test('#211 - incorrectly resolves module-paths like "." when from inside a folder with a sibling file of the same name', function (t) {
     t.plan(2);
 
-    var dir = path.join(__dirname, 'resolver');
+    const dir = path.join(__dirname, 'resolver');
 
     resolve('./', { basedir: path.join(dir, 'same_names/foo') }, function (err, res, pkg) {
         if (err) t.fail(err);
@@ -404,7 +404,7 @@ test('#211 - incorrectly resolves module-paths like "." when from inside a folde
 });
 
 test('async: #121 - treating an existing file as a dir when no basedir', function (t) {
-    var testFile = path.basename(__filename);
+    const testFile = path.basename(__filename);
 
     t.test('sanity check', function (st) {
         st.plan(1);
@@ -435,7 +435,7 @@ test('async: #121 - treating an existing file as a dir when no basedir', functio
 });
 
 test('async dot main', function (t) {
-    var start = new Date();
+    const start = new Date();
     t.plan(3);
     resolve('./resolver/dot_main', function (err, ret) {
         t.notOk(err);
@@ -446,7 +446,7 @@ test('async dot main', function (t) {
 });
 
 test('async dot slash main', function (t) {
-    var start = new Date();
+    const start = new Date();
     t.plan(3);
     resolve('./resolver/dot_slash_main', function (err, ret) {
         t.notOk(err);
@@ -458,7 +458,7 @@ test('async dot slash main', function (t) {
 
 test('not a directory', function (t) {
     t.plan(6);
-    var path = './foo';
+    const path = './foo';
     resolve(path, { basedir: __filename }, function (err, res, pkg) {
         t.ok(err, 'a non-directory errors');
         t.equal(arguments.length, 1);
@@ -473,7 +473,7 @@ test('not a directory', function (t) {
 test('non-string "main" field in package.json', function (t) {
     t.plan(5);
 
-    var dir = path.join(__dirname, 'resolver');
+    const dir = path.join(__dirname, 'resolver');
     resolve('./invalid_main', { basedir: dir }, function (err, res, pkg) {
         t.ok(err, 'errors on non-string main');
         t.equal(err.message, 'package “invalid_main” `main` must be a string');
@@ -486,7 +486,7 @@ test('non-string "main" field in package.json', function (t) {
 test('non-string "main" field in package.json', function (t) {
     t.plan(5);
 
-    var dir = path.join(__dirname, 'resolver');
+    const dir = path.join(__dirname, 'resolver');
     resolve('./invalid_main', { basedir: dir }, function (err, res, pkg) {
         t.ok(err, 'errors on non-string main');
         t.equal(err.message, 'package “invalid_main” `main` must be a string');
@@ -499,7 +499,7 @@ test('non-string "main" field in package.json', function (t) {
 test('browser field in package.json', function (t) {
     t.plan(3);
 
-    var dir = path.join(__dirname, 'resolver');
+    const dir = path.join(__dirname, 'resolver');
     resolve(
         './browser_field',
         {
@@ -524,7 +524,7 @@ test('browser field in package.json', function (t) {
 test('absolute paths', function (t) {
     t.plan(4);
 
-    var extensionless = __filename.slice(0, -path.extname(__filename).length);
+    const extensionless = __filename.slice(0, -path.extname(__filename).length);
 
     resolve(__filename, function (err, res) {
         t.equal(
@@ -556,7 +556,7 @@ test('absolute paths', function (t) {
     });
 });
 
-var malformedDir = path.join(__dirname, 'resolver/malformed_package_json');
+const malformedDir = path.join(__dirname, 'resolver/malformed_package_json');
 test('malformed package.json', { skip: !fs.existsSync(malformedDir) }, function (t) {
     /* eslint operator-linebreak: ["error", "before"], function-paren-newline: "off" */
     t.plan(
@@ -564,8 +564,8 @@ test('malformed package.json', { skip: !fs.existsSync(malformedDir) }, function 
         + 2 // 1 readPackage call with malformed package.json
     );
 
-    var basedir = malformedDir;
-    var expected = path.join(basedir, 'index.js');
+    const basedir = malformedDir;
+    const expected = path.join(basedir, 'index.js');
 
     resolve('./index.js', { basedir: basedir }, function (err, res, pkg) {
         t.error(err, 'no error');

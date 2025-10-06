@@ -1,10 +1,10 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _tokenizer = require('../parser/tokenizer');
-var _types = require('../parser/tokenizer/types');
+const _tokenizer = require('../parser/tokenizer');
+const _types = require('../parser/tokenizer/types');
 
 
-var _Transformer = require('./Transformer'); var _Transformer2 = _interopRequireDefault(_Transformer);
+const _Transformer = require('./Transformer'); const _Transformer2 = _interopRequireDefault(_Transformer);
 
 /**
  * Implementation of babel-plugin-transform-react-display-name, which adds a
@@ -17,7 +17,7 @@ var _Transformer = require('./Transformer'); var _Transformer2 = _interopRequire
      importProcessor,
      options,
   ) {
-    super();this.rootTransformer = rootTransformer;this.tokens = tokens;this.importProcessor = importProcessor;this.options = options;;
+    super();this.rootTransformer = rootTransformer;this.tokens = tokens;this.importProcessor = importProcessor;this.options = options;
   }
 
   process() {

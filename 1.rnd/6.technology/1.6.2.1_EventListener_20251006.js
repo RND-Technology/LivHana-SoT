@@ -10,7 +10,7 @@ exports.convert = (globalObject, value, { context = "The provided value" } = {})
 
   function callTheUserObjectsOperation(event) {
     let thisArg = utils.tryWrapperForImpl(this);
-    let O = value;
+    const O = value;
     let X = O;
 
     if (typeof O !== "function") {
@@ -23,7 +23,7 @@ exports.convert = (globalObject, value, { context = "The provided value" } = {})
 
     event = utils.tryWrapperForImpl(event);
 
-    let callResult = Reflect.apply(X, thisArg, [event]);
+    const callResult = Reflect.apply(X, thisArg, [event]);
   }
 
   callTheUserObjectsOperation[utils.wrapperSymbol] = value;

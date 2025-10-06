@@ -4,15 +4,15 @@
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.EventEmitter3 = factory());
 })(this, (function () { 'use strict';
 
-  var eventemitter3Exports = {};
-  var eventemitter3$1 = {
+  let eventemitter3Exports = {};
+  const eventemitter3$1 = {
     get exports(){ return eventemitter3Exports; },
     set exports(v){ eventemitter3Exports = v; },
   };
 
   (function (module) {
 
-  	var has = Object.prototype.hasOwnProperty
+  	let has = Object.prototype.hasOwnProperty
   	  , prefix = '~';
 
   	/**
@@ -72,7 +72,7 @@
   	    throw new TypeError('The listener must be a function');
   	  }
 
-  	  var listener = new EE(fn, context || emitter, once)
+  	  const listener = new EE(fn, context || emitter, once)
   	    , evt = prefix ? prefix + event : event;
 
   	  if (!emitter._events[evt]) emitter._events[evt] = listener, emitter._eventsCount++;
@@ -114,7 +114,7 @@
   	 * @public
   	 */
   	EventEmitter.prototype.eventNames = function eventNames() {
-  	  var names = []
+  	  let names = []
   	    , events
   	    , name;
 
@@ -139,7 +139,7 @@
   	 * @public
   	 */
   	EventEmitter.prototype.listeners = function listeners(event) {
-  	  var evt = prefix ? prefix + event : event
+  	  const evt = prefix ? prefix + event : event
   	    , handlers = this._events[evt];
 
   	  if (!handlers) return [];
@@ -160,7 +160,7 @@
   	 * @public
   	 */
   	EventEmitter.prototype.listenerCount = function listenerCount(event) {
-  	  var evt = prefix ? prefix + event : event
+  	  const evt = prefix ? prefix + event : event
   	    , listeners = this._events[evt];
 
   	  if (!listeners) return 0;
@@ -176,11 +176,11 @@
   	 * @public
   	 */
   	EventEmitter.prototype.emit = function emit(event, a1, a2, a3, a4, a5) {
-  	  var evt = prefix ? prefix + event : event;
+  	  const evt = prefix ? prefix + event : event;
 
   	  if (!this._events[evt]) return false;
 
-  	  var listeners = this._events[evt]
+  	  let listeners = this._events[evt]
   	    , len = arguments.length
   	    , args
   	    , i;
@@ -203,7 +203,7 @@
 
   	    listeners.fn.apply(listeners.context, args);
   	  } else {
-  	    var length = listeners.length
+  	    let length = listeners.length
   	      , j;
 
   	    for (i = 0; i < length; i++) {
@@ -264,7 +264,7 @@
   	 * @public
   	 */
   	EventEmitter.prototype.removeListener = function removeListener(event, fn, context, once) {
-  	  var evt = prefix ? prefix + event : event;
+  	  const evt = prefix ? prefix + event : event;
 
   	  if (!this._events[evt]) return this;
   	  if (!fn) {
@@ -272,7 +272,7 @@
   	    return this;
   	  }
 
-  	  var listeners = this._events[evt];
+  	  const listeners = this._events[evt];
 
   	  if (listeners.fn) {
   	    if (
@@ -311,7 +311,7 @@
   	 * @public
   	 */
   	EventEmitter.prototype.removeAllListeners = function removeAllListeners(event) {
-  	  var evt;
+  	  let evt;
 
   	  if (event) {
   	    evt = prefix ? prefix + event : event;
@@ -348,7 +348,7 @@
   	}
   } (eventemitter3$1));
 
-  var eventemitter3 = eventemitter3Exports;
+  const eventemitter3 = eventemitter3Exports;
 
   return eventemitter3;
 

@@ -1,10 +1,10 @@
 "use strict";
 exports.__esModule = true;
 exports.checkoutSchema = void 0;
-var schema_1 = require("../schema");
-var additionalRecipient_1 = require("./additionalRecipient");
-var address_1 = require("./address");
-var order_1 = require("./order");
+const schema_1 = require("../schema");
+const additionalRecipient_1 = require("./additionalRecipient");
+const address_1 = require("./address");
+const order_1 = require("./order");
 exports.checkoutSchema = (0, schema_1.object)({
     id: ['id', (0, schema_1.optional)((0, schema_1.string)())],
     checkoutPageUrl: ['checkout_page_url', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.string)()))],

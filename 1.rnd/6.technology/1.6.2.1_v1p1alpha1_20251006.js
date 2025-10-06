@@ -20,7 +20,7 @@ exports.securitycenter_v1p1alpha1 = void 0;
 /* eslint-disable @typescript-eslint/no-namespace */
 /* eslint-disable no-irregular-whitespace */
 const googleapis_common_1 = require("googleapis-common");
-var securitycenter_v1p1alpha1;
+let securitycenter_v1p1alpha1;
 (function (securitycenter_v1p1alpha1) {
     /**
      * Security Command Center API

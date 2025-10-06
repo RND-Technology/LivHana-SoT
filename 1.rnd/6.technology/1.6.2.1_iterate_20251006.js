@@ -1,4 +1,4 @@
-var async = require('./async.js')
+const async = require('./async.js')
   , abort = require('./abort.js')
   ;
 
@@ -16,7 +16,7 @@ module.exports = iterate;
 function iterate(list, iterator, state, callback)
 {
   // store current index
-  var key = state['keyedList'] ? state['keyedList'][state.index] : state.index;
+  const key = state['keyedList'] ? state['keyedList'][state.index] : state.index;
 
   state.jobs[key] = runJob(iterator, key, list[key], function(error, output)
   {
@@ -58,7 +58,7 @@ function iterate(list, iterator, state, callback)
  */
 function runJob(iterator, key, item, callback)
 {
-  var aborter;
+  let aborter;
 
   // allow shortcut if iterator expects only two arguments
   if (iterator.length == 2)

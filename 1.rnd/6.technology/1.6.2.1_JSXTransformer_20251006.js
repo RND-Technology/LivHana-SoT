@@ -1,14 +1,14 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 
-var _xhtml = require('../parser/plugins/jsx/xhtml'); var _xhtml2 = _interopRequireDefault(_xhtml);
-var _tokenizer = require('../parser/tokenizer');
-var _types = require('../parser/tokenizer/types');
-var _charcodes = require('../parser/util/charcodes');
+const _xhtml = require('../parser/plugins/jsx/xhtml'); const _xhtml2 = _interopRequireDefault(_xhtml);
+const _tokenizer = require('../parser/tokenizer');
+const _types = require('../parser/tokenizer/types');
+const _charcodes = require('../parser/util/charcodes');
 
-var _getJSXPragmaInfo = require('../util/getJSXPragmaInfo'); var _getJSXPragmaInfo2 = _interopRequireDefault(_getJSXPragmaInfo);
+const _getJSXPragmaInfo = require('../util/getJSXPragmaInfo'); const _getJSXPragmaInfo2 = _interopRequireDefault(_getJSXPragmaInfo);
 
-var _Transformer = require('./Transformer'); var _Transformer2 = _interopRequireDefault(_Transformer);
+const _Transformer = require('./Transformer'); const _Transformer2 = _interopRequireDefault(_Transformer);
 
  class JSXTransformer extends _Transformer2.default {
   
@@ -35,7 +35,7 @@ var _Transformer = require('./Transformer'); var _Transformer2 = _interopRequire
      nameManager,
      options,
   ) {
-    super();this.rootTransformer = rootTransformer;this.tokens = tokens;this.importProcessor = importProcessor;this.nameManager = nameManager;this.options = options;JSXTransformer.prototype.__init.call(this);JSXTransformer.prototype.__init2.call(this);JSXTransformer.prototype.__init3.call(this);JSXTransformer.prototype.__init4.call(this);JSXTransformer.prototype.__init5.call(this);;
+    super();this.rootTransformer = rootTransformer;this.tokens = tokens;this.importProcessor = importProcessor;this.nameManager = nameManager;this.options = options;JSXTransformer.prototype.__init.call(this);JSXTransformer.prototype.__init2.call(this);JSXTransformer.prototype.__init3.call(this);JSXTransformer.prototype.__init4.call(this);JSXTransformer.prototype.__init5.call(this);
     this.jsxPragmaInfo = _getJSXPragmaInfo2.default.call(void 0, options);
     this.isAutomaticRuntime = options.jsxRuntime === "automatic";
     this.jsxImportSource = options.jsxImportSource || "react";

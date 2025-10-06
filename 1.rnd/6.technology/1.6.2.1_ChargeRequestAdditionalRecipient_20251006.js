@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
 exports.chargeRequestAdditionalRecipientSchema = void 0;
-var schema_1 = require("../schema");
-var money_1 = require("./money");
+const schema_1 = require("../schema");
+const money_1 = require("./money");
 exports.chargeRequestAdditionalRecipientSchema = (0, schema_1.object)({
     locationId: ['location_id', (0, schema_1.string)()],
     description: ['description', (0, schema_1.string)()],

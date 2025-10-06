@@ -1,7 +1,7 @@
 "use strict";
 
-var assert = require("@sinonjs/referee-sinon").assert;
-var globalObject = require("./global");
+const assert = require("@sinonjs/referee-sinon").assert;
+const globalObject = require("./global");
 
 describe("global", function () {
     before(function () {

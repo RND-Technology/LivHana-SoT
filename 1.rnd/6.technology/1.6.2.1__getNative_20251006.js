@@ -1,4 +1,4 @@
-var baseIsNative = require('./_baseIsNative'),
+const baseIsNative = require('./_baseIsNative'),
     getValue = require('./_getValue');
 
 /**
@@ -10,7 +10,7 @@ var baseIsNative = require('./_baseIsNative'),
  * @returns {*} Returns the function if it's native, else `undefined`.
  */
 function getNative(object, key) {
-  var value = getValue(object, key);
+  const value = getValue(object, key);
   return baseIsNative(value) ? value : undefined;
 }
 

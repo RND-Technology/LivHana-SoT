@@ -10,7 +10,7 @@
  * @see http://sites.google.com/site/murmurhash/
  */
 (function(){
-    var cache;
+    let cache;
 
     // Call this function without `new` to use the cached object (good for
     // single-threaded environments), or with `new` to create a new object.
@@ -19,7 +19,7 @@
     // @param {number} seed An optional positive integer
     // @return {object} A MurmurHash3 object for incremental hashing
     function MurmurHash3(key, seed) {
-        var m = this instanceof MurmurHash3 ? this : cache;
+        const m = this instanceof MurmurHash3 ? this : cache;
         m.reset(seed)
         if (typeof key === 'string' && key.length > 0) {
             m.hash(key);
@@ -28,14 +28,14 @@
         if (m !== this) {
             return m;
         }
-    };
+    }
 
     // Incrementally add a string to this hash
     //
     // @param {string} key A UTF-16 or ASCII string
     // @return {object} this
     MurmurHash3.prototype.hash = function(key) {
-        var h1, k1, i, top, len;
+        let h1, k1, i, top, len;
 
         len = key.length;
         this.len += len;
@@ -94,7 +94,7 @@
     //
     // @return {number} The 32-bit hash
     MurmurHash3.prototype.result = function() {
-        var k1, h1;
+        let k1, h1;
         
         k1 = this.k1;
         h1 = this.h1;

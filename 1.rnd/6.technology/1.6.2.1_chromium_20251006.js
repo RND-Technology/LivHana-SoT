@@ -1,23 +1,23 @@
 "use strict";
-var __create = Object.create;
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getProtoOf = Object.getPrototypeOf;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
+const __create = Object.create;
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __getProtoOf = Object.getPrototypeOf;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __export = (target, all) => {
+  for (const name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+const __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
   // If the importer is in node compatibility mode or this is not an ESM
   // file that has been converted to a CommonJS file using a Babel-
   // compatible transform (i.e. "__esModule" has not been set), then set
@@ -25,34 +25,34 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
   mod
 ));
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var chromium_exports = {};
+const __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+const chromium_exports = {};
 __export(chromium_exports, {
   Chromium: () => Chromium,
   waitForReadyState: () => waitForReadyState
 });
 module.exports = __toCommonJS(chromium_exports);
-var import_fs = __toESM(require("fs"));
-var import_os = __toESM(require("os"));
-var import_path = __toESM(require("path"));
-var import_chromiumSwitches = require("./chromiumSwitches");
-var import_crBrowser = require("./crBrowser");
-var import_crConnection = require("./crConnection");
-var import_utils = require("../../utils");
-var import_ascii = require("../utils/ascii");
-var import_debugLogger = require("../utils/debugLogger");
-var import_manualPromise = require("../../utils/isomorphic/manualPromise");
-var import_network = require("../utils/network");
-var import_userAgent = require("../utils/userAgent");
-var import_browserContext = require("../browserContext");
-var import_browserType = require("../browserType");
-var import_helper = require("../helper");
-var import_registry = require("../registry");
-var import_transport = require("../transport");
-var import_crDevTools = require("./crDevTools");
-var import_browser = require("../browser");
-var import_fileUtils = require("../utils/fileUtils");
-var import_processLauncher = require("../utils/processLauncher");
+const import_fs = __toESM(require("fs"));
+const import_os = __toESM(require("os"));
+const import_path = __toESM(require("path"));
+const import_chromiumSwitches = require("./chromiumSwitches");
+const import_crBrowser = require("./crBrowser");
+const import_crConnection = require("./crConnection");
+const import_utils = require("../../utils");
+const import_ascii = require("../utils/ascii");
+const import_debugLogger = require("../utils/debugLogger");
+const import_manualPromise = require("../../utils/isomorphic/manualPromise");
+const import_network = require("../utils/network");
+const import_userAgent = require("../utils/userAgent");
+const import_browserContext = require("../browserContext");
+const import_browserType = require("../browserType");
+const import_helper = require("../helper");
+const import_registry = require("../registry");
+const import_transport = require("../transport");
+const import_crDevTools = require("./crDevTools");
+const import_browser = require("../browser");
+const import_fileUtils = require("../utils/fileUtils");
+const import_processLauncher = require("../utils/processLauncher");
 const ARTIFACTS_FOLDER = import_path.default.join(import_os.default.tmpdir(), "playwright-artifacts-");
 class Chromium extends import_browserType.BrowserType {
   constructor(parent) {

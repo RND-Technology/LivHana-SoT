@@ -1,4 +1,4 @@
-var castPath = require('./_castPath'),
+const castPath = require('./_castPath'),
     toKey = require('./_toKey');
 
 /**
@@ -12,7 +12,7 @@ var castPath = require('./_castPath'),
 function baseGet(object, path) {
   path = castPath(path, object);
 
-  var index = 0,
+  let index = 0,
       length = path.length;
 
   while (object != null && index < length) {

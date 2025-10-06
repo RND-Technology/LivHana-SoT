@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
 exports.batchChangeInventoryRequestSchema = void 0;
-var schema_1 = require("../schema");
-var inventoryChange_1 = require("./inventoryChange");
+const schema_1 = require("../schema");
+const inventoryChange_1 = require("./inventoryChange");
 exports.batchChangeInventoryRequestSchema = (0, schema_1.object)({
     idempotencyKey: ['idempotency_key', (0, schema_1.string)()],
     changes: [

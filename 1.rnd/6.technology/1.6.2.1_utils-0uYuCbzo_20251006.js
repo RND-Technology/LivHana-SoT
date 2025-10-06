@@ -1,6 +1,6 @@
 import { parseRegexp } from '@vitest/utils';
 
-var _a, _b;
+let _a, _b;
 const REGEXP_WRAP_PREFIX = "$$vitest:";
 const processSend = (_a = process.send) == null ? void 0 : _a.bind(process);
 const processOn = (_b = process.on) == null ? void 0 : _b.bind(process);

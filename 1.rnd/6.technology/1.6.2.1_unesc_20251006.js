@@ -11,13 +11,13 @@ exports["default"] = unesc;
  * @returns {[string, number]|undefined}
  */
 function gobbleHex(str) {
-  var lower = str.toLowerCase();
-  var hex = '';
-  var spaceTerminated = false;
-  for (var i = 0; i < 6 && lower[i] !== undefined; i++) {
-    var code = lower.charCodeAt(i);
+  const lower = str.toLowerCase();
+  let hex = '';
+  let spaceTerminated = false;
+  for (let i = 0; i < 6 && lower[i] !== undefined; i++) {
+    const code = lower.charCodeAt(i);
     // check to see if we are dealing with a valid hex char [a-f|0-9]
-    var valid = code >= 97 && code <= 102 || code >= 48 && code <= 57;
+    const valid = code >= 97 && code <= 102 || code >= 48 && code <= 57;
     // https://drafts.csswg.org/css-syntax/#consume-escaped-code-point
     spaceTerminated = code === 32;
     if (!valid) {
@@ -28,8 +28,8 @@ function gobbleHex(str) {
   if (hex.length === 0) {
     return undefined;
   }
-  var codePoint = parseInt(hex, 16);
-  var isSurrogate = codePoint >= 0xD800 && codePoint <= 0xDFFF;
+  const codePoint = parseInt(hex, 16);
+  const isSurrogate = codePoint >= 0xD800 && codePoint <= 0xDFFF;
   // Add special case for
   // "If this number is zero, or is for a surrogate, or is greater than the maximum allowed code point"
   // https://drafts.csswg.org/css-syntax/#maximum-allowed-code-point
@@ -38,16 +38,16 @@ function gobbleHex(str) {
   }
   return [String.fromCodePoint(codePoint), hex.length + (spaceTerminated ? 1 : 0)];
 }
-var CONTAINS_ESCAPE = /\\/;
+const CONTAINS_ESCAPE = /\\/;
 function unesc(str) {
-  var needToProcess = CONTAINS_ESCAPE.test(str);
+  const needToProcess = CONTAINS_ESCAPE.test(str);
   if (!needToProcess) {
     return str;
   }
-  var ret = "";
-  for (var i = 0; i < str.length; i++) {
+  let ret = "";
+  for (let i = 0; i < str.length; i++) {
     if (str[i] === "\\") {
-      var gobbled = gobbleHex(str.slice(i + 1, i + 7));
+      const gobbled = gobbleHex(str.slice(i + 1, i + 7));
       if (gobbled !== undefined) {
         ret += gobbled[0];
         i += gobbled[1];

@@ -1,17 +1,17 @@
 'use strict';
 
-var _Object$setPrototypeO;
+let _Object$setPrototypeO;
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
-var finished = require('./end-of-stream');
-var kLastResolve = Symbol('lastResolve');
-var kLastReject = Symbol('lastReject');
-var kError = Symbol('error');
-var kEnded = Symbol('ended');
-var kLastPromise = Symbol('lastPromise');
-var kHandlePromise = Symbol('handlePromise');
-var kStream = Symbol('stream');
+function _toPropertyKey(arg) { const key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; const prim = input[Symbol.toPrimitive]; if (prim !== undefined) { const res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+const finished = require('./end-of-stream');
+const kLastResolve = Symbol('lastResolve');
+const kLastReject = Symbol('lastReject');
+const kError = Symbol('error');
+const kEnded = Symbol('ended');
+const kLastPromise = Symbol('lastPromise');
+const kHandlePromise = Symbol('handlePromise');
+const kStream = Symbol('stream');
 function createIterResult(value, done) {
   return {
     value: value,
@@ -19,9 +19,9 @@ function createIterResult(value, done) {
   };
 }
 function readAndResolve(iter) {
-  var resolve = iter[kLastResolve];
+  const resolve = iter[kLastResolve];
   if (resolve !== null) {
-    var data = iter[kStream].read();
+    const data = iter[kStream].read();
     // we defer if data is null
     // we can be expecting either 'end' or
     // 'error'
@@ -49,16 +49,16 @@ function wrapForNext(lastPromise, iter) {
     }, reject);
   };
 }
-var AsyncIteratorPrototype = Object.getPrototypeOf(function () {});
-var ReadableStreamAsyncIteratorPrototype = Object.setPrototypeOf((_Object$setPrototypeO = {
+const AsyncIteratorPrototype = Object.getPrototypeOf(function () {});
+const ReadableStreamAsyncIteratorPrototype = Object.setPrototypeOf((_Object$setPrototypeO = {
   get stream() {
     return this[kStream];
   },
   next: function next() {
-    var _this = this;
+    const _this = this;
     // if we have detected an error in the meanwhile
     // reject straight away
-    var error = this[kError];
+    const error = this[kError];
     if (error !== null) {
       return Promise.reject(error);
     }
@@ -85,14 +85,14 @@ var ReadableStreamAsyncIteratorPrototype = Object.setPrototypeOf((_Object$setPro
     // we will wait for the previous Promise to finish
     // this logic is optimized to support for await loops,
     // where next() is only called once at a time
-    var lastPromise = this[kLastPromise];
-    var promise;
+    const lastPromise = this[kLastPromise];
+    let promise;
     if (lastPromise) {
       promise = new Promise(wrapForNext(lastPromise, this));
     } else {
       // fast path needed to support multiple this.push()
       // without triggering the next() queue
-      var data = this[kStream].read();
+      const data = this[kStream].read();
       if (data !== null) {
         return Promise.resolve(createIterResult(data, false));
       }
@@ -104,7 +104,7 @@ var ReadableStreamAsyncIteratorPrototype = Object.setPrototypeOf((_Object$setPro
 }, _defineProperty(_Object$setPrototypeO, Symbol.asyncIterator, function () {
   return this;
 }), _defineProperty(_Object$setPrototypeO, "return", function _return() {
-  var _this2 = this;
+  const _this2 = this;
   // destroy(err, cb) is a private API
   // we can guarantee we have that here, because we control the
   // Readable class this is attached to
@@ -118,8 +118,8 @@ var ReadableStreamAsyncIteratorPrototype = Object.setPrototypeOf((_Object$setPro
     });
   });
 }), _Object$setPrototypeO), AsyncIteratorPrototype);
-var createReadableStreamAsyncIterator = function createReadableStreamAsyncIterator(stream) {
-  var _Object$create;
+const createReadableStreamAsyncIterator = function createReadableStreamAsyncIterator(stream) {
+  let _Object$create;
   var iterator = Object.create(ReadableStreamAsyncIteratorPrototype, (_Object$create = {}, _defineProperty(_Object$create, kStream, {
     value: stream,
     writable: true
@@ -137,7 +137,7 @@ var createReadableStreamAsyncIterator = function createReadableStreamAsyncIterat
     writable: true
   }), _defineProperty(_Object$create, kHandlePromise, {
     value: function value(resolve, reject) {
-      var data = iterator[kStream].read();
+      const data = iterator[kStream].read();
       if (data) {
         iterator[kLastPromise] = null;
         iterator[kLastResolve] = null;
@@ -153,7 +153,7 @@ var createReadableStreamAsyncIterator = function createReadableStreamAsyncIterat
   iterator[kLastPromise] = null;
   finished(stream, function (err) {
     if (err && err.code !== 'ERR_STREAM_PREMATURE_CLOSE') {
-      var reject = iterator[kLastReject];
+      const reject = iterator[kLastReject];
       // reject if we are waiting for data in the Promise
       // returned by next() and store the error
       if (reject !== null) {
@@ -165,7 +165,7 @@ var createReadableStreamAsyncIterator = function createReadableStreamAsyncIterat
       iterator[kError] = err;
       return;
     }
-    var resolve = iterator[kLastResolve];
+    const resolve = iterator[kLastResolve];
     if (resolve !== null) {
       iterator[kLastPromise] = null;
       iterator[kLastResolve] = null;

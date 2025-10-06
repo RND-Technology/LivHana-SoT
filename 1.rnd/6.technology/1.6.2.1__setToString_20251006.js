@@ -1,4 +1,4 @@
-var baseSetToString = require('./_baseSetToString'),
+const baseSetToString = require('./_baseSetToString'),
     shortOut = require('./_shortOut');
 
 /**
@@ -9,6 +9,6 @@ var baseSetToString = require('./_baseSetToString'),
  * @param {Function} string The `toString` result.
  * @returns {Function} Returns `func`.
  */
-var setToString = shortOut(baseSetToString);
+const setToString = shortOut(baseSetToString);
 
 module.exports = setToString;

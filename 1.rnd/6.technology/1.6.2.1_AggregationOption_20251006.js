@@ -17,7 +17,7 @@ exports.toAggregation = exports.AggregationType = void 0;
  * limitations under the License.
  */
 const Aggregation_1 = require("./Aggregation");
-var AggregationType;
+let AggregationType;
 (function (AggregationType) {
     AggregationType[AggregationType["DEFAULT"] = 0] = "DEFAULT";
     AggregationType[AggregationType["DROP"] = 1] = "DROP";

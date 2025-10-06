@@ -4,12 +4,12 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = gatherSequenceExpressions;
-var _getBindingIdentifiers = require("../retrievers/getBindingIdentifiers.js");
-var _index = require("../validators/generated/index.js");
-var _index2 = require("../builders/generated/index.js");
-var _productions = require("../builders/productions.js");
-var _cloneNode = require("../clone/cloneNode.js");
-;
+const _getBindingIdentifiers = require("../retrievers/getBindingIdentifiers.js");
+const _index = require("../validators/generated/index.js");
+const _index2 = require("../builders/generated/index.js");
+const _productions = require("../builders/productions.js");
+const _cloneNode = require("../clone/cloneNode.js");
+
 function gatherSequenceExpressions(nodes, declars) {
   const exprs = [];
   let ensureLastUndefined = true;

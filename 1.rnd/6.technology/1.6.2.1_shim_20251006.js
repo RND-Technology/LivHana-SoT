@@ -1,10 +1,10 @@
 'use strict';
 
-var define = require('define-properties');
-var getPolyfill = require('./polyfill');
+const define = require('define-properties');
+const getPolyfill = require('./polyfill');
 
 module.exports = function shimAssign() {
-	var polyfill = getPolyfill();
+	const polyfill = getPolyfill();
 	define(
 		Object,
 		{ assign: polyfill },

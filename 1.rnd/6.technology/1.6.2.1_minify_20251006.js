@@ -29,7 +29,7 @@ const toInputTree = (elements, tree) => {
   return tree
 }
 
-var stringifyTree = elements => {
+const stringifyTree = elements => {
   return elements
     .map(element => {
       switch (element.type) {
@@ -125,7 +125,7 @@ function createRawStringFromTemplateLiteral(
   quasis: Array<{ value: { cooked: string } }>
 } */
 ) {
-  let strs = quasi.quasis.map(x => x.value.cooked)
+  const strs = quasi.quasis.map(x => x.value.cooked)
 
   const src = strs
     .reduce((arr, str, i) => {

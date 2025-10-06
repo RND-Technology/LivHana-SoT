@@ -1,11 +1,11 @@
 import * as React from 'react';
 
-var syncFallback = function syncFallback(create) {
+const syncFallback = function syncFallback(create) {
   return create();
 };
 
-var useInsertionEffect = React['useInsertion' + 'Effect'] ? React['useInsertion' + 'Effect'] : false;
-var useInsertionEffectAlwaysWithSyncFallback = useInsertionEffect || syncFallback;
-var useInsertionEffectWithLayoutFallback = useInsertionEffect || React.useLayoutEffect;
+const useInsertionEffect = React['useInsertion' + 'Effect'] ? React['useInsertion' + 'Effect'] : false;
+const useInsertionEffectAlwaysWithSyncFallback = useInsertionEffect || syncFallback;
+const useInsertionEffectWithLayoutFallback = useInsertionEffect || React.useLayoutEffect;
 
 export { useInsertionEffectAlwaysWithSyncFallback, useInsertionEffectWithLayoutFallback };

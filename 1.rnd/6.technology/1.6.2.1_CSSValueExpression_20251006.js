@@ -1,5 +1,5 @@
 //.CommonJS
-var CSSOM = {
+const CSSOM = {
 	CSSValue: require('./CSSValue').CSSValue
 };
 ///CommonJS
@@ -34,10 +34,10 @@ CSSOM.CSSValueExpression.prototype.constructor = CSSOM.CSSValueExpression;
  * }
  */
 CSSOM.CSSValueExpression.prototype.parse = function() {
-	var token = this._token,
+	let token = this._token,
 			idx = this._idx;
 
-	var character = '',
+	let character = '',
 			expression = '',
 			error = '',
 			info,
@@ -106,7 +106,7 @@ CSSOM.CSSValueExpression.prototype.parse = function() {
 		}
 	}
 
-	var ret;
+	let ret;
 	if (error) {
 		ret = {
 			error: error
@@ -134,11 +134,11 @@ CSSOM.CSSValueExpression.prototype.parse = function() {
  *
  */
 CSSOM.CSSValueExpression.prototype._parseJSComment = function(token, idx) {
-	var nextChar = token.charAt(idx + 1),
+	let nextChar = token.charAt(idx + 1),
 			text;
 
 	if (nextChar === '/' || nextChar === '*') {
-		var startIdx = idx,
+		let startIdx = idx,
 				endIdx,
 				commentEndChar;
 
@@ -157,7 +157,7 @@ CSSOM.CSSValueExpression.prototype._parseJSComment = function(token, idx) {
 				text: text
 			};
 		} else {
-			var error = 'css expression error: unfinished comment in expression!';
+			const error = 'css expression error: unfinished comment in expression!';
 			return {
 				error: error
 			};
@@ -178,7 +178,7 @@ CSSOM.CSSValueExpression.prototype._parseJSComment = function(token, idx) {
  *
  */
 CSSOM.CSSValueExpression.prototype._parseJSString = function(token, idx, sep) {
-	var endIdx = this._findMatchedIdx(token, idx, sep),
+	let endIdx = this._findMatchedIdx(token, idx, sep),
 			text;
 
 	if (endIdx === -1) {
@@ -253,7 +253,7 @@ instanceof /a/
 
 */
 CSSOM.CSSValueExpression.prototype._parseJSRexExp = function(token, idx) {
-	var before = token.substring(0, idx).replace(/\s+$/, ""),
+	const before = token.substring(0, idx).replace(/\s+$/, ""),
 			legalRegx = [
 				/^$/,
 				/\($/,
@@ -281,14 +281,14 @@ CSSOM.CSSValueExpression.prototype._parseJSRexExp = function(token, idx) {
 				/void$/
 			];
 
-	var isLegal = legalRegx.some(function(reg) {
+	const isLegal = legalRegx.some(function(reg) {
 		return reg.test(before);
 	});
 
 	if (!isLegal) {
 		return false;
 	} else {
-		var sep = '/';
+		const sep = '/';
 
 		// same logic as string
 		return this._parseJSString(token, idx, sep);
@@ -304,10 +304,10 @@ CSSOM.CSSValueExpression.prototype._parseJSRexExp = function(token, idx) {
  *
  */
 CSSOM.CSSValueExpression.prototype._findMatchedIdx = function(token, idx, sep) {
-	var startIdx = idx,
+	let startIdx = idx,
 			endIdx;
 
-	var NOT_FOUND = -1;
+	const NOT_FOUND = -1;
 
 	while(true) {
 		endIdx = token.indexOf(sep, startIdx + 1);
@@ -316,7 +316,7 @@ CSSOM.CSSValueExpression.prototype._findMatchedIdx = function(token, idx, sep) {
 			endIdx = NOT_FOUND;
 			break;
 		} else {
-			var text = token.substring(idx + 1, endIdx),
+			const text = token.substring(idx + 1, endIdx),
 					matched = text.match(/\\+$/);
 			if (!matched || matched[0] % 2 === 0) { // not escaped
 				break;
@@ -327,7 +327,7 @@ CSSOM.CSSValueExpression.prototype._findMatchedIdx = function(token, idx, sep) {
 	}
 
 	// boundary must be in the same line(js sting or regexp)
-	var nextNewLineIdx = token.indexOf('\n', idx + 1);
+	const nextNewLineIdx = token.indexOf('\n', idx + 1);
 	if (nextNewLineIdx < endIdx) {
 		endIdx = NOT_FOUND;
 	}

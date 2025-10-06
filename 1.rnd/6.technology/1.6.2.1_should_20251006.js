@@ -5,7 +5,7 @@
  */
 
 module.exports = function (chai, util) {
-  var Assertion = chai.Assertion;
+  const Assertion = chai.Assertion;
 
   function loadShould () {
     // explicitly define this method as function as to have it's name to include as `ssfi`
@@ -40,7 +40,7 @@ module.exports = function (chai, util) {
       , configurable: true
     });
 
-    var should = {};
+    const should = {};
 
     /**
      * ### .fail([message])
@@ -212,7 +212,7 @@ module.exports = function (chai, util) {
     should.not['throw'] = should.not['Throw'];
 
     return should;
-  };
+  }
 
   chai.should = loadShould;
   chai.Should = loadShould;

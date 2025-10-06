@@ -56,7 +56,7 @@ class ChannelCredentials {
      * @param verifyOptions Additional options to modify certificate verification
      */
     static createSsl(rootCerts, privateKey, certChain, verifyOptions) {
-        var _a;
+        let _a;
         verifyIsBufferOrNull(rootCerts, 'Root certificate');
         verifyIsBufferOrNull(privateKey, 'Private key');
         verifyIsBufferOrNull(certChain, 'Certificate chain');
@@ -127,7 +127,7 @@ class InsecureChannelCredentialsImpl extends ChannelCredentials {
     }
 }
 function getConnectionOptions(secureContext, verifyOptions, channelTarget, options) {
-    var _a, _b;
+    let _a, _b;
     const connectionOptions = {
         secureContext: secureContext
     };
@@ -174,7 +174,7 @@ class SecureConnectorImpl {
         const tlsConnectOptions = Object.assign({ socket: socket }, this.connectionOptions);
         return new Promise((resolve, reject) => {
             const tlsSocket = (0, tls_1.connect)(tlsConnectOptions, () => {
-                var _a;
+                let _a;
                 if (((_a = this.connectionOptions.rejectUnauthorized) !== null && _a !== void 0 ? _a : true) && !tlsSocket.authorized) {
                     reject(tlsSocket.authorizationError);
                     return;
@@ -249,7 +249,7 @@ class CertificateProviderChannelCredentialsImpl extends ChannelCredentials {
         return true;
     }
     _equals(other) {
-        var _a, _b;
+        let _a, _b;
         if (this === other) {
             return true;
         }
@@ -263,7 +263,7 @@ class CertificateProviderChannelCredentialsImpl extends ChannelCredentials {
         }
     }
     ref() {
-        var _a;
+        let _a;
         if (this.refcount === 0) {
             this.caCertificateProvider.addCaCertificateListener(this.caCertificateUpdateListener);
             (_a = this.identityCertificateProvider) === null || _a === void 0 ? void 0 : _a.addIdentityCertificateListener(this.identityCertificateUpdateListener);
@@ -271,7 +271,7 @@ class CertificateProviderChannelCredentialsImpl extends ChannelCredentials {
         this.refcount += 1;
     }
     unref() {
-        var _a;
+        let _a;
         this.refcount -= 1;
         if (this.refcount === 0) {
             this.caCertificateProvider.removeCaCertificateListener(this.caCertificateUpdateListener);
@@ -318,7 +318,7 @@ class CertificateProviderChannelCredentialsImpl extends ChannelCredentials {
         }
     }
     getLatestSecureContext() {
-        var _a, _b;
+        let _a, _b;
         if (!this.latestCaUpdate) {
             return null;
         }
@@ -365,7 +365,7 @@ CertificateProviderChannelCredentialsImpl.SecureConnectorImpl = class {
                 reject(error);
             };
             const tlsSocket = (0, tls_1.connect)(tlsConnectOptions, () => {
-                var _a;
+                let _a;
                 tlsSocket.removeListener('close', closeCallback);
                 tlsSocket.removeListener('error', errorCallback);
                 if (((_a = this.parent.verifyOptions.rejectUnauthorized) !== null && _a !== void 0 ? _a : true) && !tlsSocket.authorized) {

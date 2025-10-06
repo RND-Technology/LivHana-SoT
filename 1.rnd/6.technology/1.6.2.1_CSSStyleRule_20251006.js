@@ -1,5 +1,5 @@
 //.CommonJS
-var CSSOM = {
+const CSSOM = {
 	CSSStyleDeclaration: require("./CSSStyleDeclaration").CSSStyleDeclaration,
 	CSSRule: require("./CSSRule").CSSRule
 };
@@ -24,7 +24,7 @@ CSSOM.CSSStyleRule.prototype.type = 1;
 
 Object.defineProperty(CSSOM.CSSStyleRule.prototype, "cssText", {
 	get: function() {
-		var text;
+		let text;
 		if (this.selectorText) {
 			text = this.selectorText + " {" + this.style.cssText + "}";
 		} else {
@@ -33,7 +33,7 @@ Object.defineProperty(CSSOM.CSSStyleRule.prototype, "cssText", {
 		return text;
 	},
 	set: function(cssText) {
-		var rule = CSSOM.CSSStyleRule.parse(cssText);
+		const rule = CSSOM.CSSStyleRule.parse(cssText);
 		this.style = rule.style;
 		this.selectorText = rule.selectorText;
 	}
@@ -47,19 +47,19 @@ Object.defineProperty(CSSOM.CSSStyleRule.prototype, "cssText", {
  * @return CSSStyleRule
  */
 CSSOM.CSSStyleRule.parse = function(ruleText) {
-	var i = 0;
-	var state = "selector";
-	var index;
-	var j = i;
-	var buffer = "";
+	let i = 0;
+	let state = "selector";
+	let index;
+	let j = i;
+	let buffer = "";
 
-	var SIGNIFICANT_WHITESPACE = {
+	const SIGNIFICANT_WHITESPACE = {
 		"selector": true,
 		"value": true
 	};
 
-	var styleRule = new CSSOM.CSSStyleRule();
-	var name, priority="";
+	const styleRule = new CSSOM.CSSStyleRule();
+	let name, priority="";
 
 	for (var character; (character = ruleText.charAt(i)); i++) {
 

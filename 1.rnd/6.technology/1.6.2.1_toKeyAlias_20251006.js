@@ -4,9 +4,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = toKeyAlias;
-var _index = require("../validators/generated/index.js");
-var _cloneNode = require("../clone/cloneNode.js");
-var _removePropertiesDeep = require("../modifications/removePropertiesDeep.js");
+const _index = require("../validators/generated/index.js");
+const _cloneNode = require("../clone/cloneNode.js");
+const _removePropertiesDeep = require("../modifications/removePropertiesDeep.js");
 function toKeyAlias(node, key = node.key) {
   let alias;
   if (node.kind === "method") {

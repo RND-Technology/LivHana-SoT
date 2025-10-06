@@ -1,7 +1,7 @@
 import computeOffsets from "../utils/computeOffsets.js";
 
 function popperOffsets(_ref) {
-  var state = _ref.state,
+  const state = _ref.state,
       name = _ref.name;
   // Offsets are the actual position the popper needs to have to be
   // properly positioned near its reference element

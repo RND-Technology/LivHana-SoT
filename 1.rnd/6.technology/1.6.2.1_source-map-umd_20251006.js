@@ -16,28 +16,28 @@
   function def(m) { return 'default' in m.exports ? m.exports.default : m.exports; }
 })(this, (function (module, require_genMapping, require_traceMapping) {
 "use strict";
-var __create = Object.create;
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getProtoOf = Object.getPrototypeOf;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __commonJS = (cb, mod) => function __require() {
+const __create = Object.create;
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __getProtoOf = Object.getPrototypeOf;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
-var __export = (target, all) => {
-  for (var name in all)
+const __export = (target, all) => {
+  for (const name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+const __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
   // If the importer is in node compatibility mode or this is not an ESM
   // file that has been converted to a CommonJS file using a Babel-
   // compatible transform (i.e. "__esModule" has not been set), then set
@@ -45,31 +45,31 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
   mod
 ));
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+const __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // umd:@jridgewell/trace-mapping
-var require_trace_mapping = __commonJS({
+const require_trace_mapping = __commonJS({
   "umd:@jridgewell/trace-mapping"(exports, module2) {
     module2.exports = require_traceMapping;
   }
 });
 
 // umd:@jridgewell/gen-mapping
-var require_gen_mapping = __commonJS({
+const require_gen_mapping = __commonJS({
   "umd:@jridgewell/gen-mapping"(exports, module2) {
     module2.exports = require_genMapping;
   }
 });
 
 // src/source-map.ts
-var source_map_exports = {};
+const source_map_exports = {};
 __export(source_map_exports, {
   SourceMapConsumer: () => SourceMapConsumer,
   SourceMapGenerator: () => SourceMapGenerator
 });
 module.exports = __toCommonJS(source_map_exports);
-var import_trace_mapping = __toESM(require_trace_mapping());
-var import_gen_mapping = __toESM(require_gen_mapping());
+const import_trace_mapping = __toESM(require_trace_mapping());
+const import_gen_mapping = __toESM(require_gen_mapping());
 var SourceMapConsumer = class _SourceMapConsumer {
   constructor(map, mapUrl) {
     const trace = this._map = new import_trace_mapping.AnyMap(map, mapUrl);

@@ -1,15 +1,15 @@
 "use strict";
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+const _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 exports.__esModule = true;
 exports.default = toggleClass;
 
-var _addClass = _interopRequireDefault(require("./addClass"));
+const _addClass = _interopRequireDefault(require("./addClass"));
 
-var _hasClass = _interopRequireDefault(require("./hasClass"));
+const _hasClass = _interopRequireDefault(require("./hasClass"));
 
-var _removeClass = _interopRequireDefault(require("./removeClass"));
+const _removeClass = _interopRequireDefault(require("./removeClass"));
 
 /**
  * Toggles a CSS class on a given element.

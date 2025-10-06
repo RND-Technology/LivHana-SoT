@@ -1,10 +1,10 @@
 'use strict';
 
-var callBound = require('call-bound');
+const callBound = require('call-bound');
 
-var $PromiseThen = callBound('Promise.prototype.then', true);
+const $PromiseThen = callBound('Promise.prototype.then', true);
 
-var isObject = require('es-object-atoms/isObject');
+const isObject = require('es-object-atoms/isObject');
 
 // https://262.ecma-international.org/6.0/#sec-ispromise
 

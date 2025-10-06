@@ -1,12 +1,12 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
-var isObject = require('es-object-atoms/isObject');
+const $TypeError = require('es-errors/type');
+const isObject = require('es-object-atoms/isObject');
 
-var DefinePropertyOrThrow = require('./DefinePropertyOrThrow');
-var IsExtensible = require('./IsExtensible');
+const DefinePropertyOrThrow = require('./DefinePropertyOrThrow');
+const IsExtensible = require('./IsExtensible');
 
-var isPropertyKey = require('../helpers/isPropertyKey');
+const isPropertyKey = require('../helpers/isPropertyKey');
 
 // https://262.ecma-international.org/13.0/#sec-definemethodproperty
 
@@ -32,7 +32,7 @@ module.exports = function DefineMethodProperty(homeObject, key, closure, enumera
 	// 2. If key is a Private Name, then
 	//  a. Return PrivateElement { [[Key]]: key, [[Kind]]: method, [[Value]]: closure }.
 	// 3. Else,
-	var desc = { // step 3.a
+	const desc = { // step 3.a
 		'[[Value]]': closure,
 		'[[Writable]]': true,
 		'[[Enumerable]]': enumerable,

@@ -64,7 +64,7 @@ function paramHook(shim, mod, moduleName) {
         return function wrappedMatch() {
             const transaction = shim.tracer.getTransaction();
             if (transaction) {
-                let request = requestManager.getRequestFromId(transaction.id);
+                const request = requestManager.getRequestFromId(transaction.id);
                 try {
                     const uri = this.path;
                     if (request) {
@@ -78,7 +78,7 @@ function paramHook(shim, mod, moduleName) {
 
                 const result = fn.apply(this, arguments);
                 try {
-                    var url_parts = url.parse(request.url, true);
+                    const url_parts = url.parse(request.url, true);
                     // logic to get query param
                     if (url_parts.query) {
                         Object.keys(url_parts.query).forEach(function (key) {

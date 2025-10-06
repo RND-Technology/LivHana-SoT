@@ -1,11 +1,11 @@
-var __defProp = Object.defineProperty;
-var __defProps = Object.defineProperties;
-var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
-var __getOwnPropSymbols = Object.getOwnPropertySymbols;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __propIsEnum = Object.prototype.propertyIsEnumerable;
-var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-var __spreadValues = (a, b) => {
+const __defProp = Object.defineProperty;
+const __defProps = Object.defineProperties;
+const __getOwnPropDescs = Object.getOwnPropertyDescriptors;
+const __getOwnPropSymbols = Object.getOwnPropertySymbols;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __propIsEnum = Object.prototype.propertyIsEnumerable;
+const __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+const __spreadValues = (a, b) => {
   for (var prop in b || (b = {}))
     if (__hasOwnProp.call(b, prop))
       __defNormalProp(a, prop, b[prop]);
@@ -16,9 +16,9 @@ var __spreadValues = (a, b) => {
     }
   return a;
 };
-var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
-var __objRest = (source, exclude) => {
-  var target = {};
+const __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
+const __objRest = (source, exclude) => {
+  const target = {};
   for (var prop in source)
     if (__hasOwnProp.call(source, prop) && exclude.indexOf(prop) < 0)
       target[prop] = source[prop];
@@ -34,29 +34,29 @@ var __objRest = (source, exclude) => {
 import * as React from "react";
 
 // src/utils/react-is.ts
-var IS_REACT_19 = /* @__PURE__ */ React.version.startsWith("19");
-var REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for(
+const IS_REACT_19 = /* @__PURE__ */ React.version.startsWith("19");
+const REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for(
   IS_REACT_19 ? "react.transitional.element" : "react.element"
 );
-var REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal");
-var REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment");
-var REACT_STRICT_MODE_TYPE = /* @__PURE__ */ Symbol.for("react.strict_mode");
-var REACT_PROFILER_TYPE = /* @__PURE__ */ Symbol.for("react.profiler");
-var REACT_CONSUMER_TYPE = /* @__PURE__ */ Symbol.for("react.consumer");
-var REACT_CONTEXT_TYPE = /* @__PURE__ */ Symbol.for("react.context");
-var REACT_FORWARD_REF_TYPE = /* @__PURE__ */ Symbol.for("react.forward_ref");
-var REACT_SUSPENSE_TYPE = /* @__PURE__ */ Symbol.for("react.suspense");
-var REACT_SUSPENSE_LIST_TYPE = /* @__PURE__ */ Symbol.for(
+const REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal");
+const REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment");
+const REACT_STRICT_MODE_TYPE = /* @__PURE__ */ Symbol.for("react.strict_mode");
+const REACT_PROFILER_TYPE = /* @__PURE__ */ Symbol.for("react.profiler");
+const REACT_CONSUMER_TYPE = /* @__PURE__ */ Symbol.for("react.consumer");
+const REACT_CONTEXT_TYPE = /* @__PURE__ */ Symbol.for("react.context");
+const REACT_FORWARD_REF_TYPE = /* @__PURE__ */ Symbol.for("react.forward_ref");
+const REACT_SUSPENSE_TYPE = /* @__PURE__ */ Symbol.for("react.suspense");
+const REACT_SUSPENSE_LIST_TYPE = /* @__PURE__ */ Symbol.for(
   "react.suspense_list"
 );
-var REACT_MEMO_TYPE = /* @__PURE__ */ Symbol.for("react.memo");
-var REACT_LAZY_TYPE = /* @__PURE__ */ Symbol.for("react.lazy");
-var REACT_OFFSCREEN_TYPE = /* @__PURE__ */ Symbol.for("react.offscreen");
-var REACT_CLIENT_REFERENCE = /* @__PURE__ */ Symbol.for(
+const REACT_MEMO_TYPE = /* @__PURE__ */ Symbol.for("react.memo");
+const REACT_LAZY_TYPE = /* @__PURE__ */ Symbol.for("react.lazy");
+const REACT_OFFSCREEN_TYPE = /* @__PURE__ */ Symbol.for("react.offscreen");
+const REACT_CLIENT_REFERENCE = /* @__PURE__ */ Symbol.for(
   "react.client.reference"
 );
-var ForwardRef = REACT_FORWARD_REF_TYPE;
-var Memo = REACT_MEMO_TYPE;
+const ForwardRef = REACT_FORWARD_REF_TYPE;
+const Memo = REACT_MEMO_TYPE;
 function isValidElementType(type) {
   return typeof type === "string" || typeof type === "function" || type === REACT_FRAGMENT_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || type === REACT_OFFSCREEN_TYPE || typeof type === "object" && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_CONSUMER_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_CLIENT_REFERENCE || type.getModuleId !== void 0) ? true : false;
 }
@@ -190,7 +190,7 @@ function pureFinalPropsSelectorFactory(mapStateToProps, mapDispatchToProps, merg
   };
 }
 function finalPropsSelectorFactory(dispatch, _a) {
-  var _b = _a, {
+  const _b = _a, {
     initMapStateToProps,
     initMapDispatchToProps,
     initMergeProps
@@ -398,7 +398,7 @@ function createListenerCollection() {
     }
   };
 }
-var nullListeners = {
+const nullListeners = {
   notify() {
   },
   get: () => []
@@ -472,12 +472,12 @@ function createSubscription(store, parentSub) {
 }
 
 // src/utils/useIsomorphicLayoutEffect.ts
-var canUseDOM = () => !!(typeof window !== "undefined" && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined");
-var isDOM = /* @__PURE__ */ canUseDOM();
-var isRunningInReactNative = () => typeof navigator !== "undefined" && navigator.product === "ReactNative";
-var isReactNative = /* @__PURE__ */ isRunningInReactNative();
-var getUseIsomorphicLayoutEffect = () => isDOM || isReactNative ? React.useLayoutEffect : React.useEffect;
-var useIsomorphicLayoutEffect = /* @__PURE__ */ getUseIsomorphicLayoutEffect();
+const canUseDOM = () => !!(typeof window !== "undefined" && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined");
+const isDOM = /* @__PURE__ */ canUseDOM();
+const isRunningInReactNative = () => typeof navigator !== "undefined" && navigator.product === "ReactNative";
+const isReactNative = /* @__PURE__ */ isRunningInReactNative();
+const getUseIsomorphicLayoutEffect = () => isDOM || isReactNative ? React.useLayoutEffect : React.useEffect;
+const useIsomorphicLayoutEffect = /* @__PURE__ */ getUseIsomorphicLayoutEffect();
 
 // src/utils/shallowEqual.ts
 function is(x, y) {
@@ -504,7 +504,7 @@ function shallowEqual(objA, objB) {
 }
 
 // src/utils/hoistStatics.ts
-var REACT_STATICS = {
+const REACT_STATICS = {
   childContextTypes: true,
   contextType: true,
   contextTypes: true,
@@ -517,7 +517,7 @@ var REACT_STATICS = {
   propTypes: true,
   type: true
 };
-var KNOWN_STATICS = {
+const KNOWN_STATICS = {
   name: true,
   length: true,
   prototype: true,
@@ -526,14 +526,14 @@ var KNOWN_STATICS = {
   arguments: true,
   arity: true
 };
-var FORWARD_REF_STATICS = {
+const FORWARD_REF_STATICS = {
   $$typeof: true,
   render: true,
   defaultProps: true,
   displayName: true,
   propTypes: true
 };
-var MEMO_STATICS = {
+const MEMO_STATICS = {
   $$typeof: true,
   compare: true,
   defaultProps: true,
@@ -541,7 +541,7 @@ var MEMO_STATICS = {
   propTypes: true,
   type: true
 };
-var TYPE_STATICS = {
+const TYPE_STATICS = {
   [ForwardRef]: FORWARD_REF_STATICS,
   [Memo]: MEMO_STATICS
 };
@@ -551,12 +551,12 @@ function getStatics(component) {
   }
   return TYPE_STATICS[component["$$typeof"]] || REACT_STATICS;
 }
-var defineProperty = Object.defineProperty;
-var getOwnPropertyNames = Object.getOwnPropertyNames;
-var getOwnPropertySymbols = Object.getOwnPropertySymbols;
-var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
-var getPrototypeOf = Object.getPrototypeOf;
-var objectPrototype = Object.prototype;
+const defineProperty = Object.defineProperty;
+const getOwnPropertyNames = Object.getOwnPropertyNames;
+const getOwnPropertySymbols = Object.getOwnPropertySymbols;
+const getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
+const getPrototypeOf = Object.getPrototypeOf;
+const objectPrototype = Object.prototype;
 function hoistNonReactStatics(targetComponent, sourceComponent) {
   if (typeof sourceComponent !== "string") {
     if (objectPrototype) {
@@ -586,13 +586,13 @@ function hoistNonReactStatics(targetComponent, sourceComponent) {
 }
 
 // src/components/Context.ts
-var ContextKey = /* @__PURE__ */ Symbol.for(`react-redux-context`);
-var gT = typeof globalThis !== "undefined" ? globalThis : (
+const ContextKey = /* @__PURE__ */ Symbol.for(`react-redux-context`);
+const gT = typeof globalThis !== "undefined" ? globalThis : (
   /* fall back to a per-module scope (pre-8.1 behaviour) if `globalThis` is not available */
   {}
 );
 function getContext() {
-  var _a;
+  let _a;
   if (!React.createContext) return {};
   const contextMap = (_a = gT[ContextKey]) != null ? _a : gT[ContextKey] = /* @__PURE__ */ new Map();
   let realContext = contextMap.get(React.createContext);
@@ -607,11 +607,11 @@ function getContext() {
   }
   return realContext;
 }
-var ReactReduxContext = /* @__PURE__ */ getContext();
+const ReactReduxContext = /* @__PURE__ */ getContext();
 
 // src/components/connect.tsx
-var NO_SUBSCRIPTION_ARRAY = [null, null];
-var stringifyComponent = (Comp) => {
+const NO_SUBSCRIPTION_ARRAY = [null, null];
+const stringifyComponent = (Comp) => {
   try {
     return JSON.stringify(Comp);
   } catch (err) {
@@ -679,7 +679,7 @@ function subscribeUpdates(shouldHandleStateChanges, store, subscription, childPr
 function strictEqual(a, b) {
   return a === b;
 }
-var hasWarnedAboutDeprecatedPureOption = false;
+let hasWarnedAboutDeprecatedPureOption = false;
 function connect(mapStateToProps, mapDispatchToProps, mergeProps, {
   // The `pure` option has been removed, so TS doesn't like us destructuring this to check its existence.
   // @ts-ignore
@@ -851,7 +851,7 @@ function connect(mapStateToProps, mapDispatchToProps, mergeProps, {
         );
       } catch (err) {
         if (latestSubscriptionCallbackError.current) {
-          ;
+          
           err.message += `
 The error may be correlated with this previous error:
 ${latestSubscriptionCallbackError.current.stack}
@@ -903,7 +903,7 @@ ${latestSubscriptionCallbackError.current.stack}
   };
   return wrapWithConnect;
 }
-var connect_default = connect;
+const connect_default = connect;
 
 // src/components/Provider.tsx
 function Provider(providerProps) {
@@ -941,7 +941,7 @@ function Provider(providerProps) {
   const Context = context || ReactReduxContext;
   return /* @__PURE__ */ React.createElement(Context.Provider, { value: contextValue }, children);
 }
-var Provider_default = Provider;
+const Provider_default = Provider;
 
 // src/hooks/useReduxContext.ts
 function createReduxContextHook(context = ReactReduxContext) {
@@ -955,7 +955,7 @@ function createReduxContextHook(context = ReactReduxContext) {
     return contextValue;
   };
 }
-var useReduxContext = /* @__PURE__ */ createReduxContextHook();
+const useReduxContext = /* @__PURE__ */ createReduxContextHook();
 
 // src/hooks/useStore.ts
 function createStoreHook(context = ReactReduxContext) {
@@ -972,7 +972,7 @@ function createStoreHook(context = ReactReduxContext) {
   });
   return useStore2;
 }
-var useStore = /* @__PURE__ */ createStoreHook();
+const useStore = /* @__PURE__ */ createStoreHook();
 
 // src/hooks/useDispatch.ts
 function createDispatchHook(context = ReactReduxContext) {
@@ -986,11 +986,11 @@ function createDispatchHook(context = ReactReduxContext) {
   });
   return useDispatch2;
 }
-var useDispatch = /* @__PURE__ */ createDispatchHook();
+const useDispatch = /* @__PURE__ */ createDispatchHook();
 
 // src/hooks/useSelector.ts
 import { useSyncExternalStoreWithSelector } from "use-sync-external-store/with-selector.js";
-var refEquality = (a, b) => a === b;
+const refEquality = (a, b) => a === b;
 function createSelectorHook(context = ReactReduxContext) {
   const useReduxContext2 = context === ReactReduxContext ? useReduxContext : createReduxContextHook(context);
   const useSelector2 = (selector, equalityFnOrOptions = {}) => {
@@ -1032,7 +1032,7 @@ function createSelectorHook(context = ReactReduxContext) {
                 try {
                   throw new Error();
                 } catch (e) {
-                  ;
+                  
                   ({ stack } = e);
                 }
                 console.warn(
@@ -1052,7 +1052,7 @@ function createSelectorHook(context = ReactReduxContext) {
                 try {
                   throw new Error();
                 } catch (e) {
-                  ;
+                  
                   ({ stack } = e);
                 }
                 console.warn(
@@ -1083,10 +1083,10 @@ function createSelectorHook(context = ReactReduxContext) {
   });
   return useSelector2;
 }
-var useSelector = /* @__PURE__ */ createSelectorHook();
+const useSelector = /* @__PURE__ */ createSelectorHook();
 
 // src/exports.ts
-var batch = defaultNoopBatch;
+const batch = defaultNoopBatch;
 export {
   Provider_default as Provider,
   ReactReduxContext,

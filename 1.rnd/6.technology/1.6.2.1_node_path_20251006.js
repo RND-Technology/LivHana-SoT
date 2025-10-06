@@ -1,12 +1,12 @@
-var fs = require('fs');
-var path = require('path');
-var test = require('tape');
-var resolve = require('../');
+const fs = require('fs');
+const path = require('path');
+const test = require('tape');
+const resolve = require('../');
 
 test('$NODE_PATH', function (t) {
     t.plan(8);
 
-    var isDir = function (dir, cb) {
+    const isDir = function (dir, cb) {
         if (dir === '/node_path' || dir === 'node_path/x') {
             return cb(null, true);
         }
@@ -63,7 +63,7 @@ test('$NODE_PATH', function (t) {
         basedir: path.join(__dirname, 'node_path/x'),
         isDirectory: isDir
     }, function (err, res) {
-        var root = require('tap/package.json').main; // eslint-disable-line global-require
+        const root = require('tap/package.json').main; // eslint-disable-line global-require
         t.error(err);
         t.equal(res, path.resolve(__dirname, '..', 'node_modules/tap', root), 'tap resolves');
     });

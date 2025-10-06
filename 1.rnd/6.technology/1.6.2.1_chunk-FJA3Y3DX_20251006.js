@@ -1,8 +1,8 @@
 // src/common.ts
-var kMovable = Symbol("Tinypool.kMovable");
-var kTransferable = Symbol.for("Tinypool.transferable");
-var kValue = Symbol.for("Tinypool.valueOf");
-var kQueueOptions = Symbol.for("Tinypool.queueOptions");
+const kMovable = Symbol("Tinypool.kMovable");
+const kTransferable = Symbol.for("Tinypool.transferable");
+const kValue = Symbol.for("Tinypool.valueOf");
+const kQueueOptions = Symbol.for("Tinypool.queueOptions");
 function isTransferable(value) {
   return value != null && typeof value === "object" && kTransferable in value && kValue in value;
 }
@@ -20,9 +20,9 @@ function markMovable(value) {
 function isTaskQueue(value) {
   return typeof value === "object" && value !== null && "size" in value && typeof value.shift === "function" && typeof value.remove === "function" && typeof value.push === "function";
 }
-var kRequestCountField = 0;
-var kResponseCountField = 1;
-var kFieldCount = 2;
+const kRequestCountField = 0;
+const kResponseCountField = 1;
+const kFieldCount = 2;
 
 export {
   kTransferable,

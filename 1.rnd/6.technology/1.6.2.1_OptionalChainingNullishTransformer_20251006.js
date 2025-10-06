@@ -1,7 +1,7 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-var _types = require('../parser/tokenizer/types');
+const _types = require('../parser/tokenizer/types');
 
-var _Transformer = require('./Transformer'); var _Transformer2 = _interopRequireDefault(_Transformer);
+const _Transformer = require('./Transformer'); const _Transformer2 = _interopRequireDefault(_Transformer);
 
 /**
  * Transformer supporting the optional chaining and nullish coalescing operators.
@@ -14,7 +14,7 @@ var _Transformer = require('./Transformer'); var _Transformer2 = _interopRequire
  */
  class OptionalChainingNullishTransformer extends _Transformer2.default {
   constructor( tokens,  nameManager) {
-    super();this.tokens = tokens;this.nameManager = nameManager;;
+    super();this.tokens = tokens;this.nameManager = nameManager;
   }
 
   process() {

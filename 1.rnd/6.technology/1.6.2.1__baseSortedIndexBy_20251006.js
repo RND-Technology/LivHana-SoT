@@ -1,11 +1,11 @@
-var isSymbol = require('./isSymbol');
+const isSymbol = require('./isSymbol');
 
 /** Used as references for the maximum length and index of an array. */
-var MAX_ARRAY_LENGTH = 4294967295,
+const MAX_ARRAY_LENGTH = 4294967295,
     MAX_ARRAY_INDEX = MAX_ARRAY_LENGTH - 1;
 
 /* Built-in method references for those with the same name as other `lodash` methods. */
-var nativeFloor = Math.floor,
+const nativeFloor = Math.floor,
     nativeMin = Math.min;
 
 /**
@@ -22,20 +22,20 @@ var nativeFloor = Math.floor,
  *  into `array`.
  */
 function baseSortedIndexBy(array, value, iteratee, retHighest) {
-  var low = 0,
+  let low = 0,
       high = array == null ? 0 : array.length;
   if (high === 0) {
     return 0;
   }
 
   value = iteratee(value);
-  var valIsNaN = value !== value,
+  const valIsNaN = value !== value,
       valIsNull = value === null,
       valIsSymbol = isSymbol(value),
       valIsUndefined = value === undefined;
 
   while (low < high) {
-    var mid = nativeFloor((low + high) / 2),
+    const mid = nativeFloor((low + high) / 2),
         computed = iteratee(array[mid]),
         othIsDefined = computed !== undefined,
         othIsNull = computed === null,

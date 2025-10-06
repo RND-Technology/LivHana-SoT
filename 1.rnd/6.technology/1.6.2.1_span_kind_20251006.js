@@ -16,7 +16,7 @@ exports.SpanKind = void 0;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-var SpanKind;
+let SpanKind;
 (function (SpanKind) {
     /** Default value. Indicates that the span is used internally. */
     SpanKind[SpanKind["INTERNAL"] = 0] = "INTERNAL";

@@ -16,28 +16,28 @@
   function def(m) { return 'default' in m.exports ? m.exports.default : m.exports; }
 })(this, (function (module, require_sourcemapCodec, require_traceMapping) {
 "use strict";
-var __create = Object.create;
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getProtoOf = Object.getPrototypeOf;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __commonJS = (cb, mod) => function __require() {
+const __create = Object.create;
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __getProtoOf = Object.getPrototypeOf;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
-var __export = (target, all) => {
-  for (var name in all)
+const __export = (target, all) => {
+  for (const name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+const __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
   // If the importer is in node compatibility mode or this is not an ESM
   // file that has been converted to a CommonJS file using a Babel-
   // compatible transform (i.e. "__esModule" has not been set), then set
@@ -45,24 +45,24 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
   mod
 ));
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+const __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // umd:@jridgewell/sourcemap-codec
-var require_sourcemap_codec = __commonJS({
+const require_sourcemap_codec = __commonJS({
   "umd:@jridgewell/sourcemap-codec"(exports, module2) {
     module2.exports = require_sourcemapCodec;
   }
 });
 
 // umd:@jridgewell/trace-mapping
-var require_trace_mapping = __commonJS({
+const require_trace_mapping = __commonJS({
   "umd:@jridgewell/trace-mapping"(exports, module2) {
     module2.exports = require_traceMapping;
   }
 });
 
 // src/gen-mapping.ts
-var gen_mapping_exports = {};
+const gen_mapping_exports = {};
 __export(gen_mapping_exports, {
   GenMapping: () => GenMapping,
   addMapping: () => addMapping,
@@ -79,7 +79,7 @@ __export(gen_mapping_exports, {
 module.exports = __toCommonJS(gen_mapping_exports);
 
 // src/set-array.ts
-var SetArray = class {
+const SetArray = class {
   constructor() {
     this._indexes = { __proto__: null };
     this.array = [];
@@ -112,18 +112,18 @@ function remove(setarr, key) {
 }
 
 // src/gen-mapping.ts
-var import_sourcemap_codec = __toESM(require_sourcemap_codec());
-var import_trace_mapping = __toESM(require_trace_mapping());
+const import_sourcemap_codec = __toESM(require_sourcemap_codec());
+const import_trace_mapping = __toESM(require_trace_mapping());
 
 // src/sourcemap-segment.ts
-var COLUMN = 0;
-var SOURCES_INDEX = 1;
-var SOURCE_LINE = 2;
-var SOURCE_COLUMN = 3;
-var NAMES_INDEX = 4;
+const COLUMN = 0;
+const SOURCES_INDEX = 1;
+const SOURCE_LINE = 2;
+const SOURCE_COLUMN = 3;
+const NAMES_INDEX = 4;
 
 // src/gen-mapping.ts
-var NO_NAME = -1;
+const NO_NAME = -1;
 var GenMapping = class {
   constructor({ file, sourceRoot } = {}) {
     this._names = new SetArray();

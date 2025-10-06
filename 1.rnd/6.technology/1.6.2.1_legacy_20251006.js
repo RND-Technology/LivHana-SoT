@@ -6,12 +6,12 @@ exports.getElementById = getElementById;
 exports.getElementsByTagName = getElementsByTagName;
 exports.getElementsByClassName = getElementsByClassName;
 exports.getElementsByTagType = getElementsByTagType;
-var domhandler_1 = require("domhandler");
-var querying_js_1 = require("./querying.js");
+const domhandler_1 = require("domhandler");
+const querying_js_1 = require("./querying.js");
 /**
  * A map of functions to check nodes against.
  */
-var Checks = {
+const Checks = {
     tag_name: function (name) {
         if (typeof name === "function") {
             return function (elem) { return (0, domhandler_1.isTag)(elem) && name(elem.name); };
@@ -70,8 +70,8 @@ function combineFuncs(a, b) {
  *   if any of them match a node.
  */
 function compileTest(options) {
-    var funcs = Object.keys(options).map(function (key) {
-        var value = options[key];
+    const funcs = Object.keys(options).map(function (key) {
+        const value = options[key];
         return Object.prototype.hasOwnProperty.call(Checks, key)
             ? Checks[key](value)
             : getAttribCheck(key, value);
@@ -87,7 +87,7 @@ function compileTest(options) {
  * @returns Whether the element matches the description in `options`.
  */
 function testElement(options, node) {
-    var test = compileTest(options);
+    const test = compileTest(options);
     return test ? test(node) : true;
 }
 /**
@@ -102,7 +102,7 @@ function testElement(options, node) {
  */
 function getElements(options, nodes, recurse, limit) {
     if (limit === void 0) { limit = Infinity; }
-    var test = compileTest(options);
+    const test = compileTest(options);
     return test ? (0, querying_js_1.filter)(test, nodes, recurse, limit) : [];
 }
 /**

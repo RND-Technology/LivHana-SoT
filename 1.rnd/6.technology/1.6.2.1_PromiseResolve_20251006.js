@@ -1,11 +1,11 @@
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
-var callBind = require('call-bind');
-var $SyntaxError = require('es-errors/syntax');
+const GetIntrinsic = require('get-intrinsic');
+const callBind = require('call-bind');
+const $SyntaxError = require('es-errors/syntax');
 
-var $resolve = GetIntrinsic('%Promise.resolve%', true);
-var $PromiseResolve = $resolve && callBind($resolve);
+const $resolve = GetIntrinsic('%Promise.resolve%', true);
+const $PromiseResolve = $resolve && callBind($resolve);
 
 // https://262.ecma-international.org/9.0/#sec-promise-resolve
 

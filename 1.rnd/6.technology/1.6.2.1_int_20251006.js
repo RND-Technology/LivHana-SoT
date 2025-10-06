@@ -1,7 +1,7 @@
 'use strict';
 
-var common = require('../common');
-var Type   = require('../type');
+const common = require('../common');
+const Type   = require('../type');
 
 function isHexCode(c) {
   return ((0x30/* 0 */ <= c) && (c <= 0x39/* 9 */)) ||
@@ -20,7 +20,7 @@ function isDecCode(c) {
 function resolveYamlInteger(data) {
   if (data === null) return false;
 
-  var max = data.length,
+  let max = data.length,
       index = 0,
       hasDigits = false,
       ch;
@@ -104,7 +104,7 @@ function resolveYamlInteger(data) {
 }
 
 function constructYamlInteger(data) {
-  var value = data, sign = 1, ch;
+  let value = data, sign = 1, ch;
 
   if (value.indexOf('_') !== -1) {
     value = value.replace(/_/g, '');

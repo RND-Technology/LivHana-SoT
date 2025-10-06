@@ -2,14 +2,14 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var sheet = require('@emotion/sheet');
-var stylis = require('stylis');
+const sheet = require('@emotion/sheet');
+const stylis = require('stylis');
 require('@emotion/weak-memoize');
 require('@emotion/memoize');
 
-var identifierWithPointTracking = function identifierWithPointTracking(begin, points, index) {
-  var previous = 0;
-  var character = 0;
+const identifierWithPointTracking = function identifierWithPointTracking(begin, points, index) {
+  let previous = 0;
+  let character = 0;
 
   while (true) {
     previous = character;
@@ -29,10 +29,10 @@ var identifierWithPointTracking = function identifierWithPointTracking(begin, po
   return stylis.slice(begin, stylis.position);
 };
 
-var toRules = function toRules(parsed, points) {
+const toRules = function toRules(parsed, points) {
   // pretend we've started with a comma
-  var index = -1;
-  var character = 44;
+  let index = -1;
+  let character = 44;
 
   do {
     switch (stylis.token(character)) {
@@ -72,22 +72,22 @@ var toRules = function toRules(parsed, points) {
   return parsed;
 };
 
-var getRules = function getRules(value, points) {
+const getRules = function getRules(value, points) {
   return stylis.dealloc(toRules(stylis.alloc(value), points));
 }; // WeakSet would be more appropriate, but only WeakMap is supported in IE11
 
 
-var fixedElements = /* #__PURE__ */new WeakMap();
-var compat = function compat(element) {
+const fixedElements = /* #__PURE__ */new WeakMap();
+const compat = function compat(element) {
   if (element.type !== 'rule' || !element.parent || // positive .length indicates that this rule contains pseudo
   // negative .length indicates that this rule has been already prefixed
   element.length < 1) {
     return;
   }
 
-  var value = element.value;
-  var parent = element.parent;
-  var isImplicitRule = element.column === parent.column && element.line === parent.line;
+  const value = element.value;
+  let parent = element.parent;
+  const isImplicitRule = element.column === parent.column && element.line === parent.line;
 
   while (parent.type !== 'rule') {
     parent = parent.parent;
@@ -108,19 +108,19 @@ var compat = function compat(element) {
   }
 
   fixedElements.set(element, true);
-  var points = [];
-  var rules = getRules(value, points);
-  var parentRules = parent.props;
+  const points = [];
+  const rules = getRules(value, points);
+  const parentRules = parent.props;
 
-  for (var i = 0, k = 0; i < rules.length; i++) {
-    for (var j = 0; j < parentRules.length; j++, k++) {
+  for (let i = 0, k = 0; i < rules.length; i++) {
+    for (let j = 0; j < parentRules.length; j++, k++) {
       element.props[k] = points[i] ? rules[i].replace(/&\f/g, parentRules[j]) : parentRules[j] + " " + rules[i];
     }
   }
 };
-var removeLabel = function removeLabel(element) {
+const removeLabel = function removeLabel(element) {
   if (element.type === 'decl') {
-    var value = element.value;
+    const value = element.value;
 
     if ( // charcode for l
     value.charCodeAt(0) === 108 && // charcode for b
@@ -131,19 +131,19 @@ var removeLabel = function removeLabel(element) {
     }
   }
 };
-var ignoreFlag = 'emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason';
+const ignoreFlag = 'emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason';
 
-var isIgnoringComment = function isIgnoringComment(element) {
+const isIgnoringComment = function isIgnoringComment(element) {
   return element.type === 'comm' && element.children.indexOf(ignoreFlag) > -1;
 };
 
-var createUnsafeSelectorsAlarm = function createUnsafeSelectorsAlarm(cache) {
+const createUnsafeSelectorsAlarm = function createUnsafeSelectorsAlarm(cache) {
   return function (element, index, children) {
     if (element.type !== 'rule' || cache.compat) return;
-    var unsafePseudoClasses = element.value.match(/(:first|:nth|:nth-last)-child/g);
+    const unsafePseudoClasses = element.value.match(/(:first|:nth|:nth-last)-child/g);
 
     if (unsafePseudoClasses) {
-      var isNested = !!element.parent; // in nested rules comments become children of the "auto-inserted" rule and that's always the `element.parent`
+      const isNested = !!element.parent; // in nested rules comments become children of the "auto-inserted" rule and that's always the `element.parent`
       //
       // considering this input:
       // .a {
@@ -159,11 +159,11 @@ var createUnsafeSelectorsAlarm = function createUnsafeSelectorsAlarm(cache) {
       //   .b {}
       // }
 
-      var commentContainer = isNested ? element.parent.children : // global rule at the root level
+      const commentContainer = isNested ? element.parent.children : // global rule at the root level
       children;
 
-      for (var i = commentContainer.length - 1; i >= 0; i--) {
-        var node = commentContainer[i];
+      for (let i = commentContainer.length - 1; i >= 0; i--) {
+        const node = commentContainer[i];
 
         if (node.line < element.line) {
           break;
@@ -201,12 +201,12 @@ var createUnsafeSelectorsAlarm = function createUnsafeSelectorsAlarm(cache) {
   };
 };
 
-var isImportRule = function isImportRule(element) {
+const isImportRule = function isImportRule(element) {
   return element.type.charCodeAt(1) === 105 && element.type.charCodeAt(0) === 64;
 };
 
-var isPrependedWithRegularRules = function isPrependedWithRegularRules(index, children) {
-  for (var i = index - 1; i >= 0; i--) {
+const isPrependedWithRegularRules = function isPrependedWithRegularRules(index, children) {
+  for (let i = index - 1; i >= 0; i--) {
     if (!isImportRule(children[i])) {
       return true;
     }
@@ -218,7 +218,7 @@ var isPrependedWithRegularRules = function isPrependedWithRegularRules(index, ch
 // as that could potentially lead to additional logs which in turn could be overhelming to the user
 
 
-var nullifyElement = function nullifyElement(element) {
+const nullifyElement = function nullifyElement(element) {
   element.type = '';
   element.value = '';
   element["return"] = '';
@@ -226,7 +226,7 @@ var nullifyElement = function nullifyElement(element) {
   element.props = '';
 };
 
-var incorrectImportAlarm = function incorrectImportAlarm(element, index, children) {
+const incorrectImportAlarm = function incorrectImportAlarm(element, index, children) {
   if (!isImportRule(element)) {
     return;
   }
@@ -415,7 +415,7 @@ function prefix(value, length) {
   return value;
 }
 
-var prefixer = function prefixer(element, index, children, callback) {
+const prefixer = function prefixer(element, index, children, callback) {
   if (element.length > -1) if (!element["return"]) switch (element.type) {
     case stylis.DECLARATION:
       element["return"] = prefix(element.value, element.length);
@@ -452,28 +452,28 @@ var prefixer = function prefixer(element, index, children, callback) {
   }
 };
 
-var defaultStylisPlugins = [prefixer];
-var getSourceMap;
+const defaultStylisPlugins = [prefixer];
+let getSourceMap;
 
 {
-  var sourceMapPattern = /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\//g;
+  const sourceMapPattern = /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\//g;
 
   getSourceMap = function getSourceMap(styles) {
-    var matches = styles.match(sourceMapPattern);
+    const matches = styles.match(sourceMapPattern);
     if (!matches) return;
     return matches[matches.length - 1];
   };
 }
 
-var createCache = function createCache(options) {
-  var key = options.key;
+const createCache = function createCache(options) {
+  const key = options.key;
 
   if (!key) {
     throw new Error("You have to configure `key` for your cache. Please make sure it's unique (and not equal to 'css') as it's used for linking styles to your cache.\n" + "If multiple caches share the same key they might \"fight\" for each other's style elements.");
   }
 
   if (key === 'css') {
-    var ssrStyles = document.querySelectorAll("style[data-emotion]:not([data-s])"); // get SSRed styles out of the way of React's hydration
+    const ssrStyles = document.querySelectorAll("style[data-emotion]:not([data-s])"); // get SSRed styles out of the way of React's hydration
     // document.head is a safe place to move them to(though note document.head is not necessarily the last place they will be)
     // note this very very intentionally targets all style elements regardless of the key to ensure
     // that creating a cache works inside of render of a React component
@@ -485,7 +485,7 @@ var createCache = function createCache(options) {
       // Emotion 10 client-side inserted styles did not have data-s (but importantly did not have a space in their data-emotion attributes)
       // so checking for the space ensures that loading Emotion 11 after Emotion 10 has inserted some styles
       // will not result in the Emotion 10 styles being destroyed
-      var dataEmotionAttribute = node.getAttribute('data-emotion');
+      const dataEmotionAttribute = node.getAttribute('data-emotion');
 
       if (dataEmotionAttribute.indexOf(' ') === -1) {
         return;
@@ -496,7 +496,7 @@ var createCache = function createCache(options) {
     });
   }
 
-  var stylisPlugins = options.stylisPlugins || defaultStylisPlugins;
+  const stylisPlugins = options.stylisPlugins || defaultStylisPlugins;
 
   {
     if (/[^a-z-]/.test(key)) {
@@ -504,18 +504,18 @@ var createCache = function createCache(options) {
     }
   }
 
-  var inserted = {};
-  var container;
-  var nodesToHydrate = [];
+  const inserted = {};
+  let container;
+  const nodesToHydrate = [];
 
   {
     container = options.container || document.head;
     Array.prototype.forEach.call( // this means we will ignore elements which don't have a space in them which
     // means that the style elements we're looking at are only Emotion 11 server-rendered style elements
     document.querySelectorAll("style[data-emotion^=\"" + key + " \"]"), function (node) {
-      var attrib = node.getAttribute("data-emotion").split(' ');
+      const attrib = node.getAttribute("data-emotion").split(' ');
 
-      for (var i = 1; i < attrib.length; i++) {
+      for (let i = 1; i < attrib.length; i++) {
         inserted[attrib[i]] = true;
       }
 
@@ -523,9 +523,9 @@ var createCache = function createCache(options) {
     });
   }
 
-  var _insert;
+  let _insert;
 
-  var omnipresentPlugins = [compat, removeLabel];
+  const omnipresentPlugins = [compat, removeLabel];
 
   {
     omnipresentPlugins.push(createUnsafeSelectorsAlarm({
@@ -537,8 +537,8 @@ var createCache = function createCache(options) {
   }
 
   {
-    var currentSheet;
-    var finalizingPlugins = [stylis.stringify, function (element) {
+    let currentSheet;
+    const finalizingPlugins = [stylis.stringify, function (element) {
       if (!element.root) {
         if (element["return"]) {
           currentSheet.insert(element["return"]);
@@ -549,9 +549,9 @@ var createCache = function createCache(options) {
         }
       }
     } ];
-    var serializer = stylis.middleware(omnipresentPlugins.concat(stylisPlugins, finalizingPlugins));
+    const serializer = stylis.middleware(omnipresentPlugins.concat(stylisPlugins, finalizingPlugins));
 
-    var stylis$1 = function stylis$1(styles) {
+    const stylis$1 = function stylis$1(styles) {
       return stylis.serialize(stylis.compile(styles), serializer);
     };
 
@@ -559,7 +559,7 @@ var createCache = function createCache(options) {
       currentSheet = sheet;
 
       if (getSourceMap) {
-        var sourceMap = getSourceMap(serialized.styles);
+        const sourceMap = getSourceMap(serialized.styles);
 
         if (sourceMap) {
           currentSheet = {

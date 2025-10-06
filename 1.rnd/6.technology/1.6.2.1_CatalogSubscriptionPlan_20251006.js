@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
 exports.catalogSubscriptionPlanSchema = void 0;
-var schema_1 = require("../schema");
-var catalogObject_1 = require("./catalogObject");
-var subscriptionPhase_1 = require("./subscriptionPhase");
+const schema_1 = require("../schema");
+const catalogObject_1 = require("./catalogObject");
+const subscriptionPhase_1 = require("./subscriptionPhase");
 exports.catalogSubscriptionPlanSchema = (0, schema_1.object)({
     name: ['name', (0, schema_1.string)()],
     phases: [

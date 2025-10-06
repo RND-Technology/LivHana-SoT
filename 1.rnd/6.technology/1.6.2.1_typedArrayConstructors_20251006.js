@@ -1,8 +1,8 @@
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+const GetIntrinsic = require('get-intrinsic');
 
-var constructors = {
+const constructors = {
 	__proto__: null,
 	$Int8Array: GetIntrinsic('%Int8Array%', true),
 	$Uint8Array: GetIntrinsic('%Uint8Array%', true),

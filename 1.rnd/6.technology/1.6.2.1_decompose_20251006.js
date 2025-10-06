@@ -1,4 +1,4 @@
-var degrees = 180 / Math.PI;
+const degrees = 180 / Math.PI;
 
 export var identity = {
   translateX: 0,
@@ -10,7 +10,7 @@ export var identity = {
 };
 
 export default function(a, b, c, d, e, f) {
-  var scaleX, scaleY, skewX;
+  let scaleX, scaleY, skewX;
   if (scaleX = Math.sqrt(a * a + b * b)) a /= scaleX, b /= scaleX;
   if (skewX = a * c + b * d) c -= a * skewX, d -= b * skewX;
   if (scaleY = Math.sqrt(c * c + d * d)) c /= scaleY, d /= scaleY, skewX /= scaleY;

@@ -1,38 +1,38 @@
 "use strict";
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __export = (target, all) => {
+  for (const name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var playwrightDispatcher_exports = {};
+const __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+const playwrightDispatcher_exports = {};
 __export(playwrightDispatcher_exports, {
   PlaywrightDispatcher: () => PlaywrightDispatcher
 });
 module.exports = __toCommonJS(playwrightDispatcher_exports);
-var import_socksProxy = require("../utils/socksProxy");
-var import_fetch = require("../fetch");
-var import_androidDispatcher = require("./androidDispatcher");
-var import_androidDispatcher2 = require("./androidDispatcher");
-var import_browserDispatcher = require("./browserDispatcher");
-var import_browserTypeDispatcher = require("./browserTypeDispatcher");
-var import_dispatcher = require("./dispatcher");
-var import_electronDispatcher = require("./electronDispatcher");
-var import_localUtilsDispatcher = require("./localUtilsDispatcher");
-var import_networkDispatchers = require("./networkDispatchers");
-var import_instrumentation = require("../instrumentation");
-var import_eventsHelper = require("../utils/eventsHelper");
+const import_socksProxy = require("../utils/socksProxy");
+const import_fetch = require("../fetch");
+const import_androidDispatcher = require("./androidDispatcher");
+const import_androidDispatcher2 = require("./androidDispatcher");
+const import_browserDispatcher = require("./browserDispatcher");
+const import_browserTypeDispatcher = require("./browserTypeDispatcher");
+const import_dispatcher = require("./dispatcher");
+const import_electronDispatcher = require("./electronDispatcher");
+const import_localUtilsDispatcher = require("./localUtilsDispatcher");
+const import_networkDispatchers = require("./networkDispatchers");
+const import_instrumentation = require("../instrumentation");
+const import_eventsHelper = require("../utils/eventsHelper");
 class PlaywrightDispatcher extends import_dispatcher.Dispatcher {
   constructor(scope, playwright, options = {}) {
     const denyLaunch = options.denyLaunch ?? false;

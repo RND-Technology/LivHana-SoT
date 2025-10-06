@@ -1,34 +1,34 @@
 "use strict";
 exports.__esModule = true;
 exports.CatalogApi = void 0;
-var tslib_1 = require("tslib");
-var batchDeleteCatalogObjectsRequest_1 = require("../models/batchDeleteCatalogObjectsRequest");
-var batchDeleteCatalogObjectsResponse_1 = require("../models/batchDeleteCatalogObjectsResponse");
-var batchRetrieveCatalogObjectsRequest_1 = require("../models/batchRetrieveCatalogObjectsRequest");
-var batchRetrieveCatalogObjectsResponse_1 = require("../models/batchRetrieveCatalogObjectsResponse");
-var batchUpsertCatalogObjectsRequest_1 = require("../models/batchUpsertCatalogObjectsRequest");
-var batchUpsertCatalogObjectsResponse_1 = require("../models/batchUpsertCatalogObjectsResponse");
-var catalogInfoResponse_1 = require("../models/catalogInfoResponse");
-var createCatalogImageRequest_1 = require("../models/createCatalogImageRequest");
-var createCatalogImageResponse_1 = require("../models/createCatalogImageResponse");
-var deleteCatalogObjectResponse_1 = require("../models/deleteCatalogObjectResponse");
-var listCatalogResponse_1 = require("../models/listCatalogResponse");
-var retrieveCatalogObjectResponse_1 = require("../models/retrieveCatalogObjectResponse");
-var searchCatalogItemsRequest_1 = require("../models/searchCatalogItemsRequest");
-var searchCatalogItemsResponse_1 = require("../models/searchCatalogItemsResponse");
-var searchCatalogObjectsRequest_1 = require("../models/searchCatalogObjectsRequest");
-var searchCatalogObjectsResponse_1 = require("../models/searchCatalogObjectsResponse");
-var updateCatalogImageRequest_1 = require("../models/updateCatalogImageRequest");
-var updateCatalogImageResponse_1 = require("../models/updateCatalogImageResponse");
-var updateItemModifierListsRequest_1 = require("../models/updateItemModifierListsRequest");
-var updateItemModifierListsResponse_1 = require("../models/updateItemModifierListsResponse");
-var updateItemTaxesRequest_1 = require("../models/updateItemTaxesRequest");
-var updateItemTaxesResponse_1 = require("../models/updateItemTaxesResponse");
-var upsertCatalogObjectRequest_1 = require("../models/upsertCatalogObjectRequest");
-var upsertCatalogObjectResponse_1 = require("../models/upsertCatalogObjectResponse");
-var schema_1 = require("../schema");
-var baseApi_1 = require("./baseApi");
-var CatalogApi = /** @class */ (function (_super) {
+const tslib_1 = require("tslib");
+const batchDeleteCatalogObjectsRequest_1 = require("../models/batchDeleteCatalogObjectsRequest");
+const batchDeleteCatalogObjectsResponse_1 = require("../models/batchDeleteCatalogObjectsResponse");
+const batchRetrieveCatalogObjectsRequest_1 = require("../models/batchRetrieveCatalogObjectsRequest");
+const batchRetrieveCatalogObjectsResponse_1 = require("../models/batchRetrieveCatalogObjectsResponse");
+const batchUpsertCatalogObjectsRequest_1 = require("../models/batchUpsertCatalogObjectsRequest");
+const batchUpsertCatalogObjectsResponse_1 = require("../models/batchUpsertCatalogObjectsResponse");
+const catalogInfoResponse_1 = require("../models/catalogInfoResponse");
+const createCatalogImageRequest_1 = require("../models/createCatalogImageRequest");
+const createCatalogImageResponse_1 = require("../models/createCatalogImageResponse");
+const deleteCatalogObjectResponse_1 = require("../models/deleteCatalogObjectResponse");
+const listCatalogResponse_1 = require("../models/listCatalogResponse");
+const retrieveCatalogObjectResponse_1 = require("../models/retrieveCatalogObjectResponse");
+const searchCatalogItemsRequest_1 = require("../models/searchCatalogItemsRequest");
+const searchCatalogItemsResponse_1 = require("../models/searchCatalogItemsResponse");
+const searchCatalogObjectsRequest_1 = require("../models/searchCatalogObjectsRequest");
+const searchCatalogObjectsResponse_1 = require("../models/searchCatalogObjectsResponse");
+const updateCatalogImageRequest_1 = require("../models/updateCatalogImageRequest");
+const updateCatalogImageResponse_1 = require("../models/updateCatalogImageResponse");
+const updateItemModifierListsRequest_1 = require("../models/updateItemModifierListsRequest");
+const updateItemModifierListsResponse_1 = require("../models/updateItemModifierListsResponse");
+const updateItemTaxesRequest_1 = require("../models/updateItemTaxesRequest");
+const updateItemTaxesResponse_1 = require("../models/updateItemTaxesResponse");
+const upsertCatalogObjectRequest_1 = require("../models/upsertCatalogObjectRequest");
+const upsertCatalogObjectResponse_1 = require("../models/upsertCatalogObjectResponse");
+const schema_1 = require("../schema");
+const baseApi_1 = require("./baseApi");
+const CatalogApi = /** @class */ (function (_super) {
     tslib_1.__extends(CatalogApi, _super);
     function CatalogApi() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -56,7 +56,7 @@ var CatalogApi = /** @class */ (function (_super) {
      */
     CatalogApi.prototype.batchDeleteCatalogObjects = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/catalog/batch-delete');
                 mapped = req.prepareArgs({
@@ -84,7 +84,7 @@ var CatalogApi = /** @class */ (function (_super) {
      */
     CatalogApi.prototype.batchRetrieveCatalogObjects = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/catalog/batch-retrieve');
                 mapped = req.prepareArgs({
@@ -119,7 +119,7 @@ var CatalogApi = /** @class */ (function (_super) {
      */
     CatalogApi.prototype.batchUpsertCatalogObjects = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/catalog/batch-upsert');
                 mapped = req.prepareArgs({
@@ -149,7 +149,7 @@ var CatalogApi = /** @class */ (function (_super) {
      */
     CatalogApi.prototype.createCatalogImage = function (request, imageFile, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/catalog/images');
                 mapped = req.prepareArgs({
@@ -180,7 +180,7 @@ var CatalogApi = /** @class */ (function (_super) {
      */
     CatalogApi.prototype.updateCatalogImage = function (imageId, request, imageFile, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('PUT');
                 mapped = req.prepareArgs({
@@ -205,7 +205,7 @@ var CatalogApi = /** @class */ (function (_super) {
      */
     CatalogApi.prototype.catalogInfo = function (requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req;
+            let req;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET', '/v2/catalog/info');
                 req.authenticate([{ global: true }]);
@@ -248,7 +248,7 @@ var CatalogApi = /** @class */ (function (_super) {
      */
     CatalogApi.prototype.listCatalog = function (cursor, types, catalogVersion, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET', '/v2/catalog/list');
                 mapped = req.prepareArgs({
@@ -278,7 +278,7 @@ var CatalogApi = /** @class */ (function (_super) {
      */
     CatalogApi.prototype.upsertCatalogObject = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/catalog/object');
                 mapped = req.prepareArgs({
@@ -310,7 +310,7 @@ var CatalogApi = /** @class */ (function (_super) {
      */
     CatalogApi.prototype.deleteCatalogObject = function (objectId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('DELETE');
                 mapped = req.prepareArgs({ objectId: [objectId, (0, schema_1.string)()] });
@@ -361,7 +361,7 @@ var CatalogApi = /** @class */ (function (_super) {
      */
     CatalogApi.prototype.retrieveCatalogObject = function (objectId, includeRelatedObjects, catalogVersion, includeCategoryPathToRoot, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({
@@ -407,7 +407,7 @@ var CatalogApi = /** @class */ (function (_super) {
      */
     CatalogApi.prototype.searchCatalogObjects = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/catalog/search');
                 mapped = req.prepareArgs({
@@ -443,7 +443,7 @@ var CatalogApi = /** @class */ (function (_super) {
      */
     CatalogApi.prototype.searchCatalogItems = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/catalog/search-catalog-items');
                 mapped = req.prepareArgs({
@@ -468,7 +468,7 @@ var CatalogApi = /** @class */ (function (_super) {
      */
     CatalogApi.prototype.updateItemModifierLists = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/catalog/update-item-modifier-lists');
                 mapped = req.prepareArgs({
@@ -492,7 +492,7 @@ var CatalogApi = /** @class */ (function (_super) {
      */
     CatalogApi.prototype.updateItemTaxes = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/catalog/update-item-taxes');
                 mapped = req.prepareArgs({
@@ -508,5 +508,5 @@ var CatalogApi = /** @class */ (function (_super) {
     return CatalogApi;
 }(baseApi_1.BaseApi));
 exports.CatalogApi = CatalogApi;
-var templateObject_1, templateObject_2, templateObject_3;
+let templateObject_1, templateObject_2, templateObject_3;
 //# sourceMappingURL=catalogApi.js.map

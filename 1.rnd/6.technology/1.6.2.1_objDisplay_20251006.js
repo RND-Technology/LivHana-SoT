@@ -8,8 +8,8 @@
  * Module dependencies
  */
 
-var inspect = require('./inspect');
-var config = require('../config');
+const inspect = require('./inspect');
+const config = require('../config');
 
 /**
  * ### .objDisplay(object)
@@ -26,7 +26,7 @@ var config = require('../config');
  */
 
 module.exports = function objDisplay(obj) {
-  var str = inspect(obj)
+  const str = inspect(obj)
     , type = Object.prototype.toString.call(obj);
 
   if (config.truncateThreshold && str.length >= config.truncateThreshold) {
@@ -37,7 +37,7 @@ module.exports = function objDisplay(obj) {
     } else if (type === '[object Array]') {
       return '[ Array(' + obj.length + ') ]';
     } else if (type === '[object Object]') {
-      var keys = Object.keys(obj)
+      const keys = Object.keys(obj)
         , kstr = keys.length > 2
           ? keys.splice(0, 2).join(', ') + ', ...'
           : keys.join(', ');

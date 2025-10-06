@@ -1,6 +1,6 @@
-var util = require('util')
+const util = require('util')
 
-var errorMessages = {
+const errorMessages = {
   LIMIT_PART_COUNT: 'Too many parts',
   LIMIT_FILE_SIZE: 'File too large',
   LIMIT_FILE_COUNT: 'Too many files',

@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/BSD-3-Clause
  */
 
-var intToCharMap = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'.split('');
+const intToCharMap = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'.split('');
 
 /**
  * Encode an integer in the range of 0 to 63 to a single base 64 digit.
@@ -22,20 +22,20 @@ exports.encode = function (number) {
  * failure.
  */
 exports.decode = function (charCode) {
-  var bigA = 65;     // 'A'
-  var bigZ = 90;     // 'Z'
+  const bigA = 65;     // 'A'
+  const bigZ = 90;     // 'Z'
 
-  var littleA = 97;  // 'a'
-  var littleZ = 122; // 'z'
+  const littleA = 97;  // 'a'
+  const littleZ = 122; // 'z'
 
-  var zero = 48;     // '0'
-  var nine = 57;     // '9'
+  const zero = 48;     // '0'
+  const nine = 57;     // '9'
 
-  var plus = 43;     // '+'
-  var slash = 47;    // '/'
+  const plus = 43;     // '+'
+  const slash = 47;    // '/'
 
-  var littleOffset = 26;
-  var numberOffset = 52;
+  const littleOffset = 26;
+  const numberOffset = 52;
 
   // 0 - 25: ABCDEFGHIJKLMNOPQRSTUVWXYZ
   if (bigA <= charCode && charCode <= bigZ) {

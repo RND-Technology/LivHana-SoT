@@ -1,11 +1,11 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
-var isInteger = require('math-intrinsics/isInteger');
+const $TypeError = require('es-errors/type');
+const isInteger = require('math-intrinsics/isInteger');
 
-var DefinePropertyOrThrow = require('./DefinePropertyOrThrow');
-var HasOwnProperty = require('./HasOwnProperty');
-var IsExtensible = require('./IsExtensible');
+const DefinePropertyOrThrow = require('./DefinePropertyOrThrow');
+const HasOwnProperty = require('./HasOwnProperty');
+const IsExtensible = require('./IsExtensible');
 
 // https://262.ecma-international.org/9.0/#sec-setfunctionlength
 

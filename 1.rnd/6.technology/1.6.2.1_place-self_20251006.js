@@ -1,5 +1,5 @@
-let Declaration = require('../declaration')
-let utils = require('./grid-utils')
+const Declaration = require('../declaration')
+const utils = require('./grid-utils')
 
 class PlaceSelf extends Declaration {
   /**
@@ -13,7 +13,7 @@ class PlaceSelf extends Declaration {
       return undefined
     }
 
-    let [[first, second]] = utils.parse(decl)
+    const [[first, second]] = utils.parse(decl)
 
     if (second) {
       utils.insertDecl(decl, 'grid-row-align', first)

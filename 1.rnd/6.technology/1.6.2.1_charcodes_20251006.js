@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true});var charCodes; (function (charCodes) {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true});let charCodes; (function (charCodes) {
   const backSpace = 8; charCodes[charCodes["backSpace"] = backSpace] = "backSpace";
   const lineFeed = 10; charCodes[charCodes["lineFeed"] = lineFeed] = "lineFeed"; //  '\n'
   const tab = 9; charCodes[charCodes["tab"] = tab] = "tab"; //  '\t'

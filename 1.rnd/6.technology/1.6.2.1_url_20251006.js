@@ -176,7 +176,7 @@ module.exports = {
     return !!obj && obj[impl] instanceof Impl.implementation;
   },
   create(constructorArgs, privateData) {
-    let obj = Object.create(URL.prototype);
+    const obj = Object.create(URL.prototype);
     this.setup(obj, constructorArgs, privateData);
     return obj;
   },

@@ -103,7 +103,7 @@ function handlerWrapper(shim, mod) {
 function extractParams(shim, req) {
   const transaction = shim.tracer.getTransaction();
   if (transaction) {
-    let request = requestManager.getRequestFromId(transaction.id);
+    const request = requestManager.getRequestFromId(transaction.id);
     if (req.params && request) {
       Object.keys(req.params).forEach(function (key) {
         if (req.params[key]) {

@@ -1,23 +1,23 @@
 "use strict";
-var __create = Object.create;
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getProtoOf = Object.getPrototypeOf;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
+const __create = Object.create;
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __getProtoOf = Object.getPrototypeOf;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __export = (target, all) => {
+  for (const name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+const __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
   // If the importer is in node compatibility mode or this is not an ESM
   // file that has been converted to a CommonJS file using a Babel-
   // compatible transform (i.e. "__esModule" has not been set), then set
@@ -25,8 +25,8 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
   mod
 ));
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var dependencies_exports = {};
+const __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+const dependencies_exports = {};
 __export(dependencies_exports, {
   dockerVersion: () => dockerVersion,
   installDependenciesLinux: () => installDependenciesLinux,
@@ -38,16 +38,16 @@ __export(dependencies_exports, {
   writeDockerVersion: () => writeDockerVersion
 });
 module.exports = __toCommonJS(dependencies_exports);
-var childProcess = __toESM(require("child_process"));
-var import_fs = __toESM(require("fs"));
-var import_os = __toESM(require("os"));
-var import_path = __toESM(require("path"));
-var import_nativeDeps = require("./nativeDeps");
-var import_ascii = require("../utils/ascii");
-var import_hostPlatform = require("../utils/hostPlatform");
-var import_spawnAsync = require("../utils/spawnAsync");
-var import_userAgent = require("../utils/userAgent");
-var import__ = require(".");
+const childProcess = __toESM(require("child_process"));
+const import_fs = __toESM(require("fs"));
+const import_os = __toESM(require("os"));
+const import_path = __toESM(require("path"));
+const import_nativeDeps = require("./nativeDeps");
+const import_ascii = require("../utils/ascii");
+const import_hostPlatform = require("../utils/hostPlatform");
+const import_spawnAsync = require("../utils/spawnAsync");
+const import_userAgent = require("../utils/userAgent");
+const import__ = require(".");
 const BIN_DIRECTORY = import_path.default.join(__dirname, "..", "..", "..", "bin");
 const languageBindingVersion = process.env.PW_CLI_DISPLAY_VERSION || require("../../../package.json").version;
 const dockerVersionFilePath = "/ms-playwright/.docker-info";

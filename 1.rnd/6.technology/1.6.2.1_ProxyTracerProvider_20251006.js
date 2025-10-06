@@ -32,11 +32,11 @@ class ProxyTracerProvider {
      * Get a {@link ProxyTracer}
      */
     getTracer(name, version, options) {
-        var _a;
+        let _a;
         return ((_a = this.getDelegateTracer(name, version, options)) !== null && _a !== void 0 ? _a : new ProxyTracer_1.ProxyTracer(this, name, version, options));
     }
     getDelegate() {
-        var _a;
+        let _a;
         return (_a = this._delegate) !== null && _a !== void 0 ? _a : NOOP_TRACER_PROVIDER;
     }
     /**
@@ -46,7 +46,7 @@ class ProxyTracerProvider {
         this._delegate = delegate;
     }
     getDelegateTracer(name, version, options) {
-        var _a;
+        let _a;
         return (_a = this._delegate) === null || _a === void 0 ? void 0 : _a.getTracer(name, version, options);
     }
 }

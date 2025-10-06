@@ -1,10 +1,10 @@
 "use strict";
 exports.__esModule = true;
 exports.searchOrdersResponseSchema = void 0;
-var schema_1 = require("../schema");
-var error_1 = require("./error");
-var order_1 = require("./order");
-var orderEntry_1 = require("./orderEntry");
+const schema_1 = require("../schema");
+const error_1 = require("./error");
+const order_1 = require("./order");
+const orderEntry_1 = require("./orderEntry");
 exports.searchOrdersResponseSchema = (0, schema_1.object)({
     orderEntries: [
         'order_entries',

@@ -1,6 +1,6 @@
 'use strict';
 
-var $isNaN = require('./isNaN');
+const $isNaN = require('./isNaN');
 
 /** @type {import('./isFinite')} */
 module.exports = function isFinite(x) {

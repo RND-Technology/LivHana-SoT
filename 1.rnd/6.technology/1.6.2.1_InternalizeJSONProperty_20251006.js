@@ -1,17 +1,17 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
-var isObject = require('es-object-atoms/isObject');
+const $TypeError = require('es-errors/type');
+const isObject = require('es-object-atoms/isObject');
 
-var Call = require('./Call');
-var CreateDataProperty = require('./CreateDataProperty');
-var EnumerableOwnNames = require('./EnumerableOwnNames');
-var Get = require('./Get');
-var IsArray = require('./IsArray');
-var ToLength = require('./ToLength');
-var ToString = require('./ToString');
+const Call = require('./Call');
+const CreateDataProperty = require('./CreateDataProperty');
+const EnumerableOwnNames = require('./EnumerableOwnNames');
+const Get = require('./Get');
+const IsArray = require('./IsArray');
+const ToLength = require('./ToLength');
+const ToString = require('./ToString');
 
-var forEach = require('../helpers/forEach');
+const forEach = require('../helpers/forEach');
 
 // https://262.ecma-international.org/6.0/#sec-internalizejsonproperty
 
@@ -28,17 +28,17 @@ module.exports = function InternalizeJSONProperty(holder, name, reviver) {
 		throw new $TypeError('Assertion failed: `reviver` is not a Function');
 	}
 
-	var val = Get(holder, name); // step 1
+	const val = Get(holder, name); // step 1
 
 	if (isObject(val)) { // step 3
-		var isArray = IsArray(val); // step 3.a
+		const isArray = IsArray(val); // step 3.a
 		if (isArray) { // step 3.c
-			var I = 0; // step 3.c.i
+			let I = 0; // step 3.c.i
 
-			var len = ToLength(Get(val, 'length')); // step 3.b.ii
+			const len = ToLength(Get(val, 'length')); // step 3.b.ii
 
 			while (I < len) { // step 3.b.iv
-				var newElement = InternalizeJSONProperty(val, ToString(I), reviver); // step 3.b.iv.1
+				const newElement = InternalizeJSONProperty(val, ToString(I), reviver); // step 3.b.iv.1
 
 				if (typeof newElement === 'undefined') { // step 3.b.iv.3
 					delete val[ToString(I)]; // step 3.b.iv.3.a
@@ -49,11 +49,11 @@ module.exports = function InternalizeJSONProperty(holder, name, reviver) {
 				I += 1; // step 3.b.iv.6
 			}
 		} else {
-			var keys = EnumerableOwnNames(val); // step 3.d.i
+			const keys = EnumerableOwnNames(val); // step 3.d.i
 
 			forEach(keys, function (P) { // step 3.d.iii
 				// eslint-disable-next-line no-shadow
-				var newElement = InternalizeJSONProperty(val, P, reviver); // step 3.d.iii.1
+				const newElement = InternalizeJSONProperty(val, P, reviver); // step 3.d.iii.1
 
 				if (typeof newElement === 'undefined') { // step 3.d.iii.3
 					delete val[P]; // step 3.d.iii.3.a

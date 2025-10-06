@@ -8,7 +8,7 @@ exports.diffSentences = diffSentences;
 exports.sentenceDiff = void 0;
 
 /*istanbul ignore end*/
-var
+const
 /*istanbul ignore start*/
 _base = _interopRequireDefault(require("./base"))
 /*istanbul ignore end*/
@@ -17,7 +17,7 @@ _base = _interopRequireDefault(require("./base"))
 /*istanbul ignore start*/ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*istanbul ignore end*/
-var sentenceDiff = new
+const sentenceDiff = new
 /*istanbul ignore start*/
 _base
 /*istanbul ignore end*/

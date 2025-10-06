@@ -7,5 +7,5 @@ function transformArguments(fromTimestamp, toTimestamp, filters, options) {
     return (0, _1.pushMRangeWithLabelsArguments)(['TS.MRANGE'], fromTimestamp, toTimestamp, filters, options);
 }
 exports.transformArguments = transformArguments;
-var _2 = require(".");
+const _2 = require(".");
 Object.defineProperty(exports, "transformReply", { enumerable: true, get: function () { return _2.transformMRangeWithLabelsReply; } });

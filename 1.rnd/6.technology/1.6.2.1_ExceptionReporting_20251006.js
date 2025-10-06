@@ -44,7 +44,7 @@ const GRPCStatusMap = {
  * @param {*} stacktrace
  */
 function createException(exception) {
-    let exceptionObject = {};
+    const exceptionObject = {};
     try {
         exceptionObject.message = exception.message ? exception.message : '';
         exceptionObject.cause = null;
@@ -52,7 +52,7 @@ function createException(exception) {
         if (exception.stack) {
             let stacktraceInList = exception.stack.split('\n');
             stacktraceInList = stacktraceInList.slice(1);
-            let fileteredStackTrace = [];
+            const fileteredStackTrace = [];
             for (const str of stacktraceInList) {
                 if (!str.includes(NR_LIB) && str.length > 0) {
                     fileteredStackTrace.push(str.trim());
@@ -126,12 +126,12 @@ function generateExceptionReportingEvent(error, request) {
         if(!exception.traceId){
             return;
         }
-        let key = exception.exception.type + exception.exception.stackTrace[0];
+        const key = exception.exception.type + exception.exception.stackTrace[0];
         if (!exceptionsMap.has(key)) {
             exceptionsMap.set(key, exception);
         }
         else {
-            let previousCounter = exceptionsMap.get(key).counter;
+            const previousCounter = exceptionsMap.get(key).counter;
             exception.counter = previousCounter ? previousCounter + 1: exception.counter + 1;
             exceptionsMap.set(key, exception);
         }
@@ -146,12 +146,12 @@ function generate5xxReportingEvent(error, request, responseCode) {
         if(!exception.traceId){
             return;
         }
-        let key = (request.uri ? request.uri : request.url) + responseCode;
+        const key = (request.uri ? request.uri : request.url) + responseCode;
         if (!exceptionsMap.has(key)) {
             exceptionsMap.set(key, exception);
         }
         else {
-            let previousCounter = exceptionsMap.get(key).counter;
+            const previousCounter = exceptionsMap.get(key).counter;
             exception.counter = previousCounter ? previousCounter + 1: exception.counter + 1;
             exceptionsMap.set(key, exception);
         }

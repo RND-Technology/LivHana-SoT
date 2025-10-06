@@ -36,7 +36,7 @@ export function loadPostcssImport() {
 }
 
 export function loadCssNano() {
-  let options = { preset: ['default', { cssDeclarationSorter: false }] }
+  const options = { preset: ['default', { cssDeclarationSorter: false }] }
 
   // Try to load a local `cssnano` version first
   try {

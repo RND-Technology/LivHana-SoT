@@ -2,8 +2,8 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var ReactJSXRuntime = require('react/jsx-runtime');
-var emotionElement = require('../../dist/emotion-element-010f37fa.development.edge-light.cjs.js');
+const ReactJSXRuntime = require('react/jsx-runtime');
+const emotionElement = require('../../dist/emotion-element-010f37fa.development.edge-light.cjs.js');
 require('react');
 require('@emotion/cache');
 require('@babel/runtime/helpers/extends');
@@ -16,11 +16,11 @@ require('@emotion/use-insertion-effect-with-fallbacks');
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
-  var n = Object.create(null);
+  const n = Object.create(null);
   if (e) {
     Object.keys(e).forEach(function (k) {
       if (k !== 'default') {
-        var d = Object.getOwnPropertyDescriptor(e, k);
+        const d = Object.getOwnPropertyDescriptor(e, k);
         Object.defineProperty(n, k, d.get ? d : {
           enumerable: true,
           get: function () { return e[k]; }
@@ -32,17 +32,17 @@ function _interopNamespace(e) {
   return Object.freeze(n);
 }
 
-var ReactJSXRuntime__namespace = /*#__PURE__*/_interopNamespace(ReactJSXRuntime);
+const ReactJSXRuntime__namespace = /*#__PURE__*/_interopNamespace(ReactJSXRuntime);
 
-var Fragment = ReactJSXRuntime__namespace.Fragment;
-var jsx = function jsx(type, props, key) {
+const Fragment = ReactJSXRuntime__namespace.Fragment;
+const jsx = function jsx(type, props, key) {
   if (!emotionElement.hasOwn.call(props, 'css')) {
     return ReactJSXRuntime__namespace.jsx(type, props, key);
   }
 
   return ReactJSXRuntime__namespace.jsx(emotionElement.Emotion, emotionElement.createEmotionProps(type, props), key);
 };
-var jsxs = function jsxs(type, props, key) {
+const jsxs = function jsxs(type, props, key) {
   if (!emotionElement.hasOwn.call(props, 'css')) {
     return ReactJSXRuntime__namespace.jsxs(type, props, key);
   }

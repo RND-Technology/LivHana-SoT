@@ -1,8 +1,8 @@
-var Stack = require('./_Stack'),
+const Stack = require('./_Stack'),
     baseIsEqual = require('./_baseIsEqual');
 
 /** Used to compose bitmasks for value comparisons. */
-var COMPARE_PARTIAL_FLAG = 1,
+const COMPARE_PARTIAL_FLAG = 1,
     COMPARE_UNORDERED_FLAG = 2;
 
 /**
@@ -16,7 +16,7 @@ var COMPARE_PARTIAL_FLAG = 1,
  * @returns {boolean} Returns `true` if `object` is a match, else `false`.
  */
 function baseIsMatch(object, source, matchData, customizer) {
-  var index = matchData.length,
+  let index = matchData.length,
       length = index,
       noCustomizer = !customizer;
 
@@ -35,7 +35,7 @@ function baseIsMatch(object, source, matchData, customizer) {
   }
   while (++index < length) {
     data = matchData[index];
-    var key = data[0],
+    const key = data[0],
         objValue = object[key],
         srcValue = data[1];
 
@@ -44,7 +44,7 @@ function baseIsMatch(object, source, matchData, customizer) {
         return false;
       }
     } else {
-      var stack = new Stack;
+      const stack = new Stack;
       if (customizer) {
         var result = customizer(objValue, srcValue, key, object, source, stack);
       }

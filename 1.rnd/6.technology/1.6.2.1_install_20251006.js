@@ -1,19 +1,19 @@
 "use strict";
-var __create = Object.create;
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getProtoOf = Object.getPrototypeOf;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __copyProps = (to, from, except, desc) => {
+const __create = Object.create;
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __getProtoOf = Object.getPrototypeOf;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+const __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
   // If the importer is in node compatibility mode or this is not an ESM
   // file that has been converted to a CommonJS file using a Babel-
   // compatible transform (i.e. "__esModule" has not been set), then set
@@ -23,17 +23,17 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 
 // lib/npm/node-platform.ts
-var fs = require("fs");
-var os = require("os");
-var path = require("path");
+const fs = require("fs");
+const os = require("os");
+const path = require("path");
 var ESBUILD_BINARY_PATH = process.env.ESBUILD_BINARY_PATH || ESBUILD_BINARY_PATH;
-var isValidBinaryPath = (x) => !!x && x !== "/usr/bin/esbuild";
-var knownWindowsPackages = {
+const isValidBinaryPath = (x) => !!x && x !== "/usr/bin/esbuild";
+const knownWindowsPackages = {
   "win32 arm64 LE": "@esbuild/win32-arm64",
   "win32 ia32 LE": "@esbuild/win32-ia32",
   "win32 x64 LE": "@esbuild/win32-x64"
 };
-var knownUnixlikePackages = {
+const knownUnixlikePackages = {
   "aix ppc64 BE": "@esbuild/aix-ppc64",
   "android arm64 LE": "@esbuild/android-arm64",
   "darwin arm64 LE": "@esbuild/darwin-arm64",
@@ -53,7 +53,7 @@ var knownUnixlikePackages = {
   "openbsd x64 LE": "@esbuild/openbsd-x64",
   "sunos x64 LE": "@esbuild/sunos-x64"
 };
-var knownWebAssemblyFallbackPackages = {
+const knownWebAssemblyFallbackPackages = {
   "android arm LE": "@esbuild/android-arm",
   "android x64 LE": "@esbuild/android-x64"
 };
@@ -61,7 +61,7 @@ function pkgAndSubpathForCurrentPlatform() {
   let pkg;
   let subpath;
   let isWASM = false;
-  let platformKey = `${process.platform} ${os.arch()} ${os.endianness()}`;
+  const platformKey = `${process.platform} ${os.arch()} ${os.endianness()}`;
   if (platformKey in knownWindowsPackages) {
     pkg = knownWindowsPackages[platformKey];
     subpath = "esbuild.exe";
@@ -83,15 +83,15 @@ function downloadedBinPath(pkg, subpath) {
 }
 
 // lib/npm/node-install.ts
-var fs2 = require("fs");
-var os2 = require("os");
-var path2 = require("path");
-var zlib = require("zlib");
-var https = require("https");
-var child_process = require("child_process");
-var versionFromPackageJSON = require(path2.join(__dirname, "package.json")).version;
-var toPath = path2.join(__dirname, "bin", "esbuild");
-var isToPathJS = true;
+const fs2 = require("fs");
+const os2 = require("os");
+const path2 = require("path");
+const zlib = require("zlib");
+const https = require("https");
+const child_process = require("child_process");
+const versionFromPackageJSON = require(path2.join(__dirname, "package.json")).version;
+const toPath = path2.join(__dirname, "bin", "esbuild");
+let isToPathJS = true;
 function validateBinaryVersion(...command) {
   command.push("--version");
   let stdout;
@@ -147,7 +147,7 @@ function fetch(url) {
         return fetch(res.headers.location).then(resolve, reject);
       if (res.statusCode !== 200)
         return reject(new Error(`Server responded with ${res.statusCode}`));
-      let chunks = [];
+      const chunks = [];
       res.on("data", (chunk) => chunks.push(chunk));
       res.on("end", () => resolve(Buffer.concat(chunks)));
     }).on("error", reject);
@@ -159,12 +159,12 @@ function extractFileFromTarGzip(buffer, subpath) {
   } catch (err) {
     throw new Error(`Invalid gzip data in archive: ${err && err.message || err}`);
   }
-  let str = (i, n) => String.fromCharCode(...buffer.subarray(i, i + n)).replace(/\0.*$/, "");
+  const str = (i, n) => String.fromCharCode(...buffer.subarray(i, i + n)).replace(/\0.*$/, "");
   let offset = 0;
   subpath = `package/${subpath}`;
   while (offset < buffer.length) {
-    let name = str(offset, 100);
-    let size = parseInt(str(offset + 124, 12), 8);
+    const name = str(offset, 100);
+    const size = parseInt(str(offset + 124, 12), 8);
     offset += 512;
     if (!isNaN(size)) {
       if (name === subpath) return buffer.subarray(offset, offset + size);

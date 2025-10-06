@@ -54,7 +54,7 @@ function getFileType(flags) {
   if (events.ItemIsSymlink & flags) return "symlink";
 }
 function anyIsTrue(obj) {
-  for (let key in obj) {
+  for (const key in obj) {
     if (obj[key]) return true;
   }
   return false;

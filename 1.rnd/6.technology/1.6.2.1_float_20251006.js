@@ -1,9 +1,9 @@
 'use strict';
 
-var common = require('../common');
-var Type   = require('../type');
+const common = require('../common');
+const Type   = require('../type');
 
-var YAML_FLOAT_PATTERN = new RegExp(
+const YAML_FLOAT_PATTERN = new RegExp(
   // 2.5e4, 2.5 and integers
   '^(?:[-+]?(?:[0-9][0-9_]*)(?:\\.[0-9_]*)?(?:[eE][-+]?[0-9]+)?' +
   // .2e4, .2
@@ -28,7 +28,7 @@ function resolveYamlFloat(data) {
 }
 
 function constructYamlFloat(data) {
-  var value, sign;
+  let value, sign;
 
   value  = data.replace(/_/g, '').toLowerCase();
   sign   = value[0] === '-' ? -1 : 1;
@@ -47,10 +47,10 @@ function constructYamlFloat(data) {
 }
 
 
-var SCIENTIFIC_WITHOUT_DOT = /^[-+]?[0-9]+e/;
+const SCIENTIFIC_WITHOUT_DOT = /^[-+]?[0-9]+e/;
 
 function representYamlFloat(object, style) {
-  var res;
+  let res;
 
   if (isNaN(object)) {
     switch (style) {

@@ -1,7 +1,7 @@
-var isSymbol = require('./isSymbol');
+const isSymbol = require('./isSymbol');
 
 /** Used as references for various `Number` constants. */
-var NAN = 0 / 0;
+const NAN = 0 / 0;
 
 /**
  * The base implementation of `_.toNumber` which doesn't ensure correct

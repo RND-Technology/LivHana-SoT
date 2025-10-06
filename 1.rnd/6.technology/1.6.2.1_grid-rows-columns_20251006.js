@@ -1,6 +1,6 @@
-let Declaration = require('../declaration')
-let Processor = require('../processor')
-let {
+const Declaration = require('../declaration')
+const Processor = require('../processor')
+const {
   autoplaceGridItems,
   getGridGap,
   inheritGridGap,
@@ -12,11 +12,11 @@ class GridRowsColumns extends Declaration {
   insert(decl, prefix, prefixes, result) {
     if (prefix !== '-ms-') return super.insert(decl, prefix, prefixes)
 
-    let { parent, prop, value } = decl
-    let isRowProp = prop.includes('rows')
-    let isColumnProp = prop.includes('columns')
+    const { parent, prop, value } = decl
+    const isRowProp = prop.includes('rows')
+    const isColumnProp = prop.includes('columns')
 
-    let hasGridTemplate = parent.some(
+    const hasGridTemplate = parent.some(
       i => i.prop === 'grid-template' || i.prop === 'grid-template-areas'
     )
 
@@ -27,8 +27,8 @@ class GridRowsColumns extends Declaration {
       return false
     }
 
-    let processor = new Processor({ options: {} })
-    let status = processor.gridStatus(parent, result)
+    const processor = new Processor({ options: {} })
+    const status = processor.gridStatus(parent, result)
     let gap = getGridGap(decl)
     gap = inheritGridGap(decl, gap) || gap
 
@@ -38,7 +38,7 @@ class GridRowsColumns extends Declaration {
       gapValue = null
     }
 
-    let prefixValue = prefixTrackValue({
+    const prefixValue = prefixTrackValue({
       gap: gapValue,
       value
     })
@@ -51,7 +51,7 @@ class GridRowsColumns extends Declaration {
       value: prefixValue
     })
 
-    let autoflow = parent.nodes.find(i => i.prop === 'grid-auto-flow')
+    const autoflow = parent.nodes.find(i => i.prop === 'grid-auto-flow')
     let autoflowValue = 'row'
 
     if (autoflow && !processor.disabled(autoflow, result)) {
@@ -61,7 +61,7 @@ class GridRowsColumns extends Declaration {
       /**
        * Show warning if grid-template-rows decl is not found
        */
-      let rowDecl = parent.nodes.find(i => i.prop === 'grid-template-rows')
+      const rowDecl = parent.nodes.find(i => i.prop === 'grid-template-rows')
 
       if (!rowDecl && hasGridTemplate) {
         return undefined
@@ -76,7 +76,7 @@ class GridRowsColumns extends Declaration {
       /**
        * Show warning if grid-template-columns decl is not found
        */
-      let columnDecl = parent.nodes.find(i => {
+      const columnDecl = parent.nodes.find(i => {
         return i.prop === 'grid-template-columns'
       })
       if (!columnDecl && !hasGridTemplate) {

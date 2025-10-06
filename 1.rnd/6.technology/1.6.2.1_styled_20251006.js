@@ -1,7 +1,7 @@
 "use strict";
 'use client';
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+const _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -18,9 +18,9 @@ Object.defineProperty(exports, "slotShouldForwardProp", {
     return _slotShouldForwardProp.default;
   }
 });
-var _createStyled = _interopRequireDefault(require("@mui/system/createStyled"));
-var _defaultTheme = _interopRequireDefault(require("./defaultTheme"));
-var _identifier = _interopRequireDefault(require("./identifier"));
+const _createStyled = _interopRequireDefault(require("@mui/system/createStyled"));
+const _defaultTheme = _interopRequireDefault(require("./defaultTheme"));
+const _identifier = _interopRequireDefault(require("./identifier"));
 var _rootShouldForwardProp = _interopRequireDefault(require("./rootShouldForwardProp"));
 var _slotShouldForwardProp = _interopRequireDefault(require("./slotShouldForwardProp"));
 const styled = (0, _createStyled.default)({
@@ -28,4 +28,4 @@ const styled = (0, _createStyled.default)({
   defaultTheme: _defaultTheme.default,
   rootShouldForwardProp: _rootShouldForwardProp.default
 });
-var _default = exports.default = styled;
+const _default = exports.default = styled;

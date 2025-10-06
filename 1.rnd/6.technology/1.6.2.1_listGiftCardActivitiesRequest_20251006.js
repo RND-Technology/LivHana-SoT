@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
 exports.listGiftCardActivitiesRequestSchema = void 0;
-var schema_1 = require("../schema");
+const schema_1 = require("../schema");
 exports.listGiftCardActivitiesRequestSchema = (0, schema_1.object)({
     giftCardId: ['gift_card_id', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.string)()))],
     type: ['type', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.string)()))],

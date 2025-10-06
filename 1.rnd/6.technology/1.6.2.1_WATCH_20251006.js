@@ -22,12 +22,12 @@ import '../../native.js';
 import 'node:perf_hooks';
 import 'node:fs/promises';
 
-var chokidar$1 = {};
+const chokidar$1 = {};
 
-var utils$2 = {};
+const utils$2 = {};
 
-var constants$3;
-var hasRequiredConstants$3;
+let constants$3;
+let hasRequiredConstants$3;
 
 function requireConstants$3 () {
 	if (hasRequiredConstants$3) return constants$3;
@@ -213,7 +213,7 @@ function requireConstants$3 () {
 	return constants$3;
 }
 
-var hasRequiredUtils$2;
+let hasRequiredUtils$2;
 
 function requireUtils$2 () {
 	if (hasRequiredUtils$2) return utils$2;
@@ -286,8 +286,8 @@ function requireUtils$2 () {
 	return utils$2;
 }
 
-var scan_1$1;
-var hasRequiredScan$1;
+let scan_1$1;
+let hasRequiredScan$1;
 
 function requireScan$1 () {
 	if (hasRequiredScan$1) return scan_1$1;
@@ -685,8 +685,8 @@ function requireScan$1 () {
 	return scan_1$1;
 }
 
-var parse_1$2;
-var hasRequiredParse$2;
+let parse_1$2;
+let hasRequiredParse$2;
 
 function requireParse$2 () {
 	if (hasRequiredParse$2) return parse_1$2;
@@ -1777,8 +1777,8 @@ function requireParse$2 () {
 	return parse_1$2;
 }
 
-var picomatch_1$1;
-var hasRequiredPicomatch$3;
+let picomatch_1$1;
+let hasRequiredPicomatch$3;
 
 function requirePicomatch$3 () {
 	if (hasRequiredPicomatch$3) return picomatch_1$1;
@@ -2127,8 +2127,8 @@ function requirePicomatch$3 () {
 	return picomatch_1$1;
 }
 
-var picomatch$1;
-var hasRequiredPicomatch$2;
+let picomatch$1;
+let hasRequiredPicomatch$2;
 
 function requirePicomatch$2 () {
 	if (hasRequiredPicomatch$2) return picomatch$1;
@@ -2138,8 +2138,8 @@ function requirePicomatch$2 () {
 	return picomatch$1;
 }
 
-var readdirp_1;
-var hasRequiredReaddirp;
+let readdirp_1;
+let hasRequiredReaddirp;
 
 function requireReaddirp () {
 	if (hasRequiredReaddirp) return readdirp_1;
@@ -2433,12 +2433,12 @@ function requireReaddirp () {
 	return readdirp_1;
 }
 
-var anymatch = {exports: {}};
+const anymatch = {exports: {}};
 
-var utils$1 = {};
+const utils$1 = {};
 
-var constants$2;
-var hasRequiredConstants$2;
+let constants$2;
+let hasRequiredConstants$2;
 
 function requireConstants$2 () {
 	if (hasRequiredConstants$2) return constants$2;
@@ -2624,7 +2624,7 @@ function requireConstants$2 () {
 	return constants$2;
 }
 
-var hasRequiredUtils$1;
+let hasRequiredUtils$1;
 
 function requireUtils$1 () {
 	if (hasRequiredUtils$1) return utils$1;
@@ -2697,8 +2697,8 @@ function requireUtils$1 () {
 	return utils$1;
 }
 
-var scan_1;
-var hasRequiredScan;
+let scan_1;
+let hasRequiredScan;
 
 function requireScan () {
 	if (hasRequiredScan) return scan_1;
@@ -3096,8 +3096,8 @@ function requireScan () {
 	return scan_1;
 }
 
-var parse_1$1;
-var hasRequiredParse$1;
+let parse_1$1;
+let hasRequiredParse$1;
 
 function requireParse$1 () {
 	if (hasRequiredParse$1) return parse_1$1;
@@ -4188,8 +4188,8 @@ function requireParse$1 () {
 	return parse_1$1;
 }
 
-var picomatch_1;
-var hasRequiredPicomatch$1;
+let picomatch_1;
+let hasRequiredPicomatch$1;
 
 function requirePicomatch$1 () {
 	if (hasRequiredPicomatch$1) return picomatch_1;
@@ -4538,8 +4538,8 @@ function requirePicomatch$1 () {
 	return picomatch_1;
 }
 
-var picomatch;
-var hasRequiredPicomatch;
+let picomatch;
+let hasRequiredPicomatch;
 
 function requirePicomatch () {
 	if (hasRequiredPicomatch) return picomatch;
@@ -4556,8 +4556,8 @@ function requirePicomatch () {
  * Released under the MIT License.
  */
 
-var normalizePath;
-var hasRequiredNormalizePath;
+let normalizePath;
+let hasRequiredNormalizePath;
 
 function requireNormalizePath () {
 	if (hasRequiredNormalizePath) return normalizePath;
@@ -4569,22 +4569,22 @@ function requireNormalizePath () {
 
 	  if (path === '\\' || path === '/') return '/';
 
-	  var len = path.length;
+	  const len = path.length;
 	  if (len <= 1) return path;
 
 	  // ensure that win32 namespaces has two leading slashes, so that the path is
 	  // handled properly by the win32 version of path.parse() after being normalized
 	  // https://msdn.microsoft.com/library/windows/desktop/aa365247(v=vs.85).aspx#namespaces
-	  var prefix = '';
+	  let prefix = '';
 	  if (len > 4 && path[3] === '\\') {
-	    var ch = path[2];
+	    const ch = path[2];
 	    if ((ch === '?' || ch === '.') && path.slice(0, 2) === '\\\\') {
 	      path = path.slice(2);
 	      prefix = '//';
 	    }
 	  }
 
-	  var segs = path.split(/[/\\]+/);
+	  const segs = path.split(/[/\\]+/);
 	  if (stripTrailing !== false && segs[segs.length - 1] === '') {
 	    segs.pop();
 	  }
@@ -4593,9 +4593,9 @@ function requireNormalizePath () {
 	return normalizePath;
 }
 
-var anymatch_1 = anymatch.exports;
+const anymatch_1 = anymatch.exports;
 
-var hasRequiredAnymatch;
+let hasRequiredAnymatch;
 
 function requireAnymatch () {
 	if (hasRequiredAnymatch) return anymatch.exports;
@@ -4713,8 +4713,8 @@ function requireAnymatch () {
  * Licensed under the MIT License.
  */
 
-var isExtglob;
-var hasRequiredIsExtglob;
+let isExtglob;
+let hasRequiredIsExtglob;
 
 function requireIsExtglob () {
 	if (hasRequiredIsExtglob) return isExtglob;
@@ -4724,7 +4724,7 @@ function requireIsExtglob () {
 	    return false;
 	  }
 
-	  var match;
+	  let match;
 	  while ((match = /(\\).|([@?!+*]\(.*\))/g.exec(str))) {
 	    if (match[2]) return true;
 	    str = str.slice(match.index + match[0].length);
@@ -4742,24 +4742,24 @@ function requireIsExtglob () {
  * Released under the MIT License.
  */
 
-var isGlob;
-var hasRequiredIsGlob;
+let isGlob;
+let hasRequiredIsGlob;
 
 function requireIsGlob () {
 	if (hasRequiredIsGlob) return isGlob;
 	hasRequiredIsGlob = 1;
-	var isExtglob = /*@__PURE__*/ requireIsExtglob();
-	var chars = { '{': '}', '(': ')', '[': ']'};
-	var strictCheck = function(str) {
+	const isExtglob = /*@__PURE__*/ requireIsExtglob();
+	const chars = { '{': '}', '(': ')', '[': ']'};
+	const strictCheck = function(str) {
 	  if (str[0] === '!') {
 	    return true;
 	  }
-	  var index = 0;
-	  var pipeIndex = -2;
-	  var closeSquareIndex = -2;
-	  var closeCurlyIndex = -2;
-	  var closeParenIndex = -2;
-	  var backSlashIndex = -2;
+	  let index = 0;
+	  let pipeIndex = -2;
+	  let closeSquareIndex = -2;
+	  let closeCurlyIndex = -2;
+	  let closeParenIndex = -2;
+	  let backSlashIndex = -2;
 	  while (index < str.length) {
 	    if (str[index] === '*') {
 	      return true;
@@ -4820,12 +4820,12 @@ function requireIsGlob () {
 	    }
 
 	    if (str[index] === '\\') {
-	      var open = str[index + 1];
+	      const open = str[index + 1];
 	      index += 2;
-	      var close = chars[open];
+	      const close = chars[open];
 
 	      if (close) {
-	        var n = str.indexOf(close, index);
+	        const n = str.indexOf(close, index);
 	        if (n !== -1) {
 	          index = n + 1;
 	        }
@@ -4841,23 +4841,23 @@ function requireIsGlob () {
 	  return false;
 	};
 
-	var relaxedCheck = function(str) {
+	const relaxedCheck = function(str) {
 	  if (str[0] === '!') {
 	    return true;
 	  }
-	  var index = 0;
+	  let index = 0;
 	  while (index < str.length) {
 	    if (/[*?{}()[\]]/.test(str[index])) {
 	      return true;
 	    }
 
 	    if (str[index] === '\\') {
-	      var open = str[index + 1];
+	      const open = str[index + 1];
 	      index += 2;
-	      var close = chars[open];
+	      const close = chars[open];
 
 	      if (close) {
-	        var n = str.indexOf(close, index);
+	        const n = str.indexOf(close, index);
 	        if (n !== -1) {
 	          index = n + 1;
 	        }
@@ -4882,7 +4882,7 @@ function requireIsGlob () {
 	    return true;
 	  }
 
-	  var check = strictCheck;
+	  let check = strictCheck;
 
 	  // optionally relax check
 	  if (options && options.strict === false) {
@@ -4894,22 +4894,22 @@ function requireIsGlob () {
 	return isGlob;
 }
 
-var globParent;
-var hasRequiredGlobParent;
+let globParent;
+let hasRequiredGlobParent;
 
 function requireGlobParent () {
 	if (hasRequiredGlobParent) return globParent;
 	hasRequiredGlobParent = 1;
 
-	var isGlob = /*@__PURE__*/ requireIsGlob();
-	var pathPosixDirname = require$$0$1.posix.dirname;
-	var isWin32 = require$$2$1.platform() === 'win32';
+	const isGlob = /*@__PURE__*/ requireIsGlob();
+	const pathPosixDirname = require$$0$1.posix.dirname;
+	const isWin32 = require$$2$1.platform() === 'win32';
 
-	var slash = '/';
-	var backslash = /\\/g;
-	var enclosure = /[\{\[].*[\}\]]$/;
-	var globby = /(^|[^\\])([\{\[]|\([^\)]+$)/;
-	var escaped = /\\([\!\*\?\|\[\]\(\)\{\}])/g;
+	const slash = '/';
+	const backslash = /\\/g;
+	const enclosure = /[\{\[].*[\}\]]$/;
+	const globby = /(^|[^\\])([\{\[]|\([^\)]+$)/;
+	const escaped = /\\([\!\*\?\|\[\]\(\)\{\}])/g;
 
 	/**
 	 * @param {string} str
@@ -4918,7 +4918,7 @@ function requireGlobParent () {
 	 * @returns {string}
 	 */
 	globParent = function globParent(str, opts) {
-	  var options = Object.assign({ flipBackslashes: true }, opts);
+	  const options = Object.assign({ flipBackslashes: true }, opts);
 
 	  // flip windows path separators
 	  if (options.flipBackslashes && isWin32 && str.indexOf(slash) < 0) {
@@ -4944,9 +4944,9 @@ function requireGlobParent () {
 	return globParent;
 }
 
-var utils = {};
+const utils = {};
 
-var hasRequiredUtils;
+let hasRequiredUtils;
 
 function requireUtils () {
 	if (hasRequiredUtils) return utils;
@@ -5077,8 +5077,8 @@ function requireUtils () {
 	return utils;
 }
 
-var stringify;
-var hasRequiredStringify;
+let stringify;
+let hasRequiredStringify;
 
 function requireStringify () {
 	if (hasRequiredStringify) return stringify;
@@ -5123,8 +5123,8 @@ function requireStringify () {
  * Released under the MIT License.
  */
 
-var isNumber;
-var hasRequiredIsNumber;
+let isNumber;
+let hasRequiredIsNumber;
 
 function requireIsNumber () {
 	if (hasRequiredIsNumber) return isNumber;
@@ -5149,8 +5149,8 @@ function requireIsNumber () {
  * Released under the MIT License.
  */
 
-var toRegexRange_1;
-var hasRequiredToRegexRange;
+let toRegexRange_1;
+let hasRequiredToRegexRange;
 
 function requireToRegexRange () {
 	if (hasRequiredToRegexRange) return toRegexRange_1;
@@ -5171,26 +5171,26 @@ function requireToRegexRange () {
 	    throw new TypeError('toRegexRange: expected the second argument to be a number.');
 	  }
 
-	  let opts = { relaxZeros: true, ...options };
+	  const opts = { relaxZeros: true, ...options };
 	  if (typeof opts.strictZeros === 'boolean') {
 	    opts.relaxZeros = opts.strictZeros === false;
 	  }
 
-	  let relax = String(opts.relaxZeros);
-	  let shorthand = String(opts.shorthand);
-	  let capture = String(opts.capture);
-	  let wrap = String(opts.wrap);
-	  let cacheKey = min + ':' + max + '=' + relax + shorthand + capture + wrap;
+	  const relax = String(opts.relaxZeros);
+	  const shorthand = String(opts.shorthand);
+	  const capture = String(opts.capture);
+	  const wrap = String(opts.wrap);
+	  const cacheKey = min + ':' + max + '=' + relax + shorthand + capture + wrap;
 
 	  if (toRegexRange.cache.hasOwnProperty(cacheKey)) {
 	    return toRegexRange.cache[cacheKey].result;
 	  }
 
 	  let a = Math.min(min, max);
-	  let b = Math.max(min, max);
+	  const b = Math.max(min, max);
 
 	  if (Math.abs(a - b) === 1) {
-	    let result = min + '|' + max;
+	    const result = min + '|' + max;
 	    if (opts.capture) {
 	      return `(${result})`;
 	    }
@@ -5200,8 +5200,8 @@ function requireToRegexRange () {
 	    return `(?:${result})`;
 	  }
 
-	  let isPadded = hasPadding(min) || hasPadding(max);
-	  let state = { min, max, a, b };
+	  const isPadded = hasPadding(min) || hasPadding(max);
+	  const state = { min, max, a, b };
 	  let positives = [];
 	  let negatives = [];
 
@@ -5211,7 +5211,7 @@ function requireToRegexRange () {
 	  }
 
 	  if (a < 0) {
-	    let newMin = b < 0 ? Math.abs(b) : 1;
+	    const newMin = b < 0 ? Math.abs(b) : 1;
 	    negatives = splitToPatterns(newMin, Math.abs(a), state, opts);
 	    a = state.a = 0;
 	  }
@@ -5235,10 +5235,10 @@ function requireToRegexRange () {
 	};
 
 	function collatePatterns(neg, pos, options) {
-	  let onlyNegative = filterPatterns(neg, pos, '-', false) || [];
-	  let onlyPositive = filterPatterns(pos, neg, '', false) || [];
-	  let intersected = filterPatterns(neg, pos, '-?', true) || [];
-	  let subpatterns = onlyNegative.concat(intersected).concat(onlyPositive);
+	  const onlyNegative = filterPatterns(neg, pos, '-', false) || [];
+	  const onlyPositive = filterPatterns(pos, neg, '', false) || [];
+	  const intersected = filterPatterns(neg, pos, '-?', true) || [];
+	  const subpatterns = onlyNegative.concat(intersected).concat(onlyPositive);
 	  return subpatterns.join('|');
 	}
 
@@ -5280,13 +5280,13 @@ function requireToRegexRange () {
 	    return { pattern: start, count: [], digits: 0 };
 	  }
 
-	  let zipped = zip(start, stop);
-	  let digits = zipped.length;
+	  const zipped = zip(start, stop);
+	  const digits = zipped.length;
 	  let pattern = '';
 	  let count = 0;
 
 	  for (let i = 0; i < digits; i++) {
-	    let [startDigit, stopDigit] = zipped[i];
+	    const [startDigit, stopDigit] = zipped[i];
 
 	    if (startDigit === stopDigit) {
 	      pattern += startDigit;
@@ -5307,14 +5307,14 @@ function requireToRegexRange () {
 	}
 
 	function splitToPatterns(min, max, tok, options) {
-	  let ranges = splitToRanges(min, max);
-	  let tokens = [];
+	  const ranges = splitToRanges(min, max);
+	  const tokens = [];
 	  let start = min;
 	  let prev;
 
 	  for (let i = 0; i < ranges.length; i++) {
-	    let max = ranges[i];
-	    let obj = rangeToPattern(String(start), String(max), options);
+	    const max = ranges[i];
+	    const obj = rangeToPattern(String(start), String(max), options);
 	    let zeros = '';
 
 	    if (!tok.isPadded && prev && prev.pattern === obj.pattern) {
@@ -5342,10 +5342,10 @@ function requireToRegexRange () {
 	}
 
 	function filterPatterns(arr, comparison, prefix, intersection, options) {
-	  let result = [];
+	  const result = [];
 
-	  for (let ele of arr) {
-	    let { string } = ele;
+	  for (const ele of arr) {
+	    const { string } = ele;
 
 	    // only push if _both_ are negative...
 	    if (!intersection && !contains(comparison, 'string', string)) {
@@ -5365,7 +5365,7 @@ function requireToRegexRange () {
 	 */
 
 	function zip(a, b) {
-	  let arr = [];
+	  const arr = [];
 	  for (let i = 0; i < a.length; i++) arr.push([a[i], b[i]]);
 	  return arr;
 	}
@@ -5387,7 +5387,7 @@ function requireToRegexRange () {
 	}
 
 	function toQuantifier(digits) {
-	  let [start = 0, stop = ''] = digits;
+	  const [start = 0, stop = ''] = digits;
 	  if (stop || start > 1) {
 	    return `{${start + (stop ? ',' + stop : '')}}`;
 	  }
@@ -5407,8 +5407,8 @@ function requireToRegexRange () {
 	    return value;
 	  }
 
-	  let diff = Math.abs(tok.maxLen - String(value).length);
-	  let relax = options.relaxZeros !== false;
+	  const diff = Math.abs(tok.maxLen - String(value).length);
+	  const relax = options.relaxZeros !== false;
 
 	  switch (diff) {
 	    case 0:
@@ -5445,8 +5445,8 @@ function requireToRegexRange () {
  * Licensed under the MIT License.
  */
 
-var fillRange;
-var hasRequiredFillRange;
+let fillRange;
+let hasRequiredFillRange;
 
 function requireFillRange () {
 	if (hasRequiredFillRange) return fillRange;
@@ -5485,7 +5485,7 @@ function requireFillRange () {
 
 	const pad = (input, maxLength, toNumber) => {
 	  if (maxLength > 0) {
-	    let dash = input[0] === '-' ? '-' : '';
+	    const dash = input[0] === '-' ? '-' : '';
 	    if (dash) input = input.slice(1);
 	    input = (dash + input.padStart(dash ? maxLength - 1 : maxLength, '0'));
 	  }
@@ -5496,7 +5496,7 @@ function requireFillRange () {
 	};
 
 	const toMaxLen = (input, maxLength) => {
-	  let negative = input[0] === '-' ? '-' : '';
+	  const negative = input[0] === '-' ? '-' : '';
 	  if (negative) {
 	    input = input.slice(1);
 	    maxLength--;
@@ -5509,7 +5509,7 @@ function requireFillRange () {
 	  parts.negatives.sort((a, b) => a < b ? -1 : a > b ? 1 : 0);
 	  parts.positives.sort((a, b) => a < b ? -1 : a > b ? 1 : 0);
 
-	  let prefix = options.capture ? '' : '?:';
+	  const prefix = options.capture ? '' : '?:';
 	  let positives = '';
 	  let negatives = '';
 	  let result;
@@ -5540,17 +5540,17 @@ function requireFillRange () {
 	    return toRegexRange(a, b, { wrap: false, ...options });
 	  }
 
-	  let start = String.fromCharCode(a);
+	  const start = String.fromCharCode(a);
 	  if (a === b) return start;
 
-	  let stop = String.fromCharCode(b);
+	  const stop = String.fromCharCode(b);
 	  return `[${start}-${stop}]`;
 	};
 
 	const toRegex = (start, end, options) => {
 	  if (Array.isArray(start)) {
-	    let wrap = options.wrap === true;
-	    let prefix = options.capture ? '' : '?:';
+	    const wrap = options.wrap === true;
+	    const prefix = options.capture ? '' : '?:';
 	    return wrap ? `(${prefix}${start.join('|')})` : start.join('|');
 	  }
 	  return toRegexRange(start, end, options);
@@ -5585,24 +5585,24 @@ function requireFillRange () {
 	  if (a === 0) a = 0;
 	  if (b === 0) b = 0;
 
-	  let descending = a > b;
-	  let startString = String(start);
-	  let endString = String(end);
-	  let stepString = String(step);
+	  const descending = a > b;
+	  const startString = String(start);
+	  const endString = String(end);
+	  const stepString = String(step);
 	  step = Math.max(Math.abs(step), 1);
 
-	  let padded = zeros(startString) || zeros(endString) || zeros(stepString);
-	  let maxLen = padded ? Math.max(startString.length, endString.length, stepString.length) : 0;
-	  let toNumber = padded === false && stringify(start, end, options) === false;
-	  let format = options.transform || transform(toNumber);
+	  const padded = zeros(startString) || zeros(endString) || zeros(stepString);
+	  const maxLen = padded ? Math.max(startString.length, endString.length, stepString.length) : 0;
+	  const toNumber = padded === false && stringify(start, end, options) === false;
+	  const format = options.transform || transform(toNumber);
 
 	  if (options.toRegex && step === 1) {
 	    return toRange(toMaxLen(start, maxLen), toMaxLen(end, maxLen), true, options);
 	  }
 
-	  let parts = { negatives: [], positives: [] };
-	  let push = num => parts[num < 0 ? 'negatives' : 'positives'].push(Math.abs(num));
-	  let range = [];
+	  const parts = { negatives: [], positives: [] };
+	  const push = num => parts[num < 0 ? 'negatives' : 'positives'].push(Math.abs(num));
+	  const range = [];
 	  let index = 0;
 
 	  while (descending ? a >= b : a <= b) {
@@ -5629,19 +5629,19 @@ function requireFillRange () {
 	    return invalidRange(start, end, options);
 	  }
 
-	  let format = options.transform || (val => String.fromCharCode(val));
+	  const format = options.transform || (val => String.fromCharCode(val));
 	  let a = `${start}`.charCodeAt(0);
-	  let b = `${end}`.charCodeAt(0);
+	  const b = `${end}`.charCodeAt(0);
 
-	  let descending = a > b;
-	  let min = Math.min(a, b);
-	  let max = Math.max(a, b);
+	  const descending = a > b;
+	  const min = Math.min(a, b);
+	  const max = Math.max(a, b);
 
 	  if (options.toRegex && step === 1) {
 	    return toRange(min, max, false, options);
 	  }
 
-	  let range = [];
+	  const range = [];
 	  let index = 0;
 
 	  while (descending ? a >= b : a <= b) {
@@ -5674,7 +5674,7 @@ function requireFillRange () {
 	    return fill(start, end, 0, step);
 	  }
 
-	  let opts = { ...options };
+	  const opts = { ...options };
 	  if (opts.capture === true) opts.wrap = true;
 	  step = step || opts.step || 1;
 
@@ -5694,8 +5694,8 @@ function requireFillRange () {
 	return fillRange;
 }
 
-var compile_1;
-var hasRequiredCompile;
+let compile_1;
+let hasRequiredCompile;
 
 function requireCompile () {
 	if (hasRequiredCompile) return compile_1;
@@ -5762,8 +5762,8 @@ function requireCompile () {
 	return compile_1;
 }
 
-var expand_1;
-var hasRequiredExpand;
+let expand_1;
+let hasRequiredExpand;
 
 function requireExpand () {
 	if (hasRequiredExpand) return expand_1;
@@ -5883,8 +5883,8 @@ function requireExpand () {
 	return expand_1;
 }
 
-var constants$1;
-var hasRequiredConstants$1;
+let constants$1;
+let hasRequiredConstants$1;
 
 function requireConstants$1 () {
 	if (hasRequiredConstants$1) return constants$1;
@@ -5948,8 +5948,8 @@ function requireConstants$1 () {
 	return constants$1;
 }
 
-var parse_1;
-var hasRequiredParse;
+let parse_1;
+let hasRequiredParse;
 
 function requireParse () {
 	if (hasRequiredParse) return parse_1;
@@ -6287,8 +6287,8 @@ function requireParse () {
 	return parse_1;
 }
 
-var braces_1;
-var hasRequiredBraces;
+let braces_1;
+let hasRequiredBraces;
 
 function requireBraces () {
 	if (hasRequiredBraces) return braces_1;
@@ -6729,8 +6729,8 @@ const require$$0 = [
 	"zipx"
 ];
 
-var binaryExtensions;
-var hasRequiredBinaryExtensions;
+let binaryExtensions;
+let hasRequiredBinaryExtensions;
 
 function requireBinaryExtensions () {
 	if (hasRequiredBinaryExtensions) return binaryExtensions;
@@ -6739,8 +6739,8 @@ function requireBinaryExtensions () {
 	return binaryExtensions;
 }
 
-var isBinaryPath;
-var hasRequiredIsBinaryPath;
+let isBinaryPath;
+let hasRequiredIsBinaryPath;
 
 function requireIsBinaryPath () {
 	if (hasRequiredIsBinaryPath) return isBinaryPath;
@@ -6754,9 +6754,9 @@ function requireIsBinaryPath () {
 	return isBinaryPath;
 }
 
-var constants = {};
+const constants = {};
 
-var hasRequiredConstants;
+let hasRequiredConstants;
 
 function requireConstants () {
 	if (hasRequiredConstants) return constants;
@@ -6831,8 +6831,8 @@ function requireConstants () {
 	return constants;
 }
 
-var nodefsHandler;
-var hasRequiredNodefsHandler;
+let nodefsHandler;
+let hasRequiredNodefsHandler;
 
 function requireNodefsHandler () {
 	if (hasRequiredNodefsHandler) return nodefsHandler;
@@ -7483,11 +7483,11 @@ function requireNodefsHandler () {
 	return nodefsHandler;
 }
 
-var fseventsHandler = {exports: {}};
+const fseventsHandler = {exports: {}};
 
 const require$$3 = /*@__PURE__*/getAugmentedNamespace(fseventsImporter);
 
-var hasRequiredFseventsHandler;
+let hasRequiredFseventsHandler;
 
 function requireFseventsHandler () {
 	if (hasRequiredFseventsHandler) return fseventsHandler.exports;
@@ -8020,7 +8020,7 @@ function requireFseventsHandler () {
 	return fseventsHandler.exports;
 }
 
-var hasRequiredChokidar;
+let hasRequiredChokidar;
 
 function requireChokidar () {
 	if (hasRequiredChokidar) return chokidar$1;
@@ -9000,7 +9000,7 @@ function requireChokidar () {
 	return chokidar$1;
 }
 
-var chokidarExports = /*@__PURE__*/ requireChokidar();
+const chokidarExports = /*@__PURE__*/ requireChokidar();
 const chokidar = /*@__PURE__*/getDefaultExportFromCjs(chokidarExports);
 
 class FileWatcher {

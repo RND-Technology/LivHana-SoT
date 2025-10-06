@@ -24,15 +24,15 @@
 
 'use strict';
 
-var gulp = require('gulp'),
+const gulp = require('gulp'),
     git = require('gulp-git'),
     bump = require('gulp-bump'),
     filter = require('gulp-filter'),
     tagVersion = require('gulp-tag-version');
 
-var TEST = [ 'test/*.js' ];
-var POWERED = [ 'powered-test/*.js' ];
-var SOURCE = [ 'src/**/*.js' ];
+const TEST = [ 'test/*.js' ];
+const POWERED = [ 'powered-test/*.js' ];
+const SOURCE = [ 'src/**/*.js' ];
 
 /**
  * Bumping version number and tagging the repository with it.

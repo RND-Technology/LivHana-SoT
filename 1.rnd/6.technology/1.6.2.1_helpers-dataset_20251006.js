@@ -923,7 +923,7 @@ function calculateDelta(tickValue, ticks) {
     }
     return delta;
 }
- var Ticks = {
+ const Ticks = {
     formatters
 };
 
@@ -1105,7 +1105,7 @@ function set(root, scope, values) {
         appliers.forEach((apply)=>apply(this));
     }
 }
-var defaults = /* #__PURE__ */ new Defaults({
+const defaults = /* #__PURE__ */ new Defaults({
     _scriptable: (name)=>!name.startsWith('on'),
     _indexable: (name)=>name !== 'events',
     hover: {

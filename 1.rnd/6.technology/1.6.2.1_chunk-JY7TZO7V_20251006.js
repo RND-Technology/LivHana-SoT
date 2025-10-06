@@ -22,14 +22,14 @@ import {
 
 // node_modules/@mui/material/CssBaseline/CssBaseline.js
 init_extends();
-var React3 = __toESM(require_react());
-var import_prop_types3 = __toESM(require_prop_types());
+const React3 = __toESM(require_react());
+const import_prop_types3 = __toESM(require_prop_types());
 
 // node_modules/@mui/material/DefaultPropsProvider/DefaultPropsProvider.js
 init_extends();
-var React = __toESM(require_react());
-var import_prop_types = __toESM(require_prop_types());
-var import_jsx_runtime = __toESM(require_jsx_runtime());
+const React = __toESM(require_react());
+const import_prop_types = __toESM(require_prop_types());
+const import_jsx_runtime = __toESM(require_jsx_runtime());
 function DefaultPropsProvider(props) {
   return (0, import_jsx_runtime.jsx)(DefaultPropsProvider_default, _extends({}, props));
 }
@@ -53,9 +53,9 @@ function useDefaultProps2(params) {
 
 // node_modules/@mui/material/GlobalStyles/GlobalStyles.js
 init_extends();
-var React2 = __toESM(require_react());
-var import_prop_types2 = __toESM(require_prop_types());
-var import_jsx_runtime2 = __toESM(require_jsx_runtime());
+const React2 = __toESM(require_react());
+const import_prop_types2 = __toESM(require_prop_types());
+const import_jsx_runtime2 = __toESM(require_jsx_runtime());
 function GlobalStyles(props) {
   return (0, import_jsx_runtime2.jsx)(GlobalStyles_default, _extends({}, props, {
     defaultTheme: defaultTheme_default,
@@ -72,12 +72,12 @@ true ? GlobalStyles.propTypes = {
    */
   styles: import_prop_types2.default.oneOfType([import_prop_types2.default.array, import_prop_types2.default.func, import_prop_types2.default.number, import_prop_types2.default.object, import_prop_types2.default.string, import_prop_types2.default.bool])
 } : void 0;
-var GlobalStyles_default2 = GlobalStyles;
+const GlobalStyles_default2 = GlobalStyles;
 
 // node_modules/@mui/material/CssBaseline/CssBaseline.js
-var import_jsx_runtime3 = __toESM(require_jsx_runtime());
-var import_jsx_runtime4 = __toESM(require_jsx_runtime());
-var html = (theme, enableColorScheme) => _extends({
+const import_jsx_runtime3 = __toESM(require_jsx_runtime());
+const import_jsx_runtime4 = __toESM(require_jsx_runtime());
+const html = (theme, enableColorScheme) => _extends({
   WebkitFontSmoothing: "antialiased",
   // Antialiasing.
   MozOsxFontSmoothing: "grayscale",
@@ -90,7 +90,7 @@ var html = (theme, enableColorScheme) => _extends({
 }, enableColorScheme && !theme.vars && {
   colorScheme: theme.palette.mode
 });
-var body = (theme) => _extends({
+const body = (theme) => _extends({
   color: (theme.vars || theme).palette.text.primary
 }, theme.typography.body1, {
   backgroundColor: (theme.vars || theme).palette.background.default,
@@ -99,12 +99,12 @@ var body = (theme) => _extends({
     backgroundColor: (theme.vars || theme).palette.common.white
   }
 });
-var styles = (theme, enableColorScheme = false) => {
-  var _theme$components;
+const styles = (theme, enableColorScheme = false) => {
+  let _theme$components;
   const colorSchemeStyles = {};
   if (enableColorScheme && theme.colorSchemes) {
     Object.entries(theme.colorSchemes).forEach(([key, scheme]) => {
-      var _scheme$palette;
+      let _scheme$palette;
       colorSchemeStyles[theme.getColorSchemeSelector(key).replace(/\s*&/, "")] = {
         colorScheme: (_scheme$palette = scheme.palette) == null ? void 0 : _scheme$palette.mode
       };
@@ -166,7 +166,7 @@ true ? CssBaseline.propTypes = {
    */
   enableColorScheme: import_prop_types3.default.bool
 } : void 0;
-var CssBaseline_default = CssBaseline;
+const CssBaseline_default = CssBaseline;
 
 export {
   useDefaultProps2 as useDefaultProps,

@@ -1,11 +1,11 @@
 "use strict";
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+const _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 exports.__esModule = true;
 exports.default = parents;
 
-var _collectElements = _interopRequireDefault(require("./collectElements"));
+const _collectElements = _interopRequireDefault(require("./collectElements"));
 
 /**
  * Collects all parent elements of a given element.

@@ -1,10 +1,10 @@
 'use strict';
 
-var test = require('tape');
-var parse = require('../');
+const test = require('tape');
+const parse = require('../');
 
 test('boolean default true', function (t) {
-	var argv = parse([], {
+	const argv = parse([], {
 		boolean: 'sometrue',
 		default: { sometrue: true },
 	});
@@ -13,7 +13,7 @@ test('boolean default true', function (t) {
 });
 
 test('boolean default false', function (t) {
-	var argv = parse([], {
+	const argv = parse([], {
 		boolean: 'somefalse',
 		default: { somefalse: false },
 	});
@@ -22,13 +22,13 @@ test('boolean default false', function (t) {
 });
 
 test('boolean default to null', function (t) {
-	var argv = parse([], {
+	const argv = parse([], {
 		boolean: 'maybe',
 		default: { maybe: null },
 	});
 	t.equal(argv.maybe, null);
 
-	var argvLong = parse(['--maybe'], {
+	const argvLong = parse(['--maybe'], {
 		boolean: 'maybe',
 		default: { maybe: null },
 	});

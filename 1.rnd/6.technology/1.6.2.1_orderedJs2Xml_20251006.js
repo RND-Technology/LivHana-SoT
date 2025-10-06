@@ -100,7 +100,7 @@ function propName(obj) {
 function attr_to_str(attrMap, options) {
     let attrStr = "";
     if (attrMap && !options.ignoreAttributes) {
-        for (let attr in attrMap) {
+        for (const attr in attrMap) {
             if(!attrMap.hasOwnProperty(attr)) continue;
             let attrVal = options.attributeValueProcessor(attr, attrMap[attr]);
             attrVal = replaceEntitiesValue(attrVal, options);
@@ -116,8 +116,8 @@ function attr_to_str(attrMap, options) {
 
 function isStopNode(jPath, options) {
     jPath = jPath.substr(0, jPath.length - options.textNodeName.length - 1);
-    let tagName = jPath.substr(jPath.lastIndexOf(".") + 1);
-    for (let index in options.stopNodes) {
+    const tagName = jPath.substr(jPath.lastIndexOf(".") + 1);
+    for (const index in options.stopNodes) {
         if (options.stopNodes[index] === jPath || options.stopNodes[index] === "*." + tagName) return true;
     }
     return false;

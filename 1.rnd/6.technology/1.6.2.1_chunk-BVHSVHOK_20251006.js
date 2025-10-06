@@ -1,5 +1,5 @@
 // src/index.ts
-var f = {
+const f = {
   reset: [0, 0],
   bold: [1, 22, "\x1B[22m\x1B[1m"],
   dim: [2, 22, "\x1B[22m\x1B[2m"],
@@ -47,7 +47,7 @@ function a(n) {
 }
 a.open = "";
 a.close = "";
-var B = /* @__PURE__ */ h.reduce(
+const B = /* @__PURE__ */ h.reduce(
   (n, [e]) => (n[e] = a, n),
   { isColorSupported: !1 }
 );
@@ -55,26 +55,26 @@ function m() {
   return { ...B };
 }
 function C(n = !1) {
-  let e = typeof process != "undefined" ? process : void 0, i = (e == null ? void 0 : e.env) || {}, g = (e == null ? void 0 : e.argv) || [];
+  const e = typeof process != "undefined" ? process : void 0, i = (e == null ? void 0 : e.env) || {}, g = (e == null ? void 0 : e.argv) || [];
   return !("NO_COLOR" in i || g.includes("--no-color")) && ("FORCE_COLOR" in i || g.includes("--color") || (e == null ? void 0 : e.platform) === "win32" || n && i.TERM !== "dumb" || "CI" in i) || typeof window != "undefined" && !!window.chrome;
 }
 function p(n = !1) {
-  let e = C(n), i = (r, t, c, o) => {
+  const e = C(n), i = (r, t, c, o) => {
     let l = "", s = 0;
     do
       l += r.substring(s, o) + c, s = o + t.length, o = r.indexOf(t, s);
     while (~o);
     return l + r.substring(s);
   }, g = (r, t, c = r) => {
-    let o = (l) => {
-      let s = String(l), b = s.indexOf(t, r.length);
+    const o = (l) => {
+      const s = String(l), b = s.indexOf(t, r.length);
       return ~b ? r + i(s, t, c, b) + t : r + s + t;
     };
     return o.open = r, o.close = t, o;
   }, u = {
     isColorSupported: e
   }, d = (r) => `\x1B[${r}m`;
-  for (let [r, t] of h)
+  for (const [r, t] of h)
     u[r] = e ? g(
       d(t[0]),
       d(t[1]),

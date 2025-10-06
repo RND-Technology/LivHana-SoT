@@ -1,19 +1,19 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
-var isNegativeZero = require('math-intrinsics/isNegativeZero');
-var MAX_SAFE_INTEGER = require('math-intrinsics/constants/maxSafeInteger');
+const $TypeError = require('es-errors/type');
+const isNegativeZero = require('math-intrinsics/isNegativeZero');
+const MAX_SAFE_INTEGER = require('math-intrinsics/constants/maxSafeInteger');
 
-var AddValueToKeyedGroup = require('./AddValueToKeyedGroup');
-var Call = require('./Call');
-var GetIterator = require('./GetIterator');
-var IsCallable = require('./IsCallable');
-var IteratorClose = require('./IteratorClose');
-var IteratorStep = require('./IteratorStep');
-var IteratorValue = require('./IteratorValue');
-var RequireObjectCoercible = require('./RequireObjectCoercible');
-var ThrowCompletion = require('./ThrowCompletion');
-var ToPropertyKey = require('./ToPropertyKey');
+const AddValueToKeyedGroup = require('./AddValueToKeyedGroup');
+const Call = require('./Call');
+const GetIterator = require('./GetIterator');
+const IsCallable = require('./IsCallable');
+const IteratorClose = require('./IteratorClose');
+const IteratorStep = require('./IteratorStep');
+const IteratorValue = require('./IteratorValue');
+const RequireObjectCoercible = require('./RequireObjectCoercible');
+const ThrowCompletion = require('./ThrowCompletion');
+const ToPropertyKey = require('./ToPropertyKey');
 
 // https://262.ecma-international.org/15.0/#sec-groupby
 
@@ -28,24 +28,24 @@ module.exports = function GroupBy(items, callbackfn, keyCoercion) {
 		throw new $TypeError('callbackfn must be callable'); // step 2
 	}
 
-	var groups = []; // step 3
+	const groups = []; // step 3
 
-	var iteratorRecord = GetIterator(items, 'SYNC'); // step 4
+	const iteratorRecord = GetIterator(items, 'SYNC'); // step 4
 
-	var k = 0; // step 5
+	let k = 0; // step 5
 
 	// eslint-disable-next-line no-constant-condition
 	while (true) { // step 6
 		if (k >= MAX_SAFE_INTEGER) { // step 6.a
-			var error = ThrowCompletion(new $TypeError('k must be less than 2 ** 53 - 1')); // step 6.a.i
+			const error = ThrowCompletion(new $TypeError('k must be less than 2 ** 53 - 1')); // step 6.a.i
 			return void IteratorClose(iteratorRecord, error); // step 6.a.ii
 		}
-		var next = IteratorStep(iteratorRecord); // step 6.b
+		const next = IteratorStep(iteratorRecord); // step 6.b
 		if (!next) { // step 6.c
 			return groups; // step 6.c.i
 		}
 
-		var value = IteratorValue(next); // step 6.dv
+		const value = IteratorValue(next); // step 6.dv
 
 		var key;
 		try {

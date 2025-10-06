@@ -28,7 +28,7 @@
 (function clone(exports) {
     'use strict';
 
-    var Syntax,
+    let Syntax,
         VisitorOption,
         VisitorKeys,
         BREAK,
@@ -36,7 +36,7 @@
         REMOVE;
 
     function deepCopy(obj) {
-        var ret = {}, key, val;
+        let ret = {}, key, val;
         for (key in obj) {
             if (obj.hasOwnProperty(key)) {
                 val = obj[key];
@@ -54,7 +54,7 @@
     // MIT License
 
     function upperBound(array, func) {
-        var diff, len, i, current;
+        let diff, len, i, current;
 
         len = array.length;
         i = 0;
@@ -270,7 +270,7 @@
     // API:
     // return property path array from root to current node
     Controller.prototype.path = function path() {
-        var i, iz, j, jz, result, element;
+        let i, iz, j, jz, result, element;
 
         function addToPath(result, path) {
             if (Array.isArray(path)) {
@@ -300,14 +300,14 @@
     // API:
     // return type of current node
     Controller.prototype.type = function () {
-        var node = this.current();
+        const node = this.current();
         return node.type || this.__current.wrap;
     };
 
     // API:
     // return array of parent elements
     Controller.prototype.parents = function parents() {
-        var i, iz, result;
+        let i, iz, result;
 
         // first node is sentinel
         result = [];
@@ -325,7 +325,7 @@
     };
 
     Controller.prototype.__execute = function __execute(callback, element) {
-        var previous, result;
+        let previous, result;
 
         result = undefined;
 
@@ -396,7 +396,7 @@
     }
   
     function candidateExistsInLeaveList(leavelist, candidate) {
-        for (var i = leavelist.length - 1; i >= 0; --i) {
+        for (let i = leavelist.length - 1; i >= 0; --i) {
             if (leavelist[i].node === candidate) {
                 return true;
             }
@@ -405,7 +405,7 @@
     }
 
     Controller.prototype.traverse = function traverse(root, visitor) {
-        var worklist,
+        let worklist,
             leavelist,
             element,
             node,
@@ -511,7 +511,7 @@
     };
 
     Controller.prototype.replace = function replace(root, visitor) {
-        var worklist,
+        let worklist,
             leavelist,
             node,
             nodeType,
@@ -526,7 +526,7 @@
             key;
 
         function removeElem(element) {
-            var i,
+            let i,
                 key,
                 nextElem,
                 parent;
@@ -666,17 +666,17 @@
     };
 
     function traverse(root, visitor) {
-        var controller = new Controller();
+        const controller = new Controller();
         return controller.traverse(root, visitor);
     }
 
     function replace(root, visitor) {
-        var controller = new Controller();
+        const controller = new Controller();
         return controller.replace(root, visitor);
     }
 
     function extendCommentRange(comment, tokens) {
-        var target;
+        let target;
 
         target = upperBound(tokens, function search(token) {
             return token.range[0] > comment.range[0];
@@ -698,7 +698,7 @@
 
     function attachComments(tree, providedComments, tokens) {
         // At first, we should calculate extended comment ranges.
-        var comments = [], comment, len, i, cursor;
+        let comments = [], comment, len, i, cursor;
 
         if (!tree.range) {
             throw new Error('attachComments needs range information');
@@ -725,7 +725,7 @@
         cursor = 0;
         traverse(tree, {
             enter: function (node) {
-                var comment;
+                let comment;
 
                 while (cursor < comments.length) {
                     comment = comments[cursor];
@@ -758,7 +758,7 @@
         cursor = 0;
         traverse(tree, {
             leave: function (node) {
-                var comment;
+                let comment;
 
                 while (cursor < comments.length) {
                     comment = comments[cursor];

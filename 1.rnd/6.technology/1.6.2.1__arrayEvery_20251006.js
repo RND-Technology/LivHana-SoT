@@ -9,7 +9,7 @@
  *  else `false`.
  */
 function arrayEvery(array, predicate) {
-  var index = -1,
+  let index = -1,
       length = array == null ? 0 : array.length;
 
   while (++index < length) {

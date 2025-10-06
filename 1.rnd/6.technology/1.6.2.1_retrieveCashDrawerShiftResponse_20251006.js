@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
 exports.retrieveCashDrawerShiftResponseSchema = void 0;
-var schema_1 = require("../schema");
-var cashDrawerShift_1 = require("./cashDrawerShift");
-var error_1 = require("./error");
+const schema_1 = require("../schema");
+const cashDrawerShift_1 = require("./cashDrawerShift");
+const error_1 = require("./error");
 exports.retrieveCashDrawerShiftResponseSchema = (0, schema_1.object)({
     cashDrawerShift: [
         'cash_drawer_shift',

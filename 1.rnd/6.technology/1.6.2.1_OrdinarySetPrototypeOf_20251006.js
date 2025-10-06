@@ -1,10 +1,10 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
-var $setProto = require('set-proto');
-var isObject = require('es-object-atoms/isObject');
+const $TypeError = require('es-errors/type');
+const $setProto = require('set-proto');
+const isObject = require('es-object-atoms/isObject');
 
-var OrdinaryGetPrototypeOf = require('./OrdinaryGetPrototypeOf');
+const OrdinaryGetPrototypeOf = require('./OrdinaryGetPrototypeOf');
 
 // https://262.ecma-international.org/7.0/#sec-ordinarysetprototypeof
 

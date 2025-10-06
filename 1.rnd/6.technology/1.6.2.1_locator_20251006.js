@@ -1,22 +1,22 @@
 "use strict";
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __export = (target, all) => {
+  for (const name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var locator_exports = {};
+const __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+const locator_exports = {};
 __export(locator_exports, {
   FrameLocator: () => FrameLocator,
   Locator: () => Locator,
@@ -24,12 +24,12 @@ __export(locator_exports, {
   testIdAttributeName: () => testIdAttributeName
 });
 module.exports = __toCommonJS(locator_exports);
-var import_elementHandle = require("./elementHandle");
-var import_locatorGenerators = require("../utils/isomorphic/locatorGenerators");
-var import_locatorUtils = require("../utils/isomorphic/locatorUtils");
-var import_stringUtils = require("../utils/isomorphic/stringUtils");
-var import_rtti = require("../utils/isomorphic/rtti");
-var import_time = require("../utils/isomorphic/time");
+const import_elementHandle = require("./elementHandle");
+const import_locatorGenerators = require("../utils/isomorphic/locatorGenerators");
+const import_locatorUtils = require("../utils/isomorphic/locatorUtils");
+const import_stringUtils = require("../utils/isomorphic/stringUtils");
+const import_rtti = require("../utils/isomorphic/rtti");
+const import_time = require("../utils/isomorphic/time");
 class Locator {
   constructor(frame, selector, options) {
     this._frame = frame;

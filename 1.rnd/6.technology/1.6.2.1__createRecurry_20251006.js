@@ -1,9 +1,9 @@
-var isLaziable = require('./_isLaziable'),
+const isLaziable = require('./_isLaziable'),
     setData = require('./_setData'),
     setWrapToString = require('./_setWrapToString');
 
 /** Used to compose bitmasks for function metadata. */
-var WRAP_BIND_FLAG = 1,
+const WRAP_BIND_FLAG = 1,
     WRAP_BIND_KEY_FLAG = 2,
     WRAP_CURRY_BOUND_FLAG = 4,
     WRAP_CURRY_FLAG = 8,
@@ -28,7 +28,7 @@ var WRAP_BIND_FLAG = 1,
  * @returns {Function} Returns the new wrapped function.
  */
 function createRecurry(func, bitmask, wrapFunc, placeholder, thisArg, partials, holders, argPos, ary, arity) {
-  var isCurry = bitmask & WRAP_CURRY_FLAG,
+  const isCurry = bitmask & WRAP_CURRY_FLAG,
       newHolders = isCurry ? holders : undefined,
       newHoldersRight = isCurry ? undefined : holders,
       newPartials = isCurry ? partials : undefined,
@@ -40,12 +40,12 @@ function createRecurry(func, bitmask, wrapFunc, placeholder, thisArg, partials, 
   if (!(bitmask & WRAP_CURRY_BOUND_FLAG)) {
     bitmask &= ~(WRAP_BIND_FLAG | WRAP_BIND_KEY_FLAG);
   }
-  var newData = [
+  const newData = [
     func, bitmask, thisArg, newPartials, newHolders, newPartialsRight,
     newHoldersRight, argPos, ary, arity
   ];
 
-  var result = wrapFunc.apply(undefined, newData);
+  const result = wrapFunc.apply(undefined, newData);
   if (isLaziable(func)) {
     setData(result, newData);
   }

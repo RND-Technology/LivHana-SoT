@@ -17,8 +17,8 @@ import {
 } from "./chunk-EWTE5DHJ.js";
 
 // node_modules/react-chartjs-2/dist/index.js
-var import_react = __toESM(require_react());
-var defaultDatasetIdKey = "label";
+const import_react = __toESM(require_react());
+const defaultDatasetIdKey = "label";
 function reforwardRef(ref, value) {
   if (typeof ref === "function") {
     ref(value);
@@ -36,7 +36,7 @@ function setLabels(currentData, nextLabels) {
   currentData.labels = nextLabels;
 }
 function setDatasets(currentData, nextDatasets) {
-  let datasetIdKey = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : defaultDatasetIdKey;
+  const datasetIdKey = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : defaultDatasetIdKey;
   const addedDatasets = [];
   currentData.datasets = nextDatasets.map((nextDataset) => {
     const currentDataset = currentData.datasets.find((dataset) => dataset[datasetIdKey] === nextDataset[datasetIdKey]);
@@ -51,7 +51,7 @@ function setDatasets(currentData, nextDatasets) {
   });
 }
 function cloneData(data) {
-  let datasetIdKey = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : defaultDatasetIdKey;
+  const datasetIdKey = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : defaultDatasetIdKey;
   const nextData = {
     labels: [],
     datasets: []
@@ -156,7 +156,7 @@ function ChartComponent(props, ref) {
     ...canvasProps
   }, fallbackContent);
 }
-var Chart2 = (0, import_react.forwardRef)(ChartComponent);
+const Chart2 = (0, import_react.forwardRef)(ChartComponent);
 function createTypedChart(type, registerables) {
   Chart.register(registerables);
   return (0, import_react.forwardRef)((props, ref) => import_react.default.createElement(Chart2, {
@@ -165,14 +165,14 @@ function createTypedChart(type, registerables) {
     type
   }));
 }
-var Line = createTypedChart("line", LineController);
-var Bar = createTypedChart("bar", BarController);
-var Radar = createTypedChart("radar", RadarController);
-var Doughnut = createTypedChart("doughnut", DoughnutController);
-var PolarArea = createTypedChart("polarArea", PolarAreaController);
-var Bubble = createTypedChart("bubble", BubbleController);
-var Pie = createTypedChart("pie", PieController);
-var Scatter = createTypedChart("scatter", ScatterController);
+const Line = createTypedChart("line", LineController);
+const Bar = createTypedChart("bar", BarController);
+const Radar = createTypedChart("radar", RadarController);
+const Doughnut = createTypedChart("doughnut", DoughnutController);
+const PolarArea = createTypedChart("polarArea", PolarAreaController);
+const Bubble = createTypedChart("bubble", BubbleController);
+const Pie = createTypedChart("pie", PieController);
+const Scatter = createTypedChart("scatter", ScatterController);
 export {
   Bar,
   Bubble,

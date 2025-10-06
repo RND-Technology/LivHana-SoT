@@ -1,17 +1,17 @@
 "use strict";
 exports.__esModule = true;
 exports.CustomerGroupsApi = void 0;
-var tslib_1 = require("tslib");
-var createCustomerGroupRequest_1 = require("../models/createCustomerGroupRequest");
-var createCustomerGroupResponse_1 = require("../models/createCustomerGroupResponse");
-var deleteCustomerGroupResponse_1 = require("../models/deleteCustomerGroupResponse");
-var listCustomerGroupsResponse_1 = require("../models/listCustomerGroupsResponse");
-var retrieveCustomerGroupResponse_1 = require("../models/retrieveCustomerGroupResponse");
-var updateCustomerGroupRequest_1 = require("../models/updateCustomerGroupRequest");
-var updateCustomerGroupResponse_1 = require("../models/updateCustomerGroupResponse");
-var schema_1 = require("../schema");
-var baseApi_1 = require("./baseApi");
-var CustomerGroupsApi = /** @class */ (function (_super) {
+const tslib_1 = require("tslib");
+const createCustomerGroupRequest_1 = require("../models/createCustomerGroupRequest");
+const createCustomerGroupResponse_1 = require("../models/createCustomerGroupResponse");
+const deleteCustomerGroupResponse_1 = require("../models/deleteCustomerGroupResponse");
+const listCustomerGroupsResponse_1 = require("../models/listCustomerGroupsResponse");
+const retrieveCustomerGroupResponse_1 = require("../models/retrieveCustomerGroupResponse");
+const updateCustomerGroupRequest_1 = require("../models/updateCustomerGroupRequest");
+const updateCustomerGroupResponse_1 = require("../models/updateCustomerGroupResponse");
+const schema_1 = require("../schema");
+const baseApi_1 = require("./baseApi");
+const CustomerGroupsApi = /** @class */ (function (_super) {
     tslib_1.__extends(CustomerGroupsApi, _super);
     function CustomerGroupsApi() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -32,7 +32,7 @@ var CustomerGroupsApi = /** @class */ (function (_super) {
      */
     CustomerGroupsApi.prototype.listCustomerGroups = function (cursor, limit, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET', '/v2/customers/groups');
                 mapped = req.prepareArgs({
@@ -58,7 +58,7 @@ var CustomerGroupsApi = /** @class */ (function (_super) {
      */
     CustomerGroupsApi.prototype.createCustomerGroup = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/customers/groups');
                 mapped = req.prepareArgs({
@@ -79,7 +79,7 @@ var CustomerGroupsApi = /** @class */ (function (_super) {
      */
     CustomerGroupsApi.prototype.deleteCustomerGroup = function (groupId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('DELETE');
                 mapped = req.prepareArgs({ groupId: [groupId, (0, schema_1.string)()] });
@@ -97,7 +97,7 @@ var CustomerGroupsApi = /** @class */ (function (_super) {
      */
     CustomerGroupsApi.prototype.retrieveCustomerGroup = function (groupId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({ groupId: [groupId, (0, schema_1.string)()] });
@@ -118,7 +118,7 @@ var CustomerGroupsApi = /** @class */ (function (_super) {
      */
     CustomerGroupsApi.prototype.updateCustomerGroup = function (groupId, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('PUT');
                 mapped = req.prepareArgs({
@@ -136,5 +136,5 @@ var CustomerGroupsApi = /** @class */ (function (_super) {
     return CustomerGroupsApi;
 }(baseApi_1.BaseApi));
 exports.CustomerGroupsApi = CustomerGroupsApi;
-var templateObject_1, templateObject_2, templateObject_3;
+let templateObject_1, templateObject_2, templateObject_3;
 //# sourceMappingURL=customerGroupsApi.js.map

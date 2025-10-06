@@ -1,8 +1,8 @@
-var fs = require('fs')
-var os = require('os')
-var path = require('path')
-var crypto = require('crypto')
-var mkdirp = require('mkdirp')
+const fs = require('fs')
+const os = require('os')
+const path = require('path')
+const crypto = require('crypto')
+const mkdirp = require('mkdirp')
 
 function getFilename (req, file, cb) {
   crypto.randomBytes(16, function (err, raw) {
@@ -26,7 +26,7 @@ function DiskStorage (opts) {
 }
 
 DiskStorage.prototype._handleFile = function _handleFile (req, file, cb) {
-  var that = this
+  const that = this
 
   that.getDestination(req, file, function (err, destination) {
     if (err) return cb(err)
@@ -34,8 +34,8 @@ DiskStorage.prototype._handleFile = function _handleFile (req, file, cb) {
     that.getFilename(req, file, function (err, filename) {
       if (err) return cb(err)
 
-      var finalPath = path.join(destination, filename)
-      var outStream = fs.createWriteStream(finalPath)
+      const finalPath = path.join(destination, filename)
+      const outStream = fs.createWriteStream(finalPath)
 
       file.stream.pipe(outStream)
       outStream.on('error', cb)
@@ -52,7 +52,7 @@ DiskStorage.prototype._handleFile = function _handleFile (req, file, cb) {
 }
 
 DiskStorage.prototype._removeFile = function _removeFile (req, file, cb) {
-  var path = file.path
+  const path = file.path
 
   delete file.destination
   delete file.filename

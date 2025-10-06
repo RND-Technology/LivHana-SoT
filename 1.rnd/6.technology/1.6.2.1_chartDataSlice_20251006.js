@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.setDataStartEndIndexes = exports.setComputedData = exports.setChartData = exports.initialChartDataState = exports.chartDataReducer = void 0;
-var _toolkit = require("@reduxjs/toolkit");
+const _toolkit = require("@reduxjs/toolkit");
 /**
  * This is the data that's coming through main chart `data` prop
  * Recharts is very flexible in what it accepts so the type is very flexible too.
@@ -22,13 +22,13 @@ var _toolkit = require("@reduxjs/toolkit");
  * TL;DR: ChartData after dataKey.
  */
 
-var initialChartDataState = exports.initialChartDataState = {
+const initialChartDataState = exports.initialChartDataState = {
   chartData: undefined,
   computedData: undefined,
   dataStartIndex: 0,
   dataEndIndex: 0
 };
-var chartDataSlice = (0, _toolkit.createSlice)({
+const chartDataSlice = (0, _toolkit.createSlice)({
   name: 'chartData',
   initialState: initialChartDataState,
   reducers: {
@@ -47,7 +47,7 @@ var chartDataSlice = (0, _toolkit.createSlice)({
       state.computedData = action.payload;
     },
     setDataStartEndIndexes(state, action) {
-      var {
+      const {
         startIndex,
         endIndex
       } = action.payload;
@@ -60,7 +60,7 @@ var chartDataSlice = (0, _toolkit.createSlice)({
     }
   }
 });
-var {
+const {
   setChartData,
   setDataStartEndIndexes,
   setComputedData
@@ -68,4 +68,4 @@ var {
 exports.setComputedData = setComputedData;
 exports.setDataStartEndIndexes = setDataStartEndIndexes;
 exports.setChartData = setChartData;
-var chartDataReducer = exports.chartDataReducer = chartDataSlice.reducer;
+const chartDataReducer = exports.chartDataReducer = chartDataSlice.reducer;

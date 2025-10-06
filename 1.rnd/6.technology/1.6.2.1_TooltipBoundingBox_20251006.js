@@ -4,15 +4,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.TooltipBoundingBox = void 0;
-var _react = _interopRequireWildcard(require("react"));
-var React = _react;
-var _translate = require("../util/tooltip/translate");
-function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+const _react = _interopRequireWildcard(require("react"));
+const React = _react;
+const _translate = require("../util/tooltip/translate");
+function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; let o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (const _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
+function ownKeys(e, r) { const t = Object.keys(e); if (Object.getOwnPropertySymbols) { let o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (let r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _toPropertyKey(t) { const i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; const e = t[Symbol.toPrimitive]; if (void 0 !== e) { const i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 class TooltipBoundingBox extends _react.PureComponent {
   constructor() {
     super(...arguments);
@@ -25,7 +25,7 @@ class TooltipBoundingBox extends _react.PureComponent {
     });
     _defineProperty(this, "handleKeyDown", event => {
       if (event.key === 'Escape') {
-        var _this$props$coordinat, _this$props$coordinat2, _this$props$coordinat3, _this$props$coordinat4;
+        let _this$props$coordinat, _this$props$coordinat2, _this$props$coordinat3, _this$props$coordinat4;
         this.setState({
           dismissed: true,
           dismissedAtCoordinate: {
@@ -43,7 +43,7 @@ class TooltipBoundingBox extends _react.PureComponent {
     document.removeEventListener('keydown', this.handleKeyDown);
   }
   componentDidUpdate() {
-    var _this$props$coordinat5, _this$props$coordinat6;
+    let _this$props$coordinat5, _this$props$coordinat6;
     if (!this.state.dismissed) {
       return;
     }
@@ -52,7 +52,7 @@ class TooltipBoundingBox extends _react.PureComponent {
     }
   }
   render() {
-    var {
+    const {
       active,
       allowEscapeViewBox,
       animationDuration,
@@ -71,7 +71,7 @@ class TooltipBoundingBox extends _react.PureComponent {
       innerRef,
       hasPortalFromProps
     } = this.props;
-    var {
+    const {
       cssClasses,
       cssProperties
     } = (0, _translate.getTooltipTranslate)({
@@ -89,7 +89,7 @@ class TooltipBoundingBox extends _react.PureComponent {
     });
 
     // do not use absolute styles if the user has passed a custom portal prop
-    var positionStyles = hasPortalFromProps ? {} : _objectSpread(_objectSpread({
+    const positionStyles = hasPortalFromProps ? {} : _objectSpread(_objectSpread({
       transition: isAnimationActive && active ? "transform ".concat(animationDuration, "ms ").concat(animationEasing) : undefined
     }, cssProperties), {}, {
       pointerEvents: 'none',
@@ -98,7 +98,7 @@ class TooltipBoundingBox extends _react.PureComponent {
       top: 0,
       left: 0
     });
-    var outerStyle = _objectSpread(_objectSpread({}, positionStyles), {}, {
+    const outerStyle = _objectSpread(_objectSpread({}, positionStyles), {}, {
       visibility: !this.state.dismissed && active && hasPayload ? 'visible' : 'hidden'
     }, wrapperStyle);
     return (

@@ -15,7 +15,7 @@
  * limitations under the License.
  *
  */
-var _a;
+let _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OutlierDetectionLoadBalancer = exports.OutlierDetectionLoadBalancingConfig = void 0;
 exports.setup = setup;
@@ -97,7 +97,7 @@ class OutlierDetectionLoadBalancingConfig {
         return TYPE_NAME;
     }
     toJsonObject() {
-        var _a, _b;
+        let _a, _b;
         return {
             outlier_detection: {
                 interval: (0, duration_1.msToDuration)(this.intervalMs),
@@ -132,7 +132,7 @@ class OutlierDetectionLoadBalancingConfig {
         return this.childPolicy;
     }
     static createFromJson(obj) {
-        var _a;
+        let _a;
         validatePositiveDuration(obj, 'interval');
         validatePositiveDuration(obj, 'base_ejection_time');
         validatePositiveDuration(obj, 'max_ejection_time');
@@ -245,7 +245,7 @@ class OutlierDetectionPicker {
                 let onCallEnded = wrappedPick.onCallEnded;
                 if (this.countCalls) {
                     onCallEnded = (statusCode, details, metadata) => {
-                        var _a;
+                        let _a;
                         if (statusCode === constants_1.Status.OK) {
                             mapEntry.counter.addSuccess();
                         }
@@ -465,7 +465,7 @@ class OutlierDetectionLoadBalancer {
         }
     }
     startTimer(delayMs) {
-        var _a, _b;
+        let _a, _b;
         this.ejectionTimer = setTimeout(() => this.runChecks(), delayMs);
         (_b = (_a = this.ejectionTimer).unref) === null || _b === void 0 ? void 0 : _b.call(_a);
     }

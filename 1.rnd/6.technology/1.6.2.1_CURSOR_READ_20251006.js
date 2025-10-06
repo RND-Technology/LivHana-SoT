@@ -16,5 +16,5 @@ function transformArguments(index, cursor, options) {
     return args;
 }
 exports.transformArguments = transformArguments;
-var AGGREGATE_WITHCURSOR_1 = require("./AGGREGATE_WITHCURSOR");
+const AGGREGATE_WITHCURSOR_1 = require("./AGGREGATE_WITHCURSOR");
 Object.defineProperty(exports, "transformReply", { enumerable: true, get: function () { return AGGREGATE_WITHCURSOR_1.transformReply; } });

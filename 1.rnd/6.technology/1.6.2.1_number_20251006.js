@@ -1,8 +1,8 @@
-var test = require('tape');
-var v = require('es-value-fixtures');
-var forEach = require('for-each');
+const test = require('tape');
+const v = require('es-value-fixtures');
+const forEach = require('for-each');
 
-var inspect = require('../');
+const inspect = require('../');
 
 test('negative zero', function (t) {
     t.equal(inspect(0), '0', 'inspect(0) === "0"');
@@ -24,12 +24,12 @@ test('numericSeparator', function (t) {
     });
 
     t.test('3 digit numbers', function (st) {
-        var failed = false;
-        for (var i = -999; i < 1000; i += 1) {
-            var actual = inspect(i);
-            var actualSepNo = inspect(i, { numericSeparator: false });
-            var actualSepYes = inspect(i, { numericSeparator: true });
-            var expected = String(i);
+        let failed = false;
+        for (let i = -999; i < 1000; i += 1) {
+            const actual = inspect(i);
+            const actualSepNo = inspect(i, { numericSeparator: false });
+            const actualSepYes = inspect(i, { numericSeparator: true });
+            const expected = String(i);
             if (actual !== expected || actualSepNo !== expected || actualSepYes !== expected) {
                 failed = true;
                 t.equal(actual, expected);

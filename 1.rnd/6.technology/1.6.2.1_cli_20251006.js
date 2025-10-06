@@ -3,9 +3,9 @@
 'use strict';
 
 process.title = 'mime';
-let mime = require('.');
-let pkg = require('./package.json');
-let args = process.argv.splice(2);
+const mime = require('.');
+const pkg = require('./package.json');
+const args = process.argv.splice(2);
 
 if (args.includes('--version') || args.includes('-v') || args.includes('--v')) {
   console.log(pkg.version);
@@ -39,8 +39,8 @@ if (args.includes('--version') || args.includes('-v') || args.includes('--v')) {
   process.exit(0);
 }
 
-let file = args[0];
-let type = mime.getType(file);
+const file = args[0];
+const type = mime.getType(file);
 
 process.stdout.write(type + '\n');
 

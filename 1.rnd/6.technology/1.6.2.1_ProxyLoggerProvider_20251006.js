@@ -20,11 +20,11 @@ const NoopLoggerProvider_1 = require("./NoopLoggerProvider");
 const ProxyLogger_1 = require("./ProxyLogger");
 class ProxyLoggerProvider {
     getLogger(name, version, options) {
-        var _a;
+        let _a;
         return ((_a = this.getDelegateLogger(name, version, options)) !== null && _a !== void 0 ? _a : new ProxyLogger_1.ProxyLogger(this, name, version, options));
     }
     getDelegate() {
-        var _a;
+        let _a;
         return (_a = this._delegate) !== null && _a !== void 0 ? _a : NoopLoggerProvider_1.NOOP_LOGGER_PROVIDER;
     }
     /**
@@ -34,7 +34,7 @@ class ProxyLoggerProvider {
         this._delegate = delegate;
     }
     getDelegateLogger(name, version, options) {
-        var _a;
+        let _a;
         return (_a = this._delegate) === null || _a === void 0 ? void 0 : _a.getLogger(name, version, options);
     }
 }

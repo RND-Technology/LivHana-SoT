@@ -62,7 +62,7 @@ function buildOptions(options){
 }
 
 function copyProperties(target, source) {
-  for (let key in source) {
+  for (const key in source) {
     if (source.hasOwnProperty(key)) {
       if (typeof source[key] === 'object' && !Array.isArray(source[key])) {
         // Recursively copy nested properties

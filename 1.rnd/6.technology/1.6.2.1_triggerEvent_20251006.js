@@ -21,7 +21,7 @@ function triggerEvent(node, eventName, bubbles, cancelable) {
   }
 
   if (node) {
-    var event = document.createEvent('HTMLEvents');
+    const event = document.createEvent('HTMLEvents');
     event.initEvent(eventName, bubbles, cancelable);
     node.dispatchEvent(event);
   }

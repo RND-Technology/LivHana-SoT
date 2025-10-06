@@ -1,8 +1,8 @@
 function Diff() {}
 Diff.prototype = {
   diff: function diff(oldString, newString) {
-    var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-    var callback = options.callback;
+    let options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+    let callback = options.callback;
 
     if (typeof options === 'function') {
       callback = options;
@@ -10,7 +10,7 @@ Diff.prototype = {
     }
 
     this.options = options;
-    var self = this;
+    const self = this;
 
     function done(value) {
       if (callback) {
@@ -28,16 +28,16 @@ Diff.prototype = {
     newString = this.castInput(newString);
     oldString = this.removeEmpty(this.tokenize(oldString));
     newString = this.removeEmpty(this.tokenize(newString));
-    var newLen = newString.length,
+    const newLen = newString.length,
         oldLen = oldString.length;
-    var editLength = 1;
-    var maxEditLength = newLen + oldLen;
-    var bestPath = [{
+    let editLength = 1;
+    const maxEditLength = newLen + oldLen;
+    const bestPath = [{
       newPos: -1,
       components: []
     }]; // Seed editLength = 0, i.e. the content starts with the same values
 
-    var oldPos = this.extractCommon(bestPath[0], newString, oldString, 0);
+    const oldPos = this.extractCommon(bestPath[0], newString, oldString, 0);
 
     if (bestPath[0].newPos + 1 >= newLen && oldPos + 1 >= oldLen) {
       // Identity per the equality and tokenizer
@@ -49,10 +49,10 @@ Diff.prototype = {
 
 
     function execEditLength() {
-      for (var diagonalPath = -1 * editLength; diagonalPath <= editLength; diagonalPath += 2) {
-        var basePath = void 0;
+      for (let diagonalPath = -1 * editLength; diagonalPath <= editLength; diagonalPath += 2) {
+        let basePath = void 0;
 
-        var addPath = bestPath[diagonalPath - 1],
+        let addPath = bestPath[diagonalPath - 1],
             removePath = bestPath[diagonalPath + 1],
             _oldPos = (removePath ? removePath.newPos : 0) - diagonalPath;
 
@@ -61,7 +61,7 @@ Diff.prototype = {
           bestPath[diagonalPath - 1] = undefined;
         }
 
-        var canAdd = addPath && addPath.newPos + 1 < newLen,
+        const canAdd = addPath && addPath.newPos + 1 < newLen,
             canRemove = removePath && 0 <= _oldPos && _oldPos < oldLen;
 
         if (!canAdd && !canRemove) {
@@ -116,7 +116,7 @@ Diff.prototype = {
       })();
     } else {
       while (editLength <= maxEditLength) {
-        var ret = execEditLength();
+        const ret = execEditLength();
 
         if (ret) {
           return ret;
@@ -125,7 +125,7 @@ Diff.prototype = {
     }
   },
   pushComponent: function pushComponent(components, added, removed) {
-    var last = components[components.length - 1];
+    const last = components[components.length - 1];
 
     if (last && last.added === added && last.removed === removed) {
       // We need to clone here as the component clone operation is just
@@ -144,7 +144,7 @@ Diff.prototype = {
     }
   },
   extractCommon: function extractCommon(basePath, newString, oldString, diagonalPath) {
-    var newLen = newString.length,
+    let newLen = newString.length,
         oldLen = oldString.length,
         newPos = basePath.newPos,
         oldPos = newPos - diagonalPath,
@@ -173,9 +173,9 @@ Diff.prototype = {
     }
   },
   removeEmpty: function removeEmpty(array) {
-    var ret = [];
+    const ret = [];
 
-    for (var i = 0; i < array.length; i++) {
+    for (let i = 0; i < array.length; i++) {
       if (array[i]) {
         ret.push(array[i]);
       }
@@ -195,19 +195,19 @@ Diff.prototype = {
 };
 
 function buildValues(diff, components, newString, oldString, useLongestToken) {
-  var componentPos = 0,
+  let componentPos = 0,
       componentLen = components.length,
       newPos = 0,
       oldPos = 0;
 
   for (; componentPos < componentLen; componentPos++) {
-    var component = components[componentPos];
+    const component = components[componentPos];
 
     if (!component.removed) {
       if (!component.added && useLongestToken) {
-        var value = newString.slice(newPos, newPos + component.count);
+        let value = newString.slice(newPos, newPos + component.count);
         value = value.map(function (value, i) {
-          var oldValue = oldString[oldPos + i];
+          const oldValue = oldString[oldPos + i];
           return oldValue.length > value.length ? oldValue : value;
         });
         component.value = diff.join(value);
@@ -227,7 +227,7 @@ function buildValues(diff, components, newString, oldString, useLongestToken) {
       // route to get the desired output with minimal overhead.
 
       if (componentPos && components[componentPos - 1].added) {
-        var tmp = components[componentPos - 1];
+        const tmp = components[componentPos - 1];
         components[componentPos - 1] = components[componentPos];
         components[componentPos] = tmp;
       }
@@ -237,7 +237,7 @@ function buildValues(diff, components, newString, oldString, useLongestToken) {
   // This is only available for string mode.
 
 
-  var lastComponent = components[componentLen - 1];
+  const lastComponent = components[componentLen - 1];
 
   if (componentLen > 1 && typeof lastComponent.value === 'string' && (lastComponent.added || lastComponent.removed) && diff.equals('', lastComponent.value)) {
     components[componentLen - 2].value += lastComponent.value;
@@ -254,7 +254,7 @@ function clonePath(path) {
   };
 }
 
-var characterDiff = new Diff();
+const characterDiff = new Diff();
 function diffChars(oldStr, newStr, options) {
   return characterDiff.diff(oldStr, newStr, options);
 }
@@ -263,7 +263,7 @@ function generateOptions(options, defaults) {
   if (typeof options === 'function') {
     defaults.callback = options;
   } else if (options) {
-    for (var name in options) {
+    for (const name in options) {
       /* istanbul ignore else */
       if (options.hasOwnProperty(name)) {
         defaults[name] = options[name];
@@ -292,9 +292,9 @@ function generateOptions(options, defaults) {
 //  - U+02DD  ˝ &#733;  Double Acute Accent
 // Latin Extended Additional, 1E00–1EFF
 
-var extendedWordChars = /^[A-Za-z\xC0-\u02C6\u02C8-\u02D7\u02DE-\u02FF\u1E00-\u1EFF]+$/;
-var reWhitespace = /\S/;
-var wordDiff = new Diff();
+const extendedWordChars = /^[A-Za-z\xC0-\u02C6\u02C8-\u02D7\u02DE-\u02FF\u1E00-\u1EFF]+$/;
+const reWhitespace = /\S/;
+const wordDiff = new Diff();
 
 wordDiff.equals = function (left, right) {
   if (this.options.ignoreCase) {
@@ -306,9 +306,9 @@ wordDiff.equals = function (left, right) {
 };
 
 wordDiff.tokenize = function (value) {
-  var tokens = value.split(/(\s+|[()[\]{}'"]|\b)/); // Join the boundary splits that we do not consider to be boundaries. This is primarily the extended Latin character set.
+  const tokens = value.split(/(\s+|[()[\]{}'"]|\b)/); // Join the boundary splits that we do not consider to be boundaries. This is primarily the extended Latin character set.
 
-  for (var i = 0; i < tokens.length - 1; i++) {
+  for (let i = 0; i < tokens.length - 1; i++) {
     // If we have an empty string in the next field and we have only word chars before and after, merge
     if (!tokens[i + 1] && tokens[i + 2] && extendedWordChars.test(tokens[i]) && extendedWordChars.test(tokens[i + 2])) {
       tokens[i] += tokens[i + 2];
@@ -330,10 +330,10 @@ function diffWordsWithSpace(oldStr, newStr, options) {
   return wordDiff.diff(oldStr, newStr, options);
 }
 
-var lineDiff = new Diff();
+const lineDiff = new Diff();
 
 lineDiff.tokenize = function (value) {
-  var retLines = [],
+  const retLines = [],
       linesAndNewlines = value.split(/(\n|\r\n)/); // Ignore the final empty token that occurs if the string ends with a new line
 
   if (!linesAndNewlines[linesAndNewlines.length - 1]) {
@@ -341,8 +341,8 @@ lineDiff.tokenize = function (value) {
   } // Merge the content and line separators into single tokens
 
 
-  for (var i = 0; i < linesAndNewlines.length; i++) {
-    var line = linesAndNewlines[i];
+  for (let i = 0; i < linesAndNewlines.length; i++) {
+    let line = linesAndNewlines[i];
 
     if (i % 2 && !this.options.newlineIsToken) {
       retLines[retLines.length - 1] += line;
@@ -362,13 +362,13 @@ function diffLines(oldStr, newStr, callback) {
   return lineDiff.diff(oldStr, newStr, callback);
 }
 function diffTrimmedLines(oldStr, newStr, callback) {
-  var options = generateOptions(callback, {
+  const options = generateOptions(callback, {
     ignoreWhitespace: true
   });
   return lineDiff.diff(oldStr, newStr, options);
 }
 
-var sentenceDiff = new Diff();
+const sentenceDiff = new Diff();
 
 sentenceDiff.tokenize = function (value) {
   return value.split(/(\S.+?[.!?])(?=\s+|$)/);
@@ -378,7 +378,7 @@ function diffSentences(oldStr, newStr, callback) {
   return sentenceDiff.diff(oldStr, newStr, callback);
 }
 
-var cssDiff = new Diff();
+const cssDiff = new Diff();
 
 cssDiff.tokenize = function (value) {
   return value.split(/([{}:;,]|\s+)/);
@@ -422,15 +422,15 @@ function _nonIterableSpread() {
   throw new TypeError("Invalid attempt to spread non-iterable instance");
 }
 
-var objectPrototypeToString = Object.prototype.toString;
-var jsonDiff = new Diff(); // Discriminate between two lines of pretty-printed, serialized JSON where one of them has a
+const objectPrototypeToString = Object.prototype.toString;
+const jsonDiff = new Diff(); // Discriminate between two lines of pretty-printed, serialized JSON where one of them has a
 // dangling comma and the other doesn't. Turns out including the dangling comma yields the nicest output:
 
 jsonDiff.useLongestToken = true;
 jsonDiff.tokenize = lineDiff.tokenize;
 
 jsonDiff.castInput = function (value) {
-  var _this$options = this.options,
+  const _this$options = this.options,
       undefinedReplacement = _this$options.undefinedReplacement,
       _this$options$stringi = _this$options.stringifyReplacer,
       stringifyReplacer = _this$options$stringi === void 0 ? function (k, v) {
@@ -456,7 +456,7 @@ function canonicalize(obj, stack, replacementStack, replacer, key) {
     obj = replacer(key, obj);
   }
 
-  var i;
+  let i;
 
   for (i = 0; i < stack.length; i += 1) {
     if (stack[i] === obj) {
@@ -464,7 +464,7 @@ function canonicalize(obj, stack, replacementStack, replacer, key) {
     }
   }
 
-  var canonicalizedObj;
+  let canonicalizedObj;
 
   if ('[object Array]' === objectPrototypeToString.call(obj)) {
     stack.push(obj);
@@ -489,7 +489,7 @@ function canonicalize(obj, stack, replacementStack, replacer, key) {
     canonicalizedObj = {};
     replacementStack.push(canonicalizedObj);
 
-    var sortedKeys = [],
+    let sortedKeys = [],
         _key;
 
     for (_key in obj) {
@@ -515,7 +515,7 @@ function canonicalize(obj, stack, replacementStack, replacer, key) {
   return canonicalizedObj;
 }
 
-var arrayDiff = new Diff();
+const arrayDiff = new Diff();
 
 arrayDiff.tokenize = function (value) {
   return value.slice();
@@ -530,25 +530,25 @@ function diffArrays(oldArr, newArr, callback) {
 }
 
 function parsePatch(uniDiff) {
-  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  var diffstr = uniDiff.split(/\r\n|[\n\v\f\r\x85]/),
+  const options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  let diffstr = uniDiff.split(/\r\n|[\n\v\f\r\x85]/),
       delimiters = uniDiff.match(/\r\n|[\n\v\f\r\x85]/g) || [],
       list = [],
       i = 0;
 
   function parseIndex() {
-    var index = {};
+    const index = {};
     list.push(index); // Parse diff metadata
 
     while (i < diffstr.length) {
-      var line = diffstr[i]; // File header found, end parsing diff metadata
+      const line = diffstr[i]; // File header found, end parsing diff metadata
 
       if (/^(\-\-\-|\+\+\+|@@)\s/.test(line)) {
         break;
       } // Diff index
 
 
-      var header = /^(?:Index:|diff(?: -r \w+)+)\s+(.+?)\s*$/.exec(line);
+      const header = /^(?:Index:|diff(?: -r \w+)+)\s+(.+?)\s*$/.exec(line);
 
       if (header) {
         index.index = header[1];
@@ -565,7 +565,7 @@ function parsePatch(uniDiff) {
     index.hunks = [];
 
     while (i < diffstr.length) {
-      var _line = diffstr[i];
+      const _line = diffstr[i];
 
       if (/^(Index:|diff|\-\-\-|\+\+\+)\s/.test(_line)) {
         break;
@@ -583,12 +583,12 @@ function parsePatch(uniDiff) {
 
 
   function parseFileHeader(index) {
-    var fileHeader = /^(---|\+\+\+)\s+(.*)$/.exec(diffstr[i]);
+    const fileHeader = /^(---|\+\+\+)\s+(.*)$/.exec(diffstr[i]);
 
     if (fileHeader) {
-      var keyPrefix = fileHeader[1] === '---' ? 'old' : 'new';
-      var data = fileHeader[2].split('\t', 2);
-      var fileName = data[0].replace(/\\\\/g, '\\');
+      const keyPrefix = fileHeader[1] === '---' ? 'old' : 'new';
+      const data = fileHeader[2].split('\t', 2);
+      let fileName = data[0].replace(/\\\\/g, '\\');
 
       if (/^".*"$/.test(fileName)) {
         fileName = fileName.substr(1, fileName.length - 2);
@@ -603,10 +603,10 @@ function parsePatch(uniDiff) {
 
 
   function parseHunk() {
-    var chunkHeaderIndex = i,
+    const chunkHeaderIndex = i,
         chunkHeaderLine = diffstr[i++],
         chunkHeader = chunkHeaderLine.split(/@@ -(\d+)(?:,(\d+))? \+(\d+)(?:,(\d+))? @@/);
-    var hunk = {
+    const hunk = {
       oldStart: +chunkHeader[1],
       oldLines: +chunkHeader[2] || 1,
       newStart: +chunkHeader[3],
@@ -614,7 +614,7 @@ function parsePatch(uniDiff) {
       lines: [],
       linedelimiters: []
     };
-    var addCount = 0,
+    let addCount = 0,
         removeCount = 0;
 
     for (; i < diffstr.length; i++) {
@@ -624,7 +624,7 @@ function parsePatch(uniDiff) {
         break;
       }
 
-      var operation = diffstr[i].length == 0 && i != diffstr.length - 1 ? ' ' : diffstr[i][0];
+      const operation = diffstr[i].length == 0 && i != diffstr.length - 1 ? ' ' : diffstr[i][0];
 
       if (operation === '+' || operation === '-' || operation === ' ' || operation === '\\') {
         hunk.lines.push(diffstr[i]);
@@ -677,7 +677,7 @@ function parsePatch(uniDiff) {
 // by distance from a given start position. I.e. for [0, 4], with
 // start of 2, this will iterate 2, 3, 1, 4, 0.
 function distanceIterator (start, minLine, maxLine) {
-  var wantForward = true,
+  let wantForward = true,
       backwardExhausted = false,
       forwardExhausted = false,
       localOffset = 1;
@@ -718,7 +718,7 @@ function distanceIterator (start, minLine, maxLine) {
 }
 
 function applyPatch(source, uniDiff) {
-  var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  const options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
 
   if (typeof uniDiff === 'string') {
     uniDiff = parsePatch(uniDiff);
@@ -733,7 +733,7 @@ function applyPatch(source, uniDiff) {
   } // Apply the diff to the input
 
 
-  var lines = source.split(/\r\n|[\n\v\f\r\x85]/),
+  let lines = source.split(/\r\n|[\n\v\f\r\x85]/),
       delimiters = source.match(/\r\n|[\n\v\f\r\x85]/g) || [],
       hunks = uniDiff.hunks,
       compareLine = options.compareLine || function (lineNumber, line, operation, patchContent) {
@@ -751,8 +751,8 @@ function applyPatch(source, uniDiff) {
 
 
   function hunkFits(hunk, toPos) {
-    for (var j = 0; j < hunk.lines.length; j++) {
-      var line = hunk.lines[j],
+    for (let j = 0; j < hunk.lines.length; j++) {
+      const line = hunk.lines[j],
           operation = line.length > 0 ? line[0] : ' ',
           content = line.length > 0 ? line.substr(1) : line;
 
@@ -774,12 +774,12 @@ function applyPatch(source, uniDiff) {
   } // Search best fit offsets for each hunk based on the previous ones
 
 
-  for (var i = 0; i < hunks.length; i++) {
-    var hunk = hunks[i],
+  for (let i = 0; i < hunks.length; i++) {
+    let hunk = hunks[i],
         maxLine = lines.length - hunk.oldLines,
         localOffset = 0,
         toPos = offset + hunk.oldStart - 1;
-    var iterator = distanceIterator(toPos, minLine, maxLine);
+    const iterator = distanceIterator(toPos, minLine, maxLine);
 
     for (; localOffset !== undefined; localOffset = iterator()) {
       if (hunkFits(hunk, toPos + localOffset)) {
@@ -798,10 +798,10 @@ function applyPatch(source, uniDiff) {
   } // Apply patch hunks
 
 
-  var diffOffset = 0;
+  let diffOffset = 0;
 
-  for (var _i = 0; _i < hunks.length; _i++) {
-    var _hunk = hunks[_i],
+  for (let _i = 0; _i < hunks.length; _i++) {
+    let _hunk = hunks[_i],
         _toPos = _hunk.oldStart + _hunk.offset + diffOffset - 1;
 
     diffOffset += _hunk.newLines - _hunk.oldLines;
@@ -811,8 +811,8 @@ function applyPatch(source, uniDiff) {
       _toPos = 0;
     }
 
-    for (var j = 0; j < _hunk.lines.length; j++) {
-      var line = _hunk.lines[j],
+    for (let j = 0; j < _hunk.lines.length; j++) {
+      const line = _hunk.lines[j],
           operation = line.length > 0 ? line[0] : ' ',
           content = line.length > 0 ? line.substr(1) : line,
           delimiter = _hunk.linedelimiters[j];
@@ -828,7 +828,7 @@ function applyPatch(source, uniDiff) {
         delimiters.splice(_toPos, 0, delimiter);
         _toPos++;
       } else if (operation === '\\') {
-        var previousOperation = _hunk.lines[j - 1] ? _hunk.lines[j - 1][0] : null;
+        const previousOperation = _hunk.lines[j - 1] ? _hunk.lines[j - 1][0] : null;
 
         if (previousOperation === '+') {
           removeEOFNL = true;
@@ -850,7 +850,7 @@ function applyPatch(source, uniDiff) {
     delimiters.push('\n');
   }
 
-  for (var _k = 0; _k < lines.length - 1; _k++) {
+  for (let _k = 0; _k < lines.length - 1; _k++) {
     lines[_k] = lines[_k] + delimiters[_k];
   }
 
@@ -862,10 +862,10 @@ function applyPatches(uniDiff, options) {
     uniDiff = parsePatch(uniDiff);
   }
 
-  var currentIndex = 0;
+  let currentIndex = 0;
 
   function processIndex() {
-    var index = uniDiff[currentIndex++];
+    const index = uniDiff[currentIndex++];
 
     if (!index) {
       return options.complete();
@@ -876,7 +876,7 @@ function applyPatches(uniDiff, options) {
         return options.complete(err);
       }
 
-      var updatedContent = applyPatch(data, index, options);
+      const updatedContent = applyPatch(data, index, options);
       options.patched(index, updatedContent, function (err) {
         if (err) {
           return options.complete(err);
@@ -899,7 +899,7 @@ function structuredPatch(oldFileName, newFileName, oldStr, newStr, oldHeader, ne
     options.context = 4;
   }
 
-  var diff = diffLines(oldStr, newStr, options);
+  const diff = diffLines(oldStr, newStr, options);
   diff.push({
     value: '',
     lines: []
@@ -911,24 +911,24 @@ function structuredPatch(oldFileName, newFileName, oldStr, newStr, oldHeader, ne
     });
   }
 
-  var hunks = [];
-  var oldRangeStart = 0,
+  const hunks = [];
+  let oldRangeStart = 0,
       newRangeStart = 0,
       curRange = [],
       oldLine = 1,
       newLine = 1;
 
-  var _loop = function _loop(i) {
-    var current = diff[i],
+  const _loop = function _loop(i) {
+    const current = diff[i],
         lines = current.lines || current.value.replace(/\n$/, '').split('\n');
     current.lines = lines;
 
     if (current.added || current.removed) {
-      var _curRange;
+      let _curRange;
 
       // If we have previous context, start with that
       if (!oldRangeStart) {
-        var prev = diff[i - 1];
+        const prev = diff[i - 1];
         oldRangeStart = oldLine;
         newRangeStart = newLine;
 
@@ -955,19 +955,19 @@ function structuredPatch(oldFileName, newFileName, oldStr, newStr, oldHeader, ne
       if (oldRangeStart) {
         // Close out any changes that have been output (or join overlapping)
         if (lines.length <= options.context * 2 && i < diff.length - 2) {
-          var _curRange2;
+          let _curRange2;
 
           // Overlapping
           (_curRange2 = curRange).push.apply(_curRange2, _toConsumableArray(contextLines(lines)));
         } else {
-          var _curRange3;
+          let _curRange3;
 
           // end the range and output
-          var contextSize = Math.min(lines.length, options.context);
+          const contextSize = Math.min(lines.length, options.context);
 
           (_curRange3 = curRange).push.apply(_curRange3, _toConsumableArray(contextLines(lines.slice(0, contextSize))));
 
-          var hunk = {
+          const hunk = {
             oldStart: oldRangeStart,
             oldLines: oldLine - oldRangeStart + contextSize,
             newStart: newRangeStart,
@@ -977,9 +977,9 @@ function structuredPatch(oldFileName, newFileName, oldStr, newStr, oldHeader, ne
 
           if (i >= diff.length - 2 && lines.length <= options.context) {
             // EOF is inside this hunk
-            var oldEOFNewline = /\n$/.test(oldStr);
-            var newEOFNewline = /\n$/.test(newStr);
-            var noNlBeforeAdds = lines.length == 0 && curRange.length > hunk.oldLines;
+            const oldEOFNewline = /\n$/.test(oldStr);
+            const newEOFNewline = /\n$/.test(newStr);
+            const noNlBeforeAdds = lines.length == 0 && curRange.length > hunk.oldLines;
 
             if (!oldEOFNewline && noNlBeforeAdds) {
               // special case: old has no eol and no trailing context; no-nl can end up before adds
@@ -1003,7 +1003,7 @@ function structuredPatch(oldFileName, newFileName, oldStr, newStr, oldHeader, ne
     }
   };
 
-  for (var i = 0; i < diff.length; i++) {
+  for (let i = 0; i < diff.length; i++) {
     _loop(i);
   }
 
@@ -1016,8 +1016,8 @@ function structuredPatch(oldFileName, newFileName, oldStr, newStr, oldHeader, ne
   };
 }
 function createTwoFilesPatch(oldFileName, newFileName, oldStr, newStr, oldHeader, newHeader, options) {
-  var diff = structuredPatch(oldFileName, newFileName, oldStr, newStr, oldHeader, newHeader, options);
-  var ret = [];
+  const diff = structuredPatch(oldFileName, newFileName, oldStr, newStr, oldHeader, newHeader, options);
+  const ret = [];
 
   if (oldFileName == newFileName) {
     ret.push('Index: ' + oldFileName);
@@ -1027,8 +1027,8 @@ function createTwoFilesPatch(oldFileName, newFileName, oldStr, newStr, oldHeader
   ret.push('--- ' + diff.oldFileName + (typeof diff.oldHeader === 'undefined' ? '' : '\t' + diff.oldHeader));
   ret.push('+++ ' + diff.newFileName + (typeof diff.newHeader === 'undefined' ? '' : '\t' + diff.newHeader));
 
-  for (var i = 0; i < diff.hunks.length; i++) {
-    var hunk = diff.hunks[i];
+  for (let i = 0; i < diff.hunks.length; i++) {
+    const hunk = diff.hunks[i];
     ret.push('@@ -' + hunk.oldStart + ',' + hunk.oldLines + ' +' + hunk.newStart + ',' + hunk.newLines + ' @@');
     ret.push.apply(ret, hunk.lines);
   }
@@ -1051,7 +1051,7 @@ function arrayStartsWith(array, start) {
     return false;
   }
 
-  for (var i = 0; i < start.length; i++) {
+  for (let i = 0; i < start.length; i++) {
     if (start[i] !== array[i]) {
       return false;
     }
@@ -1061,7 +1061,7 @@ function arrayStartsWith(array, start) {
 }
 
 function calcLineCount(hunk) {
-  var _calcOldNewLineCount = calcOldNewLineCount(hunk.lines),
+  const _calcOldNewLineCount = calcOldNewLineCount(hunk.lines),
       oldLines = _calcOldNewLineCount.oldLines,
       newLines = _calcOldNewLineCount.newLines;
 
@@ -1080,7 +1080,7 @@ function calcLineCount(hunk) {
 function merge(mine, theirs, base) {
   mine = loadPatch(mine, base);
   theirs = loadPatch(theirs, base);
-  var ret = {}; // For index we just let it pass through as it doesn't have any necessary meaning.
+  const ret = {}; // For index we just let it pass through as it doesn't have any necessary meaning.
   // Leaving sanity checks on this to the API consumer that may know more about the
   // meaning in their own context.
 
@@ -1111,13 +1111,13 @@ function merge(mine, theirs, base) {
   }
 
   ret.hunks = [];
-  var mineIndex = 0,
+  let mineIndex = 0,
       theirsIndex = 0,
       mineOffset = 0,
       theirsOffset = 0;
 
   while (mineIndex < mine.hunks.length || theirsIndex < theirs.hunks.length) {
-    var mineCurrent = mine.hunks[mineIndex] || {
+    const mineCurrent = mine.hunks[mineIndex] || {
       oldStart: Infinity
     },
         theirsCurrent = theirs.hunks[theirsIndex] || {
@@ -1136,7 +1136,7 @@ function merge(mine, theirs, base) {
       mineOffset += theirsCurrent.newLines - theirsCurrent.oldLines;
     } else {
       // Overlap, merge as best we can
-      var mergedHunk = {
+      const mergedHunk = {
         oldStart: Math.min(mineCurrent.oldStart, theirsCurrent.oldStart),
         oldLines: 0,
         newStart: Math.min(mineCurrent.newStart + mineOffset, theirsCurrent.oldStart + theirsOffset),
@@ -1202,7 +1202,7 @@ function cloneHunk(hunk, offset) {
 function mergeLines(hunk, mineOffset, mineLines, theirOffset, theirLines) {
   // This will generally result in a conflicted hunk, but there are cases where the context
   // is the only overlap where we can successfully merge the content here.
-  var mine = {
+  const mine = {
     offset: mineOffset,
     lines: mineLines,
     index: 0
@@ -1217,7 +1217,7 @@ function mergeLines(hunk, mineOffset, mineLines, theirOffset, theirLines) {
   insertLeading(hunk, their, mine); // Now in the overlap content. Scan through and select the best changes from each.
 
   while (mine.index < mine.lines.length && their.index < their.lines.length) {
-    var mineCurrent = mine.lines[mine.index],
+    const mineCurrent = mine.lines[mine.index],
         theirCurrent = their.lines[their.index];
 
     if ((mineCurrent[0] === '-' || mineCurrent[0] === '+') && (theirCurrent[0] === '-' || theirCurrent[0] === '+')) {
@@ -1257,26 +1257,26 @@ function mergeLines(hunk, mineOffset, mineLines, theirOffset, theirLines) {
 }
 
 function mutualChange(hunk, mine, their) {
-  var myChanges = collectChange(mine),
+  const myChanges = collectChange(mine),
       theirChanges = collectChange(their);
 
   if (allRemoves(myChanges) && allRemoves(theirChanges)) {
     // Special case for remove changes that are supersets of one another
     if (arrayStartsWith(myChanges, theirChanges) && skipRemoveSuperset(their, myChanges, myChanges.length - theirChanges.length)) {
-      var _hunk$lines3;
+      let _hunk$lines3;
 
       (_hunk$lines3 = hunk.lines).push.apply(_hunk$lines3, _toConsumableArray(myChanges));
 
       return;
     } else if (arrayStartsWith(theirChanges, myChanges) && skipRemoveSuperset(mine, theirChanges, theirChanges.length - myChanges.length)) {
-      var _hunk$lines4;
+      let _hunk$lines4;
 
       (_hunk$lines4 = hunk.lines).push.apply(_hunk$lines4, _toConsumableArray(theirChanges));
 
       return;
     }
   } else if (arrayEqual(myChanges, theirChanges)) {
-    var _hunk$lines5;
+    let _hunk$lines5;
 
     (_hunk$lines5 = hunk.lines).push.apply(_hunk$lines5, _toConsumableArray(myChanges));
 
@@ -1287,11 +1287,11 @@ function mutualChange(hunk, mine, their) {
 }
 
 function removal(hunk, mine, their, swap) {
-  var myChanges = collectChange(mine),
+  const myChanges = collectChange(mine),
       theirChanges = collectContext(their, myChanges);
 
   if (theirChanges.merged) {
-    var _hunk$lines6;
+    let _hunk$lines6;
 
     (_hunk$lines6 = hunk.lines).push.apply(_hunk$lines6, _toConsumableArray(theirChanges.merged));
   } else {
@@ -1310,7 +1310,7 @@ function conflict(hunk, mine, their) {
 
 function insertLeading(hunk, insert, their) {
   while (insert.offset < their.offset && insert.index < insert.lines.length) {
-    var line = insert.lines[insert.index++];
+    const line = insert.lines[insert.index++];
     hunk.lines.push(line);
     insert.offset++;
   }
@@ -1318,17 +1318,17 @@ function insertLeading(hunk, insert, their) {
 
 function insertTrailing(hunk, insert) {
   while (insert.index < insert.lines.length) {
-    var line = insert.lines[insert.index++];
+    const line = insert.lines[insert.index++];
     hunk.lines.push(line);
   }
 }
 
 function collectChange(state) {
-  var ret = [],
+  let ret = [],
       operation = state.lines[state.index][0];
 
   while (state.index < state.lines.length) {
-    var line = state.lines[state.index]; // Group additions that are immediately after subtractions and treat them as one "atomic" modify change.
+    const line = state.lines[state.index]; // Group additions that are immediately after subtractions and treat them as one "atomic" modify change.
 
     if (operation === '-' && line[0] === '+') {
       operation = '+';
@@ -1346,14 +1346,14 @@ function collectChange(state) {
 }
 
 function collectContext(state, matchChanges) {
-  var changes = [],
+  let changes = [],
       merged = [],
       matchIndex = 0,
       contextChanges = false,
       conflicted = false;
 
   while (matchIndex < matchChanges.length && state.index < state.lines.length) {
-    var change = state.lines[state.index],
+    let change = state.lines[state.index],
         match = matchChanges[matchIndex]; // Once we've hit our add, then we are done
 
     if (match[0] === '+') {
@@ -1407,8 +1407,8 @@ function allRemoves(changes) {
 }
 
 function skipRemoveSuperset(state, removeChanges, delta) {
-  for (var i = 0; i < delta; i++) {
-    var changeContent = removeChanges[removeChanges.length - delta + i].substr(1);
+  for (let i = 0; i < delta; i++) {
+    const changeContent = removeChanges[removeChanges.length - delta + i].substr(1);
 
     if (state.lines[state.index + i] !== ' ' + changeContent) {
       return false;
@@ -1420,12 +1420,12 @@ function skipRemoveSuperset(state, removeChanges, delta) {
 }
 
 function calcOldNewLineCount(lines) {
-  var oldLines = 0;
-  var newLines = 0;
+  let oldLines = 0;
+  let newLines = 0;
   lines.forEach(function (line) {
     if (typeof line !== 'string') {
-      var myCount = calcOldNewLineCount(line.mine);
-      var theirCount = calcOldNewLineCount(line.theirs);
+      const myCount = calcOldNewLineCount(line.mine);
+      const theirCount = calcOldNewLineCount(line.theirs);
 
       if (oldLines !== undefined) {
         if (myCount.oldLines === theirCount.oldLines) {
@@ -1460,11 +1460,11 @@ function calcOldNewLineCount(lines) {
 
 // See: http://code.google.com/p/google-diff-match-patch/wiki/API
 function convertChangesToDMP(changes) {
-  var ret = [],
+  let ret = [],
       change,
       operation;
 
-  for (var i = 0; i < changes.length; i++) {
+  for (let i = 0; i < changes.length; i++) {
     change = changes[i];
 
     if (change.added) {
@@ -1482,10 +1482,10 @@ function convertChangesToDMP(changes) {
 }
 
 function convertChangesToXML(changes) {
-  var ret = [];
+  const ret = [];
 
-  for (var i = 0; i < changes.length; i++) {
-    var change = changes[i];
+  for (let i = 0; i < changes.length; i++) {
+    const change = changes[i];
 
     if (change.added) {
       ret.push('<ins>');
@@ -1506,7 +1506,7 @@ function convertChangesToXML(changes) {
 }
 
 function escapeHTML(s) {
-  var n = s;
+  let n = s;
   n = n.replace(/&/g, '&amp;');
   n = n.replace(/</g, '&lt;');
   n = n.replace(/>/g, '&gt;');

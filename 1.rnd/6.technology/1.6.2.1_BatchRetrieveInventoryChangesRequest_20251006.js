@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
 exports.batchRetrieveInventoryChangesRequestSchema = void 0;
-var schema_1 = require("../schema");
+const schema_1 = require("../schema");
 exports.batchRetrieveInventoryChangesRequestSchema = (0, schema_1.object)({
     catalogObjectIds: [
         'catalog_object_ids',

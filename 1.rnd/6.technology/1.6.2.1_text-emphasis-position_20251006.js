@@ -1,4 +1,4 @@
-let Declaration = require('../declaration')
+const Declaration = require('../declaration')
 
 class TextEmphasisPosition extends Declaration {
   set(decl, prefix) {

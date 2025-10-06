@@ -17,7 +17,7 @@ exports.GCPEnv = void 0;
 exports.clear = clear;
 exports.getEnv = getEnv;
 const gcpMetadata = require("gcp-metadata");
-var GCPEnv;
+let GCPEnv;
 (function (GCPEnv) {
     GCPEnv["APP_ENGINE"] = "APP_ENGINE";
     GCPEnv["KUBERNETES_ENGINE"] = "KUBERNETES_ENGINE";

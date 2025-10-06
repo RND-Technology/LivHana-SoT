@@ -4,15 +4,15 @@
   (global = global || self, factory(global.ReactTransitionGroup = {}, global.React, global.ReactDOM));
 }(this, (function (exports, React, ReactDOM) { 'use strict';
 
-  var React__default = 'default' in React ? React['default'] : React;
+  const React__default = 'default' in React ? React['default'] : React;
   ReactDOM = ReactDOM && Object.prototype.hasOwnProperty.call(ReactDOM, 'default') ? ReactDOM['default'] : ReactDOM;
 
   function _extends() {
     _extends = Object.assign || function (target) {
-      for (var i = 1; i < arguments.length; i++) {
-        var source = arguments[i];
+      for (let i = 1; i < arguments.length; i++) {
+        const source = arguments[i];
 
-        for (var key in source) {
+        for (const key in source) {
           if (Object.prototype.hasOwnProperty.call(source, key)) {
             target[key] = source[key];
           }
@@ -27,9 +27,9 @@
 
   function _objectWithoutPropertiesLoose(source, excluded) {
     if (source == null) return {};
-    var target = {};
-    var sourceKeys = Object.keys(source);
-    var key, i;
+    const target = {};
+    const sourceKeys = Object.keys(source);
+    let key, i;
 
     for (i = 0; i < sourceKeys.length; i++) {
       key = sourceKeys[i];
@@ -50,7 +50,7 @@
   	return module = { exports: {} }, fn(module, module.exports), module.exports;
   }
 
-  var reactIs_development = createCommonjsModule(function (module, exports) {
+  const reactIs_development = createCommonjsModule(function (module, exports) {
 
 
 
@@ -59,27 +59,27 @@
 
   // The Symbol used to tag the ReactElement-like types. If there is no native Symbol
   // nor polyfill, then a plain number is used for performance.
-  var hasSymbol = typeof Symbol === 'function' && Symbol.for;
-  var REACT_ELEMENT_TYPE = hasSymbol ? Symbol.for('react.element') : 0xeac7;
-  var REACT_PORTAL_TYPE = hasSymbol ? Symbol.for('react.portal') : 0xeaca;
-  var REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for('react.fragment') : 0xeacb;
-  var REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for('react.strict_mode') : 0xeacc;
-  var REACT_PROFILER_TYPE = hasSymbol ? Symbol.for('react.profiler') : 0xead2;
-  var REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for('react.provider') : 0xeacd;
-  var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace; // TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
+  const hasSymbol = typeof Symbol === 'function' && Symbol.for;
+  const REACT_ELEMENT_TYPE = hasSymbol ? Symbol.for('react.element') : 0xeac7;
+  const REACT_PORTAL_TYPE = hasSymbol ? Symbol.for('react.portal') : 0xeaca;
+  const REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for('react.fragment') : 0xeacb;
+  const REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for('react.strict_mode') : 0xeacc;
+  const REACT_PROFILER_TYPE = hasSymbol ? Symbol.for('react.profiler') : 0xead2;
+  const REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for('react.provider') : 0xeacd;
+  const REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace; // TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
   // (unstable) APIs that have been removed. Can we remove the symbols?
 
-  var REACT_ASYNC_MODE_TYPE = hasSymbol ? Symbol.for('react.async_mode') : 0xeacf;
-  var REACT_CONCURRENT_MODE_TYPE = hasSymbol ? Symbol.for('react.concurrent_mode') : 0xeacf;
-  var REACT_FORWARD_REF_TYPE = hasSymbol ? Symbol.for('react.forward_ref') : 0xead0;
-  var REACT_SUSPENSE_TYPE = hasSymbol ? Symbol.for('react.suspense') : 0xead1;
-  var REACT_SUSPENSE_LIST_TYPE = hasSymbol ? Symbol.for('react.suspense_list') : 0xead8;
-  var REACT_MEMO_TYPE = hasSymbol ? Symbol.for('react.memo') : 0xead3;
-  var REACT_LAZY_TYPE = hasSymbol ? Symbol.for('react.lazy') : 0xead4;
-  var REACT_BLOCK_TYPE = hasSymbol ? Symbol.for('react.block') : 0xead9;
-  var REACT_FUNDAMENTAL_TYPE = hasSymbol ? Symbol.for('react.fundamental') : 0xead5;
-  var REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for('react.responder') : 0xead6;
-  var REACT_SCOPE_TYPE = hasSymbol ? Symbol.for('react.scope') : 0xead7;
+  const REACT_ASYNC_MODE_TYPE = hasSymbol ? Symbol.for('react.async_mode') : 0xeacf;
+  const REACT_CONCURRENT_MODE_TYPE = hasSymbol ? Symbol.for('react.concurrent_mode') : 0xeacf;
+  const REACT_FORWARD_REF_TYPE = hasSymbol ? Symbol.for('react.forward_ref') : 0xead0;
+  const REACT_SUSPENSE_TYPE = hasSymbol ? Symbol.for('react.suspense') : 0xead1;
+  const REACT_SUSPENSE_LIST_TYPE = hasSymbol ? Symbol.for('react.suspense_list') : 0xead8;
+  const REACT_MEMO_TYPE = hasSymbol ? Symbol.for('react.memo') : 0xead3;
+  const REACT_LAZY_TYPE = hasSymbol ? Symbol.for('react.lazy') : 0xead4;
+  const REACT_BLOCK_TYPE = hasSymbol ? Symbol.for('react.block') : 0xead9;
+  const REACT_FUNDAMENTAL_TYPE = hasSymbol ? Symbol.for('react.fundamental') : 0xead5;
+  const REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for('react.responder') : 0xead6;
+  const REACT_SCOPE_TYPE = hasSymbol ? Symbol.for('react.scope') : 0xead7;
 
   function isValidElementType(type) {
     return typeof type === 'string' || typeof type === 'function' || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
@@ -88,7 +88,7 @@
 
   function typeOf(object) {
     if (typeof object === 'object' && object !== null) {
-      var $$typeof = object.$$typeof;
+      const $$typeof = object.$$typeof;
 
       switch ($$typeof) {
         case REACT_ELEMENT_TYPE:
@@ -128,20 +128,20 @@
     return undefined;
   } // AsyncMode is deprecated along with isAsyncMode
 
-  var AsyncMode = REACT_ASYNC_MODE_TYPE;
-  var ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
-  var ContextConsumer = REACT_CONTEXT_TYPE;
-  var ContextProvider = REACT_PROVIDER_TYPE;
-  var Element = REACT_ELEMENT_TYPE;
-  var ForwardRef = REACT_FORWARD_REF_TYPE;
-  var Fragment = REACT_FRAGMENT_TYPE;
-  var Lazy = REACT_LAZY_TYPE;
-  var Memo = REACT_MEMO_TYPE;
-  var Portal = REACT_PORTAL_TYPE;
-  var Profiler = REACT_PROFILER_TYPE;
-  var StrictMode = REACT_STRICT_MODE_TYPE;
-  var Suspense = REACT_SUSPENSE_TYPE;
-  var hasWarnedAboutDeprecatedIsAsyncMode = false; // AsyncMode should be deprecated
+  const AsyncMode = REACT_ASYNC_MODE_TYPE;
+  const ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
+  const ContextConsumer = REACT_CONTEXT_TYPE;
+  const ContextProvider = REACT_PROVIDER_TYPE;
+  const Element = REACT_ELEMENT_TYPE;
+  const ForwardRef = REACT_FORWARD_REF_TYPE;
+  const Fragment = REACT_FRAGMENT_TYPE;
+  const Lazy = REACT_LAZY_TYPE;
+  const Memo = REACT_MEMO_TYPE;
+  const Portal = REACT_PORTAL_TYPE;
+  const Profiler = REACT_PROFILER_TYPE;
+  const StrictMode = REACT_STRICT_MODE_TYPE;
+  const Suspense = REACT_SUSPENSE_TYPE;
+  let hasWarnedAboutDeprecatedIsAsyncMode = false; // AsyncMode should be deprecated
 
   function isAsyncMode(object) {
     {
@@ -222,36 +222,36 @@
     })();
   }
   });
-  var reactIs_development_1 = reactIs_development.AsyncMode;
-  var reactIs_development_2 = reactIs_development.ConcurrentMode;
-  var reactIs_development_3 = reactIs_development.ContextConsumer;
-  var reactIs_development_4 = reactIs_development.ContextProvider;
-  var reactIs_development_5 = reactIs_development.Element;
-  var reactIs_development_6 = reactIs_development.ForwardRef;
-  var reactIs_development_7 = reactIs_development.Fragment;
-  var reactIs_development_8 = reactIs_development.Lazy;
-  var reactIs_development_9 = reactIs_development.Memo;
-  var reactIs_development_10 = reactIs_development.Portal;
-  var reactIs_development_11 = reactIs_development.Profiler;
-  var reactIs_development_12 = reactIs_development.StrictMode;
-  var reactIs_development_13 = reactIs_development.Suspense;
-  var reactIs_development_14 = reactIs_development.isAsyncMode;
-  var reactIs_development_15 = reactIs_development.isConcurrentMode;
-  var reactIs_development_16 = reactIs_development.isContextConsumer;
-  var reactIs_development_17 = reactIs_development.isContextProvider;
-  var reactIs_development_18 = reactIs_development.isElement;
-  var reactIs_development_19 = reactIs_development.isForwardRef;
-  var reactIs_development_20 = reactIs_development.isFragment;
-  var reactIs_development_21 = reactIs_development.isLazy;
-  var reactIs_development_22 = reactIs_development.isMemo;
-  var reactIs_development_23 = reactIs_development.isPortal;
-  var reactIs_development_24 = reactIs_development.isProfiler;
-  var reactIs_development_25 = reactIs_development.isStrictMode;
-  var reactIs_development_26 = reactIs_development.isSuspense;
-  var reactIs_development_27 = reactIs_development.isValidElementType;
-  var reactIs_development_28 = reactIs_development.typeOf;
+  const reactIs_development_1 = reactIs_development.AsyncMode;
+  const reactIs_development_2 = reactIs_development.ConcurrentMode;
+  const reactIs_development_3 = reactIs_development.ContextConsumer;
+  const reactIs_development_4 = reactIs_development.ContextProvider;
+  const reactIs_development_5 = reactIs_development.Element;
+  const reactIs_development_6 = reactIs_development.ForwardRef;
+  const reactIs_development_7 = reactIs_development.Fragment;
+  const reactIs_development_8 = reactIs_development.Lazy;
+  const reactIs_development_9 = reactIs_development.Memo;
+  const reactIs_development_10 = reactIs_development.Portal;
+  const reactIs_development_11 = reactIs_development.Profiler;
+  const reactIs_development_12 = reactIs_development.StrictMode;
+  const reactIs_development_13 = reactIs_development.Suspense;
+  const reactIs_development_14 = reactIs_development.isAsyncMode;
+  const reactIs_development_15 = reactIs_development.isConcurrentMode;
+  const reactIs_development_16 = reactIs_development.isContextConsumer;
+  const reactIs_development_17 = reactIs_development.isContextProvider;
+  const reactIs_development_18 = reactIs_development.isElement;
+  const reactIs_development_19 = reactIs_development.isForwardRef;
+  const reactIs_development_20 = reactIs_development.isFragment;
+  const reactIs_development_21 = reactIs_development.isLazy;
+  const reactIs_development_22 = reactIs_development.isMemo;
+  const reactIs_development_23 = reactIs_development.isPortal;
+  const reactIs_development_24 = reactIs_development.isProfiler;
+  const reactIs_development_25 = reactIs_development.isStrictMode;
+  const reactIs_development_26 = reactIs_development.isSuspense;
+  const reactIs_development_27 = reactIs_development.isValidElementType;
+  const reactIs_development_28 = reactIs_development.typeOf;
 
-  var reactIs = createCommonjsModule(function (module) {
+  const reactIs = createCommonjsModule(function (module) {
 
   {
     module.exports = reactIs_development;
@@ -264,9 +264,9 @@
   @license MIT
   */
   /* eslint-disable no-unused-vars */
-  var getOwnPropertySymbols = Object.getOwnPropertySymbols;
-  var hasOwnProperty = Object.prototype.hasOwnProperty;
-  var propIsEnumerable = Object.prototype.propertyIsEnumerable;
+  const getOwnPropertySymbols = Object.getOwnPropertySymbols;
+  const hasOwnProperty = Object.prototype.hasOwnProperty;
+  const propIsEnumerable = Object.prototype.propertyIsEnumerable;
 
   function toObject(val) {
   	if (val === null || val === undefined) {
@@ -285,18 +285,18 @@
   		// Detect buggy property enumeration order in older V8 versions.
 
   		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
-  		var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
+  		const test1 = new String('abc');  // eslint-disable-line no-new-wrappers
   		test1[5] = 'de';
   		if (Object.getOwnPropertyNames(test1)[0] === '5') {
   			return false;
   		}
 
   		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-  		var test2 = {};
-  		for (var i = 0; i < 10; i++) {
+  		const test2 = {};
+  		for (let i = 0; i < 10; i++) {
   			test2['_' + String.fromCharCode(i)] = i;
   		}
-  		var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
+  		const order2 = Object.getOwnPropertyNames(test2).map(function (n) {
   			return test2[n];
   		});
   		if (order2.join('') !== '0123456789') {
@@ -304,7 +304,7 @@
   		}
 
   		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-  		var test3 = {};
+  		const test3 = {};
   		'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
   			test3[letter] = letter;
   		});
@@ -320,15 +320,15 @@
   	}
   }
 
-  var objectAssign = shouldUseNative() ? Object.assign : function (target, source) {
-  	var from;
-  	var to = toObject(target);
-  	var symbols;
+  const objectAssign = shouldUseNative() ? Object.assign : function (target, source) {
+  	let from;
+  	const to = toObject(target);
+  	let symbols;
 
-  	for (var s = 1; s < arguments.length; s++) {
+  	for (let s = 1; s < arguments.length; s++) {
   		from = Object(arguments[s]);
 
-  		for (var key in from) {
+  		for (const key in from) {
   			if (hasOwnProperty.call(from, key)) {
   				to[key] = from[key];
   			}
@@ -336,7 +336,7 @@
 
   		if (getOwnPropertySymbols) {
   			symbols = getOwnPropertySymbols(from);
-  			for (var i = 0; i < symbols.length; i++) {
+  			for (let i = 0; i < symbols.length; i++) {
   				if (propIsEnumerable.call(from, symbols[i])) {
   					to[symbols[i]] = from[symbols[i]];
   				}
@@ -354,11 +354,11 @@
    * LICENSE file in the root directory of this source tree.
    */
 
-  var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
+  const ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 
-  var ReactPropTypesSecret_1 = ReactPropTypesSecret;
+  const ReactPropTypesSecret_1 = ReactPropTypesSecret;
 
-  var printWarning = function() {};
+  let printWarning = function() {};
 
   {
     var ReactPropTypesSecret$1 = ReactPropTypesSecret_1;
@@ -366,7 +366,7 @@
     var has = Function.call.bind(Object.prototype.hasOwnProperty);
 
     printWarning = function(text) {
-      var message = 'Warning: ' + text;
+      const message = 'Warning: ' + text;
       if (typeof console !== 'undefined') {
         console.error(message);
       }
@@ -392,7 +392,7 @@
    */
   function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
     {
-      for (var typeSpecName in typeSpecs) {
+      for (const typeSpecName in typeSpecs) {
         if (has(typeSpecs, typeSpecName)) {
           var error;
           // Prop type validation may throw. In case they do, we don't want to
@@ -402,7 +402,7 @@
             // This is intentionally an invariant that gets caught. It's the same
             // behavior as without this statement except with a better message.
             if (typeof typeSpecs[typeSpecName] !== 'function') {
-              var err = Error(
+              const err = Error(
                 (componentName || 'React class') + ': ' + location + ' type `' + typeSpecName + '` is invalid; ' +
                 'it must be a function, usually from the `prop-types` package, but received `' + typeof typeSpecs[typeSpecName] + '`.'
               );
@@ -428,7 +428,7 @@
             // same error.
             loggedTypeFailures[error.message] = true;
 
-            var stack = getStack ? getStack() : '';
+            const stack = getStack ? getStack() : '';
 
             printWarning(
               'Failed ' + location + ' type: ' + error.message + (stack != null ? stack : '')
@@ -450,14 +450,14 @@
     }
   };
 
-  var checkPropTypes_1 = checkPropTypes;
+  const checkPropTypes_1 = checkPropTypes;
 
-  var has$1 = Function.call.bind(Object.prototype.hasOwnProperty);
-  var printWarning$1 = function() {};
+  const has$1 = Function.call.bind(Object.prototype.hasOwnProperty);
+  let printWarning$1 = function() {};
 
   {
     printWarning$1 = function(text) {
-      var message = 'Warning: ' + text;
+      const message = 'Warning: ' + text;
       if (typeof console !== 'undefined') {
         console.error(message);
       }
@@ -474,10 +474,10 @@
     return null;
   }
 
-  var factoryWithTypeCheckers = function(isValidElement, throwOnDirectAccess) {
+  const factoryWithTypeCheckers = function(isValidElement, throwOnDirectAccess) {
     /* global Symbol */
-    var ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
-    var FAUX_ITERATOR_SYMBOL = '@@iterator'; // Before Symbol spec.
+    const ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
+    const FAUX_ITERATOR_SYMBOL = '@@iterator'; // Before Symbol spec.
 
     /**
      * Returns the iterator method function contained on the iterable object.
@@ -494,7 +494,7 @@
      * @return {?function}
      */
     function getIteratorFn(maybeIterable) {
-      var iteratorFn = maybeIterable && (ITERATOR_SYMBOL && maybeIterable[ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL]);
+      const iteratorFn = maybeIterable && (ITERATOR_SYMBOL && maybeIterable[ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL]);
       if (typeof iteratorFn === 'function') {
         return iteratorFn;
       }
@@ -547,11 +547,11 @@
      * @internal
      */
 
-    var ANONYMOUS = '<<anonymous>>';
+    const ANONYMOUS = '<<anonymous>>';
 
     // Important!
     // Keep this list in sync with production version in `./factoryWithThrowingShims.js`.
-    var ReactPropTypes = {
+    const ReactPropTypes = {
       array: createPrimitiveTypeChecker('array'),
       bool: createPrimitiveTypeChecker('boolean'),
       func: createPrimitiveTypeChecker('function'),
@@ -617,7 +617,7 @@
         if (secret !== ReactPropTypesSecret_1) {
           if (throwOnDirectAccess) {
             // New behavior only for users of `prop-types` package
-            var err = new Error(
+            const err = new Error(
               'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
               'Use `PropTypes.checkPropTypes()` to call them. ' +
               'Read more at http://fb.me/use-check-prop-types'
@@ -626,7 +626,7 @@
             throw err;
           } else if ( typeof console !== 'undefined') {
             // Old behavior for people using React.PropTypes
-            var cacheKey = componentName + ':' + propName;
+            const cacheKey = componentName + ':' + propName;
             if (
               !manualPropTypeCallCache[cacheKey] &&
               // Avoid spamming the console because they are often not actionable except for lib authors
@@ -657,7 +657,7 @@
         }
       }
 
-      var chainedCheckType = checkType.bind(null, false);
+      const chainedCheckType = checkType.bind(null, false);
       chainedCheckType.isRequired = checkType.bind(null, true);
 
       return chainedCheckType;
@@ -665,13 +665,13 @@
 
     function createPrimitiveTypeChecker(expectedType) {
       function validate(props, propName, componentName, location, propFullName, secret) {
-        var propValue = props[propName];
-        var propType = getPropType(propValue);
+        const propValue = props[propName];
+        const propType = getPropType(propValue);
         if (propType !== expectedType) {
           // `propValue` being instance of, say, date/regexp, pass the 'object'
           // check, but we can offer a more precise error message here rather than
           // 'of type `object`'.
-          var preciseType = getPreciseType(propValue);
+          const preciseType = getPreciseType(propValue);
 
           return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + preciseType + '` supplied to `' + componentName + '`, expected ') + ('`' + expectedType + '`.'));
         }
@@ -689,13 +689,13 @@
         if (typeof typeChecker !== 'function') {
           return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside arrayOf.');
         }
-        var propValue = props[propName];
+        const propValue = props[propName];
         if (!Array.isArray(propValue)) {
-          var propType = getPropType(propValue);
+          const propType = getPropType(propValue);
           return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an array.'));
         }
-        for (var i = 0; i < propValue.length; i++) {
-          var error = typeChecker(propValue, i, componentName, location, propFullName + '[' + i + ']', ReactPropTypesSecret_1);
+        for (let i = 0; i < propValue.length; i++) {
+          const error = typeChecker(propValue, i, componentName, location, propFullName + '[' + i + ']', ReactPropTypesSecret_1);
           if (error instanceof Error) {
             return error;
           }
@@ -707,9 +707,9 @@
 
     function createElementTypeChecker() {
       function validate(props, propName, componentName, location, propFullName) {
-        var propValue = props[propName];
+        const propValue = props[propName];
         if (!isValidElement(propValue)) {
-          var propType = getPropType(propValue);
+          const propType = getPropType(propValue);
           return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected a single ReactElement.'));
         }
         return null;
@@ -719,9 +719,9 @@
 
     function createElementTypeTypeChecker() {
       function validate(props, propName, componentName, location, propFullName) {
-        var propValue = props[propName];
+        const propValue = props[propName];
         if (!reactIs.isValidElementType(propValue)) {
-          var propType = getPropType(propValue);
+          const propType = getPropType(propValue);
           return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected a single ReactElement type.'));
         }
         return null;
@@ -732,8 +732,8 @@
     function createInstanceTypeChecker(expectedClass) {
       function validate(props, propName, componentName, location, propFullName) {
         if (!(props[propName] instanceof expectedClass)) {
-          var expectedClassName = expectedClass.name || ANONYMOUS;
-          var actualClassName = getClassName(props[propName]);
+          const expectedClassName = expectedClass.name || ANONYMOUS;
+          const actualClassName = getClassName(props[propName]);
           return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + actualClassName + '` supplied to `' + componentName + '`, expected ') + ('instance of `' + expectedClassName + '`.'));
         }
         return null;
@@ -757,15 +757,15 @@
       }
 
       function validate(props, propName, componentName, location, propFullName) {
-        var propValue = props[propName];
-        for (var i = 0; i < expectedValues.length; i++) {
+        const propValue = props[propName];
+        for (let i = 0; i < expectedValues.length; i++) {
           if (is(propValue, expectedValues[i])) {
             return null;
           }
         }
 
-        var valuesString = JSON.stringify(expectedValues, function replacer(key, value) {
-          var type = getPreciseType(value);
+        const valuesString = JSON.stringify(expectedValues, function replacer(key, value) {
+          const type = getPreciseType(value);
           if (type === 'symbol') {
             return String(value);
           }
@@ -781,14 +781,14 @@
         if (typeof typeChecker !== 'function') {
           return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside objectOf.');
         }
-        var propValue = props[propName];
-        var propType = getPropType(propValue);
+        const propValue = props[propName];
+        const propType = getPropType(propValue);
         if (propType !== 'object') {
           return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an object.'));
         }
-        for (var key in propValue) {
+        for (const key in propValue) {
           if (has$1(propValue, key)) {
-            var error = typeChecker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1);
+            const error = typeChecker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1);
             if (error instanceof Error) {
               return error;
             }
@@ -805,8 +805,8 @@
         return emptyFunctionThatReturnsNull;
       }
 
-      for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
-        var checker = arrayOfTypeCheckers[i];
+      for (let i = 0; i < arrayOfTypeCheckers.length; i++) {
+        const checker = arrayOfTypeCheckers[i];
         if (typeof checker !== 'function') {
           printWarning$1(
             'Invalid argument supplied to oneOfType. Expected an array of check functions, but ' +
@@ -817,8 +817,8 @@
       }
 
       function validate(props, propName, componentName, location, propFullName) {
-        for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
-          var checker = arrayOfTypeCheckers[i];
+        for (let i = 0; i < arrayOfTypeCheckers.length; i++) {
+          const checker = arrayOfTypeCheckers[i];
           if (checker(props, propName, componentName, location, propFullName, ReactPropTypesSecret_1) == null) {
             return null;
           }
@@ -841,17 +841,17 @@
 
     function createShapeTypeChecker(shapeTypes) {
       function validate(props, propName, componentName, location, propFullName) {
-        var propValue = props[propName];
-        var propType = getPropType(propValue);
+        const propValue = props[propName];
+        const propType = getPropType(propValue);
         if (propType !== 'object') {
           return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
         }
-        for (var key in shapeTypes) {
-          var checker = shapeTypes[key];
+        for (const key in shapeTypes) {
+          const checker = shapeTypes[key];
           if (!checker) {
             continue;
           }
-          var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1);
+          const error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1);
           if (error) {
             return error;
           }
@@ -863,16 +863,16 @@
 
     function createStrictShapeTypeChecker(shapeTypes) {
       function validate(props, propName, componentName, location, propFullName) {
-        var propValue = props[propName];
-        var propType = getPropType(propValue);
+        const propValue = props[propName];
+        const propType = getPropType(propValue);
         if (propType !== 'object') {
           return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
         }
         // We need to check all keys in case some are required but missing from
         // props.
-        var allKeys = objectAssign({}, props[propName], shapeTypes);
-        for (var key in allKeys) {
-          var checker = shapeTypes[key];
+        const allKeys = objectAssign({}, props[propName], shapeTypes);
+        for (const key in allKeys) {
+          const checker = shapeTypes[key];
           if (!checker) {
             return new PropTypeError(
               'Invalid ' + location + ' `' + propFullName + '` key `' + key + '` supplied to `' + componentName + '`.' +
@@ -880,7 +880,7 @@
               '\nValid keys: ' +  JSON.stringify(Object.keys(shapeTypes), null, '  ')
             );
           }
-          var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1);
+          const error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1);
           if (error) {
             return error;
           }
@@ -909,8 +909,8 @@
 
           var iteratorFn = getIteratorFn(propValue);
           if (iteratorFn) {
-            var iterator = iteratorFn.call(propValue);
-            var step;
+            const iterator = iteratorFn.call(propValue);
+            let step;
             if (iteratorFn !== propValue.entries) {
               while (!(step = iterator.next()).done) {
                 if (!isNode(step.value)) {
@@ -920,7 +920,7 @@
             } else {
               // Iterator will provide entry [k,v] tuples rather than values.
               while (!(step = iterator.next()).done) {
-                var entry = step.value;
+                const entry = step.value;
                 if (entry) {
                   if (!isNode(entry[1])) {
                     return false;
@@ -964,7 +964,7 @@
 
     // Equivalent of `typeof` but with special handling for array and regexp.
     function getPropType(propValue) {
-      var propType = typeof propValue;
+      const propType = typeof propValue;
       if (Array.isArray(propValue)) {
         return 'array';
       }
@@ -986,7 +986,7 @@
       if (typeof propValue === 'undefined' || propValue === null) {
         return '' + propValue;
       }
-      var propType = getPropType(propValue);
+      const propType = getPropType(propValue);
       if (propType === 'object') {
         if (propValue instanceof Date) {
           return 'date';
@@ -1000,7 +1000,7 @@
     // Returns a string that is postfixed to a warning about an invalid type.
     // For example, "undefined" or "of type array"
     function getPostfixForTypeWarning(value) {
-      var type = getPreciseType(value);
+      const type = getPreciseType(value);
       switch (type) {
         case 'array':
         case 'object':
@@ -1029,7 +1029,7 @@
     return ReactPropTypes;
   };
 
-  var propTypes = createCommonjsModule(function (module) {
+  const propTypes = createCommonjsModule(function (module) {
   /**
    * Copyright (c) 2013-present, Facebook, Inc.
    *
@@ -1038,19 +1038,19 @@
    */
 
   {
-    var ReactIs = reactIs;
+    const ReactIs = reactIs;
 
     // By explicitly using `prop-types` you are opting into new development behavior.
     // http://fb.me/prop-types-in-prod
-    var throwOnDirectAccess = true;
+    const throwOnDirectAccess = true;
     module.exports = factoryWithTypeCheckers(ReactIs.isElement, throwOnDirectAccess);
   }
   });
-  var propTypes_1 = propTypes.object;
-  var propTypes_2 = propTypes.oneOfType;
-  var propTypes_3 = propTypes.element;
-  var propTypes_4 = propTypes.bool;
-  var propTypes_5 = propTypes.func;
+  const propTypes_1 = propTypes.object;
+  const propTypes_2 = propTypes.oneOfType;
+  const propTypes_3 = propTypes.element;
+  const propTypes_4 = propTypes.bool;
+  const propTypes_5 = propTypes.func;
 
   function hasClass(element, className) {
     if (element.classList) return !!className && element.classList.contains(className);
@@ -1075,16 +1075,16 @@
     }
   }
 
-  var config = {
+  const config = {
     disabled: false
   };
 
-  var timeoutsShape =  propTypes.oneOfType([propTypes.number, propTypes.shape({
+  const timeoutsShape =  propTypes.oneOfType([propTypes.number, propTypes.shape({
     enter: propTypes.number,
     exit: propTypes.number,
     appear: propTypes.number
   }).isRequired]) ;
-  var classNamesShape =  propTypes.oneOfType([propTypes.string, propTypes.shape({
+  const classNamesShape =  propTypes.oneOfType([propTypes.string, propTypes.shape({
     enter: propTypes.string,
     exit: propTypes.string,
     active: propTypes.string
@@ -1097,17 +1097,17 @@
     exitActive: propTypes.string
   })]) ;
 
-  var TransitionGroupContext = React__default.createContext(null);
+  const TransitionGroupContext = React__default.createContext(null);
 
-  var forceReflow = function forceReflow(node) {
+  const forceReflow = function forceReflow(node) {
     return node.scrollTop;
   };
 
-  var UNMOUNTED = 'unmounted';
-  var EXITED = 'exited';
-  var ENTERING = 'entering';
-  var ENTERED = 'entered';
-  var EXITING = 'exiting';
+  const UNMOUNTED = 'unmounted';
+  const EXITED = 'exited';
+  const ENTERING = 'entering';
+  const ENTERED = 'entered';
+  const EXITING = 'exiting';
   /**
    * The Transition component lets you describe a transition from one component
    * state to another _over time_ with a simple declarative API. Most commonly
@@ -1200,17 +1200,17 @@
    * `'exiting'` to `'exited'`.
    */
 
-  var Transition = /*#__PURE__*/function (_React$Component) {
+  const Transition = /*#__PURE__*/function (_React$Component) {
     _inheritsLoose(Transition, _React$Component);
 
     function Transition(props, context) {
-      var _this;
+      let _this;
 
       _this = _React$Component.call(this, props, context) || this;
-      var parentGroup = context; // In the context of a TransitionGroup all enters are really appears
+      const parentGroup = context; // In the context of a TransitionGroup all enters are really appears
 
-      var appear = parentGroup && !parentGroup.isMounting ? props.enter : props.appear;
-      var initialStatus;
+      const appear = parentGroup && !parentGroup.isMounting ? props.enter : props.appear;
+      let initialStatus;
       _this.appearStatus = null;
 
       if (props.in) {
@@ -1236,7 +1236,7 @@
     }
 
     Transition.getDerivedStateFromProps = function getDerivedStateFromProps(_ref, prevState) {
-      var nextIn = _ref.in;
+      const nextIn = _ref.in;
 
       if (nextIn && prevState.status === UNMOUNTED) {
         return {
@@ -1263,17 +1263,17 @@
     // }
     ;
 
-    var _proto = Transition.prototype;
+    const _proto = Transition.prototype;
 
     _proto.componentDidMount = function componentDidMount() {
       this.updateStatus(true, this.appearStatus);
     };
 
     _proto.componentDidUpdate = function componentDidUpdate(prevProps) {
-      var nextStatus = null;
+      let nextStatus = null;
 
       if (prevProps !== this.props) {
-        var status = this.state.status;
+        const status = this.state.status;
 
         if (this.props.in) {
           if (status !== ENTERING && status !== ENTERED) {
@@ -1294,8 +1294,8 @@
     };
 
     _proto.getTimeouts = function getTimeouts() {
-      var timeout = this.props.timeout;
-      var exit, enter, appear;
+      const timeout = this.props.timeout;
+      let exit, enter, appear;
       exit = enter = appear = timeout;
 
       if (timeout != null && typeof timeout !== 'number') {
@@ -1323,7 +1323,7 @@
 
         if (nextStatus === ENTERING) {
           if (this.props.unmountOnExit || this.props.mountOnEnter) {
-            var node = this.props.nodeRef ? this.props.nodeRef.current : ReactDOM.findDOMNode(this); // https://github.com/reactjs/react-transition-group/pull/749
+            const node = this.props.nodeRef ? this.props.nodeRef.current : ReactDOM.findDOMNode(this); // https://github.com/reactjs/react-transition-group/pull/749
             // With unmountOnExit or mountOnEnter, the enter animation should happen at the transition between `exited` and `entering`.
             // To make the animation happen,  we have to separate each rendering and avoid being processed as batched.
 
@@ -1342,17 +1342,17 @@
     };
 
     _proto.performEnter = function performEnter(mounting) {
-      var _this2 = this;
+      const _this2 = this;
 
-      var enter = this.props.enter;
-      var appearing = this.context ? this.context.isMounting : mounting;
+      const enter = this.props.enter;
+      const appearing = this.context ? this.context.isMounting : mounting;
 
-      var _ref2 = this.props.nodeRef ? [appearing] : [ReactDOM.findDOMNode(this), appearing],
+      const _ref2 = this.props.nodeRef ? [appearing] : [ReactDOM.findDOMNode(this), appearing],
           maybeNode = _ref2[0],
           maybeAppearing = _ref2[1];
 
-      var timeouts = this.getTimeouts();
-      var enterTimeout = appearing ? timeouts.appear : timeouts.enter; // no enter animation skip right to ENTERED
+      const timeouts = this.getTimeouts();
+      const enterTimeout = appearing ? timeouts.appear : timeouts.enter; // no enter animation skip right to ENTERED
       // if we are mounting and running this it means appear _must_ be set
 
       if (!mounting && !enter || config.disabled) {
@@ -1381,11 +1381,11 @@
     };
 
     _proto.performExit = function performExit() {
-      var _this3 = this;
+      const _this3 = this;
 
-      var exit = this.props.exit;
-      var timeouts = this.getTimeouts();
-      var maybeNode = this.props.nodeRef ? undefined : ReactDOM.findDOMNode(this); // no exit animation skip right to EXITED
+      const exit = this.props.exit;
+      const timeouts = this.getTimeouts();
+      const maybeNode = this.props.nodeRef ? undefined : ReactDOM.findDOMNode(this); // no exit animation skip right to EXITED
 
       if (!exit || config.disabled) {
         this.safeSetState({
@@ -1428,9 +1428,9 @@
     };
 
     _proto.setNextCallback = function setNextCallback(callback) {
-      var _this4 = this;
+      const _this4 = this;
 
-      var active = true;
+      let active = true;
 
       this.nextCallback = function (event) {
         if (active) {
@@ -1449,8 +1449,8 @@
 
     _proto.onTransitionEnd = function onTransitionEnd(timeout, handler) {
       this.setNextCallback(handler);
-      var node = this.props.nodeRef ? this.props.nodeRef.current : ReactDOM.findDOMNode(this);
-      var doesNotHaveTimeoutOrListener = timeout == null && !this.props.addEndListener;
+      const node = this.props.nodeRef ? this.props.nodeRef.current : ReactDOM.findDOMNode(this);
+      const doesNotHaveTimeoutOrListener = timeout == null && !this.props.addEndListener;
 
       if (!node || doesNotHaveTimeoutOrListener) {
         setTimeout(this.nextCallback, 0);
@@ -1458,7 +1458,7 @@
       }
 
       if (this.props.addEndListener) {
-        var _ref3 = this.props.nodeRef ? [this.nextCallback] : [node, this.nextCallback],
+        const _ref3 = this.props.nodeRef ? [this.nextCallback] : [node, this.nextCallback],
             maybeNode = _ref3[0],
             maybeNextCallback = _ref3[1];
 
@@ -1471,13 +1471,13 @@
     };
 
     _proto.render = function render() {
-      var status = this.state.status;
+      const status = this.state.status;
 
       if (status === UNMOUNTED) {
         return null;
       }
 
-      var _this$props = this.props,
+      const _this$props = this.props,
           children = _this$props.children,
           _in = _this$props.in,
           _mountOnEnter = _this$props.mountOnEnter,
@@ -1523,7 +1523,7 @@
      */
     nodeRef: propTypes.shape({
       current: typeof Element === 'undefined' ? propTypes.any : function (propValue, key, componentName, location, propFullName, secret) {
-        var value = propValue[key];
+        const value = propValue[key];
         return propTypes.instanceOf(value && 'ownerDocument' in value ? value.ownerDocument.defaultView.Element : Element)(propValue, key, componentName, location, propFullName, secret);
       }
     }),
@@ -1613,7 +1613,7 @@
      * @type {number | { enter?: number, exit?: number, appear?: number }}
      */
     timeout: function timeout(props) {
-      var pt = timeoutsShape;
+      let pt = timeoutsShape;
       if (!props.addEndListener) pt = pt.isRequired;
 
       for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -1719,13 +1719,13 @@
   Transition.ENTERED = ENTERED;
   Transition.EXITING = EXITING;
 
-  var _addClass = function addClass$1(node, classes) {
+  const _addClass = function addClass$1(node, classes) {
     return node && classes && classes.split(' ').forEach(function (c) {
       return addClass(node, c);
     });
   };
 
-  var removeClass$1 = function removeClass$1(node, classes) {
+  const removeClass$1 = function removeClass$1(node, classes) {
     return node && classes && classes.split(' ').forEach(function (c) {
       return removeClass(node, c);
     });
@@ -1801,11 +1801,11 @@
    */
 
 
-  var CSSTransition = /*#__PURE__*/function (_React$Component) {
+  const CSSTransition = /*#__PURE__*/function (_React$Component) {
     _inheritsLoose(CSSTransition, _React$Component);
 
     function CSSTransition() {
-      var _this;
+      let _this;
 
       for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
         args[_key] = arguments[_key];
@@ -1819,7 +1819,7 @@
       };
 
       _this.onEnter = function (maybeNode, maybeAppearing) {
-        var _this$resolveArgument = _this.resolveArguments(maybeNode, maybeAppearing),
+        const _this$resolveArgument = _this.resolveArguments(maybeNode, maybeAppearing),
             node = _this$resolveArgument[0],
             appearing = _this$resolveArgument[1];
 
@@ -1833,11 +1833,11 @@
       };
 
       _this.onEntering = function (maybeNode, maybeAppearing) {
-        var _this$resolveArgument2 = _this.resolveArguments(maybeNode, maybeAppearing),
+        const _this$resolveArgument2 = _this.resolveArguments(maybeNode, maybeAppearing),
             node = _this$resolveArgument2[0],
             appearing = _this$resolveArgument2[1];
 
-        var type = appearing ? 'appear' : 'enter';
+        const type = appearing ? 'appear' : 'enter';
 
         _this.addClass(node, type, 'active');
 
@@ -1847,11 +1847,11 @@
       };
 
       _this.onEntered = function (maybeNode, maybeAppearing) {
-        var _this$resolveArgument3 = _this.resolveArguments(maybeNode, maybeAppearing),
+        const _this$resolveArgument3 = _this.resolveArguments(maybeNode, maybeAppearing),
             node = _this$resolveArgument3[0],
             appearing = _this$resolveArgument3[1];
 
-        var type = appearing ? 'appear' : 'enter';
+        const type = appearing ? 'appear' : 'enter';
 
         _this.removeClasses(node, type);
 
@@ -1863,7 +1863,7 @@
       };
 
       _this.onExit = function (maybeNode) {
-        var _this$resolveArgument4 = _this.resolveArguments(maybeNode),
+        const _this$resolveArgument4 = _this.resolveArguments(maybeNode),
             node = _this$resolveArgument4[0];
 
         _this.removeClasses(node, 'appear');
@@ -1878,7 +1878,7 @@
       };
 
       _this.onExiting = function (maybeNode) {
-        var _this$resolveArgument5 = _this.resolveArguments(maybeNode),
+        const _this$resolveArgument5 = _this.resolveArguments(maybeNode),
             node = _this$resolveArgument5[0];
 
         _this.addClass(node, 'exit', 'active');
@@ -1889,7 +1889,7 @@
       };
 
       _this.onExited = function (maybeNode) {
-        var _this$resolveArgument6 = _this.resolveArguments(maybeNode),
+        const _this$resolveArgument6 = _this.resolveArguments(maybeNode),
             node = _this$resolveArgument6[0];
 
         _this.removeClasses(node, 'exit');
@@ -1907,12 +1907,12 @@
       };
 
       _this.getClassNames = function (type) {
-        var classNames = _this.props.classNames;
-        var isStringClassNames = typeof classNames === 'string';
-        var prefix = isStringClassNames && classNames ? classNames + "-" : '';
-        var baseClassName = isStringClassNames ? "" + prefix + type : classNames[type];
-        var activeClassName = isStringClassNames ? baseClassName + "-active" : classNames[type + "Active"];
-        var doneClassName = isStringClassNames ? baseClassName + "-done" : classNames[type + "Done"];
+        const classNames = _this.props.classNames;
+        const isStringClassNames = typeof classNames === 'string';
+        const prefix = isStringClassNames && classNames ? classNames + "-" : '';
+        const baseClassName = isStringClassNames ? "" + prefix + type : classNames[type];
+        const activeClassName = isStringClassNames ? baseClassName + "-active" : classNames[type + "Active"];
+        const doneClassName = isStringClassNames ? baseClassName + "-done" : classNames[type + "Done"];
         return {
           baseClassName: baseClassName,
           activeClassName: activeClassName,
@@ -1923,12 +1923,12 @@
       return _this;
     }
 
-    var _proto = CSSTransition.prototype;
+    const _proto = CSSTransition.prototype;
 
     _proto.addClass = function addClass(node, type, phase) {
-      var className = this.getClassNames(type)[phase + "ClassName"];
+      let className = this.getClassNames(type)[phase + "ClassName"];
 
-      var _this$getClassNames = this.getClassNames('enter'),
+      const _this$getClassNames = this.getClassNames('enter'),
           doneClassName = _this$getClassNames.doneClassName;
 
       if (type === 'appear' && phase === 'done' && doneClassName) {
@@ -1949,7 +1949,7 @@
     };
 
     _proto.removeClasses = function removeClasses(node, type) {
-      var _this$appliedClasses$ = this.appliedClasses[type],
+      const _this$appliedClasses$ = this.appliedClasses[type],
           baseClassName = _this$appliedClasses$.base,
           activeClassName = _this$appliedClasses$.active,
           doneClassName = _this$appliedClasses$.done;
@@ -1969,7 +1969,7 @@
     };
 
     _proto.render = function render() {
-      var _this$props = this.props,
+      const _this$props = this.props,
           _ = _this$props.classNames,
           props = _objectWithoutPropertiesLoose(_this$props, ["classNames"]);
 
@@ -2136,11 +2136,11 @@
    */
 
   function getChildMapping(children, mapFn) {
-    var mapper = function mapper(child) {
+    const mapper = function mapper(child) {
       return mapFn && React.isValidElement(child) ? mapFn(child) : child;
     };
 
-    var result = Object.create(null);
+    const result = Object.create(null);
     if (children) React.Children.map(children, function (c) {
       return c;
     }).forEach(function (child) {
@@ -2177,10 +2177,10 @@
     // the combined list
 
 
-    var nextKeysPending = Object.create(null);
-    var pendingKeys = [];
+    const nextKeysPending = Object.create(null);
+    let pendingKeys = [];
 
-    for (var prevKey in prev) {
+    for (const prevKey in prev) {
       if (prevKey in next) {
         if (pendingKeys.length) {
           nextKeysPending[prevKey] = pendingKeys;
@@ -2191,13 +2191,13 @@
       }
     }
 
-    var i;
-    var childMapping = {};
+    let i;
+    const childMapping = {};
 
-    for (var nextKey in next) {
+    for (const nextKey in next) {
       if (nextKeysPending[nextKey]) {
         for (i = 0; i < nextKeysPending[nextKey].length; i++) {
-          var pendingNextKey = nextKeysPending[nextKey][i];
+          const pendingNextKey = nextKeysPending[nextKey][i];
           childMapping[nextKeysPending[nextKey][i]] = getValueForKey(pendingNextKey);
         }
       }
@@ -2229,15 +2229,15 @@
     });
   }
   function getNextChildMapping(nextProps, prevChildMapping, onExited) {
-    var nextChildMapping = getChildMapping(nextProps.children);
-    var children = mergeChildMappings(prevChildMapping, nextChildMapping);
+    const nextChildMapping = getChildMapping(nextProps.children);
+    const children = mergeChildMappings(prevChildMapping, nextChildMapping);
     Object.keys(children).forEach(function (key) {
-      var child = children[key];
+      const child = children[key];
       if (!React.isValidElement(child)) return;
-      var hasPrev = (key in prevChildMapping);
-      var hasNext = (key in nextChildMapping);
-      var prevChild = prevChildMapping[key];
-      var isLeaving = React.isValidElement(prevChild) && !prevChild.props.in; // item is new (entering)
+      const hasPrev = (key in prevChildMapping);
+      const hasNext = (key in nextChildMapping);
+      const prevChild = prevChildMapping[key];
+      const isLeaving = React.isValidElement(prevChild) && !prevChild.props.in; // item is new (entering)
 
       if (hasNext && (!hasPrev || isLeaving)) {
         // console.log('entering', key)
@@ -2268,13 +2268,13 @@
     return children;
   }
 
-  var values = Object.values || function (obj) {
+  const values = Object.values || function (obj) {
     return Object.keys(obj).map(function (k) {
       return obj[k];
     });
   };
 
-  var defaultProps = {
+  const defaultProps = {
     component: 'div',
     childFactory: function childFactory(child) {
       return child;
@@ -2295,15 +2295,15 @@
    * items.
    */
 
-  var TransitionGroup = /*#__PURE__*/function (_React$Component) {
+  const TransitionGroup = /*#__PURE__*/function (_React$Component) {
     _inheritsLoose(TransitionGroup, _React$Component);
 
     function TransitionGroup(props, context) {
-      var _this;
+      let _this;
 
       _this = _React$Component.call(this, props, context) || this;
 
-      var handleExited = _this.handleExited.bind(_assertThisInitialized(_this)); // Initial children should all be entering, dependent on appear
+      const handleExited = _this.handleExited.bind(_assertThisInitialized(_this)); // Initial children should all be entering, dependent on appear
 
 
       _this.state = {
@@ -2316,7 +2316,7 @@
       return _this;
     }
 
-    var _proto = TransitionGroup.prototype;
+    const _proto = TransitionGroup.prototype;
 
     _proto.componentDidMount = function componentDidMount() {
       this.mounted = true;
@@ -2332,7 +2332,7 @@
     };
 
     TransitionGroup.getDerivedStateFromProps = function getDerivedStateFromProps(nextProps, _ref) {
-      var prevChildMapping = _ref.children,
+      const prevChildMapping = _ref.children,
           handleExited = _ref.handleExited,
           firstRender = _ref.firstRender;
       return {
@@ -2343,7 +2343,7 @@
     ;
 
     _proto.handleExited = function handleExited(child, node) {
-      var currentChildMapping = getChildMapping(this.props.children);
+      const currentChildMapping = getChildMapping(this.props.children);
       if (child.key in currentChildMapping) return;
 
       if (child.props.onExited) {
@@ -2352,7 +2352,7 @@
 
       if (this.mounted) {
         this.setState(function (state) {
-          var children = _extends({}, state.children);
+          const children = _extends({}, state.children);
 
           delete children[child.key];
           return {
@@ -2363,13 +2363,13 @@
     };
 
     _proto.render = function render() {
-      var _this$props = this.props,
+      const _this$props = this.props,
           Component = _this$props.component,
           childFactory = _this$props.childFactory,
           props = _objectWithoutPropertiesLoose(_this$props, ["component", "childFactory"]);
 
-      var contextValue = this.state.contextValue;
-      var children = values(this.state.children).map(childFactory);
+      const contextValue = this.state.contextValue;
+      const children = values(this.state.children).map(childFactory);
       delete props.appear;
       delete props.enter;
       delete props.exit;
@@ -2460,11 +2460,11 @@
    * ```
    */
 
-  var ReplaceTransition = /*#__PURE__*/function (_React$Component) {
+  const ReplaceTransition = /*#__PURE__*/function (_React$Component) {
     _inheritsLoose(ReplaceTransition, _React$Component);
 
     function ReplaceTransition() {
-      var _this;
+      let _this;
 
       for (var _len = arguments.length, _args = new Array(_len), _key = 0; _key < _len; _key++) {
         _args[_key] = arguments[_key];
@@ -2523,28 +2523,28 @@
       return _this;
     }
 
-    var _proto = ReplaceTransition.prototype;
+    const _proto = ReplaceTransition.prototype;
 
     _proto.handleLifecycle = function handleLifecycle(handler, idx, originalArgs) {
-      var _child$props;
+      let _child$props;
 
-      var children = this.props.children;
-      var child = React__default.Children.toArray(children)[idx];
+      const children = this.props.children;
+      const child = React__default.Children.toArray(children)[idx];
       if (child.props[handler]) (_child$props = child.props)[handler].apply(_child$props, originalArgs);
 
       if (this.props[handler]) {
-        var maybeNode = child.props.nodeRef ? undefined : ReactDOM.findDOMNode(this);
+        const maybeNode = child.props.nodeRef ? undefined : ReactDOM.findDOMNode(this);
         this.props[handler](maybeNode);
       }
     };
 
     _proto.render = function render() {
-      var _this$props = this.props,
+      const _this$props = this.props,
           children = _this$props.children,
           inProp = _this$props.in,
           props = _objectWithoutPropertiesLoose(_this$props, ["children", "in"]);
 
-      var _React$Children$toArr = React__default.Children.toArray(children),
+      const _React$Children$toArr = React__default.Children.toArray(children),
           first = _React$Children$toArr[0],
           second = _React$Children$toArr[1];
 
@@ -2578,7 +2578,7 @@
     }
   } ;
 
-  var _leaveRenders, _enterRenders;
+  let _leaveRenders, _enterRenders;
 
   function areChildrenDifferent(oldChildren, newChildren) {
     if (oldChildren === newChildren) return false;
@@ -2595,22 +2595,22 @@
    */
 
 
-  var modes = {
+  const modes = {
     out: 'out-in',
     in: 'in-out'
   };
 
-  var callHook = function callHook(element, name, cb) {
+  const callHook = function callHook(element, name, cb) {
     return function () {
-      var _element$props;
+      let _element$props;
 
       element.props[name] && (_element$props = element.props)[name].apply(_element$props, arguments);
       cb();
     };
   };
 
-  var leaveRenders = (_leaveRenders = {}, _leaveRenders[modes.out] = function (_ref) {
-    var current = _ref.current,
+  const leaveRenders = (_leaveRenders = {}, _leaveRenders[modes.out] = function (_ref) {
+    const current = _ref.current,
         changeState = _ref.changeState;
     return React__default.cloneElement(current, {
       in: false,
@@ -2619,7 +2619,7 @@
       })
     });
   }, _leaveRenders[modes.in] = function (_ref2) {
-    var current = _ref2.current,
+    const current = _ref2.current,
         changeState = _ref2.changeState,
         children = _ref2.children;
     return [current, React__default.cloneElement(children, {
@@ -2629,8 +2629,8 @@
       })
     })];
   }, _leaveRenders);
-  var enterRenders = (_enterRenders = {}, _enterRenders[modes.out] = function (_ref3) {
-    var children = _ref3.children,
+  const enterRenders = (_enterRenders = {}, _enterRenders[modes.out] = function (_ref3) {
+    const children = _ref3.children,
         changeState = _ref3.changeState;
     return React__default.cloneElement(children, {
       in: true,
@@ -2641,7 +2641,7 @@
       })
     });
   }, _enterRenders[modes.in] = function (_ref4) {
-    var current = _ref4.current,
+    const current = _ref4.current,
         children = _ref4.children,
         changeState = _ref4.changeState;
     return [React__default.cloneElement(current, {
@@ -2708,11 +2708,11 @@
    * ```
    */
 
-  var SwitchTransition = /*#__PURE__*/function (_React$Component) {
+  const SwitchTransition = /*#__PURE__*/function (_React$Component) {
     _inheritsLoose(SwitchTransition, _React$Component);
 
     function SwitchTransition() {
-      var _this;
+      let _this;
 
       for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
         args[_key] = arguments[_key];
@@ -2739,7 +2739,7 @@
       return _this;
     }
 
-    var _proto = SwitchTransition.prototype;
+    const _proto = SwitchTransition.prototype;
 
     _proto.componentDidMount = function componentDidMount() {
       this.appeared = true;
@@ -2772,19 +2772,19 @@
     };
 
     _proto.render = function render() {
-      var _this$props = this.props,
+      const _this$props = this.props,
           children = _this$props.children,
           mode = _this$props.mode,
           _this$state = this.state,
           status = _this$state.status,
           current = _this$state.current;
-      var data = {
+      const data = {
         children: children,
         current: current,
         changeState: this.changeState,
         status: status
       };
-      var component;
+      let component;
 
       switch (status) {
         case ENTERING:

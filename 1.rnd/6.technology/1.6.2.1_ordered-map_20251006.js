@@ -27,13 +27,13 @@
     ***************************************************************************** */
     /* global Reflect, Promise, SuppressedError, Symbol */
 
-    var extendStatics = function (d, b) {
+    let extendStatics = function (d, b) {
       extendStatics = Object.setPrototypeOf || {
         __proto__: []
       } instanceof Array && function (d, b) {
         d.__proto__ = b;
       } || function (d, b) {
-        for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p];
+        for (const p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p];
       };
       return extendStatics(d, b);
     };
@@ -46,7 +46,7 @@
       d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     }
     function __generator(thisArg, body) {
-      var _ = {
+      let _ = {
           label: 0,
           sent: function () {
             if (t[0] & 1) throw t[1];
@@ -134,11 +134,11 @@
       }
     }
     typeof SuppressedError === "function" ? SuppressedError : function (error, suppressed, message) {
-      var e = new Error(message);
+      const e = new Error(message);
       return e.name = "SuppressedError", e.error = error, e.suppressed = suppressed, e;
     };
 
-    var TreeNode = /** @class */function () {
+    const TreeNode = /** @class */function () {
       function TreeNode(key, value, color) {
         if (color === void 0) {
           color = 1 /* TreeNodeColor.RED */;
@@ -155,8 +155,8 @@
        * @returns TreeNode about the pre node.
        */
       TreeNode.prototype._pre = function () {
-        var preNode = this;
-        var isRootOrHeader = preNode._parent._parent === preNode;
+        let preNode = this;
+        const isRootOrHeader = preNode._parent._parent === preNode;
         if (isRootOrHeader && preNode._color === 1 /* TreeNodeColor.RED */) {
           preNode = preNode._right;
         } else if (preNode._left) {
@@ -169,7 +169,7 @@
           if (isRootOrHeader) {
             return preNode._parent;
           }
-          var pre = preNode._parent;
+          let pre = preNode._parent;
           while (pre._left === preNode) {
             preNode = pre;
             pre = preNode._parent;
@@ -183,7 +183,7 @@
        * @returns TreeNode about the next node.
        */
       TreeNode.prototype._next = function () {
-        var nextNode = this;
+        let nextNode = this;
         if (nextNode._right) {
           nextNode = nextNode._right;
           while (nextNode._left) {
@@ -191,7 +191,7 @@
           }
           return nextNode;
         } else {
-          var pre = nextNode._parent;
+          let pre = nextNode._parent;
           while (pre._right === nextNode) {
             nextNode = pre;
             pre = nextNode._parent;
@@ -206,9 +206,9 @@
        * @returns TreeNode about moved to original position after rotation.
        */
       TreeNode.prototype._rotateLeft = function () {
-        var PP = this._parent;
-        var V = this._right;
-        var R = V._left;
+        const PP = this._parent;
+        const V = this._right;
+        const R = V._left;
         if (PP._parent === this) PP._parent = V;else if (PP._left === this) PP._left = V;else PP._right = V;
         V._parent = PP;
         V._left = this;
@@ -222,9 +222,9 @@
        * @returns TreeNode about moved to original position after rotation.
        */
       TreeNode.prototype._rotateRight = function () {
-        var PP = this._parent;
-        var F = this._left;
-        var K = F._right;
+        const PP = this._parent;
+        const F = this._left;
+        const K = F._right;
         if (PP._parent === this) PP._parent = F;else if (PP._left === this) PP._left = F;else PP._right = F;
         F._parent = PP;
         F._right = this;
@@ -235,10 +235,10 @@
       };
       return TreeNode;
     }();
-    var TreeNodeEnableIndex = /** @class */function (_super) {
+    const TreeNodeEnableIndex = /** @class */function (_super) {
       __extends(TreeNodeEnableIndex, _super);
       function TreeNodeEnableIndex() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
+        const _this = _super !== null && _super.apply(this, arguments) || this;
         _this._subTreeSize = 1;
         return _this;
       }
@@ -247,7 +247,7 @@
        * @returns TreeNode about moved to original position after rotation.
        */
       TreeNodeEnableIndex.prototype._rotateLeft = function () {
-        var parent = _super.prototype._rotateLeft.call(this);
+        const parent = _super.prototype._rotateLeft.call(this);
         this._recount();
         parent._recount();
         return parent;
@@ -257,7 +257,7 @@
        * @returns TreeNode about moved to original position after rotation.
        */
       TreeNodeEnableIndex.prototype._rotateRight = function () {
-        var parent = _super.prototype._rotateRight.call(this);
+        const parent = _super.prototype._rotateRight.call(this);
         this._recount();
         parent._recount();
         return parent;
@@ -274,7 +274,7 @@
       return TreeNodeEnableIndex;
     }(TreeNode);
 
-    var ContainerIterator = /** @class */function () {
+    const ContainerIterator = /** @class */function () {
       /**
        * @internal
        */
@@ -295,7 +295,7 @@
       };
       return ContainerIterator;
     }();
-    var Base = /** @class */function () {
+    const Base = /** @class */function () {
       function Base() {
         /**
          * @description Container's size.
@@ -336,7 +336,7 @@
       };
       return Base;
     }();
-    var Container = /** @class */function (_super) {
+    const Container = /** @class */function (_super) {
       __extends(Container, _super);
       function Container() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -352,7 +352,7 @@
       throw new RangeError('Iterator access denied!');
     }
 
-    var TreeContainer = /** @class */function (_super) {
+    const TreeContainer = /** @class */function (_super) {
       __extends(TreeContainer, _super);
       /**
        * @internal
@@ -368,7 +368,7 @@
         if (enableIndex === void 0) {
           enableIndex = false;
         }
-        var _this = _super.call(this) || this;
+        const _this = _super.call(this) || this;
         /**
          * @internal
          */
@@ -383,9 +383,9 @@
        * @internal
        */
       TreeContainer.prototype._lowerBound = function (curNode, key) {
-        var resNode = this._header;
+        let resNode = this._header;
         while (curNode) {
-          var cmpResult = this._cmp(curNode._key, key);
+          const cmpResult = this._cmp(curNode._key, key);
           if (cmpResult < 0) {
             curNode = curNode._right;
           } else if (cmpResult > 0) {
@@ -399,9 +399,9 @@
        * @internal
        */
       TreeContainer.prototype._upperBound = function (curNode, key) {
-        var resNode = this._header;
+        let resNode = this._header;
         while (curNode) {
-          var cmpResult = this._cmp(curNode._key, key);
+          const cmpResult = this._cmp(curNode._key, key);
           if (cmpResult <= 0) {
             curNode = curNode._right;
           } else {
@@ -415,9 +415,9 @@
        * @internal
        */
       TreeContainer.prototype._reverseLowerBound = function (curNode, key) {
-        var resNode = this._header;
+        let resNode = this._header;
         while (curNode) {
-          var cmpResult = this._cmp(curNode._key, key);
+          const cmpResult = this._cmp(curNode._key, key);
           if (cmpResult < 0) {
             resNode = curNode;
             curNode = curNode._right;
@@ -431,9 +431,9 @@
        * @internal
        */
       TreeContainer.prototype._reverseUpperBound = function (curNode, key) {
-        var resNode = this._header;
+        let resNode = this._header;
         while (curNode) {
-          var cmpResult = this._cmp(curNode._key, key);
+          const cmpResult = this._cmp(curNode._key, key);
           if (cmpResult < 0) {
             resNode = curNode;
             curNode = curNode._right;
@@ -448,7 +448,7 @@
        */
       TreeContainer.prototype._eraseNodeSelfBalance = function (curNode) {
         while (true) {
-          var parentNode = curNode._parent;
+          const parentNode = curNode._parent;
           if (parentNode === this._header) return;
           if (curNode._color === 1 /* TreeNodeColor.RED */) {
             curNode._color = 0 /* TreeNodeColor.BLACK */;
@@ -517,7 +517,7 @@
           this.clear();
           return;
         }
-        var swapNode = curNode;
+        let swapNode = curNode;
         while (swapNode._left || swapNode._right) {
           if (swapNode._right) {
             swapNode = swapNode._right;
@@ -525,10 +525,10 @@
           } else {
             swapNode = swapNode._left;
           }
-          var key = curNode._key;
+          const key = curNode._key;
           curNode._key = swapNode._key;
           swapNode._key = key;
-          var value = curNode._value;
+          const value = curNode._value;
           curNode._value = swapNode._value;
           swapNode._value = value;
           curNode = swapNode;
@@ -539,7 +539,7 @@
           this._header._right = swapNode._parent;
         }
         this._eraseNodeSelfBalance(swapNode);
-        var _parent = swapNode._parent;
+        let _parent = swapNode._parent;
         if (swapNode === _parent._left) {
           _parent._left = undefined;
         } else _parent._right = undefined;
@@ -556,12 +556,12 @@
        * @internal
        */
       TreeContainer.prototype._inOrderTraversal = function (param) {
-        var pos = typeof param === 'number' ? param : undefined;
-        var callback = typeof param === 'function' ? param : undefined;
-        var nodeList = typeof param === 'undefined' ? [] : undefined;
-        var index = 0;
-        var curNode = this._root;
-        var stack = [];
+        const pos = typeof param === 'number' ? param : undefined;
+        const callback = typeof param === 'function' ? param : undefined;
+        const nodeList = typeof param === 'undefined' ? [] : undefined;
+        let index = 0;
+        let curNode = this._root;
+        const stack = [];
         while (stack.length || curNode) {
           if (curNode) {
             stack.push(curNode);
@@ -582,9 +582,9 @@
        */
       TreeContainer.prototype._insertNodeSelfBalance = function (curNode) {
         while (true) {
-          var parentNode = curNode._parent;
+          const parentNode = curNode._parent;
           if (parentNode._color === 0 /* TreeNodeColor.BLACK */) return;
-          var grandParent = parentNode._parent;
+          const grandParent = parentNode._parent;
           if (parentNode === grandParent._left) {
             var uncle = grandParent._right;
             if (uncle && uncle._color === 1 /* TreeNodeColor.RED */) {
@@ -687,9 +687,9 @@
           this._header._parent = this._header._left = this._header._right = this._root;
           return this._length;
         }
-        var curNode;
-        var minNode = this._header._left;
-        var compareToMin = this._cmp(minNode._key, key);
+        let curNode;
+        const minNode = this._header._left;
+        const compareToMin = this._cmp(minNode._key, key);
         if (compareToMin === 0) {
           minNode._value = value;
           return this._length;
@@ -699,8 +699,8 @@
           curNode = minNode._left;
           this._header._left = curNode;
         } else {
-          var maxNode = this._header._right;
-          var compareToMax = this._cmp(maxNode._key, key);
+          const maxNode = this._header._right;
+          const compareToMax = this._cmp(maxNode._key, key);
           if (compareToMax === 0) {
             maxNode._value = value;
             return this._length;
@@ -711,15 +711,15 @@
             this._header._right = curNode;
           } else {
             if (hint !== undefined) {
-              var iterNode = hint._node;
+              const iterNode = hint._node;
               if (iterNode !== this._header) {
-                var iterCmpRes = this._cmp(iterNode._key, key);
+                const iterCmpRes = this._cmp(iterNode._key, key);
                 if (iterCmpRes === 0) {
                   iterNode._value = value;
                   return this._length;
                 } else /* istanbul ignore else */if (iterCmpRes > 0) {
-                    var preNode = iterNode._pre();
-                    var preCmpRes = this._cmp(preNode._key, key);
+                    const preNode = iterNode._pre();
+                    const preCmpRes = this._cmp(preNode._key, key);
                     if (preCmpRes === 0) {
                       preNode._value = value;
                       return this._length;
@@ -739,7 +739,7 @@
             if (curNode === undefined) {
               curNode = this._root;
               while (true) {
-                var cmpResult = this._cmp(curNode._key, key);
+                const cmpResult = this._cmp(curNode._key, key);
                 if (cmpResult > 0) {
                   if (curNode._left === undefined) {
                     curNode._left = new this._TreeNodeClass(key, value);
@@ -765,7 +765,7 @@
           }
         }
         if (this.enableIndex) {
-          var parent_1 = curNode._parent;
+          let parent_1 = curNode._parent;
           while (parent_1 !== this._header) {
             parent_1._subTreeSize += 1;
             parent_1 = parent_1._parent;
@@ -780,7 +780,7 @@
        */
       TreeContainer.prototype._getTreeNodeByKey = function (curNode, key) {
         while (curNode) {
-          var cmpResult = this._cmp(curNode._key, key);
+          const cmpResult = this._cmp(curNode._key, key);
           if (cmpResult < 0) {
             curNode = curNode._right;
           } else if (cmpResult > 0) {
@@ -806,7 +806,7 @@
        * st.updateKeyByIterator(iter, 3); // then st will become [1, 3, 5]
        */
       TreeContainer.prototype.updateKeyByIterator = function (iter, key) {
-        var node = iter._node;
+        const node = iter._node;
         if (node === this._header) {
           throwIteratorAccessError();
         }
@@ -814,7 +814,7 @@
           node._key = key;
           return true;
         }
-        var nextKey = node._next()._key;
+        const nextKey = node._next()._key;
         if (node === this._header._left) {
           if (this._cmp(nextKey, key) > 0) {
             node._key = key;
@@ -822,7 +822,7 @@
           }
           return false;
         }
-        var preKey = node._pre()._key;
+        const preKey = node._pre()._key;
         if (node === this._header._right) {
           if (this._cmp(preKey, key) < 0) {
             node._key = key;
@@ -838,7 +838,7 @@
         if (pos < 0 || pos > this._length - 1) {
           throw new RangeError();
         }
-        var node = this._inOrderTraversal(pos);
+        const node = this._inOrderTraversal(pos);
         this._eraseNode(node);
         return this._length;
       };
@@ -849,18 +849,18 @@
        */
       TreeContainer.prototype.eraseElementByKey = function (key) {
         if (this._length === 0) return false;
-        var curNode = this._getTreeNodeByKey(this._root, key);
+        const curNode = this._getTreeNodeByKey(this._root, key);
         if (curNode === this._header) return false;
         this._eraseNode(curNode);
         return true;
       };
       TreeContainer.prototype.eraseElementByIterator = function (iter) {
-        var node = iter._node;
+        const node = iter._node;
         if (node === this._header) {
           throwIteratorAccessError();
         }
-        var hasNoRight = node._right === undefined;
-        var isNormal = iter.iteratorType === 0 /* IteratorType.NORMAL */;
+        const hasNoRight = node._right === undefined;
+        const isNormal = iter.iteratorType === 0 /* IteratorType.NORMAL */;
         // For the normal iterator, the `next` node will be swapped to `this` node when has right.
         if (isNormal) {
           // So we should move it to next when it's right is null.
@@ -888,13 +888,13 @@
       return TreeContainer;
     }(Container);
 
-    var TreeIterator = /** @class */function (_super) {
+    const TreeIterator = /** @class */function (_super) {
       __extends(TreeIterator, _super);
       /**
        * @internal
        */
       function TreeIterator(node, header, iteratorType) {
-        var _this = _super.call(this, iteratorType) || this;
+        const _this = _super.call(this, iteratorType) || this;
         _this._node = node;
         _this._header = header;
         if (_this.iteratorType === 0 /* IteratorType.NORMAL */) {
@@ -941,20 +941,20 @@
          * console.log(st.begin().next().index);  // 1
          */
         get: function () {
-          var _node = this._node;
-          var root = this._header._parent;
+          let _node = this._node;
+          const root = this._header._parent;
           if (_node === this._header) {
             if (root) {
               return root._subTreeSize - 1;
             }
             return 0;
           }
-          var index = 0;
+          let index = 0;
           if (_node._left) {
             index += _node._left._subTreeSize;
           }
           while (_node !== root) {
-            var _parent = _node._parent;
+            const _parent = _node._parent;
             if (_node === _parent._right) {
               index += 1;
               if (_parent._left) {
@@ -974,10 +974,10 @@
       return TreeIterator;
     }(ContainerIterator);
 
-    var OrderedMapIterator = /** @class */function (_super) {
+    const OrderedMapIterator = /** @class */function (_super) {
       __extends(OrderedMapIterator, _super);
       function OrderedMapIterator(node, header, container, iteratorType) {
-        var _this = _super.call(this, node, header, iteratorType) || this;
+        const _this = _super.call(this, node, header, iteratorType) || this;
         _this.container = container;
         return _this;
       }
@@ -986,7 +986,7 @@
           if (this._node === this._header) {
             throwIteratorAccessError();
           }
-          var self = this;
+          const self = this;
           return new Proxy([], {
             get: function (target, prop) {
               if (prop === '0') return self._node._key;else if (prop === '1') return self._node._value;
@@ -1011,7 +1011,7 @@
       };
       return OrderedMapIterator;
     }(TreeIterator);
-    var OrderedMap = /** @class */function (_super) {
+    const OrderedMap = /** @class */function (_super) {
       __extends(OrderedMap, _super);
       /**
        * @param container - The initialization container.
@@ -1027,8 +1027,8 @@
         if (container === void 0) {
           container = [];
         }
-        var _this = _super.call(this, cmp, enableIndex) || this;
-        var self = _this;
+        const _this = _super.call(this, cmp, enableIndex) || this;
+        const self = _this;
         container.forEach(function (el) {
           self.setElement(el[0], el[1]);
         });
@@ -1050,28 +1050,28 @@
 
       OrderedMap.prototype.front = function () {
         if (this._length === 0) return;
-        var minNode = this._header._left;
+        const minNode = this._header._left;
         return [minNode._key, minNode._value];
       };
       OrderedMap.prototype.back = function () {
         if (this._length === 0) return;
-        var maxNode = this._header._right;
+        const maxNode = this._header._right;
         return [maxNode._key, maxNode._value];
       };
       OrderedMap.prototype.lowerBound = function (key) {
-        var resNode = this._lowerBound(this._root, key);
+        const resNode = this._lowerBound(this._root, key);
         return new OrderedMapIterator(resNode, this._header, this);
       };
       OrderedMap.prototype.upperBound = function (key) {
-        var resNode = this._upperBound(this._root, key);
+        const resNode = this._upperBound(this._root, key);
         return new OrderedMapIterator(resNode, this._header, this);
       };
       OrderedMap.prototype.reverseLowerBound = function (key) {
-        var resNode = this._reverseLowerBound(this._root, key);
+        const resNode = this._reverseLowerBound(this._root, key);
         return new OrderedMapIterator(resNode, this._header, this);
       };
       OrderedMap.prototype.reverseUpperBound = function (key) {
-        var resNode = this._reverseUpperBound(this._root, key);
+        const resNode = this._reverseUpperBound(this._root, key);
         return new OrderedMapIterator(resNode, this._header, this);
       };
       OrderedMap.prototype.forEach = function (callback) {
@@ -1098,11 +1098,11 @@
         if (pos < 0 || pos > this._length - 1) {
           throw new RangeError();
         }
-        var node = this._inOrderTraversal(pos);
+        const node = this._inOrderTraversal(pos);
         return [node._key, node._value];
       };
       OrderedMap.prototype.find = function (key) {
-        var curNode = this._getTreeNodeByKey(this._root, key);
+        const curNode = this._getTreeNodeByKey(this._root, key);
         return new OrderedMapIterator(curNode, this._header, this);
       };
       /**
@@ -1112,18 +1112,18 @@
        * const val = container.getElementByKey(1);
        */
       OrderedMap.prototype.getElementByKey = function (key) {
-        var curNode = this._getTreeNodeByKey(this._root, key);
+        const curNode = this._getTreeNodeByKey(this._root, key);
         return curNode._value;
       };
       OrderedMap.prototype.union = function (other) {
-        var self = this;
+        const self = this;
         other.forEach(function (el) {
           self.setElement(el[0], el[1]);
         });
         return this._length;
       };
       OrderedMap.prototype[Symbol.iterator] = function () {
-        var length, nodeList, i, node;
+        let length, nodeList, i, node;
         return __generator(this, function (_a) {
           switch (_a.label) {
             case 0:

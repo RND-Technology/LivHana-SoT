@@ -1,10 +1,10 @@
 'use strict';
 
-var GetIntrinsic = require('../GetIntrinsic.js');
+const GetIntrinsic = require('../GetIntrinsic.js');
 
-var $construct = GetIntrinsic('%Reflect.construct%', true);
+const $construct = GetIntrinsic('%Reflect.construct%', true);
 
-var DefinePropertyOrThrow = require('./DefinePropertyOrThrow');
+let DefinePropertyOrThrow = require('./DefinePropertyOrThrow');
 try {
 	DefinePropertyOrThrow({}, '', { '[[Get]]': function () {} });
 } catch (e) {
@@ -15,8 +15,8 @@ try {
 // https://262.ecma-international.org/6.0/#sec-isconstructor
 
 if (DefinePropertyOrThrow && $construct) {
-	var isConstructorMarker = {};
-	var badArrayLike = {};
+	const isConstructorMarker = {};
+	const badArrayLike = {};
 	DefinePropertyOrThrow(badArrayLike, 'length', {
 		'[[Get]]': function () {
 			throw isConstructorMarker;

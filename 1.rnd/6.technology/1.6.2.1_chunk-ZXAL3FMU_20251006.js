@@ -2,31 +2,31 @@
 
 
 
-var _chunkLK6DILFKjs = require('./chunk-LK6DILFK.js');
+const _chunkLK6DILFKjs = require('./chunk-LK6DILFK.js');
 
 
 
-var _chunkXX6WKANUjs = require('./chunk-XX6WKANU.js');
-
-
-
-
-var _chunkT7TBRNJZjs = require('./chunk-T7TBRNJZ.js');
-
-
-var _chunkPFGO5BSMjs = require('./chunk-PFGO5BSM.js');
+const _chunkXX6WKANUjs = require('./chunk-XX6WKANU.js');
 
 
 
 
-var _chunkTIPR373Rjs = require('./chunk-TIPR373R.js');
+const _chunkT7TBRNJZjs = require('./chunk-T7TBRNJZ.js');
+
+
+const _chunkPFGO5BSMjs = require('./chunk-PFGO5BSM.js');
+
+
+
+
+const _chunkTIPR373Rjs = require('./chunk-TIPR373R.js');
 
 // src/interceptors/XMLHttpRequest/index.ts
-var _outvariant = require('outvariant');
+const _outvariant = require('outvariant');
 
 // src/interceptors/XMLHttpRequest/XMLHttpRequestController.ts
 
-var _isnodeprocess = require('is-node-process');
+const _isnodeprocess = require('is-node-process');
 
 // src/interceptors/XMLHttpRequest/utils/concatArrayBuffer.ts
 function concatArrayBuffer(left, right) {
@@ -37,7 +37,7 @@ function concatArrayBuffer(left, right) {
 }
 
 // src/interceptors/XMLHttpRequest/polyfills/EventPolyfill.ts
-var EventPolyfill = class {
+const EventPolyfill = class {
   constructor(type, options) {
     this.NONE = 0;
     this.CAPTURING_PHASE = 1;
@@ -80,7 +80,7 @@ var EventPolyfill = class {
 };
 
 // src/interceptors/XMLHttpRequest/polyfills/ProgressEventPolyfill.ts
-var ProgressEventPolyfill = class extends EventPolyfill {
+const ProgressEventPolyfill = class extends EventPolyfill {
   constructor(type, init) {
     super(type);
     this.lengthComputable = (init == null ? void 0 : init.lengthComputable) || false;
@@ -91,7 +91,7 @@ var ProgressEventPolyfill = class extends EventPolyfill {
 };
 
 // src/interceptors/XMLHttpRequest/utils/createEvent.ts
-var SUPPORTS_PROGRESS_EVENT = typeof ProgressEvent !== "undefined";
+const SUPPORTS_PROGRESS_EVENT = typeof ProgressEvent !== "undefined";
 function createEvent(target, type, init) {
   const progressEvents = [
     "error",
@@ -242,10 +242,10 @@ async function getBodyByteLength(input) {
 }
 
 // src/interceptors/XMLHttpRequest/XMLHttpRequestController.ts
-var kIsRequestHandled = Symbol("kIsRequestHandled");
-var IS_NODE = _isnodeprocess.isNodeProcess.call(void 0, );
-var kFetchRequest = Symbol("kFetchRequest");
-var XMLHttpRequestController = class {
+const kIsRequestHandled = Symbol("kIsRequestHandled");
+const IS_NODE = _isnodeprocess.isNodeProcess.call(void 0, );
+const kFetchRequest = Symbol("kFetchRequest");
+const XMLHttpRequestController = class {
   constructor(initialRequest, logger) {
     this.initialRequest = initialRequest;
     this.logger = logger;
@@ -273,7 +273,7 @@ var XMLHttpRequestController = class {
         }
       },
       methodCall: ([methodName, args], invoke) => {
-        var _a;
+        let _a;
         switch (methodName) {
           case "open": {
             const [method, url] = args;
@@ -837,7 +837,7 @@ var _XMLHttpRequestInterceptor = class extends _chunkTIPR373Rjs.Interceptor {
     });
   }
 };
-var XMLHttpRequestInterceptor = _XMLHttpRequestInterceptor;
+const XMLHttpRequestInterceptor = _XMLHttpRequestInterceptor;
 XMLHttpRequestInterceptor.interceptorSymbol = Symbol("xhr");
 
 

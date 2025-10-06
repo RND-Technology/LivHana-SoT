@@ -2,8 +2,8 @@
 
 require('core-js');
 
-var inspect = require('./');
-var test = require('tape');
+const inspect = require('./');
+const test = require('tape');
 
 test('Maps', function (t) {
     t.equal(inspect(new Map([[1, 2]])), 'Map (1) {1 => 2}');

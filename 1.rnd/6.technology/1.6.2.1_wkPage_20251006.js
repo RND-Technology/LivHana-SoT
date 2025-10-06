@@ -1,23 +1,23 @@
 "use strict";
-var __create = Object.create;
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getProtoOf = Object.getPrototypeOf;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
+const __create = Object.create;
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __getProtoOf = Object.getPrototypeOf;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __export = (target, all) => {
+  for (const name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+const __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
   // If the importer is in node compatibility mode or this is not an ESM
   // file that has been converted to a CommonJS file using a Babel-
   // compatible transform (i.e. "__esModule" has not been set), then set
@@ -25,35 +25,35 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
   mod
 ));
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var wkPage_exports = {};
+const __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+const wkPage_exports = {};
 __export(wkPage_exports, {
   WKPage: () => WKPage
 });
 module.exports = __toCommonJS(wkPage_exports);
-var import_path = __toESM(require("path"));
-var import_utils = require("../../utils");
-var import_headers = require("../../utils/isomorphic/headers");
-var import_crypto = require("../utils/crypto");
-var import_eventsHelper = require("../utils/eventsHelper");
-var import_hostPlatform = require("../utils/hostPlatform");
-var import_stackTrace = require("../../utils/isomorphic/stackTrace");
-var import_utilsBundle = require("../../utilsBundle");
-var import_browserContext = require("../browserContext");
-var dialog = __toESM(require("../dialog"));
-var dom = __toESM(require("../dom"));
-var import_errors = require("../errors");
-var import_helper = require("../helper");
-var network = __toESM(require("../network"));
-var import_page = require("../page");
-var import_wkAccessibility = require("./wkAccessibility");
-var import_wkConnection = require("./wkConnection");
-var import_wkExecutionContext = require("./wkExecutionContext");
-var import_wkInput = require("./wkInput");
-var import_wkInterceptableRequest = require("./wkInterceptableRequest");
-var import_wkProvisionalPage = require("./wkProvisionalPage");
-var import_wkWorkers = require("./wkWorkers");
-var import_debugLogger = require("../utils/debugLogger");
+const import_path = __toESM(require("path"));
+const import_utils = require("../../utils");
+const import_headers = require("../../utils/isomorphic/headers");
+const import_crypto = require("../utils/crypto");
+const import_eventsHelper = require("../utils/eventsHelper");
+const import_hostPlatform = require("../utils/hostPlatform");
+const import_stackTrace = require("../../utils/isomorphic/stackTrace");
+const import_utilsBundle = require("../../utilsBundle");
+const import_browserContext = require("../browserContext");
+const dialog = __toESM(require("../dialog"));
+const dom = __toESM(require("../dom"));
+const import_errors = require("../errors");
+const import_helper = require("../helper");
+const network = __toESM(require("../network"));
+const import_page = require("../page");
+const import_wkAccessibility = require("./wkAccessibility");
+const import_wkConnection = require("./wkConnection");
+const import_wkExecutionContext = require("./wkExecutionContext");
+const import_wkInput = require("./wkInput");
+const import_wkInterceptableRequest = require("./wkInterceptableRequest");
+const import_wkProvisionalPage = require("./wkProvisionalPage");
+const import_wkWorkers = require("./wkWorkers");
+const import_debugLogger = require("../utils/debugLogger");
 const UTILITY_WORLD_NAME = "__playwright_utility_world__";
 class WKPage {
   constructor(browserContext, pageProxySession, opener) {

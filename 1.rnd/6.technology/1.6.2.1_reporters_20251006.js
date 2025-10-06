@@ -1,23 +1,23 @@
 "use strict";
-var __create = Object.create;
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getProtoOf = Object.getPrototypeOf;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
+const __create = Object.create;
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __getProtoOf = Object.getPrototypeOf;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __export = (target, all) => {
+  for (const name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+const __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
   // If the importer is in node compatibility mode or this is not an ESM
   // file that has been converted to a CommonJS file using a Babel-
   // compatible transform (i.e. "__esModule" has not been set), then set
@@ -25,28 +25,28 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
   mod
 ));
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var reporters_exports = {};
+const __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+const reporters_exports = {};
 __export(reporters_exports, {
   createErrorCollectingReporter: () => createErrorCollectingReporter,
   createReporterForTestServer: () => createReporterForTestServer,
   createReporters: () => createReporters
 });
 module.exports = __toCommonJS(reporters_exports);
-var import_utils = require("playwright-core/lib/utils");
-var import_loadUtils = require("./loadUtils");
-var import_base = require("../reporters/base");
-var import_blob = require("../reporters/blob");
-var import_dot = __toESM(require("../reporters/dot"));
-var import_empty = __toESM(require("../reporters/empty"));
-var import_github = __toESM(require("../reporters/github"));
-var import_html = __toESM(require("../reporters/html"));
-var import_json = __toESM(require("../reporters/json"));
-var import_junit = __toESM(require("../reporters/junit"));
-var import_line = __toESM(require("../reporters/line"));
-var import_list = __toESM(require("../reporters/list"));
-var import_listModeReporter = __toESM(require("../reporters/listModeReporter"));
-var import_reporterV2 = require("../reporters/reporterV2");
+const import_utils = require("playwright-core/lib/utils");
+const import_loadUtils = require("./loadUtils");
+const import_base = require("../reporters/base");
+const import_blob = require("../reporters/blob");
+const import_dot = __toESM(require("../reporters/dot"));
+const import_empty = __toESM(require("../reporters/empty"));
+const import_github = __toESM(require("../reporters/github"));
+const import_html = __toESM(require("../reporters/html"));
+const import_json = __toESM(require("../reporters/json"));
+const import_junit = __toESM(require("../reporters/junit"));
+const import_line = __toESM(require("../reporters/line"));
+const import_list = __toESM(require("../reporters/list"));
+const import_listModeReporter = __toESM(require("../reporters/listModeReporter"));
+const import_reporterV2 = require("../reporters/reporterV2");
 async function createReporters(config, mode, isTestServer, descriptions) {
   const defaultReporters = {
     blob: import_blob.BlobReporter,

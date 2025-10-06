@@ -1,7 +1,7 @@
 'use strict';
 
 
-var common = require('./common');
+const common = require('./common');
 
 
 function Mark(name, buffer, position, line, column) {
@@ -14,7 +14,7 @@ function Mark(name, buffer, position, line, column) {
 
 
 Mark.prototype.getSnippet = function getSnippet(indent, maxLength) {
-  var head, start, tail, end, snippet;
+  let head, start, tail, end, snippet;
 
   if (!this.buffer) return null;
 
@@ -53,7 +53,7 @@ Mark.prototype.getSnippet = function getSnippet(indent, maxLength) {
 
 
 Mark.prototype.toString = function toString(compact) {
-  var snippet, where = '';
+  let snippet, where = '';
 
   if (this.name) {
     where += 'in "' + this.name + '" ';

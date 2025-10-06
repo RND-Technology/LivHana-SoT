@@ -1,12 +1,12 @@
 'use strict';
 
-var $floor = require('math-intrinsics/floor');
+const $floor = require('math-intrinsics/floor');
 
 // https://runestone.academy/ns/books/published/pythonds/BasicDS/ConvertingDecimalNumberstoBinaryNumbers.html#:~:text=The%20Divide%20by%202%20algorithm,have%20a%20remainder%20of%200
 
 module.exports = function intToBinaryString(x) {
-	var str = '';
-	var y;
+	let str = '';
+	let y;
 
 	while (x > 0) {
 		y = x / 2;

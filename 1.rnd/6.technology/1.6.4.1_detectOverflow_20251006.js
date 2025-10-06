@@ -13,7 +13,7 @@ export default function detectOverflow(state, options) {
     options = {};
   }
 
-  var _options = options,
+  const _options = options,
       _options$placement = _options.placement,
       placement = _options$placement === void 0 ? state.placement : _options$placement,
       _options$strategy = _options.strategy,
@@ -28,35 +28,35 @@ export default function detectOverflow(state, options) {
       altBoundary = _options$altBoundary === void 0 ? false : _options$altBoundary,
       _options$padding = _options.padding,
       padding = _options$padding === void 0 ? 0 : _options$padding;
-  var paddingObject = mergePaddingObject(typeof padding !== 'number' ? padding : expandToHashMap(padding, basePlacements));
-  var altContext = elementContext === popper ? reference : popper;
-  var popperRect = state.rects.popper;
-  var element = state.elements[altBoundary ? altContext : elementContext];
-  var clippingClientRect = getClippingRect(isElement(element) ? element : element.contextElement || getDocumentElement(state.elements.popper), boundary, rootBoundary, strategy);
-  var referenceClientRect = getBoundingClientRect(state.elements.reference);
-  var popperOffsets = computeOffsets({
+  const paddingObject = mergePaddingObject(typeof padding !== 'number' ? padding : expandToHashMap(padding, basePlacements));
+  const altContext = elementContext === popper ? reference : popper;
+  const popperRect = state.rects.popper;
+  const element = state.elements[altBoundary ? altContext : elementContext];
+  const clippingClientRect = getClippingRect(isElement(element) ? element : element.contextElement || getDocumentElement(state.elements.popper), boundary, rootBoundary, strategy);
+  const referenceClientRect = getBoundingClientRect(state.elements.reference);
+  const popperOffsets = computeOffsets({
     reference: referenceClientRect,
     element: popperRect,
     strategy: 'absolute',
     placement: placement
   });
-  var popperClientRect = rectToClientRect(Object.assign({}, popperRect, popperOffsets));
-  var elementClientRect = elementContext === popper ? popperClientRect : referenceClientRect; // positive = overflowing the clipping rect
+  const popperClientRect = rectToClientRect(Object.assign({}, popperRect, popperOffsets));
+  const elementClientRect = elementContext === popper ? popperClientRect : referenceClientRect; // positive = overflowing the clipping rect
   // 0 or negative = within the clipping rect
 
-  var overflowOffsets = {
+  const overflowOffsets = {
     top: clippingClientRect.top - elementClientRect.top + paddingObject.top,
     bottom: elementClientRect.bottom - clippingClientRect.bottom + paddingObject.bottom,
     left: clippingClientRect.left - elementClientRect.left + paddingObject.left,
     right: elementClientRect.right - clippingClientRect.right + paddingObject.right
   };
-  var offsetData = state.modifiersData.offset; // Offsets can be applied only to the popper element
+  const offsetData = state.modifiersData.offset; // Offsets can be applied only to the popper element
 
   if (elementContext === popper && offsetData) {
-    var offset = offsetData[placement];
+    const offset = offsetData[placement];
     Object.keys(overflowOffsets).forEach(function (key) {
-      var multiply = [right, bottom].indexOf(key) >= 0 ? 1 : -1;
-      var axis = [top, bottom].indexOf(key) >= 0 ? 'y' : 'x';
+      const multiply = [right, bottom].indexOf(key) >= 0 ? 1 : -1;
+      const axis = [top, bottom].indexOf(key) >= 0 ? 'y' : 'x';
       overflowOffsets[key] += offset[axis] * multiply;
     });
   }

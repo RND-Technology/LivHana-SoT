@@ -2,10 +2,10 @@
 module.exports = BufferReader;
 
 // extends Reader
-var Reader = require("./reader");
+const Reader = require("./reader");
 (BufferReader.prototype = Object.create(Reader.prototype)).constructor = BufferReader;
 
-var util = require("./util/minimal");
+const util = require("./util/minimal");
 
 /**
  * Constructs a new buffer reader instance.
@@ -35,7 +35,7 @@ BufferReader._configure = function () {
  * @override
  */
 BufferReader.prototype.string = function read_string_buffer() {
-    var len = this.uint32(); // modifies pos
+    const len = this.uint32(); // modifies pos
     return this.buf.utf8Slice
         ? this.buf.utf8Slice(this.pos, this.pos = Math.min(this.pos + len, this.len))
         : this.buf.toString("utf-8", this.pos, this.pos = Math.min(this.pos + len, this.len));

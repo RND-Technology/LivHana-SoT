@@ -1,10 +1,10 @@
 "use strict";
 exports.__esModule = true;
 exports.refundPaymentRequestSchema = void 0;
-var schema_1 = require("../schema");
-var destinationDetailsCashRefundDetails_1 = require("./destinationDetailsCashRefundDetails");
-var destinationDetailsExternalRefundDetails_1 = require("./destinationDetailsExternalRefundDetails");
-var money_1 = require("./money");
+const schema_1 = require("../schema");
+const destinationDetailsCashRefundDetails_1 = require("./destinationDetailsCashRefundDetails");
+const destinationDetailsExternalRefundDetails_1 = require("./destinationDetailsExternalRefundDetails");
+const money_1 = require("./money");
 exports.refundPaymentRequestSchema = (0, schema_1.object)({
     idempotencyKey: ['idempotency_key', (0, schema_1.string)()],
     amountMoney: ['amount_money', (0, schema_1.lazy)(function () { return money_1.moneySchema; })],

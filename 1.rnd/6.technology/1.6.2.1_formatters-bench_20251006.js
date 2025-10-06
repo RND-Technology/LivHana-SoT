@@ -34,13 +34,13 @@ const max = 10
 
 const run = bench([
   function benchPinoNoFormatters (cb) {
-    for (var i = 0; i < max; i++) {
+    for (let i = 0; i < max; i++) {
       pinoNoFormatters.info({ hello: 'world' })
     }
     setImmediate(cb)
   },
   function benchPinoFormatters (cb) {
-    for (var i = 0; i < max; i++) {
+    for (let i = 0; i < max; i++) {
       pinoFormatters.info({ hello: 'world' })
     }
     setImmediate(cb)

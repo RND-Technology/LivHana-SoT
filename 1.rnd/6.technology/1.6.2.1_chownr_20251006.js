@@ -60,7 +60,7 @@ const handleEISDirSync =
 // fs.readdir could only accept an options object as of node v6
 const nodeVersion = process.version
 let readdir = (path, options, cb) => fs.readdir(path, options, cb)
-let readdirSync = (path, options) => fs.readdirSync(path, options)
+const readdirSync = (path, options) => fs.readdirSync(path, options)
 /* istanbul ignore next */
 if (/^v4\./.test(nodeVersion))
   readdir = (path, options, cb) => fs.readdir(path, cb)

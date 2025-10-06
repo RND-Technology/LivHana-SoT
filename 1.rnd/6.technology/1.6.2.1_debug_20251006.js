@@ -1,4 +1,4 @@
-var debug;
+let debug;
 
 module.exports = function () {
   if (!debug) {

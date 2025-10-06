@@ -1,19 +1,19 @@
 'use strict';
 
-var CombinedStream = require('combined-stream');
-var util = require('util');
-var path = require('path');
-var http = require('http');
-var https = require('https');
-var parseUrl = require('url').parse;
-var fs = require('fs');
-var Stream = require('stream').Stream;
-var crypto = require('crypto');
-var mime = require('mime-types');
-var asynckit = require('asynckit');
-var setToStringTag = require('es-set-tostringtag');
-var hasOwn = require('hasown');
-var populate = require('./populate.js');
+const CombinedStream = require('combined-stream');
+const util = require('util');
+const path = require('path');
+const http = require('http');
+const https = require('https');
+const parseUrl = require('url').parse;
+const fs = require('fs');
+const Stream = require('stream').Stream;
+const crypto = require('crypto');
+const mime = require('mime-types');
+const asynckit = require('asynckit');
+const setToStringTag = require('es-set-tostringtag');
+const hasOwn = require('hasown');
+const populate = require('./populate.js');
 
 /**
  * Create readable "multipart/form-data" streams.
@@ -35,7 +35,7 @@ function FormData(options) {
   CombinedStream.call(this);
 
   options = options || {}; // eslint-disable-line no-param-reassign
-  for (var option in options) { // eslint-disable-line no-restricted-syntax
+  for (const option in options) { // eslint-disable-line no-restricted-syntax
     this[option] = options[option];
   }
 }
@@ -54,7 +54,7 @@ FormData.prototype.append = function (field, value, options) {
     options = { filename: options }; // eslint-disable-line no-param-reassign
   }
 
-  var append = CombinedStream.prototype.append.bind(this);
+  const append = CombinedStream.prototype.append.bind(this);
 
   // all that streamy business can't handle numbers
   if (typeof value === 'number' || value == null) {
@@ -71,8 +71,8 @@ FormData.prototype.append = function (field, value, options) {
     return;
   }
 
-  var header = this._multiPartHeader(field, value, options);
-  var footer = this._multiPartFooter();
+  const header = this._multiPartHeader(field, value, options);
+  const footer = this._multiPartFooter();
 
   append(header);
   append(value);
@@ -83,7 +83,7 @@ FormData.prototype.append = function (field, value, options) {
 };
 
 FormData.prototype._trackLength = function (header, value, options) {
-  var valueLength = 0;
+  let valueLength = 0;
 
   /*
    * used w/ getLengthSync(), when length is known.
@@ -140,7 +140,7 @@ FormData.prototype._lengthRetriever = function (value, callback) {
         }
 
         // update final size based on the range options
-        var fileSize = stat.size - (value.start ? value.start : 0);
+        const fileSize = stat.size - (value.start ? value.start : 0);
         callback(null, fileSize);
       });
     }
@@ -174,11 +174,11 @@ FormData.prototype._multiPartHeader = function (field, value, options) {
     return options.header;
   }
 
-  var contentDisposition = this._getContentDisposition(value, options);
-  var contentType = this._getContentType(value, options);
+  const contentDisposition = this._getContentDisposition(value, options);
+  const contentType = this._getContentType(value, options);
 
-  var contents = '';
-  var headers = {
+  let contents = '';
+  const headers = {
     // add custom disposition as third element or keep it two elements if not
     'Content-Disposition': ['form-data', 'name="' + field + '"'].concat(contentDisposition || []),
     // if no content type. allow it to be empty array
@@ -190,8 +190,8 @@ FormData.prototype._multiPartHeader = function (field, value, options) {
     populate(headers, options.header);
   }
 
-  var header;
-  for (var prop in headers) { // eslint-disable-line no-restricted-syntax
+  let header;
+  for (const prop in headers) { // eslint-disable-line no-restricted-syntax
     if (hasOwn(headers, prop)) {
       header = headers[prop];
 
@@ -216,7 +216,7 @@ FormData.prototype._multiPartHeader = function (field, value, options) {
 };
 
 FormData.prototype._getContentDisposition = function (value, options) { // eslint-disable-line consistent-return
-  var filename;
+  let filename;
 
   if (typeof options.filepath === 'string') {
     // custom filepath for relative paths
@@ -240,7 +240,7 @@ FormData.prototype._getContentDisposition = function (value, options) { // eslin
 
 FormData.prototype._getContentType = function (value, options) {
   // use custom content-type above all
-  var contentType = options.contentType;
+  let contentType = options.contentType;
 
   // or try `name` from formidable, browser
   if (!contentType && value && value.name) {
@@ -272,9 +272,9 @@ FormData.prototype._getContentType = function (value, options) {
 
 FormData.prototype._multiPartFooter = function () {
   return function (next) {
-    var footer = FormData.LINE_BREAK;
+    let footer = FormData.LINE_BREAK;
 
-    var lastPart = this._streams.length === 0;
+    const lastPart = this._streams.length === 0;
     if (lastPart) {
       footer += this._lastBoundary();
     }
@@ -288,8 +288,8 @@ FormData.prototype._lastBoundary = function () {
 };
 
 FormData.prototype.getHeaders = function (userHeaders) {
-  var header;
-  var formHeaders = {
+  let header;
+  const formHeaders = {
     'content-type': 'multipart/form-data; boundary=' + this.getBoundary()
   };
 
@@ -318,11 +318,11 @@ FormData.prototype.getBoundary = function () {
 };
 
 FormData.prototype.getBuffer = function () {
-  var dataBuffer = new Buffer.alloc(0); // eslint-disable-line new-cap
-  var boundary = this.getBoundary();
+  let dataBuffer = new Buffer.alloc(0); // eslint-disable-line new-cap
+  const boundary = this.getBoundary();
 
   // Create the form content. Add Line breaks to the end of data.
-  for (var i = 0, len = this._streams.length; i < len; i++) {
+  for (let i = 0, len = this._streams.length; i < len; i++) {
     if (typeof this._streams[i] !== 'function') {
       // Add content to the buffer.
       if (Buffer.isBuffer(this._streams[i])) {
@@ -352,7 +352,7 @@ FormData.prototype._generateBoundary = function () {
 // Note: getLengthSync DOESN'T calculate streams length
 // As workaround one can calculate file size manually and add it as knownLength option
 FormData.prototype.getLengthSync = function () {
-  var knownLength = this._overheadLength + this._valueLength;
+  let knownLength = this._overheadLength + this._valueLength;
 
   // Don't get confused, there are 3 "internal" streams for each keyval pair so it basically checks if there is any value added to the form
   if (this._streams.length) {
@@ -376,7 +376,7 @@ FormData.prototype.getLengthSync = function () {
 // https://github.com/form-data/form-data/issues/196
 // https://github.com/form-data/form-data/issues/262
 FormData.prototype.hasKnownLength = function () {
-  var hasKnownLength = true;
+  let hasKnownLength = true;
 
   if (this._valuesToMeasure.length) {
     hasKnownLength = false;
@@ -386,7 +386,7 @@ FormData.prototype.hasKnownLength = function () {
 };
 
 FormData.prototype.getLength = function (cb) {
-  var knownLength = this._overheadLength + this._valueLength;
+  let knownLength = this._overheadLength + this._valueLength;
 
   if (this._streams.length) {
     knownLength += this._lastBoundary().length;
@@ -412,9 +412,9 @@ FormData.prototype.getLength = function (cb) {
 };
 
 FormData.prototype.submit = function (params, cb) {
-  var request;
-  var options;
-  var defaults = { method: 'post' };
+  let request;
+  let options;
+  const defaults = { method: 'post' };
 
   // parse provided url if it's string or treat it as options object
   if (typeof params === 'string') {
@@ -458,9 +458,9 @@ FormData.prototype.submit = function (params, cb) {
 
     this.pipe(request);
     if (cb) {
-      var onResponse;
+      let onResponse;
 
-      var callback = function (error, responce) {
+      const callback = function (error, responce) {
         request.removeListener('error', callback);
         request.removeListener('response', onResponse);
 

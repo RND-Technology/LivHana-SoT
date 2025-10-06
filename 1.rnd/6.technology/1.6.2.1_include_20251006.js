@@ -1,3 +1,3 @@
-var why = require('./')
+const why = require('./')
 
 require('siginfo')(why, true)

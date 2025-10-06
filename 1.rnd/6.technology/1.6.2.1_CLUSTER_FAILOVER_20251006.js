@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.transformArguments = exports.FailoverModes = void 0;
-var FailoverModes;
+let FailoverModes;
 (function (FailoverModes) {
     FailoverModes["FORCE"] = "FORCE";
     FailoverModes["TAKEOVER"] = "TAKEOVER";

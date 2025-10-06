@@ -7,4 +7,4 @@ exports.default = void 0;
 const shape = {
   borderRadius: 4
 };
-var _default = exports.default = shape;
+const _default = exports.default = shape;

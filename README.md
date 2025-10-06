@@ -1,4 +1,5 @@
 # 🔥 LivHana-SoT - TIER-1 CANNABIS AI PLATFORM + FINANCE LAYER UNLOCKED
+
 ## Sovereign Life OS Master Monday Edition
 
 ![Status](https://img.shields.io/badge/Status-OPERATIONAL-green)

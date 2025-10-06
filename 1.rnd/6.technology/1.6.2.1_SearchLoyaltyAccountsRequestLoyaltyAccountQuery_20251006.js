@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
 exports.searchLoyaltyAccountsRequestLoyaltyAccountQuerySchema = void 0;
-var schema_1 = require("../schema");
-var loyaltyAccountMapping_1 = require("./loyaltyAccountMapping");
+const schema_1 = require("../schema");
+const loyaltyAccountMapping_1 = require("./loyaltyAccountMapping");
 exports.searchLoyaltyAccountsRequestLoyaltyAccountQuerySchema = (0, schema_1.object)({
     mappings: [
         'mappings',

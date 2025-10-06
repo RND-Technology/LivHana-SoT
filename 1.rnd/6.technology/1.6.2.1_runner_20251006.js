@@ -1,5 +1,5 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
+const __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -8,9 +8,9 @@ const create_id_1 = require("../create-id");
 const logger_1 = __importDefault(require("../logger"));
 const tracked_promise_1 = require("../promise/tracked-promise");
 function emptyOnFn() { }
-;
+
 function emptyHookFn() { return true; }
-;
+
 function defaultOnError(date, error) {
     logger_1.default.error('Task failed with error!', error);
 }

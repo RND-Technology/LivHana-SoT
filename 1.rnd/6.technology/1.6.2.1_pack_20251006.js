@@ -27,18 +27,18 @@ export class Packr extends Unpackr {
 		let hasSharedUpdate
 		let structures
 		let referenceMap
-		let encodeUtf8 = ByteArray.prototype.utf8Write ? function(string, position) {
+		const encodeUtf8 = ByteArray.prototype.utf8Write ? function(string, position) {
 			return target.utf8Write(string, position, target.byteLength - position)
 		} : (textEncoder && textEncoder.encodeInto) ?
 			function(string, position) {
 				return textEncoder.encodeInto(string, target.subarray(position)).written
 			} : false
 
-		let packr = this
+		const packr = this
 		if (!options)
 			options = {}
-		let isSequential = options && options.sequential
-		let hasSharedStructures = options.structures || options.saveStructures
+		const isSequential = options && options.sequential
+		const hasSharedStructures = options.structures || options.saveStructures
 		let maxSharedStructures = options.maxSharedStructures
 		if (maxSharedStructures == null)
 			maxSharedStructures = hasSharedStructures ? 32 : 0
@@ -53,9 +53,9 @@ export class Packr extends Unpackr {
 		if (!this.structures && options.useRecords != false)
 			this.structures = []
 		// two byte record ids for shared structures
-		let useTwoByteRecords = maxSharedStructures > 32 || (maxOwnStructures + maxSharedStructures > 64)
-		let sharedLimitId = maxSharedStructures + 0x40
-		let maxStructureId = maxSharedStructures + maxOwnStructures + 0x40
+		const useTwoByteRecords = maxSharedStructures > 32 || (maxOwnStructures + maxSharedStructures > 64)
+		const sharedLimitId = maxSharedStructures + 0x40
+		const maxStructureId = maxSharedStructures + maxOwnStructures + 0x40
 		if (maxStructureId > 8256) {
 			throw new Error('Maximum maxSharedStructure + maxOwnStructure is 8192')
 		}
@@ -90,7 +90,7 @@ export class Packr extends Unpackr {
 			if (structures) {
 				if (structures.uninitialized)
 					structures = packr._mergeStructures(packr.getStructures())
-				let sharedLength = structures.sharedLength || 0
+				const sharedLength = structures.sharedLength || 0
 				if (sharedLength > maxSharedStructures) {
 					//if (maxSharedStructures <= 32 && structures.sharedLength > 32) // TODO: could support this, but would need to update the limit ids
 					throw new Error('Shared structures is larger than maximum shared structures, try increasing maxSharedStructures to ' + structures.sharedLength)
@@ -99,12 +99,12 @@ export class Packr extends Unpackr {
 					// rebuild our structure transitions
 					structures.transitions = Object.create(null)
 					for (let i = 0; i < sharedLength; i++) {
-						let keys = structures[i]
+						const keys = structures[i]
 						if (!keys)
 							continue
 						let nextTransition, transition = structures.transitions
 						for (let j = 0, l = keys.length; j < l; j++) {
-							let key = keys[j]
+							const key = keys[j]
 							nextTransition = transition[key]
 							if (!nextTransition) {
 								nextTransition = transition[key] = Object.create(null)
@@ -131,11 +131,11 @@ export class Packr extends Unpackr {
 				if (bundledStrings)
 					writeBundles(start, pack, 0)
 				if (referenceMap && referenceMap.idsToInsert) {
-					let idsToInsert = referenceMap.idsToInsert.sort((a, b) => a.offset > b.offset ? 1 : -1);
+					const idsToInsert = referenceMap.idsToInsert.sort((a, b) => a.offset > b.offset ? 1 : -1);
 					let i = idsToInsert.length;
 					let incrementPosition = -1;
 					while (lastBundle && i > 0) {
-						let insertionPoint = idsToInsert[--i].offset + start;
+						const insertionPoint = idsToInsert[--i].offset + start;
 						if (insertionPoint < (lastBundle.stringsPosition + start) && incrementPosition === -1)
 							incrementPosition = 0;
 						if (insertionPoint > (lastBundle.position + start)) {
@@ -161,7 +161,7 @@ export class Packr extends Unpackr {
 					if (position > safeEnd)
 						makeRoom(position)
 					packr.offset = position
-					let serialized = insertIds(target.subarray(start, position), idsToInsert)
+					const serialized = insertIds(target.subarray(start, position), idsToInsert)
 					referenceMap = null
 					return serialized
 				}
@@ -179,10 +179,10 @@ export class Packr extends Unpackr {
 				if (structures) {
 					resetStructures();
 					if (hasSharedUpdate && packr.saveStructures) {
-						let sharedLength = structures.sharedLength || 0
+						const sharedLength = structures.sharedLength || 0
 						// we can't rely on start/end with REUSE_BUFFER_MODE since they will (probably) change when we save
-						let returnBuffer = target.subarray(start, position)
-						let newSharedData = prepareStructures(structures, packr);
+						const returnBuffer = target.subarray(start, position)
+						const newSharedData = prepareStructures(structures, packr);
 						if (!encodingError) { // TODO: If there is an encoding error, should make the structures as uninitialized so they get rebuilt next time
 							if (packr.saveStructures(newSharedData, newSharedData.isCompatible) === false) {
 								// get updated structures and try again if the update failed
@@ -204,7 +204,7 @@ export class Packr extends Unpackr {
 		const resetStructures = () => {
 			if (serializationsSinceTransitionRebuild < 10)
 				serializationsSinceTransitionRebuild++
-			let sharedLength = structures.sharedLength || 0
+			const sharedLength = structures.sharedLength || 0
 			if (structures.length > sharedLength && !isSequential)
 				structures.length = sharedLength
 			if (transitionsCount > 10000) {
@@ -222,7 +222,7 @@ export class Packr extends Unpackr {
 			}
 		}
 		const packArray = (value) => {
-			var length = value.length
+			const length = value.length
 			if (length < 0x10) {
 				target[position++] = 0x90 | length
 			} else if (length < 0x10000) {
@@ -242,14 +242,14 @@ export class Packr extends Unpackr {
 			if (position > safeEnd)
 				target = makeRoom(position)
 
-			var type = typeof value
-			var length
+			const type = typeof value
+			let length
 			if (type === 'string') {
-				let strLength = value.length
+				const strLength = value.length
 				if (bundledStrings && strLength >= 4 && strLength < 0x1000) {
 					if ((bundledStrings.size += strLength) > MAX_BUNDLE_SIZE) {
 						let extStart
-						let maxBytes = (bundledStrings[0] ? bundledStrings[0].length * 3 + bundledStrings[1].length : 0) + 10
+						const maxBytes = (bundledStrings[0] ? bundledStrings[0].length * 3 + bundledStrings[1].length : 0) + 10
 						if (position + maxBytes > safeEnd)
 							target = makeRoom(position + maxBytes)
 						let lastBundle
@@ -273,7 +273,7 @@ export class Packr extends Unpackr {
 						bundledStrings.size = 0
 						bundledStrings.position = extStart
 					}
-					let twoByte = hasNonLatin.test(value)
+					const twoByte = hasNonLatin.test(value)
 					bundledStrings[twoByte ? 0 : 1] += value
 					target[position++] = 0xc1
 					pack(twoByte ? -strLength : strLength);
@@ -290,7 +290,7 @@ export class Packr extends Unpackr {
 				} else {
 					headerSize = 5
 				}
-				let maxBytes = strLength * 3
+				const maxBytes = strLength * 3
 				if (position + maxBytes > safeEnd)
 					target = makeRoom(position + maxBytes)
 
@@ -403,10 +403,10 @@ export class Packr extends Unpackr {
 					target[position++] = 0xc0
 				else {
 					if (referenceMap) {
-						let referee = referenceMap.get(value)
+						const referee = referenceMap.get(value)
 						if (referee) {
 							if (!referee.id) {
-								let idsToInsert = referenceMap.idsToInsert || (referenceMap.idsToInsert = [])
+								const idsToInsert = referenceMap.idsToInsert || (referenceMap.idsToInsert = [])
 								referee.id = idsToInsert.push(referee)
 							}
 							target[position++] = 0xd6 // fixext 4
@@ -417,7 +417,7 @@ export class Packr extends Unpackr {
 						} else
 							referenceMap.set(value, { offset: position - start })
 					}
-					let constructor = value.constructor
+					const constructor = value.constructor
 					if (constructor === Object) {
 						writeObject(value)
 					} else if (constructor === Array) {
@@ -437,23 +437,23 @@ export class Packr extends Unpackr {
 								targetView.setUint32(position, length)
 								position += 4
 							}
-							for (let [key, entryValue] of value) {
+							for (const [key, entryValue] of value) {
 								pack(key)
 								pack(entryValue)
 							}
 						}
 					} else {
 						for (let i = 0, l = extensions.length; i < l; i++) {
-							let extensionClass = extensionClasses[i]
+							const extensionClass = extensionClasses[i]
 							if (value instanceof extensionClass) {
-								let extension = extensions[i]
+								const extension = extensions[i]
 								if (extension.write) {
 									if (extension.type) {
 										target[position++] = 0xd4 // one byte "tag" extension
 										target[position++] = extension.type
 										target[position++] = 0
 									}
-									let writeResult = extension.write.call(this, value)
+									const writeResult = extension.write.call(this, value)
 									if (writeResult === value) { // avoid infinite recursion
 										if (Array.isArray(value)) {
 											packArray(value)
@@ -466,8 +466,8 @@ export class Packr extends Unpackr {
 									return
 								}
 								let currentTarget = target
-								let currentTargetView = targetView
-								let currentPosition = position
+								const currentTargetView = targetView
+								const currentPosition = position
 								target = null
 								let result
 								try {
@@ -539,12 +539,12 @@ export class Packr extends Unpackr {
 					} else if (this.largeBigIntToString) {
 						return pack(value.toString());
 					} else if (this.useBigIntExtension || this.moreTypes) {
-						let empty = value < 0 ? BigInt(-1) : BigInt(0)
+						const empty = value < 0 ? BigInt(-1) : BigInt(0)
 
 						let array
 						if (value >> BigInt(0x10000) === empty) {
-							let mask = BigInt(0x10000000000000000) - BigInt(1) // literal would overflow
-							let chunks = []
+							const mask = BigInt(0x10000000000000000) - BigInt(1) // literal would overflow
+							const chunks = []
 							while (true) {
 								chunks.push(value & mask)
 								if ((value >> BigInt(63)) === empty) break
@@ -554,7 +554,7 @@ export class Packr extends Unpackr {
 							array = new Uint8Array(new BigUint64Array(chunks).buffer)
 							array.reverse()
 						} else {
-							let invert = value < 0
+							const invert = value < 0
 							let string = (invert ? ~value : value).toString(16)
 							if (string.length % 2) {
 								string = '0' + string
@@ -605,7 +605,7 @@ export class Packr extends Unpackr {
 			let keys;
 			if (this.skipValues) {
 				keys = [];
-				for (let key in object) {
+				for (const key in object) {
 					if ((typeof object.hasOwnProperty !== 'function' || object.hasOwnProperty(key)) &&
 						!this.skipValues.includes(object[key]))
 						keys.push(key);
@@ -613,7 +613,7 @@ export class Packr extends Unpackr {
 			} else {
 				keys = Object.keys(object)
 			}
-			let length = keys.length
+			const length = keys.length
 			if (length < 0x10) {
 				target[position++] = 0x80 | length
 			} else if (length < 0x10000) {
@@ -629,7 +629,7 @@ export class Packr extends Unpackr {
 			if (this.coercibleKeyAsNumber) {
 				for (let i = 0; i < length; i++) {
 					key = keys[i]
-					let num = Number(key)
+					const num = Number(key)
 					pack(isNaN(num) ? key : num)
 					pack(object[key])
 				}
@@ -646,7 +646,7 @@ export class Packr extends Unpackr {
 			let objectOffset = position - start
 			position += 2
 			let size = 0
-			for (let key in object) {
+			for (const key in object) {
 				if (typeof object.hasOwnProperty !== 'function' || object.hasOwnProperty(key)) {
 					pack(key)
 					pack(object[key])
@@ -665,21 +665,21 @@ export class Packr extends Unpackr {
 		(options.progressiveRecords && !useTwoByteRecords) ?  // this is about 2% faster for highly stable structures, since it only requires one for-in loop (but much more expensive when new structure needs to be written)
 		(object) => {
 			let nextTransition, transition = structures.transitions || (structures.transitions = Object.create(null))
-			let objectOffset = position++ - start
+			const objectOffset = position++ - start
 			let wroteKeys
-			for (let key in object) {
+			for (const key in object) {
 				if (typeof object.hasOwnProperty !== 'function' || object.hasOwnProperty(key)) {
 					nextTransition = transition[key]
 					if (nextTransition)
 						transition = nextTransition
 					else {
 						// record doesn't exist, create full new record and insert it
-						let keys = Object.keys(object)
-						let lastTransition = transition
+						const keys = Object.keys(object)
+						const lastTransition = transition
 						transition = structures.transitions
 						let newTransitions = 0
 						for (let i = 0, l = keys.length; i < l; i++) {
-							let key = keys[i]
+							const key = keys[i]
 							nextTransition = transition[key]
 							if (!nextTransition) {
 								nextTransition = transition[key] = Object.create(null)
@@ -700,7 +700,7 @@ export class Packr extends Unpackr {
 				}
 			}
 			if (!wroteKeys) {
-				let recordId = transition[RECORD_SYMBOL]
+				const recordId = transition[RECORD_SYMBOL]
 				if (recordId)
 					target[objectOffset + start] = recordId
 				else
@@ -710,7 +710,7 @@ export class Packr extends Unpackr {
 		(object) => {
 			let nextTransition, transition = structures.transitions || (structures.transitions = Object.create(null))
 			let newTransitions = 0
-			for (let key in object) if (typeof object.hasOwnProperty !== 'function' || object.hasOwnProperty(key)) {
+			for (const key in object) if (typeof object.hasOwnProperty !== 'function' || object.hasOwnProperty(key)) {
 				nextTransition = transition[key]
 				if (!nextTransition) {
 					nextTransition = transition[key] = Object.create(null)
@@ -729,7 +729,7 @@ export class Packr extends Unpackr {
 				newRecord(transition, transition.__keys__ || Object.keys(object), newTransitions)
 			}
 			// now write the values
-			for (let key in object)
+			for (const key in object)
 				if (typeof object.hasOwnProperty !== 'function' || object.hasOwnProperty(key)) {
 					pack(object[key])
 				}
@@ -752,7 +752,7 @@ export class Packr extends Unpackr {
 					Math.round(Math.max((end - start) * (end > 0x4000000 ? 1.25 : 2), 0x400000) / 0x1000) * 0x1000)
 			} else // faster handling for smaller buffers
 				newSize = ((Math.max((end - start) << 2, target.length - 1) >> 12) + 1) << 12
-			let newBuffer = new ByteArrayAllocate(newSize)
+			const newBuffer = new ByteArrayAllocate(newSize)
 			targetView = newBuffer.dataView || (newBuffer.dataView = new DataView(newBuffer.buffer, 0, newSize))
 			end = Math.min(end, target.length)
 			if (target.copy)
@@ -778,7 +778,7 @@ export class Packr extends Unpackr {
 					recordId = sharedLimitId
 				structures.nextId = recordId + 1
 			}
-			let highByte = keys.highByte = recordId >= 0x60 && useTwoByteRecords ? (recordId - 0x60) >> 5 : -1
+			const highByte = keys.highByte = recordId >= 0x60 && useTwoByteRecords ? (recordId - 0x60) >> 5 : -1
 			transition[RECORD_SYMBOL] = recordId
 			transition.__keys__ = keys
 			structures[recordId - 0x40] = keys
@@ -815,10 +815,10 @@ export class Packr extends Unpackr {
 			}
 		}
 		const insertNewRecord = (transition, keys, insertionOffset, newTransitions) => {
-			let mainTarget = target
-			let mainPosition = position
-			let mainSafeEnd = safeEnd
-			let mainStart = start
+			const mainTarget = target
+			const mainPosition = position
+			const mainSafeEnd = safeEnd
+			const mainStart = start
 			target = keysTarget
 			position = 0
 			start = 0
@@ -827,16 +827,16 @@ export class Packr extends Unpackr {
 			safeEnd = target.length - 10
 			newRecord(transition, keys, newTransitions)
 			keysTarget = target
-			let keysPosition = position
+			const keysPosition = position
 			target = mainTarget
 			position = mainPosition
 			safeEnd = mainSafeEnd
 			start = mainStart
 			if (keysPosition > 1) {
-				let newEnd = position + keysPosition - 1
+				const newEnd = position + keysPosition - 1
 				if (newEnd > safeEnd)
 					makeRoom(newEnd)
-				let insertionPosition = insertionOffset + start
+				const insertionPosition = insertionOffset + start
 				target.copyWithin(insertionPosition + keysPosition, insertionPosition + 1, position)
 				target.set(keysTarget.slice(0, keysPosition), insertionPosition)
 				position = newEnd
@@ -845,11 +845,11 @@ export class Packr extends Unpackr {
 			}
 		}
 		const writeStruct = (object) => {
-			let newPosition = writeStructSlots(object, target, start, position, structures, makeRoom, (value, newPosition, notifySharedUpdate) => {
+			const newPosition = writeStructSlots(object, target, start, position, structures, makeRoom, (value, newPosition, notifySharedUpdate) => {
 				if (notifySharedUpdate)
 					return hasSharedUpdate = true;
 				position = newPosition;
-				let startTarget = target;
+				const startTarget = target;
 				pack(value);
 				resetStructures();
 				if (startTarget !== target) {
@@ -886,7 +886,7 @@ export class Packr extends Unpackr {
 extensionClasses = [ Date, Set, Error, RegExp, ArrayBuffer, Object.getPrototypeOf(Uint8Array.prototype).constructor /*TypedArray*/, DataView, C1Type ]
 extensions = [{
 	pack(date, allocateForWrite, pack) {
-		let seconds = date.getTime() / 1000
+		const seconds = date.getTime() / 1000
 		if ((this.useTimestamp32 || date.getMilliseconds() === 0) && seconds >= 0 && seconds < 0x100000000) {
 			// Timestamp 32
 			let { target, targetView, position} = allocateForWrite(6)
@@ -926,7 +926,7 @@ extensions = [{
 			allocateForWrite(0);
 			return pack({})
 		}
-		let array = Array.from(set)
+		const array = Array.from(set)
 		let { target, position} = allocateForWrite(this.moreTypes ? 3 : 0)
 		if (this.moreTypes) {
 			target[position++] = 0xd4
@@ -964,7 +964,7 @@ extensions = [{
 	}
 }, {
 	pack(typedArray, allocateForWrite) {
-		let constructor = typedArray.constructor
+		const constructor = typedArray.constructor
 		if (constructor !== ByteArray && this.moreTypes)
 			writeExtBuffer(typedArray, typedArrays.indexOf(constructor.name), allocateForWrite)
 		else
@@ -979,13 +979,13 @@ extensions = [{
 	}
 }, {
 	pack(c1, allocateForWrite) { // specific 0xC1 object
-		let { target, position} = allocateForWrite(1)
+		const { target, position} = allocateForWrite(1)
 		target[position] = 0xc1
 	}
 }]
 
 function writeExtBuffer(typedArray, type, allocateForWrite, encode) {
-	let length = typedArray.byteLength
+	const length = typedArray.byteLength
 	if (length + 1 < 0x100) {
 		var { target, position } = allocateForWrite(4 + length)
 		target[position++] = 0xc7
@@ -1007,7 +1007,7 @@ function writeExtBuffer(typedArray, type, allocateForWrite, encode) {
 	target.set(new Uint8Array(typedArray.buffer, typedArray.byteOffset, typedArray.byteLength), position)
 }
 function writeBuffer(buffer, allocateForWrite) {
-	let length = buffer.byteLength
+	const length = buffer.byteLength
 	var target, position
 	if (length < 0x100) {
 		var { target, position } = allocateForWrite(length + 2)
@@ -1028,7 +1028,7 @@ function writeBuffer(buffer, allocateForWrite) {
 }
 
 function writeExtensionData(result, target, position, type) {
-	let length = result.length
+	const length = result.length
 	switch (length) {
 		case 1:
 			target[position++] = 0xd4
@@ -1073,8 +1073,8 @@ function insertIds(serialized, idsToInsert) {
 	let distanceToMove = idsToInsert.length * 6
 	let lastEnd = serialized.length - distanceToMove
 	while (nextId = idsToInsert.pop()) {
-		let offset = nextId.offset
-		let id = nextId.id
+		const offset = nextId.offset
+		const id = nextId.id
 		serialized.copyWithin(offset + distanceToMove, offset, lastEnd)
 		distanceToMove -= 6
 		let position = offset + distanceToMove
@@ -1093,7 +1093,7 @@ function writeBundles(start, pack, incrementPosition) {
 	if (bundledStrings.length > 0) {
 		targetView.setUint32(bundledStrings.position + start, position + incrementPosition - bundledStrings.position - start)
 		bundledStrings.stringsPosition = position - start;
-		let writeStrings = bundledStrings
+		const writeStrings = bundledStrings
 		bundledStrings = null
 		pack(writeStrings[0])
 		pack(writeStrings[1])
@@ -1113,7 +1113,7 @@ export function addExtension(extension) {
 }
 function prepareStructures(structures, packr) {
 	structures.isCompatible = (existingStructures) => {
-		let compatible = !existingStructures || ((packr.lastNamedStructuresLength || 0) === existingStructures.length)
+		const compatible = !existingStructures || ((packr.lastNamedStructuresLength || 0) === existingStructures.length)
 		if (!compatible) // we want to merge these existing structures immediately since we already have it and we are in the right transaction
 			packr._mergeStructures(existingStructures);
 		return compatible;
@@ -1125,7 +1125,7 @@ export function setWriteStructSlots(writeSlots, makeStructures) {
 	prepareStructures = makeStructures;
 }
 
-let defaultPackr = new Packr({ useRecords: false })
+const defaultPackr = new Packr({ useRecords: false })
 export const pack = defaultPackr.pack
 export const encode = defaultPackr.pack
 export const Encoder = Packr

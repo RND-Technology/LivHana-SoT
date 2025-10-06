@@ -70,7 +70,7 @@ const TYPE = Symbol('type');
 const PARENT = Symbol('parent');
 setWriteStructSlots(writeStruct, prepareStructures);
 function writeStruct(object, target, encodingStart, position, structures, makeRoom, pack, packr) {
-	let typedStructs = packr.typedStructs || (packr.typedStructs = []);
+	const typedStructs = packr.typedStructs || (packr.typedStructs = []);
 	// note that we rely on pack.js to load stored structures before we get to this point
 	let targetView = target.dataView;
 	let refsStartPosition = (typedStructs.lastStringStart || 100) + position;
@@ -89,8 +89,8 @@ function writeStruct(object, target, encodingStart, position, structures, makeRo
 	let refOffset, refPosition = refsStartPosition;
 
 	let transition = typedStructs.transitions || (typedStructs.transitions = Object.create(null));
-	let nextId = typedStructs.nextId || typedStructs.length;
-	let headerSize =
+	const nextId = typedStructs.nextId || typedStructs.length;
+	const headerSize =
 		nextId < 0xf ? 1 :
 			nextId < 0xf0 ? 2 :
 				nextId < 0xf000 ? 3 :
@@ -98,11 +98,11 @@ function writeStruct(object, target, encodingStart, position, structures, makeRo
 	if (headerSize === 0)
 		return 0;
 	position += headerSize;
-	let queuedReferences = [];
+	const queuedReferences = [];
 	let usedAscii0;
 	let keyIndex = 0;
-	for (let key in object) {
-		let value = object[key];
+	for (const key in object) {
+		const value = object[key];
 		let nextTransition = transition[key];
 		if (!nextTransition) {
 			transition[key] = nextTransition = {
@@ -131,7 +131,7 @@ function writeStruct(object, target, encodingStart, position, structures, makeRo
 		}
 		switch (typeof value) {
 			case 'number':
-				let number = value;
+				const number = value;
 				// first check to see if we are using a lot of ids and should default to wide/common format
 				if (nextId < 200 || !nextTransition.num64) {
 					if (number >> 0 === number && number < 0x20000000 && number > -0x1f000000) {
@@ -162,7 +162,7 @@ function writeStruct(object, target, encodingStart, position, structures, makeRo
 				position += 8;
 				break;
 			case 'string':
-				let strLength = value.length;
+				const strLength = value.length;
 				refOffset = refPosition - refsStartPosition;
 				if ((strLength << 2) + refPosition > safeEnd) {
 					target = makeRoom((strLength << 2) + refPosition);
@@ -179,7 +179,7 @@ function writeStruct(object, target, encodingStart, position, structures, makeRo
 					break;
 				}
 				let isNotAscii
-				let strStart = refPosition;
+				const strStart = refPosition;
 				if (strLength < 0x40) {
 					let i, c1, c2;
 					for (i = 0; i < strLength; i++) {
@@ -280,9 +280,9 @@ function writeStruct(object, target, encodingStart, position, structures, makeRo
 	}
 
 	for (let i = 0, l = queuedReferences.length; i < l;) {
-		let key = queuedReferences[i++];
-		let value = queuedReferences[i++];
-		let propertyIndex = queuedReferences[i++];
+		const key = queuedReferences[i++];
+		const value = queuedReferences[i++];
+		const propertyIndex = queuedReferences[i++];
 		let nextTransition = transition[key];
 		if (!nextTransition) {
 			transition[key] = nextTransition = {
@@ -357,14 +357,14 @@ function writeStruct(object, target, encodingStart, position, structures, makeRo
 	let recordId = transition[RECORD_SYMBOL];
 	if (recordId == null) {
 		recordId = packr.typedStructs.length;
-		let structure = [];
+		const structure = [];
 		let nextTransition = transition;
 		let key, type;
 		while ((type = nextTransition.__type) !== undefined) {
-			let size = nextTransition.__size;
+			const size = nextTransition.__size;
 			nextTransition = nextTransition.__parent;
 			key = nextTransition.key;
-			let property = [type, size, key];
+			const property = [type, size, key];
 			if (nextTransition.enumerationOffset)
 				property.push(nextTransition.enumerationOffset);
 			structure.push(property);
@@ -442,8 +442,8 @@ function anyType(transition, position, targetView, value) {
 	return;
 }
 function createTypeTransition(transition, type, size) {
-	let typeName = TYPE_NAMES[type] + (size << 3);
-	let newTransition = transition[typeName] || (transition[typeName] = Object.create(null));
+	const typeName = TYPE_NAMES[type] + (size << 3);
+	const newTransition = transition[typeName] || (transition[typeName] = Object.create(null));
 	newTransition.__type = type;
 	newTransition.__size = size;
 	newTransition.__parent = transition;
@@ -455,12 +455,12 @@ function onLoadedStructures(sharedData) {
 	let typed = sharedData.get('typed') || [];
 	if (Object.isFrozen(typed))
 		typed = typed.map(structure => structure.slice(0));
-	let named = sharedData.get('named');
-	let transitions = Object.create(null);
+	const named = sharedData.get('named');
+	const transitions = Object.create(null);
 	for (let i = 0, l = typed.length; i < l; i++) {
-		let structure = typed[i];
+		const structure = typed[i];
 		let transition = transitions;
-		for (let [type, size, key] of structure) {
+		for (const [type, size, key] of structure) {
 			let nextTransition = transition[key];
 			if (!nextTransition) {
 				transition[key] = nextTransition = {
@@ -486,7 +486,7 @@ function onLoadedStructures(sharedData) {
 	this.lastTypedStructuresLength = typed.length;
 	return named;
 }
-var sourceSymbol = Symbol.for('source')
+const sourceSymbol = Symbol.for('source')
 function readStruct(src, position, srcEnd, unpackr) {
 	let recordId = src[position++] - 0x20;
 	if (recordId >= 24) {
@@ -514,24 +514,24 @@ function readStruct(src, position, srcEnd, unpackr) {
 		if (!structure)
 			throw new Error('Could not find typed structure ' + recordId);
 	}
-	var construct = structure.construct;
-	var fullConstruct = structure.fullConstruct;
+	let construct = structure.construct;
+	let fullConstruct = structure.fullConstruct;
 	if (!construct) {
 		construct = structure.construct = function LazyObject() {
 		}
 		fullConstruct = structure.fullConstruct = function LoadedObject() {
 		}
 		fullConstruct.prototype = unpackr.structPrototype || {};
-		var prototype = construct.prototype = unpackr.structPrototype ? Object.create(unpackr.structPrototype) : {};
-		let properties = [];
+		const prototype = construct.prototype = unpackr.structPrototype ? Object.create(unpackr.structPrototype) : {};
+		const properties = [];
 		let currentOffset = 0;
 		let lastRefProperty;
 		for (let i = 0, l = structure.length; i < l; i++) {
-			let definition = structure[i];
+			const definition = structure[i];
 			let [ type, size, key, enumerationOffset ] = definition;
 			if (key === '__proto__')
 				key = '__proto_';
-			let property = {
+			const property = {
 				key,
 				offset: currentOffset,
 			}
@@ -544,23 +544,23 @@ function readStruct(src, position, srcEnd, unpackr) {
 				case 0: getRef = () => 0; break;
 				case 1:
 					getRef = (source, position) => {
-						let ref = source.bytes[position + property.offset];
+						const ref = source.bytes[position + property.offset];
 						return ref >= 0xf6 ? toConstant(ref) : ref;
 					};
 					break;
 				case 2:
 					getRef = (source, position) => {
-						let src = source.bytes;
-						let dataView = src.dataView || (src.dataView = new DataView(src.buffer, src.byteOffset, src.byteLength));
-						let ref = dataView.getUint16(position + property.offset, true);
+						const src = source.bytes;
+						const dataView = src.dataView || (src.dataView = new DataView(src.buffer, src.byteOffset, src.byteLength));
+						const ref = dataView.getUint16(position + property.offset, true);
 						return ref >= 0xff00 ? toConstant(ref & 0xff) : ref;
 					};
 					break;
 				case 4:
 					getRef = (source, position) => {
-						let src = source.bytes;
-						let dataView = src.dataView || (src.dataView = new DataView(src.buffer, src.byteOffset, src.byteLength));
-						let ref = dataView.getUint32(position + property.offset, true);
+						const src = source.bytes;
+						const dataView = src.dataView || (src.dataView = new DataView(src.buffer, src.byteOffset, src.byteLength));
+						const ref = dataView.getUint32(position + property.offset, true);
 						return ref >= 0xffffff00 ? toConstant(ref & 0xff) : ref;
 					};
 					break;
@@ -575,10 +575,10 @@ function readStruct(src, position, srcEnd, unpackr) {
 					lastRefProperty = property;
 					property.multiGetCount = 0;
 					get = function(source) {
-						let src = source.bytes;
-						let position = source.position;
-						let refStart = currentOffset + position;
-						let ref = getRef(source, position);
+						const src = source.bytes;
+						const position = source.position;
+						const refStart = currentOffset + position;
+						const ref = getRef(source, position);
 						if (typeof ref !== 'number') return ref;
 
 						let end, next = property.next;
@@ -626,11 +626,11 @@ function readStruct(src, position, srcEnd, unpackr) {
 						lastRefProperty.next = property;
 					lastRefProperty = property;
 					get = function(source) {
-						let position = source.position;
-						let refStart = currentOffset + position;
-						let ref = getRef(source, position);
+						const position = source.position;
+						const refStart = currentOffset + position;
+						const ref = getRef(source, position);
 						if (typeof ref !== 'number') return ref;
-						let src = source.bytes;
+						const src = source.bytes;
 						let end, next = property.next;
 						while(next) {
 							end = next.getRef(source, position);
@@ -658,29 +658,29 @@ function readStruct(src, position, srcEnd, unpackr) {
 					switch(size) {
 						case 4:
 							get = function (source) {
-								let src = source.bytes;
-								let dataView = src.dataView || (src.dataView = new DataView(src.buffer, src.byteOffset, src.byteLength));
-								let position = source.position + property.offset;
-								let value = dataView.getInt32(position, true)
+								const src = source.bytes;
+								const dataView = src.dataView || (src.dataView = new DataView(src.buffer, src.byteOffset, src.byteLength));
+								const position = source.position + property.offset;
+								const value = dataView.getInt32(position, true)
 								if (value < 0x20000000) {
 									if (value > -0x1f000000)
 										return value;
 									if (value > -0x20000000)
 										return toConstant(value & 0xff);
 								}
-								let fValue = dataView.getFloat32(position, true);
+								const fValue = dataView.getFloat32(position, true);
 								// this does rounding of numbers that were encoded in 32-bit float to nearest significant decimal digit that could be preserved
-								let multiplier = mult10[((src[position + 3] & 0x7f) << 1) | (src[position + 2] >> 7)]
+								const multiplier = mult10[((src[position + 3] & 0x7f) << 1) | (src[position + 2] >> 7)]
 								return ((multiplier * fValue + (fValue > 0 ? 0.5 : -0.5)) >> 0) / multiplier;
 							};
 							break;
 						case 8:
 							get = function (source) {
-								let src = source.bytes;
-								let dataView = src.dataView || (src.dataView = new DataView(src.buffer, src.byteOffset, src.byteLength));
-								let value = dataView.getFloat64(source.position + property.offset, true);
+								const src = source.bytes;
+								const dataView = src.dataView || (src.dataView = new DataView(src.buffer, src.byteOffset, src.byteLength));
+								const value = dataView.getFloat64(source.position + property.offset, true);
 								if (isNaN(value)) {
-									let byte = src[source.position + property.offset];
+									const byte = src[source.position + property.offset];
 									if (byte >= 0xf6)
 										return toConstant(byte);
 								}
@@ -689,8 +689,8 @@ function readStruct(src, position, srcEnd, unpackr) {
 							break;
 						case 1:
 							get = function (source) {
-								let src = source.bytes;
-								let value = src[source.position + property.offset];
+								const src = source.bytes;
+								const value = src[source.position + property.offset];
 								return value < 0xf6 ? value : toConstant(value);
 							};
 							break;
@@ -698,8 +698,8 @@ function readStruct(src, position, srcEnd, unpackr) {
 					break;
 				case DATE:
 					get = function (source) {
-						let src = source.bytes;
-						let dataView = src.dataView || (src.dataView = new DataView(src.buffer, src.byteOffset, src.byteLength));
+						const src = source.bytes;
+						const dataView = src.dataView || (src.dataView = new DataView(src.buffer, src.byteOffset, src.byteLength));
 						return new Date(dataView.getFloat64(source.position + property.offset, true));
 					};
 					break;
@@ -709,11 +709,11 @@ function readStruct(src, position, srcEnd, unpackr) {
 		}
 		// TODO: load the srcString for faster string decoding on toJSON
 		if (evalSupported) {
-			let objectLiteralProperties = [];
-			let args = [];
+			const objectLiteralProperties = [];
+			const args = [];
 			let i = 0;
 			let hasInheritedProperties;
-			for (let property of properties) { // assign in enumeration order
+			for (const property of properties) { // assign in enumeration order
 				if (unpackr.alwaysLazyProperty && unpackr.alwaysLazyProperty(property.key)) {
 					// these properties are not eagerly evaluated and this can be used for creating properties
 					// that are not serialized as JSON
@@ -721,14 +721,14 @@ function readStruct(src, position, srcEnd, unpackr) {
 					continue;
 				}
 				Object.defineProperty(prototype, property.key, { get: withSource(property.get), enumerable: true });
-				let valueFunction = 'v' + i++;
+				const valueFunction = 'v' + i++;
 				args.push(valueFunction);
 				objectLiteralProperties.push('o[' + JSON.stringify(property.key) + ']=' + valueFunction + '(s)');
 			}
 			if (hasInheritedProperties) {
 				objectLiteralProperties.push('__proto__:this');
 			}
-			let toObject = (new Function(...args, 'var c=this;return function(s){var o=new c();' + objectLiteralProperties.join(';') + ';return o;}')).apply(fullConstruct, properties.map(prop => prop.get));
+			const toObject = (new Function(...args, 'var c=this;return function(s){var o=new c();' + objectLiteralProperties.join(';') + ';return o;}')).apply(fullConstruct, properties.map(prop => prop.get));
 			Object.defineProperty(prototype, 'toJSON', {
 				value(omitUnderscoredProperties) {
 					return toObject.call(this, this[sourceSymbol]);
@@ -738,10 +738,10 @@ function readStruct(src, position, srcEnd, unpackr) {
 			Object.defineProperty(prototype, 'toJSON', {
 				value(omitUnderscoredProperties) {
 					// return an enumerable object with own properties to JSON stringify
-					let resolved = {};
+					const resolved = {};
 					for (let i = 0, l = properties.length; i < l; i++) {
 						// TODO: check alwaysLazyProperty
-						let key = properties[i].key;
+						const key = properties[i].key;
 
 						resolved[key] = this[key];
 					}
@@ -751,7 +751,7 @@ function readStruct(src, position, srcEnd, unpackr) {
 			});
 		}
 	}
-	var instance = new construct();
+	const instance = new construct();
 	instance[sourceSymbol] = {
 		bytes: src,
 		position,
@@ -784,19 +784,19 @@ function saveState() {
 }
 function prepareStructures(structures, packr) {
 	if (packr.typedStructs) {
-		let structMap = new Map();
+		const structMap = new Map();
 		structMap.set('named', structures);
 		structMap.set('typed', packr.typedStructs);
 		structures = structMap;
 	}
-	let lastTypedStructuresLength = packr.lastTypedStructuresLength || 0;
+	const lastTypedStructuresLength = packr.lastTypedStructuresLength || 0;
 	structures.isCompatible = existing => {
 		let compatible = true;
 		if (existing instanceof Map) {
-			let named = existing.get('named') || [];
+			const named = existing.get('named') || [];
 			if (named.length !== (packr.lastNamedStructuresLength || 0))
 				compatible = false;
-			let typed = existing.get('typed') || [];
+			const typed = existing.get('typed') || [];
 			if (typed.length !== lastTypedStructuresLength)
 				compatible = false;
 		} else if (existing instanceof Array || Array.isArray(existing)) {

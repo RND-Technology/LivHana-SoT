@@ -20,10 +20,10 @@
 // USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 require('./common');
-var assert = require('assert');
-var EventEmitter = require('../');
+const assert = require('assert');
+const EventEmitter = require('../');
 
-var emitter = new EventEmitter();
+const emitter = new EventEmitter();
 emitter.on('foo', function() {});
 emitter.on('foo', function() {});
 emitter.on('baz', function() {});

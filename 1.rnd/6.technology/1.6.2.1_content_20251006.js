@@ -41,13 +41,13 @@ export function parseCandidateFiles(context, tailwindConfig) {
   files = files.map(normalizePath)
 
   // Split into included and excluded globs
-  let tasks = fastGlob.generateTasks(files)
+  const tasks = fastGlob.generateTasks(files)
 
   /** @type {ContentPath[]} */
-  let included = []
+  const included = []
 
   /** @type {ContentPath[]} */
-  let excluded = []
+  const excluded = []
 
   for (const task of tasks) {
     included.push(...task.positive.map((filePath) => parseFilePath(filePath, false)))
@@ -75,7 +75,7 @@ export function parseCandidateFiles(context, tailwindConfig) {
  * @returns {ContentPath}
  */
 function parseFilePath(filePath, ignore) {
-  let contentPath = {
+  const contentPath = {
     original: filePath,
     base: filePath,
     ignore,
@@ -145,10 +145,10 @@ function resolveRelativePaths(context, contentPaths) {
  * @returns {ContentPath[]}
  */
 function resolvePathSymlinks(contentPath) {
-  let paths = [contentPath]
+  const paths = [contentPath]
 
   try {
-    let resolvedPath = fs.realpathSync(contentPath.base)
+    const resolvedPath = fs.realpathSync(contentPath.base)
     if (resolvedPath !== contentPath.base) {
       paths.push({
         ...contentPath,
@@ -169,14 +169,14 @@ function resolvePathSymlinks(contentPath) {
  * @returns {[{ content: string, extension: string }[], Map<string, number>]}
  */
 export function resolvedChangedContent(context, candidateFiles, fileModifiedMap) {
-  let changedContent = context.tailwindConfig.content.files
+  const changedContent = context.tailwindConfig.content.files
     .filter((item) => typeof item.raw === 'string')
     .map(({ raw, extension = 'html' }) => ({ content: raw, extension }))
 
-  let [changedFiles, mTimesToCommit] = resolveChangedFiles(candidateFiles, fileModifiedMap)
+  const [changedFiles, mTimesToCommit] = resolveChangedFiles(candidateFiles, fileModifiedMap)
 
-  for (let changedFile of changedFiles) {
-    let extension = path.extname(changedFile).slice(1)
+  for (const changedFile of changedFiles) {
+    const extension = path.extname(changedFile).slice(1)
     changedContent.push({ file: changedFile, extension })
   }
 
@@ -200,7 +200,7 @@ export function createBroadPatternCheck(paths) {
   // Detect whether a glob pattern might be too broad. This means that it:
   // - Includes `**`
   // - Does not include any of the known large directories (e.g.: node_modules)
-  let maybeBroadPattern = paths.some(
+  const maybeBroadPattern = paths.some(
     (path) => path.includes('**') && !LARGE_DIRECTORIES_REGEX.test(path)
   )
 
@@ -211,15 +211,15 @@ export function createBroadPatternCheck(paths) {
   }
 
   // All glob matchers
-  let matchers = []
+  const matchers = []
 
   // All glob matchers that explicitly contain any of the known large
   // directories (e.g.: node_modules).
-  let explicitMatchers = []
+  const explicitMatchers = []
 
   // Create matchers for all paths
-  for (let path of paths) {
-    let matcher = micromatch.matcher(path)
+  for (const path of paths) {
+    const matcher = micromatch.matcher(path)
     if (LARGE_DIRECTORIES_REGEX.test(path)) {
       explicitMatchers.push(matcher)
     }
@@ -242,15 +242,15 @@ export function createBroadPatternCheck(paths) {
 
     // When a broad pattern is used, we have to double check that the file was
     // not explicitly included in the globs.
-    let matchingGlobIndex = matchers.findIndex((matcher) => matcher(file))
+    const matchingGlobIndex = matchers.findIndex((matcher) => matcher(file))
     if (matchingGlobIndex === -1) return // This should never happen
-    let matchingGlob = paths[matchingGlobIndex]
+    const matchingGlob = paths[matchingGlobIndex]
 
     // Create relative paths to make the output a bit more readable.
     let relativeMatchingGlob = path.relative(process.cwd(), matchingGlob)
     if (relativeMatchingGlob[0] !== '.') relativeMatchingGlob = `./${relativeMatchingGlob}`
 
-    let largeDirectory = LARGE_DIRECTORIES.find((directory) => file.includes(directory))
+    const largeDirectory = LARGE_DIRECTORIES.find((directory) => file.includes(directory))
     if (largeDirectory) {
       warned = true
 
@@ -271,19 +271,19 @@ export function createBroadPatternCheck(paths) {
  * @returns {[Set<string>, Map<string, number>]}
  */
 function resolveChangedFiles(candidateFiles, fileModifiedMap) {
-  let paths = candidateFiles.map((contentPath) => contentPath.pattern)
-  let mTimesToCommit = new Map()
+  const paths = candidateFiles.map((contentPath) => contentPath.pattern)
+  const mTimesToCommit = new Map()
 
-  let checkBroadPattern = createBroadPatternCheck(paths)
+  const checkBroadPattern = createBroadPatternCheck(paths)
 
-  let changedFiles = new Set()
+  const changedFiles = new Set()
   env.DEBUG && console.time('Finding changed files')
-  let files = fastGlob.sync(paths, { absolute: true })
-  for (let file of files) {
+  const files = fastGlob.sync(paths, { absolute: true })
+  for (const file of files) {
     checkBroadPattern(file)
 
-    let prevModified = fileModifiedMap.get(file) || -Infinity
-    let modified = fs.statSync(file).mtimeMs
+    const prevModified = fileModifiedMap.get(file) || -Infinity
+    const modified = fs.statSync(file).mtimeMs
 
     if (modified > prevModified) {
       changedFiles.add(file)

@@ -19,14 +19,14 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 // USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-var common = require('./common');
-var assert = require('assert');
-var EventEmitter = require('../');
+const common = require('./common');
+const assert = require('assert');
+const EventEmitter = require('../');
 
 {
   var ee = new EventEmitter();
-  var events_new_listener_emitted = [];
-  var listeners_new_listener_emitted = [];
+  const events_new_listener_emitted = [];
+  const listeners_new_listener_emitted = [];
 
   // Sanity check
   assert.strictEqual(ee.addListener, ee.on);
@@ -40,7 +40,7 @@ var EventEmitter = require('../');
     listeners_new_listener_emitted.push(listener);
   });
 
-  var hello = common.mustCall(function(a, b) {
+  const hello = common.mustCall(function(a, b) {
     assert.strictEqual('a', a);
     assert.strictEqual('b', b);
   });
@@ -49,7 +49,7 @@ var EventEmitter = require('../');
     assert.strictEqual(name, 'hello');
     assert.strictEqual(listener, hello);
 
-    var listeners = this.listeners('hello');
+    const listeners = this.listeners('hello');
     assert.ok(Array.isArray(listeners));
     assert.strictEqual(listeners.length, 0);
   });
@@ -72,22 +72,22 @@ var EventEmitter = require('../');
 
 // just make sure that this doesn't throw:
 {
-  var f = new EventEmitter();
+  const f = new EventEmitter();
 
   f.setMaxListeners(0);
 }
 
 {
-  var listen1 = function() {};
-  var listen2 = function() {};
+  const listen1 = function() {};
+  const listen2 = function() {};
   var ee = new EventEmitter();
 
   ee.once('newListener', function() {
-    var listeners = ee.listeners('hello');
+    const listeners = ee.listeners('hello');
     assert.ok(Array.isArray(listeners));
     assert.strictEqual(listeners.length, 0);
     ee.once('newListener', function() {
-      var listeners = ee.listeners('hello');
+      const listeners = ee.listeners('hello');
       assert.ok(Array.isArray(listeners));
       assert.strictEqual(listeners.length, 0);
     });
@@ -96,7 +96,7 @@ var EventEmitter = require('../');
   ee.on('hello', listen1);
   // The order of listeners on an event is not always the order in which the
   // listeners were added.
-  var listeners = ee.listeners('hello');
+  const listeners = ee.listeners('hello');
   assert.ok(Array.isArray(listeners));
   assert.strictEqual(listeners.length, 2);
   assert.strictEqual(listeners[0], listen2);
@@ -105,7 +105,7 @@ var EventEmitter = require('../');
 
 // Verify that the listener must be a function
 assert.throws(function() {
-  var ee = new EventEmitter();
+  const ee = new EventEmitter();
 
   ee.on('foo', null);
 }, /^TypeError: The "listener" argument must be of type Function. Received type object$/);

@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
 exports.searchAvailabilityResponseSchema = void 0;
-var schema_1 = require("../schema");
-var availability_1 = require("./availability");
-var error_1 = require("./error");
+const schema_1 = require("../schema");
+const availability_1 = require("./availability");
+const error_1 = require("./error");
 exports.searchAvailabilityResponseSchema = (0, schema_1.object)({
     availabilities: [
         'availabilities',

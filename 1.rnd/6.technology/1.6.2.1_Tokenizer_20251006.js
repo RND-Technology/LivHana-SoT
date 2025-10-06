@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.QuoteType = void 0;
-var decode_js_1 = require("entities/lib/decode.js");
-var CharCodes;
+const decode_js_1 = require("entities/lib/decode.js");
+let CharCodes;
 (function (CharCodes) {
     CharCodes[CharCodes["Tab"] = 9] = "Tab";
     CharCodes[CharCodes["NewLine"] = 10] = "NewLine";
@@ -33,7 +33,7 @@ var CharCodes;
     CharCodes[CharCodes["OpeningSquareBracket"] = 91] = "OpeningSquareBracket";
 })(CharCodes || (CharCodes = {}));
 /** All the states the tokenizer can be in. */
-var State;
+let State;
 (function (State) {
     State[State["Text"] = 1] = "Text";
     State[State["BeforeTagName"] = 2] = "BeforeTagName";
@@ -91,7 +91,7 @@ function isHexDigit(c) {
     return ((c >= CharCodes.UpperA && c <= CharCodes.UpperF) ||
         (c >= CharCodes.LowerA && c <= CharCodes.LowerF));
 }
-var QuoteType;
+let QuoteType;
 (function (QuoteType) {
     QuoteType[QuoteType["NoValue"] = 0] = "NoValue";
     QuoteType[QuoteType["Unquoted"] = 1] = "Unquoted";
@@ -104,7 +104,7 @@ var QuoteType;
  * We don't have `Script`, `Style`, or `Title` here. Instead, we re-use the *End
  * sequences with an increased offset.
  */
-var Sequences = {
+const Sequences = {
     Cdata: new Uint8Array([0x43, 0x44, 0x41, 0x54, 0x41, 0x5b]),
     CdataEnd: new Uint8Array([0x5d, 0x5d, 0x3e]),
     CommentEnd: new Uint8Array([0x2d, 0x2d, 0x3e]),
@@ -112,9 +112,9 @@ var Sequences = {
     StyleEnd: new Uint8Array([0x3c, 0x2f, 0x73, 0x74, 0x79, 0x6c, 0x65]),
     TitleEnd: new Uint8Array([0x3c, 0x2f, 0x74, 0x69, 0x74, 0x6c, 0x65]), // `</title`
 };
-var Tokenizer = /** @class */ (function () {
+const Tokenizer = /** @class */ (function () {
     function Tokenizer(_a, cbs) {
-        var _b = _a.xmlMode, xmlMode = _b === void 0 ? false : _b, _c = _a.decodeEntities, decodeEntities = _c === void 0 ? true : _c;
+        const _b = _a.xmlMode, xmlMode = _b === void 0 ? false : _b, _c = _a.decodeEntities, decodeEntities = _c === void 0 ? true : _c;
         this.cbs = cbs;
         /** The current state the tokenizer is in. */
         this.state = State.Text;
@@ -197,8 +197,8 @@ var Tokenizer = /** @class */ (function () {
         }
     };
     Tokenizer.prototype.stateSpecialStartSequence = function (c) {
-        var isEnd = this.sequenceIndex === this.currentSequence.length;
-        var isMatch = isEnd
+        const isEnd = this.sequenceIndex === this.currentSequence.length;
+        const isMatch = isEnd
             ? // If we are at the end of the sequence, make sure the tag name has ended
                 isEndOfTagSection(c)
             : // Otherwise, do a case-insensitive comparison
@@ -218,10 +218,10 @@ var Tokenizer = /** @class */ (function () {
     Tokenizer.prototype.stateInSpecialTag = function (c) {
         if (this.sequenceIndex === this.currentSequence.length) {
             if (c === CharCodes.Gt || isWhitespace(c)) {
-                var endOfText = this.index - this.currentSequence.length;
+                const endOfText = this.index - this.currentSequence.length;
                 if (this.sectionStart < endOfText) {
                     // Spoof the index so that reported locations match up.
-                    var actualIndex = this.index;
+                    const actualIndex = this.index;
                     this.index = endOfText;
                     this.cbs.ontext(this.sectionStart, endOfText);
                     this.index = actualIndex;
@@ -347,7 +347,7 @@ var Tokenizer = /** @class */ (function () {
             this.sectionStart = this.index + 1;
         }
         else if (this.isTagStartChar(c)) {
-            var lower = c | 0x20;
+            const lower = c | 0x20;
             this.sectionStart = this.index;
             if (!this.xmlMode && lower === Sequences.TitleEnd[2]) {
                 this.startSpecial(Sequences.TitleEnd, 3);
@@ -557,7 +557,7 @@ var Tokenizer = /** @class */ (function () {
         }
     };
     Tokenizer.prototype.stateBeforeSpecialS = function (c) {
-        var lower = c | 0x20;
+        const lower = c | 0x20;
         if (lower === Sequences.ScriptEnd[3]) {
             this.startSpecial(Sequences.ScriptEnd, 4);
         }
@@ -595,18 +595,18 @@ var Tokenizer = /** @class */ (function () {
             return;
         }
         this.trieCurrent = this.entityTrie[this.trieIndex];
-        var masked = this.trieCurrent & decode_js_1.BinTrieFlags.VALUE_LENGTH;
+        const masked = this.trieCurrent & decode_js_1.BinTrieFlags.VALUE_LENGTH;
         // If the branch is a value, store it and continue
         if (masked) {
             // The mask is the number of bytes of the value, including the current byte.
-            var valueLength = (masked >> 14) - 1;
+            const valueLength = (masked >> 14) - 1;
             // If we have a legacy entity while parsing strictly, just skip the number of bytes
             if (!this.allowLegacyEntity() && c !== CharCodes.Semi) {
                 this.trieIndex += valueLength;
             }
             else {
                 // Add 1 as we have already incremented the excess
-                var entityStart = this.index - this.entityExcess + 1;
+                const entityStart = this.index - this.entityExcess + 1;
                 if (entityStart > this.sectionStart) {
                     this.emitPartial(this.sectionStart, entityStart);
                 }
@@ -626,7 +626,7 @@ var Tokenizer = /** @class */ (function () {
         if (this.entityResult === 0) {
             return;
         }
-        var valueLength = (this.entityTrie[this.entityResult] & decode_js_1.BinTrieFlags.VALUE_LENGTH) >>
+        const valueLength = (this.entityTrie[this.entityResult] & decode_js_1.BinTrieFlags.VALUE_LENGTH) >>
             14;
         switch (valueLength) {
             case 1: {
@@ -655,8 +655,8 @@ var Tokenizer = /** @class */ (function () {
         }
     };
     Tokenizer.prototype.emitNumericEntity = function (strict) {
-        var entityStart = this.index - this.entityExcess - 1;
-        var numberStart = entityStart + 2 + Number(this.state === State.InHexEntity);
+        const entityStart = this.index - this.entityExcess - 1;
+        const numberStart = entityStart + 2 + Number(this.state === State.InHexEntity);
         if (numberStart !== this.index) {
             // Emit leading data if any
             if (entityStart > this.sectionStart) {
@@ -742,7 +742,7 @@ var Tokenizer = /** @class */ (function () {
      */
     Tokenizer.prototype.parse = function () {
         while (this.shouldContinue()) {
-            var c = this.buffer.charCodeAt(this.index - this.offset);
+            const c = this.buffer.charCodeAt(this.index - this.offset);
             switch (this.state) {
                 case State.Text: {
                     this.stateText(c);
@@ -877,7 +877,7 @@ var Tokenizer = /** @class */ (function () {
     };
     /** Handle any trailing data. */
     Tokenizer.prototype.handleTrailingData = function () {
-        var endIndex = this.buffer.length + this.offset;
+        const endIndex = this.buffer.length + this.offset;
         if (this.state === State.InCommentLike) {
             if (this.currentSequence === Sequences.CdataEnd) {
                 this.cbs.oncdata(this.sectionStart, endIndex, 0);

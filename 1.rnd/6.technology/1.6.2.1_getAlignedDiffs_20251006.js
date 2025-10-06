@@ -4,7 +4,7 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 exports.default = void 0;
-var _cleanupSemantic = require('./cleanupSemantic');
+const _cleanupSemantic = require('./cleanupSemantic');
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -219,5 +219,5 @@ const getAlignedDiffs = (diffs, changeColor) => {
   });
   return commonBuffer.getLines();
 };
-var _default = getAlignedDiffs;
+const _default = getAlignedDiffs;
 exports.default = _default;

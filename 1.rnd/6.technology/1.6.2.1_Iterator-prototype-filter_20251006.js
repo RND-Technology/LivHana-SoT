@@ -1,25 +1,25 @@
 'use strict';
 
-var defineProperties = require('define-properties');
-var test = require('tape');
-var callBind = require('call-bind');
-var functionsHaveNames = require('functions-have-names')();
-var hasStrictMode = require('has-strict-mode')();
-var forEach = require('for-each');
-var debug = require('object-inspect');
-var v = require('es-value-fixtures');
-var hasSymbols = require('has-symbols/shams')();
-var hasPropertyDescriptors = require('has-property-descriptors')();
-var iterate = require('iterate-iterator');
+const defineProperties = require('define-properties');
+const test = require('tape');
+const callBind = require('call-bind');
+const functionsHaveNames = require('functions-have-names')();
+const hasStrictMode = require('has-strict-mode')();
+const forEach = require('for-each');
+const debug = require('object-inspect');
+const v = require('es-value-fixtures');
+const hasSymbols = require('has-symbols/shams')();
+const hasPropertyDescriptors = require('has-property-descriptors')();
+const iterate = require('iterate-iterator');
 
-var index = require('../Iterator.prototype.filter');
-var impl = require('../Iterator.prototype.filter/implementation');
+const index = require('../Iterator.prototype.filter');
+const impl = require('../Iterator.prototype.filter/implementation');
 
-var fnName = 'filter';
+const fnName = 'filter';
 
-var isEnumerable = Object.prototype.propertyIsEnumerable;
+const isEnumerable = Object.prototype.propertyIsEnumerable;
 
-var testIterator = require('./helpers/testIterator');
+const testIterator = require('./helpers/testIterator');
 
 module.exports = {
 	tests: function (filter, name, t) {
@@ -36,7 +36,7 @@ module.exports = {
 				debug(nonIterator) + ' is not an Object with a callable `next` method'
 			);
 
-			var badNext = { next: nonIterator };
+			const badNext = { next: nonIterator };
 			t['throws'](
 				function () { iterate(filter(badNext, function () {})); },
 				TypeError,
@@ -53,9 +53,9 @@ module.exports = {
 		});
 
 		t.test('observable lookups', { skip: !hasPropertyDescriptors }, function (st) {
-			var effects = [];
+			const effects = [];
 
-			var obj = {};
+			const obj = {};
 			Object.defineProperty(obj, 'next', {
 				configurable: true,
 				enumerable: true,
@@ -78,8 +78,8 @@ module.exports = {
 		});
 
 		t.test('actual iteration', { skip: !hasSymbols }, function (st) {
-			var arr = [1, 2, 3];
-			var iterator = callBind(arr[Symbol.iterator], arr);
+			const arr = [1, 2, 3];
+			const iterator = callBind(arr[Symbol.iterator], arr);
 
 			st['throws'](
 				function () { return new filter(iterator()); }, // eslint-disable-line new-cap
@@ -101,9 +101,9 @@ module.exports = {
 		});
 
 		t.test('262: test/built-ins/Iterator/prototype/filter/predicate-args', function (st) {
-			var g = function g() {
-				var arr = ['a', 'b', 'c'];
-				var i = 0;
+			const g = function g() {
+				const arr = ['a', 'b', 'c'];
+				let i = 0;
 				return {
 					next: function () {
 						try {
@@ -117,8 +117,8 @@ module.exports = {
 					}
 				};
 			};
-			var assertionCount = 0;
-			var iter = filter(
+			let assertionCount = 0;
+			const iter = filter(
 				g(),
 				function (value, count) {
 					if (value === 'a') {
@@ -145,9 +145,9 @@ module.exports = {
 		});
 
 		t.test('262: test/built-ins/Iterator/prototype/filter/predicate-throws', function (st) {
-			var returnCalls = 0;
+			let returnCalls = 0;
 
-			var iter = {
+			const iter = {
 				next: function () {
 					return {
 						done: false,
@@ -160,8 +160,8 @@ module.exports = {
 				}
 			};
 
-			var callbackCalls = 0;
-			var iterator = filter(iter, function () {
+			let callbackCalls = 0;
+			const iterator = filter(iter, function () {
 				callbackCalls += 1;
 				throw new SyntaxError();
 			});
@@ -175,7 +175,7 @@ module.exports = {
 		});
 
 		t.test('262: test/built-ins/Iterator/prototype/filter/predicate-throws-then-closing-iterator-also-throws', function (st) {
-			var iter = {
+			const iter = {
 				next: function next() {
 					return {
 						done: false,
@@ -187,7 +187,7 @@ module.exports = {
 				}
 			};
 
-			var iterator = filter(iter, function () {
+			const iterator = filter(iter, function () {
 				throw new SyntaxError();
 			});
 
@@ -201,7 +201,7 @@ module.exports = {
 		});
 
 		t.test('262: test/built-ins/Iterator/prototype/filter/get-return-method-throws', { skip: !hasPropertyDescriptors }, function (st) {
-			var badIterator = {
+			const badIterator = {
 				next: function next() {
 					return {
 						done: false,
@@ -212,7 +212,7 @@ module.exports = {
 
 			Object.defineProperty(badIterator, 'return', { get: function () { throw new SyntaxError(); } });
 
-			var iter = filter(badIterator, function () { return true; });
+			const iter = filter(badIterator, function () { return true; });
 			iter.next();
 
 			st['throws'](
@@ -225,9 +225,9 @@ module.exports = {
 		});
 
 		t.test('262: test/built-ins/Iterator/prototype/drop/return-is-forwarded', function (st) {
-			var returnCount = 0;
+			let returnCount = 0;
 
-			var badIterator = {
+			const badIterator = {
 				next: function next() {
 					return {
 						done: false,
@@ -240,7 +240,7 @@ module.exports = {
 				}
 			};
 
-			var iter1 = filter(badIterator, function () { return false; });
+			const iter1 = filter(badIterator, function () { return false; });
 			st.equal(returnCount, 0, 'iter1, before return()');
 			iter1['return']();
 			st.equal(returnCount, 1, 'iter1, after return()');
@@ -249,7 +249,7 @@ module.exports = {
 		});
 
 		t.test('262: test/built-ins/Iterator/prototype/drop/return-is-not-forwarded-after-exhaustion', { skip: !hasPropertyDescriptors }, function (st) {
-			var makeBadIterator = function makeBadIterator() {
+			const makeBadIterator = function makeBadIterator() {
 				return {
 					next: function next() {
 						return {
@@ -263,7 +263,7 @@ module.exports = {
 				};
 			};
 
-			var iter1 = filter(makeBadIterator(), function () { return true; });
+			const iter1 = filter(makeBadIterator(), function () { return true; });
 			st['throws'](
 				function () { iter1['return'](); },
 				SyntaxError,
@@ -273,7 +273,7 @@ module.exports = {
 			iter1['return']();
 
 			// 3 filters (i wish i had pipeline)
-			var iter2 = filter(
+			const iter2 = filter(
 				filter(
 					filter(
 						makeBadIterator(),

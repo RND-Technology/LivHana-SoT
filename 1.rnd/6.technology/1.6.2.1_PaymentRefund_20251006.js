@@ -1,10 +1,10 @@
 "use strict";
 exports.__esModule = true;
 exports.paymentRefundSchema = void 0;
-var schema_1 = require("../schema");
-var destinationDetails_1 = require("./destinationDetails");
-var money_1 = require("./money");
-var processingFee_1 = require("./processingFee");
+const schema_1 = require("../schema");
+const destinationDetails_1 = require("./destinationDetails");
+const money_1 = require("./money");
+const processingFee_1 = require("./processingFee");
 exports.paymentRefundSchema = (0, schema_1.object)({
     id: ['id', (0, schema_1.string)()],
     status: ['status', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.string)()))],

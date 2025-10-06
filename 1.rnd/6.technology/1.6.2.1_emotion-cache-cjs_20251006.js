@@ -2,21 +2,21 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var sheet = require('@emotion/sheet');
-var stylis = require('stylis');
-var weakMemoize = require('@emotion/weak-memoize');
-var memoize = require('@emotion/memoize');
+const sheet = require('@emotion/sheet');
+const stylis = require('stylis');
+const weakMemoize = require('@emotion/weak-memoize');
+const memoize = require('@emotion/memoize');
 
 function _interopDefault (e) { return e && e.__esModule ? e : { 'default': e }; }
 
-var weakMemoize__default = /*#__PURE__*/_interopDefault(weakMemoize);
-var memoize__default = /*#__PURE__*/_interopDefault(memoize);
+const weakMemoize__default = /*#__PURE__*/_interopDefault(weakMemoize);
+const memoize__default = /*#__PURE__*/_interopDefault(memoize);
 
-var isBrowser = typeof document !== 'undefined';
+const isBrowser = typeof document !== 'undefined';
 
-var identifierWithPointTracking = function identifierWithPointTracking(begin, points, index) {
-  var previous = 0;
-  var character = 0;
+const identifierWithPointTracking = function identifierWithPointTracking(begin, points, index) {
+  let previous = 0;
+  let character = 0;
 
   while (true) {
     previous = character;
@@ -36,10 +36,10 @@ var identifierWithPointTracking = function identifierWithPointTracking(begin, po
   return stylis.slice(begin, stylis.position);
 };
 
-var toRules = function toRules(parsed, points) {
+const toRules = function toRules(parsed, points) {
   // pretend we've started with a comma
-  var index = -1;
-  var character = 44;
+  let index = -1;
+  let character = 44;
 
   do {
     switch (stylis.token(character)) {
@@ -79,22 +79,22 @@ var toRules = function toRules(parsed, points) {
   return parsed;
 };
 
-var getRules = function getRules(value, points) {
+const getRules = function getRules(value, points) {
   return stylis.dealloc(toRules(stylis.alloc(value), points));
 }; // WeakSet would be more appropriate, but only WeakMap is supported in IE11
 
 
-var fixedElements = /* #__PURE__ */new WeakMap();
-var compat = function compat(element) {
+const fixedElements = /* #__PURE__ */new WeakMap();
+const compat = function compat(element) {
   if (element.type !== 'rule' || !element.parent || // positive .length indicates that this rule contains pseudo
   // negative .length indicates that this rule has been already prefixed
   element.length < 1) {
     return;
   }
 
-  var value = element.value;
-  var parent = element.parent;
-  var isImplicitRule = element.column === parent.column && element.line === parent.line;
+  const value = element.value;
+  let parent = element.parent;
+  const isImplicitRule = element.column === parent.column && element.line === parent.line;
 
   while (parent.type !== 'rule') {
     parent = parent.parent;
@@ -115,19 +115,19 @@ var compat = function compat(element) {
   }
 
   fixedElements.set(element, true);
-  var points = [];
-  var rules = getRules(value, points);
-  var parentRules = parent.props;
+  const points = [];
+  const rules = getRules(value, points);
+  const parentRules = parent.props;
 
-  for (var i = 0, k = 0; i < rules.length; i++) {
-    for (var j = 0; j < parentRules.length; j++, k++) {
+  for (let i = 0, k = 0; i < rules.length; i++) {
+    for (let j = 0; j < parentRules.length; j++, k++) {
       element.props[k] = points[i] ? rules[i].replace(/&\f/g, parentRules[j]) : parentRules[j] + " " + rules[i];
     }
   }
 };
-var removeLabel = function removeLabel(element) {
+const removeLabel = function removeLabel(element) {
   if (element.type === 'decl') {
-    var value = element.value;
+    const value = element.value;
 
     if ( // charcode for l
     value.charCodeAt(0) === 108 && // charcode for b
@@ -314,7 +314,7 @@ function prefix(value, length) {
   return value;
 }
 
-var prefixer = function prefixer(element, index, children, callback) {
+const prefixer = function prefixer(element, index, children, callback) {
   if (element.length > -1) if (!element["return"]) switch (element.type) {
     case stylis.DECLARATION:
       element["return"] = prefix(element.value, element.length);
@@ -351,18 +351,18 @@ var prefixer = function prefixer(element, index, children, callback) {
   }
 };
 
-var getServerStylisCache = isBrowser ? undefined : weakMemoize__default["default"](function () {
+const getServerStylisCache = isBrowser ? undefined : weakMemoize__default["default"](function () {
   return memoize__default["default"](function () {
     return {};
   });
 });
-var defaultStylisPlugins = [prefixer];
+const defaultStylisPlugins = [prefixer];
 
-var createCache = function createCache(options) {
-  var key = options.key;
+const createCache = function createCache(options) {
+  const key = options.key;
 
   if (isBrowser && key === 'css') {
-    var ssrStyles = document.querySelectorAll("style[data-emotion]:not([data-s])"); // get SSRed styles out of the way of React's hydration
+    const ssrStyles = document.querySelectorAll("style[data-emotion]:not([data-s])"); // get SSRed styles out of the way of React's hydration
     // document.head is a safe place to move them to(though note document.head is not necessarily the last place they will be)
     // note this very very intentionally targets all style elements regardless of the key to ensure
     // that creating a cache works inside of render of a React component
@@ -374,7 +374,7 @@ var createCache = function createCache(options) {
       // Emotion 10 client-side inserted styles did not have data-s (but importantly did not have a space in their data-emotion attributes)
       // so checking for the space ensures that loading Emotion 11 after Emotion 10 has inserted some styles
       // will not result in the Emotion 10 styles being destroyed
-      var dataEmotionAttribute = node.getAttribute('data-emotion');
+      const dataEmotionAttribute = node.getAttribute('data-emotion');
 
       if (dataEmotionAttribute.indexOf(' ') === -1) {
         return;
@@ -385,20 +385,20 @@ var createCache = function createCache(options) {
     });
   }
 
-  var stylisPlugins = options.stylisPlugins || defaultStylisPlugins;
+  const stylisPlugins = options.stylisPlugins || defaultStylisPlugins;
 
-  var inserted = {};
-  var container;
-  var nodesToHydrate = [];
+  const inserted = {};
+  let container;
+  const nodesToHydrate = [];
 
   if (isBrowser) {
     container = options.container || document.head;
     Array.prototype.forEach.call( // this means we will ignore elements which don't have a space in them which
     // means that the style elements we're looking at are only Emotion 11 server-rendered style elements
     document.querySelectorAll("style[data-emotion^=\"" + key + " \"]"), function (node) {
-      var attrib = node.getAttribute("data-emotion").split(' ');
+      const attrib = node.getAttribute("data-emotion").split(' ');
 
-      for (var i = 1; i < attrib.length; i++) {
+      for (let i = 1; i < attrib.length; i++) {
         inserted[attrib[i]] = true;
       }
 
@@ -406,18 +406,18 @@ var createCache = function createCache(options) {
     });
   }
 
-  var _insert;
+  let _insert;
 
-  var omnipresentPlugins = [compat, removeLabel];
+  const omnipresentPlugins = [compat, removeLabel];
 
   if (!getServerStylisCache) {
-    var currentSheet;
-    var finalizingPlugins = [stylis.stringify, stylis.rulesheet(function (rule) {
+    let currentSheet;
+    const finalizingPlugins = [stylis.stringify, stylis.rulesheet(function (rule) {
       currentSheet.insert(rule);
     })];
-    var serializer = stylis.middleware(omnipresentPlugins.concat(stylisPlugins, finalizingPlugins));
+    const serializer = stylis.middleware(omnipresentPlugins.concat(stylisPlugins, finalizingPlugins));
 
-    var stylis$1 = function stylis$1(styles) {
+    const stylis$1 = function stylis$1(styles) {
       return stylis.serialize(stylis.compile(styles), serializer);
     };
 
@@ -431,18 +431,18 @@ var createCache = function createCache(options) {
       }
     };
   } else {
-    var _finalizingPlugins = [stylis.stringify];
+    const _finalizingPlugins = [stylis.stringify];
 
-    var _serializer = stylis.middleware(omnipresentPlugins.concat(stylisPlugins, _finalizingPlugins));
+    const _serializer = stylis.middleware(omnipresentPlugins.concat(stylisPlugins, _finalizingPlugins));
 
-    var _stylis = function _stylis(styles) {
+    const _stylis = function _stylis(styles) {
       return stylis.serialize(stylis.compile(styles), _serializer);
     };
 
-    var serverStylisCache = getServerStylisCache(stylisPlugins)(key);
+    const serverStylisCache = getServerStylisCache(stylisPlugins)(key);
 
-    var getRules = function getRules(selector, serialized) {
-      var name = serialized.name;
+    const getRules = function getRules(selector, serialized) {
+      const name = serialized.name;
 
       if (serverStylisCache[name] === undefined) {
         serverStylisCache[name] = _stylis(selector ? selector + "{" + serialized.styles + "}" : serialized.styles);
@@ -452,8 +452,8 @@ var createCache = function createCache(options) {
     };
 
     _insert = function _insert(selector, serialized, sheet, shouldCache) {
-      var name = serialized.name;
-      var rules = getRules(selector, serialized);
+      const name = serialized.name;
+      const rules = getRules(selector, serialized);
 
       if (cache.compat === undefined) {
         // in regular mode, we don't set the styles on the inserted cache

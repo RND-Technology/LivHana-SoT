@@ -1,4 +1,4 @@
-var baseGet = require('./_baseGet');
+const baseGet = require('./_baseGet');
 
 /**
  * A specialized version of `baseProperty` which supports deep paths.

@@ -1,14 +1,14 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
-var callBound = require('call-bound');
-var isLeadingSurrogate = require('../helpers/isLeadingSurrogate');
-var isTrailingSurrogate = require('../helpers/isTrailingSurrogate');
+const $TypeError = require('es-errors/type');
+const callBound = require('call-bound');
+const isLeadingSurrogate = require('../helpers/isLeadingSurrogate');
+const isTrailingSurrogate = require('../helpers/isTrailingSurrogate');
 
-var UTF16DecodeSurrogatePair = require('./UTF16DecodeSurrogatePair');
+const UTF16DecodeSurrogatePair = require('./UTF16DecodeSurrogatePair');
 
-var $charAt = callBound('String.prototype.charAt');
-var $charCodeAt = callBound('String.prototype.charCodeAt');
+const $charAt = callBound('String.prototype.charAt');
+const $charCodeAt = callBound('String.prototype.charCodeAt');
 
 // https://262.ecma-international.org/11.0/#sec-codepointat
 
@@ -16,14 +16,14 @@ module.exports = function CodePointAt(string, position) {
 	if (typeof string !== 'string') {
 		throw new $TypeError('Assertion failed: `string` must be a String');
 	}
-	var size = string.length;
+	const size = string.length;
 	if (position < 0 || position >= size) {
 		throw new $TypeError('Assertion failed: `position` must be >= 0, and < the length of `string`');
 	}
-	var first = $charCodeAt(string, position);
-	var cp = $charAt(string, position);
-	var firstIsLeading = isLeadingSurrogate(first);
-	var firstIsTrailing = isTrailingSurrogate(first);
+	const first = $charCodeAt(string, position);
+	const cp = $charAt(string, position);
+	const firstIsLeading = isLeadingSurrogate(first);
+	const firstIsTrailing = isTrailingSurrogate(first);
 	if (!firstIsLeading && !firstIsTrailing) {
 		return {
 			'[[CodePoint]]': cp,
@@ -38,7 +38,7 @@ module.exports = function CodePointAt(string, position) {
 			'[[IsUnpairedSurrogate]]': true
 		};
 	}
-	var second = $charCodeAt(string, position + 1);
+	const second = $charCodeAt(string, position + 1);
 	if (!isTrailingSurrogate(second)) {
 		return {
 			'[[CodePoint]]': cp,

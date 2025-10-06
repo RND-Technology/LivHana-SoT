@@ -1,4 +1,4 @@
-var streamify = require('./streamify.js')
+const streamify = require('./streamify.js')
   , defer     = require('./defer.js')
   ;
 
@@ -51,7 +51,7 @@ function destroy()
 function _start()
 {
   // first argument – runner function
-  var runner = arguments[0]
+  const runner = arguments[0]
     // take away first argument
     , args   = Array.prototype.slice.call(arguments, 1)
       // second argument - input data

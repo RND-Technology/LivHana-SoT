@@ -13,38 +13,38 @@
  * @private
  */
 
-var finalhandler = require('finalhandler');
-var debug = require('debug')('express:application');
-var View = require('./view');
-var http = require('node:http');
-var methods = require('./utils').methods;
-var compileETag = require('./utils').compileETag;
-var compileQueryParser = require('./utils').compileQueryParser;
-var compileTrust = require('./utils').compileTrust;
-var resolve = require('node:path').resolve;
-var once = require('once')
-var Router = require('router');
+const finalhandler = require('finalhandler');
+const debug = require('debug')('express:application');
+const View = require('./view');
+const http = require('node:http');
+const methods = require('./utils').methods;
+const compileETag = require('./utils').compileETag;
+const compileQueryParser = require('./utils').compileQueryParser;
+const compileTrust = require('./utils').compileTrust;
+const resolve = require('node:path').resolve;
+const once = require('once')
+const Router = require('router');
 
 /**
  * Module variables.
  * @private
  */
 
-var slice = Array.prototype.slice;
-var flatten = Array.prototype.flat;
+const slice = Array.prototype.slice;
+const flatten = Array.prototype.flat;
 
 /**
  * Application prototype.
  */
 
-var app = exports = module.exports = {};
+const app = exports = module.exports = {};
 
 /**
  * Variable for trust proxy inheritance back-compat
  * @private
  */
 
-var trustProxyDefaultSymbol = '@@symbol:trust_proxy_default';
+const trustProxyDefaultSymbol = '@@symbol:trust_proxy_default';
 
 /**
  * Initialize the server.
@@ -57,7 +57,7 @@ var trustProxyDefaultSymbol = '@@symbol:trust_proxy_default';
  */
 
 app.init = function init() {
-  var router = null;
+  let router = null;
 
   this.cache = Object.create(null);
   this.engines = Object.create(null);
@@ -88,7 +88,7 @@ app.init = function init() {
  */
 
 app.defaultConfiguration = function defaultConfiguration() {
-  var env = process.env.NODE_ENV || 'development';
+  const env = process.env.NODE_ENV || 'development';
 
   // default settings
   this.enable('x-powered-by');
@@ -151,7 +151,7 @@ app.defaultConfiguration = function defaultConfiguration() {
 
 app.handle = function handle(req, res, callback) {
   // final handler
-  var done = callback || finalhandler(req, res, {
+  const done = callback || finalhandler(req, res, {
     env: this.get('env'),
     onerror: logerror.bind(this)
   });
@@ -188,13 +188,13 @@ app.handle = function handle(req, res, callback) {
  */
 
 app.use = function use(fn) {
-  var offset = 0;
-  var path = '/';
+  let offset = 0;
+  let path = '/';
 
   // default path to '/'
   // disambiguate app.use([fn])
   if (typeof fn !== 'function') {
-    var arg = fn;
+    let arg = fn;
 
     while (Array.isArray(arg) && arg.length !== 0) {
       arg = arg[0];
@@ -207,14 +207,14 @@ app.use = function use(fn) {
     }
   }
 
-  var fns = flatten.call(slice.call(arguments, offset), Infinity);
+  const fns = flatten.call(slice.call(arguments, offset), Infinity);
 
   if (fns.length === 0) {
     throw new TypeError('app.use() requires a middleware function')
   }
 
   // get router
-  var router = this.router;
+  const router = this.router;
 
   fns.forEach(function (fn) {
     // non-express app
@@ -228,7 +228,7 @@ app.use = function use(fn) {
 
     // restore .app property on req and res
     router.use(path, function mounted_app(req, res, next) {
-      var orig = req.app;
+      const orig = req.app;
       fn.handle(req, res, function (err) {
         Object.setPrototypeOf(req, orig.request)
         Object.setPrototypeOf(res, orig.response)
@@ -297,7 +297,7 @@ app.engine = function engine(ext, fn) {
   }
 
   // get file extension
-  var extension = ext[0] !== '.'
+  const extension = ext[0] !== '.'
     ? '.' + ext
     : ext;
 
@@ -321,7 +321,7 @@ app.engine = function engine(ext, fn) {
 
 app.param = function param(name, fn) {
   if (Array.isArray(name)) {
-    for (var i = 0; i < name.length; i++) {
+    for (let i = 0; i < name.length; i++) {
       this.param(name[i], fn);
     }
 
@@ -475,7 +475,7 @@ methods.forEach(function (method) {
       return this.set(path);
     }
 
-    var route = this.route(path);
+    const route = this.route(path);
     route[method].apply(route, slice.call(arguments, 1));
     return this;
   };
@@ -492,10 +492,10 @@ methods.forEach(function (method) {
  */
 
 app.all = function all(path) {
-  var route = this.route(path);
-  var args = slice.call(arguments, 1);
+  const route = this.route(path);
+  const args = slice.call(arguments, 1);
 
-  for (var i = 0; i < methods.length; i++) {
+  for (let i = 0; i < methods.length; i++) {
     route[methods[i]].apply(route, args);
   }
 
@@ -520,11 +520,11 @@ app.all = function all(path) {
  */
 
 app.render = function render(name, options, callback) {
-  var cache = this.cache;
-  var done = callback;
-  var engines = this.engines;
-  var opts = options;
-  var view;
+  const cache = this.cache;
+  let done = callback;
+  const engines = this.engines;
+  let opts = options;
+  let view;
 
   // support callback function as second arg
   if (typeof options === 'function') {
@@ -533,7 +533,7 @@ app.render = function render(name, options, callback) {
   }
 
   // merge options
-  var renderOptions = { ...this.locals, ...opts._locals, ...opts };
+  const renderOptions = { ...this.locals, ...opts._locals, ...opts };
 
   // set .cache unless explicitly provided
   if (renderOptions.cache == null) {
@@ -547,7 +547,7 @@ app.render = function render(name, options, callback) {
 
   // view
   if (!view) {
-    var View = this.get('view');
+    const View = this.get('view');
 
     view = new View(name, {
       defaultEngine: this.get('view engine'),
@@ -556,10 +556,10 @@ app.render = function render(name, options, callback) {
     });
 
     if (!view.path) {
-      var dirs = Array.isArray(view.root) && view.root.length > 1
+      const dirs = Array.isArray(view.root) && view.root.length > 1
         ? 'directories "' + view.root.slice(0, -1).join('", "') + '" or "' + view.root[view.root.length - 1] + '"'
         : 'directory "' + view.root + '"'
-      var err = new Error('Failed to lookup view "' + name + '" in views ' + dirs);
+      const err = new Error('Failed to lookup view "' + name + '" in views ' + dirs);
       err.view = view;
       return done(err);
     }
@@ -596,10 +596,10 @@ app.render = function render(name, options, callback) {
  */
 
 app.listen = function listen() {
-  var server = http.createServer(this)
-  var args = Array.prototype.slice.call(arguments)
+  const server = http.createServer(this)
+  const args = Array.prototype.slice.call(arguments)
   if (typeof args[args.length - 1] === 'function') {
-    var done = args[args.length - 1] = once(args[args.length - 1])
+    const done = args[args.length - 1] = once(args[args.length - 1])
     server.once('error', done)
   }
   return server.listen.apply(server, args)

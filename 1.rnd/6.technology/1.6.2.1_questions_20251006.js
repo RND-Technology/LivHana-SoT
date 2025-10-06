@@ -64,7 +64,7 @@ const defaultQuestions = [
     type: 'confirm'
   }
 ];
-var _default = defaultQuestions;
+const _default = defaultQuestions;
 exports.default = _default;
 const testScriptQuestion = {
   initial: true,

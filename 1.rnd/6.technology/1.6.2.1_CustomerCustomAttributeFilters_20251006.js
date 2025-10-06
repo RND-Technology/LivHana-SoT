@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
 exports.customerCustomAttributeFiltersSchema = void 0;
-var schema_1 = require("../schema");
-var customerCustomAttributeFilter_1 = require("./customerCustomAttributeFilter");
+const schema_1 = require("../schema");
+const customerCustomAttributeFilter_1 = require("./customerCustomAttributeFilter");
 exports.customerCustomAttributeFiltersSchema = (0, schema_1.object)({
     filters: [
         'filters',

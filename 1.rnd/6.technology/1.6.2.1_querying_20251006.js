@@ -6,7 +6,7 @@ exports.findOneChild = findOneChild;
 exports.findOne = findOne;
 exports.existsOne = existsOne;
 exports.findAll = findAll;
-var domhandler_1 = require("domhandler");
+const domhandler_1 = require("domhandler");
 /**
  * Search a node and its children for nodes passing a test function. If `node` is not an array, it will be wrapped in one.
  *
@@ -33,11 +33,11 @@ function filter(test, node, recurse, limit) {
  * @returns All nodes passing `test`.
  */
 function find(test, nodes, recurse, limit) {
-    var result = [];
+    const result = [];
     /** Stack of the arrays we are looking at. */
-    var nodeStack = [Array.isArray(nodes) ? nodes : [nodes]];
+    const nodeStack = [Array.isArray(nodes) ? nodes : [nodes]];
     /** Stack of the indices within the arrays. */
-    var indexStack = [0];
+    const indexStack = [0];
     for (;;) {
         // First, check if the current array has any more elements to look at.
         if (indexStack[0] >= nodeStack[0].length) {
@@ -51,7 +51,7 @@ function find(test, nodes, recurse, limit) {
             // Loop back to the start to continue with the next array.
             continue;
         }
-        var elem = nodeStack[0][indexStack[0]++];
+        const elem = nodeStack[0][indexStack[0]++];
         if (test(elem)) {
             result.push(elem);
             if (--limit <= 0)
@@ -90,14 +90,14 @@ function findOneChild(test, nodes) {
  */
 function findOne(test, nodes, recurse) {
     if (recurse === void 0) { recurse = true; }
-    var searchedNodes = Array.isArray(nodes) ? nodes : [nodes];
-    for (var i = 0; i < searchedNodes.length; i++) {
-        var node = searchedNodes[i];
+    const searchedNodes = Array.isArray(nodes) ? nodes : [nodes];
+    for (let i = 0; i < searchedNodes.length; i++) {
+        const node = searchedNodes[i];
         if ((0, domhandler_1.isTag)(node) && test(node)) {
             return node;
         }
         if (recurse && (0, domhandler_1.hasChildren)(node) && node.children.length > 0) {
-            var found = findOne(test, node.children, true);
+            const found = findOne(test, node.children, true);
             if (found)
                 return found;
         }
@@ -129,9 +129,9 @@ function existsOne(test, nodes) {
  * @returns All nodes passing `test`.
  */
 function findAll(test, nodes) {
-    var result = [];
-    var nodeStack = [Array.isArray(nodes) ? nodes : [nodes]];
-    var indexStack = [0];
+    const result = [];
+    const nodeStack = [Array.isArray(nodes) ? nodes : [nodes]];
+    const indexStack = [0];
     for (;;) {
         if (indexStack[0] >= nodeStack[0].length) {
             if (nodeStack.length === 1) {
@@ -143,7 +143,7 @@ function findAll(test, nodes) {
             // Loop back to the start to continue with the next array.
             continue;
         }
-        var elem = nodeStack[0][indexStack[0]++];
+        const elem = nodeStack[0][indexStack[0]++];
         if ((0, domhandler_1.isTag)(elem) && test(elem))
             result.push(elem);
         if ((0, domhandler_1.hasChildren)(elem) && elem.children.length > 0) {

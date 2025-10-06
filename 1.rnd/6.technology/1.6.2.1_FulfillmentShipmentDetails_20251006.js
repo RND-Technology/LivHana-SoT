@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
 exports.fulfillmentShipmentDetailsSchema = void 0;
-var schema_1 = require("../schema");
-var fulfillmentRecipient_1 = require("./fulfillmentRecipient");
+const schema_1 = require("../schema");
+const fulfillmentRecipient_1 = require("./fulfillmentRecipient");
 exports.fulfillmentShipmentDetailsSchema = (0, schema_1.object)({
     recipient: ['recipient', (0, schema_1.optional)((0, schema_1.lazy)(function () { return fulfillmentRecipient_1.fulfillmentRecipientSchema; }))],
     carrier: ['carrier', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.string)()))],

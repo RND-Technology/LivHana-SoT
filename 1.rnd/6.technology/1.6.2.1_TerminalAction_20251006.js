@@ -1,15 +1,15 @@
 "use strict";
 exports.__esModule = true;
 exports.terminalActionSchema = void 0;
-var schema_1 = require("../schema");
-var confirmationOptions_1 = require("./confirmationOptions");
-var dataCollectionOptions_1 = require("./dataCollectionOptions");
-var deviceMetadata_1 = require("./deviceMetadata");
-var qrCodeOptions_1 = require("./qrCodeOptions");
-var receiptOptions_1 = require("./receiptOptions");
-var saveCardOptions_1 = require("./saveCardOptions");
-var selectOptions_1 = require("./selectOptions");
-var signatureOptions_1 = require("./signatureOptions");
+const schema_1 = require("../schema");
+const confirmationOptions_1 = require("./confirmationOptions");
+const dataCollectionOptions_1 = require("./dataCollectionOptions");
+const deviceMetadata_1 = require("./deviceMetadata");
+const qrCodeOptions_1 = require("./qrCodeOptions");
+const receiptOptions_1 = require("./receiptOptions");
+const saveCardOptions_1 = require("./saveCardOptions");
+const selectOptions_1 = require("./selectOptions");
+const signatureOptions_1 = require("./signatureOptions");
 exports.terminalActionSchema = (0, schema_1.object)({
     id: ['id', (0, schema_1.optional)((0, schema_1.string)())],
     deviceId: ['device_id', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.string)()))],

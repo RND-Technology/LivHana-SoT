@@ -2,10 +2,10 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var isBrowser = true;
+const isBrowser = true;
 
 function getRegisteredStyles(registered, registeredStyles, classNames) {
-  var rawClassName = '';
+  let rawClassName = '';
   classNames.split(' ').forEach(function (className) {
     if (registered[className] !== undefined) {
       registeredStyles.push(registered[className] + ";");
@@ -15,8 +15,8 @@ function getRegisteredStyles(registered, registeredStyles, classNames) {
   });
   return rawClassName;
 }
-var registerStyles = function registerStyles(cache, serialized, isStringTag) {
-  var className = cache.key + "-" + serialized.name;
+const registerStyles = function registerStyles(cache, serialized, isStringTag) {
+  const className = cache.key + "-" + serialized.name;
 
   if ( // we only need to add the styles to the registered cache if the
   // class name could be used further down
@@ -31,12 +31,12 @@ var registerStyles = function registerStyles(cache, serialized, isStringTag) {
     cache.registered[className] = serialized.styles;
   }
 };
-var insertStyles = function insertStyles(cache, serialized, isStringTag) {
+const insertStyles = function insertStyles(cache, serialized, isStringTag) {
   registerStyles(cache, serialized, isStringTag);
-  var className = cache.key + "-" + serialized.name;
+  const className = cache.key + "-" + serialized.name;
 
   if (cache.inserted[serialized.name] === undefined) {
-    var current = serialized;
+    let current = serialized;
 
     do {
       cache.insert(serialized === current ? "." + className : '', current, cache.sheet, true);

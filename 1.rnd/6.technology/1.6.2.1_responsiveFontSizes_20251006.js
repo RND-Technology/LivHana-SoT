@@ -1,13 +1,13 @@
 "use strict";
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+const _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = responsiveFontSizes;
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-var _formatMuiErrorMessage2 = _interopRequireDefault(require("@mui/utils/formatMuiErrorMessage"));
-var _cssUtils = require("./cssUtils");
+const _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+const _formatMuiErrorMessage2 = _interopRequireDefault(require("@mui/utils/formatMuiErrorMessage"));
+const _cssUtils = require("./cssUtils");
 function responsiveFontSizes(themeInput, options = {}) {
   const {
     breakpoints = ['sm', 'md', 'lg'],

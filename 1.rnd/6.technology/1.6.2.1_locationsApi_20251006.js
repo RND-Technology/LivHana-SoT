@@ -1,16 +1,16 @@
 "use strict";
 exports.__esModule = true;
 exports.LocationsApi = void 0;
-var tslib_1 = require("tslib");
-var createLocationRequest_1 = require("../models/createLocationRequest");
-var createLocationResponse_1 = require("../models/createLocationResponse");
-var listLocationsResponse_1 = require("../models/listLocationsResponse");
-var retrieveLocationResponse_1 = require("../models/retrieveLocationResponse");
-var updateLocationRequest_1 = require("../models/updateLocationRequest");
-var updateLocationResponse_1 = require("../models/updateLocationResponse");
-var schema_1 = require("../schema");
-var baseApi_1 = require("./baseApi");
-var LocationsApi = /** @class */ (function (_super) {
+const tslib_1 = require("tslib");
+const createLocationRequest_1 = require("../models/createLocationRequest");
+const createLocationResponse_1 = require("../models/createLocationResponse");
+const listLocationsResponse_1 = require("../models/listLocationsResponse");
+const retrieveLocationResponse_1 = require("../models/retrieveLocationResponse");
+const updateLocationRequest_1 = require("../models/updateLocationRequest");
+const updateLocationResponse_1 = require("../models/updateLocationResponse");
+const schema_1 = require("../schema");
+const baseApi_1 = require("./baseApi");
+const LocationsApi = /** @class */ (function (_super) {
     tslib_1.__extends(LocationsApi, _super);
     function LocationsApi() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -24,7 +24,7 @@ var LocationsApi = /** @class */ (function (_super) {
      */
     LocationsApi.prototype.listLocations = function (requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req;
+            let req;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET', '/v2/locations');
                 req.authenticate([{ global: true }]);
@@ -47,7 +47,7 @@ var LocationsApi = /** @class */ (function (_super) {
      */
     LocationsApi.prototype.createLocation = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/locations');
                 mapped = req.prepareArgs({
@@ -71,7 +71,7 @@ var LocationsApi = /** @class */ (function (_super) {
      */
     LocationsApi.prototype.retrieveLocation = function (locationId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({ locationId: [locationId, (0, schema_1.string)()] });
@@ -91,7 +91,7 @@ var LocationsApi = /** @class */ (function (_super) {
      */
     LocationsApi.prototype.updateLocation = function (locationId, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('PUT');
                 mapped = req.prepareArgs({
@@ -109,5 +109,5 @@ var LocationsApi = /** @class */ (function (_super) {
     return LocationsApi;
 }(baseApi_1.BaseApi));
 exports.LocationsApi = LocationsApi;
-var templateObject_1, templateObject_2;
+let templateObject_1, templateObject_2;
 //# sourceMappingURL=locationsApi.js.map

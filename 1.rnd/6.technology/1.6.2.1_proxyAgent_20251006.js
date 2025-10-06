@@ -1,10 +1,10 @@
 import { HttpProxyAgent } from 'http-proxy-agent';
 import { HttpsProxyAgent } from 'https-proxy-agent';
 function createProxyAgents(proxySettings) {
-  var address = proxySettings.address,
+  const address = proxySettings.address,
     port = proxySettings.port,
     auth = proxySettings.auth;
-  var proxyUrl = new URL(address);
+  const proxyUrl = new URL(address);
   if (port) {
     proxyUrl.port = port.toString();
   }

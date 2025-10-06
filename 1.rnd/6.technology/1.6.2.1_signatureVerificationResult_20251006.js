@@ -1,4 +1,4 @@
-var signatureVerificationResultMarker = /*#__PURE__*/Symbol('SignatureVerificationResult');
+const signatureVerificationResultMarker = /*#__PURE__*/Symbol('SignatureVerificationResult');
 /**
  * Type guard that checks if a value is a SignatureVerificationResult.
  *
@@ -14,7 +14,7 @@ function isSignatureVerificationResult(result) {
  * @returns A SignatureVerificationSuccess instance.
  */
 function createSignatureVerificationSuccess() {
-  var _a;
+  let _a;
   return _a = {}, _a[signatureVerificationResultMarker] = true, _a.success = true, _a;
 }
 /**
@@ -24,7 +24,7 @@ function createSignatureVerificationSuccess() {
  * @returns A SignatureVerificationFailure instance with the provided error message.
  */
 function createSignatureVerificationFailure(error) {
-  var _a;
+  let _a;
   return _a = {}, _a[signatureVerificationResultMarker] = true, _a.success = false, _a.error = error, _a;
 }
 export { createSignatureVerificationFailure, createSignatureVerificationSuccess, isSignatureVerificationResult };

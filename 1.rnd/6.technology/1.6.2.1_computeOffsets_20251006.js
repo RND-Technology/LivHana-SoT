@@ -3,14 +3,14 @@ import getVariation from "./getVariation.js";
 import getMainAxisFromPlacement from "./getMainAxisFromPlacement.js";
 import { top, right, bottom, left, start, end } from "../enums.js";
 export default function computeOffsets(_ref) {
-  var reference = _ref.reference,
+  const reference = _ref.reference,
       element = _ref.element,
       placement = _ref.placement;
-  var basePlacement = placement ? getBasePlacement(placement) : null;
-  var variation = placement ? getVariation(placement) : null;
-  var commonX = reference.x + reference.width / 2 - element.width / 2;
-  var commonY = reference.y + reference.height / 2 - element.height / 2;
-  var offsets;
+  const basePlacement = placement ? getBasePlacement(placement) : null;
+  const variation = placement ? getVariation(placement) : null;
+  const commonX = reference.x + reference.width / 2 - element.width / 2;
+  const commonY = reference.y + reference.height / 2 - element.height / 2;
+  let offsets;
 
   switch (basePlacement) {
     case top:
@@ -48,10 +48,10 @@ export default function computeOffsets(_ref) {
       };
   }
 
-  var mainAxis = basePlacement ? getMainAxisFromPlacement(basePlacement) : null;
+  const mainAxis = basePlacement ? getMainAxisFromPlacement(basePlacement) : null;
 
   if (mainAxis != null) {
-    var len = mainAxis === 'y' ? 'height' : 'width';
+    const len = mainAxis === 'y' ? 'height' : 'width';
 
     switch (variation) {
       case start:

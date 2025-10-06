@@ -1,10 +1,10 @@
 'use strict'
 
-var experimentalWarnings = new Set();
+const experimentalWarnings = new Set();
 
 function emitExperimentalWarning(feature) {
   if (experimentalWarnings.has(feature)) return;
-  var msg = feature + ' is an experimental feature. This feature could ' +
+  const msg = feature + ' is an experimental feature. This feature could ' +
        'change at any time';
   experimentalWarnings.add(feature);
   process.emitWarning(msg, 'ExperimentalWarning');

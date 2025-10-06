@@ -75,7 +75,7 @@ const factory = (env) => {
   isFetchSupported && ((() => {
     ['text', 'arrayBuffer', 'blob', 'formData', 'stream'].forEach(type => {
       !resolvers[type] && (resolvers[type] = (res, config) => {
-        let method = res && res[type];
+        const method = res && res[type];
 
         if (method) {
           return method.call(res);
@@ -138,11 +138,11 @@ const factory = (env) => {
       fetchOptions
     } = resolveConfig(config);
 
-    let _fetch = envFetch || fetch;
+    const _fetch = envFetch || fetch;
 
     responseType = responseType ? (responseType + '').toLowerCase() : 'text';
 
-    let composedSignal = composeSignals([signal, cancelToken && cancelToken.toAbortSignal()], timeout);
+    const composedSignal = composeSignals([signal, cancelToken && cancelToken.toAbortSignal()], timeout);
 
     let request = null;
 
@@ -157,7 +157,7 @@ const factory = (env) => {
         onUploadProgress && supportsRequestStream && method !== 'get' && method !== 'head' &&
         (requestContentLength = await resolveBodyLength(headers, data)) !== 0
       ) {
-        let _request = new Request(url, {
+        const _request = new Request(url, {
           method: 'POST',
           body: data,
           duplex: "half"
@@ -228,7 +228,7 @@ const factory = (env) => {
 
       responseType = responseType || 'text';
 
-      let responseData = await resolvers[utils.findKey(resolvers, responseType) || 'text'](response, config);
+      const responseData = await resolvers[utils.findKey(resolvers, responseType) || 'text'](response, config);
 
       !isStreamResponse && unsubscribe && unsubscribe();
 
@@ -262,7 +262,7 @@ const factory = (env) => {
 const seedCache = new Map();
 
 export const getFetch = (config) => {
-  let env = config ? config.env : {};
+  const env = config ? config.env : {};
   const {fetch, Request, Response} = env;
   const seeds = [
     Request, Response, fetch

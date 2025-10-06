@@ -4,82 +4,82 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.selectMaxBarSize = exports.selectBarSizeList = exports.selectBarRectangles = exports.selectBarPosition = exports.selectBarCartesianAxisSize = exports.selectBarBandSize = exports.selectAxisBandSize = exports.selectAllVisibleBars = exports.selectAllBarPositions = exports.combineStackedData = exports.combineBarSizeList = exports.combineAllBarPositions = void 0;
-var _reselect = require("reselect");
-var _axisSelectors = require("./axisSelectors");
-var _DataUtils = require("../../util/DataUtils");
-var _ChartUtils = require("../../util/ChartUtils");
-var _Bar = require("../../cartesian/Bar");
-var _chartLayoutContext = require("../../context/chartLayoutContext");
-var _dataSelectors = require("./dataSelectors");
-var _selectChartOffsetInternal = require("./selectChartOffsetInternal");
-var _rootPropsSelectors = require("./rootPropsSelectors");
-var _isWellBehavedNumber = require("../../util/isWellBehavedNumber");
-var _getStackSeriesIdentifier = require("../../util/stacks/getStackSeriesIdentifier");
-var _StackedGraphicalItem = require("../types/StackedGraphicalItem");
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+const _reselect = require("reselect");
+const _axisSelectors = require("./axisSelectors");
+const _DataUtils = require("../../util/DataUtils");
+const _ChartUtils = require("../../util/ChartUtils");
+const _Bar = require("../../cartesian/Bar");
+const _chartLayoutContext = require("../../context/chartLayoutContext");
+const _dataSelectors = require("./dataSelectors");
+const _selectChartOffsetInternal = require("./selectChartOffsetInternal");
+const _rootPropsSelectors = require("./rootPropsSelectors");
+const _isWellBehavedNumber = require("../../util/isWellBehavedNumber");
+const _getStackSeriesIdentifier = require("../../util/stacks/getStackSeriesIdentifier");
+const _StackedGraphicalItem = require("../types/StackedGraphicalItem");
+function ownKeys(e, r) { const t = Object.keys(e); if (Object.getOwnPropertySymbols) { let o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (let r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-var pickXAxisId = (_state, xAxisId) => xAxisId;
-var pickYAxisId = (_state, _xAxisId, yAxisId) => yAxisId;
-var pickIsPanorama = (_state, _xAxisId, _yAxisId, isPanorama) => isPanorama;
-var pickBarId = (_state, _xAxisId, _yAxisId, _isPanorama, id) => id;
-var selectSynchronisedBarSettings = (0, _reselect.createSelector)([_axisSelectors.selectUnfilteredCartesianItems, pickBarId], (graphicalItems, id) => graphicalItems.filter(item => item.type === 'bar').find(item => item.id === id));
-var selectMaxBarSize = exports.selectMaxBarSize = (0, _reselect.createSelector)([selectSynchronisedBarSettings], barSettings => barSettings === null || barSettings === void 0 ? void 0 : barSettings.maxBarSize);
-var pickCells = (_state, _xAxisId, _yAxisId, _isPanorama, _id, cells) => cells;
-var getBarSize = (globalSize, totalSize, selfSize) => {
-  var barSize = selfSize !== null && selfSize !== void 0 ? selfSize : globalSize;
+function _toPropertyKey(t) { const i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; const e = t[Symbol.toPrimitive]; if (void 0 !== e) { const i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+const pickXAxisId = (_state, xAxisId) => xAxisId;
+const pickYAxisId = (_state, _xAxisId, yAxisId) => yAxisId;
+const pickIsPanorama = (_state, _xAxisId, _yAxisId, isPanorama) => isPanorama;
+const pickBarId = (_state, _xAxisId, _yAxisId, _isPanorama, id) => id;
+const selectSynchronisedBarSettings = (0, _reselect.createSelector)([_axisSelectors.selectUnfilteredCartesianItems, pickBarId], (graphicalItems, id) => graphicalItems.filter(item => item.type === 'bar').find(item => item.id === id));
+const selectMaxBarSize = exports.selectMaxBarSize = (0, _reselect.createSelector)([selectSynchronisedBarSettings], barSettings => barSettings === null || barSettings === void 0 ? void 0 : barSettings.maxBarSize);
+const pickCells = (_state, _xAxisId, _yAxisId, _isPanorama, _id, cells) => cells;
+const getBarSize = (globalSize, totalSize, selfSize) => {
+  const barSize = selfSize !== null && selfSize !== void 0 ? selfSize : globalSize;
   if ((0, _DataUtils.isNullish)(barSize)) {
     return undefined;
   }
   return (0, _DataUtils.getPercentValue)(barSize, totalSize, 0);
 };
-var selectAllVisibleBars = exports.selectAllVisibleBars = (0, _reselect.createSelector)([_chartLayoutContext.selectChartLayout, _axisSelectors.selectUnfilteredCartesianItems, pickXAxisId, pickYAxisId, pickIsPanorama], (layout, allItems, xAxisId, yAxisId, isPanorama) => allItems.filter(i => {
+const selectAllVisibleBars = exports.selectAllVisibleBars = (0, _reselect.createSelector)([_chartLayoutContext.selectChartLayout, _axisSelectors.selectUnfilteredCartesianItems, pickXAxisId, pickYAxisId, pickIsPanorama], (layout, allItems, xAxisId, yAxisId, isPanorama) => allItems.filter(i => {
   if (layout === 'horizontal') {
     return i.xAxisId === xAxisId;
   }
   return i.yAxisId === yAxisId;
 }).filter(i => i.isPanorama === isPanorama).filter(i => i.hide === false).filter(i => i.type === 'bar'));
-var selectBarStackGroups = (state, xAxisId, yAxisId, isPanorama) => {
-  var layout = (0, _chartLayoutContext.selectChartLayout)(state);
+const selectBarStackGroups = (state, xAxisId, yAxisId, isPanorama) => {
+  const layout = (0, _chartLayoutContext.selectChartLayout)(state);
   if (layout === 'horizontal') {
     return (0, _axisSelectors.selectStackGroups)(state, 'yAxis', yAxisId, isPanorama);
   }
   return (0, _axisSelectors.selectStackGroups)(state, 'xAxis', xAxisId, isPanorama);
 };
-var selectBarCartesianAxisSize = (state, xAxisId, yAxisId) => {
-  var layout = (0, _chartLayoutContext.selectChartLayout)(state);
+const selectBarCartesianAxisSize = (state, xAxisId, yAxisId) => {
+  const layout = (0, _chartLayoutContext.selectChartLayout)(state);
   if (layout === 'horizontal') {
     return (0, _axisSelectors.selectCartesianAxisSize)(state, 'xAxis', xAxisId);
   }
   return (0, _axisSelectors.selectCartesianAxisSize)(state, 'yAxis', yAxisId);
 };
 exports.selectBarCartesianAxisSize = selectBarCartesianAxisSize;
-var combineBarSizeList = (allBars, globalSize, totalSize) => {
-  var initialValue = {};
-  var stackedBars = allBars.filter(_StackedGraphicalItem.isStacked);
-  var unstackedBars = allBars.filter(b => b.stackId == null);
-  var groupByStack = stackedBars.reduce((acc, bar) => {
+const combineBarSizeList = (allBars, globalSize, totalSize) => {
+  const initialValue = {};
+  const stackedBars = allBars.filter(_StackedGraphicalItem.isStacked);
+  const unstackedBars = allBars.filter(b => b.stackId == null);
+  const groupByStack = stackedBars.reduce((acc, bar) => {
     if (!acc[bar.stackId]) {
       acc[bar.stackId] = [];
     }
     acc[bar.stackId].push(bar);
     return acc;
   }, initialValue);
-  var stackedSizeList = Object.entries(groupByStack).map(_ref => {
-    var [stackId, bars] = _ref;
-    var dataKeys = bars.map(b => b.dataKey);
-    var barSize = getBarSize(globalSize, totalSize, bars[0].barSize);
+  const stackedSizeList = Object.entries(groupByStack).map(_ref => {
+    const [stackId, bars] = _ref;
+    const dataKeys = bars.map(b => b.dataKey);
+    const barSize = getBarSize(globalSize, totalSize, bars[0].barSize);
     return {
       stackId,
       dataKeys,
       barSize
     };
   });
-  var unstackedSizeList = unstackedBars.map(b => {
-    var dataKeys = [b.dataKey].filter(dk => dk != null);
-    var barSize = getBarSize(globalSize, totalSize, b.barSize);
+  const unstackedSizeList = unstackedBars.map(b => {
+    const dataKeys = [b.dataKey].filter(dk => dk != null);
+    const barSize = getBarSize(globalSize, totalSize, b.barSize);
     return {
       stackId: undefined,
       dataKeys,
@@ -89,20 +89,20 @@ var combineBarSizeList = (allBars, globalSize, totalSize) => {
   return [...stackedSizeList, ...unstackedSizeList];
 };
 exports.combineBarSizeList = combineBarSizeList;
-var selectBarSizeList = exports.selectBarSizeList = (0, _reselect.createSelector)([selectAllVisibleBars, _rootPropsSelectors.selectRootBarSize, selectBarCartesianAxisSize], combineBarSizeList);
-var selectBarBandSize = (state, xAxisId, yAxisId, isPanorama, id) => {
-  var _ref2, _getBandSizeOfAxis;
-  var barSettings = selectSynchronisedBarSettings(state, xAxisId, yAxisId, isPanorama, id);
+const selectBarSizeList = exports.selectBarSizeList = (0, _reselect.createSelector)([selectAllVisibleBars, _rootPropsSelectors.selectRootBarSize, selectBarCartesianAxisSize], combineBarSizeList);
+const selectBarBandSize = (state, xAxisId, yAxisId, isPanorama, id) => {
+  let _ref2, _getBandSizeOfAxis;
+  const barSettings = selectSynchronisedBarSettings(state, xAxisId, yAxisId, isPanorama, id);
   if (barSettings == null) {
     return undefined;
   }
-  var layout = (0, _chartLayoutContext.selectChartLayout)(state);
-  var globalMaxBarSize = (0, _rootPropsSelectors.selectRootMaxBarSize)(state);
-  var {
+  const layout = (0, _chartLayoutContext.selectChartLayout)(state);
+  const globalMaxBarSize = (0, _rootPropsSelectors.selectRootMaxBarSize)(state);
+  const {
     maxBarSize: childMaxBarSize
   } = barSettings;
-  var maxBarSize = (0, _DataUtils.isNullish)(childMaxBarSize) ? globalMaxBarSize : childMaxBarSize;
-  var axis, ticks;
+  const maxBarSize = (0, _DataUtils.isNullish)(childMaxBarSize) ? globalMaxBarSize : childMaxBarSize;
+  let axis, ticks;
   if (layout === 'horizontal') {
     axis = (0, _axisSelectors.selectAxisWithScale)(state, 'xAxis', xAxisId, isPanorama);
     ticks = (0, _axisSelectors.selectTicksOfGraphicalItem)(state, 'xAxis', xAxisId, isPanorama);
@@ -113,9 +113,9 @@ var selectBarBandSize = (state, xAxisId, yAxisId, isPanorama, id) => {
   return (_ref2 = (_getBandSizeOfAxis = (0, _ChartUtils.getBandSizeOfAxis)(axis, ticks, true)) !== null && _getBandSizeOfAxis !== void 0 ? _getBandSizeOfAxis : maxBarSize) !== null && _ref2 !== void 0 ? _ref2 : 0;
 };
 exports.selectBarBandSize = selectBarBandSize;
-var selectAxisBandSize = (state, xAxisId, yAxisId, isPanorama) => {
-  var layout = (0, _chartLayoutContext.selectChartLayout)(state);
-  var axis, ticks;
+const selectAxisBandSize = (state, xAxisId, yAxisId, isPanorama) => {
+  const layout = (0, _chartLayoutContext.selectChartLayout)(state);
+  let axis, ticks;
   if (layout === 'horizontal') {
     axis = (0, _axisSelectors.selectAxisWithScale)(state, 'xAxis', xAxisId, isPanorama);
     ticks = (0, _axisSelectors.selectTicksOfGraphicalItem)(state, 'xAxis', xAxisId, isPanorama);
@@ -127,20 +127,20 @@ var selectAxisBandSize = (state, xAxisId, yAxisId, isPanorama) => {
 };
 exports.selectAxisBandSize = selectAxisBandSize;
 function getBarPositions(barGap, barCategoryGap, bandSize, sizeList, maxBarSize) {
-  var len = sizeList.length;
+  const len = sizeList.length;
   if (len < 1) {
     return undefined;
   }
-  var realBarGap = (0, _DataUtils.getPercentValue)(barGap, bandSize, 0, true);
-  var result;
-  var initialValue = [];
+  let realBarGap = (0, _DataUtils.getPercentValue)(barGap, bandSize, 0, true);
+  let result;
+  const initialValue = [];
 
   // whether is barSize set by user
   // Okay but why does it check only for the first element? What if the first element is set but others are not?
   if ((0, _isWellBehavedNumber.isWellBehavedNumber)(sizeList[0].barSize)) {
-    var useFull = false;
-    var fullBarSize = bandSize / len;
-    var sum = sizeList.reduce((res, entry) => res + (entry.barSize || 0), 0);
+    let useFull = false;
+    let fullBarSize = bandSize / len;
+    let sum = sizeList.reduce((res, entry) => res + (entry.barSize || 0), 0);
     sum += (len - 1) * realBarGap;
     if (sum >= bandSize) {
       sum -= (len - 1) * realBarGap;
@@ -151,14 +151,14 @@ function getBarPositions(barGap, barCategoryGap, bandSize, sizeList, maxBarSize)
       fullBarSize *= 0.9;
       sum = len * fullBarSize;
     }
-    var offset = (bandSize - sum) / 2 >> 0;
-    var prev = {
+    const offset = (bandSize - sum) / 2 >> 0;
+    let prev = {
       offset: offset - realBarGap,
       size: 0
     };
     result = sizeList.reduce((res, entry) => {
-      var _entry$barSize;
-      var newPosition = {
+      let _entry$barSize;
+      const newPosition = {
         stackId: entry.stackId,
         dataKeys: entry.dataKeys,
         position: {
@@ -166,20 +166,20 @@ function getBarPositions(barGap, barCategoryGap, bandSize, sizeList, maxBarSize)
           size: useFull ? fullBarSize : (_entry$barSize = entry.barSize) !== null && _entry$barSize !== void 0 ? _entry$barSize : 0
         }
       };
-      var newRes = [...res, newPosition];
+      const newRes = [...res, newPosition];
       prev = newRes[newRes.length - 1].position;
       return newRes;
     }, initialValue);
   } else {
-    var _offset = (0, _DataUtils.getPercentValue)(barCategoryGap, bandSize, 0, true);
+    const _offset = (0, _DataUtils.getPercentValue)(barCategoryGap, bandSize, 0, true);
     if (bandSize - 2 * _offset - (len - 1) * realBarGap <= 0) {
       realBarGap = 0;
     }
-    var originalSize = (bandSize - 2 * _offset - (len - 1) * realBarGap) / len;
+    let originalSize = (bandSize - 2 * _offset - (len - 1) * realBarGap) / len;
     if (originalSize > 1) {
       originalSize >>= 0;
     }
-    var size = (0, _isWellBehavedNumber.isWellBehavedNumber)(maxBarSize) ? Math.min(originalSize, maxBarSize) : originalSize;
+    const size = (0, _isWellBehavedNumber.isWellBehavedNumber)(maxBarSize) ? Math.min(originalSize, maxBarSize) : originalSize;
     result = sizeList.reduce((res, entry, i) => [...res, {
       stackId: entry.stackId,
       dataKeys: entry.dataKeys,
@@ -191,9 +191,9 @@ function getBarPositions(barGap, barCategoryGap, bandSize, sizeList, maxBarSize)
   }
   return result;
 }
-var combineAllBarPositions = (sizeList, globalMaxBarSize, barGap, barCategoryGap, barBandSize, bandSize, childMaxBarSize) => {
-  var maxBarSize = (0, _DataUtils.isNullish)(childMaxBarSize) ? globalMaxBarSize : childMaxBarSize;
-  var allBarPositions = getBarPositions(barGap, barCategoryGap, barBandSize !== bandSize ? barBandSize : bandSize, sizeList, maxBarSize);
+const combineAllBarPositions = (sizeList, globalMaxBarSize, barGap, barCategoryGap, barBandSize, bandSize, childMaxBarSize) => {
+  const maxBarSize = (0, _DataUtils.isNullish)(childMaxBarSize) ? globalMaxBarSize : childMaxBarSize;
+  let allBarPositions = getBarPositions(barGap, barCategoryGap, barBandSize !== bandSize ? barBandSize : bandSize, sizeList, maxBarSize);
   if (barBandSize !== bandSize && allBarPositions != null) {
     allBarPositions = allBarPositions.map(pos => _objectSpread(_objectSpread({}, pos), {}, {
       position: _objectSpread(_objectSpread({}, pos.position), {}, {
@@ -204,37 +204,37 @@ var combineAllBarPositions = (sizeList, globalMaxBarSize, barGap, barCategoryGap
   return allBarPositions;
 };
 exports.combineAllBarPositions = combineAllBarPositions;
-var selectAllBarPositions = exports.selectAllBarPositions = (0, _reselect.createSelector)([selectBarSizeList, _rootPropsSelectors.selectRootMaxBarSize, _rootPropsSelectors.selectBarGap, _rootPropsSelectors.selectBarCategoryGap, selectBarBandSize, selectAxisBandSize, selectMaxBarSize], combineAllBarPositions);
-var selectXAxisWithScale = (state, xAxisId, _yAxisId, isPanorama) => (0, _axisSelectors.selectAxisWithScale)(state, 'xAxis', xAxisId, isPanorama);
-var selectYAxisWithScale = (state, _xAxisId, yAxisId, isPanorama) => (0, _axisSelectors.selectAxisWithScale)(state, 'yAxis', yAxisId, isPanorama);
-var selectXAxisTicks = (state, xAxisId, _yAxisId, isPanorama) => (0, _axisSelectors.selectTicksOfGraphicalItem)(state, 'xAxis', xAxisId, isPanorama);
-var selectYAxisTicks = (state, _xAxisId, yAxisId, isPanorama) => (0, _axisSelectors.selectTicksOfGraphicalItem)(state, 'yAxis', yAxisId, isPanorama);
-var selectBarPosition = exports.selectBarPosition = (0, _reselect.createSelector)([selectAllBarPositions, selectSynchronisedBarSettings], (allBarPositions, barSettings) => {
+const selectAllBarPositions = exports.selectAllBarPositions = (0, _reselect.createSelector)([selectBarSizeList, _rootPropsSelectors.selectRootMaxBarSize, _rootPropsSelectors.selectBarGap, _rootPropsSelectors.selectBarCategoryGap, selectBarBandSize, selectAxisBandSize, selectMaxBarSize], combineAllBarPositions);
+const selectXAxisWithScale = (state, xAxisId, _yAxisId, isPanorama) => (0, _axisSelectors.selectAxisWithScale)(state, 'xAxis', xAxisId, isPanorama);
+const selectYAxisWithScale = (state, _xAxisId, yAxisId, isPanorama) => (0, _axisSelectors.selectAxisWithScale)(state, 'yAxis', yAxisId, isPanorama);
+const selectXAxisTicks = (state, xAxisId, _yAxisId, isPanorama) => (0, _axisSelectors.selectTicksOfGraphicalItem)(state, 'xAxis', xAxisId, isPanorama);
+const selectYAxisTicks = (state, _xAxisId, yAxisId, isPanorama) => (0, _axisSelectors.selectTicksOfGraphicalItem)(state, 'yAxis', yAxisId, isPanorama);
+const selectBarPosition = exports.selectBarPosition = (0, _reselect.createSelector)([selectAllBarPositions, selectSynchronisedBarSettings], (allBarPositions, barSettings) => {
   if (allBarPositions == null || barSettings == null) {
     return undefined;
   }
-  var position = allBarPositions.find(p => p.stackId === barSettings.stackId && barSettings.dataKey != null && p.dataKeys.includes(barSettings.dataKey));
+  const position = allBarPositions.find(p => p.stackId === barSettings.stackId && barSettings.dataKey != null && p.dataKeys.includes(barSettings.dataKey));
   if (position == null) {
     return undefined;
   }
   return position.position;
 });
-var combineStackedData = (stackGroups, barSettings) => {
-  var stackSeriesIdentifier = (0, _getStackSeriesIdentifier.getStackSeriesIdentifier)(barSettings);
+const combineStackedData = (stackGroups, barSettings) => {
+  const stackSeriesIdentifier = (0, _getStackSeriesIdentifier.getStackSeriesIdentifier)(barSettings);
   if (!stackGroups || stackSeriesIdentifier == null || barSettings == null) {
     return undefined;
   }
-  var {
+  const {
     stackId
   } = barSettings;
   if (stackId == null) {
     return undefined;
   }
-  var stackGroup = stackGroups[stackId];
+  const stackGroup = stackGroups[stackId];
   if (!stackGroup) {
     return undefined;
   }
-  var {
+  const {
     stackedData
   } = stackGroup;
   if (!stackedData) {
@@ -243,9 +243,9 @@ var combineStackedData = (stackGroups, barSettings) => {
   return stackedData.find(sd => sd.key === stackSeriesIdentifier);
 };
 exports.combineStackedData = combineStackedData;
-var selectStackedDataOfItem = (0, _reselect.createSelector)([selectBarStackGroups, selectSynchronisedBarSettings], combineStackedData);
-var selectBarRectangles = exports.selectBarRectangles = (0, _reselect.createSelector)([_selectChartOffsetInternal.selectChartOffsetInternal, _selectChartOffsetInternal.selectAxisViewBox, selectXAxisWithScale, selectYAxisWithScale, selectXAxisTicks, selectYAxisTicks, selectBarPosition, _chartLayoutContext.selectChartLayout, _dataSelectors.selectChartDataWithIndexesIfNotInPanorama, selectAxisBandSize, selectStackedDataOfItem, selectSynchronisedBarSettings, pickCells], (offset, axisViewBox, xAxis, yAxis, xAxisTicks, yAxisTicks, pos, layout, _ref3, bandSize, stackedData, barSettings, cells) => {
-  var {
+const selectStackedDataOfItem = (0, _reselect.createSelector)([selectBarStackGroups, selectSynchronisedBarSettings], combineStackedData);
+const selectBarRectangles = exports.selectBarRectangles = (0, _reselect.createSelector)([_selectChartOffsetInternal.selectChartOffsetInternal, _selectChartOffsetInternal.selectAxisViewBox, selectXAxisWithScale, selectYAxisWithScale, selectXAxisTicks, selectYAxisTicks, selectBarPosition, _chartLayoutContext.selectChartLayout, _dataSelectors.selectChartDataWithIndexesIfNotInPanorama, selectAxisBandSize, selectStackedDataOfItem, selectSynchronisedBarSettings, pickCells], (offset, axisViewBox, xAxis, yAxis, xAxisTicks, yAxisTicks, pos, layout, _ref3, bandSize, stackedData, barSettings, cells) => {
+  const {
     chartData,
     dataStartIndex,
     dataEndIndex
@@ -253,10 +253,10 @@ var selectBarRectangles = exports.selectBarRectangles = (0, _reselect.createSele
   if (barSettings == null || pos == null || axisViewBox == null || layout !== 'horizontal' && layout !== 'vertical' || xAxis == null || yAxis == null || xAxisTicks == null || yAxisTicks == null || bandSize == null) {
     return undefined;
   }
-  var {
+  const {
     data
   } = barSettings;
-  var displayedData;
+  let displayedData;
   if (data != null && data.length > 0) {
     displayedData = data;
   } else {

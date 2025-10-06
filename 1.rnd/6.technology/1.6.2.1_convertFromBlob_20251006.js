@@ -1,7 +1,7 @@
 import { __awaiter, __generator } from './_virtual/_tslib.js';
 function convertFromStream(content) {
   return __awaiter(this, void 0, void 0, function () {
-    var arrayBuffer, _a, _b;
+    let arrayBuffer, _a, _b;
     return __generator(this, function (_c) {
       switch (_c.label) {
         case 0:
@@ -12,7 +12,7 @@ function convertFromStream(content) {
             throw new Error('Type must be Blob');
           }
           arrayBuffer = new Promise(function (resolve, reject) {
-            var reader = new FileReader();
+            const reader = new FileReader();
             reader.onload = function () {
               return resolve(reader.result);
             };

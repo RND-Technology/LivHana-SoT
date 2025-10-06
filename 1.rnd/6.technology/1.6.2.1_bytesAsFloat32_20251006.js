@@ -1,6 +1,6 @@
 'use strict';
 
-var $pow = require('math-intrinsics/pow');
+const $pow = require('math-intrinsics/pow');
 
 module.exports = function bytesAsFloat32(rawBytes) {
 	// return new $Float32Array(new $Uint8Array(rawBytes).buffer)[0];
@@ -10,10 +10,10 @@ module.exports = function bytesAsFloat32(rawBytes) {
 If value is an IEEE 754-2008 binary32 NaN value, return the NaN Number value.
 Return the Number value that corresponds to value.
         */
-	var sign = rawBytes[3] & 0x80 ? -1 : 1; // Check the sign bit
-	var exponent = ((rawBytes[3] & 0x7F) << 1)
+	const sign = rawBytes[3] & 0x80 ? -1 : 1; // Check the sign bit
+	let exponent = ((rawBytes[3] & 0x7F) << 1)
 		| (rawBytes[2] >> 7); // Combine bits for exponent
-	var mantissa = ((rawBytes[2] & 0x7F) << 16)
+	const mantissa = ((rawBytes[2] & 0x7F) << 16)
 		| (rawBytes[1] << 8)
 		| rawBytes[0]; // Combine bits for mantissa
 

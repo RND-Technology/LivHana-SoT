@@ -2,7 +2,7 @@
 exports.__esModule = true;
 exports.BaseApi = void 0;
 /** Base class for all controllers */
-var BaseApi = /** @class */ (function () {
+const BaseApi = /** @class */ (function () {
     function BaseApi(client) {
         this.createRequest = client.getRequestBuilderFactory();
     }

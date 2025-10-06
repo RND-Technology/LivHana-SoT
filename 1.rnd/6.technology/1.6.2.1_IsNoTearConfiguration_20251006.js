@@ -1,7 +1,7 @@
 'use strict';
 
-var IsUnclampedIntegerElementType = require('./IsUnclampedIntegerElementType');
-var IsBigIntElementType = require('./IsBigIntElementType');
+const IsUnclampedIntegerElementType = require('./IsUnclampedIntegerElementType');
+const IsBigIntElementType = require('./IsBigIntElementType');
 
 // https://262.ecma-international.org/11.0/#sec-isnotearconfiguration
 

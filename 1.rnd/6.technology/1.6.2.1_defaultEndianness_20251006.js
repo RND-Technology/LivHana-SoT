@@ -1,14 +1,14 @@
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+const GetIntrinsic = require('get-intrinsic');
 
-var $Uint8Array = GetIntrinsic('%Uint8Array%', true);
-var $Uint32Array = GetIntrinsic('%Uint32Array%', true);
+const $Uint8Array = GetIntrinsic('%Uint8Array%', true);
+const $Uint32Array = GetIntrinsic('%Uint32Array%', true);
 
-var typedArrayBuffer = require('typed-array-buffer');
+const typedArrayBuffer = require('typed-array-buffer');
 
-var uInt32 = $Uint32Array && new $Uint32Array([0x12345678]);
-var uInt8 = uInt32 && new $Uint8Array(typedArrayBuffer(uInt32));
+const uInt32 = $Uint32Array && new $Uint32Array([0x12345678]);
+const uInt8 = uInt32 && new $Uint8Array(typedArrayBuffer(uInt32));
 
 module.exports = uInt8
 	? uInt8[0] === 0x78

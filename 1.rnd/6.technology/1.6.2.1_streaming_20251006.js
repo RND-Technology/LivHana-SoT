@@ -220,7 +220,7 @@ async function* iterSSEChunks(iterator) {
         const binaryChunk = chunk instanceof ArrayBuffer ? new Uint8Array(chunk)
             : typeof chunk === 'string' ? new TextEncoder().encode(chunk)
                 : chunk;
-        let newData = new Uint8Array(data.length + binaryChunk.length);
+        const newData = new Uint8Array(data.length + binaryChunk.length);
         newData.set(data);
         newData.set(binaryChunk, data.length);
         data = newData;

@@ -32,7 +32,7 @@ function _jestUtil() {
   };
   return data;
 }
-var _BaseReporter = _interopRequireDefault(require('./BaseReporter'));
+const _BaseReporter = _interopRequireDefault(require('./BaseReporter'));
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {default: obj};
 }

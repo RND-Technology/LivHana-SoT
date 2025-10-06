@@ -12,13 +12,13 @@
  * @private
  */
 
-var createError = require('http-errors')
-var debug = require('debug')('body-parser:urlencoded')
-var isFinished = require('on-finished').isFinished
-var read = require('../read')
-var typeis = require('type-is')
-var qs = require('qs')
-var { getCharset, normalizeOptions } = require('../utils')
+const createError = require('http-errors')
+const debug = require('debug')('body-parser:urlencoded')
+const isFinished = require('on-finished').isFinished
+const read = require('../read')
+const typeis = require('type-is')
+const qs = require('qs')
+const { getCharset, normalizeOptions } = require('../utils')
 
 /**
  * Module exports.
@@ -35,15 +35,15 @@ module.exports = urlencoded
  */
 
 function urlencoded (options) {
-  var { inflate, limit, verify, shouldParse } = normalizeOptions(options, 'application/x-www-form-urlencoded')
+  const { inflate, limit, verify, shouldParse } = normalizeOptions(options, 'application/x-www-form-urlencoded')
 
-  var defaultCharset = options?.defaultCharset || 'utf-8'
+  const defaultCharset = options?.defaultCharset || 'utf-8'
   if (defaultCharset !== 'utf-8' && defaultCharset !== 'iso-8859-1') {
     throw new TypeError('option defaultCharset must be either utf-8 or iso-8859-1')
   }
 
   // create the appropriate query parser
-  var queryparse = createQueryParser(options)
+  const queryparse = createQueryParser(options)
 
   function parse (body, encoding) {
     return body.length
@@ -79,7 +79,7 @@ function urlencoded (options) {
     }
 
     // assert charset
-    var charset = getCharset(req) || defaultCharset
+    const charset = getCharset(req) || defaultCharset
     if (charset !== 'utf-8' && charset !== 'iso-8859-1') {
       debug('invalid charset')
       next(createError(415, 'unsupported charset "' + charset.toUpperCase() + '"', {
@@ -106,13 +106,13 @@ function urlencoded (options) {
  */
 
 function createQueryParser (options) {
-  var extended = Boolean(options?.extended)
-  var parameterLimit = options?.parameterLimit !== undefined
+  const extended = Boolean(options?.extended)
+  let parameterLimit = options?.parameterLimit !== undefined
     ? options?.parameterLimit
     : 1000
-  var charsetSentinel = options?.charsetSentinel
-  var interpretNumericEntities = options?.interpretNumericEntities
-  var depth = extended ? (options?.depth !== undefined ? options?.depth : 32) : 0
+  const charsetSentinel = options?.charsetSentinel
+  const interpretNumericEntities = options?.interpretNumericEntities
+  const depth = extended ? (options?.depth !== undefined ? options?.depth : 32) : 0
 
   if (isNaN(parameterLimit) || parameterLimit < 1) {
     throw new TypeError('option parameterLimit must be a positive number')
@@ -127,7 +127,7 @@ function createQueryParser (options) {
   }
 
   return function queryparse (body, encoding) {
-    var paramCount = parameterCount(body, parameterLimit)
+    const paramCount = parameterCount(body, parameterLimit)
 
     if (paramCount === undefined) {
       debug('too many parameters')
@@ -136,7 +136,7 @@ function createQueryParser (options) {
       })
     }
 
-    var arrayLimit = extended ? Math.max(100, paramCount) : 0
+    const arrayLimit = extended ? Math.max(100, paramCount) : 0
 
     debug('parse ' + (extended ? 'extended ' : '') + 'urlencoding')
     try {
@@ -171,7 +171,7 @@ function createQueryParser (options) {
  */
 
 function parameterCount (body, limit) {
-  var len = body.split('&').length
+  const len = body.split('&').length
 
   return len > limit ? undefined : len - 1
 }

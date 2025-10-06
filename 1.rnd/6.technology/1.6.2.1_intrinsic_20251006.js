@@ -1,5 +1,5 @@
-let OldValue = require('../old-value')
-let Value = require('../value')
+const OldValue = require('../old-value')
+const Value = require('../value')
 
 function regexp(name) {
   return new RegExp(`(^|[\\s,(])(${name}($|[\\s),]))`, 'gi')

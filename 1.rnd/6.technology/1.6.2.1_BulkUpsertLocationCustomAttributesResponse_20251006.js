@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
 exports.bulkUpsertLocationCustomAttributesResponseSchema = void 0;
-var schema_1 = require("../schema");
-var bulkUpsertLocationCustomAttributesResponseLocationCustomAttributeUpsertResponse_1 = require("./bulkUpsertLocationCustomAttributesResponseLocationCustomAttributeUpsertResponse");
-var error_1 = require("./error");
+const schema_1 = require("../schema");
+const bulkUpsertLocationCustomAttributesResponseLocationCustomAttributeUpsertResponse_1 = require("./bulkUpsertLocationCustomAttributesResponseLocationCustomAttributeUpsertResponse");
+const error_1 = require("./error");
 exports.bulkUpsertLocationCustomAttributesResponseSchema = (0, schema_1.object)({
     values: [
         'values',

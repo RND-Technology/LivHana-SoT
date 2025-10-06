@@ -1,5 +1,5 @@
-let Declaration = require('../declaration')
-let {
+const Declaration = require('../declaration')
+const {
   getGridGap,
   inheritGridGap,
   parseGridAreas,
@@ -25,7 +25,7 @@ class GridTemplateAreas extends Declaration {
 
     let hasColumns = false
     let hasRows = false
-    let parent = decl.parent
+    const parent = decl.parent
     let gap = getGridGap(decl)
     gap = inheritGridGap(decl, gap) || gap
 
@@ -37,7 +37,7 @@ class GridTemplateAreas extends Declaration {
     parent.walkDecls(/grid-template-(rows|columns)/, trackDecl => {
       if (trackDecl.prop === 'grid-template-rows') {
         hasRows = true
-        let { prop, value } = trackDecl
+        const { prop, value } = trackDecl
         trackDecl.cloneBefore({
           prop: prefixTrackProp({ prefix, prop }),
           value: prefixTrackValue({ gap: gap.row, value })
@@ -47,7 +47,7 @@ class GridTemplateAreas extends Declaration {
       }
     })
 
-    let gridRows = getGridRows(decl.value)
+    const gridRows = getGridRows(decl.value)
 
     if (hasColumns && !hasRows && gap.row && gridRows.length > 1) {
       decl.cloneBefore({
@@ -68,7 +68,7 @@ class GridTemplateAreas extends Declaration {
       result
     })
 
-    let areas = parseGridAreas({
+    const areas = parseGridAreas({
       gap,
       rows: gridRows
     })

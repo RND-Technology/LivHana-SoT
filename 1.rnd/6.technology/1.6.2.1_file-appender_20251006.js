@@ -1,7 +1,7 @@
-var objectAssign = require('object-assign')
+const objectAssign = require('object-assign')
 
 function arrayRemove (arr, item) {
-  var idx = arr.indexOf(item)
+  const idx = arr.indexOf(item)
   if (~idx) arr.splice(idx, 1)
 }
 
@@ -19,7 +19,7 @@ function FileAppender (strategy, req) {
 }
 
 FileAppender.prototype.insertPlaceholder = function (file) {
-  var placeholder = {
+  const placeholder = {
     fieldname: file.fieldname
   }
 

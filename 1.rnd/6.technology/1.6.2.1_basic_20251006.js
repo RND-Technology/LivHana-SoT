@@ -1,21 +1,21 @@
-var t = require('tap')
-var fs = require('fs')
-var path = require('path')
-var fixture = path.resolve(__dirname, 'fixtures')
-var meow = fixture + '/meow.cat'
-var mine = fixture + '/mine.cat'
-var ours = fixture + '/ours.cat'
-var fail = fixture + '/fail.false'
-var noent = fixture + '/enoent.exe'
-var mkdirp = require('mkdirp')
-var rimraf = require('rimraf')
+const t = require('tap')
+const fs = require('fs')
+const path = require('path')
+const fixture = path.resolve(__dirname, 'fixtures')
+const meow = fixture + '/meow.cat'
+const mine = fixture + '/mine.cat'
+const ours = fixture + '/ours.cat'
+const fail = fixture + '/fail.false'
+const noent = fixture + '/enoent.exe'
+const mkdirp = require('mkdirp')
+const rimraf = require('rimraf')
 
-var isWindows = process.platform === 'win32'
-var hasAccess = typeof fs.access === 'function'
-var winSkip = isWindows && 'windows'
-var accessSkip = !hasAccess && 'no fs.access function'
-var hasPromise = typeof Promise === 'function'
-var promiseSkip = !hasPromise && 'no global Promise'
+const isWindows = process.platform === 'win32'
+const hasAccess = typeof fs.access === 'function'
+const winSkip = isWindows && 'windows'
+const accessSkip = !hasAccess && 'no fs.access function'
+const hasPromise = typeof Promise === 'function'
+const promiseSkip = !hasPromise && 'no global Promise'
 
 function reset () {
   delete require.cache[require.resolve('../')]
@@ -37,7 +37,7 @@ t.test('setup fixtures', function (t) {
 })
 
 t.test('promise', { skip: promiseSkip }, function (t) {
-  var isexe = reset()
+  const isexe = reset()
   t.test('meow async', function (t) {
     isexe(meow).then(function (is) {
       t.ok(is)
@@ -67,7 +67,7 @@ t.test('promise', { skip: promiseSkip }, function (t) {
 
 t.test('no promise', function (t) {
   global.Promise = null
-  var isexe = reset()
+  const isexe = reset()
   t.throws('try to meow a promise', function () {
     isexe(meow)
   })
@@ -81,7 +81,7 @@ t.test('access', { skip: accessSkip || winSkip }, function (t) {
 t.test('mode', { skip: winSkip }, function (t) {
   delete fs.access
   delete fs.accessSync
-  var isexe = reset()
+  const isexe = reset()
   t.ok(isexe.sync(ours, { uid: 0, gid: 0 }))
   t.ok(isexe.sync(mine, { uid: 0, gid: 0 }))
   runTest(t)
@@ -89,7 +89,7 @@ t.test('mode', { skip: winSkip }, function (t) {
 
 t.test('windows', function (t) {
   global.TESTING_WINDOWS = true
-  var pathExt = '.EXE;.CAT;.CMD;.COM'
+  const pathExt = '.EXE;.CAT;.CMD;.COM'
   t.test('pathExt option', function (t) {
     runTest(t, { pathExt: '.EXE;.CAT;.CMD;.COM' })
   })
@@ -116,9 +116,9 @@ t.test('cleanup', function (t) {
 })
 
 function runTest (t, options) {
-  var isexe = reset()
+  const isexe = reset()
 
-  var optionsIgnore = Object.create(options || {})
+  const optionsIgnore = Object.create(options || {})
   optionsIgnore.ignoreErrors = true
 
   if (!options || !options.skipFail) {

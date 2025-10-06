@@ -1,6 +1,6 @@
 'use strict';
 
-var RequireObjectCoercible = require('es-object-atoms/RequireObjectCoercible');
+const RequireObjectCoercible = require('es-object-atoms/RequireObjectCoercible');
 
 // http://262.ecma-international.org/5.1/#sec-9.10
 

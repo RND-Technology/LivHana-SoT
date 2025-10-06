@@ -58,7 +58,7 @@ const defaultFilterOptions = createFilterOptions();
 // Number of options to jump in list box when `Page Up` and `Page Down` keys are used.
 const pageSize = 5;
 const defaultIsActiveElementInListbox = listboxRef => {
-  var _listboxRef$current$p;
+  let _listboxRef$current$p;
   return listboxRef.current !== null && ((_listboxRef$current$p = listboxRef.current.parentElement) == null ? void 0 : _listboxRef$current$p.contains(document.activeElement));
 };
 const MULTIPLE_DEFAULT_VALUE = [];
@@ -87,7 +87,7 @@ function useAutocomplete(props) {
     getOptionDisabled,
     getOptionKey,
     getOptionLabel: getOptionLabelProp = option => {
-      var _option$label;
+      let _option$label;
       return (_option$label = option.label) != null ? _option$label : option;
     },
     groupBy,
@@ -965,7 +965,7 @@ function useAutocomplete(props) {
       index,
       option
     }) => {
-      var _getOptionKey;
+      let _getOptionKey;
       const selected = (multiple ? value : [value]).some(value2 => value2 != null && isOptionEqualToValue(option, value2));
       const disabled = getOptionDisabled ? getOptionDisabled(option) : false;
       return {

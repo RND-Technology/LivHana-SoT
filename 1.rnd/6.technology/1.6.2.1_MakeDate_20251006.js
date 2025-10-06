@@ -1,8 +1,8 @@
 'use strict';
 
-var $isFinite = require('math-intrinsics/isFinite');
+const $isFinite = require('math-intrinsics/isFinite');
 
-var msPerDay = require('../helpers/timeConstants').msPerDay;
+const msPerDay = require('../helpers/timeConstants').msPerDay;
 
 // https://262.ecma-international.org/5.1/#sec-15.9.1.13
 

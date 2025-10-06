@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.transformReply = exports.pushAggregatehOptions = exports.transformArguments = exports.IS_READ_ONLY = exports.FIRST_KEY_INDEX = exports.AggregateGroupByReducers = exports.AggregateSteps = void 0;
 const generic_transformers_1 = require("@redis/client/dist/lib/commands/generic-transformers");
 const _1 = require(".");
-var AggregateSteps;
+let AggregateSteps;
 (function (AggregateSteps) {
     AggregateSteps["GROUPBY"] = "GROUPBY";
     AggregateSteps["SORTBY"] = "SORTBY";
@@ -11,7 +11,7 @@ var AggregateSteps;
     AggregateSteps["LIMIT"] = "LIMIT";
     AggregateSteps["FILTER"] = "FILTER";
 })(AggregateSteps || (exports.AggregateSteps = AggregateSteps = {}));
-var AggregateGroupByReducers;
+let AggregateGroupByReducers;
 (function (AggregateGroupByReducers) {
     AggregateGroupByReducers["COUNT"] = "COUNT";
     AggregateGroupByReducers["COUNT_DISTINCT"] = "COUNT_DISTINCT";

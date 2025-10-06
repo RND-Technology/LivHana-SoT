@@ -8,7 +8,7 @@ exports.diffChars = diffChars;
 exports.characterDiff = void 0;
 
 /*istanbul ignore end*/
-var
+const
 /*istanbul ignore start*/
 _base = _interopRequireDefault(require("./base"))
 /*istanbul ignore end*/
@@ -17,7 +17,7 @@ _base = _interopRequireDefault(require("./base"))
 /*istanbul ignore start*/ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*istanbul ignore end*/
-var characterDiff = new
+const characterDiff = new
 /*istanbul ignore start*/
 _base
 /*istanbul ignore end*/

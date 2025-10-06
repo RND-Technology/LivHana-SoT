@@ -67,10 +67,10 @@ function _jestUtil() {
   };
   return data;
 }
-var _ReporterDispatcher = _interopRequireDefault(
+const _ReporterDispatcher = _interopRequireDefault(
   require('./ReporterDispatcher')
 );
-var _testSchedulerHelper = require('./testSchedulerHelper');
+const _testSchedulerHelper = require('./testSchedulerHelper');
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {default: obj};
 }

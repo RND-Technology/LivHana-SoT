@@ -1,4 +1,4 @@
-var abort = require('./abort.js')
+const abort = require('./abort.js')
   , async = require('./async.js')
   ;
 

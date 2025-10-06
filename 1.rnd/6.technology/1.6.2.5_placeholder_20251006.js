@@ -1,4 +1,4 @@
-let Selector = require('../selector')
+const Selector = require('../selector')
 
 class Placeholder extends Selector {
   /**

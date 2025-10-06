@@ -1,8 +1,8 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _keywords = require('../parser/tokenizer/keywords');
-var _types = require('../parser/tokenizer/types');
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }const _keywords = require('../parser/tokenizer/keywords');
+const _types = require('../parser/tokenizer/types');
 
 
-var _Transformer = require('./Transformer'); var _Transformer2 = _interopRequireDefault(_Transformer);
+const _Transformer = require('./Transformer'); const _Transformer2 = _interopRequireDefault(_Transformer);
 
  class FlowTransformer extends _Transformer2.default {
   constructor(
@@ -10,7 +10,7 @@ var _Transformer = require('./Transformer'); var _Transformer2 = _interopRequire
      tokens,
      isImportsTransformEnabled,
   ) {
-    super();this.rootTransformer = rootTransformer;this.tokens = tokens;this.isImportsTransformEnabled = isImportsTransformEnabled;;
+    super();this.rootTransformer = rootTransformer;this.tokens = tokens;this.isImportsTransformEnabled = isImportsTransformEnabled;
   }
 
   process() {

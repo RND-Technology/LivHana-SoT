@@ -1,19 +1,19 @@
 'use strict';
 
-var trimStart = require('string.prototype.trimstart');
-var trimEnd = require('string.prototype.trimend');
+const trimStart = require('string.prototype.trimstart');
+const trimEnd = require('string.prototype.trimend');
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var RequireObjectCoercible = require('./RequireObjectCoercible');
-var ToString = require('./ToString');
+const RequireObjectCoercible = require('./RequireObjectCoercible');
+const ToString = require('./ToString');
 
 // https://262.ecma-international.org/10.0/#sec-trimstring
 
 module.exports = function TrimString(string, where) {
-	var str = RequireObjectCoercible(string);
-	var S = ToString(str);
-	var T;
+	const str = RequireObjectCoercible(string);
+	const S = ToString(str);
+	let T;
 	if (where === 'start') {
 		T = trimStart(S);
 	} else if (where === 'end') {

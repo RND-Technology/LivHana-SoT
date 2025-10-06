@@ -16,7 +16,7 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ExportResultCode = void 0;
-var ExportResultCode;
+let ExportResultCode;
 (function (ExportResultCode) {
     ExportResultCode[ExportResultCode["SUCCESS"] = 0] = "SUCCESS";
     ExportResultCode[ExportResultCode["FAILED"] = 1] = "FAILED";

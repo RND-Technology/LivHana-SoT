@@ -1,23 +1,23 @@
 'use strict';
 
-var $EvalError = require('es-errors/eval');
+const $EvalError = require('es-errors/eval');
 
-var DayWithinYear = require('./DayWithinYear');
-var InLeapYear = require('./InLeapYear');
-var MonthFromTime = require('./MonthFromTime');
+const DayWithinYear = require('./DayWithinYear');
+const InLeapYear = require('./InLeapYear');
+const MonthFromTime = require('./MonthFromTime');
 
 // https://262.ecma-international.org/5.1/#sec-15.9.1.5
 
 module.exports = function DateFromTime(t) {
-	var m = MonthFromTime(t);
-	var d = DayWithinYear(t);
+	const m = MonthFromTime(t);
+	const d = DayWithinYear(t);
 	if (m === 0) {
 		return d + 1;
 	}
 	if (m === 1) {
 		return d - 30;
 	}
-	var leap = InLeapYear(t);
+	const leap = InLeapYear(t);
 	if (m === 2) {
 		return d - 58 - leap;
 	}

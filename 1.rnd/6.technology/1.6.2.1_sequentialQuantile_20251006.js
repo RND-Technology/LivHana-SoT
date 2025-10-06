@@ -3,7 +3,7 @@ import {identity} from "./continuous.js";
 import {initInterpolator} from "./init.js";
 
 export default function sequentialQuantile() {
-  var domain = [],
+  let domain = [],
       interpolator = identity;
 
   function scale(x) {

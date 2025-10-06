@@ -19,18 +19,18 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 // USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-var pathModule = require('path');
-var isWindows = process.platform === 'win32';
-var fs = require('fs');
+const pathModule = require('path');
+const isWindows = process.platform === 'win32';
+const fs = require('fs');
 
 // JavaScript implementation of realpath, ported from node pre-v6
 
-var DEBUG = process.env.NODE_DEBUG && /fs/.test(process.env.NODE_DEBUG);
+const DEBUG = process.env.NODE_DEBUG && /fs/.test(process.env.NODE_DEBUG);
 
 function rethrow() {
   // Only enable in debug mode. A backtrace uses ~1000 bytes of heap space and
   // is fairly slow to generate.
-  var callback;
+  let callback;
   if (DEBUG) {
     var backtrace = new Error;
     callback = debugCallback;
@@ -52,7 +52,7 @@ function rethrow() {
       if (process.throwDeprecation)
         throw err;  // Forgot a callback but don't know where? Use NODE_DEBUG=fs
       else if (!process.noDeprecation) {
-        var msg = 'fs: missing callback ' + (err.stack || err.message);
+        const msg = 'fs: missing callback ' + (err.stack || err.message);
         if (process.traceDeprecation)
           console.trace(msg);
         else
@@ -66,7 +66,7 @@ function maybeCallback(cb) {
   return typeof cb === 'function' ? cb : rethrow();
 }
 
-var normalize = pathModule.normalize;
+const normalize = pathModule.normalize;
 
 // Regexp that finds the next partion of a (partial) path
 // result is [base_with_slash, base], e.g. ['somedir/', 'somedir']
@@ -91,24 +91,24 @@ exports.realpathSync = function realpathSync(p, cache) {
     return cache[p];
   }
 
-  var original = p,
+  const original = p,
       seenLinks = {},
       knownHard = {};
 
   // current character position in p
-  var pos;
+  let pos;
   // the partial path so far, including a trailing slash if any
-  var current;
+  let current;
   // the partial path without a trailing slash (except when pointing at a root)
-  var base;
+  let base;
   // the partial path scanned in the previous round, with slash
-  var previous;
+  let previous;
 
   start();
 
   function start() {
     // Skip over roots
-    var m = splitRootRe.exec(p);
+    const m = splitRootRe.exec(p);
     pos = m[0].length;
     current = m[0];
     base = m[0];
@@ -127,7 +127,7 @@ exports.realpathSync = function realpathSync(p, cache) {
   while (pos < p.length) {
     // find the next part
     nextPartRe.lastIndex = pos;
-    var result = nextPartRe.exec(p);
+    const result = nextPartRe.exec(p);
     previous = current;
     current += result[0];
     base = previous + result[1];
@@ -143,7 +143,7 @@ exports.realpathSync = function realpathSync(p, cache) {
       // some known symbolic link.  no need to stat again.
       resolvedLink = cache[base];
     } else {
-      var stat = fs.lstatSync(base);
+      const stat = fs.lstatSync(base);
       if (!stat.isSymbolicLink()) {
         knownHard[base] = true;
         if (cache) cache[base] = base;
@@ -152,7 +152,7 @@ exports.realpathSync = function realpathSync(p, cache) {
 
       // read the link if it wasn't read before
       // dev/ino always return 0 on windows, so skip the check.
-      var linkTarget = null;
+      let linkTarget = null;
       if (!isWindows) {
         var id = stat.dev.toString(32) + ':' + stat.ino.toString(32);
         if (seenLinks.hasOwnProperty(id)) {
@@ -193,24 +193,24 @@ exports.realpath = function realpath(p, cache, cb) {
     return process.nextTick(cb.bind(null, null, cache[p]));
   }
 
-  var original = p,
+  const original = p,
       seenLinks = {},
       knownHard = {};
 
   // current character position in p
-  var pos;
+  let pos;
   // the partial path so far, including a trailing slash if any
-  var current;
+  let current;
   // the partial path without a trailing slash (except when pointing at a root)
-  var base;
+  let base;
   // the partial path scanned in the previous round, with slash
-  var previous;
+  let previous;
 
   start();
 
   function start() {
     // Skip over roots
-    var m = splitRootRe.exec(p);
+    const m = splitRootRe.exec(p);
     pos = m[0].length;
     current = m[0];
     base = m[0];
@@ -239,7 +239,7 @@ exports.realpath = function realpath(p, cache, cb) {
 
     // find the next part
     nextPartRe.lastIndex = pos;
-    var result = nextPartRe.exec(p);
+    const result = nextPartRe.exec(p);
     previous = current;
     current += result[0];
     base = previous + result[1];
@@ -290,7 +290,7 @@ exports.realpath = function realpath(p, cache, cb) {
   function gotTarget(err, target, base) {
     if (err) return cb(err);
 
-    var resolvedLink = pathModule.resolve(previous, target);
+    const resolvedLink = pathModule.resolve(previous, target);
     if (cache) cache[base] = resolvedLink;
     gotResolvedLink(resolvedLink);
   }

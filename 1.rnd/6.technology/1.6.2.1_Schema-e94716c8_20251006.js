@@ -3,15 +3,15 @@ import { d as YAMLMap, g as resolveMap, Y as YAMLSeq, h as resolveSeq, j as reso
 import { b as binary, o as omap, p as pairs, s as set, i as intTime, f as floatTime, t as timestamp, a as warnOptionDeprecation } from './warnings-df54cb69.js';
 
 function createMap(schema, obj, ctx) {
-  var map = new YAMLMap(schema);
+  const map = new YAMLMap(schema);
 
   if (obj instanceof Map) {
-    var _iterator = _createForOfIteratorHelper(obj),
+    let _iterator = _createForOfIteratorHelper(obj),
         _step;
 
     try {
       for (_iterator.s(); !(_step = _iterator.n()).done;) {
-        var _step$value = _slicedToArray(_step.value, 2),
+        const _step$value = _slicedToArray(_step.value, 2),
             key = _step$value[0],
             value = _step$value[1];
 
@@ -23,8 +23,8 @@ function createMap(schema, obj, ctx) {
       _iterator.f();
     }
   } else if (obj && _typeof(obj) === 'object') {
-    for (var _i = 0, _Object$keys = Object.keys(obj); _i < _Object$keys.length; _i++) {
-      var _key = _Object$keys[_i];
+    for (let _i = 0, _Object$keys = Object.keys(obj); _i < _Object$keys.length; _i++) {
+      const _key = _Object$keys[_i];
       map.items.push(schema.createPair(_key, obj[_key], ctx));
     }
   }
@@ -36,7 +36,7 @@ function createMap(schema, obj, ctx) {
   return map;
 }
 
-var map = {
+const map = {
   createNode: createMap,
   default: true,
   nodeClass: YAMLMap,
@@ -45,16 +45,16 @@ var map = {
 };
 
 function createSeq(schema, obj, ctx) {
-  var seq = new YAMLSeq(schema);
+  const seq = new YAMLSeq(schema);
 
   if (obj && obj[Symbol.iterator]) {
-    var _iterator = _createForOfIteratorHelper(obj),
+    let _iterator = _createForOfIteratorHelper(obj),
         _step;
 
     try {
       for (_iterator.s(); !(_step = _iterator.n()).done;) {
-        var it = _step.value;
-        var v = schema.createNode(it, ctx.wrapScalars, null, ctx);
+        const it = _step.value;
+        const v = schema.createNode(it, ctx.wrapScalars, null, ctx);
         seq.items.push(v);
       }
     } catch (err) {
@@ -67,7 +67,7 @@ function createSeq(schema, obj, ctx) {
   return seq;
 }
 
-var seq = {
+const seq = {
   createNode: createSeq,
   default: true,
   nodeClass: YAMLSeq,
@@ -75,7 +75,7 @@ var seq = {
   resolve: resolveSeq
 };
 
-var string = {
+const string = {
   identify: function identify(value) {
     return typeof value === 'string';
   },
@@ -91,25 +91,25 @@ var string = {
   options: strOptions
 };
 
-var failsafe = [map, seq, string];
+const failsafe = [map, seq, string];
 
 /* global BigInt */
 
-var intIdentify$2 = function intIdentify(value) {
+const intIdentify$2 = function intIdentify(value) {
   return typeof value === 'bigint' || Number.isInteger(value);
 };
 
-var intResolve$1 = function intResolve(src, part, radix) {
+const intResolve$1 = function intResolve(src, part, radix) {
   return intOptions.asBigInt ? BigInt(src) : parseInt(part, radix);
 };
 
 function intStringify$1(node, radix, prefix) {
-  var value = node.value;
+  const value = node.value;
   if (intIdentify$2(value) && value >= 0) return prefix + value.toString(radix);
   return stringifyNumber(node);
 }
 
-var nullObj = {
+const nullObj = {
   identify: function identify(value) {
     return value == null;
   },
@@ -127,7 +127,7 @@ var nullObj = {
     return nullOptions.nullStr;
   }
 };
-var boolObj = {
+const boolObj = {
   identify: function identify(value) {
     return typeof value === 'boolean';
   },
@@ -139,11 +139,11 @@ var boolObj = {
   },
   options: boolOptions,
   stringify: function stringify(_ref) {
-    var value = _ref.value;
+    const value = _ref.value;
     return value ? boolOptions.trueStr : boolOptions.falseStr;
   }
 };
-var octObj = {
+const octObj = {
   identify: function identify(value) {
     return intIdentify$2(value) && value >= 0;
   },
@@ -159,7 +159,7 @@ var octObj = {
     return intStringify$1(node, 8, '0o');
   }
 };
-var intObj = {
+const intObj = {
   identify: intIdentify$2,
   default: true,
   tag: 'tag:yaml.org,2002:int',
@@ -170,7 +170,7 @@ var intObj = {
   options: intOptions,
   stringify: stringifyNumber
 };
-var hexObj = {
+const hexObj = {
   identify: function identify(value) {
     return intIdentify$2(value) && value >= 0;
   },
@@ -186,7 +186,7 @@ var hexObj = {
     return intStringify$1(node, 16, '0x');
   }
 };
-var nanObj = {
+const nanObj = {
   identify: function identify(value) {
     return typeof value === 'number';
   },
@@ -198,7 +198,7 @@ var nanObj = {
   },
   stringify: stringifyNumber
 };
-var expObj = {
+const expObj = {
   identify: function identify(value) {
     return typeof value === 'number';
   },
@@ -210,11 +210,11 @@ var expObj = {
     return parseFloat(str);
   },
   stringify: function stringify(_ref2) {
-    var value = _ref2.value;
+    const value = _ref2.value;
     return Number(value).toExponential();
   }
 };
-var floatObj = {
+const floatObj = {
   identify: function identify(value) {
     return typeof value === 'number';
   },
@@ -222,27 +222,27 @@ var floatObj = {
   tag: 'tag:yaml.org,2002:float',
   test: /^[-+]?(?:\.([0-9]+)|[0-9]+\.([0-9]*))$/,
   resolve: function resolve(str, frac1, frac2) {
-    var frac = frac1 || frac2;
-    var node = new Scalar(parseFloat(str));
+    const frac = frac1 || frac2;
+    const node = new Scalar(parseFloat(str));
     if (frac && frac[frac.length - 1] === '0') node.minFractionDigits = frac.length;
     return node;
   },
   stringify: stringifyNumber
 };
-var core = failsafe.concat([nullObj, boolObj, octObj, intObj, hexObj, nanObj, expObj, floatObj]);
+const core = failsafe.concat([nullObj, boolObj, octObj, intObj, hexObj, nanObj, expObj, floatObj]);
 
 /* global BigInt */
 
-var intIdentify$1 = function intIdentify(value) {
+const intIdentify$1 = function intIdentify(value) {
   return typeof value === 'bigint' || Number.isInteger(value);
 };
 
-var stringifyJSON = function stringifyJSON(_ref) {
-  var value = _ref.value;
+const stringifyJSON = function stringifyJSON(_ref) {
+  const value = _ref.value;
   return JSON.stringify(value);
 };
 
-var json = [map, seq, {
+const json = [map, seq, {
   identify: function identify(value) {
     return typeof value === 'string';
   },
@@ -284,7 +284,7 @@ var json = [map, seq, {
     return intOptions.asBigInt ? BigInt(str) : parseInt(str, 10);
   },
   stringify: function stringify(_ref2) {
-    var value = _ref2.value;
+    const value = _ref2.value;
     return intIdentify$1(value) ? value.toString() : JSON.stringify(value);
   }
 }, {
@@ -306,17 +306,17 @@ json.scalarFallback = function (str) {
 
 /* global BigInt */
 
-var boolStringify = function boolStringify(_ref) {
-  var value = _ref.value;
+const boolStringify = function boolStringify(_ref) {
+  const value = _ref.value;
   return value ? boolOptions.trueStr : boolOptions.falseStr;
 };
 
-var intIdentify = function intIdentify(value) {
+const intIdentify = function intIdentify(value) {
   return typeof value === 'bigint' || Number.isInteger(value);
 };
 
 function intResolve(sign, src, radix) {
-  var str = src.replace(/_/g, '');
+  let str = src.replace(/_/g, '');
 
   if (intOptions.asBigInt) {
     switch (radix) {
@@ -333,27 +333,27 @@ function intResolve(sign, src, radix) {
         break;
     }
 
-    var _n = BigInt(str);
+    const _n = BigInt(str);
 
     return sign === '-' ? BigInt(-1) * _n : _n;
   }
 
-  var n = parseInt(str, radix);
+  const n = parseInt(str, radix);
   return sign === '-' ? -1 * n : n;
 }
 
 function intStringify(node, radix, prefix) {
-  var value = node.value;
+  const value = node.value;
 
   if (intIdentify(value)) {
-    var str = value.toString(radix);
+    const str = value.toString(radix);
     return value < 0 ? '-' + prefix + str.substr(1) : prefix + str;
   }
 
   return stringifyNumber(node);
 }
 
-var yaml11 = failsafe.concat([{
+const yaml11 = failsafe.concat([{
   identify: function identify(value) {
     return value == null;
   },
@@ -462,7 +462,7 @@ var yaml11 = failsafe.concat([{
     return parseFloat(str.replace(/_/g, ''));
   },
   stringify: function stringify(_ref2) {
-    var value = _ref2.value;
+    const value = _ref2.value;
     return Number(value).toExponential();
   }
 }, {
@@ -473,10 +473,10 @@ var yaml11 = failsafe.concat([{
   tag: 'tag:yaml.org,2002:float',
   test: /^[-+]?(?:[0-9][0-9_]*)?\.([0-9_]*)$/,
   resolve: function resolve(str, frac) {
-    var node = new Scalar(parseFloat(str.replace(/_/g, '')));
+    const node = new Scalar(parseFloat(str.replace(/_/g, '')));
 
     if (frac) {
-      var f = frac.replace(/_/g, '');
+      const f = frac.replace(/_/g, '');
       if (f[f.length - 1] === '0') node.minFractionDigits = f.length;
     }
 
@@ -485,13 +485,13 @@ var yaml11 = failsafe.concat([{
   stringify: stringifyNumber
 }], binary, omap, pairs, set, intTime, floatTime, timestamp);
 
-var schemas = {
+const schemas = {
   core: core,
   failsafe: failsafe,
   json: json,
   yaml11: yaml11
 };
-var tags = {
+const tags = {
   binary: binary,
   bool: boolObj,
   float: floatObj,
@@ -513,10 +513,10 @@ var tags = {
 
 function findTagObject(value, tagName, tags) {
   if (tagName) {
-    var match = tags.filter(function (t) {
+    const match = tags.filter(function (t) {
       return t.tag === tagName;
     });
-    var tagObj = match.find(function (t) {
+    const tagObj = match.find(function (t) {
       return !t.format;
     }) || match[0];
     if (!tagObj) throw new Error("Tag ".concat(tagName, " not found"));
@@ -531,13 +531,13 @@ function findTagObject(value, tagName, tags) {
 
 function createNode(value, tagName, ctx) {
   if (value instanceof Node) return value;
-  var defaultPrefix = ctx.defaultPrefix,
+  const defaultPrefix = ctx.defaultPrefix,
       onTagObj = ctx.onTagObj,
       prevObjects = ctx.prevObjects,
       schema = ctx.schema,
       wrapScalars = ctx.wrapScalars;
   if (tagName && tagName.startsWith('!!')) tagName = defaultPrefix + tagName.slice(2);
-  var tagObj = findTagObject(value, tagName, schema.tags);
+  let tagObj = findTagObject(value, tagName, schema.tags);
 
   if (!tagObj) {
     if (typeof value.toJSON === 'function') value = value.toJSON();
@@ -552,16 +552,16 @@ function createNode(value, tagName, ctx) {
   // after first. The `obj` wrapper allows for circular references to resolve.
 
 
-  var obj = {
+  const obj = {
     value: undefined,
     node: undefined
   };
 
   if (value && _typeof(value) === 'object' && prevObjects) {
-    var prev = prevObjects.get(value);
+    const prev = prevObjects.get(value);
 
     if (prev) {
-      var alias = new Alias(prev); // leaves source dirty; must be cleaned by caller
+      const alias = new Alias(prev); // leaves source dirty; must be cleaned by caller
 
       ctx.aliasNodes.push(alias); // defined along with prevObjects
 
@@ -578,22 +578,22 @@ function createNode(value, tagName, ctx) {
 }
 
 function getSchemaTags(schemas, knownTags, customTags, schemaId) {
-  var tags = schemas[schemaId.replace(/\W/g, '')]; // 'yaml-1.1' -> 'yaml11'
+  let tags = schemas[schemaId.replace(/\W/g, '')]; // 'yaml-1.1' -> 'yaml11'
 
   if (!tags) {
-    var keys = Object.keys(schemas).map(function (key) {
+    const keys = Object.keys(schemas).map(function (key) {
       return JSON.stringify(key);
     }).join(', ');
     throw new Error("Unknown schema \"".concat(schemaId, "\"; use one of ").concat(keys));
   }
 
   if (Array.isArray(customTags)) {
-    var _iterator = _createForOfIteratorHelper(customTags),
+    let _iterator = _createForOfIteratorHelper(customTags),
         _step;
 
     try {
       for (_iterator.s(); !(_step = _iterator.n()).done;) {
-        var tag = _step.value;
+        const tag = _step.value;
         tags = tags.concat(tag);
       }
     } catch (err) {
@@ -605,14 +605,14 @@ function getSchemaTags(schemas, knownTags, customTags, schemaId) {
     tags = customTags(tags.slice());
   }
 
-  for (var i = 0; i < tags.length; ++i) {
-    var _tag = tags[i];
+  for (let i = 0; i < tags.length; ++i) {
+    const _tag = tags[i];
 
     if (typeof _tag === 'string') {
-      var tagObj = knownTags[_tag];
+      const tagObj = knownTags[_tag];
 
       if (!tagObj) {
-        var _keys = Object.keys(knownTags).map(function (key) {
+        const _keys = Object.keys(knownTags).map(function (key) {
           return JSON.stringify(key);
         }).join(', ');
 
@@ -626,15 +626,15 @@ function getSchemaTags(schemas, knownTags, customTags, schemaId) {
   return tags;
 }
 
-var sortMapEntriesByKey = function sortMapEntriesByKey(a, b) {
+const sortMapEntriesByKey = function sortMapEntriesByKey(a, b) {
   return a.key < b.key ? -1 : a.key > b.key ? 1 : 0;
 };
 
-var Schema = /*#__PURE__*/function () {
+const Schema = /*#__PURE__*/function () {
   // TODO: remove in v2
   // TODO: remove in v2
   function Schema(_ref) {
-    var customTags = _ref.customTags,
+    const customTags = _ref.customTags,
         merge = _ref.merge,
         schema = _ref.schema,
         sortMapEntries = _ref.sortMapEntries,
@@ -652,12 +652,12 @@ var Schema = /*#__PURE__*/function () {
   _createClass(Schema, [{
     key: "createNode",
     value: function createNode$1(value, wrapScalars, tagName, ctx) {
-      var baseCtx = {
+      const baseCtx = {
         defaultPrefix: Schema.defaultPrefix,
         schema: this,
         wrapScalars: wrapScalars
       };
-      var createCtx = ctx ? Object.assign(ctx, baseCtx) : baseCtx;
+      const createCtx = ctx ? Object.assign(ctx, baseCtx) : baseCtx;
       return createNode(value, tagName, createCtx);
     }
   }, {
@@ -666,8 +666,8 @@ var Schema = /*#__PURE__*/function () {
       if (!ctx) ctx = {
         wrapScalars: true
       };
-      var k = this.createNode(key, ctx.wrapScalars, null, ctx);
-      var v = this.createNode(value, ctx.wrapScalars, null, ctx);
+      const k = this.createNode(key, ctx.wrapScalars, null, ctx);
+      const v = this.createNode(value, ctx.wrapScalars, null, ctx);
       return new Pair(k, v);
     }
   }]);

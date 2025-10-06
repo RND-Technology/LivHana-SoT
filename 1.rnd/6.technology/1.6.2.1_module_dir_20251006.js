@@ -1,11 +1,11 @@
-var path = require('path');
-var test = require('tape');
-var resolve = require('../');
+const path = require('path');
+const test = require('tape');
+const resolve = require('../');
 
 test('moduleDirectory strings', function (t) {
     t.plan(4);
-    var dir = path.join(__dirname, 'module_dir');
-    var xopts = {
+    const dir = path.join(__dirname, 'module_dir');
+    const xopts = {
         basedir: dir,
         moduleDirectory: 'xmodules'
     };
@@ -14,7 +14,7 @@ test('moduleDirectory strings', function (t) {
         t.equal(res, path.join(dir, '/xmodules/aaa/index.js'));
     });
 
-    var yopts = {
+    const yopts = {
         basedir: dir,
         moduleDirectory: 'ymodules'
     };
@@ -26,8 +26,8 @@ test('moduleDirectory strings', function (t) {
 
 test('moduleDirectory array', function (t) {
     t.plan(6);
-    var dir = path.join(__dirname, 'module_dir');
-    var aopts = {
+    const dir = path.join(__dirname, 'module_dir');
+    const aopts = {
         basedir: dir,
         moduleDirectory: ['xmodules', 'ymodules', 'zmodules']
     };
@@ -36,7 +36,7 @@ test('moduleDirectory array', function (t) {
         t.equal(res, path.join(dir, '/xmodules/aaa/index.js'));
     });
 
-    var bopts = {
+    const bopts = {
         basedir: dir,
         moduleDirectory: ['zmodules', 'ymodules', 'xmodules']
     };
@@ -45,7 +45,7 @@ test('moduleDirectory array', function (t) {
         t.equal(res, path.join(dir, '/ymodules/aaa/index.js'));
     });
 
-    var copts = {
+    const copts = {
         basedir: dir,
         moduleDirectory: ['xmodules', 'ymodules', 'zmodules']
     };

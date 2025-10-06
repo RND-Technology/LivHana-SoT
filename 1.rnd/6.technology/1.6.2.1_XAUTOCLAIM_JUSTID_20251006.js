@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.transformReply = exports.transformArguments = exports.FIRST_KEY_INDEX = void 0;
 const XAUTOCLAIM_1 = require("./XAUTOCLAIM");
-var XAUTOCLAIM_2 = require("./XAUTOCLAIM");
+const XAUTOCLAIM_2 = require("./XAUTOCLAIM");
 Object.defineProperty(exports, "FIRST_KEY_INDEX", { enumerable: true, get: function () { return XAUTOCLAIM_2.FIRST_KEY_INDEX; } });
 function transformArguments(...args) {
     return [

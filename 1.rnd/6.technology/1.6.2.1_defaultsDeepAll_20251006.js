@@ -1,4 +1,4 @@
-var convert = require('./convert'),
+const convert = require('./convert'),
     func = convert('defaultsDeepAll', require('../defaultsDeep'));
 
 func.placeholder = require('./placeholder');

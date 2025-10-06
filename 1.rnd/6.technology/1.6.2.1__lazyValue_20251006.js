@@ -1,13 +1,13 @@
-var baseWrapperValue = require('./_baseWrapperValue'),
+const baseWrapperValue = require('./_baseWrapperValue'),
     getView = require('./_getView'),
     isArray = require('./isArray');
 
 /** Used to indicate the type of lazy iteratees. */
-var LAZY_FILTER_FLAG = 1,
+const LAZY_FILTER_FLAG = 1,
     LAZY_MAP_FLAG = 2;
 
 /* Built-in method references for those with the same name as other `lodash` methods. */
-var nativeMin = Math.min;
+const nativeMin = Math.min;
 
 /**
  * Extracts the unwrapped value from its lazy wrapper.
@@ -18,7 +18,7 @@ var nativeMin = Math.min;
  * @returns {*} Returns the unwrapped value.
  */
 function lazyValue() {
-  var array = this.__wrapped__.value(),
+  let array = this.__wrapped__.value(),
       dir = this.__dir__,
       isArr = isArray(array),
       isRight = dir < 0,
@@ -36,17 +36,17 @@ function lazyValue() {
   if (!isArr || (!isRight && arrLength == length && takeCount == length)) {
     return baseWrapperValue(array, this.__actions__);
   }
-  var result = [];
+  const result = [];
 
   outer:
   while (length-- && resIndex < takeCount) {
     index += dir;
 
-    var iterIndex = -1,
+    let iterIndex = -1,
         value = array[index];
 
     while (++iterIndex < iterLength) {
-      var data = iteratees[iterIndex],
+      const data = iteratees[iterIndex],
           iteratee = data.iteratee,
           type = data.type,
           computed = iteratee(value);

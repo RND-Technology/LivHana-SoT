@@ -16,7 +16,7 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CompressionAlgorithm = void 0;
-var CompressionAlgorithm;
+let CompressionAlgorithm;
 (function (CompressionAlgorithm) {
     CompressionAlgorithm["NONE"] = "none";
     CompressionAlgorithm["GZIP"] = "gzip";

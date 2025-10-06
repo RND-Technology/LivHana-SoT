@@ -1,16 +1,16 @@
 /* eslint no-console: "off" */
 
-var asynckit = require('./')
+let asynckit = require('./')
   , async    = require('async')
   , assert   = require('assert')
   , expected = 0
   ;
 
-var Benchmark = require('benchmark');
-var suite = new Benchmark.Suite;
+const Benchmark = require('benchmark');
+const suite = new Benchmark.Suite;
 
-var source = [];
-for (var z = 1; z < 100; z++)
+const source = [];
+for (let z = 1; z < 100; z++)
 {
   source.push(z);
   expected += z;
@@ -21,7 +21,7 @@ suite
 
 .add('async.map', function(deferred)
 {
-  var total = 0;
+  let total = 0;
 
   async.map(source,
   function(i, cb)
@@ -43,7 +43,7 @@ suite
 
 .add('asynckit.parallel', function(deferred)
 {
-  var total = 0;
+  let total = 0;
 
   asynckit.parallel(source,
   function(i, cb)

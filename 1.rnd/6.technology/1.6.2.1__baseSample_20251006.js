@@ -1,4 +1,4 @@
-var arraySample = require('./_arraySample'),
+const arraySample = require('./_arraySample'),
     values = require('./values');
 
 /**

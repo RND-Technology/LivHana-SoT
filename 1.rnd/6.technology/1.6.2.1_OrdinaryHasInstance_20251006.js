@@ -1,10 +1,10 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
-var isObject = require('es-object-atoms/isObject');
+const $TypeError = require('es-errors/type');
+const isObject = require('es-object-atoms/isObject');
 
-var Get = require('./Get');
-var IsCallable = require('./IsCallable');
+const Get = require('./Get');
+const IsCallable = require('./IsCallable');
 
 // https://262.ecma-international.org/6.0/#sec-ordinaryhasinstance
 
@@ -15,7 +15,7 @@ module.exports = function OrdinaryHasInstance(C, O) {
 	if (!isObject(O)) {
 		return false;
 	}
-	var P = Get(C, 'prototype');
+	const P = Get(C, 'prototype');
 	if (!isObject(P)) {
 		throw new $TypeError('OrdinaryHasInstance called on an object with an invalid prototype property.');
 	}

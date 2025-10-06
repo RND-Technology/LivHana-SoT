@@ -4,7 +4,7 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 exports.restoreGlobalErrorHandlers = exports.injectGlobalErrorHandlers = void 0;
-var _state = require('./state');
+const _state = require('./state');
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *

@@ -4,36 +4,36 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.selectPieSectors = exports.selectPieLegend = exports.selectDisplayedData = void 0;
-var _reselect = require("reselect");
-var _Pie = require("../../polar/Pie");
-var _dataSelectors = require("./dataSelectors");
-var _selectChartOffsetInternal = require("./selectChartOffsetInternal");
-var _ChartUtils = require("../../util/ChartUtils");
-var _polarSelectors = require("./polarSelectors");
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+const _reselect = require("reselect");
+const _Pie = require("../../polar/Pie");
+const _dataSelectors = require("./dataSelectors");
+const _selectChartOffsetInternal = require("./selectChartOffsetInternal");
+const _ChartUtils = require("../../util/ChartUtils");
+const _polarSelectors = require("./polarSelectors");
+function ownKeys(e, r) { const t = Object.keys(e); if (Object.getOwnPropertySymbols) { let o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (let r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-var pickId = (_state, id) => id;
-var selectSynchronisedPieSettings = (0, _reselect.createSelector)([_polarSelectors.selectUnfilteredPolarItems, pickId], (graphicalItems, id) => graphicalItems.filter(item => item.type === 'pie').find(item => item.id === id));
+function _toPropertyKey(t) { const i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; const e = t[Symbol.toPrimitive]; if (void 0 !== e) { const i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+const pickId = (_state, id) => id;
+const selectSynchronisedPieSettings = (0, _reselect.createSelector)([_polarSelectors.selectUnfilteredPolarItems, pickId], (graphicalItems, id) => graphicalItems.filter(item => item.type === 'pie').find(item => item.id === id));
 
 // Keep stable reference to an empty array to prevent re-renders
-var emptyArray = [];
-var pickCells = (_state, _id, cells) => {
+const emptyArray = [];
+const pickCells = (_state, _id, cells) => {
   if ((cells === null || cells === void 0 ? void 0 : cells.length) === 0) {
     return emptyArray;
   }
   return cells;
 };
-var selectDisplayedData = exports.selectDisplayedData = (0, _reselect.createSelector)([_dataSelectors.selectChartDataAndAlwaysIgnoreIndexes, selectSynchronisedPieSettings, pickCells], (_ref, pieSettings, cells) => {
-  var {
+const selectDisplayedData = exports.selectDisplayedData = (0, _reselect.createSelector)([_dataSelectors.selectChartDataAndAlwaysIgnoreIndexes, selectSynchronisedPieSettings, pickCells], (_ref, pieSettings, cells) => {
+  const {
     chartData
   } = _ref;
   if (pieSettings == null) {
     return undefined;
   }
-  var displayedData;
+  let displayedData;
   if ((pieSettings === null || pieSettings === void 0 ? void 0 : pieSettings.data) != null && pieSettings.data.length > 0) {
     displayedData = pieSettings.data;
   } else {
@@ -47,14 +47,14 @@ var selectDisplayedData = exports.selectDisplayedData = (0, _reselect.createSele
   }
   return displayedData;
 });
-var selectPieLegend = exports.selectPieLegend = (0, _reselect.createSelector)([selectDisplayedData, selectSynchronisedPieSettings, pickCells], (displayedData, pieSettings, cells) => {
+const selectPieLegend = exports.selectPieLegend = (0, _reselect.createSelector)([selectDisplayedData, selectSynchronisedPieSettings, pickCells], (displayedData, pieSettings, cells) => {
   if (displayedData == null || pieSettings == null) {
     return undefined;
   }
   return displayedData.map((entry, i) => {
-    var _cells$i;
-    var name = (0, _ChartUtils.getValueByDataKey)(entry, pieSettings.nameKey, pieSettings.name);
-    var color;
+    let _cells$i;
+    const name = (0, _ChartUtils.getValueByDataKey)(entry, pieSettings.nameKey, pieSettings.name);
+    let color;
     if (cells !== null && cells !== void 0 && (_cells$i = cells[i]) !== null && _cells$i !== void 0 && (_cells$i = _cells$i.props) !== null && _cells$i !== void 0 && _cells$i.fill) {
       color = cells[i].props.fill;
     } else if (typeof entry === 'object' && entry != null && 'fill' in entry) {
@@ -70,7 +70,7 @@ var selectPieLegend = exports.selectPieLegend = (0, _reselect.createSelector)([s
     };
   });
 });
-var selectPieSectors = exports.selectPieSectors = (0, _reselect.createSelector)([selectDisplayedData, selectSynchronisedPieSettings, pickCells, _selectChartOffsetInternal.selectChartOffsetInternal], (displayedData, pieSettings, cells, offset) => {
+const selectPieSectors = exports.selectPieSectors = (0, _reselect.createSelector)([selectDisplayedData, selectSynchronisedPieSettings, pickCells, _selectChartOffsetInternal.selectChartOffsetInternal], (displayedData, pieSettings, cells, offset) => {
   if (pieSettings == null || displayedData == null) {
     return undefined;
   }

@@ -1,23 +1,23 @@
 import { __read } from 'tslib';
 import { objectEntries } from '../utils.js';
 function discriminatedObject(discriminatorMappedPropName, discriminatorPropName, discriminatorMap, defaultDiscriminator, xmlOptions) {
-  var selectSchemaWithDisc = function (value, discriminatorProp, isAttr) {
+  const selectSchemaWithDisc = function (value, discriminatorProp, isAttr) {
     if (typeof value === 'object' && value !== null && (isAttr && xmlObjectHasAttribute(value, discriminatorProp) || !isAttr && discriminatorProp in value)) {
-      var discriminatorValue = isAttr ? value.$[discriminatorProp] : value[discriminatorProp];
+      const discriminatorValue = isAttr ? value.$[discriminatorProp] : value[discriminatorProp];
       if (typeof discriminatorValue === 'string' && discriminatorValue in discriminatorMap) {
         return discriminatorMap[discriminatorValue];
       }
     }
     return undefined;
   };
-  var allSchemas = Object.values(discriminatorMap).reverse();
-  var selectSchema = function (value, discriminatorProp, validater, isAttr) {
-    var schema = selectSchemaWithDisc(value, discriminatorProp, isAttr);
+  const allSchemas = Object.values(discriminatorMap).reverse();
+  const selectSchema = function (value, discriminatorProp, validater, isAttr) {
+    const schema = selectSchemaWithDisc(value, discriminatorProp, isAttr);
     if (typeof schema !== 'undefined') {
       return schema;
     }
     // Try checking with discriminator matching
-    for (var key in allSchemas) {
+    for (const key in allSchemas) {
       if (validater(allSchemas[key]).length === 0) {
         return allSchemas[key];
       }
@@ -25,18 +25,18 @@ function discriminatedObject(discriminatorMappedPropName, discriminatorPropName,
     // Fallback to default schema
     return discriminatorMap[defaultDiscriminator];
   };
-  var mapJsonSchema = function (value, ctxt) {
+  const mapJsonSchema = function (value, ctxt) {
     return selectSchema(value, discriminatorPropName, function (schema) {
       return schema.validateBeforeMap(value, ctxt);
     });
   };
-  var mapXmlSchema = function (value, ctxt) {
-    var _a;
+  const mapXmlSchema = function (value, ctxt) {
+    let _a;
     return selectSchema(value, (_a = xmlOptions === null || xmlOptions === void 0 ? void 0 : xmlOptions.xmlName) !== null && _a !== void 0 ? _a : discriminatorPropName, function (schema) {
       return schema.validateBeforeMapXml(value, ctxt);
     }, xmlOptions === null || xmlOptions === void 0 ? void 0 : xmlOptions.isAttr);
   };
-  var unmapSchema = function (value, ctxt) {
+  const unmapSchema = function (value, ctxt) {
     return selectSchema(value, discriminatorMappedPropName, function (schema) {
       return schema.validateBeforeUnmap(value, ctxt);
     });
@@ -44,9 +44,9 @@ function discriminatedObject(discriminatorMappedPropName, discriminatorPropName,
   return {
     type: function () {
       return "DiscriminatedUnion<".concat(discriminatorPropName, ",[").concat(objectEntries(discriminatorMap).map(function (_a) {
-        var _b = __read(_a, 2);
+        const _b = __read(_a, 2);
         _b[0];
-        var v = _b[1];
+        const v = _b[1];
         return v.type;
       }).join(','), "]>");
     },

@@ -8,13 +8,13 @@
  * @returns {Array} Returns the new filtered array.
  */
 function arrayFilter(array, predicate) {
-  var index = -1,
+  let index = -1,
       length = array == null ? 0 : array.length,
       resIndex = 0,
       result = [];
 
   while (++index < length) {
-    var value = array[index];
+    const value = array[index];
     if (predicate(value, index, array)) {
       result[resIndex++] = value;
     }

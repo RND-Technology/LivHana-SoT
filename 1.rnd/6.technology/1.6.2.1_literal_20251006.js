@@ -4,9 +4,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = literalTemplate;
-var _options = require("./options.js");
-var _parse = require("./parse.js");
-var _populate = require("./populate.js");
+const _options = require("./options.js");
+const _parse = require("./parse.js");
+const _populate = require("./populate.js");
 function literalTemplate(formatter, tpl, opts) {
   const {
     metadata,

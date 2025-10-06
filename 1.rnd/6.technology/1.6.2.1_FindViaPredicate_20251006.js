@@ -1,14 +1,14 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
-var isInteger = require('math-intrinsics/isInteger');
-var isObject = require('es-object-atoms/isObject');
+const $TypeError = require('es-errors/type');
+const isInteger = require('math-intrinsics/isInteger');
+const isObject = require('es-object-atoms/isObject');
 
-var Call = require('./Call');
-var Get = require('./Get');
-var ToBoolean = require('./ToBoolean');
-var IsCallable = require('./IsCallable');
-var ToString = require('./ToString');
+const Call = require('./Call');
+const Get = require('./Get');
+const ToBoolean = require('./ToBoolean');
+const IsCallable = require('./IsCallable');
+const ToString = require('./ToString');
 
 // https://262.ecma-international.org/14.0/#sec-findviapredicate
 
@@ -28,13 +28,13 @@ module.exports = function FindViaPredicate(O, len, direction, predicate, thisArg
 	}
 
 	for ( // steps 2-4
-		var k = direction === 'ascending' ? 0 : len - 1;
+		let k = direction === 'ascending' ? 0 : len - 1;
 		direction === 'ascending' ? k < len : k >= 0;
 		k += 1
 	) {
-		var Pk = ToString(k); // step 4.a
-		var kValue = Get(O, Pk); // step 4.c
-		var testResult = Call(predicate, thisArg, [kValue, k, O]); // step 4.d
+		const Pk = ToString(k); // step 4.a
+		const kValue = Get(O, Pk); // step 4.c
+		const testResult = Call(predicate, thisArg, [kValue, k, O]); // step 4.d
 		if (ToBoolean(testResult)) {
 			return { '[[Index]]': k, '[[Value]]': kValue }; // step 4.e
 		}

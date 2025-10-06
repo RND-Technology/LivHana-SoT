@@ -5,7 +5,7 @@
 'use strict';
 
 
-var Schema = require('../schema');
+const Schema = require('../schema');
 
 
 module.exports = new Schema({

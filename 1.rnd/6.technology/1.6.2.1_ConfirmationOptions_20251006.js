@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
 exports.confirmationOptionsSchema = void 0;
-var schema_1 = require("../schema");
-var confirmationDecision_1 = require("./confirmationDecision");
+const schema_1 = require("../schema");
+const confirmationDecision_1 = require("./confirmationDecision");
 exports.confirmationOptionsSchema = (0, schema_1.object)({
     title: ['title', (0, schema_1.string)()],
     body: ['body', (0, schema_1.string)()],

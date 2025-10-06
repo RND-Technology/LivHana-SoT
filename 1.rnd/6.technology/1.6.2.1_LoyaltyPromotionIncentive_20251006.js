@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
 exports.loyaltyPromotionIncentiveSchema = void 0;
-var schema_1 = require("../schema");
-var loyaltyPromotionIncentivePointsAdditionData_1 = require("./loyaltyPromotionIncentivePointsAdditionData");
-var loyaltyPromotionIncentivePointsMultiplierData_1 = require("./loyaltyPromotionIncentivePointsMultiplierData");
+const schema_1 = require("../schema");
+const loyaltyPromotionIncentivePointsAdditionData_1 = require("./loyaltyPromotionIncentivePointsAdditionData");
+const loyaltyPromotionIncentivePointsMultiplierData_1 = require("./loyaltyPromotionIncentivePointsMultiplierData");
 exports.loyaltyPromotionIncentiveSchema = (0, schema_1.object)({
     type: ['type', (0, schema_1.string)()],
     pointsMultiplierData: [

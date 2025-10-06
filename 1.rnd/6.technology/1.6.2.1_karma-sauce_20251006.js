@@ -1,8 +1,8 @@
-var version = require('./package.json').version;
-var ts = new Date().getTime();
+const version = require('./package.json').version;
+const ts = new Date().getTime();
 
 module.exports = function(config) {
-  var auth;
+  let auth;
 
   try {
     auth = require('./test/auth/index');
@@ -15,11 +15,11 @@ module.exports = function(config) {
   if (!auth.SAUCE_USERNAME || !auth.SAUCE_ACCESS_KEY) return;
   if (process.env.SKIP_SAUCE) return;
 
-  var branch = process.env.TRAVIS_BRANCH || 'local'
-  var browserConfig = require('./sauce.browsers');
-  var browsers = Object.keys(browserConfig);
-  var tags = [ 'chaijs_' + version, auth.SAUCE_USERNAME + '@' + branch ];
-  var tunnel = process.env.TRAVIS_JOB_NUMBER || ts;
+  const branch = process.env.TRAVIS_BRANCH || 'local'
+  const browserConfig = require('./sauce.browsers');
+  const browsers = Object.keys(browserConfig);
+  const tags = [ 'chaijs_' + version, auth.SAUCE_USERNAME + '@' + branch ];
+  const tunnel = process.env.TRAVIS_JOB_NUMBER || ts;
 
   if (process.env.TRAVIS_JOB_NUMBER) {
     tags.push('travis@' + process.env.TRAVIS_JOB_NUMBER);

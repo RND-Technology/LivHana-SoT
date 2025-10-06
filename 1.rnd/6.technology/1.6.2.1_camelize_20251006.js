@@ -2,7 +2,7 @@
 
 exports.__esModule = true;
 exports.default = camelize;
-var rHyphen = /-(.)/g;
+const rHyphen = /-(.)/g;
 
 function camelize(string) {
   return string.replace(rHyphen, function (_, chr) {

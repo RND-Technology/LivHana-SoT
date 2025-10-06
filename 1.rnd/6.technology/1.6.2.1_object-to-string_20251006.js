@@ -6,7 +6,7 @@ import { serializeStyles } from '@emotion/serialize'
 export function simplifyObject(node, t /*: Object */) {
   let finalString = ''
   for (let i = 0; i < node.properties.length; i++) {
-    let property = node.properties[i]
+    const property = node.properties[i]
 
     if (
       !t.isObjectProperty(property) ||
@@ -19,19 +19,19 @@ export function simplifyObject(node, t /*: Object */) {
       return node
     }
 
-    let key = property.key.name || property.key.value
+    const key = property.key.name || property.key.value
     if (key === 'styles') {
       return node
     }
     if (t.isObjectExpression(property.value)) {
-      let simplifiedChild = simplifyObject(property.value, t)
+      const simplifiedChild = simplifyObject(property.value, t)
       if (!t.isStringLiteral(simplifiedChild)) {
         return node
       }
       finalString += `${key}{${simplifiedChild.value}}`
       continue
     }
-    let value = property.value.value
+    const value = property.value.value
 
     finalString += serializeStyles([{ [key]: value }]).styles
   }

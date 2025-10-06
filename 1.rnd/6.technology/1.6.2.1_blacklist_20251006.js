@@ -60,5 +60,5 @@ const extensions = new Set([
   '.woff',
   '.woff2'
 ]);
-var _default = extensions;
+const _default = extensions;
 exports.default = _default;

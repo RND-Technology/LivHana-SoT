@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.isSvgElementPropKey = isSvgElementPropKey;
 exports.svgPropertiesNoEvents = svgPropertiesNoEvents;
-var SVGElementPropKeys = ['aria-activedescendant', 'aria-atomic', 'aria-autocomplete', 'aria-busy', 'aria-checked', 'aria-colcount', 'aria-colindex', 'aria-colspan', 'aria-controls', 'aria-current', 'aria-describedby', 'aria-details', 'aria-disabled', 'aria-errormessage', 'aria-expanded', 'aria-flowto', 'aria-haspopup', 'aria-hidden', 'aria-invalid', 'aria-keyshortcuts', 'aria-label', 'aria-labelledby', 'aria-level', 'aria-live', 'aria-modal', 'aria-multiline', 'aria-multiselectable', 'aria-orientation', 'aria-owns', 'aria-placeholder', 'aria-posinset', 'aria-pressed', 'aria-readonly', 'aria-relevant', 'aria-required', 'aria-roledescription', 'aria-rowcount', 'aria-rowindex', 'aria-rowspan', 'aria-selected', 'aria-setsize', 'aria-sort', 'aria-valuemax', 'aria-valuemin', 'aria-valuenow', 'aria-valuetext', 'className', 'color', 'height', 'id', 'lang', 'max', 'media', 'method', 'min', 'name', 'style',
+const SVGElementPropKeys = ['aria-activedescendant', 'aria-atomic', 'aria-autocomplete', 'aria-busy', 'aria-checked', 'aria-colcount', 'aria-colindex', 'aria-colspan', 'aria-controls', 'aria-current', 'aria-describedby', 'aria-details', 'aria-disabled', 'aria-errormessage', 'aria-expanded', 'aria-flowto', 'aria-haspopup', 'aria-hidden', 'aria-invalid', 'aria-keyshortcuts', 'aria-label', 'aria-labelledby', 'aria-level', 'aria-live', 'aria-modal', 'aria-multiline', 'aria-multiselectable', 'aria-orientation', 'aria-owns', 'aria-placeholder', 'aria-posinset', 'aria-pressed', 'aria-readonly', 'aria-relevant', 'aria-required', 'aria-roledescription', 'aria-rowcount', 'aria-rowindex', 'aria-rowspan', 'aria-selected', 'aria-setsize', 'aria-sort', 'aria-valuemax', 'aria-valuemin', 'aria-valuenow', 'aria-valuetext', 'className', 'color', 'height', 'id', 'lang', 'max', 'media', 'method', 'min', 'name', 'style',
 /*
  * removed 'type' SVGElementPropKey because we do not currently use any SVG elements
  * that can use it, and it conflicts with the recharts prop 'type'
@@ -18,7 +18,7 @@ function isSvgElementPropKey(key) {
   if (typeof key !== 'string') {
     return false;
   }
-  var allowedSvgKeys = SVGElementPropKeys;
+  const allowedSvgKeys = SVGElementPropKeys;
   return allowedSvgKeys.includes(key);
 }
 /**
@@ -27,8 +27,8 @@ function isSvgElementPropKey(key) {
  * @returns A new object containing only valid SVG properties, excluding event handlers.
  */
 function svgPropertiesNoEvents(obj) {
-  var filteredEntries = Object.entries(obj).filter(_ref => {
-    var [key] = _ref;
+  const filteredEntries = Object.entries(obj).filter(_ref => {
+    const [key] = _ref;
     return isSvgElementPropKey(key);
   });
   return Object.fromEntries(filteredEntries);

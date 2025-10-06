@@ -1,4 +1,4 @@
-var DataView = require('./_DataView'),
+const DataView = require('./_DataView'),
     Map = require('./_Map'),
     Promise = require('./_Promise'),
     Set = require('./_Set'),
@@ -7,16 +7,16 @@ var DataView = require('./_DataView'),
     toSource = require('./_toSource');
 
 /** `Object#toString` result references. */
-var mapTag = '[object Map]',
+const mapTag = '[object Map]',
     objectTag = '[object Object]',
     promiseTag = '[object Promise]',
     setTag = '[object Set]',
     weakMapTag = '[object WeakMap]';
 
-var dataViewTag = '[object DataView]';
+const dataViewTag = '[object DataView]';
 
 /** Used to detect maps, sets, and weakmaps. */
-var dataViewCtorString = toSource(DataView),
+const dataViewCtorString = toSource(DataView),
     mapCtorString = toSource(Map),
     promiseCtorString = toSource(Promise),
     setCtorString = toSource(Set),
@@ -29,7 +29,7 @@ var dataViewCtorString = toSource(DataView),
  * @param {*} value The value to query.
  * @returns {string} Returns the `toStringTag`.
  */
-var getTag = baseGetTag;
+let getTag = baseGetTag;
 
 // Fallback for data views, maps, sets, and weak maps in IE 11 and promises in Node.js < 6.
 if ((DataView && getTag(new DataView(new ArrayBuffer(1))) != dataViewTag) ||
@@ -38,7 +38,7 @@ if ((DataView && getTag(new DataView(new ArrayBuffer(1))) != dataViewTag) ||
     (Set && getTag(new Set) != setTag) ||
     (WeakMap && getTag(new WeakMap) != weakMapTag)) {
   getTag = function(value) {
-    var result = baseGetTag(value),
+    const result = baseGetTag(value),
         Ctor = result == objectTag ? value.constructor : undefined,
         ctorString = Ctor ? toSource(Ctor) : '';
 

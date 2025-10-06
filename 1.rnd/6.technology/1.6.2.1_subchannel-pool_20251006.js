@@ -74,7 +74,7 @@ class SubchannelPool {
      * Ensures that the cleanup task is spawned.
      */
     ensureCleanupTask() {
-        var _a, _b;
+        let _a, _b;
         if (this.cleanupTimer === null) {
             this.cleanupTimer = setInterval(() => {
                 this.unrefUnusedSubchannels();

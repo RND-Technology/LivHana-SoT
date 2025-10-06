@@ -1,8 +1,8 @@
 /** Used for built-in method references. */
-var objectProto = Object.prototype;
+const objectProto = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty = objectProto.hasOwnProperty;
+const hasOwnProperty = objectProto.hasOwnProperty;
 
 /**
  * Initializes an array clone.
@@ -12,7 +12,7 @@ var hasOwnProperty = objectProto.hasOwnProperty;
  * @returns {Array} Returns the initialized clone.
  */
 function initCloneArray(array) {
-  var length = array.length,
+  const length = array.length,
       result = new array.constructor(length);
 
   // Add properties assigned by `RegExp#exec`.

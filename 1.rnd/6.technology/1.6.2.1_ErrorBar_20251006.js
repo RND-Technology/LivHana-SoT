@@ -4,28 +4,28 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.ErrorBar = void 0;
-var _react = _interopRequireWildcard(require("react"));
-var React = _react;
-var _Layer = require("../container/Layer");
-var _ErrorBarContext = require("../context/ErrorBarContext");
-var _hooks = require("../hooks");
-var _resolveDefaultProps = require("../util/resolveDefaultProps");
-var _svgPropertiesNoEvents = require("../util/svgPropertiesNoEvents");
-var _chartLayoutContext = require("../context/chartLayoutContext");
-var _CSSTransitionAnimate = require("../animation/CSSTransitionAnimate");
-var _excluded = ["direction", "width", "dataKey", "isAnimationActive", "animationBegin", "animationDuration", "animationEasing"];
+const _react = _interopRequireWildcard(require("react"));
+const React = _react;
+const _Layer = require("../container/Layer");
+const _ErrorBarContext = require("../context/ErrorBarContext");
+const _hooks = require("../hooks");
+const _resolveDefaultProps = require("../util/resolveDefaultProps");
+const _svgPropertiesNoEvents = require("../util/svgPropertiesNoEvents");
+const _chartLayoutContext = require("../context/chartLayoutContext");
+const _CSSTransitionAnimate = require("../animation/CSSTransitionAnimate");
+const _excluded = ["direction", "width", "dataKey", "isAnimationActive", "animationBegin", "animationDuration", "animationEasing"];
 /**
  * @fileOverview Render a group of error bar
  */
-function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
-function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; let o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (const _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (let e = 1; e < arguments.length; e++) { const t = arguments[e]; for (const r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+function ownKeys(e, r) { const t = Object.keys(e); if (Object.getOwnPropertySymbols) { let o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (let r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-function _objectWithoutProperties(e, t) { if (null == e) return {}; var o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { var n = Object.getOwnPropertySymbols(e); for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
-function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t = {}; for (var n in r) if ({}.hasOwnProperty.call(r, n)) { if (-1 !== e.indexOf(n)) continue; t[n] = r[n]; } return t; }
+function _toPropertyKey(t) { const i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; const e = t[Symbol.toPrimitive]; if (void 0 !== e) { const i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _objectWithoutProperties(e, t) { if (null == e) return {}; let o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { const n = Object.getOwnPropertySymbols(e); for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
+function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; const t = {}; for (const n in r) if ({}.hasOwnProperty.call(r, n)) { if (-1 !== e.indexOf(n)) continue; t[n] = r[n]; } return t; }
 /**
  * So usually the direction is decided by the chart layout.
  * Horizontal layout means error bars are vertical means direction=y
@@ -45,7 +45,7 @@ function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t =
  */
 
 function ErrorBarImpl(props) {
-  var {
+  let {
       direction,
       width,
       dataKey,
@@ -55,16 +55,16 @@ function ErrorBarImpl(props) {
       animationEasing
     } = props,
     others = _objectWithoutProperties(props, _excluded);
-  var svgProps = (0, _svgPropertiesNoEvents.svgPropertiesNoEvents)(others);
-  var {
+  const svgProps = (0, _svgPropertiesNoEvents.svgPropertiesNoEvents)(others);
+  const {
     data,
     dataPointFormatter,
     xAxisId,
     yAxisId,
     errorBarOffset: offset
   } = (0, _ErrorBarContext.useErrorBarContext)();
-  var xAxis = (0, _hooks.useXAxis)(xAxisId);
-  var yAxis = (0, _hooks.useYAxis)(yAxisId);
+  const xAxis = (0, _hooks.useXAxis)(xAxisId);
+  const yAxis = (0, _hooks.useYAxis)(yAxisId);
   if ((xAxis === null || xAxis === void 0 ? void 0 : xAxis.scale) == null || (yAxis === null || yAxis === void 0 ? void 0 : yAxis.scale) == null || data == null) {
     return null;
   }
@@ -73,8 +73,8 @@ function ErrorBarImpl(props) {
   if (direction === 'x' && xAxis.type !== 'number') {
     return null;
   }
-  var errorBars = data.map(entry => {
-    var {
+  const errorBars = data.map(entry => {
+    const {
       x,
       y,
       value,
@@ -83,8 +83,8 @@ function ErrorBarImpl(props) {
     if (!errorVal || x == null || y == null) {
       return null;
     }
-    var lineCoordinates = [];
-    var lowBound, highBound;
+    const lineCoordinates = [];
+    let lowBound, highBound;
     if (Array.isArray(errorVal)) {
       [lowBound, highBound] = errorVal;
     } else {
@@ -92,14 +92,14 @@ function ErrorBarImpl(props) {
     }
     if (direction === 'x') {
       // error bar for horizontal charts, the y is fixed, x is a range value
-      var {
+      const {
         scale
       } = xAxis;
-      var yMid = y + offset;
-      var yMin = yMid + width;
-      var yMax = yMid - width;
-      var xMin = scale(value - lowBound);
-      var xMax = scale(value + highBound);
+      const yMid = y + offset;
+      const yMin = yMid + width;
+      const yMax = yMid - width;
+      const xMin = scale(value - lowBound);
+      const xMax = scale(value + highBound);
 
       // the right line of |--|
       lineCoordinates.push({
@@ -124,14 +124,14 @@ function ErrorBarImpl(props) {
       });
     } else if (direction === 'y') {
       // error bar for horizontal charts, the x is fixed, y is a range value
-      var {
+      const {
         scale: _scale
       } = yAxis;
-      var xMid = x + offset;
-      var _xMin = xMid - width;
-      var _xMax = xMid + width;
-      var _yMin = _scale(value - lowBound);
-      var _yMax = _scale(value + highBound);
+      const xMid = x + offset;
+      const _xMin = xMid - width;
+      const _xMax = xMid + width;
+      const _yMin = _scale(value - lowBound);
+      const _yMax = _scale(value + highBound);
 
       // the top line
       lineCoordinates.push({
@@ -155,13 +155,13 @@ function ErrorBarImpl(props) {
         y2: _yMin
       });
     }
-    var scaleDirection = direction === 'x' ? 'scaleX' : 'scaleY';
-    var transformOrigin = "".concat(x + offset, "px ").concat(y + offset, "px");
+    const scaleDirection = direction === 'x' ? 'scaleX' : 'scaleY';
+    const transformOrigin = "".concat(x + offset, "px ").concat(y + offset, "px");
     return /*#__PURE__*/React.createElement(_Layer.Layer, _extends({
       className: "recharts-errorBar",
       key: "bar-".concat(lineCoordinates.map(c => "".concat(c.x1, "-").concat(c.x2, "-").concat(c.y1, "-").concat(c.y2)))
     }, svgProps), lineCoordinates.map(coordinates => {
-      var lineStyle = isAnimationActive ? {
+      const lineStyle = isAnimationActive ? {
         transformOrigin
       } : undefined;
       return /*#__PURE__*/React.createElement(_CSSTransitionAnimate.CSSTransitionAnimate, {
@@ -184,7 +184,7 @@ function ErrorBarImpl(props) {
   }, errorBars);
 }
 function useErrorBarDirection(directionFromProps) {
-  var layout = (0, _chartLayoutContext.useChartLayout)();
+  const layout = (0, _chartLayoutContext.useChartLayout)();
   if (directionFromProps != null) {
     return directionFromProps;
   }
@@ -193,7 +193,7 @@ function useErrorBarDirection(directionFromProps) {
   }
   return 'x';
 }
-var errorBarDefaultProps = {
+const errorBarDefaultProps = {
   stroke: 'black',
   strokeWidth: 1.5,
   width: 5,
@@ -204,8 +204,8 @@ var errorBarDefaultProps = {
   animationEasing: 'ease-in-out'
 };
 function ErrorBarInternal(props) {
-  var realDirection = useErrorBarDirection(props.direction);
-  var {
+  const realDirection = useErrorBarDirection(props.direction);
+  const {
     width,
     isAnimationActive,
     animationBegin,

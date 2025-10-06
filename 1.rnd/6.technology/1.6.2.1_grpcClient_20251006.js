@@ -14,7 +14,7 @@ const { NR_CSEC_FUZZ_REQUEST_ID } = require('../../core/sec-agent-constants');
  * @returns 
  */
 function getGPRCClient(config) {
-    let grpc = require("@grpc/grpc-js");
+    const grpc = require("@grpc/grpc-js");
     try {
         const serviceName = grpcutils.getMethod(config.method).serviceName;
 
@@ -23,7 +23,7 @@ function getGPRCClient(config) {
         }
         const serviceObject = grpcutils.getService(serviceName);
         const definition = grpc.loadPackageDefinition(serviceObject);
-        let service = getNestedValue(definition, serviceName)
+        const service = getNestedValue(definition, serviceName)
         if (service) {
             logger.info("GRPC client service extracted successfully");
         }
@@ -53,10 +53,10 @@ function fireUnaryRequest(client, config) {
     try {
         const methodObj = grpcutils.getMethod(config.requestURI);
         if (methodObj && methodObj.originalName) {
-            let method = methodObj.originalName;
-            let metadata = new grpc.Metadata();
-            let bufferObj = Buffer.from(config.headers[NR_CSEC_FUZZ_REQUEST_ID], "utf8");
-            let base64String = bufferObj.toString("base64");
+            const method = methodObj.originalName;
+            const metadata = new grpc.Metadata();
+            const bufferObj = Buffer.from(config.headers[NR_CSEC_FUZZ_REQUEST_ID], "utf8");
+            const base64String = bufferObj.toString("base64");
             metadata.add(NR_CSEC_FUZZ_REQUEST_ID, base64String);
             client[method](JSON.parse(config.data), metadata, (err, res) => {
                 if (err) {
@@ -87,7 +87,7 @@ function fireRequest(config) {
     } catch (error) {
         logger.debug("Unable to import grpc module", error);
     }
-    let client = getGPRCClient(config);
+    const client = getGPRCClient(config);
     fireUnaryRequest(client, config)
 }
 

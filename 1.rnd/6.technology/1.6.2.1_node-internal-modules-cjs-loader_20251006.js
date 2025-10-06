@@ -51,7 +51,7 @@ const Module = require('module');
 
 const isWindows = process.platform === 'win32';
 
-let statCache = null;
+const statCache = null;
 
 function stat(filename) {
   filename = path.toNamespacedPath(filename);

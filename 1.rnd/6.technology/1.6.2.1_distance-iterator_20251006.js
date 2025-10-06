@@ -15,7 +15,7 @@ function
 _default
 /*istanbul ignore end*/
 (start, minLine, maxLine) {
-  var wantForward = true,
+  let wantForward = true,
       backwardExhausted = false,
       forwardExhausted = false,
       localOffset = 1;

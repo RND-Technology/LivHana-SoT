@@ -1,6 +1,6 @@
 'use strict';
 
-var compileSchema = require('./compile')
+const compileSchema = require('./compile')
   , resolve = require('./compile/resolve')
   , Cache = require('./cache')
   , SchemaObject = require('./compile/schema_obj')
@@ -26,21 +26,21 @@ Ajv.prototype._addSchema = _addSchema;
 Ajv.prototype._compile = _compile;
 
 Ajv.prototype.compileAsync = require('./compile/async');
-var customKeyword = require('./keyword');
+const customKeyword = require('./keyword');
 Ajv.prototype.addKeyword = customKeyword.add;
 Ajv.prototype.getKeyword = customKeyword.get;
 Ajv.prototype.removeKeyword = customKeyword.remove;
 Ajv.prototype.validateKeyword = customKeyword.validate;
 
-var errorClasses = require('./compile/error_classes');
+const errorClasses = require('./compile/error_classes');
 Ajv.ValidationError = errorClasses.Validation;
 Ajv.MissingRefError = errorClasses.MissingRef;
 Ajv.$dataMetaSchema = $dataMetaSchema;
 
-var META_SCHEMA_ID = 'http://json-schema.org/draft-07/schema';
+const META_SCHEMA_ID = 'http://json-schema.org/draft-07/schema';
 
-var META_IGNORE_OPTIONS = [ 'removeAdditional', 'useDefaults', 'coerceTypes', 'strictDefaults' ];
-var META_SUPPORT_DATA = ['/properties'];
+const META_IGNORE_OPTIONS = [ 'removeAdditional', 'useDefaults', 'coerceTypes', 'strictDefaults' ];
+const META_SUPPORT_DATA = ['/properties'];
 
 /**
  * Creates validator instance.
@@ -87,16 +87,16 @@ function Ajv(opts) {
  * @return {Boolean} validation result. Errors from the last validation will be available in `ajv.errors` (and also in compiled schema: `schema.errors`).
  */
 function validate(schemaKeyRef, data) {
-  var v;
+  let v;
   if (typeof schemaKeyRef == 'string') {
     v = this.getSchema(schemaKeyRef);
     if (!v) throw new Error('no schema with key or ref "' + schemaKeyRef + '"');
   } else {
-    var schemaObj = this._addSchema(schemaKeyRef);
+    const schemaObj = this._addSchema(schemaKeyRef);
     v = schemaObj.validate || this._compile(schemaObj);
   }
 
-  var valid = v(data);
+  const valid = v(data);
   if (v.$async !== true) this.errors = v.errors;
   return valid;
 }
@@ -110,7 +110,7 @@ function validate(schemaKeyRef, data) {
  * @return {Function} validating function
  */
 function compile(schema, _meta) {
-  var schemaObj = this._addSchema(schema, undefined, _meta);
+  const schemaObj = this._addSchema(schema, undefined, _meta);
   return schemaObj.validate || this._compile(schemaObj);
 }
 
@@ -126,10 +126,10 @@ function compile(schema, _meta) {
  */
 function addSchema(schema, key, _skipValidation, _meta) {
   if (Array.isArray(schema)){
-    for (var i=0; i<schema.length; i++) this.addSchema(schema[i], undefined, _skipValidation, _meta);
+    for (let i=0; i<schema.length; i++) this.addSchema(schema[i], undefined, _skipValidation, _meta);
     return this;
   }
-  var id = this._getId(schema);
+  const id = this._getId(schema);
   if (id !== undefined && typeof id != 'string')
     throw new Error('schema id must be string');
   key = resolve.normalizeId(key || id);
@@ -162,7 +162,7 @@ function addMetaSchema(schema, key, skipValidation) {
  * @return {Boolean} true if schema is valid
  */
 function validateSchema(schema, throwOrLogError) {
-  var $schema = schema.$schema;
+  let $schema = schema.$schema;
   if ($schema !== undefined && typeof $schema != 'string')
     throw new Error('$schema must be a string');
   $schema = $schema || this._opts.defaultMeta || defaultMeta(this);
@@ -171,9 +171,9 @@ function validateSchema(schema, throwOrLogError) {
     this.errors = null;
     return true;
   }
-  var valid = this.validate($schema, schema);
+  const valid = this.validate($schema, schema);
   if (!valid && throwOrLogError) {
-    var message = 'schema is invalid: ' + this.errorsText();
+    const message = 'schema is invalid: ' + this.errorsText();
     if (this._opts.validateSchema == 'log') this.logger.error(message);
     else throw new Error(message);
   }
@@ -182,7 +182,7 @@ function validateSchema(schema, throwOrLogError) {
 
 
 function defaultMeta(self) {
-  var meta = self._opts.meta;
+  const meta = self._opts.meta;
   self._opts.defaultMeta = typeof meta == 'object'
                             ? self._getId(meta) || meta
                             : self.getSchema(META_SCHEMA_ID)
@@ -199,7 +199,7 @@ function defaultMeta(self) {
  * @return {Function} schema validating function (with property `schema`).
  */
 function getSchema(keyRef) {
-  var schemaObj = _getSchemaObj(this, keyRef);
+  const schemaObj = _getSchemaObj(this, keyRef);
   switch (typeof schemaObj) {
     case 'object': return schemaObj.validate || this._compile(schemaObj);
     case 'string': return this.getSchema(schemaObj);
@@ -209,12 +209,12 @@ function getSchema(keyRef) {
 
 
 function _getSchemaFragment(self, ref) {
-  var res = resolve.schema.call(self, { schema: {} }, ref);
+  const res = resolve.schema.call(self, { schema: {} }, ref);
   if (res) {
-    var schema = res.schema
+    const schema = res.schema
       , root = res.root
       , baseId = res.baseId;
-    var v = compileSchema.call(self, schema, root, undefined, baseId);
+    const v = compileSchema.call(self, schema, root, undefined, baseId);
     self._fragments[ref] = new SchemaObject({
       ref: ref,
       fragment: true,
@@ -277,8 +277,8 @@ function removeSchema(schemaKeyRef) {
 
 
 function _removeAllSchemas(self, schemas, regex) {
-  for (var keyRef in schemas) {
-    var schemaObj = schemas[keyRef];
+  for (const keyRef in schemas) {
+    const schemaObj = schemas[keyRef];
     if (!schemaObj.meta && (!regex || regex.test(keyRef))) {
       self._cache.del(schemaObj.cacheKey);
       delete schemas[keyRef];
@@ -291,24 +291,24 @@ function _removeAllSchemas(self, schemas, regex) {
 function _addSchema(schema, skipValidation, meta, shouldAddSchema) {
   if (typeof schema != 'object' && typeof schema != 'boolean')
     throw new Error('schema should be object or boolean');
-  var serialize = this._opts.serialize;
-  var cacheKey = serialize ? serialize(schema) : schema;
-  var cached = this._cache.get(cacheKey);
+  const serialize = this._opts.serialize;
+  const cacheKey = serialize ? serialize(schema) : schema;
+  const cached = this._cache.get(cacheKey);
   if (cached) return cached;
 
   shouldAddSchema = shouldAddSchema || this._opts.addUsedSchema !== false;
 
-  var id = resolve.normalizeId(this._getId(schema));
+  const id = resolve.normalizeId(this._getId(schema));
   if (id && shouldAddSchema) checkUnique(this, id);
 
-  var willValidate = this._opts.validateSchema !== false && !skipValidation;
-  var recursiveMeta;
+  const willValidate = this._opts.validateSchema !== false && !skipValidation;
+  let recursiveMeta;
   if (willValidate && !(recursiveMeta = id && id == resolve.normalizeId(schema.$schema)))
     this.validateSchema(schema, true);
 
-  var localRefs = resolve.ids.call(this, schema);
+  const localRefs = resolve.ids.call(this, schema);
 
-  var schemaObj = new SchemaObject({
+  const schemaObj = new SchemaObject({
     id: id,
     schema: schema,
     localRefs: localRefs,
@@ -338,13 +338,13 @@ function _compile(schemaObj, root) {
   }
   schemaObj.compiling = true;
 
-  var currentOpts;
+  let currentOpts;
   if (schemaObj.meta) {
     currentOpts = this._opts;
     this._opts = this._metaOpts;
   }
 
-  var v;
+  let v;
   try { v = compileSchema.call(this, schemaObj.schema, root, schemaObj.localRefs); }
   catch(e) {
     delete schemaObj.validate;
@@ -365,8 +365,8 @@ function _compile(schemaObj, root) {
   /* @this   {*} - custom context, see passContext option */
   function callValidate() {
     /* jshint validthis: true */
-    var _validate = schemaObj.validate;
-    var result = _validate.apply(this, arguments);
+    const _validate = schemaObj.validate;
+    const result = _validate.apply(this, arguments);
     callValidate.errors = _validate.errors;
     return result;
   }
@@ -412,12 +412,12 @@ function errorsText(errors, options) {
   errors = errors || this.errors;
   if (!errors) return 'No errors';
   options = options || {};
-  var separator = options.separator === undefined ? ', ' : options.separator;
-  var dataVar = options.dataVar === undefined ? 'data' : options.dataVar;
+  const separator = options.separator === undefined ? ', ' : options.separator;
+  const dataVar = options.dataVar === undefined ? 'data' : options.dataVar;
 
-  var text = '';
-  for (var i=0; i<errors.length; i++) {
-    var e = errors[i];
+  let text = '';
+  for (let i=0; i<errors.length; i++) {
+    const e = errors[i];
     if (e) text += dataVar + e.dataPath + ' ' + e.message + separator;
   }
   return text.slice(0, -separator.length);
@@ -439,13 +439,13 @@ function addFormat(name, format) {
 
 
 function addDefaultMetaSchema(self) {
-  var $dataSchema;
+  let $dataSchema;
   if (self._opts.$data) {
     $dataSchema = require('./refs/data.json');
     self.addMetaSchema($dataSchema, $dataSchema.$id, true);
   }
   if (self._opts.meta === false) return;
-  var metaSchema = require('./refs/json-schema-draft-07.json');
+  let metaSchema = require('./refs/json-schema-draft-07.json');
   if (self._opts.$data) metaSchema = $dataMetaSchema(metaSchema, META_SUPPORT_DATA);
   self.addMetaSchema(metaSchema, META_SCHEMA_ID, true);
   self._refs['http://json-schema.org/schema'] = META_SCHEMA_ID;
@@ -453,24 +453,24 @@ function addDefaultMetaSchema(self) {
 
 
 function addInitialSchemas(self) {
-  var optsSchemas = self._opts.schemas;
+  const optsSchemas = self._opts.schemas;
   if (!optsSchemas) return;
   if (Array.isArray(optsSchemas)) self.addSchema(optsSchemas);
-  else for (var key in optsSchemas) self.addSchema(optsSchemas[key], key);
+  else for (const key in optsSchemas) self.addSchema(optsSchemas[key], key);
 }
 
 
 function addInitialFormats(self) {
-  for (var name in self._opts.formats) {
-    var format = self._opts.formats[name];
+  for (const name in self._opts.formats) {
+    const format = self._opts.formats[name];
     self.addFormat(name, format);
   }
 }
 
 
 function addInitialKeywords(self) {
-  for (var name in self._opts.keywords) {
-    var keyword = self._opts.keywords[name];
+  for (const name in self._opts.keywords) {
+    const keyword = self._opts.keywords[name];
     self.addKeyword(name, keyword);
   }
 }
@@ -483,15 +483,15 @@ function checkUnique(self, id) {
 
 
 function getMetaSchemaOptions(self) {
-  var metaOpts = util.copy(self._opts);
-  for (var i=0; i<META_IGNORE_OPTIONS.length; i++)
+  const metaOpts = util.copy(self._opts);
+  for (let i=0; i<META_IGNORE_OPTIONS.length; i++)
     delete metaOpts[META_IGNORE_OPTIONS[i]];
   return metaOpts;
 }
 
 
 function setLogger(self) {
-  var logger = self._opts.logger;
+  let logger = self._opts.logger;
   if (logger === false) {
     self.logger = {log: noop, warn: noop, error: noop};
   } else {

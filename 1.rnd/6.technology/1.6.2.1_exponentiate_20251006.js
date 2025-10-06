@@ -1,9 +1,9 @@
 'use strict';
 
 // var isNegativeZero = require('math-intrinsics/isNegativeZero');
-var $pow = require('math-intrinsics/pow');
+const $pow = require('math-intrinsics/pow');
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
 /*
 var abs = require('math-intrinsics/abs');

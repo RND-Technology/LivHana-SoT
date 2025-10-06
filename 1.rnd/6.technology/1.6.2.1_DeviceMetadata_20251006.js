@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
 exports.deviceMetadataSchema = void 0;
-var schema_1 = require("../schema");
+const schema_1 = require("../schema");
 exports.deviceMetadataSchema = (0, schema_1.object)({
     batteryPercentage: ['battery_percentage', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.string)()))],
     chargingState: ['charging_state', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.string)()))],

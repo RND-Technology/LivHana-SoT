@@ -81,7 +81,7 @@ Builder.prototype.j2x = function(jObj, level, ajPath) {
   let attrStr = '';
   let val = '';
   const jPath = ajPath.join('.')
-  for (let key in jObj) {
+  for (const key in jObj) {
     if(!Object.prototype.hasOwnProperty.call(jObj, key)) continue;
     if (typeof jObj[key] === 'undefined') {
       // supress undefined node only if it is not an attribute
@@ -110,7 +110,7 @@ Builder.prototype.j2x = function(jObj, level, ajPath) {
       } else if (!attr) {
         //tag value
         if (key === this.options.textNodeName) {
-          let newval = this.options.tagValueProcessor(key, '' + jObj[key]);
+          const newval = this.options.tagValueProcessor(key, '' + jObj[key]);
           val += this.replaceEntitiesValue(newval);
         } else {
           val += this.buildTextValNode(jObj[key], key, '', level);

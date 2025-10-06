@@ -417,7 +417,7 @@ class Scripts {
         return result;
     }
     moveToFinishedArgs(job, val, propVal, shouldRemove, target, token, timestamp, fetchNext = true, fieldsToUpdate) {
-        var _a, _b, _c, _d, _e, _f, _g;
+        let _a, _b, _c, _d, _e, _f, _g;
         const queueKeys = this.queue.keys;
         const opts = this.queue.opts;
         const workerKeepJobs = target === 'completed' ? opts.removeOnComplete : opts.removeOnFail;

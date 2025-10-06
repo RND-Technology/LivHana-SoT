@@ -1,41 +1,41 @@
 "use strict";
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __export = (target, all) => {
+  for (const name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var workerMain_exports = {};
+const __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+const workerMain_exports = {};
 __export(workerMain_exports, {
   WorkerMain: () => WorkerMain,
   create: () => create
 });
 module.exports = __toCommonJS(workerMain_exports);
-var import_utils = require("playwright-core/lib/utils");
-var import_utils2 = require("playwright-core/lib/utils");
-var import_configLoader = require("../common/configLoader");
-var import_globals = require("../common/globals");
-var import_ipc = require("../common/ipc");
-var import_util = require("../util");
-var import_fixtureRunner = require("./fixtureRunner");
-var import_testInfo = require("./testInfo");
-var import_util2 = require("./util");
-var import_fixtures = require("../common/fixtures");
-var import_poolBuilder = require("../common/poolBuilder");
-var import_process = require("../common/process");
-var import_suiteUtils = require("../common/suiteUtils");
-var import_testLoader = require("../common/testLoader");
+const import_utils = require("playwright-core/lib/utils");
+const import_utils2 = require("playwright-core/lib/utils");
+const import_configLoader = require("../common/configLoader");
+const import_globals = require("../common/globals");
+const import_ipc = require("../common/ipc");
+const import_util = require("../util");
+const import_fixtureRunner = require("./fixtureRunner");
+const import_testInfo = require("./testInfo");
+const import_util2 = require("./util");
+const import_fixtures = require("../common/fixtures");
+const import_poolBuilder = require("../common/poolBuilder");
+const import_process = require("../common/process");
+const import_suiteUtils = require("../common/suiteUtils");
+const import_testLoader = require("../common/testLoader");
 class WorkerMain extends import_process.ProcessRunner {
   constructor(params) {
     super();

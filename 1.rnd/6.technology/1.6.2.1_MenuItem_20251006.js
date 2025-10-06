@@ -1,32 +1,32 @@
 "use strict";
 'use client';
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+const _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.overridesResolver = exports.default = void 0;
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-var React = _interopRequireWildcard(require("react"));
-var _propTypes = _interopRequireDefault(require("prop-types"));
-var _clsx = _interopRequireDefault(require("clsx"));
-var _composeClasses = _interopRequireDefault(require("@mui/utils/composeClasses"));
-var _colorManipulator = require("@mui/system/colorManipulator");
-var _styled = _interopRequireWildcard(require("../styles/styled"));
-var _DefaultPropsProvider = require("../DefaultPropsProvider");
-var _ListContext = _interopRequireDefault(require("../List/ListContext"));
-var _ButtonBase = _interopRequireDefault(require("../ButtonBase"));
-var _useEnhancedEffect = _interopRequireDefault(require("../utils/useEnhancedEffect"));
-var _useForkRef = _interopRequireDefault(require("../utils/useForkRef"));
-var _Divider = require("../Divider");
-var _ListItemIcon = require("../ListItemIcon");
-var _ListItemText = require("../ListItemText");
-var _menuItemClasses = _interopRequireWildcard(require("./menuItemClasses"));
-var _jsxRuntime = require("react/jsx-runtime");
+const _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+const _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+const React = _interopRequireWildcard(require("react"));
+const _propTypes = _interopRequireDefault(require("prop-types"));
+const _clsx = _interopRequireDefault(require("clsx"));
+const _composeClasses = _interopRequireDefault(require("@mui/utils/composeClasses"));
+const _colorManipulator = require("@mui/system/colorManipulator");
+const _styled = _interopRequireWildcard(require("../styles/styled"));
+const _DefaultPropsProvider = require("../DefaultPropsProvider");
+const _ListContext = _interopRequireDefault(require("../List/ListContext"));
+const _ButtonBase = _interopRequireDefault(require("../ButtonBase"));
+const _useEnhancedEffect = _interopRequireDefault(require("../utils/useEnhancedEffect"));
+const _useForkRef = _interopRequireDefault(require("../utils/useForkRef"));
+const _Divider = require("../Divider");
+const _ListItemIcon = require("../ListItemIcon");
+const _ListItemText = require("../ListItemText");
+const _menuItemClasses = _interopRequireWildcard(require("./menuItemClasses"));
+const _jsxRuntime = require("react/jsx-runtime");
 const _excluded = ["autoFocus", "component", "dense", "divider", "disableGutters", "focusVisibleClassName", "role", "tabIndex", "className"];
-function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
-function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; const r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; const t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); const n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (const u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { const i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 const overridesResolver = (props, styles) => {
   const {
     ownerState
@@ -266,4 +266,4 @@ process.env.NODE_ENV !== "production" ? MenuItem.propTypes /* remove-proptypes *
    */
   tabIndex: _propTypes.default.number
 } : void 0;
-var _default = exports.default = MenuItem;
+const _default = exports.default = MenuItem;

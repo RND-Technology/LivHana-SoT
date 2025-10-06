@@ -6,18 +6,18 @@ Object.defineProperty(exports, "__esModule", {
 exports.circles = exports.cells = exports.beaches = void 0;
 exports.default = Diagram;
 exports.epsilon2 = exports.epsilon = exports.edges = void 0;
-var _Beach = require("./Beach");
-var _Cell = require("./Cell");
-var _Circle = require("./Circle");
-var _Edge = require("./Edge");
-var _RedBlackTree = _interopRequireDefault(require("./RedBlackTree"));
+const _Beach = require("./Beach");
+const _Cell = require("./Cell");
+const _Circle = require("./Circle");
+const _Edge = require("./Edge");
+const _RedBlackTree = _interopRequireDefault(require("./RedBlackTree"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-var epsilon = exports.epsilon = 1e-6;
-var epsilon2 = exports.epsilon2 = 1e-12;
-var beaches;
-var cells;
-var circles;
-var edges;
+const epsilon = exports.epsilon = 1e-6;
+const epsilon2 = exports.epsilon2 = 1e-12;
+let beaches;
+let cells;
+let circles;
+let edges;
 function triangleArea(a, b, c) {
   return (a[0] - c[0]) * (b[1] - a[1]) - (a[0] - b[0]) * (c[1] - a[1]);
 }
@@ -25,7 +25,7 @@ function lexicographic(a, b) {
   return b[1] - a[1] || b[0] - a[0];
 }
 function Diagram(sites, extent) {
-  var site = sites.sort(lexicographic).pop(),
+  let site = sites.sort(lexicographic).pop(),
     x,
     y,
     circle;
@@ -49,7 +49,7 @@ function Diagram(sites, extent) {
   }
   (0, _Cell.sortCellHalfedges)();
   if (extent) {
-    var x0 = +extent[0][0],
+    const x0 = +extent[0][0],
       y0 = +extent[0][1],
       x1 = +extent[1][0],
       y1 = +extent[1][1];
@@ -63,9 +63,9 @@ function Diagram(sites, extent) {
 Diagram.prototype = {
   constructor: Diagram,
   polygons: function () {
-    var edges = this.edges;
+    const edges = this.edges;
     return this.cells.map(function (cell) {
-      var polygon = cell.halfedges.map(function (i) {
+      const polygon = cell.halfedges.map(function (i) {
         return (0, _Cell.cellHalfedgeStart)(cell, edges[i]);
       });
       polygon.data = cell.site.data;
@@ -73,11 +73,11 @@ Diagram.prototype = {
     });
   },
   triangles: function () {
-    var triangles = [],
+    const triangles = [],
       edges = this.edges;
     this.cells.forEach(function (cell, i) {
       if (!(m = (halfedges = cell.halfedges).length)) return;
-      var site = cell.site,
+      let site = cell.site,
         halfedges,
         j = -1,
         m,
@@ -106,7 +106,7 @@ Diagram.prototype = {
     });
   },
   find: function (x, y, radius) {
-    var that = this,
+    let that = this,
       i0,
       i1 = that._found || 0,
       n = that.cells.length,
@@ -114,7 +114,7 @@ Diagram.prototype = {
 
     // Use the previously-found cell, or start with an arbitrary one.
     while (!(cell = that.cells[i1])) if (++i1 >= n) return null;
-    var dx = x - cell.site[0],
+    let dx = x - cell.site[0],
       dy = y - cell.site[1],
       d2 = dx * dx + dy * dy;
 
@@ -122,10 +122,10 @@ Diagram.prototype = {
     do {
       cell = that.cells[i0 = i1], i1 = null;
       cell.halfedges.forEach(function (e) {
-        var edge = that.edges[e],
+        let edge = that.edges[e],
           v = edge.left;
         if ((v === cell.site || !v) && !(v = edge.right)) return;
-        var vx = x - v[0],
+        const vx = x - v[0],
           vy = y - v[1],
           v2 = vx * vx + vy * vy;
         if (v2 < d2) d2 = v2, i1 = v.index;

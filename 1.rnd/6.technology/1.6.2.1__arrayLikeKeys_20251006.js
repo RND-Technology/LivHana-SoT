@@ -1,4 +1,4 @@
-var baseTimes = require('./_baseTimes'),
+const baseTimes = require('./_baseTimes'),
     isArguments = require('./isArguments'),
     isArray = require('./isArray'),
     isBuffer = require('./isBuffer'),
@@ -6,10 +6,10 @@ var baseTimes = require('./_baseTimes'),
     isTypedArray = require('./isTypedArray');
 
 /** Used for built-in method references. */
-var objectProto = Object.prototype;
+const objectProto = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty = objectProto.hasOwnProperty;
+const hasOwnProperty = objectProto.hasOwnProperty;
 
 /**
  * Creates an array of the enumerable property names of the array-like `value`.
@@ -20,7 +20,7 @@ var hasOwnProperty = objectProto.hasOwnProperty;
  * @returns {Array} Returns the array of property names.
  */
 function arrayLikeKeys(value, inherited) {
-  var isArr = isArray(value),
+  const isArr = isArray(value),
       isArg = !isArr && isArguments(value),
       isBuff = !isArr && !isArg && isBuffer(value),
       isType = !isArr && !isArg && !isBuff && isTypedArray(value),
@@ -28,7 +28,7 @@ function arrayLikeKeys(value, inherited) {
       result = skipIndexes ? baseTimes(value.length, String) : [],
       length = result.length;
 
-  for (var key in value) {
+  for (const key in value) {
     if ((inherited || hasOwnProperty.call(value, key)) &&
         !(skipIndexes && (
            // Safari 9 has enumerable `arguments.length` in strict mode.

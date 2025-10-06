@@ -9,5 +9,5 @@
  */
 
 "use strict";
-var useSyncExternalStore = require("react").useSyncExternalStore;
+const useSyncExternalStore = require("react").useSyncExternalStore;
 exports.useSyncExternalStore = useSyncExternalStore;

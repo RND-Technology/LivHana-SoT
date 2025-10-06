@@ -61,7 +61,7 @@ class OAuthClientAuthHandler {
      *   When this is used, no client authentication credentials are needed.
      */
     injectAuthenticatedHeaders(opts, bearerToken) {
-        var _a;
+        let _a;
         // Bearer token prioritized higher than basic Auth.
         if (bearerToken) {
             opts.headers = opts.headers || {};
@@ -87,7 +87,7 @@ class OAuthClientAuthHandler {
      *   depending on the client authentication mechanism to be used.
      */
     injectAuthenticatedRequestBody(opts) {
-        var _a;
+        let _a;
         if (((_a = this.clientAuthentication) === null || _a === void 0 ? void 0 : _a.confidentialClientType) === 'request-body') {
             const method = (opts.method || 'GET').toUpperCase();
             // Inject authenticated request body.

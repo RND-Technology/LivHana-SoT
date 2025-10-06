@@ -1,4 +1,4 @@
-var LazyWrapper = require('./_LazyWrapper'),
+const LazyWrapper = require('./_LazyWrapper'),
     getData = require('./_getData'),
     getFuncName = require('./_getFuncName'),
     lodash = require('./wrapperLodash');
@@ -12,7 +12,7 @@ var LazyWrapper = require('./_LazyWrapper'),
  *  else `false`.
  */
 function isLaziable(func) {
-  var funcName = getFuncName(func),
+  const funcName = getFuncName(func),
       other = lodash[funcName];
 
   if (typeof other != 'function' || !(funcName in LazyWrapper.prototype)) {
@@ -21,7 +21,7 @@ function isLaziable(func) {
   if (func === other) {
     return true;
   }
-  var data = getData(other);
+  const data = getData(other);
   return !!data && func === data[0];
 }
 

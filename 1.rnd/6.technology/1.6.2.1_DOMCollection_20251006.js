@@ -4,7 +4,7 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 exports.test = exports.serialize = exports.default = void 0;
-var _collections = require('../collections');
+const _collections = require('../collections');
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -63,5 +63,5 @@ const plugin = {
   serialize,
   test
 };
-var _default = plugin;
+const _default = plugin;
 exports.default = _default;

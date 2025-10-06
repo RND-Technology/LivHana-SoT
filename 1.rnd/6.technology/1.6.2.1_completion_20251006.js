@@ -5,7 +5,7 @@ import { isPromise } from './utils/is-promise.js';
 import { parseCommand } from './parse-command.js';
 export class Completion {
     constructor(yargs, usage, command, shim) {
-        var _a, _b, _c;
+        let _a, _b, _c;
         this.yargs = yargs;
         this.usage = usage;
         this.command = command;
@@ -152,7 +152,7 @@ export class Completion {
         return false;
     }
     completeOptionKey(key, completions, current, negable) {
-        var _a, _b, _c, _d;
+        let _a, _b, _c, _d;
         let keyWithDesc = key;
         if (this.zshShell) {
             const descs = this.usage.getDescriptions();

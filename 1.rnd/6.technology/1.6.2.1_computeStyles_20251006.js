@@ -7,7 +7,7 @@ import getBasePlacement from "../utils/getBasePlacement.js";
 import getVariation from "../utils/getVariation.js";
 import { round } from "../utils/math.js"; // eslint-disable-next-line import/no-unused-modules
 
-var unsetSides = {
+const unsetSides = {
   top: 'auto',
   right: 'auto',
   bottom: 'auto',
@@ -17,9 +17,9 @@ var unsetSides = {
 // cleanly divide the values into the appropriate subpixels.
 
 function roundOffsetsByDPR(_ref, win) {
-  var x = _ref.x,
+  const x = _ref.x,
       y = _ref.y;
-  var dpr = win.devicePixelRatio || 1;
+  const dpr = win.devicePixelRatio || 1;
   return {
     x: round(x * dpr) / dpr || 0,
     y: round(y * dpr) / dpr || 0
@@ -27,9 +27,9 @@ function roundOffsetsByDPR(_ref, win) {
 }
 
 export function mapToStyles(_ref2) {
-  var _Object$assign2;
+  let _Object$assign2;
 
-  var popper = _ref2.popper,
+  const popper = _ref2.popper,
       popperRect = _ref2.popperRect,
       placement = _ref2.placement,
       variation = _ref2.variation,
@@ -39,12 +39,12 @@ export function mapToStyles(_ref2) {
       adaptive = _ref2.adaptive,
       roundOffsets = _ref2.roundOffsets,
       isFixed = _ref2.isFixed;
-  var _offsets$x = offsets.x,
+  let _offsets$x = offsets.x,
       x = _offsets$x === void 0 ? 0 : _offsets$x,
       _offsets$y = offsets.y,
       y = _offsets$y === void 0 ? 0 : _offsets$y;
 
-  var _ref3 = typeof roundOffsets === 'function' ? roundOffsets({
+  const _ref3 = typeof roundOffsets === 'function' ? roundOffsets({
     x: x,
     y: y
   }) : {
@@ -54,16 +54,16 @@ export function mapToStyles(_ref2) {
 
   x = _ref3.x;
   y = _ref3.y;
-  var hasX = offsets.hasOwnProperty('x');
-  var hasY = offsets.hasOwnProperty('y');
-  var sideX = left;
-  var sideY = top;
-  var win = window;
+  const hasX = offsets.hasOwnProperty('x');
+  const hasY = offsets.hasOwnProperty('y');
+  let sideX = left;
+  let sideY = top;
+  const win = window;
 
   if (adaptive) {
-    var offsetParent = getOffsetParent(popper);
-    var heightProp = 'clientHeight';
-    var widthProp = 'clientWidth';
+    let offsetParent = getOffsetParent(popper);
+    let heightProp = 'clientHeight';
+    let widthProp = 'clientWidth';
 
     if (offsetParent === getWindow(popper)) {
       offsetParent = getDocumentElement(popper);
@@ -79,7 +79,7 @@ export function mapToStyles(_ref2) {
 
     if (placement === top || (placement === left || placement === right) && variation === end) {
       sideY = bottom;
-      var offsetY = isFixed && offsetParent === win && win.visualViewport ? win.visualViewport.height : // $FlowFixMe[prop-missing]
+      const offsetY = isFixed && offsetParent === win && win.visualViewport ? win.visualViewport.height : // $FlowFixMe[prop-missing]
       offsetParent[heightProp];
       y -= offsetY - popperRect.height;
       y *= gpuAcceleration ? 1 : -1;
@@ -87,18 +87,18 @@ export function mapToStyles(_ref2) {
 
     if (placement === left || (placement === top || placement === bottom) && variation === end) {
       sideX = right;
-      var offsetX = isFixed && offsetParent === win && win.visualViewport ? win.visualViewport.width : // $FlowFixMe[prop-missing]
+      const offsetX = isFixed && offsetParent === win && win.visualViewport ? win.visualViewport.width : // $FlowFixMe[prop-missing]
       offsetParent[widthProp];
       x -= offsetX - popperRect.width;
       x *= gpuAcceleration ? 1 : -1;
     }
   }
 
-  var commonStyles = Object.assign({
+  const commonStyles = Object.assign({
     position: position
   }, adaptive && unsetSides);
 
-  var _ref4 = roundOffsets === true ? roundOffsetsByDPR({
+  const _ref4 = roundOffsets === true ? roundOffsetsByDPR({
     x: x,
     y: y
   }, getWindow(popper)) : {
@@ -110,7 +110,7 @@ export function mapToStyles(_ref2) {
   y = _ref4.y;
 
   if (gpuAcceleration) {
-    var _Object$assign;
+    let _Object$assign;
 
     return Object.assign({}, commonStyles, (_Object$assign = {}, _Object$assign[sideY] = hasY ? '0' : '', _Object$assign[sideX] = hasX ? '0' : '', _Object$assign.transform = (win.devicePixelRatio || 1) <= 1 ? "translate(" + x + "px, " + y + "px)" : "translate3d(" + x + "px, " + y + "px, 0)", _Object$assign));
   }
@@ -119,15 +119,15 @@ export function mapToStyles(_ref2) {
 }
 
 function computeStyles(_ref5) {
-  var state = _ref5.state,
+  const state = _ref5.state,
       options = _ref5.options;
-  var _options$gpuAccelerat = options.gpuAcceleration,
+  const _options$gpuAccelerat = options.gpuAcceleration,
       gpuAcceleration = _options$gpuAccelerat === void 0 ? true : _options$gpuAccelerat,
       _options$adaptive = options.adaptive,
       adaptive = _options$adaptive === void 0 ? true : _options$adaptive,
       _options$roundOffsets = options.roundOffsets,
       roundOffsets = _options$roundOffsets === void 0 ? true : _options$roundOffsets;
-  var commonStyles = {
+  const commonStyles = {
     placement: getBasePlacement(state.placement),
     variation: getVariation(state.placement),
     popper: state.elements.popper,

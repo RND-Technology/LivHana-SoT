@@ -1,10 +1,10 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var hasOwn = require('hasown');
+const hasOwn = require('hasown');
 
-var allowed = {
+const allowed = {
 	__proto__: null,
 	'[[Configurable]]': true,
 	'[[Enumerable]]': true,
@@ -27,8 +27,8 @@ module.exports = function isPropertyDescriptor(Desc) {
 		}
 	}
 
-	var isData = hasOwn(Desc, '[[Value]]') || hasOwn(Desc, '[[Writable]]');
-	var IsAccessor = hasOwn(Desc, '[[Get]]') || hasOwn(Desc, '[[Set]]');
+	const isData = hasOwn(Desc, '[[Value]]') || hasOwn(Desc, '[[Writable]]');
+	const IsAccessor = hasOwn(Desc, '[[Get]]') || hasOwn(Desc, '[[Set]]');
 	if (isData && IsAccessor) {
 		throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
 	}

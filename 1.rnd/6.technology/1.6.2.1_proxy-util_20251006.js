@@ -7,7 +7,7 @@
 
 const { HttpsProxyAgent } = require('https-proxy-agent')
 const logs = require('../../logging');
-let logger = logs.getLogger();
+const logger = logs.getLogger();
 const commonUtils = require('../../commonUtils');
 const fs = require('fs');
 
@@ -18,7 +18,7 @@ exports.proxyAgent = function proxyAgent(config) {
     return agentProxyWithKeepAlive
   }
   const proxyUrl = proxyOptions(config)
-  let proxyOpts = {
+  const proxyOpts = {
     secureEndpoint: config.ssl,
     auth: proxyUrl.auth,
     ca: config?.certificates?.length ? config.certificates : [],

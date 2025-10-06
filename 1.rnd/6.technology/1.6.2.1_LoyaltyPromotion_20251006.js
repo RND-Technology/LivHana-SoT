@@ -1,11 +1,11 @@
 "use strict";
 exports.__esModule = true;
 exports.loyaltyPromotionSchema = void 0;
-var schema_1 = require("../schema");
-var loyaltyPromotionAvailableTimeData_1 = require("./loyaltyPromotionAvailableTimeData");
-var loyaltyPromotionIncentive_1 = require("./loyaltyPromotionIncentive");
-var loyaltyPromotionTriggerLimit_1 = require("./loyaltyPromotionTriggerLimit");
-var money_1 = require("./money");
+const schema_1 = require("../schema");
+const loyaltyPromotionAvailableTimeData_1 = require("./loyaltyPromotionAvailableTimeData");
+const loyaltyPromotionIncentive_1 = require("./loyaltyPromotionIncentive");
+const loyaltyPromotionTriggerLimit_1 = require("./loyaltyPromotionTriggerLimit");
+const money_1 = require("./money");
 exports.loyaltyPromotionSchema = (0, schema_1.object)({
     id: ['id', (0, schema_1.optional)((0, schema_1.string)())],
     name: ['name', (0, schema_1.string)()],

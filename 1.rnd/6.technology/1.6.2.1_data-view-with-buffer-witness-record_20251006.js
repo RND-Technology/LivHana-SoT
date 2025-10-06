@@ -1,9 +1,9 @@
 'use strict';
 
-var hasOwn = require('hasown');
-var isDataView = require('is-data-view');
+const hasOwn = require('hasown');
+const isDataView = require('is-data-view');
 
-var isInteger = require('../isInteger');
+const isInteger = require('../isInteger');
 
 module.exports = function isDataViewWithBufferWitnessRecord(value) {
 	return !!value

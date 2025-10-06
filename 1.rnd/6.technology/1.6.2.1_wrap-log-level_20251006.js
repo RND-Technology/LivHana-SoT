@@ -33,7 +33,7 @@ function build (dest) {
       } else {
         array = new Array(arguments.length + 1)
         array[0] = '[' + time.toISOString() + ']'
-        for (var i = 0; i < arguments.length; i++) {
+        for (let i = 0; i < arguments.length; i++) {
           array[i + 1] = arguments[i]
         }
         rawMethod.apply(null, array)

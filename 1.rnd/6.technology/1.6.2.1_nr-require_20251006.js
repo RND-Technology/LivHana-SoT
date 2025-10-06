@@ -67,13 +67,13 @@ function requireHook(shim, moduleName, parent) {
         let fallback = false;
         if (!request) {
             fallback = true;
-            let values = [...requestManager.requestMap.values()];
+            const values = [...requestManager.requestMap.values()];
             if (values.length > 0) {
                 request = values[values.length - 1];
             }
         }
         if (request) {
-            let resolvedModulePath  = require.resolve(moduleName)
+            const resolvedModulePath  = require.resolve(moduleName)
             const interceptedArgs = [resolvedModulePath];
             let traceObject;
             if (!fallback) {

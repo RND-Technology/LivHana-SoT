@@ -65,7 +65,7 @@ export default {
           (state === false ? 'is not supported by the environment' : 'is not available in the build')
         );
 
-      let s = length ?
+      const s = length ?
         (reasons.length > 1 ? 'since :\n' + reasons.map(renderReason).join('\n') : ' ' + renderReason(reasons[0])) :
         'as no adapter specified';
 

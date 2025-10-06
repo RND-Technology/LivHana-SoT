@@ -19,7 +19,7 @@ exports.dataflow_v1b3 = void 0;
 /* eslint-disable @typescript-eslint/no-namespace */
 /* eslint-disable no-irregular-whitespace */
 const googleapis_common_1 = require("googleapis-common");
-var dataflow_v1b3;
+let dataflow_v1b3;
 (function (dataflow_v1b3) {
     /**
      * Dataflow API

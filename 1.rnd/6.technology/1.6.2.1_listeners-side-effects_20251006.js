@@ -20,12 +20,12 @@
 // USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 require('./common');
-var assert = require('assert');
+const assert = require('assert');
 
-var EventEmitter = require('../').EventEmitter;
+const EventEmitter = require('../').EventEmitter;
 
-var e = new EventEmitter();
-var fl;  // foo listeners
+const e = new EventEmitter();
+let fl;  // foo listeners
 
 fl = e.listeners('foo');
 assert.ok(Array.isArray(fl));

@@ -1,8 +1,8 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var SameValue = require('./SameValue');
+const SameValue = require('./SameValue');
 
 // https://262.ecma-international.org/7.0/#sec-samevaluenonnumber
 

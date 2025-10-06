@@ -17,7 +17,7 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.StreamDecoder = void 0;
-var ReadState;
+let ReadState;
 (function (ReadState) {
     ReadState[ReadState["NO_DATA"] = 0] = "NO_DATA";
     ReadState[ReadState["READING_SIZE"] = 1] = "READING_SIZE";

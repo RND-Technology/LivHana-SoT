@@ -19,12 +19,12 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 // USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-var common = require('./common');
-var assert = require('assert');
-var EventEmitter = require('../');
+const common = require('./common');
+const assert = require('assert');
+const EventEmitter = require('../');
 
-var listener1 = function listener1() {};
-var listener2 = function listener2() {};
+const listener1 = function listener1() {};
+const listener2 = function listener2() {};
 
 {
   var ee = new EventEmitter();
@@ -137,7 +137,7 @@ var listener2 = function listener2() {};
 
 {
   var ee = new EventEmitter();
-  var listener3 = common.mustCall(function() {
+  const listener3 = common.mustCall(function() {
     ee.removeListener('hello', listener4);
   }, 2);
   var listener4 = common.mustCall();
@@ -173,16 +173,16 @@ var listener2 = function listener2() {};
 
 // Verify that the removed listener must be a function
 assert.throws(function() {
-  var ee = new EventEmitter();
+  const ee = new EventEmitter();
 
   ee.removeListener('foo', null);
 }, /^TypeError: The "listener" argument must be of type Function\. Received type object$/);
 
 {
   var ee = new EventEmitter();
-  var listener = function() {};
+  const listener = function() {};
   ee._events = undefined;
-  var e = ee.removeListener('foo', listener);
+  const e = ee.removeListener('foo', listener);
   assert.strictEqual(e, ee);
 }
 

@@ -1,31 +1,31 @@
 "use strict";
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __export = (target, all) => {
+  for (const name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var androidServerImpl_exports = {};
+const __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+const androidServerImpl_exports = {};
 __export(androidServerImpl_exports, {
   AndroidServerLauncherImpl: () => AndroidServerLauncherImpl
 });
 module.exports = __toCommonJS(androidServerImpl_exports);
-var import_playwrightServer = require("./remote/playwrightServer");
-var import_playwright = require("./server/playwright");
-var import_crypto = require("./server/utils/crypto");
-var import_utilsBundle = require("./utilsBundle");
-var import_progress = require("./server/progress");
+const import_playwrightServer = require("./remote/playwrightServer");
+const import_playwright = require("./server/playwright");
+const import_crypto = require("./server/utils/crypto");
+const import_utilsBundle = require("./utilsBundle");
+const import_progress = require("./server/progress");
 class AndroidServerLauncherImpl {
   async launchServer(options = {}) {
     const playwright = (0, import_playwright.createPlaywright)({ sdkLanguage: "javascript", isServer: true });

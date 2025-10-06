@@ -19,7 +19,7 @@ export function readSequence(recognizer) {
                 continue;
         }
 
-        let child = recognizer.getNode.call(this, context);
+        const child = recognizer.getNode.call(this, context);
 
         if (child === undefined) {
             break;
@@ -40,4 +40,4 @@ export function readSequence(recognizer) {
     }
 
     return children;
-};
+}

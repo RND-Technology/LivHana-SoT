@@ -13,13 +13,13 @@ function _gensync() {
   };
   return data;
 }
-var _functional = require("../gensync-utils/functional.js");
-var _index = require("./files/index.js");
-var _item = require("./item.js");
-var _caching = require("./caching.js");
-var _resolveTargets = require("./resolve-targets.js");
+const _functional = require("../gensync-utils/functional.js");
+const _index = require("./files/index.js");
+const _item = require("./item.js");
+const _caching = require("./caching.js");
+const _resolveTargets = require("./resolve-targets.js");
 function isEqualDescriptor(a, b) {
-  var _a$file, _b$file, _a$file2, _b$file2;
+  let _a$file, _b$file, _a$file2, _b$file2;
   return a.name === b.name && a.value === b.value && a.options === b.options && a.dirname === b.dirname && a.alias === b.alias && a.ownPass === b.ownPass && ((_a$file = a.file) == null ? void 0 : _a$file.request) === ((_b$file = b.file) == null ? void 0 : _b$file.request) && ((_a$file2 = a.file) == null ? void 0 : _a$file2.resolved) === ((_b$file2 = b.file) == null ? void 0 : _b$file2.resolved);
 }
 function* handlerOf(value) {

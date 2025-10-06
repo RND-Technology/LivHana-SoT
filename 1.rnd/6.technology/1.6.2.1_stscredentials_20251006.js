@@ -50,7 +50,7 @@ class StsCredentials extends oauth2common_1.OAuthClientAuthHandler {
     async exchangeToken(stsCredentialsOptions, additionalHeaders, 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     options) {
-        var _a, _b, _c;
+        let _a, _b, _c;
         const values = {
             grant_type: stsCredentialsOptions.grantType,
             resource: stsCredentialsOptions.resource,

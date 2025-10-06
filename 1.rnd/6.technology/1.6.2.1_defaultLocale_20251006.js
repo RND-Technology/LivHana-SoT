@@ -1,6 +1,6 @@
 import formatLocale from "./locale.js";
 
-var locale;
+let locale;
 export var timeFormat;
 export var timeParse;
 export var utcFormat;

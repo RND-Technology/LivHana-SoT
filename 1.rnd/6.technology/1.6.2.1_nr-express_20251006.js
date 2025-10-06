@@ -89,7 +89,7 @@ function extractParams(shim, req) {
   }
   const transaction = shim.tracer.getTransaction();
   if (transaction) {
-    let request = requestManager.getRequestFromId(transaction.id);
+    const request = requestManager.getRequestFromId(transaction.id);
     if (req.params && request) {
       Object.keys(req.params).forEach(function (key) {
         if (req.params[key]) {
@@ -130,7 +130,7 @@ function expressFileHook(shim, mod, fun) {
     }
     logger.debug(`Instrumenting express.response.${fun}`)
     return function FAWrapper() {
-      let parameters = Array.prototype.slice.apply(arguments);
+      const parameters = Array.prototype.slice.apply(arguments);
       const interceptedArgs = [arguments[0]];
       shim.interceptedArgs = interceptedArgs;
       const request = requestManager.getRequest(shim);
@@ -141,7 +141,7 @@ function expressFileHook(shim, mod, fun) {
         } catch (error) {
 
         }
-        let absoluteParameters = [parameters[0]];
+        const absoluteParameters = [parameters[0]];
         const secMetadata = securityMetaData.getSecurityMetaData(request, absoluteParameters, traceObject, secUtils.getExecutionId(), EVENT_TYPE.FILE_OPERATION, EVENT_CATEGORY.FILE)
         this.secEvent = API.generateSecEvent(secMetadata);
         API.sendEvent(this.secEvent);
@@ -179,7 +179,7 @@ function wrapExpress5(shim, express) {
 }
 
 module.exports.wrapRouter = function wrapExpress5Router(shim, mod) {
-  let layer = shim.require('./lib/layer');
+  const layer = shim.require('./lib/layer');
   shim.wrap(layer.prototype, 'match', function wrapParam(shim, fn) {
     if (!shim.isFunction(fn)) {
       return fn
@@ -193,7 +193,7 @@ module.exports.wrapRouter = function wrapExpress5Router(shim, mod) {
         const params = this.params;
         const transaction = shim.tracer.getTransaction();
         if (transaction) {
-          let request = requestManager.getRequestFromId(transaction.id);
+          const request = requestManager.getRequestFromId(transaction.id);
           if (params && request) {
             Object.keys(params).forEach(function (key) {
               if (params[key]) {

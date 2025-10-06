@@ -25,8 +25,8 @@ function _mergeStream() {
   };
   return data;
 }
-var _types = require('../types');
-var _WorkerAbstract = _interopRequireDefault(require('./WorkerAbstract'));
+const _types = require('../types');
+const _WorkerAbstract = _interopRequireDefault(require('./WorkerAbstract'));
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {default: obj};
 }

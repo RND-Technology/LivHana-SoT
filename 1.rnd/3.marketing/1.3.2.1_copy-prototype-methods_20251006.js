@@ -1,9 +1,9 @@
 "use strict";
 
-var call = Function.call;
-var throwsOnProto = require("./throws-on-proto");
+const call = Function.call;
+const throwsOnProto = require("./throws-on-proto");
 
-var disallowedProperties = [
+const disallowedProperties = [
     // ignore size because it throws from Map
     "size",
     "caller",

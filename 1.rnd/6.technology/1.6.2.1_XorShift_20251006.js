@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
 exports.xorshift128plus = void 0;
-var XorShift128Plus = (function () {
+const XorShift128Plus = (function () {
     function XorShift128Plus(s01, s00, s11, s10) {
         this.s01 = s01;
         this.s00 = s00;
@@ -12,16 +12,16 @@ var XorShift128Plus = (function () {
         return new XorShift128Plus(this.s01, this.s00, this.s11, this.s10);
     };
     XorShift128Plus.prototype.next = function () {
-        var nextRng = new XorShift128Plus(this.s01, this.s00, this.s11, this.s10);
-        var out = nextRng.unsafeNext();
+        const nextRng = new XorShift128Plus(this.s01, this.s00, this.s11, this.s10);
+        const out = nextRng.unsafeNext();
         return [out, nextRng];
     };
     XorShift128Plus.prototype.unsafeNext = function () {
-        var a0 = this.s00 ^ (this.s00 << 23);
-        var a1 = this.s01 ^ ((this.s01 << 23) | (this.s00 >>> 9));
-        var b0 = a0 ^ this.s10 ^ ((a0 >>> 18) | (a1 << 14)) ^ ((this.s10 >>> 5) | (this.s11 << 27));
-        var b1 = a1 ^ this.s11 ^ (a1 >>> 18) ^ (this.s11 >>> 5);
-        var out = (this.s00 + this.s10) | 0;
+        const a0 = this.s00 ^ (this.s00 << 23);
+        const a1 = this.s01 ^ ((this.s01 << 23) | (this.s00 >>> 9));
+        const b0 = a0 ^ this.s10 ^ ((a0 >>> 18) | (a1 << 14)) ^ ((this.s10 >>> 5) | (this.s11 << 27));
+        const b1 = a1 ^ this.s11 ^ (a1 >>> 18) ^ (this.s11 >>> 5);
+        const out = (this.s00 + this.s10) | 0;
         this.s01 = this.s11;
         this.s00 = this.s10;
         this.s11 = b1;
@@ -29,18 +29,18 @@ var XorShift128Plus = (function () {
         return out;
     };
     XorShift128Plus.prototype.jump = function () {
-        var nextRng = new XorShift128Plus(this.s01, this.s00, this.s11, this.s10);
+        const nextRng = new XorShift128Plus(this.s01, this.s00, this.s11, this.s10);
         nextRng.unsafeJump();
         return nextRng;
     };
     XorShift128Plus.prototype.unsafeJump = function () {
-        var ns01 = 0;
-        var ns00 = 0;
-        var ns11 = 0;
-        var ns10 = 0;
-        var jump = [0x635d2dff, 0x8a5cd789, 0x5c472f96, 0x121fd215];
-        for (var i = 0; i !== 4; ++i) {
-            for (var mask = 1; mask; mask <<= 1) {
+        let ns01 = 0;
+        let ns00 = 0;
+        let ns11 = 0;
+        let ns10 = 0;
+        const jump = [0x635d2dff, 0x8a5cd789, 0x5c472f96, 0x121fd215];
+        for (let i = 0; i !== 4; ++i) {
+            for (let mask = 1; mask; mask <<= 1) {
                 if (jump[i] & mask) {
                     ns01 ^= this.s01;
                     ns00 ^= this.s00;
@@ -61,7 +61,7 @@ var XorShift128Plus = (function () {
     return XorShift128Plus;
 }());
 function fromState(state) {
-    var valid = state.length === 4;
+    const valid = state.length === 4;
     if (!valid) {
         throw new Error('The state must have been produced by a xorshift128plus RandomGenerator');
     }

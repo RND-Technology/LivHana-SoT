@@ -1,30 +1,30 @@
 "use strict";
 'use client';
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+const _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-var React = _interopRequireWildcard(require("react"));
-var _propTypes = _interopRequireDefault(require("prop-types"));
-var _clsx = _interopRequireDefault(require("clsx"));
-var _resolveProps = _interopRequireDefault(require("@mui/utils/resolveProps"));
-var _composeClasses = _interopRequireDefault(require("@mui/utils/composeClasses"));
-var _colorManipulator = require("@mui/system/colorManipulator");
-var _styled = _interopRequireWildcard(require("../styles/styled"));
-var _DefaultPropsProvider = require("../DefaultPropsProvider");
-var _ButtonBase = _interopRequireDefault(require("../ButtonBase"));
-var _capitalize = _interopRequireDefault(require("../utils/capitalize"));
-var _buttonClasses = _interopRequireWildcard(require("./buttonClasses"));
-var _ButtonGroupContext = _interopRequireDefault(require("../ButtonGroup/ButtonGroupContext"));
-var _ButtonGroupButtonContext = _interopRequireDefault(require("../ButtonGroup/ButtonGroupButtonContext"));
-var _jsxRuntime = require("react/jsx-runtime");
+const _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+const _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+const React = _interopRequireWildcard(require("react"));
+const _propTypes = _interopRequireDefault(require("prop-types"));
+const _clsx = _interopRequireDefault(require("clsx"));
+const _resolveProps = _interopRequireDefault(require("@mui/utils/resolveProps"));
+const _composeClasses = _interopRequireDefault(require("@mui/utils/composeClasses"));
+const _colorManipulator = require("@mui/system/colorManipulator");
+const _styled = _interopRequireWildcard(require("../styles/styled"));
+const _DefaultPropsProvider = require("../DefaultPropsProvider");
+const _ButtonBase = _interopRequireDefault(require("../ButtonBase"));
+const _capitalize = _interopRequireDefault(require("../utils/capitalize"));
+const _buttonClasses = _interopRequireWildcard(require("./buttonClasses"));
+const _ButtonGroupContext = _interopRequireDefault(require("../ButtonGroup/ButtonGroupContext"));
+const _ButtonGroupButtonContext = _interopRequireDefault(require("../ButtonGroup/ButtonGroupButtonContext"));
+const _jsxRuntime = require("react/jsx-runtime");
 const _excluded = ["children", "color", "component", "className", "disabled", "disableElevation", "disableFocusRipple", "endIcon", "focusVisibleClassName", "fullWidth", "size", "startIcon", "type", "variant"];
-function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
-function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; const r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; const t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); const n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (const u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { const i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 const useUtilityClasses = ownerState => {
   const {
     color,
@@ -70,7 +70,7 @@ const ButtonRoot = (0, _styled.default)(_ButtonBase.default, {
   theme,
   ownerState
 }) => {
-  var _theme$palette$getCon, _theme$palette;
+  let _theme$palette$getCon, _theme$palette;
   const inheritContainedBackgroundColor = theme.palette.mode === 'light' ? theme.palette.grey[300] : theme.palette.grey[800];
   const inheritContainedHoverBackgroundColor = theme.palette.mode === 'light' ? theme.palette.grey.A100 : theme.palette.grey[700];
   return (0, _extends2.default)({}, theme.typography.button, {
@@ -383,4 +383,4 @@ process.env.NODE_ENV !== "production" ? Button.propTypes /* remove-proptypes */ 
    */
   variant: _propTypes.default /* @typescript-to-proptypes-ignore */.oneOfType([_propTypes.default.oneOf(['contained', 'outlined', 'text']), _propTypes.default.string])
 } : void 0;
-var _default = exports.default = Button;
+const _default = exports.default = Button;

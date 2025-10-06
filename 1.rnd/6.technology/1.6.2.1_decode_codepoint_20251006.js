@@ -1,9 +1,9 @@
 "use strict";
 // Adapted from https://github.com/mathiasbynens/he/blob/36afe179392226cf1b6ccdb16ebbb7a5a844d93a/src/he.js#L106-L134
-var _a;
+let _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.replaceCodePoint = exports.fromCodePoint = void 0;
-var decodeMap = new Map([
+const decodeMap = new Map([
     [0, 65533],
     // C1 Unicode control character reference replacements
     [128, 8364],
@@ -40,7 +40,7 @@ var decodeMap = new Map([
 exports.fromCodePoint = 
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, node/no-unsupported-features/es-builtins
 (_a = String.fromCodePoint) !== null && _a !== void 0 ? _a : function (codePoint) {
-    var output = "";
+    let output = "";
     if (codePoint > 0xffff) {
         codePoint -= 0x10000;
         output += String.fromCharCode(((codePoint >>> 10) & 0x3ff) | 0xd800);
@@ -55,7 +55,7 @@ exports.fromCodePoint =
  * point unchanged.
  */
 function replaceCodePoint(codePoint) {
-    var _a;
+    let _a;
     if ((codePoint >= 0xd800 && codePoint <= 0xdfff) || codePoint > 0x10ffff) {
         return 0xfffd;
     }

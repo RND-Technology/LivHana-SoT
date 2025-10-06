@@ -36,7 +36,7 @@ const UNDEFINED_CODE_POINTS = new Set([
 	1114111
 ]);
 const REPLACEMENT_CHARACTER = "�";
-var CODE_POINTS;
+let CODE_POINTS;
 (function(CODE_POINTS$1) {
 	CODE_POINTS$1[CODE_POINTS$1["EOF"] = -1] = "EOF";
 	CODE_POINTS$1[CODE_POINTS$1["NULL"] = 0] = "NULL";
@@ -91,7 +91,7 @@ function isUndefinedCodePoint(cp) {
 
 //#endregion
 //#region ../../node_modules/.pnpm/parse5@8.0.0/node_modules/parse5/dist/common/error-codes.js
-var ERR;
+let ERR;
 (function(ERR$1) {
 	ERR$1["controlCharacterInInputStream"] = "control-character-in-input-stream";
 	ERR$1["noncharacterInInputStream"] = "noncharacter-in-input-stream";
@@ -158,7 +158,7 @@ var ERR;
 //#endregion
 //#region ../../node_modules/.pnpm/parse5@8.0.0/node_modules/parse5/dist/tokenizer/preprocessor.js
 const DEFAULT_BUFFER_WATERLINE = 65536;
-var Preprocessor = class {
+const Preprocessor = class {
 	constructor(handler) {
 		this.handler = handler;
 		this.html = "";
@@ -309,7 +309,7 @@ var Preprocessor = class {
 
 //#endregion
 //#region ../../node_modules/.pnpm/parse5@8.0.0/node_modules/parse5/dist/common/token.js
-var TokenType;
+let TokenType;
 (function(TokenType$1) {
 	TokenType$1[TokenType$1["CHARACTER"] = 0] = "CHARACTER";
 	TokenType$1[TokenType$1["NULL_CHARACTER"] = 1] = "NULL_CHARACTER";
@@ -332,7 +332,7 @@ const htmlDecodeTree = /* @__PURE__ */ new Uint16Array(/* @__PURE__ */ "ᵁ<Õı
 
 //#endregion
 //#region ../../node_modules/.pnpm/entities@6.0.0/node_modules/entities/dist/esm/decode-codepoint.js
-var _a;
+let _a;
 const decodeMap = new Map([
 	[0, 65533],
 	[128, 8364],
@@ -382,14 +382,14 @@ const fromCodePoint = (_a = String.fromCodePoint) !== null && _a !== void 0 ? _a
 * point unchanged.
 */
 function replaceCodePoint(codePoint) {
-	var _a$1;
+	let _a$1;
 	if (codePoint >= 55296 && codePoint <= 57343 || codePoint > 1114111) return 65533;
 	return (_a$1 = decodeMap.get(codePoint)) !== null && _a$1 !== void 0 ? _a$1 : codePoint;
 }
 
 //#endregion
 //#region ../../node_modules/.pnpm/entities@6.0.0/node_modules/entities/dist/esm/decode.js
-var CharCodes;
+let CharCodes;
 (function(CharCodes$1) {
 	CharCodes$1[CharCodes$1["NUM"] = 35] = "NUM";
 	CharCodes$1[CharCodes$1["SEMI"] = 59] = "SEMI";
@@ -406,7 +406,7 @@ var CharCodes;
 })(CharCodes || (CharCodes = {}));
 /** Bit that needs to be set to convert an upper case ASCII character to lower case */
 const TO_LOWER_BIT = 32;
-var BinTrieFlags;
+let BinTrieFlags;
 (function(BinTrieFlags$1) {
 	BinTrieFlags$1[BinTrieFlags$1["VALUE_LENGTH"] = 49152] = "VALUE_LENGTH";
 	BinTrieFlags$1[BinTrieFlags$1["BRANCH_LENGTH"] = 16256] = "BRANCH_LENGTH";
@@ -430,7 +430,7 @@ function isAsciiAlphaNumeric$1(code) {
 function isEntityInAttributeInvalidEnd(code) {
 	return code === CharCodes.EQUALS || isAsciiAlphaNumeric$1(code);
 }
-var EntityDecoderState;
+let EntityDecoderState;
 (function(EntityDecoderState$1) {
 	EntityDecoderState$1[EntityDecoderState$1["EntityStart"] = 0] = "EntityStart";
 	EntityDecoderState$1[EntityDecoderState$1["NumericStart"] = 1] = "NumericStart";
@@ -438,7 +438,7 @@ var EntityDecoderState;
 	EntityDecoderState$1[EntityDecoderState$1["NumericHex"] = 3] = "NumericHex";
 	EntityDecoderState$1[EntityDecoderState$1["NamedEntity"] = 4] = "NamedEntity";
 })(EntityDecoderState || (EntityDecoderState = {}));
-var DecodingMode;
+let DecodingMode;
 (function(DecodingMode$1) {
 	/** Entities in text nodes that can end with any character. */
 	DecodingMode$1[DecodingMode$1["Legacy"] = 0] = "Legacy";
@@ -450,7 +450,7 @@ var DecodingMode;
 /**
 * Token decoder with support of writing partial entities.
 */
-var EntityDecoder = class {
+const EntityDecoder = class {
 	constructor(decodeTree, emitCodePoint, errors) {
 		this.decodeTree = decodeTree;
 		this.emitCodePoint = emitCodePoint;
@@ -593,7 +593,7 @@ var EntityDecoder = class {
 	* @returns The number of characters that were consumed.
 	*/
 	emitNumericEntity(lastCp, expectedLength) {
-		var _a$1;
+		let _a$1;
 		if (this.consumed <= expectedLength) {
 			(_a$1 = this.errors) === null || _a$1 === void 0 || _a$1.absenceOfDigitsInNumericCharacterReference(this.consumed);
 			return 0;
@@ -643,7 +643,7 @@ var EntityDecoder = class {
 	* @returns The number of characters consumed.
 	*/
 	emitNotTerminatedNamedEntity() {
-		var _a$1;
+		let _a$1;
 		const { result, decodeTree } = this;
 		const valueLength = (decodeTree[result] & BinTrieFlags.VALUE_LENGTH) >> 14;
 		this.emitNamedEntityData(result, valueLength, this.consumed);
@@ -673,7 +673,7 @@ var EntityDecoder = class {
 	* @returns The number of characters consumed.
 	*/
 	end() {
-		var _a$1;
+		let _a$1;
 		switch (this.state) {
 			case EntityDecoderState.NamedEntity: return this.result !== 0 && (this.decodeMode !== DecodingMode.Attribute || this.result === this.treeIndex) ? this.emitNotTerminatedNamedEntity() : 0;
 			case EntityDecoderState.NumericDecimal: return this.emitNumericEntity(0, 2);
@@ -718,7 +718,7 @@ function determineBranch(decodeTree, current, nodeIndex, char) {
 //#endregion
 //#region ../../node_modules/.pnpm/parse5@8.0.0/node_modules/parse5/dist/common/html.js
 /** All valid namespaces in HTML. */
-var NS;
+let NS;
 (function(NS$1) {
 	NS$1["HTML"] = "http://www.w3.org/1999/xhtml";
 	NS$1["MATHML"] = "http://www.w3.org/1998/Math/MathML";
@@ -727,7 +727,7 @@ var NS;
 	NS$1["XML"] = "http://www.w3.org/XML/1998/namespace";
 	NS$1["XMLNS"] = "http://www.w3.org/2000/xmlns/";
 })(NS || (NS = {}));
-var ATTRS;
+let ATTRS;
 (function(ATTRS$1) {
 	ATTRS$1["TYPE"] = "type";
 	ATTRS$1["ACTION"] = "action";
@@ -743,13 +743,13 @@ var ATTRS;
 *
 * @see {@link https://dom.spec.whatwg.org/#concept-document-limited-quirks}
 */
-var DOCUMENT_MODE;
+let DOCUMENT_MODE;
 (function(DOCUMENT_MODE$1) {
 	DOCUMENT_MODE$1["NO_QUIRKS"] = "no-quirks";
 	DOCUMENT_MODE$1["QUIRKS"] = "quirks";
 	DOCUMENT_MODE$1["LIMITED_QUIRKS"] = "limited-quirks";
 })(DOCUMENT_MODE || (DOCUMENT_MODE = {}));
-var TAG_NAMES;
+let TAG_NAMES;
 (function(TAG_NAMES$1) {
 	TAG_NAMES$1["A"] = "a";
 	TAG_NAMES$1["ADDRESS"] = "address";
@@ -880,7 +880,7 @@ var TAG_NAMES;
 *
 * We use tag IDs to improve the performance of tag name comparisons.
 */
-var TAG_ID;
+let TAG_ID;
 (function(TAG_ID$1) {
 	TAG_ID$1[TAG_ID$1["UNKNOWN"] = 0] = "UNKNOWN";
 	TAG_ID$1[TAG_ID$1["A"] = 1] = "A";
@@ -1133,7 +1133,7 @@ const TAG_NAME_TO_ID = new Map([
 	[TAG_NAMES.XMP, TAG_ID.XMP]
 ]);
 function getTagID(tagName) {
-	var _a$1;
+	let _a$1;
 	return (_a$1 = TAG_NAME_TO_ID.get(tagName)) !== null && _a$1 !== void 0 ? _a$1 : TAG_ID.UNKNOWN;
 }
 const $ = TAG_ID;
@@ -1249,7 +1249,7 @@ const NUMBERED_HEADERS = new Set([
 
 //#endregion
 //#region ../../node_modules/.pnpm/parse5@8.0.0/node_modules/parse5/dist/tokenizer/index.js
-var State;
+let State;
 (function(State$1) {
 	State$1[State$1["DATA"] = 0] = "DATA";
 	State$1[State$1["RCDATA"] = 1] = "RCDATA";
@@ -1365,7 +1365,7 @@ function getErrorForNumericCharacterReference(code) {
 	else if (isControlCodePoint(code) || code === CODE_POINTS.CARRIAGE_RETURN) return ERR.controlCharacterReference;
 	return null;
 }
-var Tokenizer = class {
+const Tokenizer = class {
 	constructor(options, handler) {
 		this.options = options;
 		this.handler = handler;
@@ -1410,7 +1410,7 @@ var Tokenizer = class {
 		} : void 0);
 	}
 	_err(code, cpOffset = 0) {
-		var _a$1, _b;
+		let _a$1, _b;
 		(_b = (_a$1 = this.handler).onParseError) === null || _b === void 0 || _b.call(_a$1, this.preprocessor.getError(code, cpOffset));
 	}
 	getCurrentLocation(offset) {
@@ -1533,8 +1533,8 @@ var Tokenizer = class {
 		this.currentLocation = this.getCurrentLocation(0);
 	}
 	_leaveAttrName() {
-		var _a$1;
-		var _b;
+		let _a$1;
+		let _b;
 		const token = this.currentToken;
 		if (getTokenAttr(token, this.currentAttr.name) === null) {
 			token.attrs.push(this.currentAttr);
@@ -3377,7 +3377,7 @@ const TABLE_CONTEXT = new Set([
 	TAG_ID.HTML
 ]);
 const TABLE_CELLS = new Set([TAG_ID.TD, TAG_ID.TH]);
-var OpenElementStack = class {
+const OpenElementStack = class {
 	get currentTmplContentOrNode() {
 		return this._isInTemplate() ? this.treeAdapter.getTemplateContent(this.current) : this.current;
 	}
@@ -3600,13 +3600,13 @@ var OpenElementStack = class {
 //#endregion
 //#region ../../node_modules/.pnpm/parse5@8.0.0/node_modules/parse5/dist/parser/formatting-element-list.js
 const NOAH_ARK_CAPACITY = 3;
-var EntryType;
+let EntryType;
 (function(EntryType$1) {
 	EntryType$1[EntryType$1["Marker"] = 0] = "Marker";
 	EntryType$1[EntryType$1["Element"] = 1] = "Element";
 })(EntryType || (EntryType = {}));
 const MARKER = { type: EntryType.Marker };
-var FormattingElementList = class {
+const FormattingElementList = class {
 	constructor(treeAdapter) {
 		this.treeAdapter = treeAdapter;
 		this.entries = [];
@@ -4211,7 +4211,7 @@ function isIntegrationPoint(tn, ns, attrs, foreignNS) {
 const HIDDEN_INPUT_TYPE = "hidden";
 const AA_OUTER_LOOP_ITER = 8;
 const AA_INNER_LOOP_ITER = 3;
-var InsertionMode;
+let InsertionMode;
 (function(InsertionMode$1) {
 	InsertionMode$1[InsertionMode$1["INITIAL"] = 0] = "INITIAL";
 	InsertionMode$1[InsertionMode$1["BEFORE_HTML"] = 1] = "BEFORE_HTML";
@@ -4258,7 +4258,7 @@ const defaultParserOptions = {
 	treeAdapter: defaultTreeAdapter,
 	onParseError: null
 };
-var Parser = class {
+const Parser = class {
 	constructor(options, document, fragmentContext = null, scriptHandler = null) {
 		this.fragmentContext = fragmentContext;
 		this.scriptHandler = scriptHandler;
@@ -4333,7 +4333,7 @@ var Parser = class {
 	}
 	/** @internal */
 	_err(token, code, beforeToken) {
-		var _a$1;
+		let _a$1;
 		if (!this.onParseError) return;
 		const loc = (_a$1 = token.location) !== null && _a$1 !== void 0 ? _a$1 : BASE_LOC;
 		this.onParseError({
@@ -4348,13 +4348,13 @@ var Parser = class {
 	}
 	/** @internal */
 	onItemPush(node, tid, isTop) {
-		var _a$1, _b;
+		let _a$1, _b;
 		(_b = (_a$1 = this.treeAdapter).onItemPush) === null || _b === void 0 || _b.call(_a$1, node);
 		if (isTop && this.openElements.stackTop > 0) this._setContextModes(node, tid);
 	}
 	/** @internal */
 	onItemPop(node, isTop) {
-		var _a$1, _b;
+		let _a$1, _b;
 		if (this.options.sourceCodeLocationInfo) this._setEndLocation(node, this.currentToken);
 		(_b = (_a$1 = this.treeAdapter).onItemPop) === null || _b === void 0 || _b.call(_a$1, node, this.openElements.current);
 		if (isTop) {
@@ -6071,7 +6071,7 @@ function eofInBody(p, token) {
 	else stopParsing(p, token);
 }
 function endTagInText(p, token) {
-	var _a$1;
+	let _a$1;
 	if (token.tagID === TAG_ID.SCRIPT) (_a$1 = p.scriptHandler) === null || _a$1 === void 0 || _a$1.call(p, p.openElements.current);
 	p.openElements.pop();
 	p.insertionMode = p.originalInsertionMode;
@@ -6613,7 +6613,7 @@ function startTagAfterBody(p, token) {
 	else tokenAfterBody(p, token);
 }
 function endTagAfterBody(p, token) {
-	var _a$1;
+	let _a$1;
 	if (token.tagID === TAG_ID.HTML) {
 		if (!p.fragmentContext) p.insertionMode = InsertionMode.AFTER_AFTER_BODY;
 		if (p.options.sourceCodeLocationInfo && p.openElements.tagIDs[0] === TAG_ID.HTML) {

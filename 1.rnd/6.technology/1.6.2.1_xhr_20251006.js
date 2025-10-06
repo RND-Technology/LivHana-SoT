@@ -14,9 +14,9 @@ const isXHRAdapterSupported = typeof XMLHttpRequest !== 'undefined';
 export default isXHRAdapterSupported && function (config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
     const _config = resolveConfig(config);
-    let requestData = _config.data;
+    const requestData = _config.data;
     const requestHeaders = AxiosHeaders.from(_config.headers).normalize();
-    let {responseType, onUploadProgress, onDownloadProgress} = _config;
+    const {responseType, onUploadProgress, onDownloadProgress} = _config;
     let onCanceled;
     let uploadThrottled, downloadThrottled;
     let flushUpload, flushDownload;

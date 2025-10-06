@@ -64,17 +64,17 @@
 'use strict';
 
 module.exports = Transform;
-var _require$codes = require('../errors').codes,
+const _require$codes = require('../errors').codes,
   ERR_METHOD_NOT_IMPLEMENTED = _require$codes.ERR_METHOD_NOT_IMPLEMENTED,
   ERR_MULTIPLE_CALLBACK = _require$codes.ERR_MULTIPLE_CALLBACK,
   ERR_TRANSFORM_ALREADY_TRANSFORMING = _require$codes.ERR_TRANSFORM_ALREADY_TRANSFORMING,
   ERR_TRANSFORM_WITH_LENGTH_0 = _require$codes.ERR_TRANSFORM_WITH_LENGTH_0;
-var Duplex = require('./_stream_duplex');
+const Duplex = require('./_stream_duplex');
 require('inherits')(Transform, Duplex);
 function afterTransform(er, data) {
-  var ts = this._transformState;
+  const ts = this._transformState;
   ts.transforming = false;
-  var cb = ts.writecb;
+  const cb = ts.writecb;
   if (cb === null) {
     return this.emit('error', new ERR_MULTIPLE_CALLBACK());
   }
@@ -84,7 +84,7 @@ function afterTransform(er, data) {
     // single equals check for both `null` and `undefined`
     this.push(data);
   cb(er);
-  var rs = this._readableState;
+  const rs = this._readableState;
   rs.reading = false;
   if (rs.needReadable || rs.length < rs.highWaterMark) {
     this._read(rs.highWaterMark);
@@ -118,7 +118,7 @@ function Transform(options) {
   this.on('prefinish', prefinish);
 }
 function prefinish() {
-  var _this = this;
+  const _this = this;
   if (typeof this._flush === 'function' && !this._readableState.destroyed) {
     this._flush(function (er, data) {
       done(_this, er, data);
@@ -146,12 +146,12 @@ Transform.prototype._transform = function (chunk, encoding, cb) {
   cb(new ERR_METHOD_NOT_IMPLEMENTED('_transform()'));
 };
 Transform.prototype._write = function (chunk, encoding, cb) {
-  var ts = this._transformState;
+  const ts = this._transformState;
   ts.writecb = cb;
   ts.writechunk = chunk;
   ts.writeencoding = encoding;
   if (!ts.transforming) {
-    var rs = this._readableState;
+    const rs = this._readableState;
     if (ts.needTransform || rs.needReadable || rs.length < rs.highWaterMark) this._read(rs.highWaterMark);
   }
 };
@@ -160,7 +160,7 @@ Transform.prototype._write = function (chunk, encoding, cb) {
 // _transform does all the work.
 // That we got here means that the readable side wants more data.
 Transform.prototype._read = function (n) {
-  var ts = this._transformState;
+  const ts = this._transformState;
   if (ts.writechunk !== null && !ts.transforming) {
     ts.transforming = true;
     this._transform(ts.writechunk, ts.writeencoding, ts.afterTransform);

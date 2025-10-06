@@ -1,30 +1,30 @@
 'use strict';
 module.exports = function generate_anyOf(it, $keyword, $ruleType) {
-  var out = ' ';
-  var $lvl = it.level;
-  var $dataLvl = it.dataLevel;
-  var $schema = it.schema[$keyword];
-  var $schemaPath = it.schemaPath + it.util.getProperty($keyword);
-  var $errSchemaPath = it.errSchemaPath + '/' + $keyword;
-  var $breakOnError = !it.opts.allErrors;
-  var $data = 'data' + ($dataLvl || '');
-  var $valid = 'valid' + $lvl;
-  var $errs = 'errs__' + $lvl;
-  var $it = it.util.copy(it);
-  var $closingBraces = '';
+  let out = ' ';
+  const $lvl = it.level;
+  const $dataLvl = it.dataLevel;
+  const $schema = it.schema[$keyword];
+  const $schemaPath = it.schemaPath + it.util.getProperty($keyword);
+  const $errSchemaPath = it.errSchemaPath + '/' + $keyword;
+  const $breakOnError = !it.opts.allErrors;
+  const $data = 'data' + ($dataLvl || '');
+  const $valid = 'valid' + $lvl;
+  const $errs = 'errs__' + $lvl;
+  const $it = it.util.copy(it);
+  let $closingBraces = '';
   $it.level++;
-  var $nextValid = 'valid' + $it.level;
-  var $noEmptySchema = $schema.every(function($sch) {
+  const $nextValid = 'valid' + $it.level;
+  const $noEmptySchema = $schema.every(function($sch) {
     return (it.opts.strictKeywords ? (typeof $sch == 'object' && Object.keys($sch).length > 0) || $sch === false : it.util.schemaHasRules($sch, it.RULES.all));
   });
   if ($noEmptySchema) {
-    var $currentBaseId = $it.baseId;
+    const $currentBaseId = $it.baseId;
     out += ' var ' + ($errs) + ' = errors; var ' + ($valid) + ' = false;  ';
-    var $wasComposite = it.compositeRule;
+    const $wasComposite = it.compositeRule;
     it.compositeRule = $it.compositeRule = true;
-    var arr1 = $schema;
+    const arr1 = $schema;
     if (arr1) {
-      var $sch, $i = -1,
+      let $sch, $i = -1,
         l1 = arr1.length - 1;
       while ($i < l1) {
         $sch = arr1[$i += 1];

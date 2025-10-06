@@ -4,13 +4,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _buffer = require("./buffer.js");
-var _index = require("./node/index.js");
-var n = _index;
-var _t = require("@babel/types");
-var _tokenMap = require("./token-map.js");
-var generatorFunctions = require("./generators/index.js");
-var _deprecated = require("./generators/deprecated.js");
+const _buffer = require("./buffer.js");
+const _index = require("./node/index.js");
+const n = _index;
+const _t = require("@babel/types");
+const _tokenMap = require("./token-map.js");
+const generatorFunctions = require("./generators/index.js");
+const _deprecated = require("./generators/deprecated.js");
 const {
   isExpression,
   isFunction,
@@ -352,7 +352,7 @@ class Printer {
     this.print(node);
   }
   print(node, noLineTerminatorAfter, trailingCommentsLineOffset) {
-    var _node$extra, _node$leadingComments, _node$leadingComments2;
+    let _node$extra, _node$leadingComments, _node$leadingComments2;
     if (!node) return;
     this._endsWithInnerRaw = false;
     const nodeType = node.type;
@@ -401,7 +401,7 @@ class Printer {
     if (!shouldPrintParens) {
       noLineTerminatorAfter || (noLineTerminatorAfter = parent && this._noLineTerminatorAfterNode === parent && n.isLastChild(parent, node));
       if (noLineTerminatorAfter) {
-        var _node$trailingComment;
+        let _node$trailingComment;
         if ((_node$trailingComment = node.trailingComments) != null && _node$trailingComment.some(commentIsNewline)) {
           if (isExpression(node)) shouldPrintParens = true;
         } else {
@@ -483,7 +483,7 @@ class Printer {
   printJoin(nodes, statement, indent, separator, printTrailingSeparator, addNewlines, iterator, trailingCommentsLineOffset) {
     if (!(nodes != null && nodes.length)) return;
     if (indent == null && this.format.retainLines) {
-      var _nodes$0$loc;
+      let _nodes$0$loc;
       const startLine = (_nodes$0$loc = nodes[0].loc) == null ? void 0 : _nodes$0$loc.start.line;
       if (startLine != null && startLine !== this._buf.getCurrentLine()) {
         indent = true;
@@ -554,7 +554,7 @@ class Printer {
   }
   _maybePrintInnerComments(nextTokenStr, nextTokenOccurrenceCount) {
     if (this._endsWithInnerRaw) {
-      var _this$tokenMap;
+      let _this$tokenMap;
       this.printInnerComments((_this$tokenMap = this.tokenMap) == null ? void 0 : _this$tokenMap.findMatching(this._currentNode, nextTokenStr, nextTokenOccurrenceCount));
     }
     this._endsWithInnerRaw = true;
@@ -645,7 +645,7 @@ class Printer {
     if (isBlockComment) {
       val = `/*${comment.value}*/`;
       if (this.format.indent.adjustMultilineComment) {
-        var _comment$loc;
+        let _comment$loc;
         const offset = (_comment$loc = comment.loc) == null ? void 0 : _comment$loc.start.column;
         if (offset) {
           const newlineRegex = new RegExp("\\n\\s{1," + offset + "}", "g");
@@ -772,7 +772,7 @@ Object.assign(Printer.prototype, generatorFunctions);
 {
   (0, _deprecated.addDeprecatedGenerators)(Printer);
 }
-var _default = exports.default = Printer;
+const _default = exports.default = Printer;
 function commaSeparator(occurrenceCount, last) {
   this.token(",", false, occurrenceCount);
   if (!last) this.space();

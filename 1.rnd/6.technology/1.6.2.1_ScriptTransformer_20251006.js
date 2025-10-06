@@ -89,18 +89,18 @@ function _jestUtil() {
   };
   return data;
 }
-var _enhanceUnexpectedTokenMessage = _interopRequireDefault(
+const _enhanceUnexpectedTokenMessage = _interopRequireDefault(
   require('./enhanceUnexpectedTokenMessage')
 );
-var _runtimeErrorsAndWarnings = require('./runtimeErrorsAndWarnings');
-var _shouldInstrument = _interopRequireDefault(require('./shouldInstrument'));
+const _runtimeErrorsAndWarnings = require('./runtimeErrorsAndWarnings');
+const _shouldInstrument = _interopRequireDefault(require('./shouldInstrument'));
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {default: obj};
 }
 function _getRequireWildcardCache(nodeInterop) {
   if (typeof WeakMap !== 'function') return null;
-  var cacheBabelInterop = new WeakMap();
-  var cacheNodeInterop = new WeakMap();
+  const cacheBabelInterop = new WeakMap();
+  const cacheNodeInterop = new WeakMap();
   return (_getRequireWildcardCache = function (nodeInterop) {
     return nodeInterop ? cacheNodeInterop : cacheBabelInterop;
   })(nodeInterop);
@@ -112,16 +112,16 @@ function _interopRequireWildcard(obj, nodeInterop) {
   if (obj === null || (typeof obj !== 'object' && typeof obj !== 'function')) {
     return {default: obj};
   }
-  var cache = _getRequireWildcardCache(nodeInterop);
+  const cache = _getRequireWildcardCache(nodeInterop);
   if (cache && cache.has(obj)) {
     return cache.get(obj);
   }
-  var newObj = {};
-  var hasPropertyDescriptor =
+  const newObj = {};
+  const hasPropertyDescriptor =
     Object.defineProperty && Object.getOwnPropertyDescriptor;
-  for (var key in obj) {
+  for (const key in obj) {
     if (key !== 'default' && Object.prototype.hasOwnProperty.call(obj, key)) {
-      var desc = hasPropertyDescriptor
+      const desc = hasPropertyDescriptor
         ? Object.getOwnPropertyDescriptor(obj, key)
         : null;
       if (desc && (desc.get || desc.set)) {

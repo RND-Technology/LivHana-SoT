@@ -1,14 +1,14 @@
-let Browsers = require('./browsers')
-let utils = require('./utils')
-let vendor = require('./vendor')
+const Browsers = require('./browsers')
+const utils = require('./utils')
+const vendor = require('./vendor')
 
 /**
  * Recursively clone objects
  */
 function clone(obj, parent) {
-  let cloned = new obj.constructor()
+  const cloned = new obj.constructor()
 
-  for (let i of Object.keys(obj || {})) {
+  for (const i of Object.keys(obj || {})) {
     let value = obj[i]
     if (i === 'parent' && typeof value === 'object') {
       if (parent) {
@@ -44,8 +44,8 @@ class Prefixer {
    * Clone node and clean autprefixer custom caches
    */
   static clone(node, overrides) {
-    let cloned = clone(node)
-    for (let name in overrides) {
+    const cloned = clone(node)
+    for (const name in overrides) {
       cloned[name] = overrides[name]
     }
     return cloned
@@ -68,7 +68,7 @@ class Prefixer {
    * Load hacks for some names
    */
   static load(name, prefixes, all) {
-    let Klass = this.hacks && this.hacks[name]
+    const Klass = this.hacks && this.hacks[name]
     if (Klass) {
       return new Klass(name, prefixes, all)
     } else {
@@ -124,14 +124,14 @@ class Prefixer {
       return undefined
     }
 
-    let parent = this.parentPrefix(node)
+    const parent = this.parentPrefix(node)
 
-    let prefixes = this.prefixes.filter(
+    const prefixes = this.prefixes.filter(
       prefix => !parent || parent === utils.removeNote(prefix)
     )
 
-    let added = []
-    for (let prefix of prefixes) {
+    const added = []
+    for (const prefix of prefixes) {
       if (this.add(node, prefix, added.concat([prefix]), result)) {
         added.push(prefix)
       }

@@ -13,38 +13,38 @@ exports.implicitZAxis = exports.implicitYAxis = exports.implicitXAxis = void 0;
 exports.isErrorBarRelevantForAxisType = isErrorBarRelevantForAxisType;
 exports.itemAxisPredicate = itemAxisPredicate;
 exports.selectZAxisWithScale = exports.selectZAxisSettings = exports.selectYAxisSize = exports.selectYAxisSettingsNoDefaults = exports.selectYAxisSettings = exports.selectYAxisPosition = exports.selectXAxisSize = exports.selectXAxisSettingsNoDefaults = exports.selectXAxisSettings = exports.selectXAxisPosition = exports.selectUnfilteredCartesianItems = exports.selectTicksOfGraphicalItem = exports.selectTicksOfAxis = exports.selectStackedCartesianItemsSettings = exports.selectStackGroups = exports.selectSmallestDistanceBetweenValues = exports.selectReferenceLinesByAxis = exports.selectReferenceLines = exports.selectReferenceDotsByAxis = exports.selectReferenceDots = exports.selectReferenceAreasByAxis = exports.selectReferenceAreas = exports.selectRealScaleType = exports.selectNumericalDomain = exports.selectNiceTicks = exports.selectHasBar = exports.selectErrorBarsSettingsExceptStacked = exports.selectErrorBarsSettings = exports.selectDuplicateDomain = exports.selectDomainOfStackGroups = exports.selectDomainDefinition = exports.selectDisplayedStackedData = exports.selectDisplayedData = exports.selectChartDirection = exports.selectCategoricalDomain = exports.selectCartesianItemsSettings = exports.selectCartesianGraphicalItemsData = exports.selectCartesianAxisSize = exports.selectCalculatedYAxisPadding = exports.selectCalculatedXAxisPadding = exports.selectBaseAxis = exports.selectAxisWithScale = exports.selectAxisSettings = exports.selectAxisScale = exports.selectAxisRangeWithReverse = exports.selectAxisRange = exports.selectAxisPropsNeededForCartesianGridTicksGenerator = exports.selectAxisDomainIncludingNiceTicks = exports.selectAxisDomain = exports.selectAllYAxesOffsetSteps = exports.selectAllXAxesOffsetSteps = exports.selectAllErrorBarSettings = exports.selectAllAppliedValues = exports.selectAllAppliedNumericalValuesIncludingErrorValues = exports.mergeDomains = void 0;
-var _reselect = require("reselect");
-var _range = _interopRequireDefault(require("es-toolkit/compat/range"));
-var d3Scales = _interopRequireWildcard(require("victory-vendor/d3-scale"));
-var _chartLayoutContext = require("../../context/chartLayoutContext");
-var _ChartUtils = require("../../util/ChartUtils");
-var _dataSelectors = require("./dataSelectors");
-var _isDomainSpecifiedByUser = require("../../util/isDomainSpecifiedByUser");
-var _DataUtils = require("../../util/DataUtils");
-var _isWellBehavedNumber = require("../../util/isWellBehavedNumber");
-var _scale = require("../../util/scale");
-var _containerSelectors = require("./containerSelectors");
-var _selectAllAxes = require("./selectAllAxes");
-var _selectChartOffsetInternal = require("./selectChartOffsetInternal");
-var _brushSelectors = require("./brushSelectors");
-var _rootPropsSelectors = require("./rootPropsSelectors");
-var _polarAxisSelectors = require("./polarAxisSelectors");
-var _pickAxisType = require("./pickAxisType");
-var _pickAxisId = require("./pickAxisId");
-var _combineAxisRangeWithReverse = require("./combiners/combineAxisRangeWithReverse");
-var _Constants = require("../../util/Constants");
-var _getStackSeriesIdentifier = require("../../util/stacks/getStackSeriesIdentifier");
-var _selectTooltipAxis = require("./selectTooltipAxis");
-var _combineDisplayedStackedData = require("./combiners/combineDisplayedStackedData");
-var _StackedGraphicalItem = require("../types/StackedGraphicalItem");
-function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
+const _reselect = require("reselect");
+const _range = _interopRequireDefault(require("es-toolkit/compat/range"));
+const d3Scales = _interopRequireWildcard(require("victory-vendor/d3-scale"));
+const _chartLayoutContext = require("../../context/chartLayoutContext");
+const _ChartUtils = require("../../util/ChartUtils");
+const _dataSelectors = require("./dataSelectors");
+const _isDomainSpecifiedByUser = require("../../util/isDomainSpecifiedByUser");
+const _DataUtils = require("../../util/DataUtils");
+const _isWellBehavedNumber = require("../../util/isWellBehavedNumber");
+const _scale = require("../../util/scale");
+const _containerSelectors = require("./containerSelectors");
+const _selectAllAxes = require("./selectAllAxes");
+const _selectChartOffsetInternal = require("./selectChartOffsetInternal");
+const _brushSelectors = require("./brushSelectors");
+const _rootPropsSelectors = require("./rootPropsSelectors");
+const _polarAxisSelectors = require("./polarAxisSelectors");
+const _pickAxisType = require("./pickAxisType");
+const _pickAxisId = require("./pickAxisId");
+const _combineAxisRangeWithReverse = require("./combiners/combineAxisRangeWithReverse");
+const _Constants = require("../../util/Constants");
+const _getStackSeriesIdentifier = require("../../util/stacks/getStackSeriesIdentifier");
+const _selectTooltipAxis = require("./selectTooltipAxis");
+const _combineDisplayedStackedData = require("./combiners/combineDisplayedStackedData");
+const _StackedGraphicalItem = require("../types/StackedGraphicalItem");
+function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; let o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (const _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function ownKeys(e, r) { const t = Object.keys(e); if (Object.getOwnPropertySymbols) { let o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (let r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-var defaultNumericDomain = [0, 'auto'];
+function _toPropertyKey(t) { const i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; const e = t[Symbol.toPrimitive]; if (void 0 !== e) { const i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+const defaultNumericDomain = [0, 'auto'];
 
 /**
  * angle, radius, X, Y, and Z axes all have domain and range and scale and associated settings
@@ -60,7 +60,7 @@ var defaultNumericDomain = [0, 'auto'];
  * we still need to render something in the chart and we need
  * some object to hold the domain and default settings.
  */
-var implicitXAxis = exports.implicitXAxis = {
+const implicitXAxis = exports.implicitXAxis = {
   allowDataOverflow: false,
   allowDecimals: true,
   allowDuplicatedCategory: true,
@@ -89,12 +89,12 @@ var implicitXAxis = exports.implicitXAxis = {
   type: 'category',
   unit: undefined
 };
-var selectXAxisSettingsNoDefaults = (state, axisId) => {
+const selectXAxisSettingsNoDefaults = (state, axisId) => {
   return state.cartesianAxis.xAxis[axisId];
 };
 exports.selectXAxisSettingsNoDefaults = selectXAxisSettingsNoDefaults;
-var selectXAxisSettings = (state, axisId) => {
-  var axis = selectXAxisSettingsNoDefaults(state, axisId);
+const selectXAxisSettings = (state, axisId) => {
+  const axis = selectXAxisSettingsNoDefaults(state, axisId);
   if (axis == null) {
     return implicitXAxis;
   }
@@ -107,7 +107,7 @@ var selectXAxisSettings = (state, axisId) => {
  * some object to hold the domain and default settings.
  */
 exports.selectXAxisSettings = selectXAxisSettings;
-var implicitYAxis = exports.implicitYAxis = {
+const implicitYAxis = exports.implicitYAxis = {
   allowDataOverflow: false,
   allowDecimals: true,
   allowDuplicatedCategory: true,
@@ -136,19 +136,19 @@ var implicitYAxis = exports.implicitYAxis = {
   unit: undefined,
   width: _Constants.DEFAULT_Y_AXIS_WIDTH
 };
-var selectYAxisSettingsNoDefaults = (state, axisId) => {
+const selectYAxisSettingsNoDefaults = (state, axisId) => {
   return state.cartesianAxis.yAxis[axisId];
 };
 exports.selectYAxisSettingsNoDefaults = selectYAxisSettingsNoDefaults;
-var selectYAxisSettings = (state, axisId) => {
-  var axis = selectYAxisSettingsNoDefaults(state, axisId);
+const selectYAxisSettings = (state, axisId) => {
+  const axis = selectYAxisSettingsNoDefaults(state, axisId);
   if (axis == null) {
     return implicitYAxis;
   }
   return axis;
 };
 exports.selectYAxisSettings = selectYAxisSettings;
-var implicitZAxis = exports.implicitZAxis = {
+const implicitZAxis = exports.implicitZAxis = {
   domain: [0, 'auto'],
   includeHidden: false,
   reversed: false,
@@ -162,15 +162,15 @@ var implicitZAxis = exports.implicitZAxis = {
   type: 'number',
   unit: ''
 };
-var selectZAxisSettings = (state, axisId) => {
-  var axis = state.cartesianAxis.zAxis[axisId];
+const selectZAxisSettings = (state, axisId) => {
+  const axis = state.cartesianAxis.zAxis[axisId];
   if (axis == null) {
     return implicitZAxis;
   }
   return axis;
 };
 exports.selectZAxisSettings = selectZAxisSettings;
-var selectBaseAxis = (state, axisType, axisId) => {
+const selectBaseAxis = (state, axisType, axisId) => {
   switch (axisType) {
     case 'xAxis':
       {
@@ -197,7 +197,7 @@ var selectBaseAxis = (state, axisType, axisId) => {
   }
 };
 exports.selectBaseAxis = selectBaseAxis;
-var selectCartesianAxisSettings = (state, axisType, axisId) => {
+const selectCartesianAxisSettings = (state, axisType, axisId) => {
   switch (axisType) {
     case 'xAxis':
       {
@@ -219,7 +219,7 @@ var selectCartesianAxisSettings = (state, axisType, axisId) => {
  * @param axisId xAxisId | yAxisId
  * @returns axis settings object
  */
-var selectAxisSettings = (state, axisType, axisId) => {
+const selectAxisSettings = (state, axisType, axisId) => {
   switch (axisType) {
     case 'xAxis':
       {
@@ -247,7 +247,7 @@ var selectAxisSettings = (state, axisType, axisId) => {
  * @return boolean true if there is at least one Bar or RadialBar
  */
 exports.selectAxisSettings = selectAxisSettings;
-var selectHasBar = state => state.graphicalItems.cartesianItems.some(item => item.type === 'bar') || state.graphicalItems.polarItems.some(item => item.type === 'radialBar');
+const selectHasBar = state => state.graphicalItems.cartesianItems.some(item => item.type === 'bar') || state.graphicalItems.polarItems.some(item => item.type === 'radialBar');
 
 /**
  * Filters CartesianGraphicalItemSettings by the relevant axis ID
@@ -276,24 +276,24 @@ function itemAxisPredicate(axisType, axisId) {
     }
   };
 }
-var selectUnfilteredCartesianItems = state => state.graphicalItems.cartesianItems;
+const selectUnfilteredCartesianItems = state => state.graphicalItems.cartesianItems;
 exports.selectUnfilteredCartesianItems = selectUnfilteredCartesianItems;
-var selectAxisPredicate = (0, _reselect.createSelector)([_pickAxisType.pickAxisType, _pickAxisId.pickAxisId], itemAxisPredicate);
-var combineGraphicalItemsSettings = (graphicalItems, axisSettings, axisPredicate) => graphicalItems.filter(axisPredicate).filter(item => {
+const selectAxisPredicate = (0, _reselect.createSelector)([_pickAxisType.pickAxisType, _pickAxisId.pickAxisId], itemAxisPredicate);
+const combineGraphicalItemsSettings = (graphicalItems, axisSettings, axisPredicate) => graphicalItems.filter(axisPredicate).filter(item => {
   if ((axisSettings === null || axisSettings === void 0 ? void 0 : axisSettings.includeHidden) === true) {
     return true;
   }
   return !item.hide;
 });
 exports.combineGraphicalItemsSettings = combineGraphicalItemsSettings;
-var selectCartesianItemsSettings = exports.selectCartesianItemsSettings = (0, _reselect.createSelector)([selectUnfilteredCartesianItems, selectBaseAxis, selectAxisPredicate], combineGraphicalItemsSettings);
-var selectStackedCartesianItemsSettings = exports.selectStackedCartesianItemsSettings = (0, _reselect.createSelector)([selectCartesianItemsSettings], cartesianItems => {
+const selectCartesianItemsSettings = exports.selectCartesianItemsSettings = (0, _reselect.createSelector)([selectUnfilteredCartesianItems, selectBaseAxis, selectAxisPredicate], combineGraphicalItemsSettings);
+const selectStackedCartesianItemsSettings = exports.selectStackedCartesianItemsSettings = (0, _reselect.createSelector)([selectCartesianItemsSettings], cartesianItems => {
   return cartesianItems.filter(item => item.type === 'area' || item.type === 'bar').filter(_StackedGraphicalItem.isStacked);
 });
-var filterGraphicalNotStackedItems = cartesianItems => cartesianItems.filter(item => !('stackId' in item) || item.stackId === undefined);
+const filterGraphicalNotStackedItems = cartesianItems => cartesianItems.filter(item => !('stackId' in item) || item.stackId === undefined);
 exports.filterGraphicalNotStackedItems = filterGraphicalNotStackedItems;
-var selectCartesianItemsSettingsExceptStacked = (0, _reselect.createSelector)([selectCartesianItemsSettings], filterGraphicalNotStackedItems);
-var combineGraphicalItemsData = cartesianItems => cartesianItems.map(item => item.data).filter(Boolean).flat(1);
+const selectCartesianItemsSettingsExceptStacked = (0, _reselect.createSelector)([selectCartesianItemsSettings], filterGraphicalNotStackedItems);
+const combineGraphicalItemsData = cartesianItems => cartesianItems.map(item => item.data).filter(Boolean).flat(1);
 
 /**
  * This is a "cheap" selector - it returns the data but doesn't iterate them, so it is not sensitive on the array length.
@@ -302,9 +302,9 @@ var combineGraphicalItemsData = cartesianItems => cartesianItems.map(item => ite
  * @returns data defined on the chart graphical items, such as Line or Scatter or Pie, and filtered with appropriate dataKey
  */
 exports.combineGraphicalItemsData = combineGraphicalItemsData;
-var selectCartesianGraphicalItemsData = exports.selectCartesianGraphicalItemsData = (0, _reselect.createSelector)([selectCartesianItemsSettings], combineGraphicalItemsData);
-var combineDisplayedData = (graphicalItemsData, _ref) => {
-  var {
+const selectCartesianGraphicalItemsData = exports.selectCartesianGraphicalItemsData = (0, _reselect.createSelector)([selectCartesianItemsSettings], combineGraphicalItemsData);
+const combineDisplayedData = (graphicalItemsData, _ref) => {
+  const {
     chartData = [],
     dataStartIndex,
     dataEndIndex
@@ -338,8 +338,8 @@ var combineDisplayedData = (graphicalItemsData, _ref) => {
  * This function will discard the original indexes, so it is also not useful for anything that depends on ordering.
  */
 exports.combineDisplayedData = combineDisplayedData;
-var selectDisplayedData = exports.selectDisplayedData = (0, _reselect.createSelector)([selectCartesianGraphicalItemsData, _dataSelectors.selectChartDataWithIndexesIfNotInPanorama], combineDisplayedData);
-var combineAppliedValues = (data, axisSettings, items) => {
+const selectDisplayedData = exports.selectDisplayedData = (0, _reselect.createSelector)([selectCartesianGraphicalItemsData, _dataSelectors.selectChartDataWithIndexesIfNotInPanorama], combineDisplayedData);
+const combineAppliedValues = (data, axisSettings, items) => {
   if ((axisSettings === null || axisSettings === void 0 ? void 0 : axisSettings.dataKey) != null) {
     return data.map(item => ({
       value: (0, _ChartUtils.getValueByDataKey)(item, axisSettings.dataKey)
@@ -362,7 +362,7 @@ var combineAppliedValues = (data, axisSettings, items) => {
  * This is an expensive selector - it will iterate all data and compute their value using the provided dataKey.
  */
 exports.combineAppliedValues = combineAppliedValues;
-var selectAllAppliedValues = exports.selectAllAppliedValues = (0, _reselect.createSelector)([selectDisplayedData, selectBaseAxis, selectCartesianItemsSettings], combineAppliedValues);
+const selectAllAppliedValues = exports.selectAllAppliedValues = (0, _reselect.createSelector)([selectDisplayedData, selectBaseAxis, selectCartesianItemsSettings], combineAppliedValues);
 function isErrorBarRelevantForAxisType(axisType, errorBar) {
   switch (axisType) {
     case 'xAxis':
@@ -389,8 +389,8 @@ function fromMainValueToError(value) {
     return [value, value];
   }
   if (Array.isArray(value)) {
-    var minError = Math.min(...value);
-    var maxError = Math.max(...value);
+    const minError = Math.min(...value);
+    const maxError = Math.max(...value);
     if (!(0, _DataUtils.isNan)(minError) && !(0, _DataUtils.isNan)(maxError) && Number.isFinite(minError) && Number.isFinite(maxError)) {
       return [minError, maxError];
     }
@@ -415,8 +415,8 @@ function getErrorDomainByDataKey(entry, appliedValue, relevantErrorBars) {
     return [];
   }
   return onlyAllowNumbers(relevantErrorBars.flatMap(eb => {
-    var errorValue = (0, _ChartUtils.getValueByDataKey)(entry, eb.dataKey);
-    var lowBound, highBound;
+    const errorValue = (0, _ChartUtils.getValueByDataKey)(entry, eb.dataKey);
+    let lowBound, highBound;
     if (Array.isArray(errorValue)) {
       [lowBound, highBound] = errorValue;
     } else {
@@ -428,10 +428,10 @@ function getErrorDomainByDataKey(entry, appliedValue, relevantErrorBars) {
     return [appliedValue - lowBound, appliedValue + highBound];
   }));
 }
-var selectDisplayedStackedData = exports.selectDisplayedStackedData = (0, _reselect.createSelector)([selectStackedCartesianItemsSettings, _dataSelectors.selectChartDataWithIndexesIfNotInPanorama, _selectTooltipAxis.selectTooltipAxis], _combineDisplayedStackedData.combineDisplayedStackedData);
-var combineStackGroups = (displayedData, items, stackOffsetType) => {
-  var initialItemsGroups = {};
-  var itemsGroup = items.reduce((acc, item) => {
+const selectDisplayedStackedData = exports.selectDisplayedStackedData = (0, _reselect.createSelector)([selectStackedCartesianItemsSettings, _dataSelectors.selectChartDataWithIndexesIfNotInPanorama, _selectTooltipAxis.selectTooltipAxis], _combineDisplayedStackedData.combineDisplayedStackedData);
+const combineStackGroups = (displayedData, items, stackOffsetType) => {
+  const initialItemsGroups = {};
+  const itemsGroup = items.reduce((acc, item) => {
     if (item.stackId == null) {
       return acc;
     }
@@ -442,8 +442,8 @@ var combineStackGroups = (displayedData, items, stackOffsetType) => {
     return acc;
   }, initialItemsGroups);
   return Object.fromEntries(Object.entries(itemsGroup).map(_ref2 => {
-    var [stackId, graphicalItems] = _ref2;
-    var dataKeys = graphicalItems.map(_getStackSeriesIdentifier.getStackSeriesIdentifier);
+    const [stackId, graphicalItems] = _ref2;
+    const dataKeys = graphicalItems.map(_getStackSeriesIdentifier.getStackSeriesIdentifier);
     return [stackId, {
       // @ts-expect-error getStackedData requires that the input is array of objects, Recharts does not test for that
       stackedData: (0, _ChartUtils.getStackedData)(displayedData, dataKeys, stackOffsetType),
@@ -458,9 +458,9 @@ var combineStackGroups = (displayedData, items, stackOffsetType) => {
  * Graphical items that do not have a stack ID are not going to be present in stack groups.
  */
 exports.combineStackGroups = combineStackGroups;
-var selectStackGroups = exports.selectStackGroups = (0, _reselect.createSelector)([selectDisplayedStackedData, selectStackedCartesianItemsSettings, _rootPropsSelectors.selectStackOffsetType], combineStackGroups);
-var combineDomainOfStackGroups = (stackGroups, _ref3, axisType) => {
-  var {
+const selectStackGroups = exports.selectStackGroups = (0, _reselect.createSelector)([selectDisplayedStackedData, selectStackedCartesianItemsSettings, _rootPropsSelectors.selectStackOffsetType], combineStackGroups);
+const combineDomainOfStackGroups = (stackGroups, _ref3, axisType) => {
+  const {
     dataStartIndex,
     dataEndIndex
   } = _ref3;
@@ -468,21 +468,21 @@ var combineDomainOfStackGroups = (stackGroups, _ref3, axisType) => {
     // ZAxis ignores stacks
     return undefined;
   }
-  var domainOfStackGroups = (0, _ChartUtils.getDomainOfStackGroups)(stackGroups, dataStartIndex, dataEndIndex);
+  const domainOfStackGroups = (0, _ChartUtils.getDomainOfStackGroups)(stackGroups, dataStartIndex, dataEndIndex);
   if (domainOfStackGroups != null && domainOfStackGroups[0] === 0 && domainOfStackGroups[1] === 0) {
     return undefined;
   }
   return domainOfStackGroups;
 };
 exports.combineDomainOfStackGroups = combineDomainOfStackGroups;
-var selectDomainOfStackGroups = exports.selectDomainOfStackGroups = (0, _reselect.createSelector)([selectStackGroups, _dataSelectors.selectChartDataWithIndexes, _pickAxisType.pickAxisType], combineDomainOfStackGroups);
-var combineAppliedNumericalValuesIncludingErrorValues = (data, axisSettings, items, errorBars, axisType) => {
+const selectDomainOfStackGroups = exports.selectDomainOfStackGroups = (0, _reselect.createSelector)([selectStackGroups, _dataSelectors.selectChartDataWithIndexes, _pickAxisType.pickAxisType], combineDomainOfStackGroups);
+const combineAppliedNumericalValuesIncludingErrorValues = (data, axisSettings, items, errorBars, axisType) => {
   if (items.length > 0) {
     return data.flatMap(entry => {
       return items.flatMap(item => {
-        var _errorBars$item$id, _axisSettings$dataKey;
-        var relevantErrorBars = (_errorBars$item$id = errorBars[item.id]) === null || _errorBars$item$id === void 0 ? void 0 : _errorBars$item$id.filter(errorBar => isErrorBarRelevantForAxisType(axisType, errorBar));
-        var valueByDataKey = (0, _ChartUtils.getValueByDataKey)(entry, (_axisSettings$dataKey = axisSettings.dataKey) !== null && _axisSettings$dataKey !== void 0 ? _axisSettings$dataKey : item.dataKey);
+        let _errorBars$item$id, _axisSettings$dataKey;
+        const relevantErrorBars = (_errorBars$item$id = errorBars[item.id]) === null || _errorBars$item$id === void 0 ? void 0 : _errorBars$item$id.filter(errorBar => isErrorBarRelevantForAxisType(axisType, errorBar));
+        const valueByDataKey = (0, _ChartUtils.getValueByDataKey)(entry, (_axisSettings$dataKey = axisSettings.dataKey) !== null && _axisSettings$dataKey !== void 0 ? _axisSettings$dataKey : item.dataKey);
         return {
           value: valueByDataKey,
           errorDomain: getErrorDomainByDataKey(entry, valueByDataKey, relevantErrorBars)
@@ -502,19 +502,19 @@ var combineAppliedNumericalValuesIncludingErrorValues = (data, axisSettings, ite
   }));
 };
 exports.combineAppliedNumericalValuesIncludingErrorValues = combineAppliedNumericalValuesIncludingErrorValues;
-var selectAllErrorBarSettings = state => state.errorBars;
+const selectAllErrorBarSettings = state => state.errorBars;
 exports.selectAllErrorBarSettings = selectAllErrorBarSettings;
-var combineRelevantErrorBarSettings = (cartesianItemsSettings, allErrorBarSettings, axisType) => {
+const combineRelevantErrorBarSettings = (cartesianItemsSettings, allErrorBarSettings, axisType) => {
   return cartesianItemsSettings.flatMap(item => {
     return allErrorBarSettings[item.id];
   }).filter(Boolean).filter(e => {
     return isErrorBarRelevantForAxisType(axisType, e);
   });
 };
-var selectErrorBarsSettingsExceptStacked = exports.selectErrorBarsSettingsExceptStacked = (0, _reselect.createSelector)([selectCartesianItemsSettingsExceptStacked, selectAllErrorBarSettings, _pickAxisType.pickAxisType], combineRelevantErrorBarSettings);
-var selectAllAppliedNumericalValuesIncludingErrorValues = exports.selectAllAppliedNumericalValuesIncludingErrorValues = (0, _reselect.createSelector)([selectDisplayedData, selectBaseAxis, selectCartesianItemsSettingsExceptStacked, selectAllErrorBarSettings, _pickAxisType.pickAxisType], combineAppliedNumericalValuesIncludingErrorValues);
+const selectErrorBarsSettingsExceptStacked = exports.selectErrorBarsSettingsExceptStacked = (0, _reselect.createSelector)([selectCartesianItemsSettingsExceptStacked, selectAllErrorBarSettings, _pickAxisType.pickAxisType], combineRelevantErrorBarSettings);
+const selectAllAppliedNumericalValuesIncludingErrorValues = exports.selectAllAppliedNumericalValuesIncludingErrorValues = (0, _reselect.createSelector)([selectDisplayedData, selectBaseAxis, selectCartesianItemsSettingsExceptStacked, selectAllErrorBarSettings, _pickAxisType.pickAxisType], combineAppliedNumericalValuesIncludingErrorValues);
 function onlyAllowNumbersAndStringsAndDates(item) {
-  var {
+  const {
     value
   } = item;
   if ((0, _DataUtils.isNumOrStr)(value) || value instanceof Date) {
@@ -522,20 +522,20 @@ function onlyAllowNumbersAndStringsAndDates(item) {
   }
   return undefined;
 }
-var computeNumericalDomain = dataWithErrorDomains => {
-  var allDataSquished = dataWithErrorDomains
+const computeNumericalDomain = dataWithErrorDomains => {
+  const allDataSquished = dataWithErrorDomains
   // This flatMap has to be flat because we're creating a new array in the return value
   .flatMap(d => [d.value, d.errorDomain])
   // This flat is needed because a) errorDomain is an array, and b) value may be a number, or it may be a range (for Area, for example)
   .flat(1);
-  var onlyNumbers = onlyAllowNumbers(allDataSquished);
+  const onlyNumbers = onlyAllowNumbers(allDataSquished);
   if (onlyNumbers.length === 0) {
     return undefined;
   }
   return [Math.min(...onlyNumbers), Math.max(...onlyNumbers)];
 };
-var computeDomainOfTypeCategory = (allDataSquished, axisSettings, isCategorical) => {
-  var categoricalDomain = allDataSquished.map(onlyAllowNumbersAndStringsAndDates).filter(v => v != null);
+const computeDomainOfTypeCategory = (allDataSquished, axisSettings, isCategorical) => {
+  const categoricalDomain = allDataSquished.map(onlyAllowNumbersAndStringsAndDates).filter(v => v != null);
   if (isCategorical && (axisSettings.dataKey == null || axisSettings.allowDuplicatedCategory && (0, _DataUtils.hasDuplicate)(categoricalDomain))) {
     /*
      * 1. In an absence of dataKey, Recharts will use array indexes as its categorical domain
@@ -548,8 +548,8 @@ var computeDomainOfTypeCategory = (allDataSquished, axisSettings, isCategorical)
   }
   return Array.from(new Set(categoricalDomain));
 };
-var getDomainDefinition = axisSettings => {
-  var _axisSettings$domain;
+const getDomainDefinition = axisSettings => {
+  let _axisSettings$domain;
   if (axisSettings == null || !('domain' in axisSettings)) {
     return defaultNumericDomain;
   }
@@ -558,7 +558,7 @@ var getDomainDefinition = axisSettings => {
   }
   if (axisSettings.ticks != null) {
     if (axisSettings.type === 'number') {
-      var allValues = onlyAllowNumbers(axisSettings.ticks);
+      const allValues = onlyAllowNumbers(axisSettings.ticks);
       return [Math.min(...allValues), Math.max(...allValues)];
     }
     if (axisSettings.type === 'category') {
@@ -568,22 +568,22 @@ var getDomainDefinition = axisSettings => {
   return (_axisSettings$domain = axisSettings === null || axisSettings === void 0 ? void 0 : axisSettings.domain) !== null && _axisSettings$domain !== void 0 ? _axisSettings$domain : defaultNumericDomain;
 };
 exports.getDomainDefinition = getDomainDefinition;
-var mergeDomains = exports.mergeDomains = function mergeDomains() {
+const mergeDomains = exports.mergeDomains = function mergeDomains() {
   for (var _len = arguments.length, domains = new Array(_len), _key = 0; _key < _len; _key++) {
     domains[_key] = arguments[_key];
   }
-  var allDomains = domains.filter(Boolean);
+  const allDomains = domains.filter(Boolean);
   if (allDomains.length === 0) {
     return undefined;
   }
-  var allValues = allDomains.flat();
-  var min = Math.min(...allValues);
-  var max = Math.max(...allValues);
+  const allValues = allDomains.flat();
+  const min = Math.min(...allValues);
+  const max = Math.max(...allValues);
   return [min, max];
 };
-var selectReferenceDots = state => state.referenceElements.dots;
+const selectReferenceDots = state => state.referenceElements.dots;
 exports.selectReferenceDots = selectReferenceDots;
-var filterReferenceElements = (elements, axisType, axisId) => {
+const filterReferenceElements = (elements, axisType, axisId) => {
   return elements.filter(el => el.ifOverflow === 'extendDomain').filter(el => {
     if (axisType === 'xAxis') {
       return el.xAxisId === axisId;
@@ -592,72 +592,72 @@ var filterReferenceElements = (elements, axisType, axisId) => {
   });
 };
 exports.filterReferenceElements = filterReferenceElements;
-var selectReferenceDotsByAxis = exports.selectReferenceDotsByAxis = (0, _reselect.createSelector)([selectReferenceDots, _pickAxisType.pickAxisType, _pickAxisId.pickAxisId], filterReferenceElements);
-var selectReferenceAreas = state => state.referenceElements.areas;
+const selectReferenceDotsByAxis = exports.selectReferenceDotsByAxis = (0, _reselect.createSelector)([selectReferenceDots, _pickAxisType.pickAxisType, _pickAxisId.pickAxisId], filterReferenceElements);
+const selectReferenceAreas = state => state.referenceElements.areas;
 exports.selectReferenceAreas = selectReferenceAreas;
-var selectReferenceAreasByAxis = exports.selectReferenceAreasByAxis = (0, _reselect.createSelector)([selectReferenceAreas, _pickAxisType.pickAxisType, _pickAxisId.pickAxisId], filterReferenceElements);
-var selectReferenceLines = state => state.referenceElements.lines;
+const selectReferenceAreasByAxis = exports.selectReferenceAreasByAxis = (0, _reselect.createSelector)([selectReferenceAreas, _pickAxisType.pickAxisType, _pickAxisId.pickAxisId], filterReferenceElements);
+const selectReferenceLines = state => state.referenceElements.lines;
 exports.selectReferenceLines = selectReferenceLines;
-var selectReferenceLinesByAxis = exports.selectReferenceLinesByAxis = (0, _reselect.createSelector)([selectReferenceLines, _pickAxisType.pickAxisType, _pickAxisId.pickAxisId], filterReferenceElements);
-var combineDotsDomain = (dots, axisType) => {
-  var allCoords = onlyAllowNumbers(dots.map(dot => axisType === 'xAxis' ? dot.x : dot.y));
+const selectReferenceLinesByAxis = exports.selectReferenceLinesByAxis = (0, _reselect.createSelector)([selectReferenceLines, _pickAxisType.pickAxisType, _pickAxisId.pickAxisId], filterReferenceElements);
+const combineDotsDomain = (dots, axisType) => {
+  const allCoords = onlyAllowNumbers(dots.map(dot => axisType === 'xAxis' ? dot.x : dot.y));
   if (allCoords.length === 0) {
     return undefined;
   }
   return [Math.min(...allCoords), Math.max(...allCoords)];
 };
 exports.combineDotsDomain = combineDotsDomain;
-var selectReferenceDotsDomain = (0, _reselect.createSelector)(selectReferenceDotsByAxis, _pickAxisType.pickAxisType, combineDotsDomain);
-var combineAreasDomain = (areas, axisType) => {
-  var allCoords = onlyAllowNumbers(areas.flatMap(area => [axisType === 'xAxis' ? area.x1 : area.y1, axisType === 'xAxis' ? area.x2 : area.y2]));
+const selectReferenceDotsDomain = (0, _reselect.createSelector)(selectReferenceDotsByAxis, _pickAxisType.pickAxisType, combineDotsDomain);
+const combineAreasDomain = (areas, axisType) => {
+  const allCoords = onlyAllowNumbers(areas.flatMap(area => [axisType === 'xAxis' ? area.x1 : area.y1, axisType === 'xAxis' ? area.x2 : area.y2]));
   if (allCoords.length === 0) {
     return undefined;
   }
   return [Math.min(...allCoords), Math.max(...allCoords)];
 };
 exports.combineAreasDomain = combineAreasDomain;
-var selectReferenceAreasDomain = (0, _reselect.createSelector)([selectReferenceAreasByAxis, _pickAxisType.pickAxisType], combineAreasDomain);
-var combineLinesDomain = (lines, axisType) => {
-  var allCoords = onlyAllowNumbers(lines.map(line => axisType === 'xAxis' ? line.x : line.y));
+const selectReferenceAreasDomain = (0, _reselect.createSelector)([selectReferenceAreasByAxis, _pickAxisType.pickAxisType], combineAreasDomain);
+const combineLinesDomain = (lines, axisType) => {
+  const allCoords = onlyAllowNumbers(lines.map(line => axisType === 'xAxis' ? line.x : line.y));
   if (allCoords.length === 0) {
     return undefined;
   }
   return [Math.min(...allCoords), Math.max(...allCoords)];
 };
 exports.combineLinesDomain = combineLinesDomain;
-var selectReferenceLinesDomain = (0, _reselect.createSelector)(selectReferenceLinesByAxis, _pickAxisType.pickAxisType, combineLinesDomain);
-var selectReferenceElementsDomain = (0, _reselect.createSelector)(selectReferenceDotsDomain, selectReferenceLinesDomain, selectReferenceAreasDomain, (dotsDomain, linesDomain, areasDomain) => {
+const selectReferenceLinesDomain = (0, _reselect.createSelector)(selectReferenceLinesByAxis, _pickAxisType.pickAxisType, combineLinesDomain);
+const selectReferenceElementsDomain = (0, _reselect.createSelector)(selectReferenceDotsDomain, selectReferenceLinesDomain, selectReferenceAreasDomain, (dotsDomain, linesDomain, areasDomain) => {
   return mergeDomains(dotsDomain, areasDomain, linesDomain);
 });
-var selectDomainDefinition = exports.selectDomainDefinition = (0, _reselect.createSelector)([selectBaseAxis], getDomainDefinition);
-var combineNumericalDomain = (axisSettings, domainDefinition, domainOfStackGroups, allDataWithErrorDomains, referenceElementsDomain, layout, axisType) => {
-  var domainFromUserPreference = (0, _isDomainSpecifiedByUser.numericalDomainSpecifiedWithoutRequiringData)(domainDefinition, axisSettings.allowDataOverflow);
+const selectDomainDefinition = exports.selectDomainDefinition = (0, _reselect.createSelector)([selectBaseAxis], getDomainDefinition);
+const combineNumericalDomain = (axisSettings, domainDefinition, domainOfStackGroups, allDataWithErrorDomains, referenceElementsDomain, layout, axisType) => {
+  const domainFromUserPreference = (0, _isDomainSpecifiedByUser.numericalDomainSpecifiedWithoutRequiringData)(domainDefinition, axisSettings.allowDataOverflow);
   if (domainFromUserPreference != null) {
     // We're done! No need to compute anything else.
     return domainFromUserPreference;
   }
-  var shouldIncludeDomainOfStackGroups = layout === 'vertical' && axisType === 'xAxis' || layout === 'horizontal' && axisType === 'yAxis';
-  var mergedDomains = shouldIncludeDomainOfStackGroups ? mergeDomains(domainOfStackGroups, referenceElementsDomain, computeNumericalDomain(allDataWithErrorDomains)) : mergeDomains(referenceElementsDomain, computeNumericalDomain(allDataWithErrorDomains));
+  const shouldIncludeDomainOfStackGroups = layout === 'vertical' && axisType === 'xAxis' || layout === 'horizontal' && axisType === 'yAxis';
+  const mergedDomains = shouldIncludeDomainOfStackGroups ? mergeDomains(domainOfStackGroups, referenceElementsDomain, computeNumericalDomain(allDataWithErrorDomains)) : mergeDomains(referenceElementsDomain, computeNumericalDomain(allDataWithErrorDomains));
   return (0, _isDomainSpecifiedByUser.parseNumericalUserDomain)(domainDefinition, mergedDomains, axisSettings.allowDataOverflow);
 };
 exports.combineNumericalDomain = combineNumericalDomain;
-var selectNumericalDomain = exports.selectNumericalDomain = (0, _reselect.createSelector)([selectBaseAxis, selectDomainDefinition, selectDomainOfStackGroups, selectAllAppliedNumericalValuesIncludingErrorValues, selectReferenceElementsDomain, _chartLayoutContext.selectChartLayout, _pickAxisType.pickAxisType], combineNumericalDomain);
+const selectNumericalDomain = exports.selectNumericalDomain = (0, _reselect.createSelector)([selectBaseAxis, selectDomainDefinition, selectDomainOfStackGroups, selectAllAppliedNumericalValuesIncludingErrorValues, selectReferenceElementsDomain, _chartLayoutContext.selectChartLayout, _pickAxisType.pickAxisType], combineNumericalDomain);
 
 /**
  * Expand by design maps everything between 0 and 1,
  * there is nothing to compute.
  * See https://d3js.org/d3-shape/stack#stack-offsets
  */
-var expandDomain = [0, 1];
-var combineAxisDomain = (axisSettings, layout, displayedData, allAppliedValues, stackOffsetType, axisType, numericalDomain) => {
+const expandDomain = [0, 1];
+const combineAxisDomain = (axisSettings, layout, displayedData, allAppliedValues, stackOffsetType, axisType, numericalDomain) => {
   if ((axisSettings == null || displayedData == null || displayedData.length === 0) && numericalDomain === undefined) {
     return undefined;
   }
-  var {
+  const {
     dataKey,
     type
   } = axisSettings;
-  var isCategorical = (0, _ChartUtils.isCategoricalAxis)(layout, axisType);
+  const isCategorical = (0, _ChartUtils.isCategoricalAxis)(layout, axisType);
   if (isCategorical && dataKey == null) {
     return (0, _range.default)(0, displayedData.length);
   }
@@ -670,12 +670,12 @@ var combineAxisDomain = (axisSettings, layout, displayedData, allAppliedValues, 
   return numericalDomain;
 };
 exports.combineAxisDomain = combineAxisDomain;
-var selectAxisDomain = exports.selectAxisDomain = (0, _reselect.createSelector)([selectBaseAxis, _chartLayoutContext.selectChartLayout, selectDisplayedData, selectAllAppliedValues, _rootPropsSelectors.selectStackOffsetType, _pickAxisType.pickAxisType, selectNumericalDomain], combineAxisDomain);
-var combineRealScaleType = (axisConfig, layout, hasBar, chartType, axisType) => {
+const selectAxisDomain = exports.selectAxisDomain = (0, _reselect.createSelector)([selectBaseAxis, _chartLayoutContext.selectChartLayout, selectDisplayedData, selectAllAppliedValues, _rootPropsSelectors.selectStackOffsetType, _pickAxisType.pickAxisType, selectNumericalDomain], combineAxisDomain);
+const combineRealScaleType = (axisConfig, layout, hasBar, chartType, axisType) => {
   if (axisConfig == null) {
     return undefined;
   }
-  var {
+  const {
     scale,
     type
   } = axisConfig;
@@ -695,13 +695,13 @@ var combineRealScaleType = (axisConfig, layout, hasBar, chartType, axisType) => 
     return 'linear';
   }
   if (typeof scale === 'string') {
-    var name = "scale".concat((0, _DataUtils.upperFirst)(scale));
+    const name = "scale".concat((0, _DataUtils.upperFirst)(scale));
     return name in d3Scales ? name : 'point';
   }
   return undefined;
 };
 exports.combineRealScaleType = combineRealScaleType;
-var selectRealScaleType = exports.selectRealScaleType = (0, _reselect.createSelector)([selectBaseAxis, _chartLayoutContext.selectChartLayout, selectHasBar, _rootPropsSelectors.selectChartName, _pickAxisType.pickAxisType], combineRealScaleType);
+const selectRealScaleType = exports.selectRealScaleType = (0, _reselect.createSelector)([selectBaseAxis, _chartLayoutContext.selectChartLayout, selectHasBar, _rootPropsSelectors.selectChartName, _pickAxisType.pickAxisType], combineRealScaleType);
 function getD3ScaleFromType(realScaleType) {
   if (realScaleType == null) {
     return undefined;
@@ -710,7 +710,7 @@ function getD3ScaleFromType(realScaleType) {
     // @ts-expect-error we should do better type verification here
     return d3Scales[realScaleType]();
   }
-  var name = "scale".concat((0, _DataUtils.upperFirst)(realScaleType));
+  const name = "scale".concat((0, _DataUtils.upperFirst)(realScaleType));
   if (name in d3Scales) {
     // @ts-expect-error we should do better type verification here
     return d3Scales[name]();
@@ -725,17 +725,17 @@ function combineScaleFunction(axis, realScaleType, axisDomain, axisRange) {
     // @ts-expect-error we're going to assume here that if axis.scale is a function then it is a d3Scale function
     return axis.scale.copy().domain(axisDomain).range(axisRange);
   }
-  var d3ScaleFunction = getD3ScaleFromType(realScaleType);
+  const d3ScaleFunction = getD3ScaleFromType(realScaleType);
   if (d3ScaleFunction == null) {
     return undefined;
   }
-  var scale = d3ScaleFunction.domain(axisDomain).range(axisRange);
+  const scale = d3ScaleFunction.domain(axisDomain).range(axisRange);
   // I don't like this function because it mutates the scale. We should come up with a way to compute the domain up front.
   (0, _ChartUtils.checkDomainOfScale)(scale);
   return scale;
 }
-var combineNiceTicks = (axisDomain, axisSettings, realScaleType) => {
-  var domainDefinition = getDomainDefinition(axisSettings);
+const combineNiceTicks = (axisDomain, axisSettings, realScaleType) => {
+  const domainDefinition = getDomainDefinition(axisSettings);
   if (realScaleType !== 'auto' && realScaleType !== 'linear') {
     return undefined;
   }
@@ -748,8 +748,8 @@ var combineNiceTicks = (axisDomain, axisSettings, realScaleType) => {
   return undefined;
 };
 exports.combineNiceTicks = combineNiceTicks;
-var selectNiceTicks = exports.selectNiceTicks = (0, _reselect.createSelector)([selectAxisDomain, selectAxisSettings, selectRealScaleType], combineNiceTicks);
-var combineAxisDomainWithNiceTicks = (axisSettings, domain, niceTicks, axisType) => {
+const selectNiceTicks = exports.selectNiceTicks = (0, _reselect.createSelector)([selectAxisDomain, selectAxisSettings, selectRealScaleType], combineNiceTicks);
+const combineAxisDomainWithNiceTicks = (axisSettings, domain, niceTicks, axisType) => {
   if (
   /*
    * Angle axis for some reason uses nice ticks when rendering axis tick labels,
@@ -758,16 +758,16 @@ var combineAxisDomainWithNiceTicks = (axisSettings, domain, niceTicks, axisType)
    * or is it just because someone added support for nice ticks to the other axes and forgot this one?
    */
   axisType !== 'angleAxis' && (axisSettings === null || axisSettings === void 0 ? void 0 : axisSettings.type) === 'number' && (0, _isDomainSpecifiedByUser.isWellFormedNumberDomain)(domain) && Array.isArray(niceTicks) && niceTicks.length > 0) {
-    var minFromDomain = domain[0];
-    var minFromTicks = niceTicks[0];
-    var maxFromDomain = domain[1];
-    var maxFromTicks = niceTicks[niceTicks.length - 1];
+    const minFromDomain = domain[0];
+    const minFromTicks = niceTicks[0];
+    const maxFromDomain = domain[1];
+    const maxFromTicks = niceTicks[niceTicks.length - 1];
     return [Math.min(minFromDomain, minFromTicks), Math.max(maxFromDomain, maxFromTicks)];
   }
   return domain;
 };
 exports.combineAxisDomainWithNiceTicks = combineAxisDomainWithNiceTicks;
-var selectAxisDomainIncludingNiceTicks = exports.selectAxisDomainIncludingNiceTicks = (0, _reselect.createSelector)([selectBaseAxis, selectAxisDomain, selectNiceTicks, _pickAxisType.pickAxisType], combineAxisDomainWithNiceTicks);
+const selectAxisDomainIncludingNiceTicks = exports.selectAxisDomainIncludingNiceTicks = (0, _reselect.createSelector)([selectBaseAxis, selectAxisDomain, selectNiceTicks, _pickAxisType.pickAxisType], combineAxisDomainWithNiceTicks);
 
 /**
  * Returns the smallest gap, between two numbers in the data, as a ratio of the whole range (max - min).
@@ -775,66 +775,66 @@ var selectAxisDomainIncludingNiceTicks = exports.selectAxisDomainIncludingNiceTi
  *
  * The result is a number between 0 and 1.
  */
-var selectSmallestDistanceBetweenValues = exports.selectSmallestDistanceBetweenValues = (0, _reselect.createSelector)(selectAllAppliedValues, selectBaseAxis, (allDataSquished, axisSettings) => {
+const selectSmallestDistanceBetweenValues = exports.selectSmallestDistanceBetweenValues = (0, _reselect.createSelector)(selectAllAppliedValues, selectBaseAxis, (allDataSquished, axisSettings) => {
   if (!axisSettings || axisSettings.type !== 'number') {
     return undefined;
   }
-  var smallestDistanceBetweenValues = Infinity;
-  var sortedValues = Array.from(onlyAllowNumbers(allDataSquished.map(d => d.value))).sort((a, b) => a - b);
+  let smallestDistanceBetweenValues = Infinity;
+  const sortedValues = Array.from(onlyAllowNumbers(allDataSquished.map(d => d.value))).sort((a, b) => a - b);
   if (sortedValues.length < 2) {
     return Infinity;
   }
-  var diff = sortedValues[sortedValues.length - 1] - sortedValues[0];
+  const diff = sortedValues[sortedValues.length - 1] - sortedValues[0];
   if (diff === 0) {
     return Infinity;
   }
   // Only do n - 1 distance calculations because there's only n - 1 distances between n values.
-  for (var i = 0; i < sortedValues.length - 1; i++) {
-    var distance = sortedValues[i + 1] - sortedValues[i];
+  for (let i = 0; i < sortedValues.length - 1; i++) {
+    const distance = sortedValues[i + 1] - sortedValues[i];
     smallestDistanceBetweenValues = Math.min(smallestDistanceBetweenValues, distance);
   }
   return smallestDistanceBetweenValues / diff;
 });
-var selectCalculatedPadding = (0, _reselect.createSelector)(selectSmallestDistanceBetweenValues, _chartLayoutContext.selectChartLayout, _rootPropsSelectors.selectBarCategoryGap, _selectChartOffsetInternal.selectChartOffsetInternal, (_1, _2, _3, padding) => padding, (smallestDistanceInPercent, layout, barCategoryGap, offset, padding) => {
+const selectCalculatedPadding = (0, _reselect.createSelector)(selectSmallestDistanceBetweenValues, _chartLayoutContext.selectChartLayout, _rootPropsSelectors.selectBarCategoryGap, _selectChartOffsetInternal.selectChartOffsetInternal, (_1, _2, _3, padding) => padding, (smallestDistanceInPercent, layout, barCategoryGap, offset, padding) => {
   if (!(0, _isWellBehavedNumber.isWellBehavedNumber)(smallestDistanceInPercent)) {
     return 0;
   }
-  var rangeWidth = layout === 'vertical' ? offset.height : offset.width;
+  const rangeWidth = layout === 'vertical' ? offset.height : offset.width;
   if (padding === 'gap') {
     return smallestDistanceInPercent * rangeWidth / 2;
   }
   if (padding === 'no-gap') {
-    var gap = (0, _DataUtils.getPercentValue)(barCategoryGap, smallestDistanceInPercent * rangeWidth);
-    var halfBand = smallestDistanceInPercent * rangeWidth / 2;
+    const gap = (0, _DataUtils.getPercentValue)(barCategoryGap, smallestDistanceInPercent * rangeWidth);
+    const halfBand = smallestDistanceInPercent * rangeWidth / 2;
     return halfBand - gap - (halfBand - gap) / rangeWidth * gap;
   }
   return 0;
 });
-var selectCalculatedXAxisPadding = (state, axisId) => {
-  var xAxisSettings = selectXAxisSettings(state, axisId);
+const selectCalculatedXAxisPadding = (state, axisId) => {
+  const xAxisSettings = selectXAxisSettings(state, axisId);
   if (xAxisSettings == null || typeof xAxisSettings.padding !== 'string') {
     return 0;
   }
   return selectCalculatedPadding(state, 'xAxis', axisId, xAxisSettings.padding);
 };
 exports.selectCalculatedXAxisPadding = selectCalculatedXAxisPadding;
-var selectCalculatedYAxisPadding = (state, axisId) => {
-  var yAxisSettings = selectYAxisSettings(state, axisId);
+const selectCalculatedYAxisPadding = (state, axisId) => {
+  const yAxisSettings = selectYAxisSettings(state, axisId);
   if (yAxisSettings == null || typeof yAxisSettings.padding !== 'string') {
     return 0;
   }
   return selectCalculatedPadding(state, 'yAxis', axisId, yAxisSettings.padding);
 };
 exports.selectCalculatedYAxisPadding = selectCalculatedYAxisPadding;
-var selectXAxisPadding = (0, _reselect.createSelector)(selectXAxisSettings, selectCalculatedXAxisPadding, (xAxisSettings, calculated) => {
-  var _padding$left, _padding$right;
+const selectXAxisPadding = (0, _reselect.createSelector)(selectXAxisSettings, selectCalculatedXAxisPadding, (xAxisSettings, calculated) => {
+  let _padding$left, _padding$right;
   if (xAxisSettings == null) {
     return {
       left: 0,
       right: 0
     };
   }
-  var {
+  const {
     padding
   } = xAxisSettings;
   if (typeof padding === 'string') {
@@ -848,15 +848,15 @@ var selectXAxisPadding = (0, _reselect.createSelector)(selectXAxisSettings, sele
     right: ((_padding$right = padding.right) !== null && _padding$right !== void 0 ? _padding$right : 0) + calculated
   };
 });
-var selectYAxisPadding = (0, _reselect.createSelector)(selectYAxisSettings, selectCalculatedYAxisPadding, (yAxisSettings, calculated) => {
-  var _padding$top, _padding$bottom;
+const selectYAxisPadding = (0, _reselect.createSelector)(selectYAxisSettings, selectCalculatedYAxisPadding, (yAxisSettings, calculated) => {
+  let _padding$top, _padding$bottom;
   if (yAxisSettings == null) {
     return {
       top: 0,
       bottom: 0
     };
   }
-  var {
+  const {
     padding
   } = yAxisSettings;
   if (typeof padding === 'string') {
@@ -870,8 +870,8 @@ var selectYAxisPadding = (0, _reselect.createSelector)(selectYAxisSettings, sele
     bottom: ((_padding$bottom = padding.bottom) !== null && _padding$bottom !== void 0 ? _padding$bottom : 0) + calculated
   };
 });
-var combineXAxisRange = exports.combineXAxisRange = (0, _reselect.createSelector)([_selectChartOffsetInternal.selectChartOffsetInternal, selectXAxisPadding, _brushSelectors.selectBrushDimensions, _brushSelectors.selectBrushSettings, (_state, _axisId, isPanorama) => isPanorama], (offset, padding, brushDimensions, _ref4, isPanorama) => {
-  var {
+const combineXAxisRange = exports.combineXAxisRange = (0, _reselect.createSelector)([_selectChartOffsetInternal.selectChartOffsetInternal, selectXAxisPadding, _brushSelectors.selectBrushDimensions, _brushSelectors.selectBrushSettings, (_state, _axisId, isPanorama) => isPanorama], (offset, padding, brushDimensions, _ref4, isPanorama) => {
+  const {
     padding: brushPadding
   } = _ref4;
   if (isPanorama) {
@@ -879,8 +879,8 @@ var combineXAxisRange = exports.combineXAxisRange = (0, _reselect.createSelector
   }
   return [offset.left + padding.left, offset.left + offset.width - padding.right];
 });
-var combineYAxisRange = exports.combineYAxisRange = (0, _reselect.createSelector)([_selectChartOffsetInternal.selectChartOffsetInternal, _chartLayoutContext.selectChartLayout, selectYAxisPadding, _brushSelectors.selectBrushDimensions, _brushSelectors.selectBrushSettings, (_state, _axisId, isPanorama) => isPanorama], (offset, layout, padding, brushDimensions, _ref5, isPanorama) => {
-  var {
+const combineYAxisRange = exports.combineYAxisRange = (0, _reselect.createSelector)([_selectChartOffsetInternal.selectChartOffsetInternal, _chartLayoutContext.selectChartLayout, selectYAxisPadding, _brushSelectors.selectBrushDimensions, _brushSelectors.selectBrushSettings, (_state, _axisId, isPanorama) => isPanorama], (offset, layout, padding, brushDimensions, _ref5, isPanorama) => {
+  const {
     padding: brushPadding
   } = _ref5;
   if (isPanorama) {
@@ -891,8 +891,8 @@ var combineYAxisRange = exports.combineYAxisRange = (0, _reselect.createSelector
   }
   return [offset.top + padding.top, offset.top + offset.height - padding.bottom];
 });
-var selectAxisRange = (state, axisType, axisId, isPanorama) => {
-  var _selectZAxisSettings;
+const selectAxisRange = (state, axisType, axisId, isPanorama) => {
+  let _selectZAxisSettings;
   switch (axisType) {
     case 'xAxis':
       return combineXAxisRange(state, axisId, isPanorama);
@@ -909,9 +909,9 @@ var selectAxisRange = (state, axisType, axisId, isPanorama) => {
   }
 };
 exports.selectAxisRange = selectAxisRange;
-var selectAxisRangeWithReverse = exports.selectAxisRangeWithReverse = (0, _reselect.createSelector)([selectBaseAxis, selectAxisRange], _combineAxisRangeWithReverse.combineAxisRangeWithReverse);
-var selectAxisScale = exports.selectAxisScale = (0, _reselect.createSelector)([selectBaseAxis, selectRealScaleType, selectAxisDomainIncludingNiceTicks, selectAxisRangeWithReverse], combineScaleFunction);
-var selectErrorBarsSettings = exports.selectErrorBarsSettings = (0, _reselect.createSelector)([selectCartesianItemsSettings, selectAllErrorBarSettings, _pickAxisType.pickAxisType], combineRelevantErrorBarSettings);
+const selectAxisRangeWithReverse = exports.selectAxisRangeWithReverse = (0, _reselect.createSelector)([selectBaseAxis, selectAxisRange], _combineAxisRangeWithReverse.combineAxisRangeWithReverse);
+const selectAxisScale = exports.selectAxisScale = (0, _reselect.createSelector)([selectBaseAxis, selectRealScaleType, selectAxisDomainIncludingNiceTicks, selectAxisRangeWithReverse], combineScaleFunction);
+const selectErrorBarsSettings = exports.selectErrorBarsSettings = (0, _reselect.createSelector)([selectCartesianItemsSettings, selectAllErrorBarSettings, _pickAxisType.pickAxisType], combineRelevantErrorBarSettings);
 function compareIds(a, b) {
   if (a.id < b.id) {
     return -1;
@@ -921,25 +921,25 @@ function compareIds(a, b) {
   }
   return 0;
 }
-var pickAxisOrientation = (_state, orientation) => orientation;
-var pickMirror = (_state, _orientation, mirror) => mirror;
-var selectAllXAxesWithOffsetType = (0, _reselect.createSelector)(_selectAllAxes.selectAllXAxes, pickAxisOrientation, pickMirror, (allAxes, orientation, mirror) => allAxes.filter(axis => axis.orientation === orientation).filter(axis => axis.mirror === mirror).sort(compareIds));
-var selectAllYAxesWithOffsetType = (0, _reselect.createSelector)(_selectAllAxes.selectAllYAxes, pickAxisOrientation, pickMirror, (allAxes, orientation, mirror) => allAxes.filter(axis => axis.orientation === orientation).filter(axis => axis.mirror === mirror).sort(compareIds));
-var getXAxisSize = (offset, axisSettings) => {
+const pickAxisOrientation = (_state, orientation) => orientation;
+const pickMirror = (_state, _orientation, mirror) => mirror;
+const selectAllXAxesWithOffsetType = (0, _reselect.createSelector)(_selectAllAxes.selectAllXAxes, pickAxisOrientation, pickMirror, (allAxes, orientation, mirror) => allAxes.filter(axis => axis.orientation === orientation).filter(axis => axis.mirror === mirror).sort(compareIds));
+const selectAllYAxesWithOffsetType = (0, _reselect.createSelector)(_selectAllAxes.selectAllYAxes, pickAxisOrientation, pickMirror, (allAxes, orientation, mirror) => allAxes.filter(axis => axis.orientation === orientation).filter(axis => axis.mirror === mirror).sort(compareIds));
+const getXAxisSize = (offset, axisSettings) => {
   return {
     width: offset.width,
     height: axisSettings.height
   };
 };
-var getYAxisSize = (offset, axisSettings) => {
-  var width = typeof axisSettings.width === 'number' ? axisSettings.width : _Constants.DEFAULT_Y_AXIS_WIDTH;
+const getYAxisSize = (offset, axisSettings) => {
+  const width = typeof axisSettings.width === 'number' ? axisSettings.width : _Constants.DEFAULT_Y_AXIS_WIDTH;
   return {
     width,
     height: offset.height
   };
 };
-var selectXAxisSize = exports.selectXAxisSize = (0, _reselect.createSelector)(_selectChartOffsetInternal.selectChartOffsetInternal, selectXAxisSettings, getXAxisSize);
-var combineXAxisPositionStartingPoint = (offset, orientation, chartHeight) => {
+const selectXAxisSize = exports.selectXAxisSize = (0, _reselect.createSelector)(_selectChartOffsetInternal.selectChartOffsetInternal, selectXAxisSettings, getXAxisSize);
+const combineXAxisPositionStartingPoint = (offset, orientation, chartHeight) => {
   switch (orientation) {
     case 'top':
       return offset.top;
@@ -949,7 +949,7 @@ var combineXAxisPositionStartingPoint = (offset, orientation, chartHeight) => {
       return 0;
   }
 };
-var combineYAxisPositionStartingPoint = (offset, orientation, chartWidth) => {
+const combineYAxisPositionStartingPoint = (offset, orientation, chartWidth) => {
   switch (orientation) {
     case 'left':
       return offset.left;
@@ -959,46 +959,46 @@ var combineYAxisPositionStartingPoint = (offset, orientation, chartWidth) => {
       return 0;
   }
 };
-var selectAllXAxesOffsetSteps = exports.selectAllXAxesOffsetSteps = (0, _reselect.createSelector)(_containerSelectors.selectChartHeight, _selectChartOffsetInternal.selectChartOffsetInternal, selectAllXAxesWithOffsetType, pickAxisOrientation, pickMirror, (chartHeight, offset, allAxesWithSameOffsetType, orientation, mirror) => {
-  var steps = {};
-  var position;
+const selectAllXAxesOffsetSteps = exports.selectAllXAxesOffsetSteps = (0, _reselect.createSelector)(_containerSelectors.selectChartHeight, _selectChartOffsetInternal.selectChartOffsetInternal, selectAllXAxesWithOffsetType, pickAxisOrientation, pickMirror, (chartHeight, offset, allAxesWithSameOffsetType, orientation, mirror) => {
+  const steps = {};
+  let position;
   allAxesWithSameOffsetType.forEach(axis => {
-    var axisSize = getXAxisSize(offset, axis);
+    const axisSize = getXAxisSize(offset, axis);
     if (position == null) {
       position = combineXAxisPositionStartingPoint(offset, orientation, chartHeight);
     }
-    var needSpace = orientation === 'top' && !mirror || orientation === 'bottom' && mirror;
+    const needSpace = orientation === 'top' && !mirror || orientation === 'bottom' && mirror;
     steps[axis.id] = position - Number(needSpace) * axisSize.height;
     position += (needSpace ? -1 : 1) * axisSize.height;
   });
   return steps;
 });
-var selectAllYAxesOffsetSteps = exports.selectAllYAxesOffsetSteps = (0, _reselect.createSelector)(_containerSelectors.selectChartWidth, _selectChartOffsetInternal.selectChartOffsetInternal, selectAllYAxesWithOffsetType, pickAxisOrientation, pickMirror, (chartWidth, offset, allAxesWithSameOffsetType, orientation, mirror) => {
-  var steps = {};
-  var position;
+const selectAllYAxesOffsetSteps = exports.selectAllYAxesOffsetSteps = (0, _reselect.createSelector)(_containerSelectors.selectChartWidth, _selectChartOffsetInternal.selectChartOffsetInternal, selectAllYAxesWithOffsetType, pickAxisOrientation, pickMirror, (chartWidth, offset, allAxesWithSameOffsetType, orientation, mirror) => {
+  const steps = {};
+  let position;
   allAxesWithSameOffsetType.forEach(axis => {
-    var axisSize = getYAxisSize(offset, axis);
+    const axisSize = getYAxisSize(offset, axis);
     if (position == null) {
       position = combineYAxisPositionStartingPoint(offset, orientation, chartWidth);
     }
-    var needSpace = orientation === 'left' && !mirror || orientation === 'right' && mirror;
+    const needSpace = orientation === 'left' && !mirror || orientation === 'right' && mirror;
     steps[axis.id] = position - Number(needSpace) * axisSize.width;
     position += (needSpace ? -1 : 1) * axisSize.width;
   });
   return steps;
 });
-var selectXAxisOffsetSteps = (state, axisId) => {
-  var axisSettings = selectXAxisSettings(state, axisId);
+const selectXAxisOffsetSteps = (state, axisId) => {
+  const axisSettings = selectXAxisSettings(state, axisId);
   if (axisSettings == null) {
     return undefined;
   }
   return selectAllXAxesOffsetSteps(state, axisSettings.orientation, axisSettings.mirror);
 };
-var selectXAxisPosition = exports.selectXAxisPosition = (0, _reselect.createSelector)([_selectChartOffsetInternal.selectChartOffsetInternal, selectXAxisSettings, selectXAxisOffsetSteps, (_, axisId) => axisId], (offset, axisSettings, allSteps, axisId) => {
+const selectXAxisPosition = exports.selectXAxisPosition = (0, _reselect.createSelector)([_selectChartOffsetInternal.selectChartOffsetInternal, selectXAxisSettings, selectXAxisOffsetSteps, (_, axisId) => axisId], (offset, axisSettings, allSteps, axisId) => {
   if (axisSettings == null) {
     return undefined;
   }
-  var stepOfThisAxis = allSteps === null || allSteps === void 0 ? void 0 : allSteps[axisId];
+  const stepOfThisAxis = allSteps === null || allSteps === void 0 ? void 0 : allSteps[axisId];
   if (stepOfThisAxis == null) {
     return {
       x: offset.left,
@@ -1010,18 +1010,18 @@ var selectXAxisPosition = exports.selectXAxisPosition = (0, _reselect.createSele
     y: stepOfThisAxis
   };
 });
-var selectYAxisOffsetSteps = (state, axisId) => {
-  var axisSettings = selectYAxisSettings(state, axisId);
+const selectYAxisOffsetSteps = (state, axisId) => {
+  const axisSettings = selectYAxisSettings(state, axisId);
   if (axisSettings == null) {
     return undefined;
   }
   return selectAllYAxesOffsetSteps(state, axisSettings.orientation, axisSettings.mirror);
 };
-var selectYAxisPosition = exports.selectYAxisPosition = (0, _reselect.createSelector)([_selectChartOffsetInternal.selectChartOffsetInternal, selectYAxisSettings, selectYAxisOffsetSteps, (_, axisId) => axisId], (offset, axisSettings, allSteps, axisId) => {
+const selectYAxisPosition = exports.selectYAxisPosition = (0, _reselect.createSelector)([_selectChartOffsetInternal.selectChartOffsetInternal, selectYAxisSettings, selectYAxisOffsetSteps, (_, axisId) => axisId], (offset, axisSettings, allSteps, axisId) => {
   if (axisSettings == null) {
     return undefined;
   }
-  var stepOfThisAxis = allSteps === null || allSteps === void 0 ? void 0 : allSteps[axisId];
+  const stepOfThisAxis = allSteps === null || allSteps === void 0 ? void 0 : allSteps[axisId];
   if (stepOfThisAxis == null) {
     return {
       x: 0,
@@ -1033,14 +1033,14 @@ var selectYAxisPosition = exports.selectYAxisPosition = (0, _reselect.createSele
     y: offset.top
   };
 });
-var selectYAxisSize = exports.selectYAxisSize = (0, _reselect.createSelector)(_selectChartOffsetInternal.selectChartOffsetInternal, selectYAxisSettings, (offset, axisSettings) => {
-  var width = typeof axisSettings.width === 'number' ? axisSettings.width : _Constants.DEFAULT_Y_AXIS_WIDTH;
+const selectYAxisSize = exports.selectYAxisSize = (0, _reselect.createSelector)(_selectChartOffsetInternal.selectChartOffsetInternal, selectYAxisSettings, (offset, axisSettings) => {
+  const width = typeof axisSettings.width === 'number' ? axisSettings.width : _Constants.DEFAULT_Y_AXIS_WIDTH;
   return {
     width,
     height: offset.height
   };
 });
-var selectCartesianAxisSize = (state, axisType, axisId) => {
+const selectCartesianAxisSize = (state, axisType, axisId) => {
   switch (axisType) {
     case 'xAxis':
       {
@@ -1057,45 +1057,45 @@ var selectCartesianAxisSize = (state, axisType, axisId) => {
   }
 };
 exports.selectCartesianAxisSize = selectCartesianAxisSize;
-var combineDuplicateDomain = (chartLayout, appliedValues, axis, axisType) => {
+const combineDuplicateDomain = (chartLayout, appliedValues, axis, axisType) => {
   if (axis == null) {
     return undefined;
   }
-  var {
+  const {
     allowDuplicatedCategory,
     type,
     dataKey
   } = axis;
-  var isCategorical = (0, _ChartUtils.isCategoricalAxis)(chartLayout, axisType);
-  var allData = appliedValues.map(av => av.value);
+  const isCategorical = (0, _ChartUtils.isCategoricalAxis)(chartLayout, axisType);
+  const allData = appliedValues.map(av => av.value);
   if (dataKey && isCategorical && type === 'category' && allowDuplicatedCategory && (0, _DataUtils.hasDuplicate)(allData)) {
     return allData;
   }
   return undefined;
 };
 exports.combineDuplicateDomain = combineDuplicateDomain;
-var selectDuplicateDomain = exports.selectDuplicateDomain = (0, _reselect.createSelector)([_chartLayoutContext.selectChartLayout, selectAllAppliedValues, selectBaseAxis, _pickAxisType.pickAxisType], combineDuplicateDomain);
-var combineCategoricalDomain = (layout, appliedValues, axis, axisType) => {
+const selectDuplicateDomain = exports.selectDuplicateDomain = (0, _reselect.createSelector)([_chartLayoutContext.selectChartLayout, selectAllAppliedValues, selectBaseAxis, _pickAxisType.pickAxisType], combineDuplicateDomain);
+const combineCategoricalDomain = (layout, appliedValues, axis, axisType) => {
   if (axis == null || axis.dataKey == null) {
     return undefined;
   }
-  var {
+  const {
     type,
     scale
   } = axis;
-  var isCategorical = (0, _ChartUtils.isCategoricalAxis)(layout, axisType);
+  const isCategorical = (0, _ChartUtils.isCategoricalAxis)(layout, axisType);
   if (isCategorical && (type === 'number' || scale !== 'auto')) {
     return appliedValues.map(d => d.value);
   }
   return undefined;
 };
 exports.combineCategoricalDomain = combineCategoricalDomain;
-var selectCategoricalDomain = exports.selectCategoricalDomain = (0, _reselect.createSelector)([_chartLayoutContext.selectChartLayout, selectAllAppliedValues, selectAxisSettings, _pickAxisType.pickAxisType], combineCategoricalDomain);
-var selectAxisPropsNeededForCartesianGridTicksGenerator = exports.selectAxisPropsNeededForCartesianGridTicksGenerator = (0, _reselect.createSelector)([_chartLayoutContext.selectChartLayout, selectCartesianAxisSettings, selectRealScaleType, selectAxisScale, selectDuplicateDomain, selectCategoricalDomain, selectAxisRange, selectNiceTicks, _pickAxisType.pickAxisType], (layout, axis, realScaleType, scale, duplicateDomain, categoricalDomain, axisRange, niceTicks, axisType) => {
+const selectCategoricalDomain = exports.selectCategoricalDomain = (0, _reselect.createSelector)([_chartLayoutContext.selectChartLayout, selectAllAppliedValues, selectAxisSettings, _pickAxisType.pickAxisType], combineCategoricalDomain);
+const selectAxisPropsNeededForCartesianGridTicksGenerator = exports.selectAxisPropsNeededForCartesianGridTicksGenerator = (0, _reselect.createSelector)([_chartLayoutContext.selectChartLayout, selectCartesianAxisSettings, selectRealScaleType, selectAxisScale, selectDuplicateDomain, selectCategoricalDomain, selectAxisRange, selectNiceTicks, _pickAxisType.pickAxisType], (layout, axis, realScaleType, scale, duplicateDomain, categoricalDomain, axisRange, niceTicks, axisType) => {
   if (axis == null) {
     return null;
   }
-  var isCategorical = (0, _ChartUtils.isCategoricalAxis)(layout, axisType);
+  const isCategorical = (0, _ChartUtils.isCategoricalAxis)(layout, axisType);
   return {
     angle: axis.angle,
     interval: axis.interval,
@@ -1117,27 +1117,27 @@ var selectAxisPropsNeededForCartesianGridTicksGenerator = exports.selectAxisProp
     scale
   };
 });
-var combineAxisTicks = (layout, axis, realScaleType, scale, niceTicks, axisRange, duplicateDomain, categoricalDomain, axisType) => {
+const combineAxisTicks = (layout, axis, realScaleType, scale, niceTicks, axisRange, duplicateDomain, categoricalDomain, axisType) => {
   if (axis == null || scale == null) {
     return undefined;
   }
-  var isCategorical = (0, _ChartUtils.isCategoricalAxis)(layout, axisType);
-  var {
+  const isCategorical = (0, _ChartUtils.isCategoricalAxis)(layout, axisType);
+  const {
     type,
     ticks,
     tickCount
   } = axis;
 
   // This is testing for `scaleBand` but for band axis the type is reported as `band` so this looks like a dead code with a workaround elsewhere?
-  var offsetForBand = realScaleType === 'scaleBand' && typeof scale.bandwidth === 'function' ? scale.bandwidth() / 2 : 2;
-  var offset = type === 'category' && scale.bandwidth ? scale.bandwidth() / offsetForBand : 0;
+  const offsetForBand = realScaleType === 'scaleBand' && typeof scale.bandwidth === 'function' ? scale.bandwidth() / 2 : 2;
+  let offset = type === 'category' && scale.bandwidth ? scale.bandwidth() / offsetForBand : 0;
   offset = axisType === 'angleAxis' && axisRange != null && axisRange.length >= 2 ? (0, _DataUtils.mathSign)(axisRange[0] - axisRange[1]) * 2 * offset : offset;
 
   // The ticks set by user should only affect the ticks adjacent to axis line
-  var ticksOrNiceTicks = ticks || niceTicks;
+  const ticksOrNiceTicks = ticks || niceTicks;
   if (ticksOrNiceTicks) {
-    var result = ticksOrNiceTicks.map((entry, index) => {
-      var scaleContent = duplicateDomain ? duplicateDomain.indexOf(entry) : entry;
+    const result = ticksOrNiceTicks.map((entry, index) => {
+      const scaleContent = duplicateDomain ? duplicateDomain.indexOf(entry) : entry;
       return {
         index,
         // If the scaleContent is not a number, the coordinate will be NaN.
@@ -1178,16 +1178,16 @@ var combineAxisTicks = (layout, axis, realScaleType, scale, niceTicks, axisRange
   }));
 };
 exports.combineAxisTicks = combineAxisTicks;
-var selectTicksOfAxis = exports.selectTicksOfAxis = (0, _reselect.createSelector)([_chartLayoutContext.selectChartLayout, selectAxisSettings, selectRealScaleType, selectAxisScale, selectNiceTicks, selectAxisRange, selectDuplicateDomain, selectCategoricalDomain, _pickAxisType.pickAxisType], combineAxisTicks);
-var combineGraphicalItemTicks = (layout, axis, scale, axisRange, duplicateDomain, categoricalDomain, axisType) => {
+const selectTicksOfAxis = exports.selectTicksOfAxis = (0, _reselect.createSelector)([_chartLayoutContext.selectChartLayout, selectAxisSettings, selectRealScaleType, selectAxisScale, selectNiceTicks, selectAxisRange, selectDuplicateDomain, selectCategoricalDomain, _pickAxisType.pickAxisType], combineAxisTicks);
+const combineGraphicalItemTicks = (layout, axis, scale, axisRange, duplicateDomain, categoricalDomain, axisType) => {
   if (axis == null || scale == null || axisRange == null || axisRange[0] === axisRange[1]) {
     return undefined;
   }
-  var isCategorical = (0, _ChartUtils.isCategoricalAxis)(layout, axisType);
-  var {
+  const isCategorical = (0, _ChartUtils.isCategoricalAxis)(layout, axisType);
+  const {
     tickCount
   } = axis;
-  var offset = 0;
+  let offset = 0;
   offset = axisType === 'angleAxis' && (axisRange === null || axisRange === void 0 ? void 0 : axisRange.length) >= 2 ? (0, _DataUtils.mathSign)(axisRange[0] - axisRange[1]) * 2 * offset : offset;
 
   // When axis is a categorical axis, but the type of axis is number or the scale of axis is not "auto"
@@ -1218,8 +1218,8 @@ var combineGraphicalItemTicks = (layout, axis, scale, axisRange, duplicateDomain
   }));
 };
 exports.combineGraphicalItemTicks = combineGraphicalItemTicks;
-var selectTicksOfGraphicalItem = exports.selectTicksOfGraphicalItem = (0, _reselect.createSelector)([_chartLayoutContext.selectChartLayout, selectAxisSettings, selectAxisScale, selectAxisRange, selectDuplicateDomain, selectCategoricalDomain, _pickAxisType.pickAxisType], combineGraphicalItemTicks);
-var selectAxisWithScale = exports.selectAxisWithScale = (0, _reselect.createSelector)(selectBaseAxis, selectAxisScale, (axis, scale) => {
+const selectTicksOfGraphicalItem = exports.selectTicksOfGraphicalItem = (0, _reselect.createSelector)([_chartLayoutContext.selectChartLayout, selectAxisSettings, selectAxisScale, selectAxisRange, selectDuplicateDomain, selectCategoricalDomain, _pickAxisType.pickAxisType], combineGraphicalItemTicks);
+const selectAxisWithScale = exports.selectAxisWithScale = (0, _reselect.createSelector)(selectBaseAxis, selectAxisScale, (axis, scale) => {
   if (axis == null || scale == null) {
     return undefined;
   }
@@ -1227,8 +1227,8 @@ var selectAxisWithScale = exports.selectAxisWithScale = (0, _reselect.createSele
     scale
   });
 });
-var selectZAxisScale = (0, _reselect.createSelector)([selectBaseAxis, selectRealScaleType, selectAxisDomain, selectAxisRangeWithReverse], combineScaleFunction);
-var selectZAxisWithScale = exports.selectZAxisWithScale = (0, _reselect.createSelector)((state, _axisType, axisId) => selectZAxisSettings(state, axisId), selectZAxisScale, (axis, scale) => {
+const selectZAxisScale = (0, _reselect.createSelector)([selectBaseAxis, selectRealScaleType, selectAxisDomain, selectAxisRangeWithReverse], combineScaleFunction);
+const selectZAxisWithScale = exports.selectZAxisWithScale = (0, _reselect.createSelector)((state, _axisType, axisId) => selectZAxisSettings(state, axisId), selectZAxisScale, (axis, scale) => {
   if (axis == null || scale == null) {
     return undefined;
   }
@@ -1241,7 +1241,7 @@ var selectZAxisWithScale = exports.selectZAxisWithScale = (0, _reselect.createSe
  * We are also going to need to implement polar chart directions if we want to support keyboard controls for those.
  */
 
-var selectChartDirection = exports.selectChartDirection = (0, _reselect.createSelector)([_chartLayoutContext.selectChartLayout, _selectAllAxes.selectAllXAxes, _selectAllAxes.selectAllYAxes], (layout, allXAxes, allYAxes) => {
+const selectChartDirection = exports.selectChartDirection = (0, _reselect.createSelector)([_chartLayoutContext.selectChartLayout, _selectAllAxes.selectAllXAxes, _selectAllAxes.selectAllYAxes], (layout, allXAxes, allYAxes) => {
   switch (layout) {
     case 'horizontal':
       {

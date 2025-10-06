@@ -11,7 +11,7 @@ function _mergeStream() {
   };
   return data;
 }
-var _types = require('../types');
+const _types = require('../types');
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {default: obj};
 }

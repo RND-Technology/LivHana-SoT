@@ -1,4 +1,4 @@
-var eq = require('./eq');
+const eq = require('./eq');
 
 /**
  * The base implementation of `_.sortedUniq` and `_.sortedUniqBy` without
@@ -10,13 +10,13 @@ var eq = require('./eq');
  * @returns {Array} Returns the new duplicate free array.
  */
 function baseSortedUniq(array, iteratee) {
-  var index = -1,
+  let index = -1,
       length = array.length,
       resIndex = 0,
       result = [];
 
   while (++index < length) {
-    var value = array[index],
+    const value = array[index],
         computed = iteratee ? iteratee(value) : value;
 
     if (!index || !eq(computed, seen)) {

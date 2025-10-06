@@ -6,7 +6,7 @@
  */
 
 module.exports = function (chai, _) {
-  var Assertion = chai.Assertion
+  const Assertion = chai.Assertion
     , AssertionError = chai.AssertionError
     , flag = _.flag;
 
@@ -301,7 +301,7 @@ module.exports = function (chai, _) {
   function an (type, msg) {
     if (msg) flag(this, 'message', msg);
     type = type.toLowerCase();
-    var obj = flag(this, 'object')
+    const obj = flag(this, 'object')
       , article = ~[ 'a', 'e', 'i', 'o', 'u' ].indexOf(type.charAt(0)) ? 'an ' : 'a ';
 
     this.assert(
@@ -472,7 +472,7 @@ module.exports = function (chai, _) {
   function include (val, msg) {
     if (msg) flag(this, 'message', msg);
 
-    var obj = flag(this, 'object')
+    let obj = flag(this, 'object')
       , objType = _.type(obj).toLowerCase()
       , flagMsg = flag(this, 'message')
       , negate = flag(this, 'negate')
@@ -483,7 +483,7 @@ module.exports = function (chai, _) {
 
     flagMsg = flagMsg ? flagMsg + ': ' : '';
 
-    var included = false;
+    let included = false;
 
     switch (objType) {
       case 'string':
@@ -551,7 +551,7 @@ module.exports = function (chai, _) {
           , numErrs = 0;
 
         props.forEach(function (prop) {
-          var propAssertion = new Assertion(obj);
+          const propAssertion = new Assertion(obj);
           _.transferFlags(this, propAssertion, true);
           flag(propAssertion, 'lockSsfi', true);
 
@@ -833,7 +833,7 @@ module.exports = function (chai, _) {
    */
 
   function assertExist () {
-    var val = flag(this, 'object');
+    const val = flag(this, 'object');
     this.assert(
         val !== null && val !== undefined
       , 'expected #{this} to exist'
@@ -894,7 +894,7 @@ module.exports = function (chai, _) {
    */
 
   Assertion.addProperty('empty', function () {
-    var val = flag(this, 'object')
+    let val = flag(this, 'object')
       , ssfi = flag(this, 'ssfi')
       , flagMsg = flag(this, 'message')
       , itemsCount;
@@ -969,7 +969,7 @@ module.exports = function (chai, _) {
    */
 
   function checkArguments () {
-    var obj = flag(this, 'object')
+    const obj = flag(this, 'object')
       , type = _.type(obj);
     this.assert(
         'Arguments' === type
@@ -1028,9 +1028,9 @@ module.exports = function (chai, _) {
 
   function assertEqual (val, msg) {
     if (msg) flag(this, 'message', msg);
-    var obj = flag(this, 'object');
+    const obj = flag(this, 'object');
     if (flag(this, 'deep')) {
-      var prevLockSsfi = flag(this, 'lockSsfi');
+      const prevLockSsfi = flag(this, 'lockSsfi');
       flag(this, 'lockSsfi', true);
       this.eql(val);
       flag(this, 'lockSsfi', prevLockSsfi);
@@ -1093,7 +1093,7 @@ module.exports = function (chai, _) {
 
   function assertEql(obj, msg) {
     if (msg) flag(this, 'message', msg);
-    var eql = flag(this, 'eql');
+    const eql = flag(this, 'eql');
     this.assert(
         eql(obj, flag(this, 'object'))
       , 'expected #{this} to deeply equal #{exp}'
@@ -1152,7 +1152,7 @@ module.exports = function (chai, _) {
 
   function assertAbove (n, msg) {
     if (msg) flag(this, 'message', msg);
-    var obj = flag(this, 'object')
+    let obj = flag(this, 'object')
       , doLength = flag(this, 'doLength')
       , flagMsg = flag(this, 'message')
       , msgPrefix = ((flagMsg) ? flagMsg + ': ' : '')
@@ -1171,7 +1171,7 @@ module.exports = function (chai, _) {
     } else if (nType !== 'number' && (doLength || objType === 'number')) {
       errorMessage = msgPrefix + 'the argument to above must be a number';
     } else if (!doLength && (objType !== 'date' && objType !== 'number')) {
-      var printObj = (objType === 'string') ? "'" + obj + "'" : obj;
+      const printObj = (objType === 'string') ? "'" + obj + "'" : obj;
       errorMessage = msgPrefix + 'expected ' + printObj + ' to be a number or a date';
     } else {
       shouldThrow = false;
@@ -1182,7 +1182,7 @@ module.exports = function (chai, _) {
     }
 
     if (doLength) {
-      var descriptor = 'length'
+      let descriptor = 'length'
         , itemsCount;
       if (objType === 'map' || objType === 'set') {
         descriptor = 'size';
@@ -1257,7 +1257,7 @@ module.exports = function (chai, _) {
 
   function assertLeast (n, msg) {
     if (msg) flag(this, 'message', msg);
-    var obj = flag(this, 'object')
+    let obj = flag(this, 'object')
       , doLength = flag(this, 'doLength')
       , flagMsg = flag(this, 'message')
       , msgPrefix = ((flagMsg) ? flagMsg + ': ' : '')
@@ -1276,7 +1276,7 @@ module.exports = function (chai, _) {
     } else if (nType !== 'number' && (doLength || objType === 'number')) {
       errorMessage = msgPrefix + 'the argument to least must be a number';
     } else if (!doLength && (objType !== 'date' && objType !== 'number')) {
-      var printObj = (objType === 'string') ? "'" + obj + "'" : obj;
+      const printObj = (objType === 'string') ? "'" + obj + "'" : obj;
       errorMessage = msgPrefix + 'expected ' + printObj + ' to be a number or a date';
     } else {
       shouldThrow = false;
@@ -1287,7 +1287,7 @@ module.exports = function (chai, _) {
     }
 
     if (doLength) {
-      var descriptor = 'length'
+      let descriptor = 'length'
         , itemsCount;
       if (objType === 'map' || objType === 'set') {
         descriptor = 'size';
@@ -1361,7 +1361,7 @@ module.exports = function (chai, _) {
 
   function assertBelow (n, msg) {
     if (msg) flag(this, 'message', msg);
-    var obj = flag(this, 'object')
+    let obj = flag(this, 'object')
       , doLength = flag(this, 'doLength')
       , flagMsg = flag(this, 'message')
       , msgPrefix = ((flagMsg) ? flagMsg + ': ' : '')
@@ -1380,7 +1380,7 @@ module.exports = function (chai, _) {
     } else if (nType !== 'number' && (doLength || objType === 'number')) {
       errorMessage = msgPrefix + 'the argument to below must be a number';
     } else if (!doLength && (objType !== 'date' && objType !== 'number')) {
-      var printObj = (objType === 'string') ? "'" + obj + "'" : obj;
+      const printObj = (objType === 'string') ? "'" + obj + "'" : obj;
       errorMessage = msgPrefix + 'expected ' + printObj + ' to be a number or a date';
     } else {
       shouldThrow = false;
@@ -1391,7 +1391,7 @@ module.exports = function (chai, _) {
     }
 
     if (doLength) {
-      var descriptor = 'length'
+      let descriptor = 'length'
         , itemsCount;
       if (objType === 'map' || objType === 'set') {
         descriptor = 'size';
@@ -1466,7 +1466,7 @@ module.exports = function (chai, _) {
 
   function assertMost (n, msg) {
     if (msg) flag(this, 'message', msg);
-    var obj = flag(this, 'object')
+    let obj = flag(this, 'object')
       , doLength = flag(this, 'doLength')
       , flagMsg = flag(this, 'message')
       , msgPrefix = ((flagMsg) ? flagMsg + ': ' : '')
@@ -1485,7 +1485,7 @@ module.exports = function (chai, _) {
     } else if (nType !== 'number' && (doLength || objType === 'number')) {
       errorMessage = msgPrefix + 'the argument to most must be a number';
     } else if (!doLength && (objType !== 'date' && objType !== 'number')) {
-      var printObj = (objType === 'string') ? "'" + obj + "'" : obj;
+      const printObj = (objType === 'string') ? "'" + obj + "'" : obj;
       errorMessage = msgPrefix + 'expected ' + printObj + ' to be a number or a date';
     } else {
       shouldThrow = false;
@@ -1496,7 +1496,7 @@ module.exports = function (chai, _) {
     }
 
     if (doLength) {
-      var descriptor = 'length'
+      let descriptor = 'length'
         , itemsCount;
       if (objType === 'map' || objType === 'set') {
         descriptor = 'size';
@@ -1570,7 +1570,7 @@ module.exports = function (chai, _) {
 
   Assertion.addMethod('within', function (start, finish, msg) {
     if (msg) flag(this, 'message', msg);
-    var obj = flag(this, 'object')
+    let obj = flag(this, 'object')
       , doLength = flag(this, 'doLength')
       , flagMsg = flag(this, 'message')
       , msgPrefix = ((flagMsg) ? flagMsg + ': ' : '')
@@ -1593,7 +1593,7 @@ module.exports = function (chai, _) {
     } else if ((startType !== 'number' || finishType !== 'number') && (doLength || objType === 'number')) {
       errorMessage = msgPrefix + 'the arguments to within must be numbers';
     } else if (!doLength && (objType !== 'date' && objType !== 'number')) {
-      var printObj = (objType === 'string') ? "'" + obj + "'" : obj;
+      const printObj = (objType === 'string') ? "'" + obj + "'" : obj;
       errorMessage = msgPrefix + 'expected ' + printObj + ' to be a number or a date';
     } else {
       shouldThrow = false;
@@ -1604,7 +1604,7 @@ module.exports = function (chai, _) {
     }
 
     if (doLength) {
-      var descriptor = 'length'
+      let descriptor = 'length'
         , itemsCount;
       if (objType === 'map' || objType === 'set') {
         descriptor = 'size';
@@ -1668,9 +1668,9 @@ module.exports = function (chai, _) {
   function assertInstanceOf (constructor, msg) {
     if (msg) flag(this, 'message', msg);
 
-    var target = flag(this, 'object')
-    var ssfi = flag(this, 'ssfi');
-    var flagMsg = flag(this, 'message');
+    const target = flag(this, 'object')
+    const ssfi = flag(this, 'ssfi');
+    let flagMsg = flag(this, 'message');
 
     try {
       var isInstanceOf = target instanceof constructor;
@@ -1687,7 +1687,7 @@ module.exports = function (chai, _) {
       throw err;
     }
 
-    var name = _.getName(constructor);
+    let name = _.getName(constructor);
     if (name === null) {
       name = 'an unnamed constructor';
     }
@@ -1697,7 +1697,7 @@ module.exports = function (chai, _) {
       , 'expected #{this} to be an instance of ' + name
       , 'expected #{this} to not be an instance of ' + name
     );
-  };
+  }
 
   Assertion.addMethod('instanceof', assertInstanceOf);
   Assertion.addMethod('instanceOf', assertInstanceOf);
@@ -1817,7 +1817,7 @@ module.exports = function (chai, _) {
   function assertProperty (name, val, msg) {
     if (msg) flag(this, 'message', msg);
 
-    var isNested = flag(this, 'nested')
+    let isNested = flag(this, 'nested')
       , isOwn = flag(this, 'own')
       , flagMsg = flag(this, 'message')
       , obj = flag(this, 'object')
@@ -1860,19 +1860,19 @@ module.exports = function (chai, _) {
       );
     }
 
-    var isDeep = flag(this, 'deep')
+    const isDeep = flag(this, 'deep')
       , negate = flag(this, 'negate')
       , pathInfo = isNested ? _.getPathInfo(obj, name) : null
       , value = isNested ? pathInfo.value : obj[name]
-      , isEql = isDeep ? flag(this, 'eql') : (val1, val2) => val1 === val2;;
+      , isEql = isDeep ? flag(this, 'eql') : (val1, val2) => val1 === val2;
 
-    var descriptor = '';
+    let descriptor = '';
     if (isDeep) descriptor += 'deep ';
     if (isOwn) descriptor += 'own ';
     if (isNested) descriptor += 'nested ';
     descriptor += 'property ';
 
-    var hasProperty;
+    let hasProperty;
     if (isOwn) hasProperty = Object.prototype.hasOwnProperty.call(obj, name);
     else if (isNested) hasProperty = pathInfo.exists;
     else hasProperty = _.hasProperty(obj, name);
@@ -2037,9 +2037,9 @@ module.exports = function (chai, _) {
       descriptor = null;
     }
     if (msg) flag(this, 'message', msg);
-    var obj = flag(this, 'object');
-    var actualDescriptor = Object.getOwnPropertyDescriptor(Object(obj), name);
-    var eql = flag(this, 'eql');
+    const obj = flag(this, 'object');
+    const actualDescriptor = Object.getOwnPropertyDescriptor(Object(obj), name);
+    const eql = flag(this, 'eql');
     if (actualDescriptor && descriptor) {
       this.assert(
           eql(descriptor, actualDescriptor)
@@ -2126,7 +2126,7 @@ module.exports = function (chai, _) {
 
   function assertLength (n, msg) {
     if (msg) flag(this, 'message', msg);
-    var obj = flag(this, 'object')
+    let obj = flag(this, 'object')
       , objType = _.type(obj).toLowerCase()
       , flagMsg = flag(this, 'message')
       , ssfi = flag(this, 'ssfi')
@@ -2185,7 +2185,7 @@ module.exports = function (chai, _) {
    */
   function assertMatch(re, msg) {
     if (msg) flag(this, 'message', msg);
-    var obj = flag(this, 'object');
+    const obj = flag(this, 'object');
     this.assert(
         re.exec(obj)
       , 'expected #{this} to match ' + re
@@ -2223,7 +2223,7 @@ module.exports = function (chai, _) {
 
   Assertion.addMethod('string', function (str, msg) {
     if (msg) flag(this, 'message', msg);
-    var obj = flag(this, 'object')
+    const obj = flag(this, 'object')
       , flagMsg = flag(this, 'message')
       , ssfi = flag(this, 'ssfi');
     new Assertion(obj, flagMsg, ssfi, true).is.a('string');
@@ -2340,7 +2340,7 @@ module.exports = function (chai, _) {
    */
 
   function assertKeys (keys) {
-    var obj = flag(this, 'object')
+    let obj = flag(this, 'object')
       , objType = _.type(obj)
       , keysType = _.type(keys)
       , ssfi = flag(this, 'ssfi')
@@ -2352,7 +2352,7 @@ module.exports = function (chai, _) {
       , flagMsg = flag(this, 'message');
 
     flagMsg = flagMsg ? flagMsg + ': ' : '';
-    var mixedArgsMsg = flagMsg + 'when testing keys against an object or an array you must give a single Array|Object|String argument or multiple String arguments';
+    const mixedArgsMsg = flagMsg + 'when testing keys against an object or an array you must give a single Array|Object|String argument or multiple String arguments';
 
     if (objType === 'Map' || objType === 'Set') {
       deepStr = isDeep ? 'deeply ' : '';
@@ -2393,7 +2393,7 @@ module.exports = function (chai, _) {
       throw new AssertionError(flagMsg + 'keys required', undefined, ssfi);
     }
 
-    var len = keys.length
+    let len = keys.length
       , any = flag(this, 'any')
       , all = flag(this, 'all')
       , expected = keys
@@ -2430,7 +2430,7 @@ module.exports = function (chai, _) {
       keys = keys.map(function(key) {
         return _.inspect(key);
       });
-      var last = keys.pop();
+      const last = keys.pop();
       if (all) {
         str = keys.join(', ') + ', and ' + last;
       }
@@ -2628,7 +2628,7 @@ module.exports = function (chai, _) {
 
   function assertThrows (errorLike, errMsgMatcher, msg) {
     if (msg) flag(this, 'message', msg);
-    var obj = flag(this, 'object')
+    const obj = flag(this, 'object')
       , ssfi = flag(this, 'ssfi')
       , flagMsg = flag(this, 'message')
       , negate = flag(this, 'negate') || false;
@@ -2639,7 +2639,7 @@ module.exports = function (chai, _) {
       errorLike = null;
     }
 
-    var caughtErr;
+    let caughtErr;
     try {
       obj();
     } catch (err) {
@@ -2648,18 +2648,18 @@ module.exports = function (chai, _) {
 
     // If we have the negate flag enabled and at least one valid argument it means we do expect an error
     // but we want it to match a given set of criteria
-    var everyArgIsUndefined = errorLike === undefined && errMsgMatcher === undefined;
+    const everyArgIsUndefined = errorLike === undefined && errMsgMatcher === undefined;
 
     // If we've got the negate flag enabled and both args, we should only fail if both aren't compatible
     // See Issue #551 and PR #683@GitHub
-    var everyArgIsDefined = Boolean(errorLike && errMsgMatcher);
-    var errorLikeFail = false;
-    var errMsgMatcherFail = false;
+    const everyArgIsDefined = Boolean(errorLike && errMsgMatcher);
+    let errorLikeFail = false;
+    let errMsgMatcherFail = false;
 
     // Checking if error was thrown
     if (everyArgIsUndefined || !everyArgIsUndefined && !negate) {
       // We need this to display results correctly according to their types
-      var errorLikeString = 'an error';
+      let errorLikeString = 'an error';
       if (errorLike instanceof Error) {
         errorLikeString = '#{exp}';
       } else if (errorLike) {
@@ -2680,7 +2680,7 @@ module.exports = function (chai, _) {
     if (errorLike && caughtErr) {
       // We should compare instances only if `errorLike` is an instance of `Error`
       if (errorLike instanceof Error) {
-        var isCompatibleInstance = _.checkError.compatibleInstance(caughtErr, errorLike);
+        const isCompatibleInstance = _.checkError.compatibleInstance(caughtErr, errorLike);
 
         if (isCompatibleInstance === negate) {
           // These checks were created to ensure we won't fail too soon when we've got both args and a negate
@@ -2699,7 +2699,7 @@ module.exports = function (chai, _) {
         }
       }
 
-      var isCompatibleConstructor = _.checkError.compatibleConstructor(caughtErr, errorLike);
+      const isCompatibleConstructor = _.checkError.compatibleConstructor(caughtErr, errorLike);
       if (isCompatibleConstructor === negate) {
         if (everyArgIsDefined && negate) {
             errorLikeFail = true;
@@ -2717,12 +2717,12 @@ module.exports = function (chai, _) {
 
     if (caughtErr && errMsgMatcher !== undefined && errMsgMatcher !== null) {
       // Here we check compatible messages
-      var placeholder = 'including';
+      let placeholder = 'including';
       if (errMsgMatcher instanceof RegExp) {
         placeholder = 'matching'
       }
 
-      var isCompatibleMessage = _.checkError.compatibleMessage(caughtErr, errMsgMatcher);
+      const isCompatibleMessage = _.checkError.compatibleMessage(caughtErr, errMsgMatcher);
       if (isCompatibleMessage === negate) {
         if (everyArgIsDefined && negate) {
             errMsgMatcherFail = true;
@@ -2750,7 +2750,7 @@ module.exports = function (chai, _) {
     }
 
     flag(this, 'object', caughtErr);
-  };
+  }
 
   Assertion.addMethod('throw', assertThrows);
   Assertion.addMethod('throws', assertThrows);
@@ -2823,7 +2823,7 @@ module.exports = function (chai, _) {
 
   function respondTo (method, msg) {
     if (msg) flag(this, 'message', msg);
-    var obj = flag(this, 'object')
+    const obj = flag(this, 'object')
       , itself = flag(this, 'itself')
       , context = ('function' === typeof obj && !itself)
         ? obj.prototype[method]
@@ -2903,8 +2903,8 @@ module.exports = function (chai, _) {
 
   function satisfy (matcher, msg) {
     if (msg) flag(this, 'message', msg);
-    var obj = flag(this, 'object');
-    var result = matcher(obj);
+    const obj = flag(this, 'object');
+    const result = matcher(obj);
     this.assert(
         result
       , 'expected #{this} to satisfy ' + _.objDisplay(matcher)
@@ -2957,14 +2957,14 @@ module.exports = function (chai, _) {
 
   function closeTo(expected, delta, msg) {
     if (msg) flag(this, 'message', msg);
-    var obj = flag(this, 'object')
+    let obj = flag(this, 'object')
       , flagMsg = flag(this, 'message')
       , ssfi = flag(this, 'ssfi');
 
     new Assertion(obj, flagMsg, ssfi, true).is.a('number');
     if (typeof expected !== 'number' || typeof delta !== 'number') {
       flagMsg = flagMsg ? flagMsg + ': ' : '';
-      var deltaMessage = delta === undefined ? ", and a delta is required" : "";
+      const deltaMessage = delta === undefined ? ", and a delta is required" : "";
       throw new AssertionError(
           flagMsg + 'the arguments to closeTo or approximately must be numbers' + deltaMessage,
           undefined,
@@ -2993,7 +2993,7 @@ module.exports = function (chai, _) {
       if (ordered) return cmp ? cmp(elem, superset[idx]) : elem === superset[idx];
 
       if (!cmp) {
-        var matchIdx = superset.indexOf(elem);
+        const matchIdx = superset.indexOf(elem);
         if (matchIdx === -1) return false;
 
         // Remove match from superset so not counted twice if duplicate in subset.
@@ -3082,17 +3082,17 @@ module.exports = function (chai, _) {
 
   Assertion.addMethod('members', function (subset, msg) {
     if (msg) flag(this, 'message', msg);
-    var obj = flag(this, 'object')
+    const obj = flag(this, 'object')
       , flagMsg = flag(this, 'message')
       , ssfi = flag(this, 'ssfi');
 
     new Assertion(obj, flagMsg, ssfi, true).to.be.an('array');
     new Assertion(subset, flagMsg, ssfi, true).to.be.an('array');
 
-    var contains = flag(this, 'contains');
-    var ordered = flag(this, 'ordered');
+    const contains = flag(this, 'contains');
+    const ordered = flag(this, 'ordered');
 
-    var subject, failMsg, failNegateMsg;
+    let subject, failMsg, failNegateMsg;
 
     if (contains) {
       subject = ordered ? 'an ordered superset' : 'a superset';
@@ -3104,7 +3104,7 @@ module.exports = function (chai, _) {
       failNegateMsg = 'expected #{this} to not have the same ' + subject + ' as #{exp}';
     }
 
-    var cmp = flag(this, 'deep') ? flag(this, 'eql') : undefined;
+    const cmp = flag(this, 'deep') ? flag(this, 'eql') : undefined;
 
     this.assert(
         isSubsetOf(subset, obj, cmp, contains, ordered)
@@ -3156,7 +3156,7 @@ module.exports = function (chai, _) {
 
   function oneOf (list, msg) {
     if (msg) flag(this, 'message', msg);
-    var expected = flag(this, 'object')
+    const expected = flag(this, 'object')
       , flagMsg = flag(this, 'message')
       , ssfi = flag(this, 'ssfi')
       , contains = flag(this, 'contains')
@@ -3292,12 +3292,12 @@ module.exports = function (chai, _) {
 
   function assertChanges (subject, prop, msg) {
     if (msg) flag(this, 'message', msg);
-    var fn = flag(this, 'object')
+    const fn = flag(this, 'object')
       , flagMsg = flag(this, 'message')
       , ssfi = flag(this, 'ssfi');
     new Assertion(fn, flagMsg, ssfi, true).is.a('function');
 
-    var initial;
+    let initial;
     if (!prop) {
       new Assertion(subject, flagMsg, ssfi, true).is.a('function');
       initial = subject();
@@ -3308,8 +3308,8 @@ module.exports = function (chai, _) {
 
     fn();
 
-    var final = prop === undefined || prop === null ? subject() : subject[prop];
-    var msgObj = prop === undefined || prop === null ? initial : '.' + prop;
+    const final = prop === undefined || prop === null ? subject() : subject[prop];
+    const msgObj = prop === undefined || prop === null ? initial : '.' + prop;
 
     // This gets flagged because of the .by(delta) assertion
     flag(this, 'deltaMsgObj', msgObj);
@@ -3409,12 +3409,12 @@ module.exports = function (chai, _) {
 
   function assertIncreases (subject, prop, msg) {
     if (msg) flag(this, 'message', msg);
-    var fn = flag(this, 'object')
+    const fn = flag(this, 'object')
       , flagMsg = flag(this, 'message')
       , ssfi = flag(this, 'ssfi');
     new Assertion(fn, flagMsg, ssfi, true).is.a('function');
 
-    var initial;
+    let initial;
     if (!prop) {
       new Assertion(subject, flagMsg, ssfi, true).is.a('function');
       initial = subject();
@@ -3428,8 +3428,8 @@ module.exports = function (chai, _) {
 
     fn();
 
-    var final = prop === undefined || prop === null ? subject() : subject[prop];
-    var msgObj = prop === undefined || prop === null ? initial : '.' + prop;
+    const final = prop === undefined || prop === null ? subject() : subject[prop];
+    const msgObj = prop === undefined || prop === null ? initial : '.' + prop;
 
     flag(this, 'deltaMsgObj', msgObj);
     flag(this, 'initialDeltaValue', initial);
@@ -3528,12 +3528,12 @@ module.exports = function (chai, _) {
 
   function assertDecreases (subject, prop, msg) {
     if (msg) flag(this, 'message', msg);
-    var fn = flag(this, 'object')
+    const fn = flag(this, 'object')
       , flagMsg = flag(this, 'message')
       , ssfi = flag(this, 'ssfi');
     new Assertion(fn, flagMsg, ssfi, true).is.a('function');
 
-    var initial;
+    let initial;
     if (!prop) {
       new Assertion(subject, flagMsg, ssfi, true).is.a('function');
       initial = subject();
@@ -3547,8 +3547,8 @@ module.exports = function (chai, _) {
 
     fn();
 
-    var final = prop === undefined || prop === null ? subject() : subject[prop];
-    var msgObj = prop === undefined || prop === null ? initial : '.' + prop;
+    const final = prop === undefined || prop === null ? subject() : subject[prop];
+    const msgObj = prop === undefined || prop === null ? initial : '.' + prop;
 
     flag(this, 'deltaMsgObj', msgObj);
     flag(this, 'initialDeltaValue', initial);
@@ -3635,13 +3635,13 @@ module.exports = function (chai, _) {
   function assertDelta(delta, msg) {
     if (msg) flag(this, 'message', msg);
 
-    var msgObj = flag(this, 'deltaMsgObj');
-    var initial = flag(this, 'initialDeltaValue');
-    var final = flag(this, 'finalDeltaValue');
-    var behavior = flag(this, 'deltaBehavior');
-    var realDelta = flag(this, 'realDelta');
+    const msgObj = flag(this, 'deltaMsgObj');
+    const initial = flag(this, 'initialDeltaValue');
+    const final = flag(this, 'finalDeltaValue');
+    const behavior = flag(this, 'deltaBehavior');
+    const realDelta = flag(this, 'realDelta');
 
-    var expression;
+    let expression;
     if (behavior === 'change') {
       expression = Math.abs(final - initial) === Math.abs(delta);
     } else {
@@ -3686,14 +3686,14 @@ module.exports = function (chai, _) {
    */
 
   Assertion.addProperty('extensible', function() {
-    var obj = flag(this, 'object');
+    const obj = flag(this, 'object');
 
     // In ES5, if the argument to this method is a primitive, then it will cause a TypeError.
     // In ES6, a non-object argument will be treated as if it was a non-extensible ordinary object, simply return false.
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isExtensible
     // The following provides ES6 behavior for ES5 environments.
 
-    var isExtensible = obj === Object(obj) && Object.isExtensible(obj);
+    const isExtensible = obj === Object(obj) && Object.isExtensible(obj);
 
     this.assert(
       isExtensible
@@ -3731,14 +3731,14 @@ module.exports = function (chai, _) {
    */
 
   Assertion.addProperty('sealed', function() {
-    var obj = flag(this, 'object');
+    const obj = flag(this, 'object');
 
     // In ES5, if the argument to this method is a primitive, then it will cause a TypeError.
     // In ES6, a non-object argument will be treated as if it was a sealed ordinary object, simply return true.
     // See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isSealed
     // The following provides ES6 behavior for ES5 environments.
 
-    var isSealed = obj === Object(obj) ? Object.isSealed(obj) : true;
+    const isSealed = obj === Object(obj) ? Object.isSealed(obj) : true;
 
     this.assert(
       isSealed
@@ -3773,14 +3773,14 @@ module.exports = function (chai, _) {
    */
 
   Assertion.addProperty('frozen', function() {
-    var obj = flag(this, 'object');
+    const obj = flag(this, 'object');
 
     // In ES5, if the argument to this method is a primitive, then it will cause a TypeError.
     // In ES6, a non-object argument will be treated as if it was a frozen ordinary object, simply return true.
     // See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isFrozen
     // The following provides ES6 behavior for ES5 environments.
 
-    var isFrozen = obj === Object(obj) ? Object.isFrozen(obj) : true;
+    const isFrozen = obj === Object(obj) ? Object.isFrozen(obj) : true;
 
     this.assert(
       isFrozen
@@ -3839,7 +3839,7 @@ module.exports = function (chai, _) {
    */
 
   Assertion.addProperty('finite', function(msg) {
-    var obj = flag(this, 'object');
+    const obj = flag(this, 'object');
 
     this.assert(
         typeof obj === 'number' && isFinite(obj)

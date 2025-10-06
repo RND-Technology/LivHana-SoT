@@ -5,11 +5,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _native = _interopRequireDefault(require("./native.js"));
+const _native = _interopRequireDefault(require("./native.js"));
 
-var _rng = _interopRequireDefault(require("./rng.js"));
+const _rng = _interopRequireDefault(require("./rng.js"));
 
-var _stringify = require("./stringify.js");
+const _stringify = require("./stringify.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -39,5 +39,5 @@ function v4(options, buf, offset) {
   return (0, _stringify.unsafeStringify)(rnds);
 }
 
-var _default = v4;
+const _default = v4;
 exports.default = _default;

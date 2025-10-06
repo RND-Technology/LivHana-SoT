@@ -1,4 +1,4 @@
-var assignValue = require('./_assignValue'),
+const assignValue = require('./_assignValue'),
     castPath = require('./_castPath'),
     isIndex = require('./_isIndex'),
     isObject = require('./isObject'),
@@ -20,13 +20,13 @@ function baseSet(object, path, value, customizer) {
   }
   path = castPath(path, object);
 
-  var index = -1,
+  let index = -1,
       length = path.length,
       lastIndex = length - 1,
       nested = object;
 
   while (nested != null && ++index < length) {
-    var key = toKey(path[index]),
+    let key = toKey(path[index]),
         newValue = value;
 
     if (key === '__proto__' || key === 'constructor' || key === 'prototype') {
@@ -34,7 +34,7 @@ function baseSet(object, path, value, customizer) {
     }
 
     if (index != lastIndex) {
-      var objValue = nested[key];
+      const objValue = nested[key];
       newValue = customizer ? customizer(objValue, key, nested) : undefined;
       if (newValue === undefined) {
         newValue = isObject(objValue)

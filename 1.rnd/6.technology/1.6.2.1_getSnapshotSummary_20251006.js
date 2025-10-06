@@ -18,7 +18,7 @@ function _jestUtil() {
   };
   return data;
 }
-var _formatTestPath = _interopRequireDefault(require('./formatTestPath'));
+const _formatTestPath = _interopRequireDefault(require('./formatTestPath'));
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {default: obj};
 }

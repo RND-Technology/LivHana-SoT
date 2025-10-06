@@ -19,7 +19,7 @@ exports.content_v2_1 = void 0;
 /* eslint-disable @typescript-eslint/no-namespace */
 /* eslint-disable no-irregular-whitespace */
 const googleapis_common_1 = require("googleapis-common");
-var content_v2_1;
+let content_v2_1;
 (function (content_v2_1) {
     /**
      * Content API for Shopping

@@ -158,7 +158,7 @@ function validateHedgingPolicy(obj) {
     return result;
 }
 function validateMethodConfig(obj) {
-    var _a;
+    let _a;
     const result = {
         name: [],
     };

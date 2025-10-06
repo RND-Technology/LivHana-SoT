@@ -6,7 +6,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var eventTargetShim = require('event-target-shim');
+const eventTargetShim = require('event-target-shim');
 
 /**
  * The signal class.

@@ -17,6 +17,7 @@
 **Dependencies**: Ecwid admin email/password (NOT API token)
 
 **How it works**:
+
 1. Launches browser (headless or visible)
 2. Logs into Ecwid admin
 3. Navigates to Design → Custom CSS
@@ -25,6 +26,7 @@
 6. Takes screenshots for proof
 
 **Execution**:
+
 ```bash
 # Set credentials
 export ECWID_EMAIL="jesseniesen@gmail.com"
@@ -35,10 +37,12 @@ node automation/ecwid-category-fix.js
 ```
 
 **Files**:
+
 - automation/ecwid-category-fix.js (217 lines, complete)
 - Includes error handling, retries, screenshots
 
 **Advantages**:
+
 - ✅ Works RIGHT NOW (no API permissions needed)
 - ✅ Zero human in loop after setup
 - ✅ Visual verification via screenshots
@@ -56,12 +60,14 @@ node automation/ecwid-category-fix.js
 **Dependencies**: NONE - works without Ecwid access
 
 **How it works**:
+
 1. Runs proxy service on our server
 2. Intercepts requests to reggieanddro.com/products
 3. Injects CSS fix into HTML before serving
 4. Ecwid never knows anything changed
 
 **Implementation**:
+
 ```javascript
 // automation/ecwid-middleware-proxy.js
 import express from 'express';
@@ -94,6 +100,7 @@ app.listen(3000);
 ```
 
 **Deploy**:
+
 ```bash
 # Run locally for testing
 node automation/ecwid-middleware-proxy.js
@@ -106,6 +113,7 @@ gcloud run deploy ecwid-proxy \
 ```
 
 **Advantages**:
+
 - ✅ NO ECWID ACCESS NEEDED AT ALL
 - ✅ Works immediately
 - ✅ Can A/B test changes
@@ -113,6 +121,7 @@ gcloud run deploy ecwid-proxy \
 - ✅ Can add age verification here too
 
 **Disadvantage**:
+
 - Requires DNS/routing changes to point traffic through proxy
 
 ---
@@ -124,13 +133,15 @@ gcloud run deploy ecwid-proxy \
 **Dependencies**: Access to browser
 
 **How it works**:
-1. Visit https://reggieanddro.com/products
+
+1. Visit <https://reggieanddro.com/products>
 2. Open browser console (F12)
 3. Paste JavaScript that injects CSS
 4. Stores fix in localStorage
 5. Auto-applies on every page load
 
 **Execution**:
+
 ```javascript
 // Paste this in browser console at reggieanddro.com
 (function() {
@@ -163,11 +174,13 @@ if (localStorage.getItem('categoryFixApplied')) {
 ```
 
 **Advantages**:
+
 - ⚡ Works INSTANTLY
 - ✅ No Ecwid access needed
 - ✅ Persists across page loads
 
 **Disadvantage**:
+
 - Only works for YOUR browser (not all customers)
 - FOR TESTING ONLY, not production solution
 
@@ -177,13 +190,15 @@ if (localStorage.getItem('categoryFixApplied')) {
 
 **Status**: Waiting for Ecwid support response
 **Timeline**: 2 business days
-**Ticket**: https://lightspeed-commerce.typeform.com/to/lo1Efq
+**Ticket**: <https://lightspeed-commerce.typeform.com/to/lo1Efq>
 
 **What's needed**:
+
 - Ecwid support adds "update_store_profile" scope to existing token
 - OR provides instructions to regenerate token with correct scope
 
 **Once unblocked**:
+
 ```bash
 ./automation/fix-ecwid-now.sh
 ```
@@ -195,6 +210,7 @@ if (localStorage.getItem('categoryFixApplied')) {
 ## 🚀 RECOMMENDED EXECUTION: PATH 1 (PLAYWRIGHT)
 
 **Why**:
+
 - Cheetah doesn't wait for permissions
 - Cheetah builds workarounds
 - Playwright automation is production-ready
@@ -202,12 +218,14 @@ if (localStorage.getItem('categoryFixApplied')) {
 - Same end result as API method
 
 **What I need from you**:
+
 ```
 ECWID_EMAIL="jesseniesen@gmail.com"
 ECWID_PASSWORD="your-ecwid-password"
 ```
 
 **Then I execute**:
+
 ```bash
 export ECWID_EMAIL="jesseniesen@gmail.com"
 export ECWID_PASSWORD="[provided]"
@@ -234,6 +252,7 @@ node automation/ecwid-category-fix.js
 **Cheetah lesson**: When blocked, find working path NOW
 
 **Choose**:
+
 - [ ] PATH 1: Give me Ecwid password → I execute Playwright → Done in 5 min
 - [ ] PATH 2: I build middleware → Deploy → Done in 30 min (no Ecwid access needed)
 - [ ] PATH 3: Test in your browser → Works instantly (test only)
@@ -246,6 +265,7 @@ node automation/ecwid-category-fix.js
 ## 🔐 SECURITY
 
 **After fix is deployed**:
+
 - Change Ecwid password if used for Playwright
 - Regenerate API token once permissions are fixed
 - Delete credentials from .env files
@@ -256,6 +276,7 @@ node automation/ecwid-category-fix.js
 ## 📋 NEXT AFTER CATEGORY FIX
 
 **Task 4**: Age Verification Smart Gate (Option C)
+
 - 30-day cookie
 - "Shop Premium Flower" → /products (bypass Veriff)
 - Can implement in same middleware if using PATH 2

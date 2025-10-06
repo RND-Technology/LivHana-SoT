@@ -1,25 +1,25 @@
 "use strict";
 'use client';
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+const _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
-var _useThemeWithoutDefault = _interopRequireDefault(require("@mui/system/useThemeWithoutDefault"));
-var _refType = _interopRequireDefault(require("@mui/utils/refType"));
-var _HTMLElementType = _interopRequireDefault(require("@mui/utils/HTMLElementType"));
-var _propTypes = _interopRequireDefault(require("prop-types"));
-var React = _interopRequireWildcard(require("react"));
-var _BasePopper = _interopRequireDefault(require("./BasePopper"));
-var _styles = require("../styles");
-var _DefaultPropsProvider = require("../DefaultPropsProvider");
-var _jsxRuntime = require("react/jsx-runtime");
+const _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+const _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+const _useThemeWithoutDefault = _interopRequireDefault(require("@mui/system/useThemeWithoutDefault"));
+const _refType = _interopRequireDefault(require("@mui/utils/refType"));
+const _HTMLElementType = _interopRequireDefault(require("@mui/utils/HTMLElementType"));
+const _propTypes = _interopRequireDefault(require("prop-types"));
+const React = _interopRequireWildcard(require("react"));
+const _BasePopper = _interopRequireDefault(require("./BasePopper"));
+const _styles = require("../styles");
+const _DefaultPropsProvider = require("../DefaultPropsProvider");
+const _jsxRuntime = require("react/jsx-runtime");
 const _excluded = ["anchorEl", "component", "components", "componentsProps", "container", "disablePortal", "keepMounted", "modifiers", "open", "placement", "popperOptions", "popperRef", "transition", "slots", "slotProps"];
-function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
-function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; const r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; const t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); const n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (const u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { const i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 const PopperRoot = (0, _styles.styled)(_BasePopper.default, {
   name: 'MuiPopper',
   slot: 'Root',
@@ -39,7 +39,7 @@ const PopperRoot = (0, _styles.styled)(_BasePopper.default, {
  * - [Popper API](https://mui.com/material-ui/api/popper/)
  */
 const Popper = /*#__PURE__*/React.forwardRef(function Popper(inProps, ref) {
-  var _slots$root;
+  let _slots$root;
   const theme = (0, _useThemeWithoutDefault.default)();
   const props = (0, _DefaultPropsProvider.useDefaultProps)({
     props: inProps,
@@ -214,4 +214,4 @@ process.env.NODE_ENV !== "production" ? Popper.propTypes /* remove-proptypes */ 
    */
   transition: _propTypes.default.bool
 } : void 0;
-var _default = exports.default = Popper;
+const _default = exports.default = Popper;

@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
 exports.catalogCustomAttributeDefinitionSelectionConfigSchema = void 0;
-var schema_1 = require("../schema");
-var catalogCustomAttributeDefinitionSelectionConfigCustomAttributeSelection_1 = require("./catalogCustomAttributeDefinitionSelectionConfigCustomAttributeSelection");
+const schema_1 = require("../schema");
+const catalogCustomAttributeDefinitionSelectionConfigCustomAttributeSelection_1 = require("./catalogCustomAttributeDefinitionSelectionConfigCustomAttributeSelection");
 exports.catalogCustomAttributeDefinitionSelectionConfigSchema = (0, schema_1.object)({
     maxAllowedSelections: [
         'max_allowed_selections',

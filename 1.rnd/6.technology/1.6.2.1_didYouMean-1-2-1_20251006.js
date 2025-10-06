@@ -147,7 +147,7 @@ limitations under the License.
     if (!didYouMean.caseSensitive) { str = str.toLowerCase(); }
 
     // Calculate the initial value (the threshold) if present.
-    var thresholdRelative = didYouMean.threshold === null ? null : didYouMean.threshold * str.length,
+    let thresholdRelative = didYouMean.threshold === null ? null : didYouMean.threshold * str.length,
         thresholdAbsolute = didYouMean.thresholdAbsolute,
         winningVal;
     if (thresholdRelative !== null && thresholdAbsolute !== null) winningVal = Math.min(thresholdRelative, thresholdAbsolute);
@@ -157,7 +157,7 @@ limitations under the License.
 
     // Get the edit distance to each option. If the closest one is less than 40% (by default) of str's length,
     // then return it.
-    var winner, candidate, testCandidate, val,
+    let winner, candidate, testCandidate, val,
         i, len = list.length;
     for (i = 0; i < len; i++) {
       // Get item.
@@ -206,13 +206,13 @@ limitations under the License.
     window.didYouMean = didYouMean;
   }
 
-  var MAX_INT = Math.pow(2,32) - 1; // We could probably go higher than this, but for practical reasons let's not.
+  const MAX_INT = Math.pow(2,32) - 1; // We could probably go higher than this, but for practical reasons let's not.
   function getEditDistance(a, b, max) {
     // Handle null or undefined max.
     max = max || max === 0 ? max : MAX_INT;
 
-    var lena = a.length;
-    var lenb = b.length;
+    const lena = a.length;
+    const lenb = b.length;
 
     // Fast path - no A or B.
     if (lena === 0) return Math.min(max + 1, lenb);
@@ -222,7 +222,7 @@ limitations under the License.
     if (Math.abs(lena - lenb) > max) return max + 1;
 
     // Slow path.
-    var matrix = [],
+    let matrix = [],
         i, j, colMin, minJ, maxJ;
 
     // Set up the first row ([0, 1, 2, 3, etc]).

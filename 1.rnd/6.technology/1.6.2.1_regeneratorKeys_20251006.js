@@ -5,8 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = _regeneratorKeys;
 function _regeneratorKeys(val) {
-  var object = Object(val);
-  var keys = [];
+  const object = Object(val);
+  const keys = [];
   var key;
   for (var key in object) {
     keys.unshift(key);

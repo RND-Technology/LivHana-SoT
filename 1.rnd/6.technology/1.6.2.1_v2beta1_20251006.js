@@ -20,7 +20,7 @@ exports.dns_v2beta1 = void 0;
 /* eslint-disable @typescript-eslint/no-namespace */
 /* eslint-disable no-irregular-whitespace */
 const googleapis_common_1 = require("googleapis-common");
-var dns_v2beta1;
+let dns_v2beta1;
 (function (dns_v2beta1) {
     /**
      * Cloud DNS API

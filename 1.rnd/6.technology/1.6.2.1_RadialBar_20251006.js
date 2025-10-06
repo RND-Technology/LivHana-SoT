@@ -5,49 +5,49 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.RadialBar = void 0;
 exports.computeRadialBarDataItems = computeRadialBarDataItems;
-var _react = _interopRequireWildcard(require("react"));
-var React = _react;
-var _clsx = require("clsx");
-var _RadialBarUtils = require("../util/RadialBarUtils");
-var _Layer = require("../container/Layer");
-var _ReactUtils = require("../util/ReactUtils");
-var _Global = require("../util/Global");
-var _LabelList = require("../component/LabelList");
-var _Cell = require("../component/Cell");
-var _DataUtils = require("../util/DataUtils");
-var _ChartUtils = require("../util/ChartUtils");
-var _types = require("../util/types");
-var _tooltipContext = require("../context/tooltipContext");
-var _SetTooltipEntrySettings = require("../state/SetTooltipEntrySettings");
-var _radialBarSelectors = require("../state/selectors/radialBarSelectors");
-var _hooks = require("../state/hooks");
-var _tooltipSelectors = require("../state/selectors/tooltipSelectors");
-var _SetLegendPayload = require("../state/SetLegendPayload");
-var _useAnimationId = require("../util/useAnimationId");
-var _RegisterGraphicalItemId = require("../context/RegisterGraphicalItemId");
-var _SetGraphicalItem = require("../state/SetGraphicalItem");
-var _svgPropertiesNoEvents = require("../util/svgPropertiesNoEvents");
-var _JavascriptAnimate = require("../animation/JavascriptAnimate");
-var _excluded = ["shape", "activeShape", "cornerRadius", "id"],
+const _react = _interopRequireWildcard(require("react"));
+const React = _react;
+const _clsx = require("clsx");
+const _RadialBarUtils = require("../util/RadialBarUtils");
+const _Layer = require("../container/Layer");
+const _ReactUtils = require("../util/ReactUtils");
+const _Global = require("../util/Global");
+const _LabelList = require("../component/LabelList");
+const _Cell = require("../component/Cell");
+const _DataUtils = require("../util/DataUtils");
+const _ChartUtils = require("../util/ChartUtils");
+const _types = require("../util/types");
+const _tooltipContext = require("../context/tooltipContext");
+const _SetTooltipEntrySettings = require("../state/SetTooltipEntrySettings");
+const _radialBarSelectors = require("../state/selectors/radialBarSelectors");
+const _hooks = require("../state/hooks");
+const _tooltipSelectors = require("../state/selectors/tooltipSelectors");
+const _SetLegendPayload = require("../state/SetLegendPayload");
+const _useAnimationId = require("../util/useAnimationId");
+const _RegisterGraphicalItemId = require("../context/RegisterGraphicalItemId");
+const _SetGraphicalItem = require("../state/SetGraphicalItem");
+const _svgPropertiesNoEvents = require("../util/svgPropertiesNoEvents");
+const _JavascriptAnimate = require("../animation/JavascriptAnimate");
+const _excluded = ["shape", "activeShape", "cornerRadius", "id"],
   _excluded2 = ["onMouseEnter", "onClick", "onMouseLeave"],
   _excluded3 = ["value", "background"]; // eslint-disable-next-line max-classes-per-file
-function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
-function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; let o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (const _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (let e = 1; e < arguments.length; e++) { const t = arguments[e]; for (const r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+function ownKeys(e, r) { const t = Object.keys(e); if (Object.getOwnPropertySymbols) { let o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (let r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-function _objectWithoutProperties(e, t) { if (null == e) return {}; var o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { var n = Object.getOwnPropertySymbols(e); for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
-function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t = {}; for (var n in r) if ({}.hasOwnProperty.call(r, n)) { if (-1 !== e.indexOf(n)) continue; t[n] = r[n]; } return t; }
-var STABLE_EMPTY_ARRAY = [];
+function _toPropertyKey(t) { const i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; const e = t[Symbol.toPrimitive]; if (void 0 !== e) { const i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _objectWithoutProperties(e, t) { if (null == e) return {}; let o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { const n = Object.getOwnPropertySymbols(e); for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
+function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; const t = {}; for (const n in r) if ({}.hasOwnProperty.call(r, n)) { if (-1 !== e.indexOf(n)) continue; t[n] = r[n]; } return t; }
+const STABLE_EMPTY_ARRAY = [];
 function RadialBarLabelListProvider(_ref) {
-  var {
+  const {
     showLabels,
     sectors,
     children
   } = _ref;
-  var labelListEntries = sectors.map(sector => ({
+  const labelListEntries = sectors.map(sector => ({
     value: sector.value,
     payload: sector.payload,
     parentViewBox: undefined,
@@ -68,29 +68,29 @@ function RadialBarLabelListProvider(_ref) {
   }, children);
 }
 function RadialBarSectors(_ref2) {
-  var {
+  const {
     sectors,
     allOtherRadialBarProps,
     showLabels
   } = _ref2;
-  var {
+  let {
       shape,
       activeShape,
       cornerRadius,
       id
     } = allOtherRadialBarProps,
     others = _objectWithoutProperties(allOtherRadialBarProps, _excluded);
-  var baseProps = (0, _svgPropertiesNoEvents.svgPropertiesNoEvents)(others);
-  var activeIndex = (0, _hooks.useAppSelector)(_tooltipSelectors.selectActiveTooltipIndex);
-  var {
+  const baseProps = (0, _svgPropertiesNoEvents.svgPropertiesNoEvents)(others);
+  const activeIndex = (0, _hooks.useAppSelector)(_tooltipSelectors.selectActiveTooltipIndex);
+  let {
       onMouseEnter: onMouseEnterFromProps,
       onClick: onItemClickFromProps,
       onMouseLeave: onMouseLeaveFromProps
     } = allOtherRadialBarProps,
     restOfAllOtherProps = _objectWithoutProperties(allOtherRadialBarProps, _excluded2);
-  var onMouseEnterFromContext = (0, _tooltipContext.useMouseEnterItemDispatch)(onMouseEnterFromProps, allOtherRadialBarProps.dataKey);
-  var onMouseLeaveFromContext = (0, _tooltipContext.useMouseLeaveItemDispatch)(onMouseLeaveFromProps);
-  var onClickFromContext = (0, _tooltipContext.useMouseClickItemDispatch)(onItemClickFromProps, allOtherRadialBarProps.dataKey);
+  const onMouseEnterFromContext = (0, _tooltipContext.useMouseEnterItemDispatch)(onMouseEnterFromProps, allOtherRadialBarProps.dataKey);
+  const onMouseLeaveFromContext = (0, _tooltipContext.useMouseLeaveItemDispatch)(onMouseLeaveFromProps);
+  const onClickFromContext = (0, _tooltipContext.useMouseClickItemDispatch)(onItemClickFromProps, allOtherRadialBarProps.dataKey);
   if (sectors == null) {
     return null;
   }
@@ -98,16 +98,16 @@ function RadialBarSectors(_ref2) {
     showLabels: showLabels,
     sectors: sectors
   }, sectors.map((entry, i) => {
-    var isActive = activeShape && activeIndex === String(i);
+    const isActive = activeShape && activeIndex === String(i);
     // @ts-expect-error the types need a bit of attention
-    var onMouseEnter = onMouseEnterFromContext(entry, i);
+    const onMouseEnter = onMouseEnterFromContext(entry, i);
     // @ts-expect-error the types need a bit of attention
-    var onMouseLeave = onMouseLeaveFromContext(entry, i);
+    const onMouseLeave = onMouseLeaveFromContext(entry, i);
     // @ts-expect-error the types need a bit of attention
-    var onClick = onClickFromContext(entry, i);
+    const onClick = onClickFromContext(entry, i);
 
     // @ts-expect-error cx types are incompatible
-    var radialBarSectorProps = _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, baseProps), {}, {
+    const radialBarSectorProps = _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, baseProps), {}, {
       cornerRadius: (0, _RadialBarUtils.parseCornerRadius)(cornerRadius)
     }, entry), (0, _types.adaptEventsOfChild)(restOfAllOtherProps, entry, i)), {}, {
       onMouseEnter,
@@ -126,11 +126,11 @@ function RadialBarSectors(_ref2) {
   }), allOtherRadialBarProps.children);
 }
 function SectorsWithAnimation(_ref3) {
-  var {
+  const {
     props,
     previousSectorsRef
   } = _ref3;
-  var {
+  const {
     data,
     isAnimationActive,
     animationBegin,
@@ -139,16 +139,16 @@ function SectorsWithAnimation(_ref3) {
     onAnimationEnd,
     onAnimationStart
   } = props;
-  var animationId = (0, _useAnimationId.useAnimationId)(props, 'recharts-radialbar-');
-  var prevData = previousSectorsRef.current;
-  var [isAnimating, setIsAnimating] = (0, _react.useState)(false);
-  var handleAnimationEnd = (0, _react.useCallback)(() => {
+  const animationId = (0, _useAnimationId.useAnimationId)(props, 'recharts-radialbar-');
+  const prevData = previousSectorsRef.current;
+  const [isAnimating, setIsAnimating] = (0, _react.useState)(false);
+  const handleAnimationEnd = (0, _react.useCallback)(() => {
     if (typeof onAnimationEnd === 'function') {
       onAnimationEnd();
     }
     setIsAnimating(false);
   }, [onAnimationEnd]);
-  var handleAnimationStart = (0, _react.useCallback)(() => {
+  const handleAnimationStart = (0, _react.useCallback)(() => {
     if (typeof onAnimationStart === 'function') {
       onAnimationStart();
     }
@@ -164,21 +164,21 @@ function SectorsWithAnimation(_ref3) {
     onAnimationEnd: handleAnimationEnd,
     key: animationId
   }, t => {
-    var stepData = t === 1 ? data : (data !== null && data !== void 0 ? data : STABLE_EMPTY_ARRAY).map((entry, index) => {
-      var prev = prevData && prevData[index];
+    const stepData = t === 1 ? data : (data !== null && data !== void 0 ? data : STABLE_EMPTY_ARRAY).map((entry, index) => {
+      const prev = prevData && prevData[index];
       if (prev) {
-        var interpolatorStartAngle = (0, _DataUtils.interpolateNumber)(prev.startAngle, entry.startAngle);
-        var interpolatorEndAngle = (0, _DataUtils.interpolateNumber)(prev.endAngle, entry.endAngle);
+        const interpolatorStartAngle = (0, _DataUtils.interpolateNumber)(prev.startAngle, entry.startAngle);
+        const interpolatorEndAngle = (0, _DataUtils.interpolateNumber)(prev.endAngle, entry.endAngle);
         return _objectSpread(_objectSpread({}, entry), {}, {
           startAngle: interpolatorStartAngle(t),
           endAngle: interpolatorEndAngle(t)
         });
       }
-      var {
+      const {
         endAngle,
         startAngle
       } = entry;
-      var interpolator = (0, _DataUtils.interpolateNumber)(startAngle, endAngle);
+      const interpolator = (0, _DataUtils.interpolateNumber)(startAngle, endAngle);
       return _objectSpread(_objectSpread({}, entry), {}, {
         endAngle: interpolator(t)
       });
@@ -195,20 +195,20 @@ function SectorsWithAnimation(_ref3) {
   });
 }
 function RenderSectors(props) {
-  var previousSectorsRef = (0, _react.useRef)(null);
+  const previousSectorsRef = (0, _react.useRef)(null);
   return /*#__PURE__*/React.createElement(SectorsWithAnimation, {
     props: props,
     previousSectorsRef: previousSectorsRef
   });
 }
 function SetRadialBarPayloadLegend(props) {
-  var legendPayload = (0, _hooks.useAppSelector)(state => (0, _radialBarSelectors.selectRadialBarLegendPayload)(state, props.legendType));
+  const legendPayload = (0, _hooks.useAppSelector)(state => (0, _radialBarSelectors.selectRadialBarLegendPayload)(state, props.legendType));
   return /*#__PURE__*/React.createElement(_SetLegendPayload.SetPolarLegendPayload, {
     legendPayload: legendPayload !== null && legendPayload !== void 0 ? legendPayload : []
   });
 }
 function getTooltipEntrySettings(props) {
-  var {
+  const {
     dataKey,
     data,
     stroke,
@@ -241,12 +241,12 @@ class RadialBarWithState extends _react.PureComponent {
     if (sectors == null) {
       return null;
     }
-    var {
+    const {
       cornerRadius
     } = this.props;
-    var backgroundProps = (0, _ReactUtils.filterProps)(this.props.background, false);
+    const backgroundProps = (0, _ReactUtils.filterProps)(this.props.background, false);
     return sectors.map((entry, i) => {
-      var {
+      let {
           value,
           background
         } = entry,
@@ -254,7 +254,7 @@ class RadialBarWithState extends _react.PureComponent {
       if (!background) {
         return null;
       }
-      var props = _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({
+      const props = _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({
         cornerRadius: (0, _RadialBarUtils.parseCornerRadius)(cornerRadius)
       }, rest), {}, {
         fill: '#eee'
@@ -269,7 +269,7 @@ class RadialBarWithState extends _react.PureComponent {
     });
   }
   render() {
-    var {
+    const {
       hide,
       data,
       className,
@@ -278,7 +278,7 @@ class RadialBarWithState extends _react.PureComponent {
     if (hide) {
       return null;
     }
-    var layerClass = (0, _clsx.clsx)('recharts-area', className);
+    const layerClass = (0, _clsx.clsx)('recharts-area', className);
     return /*#__PURE__*/React.createElement(_Layer.Layer, {
       className: layerClass
     }, background && /*#__PURE__*/React.createElement(_Layer.Layer, {
@@ -289,9 +289,9 @@ class RadialBarWithState extends _react.PureComponent {
   }
 }
 function RadialBarImpl(props) {
-  var _useAppSelector;
-  var cells = (0, _ReactUtils.findAllByType)(props.children, _Cell.Cell);
-  var radialBarSettings = {
+  let _useAppSelector;
+  const cells = (0, _ReactUtils.findAllByType)(props.children, _Cell.Cell);
+  const radialBarSettings = {
     data: undefined,
     hide: false,
     id: props.id,
@@ -304,7 +304,7 @@ function RadialBarImpl(props) {
     angleAxisId: props.angleAxisId,
     radiusAxisId: props.radiusAxisId
   };
-  var data = (_useAppSelector = (0, _hooks.useAppSelector)(state => (0, _radialBarSelectors.selectRadialBarSectors)(state, props.radiusAxisId, props.angleAxisId, radialBarSettings, cells))) !== null && _useAppSelector !== void 0 ? _useAppSelector : STABLE_EMPTY_ARRAY;
+  const data = (_useAppSelector = (0, _hooks.useAppSelector)(state => (0, _radialBarSelectors.selectRadialBarSectors)(state, props.radiusAxisId, props.angleAxisId, radialBarSettings, cells))) !== null && _useAppSelector !== void 0 ? _useAppSelector : STABLE_EMPTY_ARRAY;
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_SetTooltipEntrySettings.SetTooltipEntrySettings, {
     fn: getTooltipEntrySettings,
     args: _objectSpread(_objectSpread({}, props), {}, {
@@ -314,7 +314,7 @@ function RadialBarImpl(props) {
     data: data
   })));
 }
-var defaultRadialBarProps = {
+const defaultRadialBarProps = {
   angleAxisId: 0,
   radiusAxisId: 0,
   minPointSize: 0,
@@ -329,7 +329,7 @@ var defaultRadialBarProps = {
   cornerIsExternal: false
 };
 function computeRadialBarDataItems(_ref4) {
-  var {
+  const {
     displayedData,
     stackedData,
     dataStartIndex,
@@ -351,7 +351,7 @@ function computeRadialBarDataItems(_ref4) {
     endAngle: rootEndAngle
   } = _ref4;
   return (displayedData !== null && displayedData !== void 0 ? displayedData : []).map((entry, index) => {
-    var value, innerRadius, outerRadius, startAngle, endAngle, backgroundSector;
+    let value, innerRadius, outerRadius, startAngle, endAngle, backgroundSector;
     if (stackedData) {
       // @ts-expect-error truncateByDomain expects only numerical domain, but it can received categorical domain too
       value = (0, _ChartUtils.truncateByDomain)(stackedData[dataStartIndex + index], stackedDomain);
@@ -373,9 +373,9 @@ function computeRadialBarDataItems(_ref4) {
       endAngle = angleAxis.scale(value[1]);
       startAngle = angleAxis.scale(value[0]);
       outerRadius = (innerRadius !== null && innerRadius !== void 0 ? innerRadius : 0) + pos.size;
-      var deltaAngle = endAngle - startAngle;
+      const deltaAngle = endAngle - startAngle;
       if (Math.abs(minPointSize) > 0 && Math.abs(deltaAngle) < Math.abs(minPointSize)) {
-        var delta = (0, _DataUtils.mathSign)(deltaAngle || minPointSize) * (Math.abs(minPointSize) - Math.abs(deltaAngle));
+        const delta = (0, _DataUtils.mathSign)(deltaAngle || minPointSize) * (Math.abs(minPointSize) - Math.abs(deltaAngle));
         endAngle += delta;
       }
       backgroundSector = {
@@ -400,9 +400,9 @@ function computeRadialBarDataItems(_ref4) {
         index
       });
       endAngle = (startAngle !== null && startAngle !== void 0 ? startAngle : 0) + pos.size;
-      var deltaRadius = outerRadius - innerRadius;
+      const deltaRadius = outerRadius - innerRadius;
       if (Math.abs(minPointSize) > 0 && Math.abs(deltaRadius) < Math.abs(minPointSize)) {
-        var _delta = (0, _DataUtils.mathSign)(deltaRadius || minPointSize) * (Math.abs(minPointSize) - Math.abs(deltaRadius));
+        const _delta = (0, _DataUtils.mathSign)(deltaRadius || minPointSize) * (Math.abs(minPointSize) - Math.abs(deltaRadius));
         outerRadius += _delta;
       }
     }
@@ -424,7 +424,7 @@ class RadialBar extends _react.PureComponent {
       id: this.props.id,
       type: "radialBar"
     }, id => {
-      var _this$props$hide, _this$props$angleAxis, _this$props$radiusAxi;
+      let _this$props$hide, _this$props$angleAxis, _this$props$radiusAxi;
       return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_SetGraphicalItem.SetPolarGraphicalItem, {
         type: "radialBar",
         id: id

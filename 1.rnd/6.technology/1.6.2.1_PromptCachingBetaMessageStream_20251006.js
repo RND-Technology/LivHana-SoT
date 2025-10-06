@@ -1,16 +1,16 @@
 "use strict";
-var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
+const __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
     if (kind === "m") throw new TypeError("Private method is not writable");
     if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
     return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 };
-var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (receiver, state, kind, f) {
+const __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (receiver, state, kind, f) {
     if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
     return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 };
-var _PromptCachingBetaMessageStream_instances, _PromptCachingBetaMessageStream_currentMessageSnapshot, _PromptCachingBetaMessageStream_connectedPromise, _PromptCachingBetaMessageStream_resolveConnectedPromise, _PromptCachingBetaMessageStream_rejectConnectedPromise, _PromptCachingBetaMessageStream_endPromise, _PromptCachingBetaMessageStream_resolveEndPromise, _PromptCachingBetaMessageStream_rejectEndPromise, _PromptCachingBetaMessageStream_listeners, _PromptCachingBetaMessageStream_ended, _PromptCachingBetaMessageStream_errored, _PromptCachingBetaMessageStream_aborted, _PromptCachingBetaMessageStream_catchingPromiseCreated, _PromptCachingBetaMessageStream_getFinalMessage, _PromptCachingBetaMessageStream_getFinalText, _PromptCachingBetaMessageStream_handleError, _PromptCachingBetaMessageStream_beginRequest, _PromptCachingBetaMessageStream_addStreamEvent, _PromptCachingBetaMessageStream_endRequest, _PromptCachingBetaMessageStream_accumulateMessage;
+let _PromptCachingBetaMessageStream_instances, _PromptCachingBetaMessageStream_currentMessageSnapshot, _PromptCachingBetaMessageStream_connectedPromise, _PromptCachingBetaMessageStream_resolveConnectedPromise, _PromptCachingBetaMessageStream_rejectConnectedPromise, _PromptCachingBetaMessageStream_endPromise, _PromptCachingBetaMessageStream_resolveEndPromise, _PromptCachingBetaMessageStream_rejectEndPromise, _PromptCachingBetaMessageStream_listeners, _PromptCachingBetaMessageStream_ended, _PromptCachingBetaMessageStream_errored, _PromptCachingBetaMessageStream_aborted, _PromptCachingBetaMessageStream_catchingPromiseCreated, _PromptCachingBetaMessageStream_getFinalMessage, _PromptCachingBetaMessageStream_getFinalText, _PromptCachingBetaMessageStream_handleError, _PromptCachingBetaMessageStream_beginRequest, _PromptCachingBetaMessageStream_addStreamEvent, _PromptCachingBetaMessageStream_endRequest, _PromptCachingBetaMessageStream_accumulateMessage;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PromptCachingBetaMessageStream = void 0;
 const error_1 = require("@anthropic-ai/sdk/error");
@@ -353,7 +353,7 @@ class PromptCachingBetaMessageStream {
         __classPrivateFieldSet(this, _PromptCachingBetaMessageStream_currentMessageSnapshot, undefined, "f");
         return snapshot;
     }, _PromptCachingBetaMessageStream_accumulateMessage = function _PromptCachingBetaMessageStream_accumulateMessage(event) {
-        let snapshot = __classPrivateFieldGet(this, _PromptCachingBetaMessageStream_currentMessageSnapshot, "f");
+        const snapshot = __classPrivateFieldGet(this, _PromptCachingBetaMessageStream_currentMessageSnapshot, "f");
         if (event.type === 'message_start') {
             if (snapshot) {
                 throw new error_1.AnthropicError(`Unexpected event order, got ${event.type} before receiving "message_stop"`);

@@ -8,4 +8,4 @@ exports.default = void 0;
 function slotShouldForwardProp(prop) {
   return prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
 }
-var _default = exports.default = slotShouldForwardProp;
+const _default = exports.default = slotShouldForwardProp;

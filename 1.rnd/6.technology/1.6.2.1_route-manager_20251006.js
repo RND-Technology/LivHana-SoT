@@ -28,11 +28,11 @@ function getRoute(key) {
  * @returns all keys from routeMap
  */
 function getAllAPIEndPoints() {
-    let apiEndpoints = [];
+    const apiEndpoints = [];
     try {
         routeMap.forEach((value, key) => {
-            let obj = {};
-            let splitted = key.split('@');
+            const obj = {};
+            const splitted = key.split('@');
             obj.method = splitted[0];
             obj.path = splitted[1];
             obj.handler = routeMap.get(key);

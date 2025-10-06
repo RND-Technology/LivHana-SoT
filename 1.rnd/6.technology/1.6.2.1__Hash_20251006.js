@@ -1,4 +1,4 @@
-var hashClear = require('./_hashClear'),
+const hashClear = require('./_hashClear'),
     hashDelete = require('./_hashDelete'),
     hashGet = require('./_hashGet'),
     hashHas = require('./_hashHas'),
@@ -12,12 +12,12 @@ var hashClear = require('./_hashClear'),
  * @param {Array} [entries] The key-value pairs to cache.
  */
 function Hash(entries) {
-  var index = -1,
+  let index = -1,
       length = entries == null ? 0 : entries.length;
 
   this.clear();
   while (++index < length) {
-    var entry = entries[index];
+    const entry = entries[index];
     this.set(entry[0], entry[1]);
   }
 }

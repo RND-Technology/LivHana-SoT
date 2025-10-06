@@ -7,7 +7,7 @@
  * @returns {Array} Returns `array`.
  */
 function arrayPush(array, values) {
-  var index = -1,
+  let index = -1,
       length = values.length,
       offset = array.length;
 

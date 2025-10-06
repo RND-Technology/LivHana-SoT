@@ -1,8 +1,8 @@
-var getTag = require('./_getTag'),
+const getTag = require('./_getTag'),
     isObjectLike = require('./isObjectLike');
 
 /** `Object#toString` result references. */
-var mapTag = '[object Map]';
+const mapTag = '[object Map]';
 
 /**
  * The base implementation of `_.isMap` without Node.js optimizations.

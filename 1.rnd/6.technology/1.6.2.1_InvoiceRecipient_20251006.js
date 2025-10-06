@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
 exports.invoiceRecipientSchema = void 0;
-var schema_1 = require("../schema");
-var address_1 = require("./address");
-var invoiceRecipientTaxIds_1 = require("./invoiceRecipientTaxIds");
+const schema_1 = require("../schema");
+const address_1 = require("./address");
+const invoiceRecipientTaxIds_1 = require("./invoiceRecipientTaxIds");
 exports.invoiceRecipientSchema = (0, schema_1.object)({
     customerId: ['customer_id', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.string)()))],
     givenName: ['given_name', (0, schema_1.optional)((0, schema_1.string)())],

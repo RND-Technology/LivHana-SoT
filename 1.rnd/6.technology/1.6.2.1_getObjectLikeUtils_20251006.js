@@ -30,7 +30,7 @@ function withParsedProperties(objectLike, properties) {
             };
         },
         json: (parsed, opts) => {
-            var _a;
+            let _a;
             if (!(0, isPlainObject_1.isPlainObject)(parsed)) {
                 return {
                     ok: false,

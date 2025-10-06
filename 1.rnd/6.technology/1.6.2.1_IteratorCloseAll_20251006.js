@@ -1,15 +1,15 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var CompletionRecord = require('es-abstract/2024/CompletionRecord');
-var IteratorClose = require('es-abstract/2024/IteratorClose');
-var ThrowCompletion = require('es-abstract/2024/ThrowCompletion');
+const CompletionRecord = require('es-abstract/2024/CompletionRecord');
+const IteratorClose = require('es-abstract/2024/IteratorClose');
+const ThrowCompletion = require('es-abstract/2024/ThrowCompletion');
 
-var IsArray = require('es-abstract/helpers/IsArray');
-var every = require('es-abstract/helpers/every');
+const IsArray = require('es-abstract/helpers/IsArray');
+const every = require('es-abstract/helpers/every');
 
-var isIteratorRecord = require('es-abstract/helpers/records/iterator-record');
+const isIteratorRecord = require('es-abstract/helpers/records/iterator-record');
 
 // https://tc39.es/proposal-joint-iteration/#sec-closeall
 
@@ -21,7 +21,7 @@ module.exports = function IteratorCloseAll(iters, completion) {
 		throw new $TypeError('Assertion failed: `completion` must be a Completion Record');
 	}
 
-	for (var i = iters.length - 1; i >= 0; i -= 1) { // step 1
+	for (let i = iters.length - 1; i >= 0; i -= 1) { // step 1
 		try {
 			IteratorClose(iters[i], completion); // step 1.a
 		} catch (e) {

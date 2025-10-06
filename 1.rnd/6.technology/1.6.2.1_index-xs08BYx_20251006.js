@@ -56,15 +56,15 @@ function wrapSerializableConfig(config) {
 
 const A=r=>r!==null&&typeof r=="object",a=(r,t)=>Object.assign(new Error(`[${r}]: ${t}`),{code:r}),_$1="ERR_INVALID_PACKAGE_CONFIG",E$1="ERR_INVALID_PACKAGE_TARGET",I$1="ERR_PACKAGE_PATH_NOT_EXPORTED",R$1=/^\d+$/,O=/^(\.{1,2}|node_modules)$/i,w=/\/|\\/;var h$1=(r=>(r.Export="exports",r.Import="imports",r))(h$1||{});const f=(r,t,e,o,c)=>{if(t==null)return [];if(typeof t=="string"){const[n,...i]=t.split(w);if(n===".."||i.some(l=>O.test(l)))throw a(E$1,`Invalid "${r}" target "${t}" defined in the package config`);return [c?t.replace(/\*/g,c):t]}if(Array.isArray(t))return t.flatMap(n=>f(r,n,e,o,c));if(A(t)){for(const n of Object.keys(t)){if(R$1.test(n))throw a(_$1,"Cannot contain numeric property keys");if(n==="default"||o.includes(n))return f(r,t[n],e,o,c)}return []}throw a(E$1,`Invalid "${r}" target "${t}"`)},s="*",m=(r,t)=>{const e=r.indexOf(s),o=t.indexOf(s);return e===o?t.length>r.length:o>e};function d(r,t){if(!t.includes(s)&&r.hasOwnProperty(t))return [t];let e,o;for(const c of Object.keys(r))if(c.includes(s)){const[n,i,l]=c.split(s);if(l===void 0&&t.startsWith(n)&&t.endsWith(i)){const g=t.slice(n.length,-i.length||void 0);g&&(!e||m(e,c))&&(e=c,o=g);}}return [e,o]}const p=r=>Object.keys(r).reduce((t,e)=>{const o=e===""||e[0]!==".";if(t===void 0||t===o)return o;throw a(_$1,'"exports" cannot contain some keys starting with "." and some not')},void 0),u=/^\w+:/,v=(r,t,e)=>{if(!r)throw new Error('"exports" is required');t=t===""?".":`./${t}`,(typeof r=="string"||Array.isArray(r)||A(r)&&p(r))&&(r={".":r});const[o,c]=d(r,t),n=f(h$1.Export,r[o],t,e,c);if(n.length===0)throw a(I$1,t==="."?'No "exports" main defined':`Package subpath '${t}' is not defined by "exports"`);for(const i of n)if(!i.startsWith("./")&&!u.test(i))throw a(E$1,`Invalid "exports" target "${i}" defined in the package config`);return n};
 
-function B(e){return e.startsWith("\\\\?\\")?e:e.replace(/\\/g,"/")}const x=e=>{const o=require$$0[e];return (i,...n)=>{const t=`${e}:${n.join(":")}`;let l=i==null?void 0:i.get(t);return l===void 0&&(l=Reflect.apply(o,require$$0,n),i==null||i.set(t,l)),l}},E=x("existsSync"),ae=x("realpathSync"),ke=x("readFileSync"),P=x("statSync"),Z=(e,o,i)=>{for(;;){const n=p$1.posix.join(e,o);if(E(i,n))return n;const t=p$1.dirname(e);if(t===e)return;e=t;}},h=/^\.{1,2}(\/.*)?$/,W=e=>{const o=B(e);return h.test(o)?o:`./${o}`};function be(e,o=!1){const i=e.length;let n=0,t="",l=0,s=16,m=0,r=0,b=0,v=0,c=0;function L(u,g){let f=0,$=0;for(;f<u||!g;){let O=e.charCodeAt(n);if(O>=48&&O<=57)$=$*16+O-48;else if(O>=65&&O<=70)$=$*16+O-65+10;else if(O>=97&&O<=102)$=$*16+O-97+10;else break;n++,f++;}return f<u&&($=-1),$}function T(u){n=u,t="",l=0,s=16,c=0;}function w(){let u=n;if(e.charCodeAt(n)===48)n++;else for(n++;n<e.length&&N(e.charCodeAt(n));)n++;if(n<e.length&&e.charCodeAt(n)===46)if(n++,n<e.length&&N(e.charCodeAt(n)))for(n++;n<e.length&&N(e.charCodeAt(n));)n++;else return c=3,e.substring(u,n);let g=n;if(n<e.length&&(e.charCodeAt(n)===69||e.charCodeAt(n)===101))if(n++,(n<e.length&&e.charCodeAt(n)===43||e.charCodeAt(n)===45)&&n++,n<e.length&&N(e.charCodeAt(n))){for(n++;n<e.length&&N(e.charCodeAt(n));)n++;g=n;}else c=3;return e.substring(u,g)}function k(){let u="",g=n;for(;;){if(n>=i){u+=e.substring(g,n),c=2;break}const f=e.charCodeAt(n);if(f===34){u+=e.substring(g,n),n++;break}if(f===92){if(u+=e.substring(g,n),n++,n>=i){c=2;break}switch(e.charCodeAt(n++)){case 34:u+='"';break;case 92:u+="\\";break;case 47:u+="/";break;case 98:u+="\b";break;case 102:u+="\f";break;case 110:u+=`
+function B(e){return e.startsWith("\\\\?\\")?e:e.replace(/\\/g,"/")}const x=e=>{const o=require$$0[e];return (i,...n)=>{const t=`${e}:${n.join(":")}`;let l=i==null?void 0:i.get(t);return l===void 0&&(l=Reflect.apply(o,require$$0,n),i==null||i.set(t,l)),l}},E=x("existsSync"),ae=x("realpathSync"),ke=x("readFileSync"),P=x("statSync"),Z=(e,o,i)=>{for(;;){const n=p$1.posix.join(e,o);if(E(i,n))return n;const t=p$1.dirname(e);if(t===e)return;e=t;}},h=/^\.{1,2}(\/.*)?$/,W=e=>{const o=B(e);return h.test(o)?o:`./${o}`};function be(e,o=!1){const i=e.length;let n=0,t="",l=0,s=16,m=0,r=0,b=0,v=0,c=0;function L(u,g){let f=0,$=0;for(;f<u||!g;){const O=e.charCodeAt(n);if(O>=48&&O<=57)$=$*16+O-48;else if(O>=65&&O<=70)$=$*16+O-65+10;else if(O>=97&&O<=102)$=$*16+O-97+10;else break;n++,f++;}return f<u&&($=-1),$}function T(u){n=u,t="",l=0,s=16,c=0;}function w(){const u=n;if(e.charCodeAt(n)===48)n++;else for(n++;n<e.length&&N(e.charCodeAt(n));)n++;if(n<e.length&&e.charCodeAt(n)===46)if(n++,n<e.length&&N(e.charCodeAt(n)))for(n++;n<e.length&&N(e.charCodeAt(n));)n++;else return c=3,e.substring(u,n);let g=n;if(n<e.length&&(e.charCodeAt(n)===69||e.charCodeAt(n)===101))if(n++,(n<e.length&&e.charCodeAt(n)===43||e.charCodeAt(n)===45)&&n++,n<e.length&&N(e.charCodeAt(n))){for(n++;n<e.length&&N(e.charCodeAt(n));)n++;g=n;}else c=3;return e.substring(u,g)}function k(){let u="",g=n;for(;;){if(n>=i){u+=e.substring(g,n),c=2;break}const f=e.charCodeAt(n);if(f===34){u+=e.substring(g,n),n++;break}if(f===92){if(u+=e.substring(g,n),n++,n>=i){c=2;break}switch(e.charCodeAt(n++)){case 34:u+='"';break;case 92:u+="\\";break;case 47:u+="/";break;case 98:u+="\b";break;case 102:u+="\f";break;case 110:u+=`
 `;break;case 114:u+="\r";break;case 116:u+="	";break;case 117:const O=L(4,!0);O>=0?u+=String.fromCharCode(O):c=4;break;default:c=5;}g=n;continue}if(f>=0&&f<=31)if(_(f)){u+=e.substring(g,n),c=2;break}else c=6;n++;}return u}function j(){if(t="",c=0,l=n,r=m,v=b,n>=i)return l=i,s=17;let u=e.charCodeAt(n);if(J(u)){do n++,t+=String.fromCharCode(u),u=e.charCodeAt(n);while(J(u));return s=15}if(_(u))return n++,t+=String.fromCharCode(u),u===13&&e.charCodeAt(n)===10&&(n++,t+=`
-`),m++,b=n,s=14;switch(u){case 123:return n++,s=1;case 125:return n++,s=2;case 91:return n++,s=3;case 93:return n++,s=4;case 58:return n++,s=6;case 44:return n++,s=5;case 34:return n++,t=k(),s=10;case 47:const g=n-1;if(e.charCodeAt(n+1)===47){for(n+=2;n<i&&!_(e.charCodeAt(n));)n++;return t=e.substring(g,n),s=12}if(e.charCodeAt(n+1)===42){n+=2;const f=i-1;let $=!1;for(;n<f;){const O=e.charCodeAt(n);if(O===42&&e.charCodeAt(n+1)===47){n+=2,$=!0;break}n++,_(O)&&(O===13&&e.charCodeAt(n)===10&&n++,m++,b=n);}return $||(n++,c=1),t=e.substring(g,n),s=13}return t+=String.fromCharCode(u),n++,s=16;case 45:if(t+=String.fromCharCode(u),n++,n===i||!N(e.charCodeAt(n)))return s=16;case 48:case 49:case 50:case 51:case 52:case 53:case 54:case 55:case 56:case 57:return t+=w(),s=11;default:for(;n<i&&U(u);)n++,u=e.charCodeAt(n);if(l!==n){switch(t=e.substring(l,n),t){case"true":return s=8;case"false":return s=9;case"null":return s=7}return s=16}return t+=String.fromCharCode(u),n++,s=16}}function U(u){if(J(u)||_(u))return !1;switch(u){case 125:case 93:case 123:case 91:case 34:case 58:case 44:case 47:return !1}return !0}function F(){let u;do u=j();while(u>=12&&u<=15);return u}return {setPosition:T,getPosition:()=>n,scan:o?F:j,getToken:()=>s,getTokenValue:()=>t,getTokenOffset:()=>l,getTokenLength:()=>n-l,getTokenStartLine:()=>r,getTokenStartCharacter:()=>l-v,getTokenError:()=>c}}function J(e){return e===32||e===9}function _(e){return e===10||e===13}function N(e){return e>=48&&e<=57}var q;(function(e){e[e.lineFeed=10]="lineFeed",e[e.carriageReturn=13]="carriageReturn",e[e.space=32]="space",e[e._0=48]="_0",e[e._1=49]="_1",e[e._2=50]="_2",e[e._3=51]="_3",e[e._4=52]="_4",e[e._5=53]="_5",e[e._6=54]="_6",e[e._7=55]="_7",e[e._8=56]="_8",e[e._9=57]="_9",e[e.a=97]="a",e[e.b=98]="b",e[e.c=99]="c",e[e.d=100]="d",e[e.e=101]="e",e[e.f=102]="f",e[e.g=103]="g",e[e.h=104]="h",e[e.i=105]="i",e[e.j=106]="j",e[e.k=107]="k",e[e.l=108]="l",e[e.m=109]="m",e[e.n=110]="n",e[e.o=111]="o",e[e.p=112]="p",e[e.q=113]="q",e[e.r=114]="r",e[e.s=115]="s",e[e.t=116]="t",e[e.u=117]="u",e[e.v=118]="v",e[e.w=119]="w",e[e.x=120]="x",e[e.y=121]="y",e[e.z=122]="z",e[e.A=65]="A",e[e.B=66]="B",e[e.C=67]="C",e[e.D=68]="D",e[e.E=69]="E",e[e.F=70]="F",e[e.G=71]="G",e[e.H=72]="H",e[e.I=73]="I",e[e.J=74]="J",e[e.K=75]="K",e[e.L=76]="L",e[e.M=77]="M",e[e.N=78]="N",e[e.O=79]="O",e[e.P=80]="P",e[e.Q=81]="Q",e[e.R=82]="R",e[e.S=83]="S",e[e.T=84]="T",e[e.U=85]="U",e[e.V=86]="V",e[e.W=87]="W",e[e.X=88]="X",e[e.Y=89]="Y",e[e.Z=90]="Z",e[e.asterisk=42]="asterisk",e[e.backslash=92]="backslash",e[e.closeBrace=125]="closeBrace",e[e.closeBracket=93]="closeBracket",e[e.colon=58]="colon",e[e.comma=44]="comma",e[e.dot=46]="dot",e[e.doubleQuote=34]="doubleQuote",e[e.minus=45]="minus",e[e.openBrace=123]="openBrace",e[e.openBracket=91]="openBracket",e[e.plus=43]="plus",e[e.slash=47]="slash",e[e.formFeed=12]="formFeed",e[e.tab=9]="tab";})(q||(q={}));var I;(function(e){e.DEFAULT={allowTrailingComma:!1};})(I||(I={}));function Te(e,o=[],i=I.DEFAULT){let n=null,t=[];const l=[];function s(r){Array.isArray(t)?t.push(r):n!==null&&(t[n]=r);}return we(e,{onObjectBegin:()=>{const r={};s(r),l.push(t),t=r,n=null;},onObjectProperty:r=>{n=r;},onObjectEnd:()=>{t=l.pop();},onArrayBegin:()=>{const r=[];s(r),l.push(t),t=r,n=null;},onArrayEnd:()=>{t=l.pop();},onLiteralValue:s,onError:(r,b,v)=>{o.push({error:r,offset:b,length:v});}},i),t[0]}function we(e,o,i=I.DEFAULT){const n=be(e,!1),t=[];function l(a){return a?()=>a(n.getTokenOffset(),n.getTokenLength(),n.getTokenStartLine(),n.getTokenStartCharacter()):()=>!0}function s(a){return a?()=>a(n.getTokenOffset(),n.getTokenLength(),n.getTokenStartLine(),n.getTokenStartCharacter(),()=>t.slice()):()=>!0}function m(a){return a?A=>a(A,n.getTokenOffset(),n.getTokenLength(),n.getTokenStartLine(),n.getTokenStartCharacter()):()=>!0}function r(a){return a?A=>a(A,n.getTokenOffset(),n.getTokenLength(),n.getTokenStartLine(),n.getTokenStartCharacter(),()=>t.slice()):()=>!0}const b=s(o.onObjectBegin),v=r(o.onObjectProperty),c=l(o.onObjectEnd),L=s(o.onArrayBegin),T=l(o.onArrayEnd),w=r(o.onLiteralValue),k=m(o.onSeparator),j=l(o.onComment),U=m(o.onError),F=i&&i.disallowComments,u=i&&i.allowTrailingComma;function g(){for(;;){const a=n.scan();switch(n.getTokenError()){case 4:f(14);break;case 5:f(15);break;case 3:f(13);break;case 1:F||f(11);break;case 2:f(12);break;case 6:f(16);break}switch(a){case 12:case 13:F?f(10):j();break;case 16:f(1);break;case 15:case 14:break;default:return a}}}function f(a,A=[],Y=[]){if(U(a),A.length+Y.length>0){let y=n.getToken();for(;y!==17;){if(A.indexOf(y)!==-1){g();break}else if(Y.indexOf(y)!==-1)break;y=g();}}}function $(a){const A=n.getTokenValue();return a?w(A):(v(A),t.push(A)),g(),!0}function O(){switch(n.getToken()){case 11:const a=n.getTokenValue();let A=Number(a);isNaN(A)&&(f(2),A=0),w(A);break;case 7:w(null);break;case 8:w(!0);break;case 9:w(!1);break;default:return !1}return g(),!0}function ce(){return n.getToken()!==10?(f(3,[],[2,5]),!1):($(!1),n.getToken()===6?(k(":"),g(),V()||f(4,[],[2,5])):f(5,[],[2,5]),t.pop(),!0)}function fe(){b(),g();let a=!1;for(;n.getToken()!==2&&n.getToken()!==17;){if(n.getToken()===5){if(a||f(4,[],[]),k(","),g(),n.getToken()===2&&u)break}else a&&f(6,[],[]);ce()||f(4,[],[2,5]),a=!0;}return c(),n.getToken()!==2?f(7,[2],[]):g(),!0}function pe(){L(),g();let a=!0,A=!1;for(;n.getToken()!==4&&n.getToken()!==17;){if(n.getToken()===5){if(A||f(4,[],[]),k(","),g(),n.getToken()===4&&u)break}else A&&f(6,[],[]);a?(t.push(0),a=!1):t[t.length-1]++,V()||f(4,[],[4,5]),A=!0;}return T(),a||t.pop(),n.getToken()!==4?f(8,[4],[]):g(),!0}function V(){switch(n.getToken()){case 3:return pe();case 1:return fe();case 10:return $(!0);default:return O()}}return g(),n.getToken()===17?i.allowEmptyContent?!0:(f(4,[],[]),!1):V()?(n.getToken()!==17&&f(9,[],[]),!0):(f(4,[],[]),!1)}var K;(function(e){e[e.None=0]="None",e[e.UnexpectedEndOfComment=1]="UnexpectedEndOfComment",e[e.UnexpectedEndOfString=2]="UnexpectedEndOfString",e[e.UnexpectedEndOfNumber=3]="UnexpectedEndOfNumber",e[e.InvalidUnicode=4]="InvalidUnicode",e[e.InvalidEscapeCharacter=5]="InvalidEscapeCharacter",e[e.InvalidCharacter=6]="InvalidCharacter";})(K||(K={}));var C;(function(e){e[e.OpenBraceToken=1]="OpenBraceToken",e[e.CloseBraceToken=2]="CloseBraceToken",e[e.OpenBracketToken=3]="OpenBracketToken",e[e.CloseBracketToken=4]="CloseBracketToken",e[e.CommaToken=5]="CommaToken",e[e.ColonToken=6]="ColonToken",e[e.NullKeyword=7]="NullKeyword",e[e.TrueKeyword=8]="TrueKeyword",e[e.FalseKeyword=9]="FalseKeyword",e[e.StringLiteral=10]="StringLiteral",e[e.NumericLiteral=11]="NumericLiteral",e[e.LineCommentTrivia=12]="LineCommentTrivia",e[e.BlockCommentTrivia=13]="BlockCommentTrivia",e[e.LineBreakTrivia=14]="LineBreakTrivia",e[e.Trivia=15]="Trivia",e[e.Unknown=16]="Unknown",e[e.EOF=17]="EOF";})(C||(C={}));const ve=Te;var ee;(function(e){e[e.InvalidSymbol=1]="InvalidSymbol",e[e.InvalidNumberFormat=2]="InvalidNumberFormat",e[e.PropertyNameExpected=3]="PropertyNameExpected",e[e.ValueExpected=4]="ValueExpected",e[e.ColonExpected=5]="ColonExpected",e[e.CommaExpected=6]="CommaExpected",e[e.CloseBraceExpected=7]="CloseBraceExpected",e[e.CloseBracketExpected=8]="CloseBracketExpected",e[e.EndOfFileExpected=9]="EndOfFileExpected",e[e.InvalidCommentToken=10]="InvalidCommentToken",e[e.UnexpectedEndOfComment=11]="UnexpectedEndOfComment",e[e.UnexpectedEndOfString=12]="UnexpectedEndOfString",e[e.UnexpectedEndOfNumber=13]="UnexpectedEndOfNumber",e[e.InvalidUnicode=14]="InvalidUnicode",e[e.InvalidEscapeCharacter=15]="InvalidEscapeCharacter",e[e.InvalidCharacter=16]="InvalidCharacter";})(ee||(ee={}));const ne=(e,o)=>ve(ke(o,e,"utf8")),M=Symbol("implicitBaseUrl"),Oe=()=>{const{findPnpApi:e}=ge;return e&&e(process.cwd())},R=(e,o,i,n)=>{const t=`resolveFromPackageJsonPath:${e}:${o}:${i}`;if(n!=null&&n.has(t))return n.get(t);const l=ne(e,n);if(!l)return;let s=o||"tsconfig.json";if(!i&&l.exports)try{const[m]=v(l.exports,o,["require","types"]);s=m;}catch{return !1}else !o&&l.tsconfig&&(s=l.tsconfig);return s=p$1.join(e,"..",s),n==null||n.set(t,s),s},G="package.json",z="tsconfig.json",Ae=(e,o,i)=>{let n=e;if(e===".."&&(n=p$1.join(n,z)),e[0]==="."&&(n=p$1.resolve(o,n)),p$1.isAbsolute(n)){if(E(i,n)){if(P(i,n).isFile())return n}else if(!n.endsWith(".json")){const T=`${n}.json`;if(E(i,T))return T}return}const[t,...l]=e.split("/"),s=t[0]==="@"?`${t}/${l.shift()}`:t,m=l.join("/"),r=Oe();if(r){const{resolveRequest:T}=r;try{if(s===e){const w=T(p$1.join(s,G),o);if(w){const k=R(w,m,!1,i);if(k&&E(i,k))return k}}else {let w;try{w=T(e,o,{extensions:[".json"]});}catch{w=T(p$1.join(e,z),o);}if(w)return w}}catch{}}const b=Z(o,p$1.join("node_modules",s),i);if(!b||!P(i,b).isDirectory())return;const v=p$1.join(b,G);if(E(i,v)){const T=R(v,m,!1,i);if(T===!1)return;if(T&&E(i,T)&&P(i,T).isFile())return T}const c=p$1.join(b,m),L=c.endsWith(".json");if(!L){const T=`${c}.json`;if(E(i,T))return T}if(E(i,c)){if(P(i,c).isDirectory()){const T=p$1.join(c,G);if(E(i,T)){const k=R(T,"",!0,i);if(k&&E(i,k))return k}const w=p$1.join(c,z);if(E(i,w))return w}else if(L)return c}},je=(e,o,i,n)=>{const t=Ae(e,o,n);if(!t)throw new Error(`File '${e}' not found.`);if(i.has(t))throw new Error(`Circularity detected while resolving configuration: ${t}`);i.add(t);const l=p$1.dirname(t),s=te(t,n,i);delete s.references;const{compilerOptions:m}=s;if(m){const r=["baseUrl","outDir"];for(const b of r){const v=m[b];v&&(m[b]=B(p$1.relative(o,p$1.join(l,v)))||"./");}}return s.files&&(s.files=s.files.map(r=>B(p$1.relative(o,p$1.join(l,r))))),s.include&&(s.include=s.include.map(r=>B(p$1.relative(o,p$1.join(l,r))))),s.exclude&&(s.exclude=s.exclude.map(r=>B(p$1.relative(o,p$1.join(l,r))))),s},te=(e,o,i=new Set)=>{let n;try{n=ae(o,e);}catch{throw new Error(`Cannot resolve tsconfig at path: ${e}`)}let t=ne(n,o)||{};if(typeof t!="object")throw new SyntaxError(`Failed to parse tsconfig at: ${e}`);const l=p$1.dirname(n);if(t.compilerOptions){const{compilerOptions:s}=t;s.paths&&!s.baseUrl&&(s[M]=l);}if(t.extends){const s=Array.isArray(t.extends)?t.extends:[t.extends];delete t.extends;for(const m of s.reverse()){const r=je(m,l,new Set(i),o),b={...r,...t,compilerOptions:{...r.compilerOptions,...t.compilerOptions}};r.watchOptions&&(b.watchOptions={...r.watchOptions,...t.watchOptions}),t=b;}}if(t.compilerOptions){const{compilerOptions:s}=t,m=["baseUrl","rootDir"];for(const b of m){const v=s[b];if(v){const c=p$1.resolve(l,v),L=W(p$1.relative(l,c));s[b]=L;}}const{outDir:r}=s;r&&(Array.isArray(t.exclude)||(t.exclude=[]),t.exclude.includes(r)||t.exclude.push(r),s.outDir=W(r));}else t.compilerOptions={};if(t.files&&(t.files=t.files.map(W)),t.include&&(t.include=t.include.map(B)),t.watchOptions){const{watchOptions:s}=t;s.excludeDirectories&&(s.excludeDirectories=s.excludeDirectories.map(m=>B(p$1.resolve(l,m))));}return t},ie=(e,o=new Map)=>te(e,o),$e=(e=process.cwd(),o="tsconfig.json",i=new Map)=>{const n=Z(B(e),o,i);if(!n)return null;const t=ie(n,i);return {path:n,config:t}};p$1.posix;process.platform==="win32";
+`),m++,b=n,s=14;switch(u){case 123:return n++,s=1;case 125:return n++,s=2;case 91:return n++,s=3;case 93:return n++,s=4;case 58:return n++,s=6;case 44:return n++,s=5;case 34:return n++,t=k(),s=10;case 47:const g=n-1;if(e.charCodeAt(n+1)===47){for(n+=2;n<i&&!_(e.charCodeAt(n));)n++;return t=e.substring(g,n),s=12}if(e.charCodeAt(n+1)===42){n+=2;const f=i-1;let $=!1;for(;n<f;){const O=e.charCodeAt(n);if(O===42&&e.charCodeAt(n+1)===47){n+=2,$=!0;break}n++,_(O)&&(O===13&&e.charCodeAt(n)===10&&n++,m++,b=n);}return $||(n++,c=1),t=e.substring(g,n),s=13}return t+=String.fromCharCode(u),n++,s=16;case 45:if(t+=String.fromCharCode(u),n++,n===i||!N(e.charCodeAt(n)))return s=16;case 48:case 49:case 50:case 51:case 52:case 53:case 54:case 55:case 56:case 57:return t+=w(),s=11;default:for(;n<i&&U(u);)n++,u=e.charCodeAt(n);if(l!==n){switch(t=e.substring(l,n),t){case"true":return s=8;case"false":return s=9;case"null":return s=7}return s=16}return t+=String.fromCharCode(u),n++,s=16}}function U(u){if(J(u)||_(u))return !1;switch(u){case 125:case 93:case 123:case 91:case 34:case 58:case 44:case 47:return !1}return !0}function F(){let u;do u=j();while(u>=12&&u<=15);return u}return {setPosition:T,getPosition:()=>n,scan:o?F:j,getToken:()=>s,getTokenValue:()=>t,getTokenOffset:()=>l,getTokenLength:()=>n-l,getTokenStartLine:()=>r,getTokenStartCharacter:()=>l-v,getTokenError:()=>c}}function J(e){return e===32||e===9}function _(e){return e===10||e===13}function N(e){return e>=48&&e<=57}let q;(function(e){e[e.lineFeed=10]="lineFeed",e[e.carriageReturn=13]="carriageReturn",e[e.space=32]="space",e[e._0=48]="_0",e[e._1=49]="_1",e[e._2=50]="_2",e[e._3=51]="_3",e[e._4=52]="_4",e[e._5=53]="_5",e[e._6=54]="_6",e[e._7=55]="_7",e[e._8=56]="_8",e[e._9=57]="_9",e[e.a=97]="a",e[e.b=98]="b",e[e.c=99]="c",e[e.d=100]="d",e[e.e=101]="e",e[e.f=102]="f",e[e.g=103]="g",e[e.h=104]="h",e[e.i=105]="i",e[e.j=106]="j",e[e.k=107]="k",e[e.l=108]="l",e[e.m=109]="m",e[e.n=110]="n",e[e.o=111]="o",e[e.p=112]="p",e[e.q=113]="q",e[e.r=114]="r",e[e.s=115]="s",e[e.t=116]="t",e[e.u=117]="u",e[e.v=118]="v",e[e.w=119]="w",e[e.x=120]="x",e[e.y=121]="y",e[e.z=122]="z",e[e.A=65]="A",e[e.B=66]="B",e[e.C=67]="C",e[e.D=68]="D",e[e.E=69]="E",e[e.F=70]="F",e[e.G=71]="G",e[e.H=72]="H",e[e.I=73]="I",e[e.J=74]="J",e[e.K=75]="K",e[e.L=76]="L",e[e.M=77]="M",e[e.N=78]="N",e[e.O=79]="O",e[e.P=80]="P",e[e.Q=81]="Q",e[e.R=82]="R",e[e.S=83]="S",e[e.T=84]="T",e[e.U=85]="U",e[e.V=86]="V",e[e.W=87]="W",e[e.X=88]="X",e[e.Y=89]="Y",e[e.Z=90]="Z",e[e.asterisk=42]="asterisk",e[e.backslash=92]="backslash",e[e.closeBrace=125]="closeBrace",e[e.closeBracket=93]="closeBracket",e[e.colon=58]="colon",e[e.comma=44]="comma",e[e.dot=46]="dot",e[e.doubleQuote=34]="doubleQuote",e[e.minus=45]="minus",e[e.openBrace=123]="openBrace",e[e.openBracket=91]="openBracket",e[e.plus=43]="plus",e[e.slash=47]="slash",e[e.formFeed=12]="formFeed",e[e.tab=9]="tab";})(q||(q={}));let I;(function(e){e.DEFAULT={allowTrailingComma:!1};})(I||(I={}));function Te(e,o=[],i=I.DEFAULT){let n=null,t=[];const l=[];function s(r){Array.isArray(t)?t.push(r):n!==null&&(t[n]=r);}return we(e,{onObjectBegin:()=>{const r={};s(r),l.push(t),t=r,n=null;},onObjectProperty:r=>{n=r;},onObjectEnd:()=>{t=l.pop();},onArrayBegin:()=>{const r=[];s(r),l.push(t),t=r,n=null;},onArrayEnd:()=>{t=l.pop();},onLiteralValue:s,onError:(r,b,v)=>{o.push({error:r,offset:b,length:v});}},i),t[0]}function we(e,o,i=I.DEFAULT){const n=be(e,!1),t=[];function l(a){return a?()=>a(n.getTokenOffset(),n.getTokenLength(),n.getTokenStartLine(),n.getTokenStartCharacter()):()=>!0}function s(a){return a?()=>a(n.getTokenOffset(),n.getTokenLength(),n.getTokenStartLine(),n.getTokenStartCharacter(),()=>t.slice()):()=>!0}function m(a){return a?A=>a(A,n.getTokenOffset(),n.getTokenLength(),n.getTokenStartLine(),n.getTokenStartCharacter()):()=>!0}function r(a){return a?A=>a(A,n.getTokenOffset(),n.getTokenLength(),n.getTokenStartLine(),n.getTokenStartCharacter(),()=>t.slice()):()=>!0}const b=s(o.onObjectBegin),v=r(o.onObjectProperty),c=l(o.onObjectEnd),L=s(o.onArrayBegin),T=l(o.onArrayEnd),w=r(o.onLiteralValue),k=m(o.onSeparator),j=l(o.onComment),U=m(o.onError),F=i&&i.disallowComments,u=i&&i.allowTrailingComma;function g(){for(;;){const a=n.scan();switch(n.getTokenError()){case 4:f(14);break;case 5:f(15);break;case 3:f(13);break;case 1:F||f(11);break;case 2:f(12);break;case 6:f(16);break}switch(a){case 12:case 13:F?f(10):j();break;case 16:f(1);break;case 15:case 14:break;default:return a}}}function f(a,A=[],Y=[]){if(U(a),A.length+Y.length>0){let y=n.getToken();for(;y!==17;){if(A.indexOf(y)!==-1){g();break}else if(Y.indexOf(y)!==-1)break;y=g();}}}function $(a){const A=n.getTokenValue();return a?w(A):(v(A),t.push(A)),g(),!0}function O(){switch(n.getToken()){case 11:const a=n.getTokenValue();let A=Number(a);isNaN(A)&&(f(2),A=0),w(A);break;case 7:w(null);break;case 8:w(!0);break;case 9:w(!1);break;default:return !1}return g(),!0}function ce(){return n.getToken()!==10?(f(3,[],[2,5]),!1):($(!1),n.getToken()===6?(k(":"),g(),V()||f(4,[],[2,5])):f(5,[],[2,5]),t.pop(),!0)}function fe(){b(),g();let a=!1;for(;n.getToken()!==2&&n.getToken()!==17;){if(n.getToken()===5){if(a||f(4,[],[]),k(","),g(),n.getToken()===2&&u)break}else a&&f(6,[],[]);ce()||f(4,[],[2,5]),a=!0;}return c(),n.getToken()!==2?f(7,[2],[]):g(),!0}function pe(){L(),g();let a=!0,A=!1;for(;n.getToken()!==4&&n.getToken()!==17;){if(n.getToken()===5){if(A||f(4,[],[]),k(","),g(),n.getToken()===4&&u)break}else A&&f(6,[],[]);a?(t.push(0),a=!1):t[t.length-1]++,V()||f(4,[],[4,5]),A=!0;}return T(),a||t.pop(),n.getToken()!==4?f(8,[4],[]):g(),!0}function V(){switch(n.getToken()){case 3:return pe();case 1:return fe();case 10:return $(!0);default:return O()}}return g(),n.getToken()===17?i.allowEmptyContent?!0:(f(4,[],[]),!1):V()?(n.getToken()!==17&&f(9,[],[]),!0):(f(4,[],[]),!1)}let K;(function(e){e[e.None=0]="None",e[e.UnexpectedEndOfComment=1]="UnexpectedEndOfComment",e[e.UnexpectedEndOfString=2]="UnexpectedEndOfString",e[e.UnexpectedEndOfNumber=3]="UnexpectedEndOfNumber",e[e.InvalidUnicode=4]="InvalidUnicode",e[e.InvalidEscapeCharacter=5]="InvalidEscapeCharacter",e[e.InvalidCharacter=6]="InvalidCharacter";})(K||(K={}));let C;(function(e){e[e.OpenBraceToken=1]="OpenBraceToken",e[e.CloseBraceToken=2]="CloseBraceToken",e[e.OpenBracketToken=3]="OpenBracketToken",e[e.CloseBracketToken=4]="CloseBracketToken",e[e.CommaToken=5]="CommaToken",e[e.ColonToken=6]="ColonToken",e[e.NullKeyword=7]="NullKeyword",e[e.TrueKeyword=8]="TrueKeyword",e[e.FalseKeyword=9]="FalseKeyword",e[e.StringLiteral=10]="StringLiteral",e[e.NumericLiteral=11]="NumericLiteral",e[e.LineCommentTrivia=12]="LineCommentTrivia",e[e.BlockCommentTrivia=13]="BlockCommentTrivia",e[e.LineBreakTrivia=14]="LineBreakTrivia",e[e.Trivia=15]="Trivia",e[e.Unknown=16]="Unknown",e[e.EOF=17]="EOF";})(C||(C={}));const ve=Te;let ee;(function(e){e[e.InvalidSymbol=1]="InvalidSymbol",e[e.InvalidNumberFormat=2]="InvalidNumberFormat",e[e.PropertyNameExpected=3]="PropertyNameExpected",e[e.ValueExpected=4]="ValueExpected",e[e.ColonExpected=5]="ColonExpected",e[e.CommaExpected=6]="CommaExpected",e[e.CloseBraceExpected=7]="CloseBraceExpected",e[e.CloseBracketExpected=8]="CloseBracketExpected",e[e.EndOfFileExpected=9]="EndOfFileExpected",e[e.InvalidCommentToken=10]="InvalidCommentToken",e[e.UnexpectedEndOfComment=11]="UnexpectedEndOfComment",e[e.UnexpectedEndOfString=12]="UnexpectedEndOfString",e[e.UnexpectedEndOfNumber=13]="UnexpectedEndOfNumber",e[e.InvalidUnicode=14]="InvalidUnicode",e[e.InvalidEscapeCharacter=15]="InvalidEscapeCharacter",e[e.InvalidCharacter=16]="InvalidCharacter";})(ee||(ee={}));const ne=(e,o)=>ve(ke(o,e,"utf8")),M=Symbol("implicitBaseUrl"),Oe=()=>{const{findPnpApi:e}=ge;return e&&e(process.cwd())},R=(e,o,i,n)=>{const t=`resolveFromPackageJsonPath:${e}:${o}:${i}`;if(n!=null&&n.has(t))return n.get(t);const l=ne(e,n);if(!l)return;let s=o||"tsconfig.json";if(!i&&l.exports)try{const[m]=v(l.exports,o,["require","types"]);s=m;}catch{return !1}else !o&&l.tsconfig&&(s=l.tsconfig);return s=p$1.join(e,"..",s),n==null||n.set(t,s),s},G="package.json",z="tsconfig.json",Ae=(e,o,i)=>{let n=e;if(e===".."&&(n=p$1.join(n,z)),e[0]==="."&&(n=p$1.resolve(o,n)),p$1.isAbsolute(n)){if(E(i,n)){if(P(i,n).isFile())return n}else if(!n.endsWith(".json")){const T=`${n}.json`;if(E(i,T))return T}return}const[t,...l]=e.split("/"),s=t[0]==="@"?`${t}/${l.shift()}`:t,m=l.join("/"),r=Oe();if(r){const{resolveRequest:T}=r;try{if(s===e){const w=T(p$1.join(s,G),o);if(w){const k=R(w,m,!1,i);if(k&&E(i,k))return k}}else {let w;try{w=T(e,o,{extensions:[".json"]});}catch{w=T(p$1.join(e,z),o);}if(w)return w}}catch{}}const b=Z(o,p$1.join("node_modules",s),i);if(!b||!P(i,b).isDirectory())return;const v=p$1.join(b,G);if(E(i,v)){const T=R(v,m,!1,i);if(T===!1)return;if(T&&E(i,T)&&P(i,T).isFile())return T}const c=p$1.join(b,m),L=c.endsWith(".json");if(!L){const T=`${c}.json`;if(E(i,T))return T}if(E(i,c)){if(P(i,c).isDirectory()){const T=p$1.join(c,G);if(E(i,T)){const k=R(T,"",!0,i);if(k&&E(i,k))return k}const w=p$1.join(c,z);if(E(i,w))return w}else if(L)return c}},je=(e,o,i,n)=>{const t=Ae(e,o,n);if(!t)throw new Error(`File '${e}' not found.`);if(i.has(t))throw new Error(`Circularity detected while resolving configuration: ${t}`);i.add(t);const l=p$1.dirname(t),s=te(t,n,i);delete s.references;const{compilerOptions:m}=s;if(m){const r=["baseUrl","outDir"];for(const b of r){const v=m[b];v&&(m[b]=B(p$1.relative(o,p$1.join(l,v)))||"./");}}return s.files&&(s.files=s.files.map(r=>B(p$1.relative(o,p$1.join(l,r))))),s.include&&(s.include=s.include.map(r=>B(p$1.relative(o,p$1.join(l,r))))),s.exclude&&(s.exclude=s.exclude.map(r=>B(p$1.relative(o,p$1.join(l,r))))),s},te=(e,o,i=new Set)=>{let n;try{n=ae(o,e);}catch{throw new Error(`Cannot resolve tsconfig at path: ${e}`)}let t=ne(n,o)||{};if(typeof t!="object")throw new SyntaxError(`Failed to parse tsconfig at: ${e}`);const l=p$1.dirname(n);if(t.compilerOptions){const{compilerOptions:s}=t;s.paths&&!s.baseUrl&&(s[M]=l);}if(t.extends){const s=Array.isArray(t.extends)?t.extends:[t.extends];delete t.extends;for(const m of s.reverse()){const r=je(m,l,new Set(i),o),b={...r,...t,compilerOptions:{...r.compilerOptions,...t.compilerOptions}};r.watchOptions&&(b.watchOptions={...r.watchOptions,...t.watchOptions}),t=b;}}if(t.compilerOptions){const{compilerOptions:s}=t,m=["baseUrl","rootDir"];for(const b of m){const v=s[b];if(v){const c=p$1.resolve(l,v),L=W(p$1.relative(l,c));s[b]=L;}}const{outDir:r}=s;r&&(Array.isArray(t.exclude)||(t.exclude=[]),t.exclude.includes(r)||t.exclude.push(r),s.outDir=W(r));}else t.compilerOptions={};if(t.files&&(t.files=t.files.map(W)),t.include&&(t.include=t.include.map(B)),t.watchOptions){const{watchOptions:s}=t;s.excludeDirectories&&(s.excludeDirectories=s.excludeDirectories.map(m=>B(p$1.resolve(l,m))));}return t},ie=(e,o=new Map)=>te(e,o),$e=(e=process.cwd(),o="tsconfig.json",i=new Map)=>{const n=Z(B(e),o,i);if(!n)return null;const t=ie(n,i);return {path:n,config:t}};p$1.posix;process.platform==="win32";
 
 const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 const newLineRegExp = /\r?\n/;
 const errCodeRegExp = /error TS(?<errCode>\d+)/;
 async function makeTscErrorInfo(errInfo) {
-  var _a;
+  let _a;
   const [errFilePathPos = "", ...errMsgRawArr] = errInfo.split(":");
   if (!errFilePathPos || errMsgRawArr.length === 0 || errMsgRawArr.join("").length === 0)
     return ["unknown filepath", null];
@@ -133,7 +133,7 @@ ${next}`;
     }, []).map((errInfoLine) => makeTscErrorInfo(errInfoLine))
   );
   infos.forEach(([errFilePath, errInfo]) => {
-    var _a;
+    let _a;
     if (!errInfo)
       return;
     if (!rawErrsMap.has(errFilePath))
@@ -181,7 +181,7 @@ async function collectTests(ctx, filepath) {
   };
   const definitions = [];
   const getName = (callee) => {
-    var _a, _b, _c;
+    let _a, _b, _c;
     if (!callee)
       return null;
     if (callee.type === "Identifier")
@@ -195,7 +195,7 @@ async function collectTests(ctx, filepath) {
   };
   ancestor(ast, {
     CallExpression(node) {
-      var _a;
+      let _a;
       const { callee } = node;
       const name = getName(callee);
       if (!name)
@@ -341,14 +341,14 @@ class Typechecker {
     return tests;
   }
   markPassed(file) {
-    var _a;
+    let _a;
     if (!((_a = file.result) == null ? void 0 : _a.state)) {
       file.result = {
         state: "pass"
       };
     }
     const markTasks = (tasks) => {
-      var _a2;
+      let _a2;
       for (const task of tasks) {
         if ("tasks" in task)
           markTasks(task.tasks);
@@ -387,7 +387,7 @@ class Typechecker {
           markState(task.suite, state);
       };
       errors.forEach(({ error, originalError }) => {
-        var _a;
+        let _a;
         const processedPos = traceMap ? generatedPositionFor(traceMap, {
           line: originalError.line,
           column: originalError.column,
@@ -459,7 +459,7 @@ class Typechecker {
       await rm(this.tempConfigPath, { force: true });
   }
   async stop() {
-    var _a;
+    let _a;
     await this.clear();
     (_a = this.process) == null ? void 0 : _a.kill();
   }
@@ -476,14 +476,14 @@ class Typechecker {
     this.allowJs = typecheck.allowJs || config.allowJs || false;
   }
   getExitCode() {
-    var _a;
+    let _a;
     return ((_a = this.process) == null ? void 0 : _a.exitCode) != null && this.process.exitCode;
   }
   getOutput() {
     return this._output;
   }
   async start() {
-    var _a, _b, _c;
+    let _a, _b, _c;
     if (!this.tempConfigPath)
       throw new Error("tsconfig was not initialized");
     const { root, watch, typecheck } = this.ctx.config;
@@ -503,7 +503,7 @@ class Typechecker {
     await ((_a = this._onParseStart) == null ? void 0 : _a.call(this));
     let rerunTriggered = false;
     (_b = child.stdout) == null ? void 0 : _b.on("data", (chunk) => {
-      var _a2;
+      let _a2;
       this._output += chunk;
       if (!watch)
         return;
@@ -518,7 +518,7 @@ class Typechecker {
       if (/Found \w+ errors*. Watching for/.test(this._output)) {
         rerunTriggered = false;
         this.prepareResults(this._output).then((result) => {
-          var _a3;
+          let _a3;
           this._result = result;
           (_a3 = this._onParseEnd) == null ? void 0 : _a3.call(this, result);
         });
@@ -542,7 +542,7 @@ class Typechecker {
   }
 }
 
-var _a;
+let _a;
 const BADGE_PADDING = "       ";
 const HELP_HINT = `${c.dim("press ")}${c.bold("h")}${c.dim(" to show help")}`;
 const HELP_UPDATE_SNAP = c.dim("press ") + c.bold(c.yellow("u")) + c.dim(" to update snapshot");
@@ -575,7 +575,7 @@ class BaseReporter {
   onInit(ctx) {
     this.ctx = ctx;
     ctx.onClose(() => {
-      var _a2;
+      let _a2;
       (_a2 = this._offUnhandledRejection) == null ? void 0 : _a2.call(this);
     });
     ctx.logger.printBanner();
@@ -593,7 +593,7 @@ class BaseReporter {
     }
   }
   onTaskUpdate(packs) {
-    var _a2, _b, _c, _d;
+    let _a2, _b, _c, _d;
     if (this.isTTY)
       return;
     const logger = this.ctx.logger;
@@ -602,7 +602,7 @@ class BaseReporter {
       if (task && "filepath" in task && ((_a2 = task.result) == null ? void 0 : _a2.state) && ((_b = task.result) == null ? void 0 : _b.state) !== "run") {
         const tests = getTests(task);
         const failed = tests.filter((t) => {
-          var _a3;
+          let _a3;
           return ((_a3 = t.result) == null ? void 0 : _a3.state) === "fail";
         });
         const skipped = tests.filter((t) => t.mode === "skip" || t.mode === "todo");
@@ -719,7 +719,7 @@ ${log.content}
 `);
   }
   shouldLog(log) {
-    var _a2, _b;
+    let _a2, _b;
     if (this.ctx.config.silent)
       return false;
     const shouldLog = (_b = (_a2 = this.ctx.config).onConsoleLog) == null ? void 0 : _b.call(_a2, log.content, log.type);
@@ -746,7 +746,7 @@ ${log.content}
     const collectTime = files.reduce((acc, test) => acc + Math.max(0, test.collectDuration || 0), 0);
     const setupTime = files.reduce((acc, test) => acc + Math.max(0, test.setupDuration || 0), 0);
     const testsTime = files.reduce((acc, test) => {
-      var _a2;
+      let _a2;
       return acc + Math.max(0, ((_a2 = test.result) == null ? void 0 : _a2.duration) || 0);
     }, 0);
     const transformTime = this.ctx.projects.flatMap((w) => w.vitenode.getTotalDuration()).reduce((a, b) => a + b, 0);
@@ -771,7 +771,7 @@ ${log.content}
     logger.log(padTitle("Tests"), getStateString(tests));
     if (this.ctx.projects.some((c2) => c2.config.typecheck.enabled)) {
       const failed = tests.filter((t) => {
-        var _a2, _b, _c;
+        let _a2, _b, _c;
         return ((_a2 = t.meta) == null ? void 0 : _a2.typecheck) && ((_c = (_b = t.result) == null ? void 0 : _b.errors) == null ? void 0 : _c.length);
       });
       logger.log(padTitle("Type Errors"), failed.length ? c.bold(c.red(`${failed.length} failed`)) : c.dim("no errors"));
@@ -784,7 +784,7 @@ ${log.content}
     } else {
       let timers = `transform ${time(transformTime)}, setup ${time(setupTime)}, collect ${time(collectTime)}, tests ${time(testsTime)}, environment ${time(environmentTime)}, prepare ${time(prepareTime)}`;
       const typecheck = this.ctx.projects.reduce((acc, c2) => {
-        var _a2;
+        let _a2;
         return acc + (((_a2 = c2.typechecker) == null ? void 0 : _a2.getResult().time) || 0);
       }, 0);
       if (typecheck)
@@ -798,11 +798,11 @@ ${log.content}
     const suites = getSuites(files);
     const tests = getTests(files);
     const failedSuites = suites.filter((i) => {
-      var _a2;
+      let _a2;
       return (_a2 = i.result) == null ? void 0 : _a2.errors;
     });
     const failedTests = tests.filter((i) => {
-      var _a2;
+      let _a2;
       return ((_a2 = i.result) == null ? void 0 : _a2.state) === "fail";
     });
     const failedTotal = countTestErrors(failedSuites) + countTestErrors(failedTests);
@@ -829,7 +829,7 @@ ${log.content}
     const logger = this.ctx.logger;
     const benches = getTests(files);
     const topBenches = benches.filter((i) => {
-      var _a2, _b;
+      let _a2, _b;
       return ((_b = (_a2 = i.result) == null ? void 0 : _a2.benchmark) == null ? void 0 : _b.rank) === 1;
     });
     logger.log(`
@@ -842,7 +842,7 @@ ${c.cyan(c.inverse(c.bold(" BENCH ")))} ${c.cyan("Summary")}
       const groupName = getFullName(group, c.dim(" > "));
       logger.log(`  ${bench.name}${c.dim(` - ${groupName}`)}`);
       const siblings = group.tasks.filter((i) => {
-        var _a2;
+        let _a2;
         return i.meta.benchmark && ((_a2 = i.result) == null ? void 0 : _a2.benchmark) && i !== bench;
       }).sort((a, b) => a.result.benchmark.rank - b.result.benchmark.rank);
       if (siblings.length === 0) {
@@ -857,12 +857,12 @@ ${c.cyan(c.inverse(c.bold(" BENCH ")))} ${c.cyan("Summary")}
     }
   }
   async printTaskErrors(tasks, errorDivider) {
-    var _a2, _b, _c;
+    let _a2, _b, _c;
     const errorsQueue = [];
     for (const task of tasks) {
       (_b = (_a2 = task.result) == null ? void 0 : _a2.errors) == null ? void 0 : _b.forEach((error) => {
         const errorItem = (error == null ? void 0 : error.stackStr) && errorsQueue.find((i) => {
-          var _a3, _b2, _c2, _d;
+          let _a3, _b2, _c2, _d;
           const hasStr = ((_a3 = i[0]) == null ? void 0 : _a3.stackStr) === error.stackStr;
           if (!hasStr)
             return false;
@@ -1662,7 +1662,7 @@ function eastAsianWidth$1(codePoint, {ambiguousAsWide = false} = {}) {
 	return 1;
 }
 
-var emojiRegex$2 = () => {
+const emojiRegex$2 = () => {
 	// https://mths.be/emoji
 	return /[#*0-9]\uFE0F?\u20E3|[\xA9\xAE\u203C\u2049\u2122\u2139\u2194-\u2199\u21A9\u21AA\u231A\u231B\u2328\u23CF\u23ED-\u23EF\u23F1\u23F2\u23F8-\u23FA\u24C2\u25AA\u25AB\u25B6\u25C0\u25FB\u25FC\u25FE\u2600-\u2604\u260E\u2611\u2614\u2615\u2618\u2620\u2622\u2623\u2626\u262A\u262E\u262F\u2638-\u263A\u2640\u2642\u2648-\u2653\u265F\u2660\u2663\u2665\u2666\u2668\u267B\u267E\u267F\u2692\u2694-\u2697\u2699\u269B\u269C\u26A0\u26A7\u26AA\u26B0\u26B1\u26BD\u26BE\u26C4\u26C8\u26CF\u26D1\u26E9\u26F0-\u26F5\u26F7\u26F8\u26FA\u2702\u2708\u2709\u270F\u2712\u2714\u2716\u271D\u2721\u2733\u2734\u2744\u2747\u2757\u2763\u27A1\u2934\u2935\u2B05-\u2B07\u2B1B\u2B1C\u2B55\u3030\u303D\u3297\u3299]\uFE0F?|[\u261D\u270C\u270D](?:\uFE0F|\uD83C[\uDFFB-\uDFFF])?|[\u270A\u270B](?:\uD83C[\uDFFB-\uDFFF])?|[\u23E9-\u23EC\u23F0\u23F3\u25FD\u2693\u26A1\u26AB\u26C5\u26CE\u26D4\u26EA\u26FD\u2705\u2728\u274C\u274E\u2753-\u2755\u2795-\u2797\u27B0\u27BF\u2B50]|\u26D3\uFE0F?(?:\u200D\uD83D\uDCA5)?|\u26F9(?:\uFE0F|\uD83C[\uDFFB-\uDFFF])?(?:\u200D[\u2640\u2642]\uFE0F?)?|\u2764\uFE0F?(?:\u200D(?:\uD83D\uDD25|\uD83E\uDE79))?|\uD83C(?:[\uDC04\uDD70\uDD71\uDD7E\uDD7F\uDE02\uDE37\uDF21\uDF24-\uDF2C\uDF36\uDF7D\uDF96\uDF97\uDF99-\uDF9B\uDF9E\uDF9F\uDFCD\uDFCE\uDFD4-\uDFDF\uDFF5\uDFF7]\uFE0F?|[\uDF85\uDFC2\uDFC7](?:\uD83C[\uDFFB-\uDFFF])?|[\uDFC4\uDFCA](?:\uD83C[\uDFFB-\uDFFF])?(?:\u200D[\u2640\u2642]\uFE0F?)?|[\uDFCB\uDFCC](?:\uFE0F|\uD83C[\uDFFB-\uDFFF])?(?:\u200D[\u2640\u2642]\uFE0F?)?|[\uDCCF\uDD8E\uDD91-\uDD9A\uDE01\uDE1A\uDE2F\uDE32-\uDE36\uDE38-\uDE3A\uDE50\uDE51\uDF00-\uDF20\uDF2D-\uDF35\uDF37-\uDF43\uDF45-\uDF4A\uDF4C-\uDF7C\uDF7E-\uDF84\uDF86-\uDF93\uDFA0-\uDFC1\uDFC5\uDFC6\uDFC8\uDFC9\uDFCF-\uDFD3\uDFE0-\uDFF0\uDFF8-\uDFFF]|\uDDE6\uD83C[\uDDE8-\uDDEC\uDDEE\uDDF1\uDDF2\uDDF4\uDDF6-\uDDFA\uDDFC\uDDFD\uDDFF]|\uDDE7\uD83C[\uDDE6\uDDE7\uDDE9-\uDDEF\uDDF1-\uDDF4\uDDF6-\uDDF9\uDDFB\uDDFC\uDDFE\uDDFF]|\uDDE8\uD83C[\uDDE6\uDDE8\uDDE9\uDDEB-\uDDEE\uDDF0-\uDDF5\uDDF7\uDDFA-\uDDFF]|\uDDE9\uD83C[\uDDEA\uDDEC\uDDEF\uDDF0\uDDF2\uDDF4\uDDFF]|\uDDEA\uD83C[\uDDE6\uDDE8\uDDEA\uDDEC\uDDED\uDDF7-\uDDFA]|\uDDEB\uD83C[\uDDEE-\uDDF0\uDDF2\uDDF4\uDDF7]|\uDDEC\uD83C[\uDDE6\uDDE7\uDDE9-\uDDEE\uDDF1-\uDDF3\uDDF5-\uDDFA\uDDFC\uDDFE]|\uDDED\uD83C[\uDDF0\uDDF2\uDDF3\uDDF7\uDDF9\uDDFA]|\uDDEE\uD83C[\uDDE8-\uDDEA\uDDF1-\uDDF4\uDDF6-\uDDF9]|\uDDEF\uD83C[\uDDEA\uDDF2\uDDF4\uDDF5]|\uDDF0\uD83C[\uDDEA\uDDEC-\uDDEE\uDDF2\uDDF3\uDDF5\uDDF7\uDDFC\uDDFE\uDDFF]|\uDDF1\uD83C[\uDDE6-\uDDE8\uDDEE\uDDF0\uDDF7-\uDDFB\uDDFE]|\uDDF2\uD83C[\uDDE6\uDDE8-\uDDED\uDDF0-\uDDFF]|\uDDF3\uD83C[\uDDE6\uDDE8\uDDEA-\uDDEC\uDDEE\uDDF1\uDDF4\uDDF5\uDDF7\uDDFA\uDDFF]|\uDDF4\uD83C\uDDF2|\uDDF5\uD83C[\uDDE6\uDDEA-\uDDED\uDDF0-\uDDF3\uDDF7-\uDDF9\uDDFC\uDDFE]|\uDDF6\uD83C\uDDE6|\uDDF7\uD83C[\uDDEA\uDDF4\uDDF8\uDDFA\uDDFC]|\uDDF8\uD83C[\uDDE6-\uDDEA\uDDEC-\uDDF4\uDDF7-\uDDF9\uDDFB\uDDFD-\uDDFF]|\uDDF9\uD83C[\uDDE6\uDDE8\uDDE9\uDDEB-\uDDED\uDDEF-\uDDF4\uDDF7\uDDF9\uDDFB\uDDFC\uDDFF]|\uDDFA\uD83C[\uDDE6\uDDEC\uDDF2\uDDF3\uDDF8\uDDFE\uDDFF]|\uDDFB\uD83C[\uDDE6\uDDE8\uDDEA\uDDEC\uDDEE\uDDF3\uDDFA]|\uDDFC\uD83C[\uDDEB\uDDF8]|\uDDFD\uD83C\uDDF0|\uDDFE\uD83C[\uDDEA\uDDF9]|\uDDFF\uD83C[\uDDE6\uDDF2\uDDFC]|\uDF44(?:\u200D\uD83D\uDFEB)?|\uDF4B(?:\u200D\uD83D\uDFE9)?|\uDFC3(?:\uD83C[\uDFFB-\uDFFF])?(?:\u200D(?:[\u2640\u2642]\uFE0F?(?:\u200D\u27A1\uFE0F?)?|\u27A1\uFE0F?))?|\uDFF3\uFE0F?(?:\u200D(?:\u26A7\uFE0F?|\uD83C\uDF08))?|\uDFF4(?:\u200D\u2620\uFE0F?|\uDB40\uDC67\uDB40\uDC62\uDB40(?:\uDC65\uDB40\uDC6E\uDB40\uDC67|\uDC73\uDB40\uDC63\uDB40\uDC74|\uDC77\uDB40\uDC6C\uDB40\uDC73)\uDB40\uDC7F)?)|\uD83D(?:[\uDC3F\uDCFD\uDD49\uDD4A\uDD6F\uDD70\uDD73\uDD76-\uDD79\uDD87\uDD8A-\uDD8D\uDDA5\uDDA8\uDDB1\uDDB2\uDDBC\uDDC2-\uDDC4\uDDD1-\uDDD3\uDDDC-\uDDDE\uDDE1\uDDE3\uDDE8\uDDEF\uDDF3\uDDFA\uDECB\uDECD-\uDECF\uDEE0-\uDEE5\uDEE9\uDEF0\uDEF3]\uFE0F?|[\uDC42\uDC43\uDC46-\uDC50\uDC66\uDC67\uDC6B-\uDC6D\uDC72\uDC74-\uDC76\uDC78\uDC7C\uDC83\uDC85\uDC8F\uDC91\uDCAA\uDD7A\uDD95\uDD96\uDE4C\uDE4F\uDEC0\uDECC](?:\uD83C[\uDFFB-\uDFFF])?|[\uDC6E\uDC70\uDC71\uDC73\uDC77\uDC81\uDC82\uDC86\uDC87\uDE45-\uDE47\uDE4B\uDE4D\uDE4E\uDEA3\uDEB4\uDEB5](?:\uD83C[\uDFFB-\uDFFF])?(?:\u200D[\u2640\u2642]\uFE0F?)?|[\uDD74\uDD90](?:\uFE0F|\uD83C[\uDFFB-\uDFFF])?|[\uDC00-\uDC07\uDC09-\uDC14\uDC16-\uDC25\uDC27-\uDC3A\uDC3C-\uDC3E\uDC40\uDC44\uDC45\uDC51-\uDC65\uDC6A\uDC79-\uDC7B\uDC7D-\uDC80\uDC84\uDC88-\uDC8E\uDC90\uDC92-\uDCA9\uDCAB-\uDCFC\uDCFF-\uDD3D\uDD4B-\uDD4E\uDD50-\uDD67\uDDA4\uDDFB-\uDE2D\uDE2F-\uDE34\uDE37-\uDE41\uDE43\uDE44\uDE48-\uDE4A\uDE80-\uDEA2\uDEA4-\uDEB3\uDEB7-\uDEBF\uDEC1-\uDEC5\uDED0-\uDED2\uDED5-\uDED7\uDEDC-\uDEDF\uDEEB\uDEEC\uDEF4-\uDEFC\uDFE0-\uDFEB\uDFF0]|\uDC08(?:\u200D\u2B1B)?|\uDC15(?:\u200D\uD83E\uDDBA)?|\uDC26(?:\u200D(?:\u2B1B|\uD83D\uDD25))?|\uDC3B(?:\u200D\u2744\uFE0F?)?|\uDC41\uFE0F?(?:\u200D\uD83D\uDDE8\uFE0F?)?|\uDC68(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDC68\uDC69]\u200D\uD83D(?:\uDC66(?:\u200D\uD83D\uDC66)?|\uDC67(?:\u200D\uD83D[\uDC66\uDC67])?)|[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC66(?:\u200D\uD83D\uDC66)?|\uDC67(?:\u200D\uD83D[\uDC66\uDC67])?)|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]))|\uD83C(?:\uDFFB(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D\uDC68\uD83C[\uDFFC-\uDFFF])))?|\uDFFC(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D\uDC68\uD83C[\uDFFB\uDFFD-\uDFFF])))?|\uDFFD(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D\uDC68\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF])))?|\uDFFE(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D\uDC68\uD83C[\uDFFB-\uDFFD\uDFFF])))?|\uDFFF(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D\uDC68\uD83C[\uDFFB-\uDFFE])))?))?|\uDC69(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?[\uDC68\uDC69]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC66(?:\u200D\uD83D\uDC66)?|\uDC67(?:\u200D\uD83D[\uDC66\uDC67])?|\uDC69\u200D\uD83D(?:\uDC66(?:\u200D\uD83D\uDC66)?|\uDC67(?:\u200D\uD83D[\uDC66\uDC67])?))|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]))|\uD83C(?:\uDFFB(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:[\uDC68\uDC69]|\uDC8B\u200D\uD83D[\uDC68\uDC69])\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D[\uDC68\uDC69]\uD83C[\uDFFC-\uDFFF])))?|\uDFFC(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:[\uDC68\uDC69]|\uDC8B\u200D\uD83D[\uDC68\uDC69])\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D[\uDC68\uDC69]\uD83C[\uDFFB\uDFFD-\uDFFF])))?|\uDFFD(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:[\uDC68\uDC69]|\uDC8B\u200D\uD83D[\uDC68\uDC69])\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D[\uDC68\uDC69]\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF])))?|\uDFFE(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:[\uDC68\uDC69]|\uDC8B\u200D\uD83D[\uDC68\uDC69])\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D[\uDC68\uDC69]\uD83C[\uDFFB-\uDFFD\uDFFF])))?|\uDFFF(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:[\uDC68\uDC69]|\uDC8B\u200D\uD83D[\uDC68\uDC69])\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D[\uDC68\uDC69]\uD83C[\uDFFB-\uDFFE])))?))?|\uDC6F(?:\u200D[\u2640\u2642]\uFE0F?)?|\uDD75(?:\uFE0F|\uD83C[\uDFFB-\uDFFF])?(?:\u200D[\u2640\u2642]\uFE0F?)?|\uDE2E(?:\u200D\uD83D\uDCA8)?|\uDE35(?:\u200D\uD83D\uDCAB)?|\uDE36(?:\u200D\uD83C\uDF2B\uFE0F?)?|\uDE42(?:\u200D[\u2194\u2195]\uFE0F?)?|\uDEB6(?:\uD83C[\uDFFB-\uDFFF])?(?:\u200D(?:[\u2640\u2642]\uFE0F?(?:\u200D\u27A1\uFE0F?)?|\u27A1\uFE0F?))?)|\uD83E(?:[\uDD0C\uDD0F\uDD18-\uDD1F\uDD30-\uDD34\uDD36\uDD77\uDDB5\uDDB6\uDDBB\uDDD2\uDDD3\uDDD5\uDEC3-\uDEC5\uDEF0\uDEF2-\uDEF8](?:\uD83C[\uDFFB-\uDFFF])?|[\uDD26\uDD35\uDD37-\uDD39\uDD3D\uDD3E\uDDB8\uDDB9\uDDCD\uDDCF\uDDD4\uDDD6-\uDDDD](?:\uD83C[\uDFFB-\uDFFF])?(?:\u200D[\u2640\u2642]\uFE0F?)?|[\uDDDE\uDDDF](?:\u200D[\u2640\u2642]\uFE0F?)?|[\uDD0D\uDD0E\uDD10-\uDD17\uDD20-\uDD25\uDD27-\uDD2F\uDD3A\uDD3F-\uDD45\uDD47-\uDD76\uDD78-\uDDB4\uDDB7\uDDBA\uDDBC-\uDDCC\uDDD0\uDDE0-\uDDFF\uDE70-\uDE7C\uDE80-\uDE88\uDE90-\uDEBD\uDEBF-\uDEC2\uDECE-\uDEDB\uDEE0-\uDEE8]|\uDD3C(?:\u200D[\u2640\u2642]\uFE0F?|\uD83C[\uDFFB-\uDFFF])?|\uDDCE(?:\uD83C[\uDFFB-\uDFFF])?(?:\u200D(?:[\u2640\u2642]\uFE0F?(?:\u200D\u27A1\uFE0F?)?|\u27A1\uFE0F?))?|\uDDD1(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83E\uDDD1|\uDDD1\u200D\uD83E\uDDD2(?:\u200D\uD83E\uDDD2)?|\uDDD2(?:\u200D\uD83E\uDDD2)?))|\uD83C(?:\uDFFB(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1\uD83C[\uDFFC-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFF])))?|\uDFFC(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1\uD83C[\uDFFB\uDFFD-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFF])))?|\uDFFD(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFF])))?|\uDFFE(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1\uD83C[\uDFFB-\uDFFD\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFF])))?|\uDFFF(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1\uD83C[\uDFFB-\uDFFE]|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFF])))?))?|\uDEF1(?:\uD83C(?:\uDFFB(?:\u200D\uD83E\uDEF2\uD83C[\uDFFC-\uDFFF])?|\uDFFC(?:\u200D\uD83E\uDEF2\uD83C[\uDFFB\uDFFD-\uDFFF])?|\uDFFD(?:\u200D\uD83E\uDEF2\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF])?|\uDFFE(?:\u200D\uD83E\uDEF2\uD83C[\uDFFB-\uDFFD\uDFFF])?|\uDFFF(?:\u200D\uD83E\uDEF2\uD83C[\uDFFB-\uDFFE])?))?)/g;
 };
@@ -1823,7 +1823,7 @@ function formatNumber$1(number) {
   return res[0].replace(/(?=(?:\d{3})+$)(?!\b)/g, ",") + (res[1] ? `.${res[1]}` : "");
 }
 function renderHookState(task, hookName, level = 0) {
-  var _a, _b;
+  let _a, _b;
   const state = (_b = (_a = task.result) == null ? void 0 : _a.hooks) == null ? void 0 : _b[hookName];
   if (state && state === "run")
     return `${"  ".repeat(level)} ${getHookStateSymbol(task, hookName)} ${c.dim(`[ ${hookName} ]`)}`;
@@ -1839,12 +1839,12 @@ function renderBenchmarkItems$1(result) {
   ];
 }
 function renderBenchmark$1(task, tasks) {
-  var _a;
+  let _a;
   const result = (_a = task.result) == null ? void 0 : _a.benchmark;
   if (!result)
     return task.name;
   const benches = tasks.map((i) => {
-    var _a2, _b;
+    let _a2, _b;
     return ((_a2 = i.meta) == null ? void 0 : _a2.benchmark) ? (_b = i.result) == null ? void 0 : _b.benchmark : void 0;
   }).filter(notNullish);
   const allItems = benches.map(renderBenchmarkItems$1);
@@ -1865,7 +1865,7 @@ function renderBenchmark$1(task, tasks) {
   ].join("");
 }
 function renderTree$1(tasks, options, level = 0, maxRows) {
-  var _a, _b, _c, _d, _e, _f, _g, _h;
+  let _a, _b, _c, _d, _e, _f, _g, _h;
   const output = [];
   let currentRowCount = 0;
   for (const task of [...tasks].reverse()) {
@@ -2032,7 +2032,7 @@ class DefaultReporter extends BaseReporter {
     await super.onWatcherStart(files, errors);
   }
   async stopListRender() {
-    var _a;
+    let _a;
     await ((_a = this.renderer) == null ? void 0 : _a.stop());
     this.renderer = void 0;
   }
@@ -2041,7 +2041,7 @@ class DefaultReporter extends BaseReporter {
     await super.onWatcherRerun(files, trigger);
   }
   onUserConsoleLog(log) {
-    var _a;
+    let _a;
     if (!this.shouldLog(log))
       return;
     (_a = this.renderer) == null ? void 0 : _a.clear();
@@ -2054,7 +2054,7 @@ const cross = { char: "x", color: c.red };
 const pending = { char: "*", color: c.yellow };
 const skip = { char: "-", color: (char) => c.dim(c.gray(char)) };
 function getIcon(task) {
-  var _a;
+  let _a;
   if (task.mode === "skip" || task.mode === "todo")
     return skip;
   switch ((_a = task.result) == null ? void 0 : _a.state) {
@@ -2163,7 +2163,7 @@ class DotReporter extends BaseReporter {
     super.onWatcherStart();
   }
   async stopListRender() {
-    var _a;
+    let _a;
     (_a = this.renderer) == null ? void 0 : _a.stop();
     this.renderer = void 0;
     await new Promise((resolve) => setTimeout(resolve, 10));
@@ -2173,7 +2173,7 @@ class DotReporter extends BaseReporter {
     await super.onWatcherRerun(files, trigger);
   }
   onUserConsoleLog(log) {
-    var _a;
+    let _a;
     (_a = this.renderer) == null ? void 0 : _a.clear();
     super.onUserConsoleLog(log);
   }
@@ -2199,27 +2199,27 @@ class JsonReporter {
     this.start = Date.now();
   }
   async logTasks(files) {
-    var _a, _b, _c, _d;
+    let _a, _b, _c, _d;
     const suites = getSuites(files);
     const numTotalTestSuites = suites.length;
     const tests = getTests(files);
     const numTotalTests = tests.length;
     const numFailedTestSuites = suites.filter((s) => {
-      var _a2;
+      let _a2;
       return (_a2 = s.result) == null ? void 0 : _a2.errors;
     }).length;
     const numPassedTestSuites = numTotalTestSuites - numFailedTestSuites;
     const numPendingTestSuites = suites.filter((s) => {
-      var _a2;
+      let _a2;
       return ((_a2 = s.result) == null ? void 0 : _a2.state) === "run";
     }).length;
     const numFailedTests = tests.filter((t) => {
-      var _a2;
+      let _a2;
       return ((_a2 = t.result) == null ? void 0 : _a2.state) === "fail";
     }).length;
     const numPassedTests = numTotalTests - numFailedTests;
     const numPendingTests = tests.filter((t) => {
-      var _a2;
+      let _a2;
       return ((_a2 = t.result) == null ? void 0 : _a2.state) === "run";
     }).length;
     const numTodoTests = tests.filter((t) => t.mode === "todo").length;
@@ -2228,17 +2228,17 @@ class JsonReporter {
     for (const file of files) {
       const tests2 = getTests([file]);
       let startTime = tests2.reduce((prev, next) => {
-        var _a2;
+        let _a2;
         return Math.min(prev, ((_a2 = next.result) == null ? void 0 : _a2.startTime) ?? Number.POSITIVE_INFINITY);
       }, Number.POSITIVE_INFINITY);
       if (startTime === Number.POSITIVE_INFINITY)
         startTime = this.start;
       const endTime = tests2.reduce((prev, next) => {
-        var _a2, _b2;
+        let _a2, _b2;
         return Math.max(prev, (((_a2 = next.result) == null ? void 0 : _a2.startTime) ?? 0) + (((_b2 = next.result) == null ? void 0 : _b2.duration) ?? 0));
       }, startTime);
       const assertionResults = await Promise.all(tests2.map(async (t) => {
-        var _a2, _b2, _c2, _d2;
+        let _a2, _b2, _c2, _d2;
         const ancestorTitles = [];
         let iter = t.suite;
         while (iter) {
@@ -2257,13 +2257,13 @@ class JsonReporter {
         };
       }));
       if (tests2.some((t) => {
-        var _a2;
+        let _a2;
         return ((_a2 = t.result) == null ? void 0 : _a2.state) === "run";
       })) {
         this.ctx.logger.warn("WARNING: Some tests are still running when generating the JSON report.This is likely an internal bug in Vitest.Please report it to https://github.com/vitest-dev/vitest/issues");
       }
       const hasFailedTests = tests2.some((t) => {
-        var _a2;
+        let _a2;
         return ((_a2 = t.result) == null ? void 0 : _a2.state) === "fail";
       });
       testResults.push({
@@ -2313,7 +2313,7 @@ class JsonReporter {
     }
   }
   async getFailureLocation(test) {
-    var _a, _b;
+    let _a, _b;
     const error = (_b = (_a = test.result) == null ? void 0 : _a.errors) == null ? void 0 : _b[0];
     if (!error)
       return;
@@ -2335,7 +2335,7 @@ class VerboseReporter extends DefaultReporter {
     this.rendererOptions.renderSucceed = true;
   }
   onTaskUpdate(packs) {
-    var _a, _b, _c, _d;
+    let _a, _b, _c, _d;
     if (this.isTTY)
       return;
     for (const pack of packs) {
@@ -2390,7 +2390,7 @@ class TapReporter {
     this.logger = new IndentedLogger(ctx.logger.log.bind(ctx.logger));
   }
   static getComment(task) {
-    var _a;
+    let _a;
     if (task.mode === "skip")
       return " # SKIP";
     else if (task.mode === "todo")
@@ -2409,7 +2409,7 @@ class TapReporter {
     }
   }
   logTasks(tasks) {
-    var _a, _b;
+    let _a, _b;
     this.logger.log(`1..${tasks.length}`);
     for (const [i, task] of tasks.entries()) {
       const id = i + 1;
@@ -2611,9 +2611,9 @@ ansiEscapes.iTerm = {
 	}
 };
 
-var onetime$2 = {exports: {}};
+const onetime$2 = {exports: {}};
 
-var mimicFn$2 = {exports: {}};
+const mimicFn$2 = {exports: {}};
 
 const mimicFn$1 = (to, from) => {
 	for (const prop of Reflect.ownKeys(from)) {
@@ -2627,7 +2627,7 @@ mimicFn$2.exports = mimicFn$1;
 // TODO: Remove this for the next major release
 mimicFn$2.exports.default = mimicFn$1;
 
-var mimicFnExports = mimicFn$2.exports;
+const mimicFnExports = mimicFn$2.exports;
 
 const mimicFn = mimicFnExports;
 
@@ -2673,14 +2673,14 @@ onetime$2.exports.callCount = function_ => {
 	return calledFunctions.get(function_);
 };
 
-var onetimeExports = onetime$2.exports;
-var onetime$1 = /*@__PURE__*/getDefaultExportFromCjs(onetimeExports);
+const onetimeExports = onetime$2.exports;
+const onetime$1 = /*@__PURE__*/getDefaultExportFromCjs(onetimeExports);
 
-var signalExit$1 = {exports: {}};
+const signalExit$1 = {exports: {}};
 
-var signals$1 = {exports: {}};
+const signals$1 = {exports: {}};
 
-var hasRequiredSignals;
+let hasRequiredSignals;
 
 function requireSignals () {
 	if (hasRequiredSignals) return signals$1.exports;
@@ -2747,7 +2747,7 @@ function requireSignals () {
 // that are in the direct sync flow of nyc's outputCoverage are
 // ignored, since we can never get coverage for them.
 // grab a reference to node's real process object right away
-var process$1 = commonjsGlobal.process;
+const process$1 = commonjsGlobal.process;
 
 const processOk = function (process) {
   return process &&
@@ -2768,17 +2768,17 @@ if (!processOk(process$1)) {
     return function () {}
   };
 } else {
-  var assert = require$$0$2;
-  var signals = requireSignals();
-  var isWin = /^win/i.test(process$1.platform);
+  const assert = require$$0$2;
+  let signals = requireSignals();
+  const isWin = /^win/i.test(process$1.platform);
 
-  var EE = require$$0$1;
+  let EE = require$$0$1;
   /* istanbul ignore if */
   if (typeof EE !== 'function') {
     EE = EE.EventEmitter;
   }
 
-  var emitter;
+  let emitter;
   if (process$1.__signal_exit_emitter__) {
     emitter = process$1.__signal_exit_emitter__;
   } else {
@@ -2807,12 +2807,12 @@ if (!processOk(process$1)) {
       load();
     }
 
-    var ev = 'exit';
+    let ev = 'exit';
     if (opts && opts.alwaysLast) {
       ev = 'afterexit';
     }
 
-    var remove = function () {
+    const remove = function () {
       emitter.removeListener(ev, cb);
       if (emitter.listeners('exit').length === 0 &&
           emitter.listeners('afterexit').length === 0) {
@@ -2841,7 +2841,7 @@ if (!processOk(process$1)) {
   };
   signalExit$1.exports.unload = unload;
 
-  var emit = function emit (event, code, signal) {
+  const emit = function emit (event, code, signal) {
     /* istanbul ignore if */
     if (emitter.emitted[event]) {
       return
@@ -2862,7 +2862,7 @@ if (!processOk(process$1)) {
       // Simplest way: remove us and then re-send the signal.
       // We know that this will kill the process, so we can
       // safely emit now.
-      var listeners = process$1.listeners(sig);
+      const listeners = process$1.listeners(sig);
       if (listeners.length === emitter.count) {
         unload();
         emit('exit', null, sig);
@@ -2933,7 +2933,7 @@ if (!processOk(process$1)) {
       if (arg !== undefined) {
         process$1.exitCode = arg;
       }
-      var ret = originalProcessEmit.apply(this, arguments);
+      const ret = originalProcessEmit.apply(this, arguments);
       /* istanbul ignore next */
       emit('exit', process$1.exitCode, null);
       /* istanbul ignore next */
@@ -2946,8 +2946,8 @@ if (!processOk(process$1)) {
   };
 }
 
-var signalExitExports = signalExit$1.exports;
-var signalExit = /*@__PURE__*/getDefaultExportFromCjs(signalExitExports);
+const signalExitExports = signalExit$1.exports;
+const signalExit = /*@__PURE__*/getDefaultExportFromCjs(signalExitExports);
 
 const restoreCursor = onetime$1(() => {
 	signalExit(() => {
@@ -2990,19 +2990,19 @@ cliCursor.toggle = (force, writableStream) => {
 	}
 };
 
-var eastasianwidth = {exports: {}};
+const eastasianwidth = {exports: {}};
 
 (function (module) {
-	var eaw = {};
+	const eaw = {};
 
 	{
 	  module.exports = eaw;
 	}
 
 	eaw.eastAsianWidth = function(character) {
-	  var x = character.charCodeAt(0);
-	  var y = (character.length == 2) ? character.charCodeAt(1) : 0;
-	  var codePoint = x;
+	  let x = character.charCodeAt(0);
+	  let y = (character.length == 2) ? character.charCodeAt(1) : 0;
+	  let codePoint = x;
 	  if ((0xD800 <= x && x <= 0xDBFF) && (0xDC00 <= y && y <= 0xDFFF)) {
 	    x &= 0x3FF;
 	    y &= 0x3FF;
@@ -3253,7 +3253,7 @@ var eastasianwidth = {exports: {}};
 	};
 
 	eaw.characterLength = function(character) {
-	  var code = this.eastAsianWidth(character);
+	  const code = this.eastAsianWidth(character);
 	  if (code == 'F' || code == 'W' || code == 'A') {
 	    return 2;
 	  } else {
@@ -3267,9 +3267,9 @@ var eastasianwidth = {exports: {}};
 	}
 
 	eaw.length = function(string) {
-	  var characters = stringToArray(string);
-	  var len = 0;
-	  for (var i = 0; i < characters.length; i++) {
+	  const characters = stringToArray(string);
+	  let len = 0;
+	  for (let i = 0; i < characters.length; i++) {
 	    len = len + this.characterLength(characters[i]);
 	  }
 	  return len;
@@ -3285,12 +3285,12 @@ var eastasianwidth = {exports: {}};
 	  if (end < 0) {
 	      end = textLen + end;
 	  }
-	  var result = '';
-	  var eawLen = 0;
-	  var chars = stringToArray(text);
-	  for (var i = 0; i < chars.length; i++) {
-	    var char = chars[i];
-	    var charLen = eaw.length(char);
+	  let result = '';
+	  let eawLen = 0;
+	  const chars = stringToArray(text);
+	  for (let i = 0; i < chars.length; i++) {
+	    const char = chars[i];
+	    const charLen = eaw.length(char);
 	    if (eawLen >= start - (charLen == 2 ? 1 : 0)) {
 	        if (eawLen + charLen <= end) {
 	            result += char;
@@ -3304,15 +3304,15 @@ var eastasianwidth = {exports: {}};
 	}; 
 } (eastasianwidth));
 
-var eastasianwidthExports = eastasianwidth.exports;
-var eastAsianWidth = /*@__PURE__*/getDefaultExportFromCjs(eastasianwidthExports);
+const eastasianwidthExports = eastasianwidth.exports;
+const eastAsianWidth = /*@__PURE__*/getDefaultExportFromCjs(eastasianwidthExports);
 
-var emojiRegex = function () {
+const emojiRegex = function () {
   // https://mths.be/emoji
   return /\uD83C\uDFF4\uDB40\uDC67\uDB40\uDC62(?:\uDB40\uDC77\uDB40\uDC6C\uDB40\uDC73|\uDB40\uDC73\uDB40\uDC63\uDB40\uDC74|\uDB40\uDC65\uDB40\uDC6E\uDB40\uDC67)\uDB40\uDC7F|(?:\uD83E\uDDD1\uD83C\uDFFF\u200D\u2764\uFE0F\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1|\uD83D\uDC69\uD83C\uDFFF\u200D\uD83E\uDD1D\u200D(?:\uD83D[\uDC68\uDC69]))(?:\uD83C[\uDFFB-\uDFFE])|(?:\uD83E\uDDD1\uD83C\uDFFE\u200D\u2764\uFE0F\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1|\uD83D\uDC69\uD83C\uDFFE\u200D\uD83E\uDD1D\u200D(?:\uD83D[\uDC68\uDC69]))(?:\uD83C[\uDFFB-\uDFFD\uDFFF])|(?:\uD83E\uDDD1\uD83C\uDFFD\u200D\u2764\uFE0F\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1|\uD83D\uDC69\uD83C\uDFFD\u200D\uD83E\uDD1D\u200D(?:\uD83D[\uDC68\uDC69]))(?:\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF])|(?:\uD83E\uDDD1\uD83C\uDFFC\u200D\u2764\uFE0F\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1|\uD83D\uDC69\uD83C\uDFFC\u200D\uD83E\uDD1D\u200D(?:\uD83D[\uDC68\uDC69]))(?:\uD83C[\uDFFB\uDFFD-\uDFFF])|(?:\uD83E\uDDD1\uD83C\uDFFB\u200D\u2764\uFE0F\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1|\uD83D\uDC69\uD83C\uDFFB\u200D\uD83E\uDD1D\u200D(?:\uD83D[\uDC68\uDC69]))(?:\uD83C[\uDFFC-\uDFFF])|\uD83D\uDC68(?:\uD83C\uDFFB(?:\u200D(?:\u2764\uFE0F\u200D(?:\uD83D\uDC8B\u200D\uD83D\uDC68(?:\uD83C[\uDFFB-\uDFFF])|\uD83D\uDC68(?:\uD83C[\uDFFB-\uDFFF]))|\uD83E\uDD1D\u200D\uD83D\uDC68(?:\uD83C[\uDFFC-\uDFFF])|[\u2695\u2696\u2708]\uFE0F|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD]))?|(?:\uD83C[\uDFFC-\uDFFF])\u200D\u2764\uFE0F\u200D(?:\uD83D\uDC8B\u200D\uD83D\uDC68(?:\uD83C[\uDFFB-\uDFFF])|\uD83D\uDC68(?:\uD83C[\uDFFB-\uDFFF]))|\u200D(?:\u2764\uFE0F\u200D(?:\uD83D\uDC8B\u200D)?\uD83D\uDC68|(?:\uD83D[\uDC68\uDC69])\u200D(?:\uD83D\uDC66\u200D\uD83D\uDC66|\uD83D\uDC67\u200D(?:\uD83D[\uDC66\uDC67]))|\uD83D\uDC66\u200D\uD83D\uDC66|\uD83D\uDC67\u200D(?:\uD83D[\uDC66\uDC67])|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD])|\uD83C\uDFFF\u200D(?:\uD83E\uDD1D\u200D\uD83D\uDC68(?:\uD83C[\uDFFB-\uDFFE])|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD])|\uD83C\uDFFE\u200D(?:\uD83E\uDD1D\u200D\uD83D\uDC68(?:\uD83C[\uDFFB-\uDFFD\uDFFF])|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD])|\uD83C\uDFFD\u200D(?:\uD83E\uDD1D\u200D\uD83D\uDC68(?:\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF])|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD])|\uD83C\uDFFC\u200D(?:\uD83E\uDD1D\u200D\uD83D\uDC68(?:\uD83C[\uDFFB\uDFFD-\uDFFF])|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD])|(?:\uD83C\uDFFF\u200D[\u2695\u2696\u2708]|\uD83C\uDFFE\u200D[\u2695\u2696\u2708]|\uD83C\uDFFD\u200D[\u2695\u2696\u2708]|\uD83C\uDFFC\u200D[\u2695\u2696\u2708]|\u200D[\u2695\u2696\u2708])\uFE0F|\u200D(?:(?:\uD83D[\uDC68\uDC69])\u200D(?:\uD83D[\uDC66\uDC67])|\uD83D[\uDC66\uDC67])|\uD83C\uDFFF|\uD83C\uDFFE|\uD83C\uDFFD|\uD83C\uDFFC)?|(?:\uD83D\uDC69(?:\uD83C\uDFFB\u200D\u2764\uFE0F\u200D(?:\uD83D\uDC8B\u200D(?:\uD83D[\uDC68\uDC69])|\uD83D[\uDC68\uDC69])|(?:\uD83C[\uDFFC-\uDFFF])\u200D\u2764\uFE0F\u200D(?:\uD83D\uDC8B\u200D(?:\uD83D[\uDC68\uDC69])|\uD83D[\uDC68\uDC69]))|\uD83E\uDDD1(?:\uD83C[\uDFFB-\uDFFF])\u200D\uD83E\uDD1D\u200D\uD83E\uDDD1)(?:\uD83C[\uDFFB-\uDFFF])|\uD83D\uDC69\u200D\uD83D\uDC69\u200D(?:\uD83D\uDC66\u200D\uD83D\uDC66|\uD83D\uDC67\u200D(?:\uD83D[\uDC66\uDC67]))|\uD83D\uDC69(?:\u200D(?:\u2764\uFE0F\u200D(?:\uD83D\uDC8B\u200D(?:\uD83D[\uDC68\uDC69])|\uD83D[\uDC68\uDC69])|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD])|\uD83C\uDFFF\u200D(?:\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD])|\uD83C\uDFFE\u200D(?:\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD])|\uD83C\uDFFD\u200D(?:\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD])|\uD83C\uDFFC\u200D(?:\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD])|\uD83C\uDFFB\u200D(?:\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD]))|\uD83E\uDDD1(?:\u200D(?:\uD83E\uDD1D\u200D\uD83E\uDDD1|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD])|\uD83C\uDFFF\u200D(?:\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD])|\uD83C\uDFFE\u200D(?:\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD])|\uD83C\uDFFD\u200D(?:\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD])|\uD83C\uDFFC\u200D(?:\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD])|\uD83C\uDFFB\u200D(?:\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD]))|\uD83D\uDC69\u200D\uD83D\uDC66\u200D\uD83D\uDC66|\uD83D\uDC69\u200D\uD83D\uDC69\u200D(?:\uD83D[\uDC66\uDC67])|\uD83D\uDC69\u200D\uD83D\uDC67\u200D(?:\uD83D[\uDC66\uDC67])|(?:\uD83D\uDC41\uFE0F\u200D\uD83D\uDDE8|\uD83E\uDDD1(?:\uD83C\uDFFF\u200D[\u2695\u2696\u2708]|\uD83C\uDFFE\u200D[\u2695\u2696\u2708]|\uD83C\uDFFD\u200D[\u2695\u2696\u2708]|\uD83C\uDFFC\u200D[\u2695\u2696\u2708]|\uD83C\uDFFB\u200D[\u2695\u2696\u2708]|\u200D[\u2695\u2696\u2708])|\uD83D\uDC69(?:\uD83C\uDFFF\u200D[\u2695\u2696\u2708]|\uD83C\uDFFE\u200D[\u2695\u2696\u2708]|\uD83C\uDFFD\u200D[\u2695\u2696\u2708]|\uD83C\uDFFC\u200D[\u2695\u2696\u2708]|\uD83C\uDFFB\u200D[\u2695\u2696\u2708]|\u200D[\u2695\u2696\u2708])|\uD83D\uDE36\u200D\uD83C\uDF2B|\uD83C\uDFF3\uFE0F\u200D\u26A7|\uD83D\uDC3B\u200D\u2744|(?:(?:\uD83C[\uDFC3\uDFC4\uDFCA]|\uD83D[\uDC6E\uDC70\uDC71\uDC73\uDC77\uDC81\uDC82\uDC86\uDC87\uDE45-\uDE47\uDE4B\uDE4D\uDE4E\uDEA3\uDEB4-\uDEB6]|\uD83E[\uDD26\uDD35\uDD37-\uDD39\uDD3D\uDD3E\uDDB8\uDDB9\uDDCD-\uDDCF\uDDD4\uDDD6-\uDDDD])(?:\uD83C[\uDFFB-\uDFFF])|\uD83D\uDC6F|\uD83E[\uDD3C\uDDDE\uDDDF])\u200D[\u2640\u2642]|(?:\u26F9|\uD83C[\uDFCB\uDFCC]|\uD83D\uDD75)(?:\uFE0F|\uD83C[\uDFFB-\uDFFF])\u200D[\u2640\u2642]|\uD83C\uDFF4\u200D\u2620|(?:\uD83C[\uDFC3\uDFC4\uDFCA]|\uD83D[\uDC6E\uDC70\uDC71\uDC73\uDC77\uDC81\uDC82\uDC86\uDC87\uDE45-\uDE47\uDE4B\uDE4D\uDE4E\uDEA3\uDEB4-\uDEB6]|\uD83E[\uDD26\uDD35\uDD37-\uDD39\uDD3D\uDD3E\uDDB8\uDDB9\uDDCD-\uDDCF\uDDD4\uDDD6-\uDDDD])\u200D[\u2640\u2642]|[\xA9\xAE\u203C\u2049\u2122\u2139\u2194-\u2199\u21A9\u21AA\u2328\u23CF\u23ED-\u23EF\u23F1\u23F2\u23F8-\u23FA\u24C2\u25AA\u25AB\u25B6\u25C0\u25FB\u25FC\u2600-\u2604\u260E\u2611\u2618\u2620\u2622\u2623\u2626\u262A\u262E\u262F\u2638-\u263A\u2640\u2642\u265F\u2660\u2663\u2665\u2666\u2668\u267B\u267E\u2692\u2694-\u2697\u2699\u269B\u269C\u26A0\u26A7\u26B0\u26B1\u26C8\u26CF\u26D1\u26D3\u26E9\u26F0\u26F1\u26F4\u26F7\u26F8\u2702\u2708\u2709\u270F\u2712\u2714\u2716\u271D\u2721\u2733\u2734\u2744\u2747\u2763\u27A1\u2934\u2935\u2B05-\u2B07\u3030\u303D\u3297\u3299]|\uD83C[\uDD70\uDD71\uDD7E\uDD7F\uDE02\uDE37\uDF21\uDF24-\uDF2C\uDF36\uDF7D\uDF96\uDF97\uDF99-\uDF9B\uDF9E\uDF9F\uDFCD\uDFCE\uDFD4-\uDFDF\uDFF5\uDFF7]|\uD83D[\uDC3F\uDCFD\uDD49\uDD4A\uDD6F\uDD70\uDD73\uDD76-\uDD79\uDD87\uDD8A-\uDD8D\uDDA5\uDDA8\uDDB1\uDDB2\uDDBC\uDDC2-\uDDC4\uDDD1-\uDDD3\uDDDC-\uDDDE\uDDE1\uDDE3\uDDE8\uDDEF\uDDF3\uDDFA\uDECB\uDECD-\uDECF\uDEE0-\uDEE5\uDEE9\uDEF0\uDEF3])\uFE0F|\uD83C\uDFF3\uFE0F\u200D\uD83C\uDF08|\uD83D\uDC69\u200D\uD83D\uDC67|\uD83D\uDC69\u200D\uD83D\uDC66|\uD83D\uDE35\u200D\uD83D\uDCAB|\uD83D\uDE2E\u200D\uD83D\uDCA8|\uD83D\uDC15\u200D\uD83E\uDDBA|\uD83E\uDDD1(?:\uD83C\uDFFF|\uD83C\uDFFE|\uD83C\uDFFD|\uD83C\uDFFC|\uD83C\uDFFB)?|\uD83D\uDC69(?:\uD83C\uDFFF|\uD83C\uDFFE|\uD83C\uDFFD|\uD83C\uDFFC|\uD83C\uDFFB)?|\uD83C\uDDFD\uD83C\uDDF0|\uD83C\uDDF6\uD83C\uDDE6|\uD83C\uDDF4\uD83C\uDDF2|\uD83D\uDC08\u200D\u2B1B|\u2764\uFE0F\u200D(?:\uD83D\uDD25|\uD83E\uDE79)|\uD83D\uDC41\uFE0F|\uD83C\uDFF3\uFE0F|\uD83C\uDDFF(?:\uD83C[\uDDE6\uDDF2\uDDFC])|\uD83C\uDDFE(?:\uD83C[\uDDEA\uDDF9])|\uD83C\uDDFC(?:\uD83C[\uDDEB\uDDF8])|\uD83C\uDDFB(?:\uD83C[\uDDE6\uDDE8\uDDEA\uDDEC\uDDEE\uDDF3\uDDFA])|\uD83C\uDDFA(?:\uD83C[\uDDE6\uDDEC\uDDF2\uDDF3\uDDF8\uDDFE\uDDFF])|\uD83C\uDDF9(?:\uD83C[\uDDE6\uDDE8\uDDE9\uDDEB-\uDDED\uDDEF-\uDDF4\uDDF7\uDDF9\uDDFB\uDDFC\uDDFF])|\uD83C\uDDF8(?:\uD83C[\uDDE6-\uDDEA\uDDEC-\uDDF4\uDDF7-\uDDF9\uDDFB\uDDFD-\uDDFF])|\uD83C\uDDF7(?:\uD83C[\uDDEA\uDDF4\uDDF8\uDDFA\uDDFC])|\uD83C\uDDF5(?:\uD83C[\uDDE6\uDDEA-\uDDED\uDDF0-\uDDF3\uDDF7-\uDDF9\uDDFC\uDDFE])|\uD83C\uDDF3(?:\uD83C[\uDDE6\uDDE8\uDDEA-\uDDEC\uDDEE\uDDF1\uDDF4\uDDF5\uDDF7\uDDFA\uDDFF])|\uD83C\uDDF2(?:\uD83C[\uDDE6\uDDE8-\uDDED\uDDF0-\uDDFF])|\uD83C\uDDF1(?:\uD83C[\uDDE6-\uDDE8\uDDEE\uDDF0\uDDF7-\uDDFB\uDDFE])|\uD83C\uDDF0(?:\uD83C[\uDDEA\uDDEC-\uDDEE\uDDF2\uDDF3\uDDF5\uDDF7\uDDFC\uDDFE\uDDFF])|\uD83C\uDDEF(?:\uD83C[\uDDEA\uDDF2\uDDF4\uDDF5])|\uD83C\uDDEE(?:\uD83C[\uDDE8-\uDDEA\uDDF1-\uDDF4\uDDF6-\uDDF9])|\uD83C\uDDED(?:\uD83C[\uDDF0\uDDF2\uDDF3\uDDF7\uDDF9\uDDFA])|\uD83C\uDDEC(?:\uD83C[\uDDE6\uDDE7\uDDE9-\uDDEE\uDDF1-\uDDF3\uDDF5-\uDDFA\uDDFC\uDDFE])|\uD83C\uDDEB(?:\uD83C[\uDDEE-\uDDF0\uDDF2\uDDF4\uDDF7])|\uD83C\uDDEA(?:\uD83C[\uDDE6\uDDE8\uDDEA\uDDEC\uDDED\uDDF7-\uDDFA])|\uD83C\uDDE9(?:\uD83C[\uDDEA\uDDEC\uDDEF\uDDF0\uDDF2\uDDF4\uDDFF])|\uD83C\uDDE8(?:\uD83C[\uDDE6\uDDE8\uDDE9\uDDEB-\uDDEE\uDDF0-\uDDF5\uDDF7\uDDFA-\uDDFF])|\uD83C\uDDE7(?:\uD83C[\uDDE6\uDDE7\uDDE9-\uDDEF\uDDF1-\uDDF4\uDDF6-\uDDF9\uDDFB\uDDFC\uDDFE\uDDFF])|\uD83C\uDDE6(?:\uD83C[\uDDE8-\uDDEC\uDDEE\uDDF1\uDDF2\uDDF4\uDDF6-\uDDFA\uDDFC\uDDFD\uDDFF])|[#\*0-9]\uFE0F\u20E3|\u2764\uFE0F|(?:\uD83C[\uDFC3\uDFC4\uDFCA]|\uD83D[\uDC6E\uDC70\uDC71\uDC73\uDC77\uDC81\uDC82\uDC86\uDC87\uDE45-\uDE47\uDE4B\uDE4D\uDE4E\uDEA3\uDEB4-\uDEB6]|\uD83E[\uDD26\uDD35\uDD37-\uDD39\uDD3D\uDD3E\uDDB8\uDDB9\uDDCD-\uDDCF\uDDD4\uDDD6-\uDDDD])(?:\uD83C[\uDFFB-\uDFFF])|(?:\u26F9|\uD83C[\uDFCB\uDFCC]|\uD83D\uDD75)(?:\uFE0F|\uD83C[\uDFFB-\uDFFF])|\uD83C\uDFF4|(?:[\u270A\u270B]|\uD83C[\uDF85\uDFC2\uDFC7]|\uD83D[\uDC42\uDC43\uDC46-\uDC50\uDC66\uDC67\uDC6B-\uDC6D\uDC72\uDC74-\uDC76\uDC78\uDC7C\uDC83\uDC85\uDC8F\uDC91\uDCAA\uDD7A\uDD95\uDD96\uDE4C\uDE4F\uDEC0\uDECC]|\uD83E[\uDD0C\uDD0F\uDD18-\uDD1C\uDD1E\uDD1F\uDD30-\uDD34\uDD36\uDD77\uDDB5\uDDB6\uDDBB\uDDD2\uDDD3\uDDD5])(?:\uD83C[\uDFFB-\uDFFF])|(?:[\u261D\u270C\u270D]|\uD83D[\uDD74\uDD90])(?:\uFE0F|\uD83C[\uDFFB-\uDFFF])|[\u270A\u270B]|\uD83C[\uDF85\uDFC2\uDFC7]|\uD83D[\uDC08\uDC15\uDC3B\uDC42\uDC43\uDC46-\uDC50\uDC66\uDC67\uDC6B-\uDC6D\uDC72\uDC74-\uDC76\uDC78\uDC7C\uDC83\uDC85\uDC8F\uDC91\uDCAA\uDD7A\uDD95\uDD96\uDE2E\uDE35\uDE36\uDE4C\uDE4F\uDEC0\uDECC]|\uD83E[\uDD0C\uDD0F\uDD18-\uDD1C\uDD1E\uDD1F\uDD30-\uDD34\uDD36\uDD77\uDDB5\uDDB6\uDDBB\uDDD2\uDDD3\uDDD5]|\uD83C[\uDFC3\uDFC4\uDFCA]|\uD83D[\uDC6E\uDC70\uDC71\uDC73\uDC77\uDC81\uDC82\uDC86\uDC87\uDE45-\uDE47\uDE4B\uDE4D\uDE4E\uDEA3\uDEB4-\uDEB6]|\uD83E[\uDD26\uDD35\uDD37-\uDD39\uDD3D\uDD3E\uDDB8\uDDB9\uDDCD-\uDDCF\uDDD4\uDDD6-\uDDDD]|\uD83D\uDC6F|\uD83E[\uDD3C\uDDDE\uDDDF]|[\u231A\u231B\u23E9-\u23EC\u23F0\u23F3\u25FD\u25FE\u2614\u2615\u2648-\u2653\u267F\u2693\u26A1\u26AA\u26AB\u26BD\u26BE\u26C4\u26C5\u26CE\u26D4\u26EA\u26F2\u26F3\u26F5\u26FA\u26FD\u2705\u2728\u274C\u274E\u2753-\u2755\u2757\u2795-\u2797\u27B0\u27BF\u2B1B\u2B1C\u2B50\u2B55]|\uD83C[\uDC04\uDCCF\uDD8E\uDD91-\uDD9A\uDE01\uDE1A\uDE2F\uDE32-\uDE36\uDE38-\uDE3A\uDE50\uDE51\uDF00-\uDF20\uDF2D-\uDF35\uDF37-\uDF7C\uDF7E-\uDF84\uDF86-\uDF93\uDFA0-\uDFC1\uDFC5\uDFC6\uDFC8\uDFC9\uDFCF-\uDFD3\uDFE0-\uDFF0\uDFF8-\uDFFF]|\uD83D[\uDC00-\uDC07\uDC09-\uDC14\uDC16-\uDC3A\uDC3C-\uDC3E\uDC40\uDC44\uDC45\uDC51-\uDC65\uDC6A\uDC79-\uDC7B\uDC7D-\uDC80\uDC84\uDC88-\uDC8E\uDC90\uDC92-\uDCA9\uDCAB-\uDCFC\uDCFF-\uDD3D\uDD4B-\uDD4E\uDD50-\uDD67\uDDA4\uDDFB-\uDE2D\uDE2F-\uDE34\uDE37-\uDE44\uDE48-\uDE4A\uDE80-\uDEA2\uDEA4-\uDEB3\uDEB7-\uDEBF\uDEC1-\uDEC5\uDED0-\uDED2\uDED5-\uDED7\uDEEB\uDEEC\uDEF4-\uDEFC\uDFE0-\uDFEB]|\uD83E[\uDD0D\uDD0E\uDD10-\uDD17\uDD1D\uDD20-\uDD25\uDD27-\uDD2F\uDD3A\uDD3F-\uDD45\uDD47-\uDD76\uDD78\uDD7A-\uDDB4\uDDB7\uDDBA\uDDBC-\uDDCB\uDDD0\uDDE0-\uDDFF\uDE70-\uDE74\uDE78-\uDE7A\uDE80-\uDE86\uDE90-\uDEA8\uDEB0-\uDEB6\uDEC0-\uDEC2\uDED0-\uDED6]|(?:[\u231A\u231B\u23E9-\u23EC\u23F0\u23F3\u25FD\u25FE\u2614\u2615\u2648-\u2653\u267F\u2693\u26A1\u26AA\u26AB\u26BD\u26BE\u26C4\u26C5\u26CE\u26D4\u26EA\u26F2\u26F3\u26F5\u26FA\u26FD\u2705\u270A\u270B\u2728\u274C\u274E\u2753-\u2755\u2757\u2795-\u2797\u27B0\u27BF\u2B1B\u2B1C\u2B50\u2B55]|\uD83C[\uDC04\uDCCF\uDD8E\uDD91-\uDD9A\uDDE6-\uDDFF\uDE01\uDE1A\uDE2F\uDE32-\uDE36\uDE38-\uDE3A\uDE50\uDE51\uDF00-\uDF20\uDF2D-\uDF35\uDF37-\uDF7C\uDF7E-\uDF93\uDFA0-\uDFCA\uDFCF-\uDFD3\uDFE0-\uDFF0\uDFF4\uDFF8-\uDFFF]|\uD83D[\uDC00-\uDC3E\uDC40\uDC42-\uDCFC\uDCFF-\uDD3D\uDD4B-\uDD4E\uDD50-\uDD67\uDD7A\uDD95\uDD96\uDDA4\uDDFB-\uDE4F\uDE80-\uDEC5\uDECC\uDED0-\uDED2\uDED5-\uDED7\uDEEB\uDEEC\uDEF4-\uDEFC\uDFE0-\uDFEB]|\uD83E[\uDD0C-\uDD3A\uDD3C-\uDD45\uDD47-\uDD78\uDD7A-\uDDCB\uDDCD-\uDDFF\uDE70-\uDE74\uDE78-\uDE7A\uDE80-\uDE86\uDE90-\uDEA8\uDEB0-\uDEB6\uDEC0-\uDEC2\uDED0-\uDED6])|(?:[#\*0-9\xA9\xAE\u203C\u2049\u2122\u2139\u2194-\u2199\u21A9\u21AA\u231A\u231B\u2328\u23CF\u23E9-\u23F3\u23F8-\u23FA\u24C2\u25AA\u25AB\u25B6\u25C0\u25FB-\u25FE\u2600-\u2604\u260E\u2611\u2614\u2615\u2618\u261D\u2620\u2622\u2623\u2626\u262A\u262E\u262F\u2638-\u263A\u2640\u2642\u2648-\u2653\u265F\u2660\u2663\u2665\u2666\u2668\u267B\u267E\u267F\u2692-\u2697\u2699\u269B\u269C\u26A0\u26A1\u26A7\u26AA\u26AB\u26B0\u26B1\u26BD\u26BE\u26C4\u26C5\u26C8\u26CE\u26CF\u26D1\u26D3\u26D4\u26E9\u26EA\u26F0-\u26F5\u26F7-\u26FA\u26FD\u2702\u2705\u2708-\u270D\u270F\u2712\u2714\u2716\u271D\u2721\u2728\u2733\u2734\u2744\u2747\u274C\u274E\u2753-\u2755\u2757\u2763\u2764\u2795-\u2797\u27A1\u27B0\u27BF\u2934\u2935\u2B05-\u2B07\u2B1B\u2B1C\u2B50\u2B55\u3030\u303D\u3297\u3299]|\uD83C[\uDC04\uDCCF\uDD70\uDD71\uDD7E\uDD7F\uDD8E\uDD91-\uDD9A\uDDE6-\uDDFF\uDE01\uDE02\uDE1A\uDE2F\uDE32-\uDE3A\uDE50\uDE51\uDF00-\uDF21\uDF24-\uDF93\uDF96\uDF97\uDF99-\uDF9B\uDF9E-\uDFF0\uDFF3-\uDFF5\uDFF7-\uDFFF]|\uD83D[\uDC00-\uDCFD\uDCFF-\uDD3D\uDD49-\uDD4E\uDD50-\uDD67\uDD6F\uDD70\uDD73-\uDD7A\uDD87\uDD8A-\uDD8D\uDD90\uDD95\uDD96\uDDA4\uDDA5\uDDA8\uDDB1\uDDB2\uDDBC\uDDC2-\uDDC4\uDDD1-\uDDD3\uDDDC-\uDDDE\uDDE1\uDDE3\uDDE8\uDDEF\uDDF3\uDDFA-\uDE4F\uDE80-\uDEC5\uDECB-\uDED2\uDED5-\uDED7\uDEE0-\uDEE5\uDEE9\uDEEB\uDEEC\uDEF0\uDEF3-\uDEFC\uDFE0-\uDFEB]|\uD83E[\uDD0C-\uDD3A\uDD3C-\uDD45\uDD47-\uDD78\uDD7A-\uDDCB\uDDCD-\uDDFF\uDE70-\uDE74\uDE78-\uDE7A\uDE80-\uDE86\uDE90-\uDEA8\uDEB0-\uDEB6\uDEC0-\uDEC2\uDED0-\uDED6])\uFE0F|(?:[\u261D\u26F9\u270A-\u270D]|\uD83C[\uDF85\uDFC2-\uDFC4\uDFC7\uDFCA-\uDFCC]|\uD83D[\uDC42\uDC43\uDC46-\uDC50\uDC66-\uDC78\uDC7C\uDC81-\uDC83\uDC85-\uDC87\uDC8F\uDC91\uDCAA\uDD74\uDD75\uDD7A\uDD90\uDD95\uDD96\uDE45-\uDE47\uDE4B-\uDE4F\uDEA3\uDEB4-\uDEB6\uDEC0\uDECC]|\uD83E[\uDD0C\uDD0F\uDD18-\uDD1F\uDD26\uDD30-\uDD39\uDD3C-\uDD3E\uDD77\uDDB5\uDDB6\uDDB8\uDDB9\uDDBB\uDDCD-\uDDCF\uDDD1-\uDDDD])/g;
 };
 
-var emojiRegex$1 = /*@__PURE__*/getDefaultExportFromCjs(emojiRegex);
+const emojiRegex$1 = /*@__PURE__*/getDefaultExportFromCjs(emojiRegex);
 
 function stringWidth(string, options = {}) {
 	if (typeof string !== 'string' || string.length === 0) {
@@ -3655,7 +3655,7 @@ createLogUpdate(process$2.stdout);
 
 createLogUpdate(process$2.stderr);
 
-var version = "1.6.1";
+const version = "1.6.1";
 
 const HIGHLIGHT_SUPPORTED_EXTS = new Set(["js", "ts"].flatMap((lang) => [
   `.${lang}`,
@@ -3802,7 +3802,7 @@ class Logger {
     return code;
   }
   printNoTestFound(filters) {
-    var _a;
+    let _a;
     const config = this.ctx.config;
     const comma = c.dim(", ");
     if (filters == null ? void 0 : filters.length)
@@ -3840,7 +3840,7 @@ No ${config.mode} files found, exiting with code 1`));
     }
   }
   printBanner() {
-    var _a, _b;
+    let _a, _b;
     this.log();
     const versionTest = this.ctx.config.watch ? c.blue(`v${version}`) : c.cyan(`v${version}`);
     const mode = this.ctx.config.watch ? c.blue(" DEV ") : c.cyan(" RUN ");
@@ -4101,7 +4101,7 @@ function printStack(logger, project, stack, highlight, errorProperties, onStack)
   }
 }
 function generateCodeFrame(source, indent = 0, loc, range = 2) {
-  var _a;
+  let _a;
   const start = typeof loc === "object" ? positionToOffset(source, loc.line, loc.column) : loc;
   const end = start;
   const lines = source.split(lineSplitRE);
@@ -4175,7 +4175,7 @@ function executionTime(durationMS) {
   return (durationMS / 1e3).toLocaleString("en-US", { useGrouping: false, maximumFractionDigits: 10 });
 }
 function getDuration(task) {
-  var _a;
+  let _a;
   const duration = ((_a = task.result) == null ? void 0 : _a.duration) ?? 0;
   return executionTime(duration);
 }
@@ -4188,7 +4188,7 @@ class JUnitReporter {
   fileFd;
   options;
   constructor(options) {
-    var _a;
+    let _a;
     this.options = { ...options };
     (_a = this.options).includeConsoleOutput ?? (_a.includeConsoleOutput = true);
   }
@@ -4249,7 +4249,7 @@ class JUnitReporter {
         name: task.name,
         time: getDuration(task)
       }, async () => {
-        var _a;
+        let _a;
         if (this.options.includeConsoleOutput) {
           await this.writeLogs(task, "out");
           await this.writeLogs(task, "err");
@@ -4278,13 +4278,13 @@ class JUnitReporter {
     }
   }
   async onFinished(files = this.ctx.state.getFiles()) {
-    var _a;
+    let _a;
     await this.logger.log('<?xml version="1.0" encoding="UTF-8" ?>');
     const transformed = files.map((file) => {
-      var _a2, _b;
+      let _a2, _b;
       const tasks = file.tasks.flatMap((task) => flattenTasks$1(task));
       const stats2 = tasks.reduce((stats3, task) => {
-        var _a3, _b2;
+        let _a3, _b2;
         return {
           passed: stats3.passed + Number(((_a3 = task.result) == null ? void 0 : _a3.state) === "pass"),
           failures: stats3.failures + Number(((_b2 = task.result) == null ? void 0 : _b2.state) === "fail"),
@@ -4389,7 +4389,7 @@ class HangingProcessReporter {
     this.whyRunning = _require("why-is-node-running");
   }
   onProcessTimeout() {
-    var _a;
+    let _a;
     (_a = this.whyRunning) == null ? void 0 : _a.call(this);
   }
 }
@@ -4400,7 +4400,7 @@ class GithubActionsReporter {
     this.ctx = ctx;
   }
   async onFinished(files = [], errors = []) {
-    var _a, _b;
+    let _a, _b;
     const projectErrors = new Array();
     for (const error of errors) {
       projectErrors.push({
@@ -4542,7 +4542,7 @@ function renderBenchmark(result, widths) {
   ].join("  ");
 }
 function renderTree(tasks, options, level = 0, shallow = false) {
-  var _a, _b, _c, _d, _e, _f, _g;
+  let _a, _b, _c, _d, _e, _f, _g;
   const output = [];
   const benchMap = {};
   for (const t of tasks) {
@@ -4680,7 +4680,7 @@ class TableReporter extends BaseReporter {
     super.onWatcherStart();
   }
   async onCollected() {
-    var _a, _b;
+    let _a, _b;
     this.rendererOptions.logger = this.ctx.logger;
     this.rendererOptions.showHeap = this.ctx.config.logHeapUsage;
     this.rendererOptions.slowTestThreshold = this.ctx.config.slowTestThreshold;
@@ -4705,7 +4705,7 @@ class TableReporter extends BaseReporter {
     }
   }
   onTaskUpdate(packs) {
-    var _a, _b;
+    let _a, _b;
     if (this.isTTY)
       return;
     for (const pack of packs) {
@@ -4713,7 +4713,7 @@ class TableReporter extends BaseReporter {
       if (task && task.type === "suite" && ((_a = task.result) == null ? void 0 : _a.state) && ((_b = task.result) == null ? void 0 : _b.state) !== "run") {
         const benches = task.tasks.filter((t) => t.meta.benchmark);
         if (benches.length > 0 && benches.every((t) => {
-          var _a2;
+          let _a2;
           return ((_a2 = t.result) == null ? void 0 : _a2.state) !== "run";
         })) {
           let title = ` ${getStateSymbol(task)} ${getFullName(task, c.dim(" > "))}`;
@@ -4726,7 +4726,7 @@ class TableReporter extends BaseReporter {
     }
   }
   async onFinished(files = this.ctx.state.getFiles(), errors = this.ctx.state.getUnhandledErrors()) {
-    var _a;
+    let _a;
     await this.stopListRender();
     this.ctx.logger.log();
     await super.onFinished(files, errors);
@@ -4746,7 +4746,7 @@ class TableReporter extends BaseReporter {
     await super.onWatcherStart();
   }
   async stopListRender() {
-    var _a;
+    let _a;
     await ((_a = this.renderer) == null ? void 0 : _a.stop());
     this.renderer = void 0;
   }
@@ -4755,7 +4755,7 @@ class TableReporter extends BaseReporter {
     await super.onWatcherRerun(files, trigger);
   }
   onUserConsoleLog(log) {
-    var _a;
+    let _a;
     if (!this.shouldLog(log))
       return;
     (_a = this.renderer) == null ? void 0 : _a.clear();
@@ -4763,7 +4763,7 @@ class TableReporter extends BaseReporter {
   }
 }
 function createFormattedBenchamrkReport(files) {
-  var _a;
+  let _a;
   const report = { files: [] };
   for (const file of files) {
     const groups = [];

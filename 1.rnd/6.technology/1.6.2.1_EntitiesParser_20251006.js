@@ -72,16 +72,16 @@ class EntitiesParser{
      */
     replaceEntitiesValue(val){
         if(typeof val === "string" && val.length > 0){
-            for(let entityName in this.docTypeEntities){
+            for(const entityName in this.docTypeEntities){
                 const entity = this.docTypeEntities[entityName];
                 val = val.replace( entity.regx, entity.val);
               }
-              for(let entityName in this.lastEntities){
+              for(const entityName in this.lastEntities){
                 const entity = this.lastEntities[entityName];
                 val = val.replace( entity.regex, entity.val);
               }
               if(this.replaceHtmlEntities){
-                for(let entityName in htmlEntities){
+                for(const entityName in htmlEntities){
                   const entity = htmlEntities[entityName];
                   val = val.replace( entity.regex, entity.val);
                 }
@@ -90,7 +90,7 @@ class EntitiesParser{
         }
         return val;
     }
-};
+}
 
 //an entity name should not contains special characters that may be used in regex
 //Eg !?\\\/[]$%{}^&*()<>

@@ -4,33 +4,33 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = _regeneratorRuntime;
-var _OverloadYield = require("./OverloadYield.js");
-var _regenerator = require("./regenerator.js");
-var _regeneratorAsync = require("./regeneratorAsync.js");
-var _regeneratorAsyncGen = require("./regeneratorAsyncGen.js");
-var _regeneratorAsyncIterator = require("./regeneratorAsyncIterator.js");
-var _regeneratorKeys = require("./regeneratorKeys.js");
-var _regeneratorValues = require("./regeneratorValues.js");
+const _OverloadYield = require("./OverloadYield.js");
+const _regenerator = require("./regenerator.js");
+const _regeneratorAsync = require("./regeneratorAsync.js");
+const _regeneratorAsyncGen = require("./regeneratorAsyncGen.js");
+const _regeneratorAsyncIterator = require("./regeneratorAsyncIterator.js");
+const _regeneratorKeys = require("./regeneratorKeys.js");
+const _regeneratorValues = require("./regeneratorValues.js");
 function _regeneratorRuntime() {
   "use strict";
 
-  var r = (0, _regenerator.default)();
-  var gen = r.m(_regeneratorRuntime);
-  var GeneratorFunctionPrototype = Object.getPrototypeOf ? Object.getPrototypeOf(gen) : gen.__proto__;
-  var GeneratorFunction = GeneratorFunctionPrototype.constructor;
+  const r = (0, _regenerator.default)();
+  const gen = r.m(_regeneratorRuntime);
+  const GeneratorFunctionPrototype = Object.getPrototypeOf ? Object.getPrototypeOf(gen) : gen.__proto__;
+  const GeneratorFunction = GeneratorFunctionPrototype.constructor;
   function isGeneratorFunction(genFun) {
-    var ctor = typeof genFun === "function" && genFun.constructor;
+    const ctor = typeof genFun === "function" && genFun.constructor;
     return ctor ? ctor === GeneratorFunction || (ctor.displayName || ctor.name) === "GeneratorFunction" : false;
   }
-  var abruptMap = {
+  const abruptMap = {
     throw: 1,
     return: 2,
     break: 3,
     continue: 3
   };
   function wrapInnerFn(innerFn) {
-    var compatContext;
-    var callSyncState;
+    let compatContext;
+    let callSyncState;
     return function (context) {
       if (!compatContext) {
         compatContext = {

@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
 exports.retrieveCatalogObjectRequestSchema = void 0;
-var schema_1 = require("../schema");
+const schema_1 = require("../schema");
 exports.retrieveCatalogObjectRequestSchema = (0, schema_1.object)({
     includeRelatedObjects: [
         'include_related_objects',

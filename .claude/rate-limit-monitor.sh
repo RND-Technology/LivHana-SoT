@@ -61,7 +61,7 @@ echo ""
 
 # Health check
 echo "🏥 API Key Health:"
-[REDACTED - SECURITY BREACH]
+if [ -n "$ANTHROPIC_API_KEY" ]; then
     echo -e "${GREEN}✅ Anthropic API key found in .env${NC}"
 else
     echo -e "${RED}❌ Anthropic API key NOT found${NC}"

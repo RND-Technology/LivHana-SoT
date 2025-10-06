@@ -1,12 +1,12 @@
 "use strict";
 exports.__esModule = true;
 exports.MerchantsApi = void 0;
-var tslib_1 = require("tslib");
-var listMerchantsResponse_1 = require("../models/listMerchantsResponse");
-var retrieveMerchantResponse_1 = require("../models/retrieveMerchantResponse");
-var schema_1 = require("../schema");
-var baseApi_1 = require("./baseApi");
-var MerchantsApi = /** @class */ (function (_super) {
+const tslib_1 = require("tslib");
+const listMerchantsResponse_1 = require("../models/listMerchantsResponse");
+const retrieveMerchantResponse_1 = require("../models/retrieveMerchantResponse");
+const schema_1 = require("../schema");
+const baseApi_1 = require("./baseApi");
+const MerchantsApi = /** @class */ (function (_super) {
     tslib_1.__extends(MerchantsApi, _super);
     function MerchantsApi() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -28,7 +28,7 @@ var MerchantsApi = /** @class */ (function (_super) {
      */
     MerchantsApi.prototype.listMerchants = function (cursor, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET', '/v2/merchants');
                 mapped = req.prepareArgs({ cursor: [cursor, (0, schema_1.optional)((0, schema_1.number)())] });
@@ -47,7 +47,7 @@ var MerchantsApi = /** @class */ (function (_super) {
      */
     MerchantsApi.prototype.retrieveMerchant = function (merchantId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({ merchantId: [merchantId, (0, schema_1.string)()] });
@@ -60,5 +60,5 @@ var MerchantsApi = /** @class */ (function (_super) {
     return MerchantsApi;
 }(baseApi_1.BaseApi));
 exports.MerchantsApi = MerchantsApi;
-var templateObject_1;
+let templateObject_1;
 //# sourceMappingURL=merchantsApi.js.map

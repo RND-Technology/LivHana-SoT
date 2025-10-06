@@ -74,7 +74,7 @@ function findMatchingConfig(service, method, methodConfigs, matchLevel) {
 function getDefaultConfigSelector(serviceConfig) {
     return {
         invoke(methodName, metadata) {
-            var _a, _b;
+            let _a, _b;
             const splitName = methodName.split('/').filter(x => x.length > 0);
             const service = (_a = splitName[0]) !== null && _a !== void 0 ? _a : '';
             const method = (_b = splitName[1]) !== null && _b !== void 0 ? _b : '';
@@ -196,7 +196,7 @@ class ResolvingLoadBalancer {
         this.backoffTimeout.unref();
     }
     handleResolverResult(endpointList, attributes, serviceConfig, resolutionNote) {
-        var _a, _b;
+        let _a, _b;
         this.backoffTimeout.stop();
         this.backoffTimeout.reset();
         let resultAccepted = true;

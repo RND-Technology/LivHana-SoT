@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ERR = void 0;
-var ERR;
+let ERR;
 (function (ERR) {
     ERR["controlCharacterInInputStream"] = "control-character-in-input-stream";
     ERR["noncharacterInInputStream"] = "noncharacter-in-input-stream";

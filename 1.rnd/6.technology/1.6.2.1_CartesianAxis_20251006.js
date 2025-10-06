@@ -4,34 +4,34 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.defaultCartesianAxisProps = exports.CartesianAxis = void 0;
-var _react = _interopRequireWildcard(require("react"));
-var React = _react;
-var _get = _interopRequireDefault(require("es-toolkit/compat/get"));
-var _clsx = require("clsx");
-var _ShallowEqual = require("../util/ShallowEqual");
-var _Layer = require("../container/Layer");
-var _Text = require("../component/Text");
-var _Label = require("../component/Label");
-var _DataUtils = require("../util/DataUtils");
-var _types = require("../util/types");
-var _ReactUtils = require("../util/ReactUtils");
-var _getTicks = require("./getTicks");
-var _svgPropertiesNoEvents = require("../util/svgPropertiesNoEvents");
-var _YAxisUtils = require("../util/YAxisUtils");
-var _resolveDefaultProps = require("../util/resolveDefaultProps");
-var _excluded = ["axisLine", "width", "height", "className", "hide", "ticks"],
+const _react = _interopRequireWildcard(require("react"));
+const React = _react;
+const _get = _interopRequireDefault(require("es-toolkit/compat/get"));
+const _clsx = require("clsx");
+const _ShallowEqual = require("../util/ShallowEqual");
+const _Layer = require("../container/Layer");
+const _Text = require("../component/Text");
+const _Label = require("../component/Label");
+const _DataUtils = require("../util/DataUtils");
+const _types = require("../util/types");
+const _ReactUtils = require("../util/ReactUtils");
+const _getTicks = require("./getTicks");
+const _svgPropertiesNoEvents = require("../util/svgPropertiesNoEvents");
+const _YAxisUtils = require("../util/YAxisUtils");
+const _resolveDefaultProps = require("../util/resolveDefaultProps");
+const _excluded = ["axisLine", "width", "height", "className", "hide", "ticks"],
   _excluded2 = ["viewBox"],
   _excluded3 = ["viewBox"];
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
-function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
-function _objectWithoutProperties(e, t) { if (null == e) return {}; var o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { var n = Object.getOwnPropertySymbols(e); for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
-function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t = {}; for (var n in r) if ({}.hasOwnProperty.call(r, n)) { if (-1 !== e.indexOf(n)) continue; t[n] = r[n]; } return t; }
-function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; let o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (const _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
+function _objectWithoutProperties(e, t) { if (null == e) return {}; let o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { const n = Object.getOwnPropertySymbols(e); for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
+function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; const t = {}; for (const n in r) if ({}.hasOwnProperty.call(r, n)) { if (-1 !== e.indexOf(n)) continue; t[n] = r[n]; } return t; }
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (let e = 1; e < arguments.length; e++) { const t = arguments[e]; for (const r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+function ownKeys(e, r) { const t = Object.keys(e); if (Object.getOwnPropertySymbols) { let o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (let r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
+function _toPropertyKey(t) { const i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; const e = t[Symbol.toPrimitive]; if (void 0 !== e) { const i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
  * @fileOverview Cartesian Axis
  */
 /** The orientation of the axis in correspondence to the chart */
@@ -40,7 +40,7 @@ function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = 
 
 /** The formatter function of tick */
 
-var defaultCartesianAxisProps = exports.defaultCartesianAxisProps = {
+const defaultCartesianAxisProps = exports.defaultCartesianAxisProps = {
   x: 0,
   y: 0,
   width: 0,
@@ -74,7 +74,7 @@ var defaultCartesianAxisProps = exports.defaultCartesianAxisProps = {
  */
 
 function AxisLine(axisLineProps) {
-  var {
+  const {
     x,
     y,
     width,
@@ -87,11 +87,11 @@ function AxisLine(axisLineProps) {
   if (!axisLine) {
     return null;
   }
-  var props = _objectSpread(_objectSpread(_objectSpread({}, otherSvgProps), (0, _ReactUtils.filterProps)(axisLine, false)), {}, {
+  let props = _objectSpread(_objectSpread(_objectSpread({}, otherSvgProps), (0, _ReactUtils.filterProps)(axisLine, false)), {}, {
     fill: 'none'
   });
   if (orientation === 'top' || orientation === 'bottom') {
-    var needHeight = +(orientation === 'top' && !mirror || orientation === 'bottom' && mirror);
+    const needHeight = +(orientation === 'top' && !mirror || orientation === 'bottom' && mirror);
     props = _objectSpread(_objectSpread({}, props), {}, {
       x1: x,
       y1: y + needHeight * height,
@@ -99,7 +99,7 @@ function AxisLine(axisLineProps) {
       y2: y + needHeight * height
     });
   } else {
-    var needWidth = +(orientation === 'left' && !mirror || orientation === 'right' && mirror);
+    const needWidth = +(orientation === 'left' && !mirror || orientation === 'right' && mirror);
     props = _objectSpread(_objectSpread({}, props), {}, {
       x1: x + needWidth * width,
       y1: y,
@@ -127,10 +127,10 @@ function AxisLine(axisLineProps) {
  * `line` is the coordinates for the tick line, and `tick` is the coordinate for the tick text.
  */
 function getTickLineCoord(data, x, y, width, height, orientation, tickSize, mirror, tickMargin) {
-  var x1, x2, y1, y2, tx, ty;
-  var sign = mirror ? -1 : 1;
-  var finalTickSize = data.tickSize || tickSize;
-  var tickCoord = (0, _DataUtils.isNumber)(data.tickCoord) ? data.tickCoord : data.coordinate;
+  let x1, x2, y1, y2, tx, ty;
+  const sign = mirror ? -1 : 1;
+  const finalTickSize = data.tickSize || tickSize;
+  const tickCoord = (0, _DataUtils.isNumber)(data.tickCoord) ? data.tickCoord : data.coordinate;
   switch (orientation) {
     case 'top':
       x1 = x2 = data.coordinate;
@@ -208,13 +208,13 @@ function getTickVerticalAnchor(orientation, mirror) {
   }
 }
 function TickItem(props) {
-  var {
+  const {
     option,
     tickProps,
     value
   } = props;
-  var tickItem;
-  var combinedClassName = (0, _clsx.clsx)(tickProps.className, 'recharts-cartesian-axis-tick-value');
+  let tickItem;
+  const combinedClassName = (0, _clsx.clsx)(tickProps.className, 'recharts-cartesian-axis-tick-value');
   if (/*#__PURE__*/React.isValidElement(option)) {
     // @ts-expect-error element cloning is not typed
     tickItem = /*#__PURE__*/React.cloneElement(option, _objectSpread(_objectSpread({}, tickProps), {}, {
@@ -225,7 +225,7 @@ function TickItem(props) {
       className: combinedClassName
     }));
   } else {
-    var className = 'recharts-cartesian-axis-tick-value';
+    let className = 'recharts-cartesian-axis-tick-value';
     if (typeof option !== 'boolean') {
       className = (0, _clsx.clsx)(className, option === null || option === void 0 ? void 0 : option.className);
     }
@@ -236,7 +236,7 @@ function TickItem(props) {
   return tickItem;
 }
 function Ticks(props) {
-  var {
+  const {
     ticks = [],
     tick,
     tickLine,
@@ -259,22 +259,22 @@ function Ticks(props) {
     events
   } = props;
   // @ts-expect-error some properties are optional in props but required in getTicks
-  var finalTicks = (0, _getTicks.getTicks)(_objectSpread(_objectSpread({}, getTicksConfig), {}, {
+  const finalTicks = (0, _getTicks.getTicks)(_objectSpread(_objectSpread({}, getTicksConfig), {}, {
     ticks
   }), fontSize, letterSpacing);
-  var textAnchor = getTickTextAnchor(orientation, mirror);
-  var verticalAnchor = getTickVerticalAnchor(orientation, mirror);
-  var axisProps = (0, _svgPropertiesNoEvents.svgPropertiesNoEvents)(getTicksConfig);
-  var customTickProps = (0, _ReactUtils.filterProps)(tick, false);
-  var tickLineProps = _objectSpread(_objectSpread({}, axisProps), {}, {
+  const textAnchor = getTickTextAnchor(orientation, mirror);
+  const verticalAnchor = getTickVerticalAnchor(orientation, mirror);
+  const axisProps = (0, _svgPropertiesNoEvents.svgPropertiesNoEvents)(getTicksConfig);
+  const customTickProps = (0, _ReactUtils.filterProps)(tick, false);
+  const tickLineProps = _objectSpread(_objectSpread({}, axisProps), {}, {
     fill: 'none'
   }, (0, _ReactUtils.filterProps)(tickLine, false));
-  var items = finalTicks.map((entry, i) => {
-    var {
+  const items = finalTicks.map((entry, i) => {
+    const {
       line: lineCoord,
       tick: tickCoord
     } = getTickLineCoord(entry, x, y, width, height, orientation, tickSize, mirror, tickMargin);
-    var tickProps = _objectSpread(_objectSpread(_objectSpread(_objectSpread({
+    const tickProps = _objectSpread(_objectSpread(_objectSpread(_objectSpread({
       // @ts-expect-error textAnchor from axisProps is typed as `string` but Text wants type `TextAnchor`
       textAnchor,
       verticalAnchor
@@ -309,8 +309,8 @@ function Ticks(props) {
   }
   return null;
 }
-var CartesianAxisComponent = /*#__PURE__*/(0, _react.forwardRef)((props, ref) => {
-  var {
+const CartesianAxisComponent = /*#__PURE__*/(0, _react.forwardRef)((props, ref) => {
+  let {
       axisLine,
       width,
       height,
@@ -319,12 +319,12 @@ var CartesianAxisComponent = /*#__PURE__*/(0, _react.forwardRef)((props, ref) =>
       ticks
     } = props,
     rest = _objectWithoutProperties(props, _excluded);
-  var [fontSize, setFontSize] = (0, _react.useState)('');
-  var [letterSpacing, setLetterSpacing] = (0, _react.useState)('');
-  var tickRefs = (0, _react.useRef)([]);
+  const [fontSize, setFontSize] = (0, _react.useState)('');
+  const [letterSpacing, setLetterSpacing] = (0, _react.useState)('');
+  const tickRefs = (0, _react.useRef)([]);
   (0, _react.useImperativeHandle)(ref, () => ({
     getCalculatedWidth: () => {
-      var _props$labelRef;
+      let _props$labelRef;
       return (0, _YAxisUtils.getCalculatedYAxisWidth)({
         ticks: tickRefs.current,
         label: (_props$labelRef = props.labelRef) === null || _props$labelRef === void 0 ? void 0 : _props$labelRef.current,
@@ -334,15 +334,15 @@ var CartesianAxisComponent = /*#__PURE__*/(0, _react.forwardRef)((props, ref) =>
       });
     }
   }));
-  var layerRef = (0, _react.useCallback)(el => {
+  const layerRef = (0, _react.useCallback)(el => {
     if (el) {
-      var tickNodes = el.getElementsByClassName('recharts-cartesian-axis-tick-value');
+      const tickNodes = el.getElementsByClassName('recharts-cartesian-axis-tick-value');
       tickRefs.current = Array.from(tickNodes);
-      var tick = tickNodes[0];
+      const tick = tickNodes[0];
       if (tick) {
-        var computedStyle = window.getComputedStyle(tick);
-        var calculatedFontSize = computedStyle.fontSize;
-        var calculatedLetterSpacing = computedStyle.letterSpacing;
+        const computedStyle = window.getComputedStyle(tick);
+        const calculatedFontSize = computedStyle.fontSize;
+        const calculatedLetterSpacing = computedStyle.letterSpacing;
         if (calculatedFontSize !== fontSize || calculatedLetterSpacing !== letterSpacing) {
           setFontSize(calculatedFontSize);
           setLetterSpacing(calculatedLetterSpacing);
@@ -403,19 +403,19 @@ var CartesianAxisComponent = /*#__PURE__*/(0, _react.forwardRef)((props, ref) =>
     label: props.label
   }), props.children));
 });
-var MemoCartesianAxis = /*#__PURE__*/React.memo(CartesianAxisComponent, (prevProps, nextProps) => {
-  var {
+const MemoCartesianAxis = /*#__PURE__*/React.memo(CartesianAxisComponent, (prevProps, nextProps) => {
+  let {
       viewBox: prevViewBox
     } = prevProps,
     prevRestProps = _objectWithoutProperties(prevProps, _excluded2);
-  var {
+  let {
       viewBox: nextViewBox
     } = nextProps,
     nextRestProps = _objectWithoutProperties(nextProps, _excluded3);
   return (0, _ShallowEqual.shallowEqual)(prevViewBox, nextViewBox) && (0, _ShallowEqual.shallowEqual)(prevRestProps, nextRestProps);
 });
-var CartesianAxis = exports.CartesianAxis = /*#__PURE__*/React.forwardRef((outsideProps, ref) => {
-  var props = (0, _resolveDefaultProps.resolveDefaultProps)(outsideProps, defaultCartesianAxisProps);
+const CartesianAxis = exports.CartesianAxis = /*#__PURE__*/React.forwardRef((outsideProps, ref) => {
+  const props = (0, _resolveDefaultProps.resolveDefaultProps)(outsideProps, defaultCartesianAxisProps);
   return /*#__PURE__*/React.createElement(MemoCartesianAxis, _extends({}, props, {
     ref: ref
   }));

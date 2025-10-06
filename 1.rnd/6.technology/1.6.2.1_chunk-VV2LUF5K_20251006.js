@@ -2,33 +2,33 @@
 
 
 
-var _chunkLK6DILFKjs = require('./chunk-LK6DILFK.js');
+const _chunkLK6DILFKjs = require('./chunk-LK6DILFK.js');
 
 
-var _chunkPFGO5BSMjs = require('./chunk-PFGO5BSM.js');
+const _chunkPFGO5BSMjs = require('./chunk-PFGO5BSM.js');
 
 
-var _chunk73NOP3T5js = require('./chunk-73NOP3T5.js');
-
-
-
-var _chunk72ZIHMEBjs = require('./chunk-72ZIHMEB.js');
+const _chunk73NOP3T5js = require('./chunk-73NOP3T5.js');
 
 
 
+const _chunk72ZIHMEBjs = require('./chunk-72ZIHMEB.js');
 
 
-var _chunkA7U44ARPjs = require('./chunk-A7U44ARP.js');
 
 
-var _chunkSMXZPJEAjs = require('./chunk-SMXZPJEA.js');
+
+const _chunkA7U44ARPjs = require('./chunk-A7U44ARP.js');
+
+
+const _chunkSMXZPJEAjs = require('./chunk-SMXZPJEA.js');
 
 // src/interceptors/XMLHttpRequest/index.ts
-var _outvariant = require('outvariant');
+const _outvariant = require('outvariant');
 
 // src/interceptors/XMLHttpRequest/XMLHttpRequestController.ts
 
-var _isnodeprocess = require('is-node-process');
+const _isnodeprocess = require('is-node-process');
 
 // src/interceptors/XMLHttpRequest/utils/concatArrayBuffer.ts
 function concatArrayBuffer(left, right) {
@@ -39,7 +39,7 @@ function concatArrayBuffer(left, right) {
 }
 
 // src/interceptors/XMLHttpRequest/polyfills/EventPolyfill.ts
-var EventPolyfill = class {
+const EventPolyfill = class {
   constructor(type, options) {
     this.NONE = 0;
     this.CAPTURING_PHASE = 1;
@@ -82,7 +82,7 @@ var EventPolyfill = class {
 };
 
 // src/interceptors/XMLHttpRequest/polyfills/ProgressEventPolyfill.ts
-var ProgressEventPolyfill = class extends EventPolyfill {
+const ProgressEventPolyfill = class extends EventPolyfill {
   constructor(type, init) {
     super(type);
     this.lengthComputable = (init == null ? void 0 : init.lengthComputable) || false;
@@ -93,7 +93,7 @@ var ProgressEventPolyfill = class extends EventPolyfill {
 };
 
 // src/interceptors/XMLHttpRequest/utils/createEvent.ts
-var SUPPORTS_PROGRESS_EVENT = typeof ProgressEvent !== "undefined";
+const SUPPORTS_PROGRESS_EVENT = typeof ProgressEvent !== "undefined";
 function createEvent(target, type, init) {
   const progressEvents = [
     "error",
@@ -244,10 +244,10 @@ async function getBodyByteLength(input) {
 }
 
 // src/interceptors/XMLHttpRequest/XMLHttpRequestController.ts
-var kIsRequestHandled = Symbol("kIsRequestHandled");
-var IS_NODE = _isnodeprocess.isNodeProcess.call(void 0, );
-var kFetchRequest = Symbol("kFetchRequest");
-var XMLHttpRequestController = class {
+const kIsRequestHandled = Symbol("kIsRequestHandled");
+const IS_NODE = _isnodeprocess.isNodeProcess.call(void 0, );
+const kFetchRequest = Symbol("kFetchRequest");
+const XMLHttpRequestController = class {
   constructor(initialRequest, logger) {
     this.initialRequest = initialRequest;
     this.logger = logger;
@@ -275,7 +275,7 @@ var XMLHttpRequestController = class {
         }
       },
       methodCall: ([methodName, args], invoke) => {
-        var _a;
+        let _a;
         switch (methodName) {
           case "open": {
             const [method, url] = args;
@@ -839,7 +839,7 @@ var _XMLHttpRequestInterceptor = class extends _chunkA7U44ARPjs.Interceptor {
     });
   }
 };
-var XMLHttpRequestInterceptor = _XMLHttpRequestInterceptor;
+const XMLHttpRequestInterceptor = _XMLHttpRequestInterceptor;
 XMLHttpRequestInterceptor.interceptorSymbol = Symbol("xhr");
 
 

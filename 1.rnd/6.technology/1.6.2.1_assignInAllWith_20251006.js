@@ -1,4 +1,4 @@
-var convert = require('./convert'),
+const convert = require('./convert'),
     func = convert('assignInAllWith', require('../assignInWith'));
 
 func.placeholder = require('./placeholder');

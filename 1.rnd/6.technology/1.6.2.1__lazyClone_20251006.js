@@ -1,4 +1,4 @@
-var LazyWrapper = require('./_LazyWrapper'),
+const LazyWrapper = require('./_LazyWrapper'),
     copyArray = require('./_copyArray');
 
 /**
@@ -10,7 +10,7 @@ var LazyWrapper = require('./_LazyWrapper'),
  * @returns {Object} Returns the cloned `LazyWrapper` object.
  */
 function lazyClone() {
-  var result = new LazyWrapper(this.__wrapped__);
+  const result = new LazyWrapper(this.__wrapped__);
   result.__actions__ = copyArray(this.__actions__);
   result.__dir__ = this.__dir__;
   result.__filtered__ = this.__filtered__;

@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
 exports.listBookingCustomAttributeDefinitionsResponseSchema = void 0;
-var schema_1 = require("../schema");
-var customAttributeDefinition_1 = require("./customAttributeDefinition");
-var error_1 = require("./error");
+const schema_1 = require("../schema");
+const customAttributeDefinition_1 = require("./customAttributeDefinition");
+const error_1 = require("./error");
 exports.listBookingCustomAttributeDefinitionsResponseSchema = (0, schema_1.object)({
     customAttributeDefinitions: [
         'custom_attribute_definitions',

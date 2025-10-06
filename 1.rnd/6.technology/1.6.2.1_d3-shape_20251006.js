@@ -71,7 +71,7 @@ function arcPadAngle(d) {
 }
 
 function intersect(x0, y0, x1, y1, x2, y2, x3, y3) {
-  var x10 = x1 - x0, y10 = y1 - y0,
+  let x10 = x1 - x0, y10 = y1 - y0,
       x32 = x3 - x2, y32 = y3 - y2,
       t = y32 * x10 - x32 * y10;
   if (t * t < epsilon) return;
@@ -82,7 +82,7 @@ function intersect(x0, y0, x1, y1, x2, y2, x3, y3) {
 // Compute perpendicular offset line of length rc.
 // http://mathworld.wolfram.com/Circle-LineIntersection.html
 function cornerTangents(x0, y0, x1, y1, r1, rc, cw) {
-  var x01 = x0 - x1,
+  let x01 = x0 - x1,
       y01 = y0 - y1,
       lo = (cw ? rc : -rc) / sqrt(x01 * x01 + y01 * y01),
       ox = lo * y01,
@@ -123,7 +123,7 @@ function cornerTangents(x0, y0, x1, y1, r1, rc, cw) {
 }
 
 function arc() {
-  var innerRadius = arcInnerRadius,
+  let innerRadius = arcInnerRadius,
       outerRadius = arcOuterRadius,
       cornerRadius = constant(0),
       padRadius = null,
@@ -134,7 +134,7 @@ function arc() {
       path = withPath(arc);
 
   function arc() {
-    var buffer,
+    let buffer,
         r,
         r0 = +innerRadius.apply(this, arguments),
         r1 = +outerRadius.apply(this, arguments),
@@ -163,7 +163,7 @@ function arc() {
 
     // Or is it a circular or annular sector?
     else {
-      var a01 = a0,
+      let a01 = a0,
           a11 = a1,
           a00 = a0,
           a10 = a1,
@@ -179,7 +179,7 @@ function arc() {
 
       // Apply padding? Note that since r1 ≥ r0, da1 ≥ da0.
       if (rp > epsilon) {
-        var p0 = asin(rp / r0 * sin(ap)),
+        let p0 = asin(rp / r0 * sin(ap)),
             p1 = asin(rp / r1 * sin(ap));
         if ((da0 -= p0 * 2) > epsilon) p0 *= (cw ? 1 : -1), a00 += p0, a10 -= p0;
         else da0 = 0, a00 = a10 = (a0 + a1) / 2;
@@ -187,7 +187,7 @@ function arc() {
         else da1 = 0, a01 = a11 = (a0 + a1) / 2;
       }
 
-      var x01 = r1 * cos(a01),
+      const x01 = r1 * cos(a01),
           y01 = r1 * sin(a01),
           x10 = r0 * cos(a10),
           y10 = r0 * sin(a10);
@@ -205,7 +205,7 @@ function arc() {
         // disable the corner radius entirely.
         if (da < pi) {
           if (oc = intersect(x01, y01, x00, y00, x11, y11, x10, y10)) {
-            var ax = x01 - oc[0],
+            const ax = x01 - oc[0],
                 ay = y01 - oc[1],
                 bx = x11 - oc[0],
                 by = y11 - oc[1],
@@ -275,7 +275,7 @@ function arc() {
   }
 
   arc.centroid = function() {
-    var r = (+innerRadius.apply(this, arguments) + +outerRadius.apply(this, arguments)) / 2,
+    const r = (+innerRadius.apply(this, arguments) + +outerRadius.apply(this, arguments)) / 2,
         a = (+startAngle.apply(this, arguments) + +endAngle.apply(this, arguments)) / 2 - pi / 2;
     return [cos(a) * r, sin(a) * r];
   };
@@ -315,7 +315,7 @@ function arc() {
   return arc;
 }
 
-var slice = Array.prototype.slice;
+const slice = Array.prototype.slice;
 
 function array(x) {
   return typeof x === "object" && "length" in x
@@ -364,7 +364,7 @@ function y(p) {
 }
 
 function line(x$1, y$1) {
-  var defined = constant(true),
+  let defined = constant(true),
       context = null,
       curve = curveLinear,
       output = null,
@@ -374,7 +374,7 @@ function line(x$1, y$1) {
   y$1 = typeof y$1 === "function" ? y$1 : (y$1 === undefined) ? y : constant(y$1);
 
   function line(data) {
-    var i,
+    let i,
         n = (data = array(data)).length,
         d,
         defined0 = false,
@@ -417,7 +417,7 @@ function line(x$1, y$1) {
 }
 
 function area(x0, y0, y1) {
-  var x1 = null,
+  let x1 = null,
       defined = constant(true),
       context = null,
       curve = curveLinear,
@@ -429,7 +429,7 @@ function area(x0, y0, y1) {
   y1 = typeof y1 === "function" ? y1 : (y1 === undefined) ? y : constant(+y1);
 
   function area(data) {
-    var i,
+    let i,
         j,
         k,
         n = (data = array(data)).length,
@@ -531,7 +531,7 @@ function identity(d) {
 }
 
 function pie() {
-  var value = identity,
+  let value = identity,
       sortValues = descending$1,
       sort = null,
       startAngle = constant(0),
@@ -539,7 +539,7 @@ function pie() {
       padAngle = constant(0);
 
   function pie(data) {
-    var i,
+    let i,
         n = (data = array(data)).length,
         j,
         k,
@@ -605,7 +605,7 @@ function pie() {
   return pie;
 }
 
-var curveRadialLinear = curveRadial(curveLinear);
+const curveRadialLinear = curveRadial(curveLinear);
 
 function Radial(curve) {
   this._curve = curve;
@@ -641,7 +641,7 @@ function curveRadial(curve) {
 }
 
 function lineRadial(l) {
-  var c = l.curve;
+  const c = l.curve;
 
   l.angle = l.x, delete l.x;
   l.radius = l.y, delete l.y;
@@ -658,7 +658,7 @@ function lineRadial$1() {
 }
 
 function areaRadial() {
-  var a = area().curve(curveRadialLinear),
+  const a = area().curve(curveRadialLinear),
       c = a.curve,
       x0 = a.lineX0,
       x1 = a.lineX1,
@@ -831,7 +831,7 @@ function linkRadial() {
 
 const sqrt3$2 = sqrt(3);
 
-var asterisk = {
+const asterisk = {
   draw(context, size) {
     const r = sqrt(size + min(size / 28, 0.75)) * 0.59436;
     const t = r / 2;
@@ -845,7 +845,7 @@ var asterisk = {
   }
 };
 
-var circle = {
+const circle = {
   draw(context, size) {
     const r = sqrt(size / pi);
     context.moveTo(r, 0);
@@ -853,7 +853,7 @@ var circle = {
   }
 };
 
-var cross = {
+const cross = {
   draw(context, size) {
     const r = sqrt(size / 5) / 2;
     context.moveTo(-3 * r, -r);
@@ -875,7 +875,7 @@ var cross = {
 const tan30 = sqrt(1 / 3);
 const tan30_2 = tan30 * 2;
 
-var diamond = {
+const diamond = {
   draw(context, size) {
     const y = sqrt(size / tan30_2);
     const x = y * tan30;
@@ -887,7 +887,7 @@ var diamond = {
   }
 };
 
-var diamond2 = {
+const diamond2 = {
   draw(context, size) {
     const r = sqrt(size) * 0.62625;
     context.moveTo(0, -r);
@@ -898,7 +898,7 @@ var diamond2 = {
   }
 };
 
-var plus = {
+const plus = {
   draw(context, size) {
     const r = sqrt(size - min(size / 7, 2)) * 0.87559;
     context.moveTo(-r, 0);
@@ -908,7 +908,7 @@ var plus = {
   }
 };
 
-var square = {
+const square = {
   draw(context, size) {
     const w = sqrt(size);
     const x = -w / 2;
@@ -916,7 +916,7 @@ var square = {
   }
 };
 
-var square2 = {
+const square2 = {
   draw(context, size) {
     const r = sqrt(size) * 0.4431;
     context.moveTo(r, r);
@@ -932,7 +932,7 @@ const kr = sin(pi / 10) / sin(7 * pi / 10);
 const kx = sin(tau / 10) * kr;
 const ky = -cos(tau / 10) * kr;
 
-var star = {
+const star = {
   draw(context, size) {
     const r = sqrt(size * ka);
     const x = kx * r;
@@ -952,7 +952,7 @@ var star = {
 
 const sqrt3$1 = sqrt(3);
 
-var triangle = {
+const triangle = {
   draw(context, size) {
     const y = -sqrt(size / (sqrt3$1 * 3));
     context.moveTo(0, y * 2);
@@ -964,7 +964,7 @@ var triangle = {
 
 const sqrt3 = sqrt(3);
 
-var triangle2 = {
+const triangle2 = {
   draw(context, size) {
     const s = sqrt(size) * 0.6824;
     const t = s  / 2;
@@ -981,7 +981,7 @@ const s = sqrt(3) / 2;
 const k = 1 / sqrt(12);
 const a = (k / 2 + 1) * 3;
 
-var wye = {
+const wye = {
   draw(context, size) {
     const r = sqrt(size / a);
     const x0 = r / 2, y0 = r * k;
@@ -1000,7 +1000,7 @@ var wye = {
   }
 };
 
-var times = {
+const times = {
   draw(context, size) {
     const r = sqrt(size - min(size / 6, 1.7)) * 0.6189;
     context.moveTo(-r, -r);
@@ -1215,12 +1215,12 @@ Bundle.prototype = {
     this._basis.lineStart();
   },
   lineEnd: function() {
-    var x = this._x,
+    const x = this._x,
         y = this._y,
         j = x.length - 1;
 
     if (j > 0) {
-      var x0 = x[0],
+      let x0 = x[0],
           y0 = y[0],
           dx = x[j] - x0,
           dy = y[j] - y0,
@@ -1245,7 +1245,7 @@ Bundle.prototype = {
   }
 };
 
-var bundle = (function custom(beta) {
+const bundle = (function custom(beta) {
 
   function bundle(context) {
     return beta === 1 ? new Basis(context) : new Bundle(context, beta);
@@ -1307,7 +1307,7 @@ Cardinal.prototype = {
   }
 };
 
-var cardinal = (function custom(tension) {
+const cardinal = (function custom(tension) {
 
   function cardinal(context) {
     return new Cardinal(context, tension);
@@ -1366,7 +1366,7 @@ CardinalClosed.prototype = {
   }
 };
 
-var cardinalClosed = (function custom(tension) {
+const cardinalClosed = (function custom(tension) {
 
   function cardinal(context) {
     return new CardinalClosed(context, tension);
@@ -1414,7 +1414,7 @@ CardinalOpen.prototype = {
   }
 };
 
-var cardinalOpen = (function custom(tension) {
+const cardinalOpen = (function custom(tension) {
 
   function cardinal(context) {
     return new CardinalOpen(context, tension);
@@ -1428,20 +1428,20 @@ var cardinalOpen = (function custom(tension) {
 })(0);
 
 function point$1(that, x, y) {
-  var x1 = that._x1,
+  let x1 = that._x1,
       y1 = that._y1,
       x2 = that._x2,
       y2 = that._y2;
 
   if (that._l01_a > epsilon) {
-    var a = 2 * that._l01_2a + 3 * that._l01_a * that._l12_a + that._l12_2a,
+    const a = 2 * that._l01_2a + 3 * that._l01_a * that._l12_a + that._l12_2a,
         n = 3 * that._l01_a * (that._l01_a + that._l12_a);
     x1 = (x1 * a - that._x0 * that._l12_2a + that._x2 * that._l01_2a) / n;
     y1 = (y1 * a - that._y0 * that._l12_2a + that._y2 * that._l01_2a) / n;
   }
 
   if (that._l23_a > epsilon) {
-    var b = 2 * that._l23_2a + 3 * that._l23_a * that._l12_a + that._l12_2a,
+    const b = 2 * that._l23_2a + 3 * that._l23_a * that._l12_a + that._l12_2a,
         m = 3 * that._l23_a * (that._l23_a + that._l12_a);
     x2 = (x2 * b + that._x1 * that._l23_2a - x * that._l12_2a) / m;
     y2 = (y2 * b + that._y1 * that._l23_2a - y * that._l12_2a) / m;
@@ -1481,7 +1481,7 @@ CatmullRom.prototype = {
     x = +x, y = +y;
 
     if (this._point) {
-      var x23 = this._x2 - x,
+      const x23 = this._x2 - x,
           y23 = this._y2 - y;
       this._l23_a = Math.sqrt(this._l23_2a = Math.pow(x23 * x23 + y23 * y23, this._alpha));
     }
@@ -1500,7 +1500,7 @@ CatmullRom.prototype = {
   }
 };
 
-var catmullRom = (function custom(alpha) {
+const catmullRom = (function custom(alpha) {
 
   function catmullRom(context) {
     return alpha ? new CatmullRom(context, alpha) : new Cardinal(context, 0);
@@ -1552,7 +1552,7 @@ CatmullRomClosed.prototype = {
     x = +x, y = +y;
 
     if (this._point) {
-      var x23 = this._x2 - x,
+      const x23 = this._x2 - x,
           y23 = this._y2 - y;
       this._l23_a = Math.sqrt(this._l23_2a = Math.pow(x23 * x23 + y23 * y23, this._alpha));
     }
@@ -1571,7 +1571,7 @@ CatmullRomClosed.prototype = {
   }
 };
 
-var catmullRomClosed = (function custom(alpha) {
+const catmullRomClosed = (function custom(alpha) {
 
   function catmullRom(context) {
     return alpha ? new CatmullRomClosed(context, alpha) : new CardinalClosed(context, 0);
@@ -1611,7 +1611,7 @@ CatmullRomOpen.prototype = {
     x = +x, y = +y;
 
     if (this._point) {
-      var x23 = this._x2 - x,
+      const x23 = this._x2 - x,
           y23 = this._y2 - y;
       this._l23_a = Math.sqrt(this._l23_2a = Math.pow(x23 * x23 + y23 * y23, this._alpha));
     }
@@ -1631,7 +1631,7 @@ CatmullRomOpen.prototype = {
   }
 };
 
-var catmullRomOpen = (function custom(alpha) {
+const catmullRomOpen = (function custom(alpha) {
 
   function catmullRom(context) {
     return alpha ? new CatmullRomOpen(context, alpha) : new CardinalOpen(context, 0);
@@ -1677,7 +1677,7 @@ function sign(x) {
 // Interpolation in One Dimension. Astronomy and Astrophysics, Vol. 239, NO.
 // NOV(II), P. 443, 1990.
 function slope3(that, x2, y2) {
-  var h0 = that._x1 - that._x0,
+  const h0 = that._x1 - that._x0,
       h1 = x2 - that._x1,
       s0 = (that._y1 - that._y0) / (h0 || h1 < 0 && -0),
       s1 = (y2 - that._y1) / (h1 || h0 < 0 && -0),
@@ -1687,7 +1687,7 @@ function slope3(that, x2, y2) {
 
 // Calculate a one-sided slope.
 function slope2(that, t) {
-  var h = that._x1 - that._x0;
+  const h = that._x1 - that._x0;
   return h ? (3 * (that._y1 - that._y0) / h - t) / 2 : t;
 }
 
@@ -1695,7 +1695,7 @@ function slope2(that, t) {
 // "you can express cubic Hermite interpolation in terms of cubic Bézier curves
 // with respect to the four values p0, p0 + m0 / 3, p1 - m1 / 3, p1".
 function point(that, t0, t1) {
-  var x0 = that._x0,
+  const x0 = that._x0,
       y0 = that._y0,
       x1 = that._x1,
       y1 = that._y1,
@@ -1729,7 +1729,7 @@ MonotoneX.prototype = {
     this._line = 1 - this._line;
   },
   point: function(x, y) {
-    var t1 = NaN;
+    let t1 = NaN;
 
     x = +x, y = +y;
     if (x === this._x1 && y === this._y1) return; // Ignore coincident points.
@@ -1789,7 +1789,7 @@ Natural.prototype = {
     this._y = [];
   },
   lineEnd: function() {
-    var x = this._x,
+    const x = this._x,
         y = this._y,
         n = x.length;
 
@@ -1798,9 +1798,9 @@ Natural.prototype = {
       if (n === 2) {
         this._context.lineTo(x[1], y[1]);
       } else {
-        var px = controlPoints(x),
+        const px = controlPoints(x),
             py = controlPoints(y);
-        for (var i0 = 0, i1 = 1; i1 < n; ++i0, ++i1) {
+        for (let i0 = 0, i1 = 1; i1 < n; ++i0, ++i1) {
           this._context.bezierCurveTo(px[0][i0], py[0][i0], px[1][i0], py[1][i0], x[i1], y[i1]);
         }
       }
@@ -1818,7 +1818,7 @@ Natural.prototype = {
 
 // See https://www.particleincell.com/2012/bezier-splines/ for derivation.
 function controlPoints(x) {
-  var i,
+  let i,
       n = x.length - 1,
       m,
       a = new Array(n),
@@ -1870,7 +1870,7 @@ Step.prototype = {
           this._context.lineTo(this._x, y);
           this._context.lineTo(x, y);
         } else {
-          var x1 = this._x * (1 - this._t) + x * this._t;
+          const x1 = this._x * (1 - this._t) + x * this._t;
           this._context.lineTo(x1, this._y);
           this._context.lineTo(x1, y);
         }
@@ -1904,7 +1904,7 @@ function none$1(series, order) {
 }
 
 function none(series) {
-  var n = series.length, o = new Array(n);
+  let n = series.length, o = new Array(n);
   while (--n >= 0) o[n] = n;
   return o;
 }
@@ -1920,13 +1920,13 @@ function stackSeries(key) {
 }
 
 function stack() {
-  var keys = constant([]),
+  let keys = constant([]),
       order = none,
       offset = none$1,
       value = stackValue;
 
   function stack(data) {
-    var sz = Array.from(keys.apply(this, arguments), stackSeries),
+    let sz = Array.from(keys.apply(this, arguments), stackSeries),
         i, n = sz.length, j = -1,
         oz;
 
@@ -2000,12 +2000,12 @@ function wiggle(series, order) {
   if (!((n = series.length) > 0) || !((m = (s0 = series[order[0]]).length) > 0)) return;
   for (var y = 0, j = 1, s0, m, n; j < m; ++j) {
     for (var i = 0, s1 = 0, s2 = 0; i < n; ++i) {
-      var si = series[order[i]],
+      let si = series[order[i]],
           sij0 = si[j][1] || 0,
           sij1 = si[j - 1][1] || 0,
           s3 = (sij0 - sij1) / 2;
-      for (var k = 0; k < i; ++k) {
-        var sk = series[order[k]],
+      for (let k = 0; k < i; ++k) {
+        const sk = series[order[k]],
             skj0 = sk[j][1] || 0,
             skj1 = sk[j - 1][1] || 0;
         s3 += skj0 - skj1;
@@ -2020,23 +2020,23 @@ function wiggle(series, order) {
 }
 
 function appearance(series) {
-  var peaks = series.map(peak);
+  const peaks = series.map(peak);
   return none(series).sort(function(a, b) { return peaks[a] - peaks[b]; });
 }
 
 function peak(series) {
-  var i = -1, j = 0, n = series.length, vi, vj = -Infinity;
+  let i = -1, j = 0, n = series.length, vi, vj = -Infinity;
   while (++i < n) if ((vi = +series[i][1]) > vj) vj = vi, j = i;
   return j;
 }
 
 function ascending(series) {
-  var sums = series.map(sum);
+  const sums = series.map(sum);
   return none(series).sort(function(a, b) { return sums[a] - sums[b]; });
 }
 
 function sum(series) {
-  var s = 0, i = -1, n = series.length, v;
+  let s = 0, i = -1, n = series.length, v;
   while (++i < n) if (v = +series[i][1]) s += v;
   return s;
 }
@@ -2046,7 +2046,7 @@ function descending(series) {
 }
 
 function insideOut(series) {
-  var n = series.length,
+  let n = series.length,
       i,
       j,
       sums = series.map(sum),

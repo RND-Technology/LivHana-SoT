@@ -1,14 +1,14 @@
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+const GetIntrinsic = require('get-intrinsic');
 
-var $Object = require('es-object-atoms');
-var $StringPrototype = GetIntrinsic('%String.prototype%');
-var $SyntaxError = require('es-errors/syntax');
-var $TypeError = require('es-errors/type');
-var setProto = require('set-proto');
+const $Object = require('es-object-atoms');
+const $StringPrototype = GetIntrinsic('%String.prototype%');
+const $SyntaxError = require('es-errors/syntax');
+const $TypeError = require('es-errors/type');
+const setProto = require('set-proto');
 
-var DefinePropertyOrThrow = require('./DefinePropertyOrThrow');
+const DefinePropertyOrThrow = require('./DefinePropertyOrThrow');
 
 // https://262.ecma-international.org/6.0/#sec-stringcreate
 
@@ -17,7 +17,7 @@ module.exports = function StringCreate(value, prototype) {
 		throw new $TypeError('Assertion failed: `S` must be a String');
 	}
 
-	var S = $Object(value);
+	const S = $Object(value);
 	if (prototype !== $StringPrototype) {
 		if (setProto) {
 			setProto(S, prototype);
@@ -26,7 +26,7 @@ module.exports = function StringCreate(value, prototype) {
 		}
 	}
 
-	var length = value.length;
+	const length = value.length;
 	DefinePropertyOrThrow(S, 'length', {
 		'[[Configurable]]': false,
 		'[[Enumerable]]': false,

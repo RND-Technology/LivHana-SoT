@@ -45,7 +45,7 @@ function closeInspector(config) {
   }
 }
 function shouldKeepOpen(config) {
-  var _a, _b, _c, _d, _e, _f, _g, _h;
+  let _a, _b, _c, _d, _e, _f, _g, _h;
   const isIsolatedSingleThread = config.pool === "threads" && ((_b = (_a = config.poolOptions) == null ? void 0 : _a.threads) == null ? void 0 : _b.isolate) === false && ((_d = (_c = config.poolOptions) == null ? void 0 : _c.threads) == null ? void 0 : _d.singleThread);
   const isIsolatedSingleFork = config.pool === "forks" && ((_f = (_e = config.poolOptions) == null ? void 0 : _e.forks) == null ? void 0 : _f.isolate) === false && ((_h = (_g = config.poolOptions) == null ? void 0 : _g.forks) == null ? void 0 : _h.singleFork);
   return config.watch && (isIsolatedSingleFork || isIsolatedSingleThread);

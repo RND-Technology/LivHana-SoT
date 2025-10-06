@@ -1,10 +1,10 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
-var isObject = require('es-object-atoms/isObject');
+const $TypeError = require('es-errors/type');
+const isObject = require('es-object-atoms/isObject');
 
-var isPropertyKey = require('../helpers/isPropertyKey');
-var OrdinaryDefineOwnProperty = require('./OrdinaryDefineOwnProperty');
+const isPropertyKey = require('../helpers/isPropertyKey');
+const OrdinaryDefineOwnProperty = require('./OrdinaryDefineOwnProperty');
 
 // https://262.ecma-international.org/6.0/#sec-createdataproperty
 
@@ -15,7 +15,7 @@ module.exports = function CreateDataProperty(O, P, V) {
 	if (!isPropertyKey(P)) {
 		throw new $TypeError('Assertion failed: P is not a Property Key');
 	}
-	var newDesc = {
+	const newDesc = {
 		'[[Configurable]]': true,
 		'[[Enumerable]]': true,
 		'[[Value]]': V,

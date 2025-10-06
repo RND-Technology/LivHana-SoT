@@ -48,5 +48,5 @@ const activeFilters = globalConfig => {
   }
   return '';
 };
-var _default = activeFilters;
+const _default = activeFilters;
 exports.default = _default;

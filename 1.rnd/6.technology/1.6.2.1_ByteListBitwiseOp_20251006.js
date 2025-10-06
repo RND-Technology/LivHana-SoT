@@ -1,10 +1,10 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var IsArray = require('./IsArray');
+const IsArray = require('./IsArray');
 
-var isByteValue = require('../helpers/isByteValue');
+const isByteValue = require('../helpers/isByteValue');
 
 // https://262.ecma-international.org/12.0/#sec-bytelistbitwiseop
 
@@ -16,11 +16,11 @@ module.exports = function ByteListBitwiseOp(op, xBytes, yBytes) {
 		throw new $TypeError('Assertion failed: `xBytes` and `yBytes` must be same-length sequences of byte values (an integer 0-255, inclusive)');
 	}
 
-	var result = [];
+	const result = [];
 
-	for (var i = 0; i < xBytes.length; i += 1) {
-		var xByte = xBytes[i];
-		var yByte = yBytes[i];
+	for (let i = 0; i < xBytes.length; i += 1) {
+		const xByte = xBytes[i];
+		const yByte = yBytes[i];
 		if (!isByteValue(xByte) || !isByteValue(yByte)) {
 			throw new $TypeError('Assertion failed: `xBytes` and `yBytes` must be same-length sequences of byte values (an integer 0-255, inclusive)');
 		}

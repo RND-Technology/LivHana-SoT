@@ -4,9 +4,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = applyDecs2305;
-var _checkInRHS = require("./checkInRHS.js");
-var _setFunctionName = require("./setFunctionName.js");
-var _toPropertyKey = require("./toPropertyKey.js");
+const _checkInRHS = require("./checkInRHS.js");
+const _setFunctionName = require("./setFunctionName.js");
+const _toPropertyKey = require("./toPropertyKey.js");
 function applyDecs2305(targetClass, memberDecs, classDecs, classDecsHaveThis, instanceBrand, parentClass) {
   function _bindPropCall(obj, name, before) {
     return function (_this, value) {
@@ -17,7 +17,7 @@ function applyDecs2305(targetClass, memberDecs, classDecs, classDecsHaveThis, in
     };
   }
   function runInitializers(initializers, value) {
-    for (var i = 0; i < initializers.length; i++) {
+    for (let i = 0; i < initializers.length; i++) {
       initializers[i].call(value);
     }
     return value;
@@ -36,7 +36,7 @@ function applyDecs2305(targetClass, memberDecs, classDecs, classDecsHaveThis, in
         throw new TypeError("Attempted to access private element on non-instance");
       }
     }
-    var decs = decInfo[0],
+    let decs = decInfo[0],
       decVal = decInfo[3],
       _,
       isClass = !ret;
@@ -67,12 +67,12 @@ function applyDecs2305(targetClass, memberDecs, classDecs, classDecsHaveThis, in
         desc = Object.getOwnPropertyDescriptor(Class, name);
       }
     }
-    var newValue = Class;
-    for (var i = decs.length - 1; i >= 0; i -= decoratorsHaveThis ? 2 : 1) {
-      var dec = decs[i],
+    let newValue = Class;
+    for (let i = decs.length - 1; i >= 0; i -= decoratorsHaveThis ? 2 : 1) {
+      const dec = decs[i],
         decThis = decoratorsHaveThis ? decs[i - 1] : void 0;
-      var decoratorFinishedRef = {};
-      var ctx = {
+      const decoratorFinishedRef = {};
+      const ctx = {
         kind: ["field", "accessor", "method", "getter", "setter", "class"][kind],
         name: name,
         metadata: metadata,
@@ -115,7 +115,7 @@ function applyDecs2305(targetClass, memberDecs, classDecs, classDecsHaveThis, in
               set = _bindPropCall(desc, "set", assertInstanceIfPrivate);
             }
           }
-          var access = ctx.access = {
+          const access = ctx.access = {
             has: isPrivate ? hasPrivateBrand.bind() : function (target) {
               return name in target;
             }
@@ -154,7 +154,7 @@ function applyDecs2305(targetClass, memberDecs, classDecs, classDecsHaveThis, in
     }
     if (isField || isAccessor) {
       ret.push(function (instance, value) {
-        for (var i = init.length - 1; i >= 0; i--) {
+        for (let i = init.length - 1; i >= 0; i--) {
           value = init[i].call(instance, value);
         }
         return value;
@@ -174,31 +174,31 @@ function applyDecs2305(targetClass, memberDecs, classDecs, classDecsHaveThis, in
     return newValue;
   }
   function applyMemberDecs(Class, decInfos, instanceBrand, metadata) {
-    var ret = [];
-    var protoInitializers;
-    var staticInitializers;
-    var staticBrand = function (_) {
+    const ret = [];
+    let protoInitializers;
+    let staticInitializers;
+    const staticBrand = function (_) {
       return (0, _checkInRHS.default)(_) === Class;
     };
-    var existingNonFields = new Map();
+    const existingNonFields = new Map();
     function pushInitializers(initializers) {
       if (initializers) {
         ret.push(runInitializers.bind(null, initializers));
       }
     }
-    for (var i = 0; i < decInfos.length; i++) {
-      var decInfo = decInfos[i];
+    for (let i = 0; i < decInfos.length; i++) {
+      const decInfo = decInfos[i];
       if (!Array.isArray(decInfo)) continue;
-      var kind = decInfo[1];
-      var name = decInfo[2];
-      var isPrivate = decInfo.length > 3;
-      var decoratorsHaveThis = kind & 16;
-      var isStatic = !!(kind & 8);
+      let kind = decInfo[1];
+      const name = decInfo[2];
+      const isPrivate = decInfo.length > 3;
+      const decoratorsHaveThis = kind & 16;
+      const isStatic = !!(kind & 8);
       kind &= 7;
-      var isField = kind === 0;
-      var key = name + "/" + isStatic;
+      const isField = kind === 0;
+      const key = name + "/" + isStatic;
       if (!isField && !isPrivate) {
-        var existingKind = existingNonFields.get(key);
+        const existingKind = existingNonFields.get(key);
         if (existingKind === true || existingKind === 3 && kind !== 4 || existingKind === 4 && kind !== 3) {
           throw new Error("Attempted to decorate a public method/accessor that has the same name as a previously decorated public method/accessor. This is not currently supported by the decorators plugin. Property name was: " + name);
         }
@@ -220,13 +220,13 @@ function applyDecs2305(targetClass, memberDecs, classDecs, classDecsHaveThis, in
   if (arguments.length >= 6) {
     var parentMetadata = parentClass[Symbol.metadata || Symbol["for"]("Symbol.metadata")];
   }
-  var metadata = Object.create(parentMetadata == null ? null : parentMetadata);
-  var e = applyMemberDecs(targetClass, memberDecs, instanceBrand, metadata);
+  const metadata = Object.create(parentMetadata == null ? null : parentMetadata);
+  const e = applyMemberDecs(targetClass, memberDecs, instanceBrand, metadata);
   if (!classDecs.length) defineMetadata(targetClass, metadata);
   return {
     e: e,
     get c() {
-      var initializers = [];
+      const initializers = [];
       return classDecs.length && [defineMetadata(applyDec(targetClass, [classDecs], classDecsHaveThis, targetClass.name, 5, metadata, initializers), metadata), runInitializers.bind(null, initializers, targetClass)];
     }
   };

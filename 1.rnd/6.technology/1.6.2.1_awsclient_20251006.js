@@ -12,12 +12,12 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (receiver, state, kind, f) {
+const __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (receiver, state, kind, f) {
     if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
     return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 };
-var _a, _AwsClient_DEFAULT_AWS_REGIONAL_CREDENTIAL_VERIFICATION_URL;
+let _a, _AwsClient_DEFAULT_AWS_REGIONAL_CREDENTIAL_VERIFICATION_URL;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AwsClient = void 0;
 const awsrequestsigner_1 = require("./awsrequestsigner");
@@ -84,7 +84,7 @@ class AwsClient extends baseexternalclient_1.BaseExternalAccountClient {
         this.region = '';
     }
     validateEnvironmentId() {
-        var _b;
+        let _b;
         const match = (_b = this.environmentId) === null || _b === void 0 ? void 0 : _b.match(/^(aws)(\d+)$/);
         if (!match || !this.regionalCredVerificationUrl) {
             throw new Error('No valid AWS "credential_source" provided');

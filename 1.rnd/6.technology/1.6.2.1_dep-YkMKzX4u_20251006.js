@@ -12,9 +12,9 @@ const __dirname = __cjs_dirname(__filename);
 const require = __cjs_createRequire(import.meta.url);
 const __require = require;
 function _mergeNamespaces(n, m) {
-  for (var i = 0; i < m.length; i++) {
-    var e = m[i];
-    if (typeof e !== 'string' && !Array.isArray(e)) { for (var k in e) {
+  for (let i = 0; i < m.length; i++) {
+    const e = m[i];
+    if (typeof e !== 'string' && !Array.isArray(e)) { for (const k in e) {
       if (k !== 'default' && !(k in n)) {
         n[k] = e[k];
       }
@@ -23,7 +23,7 @@ function _mergeNamespaces(n, m) {
   return n;
 }
 
-var formatImportPrelude$2 = function formatImportPrelude(layer, media, supports) {
+const formatImportPrelude$2 = function formatImportPrelude(layer, media, supports) {
   const parts = [];
 
   if (typeof layer !== "undefined") {
@@ -53,7 +53,7 @@ const formatImportPrelude$1 = formatImportPrelude$2;
 // Each group of conditions and cascade layers needs to be interpreted in order
 // To achieve this we create a list of base64 encoded imports, where each import contains a stylesheet with another import.
 // Each import can define a single group of conditions and a single cascade layer.
-var base64EncodedImport = function base64EncodedConditionalImport(prelude, conditions) {
+const base64EncodedImport = function base64EncodedConditionalImport(prelude, conditions) {
   conditions.reverse();
   const first = conditions.pop();
   let params = `${prelude} ${formatImportPrelude$1(
@@ -77,7 +77,7 @@ var base64EncodedImport = function base64EncodedConditionalImport(prelude, condi
 
 const base64EncodedConditionalImport = base64EncodedImport;
 
-var applyConditions$1 = function applyConditions(bundle, atRule) {
+const applyConditions$1 = function applyConditions(bundle, atRule) {
   bundle.forEach(stmt => {
     if (
       stmt.type === "charset" ||
@@ -159,7 +159,7 @@ var applyConditions$1 = function applyConditions(bundle, atRule) {
   });
 };
 
-var applyRaws$1 = function applyRaws(bundle) {
+const applyRaws$1 = function applyRaws(bundle) {
   bundle.forEach((stmt, index) => {
     if (index === 0) return
 
@@ -173,7 +173,7 @@ var applyRaws$1 = function applyRaws(bundle) {
   });
 };
 
-var applyStyles$1 = function applyStyles(bundle, styles) {
+const applyStyles$1 = function applyStyles(bundle, styles) {
   styles.nodes = [];
 
   // Strip additional statements.
@@ -190,16 +190,16 @@ var applyStyles$1 = function applyStyles(bundle, styles) {
   });
 };
 
-var readCache$1 = {exports: {}};
+const readCache$1 = {exports: {}};
 
-var pify$2 = {exports: {}};
+const pify$2 = {exports: {}};
 
-var processFn = function (fn, P, opts) {
+const processFn = function (fn, P, opts) {
 	return function () {
-		var that = this;
-		var args = new Array(arguments.length);
+		const that = this;
+		const args = new Array(arguments.length);
 
-		for (var i = 0; i < arguments.length; i++) {
+		for (let i = 0; i < arguments.length; i++) {
 			args[i] = arguments[i];
 		}
 
@@ -208,9 +208,9 @@ var processFn = function (fn, P, opts) {
 				if (err) {
 					reject(err);
 				} else if (opts.multiArgs) {
-					var results = new Array(arguments.length - 1);
+					const results = new Array(arguments.length - 1);
 
-					for (var i = 1; i < arguments.length; i++) {
+					for (let i = 1; i < arguments.length; i++) {
 						results[i - 1] = arguments[i];
 					}
 
@@ -225,7 +225,7 @@ var processFn = function (fn, P, opts) {
 	};
 };
 
-var pify$1 = pify$2.exports = function (obj, P, opts) {
+const pify$1 = pify$2.exports = function (obj, P, opts) {
 	if (typeof P !== 'function') {
 		opts = P;
 		P = Promise;
@@ -234,15 +234,15 @@ var pify$1 = pify$2.exports = function (obj, P, opts) {
 	opts = opts || {};
 	opts.exclude = opts.exclude || [/.+Sync$/];
 
-	var filter = function (key) {
-		var match = function (pattern) {
+	const filter = function (key) {
+		const match = function (pattern) {
 			return typeof pattern === 'string' ? key === pattern : pattern.test(key);
 		};
 
 		return opts.include ? opts.include.some(match) : !opts.exclude.some(match);
 	};
 
-	var ret = typeof obj === 'function' ? function () {
+	const ret = typeof obj === 'function' ? function () {
 		if (opts.excludeMain) {
 			return obj.apply(this, arguments);
 		}
@@ -251,7 +251,7 @@ var pify$1 = pify$2.exports = function (obj, P, opts) {
 	} : {};
 
 	return Object.keys(obj).reduce(function (ret, key) {
-		var x = obj[key];
+		const x = obj[key];
 
 		ret[key] = typeof x === 'function' && filter(key) ? processFn(x, P, opts) : x;
 
@@ -261,17 +261,17 @@ var pify$1 = pify$2.exports = function (obj, P, opts) {
 
 pify$1.all = pify$1;
 
-var pifyExports = pify$2.exports;
+const pifyExports = pify$2.exports;
 
-var fs = require$$0__default;
-var path$3 = require$$0;
-var pify = pifyExports;
+const fs = require$$0__default;
+const path$3 = require$$0;
+const pify = pifyExports;
 
-var stat = pify(fs.stat);
-var readFile = pify(fs.readFile);
-var resolve = path$3.resolve;
+const stat = pify(fs.stat);
+const readFile = pify(fs.readFile);
+const resolve = path$3.resolve;
 
-var cache = Object.create(null);
+let cache = Object.create(null);
 
 function convert(content, encoding) {
 	if (Buffer.isEncoding(encoding)) {
@@ -284,7 +284,7 @@ readCache$1.exports = function (path, encoding) {
 	path = resolve(path);
 
 	return stat(path).then(function (stats) {
-		var item = cache[path];
+		const item = cache[path];
 
 		if (item && item.mtime.getTime() === stats.mtime.getTime()) {
 			return convert(item.content, encoding);
@@ -308,14 +308,14 @@ readCache$1.exports.sync = function (path, encoding) {
 	path = resolve(path);
 
 	try {
-		var stats = fs.statSync(path);
-		var item = cache[path];
+		const stats = fs.statSync(path);
+		const item = cache[path];
 
 		if (item && item.mtime.getTime() === stats.mtime.getTime()) {
 			return convert(item.content, encoding);
 		}
 
-		var data = fs.readFileSync(path);
+		const data = fs.readFileSync(path);
 
 		cache[path] = {
 			mtime: stats.mtime,
@@ -342,7 +342,7 @@ readCache$1.exports.clear = function () {
 	cache = Object.create(null);
 };
 
-var readCacheExports = readCache$1.exports;
+const readCacheExports = readCache$1.exports;
 
 const anyDataURLRegexp = /^data:text\/css(?:;(base64|plain))?,/i;
 const base64DataURLRegexp = /^data:text\/css;base64,/i;
@@ -367,7 +367,7 @@ function contents(url) {
   return decodeURIComponent(url.slice(14))
 }
 
-var dataUrl = {
+const dataUrl = {
   isValid,
   contents,
 };
@@ -375,7 +375,7 @@ var dataUrl = {
 const readCache = readCacheExports;
 const dataURL$1 = dataUrl;
 
-var loadContent$1 = function loadContent(filename) {
+const loadContent$1 = function loadContent(filename) {
   if (dataURL$1.isValid(filename)) {
     return dataURL$1.contents(filename)
   }
@@ -389,7 +389,7 @@ const valueParser = lib;
 // extended tooling
 const { stringify } = valueParser;
 
-var parseStatements$1 = function parseStatements(result, styles, conditions, from) {
+const parseStatements$1 = function parseStatements(result, styles, conditions, from) {
   const statements = [];
   let nodes = [];
 
@@ -623,7 +623,7 @@ const path$2 = require$$0;
 // placeholder tooling
 let sugarss;
 
-var processContent$1 = function processContent(
+const processContent$1 = function processContent(
   result,
   content,
   filename,
@@ -911,7 +911,7 @@ function isProcessableURL(uri) {
   return true
 }
 
-var parseStyles_1 = parseStyles$1;
+const parseStyles_1 = parseStyles$1;
 
 // builtin tooling
 const path = require$$0;
@@ -981,11 +981,11 @@ function AtImport(options) {
 
 AtImport.postcss = true;
 
-var postcssImport = AtImport;
+const postcssImport = AtImport;
 
-var index = /*@__PURE__*/getDefaultExportFromCjs(postcssImport);
+const index = /*@__PURE__*/getDefaultExportFromCjs(postcssImport);
 
-var index$1 = /*#__PURE__*/_mergeNamespaces({
+const index$1 = /*#__PURE__*/_mergeNamespaces({
   __proto__: null,
   default: index
 }, [postcssImport]);

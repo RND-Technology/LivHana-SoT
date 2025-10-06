@@ -19,7 +19,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.QueuePicker = exports.UnavailablePicker = exports.PickResultType = void 0;
 const metadata_1 = require("./metadata");
 const constants_1 = require("./constants");
-var PickResultType;
+let PickResultType;
 (function (PickResultType) {
     PickResultType[PickResultType["COMPLETE"] = 0] = "COMPLETE";
     PickResultType[PickResultType["QUEUE"] = 1] = "QUEUE";

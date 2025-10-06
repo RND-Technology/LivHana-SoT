@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MetricsTime = void 0;
-var MetricsTime;
+let MetricsTime;
 (function (MetricsTime) {
     MetricsTime[MetricsTime["ONE_MINUTE"] = 1] = "ONE_MINUTE";
     MetricsTime[MetricsTime["FIVE_MINUTES"] = 5] = "FIVE_MINUTES";

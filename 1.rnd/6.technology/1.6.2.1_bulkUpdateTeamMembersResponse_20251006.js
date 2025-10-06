@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
 exports.bulkUpdateTeamMembersResponseSchema = void 0;
-var schema_1 = require("../schema");
-var error_1 = require("./error");
-var updateTeamMemberResponse_1 = require("./updateTeamMemberResponse");
+const schema_1 = require("../schema");
+const error_1 = require("./error");
+const updateTeamMemberResponse_1 = require("./updateTeamMemberResponse");
 exports.bulkUpdateTeamMembersResponseSchema = (0, schema_1.object)({
     teamMembers: [
         'team_members',

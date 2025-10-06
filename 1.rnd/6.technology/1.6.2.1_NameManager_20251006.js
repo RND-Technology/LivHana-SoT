@@ -4,7 +4,7 @@ import getIdentifierNames from "./util/getIdentifierNames";
 export default class NameManager {
     __init() {this.usedNames = new Set()}
 
-  constructor(code, tokens) {;NameManager.prototype.__init.call(this);
+  constructor(code, tokens) {NameManager.prototype.__init.call(this);
     this.usedNames = new Set(getIdentifierNames(code, tokens));
   }
 

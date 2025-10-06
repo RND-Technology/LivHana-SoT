@@ -1,5 +1,5 @@
-let Declaration = require('../declaration')
-let {
+const Declaration = require('../declaration')
+const {
   getGridGap,
   inheritGridGap,
   parseTemplate,
@@ -18,22 +18,22 @@ class GridTemplate extends Declaration {
       return undefined
     }
 
-    let gap = getGridGap(decl)
+    const gap = getGridGap(decl)
 
     /**
      * we must insert inherited gap values in some cases:
      * if we are inside media query && if we have no grid-gap value
      */
-    let inheritedGap = inheritGridGap(decl, gap)
+    const inheritedGap = inheritGridGap(decl, gap)
 
-    let { areas, columns, rows } = parseTemplate({
+    const { areas, columns, rows } = parseTemplate({
       decl,
       gap: inheritedGap || gap
     })
 
-    let hasAreas = Object.keys(areas).length > 0
-    let hasRows = Boolean(rows)
-    let hasColumns = Boolean(columns)
+    const hasAreas = Object.keys(areas).length > 0
+    const hasRows = Boolean(rows)
+    const hasColumns = Boolean(columns)
 
     warnGridGap({
       decl,

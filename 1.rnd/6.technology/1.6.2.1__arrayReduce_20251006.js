@@ -11,7 +11,7 @@
  * @returns {*} Returns the accumulated value.
  */
 function arrayReduce(array, iteratee, accumulator, initAccum) {
-  var index = -1,
+  let index = -1,
       length = array == null ? 0 : array.length;
 
   if (initAccum && length) {

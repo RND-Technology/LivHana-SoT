@@ -1,10 +1,10 @@
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+const GetIntrinsic = require('get-intrinsic');
 
-var $BigInt = GetIntrinsic('%BigInt%', true);
-var $TypeError = require('es-errors/type');
-var $SyntaxError = require('es-errors/syntax');
+const $BigInt = GetIntrinsic('%BigInt%', true);
+const $TypeError = require('es-errors/type');
+const $SyntaxError = require('es-errors/syntax');
 
 // https://262.ecma-international.org/11.0/#sec-stringtobigint
 

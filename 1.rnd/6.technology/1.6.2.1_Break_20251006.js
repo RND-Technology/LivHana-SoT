@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
 exports.breakSchema = void 0;
-var schema_1 = require("../schema");
+const schema_1 = require("../schema");
 exports.breakSchema = (0, schema_1.object)({
     id: ['id', (0, schema_1.optional)((0, schema_1.string)())],
     startAt: ['start_at', (0, schema_1.string)()],

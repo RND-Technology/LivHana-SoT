@@ -7,7 +7,7 @@ module.exports = defer;
  */
 function defer(fn)
 {
-  var nextTick = typeof setImmediate == 'function'
+  const nextTick = typeof setImmediate == 'function'
     ? setImmediate
     : (
       typeof process == 'object' && typeof process.nextTick == 'function'

@@ -9,5 +9,5 @@ function transformArguments(key, timeout) {
     return args;
 }
 exports.transformArguments = transformArguments;
-var BLPOP_1 = require("./BLPOP");
+const BLPOP_1 = require("./BLPOP");
 Object.defineProperty(exports, "transformReply", { enumerable: true, get: function () { return BLPOP_1.transformReply; } });

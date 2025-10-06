@@ -1,8 +1,8 @@
 'use strict';
 
-var PlainValue = require('./PlainValue-ec8e588e.js');
-var resolveSeq = require('./resolveSeq-d03cb037.js');
-var Schema = require('./Schema-88e323a7.js');
+const PlainValue = require('./PlainValue-ec8e588e.js');
+const resolveSeq = require('./resolveSeq-d03cb037.js');
+const Schema = require('./Schema-88e323a7.js');
 
 const defaultOptions = {
   anchorPrefix: 'a',

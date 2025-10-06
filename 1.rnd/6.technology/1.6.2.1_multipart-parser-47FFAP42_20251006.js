@@ -1,30 +1,30 @@
 "use strict";
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __export = (target, all) => {
+  for (const name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var multipart_parser_47FFAP42_exports = {};
+const __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+const multipart_parser_47FFAP42_exports = {};
 __export(multipart_parser_47FFAP42_exports, {
   toFormData: () => toFormData
 });
 module.exports = __toCommonJS(multipart_parser_47FFAP42_exports);
-var import_chunk_VTJS2JJN = require("./chunk-VTJS2JJN.js");
-var import_chunk_AH6QHEOA = require("./chunk-AH6QHEOA.js");
-var s = 0;
-var S = {
+const import_chunk_VTJS2JJN = require("./chunk-VTJS2JJN.js");
+const import_chunk_AH6QHEOA = require("./chunk-AH6QHEOA.js");
+let s = 0;
+const S = {
   START_BOUNDARY: s++,
   HEADER_FIELD_START: s++,
   HEADER_FIELD: s++,
@@ -36,22 +36,22 @@ var S = {
   PART_DATA: s++,
   END: s++
 };
-var f = 1;
-var F = {
+let f = 1;
+const F = {
   PART_BOUNDARY: f,
   LAST_BOUNDARY: f *= 2
 };
-var LF = 10;
-var CR = 13;
-var SPACE = 32;
-var HYPHEN = 45;
-var COLON = 58;
-var A = 97;
-var Z = 122;
-var lower = (c) => c | 32;
-var noop = () => {
+const LF = 10;
+const CR = 13;
+const SPACE = 32;
+const HYPHEN = 45;
+const COLON = 58;
+const A = 97;
+const Z = 122;
+const lower = (c) => c | 32;
+const noop = () => {
 };
-var MultipartParser = class {
+const MultipartParser = class {
   /**
    * @param {string} boundary
    */

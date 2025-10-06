@@ -1,35 +1,35 @@
 "use strict";
 'use client';
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+const _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
 exports.reset = reset;
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
-var React = _interopRequireWildcard(require("react"));
-var ReactDOM = _interopRequireWildcard(require("react-dom"));
-var _propTypes = _interopRequireDefault(require("prop-types"));
-var _elementTypeAcceptingRef = _interopRequireDefault(require("@mui/utils/elementTypeAcceptingRef"));
-var _NoSsr = _interopRequireDefault(require("../NoSsr"));
-var _DefaultPropsProvider = require("../DefaultPropsProvider");
-var _Drawer = _interopRequireWildcard(require("../Drawer/Drawer"));
-var _useForkRef = _interopRequireDefault(require("../utils/useForkRef"));
-var _ownerDocument = _interopRequireDefault(require("../utils/ownerDocument"));
-var _ownerWindow = _interopRequireDefault(require("../utils/ownerWindow"));
-var _useEventCallback = _interopRequireDefault(require("../utils/useEventCallback"));
-var _useEnhancedEffect = _interopRequireDefault(require("../utils/useEnhancedEffect"));
-var _useTheme = _interopRequireDefault(require("../styles/useTheme"));
-var _utils = require("../transitions/utils");
-var _SwipeArea = _interopRequireDefault(require("./SwipeArea"));
-var _jsxRuntime = require("react/jsx-runtime");
+const _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+const _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+const React = _interopRequireWildcard(require("react"));
+const ReactDOM = _interopRequireWildcard(require("react-dom"));
+const _propTypes = _interopRequireDefault(require("prop-types"));
+const _elementTypeAcceptingRef = _interopRequireDefault(require("@mui/utils/elementTypeAcceptingRef"));
+const _NoSsr = _interopRequireDefault(require("../NoSsr"));
+const _DefaultPropsProvider = require("../DefaultPropsProvider");
+const _Drawer = _interopRequireWildcard(require("../Drawer/Drawer"));
+const _useForkRef = _interopRequireDefault(require("../utils/useForkRef"));
+const _ownerDocument = _interopRequireDefault(require("../utils/ownerDocument"));
+const _ownerWindow = _interopRequireDefault(require("../utils/ownerWindow"));
+const _useEventCallback = _interopRequireDefault(require("../utils/useEventCallback"));
+const _useEnhancedEffect = _interopRequireDefault(require("../utils/useEnhancedEffect"));
+const _useTheme = _interopRequireDefault(require("../styles/useTheme"));
+const _utils = require("../transitions/utils");
+const _SwipeArea = _interopRequireDefault(require("./SwipeArea"));
+const _jsxRuntime = require("react/jsx-runtime");
 const _excluded = ["BackdropProps"],
   _excluded2 = ["anchor", "disableBackdropTransition", "disableDiscovery", "disableSwipeToOpen", "hideBackdrop", "hysteresis", "allowSwipeInChildren", "minFlingVelocity", "ModalProps", "onClose", "onOpen", "open", "PaperProps", "SwipeAreaProps", "swipeAreaWidth", "transitionDuration", "variant"]; // This value is closed to what browsers are using internally to
 // trigger a native scroll.
-function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
-function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; const r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; const t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); const n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (const u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { const i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 const UNCERTAINTY_THRESHOLD = 3; // px
 
 // This is the part of the drawer displayed on touch start.
@@ -406,7 +406,7 @@ const SwipeableDrawer = /*#__PURE__*/React.forwardRef(function SwipeableDrawer(i
     const currentX = calculateCurrentX(anchorRtl, nativeEvent.touches, (0, _ownerDocument.default)(nativeEvent.currentTarget));
     const currentY = calculateCurrentY(anchorRtl, nativeEvent.touches, (0, _ownerWindow.default)(nativeEvent.currentTarget));
     if (!open) {
-      var _paperRef$current;
+      let _paperRef$current;
       // logic for if swipe should be ignored:
       // if disableSwipeToOpen
       // if target != swipeArea, and target is not a child of paper ref
@@ -612,4 +612,4 @@ process.env.NODE_ENV !== "production" ? SwipeableDrawer.propTypes /* remove-prop
    */
   variant: _propTypes.default.oneOf(['permanent', 'persistent', 'temporary'])
 } : void 0;
-var _default = exports.default = SwipeableDrawer;
+const _default = exports.default = SwipeableDrawer;

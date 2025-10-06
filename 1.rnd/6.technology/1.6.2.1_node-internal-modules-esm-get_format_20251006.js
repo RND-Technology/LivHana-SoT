@@ -49,7 +49,7 @@ if (experimentalJsonModules)
  */
 function createGetFormat(tsNodeExperimentalSpecifierResolution, nodeEsmResolver) {
 // const experimentalSpeciferResolution = tsNodeExperimentalSpecifierResolution ?? getOptionValue('--experimental-specifier-resolution');
-let experimentalSpeciferResolution = tsNodeExperimentalSpecifierResolution != null ? tsNodeExperimentalSpecifierResolution : getOptionValue('--experimental-specifier-resolution');
+const experimentalSpeciferResolution = tsNodeExperimentalSpecifierResolution != null ? tsNodeExperimentalSpecifierResolution : getOptionValue('--experimental-specifier-resolution');
 const { getPackageType } = nodeEsmResolver;
 
 /**

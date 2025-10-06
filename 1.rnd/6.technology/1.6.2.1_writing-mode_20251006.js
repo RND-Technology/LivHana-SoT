@@ -1,9 +1,9 @@
-let Declaration = require('../declaration')
+const Declaration = require('../declaration')
 
 class WritingMode extends Declaration {
   insert(decl, prefix, prefixes) {
     if (prefix === '-ms-') {
-      let cloned = this.set(this.clone(decl), prefix)
+      const cloned = this.set(this.clone(decl), prefix)
 
       if (this.needCascade(decl)) {
         cloned.raws.before = this.calcBefore(prefixes, decl, prefix)

@@ -1,4 +1,4 @@
-var baseForRight = require('./_baseForRight'),
+const baseForRight = require('./_baseForRight'),
     keys = require('./keys');
 
 /**

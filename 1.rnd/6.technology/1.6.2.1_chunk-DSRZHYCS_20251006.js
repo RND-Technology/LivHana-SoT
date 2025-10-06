@@ -1,13 +1,13 @@
 // src/entry/utils.ts
 import { pathToFileURL } from "url";
-var importESMCached;
+let importESMCached;
 function getImportESM() {
   if (importESMCached === void 0) {
     importESMCached = new Function("specifier", "return import(specifier)");
   }
   return importESMCached;
 }
-var handlerCache = /* @__PURE__ */ new Map();
+const handlerCache = /* @__PURE__ */ new Map();
 async function getHandler(filename, name) {
   let handler = handlerCache.get(`${filename}/${name}`);
   if (handler !== void 0) {

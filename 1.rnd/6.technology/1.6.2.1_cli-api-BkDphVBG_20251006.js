@@ -49,10 +49,10 @@ import { serializeError } from '@vitest/utils/error';
 import readline from 'node:readline';
 import { stripVTControlCharacters } from 'node:util';
 
-var bufferUtil = {exports: {}};
+const bufferUtil = {exports: {}};
 
-var constants;
-var hasRequiredConstants;
+let constants;
+let hasRequiredConstants;
 
 function requireConstants () {
 	if (hasRequiredConstants) return constants;
@@ -77,7 +77,7 @@ function requireConstants () {
 	return constants;
 }
 
-var hasRequiredBufferUtil;
+let hasRequiredBufferUtil;
 
 function requireBufferUtil () {
 	if (hasRequiredBufferUtil) return bufferUtil.exports;
@@ -215,8 +215,8 @@ function requireBufferUtil () {
 	return bufferUtil.exports;
 }
 
-var limiter;
-var hasRequiredLimiter;
+let limiter;
+let hasRequiredLimiter;
 
 function requireLimiter () {
 	if (hasRequiredLimiter) return limiter;
@@ -278,8 +278,8 @@ function requireLimiter () {
 	return limiter;
 }
 
-var permessageDeflate;
-var hasRequiredPermessageDeflate;
+let permessageDeflate;
+let hasRequiredPermessageDeflate;
 
 function requirePermessageDeflate () {
 	if (hasRequiredPermessageDeflate) return permessageDeflate;
@@ -814,9 +814,9 @@ function requirePermessageDeflate () {
 	return permessageDeflate;
 }
 
-var validation = {exports: {}};
+const validation = {exports: {}};
 
-var hasRequiredValidation;
+let hasRequiredValidation;
 
 function requireValidation () {
 	if (hasRequiredValidation) return validation.exports;
@@ -975,8 +975,8 @@ function requireValidation () {
 	return validation.exports;
 }
 
-var receiver;
-var hasRequiredReceiver;
+let receiver;
+let hasRequiredReceiver;
 
 function requireReceiver () {
 	if (hasRequiredReceiver) return receiver;
@@ -1691,8 +1691,8 @@ function requireReceiver () {
 
 /* eslint no-unused-vars: ["error", { "varsIgnorePattern": "^Duplex" }] */
 
-var sender;
-var hasRequiredSender;
+let sender;
+let hasRequiredSender;
 
 function requireSender () {
 	if (hasRequiredSender) return sender;
@@ -2299,8 +2299,8 @@ function requireSender () {
 	return sender;
 }
 
-var eventTarget;
-var hasRequiredEventTarget;
+let eventTarget;
+let hasRequiredEventTarget;
 
 function requireEventTarget () {
 	if (hasRequiredEventTarget) return eventTarget;
@@ -2599,8 +2599,8 @@ function requireEventTarget () {
 	return eventTarget;
 }
 
-var extension;
-var hasRequiredExtension;
+let extension;
+let hasRequiredExtension;
 
 function requireExtension () {
 	if (hasRequiredExtension) return extension;
@@ -2812,8 +2812,8 @@ function requireExtension () {
 
 /* eslint no-unused-vars: ["error", { "varsIgnorePattern": "^Duplex|Readable$", "caughtErrors": "none" }] */
 
-var websocket;
-var hasRequiredWebsocket;
+let websocket;
+let hasRequiredWebsocket;
 
 function requireWebsocket () {
 	if (hasRequiredWebsocket) return websocket;
@@ -4208,8 +4208,8 @@ function requireWebsocket () {
 
 /* eslint no-unused-vars: ["error", { "varsIgnorePattern": "^WebSocket$" }] */
 
-var stream;
-var hasRequiredStream;
+let stream;
+let hasRequiredStream;
 
 function requireStream () {
 	if (hasRequiredStream) return stream;
@@ -4384,8 +4384,8 @@ requireSender();
 
 requireWebsocket();
 
-var subprotocol;
-var hasRequiredSubprotocol;
+let subprotocol;
+let hasRequiredSubprotocol;
 
 function requireSubprotocol () {
 	if (hasRequiredSubprotocol) return subprotocol;
@@ -4456,8 +4456,8 @@ function requireSubprotocol () {
 
 /* eslint no-unused-vars: ["error", { "varsIgnorePattern": "^Duplex$", "caughtErrors": "none" }] */
 
-var websocketServer;
-var hasRequiredWebsocketServer;
+let websocketServer;
+let hasRequiredWebsocketServer;
 
 function requireWebsocketServer () {
 	if (hasRequiredWebsocketServer) return websocketServer;
@@ -5002,8 +5002,8 @@ function requireWebsocketServer () {
 	return websocketServer;
 }
 
-var websocketServerExports = requireWebsocketServer();
-var WebSocketServer = /*@__PURE__*/getDefaultExportFromCjs(websocketServerExports);
+const websocketServerExports = requireWebsocketServer();
+const WebSocketServer = /*@__PURE__*/getDefaultExportFromCjs(websocketServerExports);
 
 async function getModuleGraph(ctx, projectName, id, browser = false) {
 	const graph = {};
@@ -5241,7 +5241,7 @@ class WebSocketReporter {
 	}
 }
 
-var setup$1 = /*#__PURE__*/Object.freeze({
+const setup$1 = /*#__PURE__*/Object.freeze({
   __proto__: null,
   WebSocketReporter: WebSocketReporter,
   setup: setup
@@ -6010,15 +6010,15 @@ function CSSEnablerPlugin(ctx) {
 	}];
 }
 
-var jsTokens_1;
-var hasRequiredJsTokens;
+let jsTokens_1;
+let hasRequiredJsTokens;
 
 function requireJsTokens () {
 	if (hasRequiredJsTokens) return jsTokens_1;
 	hasRequiredJsTokens = 1;
 	// Copyright 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023 Simon Lydell
 	// License: MIT.
-	var HashbangComment, Identifier, JSXIdentifier, JSXPunctuator, JSXString, JSXText, KeywordsWithExpressionAfter, KeywordsWithNoLineTerminatorAfter, LineTerminatorSequence, MultiLineComment, Newline, NumericLiteral, Punctuator, RegularExpressionLiteral, SingleLineComment, StringLiteral, Template, TokensNotPrecedingObjectLiteral, TokensPrecedingExpression, WhiteSpace;
+	let HashbangComment, Identifier, JSXIdentifier, JSXPunctuator, JSXString, JSXText, KeywordsWithExpressionAfter, KeywordsWithNoLineTerminatorAfter, LineTerminatorSequence, MultiLineComment, Newline, NumericLiteral, Punctuator, RegularExpressionLiteral, SingleLineComment, StringLiteral, Template, TokensNotPrecedingObjectLiteral, TokensPrecedingExpression, WhiteSpace;
 	RegularExpressionLiteral = /\/(?![*\/])(?:\[(?:[^\]\\\n\r\u2028\u2029]+|\\.)*\]?|[^\/[\\\n\r\u2028\u2029]+|\\.)*(\/[$_\u200C\u200D\p{ID_Continue}]*|\\)?/yu;
 	Punctuator = /--|\+\+|=>|\.{3}|\??\.(?!\d)|(?:&&|\|\||\?\?|[+\-%&|^]|\*{1,2}|<{1,2}|>{1,3}|!=?|={1,2}|\/(?![\/*]))=?|[?~,:;[\](){}]/y;
 	Identifier = /(\x23?)(?=[$_\p{ID_Start}\\])(?:[$_\u200C\u200D\p{ID_Continue}]+|\\u[\da-fA-F]{4}|\\u\{[\da-fA-F]+\})+/yu;
@@ -6040,7 +6040,7 @@ function requireJsTokens () {
 	KeywordsWithNoLineTerminatorAfter = /^(?:return|throw|yield)$/;
 	Newline = RegExp(LineTerminatorSequence.source);
 	jsTokens_1 = function*(input, {jsx = false} = {}) {
-		var braces, firstCodePoint, isExpression, lastIndex, lastSignificantToken, length, match, mode, nextLastIndex, nextLastSignificantToken, parenNesting, postfixIncDec, punctuator, stack;
+		let braces, firstCodePoint, isExpression, lastIndex, lastSignificantToken, length, match, mode, nextLastIndex, nextLastSignificantToken, parenNesting, postfixIncDec, punctuator, stack;
 		({length} = input);
 		lastIndex = 0;
 		lastSignificantToken = "";
@@ -6415,8 +6415,8 @@ function requireJsTokens () {
 	return jsTokens_1;
 }
 
-var jsTokensExports = requireJsTokens();
-var jsTokens = /*@__PURE__*/getDefaultExportFromCjs(jsTokensExports);
+const jsTokensExports = requireJsTokens();
+const jsTokens = /*@__PURE__*/getDefaultExportFromCjs(jsTokensExports);
 
 function stripLiteralJsTokens(code, options) {
   const FILL = " ";
@@ -8740,12 +8740,12 @@ const types = {
 };
 Object.freeze(types);
 
-var __classPrivateFieldGet = ({} && {}.__classPrivateFieldGet) || function (receiver, state, kind, f) {
+const __classPrivateFieldGet = ({} && {}.__classPrivateFieldGet) || function (receiver, state, kind, f) {
     if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
     return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 };
-var _Mime_extensionToType, _Mime_typeToExtension, _Mime_typeToExtensions;
+let _Mime_extensionToType, _Mime_typeToExtension, _Mime_typeToExtensions;
 class Mime {
     constructor(...args) {
         _Mime_extensionToType.set(this, new Map());
@@ -8824,7 +8824,7 @@ class Mime {
 }
 _Mime_extensionToType = new WeakMap(), _Mime_typeToExtension = new WeakMap(), _Mime_typeToExtensions = new WeakMap();
 
-var mime = new Mime(types)._freeze();
+const mime = new Mime(types)._freeze();
 
 class TestRun {
 	constructor(vitest) {
@@ -10637,7 +10637,7 @@ function getEnvPackageName(env) {
 	return `vitest-environment-${env}`;
 }
 
-var cliApi = /*#__PURE__*/Object.freeze({
+const cliApi = /*#__PURE__*/Object.freeze({
   __proto__: null,
   formatCollectedAsJSON: formatCollectedAsJSON,
   formatCollectedAsString: formatCollectedAsString,

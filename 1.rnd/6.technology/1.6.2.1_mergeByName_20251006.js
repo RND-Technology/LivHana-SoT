@@ -1,6 +1,6 @@
 export default function mergeByName(modifiers) {
-  var merged = modifiers.reduce(function (merged, current) {
-    var existing = merged[current.name];
+  const merged = modifiers.reduce(function (merged, current) {
+    const existing = merged[current.name];
     merged[current.name] = existing ? Object.assign({}, existing, current, {
       options: Object.assign({}, existing.options, current.options),
       data: Object.assign({}, existing.data, current.data)

@@ -1,10 +1,10 @@
 'use strict'
 
-let MapGenerator = require('./map-generator')
-let parse = require('./parse')
+const MapGenerator = require('./map-generator')
+const parse = require('./parse')
 const Result = require('./result')
-let stringify = require('./stringify')
-let warnOnce = require('./warn-once')
+const stringify = require('./stringify')
+const warnOnce = require('./warn-once')
 
 class NoWorkResult {
   get content() {
@@ -37,7 +37,7 @@ class NoWorkResult {
     }
 
     let root
-    let parser = parse
+    const parser = parse
 
     try {
       root = parser(this._css, this._opts)
@@ -67,20 +67,20 @@ class NoWorkResult {
     this._map = undefined
     let root
 
-    let str = stringify
+    const str = stringify
     this.result = new Result(this._processor, root, this._opts)
     this.result.css = css
 
-    let self = this
+    const self = this
     Object.defineProperty(this.result, 'root', {
       get() {
         return self.root
       }
     })
 
-    let map = new MapGenerator(str, root, this._opts, css)
+    const map = new MapGenerator(str, root, this._opts, css)
     if (map.isMap()) {
-      let [generatedCSS, generatedMap] = map.generate()
+      const [generatedCSS, generatedMap] = map.generate()
       if (generatedCSS) {
         this.result.css = generatedCSS
       }

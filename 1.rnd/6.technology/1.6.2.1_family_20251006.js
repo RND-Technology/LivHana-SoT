@@ -18,8 +18,8 @@ exports.getOuterBindingIdentifierPaths = getOuterBindingIdentifierPaths;
 exports.getOuterBindingIdentifiers = getOuterBindingIdentifiers;
 exports.getPrevSibling = getPrevSibling;
 exports.getSibling = getSibling;
-var _index = require("./index.js");
-var _t = require("@babel/types");
+const _index = require("./index.js");
+const _t = require("@babel/types");
 const {
   getAssignmentIdentifiers: _getAssignmentIdentifiers,
   getBindingIdentifiers: _getBindingIdentifiers,

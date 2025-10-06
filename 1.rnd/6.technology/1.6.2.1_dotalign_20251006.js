@@ -1,5 +1,5 @@
-var table = require('../');
-var t = table([
+const table = require('../');
+const t = table([
     [ 'beep', '1024' ],
     [ 'boop', '334.212' ],
     [ 'foo', '1006' ],

@@ -11,7 +11,7 @@ module.exports = ({
   compress,
   fileNameSep
 }) => {
-  let FILENAME_SEP = fileNameSep || DEFAULT_FILENAME_SEP;
+  const FILENAME_SEP = fileNameSep || DEFAULT_FILENAME_SEP;
   const dirAndName = path.join(file.dir, file.name);
 
   const ext = f => f + file.ext;

@@ -1,7 +1,7 @@
 // please no
 module['exports'] = function zalgo(text, options) {
   text = text || '   he is here   ';
-  var soul = {
+  const soul = {
     'up': [
       '̍', '̎', '̄', '̅',
       '̿', '̑', '̆', '̐',
@@ -38,15 +38,15 @@ module['exports'] = function zalgo(text, options) {
       '̷', '͡', ' ҉',
     ],
   };
-  var all = [].concat(soul.up, soul.down, soul.mid);
+  const all = [].concat(soul.up, soul.down, soul.mid);
 
   function randomNumber(range) {
-    var r = Math.floor(Math.random() * range);
+    const r = Math.floor(Math.random() * range);
     return r;
   }
 
   function isChar(character) {
-    var bool = false;
+    let bool = false;
     all.filter(function(i) {
       bool = (i === character);
     });
@@ -55,9 +55,9 @@ module['exports'] = function zalgo(text, options) {
 
 
   function heComes(text, options) {
-    var result = '';
-    var counts;
-    var l;
+    let result = '';
+    let counts;
+    let l;
     options = options || {};
     options['up'] =
       typeof options['up'] !== 'undefined' ? options['up'] : true;
@@ -92,10 +92,10 @@ module['exports'] = function zalgo(text, options) {
           break;
       }
 
-      var arr = ['up', 'mid', 'down'];
-      for (var d in arr) {
-        var index = arr[d];
-        for (var i = 0; i <= counts[index]; i++) {
+      const arr = ['up', 'mid', 'down'];
+      for (const d in arr) {
+        const index = arr[d];
+        for (let i = 0; i <= counts[index]; i++) {
           if (options[index]) {
             result = result + soul[index][randomNumber(soul[index].length)];
           }

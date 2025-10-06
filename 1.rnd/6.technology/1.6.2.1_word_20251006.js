@@ -9,13 +9,13 @@ exports.diffWordsWithSpace = diffWordsWithSpace;
 exports.wordDiff = void 0;
 
 /*istanbul ignore end*/
-var
+const
 /*istanbul ignore start*/
 _base = _interopRequireDefault(require("./base"))
 /*istanbul ignore end*/
 ;
 
-var
+const
 /*istanbul ignore start*/
 _params = require("../util/params")
 /*istanbul ignore end*/
@@ -42,9 +42,9 @@ _params = require("../util/params")
 //  - U+02DC  ˜ &#732;  Small Tilde
 //  - U+02DD  ˝ &#733;  Double Acute Accent
 // Latin Extended Additional, 1E00–1EFF
-var extendedWordChars = /^[A-Za-z\xC0-\u02C6\u02C8-\u02D7\u02DE-\u02FF\u1E00-\u1EFF]+$/;
-var reWhitespace = /\S/;
-var wordDiff = new
+const extendedWordChars = /^[A-Za-z\xC0-\u02C6\u02C8-\u02D7\u02DE-\u02FF\u1E00-\u1EFF]+$/;
+const reWhitespace = /\S/;
+const wordDiff = new
 /*istanbul ignore start*/
 _base
 /*istanbul ignore end*/
@@ -68,9 +68,9 @@ wordDiff.equals = function (left, right) {
 };
 
 wordDiff.tokenize = function (value) {
-  var tokens = value.split(/(\s+|[()[\]{}'"]|\b)/); // Join the boundary splits that we do not consider to be boundaries. This is primarily the extended Latin character set.
+  const tokens = value.split(/(\s+|[()[\]{}'"]|\b)/); // Join the boundary splits that we do not consider to be boundaries. This is primarily the extended Latin character set.
 
-  for (var i = 0; i < tokens.length - 1; i++) {
+  for (let i = 0; i < tokens.length - 1; i++) {
     // If we have an empty string in the next field and we have only word chars before and after, merge
     if (!tokens[i + 1] && tokens[i + 2] && extendedWordChars.test(tokens[i]) && extendedWordChars.test(tokens[i + 2])) {
       tokens[i] += tokens[i + 2];

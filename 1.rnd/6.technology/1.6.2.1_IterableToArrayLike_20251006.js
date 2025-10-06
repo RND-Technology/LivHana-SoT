@@ -1,13 +1,13 @@
 'use strict';
 
-var getIteratorMethod = require('../helpers/getIteratorMethod');
-var AdvanceStringIndex = require('./AdvanceStringIndex');
-var GetIterator = require('./GetIterator');
-var GetMethod = require('./GetMethod');
-var IteratorStep = require('./IteratorStep');
-var IteratorValue = require('./IteratorValue');
-var ToObject = require('./ToObject');
-var ES = {
+const getIteratorMethod = require('../helpers/getIteratorMethod');
+const AdvanceStringIndex = require('./AdvanceStringIndex');
+const GetIterator = require('./GetIterator');
+const GetMethod = require('./GetMethod');
+const IteratorStep = require('./IteratorStep');
+const IteratorValue = require('./IteratorValue');
+const ToObject = require('./ToObject');
+const ES = {
 	AdvanceStringIndex: AdvanceStringIndex,
 	GetMethod: GetMethod
 };
@@ -15,15 +15,15 @@ var ES = {
 // https://262.ecma-international.org/7.0/#sec-iterabletoarraylike
 
 module.exports = function IterableToArrayLike(items) {
-	var usingIterator = getIteratorMethod(ES, items);
+	const usingIterator = getIteratorMethod(ES, items);
 	if (typeof usingIterator !== 'undefined') {
-		var iterator = GetIterator(items, usingIterator);
-		var values = [];
-		var next = true;
+		const iterator = GetIterator(items, usingIterator);
+		const values = [];
+		let next = true;
 		while (next) {
 			next = IteratorStep(iterator);
 			if (next) {
-				var nextValue = IteratorValue(next);
+				const nextValue = IteratorValue(next);
 				values[values.length] = nextValue;
 			}
 		}

@@ -8,7 +8,7 @@
  * Module dependencies
  */
 
-var inspect = require('./inspect');
+const inspect = require('./inspect');
 
 /**
  * ### .compareByInspect(mixed, mixed)

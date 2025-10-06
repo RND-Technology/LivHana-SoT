@@ -1,7 +1,7 @@
 "use strict";
 module.exports = decoder;
 
-var Enum    = require("./enum"),
+const Enum    = require("./enum"),
     types   = require("./types"),
     util    = require("./util");
 
@@ -16,7 +16,7 @@ function missing(field) {
  */
 function decoder(mtype) {
     /* eslint-disable no-unexpected-multiline */
-    var gen = util.codegen(["r", "l", "e"], mtype.name + "$decode")
+    const gen = util.codegen(["r", "l", "e"], mtype.name + "$decode")
     ("if(!(r instanceof Reader))")
         ("r=Reader.create(r)")
     ("var c=l===undefined?r.len:r.pos+l,m=new this.ctor" + (mtype.fieldsArray.filter(function(field) { return field.map; }).length ? ",k,value" : ""))
@@ -26,9 +26,9 @@ function decoder(mtype) {
             ("break")
         ("switch(t>>>3){");
 
-    var i = 0;
+    let i = 0;
     for (; i < /* initializes */ mtype.fieldsArray.length; ++i) {
-        var field = mtype._fieldsArray[i].resolve(),
+        const field = mtype._fieldsArray[i].resolve(),
             type  = field.resolvedType instanceof Enum ? "int32" : field.type,
             ref   = "m" + util.safeProp(field.name); gen
             ("case %i: {", field.id);
@@ -115,7 +115,7 @@ function decoder(mtype) {
 
     // Field presence
     for (i = 0; i < mtype._fieldsArray.length; ++i) {
-        var rfield = mtype._fieldsArray[i];
+        const rfield = mtype._fieldsArray[i];
         if (rfield.required) gen
     ("if(!m.hasOwnProperty(%j))", rfield.name)
         ("throw util.ProtocolError(%j,{instance:m})", missing(rfield));

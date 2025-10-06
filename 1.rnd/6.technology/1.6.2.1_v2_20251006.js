@@ -19,7 +19,7 @@ exports.baremetalsolution_v2 = void 0;
 /* eslint-disable @typescript-eslint/no-namespace */
 /* eslint-disable no-irregular-whitespace */
 const googleapis_common_1 = require("googleapis-common");
-var baremetalsolution_v2;
+let baremetalsolution_v2;
 (function (baremetalsolution_v2) {
     /**
      * Bare Metal Solution API

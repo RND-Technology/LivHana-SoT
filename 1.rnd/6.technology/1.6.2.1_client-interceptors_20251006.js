@@ -129,7 +129,7 @@ const defaultRequester = {
 };
 class InterceptingCall {
     constructor(nextCall, requester) {
-        var _a, _b, _c, _d;
+        let _a, _b, _c, _d;
         this.nextCall = nextCall;
         /**
          * Indicates that metadata has been passed to the requester's start
@@ -183,7 +183,7 @@ class InterceptingCall {
         }
     }
     start(metadata, interceptingListener) {
-        var _a, _b, _c, _d, _e, _f;
+        let _a, _b, _c, _d, _e, _f;
         const fullInterceptingListener = {
             onReceiveMetadata: (_b = (_a = interceptingListener === null || interceptingListener === void 0 ? void 0 : interceptingListener.onReceiveMetadata) === null || _a === void 0 ? void 0 : _a.bind(interceptingListener)) !== null && _b !== void 0 ? _b : (metadata => { }),
             onReceiveMessage: (_d = (_c = interceptingListener === null || interceptingListener === void 0 ? void 0 : interceptingListener.onReceiveMessage) === null || _c === void 0 ? void 0 : _c.bind(interceptingListener)) !== null && _d !== void 0 ? _d : (message => { }),
@@ -191,7 +191,7 @@ class InterceptingCall {
         };
         this.processingMetadata = true;
         this.requester.start(metadata, fullInterceptingListener, (md, listener) => {
-            var _a, _b, _c;
+            let _a, _b, _c;
             this.processingMetadata = false;
             let finalInterceptingListener;
             if ((0, call_interface_1.isInterceptingListener)(listener)) {
@@ -248,7 +248,7 @@ class InterceptingCall {
 }
 exports.InterceptingCall = InterceptingCall;
 function getCall(channel, path, options) {
-    var _a, _b;
+    let _a, _b;
     const deadline = (_a = options.deadline) !== null && _a !== void 0 ? _a : Infinity;
     const host = options.host;
     const parent = (_b = options.parent) !== null && _b !== void 0 ? _b : null;
@@ -297,11 +297,11 @@ class BaseInterceptingCall {
         let readError = null;
         this.call.start(metadata, {
             onReceiveMetadata: metadata => {
-                var _a;
+                let _a;
                 (_a = interceptingListener === null || interceptingListener === void 0 ? void 0 : interceptingListener.onReceiveMetadata) === null || _a === void 0 ? void 0 : _a.call(interceptingListener, metadata);
             },
             onReceiveMessage: message => {
-                var _a;
+                let _a;
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 let deserialized;
                 try {
@@ -319,7 +319,7 @@ class BaseInterceptingCall {
                 (_a = interceptingListener === null || interceptingListener === void 0 ? void 0 : interceptingListener.onReceiveMessage) === null || _a === void 0 ? void 0 : _a.call(interceptingListener, deserialized);
             },
             onReceiveStatus: status => {
-                var _a, _b;
+                let _a, _b;
                 if (readError) {
                     (_a = interceptingListener === null || interceptingListener === void 0 ? void 0 : interceptingListener.onReceiveStatus) === null || _a === void 0 ? void 0 : _a.call(interceptingListener, readError);
                 }
@@ -349,18 +349,18 @@ class BaseUnaryInterceptingCall extends BaseInterceptingCall {
         super(call, methodDefinition);
     }
     start(metadata, listener) {
-        var _a, _b;
+        let _a, _b;
         let receivedMessage = false;
         const wrapperListener = {
             onReceiveMetadata: (_b = (_a = listener === null || listener === void 0 ? void 0 : listener.onReceiveMetadata) === null || _a === void 0 ? void 0 : _a.bind(listener)) !== null && _b !== void 0 ? _b : (metadata => { }),
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             onReceiveMessage: (message) => {
-                var _a;
+                let _a;
                 receivedMessage = true;
                 (_a = listener === null || listener === void 0 ? void 0 : listener.onReceiveMessage) === null || _a === void 0 ? void 0 : _a.call(listener, message);
             },
             onReceiveStatus: (status) => {
-                var _a, _b;
+                let _a, _b;
                 if (!receivedMessage) {
                     (_a = listener === null || listener === void 0 ? void 0 : listener.onReceiveMessage) === null || _a === void 0 ? void 0 : _a.call(listener, null);
                 }

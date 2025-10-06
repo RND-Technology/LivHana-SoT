@@ -28,7 +28,7 @@ function statusOrFromValue(value) {
     };
 }
 function statusOrFromError(error) {
-    var _a;
+    let _a;
     return {
         ok: false,
         error: Object.assign(Object.assign({}, error), { metadata: (_a = error.metadata) !== null && _a !== void 0 ? _a : new metadata_1.Metadata() })

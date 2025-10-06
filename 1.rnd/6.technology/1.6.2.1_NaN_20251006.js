@@ -1,5 +1,5 @@
-var test = require('tape');
-var equal = require('../');
+const test = require('tape');
+const equal = require('../');
 
 test('NaN and 0 values', function (t) {
     t.ok(equal(NaN, NaN));

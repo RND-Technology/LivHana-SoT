@@ -3,9 +3,9 @@
  * Runtime message from/to plain object converters.
  * @namespace
  */
-var converter = exports;
+const converter = exports;
 
-var Enum = require("./enum"),
+const Enum = require("./enum"),
     util = require("./util");
 
 /**
@@ -18,12 +18,12 @@ var Enum = require("./enum"),
  * @ignore
  */
 function genValuePartial_fromObject(gen, field, fieldIndex, prop) {
-    var defaultAlreadyEmitted = false;
+    let defaultAlreadyEmitted = false;
     /* eslint-disable no-unexpected-multiline, block-scoped-var, no-redeclare */
     if (field.resolvedType) {
         if (field.resolvedType instanceof Enum) { gen
             ("switch(d%s){", prop);
-            for (var values = field.resolvedType.values, keys = Object.keys(values), i = 0; i < keys.length; ++i) {
+            for (let values = field.resolvedType.values, keys = Object.keys(values), i = 0; i < keys.length; ++i) {
                 // enum unknown values passthrough
                 if (values[keys[i]] === field.typeDefault && !defaultAlreadyEmitted) { gen
                     ("default:")
@@ -45,7 +45,7 @@ function genValuePartial_fromObject(gen, field, fieldIndex, prop) {
                 ("throw TypeError(%j)", field.fullName + ": object expected")
             ("m%s=types[%i].fromObject(d%s)", prop, fieldIndex, prop);
     } else {
-        var isUnsigned = false;
+        let isUnsigned = false;
         switch (field.type) {
             case "double":
             case "float": gen
@@ -104,16 +104,16 @@ function genValuePartial_fromObject(gen, field, fieldIndex, prop) {
  */
 converter.fromObject = function fromObject(mtype) {
     /* eslint-disable no-unexpected-multiline, block-scoped-var, no-redeclare */
-    var fields = mtype.fieldsArray;
-    var gen = util.codegen(["d"], mtype.name + "$fromObject")
+    const fields = mtype.fieldsArray;
+    const gen = util.codegen(["d"], mtype.name + "$fromObject")
     ("if(d instanceof this.ctor)")
         ("return d");
     if (!fields.length) return gen
     ("return new this.ctor");
     gen
     ("var m=new this.ctor");
-    for (var i = 0; i < fields.length; ++i) {
-        var field  = fields[i].resolve(),
+    for (let i = 0; i < fields.length; ++i) {
+        const field  = fields[i].resolve(),
             prop   = util.safeProp(field.name);
 
         // Map fields
@@ -168,7 +168,7 @@ function genValuePartial_toObject(gen, field, fieldIndex, prop) {
         else gen
             ("d%s=types[%i].toObject(m%s,o)", prop, fieldIndex, prop);
     } else {
-        var isUnsigned = false;
+        let isUnsigned = false;
         switch (field.type) {
             case "double":
             case "float": gen
@@ -205,15 +205,15 @@ function genValuePartial_toObject(gen, field, fieldIndex, prop) {
  */
 converter.toObject = function toObject(mtype) {
     /* eslint-disable no-unexpected-multiline, block-scoped-var, no-redeclare */
-    var fields = mtype.fieldsArray.slice().sort(util.compareFieldsById);
+    const fields = mtype.fieldsArray.slice().sort(util.compareFieldsById);
     if (!fields.length)
         return util.codegen()("return {}");
-    var gen = util.codegen(["m", "o"], mtype.name + "$toObject")
+    const gen = util.codegen(["m", "o"], mtype.name + "$toObject")
     ("if(!o)")
         ("o={}")
     ("var d={}");
 
-    var repeatedFields = [],
+    let repeatedFields = [],
         mapFields = [],
         normalFields = [],
         i = 0;
@@ -253,7 +253,7 @@ converter.toObject = function toObject(mtype) {
         ("}else")
             ("d%s=o.longs===String?%j:%i", prop, field.typeDefault.toString(), field.typeDefault.toNumber());
             else if (field.bytes) {
-                var arrayDefault = "[" + Array.prototype.slice.call(field.typeDefault).join(",") + "]";
+                const arrayDefault = "[" + Array.prototype.slice.call(field.typeDefault).join(",") + "]";
                 gen
         ("if(o.bytes===String)d%s=%j", prop, String.fromCharCode.apply(String, field.typeDefault))
         ("else{")
@@ -265,7 +265,7 @@ converter.toObject = function toObject(mtype) {
         } gen
     ("}");
     }
-    var hasKs2 = false;
+    let hasKs2 = false;
     for (i = 0; i < fields.length; ++i) {
         var field = fields[i],
             index = mtype._fieldsArray.indexOf(field),

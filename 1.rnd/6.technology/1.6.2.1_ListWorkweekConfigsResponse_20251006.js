@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
 exports.listWorkweekConfigsResponseSchema = void 0;
-var schema_1 = require("../schema");
-var error_1 = require("./error");
-var workweekConfig_1 = require("./workweekConfig");
+const schema_1 = require("../schema");
+const error_1 = require("./error");
+const workweekConfig_1 = require("./workweekConfig");
 exports.listWorkweekConfigsResponseSchema = (0, schema_1.object)({
     workweekConfigs: [
         'workweek_configs',

@@ -1,10 +1,10 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var inspect = require('object-inspect');
+const inspect = require('object-inspect');
 
-var isPropertyKey = require('../helpers/isPropertyKey');
+const isPropertyKey = require('../helpers/isPropertyKey');
 // var ToObject = require('./ToObject');
 
 // https://262.ecma-international.org/6.0/#sec-getv

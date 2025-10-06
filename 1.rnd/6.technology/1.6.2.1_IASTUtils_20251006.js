@@ -3,14 +3,14 @@
  * SPDX-License-Identifier: New Relic Software License v1.0
  */
 const { Agent } = require('../../../agent');
-let pendingRequestIds = new Set();
-let completedRequestsMap = new Map();
+const pendingRequestIds = new Set();
+const completedRequestsMap = new Map();
 const PolicyManager = require('../../../Policy');
 const API = require('../../../../../../nr-security-api');
 let batchSize;
 const batchthreshold = 200;
 const logs = require('../../../logging');
-let logger = logs.getLogger();
+const logger = logs.getLogger();
 const commonUtils = require('../../../commonUtils');
 
 function getPendingRequestIds() {
@@ -35,7 +35,7 @@ function completedRequestsMapInit(id) {
 }
 
 function addCompletedRequests(id, eventId) {
-    let data = completedRequestsMap.get(id);
+    const data = completedRequestsMap.get(id);
     if (!data) {
         return;
     }
@@ -75,7 +75,7 @@ function generateIASTDataRequest() {
 
     const NRAgent = API.getNRAgent();
     let scanRateLimit = 3600;
-    let scanRateLimitFromConfig = parseInt(NRAgent.config.security.scan_controllers.iast_scan_request_rate_limit);
+    const scanRateLimitFromConfig = parseInt(NRAgent.config.security.scan_controllers.iast_scan_request_rate_limit);
     scanRateLimit = scanRateLimitFromConfig
     if (isNaN(scanRateLimitFromConfig)) {
         scanRateLimit = 3600;
@@ -89,7 +89,7 @@ function generateIASTDataRequest() {
         }
     }
 
-    let object = {};
+    const object = {};
     object['jsonName'] = 'iast-data-request';
     object['applicationUUID'] = Agent.getAgent().applicationInfo.applicationUUID;
     object['appEntityGuid'] = Agent.getAgent().applicationInfo.appEntityGuid;

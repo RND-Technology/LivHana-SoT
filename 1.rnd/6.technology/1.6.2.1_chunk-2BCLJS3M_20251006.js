@@ -1,23 +1,23 @@
 "use strict";
-var __create = Object.create;
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getProtoOf = Object.getPrototypeOf;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
+const __create = Object.create;
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __getProtoOf = Object.getPrototypeOf;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __export = (target, all) => {
+  for (const name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toESM2 = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+const __toESM2 = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
   // If the importer is in node compatibility mode or this is not an ESM
   // file that has been converted to a CommonJS file using a Babel-
   // compatible transform (i.e. "__esModule" has not been set), then set
@@ -25,8 +25,8 @@ var __toESM2 = (mod, isNodeMode, target) => (target = mod != null ? __create(__g
   isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
   mod
 ));
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var chunk_2BCLJS3M_exports = {};
+const __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+const chunk_2BCLJS3M_exports = {};
 __export(chunk_2BCLJS3M_exports, {
   download: () => download,
   getBinaryName: () => getBinaryName,
@@ -36,27 +36,27 @@ __export(chunk_2BCLJS3M_exports, {
   vercelPkgPathRegex: () => vercelPkgPathRegex
 });
 module.exports = __toCommonJS(chunk_2BCLJS3M_exports);
-var import_chunk_4LX3XBNY = require("./chunk-4LX3XBNY.js");
-var import_chunk_MX3HXAU2 = require("./chunk-MX3HXAU2.js");
-var import_chunk_QSTZGX47 = require("./chunk-QSTZGX47.js");
-var import_chunk_QLWYUM7O = require("./chunk-QLWYUM7O.js");
-var import_chunk_FQ2BOR66 = require("./chunk-FQ2BOR66.js");
-var import_chunk_PXQVM7NP = require("./chunk-PXQVM7NP.js");
-var import_chunk_CWGQAQ3T = require("./chunk-CWGQAQ3T.js");
-var import_chunk_AH6QHEOA = require("./chunk-AH6QHEOA.js");
-var import_debug = __toESM2(require("@prisma/debug"));
-var import_get_platform = require("@prisma/get-platform");
-var import_fs = __toESM2(require("fs"));
-var import_path = __toESM2(require("path"));
-var import_util = require("util");
-var require_windows = (0, import_chunk_AH6QHEOA.__commonJS)({
+const import_chunk_4LX3XBNY = require("./chunk-4LX3XBNY.js");
+const import_chunk_MX3HXAU2 = require("./chunk-MX3HXAU2.js");
+const import_chunk_QSTZGX47 = require("./chunk-QSTZGX47.js");
+const import_chunk_QLWYUM7O = require("./chunk-QLWYUM7O.js");
+const import_chunk_FQ2BOR66 = require("./chunk-FQ2BOR66.js");
+const import_chunk_PXQVM7NP = require("./chunk-PXQVM7NP.js");
+const import_chunk_CWGQAQ3T = require("./chunk-CWGQAQ3T.js");
+const import_chunk_AH6QHEOA = require("./chunk-AH6QHEOA.js");
+const import_debug = __toESM2(require("@prisma/debug"));
+const import_get_platform = require("@prisma/get-platform");
+const import_fs = __toESM2(require("fs"));
+const import_path = __toESM2(require("path"));
+const import_util = require("util");
+const require_windows = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/isexe@2.0.0/node_modules/isexe/windows.js"(exports, module2) {
     "use strict";
     module2.exports = isexe;
     isexe.sync = sync;
-    var fs2 = (0, import_chunk_AH6QHEOA.__require)("fs");
+    const fs2 = (0, import_chunk_AH6QHEOA.__require)("fs");
     function checkPathExt(path2, options2) {
-      var pathext = options2.pathExt !== void 0 ? options2.pathExt : process.env.PATHEXT;
+      let pathext = options2.pathExt !== void 0 ? options2.pathExt : process.env.PATHEXT;
       if (!pathext) {
         return true;
       }
@@ -64,8 +64,8 @@ var require_windows = (0, import_chunk_AH6QHEOA.__commonJS)({
       if (pathext.indexOf("") !== -1) {
         return true;
       }
-      for (var i = 0; i < pathext.length; i++) {
-        var p = pathext[i].toLowerCase();
+      for (let i = 0; i < pathext.length; i++) {
+        const p = pathext[i].toLowerCase();
         if (p && path2.substr(-p.length).toLowerCase() === p) {
           return true;
         }
@@ -88,12 +88,12 @@ var require_windows = (0, import_chunk_AH6QHEOA.__commonJS)({
     }
   }
 });
-var require_mode = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_mode = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/isexe@2.0.0/node_modules/isexe/mode.js"(exports, module2) {
     "use strict";
     module2.exports = isexe;
     isexe.sync = sync;
-    var fs2 = (0, import_chunk_AH6QHEOA.__require)("fs");
+    const fs2 = (0, import_chunk_AH6QHEOA.__require)("fs");
     function isexe(path2, options2, cb) {
       fs2.stat(path2, function(er, stat) {
         cb(er, er ? false : checkStat(stat, options2));
@@ -106,25 +106,25 @@ var require_mode = (0, import_chunk_AH6QHEOA.__commonJS)({
       return stat.isFile() && checkMode(stat, options2);
     }
     function checkMode(stat, options2) {
-      var mod = stat.mode;
-      var uid = stat.uid;
-      var gid = stat.gid;
-      var myUid = options2.uid !== void 0 ? options2.uid : process.getuid && process.getuid();
-      var myGid = options2.gid !== void 0 ? options2.gid : process.getgid && process.getgid();
-      var u = parseInt("100", 8);
-      var g = parseInt("010", 8);
-      var o = parseInt("001", 8);
-      var ug = u | g;
-      var ret = mod & o || mod & g && gid === myGid || mod & u && uid === myUid || mod & ug && myUid === 0;
+      const mod = stat.mode;
+      const uid = stat.uid;
+      const gid = stat.gid;
+      const myUid = options2.uid !== void 0 ? options2.uid : process.getuid && process.getuid();
+      const myGid = options2.gid !== void 0 ? options2.gid : process.getgid && process.getgid();
+      const u = parseInt("100", 8);
+      const g = parseInt("010", 8);
+      const o = parseInt("001", 8);
+      const ug = u | g;
+      const ret = mod & o || mod & g && gid === myGid || mod & u && uid === myUid || mod & ug && myUid === 0;
       return ret;
     }
   }
 });
-var require_isexe = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_isexe = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/isexe@2.0.0/node_modules/isexe/index.js"(exports, module2) {
     "use strict";
-    var fs2 = (0, import_chunk_AH6QHEOA.__require)("fs");
-    var core;
+    const fs2 = (0, import_chunk_AH6QHEOA.__require)("fs");
+    let core;
     if (process.platform === "win32" || global.TESTING_WINDOWS) {
       core = require_windows();
     } else {
@@ -174,15 +174,15 @@ var require_isexe = (0, import_chunk_AH6QHEOA.__commonJS)({
     }
   }
 });
-var require_which = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_which = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/which@2.0.2/node_modules/which/which.js"(exports, module2) {
     "use strict";
-    var isWindows = process.platform === "win32" || process.env.OSTYPE === "cygwin" || process.env.OSTYPE === "msys";
-    var path2 = (0, import_chunk_AH6QHEOA.__require)("path");
-    var COLON = isWindows ? ";" : ":";
-    var isexe = require_isexe();
-    var getNotFoundError = (cmd) => Object.assign(new Error(`not found: ${cmd}`), { code: "ENOENT" });
-    var getPathInfo = (cmd, opt) => {
+    const isWindows = process.platform === "win32" || process.env.OSTYPE === "cygwin" || process.env.OSTYPE === "msys";
+    const path2 = (0, import_chunk_AH6QHEOA.__require)("path");
+    const COLON = isWindows ? ";" : ":";
+    const isexe = require_isexe();
+    const getNotFoundError = (cmd) => Object.assign(new Error(`not found: ${cmd}`), { code: "ENOENT" });
+    const getPathInfo = (cmd, opt) => {
       const colon = opt.colon || COLON;
       const pathEnv = cmd.match(/\//) || isWindows && cmd.match(/\\/) ? [""] : [
         // windows always checks the cwd first
@@ -202,7 +202,7 @@ var require_which = (0, import_chunk_AH6QHEOA.__commonJS)({
         pathExtExe
       };
     };
-    var which = (cmd, opt, cb) => {
+    const which = (cmd, opt, cb) => {
       if (typeof opt === "function") {
         cb = opt;
         opt = {};
@@ -236,7 +236,7 @@ var require_which = (0, import_chunk_AH6QHEOA.__commonJS)({
       });
       return cb ? step(0).then((res) => cb(null, res), cb) : step(0);
     };
-    var whichSync = (cmd, opt) => {
+    const whichSync = (cmd, opt) => {
       opt = opt || {};
       const { pathEnv, pathExt, pathExtExe } = getPathInfo(cmd, opt);
       const found = [];
@@ -269,10 +269,10 @@ var require_which = (0, import_chunk_AH6QHEOA.__commonJS)({
     which.sync = whichSync;
   }
 });
-var require_path_key = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_path_key = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/path-key@3.1.1/node_modules/path-key/index.js"(exports, module2) {
     "use strict";
-    var pathKey = (options2 = {}) => {
+    const pathKey = (options2 = {}) => {
       const environment = options2.env || process.env;
       const platform = options2.platform || process.platform;
       if (platform !== "win32") {
@@ -284,12 +284,12 @@ var require_path_key = (0, import_chunk_AH6QHEOA.__commonJS)({
     module2.exports.default = pathKey;
   }
 });
-var require_resolveCommand = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_resolveCommand = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/cross-spawn@7.0.3/node_modules/cross-spawn/lib/util/resolveCommand.js"(exports, module2) {
     "use strict";
-    var path2 = (0, import_chunk_AH6QHEOA.__require)("path");
-    var which = require_which();
-    var getPathKey = require_path_key();
+    const path2 = (0, import_chunk_AH6QHEOA.__require)("path");
+    const which = require_which();
+    const getPathKey = require_path_key();
     function resolveCommandAttempt(parsed, withoutPathExt) {
       const env = parsed.options.env || process.env;
       const cwd = process.cwd();
@@ -324,10 +324,10 @@ var require_resolveCommand = (0, import_chunk_AH6QHEOA.__commonJS)({
     module2.exports = resolveCommand;
   }
 });
-var require_escape = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_escape = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/cross-spawn@7.0.3/node_modules/cross-spawn/lib/util/escape.js"(exports, module2) {
     "use strict";
-    var metaCharsRegExp = /([()\][%!^"`<>&|;, *?])/g;
+    const metaCharsRegExp = /([()\][%!^"`<>&|;, *?])/g;
     function escapeCommand(arg) {
       arg = arg.replace(metaCharsRegExp, "^$1");
       return arg;
@@ -347,16 +347,16 @@ var require_escape = (0, import_chunk_AH6QHEOA.__commonJS)({
     module2.exports.argument = escapeArgument;
   }
 });
-var require_shebang_regex = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_shebang_regex = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/shebang-regex@3.0.0/node_modules/shebang-regex/index.js"(exports, module2) {
     "use strict";
     module2.exports = /^#!(.*)/;
   }
 });
-var require_shebang_command = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_shebang_command = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/shebang-command@2.0.0/node_modules/shebang-command/index.js"(exports, module2) {
     "use strict";
-    var shebangRegex = require_shebang_regex();
+    const shebangRegex = require_shebang_regex();
     module2.exports = (string = "") => {
       const match = string.match(shebangRegex);
       if (!match) {
@@ -371,11 +371,11 @@ var require_shebang_command = (0, import_chunk_AH6QHEOA.__commonJS)({
     };
   }
 });
-var require_readShebang = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_readShebang = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/cross-spawn@7.0.3/node_modules/cross-spawn/lib/util/readShebang.js"(exports, module2) {
     "use strict";
-    var fs2 = (0, import_chunk_AH6QHEOA.__require)("fs");
-    var shebangCommand = require_shebang_command();
+    const fs2 = (0, import_chunk_AH6QHEOA.__require)("fs");
+    const shebangCommand = require_shebang_command();
     function readShebang(command) {
       const size = 150;
       const buffer = Buffer.alloc(size);
@@ -391,16 +391,16 @@ var require_readShebang = (0, import_chunk_AH6QHEOA.__commonJS)({
     module2.exports = readShebang;
   }
 });
-var require_parse = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_parse = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/cross-spawn@7.0.3/node_modules/cross-spawn/lib/parse.js"(exports, module2) {
     "use strict";
-    var path2 = (0, import_chunk_AH6QHEOA.__require)("path");
-    var resolveCommand = require_resolveCommand();
-    var escape = require_escape();
-    var readShebang = require_readShebang();
-    var isWin = process.platform === "win32";
-    var isExecutableRegExp = /\.(?:com|exe)$/i;
-    var isCmdShimRegExp = /node_modules[\\/].bin[\\/][^\\/]+\.cmd$/i;
+    const path2 = (0, import_chunk_AH6QHEOA.__require)("path");
+    const resolveCommand = require_resolveCommand();
+    const escape = require_escape();
+    const readShebang = require_readShebang();
+    const isWin = process.platform === "win32";
+    const isExecutableRegExp = /\.(?:com|exe)$/i;
+    const isCmdShimRegExp = /node_modules[\\/].bin[\\/][^\\/]+\.cmd$/i;
     function detectShebang(parsed) {
       parsed.file = resolveCommand(parsed);
       const shebang = parsed.file && readShebang(parsed.file);
@@ -451,10 +451,10 @@ var require_parse = (0, import_chunk_AH6QHEOA.__commonJS)({
     module2.exports = parse;
   }
 });
-var require_enoent = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_enoent = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/cross-spawn@7.0.3/node_modules/cross-spawn/lib/enoent.js"(exports, module2) {
     "use strict";
-    var isWin = process.platform === "win32";
+    const isWin = process.platform === "win32";
     function notFoundError(original, syscall) {
       return Object.assign(new Error(`${syscall} ${original.command} ENOENT`), {
         code: "ENOENT",
@@ -499,12 +499,12 @@ var require_enoent = (0, import_chunk_AH6QHEOA.__commonJS)({
     };
   }
 });
-var require_cross_spawn = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_cross_spawn = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/cross-spawn@7.0.3/node_modules/cross-spawn/index.js"(exports, module2) {
     "use strict";
-    var cp = (0, import_chunk_AH6QHEOA.__require)("child_process");
-    var parse = require_parse();
-    var enoent = require_enoent();
+    const cp = (0, import_chunk_AH6QHEOA.__require)("child_process");
+    const parse = require_parse();
+    const enoent = require_enoent();
     function spawn(command, args, options2) {
       const parsed = parse(command, args, options2);
       const spawned = cp.spawn(parsed.command, parsed.args, parsed.options);
@@ -524,7 +524,7 @@ var require_cross_spawn = (0, import_chunk_AH6QHEOA.__commonJS)({
     module2.exports._enoent = enoent;
   }
 });
-var require_strip_final_newline = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_strip_final_newline = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/strip-final-newline@2.0.0/node_modules/strip-final-newline/index.js"(exports, module2) {
     "use strict";
     module2.exports = (input) => {
@@ -540,12 +540,12 @@ var require_strip_final_newline = (0, import_chunk_AH6QHEOA.__commonJS)({
     };
   }
 });
-var require_npm_run_path = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_npm_run_path = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/npm-run-path@4.0.1/node_modules/npm-run-path/index.js"(exports, module2) {
     "use strict";
-    var path2 = (0, import_chunk_AH6QHEOA.__require)("path");
-    var pathKey = require_path_key();
-    var npmRunPath = (options2) => {
+    const path2 = (0, import_chunk_AH6QHEOA.__require)("path");
+    const pathKey = require_path_key();
+    const npmRunPath = (options2) => {
       options2 = {
         cwd: process.cwd(),
         path: process.env[pathKey()],
@@ -579,10 +579,10 @@ var require_npm_run_path = (0, import_chunk_AH6QHEOA.__commonJS)({
     };
   }
 });
-var require_mimic_fn = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_mimic_fn = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/mimic-fn@2.1.0/node_modules/mimic-fn/index.js"(exports, module2) {
     "use strict";
-    var mimicFn = (to, from) => {
+    const mimicFn = (to, from) => {
       for (const prop of Reflect.ownKeys(from)) {
         Object.defineProperty(to, prop, Object.getOwnPropertyDescriptor(from, prop));
       }
@@ -592,12 +592,12 @@ var require_mimic_fn = (0, import_chunk_AH6QHEOA.__commonJS)({
     module2.exports.default = mimicFn;
   }
 });
-var require_onetime = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_onetime = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/onetime@5.1.2/node_modules/onetime/index.js"(exports, module2) {
     "use strict";
-    var mimicFn = require_mimic_fn();
-    var calledFunctions = /* @__PURE__ */ new WeakMap();
-    var onetime = (function_, options2 = {}) => {
+    const mimicFn = require_mimic_fn();
+    const calledFunctions = /* @__PURE__ */ new WeakMap();
+    const onetime = (function_, options2 = {}) => {
       if (typeof function_ !== "function") {
         throw new TypeError("Expected a function");
       }
@@ -628,12 +628,12 @@ var require_onetime = (0, import_chunk_AH6QHEOA.__commonJS)({
     };
   }
 });
-var require_core = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_core = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/human-signals@2.1.0/node_modules/human-signals/build/src/core.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.SIGNALS = void 0;
-    var SIGNALS = [
+    const SIGNALS = [
       {
         name: "SIGHUP",
         number: 1,
@@ -907,12 +907,12 @@ var require_core = (0, import_chunk_AH6QHEOA.__commonJS)({
     exports.SIGNALS = SIGNALS;
   }
 });
-var require_realtime = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_realtime = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/human-signals@2.1.0/node_modules/human-signals/build/src/realtime.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.SIGRTMAX = exports.getRealtimeSignals = void 0;
-    var getRealtimeSignals = function() {
+    const getRealtimeSignals = function() {
       const length = SIGRTMAX - SIGRTMIN + 1;
       return Array.from({ length }, getRealtimeSignal);
     };
@@ -931,15 +931,15 @@ var require_realtime = (0, import_chunk_AH6QHEOA.__commonJS)({
     exports.SIGRTMAX = SIGRTMAX;
   }
 });
-var require_signals = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_signals = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/human-signals@2.1.0/node_modules/human-signals/build/src/signals.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.getSignals = void 0;
-    var _os = (0, import_chunk_AH6QHEOA.__require)("os");
-    var _core = require_core();
-    var _realtime = require_realtime();
-    var getSignals = function() {
+    const _os = (0, import_chunk_AH6QHEOA.__require)("os");
+    const _core = require_core();
+    const _realtime = require_realtime();
+    const getSignals = function() {
       const realtimeSignals = (0, _realtime.getRealtimeSignals)();
       const signals = [..._core.SIGNALS, ...realtimeSignals].map(normalizeSignal);
       return signals;
@@ -962,15 +962,15 @@ var require_signals = (0, import_chunk_AH6QHEOA.__commonJS)({
     };
   }
 });
-var require_main = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_main = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/human-signals@2.1.0/node_modules/human-signals/build/src/main.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.signalsByNumber = exports.signalsByName = void 0;
-    var _os = (0, import_chunk_AH6QHEOA.__require)("os");
-    var _signals = require_signals();
-    var _realtime = require_realtime();
-    var getSignalsByName = function() {
+    const _os = (0, import_chunk_AH6QHEOA.__require)("os");
+    const _signals = require_signals();
+    const _realtime = require_realtime();
+    const getSignalsByName = function() {
       const signals = (0, _signals.getSignals)();
       return signals.reduce(getSignalByName, {});
     };
@@ -980,9 +980,9 @@ var require_main = (0, import_chunk_AH6QHEOA.__commonJS)({
         [name]: { name, number, description, supported, action, forced, standard }
       };
     };
-    var signalsByName = getSignalsByName();
+    const signalsByName = getSignalsByName();
     exports.signalsByName = signalsByName;
-    var getSignalsByNumber = function() {
+    const getSignalsByNumber = function() {
       const signals = (0, _signals.getSignals)();
       const length = _realtime.SIGRTMAX + 1;
       const signalsA = Array.from({ length }, (value, number) => getSignalByNumber(number, signals));
@@ -1013,15 +1013,15 @@ var require_main = (0, import_chunk_AH6QHEOA.__commonJS)({
       }
       return signals.find((signalA) => signalA.number === number);
     };
-    var signalsByNumber = getSignalsByNumber();
+    const signalsByNumber = getSignalsByNumber();
     exports.signalsByNumber = signalsByNumber;
   }
 });
-var require_error = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_error = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/execa@5.1.1/node_modules/execa/lib/error.js"(exports, module2) {
     "use strict";
-    var { signalsByName } = require_main();
-    var getErrorPrefix = ({ timedOut, timeout, errorCode, signal, signalDescription, exitCode, isCanceled }) => {
+    const { signalsByName } = require_main();
+    const getErrorPrefix = ({ timedOut, timeout, errorCode, signal, signalDescription, exitCode, isCanceled }) => {
       if (timedOut) {
         return `timed out after ${timeout} milliseconds`;
       }
@@ -1039,7 +1039,7 @@ var require_error = (0, import_chunk_AH6QHEOA.__commonJS)({
       }
       return "failed";
     };
-    var makeError = ({
+    const makeError = ({
       stdout,
       stderr,
       all,
@@ -1092,12 +1092,12 @@ ${error.message}` : execaMessage;
     module2.exports = makeError;
   }
 });
-var require_stdio = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_stdio = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/execa@5.1.1/node_modules/execa/lib/stdio.js"(exports, module2) {
     "use strict";
-    var aliases = ["stdin", "stdout", "stderr"];
-    var hasAlias = (options2) => aliases.some((alias) => options2[alias] !== void 0);
-    var normalizeStdio = (options2) => {
+    const aliases = ["stdin", "stdout", "stderr"];
+    const hasAlias = (options2) => aliases.some((alias) => options2[alias] !== void 0);
+    const normalizeStdio = (options2) => {
       if (!options2) {
         return;
       }
@@ -1133,7 +1133,7 @@ var require_stdio = (0, import_chunk_AH6QHEOA.__commonJS)({
     };
   }
 });
-var require_signals2 = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_signals2 = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/signal-exit@3.0.7/node_modules/signal-exit/signals.js"(exports, module2) {
     "use strict";
     module2.exports = [
@@ -1169,11 +1169,11 @@ var require_signals2 = (0, import_chunk_AH6QHEOA.__commonJS)({
     }
   }
 });
-var require_signal_exit = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_signal_exit = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/signal-exit@3.0.7/node_modules/signal-exit/index.js"(exports, module2) {
     "use strict";
-    var process2 = global.process;
-    var processOk = function(process3) {
+    const process2 = global.process;
+    const processOk = function(process3) {
       return process3 && typeof process3 === "object" && typeof process3.removeListener === "function" && typeof process3.emit === "function" && typeof process3.reallyExit === "function" && typeof process3.listeners === "function" && typeof process3.kill === "function" && typeof process3.pid === "number" && typeof process3.on === "function";
     };
     if (!processOk(process2)) {
@@ -1209,11 +1209,11 @@ var require_signal_exit = (0, import_chunk_AH6QHEOA.__commonJS)({
         if (loaded === false) {
           load();
         }
-        var ev = "exit";
+        let ev = "exit";
         if (opts2 && opts2.alwaysLast) {
           ev = "afterexit";
         }
-        var remove = function() {
+        const remove = function() {
           emitter.removeListener(ev, cb);
           if (emitter.listeners("exit").length === 0 && emitter.listeners("afterexit").length === 0) {
             unload();
@@ -1251,7 +1251,7 @@ var require_signal_exit = (0, import_chunk_AH6QHEOA.__commonJS)({
           if (!processOk(global.process)) {
             return;
           }
-          var listeners = process2.listeners(sig);
+          const listeners = process2.listeners(sig);
           if (listeners.length === emitter.count) {
             unload();
             emit("exit", null, sig);
@@ -1302,7 +1302,7 @@ var require_signal_exit = (0, import_chunk_AH6QHEOA.__commonJS)({
           if (arg !== void 0) {
             process2.exitCode = arg;
           }
-          var ret = originalProcessEmit.apply(this, arguments);
+          const ret = originalProcessEmit.apply(this, arguments);
           emit("exit", process2.exitCode, null);
           emit("afterexit", process2.exitCode, null);
           return ret;
@@ -1311,29 +1311,29 @@ var require_signal_exit = (0, import_chunk_AH6QHEOA.__commonJS)({
         }
       };
     }
-    var assert;
-    var signals;
-    var isWin;
-    var EE;
-    var emitter;
-    var unload;
-    var emit;
-    var sigListeners;
-    var loaded;
-    var load;
-    var originalProcessReallyExit;
-    var processReallyExit;
-    var originalProcessEmit;
-    var processEmit;
+    let assert;
+    let signals;
+    let isWin;
+    let EE;
+    let emitter;
+    let unload;
+    let emit;
+    let sigListeners;
+    let loaded;
+    let load;
+    let originalProcessReallyExit;
+    let processReallyExit;
+    let originalProcessEmit;
+    let processEmit;
   }
 });
-var require_kill = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_kill = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/execa@5.1.1/node_modules/execa/lib/kill.js"(exports, module2) {
     "use strict";
-    var os2 = (0, import_chunk_AH6QHEOA.__require)("os");
-    var onExit = require_signal_exit();
-    var DEFAULT_FORCE_KILL_TIMEOUT = 1e3 * 5;
-    var spawnedKill = (kill, signal = "SIGTERM", options2 = {}) => {
+    const os2 = (0, import_chunk_AH6QHEOA.__require)("os");
+    const onExit = require_signal_exit();
+    const DEFAULT_FORCE_KILL_TIMEOUT = 1e3 * 5;
+    const spawnedKill = (kill, signal = "SIGTERM", options2 = {}) => {
       const killResult = kill(signal);
       setKillTimeout(kill, signal, options2, killResult);
       return killResult;
@@ -1365,17 +1365,17 @@ var require_kill = (0, import_chunk_AH6QHEOA.__commonJS)({
       }
       return forceKillAfterTimeout;
     };
-    var spawnedCancel = (spawned, context) => {
+    const spawnedCancel = (spawned, context) => {
       const killResult = spawned.kill();
       if (killResult) {
         context.isCanceled = true;
       }
     };
-    var timeoutKill = (spawned, signal, reject) => {
+    const timeoutKill = (spawned, signal, reject) => {
       spawned.kill(signal);
       reject(Object.assign(new Error("Timed out"), { timedOut: true, signal }));
     };
-    var setupTimeout = (spawned, { timeout, killSignal = "SIGTERM" }, spawnedPromise) => {
+    const setupTimeout = (spawned, { timeout, killSignal = "SIGTERM" }, spawnedPromise) => {
       if (timeout === 0 || timeout === void 0) {
         return spawnedPromise;
       }
@@ -1390,12 +1390,12 @@ var require_kill = (0, import_chunk_AH6QHEOA.__commonJS)({
       });
       return Promise.race([timeoutPromise, safeSpawnedPromise]);
     };
-    var validateTimeout = ({ timeout }) => {
+    const validateTimeout = ({ timeout }) => {
       if (timeout !== void 0 && (!Number.isFinite(timeout) || timeout < 0)) {
         throw new TypeError(`Expected the \`timeout\` option to be a non-negative integer, got \`${timeout}\` (${typeof timeout})`);
       }
     };
-    var setExitHandler = async (spawned, { cleanup, detached }, timedPromise) => {
+    const setExitHandler = async (spawned, { cleanup, detached }, timedPromise) => {
       if (!cleanup || detached) {
         return timedPromise;
       }
@@ -1415,10 +1415,10 @@ var require_kill = (0, import_chunk_AH6QHEOA.__commonJS)({
     };
   }
 });
-var require_buffer_stream = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_buffer_stream = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/get-stream@6.0.1/node_modules/get-stream/buffer-stream.js"(exports, module2) {
     "use strict";
-    var { PassThrough: PassThroughStream } = (0, import_chunk_AH6QHEOA.__require)("stream");
+    const { PassThrough: PassThroughStream } = (0, import_chunk_AH6QHEOA.__require)("stream");
     module2.exports = (options2) => {
       options2 = { ...options2 };
       const { array } = options2;
@@ -1458,15 +1458,15 @@ var require_buffer_stream = (0, import_chunk_AH6QHEOA.__commonJS)({
     };
   }
 });
-var require_get_stream = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_get_stream = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/get-stream@6.0.1/node_modules/get-stream/index.js"(exports, module2) {
     "use strict";
-    var { constants: BufferConstants } = (0, import_chunk_AH6QHEOA.__require)("buffer");
-    var stream = (0, import_chunk_AH6QHEOA.__require)("stream");
-    var { promisify: promisify2 } = (0, import_chunk_AH6QHEOA.__require)("util");
-    var bufferStream = require_buffer_stream();
-    var streamPipelinePromisified = promisify2(stream.pipeline);
-    var MaxBufferError = class extends Error {
+    const { constants: BufferConstants } = (0, import_chunk_AH6QHEOA.__require)("buffer");
+    const stream = (0, import_chunk_AH6QHEOA.__require)("stream");
+    const { promisify: promisify2 } = (0, import_chunk_AH6QHEOA.__require)("util");
+    const bufferStream = require_buffer_stream();
+    const streamPipelinePromisified = promisify2(stream.pipeline);
+    const MaxBufferError = class extends Error {
       constructor() {
         super("maxBuffer exceeded");
         this.name = "MaxBufferError";
@@ -1511,13 +1511,13 @@ var require_get_stream = (0, import_chunk_AH6QHEOA.__commonJS)({
     module2.exports.MaxBufferError = MaxBufferError;
   }
 });
-var require_merge_stream = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_merge_stream = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/merge-stream@2.0.0/node_modules/merge-stream/index.js"(exports, module2) {
     "use strict";
-    var { PassThrough } = (0, import_chunk_AH6QHEOA.__require)("stream");
+    const { PassThrough } = (0, import_chunk_AH6QHEOA.__require)("stream");
     module2.exports = function() {
-      var sources = [];
-      var output = new PassThrough({ objectMode: true });
+      let sources = [];
+      const output = new PassThrough({ objectMode: true });
       output.setMaxListeners(0);
       output.add = add;
       output.isEmpty = isEmpty;
@@ -1549,13 +1549,13 @@ var require_merge_stream = (0, import_chunk_AH6QHEOA.__commonJS)({
     };
   }
 });
-var require_stream = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_stream = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/execa@5.1.1/node_modules/execa/lib/stream.js"(exports, module2) {
     "use strict";
-    var isStream = (0, import_chunk_QLWYUM7O.require_is_stream)();
-    var getStream = require_get_stream();
-    var mergeStream = require_merge_stream();
-    var handleInput = (spawned, input) => {
+    const isStream = (0, import_chunk_QLWYUM7O.require_is_stream)();
+    const getStream = require_get_stream();
+    const mergeStream = require_merge_stream();
+    const handleInput = (spawned, input) => {
       if (input === void 0 || spawned.stdin === void 0) {
         return;
       }
@@ -1565,7 +1565,7 @@ var require_stream = (0, import_chunk_AH6QHEOA.__commonJS)({
         spawned.stdin.end(input);
       }
     };
-    var makeAllStream = (spawned, { all }) => {
+    const makeAllStream = (spawned, { all }) => {
       if (!all || !spawned.stdout && !spawned.stderr) {
         return;
       }
@@ -1578,7 +1578,7 @@ var require_stream = (0, import_chunk_AH6QHEOA.__commonJS)({
       }
       return mixed;
     };
-    var getBufferedData = async (stream, streamPromise) => {
+    const getBufferedData = async (stream, streamPromise) => {
       if (!stream) {
         return;
       }
@@ -1589,7 +1589,7 @@ var require_stream = (0, import_chunk_AH6QHEOA.__commonJS)({
         return error.bufferedData;
       }
     };
-    var getStreamPromise = (stream, { encoding, buffer, maxBuffer }) => {
+    const getStreamPromise = (stream, { encoding, buffer, maxBuffer }) => {
       if (!stream || !buffer) {
         return;
       }
@@ -1598,7 +1598,7 @@ var require_stream = (0, import_chunk_AH6QHEOA.__commonJS)({
       }
       return getStream.buffer(stream, { maxBuffer });
     };
-    var getSpawnedResult = async ({ stdout, stderr, all }, { encoding, buffer, maxBuffer }, processDone) => {
+    const getSpawnedResult = async ({ stdout, stderr, all }, { encoding, buffer, maxBuffer }, processDone) => {
       const stdoutPromise = getStreamPromise(stdout, { encoding, buffer, maxBuffer });
       const stderrPromise = getStreamPromise(stderr, { encoding, buffer, maxBuffer });
       const allPromise = getStreamPromise(all, { encoding, buffer, maxBuffer: maxBuffer * 2 });
@@ -1613,7 +1613,7 @@ var require_stream = (0, import_chunk_AH6QHEOA.__commonJS)({
         ]);
       }
     };
-    var validateInputSync = ({ input }) => {
+    const validateInputSync = ({ input }) => {
       if (isStream(input)) {
         throw new TypeError("The `input` option cannot be a stream in sync mode");
       }
@@ -1626,23 +1626,23 @@ var require_stream = (0, import_chunk_AH6QHEOA.__commonJS)({
     };
   }
 });
-var require_promise = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_promise = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/execa@5.1.1/node_modules/execa/lib/promise.js"(exports, module2) {
     "use strict";
-    var nativePromisePrototype = (async () => {
+    const nativePromisePrototype = (async () => {
     })().constructor.prototype;
-    var descriptors = ["then", "catch", "finally"].map((property) => [
+    const descriptors = ["then", "catch", "finally"].map((property) => [
       property,
       Reflect.getOwnPropertyDescriptor(nativePromisePrototype, property)
     ]);
-    var mergePromise = (spawned, promise) => {
+    const mergePromise = (spawned, promise) => {
       for (const [property, descriptor] of descriptors) {
         const value = typeof promise === "function" ? (...args) => Reflect.apply(descriptor.value, promise(), args) : descriptor.value.bind(promise);
         Reflect.defineProperty(spawned, property, { ...descriptor, value });
       }
       return spawned;
     };
-    var getSpawnedPromise = (spawned) => {
+    const getSpawnedPromise = (spawned) => {
       return new Promise((resolve, reject) => {
         spawned.on("exit", (exitCode, signal) => {
           resolve({ exitCode, signal });
@@ -1663,31 +1663,31 @@ var require_promise = (0, import_chunk_AH6QHEOA.__commonJS)({
     };
   }
 });
-var require_command = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_command = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/execa@5.1.1/node_modules/execa/lib/command.js"(exports, module2) {
     "use strict";
-    var normalizeArgs = (file2, args = []) => {
+    const normalizeArgs = (file2, args = []) => {
       if (!Array.isArray(args)) {
         return [file2];
       }
       return [file2, ...args];
     };
-    var NO_ESCAPE_REGEXP = /^[\w.-]+$/;
-    var DOUBLE_QUOTES_REGEXP = /"/g;
-    var escapeArg = (arg) => {
+    const NO_ESCAPE_REGEXP = /^[\w.-]+$/;
+    const DOUBLE_QUOTES_REGEXP = /"/g;
+    const escapeArg = (arg) => {
       if (typeof arg !== "string" || NO_ESCAPE_REGEXP.test(arg)) {
         return arg;
       }
       return `"${arg.replace(DOUBLE_QUOTES_REGEXP, '\\"')}"`;
     };
-    var joinCommand = (file2, args) => {
+    const joinCommand = (file2, args) => {
       return normalizeArgs(file2, args).join(" ");
     };
-    var getEscapedCommand = (file2, args) => {
+    const getEscapedCommand = (file2, args) => {
       return normalizeArgs(file2, args).map((arg) => escapeArg(arg)).join(" ");
     };
-    var SPACES_REGEXP = / +/g;
-    var parseCommand = (command) => {
+    const SPACES_REGEXP = / +/g;
+    const parseCommand = (command) => {
       const tokens = [];
       for (const token of command.trim().split(SPACES_REGEXP)) {
         const previousToken = tokens[tokens.length - 1];
@@ -1706,30 +1706,30 @@ var require_command = (0, import_chunk_AH6QHEOA.__commonJS)({
     };
   }
 });
-var require_execa = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_execa = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/execa@5.1.1/node_modules/execa/index.js"(exports, module2) {
     "use strict";
-    var path2 = (0, import_chunk_AH6QHEOA.__require)("path");
-    var childProcess = (0, import_chunk_AH6QHEOA.__require)("child_process");
-    var crossSpawn = require_cross_spawn();
-    var stripFinalNewline = require_strip_final_newline();
-    var npmRunPath = require_npm_run_path();
-    var onetime = require_onetime();
-    var makeError = require_error();
-    var normalizeStdio = require_stdio();
-    var { spawnedKill, spawnedCancel, setupTimeout, validateTimeout, setExitHandler } = require_kill();
-    var { handleInput, getSpawnedResult, makeAllStream, validateInputSync } = require_stream();
-    var { mergePromise, getSpawnedPromise } = require_promise();
-    var { joinCommand, parseCommand, getEscapedCommand } = require_command();
-    var DEFAULT_MAX_BUFFER = 1e3 * 1e3 * 100;
-    var getEnv = ({ env: envOption, extendEnv, preferLocal, localDir, execPath }) => {
+    const path2 = (0, import_chunk_AH6QHEOA.__require)("path");
+    const childProcess = (0, import_chunk_AH6QHEOA.__require)("child_process");
+    const crossSpawn = require_cross_spawn();
+    const stripFinalNewline = require_strip_final_newline();
+    const npmRunPath = require_npm_run_path();
+    const onetime = require_onetime();
+    const makeError = require_error();
+    const normalizeStdio = require_stdio();
+    const { spawnedKill, spawnedCancel, setupTimeout, validateTimeout, setExitHandler } = require_kill();
+    const { handleInput, getSpawnedResult, makeAllStream, validateInputSync } = require_stream();
+    const { mergePromise, getSpawnedPromise } = require_promise();
+    const { joinCommand, parseCommand, getEscapedCommand } = require_command();
+    const DEFAULT_MAX_BUFFER = 1e3 * 1e3 * 100;
+    const getEnv = ({ env: envOption, extendEnv, preferLocal, localDir, execPath }) => {
       const env = extendEnv ? { ...process.env, ...envOption } : envOption;
       if (preferLocal) {
         return npmRunPath.env({ env, cwd: localDir, execPath });
       }
       return env;
     };
-    var handleArguments = (file2, args, options2 = {}) => {
+    const handleArguments = (file2, args, options2 = {}) => {
       const parsed = crossSpawn._parse(file2, args, options2);
       file2 = parsed.command;
       args = parsed.args;
@@ -1756,7 +1756,7 @@ var require_execa = (0, import_chunk_AH6QHEOA.__commonJS)({
       }
       return { file: file2, args, options: options2, parsed };
     };
-    var handleOutput = (options2, value, error) => {
+    const handleOutput = (options2, value, error) => {
       if (typeof value !== "string" && !Buffer.isBuffer(value)) {
         return error === void 0 ? void 0 : "";
       }
@@ -1765,7 +1765,7 @@ var require_execa = (0, import_chunk_AH6QHEOA.__commonJS)({
       }
       return value;
     };
-    var execa2 = (file2, args, options2) => {
+    const execa2 = (file2, args, options2) => {
       const parsed = handleArguments(file2, args, options2);
       const command = joinCommand(file2, args);
       const escapedCommand = getEscapedCommand(file2, args);
@@ -1932,10 +1932,10 @@ var require_execa = (0, import_chunk_AH6QHEOA.__commonJS)({
     };
   }
 });
-var require_p_map = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_p_map = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/p-map@2.1.0/node_modules/p-map/index.js"(exports, module2) {
     "use strict";
-    var pMap = (iterable, mapper, options2) => new Promise((resolve, reject) => {
+    const pMap = (iterable, mapper, options2) => new Promise((resolve, reject) => {
       options2 = Object.assign({
         concurrency: Infinity
       }, options2);
@@ -1990,11 +1990,11 @@ var require_p_map = (0, import_chunk_AH6QHEOA.__commonJS)({
     module2.exports.default = pMap;
   }
 });
-var require_p_filter = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_p_filter = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/p-filter@2.1.0/node_modules/p-filter/index.js"(exports, module2) {
     "use strict";
-    var pMap = require_p_map();
-    var pFilter2 = async (iterable, filterer, options2) => {
+    const pMap = require_p_map();
+    const pFilter2 = async (iterable, filterer, options2) => {
       const values = await pMap(
         iterable,
         (element, index) => Promise.all([filterer(element, index), element]),
@@ -2006,7 +2006,7 @@ var require_p_filter = (0, import_chunk_AH6QHEOA.__commonJS)({
     module2.exports.default = pFilter2;
   }
 });
-var require_package = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_package = (0, import_chunk_AH6QHEOA.__commonJS)({
   "package.json"(exports, module2) {
     module2.exports = {
       name: "@prisma/fetch-engine",
@@ -2070,14 +2070,14 @@ var require_package = (0, import_chunk_AH6QHEOA.__commonJS)({
     };
   }
 });
-var import_execa = (0, import_chunk_AH6QHEOA.__toESM)(require_execa());
-var import_fs_extra = (0, import_chunk_AH6QHEOA.__toESM)((0, import_chunk_FQ2BOR66.require_lib)());
-var import_p_filter = (0, import_chunk_AH6QHEOA.__toESM)(require_p_filter());
-var import_temp_dir = (0, import_chunk_AH6QHEOA.__toESM)((0, import_chunk_QLWYUM7O.require_temp_dir)());
-var { enginesOverride } = require_package();
-var debug = (0, import_debug.default)("prisma:fetch-engine:download");
-var exists = (0, import_util.promisify)(import_fs.default.exists);
-var channel = "master";
+const import_execa = (0, import_chunk_AH6QHEOA.__toESM)(require_execa());
+const import_fs_extra = (0, import_chunk_AH6QHEOA.__toESM)((0, import_chunk_FQ2BOR66.require_lib)());
+const import_p_filter = (0, import_chunk_AH6QHEOA.__toESM)(require_p_filter());
+const import_temp_dir = (0, import_chunk_AH6QHEOA.__toESM)((0, import_chunk_QLWYUM7O.require_temp_dir)());
+const { enginesOverride } = require_package();
+const debug = (0, import_debug.default)("prisma:fetch-engine:download");
+const exists = (0, import_util.promisify)(import_fs.default.exists);
+const channel = "master";
 var vercelPkgPathRegex = /^((\w:[\\\/])|\/)snapshot[\/\\]/;
 async function download(options) {
   if (enginesOverride?.["branch"] || enginesOverride?.["folder"]) {

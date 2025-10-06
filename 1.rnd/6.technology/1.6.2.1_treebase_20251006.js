@@ -9,10 +9,10 @@ TreeBase.prototype.clear = function() {
 
 // returns node data if found, null otherwise
 TreeBase.prototype.find = function(data) {
-    var res = this._root;
+    let res = this._root;
 
     while(res !== null) {
-        var c = this._comparator(data, res.data);
+        const c = this._comparator(data, res.data);
         if(c === 0) {
             return res.data;
         }
@@ -26,11 +26,11 @@ TreeBase.prototype.find = function(data) {
 
 // returns iterator to node if found, null otherwise
 TreeBase.prototype.findIter = function(data) {
-    var res = this._root;
-    var iter = this.iterator();
+    let res = this._root;
+    const iter = this.iterator();
 
     while(res !== null) {
-        var c = this._comparator(data, res.data);
+        const c = this._comparator(data, res.data);
         if(c === 0) {
             iter._cursor = res;
             return iter;
@@ -46,12 +46,12 @@ TreeBase.prototype.findIter = function(data) {
 
 // Returns an iterator to the tree node at or immediately after the item
 TreeBase.prototype.lowerBound = function(item) {
-    var cur = this._root;
-    var iter = this.iterator();
-    var cmp = this._comparator;
+    let cur = this._root;
+    const iter = this.iterator();
+    const cmp = this._comparator;
 
     while(cur !== null) {
-        var c = cmp(item, cur.data);
+        const c = cmp(item, cur.data);
         if(c === 0) {
             iter._cursor = cur;
             return iter;
@@ -60,7 +60,7 @@ TreeBase.prototype.lowerBound = function(item) {
         cur = cur.get_child(c > 0);
     }
 
-    for(var i=iter._ancestors.length - 1; i >= 0; --i) {
+    for(let i=iter._ancestors.length - 1; i >= 0; --i) {
         cur = iter._ancestors[i];
         if(cmp(item, cur.data) < 0) {
             iter._cursor = cur;
@@ -75,8 +75,8 @@ TreeBase.prototype.lowerBound = function(item) {
 
 // Returns an iterator to the tree node immediately after the item
 TreeBase.prototype.upperBound = function(item) {
-    var iter = this.lowerBound(item);
-    var cmp = this._comparator;
+    const iter = this.lowerBound(item);
+    const cmp = this._comparator;
 
     while(iter.data() !== null && cmp(iter.data(), item) === 0) {
         iter.next();
@@ -87,7 +87,7 @@ TreeBase.prototype.upperBound = function(item) {
 
 // returns null if tree is empty
 TreeBase.prototype.min = function() {
-    var res = this._root;
+    let res = this._root;
     if(res === null) {
         return null;
     }
@@ -101,7 +101,7 @@ TreeBase.prototype.min = function() {
 
 // returns null if tree is empty
 TreeBase.prototype.max = function() {
-    var res = this._root;
+    let res = this._root;
     if(res === null) {
         return null;
     }
@@ -121,7 +121,7 @@ TreeBase.prototype.iterator = function() {
 
 // calls cb on each node's data, in order
 TreeBase.prototype.each = function(cb) {
-    var it=this.iterator(), data;
+    let it=this.iterator(), data;
     while((data = it.next()) !== null) {
         if(cb(data) === false) {
             return;
@@ -131,7 +131,7 @@ TreeBase.prototype.each = function(cb) {
 
 // calls cb on each node's data, in reverse order
 TreeBase.prototype.reach = function(cb) {
-    var it=this.iterator(), data;
+    let it=this.iterator(), data;
     while((data = it.prev()) !== null) {
         if(cb(data) === false) {
             return;
@@ -154,7 +154,7 @@ Iterator.prototype.data = function() {
 // otherwise, returns next node
 Iterator.prototype.next = function() {
     if(this._cursor === null) {
-        var root = this._tree._root;
+        const root = this._tree._root;
         if(root !== null) {
             this._minNode(root);
         }
@@ -163,7 +163,7 @@ Iterator.prototype.next = function() {
         if(this._cursor.right === null) {
             // no greater node in subtree, go up to parent
             // if coming from a right child, continue up the stack
-            var save;
+            let save;
             do {
                 save = this._cursor;
                 if(this._ancestors.length) {
@@ -188,14 +188,14 @@ Iterator.prototype.next = function() {
 // otherwise, returns previous node
 Iterator.prototype.prev = function() {
     if(this._cursor === null) {
-        var root = this._tree._root;
+        const root = this._tree._root;
         if(root !== null) {
             this._maxNode(root);
         }
     }
     else {
         if(this._cursor.left === null) {
-            var save;
+            let save;
             do {
                 save = this._cursor;
                 if(this._ancestors.length) {

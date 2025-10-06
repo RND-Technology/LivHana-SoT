@@ -1,19 +1,19 @@
 "use strict";
 'use client';
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+const _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.styles = exports.html = exports.default = exports.body = void 0;
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-var React = _interopRequireWildcard(require("react"));
-var _propTypes = _interopRequireDefault(require("prop-types"));
-var _DefaultPropsProvider = require("../DefaultPropsProvider");
-var _GlobalStyles = _interopRequireDefault(require("../GlobalStyles"));
-var _jsxRuntime = require("react/jsx-runtime");
-function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
-function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+const _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+const React = _interopRequireWildcard(require("react"));
+const _propTypes = _interopRequireDefault(require("prop-types"));
+const _DefaultPropsProvider = require("../DefaultPropsProvider");
+const _GlobalStyles = _interopRequireDefault(require("../GlobalStyles"));
+const _jsxRuntime = require("react/jsx-runtime");
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; const r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; const t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); const n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (const u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { const i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 const html = (theme, enableColorScheme) => (0, _extends2.default)({
   WebkitFontSmoothing: 'antialiased',
   // Antialiasing.
@@ -39,11 +39,11 @@ const body = theme => (0, _extends2.default)({
 });
 exports.body = body;
 const styles = (theme, enableColorScheme = false) => {
-  var _theme$components;
+  let _theme$components;
   const colorSchemeStyles = {};
   if (enableColorScheme && theme.colorSchemes) {
     Object.entries(theme.colorSchemes).forEach(([key, scheme]) => {
-      var _scheme$palette;
+      let _scheme$palette;
       colorSchemeStyles[theme.getColorSchemeSelector(key).replace(/\s*&/, '')] = {
         colorScheme: (_scheme$palette = scheme.palette) == null ? void 0 : _scheme$palette.mode
       };
@@ -110,4 +110,4 @@ process.env.NODE_ENV !== "production" ? CssBaseline.propTypes /* remove-proptype
    */
   enableColorScheme: _propTypes.default.bool
 } : void 0;
-var _default = exports.default = CssBaseline;
+const _default = exports.default = CssBaseline;

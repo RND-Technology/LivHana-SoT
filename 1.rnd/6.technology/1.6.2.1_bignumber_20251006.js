@@ -1,4 +1,4 @@
-;(function (globalObject) {
+(function (globalObject) {
   'use strict';
 
 /*
@@ -49,7 +49,7 @@
  */
 
 
-  var BigNumber,
+  let BigNumber,
     isNumeric = /^-?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?$/i,
     mathceil = Math.ceil,
     mathfloor = Math.floor,
@@ -74,7 +74,7 @@
    * Create and return a BigNumber constructor.
    */
   function clone(configObject) {
-    var div, convertBase, parseNumeric,
+    let div, convertBase, parseNumeric,
       P = BigNumber.prototype = { constructor: BigNumber, toString: null, valueOf: null },
       ONE = new BigNumber(1),
 
@@ -180,7 +180,7 @@
      * [b] {number} The base of v. Integer, 2 to ALPHABET.length inclusive.
      */
     function BigNumber(v, b) {
-      var alphabet, c, caseChanged, e, i, isNum, len, str,
+      let alphabet, c, caseChanged, e, i, isNum, len, str,
         x = this;
 
       // Enable constructor call without `new`.
@@ -428,7 +428,7 @@
      * Return an object with the properties current values.
      */
     BigNumber.config = BigNumber.set = function (obj) {
-      var p, v;
+      let p, v;
 
       if (obj != null) {
 
@@ -588,7 +588,7 @@
       if (!v || v._isBigNumber !== true) return false;
       if (!BigNumber.DEBUG) return true;
 
-      var i, n,
+      let i, n,
         c = v.c,
         e = v.e,
         s = v.s;
@@ -662,19 +662,19 @@
      * '[BigNumber Error] crypto unavailable'
      */
     BigNumber.random = (function () {
-      var pow2_53 = 0x20000000000000;
+      const pow2_53 = 0x20000000000000;
 
       // Return a 53 bit integer n, where 0 <= n < 9007199254740992.
       // Check if Math.random() produces more than 32 bits of randomness.
       // If it does, assume at least 53 bits are produced, otherwise assume at least 30 bits.
       // 0x40000000 is 2^30, 0x800000 is 2^23, 0x1fffff is 2^21 - 1.
-      var random53bitInt = (Math.random() * pow2_53) & 0x1fffff
+      const random53bitInt = (Math.random() * pow2_53) & 0x1fffff
        ? function () { return mathfloor(Math.random() * pow2_53); }
        : function () { return ((Math.random() * 0x40000000 | 0) * 0x800000) +
          (Math.random() * 0x800000 | 0); };
 
       return function (dp) {
-        var a, b, e, k, v,
+        let a, b, e, k, v,
           i = 0,
           c = [],
           rand = new BigNumber(ONE);
@@ -801,7 +801,7 @@
      * arguments {number|string|BigNumber}
      */
     BigNumber.sum = function () {
-      var i = 1,
+      let i = 1,
         args = arguments,
         sum = new BigNumber(args[0]);
       for (; i < args.length;) sum = sum.plus(args[i++]);
@@ -814,7 +814,7 @@
 
     // Called by BigNumber and BigNumber.prototype.toString.
     convertBase = (function () {
-      var decimal = '0123456789';
+      const decimal = '0123456789';
 
       /*
        * Convert string of baseIn to an array of numbers of baseOut.
@@ -822,7 +822,7 @@
        * Eg. toBaseOut('ff', 16, 10) returns [2, 5, 5].
        */
       function toBaseOut(str, baseIn, baseOut, alphabet) {
-        var j,
+        let j,
           arr = [0],
           arrL,
           i = 0,
@@ -850,7 +850,7 @@
       // If the caller is toString, we are converting from base 10 to baseOut.
       // If the caller is BigNumber, we are converting from baseIn to base 10.
       return function (str, baseIn, baseOut, sign, callerIsToString) {
-        var alphabet, d, e, k, r, x, xc, y,
+        let alphabet, d, e, k, r, x, xc, y,
           i = str.indexOf('.'),
           dp = DECIMAL_PLACES,
           rm = ROUNDING_MODE;
@@ -968,7 +968,7 @@
 
       // Assume non-zero x and k.
       function multiply(x, k, base) {
-        var m, temp, xlo, xhi,
+        let m, temp, xlo, xhi,
           carry = 0,
           i = x.length,
           klo = k % SQRT_BASE,
@@ -989,7 +989,7 @@
       }
 
       function compare(a, b, aL, bL) {
-        var i, cmp;
+        let i, cmp;
 
         if (aL != bL) {
           cmp = aL > bL ? 1 : -1;
@@ -1008,7 +1008,7 @@
       }
 
       function subtract(a, b, aL, base) {
-        var i = 0;
+        let i = 0;
 
         // Subtract b from a.
         for (; aL--;) {
@@ -1023,7 +1023,7 @@
 
       // x: dividend, y: divisor.
       return function (x, y, dp, rm, base) {
-        var cmp, e, i, more, n, prod, prodL, q, qc, rem, remL, rem0, xi, xL, yc0,
+        let cmp, e, i, more, n, prod, prodL, q, qc, rem, remL, rem0, xi, xL, yc0,
           yL, yz,
           s = x.s == y.s ? 1 : -1,
           xc = x.c,
@@ -1233,7 +1233,7 @@
      * id: 1 (toExponential) or 2 (toPrecision).
      */
     function format(n, i, rm, id) {
-      var c0, e, ne, len, str;
+      let c0, e, ne, len, str;
 
       if (rm == null) rm = ROUNDING_MODE;
       else intCheck(rm, 0, 8);
@@ -1293,7 +1293,7 @@
     // Handle BigNumber.max and BigNumber.min.
     // If any number is NaN, return NaN.
     function maxOrMin(args, n) {
-      var k, y,
+      let k, y,
         i = 1,
         x = new BigNumber(args[0]);
 
@@ -1313,7 +1313,7 @@
      * Called by minus, plus and times.
      */
     function normalise(n, c, e) {
-      var i = 1,
+      let i = 1,
         j = c.length;
 
        // Remove trailing zeros.
@@ -1344,14 +1344,14 @@
 
     // Handle values that fail the validity test in BigNumber.
     parseNumeric = (function () {
-      var basePrefix = /^(-?)0([xbo])(?=\w[\w.]*$)/i,
+      const basePrefix = /^(-?)0([xbo])(?=\w[\w.]*$)/i,
         dotAfter = /^([^.]+)\.$/,
         dotBefore = /^\.([^.]+)$/,
         isInfinityOrNaN = /^-?(Infinity|NaN)$/,
         whitespaceOrPlus = /^\s*\+(?=[\w.])|^\s+|\s+$/g;
 
       return function (x, str, isNum, b) {
-        var base,
+        let base,
           s = isNum ? str : str.replace(whitespaceOrPlus, '');
 
         // No exception on ±Infinity or NaN.
@@ -1397,7 +1397,7 @@
      * If r is truthy, it is known that there are more digits after the rounding digit.
      */
     function round(x, sd, rm, r) {
-      var d, i, j, k, n, ni, rd,
+      let d, i, j, k, n, ni, rd,
         xc = x.c,
         pows10 = POWS_TEN;
 
@@ -1555,7 +1555,7 @@
 
 
     function valueOf(n) {
-      var str,
+      let str,
         e = n.e;
 
       if (e === null) return n.toString();
@@ -1577,7 +1577,7 @@
      * Return a new BigNumber whose value is the absolute value of this BigNumber.
      */
     P.absoluteValue = P.abs = function () {
-      var x = new BigNumber(this);
+      const x = new BigNumber(this);
       if (x.s < 0) x.s = 1;
       return x;
     };
@@ -1609,7 +1609,7 @@
      * '[BigNumber Error] Argument {not a primitive number|not an integer|out of range}: {dp|rm}'
      */
     P.decimalPlaces = P.dp = function (dp, rm) {
-      var c, n, v,
+      let c, n, v,
         x = this;
 
       if (dp != null) {
@@ -1681,7 +1681,7 @@
      * '[BigNumber Error] Exponent not an integer: {n}'
      */
     P.exponentiatedBy = P.pow = function (n, m) {
-      var half, isModExp, i, k, more, nIsBig, nIsNeg, nIsOdd, y,
+      let half, isModExp, i, k, more, nIsBig, nIsNeg, nIsOdd, y,
         x = this;
 
       n = new BigNumber(n);
@@ -1809,7 +1809,7 @@
      * '[BigNumber Error] Argument {not a primitive number|not an integer|out of range}: {rm}'
      */
     P.integerValue = function (rm) {
-      var n = new BigNumber(this);
+      const n = new BigNumber(this);
       if (rm == null) rm = ROUNDING_MODE;
       else intCheck(rm, 0, 8);
       return round(n, n.e + 1, rm);
@@ -1931,7 +1931,7 @@
      * BigNumber(y, b).
      */
     P.minus = function (y, b) {
-      var i, j, t, xLTy,
+      let i, j, t, xLTy,
         x = this,
         a = x.s;
 
@@ -1947,7 +1947,7 @@
         return x.plus(y);
       }
 
-      var xe = x.e / LOG_BASE,
+      let xe = x.e / LOG_BASE,
         ye = y.e / LOG_BASE,
         xc = x.c,
         yc = y.c;
@@ -2070,7 +2070,7 @@
      * BigNumber(y, b). The result depends on the value of MODULO_MODE.
      */
     P.modulo = P.mod = function (y, b) {
-      var q, s,
+      let q, s,
         x = this;
 
       y = new BigNumber(y, b);
@@ -2127,7 +2127,7 @@
      * of BigNumber(y, b).
      */
     P.multipliedBy = P.times = function (y, b) {
-      var c, e, i, j, k, m, xcL, xlo, xhi, ycL, ylo, yhi, zc,
+      let c, e, i, j, k, m, xcL, xlo, xhi, ycL, ylo, yhi, zc,
         base, sqrtBase,
         x = this,
         xc = x.c,
@@ -2209,7 +2209,7 @@
      * i.e. multiplied by -1.
      */
     P.negated = function () {
-      var x = new BigNumber(this);
+      const x = new BigNumber(this);
       x.s = -x.s || null;
       return x;
     };
@@ -2236,7 +2236,7 @@
      * BigNumber(y, b).
      */
     P.plus = function (y, b) {
-      var t,
+      let t,
         x = this,
         a = x.s;
 
@@ -2252,7 +2252,7 @@
         return x.minus(y);
       }
 
-      var xe = x.e / LOG_BASE,
+      let xe = x.e / LOG_BASE,
         ye = y.e / LOG_BASE,
         xc = x.c,
         yc = y.c;
@@ -2330,7 +2330,7 @@
      * '[BigNumber Error] Argument {not a primitive number|not an integer|out of range}: {sd|rm}'
      */
     P.precision = P.sd = function (sd, rm) {
-      var c, n, v,
+      let c, n, v,
         x = this;
 
       if (sd != null && sd !== !!sd) {
@@ -2386,7 +2386,7 @@
      * rounded according to DECIMAL_PLACES and ROUNDING_MODE.
      */
     P.squareRoot = P.sqrt = function () {
-      var m, n, r, rep, t,
+      let m, n, r, rep, t,
         x = this,
         c = x.c,
         s = x.s,
@@ -2549,7 +2549,7 @@
      * '[BigNumber Error] Argument not an object: {format}'
      */
     P.toFormat = function (dp, rm, format) {
-      var str,
+      let str,
         x = this;
 
       if (format == null) {
@@ -2570,7 +2570,7 @@
       str = x.toFixed(dp, rm);
 
       if (x.c) {
-        var i,
+        let i,
           arr = str.split('.'),
           g1 = +format.groupSize,
           g2 = +format.secondaryGroupSize,
@@ -2620,7 +2620,7 @@
      * '[BigNumber Error] Argument {not an integer|out of range} : {md}'
      */
     P.toFraction = function (md) {
-      var d, d0, d1, d2, e, exp, n, n0, n1, q, r, s,
+      let d, d0, d1, d2, e, exp, n, n0, n1, q, r, s,
         x = this,
         xc = x.c;
 
@@ -2720,7 +2720,7 @@
      * '[BigNumber Error] Base {not a primitive number|not an integer|out of range}: {b}'
      */
     P.toString = function (b) {
-      var str,
+      let str,
         n = this,
         s = n.s,
         e = n.e;
@@ -2777,14 +2777,14 @@
 
 
   function bitFloor(n) {
-    var i = n | 0;
+    const i = n | 0;
     return n > 0 || n === i ? i : i - 1;
   }
 
 
   // Return a coefficient array as a string of base 10 digits.
   function coeffToString(a) {
-    var s, z,
+    let s, z,
       i = 1,
       j = a.length,
       r = a[0] + '';
@@ -2805,7 +2805,7 @@
 
   // Compare the value of BigNumbers x and y.
   function compare(x, y) {
-    var a, b,
+    let a, b,
       xc = x.c,
       yc = y.c,
       i = x.s,
@@ -2859,7 +2859,7 @@
 
   // Assumes finite n.
   function isOdd(n) {
-    var k = n.c.length - 1;
+    const k = n.c.length - 1;
     return bitFloor(n.e / LOG_BASE) == k && n.c[k] % 2 != 0;
   }
 
@@ -2871,7 +2871,7 @@
 
 
   function toFixedPoint(str, e, z) {
-    var len, zs;
+    let len, zs;
 
     // Negative exponent?
     if (e < 0) {

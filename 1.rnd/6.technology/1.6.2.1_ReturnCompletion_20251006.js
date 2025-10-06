@@ -1,6 +1,6 @@
 'use strict';
 
-var CompletionRecord = require('es-abstract/2024/CompletionRecord');
+const CompletionRecord = require('es-abstract/2024/CompletionRecord');
 
 // https://tc39.es/ecma262/#sec-returncompletion
 

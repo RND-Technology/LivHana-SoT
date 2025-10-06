@@ -4,13 +4,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.combineActiveTooltipIndex = void 0;
-var _isWellBehavedNumber = require("../../../util/isWellBehavedNumber");
-var combineActiveTooltipIndex = (tooltipInteraction, chartData) => {
-  var desiredIndex = tooltipInteraction === null || tooltipInteraction === void 0 ? void 0 : tooltipInteraction.index;
+const _isWellBehavedNumber = require("../../../util/isWellBehavedNumber");
+const combineActiveTooltipIndex = (tooltipInteraction, chartData) => {
+  const desiredIndex = tooltipInteraction === null || tooltipInteraction === void 0 ? void 0 : tooltipInteraction.index;
   if (desiredIndex == null) {
     return null;
   }
-  var indexAsNumber = Number(desiredIndex);
+  const indexAsNumber = Number(desiredIndex);
   if (!(0, _isWellBehavedNumber.isWellBehavedNumber)(indexAsNumber)) {
     // this is for charts like Sankey and Treemap that do not support numerical indexes. We need a proper solution for this before we can start supporting keyboard events on these charts.
     return desiredIndex;
@@ -20,8 +20,8 @@ var combineActiveTooltipIndex = (tooltipInteraction, chartData) => {
    * Zero is a trivial limit for single-dimensional charts like Line and Area,
    * but this also needs a support for multidimensional charts like Sankey and Treemap! TODO
    */
-  var lowerLimit = 0;
-  var upperLimit = +Infinity;
+  const lowerLimit = 0;
+  let upperLimit = +Infinity;
   if (chartData.length > 0) {
     upperLimit = chartData.length - 1;
   }

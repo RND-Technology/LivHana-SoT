@@ -1,6 +1,6 @@
 'use strict'
 
-let Container = require('./container')
+const Container = require('./container')
 
 let LazyResult, Processor
 
@@ -15,7 +15,7 @@ class Document extends Container {
   }
 
   toResult(opts = {}) {
-    let lazy = new LazyResult(new Processor(), this, opts)
+    const lazy = new LazyResult(new Processor(), this, opts)
 
     return lazy.stringify()
   }

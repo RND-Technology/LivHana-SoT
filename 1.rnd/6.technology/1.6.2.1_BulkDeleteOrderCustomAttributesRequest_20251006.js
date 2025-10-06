@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
 exports.bulkDeleteOrderCustomAttributesRequestSchema = void 0;
-var schema_1 = require("../schema");
-var bulkDeleteOrderCustomAttributesRequestDeleteCustomAttribute_1 = require("./bulkDeleteOrderCustomAttributesRequestDeleteCustomAttribute");
+const schema_1 = require("../schema");
+const bulkDeleteOrderCustomAttributesRequestDeleteCustomAttribute_1 = require("./bulkDeleteOrderCustomAttributesRequestDeleteCustomAttribute");
 exports.bulkDeleteOrderCustomAttributesRequestSchema = (0, schema_1.object)({
     values: [
         'values',

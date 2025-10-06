@@ -12,8 +12,8 @@ function merge() {
 
     if (sets.length > 1) {
         sets[0] = sets[0].slice(0, -1);
-        var xl = sets.length - 1;
-        for (var x = 1; x < xl; ++x) {
+        const xl = sets.length - 1;
+        for (let x = 1; x < xl; ++x) {
             sets[x] = sets[x].slice(1, -1);
         }
         sets[xl] = sets[xl].slice(1);
@@ -35,9 +35,9 @@ function toArray(obj) {
     return obj !== undefined && obj !== null ? obj instanceof Array ? obj : typeof obj.length !== "number" || obj.split || obj.setInterval || obj.call ? [obj] : Array.prototype.slice.call(obj) : [];
 }
 function assign(target, source) {
-    var obj = target;
+    const obj = target;
     if (source) {
-        for (var key in source) {
+        for (const key in source) {
             obj[key] = source[key];
         }
     }
@@ -45,7 +45,7 @@ function assign(target, source) {
 }
 
 function buildExps(isIRI) {
-    var ALPHA$$ = "[A-Za-z]",
+    const ALPHA$$ = "[A-Za-z]",
         CR$ = "[\\x0D]",
         DIGIT$$ = "[0-9]",
         DQUOTE$$ = "[\\x22]",
@@ -145,16 +145,16 @@ function buildExps(isIRI) {
         IPV6ADDRESS: new RegExp("^\\[?(" + IPV6ADDRESS$ + ")" + subexp(subexp("\\%25|\\%(?!" + HEXDIG$$ + "{2})") + "(" + ZONEID$ + ")") + "?\\]?$") //RFC 6874, with relaxed parsing rules
     };
 }
-var URI_PROTOCOL = buildExps(false);
+const URI_PROTOCOL = buildExps(false);
 
-var IRI_PROTOCOL = buildExps(true);
+const IRI_PROTOCOL = buildExps(true);
 
-var slicedToArray = function () {
+const slicedToArray = function () {
   function sliceIterator(arr, i) {
-    var _arr = [];
-    var _n = true;
-    var _d = false;
-    var _e = undefined;
+    const _arr = [];
+    let _n = true;
+    let _d = false;
+    let _e = undefined;
 
     try {
       for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
@@ -199,7 +199,7 @@ var slicedToArray = function () {
 
 
 
-var toConsumableArray = function (arr) {
+const toConsumableArray = function (arr) {
   if (Array.isArray(arr)) {
     for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
 
@@ -211,34 +211,34 @@ var toConsumableArray = function (arr) {
 
 /** Highest positive signed 32-bit float value */
 
-var maxInt = 2147483647; // aka. 0x7FFFFFFF or 2^31-1
+const maxInt = 2147483647; // aka. 0x7FFFFFFF or 2^31-1
 
 /** Bootstring parameters */
-var base = 36;
-var tMin = 1;
-var tMax = 26;
-var skew = 38;
-var damp = 700;
-var initialBias = 72;
-var initialN = 128; // 0x80
-var delimiter = '-'; // '\x2D'
+const base = 36;
+const tMin = 1;
+const tMax = 26;
+const skew = 38;
+const damp = 700;
+const initialBias = 72;
+const initialN = 128; // 0x80
+const delimiter = '-'; // '\x2D'
 
 /** Regular expressions */
-var regexPunycode = /^xn--/;
-var regexNonASCII = /[^\0-\x7E]/; // non-ASCII chars
-var regexSeparators = /[\x2E\u3002\uFF0E\uFF61]/g; // RFC 3490 separators
+const regexPunycode = /^xn--/;
+const regexNonASCII = /[^\0-\x7E]/; // non-ASCII chars
+const regexSeparators = /[\x2E\u3002\uFF0E\uFF61]/g; // RFC 3490 separators
 
 /** Error messages */
-var errors = {
+const errors = {
 	'overflow': 'Overflow: input needs wider integers to process',
 	'not-basic': 'Illegal input >= 0x80 (not a basic code point)',
 	'invalid-input': 'Invalid input'
 };
 
 /** Convenience shortcuts */
-var baseMinusTMin = base - tMin;
-var floor = Math.floor;
-var stringFromCharCode = String.fromCharCode;
+const baseMinusTMin = base - tMin;
+const floor = Math.floor;
+const stringFromCharCode = String.fromCharCode;
 
 /*--------------------------------------------------------------------------*/
 
@@ -261,8 +261,8 @@ function error$1(type) {
  * @returns {Array} A new array of values returned by the callback function.
  */
 function map(array, fn) {
-	var result = [];
-	var length = array.length;
+	const result = [];
+	let length = array.length;
 	while (length--) {
 		result[length] = fn(array[length]);
 	}
@@ -280,8 +280,8 @@ function map(array, fn) {
  * function.
  */
 function mapDomain(string, fn) {
-	var parts = string.split('@');
-	var result = '';
+	const parts = string.split('@');
+	let result = '';
 	if (parts.length > 1) {
 		// In email addresses, only the domain name should be punycoded. Leave
 		// the local part (i.e. everything up to `@`) intact.
@@ -290,8 +290,8 @@ function mapDomain(string, fn) {
 	}
 	// Avoid `split(regex)` for IE8 compatibility. See #17.
 	string = string.replace(regexSeparators, '\x2E');
-	var labels = string.split('.');
-	var encoded = map(labels, fn).join('.');
+	const labels = string.split('.');
+	const encoded = map(labels, fn).join('.');
 	return result + encoded;
 }
 
@@ -309,14 +309,14 @@ function mapDomain(string, fn) {
  * @returns {Array} The new array of code points.
  */
 function ucs2decode(string) {
-	var output = [];
-	var counter = 0;
-	var length = string.length;
+	const output = [];
+	let counter = 0;
+	const length = string.length;
 	while (counter < length) {
-		var value = string.charCodeAt(counter++);
+		const value = string.charCodeAt(counter++);
 		if (value >= 0xD800 && value <= 0xDBFF && counter < length) {
 			// It's a high surrogate, and there is a next character.
-			var extra = string.charCodeAt(counter++);
+			const extra = string.charCodeAt(counter++);
 			if ((extra & 0xFC00) == 0xDC00) {
 				// Low surrogate.
 				output.push(((value & 0x3FF) << 10) + (extra & 0x3FF) + 0x10000);
@@ -341,7 +341,7 @@ function ucs2decode(string) {
  * @param {Array} codePoints The array of numeric code points.
  * @returns {String} The new Unicode string (UCS-2).
  */
-var ucs2encode = function ucs2encode(array) {
+const ucs2encode = function ucs2encode(array) {
 	return String.fromCodePoint.apply(String, toConsumableArray(array));
 };
 
@@ -354,7 +354,7 @@ var ucs2encode = function ucs2encode(array) {
  * representing integers) in the range `0` to `base - 1`, or `base` if
  * the code point does not represent a value.
  */
-var basicToDigit = function basicToDigit(codePoint) {
+const basicToDigit = function basicToDigit(codePoint) {
 	if (codePoint - 0x30 < 0x0A) {
 		return codePoint - 0x16;
 	}
@@ -378,7 +378,7 @@ var basicToDigit = function basicToDigit(codePoint) {
  * used; else, the lowercase form is used. The behavior is undefined
  * if `flag` is non-zero and `digit` has no uppercase form.
  */
-var digitToBasic = function digitToBasic(digit, flag) {
+const digitToBasic = function digitToBasic(digit, flag) {
 	//  0..25 map to ASCII a..z or A..Z
 	// 26..35 map to ASCII 0..9
 	return digit + 22 + 75 * (digit < 26) - ((flag != 0) << 5);
@@ -389,8 +389,8 @@ var digitToBasic = function digitToBasic(digit, flag) {
  * https://tools.ietf.org/html/rfc3492#section-3.4
  * @private
  */
-var adapt = function adapt(delta, numPoints, firstTime) {
-	var k = 0;
+const adapt = function adapt(delta, numPoints, firstTime) {
+	let k = 0;
 	delta = firstTime ? floor(delta / damp) : delta >> 1;
 	delta += floor(delta / numPoints);
 	for (; /* no initialization */delta > baseMinusTMin * tMax >> 1; k += base) {
@@ -406,24 +406,24 @@ var adapt = function adapt(delta, numPoints, firstTime) {
  * @param {String} input The Punycode string of ASCII-only symbols.
  * @returns {String} The resulting string of Unicode symbols.
  */
-var decode = function decode(input) {
+const decode = function decode(input) {
 	// Don't use UCS-2.
-	var output = [];
-	var inputLength = input.length;
-	var i = 0;
-	var n = initialN;
-	var bias = initialBias;
+	const output = [];
+	const inputLength = input.length;
+	let i = 0;
+	let n = initialN;
+	let bias = initialBias;
 
 	// Handle the basic code points: let `basic` be the number of input code
 	// points before the last delimiter, or `0` if there is none, then copy
 	// the first basic code points to the output.
 
-	var basic = input.lastIndexOf(delimiter);
+	let basic = input.lastIndexOf(delimiter);
 	if (basic < 0) {
 		basic = 0;
 	}
 
-	for (var j = 0; j < basic; ++j) {
+	for (let j = 0; j < basic; ++j) {
 		// if it's not a basic code point
 		if (input.charCodeAt(j) >= 0x80) {
 			error$1('not-basic');
@@ -434,34 +434,34 @@ var decode = function decode(input) {
 	// Main decoding loop: start just after the last delimiter if any basic code
 	// points were copied; start at the beginning otherwise.
 
-	for (var index = basic > 0 ? basic + 1 : 0; index < inputLength;) /* no final expression */{
+	for (let index = basic > 0 ? basic + 1 : 0; index < inputLength;) /* no final expression */{
 
 		// `index` is the index of the next character to be consumed.
 		// Decode a generalized variable-length integer into `delta`,
 		// which gets added to `i`. The overflow checking is easier
 		// if we increase `i` as we go, then subtract off its starting
 		// value at the end to obtain `delta`.
-		var oldi = i;
-		for (var w = 1, k = base;; /* no condition */k += base) {
+		const oldi = i;
+		for (let w = 1, k = base;; /* no condition */k += base) {
 
 			if (index >= inputLength) {
 				error$1('invalid-input');
 			}
 
-			var digit = basicToDigit(input.charCodeAt(index++));
+			const digit = basicToDigit(input.charCodeAt(index++));
 
 			if (digit >= base || digit > floor((maxInt - i) / w)) {
 				error$1('overflow');
 			}
 
 			i += digit * w;
-			var t = k <= bias ? tMin : k >= bias + tMax ? tMax : k - bias;
+			const t = k <= bias ? tMin : k >= bias + tMax ? tMax : k - bias;
 
 			if (digit < t) {
 				break;
 			}
 
-			var baseMinusT = base - t;
+			const baseMinusT = base - t;
 			if (w > floor(maxInt / baseMinusT)) {
 				error$1('overflow');
 			}
@@ -469,7 +469,7 @@ var decode = function decode(input) {
 			w *= baseMinusT;
 		}
 
-		var out = output.length + 1;
+		const out = output.length + 1;
 		bias = adapt(i - oldi, out, oldi == 0);
 
 		// `i` was supposed to wrap around from `out` to `0`,
@@ -495,28 +495,28 @@ var decode = function decode(input) {
  * @param {String} input The string of Unicode symbols.
  * @returns {String} The resulting Punycode string of ASCII-only symbols.
  */
-var encode = function encode(input) {
-	var output = [];
+const encode = function encode(input) {
+	const output = [];
 
 	// Convert the input in UCS-2 to an array of Unicode code points.
 	input = ucs2decode(input);
 
 	// Cache the length.
-	var inputLength = input.length;
+	const inputLength = input.length;
 
 	// Initialize the state.
-	var n = initialN;
-	var delta = 0;
-	var bias = initialBias;
+	let n = initialN;
+	let delta = 0;
+	let bias = initialBias;
 
 	// Handle the basic code points.
-	var _iteratorNormalCompletion = true;
-	var _didIteratorError = false;
-	var _iteratorError = undefined;
+	let _iteratorNormalCompletion = true;
+	let _didIteratorError = false;
+	let _iteratorError = undefined;
 
 	try {
 		for (var _iterator = input[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-			var _currentValue2 = _step.value;
+			const _currentValue2 = _step.value;
 
 			if (_currentValue2 < 0x80) {
 				output.push(stringFromCharCode(_currentValue2));
@@ -537,8 +537,8 @@ var encode = function encode(input) {
 		}
 	}
 
-	var basicLength = output.length;
-	var handledCPCount = basicLength;
+	const basicLength = output.length;
+	let handledCPCount = basicLength;
 
 	// `handledCPCount` is the number of code points that have been handled;
 	// `basicLength` is the number of basic code points.
@@ -553,14 +553,14 @@ var encode = function encode(input) {
 
 		// All non-basic code points < n have been handled already. Find the next
 		// larger one:
-		var m = maxInt;
-		var _iteratorNormalCompletion2 = true;
-		var _didIteratorError2 = false;
-		var _iteratorError2 = undefined;
+		let m = maxInt;
+		let _iteratorNormalCompletion2 = true;
+		let _didIteratorError2 = false;
+		let _iteratorError2 = undefined;
 
 		try {
 			for (var _iterator2 = input[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-				var currentValue = _step2.value;
+				const currentValue = _step2.value;
 
 				if (currentValue >= n && currentValue < m) {
 					m = currentValue;
@@ -584,7 +584,7 @@ var encode = function encode(input) {
 			}
 		}
 
-		var handledCPCountPlusOne = handledCPCount + 1;
+		const handledCPCountPlusOne = handledCPCount + 1;
 		if (m - n > floor((maxInt - delta) / handledCPCountPlusOne)) {
 			error$1('overflow');
 		}
@@ -592,27 +592,27 @@ var encode = function encode(input) {
 		delta += (m - n) * handledCPCountPlusOne;
 		n = m;
 
-		var _iteratorNormalCompletion3 = true;
-		var _didIteratorError3 = false;
-		var _iteratorError3 = undefined;
+		let _iteratorNormalCompletion3 = true;
+		let _didIteratorError3 = false;
+		let _iteratorError3 = undefined;
 
 		try {
 			for (var _iterator3 = input[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-				var _currentValue = _step3.value;
+				const _currentValue = _step3.value;
 
 				if (_currentValue < n && ++delta > maxInt) {
 					error$1('overflow');
 				}
 				if (_currentValue == n) {
 					// Represent delta as a generalized variable-length integer.
-					var q = delta;
-					for (var k = base;; /* no condition */k += base) {
-						var t = k <= bias ? tMin : k >= bias + tMax ? tMax : k - bias;
+					let q = delta;
+					for (let k = base;; /* no condition */k += base) {
+						const t = k <= bias ? tMin : k >= bias + tMax ? tMax : k - bias;
 						if (q < t) {
 							break;
 						}
-						var qMinusT = q - t;
-						var baseMinusT = base - t;
+						const qMinusT = q - t;
+						const baseMinusT = base - t;
 						output.push(stringFromCharCode(digitToBasic(t + qMinusT % baseMinusT, 0)));
 						q = floor(qMinusT / baseMinusT);
 					}
@@ -655,7 +655,7 @@ var encode = function encode(input) {
  * @returns {String} The Unicode representation of the given Punycode
  * string.
  */
-var toUnicode = function toUnicode(input) {
+const toUnicode = function toUnicode(input) {
 	return mapDomain(input, function (string) {
 		return regexPunycode.test(string) ? decode(string.slice(4).toLowerCase()) : string;
 	});
@@ -672,7 +672,7 @@ var toUnicode = function toUnicode(input) {
  * @returns {String} The Punycode representation of the given domain name or
  * email address.
  */
-var toASCII = function toASCII(input) {
+const toASCII = function toASCII(input) {
 	return mapDomain(input, function (string) {
 		return regexNonASCII.test(string) ? 'xn--' + encode(string) : string;
 	});
@@ -681,7 +681,7 @@ var toASCII = function toASCII(input) {
 /*--------------------------------------------------------------------------*/
 
 /** Define the public API */
-var punycode = {
+const punycode = {
 	/**
   * A string representing the current Punycode.js version number.
   * @memberOf punycode
@@ -739,25 +739,25 @@ var punycode = {
  * authors and should not be interpreted as representing official policies, either expressed
  * or implied, of Gary Court.
  */
-var SCHEMES = {};
+const SCHEMES = {};
 function pctEncChar(chr) {
-    var c = chr.charCodeAt(0);
-    var e = void 0;
+    const c = chr.charCodeAt(0);
+    let e = void 0;
     if (c < 16) e = "%0" + c.toString(16).toUpperCase();else if (c < 128) e = "%" + c.toString(16).toUpperCase();else if (c < 2048) e = "%" + (c >> 6 | 192).toString(16).toUpperCase() + "%" + (c & 63 | 128).toString(16).toUpperCase();else e = "%" + (c >> 12 | 224).toString(16).toUpperCase() + "%" + (c >> 6 & 63 | 128).toString(16).toUpperCase() + "%" + (c & 63 | 128).toString(16).toUpperCase();
     return e;
 }
 function pctDecChars(str) {
-    var newStr = "";
-    var i = 0;
-    var il = str.length;
+    let newStr = "";
+    let i = 0;
+    const il = str.length;
     while (i < il) {
-        var c = parseInt(str.substr(i + 1, 2), 16);
+        const c = parseInt(str.substr(i + 1, 2), 16);
         if (c < 128) {
             newStr += String.fromCharCode(c);
             i += 3;
         } else if (c >= 194 && c < 224) {
             if (il - i >= 6) {
-                var c2 = parseInt(str.substr(i + 4, 2), 16);
+                const c2 = parseInt(str.substr(i + 4, 2), 16);
                 newStr += String.fromCharCode((c & 31) << 6 | c2 & 63);
             } else {
                 newStr += str.substr(i, 6);
@@ -765,8 +765,8 @@ function pctDecChars(str) {
             i += 6;
         } else if (c >= 224) {
             if (il - i >= 9) {
-                var _c = parseInt(str.substr(i + 4, 2), 16);
-                var c3 = parseInt(str.substr(i + 7, 2), 16);
+                const _c = parseInt(str.substr(i + 4, 2), 16);
+                const c3 = parseInt(str.substr(i + 7, 2), 16);
                 newStr += String.fromCharCode((c & 15) << 12 | (_c & 63) << 6 | c3 & 63);
             } else {
                 newStr += str.substr(i, 9);
@@ -781,7 +781,7 @@ function pctDecChars(str) {
 }
 function _normalizeComponentEncoding(components, protocol) {
     function decodeUnreserved(str) {
-        var decStr = pctDecChars(str);
+        const decStr = pctDecChars(str);
         return !decStr.match(protocol.UNRESERVED) ? str : decStr;
     }
     if (components.scheme) components.scheme = String(components.scheme).replace(protocol.PCT_ENCODED, decodeUnreserved).toLowerCase().replace(protocol.NOT_SCHEME, "");
@@ -797,9 +797,9 @@ function _stripLeadingZeros(str) {
     return str.replace(/^0*(.*)/, "$1") || "0";
 }
 function _normalizeIPv4(host, protocol) {
-    var matches = host.match(protocol.IPV4ADDRESS) || [];
+    const matches = host.match(protocol.IPV4ADDRESS) || [];
 
-    var _matches = slicedToArray(matches, 2),
+    const _matches = slicedToArray(matches, 2),
         address = _matches[1];
 
     if (address) {
@@ -809,33 +809,33 @@ function _normalizeIPv4(host, protocol) {
     }
 }
 function _normalizeIPv6(host, protocol) {
-    var matches = host.match(protocol.IPV6ADDRESS) || [];
+    const matches = host.match(protocol.IPV6ADDRESS) || [];
 
-    var _matches2 = slicedToArray(matches, 3),
+    const _matches2 = slicedToArray(matches, 3),
         address = _matches2[1],
         zone = _matches2[2];
 
     if (address) {
-        var _address$toLowerCase$ = address.toLowerCase().split('::').reverse(),
+        const _address$toLowerCase$ = address.toLowerCase().split('::').reverse(),
             _address$toLowerCase$2 = slicedToArray(_address$toLowerCase$, 2),
             last = _address$toLowerCase$2[0],
             first = _address$toLowerCase$2[1];
 
-        var firstFields = first ? first.split(":").map(_stripLeadingZeros) : [];
-        var lastFields = last.split(":").map(_stripLeadingZeros);
-        var isLastFieldIPv4Address = protocol.IPV4ADDRESS.test(lastFields[lastFields.length - 1]);
-        var fieldCount = isLastFieldIPv4Address ? 7 : 8;
-        var lastFieldsStart = lastFields.length - fieldCount;
-        var fields = Array(fieldCount);
-        for (var x = 0; x < fieldCount; ++x) {
+        const firstFields = first ? first.split(":").map(_stripLeadingZeros) : [];
+        const lastFields = last.split(":").map(_stripLeadingZeros);
+        const isLastFieldIPv4Address = protocol.IPV4ADDRESS.test(lastFields[lastFields.length - 1]);
+        const fieldCount = isLastFieldIPv4Address ? 7 : 8;
+        const lastFieldsStart = lastFields.length - fieldCount;
+        const fields = Array(fieldCount);
+        for (let x = 0; x < fieldCount; ++x) {
             fields[x] = firstFields[x] || lastFields[lastFieldsStart + x] || '';
         }
         if (isLastFieldIPv4Address) {
             fields[fieldCount - 1] = _normalizeIPv4(fields[fieldCount - 1], protocol);
         }
-        var allZeroFields = fields.reduce(function (acc, field, index) {
+        const allZeroFields = fields.reduce(function (acc, field, index) {
             if (!field || field === "0") {
-                var lastLongest = acc[acc.length - 1];
+                const lastLongest = acc[acc.length - 1];
                 if (lastLongest && lastLongest.index + lastLongest.length === index) {
                     lastLongest.length++;
                 } else {
@@ -844,13 +844,13 @@ function _normalizeIPv6(host, protocol) {
             }
             return acc;
         }, []);
-        var longestZeroFields = allZeroFields.sort(function (a, b) {
+        const longestZeroFields = allZeroFields.sort(function (a, b) {
             return b.length - a.length;
         })[0];
-        var newHost = void 0;
+        let newHost = void 0;
         if (longestZeroFields && longestZeroFields.length > 1) {
-            var newFirst = fields.slice(0, longestZeroFields.index);
-            var newLast = fields.slice(longestZeroFields.index + longestZeroFields.length);
+            const newFirst = fields.slice(0, longestZeroFields.index);
+            const newLast = fields.slice(longestZeroFields.index + longestZeroFields.length);
             newHost = newFirst.join(":") + "::" + newLast.join(":");
         } else {
             newHost = fields.join(":");
@@ -863,15 +863,15 @@ function _normalizeIPv6(host, protocol) {
         return host;
     }
 }
-var URI_PARSE = /^(?:([^:\/?#]+):)?(?:\/\/((?:([^\/?#@]*)@)?(\[[^\/?#\]]+\]|[^\/?#:]*)(?:\:(\d*))?))?([^?#]*)(?:\?([^#]*))?(?:#((?:.|\n|\r)*))?/i;
-var NO_MATCH_IS_UNDEFINED = "".match(/(){0}/)[1] === undefined;
+const URI_PARSE = /^(?:([^:\/?#]+):)?(?:\/\/((?:([^\/?#@]*)@)?(\[[^\/?#\]]+\]|[^\/?#:]*)(?:\:(\d*))?))?([^?#]*)(?:\?([^#]*))?(?:#((?:.|\n|\r)*))?/i;
+const NO_MATCH_IS_UNDEFINED = "".match(/(){0}/)[1] === undefined;
 function parse(uriString) {
-    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    const options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-    var components = {};
-    var protocol = options.iri !== false ? IRI_PROTOCOL : URI_PROTOCOL;
+    const components = {};
+    const protocol = options.iri !== false ? IRI_PROTOCOL : URI_PROTOCOL;
     if (options.reference === "suffix") uriString = (options.scheme ? options.scheme + ":" : "") + "//" + uriString;
-    var matches = uriString.match(URI_PARSE);
+    const matches = uriString.match(URI_PARSE);
     if (matches) {
         if (NO_MATCH_IS_UNDEFINED) {
             //store each component
@@ -920,7 +920,7 @@ function parse(uriString) {
             components.error = components.error || "URI is not a " + options.reference + " reference.";
         }
         //find scheme handler
-        var schemeHandler = SCHEMES[(options.scheme || components.scheme || "").toLowerCase()];
+        const schemeHandler = SCHEMES[(options.scheme || components.scheme || "").toLowerCase()];
         //check if scheme can't handle IRIs
         if (!options.unicodeSupport && (!schemeHandler || !schemeHandler.unicodeSupport)) {
             //if host component is a domain name
@@ -949,8 +949,8 @@ function parse(uriString) {
 }
 
 function _recomposeAuthority(components, options) {
-    var protocol = options.iri !== false ? IRI_PROTOCOL : URI_PROTOCOL;
-    var uriTokens = [];
+    const protocol = options.iri !== false ? IRI_PROTOCOL : URI_PROTOCOL;
+    const uriTokens = [];
     if (components.userinfo !== undefined) {
         uriTokens.push(components.userinfo);
         uriTokens.push("@");
@@ -968,12 +968,12 @@ function _recomposeAuthority(components, options) {
     return uriTokens.length ? uriTokens.join("") : undefined;
 }
 
-var RDS1 = /^\.\.?\//;
-var RDS2 = /^\/\.(\/|$)/;
-var RDS3 = /^\/\.\.(\/|$)/;
-var RDS5 = /^\/?(?:.|\n)*?(?=\/|$)/;
+const RDS1 = /^\.\.?\//;
+const RDS2 = /^\/\.(\/|$)/;
+const RDS3 = /^\/\.\.(\/|$)/;
+const RDS5 = /^\/?(?:.|\n)*?(?=\/|$)/;
 function removeDotSegments(input) {
-    var output = [];
+    const output = [];
     while (input.length) {
         if (input.match(RDS1)) {
             input = input.replace(RDS1, "");
@@ -985,9 +985,9 @@ function removeDotSegments(input) {
         } else if (input === "." || input === "..") {
             input = "";
         } else {
-            var im = input.match(RDS5);
+            const im = input.match(RDS5);
             if (im) {
-                var s = im[0];
+                const s = im[0];
                 input = input.slice(s.length);
                 output.push(s);
             } else {
@@ -999,12 +999,12 @@ function removeDotSegments(input) {
 }
 
 function serialize(components) {
-    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    const options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-    var protocol = options.iri ? IRI_PROTOCOL : URI_PROTOCOL;
-    var uriTokens = [];
+    const protocol = options.iri ? IRI_PROTOCOL : URI_PROTOCOL;
+    const uriTokens = [];
     //find scheme handler
-    var schemeHandler = SCHEMES[(options.scheme || components.scheme || "").toLowerCase()];
+    const schemeHandler = SCHEMES[(options.scheme || components.scheme || "").toLowerCase()];
     //perform scheme specific serialization
     if (schemeHandler && schemeHandler.serialize) schemeHandler.serialize(components, options);
     if (components.host) {
@@ -1028,7 +1028,7 @@ function serialize(components) {
         uriTokens.push(components.scheme);
         uriTokens.push(":");
     }
-    var authority = _recomposeAuthority(components, options);
+    const authority = _recomposeAuthority(components, options);
     if (authority !== undefined) {
         if (options.reference !== "suffix") {
             uriTokens.push("//");
@@ -1039,7 +1039,7 @@ function serialize(components) {
         }
     }
     if (components.path !== undefined) {
-        var s = components.path;
+        let s = components.path;
         if (!options.absolutePath && (!schemeHandler || !schemeHandler.absolutePath)) {
             s = removeDotSegments(s);
         }
@@ -1060,10 +1060,10 @@ function serialize(components) {
 }
 
 function resolveComponents(base, relative) {
-    var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-    var skipNormalization = arguments[3];
+    let options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+    const skipNormalization = arguments[3];
 
-    var target = {};
+    const target = {};
     if (!skipNormalization) {
         base = parse(serialize(base, options), options); //normalize base components
         relative = parse(serialize(relative, options), options); //normalize relative components
@@ -1120,7 +1120,7 @@ function resolveComponents(base, relative) {
 }
 
 function resolve(baseURI, relativeURI, options) {
-    var schemelessOptions = assign({ scheme: 'null' }, options);
+    const schemelessOptions = assign({ scheme: 'null' }, options);
     return serialize(resolveComponents(parse(baseURI, schemelessOptions), parse(relativeURI, schemelessOptions), schemelessOptions, true), schemelessOptions);
 }
 
@@ -1155,7 +1155,7 @@ function unescapeComponent(str, options) {
     return str && str.toString().replace(!options || !options.iri ? URI_PROTOCOL.PCT_ENCODED : IRI_PROTOCOL.PCT_ENCODED, pctDecChars);
 }
 
-var handler = {
+const handler = {
     scheme: "http",
     domainHost: true,
     parse: function parse(components, options) {
@@ -1166,7 +1166,7 @@ var handler = {
         return components;
     },
     serialize: function serialize(components, options) {
-        var secure = String(components.scheme).toLowerCase() === "https";
+        const secure = String(components.scheme).toLowerCase() === "https";
         //normalize the default port
         if (components.port === (secure ? 443 : 80) || components.port === "") {
             components.port = undefined;
@@ -1182,7 +1182,7 @@ var handler = {
     }
 };
 
-var handler$1 = {
+const handler$1 = {
     scheme: "https",
     domainHost: handler.domainHost,
     parse: handler.parse,
@@ -1193,11 +1193,11 @@ function isSecure(wsComponents) {
     return typeof wsComponents.secure === 'boolean' ? wsComponents.secure : String(wsComponents.scheme).toLowerCase() === "wss";
 }
 //RFC 6455
-var handler$2 = {
+const handler$2 = {
     scheme: "ws",
     domainHost: true,
     parse: function parse(components, options) {
-        var wsComponents = components;
+        const wsComponents = components;
         //indicate if the secure flag is set
         wsComponents.secure = isSecure(wsComponents);
         //construct resouce name
@@ -1218,7 +1218,7 @@ var handler$2 = {
         }
         //reconstruct path from resource name
         if (wsComponents.resourceName) {
-            var _wsComponents$resourc = wsComponents.resourceName.split('?'),
+            const _wsComponents$resourc = wsComponents.resourceName.split('?'),
                 _wsComponents$resourc2 = slicedToArray(_wsComponents$resourc, 2),
                 path = _wsComponents$resourc2[0],
                 query = _wsComponents$resourc2[1];
@@ -1233,19 +1233,19 @@ var handler$2 = {
     }
 };
 
-var handler$3 = {
+const handler$3 = {
     scheme: "wss",
     domainHost: handler$2.domainHost,
     parse: handler$2.parse,
     serialize: handler$2.serialize
 };
 
-var O = {};
-var isIRI = true;
+const O = {};
+const isIRI = true;
 //RFC 3986
-var UNRESERVED$$ = "[A-Za-z0-9\\-\\.\\_\\~" + (isIRI ? "\\xA0-\\u200D\\u2010-\\u2029\\u202F-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF" : "") + "]";
-var HEXDIG$$ = "[0-9A-Fa-f]"; //case-insensitive
-var PCT_ENCODED$ = subexp(subexp("%[EFef]" + HEXDIG$$ + "%" + HEXDIG$$ + HEXDIG$$ + "%" + HEXDIG$$ + HEXDIG$$) + "|" + subexp("%[89A-Fa-f]" + HEXDIG$$ + "%" + HEXDIG$$ + HEXDIG$$) + "|" + subexp("%" + HEXDIG$$ + HEXDIG$$)); //expanded
+const UNRESERVED$$ = "[A-Za-z0-9\\-\\.\\_\\~" + (isIRI ? "\\xA0-\\u200D\\u2010-\\u2029\\u202F-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF" : "") + "]";
+const HEXDIG$$ = "[0-9A-Fa-f]"; //case-insensitive
+const PCT_ENCODED$ = subexp(subexp("%[EFef]" + HEXDIG$$ + "%" + HEXDIG$$ + HEXDIG$$ + "%" + HEXDIG$$ + HEXDIG$$) + "|" + subexp("%[89A-Fa-f]" + HEXDIG$$ + "%" + HEXDIG$$ + HEXDIG$$) + "|" + subexp("%" + HEXDIG$$ + HEXDIG$$)); //expanded
 //RFC 5322, except these symbols as per RFC 6068: @ : / ? # [ ] & ; =
 //const ATEXT$$ = "[A-Za-z0-9\\!\\#\\$\\%\\&\\'\\*\\+\\-\\/\\=\\?\\^\\_\\`\\{\\|\\}\\~]";
 //const WSP$$ = "[\\x20\\x09]";
@@ -1257,35 +1257,35 @@ var PCT_ENCODED$ = subexp(subexp("%[EFef]" + HEXDIG$$ + "%" + HEXDIG$$ + HEXDIG$
 //const FWS$ = subexp(subexp(WSP$$ + "*" + "\\x0D\\x0A") + "?" + WSP$$ + "+");
 //const QUOTED_PAIR$ = subexp(subexp("\\\\" + subexp(VCHAR$$ + "|" + WSP$$)) + "|" + OBS_QP$);
 //const QUOTED_STRING$ = subexp('\\"' + subexp(FWS$ + "?" + QCONTENT$) + "*" + FWS$ + "?" + '\\"');
-var ATEXT$$ = "[A-Za-z0-9\\!\\$\\%\\'\\*\\+\\-\\^\\_\\`\\{\\|\\}\\~]";
-var QTEXT$$ = "[\\!\\$\\%\\'\\(\\)\\*\\+\\,\\-\\.0-9\\<\\>A-Z\\x5E-\\x7E]";
-var VCHAR$$ = merge(QTEXT$$, "[\\\"\\\\]");
-var SOME_DELIMS$$ = "[\\!\\$\\'\\(\\)\\*\\+\\,\\;\\:\\@]";
-var UNRESERVED = new RegExp(UNRESERVED$$, "g");
-var PCT_ENCODED = new RegExp(PCT_ENCODED$, "g");
-var NOT_LOCAL_PART = new RegExp(merge("[^]", ATEXT$$, "[\\.]", '[\\"]', VCHAR$$), "g");
-var NOT_HFNAME = new RegExp(merge("[^]", UNRESERVED$$, SOME_DELIMS$$), "g");
-var NOT_HFVALUE = NOT_HFNAME;
+const ATEXT$$ = "[A-Za-z0-9\\!\\$\\%\\'\\*\\+\\-\\^\\_\\`\\{\\|\\}\\~]";
+const QTEXT$$ = "[\\!\\$\\%\\'\\(\\)\\*\\+\\,\\-\\.0-9\\<\\>A-Z\\x5E-\\x7E]";
+const VCHAR$$ = merge(QTEXT$$, "[\\\"\\\\]");
+const SOME_DELIMS$$ = "[\\!\\$\\'\\(\\)\\*\\+\\,\\;\\:\\@]";
+const UNRESERVED = new RegExp(UNRESERVED$$, "g");
+const PCT_ENCODED = new RegExp(PCT_ENCODED$, "g");
+const NOT_LOCAL_PART = new RegExp(merge("[^]", ATEXT$$, "[\\.]", '[\\"]', VCHAR$$), "g");
+const NOT_HFNAME = new RegExp(merge("[^]", UNRESERVED$$, SOME_DELIMS$$), "g");
+const NOT_HFVALUE = NOT_HFNAME;
 function decodeUnreserved(str) {
-    var decStr = pctDecChars(str);
+    const decStr = pctDecChars(str);
     return !decStr.match(UNRESERVED) ? str : decStr;
 }
-var handler$4 = {
+const handler$4 = {
     scheme: "mailto",
     parse: function parse$$1(components, options) {
-        var mailtoComponents = components;
-        var to = mailtoComponents.to = mailtoComponents.path ? mailtoComponents.path.split(",") : [];
+        const mailtoComponents = components;
+        const to = mailtoComponents.to = mailtoComponents.path ? mailtoComponents.path.split(",") : [];
         mailtoComponents.path = undefined;
         if (mailtoComponents.query) {
-            var unknownHeaders = false;
-            var headers = {};
-            var hfields = mailtoComponents.query.split("&");
-            for (var x = 0, xl = hfields.length; x < xl; ++x) {
-                var hfield = hfields[x].split("=");
+            let unknownHeaders = false;
+            const headers = {};
+            const hfields = mailtoComponents.query.split("&");
+            for (let x = 0, xl = hfields.length; x < xl; ++x) {
+                const hfield = hfields[x].split("=");
                 switch (hfield[0]) {
                     case "to":
                         var toAddrs = hfield[1].split(",");
-                        for (var _x = 0, _xl = toAddrs.length; _x < _xl; ++_x) {
+                        for (let _x = 0, _xl = toAddrs.length; _x < _xl; ++_x) {
                             to.push(toAddrs[_x]);
                         }
                         break;
@@ -1304,8 +1304,8 @@ var handler$4 = {
             if (unknownHeaders) mailtoComponents.headers = headers;
         }
         mailtoComponents.query = undefined;
-        for (var _x2 = 0, _xl2 = to.length; _x2 < _xl2; ++_x2) {
-            var addr = to[_x2].split("@");
+        for (let _x2 = 0, _xl2 = to.length; _x2 < _xl2; ++_x2) {
+            const addr = to[_x2].split("@");
             addr[0] = unescapeComponent(addr[0]);
             if (!options.unicodeSupport) {
                 //convert Unicode IDN -> ASCII IDN
@@ -1322,14 +1322,14 @@ var handler$4 = {
         return mailtoComponents;
     },
     serialize: function serialize$$1(mailtoComponents, options) {
-        var components = mailtoComponents;
-        var to = toArray(mailtoComponents.to);
+        const components = mailtoComponents;
+        const to = toArray(mailtoComponents.to);
         if (to) {
-            for (var x = 0, xl = to.length; x < xl; ++x) {
-                var toAddr = String(to[x]);
-                var atIdx = toAddr.lastIndexOf("@");
-                var localPart = toAddr.slice(0, atIdx).replace(PCT_ENCODED, decodeUnreserved).replace(PCT_ENCODED, toUpperCase).replace(NOT_LOCAL_PART, pctEncChar);
-                var domain = toAddr.slice(atIdx + 1);
+            for (let x = 0, xl = to.length; x < xl; ++x) {
+                const toAddr = String(to[x]);
+                const atIdx = toAddr.lastIndexOf("@");
+                const localPart = toAddr.slice(0, atIdx).replace(PCT_ENCODED, decodeUnreserved).replace(PCT_ENCODED, toUpperCase).replace(NOT_LOCAL_PART, pctEncChar);
+                let domain = toAddr.slice(atIdx + 1);
                 //convert IDN via punycode
                 try {
                     domain = !options.iri ? punycode.toASCII(unescapeComponent(domain, options).toLowerCase()) : punycode.toUnicode(domain);
@@ -1340,11 +1340,11 @@ var handler$4 = {
             }
             components.path = to.join(",");
         }
-        var headers = mailtoComponents.headers = mailtoComponents.headers || {};
+        const headers = mailtoComponents.headers = mailtoComponents.headers || {};
         if (mailtoComponents.subject) headers["subject"] = mailtoComponents.subject;
         if (mailtoComponents.body) headers["body"] = mailtoComponents.body;
-        var fields = [];
-        for (var name in headers) {
+        const fields = [];
+        for (const name in headers) {
             if (headers[name] !== O[name]) {
                 fields.push(name.replace(PCT_ENCODED, decodeUnreserved).replace(PCT_ENCODED, toUpperCase).replace(NOT_HFNAME, pctEncChar) + "=" + headers[name].replace(PCT_ENCODED, decodeUnreserved).replace(PCT_ENCODED, toUpperCase).replace(NOT_HFVALUE, pctEncChar));
             }
@@ -1356,19 +1356,19 @@ var handler$4 = {
     }
 };
 
-var URN_PARSE = /^([^\:]+)\:(.*)/;
+const URN_PARSE = /^([^\:]+)\:(.*)/;
 //RFC 2141
-var handler$5 = {
+const handler$5 = {
     scheme: "urn",
     parse: function parse$$1(components, options) {
-        var matches = components.path && components.path.match(URN_PARSE);
-        var urnComponents = components;
+        const matches = components.path && components.path.match(URN_PARSE);
+        let urnComponents = components;
         if (matches) {
-            var scheme = options.scheme || urnComponents.scheme || "urn";
-            var nid = matches[1].toLowerCase();
-            var nss = matches[2];
-            var urnScheme = scheme + ":" + (options.nid || nid);
-            var schemeHandler = SCHEMES[urnScheme];
+            const scheme = options.scheme || urnComponents.scheme || "urn";
+            const nid = matches[1].toLowerCase();
+            const nss = matches[2];
+            const urnScheme = scheme + ":" + (options.nid || nid);
+            const schemeHandler = SCHEMES[urnScheme];
             urnComponents.nid = nid;
             urnComponents.nss = nss;
             urnComponents.path = undefined;
@@ -1381,26 +1381,26 @@ var handler$5 = {
         return urnComponents;
     },
     serialize: function serialize$$1(urnComponents, options) {
-        var scheme = options.scheme || urnComponents.scheme || "urn";
-        var nid = urnComponents.nid;
-        var urnScheme = scheme + ":" + (options.nid || nid);
-        var schemeHandler = SCHEMES[urnScheme];
+        const scheme = options.scheme || urnComponents.scheme || "urn";
+        const nid = urnComponents.nid;
+        const urnScheme = scheme + ":" + (options.nid || nid);
+        const schemeHandler = SCHEMES[urnScheme];
         if (schemeHandler) {
             urnComponents = schemeHandler.serialize(urnComponents, options);
         }
-        var uriComponents = urnComponents;
-        var nss = urnComponents.nss;
+        const uriComponents = urnComponents;
+        const nss = urnComponents.nss;
         uriComponents.path = (nid || options.nid) + ":" + nss;
         return uriComponents;
     }
 };
 
-var UUID = /^[0-9A-Fa-f]{8}(?:\-[0-9A-Fa-f]{4}){3}\-[0-9A-Fa-f]{12}$/;
+const UUID = /^[0-9A-Fa-f]{8}(?:\-[0-9A-Fa-f]{4}){3}\-[0-9A-Fa-f]{12}$/;
 //RFC 4122
-var handler$6 = {
+const handler$6 = {
     scheme: "urn:uuid",
     parse: function parse(urnComponents, options) {
-        var uuidComponents = urnComponents;
+        const uuidComponents = urnComponents;
         uuidComponents.uuid = uuidComponents.nss;
         uuidComponents.nss = undefined;
         if (!options.tolerant && (!uuidComponents.uuid || !uuidComponents.uuid.match(UUID))) {
@@ -1409,7 +1409,7 @@ var handler$6 = {
         return uuidComponents;
     },
     serialize: function serialize(uuidComponents, options) {
-        var urnComponents = uuidComponents;
+        const urnComponents = uuidComponents;
         //normalize UUID
         urnComponents.nss = (uuidComponents.uuid || "").toLowerCase();
         return urnComponents;

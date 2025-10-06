@@ -1,18 +1,18 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
-var isObject = require('es-object-atoms/isObject');
+const $TypeError = require('es-errors/type');
+const isObject = require('es-object-atoms/isObject');
 
-var DefineOwnProperty = require('../helpers/DefineOwnProperty');
-var isPropertyDescriptor = require('../helpers/records/property-descriptor');
-var isSamePropertyDescriptor = require('../helpers/isSamePropertyDescriptor');
+const DefineOwnProperty = require('../helpers/DefineOwnProperty');
+const isPropertyDescriptor = require('../helpers/records/property-descriptor');
+const isSamePropertyDescriptor = require('../helpers/isSamePropertyDescriptor');
 
-var FromPropertyDescriptor = require('./FromPropertyDescriptor');
-var IsAccessorDescriptor = require('./IsAccessorDescriptor');
-var IsDataDescriptor = require('./IsDataDescriptor');
-var IsGenericDescriptor = require('./IsGenericDescriptor');
-var isPropertyKey = require('../helpers/isPropertyKey');
-var SameValue = require('./SameValue');
+const FromPropertyDescriptor = require('./FromPropertyDescriptor');
+const IsAccessorDescriptor = require('./IsAccessorDescriptor');
+const IsDataDescriptor = require('./IsDataDescriptor');
+const IsGenericDescriptor = require('./IsGenericDescriptor');
+const isPropertyKey = require('../helpers/isPropertyKey');
+const SameValue = require('./SameValue');
 
 // https://262.ecma-international.org/6.0/#sec-validateandapplypropertydescriptor
 // https://262.ecma-international.org/8.0/#sec-validateandapplypropertydescriptor

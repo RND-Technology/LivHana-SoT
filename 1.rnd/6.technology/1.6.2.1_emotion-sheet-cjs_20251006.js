@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var isDevelopment = false;
+const isDevelopment = false;
 
 /*
 
@@ -35,7 +35,7 @@ function sheetForTag(tag) {
   /* istanbul ignore next */
 
 
-  for (var i = 0; i < document.styleSheets.length; i++) {
+  for (let i = 0; i < document.styleSheets.length; i++) {
     if (document.styleSheets[i].ownerNode === tag) {
       return document.styleSheets[i];
     }
@@ -47,7 +47,7 @@ function sheetForTag(tag) {
 }
 
 function createStyleElement(options) {
-  var tag = document.createElement('style');
+  const tag = document.createElement('style');
   tag.setAttribute('data-emotion', options.key);
 
   if (options.nonce !== undefined) {
@@ -59,13 +59,13 @@ function createStyleElement(options) {
   return tag;
 }
 
-var StyleSheet = /*#__PURE__*/function () {
+const StyleSheet = /*#__PURE__*/function () {
   // Using Node instead of HTMLElement since container may be a ShadowRoot
   function StyleSheet(options) {
-    var _this = this;
+    const _this = this;
 
     this._insertTag = function (tag) {
-      var before;
+      let before;
 
       if (_this.tags.length === 0) {
         if (_this.insertionPoint) {
@@ -96,7 +96,7 @@ var StyleSheet = /*#__PURE__*/function () {
     this.before = null;
   }
 
-  var _proto = StyleSheet.prototype;
+  const _proto = StyleSheet.prototype;
 
   _proto.hydrate = function hydrate(nodes) {
     nodes.forEach(this._insertTag);
@@ -110,10 +110,10 @@ var StyleSheet = /*#__PURE__*/function () {
       this._insertTag(createStyleElement(this));
     }
 
-    var tag = this.tags[this.tags.length - 1];
+    const tag = this.tags[this.tags.length - 1];
 
     if (this.isSpeedy) {
-      var sheet = sheetForTag(tag);
+      const sheet = sheetForTag(tag);
 
       try {
         // this is the ultrafast version, works across browsers
@@ -130,7 +130,7 @@ var StyleSheet = /*#__PURE__*/function () {
 
   _proto.flush = function flush() {
     this.tags.forEach(function (tag) {
-      var _tag$parentNode;
+      let _tag$parentNode;
 
       return (_tag$parentNode = tag.parentNode) == null ? void 0 : _tag$parentNode.removeChild(tag);
     });

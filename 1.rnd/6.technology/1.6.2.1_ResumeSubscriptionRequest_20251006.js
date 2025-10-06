@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
 exports.resumeSubscriptionRequestSchema = void 0;
-var schema_1 = require("../schema");
+const schema_1 = require("../schema");
 exports.resumeSubscriptionRequestSchema = (0, schema_1.object)({
     resumeEffectiveDate: [
         'resume_effective_date',

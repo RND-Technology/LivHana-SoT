@@ -100,7 +100,7 @@ function buildGroupMatchGraph(combinator, terms, atLeastOneTermMatched) {
                     result,
                     MISMATCH
                 );
-            };
+            }
 
             return result;
         }
@@ -122,7 +122,7 @@ function buildGroupMatchGraph(combinator, terms, atLeastOneTermMatched) {
             let map = null;
 
             for (let i = terms.length - 1; i >= 0; i--) {
-                let term = terms[i];
+                const term = terms[i];
 
                 // reduce sequence of keywords into a Enum
                 if (isEnumCapatible(term)) {
@@ -155,7 +155,7 @@ function buildGroupMatchGraph(combinator, terms, atLeastOneTermMatched) {
                     MATCH,
                     result
                 );
-            };
+            }
 
             return result;
         }
@@ -220,7 +220,7 @@ function buildGroupMatchGraph(combinator, terms, atLeastOneTermMatched) {
                     thenClause,
                     result
                 );
-            };
+            }
 
             return result;
         }
@@ -285,7 +285,7 @@ function buildGroupMatchGraph(combinator, terms, atLeastOneTermMatched) {
                     thenClause,
                     result
                 );
-            };
+            }
 
             return result;
         }

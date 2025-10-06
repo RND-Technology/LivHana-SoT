@@ -1,13 +1,13 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var IsInteger = require('./IsInteger');
+const IsInteger = require('./IsInteger');
 
-var isNegativeZero = require('math-intrinsics/isNegativeZero');
+const isNegativeZero = require('math-intrinsics/isNegativeZero');
 
-var isTypedArray = require('is-typed-array');
-var typedArrayBuffer = require('typed-array-buffer');
+const isTypedArray = require('is-typed-array');
+const typedArrayBuffer = require('typed-array-buffer');
 
 // https://262.ecma-international.org/11.0/#sec-isvalidintegerindex
 

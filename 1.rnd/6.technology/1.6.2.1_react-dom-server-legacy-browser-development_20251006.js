@@ -14,11 +14,11 @@ if (process.env.NODE_ENV !== "production") {
   (function() {
 'use strict';
 
-var React = require('react');
+const React = require('react');
 
-var ReactVersion = '18.3.1';
+const ReactVersion = '18.3.1';
 
-var ReactSharedInternals = React.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+const ReactSharedInternals = React.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
 
 // by calls to these methods by a Babel plugin.
 //
@@ -52,8 +52,8 @@ function printWarning(level, format, args) {
   // When changing this logic, you might want to also
   // update consoleWithStackDev.www.js as well.
   {
-    var ReactDebugCurrentFrame = ReactSharedInternals.ReactDebugCurrentFrame;
-    var stack = ReactDebugCurrentFrame.getStackAddendum();
+    const ReactDebugCurrentFrame = ReactSharedInternals.ReactDebugCurrentFrame;
+    const stack = ReactDebugCurrentFrame.getStackAddendum();
 
     if (stack !== '') {
       format += '%s';
@@ -61,7 +61,7 @@ function printWarning(level, format, args) {
     } // eslint-disable-next-line react-internal/safe-string-coercion
 
 
-    var argsWithFormat = args.map(function (item) {
+    const argsWithFormat = args.map(function (item) {
       return String(item);
     }); // Careful: RN currently depends on this prefix
 
@@ -111,8 +111,8 @@ function closeWithError(destination, error) {
 function typeName(value) {
   {
     // toStringTag is needed for namespaced types like Temporal.Instant
-    var hasToStringTag = typeof Symbol === 'function' && Symbol.toStringTag;
-    var type = hasToStringTag && value[Symbol.toStringTag] || value.constructor.name || 'Object';
+    const hasToStringTag = typeof Symbol === 'function' && Symbol.toStringTag;
+    const type = hasToStringTag && value[Symbol.toStringTag] || value.constructor.name || 'Object';
     return type;
   }
 } // $FlowFixMe only called in DEV, so void return is not possible.
@@ -184,43 +184,43 @@ function checkHtmlStringCoercion(value) {
   }
 }
 
-var hasOwnProperty = Object.prototype.hasOwnProperty;
+const hasOwnProperty = Object.prototype.hasOwnProperty;
 
 // A reserved attribute.
 // It is handled by React separately and shouldn't be written to the DOM.
-var RESERVED = 0; // A simple string attribute.
+const RESERVED = 0; // A simple string attribute.
 // Attributes that aren't in the filter are presumed to have this type.
 
-var STRING = 1; // A string attribute that accepts booleans in React. In HTML, these are called
+const STRING = 1; // A string attribute that accepts booleans in React. In HTML, these are called
 // "enumerated" attributes with "true" and "false" as possible values.
 // When true, it should be set to a "true" string.
 // When false, it should be set to a "false" string.
 
-var BOOLEANISH_STRING = 2; // A real boolean attribute.
+const BOOLEANISH_STRING = 2; // A real boolean attribute.
 // When true, it should be present (set either to an empty string or its name).
 // When false, it should be omitted.
 
-var BOOLEAN = 3; // An attribute that can be used as a flag as well as with a value.
+const BOOLEAN = 3; // An attribute that can be used as a flag as well as with a value.
 // When true, it should be present (set either to an empty string or its name).
 // When false, it should be omitted.
 // For any other value, should be present with that value.
 
-var OVERLOADED_BOOLEAN = 4; // An attribute that must be numeric or parse as a numeric.
+const OVERLOADED_BOOLEAN = 4; // An attribute that must be numeric or parse as a numeric.
 // When falsy, it should be removed.
 
-var NUMERIC = 5; // An attribute that must be positive numeric or parse as a positive numeric.
+const NUMERIC = 5; // An attribute that must be positive numeric or parse as a positive numeric.
 // When falsy, it should be removed.
 
-var POSITIVE_NUMERIC = 6;
+const POSITIVE_NUMERIC = 6;
 
 /* eslint-disable max-len */
-var ATTRIBUTE_NAME_START_CHAR = ":A-Z_a-z\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD";
+const ATTRIBUTE_NAME_START_CHAR = ":A-Z_a-z\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD";
 /* eslint-enable max-len */
 
-var ATTRIBUTE_NAME_CHAR = ATTRIBUTE_NAME_START_CHAR + "\\-.0-9\\u00B7\\u0300-\\u036F\\u203F-\\u2040";
-var VALID_ATTRIBUTE_NAME_REGEX = new RegExp('^[' + ATTRIBUTE_NAME_START_CHAR + '][' + ATTRIBUTE_NAME_CHAR + ']*$');
-var illegalAttributeNameCache = {};
-var validatedAttributeNameCache = {};
+const ATTRIBUTE_NAME_CHAR = ATTRIBUTE_NAME_START_CHAR + "\\-.0-9\\u00B7\\u0300-\\u036F\\u203F-\\u2040";
+const VALID_ATTRIBUTE_NAME_REGEX = new RegExp('^[' + ATTRIBUTE_NAME_START_CHAR + '][' + ATTRIBUTE_NAME_CHAR + ']*$');
+const illegalAttributeNameCache = {};
+const validatedAttributeNameCache = {};
 function isAttributeNameSafe(attributeName) {
   if (hasOwnProperty.call(validatedAttributeNameCache, attributeName)) {
     return true;
@@ -264,7 +264,7 @@ function shouldRemoveAttributeWithWarning(name, value, propertyInfo, isCustomCom
         if (propertyInfo !== null) {
           return !propertyInfo.acceptsBooleans;
         } else {
-          var prefix = name.toLowerCase().slice(0, 5);
+          const prefix = name.toLowerCase().slice(0, 5);
           return prefix !== 'data-' && prefix !== 'aria-';
         }
       }
@@ -293,7 +293,7 @@ function PropertyInfoRecord(name, type, mustUseProperty, attributeName, attribut
 
 var properties = {}; // These props are reserved by React. They shouldn't be written to the DOM.
 
-var reservedProps = ['children', 'dangerouslySetInnerHTML', // TODO: This prevents the assignment of defaultValue to regular
+const reservedProps = ['children', 'dangerouslySetInnerHTML', // TODO: This prevents the assignment of defaultValue to regular
 // elements (not just inputs). Now that ReactDOMInput assigns to the
 // defaultValue property -- do we need this?
 'defaultValue', 'defaultChecked', 'innerHTML', 'suppressContentEditableWarning', 'suppressHydrationWarning', 'style'];
@@ -308,7 +308,7 @@ reservedProps.forEach(function (name) {
 // This is a mapping from React prop names to the attribute names.
 
 [['acceptCharset', 'accept-charset'], ['className', 'class'], ['htmlFor', 'for'], ['httpEquiv', 'http-equiv']].forEach(function (_ref) {
-  var name = _ref[0],
+  const name = _ref[0],
       attributeName = _ref[1];
   properties[name] = new PropertyInfoRecord(name, STRING, false, // mustUseProperty
   attributeName, // attributeName
@@ -393,9 +393,9 @@ reservedProps.forEach(function (name) {
   false, // sanitizeURL
   false);
 });
-var CAMELIZE = /[\-\:]([a-z])/g;
+const CAMELIZE = /[\-\:]([a-z])/g;
 
-var capitalize = function (token) {
+const capitalize = function (token) {
   return token[1].toUpperCase();
 }; // This is a list of all SVG attributes that need special casing, namespacing,
 // or boolean value assignment. Regular attributes that just accept strings
@@ -408,7 +408,7 @@ var capitalize = function (token) {
 // you'll need to set attributeName to name.toLowerCase()
 // instead in the assignment below.
 ].forEach(function (attributeName) {
-  var name = attributeName.replace(CAMELIZE, capitalize);
+  const name = attributeName.replace(CAMELIZE, capitalize);
   properties[name] = new PropertyInfoRecord(name, STRING, false, // mustUseProperty
   attributeName, null, // attributeNamespace
   false, // sanitizeURL
@@ -419,7 +419,7 @@ var capitalize = function (token) {
 // you'll need to set attributeName to name.toLowerCase()
 // instead in the assignment below.
 ].forEach(function (attributeName) {
-  var name = attributeName.replace(CAMELIZE, capitalize);
+  const name = attributeName.replace(CAMELIZE, capitalize);
   properties[name] = new PropertyInfoRecord(name, STRING, false, // mustUseProperty
   attributeName, 'http://www.w3.org/1999/xlink', false, // sanitizeURL
   false);
@@ -429,7 +429,7 @@ var capitalize = function (token) {
 // you'll need to set attributeName to name.toLowerCase()
 // instead in the assignment below.
 ].forEach(function (attributeName) {
-  var name = attributeName.replace(CAMELIZE, capitalize);
+  const name = attributeName.replace(CAMELIZE, capitalize);
   properties[name] = new PropertyInfoRecord(name, STRING, false, // mustUseProperty
   attributeName, 'http://www.w3.org/XML/1998/namespace', false, // sanitizeURL
   false);
@@ -446,7 +446,7 @@ var capitalize = function (token) {
 }); // These attributes accept URLs. These must not allow javascript: URLS.
 // These will also need to accept Trusted Types object in the future.
 
-var xlinkHref = 'xlinkHref';
+const xlinkHref = 'xlinkHref';
 properties[xlinkHref] = new PropertyInfoRecord('xlinkHref', STRING, false, // mustUseProperty
 'xlink:href', 'http://www.w3.org/1999/xlink', true, // sanitizeURL
 false);
@@ -461,7 +461,7 @@ false);
 /**
  * CSS properties which accept numbers but are not in units of "px".
  */
-var isUnitlessNumber = {
+const isUnitlessNumber = {
   animationIterationCount: true,
   aspectRatio: true,
   borderImageOutset: true,
@@ -523,7 +523,7 @@ function prefixKey(prefix, key) {
  */
 
 
-var prefixes = ['Webkit', 'ms', 'Moz', 'O']; // Using Object.keys here, or else the vanilla for-in loop makes IE8 go into an
+const prefixes = ['Webkit', 'ms', 'Moz', 'O']; // Using Object.keys here, or else the vanilla for-in loop makes IE8 go into an
 // infinite loop, because it iterates over the newly added props too.
 
 Object.keys(isUnitlessNumber).forEach(function (prop) {
@@ -532,7 +532,7 @@ Object.keys(isUnitlessNumber).forEach(function (prop) {
   });
 });
 
-var hasReadOnlyValue = {
+const hasReadOnlyValue = {
   button: true,
   checkbox: true,
   image: true,
@@ -578,7 +578,7 @@ function isCustomComponent(tagName, props) {
   }
 }
 
-var ariaProperties = {
+const ariaProperties = {
   'aria-current': 0,
   // state
   'aria-description': 0,
@@ -638,9 +638,9 @@ var ariaProperties = {
   'aria-setsize': 0
 };
 
-var warnedProperties = {};
-var rARIA = new RegExp('^(aria)-[' + ATTRIBUTE_NAME_CHAR + ']*$');
-var rARIACamel = new RegExp('^(aria)[A-Z][' + ATTRIBUTE_NAME_CHAR + ']*$');
+const warnedProperties = {};
+const rARIA = new RegExp('^(aria)-[' + ATTRIBUTE_NAME_CHAR + ']*$');
+const rARIACamel = new RegExp('^(aria)[A-Z][' + ATTRIBUTE_NAME_CHAR + ']*$');
 
 function validateProperty(tagName, name) {
   {
@@ -649,8 +649,8 @@ function validateProperty(tagName, name) {
     }
 
     if (rARIACamel.test(name)) {
-      var ariaName = 'aria-' + name.slice(4).toLowerCase();
-      var correctName = ariaProperties.hasOwnProperty(ariaName) ? ariaName : null; // If this is an aria-* attribute, but is not listed in the known DOM
+      const ariaName = 'aria-' + name.slice(4).toLowerCase();
+      const correctName = ariaProperties.hasOwnProperty(ariaName) ? ariaName : null; // If this is an aria-* attribute, but is not listed in the known DOM
       // DOM properties, then it is an invalid aria-* attribute.
 
       if (correctName == null) {
@@ -670,8 +670,8 @@ function validateProperty(tagName, name) {
     }
 
     if (rARIA.test(name)) {
-      var lowerCasedName = name.toLowerCase();
-      var standardName = ariaProperties.hasOwnProperty(lowerCasedName) ? lowerCasedName : null; // If this is an aria-* attribute, but is not listed in the known DOM
+      const lowerCasedName = name.toLowerCase();
+      const standardName = ariaProperties.hasOwnProperty(lowerCasedName) ? lowerCasedName : null; // If this is an aria-* attribute, but is not listed in the known DOM
       // DOM properties, then it is an invalid aria-* attribute.
 
       if (standardName == null) {
@@ -694,17 +694,17 @@ function validateProperty(tagName, name) {
 
 function warnInvalidARIAProps(type, props) {
   {
-    var invalidProps = [];
+    const invalidProps = [];
 
-    for (var key in props) {
-      var isValid = validateProperty(type, key);
+    for (const key in props) {
+      const isValid = validateProperty(type, key);
 
       if (!isValid) {
         invalidProps.push(key);
       }
     }
 
-    var unknownPropString = invalidProps.map(function (prop) {
+    const unknownPropString = invalidProps.map(function (prop) {
       return '`' + prop + '`';
     }).join(', ');
 
@@ -724,7 +724,7 @@ function validateProperties(type, props) {
   warnInvalidARIAProps(type, props);
 }
 
-var didWarnValueNull = false;
+let didWarnValueNull = false;
 function validateProperties$1(type, props) {
   {
     if (type !== 'input' && type !== 'textarea' && type !== 'select') {
@@ -746,7 +746,7 @@ function validateProperties$1(type, props) {
 // When adding attributes to the HTML or SVG allowed attribute list, be sure to
 // also add them to this module to ensure casing and incorrect name
 // warnings.
-var possibleStandardNames = {
+const possibleStandardNames = {
   // HTML
   accept: 'accept',
   acceptcharset: 'acceptCharset',
@@ -1236,21 +1236,21 @@ var possibleStandardNames = {
   zoomandpan: 'zoomAndPan'
 };
 
-var validateProperty$1 = function () {};
+let validateProperty$1 = function () {};
 
 {
-  var warnedProperties$1 = {};
-  var EVENT_NAME_REGEX = /^on./;
-  var INVALID_EVENT_NAME_REGEX = /^on[^A-Z]/;
-  var rARIA$1 = new RegExp('^(aria)-[' + ATTRIBUTE_NAME_CHAR + ']*$');
-  var rARIACamel$1 = new RegExp('^(aria)[A-Z][' + ATTRIBUTE_NAME_CHAR + ']*$');
+  const warnedProperties$1 = {};
+  const EVENT_NAME_REGEX = /^on./;
+  const INVALID_EVENT_NAME_REGEX = /^on[^A-Z]/;
+  const rARIA$1 = new RegExp('^(aria)-[' + ATTRIBUTE_NAME_CHAR + ']*$');
+  const rARIACamel$1 = new RegExp('^(aria)[A-Z][' + ATTRIBUTE_NAME_CHAR + ']*$');
 
   validateProperty$1 = function (tagName, name, value, eventRegistry) {
     if (hasOwnProperty.call(warnedProperties$1, name) && warnedProperties$1[name]) {
       return true;
     }
 
-    var lowerCasedName = name.toLowerCase();
+    const lowerCasedName = name.toLowerCase();
 
     if (lowerCasedName === 'onfocusin' || lowerCasedName === 'onfocusout') {
       error('React uses onFocus and onBlur instead of onFocusIn and onFocusOut. ' + 'All React events are normalized to bubble, so onFocusIn and onFocusOut ' + 'are not needed/supported by React.');
@@ -1261,14 +1261,14 @@ var validateProperty$1 = function () {};
 
 
     if (eventRegistry != null) {
-      var registrationNameDependencies = eventRegistry.registrationNameDependencies,
+      const registrationNameDependencies = eventRegistry.registrationNameDependencies,
           possibleRegistrationNames = eventRegistry.possibleRegistrationNames;
 
       if (registrationNameDependencies.hasOwnProperty(name)) {
         return true;
       }
 
-      var registrationName = possibleRegistrationNames.hasOwnProperty(lowerCasedName) ? possibleRegistrationNames[lowerCasedName] : null;
+      const registrationName = possibleRegistrationNames.hasOwnProperty(lowerCasedName) ? possibleRegistrationNames[lowerCasedName] : null;
 
       if (registrationName != null) {
         error('Invalid event handler property `%s`. Did you mean `%s`?', name, registrationName);
@@ -1328,11 +1328,11 @@ var validateProperty$1 = function () {};
       return true;
     }
 
-    var propertyInfo = getPropertyInfo(name);
-    var isReserved = propertyInfo !== null && propertyInfo.type === RESERVED; // Known attributes should match the casing specified in the property config.
+    const propertyInfo = getPropertyInfo(name);
+    const isReserved = propertyInfo !== null && propertyInfo.type === RESERVED; // Known attributes should match the casing specified in the property config.
 
     if (possibleStandardNames.hasOwnProperty(lowerCasedName)) {
-      var standardName = possibleStandardNames[lowerCasedName];
+      const standardName = possibleStandardNames[lowerCasedName];
 
       if (standardName !== name) {
         error('Invalid DOM property `%s`. Did you mean `%s`?', name, standardName);
@@ -1384,19 +1384,19 @@ var validateProperty$1 = function () {};
   };
 }
 
-var warnUnknownProperties = function (type, props, eventRegistry) {
+const warnUnknownProperties = function (type, props, eventRegistry) {
   {
-    var unknownProps = [];
+    const unknownProps = [];
 
-    for (var key in props) {
-      var isValid = validateProperty$1(type, key, props[key], eventRegistry);
+    for (const key in props) {
+      const isValid = validateProperty$1(type, key, props[key], eventRegistry);
 
       if (!isValid) {
         unknownProps.push(key);
       }
     }
 
-    var unknownPropString = unknownProps.map(function (prop) {
+    const unknownPropString = unknownProps.map(function (prop) {
       return '`' + prop + '`';
     }).join(', ');
 
@@ -1416,27 +1416,27 @@ function validateProperties$2(type, props, eventRegistry) {
   warnUnknownProperties(type, props, eventRegistry);
 }
 
-var warnValidStyle = function () {};
+let warnValidStyle = function () {};
 
 {
   // 'msTransform' is correct, but the other prefixes should be capitalized
-  var badVendoredStyleNamePattern = /^(?:webkit|moz|o)[A-Z]/;
-  var msPattern = /^-ms-/;
-  var hyphenPattern = /-(.)/g; // style values shouldn't contain a semicolon
+  const badVendoredStyleNamePattern = /^(?:webkit|moz|o)[A-Z]/;
+  const msPattern = /^-ms-/;
+  const hyphenPattern = /-(.)/g; // style values shouldn't contain a semicolon
 
-  var badStyleValueWithSemicolonPattern = /;\s*$/;
-  var warnedStyleNames = {};
-  var warnedStyleValues = {};
-  var warnedForNaNValue = false;
-  var warnedForInfinityValue = false;
+  const badStyleValueWithSemicolonPattern = /;\s*$/;
+  const warnedStyleNames = {};
+  const warnedStyleValues = {};
+  let warnedForNaNValue = false;
+  let warnedForInfinityValue = false;
 
-  var camelize = function (string) {
+  const camelize = function (string) {
     return string.replace(hyphenPattern, function (_, character) {
       return character.toUpperCase();
     });
   };
 
-  var warnHyphenatedStyleName = function (name) {
+  const warnHyphenatedStyleName = function (name) {
     if (warnedStyleNames.hasOwnProperty(name) && warnedStyleNames[name]) {
       return;
     }
@@ -1449,7 +1449,7 @@ var warnValidStyle = function () {};
     camelize(name.replace(msPattern, 'ms-')));
   };
 
-  var warnBadVendoredStyleName = function (name) {
+  const warnBadVendoredStyleName = function (name) {
     if (warnedStyleNames.hasOwnProperty(name) && warnedStyleNames[name]) {
       return;
     }
@@ -1459,7 +1459,7 @@ var warnValidStyle = function () {};
     error('Unsupported vendor-prefixed style property %s. Did you mean %s?', name, name.charAt(0).toUpperCase() + name.slice(1));
   };
 
-  var warnStyleValueWithSemicolon = function (name, value) {
+  const warnStyleValueWithSemicolon = function (name, value) {
     if (warnedStyleValues.hasOwnProperty(value) && warnedStyleValues[value]) {
       return;
     }
@@ -1469,7 +1469,7 @@ var warnValidStyle = function () {};
     error("Style property values shouldn't contain a semicolon. " + 'Try "%s: %s" instead.', name, value.replace(badStyleValueWithSemicolonPattern, ''));
   };
 
-  var warnStyleValueIsNaN = function (name, value) {
+  const warnStyleValueIsNaN = function (name, value) {
     if (warnedForNaNValue) {
       return;
     }
@@ -1479,7 +1479,7 @@ var warnValidStyle = function () {};
     error('`NaN` is an invalid value for the `%s` css style property.', name);
   };
 
-  var warnStyleValueIsInfinity = function (name, value) {
+  const warnStyleValueIsInfinity = function (name, value) {
     if (warnedForInfinityValue) {
       return;
     }
@@ -1508,10 +1508,10 @@ var warnValidStyle = function () {};
   };
 }
 
-var warnValidStyle$1 = warnValidStyle;
+const warnValidStyle$1 = warnValidStyle;
 
 // code copied and modified from escape-html
-var matchHtmlRegExp = /["'&<>]/;
+const matchHtmlRegExp = /["'&<>]/;
 /**
  * Escapes special characters and HTML entities in a given html string.
  *
@@ -1525,17 +1525,17 @@ function escapeHtml(string) {
     checkHtmlStringCoercion(string);
   }
 
-  var str = '' + string;
-  var match = matchHtmlRegExp.exec(str);
+  const str = '' + string;
+  const match = matchHtmlRegExp.exec(str);
 
   if (!match) {
     return str;
   }
 
-  var escape;
-  var html = '';
-  var index;
-  var lastIndex = 0;
+  let escape;
+  let html = '';
+  let index;
+  let lastIndex = 0;
 
   for (index = match.index; index < str.length; index++) {
     switch (str.charCodeAt(index)) {
@@ -1599,8 +1599,8 @@ function escapeTextForBrowser(text) {
   return escapeHtml(text);
 }
 
-var uppercasePattern = /([A-Z])/g;
-var msPattern$1 = /^ms-/;
+const uppercasePattern = /([A-Z])/g;
+const msPattern$1 = /^ms-/;
 /**
  * Hyphenates a camelcased CSS property name, for example:
  *
@@ -1629,8 +1629,8 @@ function hyphenateStyleName(name) {
 
 /* eslint-disable max-len */
 
-var isJavaScriptProtocol = /^[\u0000-\u001F ]*j[\r\n\t]*a[\r\n\t]*v[\r\n\t]*a[\r\n\t]*s[\r\n\t]*c[\r\n\t]*r[\r\n\t]*i[\r\n\t]*p[\r\n\t]*t[\r\n\t]*\:/i;
-var didWarn = false;
+const isJavaScriptProtocol = /^[\u0000-\u001F ]*j[\r\n\t]*a[\r\n\t]*v[\r\n\t]*a[\r\n\t]*s[\r\n\t]*c[\r\n\t]*r[\r\n\t]*i[\r\n\t]*p[\r\n\t]*t[\r\n\t]*\:/i;
+let didWarn = false;
 
 function sanitizeURL(url) {
   {
@@ -1642,17 +1642,17 @@ function sanitizeURL(url) {
   }
 }
 
-var isArrayImpl = Array.isArray; // eslint-disable-next-line no-redeclare
+const isArrayImpl = Array.isArray; // eslint-disable-next-line no-redeclare
 
 function isArray(a) {
   return isArrayImpl(a);
 }
 
-var startInlineScript = stringToPrecomputedChunk('<script>');
-var endInlineScript = stringToPrecomputedChunk('</script>');
-var startScriptSrc = stringToPrecomputedChunk('<script src="');
-var startModuleSrc = stringToPrecomputedChunk('<script type="module" src="');
-var endAsyncScript = stringToPrecomputedChunk('" async=""></script>');
+const startInlineScript = stringToPrecomputedChunk('<script>');
+const endInlineScript = stringToPrecomputedChunk('</script>');
+const startScriptSrc = stringToPrecomputedChunk('<script src="');
+const startModuleSrc = stringToPrecomputedChunk('<script type="module" src="');
+const endAsyncScript = stringToPrecomputedChunk('" async=""></script>');
 /**
  * This escaping function is designed to work with bootstrapScriptContent only.
  * because we know we are escaping the entire script. We can avoid for instance
@@ -1680,22 +1680,22 @@ var scriptReplacer = function (match, prefix, s, suffix) {
 
 
 function createResponseState(identifierPrefix, nonce, bootstrapScriptContent, bootstrapScripts, bootstrapModules) {
-  var idPrefix = identifierPrefix === undefined ? '' : identifierPrefix;
-  var inlineScriptWithNonce = nonce === undefined ? startInlineScript : stringToPrecomputedChunk('<script nonce="' + escapeTextForBrowser(nonce) + '">');
-  var bootstrapChunks = [];
+  const idPrefix = identifierPrefix === undefined ? '' : identifierPrefix;
+  const inlineScriptWithNonce = nonce === undefined ? startInlineScript : stringToPrecomputedChunk('<script nonce="' + escapeTextForBrowser(nonce) + '">');
+  const bootstrapChunks = [];
 
   if (bootstrapScriptContent !== undefined) {
     bootstrapChunks.push(inlineScriptWithNonce, stringToChunk(escapeBootstrapScriptContent(bootstrapScriptContent)), endInlineScript);
   }
 
   if (bootstrapScripts !== undefined) {
-    for (var i = 0; i < bootstrapScripts.length; i++) {
+    for (let i = 0; i < bootstrapScripts.length; i++) {
       bootstrapChunks.push(startScriptSrc, stringToChunk(escapeTextForBrowser(bootstrapScripts[i])), endAsyncScript);
     }
   }
 
   if (bootstrapModules !== undefined) {
-    for (var _i = 0; _i < bootstrapModules.length; _i++) {
+    for (let _i = 0; _i < bootstrapModules.length; _i++) {
       bootstrapChunks.push(startModuleSrc, stringToChunk(escapeTextForBrowser(bootstrapModules[_i])), endAsyncScript);
     }
   }
@@ -1716,15 +1716,15 @@ function createResponseState(identifierPrefix, nonce, bootstrapScriptContent, bo
 // modes. We only include the variants as they matter for the sake of our purposes.
 // We don't actually provide the namespace therefore we use constants instead of the string.
 
-var ROOT_HTML_MODE = 0; // Used for the root most element tag.
+const ROOT_HTML_MODE = 0; // Used for the root most element tag.
 
-var HTML_MODE = 1;
-var SVG_MODE = 2;
-var MATHML_MODE = 3;
-var HTML_TABLE_MODE = 4;
-var HTML_TABLE_BODY_MODE = 5;
-var HTML_TABLE_ROW_MODE = 6;
-var HTML_COLGROUP_MODE = 7; // We have a greater than HTML_TABLE_MODE check elsewhere. If you add more cases here, make sure it
+const HTML_MODE = 1;
+const SVG_MODE = 2;
+const MATHML_MODE = 3;
+const HTML_TABLE_MODE = 4;
+const HTML_TABLE_BODY_MODE = 5;
+const HTML_TABLE_ROW_MODE = 6;
+const HTML_COLGROUP_MODE = 7; // We have a greater than HTML_TABLE_MODE check elsewhere. If you add more cases here, make sure it
 // still makes sense
 
 function createFormatContext(insertionMode, selectedValue) {
@@ -1777,14 +1777,14 @@ function getChildFormatContext(parentContext, type, props) {
 
   return parentContext;
 }
-var UNINITIALIZED_SUSPENSE_BOUNDARY_ID = null;
+const UNINITIALIZED_SUSPENSE_BOUNDARY_ID = null;
 function assignSuspenseBoundaryID(responseState) {
-  var generatedID = responseState.nextSuspenseID++;
+  const generatedID = responseState.nextSuspenseID++;
   return stringToPrecomputedChunk(responseState.boundaryPrefix + generatedID.toString(16));
 }
 function makeId(responseState, treeId, localId) {
-  var idPrefix = responseState.idPrefix;
-  var id = ':' + idPrefix + 'R' + treeId; // Unless this is the first id at this level, append a number at the end
+  const idPrefix = responseState.idPrefix;
+  let id = ':' + idPrefix + 'R' + treeId; // Unless this is the first id at this level, append a number at the end
   // that represents the position of this useId hook among all the useId
   // hooks for this fiber.
 
@@ -1799,7 +1799,7 @@ function encodeHTMLTextNode(text) {
   return escapeTextForBrowser(text);
 }
 
-var textSeparator = stringToPrecomputedChunk('<!-- -->');
+const textSeparator = stringToPrecomputedChunk('<!-- -->');
 function pushTextInstance(target, text, responseState, textEmbedded) {
   if (text === '') {
     // Empty text doesn't have a DOM node representation and the hydration is aware of this.
@@ -1820,32 +1820,32 @@ function pushSegmentFinale(target, responseState, lastPushedText, textEmbedded) 
     target.push(textSeparator);
   }
 }
-var styleNameCache = new Map();
+const styleNameCache = new Map();
 
 function processStyleName(styleName) {
-  var chunk = styleNameCache.get(styleName);
+  const chunk = styleNameCache.get(styleName);
 
   if (chunk !== undefined) {
     return chunk;
   }
 
-  var result = stringToPrecomputedChunk(escapeTextForBrowser(hyphenateStyleName(styleName)));
+  const result = stringToPrecomputedChunk(escapeTextForBrowser(hyphenateStyleName(styleName)));
   styleNameCache.set(styleName, result);
   return result;
 }
 
-var styleAttributeStart = stringToPrecomputedChunk(' style="');
-var styleAssign = stringToPrecomputedChunk(':');
-var styleSeparator = stringToPrecomputedChunk(';');
+const styleAttributeStart = stringToPrecomputedChunk(' style="');
+const styleAssign = stringToPrecomputedChunk(':');
+const styleSeparator = stringToPrecomputedChunk(';');
 
 function pushStyle(target, responseState, style) {
   if (typeof style !== 'object') {
     throw new Error('The `style` prop expects a mapping from style properties to values, ' + "not a string. For example, style={{marginRight: spacing + 'em'}} when " + 'using JSX.');
   }
 
-  var isFirst = true;
+  let isFirst = true;
 
-  for (var styleName in style) {
+  for (const styleName in style) {
     if (!hasOwnProperty.call(style, styleName)) {
       continue;
     } // If you provide unsafe user data here they can inject arbitrary CSS
@@ -1857,16 +1857,16 @@ function pushStyle(target, responseState, style) {
     // trust URLs moving forward. See #2115901
 
 
-    var styleValue = style[styleName];
+    const styleValue = style[styleName];
 
     if (styleValue == null || typeof styleValue === 'boolean' || styleValue === '') {
       // TODO: We used to set empty string as a style with an empty value. Does that ever make sense?
       continue;
     }
 
-    var nameChunk = void 0;
-    var valueChunk = void 0;
-    var isCustomProperty = styleName.indexOf('--') === 0;
+    let nameChunk = void 0;
+    let valueChunk = void 0;
+    const isCustomProperty = styleName.indexOf('--') === 0;
 
     if (isCustomProperty) {
       nameChunk = stringToChunk(escapeTextForBrowser(styleName));
@@ -1912,10 +1912,10 @@ function pushStyle(target, responseState, style) {
   }
 }
 
-var attributeSeparator = stringToPrecomputedChunk(' ');
-var attributeAssign = stringToPrecomputedChunk('="');
+const attributeSeparator = stringToPrecomputedChunk(' ');
+const attributeAssign = stringToPrecomputedChunk('="');
 var attributeEnd = stringToPrecomputedChunk('"');
-var attributeEmptyString = stringToPrecomputedChunk('=""');
+const attributeEmptyString = stringToPrecomputedChunk('=""');
 
 function pushAttribute(target, responseState, name, value) {
   switch (name) {
@@ -1942,7 +1942,7 @@ function pushAttribute(target, responseState, name, value) {
     return;
   }
 
-  var propertyInfo = getPropertyInfo(name);
+  const propertyInfo = getPropertyInfo(name);
 
   if (propertyInfo !== null) {
     // shouldRemoveAttribute
@@ -1961,8 +1961,8 @@ function pushAttribute(target, responseState, name, value) {
         }
     }
 
-    var attributeName = propertyInfo.attributeName;
-    var attributeNameChunk = stringToChunk(attributeName); // TODO: If it's known we can cache the chunk.
+    const attributeName = propertyInfo.attributeName;
+    const attributeNameChunk = stringToChunk(attributeName); // TODO: If it's known we can cache the chunk.
 
     switch (propertyInfo.type) {
       case BOOLEAN:
@@ -2018,7 +2018,7 @@ function pushAttribute(target, responseState, name, value) {
 
       case 'boolean':
         {
-          var prefix = name.toLowerCase().slice(0, 5);
+          const prefix = name.toLowerCase().slice(0, 5);
 
           if (prefix !== 'data-' && prefix !== 'aria-') {
             return;
@@ -2030,8 +2030,8 @@ function pushAttribute(target, responseState, name, value) {
   }
 }
 
-var endOfStartTag = stringToPrecomputedChunk('>');
-var endOfStartTagSelfClosing = stringToPrecomputedChunk('/>');
+const endOfStartTag = stringToPrecomputedChunk('>');
+const endOfStartTagSelfClosing = stringToPrecomputedChunk('/>');
 
 function pushInnerHTML(target, innerHTML, children) {
   if (innerHTML != null) {
@@ -2043,7 +2043,7 @@ function pushInnerHTML(target, innerHTML, children) {
       throw new Error('`props.dangerouslySetInnerHTML` must be in the form `{__html: ...}`. ' + 'Please visit https://reactjs.org/link/dangerously-set-inner-html ' + 'for more information.');
     }
 
-    var html = innerHTML.__html;
+    const html = innerHTML.__html;
 
     if (html !== null && html !== undefined) {
       {
@@ -2057,20 +2057,20 @@ function pushInnerHTML(target, innerHTML, children) {
 // It would help debugging in stateful servers (e.g. service worker).
 
 
-var didWarnDefaultInputValue = false;
-var didWarnDefaultChecked = false;
-var didWarnDefaultSelectValue = false;
-var didWarnDefaultTextareaValue = false;
-var didWarnInvalidOptionChildren = false;
-var didWarnInvalidOptionInnerHTML = false;
-var didWarnSelectedSetOnOption = false;
+let didWarnDefaultInputValue = false;
+let didWarnDefaultChecked = false;
+let didWarnDefaultSelectValue = false;
+let didWarnDefaultTextareaValue = false;
+let didWarnInvalidOptionChildren = false;
+let didWarnInvalidOptionInnerHTML = false;
+let didWarnSelectedSetOnOption = false;
 
 function checkSelectProp(props, propName) {
   {
-    var value = props[propName];
+    const value = props[propName];
 
     if (value != null) {
-      var array = isArray(value);
+      const array = isArray(value);
 
       if (props.multiple && !array) {
         error('The `%s` prop supplied to <select> must be an array if ' + '`multiple` is true.', propName);
@@ -2095,12 +2095,12 @@ function pushStartSelect(target, props, responseState) {
   }
 
   target.push(startChunkForTag('select'));
-  var children = null;
-  var innerHTML = null;
+  let children = null;
+  let innerHTML = null;
 
-  for (var propKey in props) {
+  for (const propKey in props) {
     if (hasOwnProperty.call(props, propKey)) {
-      var propValue = props[propKey];
+      const propValue = props[propKey];
 
       if (propValue == null) {
         continue;
@@ -2135,7 +2135,7 @@ function pushStartSelect(target, props, responseState) {
 }
 
 function flattenOptionChildren(children) {
-  var content = ''; // Flatten children and warn if they aren't strings or numbers;
+  let content = ''; // Flatten children and warn if they aren't strings or numbers;
   // invalid types are ignored.
 
   React.Children.forEach(children, function (child) {
@@ -2156,19 +2156,19 @@ function flattenOptionChildren(children) {
   return content;
 }
 
-var selectedMarkerAttribute = stringToPrecomputedChunk(' selected=""');
+const selectedMarkerAttribute = stringToPrecomputedChunk(' selected=""');
 
 function pushStartOption(target, props, responseState, formatContext) {
-  var selectedValue = formatContext.selectedValue;
+  const selectedValue = formatContext.selectedValue;
   target.push(startChunkForTag('option'));
-  var children = null;
-  var value = null;
-  var selected = null;
-  var innerHTML = null;
+  let children = null;
+  let value = null;
+  let selected = null;
+  let innerHTML = null;
 
-  for (var propKey in props) {
+  for (const propKey in props) {
     if (hasOwnProperty.call(props, propKey)) {
-      var propValue = props[propKey];
+      const propValue = props[propKey];
 
       if (propValue == null) {
         continue;
@@ -2212,7 +2212,7 @@ function pushStartOption(target, props, responseState, formatContext) {
   }
 
   if (selectedValue != null) {
-    var stringValue;
+    let stringValue;
 
     if (value !== null) {
       {
@@ -2236,12 +2236,12 @@ function pushStartOption(target, props, responseState, formatContext) {
 
     if (isArray(selectedValue)) {
       // multiple
-      for (var i = 0; i < selectedValue.length; i++) {
+      for (let i = 0; i < selectedValue.length; i++) {
         {
           checkAttributeStringCoercion(selectedValue[i], 'value');
         }
 
-        var v = '' + selectedValue[i];
+        const v = '' + selectedValue[i];
 
         if (v === stringValue) {
           target.push(selectedMarkerAttribute);
@@ -2284,14 +2284,14 @@ function pushInput(target, props, responseState) {
   }
 
   target.push(startChunkForTag('input'));
-  var value = null;
-  var defaultValue = null;
-  var checked = null;
-  var defaultChecked = null;
+  let value = null;
+  let defaultValue = null;
+  let checked = null;
+  let defaultChecked = null;
 
-  for (var propKey in props) {
+  for (const propKey in props) {
     if (hasOwnProperty.call(props, propKey)) {
-      var propValue = props[propKey];
+      const propValue = props[propKey];
 
       if (propValue == null) {
         continue;
@@ -2354,13 +2354,13 @@ function pushStartTextArea(target, props, responseState) {
   }
 
   target.push(startChunkForTag('textarea'));
-  var value = null;
-  var defaultValue = null;
-  var children = null;
+  let value = null;
+  let defaultValue = null;
+  let children = null;
 
-  for (var propKey in props) {
+  for (const propKey in props) {
     if (hasOwnProperty.call(props, propKey)) {
-      var propValue = props[propKey];
+      const propValue = props[propKey];
 
       if (propValue == null) {
         continue;
@@ -2457,9 +2457,9 @@ function pushStartTextArea(target, props, responseState) {
 function pushSelfClosing(target, props, tag, responseState) {
   target.push(startChunkForTag(tag));
 
-  for (var propKey in props) {
+  for (const propKey in props) {
     if (hasOwnProperty.call(props, propKey)) {
-      var propValue = props[propKey];
+      const propValue = props[propKey];
 
       if (propValue == null) {
         continue;
@@ -2485,9 +2485,9 @@ function pushSelfClosing(target, props, tag, responseState) {
 function pushStartMenuItem(target, props, responseState) {
   target.push(startChunkForTag('menuitem'));
 
-  for (var propKey in props) {
+  for (const propKey in props) {
     if (hasOwnProperty.call(props, propKey)) {
-      var propValue = props[propKey];
+      const propValue = props[propKey];
 
       if (propValue == null) {
         continue;
@@ -2512,11 +2512,11 @@ function pushStartMenuItem(target, props, responseState) {
 
 function pushStartTitle(target, props, responseState) {
   target.push(startChunkForTag('title'));
-  var children = null;
+  let children = null;
 
-  for (var propKey in props) {
+  for (const propKey in props) {
     if (hasOwnProperty.call(props, propKey)) {
-      var propValue = props[propKey];
+      const propValue = props[propKey];
 
       if (propValue == null) {
         continue;
@@ -2541,7 +2541,7 @@ function pushStartTitle(target, props, responseState) {
   target.push(endOfStartTag);
 
   {
-    var child = Array.isArray(children) && children.length < 2 ? children[0] || null : children;
+    const child = Array.isArray(children) && children.length < 2 ? children[0] || null : children;
 
     if (Array.isArray(children) && children.length > 1) {
       error('A title element received an array with more than 1 element as children. ' + 'In browsers title Elements can only have Text Nodes as children. If ' + 'the children being rendered output more than a single text node in aggregate the browser ' + 'will display markup and comments as text in the title and hydration will likely fail and ' + 'fall back to client rendering');
@@ -2557,12 +2557,12 @@ function pushStartTitle(target, props, responseState) {
 
 function pushStartGenericElement(target, props, tag, responseState) {
   target.push(startChunkForTag(tag));
-  var children = null;
-  var innerHTML = null;
+  let children = null;
+  let innerHTML = null;
 
-  for (var propKey in props) {
+  for (const propKey in props) {
     if (hasOwnProperty.call(props, propKey)) {
-      var propValue = props[propKey];
+      const propValue = props[propKey];
 
       if (propValue == null) {
         continue;
@@ -2599,12 +2599,12 @@ function pushStartGenericElement(target, props, tag, responseState) {
 
 function pushStartCustomElement(target, props, tag, responseState) {
   target.push(startChunkForTag(tag));
-  var children = null;
-  var innerHTML = null;
+  let children = null;
+  let innerHTML = null;
 
-  for (var propKey in props) {
+  for (const propKey in props) {
     if (hasOwnProperty.call(props, propKey)) {
-      var propValue = props[propKey];
+      const propValue = props[propKey];
 
       if (propValue == null) {
         continue;
@@ -2647,12 +2647,12 @@ var leadingNewline = stringToPrecomputedChunk('\n');
 
 function pushStartPreformattedElement(target, props, tag, responseState) {
   target.push(startChunkForTag(tag));
-  var children = null;
-  var innerHTML = null;
+  let children = null;
+  let innerHTML = null;
 
-  for (var propKey in props) {
+  for (const propKey in props) {
     if (hasOwnProperty.call(props, propKey)) {
-      var propValue = props[propKey];
+      const propValue = props[propKey];
 
       if (propValue == null) {
         continue;
@@ -2696,7 +2696,7 @@ function pushStartPreformattedElement(target, props, tag, responseState) {
       throw new Error('`props.dangerouslySetInnerHTML` must be in the form `{__html: ...}`. ' + 'Please visit https://reactjs.org/link/dangerously-set-inner-html ' + 'for more information.');
     }
 
-    var html = innerHTML.__html;
+    const html = innerHTML.__html;
 
     if (html !== null && html !== undefined) {
       if (typeof html === 'string' && html.length > 0 && html[0] === '\n') {
@@ -2721,12 +2721,12 @@ function pushStartPreformattedElement(target, props, tag, responseState) {
 // http://www.w3.org/TR/REC-xml/#NT-Name
 
 
-var VALID_TAG_REGEX = /^[a-zA-Z][a-zA-Z:_\.\-\d]*$/; // Simplified subset
+const VALID_TAG_REGEX = /^[a-zA-Z][a-zA-Z:_\.\-\d]*$/; // Simplified subset
 
-var validatedTagCache = new Map();
+const validatedTagCache = new Map();
 
 function startChunkForTag(tag) {
-  var tagStartChunk = validatedTagCache.get(tag);
+  let tagStartChunk = validatedTagCache.get(tag);
 
   if (tagStartChunk === undefined) {
     if (!VALID_TAG_REGEX.test(tag)) {
@@ -2740,7 +2740,7 @@ function startChunkForTag(tag) {
   return tagStartChunk;
 }
 
-var DOCTYPE = stringToPrecomputedChunk('<!DOCTYPE html>');
+const DOCTYPE = stringToPrecomputedChunk('<!DOCTYPE html>');
 function pushStartInstance(target, type, props, responseState, formatContext) {
   {
     validateProperties(type, props);
@@ -2842,8 +2842,8 @@ function pushStartInstance(target, type, props, responseState, formatContext) {
       }
   }
 }
-var endTag1 = stringToPrecomputedChunk('</');
-var endTag2 = stringToPrecomputedChunk('>');
+const endTag1 = stringToPrecomputedChunk('</');
+const endTag2 = stringToPrecomputedChunk('>');
 function pushEndInstance(target, type, props) {
   switch (type) {
     // Omitted close tags
@@ -2876,8 +2876,8 @@ function pushEndInstance(target, type, props) {
   }
 }
 function writeCompletedRoot(destination, responseState) {
-  var bootstrapChunks = responseState.bootstrapChunks;
-  var i = 0;
+  const bootstrapChunks = responseState.bootstrapChunks;
+  let i = 0;
 
   for (; i < bootstrapChunks.length - 1; i++) {
     writeChunk(destination, bootstrapChunks[i]);
@@ -2893,27 +2893,27 @@ function writeCompletedRoot(destination, responseState) {
 // display. It's never visible to users. We use the template tag because it can be used in every
 // type of parent. <script> tags also work in every other tag except <colgroup>.
 
-var placeholder1 = stringToPrecomputedChunk('<template id="');
-var placeholder2 = stringToPrecomputedChunk('"></template>');
+const placeholder1 = stringToPrecomputedChunk('<template id="');
+const placeholder2 = stringToPrecomputedChunk('"></template>');
 function writePlaceholder(destination, responseState, id) {
   writeChunk(destination, placeholder1);
   writeChunk(destination, responseState.placeholderPrefix);
-  var formattedID = stringToChunk(id.toString(16));
+  const formattedID = stringToChunk(id.toString(16));
   writeChunk(destination, formattedID);
   return writeChunkAndReturn(destination, placeholder2);
 } // Suspense boundaries are encoded as comments.
 
-var startCompletedSuspenseBoundary = stringToPrecomputedChunk('<!--$-->');
-var startPendingSuspenseBoundary1 = stringToPrecomputedChunk('<!--$?--><template id="');
-var startPendingSuspenseBoundary2 = stringToPrecomputedChunk('"></template>');
-var startClientRenderedSuspenseBoundary = stringToPrecomputedChunk('<!--$!-->');
-var endSuspenseBoundary = stringToPrecomputedChunk('<!--/$-->');
-var clientRenderedSuspenseBoundaryError1 = stringToPrecomputedChunk('<template');
-var clientRenderedSuspenseBoundaryErrorAttrInterstitial = stringToPrecomputedChunk('"');
-var clientRenderedSuspenseBoundaryError1A = stringToPrecomputedChunk(' data-dgst="');
-var clientRenderedSuspenseBoundaryError1B = stringToPrecomputedChunk(' data-msg="');
-var clientRenderedSuspenseBoundaryError1C = stringToPrecomputedChunk(' data-stck="');
-var clientRenderedSuspenseBoundaryError2 = stringToPrecomputedChunk('></template>');
+const startCompletedSuspenseBoundary = stringToPrecomputedChunk('<!--$-->');
+const startPendingSuspenseBoundary1 = stringToPrecomputedChunk('<!--$?--><template id="');
+const startPendingSuspenseBoundary2 = stringToPrecomputedChunk('"></template>');
+const startClientRenderedSuspenseBoundary = stringToPrecomputedChunk('<!--$!-->');
+const endSuspenseBoundary = stringToPrecomputedChunk('<!--/$-->');
+const clientRenderedSuspenseBoundaryError1 = stringToPrecomputedChunk('<template');
+const clientRenderedSuspenseBoundaryErrorAttrInterstitial = stringToPrecomputedChunk('"');
+const clientRenderedSuspenseBoundaryError1A = stringToPrecomputedChunk(' data-dgst="');
+const clientRenderedSuspenseBoundaryError1B = stringToPrecomputedChunk(' data-msg="');
+const clientRenderedSuspenseBoundaryError1C = stringToPrecomputedChunk(' data-stck="');
+const clientRenderedSuspenseBoundaryError2 = stringToPrecomputedChunk('></template>');
 function writeStartCompletedSuspenseBoundary(destination, responseState) {
   return writeChunkAndReturn(destination, startCompletedSuspenseBoundary);
 }
@@ -2928,7 +2928,7 @@ function writeStartPendingSuspenseBoundary(destination, responseState, id) {
   return writeChunkAndReturn(destination, startPendingSuspenseBoundary2);
 }
 function writeStartClientRenderedSuspenseBoundary(destination, responseState, errorDigest, errorMesssage, errorComponentStack) {
-  var result;
+  let result;
   result = writeChunkAndReturn(destination, startClientRenderedSuspenseBoundary);
   writeChunk(destination, clientRenderedSuspenseBoundaryError1);
 
@@ -2964,27 +2964,27 @@ function writeEndPendingSuspenseBoundary(destination, responseState) {
 function writeEndClientRenderedSuspenseBoundary(destination, responseState) {
   return writeChunkAndReturn(destination, endSuspenseBoundary);
 }
-var startSegmentHTML = stringToPrecomputedChunk('<div hidden id="');
-var startSegmentHTML2 = stringToPrecomputedChunk('">');
-var endSegmentHTML = stringToPrecomputedChunk('</div>');
-var startSegmentSVG = stringToPrecomputedChunk('<svg aria-hidden="true" style="display:none" id="');
-var startSegmentSVG2 = stringToPrecomputedChunk('">');
-var endSegmentSVG = stringToPrecomputedChunk('</svg>');
-var startSegmentMathML = stringToPrecomputedChunk('<math aria-hidden="true" style="display:none" id="');
-var startSegmentMathML2 = stringToPrecomputedChunk('">');
-var endSegmentMathML = stringToPrecomputedChunk('</math>');
-var startSegmentTable = stringToPrecomputedChunk('<table hidden id="');
-var startSegmentTable2 = stringToPrecomputedChunk('">');
-var endSegmentTable = stringToPrecomputedChunk('</table>');
-var startSegmentTableBody = stringToPrecomputedChunk('<table hidden><tbody id="');
-var startSegmentTableBody2 = stringToPrecomputedChunk('">');
-var endSegmentTableBody = stringToPrecomputedChunk('</tbody></table>');
-var startSegmentTableRow = stringToPrecomputedChunk('<table hidden><tr id="');
-var startSegmentTableRow2 = stringToPrecomputedChunk('">');
-var endSegmentTableRow = stringToPrecomputedChunk('</tr></table>');
-var startSegmentColGroup = stringToPrecomputedChunk('<table hidden><colgroup id="');
-var startSegmentColGroup2 = stringToPrecomputedChunk('">');
-var endSegmentColGroup = stringToPrecomputedChunk('</colgroup></table>');
+const startSegmentHTML = stringToPrecomputedChunk('<div hidden id="');
+const startSegmentHTML2 = stringToPrecomputedChunk('">');
+const endSegmentHTML = stringToPrecomputedChunk('</div>');
+const startSegmentSVG = stringToPrecomputedChunk('<svg aria-hidden="true" style="display:none" id="');
+const startSegmentSVG2 = stringToPrecomputedChunk('">');
+const endSegmentSVG = stringToPrecomputedChunk('</svg>');
+const startSegmentMathML = stringToPrecomputedChunk('<math aria-hidden="true" style="display:none" id="');
+const startSegmentMathML2 = stringToPrecomputedChunk('">');
+const endSegmentMathML = stringToPrecomputedChunk('</math>');
+const startSegmentTable = stringToPrecomputedChunk('<table hidden id="');
+const startSegmentTable2 = stringToPrecomputedChunk('">');
+const endSegmentTable = stringToPrecomputedChunk('</table>');
+const startSegmentTableBody = stringToPrecomputedChunk('<table hidden><tbody id="');
+const startSegmentTableBody2 = stringToPrecomputedChunk('">');
+const endSegmentTableBody = stringToPrecomputedChunk('</tbody></table>');
+const startSegmentTableRow = stringToPrecomputedChunk('<table hidden><tr id="');
+const startSegmentTableRow2 = stringToPrecomputedChunk('">');
+const endSegmentTableRow = stringToPrecomputedChunk('</tr></table>');
+const startSegmentColGroup = stringToPrecomputedChunk('<table hidden><colgroup id="');
+const startSegmentColGroup2 = stringToPrecomputedChunk('">');
+const endSegmentColGroup = stringToPrecomputedChunk('</colgroup></table>');
 function writeStartSegment(destination, responseState, formatContext, id) {
   switch (formatContext.insertionMode) {
     case ROOT_HTML_MODE:
@@ -3204,13 +3204,13 @@ function writeEndSegment(destination, formatContext) {
 //   placeholderNode.parentNode.removeChild(placeholderNode);
 // }
 
-var completeSegmentFunction = 'function $RS(a,b){a=document.getElementById(a);b=document.getElementById(b);for(a.parentNode.removeChild(a);a.firstChild;)b.parentNode.insertBefore(a.firstChild,b);b.parentNode.removeChild(b)}';
-var completeBoundaryFunction = 'function $RC(a,b){a=document.getElementById(a);b=document.getElementById(b);b.parentNode.removeChild(b);if(a){a=a.previousSibling;var f=a.parentNode,c=a.nextSibling,e=0;do{if(c&&8===c.nodeType){var d=c.data;if("/$"===d)if(0===e)break;else e--;else"$"!==d&&"$?"!==d&&"$!"!==d||e++}d=c.nextSibling;f.removeChild(c);c=d}while(c);for(;b.firstChild;)f.insertBefore(b.firstChild,c);a.data="$";a._reactRetry&&a._reactRetry()}}';
-var clientRenderFunction = 'function $RX(b,c,d,e){var a=document.getElementById(b);a&&(b=a.previousSibling,b.data="$!",a=a.dataset,c&&(a.dgst=c),d&&(a.msg=d),e&&(a.stck=e),b._reactRetry&&b._reactRetry())}';
-var completeSegmentScript1Full = stringToPrecomputedChunk(completeSegmentFunction + ';$RS("');
-var completeSegmentScript1Partial = stringToPrecomputedChunk('$RS("');
-var completeSegmentScript2 = stringToPrecomputedChunk('","');
-var completeSegmentScript3 = stringToPrecomputedChunk('")</script>');
+const completeSegmentFunction = 'function $RS(a,b){a=document.getElementById(a);b=document.getElementById(b);for(a.parentNode.removeChild(a);a.firstChild;)b.parentNode.insertBefore(a.firstChild,b);b.parentNode.removeChild(b)}';
+const completeBoundaryFunction = 'function $RC(a,b){a=document.getElementById(a);b=document.getElementById(b);b.parentNode.removeChild(b);if(a){a=a.previousSibling;var f=a.parentNode,c=a.nextSibling,e=0;do{if(c&&8===c.nodeType){var d=c.data;if("/$"===d)if(0===e)break;else e--;else"$"!==d&&"$?"!==d&&"$!"!==d||e++}d=c.nextSibling;f.removeChild(c);c=d}while(c);for(;b.firstChild;)f.insertBefore(b.firstChild,c);a.data="$";a._reactRetry&&a._reactRetry()}}';
+const clientRenderFunction = 'function $RX(b,c,d,e){var a=document.getElementById(b);a&&(b=a.previousSibling,b.data="$!",a=a.dataset,c&&(a.dgst=c),d&&(a.msg=d),e&&(a.stck=e),b._reactRetry&&b._reactRetry())}';
+const completeSegmentScript1Full = stringToPrecomputedChunk(completeSegmentFunction + ';$RS("');
+const completeSegmentScript1Partial = stringToPrecomputedChunk('$RS("');
+const completeSegmentScript2 = stringToPrecomputedChunk('","');
+const completeSegmentScript3 = stringToPrecomputedChunk('")</script>');
 function writeCompletedSegmentInstruction(destination, responseState, contentSegmentID) {
   writeChunk(destination, responseState.startInlineScript);
 
@@ -3224,17 +3224,17 @@ function writeCompletedSegmentInstruction(destination, responseState, contentSeg
   }
 
   writeChunk(destination, responseState.segmentPrefix);
-  var formattedID = stringToChunk(contentSegmentID.toString(16));
+  const formattedID = stringToChunk(contentSegmentID.toString(16));
   writeChunk(destination, formattedID);
   writeChunk(destination, completeSegmentScript2);
   writeChunk(destination, responseState.placeholderPrefix);
   writeChunk(destination, formattedID);
   return writeChunkAndReturn(destination, completeSegmentScript3);
 }
-var completeBoundaryScript1Full = stringToPrecomputedChunk(completeBoundaryFunction + ';$RC("');
-var completeBoundaryScript1Partial = stringToPrecomputedChunk('$RC("');
-var completeBoundaryScript2 = stringToPrecomputedChunk('","');
-var completeBoundaryScript3 = stringToPrecomputedChunk('")</script>');
+const completeBoundaryScript1Full = stringToPrecomputedChunk(completeBoundaryFunction + ';$RC("');
+const completeBoundaryScript1Partial = stringToPrecomputedChunk('$RC("');
+const completeBoundaryScript2 = stringToPrecomputedChunk('","');
+const completeBoundaryScript3 = stringToPrecomputedChunk('")</script>');
 function writeCompletedBoundaryInstruction(destination, responseState, boundaryID, contentSegmentID) {
   writeChunk(destination, responseState.startInlineScript);
 
@@ -3251,18 +3251,18 @@ function writeCompletedBoundaryInstruction(destination, responseState, boundaryI
     throw new Error('An ID must have been assigned before we can complete the boundary.');
   }
 
-  var formattedContentID = stringToChunk(contentSegmentID.toString(16));
+  const formattedContentID = stringToChunk(contentSegmentID.toString(16));
   writeChunk(destination, boundaryID);
   writeChunk(destination, completeBoundaryScript2);
   writeChunk(destination, responseState.segmentPrefix);
   writeChunk(destination, formattedContentID);
   return writeChunkAndReturn(destination, completeBoundaryScript3);
 }
-var clientRenderScript1Full = stringToPrecomputedChunk(clientRenderFunction + ';$RX("');
-var clientRenderScript1Partial = stringToPrecomputedChunk('$RX("');
-var clientRenderScript1A = stringToPrecomputedChunk('"');
-var clientRenderScript2 = stringToPrecomputedChunk(')</script>');
-var clientRenderErrorScriptArgInterstitial = stringToPrecomputedChunk(',');
+const clientRenderScript1Full = stringToPrecomputedChunk(clientRenderFunction + ';$RX("');
+const clientRenderScript1Partial = stringToPrecomputedChunk('$RX("');
+const clientRenderScript1A = stringToPrecomputedChunk('"');
+const clientRenderScript2 = stringToPrecomputedChunk(')</script>');
+const clientRenderErrorScriptArgInterstitial = stringToPrecomputedChunk(',');
 function writeClientRenderBoundaryInstruction(destination, responseState, boundaryID, errorDigest, errorMessage, errorComponentStack) {
   writeChunk(destination, responseState.startInlineScript);
 
@@ -3299,10 +3299,10 @@ function writeClientRenderBoundaryInstruction(destination, responseState, bounda
 
   return writeChunkAndReturn(destination, clientRenderScript2);
 }
-var regexForJSStringsInScripts = /[<\u2028\u2029]/g;
+const regexForJSStringsInScripts = /[<\u2028\u2029]/g;
 
 function escapeJSStringsForInstructionScripts(input) {
-  var escaped = JSON.stringify(input);
+  const escaped = JSON.stringify(input);
   return escaped.replace(regexForJSStringsInScripts, function (match) {
     switch (match) {
       // santizing breaking out of strings and script tags
@@ -3325,7 +3325,7 @@ function escapeJSStringsForInstructionScripts(input) {
 }
 
 function createResponseState$1(generateStaticMarkup, identifierPrefix) {
-  var responseState = createResponseState(identifierPrefix, undefined);
+  const responseState = createResponseState(identifierPrefix, undefined);
   return {
     // Keep this in sync with ReactDOMServerFormatConfig
     bootstrapChunks: responseState.bootstrapChunks,
@@ -3398,36 +3398,36 @@ function writeEndClientRenderedSuspenseBoundary$1(destination, responseState) {
   return writeEndClientRenderedSuspenseBoundary(destination);
 }
 
-var assign = Object.assign;
+const assign = Object.assign;
 
 // ATTENTION
 // When adding new symbols to this file,
 // Please consider also adding to 'react-devtools-shared/src/backend/ReactSymbols'
 // The Symbol used to tag the ReactElement-like types.
-var REACT_ELEMENT_TYPE = Symbol.for('react.element');
-var REACT_PORTAL_TYPE = Symbol.for('react.portal');
-var REACT_FRAGMENT_TYPE = Symbol.for('react.fragment');
-var REACT_STRICT_MODE_TYPE = Symbol.for('react.strict_mode');
-var REACT_PROFILER_TYPE = Symbol.for('react.profiler');
-var REACT_PROVIDER_TYPE = Symbol.for('react.provider');
-var REACT_CONTEXT_TYPE = Symbol.for('react.context');
-var REACT_FORWARD_REF_TYPE = Symbol.for('react.forward_ref');
-var REACT_SUSPENSE_TYPE = Symbol.for('react.suspense');
-var REACT_SUSPENSE_LIST_TYPE = Symbol.for('react.suspense_list');
-var REACT_MEMO_TYPE = Symbol.for('react.memo');
-var REACT_LAZY_TYPE = Symbol.for('react.lazy');
-var REACT_SCOPE_TYPE = Symbol.for('react.scope');
-var REACT_DEBUG_TRACING_MODE_TYPE = Symbol.for('react.debug_trace_mode');
-var REACT_LEGACY_HIDDEN_TYPE = Symbol.for('react.legacy_hidden');
-var REACT_SERVER_CONTEXT_DEFAULT_VALUE_NOT_LOADED = Symbol.for('react.default_value');
-var MAYBE_ITERATOR_SYMBOL = Symbol.iterator;
-var FAUX_ITERATOR_SYMBOL = '@@iterator';
+const REACT_ELEMENT_TYPE = Symbol.for('react.element');
+const REACT_PORTAL_TYPE = Symbol.for('react.portal');
+const REACT_FRAGMENT_TYPE = Symbol.for('react.fragment');
+const REACT_STRICT_MODE_TYPE = Symbol.for('react.strict_mode');
+const REACT_PROFILER_TYPE = Symbol.for('react.profiler');
+const REACT_PROVIDER_TYPE = Symbol.for('react.provider');
+const REACT_CONTEXT_TYPE = Symbol.for('react.context');
+const REACT_FORWARD_REF_TYPE = Symbol.for('react.forward_ref');
+const REACT_SUSPENSE_TYPE = Symbol.for('react.suspense');
+const REACT_SUSPENSE_LIST_TYPE = Symbol.for('react.suspense_list');
+const REACT_MEMO_TYPE = Symbol.for('react.memo');
+const REACT_LAZY_TYPE = Symbol.for('react.lazy');
+const REACT_SCOPE_TYPE = Symbol.for('react.scope');
+const REACT_DEBUG_TRACING_MODE_TYPE = Symbol.for('react.debug_trace_mode');
+const REACT_LEGACY_HIDDEN_TYPE = Symbol.for('react.legacy_hidden');
+const REACT_SERVER_CONTEXT_DEFAULT_VALUE_NOT_LOADED = Symbol.for('react.default_value');
+const MAYBE_ITERATOR_SYMBOL = Symbol.iterator;
+const FAUX_ITERATOR_SYMBOL = '@@iterator';
 function getIteratorFn(maybeIterable) {
   if (maybeIterable === null || typeof maybeIterable !== 'object') {
     return null;
   }
 
-  var maybeIterator = MAYBE_ITERATOR_SYMBOL && maybeIterable[MAYBE_ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL];
+  const maybeIterator = MAYBE_ITERATOR_SYMBOL && maybeIterable[MAYBE_ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL];
 
   if (typeof maybeIterator === 'function') {
     return maybeIterator;
@@ -3437,13 +3437,13 @@ function getIteratorFn(maybeIterable) {
 }
 
 function getWrappedName(outerType, innerType, wrapperName) {
-  var displayName = outerType.displayName;
+  const displayName = outerType.displayName;
 
   if (displayName) {
     return displayName;
   }
 
-  var functionName = innerType.displayName || innerType.name || '';
+  const functionName = innerType.displayName || innerType.name || '';
   return functionName !== '' ? wrapperName + "(" + functionName + ")" : wrapperName;
 } // Keep in sync with react-reconciler/getComponentNameFromFiber
 
@@ -3518,9 +3518,9 @@ function getComponentNameFromType(type) {
 
       case REACT_LAZY_TYPE:
         {
-          var lazyComponent = type;
-          var payload = lazyComponent._payload;
-          var init = lazyComponent._init;
+          const lazyComponent = type;
+          const payload = lazyComponent._payload;
+          const init = lazyComponent._init;
 
           try {
             return getComponentNameFromType(init(payload));
@@ -3540,14 +3540,14 @@ function getComponentNameFromType(type) {
 // replaying on render function. This currently only patches the object
 // lazily which won't cover if the log function was extracted eagerly.
 // We could also eagerly patch the method.
-var disabledDepth = 0;
-var prevLog;
-var prevInfo;
-var prevWarn;
-var prevError;
-var prevGroup;
-var prevGroupCollapsed;
-var prevGroupEnd;
+let disabledDepth = 0;
+let prevLog;
+let prevInfo;
+let prevWarn;
+let prevError;
+let prevGroup;
+let prevGroupCollapsed;
+let prevGroupEnd;
 
 function disabledLog() {}
 
@@ -3564,7 +3564,7 @@ function disableLogs() {
       prevGroupCollapsed = console.groupCollapsed;
       prevGroupEnd = console.groupEnd; // https://github.com/facebook/react/issues/19099
 
-      var props = {
+      const props = {
         configurable: true,
         enumerable: true,
         value: disabledLog,
@@ -3592,7 +3592,7 @@ function reenableLogs() {
 
     if (disabledDepth === 0) {
       /* eslint-disable react-internal/no-production-logging */
-      var props = {
+      const props = {
         configurable: true,
         enumerable: true,
         writable: true
@@ -3630,8 +3630,8 @@ function reenableLogs() {
   }
 }
 
-var ReactCurrentDispatcher = ReactSharedInternals.ReactCurrentDispatcher;
-var prefix;
+const ReactCurrentDispatcher = ReactSharedInternals.ReactCurrentDispatcher;
+let prefix;
 function describeBuiltInComponentFrame(name, source, ownerFn) {
   {
     if (prefix === undefined) {
@@ -3639,7 +3639,7 @@ function describeBuiltInComponentFrame(name, source, ownerFn) {
       try {
         throw Error();
       } catch (x) {
-        var match = x.stack.trim().match(/\n( *(at )?)/);
+        const match = x.stack.trim().match(/\n( *(at )?)/);
         prefix = match && match[1] || '';
       }
     } // We use the prefix to ensure our stacks line up with native stack frames.
@@ -3648,11 +3648,11 @@ function describeBuiltInComponentFrame(name, source, ownerFn) {
     return '\n' + prefix + name;
   }
 }
-var reentry = false;
-var componentFrameCache;
+let reentry = false;
+let componentFrameCache;
 
 {
-  var PossiblyWeakMap = typeof WeakMap === 'function' ? WeakMap : Map;
+  const PossiblyWeakMap = typeof WeakMap === 'function' ? WeakMap : Map;
   componentFrameCache = new PossiblyWeakMap();
 }
 
@@ -3663,19 +3663,19 @@ function describeNativeComponentFrame(fn, construct) {
   }
 
   {
-    var frame = componentFrameCache.get(fn);
+    const frame = componentFrameCache.get(fn);
 
     if (frame !== undefined) {
       return frame;
     }
   }
 
-  var control;
+  let control;
   reentry = true;
-  var previousPrepareStackTrace = Error.prepareStackTrace; // $FlowFixMe It does accept undefined.
+  const previousPrepareStackTrace = Error.prepareStackTrace; // $FlowFixMe It does accept undefined.
 
   Error.prepareStackTrace = undefined;
-  var previousDispatcher;
+  let previousDispatcher;
 
   {
     previousDispatcher = ReactCurrentDispatcher.current; // Set the dispatcher in DEV because this might be call in the render function
@@ -3689,7 +3689,7 @@ function describeNativeComponentFrame(fn, construct) {
     // This should throw.
     if (construct) {
       // Something should be setting the props in the constructor.
-      var Fake = function () {
+      const Fake = function () {
         throw Error();
       }; // $FlowFixMe
 
@@ -3735,10 +3735,10 @@ function describeNativeComponentFrame(fn, construct) {
     if (sample && control && typeof sample.stack === 'string') {
       // This extracts the first frame from the sample that isn't also in the control.
       // Skipping one frame that we assume is the frame that calls the two.
-      var sampleLines = sample.stack.split('\n');
-      var controlLines = control.stack.split('\n');
-      var s = sampleLines.length - 1;
-      var c = controlLines.length - 1;
+      const sampleLines = sample.stack.split('\n');
+      const controlLines = control.stack.split('\n');
+      let s = sampleLines.length - 1;
+      let c = controlLines.length - 1;
 
       while (s >= 1 && c >= 0 && sampleLines[s] !== controlLines[c]) {
         // We expect at least one stack frame to be shared.
@@ -3767,7 +3767,7 @@ function describeNativeComponentFrame(fn, construct) {
 
               if (c < 0 || sampleLines[s] !== controlLines[c]) {
                 // V8 adds a "new" prefix for native classes. Let's remove it to make it prettier.
-                var _frame = '\n' + sampleLines[s].replace(' at new ', ' at '); // If our component frame is labeled "<anonymous>"
+                let _frame = '\n' + sampleLines[s].replace(' at new ', ' at '); // If our component frame is labeled "<anonymous>"
                 // but we have a user-provided "displayName"
                 // splice it in to make the stack more readable.
 
@@ -3804,8 +3804,8 @@ function describeNativeComponentFrame(fn, construct) {
   } // Fallback to just using the name if we couldn't make it throw.
 
 
-  var name = fn ? fn.displayName || fn.name : '';
-  var syntheticFrame = name ? describeBuiltInComponentFrame(name) : '';
+  const name = fn ? fn.displayName || fn.name : '';
+  const syntheticFrame = name ? describeBuiltInComponentFrame(name) : '';
 
   {
     if (typeof fn === 'function') {
@@ -3828,7 +3828,7 @@ function describeFunctionComponentFrame(fn, source, ownerFn) {
 }
 
 function shouldConstruct(Component) {
-  var prototype = Component.prototype;
+  const prototype = Component.prototype;
   return !!(prototype && prototype.isReactComponent);
 }
 
@@ -3867,9 +3867,9 @@ function describeUnknownElementTypeFrameInDEV(type, source, ownerFn) {
 
       case REACT_LAZY_TYPE:
         {
-          var lazyComponent = type;
-          var payload = lazyComponent._payload;
-          var init = lazyComponent._init;
+          const lazyComponent = type;
+          const payload = lazyComponent._payload;
+          const init = lazyComponent._init;
 
           try {
             // Lazy may contain any component type so we recursively resolve it.
@@ -3882,14 +3882,14 @@ function describeUnknownElementTypeFrameInDEV(type, source, ownerFn) {
   return '';
 }
 
-var loggedTypeFailures = {};
-var ReactDebugCurrentFrame = ReactSharedInternals.ReactDebugCurrentFrame;
+const loggedTypeFailures = {};
+const ReactDebugCurrentFrame = ReactSharedInternals.ReactDebugCurrentFrame;
 
 function setCurrentlyValidatingElement(element) {
   {
     if (element) {
-      var owner = element._owner;
-      var stack = describeUnknownElementTypeFrameInDEV(element.type, element._source, owner ? owner.type : null);
+      const owner = element._owner;
+      const stack = describeUnknownElementTypeFrameInDEV(element.type, element._source, owner ? owner.type : null);
       ReactDebugCurrentFrame.setExtraStackFrame(stack);
     } else {
       ReactDebugCurrentFrame.setExtraStackFrame(null);
@@ -3900,11 +3900,11 @@ function setCurrentlyValidatingElement(element) {
 function checkPropTypes(typeSpecs, values, location, componentName, element) {
   {
     // $FlowFixMe This is okay but Flow doesn't know it.
-    var has = Function.call.bind(hasOwnProperty);
+    const has = Function.call.bind(hasOwnProperty);
 
-    for (var typeSpecName in typeSpecs) {
+    for (const typeSpecName in typeSpecs) {
       if (has(typeSpecs, typeSpecName)) {
-        var error$1 = void 0; // Prop type validation may throw. In case they do, we don't want to
+        let error$1 = void 0; // Prop type validation may throw. In case they do, we don't want to
         // fail the render phase where it didn't fail before. So we log it.
         // After these have been cleaned up, we'll let them throw.
 
@@ -3913,7 +3913,7 @@ function checkPropTypes(typeSpecs, values, location, componentName, element) {
           // behavior as without this statement except with a better message.
           if (typeof typeSpecs[typeSpecName] !== 'function') {
             // eslint-disable-next-line react-internal/prod-error-codes
-            var err = Error((componentName || 'React class') + ': ' + location + ' type `' + typeSpecName + '` is invalid; ' + 'it must be a function, usually from the `prop-types` package, but received `' + typeof typeSpecs[typeSpecName] + '`.' + 'This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.');
+            const err = Error((componentName || 'React class') + ': ' + location + ' type `' + typeSpecName + '` is invalid; ' + 'it must be a function, usually from the `prop-types` package, but received `' + typeof typeSpecs[typeSpecName] + '`.' + 'This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.');
             err.name = 'Invariant Violation';
             throw err;
           }
@@ -3946,13 +3946,13 @@ function checkPropTypes(typeSpecs, values, location, componentName, element) {
   }
 }
 
-var warnedAboutMissingGetChildContext;
+let warnedAboutMissingGetChildContext;
 
 {
   warnedAboutMissingGetChildContext = {};
 }
 
-var emptyContextObject = {};
+const emptyContextObject = {};
 
 {
   Object.freeze(emptyContextObject);
@@ -3960,20 +3960,20 @@ var emptyContextObject = {};
 
 function getMaskedContext(type, unmaskedContext) {
   {
-    var contextTypes = type.contextTypes;
+    const contextTypes = type.contextTypes;
 
     if (!contextTypes) {
       return emptyContextObject;
     }
 
-    var context = {};
+    const context = {};
 
-    for (var key in contextTypes) {
+    for (const key in contextTypes) {
       context[key] = unmaskedContext[key];
     }
 
     {
-      var name = getComponentNameFromType(type) || 'Unknown';
+      const name = getComponentNameFromType(type) || 'Unknown';
       checkPropTypes(contextTypes, context, 'context', name);
     }
 
@@ -3986,7 +3986,7 @@ function processChildContext(instance, type, parentContext, childContextTypes) {
     // It has only been added in Fiber to match the (unintentional) behavior in Stack.
     if (typeof instance.getChildContext !== 'function') {
       {
-        var componentName = getComponentNameFromType(type) || 'Unknown';
+        const componentName = getComponentNameFromType(type) || 'Unknown';
 
         if (!warnedAboutMissingGetChildContext[componentName]) {
           warnedAboutMissingGetChildContext[componentName] = true;
@@ -3998,16 +3998,16 @@ function processChildContext(instance, type, parentContext, childContextTypes) {
       return parentContext;
     }
 
-    var childContext = instance.getChildContext();
+    const childContext = instance.getChildContext();
 
-    for (var contextKey in childContext) {
+    for (const contextKey in childContext) {
       if (!(contextKey in childContextTypes)) {
         throw new Error((getComponentNameFromType(type) || 'Unknown') + ".getChildContext(): key \"" + contextKey + "\" is not defined in childContextTypes.");
       }
     }
 
     {
-      var name = getComponentNameFromType(type) || 'Unknown';
+      const name = getComponentNameFromType(type) || 'Unknown';
       checkPropTypes(childContextTypes, childContext, 'child context', name);
     }
 
@@ -4015,7 +4015,7 @@ function processChildContext(instance, type, parentContext, childContextTypes) {
   }
 }
 
-var rendererSigil;
+let rendererSigil;
 
 {
   // Use this to detect multiple renderers using the same context
@@ -4024,11 +4024,11 @@ var rendererSigil;
 // Forming a reverse tree.
 
 
-var rootContextSnapshot = null; // We assume that this runtime owns the "current" field on all ReactContext instances.
+const rootContextSnapshot = null; // We assume that this runtime owns the "current" field on all ReactContext instances.
 // This global (actually thread local) state represents what state all those "current",
 // fields are currently in.
 
-var currentActiveSnapshot = null;
+let currentActiveSnapshot = null;
 
 function popNode(prev) {
   {
@@ -4045,8 +4045,8 @@ function pushNode(next) {
 function popToNearestCommonAncestor(prev, next) {
   if (prev === next) ; else {
     popNode(prev);
-    var parentPrev = prev.parent;
-    var parentNext = next.parent;
+    const parentPrev = prev.parent;
+    const parentNext = next.parent;
 
     if (parentPrev === null) {
       if (parentNext !== null) {
@@ -4067,7 +4067,7 @@ function popToNearestCommonAncestor(prev, next) {
 
 function popAllPrevious(prev) {
   popNode(prev);
-  var parentPrev = prev.parent;
+  const parentPrev = prev.parent;
 
   if (parentPrev !== null) {
     popAllPrevious(parentPrev);
@@ -4075,7 +4075,7 @@ function popAllPrevious(prev) {
 }
 
 function pushAllNext(next) {
-  var parentNext = next.parent;
+  const parentNext = next.parent;
 
   if (parentNext !== null) {
     pushAllNext(parentNext);
@@ -4086,7 +4086,7 @@ function pushAllNext(next) {
 
 function popPreviousToCommonLevel(prev, next) {
   popNode(prev);
-  var parentPrev = prev.parent;
+  const parentPrev = prev.parent;
 
   if (parentPrev === null) {
     throw new Error('The depth must equal at least at zero before reaching the root. This is a bug in React.');
@@ -4102,7 +4102,7 @@ function popPreviousToCommonLevel(prev, next) {
 }
 
 function popNextToCommonLevel(prev, next) {
-  var parentNext = next.parent;
+  const parentNext = next.parent;
 
   if (parentNext === null) {
     throw new Error('The depth must equal at least at zero before reaching the root. This is a bug in React.');
@@ -4132,8 +4132,8 @@ function switchContext(newSnapshot) {
   // 1) First we pop which ever snapshot tree was deepest. Popping old contexts as we go.
   // 2) Then we find the nearest common ancestor from there. Popping old contexts as we go.
   // 3) Then we reapply new contexts on the way back up the stack.
-  var prev = currentActiveSnapshot;
-  var next = newSnapshot;
+  const prev = currentActiveSnapshot;
+  const next = newSnapshot;
 
   if (prev !== next) {
     if (prev === null) {
@@ -4153,7 +4153,7 @@ function switchContext(newSnapshot) {
   }
 }
 function pushProvider(context, nextValue) {
-  var prevValue;
+  let prevValue;
 
   {
     prevValue = context._currentValue2;
@@ -4168,8 +4168,8 @@ function pushProvider(context, nextValue) {
     }
   }
 
-  var prevNode = currentActiveSnapshot;
-  var newNode = {
+  const prevNode = currentActiveSnapshot;
+  const newNode = {
     parent: prevNode,
     depth: prevNode === null ? 0 : prevNode.depth + 1,
     context: context,
@@ -4180,7 +4180,7 @@ function pushProvider(context, nextValue) {
   return newNode;
 }
 function popProvider(context) {
-  var prevSnapshot = currentActiveSnapshot;
+  const prevSnapshot = currentActiveSnapshot;
 
   if (prevSnapshot === null) {
     throw new Error('Tried to pop a Context at the root of the app. This is a bug in React.');
@@ -4193,7 +4193,7 @@ function popProvider(context) {
   }
 
   {
-    var _value = prevSnapshot.parentValue;
+    const _value = prevSnapshot.parentValue;
 
     if (_value === REACT_SERVER_CONTEXT_DEFAULT_VALUE_NOT_LOADED) {
       prevSnapshot.context._currentValue2 = prevSnapshot.context._defaultValue;
@@ -4216,7 +4216,7 @@ function getActiveContext() {
   return currentActiveSnapshot;
 }
 function readContext(context) {
-  var value =  context._currentValue2;
+  const value =  context._currentValue2;
   return value;
 }
 
@@ -4236,17 +4236,17 @@ function set(key, value) {
   key._reactInternals = value;
 }
 
-var didWarnAboutNoopUpdateForComponent = {};
-var didWarnAboutDeprecatedWillMount = {};
-var didWarnAboutUninitializedState;
-var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
-var didWarnAboutLegacyLifecyclesAndDerivedState;
-var didWarnAboutUndefinedDerivedState;
-var warnOnUndefinedDerivedState;
-var warnOnInvalidCallback;
-var didWarnAboutDirectlyAssigningPropsToState;
-var didWarnAboutContextTypeAndContextTypes;
-var didWarnAboutInvalidateContextType;
+const didWarnAboutNoopUpdateForComponent = {};
+const didWarnAboutDeprecatedWillMount = {};
+let didWarnAboutUninitializedState;
+let didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
+let didWarnAboutLegacyLifecyclesAndDerivedState;
+let didWarnAboutUndefinedDerivedState;
+let warnOnUndefinedDerivedState;
+let warnOnInvalidCallback;
+let didWarnAboutDirectlyAssigningPropsToState;
+let didWarnAboutContextTypeAndContextTypes;
+let didWarnAboutInvalidateContextType;
 
 {
   didWarnAboutUninitializedState = new Set();
@@ -4256,14 +4256,14 @@ var didWarnAboutInvalidateContextType;
   didWarnAboutUndefinedDerivedState = new Set();
   didWarnAboutContextTypeAndContextTypes = new Set();
   didWarnAboutInvalidateContextType = new Set();
-  var didWarnOnInvalidCallback = new Set();
+  const didWarnOnInvalidCallback = new Set();
 
   warnOnInvalidCallback = function (callback, callerName) {
     if (callback === null || typeof callback === 'function') {
       return;
     }
 
-    var key = callerName + '_' + callback;
+    const key = callerName + '_' + callback;
 
     if (!didWarnOnInvalidCallback.has(key)) {
       didWarnOnInvalidCallback.add(key);
@@ -4274,7 +4274,7 @@ var didWarnAboutInvalidateContextType;
 
   warnOnUndefinedDerivedState = function (type, partialState) {
     if (partialState === undefined) {
-      var componentName = getComponentNameFromType(type) || 'Component';
+      const componentName = getComponentNameFromType(type) || 'Component';
 
       if (!didWarnAboutUndefinedDerivedState.has(componentName)) {
         didWarnAboutUndefinedDerivedState.add(componentName);
@@ -4287,9 +4287,9 @@ var didWarnAboutInvalidateContextType;
 
 function warnNoop(publicInstance, callerName) {
   {
-    var _constructor = publicInstance.constructor;
-    var componentName = _constructor && getComponentNameFromType(_constructor) || 'ReactClass';
-    var warningKey = componentName + '.' + callerName;
+    const _constructor = publicInstance.constructor;
+    const componentName = _constructor && getComponentNameFromType(_constructor) || 'ReactClass';
+    const warningKey = componentName + '.' + callerName;
 
     if (didWarnAboutNoopUpdateForComponent[warningKey]) {
       return;
@@ -4301,12 +4301,12 @@ function warnNoop(publicInstance, callerName) {
   }
 }
 
-var classComponentUpdater = {
+const classComponentUpdater = {
   isMounted: function (inst) {
     return false;
   },
   enqueueSetState: function (inst, payload, callback) {
-    var internals = get(inst);
+    const internals = get(inst);
 
     if (internals.queue === null) {
       warnNoop(inst, 'setState');
@@ -4321,7 +4321,7 @@ var classComponentUpdater = {
     }
   },
   enqueueReplaceState: function (inst, payload, callback) {
-    var internals = get(inst);
+    const internals = get(inst);
     internals.replace = true;
     internals.queue = [payload];
 
@@ -4332,7 +4332,7 @@ var classComponentUpdater = {
     }
   },
   enqueueForceUpdate: function (inst, callback) {
-    var internals = get(inst);
+    const internals = get(inst);
 
     if (internals.queue === null) {
       warnNoop(inst, 'forceUpdate');
@@ -4347,29 +4347,29 @@ var classComponentUpdater = {
 };
 
 function applyDerivedStateFromProps(instance, ctor, getDerivedStateFromProps, prevState, nextProps) {
-  var partialState = getDerivedStateFromProps(nextProps, prevState);
+  const partialState = getDerivedStateFromProps(nextProps, prevState);
 
   {
     warnOnUndefinedDerivedState(ctor, partialState);
   } // Merge the partial state and the previous state.
 
 
-  var newState = partialState === null || partialState === undefined ? prevState : assign({}, prevState, partialState);
+  const newState = partialState === null || partialState === undefined ? prevState : assign({}, prevState, partialState);
   return newState;
 }
 
 function constructClassInstance(ctor, props, maskedLegacyContext) {
-  var context = emptyContextObject;
-  var contextType = ctor.contextType;
+  let context = emptyContextObject;
+  const contextType = ctor.contextType;
 
   {
     if ('contextType' in ctor) {
-      var isValid = // Allow null for conditional declaration
+      const isValid = // Allow null for conditional declaration
       contextType === null || contextType !== undefined && contextType.$$typeof === REACT_CONTEXT_TYPE && contextType._context === undefined; // Not a <Context.Consumer>
 
       if (!isValid && !didWarnAboutInvalidateContextType.has(ctor)) {
         didWarnAboutInvalidateContextType.add(ctor);
-        var addendum = '';
+        let addendum = '';
 
         if (contextType === undefined) {
           addendum = ' However, it is set to undefined. ' + 'This can be caused by a typo or by mixing up named and default imports. ' + 'This can also happen due to a circular dependency, so ' + 'try moving the createContext() call to a separate file.';
@@ -4395,11 +4395,11 @@ function constructClassInstance(ctor, props, maskedLegacyContext) {
     context = maskedLegacyContext;
   }
 
-  var instance = new ctor(props, context);
+  const instance = new ctor(props, context);
 
   {
     if (typeof ctor.getDerivedStateFromProps === 'function' && (instance.state === null || instance.state === undefined)) {
-      var componentName = getComponentNameFromType(ctor) || 'Component';
+      const componentName = getComponentNameFromType(ctor) || 'Component';
 
       if (!didWarnAboutUninitializedState.has(componentName)) {
         didWarnAboutUninitializedState.add(componentName);
@@ -4412,9 +4412,9 @@ function constructClassInstance(ctor, props, maskedLegacyContext) {
 
 
     if (typeof ctor.getDerivedStateFromProps === 'function' || typeof instance.getSnapshotBeforeUpdate === 'function') {
-      var foundWillMountName = null;
-      var foundWillReceivePropsName = null;
-      var foundWillUpdateName = null;
+      let foundWillMountName = null;
+      let foundWillReceivePropsName = null;
+      let foundWillUpdateName = null;
 
       if (typeof instance.componentWillMount === 'function' && instance.componentWillMount.__suppressDeprecationWarning !== true) {
         foundWillMountName = 'componentWillMount';
@@ -4435,9 +4435,9 @@ function constructClassInstance(ctor, props, maskedLegacyContext) {
       }
 
       if (foundWillMountName !== null || foundWillReceivePropsName !== null || foundWillUpdateName !== null) {
-        var _componentName = getComponentNameFromType(ctor) || 'Component';
+        const _componentName = getComponentNameFromType(ctor) || 'Component';
 
-        var newApiName = typeof ctor.getDerivedStateFromProps === 'function' ? 'getDerivedStateFromProps()' : 'getSnapshotBeforeUpdate()';
+        const newApiName = typeof ctor.getDerivedStateFromProps === 'function' ? 'getDerivedStateFromProps()' : 'getSnapshotBeforeUpdate()';
 
         if (!didWarnAboutLegacyLifecyclesAndDerivedState.has(_componentName)) {
           didWarnAboutLegacyLifecyclesAndDerivedState.add(_componentName);
@@ -4453,8 +4453,8 @@ function constructClassInstance(ctor, props, maskedLegacyContext) {
 
 function checkClassInstance(instance, ctor, newProps) {
   {
-    var name = getComponentNameFromType(ctor) || 'Component';
-    var renderPresent = instance.render;
+    const name = getComponentNameFromType(ctor) || 'Component';
+    const renderPresent = instance.render;
 
     if (!renderPresent) {
       if (ctor.prototype && typeof ctor.prototype.render === 'function') {
@@ -4516,7 +4516,7 @@ function checkClassInstance(instance, ctor, newProps) {
       error('%s has a method called ' + 'UNSAFE_componentWillRecieveProps(). Did you mean UNSAFE_componentWillReceiveProps()?', name);
     }
 
-    var hasMutatedProps = instance.props !== newProps;
+    const hasMutatedProps = instance.props !== newProps;
 
     if (instance.props !== undefined && hasMutatedProps) {
       error('%s(...): When calling super() in `%s`, make sure to pass ' + "up the same props that your component's constructor was passed.", name, name);
@@ -4544,7 +4544,7 @@ function checkClassInstance(instance, ctor, newProps) {
       error('%s: getSnapshotBeforeUpdate() is defined as a static method ' + 'and will be ignored. Instead, declare it as an instance method.', name);
     }
 
-    var _state = instance.state;
+    const _state = instance.state;
 
     if (_state && (typeof _state !== 'object' || isArray(_state))) {
       error('%s.state: must be set to an object or null', name);
@@ -4557,12 +4557,12 @@ function checkClassInstance(instance, ctor, newProps) {
 }
 
 function callComponentWillMount(type, instance) {
-  var oldState = instance.state;
+  const oldState = instance.state;
 
   if (typeof instance.componentWillMount === 'function') {
     {
       if ( instance.componentWillMount.__suppressDeprecationWarning !== true) {
-        var componentName = getComponentNameFromType(type) || 'Unknown';
+        const componentName = getComponentNameFromType(type) || 'Unknown';
 
         if (!didWarnAboutDeprecatedWillMount[componentName]) {
           warn( // keep this warning in sync with ReactStrictModeWarning.js
@@ -4591,20 +4591,20 @@ function callComponentWillMount(type, instance) {
 
 function processUpdateQueue(internalInstance, inst, props, maskedLegacyContext) {
   if (internalInstance.queue !== null && internalInstance.queue.length > 0) {
-    var oldQueue = internalInstance.queue;
-    var oldReplace = internalInstance.replace;
+    const oldQueue = internalInstance.queue;
+    const oldReplace = internalInstance.replace;
     internalInstance.queue = null;
     internalInstance.replace = false;
 
     if (oldReplace && oldQueue.length === 1) {
       inst.state = oldQueue[0];
     } else {
-      var nextState = oldReplace ? oldQueue[0] : inst.state;
-      var dontMutate = true;
+      let nextState = oldReplace ? oldQueue[0] : inst.state;
+      let dontMutate = true;
 
-      for (var i = oldReplace ? 1 : 0; i < oldQueue.length; i++) {
-        var partial = oldQueue[i];
-        var partialState = typeof partial === 'function' ? partial.call(inst, nextState, props, maskedLegacyContext) : partial;
+      for (let i = oldReplace ? 1 : 0; i < oldQueue.length; i++) {
+        const partial = oldQueue[i];
+        const partialState = typeof partial === 'function' ? partial.call(inst, nextState, props, maskedLegacyContext) : partial;
 
         if (partialState != null) {
           if (dontMutate) {
@@ -4629,18 +4629,18 @@ function mountClassInstance(instance, ctor, newProps, maskedLegacyContext) {
     checkClassInstance(instance, ctor, newProps);
   }
 
-  var initialState = instance.state !== undefined ? instance.state : null;
+  const initialState = instance.state !== undefined ? instance.state : null;
   instance.updater = classComponentUpdater;
   instance.props = newProps;
   instance.state = initialState; // We don't bother initializing the refs object on the server, since we're not going to resolve them anyway.
   // The internal instance will be used to manage updates that happen during this mount.
 
-  var internalInstance = {
+  const internalInstance = {
     queue: [],
     replace: false
   };
   set(instance, internalInstance);
-  var contextType = ctor.contextType;
+  const contextType = ctor.contextType;
 
   if (typeof contextType === 'object' && contextType !== null) {
     instance.context = readContext(contextType);
@@ -4650,7 +4650,7 @@ function mountClassInstance(instance, ctor, newProps, maskedLegacyContext) {
 
   {
     if (instance.state === newProps) {
-      var componentName = getComponentNameFromType(ctor) || 'Component';
+      const componentName = getComponentNameFromType(ctor) || 'Component';
 
       if (!didWarnAboutDirectlyAssigningPropsToState.has(componentName)) {
         didWarnAboutDirectlyAssigningPropsToState.add(componentName);
@@ -4660,7 +4660,7 @@ function mountClassInstance(instance, ctor, newProps, maskedLegacyContext) {
     }
   }
 
-  var getDerivedStateFromProps = ctor.getDerivedStateFromProps;
+  const getDerivedStateFromProps = ctor.getDerivedStateFromProps;
 
   if (typeof getDerivedStateFromProps === 'function') {
     instance.state = applyDerivedStateFromProps(instance, ctor, getDerivedStateFromProps, initialState, newProps);
@@ -4727,25 +4727,25 @@ function mountClassInstance(instance, ctor, newProps, maskedLegacyContext) {
 // because every log2(base) bits corresponds to a single character, i.e. every
 // log2(32) = 5 bits. That means we can lop bits off the end 5 at a time without
 // affecting the final result.
-var emptyTreeContext = {
+const emptyTreeContext = {
   id: 1,
   overflow: ''
 };
 function getTreeId(context) {
-  var overflow = context.overflow;
-  var idWithLeadingBit = context.id;
-  var id = idWithLeadingBit & ~getLeadingBit(idWithLeadingBit);
+  const overflow = context.overflow;
+  const idWithLeadingBit = context.id;
+  const id = idWithLeadingBit & ~getLeadingBit(idWithLeadingBit);
   return id.toString(32) + overflow;
 }
 function pushTreeContext(baseContext, totalChildren, index) {
-  var baseIdWithLeadingBit = baseContext.id;
-  var baseOverflow = baseContext.overflow; // The leftmost 1 marks the end of the sequence, non-inclusive. It's not part
+  const baseIdWithLeadingBit = baseContext.id;
+  const baseOverflow = baseContext.overflow; // The leftmost 1 marks the end of the sequence, non-inclusive. It's not part
   // of the id; we use it to account for leading 0s.
 
-  var baseLength = getBitLength(baseIdWithLeadingBit) - 1;
-  var baseId = baseIdWithLeadingBit & ~(1 << baseLength);
-  var slot = index + 1;
-  var length = getBitLength(totalChildren) + baseLength; // 30 is the max length we can store without overflowing, taking into
+  const baseLength = getBitLength(baseIdWithLeadingBit) - 1;
+  const baseId = baseIdWithLeadingBit & ~(1 << baseLength);
+  const slot = index + 1;
+  const length = getBitLength(totalChildren) + baseLength; // 30 is the max length we can store without overflowing, taking into
   // consideration the leading 1 we use to mark the end of the sequence.
 
   if (length > 30) {
@@ -4762,31 +4762,31 @@ function pushTreeContext(baseContext, totalChildren, index) {
     //
     // First calculate how many bits in the base id represent a complete
     // sequence of characters.
-    var numberOfOverflowBits = baseLength - baseLength % 5; // Then create a bitmask that selects only those bits.
+    const numberOfOverflowBits = baseLength - baseLength % 5; // Then create a bitmask that selects only those bits.
 
-    var newOverflowBits = (1 << numberOfOverflowBits) - 1; // Select the bits, and convert them to a base 32 string.
+    const newOverflowBits = (1 << numberOfOverflowBits) - 1; // Select the bits, and convert them to a base 32 string.
 
-    var newOverflow = (baseId & newOverflowBits).toString(32); // Now we can remove those bits from the base id.
+    const newOverflow = (baseId & newOverflowBits).toString(32); // Now we can remove those bits from the base id.
 
-    var restOfBaseId = baseId >> numberOfOverflowBits;
-    var restOfBaseLength = baseLength - numberOfOverflowBits; // Finally, encode the rest of the bits using the normal algorithm. Because
+    const restOfBaseId = baseId >> numberOfOverflowBits;
+    const restOfBaseLength = baseLength - numberOfOverflowBits; // Finally, encode the rest of the bits using the normal algorithm. Because
     // we made more room, this time it won't overflow.
 
-    var restOfLength = getBitLength(totalChildren) + restOfBaseLength;
-    var restOfNewBits = slot << restOfBaseLength;
-    var id = restOfNewBits | restOfBaseId;
-    var overflow = newOverflow + baseOverflow;
+    const restOfLength = getBitLength(totalChildren) + restOfBaseLength;
+    const restOfNewBits = slot << restOfBaseLength;
+    const id = restOfNewBits | restOfBaseId;
+    const overflow = newOverflow + baseOverflow;
     return {
       id: 1 << restOfLength | id,
       overflow: overflow
     };
   } else {
     // Normal path
-    var newBits = slot << baseLength;
+    const newBits = slot << baseLength;
 
-    var _id = newBits | baseId;
+    const _id = newBits | baseId;
 
-    var _overflow = baseOverflow;
+    const _overflow = baseOverflow;
     return {
       id: 1 << length | _id,
       overflow: _overflow
@@ -4807,11 +4807,11 @@ var clz32 = Math.clz32 ? Math.clz32 : clz32Fallback; // Count leading zeros.
 // Based on:
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/clz32
 
-var log = Math.log;
-var LN2 = Math.LN2;
+const log = Math.log;
+const LN2 = Math.LN2;
 
 function clz32Fallback(x) {
-  var asUint = x >>> 0;
+  const asUint = x >>> 0;
 
   if (asUint === 0) {
     return 32;
@@ -4829,26 +4829,26 @@ function is(x, y) {
   ;
 }
 
-var objectIs = typeof Object.is === 'function' ? Object.is : is;
+const objectIs = typeof Object.is === 'function' ? Object.is : is;
 
-var currentlyRenderingComponent = null;
-var currentlyRenderingTask = null;
-var firstWorkInProgressHook = null;
-var workInProgressHook = null; // Whether the work-in-progress hook is a re-rendered hook
+let currentlyRenderingComponent = null;
+let currentlyRenderingTask = null;
+let firstWorkInProgressHook = null;
+let workInProgressHook = null; // Whether the work-in-progress hook is a re-rendered hook
 
-var isReRender = false; // Whether an update was scheduled during the currently executing render pass.
+let isReRender = false; // Whether an update was scheduled during the currently executing render pass.
 
-var didScheduleRenderPhaseUpdate = false; // Counts the number of useId hooks in this component
+let didScheduleRenderPhaseUpdate = false; // Counts the number of useId hooks in this component
 
-var localIdCounter = 0; // Lazily created map of render-phase updates
+let localIdCounter = 0; // Lazily created map of render-phase updates
 
-var renderPhaseUpdates = null; // Counter to prevent infinite loops.
+let renderPhaseUpdates = null; // Counter to prevent infinite loops.
 
-var numberOfReRenders = 0;
-var RE_RENDER_LIMIT = 25;
-var isInHookUserCodeInDev = false; // In DEV, this is the name of the currently executing primitive hook
+let numberOfReRenders = 0;
+const RE_RENDER_LIMIT = 25;
+let isInHookUserCodeInDev = false; // In DEV, this is the name of the currently executing primitive hook
 
-var currentHookNameInDev;
+let currentHookNameInDev;
 
 function resolveCurrentlyRenderingComponent() {
   if (currentlyRenderingComponent === null) {
@@ -4881,7 +4881,7 @@ function areHookInputsEqual(nextDeps, prevDeps) {
     }
   }
 
-  for (var i = 0; i < prevDeps.length && i < nextDeps.length; i++) {
+  for (let i = 0; i < prevDeps.length && i < nextDeps.length; i++) {
     if (objectIs(nextDeps[i], prevDeps[i])) {
       continue;
     }
@@ -4970,7 +4970,7 @@ function checkDidRenderIdHook() {
   // This should be called immediately after every finishHooks call.
   // Conceptually, it's part of the return value of finishHooks; it's only a
   // separate function to avoid using an array tuple.
-  var didRenderIdHook = localIdCounter !== 0;
+  const didRenderIdHook = localIdCounter !== 0;
   return didRenderIdHook;
 } // Reset the internal hooks state if an error occurs while rendering a component
 
@@ -5033,23 +5033,23 @@ function useReducer(reducer, initialArg, init) {
   if (isReRender) {
     // This is a re-render. Apply the new render phase updates to the previous
     // current hook.
-    var queue = workInProgressHook.queue;
-    var dispatch = queue.dispatch;
+    const queue = workInProgressHook.queue;
+    const dispatch = queue.dispatch;
 
     if (renderPhaseUpdates !== null) {
       // Render phase updates are stored in a map of queue -> linked list
-      var firstRenderPhaseUpdate = renderPhaseUpdates.get(queue);
+      const firstRenderPhaseUpdate = renderPhaseUpdates.get(queue);
 
       if (firstRenderPhaseUpdate !== undefined) {
         renderPhaseUpdates.delete(queue);
-        var newState = workInProgressHook.memoizedState;
-        var update = firstRenderPhaseUpdate;
+        let newState = workInProgressHook.memoizedState;
+        let update = firstRenderPhaseUpdate;
 
         do {
           // Process this render phase update. We don't have to check the
           // priority because it will always be the same as the current
           // render's.
-          var action = update.action;
+          const action = update.action;
 
           {
             isInHookUserCodeInDev = true;
@@ -5075,7 +5075,7 @@ function useReducer(reducer, initialArg, init) {
       isInHookUserCodeInDev = true;
     }
 
-    var initialState;
+    let initialState;
 
     if (reducer === basicStateReducer) {
       // Special case for `useState`.
@@ -5090,12 +5090,12 @@ function useReducer(reducer, initialArg, init) {
 
     workInProgressHook.memoizedState = initialState;
 
-    var _queue = workInProgressHook.queue = {
+    const _queue = workInProgressHook.queue = {
       last: null,
       dispatch: null
     };
 
-    var _dispatch = _queue.dispatch = dispatchAction.bind(null, currentlyRenderingComponent, _queue);
+    const _dispatch = _queue.dispatch = dispatchAction.bind(null, currentlyRenderingComponent, _queue);
 
     return [workInProgressHook.memoizedState, _dispatch];
   }
@@ -5104,14 +5104,14 @@ function useReducer(reducer, initialArg, init) {
 function useMemo(nextCreate, deps) {
   currentlyRenderingComponent = resolveCurrentlyRenderingComponent();
   workInProgressHook = createWorkInProgressHook();
-  var nextDeps = deps === undefined ? null : deps;
+  const nextDeps = deps === undefined ? null : deps;
 
   if (workInProgressHook !== null) {
-    var prevState = workInProgressHook.memoizedState;
+    const prevState = workInProgressHook.memoizedState;
 
     if (prevState !== null) {
       if (nextDeps !== null) {
-        var prevDeps = prevState[1];
+        const prevDeps = prevState[1];
 
         if (areHookInputsEqual(nextDeps, prevDeps)) {
           return prevState[0];
@@ -5124,7 +5124,7 @@ function useMemo(nextCreate, deps) {
     isInHookUserCodeInDev = true;
   }
 
-  var nextValue = nextCreate();
+  const nextValue = nextCreate();
 
   {
     isInHookUserCodeInDev = false;
@@ -5137,10 +5137,10 @@ function useMemo(nextCreate, deps) {
 function useRef(initialValue) {
   currentlyRenderingComponent = resolveCurrentlyRenderingComponent();
   workInProgressHook = createWorkInProgressHook();
-  var previousRef = workInProgressHook.memoizedState;
+  const previousRef = workInProgressHook.memoizedState;
 
   if (previousRef === null) {
-    var ref = {
+    const ref = {
       current: initialValue
     };
 
@@ -5173,7 +5173,7 @@ function dispatchAction(componentIdentity, queue, action) {
     // queue -> linked list of updates. After this render pass, we'll restart
     // and apply the stashed updates on top of the work-in-progress hook.
     didScheduleRenderPhaseUpdate = true;
-    var update = {
+    const update = {
       action: action,
       next: null
     };
@@ -5182,13 +5182,13 @@ function dispatchAction(componentIdentity, queue, action) {
       renderPhaseUpdates = new Map();
     }
 
-    var firstRenderPhaseUpdate = renderPhaseUpdates.get(queue);
+    const firstRenderPhaseUpdate = renderPhaseUpdates.get(queue);
 
     if (firstRenderPhaseUpdate === undefined) {
       renderPhaseUpdates.set(queue, update);
     } else {
       // Append the update to the end of the list.
-      var lastRenderPhaseUpdate = firstRenderPhaseUpdate;
+      let lastRenderPhaseUpdate = firstRenderPhaseUpdate;
 
       while (lastRenderPhaseUpdate.next !== null) {
         lastRenderPhaseUpdate = lastRenderPhaseUpdate.next;
@@ -5235,21 +5235,21 @@ function useTransition() {
 }
 
 function useId() {
-  var task = currentlyRenderingTask;
-  var treeId = getTreeId(task.treeContext);
-  var responseState = currentResponseState;
+  const task = currentlyRenderingTask;
+  const treeId = getTreeId(task.treeContext);
+  const responseState = currentResponseState;
 
   if (responseState === null) {
     throw new Error('Invalid hook call. Hooks can only be called inside of the body of a function component.');
   }
 
-  var localId = localIdCounter++;
+  const localId = localIdCounter++;
   return makeId(responseState, treeId, localId);
 }
 
 function noop() {}
 
-var Dispatcher = {
+const Dispatcher = {
   readContext: readContext$1,
   useContext: useContext,
   useMemo: useMemo,
@@ -5280,8 +5280,8 @@ function setCurrentResponseState(responseState) {
 
 function getStackByComponentStackNode(componentStack) {
   try {
-    var info = '';
-    var node = componentStack;
+    let info = '';
+    let node = componentStack;
 
     do {
       switch (node.tag) {
@@ -5307,16 +5307,16 @@ function getStackByComponentStackNode(componentStack) {
   }
 }
 
-var ReactCurrentDispatcher$1 = ReactSharedInternals.ReactCurrentDispatcher;
-var ReactDebugCurrentFrame$1 = ReactSharedInternals.ReactDebugCurrentFrame;
-var PENDING = 0;
-var COMPLETED = 1;
-var FLUSHED = 2;
-var ABORTED = 3;
-var ERRORED = 4;
-var OPEN = 0;
-var CLOSING = 1;
-var CLOSED = 2;
+const ReactCurrentDispatcher$1 = ReactSharedInternals.ReactCurrentDispatcher;
+const ReactDebugCurrentFrame$1 = ReactSharedInternals.ReactDebugCurrentFrame;
+const PENDING = 0;
+const COMPLETED = 1;
+const FLUSHED = 2;
+const ABORTED = 3;
+const ERRORED = 4;
+const OPEN = 0;
+const CLOSING = 1;
+const CLOSED = 2;
 // This is a default heuristic for how to split up the HTML content into progressive
 // loading. Our goal is to be able to display additional new content about every 500ms.
 // Faster than that is unnecessary and should be throttled on the client. It also
@@ -5332,7 +5332,7 @@ var CLOSED = 2;
 // about 12.5kb of content per 500ms. Not counting starting latency for the first
 // paint.
 // 500 * 1024 / 8 * .8 * 0.5 / 2
-var DEFAULT_PROGRESSIVE_CHUNK_SIZE = 12800;
+const DEFAULT_PROGRESSIVE_CHUNK_SIZE = 12800;
 
 function defaultErrorHandler(error) {
   console['error'](error); // Don't transform to our wrapper
@@ -5343,9 +5343,9 @@ function defaultErrorHandler(error) {
 function noop$1() {}
 
 function createRequest(children, responseState, rootFormatContext, progressiveChunkSize, onError, onAllReady, onShellReady, onShellError, onFatalError) {
-  var pingedTasks = [];
-  var abortSet = new Set();
-  var request = {
+  const pingedTasks = [];
+  const abortSet = new Set();
+  const request = {
     destination: null,
     responseState: responseState,
     progressiveChunkSize: progressiveChunkSize === undefined ? DEFAULT_PROGRESSIVE_CHUNK_SIZE : progressiveChunkSize,
@@ -5367,17 +5367,17 @@ function createRequest(children, responseState, rootFormatContext, progressiveCh
     onFatalError: onFatalError === undefined ? noop$1 : onFatalError
   }; // This segment represents the root fallback.
 
-  var rootSegment = createPendingSegment(request, 0, null, rootFormatContext, // Root segments are never embedded in Text on either edge
+  const rootSegment = createPendingSegment(request, 0, null, rootFormatContext, // Root segments are never embedded in Text on either edge
   false, false); // There is no parent so conceptually, we're unblocked to flush this segment.
 
   rootSegment.parentFlushed = true;
-  var rootTask = createTask(request, children, null, rootSegment, abortSet, emptyContextObject, rootContextSnapshot, emptyTreeContext);
+  const rootTask = createTask(request, children, null, rootSegment, abortSet, emptyContextObject, rootContextSnapshot, emptyTreeContext);
   pingedTasks.push(rootTask);
   return request;
 }
 
 function pingTask(request, task) {
-  var pingedTasks = request.pingedTasks;
+  const pingedTasks = request.pingedTasks;
   pingedTasks.push(task);
 
   if (pingedTasks.length === 1) {
@@ -5448,7 +5448,7 @@ function createPendingSegment(request, index, boundary, formatContext, lastPushe
 } // DEV-only global reference to the currently executing task
 
 
-var currentTaskInDEV = null;
+let currentTaskInDEV = null;
 
 function getCurrentStackInDEV() {
   {
@@ -5501,11 +5501,11 @@ function popComponentStackInDEV(task) {
 } // stash the component stack of an unwinding error until it is processed
 
 
-var lastBoundaryErrorComponentStackDev = null;
+let lastBoundaryErrorComponentStackDev = null;
 
 function captureBoundaryErrorDetailsDev(boundary, error) {
   {
-    var errorMessage;
+    let errorMessage;
 
     if (typeof error === 'string') {
       errorMessage = error;
@@ -5516,7 +5516,7 @@ function captureBoundaryErrorDetailsDev(boundary, error) {
       errorMessage = String(error);
     }
 
-    var errorComponentStack = lastBoundaryErrorComponentStackDev || getCurrentStackInDEV();
+    const errorComponentStack = lastBoundaryErrorComponentStackDev || getCurrentStackInDEV();
     lastBoundaryErrorComponentStackDev = null;
     boundary.errorMessage = errorMessage;
     boundary.errorComponentStack = errorComponentStack;
@@ -5526,7 +5526,7 @@ function captureBoundaryErrorDetailsDev(boundary, error) {
 function logRecoverableError(request, error) {
   // If this callback errors, we intentionally let that error bubble up to become a fatal error
   // so that someone fixes the error reporting instead of hiding it.
-  var errorDigest = request.onError(error);
+  const errorDigest = request.onError(error);
 
   if (errorDigest != null && typeof errorDigest !== 'string') {
     // eslint-disable-next-line react-internal/prod-error-codes
@@ -5540,9 +5540,9 @@ function fatalError(request, error) {
   // This is called outside error handling code such as if the root errors outside
   // a suspense boundary or if the root suspense boundary's fallback errors.
   // It's also called if React itself or its host configs errors.
-  var onShellError = request.onShellError;
+  const onShellError = request.onShellError;
   onShellError(error);
-  var onFatalError = request.onFatalError;
+  const onFatalError = request.onFatalError;
   onFatalError(error);
 
   if (request.destination !== null) {
@@ -5556,25 +5556,25 @@ function fatalError(request, error) {
 
 function renderSuspenseBoundary(request, task, props) {
   pushBuiltInComponentStackInDEV(task, 'Suspense');
-  var parentBoundary = task.blockedBoundary;
-  var parentSegment = task.blockedSegment; // Each time we enter a suspense boundary, we split out into a new segment for
+  const parentBoundary = task.blockedBoundary;
+  const parentSegment = task.blockedSegment; // Each time we enter a suspense boundary, we split out into a new segment for
   // the fallback so that we can later replace that segment with the content.
   // This also lets us split out the main content even if it doesn't suspend,
   // in case it ends up generating a large subtree of content.
 
-  var fallback = props.fallback;
-  var content = props.children;
-  var fallbackAbortSet = new Set();
-  var newBoundary = createSuspenseBoundary(request, fallbackAbortSet);
-  var insertionIndex = parentSegment.chunks.length; // The children of the boundary segment is actually the fallback.
+  const fallback = props.fallback;
+  const content = props.children;
+  const fallbackAbortSet = new Set();
+  const newBoundary = createSuspenseBoundary(request, fallbackAbortSet);
+  const insertionIndex = parentSegment.chunks.length; // The children of the boundary segment is actually the fallback.
 
-  var boundarySegment = createPendingSegment(request, insertionIndex, newBoundary, parentSegment.formatContext, // boundaries never require text embedding at their edges because comment nodes bound them
+  const boundarySegment = createPendingSegment(request, insertionIndex, newBoundary, parentSegment.formatContext, // boundaries never require text embedding at their edges because comment nodes bound them
   false, false);
   parentSegment.children.push(boundarySegment); // The parentSegment has a child Segment at this index so we reset the lastPushedText marker on the parent
 
   parentSegment.lastPushedText = false; // This segment is the actual child content. We can start rendering that immediately.
 
-  var contentRootSegment = createPendingSegment(request, 0, null, parentSegment.formatContext, // boundaries never require text embedding at their edges because comment nodes bound them
+  const contentRootSegment = createPendingSegment(request, 0, null, parentSegment.formatContext, // boundaries never require text embedding at their edges because comment nodes bound them
   false, false); // We mark the root segment as having its parent flushed. It's not really flushed but there is
   // no parent segment so there's nothing to wait on.
 
@@ -5621,7 +5621,7 @@ function renderSuspenseBoundary(request, task, props) {
   // on it yet in case we finish the main content, so we queue for later.
 
 
-  var suspendedFallbackTask = createTask(request, fallback, parentBoundary, boundarySegment, fallbackAbortSet, task.legacyContext, task.context, task.treeContext);
+  const suspendedFallbackTask = createTask(request, fallback, parentBoundary, boundarySegment, fallbackAbortSet, task.legacyContext, task.context, task.treeContext);
 
   {
     suspendedFallbackTask.componentStack = task.componentStack;
@@ -5635,10 +5635,10 @@ function renderSuspenseBoundary(request, task, props) {
 
 function renderHostElement(request, task, type, props) {
   pushBuiltInComponentStackInDEV(task, type);
-  var segment = task.blockedSegment;
-  var children = pushStartInstance(segment.chunks, type, props, request.responseState, segment.formatContext);
+  const segment = task.blockedSegment;
+  const children = pushStartInstance(segment.chunks, type, props, request.responseState, segment.formatContext);
   segment.lastPushedText = false;
-  var prevContext = segment.formatContext;
+  const prevContext = segment.formatContext;
   segment.formatContext = getChildFormatContext(prevContext, type, props); // We use the non-destructive form because if something suspends, we still
   // need to pop back up and finish this subtree of HTML.
 
@@ -5656,14 +5656,14 @@ function shouldConstruct$1(Component) {
 }
 
 function renderWithHooks(request, task, Component, props, secondArg) {
-  var componentIdentity = {};
+  const componentIdentity = {};
   prepareToUseHooks(task, componentIdentity);
-  var result = Component(props, secondArg);
+  const result = Component(props, secondArg);
   return finishHooks(Component, props, result, secondArg);
 }
 
 function finishClassComponent(request, task, instance, Component, props) {
-  var nextChildren = instance.render();
+  const nextChildren = instance.render();
 
   {
     if (instance.props !== props) {
@@ -5676,11 +5676,11 @@ function finishClassComponent(request, task, instance, Component, props) {
   }
 
   {
-    var childContextTypes = Component.childContextTypes;
+    const childContextTypes = Component.childContextTypes;
 
     if (childContextTypes !== null && childContextTypes !== undefined) {
-      var previousContext = task.legacyContext;
-      var mergedContext = processChildContext(instance, Component, previousContext, childContextTypes);
+      const previousContext = task.legacyContext;
+      const mergedContext = processChildContext(instance, Component, previousContext, childContextTypes);
       task.legacyContext = mergedContext;
       renderNodeDestructive(request, task, nextChildren);
       task.legacyContext = previousContext;
@@ -5693,26 +5693,26 @@ function finishClassComponent(request, task, instance, Component, props) {
 
 function renderClassComponent(request, task, Component, props) {
   pushClassComponentStackInDEV(task, Component);
-  var maskedContext =  getMaskedContext(Component, task.legacyContext) ;
-  var instance = constructClassInstance(Component, props, maskedContext);
+  const maskedContext =  getMaskedContext(Component, task.legacyContext) ;
+  const instance = constructClassInstance(Component, props, maskedContext);
   mountClassInstance(instance, Component, props, maskedContext);
   finishClassComponent(request, task, instance, Component, props);
   popComponentStackInDEV(task);
 }
 
-var didWarnAboutBadClass = {};
-var didWarnAboutModulePatternComponent = {};
-var didWarnAboutContextTypeOnFunctionComponent = {};
-var didWarnAboutGetDerivedStateOnFunctionComponent = {};
+const didWarnAboutBadClass = {};
+const didWarnAboutModulePatternComponent = {};
+const didWarnAboutContextTypeOnFunctionComponent = {};
+const didWarnAboutGetDerivedStateOnFunctionComponent = {};
 var didWarnAboutReassigningProps = false;
-var didWarnAboutDefaultPropsOnFunctionComponent = {};
-var didWarnAboutGenerators = false;
-var didWarnAboutMaps = false;
-var hasWarnedAboutUsingContextAsConsumer = false; // This would typically be a function component but we still support module pattern
+const didWarnAboutDefaultPropsOnFunctionComponent = {};
+let didWarnAboutGenerators = false;
+let didWarnAboutMaps = false;
+let hasWarnedAboutUsingContextAsConsumer = false; // This would typically be a function component but we still support module pattern
 // components for some reason.
 
 function renderIndeterminateComponent(request, task, Component, props) {
-  var legacyContext;
+  let legacyContext;
 
   {
     legacyContext = getMaskedContext(Component, task.legacyContext);
@@ -5722,7 +5722,7 @@ function renderIndeterminateComponent(request, task, Component, props) {
 
   {
     if (Component.prototype && typeof Component.prototype.render === 'function') {
-      var componentName = getComponentNameFromType(Component) || 'Unknown';
+      const componentName = getComponentNameFromType(Component) || 'Unknown';
 
       if (!didWarnAboutBadClass[componentName]) {
         error("The <%s /> component appears to have a render method, but doesn't extend React.Component. " + 'This is likely to cause errors. Change %s to extend React.Component instead.', componentName, componentName);
@@ -5732,14 +5732,14 @@ function renderIndeterminateComponent(request, task, Component, props) {
     }
   }
 
-  var value = renderWithHooks(request, task, Component, props, legacyContext);
-  var hasId = checkDidRenderIdHook();
+  const value = renderWithHooks(request, task, Component, props, legacyContext);
+  const hasId = checkDidRenderIdHook();
 
   {
     // Support for module components is deprecated and is removed behind a flag.
     // Whether or not it would crash later, we want to show a good message in DEV first.
     if (typeof value === 'object' && value !== null && typeof value.render === 'function' && value.$$typeof === undefined) {
-      var _componentName = getComponentNameFromType(Component) || 'Unknown';
+      const _componentName = getComponentNameFromType(Component) || 'Unknown';
 
       if (!didWarnAboutModulePatternComponent[_componentName]) {
         error('The <%s /> component appears to be a function component that returns a class instance. ' + 'Change %s to a class that extends React.Component instead. ' + "If you can't use a class try assigning the prototype on the function as a workaround. " + "`%s.prototype = React.Component.prototype`. Don't use an arrow function since it " + 'cannot be called with `new` by React.', _componentName, _componentName, _componentName);
@@ -5753,7 +5753,7 @@ function renderIndeterminateComponent(request, task, Component, props) {
   // Eventually we'll delete this branch altogether.
    typeof value === 'object' && value !== null && typeof value.render === 'function' && value.$$typeof === undefined) {
     {
-      var _componentName2 = getComponentNameFromType(Component) || 'Unknown';
+      const _componentName2 = getComponentNameFromType(Component) || 'Unknown';
 
       if (!didWarnAboutModulePatternComponent[_componentName2]) {
         error('The <%s /> component appears to be a function component that returns a class instance. ' + 'Change %s to a class that extends React.Component instead. ' + "If you can't use a class try assigning the prototype on the function as a workaround. " + "`%s.prototype = React.Component.prototype`. Don't use an arrow function since it " + 'cannot be called with `new` by React.', _componentName2, _componentName2, _componentName2);
@@ -5775,9 +5775,9 @@ function renderIndeterminateComponent(request, task, Component, props) {
     if (hasId) {
       // This component materialized an id. We treat this as its own level, with
       // a single "child" slot.
-      var prevTreeContext = task.treeContext;
-      var totalChildren = 1;
-      var index = 0;
+      const prevTreeContext = task.treeContext;
+      const totalChildren = 1;
+      const index = 0;
       task.treeContext = pushTreeContext(prevTreeContext, totalChildren, index);
 
       try {
@@ -5802,7 +5802,7 @@ function validateFunctionComponentInDev(Component) {
     }
 
     if ( Component.defaultProps !== undefined) {
-      var componentName = getComponentNameFromType(Component) || 'Unknown';
+      const componentName = getComponentNameFromType(Component) || 'Unknown';
 
       if (!didWarnAboutDefaultPropsOnFunctionComponent[componentName]) {
         error('%s: Support for defaultProps will be removed from function components ' + 'in a future major release. Use JavaScript default parameters instead.', componentName);
@@ -5812,7 +5812,7 @@ function validateFunctionComponentInDev(Component) {
     }
 
     if (typeof Component.getDerivedStateFromProps === 'function') {
-      var _componentName3 = getComponentNameFromType(Component) || 'Unknown';
+      const _componentName3 = getComponentNameFromType(Component) || 'Unknown';
 
       if (!didWarnAboutGetDerivedStateOnFunctionComponent[_componentName3]) {
         error('%s: Function components do not support getDerivedStateFromProps.', _componentName3);
@@ -5822,7 +5822,7 @@ function validateFunctionComponentInDev(Component) {
     }
 
     if (typeof Component.contextType === 'object' && Component.contextType !== null) {
-      var _componentName4 = getComponentNameFromType(Component) || 'Unknown';
+      const _componentName4 = getComponentNameFromType(Component) || 'Unknown';
 
       if (!didWarnAboutContextTypeOnFunctionComponent[_componentName4]) {
         error('%s: Function components do not support contextType.', _componentName4);
@@ -5836,10 +5836,10 @@ function validateFunctionComponentInDev(Component) {
 function resolveDefaultProps(Component, baseProps) {
   if (Component && Component.defaultProps) {
     // Resolve default props. Taken from ReactElement
-    var props = assign({}, baseProps);
-    var defaultProps = Component.defaultProps;
+    const props = assign({}, baseProps);
+    const defaultProps = Component.defaultProps;
 
-    for (var propName in defaultProps) {
+    for (const propName in defaultProps) {
       if (props[propName] === undefined) {
         props[propName] = defaultProps[propName];
       }
@@ -5853,15 +5853,15 @@ function resolveDefaultProps(Component, baseProps) {
 
 function renderForwardRef(request, task, type, props, ref) {
   pushFunctionComponentStackInDEV(task, type.render);
-  var children = renderWithHooks(request, task, type.render, props, ref);
-  var hasId = checkDidRenderIdHook();
+  const children = renderWithHooks(request, task, type.render, props, ref);
+  const hasId = checkDidRenderIdHook();
 
   if (hasId) {
     // This component materialized an id. We treat this as its own level, with
     // a single "child" slot.
-    var prevTreeContext = task.treeContext;
-    var totalChildren = 1;
-    var index = 0;
+    const prevTreeContext = task.treeContext;
+    const totalChildren = 1;
+    const index = 0;
     task.treeContext = pushTreeContext(prevTreeContext, totalChildren, index);
 
     try {
@@ -5877,8 +5877,8 @@ function renderForwardRef(request, task, type, props, ref) {
 }
 
 function renderMemo(request, task, type, props, ref) {
-  var innerType = type.type;
-  var resolvedProps = resolveDefaultProps(innerType, props);
+  const innerType = type.type;
+  const resolvedProps = resolveDefaultProps(innerType, props);
   renderElement(request, task, innerType, resolvedProps, ref);
 }
 
@@ -5907,7 +5907,7 @@ function renderContextConsumer(request, task, context, props) {
     }
   }
 
-  var render = props.children;
+  const render = props.children;
 
   {
     if (typeof render !== 'function') {
@@ -5915,16 +5915,16 @@ function renderContextConsumer(request, task, context, props) {
     }
   }
 
-  var newValue = readContext(context);
-  var newChildren = render(newValue);
+  const newValue = readContext(context);
+  const newChildren = render(newValue);
   renderNodeDestructive(request, task, newChildren);
 }
 
 function renderContextProvider(request, task, type, props) {
-  var context = type._context;
-  var value = props.value;
-  var children = props.children;
-  var prevSnapshot;
+  const context = type._context;
+  const value = props.value;
+  const children = props.children;
+  let prevSnapshot;
 
   {
     prevSnapshot = task.context;
@@ -5943,10 +5943,10 @@ function renderContextProvider(request, task, type, props) {
 
 function renderLazyComponent(request, task, lazyComponent, props, ref) {
   pushBuiltInComponentStackInDEV(task, 'Lazy');
-  var payload = lazyComponent._payload;
-  var init = lazyComponent._init;
-  var Component = init(payload);
-  var resolvedProps = resolveDefaultProps(Component, props);
+  const payload = lazyComponent._payload;
+  const init = lazyComponent._init;
+  const Component = init(payload);
+  const resolvedProps = resolveDefaultProps(Component, props);
   renderElement(request, task, Component, resolvedProps, ref);
   popComponentStackInDEV(task);
 }
@@ -6046,7 +6046,7 @@ function renderElement(request, task, type, props, ref) {
     }
   }
 
-  var info = '';
+  let info = '';
 
   {
     if (type === undefined || typeof type === 'object' && type !== null && Object.keys(type).length === 0) {
@@ -6111,10 +6111,10 @@ function renderNodeDestructiveImpl(request, task, node) {
     switch (node.$$typeof) {
       case REACT_ELEMENT_TYPE:
         {
-          var element = node;
-          var type = element.type;
-          var props = element.props;
-          var ref = element.ref;
+          const element = node;
+          const type = element.type;
+          const props = element.props;
+          const ref = element.ref;
           renderElement(request, task, type, props, ref);
           return;
         }
@@ -6125,10 +6125,10 @@ function renderNodeDestructiveImpl(request, task, node) {
 
       case REACT_LAZY_TYPE:
         {
-          var lazyNode = node;
-          var payload = lazyNode._payload;
-          var init = lazyNode._init;
-          var resolvedNode;
+          const lazyNode = node;
+          const payload = lazyNode._payload;
+          const init = lazyNode._init;
+          let resolvedNode;
 
           {
             try {
@@ -6156,14 +6156,14 @@ function renderNodeDestructiveImpl(request, task, node) {
       return;
     }
 
-    var iteratorFn = getIteratorFn(node);
+    const iteratorFn = getIteratorFn(node);
 
     if (iteratorFn) {
       {
         validateIterable(node, iteratorFn);
       }
 
-      var iterator = iteratorFn.call(node);
+      const iterator = iteratorFn.call(node);
 
       if (iterator) {
         // We need to know how many total children are in this set, so that we
@@ -6171,10 +6171,10 @@ function renderNodeDestructiveImpl(request, task, node) {
         // the iterator before we start recursively rendering the children.
         // TODO: This is not great but I think it's inherent to the id
         // generation algorithm.
-        var step = iterator.next(); // If there are not entries, we need to push an empty so we start by checking that.
+        let step = iterator.next(); // If there are not entries, we need to push an empty so we start by checking that.
 
         if (!step.done) {
-          var children = [];
+          const children = [];
 
           do {
             children.push(step.value);
@@ -6189,18 +6189,18 @@ function renderNodeDestructiveImpl(request, task, node) {
       }
     }
 
-    var childString = Object.prototype.toString.call(node);
+    const childString = Object.prototype.toString.call(node);
     throw new Error("Objects are not valid as a React child (found: " + (childString === '[object Object]' ? 'object with keys {' + Object.keys(node).join(', ') + '}' : childString) + "). " + 'If you meant to render a collection of children, use an array ' + 'instead.');
   }
 
   if (typeof node === 'string') {
-    var segment = task.blockedSegment;
+    const segment = task.blockedSegment;
     segment.lastPushedText = pushTextInstance$1(task.blockedSegment.chunks, node, request.responseState, segment.lastPushedText);
     return;
   }
 
   if (typeof node === 'number') {
-    var _segment = task.blockedSegment;
+    const _segment = task.blockedSegment;
     _segment.lastPushedText = pushTextInstance$1(task.blockedSegment.chunks, '' + node, request.responseState, _segment.lastPushedText);
     return;
   }
@@ -6213,10 +6213,10 @@ function renderNodeDestructiveImpl(request, task, node) {
 }
 
 function renderChildrenArray(request, task, children) {
-  var totalChildren = children.length;
+  const totalChildren = children.length;
 
-  for (var i = 0; i < totalChildren; i++) {
-    var prevTreeContext = task.treeContext;
+  for (let i = 0; i < totalChildren; i++) {
+    const prevTreeContext = task.treeContext;
     task.treeContext = pushTreeContext(prevTreeContext, totalChildren, i);
 
     try {
@@ -6231,15 +6231,15 @@ function renderChildrenArray(request, task, children) {
 
 function spawnNewSuspendedTask(request, task, x) {
   // Something suspended, we'll need to create a new segment and resolve it later.
-  var segment = task.blockedSegment;
-  var insertionIndex = segment.chunks.length;
-  var newSegment = createPendingSegment(request, insertionIndex, null, segment.formatContext, // Adopt the parent segment's leading text embed
+  const segment = task.blockedSegment;
+  const insertionIndex = segment.chunks.length;
+  const newSegment = createPendingSegment(request, insertionIndex, null, segment.formatContext, // Adopt the parent segment's leading text embed
   segment.lastPushedText, // Assume we are text embedded at the trailing edge
   true);
   segment.children.push(newSegment); // Reset lastPushedText for current Segment since the new Segment "consumed" it
 
   segment.lastPushedText = false;
-  var newTask = createTask(request, task.node, task.blockedBoundary, newSegment, task.abortSet, task.legacyContext, task.context, task.treeContext);
+  const newTask = createTask(request, task.node, task.blockedBoundary, newSegment, task.abortSet, task.legacyContext, task.context, task.treeContext);
 
   {
     if (task.componentStack !== null) {
@@ -6249,7 +6249,7 @@ function spawnNewSuspendedTask(request, task, x) {
     }
   }
 
-  var ping = newTask.ping;
+  const ping = newTask.ping;
   x.then(ping, ping);
 } // This is a non-destructive form of rendering a node. If it suspends it spawns
 // a new task and restores the context of this task to what it was before.
@@ -6260,10 +6260,10 @@ function renderNode(request, task, node) {
   // suspended partially through writing something.
   // Snapshot the current context in case something throws to interrupt the
   // process.
-  var previousFormatContext = task.blockedSegment.formatContext;
-  var previousLegacyContext = task.legacyContext;
-  var previousContext = task.context;
-  var previousComponentStack = null;
+  const previousFormatContext = task.blockedSegment.formatContext;
+  const previousLegacyContext = task.legacyContext;
+  const previousContext = task.context;
+  let previousComponentStack = null;
 
   {
     previousComponentStack = task.componentStack;
@@ -6311,7 +6311,7 @@ function renderNode(request, task, node) {
 
 function erroredTask(request, boundary, segment, error) {
   // Report the error to a global handler.
-  var errorDigest = logRecoverableError(request, error);
+  const errorDigest = logRecoverableError(request, error);
 
   if (boundary === null) {
     fatalError(request, error);
@@ -6341,7 +6341,7 @@ function erroredTask(request, boundary, segment, error) {
   request.allPendingTasks--;
 
   if (request.allPendingTasks === 0) {
-    var onAllReady = request.onAllReady;
+    const onAllReady = request.onAllReady;
     onAllReady();
   }
 }
@@ -6350,9 +6350,9 @@ function abortTaskSoft(task) {
   // This aborts task without aborting the parent boundary that it blocks.
   // It's used for when we didn't need this task to complete the tree.
   // If task was needed, then it should use abortTask instead.
-  var request = this;
-  var boundary = task.blockedBoundary;
-  var segment = task.blockedSegment;
+  const request = this;
+  const boundary = task.blockedBoundary;
+  const segment = task.blockedSegment;
   segment.status = ABORTED;
   finishedTask(request, boundary, segment);
 }
@@ -6360,8 +6360,8 @@ function abortTaskSoft(task) {
 function abortTask(task, request, reason) {
   // This aborts the task and aborts the parent that it blocks, putting it into
   // client rendered mode.
-  var boundary = task.blockedBoundary;
-  var segment = task.blockedSegment;
+  const boundary = task.blockedBoundary;
+  const segment = task.blockedSegment;
   segment.status = ABORTED;
 
   if (boundary === null) {
@@ -6381,12 +6381,12 @@ function abortTask(task, request, reason) {
     if (!boundary.forceClientRender) {
       boundary.forceClientRender = true;
 
-      var _error = reason === undefined ? new Error('The render was aborted by the server without a reason.') : reason;
+      let _error = reason === undefined ? new Error('The render was aborted by the server without a reason.') : reason;
 
       boundary.errorDigest = request.onError(_error);
 
       {
-        var errorPrefix = 'The server did not finish this Suspense boundary: ';
+        const errorPrefix = 'The server did not finish this Suspense boundary: ';
 
         if (_error && typeof _error.message === 'string') {
           _error = errorPrefix + _error.message;
@@ -6395,7 +6395,7 @@ function abortTask(task, request, reason) {
           _error = errorPrefix + String(_error);
         }
 
-        var previousTaskInDev = currentTaskInDEV;
+        const previousTaskInDev = currentTaskInDEV;
         currentTaskInDEV = task;
 
         try {
@@ -6419,7 +6419,7 @@ function abortTask(task, request, reason) {
     request.allPendingTasks--;
 
     if (request.allPendingTasks === 0) {
-      var onAllReady = request.onAllReady;
+      const onAllReady = request.onAllReady;
       onAllReady();
     }
   }
@@ -6429,7 +6429,7 @@ function queueCompletedSegment(boundary, segment) {
   if (segment.chunks.length === 0 && segment.children.length === 1 && segment.children[0].boundary === null) {
     // This is an empty segment. There's nothing to write, so we can instead transfer the ID
     // to the child. That way any existing references point to the child.
-    var childSegment = segment.children[0];
+    const childSegment = segment.children[0];
     childSegment.id = segment.id;
     childSegment.parentFlushed = true;
 
@@ -6437,7 +6437,7 @@ function queueCompletedSegment(boundary, segment) {
       queueCompletedSegment(boundary, childSegment);
     }
   } else {
-    var completedSegments = boundary.completedSegments;
+    const completedSegments = boundary.completedSegments;
     completedSegments.push(segment);
   }
 }
@@ -6457,7 +6457,7 @@ function finishedTask(request, boundary, segment) {
     if (request.pendingRootTasks === 0) {
       // We have completed the shell so the shell can't error anymore.
       request.onShellError = noop$1;
-      var onShellReady = request.onShellReady;
+      const onShellReady = request.onShellReady;
       onShellReady();
     }
   } else {
@@ -6492,7 +6492,7 @@ function finishedTask(request, boundary, segment) {
         // to emit it.
         if (segment.status === COMPLETED) {
           queueCompletedSegment(boundary, segment);
-          var completedSegments = boundary.completedSegments;
+          const completedSegments = boundary.completedSegments;
 
           if (completedSegments.length === 1) {
             // This is the first time since we last flushed that we completed anything.
@@ -6512,13 +6512,13 @@ function finishedTask(request, boundary, segment) {
   if (request.allPendingTasks === 0) {
     // This needs to be called at the very end so that we can synchronously write the result
     // in the callback if needed.
-    var onAllReady = request.onAllReady;
+    const onAllReady = request.onAllReady;
     onAllReady();
   }
 }
 
 function retryTask(request, task) {
-  var segment = task.blockedSegment;
+  const segment = task.blockedSegment;
 
   if (segment.status !== PENDING) {
     // We completed this by other means before we had a chance to retry it.
@@ -6529,7 +6529,7 @@ function retryTask(request, task) {
 
 
   switchContext(task.context);
-  var prevTaskInDEV = null;
+  let prevTaskInDEV = null;
 
   {
     prevTaskInDEV = currentTaskInDEV;
@@ -6549,7 +6549,7 @@ function retryTask(request, task) {
 
     if (typeof x === 'object' && x !== null && typeof x.then === 'function') {
       // Something suspended again, let's pick it back up later.
-      var ping = task.ping;
+      const ping = task.ping;
       x.then(ping, ping);
     } else {
       task.abortSet.delete(task);
@@ -6568,25 +6568,25 @@ function performWork(request) {
     return;
   }
 
-  var prevContext = getActiveContext();
-  var prevDispatcher = ReactCurrentDispatcher$1.current;
+  const prevContext = getActiveContext();
+  const prevDispatcher = ReactCurrentDispatcher$1.current;
   ReactCurrentDispatcher$1.current = Dispatcher;
-  var prevGetCurrentStackImpl;
+  let prevGetCurrentStackImpl;
 
   {
     prevGetCurrentStackImpl = ReactDebugCurrentFrame$1.getCurrentStack;
     ReactDebugCurrentFrame$1.getCurrentStack = getCurrentStackInDEV;
   }
 
-  var prevResponseState = currentResponseState;
+  const prevResponseState = currentResponseState;
   setCurrentResponseState(request.responseState);
 
   try {
-    var pingedTasks = request.pingedTasks;
-    var i;
+    const pingedTasks = request.pingedTasks;
+    let i;
 
     for (i = 0; i < pingedTasks.length; i++) {
-      var task = pingedTasks[i];
+      const task = pingedTasks[i];
       retryTask(request, task);
     }
 
@@ -6627,7 +6627,7 @@ function flushSubtree(request, destination, segment) {
       {
         // We're emitting a placeholder for this segment to be filled in later.
         // Therefore we'll need to assign it an ID - to refer to it by.
-        var segmentID = segment.id = request.nextSegmentId++; // When this segment finally completes it won't be embedded in text since it will flush separately
+        const segmentID = segment.id = request.nextSegmentId++; // When this segment finally completes it won't be embedded in text since it will flush separately
 
         segment.lastPushedText = false;
         segment.textEmbedded = false;
@@ -6637,13 +6637,13 @@ function flushSubtree(request, destination, segment) {
     case COMPLETED:
       {
         segment.status = FLUSHED;
-        var r = true;
-        var chunks = segment.chunks;
-        var chunkIdx = 0;
-        var children = segment.children;
+        let r = true;
+        const chunks = segment.chunks;
+        let chunkIdx = 0;
+        const children = segment.children;
 
-        for (var childIdx = 0; childIdx < children.length; childIdx++) {
-          var nextChild = children[childIdx]; // Write all the chunks up until the next child.
+        for (let childIdx = 0; childIdx < children.length; childIdx++) {
+          const nextChild = children[childIdx]; // Write all the chunks up until the next child.
 
           for (; chunkIdx < nextChild.index; chunkIdx++) {
             writeChunk(destination, chunks[chunkIdx]);
@@ -6672,7 +6672,7 @@ function flushSubtree(request, destination, segment) {
 }
 
 function flushSegment(request, destination, segment) {
-  var boundary = segment.boundary;
+  const boundary = segment.boundary;
 
   if (boundary === null) {
     // Not a suspense boundary.
@@ -6700,7 +6700,7 @@ function flushSegment(request, destination, segment) {
     } /// This is the first time we should have referenced this ID.
 
 
-    var id = boundary.id = assignSuspenseBoundaryID(request.responseState);
+    const id = boundary.id = assignSuspenseBoundaryID(request.responseState);
     writeStartPendingSuspenseBoundary(destination, request.responseState, id); // Flush the fallback.
 
     flushSubtree(request, destination, segment);
@@ -6722,13 +6722,13 @@ function flushSegment(request, destination, segment) {
   } else {
     // We can inline this boundary's content as a complete boundary.
     writeStartCompletedSuspenseBoundary$1(destination, request.responseState);
-    var completedSegments = boundary.completedSegments;
+    const completedSegments = boundary.completedSegments;
 
     if (completedSegments.length !== 1) {
       throw new Error('A previously unvisited boundary must have exactly one root segment. This is a bug in React.');
     }
 
-    var contentSegment = completedSegments[0];
+    const contentSegment = completedSegments[0];
     flushSegment(request, destination, contentSegment);
     return writeEndCompletedSuspenseBoundary$1(destination, request.responseState);
   }
@@ -6745,11 +6745,11 @@ function flushSegmentContainer(request, destination, segment) {
 }
 
 function flushCompletedBoundary(request, destination, boundary) {
-  var completedSegments = boundary.completedSegments;
-  var i = 0;
+  const completedSegments = boundary.completedSegments;
+  let i = 0;
 
   for (; i < completedSegments.length; i++) {
-    var segment = completedSegments[i];
+    const segment = completedSegments[i];
     flushPartiallyCompletedSegment(request, destination, boundary, segment);
   }
 
@@ -6758,11 +6758,11 @@ function flushCompletedBoundary(request, destination, boundary) {
 }
 
 function flushPartialBoundary(request, destination, boundary) {
-  var completedSegments = boundary.completedSegments;
-  var i = 0;
+  const completedSegments = boundary.completedSegments;
+  let i = 0;
 
   for (; i < completedSegments.length; i++) {
-    var segment = completedSegments[i];
+    const segment = completedSegments[i];
 
     if (!flushPartiallyCompletedSegment(request, destination, boundary, segment)) {
       i++;
@@ -6783,12 +6783,12 @@ function flushPartiallyCompletedSegment(request, destination, boundary, segment)
     return true;
   }
 
-  var segmentID = segment.id;
+  const segmentID = segment.id;
 
   if (segmentID === -1) {
     // This segment wasn't previously referred to. This happens at the root of
     // a boundary. We make kind of a leap here and assume this is the root.
-    var rootSegmentID = segment.id = boundary.rootSegmentID;
+    const rootSegmentID = segment.id = boundary.rootSegmentID;
 
     if (rootSegmentID === -1) {
       throw new Error('A root segment ID must have been assigned by now. This is a bug in React.');
@@ -6811,7 +6811,7 @@ function flushCompletedQueues(request, destination) {
     // TODO: Emit preloading.
     // TODO: It's kind of unfortunate to keep checking this array after we've already
     // emitted the root.
-    var completedRootSegment = request.completedRootSegment;
+    const completedRootSegment = request.completedRootSegment;
 
     if (completedRootSegment !== null && request.pendingRootTasks === 0) {
       flushSegment(request, destination, completedRootSegment);
@@ -6822,11 +6822,11 @@ function flushCompletedQueues(request, destination) {
     // soon as possible.
 
 
-    var clientRenderedBoundaries = request.clientRenderedBoundaries;
-    var i;
+    const clientRenderedBoundaries = request.clientRenderedBoundaries;
+    let i;
 
     for (i = 0; i < clientRenderedBoundaries.length; i++) {
-      var boundary = clientRenderedBoundaries[i];
+      const boundary = clientRenderedBoundaries[i];
 
       if (!flushClientRenderedBoundary(request, destination, boundary)) {
         request.destination = null;
@@ -6840,10 +6840,10 @@ function flushCompletedQueues(request, destination) {
     // that are completely done since we can actually show them, than it is to emit
     // any individual segments from a partially complete boundary.
 
-    var completedBoundaries = request.completedBoundaries;
+    const completedBoundaries = request.completedBoundaries;
 
     for (i = 0; i < completedBoundaries.length; i++) {
-      var _boundary = completedBoundaries[i];
+      const _boundary = completedBoundaries[i];
 
       if (!flushCompletedBoundary(request, destination, _boundary)) {
         request.destination = null;
@@ -6861,10 +6861,10 @@ function flushCompletedQueues(request, destination) {
     // Next we emit any segments of any boundaries that are partially complete
     // but not deeply complete.
 
-    var partialBoundaries = request.partialBoundaries;
+    const partialBoundaries = request.partialBoundaries;
 
     for (i = 0; i < partialBoundaries.length; i++) {
-      var _boundary2 = partialBoundaries[i];
+      const _boundary2 = partialBoundaries[i];
 
       if (!flushPartialBoundary(request, destination, _boundary2)) {
         request.destination = null;
@@ -6878,10 +6878,10 @@ function flushCompletedQueues(request, destination) {
     // boundaries added to it in case they were too larged to be inlined.
     // New ones might be added in this loop.
 
-    var largeBoundaries = request.completedBoundaries;
+    const largeBoundaries = request.completedBoundaries;
 
     for (i = 0; i < largeBoundaries.length; i++) {
-      var _boundary3 = largeBoundaries[i];
+      const _boundary3 = largeBoundaries[i];
 
       if (!flushCompletedBoundary(request, destination, _boundary3)) {
         request.destination = null;
@@ -6942,7 +6942,7 @@ function startFlowing(request, destination) {
 
 function abort(request, reason) {
   try {
-    var abortableTasks = request.abortableTasks;
+    const abortableTasks = request.abortableTasks;
     abortableTasks.forEach(function (task) {
       return abortTask(task, request, reason);
     });
@@ -6961,10 +6961,10 @@ function onError() {// Non-fatal errors are ignored.
 }
 
 function renderToStringImpl(children, options, generateStaticMarkup, abortReason) {
-  var didFatal = false;
-  var fatalError = null;
-  var result = '';
-  var destination = {
+  let didFatal = false;
+  let fatalError = null;
+  let result = '';
+  const destination = {
     push: function (chunk) {
       if (chunk !== null) {
         result += chunk;
@@ -6977,13 +6977,13 @@ function renderToStringImpl(children, options, generateStaticMarkup, abortReason
       fatalError = error;
     }
   };
-  var readyToStream = false;
+  let readyToStream = false;
 
   function onShellReady() {
     readyToStream = true;
   }
 
-  var request = createRequest(children, createResponseState$1(generateStaticMarkup, options ? options.identifierPrefix : undefined), createRootFormatContext(), Infinity, onError, undefined, onShellReady, undefined, undefined);
+  const request = createRequest(children, createResponseState$1(generateStaticMarkup, options ? options.identifierPrefix : undefined), createRootFormatContext(), Infinity, onError, undefined, onShellReady, undefined, undefined);
   startWork(request); // If anything suspended and is still pending, we'll abort it before writing.
   // That way we write only client-rendered boundaries from the start.
 

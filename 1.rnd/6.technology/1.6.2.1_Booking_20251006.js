@@ -1,10 +1,10 @@
 "use strict";
 exports.__esModule = true;
 exports.bookingSchema = void 0;
-var schema_1 = require("../schema");
-var address_1 = require("./address");
-var appointmentSegment_1 = require("./appointmentSegment");
-var bookingCreatorDetails_1 = require("./bookingCreatorDetails");
+const schema_1 = require("../schema");
+const address_1 = require("./address");
+const appointmentSegment_1 = require("./appointmentSegment");
+const bookingCreatorDetails_1 = require("./bookingCreatorDetails");
 exports.bookingSchema = (0, schema_1.object)({
     id: ['id', (0, schema_1.optional)((0, schema_1.string)())],
     version: ['version', (0, schema_1.optional)((0, schema_1.number)())],

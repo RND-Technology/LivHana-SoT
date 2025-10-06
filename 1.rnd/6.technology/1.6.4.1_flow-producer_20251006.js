@@ -79,7 +79,7 @@ class FlowProducer extends events_1.EventEmitter {
      * @param opts - options that will be applied to the flow object.
      */
     async add(flow, opts) {
-        var _a;
+        let _a;
         if (this.closing) {
             return;
         }
@@ -169,14 +169,14 @@ class FlowProducer extends events_1.EventEmitter {
      * @returns
      */
     async addNode({ multi, node, parent, queuesOpts, }) {
-        var _a, _b;
+        let _a, _b;
         const prefix = node.prefix || this.opts.prefix;
         const queue = this.queueFromNode(node, new queue_keys_1.QueueKeys(prefix), prefix);
         const queueOpts = queuesOpts && queuesOpts[node.queueName];
         const jobsOpts = (_a = queueOpts === null || queueOpts === void 0 ? void 0 : queueOpts.defaultJobOptions) !== null && _a !== void 0 ? _a : {};
         const jobId = ((_b = node.opts) === null || _b === void 0 ? void 0 : _b.jobId) || (0, uuid_1.v4)();
         return (0, utils_1.trace)(this.telemetry, enums_1.SpanKind.PRODUCER, node.queueName, 'addNode', node.queueName, async (span, srcPropagationMedatada) => {
-            var _a, _b;
+            let _a, _b;
             span === null || span === void 0 ? void 0 : span.setAttributes({
                 [enums_1.TelemetryAttributes.JobName]: node.name,
                 [enums_1.TelemetryAttributes.JobId]: jobId,
@@ -242,7 +242,7 @@ class FlowProducer extends events_1.EventEmitter {
      */
     addNodes(multi, nodes) {
         return Promise.all(nodes.map(node => {
-            var _a;
+            let _a;
             const parentOpts = (_a = node === null || node === void 0 ? void 0 : node.opts) === null || _a === void 0 ? void 0 : _a.parent;
             const parentKey = (0, utils_1.getParentKey)(parentOpts);
             const parentDependenciesKey = parentKey

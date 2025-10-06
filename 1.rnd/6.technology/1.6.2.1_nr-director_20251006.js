@@ -73,7 +73,7 @@ module.exports = function initialize(shim, director) {
 function extractParams(shim, params) {
   const transaction = shim.tracer.getTransaction(); 
   if (transaction) {
-    let request = requestManager.getRequestFromId(transaction.id);
+    const request = requestManager.getRequestFromId(transaction.id);
     if (params && request) {
       Object.keys(params).forEach(function (key) {
         if (params[key]) {

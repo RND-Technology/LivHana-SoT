@@ -10,15 +10,15 @@ import '@emotion/utils';
 import '@emotion/serialize';
 import '@emotion/use-insertion-effect-with-fallbacks';
 
-var Fragment = ReactJSXRuntime.Fragment;
-var jsx = function jsx(type, props, key) {
+const Fragment = ReactJSXRuntime.Fragment;
+const jsx = function jsx(type, props, key) {
   if (!hasOwn.call(props, 'css')) {
     return ReactJSXRuntime.jsx(type, props, key);
   }
 
   return ReactJSXRuntime.jsx(Emotion, createEmotionProps(type, props), key);
 };
-var jsxs = function jsxs(type, props, key) {
+const jsxs = function jsxs(type, props, key) {
   if (!hasOwn.call(props, 'css')) {
     return ReactJSXRuntime.jsxs(type, props, key);
   }

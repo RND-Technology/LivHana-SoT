@@ -16,7 +16,7 @@ exports.convert = (globalObject, value, { context = "The provided value" } = {})
   }
 
   invokeTheCallbackFunction.construct = () => {
-    let callResult = Reflect.construct(value, []);
+    const callResult = Reflect.construct(value, []);
   };
 
   invokeTheCallbackFunction[utils.wrapperSymbol] = value;

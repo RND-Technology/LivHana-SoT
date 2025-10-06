@@ -1,0 +1,129 @@
+import express from 'express';
+import { Client } from 'squareup';
+import { createLogger } from '../common/logging/index.js';
+
+const logger = createLogger('integration-service');
+const app = express();
+app.use(express.json());
+
+// Initialize Square client
+const squareClient = new Client({
+  accessToken: process.env.SQUARE_ACCESS_TOKEN || 'sandbox-token',
+  environment: process.env.SQUARE_ENVIRONMENT || 'sandbox'
+});
+
+// Real inventory sync endpoint
+app.post('/api/v1/sync-inventory', async (req, res) => {
+  try {
+    logger.info('Starting inventory sync...');
+    
+    // Get inventory from Square
+    const result = await squareClient.inventoryApi.batchRetrieveInventoryCounts({
+      locationIds: [process.env.SQUARE_LOCATION_ID || 'test-location'],
+      updatedAfter: new Date(Date.now() - 60 * 60 * 1000).toISOString() // Last hour
+    });
+    
+    if (result.result.errors) {
+      throw new Error(`Square API error: ${JSON.stringify(result.result.errors)}`);
+    }
+    
+    const inventoryCounts = result.result.counts || [];
+    
+    // Process inventory data
+    const syncedItems = inventoryCounts.map(item => ({
+      catalog_object_id: item.catalogObjectId,
+      quantity: item.quantity,
+      location_id: item.locationId,
+      state: item.state,
+      calculated_at: item.calculatedAt
+    }));
+    
+    logger.info(`Synced ${syncedItems.length} inventory items`);
+    
+    res.json({
+      success: true,
+      synced_items: syncedItems.length,
+      items: syncedItems,
+      timestamp: new Date().toISOString(),
+      message: 'Inventory sync completed successfully'
+    });
+    
+  } catch (error) {
+    logger.error('Inventory sync failed:', { error: error.message });
+    res.status(500).json({
+      success: false,
+      error: error.message,
+      timestamp: new Date().toISOString()
+    });
+  }
+});
+
+// Real order processing endpoint
+app.post('/api/v1/process-order', async (req, res) => {
+  try {
+    const { order_id, customer_id, items } = req.body;
+    
+    logger.info(`Processing order ${order_id} for customer ${customer_id}`);
+    
+    // Create Square order
+    const orderResult = await squareClient.ordersApi.createOrder({
+      order: {
+        locationId: process.env.SQUARE_LOCATION_ID || 'test-location',
+        lineItems: items.map(item => ({
+          name: item.name,
+          quantity: item.quantity.toString(),
+          basePriceMoney: {
+            amount: Math.round(item.price * 100), // Convert to cents
+            currency: 'USD'
+          }
+        }))
+      }
+    });
+    
+    if (orderResult.result.errors) {
+      throw new Error(`Order creation failed: ${JSON.stringify(orderResult.result.errors)}`);
+    }
+    
+    res.json({
+      success: true,
+      order_id: orderResult.result.order.id,
+      status: orderResult.result.order.state,
+      total: orderResult.result.order.totalMoney,
+      timestamp: new Date().toISOString()
+    });
+    
+  } catch (error) {
+    logger.error('Order processing failed:', { error: error.message });
+    res.status(500).json({
+      success: false,
+      error: error.message,
+      timestamp: new Date().toISOString()
+    });
+  }
+});
+
+// Health check
+app.get('/health', (req, res) => {
+  res.json({ 
+    status: 'healthy', 
+    service: 'integration-service',
+    message: 'Real Square integration service active',
+    timestamp: new Date().toISOString(),
+    features: ['inventory_sync', 'order_processing', 'square_api']
+  });
+});
+
+// Main route
+app.get('/', (req, res) => {
+  res.json({ 
+    message: 'Integration Service Active',
+    status: 'operational',
+    timestamp: new Date().toISOString(),
+    endpoints: ['/api/v1/sync-inventory', '/api/v1/process-order']
+  });
+});
+
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  logger.info(`Integration service running on port ${PORT}`);
+});

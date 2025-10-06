@@ -1,23 +1,23 @@
 'use strict';
 
-var defineProperties = require('define-properties');
-var test = require('tape');
-var callBind = require('call-bind');
-var functionsHaveNames = require('functions-have-names')();
-var forEach = require('for-each');
-var debug = require('object-inspect');
-var v = require('es-value-fixtures');
-var hasSymbols = require('has-symbols/shams')();
-var mockProperty = require('mock-property');
-var hasPropertyDescriptors = require('has-property-descriptors')();
+const defineProperties = require('define-properties');
+const test = require('tape');
+const callBind = require('call-bind');
+const functionsHaveNames = require('functions-have-names')();
+const forEach = require('for-each');
+const debug = require('object-inspect');
+const v = require('es-value-fixtures');
+const hasSymbols = require('has-symbols/shams')();
+const mockProperty = require('mock-property');
+const hasPropertyDescriptors = require('has-property-descriptors')();
 
-var index = require('../Iterator.concat');
-var impl = require('../Iterator.concat/implementation');
-var from = require('../Iterator.from/polyfill')();
+const index = require('../Iterator.concat');
+const impl = require('../Iterator.concat/implementation');
+const from = require('../Iterator.from/polyfill')();
 
-var isEnumerable = Object.prototype.propertyIsEnumerable;
+const isEnumerable = Object.prototype.propertyIsEnumerable;
 
-var testIterator = require('./helpers/testIterator');
+const testIterator = require('./helpers/testIterator');
 
 module.exports = {
 	tests: function (concat, name, t) {
@@ -44,7 +44,7 @@ module.exports = {
 
 		t.test('actual iteration', { skip: !hasSymbols }, function (st) {
 			forEach(v.nonFunctions, function (nonFunction) {
-				var badIterable = {};
+				const badIterable = {};
 				badIterable[Symbol.iterator] = nonFunction;
 				st['throws'](
 					function () { concat([], badIterable, []); },
@@ -54,7 +54,7 @@ module.exports = {
 			});
 
 			forEach(v.primitives, function (nonObject) {
-				var badIterable = {};
+				const badIterable = {};
 				badIterable[Symbol.iterator] = function () { return nonObject; };
 				st['throws'](
 					function () { concat([], badIterable, []).next(); },
@@ -69,23 +69,23 @@ module.exports = {
 					TypeError,
 					'non-objects are not considered iterable'
 				);
-				var stringIt = concat(['a'], [string], ['c']);
+				const stringIt = concat(['a'], [string], ['c']);
 				testIterator(stringIt, ['a', string, 'c'], st, 'string iterator: ' + debug(string));
 			});
 
-			var arrayIt = concat([1, 2, 3]);
+			const arrayIt = concat([1, 2, 3]);
 			st.equal(typeof arrayIt.next, 'function', 'has a `next` function');
 
 			st.test('real iterators', { skip: !hasSymbols }, function (s2t) {
-				var iter = [1, 2][Symbol.iterator]();
+				const iter = [1, 2][Symbol.iterator]();
 				testIterator(concat(iter, [3]), [1, 2, 3], s2t, 'array iterator + array yields combined results');
 
 				s2t.end();
 			});
 
 			st.test('observability in a replaced String iterator', function (s2t) {
-				var originalStringIterator = String.prototype[Symbol.iterator];
-				var observedType;
+				const originalStringIterator = String.prototype[Symbol.iterator];
+				let observedType;
 				s2t.teardown(mockProperty(String.prototype, Symbol.iterator, {
 					get: function () {
 						'use strict'; // eslint-disable-line strict, lines-around-directive
@@ -104,9 +104,9 @@ module.exports = {
 			});
 
 			st.test('test262: test/built-ins/Iterator/concat/arguments-checked-in-order', { skip: !hasPropertyDescriptors }, function (s2t) {
-				var getIterator = 0;
+				let getIterator = 0;
 
-				var iterable1 = {};
+				const iterable1 = {};
 				Object.defineProperty(iterable1, Symbol.iterator, {
 					get: function () {
 						getIterator += 1;
@@ -116,7 +116,7 @@ module.exports = {
 					}
 				});
 
-				var iterable2 = {};
+				const iterable2 = {};
 				Object.defineProperty(iterable2, Symbol.iterator, {
 					get: function () {
 						throw new EvalError();
@@ -133,25 +133,25 @@ module.exports = {
 			});
 
 			st.test('test262: test/built-ins/Iterator/concat/fresh-iterator-result', function (s2t) {
-				var oldIterResult = {
+				const oldIterResult = {
 					done: false,
 					value: 123
 				};
 
-				var testIterator1 = {
+				const testIterator1 = {
 					next: function () {
 						return oldIterResult;
 					}
 				};
 
-				var iterable = {};
+				const iterable = {};
 				iterable[Symbol.iterator] = function () {
 					return testIterator1;
 				};
 
-				var iterator = concat(iterable);
+				const iterator = concat(iterable);
 
-				var iterResult = iterator.next();
+				const iterResult = iterator.next();
 
 				s2t.equal(iterResult.done, false);
 				s2t.equal(iterResult.value, 123);
@@ -162,9 +162,9 @@ module.exports = {
 			});
 
 			st.test('test262: test/built-ins/Iterator/concat/get-iterator-method-only-once', { skip: !hasPropertyDescriptors }, function (s2t) {
-				var iteratorGets = 0;
-				var iteratorCalls = 0;
-				var array = [1, 2, 3];
+				let iteratorGets = 0;
+				let iteratorCalls = 0;
+				const array = [1, 2, 3];
 
 				function CountingIterable() {}
 				Object.defineProperty(
@@ -182,12 +182,12 @@ module.exports = {
 					}
 				);
 
-				var iterable = new CountingIterable();
+				const iterable = new CountingIterable();
 
 				s2t.equal(iteratorGets, 0);
 				s2t.equal(iteratorCalls, 0);
 
-				var iter = concat(iterable);
+				const iter = concat(iterable);
 
 				s2t.equal(iteratorGets, 1);
 				s2t.equal(iteratorCalls, 0);
@@ -201,7 +201,7 @@ module.exports = {
 			});
 
 			st.test('test262: test/built-ins/Iterator/concat/get-iterator-method-throws', { skip: !hasPropertyDescriptors }, function (s2t) {
-				var iterable = {};
+				const iterable = {};
 				Object.defineProperty(iterable, Symbol.iterator, {
 					get: function () {
 						throw new EvalError();
@@ -214,21 +214,21 @@ module.exports = {
 			});
 
 			st.test('test262: test/built-ins/Iterator/concat/inner-iterator-created-in-order', function (s2t) {
-				var calledIterator = [];
+				const calledIterator = [];
 
-				var iterable1 = {};
+				const iterable1 = {};
 				iterable1[Symbol.iterator] = function () {
 					calledIterator.push('iterable1');
 					return [1][Symbol.iterator]();
 				};
 
-				var iterable2 = {};
+				const iterable2 = {};
 				iterable2[Symbol.iterator] = function () {
 					calledIterator.push('iterable2');
 					return [2][Symbol.iterator]();
 				};
 
-				var iterator = concat(iterable1, iterable2);
+				const iterator = concat(iterable1, iterable2);
 
 				s2t.deepEqual(calledIterator, []);
 
@@ -244,9 +244,9 @@ module.exports = {
 			});
 
 			st.test('test262: test/built-ins/Iterator/concat/next-method-called-with-zero-arguments', function (s2t) {
-				var nextCalled = 0;
+				let nextCalled = 0;
 
-				var testIterator1 = {
+				const testIterator1 = {
 					next: function () {
 						nextCalled += 1;
 						s2t.equal(arguments.length, 0);
@@ -258,12 +258,12 @@ module.exports = {
 					}
 				};
 
-				var iterable = {};
+				const iterable = {};
 				iterable[Symbol.iterator] = function () {
 					return testIterator1;
 				};
 
-				var iterator = concat(iterable);
+				const iterator = concat(iterable);
 				s2t.equal(nextCalled, 0);
 
 				iterator.next();
@@ -279,18 +279,18 @@ module.exports = {
 			});
 
 			st.test('test262: test/built-ins/Iterator/concat/next-method-returns-non-object', function (s2t) {
-				var nonObjectIterator = {
+				const nonObjectIterator = {
 					next: function () {
 						return null;
 					}
 				};
 
-				var iterable = {};
+				const iterable = {};
 				iterable[Symbol.iterator] = function () {
 					return nonObjectIterator;
 				};
 
-				var iterator = concat(iterable);
+				const iterator = concat(iterable);
 
 				s2t['throws'](function () { iterator.next(); }, TypeError);
 
@@ -298,9 +298,9 @@ module.exports = {
 			});
 
 			st.test('test262: test/built-ins/Iterator/concat/next-method-returns-throwing-done', { skip: !hasPropertyDescriptors }, function (s2t) {
-				var throwingIterator = {
+				const throwingIterator = {
 					next: function () {
-						var result = { done: null, value: 1 };
+						const result = { done: null, value: 1 };
 						Object.defineProperty(result, 'done', {
 							get: function () {
 								throw new EvalError();
@@ -313,12 +313,12 @@ module.exports = {
 					}
 				};
 
-				var iterable = {};
+				const iterable = {};
 				iterable[Symbol.iterator] = function () {
 					return throwingIterator;
 				};
 
-				var iterator = concat(iterable);
+				const iterator = concat(iterable);
 
 				s2t['throws'](function () { iterator.next(); }, EvalError);
 
@@ -329,9 +329,9 @@ module.exports = {
 				function ReturnCalledError() {}
 				function ValueGetterError() {}
 
-				var throwingIterator = {
+				const throwingIterator = {
 					next: function () {
-						var result = { value: null, done: true };
+						const result = { value: null, done: true };
 						Object.defineProperty(result, 'value', {
 							get: function () {
 								throw new ValueGetterError();
@@ -344,14 +344,14 @@ module.exports = {
 					}
 				};
 
-				var iterable = {};
+				const iterable = {};
 				iterable[Symbol.iterator] = function () {
 					return throwingIterator;
 				};
 
-				var iterator = concat(iterable);
+				const iterator = concat(iterable);
 
-				var iterResult = iterator.next();
+				const iterResult = iterator.next();
 
 				s2t.equal(iterResult.done, true);
 				s2t.equal(iterResult.value, undefined);
@@ -360,9 +360,9 @@ module.exports = {
 			});
 
 			st.test('test262: test/built-ins/Iterator/concat/next-method-returns-throwing-value', { skip: !hasPropertyDescriptors }, function (s2t) {
-				var throwingIterator = {
+				const throwingIterator = {
 					next: function () {
-						var result = { value: null, done: false };
+						const result = { value: null, done: false };
 						Object.defineProperty(result, 'value', {
 							get: function () {
 								throw new EvalError();
@@ -375,12 +375,12 @@ module.exports = {
 					}
 				};
 
-				var iterable = {};
+				const iterable = {};
 				iterable[Symbol.iterator] = function () {
 					return throwingIterator;
 				};
 
-				var iterator = concat(iterable);
+				const iterator = concat(iterable);
 
 				s2t['throws'](function () { iterator.next(); }, EvalError);
 
@@ -388,18 +388,18 @@ module.exports = {
 			});
 
 			st.test('test262: test/built-ins/Iterator/concat/next-method-throws', function (s2t) {
-				var throwingIterator = {
+				const throwingIterator = {
 					next: function () {
 						throw new EvalError();
 					}
 				};
 
-				var iterable = {};
+				const iterable = {};
 				iterable[Symbol.iterator] = function () {
 					return throwingIterator;
 				};
 
-				var iterator = concat(iterable);
+				const iterator = concat(iterable);
 
 				s2t['throws'](function () { iterator.next(); }, EvalError);
 
@@ -407,7 +407,7 @@ module.exports = {
 			});
 
 			st.test('test262: test/built-ins/Iterator/concat/return-is-not-forwarded-after-exhaustion', function (s2t) {
-				var testIterator1 = {
+				const testIterator1 = {
 					next: function () {
 						return {
 							done: true,
@@ -419,12 +419,12 @@ module.exports = {
 					}
 				};
 
-				var iterable = {};
+				const iterable = {};
 				iterable[Symbol.iterator] = function () {
 					return testIterator1;
 				};
 
-				var iterator = concat(iterable);
+				const iterator = concat(iterable);
 				iterator.next();
 				iterator['return']();
 
@@ -432,7 +432,7 @@ module.exports = {
 			});
 
 			t.test('test262: test/built-ins/Iterator/concat/return-is-not-forwarded-before-initial-start', function (s2t) {
-				var testIterator1 = {
+				const testIterator1 = {
 					next: function () {
 						return {
 							done: false,
@@ -444,12 +444,12 @@ module.exports = {
 					}
 				};
 
-				var iterable = {};
+				const iterable = {};
 				iterable[Symbol.iterator] = function () {
 					return testIterator1;
 				};
 
-				var iterator = concat(iterable);
+				const iterator = concat(iterable);
 				iterator['return']();
 				iterator.next();
 				iterator['return']();
@@ -458,9 +458,9 @@ module.exports = {
 			});
 
 			st.test('test262: test/built-ins/Iterator/concat/return-method-called-with-zero-arguments', function (s2t) {
-				var returnCalled = 0;
+				let returnCalled = 0;
 
-				var testIterator1 = {
+				const testIterator1 = {
 					next: function () {
 						return { done: false };
 					},
@@ -471,12 +471,12 @@ module.exports = {
 					}
 				};
 
-				var iterable = {};
+				const iterable = {};
 				iterable[Symbol.iterator] = function () {
 					return testIterator1;
 				};
 
-				var iterator;
+				let iterator;
 
 				// Call with zero arguments.
 				iterator = concat(iterable);
@@ -506,11 +506,11 @@ module.exports = {
 			});
 
 			st.test('test262: test/built-ins/Iterator/concat/throws-typeerror-when-generator-is-running-next', function (s2t) {
-				var enterCount = 0;
+				let enterCount = 0;
 
-				var iterator;
+				let iterator;
 
-				var testIterator1 = {
+				const testIterator1 = {
 					next: function () {
 						enterCount += 1;
 						iterator.next();
@@ -518,7 +518,7 @@ module.exports = {
 					}
 				};
 
-				var iterable = {};
+				const iterable = {};
 				iterable[Symbol.iterator] = function () {
 					return testIterator1;
 				};

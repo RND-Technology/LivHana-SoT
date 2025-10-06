@@ -1,5 +1,5 @@
 module.exports = function(grunt) {
-    var pkg = grunt.file.readJSON('package.json');
+    const pkg = grunt.file.readJSON('package.json');
 
     grunt.initConfig({
         pure_cjs: {

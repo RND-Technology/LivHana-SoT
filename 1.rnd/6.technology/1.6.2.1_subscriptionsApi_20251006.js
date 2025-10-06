@@ -1,30 +1,30 @@
 "use strict";
 exports.__esModule = true;
 exports.SubscriptionsApi = void 0;
-var tslib_1 = require("tslib");
-var bulkSwapPlanRequest_1 = require("../models/bulkSwapPlanRequest");
-var bulkSwapPlanResponse_1 = require("../models/bulkSwapPlanResponse");
-var cancelSubscriptionResponse_1 = require("../models/cancelSubscriptionResponse");
-var changeBillingAnchorDateRequest_1 = require("../models/changeBillingAnchorDateRequest");
-var changeBillingAnchorDateResponse_1 = require("../models/changeBillingAnchorDateResponse");
-var createSubscriptionRequest_1 = require("../models/createSubscriptionRequest");
-var createSubscriptionResponse_1 = require("../models/createSubscriptionResponse");
-var deleteSubscriptionActionResponse_1 = require("../models/deleteSubscriptionActionResponse");
-var listSubscriptionEventsResponse_1 = require("../models/listSubscriptionEventsResponse");
-var pauseSubscriptionRequest_1 = require("../models/pauseSubscriptionRequest");
-var pauseSubscriptionResponse_1 = require("../models/pauseSubscriptionResponse");
-var resumeSubscriptionRequest_1 = require("../models/resumeSubscriptionRequest");
-var resumeSubscriptionResponse_1 = require("../models/resumeSubscriptionResponse");
-var retrieveSubscriptionResponse_1 = require("../models/retrieveSubscriptionResponse");
-var searchSubscriptionsRequest_1 = require("../models/searchSubscriptionsRequest");
-var searchSubscriptionsResponse_1 = require("../models/searchSubscriptionsResponse");
-var swapPlanRequest_1 = require("../models/swapPlanRequest");
-var swapPlanResponse_1 = require("../models/swapPlanResponse");
-var updateSubscriptionRequest_1 = require("../models/updateSubscriptionRequest");
-var updateSubscriptionResponse_1 = require("../models/updateSubscriptionResponse");
-var schema_1 = require("../schema");
-var baseApi_1 = require("./baseApi");
-var SubscriptionsApi = /** @class */ (function (_super) {
+const tslib_1 = require("tslib");
+const bulkSwapPlanRequest_1 = require("../models/bulkSwapPlanRequest");
+const bulkSwapPlanResponse_1 = require("../models/bulkSwapPlanResponse");
+const cancelSubscriptionResponse_1 = require("../models/cancelSubscriptionResponse");
+const changeBillingAnchorDateRequest_1 = require("../models/changeBillingAnchorDateRequest");
+const changeBillingAnchorDateResponse_1 = require("../models/changeBillingAnchorDateResponse");
+const createSubscriptionRequest_1 = require("../models/createSubscriptionRequest");
+const createSubscriptionResponse_1 = require("../models/createSubscriptionResponse");
+const deleteSubscriptionActionResponse_1 = require("../models/deleteSubscriptionActionResponse");
+const listSubscriptionEventsResponse_1 = require("../models/listSubscriptionEventsResponse");
+const pauseSubscriptionRequest_1 = require("../models/pauseSubscriptionRequest");
+const pauseSubscriptionResponse_1 = require("../models/pauseSubscriptionResponse");
+const resumeSubscriptionRequest_1 = require("../models/resumeSubscriptionRequest");
+const resumeSubscriptionResponse_1 = require("../models/resumeSubscriptionResponse");
+const retrieveSubscriptionResponse_1 = require("../models/retrieveSubscriptionResponse");
+const searchSubscriptionsRequest_1 = require("../models/searchSubscriptionsRequest");
+const searchSubscriptionsResponse_1 = require("../models/searchSubscriptionsResponse");
+const swapPlanRequest_1 = require("../models/swapPlanRequest");
+const swapPlanResponse_1 = require("../models/swapPlanResponse");
+const updateSubscriptionRequest_1 = require("../models/updateSubscriptionRequest");
+const updateSubscriptionResponse_1 = require("../models/updateSubscriptionResponse");
+const schema_1 = require("../schema");
+const baseApi_1 = require("./baseApi");
+const SubscriptionsApi = /** @class */ (function (_super) {
     tslib_1.__extends(SubscriptionsApi, _super);
     function SubscriptionsApi() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -46,7 +46,7 @@ var SubscriptionsApi = /** @class */ (function (_super) {
      */
     SubscriptionsApi.prototype.createSubscription = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/subscriptions');
                 mapped = req.prepareArgs({
@@ -70,7 +70,7 @@ var SubscriptionsApi = /** @class */ (function (_super) {
      */
     SubscriptionsApi.prototype.bulkSwapPlan = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/subscriptions/bulk-swap-plan');
                 mapped = req.prepareArgs({ body: [body, bulkSwapPlanRequest_1.bulkSwapPlanRequestSchema] });
@@ -104,7 +104,7 @@ var SubscriptionsApi = /** @class */ (function (_super) {
      */
     SubscriptionsApi.prototype.searchSubscriptions = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/subscriptions/search');
                 mapped = req.prepareArgs({
@@ -128,7 +128,7 @@ var SubscriptionsApi = /** @class */ (function (_super) {
      */
     SubscriptionsApi.prototype.retrieveSubscription = function (subscriptionId, include, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({
@@ -154,7 +154,7 @@ var SubscriptionsApi = /** @class */ (function (_super) {
      */
     SubscriptionsApi.prototype.updateSubscription = function (subscriptionId, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('PUT');
                 mapped = req.prepareArgs({
@@ -178,7 +178,7 @@ var SubscriptionsApi = /** @class */ (function (_super) {
      */
     SubscriptionsApi.prototype.deleteSubscriptionAction = function (subscriptionId, actionId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('DELETE');
                 mapped = req.prepareArgs({
@@ -205,7 +205,7 @@ var SubscriptionsApi = /** @class */ (function (_super) {
      */
     SubscriptionsApi.prototype.changeBillingAnchorDate = function (subscriptionId, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({
@@ -230,7 +230,7 @@ var SubscriptionsApi = /** @class */ (function (_super) {
      */
     SubscriptionsApi.prototype.cancelSubscription = function (subscriptionId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({
@@ -258,7 +258,7 @@ var SubscriptionsApi = /** @class */ (function (_super) {
      */
     SubscriptionsApi.prototype.listSubscriptionEvents = function (subscriptionId, cursor, limit, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({
@@ -285,7 +285,7 @@ var SubscriptionsApi = /** @class */ (function (_super) {
      */
     SubscriptionsApi.prototype.pauseSubscription = function (subscriptionId, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({
@@ -311,7 +311,7 @@ var SubscriptionsApi = /** @class */ (function (_super) {
      */
     SubscriptionsApi.prototype.resumeSubscription = function (subscriptionId, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({
@@ -338,7 +338,7 @@ var SubscriptionsApi = /** @class */ (function (_super) {
      */
     SubscriptionsApi.prototype.swapPlan = function (subscriptionId, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({
@@ -356,5 +356,5 @@ var SubscriptionsApi = /** @class */ (function (_super) {
     return SubscriptionsApi;
 }(baseApi_1.BaseApi));
 exports.SubscriptionsApi = SubscriptionsApi;
-var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6, templateObject_7, templateObject_8, templateObject_9;
+let templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6, templateObject_7, templateObject_8, templateObject_9;
 //# sourceMappingURL=subscriptionsApi.js.map

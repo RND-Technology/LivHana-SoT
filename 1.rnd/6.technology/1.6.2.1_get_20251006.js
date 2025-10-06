@@ -1,9 +1,9 @@
 'use strict';
 
-var callBind = require('call-bind-apply-helpers');
-var gOPD = require('gopd');
+const callBind = require('call-bind-apply-helpers');
+const gOPD = require('gopd');
 
-var hasProtoAccessor;
+let hasProtoAccessor;
 try {
 	// eslint-disable-next-line no-extra-parens, no-proto
 	hasProtoAccessor = /** @type {{ __proto__?: typeof Array.prototype }} */ ([]).__proto__ === Array.prototype;
@@ -14,10 +14,10 @@ try {
 }
 
 // eslint-disable-next-line no-extra-parens
-var desc = !!hasProtoAccessor && gOPD && gOPD(Object.prototype, /** @type {keyof typeof Object.prototype} */ ('__proto__'));
+const desc = !!hasProtoAccessor && gOPD && gOPD(Object.prototype, /** @type {keyof typeof Object.prototype} */ ('__proto__'));
 
-var $Object = Object;
-var $getPrototypeOf = $Object.getPrototypeOf;
+const $Object = Object;
+const $getPrototypeOf = $Object.getPrototypeOf;
 
 /** @type {import('./get')} */
 module.exports = desc && typeof desc.get === 'function'

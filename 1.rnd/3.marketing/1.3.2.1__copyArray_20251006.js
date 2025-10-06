@@ -7,7 +7,7 @@
  * @returns {Array} Returns `array`.
  */
 function copyArray(source, array) {
-  var index = -1,
+  let index = -1,
       length = source.length;
 
   array || (array = Array(length));

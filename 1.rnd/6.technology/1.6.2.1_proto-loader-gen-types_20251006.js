@@ -335,7 +335,7 @@ function getFieldTypeRestricted(field, options) {
     }
 }
 function generateRestrictedMessageInterface(formatter, messageType, options, nameOverride) {
-    var _a, _b, _c;
+    let _a, _b, _c;
     const { outputName } = useNameFmter(options);
     if (options.includeComments) {
         formatComment(formatter, messageType.comment, messageType.options);
@@ -343,7 +343,7 @@ function generateRestrictedMessageInterface(formatter, messageType, options, nam
     if (messageType.fullName === '.google.protobuf.Any' && options.json) {
         /* This describes the behavior of the Protobuf.js Any wrapper toObject
          * replacement function */
-        let optionalString = options.defaults ? '' : '?';
+        const optionalString = options.defaults ? '' : '?';
         formatter.writeLine(`export type ${outputName('Any')} = AnyExtension | {`);
         formatter.writeLine(`  type_url${optionalString}: string;`);
         formatter.writeLine(`  value${optionalString}: ${getTypeNameRestricted('bytes', null, false, false, options)};`);
@@ -391,9 +391,9 @@ function generateRestrictedMessageInterface(formatter, messageType, options, nam
     formatter.writeLine('}');
 }
 function generateMessageInterfaces(formatter, messageType, options) {
-    var _a, _b;
+    let _a, _b;
     let usesLong = false;
-    let seenDeps = new Set();
+    const seenDeps = new Set();
     const childTypes = getChildMessagesAndEnums(messageType);
     formatter.writeLine(`// Original file: ${(_b = ((_a = messageType.filename) !== null && _a !== void 0 ? _a : 'null')) === null || _b === void 0 ? void 0 : _b.replace(/\\/g, '/')}`);
     formatter.writeLine('');
@@ -453,7 +453,7 @@ function generateMessageInterfaces(formatter, messageType, options) {
     generateRestrictedMessageInterface(formatter, messageType, options);
 }
 function generateEnumInterface(formatter, enumType, options, nameOverride) {
-    var _a, _b, _c;
+    let _a, _b, _c;
     const { inputName, outputName } = useNameFmter(options);
     const name = nameOverride !== null && nameOverride !== void 0 ? nameOverride : enumType.name;
     formatter.writeLine(`// Original file: ${(_b = ((_a = enumType.filename) !== null && _a !== void 0 ? _a : 'null')) === null || _b === void 0 ? void 0 : _b.replace(/\\/g, '/')}`);
@@ -639,7 +639,7 @@ function generateServiceDefinitionInterface(formatter, serviceType, options) {
     formatter.writeLine('}');
 }
 function generateServiceInterfaces(formatter, serviceType, options) {
-    var _a, _b;
+    let _a, _b;
     formatter.writeLine(`// Original file: ${(_b = ((_a = serviceType.filename) !== null && _a !== void 0 ? _a : 'null')) === null || _b === void 0 ? void 0 : _b.replace(/\\/g, '/')}`);
     formatter.writeLine('');
     if (options.grpcLib) {

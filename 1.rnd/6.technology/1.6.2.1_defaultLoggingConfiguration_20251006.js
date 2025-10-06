@@ -5,7 +5,7 @@ import defaultsDeep from 'lodash.defaultsdeep';
 /**
  * Default logging options
  */
-var DEFAULT_LOGGING_OPTIONS = {
+const DEFAULT_LOGGING_OPTIONS = {
   logger: /*#__PURE__*/new ConsoleLogger(),
   logLevel: LogLevel.Info,
   logRequest: {

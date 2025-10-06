@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
 exports.searchCatalogObjectsRequestSchema = void 0;
-var schema_1 = require("../schema");
-var catalogQuery_1 = require("./catalogQuery");
+const schema_1 = require("../schema");
+const catalogQuery_1 = require("./catalogQuery");
 exports.searchCatalogObjectsRequestSchema = (0, schema_1.object)({
     cursor: ['cursor', (0, schema_1.optional)((0, schema_1.string)())],
     objectTypes: ['object_types', (0, schema_1.optional)((0, schema_1.array)((0, schema_1.string)()))],

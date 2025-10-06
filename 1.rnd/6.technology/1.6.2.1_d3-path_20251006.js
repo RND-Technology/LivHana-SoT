@@ -18,7 +18,7 @@ function append(strings) {
 }
 
 function appendRound(digits) {
-  let d = Math.floor(digits);
+  const d = Math.floor(digits);
   if (!(d >= 0)) throw new Error(`invalid digits: ${digits}`);
   if (d > 15) return append;
   const k = 10 ** d;
@@ -61,7 +61,7 @@ class Path {
     // Is the radius negative? Error.
     if (r < 0) throw new Error(`negative radius: ${r}`);
 
-    let x0 = this._x1,
+    const x0 = this._x1,
         y0 = this._y1,
         x21 = x2 - x1,
         y21 = y2 - y1,
@@ -86,7 +86,7 @@ class Path {
 
     // Otherwise, draw an arc!
     else {
-      let x20 = x2 - x0,
+      const x20 = x2 - x0,
           y20 = y2 - y0,
           l21_2 = x21 * x21 + y21 * y21,
           l20_2 = x20 * x20 + y20 * y20,

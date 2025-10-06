@@ -18,7 +18,7 @@ function _url() {
   };
   return data;
 }
-var _interopRequireDefault = _interopRequireDefault2(
+const _interopRequireDefault = _interopRequireDefault2(
   require('./interopRequireDefault')
 );
 function _interopRequireDefault2(obj) {

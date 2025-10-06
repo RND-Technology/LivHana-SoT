@@ -10,7 +10,7 @@
 (function () {
     'use strict';
 
-    var Syntax,
+    let Syntax,
         Token,
         source,
         length,
@@ -104,13 +104,13 @@
     }
 
     function advance() {
-        var ch = source.charAt(index);
+        const ch = source.charAt(index);
         index += 1;
         return ch;
     }
 
     function scanHexEscape(prefix) {
-        var i, len, ch, code = 0;
+        let i, len, ch, code = 0;
 
         len = (prefix === 'u') ? 4 : 2;
         for (i = 0; i < len; ++i) {
@@ -125,7 +125,7 @@
     }
 
     function scanString() {
-        var str = '', quote, ch, code, unescaped, restore; //TODO review removal octal = false
+        let str = '', quote, ch, code, unescaped, restore; //TODO review removal octal = false
         quote = source.charAt(index);
         ++index;
 
@@ -218,7 +218,7 @@
     }
 
     function scanNumber() {
-        var number, ch;
+        let number, ch;
 
         number = '';
         ch = source.charCodeAt(index);
@@ -334,7 +334,7 @@
 
 
     function scanTypeName() {
-        var ch, ch2;
+        let ch, ch2;
 
         value = advance();
         while (index < length && isTypeName(source.charCodeAt(index))) {
@@ -354,7 +354,7 @@
     }
 
     function next() {
-        var ch;
+        let ch;
 
         previous = index;
 
@@ -517,7 +517,7 @@
     //     TypeExpression
     //   | TypeExpression '|' NonemptyTypeUnionList
     function parseUnionType() {
-        var elements, startIndex = index - 1;
+        let elements, startIndex = index - 1;
         consume(Token.LPAREN, 'UnionType should start with (');
         elements = [];
         if (token !== Token.RPAREN) {
@@ -544,7 +544,7 @@
     //  | '...' TypeExpression
     //  | TypeExpression ',' ElementTypeList
     function parseArrayType() {
-        var elements, startIndex = index - 1, restStartIndex;
+        let elements, startIndex = index - 1, restStartIndex;
         consume(Token.LBRACK, 'ArrayType should start with [');
         elements = [];
         while (token !== Token.RBRACK) {
@@ -571,7 +571,7 @@
     }
 
     function parseFieldName() {
-        var v = value;
+        const v = value;
         if (token === Token.NAME || token === Token.STRING) {
             next();
             return v;
@@ -595,7 +595,7 @@
     //   | NumberLiteral
     //   | ReservedIdentifier
     function parseFieldType() {
-        var key, rangeStart = previous;
+        let key, rangeStart = previous;
 
         key = parseFieldName();
         if (token === Token.COLON) {
@@ -620,7 +620,7 @@
     //   | FieldType
     //   | FieldType ',' FieldTypeList
     function parseRecordType() {
-        var fields, rangeStart = index - 1, rangeEnd;
+        let fields, rangeStart = index - 1, rangeEnd;
 
         consume(Token.LBRACE, 'RecordType should start with {');
         fields = [];
@@ -650,7 +650,7 @@
     // Identifier is the same as Token.NAME, including any dots, something like
     // namespace.module.MyClass
     function parseNameExpression() {
-        var name = value, rangeStart = index - name.length;
+        let name = value, rangeStart = index - name.length;
         expect(Token.NAME);
 
         if (token === Token.COLON && (
@@ -672,7 +672,7 @@
     //     TopLevelTypeExpression
     //   | TopLevelTypeExpression ',' TypeExpressionList
     function parseTypeExpressionList() {
-        var elements = [];
+        const elements = [];
 
         elements.push(parseTop());
         while (token === Token.COMMA) {
@@ -690,7 +690,7 @@
     //     '.<' TypeExpressionList '>'
     //   | '<' TypeExpressionList '>'   // this is extension of doctrine
     function parseTypeName() {
-        var expr, applications, startIndex = index - value.length;
+        let expr, applications, startIndex = index - value.length;
 
         expr = parseNameExpression();
         if (token === Token.DOT_LT || token === Token.LT) {
@@ -748,7 +748,7 @@
     //
     // Identifier is "new" or "this"
     function parseParametersType() {
-        var params = [], optionalSequence = false, expr, rest = false, startIndex, restStartIndex = index - 3, nameStartIndex;
+        let params = [], optionalSequence = false, expr, rest = false, startIndex, restStartIndex = index - 3, nameStartIndex;
 
         while (token !== Token.RPAREN) {
             if (token === Token.REST) {
@@ -804,7 +804,7 @@
     //   | TypeParameters '(' 'this' ':' TypeName ')' ResultType
     //   | TypeParameters '(' 'this' ':' TypeName ',' ParametersType ')' ResultType
     function parseFunctionType() {
-        var isNew, thisBinding, params, result, fnType, startIndex = index - value.length;
+        let isNew, thisBinding, params, result, fnType, startIndex = index - value.length;
         utility.assert(token === Token.NAME && value === 'function', 'FunctionType should start with \'function\'');
         consume(Token.NAME);
 
@@ -866,7 +866,7 @@
     //   | RecordType
     //   | ArrayType
     function parseBasicTypeExpression() {
-        var context, startIndex;
+        let context, startIndex;
         switch (token) {
         case Token.STAR:
             consume(Token.STAR);
@@ -947,7 +947,7 @@
     //   | '?'
     //   | BasicTypeExpression '[]'
     function parseTypeExpression() {
-        var expr, rangeStart;
+        let expr, rangeStart;
 
         if (token === Token.QUESTION) {
             rangeStart = index - 1;
@@ -1021,7 +1021,7 @@
     // If strict to ES4, we should write it as
     //   { (number|string) }
     function parseTop() {
-        var expr, elements;
+        let expr, elements;
 
         expr = parseTypeExpression();
         if (token !== Token.PIPE) {
@@ -1045,7 +1045,7 @@
     }
 
     function parseTopParamType() {
-        var expr;
+        let expr;
 
         if (token === Token.REST) {
             consume(Token.REST);
@@ -1068,7 +1068,7 @@
     }
 
     function parseType(src, opt) {
-        var expr;
+        let expr;
 
         source = src;
         length = source.length;
@@ -1095,7 +1095,7 @@
     }
 
     function parseParamType(src, opt) {
-        var expr;
+        let expr;
 
         source = src;
         length = source.length;
@@ -1122,7 +1122,7 @@
     }
 
     function stringifyImpl(node, compact, topLevel) {
-        var result, i, iz;
+        let result, i, iz;
 
         switch (node.type) {
         case Syntax.NullableLiteral:

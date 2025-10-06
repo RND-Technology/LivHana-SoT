@@ -1,21 +1,21 @@
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+const GetIntrinsic = require('get-intrinsic');
 
-var $SyntaxError = require('es-errors/syntax');
-var $TypeError = require('es-errors/type');
-var isObject = require('es-object-atoms/isObject');
-var $Promise = GetIntrinsic('%Promise%', true);
+const $SyntaxError = require('es-errors/syntax');
+const $TypeError = require('es-errors/type');
+const isObject = require('es-object-atoms/isObject');
+const $Promise = GetIntrinsic('%Promise%', true);
 
-var Call = require('./Call');
-var CompletionRecord = require('./CompletionRecord');
-var GetMethod = require('./GetMethod');
+const Call = require('./Call');
+const CompletionRecord = require('./CompletionRecord');
+const GetMethod = require('./GetMethod');
 
-var isIteratorRecord = require('../helpers/records/iterator-record-2023');
+const isIteratorRecord = require('../helpers/records/iterator-record-2023');
 
-var callBound = require('call-bound');
+const callBound = require('call-bound');
 
-var $then = callBound('Promise.prototype.then', true);
+const $then = callBound('Promise.prototype.then', true);
 
 // https://262.ecma-international.org/9.0/#sec-asynciteratorclose
 
@@ -32,10 +32,10 @@ module.exports = function AsyncIteratorClose(iteratorRecord, completion) {
 		throw new $SyntaxError('This environment does not support Promises.');
 	}
 
-	var iterator = iteratorRecord['[[Iterator]]']; // step 3
+	const iterator = iteratorRecord['[[Iterator]]']; // step 3
 
 	return new $Promise(function (resolve) {
-		var ret = GetMethod(iterator, 'return'); // step 4
+		const ret = GetMethod(iterator, 'return'); // step 4
 
 		if (typeof ret === 'undefined') {
 			resolve(completion); // step 5

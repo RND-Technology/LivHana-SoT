@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
 exports.bankAccountPaymentDetailsSchema = void 0;
-var schema_1 = require("../schema");
-var aCHDetails_1 = require("./aCHDetails");
-var error_1 = require("./error");
+const schema_1 = require("../schema");
+const aCHDetails_1 = require("./aCHDetails");
+const error_1 = require("./error");
 exports.bankAccountPaymentDetailsSchema = (0, schema_1.object)({
     bankName: ['bank_name', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.string)()))],
     transferType: ['transfer_type', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.string)()))],

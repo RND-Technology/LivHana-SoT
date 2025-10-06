@@ -1,4 +1,4 @@
-var baseEach = require('./_baseEach');
+const baseEach = require('./_baseEach');
 
 /**
  * The base implementation of `_.every` without support for iteratee shorthands.
@@ -10,7 +10,7 @@ var baseEach = require('./_baseEach');
  *  else `false`
  */
 function baseEvery(collection, predicate) {
-  var result = true;
+  let result = true;
   baseEach(collection, function(value, index, collection) {
     result = !!predicate(value, index, collection);
     return result;

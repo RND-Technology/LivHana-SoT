@@ -4,5 +4,8 @@ node_modules
 data/imports/downloads/**/*.md
 .venv
 **/.venv/**
+1.rnd/6.technology/1.6.2.1_*.md
+1.rnd/3.marketing/1.3.2.1_*.md
+.claude/archive/**/*.md
 
-# Last updated: 2025-10-03
+# Last updated: 2025-10-06

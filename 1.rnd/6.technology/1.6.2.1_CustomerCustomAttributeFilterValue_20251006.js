@@ -1,12 +1,12 @@
 "use strict";
 exports.__esModule = true;
 exports.customerCustomAttributeFilterValueSchema = void 0;
-var schema_1 = require("../schema");
-var customerAddressFilter_1 = require("./customerAddressFilter");
-var customerTextFilter_1 = require("./customerTextFilter");
-var filterValue_1 = require("./filterValue");
-var floatNumberRange_1 = require("./floatNumberRange");
-var timeRange_1 = require("./timeRange");
+const schema_1 = require("../schema");
+const customerAddressFilter_1 = require("./customerAddressFilter");
+const customerTextFilter_1 = require("./customerTextFilter");
+const filterValue_1 = require("./filterValue");
+const floatNumberRange_1 = require("./floatNumberRange");
+const timeRange_1 = require("./timeRange");
 exports.customerCustomAttributeFilterValueSchema = (0, schema_1.object)({
     email: ['email', (0, schema_1.optional)((0, schema_1.lazy)(function () { return customerTextFilter_1.customerTextFilterSchema; }))],
     phone: ['phone', (0, schema_1.optional)((0, schema_1.lazy)(function () { return customerTextFilter_1.customerTextFilterSchema; }))],

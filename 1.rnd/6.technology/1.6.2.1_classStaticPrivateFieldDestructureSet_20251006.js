@@ -4,9 +4,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = _classStaticPrivateFieldDestructureSet;
-var _classApplyDescriptorDestructureSet = require("classApplyDescriptorDestructureSet");
-var _assertClassBrand = require("assertClassBrand");
-var _classCheckPrivateStaticFieldDescriptor = require("classCheckPrivateStaticFieldDescriptor");
+const _classApplyDescriptorDestructureSet = require("classApplyDescriptorDestructureSet");
+const _assertClassBrand = require("assertClassBrand");
+const _classCheckPrivateStaticFieldDescriptor = require("classCheckPrivateStaticFieldDescriptor");
 function _classStaticPrivateFieldDestructureSet(receiver, classConstructor, descriptor) {
   _assertClassBrand(classConstructor, receiver);
   _classCheckPrivateStaticFieldDescriptor(descriptor, "set");

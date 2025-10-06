@@ -1,30 +1,30 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var IsTypedArrayOutOfBounds = require('./IsTypedArrayOutOfBounds');
-var IsViewOutOfBounds = require('./IsViewOutOfBounds');
-var MakeDataViewWithBufferWitnessRecord = require('./MakeDataViewWithBufferWitnessRecord');
-var MakeTypedArrayWithBufferWitnessRecord = require('./MakeTypedArrayWithBufferWitnessRecord');
+const IsTypedArrayOutOfBounds = require('./IsTypedArrayOutOfBounds');
+const IsViewOutOfBounds = require('./IsViewOutOfBounds');
+const MakeDataViewWithBufferWitnessRecord = require('./MakeDataViewWithBufferWitnessRecord');
+const MakeTypedArrayWithBufferWitnessRecord = require('./MakeTypedArrayWithBufferWitnessRecord');
 
-var isDataView = require('is-data-view');
-var isTypedArray = require('is-typed-array');
+const isDataView = require('is-data-view');
+const isTypedArray = require('is-typed-array');
 
 // https://262.ecma-international.org/15.0/#sec-isarraybufferviewoutofbounds
 
 module.exports = function IsArrayBufferViewOutOfBounds(O) {
-	var isDV = isDataView(O);
+	const isDV = isDataView(O);
 	if (!isTypedArray(O) && !isDV) {
 		throw new $TypeError('Assertion failed: `O` must be a TypedArray or DataView');
 	}
 
 	if (isDV) { // step 1
-		var viewRecord = MakeDataViewWithBufferWitnessRecord(O, 'SEQ-CST'); // step 1.a
+		const viewRecord = MakeDataViewWithBufferWitnessRecord(O, 'SEQ-CST'); // step 1.a
 
 		return IsViewOutOfBounds(viewRecord); // step 1.b
 	}
 
-	var taRecord = MakeTypedArrayWithBufferWitnessRecord(O, 'SEQ-CST'); // step 2
+	const taRecord = MakeTypedArrayWithBufferWitnessRecord(O, 'SEQ-CST'); // step 2
 
 	return IsTypedArrayOutOfBounds(taRecord); // step 3
 };

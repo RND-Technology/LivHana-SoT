@@ -1,7 +1,7 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+const __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
+    let desc = Object.getOwnPropertyDescriptor(m, k);
     if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
       desc = { enumerable: true, get: function() { return m[k]; } };
     }
@@ -10,33 +10,33 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
 }));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+const __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
     Object.defineProperty(o, "default", { enumerable: true, value: v });
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || function (mod) {
+const __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    const result = {};
+    if (mod != null) for (const k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
     __setModuleDefault(result, mod);
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
+const __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.decodeXML = exports.decodeHTMLStrict = exports.decodeHTMLAttribute = exports.decodeHTML = exports.determineBranch = exports.EntityDecoder = exports.DecodingMode = exports.BinTrieFlags = exports.fromCodePoint = exports.replaceCodePoint = exports.decodeCodePoint = exports.xmlDecodeTree = exports.htmlDecodeTree = void 0;
-var decode_data_html_js_1 = __importDefault(require("./generated/decode-data-html.js"));
+const decode_data_html_js_1 = __importDefault(require("./generated/decode-data-html.js"));
 exports.htmlDecodeTree = decode_data_html_js_1.default;
-var decode_data_xml_js_1 = __importDefault(require("./generated/decode-data-xml.js"));
+const decode_data_xml_js_1 = __importDefault(require("./generated/decode-data-xml.js"));
 exports.xmlDecodeTree = decode_data_xml_js_1.default;
-var decode_codepoint_js_1 = __importStar(require("./decode_codepoint.js"));
+const decode_codepoint_js_1 = __importStar(require("./decode_codepoint.js"));
 exports.decodeCodePoint = decode_codepoint_js_1.default;
-var decode_codepoint_js_2 = require("./decode_codepoint.js");
+const decode_codepoint_js_2 = require("./decode_codepoint.js");
 Object.defineProperty(exports, "replaceCodePoint", { enumerable: true, get: function () { return decode_codepoint_js_2.replaceCodePoint; } });
 Object.defineProperty(exports, "fromCodePoint", { enumerable: true, get: function () { return decode_codepoint_js_2.fromCodePoint; } });
-var CharCodes;
+let CharCodes;
 (function (CharCodes) {
     CharCodes[CharCodes["NUM"] = 35] = "NUM";
     CharCodes[CharCodes["SEMI"] = 59] = "SEMI";
@@ -52,8 +52,8 @@ var CharCodes;
     CharCodes[CharCodes["UPPER_Z"] = 90] = "UPPER_Z";
 })(CharCodes || (CharCodes = {}));
 /** Bit that needs to be set to convert an upper case ASCII character to lower case */
-var TO_LOWER_BIT = 32;
-var BinTrieFlags;
+const TO_LOWER_BIT = 32;
+let BinTrieFlags;
 (function (BinTrieFlags) {
     BinTrieFlags[BinTrieFlags["VALUE_LENGTH"] = 49152] = "VALUE_LENGTH";
     BinTrieFlags[BinTrieFlags["BRANCH_LENGTH"] = 16256] = "BRANCH_LENGTH";
@@ -80,7 +80,7 @@ function isAsciiAlphaNumeric(code) {
 function isEntityInAttributeInvalidEnd(code) {
     return code === CharCodes.EQUALS || isAsciiAlphaNumeric(code);
 }
-var EntityDecoderState;
+let EntityDecoderState;
 (function (EntityDecoderState) {
     EntityDecoderState[EntityDecoderState["EntityStart"] = 0] = "EntityStart";
     EntityDecoderState[EntityDecoderState["NumericStart"] = 1] = "NumericStart";
@@ -88,7 +88,7 @@ var EntityDecoderState;
     EntityDecoderState[EntityDecoderState["NumericHex"] = 3] = "NumericHex";
     EntityDecoderState[EntityDecoderState["NamedEntity"] = 4] = "NamedEntity";
 })(EntityDecoderState || (EntityDecoderState = {}));
-var DecodingMode;
+let DecodingMode;
 (function (DecodingMode) {
     /** Entities in text nodes that can end with any character. */
     DecodingMode[DecodingMode["Legacy"] = 0] = "Legacy";
@@ -100,7 +100,7 @@ var DecodingMode;
 /**
  * Token decoder with support of writing partial entities.
  */
-var EntityDecoder = /** @class */ (function () {
+const EntityDecoder = /** @class */ (function () {
     function EntityDecoder(
     /** The tree used to decode entities. */
     decodeTree, 
@@ -205,7 +205,7 @@ var EntityDecoder = /** @class */ (function () {
     };
     EntityDecoder.prototype.addToNumericResult = function (str, start, end, base) {
         if (start !== end) {
-            var digitCount = end - start;
+            const digitCount = end - start;
             this.result =
                 this.result * Math.pow(base, digitCount) +
                     parseInt(str.substr(start, digitCount), base);
@@ -222,9 +222,9 @@ var EntityDecoder = /** @class */ (function () {
      * @returns The number of characters that were consumed, or -1 if the entity is incomplete.
      */
     EntityDecoder.prototype.stateNumericHex = function (str, offset) {
-        var startIdx = offset;
+        const startIdx = offset;
         while (offset < str.length) {
-            var char = str.charCodeAt(offset);
+            const char = str.charCodeAt(offset);
             if (isNumber(char) || isHexadecimalCharacter(char)) {
                 offset += 1;
             }
@@ -246,9 +246,9 @@ var EntityDecoder = /** @class */ (function () {
      * @returns The number of characters that were consumed, or -1 if the entity is incomplete.
      */
     EntityDecoder.prototype.stateNumericDecimal = function (str, offset) {
-        var startIdx = offset;
+        const startIdx = offset;
         while (offset < str.length) {
-            var char = str.charCodeAt(offset);
+            const char = str.charCodeAt(offset);
             if (isNumber(char)) {
                 offset += 1;
             }
@@ -274,7 +274,7 @@ var EntityDecoder = /** @class */ (function () {
      * @returns The number of characters that were consumed.
      */
     EntityDecoder.prototype.emitNumericEntity = function (lastCp, expectedLength) {
-        var _a;
+        let _a;
         // Ensure we consumed at least one digit.
         if (this.consumed <= expectedLength) {
             (_a = this.errors) === null || _a === void 0 ? void 0 : _a.absenceOfDigitsInNumericCharacterReference(this.consumed);
@@ -306,12 +306,12 @@ var EntityDecoder = /** @class */ (function () {
      * @returns The number of characters that were consumed, or -1 if the entity is incomplete.
      */
     EntityDecoder.prototype.stateNamedEntity = function (str, offset) {
-        var decodeTree = this.decodeTree;
-        var current = decodeTree[this.treeIndex];
+        const decodeTree = this.decodeTree;
+        let current = decodeTree[this.treeIndex];
         // The mask is the number of bytes of the value, including the current byte.
-        var valueLength = (current & BinTrieFlags.VALUE_LENGTH) >> 14;
+        let valueLength = (current & BinTrieFlags.VALUE_LENGTH) >> 14;
         for (; offset < str.length; offset++, this.excess++) {
-            var char = str.charCodeAt(offset);
+            const char = str.charCodeAt(offset);
             this.treeIndex = determineBranch(decodeTree, current, this.treeIndex + Math.max(1, valueLength), char);
             if (this.treeIndex < 0) {
                 return this.result === 0 ||
@@ -348,9 +348,9 @@ var EntityDecoder = /** @class */ (function () {
      * @returns The number of characters consumed.
      */
     EntityDecoder.prototype.emitNotTerminatedNamedEntity = function () {
-        var _a;
-        var _b = this, result = _b.result, decodeTree = _b.decodeTree;
-        var valueLength = (decodeTree[result] & BinTrieFlags.VALUE_LENGTH) >> 14;
+        let _a;
+        const _b = this, result = _b.result, decodeTree = _b.decodeTree;
+        const valueLength = (decodeTree[result] & BinTrieFlags.VALUE_LENGTH) >> 14;
         this.emitNamedEntityData(result, valueLength, this.consumed);
         (_a = this.errors) === null || _a === void 0 ? void 0 : _a.missingSemicolonAfterCharacterReference();
         return this.consumed;
@@ -365,7 +365,7 @@ var EntityDecoder = /** @class */ (function () {
      * @returns The number of characters consumed.
      */
     EntityDecoder.prototype.emitNamedEntityData = function (result, valueLength, consumed) {
-        var decodeTree = this.decodeTree;
+        const decodeTree = this.decodeTree;
         this.emitCodePoint(valueLength === 1
             ? decodeTree[result] & ~BinTrieFlags.VALUE_LENGTH
             : decodeTree[result + 1], consumed);
@@ -383,7 +383,7 @@ var EntityDecoder = /** @class */ (function () {
      * @returns The number of characters consumed.
      */
     EntityDecoder.prototype.end = function () {
-        var _a;
+        let _a;
         switch (this.state) {
             case EntityDecoderState.NamedEntity: {
                 // Emit a named entity if we have one.
@@ -420,15 +420,15 @@ exports.EntityDecoder = EntityDecoder;
  * @returns A function that decodes entities in a string.
  */
 function getDecoder(decodeTree) {
-    var ret = "";
-    var decoder = new EntityDecoder(decodeTree, function (str) { return (ret += (0, decode_codepoint_js_1.fromCodePoint)(str)); });
+    let ret = "";
+    const decoder = new EntityDecoder(decodeTree, function (str) { return (ret += (0, decode_codepoint_js_1.fromCodePoint)(str)); });
     return function decodeWithTrie(str, decodeMode) {
-        var lastIndex = 0;
-        var offset = 0;
+        let lastIndex = 0;
+        let offset = 0;
         while ((offset = str.indexOf("&", offset)) >= 0) {
             ret += str.slice(lastIndex, offset);
             decoder.startEntity(decodeMode);
-            var len = decoder.write(str, 
+            const len = decoder.write(str, 
             // Skip the "&"
             offset + 1);
             if (len < 0) {
@@ -439,7 +439,7 @@ function getDecoder(decodeTree) {
             // If `len` is 0, skip the current `&` and continue.
             offset = len === 0 ? lastIndex + 1 : lastIndex;
         }
-        var result = ret + str.slice(lastIndex);
+        const result = ret + str.slice(lastIndex);
         // Make sure we don't keep a reference to the final string.
         ret = "";
         return result;
@@ -456,26 +456,26 @@ function getDecoder(decodeTree) {
  * @returns The index of the next node, or -1 if no branch is taken.
  */
 function determineBranch(decodeTree, current, nodeIdx, char) {
-    var branchCount = (current & BinTrieFlags.BRANCH_LENGTH) >> 7;
-    var jumpOffset = current & BinTrieFlags.JUMP_TABLE;
+    const branchCount = (current & BinTrieFlags.BRANCH_LENGTH) >> 7;
+    const jumpOffset = current & BinTrieFlags.JUMP_TABLE;
     // Case 1: Single branch encoded in jump offset
     if (branchCount === 0) {
         return jumpOffset !== 0 && char === jumpOffset ? nodeIdx : -1;
     }
     // Case 2: Multiple branches encoded in jump table
     if (jumpOffset) {
-        var value = char - jumpOffset;
+        const value = char - jumpOffset;
         return value < 0 || value >= branchCount
             ? -1
             : decodeTree[nodeIdx + value] - 1;
     }
     // Case 3: Multiple branches encoded in dictionary
     // Binary search for the character.
-    var lo = nodeIdx;
-    var hi = lo + branchCount - 1;
+    let lo = nodeIdx;
+    let hi = lo + branchCount - 1;
     while (lo <= hi) {
-        var mid = (lo + hi) >>> 1;
-        var midVal = decodeTree[mid];
+        const mid = (lo + hi) >>> 1;
+        const midVal = decodeTree[mid];
         if (midVal < char) {
             lo = mid + 1;
         }
@@ -489,8 +489,8 @@ function determineBranch(decodeTree, current, nodeIdx, char) {
     return -1;
 }
 exports.determineBranch = determineBranch;
-var htmlDecoder = getDecoder(decode_data_html_js_1.default);
-var xmlDecoder = getDecoder(decode_data_xml_js_1.default);
+const htmlDecoder = getDecoder(decode_data_html_js_1.default);
+const xmlDecoder = getDecoder(decode_data_xml_js_1.default);
 /**
  * Decodes an HTML string.
  *

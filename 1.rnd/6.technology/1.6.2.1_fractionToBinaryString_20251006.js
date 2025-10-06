@@ -1,18 +1,18 @@
 'use strict';
 
-var MAX_ITER = 1075; // 1023+52 (subnormals) => BIAS+NUM_SIGNFICAND_BITS-1
-var maxBits = 54; // only 53 bits for fraction
+const MAX_ITER = 1075; // 1023+52 (subnormals) => BIAS+NUM_SIGNFICAND_BITS-1
+const maxBits = 54; // only 53 bits for fraction
 
 module.exports = function fractionToBitString(x) {
-	var str = '';
+	let str = '';
 	if (x === 0) {
 		return str;
 	}
-	var j = MAX_ITER;
+	let j = MAX_ITER;
 
-	var y;
+	let y;
 	// Each time we multiply by 2 and find a ones digit, add a '1'; otherwise, add a '0'..
-	for (var i = 0; i < MAX_ITER; i += 1) {
+	for (let i = 0; i < MAX_ITER; i += 1) {
 		y = x * 2;
 		if (y >= 1) {
 			x = y - 1; // eslint-disable-line no-param-reassign

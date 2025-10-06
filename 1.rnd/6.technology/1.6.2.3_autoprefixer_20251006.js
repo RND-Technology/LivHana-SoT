@@ -1,13 +1,13 @@
-let browserslist = require('browserslist')
-let { agents } = require('caniuse-lite/dist/unpacker/agents')
-let pico = require('picocolors')
+const browserslist = require('browserslist')
+const { agents } = require('caniuse-lite/dist/unpacker/agents')
+const pico = require('picocolors')
 
-let dataPrefixes = require('../data/prefixes')
-let Browsers = require('./browsers')
-let getInfo = require('./info')
-let Prefixes = require('./prefixes')
+const dataPrefixes = require('../data/prefixes')
+const Browsers = require('./browsers')
+const getInfo = require('./info')
+const Prefixes = require('./prefixes')
 
-let autoprefixerData = { browsers: agents, prefixes: dataPrefixes }
+const autoprefixerData = { browsers: agents, prefixes: dataPrefixes }
 
 const WARNING =
   '\n' +
@@ -28,7 +28,7 @@ function isPlainObject(obj) {
   return Object.prototype.toString.apply(obj) === '[object Object]'
 }
 
-let cache = new Map()
+const cache = new Map()
 
 function timeCapsule(result, prefixes) {
   if (prefixes.browsers.selected.length === 0) {
@@ -95,16 +95,16 @@ function plugin(...reqs) {
     reqs = options.browsers
   }
 
-  let brwlstOpts = {
+  const brwlstOpts = {
     env: options.env,
     ignoreUnknownVersions: options.ignoreUnknownVersions,
     stats: options.stats
   }
 
   function loadPrefixes(opts) {
-    let d = autoprefixerData
-    let browsers = new Browsers(d.browsers, reqs, opts, brwlstOpts)
-    let key = browsers.selected.join(', ') + JSON.stringify(options)
+    const d = autoprefixerData
+    const browsers = new Browsers(d.browsers, reqs, opts, brwlstOpts)
+    const key = browsers.selected.join(', ') + JSON.stringify(options)
 
     if (!cache.has(key)) {
       cache.set(key, new Prefixes(d.prefixes, browsers, options))
@@ -126,7 +126,7 @@ function plugin(...reqs) {
 
     postcssPlugin: 'autoprefixer',
     prepare(result) {
-      let prefixes = loadPrefixes({
+      const prefixes = loadPrefixes({
         env: options.env,
         from: result.opts.from
       })

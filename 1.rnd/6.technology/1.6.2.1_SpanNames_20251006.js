@@ -17,7 +17,7 @@ exports.SpanNames = void 0;
  * limitations under the License.
  */
 // Contains span names produced by instrumentation
-var SpanNames;
+let SpanNames;
 (function (SpanNames) {
     SpanNames["QUERY_PREFIX"] = "pg.query";
     SpanNames["CONNECT"] = "pg.connect";

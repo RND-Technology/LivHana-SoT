@@ -1,6 +1,6 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true});
 
-var _chunkA7U44ARPjs = require('./chunk-A7U44ARP.js');
+const _chunkA7U44ARPjs = require('./chunk-A7U44ARP.js');
 
 // src/BatchInterceptor.ts
 var BatchInterceptor = class extends _chunkA7U44ARPjs.Interceptor {

@@ -1,5 +1,5 @@
 /* Built-in method references for those with the same name as other `lodash` methods. */
-var nativeMax = Math.max;
+const nativeMax = Math.max;
 
 /**
  * Creates an array that is the composition of partially applied arguments,
@@ -13,7 +13,7 @@ var nativeMax = Math.max;
  * @returns {Array} Returns the new array of composed arguments.
  */
 function composeArgs(args, partials, holders, isCurried) {
-  var argsIndex = -1,
+  let argsIndex = -1,
       argsLength = args.length,
       holdersLength = holders.length,
       leftIndex = -1,

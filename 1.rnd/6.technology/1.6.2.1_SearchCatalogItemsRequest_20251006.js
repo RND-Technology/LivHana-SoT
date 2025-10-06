@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
 exports.searchCatalogItemsRequestSchema = void 0;
-var schema_1 = require("../schema");
-var customAttributeFilter_1 = require("./customAttributeFilter");
+const schema_1 = require("../schema");
+const customAttributeFilter_1 = require("./customAttributeFilter");
 exports.searchCatalogItemsRequestSchema = (0, schema_1.object)({
     textFilter: ['text_filter', (0, schema_1.optional)((0, schema_1.string)())],
     categoryIds: ['category_ids', (0, schema_1.optional)((0, schema_1.array)((0, schema_1.string)()))],

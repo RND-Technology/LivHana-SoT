@@ -1,30 +1,30 @@
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+const GetIntrinsic = require('get-intrinsic');
 
-var $TypeError = require('es-errors/type');
-var $Uint8Array = GetIntrinsic('%Uint8Array%', true);
+const $TypeError = require('es-errors/type');
+const $Uint8Array = GetIntrinsic('%Uint8Array%', true);
 
-var isInteger = require('math-intrinsics/isInteger');
-var callBound = require('call-bound');
+const isInteger = require('math-intrinsics/isInteger');
+const callBound = require('call-bound');
 
-var $charAt = callBound('String.prototype.charAt');
-var $reverse = callBound('Array.prototype.reverse');
-var $slice = callBound('Array.prototype.slice');
+const $charAt = callBound('String.prototype.charAt');
+const $reverse = callBound('Array.prototype.reverse');
+const $slice = callBound('Array.prototype.slice');
 
-var bytesAsFloat32 = require('../helpers/bytesAsFloat32');
-var bytesAsFloat64 = require('../helpers/bytesAsFloat64');
-var bytesAsInteger = require('../helpers/bytesAsInteger');
-var defaultEndianness = require('../helpers/defaultEndianness');
+const bytesAsFloat32 = require('../helpers/bytesAsFloat32');
+const bytesAsFloat64 = require('../helpers/bytesAsFloat64');
+const bytesAsInteger = require('../helpers/bytesAsInteger');
+const defaultEndianness = require('../helpers/defaultEndianness');
 
-var IsDetachedBuffer = require('./IsDetachedBuffer');
+const IsDetachedBuffer = require('./IsDetachedBuffer');
 
-var isArrayBuffer = require('is-array-buffer');
-var safeConcat = require('safe-array-concat');
+const isArrayBuffer = require('is-array-buffer');
+const safeConcat = require('safe-array-concat');
 
-var tableTAO = require('./tables/typed-array-objects');
+const tableTAO = require('./tables/typed-array-objects');
 
-var isUnsignedElementType = function isUnsignedElementType(type) { return $charAt(type, 0) === 'U'; };
+const isUnsignedElementType = function isUnsignedElementType(type) { return $charAt(type, 0) === 'U'; };
 
 // https://262.ecma-international.org/6.0/#sec-getvaluefrombuffer
 
@@ -57,22 +57,22 @@ module.exports = function GetValueFromBuffer(arrayBuffer, byteIndex, type) {
 
 	// 4. Let block be arrayBuffer’s [[ArrayBufferData]] internal slot.
 
-	var elementSize = tableTAO.size['$' + type]; // step 5
+	const elementSize = tableTAO.size['$' + type]; // step 5
 	if (!elementSize) {
 		throw new $TypeError('Assertion failed: `type` must be one of ' + tableTAO.choices);
 	}
 
 	// 6. Let rawValue be a List of elementSize containing, in order, the elementSize sequence of bytes starting with block[byteIndex].
-	var rawValue = $slice(new $Uint8Array(arrayBuffer, byteIndex), 0, elementSize); // step 6
+	const rawValue = $slice(new $Uint8Array(arrayBuffer, byteIndex), 0, elementSize); // step 6
 
 	// 8. If isLittleEndian is not present, set isLittleEndian to either true or false. The choice is implementation dependent and should be the alternative that is most efficient for the implementation. An implementation must use the same value each time this step is executed and the same value must be used for the corresponding step in the SetValueInBuffer abstract operation.
-	var isLittleEndian = arguments.length > 3 ? arguments[3] : defaultEndianness === 'little'; // step 7
+	const isLittleEndian = arguments.length > 3 ? arguments[3] : defaultEndianness === 'little'; // step 7
 
 	if (!isLittleEndian) {
 		$reverse(rawValue); // step 8
 	}
 
-	var bytes = $slice(safeConcat([0, 0, 0, 0, 0, 0, 0, 0], rawValue), -elementSize);
+	const bytes = $slice(safeConcat([0, 0, 0, 0, 0, 0, 0, 0], rawValue), -elementSize);
 
 	if (type === 'Float32') { // step 3
 		return bytesAsFloat32(bytes);

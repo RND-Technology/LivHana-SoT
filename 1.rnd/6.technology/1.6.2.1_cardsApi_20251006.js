@@ -1,15 +1,15 @@
 "use strict";
 exports.__esModule = true;
 exports.CardsApi = void 0;
-var tslib_1 = require("tslib");
-var createCardRequest_1 = require("../models/createCardRequest");
-var createCardResponse_1 = require("../models/createCardResponse");
-var disableCardResponse_1 = require("../models/disableCardResponse");
-var listCardsResponse_1 = require("../models/listCardsResponse");
-var retrieveCardResponse_1 = require("../models/retrieveCardResponse");
-var schema_1 = require("../schema");
-var baseApi_1 = require("./baseApi");
-var CardsApi = /** @class */ (function (_super) {
+const tslib_1 = require("tslib");
+const createCardRequest_1 = require("../models/createCardRequest");
+const createCardResponse_1 = require("../models/createCardResponse");
+const disableCardResponse_1 = require("../models/disableCardResponse");
+const listCardsResponse_1 = require("../models/listCardsResponse");
+const retrieveCardResponse_1 = require("../models/retrieveCardResponse");
+const schema_1 = require("../schema");
+const baseApi_1 = require("./baseApi");
+const CardsApi = /** @class */ (function (_super) {
     tslib_1.__extends(CardsApi, _super);
     function CardsApi() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -33,7 +33,7 @@ var CardsApi = /** @class */ (function (_super) {
      */
     CardsApi.prototype.listCards = function (cursor, customerId, includeDisabled, referenceId, sortOrder, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET', '/v2/cards');
                 mapped = req.prepareArgs({
@@ -62,7 +62,7 @@ var CardsApi = /** @class */ (function (_super) {
      */
     CardsApi.prototype.createCard = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/cards');
                 mapped = req.prepareArgs({ body: [body, createCardRequest_1.createCardRequestSchema] });
@@ -81,7 +81,7 @@ var CardsApi = /** @class */ (function (_super) {
      */
     CardsApi.prototype.retrieveCard = function (cardId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({ cardId: [cardId, (0, schema_1.string)()] });
@@ -100,7 +100,7 @@ var CardsApi = /** @class */ (function (_super) {
      */
     CardsApi.prototype.disableCard = function (cardId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({ cardId: [cardId, (0, schema_1.string)()] });
@@ -113,5 +113,5 @@ var CardsApi = /** @class */ (function (_super) {
     return CardsApi;
 }(baseApi_1.BaseApi));
 exports.CardsApi = CardsApi;
-var templateObject_1, templateObject_2;
+let templateObject_1, templateObject_2;
 //# sourceMappingURL=cardsApi.js.map

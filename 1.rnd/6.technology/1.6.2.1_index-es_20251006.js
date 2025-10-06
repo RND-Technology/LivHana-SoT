@@ -49,7 +49,7 @@ class Blob {
 
 		this[BUFFER] = Buffer.concat(buffers);
 
-		let type = options && options.type !== undefined && String(options.type).toLowerCase();
+		const type = options && options.type !== undefined && String(options.type).toLowerCase();
 		if (type && !/[^\u0020-\u007E]/.test(type)) {
 			this[TYPE] = type;
 		}
@@ -174,14 +174,14 @@ const PassThrough = Stream.PassThrough;
  * @return  Void
  */
 function Body(body) {
-	var _this = this;
+	const _this = this;
 
-	var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
+	const _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
 	    _ref$size = _ref.size;
 
-	let size = _ref$size === undefined ? 0 : _ref$size;
-	var _ref$timeout = _ref.timeout;
-	let timeout = _ref$timeout === undefined ? 0 : _ref$timeout;
+	const size = _ref$size === undefined ? 0 : _ref$size;
+	const _ref$timeout = _ref.timeout;
+	const timeout = _ref$timeout === undefined ? 0 : _ref$timeout;
 
 	if (body == null) {
 		// body is undefined or null
@@ -242,7 +242,7 @@ Body.prototype = {
   * @return Promise
   */
 	blob() {
-		let ct = this.headers && this.headers.get('content-type') || '';
+		const ct = this.headers && this.headers.get('content-type') || '';
 		return consumeBody.call(this).then(function (buf) {
 			return Object.assign(
 			// Prevent copying
@@ -260,7 +260,7 @@ Body.prototype = {
   * @return  Promise
   */
 	json() {
-		var _this2 = this;
+		const _this2 = this;
 
 		return consumeBody.call(this).then(function (buffer) {
 			try {
@@ -298,7 +298,7 @@ Body.prototype = {
   * @return  Promise
   */
 	textConverted() {
-		var _this3 = this;
+		const _this3 = this;
 
 		return consumeBody.call(this).then(function (buffer) {
 			return convertBody(buffer, _this3.headers);
@@ -334,7 +334,7 @@ Body.mixIn = function (proto) {
  * @return  Promise
  */
 function consumeBody() {
-	var _this4 = this;
+	const _this4 = this;
 
 	if (this[INTERNALS].disturbed) {
 		return Body.Promise.reject(new TypeError(`body used already for: ${this.url}`));
@@ -370,7 +370,7 @@ function consumeBody() {
 
 	// body is stream
 	// get ready to actually consume the body
-	let accum = [];
+	const accum = [];
 	let accumBytes = 0;
 	let abort = false;
 
@@ -708,7 +708,7 @@ class Headers {
   * @return  Void
   */
 	constructor() {
-		let init = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
+		const init = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
 
 		this[MAP] = Object.create(null);
 
@@ -787,12 +787,12 @@ class Headers {
   * @return  Void
   */
 	forEach(callback) {
-		let thisArg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : undefined;
+		const thisArg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : undefined;
 
 		let pairs = getHeaders(this);
 		let i = 0;
 		while (i < pairs.length) {
-			var _pairs$i = pairs[i];
+			const _pairs$i = pairs[i];
 			const name = _pairs$i[0],
 			      value = _pairs$i[1];
 
@@ -925,7 +925,7 @@ Object.defineProperties(Headers.prototype, {
 });
 
 function getHeaders(headers) {
-	let kind = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'key+value';
+	const kind = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'key+value';
 
 	const keys = Object.keys(headers[MAP]).sort();
 	return keys.map(kind === 'key' ? function (k) {
@@ -956,7 +956,7 @@ const HeadersIteratorPrototype = Object.setPrototypeOf({
 			throw new TypeError('Value of `this` is not a HeadersIterator');
 		}
 
-		var _INTERNAL = this[INTERNAL];
+		const _INTERNAL = this[INTERNAL];
 		const target = _INTERNAL.target,
 		      kind = _INTERNAL.kind,
 		      index = _INTERNAL.index;
@@ -1050,8 +1050,8 @@ const STATUS_CODES = http.STATUS_CODES;
  */
 class Response {
 	constructor() {
-		let body = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-		let opts = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+		const body = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+		const opts = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
 		Body.call(this, body, opts);
 
@@ -1190,7 +1190,7 @@ function isAbortSignal(signal) {
  */
 class Request {
 	constructor(input) {
-		let init = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+		const init = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
 		let parsedURL;
 
@@ -1217,7 +1217,7 @@ class Request {
 			throw new TypeError('Request with GET/HEAD method cannot have body');
 		}
 
-		let inputBody = init.body != null ? init.body : isRequest(input) && input.body !== null ? clone(input) : null;
+		const inputBody = init.body != null ? init.body : isRequest(input) && input.body !== null ? clone(input) : null;
 
 		Body.call(this, inputBody, {
 			timeout: init.timeout || input.timeout || 0,
@@ -1451,7 +1451,7 @@ function fetch(url, opts) {
 		let response = null;
 
 		const abort = function abort() {
-			let error = new AbortError('The user aborted a request.');
+			const error = new AbortError('The user aborted a request.');
 			reject(error);
 			if (request.body && request.body instanceof Stream.Readable) {
 				destroyStream(request.body, error);

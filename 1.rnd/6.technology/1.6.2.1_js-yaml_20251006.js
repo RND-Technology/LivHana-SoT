@@ -25,7 +25,7 @@
 
 
   function extend(target, source) {
-    var index, length, key, sourceKeys;
+    let index, length, key, sourceKeys;
 
     if (source) {
       sourceKeys = Object.keys(source);
@@ -41,7 +41,7 @@
 
 
   function repeat(string, count) {
-    var result = '', cycle;
+    let result = '', cycle;
 
     for (cycle = 0; cycle < count; cycle += 1) {
       result += string;
@@ -56,14 +56,14 @@
   }
 
 
-  var isNothing_1      = isNothing;
-  var isObject_1       = isObject;
-  var toArray_1        = toArray;
-  var repeat_1         = repeat;
-  var isNegativeZero_1 = isNegativeZero;
-  var extend_1         = extend;
+  const isNothing_1      = isNothing;
+  const isObject_1       = isObject;
+  const toArray_1        = toArray;
+  const repeat_1         = repeat;
+  const isNegativeZero_1 = isNegativeZero;
+  const extend_1         = extend;
 
-  var common = {
+  const common = {
   	isNothing: isNothing_1,
   	isObject: isObject_1,
   	toArray: toArray_1,
@@ -76,7 +76,7 @@
 
 
   function formatError(exception, compact) {
-    var where = '', message = exception.reason || '(unknown reason)';
+    let where = '', message = exception.reason || '(unknown reason)';
 
     if (!exception.mark) return message;
 
@@ -124,13 +124,13 @@
   };
 
 
-  var exception = YAMLException$1;
+  const exception = YAMLException$1;
 
   // get snippet for a single line, respecting maxLength
   function getLine(buffer, lineStart, lineEnd, position, maxLineLength) {
-    var head = '';
-    var tail = '';
-    var maxHalfLength = Math.floor(maxLineLength / 2) - 1;
+    let head = '';
+    let tail = '';
+    const maxHalfLength = Math.floor(maxLineLength / 2) - 1;
 
     if (position - lineStart > maxHalfLength) {
       head = ' ... ';
@@ -164,11 +164,11 @@
     if (typeof options.linesBefore !== 'number') options.linesBefore = 3;
     if (typeof options.linesAfter  !== 'number') options.linesAfter  = 2;
 
-    var re = /\r?\n|\r|\0/g;
-    var lineStarts = [ 0 ];
-    var lineEnds = [];
-    var match;
-    var foundLineNo = -1;
+    const re = /\r?\n|\r|\0/g;
+    const lineStarts = [ 0 ];
+    const lineEnds = [];
+    let match;
+    let foundLineNo = -1;
 
     while ((match = re.exec(mark.buffer))) {
       lineEnds.push(match.index);
@@ -181,9 +181,9 @@
 
     if (foundLineNo < 0) foundLineNo = lineStarts.length - 1;
 
-    var result = '', i, line;
-    var lineNoLength = Math.min(mark.line + options.linesAfter, lineEnds.length).toString().length;
-    var maxLineLength = options.maxLength - (options.indent + lineNoLength + 3);
+    let result = '', i, line;
+    const lineNoLength = Math.min(mark.line + options.linesAfter, lineEnds.length).toString().length;
+    const maxLineLength = options.maxLength - (options.indent + lineNoLength + 3);
 
     for (i = 1; i <= options.linesBefore; i++) {
       if (foundLineNo - i < 0) break;
@@ -220,9 +220,9 @@
   }
 
 
-  var snippet = makeSnippet;
+  const snippet = makeSnippet;
 
-  var TYPE_CONSTRUCTOR_OPTIONS = [
+  const TYPE_CONSTRUCTOR_OPTIONS = [
     'kind',
     'multi',
     'resolve',
@@ -235,14 +235,14 @@
     'styleAliases'
   ];
 
-  var YAML_NODE_KINDS = [
+  const YAML_NODE_KINDS = [
     'scalar',
     'sequence',
     'mapping'
   ];
 
   function compileStyleAliases(map) {
-    var result = {};
+    const result = {};
 
     if (map !== null) {
       Object.keys(map).forEach(function (style) {
@@ -283,7 +283,7 @@
     }
   }
 
-  var type = Type$1;
+  const type = Type$1;
 
   /*eslint-disable max-len*/
 
@@ -292,10 +292,10 @@
 
 
   function compileList(schema, name) {
-    var result = [];
+    const result = [];
 
     schema[name].forEach(function (currentType) {
-      var newIndex = result.length;
+      let newIndex = result.length;
 
       result.forEach(function (previousType, previousIndex) {
         if (previousType.tag === currentType.tag &&
@@ -314,7 +314,7 @@
 
 
   function compileMap(/* lists... */) {
-    var result = {
+    let result = {
           scalar: {},
           sequence: {},
           mapping: {},
@@ -349,8 +349,8 @@
 
 
   Schema$1.prototype.extend = function extend(definition) {
-    var implicit = [];
-    var explicit = [];
+    let implicit = [];
+    let explicit = [];
 
     if (definition instanceof type) {
       // Schema.extend(type)
@@ -390,7 +390,7 @@
       }
     });
 
-    var result = Object.create(Schema$1.prototype);
+    const result = Object.create(Schema$1.prototype);
 
     result.implicit = (this.implicit || []).concat(implicit);
     result.explicit = (this.explicit || []).concat(explicit);
@@ -403,24 +403,24 @@
   };
 
 
-  var schema = Schema$1;
+  const schema = Schema$1;
 
-  var str = new type('tag:yaml.org,2002:str', {
+  const str = new type('tag:yaml.org,2002:str', {
     kind: 'scalar',
     construct: function (data) { return data !== null ? data : ''; }
   });
 
-  var seq = new type('tag:yaml.org,2002:seq', {
+  const seq = new type('tag:yaml.org,2002:seq', {
     kind: 'sequence',
     construct: function (data) { return data !== null ? data : []; }
   });
 
-  var map = new type('tag:yaml.org,2002:map', {
+  const map = new type('tag:yaml.org,2002:map', {
     kind: 'mapping',
     construct: function (data) { return data !== null ? data : {}; }
   });
 
-  var failsafe = new schema({
+  const failsafe = new schema({
     explicit: [
       str,
       seq,
@@ -431,7 +431,7 @@
   function resolveYamlNull(data) {
     if (data === null) return true;
 
-    var max = data.length;
+    const max = data.length;
 
     return (max === 1 && data === '~') ||
            (max === 4 && (data === 'null' || data === 'Null' || data === 'NULL'));
@@ -445,7 +445,7 @@
     return object === null;
   }
 
-  var _null = new type('tag:yaml.org,2002:null', {
+  const _null = new type('tag:yaml.org,2002:null', {
     kind: 'scalar',
     resolve: resolveYamlNull,
     construct: constructYamlNull,
@@ -463,7 +463,7 @@
   function resolveYamlBoolean(data) {
     if (data === null) return false;
 
-    var max = data.length;
+    const max = data.length;
 
     return (max === 4 && (data === 'true' || data === 'True' || data === 'TRUE')) ||
            (max === 5 && (data === 'false' || data === 'False' || data === 'FALSE'));
@@ -479,7 +479,7 @@
     return Object.prototype.toString.call(object) === '[object Boolean]';
   }
 
-  var bool = new type('tag:yaml.org,2002:bool', {
+  const bool = new type('tag:yaml.org,2002:bool', {
     kind: 'scalar',
     resolve: resolveYamlBoolean,
     construct: constructYamlBoolean,
@@ -509,7 +509,7 @@
   function resolveYamlInteger(data) {
     if (data === null) return false;
 
-    var max = data.length,
+    let max = data.length,
         index = 0,
         hasDigits = false,
         ch;
@@ -593,7 +593,7 @@
   }
 
   function constructYamlInteger(data) {
-    var value = data, sign = 1, ch;
+    let value = data, sign = 1, ch;
 
     if (value.indexOf('_') !== -1) {
       value = value.replace(/_/g, '');
@@ -623,7 +623,7 @@
            (object % 1 === 0 && !common.isNegativeZero(object));
   }
 
-  var int = new type('tag:yaml.org,2002:int', {
+  const int = new type('tag:yaml.org,2002:int', {
     kind: 'scalar',
     resolve: resolveYamlInteger,
     construct: constructYamlInteger,
@@ -644,7 +644,7 @@
     }
   });
 
-  var YAML_FLOAT_PATTERN = new RegExp(
+  const YAML_FLOAT_PATTERN = new RegExp(
     // 2.5e4, 2.5 and integers
     '^(?:[-+]?(?:[0-9][0-9_]*)(?:\\.[0-9_]*)?(?:[eE][-+]?[0-9]+)?' +
     // .2e4, .2
@@ -669,7 +669,7 @@
   }
 
   function constructYamlFloat(data) {
-    var value, sign;
+    let value, sign;
 
     value  = data.replace(/_/g, '').toLowerCase();
     sign   = value[0] === '-' ? -1 : 1;
@@ -688,10 +688,10 @@
   }
 
 
-  var SCIENTIFIC_WITHOUT_DOT = /^[-+]?[0-9]+e/;
+  const SCIENTIFIC_WITHOUT_DOT = /^[-+]?[0-9]+e/;
 
   function representYamlFloat(object, style) {
-    var res;
+    let res;
 
     if (isNaN(object)) {
       switch (style) {
@@ -728,7 +728,7 @@
            (object % 1 !== 0 || common.isNegativeZero(object));
   }
 
-  var float = new type('tag:yaml.org,2002:float', {
+  const float = new type('tag:yaml.org,2002:float', {
     kind: 'scalar',
     resolve: resolveYamlFloat,
     construct: constructYamlFloat,
@@ -737,7 +737,7 @@
     defaultStyle: 'lowercase'
   });
 
-  var json = failsafe.extend({
+  const json = failsafe.extend({
     implicit: [
       _null,
       bool,
@@ -746,14 +746,14 @@
     ]
   });
 
-  var core = json;
+  const core = json;
 
-  var YAML_DATE_REGEXP = new RegExp(
+  const YAML_DATE_REGEXP = new RegExp(
     '^([0-9][0-9][0-9][0-9])'          + // [1] year
     '-([0-9][0-9])'                    + // [2] month
     '-([0-9][0-9])$');                   // [3] day
 
-  var YAML_TIMESTAMP_REGEXP = new RegExp(
+  const YAML_TIMESTAMP_REGEXP = new RegExp(
     '^([0-9][0-9][0-9][0-9])'          + // [1] year
     '-([0-9][0-9]?)'                   + // [2] month
     '-([0-9][0-9]?)'                   + // [3] day
@@ -773,7 +773,7 @@
   }
 
   function constructYamlTimestamp(data) {
-    var match, year, month, day, hour, minute, second, fraction = 0,
+    let match, year, month, day, hour, minute, second, fraction = 0,
         delta = null, tz_hour, tz_minute, date;
 
     match = YAML_DATE_REGEXP.exec(data);
@@ -825,7 +825,7 @@
     return object.toISOString();
   }
 
-  var timestamp = new type('tag:yaml.org,2002:timestamp', {
+  const timestamp = new type('tag:yaml.org,2002:timestamp', {
     kind: 'scalar',
     resolve: resolveYamlTimestamp,
     construct: constructYamlTimestamp,
@@ -837,7 +837,7 @@
     return data === '<<' || data === null;
   }
 
-  var merge = new type('tag:yaml.org,2002:merge', {
+  const merge = new type('tag:yaml.org,2002:merge', {
     kind: 'scalar',
     resolve: resolveYamlMerge
   });
@@ -849,13 +849,13 @@
 
 
   // [ 64, 65, 66 ] -> [ padding, CR, LF ]
-  var BASE64_MAP = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=\n\r';
+  const BASE64_MAP = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=\n\r';
 
 
   function resolveYamlBinary(data) {
     if (data === null) return false;
 
-    var code, idx, bitlen = 0, max = data.length, map = BASE64_MAP;
+    let code, idx, bitlen = 0, max = data.length, map = BASE64_MAP;
 
     // Convert one by one.
     for (idx = 0; idx < max; idx++) {
@@ -875,7 +875,7 @@
   }
 
   function constructYamlBinary(data) {
-    var idx, tailbits,
+    let idx, tailbits,
         input = data.replace(/[\r\n=]/g, ''), // remove CR/LF & padding to simplify scan
         max = input.length,
         map = BASE64_MAP,
@@ -913,7 +913,7 @@
   }
 
   function representYamlBinary(object /*, style*/) {
-    var result = '', bits = 0, idx, tail,
+    let result = '', bits = 0, idx, tail,
         max = object.length,
         map = BASE64_MAP;
 
@@ -958,7 +958,7 @@
     return Object.prototype.toString.call(obj) ===  '[object Uint8Array]';
   }
 
-  var binary = new type('tag:yaml.org,2002:binary', {
+  const binary = new type('tag:yaml.org,2002:binary', {
     kind: 'scalar',
     resolve: resolveYamlBinary,
     construct: constructYamlBinary,
@@ -966,13 +966,13 @@
     represent: representYamlBinary
   });
 
-  var _hasOwnProperty$3 = Object.prototype.hasOwnProperty;
-  var _toString$2       = Object.prototype.toString;
+  const _hasOwnProperty$3 = Object.prototype.hasOwnProperty;
+  const _toString$2       = Object.prototype.toString;
 
   function resolveYamlOmap(data) {
     if (data === null) return true;
 
-    var objectKeys = [], index, length, pair, pairKey, pairHasKey,
+    let objectKeys = [], index, length, pair, pairKey, pairHasKey,
         object = data;
 
     for (index = 0, length = object.length; index < length; index += 1) {
@@ -1001,18 +1001,18 @@
     return data !== null ? data : [];
   }
 
-  var omap = new type('tag:yaml.org,2002:omap', {
+  const omap = new type('tag:yaml.org,2002:omap', {
     kind: 'sequence',
     resolve: resolveYamlOmap,
     construct: constructYamlOmap
   });
 
-  var _toString$1 = Object.prototype.toString;
+  const _toString$1 = Object.prototype.toString;
 
   function resolveYamlPairs(data) {
     if (data === null) return true;
 
-    var index, length, pair, keys, result,
+    let index, length, pair, keys, result,
         object = data;
 
     result = new Array(object.length);
@@ -1035,7 +1035,7 @@
   function constructYamlPairs(data) {
     if (data === null) return [];
 
-    var index, length, pair, keys, result,
+    let index, length, pair, keys, result,
         object = data;
 
     result = new Array(object.length);
@@ -1051,18 +1051,18 @@
     return result;
   }
 
-  var pairs = new type('tag:yaml.org,2002:pairs', {
+  const pairs = new type('tag:yaml.org,2002:pairs', {
     kind: 'sequence',
     resolve: resolveYamlPairs,
     construct: constructYamlPairs
   });
 
-  var _hasOwnProperty$2 = Object.prototype.hasOwnProperty;
+  const _hasOwnProperty$2 = Object.prototype.hasOwnProperty;
 
   function resolveYamlSet(data) {
     if (data === null) return true;
 
-    var key, object = data;
+    let key, object = data;
 
     for (key in object) {
       if (_hasOwnProperty$2.call(object, key)) {
@@ -1077,13 +1077,13 @@
     return data !== null ? data : {};
   }
 
-  var set = new type('tag:yaml.org,2002:set', {
+  const set = new type('tag:yaml.org,2002:set', {
     kind: 'mapping',
     resolve: resolveYamlSet,
     construct: constructYamlSet
   });
 
-  var _default = core.extend({
+  const _default = core.extend({
     implicit: [
       timestamp,
       merge
@@ -1104,25 +1104,25 @@
 
 
 
-  var _hasOwnProperty$1 = Object.prototype.hasOwnProperty;
+  const _hasOwnProperty$1 = Object.prototype.hasOwnProperty;
 
 
-  var CONTEXT_FLOW_IN   = 1;
-  var CONTEXT_FLOW_OUT  = 2;
-  var CONTEXT_BLOCK_IN  = 3;
-  var CONTEXT_BLOCK_OUT = 4;
+  const CONTEXT_FLOW_IN   = 1;
+  const CONTEXT_FLOW_OUT  = 2;
+  const CONTEXT_BLOCK_IN  = 3;
+  const CONTEXT_BLOCK_OUT = 4;
 
 
-  var CHOMPING_CLIP  = 1;
-  var CHOMPING_STRIP = 2;
-  var CHOMPING_KEEP  = 3;
+  const CHOMPING_CLIP  = 1;
+  const CHOMPING_STRIP = 2;
+  const CHOMPING_KEEP  = 3;
 
 
-  var PATTERN_NON_PRINTABLE         = /[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x84\x86-\x9F\uFFFE\uFFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]/;
-  var PATTERN_NON_ASCII_LINE_BREAKS = /[\x85\u2028\u2029]/;
-  var PATTERN_FLOW_INDICATORS       = /[,\[\]\{\}]/;
-  var PATTERN_TAG_HANDLE            = /^(?:!|!!|![a-z\-]+!)$/i;
-  var PATTERN_TAG_URI               = /^(?:!|[^,\[\]\{\}])(?:%[0-9a-f]{2}|[0-9a-z\-#;\/\?:@&=\+\$,_\.!~\*'\(\)\[\]])*$/i;
+  const PATTERN_NON_PRINTABLE         = /[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x84\x86-\x9F\uFFFE\uFFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]/;
+  const PATTERN_NON_ASCII_LINE_BREAKS = /[\x85\u2028\u2029]/;
+  const PATTERN_FLOW_INDICATORS       = /[,\[\]\{\}]/;
+  const PATTERN_TAG_HANDLE            = /^(?:!|!!|![a-z\-]+!)$/i;
+  const PATTERN_TAG_URI               = /^(?:!|[^,\[\]\{\}])(?:%[0-9a-f]{2}|[0-9a-z\-#;\/\?:@&=\+\$,_\.!~\*'\(\)\[\]])*$/i;
 
 
   function _class(obj) { return Object.prototype.toString.call(obj); }
@@ -1151,7 +1151,7 @@
   }
 
   function fromHexCode(c) {
-    var lc;
+    let lc;
 
     if ((0x30/* 0 */ <= c) && (c <= 0x39/* 9 */)) {
       return c - 0x30;
@@ -1216,9 +1216,9 @@
     );
   }
 
-  var simpleEscapeCheck = new Array(256); // integer, for fast access
-  var simpleEscapeMap = new Array(256);
-  for (var i = 0; i < 256; i++) {
+  const simpleEscapeCheck = new Array(256); // integer, for fast access
+  const simpleEscapeMap = new Array(256);
+  for (let i = 0; i < 256; i++) {
     simpleEscapeCheck[i] = simpleEscapeSequence(i) ? 1 : 0;
     simpleEscapeMap[i] = simpleEscapeSequence(i);
   }
@@ -1266,7 +1266,7 @@
 
 
   function generateError(state, message) {
-    var mark = {
+    const mark = {
       name:     state.filename,
       buffer:   state.input.slice(0, -1), // omit trailing \0
       position: state.position,
@@ -1290,11 +1290,11 @@
   }
 
 
-  var directiveHandlers = {
+  const directiveHandlers = {
 
     YAML: function handleYamlDirective(state, name, args) {
 
-      var match, major, minor;
+      let match, major, minor;
 
       if (state.version !== null) {
         throwError(state, 'duplication of %YAML directive');
@@ -1327,7 +1327,7 @@
 
     TAG: function handleTagDirective(state, name, args) {
 
-      var handle, prefix;
+      let handle, prefix;
 
       if (args.length !== 2) {
         throwError(state, 'TAG directive accepts exactly two arguments');
@@ -1360,7 +1360,7 @@
 
 
   function captureSegment(state, start, end, checkJson) {
-    var _position, _length, _character, _result;
+    let _position, _length, _character, _result;
 
     if (start < end) {
       _result = state.input.slice(start, end);
@@ -1382,7 +1382,7 @@
   }
 
   function mergeMappings(state, destination, source, overridableKeys) {
-    var sourceKeys, key, index, quantity;
+    let sourceKeys, key, index, quantity;
 
     if (!common.isObject(source)) {
       throwError(state, 'cannot merge mappings; the provided source object is unacceptable');
@@ -1403,7 +1403,7 @@
   function storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, valueNode,
     startLine, startLineStart, startPos) {
 
-    var index, quantity;
+    let index, quantity;
 
     // The output is a plain object here, so keys can only be strings.
     // We need to convert keyNode to a string, but doing so can hang the process
@@ -1472,7 +1472,7 @@
   }
 
   function readLineBreak(state) {
-    var ch;
+    let ch;
 
     ch = state.input.charCodeAt(state.position);
 
@@ -1493,7 +1493,7 @@
   }
 
   function skipSeparationSpace(state, allowComments, checkIndent) {
-    var lineBreaks = 0,
+    let lineBreaks = 0,
         ch = state.input.charCodeAt(state.position);
 
     while (ch !== 0) {
@@ -1534,7 +1534,7 @@
   }
 
   function testDocumentSeparator(state) {
-    var _position = state.position,
+    let _position = state.position,
         ch;
 
     ch = state.input.charCodeAt(_position);
@@ -1567,7 +1567,7 @@
 
 
   function readPlainScalar(state, nodeIndent, withinFlowCollection) {
-    var preceding,
+    let preceding,
         following,
         captureStart,
         captureEnd,
@@ -1676,7 +1676,7 @@
   }
 
   function readSingleQuotedScalar(state, nodeIndent) {
-    var ch,
+    let ch,
         captureStart, captureEnd;
 
     ch = state.input.charCodeAt(state.position);
@@ -1721,7 +1721,7 @@
   }
 
   function readDoubleQuotedScalar(state, nodeIndent) {
-    var captureStart,
+    let captureStart,
         captureEnd,
         hexLength,
         hexResult,
@@ -1800,7 +1800,7 @@
   }
 
   function readFlowCollection(state, nodeIndent) {
-    var readNext = true,
+    let readNext = true,
         _line,
         _lineStart,
         _pos,
@@ -1912,7 +1912,7 @@
   }
 
   function readBlockScalar(state, nodeIndent) {
-    var captureStart,
+    let captureStart,
         folding,
         chomping       = CHOMPING_CLIP,
         didReadContent = false,
@@ -2055,7 +2055,7 @@
   }
 
   function readBlockSequence(state, nodeIndent) {
-    var _line,
+    let _line,
         _tag      = state.tag,
         _anchor   = state.anchor,
         _result   = [],
@@ -2125,7 +2125,7 @@
   }
 
   function readBlockMapping(state, nodeIndent, flowIndent) {
-    var following,
+    let following,
         allowCompact,
         _line,
         _keyLine,
@@ -2302,7 +2302,7 @@
   }
 
   function readTagProperty(state) {
-    var _position,
+    let _position,
         isVerbatim = false,
         isNamed    = false,
         tagHandle,
@@ -2402,7 +2402,7 @@
   }
 
   function readAnchorProperty(state) {
-    var _position,
+    let _position,
         ch;
 
     ch = state.input.charCodeAt(state.position);
@@ -2429,7 +2429,7 @@
   }
 
   function readAlias(state) {
-    var _position, alias,
+    let _position, alias,
         ch;
 
     ch = state.input.charCodeAt(state.position);
@@ -2459,7 +2459,7 @@
   }
 
   function composeNode(state, parentIndent, nodeContext, allowToSeek, allowCompact) {
-    var allowBlockStyles,
+    let allowBlockStyles,
         allowBlockScalars,
         allowBlockCollections,
         indentStatus = 1, // 1: this>parent, 0: this=parent, -1: this<parent
@@ -2638,7 +2638,7 @@
   }
 
   function readDocument(state) {
-    var documentStart = state.position,
+    let documentStart = state.position,
         _position,
         directiveName,
         directiveArgs,
@@ -2763,9 +2763,9 @@
       }
     }
 
-    var state = new State$1(input, options);
+    const state = new State$1(input, options);
 
-    var nullpos = input.indexOf('\0');
+    const nullpos = input.indexOf('\0');
 
     if (nullpos !== -1) {
       state.position = nullpos;
@@ -2794,20 +2794,20 @@
       iterator = null;
     }
 
-    var documents = loadDocuments(input, options);
+    const documents = loadDocuments(input, options);
 
     if (typeof iterator !== 'function') {
       return documents;
     }
 
-    for (var index = 0, length = documents.length; index < length; index += 1) {
+    for (let index = 0, length = documents.length; index < length; index += 1) {
       iterator(documents[index]);
     }
   }
 
 
   function load$1(input, options) {
-    var documents = loadDocuments(input, options);
+    const documents = loadDocuments(input, options);
 
     if (documents.length === 0) {
       /*eslint-disable no-undefined*/
@@ -2819,10 +2819,10 @@
   }
 
 
-  var loadAll_1 = loadAll$1;
-  var load_1    = load$1;
+  const loadAll_1 = loadAll$1;
+  const load_1    = load$1;
 
-  var loader = {
+  const loader = {
   	loadAll: loadAll_1,
   	load: load_1
   };
@@ -2833,36 +2833,36 @@
 
 
 
-  var _toString       = Object.prototype.toString;
-  var _hasOwnProperty = Object.prototype.hasOwnProperty;
+  const _toString       = Object.prototype.toString;
+  const _hasOwnProperty = Object.prototype.hasOwnProperty;
 
-  var CHAR_BOM                  = 0xFEFF;
-  var CHAR_TAB                  = 0x09; /* Tab */
-  var CHAR_LINE_FEED            = 0x0A; /* LF */
-  var CHAR_CARRIAGE_RETURN      = 0x0D; /* CR */
-  var CHAR_SPACE                = 0x20; /* Space */
-  var CHAR_EXCLAMATION          = 0x21; /* ! */
-  var CHAR_DOUBLE_QUOTE         = 0x22; /* " */
-  var CHAR_SHARP                = 0x23; /* # */
-  var CHAR_PERCENT              = 0x25; /* % */
-  var CHAR_AMPERSAND            = 0x26; /* & */
-  var CHAR_SINGLE_QUOTE         = 0x27; /* ' */
-  var CHAR_ASTERISK             = 0x2A; /* * */
-  var CHAR_COMMA                = 0x2C; /* , */
-  var CHAR_MINUS                = 0x2D; /* - */
-  var CHAR_COLON                = 0x3A; /* : */
-  var CHAR_EQUALS               = 0x3D; /* = */
-  var CHAR_GREATER_THAN         = 0x3E; /* > */
-  var CHAR_QUESTION             = 0x3F; /* ? */
-  var CHAR_COMMERCIAL_AT        = 0x40; /* @ */
-  var CHAR_LEFT_SQUARE_BRACKET  = 0x5B; /* [ */
-  var CHAR_RIGHT_SQUARE_BRACKET = 0x5D; /* ] */
-  var CHAR_GRAVE_ACCENT         = 0x60; /* ` */
-  var CHAR_LEFT_CURLY_BRACKET   = 0x7B; /* { */
-  var CHAR_VERTICAL_LINE        = 0x7C; /* | */
-  var CHAR_RIGHT_CURLY_BRACKET  = 0x7D; /* } */
+  const CHAR_BOM                  = 0xFEFF;
+  const CHAR_TAB                  = 0x09; /* Tab */
+  const CHAR_LINE_FEED            = 0x0A; /* LF */
+  const CHAR_CARRIAGE_RETURN      = 0x0D; /* CR */
+  const CHAR_SPACE                = 0x20; /* Space */
+  const CHAR_EXCLAMATION          = 0x21; /* ! */
+  const CHAR_DOUBLE_QUOTE         = 0x22; /* " */
+  const CHAR_SHARP                = 0x23; /* # */
+  const CHAR_PERCENT              = 0x25; /* % */
+  const CHAR_AMPERSAND            = 0x26; /* & */
+  const CHAR_SINGLE_QUOTE         = 0x27; /* ' */
+  const CHAR_ASTERISK             = 0x2A; /* * */
+  const CHAR_COMMA                = 0x2C; /* , */
+  const CHAR_MINUS                = 0x2D; /* - */
+  const CHAR_COLON                = 0x3A; /* : */
+  const CHAR_EQUALS               = 0x3D; /* = */
+  const CHAR_GREATER_THAN         = 0x3E; /* > */
+  const CHAR_QUESTION             = 0x3F; /* ? */
+  const CHAR_COMMERCIAL_AT        = 0x40; /* @ */
+  const CHAR_LEFT_SQUARE_BRACKET  = 0x5B; /* [ */
+  const CHAR_RIGHT_SQUARE_BRACKET = 0x5D; /* ] */
+  const CHAR_GRAVE_ACCENT         = 0x60; /* ` */
+  const CHAR_LEFT_CURLY_BRACKET   = 0x7B; /* { */
+  const CHAR_VERTICAL_LINE        = 0x7C; /* | */
+  const CHAR_RIGHT_CURLY_BRACKET  = 0x7D; /* } */
 
-  var ESCAPE_SEQUENCES = {};
+  const ESCAPE_SEQUENCES = {};
 
   ESCAPE_SEQUENCES[0x00]   = '\\0';
   ESCAPE_SEQUENCES[0x07]   = '\\a';
@@ -2880,15 +2880,15 @@
   ESCAPE_SEQUENCES[0x2028] = '\\L';
   ESCAPE_SEQUENCES[0x2029] = '\\P';
 
-  var DEPRECATED_BOOLEANS_SYNTAX = [
+  const DEPRECATED_BOOLEANS_SYNTAX = [
     'y', 'Y', 'yes', 'Yes', 'YES', 'on', 'On', 'ON',
     'n', 'N', 'no', 'No', 'NO', 'off', 'Off', 'OFF'
   ];
 
-  var DEPRECATED_BASE60_SYNTAX = /^[-+]?[0-9_]+(?::[0-9_]+)+(?:\.[0-9_]*)?$/;
+  const DEPRECATED_BASE60_SYNTAX = /^[-+]?[0-9_]+(?::[0-9_]+)+(?:\.[0-9_]*)?$/;
 
   function compileStyleMap(schema, map) {
-    var result, keys, index, length, tag, style, type;
+    let result, keys, index, length, tag, style, type;
 
     if (map === null) return {};
 
@@ -2915,7 +2915,7 @@
   }
 
   function encodeHex(character) {
-    var string, handle, length;
+    let string, handle, length;
 
     string = character.toString(16).toUpperCase();
 
@@ -2936,7 +2936,7 @@
   }
 
 
-  var QUOTING_TYPE_SINGLE = 1,
+  const QUOTING_TYPE_SINGLE = 1,
       QUOTING_TYPE_DOUBLE = 2;
 
   function State(options) {
@@ -2967,7 +2967,7 @@
 
   // Indents every line in a string. Empty lines (\n only) are not indented.
   function indentString(string, spaces) {
-    var ind = common.repeat(' ', spaces),
+    let ind = common.repeat(' ', spaces),
         position = 0,
         next = -1,
         result = '',
@@ -2997,7 +2997,7 @@
   }
 
   function testImplicitResolving(state, str) {
-    var index, length, type;
+    let index, length, type;
 
     for (index = 0, length = state.implicitTypes.length; index < length; index += 1) {
       type = state.implicitTypes[index];
@@ -3049,8 +3049,8 @@
   //                            | ( /* An ns-char preceding */ “#” )
   //                            | ( “:” /* Followed by an ns-plain-safe(c) */ )
   function isPlainSafe(c, prev, inblock) {
-    var cIsNsCharOrWhitespace = isNsCharOrWhitespace(c);
-    var cIsNsChar = cIsNsCharOrWhitespace && !isWhitespace(c);
+    const cIsNsCharOrWhitespace = isNsCharOrWhitespace(c);
+    const cIsNsChar = cIsNsCharOrWhitespace && !isWhitespace(c);
     return (
       // ns-plain-safe
       inblock ? // c = flow-in
@@ -3111,7 +3111,7 @@
 
   // Same as 'string'.codePointAt(pos), but works in older browsers.
   function codePointAt(string, pos) {
-    var first = string.charCodeAt(pos), second;
+    let first = string.charCodeAt(pos), second;
     if (first >= 0xD800 && first <= 0xDBFF && pos + 1 < string.length) {
       second = string.charCodeAt(pos + 1);
       if (second >= 0xDC00 && second <= 0xDFFF) {
@@ -3124,11 +3124,11 @@
 
   // Determines whether block indentation indicator is required.
   function needIndentIndicator(string) {
-    var leadingSpaceRe = /^\n* /;
+    const leadingSpaceRe = /^\n* /;
     return leadingSpaceRe.test(string);
   }
 
-  var STYLE_PLAIN   = 1,
+  const STYLE_PLAIN   = 1,
       STYLE_SINGLE  = 2,
       STYLE_LITERAL = 3,
       STYLE_FOLDED  = 4,
@@ -3144,14 +3144,14 @@
   function chooseScalarStyle(string, singleLineOnly, indentPerLevel, lineWidth,
     testAmbiguousType, quotingType, forceQuotes, inblock) {
 
-    var i;
-    var char = 0;
-    var prevChar = null;
-    var hasLineBreak = false;
-    var hasFoldableLine = false; // only checked if shouldTrackWidth
-    var shouldTrackWidth = lineWidth !== -1;
-    var previousLineBreak = -1; // count the first line correctly
-    var plain = isPlainSafeFirst(codePointAt(string, 0))
+    let i;
+    let char = 0;
+    let prevChar = null;
+    let hasLineBreak = false;
+    let hasFoldableLine = false; // only checked if shouldTrackWidth
+    const shouldTrackWidth = lineWidth !== -1;
+    let previousLineBreak = -1; // count the first line correctly
+    let plain = isPlainSafeFirst(codePointAt(string, 0))
             && isPlainSafeLast(codePointAt(string, string.length - 1));
 
     if (singleLineOnly || forceQuotes) {
@@ -3230,7 +3230,7 @@
         }
       }
 
-      var indent = state.indent * Math.max(1, level); // no 0-indent scalars
+      const indent = state.indent * Math.max(1, level); // no 0-indent scalars
       // As indentation gets deeper, let the width decrease monotonically
       // to the lower bound min(state.lineWidth, 40).
       // Note that this implies
@@ -3238,11 +3238,11 @@
       //  state.lineWidth > 40 + state.indent: width decreases until the lower bound.
       // This behaves better than a constant minimum width which disallows narrower options,
       // or an indent threshold which causes the width to suddenly increase.
-      var lineWidth = state.lineWidth === -1
+      const lineWidth = state.lineWidth === -1
         ? -1 : Math.max(Math.min(state.lineWidth, 40), state.lineWidth - indent);
 
       // Without knowing if keys are implicit/explicit, assume implicit for safety.
-      var singleLineOnly = iskey
+      const singleLineOnly = iskey
         // No block styles in flow mode.
         || (state.flowLevel > -1 && level >= state.flowLevel);
       function testAmbiguity(string) {
@@ -3272,12 +3272,12 @@
 
   // Pre-conditions: string is valid for a block scalar, 1 <= indentPerLevel <= 9.
   function blockHeader(string, indentPerLevel) {
-    var indentIndicator = needIndentIndicator(string) ? String(indentPerLevel) : '';
+    const indentIndicator = needIndentIndicator(string) ? String(indentPerLevel) : '';
 
     // note the special case: the string '\n' counts as a "trailing" empty line.
-    var clip =          string[string.length - 1] === '\n';
-    var keep = clip && (string[string.length - 2] === '\n' || string === '\n');
-    var chomp = keep ? '+' : (clip ? '' : '-');
+    const clip =          string[string.length - 1] === '\n';
+    const keep = clip && (string[string.length - 2] === '\n' || string === '\n');
+    const chomp = keep ? '+' : (clip ? '' : '-');
 
     return indentIndicator + chomp + '\n';
   }
@@ -3294,23 +3294,23 @@
     // unless they're before or after a more-indented line, or at the very
     // beginning or end, in which case $k$ maps to $k$.
     // Therefore, parse each chunk as newline(s) followed by a content line.
-    var lineRe = /(\n+)([^\n]*)/g;
+    const lineRe = /(\n+)([^\n]*)/g;
 
     // first line (possibly an empty line)
-    var result = (function () {
-      var nextLF = string.indexOf('\n');
+    let result = (function () {
+      let nextLF = string.indexOf('\n');
       nextLF = nextLF !== -1 ? nextLF : string.length;
       lineRe.lastIndex = nextLF;
       return foldLine(string.slice(0, nextLF), width);
     }());
     // If we haven't reached the first content line yet, don't add an extra \n.
-    var prevMoreIndented = string[0] === '\n' || string[0] === ' ';
-    var moreIndented;
+    let prevMoreIndented = string[0] === '\n' || string[0] === ' ';
+    let moreIndented;
 
     // rest of the lines
-    var match;
+    let match;
     while ((match = lineRe.exec(string))) {
-      var prefix = match[1], line = match[2];
+      const prefix = match[1], line = match[2];
       moreIndented = (line[0] === ' ');
       result += prefix
         + (!prevMoreIndented && !moreIndented && line !== ''
@@ -3330,11 +3330,11 @@
     if (line === '' || line[0] === ' ') return line;
 
     // Since a more-indented line adds a \n, breaks can't be followed by a space.
-    var breakRe = / [^ ]/g; // note: the match index will always be <= length-2.
-    var match;
+    const breakRe = / [^ ]/g; // note: the match index will always be <= length-2.
+    let match;
     // start is an inclusive index. end, curr, and next are exclusive.
-    var start = 0, end, curr = 0, next = 0;
-    var result = '';
+    let start = 0, end, curr = 0, next = 0;
+    let result = '';
 
     // Invariants: 0 <= start <= length-1.
     //   0 <= curr <= next <= max(0, length-2). curr - start <= width.
@@ -3367,11 +3367,11 @@
 
   // Escapes a double-quoted string.
   function escapeString(string) {
-    var result = '';
-    var char = 0;
-    var escapeSeq;
+    let result = '';
+    let char = 0;
+    let escapeSeq;
 
-    for (var i = 0; i < string.length; char >= 0x10000 ? i += 2 : i++) {
+    for (let i = 0; i < string.length; char >= 0x10000 ? i += 2 : i++) {
       char = codePointAt(string, i);
       escapeSeq = ESCAPE_SEQUENCES[char];
 
@@ -3387,7 +3387,7 @@
   }
 
   function writeFlowSequence(state, level, object) {
-    var _result = '',
+    let _result = '',
         _tag    = state.tag,
         index,
         length,
@@ -3415,7 +3415,7 @@
   }
 
   function writeBlockSequence(state, level, object, compact) {
-    var _result = '',
+    let _result = '',
         _tag    = state.tag,
         index,
         length,
@@ -3452,7 +3452,7 @@
   }
 
   function writeFlowMapping(state, level, object) {
-    var _result       = '',
+    let _result       = '',
         _tag          = state.tag,
         objectKeyList = Object.keys(object),
         index,
@@ -3498,7 +3498,7 @@
   }
 
   function writeBlockMapping(state, level, object, compact) {
-    var _result       = '',
+    let _result       = '',
         _tag          = state.tag,
         objectKeyList = Object.keys(object),
         index,
@@ -3576,7 +3576,7 @@
   }
 
   function detectType(state, object, explicit) {
-    var _result, typeList, index, length, type, style;
+    let _result, typeList, index, length, type, style;
 
     typeList = explicit ? state.explicitTypes : state.implicitTypes;
 
@@ -3629,15 +3629,15 @@
       detectType(state, object, true);
     }
 
-    var type = _toString.call(state.dump);
-    var inblock = block;
-    var tagStr;
+    const type = _toString.call(state.dump);
+    const inblock = block;
+    let tagStr;
 
     if (block) {
       block = (state.flowLevel < 0 || state.flowLevel > level);
     }
 
-    var objectOrArray = type === '[object Object]' || type === '[object Array]',
+    let objectOrArray = type === '[object Object]' || type === '[object Array]',
         duplicateIndex,
         duplicate;
 
@@ -3729,7 +3729,7 @@
   }
 
   function getDuplicateReferences(object, state) {
-    var objects = [],
+    let objects = [],
         duplicatesIndexes = [],
         index,
         length;
@@ -3743,7 +3743,7 @@
   }
 
   function inspectNode(object, objects, duplicatesIndexes) {
-    var objectKeyList,
+    let objectKeyList,
         index,
         length;
 
@@ -3774,11 +3774,11 @@
   function dump$1(input, options) {
     options = options || {};
 
-    var state = new State(options);
+    const state = new State(options);
 
     if (!state.noRefs) getDuplicateReferences(input, state);
 
-    var value = input;
+    let value = input;
 
     if (state.replacer) {
       value = state.replacer.call({ '': value }, '', value);
@@ -3789,9 +3789,9 @@
     return '';
   }
 
-  var dump_1 = dump$1;
+  const dump_1 = dump$1;
 
-  var dumper = {
+  const dumper = {
   	dump: dump_1
   };
 
@@ -3803,19 +3803,19 @@
   }
 
 
-  var Type                = type;
-  var Schema              = schema;
-  var FAILSAFE_SCHEMA     = failsafe;
-  var JSON_SCHEMA         = json;
-  var CORE_SCHEMA         = core;
-  var DEFAULT_SCHEMA      = _default;
-  var load                = loader.load;
-  var loadAll             = loader.loadAll;
-  var dump                = dumper.dump;
-  var YAMLException       = exception;
+  const Type                = type;
+  const Schema              = schema;
+  const FAILSAFE_SCHEMA     = failsafe;
+  const JSON_SCHEMA         = json;
+  const CORE_SCHEMA         = core;
+  const DEFAULT_SCHEMA      = _default;
+  const load                = loader.load;
+  const loadAll             = loader.loadAll;
+  const dump                = dumper.dump;
+  const YAMLException       = exception;
 
   // Re-export all types in case user wants to create custom schema
-  var types = {
+  const types = {
     binary:    binary,
     float:     float,
     map:       map,
@@ -3832,11 +3832,11 @@
   };
 
   // Removed functions from JS-YAML 3.0.x
-  var safeLoad            = renamed('safeLoad', 'load');
-  var safeLoadAll         = renamed('safeLoadAll', 'loadAll');
-  var safeDump            = renamed('safeDump', 'dump');
+  const safeLoad            = renamed('safeLoad', 'load');
+  const safeLoadAll         = renamed('safeLoadAll', 'loadAll');
+  const safeDump            = renamed('safeDump', 'dump');
 
-  var jsYaml = {
+  const jsYaml = {
   	Type: Type,
   	Schema: Schema,
   	FAILSAFE_SCHEMA: FAILSAFE_SCHEMA,

@@ -1,4 +1,4 @@
-var convert = require('./convert'),
+const convert = require('./convert'),
     func = convert('padCharsStart', require('../padStart'));
 
 func.placeholder = require('./placeholder');

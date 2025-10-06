@@ -27,8 +27,8 @@ function _dispose(stack, error, hasError) {
   function next() {
     while (stack.length > 0) {
       try {
-        var r = stack.pop();
-        var p = r.d.call(r.v);
+        const r = stack.pop();
+        const p = r.d.call(r.v);
         if (r.a) return Promise.resolve(p).then(next, err);
       } catch (e) {
         return err(e);

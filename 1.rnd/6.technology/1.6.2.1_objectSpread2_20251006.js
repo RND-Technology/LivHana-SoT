@@ -4,11 +4,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = _objectSpread2;
-var _defineProperty = require("./defineProperty.js");
+const _defineProperty = require("./defineProperty.js");
 function ownKeys(object, enumerableOnly) {
-  var keys = Object.keys(object);
+  const keys = Object.keys(object);
   if (Object.getOwnPropertySymbols) {
-    var symbols = Object.getOwnPropertySymbols(object);
+    let symbols = Object.getOwnPropertySymbols(object);
     if (enumerableOnly) {
       symbols = symbols.filter(function (sym) {
         return Object.getOwnPropertyDescriptor(object, sym).enumerable;
@@ -19,7 +19,7 @@ function ownKeys(object, enumerableOnly) {
   return keys;
 }
 function _objectSpread2(target) {
-  for (var i = 1; i < arguments.length; i++) {
+  for (let i = 1; i < arguments.length; i++) {
     var source = arguments[i] != null ? arguments[i] : {};
     if (i % 2) {
       ownKeys(Object(source), true).forEach(function (key) {

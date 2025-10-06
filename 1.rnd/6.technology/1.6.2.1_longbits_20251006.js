@@ -1,7 +1,7 @@
 "use strict";
 module.exports = LongBits;
 
-var util = require("../util/minimal");
+const util = require("../util/minimal");
 
 /**
  * Constructs new long bits.
@@ -34,7 +34,7 @@ function LongBits(lo, hi) {
  * @memberof util.LongBits
  * @type {util.LongBits}
  */
-var zero = LongBits.zero = new LongBits(0, 0);
+const zero = LongBits.zero = new LongBits(0, 0);
 
 zero.toNumber = function() { return 0; };
 zero.zzEncode = zero.zzDecode = function() { return this; };
@@ -45,7 +45,7 @@ zero.length = function() { return 1; };
  * @memberof util.LongBits
  * @type {string}
  */
-var zeroHash = LongBits.zeroHash = "\0\0\0\0\0\0\0\0";
+const zeroHash = LongBits.zeroHash = "\0\0\0\0\0\0\0\0";
 
 /**
  * Constructs new long bits from the specified number.
@@ -55,10 +55,10 @@ var zeroHash = LongBits.zeroHash = "\0\0\0\0\0\0\0\0";
 LongBits.fromNumber = function fromNumber(value) {
     if (value === 0)
         return zero;
-    var sign = value < 0;
+    const sign = value < 0;
     if (sign)
         value = -value;
-    var lo = value >>> 0,
+    let lo = value >>> 0,
         hi = (value - lo) / 4294967296 >>> 0;
     if (sign) {
         hi = ~hi >>> 0;
@@ -97,7 +97,7 @@ LongBits.from = function from(value) {
  */
 LongBits.prototype.toNumber = function toNumber(unsigned) {
     if (!unsigned && this.hi >>> 31) {
-        var lo = ~this.lo + 1 >>> 0,
+        let lo = ~this.lo + 1 >>> 0,
             hi = ~this.hi     >>> 0;
         if (!lo)
             hi = hi + 1 >>> 0;
@@ -118,7 +118,7 @@ LongBits.prototype.toLong = function toLong(unsigned) {
         : { low: this.lo | 0, high: this.hi | 0, unsigned: Boolean(unsigned) };
 };
 
-var charCodeAt = String.prototype.charCodeAt;
+const charCodeAt = String.prototype.charCodeAt;
 
 /**
  * Constructs new long bits from the specified 8 characters long hash.
@@ -163,7 +163,7 @@ LongBits.prototype.toHash = function toHash() {
  * @returns {util.LongBits} `this`
  */
 LongBits.prototype.zzEncode = function zzEncode() {
-    var mask =   this.hi >> 31;
+    const mask =   this.hi >> 31;
     this.hi  = ((this.hi << 1 | this.lo >>> 31) ^ mask) >>> 0;
     this.lo  = ( this.lo << 1                   ^ mask) >>> 0;
     return this;
@@ -174,7 +174,7 @@ LongBits.prototype.zzEncode = function zzEncode() {
  * @returns {util.LongBits} `this`
  */
 LongBits.prototype.zzDecode = function zzDecode() {
-    var mask = -(this.lo & 1);
+    const mask = -(this.lo & 1);
     this.lo  = ((this.lo >>> 1 | this.hi << 31) ^ mask) >>> 0;
     this.hi  = ( this.hi >>> 1                  ^ mask) >>> 0;
     return this;
@@ -185,7 +185,7 @@ LongBits.prototype.zzDecode = function zzDecode() {
  * @returns {number} Length
  */
 LongBits.prototype.length = function length() {
-    var part0 =  this.lo,
+    const part0 =  this.lo,
         part1 = (this.lo >>> 28 | this.hi << 4) >>> 0,
         part2 =  this.hi >>> 24;
     return part2 === 0

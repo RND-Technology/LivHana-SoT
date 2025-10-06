@@ -12,9 +12,9 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+const __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
+    let desc = Object.getOwnPropertyDescriptor(m, k);
     if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
       desc = { enumerable: true, get: function() { return m[k]; } };
     }
@@ -23,37 +23,37 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
 }));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+const __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
     Object.defineProperty(o, "default", { enumerable: true, value: v });
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || (function () {
-    var ownKeys = function(o) {
+const __importStar = (this && this.__importStar) || (function () {
+    let ownKeys = function(o) {
         ownKeys = Object.getOwnPropertyNames || function (o) {
-            var ar = [];
-            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            const ar = [];
+            for (const k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
             return ar;
         };
         return ownKeys(o);
     };
     return function (mod) {
         if (mod && mod.__esModule) return mod;
-        var result = {};
-        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        const result = {};
+        if (mod != null) for (let k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
         __setModuleDefault(result, mod);
         return result;
     };
 })();
-var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (receiver, state, kind, f) {
+const __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (receiver, state, kind, f) {
     if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
     return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
+const __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-var _File_instances, _File_validateIntegrity;
+let _File_instances, _File_validateIntegrity;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.File = exports.FileExceptionMessages = exports.RequestError = exports.STORAGE_POST_POLICY_BASE_URL = exports.ActionToHTTPMethod = void 0;
 const index_js_1 = require("./nodejs-common/index.js");
@@ -74,7 +74,7 @@ const util_js_2 = require("./util.js");
 const crc32c_js_1 = require("./crc32c.js");
 const hash_stream_validator_js_1 = require("./hash-stream-validator.js");
 const async_retry_1 = __importDefault(require("async-retry"));
-var ActionToHTTPMethod;
+let ActionToHTTPMethod;
 (function (ActionToHTTPMethod) {
     ActionToHTTPMethod["read"] = "GET";
     ActionToHTTPMethod["write"] = "PUT";
@@ -112,7 +112,7 @@ exports.RequestError = RequestError;
 const SEVEN_DAYS = 7 * 24 * 60 * 60;
 const GS_UTIL_URL_REGEX = /(gs):\/\/([a-z0-9_.-]+)\/(.+)/g;
 const HTTPS_PUBLIC_URL_REGEX = /(https):\/\/(storage\.googleapis\.com)\/([a-z0-9_.-]+)\/(.+)/g;
-var FileExceptionMessages;
+let FileExceptionMessages;
 (function (FileExceptionMessages) {
     FileExceptionMessages["EXPIRATION_TIME_NA"] = "An expiration time is not available.";
     FileExceptionMessages["DESTINATION_NO_NAME"] = "Destination file should have a name.";
@@ -283,7 +283,7 @@ class File extends index_js_1.ServiceObject {
      * ```
      */
     constructor(bucket, name, options = {}) {
-        var _a, _b;
+        let _a, _b;
         const requestQueryObject = {};
         let generation;
         if (options.generation !== null) {
@@ -659,7 +659,7 @@ class File extends index_js_1.ServiceObject {
      * - if `idempotencyStrategy` is set to `RetryNever`
      */
     shouldRetryBasedOnPreconditionAndIdempotencyStrat(options) {
-        var _a;
+        let _a;
         return !(((options === null || options === void 0 ? void 0 : options.ifGenerationMatch) === undefined &&
             ((_a = this.instancePreconditionOpts) === null || _a === void 0 ? void 0 : _a.ifGenerationMatch) === undefined &&
             this.storage.retryOptions.idempotencyStrategy ===
@@ -800,7 +800,7 @@ class File extends index_js_1.ServiceObject {
      * Another example:
      */
     copy(destination, optionsOrCallback, callback) {
-        var _a, _b;
+        let _a, _b;
         const noDestinationError = new Error(FileExceptionMessages.DESTINATION_NO_NAME);
         if (!destination) {
             throw noDestinationError;
@@ -1231,7 +1231,7 @@ class File extends index_js_1.ServiceObject {
      * ```
      */
     createResumableUpload(optionsOrCallback, callback) {
-        var _a, _b;
+        let _a, _b;
         const options = typeof optionsOrCallback === 'object' ? optionsOrCallback : {};
         callback =
             typeof optionsOrCallback === 'function' ? optionsOrCallback : callback;
@@ -1433,7 +1433,7 @@ class File extends index_js_1.ServiceObject {
      */
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     createWriteStream(options = {}) {
-        var _a;
+        let _a;
         (_a = options.metadata) !== null && _a !== void 0 ? _a : (options.metadata = {});
         if (options.contentType) {
             options.metadata.contentType = options.contentType;
@@ -2464,7 +2464,7 @@ class File extends index_js_1.ServiceObject {
      * ```
      */
     isPublic(callback) {
-        var _a;
+        let _a;
         // Build any custom headers based on the defined interceptors on the parent
         // storage object and this object
         const storageInterceptors = ((_a = this.storage) === null || _a === void 0 ? void 0 : _a.interceptors) || [];
@@ -2553,7 +2553,7 @@ class File extends index_js_1.ServiceObject {
      * ```
      */
     makePrivate(optionsOrCallback, callback) {
-        var _a, _b;
+        let _a, _b;
         const options = typeof optionsOrCallback === 'object' ? optionsOrCallback : {};
         callback =
             typeof optionsOrCallback === 'function' ? optionsOrCallback : callback;
@@ -2739,7 +2739,7 @@ class File extends index_js_1.ServiceObject {
      * Another example:
      */
     moveFileAtomic(destination, optionsOrCallback, callback) {
-        var _a, _b;
+        let _a, _b;
         const noDestinationError = new Error(FileExceptionMessages.DESTINATION_NO_NAME);
         if (!destination) {
             throw noDestinationError;
@@ -3122,7 +3122,7 @@ class File extends index_js_1.ServiceObject {
      * Example of rotating the encryption key for this file:
      */
     rotateEncryptionKey(optionsOrCallback, callback) {
-        var _a;
+        let _a;
         callback =
             typeof optionsOrCallback === 'function' ? optionsOrCallback : callback;
         let options = {};
@@ -3375,7 +3375,7 @@ class File extends index_js_1.ServiceObject {
      * @private
      */
     startResumableUpload_(dup, options = {}) {
-        var _a;
+        let _a;
         (_a = options.metadata) !== null && _a !== void 0 ? _a : (options.metadata = {});
         const retryOptions = this.storage.retryOptions;
         if (!this.shouldRetryBasedOnPreconditionAndIdempotencyStrat(options.preconditionOpts)) {
@@ -3443,7 +3443,7 @@ class File extends index_js_1.ServiceObject {
      * @private
      */
     startSimpleUpload_(dup, options = {}) {
-        var _a;
+        let _a;
         (_a = options.metadata) !== null && _a !== void 0 ? _a : (options.metadata = {});
         const apiEndpoint = this.storage.apiEndpoint;
         const bucketName = this.bucket.name;
@@ -3497,7 +3497,7 @@ class File extends index_js_1.ServiceObject {
     disableAutoRetryConditionallyIdempotent_(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     coreOpts, methodType, localPreconditionOptions) {
-        var _a, _b, _c, _d;
+        let _a, _b, _c, _d;
         if ((typeof coreOpts === 'object' &&
             ((_b = (_a = coreOpts === null || coreOpts === void 0 ? void 0 : coreOpts.reqOpts) === null || _a === void 0 ? void 0 : _a.qs) === null || _b === void 0 ? void 0 : _b.ifGenerationMatch) === undefined &&
             (localPreconditionOptions === null || localPreconditionOptions === void 0 ? void 0 : localPreconditionOptions.ifGenerationMatch) === undefined &&

@@ -19,7 +19,7 @@ exports.managedidentities_v1beta1 = void 0;
 /* eslint-disable @typescript-eslint/no-namespace */
 /* eslint-disable no-irregular-whitespace */
 const googleapis_common_1 = require("googleapis-common");
-var managedidentities_v1beta1;
+let managedidentities_v1beta1;
 (function (managedidentities_v1beta1) {
     /**
      * Managed Service for Microsoft Active Directory API

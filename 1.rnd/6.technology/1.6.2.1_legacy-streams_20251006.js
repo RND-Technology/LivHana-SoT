@@ -1,4 +1,4 @@
-var Stream = require('stream').Stream
+const Stream = require('stream').Stream
 
 module.exports = legacy
 
@@ -13,7 +13,7 @@ function legacy (fs) {
 
     Stream.call(this);
 
-    var self = this;
+    const self = this;
 
     this.path = path;
     this.fd = null;
@@ -27,9 +27,9 @@ function legacy (fs) {
     options = options || {};
 
     // Mixin options into this
-    var keys = Object.keys(options);
-    for (var index = 0, length = keys.length; index < length; index++) {
-      var key = keys[index];
+    const keys = Object.keys(options);
+    for (let index = 0, length = keys.length; index < length; index++) {
+      const key = keys[index];
       this[key] = options[key];
     }
 
@@ -89,9 +89,9 @@ function legacy (fs) {
     options = options || {};
 
     // Mixin options into this
-    var keys = Object.keys(options);
-    for (var index = 0, length = keys.length; index < length; index++) {
-      var key = keys[index];
+    const keys = Object.keys(options);
+    for (let index = 0, length = keys.length; index < length; index++) {
+      const key = keys[index];
       this[key] = options[key];
     }
 

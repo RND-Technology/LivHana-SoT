@@ -1,12 +1,12 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var GetV = require('./GetV');
-var IsCallable = require('./IsCallable');
-var isPropertyKey = require('../helpers/isPropertyKey');
+const GetV = require('./GetV');
+const IsCallable = require('./IsCallable');
+const isPropertyKey = require('../helpers/isPropertyKey');
 
-var inspect = require('object-inspect');
+const inspect = require('object-inspect');
 
 // https://262.ecma-international.org/6.0/#sec-getmethod
 
@@ -17,7 +17,7 @@ module.exports = function GetMethod(O, P) {
 	}
 
 	// 7.3.9.2
-	var func = GetV(O, P);
+	const func = GetV(O, P);
 
 	// 7.3.9.4
 	if (func == null) {

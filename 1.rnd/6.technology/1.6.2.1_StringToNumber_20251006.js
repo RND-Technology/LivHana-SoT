@@ -1,23 +1,23 @@
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+const GetIntrinsic = require('get-intrinsic');
 
-var $RegExp = GetIntrinsic('%RegExp%');
-var $TypeError = require('es-errors/type');
-var $parseInteger = GetIntrinsic('%parseInt%');
+const $RegExp = GetIntrinsic('%RegExp%');
+const $TypeError = require('es-errors/type');
+const $parseInteger = GetIntrinsic('%parseInt%');
 
-var callBound = require('call-bound');
-var regexTester = require('safe-regex-test');
+const callBound = require('call-bound');
+const regexTester = require('safe-regex-test');
 
-var $strSlice = callBound('String.prototype.slice');
-var isBinary = regexTester(/^0b[01]+$/i);
-var isOctal = regexTester(/^0o[0-7]+$/i);
-var isInvalidHexLiteral = regexTester(/^[-+]0x[0-9a-f]+$/i);
-var nonWS = ['\u0085', '\u200b', '\ufffe'].join('');
-var nonWSregex = new $RegExp('[' + nonWS + ']', 'g');
-var hasNonWS = regexTester(nonWSregex);
+const $strSlice = callBound('String.prototype.slice');
+const isBinary = regexTester(/^0b[01]+$/i);
+const isOctal = regexTester(/^0o[0-7]+$/i);
+const isInvalidHexLiteral = regexTester(/^[-+]0x[0-9a-f]+$/i);
+const nonWS = ['\u0085', '\u200b', '\ufffe'].join('');
+const nonWSregex = new $RegExp('[' + nonWS + ']', 'g');
+const hasNonWS = regexTester(nonWSregex);
 
-var $trim = require('string.prototype.trim');
+const $trim = require('string.prototype.trim');
 
 // https://262.ecma-international.org/13.0/#sec-stringtonumber
 
@@ -34,7 +34,7 @@ module.exports = function StringToNumber(argument) {
 	if (hasNonWS(argument) || isInvalidHexLiteral(argument)) {
 		return NaN;
 	}
-	var trimmed = $trim(argument);
+	const trimmed = $trim(argument);
 	if (trimmed !== argument) {
 		return StringToNumber(trimmed);
 	}

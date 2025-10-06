@@ -188,7 +188,7 @@ class ObjectSchema {
                     ...definitions[key],
                     merge: MergeStrategy[definitions[key].merge]
                 };
-            };
+            }
 
             // normalize the validate method in case there's a string
             if (typeof definitions[key].validate === "string") {
@@ -196,7 +196,7 @@ class ObjectSchema {
                     ...definitions[key],
                     validate: ValidationStrategy[definitions[key].validate]
                 };
-            };
+            }
 
             this[strategies].set(key, definitions[key]);
 

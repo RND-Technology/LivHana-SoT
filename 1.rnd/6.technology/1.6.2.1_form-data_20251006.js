@@ -1,37 +1,37 @@
-var __accessCheck = (obj, member, msg) => {
+const __accessCheck = (obj, member, msg) => {
   if (!member.has(obj))
     throw TypeError("Cannot " + msg);
 };
-var __privateGet = (obj, member, getter) => {
+const __privateGet = (obj, member, getter) => {
   __accessCheck(obj, member, "read from private field");
   return getter ? getter.call(obj) : member.get(obj);
 };
-var __privateAdd = (obj, member, value) => {
+const __privateAdd = (obj, member, value) => {
   if (member.has(obj))
     throw TypeError("Cannot add the same private member more than once");
   member instanceof WeakSet ? member.add(obj) : member.set(obj, value);
 };
-var __privateSet = (obj, member, value, setter) => {
+const __privateSet = (obj, member, value, setter) => {
   __accessCheck(obj, member, "write to private field");
   setter ? setter.call(obj, value) : member.set(obj, value);
   return value;
 };
-var __privateMethod = (obj, member, method) => {
+const __privateMethod = (obj, member, method) => {
   __accessCheck(obj, member, "access private method");
   return method;
 };
 
 // src/isFunction.ts
-var isFunction = (value) => typeof value === "function";
+const isFunction = (value) => typeof value === "function";
 
 // src/isObject.ts
-var isObject = (value) => typeof value === "object" && value != null && !Array.isArray(value);
+const isObject = (value) => typeof value === "object" && value != null && !Array.isArray(value);
 
 // src/isAsyncIterable.ts
-var isAsyncIterable = (value) => isObject(value) && isFunction(value[Symbol.asyncIterator]);
+const isAsyncIterable = (value) => isObject(value) && isFunction(value[Symbol.asyncIterator]);
 
 // src/blobHelpers.ts
-var MAX_CHUNK_SIZE = 65536;
+const MAX_CHUNK_SIZE = 65536;
 async function* clonePart(value) {
   if (value.byteLength <= MAX_CHUNK_SIZE) {
     yield value;
@@ -60,7 +60,7 @@ async function* chunkStream(stream) {
     yield* clonePart(value);
   }
 }
-var getStreamIterator = (source) => {
+const getStreamIterator = (source) => {
   if (isAsyncIterable(source)) {
     return chunkStream(source);
   }
@@ -129,8 +129,8 @@ function* sliceBlob(blobParts, blobSize, start = 0, end) {
 }
 
 // src/Blob.ts
-var _parts, _type, _size;
-var _Blob = class _Blob {
+let _parts, _type, _size;
+const _Blob = class _Blob {
   /**
    * Returns a new [`Blob`](https://developer.mozilla.org/en-US/docs/Web/API/Blob) object.
    * The content of the blob consists of the concatenation of the values given in the parameter array.
@@ -266,7 +266,7 @@ var _Blob = class _Blob {
 _parts = new WeakMap();
 _type = new WeakMap();
 _size = new WeakMap();
-var Blob = _Blob;
+const Blob = _Blob;
 Object.defineProperties(Blob.prototype, {
   type: { enumerable: true },
   size: { enumerable: true },
@@ -277,11 +277,11 @@ Object.defineProperties(Blob.prototype, {
 });
 
 // src/isBlob.ts
-var isBlob = (value) => value instanceof Blob;
+const isBlob = (value) => value instanceof Blob;
 
 // src/File.ts
-var _name, _lastModified;
-var File = class extends Blob {
+let _name, _lastModified;
+const File = class extends Blob {
   /**
    * Creates a new File instance.
    *
@@ -337,11 +337,11 @@ _name = new WeakMap();
 _lastModified = new WeakMap();
 
 // src/isFile.ts
-var isFile = (value) => value instanceof File;
+const isFile = (value) => value instanceof File;
 
 // src/FormData.ts
-var _entries, _setEntry, setEntry_fn;
-var FormData = class {
+let _entries, _setEntry, setEntry_fn;
+const FormData = class {
   constructor() {
     __privateAdd(this, _setEntry);
     /**

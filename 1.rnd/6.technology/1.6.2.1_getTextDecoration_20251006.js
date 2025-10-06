@@ -4,8 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = exports.colorTransformations = void 0;
-var _system = require("@mui/system");
-var _colorManipulator = require("@mui/system/colorManipulator");
+const _system = require("@mui/system");
+const _colorManipulator = require("@mui/system/colorManipulator");
 const colorTransformations = exports.colorTransformations = {
   primary: 'primary.main',
   textPrimary: 'text.primary',
@@ -28,4 +28,4 @@ const getTextDecoration = ({
   }
   return (0, _colorManipulator.alpha)(color, 0.4);
 };
-var _default = exports.default = getTextDecoration;
+const _default = exports.default = getTextDecoration;

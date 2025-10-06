@@ -1,26 +1,26 @@
 "use strict";
 exports.__esModule = true;
 exports.BookingCustomAttributesApi = void 0;
-var tslib_1 = require("tslib");
-var bulkDeleteBookingCustomAttributesRequest_1 = require("../models/bulkDeleteBookingCustomAttributesRequest");
-var bulkDeleteBookingCustomAttributesResponse_1 = require("../models/bulkDeleteBookingCustomAttributesResponse");
-var bulkUpsertBookingCustomAttributesRequest_1 = require("../models/bulkUpsertBookingCustomAttributesRequest");
-var bulkUpsertBookingCustomAttributesResponse_1 = require("../models/bulkUpsertBookingCustomAttributesResponse");
-var createBookingCustomAttributeDefinitionRequest_1 = require("../models/createBookingCustomAttributeDefinitionRequest");
-var createBookingCustomAttributeDefinitionResponse_1 = require("../models/createBookingCustomAttributeDefinitionResponse");
-var deleteBookingCustomAttributeDefinitionResponse_1 = require("../models/deleteBookingCustomAttributeDefinitionResponse");
-var deleteBookingCustomAttributeResponse_1 = require("../models/deleteBookingCustomAttributeResponse");
-var listBookingCustomAttributeDefinitionsResponse_1 = require("../models/listBookingCustomAttributeDefinitionsResponse");
-var listBookingCustomAttributesResponse_1 = require("../models/listBookingCustomAttributesResponse");
-var retrieveBookingCustomAttributeDefinitionResponse_1 = require("../models/retrieveBookingCustomAttributeDefinitionResponse");
-var retrieveBookingCustomAttributeResponse_1 = require("../models/retrieveBookingCustomAttributeResponse");
-var updateBookingCustomAttributeDefinitionRequest_1 = require("../models/updateBookingCustomAttributeDefinitionRequest");
-var updateBookingCustomAttributeDefinitionResponse_1 = require("../models/updateBookingCustomAttributeDefinitionResponse");
-var upsertBookingCustomAttributeRequest_1 = require("../models/upsertBookingCustomAttributeRequest");
-var upsertBookingCustomAttributeResponse_1 = require("../models/upsertBookingCustomAttributeResponse");
-var schema_1 = require("../schema");
-var baseApi_1 = require("./baseApi");
-var BookingCustomAttributesApi = /** @class */ (function (_super) {
+const tslib_1 = require("tslib");
+const bulkDeleteBookingCustomAttributesRequest_1 = require("../models/bulkDeleteBookingCustomAttributesRequest");
+const bulkDeleteBookingCustomAttributesResponse_1 = require("../models/bulkDeleteBookingCustomAttributesResponse");
+const bulkUpsertBookingCustomAttributesRequest_1 = require("../models/bulkUpsertBookingCustomAttributesRequest");
+const bulkUpsertBookingCustomAttributesResponse_1 = require("../models/bulkUpsertBookingCustomAttributesResponse");
+const createBookingCustomAttributeDefinitionRequest_1 = require("../models/createBookingCustomAttributeDefinitionRequest");
+const createBookingCustomAttributeDefinitionResponse_1 = require("../models/createBookingCustomAttributeDefinitionResponse");
+const deleteBookingCustomAttributeDefinitionResponse_1 = require("../models/deleteBookingCustomAttributeDefinitionResponse");
+const deleteBookingCustomAttributeResponse_1 = require("../models/deleteBookingCustomAttributeResponse");
+const listBookingCustomAttributeDefinitionsResponse_1 = require("../models/listBookingCustomAttributeDefinitionsResponse");
+const listBookingCustomAttributesResponse_1 = require("../models/listBookingCustomAttributesResponse");
+const retrieveBookingCustomAttributeDefinitionResponse_1 = require("../models/retrieveBookingCustomAttributeDefinitionResponse");
+const retrieveBookingCustomAttributeResponse_1 = require("../models/retrieveBookingCustomAttributeResponse");
+const updateBookingCustomAttributeDefinitionRequest_1 = require("../models/updateBookingCustomAttributeDefinitionRequest");
+const updateBookingCustomAttributeDefinitionResponse_1 = require("../models/updateBookingCustomAttributeDefinitionResponse");
+const upsertBookingCustomAttributeRequest_1 = require("../models/upsertBookingCustomAttributeRequest");
+const upsertBookingCustomAttributeResponse_1 = require("../models/upsertBookingCustomAttributeResponse");
+const schema_1 = require("../schema");
+const baseApi_1 = require("./baseApi");
+const BookingCustomAttributesApi = /** @class */ (function (_super) {
     tslib_1.__extends(BookingCustomAttributesApi, _super);
     function BookingCustomAttributesApi() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -45,7 +45,7 @@ var BookingCustomAttributesApi = /** @class */ (function (_super) {
      */
     BookingCustomAttributesApi.prototype.listBookingCustomAttributeDefinitions = function (limit, cursor, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET', '/v2/bookings/custom-attribute-definitions');
                 mapped = req.prepareArgs({
@@ -78,7 +78,7 @@ var BookingCustomAttributesApi = /** @class */ (function (_super) {
      */
     BookingCustomAttributesApi.prototype.createBookingCustomAttributeDefinition = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/bookings/custom-attribute-definitions');
                 mapped = req.prepareArgs({
@@ -107,7 +107,7 @@ var BookingCustomAttributesApi = /** @class */ (function (_super) {
      */
     BookingCustomAttributesApi.prototype.deleteBookingCustomAttributeDefinition = function (key, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('DELETE');
                 mapped = req.prepareArgs({ key: [key, (0, schema_1.string)()] });
@@ -135,7 +135,7 @@ var BookingCustomAttributesApi = /** @class */ (function (_super) {
      */
     BookingCustomAttributesApi.prototype.retrieveBookingCustomAttributeDefinition = function (key, version, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({
@@ -170,7 +170,7 @@ var BookingCustomAttributesApi = /** @class */ (function (_super) {
      */
     BookingCustomAttributesApi.prototype.updateBookingCustomAttributeDefinition = function (key, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('PUT');
                 mapped = req.prepareArgs({
@@ -203,7 +203,7 @@ var BookingCustomAttributesApi = /** @class */ (function (_super) {
      */
     BookingCustomAttributesApi.prototype.bulkDeleteBookingCustomAttributes = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/bookings/custom-attributes/bulk-delete');
                 mapped = req.prepareArgs({
@@ -234,7 +234,7 @@ var BookingCustomAttributesApi = /** @class */ (function (_super) {
      */
     BookingCustomAttributesApi.prototype.bulkUpsertBookingCustomAttributes = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/bookings/custom-attributes/bulk-upsert');
                 mapped = req.prepareArgs({
@@ -273,7 +273,7 @@ var BookingCustomAttributesApi = /** @class */ (function (_super) {
      */
     BookingCustomAttributesApi.prototype.listBookingCustomAttributes = function (bookingId, limit, cursor, withDefinitions, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({
@@ -310,7 +310,7 @@ var BookingCustomAttributesApi = /** @class */ (function (_super) {
      */
     BookingCustomAttributesApi.prototype.deleteBookingCustomAttribute = function (bookingId, key, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('DELETE');
                 mapped = req.prepareArgs({
@@ -348,7 +348,7 @@ var BookingCustomAttributesApi = /** @class */ (function (_super) {
      */
     BookingCustomAttributesApi.prototype.retrieveBookingCustomAttribute = function (bookingId, key, withDefinition, version, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({
@@ -390,7 +390,7 @@ var BookingCustomAttributesApi = /** @class */ (function (_super) {
      */
     BookingCustomAttributesApi.prototype.upsertBookingCustomAttribute = function (bookingId, key, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('PUT');
                 mapped = req.prepareArgs({
@@ -409,5 +409,5 @@ var BookingCustomAttributesApi = /** @class */ (function (_super) {
     return BookingCustomAttributesApi;
 }(baseApi_1.BaseApi));
 exports.BookingCustomAttributesApi = BookingCustomAttributesApi;
-var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6, templateObject_7;
+let templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6, templateObject_7;
 //# sourceMappingURL=bookingCustomAttributesApi.js.map

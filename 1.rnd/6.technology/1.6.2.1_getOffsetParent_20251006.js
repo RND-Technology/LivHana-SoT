@@ -18,26 +18,26 @@ function getTrueOffsetParent(element) {
 
 
 function getContainingBlock(element) {
-  var isFirefox = /firefox/i.test(getUAString());
-  var isIE = /Trident/i.test(getUAString());
+  const isFirefox = /firefox/i.test(getUAString());
+  const isIE = /Trident/i.test(getUAString());
 
   if (isIE && isHTMLElement(element)) {
     // In IE 9, 10 and 11 fixed elements containing block is always established by the viewport
-    var elementCss = getComputedStyle(element);
+    const elementCss = getComputedStyle(element);
 
     if (elementCss.position === 'fixed') {
       return null;
     }
   }
 
-  var currentNode = getParentNode(element);
+  let currentNode = getParentNode(element);
 
   if (isShadowRoot(currentNode)) {
     currentNode = currentNode.host;
   }
 
   while (isHTMLElement(currentNode) && ['html', 'body'].indexOf(getNodeName(currentNode)) < 0) {
-    var css = getComputedStyle(currentNode); // This is non-exhaustive but covers the most common CSS properties that
+    const css = getComputedStyle(currentNode); // This is non-exhaustive but covers the most common CSS properties that
     // create a containing block.
     // https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block#identifying_the_containing_block
 
@@ -54,8 +54,8 @@ function getContainingBlock(element) {
 
 
 export default function getOffsetParent(element) {
-  var window = getWindow(element);
-  var offsetParent = getTrueOffsetParent(element);
+  const window = getWindow(element);
+  let offsetParent = getTrueOffsetParent(element);
 
   while (offsetParent && isTableElement(offsetParent) && getComputedStyle(offsetParent).position === 'static') {
     offsetParent = getTrueOffsetParent(offsetParent);

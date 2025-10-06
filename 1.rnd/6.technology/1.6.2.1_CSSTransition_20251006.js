@@ -3,35 +3,35 @@
 exports.__esModule = true;
 exports.default = void 0;
 
-var _propTypes = _interopRequireDefault(require("prop-types"));
+const _propTypes = _interopRequireDefault(require("prop-types"));
 
-var _addClass2 = _interopRequireDefault(require("dom-helpers/addClass"));
+const _addClass2 = _interopRequireDefault(require("dom-helpers/addClass"));
 
-var _removeClass = _interopRequireDefault(require("dom-helpers/removeClass"));
+const _removeClass = _interopRequireDefault(require("dom-helpers/removeClass"));
 
-var _react = _interopRequireDefault(require("react"));
+const _react = _interopRequireDefault(require("react"));
 
-var _Transition = _interopRequireDefault(require("./Transition"));
+const _Transition = _interopRequireDefault(require("./Transition"));
 
-var _PropTypes = require("./utils/PropTypes");
+const _PropTypes = require("./utils/PropTypes");
 
-var _reflow = require("./utils/reflow");
+const _reflow = require("./utils/reflow");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function _extends() { _extends = Object.assign || function (target) { for (let i = 1; i < arguments.length; i++) { const source = arguments[i]; for (const key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; const target = {}; const sourceKeys = Object.keys(source); let key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
 function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
 
-var _addClass = function addClass(node, classes) {
+const _addClass = function addClass(node, classes) {
   return node && classes && classes.split(' ').forEach(function (c) {
     return (0, _addClass2.default)(node, c);
   });
 };
 
-var removeClass = function removeClass(node, classes) {
+const removeClass = function removeClass(node, classes) {
   return node && classes && classes.split(' ').forEach(function (c) {
     return (0, _removeClass.default)(node, c);
   });
@@ -107,11 +107,11 @@ var removeClass = function removeClass(node, classes) {
  */
 
 
-var CSSTransition = /*#__PURE__*/function (_React$Component) {
+const CSSTransition = /*#__PURE__*/function (_React$Component) {
   _inheritsLoose(CSSTransition, _React$Component);
 
   function CSSTransition() {
-    var _this;
+    let _this;
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
@@ -125,7 +125,7 @@ var CSSTransition = /*#__PURE__*/function (_React$Component) {
     };
 
     _this.onEnter = function (maybeNode, maybeAppearing) {
-      var _this$resolveArgument = _this.resolveArguments(maybeNode, maybeAppearing),
+      const _this$resolveArgument = _this.resolveArguments(maybeNode, maybeAppearing),
           node = _this$resolveArgument[0],
           appearing = _this$resolveArgument[1];
 
@@ -139,11 +139,11 @@ var CSSTransition = /*#__PURE__*/function (_React$Component) {
     };
 
     _this.onEntering = function (maybeNode, maybeAppearing) {
-      var _this$resolveArgument2 = _this.resolveArguments(maybeNode, maybeAppearing),
+      const _this$resolveArgument2 = _this.resolveArguments(maybeNode, maybeAppearing),
           node = _this$resolveArgument2[0],
           appearing = _this$resolveArgument2[1];
 
-      var type = appearing ? 'appear' : 'enter';
+      const type = appearing ? 'appear' : 'enter';
 
       _this.addClass(node, type, 'active');
 
@@ -153,11 +153,11 @@ var CSSTransition = /*#__PURE__*/function (_React$Component) {
     };
 
     _this.onEntered = function (maybeNode, maybeAppearing) {
-      var _this$resolveArgument3 = _this.resolveArguments(maybeNode, maybeAppearing),
+      const _this$resolveArgument3 = _this.resolveArguments(maybeNode, maybeAppearing),
           node = _this$resolveArgument3[0],
           appearing = _this$resolveArgument3[1];
 
-      var type = appearing ? 'appear' : 'enter';
+      const type = appearing ? 'appear' : 'enter';
 
       _this.removeClasses(node, type);
 
@@ -169,7 +169,7 @@ var CSSTransition = /*#__PURE__*/function (_React$Component) {
     };
 
     _this.onExit = function (maybeNode) {
-      var _this$resolveArgument4 = _this.resolveArguments(maybeNode),
+      const _this$resolveArgument4 = _this.resolveArguments(maybeNode),
           node = _this$resolveArgument4[0];
 
       _this.removeClasses(node, 'appear');
@@ -184,7 +184,7 @@ var CSSTransition = /*#__PURE__*/function (_React$Component) {
     };
 
     _this.onExiting = function (maybeNode) {
-      var _this$resolveArgument5 = _this.resolveArguments(maybeNode),
+      const _this$resolveArgument5 = _this.resolveArguments(maybeNode),
           node = _this$resolveArgument5[0];
 
       _this.addClass(node, 'exit', 'active');
@@ -195,7 +195,7 @@ var CSSTransition = /*#__PURE__*/function (_React$Component) {
     };
 
     _this.onExited = function (maybeNode) {
-      var _this$resolveArgument6 = _this.resolveArguments(maybeNode),
+      const _this$resolveArgument6 = _this.resolveArguments(maybeNode),
           node = _this$resolveArgument6[0];
 
       _this.removeClasses(node, 'exit');
@@ -213,12 +213,12 @@ var CSSTransition = /*#__PURE__*/function (_React$Component) {
     };
 
     _this.getClassNames = function (type) {
-      var classNames = _this.props.classNames;
-      var isStringClassNames = typeof classNames === 'string';
-      var prefix = isStringClassNames && classNames ? classNames + "-" : '';
-      var baseClassName = isStringClassNames ? "" + prefix + type : classNames[type];
-      var activeClassName = isStringClassNames ? baseClassName + "-active" : classNames[type + "Active"];
-      var doneClassName = isStringClassNames ? baseClassName + "-done" : classNames[type + "Done"];
+      const classNames = _this.props.classNames;
+      const isStringClassNames = typeof classNames === 'string';
+      const prefix = isStringClassNames && classNames ? classNames + "-" : '';
+      const baseClassName = isStringClassNames ? "" + prefix + type : classNames[type];
+      const activeClassName = isStringClassNames ? baseClassName + "-active" : classNames[type + "Active"];
+      const doneClassName = isStringClassNames ? baseClassName + "-done" : classNames[type + "Done"];
       return {
         baseClassName: baseClassName,
         activeClassName: activeClassName,
@@ -229,12 +229,12 @@ var CSSTransition = /*#__PURE__*/function (_React$Component) {
     return _this;
   }
 
-  var _proto = CSSTransition.prototype;
+  const _proto = CSSTransition.prototype;
 
   _proto.addClass = function addClass(node, type, phase) {
-    var className = this.getClassNames(type)[phase + "ClassName"];
+    let className = this.getClassNames(type)[phase + "ClassName"];
 
-    var _this$getClassNames = this.getClassNames('enter'),
+    const _this$getClassNames = this.getClassNames('enter'),
         doneClassName = _this$getClassNames.doneClassName;
 
     if (type === 'appear' && phase === 'done' && doneClassName) {
@@ -255,7 +255,7 @@ var CSSTransition = /*#__PURE__*/function (_React$Component) {
   };
 
   _proto.removeClasses = function removeClasses(node, type) {
-    var _this$appliedClasses$ = this.appliedClasses[type],
+    const _this$appliedClasses$ = this.appliedClasses[type],
         baseClassName = _this$appliedClasses$.base,
         activeClassName = _this$appliedClasses$.active,
         doneClassName = _this$appliedClasses$.done;
@@ -275,7 +275,7 @@ var CSSTransition = /*#__PURE__*/function (_React$Component) {
   };
 
   _proto.render = function render() {
-    var _this$props = this.props,
+    const _this$props = this.props,
         _ = _this$props.classNames,
         props = _objectWithoutPropertiesLoose(_this$props, ["classNames"]);
 
@@ -425,6 +425,6 @@ CSSTransition.propTypes = process.env.NODE_ENV !== "production" ? _extends({}, _
    */
   onExited: _propTypes.default.func
 }) : {};
-var _default = CSSTransition;
+const _default = CSSTransition;
 exports.default = _default;
 module.exports = exports.default;

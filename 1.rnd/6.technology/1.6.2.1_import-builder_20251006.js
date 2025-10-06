@@ -4,8 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _assert = require("assert");
-var _t = require("@babel/types");
+const _assert = require("assert");
+const _t = require("@babel/types");
 const {
   callExpression,
   cloneNode,

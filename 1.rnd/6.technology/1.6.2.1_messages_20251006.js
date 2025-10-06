@@ -15,7 +15,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.WarningTypes = void 0;
 exports.warn = warn;
-var WarningTypes;
+let WarningTypes;
 (function (WarningTypes) {
     WarningTypes["WARNING"] = "Warning";
     WarningTypes["DEPRECATION"] = "DeprecationWarning";

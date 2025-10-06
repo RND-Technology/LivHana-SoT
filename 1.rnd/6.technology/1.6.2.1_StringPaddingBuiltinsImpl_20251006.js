@@ -1,10 +1,10 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var StringPad = require('./StringPad');
-var ToLength = require('./ToLength');
-var ToString = require('./ToString');
+const StringPad = require('./StringPad');
+const ToLength = require('./ToLength');
+const ToString = require('./ToString');
 
 // https://262.ecma-international.org/15.0/#sec-stringpaddingbuiltinsimpl
 
@@ -13,15 +13,15 @@ module.exports = function StringPaddingBuiltinsImpl(O, maxLength, fillString, pl
 		throw new $TypeError('Assertion failed: `placement` must be ~START~ or ~END~');
 	}
 
-	var S = ToString(O); // step 1
+	const S = ToString(O); // step 1
 
-	var intMaxLength = ToLength(maxLength); // step 2
+	const intMaxLength = ToLength(maxLength); // step 2
 
-	var stringLength = S.length; // step 3
+	const stringLength = S.length; // step 3
 
 	if (intMaxLength <= stringLength) { return S; } // step 4
 
-	var filler = typeof fillString === 'undefined' ? ' ' : ToString(fillString); // steps 5-6
+	const filler = typeof fillString === 'undefined' ? ' ' : ToString(fillString); // steps 5-6
 
 	return StringPad(S, intMaxLength, filler, placement); // step 7
 };

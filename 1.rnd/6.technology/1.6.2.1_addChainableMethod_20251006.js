@@ -8,24 +8,24 @@
  * Module dependencies
  */
 
-var addLengthGuard = require('./addLengthGuard');
-var chai = require('../../chai');
-var flag = require('./flag');
-var proxify = require('./proxify');
-var transferFlags = require('./transferFlags');
+const addLengthGuard = require('./addLengthGuard');
+const chai = require('../../chai');
+const flag = require('./flag');
+const proxify = require('./proxify');
+const transferFlags = require('./transferFlags');
 
 /*!
  * Module variables
  */
 
 // Check whether `Object.setPrototypeOf` is supported
-var canSetPrototype = typeof Object.setPrototypeOf === 'function';
+const canSetPrototype = typeof Object.setPrototypeOf === 'function';
 
 // Without `Object.setPrototypeOf` support, this module will need to add properties to a function.
 // However, some of functions' own props are not configurable and should be skipped.
-var testFn = function() {};
-var excludeNames = Object.getOwnPropertyNames(testFn).filter(function(name) {
-  var propDesc = Object.getOwnPropertyDescriptor(testFn, name);
+const testFn = function() {};
+const excludeNames = Object.getOwnPropertyNames(testFn).filter(function(name) {
+  const propDesc = Object.getOwnPropertyDescriptor(testFn, name);
 
   // Note: PhantomJS 1.x includes `callee` as one of `testFn`'s own properties,
   // but then returns `undefined` as the property descriptor for `callee`. As a
@@ -38,7 +38,7 @@ var excludeNames = Object.getOwnPropertyNames(testFn).filter(function(name) {
 });
 
 // Cache `Function` properties
-var call  = Function.prototype.call,
+const call  = Function.prototype.call,
     apply = Function.prototype.apply;
 
 /**
@@ -75,7 +75,7 @@ module.exports = function addChainableMethod(ctx, name, method, chainingBehavior
     chainingBehavior = function () { };
   }
 
-  var chainableBehavior = {
+  const chainableBehavior = {
       method: method
     , chainingBehavior: chainingBehavior
   };
@@ -90,7 +90,7 @@ module.exports = function addChainableMethod(ctx, name, method, chainingBehavior
     { get: function chainableMethodGetter() {
         chainableBehavior.chainingBehavior.call(this);
 
-        var chainableMethodWrapper = function () {
+        const chainableMethodWrapper = function () {
           // Setting the `ssfi` flag to `chainableMethodWrapper` causes this
           // function to be the starting point for removing implementation
           // frames from the stack trace of a failed assertion.
@@ -110,12 +110,12 @@ module.exports = function addChainableMethod(ctx, name, method, chainingBehavior
             flag(this, 'ssfi', chainableMethodWrapper);
           }
 
-          var result = chainableBehavior.method.apply(this, arguments);
+          const result = chainableBehavior.method.apply(this, arguments);
           if (result !== undefined) {
             return result;
           }
 
-          var newAssertion = new chai.Assertion();
+          const newAssertion = new chai.Assertion();
           transferFlags(this, newAssertion);
           return newAssertion;
         };
@@ -125,7 +125,7 @@ module.exports = function addChainableMethod(ctx, name, method, chainingBehavior
         // Use `Object.setPrototypeOf` if available
         if (canSetPrototype) {
           // Inherit all properties from the object by replacing the `Function` prototype
-          var prototype = Object.create(this);
+          const prototype = Object.create(this);
           // Restore the `call` and `apply` methods from `Function`
           prototype.call = call;
           prototype.apply = apply;
@@ -133,13 +133,13 @@ module.exports = function addChainableMethod(ctx, name, method, chainingBehavior
         }
         // Otherwise, redefine all properties (slow!)
         else {
-          var asserterNames = Object.getOwnPropertyNames(ctx);
+          const asserterNames = Object.getOwnPropertyNames(ctx);
           asserterNames.forEach(function (asserterName) {
             if (excludeNames.indexOf(asserterName) !== -1) {
               return;
             }
 
-            var pd = Object.getOwnPropertyDescriptor(ctx, asserterName);
+            const pd = Object.getOwnPropertyDescriptor(ctx, asserterName);
             Object.defineProperty(chainableMethodWrapper, asserterName, pd);
           });
         }

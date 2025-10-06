@@ -4,10 +4,10 @@ import basisClosed from "./basisClosed.js";
 import nogamma, {gamma} from "./color.js";
 
 export default (function rgbGamma(y) {
-  var color = gamma(y);
+  const color = gamma(y);
 
   function rgb(start, end) {
-    var r = color((start = colorRgb(start)).r, (end = colorRgb(end)).r),
+    const r = color((start = colorRgb(start)).r, (end = colorRgb(end)).r),
         g = color(start.g, end.g),
         b = color(start.b, end.b),
         opacity = nogamma(start.opacity, end.opacity);
@@ -27,7 +27,7 @@ export default (function rgbGamma(y) {
 
 function rgbSpline(spline) {
   return function(colors) {
-    var n = colors.length,
+    let n = colors.length,
         r = new Array(n),
         g = new Array(n),
         b = new Array(n),

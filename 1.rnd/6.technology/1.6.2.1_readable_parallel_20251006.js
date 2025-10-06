@@ -1,4 +1,4 @@
-var parallel = require('../parallel.js');
+const parallel = require('../parallel.js');
 
 // API
 module.exports = ReadableParallel;

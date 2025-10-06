@@ -4,9 +4,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.selectTooltipAxisType = void 0;
-var _chartLayoutContext = require("../../context/chartLayoutContext");
-var selectTooltipAxisType = state => {
-  var layout = (0, _chartLayoutContext.selectChartLayout)(state);
+const _chartLayoutContext = require("../../context/chartLayoutContext");
+const selectTooltipAxisType = state => {
+  const layout = (0, _chartLayoutContext.selectChartLayout)(state);
   if (layout === 'horizontal') {
     return 'xAxis';
   }

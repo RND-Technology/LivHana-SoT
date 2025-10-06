@@ -81,7 +81,7 @@
    * @param {string} modifier
    */
   UrlTemplate.prototype.getValues = function (context, operator, key, modifier) {
-    var value = context[key],
+    let value = context[key],
         result = [];
 
     if (this.isDefined(value) && value !== '') {
@@ -107,7 +107,7 @@
             }, this);
           }
         } else {
-          var tmp = [];
+          const tmp = [];
 
           if (Array.isArray(value)) {
             value.filter(this.isDefined).forEach(function (value) {
@@ -148,14 +148,14 @@
    * @return {function(Object):string}
    */
   UrlTemplate.prototype.parse = function (template) {
-    var that = this;
-    var operators = ['+', '#', '.', '/', ';', '?', '&'];
+    const that = this;
+    const operators = ['+', '#', '.', '/', ';', '?', '&'];
 
     return {
       expand: function (context) {
         return template.replace(/\{([^\{\}]+)\}|([^\{\}]+)/g, function (_, expression, literal) {
           if (expression) {
-            var operator = null,
+            let operator = null,
                 values = [];
 
             if (operators.indexOf(expression.charAt(0)) !== -1) {
@@ -164,12 +164,12 @@
             }
 
             expression.split(/,/g).forEach(function (variable) {
-              var tmp = /([^:\*]*)(?::(\d+)|(\*))?/.exec(variable);
+              const tmp = /([^:\*]*)(?::(\d+)|(\*))?/.exec(variable);
               values.push.apply(values, that.getValues(context, operator, tmp[1], tmp[2] || tmp[3]));
             });
 
             if (operator && operator !== '+') {
-              var separator = ',';
+              let separator = ',';
 
               if (operator === '?') {
                 separator = '&';

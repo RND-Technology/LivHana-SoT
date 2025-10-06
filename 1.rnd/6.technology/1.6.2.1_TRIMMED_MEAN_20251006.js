@@ -12,5 +12,5 @@ function transformArguments(key, lowCutPercentile, highCutPercentile) {
     ];
 }
 exports.transformArguments = transformArguments;
-var _1 = require(".");
+const _1 = require(".");
 Object.defineProperty(exports, "transformReply", { enumerable: true, get: function () { return _1.transformDoubleReply; } });

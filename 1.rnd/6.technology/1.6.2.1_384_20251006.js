@@ -1,8 +1,8 @@
 'use strict';
 
-var utils = require('../utils');
+const utils = require('../utils');
 
-var SHA512 = require('./512');
+const SHA512 = require('./512');
 
 function SHA384() {
   if (!(this instanceof SHA384))

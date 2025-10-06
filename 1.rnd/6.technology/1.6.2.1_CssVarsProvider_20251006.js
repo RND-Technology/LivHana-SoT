@@ -4,19 +4,19 @@
 // do not remove the following import (https://github.com/microsoft/TypeScript/issues/29808#issuecomment-1320713018)
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // @ts-ignore
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+const _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.useColorScheme = exports.getInitColorSchemeScript = exports.Experimental_CssVarsProvider = void 0;
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-var _system = require("@mui/system");
-var _styleFunctionSx = _interopRequireDefault(require("@mui/system/styleFunctionSx"));
-var _experimental_extendTheme = _interopRequireDefault(require("./experimental_extendTheme"));
-var _createTypography = _interopRequireDefault(require("./createTypography"));
-var _excludeVariablesFromRoot = _interopRequireDefault(require("./excludeVariablesFromRoot"));
-var _identifier = _interopRequireDefault(require("./identifier"));
-var _InitColorSchemeScript = require("../InitColorSchemeScript/InitColorSchemeScript");
+const _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+const _system = require("@mui/system");
+const _styleFunctionSx = _interopRequireDefault(require("@mui/system/styleFunctionSx"));
+const _experimental_extendTheme = _interopRequireDefault(require("./experimental_extendTheme"));
+const _createTypography = _interopRequireDefault(require("./createTypography"));
+const _excludeVariablesFromRoot = _interopRequireDefault(require("./excludeVariablesFromRoot"));
+const _identifier = _interopRequireDefault(require("./identifier"));
+const _InitColorSchemeScript = require("../InitColorSchemeScript/InitColorSchemeScript");
 const defaultTheme = (0, _experimental_extendTheme.default)();
 const {
   CssVarsProvider,

@@ -1,13 +1,13 @@
-var path = require('path');
-var fs = require('fs');
-var test = require('tape');
-var map = require('array.prototype.map');
-var resolve = require('../');
+const path = require('path');
+const fs = require('fs');
+const test = require('tape');
+const map = require('array.prototype.map');
+const resolve = require('../');
 
-var symlinkDir = path.join(__dirname, 'resolver', 'symlinked', 'symlink');
-var packageDir = path.join(__dirname, 'resolver', 'symlinked', '_', 'node_modules', 'package');
-var modADir = path.join(__dirname, 'symlinks', 'source', 'node_modules', 'mod-a');
-var symlinkModADir = path.join(__dirname, 'symlinks', 'dest', 'node_modules', 'mod-a');
+const symlinkDir = path.join(__dirname, 'resolver', 'symlinked', 'symlink');
+const packageDir = path.join(__dirname, 'resolver', 'symlinked', '_', 'node_modules', 'package');
+const modADir = path.join(__dirname, 'symlinks', 'source', 'node_modules', 'mod-a');
+const symlinkModADir = path.join(__dirname, 'symlinks', 'dest', 'node_modules', 'mod-a');
 try {
     fs.unlinkSync(symlinkDir);
 } catch (err) {}
@@ -68,7 +68,7 @@ test('sync symlink when preserveSymlinks = true', function (t) {
 });
 
 test('sync symlink', function (t) {
-    var start = new Date();
+    const start = new Date();
     t.doesNotThrow(function () {
         t.equal(
             resolve.sync('foo', { basedir: symlinkDir, preserveSymlinks: false }),
@@ -87,8 +87,8 @@ test('sync symlink when preserveSymlinks = true', function (t) {
 });
 
 test('sync symlink from node_modules to other dir when preserveSymlinks = false', function (t) {
-    var basedir = path.join(__dirname, 'resolver', 'symlinked', '_');
-    var fn = resolve.sync('package', { basedir: basedir, preserveSymlinks: false });
+    const basedir = path.join(__dirname, 'resolver', 'symlinked', '_');
+    const fn = resolve.sync('package', { basedir: basedir, preserveSymlinks: false });
 
     t.equal(fn, path.resolve(__dirname, 'resolver/symlinked/package/bar.js'));
     t.end();
@@ -96,7 +96,7 @@ test('sync symlink from node_modules to other dir when preserveSymlinks = false'
 
 test('async symlink from node_modules to other dir when preserveSymlinks = false', function (t) {
     t.plan(2);
-    var basedir = path.join(__dirname, 'resolver', 'symlinked', '_');
+    const basedir = path.join(__dirname, 'resolver', 'symlinked', '_');
     resolve('package', { basedir: basedir, preserveSymlinks: false }, function (err, result) {
         t.notOk(err, 'no error');
         t.equal(result, path.resolve(__dirname, 'resolver/symlinked/package/bar.js'));
@@ -112,14 +112,14 @@ test('packageFilter', function (t) {
         return function (st) {
             st.plan(5);
 
-            var destMain = 'symlinks/dest/node_modules/mod-a/index.js';
-            var destPkg = 'symlinks/dest/node_modules/mod-a/package.json';
-            var sourceMain = 'symlinks/source/node_modules/mod-a/index.js';
-            var sourcePkg = 'symlinks/source/node_modules/mod-a/package.json';
-            var destDir = path.join(__dirname, 'symlinks', 'dest');
+            const destMain = 'symlinks/dest/node_modules/mod-a/index.js';
+            const destPkg = 'symlinks/dest/node_modules/mod-a/package.json';
+            const sourceMain = 'symlinks/source/node_modules/mod-a/index.js';
+            const sourcePkg = 'symlinks/source/node_modules/mod-a/package.json';
+            const destDir = path.join(__dirname, 'symlinks', 'dest');
 
-            var packageFilterPath = [];
-            var actualPath = resolve.sync('mod-a', {
+            const packageFilterPath = [];
+            const actualPath = resolve.sync('mod-a', {
                 basedir: destDir,
                 preserveSymlinks: preserveSymlinks,
                 packageFilter: function (pkg, pkgfile, dir) {
@@ -137,7 +137,7 @@ test('packageFilter', function (t) {
                 'sync: packageFilter pkgfile arg is correct'
             );
 
-            var asyncPackageFilterPath = [];
+            const asyncPackageFilterPath = [];
             resolve(
                 'mod-a',
                 {

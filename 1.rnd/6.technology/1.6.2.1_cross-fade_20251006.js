@@ -1,6 +1,6 @@
-let list = require('postcss').list
+const list = require('postcss').list
 
-let Value = require('../value')
+const Value = require('../value')
 
 class CrossFade extends Value {
   replace(string, prefix) {
@@ -11,12 +11,12 @@ class CrossFade extends Value {
           return value
         }
 
-        let close = value.lastIndexOf(')')
-        let after = value.slice(close + 1)
+        const close = value.lastIndexOf(')')
+        const after = value.slice(close + 1)
         let args = value.slice(this.name.length + 1, close)
 
         if (prefix === '-webkit-') {
-          let match = args.match(/\d*.?\d+%?/)
+          const match = args.match(/\d*.?\d+%?/)
           if (match) {
             args = args.slice(match[0].length).trim()
             args += `, ${match[0]}`

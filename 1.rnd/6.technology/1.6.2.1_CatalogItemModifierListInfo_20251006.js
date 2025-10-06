@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
 exports.catalogItemModifierListInfoSchema = void 0;
-var schema_1 = require("../schema");
-var catalogModifierOverride_1 = require("./catalogModifierOverride");
+const schema_1 = require("../schema");
+const catalogModifierOverride_1 = require("./catalogModifierOverride");
 exports.catalogItemModifierListInfoSchema = (0, schema_1.object)({
     modifierListId: ['modifier_list_id', (0, schema_1.string)()],
     modifierOverrides: [

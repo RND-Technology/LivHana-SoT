@@ -1,10 +1,10 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
-var isObject = require('es-object-atoms/isObject');
+const $TypeError = require('es-errors/type');
+const isObject = require('es-object-atoms/isObject');
 
-var Get = require('./Get');
-var ToLength = require('./ToLength');
+const Get = require('./Get');
+const ToLength = require('./ToLength');
 
 // https://262.ecma-international.org/11.0/#sec-lengthofarraylike
 

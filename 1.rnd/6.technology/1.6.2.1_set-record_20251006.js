@@ -1,7 +1,7 @@
 'use strict';
 
-var hasOwn = require('hasown');
-var isInteger = require('../isInteger');
+const hasOwn = require('hasown');
+const isInteger = require('../isInteger');
 
 module.exports = function isSetRecord(value) {
 	return !!value

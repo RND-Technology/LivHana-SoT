@@ -1,4 +1,4 @@
-var baseIsEqualDeep = require('./_baseIsEqualDeep'),
+const baseIsEqualDeep = require('./_baseIsEqualDeep'),
     isObjectLike = require('./isObjectLike');
 
 /**

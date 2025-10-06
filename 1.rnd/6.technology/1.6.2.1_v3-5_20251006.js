@@ -19,7 +19,7 @@ exports.dfareporting_v3_5 = void 0;
 /* eslint-disable @typescript-eslint/no-namespace */
 /* eslint-disable no-irregular-whitespace */
 const googleapis_common_1 = require("googleapis-common");
-var dfareporting_v3_5;
+let dfareporting_v3_5;
 (function (dfareporting_v3_5) {
     /**
      * Campaign Manager 360 API

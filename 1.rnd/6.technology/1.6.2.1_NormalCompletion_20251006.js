@@ -1,6 +1,6 @@
 'use strict';
 
-var CompletionRecord = require('./CompletionRecord');
+const CompletionRecord = require('./CompletionRecord');
 
 // https://262.ecma-international.org/6.0/#sec-normalcompletion
 

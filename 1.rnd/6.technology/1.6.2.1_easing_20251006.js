@@ -4,21 +4,21 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.configSpring = exports.configEasing = exports.configBezier = exports.ACCURACY = void 0;
-var ACCURACY = exports.ACCURACY = 1e-4;
-var cubicBezierFactor = (c1, c2) => [0, 3 * c1, 3 * c2 - 6 * c1, 3 * c1 - 3 * c2 + 1];
-var evaluatePolynomial = (params, t) => params.map((param, i) => param * t ** i).reduce((pre, curr) => pre + curr);
-var cubicBezier = (c1, c2) => t => {
-  var params = cubicBezierFactor(c1, c2);
+const ACCURACY = exports.ACCURACY = 1e-4;
+const cubicBezierFactor = (c1, c2) => [0, 3 * c1, 3 * c2 - 6 * c1, 3 * c1 - 3 * c2 + 1];
+const evaluatePolynomial = (params, t) => params.map((param, i) => param * t ** i).reduce((pre, curr) => pre + curr);
+const cubicBezier = (c1, c2) => t => {
+  const params = cubicBezierFactor(c1, c2);
   return evaluatePolynomial(params, t);
 };
-var derivativeCubicBezier = (c1, c2) => t => {
-  var params = cubicBezierFactor(c1, c2);
-  var newParams = [...params.map((param, i) => param * i).slice(1), 0];
+const derivativeCubicBezier = (c1, c2) => t => {
+  const params = cubicBezierFactor(c1, c2);
+  const newParams = [...params.map((param, i) => param * i).slice(1), 0];
   return evaluatePolynomial(newParams, t);
 };
 // calculate cubic-bezier using Newton's method
-var configBezier = exports.configBezier = function configBezier() {
-  var x1, x2, y1, y2;
+const configBezier = exports.configBezier = function configBezier() {
+  let x1, x2, y1, y2;
   for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
     args[_key] = arguments[_key];
   }
@@ -41,7 +41,7 @@ var configBezier = exports.configBezier = function configBezier() {
         break;
       default:
         {
-          var easing = args[0].split('(');
+          const easing = args[0].split('(');
           if (easing[0] === 'cubic-bezier' && easing[1].split(')')[0].split(',').length === 4) {
             [x1, y1, x2, y2] = easing[1].split(')')[0].split(',').map(x => parseFloat(x));
           }
@@ -50,10 +50,10 @@ var configBezier = exports.configBezier = function configBezier() {
   } else if (args.length === 4) {
     [x1, y1, x2, y2] = args;
   }
-  var curveX = cubicBezier(x1, x2);
-  var curveY = cubicBezier(y1, y2);
-  var derCurveX = derivativeCubicBezier(x1, x2);
-  var rangeValue = value => {
+  const curveX = cubicBezier(x1, x2);
+  const curveY = cubicBezier(y1, y2);
+  const derCurveX = derivativeCubicBezier(x1, x2);
+  const rangeValue = value => {
     if (value > 1) {
       return 1;
     }
@@ -62,12 +62,12 @@ var configBezier = exports.configBezier = function configBezier() {
     }
     return value;
   };
-  var bezier = _t => {
-    var t = _t > 1 ? 1 : _t;
-    var x = t;
-    for (var i = 0; i < 8; ++i) {
-      var evalT = curveX(x) - t;
-      var derVal = derCurveX(x);
+  const bezier = _t => {
+    const t = _t > 1 ? 1 : _t;
+    let x = t;
+    for (let i = 0; i < 8; ++i) {
+      const evalT = curveX(x) - t;
+      const derVal = derCurveX(x);
       if (Math.abs(evalT - t) < ACCURACY || derVal < ACCURACY) {
         return curveY(x);
       }
@@ -78,18 +78,18 @@ var configBezier = exports.configBezier = function configBezier() {
   bezier.isStepper = false;
   return bezier;
 };
-var configSpring = exports.configSpring = function configSpring() {
-  var config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var {
+const configSpring = exports.configSpring = function configSpring() {
+  const config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  const {
     stiff = 100,
     damping = 8,
     dt = 17
   } = config;
-  var stepper = (currX, destX, currV) => {
-    var FSpring = -(currX - destX) * stiff;
-    var FDamping = currV * damping;
-    var newV = currV + (FSpring - FDamping) * dt / 1000;
-    var newX = currV * dt / 1000 + currX;
+  const stepper = (currX, destX, currV) => {
+    const FSpring = -(currX - destX) * stiff;
+    const FDamping = currV * damping;
+    const newV = currV + (FSpring - FDamping) * dt / 1000;
+    const newX = currV * dt / 1000 + currX;
     if (Math.abs(newX - destX) < ACCURACY && Math.abs(newV) < ACCURACY) {
       return [destX, 0];
     }
@@ -99,7 +99,7 @@ var configSpring = exports.configSpring = function configSpring() {
   stepper.dt = dt;
   return stepper;
 };
-var configEasing = easing => {
+const configEasing = easing => {
   if (typeof easing === 'string') {
     switch (easing) {
       case 'ease':

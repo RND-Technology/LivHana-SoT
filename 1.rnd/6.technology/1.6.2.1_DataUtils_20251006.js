@@ -7,9 +7,9 @@ exports.findEntryInArray = findEntryInArray;
 exports.hasDuplicate = exports.getPercentValue = exports.getLinearRegression = void 0;
 exports.interpolate = interpolate;
 exports.upperFirst = exports.uniqueId = exports.mathSign = exports.isPercent = exports.isNumber = exports.isNumOrStr = exports.isNullish = exports.isNan = exports.interpolateNumber = void 0;
-var _get = _interopRequireDefault(require("es-toolkit/compat/get"));
+const _get = _interopRequireDefault(require("es-toolkit/compat/get"));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
-var mathSign = value => {
+const mathSign = value => {
   if (value === 0) {
     return 0;
   }
@@ -19,20 +19,20 @@ var mathSign = value => {
   return -1;
 };
 exports.mathSign = mathSign;
-var isNan = value => {
+const isNan = value => {
   // eslint-disable-next-line eqeqeq
   return typeof value == 'number' && value != +value;
 };
 exports.isNan = isNan;
-var isPercent = value => typeof value === 'string' && value.indexOf('%') === value.length - 1;
+const isPercent = value => typeof value === 'string' && value.indexOf('%') === value.length - 1;
 exports.isPercent = isPercent;
-var isNumber = value => (typeof value === 'number' || value instanceof Number) && !isNan(value);
+const isNumber = value => (typeof value === 'number' || value instanceof Number) && !isNan(value);
 exports.isNumber = isNumber;
-var isNumOrStr = value => isNumber(value) || typeof value === 'string';
+const isNumOrStr = value => isNumber(value) || typeof value === 'string';
 exports.isNumOrStr = isNumOrStr;
-var idCounter = 0;
-var uniqueId = prefix => {
-  var id = ++idCounter;
+let idCounter = 0;
+const uniqueId = prefix => {
+  const id = ++idCounter;
   return "".concat(prefix || '').concat(id);
 };
 
@@ -45,18 +45,18 @@ var uniqueId = prefix => {
  * @return {number} value
  */
 exports.uniqueId = uniqueId;
-var getPercentValue = exports.getPercentValue = function getPercentValue(percent, totalValue) {
-  var defaultValue = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-  var validate = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+const getPercentValue = exports.getPercentValue = function getPercentValue(percent, totalValue) {
+  const defaultValue = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+  const validate = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
   if (!isNumber(percent) && typeof percent !== 'string') {
     return defaultValue;
   }
-  var value;
+  let value;
   if (isPercent(percent)) {
     if (totalValue == null) {
       return defaultValue;
     }
-    var index = percent.indexOf('%');
+    const index = percent.indexOf('%');
     value = totalValue * parseFloat(percent.slice(0, index)) / 100;
   } else {
     value = +percent;
@@ -69,13 +69,13 @@ var getPercentValue = exports.getPercentValue = function getPercentValue(percent
   }
   return value;
 };
-var hasDuplicate = ary => {
+const hasDuplicate = ary => {
   if (!Array.isArray(ary)) {
     return false;
   }
-  var len = ary.length;
-  var cache = {};
-  for (var i = 0; i < len; i++) {
+  const len = ary.length;
+  const cache = {};
+  for (let i = 0; i < len; i++) {
     if (!cache[ary[i]]) {
       cache[ary[i]] = true;
     } else {
@@ -94,7 +94,7 @@ var hasDuplicate = ary => {
  *  @return A function that returns the interpolated number
  */
 exports.hasDuplicate = hasDuplicate;
-var interpolateNumber = (numberA, numberB) => {
+const interpolateNumber = (numberA, numberB) => {
   if (isNumber(numberA) && isNumber(numberB)) {
     return t => numberA + t * (numberB - numberA);
   }
@@ -119,20 +119,20 @@ function findEntryInArray(ary, specifiedKey, specifiedValue) {
  * @param {Array} data The array of points
  * @returns {Object} The domain of x, and the parameter of linear function
  */
-var getLinearRegression = data => {
+const getLinearRegression = data => {
   if (!data || !data.length) {
     return null;
   }
-  var len = data.length;
-  var xsum = 0;
-  var ysum = 0;
-  var xysum = 0;
-  var xxsum = 0;
-  var xmin = Infinity;
-  var xmax = -Infinity;
-  var xcurrent = 0;
-  var ycurrent = 0;
-  for (var i = 0; i < len; i++) {
+  const len = data.length;
+  let xsum = 0;
+  let ysum = 0;
+  let xysum = 0;
+  let xxsum = 0;
+  let xmin = Infinity;
+  let xmax = -Infinity;
+  let xcurrent = 0;
+  let ycurrent = 0;
+  for (let i = 0; i < len; i++) {
     xcurrent = data[i].cx || 0;
     ycurrent = data[i].cy || 0;
     xsum += xcurrent;
@@ -142,7 +142,7 @@ var getLinearRegression = data => {
     xmin = Math.min(xmin, xcurrent);
     xmax = Math.max(xmax, xcurrent);
   }
-  var a = len * xxsum !== xsum * xsum ? (len * xysum - xsum * ysum) / (len * xxsum - xsum * xsum) : 0;
+  const a = len * xxsum !== xsum * xsum ? (len * xysum - xsum * ysum) / (len * xxsum - xsum * xsum) : 0;
   return {
     xmin,
     xmax,
@@ -156,7 +156,7 @@ exports.getLinearRegression = getLinearRegression;
  * @param value The value to check
  * @returns true if the value is null or undefined
  */
-var isNullish = value => {
+const isNullish = value => {
   return value === null || typeof value === 'undefined';
 };
 
@@ -166,7 +166,7 @@ var isNullish = value => {
  * @returns {string} The uppercased string
  */
 exports.isNullish = isNullish;
-var upperFirst = value => {
+const upperFirst = value => {
   if (isNullish(value)) {
     return value;
   }

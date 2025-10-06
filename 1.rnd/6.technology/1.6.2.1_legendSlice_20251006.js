@@ -4,8 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.setLegendSize = exports.setLegendSettings = exports.removeLegendPayload = exports.legendReducer = exports.addLegendPayload = void 0;
-var _toolkit = require("@reduxjs/toolkit");
-var _immer = require("immer");
+const _toolkit = require("@reduxjs/toolkit");
+const _immer = require("immer");
 /**
  * The properties inside this state update independently of each other and quite often.
  * When selecting, never select the whole state because you are going to get
@@ -14,7 +14,7 @@ var _immer = require("immer");
  * This is why this state type is not exported - don't use it directly.
  */
 
-var initialState = {
+const initialState = {
   settings: {
     layout: 'horizontal',
     align: 'center',
@@ -27,7 +27,7 @@ var initialState = {
   },
   payload: []
 };
-var legendSlice = (0, _toolkit.createSlice)({
+const legendSlice = (0, _toolkit.createSlice)({
   name: 'legend',
   initialState,
   reducers: {
@@ -45,14 +45,14 @@ var legendSlice = (0, _toolkit.createSlice)({
       state.payload.push((0, _immer.castDraft)(action.payload));
     },
     removeLegendPayload(state, action) {
-      var index = (0, _toolkit.current)(state).payload.indexOf((0, _immer.castDraft)(action.payload));
+      const index = (0, _toolkit.current)(state).payload.indexOf((0, _immer.castDraft)(action.payload));
       if (index > -1) {
         state.payload.splice(index, 1);
       }
     }
   }
 });
-var {
+const {
   setLegendSize,
   setLegendSettings,
   addLegendPayload,
@@ -62,4 +62,4 @@ exports.removeLegendPayload = removeLegendPayload;
 exports.addLegendPayload = addLegendPayload;
 exports.setLegendSettings = setLegendSettings;
 exports.setLegendSize = setLegendSize;
-var legendReducer = exports.legendReducer = legendSlice.reducer;
+const legendReducer = exports.legendReducer = legendSlice.reducer;

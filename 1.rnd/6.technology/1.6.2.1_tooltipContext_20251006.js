@@ -4,10 +4,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.useMouseLeaveItemDispatch = exports.useMouseEnterItemDispatch = exports.useMouseClickItemDispatch = void 0;
-var _hooks = require("../state/hooks");
-var _tooltipSlice = require("../state/tooltipSlice");
-var useMouseEnterItemDispatch = (onMouseEnterFromProps, dataKey) => {
-  var dispatch = (0, _hooks.useAppDispatch)();
+const _hooks = require("../state/hooks");
+const _tooltipSlice = require("../state/tooltipSlice");
+const useMouseEnterItemDispatch = (onMouseEnterFromProps, dataKey) => {
+  const dispatch = (0, _hooks.useAppDispatch)();
   return (data, index) => event => {
     onMouseEnterFromProps === null || onMouseEnterFromProps === void 0 || onMouseEnterFromProps(data, index, event);
     dispatch((0, _tooltipSlice.setActiveMouseOverItemIndex)({
@@ -18,16 +18,16 @@ var useMouseEnterItemDispatch = (onMouseEnterFromProps, dataKey) => {
   };
 };
 exports.useMouseEnterItemDispatch = useMouseEnterItemDispatch;
-var useMouseLeaveItemDispatch = onMouseLeaveFromProps => {
-  var dispatch = (0, _hooks.useAppDispatch)();
+const useMouseLeaveItemDispatch = onMouseLeaveFromProps => {
+  const dispatch = (0, _hooks.useAppDispatch)();
   return (data, index) => event => {
     onMouseLeaveFromProps === null || onMouseLeaveFromProps === void 0 || onMouseLeaveFromProps(data, index, event);
     dispatch((0, _tooltipSlice.mouseLeaveItem)());
   };
 };
 exports.useMouseLeaveItemDispatch = useMouseLeaveItemDispatch;
-var useMouseClickItemDispatch = (onMouseClickFromProps, dataKey) => {
-  var dispatch = (0, _hooks.useAppDispatch)();
+const useMouseClickItemDispatch = (onMouseClickFromProps, dataKey) => {
+  const dispatch = (0, _hooks.useAppDispatch)();
   return (data, index) => event => {
     onMouseClickFromProps === null || onMouseClickFromProps === void 0 || onMouseClickFromProps(data, index, event);
     dispatch((0, _tooltipSlice.setActiveClickItemIndex)({

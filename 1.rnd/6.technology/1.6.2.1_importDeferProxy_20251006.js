@@ -5,13 +5,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = _importDeferProxy;
 function _importDeferProxy(init) {
-  var ns = null;
-  var constValue = function (v) {
+  let ns = null;
+  const constValue = function (v) {
     return function () {
       return v;
     };
   };
-  var proxy = function (run) {
+  const proxy = function (run) {
     return function (_target, p, receiver) {
       if (ns === null) ns = init();
       return run(ns, p, receiver);

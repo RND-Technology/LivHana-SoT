@@ -1,5 +1,5 @@
 
-var TreeBase = require('./treebase');
+const TreeBase = require('./treebase');
 
 function Node(data) {
     this.data = data;
@@ -31,7 +31,7 @@ RBTree.prototype = new TreeBase();
 
 // returns true if inserted, false if duplicate
 RBTree.prototype.insert = function(data) {
-    var ret = false;
+    let ret = false;
 
     if(this._root === null) {
         // empty tree
@@ -40,16 +40,16 @@ RBTree.prototype.insert = function(data) {
         this.size++;
     }
     else {
-        var head = new Node(undefined); // fake tree root
+        const head = new Node(undefined); // fake tree root
 
-        var dir = 0;
-        var last = 0;
+        let dir = 0;
+        let last = 0;
 
         // setup
-        var gp = null; // grandparent
-        var ggp = head; // grand-grand-parent
-        var p = null; // parent
-        var node = this._root;
+        let gp = null; // grandparent
+        let ggp = head; // grand-grand-parent
+        let p = null; // parent
+        let node = this._root;
         ggp.right = this._root;
 
         // search down
@@ -70,7 +70,7 @@ RBTree.prototype.insert = function(data) {
 
             // fix red violation
             if(is_red(node) && is_red(p)) {
-                var dir2 = ggp.right === gp;
+                const dir2 = ggp.right === gp;
 
                 if(node === p.get_child(last)) {
                     ggp.set_child(dir2, single_rotate(gp, !last));
@@ -80,7 +80,7 @@ RBTree.prototype.insert = function(data) {
                 }
             }
 
-            var cmp = this._comparator(node.data, data);
+            const cmp = this._comparator(node.data, data);
 
             // stop if found
             if(cmp === 0) {
@@ -115,23 +115,23 @@ RBTree.prototype.remove = function(data) {
         return false;
     }
 
-    var head = new Node(undefined); // fake tree root
-    var node = head;
+    const head = new Node(undefined); // fake tree root
+    let node = head;
     node.right = this._root;
-    var p = null; // parent
-    var gp = null; // grand parent
-    var found = null; // found item
-    var dir = 1;
+    let p = null; // parent
+    let gp = null; // grand parent
+    let found = null; // found item
+    let dir = 1;
 
     while(node.get_child(dir) !== null) {
-        var last = dir;
+        const last = dir;
 
         // update helpers
         gp = p;
         p = node;
         node = node.get_child(dir);
 
-        var cmp = this._comparator(data, node.data);
+        const cmp = this._comparator(data, node.data);
 
         dir = cmp > 0;
 
@@ -143,12 +143,12 @@ RBTree.prototype.remove = function(data) {
         // push the red node down
         if(!is_red(node) && !is_red(node.get_child(dir))) {
             if(is_red(node.get_child(!dir))) {
-                var sr = single_rotate(node, dir);
+                const sr = single_rotate(node, dir);
                 p.set_child(last, sr);
                 p = sr;
             }
             else if(!is_red(node.get_child(!dir))) {
-                var sibling = p.get_child(!last);
+                const sibling = p.get_child(!last);
                 if(sibling !== null) {
                     if(!is_red(sibling.get_child(!last)) && !is_red(sibling.get_child(last))) {
                         // color flip
@@ -157,7 +157,7 @@ RBTree.prototype.remove = function(data) {
                         node.red = true;
                     }
                     else {
-                        var dir2 = gp.right === p;
+                        const dir2 = gp.right === p;
 
                         if(is_red(sibling.get_child(last))) {
                             gp.set_child(dir2, double_rotate(p, last));
@@ -167,7 +167,7 @@ RBTree.prototype.remove = function(data) {
                         }
 
                         // ensure correct coloring
-                        var gpc = gp.get_child(dir2);
+                        const gpc = gp.get_child(dir2);
                         gpc.red = true;
                         node.red = true;
                         gpc.left.red = false;
@@ -199,7 +199,7 @@ function is_red(node) {
 }
 
 function single_rotate(root, dir) {
-    var save = root.get_child(!dir);
+    const save = root.get_child(!dir);
 
     root.set_child(!dir, save.get_child(dir));
     save.set_child(dir, root);

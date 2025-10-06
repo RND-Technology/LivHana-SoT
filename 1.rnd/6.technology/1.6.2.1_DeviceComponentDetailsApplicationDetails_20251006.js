@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
 exports.deviceComponentDetailsApplicationDetailsSchema = void 0;
-var schema_1 = require("../schema");
+const schema_1 = require("../schema");
 exports.deviceComponentDetailsApplicationDetailsSchema = (0, schema_1.object)({
     applicationType: ['application_type', (0, schema_1.optional)((0, schema_1.string)())],
     version: ['version', (0, schema_1.optional)((0, schema_1.string)())],

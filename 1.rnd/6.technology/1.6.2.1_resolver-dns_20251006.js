@@ -43,7 +43,7 @@ const DEFAULT_MIN_TIME_BETWEEN_RESOLUTIONS_MS = 30000;
  */
 class DnsResolver {
     constructor(target, listener, channelOptions) {
-        var _a, _b, _c;
+        let _a, _b, _c;
         this.target = target;
         this.listener = listener;
         this.pendingLookupPromise = null;
@@ -283,7 +283,7 @@ class DnsResolver {
         return dns_1.promises.resolveTxt(hostname);
     }
     startNextResolutionTimer() {
-        var _a, _b;
+        let _a, _b;
         clearTimeout(this.nextResolutionTimer);
         this.nextResolutionTimer = setTimeout(() => {
             this.stopNextResolutionTimer();

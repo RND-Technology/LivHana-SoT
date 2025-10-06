@@ -21,7 +21,7 @@ exports.rpcCodeFromHttpStatusCode = rpcCodeFromHttpStatusCode;
 // src/constants.ts. We need to use some of these statuses here and there,
 // but we don't want to include the whole @grpc/grpc-js into the browser
 // bundle just to have this small enum.
-var Status;
+let Status;
 (function (Status) {
     Status[Status["OK"] = 0] = "OK";
     Status[Status["CANCELLED"] = 1] = "CANCELLED";

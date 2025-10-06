@@ -1,5 +1,5 @@
 /** Used to compose unicode character classes. */
-var rsAstralRange = '\\ud800-\\udfff',
+const rsAstralRange = '\\ud800-\\udfff',
     rsComboMarksRange = '\\u0300-\\u036f',
     reComboHalfMarksRange = '\\ufe20-\\ufe2f',
     rsComboSymbolsRange = '\\u20d0-\\u20ff',
@@ -15,7 +15,7 @@ var rsAstralRange = '\\ud800-\\udfff',
     rsBreakRange = rsMathOpRange + rsNonCharRange + rsPunctuationRange + rsSpaceRange;
 
 /** Used to compose unicode capture groups. */
-var rsApos = "['\u2019]",
+const rsApos = "['\u2019]",
     rsBreak = '[' + rsBreakRange + ']',
     rsCombo = '[' + rsComboRange + ']',
     rsDigits = '\\d+',
@@ -31,7 +31,7 @@ var rsApos = "['\u2019]",
     rsZWJ = '\\u200d';
 
 /** Used to compose unicode regexes. */
-var rsMiscLower = '(?:' + rsLower + '|' + rsMisc + ')',
+const rsMiscLower = '(?:' + rsLower + '|' + rsMisc + ')',
     rsMiscUpper = '(?:' + rsUpper + '|' + rsMisc + ')',
     rsOptContrLower = '(?:' + rsApos + '(?:d|ll|m|re|s|t|ve))?',
     rsOptContrUpper = '(?:' + rsApos + '(?:D|LL|M|RE|S|T|VE))?',
@@ -44,7 +44,7 @@ var rsMiscLower = '(?:' + rsLower + '|' + rsMisc + ')',
     rsEmoji = '(?:' + [rsDingbat, rsRegional, rsSurrPair].join('|') + ')' + rsSeq;
 
 /** Used to match complex or compound words. */
-var reUnicodeWord = RegExp([
+const reUnicodeWord = RegExp([
   rsUpper + '?' + rsLower + '+' + rsOptContrLower + '(?=' + [rsBreak, rsUpper, '$'].join('|') + ')',
   rsMiscUpper + '+' + rsOptContrUpper + '(?=' + [rsBreak, rsUpper + rsMiscLower, '$'].join('|') + ')',
   rsUpper + '?' + rsMiscLower + '+' + rsOptContrLower,

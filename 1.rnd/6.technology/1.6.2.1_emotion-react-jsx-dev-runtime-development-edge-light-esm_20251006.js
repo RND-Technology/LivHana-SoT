@@ -10,8 +10,8 @@ import '@emotion/utils';
 import '@emotion/serialize';
 import '@emotion/use-insertion-effect-with-fallbacks';
 
-var Fragment = ReactJSXRuntimeDev.Fragment;
-var jsxDEV = function jsxDEV(type, props, key, isStaticChildren, source, self) {
+const Fragment = ReactJSXRuntimeDev.Fragment;
+const jsxDEV = function jsxDEV(type, props, key, isStaticChildren, source, self) {
   if (!hasOwn.call(props, 'css')) {
     return ReactJSXRuntimeDev.jsxDEV(type, props, key, isStaticChildren, source, self);
   }

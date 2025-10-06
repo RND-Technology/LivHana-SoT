@@ -25,7 +25,7 @@ const SegfaultErrors = [
 ];
 main();
 async function main() {
-  var _a;
+  let _a;
   let retries = 0;
   const args = process.argv.slice(2);
   if (process.env.VITEST_SEGFAULT_RETRY) {
@@ -78,7 +78,7 @@ have Vitest auto retries on flaky segfaults.
   process.exit(1);
 }
 async function start(preArgs, postArgs) {
-  var _a;
+  let _a;
   const child = execa(
     "node",
     [

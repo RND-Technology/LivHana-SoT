@@ -166,4 +166,4 @@ export function getStructureFromConfig(config) {
     }
 
     return structure;
-};
+}

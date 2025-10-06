@@ -4,7 +4,7 @@ const format = require("date-format");
 const DEFAULT_FILENAME_SEP = ".";
 
 module.exports = ({ file, keepFileExt, pattern, fileNameSep }) => {
-  let FILENAME_SEP = fileNameSep || DEFAULT_FILENAME_SEP;
+  const FILENAME_SEP = fileNameSep || DEFAULT_FILENAME_SEP;
   // All these functions take two arguments: f, the filename, and p, the result placeholder
   // They return the filename with any matching parts removed.
   // The "zip" function, for instance, removes the ".gz" part of the filename (if present)
@@ -77,16 +77,16 @@ module.exports = ({ file, keepFileExt, pattern, fileNameSep }) => {
     return f;
   };
 
-  let parts = [
+  const parts = [
     zip,
     keepFileExt ? extAtEnd : extInMiddle,
     pattern ? dateAndIndex : index
   ];
 
   return filename => {
-    let result = { filename, index: 0, isCompressed: false };
+    const result = { filename, index: 0, isCompressed: false };
     // pass the filename through each of the file part parsers
-    let whatsLeftOver = parts.reduce(
+    const whatsLeftOver = parts.reduce(
       (remains, part) => part(remains, result),
       filename
     );

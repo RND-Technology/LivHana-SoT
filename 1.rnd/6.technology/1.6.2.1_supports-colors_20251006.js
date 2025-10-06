@@ -25,12 +25,12 @@ THE SOFTWARE.
 
 'use strict';
 
-var os = require('os');
-var hasFlag = require('./has-flag.js');
+const os = require('os');
+const hasFlag = require('./has-flag.js');
 
-var env = process.env;
+const env = process.env;
 
-var forceColor = void 0;
+let forceColor = void 0;
 if (hasFlag('no-color') || hasFlag('no-colors') || hasFlag('color=false')) {
   forceColor = false;
 } else if (hasFlag('color') || hasFlag('colors') || hasFlag('color=true')
@@ -73,7 +73,7 @@ function supportsColor(stream) {
     return 0;
   }
 
-  var min = forceColor ? 1 : 0;
+  const min = forceColor ? 1 : 0;
 
   if (process.platform === 'win32') {
     // Node.js 7.5.0 is the first version of Node.js to include a patch to
@@ -82,7 +82,7 @@ function supportsColor(stream) {
     // release, and Node.js 7 is not. Windows 10 build 10586 is the first
     // Windows release that supports 256 colors. Windows 10 build 14931 is the
     // first release that supports 16m/TrueColor.
-    var osRelease = os.release().split('.');
+    const osRelease = os.release().split('.');
     if (Number(process.versions.node.split('.')[0]) >= 8
         && Number(osRelease[0]) >= 10 && Number(osRelease[2]) >= 10586) {
       return Number(osRelease[2]) >= 14931 ? 3 : 2;
@@ -107,7 +107,7 @@ function supportsColor(stream) {
   }
 
   if ('TERM_PROGRAM' in env) {
-    var version = parseInt((env.TERM_PROGRAM_VERSION || '').split('.')[0], 10);
+    const version = parseInt((env.TERM_PROGRAM_VERSION || '').split('.')[0], 10);
 
     switch (env.TERM_PROGRAM) {
       case 'iTerm.app':
@@ -140,7 +140,7 @@ function supportsColor(stream) {
 }
 
 function getSupportLevel(stream) {
-  var level = supportsColor(stream);
+  const level = supportsColor(stream);
   return translateLevel(level);
 }
 

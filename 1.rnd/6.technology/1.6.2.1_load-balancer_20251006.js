@@ -35,7 +35,7 @@ const constants_1 = require("./constants");
  * @param overrides
  */
 function createChildChannelControlHelper(parent, overrides) {
-    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
+    let _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
     return {
         createSubchannel: (_b = (_a = overrides.createSubchannel) === null || _a === void 0 ? void 0 : _a.bind(overrides)) !== null && _b !== void 0 ? _b : parent.createSubchannel.bind(parent),
         updateState: (_d = (_c = overrides.updateState) === null || _c === void 0 ? void 0 : _c.bind(overrides)) !== null && _d !== void 0 ? _d : parent.updateState.bind(parent),

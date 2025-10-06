@@ -98,7 +98,7 @@ class BackoffTimeout {
         logging.trace(constants_1.LogVerbosity.DEBUG, TRACER_NAME, '{' + this.id + '} ' + text);
     }
     runTimer(delay) {
-        var _a, _b;
+        let _a, _b;
         this.trace('runTimer(delay=' + delay + ')');
         this.endTime = this.startTime;
         this.endTime.setMilliseconds(this.endTime.getMilliseconds() + delay);
@@ -165,7 +165,7 @@ class BackoffTimeout {
      * running.
      */
     ref() {
-        var _a, _b;
+        let _a, _b;
         this.hasRef = true;
         (_b = (_a = this.timerId).ref) === null || _b === void 0 ? void 0 : _b.call(_a);
     }
@@ -174,7 +174,7 @@ class BackoffTimeout {
      * running.
      */
     unref() {
-        var _a, _b;
+        let _a, _b;
         this.hasRef = false;
         (_b = (_a = this.timerId).unref) === null || _b === void 0 ? void 0 : _b.call(_a);
     }

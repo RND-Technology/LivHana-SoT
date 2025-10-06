@@ -7,7 +7,7 @@ function getProp(obj) {
     props[_key - 1] = arguments[_key];
   }
   while (props.length > 0) {
-    var prop = props.shift();
+    const prop = props.shift();
     if (!obj[prop]) {
       return undefined;
     }

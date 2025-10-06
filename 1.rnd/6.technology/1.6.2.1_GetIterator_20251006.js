@@ -1,15 +1,15 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var getIteratorMethod = require('../helpers/getIteratorMethod');
-var AdvanceStringIndex = require('./AdvanceStringIndex');
-var Call = require('./Call');
-var GetMethod = require('./GetMethod');
+const getIteratorMethod = require('../helpers/getIteratorMethod');
+const AdvanceStringIndex = require('./AdvanceStringIndex');
+const Call = require('./Call');
+const GetMethod = require('./GetMethod');
 
-var isObject = require('es-object-atoms/isObject');
+const isObject = require('es-object-atoms/isObject');
 
-var ES = {
+const ES = {
 	AdvanceStringIndex: AdvanceStringIndex,
 	GetMethod: GetMethod
 };
@@ -17,11 +17,11 @@ var ES = {
 // https://262.ecma-international.org/6.0/#sec-getiterator
 
 module.exports = function GetIterator(obj, method) {
-	var actualMethod = method;
+	let actualMethod = method;
 	if (arguments.length < 2) {
 		actualMethod = getIteratorMethod(ES, obj);
 	}
-	var iterator = Call(actualMethod, obj);
+	const iterator = Call(actualMethod, obj);
 	if (!isObject(iterator)) {
 		throw new $TypeError('iterator must return an object');
 	}

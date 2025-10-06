@@ -7,9 +7,9 @@ import {
 } from "./chunk-EWTE5DHJ.js";
 
 // node_modules/react-dom/client.js
-var require_client = __commonJS({
+const require_client = __commonJS({
   "node_modules/react-dom/client.js"(exports) {
-    var m = require_react_dom();
+    const m = require_react_dom();
     if (false) {
       exports.createRoot = m.createRoot;
       exports.hydrateRoot = m.hydrateRoot;
@@ -32,7 +32,7 @@ var require_client = __commonJS({
         }
       };
     }
-    var i;
+    let i;
   }
 });
 export default require_client();

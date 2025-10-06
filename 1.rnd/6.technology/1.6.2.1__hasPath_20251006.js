@@ -1,4 +1,4 @@
-var castPath = require('./_castPath'),
+const castPath = require('./_castPath'),
     isArguments = require('./isArguments'),
     isArray = require('./isArray'),
     isIndex = require('./_isIndex'),
@@ -17,7 +17,7 @@ var castPath = require('./_castPath'),
 function hasPath(object, path, hasFunc) {
   path = castPath(path, object);
 
-  var index = -1,
+  let index = -1,
       length = path.length,
       result = false;
 

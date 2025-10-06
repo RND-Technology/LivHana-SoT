@@ -2,13 +2,13 @@ import {ascending, bisect, quantileSorted as threshold} from "d3-array";
 import {initRange} from "./init.js";
 
 export default function quantile() {
-  var domain = [],
+  let domain = [],
       range = [],
       thresholds = [],
       unknown;
 
   function rescale() {
-    var i = 0, n = Math.max(1, range.length);
+    let i = 0, n = Math.max(1, range.length);
     thresholds = new Array(n - 1);
     while (++i < n) thresholds[i - 1] = threshold(domain, i / n);
     return scale;
@@ -19,7 +19,7 @@ export default function quantile() {
   }
 
   scale.invertExtent = function(y) {
-    var i = range.indexOf(y);
+    const i = range.indexOf(y);
     return i < 0 ? [NaN, NaN] : [
       i > 0 ? thresholds[i - 1] : domain[0],
       i < thresholds.length ? thresholds[i] : domain[domain.length - 1]

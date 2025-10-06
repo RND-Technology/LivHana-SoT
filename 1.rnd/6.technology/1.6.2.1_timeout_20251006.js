@@ -1,7 +1,7 @@
 import {Timer} from "./timer.js";
 
 export default function(callback, delay, time) {
-  var t = new Timer;
+  const t = new Timer;
   delay = delay == null ? 0 : +delay;
   t.restart(elapsed => {
     t.stop();

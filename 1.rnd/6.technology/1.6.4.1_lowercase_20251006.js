@@ -260,9 +260,9 @@ exports.voidTypeAnnotation = voidTypeAnnotation;
 exports.whileStatement = whileStatement;
 exports.withStatement = withStatement;
 exports.yieldExpression = yieldExpression;
-var _validate = require("../../validators/validate.js");
-var _deprecationWarning = require("../../utils/deprecationWarning.js");
-var utils = require("../../definitions/utils.js");
+const _validate = require("../../validators/validate.js");
+const _deprecationWarning = require("../../utils/deprecationWarning.js");
+const utils = require("../../definitions/utils.js");
 const {
   validateInternal: validate
 } = _validate;

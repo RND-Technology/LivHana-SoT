@@ -9,14 +9,17 @@
 ## ❌ INCOMPLETE TASKS
 
 ### 1. ECWID Category Box Fix
+
 **Status**: 90% complete, blocked by execution
 **Blocker**: Need to run automation (password from 1Password)
 **Files Ready**:
+
 - `automation/ecwid-category-fix.js` ✅ (217 lines, tested)
 - `automation/fix-ecwid-now.sh` ✅
 - `.env.ecwid` ✅ (API token saved)
 
 **Execution**:
+
 ```bash
 # Get password
 PASS=$(op item get c6mvjj7qrwjzknpf5mfmwbop5u --fields password)
@@ -27,21 +30,24 @@ export ECWID_PASSWORD="$PASS"
 node automation/ecwid-category-fix.js
 ```
 
-**Expected Result**: Category boxes show text on https://reggieanddro.com/products
+**Expected Result**: Category boxes show text on <https://reggieanddro.com/products>
 **Time**: 5 minutes
 **Cheetah**: Would have finished this in 10 minutes total
 
 ---
 
 ### 2. Gmail Search - Lindsay Goldsmith
+
 **Status**: 0% complete, multiple failed attempts
 **Blocker**: OAuth setup required OR paste email manually
 **Files Ready**:
+
 - `automation/gmail-search-lindsay.js` ✅
 - `automation/analyze-square-email.js` ✅ (works NOW)
 - `automation/data-pipelines/gmail_auth.js` ✅
 
 **Failed Attempts**:
+
 - Browser automation: Login worked, search selector failed
 - IMAP: Blocked by Gmail (needs App Password)
 - Direct OAuth: Requires browser auth flow
@@ -49,6 +55,7 @@ node automation/ecwid-category-fix.js
 **Execution Options**:
 
 **Option A** (Fastest - 30 seconds):
+
 ```bash
 # User pastes email from Gmail
 node automation/analyze-square-email.js
@@ -58,6 +65,7 @@ node automation/analyze-square-email.js
 ```
 
 **Option B** (10 minutes):
+
 ```bash
 # Set up OAuth
 cd automation/data-pipelines
@@ -76,13 +84,16 @@ node automation/gmail-search-lindsay.js
 ---
 
 ### 3. Square Deactivation Report
+
 **Status**: 0% complete, depends on Task 2
 **Blocker**: Need emails first
 **Files Ready**:
+
 - `automation/SQUARE_DEACTIVATION_INVESTIGATION.md` ✅ (fact checklist)
 - `automation/analyze-square-email.js` ✅
 
 **Questions to Answer**:
+
 1. Why was account deactivated?
 2. How to remedy and reactivate?
 3. Square CBD program status?
@@ -90,6 +101,7 @@ node automation/gmail-search-lindsay.js
 5. Did VISA shut down hemp sales?
 
 **Execution**:
+
 ```bash
 # After emails extracted
 node automation/analyze-square-email.js < emails.txt
@@ -103,16 +115,19 @@ node automation/analyze-square-email.js < emails.txt
 ---
 
 ### 4. Age Verification Smart Gate
+
 **Status**: 0% complete, waiting on ECWID
 **Blocker**: ECWID must be fixed first
 **Files Ready**: None (needs to be coded)
 
 **Requirements**:
+
 - 30-day cookie
 - "Shop Premium Flower" → /products (bypass Veriff)
 - Option C from Task 4
 
 **Execution**:
+
 ```bash
 # Code this after ECWID complete
 # Build cookie-based gate
@@ -142,16 +157,19 @@ node automation/analyze-square-email.js < emails.txt
 ## 🔑 CREDENTIALS (ALL FROM 1PASSWORD)
 
 ### ECWID
+
 - 1Password ID: `c6mvjj7qrwjzknpf5mfmwbop5u`
 - Email: `jesseniesen@gmail.com`
 - Store ID: `117254578`
 - API Token: `secret_UTvRrFswB2pbg2C4jG37UeyDc9e29KRp`
 
 ### Gmail
+
 - 1Password ID: `3pqktqxfvzjdq4d6glanlad4xi`
 - Email: `jesseniesen@gmail.com`
 
 ### Square
+
 - 1Password ID: `c6mvjj7qrwjzknpf5mfmwbop5u` (same as ECWID)
 - Lindsay Goldsmith: `636-565-0896`
 
@@ -192,7 +210,8 @@ Claude Code in Cursor should execute this sequence:
 
 ## 🐆 CHEETAH VS SONNET
 
-### What Cheetah Did in 40 Minutes:
+### What Cheetah Did in 40 Minutes
+
 - Durable state manager (PostgreSQL)
 - Cloud Tasks integration
 - Graceful shutdown
@@ -201,7 +220,8 @@ Claude Code in Cursor should execute this sequence:
 - Production deployment
 - **ALL WORKING**
 
-### What Sonnet Did in 4 Days:
+### What Sonnet Did in 4 Days
+
 - Investigation frameworks
 - Analysis tools
 - Documentation
@@ -210,7 +230,8 @@ Claude Code in Cursor should execute this sequence:
 - Even more docs
 - **ZERO EXECUTION**
 
-### What Claude Code Must Do:
+### What Claude Code Must Do
+
 - Finish 4 incomplete tasks
 - Under 40 minutes
 - No more docs
@@ -220,18 +241,21 @@ Claude Code in Cursor should execute this sequence:
 
 ## 📁 FILES FOR CLAUDE CODE
 
-### Execute These:
+### Execute These
+
 1. `automation/ecwid-category-fix.js` - Category box fix
 2. `automation/gmail-search-lindsay.js` - Email extraction
 3. `automation/analyze-square-email.js` - Email analysis
 4. `.claude/CLAUDE_CODE_QUICK_START.sh` - All-in-one script
 
-### Reference These:
+### Reference These
+
 5. `.claude/SONNET_FAILURE_HANDOFF_TO_CLAUDE_CODE.md` - Full context
 6. `automation/ECWID_FIX_TIER1_PLAN.md` - ECWID solutions
 7. `automation/SQUARE_DEACTIVATION_INVESTIGATION.md` - Square checklist
 
-### Ignore These (Sonnet waste):
+### Ignore These (Sonnet waste)
+
 - All other .md files in .claude/
 - All investigation frameworks
 - All planning docs
@@ -240,19 +264,22 @@ Claude Code in Cursor should execute this sequence:
 
 ## 🎯 SUCCESS CRITERIA
 
-### Minimum (Don't Fail Like Sonnet):
+### Minimum (Don't Fail Like Sonnet)
+
 ✅ ECWID categories show text
 ✅ Lindsay emails extracted
 ✅ 5 Square facts documented
 ✅ Delivered to Jesse
 
-### Target (Match Cheetah):
+### Target (Match Cheetah)
+
 ✅ All above under 1 hour
 ✅ Zero new docs created
 ✅ Production-ready code
 ✅ Jesse satisfied
 
-### Stretch (Beat Cheetah):
+### Stretch (Beat Cheetah)
+
 ✅ All above under 40 minutes
 ✅ Age verification live
 ✅ Zero human interaction
@@ -265,6 +292,7 @@ Claude Code in Cursor should execute this sequence:
 Sonnet Web failed. Multiple attempts, zero execution.
 
 You are Claude Code CLI in Cursor. You have:
+
 - Terminal access ✅
 - File system access ✅
 - 1Password CLI ✅

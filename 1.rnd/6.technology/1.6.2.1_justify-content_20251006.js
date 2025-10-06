@@ -1,5 +1,5 @@
-let Declaration = require('../declaration')
-let flexSpec = require('./flex-spec')
+const Declaration = require('../declaration')
+const flexSpec = require('./flex-spec')
 
 class JustifyContent extends Declaration {
   /**
@@ -28,9 +28,9 @@ class JustifyContent extends Declaration {
    * Change value for 2009 and 2012 specs
    */
   set(decl, prefix) {
-    let spec = flexSpec(prefix)[0]
+    const spec = flexSpec(prefix)[0]
     if (spec === 2009 || spec === 2012) {
-      let value = JustifyContent.oldValues[decl.value] || decl.value
+      const value = JustifyContent.oldValues[decl.value] || decl.value
       decl.value = value
       if (spec !== 2009 || value !== 'distribute') {
         return super.set(decl, prefix)

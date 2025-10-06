@@ -1,10 +1,10 @@
-var path = require('path');
-var test = require('tape');
-var resolve = require('../');
+const path = require('path');
+const test = require('tape');
+const resolve = require('../');
 
 test('precedence', function (t) {
     t.plan(3);
-    var dir = path.join(__dirname, 'precedence/aaa');
+    const dir = path.join(__dirname, 'precedence/aaa');
 
     resolve('./', { basedir: dir }, function (err, res, pkg) {
         t.ifError(err);
@@ -15,7 +15,7 @@ test('precedence', function (t) {
 
 test('./ should not load ${dir}.js', function (t) { // eslint-disable-line no-template-curly-in-string
     t.plan(1);
-    var dir = path.join(__dirname, 'precedence/bbb');
+    const dir = path.join(__dirname, 'precedence/bbb');
 
     resolve('./', { basedir: dir }, function (err, res, pkg) {
         t.ok(err);

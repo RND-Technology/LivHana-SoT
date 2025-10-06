@@ -1,9 +1,9 @@
 'use strict';
 
 /* eslint-env browser */
-var inspect = require('../');
+const inspect = require('../');
 
-var d = document.createElement('div');
+const d = document.createElement('div');
 d.setAttribute('id', 'beep');
 d.innerHTML = '<b>wooo</b><i>iiiii</i>';
 

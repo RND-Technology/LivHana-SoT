@@ -18,12 +18,12 @@ function _jestUtil() {
   };
   return data;
 }
-var _BaseReporter = _interopRequireDefault(require('./BaseReporter'));
-var _getResultHeader = _interopRequireDefault(require('./getResultHeader'));
-var _getSnapshotSummary = _interopRequireDefault(
+const _BaseReporter = _interopRequireDefault(require('./BaseReporter'));
+const _getResultHeader = _interopRequireDefault(require('./getResultHeader'));
+const _getSnapshotSummary = _interopRequireDefault(
   require('./getSnapshotSummary')
 );
-var _getSummary = _interopRequireDefault(require('./getSummary'));
+const _getSummary = _interopRequireDefault(require('./getSummary'));
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {default: obj};
 }

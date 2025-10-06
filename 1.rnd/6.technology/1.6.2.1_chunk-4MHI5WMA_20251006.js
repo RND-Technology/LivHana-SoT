@@ -3,13 +3,13 @@ import {
 } from "./chunk-EWTE5DHJ.js";
 
 // node_modules/react-is/cjs/react-is.development.js
-var require_react_is_development = __commonJS({
+const require_react_is_development = __commonJS({
   "node_modules/react-is/cjs/react-is.development.js"(exports) {
     "use strict";
     (function() {
       function typeOf(object) {
         if ("object" === typeof object && null !== object) {
-          var $$typeof = object.$$typeof;
+          const $$typeof = object.$$typeof;
           switch ($$typeof) {
             case REACT_ELEMENT_TYPE:
               switch (object = object.type, object) {
@@ -98,7 +98,7 @@ var require_react_is_development = __commonJS({
 });
 
 // node_modules/react-is/index.js
-var require_react_is = __commonJS({
+const require_react_is = __commonJS({
   "node_modules/react-is/index.js"(exports, module) {
     "use strict";
     if (false) {
@@ -111,10 +111,10 @@ var require_react_is = __commonJS({
 
 // node_modules/clsx/dist/clsx.mjs
 function r(e) {
-  var t, f, n = "";
+  let t, f, n = "";
   if ("string" == typeof e || "number" == typeof e) n += e;
   else if ("object" == typeof e) if (Array.isArray(e)) {
-    var o = e.length;
+    const o = e.length;
     for (t = 0; t < o; t++) e[t] && (f = r(e[t])) && (n && (n += " "), n += f);
   } else for (f in e) e[f] && (n && (n += " "), n += f);
   return n;
@@ -123,7 +123,7 @@ function clsx() {
   for (var e, t, f = 0, n = "", o = arguments.length; f < o; f++) (e = arguments[f]) && (t = r(e)) && (n && (n += " "), n += t);
   return n;
 }
-var clsx_default = clsx;
+const clsx_default = clsx;
 
 export {
   clsx,

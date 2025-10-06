@@ -124,7 +124,7 @@ class Generator {
         return changes;
     }
     async generateIndex(metadata, directory) {
-        var _a;
+        let _a;
         const apis = {};
         const apisPath = path.join(srcPath, 'apis');
         const indexPath = path.join(apisPath, 'index.ts');

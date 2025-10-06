@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.transformReply = exports.transformArguments = exports.FIRST_KEY_INDEX = exports.IS_READ_ONLY = void 0;
 const INFO_1 = require("./INFO");
-var INFO_2 = require("./INFO");
+const INFO_2 = require("./INFO");
 Object.defineProperty(exports, "IS_READ_ONLY", { enumerable: true, get: function () { return INFO_2.IS_READ_ONLY; } });
 Object.defineProperty(exports, "FIRST_KEY_INDEX", { enumerable: true, get: function () { return INFO_2.FIRST_KEY_INDEX; } });
 function transformArguments(key) {

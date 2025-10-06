@@ -1,5 +1,5 @@
 //.CommonJS
-var CSSOM = {
+const CSSOM = {
 	CSSRule: require("./CSSRule").CSSRule,
 	parse: require('./parse').parse
 };
@@ -39,7 +39,7 @@ CSSOM.CSSGroupingRule.prototype.constructor = CSSOM.CSSGroupingRule;
 	if (index < 0 || index > this.cssRules.length) {
 		throw new RangeError("INDEX_SIZE_ERR");
 	}
-	var cssRule = CSSOM.parse(rule).cssRules[0];
+	const cssRule = CSSOM.parse(rule).cssRules[0];
 	cssRule.parentRule = this;
 	this.cssRules.splice(index, 0, cssRule);
 	return index;

@@ -1,4 +1,4 @@
-var baseForOwn = require('./_baseForOwn'),
+const baseForOwn = require('./_baseForOwn'),
     createBaseEach = require('./_createBaseEach');
 
 /**
@@ -9,6 +9,6 @@ var baseForOwn = require('./_baseForOwn'),
  * @param {Function} iteratee The function invoked per iteration.
  * @returns {Array|Object} Returns `collection`.
  */
-var baseEach = createBaseEach(baseForOwn);
+const baseEach = createBaseEach(baseForOwn);
 
 module.exports = baseEach;

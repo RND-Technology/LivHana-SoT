@@ -8,7 +8,7 @@ export function createTransformerMacro(
   transformers /*: { [key: string]: Transformer | [Transformer, Object] } */,
   { importSource } /*: { importSource: string } */
 ) {
-  let macro = createMacro(
+  const macro = createMacro(
     ({ path, source, references, state, babel, isEmotionCall }) => {
       if (!path) {
         path = state.file.scope.path

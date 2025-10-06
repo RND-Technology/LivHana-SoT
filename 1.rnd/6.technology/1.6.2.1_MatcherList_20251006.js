@@ -1,5 +1,5 @@
 //.CommonJS
-var CSSOM = {};
+const CSSOM = {};
 ///CommonJS
 
 
@@ -27,9 +27,9 @@ CSSOM.MatcherList.prototype = {
      */
     set matcherText(value) {
         // just a temporary solution, actually it may be wrong by just split the value with ',', because a url can include ','.
-        var values = value.split(",");
-        var length = this.length = values.length;
-        for (var i=0; i<length; i++) {
+        const values = value.split(",");
+        const length = this.length = values.length;
+        for (let i=0; i<length; i++) {
             this[i] = values[i].trim();
         }
     },
@@ -48,7 +48,7 @@ CSSOM.MatcherList.prototype = {
      * @param {string} matcher
      */
     deleteMatcher: function(matcher) {
-        var index = Array.prototype.indexOf.call(this, matcher);
+        const index = Array.prototype.indexOf.call(this, matcher);
         if (index !== -1) {
             Array.prototype.splice.call(this, index, 1);
         }

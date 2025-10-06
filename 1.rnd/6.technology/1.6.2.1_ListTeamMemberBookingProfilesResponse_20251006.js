@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
 exports.listTeamMemberBookingProfilesResponseSchema = void 0;
-var schema_1 = require("../schema");
-var error_1 = require("./error");
-var teamMemberBookingProfile_1 = require("./teamMemberBookingProfile");
+const schema_1 = require("../schema");
+const error_1 = require("./error");
+const teamMemberBookingProfile_1 = require("./teamMemberBookingProfile");
 exports.listTeamMemberBookingProfilesResponseSchema = (0, schema_1.object)({
     teamMemberBookingProfiles: [
         'team_member_booking_profiles',

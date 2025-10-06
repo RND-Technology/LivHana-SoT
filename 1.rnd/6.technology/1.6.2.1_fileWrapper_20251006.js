@@ -3,7 +3,7 @@ import { __assign } from 'tslib';
 /**
  * Wraps file with mime-type and filename to be sent as part of an HTTP request.
  */
-var FileWrapper =
+const FileWrapper =
 /*#__PURE__*/
 /** @class */
 function () {
@@ -24,14 +24,14 @@ function isFileWrapper(value) {
  * @param fileWrapper FileWrapper instance to copy
  */
 function cloneFileWrapper(fileWrapper) {
-  var options;
+  let options;
   if (fileWrapper.options) {
     options = cloneFileWrapperOptions(fileWrapper.options);
   }
   return new FileWrapper(fileWrapper.file, options);
 }
 function cloneFileWrapperOptions(fileWrapperOptions) {
-  var clone = __assign({}, fileWrapperOptions);
+  const clone = __assign({}, fileWrapperOptions);
   if (fileWrapperOptions.headers) {
     clone.headers = __assign({}, fileWrapperOptions.headers);
   }

@@ -2,7 +2,7 @@ import { o as YAMLReferenceError, T as Type, g as YAMLSemanticError, _ as _creat
 import { j as resolveString, b as binaryOptions, c as stringifyString, h as resolveSeq, P as Pair, d as YAMLMap, Y as YAMLSeq, t as toJSON, S as Scalar, l as findPair, g as resolveMap, k as stringifyNumber } from './resolveSeq-492ab440.js';
 
 /* global atob, btoa, Buffer */
-var binary = {
+const binary = {
   identify: function identify(value) {
     return value instanceof Uint8Array;
   },
@@ -19,39 +19,39 @@ var binary = {
    *   document.querySelector('#photo').src = URL.createObjectURL(blob)
    */
   resolve: function resolve(doc, node) {
-    var src = resolveString(doc, node);
+    const src = resolveString(doc, node);
 
     if (typeof Buffer === 'function') {
       return Buffer.from(src, 'base64');
     } else if (typeof atob === 'function') {
       // On IE 11, atob() can't handle newlines
-      var str = atob(src.replace(/[\n\r]/g, ''));
-      var buffer = new Uint8Array(str.length);
+      const str = atob(src.replace(/[\n\r]/g, ''));
+      const buffer = new Uint8Array(str.length);
 
-      for (var i = 0; i < str.length; ++i) {
+      for (let i = 0; i < str.length; ++i) {
         buffer[i] = str.charCodeAt(i);
       }
 
       return buffer;
     } else {
-      var msg = 'This environment does not support reading binary tags; either Buffer or atob is required';
+      const msg = 'This environment does not support reading binary tags; either Buffer or atob is required';
       doc.errors.push(new YAMLReferenceError(node, msg));
       return null;
     }
   },
   options: binaryOptions,
   stringify: function stringify(_ref, ctx, onComment, onChompKeep) {
-    var comment = _ref.comment,
+    let comment = _ref.comment,
         type = _ref.type,
         value = _ref.value;
-    var src;
+    let src;
 
     if (typeof Buffer === 'function') {
       src = value instanceof Buffer ? value.toString('base64') : Buffer.from(value.buffer).toString('base64');
     } else if (typeof btoa === 'function') {
-      var s = '';
+      let s = '';
 
-      for (var i = 0; i < value.length; ++i) {
+      for (let i = 0; i < value.length; ++i) {
         s += String.fromCharCode(value[i]);
       }
 
@@ -65,11 +65,11 @@ var binary = {
     if (type === Type.QUOTE_DOUBLE) {
       value = src;
     } else {
-      var lineWidth = binaryOptions.lineWidth;
-      var n = Math.ceil(src.length / lineWidth);
-      var lines = new Array(n);
+      const lineWidth = binaryOptions.lineWidth;
+      const n = Math.ceil(src.length / lineWidth);
+      const lines = new Array(n);
 
-      for (var _i = 0, o = 0; _i < n; ++_i, o += lineWidth) {
+      for (let _i = 0, o = 0; _i < n; ++_i, o += lineWidth) {
         lines[_i] = src.substr(o, lineWidth);
       }
 
@@ -85,17 +85,17 @@ var binary = {
 };
 
 function parsePairs(doc, cst) {
-  var seq = resolveSeq(doc, cst);
+  const seq = resolveSeq(doc, cst);
 
-  for (var i = 0; i < seq.items.length; ++i) {
-    var item = seq.items[i];
+  for (let i = 0; i < seq.items.length; ++i) {
+    let item = seq.items[i];
     if (item instanceof Pair) continue;else if (item instanceof YAMLMap) {
       if (item.items.length > 1) {
-        var msg = 'Each pair must have its own sequence indicator';
+        const msg = 'Each pair must have its own sequence indicator';
         throw new YAMLSemanticError(cst, msg);
       }
 
-      var pair = item.items[0] || new Pair();
+      const pair = item.items[0] || new Pair();
       if (item.commentBefore) pair.commentBefore = pair.commentBefore ? "".concat(item.commentBefore, "\n").concat(pair.commentBefore) : item.commentBefore;
       if (item.comment) pair.comment = pair.comment ? "".concat(item.comment, "\n").concat(pair.comment) : item.comment;
       item = pair;
@@ -106,16 +106,16 @@ function parsePairs(doc, cst) {
   return seq;
 }
 function createPairs(schema, iterable, ctx) {
-  var pairs = new YAMLSeq(schema);
+  const pairs = new YAMLSeq(schema);
   pairs.tag = 'tag:yaml.org,2002:pairs';
 
-  var _iterator = _createForOfIteratorHelper(iterable),
+  let _iterator = _createForOfIteratorHelper(iterable),
       _step;
 
   try {
     for (_iterator.s(); !(_step = _iterator.n()).done;) {
-      var it = _step.value;
-      var key = void 0,
+      const it = _step.value;
+      let key = void 0,
           value = void 0;
 
       if (Array.isArray(it)) {
@@ -124,7 +124,7 @@ function createPairs(schema, iterable, ctx) {
           value = it[1];
         } else throw new TypeError("Expected [key, value] tuple: ".concat(it));
       } else if (it && it instanceof Object) {
-        var keys = Object.keys(it);
+        const keys = Object.keys(it);
 
         if (keys.length === 1) {
           key = keys[0];
@@ -134,7 +134,7 @@ function createPairs(schema, iterable, ctx) {
         key = it;
       }
 
-      var pair = schema.createPair(key, value, ctx);
+      const pair = schema.createPair(key, value, ctx);
       pairs.items.push(pair);
     }
   } catch (err) {
@@ -145,20 +145,20 @@ function createPairs(schema, iterable, ctx) {
 
   return pairs;
 }
-var pairs = {
+const pairs = {
   default: false,
   tag: 'tag:yaml.org,2002:pairs',
   resolve: parsePairs,
   createNode: createPairs
 };
 
-var YAMLOMap = /*#__PURE__*/function (_YAMLSeq) {
+const YAMLOMap = /*#__PURE__*/function (_YAMLSeq) {
   _inherits(YAMLOMap, _YAMLSeq);
 
-  var _super = _createSuper(YAMLOMap);
+  const _super = _createSuper(YAMLOMap);
 
   function YAMLOMap() {
-    var _this;
+    let _this;
 
     _classCallCheck(this, YAMLOMap);
 
@@ -181,16 +181,16 @@ var YAMLOMap = /*#__PURE__*/function (_YAMLSeq) {
   _createClass(YAMLOMap, [{
     key: "toJSON",
     value: function toJSON$1(_, ctx) {
-      var map = new Map();
+      const map = new Map();
       if (ctx && ctx.onCreate) ctx.onCreate(map);
 
-      var _iterator = _createForOfIteratorHelper(this.items),
+      let _iterator = _createForOfIteratorHelper(this.items),
           _step;
 
       try {
         for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var pair = _step.value;
-          var key = void 0,
+          const pair = _step.value;
+          let key = void 0,
               value = void 0;
 
           if (pair instanceof Pair) {
@@ -219,19 +219,19 @@ var YAMLOMap = /*#__PURE__*/function (_YAMLSeq) {
 _defineProperty(YAMLOMap, "tag", 'tag:yaml.org,2002:omap');
 
 function parseOMap(doc, cst) {
-  var pairs = parsePairs(doc, cst);
-  var seenKeys = [];
+  const pairs = parsePairs(doc, cst);
+  const seenKeys = [];
 
-  var _iterator2 = _createForOfIteratorHelper(pairs.items),
+  let _iterator2 = _createForOfIteratorHelper(pairs.items),
       _step2;
 
   try {
     for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-      var key = _step2.value.key;
+      const key = _step2.value.key;
 
       if (key instanceof Scalar) {
         if (seenKeys.includes(key.value)) {
-          var msg = 'Ordered maps must not include duplicate keys';
+          const msg = 'Ordered maps must not include duplicate keys';
           throw new YAMLSemanticError(cst, msg);
         } else {
           seenKeys.push(key.value);
@@ -248,13 +248,13 @@ function parseOMap(doc, cst) {
 }
 
 function createOMap(schema, iterable, ctx) {
-  var pairs = createPairs(schema, iterable, ctx);
-  var omap = new YAMLOMap();
+  const pairs = createPairs(schema, iterable, ctx);
+  const omap = new YAMLOMap();
   omap.items = pairs.items;
   return omap;
 }
 
-var omap = {
+const omap = {
   identify: function identify(value) {
     return value instanceof Map;
   },
@@ -265,13 +265,13 @@ var omap = {
   createNode: createOMap
 };
 
-var YAMLSet = /*#__PURE__*/function (_YAMLMap) {
+const YAMLSet = /*#__PURE__*/function (_YAMLMap) {
   _inherits(YAMLSet, _YAMLMap);
 
-  var _super = _createSuper(YAMLSet);
+  const _super = _createSuper(YAMLSet);
 
   function YAMLSet() {
-    var _this;
+    let _this;
 
     _classCallCheck(this, YAMLSet);
 
@@ -283,21 +283,21 @@ var YAMLSet = /*#__PURE__*/function (_YAMLMap) {
   _createClass(YAMLSet, [{
     key: "add",
     value: function add(key) {
-      var pair = key instanceof Pair ? key : new Pair(key);
-      var prev = findPair(this.items, pair.key);
+      const pair = key instanceof Pair ? key : new Pair(key);
+      const prev = findPair(this.items, pair.key);
       if (!prev) this.items.push(pair);
     }
   }, {
     key: "get",
     value: function get(key, keepPair) {
-      var pair = findPair(this.items, key);
+      const pair = findPair(this.items, key);
       return !keepPair && pair instanceof Pair ? pair.key instanceof Scalar ? pair.key.value : pair.key : pair;
     }
   }, {
     key: "set",
     value: function set(key, value) {
       if (typeof value !== 'boolean') throw new Error("Expected boolean value for set(key, value) in a YAML set, not ".concat(_typeof(value)));
-      var prev = findPair(this.items, key);
+      const prev = findPair(this.items, key);
 
       if (prev && !value) {
         this.items.splice(this.items.indexOf(prev), 1);
@@ -324,20 +324,20 @@ var YAMLSet = /*#__PURE__*/function (_YAMLMap) {
 _defineProperty(YAMLSet, "tag", 'tag:yaml.org,2002:set');
 
 function parseSet(doc, cst) {
-  var map = resolveMap(doc, cst);
+  const map = resolveMap(doc, cst);
   if (!map.hasAllNullValues()) throw new YAMLSemanticError(cst, 'Set items must all have null values');
   return Object.assign(new YAMLSet(), map);
 }
 
 function createSet(schema, iterable, ctx) {
-  var set = new YAMLSet();
+  const set = new YAMLSet();
 
-  var _iterator = _createForOfIteratorHelper(iterable),
+  let _iterator = _createForOfIteratorHelper(iterable),
       _step;
 
   try {
     for (_iterator.s(); !(_step = _iterator.n()).done;) {
-      var value = _step.value;
+      const value = _step.value;
       set.items.push(schema.createPair(value, null, ctx));
     }
   } catch (err) {
@@ -349,7 +349,7 @@ function createSet(schema, iterable, ctx) {
   return set;
 }
 
-var set = {
+const set = {
   identify: function identify(value) {
     return value instanceof Set;
   },
@@ -360,25 +360,25 @@ var set = {
   createNode: createSet
 };
 
-var parseSexagesimal = function parseSexagesimal(sign, parts) {
-  var n = parts.split(':').reduce(function (n, p) {
+const parseSexagesimal = function parseSexagesimal(sign, parts) {
+  const n = parts.split(':').reduce(function (n, p) {
     return n * 60 + Number(p);
   }, 0);
   return sign === '-' ? -n : n;
 }; // hhhh:mm:ss.sss
 
 
-var stringifySexagesimal = function stringifySexagesimal(_ref) {
-  var value = _ref.value;
+const stringifySexagesimal = function stringifySexagesimal(_ref) {
+  let value = _ref.value;
   if (isNaN(value) || !isFinite(value)) return stringifyNumber(value);
-  var sign = '';
+  let sign = '';
 
   if (value < 0) {
     sign = '-';
     value = Math.abs(value);
   }
 
-  var parts = [value % 60]; // seconds, including ms
+  const parts = [value % 60]; // seconds, including ms
 
   if (value < 60) {
     parts.unshift(0); // at least one : is required
@@ -398,7 +398,7 @@ var stringifySexagesimal = function stringifySexagesimal(_ref) {
   ;
 };
 
-var intTime = {
+const intTime = {
   identify: function identify(value) {
     return typeof value === 'number';
   },
@@ -411,7 +411,7 @@ var intTime = {
   },
   stringify: stringifySexagesimal
 };
-var floatTime = {
+const floatTime = {
   identify: function identify(value) {
     return typeof value === 'number';
   },
@@ -424,7 +424,7 @@ var floatTime = {
   },
   stringify: stringifySexagesimal
 };
-var timestamp = {
+const timestamp = {
   identify: function identify(value) {
     return value instanceof Date;
   },
@@ -440,10 +440,10 @@ var timestamp = {
   ')?' + ')$'),
   resolve: function resolve(str, year, month, day, hour, minute, second, millisec, tz) {
     if (millisec) millisec = (millisec + '00').substr(1, 3);
-    var date = Date.UTC(year, month - 1, day, hour || 0, minute || 0, second || 0, millisec || 0);
+    let date = Date.UTC(year, month - 1, day, hour || 0, minute || 0, second || 0, millisec || 0);
 
     if (tz && tz !== 'Z') {
-      var d = parseSexagesimal(tz[0], tz.slice(1));
+      let d = parseSexagesimal(tz[0], tz.slice(1));
       if (Math.abs(d) < 30) d *= 60;
       date -= 60000 * d;
     }
@@ -451,14 +451,14 @@ var timestamp = {
     return new Date(date);
   },
   stringify: function stringify(_ref2) {
-    var value = _ref2.value;
+    const value = _ref2.value;
     return value.toISOString().replace(/((T00:00)?:00)?\.000Z$/, '');
   }
 };
 
 /* global console, process, YAML_SILENCE_DEPRECATION_WARNINGS, YAML_SILENCE_WARNINGS */
 function shouldWarn(deprecation) {
-  var env = typeof process !== 'undefined' && process.env || {};
+  const env = typeof process !== 'undefined' && process.env || {};
 
   if (deprecation) {
     if (typeof YAML_SILENCE_DEPRECATION_WARNINGS !== 'undefined') return !YAML_SILENCE_DEPRECATION_WARNINGS;
@@ -471,7 +471,7 @@ function shouldWarn(deprecation) {
 
 function warn(warning, type) {
   if (shouldWarn(false)) {
-    var emit = typeof process !== 'undefined' && process.emitWarning; // This will throw in Jest if `warning` is an Error instance due to
+    const emit = typeof process !== 'undefined' && process.emitWarning; // This will throw in Jest if `warning` is an Error instance due to
     // https://github.com/facebook/jest/issues/2549
 
     if (emit) emit(warning, type);else {
@@ -482,15 +482,15 @@ function warn(warning, type) {
 }
 function warnFileDeprecation(filename) {
   if (shouldWarn(true)) {
-    var path = filename.replace(/.*yaml[/\\]/i, '').replace(/\.js$/, '').replace(/\\/g, '/');
+    const path = filename.replace(/.*yaml[/\\]/i, '').replace(/\.js$/, '').replace(/\\/g, '/');
     warn("The endpoint 'yaml/".concat(path, "' will be removed in a future release."), 'DeprecationWarning');
   }
 }
-var warned = {};
+const warned = {};
 function warnOptionDeprecation(name, alternative) {
   if (!warned[name] && shouldWarn(true)) {
     warned[name] = true;
-    var msg = "The option '".concat(name, "' will be removed in a future release");
+    let msg = "The option '".concat(name, "' will be removed in a future release");
     msg += alternative ? ", use '".concat(alternative, "' instead.") : '.';
     warn(msg, 'DeprecationWarning');
   }

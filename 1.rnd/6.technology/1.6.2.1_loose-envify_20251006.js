@@ -1,10 +1,10 @@
 'use strict';
 
-var stream = require('stream');
-var util = require('util');
-var replace = require('./replace');
+const stream = require('stream');
+const util = require('util');
+const replace = require('./replace');
 
-var jsonExtRe = /\.json$/;
+const jsonExtRe = /\.json$/;
 
 module.exports = function(rootEnv) {
   rootEnv = rootEnv || process.env;
@@ -12,7 +12,7 @@ module.exports = function(rootEnv) {
     if (jsonExtRe.test(file)) {
       return stream.PassThrough();
     }
-    var envs = trOpts ? [rootEnv, trOpts] : [rootEnv];
+    const envs = trOpts ? [rootEnv, trOpts] : [rootEnv];
     return new LooseEnvify(envs);
   };
 };
@@ -30,7 +30,7 @@ LooseEnvify.prototype._transform = function(buf, enc, cb) {
 };
 
 LooseEnvify.prototype._flush = function(cb) {
-  var replaced = replace(this._data, this._envs);
+  const replaced = replace(this._data, this._envs);
   this.push(replaced);
   cb();
 };

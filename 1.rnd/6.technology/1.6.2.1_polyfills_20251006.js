@@ -1,9 +1,9 @@
-var constants = require('constants')
+const constants = require('constants')
 
-var origCwd = process.cwd
-var cwd = null
+const origCwd = process.cwd
+let cwd = null
 
-var platform = process.env.GRACEFUL_FS_PLATFORM || process.platform
+const platform = process.env.GRACEFUL_FS_PLATFORM || process.platform
 
 process.cwd = function() {
   if (!cwd)
@@ -16,7 +16,7 @@ try {
 
 // This check is needed until node.js 12 is required
 if (typeof process.chdir === 'function') {
-  var chdir = process.chdir
+  const chdir = process.chdir
   process.chdir = function (d) {
     cwd = null
     chdir.call(process, d)
@@ -97,8 +97,8 @@ function patch (fs) {
     fs.rename = typeof fs.rename !== 'function' ? fs.rename
     : (function (fs$rename) {
       function rename (from, to, cb) {
-        var start = Date.now()
-        var backoff = 0;
+        const start = Date.now()
+        let backoff = 0;
         fs$rename(from, to, function CB (er) {
           if (er
               && (er.code === "EACCES" || er.code === "EPERM" || er.code === "EBUSY")
@@ -127,9 +127,9 @@ function patch (fs) {
   fs.read = typeof fs.read !== 'function' ? fs.read
   : (function (fs$read) {
     function read (fd, buffer, offset, length, position, callback_) {
-      var callback
+      let callback
       if (callback_ && typeof callback_ === 'function') {
-        var eagCounter = 0
+        let eagCounter = 0
         callback = function (er, _, __) {
           if (er && er.code === 'EAGAIN' && eagCounter < 10) {
             eagCounter ++
@@ -148,7 +148,7 @@ function patch (fs) {
 
   fs.readSync = typeof fs.readSync !== 'function' ? fs.readSync
   : (function (fs$readSync) { return function (fd, buffer, offset, length, position) {
-    var eagCounter = 0
+    let eagCounter = 0
     while (true) {
       try {
         return fs$readSync.call(fs, fd, buffer, offset, length, position)
@@ -183,12 +183,12 @@ function patch (fs) {
     }
 
     fs.lchmodSync = function (path, mode) {
-      var fd = fs.openSync(path, constants.O_WRONLY | constants.O_SYMLINK, mode)
+      const fd = fs.openSync(path, constants.O_WRONLY | constants.O_SYMLINK, mode)
 
       // prefer to return the chmod error, if one occurs,
       // but still try to close, and report closing errors if they occur.
-      var threw = true
-      var ret
+      let threw = true
+      let ret
       try {
         ret = fs.fchmodSync(fd, mode)
         threw = false
@@ -222,9 +222,9 @@ function patch (fs) {
       }
 
       fs.lutimesSync = function (path, at, mt) {
-        var fd = fs.openSync(path, constants.O_SYMLINK)
-        var ret
-        var threw = true
+        const fd = fs.openSync(path, constants.O_SYMLINK)
+        let ret
+        let threw = true
         try {
           ret = fs.futimesSync(fd, at, mt)
           threw = false
@@ -315,7 +315,7 @@ function patch (fs) {
     // Older versions of Node erroneously returned signed integers for
     // uid + gid.
     return function (target, options) {
-      var stats = options ? orig.call(fs, target, options)
+      const stats = options ? orig.call(fs, target, options)
         : orig.call(fs, target)
       if (stats) {
         if (stats.uid < 0) stats.uid += 0x100000000
@@ -344,7 +344,7 @@ function patch (fs) {
     if (er.code === "ENOSYS")
       return true
 
-    var nonroot = !process.getuid || process.getuid() !== 0
+    const nonroot = !process.getuid || process.getuid() !== 0
     if (nonroot) {
       if (er.code === "EINVAL" || er.code === "EPERM")
         return true

@@ -19,7 +19,7 @@ exports.adsensehost_v4_1 = void 0;
 /* eslint-disable @typescript-eslint/no-namespace */
 /* eslint-disable no-irregular-whitespace */
 const googleapis_common_1 = require("googleapis-common");
-var adsensehost_v4_1;
+let adsensehost_v4_1;
 (function (adsensehost_v4_1) {
     /**
      * AdSense Host API

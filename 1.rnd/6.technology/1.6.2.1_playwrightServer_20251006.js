@@ -1,37 +1,37 @@
 "use strict";
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __export = (target, all) => {
+  for (const name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var playwrightServer_exports = {};
+const __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+const playwrightServer_exports = {};
 __export(playwrightServer_exports, {
   PlaywrightServer: () => PlaywrightServer
 });
 module.exports = __toCommonJS(playwrightServer_exports);
-var import_playwrightConnection = require("./playwrightConnection");
-var import_playwright = require("../server/playwright");
-var import_semaphore = require("../utils/isomorphic/semaphore");
-var import_time = require("../utils/isomorphic/time");
-var import_wsServer = require("../server/utils/wsServer");
-var import_ascii = require("../server/utils/ascii");
-var import_userAgent = require("../server/utils/userAgent");
-var import_utils = require("../utils");
-var import_socksProxy = require("../server/utils/socksProxy");
-var import_browser = require("../server/browser");
-var import_progress = require("../server/progress");
+const import_playwrightConnection = require("./playwrightConnection");
+const import_playwright = require("../server/playwright");
+const import_semaphore = require("../utils/isomorphic/semaphore");
+const import_time = require("../utils/isomorphic/time");
+const import_wsServer = require("../server/utils/wsServer");
+const import_ascii = require("../server/utils/ascii");
+const import_userAgent = require("../server/utils/userAgent");
+const import_utils = require("../utils");
+const import_socksProxy = require("../server/utils/socksProxy");
+const import_browser = require("../server/browser");
+const import_progress = require("../server/progress");
 class PlaywrightServer {
   constructor(options) {
     this._dontReuseBrowsers = /* @__PURE__ */ new Set();

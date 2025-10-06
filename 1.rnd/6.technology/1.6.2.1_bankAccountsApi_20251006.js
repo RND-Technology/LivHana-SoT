@@ -1,13 +1,13 @@
 "use strict";
 exports.__esModule = true;
 exports.BankAccountsApi = void 0;
-var tslib_1 = require("tslib");
-var getBankAccountByV1IdResponse_1 = require("../models/getBankAccountByV1IdResponse");
-var getBankAccountResponse_1 = require("../models/getBankAccountResponse");
-var listBankAccountsResponse_1 = require("../models/listBankAccountsResponse");
-var schema_1 = require("../schema");
-var baseApi_1 = require("./baseApi");
-var BankAccountsApi = /** @class */ (function (_super) {
+const tslib_1 = require("tslib");
+const getBankAccountByV1IdResponse_1 = require("../models/getBankAccountByV1IdResponse");
+const getBankAccountResponse_1 = require("../models/getBankAccountResponse");
+const listBankAccountsResponse_1 = require("../models/listBankAccountsResponse");
+const schema_1 = require("../schema");
+const baseApi_1 = require("./baseApi");
+const BankAccountsApi = /** @class */ (function (_super) {
     tslib_1.__extends(BankAccountsApi, _super);
     function BankAccountsApi() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -28,7 +28,7 @@ var BankAccountsApi = /** @class */ (function (_super) {
      */
     BankAccountsApi.prototype.listBankAccounts = function (cursor, limit, locationId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET', '/v2/bank-accounts');
                 mapped = req.prepareArgs({
@@ -55,7 +55,7 @@ var BankAccountsApi = /** @class */ (function (_super) {
      */
     BankAccountsApi.prototype.getBankAccountByV1Id = function (v1BankAccountId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({
@@ -76,7 +76,7 @@ var BankAccountsApi = /** @class */ (function (_super) {
      */
     BankAccountsApi.prototype.getBankAccount = function (bankAccountId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({
@@ -91,5 +91,5 @@ var BankAccountsApi = /** @class */ (function (_super) {
     return BankAccountsApi;
 }(baseApi_1.BaseApi));
 exports.BankAccountsApi = BankAccountsApi;
-var templateObject_1, templateObject_2;
+let templateObject_1, templateObject_2;
 //# sourceMappingURL=bankAccountsApi.js.map

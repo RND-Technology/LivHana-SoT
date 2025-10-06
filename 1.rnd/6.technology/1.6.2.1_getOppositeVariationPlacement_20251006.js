@@ -1,4 +1,4 @@
-var hash = {
+const hash = {
   start: 'end',
   end: 'start'
 };

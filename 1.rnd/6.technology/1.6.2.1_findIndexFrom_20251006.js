@@ -1,4 +1,4 @@
-var convert = require('./convert'),
+const convert = require('./convert'),
     func = convert('findIndexFrom', require('../findIndex'));
 
 func.placeholder = require('./placeholder');

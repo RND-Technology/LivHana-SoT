@@ -1,9 +1,9 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var CompletionRecord = require('es-abstract/2024/CompletionRecord');
-var IteratorCloseAll = require('./IteratorCloseAll');
+const CompletionRecord = require('es-abstract/2024/CompletionRecord');
+const IteratorCloseAll = require('./IteratorCloseAll');
 
 // https://tc39.es/proposal-joint-iteration/#sec-ifabruptcloseiterators
 

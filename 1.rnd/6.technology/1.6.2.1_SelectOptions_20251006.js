@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
 exports.selectOptionsSchema = void 0;
-var schema_1 = require("../schema");
-var selectOption_1 = require("./selectOption");
+const schema_1 = require("../schema");
+const selectOption_1 = require("./selectOption");
 exports.selectOptionsSchema = (0, schema_1.object)({
     title: ['title', (0, schema_1.string)()],
     body: ['body', (0, schema_1.string)()],

@@ -4,8 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = cleanJSXElementLiteralChild;
-var _index = require("../../builders/generated/index.js");
-var _index2 = require("../../index.js");
+const _index = require("../../builders/generated/index.js");
+const _index2 = require("../../index.js");
 function cleanJSXElementLiteralChild(child, args) {
   const lines = child.value.split(/\r\n|\n|\r/);
   let lastNonEmptyLine = 0;

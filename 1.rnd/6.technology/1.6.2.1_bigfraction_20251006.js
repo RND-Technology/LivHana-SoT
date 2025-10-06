@@ -172,7 +172,7 @@
         let A = 0, B = 1;
         let C = 1, D = 1;
 
-        let N = 10000000;
+        const N = 10000000;
 
         if (p1 >= 1) {
           z = 10 ** Math.floor(1 + Math.log10(p1));
@@ -182,7 +182,7 @@
         // Using Farey Sequences
 
         while (B <= N && D <= N) {
-          let M = (A + C) / (B + D);
+          const M = (A + C) / (B + D);
 
           if (p1 === M) {
             if (B + D <= N) {
@@ -227,7 +227,7 @@
 
       let v = C_ZERO, w = C_ZERO, x = C_ZERO, y = C_ONE, z = C_ONE;
 
-      let match = p1.match(/\d+|./g);
+      const match = p1.match(/\d+|./g);
 
       if (match === null)
         throw InvalidParameter();
@@ -591,13 +591,13 @@
       if (this['s'] < C_ZERO) return null;
 
       // Now prime factor n and d
-      let N = factorize(this['n']);
-      let D = factorize(this['d']);
+      const N = factorize(this['n']);
+      const D = factorize(this['d']);
 
       // Exponentiate and take root for n and d individually
       let n = C_ONE;
       let d = C_ONE;
-      for (let k in N) {
+      for (const k in N) {
         if (k === '1') continue;
         if (k === '0') {
           n = C_ZERO;
@@ -611,7 +611,7 @@
         n*= BigInt(k) ** N[k];
       }
 
-      for (let k in D) {
+      for (const k in D) {
         if (k === '1') continue;
         D[k]*= P['n'];
 
@@ -646,7 +646,7 @@
     "compare": function(a, b) {
 
       parse(a, b);
-      let t = (this["s"] * this["n"] * P["d"] - P["s"] * P["n"] * this["d"]);
+      const t = (this["s"] * this["n"] * P["d"] - P["s"] * P["n"] * this["d"]);
 
       return (C_ZERO < t) - (t < C_ZERO);
     },
@@ -737,7 +737,7 @@
     'toString': function(dec) {
 
       let N = this["n"];
-      let D = this["d"];
+      const D = this["d"];
 
       function trunc(x) {
           return typeof x === 'bigint' ? x : Math.floor(x);
@@ -745,8 +745,8 @@
 
       dec = dec || 15; // 15 = decimal places when no repetition
 
-      let cycLen = cycleLen(N, D); // Cycle length
-      let cycOff = cycleStart(N, D, cycLen); // Cycle start
+      const cycLen = cycleLen(N, D); // Cycle length
+      const cycOff = cycleStart(N, D, cycLen); // Cycle start
 
       let str = this['s'] < C_ZERO ? "-" : "";
 
@@ -791,13 +791,13 @@
     'toFraction': function(excludeWhole) {
 
       let n = this["n"];
-      let d = this["d"];
+      const d = this["d"];
       let str = this['s'] < C_ZERO ? "-" : "";
 
       if (d === C_ONE) {
         str+= n;
       } else {
-        let whole = n / d;
+        const whole = n / d;
         if (excludeWhole && whole > C_ZERO) {
           str+= whole;
           str+= " ";
@@ -819,13 +819,13 @@
     'toLatex': function(excludeWhole) {
 
       let n = this["n"];
-      let d = this["d"];
+      const d = this["d"];
       let str = this['s'] < C_ZERO ? "-" : "";
 
       if (d === C_ONE) {
         str+= n;
       } else {
-        let whole = n / d;
+        const whole = n / d;
         if (excludeWhole && whole > C_ZERO) {
           str+= whole;
           n%= d;
@@ -849,11 +849,11 @@
 
       let a = this['n'];
       let b = this['d'];
-      let res = [];
+      const res = [];
 
       do {
         res.push(a / b);
-        let t = a % b;
+        const t = a % b;
         a = b;
         b = t;
       } while (a !== C_ONE);

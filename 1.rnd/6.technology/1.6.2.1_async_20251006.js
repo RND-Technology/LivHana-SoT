@@ -1,4 +1,4 @@
-var defer = require('./defer.js');
+const defer = require('./defer.js');
 
 // API
 module.exports = async;
@@ -12,7 +12,7 @@ module.exports = async;
  */
 function async(callback)
 {
-  var isAsync = false;
+  let isAsync = false;
 
   // check if async happened
   defer(function() { isAsync = true; });

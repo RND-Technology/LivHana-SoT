@@ -16,7 +16,7 @@ class Meridiem extends DatePart {
   }
 
   toString() {
-    let meridiem = this.date.getHours() > 12 ? 'pm' : 'am';
+    const meridiem = this.date.getHours() > 12 ? 'pm' : 'am';
     return /\A/.test(this.token) ? meridiem.toUpperCase() : meridiem;
   }
 }

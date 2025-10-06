@@ -1,10 +1,10 @@
-var memoizeCapped = require('./_memoizeCapped');
+const memoizeCapped = require('./_memoizeCapped');
 
 /** Used to match property names within property paths. */
-var rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g;
+const rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g;
 
 /** Used to match backslashes in property paths. */
-var reEscapeChar = /\\(\\)?/g;
+const reEscapeChar = /\\(\\)?/g;
 
 /**
  * Converts `string` to a property path array.
@@ -13,8 +13,8 @@ var reEscapeChar = /\\(\\)?/g;
  * @param {string} string The string to convert.
  * @returns {Array} Returns the property path array.
  */
-var stringToPath = memoizeCapped(function(string) {
-  var result = [];
+const stringToPath = memoizeCapped(function(string) {
+  const result = [];
   if (string.charCodeAt(0) === 46 /* . */) {
     result.push('');
   }

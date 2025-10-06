@@ -22,7 +22,7 @@ const Tracer_1 = require("./Tracer");
 const config_1 = require("./config");
 const MultiSpanProcessor_1 = require("./MultiSpanProcessor");
 const utility_1 = require("./utility");
-var ForceFlushState;
+let ForceFlushState;
 (function (ForceFlushState) {
     ForceFlushState[ForceFlushState["resolved"] = 0] = "resolved";
     ForceFlushState[ForceFlushState["timeout"] = 1] = "timeout";

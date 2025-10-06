@@ -25,7 +25,7 @@ function _prettyFormat() {
   };
   return data;
 }
-var _constants = require('./constants');
+const _constants = require('./constants');
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *

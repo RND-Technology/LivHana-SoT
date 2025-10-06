@@ -4,7 +4,7 @@
  * Streaming RPC helpers.
  * @namespace
  */
-var rpc = exports;
+const rpc = exports;
 
 /**
  * RPC implementation passed to {@link Service#create} performing a service request on network level, i.e. by utilizing http requests or websockets.

@@ -1,14 +1,14 @@
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+const GetIntrinsic = require('get-intrinsic');
 
-var $ArrayPrototype = GetIntrinsic('%Array.prototype%');
-var $RangeError = require('es-errors/range');
-var $SyntaxError = require('es-errors/syntax');
-var $TypeError = require('es-errors/type');
-var isInteger = require('math-intrinsics/isInteger');
-var MAX_ARRAY_LENGTH = require('math-intrinsics/constants/maxArrayLength');
-var $setProto = require('set-proto');
+const $ArrayPrototype = GetIntrinsic('%Array.prototype%');
+const $RangeError = require('es-errors/range');
+const $SyntaxError = require('es-errors/syntax');
+const $TypeError = require('es-errors/type');
+const isInteger = require('math-intrinsics/isInteger');
+const MAX_ARRAY_LENGTH = require('math-intrinsics/constants/maxArrayLength');
+const $setProto = require('set-proto');
 
 // https://262.ecma-international.org/6.0/#sec-arraycreate
 
@@ -19,8 +19,8 @@ module.exports = function ArrayCreate(length) {
 	if (length > MAX_ARRAY_LENGTH) {
 		throw new $RangeError('length is greater than (2**32 - 1)');
 	}
-	var proto = arguments.length > 1 ? arguments[1] : $ArrayPrototype;
-	var A = []; // steps 5 - 7, and 9
+	const proto = arguments.length > 1 ? arguments[1] : $ArrayPrototype;
+	const A = []; // steps 5 - 7, and 9
 	if (proto !== $ArrayPrototype) { // step 8
 		if (!$setProto) {
 			throw new $SyntaxError('ArrayCreate: a `proto` argument that is not `Array.prototype` is not supported in an environment that does not support setting the [[Prototype]]');

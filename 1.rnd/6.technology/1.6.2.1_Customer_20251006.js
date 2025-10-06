@@ -1,11 +1,11 @@
 "use strict";
 exports.__esModule = true;
 exports.customerSchema = void 0;
-var schema_1 = require("../schema");
-var address_1 = require("./address");
-var card_1 = require("./card");
-var customerPreferences_1 = require("./customerPreferences");
-var customerTaxIds_1 = require("./customerTaxIds");
+const schema_1 = require("../schema");
+const address_1 = require("./address");
+const card_1 = require("./card");
+const customerPreferences_1 = require("./customerPreferences");
+const customerTaxIds_1 = require("./customerTaxIds");
 exports.customerSchema = (0, schema_1.object)({
     id: ['id', (0, schema_1.optional)((0, schema_1.string)())],
     createdAt: ['created_at', (0, schema_1.optional)((0, schema_1.string)())],

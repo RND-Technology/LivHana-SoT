@@ -1,4 +1,4 @@
-var baseEach = require('./_baseEach');
+const baseEach = require('./_baseEach');
 
 /**
  * Aggregates elements of `collection` on `accumulator` with keys transformed

@@ -1,19 +1,19 @@
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+const GetIntrinsic = require('get-intrinsic');
 
-var $SyntaxError = require('es-errors/syntax');
-var $TypeError = require('es-errors/type');
-var isObject = require('es-object-atoms/isObject');
-var $gOPD = require('gopd');
-var $preventExtensions = GetIntrinsic('%Object.preventExtensions%', true);
-var $gOPN = GetIntrinsic('%Object.getOwnPropertyNames%', true);
+const $SyntaxError = require('es-errors/syntax');
+const $TypeError = require('es-errors/type');
+const isObject = require('es-object-atoms/isObject');
+const $gOPD = require('gopd');
+const $preventExtensions = GetIntrinsic('%Object.preventExtensions%', true);
+const $gOPN = GetIntrinsic('%Object.getOwnPropertyNames%', true);
 
-var forEach = require('../helpers/forEach');
+const forEach = require('../helpers/forEach');
 
-var DefinePropertyOrThrow = require('./DefinePropertyOrThrow');
-var IsAccessorDescriptor = require('./IsAccessorDescriptor');
-var ToPropertyDescriptor = require('./ToPropertyDescriptor');
+const DefinePropertyOrThrow = require('./DefinePropertyOrThrow');
+const IsAccessorDescriptor = require('./IsAccessorDescriptor');
+const ToPropertyDescriptor = require('./ToPropertyDescriptor');
 
 // https://262.ecma-international.org/6.0/#sec-setintegritylevel
 
@@ -27,23 +27,23 @@ module.exports = function SetIntegrityLevel(O, level) {
 	if (!$preventExtensions) {
 		throw new $SyntaxError('SetIntegrityLevel requires native `Object.preventExtensions` support');
 	}
-	var status = $preventExtensions(O);
+	const status = $preventExtensions(O);
 	if (!status) {
 		return false;
 	}
 	if (!$gOPN) {
 		throw new $SyntaxError('SetIntegrityLevel requires native `Object.getOwnPropertyNames` support');
 	}
-	var theKeys = $gOPN(O);
+	const theKeys = $gOPN(O);
 	if (level === 'sealed') {
 		forEach(theKeys, function (k) {
 			DefinePropertyOrThrow(O, k, { configurable: false });
 		});
 	} else if (level === 'frozen') {
 		forEach(theKeys, function (k) {
-			var currentDesc = $gOPD(O, k);
+			const currentDesc = $gOPD(O, k);
 			if (typeof currentDesc !== 'undefined') {
-				var desc;
+				let desc;
 				if (IsAccessorDescriptor(ToPropertyDescriptor(currentDesc))) {
 					desc = { configurable: false };
 				} else {

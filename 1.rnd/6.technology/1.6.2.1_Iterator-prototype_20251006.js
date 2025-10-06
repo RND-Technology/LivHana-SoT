@@ -1,18 +1,18 @@
 'use strict';
 
-var defineProperties = require('define-properties');
-var test = require('tape');
-var hasSymbols = require('has-symbols')();
-var hasToStringTag = require('has-tostringtag');
-var functionsHaveNames = require('functions-have-names')();
-var functionsHaveConfigurableNames = require('functions-have-names').functionsHaveConfigurableNames();
+const defineProperties = require('define-properties');
+const test = require('tape');
+const hasSymbols = require('has-symbols')();
+const hasToStringTag = require('has-tostringtag');
+const functionsHaveNames = require('functions-have-names')();
+const functionsHaveConfigurableNames = require('functions-have-names').functionsHaveConfigurableNames();
 
-var index = require('../Iterator.prototype');
-var impl = require('../Iterator.prototype/implementation');
+const index = require('../Iterator.prototype');
+const impl = require('../Iterator.prototype/implementation');
 
-var isEnumerable = Object.prototype.propertyIsEnumerable;
+const isEnumerable = Object.prototype.propertyIsEnumerable;
 
-var $Iterator = require('../Iterator/implementation');
+const $Iterator = require('../Iterator/implementation');
 
 module.exports = {
 	tests: function (proto, name, t) {

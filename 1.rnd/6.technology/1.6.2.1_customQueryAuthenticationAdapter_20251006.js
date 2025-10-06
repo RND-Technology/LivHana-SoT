@@ -1,6 +1,6 @@
 import { __values } from 'tslib';
 import { passThroughInterceptor } from '@apimatic/core-interfaces';
-var customQueryAuthenticationProvider = function (customQueryParams) {
+const customQueryAuthenticationProvider = function (customQueryParams) {
   return function (requiresAuth) {
     if (!requiresAuth) {
       return passThroughInterceptor;
@@ -12,11 +12,11 @@ var customQueryAuthenticationProvider = function (customQueryParams) {
   };
 };
 function encodeQueryParams(queryParams) {
-  var e_1, _a;
-  var queryString = [];
+  let e_1, _a;
+  const queryString = [];
   try {
     for (var _b = __values(Object.keys(queryParams)), _c = _b.next(); !_c.done; _c = _b.next()) {
-      var key = _c.value;
+      const key = _c.value;
       queryString.push("".concat(encodeURIComponent(key), "=").concat(encodeURIComponent(queryParams[key])));
     }
   } catch (e_1_1) {

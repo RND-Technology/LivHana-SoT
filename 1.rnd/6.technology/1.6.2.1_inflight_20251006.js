@@ -1,6 +1,6 @@
-var wrappy = require('wrappy')
-var reqs = Object.create(null)
-var once = require('once')
+const wrappy = require('wrappy')
+const reqs = Object.create(null)
+const once = require('once')
 
 module.exports = wrappy(inflight)
 
@@ -16,9 +16,9 @@ function inflight (key, cb) {
 
 function makeres (key) {
   return once(function RES () {
-    var cbs = reqs[key]
-    var len = cbs.length
-    var args = slice(arguments)
+    const cbs = reqs[key]
+    const len = cbs.length
+    const args = slice(arguments)
 
     // XXX It's somewhat ambiguous whether a new callback added in this
     // pass should be queued for later execution if something in the
@@ -27,7 +27,7 @@ function makeres (key) {
     // choice is likely as surprising as the other.
     // As it happens, we do go ahead and schedule it for later execution.
     try {
-      for (var i = 0; i < len; i++) {
+      for (let i = 0; i < len; i++) {
         cbs[i].apply(null, args)
       }
     } finally {
@@ -46,9 +46,9 @@ function makeres (key) {
 }
 
 function slice (args) {
-  var length = args.length
-  var array = []
+  const length = args.length
+  const array = []
 
-  for (var i = 0; i < length; i++) array[i] = args[i]
+  for (let i = 0; i < length; i++) array[i] = args[i]
   return array
 }

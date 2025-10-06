@@ -6,27 +6,27 @@
 
 'use strict';
 
-var format = require('util').format;
+const format = require('util').format;
 
 // Constants
-var c = require('./const');
+const c = require('./const');
 
-var $$ = require('./utils');
+const $$ = require('./utils');
 
 //Actions
-var ActionHelp = require('./action/help');
-var ActionAppend = require('./action/append');
-var ActionAppendConstant = require('./action/append/constant');
-var ActionCount = require('./action/count');
-var ActionStore = require('./action/store');
-var ActionStoreConstant = require('./action/store/constant');
-var ActionStoreTrue = require('./action/store/true');
-var ActionStoreFalse = require('./action/store/false');
-var ActionVersion = require('./action/version');
-var ActionSubparsers = require('./action/subparsers');
+const ActionHelp = require('./action/help');
+const ActionAppend = require('./action/append');
+const ActionAppendConstant = require('./action/append/constant');
+const ActionCount = require('./action/count');
+const ActionStore = require('./action/store');
+const ActionStoreConstant = require('./action/store/constant');
+const ActionStoreTrue = require('./action/store/true');
+const ActionStoreFalse = require('./action/store/false');
+const ActionVersion = require('./action/version');
+const ActionSubparsers = require('./action/subparsers');
 
 // Errors
-var argumentErrorHelper = require('./argument/error');
+const argumentErrorHelper = require('./argument/error');
 
 /**
  * new ActionContainer(options)
@@ -40,7 +40,7 @@ var argumentErrorHelper = require('./argument/error');
  * - `argumentDefault`  -- The default value for all arguments
  * - `conflictHandler` -- The conflict handler to use for duplicate arguments
  **/
-var ActionContainer = module.exports = function ActionContainer(options) {
+const ActionContainer = module.exports = function ActionContainer(options) {
   options = options || {};
 
   this.description = options.description;
@@ -88,8 +88,8 @@ var ActionContainer = module.exports = function ActionContainer(options) {
 };
 
 // Groups must be required, then ActionContainer already defined
-var ArgumentGroup = require('./argument/group');
-var MutuallyExclusiveGroup = require('./argument/exclusive');
+const ArgumentGroup = require('./argument/group');
+const MutuallyExclusiveGroup = require('./argument/exclusive');
 
 //
 // Registration methods
@@ -127,7 +127,7 @@ ActionContainer.prototype._registryGet = function (registryName, value, defaultV
  **/
 ActionContainer.prototype.setDefaults = function (options) {
   options = options || {};
-  for (var property in options) {
+  for (const property in options) {
     if ($$.has(options, property)) {
       this._defaults[property] = options[property];
     }
@@ -149,7 +149,7 @@ ActionContainer.prototype.setDefaults = function (options) {
  * Return action default value
  **/
 ActionContainer.prototype.getDefault = function (dest) {
-  var result = $$.has(this._defaults, dest) ? this._defaults[dest] : null;
+  let result = $$.has(this._defaults, dest) ? this._defaults[dest] : null;
 
   this._actions.forEach(function (action) {
     if (action.dest === dest && $$.has(action, 'defaultValue')) {
@@ -202,7 +202,7 @@ ActionContainer.prototype.addArgument = function (args, options) {
 
   // if no default was supplied, use the parser-level default
   if (typeof options.defaultValue === 'undefined') {
-    var dest = options.dest;
+    const dest = options.dest;
     if ($$.has(this._defaults, dest)) {
       options.defaultValue = this._defaults[dest];
     } else if (typeof this.argumentDefault !== 'undefined') {
@@ -211,14 +211,14 @@ ActionContainer.prototype.addArgument = function (args, options) {
   }
 
   // create the action object, and add it to the parser
-  var ActionClass = this._popActionClass(options);
+  const ActionClass = this._popActionClass(options);
   if (typeof ActionClass !== 'function') {
     throw new Error(format('Unknown action "%s".', ActionClass));
   }
-  var action = new ActionClass(options);
+  const action = new ActionClass(options);
 
   // throw an error if the action type is not callable
-  var typeFunction = this._registryGet('type', action.type, action.type);
+  const typeFunction = this._registryGet('type', action.type, action.type);
   if (typeof typeFunction !== 'function') {
     throw new Error(format('"%s" is not callable', typeFunction));
   }
@@ -233,7 +233,7 @@ ActionContainer.prototype.addArgument = function (args, options) {
  * Create new arguments groups
  **/
 ActionContainer.prototype.addArgumentGroup = function (options) {
-  var group = new ArgumentGroup(this, options);
+  const group = new ArgumentGroup(this, options);
   this._actionGroups.push(group);
   return group;
 };
@@ -245,13 +245,13 @@ ActionContainer.prototype.addArgumentGroup = function (options) {
  * Create new mutual exclusive groups
  **/
 ActionContainer.prototype.addMutuallyExclusiveGroup = function (options) {
-  var group = new MutuallyExclusiveGroup(this, options);
+  const group = new MutuallyExclusiveGroup(this, options);
   this._mutuallyExclusiveGroups.push(group);
   return group;
 };
 
 ActionContainer.prototype._addAction = function (action) {
-  var self = this;
+  const self = this;
 
   // resolve any conflicts
   this._checkConflict(action);
@@ -279,7 +279,7 @@ ActionContainer.prototype._addAction = function (action) {
 };
 
 ActionContainer.prototype._removeAction = function (action) {
-  var actionIndex = this._actions.indexOf(action);
+  const actionIndex = this._actions.indexOf(action);
   if (actionIndex >= 0) {
     this._actions.splice(actionIndex, 1);
   }
@@ -287,7 +287,7 @@ ActionContainer.prototype._removeAction = function (action) {
 
 ActionContainer.prototype._addContainerActions = function (container) {
   // collect groups by titles
-  var titleGroupMap = {};
+  const titleGroupMap = {};
   this._actionGroups.forEach(function (group) {
     if (titleGroupMap[group.title]) {
       throw new Error(format('Cannot merge actions - two groups are named "%s".', group.title));
@@ -296,7 +296,7 @@ ActionContainer.prototype._addContainerActions = function (container) {
   });
 
   // map each action to its group
-  var groupMap = {};
+  const groupMap = {};
   function actionHash(action) {
     // unique (hopefully?) string suitable as dictionary key
     return action.getName();
@@ -320,7 +320,7 @@ ActionContainer.prototype._addContainerActions = function (container) {
   // add container's mutually exclusive groups
   // NOTE: if add_mutually_exclusive_group ever gains title= and
   // description= then this code will need to be expanded as above
-  var mutexGroup;
+  let mutexGroup;
   container._mutuallyExclusiveGroups.forEach(function (group) {
     mutexGroup = this.addMutuallyExclusiveGroup({
       required: group.required
@@ -333,7 +333,7 @@ ActionContainer.prototype._addContainerActions = function (container) {
 
   // add all actions to this container or their group
   container._actions.forEach(function (action) {
-    var key = actionHash(action);
+    const key = actionHash(action);
     if (groupMap[key]) {
       groupMap[key]._addAction(action);
     } else {
@@ -367,9 +367,9 @@ ActionContainer.prototype._getPositional = function (dest, options) {
 };
 
 ActionContainer.prototype._getOptional = function (args, options) {
-  var prefixChars = this.prefixChars;
-  var optionStrings = [];
-  var optionStringsLong = [];
+  const prefixChars = this.prefixChars;
+  const optionStrings = [];
+  const optionStringsLong = [];
 
   // determine short and long option strings
   args.forEach(function (optionString) {
@@ -389,11 +389,11 @@ ActionContainer.prototype._getOptional = function (args, options) {
   });
 
   // infer dest, '--foo-bar' -> 'foo_bar' and '-x' -> 'x'
-  var dest = options.dest || null;
+  let dest = options.dest || null;
   delete options.dest;
 
   if (!dest) {
-    var optionStringDest = optionStringsLong.length ? optionStringsLong[0] : optionStrings[0];
+    const optionStringDest = optionStringsLong.length ? optionStringsLong[0] : optionStrings[0];
     dest = $$.trimChars(optionStringDest, this.prefixChars);
 
     if (dest.length === 0) {
@@ -414,19 +414,19 @@ ActionContainer.prototype._getOptional = function (args, options) {
 ActionContainer.prototype._popActionClass = function (options, defaultValue) {
   defaultValue = defaultValue || null;
 
-  var action = (options.action || defaultValue);
+  const action = (options.action || defaultValue);
   delete options.action;
 
-  var actionClass = this._registryGet('action', action, action);
+  const actionClass = this._registryGet('action', action, action);
   return actionClass;
 };
 
 ActionContainer.prototype._getHandler = function () {
-  var handlerString = this.conflictHandler;
-  var handlerFuncName = '_handleConflict' + $$.capitalize(handlerString);
-  var func = this[handlerFuncName];
+  const handlerString = this.conflictHandler;
+  const handlerFuncName = '_handleConflict' + $$.capitalize(handlerString);
+  const func = this[handlerFuncName];
   if (typeof func === 'undefined') {
-    var msg = 'invalid conflict resolution value: ' + handlerString;
+    const msg = 'invalid conflict resolution value: ' + handlerString;
     throw new Error(msg);
   } else {
     return func;
@@ -434,26 +434,26 @@ ActionContainer.prototype._getHandler = function () {
 };
 
 ActionContainer.prototype._checkConflict = function (action) {
-  var optionStringActions = this._optionStringActions;
-  var conflictOptionals = [];
+  const optionStringActions = this._optionStringActions;
+  const conflictOptionals = [];
 
   // find all options that conflict with this option
   // collect pairs, the string, and an existing action that it conflicts with
   action.optionStrings.forEach(function (optionString) {
-    var conflOptional = optionStringActions[optionString];
+    const conflOptional = optionStringActions[optionString];
     if (typeof conflOptional !== 'undefined') {
       conflictOptionals.push([ optionString, conflOptional ]);
     }
   });
 
   if (conflictOptionals.length > 0) {
-    var conflictHandler = this._getHandler();
+    const conflictHandler = this._getHandler();
     conflictHandler.call(this, action, conflictOptionals);
   }
 };
 
 ActionContainer.prototype._handleConflictError = function (action, conflOptionals) {
-  var conflicts = conflOptionals.map(function (pair) { return pair[0]; });
+  let conflicts = conflOptionals.map(function (pair) { return pair[0]; });
   conflicts = conflicts.join(', ');
   throw argumentErrorHelper(
     action,
@@ -463,12 +463,12 @@ ActionContainer.prototype._handleConflictError = function (action, conflOptional
 
 ActionContainer.prototype._handleConflictResolve = function (action, conflOptionals) {
   // remove all conflicting options
-  var self = this;
+  const self = this;
   conflOptionals.forEach(function (pair) {
-    var optionString = pair[0];
-    var conflictingAction = pair[1];
+    const optionString = pair[0];
+    const conflictingAction = pair[1];
     // remove the conflicting option string
-    var i = conflictingAction.optionStrings.indexOf(optionString);
+    const i = conflictingAction.optionStrings.indexOf(optionString);
     if (i >= 0) {
       conflictingAction.optionStrings.splice(i, 1);
     }

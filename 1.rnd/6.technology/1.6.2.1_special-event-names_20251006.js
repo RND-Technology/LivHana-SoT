@@ -1,11 +1,11 @@
 'use strict';
 
-var common = require('./common');
-var EventEmitter = require('../');
-var assert = require('assert');
+const common = require('./common');
+const EventEmitter = require('../');
+const assert = require('assert');
 
-var ee = new EventEmitter();
-var handler = function() {};
+const ee = new EventEmitter();
+const handler = function() {};
 
 assert.strictEqual(ee.eventNames().length, 0);
 

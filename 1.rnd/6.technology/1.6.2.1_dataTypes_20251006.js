@@ -2,7 +2,7 @@ import { parseColor } from './color'
 import { parseBoxShadowValue } from './parseBoxShadowValue'
 import { splitAtTopLevelOnly } from './splitAtTopLevelOnly'
 
-let cssFunctions = ['min', 'max', 'clamp', 'calc']
+const cssFunctions = ['min', 'max', 'clamp', 'calc']
 
 // Ref: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Types
 
@@ -42,7 +42,7 @@ const AUTO_VAR_INJECTION_EXCEPTIONS = new Set([
 // This is not a data type, but rather a function that can normalize the
 // correct values.
 export function normalize(value, context = null, isRoot = true) {
-  let isVarException = context && AUTO_VAR_INJECTION_EXCEPTIONS.has(context.property)
+  const isVarException = context && AUTO_VAR_INJECTION_EXCEPTIONS.has(context.property)
   if (value.startsWith('--') && !isVarException) {
     return `var(${value})`
   }
@@ -91,7 +91,7 @@ export function normalizeAttributeSelectors(value) {
 
       // Handle regex flags on unescaped values
       if (match.length > 2) {
-        let trailingCharacter = match[match.length - 1]
+        const trailingCharacter = match[match.length - 1]
         if (
           match[match.length - 2] === ' ' &&
           (trailingCharacter === 'i' ||
@@ -117,8 +117,8 @@ export function normalizeAttributeSelectors(value) {
  * @returns {string}
  */
 function normalizeMathOperatorSpacing(value) {
-  let preventFormattingInFunctions = ['theme']
-  let preventFormattingKeywords = [
+  const preventFormattingInFunctions = ['theme']
+  const preventFormattingKeywords = [
     'min-content',
     'max-content',
     'fit-content',
@@ -155,7 +155,7 @@ function normalizeMathOperatorSpacing(value) {
     let result = ''
 
     function lastChar() {
-      let char = result.trimEnd()
+      const char = result.trimEnd()
       return char[char.length - 1]
     }
 
@@ -166,19 +166,19 @@ function normalizeMathOperatorSpacing(value) {
 
       function consumeUntil(chars) {
         let minIndex = Infinity
-        for (let char of chars) {
-          let index = match.indexOf(char, i)
+        for (const char of chars) {
+          const index = match.indexOf(char, i)
           if (index !== -1 && index < minIndex) {
             minIndex = index
           }
         }
 
-        let result = match.slice(i, minIndex)
+        const result = match.slice(i, minIndex)
         i += result.length - 1
         return result
       }
 
-      let char = match[i]
+      const char = match[i]
 
       // Handle `var(--variable)`
       if (peek('var')) {
@@ -194,7 +194,7 @@ function normalizeMathOperatorSpacing(value) {
 
       // Skip formatting of known keywords
       else if (preventFormattingKeywords.some((keyword) => peek(keyword))) {
-        let keyword = preventFormattingKeywords.find((keyword) => peek(keyword))
+        const keyword = preventFormattingKeywords.find((keyword) => peek(keyword))
         result += keyword
         i += keyword.length - 1
       }
@@ -240,7 +240,7 @@ export function percentage(value) {
 // Please refer to MDN when updating this list:
 // https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units
 // https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Container_Queries#container_query_length_units
-let lengthUnits = [
+const lengthUnits = [
   'cm',
   'mm',
   'Q',
@@ -273,7 +273,7 @@ let lengthUnits = [
   'cqmin',
   'cqmax',
 ]
-let lengthUnitsPattern = `(?:${lengthUnits.join('|')})`
+const lengthUnitsPattern = `(?:${lengthUnits.join('|')})`
 export function length(value) {
   return (
     value === '0' ||
@@ -282,15 +282,15 @@ export function length(value) {
   )
 }
 
-let lineWidths = new Set(['thin', 'medium', 'thick'])
+const lineWidths = new Set(['thin', 'medium', 'thick'])
 export function lineWidth(value) {
   return lineWidths.has(value)
 }
 
 export function shadow(value) {
-  let parsedShadows = parseBoxShadowValue(normalize(value))
+  const parsedShadows = parseBoxShadowValue(normalize(value))
 
-  for (let parsedShadow of parsedShadows) {
+  for (const parsedShadow of parsedShadows) {
     if (!parsedShadow.valid) {
       return false
     }
@@ -302,7 +302,7 @@ export function shadow(value) {
 export function color(value) {
   let colors = 0
 
-  let result = splitAtTopLevelOnly(value, '_').every((part) => {
+  const result = splitAtTopLevelOnly(value, '_').every((part) => {
     part = normalize(part)
 
     if (part.startsWith('var(')) return true
@@ -317,7 +317,7 @@ export function color(value) {
 
 export function image(value) {
   let images = 0
-  let result = splitAtTopLevelOnly(value, ',').every((part) => {
+  const result = splitAtTopLevelOnly(value, ',').every((part) => {
     part = normalize(part)
 
     if (part.startsWith('var(')) return true
@@ -337,7 +337,7 @@ export function image(value) {
   return images > 0
 }
 
-let gradientTypes = new Set([
+const gradientTypes = new Set([
   'conic-gradient',
   'linear-gradient',
   'radial-gradient',
@@ -348,7 +348,7 @@ let gradientTypes = new Set([
 export function gradient(value) {
   value = normalize(value)
 
-  for (let type of gradientTypes) {
+  for (const type of gradientTypes) {
     if (value.startsWith(`${type}(`)) {
       return true
     }
@@ -356,10 +356,10 @@ export function gradient(value) {
   return false
 }
 
-let validPositions = new Set(['center', 'top', 'right', 'bottom', 'left'])
+const validPositions = new Set(['center', 'top', 'right', 'bottom', 'left'])
 export function position(value) {
   let positions = 0
-  let result = splitAtTopLevelOnly(value, '_').every((part) => {
+  const result = splitAtTopLevelOnly(value, '_').every((part) => {
     part = normalize(part)
 
     if (part.startsWith('var(')) return true
@@ -377,7 +377,7 @@ export function position(value) {
 
 export function familyName(value) {
   let fonts = 0
-  let result = splitAtTopLevelOnly(value, ',').every((part) => {
+  const result = splitAtTopLevelOnly(value, ',').every((part) => {
     part = normalize(part)
 
     if (part.startsWith('var(')) return true
@@ -403,7 +403,7 @@ export function familyName(value) {
   return fonts > 0
 }
 
-let genericNames = new Set([
+const genericNames = new Set([
   'serif',
   'sans-serif',
   'monospace',
@@ -422,7 +422,7 @@ export function genericName(value) {
   return genericNames.has(value)
 }
 
-let absoluteSizes = new Set([
+const absoluteSizes = new Set([
   'xx-small',
   'x-small',
   'small',
@@ -436,7 +436,7 @@ export function absoluteSize(value) {
   return absoluteSizes.has(value)
 }
 
-let relativeSizes = new Set(['larger', 'smaller'])
+const relativeSizes = new Set(['larger', 'smaller'])
 export function relativeSize(value) {
   return relativeSizes.has(value)
 }

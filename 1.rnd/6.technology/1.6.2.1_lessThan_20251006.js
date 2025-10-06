@@ -1,8 +1,8 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var isNaN = require('../../helpers/isNaN');
+const isNaN = require('../../helpers/isNaN');
 
 // https://262.ecma-international.org/11.0/#sec-numeric-types-number-lessThan
 

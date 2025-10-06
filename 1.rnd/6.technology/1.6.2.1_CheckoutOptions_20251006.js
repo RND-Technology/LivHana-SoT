@@ -1,11 +1,11 @@
 "use strict";
 exports.__esModule = true;
 exports.checkoutOptionsSchema = void 0;
-var schema_1 = require("../schema");
-var acceptedPaymentMethods_1 = require("./acceptedPaymentMethods");
-var customField_1 = require("./customField");
-var money_1 = require("./money");
-var shippingFee_1 = require("./shippingFee");
+const schema_1 = require("../schema");
+const acceptedPaymentMethods_1 = require("./acceptedPaymentMethods");
+const customField_1 = require("./customField");
+const money_1 = require("./money");
+const shippingFee_1 = require("./shippingFee");
 exports.checkoutOptionsSchema = (0, schema_1.object)({
     allowTipping: ['allow_tipping', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.boolean)()))],
     customFields: [

@@ -7,7 +7,7 @@ exports.beginHiddenCallStack = beginHiddenCallStack;
 exports.endHiddenCallStack = endHiddenCallStack;
 exports.expectedError = expectedError;
 exports.injectVirtualStackFrame = injectVirtualStackFrame;
-var _Object$getOwnPropert;
+let _Object$getOwnPropert;
 const ErrorToString = Function.call.bind(Error.prototype.toString);
 const SUPPORTED = !!Error.captureStackTrace && ((_Object$getOwnPropert = Object.getOwnPropertyDescriptor(Error, "stackTraceLimit")) == null ? void 0 : _Object$getOwnPropert.writable) === true;
 const START_HIDING = "startHiding - secret - don't use this - v1";

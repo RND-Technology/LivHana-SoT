@@ -1,23 +1,23 @@
 'use strict';
 
-var utils = require('../utils');
-var common = require('../common');
-var shaCommon = require('./common');
-var assert = require('minimalistic-assert');
+const utils = require('../utils');
+const common = require('../common');
+const shaCommon = require('./common');
+const assert = require('minimalistic-assert');
 
-var sum32 = utils.sum32;
-var sum32_4 = utils.sum32_4;
-var sum32_5 = utils.sum32_5;
-var ch32 = shaCommon.ch32;
-var maj32 = shaCommon.maj32;
-var s0_256 = shaCommon.s0_256;
-var s1_256 = shaCommon.s1_256;
-var g0_256 = shaCommon.g0_256;
-var g1_256 = shaCommon.g1_256;
+const sum32 = utils.sum32;
+const sum32_4 = utils.sum32_4;
+const sum32_5 = utils.sum32_5;
+const ch32 = shaCommon.ch32;
+const maj32 = shaCommon.maj32;
+const s0_256 = shaCommon.s0_256;
+const s1_256 = shaCommon.s1_256;
+const g0_256 = shaCommon.g0_256;
+const g1_256 = shaCommon.g1_256;
 
-var BlockHash = common.BlockHash;
+const BlockHash = common.BlockHash;
 
-var sha256_K = [
+const sha256_K = [
   0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5,
   0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
   0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3,
@@ -57,26 +57,26 @@ SHA256.hmacStrength = 192;
 SHA256.padLength = 64;
 
 SHA256.prototype._update = function _update(msg, start) {
-  var W = this.W;
+  const W = this.W;
 
   for (var i = 0; i < 16; i++)
     W[i] = msg[start + i];
   for (; i < W.length; i++)
     W[i] = sum32_4(g1_256(W[i - 2]), W[i - 7], g0_256(W[i - 15]), W[i - 16]);
 
-  var a = this.h[0];
-  var b = this.h[1];
-  var c = this.h[2];
-  var d = this.h[3];
-  var e = this.h[4];
-  var f = this.h[5];
-  var g = this.h[6];
-  var h = this.h[7];
+  let a = this.h[0];
+  let b = this.h[1];
+  let c = this.h[2];
+  let d = this.h[3];
+  let e = this.h[4];
+  let f = this.h[5];
+  let g = this.h[6];
+  let h = this.h[7];
 
   assert(this.k.length === W.length);
   for (i = 0; i < W.length; i++) {
-    var T1 = sum32_5(h, s1_256(e), ch32(e, f, g), this.k[i], W[i]);
-    var T2 = sum32(s0_256(a), maj32(a, b, c));
+    const T1 = sum32_5(h, s1_256(e), ch32(e, f, g), this.k[i], W[i]);
+    const T2 = sum32(s0_256(a), maj32(a, b, c));
     h = g;
     g = f;
     f = e;

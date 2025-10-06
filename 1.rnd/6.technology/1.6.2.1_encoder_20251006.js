@@ -1,7 +1,7 @@
 "use strict";
 module.exports = encoder;
 
-var Enum     = require("./enum"),
+const Enum     = require("./enum"),
     types    = require("./types"),
     util     = require("./util");
 
@@ -27,17 +27,17 @@ function genTypePartial(gen, field, fieldIndex, ref) {
  */
 function encoder(mtype) {
     /* eslint-disable no-unexpected-multiline, block-scoped-var, no-redeclare */
-    var gen = util.codegen(["m", "w"], mtype.name + "$encode")
+    const gen = util.codegen(["m", "w"], mtype.name + "$encode")
     ("if(!w)")
         ("w=Writer.create()");
 
     var i, ref;
 
     // "when a message is serialized its known fields should be written sequentially by field number"
-    var fields = /* initializes */ mtype.fieldsArray.slice().sort(util.compareFieldsById);
+    const fields = /* initializes */ mtype.fieldsArray.slice().sort(util.compareFieldsById);
 
     for (var i = 0; i < fields.length; ++i) {
-        var field    = fields[i].resolve(),
+        const field    = fields[i].resolve(),
             index    = mtype._fieldsArray.indexOf(field),
             type     = field.resolvedType instanceof Enum ? "int32" : field.type,
             wireType = types.basic[type];

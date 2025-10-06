@@ -1,26 +1,26 @@
 "use strict";
 'use client';
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+const _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.Identity = void 0;
 exports.useSlider = useSlider;
 exports.valueToPercent = valueToPercent;
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-var React = _interopRequireWildcard(require("react"));
-var _utils = require("@mui/utils");
-var _extractEventHandlers = _interopRequireDefault(require("@mui/utils/extractEventHandlers"));
-var _areArraysEqual = _interopRequireDefault(require("../utils/areArraysEqual"));
-function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
-function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+const _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+const React = _interopRequireWildcard(require("react"));
+const _utils = require("@mui/utils");
+const _extractEventHandlers = _interopRequireDefault(require("@mui/utils/extractEventHandlers"));
+const _areArraysEqual = _interopRequireDefault(require("../utils/areArraysEqual"));
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; const r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; const t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); const n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (const u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { const i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 const INTENTIONAL_DRAG_COUNT_THRESHOLD = 2;
 function asc(a, b) {
   return a - b;
 }
 function findClosest(values, currentValue) {
-  var _values$reduce;
+  let _values$reduce;
   const {
     index: closestIndex
   } = (_values$reduce = values.reduce((acc, value, index) => {
@@ -92,10 +92,10 @@ function focusThumb({
   activeIndex,
   setActive
 }) {
-  var _sliderRef$current, _doc$activeElement;
+  let _sliderRef$current, _doc$activeElement;
   const doc = (0, _utils.unstable_ownerDocument)(sliderRef.current);
   if (!((_sliderRef$current = sliderRef.current) != null && _sliderRef$current.contains(doc.activeElement)) || Number(doc == null || (_doc$activeElement = doc.activeElement) == null ? void 0 : _doc$activeElement.getAttribute('data-index')) !== activeIndex) {
-    var _sliderRef$current2;
+    let _sliderRef$current2;
     (_sliderRef$current2 = sliderRef.current) == null || _sliderRef$current2.querySelector(`[type="range"][data-index="${activeIndex}"]`).focus();
   }
   if (setActive) {
@@ -240,7 +240,7 @@ function useSlider(parameters) {
   const handleFocusRef = (0, _utils.unstable_useForkRef)(focusVisibleRef, sliderRef);
   const handleRef = (0, _utils.unstable_useForkRef)(ref, handleFocusRef);
   const createHandleHiddenInputFocus = otherHandlers => event => {
-    var _otherHandlers$onFocu;
+    let _otherHandlers$onFocu;
     const index = Number(event.currentTarget.getAttribute('data-index'));
     handleFocusVisible(event);
     if (isFocusVisibleRef.current === true) {
@@ -250,7 +250,7 @@ function useSlider(parameters) {
     otherHandlers == null || (_otherHandlers$onFocu = otherHandlers.onFocus) == null || _otherHandlers$onFocu.call(otherHandlers, event);
   };
   const createHandleHiddenInputBlur = otherHandlers => event => {
-    var _otherHandlers$onBlur;
+    let _otherHandlers$onBlur;
     handleBlurVisible(event);
     if (isFocusVisibleRef.current === false) {
       setFocusedThumbIndex(-1);
@@ -306,7 +306,7 @@ function useSlider(parameters) {
     }
   };
   const createHandleHiddenInputKeyDown = otherHandlers => event => {
-    var _otherHandlers$onKeyD;
+    let _otherHandlers$onKeyD;
     // The Shift + Up/Down keyboard shortcuts for moving the slider makes sense to be supported
     // only if the step is defined. If the step is null, this means tha the marks are used for specifying the valid values.
     if (step !== null) {
@@ -327,7 +327,7 @@ function useSlider(parameters) {
   };
   (0, _utils.unstable_useEnhancedEffect)(() => {
     if (disabled && sliderRef.current.contains(document.activeElement)) {
-      var _document$activeEleme;
+      let _document$activeEleme;
       // This is necessary because Firefox and Safari will keep focus
       // on a disabled element:
       // https://codesandbox.io/p/sandbox/mui-pr-22247-forked-h151h?file=/src/App.js
@@ -342,7 +342,7 @@ function useSlider(parameters) {
     setFocusedThumbIndex(-1);
   }
   const createHandleHiddenInputChange = otherHandlers => event => {
-    var _otherHandlers$onChan;
+    let _otherHandlers$onChan;
     (_otherHandlers$onChan = otherHandlers.onChange) == null || _otherHandlers$onChan.call(otherHandlers, event);
     // @ts-ignore
     changeValue(event, event.target.valueAsNumber);
@@ -536,7 +536,7 @@ function useSlider(parameters) {
     }
   }, [disabled, stopListening]);
   const createHandleMouseDown = otherHandlers => event => {
-    var _otherHandlers$onMous;
+    let _otherHandlers$onMous;
     (_otherHandlers$onMous = otherHandlers.onMouseDown) == null || _otherHandlers$onMous.call(otherHandlers, event);
     if (disabled) {
       return;
@@ -590,13 +590,13 @@ function useSlider(parameters) {
     }, mergedEventHandlers);
   };
   const createHandleMouseOver = otherHandlers => event => {
-    var _otherHandlers$onMous2;
+    let _otherHandlers$onMous2;
     (_otherHandlers$onMous2 = otherHandlers.onMouseOver) == null || _otherHandlers$onMous2.call(otherHandlers, event);
     const index = Number(event.currentTarget.getAttribute('data-index'));
     setOpen(index);
   };
   const createHandleMouseLeave = otherHandlers => event => {
-    var _otherHandlers$onMous3;
+    let _otherHandlers$onMous3;
     (_otherHandlers$onMous3 = otherHandlers.onMouseLeave) == null || _otherHandlers$onMous3.call(otherHandlers, event);
     setOpen(-1);
   };
@@ -615,7 +615,7 @@ function useSlider(parameters) {
     };
   };
   const getHiddenInputProps = (externalProps = {}) => {
-    var _parameters$step;
+    let _parameters$step;
     const externalHandlers = (0, _extractEventHandlers.default)(externalProps);
     const ownEventHandlers = {
       onChange: createHandleHiddenInputChange(externalHandlers || {}),

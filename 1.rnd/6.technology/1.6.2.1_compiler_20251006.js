@@ -59,7 +59,7 @@ exports.TypeCheck = TypeCheck;
 // -------------------------------------------------------------------
 // Character
 // -------------------------------------------------------------------
-var Character;
+let Character;
 (function (Character) {
     function DollarSign(code) {
         return code === 36;
@@ -81,7 +81,7 @@ var Character;
 // -------------------------------------------------------------------
 // MemberExpression
 // -------------------------------------------------------------------
-var MemberExpression;
+let MemberExpression;
 (function (MemberExpression) {
     function IsFirstCharacterNumeric(value) {
         if (value.length === 0)
@@ -110,7 +110,7 @@ var MemberExpression;
 // -------------------------------------------------------------------
 // Identifier
 // -------------------------------------------------------------------
-var Identifier;
+let Identifier;
 (function (Identifier) {
     function Encode($id) {
         const buffer = [];
@@ -152,7 +152,7 @@ class TypeCompilerTypeGuardError extends Error {
 }
 exports.TypeCompilerTypeGuardError = TypeCompilerTypeGuardError;
 /** Compiles Types for Runtime Type Checking */
-var TypeCompiler;
+let TypeCompiler;
 (function (TypeCompiler) {
     // -------------------------------------------------------------------
     // Guards

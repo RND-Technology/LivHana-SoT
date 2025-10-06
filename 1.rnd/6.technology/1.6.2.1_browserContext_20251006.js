@@ -1,23 +1,23 @@
 "use strict";
-var __create = Object.create;
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getProtoOf = Object.getPrototypeOf;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
+const __create = Object.create;
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __getProtoOf = Object.getPrototypeOf;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __export = (target, all) => {
+  for (const name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+const __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
   // If the importer is in node compatibility mode or this is not an ESM
   // file that has been converted to a CommonJS file using a Babel-
   // compatible transform (i.e. "__esModule" has not been set), then set
@@ -25,38 +25,38 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
   mod
 ));
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var browserContext_exports = {};
+const __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+const browserContext_exports = {};
 __export(browserContext_exports, {
   BrowserContext: () => BrowserContext,
   prepareBrowserContextParams: () => prepareBrowserContextParams,
   toClientCertificatesProtocol: () => toClientCertificatesProtocol
 });
 module.exports = __toCommonJS(browserContext_exports);
-var import_artifact = require("./artifact");
-var import_cdpSession = require("./cdpSession");
-var import_channelOwner = require("./channelOwner");
-var import_clientHelper = require("./clientHelper");
-var import_clock = require("./clock");
-var import_consoleMessage = require("./consoleMessage");
-var import_dialog = require("./dialog");
-var import_errors = require("./errors");
-var import_events = require("./events");
-var import_fetch = require("./fetch");
-var import_frame = require("./frame");
-var import_harRouter = require("./harRouter");
-var network = __toESM(require("./network"));
-var import_page = require("./page");
-var import_tracing = require("./tracing");
-var import_waiter = require("./waiter");
-var import_webError = require("./webError");
-var import_worker = require("./worker");
-var import_timeoutSettings = require("./timeoutSettings");
-var import_fileUtils = require("./fileUtils");
-var import_headers = require("../utils/isomorphic/headers");
-var import_urlMatch = require("../utils/isomorphic/urlMatch");
-var import_rtti = require("../utils/isomorphic/rtti");
-var import_stackTrace = require("../utils/isomorphic/stackTrace");
+const import_artifact = require("./artifact");
+const import_cdpSession = require("./cdpSession");
+const import_channelOwner = require("./channelOwner");
+const import_clientHelper = require("./clientHelper");
+const import_clock = require("./clock");
+const import_consoleMessage = require("./consoleMessage");
+const import_dialog = require("./dialog");
+const import_errors = require("./errors");
+const import_events = require("./events");
+const import_fetch = require("./fetch");
+const import_frame = require("./frame");
+const import_harRouter = require("./harRouter");
+const network = __toESM(require("./network"));
+const import_page = require("./page");
+const import_tracing = require("./tracing");
+const import_waiter = require("./waiter");
+const import_webError = require("./webError");
+const import_worker = require("./worker");
+const import_timeoutSettings = require("./timeoutSettings");
+const import_fileUtils = require("./fileUtils");
+const import_headers = require("../utils/isomorphic/headers");
+const import_urlMatch = require("../utils/isomorphic/urlMatch");
+const import_rtti = require("../utils/isomorphic/rtti");
+const import_stackTrace = require("../utils/isomorphic/stackTrace");
 class BrowserContext extends import_channelOwner.ChannelOwner {
   constructor(parent, type, guid, initializer) {
     super(parent, type, guid, initializer);

@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: New Relic Software License v1.0
  */
 
-let eventStats = undefined;
+const eventStats = undefined;
 function EventStats() {
     this.processed = 0;
     this.sent = 0;

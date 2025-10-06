@@ -5,17 +5,20 @@
 **Time Estimate:** <X minutes>
 
 ## Execution Steps
+
 1. [ ] Step description (command: `...`, expected output: `...`)
 2. [ ] Step description (command: `...`, expected output: `...`)
 3. [ ] Step description (command: `...`, expected output: `...`)
 
 ## Verification
+
 - [ ] Tests: `npm test` / `pnpm playwright test ...`
 - [ ] Health checks: `curl .../health`
 - [ ] Evidence saved to `.evidence/YYYY-MM-DD/<mission>/`
 - [ ] SESSION_PROGRESS.md updated with timestamped proof
 
 ## Notes
+
 - Dependencies
 - Potential risks
 - Human-in-loop triggers

@@ -35,7 +35,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-var base64 = require('./base64');
+const base64 = require('./base64');
 
 // A single base 64 digit can contain 6 bits of data. For the base 64 variable
 // length quantities we use in the source map spec, the first bit is the sign,
@@ -49,16 +49,16 @@ var base64 = require('./base64');
 //   V    V
 //   101011
 
-var VLQ_BASE_SHIFT = 5;
+const VLQ_BASE_SHIFT = 5;
 
 // binary: 100000
-var VLQ_BASE = 1 << VLQ_BASE_SHIFT;
+const VLQ_BASE = 1 << VLQ_BASE_SHIFT;
 
 // binary: 011111
-var VLQ_BASE_MASK = VLQ_BASE - 1;
+const VLQ_BASE_MASK = VLQ_BASE - 1;
 
 // binary: 100000
-var VLQ_CONTINUATION_BIT = VLQ_BASE;
+const VLQ_CONTINUATION_BIT = VLQ_BASE;
 
 /**
  * Converts from a two-complement value to a value where the sign bit is
@@ -79,8 +79,8 @@ function toVLQSigned(aValue) {
  *   4 (100 binary) becomes 2, 5 (101 binary) becomes -2
  */
 function fromVLQSigned(aValue) {
-  var isNegative = (aValue & 1) === 1;
-  var shifted = aValue >> 1;
+  const isNegative = (aValue & 1) === 1;
+  const shifted = aValue >> 1;
   return isNegative
     ? -shifted
     : shifted;
@@ -90,10 +90,10 @@ function fromVLQSigned(aValue) {
  * Returns the base 64 VLQ encoded value.
  */
 exports.encode = function base64VLQ_encode(aValue) {
-  var encoded = "";
-  var digit;
+  let encoded = "";
+  let digit;
 
-  var vlq = toVLQSigned(aValue);
+  let vlq = toVLQSigned(aValue);
 
   do {
     digit = vlq & VLQ_BASE_MASK;
@@ -114,10 +114,10 @@ exports.encode = function base64VLQ_encode(aValue) {
  * value and the rest of the string via the out parameter.
  */
 exports.decode = function base64VLQ_decode(aStr, aIndex, aOutParam) {
-  var strLen = aStr.length;
-  var result = 0;
-  var shift = 0;
-  var continuation, digit;
+  const strLen = aStr.length;
+  let result = 0;
+  let shift = 0;
+  let continuation, digit;
 
   do {
     if (aIndex >= strLen) {

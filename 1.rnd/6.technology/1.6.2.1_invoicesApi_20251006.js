@@ -1,26 +1,26 @@
 "use strict";
 exports.__esModule = true;
 exports.InvoicesApi = void 0;
-var tslib_1 = require("tslib");
-var cancelInvoiceRequest_1 = require("../models/cancelInvoiceRequest");
-var cancelInvoiceResponse_1 = require("../models/cancelInvoiceResponse");
-var createInvoiceAttachmentRequest_1 = require("../models/createInvoiceAttachmentRequest");
-var createInvoiceAttachmentResponse_1 = require("../models/createInvoiceAttachmentResponse");
-var createInvoiceRequest_1 = require("../models/createInvoiceRequest");
-var createInvoiceResponse_1 = require("../models/createInvoiceResponse");
-var deleteInvoiceAttachmentResponse_1 = require("../models/deleteInvoiceAttachmentResponse");
-var deleteInvoiceResponse_1 = require("../models/deleteInvoiceResponse");
-var getInvoiceResponse_1 = require("../models/getInvoiceResponse");
-var listInvoicesResponse_1 = require("../models/listInvoicesResponse");
-var publishInvoiceRequest_1 = require("../models/publishInvoiceRequest");
-var publishInvoiceResponse_1 = require("../models/publishInvoiceResponse");
-var searchInvoicesRequest_1 = require("../models/searchInvoicesRequest");
-var searchInvoicesResponse_1 = require("../models/searchInvoicesResponse");
-var updateInvoiceRequest_1 = require("../models/updateInvoiceRequest");
-var updateInvoiceResponse_1 = require("../models/updateInvoiceResponse");
-var schema_1 = require("../schema");
-var baseApi_1 = require("./baseApi");
-var InvoicesApi = /** @class */ (function (_super) {
+const tslib_1 = require("tslib");
+const cancelInvoiceRequest_1 = require("../models/cancelInvoiceRequest");
+const cancelInvoiceResponse_1 = require("../models/cancelInvoiceResponse");
+const createInvoiceAttachmentRequest_1 = require("../models/createInvoiceAttachmentRequest");
+const createInvoiceAttachmentResponse_1 = require("../models/createInvoiceAttachmentResponse");
+const createInvoiceRequest_1 = require("../models/createInvoiceRequest");
+const createInvoiceResponse_1 = require("../models/createInvoiceResponse");
+const deleteInvoiceAttachmentResponse_1 = require("../models/deleteInvoiceAttachmentResponse");
+const deleteInvoiceResponse_1 = require("../models/deleteInvoiceResponse");
+const getInvoiceResponse_1 = require("../models/getInvoiceResponse");
+const listInvoicesResponse_1 = require("../models/listInvoicesResponse");
+const publishInvoiceRequest_1 = require("../models/publishInvoiceRequest");
+const publishInvoiceResponse_1 = require("../models/publishInvoiceResponse");
+const searchInvoicesRequest_1 = require("../models/searchInvoicesRequest");
+const searchInvoicesResponse_1 = require("../models/searchInvoicesResponse");
+const updateInvoiceRequest_1 = require("../models/updateInvoiceRequest");
+const updateInvoiceResponse_1 = require("../models/updateInvoiceResponse");
+const schema_1 = require("../schema");
+const baseApi_1 = require("./baseApi");
+const InvoicesApi = /** @class */ (function (_super) {
     tslib_1.__extends(InvoicesApi, _super);
     function InvoicesApi() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -41,7 +41,7 @@ var InvoicesApi = /** @class */ (function (_super) {
      */
     InvoicesApi.prototype.listInvoices = function (locationId, cursor, limit, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET', '/v2/invoices');
                 mapped = req.prepareArgs({
@@ -71,7 +71,7 @@ var InvoicesApi = /** @class */ (function (_super) {
      */
     InvoicesApi.prototype.createInvoice = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/invoices');
                 mapped = req.prepareArgs({
@@ -99,7 +99,7 @@ var InvoicesApi = /** @class */ (function (_super) {
      */
     InvoicesApi.prototype.searchInvoices = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/invoices/search');
                 mapped = req.prepareArgs({
@@ -125,7 +125,7 @@ var InvoicesApi = /** @class */ (function (_super) {
      */
     InvoicesApi.prototype.deleteInvoice = function (invoiceId, version, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('DELETE');
                 mapped = req.prepareArgs({
@@ -147,7 +147,7 @@ var InvoicesApi = /** @class */ (function (_super) {
      */
     InvoicesApi.prototype.getInvoice = function (invoiceId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({ invoiceId: [invoiceId, (0, schema_1.string)()] });
@@ -170,7 +170,7 @@ var InvoicesApi = /** @class */ (function (_super) {
      */
     InvoicesApi.prototype.updateInvoice = function (invoiceId, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('PUT');
                 mapped = req.prepareArgs({
@@ -206,7 +206,7 @@ var InvoicesApi = /** @class */ (function (_super) {
      */
     InvoicesApi.prototype.createInvoiceAttachment = function (invoiceId, request, imageFile, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({
@@ -234,7 +234,7 @@ var InvoicesApi = /** @class */ (function (_super) {
      */
     InvoicesApi.prototype.deleteInvoiceAttachment = function (invoiceId, attachmentId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('DELETE');
                 mapped = req.prepareArgs({
@@ -261,7 +261,7 @@ var InvoicesApi = /** @class */ (function (_super) {
      */
     InvoicesApi.prototype.cancelInvoice = function (invoiceId, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({
@@ -299,7 +299,7 @@ var InvoicesApi = /** @class */ (function (_super) {
      */
     InvoicesApi.prototype.publishInvoice = function (invoiceId, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({
@@ -317,5 +317,5 @@ var InvoicesApi = /** @class */ (function (_super) {
     return InvoicesApi;
 }(baseApi_1.BaseApi));
 exports.InvoicesApi = InvoicesApi;
-var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6, templateObject_7;
+let templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6, templateObject_7;
 //# sourceMappingURL=invoicesApi.js.map

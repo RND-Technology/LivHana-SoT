@@ -1,4 +1,4 @@
-var hash = {
+const hash = {
   left: 'right',
   right: 'left',
   bottom: 'top',

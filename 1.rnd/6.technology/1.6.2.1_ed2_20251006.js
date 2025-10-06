@@ -26,10 +26,10 @@ exports.NAME_START_CHAR_RE = new RegExp("^[" + exports.NAME_START_CHAR + "]$", "
 exports.NAME_CHAR_RE = new RegExp("^[" + exports.NAME_CHAR + "]$", "u");
 exports.NAME_RE = new RegExp("^[" + exports.NAME_START_CHAR + "][" + exports.NAME_CHAR + "]*$", "u");
 exports.NMTOKEN_RE = new RegExp("^[" + exports.NAME_CHAR + "]+$", "u");
-var TAB = 9;
-var NL = 0xA;
-var CR = 0xD;
-var SPACE = 0x20;
+const TAB = 9;
+const NL = 0xA;
+const CR = 0xD;
+const SPACE = 0x20;
 //
 // Lists.
 //

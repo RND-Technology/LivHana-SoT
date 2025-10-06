@@ -1,21 +1,21 @@
 'use strict';
 
-var GetIntrinsic = require('../');
+const GetIntrinsic = require('../');
 
-var test = require('tape');
-var forEach = require('for-each');
-var debug = require('object-inspect');
-var generatorFns = require('make-generator-function')();
-var asyncFns = require('make-async-function').list();
-var asyncGenFns = require('make-async-generator-function')();
-var mockProperty = require('mock-property');
+const test = require('tape');
+const forEach = require('for-each');
+const debug = require('object-inspect');
+const generatorFns = require('make-generator-function')();
+const asyncFns = require('make-async-function').list();
+const asyncGenFns = require('make-async-generator-function')();
+const mockProperty = require('mock-property');
 
-var callBound = require('call-bound');
-var v = require('es-value-fixtures');
-var $gOPD = require('gopd');
-var DefinePropertyOrThrow = require('es-abstract/2023/DefinePropertyOrThrow');
+const callBound = require('call-bound');
+const v = require('es-value-fixtures');
+const $gOPD = require('gopd');
+const DefinePropertyOrThrow = require('es-abstract/2023/DefinePropertyOrThrow');
 
-var $isProto = callBound('%Object.prototype.isPrototypeOf%');
+const $isProto = callBound('%Object.prototype.isPrototypeOf%');
 
 test('export', function (t) {
 	t.equal(typeof GetIntrinsic, 'function', 'it is a function');
@@ -126,7 +126,7 @@ test('dotted paths', function (t) {
 	t.equal(GetIntrinsic('Array.prototype.push'), Array.prototype.push, 'Array.prototype.push yields Array.prototype.push');
 
 	test('underscore paths are aliases for dotted paths', { skip: !Object.isFrozen || Object.isFrozen(Object.prototype) }, function (st) {
-		var original = GetIntrinsic('%ObjProto_toString%');
+		const original = GetIntrinsic('%ObjProto_toString%');
 
 		forEach([
 			'%Object.prototype.toString%',
@@ -149,7 +149,7 @@ test('dotted paths', function (t) {
 	});
 
 	test('dotted paths cache', { skip: !Object.isFrozen || Object.isFrozen(Object.prototype) }, function (st) {
-		var original = GetIntrinsic('%Object.prototype.propertyIsEnumerable%');
+		const original = GetIntrinsic('%Object.prototype.propertyIsEnumerable%');
 
 		forEach([
 			'%Object.prototype.propertyIsEnumerable%',
@@ -157,7 +157,7 @@ test('dotted paths', function (t) {
 			'%ObjectPrototype.propertyIsEnumerable%',
 			'ObjectPrototype.propertyIsEnumerable'
 		], function (name) {
-			var restore = mockProperty(Object.prototype, 'propertyIsEnumerable', {
+			const restore = mockProperty(Object.prototype, 'propertyIsEnumerable', {
 				value: function propertyIsEnumerable() {
 					return original.apply(this, arguments);
 				}
@@ -186,7 +186,7 @@ test('dotted paths', function (t) {
 });
 
 test('accessors', { skip: !$gOPD || typeof Map !== 'function' }, function (t) {
-	var actual = $gOPD(Map.prototype, 'size');
+	const actual = $gOPD(Map.prototype, 'size');
 	t.ok(actual, 'Map.prototype.size has a descriptor');
 	t.equal(typeof actual.get, 'function', 'Map.prototype.size has a getter function');
 	t.equal(GetIntrinsic('%Map.prototype.size%'), actual.get, '%Map.prototype.size% yields the getter for it');
@@ -196,12 +196,12 @@ test('accessors', { skip: !$gOPD || typeof Map !== 'function' }, function (t) {
 });
 
 test('generator functions', { skip: !generatorFns.length }, function (t) {
-	var $GeneratorFunction = GetIntrinsic('%GeneratorFunction%');
-	var $GeneratorFunctionPrototype = GetIntrinsic('%Generator%');
-	var $GeneratorPrototype = GetIntrinsic('%GeneratorPrototype%');
+	const $GeneratorFunction = GetIntrinsic('%GeneratorFunction%');
+	const $GeneratorFunctionPrototype = GetIntrinsic('%Generator%');
+	const $GeneratorPrototype = GetIntrinsic('%GeneratorPrototype%');
 
 	forEach(generatorFns, function (genFn) {
-		var fnName = genFn.name;
+		let fnName = genFn.name;
 		fnName = fnName ? "'" + fnName + "'" : 'genFn';
 
 		t.ok(genFn instanceof $GeneratorFunction, fnName + ' instanceof %GeneratorFunction%');
@@ -213,11 +213,11 @@ test('generator functions', { skip: !generatorFns.length }, function (t) {
 });
 
 test('async functions', { skip: !asyncFns.length }, function (t) {
-	var $AsyncFunction = GetIntrinsic('%AsyncFunction%');
-	var $AsyncFunctionPrototype = GetIntrinsic('%AsyncFunctionPrototype%');
+	const $AsyncFunction = GetIntrinsic('%AsyncFunction%');
+	const $AsyncFunctionPrototype = GetIntrinsic('%AsyncFunctionPrototype%');
 
 	forEach(asyncFns, function (asyncFn) {
-		var fnName = asyncFn.name;
+		let fnName = asyncFn.name;
 		fnName = fnName ? "'" + fnName + "'" : 'asyncFn';
 
 		t.ok(asyncFn instanceof $AsyncFunction, fnName + ' instanceof %AsyncFunction%');
@@ -228,12 +228,12 @@ test('async functions', { skip: !asyncFns.length }, function (t) {
 });
 
 test('async generator functions', { skip: asyncGenFns.length === 0 }, function (t) {
-	var $AsyncGeneratorFunction = GetIntrinsic('%AsyncGeneratorFunction%');
-	var $AsyncGeneratorFunctionPrototype = GetIntrinsic('%AsyncGenerator%');
-	var $AsyncGeneratorPrototype = GetIntrinsic('%AsyncGeneratorPrototype%');
+	const $AsyncGeneratorFunction = GetIntrinsic('%AsyncGeneratorFunction%');
+	const $AsyncGeneratorFunctionPrototype = GetIntrinsic('%AsyncGenerator%');
+	const $AsyncGeneratorPrototype = GetIntrinsic('%AsyncGeneratorPrototype%');
 
 	forEach(asyncGenFns, function (asyncGenFn) {
-		var fnName = asyncGenFn.name;
+		let fnName = asyncGenFn.name;
 		fnName = fnName ? "'" + fnName + "'" : 'asyncGenFn';
 
 		t.ok(asyncGenFn instanceof $AsyncGeneratorFunction, fnName + ' instanceof %AsyncGeneratorFunction%');
@@ -245,7 +245,7 @@ test('async generator functions', { skip: asyncGenFns.length === 0 }, function (
 });
 
 test('%ThrowTypeError%', function (t) {
-	var $ThrowTypeError = GetIntrinsic('%ThrowTypeError%');
+	const $ThrowTypeError = GetIntrinsic('%ThrowTypeError%');
 
 	t.equal(typeof $ThrowTypeError, 'function', 'is a function');
 	t['throws'](

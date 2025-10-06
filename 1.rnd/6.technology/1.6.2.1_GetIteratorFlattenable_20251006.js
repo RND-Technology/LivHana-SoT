@@ -1,15 +1,15 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var AdvanceStringIndex = require('es-abstract/2024/AdvanceStringIndex');
-var Call = require('es-abstract/2024/Call');
-var GetIteratorDirect = require('./GetIteratorDirect');
-var GetMethod = require('es-abstract/2024/GetMethod');
-var IsArray = require('es-abstract/2024/IsArray');
-var Type = require('es-abstract/2024/Type');
+const AdvanceStringIndex = require('es-abstract/2024/AdvanceStringIndex');
+const Call = require('es-abstract/2024/Call');
+const GetIteratorDirect = require('./GetIteratorDirect');
+const GetMethod = require('es-abstract/2024/GetMethod');
+const IsArray = require('es-abstract/2024/IsArray');
+const Type = require('es-abstract/2024/Type');
 
-var getIteratorMethod = require('es-abstract/helpers/getIteratorMethod');
+const getIteratorMethod = require('es-abstract/helpers/getIteratorMethod');
 
 // https://tc39.es/proposal-iterator-helpers/#sec-getiteratorflattenable
 
@@ -24,7 +24,7 @@ module.exports = function GetIteratorFlattenable(obj, stringHandling) {
 		}
 	}
 
-	var method = void undefined; // step 2
+	let method = void undefined; // step 2
 
 	// method = GetMethod(obj, Symbol.iterator); // step 5.a
 	method = getIteratorMethod(
@@ -36,7 +36,7 @@ module.exports = function GetIteratorFlattenable(obj, stringHandling) {
 		obj
 	);
 
-	var iterator;
+	let iterator;
 	if (typeof method === 'undefined') { // step 3
 		iterator = obj; // step 3.a
 	} else { // step 4

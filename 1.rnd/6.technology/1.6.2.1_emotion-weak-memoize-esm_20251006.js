@@ -1,5 +1,5 @@
-var weakMemoize = function weakMemoize(func) {
-  var cache = new WeakMap();
+const weakMemoize = function weakMemoize(func) {
+  const cache = new WeakMap();
   return function (arg) {
     if (cache.has(arg)) {
       // Use non-null assertion because we just checked that the cache `has` it
@@ -7,7 +7,7 @@ var weakMemoize = function weakMemoize(func) {
       return cache.get(arg);
     }
 
-    var ret = func(arg);
+    const ret = func(arg);
     cache.set(arg, ret);
     return ret;
   };

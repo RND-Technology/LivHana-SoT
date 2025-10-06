@@ -53,7 +53,7 @@ class JobScheduler extends queue_base_1.QueueBase {
         }
         if (nextMillis || every) {
             return this.trace(enums_1.SpanKind.PRODUCER, 'add', `${this.name}.${jobName}`, async (span, srcPropagationMedatada) => {
-                var _a, _b;
+                let _a, _b;
                 let telemetry = opts.telemetry;
                 if (srcPropagationMedatada) {
                     const omitContext = (_a = opts.telemetry) === null || _a === void 0 ? void 0 : _a.omitContext;
@@ -110,7 +110,7 @@ class JobScheduler extends queue_base_1.QueueBase {
         }
     }
     getNextJobOpts(nextMillis, jobSchedulerId, opts, currentCount, offset) {
-        var _a, _b;
+        let _a, _b;
         //
         // Generate unique job id for this iteration.
         //

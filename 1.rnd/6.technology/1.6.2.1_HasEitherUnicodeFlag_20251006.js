@@ -1,8 +1,8 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var isRegExpRecord = require('../helpers/records/regexp-record');
+const isRegExpRecord = require('../helpers/records/regexp-record');
 
 // https://262.ecma-international.org/15.0/#sec-runtime-semantics-haseitherunicodeflag-abstract-operation
 

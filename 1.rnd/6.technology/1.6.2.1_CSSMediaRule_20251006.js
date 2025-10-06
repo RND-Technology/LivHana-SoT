@@ -1,5 +1,5 @@
 //.CommonJS
-var CSSOM = {
+const CSSOM = {
 	CSSRule: require("./CSSRule").CSSRule,
 	CSSGroupingRule: require("./CSSGroupingRule").CSSGroupingRule,
 	CSSConditionRule: require("./CSSConditionRule").CSSConditionRule,
@@ -36,8 +36,8 @@ Object.defineProperties(CSSOM.CSSMediaRule.prototype, {
   },
   "cssText": {
     get: function() {
-      var cssTexts = [];
-      for (var i=0, length=this.cssRules.length; i < length; i++) {
+      const cssTexts = [];
+      for (let i=0, length=this.cssRules.length; i < length; i++) {
         cssTexts.push(this.cssRules[i].cssText);
       }
       return "@media " + this.media.mediaText + " {" + cssTexts.join("") + "}";

@@ -23,7 +23,6 @@ export const structure = {
 export function parse() {
     const children = this.createList();
 
-    scan:
     while (!this.eof) {
         switch (this.tokenType) {
             case WhiteSpace:

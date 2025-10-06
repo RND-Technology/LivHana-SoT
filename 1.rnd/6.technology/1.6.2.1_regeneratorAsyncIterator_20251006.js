@@ -4,8 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = AsyncIterator;
-var _OverloadYield = require("./OverloadYield.js");
-var _regeneratorDefine = require("./regeneratorDefine.js");
+const _OverloadYield = require("./OverloadYield.js");
+const _regeneratorDefine = require("./regeneratorDefine.js");
 function AsyncIterator(generator, PromiseImpl) {
   if (!this.next) {
     (0, _regeneratorDefine.default)(AsyncIterator.prototype);
@@ -15,8 +15,8 @@ function AsyncIterator(generator, PromiseImpl) {
   }
   function invoke(method, arg, resolve, reject) {
     try {
-      var result = generator[method](arg);
-      var value = result.value;
+      const result = generator[method](arg);
+      const value = result.value;
       if (value instanceof _OverloadYield.default) {
         return PromiseImpl.resolve(value.v).then(function (value) {
           invoke("next", value, resolve, reject);
@@ -34,7 +34,7 @@ function AsyncIterator(generator, PromiseImpl) {
       reject(error);
     }
   }
-  var previousPromise;
+  let previousPromise;
   function enqueue(method, i, arg) {
     function callInvokeWithMethodAndArg() {
       return new PromiseImpl(function (resolve, reject) {

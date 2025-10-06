@@ -1,14 +1,14 @@
 "use strict";
 
-var functionName = require("@sinonjs/commons").functionName;
-var join = require("@sinonjs/commons").prototypes.array.join;
-var map = require("@sinonjs/commons").prototypes.array.map;
-var stringIndexOf = require("@sinonjs/commons").prototypes.string.indexOf;
-var valueToString = require("@sinonjs/commons").valueToString;
+const functionName = require("@sinonjs/commons").functionName;
+const join = require("@sinonjs/commons").prototypes.array.join;
+const map = require("@sinonjs/commons").prototypes.array.map;
+const stringIndexOf = require("@sinonjs/commons").prototypes.string.indexOf;
+const valueToString = require("@sinonjs/commons").valueToString;
 
-var matchObject = require("./match-object");
+const matchObject = require("./match-object");
 
-var createTypeMap = function (match) {
+const createTypeMap = function (match) {
     return {
         function: function (m, expectation, message) {
             m.test = expectation;
@@ -21,7 +21,7 @@ var createTypeMap = function (match) {
             };
         },
         object: function (m, expectation) {
-            var array = [];
+            let array = [];
 
             if (typeof expectation.test === "function") {
                 m.test = function (actual) {

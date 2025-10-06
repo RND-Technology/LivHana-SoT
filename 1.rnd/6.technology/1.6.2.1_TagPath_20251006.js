@@ -22,7 +22,7 @@ class TagPath{
           if(ch=== "=") continue;
           else if(ch=== "]") {aName = text.trim(); text=""; break; i--;}
           else if(ch === "'" || ch === '"'){
-            let attrEnd = pathStr.indexOf(ch,i+1);
+            const attrEnd = pathStr.indexOf(ch,i+1);
             aVal = pathStr.substring(i+1, attrEnd);
             i = attrEnd;
           }else{

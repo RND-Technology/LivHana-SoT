@@ -12,15 +12,15 @@ const getKnownProperties = (t, node) =>
 const createObjectSpreadLike = (t, file, ...objs) =>
   t.callExpression(file.addHelper('extends'), [t.objectExpression([]), ...objs])
 
-export let getStyledOptions = (t, path, state) => {
+export const getStyledOptions = (t, path, state) => {
   const autoLabel = state.opts.autoLabel || 'dev-only'
 
-  let args = path.node.arguments
-  let optionsArgument = args.length >= 2 ? args[1] : null
+  const args = path.node.arguments
+  const optionsArgument = args.length >= 2 ? args[1] : null
 
-  let prodProperties = []
+  const prodProperties = []
   let devProperties = null
-  let knownProperties =
+  const knownProperties =
     optionsArgument && t.isObjectExpression(optionsArgument)
       ? getKnownProperties(t, optionsArgument)
       : new Set()
@@ -34,7 +34,7 @@ export let getStyledOptions = (t, path, state) => {
     )
   }
 
-  let label =
+  const label =
     autoLabel !== 'never' && !knownProperties.has('label')
       ? getLabelFromPath(path, state, t)
       : null

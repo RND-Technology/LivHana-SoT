@@ -20,7 +20,7 @@ exports.convert = (globalObject, value, { context = "The provided value" } = {})
   invokeTheCallbackFunction.construct = blob => {
     blob = utils.tryWrapperForImpl(blob);
 
-    let callResult = Reflect.construct(value, [blob]);
+    const callResult = Reflect.construct(value, [blob]);
   };
 
   invokeTheCallbackFunction[utils.wrapperSymbol] = value;

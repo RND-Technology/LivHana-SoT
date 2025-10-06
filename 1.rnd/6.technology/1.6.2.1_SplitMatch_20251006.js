@@ -1,11 +1,11 @@
 'use strict';
 
-var callBound = require('call-bound');
+const callBound = require('call-bound');
 
-var $TypeError = require('es-errors/type');
-var isInteger = require('math-intrinsics/isInteger');
+const $TypeError = require('es-errors/type');
+const isInteger = require('math-intrinsics/isInteger');
 
-var $charAt = callBound('String.prototype.charAt');
+const $charAt = callBound('String.prototype.charAt');
 
 // https://262.ecma-international.org/6.0/#sec-splitmatch
 
@@ -19,13 +19,13 @@ module.exports = function SplitMatch(S, q, R) {
 	if (typeof R !== 'string') {
 		throw new $TypeError('Assertion failed: `R` must be a String');
 	}
-	var r = R.length;
-	var s = S.length;
+	const r = R.length;
+	const s = S.length;
 	if (q + r > s) {
 		return false;
 	}
 
-	for (var i = 0; i < r; i += 1) {
+	for (let i = 0; i < r; i += 1) {
 		if ($charAt(S, q + i) !== $charAt(R, i)) {
 			return false;
 		}

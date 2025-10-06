@@ -4,5 +4,5 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.selectTooltipPayloadSearcher = void 0;
-var selectTooltipPayloadSearcher = state => state.options.tooltipPayloadSearcher;
+const selectTooltipPayloadSearcher = state => state.options.tooltipPayloadSearcher;
 exports.selectTooltipPayloadSearcher = selectTooltipPayloadSearcher;

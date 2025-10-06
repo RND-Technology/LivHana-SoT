@@ -4,14 +4,14 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = _createForOfIteratorHelper;
-var _unsupportedIterableToArray = require("./unsupportedIterableToArray.js");
+const _unsupportedIterableToArray = require("./unsupportedIterableToArray.js");
 function _createForOfIteratorHelper(o, allowArrayLike) {
-  var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"];
+  let it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"];
   if (!it) {
     if (Array.isArray(o) || (it = (0, _unsupportedIterableToArray.default)(o)) || allowArrayLike && o && typeof o.length === "number") {
       if (it) o = it;
-      var i = 0;
-      var F = function () {};
+      let i = 0;
+      const F = function () {};
       return {
         s: F,
         n: function () {
@@ -33,7 +33,7 @@ function _createForOfIteratorHelper(o, allowArrayLike) {
     }
     throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
   }
-  var normalCompletion = true,
+  let normalCompletion = true,
     didErr = false,
     err;
   return {
@@ -41,7 +41,7 @@ function _createForOfIteratorHelper(o, allowArrayLike) {
       it = it.call(o);
     },
     n: function () {
-      var step = it.next();
+      const step = it.next();
       normalCompletion = step.done;
       return step;
     },

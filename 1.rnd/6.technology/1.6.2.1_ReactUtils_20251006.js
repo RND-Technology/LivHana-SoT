@@ -6,15 +6,15 @@ Object.defineProperty(exports, "__esModule", {
 exports.filterProps = exports.SCALE_TYPES = void 0;
 exports.findAllByType = findAllByType;
 exports.toArray = exports.isValidSpreadableProp = exports.isClipDot = exports.getDisplayName = void 0;
-var _get = _interopRequireDefault(require("es-toolkit/compat/get"));
-var _react = require("react");
-var _reactIs = require("react-is");
-var _DataUtils = require("./DataUtils");
-var _types = require("./types");
-var _excludeEventProps = require("./excludeEventProps");
-var _svgPropertiesNoEvents = require("./svgPropertiesNoEvents");
+const _get = _interopRequireDefault(require("es-toolkit/compat/get"));
+const _react = require("react");
+const _reactIs = require("react-is");
+const _DataUtils = require("./DataUtils");
+const _types = require("./types");
+const _excludeEventProps = require("./excludeEventProps");
+const _svgPropertiesNoEvents = require("./svgPropertiesNoEvents");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
-var SCALE_TYPES = exports.SCALE_TYPES = ['auto', 'linear', 'pow', 'sqrt', 'log', 'identity', 'time', 'band', 'point', 'ordinal', 'quantile', 'quantize', 'utc', 'sequential', 'threshold'];
+const SCALE_TYPES = exports.SCALE_TYPES = ['auto', 'linear', 'pow', 'sqrt', 'log', 'identity', 'time', 'band', 'point', 'ordinal', 'quantile', 'quantize', 'utc', 'sequential', 'threshold'];
 
 /**
  * @deprecated instead find another approach that does not depend on displayName.
@@ -22,7 +22,7 @@ var SCALE_TYPES = exports.SCALE_TYPES = ['auto', 'linear', 'pow', 'sqrt', 'log',
  * @param  {Object} Comp Specified Component
  * @return {String}      Display name of Component
  */
-var getDisplayName = Comp => {
+const getDisplayName = Comp => {
   if (typeof Comp === 'string') {
     return Comp;
   }
@@ -35,8 +35,8 @@ var getDisplayName = Comp => {
 // `toArray` gets called multiple times during the render
 // so we can memoize last invocation (since reference to `children` is the same)
 exports.getDisplayName = getDisplayName;
-var lastChildren = null;
-var lastResult = null;
+let lastChildren = null;
+let lastResult = null;
 
 /**
  * @deprecated instead find another approach that does not require reading React Elements from DOM.
@@ -44,11 +44,11 @@ var lastResult = null;
  * @param children do not use
  * @return deprecated do not use
  */
-var toArray = children => {
+const toArray = children => {
   if (children === lastChildren && Array.isArray(lastResult)) {
     return lastResult;
   }
-  var result = [];
+  let result = [];
   _react.Children.forEach(children, child => {
     if ((0, _DataUtils.isNullish)(child)) return;
     if ((0, _reactIs.isFragment)(child)) {
@@ -75,15 +75,15 @@ var toArray = children => {
  */
 exports.toArray = toArray;
 function findAllByType(children, type) {
-  var result = [];
-  var types = [];
+  const result = [];
+  let types = [];
   if (Array.isArray(type)) {
     types = type.map(t => getDisplayName(t));
   } else {
     types = [getDisplayName(type)];
   }
   toArray(children).forEach(child => {
-    var childType = (0, _get.default)(child, 'type.displayName') || (0, _get.default)(child, 'type.name');
+    const childType = (0, _get.default)(child, 'type.displayName') || (0, _get.default)(child, 'type.name');
     // ts-expect-error toArray and lodash.get are not compatible. Let's get rid of the whole findAllByType function
     if (types.indexOf(childType) !== -1) {
       result.push(child);
@@ -91,7 +91,7 @@ function findAllByType(children, type) {
   });
   return result;
 }
-var isClipDot = dot => {
+const isClipDot = dot => {
   if (dot && typeof dot === 'object' && 'clipDot' in dot) {
     return Boolean(dot.clipDot);
   }
@@ -107,8 +107,8 @@ var isClipDot = dot => {
  * @returns {boolean} is prop valid
  */
 exports.isClipDot = isClipDot;
-var isValidSpreadableProp = (property, key, includeEvents, svgElementType) => {
-  var _ref;
+const isValidSpreadableProp = (property, key, includeEvents, svgElementType) => {
+  let _ref;
   if (typeof key === 'symbol' || typeof key === 'number') {
     // Allow symbols and numbers as valid keys
     return true;
@@ -118,10 +118,10 @@ var isValidSpreadableProp = (property, key, includeEvents, svgElementType) => {
    * to determine if there are attributes that should only exist on that element type.
    * @todo Add an internal cjs version of https://github.com/wooorm/svg-element-attributes for full coverage.
    */
-  var matchingElementTypeKeys = (_ref = svgElementType && (_types.FilteredElementKeyMap === null || _types.FilteredElementKeyMap === void 0 ? void 0 : _types.FilteredElementKeyMap[svgElementType])) !== null && _ref !== void 0 ? _ref : [];
-  var isDataAttribute = key.startsWith('data-');
-  var isSpecificSvgAttribute = typeof property !== 'function' && (Boolean(svgElementType) && matchingElementTypeKeys.includes(key) || (0, _svgPropertiesNoEvents.isSvgElementPropKey)(key));
-  var isEventAttribute = Boolean(includeEvents) && (0, _excludeEventProps.isEventKey)(key);
+  const matchingElementTypeKeys = (_ref = svgElementType && (_types.FilteredElementKeyMap === null || _types.FilteredElementKeyMap === void 0 ? void 0 : _types.FilteredElementKeyMap[svgElementType])) !== null && _ref !== void 0 ? _ref : [];
+  const isDataAttribute = key.startsWith('data-');
+  const isSpecificSvgAttribute = typeof property !== 'function' && (Boolean(svgElementType) && matchingElementTypeKeys.includes(key) || (0, _svgPropertiesNoEvents.isSvgElementPropKey)(key));
+  const isEventAttribute = Boolean(includeEvents) && (0, _excludeEventProps.isEventKey)(key);
   return isDataAttribute || isSpecificSvgAttribute || isEventAttribute;
 };
 
@@ -137,18 +137,18 @@ var isValidSpreadableProp = (property, key, includeEvents, svgElementType) => {
  * @returns A new object containing only valid SVG attributes or event handlers, or null if the input is not valid.
  */
 exports.isValidSpreadableProp = isValidSpreadableProp;
-var filterProps = (props, includeEvents, svgElementType) => {
+const filterProps = (props, includeEvents, svgElementType) => {
   if (!props || typeof props === 'function' || typeof props === 'boolean') {
     return null;
   }
-  var inputProps = props;
+  let inputProps = props;
   if (/*#__PURE__*/(0, _react.isValidElement)(props)) {
     inputProps = props.props;
   }
   if (typeof inputProps !== 'object' && typeof inputProps !== 'function') {
     return null;
   }
-  var out = {};
+  const out = {};
 
   /**
    * Props are blindly spread onto SVG elements. This loop filters out properties that we don't want to spread.
@@ -158,7 +158,7 @@ var filterProps = (props, includeEvents, svgElementType) => {
    *   - any prop that is not in SVGElementPropKeys (or in EventKeys if includeEvents is true)
    */
   Object.keys(inputProps).forEach(key => {
-    var _inputProps;
+    let _inputProps;
     if (isValidSpreadableProp((_inputProps = inputProps) === null || _inputProps === void 0 ? void 0 : _inputProps[key], key, includeEvents, svgElementType)) {
       out[key] = inputProps[key];
     }

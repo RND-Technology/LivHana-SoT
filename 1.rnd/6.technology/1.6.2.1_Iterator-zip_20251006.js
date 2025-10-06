@@ -1,22 +1,22 @@
 'use strict';
 
-var defineProperties = require('define-properties');
-var test = require('tape');
-var callBind = require('call-bind');
-var functionsHaveNames = require('functions-have-names')();
-var forEach = require('for-each');
-var debug = require('object-inspect');
-var v = require('es-value-fixtures');
-var hasSymbols = require('has-symbols/shams')();
-var mockProperty = require('mock-property');
+const defineProperties = require('define-properties');
+const test = require('tape');
+const callBind = require('call-bind');
+const functionsHaveNames = require('functions-have-names')();
+const forEach = require('for-each');
+const debug = require('object-inspect');
+const v = require('es-value-fixtures');
+const hasSymbols = require('has-symbols/shams')();
+const mockProperty = require('mock-property');
 
-var index = require('../Iterator.zip');
-var impl = require('../Iterator.zip/implementation');
-var from = require('../Iterator.from/polyfill')();
+const index = require('../Iterator.zip');
+const impl = require('../Iterator.zip/implementation');
+const from = require('../Iterator.from/polyfill')();
 
-var isEnumerable = Object.prototype.propertyIsEnumerable;
+const isEnumerable = Object.prototype.propertyIsEnumerable;
 
-var testIterator = require('./helpers/testIterator');
+const testIterator = require('./helpers/testIterator');
 
 module.exports = {
 	tests: function (zip, name, t) {
@@ -42,7 +42,7 @@ module.exports = {
 		t.test('actual iteration', { skip: !hasSymbols }, function (st) {
 			forEach(v.nonFunctions, function (nonFunction) {
 				if (nonFunction != null) {
-					var badIterable = {};
+					const badIterable = {};
 					badIterable[Symbol.iterator] = nonFunction;
 					st['throws'](
 						function () { zip([[], badIterable, []]).next(); },
@@ -60,19 +60,19 @@ module.exports = {
 				);
 			});
 
-			var arrayIt = zip([[1, 2, 3]]);
+			const arrayIt = zip([[1, 2, 3]]);
 			st.equal(typeof arrayIt.next, 'function', 'has a `next` function');
 
 			st.test('real iterators', { skip: !hasSymbols }, function (s2t) {
-				var iter = [1, 2][Symbol.iterator]();
+				const iter = [1, 2][Symbol.iterator]();
 				testIterator(zip([iter, [3, 4]]), [[1, 3], [2, 4]], s2t, 'array iterator + array yields combined results');
 
 				s2t.end();
 			});
 
 			st.test('observability in a replaced String iterator', function (s2t) {
-				var originalStringIterator = String.prototype[Symbol.iterator];
-				var observedType;
+				const originalStringIterator = String.prototype[Symbol.iterator];
+				let observedType;
 				s2t.teardown(mockProperty(String.prototype, Symbol.iterator, {
 					get: function () {
 						'use strict'; // eslint-disable-line strict, lines-around-directive

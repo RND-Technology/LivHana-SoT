@@ -1,7 +1,7 @@
 // 'mime-score' back-ported to CommonJS
 
 // Score RFC facets (see https://tools.ietf.org/html/rfc6838#section-3)
-var FACET_SCORES = {
+const FACET_SCORES = {
   'prs.': 100,
   'x-': 200,
   'x.': 300,
@@ -10,14 +10,14 @@ var FACET_SCORES = {
 }
 
 // Score mime source (Logic originally from `jshttp/mime-types` module)
-var SOURCE_SCORES = {
+const SOURCE_SCORES = {
   nginx: 10,
   apache: 20,
   iana: 40,
   default: 30 // definitions added by `jshttp/mime-db` project?
 }
 
-var TYPE_SCORES = {
+const TYPE_SCORES = {
   // prefer application/xml over text/xml
   // prefer application/rtf over text/rtf
   application: 1,

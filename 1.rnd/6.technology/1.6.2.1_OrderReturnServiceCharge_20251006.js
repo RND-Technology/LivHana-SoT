@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
 exports.orderReturnServiceChargeSchema = void 0;
-var schema_1 = require("../schema");
-var money_1 = require("./money");
-var orderLineItemAppliedTax_1 = require("./orderLineItemAppliedTax");
+const schema_1 = require("../schema");
+const money_1 = require("./money");
+const orderLineItemAppliedTax_1 = require("./orderLineItemAppliedTax");
 exports.orderReturnServiceChargeSchema = (0, schema_1.object)({
     uid: ['uid', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.string)()))],
     sourceServiceChargeUid: [

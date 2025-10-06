@@ -40,7 +40,7 @@ function _jestWorker() {
   };
   return data;
 }
-var _runTest = _interopRequireDefault(require('./runTest'));
+const _runTest = _interopRequireDefault(require('./runTest'));
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {default: obj};
 }

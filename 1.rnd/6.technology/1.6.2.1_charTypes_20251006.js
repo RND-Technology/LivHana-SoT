@@ -22,7 +22,7 @@ function parseData () {
   if (!map) {
     //const start = performance.now()
     map = new Map()
-    for (let type in DATA) {
+    for (const type in DATA) {
       if (DATA.hasOwnProperty(type)) {
         let lastCode = 0
         DATA[type].split(',').forEach(range => {

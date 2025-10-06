@@ -1,4 +1,4 @@
-var baseSlice = require('./_baseSlice');
+const baseSlice = require('./_baseSlice');
 
 /**
  * The base implementation of methods like `_.dropWhile` and `_.takeWhile`
@@ -12,7 +12,7 @@ var baseSlice = require('./_baseSlice');
  * @returns {Array} Returns the slice of `array`.
  */
 function baseWhile(array, predicate, isDrop, fromRight) {
-  var length = array.length,
+  let length = array.length,
       index = fromRight ? length : -1;
 
   while ((fromRight ? index-- : ++index < length) &&

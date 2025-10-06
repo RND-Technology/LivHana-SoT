@@ -1,12 +1,12 @@
 "use strict";
 exports.__esModule = true;
 exports.customerFilterSchema = void 0;
-var schema_1 = require("../schema");
-var customerCreationSourceFilter_1 = require("./customerCreationSourceFilter");
-var customerCustomAttributeFilters_1 = require("./customerCustomAttributeFilters");
-var customerTextFilter_1 = require("./customerTextFilter");
-var filterValue_1 = require("./filterValue");
-var timeRange_1 = require("./timeRange");
+const schema_1 = require("../schema");
+const customerCreationSourceFilter_1 = require("./customerCreationSourceFilter");
+const customerCustomAttributeFilters_1 = require("./customerCustomAttributeFilters");
+const customerTextFilter_1 = require("./customerTextFilter");
+const filterValue_1 = require("./filterValue");
+const timeRange_1 = require("./timeRange");
 exports.customerFilterSchema = (0, schema_1.object)({
     creationSource: [
         'creation_source',

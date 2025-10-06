@@ -14,14 +14,14 @@ import { convertToStream } from '@apimatic/convert-to-stream';
 import { XmlSerialization } from '../xml/xmlSerializer.js';
 import { ApiError, loadResult } from '../errors/apiError.js';
 import { PathParam } from './pathParam.js';
-var JSON = /*#__PURE__*/JSONBig();
+const JSON = /*#__PURE__*/JSONBig();
 function skipEncode(value, key) {
   return new SkipEncode(value, key);
 }
 function pathParam(value, key) {
   return new PathParam(value, key);
 }
-var DefaultRequestBuilder =
+const DefaultRequestBuilder =
 /*#__PURE__*/
 /** @class */
 function () {
@@ -63,16 +63,16 @@ function () {
     deprecated(methodName, message);
   };
   DefaultRequestBuilder.prototype.appendTemplatePath = function (strings) {
-    var e_1, _a;
-    var args = [];
-    for (var _i = 1; _i < arguments.length; _i++) {
+    let e_1, _a;
+    const args = [];
+    for (let _i = 1; _i < arguments.length; _i++) {
       args[_i - 1] = arguments[_i];
     }
     this._pathStrings = strings;
     this._pathArgs = args;
     try {
       for (var args_1 = __values(args), args_1_1 = args_1.next(); !args_1_1.done; args_1_1 = args_1.next()) {
-        var arg = args_1_1.value;
+        const arg = args_1_1.value;
         if ((arg instanceof SkipEncode || arg instanceof PathParam) && arg.key !== undefined) {
           this._pathParams[arg.key] = arg.value;
         }
@@ -114,10 +114,10 @@ function () {
     this._headerParams[name] = value;
   };
   DefaultRequestBuilder.prototype.headers = function (headersToMerge) {
-    var e_2, _a;
+    let e_2, _a;
     try {
       for (var _b = __values(Object.entries(headersToMerge)), _c = _b.next(); !_c.done; _c = _b.next()) {
-        var _d = __read(_c.value, 2),
+        const _d = __read(_c.value, 2),
           name_1 = _d[0],
           value = _d[1];
         this._headerParams[name_1] = value;
@@ -149,13 +149,13 @@ function () {
     this.setQueryParams(nameOrParameters);
   };
   DefaultRequestBuilder.prototype.setPrefixFormats = function (parameters, prefixFormat) {
-    var e_3, _a;
+    let e_3, _a;
     if (!prefixFormat) {
       return;
     }
     try {
       for (var _b = __values(Object.keys(parameters)), _c = _b.next(); !_c.done; _c = _b.next()) {
-        var key = _c.value;
+        const key = _c.value;
         this._queryParamsPrefixFormat[key] = prefixFormat;
       }
     } catch (e_3_1) {
@@ -171,10 +171,10 @@ function () {
     }
   };
   DefaultRequestBuilder.prototype.setQueryParams = function (parameters) {
-    var e_4, _a;
+    let e_4, _a;
     try {
       for (var _b = __values(Object.entries(parameters)), _c = _b.next(); !_c.done; _c = _b.next()) {
-        var _d = __read(_c.value, 2),
+        const _d = __read(_c.value, 2),
           key = _d[0],
           val = _d[1];
         if (val !== undefined && val !== null) {
@@ -204,8 +204,8 @@ function () {
     this._contentTypeOptional = JSON_CONTENT_TYPE;
   };
   DefaultRequestBuilder.prototype.xml = function (argName, data, rootName, schema) {
-    var _a;
-    var mappingResult = validateAndUnmapXml(data, schema);
+    let _a;
+    const mappingResult = validateAndUnmapXml(data, schema);
     if (mappingResult.errors) {
       throw new ArgumentsValidationError((_a = {}, _a[argName] = mappingResult.errors, _a));
     }
@@ -246,10 +246,10 @@ function () {
     });
   };
   DefaultRequestBuilder.prototype.interceptResponse = function (interceptor) {
-    var _this = this;
+    const _this = this;
     this.intercept(function (req, opt, next) {
       return __awaiter(_this, void 0, void 0, function () {
-        var _a;
+        let _a;
         return __generator(this, function (_b) {
           switch (_b.label) {
             case 0:
@@ -272,8 +272,8 @@ function () {
     this._validateResponse = validate;
   };
   DefaultRequestBuilder.prototype.throwOn = function (statusCode, errorConstructor, isTemplate) {
-    var args = [];
-    for (var _i = 3; _i < arguments.length; _i++) {
+    const args = [];
+    for (let _i = 3; _i < arguments.length; _i++) {
       args[_i - 3] = arguments[_i];
     }
     this._errorTypes.push({
@@ -285,8 +285,8 @@ function () {
   };
   DefaultRequestBuilder.prototype.call = function (requestOptions) {
     return __awaiter(this, void 0, void 0, function () {
-      var pipeline, _a, request, response;
-      var _this = this;
+      let pipeline, _a, request, response;
+      const _this = this;
       return __generator(this, function (_b) {
         switch (_b.label) {
           case 0:
@@ -294,7 +294,7 @@ function () {
             // tslint:disable-next-line:no-shadowed-variable
             function (request, opt) {
               return __awaiter(_this, void 0, void 0, function () {
-                var response;
+                let response;
                 return __generator(this, function (_a) {
                   switch (_a.label) {
                     case 0:
@@ -322,7 +322,7 @@ function () {
   };
   DefaultRequestBuilder.prototype.callAsText = function (requestOptions) {
     return __awaiter(this, void 0, void 0, function () {
-      var result;
+      let result;
       return __generator(this, function (_a) {
         switch (_a.label) {
           case 0:
@@ -341,7 +341,7 @@ function () {
   };
   DefaultRequestBuilder.prototype.callAsOptionalText = function (requestOptions) {
     return __awaiter(this, void 0, void 0, function () {
-      var result;
+      let result;
       return __generator(this, function (_a) {
         switch (_a.label) {
           case 0:
@@ -362,7 +362,7 @@ function () {
   };
   DefaultRequestBuilder.prototype.callAsStream = function (requestOptions) {
     return __awaiter(this, void 0, void 0, function () {
-      var result;
+      let result;
       return __generator(this, function (_a) {
         switch (_a.label) {
           case 0:
@@ -383,12 +383,12 @@ function () {
   };
   DefaultRequestBuilder.prototype.callAsJson = function (schema, requestOptions) {
     return __awaiter(this, void 0, void 0, function () {
-      var result;
+      let result;
       return __generator(this, function (_a) {
         switch (_a.label) {
           case 0:
             this.interceptRequest(function (request) {
-              var headers = __assign({}, request.headers);
+              const headers = __assign({}, request.headers);
               setHeaderIfNotSet(headers, ACCEPT_HEADER, JSON_CONTENT_TYPE);
               return __assign(__assign({}, request), {
                 headers: headers
@@ -406,12 +406,12 @@ function () {
   };
   DefaultRequestBuilder.prototype.callAsXml = function (rootName, schema, requestOptions) {
     return __awaiter(this, void 0, void 0, function () {
-      var result, xmlObject, error_1, mappingResult;
+      let result, xmlObject, error_1, mappingResult;
       return __generator(this, function (_a) {
         switch (_a.label) {
           case 0:
             this.interceptRequest(function (request) {
-              var headers = __assign({}, request.headers);
+              const headers = __assign({}, request.headers);
               setHeaderIfNotSet(headers, ACCEPT_HEADER, XML_CONTENT_TYPE);
               return __assign(__assign({}, request), {
                 headers: headers
@@ -454,11 +454,11 @@ function () {
     });
   };
   DefaultRequestBuilder.prototype.updateByJsonPointer = function (pointer, updater) {
-    var _this = this;
+    const _this = this;
     if (!pointer) {
       return this;
     }
-    var targets = {
+    const targets = {
       '$request.body': function (req) {
         return req._body = updateByJsonPointer(_this._body, point, updater);
       },
@@ -476,16 +476,16 @@ function () {
       prefix = _a[0],
       _b = _a[1],
       point = _b === void 0 ? '' : _b;
-    var paramUpdater = targets[prefix];
+    const paramUpdater = targets[prefix];
     if (!paramUpdater) {
       return this;
     }
-    var request = this._clone();
+    const request = this._clone();
     paramUpdater(request);
     return request;
   };
   DefaultRequestBuilder.prototype._clone = function () {
-    var cloned = new DefaultRequestBuilder(this._httpClient, this._baseUrlProvider, this._apiErrorCtr, this._authenticationProvider, this._httpMethod, this._xmlSerializer, this._retryConfig, this._path, this._apiLogger);
+    const cloned = new DefaultRequestBuilder(this._httpClient, this._baseUrlProvider, this._apiErrorCtr, this._authenticationProvider, this._httpMethod, this._xmlSerializer, this._retryConfig, this._path, this._apiLogger);
     this.cloneParameters(cloned);
     return cloned;
   };
@@ -510,10 +510,10 @@ function () {
     cloned._errorTypes = __spreadArray([], __read(this._errorTypes), false);
   };
   DefaultRequestBuilder.prototype._addResponseValidator = function () {
-    var _this = this;
+    const _this = this;
     this.interceptResponse(function (context) {
-      var _a;
-      var response = context.response;
+      let _a;
+      const response = context.response;
       if (_this._validateResponse && (response.statusCode < 200 || response.statusCode >= 300)) {
         if (typeof ((_a = _this._apiErrorFactory) === null || _a === void 0 ? void 0 : _a.message) === 'undefined') {
           _this._apiErrorFactory.message = "Response status code was not ok: ".concat(response.statusCode, ".");
@@ -524,12 +524,12 @@ function () {
     });
   };
   DefaultRequestBuilder.prototype._addApiLoggerInterceptors = function () {
-    var _this = this;
+    const _this = this;
     if (this._apiLogger) {
-      var apiLogger_1 = this._apiLogger;
+      const apiLogger_1 = this._apiLogger;
       this.intercept(function (request, options, next) {
         return __awaiter(_this, void 0, void 0, function () {
-          var context;
+          let context;
           return __generator(this, function (_a) {
             switch (_a.label) {
               case 0:
@@ -546,15 +546,15 @@ function () {
     }
   };
   DefaultRequestBuilder.prototype._getQueryUrl = function () {
-    var e_5, _a, _b;
-    var _c;
-    var queryParts = [];
+    let e_5, _a, _b;
+    let _c;
+    const queryParts = [];
     try {
       for (var _d = __values(Object.entries(this._queryParams)), _e = _d.next(); !_e.done; _e = _d.next()) {
-        var _f = __read(_e.value, 2),
+        const _f = __read(_e.value, 2),
           key = _f[0],
           value = _f[1];
-        var formatter = (_c = this._queryParamsPrefixFormat) === null || _c === void 0 ? void 0 : _c[key];
+        const formatter = (_c = this._queryParamsPrefixFormat) === null || _c === void 0 ? void 0 : _c[key];
         queryParts.push(urlEncodeObject((_b = {}, _b[key] = value, _b), formatter));
       }
     } catch (e_5_1) {
@@ -568,21 +568,21 @@ function () {
         if (e_5) throw e_5.error;
       }
     }
-    var url = mergePath(this._baseUrlProvider(this._baseUrlArg), this._buildPath());
+    const url = mergePath(this._baseUrlProvider(this._baseUrlArg), this._buildPath());
     if (queryParts.length === 0) {
       return sanitizeUrl(url);
     }
-    var separator = url.indexOf('?') === -1 ? '?' : '&';
+    const separator = url.indexOf('?') === -1 ? '?' : '&';
     return sanitizeUrl(url + separator + queryParts.join('&'));
   };
   DefaultRequestBuilder.prototype._buildPath = function () {
-    var e_6, _a;
+    let e_6, _a;
     if (this._pathStrings === undefined || this._pathArgs === undefined) {
       return this._path;
     }
     try {
       for (var _b = __values(this._pathArgs), _c = _b.next(); !_c.done; _c = _b.next()) {
-        var arg = _c.value;
+        const arg = _c.value;
         if ((arg instanceof SkipEncode || arg instanceof PathParam) && arg.key !== undefined && arg.key in this._pathParams) {
           arg.value = this._pathParams[arg.key];
         }
@@ -601,11 +601,11 @@ function () {
     return pathTemplate.apply(void 0, __spreadArray([this._pathStrings], __read(this._pathArgs), false));
   };
   DefaultRequestBuilder.prototype._getHttpRequestHeaders = function () {
-    var e_7, _a;
-    var headers = {};
+    let e_7, _a;
+    const headers = {};
     try {
       for (var _b = __values(Object.entries(this._headerParams)), _c = _b.next(); !_c.done; _c = _b.next()) {
-        var _d = __read(_c.value, 2),
+        const _d = __read(_c.value, 2),
           name_2 = _d[0],
           value = _d[1];
         if (typeof value === 'object') {
@@ -669,9 +669,9 @@ function () {
           if (typeof this._body !== 'object' || this._body === null || Array.isArray(this._body)) {
             return undefined;
           }
-          var type = this._bodyType;
-          var encoded = formDataEncodeObject(this._body, this._formPrefixFormat);
-          var content = filterFileWrapperFromKeyValuePairs(encoded);
+          const type = this._bodyType;
+          const encoded = formDataEncodeObject(this._body, this._formPrefixFormat);
+          const content = filterFileWrapperFromKeyValuePairs(encoded);
           return type === 'form' ? {
             type: type,
             content: content
@@ -685,22 +685,22 @@ function () {
     }
   };
   DefaultRequestBuilder.prototype._addAuthentication = function () {
-    var _this = this;
+    const _this = this;
     this.intercept(function () {
-      var args = [];
-      for (var _i = 0; _i < arguments.length; _i++) {
+      const args = [];
+      for (let _i = 0; _i < arguments.length; _i++) {
         args[_i] = arguments[_i];
       }
-      var handler = _this._authenticationProvider(_this._authParams);
+      const handler = _this._authenticationProvider(_this._authParams);
       return handler.apply(void 0, __spreadArray([], __read(args), false));
     });
   };
   DefaultRequestBuilder.prototype._addRetryInterceptor = function () {
-    var _this = this;
+    const _this = this;
     this.intercept(function (request, options, next) {
       return __awaiter(_this, void 0, void 0, function () {
-        var context, allowedWaitTime, retryCount, waitTime, timeoutError, shouldRetry, error_2;
-        var _a, _b;
+        let context, allowedWaitTime, retryCount, waitTime, timeoutError, shouldRetry, error_2;
+        let _a, _b;
         return __generator(this, function (_c) {
           switch (_c.label) {
             case 0:
@@ -755,11 +755,11 @@ function () {
     });
   };
   DefaultRequestBuilder.prototype._addErrorHandlingInterceptor = function () {
-    var _this = this;
+    const _this = this;
     this.intercept(function (req, opt, next) {
       return __awaiter(_this, void 0, void 0, function () {
-        var context, _a, _b, _c, statusCode, errorConstructor, isTemplate, args, error, e_8_1;
-        var e_8, _d;
+        let context, _a, _b, _c, statusCode, errorConstructor, isTemplate, args, error, e_8_1;
+        let e_8, _d;
         return __generator(this, function (_e) {
           switch (_e.label) {
             case 0:
@@ -772,7 +772,7 @@ function () {
               _a = __values(this._errorTypes), _b = _a.next();
               _e.label = 3;
             case 3:
-              if (!!_b.done) return [3 /*break*/, 7];
+              if (_b.done) return [3 /*break*/, 7];
               _c = _b.value, statusCode = _c.statusCode, errorConstructor = _c.errorConstructor, isTemplate = _c.isTemplate, args = _c.args;
               if (!(typeof statusCode === 'number' && context.response.statusCode === statusCode || typeof statusCode !== 'number' && context.response.statusCode >= statusCode[0] && context.response.statusCode <= statusCode[1])) return [3 /*break*/, 6];
               if (isTemplate && args.length > 0) {
@@ -838,21 +838,21 @@ function parseJsonResult(schema, res) {
     throw new Error('Could not parse body as JSON. The response body is not a string.');
   }
   if (res.body.trim() === '') {
-    var resEmptyErr_1 = new Error('Could not parse body as JSON. The response body is empty.');
+    const resEmptyErr_1 = new Error('Could not parse body as JSON. The response body is empty.');
     return validateJson(schema, null, function (_) {
       return resEmptyErr_1;
     });
   }
-  var parsed;
+  let parsed;
   try {
     parsed = JSON.parse(res.body);
   } catch (error) {
-    var resUnParseErr_1 = new Error("Could not parse body as JSON.\n\n".concat(error.message));
+    const resUnParseErr_1 = new Error("Could not parse body as JSON.\n\n".concat(error.message));
     return validateJson(schema, res.body, function (_) {
       return resUnParseErr_1;
     });
   }
-  var resInvalidErr = function (errors) {
+  const resInvalidErr = function (errors) {
     return new ResponseValidationError(res, errors);
   };
   return validateJson(schema, parsed, function (errors) {
@@ -860,7 +860,7 @@ function parseJsonResult(schema, res) {
   });
 }
 function validateJson(schema, value, errorCreater) {
-  var mappingResult = validateAndMap(value, schema);
+  const mappingResult = validateAndMap(value, schema);
   if (mappingResult.errors) {
     throw errorCreater(mappingResult.errors);
   }

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.transformArguments = exports.ClientKillFilters = void 0;
-var ClientKillFilters;
+let ClientKillFilters;
 (function (ClientKillFilters) {
     ClientKillFilters["ADDRESS"] = "ADDR";
     ClientKillFilters["LOCAL_ADDRESS"] = "LADDR";

@@ -4,9 +4,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.selectChartOffset = void 0;
-var _reselect = require("reselect");
-var _selectChartOffsetInternal = require("./selectChartOffsetInternal");
-var selectChartOffset = exports.selectChartOffset = (0, _reselect.createSelector)([_selectChartOffsetInternal.selectChartOffsetInternal], offsetInternal => {
+const _reselect = require("reselect");
+const _selectChartOffsetInternal = require("./selectChartOffsetInternal");
+const selectChartOffset = exports.selectChartOffset = (0, _reselect.createSelector)([_selectChartOffsetInternal.selectChartOffsetInternal], offsetInternal => {
   if (!offsetInternal) {
     return undefined;
   }

@@ -1,15 +1,15 @@
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+const GetIntrinsic = require('get-intrinsic');
 
-var hasSymbols = require('has-symbols')();
+const hasSymbols = require('has-symbols')();
 
-var $TypeError = require('es-errors/type');
-var isObject = require('es-object-atoms/isObject');
+const $TypeError = require('es-errors/type');
+const isObject = require('es-object-atoms/isObject');
 
-var $gOPN = GetIntrinsic('%Object.getOwnPropertyNames%', true);
-var $gOPS = hasSymbols && GetIntrinsic('%Object.getOwnPropertySymbols%', true);
-var keys = require('object-keys');
+const $gOPN = GetIntrinsic('%Object.getOwnPropertyNames%', true);
+const $gOPS = hasSymbols && GetIntrinsic('%Object.getOwnPropertySymbols%', true);
+const keys = require('object-keys');
 
 // https://262.ecma-international.org/6.0/#sec-getownpropertykeys
 

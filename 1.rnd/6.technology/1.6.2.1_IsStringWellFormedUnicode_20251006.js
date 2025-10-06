@@ -1,8 +1,8 @@
 'use strict';
 
-var CodePointAt = require('./CodePointAt');
+const CodePointAt = require('./CodePointAt');
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
 // https://262.ecma-international.org/14.0/#sec-isstringwellformedunicode
 
@@ -10,10 +10,10 @@ module.exports = function IsStringWellFormedUnicode(string) {
 	if (typeof string !== 'string') {
 		throw new $TypeError('Assertion failed: `string` must be a String');
 	}
-	var len = string.length; // step 1
-	var k = 0; // step 2
+	const len = string.length; // step 1
+	let k = 0; // step 2
 	while (k < len) { // step 3
-		var cp = CodePointAt(string, k); // step 3.a
+		const cp = CodePointAt(string, k); // step 3.a
 		if (cp['[[IsUnpairedSurrogate]]']) {
 			return false; // step 3.b
 		}

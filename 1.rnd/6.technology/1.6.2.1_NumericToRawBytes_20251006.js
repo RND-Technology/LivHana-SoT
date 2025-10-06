@@ -1,26 +1,26 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var hasOwnProperty = require('./HasOwnProperty');
-var ToBigInt64 = require('./ToBigInt64');
-var ToBigUint64 = require('./ToBigUint64');
-var ToInt16 = require('./ToInt16');
-var ToInt32 = require('./ToInt32');
-var ToInt8 = require('./ToInt8');
-var ToUint16 = require('./ToUint16');
-var ToUint32 = require('./ToUint32');
-var ToUint8 = require('./ToUint8');
-var ToUint8Clamp = require('./ToUint8Clamp');
+const hasOwnProperty = require('./HasOwnProperty');
+const ToBigInt64 = require('./ToBigInt64');
+const ToBigUint64 = require('./ToBigUint64');
+const ToInt16 = require('./ToInt16');
+const ToInt32 = require('./ToInt32');
+const ToInt8 = require('./ToInt8');
+const ToUint16 = require('./ToUint16');
+const ToUint32 = require('./ToUint32');
+const ToUint8 = require('./ToUint8');
+const ToUint8Clamp = require('./ToUint8Clamp');
 
-var valueToFloat32Bytes = require('../helpers/valueToFloat32Bytes');
-var valueToFloat64Bytes = require('../helpers/valueToFloat64Bytes');
-var integerToNBytes = require('../helpers/integerToNBytes');
+const valueToFloat32Bytes = require('../helpers/valueToFloat32Bytes');
+const valueToFloat64Bytes = require('../helpers/valueToFloat64Bytes');
+const integerToNBytes = require('../helpers/integerToNBytes');
 
-var tableTAO = require('./tables/typed-array-objects');
+const tableTAO = require('./tables/typed-array-objects');
 
 // https://262.ecma-international.org/11.0/#table-the-typedarray-constructors
-var TypeToAO = {
+const TypeToAO = {
 	__proto__: null,
 	$Int8: ToInt8,
 	$Uint8: ToUint8,
@@ -52,11 +52,11 @@ module.exports = function NumericToRawBytes(type, value, isLittleEndian) {
 		return valueToFloat64Bytes(value, isLittleEndian);
 	} // step 3
 
-	var n = tableTAO.size['$' + type]; // step 3.a
+	const n = tableTAO.size['$' + type]; // step 3.a
 
-	var convOp = TypeToAO['$' + type]; // step 3.b
+	const convOp = TypeToAO['$' + type]; // step 3.b
 
-	var intValue = convOp(value); // step 3.c
+	const intValue = convOp(value); // step 3.c
 
 	return integerToNBytes(intValue, n, isLittleEndian); // step 3.d, 3.e, 4
 };

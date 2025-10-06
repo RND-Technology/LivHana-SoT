@@ -1,14 +1,14 @@
 'use strict'
 
-var tap = require('tap')
-var test = tap.test
-var sinon = require('sinon')
-var shimmer = require('../index.js')
+const tap = require('tap')
+const test = tap.test
+const sinon = require('sinon')
+const shimmer = require('../index.js')
 
-var outsider = 0
+let outsider = 0
 function counter () { return ++outsider }
 
-var generator = {
+const generator = {
   inc: counter
 }
 
@@ -42,7 +42,7 @@ test("shouldn't throw on double unwrapping", function (t) {
 
   t.equal(counter, generator.inc, 'basic function equality testing should work')
 
-  var mock = sinon.expectation
+  const mock = sinon.expectation
     .create('logger')
     .withArgs('no original to unwrap to -- ' +
       'has inc already been unwrapped?')
@@ -73,7 +73,7 @@ test("shouldn't throw on double unwrapping", function (t) {
 test('unwrap called with no arguments', function (t) {
   t.plan(2)
 
-  var mock = sinon.expectation
+  const mock = sinon.expectation
     .create('logger')
     .twice()
   shimmer({ logger: mock })
@@ -88,7 +88,7 @@ test('unwrap called with no arguments', function (t) {
 test('unwrap called with module but no name', function (t) {
   t.plan(2)
 
-  var mock = sinon.expectation
+  const mock = sinon.expectation
     .create('logger')
     .twice()
   shimmer({ logger: mock })

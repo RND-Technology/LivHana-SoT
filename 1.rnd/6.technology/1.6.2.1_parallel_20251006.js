@@ -1,4 +1,4 @@
-var iterate    = require('./lib/iterate.js')
+const iterate    = require('./lib/iterate.js')
   , initState  = require('./lib/state.js')
   , terminator = require('./lib/terminator.js')
   ;
@@ -16,7 +16,7 @@ module.exports = parallel;
  */
 function parallel(list, iterator, callback)
 {
-  var state = initState(list);
+  const state = initState(list);
 
   while (state.index < (state['keyedList'] || list).length)
   {

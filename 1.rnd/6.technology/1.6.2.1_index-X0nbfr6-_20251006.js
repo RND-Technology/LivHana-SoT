@@ -10,7 +10,7 @@ function _mergeNamespaces(n, m) {
 	m.forEach(function (e) {
 		e && typeof e !== 'string' && !Array.isArray(e) && Object.keys(e).forEach(function (k) {
 			if (k !== 'default' && !(k in n)) {
-				var d = Object.getOwnPropertyDescriptor(e, k);
+				const d = Object.getOwnPropertyDescriptor(e, k);
 				Object.defineProperty(n, k, d.get ? d : {
 					enumerable: true,
 					get: function () { return e[k]; }
@@ -298,10 +298,10 @@ async function findUp(name, options = {}) {
 	return matches[0];
 }
 
-var prompts$2 = {};
+const prompts$2 = {};
 
-var kleur;
-var hasRequiredKleur;
+let kleur;
+let hasRequiredKleur;
 
 function requireKleur () {
 	if (hasRequiredKleur) return kleur;
@@ -359,7 +359,7 @@ function requireKleur () {
 	}
 
 	function chain(has, keys) {
-		let ctx = { has, keys };
+		const ctx = { has, keys };
 
 		ctx.reset = $.reset.bind(ctx);
 		ctx.bold = $.bold.bind(ctx);
@@ -394,7 +394,7 @@ function requireKleur () {
 	}
 
 	function init(open, close) {
-		let blk = {
+		const blk = {
 			open: `\x1b[${open}m`,
 			close: `\x1b[${close}m`,
 			rgx: new RegExp(`\\x1b\\[${close}m`, 'g')
@@ -412,8 +412,8 @@ function requireKleur () {
 	return kleur;
 }
 
-var action$1;
-var hasRequiredAction$1;
+let action$1;
+let hasRequiredAction$1;
 
 function requireAction$1 () {
 	if (hasRequiredAction$1) return action$1;
@@ -458,8 +458,8 @@ function requireAction$1 () {
 	return action$1;
 }
 
-var strip$1;
-var hasRequiredStrip$1;
+let strip$1;
+let hasRequiredStrip$1;
 
 function requireStrip$1 () {
 	if (hasRequiredStrip$1) return strip$1;
@@ -473,8 +473,8 @@ function requireStrip$1 () {
 	return strip$1;
 }
 
-var src;
-var hasRequiredSrc;
+let src;
+let hasRequiredSrc;
 
 function requireSrc () {
 	if (hasRequiredSrc) return src;
@@ -539,16 +539,16 @@ function requireSrc () {
 	return src;
 }
 
-var clear$1;
-var hasRequiredClear$1;
+let clear$1;
+let hasRequiredClear$1;
 
 function requireClear$1 () {
 	if (hasRequiredClear$1) return clear$1;
 	hasRequiredClear$1 = 1;
 
-	function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike) { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+	function _createForOfIteratorHelper(o, allowArrayLike) { let it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike) { if (it) o = it; let i = 0; const F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } let normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { const step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
-	function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+	function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); let n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
 	function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 
@@ -570,12 +570,12 @@ function requireClear$1 () {
 	  let rows = 0;
 	  const lines = prompt.split(/\r?\n/);
 
-	  var _iterator = _createForOfIteratorHelper(lines),
+	  let _iterator = _createForOfIteratorHelper(lines),
 	      _step;
 
 	  try {
 	    for (_iterator.s(); !(_step = _iterator.n()).done;) {
-	      let line = _step.value;
+	      const line = _step.value;
 	      rows += 1 + Math.floor(Math.max(width(line) - 1, 0) / perLine);
 	    }
 	  } catch (err) {
@@ -589,8 +589,8 @@ function requireClear$1 () {
 	return clear$1;
 }
 
-var figures_1$1;
-var hasRequiredFigures$1;
+let figures_1$1;
+let hasRequiredFigures$1;
 
 function requireFigures$1 () {
 	if (hasRequiredFigures$1) return figures_1$1;
@@ -629,8 +629,8 @@ function requireFigures$1 () {
 	return figures_1$1;
 }
 
-var style$1;
-var hasRequiredStyle$1;
+let style$1;
+let hasRequiredStyle$1;
 
 function requireStyle$1 () {
 	if (hasRequiredStyle$1) return style$1;
@@ -688,8 +688,8 @@ function requireStyle$1 () {
 	return style$1;
 }
 
-var lines$1;
-var hasRequiredLines$1;
+let lines$1;
+let hasRequiredLines$1;
 
 function requireLines$1 () {
 	if (hasRequiredLines$1) return lines$1;
@@ -703,15 +703,15 @@ function requireLines$1 () {
 
 
 	lines$1 = function (msg, perLine) {
-	  let lines = String(strip(msg) || '').split(/\r?\n/);
+	  const lines = String(strip(msg) || '').split(/\r?\n/);
 	  if (!perLine) return lines.length;
 	  return lines.map(l => Math.ceil(l.length / perLine)).reduce((a, b) => a + b);
 	};
 	return lines$1;
 }
 
-var wrap$1;
-var hasRequiredWrap$1;
+let wrap$1;
+let hasRequiredWrap$1;
 
 function requireWrap$1 () {
 	if (hasRequiredWrap$1) return wrap$1;
@@ -734,8 +734,8 @@ function requireWrap$1 () {
 	return wrap$1;
 }
 
-var entriesToDisplay$1;
-var hasRequiredEntriesToDisplay$1;
+let entriesToDisplay$1;
+let hasRequiredEntriesToDisplay$1;
 
 function requireEntriesToDisplay$1 () {
 	if (hasRequiredEntriesToDisplay$1) return entriesToDisplay$1;
@@ -754,7 +754,7 @@ function requireEntriesToDisplay$1 () {
 	  maxVisible = maxVisible || total;
 	  let startIndex = Math.min(total - maxVisible, cursor - Math.floor(maxVisible / 2));
 	  if (startIndex < 0) startIndex = 0;
-	  let endIndex = Math.min(startIndex + maxVisible, total);
+	  const endIndex = Math.min(startIndex + maxVisible, total);
 	  return {
 	    startIndex,
 	    endIndex
@@ -763,8 +763,8 @@ function requireEntriesToDisplay$1 () {
 	return entriesToDisplay$1;
 }
 
-var util$1;
-var hasRequiredUtil$1;
+let util$1;
+let hasRequiredUtil$1;
 
 function requireUtil$1 () {
 	if (hasRequiredUtil$1) return util$1;
@@ -783,8 +783,8 @@ function requireUtil$1 () {
 	return util$1;
 }
 
-var prompt$2;
-var hasRequiredPrompt$1;
+let prompt$2;
+let hasRequiredPrompt$1;
 
 function requirePrompt$1 () {
 	if (hasRequiredPrompt$1) return prompt$2;
@@ -827,7 +827,7 @@ function requirePrompt$1 () {
 	    const isSelect = ['SelectPrompt', 'MultiselectPrompt'].indexOf(this.constructor.name) > -1;
 
 	    const keypress = (str, key) => {
-	      let a = action(key, isSelect);
+	      const a = action(key, isSelect);
 
 	      if (a === false) {
 	        this._ && this._(str, key);
@@ -873,8 +873,8 @@ function requirePrompt$1 () {
 	return prompt$2;
 }
 
-var text$1;
-var hasRequiredText$1;
+let text$1;
+let hasRequiredText$1;
 
 function requireText$1 () {
 	if (hasRequiredText$1) return text$1;
@@ -882,7 +882,7 @@ function requireText$1 () {
 
 	function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
-	function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+	function _asyncToGenerator(fn) { return function () { const self = this, args = arguments; return new Promise(function (resolve, reject) { const gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 	const color = requireKleur();
 
@@ -969,7 +969,7 @@ function requireText$1 () {
 	  }
 
 	  validate() {
-	    var _this = this;
+	    const _this = this;
 
 	    return _asyncToGenerator(function* () {
 	      let valid = yield _this.validator(_this.value);
@@ -984,7 +984,7 @@ function requireText$1 () {
 	  }
 
 	  submit() {
-	    var _this2 = this;
+	    const _this2 = this;
 
 	    return _asyncToGenerator(function* () {
 	      _this2.value = _this2.value || _this2.initial;
@@ -1030,8 +1030,8 @@ function requireText$1 () {
 	  }
 
 	  _(c, key) {
-	    let s1 = this.value.slice(0, this.cursor);
-	    let s2 = this.value.slice(this.cursor);
+	    const s1 = this.value.slice(0, this.cursor);
+	    const s2 = this.value.slice(this.cursor);
 	    this.value = `${s1}${c}${s2}`;
 	    this.red = false;
 	    this.cursor = this.placeholder ? 0 : s1.length + 1;
@@ -1040,8 +1040,8 @@ function requireText$1 () {
 
 	  delete() {
 	    if (this.isCursorAtStart()) return this.bell();
-	    let s1 = this.value.slice(0, this.cursor - 1);
-	    let s2 = this.value.slice(this.cursor);
+	    const s1 = this.value.slice(0, this.cursor - 1);
+	    const s2 = this.value.slice(this.cursor);
 	    this.value = `${s1}${s2}`;
 	    this.red = false;
 
@@ -1057,8 +1057,8 @@ function requireText$1 () {
 
 	  deleteForward() {
 	    if (this.cursor * this.scale >= this.rendered.length || this.placeholder) return this.bell();
-	    let s1 = this.value.slice(0, this.cursor);
-	    let s2 = this.value.slice(this.cursor + 1);
+	    const s1 = this.value.slice(0, this.cursor);
+	    const s2 = this.value.slice(this.cursor + 1);
 	    this.value = `${s1}${s2}`;
 	    this.red = false;
 
@@ -1126,8 +1126,8 @@ function requireText$1 () {
 	return text$1;
 }
 
-var select$1;
-var hasRequiredSelect$1;
+let select$1;
+let hasRequiredSelect$1;
 
 function requireSelect$1 () {
 	if (hasRequiredSelect$1) return select$1;
@@ -1268,7 +1268,7 @@ function requireSelect$1 () {
 	    if (this.firstRender) this.out.write(cursor.hide);else this.out.write(clear(this.outputText, this.out.columns));
 	    super.render();
 
-	    let _entriesToDisplay = entriesToDisplay(this.cursor, this.choices.length, this.optionsPerPage),
+	    const _entriesToDisplay = entriesToDisplay(this.cursor, this.choices.length, this.optionsPerPage),
 	        startIndex = _entriesToDisplay.startIndex,
 	        endIndex = _entriesToDisplay.endIndex; // Print prompt
 
@@ -1324,8 +1324,8 @@ function requireSelect$1 () {
 	return select$1;
 }
 
-var toggle$1;
-var hasRequiredToggle$1;
+let toggle$1;
+let hasRequiredToggle$1;
 
 function requireToggle$1 () {
 	if (hasRequiredToggle$1) return toggle$1;
@@ -1456,8 +1456,8 @@ function requireToggle$1 () {
 	return toggle$1;
 }
 
-var datepart$1;
-var hasRequiredDatepart$1;
+let datepart$1;
+let hasRequiredDatepart$1;
 
 function requireDatepart$1 () {
 	if (hasRequiredDatepart$1) return datepart$1;
@@ -1488,7 +1488,7 @@ function requireDatepart$1 () {
 	  setTo(val) {}
 
 	  prev() {
-	    let parts = [].concat(this.parts).reverse();
+	    const parts = [].concat(this.parts).reverse();
 	    const currentIdx = parts.indexOf(this);
 	    return parts.find((part, idx) => idx > currentIdx && part instanceof DatePart);
 	  }
@@ -1503,8 +1503,8 @@ function requireDatepart$1 () {
 	return datepart$1;
 }
 
-var meridiem$1;
-var hasRequiredMeridiem$1;
+let meridiem$1;
+let hasRequiredMeridiem$1;
 
 function requireMeridiem$1 () {
 	if (hasRequiredMeridiem$1) return meridiem$1;
@@ -1526,7 +1526,7 @@ function requireMeridiem$1 () {
 	  }
 
 	  toString() {
-	    let meridiem = this.date.getHours() > 12 ? 'pm' : 'am';
+	    const meridiem = this.date.getHours() > 12 ? 'pm' : 'am';
 	    return /\A/.test(this.token) ? meridiem.toUpperCase() : meridiem;
 	  }
 
@@ -1536,8 +1536,8 @@ function requireMeridiem$1 () {
 	return meridiem$1;
 }
 
-var day$1;
-var hasRequiredDay$1;
+let day$1;
+let hasRequiredDay$1;
 
 function requireDay$1 () {
 	if (hasRequiredDay$1) return day$1;
@@ -1568,8 +1568,8 @@ function requireDay$1 () {
 	  }
 
 	  toString() {
-	    let date = this.date.getDate();
-	    let day = this.date.getDay();
+	    const date = this.date.getDate();
+	    const day = this.date.getDay();
 	    return this.token === 'DD' ? String(date).padStart(2, '0') : this.token === 'Do' ? date + pos(date) : this.token === 'd' ? day + 1 : this.token === 'ddd' ? this.locales.weekdaysShort[day] : this.token === 'dddd' ? this.locales.weekdays[day] : date;
 	  }
 
@@ -1579,8 +1579,8 @@ function requireDay$1 () {
 	return day$1;
 }
 
-var hours$1;
-var hasRequiredHours$1;
+let hours$1;
+let hasRequiredHours$1;
 
 function requireHours$1 () {
 	if (hasRequiredHours$1) return hours$1;
@@ -1617,8 +1617,8 @@ function requireHours$1 () {
 	return hours$1;
 }
 
-var milliseconds$1;
-var hasRequiredMilliseconds$1;
+let milliseconds$1;
+let hasRequiredMilliseconds$1;
 
 function requireMilliseconds$1 () {
 	if (hasRequiredMilliseconds$1) return milliseconds$1;
@@ -1653,8 +1653,8 @@ function requireMilliseconds$1 () {
 	return milliseconds$1;
 }
 
-var minutes$1;
-var hasRequiredMinutes$1;
+let minutes$1;
+let hasRequiredMinutes$1;
 
 function requireMinutes$1 () {
 	if (hasRequiredMinutes$1) return minutes$1;
@@ -1680,7 +1680,7 @@ function requireMinutes$1 () {
 	  }
 
 	  toString() {
-	    let m = this.date.getMinutes();
+	    const m = this.date.getMinutes();
 	    return this.token.length > 1 ? String(m).padStart(2, '0') : m;
 	  }
 
@@ -1690,8 +1690,8 @@ function requireMinutes$1 () {
 	return minutes$1;
 }
 
-var month$1;
-var hasRequiredMonth$1;
+let month$1;
+let hasRequiredMonth$1;
 
 function requireMonth$1 () {
 	if (hasRequiredMonth$1) return month$1;
@@ -1718,8 +1718,8 @@ function requireMonth$1 () {
 	  }
 
 	  toString() {
-	    let month = this.date.getMonth();
-	    let tl = this.token.length;
+	    const month = this.date.getMonth();
+	    const tl = this.token.length;
 	    return tl === 2 ? String(month + 1).padStart(2, '0') : tl === 3 ? this.locales.monthsShort[month] : tl === 4 ? this.locales.months[month] : String(month + 1);
 	  }
 
@@ -1729,8 +1729,8 @@ function requireMonth$1 () {
 	return month$1;
 }
 
-var seconds$1;
-var hasRequiredSeconds$1;
+let seconds$1;
+let hasRequiredSeconds$1;
 
 function requireSeconds$1 () {
 	if (hasRequiredSeconds$1) return seconds$1;
@@ -1756,7 +1756,7 @@ function requireSeconds$1 () {
 	  }
 
 	  toString() {
-	    let s = this.date.getSeconds();
+	    const s = this.date.getSeconds();
 	    return this.token.length > 1 ? String(s).padStart(2, '0') : s;
 	  }
 
@@ -1766,8 +1766,8 @@ function requireSeconds$1 () {
 	return seconds$1;
 }
 
-var year$1;
-var hasRequiredYear$1;
+let year$1;
+let hasRequiredYear$1;
 
 function requireYear$1 () {
 	if (hasRequiredYear$1) return year$1;
@@ -1793,7 +1793,7 @@ function requireYear$1 () {
 	  }
 
 	  toString() {
-	    let year = String(this.date.getFullYear()).padStart(4, '0');
+	    const year = String(this.date.getFullYear()).padStart(4, '0');
 	    return this.token.length === 2 ? year.substr(-2) : year;
 	  }
 
@@ -1803,8 +1803,8 @@ function requireYear$1 () {
 	return year$1;
 }
 
-var dateparts$1;
-var hasRequiredDateparts$1;
+let dateparts$1;
+let hasRequiredDateparts$1;
 
 function requireDateparts$1 () {
 	if (hasRequiredDateparts$1) return dateparts$1;
@@ -1824,8 +1824,8 @@ function requireDateparts$1 () {
 	return dateparts$1;
 }
 
-var date$1;
-var hasRequiredDate$1;
+let date$1;
+let hasRequiredDate$1;
 
 function requireDate$1 () {
 	if (hasRequiredDate$1) return date$1;
@@ -1833,7 +1833,7 @@ function requireDate$1 () {
 
 	function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
-	function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+	function _asyncToGenerator(fn) { return function () { const self = this, args = arguments; return new Promise(function (resolve, reject) { const gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 	const color = requireKleur();
 
@@ -1934,8 +1934,8 @@ function requireDate$1 () {
 	    this.parts = [];
 
 	    while (result = regex.exec(mask)) {
-	      let match = result.shift();
-	      let idx = result.findIndex(gr => gr != null);
+	      const match = result.shift();
+	      const idx = result.findIndex(gr => gr != null);
 	      this.parts.push(idx in regexGroups ? regexGroups[idx]({
 	        token: result[idx] || match,
 	        date: this.date,
@@ -1944,7 +1944,7 @@ function requireDate$1 () {
 	      }) : result[idx] || match);
 	    }
 
-	    let parts = this.parts.reduce((arr, i) => {
+	    const parts = this.parts.reduce((arr, i) => {
 	      if (typeof i === 'string' && typeof arr[arr.length - 1] === 'string') arr[arr.length - 1] += i;else arr.push(i);
 	      return arr;
 	    }, []);
@@ -1979,7 +1979,7 @@ function requireDate$1 () {
 	  }
 
 	  validate() {
-	    var _this = this;
+	    const _this = this;
 
 	    return _asyncToGenerator(function* () {
 	      let valid = yield _this.validator(_this.value);
@@ -1994,7 +1994,7 @@ function requireDate$1 () {
 	  }
 
 	  submit() {
-	    var _this2 = this;
+	    const _this2 = this;
 
 	    return _asyncToGenerator(function* () {
 	      yield _this2.validate();
@@ -2035,21 +2035,21 @@ function requireDate$1 () {
 	  }
 
 	  left() {
-	    let prev = this.parts[this.cursor].prev();
+	    const prev = this.parts[this.cursor].prev();
 	    if (prev == null) return this.bell();
 	    this.moveCursor(this.parts.indexOf(prev));
 	    this.render();
 	  }
 
 	  right() {
-	    let next = this.parts[this.cursor].next();
+	    const next = this.parts[this.cursor].next();
 	    if (next == null) return this.bell();
 	    this.moveCursor(this.parts.indexOf(next));
 	    this.render();
 	  }
 
 	  next() {
-	    let next = this.parts[this.cursor].next();
+	    const next = this.parts[this.cursor].next();
 	    this.moveCursor(next ? this.parts.indexOf(next) : this.parts.findIndex(part => part instanceof DatePart));
 	    this.render();
 	  }
@@ -2082,8 +2082,8 @@ function requireDate$1 () {
 	return date$1;
 }
 
-var number$1;
-var hasRequiredNumber$1;
+let number$1;
+let hasRequiredNumber$1;
 
 function requireNumber$1 () {
 	if (hasRequiredNumber$1) return number$1;
@@ -2091,7 +2091,7 @@ function requireNumber$1 () {
 
 	function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
-	function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+	function _asyncToGenerator(fn) { return function () { const self = this, args = arguments; return new Promise(function (resolve, reject) { const gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 	const color = requireKleur();
 
@@ -2112,7 +2112,7 @@ function requireNumber$1 () {
 	const isDef = any => any !== undefined;
 
 	const round = (number, precision) => {
-	  let factor = Math.pow(10, precision);
+	  const factor = Math.pow(10, precision);
 	  return Math.round(number * factor) / factor;
 	};
 	/**
@@ -2193,7 +2193,7 @@ function requireNumber$1 () {
 	  }
 
 	  abort() {
-	    let x = this.value;
+	    const x = this.value;
 	    this.value = x !== `` ? x : this.initial;
 	    this.done = this.aborted = true;
 	    this.error = false;
@@ -2204,7 +2204,7 @@ function requireNumber$1 () {
 	  }
 
 	  validate() {
-	    var _this = this;
+	    const _this = this;
 
 	    return _asyncToGenerator(function* () {
 	      let valid = yield _this.validator(_this.value);
@@ -2219,7 +2219,7 @@ function requireNumber$1 () {
 	  }
 
 	  submit() {
-	    var _this2 = this;
+	    const _this2 = this;
 
 	    return _asyncToGenerator(function* () {
 	      yield _this2.validate();
@@ -2234,7 +2234,7 @@ function requireNumber$1 () {
 	        return;
 	      }
 
-	      let x = _this2.value;
+	      const x = _this2.value;
 	      _this2.value = x !== `` ? x : _this2.initial;
 	      _this2.done = true;
 	      _this2.aborted = false;
@@ -2340,8 +2340,8 @@ function requireNumber$1 () {
 	return number$1;
 }
 
-var multiselect$1;
-var hasRequiredMultiselect$1;
+let multiselect$1;
+let hasRequiredMultiselect$1;
 
 function requireMultiselect$1 () {
 	if (hasRequiredMultiselect$1) return multiselect$1;
@@ -2569,7 +2569,7 @@ function requireMultiselect$1 () {
 	      return color.red('No matches for this query.');
 	    }
 
-	    let _entriesToDisplay = entriesToDisplay(this.cursor, options.length, this.optionsPerPage),
+	    const _entriesToDisplay = entriesToDisplay(this.cursor, options.length, this.optionsPerPage),
 	        startIndex = _entriesToDisplay.startIndex,
 	        endIndex = _entriesToDisplay.endIndex;
 
@@ -2637,8 +2637,8 @@ function requireMultiselect$1 () {
 	return multiselect$1;
 }
 
-var autocomplete$1;
-var hasRequiredAutocomplete$1;
+let autocomplete$1;
+let hasRequiredAutocomplete$1;
 
 function requireAutocomplete$1 () {
 	if (hasRequiredAutocomplete$1) return autocomplete$1;
@@ -2646,7 +2646,7 @@ function requireAutocomplete$1 () {
 
 	function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
-	function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+	function _asyncToGenerator(fn) { return function () { const self = this, args = arguments; return new Promise(function (resolve, reject) { const gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 	const color = requireKleur();
 
@@ -2736,7 +2736,7 @@ function requireAutocomplete$1 () {
 	  }
 
 	  complete(cb) {
-	    var _this = this;
+	    const _this = this;
 
 	    return _asyncToGenerator(function* () {
 	      const p = _this.completing = _this.suggest(_this.input, _this.choices);
@@ -2798,8 +2798,8 @@ function requireAutocomplete$1 () {
 	  }
 
 	  _(c, key) {
-	    let s1 = this.input.slice(0, this.cursor);
-	    let s2 = this.input.slice(this.cursor);
+	    const s1 = this.input.slice(0, this.cursor);
+	    const s2 = this.input.slice(this.cursor);
 	    this.input = `${s1}${c}${s2}`;
 	    this.cursor = s1.length + 1;
 	    this.complete(this.render);
@@ -2808,8 +2808,8 @@ function requireAutocomplete$1 () {
 
 	  delete() {
 	    if (this.cursor === 0) return this.bell();
-	    let s1 = this.input.slice(0, this.cursor - 1);
-	    let s2 = this.input.slice(this.cursor);
+	    const s1 = this.input.slice(0, this.cursor - 1);
+	    const s2 = this.input.slice(this.cursor);
 	    this.input = `${s1}${s2}`;
 	    this.complete(this.render);
 	    this.cursor = this.cursor - 1;
@@ -2818,8 +2818,8 @@ function requireAutocomplete$1 () {
 
 	  deleteForward() {
 	    if (this.cursor * this.scale >= this.rendered.length) return this.bell();
-	    let s1 = this.input.slice(0, this.cursor);
-	    let s2 = this.input.slice(this.cursor + 1);
+	    const s1 = this.input.slice(0, this.cursor);
+	    const s2 = this.input.slice(this.cursor + 1);
 	    this.input = `${s1}${s2}`;
 	    this.complete(this.render);
 	    this.render();
@@ -2888,7 +2888,7 @@ function requireAutocomplete$1 () {
 	  renderOption(v, hovered, isStart, isEnd) {
 	    let desc;
 	    let prefix = isStart ? figures.arrowUp : isEnd ? figures.arrowDown : ' ';
-	    let title = hovered ? color.cyan().underline(v.title) : v.title;
+	    const title = hovered ? color.cyan().underline(v.title) : v.title;
 	    prefix = (hovered ? color.cyan(figures.pointer) + ' ' : '  ') + prefix;
 
 	    if (v.description) {
@@ -2910,7 +2910,7 @@ function requireAutocomplete$1 () {
 	    if (this.firstRender) this.out.write(cursor.hide);else this.out.write(clear(this.outputText, this.out.columns));
 	    super.render();
 
-	    let _entriesToDisplay = entriesToDisplay(this.select, this.choices.length, this.limit),
+	    const _entriesToDisplay = entriesToDisplay(this.select, this.choices.length, this.limit),
 	        startIndex = _entriesToDisplay.startIndex,
 	        endIndex = _entriesToDisplay.endIndex;
 
@@ -2930,8 +2930,8 @@ function requireAutocomplete$1 () {
 	return autocomplete$1;
 }
 
-var autocompleteMultiselect$1;
-var hasRequiredAutocompleteMultiselect$1;
+let autocompleteMultiselect$1;
+let hasRequiredAutocompleteMultiselect$1;
 
 function requireAutocompleteMultiselect$1 () {
 	if (hasRequiredAutocompleteMultiselect$1) return autocompleteMultiselect$1;
@@ -3139,8 +3139,8 @@ Filtered results for: ${this.inputValue ? this.inputValue : color.gray('Enter so
 	return autocompleteMultiselect$1;
 }
 
-var confirm$1;
-var hasRequiredConfirm$1;
+let confirm$1;
+let hasRequiredConfirm$1;
 
 function requireConfirm$1 () {
 	if (hasRequiredConfirm$1) return confirm$1;
@@ -3240,8 +3240,8 @@ function requireConfirm$1 () {
 	return confirm$1;
 }
 
-var elements$1;
-var hasRequiredElements$1;
+let elements$1;
+let hasRequiredElements$1;
 
 function requireElements$1 () {
 	if (hasRequiredElements$1) return elements$1;
@@ -3261,7 +3261,7 @@ function requireElements$1 () {
 	return elements$1;
 }
 
-var hasRequiredPrompts$2;
+let hasRequiredPrompts$2;
 
 function requirePrompts$2 () {
 	if (hasRequiredPrompts$2) return prompts$2;
@@ -3492,28 +3492,28 @@ function requirePrompts$2 () {
 	return prompts$2;
 }
 
-var dist;
-var hasRequiredDist;
+let dist;
+let hasRequiredDist;
 
 function requireDist () {
 	if (hasRequiredDist) return dist;
 	hasRequiredDist = 1;
 
-	function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+	function ownKeys(object, enumerableOnly) { const keys = Object.keys(object); if (Object.getOwnPropertySymbols) { let symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
-	function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+	function _objectSpread(target) { for (let i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-	function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike) { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+	function _createForOfIteratorHelper(o, allowArrayLike) { let it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike) { if (it) o = it; let i = 0; const F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } let normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { const step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
-	function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+	function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); let n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
 	function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 
 	function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
-	function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+	function _asyncToGenerator(fn) { return function () { const self = this, args = arguments; return new Promise(function (resolve, reject) { const gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 	const prompts = requirePrompts$2();
 
@@ -3544,7 +3544,7 @@ function requireDist () {
 	    let answer, question, quit, name, type, lastPrompt;
 
 	    const getFormattedAnswer = /*#__PURE__*/function () {
-	      var _ref = _asyncToGenerator(function* (question, answer, skipValidation = false) {
+	      const _ref = _asyncToGenerator(function* (question, answer, skipValidation = false) {
 	        if (!skipValidation && question.validate && question.validate(answer) !== true) {
 	          return;
 	        }
@@ -3557,13 +3557,13 @@ function requireDist () {
 	      };
 	    }();
 
-	    var _iterator = _createForOfIteratorHelper(questions),
+	    let _iterator = _createForOfIteratorHelper(questions),
 	        _step;
 
 	    try {
 	      for (_iterator.s(); !(_step = _iterator.n()).done;) {
 	        question = _step.value;
-	        var _question = question;
+	        const _question = question;
 	        name = _question.name;
 	        type = _question.type;
 
@@ -3575,9 +3575,9 @@ function requireDist () {
 
 	        if (!type) continue; // if property is a function, invoke it unless it's a special function
 
-	        for (let key in question) {
+	        for (const key in question) {
 	          if (passOn.includes(key)) continue;
-	          let value = question[key];
+	          const value = question[key];
 	          question[key] = typeof value === 'function' ? yield value(answer, _objectSpread({}, answers), lastPrompt) : value;
 	        }
 
@@ -3588,7 +3588,7 @@ function requireDist () {
 	        } // update vars in case they changed
 
 
-	        var _question2 = question;
+	        const _question2 = question;
 	        name = _question2.name;
 	        type = _question2.type;
 
@@ -3654,10 +3654,10 @@ function requireDist () {
 	return dist;
 }
 
-var prompts$1 = {};
+const prompts$1 = {};
 
-var action;
-var hasRequiredAction;
+let action;
+let hasRequiredAction;
 
 function requireAction () {
 	if (hasRequiredAction) return action;
@@ -3703,8 +3703,8 @@ function requireAction () {
 	return action;
 }
 
-var strip;
-var hasRequiredStrip;
+let strip;
+let hasRequiredStrip;
 
 function requireStrip () {
 	if (hasRequiredStrip) return strip;
@@ -3722,8 +3722,8 @@ function requireStrip () {
 	return strip;
 }
 
-var clear;
-var hasRequiredClear;
+let clear;
+let hasRequiredClear;
 
 function requireClear () {
 	if (hasRequiredClear) return clear;
@@ -3743,7 +3743,7 @@ function requireClear () {
 
 	  let rows = 0;
 	  const lines = prompt.split(/\r?\n/);
-	  for (let line of lines) {
+	  for (const line of lines) {
 	    rows += 1 + Math.floor(Math.max(width(line) - 1, 0) / perLine);
 	  }
 
@@ -3752,8 +3752,8 @@ function requireClear () {
 	return clear;
 }
 
-var figures_1;
-var hasRequiredFigures;
+let figures_1;
+let hasRequiredFigures;
 
 function requireFigures () {
 	if (hasRequiredFigures) return figures_1;
@@ -3793,8 +3793,8 @@ function requireFigures () {
 	return figures_1;
 }
 
-var style;
-var hasRequiredStyle;
+let style;
+let hasRequiredStyle;
 
 function requireStyle () {
 	if (hasRequiredStyle) return style;
@@ -3841,8 +3841,8 @@ function requireStyle () {
 	return style;
 }
 
-var lines;
-var hasRequiredLines;
+let lines;
+let hasRequiredLines;
 
 function requireLines () {
 	if (hasRequiredLines) return lines;
@@ -3855,7 +3855,7 @@ function requireLines () {
 	 * @param {number} perLine
 	 */
 	lines = function (msg, perLine) {
-	  let lines = String(strip(msg) || '').split(/\r?\n/);
+	  const lines = String(strip(msg) || '').split(/\r?\n/);
 
 	  if (!perLine) return lines.length;
 	  return lines.map(l => Math.ceil(l.length / perLine))
@@ -3864,8 +3864,8 @@ function requireLines () {
 	return lines;
 }
 
-var wrap;
-var hasRequiredWrap;
+let wrap;
+let hasRequiredWrap;
 
 function requireWrap () {
 	if (hasRequiredWrap) return wrap;
@@ -3899,8 +3899,8 @@ function requireWrap () {
 	return wrap;
 }
 
-var entriesToDisplay;
-var hasRequiredEntriesToDisplay;
+let entriesToDisplay;
+let hasRequiredEntriesToDisplay;
 
 function requireEntriesToDisplay () {
 	if (hasRequiredEntriesToDisplay) return entriesToDisplay;
@@ -3921,15 +3921,15 @@ function requireEntriesToDisplay () {
 	  let startIndex = Math.min(total- maxVisible, cursor - Math.floor(maxVisible / 2));
 	  if (startIndex < 0) startIndex = 0;
 
-	  let endIndex = Math.min(startIndex + maxVisible, total);
+	  const endIndex = Math.min(startIndex + maxVisible, total);
 
 	  return { startIndex, endIndex };
 	};
 	return entriesToDisplay;
 }
 
-var util;
-var hasRequiredUtil;
+let util;
+let hasRequiredUtil;
 
 function requireUtil () {
 	if (hasRequiredUtil) return util;
@@ -3948,8 +3948,8 @@ function requireUtil () {
 	return util;
 }
 
-var prompt$1;
-var hasRequiredPrompt;
+let prompt$1;
+let hasRequiredPrompt;
 
 function requirePrompt () {
 	if (hasRequiredPrompt) return prompt$1;
@@ -3980,7 +3980,7 @@ function requirePrompt () {
 	    if (this.in.isTTY) this.in.setRawMode(true);
 	    const isSelect = [ 'SelectPrompt', 'MultiselectPrompt' ].indexOf(this.constructor.name) > -1;
 	    const keypress = (str, key) => {
-	      let a = action(key, isSelect);
+	      const a = action(key, isSelect);
 	      if (a === false) {
 	        this._ && this._(str, key);
 	      } else if (typeof this[a] === 'function') {
@@ -4024,8 +4024,8 @@ function requirePrompt () {
 	return prompt$1;
 }
 
-var text;
-var hasRequiredText;
+let text;
+let hasRequiredText;
 
 function requireText () {
 	if (hasRequiredText) return text;
@@ -4144,8 +4144,8 @@ function requireText () {
 	  }
 
 	  _(c, key) {
-	    let s1 = this.value.slice(0, this.cursor);
-	    let s2 = this.value.slice(this.cursor);
+	    const s1 = this.value.slice(0, this.cursor);
+	    const s2 = this.value.slice(this.cursor);
 	    this.value = `${s1}${c}${s2}`;
 	    this.red = false;
 	    this.cursor = this.placeholder ? 0 : s1.length+1;
@@ -4154,8 +4154,8 @@ function requireText () {
 
 	  delete() {
 	    if (this.isCursorAtStart()) return this.bell();
-	    let s1 = this.value.slice(0, this.cursor-1);
-	    let s2 = this.value.slice(this.cursor);
+	    const s1 = this.value.slice(0, this.cursor-1);
+	    const s2 = this.value.slice(this.cursor);
 	    this.value = `${s1}${s2}`;
 	    this.red = false;
 	    if (this.isCursorAtStart()) {
@@ -4169,8 +4169,8 @@ function requireText () {
 
 	  deleteForward() {
 	    if(this.cursor*this.scale >= this.rendered.length || this.placeholder) return this.bell();
-	    let s1 = this.value.slice(0, this.cursor);
-	    let s2 = this.value.slice(this.cursor+1);
+	    const s1 = this.value.slice(0, this.cursor);
+	    const s2 = this.value.slice(this.cursor+1);
 	    this.value = `${s1}${s2}`;
 	    this.red = false;
 	    if (this.isCursorAtEnd()) {
@@ -4241,8 +4241,8 @@ function requireText () {
 	return text;
 }
 
-var select;
-var hasRequiredSelect;
+let select;
+let hasRequiredSelect;
 
 function requireSelect () {
 	if (hasRequiredSelect) return select;
@@ -4371,7 +4371,7 @@ function requireSelect () {
 	    else this.out.write(clear(this.outputText, this.out.columns));
 	    super.render();
 
-	    let { startIndex, endIndex } = entriesToDisplay(this.cursor, this.choices.length, this.optionsPerPage);
+	    const { startIndex, endIndex } = entriesToDisplay(this.cursor, this.choices.length, this.optionsPerPage);
 
 	    // Print prompt
 	    this.outputText = [
@@ -4424,8 +4424,8 @@ function requireSelect () {
 	return select;
 }
 
-var toggle;
-var hasRequiredToggle;
+let toggle;
+let hasRequiredToggle;
 
 function requireToggle () {
 	if (hasRequiredToggle) return toggle;
@@ -4551,8 +4551,8 @@ function requireToggle () {
 	return toggle;
 }
 
-var datepart;
-var hasRequiredDatepart;
+let datepart;
+let hasRequiredDatepart;
 
 function requireDatepart () {
 	if (hasRequiredDatepart) return datepart;
@@ -4578,7 +4578,7 @@ function requireDatepart () {
 	  setTo(val) {}
 
 	  prev() {
-	    let parts = [].concat(this.parts).reverse();
+	    const parts = [].concat(this.parts).reverse();
 	    const currentIdx = parts.indexOf(this);
 	    return parts.find((part, idx) => idx > currentIdx && part instanceof DatePart);
 	  }
@@ -4592,8 +4592,8 @@ function requireDatepart () {
 	return datepart;
 }
 
-var meridiem;
-var hasRequiredMeridiem;
+let meridiem;
+let hasRequiredMeridiem;
 
 function requireMeridiem () {
 	if (hasRequiredMeridiem) return meridiem;
@@ -4615,7 +4615,7 @@ function requireMeridiem () {
 	  }
 
 	  toString() {
-	    let meridiem = this.date.getHours() > 12 ? 'pm' : 'am';
+	    const meridiem = this.date.getHours() > 12 ? 'pm' : 'am';
 	    return /\A/.test(this.token) ? meridiem.toUpperCase() : meridiem;
 	  }
 	}
@@ -4624,8 +4624,8 @@ function requireMeridiem () {
 	return meridiem;
 }
 
-var day;
-var hasRequiredDay;
+let day;
+let hasRequiredDay;
 
 function requireDay () {
 	if (hasRequiredDay) return day;
@@ -4659,8 +4659,8 @@ function requireDay () {
 	  }
 
 	  toString() {
-	    let date = this.date.getDate();
-	    let day = this.date.getDay();
+	    const date = this.date.getDate();
+	    const day = this.date.getDay();
 	    return this.token === 'DD' ? String(date).padStart(2, '0')
 	         : this.token === 'Do' ? date + pos(date)
 	         : this.token === 'd' ? day + 1
@@ -4674,8 +4674,8 @@ function requireDay () {
 	return day;
 }
 
-var hours;
-var hasRequiredHours;
+let hours;
+let hasRequiredHours;
 
 function requireHours () {
 	if (hasRequiredHours) return hours;
@@ -4712,8 +4712,8 @@ function requireHours () {
 	return hours;
 }
 
-var milliseconds;
-var hasRequiredMilliseconds;
+let milliseconds;
+let hasRequiredMilliseconds;
 
 function requireMilliseconds () {
 	if (hasRequiredMilliseconds) return milliseconds;
@@ -4748,8 +4748,8 @@ function requireMilliseconds () {
 	return milliseconds;
 }
 
-var minutes;
-var hasRequiredMinutes;
+let minutes;
+let hasRequiredMinutes;
 
 function requireMinutes () {
 	if (hasRequiredMinutes) return minutes;
@@ -4775,7 +4775,7 @@ function requireMinutes () {
 	  }
 
 	  toString() {
-	    let m = this.date.getMinutes();
+	    const m = this.date.getMinutes();
 	    return this.token.length > 1 ? String(m).padStart(2, '0') : m;
 	  }
 	}
@@ -4784,8 +4784,8 @@ function requireMinutes () {
 	return minutes;
 }
 
-var month;
-var hasRequiredMonth;
+let month;
+let hasRequiredMonth;
 
 function requireMonth () {
 	if (hasRequiredMonth) return month;
@@ -4812,8 +4812,8 @@ function requireMonth () {
 	  }
 
 	  toString() {
-	    let month = this.date.getMonth();
-	    let tl = this.token.length;
+	    const month = this.date.getMonth();
+	    const tl = this.token.length;
 	    return tl === 2 ? String(month + 1).padStart(2, '0')
 	           : tl === 3 ? this.locales.monthsShort[month]
 	             : tl === 4 ? this.locales.months[month]
@@ -4825,8 +4825,8 @@ function requireMonth () {
 	return month;
 }
 
-var seconds;
-var hasRequiredSeconds;
+let seconds;
+let hasRequiredSeconds;
 
 function requireSeconds () {
 	if (hasRequiredSeconds) return seconds;
@@ -4852,7 +4852,7 @@ function requireSeconds () {
 	  }
 
 	  toString() {
-	    let s = this.date.getSeconds();
+	    const s = this.date.getSeconds();
 	    return this.token.length > 1 ? String(s).padStart(2, '0') : s;
 	  }
 	}
@@ -4861,8 +4861,8 @@ function requireSeconds () {
 	return seconds;
 }
 
-var year;
-var hasRequiredYear;
+let year;
+let hasRequiredYear;
 
 function requireYear () {
 	if (hasRequiredYear) return year;
@@ -4888,7 +4888,7 @@ function requireYear () {
 	  }
 
 	  toString() {
-	    let year = String(this.date.getFullYear()).padStart(4, '0');
+	    const year = String(this.date.getFullYear()).padStart(4, '0');
 	    return this.token.length === 2 ? year.substr(-2) : year;
 	  }
 	}
@@ -4897,8 +4897,8 @@ function requireYear () {
 	return year;
 }
 
-var dateparts;
-var hasRequiredDateparts;
+let dateparts;
+let hasRequiredDateparts;
 
 function requireDateparts () {
 	if (hasRequiredDateparts) return dateparts;
@@ -4918,8 +4918,8 @@ function requireDateparts () {
 	return dateparts;
 }
 
-var date;
-var hasRequiredDate;
+let date;
+let hasRequiredDate;
 
 function requireDate () {
 	if (hasRequiredDate) return date;
@@ -4995,14 +4995,14 @@ function requireDate () {
 	    let result;
 	    this.parts = [];
 	    while(result = regex.exec(mask)) {
-	      let match = result.shift();
-	      let idx = result.findIndex(gr => gr != null);
+	      const match = result.shift();
+	      const idx = result.findIndex(gr => gr != null);
 	      this.parts.push(idx in regexGroups
 	        ? regexGroups[idx]({ token: result[idx] || match, date: this.date, parts: this.parts, locales: this.locales })
 	        : result[idx] || match);
 	    }
 
-	    let parts = this.parts.reduce((arr, i) => {
+	    const parts = this.parts.reduce((arr, i) => {
 	      if (typeof i === 'string' && typeof arr[arr.length - 1] === 'string')
 	        arr[arr.length - 1] += i;
 	      else arr.push(i);
@@ -5077,21 +5077,21 @@ function requireDate () {
 	  }
 
 	  left() {
-	    let prev = this.parts[this.cursor].prev();
+	    const prev = this.parts[this.cursor].prev();
 	    if (prev == null) return this.bell();
 	    this.moveCursor(this.parts.indexOf(prev));
 	    this.render();
 	  }
 
 	  right() {
-	    let next = this.parts[this.cursor].next();
+	    const next = this.parts[this.cursor].next();
 	    if (next == null) return this.bell();
 	    this.moveCursor(this.parts.indexOf(next));
 	    this.render();
 	  }
 
 	  next() {
-	    let next = this.parts[this.cursor].next();
+	    const next = this.parts[this.cursor].next();
 	    this.moveCursor(next
 	      ? this.parts.indexOf(next)
 	      : this.parts.findIndex((part) => part instanceof DatePart));
@@ -5135,8 +5135,8 @@ function requireDate () {
 	return date;
 }
 
-var number;
-var hasRequiredNumber;
+let number;
+let hasRequiredNumber;
 
 function requireNumber () {
 	if (hasRequiredNumber) return number;
@@ -5149,7 +5149,7 @@ function requireNumber () {
 	const isNumber = /[0-9]/;
 	const isDef = any => any !== undefined;
 	const round = (number, precision) => {
-	  let factor = Math.pow(10, precision);
+	  const factor = Math.pow(10, precision);
 	  return Math.round(number * factor) / factor;
 	};
 
@@ -5226,7 +5226,7 @@ function requireNumber () {
 	  }
 
 	  abort() {
-	    let x = this.value;
+	    const x = this.value;
 	    this.value = x !== `` ? x : this.initial;
 	    this.done = this.aborted = true;
 	    this.error = false;
@@ -5253,7 +5253,7 @@ function requireNumber () {
 	      this.render();
 	      return;
 	    }
-	    let x = this.value;
+	    const x = this.value;
 	    this.value = x !== `` ? x : this.initial;
 	    this.done = true;
 	    this.aborted = false;
@@ -5357,8 +5357,8 @@ function requireNumber () {
 	return number;
 }
 
-var multiselect;
-var hasRequiredMultiselect;
+let multiselect;
+let hasRequiredMultiselect;
 
 function requireMultiselect () {
 	if (hasRequiredMultiselect) return multiselect;
@@ -5568,7 +5568,7 @@ function requireMultiselect () {
 	      return color.red('No matches for this query.');
 	    }
 
-	    let { startIndex, endIndex } = entriesToDisplay(this.cursor, options.length, this.optionsPerPage);
+	    const { startIndex, endIndex } = entriesToDisplay(this.cursor, options.length, this.optionsPerPage);
 	    let prefix, styledOptions = [];
 
 	    for (let i = startIndex; i < endIndex; i++) {
@@ -5636,8 +5636,8 @@ function requireMultiselect () {
 	return multiselect;
 }
 
-var autocomplete;
-var hasRequiredAutocomplete;
+let autocomplete;
+let hasRequiredAutocomplete;
 
 function requireAutocomplete () {
 	if (hasRequiredAutocomplete) return autocomplete;
@@ -5773,8 +5773,8 @@ function requireAutocomplete () {
 	  }
 
 	  _(c, key) {
-	    let s1 = this.input.slice(0, this.cursor);
-	    let s2 = this.input.slice(this.cursor);
+	    const s1 = this.input.slice(0, this.cursor);
+	    const s2 = this.input.slice(this.cursor);
 	    this.input = `${s1}${c}${s2}`;
 	    this.cursor = s1.length+1;
 	    this.complete(this.render);
@@ -5783,8 +5783,8 @@ function requireAutocomplete () {
 
 	  delete() {
 	    if (this.cursor === 0) return this.bell();
-	    let s1 = this.input.slice(0, this.cursor-1);
-	    let s2 = this.input.slice(this.cursor);
+	    const s1 = this.input.slice(0, this.cursor-1);
+	    const s2 = this.input.slice(this.cursor);
 	    this.input = `${s1}${s2}`;
 	    this.complete(this.render);
 	    this.cursor = this.cursor-1;
@@ -5793,8 +5793,8 @@ function requireAutocomplete () {
 
 	  deleteForward() {
 	    if(this.cursor*this.scale >= this.rendered.length) return this.bell();
-	    let s1 = this.input.slice(0, this.cursor);
-	    let s2 = this.input.slice(this.cursor+1);
+	    const s1 = this.input.slice(0, this.cursor);
+	    const s2 = this.input.slice(this.cursor+1);
 	    this.input = `${s1}${s2}`;
 	    this.complete(this.render);
 	    this.render();
@@ -5860,7 +5860,7 @@ function requireAutocomplete () {
 	  renderOption(v, hovered, isStart, isEnd) {
 	    let desc;
 	    let prefix = isStart ? figures.arrowUp : isEnd ? figures.arrowDown : ' ';
-	    let title = hovered ? color.cyan().underline(v.title) : v.title;
+	    const title = hovered ? color.cyan().underline(v.title) : v.title;
 	    prefix = (hovered ? color.cyan(figures.pointer) + ' ' : '  ') + prefix;
 	    if (v.description) {
 	      desc = ` - ${v.description}`;
@@ -5878,7 +5878,7 @@ function requireAutocomplete () {
 	    else this.out.write(clear(this.outputText, this.out.columns));
 	    super.render();
 
-	    let { startIndex, endIndex } = entriesToDisplay(this.select, this.choices.length, this.limit);
+	    const { startIndex, endIndex } = entriesToDisplay(this.select, this.choices.length, this.limit);
 
 	    this.outputText = [
 	      style.symbol(this.done, this.aborted, this.exited),
@@ -5908,8 +5908,8 @@ function requireAutocomplete () {
 	return autocomplete;
 }
 
-var autocompleteMultiselect;
-var hasRequiredAutocompleteMultiselect;
+let autocompleteMultiselect;
+let hasRequiredAutocompleteMultiselect;
 
 function requireAutocompleteMultiselect () {
 	if (hasRequiredAutocompleteMultiselect) return autocompleteMultiselect;
@@ -6110,8 +6110,8 @@ Filtered results for: ${this.inputValue ? this.inputValue : color.gray('Enter so
 	return autocompleteMultiselect;
 }
 
-var confirm;
-var hasRequiredConfirm;
+let confirm;
+let hasRequiredConfirm;
 
 function requireConfirm () {
 	if (hasRequiredConfirm) return confirm;
@@ -6208,8 +6208,8 @@ function requireConfirm () {
 	return confirm;
 }
 
-var elements;
-var hasRequiredElements;
+let elements;
+let hasRequiredElements;
 
 function requireElements () {
 	if (hasRequiredElements) return elements;
@@ -6229,7 +6229,7 @@ function requireElements () {
 	return elements;
 }
 
-var hasRequiredPrompts$1;
+let hasRequiredPrompts$1;
 
 function requirePrompts$1 () {
 	if (hasRequiredPrompts$1) return prompts$1;
@@ -6444,8 +6444,8 @@ function requirePrompts$1 () {
 	return prompts$1;
 }
 
-var lib;
-var hasRequiredLib;
+let lib;
+let hasRequiredLib;
 
 function requireLib () {
 	if (hasRequiredLib) return lib;
@@ -6487,9 +6487,9 @@ function requireLib () {
 	    if (!type) continue;
 
 	    // if property is a function, invoke it unless it's a special function
-	    for (let key in question) {
+	    for (const key in question) {
 	      if (passOn.includes(key)) continue;
-	      let value = question[key];
+	      const value = question[key];
 	      question[key] = typeof value === 'function' ? await value(answer, { ...answers }, lastPrompt) : value;
 	    }
 
@@ -6550,8 +6550,8 @@ function requireLib () {
 	return lib;
 }
 
-var prompts;
-var hasRequiredPrompts;
+let prompts;
+let hasRequiredPrompts;
 
 function requirePrompts () {
 	if (hasRequiredPrompts) return prompts;
@@ -6573,10 +6573,10 @@ function requirePrompts () {
 	return prompts;
 }
 
-var promptsExports = requirePrompts();
-var prompt = /*@__PURE__*/getDefaultExportFromCjs(promptsExports);
+const promptsExports = requirePrompts();
+const prompt = /*@__PURE__*/getDefaultExportFromCjs(promptsExports);
 
-var index = /*#__PURE__*/_mergeNamespaces({
+const index = /*#__PURE__*/_mergeNamespaces({
 	__proto__: null,
 	default: prompt
 }, [promptsExports]);

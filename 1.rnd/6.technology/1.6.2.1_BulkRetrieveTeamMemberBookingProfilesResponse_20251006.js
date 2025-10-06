@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
 exports.bulkRetrieveTeamMemberBookingProfilesResponseSchema = void 0;
-var schema_1 = require("../schema");
-var error_1 = require("./error");
-var retrieveTeamMemberBookingProfileResponse_1 = require("./retrieveTeamMemberBookingProfileResponse");
+const schema_1 = require("../schema");
+const error_1 = require("./error");
+const retrieveTeamMemberBookingProfileResponse_1 = require("./retrieveTeamMemberBookingProfileResponse");
 exports.bulkRetrieveTeamMemberBookingProfilesResponseSchema = (0, schema_1.object)({
     teamMemberBookingProfiles: [
         'team_member_booking_profiles',

@@ -152,7 +152,7 @@ function capitalize(text) {
 	return `${text[0].toUpperCase()}${text.slice(1)}`;
 }
 
-var utils = /*#__PURE__*/Object.freeze({
+const utils = /*#__PURE__*/Object.freeze({
   __proto__: null,
   benchmarkPass: benchmarkPass,
   countTestErrors: countTestErrors,

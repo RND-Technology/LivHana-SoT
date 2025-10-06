@@ -5,10 +5,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var React = _interopRequireWildcard(require("react"));
-var _utils = require("../utils");
-function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
-function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+const React = _interopRequireWildcard(require("react"));
+const _utils = require("../utils");
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; const r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; const t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); const n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (const u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { const i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 const useTouchRipple = props => {
   const {
     disabled,
@@ -20,7 +20,7 @@ const useTouchRipple = props => {
   } = props;
   React.useEffect(() => {
     if (focusVisible && !disableFocusRipple && !disableRipple) {
-      var _rippleRef$current;
+      let _rippleRef$current;
       (_rippleRef$current = rippleRef.current) == null || _rippleRef$current.pulsate();
     }
   }, [rippleRef, focusVisible, disableFocusRipple, disableRipple]);
@@ -37,7 +37,7 @@ const useTouchRipple = props => {
     if (!disableFocusRipple && !keydownRef.current && focusVisible && rippleRef.current && event.key === ' ') {
       keydownRef.current = true;
       rippleRef.current.stop(event, () => {
-        var _rippleRef$current2;
+        let _rippleRef$current2;
         rippleRef == null || (_rippleRef$current2 = rippleRef.current) == null || _rippleRef$current2.start(event);
       });
     }
@@ -48,7 +48,7 @@ const useTouchRipple = props => {
     if (!disableFocusRipple && event.key === ' ' && rippleRef.current && focusVisible && !event.defaultPrevented) {
       keydownRef.current = false;
       rippleRef.current.stop(event, () => {
-        var _rippleRef$current3;
+        let _rippleRef$current3;
         rippleRef == null || (_rippleRef$current3 = rippleRef.current) == null || _rippleRef$current3.pulsate(event);
       });
     }
@@ -86,7 +86,7 @@ const useTouchRipple = props => {
       const wrappedEvents = eventNames.map(eventName => ({
         name: eventName,
         handler: ev => {
-          var _otherEvents$eventNam;
+          let _otherEvents$eventNam;
           (_otherEvents$eventNam = otherEvents[eventName]) == null || _otherEvents$eventNam.call(otherEvents, ev);
           rippleHandlers[eventName](ev);
         }
@@ -102,4 +102,4 @@ const useTouchRipple = props => {
     getRippleHandlers
   };
 };
-var _default = exports.default = useTouchRipple;
+const _default = exports.default = useTouchRipple;

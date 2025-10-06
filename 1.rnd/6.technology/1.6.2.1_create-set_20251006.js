@@ -1,7 +1,7 @@
 "use strict";
 
-var typeOf = require("@sinonjs/commons").typeOf;
-var forEach = require("@sinonjs/commons").prototypes.array.forEach;
+const typeOf = require("@sinonjs/commons").typeOf;
+const forEach = require("@sinonjs/commons").prototypes.array.forEach;
 
 /**
  * This helper makes it convenient to create Set instances from a
@@ -21,8 +21,8 @@ function createSet(array) {
         );
     }
 
-    var items = typeOf(array) === "array" ? array : [];
-    var set = new Set();
+    const items = typeOf(array) === "array" ? array : [];
+    const set = new Set();
 
     forEach(items, function (item) {
         set.add(item);

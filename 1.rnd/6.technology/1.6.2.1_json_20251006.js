@@ -9,13 +9,13 @@ exports.canonicalize = canonicalize;
 exports.jsonDiff = void 0;
 
 /*istanbul ignore end*/
-var
+const
 /*istanbul ignore start*/
 _base = _interopRequireDefault(require("./base"))
 /*istanbul ignore end*/
 ;
 
-var
+const
 /*istanbul ignore start*/
 _line = require("./line")
 /*istanbul ignore end*/
@@ -26,8 +26,8 @@ _line = require("./line")
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 /*istanbul ignore end*/
-var objectPrototypeToString = Object.prototype.toString;
-var jsonDiff = new
+const objectPrototypeToString = Object.prototype.toString;
+const jsonDiff = new
 /*istanbul ignore start*/
 _base
 /*istanbul ignore end*/
@@ -55,7 +55,7 @@ lineDiff
 
 jsonDiff.castInput = function (value) {
   /*istanbul ignore start*/
-  var _this$options =
+  const _this$options =
   /*istanbul ignore end*/
   this.options,
       undefinedReplacement = _this$options.undefinedReplacement,
@@ -98,7 +98,7 @@ function canonicalize(obj, stack, replacementStack, replacer, key) {
     obj = replacer(key, obj);
   }
 
-  var i;
+  let i;
 
   for (i = 0; i < stack.length; i += 1) {
     if (stack[i] === obj) {
@@ -106,7 +106,7 @@ function canonicalize(obj, stack, replacementStack, replacer, key) {
     }
   }
 
-  var canonicalizedObj;
+  let canonicalizedObj;
 
   if ('[object Array]' === objectPrototypeToString.call(obj)) {
     stack.push(obj);
@@ -135,7 +135,7 @@ function canonicalize(obj, stack, replacementStack, replacer, key) {
     canonicalizedObj = {};
     replacementStack.push(canonicalizedObj);
 
-    var sortedKeys = [],
+    let sortedKeys = [],
         _key;
 
     for (_key in obj) {

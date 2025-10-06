@@ -53,7 +53,7 @@ class Duration {
      * minutes, millis.
      */
     static from(durationLike) {
-        var _a, _b, _c, _d;
+        let _a, _b, _c, _d;
         let millis = (_a = durationLike.millis) !== null && _a !== void 0 ? _a : 0;
         millis += ((_b = durationLike.seconds) !== null && _b !== void 0 ? _b : 0) * Duration.secondInMillis;
         millis += ((_c = durationLike.minutes) !== null && _c !== void 0 ? _c : 0) * Duration.minuteInMillis;
