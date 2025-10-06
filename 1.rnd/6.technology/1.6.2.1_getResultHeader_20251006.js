@@ -18,8 +18,8 @@ function _jestUtil() {
   };
   return data;
 }
-var _formatTestPath = _interopRequireDefault(require('./formatTestPath'));
-var _printDisplayName = _interopRequireDefault(require('./printDisplayName'));
+const _formatTestPath = _interopRequireDefault(require('./formatTestPath'));
+const _printDisplayName = _interopRequireDefault(require('./printDisplayName'));
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {default: obj};
 }

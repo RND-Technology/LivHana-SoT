@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.transformReply = exports.transformArguments = exports.IS_READ_ONLY = exports.FIRST_KEY_INDEX = void 0;
 const GEOSEARCH_1 = require("./GEOSEARCH");
-var GEOSEARCH_2 = require("./GEOSEARCH");
+const GEOSEARCH_2 = require("./GEOSEARCH");
 Object.defineProperty(exports, "FIRST_KEY_INDEX", { enumerable: true, get: function () { return GEOSEARCH_2.FIRST_KEY_INDEX; } });
 Object.defineProperty(exports, "IS_READ_ONLY", { enumerable: true, get: function () { return GEOSEARCH_2.IS_READ_ONLY; } });
 function transformArguments(key, from, by, replyWith, options) {
@@ -12,5 +12,5 @@ function transformArguments(key, from, by, replyWith, options) {
     return args;
 }
 exports.transformArguments = transformArguments;
-var generic_transformers_1 = require("./generic-transformers");
+const generic_transformers_1 = require("./generic-transformers");
 Object.defineProperty(exports, "transformReply", { enumerable: true, get: function () { return generic_transformers_1.transformGeoMembersWithReply; } });

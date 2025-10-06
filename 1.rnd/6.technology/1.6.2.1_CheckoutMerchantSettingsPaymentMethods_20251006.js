@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
 exports.checkoutMerchantSettingsPaymentMethodsSchema = void 0;
-var schema_1 = require("../schema");
-var checkoutMerchantSettingsPaymentMethodsAfterpayClearpay_1 = require("./checkoutMerchantSettingsPaymentMethodsAfterpayClearpay");
-var checkoutMerchantSettingsPaymentMethodsPaymentMethod_1 = require("./checkoutMerchantSettingsPaymentMethodsPaymentMethod");
+const schema_1 = require("../schema");
+const checkoutMerchantSettingsPaymentMethodsAfterpayClearpay_1 = require("./checkoutMerchantSettingsPaymentMethodsAfterpayClearpay");
+const checkoutMerchantSettingsPaymentMethodsPaymentMethod_1 = require("./checkoutMerchantSettingsPaymentMethodsPaymentMethod");
 exports.checkoutMerchantSettingsPaymentMethodsSchema = (0, schema_1.object)({
     applePay: [
         'apple_pay',

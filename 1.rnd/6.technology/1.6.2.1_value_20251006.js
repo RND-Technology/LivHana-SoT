@@ -39,7 +39,7 @@ const create_1 = require("./create");
 const check_1 = require("./check");
 const delta_1 = require("./delta");
 /** Provides functions to perform structural updates to JavaScript values */
-var Value;
+let Value;
 (function (Value) {
     function Cast(...args) {
         const [schema, references, value] = args.length === 3 ? [args[0], args[1], args[2]] : [args[0], [], args[1]];

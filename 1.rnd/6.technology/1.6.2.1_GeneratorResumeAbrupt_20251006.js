@@ -1,20 +1,20 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var CompletionRecord = require('es-abstract/2024/CompletionRecord');
-var CreateIterResultObject = require('es-abstract/2024/CreateIterResultObject');
-var GeneratorValidate = require('./GeneratorValidate');
-var NormalCompletion = require('es-abstract/2024/NormalCompletion');
+const CompletionRecord = require('es-abstract/2024/CompletionRecord');
+const CreateIterResultObject = require('es-abstract/2024/CreateIterResultObject');
+const GeneratorValidate = require('./GeneratorValidate');
+const NormalCompletion = require('es-abstract/2024/NormalCompletion');
 
-var SLOT = require('internal-slot');
+const SLOT = require('internal-slot');
 
 module.exports = function GeneratorResumeAbrupt(generator, abruptCompletion, generatorBrand) {
 	if (!(abruptCompletion instanceof CompletionRecord)) {
 		throw new $TypeError('Assertion failed: abruptCompletion must be a Completion Record');
 	}
 
-	var state = GeneratorValidate(generator, generatorBrand); // step 1
+	let state = GeneratorValidate(generator, generatorBrand); // step 1
 
 	if (state === 'suspendedStart') { // step 2
 		SLOT.set(generator, '[[GeneratorState]]', 'completed'); // step 3.a
@@ -22,7 +22,7 @@ module.exports = function GeneratorResumeAbrupt(generator, abruptCompletion, gen
 		state = 'completed'; // step 3.c
 	}
 
-	var value = abruptCompletion.value();
+	const value = abruptCompletion.value();
 
 	if (state === 'completed') { // step 3
 		return CreateIterResultObject(value, true); // steps 3.a-b
@@ -36,11 +36,11 @@ module.exports = function GeneratorResumeAbrupt(generator, abruptCompletion, gen
 		return CreateIterResultObject(SLOT.get(generator, '[[CloseIfAbrupt]]')(NormalCompletion(abruptCompletion.value())), true);
 	}
 
-	var genContext = SLOT.get(generator, '[[GeneratorContext]]'); // step 5
+	const genContext = SLOT.get(generator, '[[GeneratorContext]]'); // step 5
 
 	SLOT.set(generator, '[[GeneratorState]]', 'executing'); // step 8
 
-	var result = genContext(value); // steps 6-7, 8-11
+	const result = genContext(value); // steps 6-7, 8-11
 
 	return result; // step 12
 };

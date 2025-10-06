@@ -66,7 +66,7 @@ async function run(files, config, executor) {
   ]);
   config.snapshotOptions.snapshotEnvironment = snapshotEnvironment;
   workerState.onCancel.then((reason) => {
-    var _a;
+    let _a;
     closeInspector(config);
     (_a = runner.onCancel) == null ? void 0 : _a.call(runner, reason);
   });

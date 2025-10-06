@@ -1,5 +1,5 @@
 (function() {
-  var expandIPv6, ipaddr, ipv4Part, ipv4Regexes, ipv6Part, ipv6Regexes, matchCIDR, root, zoneIndex;
+  let expandIPv6, ipaddr, ipv4Part, ipv4Regexes, ipv6Part, ipv6Regexes, matchCIDR, root, zoneIndex;
 
   ipaddr = {};
 
@@ -12,7 +12,7 @@
   }
 
   matchCIDR = function(first, second, partSize, cidrBits) {
-    var part, shift;
+    let part, shift;
     if (first.length !== second.length) {
       throw new Error("ipaddr: cannot match CIDR for objects with different lengths");
     }
@@ -32,7 +32,7 @@
   };
 
   ipaddr.subnetMatch = function(address, rangeList, defaultName) {
-    var k, len, rangeName, rangeSubnets, subnet;
+    let k, len, rangeName, rangeSubnets, subnet;
     if (defaultName == null) {
       defaultName = 'unicast';
     }
@@ -55,7 +55,7 @@
 
   ipaddr.IPv4 = (function() {
     function IPv4(octets) {
-      var k, len, octet;
+      let k, len, octet;
       if (octets.length !== 4) {
         throw new Error("ipaddr: ipv4 octet count should be 4");
       }
@@ -85,7 +85,7 @@
     };
 
     IPv4.prototype.match = function(other, cidrRange) {
-      var ref;
+      let ref;
       if (cidrRange === void 0) {
         ref = other, other = ref[0], cidrRange = ref[1];
       }
@@ -115,7 +115,7 @@
     };
 
     IPv4.prototype.prefixLengthFromSubnetMask = function() {
-      var cidr, i, k, octet, stop, zeros, zerotable;
+      let cidr, i, k, octet, stop, zeros, zerotable;
       zerotable = {
         0: 8,
         128: 7,
@@ -159,7 +159,7 @@
   };
 
   ipaddr.IPv4.parser = function(string) {
-    var match, parseIntAuto, part, shift, value;
+    let match, parseIntAuto, part, shift, value;
     parseIntAuto = function(string) {
       if (string[0] === "0" && string[1] !== "x") {
         return parseInt(string, 8);
@@ -169,7 +169,7 @@
     };
     if (match = string.match(ipv4Regexes.fourOctet)) {
       return (function() {
-        var k, len, ref, results;
+        let k, len, ref, results;
         ref = match.slice(1, 6);
         results = [];
         for (k = 0, len = ref.length; k < len; k++) {
@@ -184,7 +184,7 @@
         throw new Error("ipaddr: address outside defined range");
       }
       return ((function() {
-        var k, results;
+        let k, results;
         results = [];
         for (shift = k = 0; k <= 24; shift = k += 8) {
           results.push((value >> shift) & 0xff);
@@ -198,7 +198,7 @@
 
   ipaddr.IPv6 = (function() {
     function IPv6(parts, zoneId) {
-      var i, k, l, len, part, ref;
+      let i, k, l, len, part, ref;
       if (parts.length === 16) {
         this.parts = [];
         for (i = k = 0; k <= 14; i = k += 2) {
@@ -230,7 +230,7 @@
     };
 
     IPv6.prototype.toRFC5952String = function() {
-      var bestMatchIndex, bestMatchLength, match, regex, string;
+      let bestMatchIndex, bestMatchLength, match, regex, string;
       regex = /((^|:)(0(:|$)){2,})/g;
       string = this.toNormalizedString();
       bestMatchIndex = 0;
@@ -248,7 +248,7 @@
     };
 
     IPv6.prototype.toByteArray = function() {
-      var bytes, k, len, part, ref;
+      let bytes, k, len, part, ref;
       bytes = [];
       ref = this.parts;
       for (k = 0, len = ref.length; k < len; k++) {
@@ -260,9 +260,9 @@
     };
 
     IPv6.prototype.toNormalizedString = function() {
-      var addr, part, suffix;
+      let addr, part, suffix;
       addr = ((function() {
-        var k, len, ref, results;
+        let k, len, ref, results;
         ref = this.parts;
         results = [];
         for (k = 0, len = ref.length; k < len; k++) {
@@ -279,9 +279,9 @@
     };
 
     IPv6.prototype.toFixedLengthString = function() {
-      var addr, part, suffix;
+      let addr, part, suffix;
       addr = ((function() {
-        var k, len, ref, results;
+        let k, len, ref, results;
         ref = this.parts;
         results = [];
         for (k = 0, len = ref.length; k < len; k++) {
@@ -298,7 +298,7 @@
     };
 
     IPv6.prototype.match = function(other, cidrRange) {
-      var ref;
+      let ref;
       if (cidrRange === void 0) {
         ref = other, other = ref[0], cidrRange = ref[1];
       }
@@ -331,7 +331,7 @@
     };
 
     IPv6.prototype.toIPv4Address = function() {
-      var high, low, ref;
+      let high, low, ref;
       if (!this.isIPv4MappedAddress()) {
         throw new Error("ipaddr: trying to convert a generic ipv6 address to ipv4");
       }
@@ -340,7 +340,7 @@
     };
 
     IPv6.prototype.prefixLengthFromSubnetMask = function() {
-      var cidr, i, k, part, stop, zeros, zerotable;
+      let cidr, i, k, part, stop, zeros, zerotable;
       zerotable = {
         0: 16,
         32768: 15,
@@ -395,7 +395,7 @@
   };
 
   expandIPv6 = function(string, parts) {
-    var colonCount, lastColon, part, replacement, replacementCount, zoneId;
+    let colonCount, lastColon, part, replacement, replacementCount, zoneId;
     if (string.indexOf('::') !== string.lastIndexOf('::')) {
       return null;
     }
@@ -431,7 +431,7 @@
       string = string.slice(0, -1);
     }
     parts = (function() {
-      var k, len, ref, results;
+      let k, len, ref, results;
       ref = string.split(":");
       results = [];
       for (k = 0, len = ref.length; k < len; k++) {
@@ -447,7 +447,7 @@
   };
 
   ipaddr.IPv6.parser = function(string) {
-    var addr, k, len, match, octet, octets, zoneId;
+    let addr, k, len, match, octet, octets, zoneId;
     if (ipv6Regexes['native'].test(string)) {
       return expandIPv6(string, 8);
     } else if (match = string.match(ipv6Regexes['transitional'])) {
@@ -477,7 +477,7 @@
   };
 
   ipaddr.IPv4.isValid = function(string) {
-    var e;
+    let e;
     try {
       new this(this.parser(string));
       return true;
@@ -496,7 +496,7 @@
   };
 
   ipaddr.IPv6.isValid = function(string) {
-    var addr, e;
+    let addr, e;
     if (typeof string === "string" && string.indexOf(":") === -1) {
       return false;
     }
@@ -511,7 +511,7 @@
   };
 
   ipaddr.IPv4.parse = function(string) {
-    var parts;
+    let parts;
     parts = this.parser(string);
     if (parts === null) {
       throw new Error("ipaddr: string is not formatted like ip address");
@@ -520,7 +520,7 @@
   };
 
   ipaddr.IPv6.parse = function(string) {
-    var addr;
+    let addr;
     addr = this.parser(string);
     if (addr.parts === null) {
       throw new Error("ipaddr: string is not formatted like ip address");
@@ -529,7 +529,7 @@
   };
 
   ipaddr.IPv4.parseCIDR = function(string) {
-    var maskLength, match, parsed;
+    let maskLength, match, parsed;
     if (match = string.match(/^(.+)\/(\d+)$/)) {
       maskLength = parseInt(match[2]);
       if (maskLength >= 0 && maskLength <= 32) {
@@ -546,7 +546,7 @@
   };
 
   ipaddr.IPv4.subnetMaskFromPrefixLength = function(prefix) {
-    var filledOctetCount, j, octets;
+    let filledOctetCount, j, octets;
     prefix = parseInt(prefix);
     if (prefix < 0 || prefix > 32) {
       throw new Error('ipaddr: invalid IPv4 prefix length');
@@ -565,7 +565,7 @@
   };
 
   ipaddr.IPv4.broadcastAddressFromCIDR = function(string) {
-    var cidr, error, i, ipInterfaceOctets, octets, subnetMaskOctets;
+    let cidr, error, i, ipInterfaceOctets, octets, subnetMaskOctets;
     try {
       cidr = this.parseCIDR(string);
       ipInterfaceOctets = cidr[0].toByteArray();
@@ -584,7 +584,7 @@
   };
 
   ipaddr.IPv4.networkAddressFromCIDR = function(string) {
-    var cidr, error, i, ipInterfaceOctets, octets, subnetMaskOctets;
+    let cidr, error, i, ipInterfaceOctets, octets, subnetMaskOctets;
     try {
       cidr = this.parseCIDR(string);
       ipInterfaceOctets = cidr[0].toByteArray();
@@ -603,7 +603,7 @@
   };
 
   ipaddr.IPv6.parseCIDR = function(string) {
-    var maskLength, match, parsed;
+    let maskLength, match, parsed;
     if (match = string.match(/^(.+)\/(\d+)$/)) {
       maskLength = parseInt(match[2]);
       if (maskLength >= 0 && maskLength <= 128) {
@@ -634,7 +634,7 @@
   };
 
   ipaddr.parseCIDR = function(string) {
-    var e;
+    let e;
     try {
       return ipaddr.IPv6.parseCIDR(string);
     } catch (error1) {
@@ -649,7 +649,7 @@
   };
 
   ipaddr.fromByteArray = function(bytes) {
-    var length;
+    let length;
     length = bytes.length;
     if (length === 4) {
       return new ipaddr.IPv4(bytes);
@@ -661,7 +661,7 @@
   };
 
   ipaddr.process = function(string) {
-    var addr;
+    let addr;
     addr = this.parse(string);
     if (addr.kind() === 'ipv6' && addr.isIPv4MappedAddress()) {
       return addr.toIPv4Address();

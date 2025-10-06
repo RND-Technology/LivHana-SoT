@@ -1,8 +1,8 @@
 'use strict';
 
-var msPerDay = require('../helpers/timeConstants').msPerDay;
+const msPerDay = require('../helpers/timeConstants').msPerDay;
 
-var DayFromYear = require('./DayFromYear');
+const DayFromYear = require('./DayFromYear');
 
 // https://262.ecma-international.org/5.1/#sec-15.9.1.3
 

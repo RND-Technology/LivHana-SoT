@@ -4,7 +4,7 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 exports.default = getConfigsOfProjectsToRun;
-var _getProjectDisplayName = _interopRequireDefault(
+const _getProjectDisplayName = _interopRequireDefault(
   require('./getProjectDisplayName')
 );
 function _interopRequireDefault(obj) {

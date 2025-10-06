@@ -1,6 +1,6 @@
 
 export const streamChunk = function* (chunk, chunkSize) {
-  let len = chunk.byteLength;
+  const len = chunk.byteLength;
 
   if (!chunkSize || len < chunkSize) {
     yield chunk;
@@ -48,7 +48,7 @@ export const trackStream = (stream, chunkSize, onProgress, onFinish) => {
 
   let bytes = 0;
   let done;
-  let _onFinish = (e) => {
+  const _onFinish = (e) => {
     if (!done) {
       done = true;
       onFinish && onFinish(e);
@@ -66,9 +66,9 @@ export const trackStream = (stream, chunkSize, onProgress, onFinish) => {
           return;
         }
 
-        let len = value.byteLength;
+        const len = value.byteLength;
         if (onProgress) {
-          let loadedBytes = bytes += len;
+          const loadedBytes = bytes += len;
           onProgress(loadedBytes);
         }
         controller.enqueue(new Uint8Array(value));

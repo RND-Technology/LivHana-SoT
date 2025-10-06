@@ -1,5 +1,5 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true});// src/utils/bufferUtils.ts
-var encoder = new TextEncoder();
+const encoder = new TextEncoder();
 function encodeBuffer(text) {
   return encoder.encode(text);
 }

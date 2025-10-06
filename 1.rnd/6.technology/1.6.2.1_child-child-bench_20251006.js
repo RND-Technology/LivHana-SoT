@@ -24,25 +24,25 @@ const blog = bunyan.createLogger({
 
 const run = bench([
   function benchBunyanChildChild (cb) {
-    for (var i = 0; i < max; i++) {
+    for (let i = 0; i < max; i++) {
       blog.info({ hello: 'world' })
     }
     setImmediate(cb)
   },
   function benchPinoChildChild (cb) {
-    for (var i = 0; i < max; i++) {
+    for (let i = 0; i < max; i++) {
       plogDest.info({ hello: 'world' })
     }
     setImmediate(cb)
   },
   function benchPinoMinLengthChildChild (cb) {
-    for (var i = 0; i < max; i++) {
+    for (let i = 0; i < max; i++) {
       plogMinLength.info({ hello: 'world' })
     }
     setImmediate(cb)
   },
   function benchPinoNodeStreamChildChild (cb) {
-    for (var i = 0; i < max; i++) {
+    for (let i = 0; i < max; i++) {
       plogNodeStream.info({ hello: 'world' })
     }
     setImmediate(cb)

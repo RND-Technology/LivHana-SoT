@@ -14,7 +14,7 @@ export const transformCssCallExpression = (
   annotateAsPure?: boolean
 } */
 ) => {
-  let node = transformExpressionWithStyles({
+  const node = transformExpressionWithStyles({
     babel,
     state,
     path,
@@ -36,9 +36,9 @@ export const transformCsslessArrayExpression = (
   path: *
 } */
 ) => {
-  let t = babel.types
-  let expressionPath = path.get('value.expression')
-  let sourceMap =
+  const t = babel.types
+  const expressionPath = path.get('value.expression')
+  const sourceMap =
     state.emotionSourceMap && path.node.loc !== undefined
       ? getSourceMap(path.node.loc.start, state)
       : ''
@@ -73,9 +73,9 @@ export const transformCsslessObjectExpression = (
   cssImport: { importSource: string, cssExport: string }
 } */
 ) => {
-  let t = babel.types
-  let expressionPath = path.get('value.expression')
-  let sourceMap =
+  const t = babel.types
+  const expressionPath = path.get('value.expression')
+  const sourceMap =
     state.emotionSourceMap && path.node.loc !== undefined
       ? getSourceMap(path.node.loc.start, state)
       : ''
@@ -105,7 +105,7 @@ export const transformCsslessObjectExpression = (
   }
 }
 
-let cssTransformer = (
+const cssTransformer = (
   { state, babel, reference } /*: {
   state: any,
   babel: any,
@@ -115,7 +115,7 @@ let cssTransformer = (
   transformCssCallExpression({ babel, state, path: reference.parentPath })
 }
 
-let globalTransformer = (
+const globalTransformer = (
   { state, babel, reference, importSource, options } /*: {
   state: any,
   babel: any,

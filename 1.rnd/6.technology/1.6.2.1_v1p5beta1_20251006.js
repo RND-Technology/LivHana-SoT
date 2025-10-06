@@ -19,7 +19,7 @@ exports.cloudasset_v1p5beta1 = void 0;
 /* eslint-disable @typescript-eslint/no-namespace */
 /* eslint-disable no-irregular-whitespace */
 const googleapis_common_1 = require("googleapis-common");
-var cloudasset_v1p5beta1;
+let cloudasset_v1p5beta1;
 (function (cloudasset_v1p5beta1) {
     /**
      * Cloud Asset API

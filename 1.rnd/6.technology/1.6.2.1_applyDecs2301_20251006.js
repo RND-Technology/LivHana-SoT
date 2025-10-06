@@ -4,9 +4,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = applyDecs2301;
-var _checkInRHS = require("checkInRHS");
-var _setFunctionName = require("setFunctionName");
-var _toPropertyKey = require("toPropertyKey");
+const _checkInRHS = require("checkInRHS");
+const _setFunctionName = require("setFunctionName");
+const _toPropertyKey = require("toPropertyKey");
 function applyDecs2301Factory() {
   function createAddInitializerMethod(initializers, decoratorFinishedRef) {
     return function addInitializer(initializer) {
@@ -21,7 +21,7 @@ function applyDecs2301Factory() {
     }
   }
   function memberDec(dec, name, desc, initializers, kind, isStatic, isPrivate, value, hasPrivateBrand) {
-    var kindStr;
+    let kindStr;
     switch (kind) {
       case 1:
         kindStr = "accessor";
@@ -38,19 +38,19 @@ function applyDecs2301Factory() {
       default:
         kindStr = "field";
     }
-    var ctx = {
+    const ctx = {
       kind: kindStr,
       name: isPrivate ? "#" + name : _toPropertyKey(name),
       static: isStatic,
       private: isPrivate
     };
-    var decoratorFinishedRef = {
+    const decoratorFinishedRef = {
       v: false
     };
     if (kind !== 0) {
       ctx.addInitializer = createAddInitializerMethod(initializers, decoratorFinishedRef);
     }
-    var get, set;
+    let get, set;
     if (!isPrivate && (kind === 0 || kind === 2)) {
       get = function (target) {
         return target[name];
@@ -66,7 +66,7 @@ function applyDecs2301Factory() {
         return desc.value;
       };
     } else {
-      var t = kind === 0 || kind === 1;
+      const t = kind === 0 || kind === 1;
       if (t || kind === 3) {
         if (isPrivate) {
           get = function (target) {
@@ -92,7 +92,7 @@ function applyDecs2301Factory() {
         }
       }
     }
-    var has = isPrivate ? hasPrivateBrand.bind() : function (target) {
+    const has = isPrivate ? hasPrivateBrand.bind() : function (target) {
       return name in target;
     };
     ctx.access = get && set ? {
@@ -123,7 +123,7 @@ function applyDecs2301Factory() {
     }
   }
   function assertValidReturnValue(kind, value) {
-    var type = typeof value;
+    const type = typeof value;
     if (kind === 1) {
       if (type !== "object" || value === null) {
         throw new TypeError("accessor decorators must return an object with get, set, or init properties or void 0");
@@ -138,7 +138,7 @@ function applyDecs2301Factory() {
         assertCallable(value.init, "accessor.init");
       }
     } else if (type !== "function") {
-      var hint;
+      let hint;
       if (kind === 0) {
         hint = "field";
       } else if (kind === 10) {
@@ -160,8 +160,8 @@ function applyDecs2301Factory() {
     };
   }
   function applyMemberDec(ret, base, decInfo, name, kind, isStatic, isPrivate, initializers, hasPrivateBrand) {
-    var decs = decInfo[0];
-    var desc, init, prefix, value;
+    const decs = decInfo[0];
+    let desc, init, prefix, value;
     if (isPrivate) {
       if (kind === 0 || kind === 1) {
         desc = {
@@ -207,7 +207,7 @@ function applyDecs2301Factory() {
     } else if (kind === 4) {
       value = desc.set;
     }
-    var newValue, get, set;
+    let newValue, get, set;
     if (typeof decs === "function") {
       newValue = memberDec(decs, name, desc, initializers, kind, isStatic, isPrivate, value, hasPrivateBrand);
       if (newValue !== void 0) {
@@ -227,8 +227,8 @@ function applyDecs2301Factory() {
         }
       }
     } else {
-      for (var i = decs.length - 1; i >= 0; i--) {
-        var dec = decs[i];
+      for (let i = decs.length - 1; i >= 0; i--) {
+        const dec = decs[i];
         newValue = memberDec(dec, name, desc, initializers, kind, isStatic, isPrivate, value, hasPrivateBrand);
         if (newValue !== void 0) {
           assertValidReturnValue(kind, newValue);
@@ -264,16 +264,16 @@ function applyDecs2301Factory() {
           return init;
         };
       } else if (typeof init !== "function") {
-        var ownInitializers = init;
+        const ownInitializers = init;
         init = function (instance, init) {
-          var value = init;
-          for (var i = 0; i < ownInitializers.length; i++) {
+          let value = init;
+          for (let i = 0; i < ownInitializers.length; i++) {
             value = ownInitializers[i].call(instance, value);
           }
           return value;
         };
       } else {
-        var originalInitializer = init;
+        const originalInitializer = init;
         init = function (instance, init) {
           return originalInitializer.call(instance, init);
         };
@@ -312,22 +312,22 @@ function applyDecs2301Factory() {
     }
   }
   function applyMemberDecs(Class, decInfos, instanceBrand) {
-    var ret = [];
-    var protoInitializers;
-    var staticInitializers;
-    var staticBrand;
-    var existingProtoNonFields = new Map();
-    var existingStaticNonFields = new Map();
-    for (var i = 0; i < decInfos.length; i++) {
-      var decInfo = decInfos[i];
+    const ret = [];
+    let protoInitializers;
+    let staticInitializers;
+    let staticBrand;
+    const existingProtoNonFields = new Map();
+    const existingStaticNonFields = new Map();
+    for (let i = 0; i < decInfos.length; i++) {
+      const decInfo = decInfos[i];
       if (!Array.isArray(decInfo)) continue;
-      var kind = decInfo[1];
-      var name = decInfo[2];
-      var isPrivate = decInfo.length > 3;
-      var isStatic = kind >= 5;
+      let kind = decInfo[1];
+      const name = decInfo[2];
+      const isPrivate = decInfo.length > 3;
+      const isStatic = kind >= 5;
       var base;
       var initializers;
-      var hasPrivateBrand = instanceBrand;
+      let hasPrivateBrand = instanceBrand;
       if (isStatic) {
         base = Class;
         kind = kind - 5;
@@ -349,8 +349,8 @@ function applyDecs2301Factory() {
         }
       }
       if (kind !== 0 && !isPrivate) {
-        var existingNonFields = isStatic ? existingStaticNonFields : existingProtoNonFields;
-        var existingKind = existingNonFields.get(name) || 0;
+        const existingNonFields = isStatic ? existingStaticNonFields : existingProtoNonFields;
+        const existingKind = existingNonFields.get(name) || 0;
         if (existingKind === true || existingKind === 3 && kind !== 4 || existingKind === 4 && kind !== 3) {
           throw new Error("Attempted to decorate a public method/accessor that has the same name as a previously decorated public method/accessor. This is not currently supported by the decorators plugin. Property name was: " + name);
         } else if (!existingKind && kind > 2) {
@@ -368,7 +368,7 @@ function applyDecs2301Factory() {
   function pushInitializers(ret, initializers) {
     if (initializers) {
       ret.push(function (instance) {
-        for (var i = 0; i < initializers.length; i++) {
+        for (let i = 0; i < initializers.length; i++) {
           initializers[i].call(instance);
         }
         return instance;
@@ -377,11 +377,11 @@ function applyDecs2301Factory() {
   }
   function applyClassDecs(targetClass, classDecs) {
     if (classDecs.length > 0) {
-      var initializers = [];
-      var newClass = targetClass;
-      var name = targetClass.name;
-      for (var i = classDecs.length - 1; i >= 0; i--) {
-        var decoratorFinishedRef = {
+      const initializers = [];
+      let newClass = targetClass;
+      const name = targetClass.name;
+      for (let i = classDecs.length - 1; i >= 0; i--) {
+        const decoratorFinishedRef = {
           v: false
         };
         try {
@@ -399,7 +399,7 @@ function applyDecs2301Factory() {
         }
       }
       return [newClass, function () {
-        for (var i = 0; i < initializers.length; i++) {
+        for (let i = 0; i < initializers.length; i++) {
           initializers[i].call(newClass);
         }
       }];

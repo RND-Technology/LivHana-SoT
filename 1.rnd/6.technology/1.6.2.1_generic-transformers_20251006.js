@@ -200,7 +200,7 @@ function pushGeoRadiusStoreArguments(args, key, from, radius, unit, destination,
     return args;
 }
 exports.pushGeoRadiusStoreArguments = pushGeoRadiusStoreArguments;
-var GeoReplyWith;
+let GeoReplyWith;
 (function (GeoReplyWith) {
     GeoReplyWith["DISTANCE"] = "WITHDIST";
     GeoReplyWith["HASH"] = "WITHHASH";
@@ -296,7 +296,7 @@ function pushOptionalVerdictArgument(args, name, value) {
     return pushVerdictArgument(args, value);
 }
 exports.pushOptionalVerdictArgument = pushOptionalVerdictArgument;
-var CommandFlags;
+let CommandFlags;
 (function (CommandFlags) {
     CommandFlags["WRITE"] = "write";
     CommandFlags["READONLY"] = "readonly";
@@ -313,7 +313,7 @@ var CommandFlags;
     CommandFlags["FAST"] = "fast";
     CommandFlags["MOVABLEKEYS"] = "movablekeys"; // keys have no pre-determined position. You must discover keys yourself.
 })(CommandFlags || (exports.CommandFlags = CommandFlags = {}));
-var CommandCategories;
+let CommandCategories;
 (function (CommandCategories) {
     CommandCategories["KEYSPACE"] = "@keyspace";
     CommandCategories["READ"] = "@read";
@@ -349,7 +349,7 @@ function transformCommandReply([name, arity, flags, firstKeyIndex, lastKeyIndex,
     };
 }
 exports.transformCommandReply = transformCommandReply;
-var RedisFunctionFlags;
+let RedisFunctionFlags;
 (function (RedisFunctionFlags) {
     RedisFunctionFlags["NO_WRITES"] = "no-writes";
     RedisFunctionFlags["ALLOW_OOM"] = "allow-oom";

@@ -1,29 +1,29 @@
 "use strict";
 
-var arrayProto = require("@sinonjs/commons").prototypes.array;
-var deepEqual = require("./deep-equal").use(createMatcher); // eslint-disable-line no-use-before-define
-var every = require("@sinonjs/commons").every;
-var functionName = require("@sinonjs/commons").functionName;
-var iterableToString = require("./iterable-to-string");
-var objectProto = require("@sinonjs/commons").prototypes.object;
-var typeOf = require("@sinonjs/commons").typeOf;
-var valueToString = require("@sinonjs/commons").valueToString;
+const arrayProto = require("@sinonjs/commons").prototypes.array;
+const deepEqual = require("./deep-equal").use(createMatcher); // eslint-disable-line no-use-before-define
+const every = require("@sinonjs/commons").every;
+const functionName = require("@sinonjs/commons").functionName;
+const iterableToString = require("./iterable-to-string");
+const objectProto = require("@sinonjs/commons").prototypes.object;
+const typeOf = require("@sinonjs/commons").typeOf;
+const valueToString = require("@sinonjs/commons").valueToString;
 
-var assertMatcher = require("./create-matcher/assert-matcher");
-var assertMethodExists = require("./create-matcher/assert-method-exists");
-var assertType = require("./create-matcher/assert-type");
-var isIterable = require("./create-matcher/is-iterable");
-var isMatcher = require("./create-matcher/is-matcher");
+const assertMatcher = require("./create-matcher/assert-matcher");
+const assertMethodExists = require("./create-matcher/assert-method-exists");
+const assertType = require("./create-matcher/assert-type");
+const isIterable = require("./create-matcher/is-iterable");
+const isMatcher = require("./create-matcher/is-matcher");
 
-var matcherPrototype = require("./create-matcher/matcher-prototype");
+const matcherPrototype = require("./create-matcher/matcher-prototype");
 
-var arrayIndexOf = arrayProto.indexOf;
-var some = arrayProto.some;
+const arrayIndexOf = arrayProto.indexOf;
+const some = arrayProto.some;
 
-var hasOwnProperty = objectProto.hasOwnProperty;
-var objectToString = objectProto.toString;
+const hasOwnProperty = objectProto.hasOwnProperty;
+const objectToString = objectProto.toString;
 
-var TYPE_MAP = require("./create-matcher/type-map")(createMatcher); // eslint-disable-line no-use-before-define
+const TYPE_MAP = require("./create-matcher/type-map")(createMatcher); // eslint-disable-line no-use-before-define
 
 /**
  * Creates a matcher object for the passed expectation
@@ -34,8 +34,8 @@ var TYPE_MAP = require("./create-matcher/type-map")(createMatcher); // eslint-di
  * @returns {object} A matcher object
  */
 function createMatcher(expectation, message) {
-    var m = Object.create(matcherPrototype);
-    var type = typeOf(expectation);
+    const m = Object.create(matcherPrototype);
+    const type = typeOf(expectation);
 
     if (message !== undefined && typeof message !== "string") {
         throw new TypeError("Message should be a string");
@@ -152,8 +152,8 @@ createMatcher.instanceOf = function (type) {
 function createPropertyMatcher(propertyTest, messagePrefix) {
     return function (property, value) {
         assertType(property, "string", "property");
-        var onlyProperty = arguments.length === 1;
-        var message = `${messagePrefix}("${property}"`;
+        const onlyProperty = arguments.length === 1;
+        let message = `${messagePrefix}("${property}"`;
         if (!onlyProperty) {
             message += `, ${valueToString(value)}`;
         }
@@ -184,8 +184,8 @@ createMatcher.hasOwn = createPropertyMatcher(function (actual, property) {
 
 createMatcher.hasNested = function (property, value) {
     assertType(property, "string", "property");
-    var onlyProperty = arguments.length === 1;
-    var message = `hasNested("${property}"`;
+    const onlyProperty = arguments.length === 1;
+    let message = `hasNested("${property}"`;
     if (!onlyProperty) {
         message += `, ${valueToString(value)}`;
     }
@@ -203,7 +203,7 @@ createMatcher.hasNested = function (property, value) {
     }, message);
 };
 
-var jsonParseResultTypes = {
+const jsonParseResultTypes = {
     null: true,
     boolean: true,
     number: true,
@@ -215,9 +215,9 @@ createMatcher.json = function (value) {
     if (!jsonParseResultTypes[typeOf(value)]) {
         throw new TypeError("Value cannot be the result of JSON.parse");
     }
-    var message = `json(${JSON.stringify(value, null, "  ")})`;
+    const message = `json(${JSON.stringify(value, null, "  ")})`;
     return createMatcher(function (actual) {
-        var parsed;
+        let parsed;
         try {
             parsed = JSON.parse(actual);
         } catch (e) {
@@ -271,12 +271,12 @@ createMatcher.array.deepEquals = function (expectation) {
     return createMatcher(
         function (actual) {
             // Comparing lengths is the fastest way to spot a difference before iterating through every item
-            var sameLength = actual.length === expectation.length;
+            const sameLength = actual.length === expectation.length;
             return (
                 typeOf(actual) === "array" &&
                 sameLength &&
                 every(actual, function (element, index) {
-                    var expected = expectation[index];
+                    const expected = expectation[index];
                     return typeOf(expected) === "array" &&
                         typeOf(element) === "array"
                         ? createMatcher.array.deepEquals(expected).test(element)
@@ -306,7 +306,7 @@ createMatcher.array.endsWith = function (expectation) {
     return createMatcher(
         function (actual) {
             // This indicates the index in which we should start matching
-            var offset = actual.length - expectation.length;
+            const offset = actual.length - expectation.length;
 
             return (
                 typeOf(actual) === "array" &&
@@ -339,7 +339,7 @@ createMatcher.map.deepEquals = function mapDeepEquals(expectation) {
     return createMatcher(
         function (actual) {
             // Comparing lengths is the fastest way to spot a difference before iterating through every item
-            var sameLength = actual.size === expectation.size;
+            const sameLength = actual.size === expectation.size;
             return (
                 typeOf(actual) === "map" &&
                 sameLength &&
@@ -374,7 +374,7 @@ createMatcher.set.deepEquals = function setDeepEquals(expectation) {
     return createMatcher(
         function (actual) {
             // Comparing lengths is the fastest way to spot a difference before iterating through every item
-            var sameLength = actual.size === expectation.size;
+            const sameLength = actual.size === expectation.size;
             return (
                 typeOf(actual) === "set" &&
                 sameLength &&

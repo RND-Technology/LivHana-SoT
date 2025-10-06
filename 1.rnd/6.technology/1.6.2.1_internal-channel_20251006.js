@@ -112,7 +112,7 @@ class ChannelzInfoTracker {
 }
 class InternalChannel {
     constructor(target, credentials, options) {
-        var _a, _b, _c, _d, _e, _f;
+        let _a, _b, _c, _d, _e, _f;
         this.credentials = credentials;
         this.options = options;
         this.connectivityState = connectivity_state_1.ConnectivityState.IDLE;
@@ -241,7 +241,7 @@ class InternalChannel {
             },
         };
         this.resolvingLoadBalancer = new resolving_load_balancer_1.ResolvingLoadBalancer(this.target, channelControlHelper, this.options, (serviceConfig, configSelector) => {
-            var _a;
+            let _a;
             if (serviceConfig.retryThrottling) {
                 RETRY_THROTTLER_MAP.set(this.getTarget(), new retrying_call_1.RetryThrottler(serviceConfig.retryThrottling.maxTokens, serviceConfig.retryThrottling.tokenRatio, RETRY_THROTTLER_MAP.get(this.getTarget())));
             }
@@ -308,7 +308,7 @@ class InternalChannel {
         (0, logging_1.trace)(verbosityOverride !== null && verbosityOverride !== void 0 ? verbosityOverride : constants_1.LogVerbosity.DEBUG, 'channel', '(' + this.channelzRef.id + ') ' + (0, uri_parser_1.uriToString)(this.target) + ' ' + text);
     }
     callRefTimerRef() {
-        var _a, _b, _c, _d;
+        let _a, _b, _c, _d;
         if (!this.callRefTimer) {
             this.callRefTimer = setInterval(() => { }, MAX_TIMEOUT_TIME);
         }
@@ -322,7 +322,7 @@ class InternalChannel {
         }
     }
     callRefTimerUnref() {
-        var _a, _b, _c;
+        let _a, _b, _c;
         // If the timer or the hasRef function does not exist, always run the code
         if (!((_a = this.callRefTimer) === null || _a === void 0 ? void 0 : _a.hasRef) || this.callRefTimer.hasRef()) {
             this.trace('callRefTimer.unref | configSelectionQueue.length=' +
@@ -432,7 +432,7 @@ class InternalChannel {
         }
     }
     startIdleTimeout(timeoutMs) {
-        var _a, _b;
+        let _a, _b;
         this.idleTimer = setTimeout(() => {
             if (this.callCount > 0) {
                 /* If there is currently a call, the channel will not go idle for a
@@ -516,7 +516,7 @@ class InternalChannel {
         return call;
     }
     close() {
-        var _a;
+        let _a;
         this.resolvingLoadBalancer.destroy();
         this.updateState(connectivity_state_1.ConnectivityState.SHUTDOWN);
         this.currentPicker = new ShutdownPicker();

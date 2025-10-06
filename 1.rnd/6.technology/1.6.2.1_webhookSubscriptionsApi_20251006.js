@@ -1,22 +1,22 @@
 "use strict";
 exports.__esModule = true;
 exports.WebhookSubscriptionsApi = void 0;
-var tslib_1 = require("tslib");
-var createWebhookSubscriptionRequest_1 = require("../models/createWebhookSubscriptionRequest");
-var createWebhookSubscriptionResponse_1 = require("../models/createWebhookSubscriptionResponse");
-var deleteWebhookSubscriptionResponse_1 = require("../models/deleteWebhookSubscriptionResponse");
-var listWebhookEventTypesResponse_1 = require("../models/listWebhookEventTypesResponse");
-var listWebhookSubscriptionsResponse_1 = require("../models/listWebhookSubscriptionsResponse");
-var retrieveWebhookSubscriptionResponse_1 = require("../models/retrieveWebhookSubscriptionResponse");
-var testWebhookSubscriptionRequest_1 = require("../models/testWebhookSubscriptionRequest");
-var testWebhookSubscriptionResponse_1 = require("../models/testWebhookSubscriptionResponse");
-var updateWebhookSubscriptionRequest_1 = require("../models/updateWebhookSubscriptionRequest");
-var updateWebhookSubscriptionResponse_1 = require("../models/updateWebhookSubscriptionResponse");
-var updateWebhookSubscriptionSignatureKeyRequest_1 = require("../models/updateWebhookSubscriptionSignatureKeyRequest");
-var updateWebhookSubscriptionSignatureKeyResponse_1 = require("../models/updateWebhookSubscriptionSignatureKeyResponse");
-var schema_1 = require("../schema");
-var baseApi_1 = require("./baseApi");
-var WebhookSubscriptionsApi = /** @class */ (function (_super) {
+const tslib_1 = require("tslib");
+const createWebhookSubscriptionRequest_1 = require("../models/createWebhookSubscriptionRequest");
+const createWebhookSubscriptionResponse_1 = require("../models/createWebhookSubscriptionResponse");
+const deleteWebhookSubscriptionResponse_1 = require("../models/deleteWebhookSubscriptionResponse");
+const listWebhookEventTypesResponse_1 = require("../models/listWebhookEventTypesResponse");
+const listWebhookSubscriptionsResponse_1 = require("../models/listWebhookSubscriptionsResponse");
+const retrieveWebhookSubscriptionResponse_1 = require("../models/retrieveWebhookSubscriptionResponse");
+const testWebhookSubscriptionRequest_1 = require("../models/testWebhookSubscriptionRequest");
+const testWebhookSubscriptionResponse_1 = require("../models/testWebhookSubscriptionResponse");
+const updateWebhookSubscriptionRequest_1 = require("../models/updateWebhookSubscriptionRequest");
+const updateWebhookSubscriptionResponse_1 = require("../models/updateWebhookSubscriptionResponse");
+const updateWebhookSubscriptionSignatureKeyRequest_1 = require("../models/updateWebhookSubscriptionSignatureKeyRequest");
+const updateWebhookSubscriptionSignatureKeyResponse_1 = require("../models/updateWebhookSubscriptionSignatureKeyResponse");
+const schema_1 = require("../schema");
+const baseApi_1 = require("./baseApi");
+const WebhookSubscriptionsApi = /** @class */ (function (_super) {
     tslib_1.__extends(WebhookSubscriptionsApi, _super);
     function WebhookSubscriptionsApi() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -30,7 +30,7 @@ var WebhookSubscriptionsApi = /** @class */ (function (_super) {
      */
     WebhookSubscriptionsApi.prototype.listWebhookEventTypes = function (apiVersion, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET', '/v2/webhooks/event-types');
                 mapped = req.prepareArgs({
@@ -60,7 +60,7 @@ var WebhookSubscriptionsApi = /** @class */ (function (_super) {
      */
     WebhookSubscriptionsApi.prototype.listWebhookSubscriptions = function (cursor, includeDisabled, sortOrder, limit, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET', '/v2/webhooks/subscriptions');
                 mapped = req.prepareArgs({
@@ -88,7 +88,7 @@ var WebhookSubscriptionsApi = /** @class */ (function (_super) {
      */
     WebhookSubscriptionsApi.prototype.createWebhookSubscription = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/webhooks/subscriptions');
                 mapped = req.prepareArgs({
@@ -109,7 +109,7 @@ var WebhookSubscriptionsApi = /** @class */ (function (_super) {
      */
     WebhookSubscriptionsApi.prototype.deleteWebhookSubscription = function (subscriptionId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('DELETE');
                 mapped = req.prepareArgs({
@@ -129,7 +129,7 @@ var WebhookSubscriptionsApi = /** @class */ (function (_super) {
      */
     WebhookSubscriptionsApi.prototype.retrieveWebhookSubscription = function (subscriptionId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({
@@ -153,7 +153,7 @@ var WebhookSubscriptionsApi = /** @class */ (function (_super) {
      */
     WebhookSubscriptionsApi.prototype.updateWebhookSubscription = function (subscriptionId, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('PUT');
                 mapped = req.prepareArgs({
@@ -182,7 +182,7 @@ var WebhookSubscriptionsApi = /** @class */ (function (_super) {
      */
     WebhookSubscriptionsApi.prototype.updateWebhookSubscriptionSignatureKey = function (subscriptionId, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({
@@ -209,7 +209,7 @@ var WebhookSubscriptionsApi = /** @class */ (function (_super) {
      */
     WebhookSubscriptionsApi.prototype.testWebhookSubscription = function (subscriptionId, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({
@@ -227,5 +227,5 @@ var WebhookSubscriptionsApi = /** @class */ (function (_super) {
     return WebhookSubscriptionsApi;
 }(baseApi_1.BaseApi));
 exports.WebhookSubscriptionsApi = WebhookSubscriptionsApi;
-var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5;
+let templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5;
 //# sourceMappingURL=webhookSubscriptionsApi.js.map

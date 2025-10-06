@@ -17,10 +17,10 @@ exports.getChartPointer = void 0;
  * @param event The mouse event from React event handlers
  * @return chartPointer The chart coordinates relative to the top-left corner of the chart
  */
-var getChartPointer = event => {
-  var rect = event.currentTarget.getBoundingClientRect();
-  var scaleX = rect.width / event.currentTarget.offsetWidth;
-  var scaleY = rect.height / event.currentTarget.offsetHeight;
+const getChartPointer = event => {
+  const rect = event.currentTarget.getBoundingClientRect();
+  const scaleX = rect.width / event.currentTarget.offsetWidth;
+  const scaleY = rect.height / event.currentTarget.offsetHeight;
   return {
     /*
      * Here it's important to use:

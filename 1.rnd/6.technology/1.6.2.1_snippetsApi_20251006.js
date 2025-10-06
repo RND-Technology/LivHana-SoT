@@ -1,14 +1,14 @@
 "use strict";
 exports.__esModule = true;
 exports.SnippetsApi = void 0;
-var tslib_1 = require("tslib");
-var deleteSnippetResponse_1 = require("../models/deleteSnippetResponse");
-var retrieveSnippetResponse_1 = require("../models/retrieveSnippetResponse");
-var upsertSnippetRequest_1 = require("../models/upsertSnippetRequest");
-var upsertSnippetResponse_1 = require("../models/upsertSnippetResponse");
-var schema_1 = require("../schema");
-var baseApi_1 = require("./baseApi");
-var SnippetsApi = /** @class */ (function (_super) {
+const tslib_1 = require("tslib");
+const deleteSnippetResponse_1 = require("../models/deleteSnippetResponse");
+const retrieveSnippetResponse_1 = require("../models/retrieveSnippetResponse");
+const upsertSnippetRequest_1 = require("../models/upsertSnippetRequest");
+const upsertSnippetResponse_1 = require("../models/upsertSnippetResponse");
+const schema_1 = require("../schema");
+const baseApi_1 = require("./baseApi");
+const SnippetsApi = /** @class */ (function (_super) {
     tslib_1.__extends(SnippetsApi, _super);
     function SnippetsApi() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -28,7 +28,7 @@ var SnippetsApi = /** @class */ (function (_super) {
      */
     SnippetsApi.prototype.deleteSnippet = function (siteId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('DELETE');
                 mapped = req.prepareArgs({ siteId: [siteId, (0, schema_1.string)()] });
@@ -54,7 +54,7 @@ var SnippetsApi = /** @class */ (function (_super) {
      */
     SnippetsApi.prototype.retrieveSnippet = function (siteId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({ siteId: [siteId, (0, schema_1.string)()] });
@@ -83,7 +83,7 @@ var SnippetsApi = /** @class */ (function (_super) {
      */
     SnippetsApi.prototype.upsertSnippet = function (siteId, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({
@@ -101,5 +101,5 @@ var SnippetsApi = /** @class */ (function (_super) {
     return SnippetsApi;
 }(baseApi_1.BaseApi));
 exports.SnippetsApi = SnippetsApi;
-var templateObject_1, templateObject_2, templateObject_3;
+let templateObject_1, templateObject_2, templateObject_3;
 //# sourceMappingURL=snippetsApi.js.map

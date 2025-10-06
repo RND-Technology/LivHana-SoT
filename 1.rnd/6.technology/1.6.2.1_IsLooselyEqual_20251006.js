@@ -1,14 +1,14 @@
 'use strict';
 
-var isFinite = require('math-intrinsics/isFinite');
-var isObject = require('es-object-atoms/isObject');
+const isFinite = require('math-intrinsics/isFinite');
+const isObject = require('es-object-atoms/isObject');
 
-var IsStrictlyEqual = require('./IsStrictlyEqual');
-var StringToBigInt = require('./StringToBigInt');
-var ToNumber = require('./ToNumber');
-var ToPrimitive = require('./ToPrimitive');
+const IsStrictlyEqual = require('./IsStrictlyEqual');
+const StringToBigInt = require('./StringToBigInt');
+const ToNumber = require('./ToNumber');
+const ToPrimitive = require('./ToPrimitive');
 
-var isSameType = require('../helpers/isSameType');
+const isSameType = require('../helpers/isSameType');
 
 // https://262.ecma-international.org/13.0/#sec-islooselyequal
 
@@ -26,7 +26,7 @@ module.exports = function IsLooselyEqual(x, y) {
 		return IsLooselyEqual(ToNumber(x), y);
 	}
 	if (typeof x === 'bigint' && typeof y === 'string') {
-		var n = StringToBigInt(y);
+		const n = StringToBigInt(y);
 		if (typeof n === 'undefined') {
 			return false;
 		}

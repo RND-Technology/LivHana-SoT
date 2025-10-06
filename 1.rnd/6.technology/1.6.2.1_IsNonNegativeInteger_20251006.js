@@ -1,6 +1,6 @@
 'use strict';
 
-var IsInteger = require('./IsInteger');
+const IsInteger = require('./IsInteger');
 
 // https://262.ecma-international.org/11.0/#sec-isnonnegativeinteger
 

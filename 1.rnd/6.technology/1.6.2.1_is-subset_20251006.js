@@ -1,6 +1,6 @@
 "use strict";
 
-var forEach = require("@sinonjs/commons").prototypes.set.forEach;
+const forEach = require("@sinonjs/commons").prototypes.set.forEach;
 
 /**
  * Returns `true` when `s1` is a subset of `s2`, `false` otherwise
@@ -13,9 +13,9 @@ var forEach = require("@sinonjs/commons").prototypes.set.forEach;
  * @returns {boolean} Returns `true` when `s1` is a subset of `s2`, `false`` otherwise
  */
 function isSubset(s1, s2, compare) {
-    var allContained = true;
+    let allContained = true;
     forEach(s1, function (v1) {
-        var includes = false;
+        let includes = false;
         forEach(s2, function (v2) {
             if (compare(v2, v1)) {
                 includes = true;

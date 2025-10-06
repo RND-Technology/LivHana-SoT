@@ -8,7 +8,7 @@ function transformArguments(index, query, options) {
     return (0, _1.pushSearchOptions)(['FT.SEARCH', index, query, 'NOCONTENT'], options);
 }
 exports.transformArguments = transformArguments;
-;
+
 function transformReply(reply) {
     return {
         total: reply[0],

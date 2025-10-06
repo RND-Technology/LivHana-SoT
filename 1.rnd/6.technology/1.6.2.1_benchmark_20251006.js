@@ -1,8 +1,8 @@
-var bench = require('fastbench')
-var utilFormat = require('util').format
-var quickFormat = require('./')
+const bench = require('fastbench')
+const utilFormat = require('util').format
+const quickFormat = require('./')
 
-var run = bench([
+const run = bench([
   function util(cb) {
     utilFormat('%s %j %d', 'a', {a: {x: 1}}, 1)
     setImmediate(cb)

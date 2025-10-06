@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
 exports.cloneOrderRequestSchema = void 0;
-var schema_1 = require("../schema");
+const schema_1 = require("../schema");
 exports.cloneOrderRequestSchema = (0, schema_1.object)({
     orderId: ['order_id', (0, schema_1.string)()],
     version: ['version', (0, schema_1.optional)((0, schema_1.number)())],

@@ -4,8 +4,8 @@ exports.__esModule = true;
 exports.default = collectElements;
 
 function collectElements(node, direction) {
-  var nextNode = null;
-  var nodes = [];
+  let nextNode = null;
+  const nodes = [];
   nextNode = node ? node[direction] : null;
 
   while (nextNode && nextNode.nodeType !== 9) {

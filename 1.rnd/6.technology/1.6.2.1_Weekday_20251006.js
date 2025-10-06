@@ -1,7 +1,7 @@
 'use strict';
 
-var Day = require('./Day');
-var modulo = require('./modulo');
+const Day = require('./Day');
+const modulo = require('./modulo');
 
 // https://262.ecma-international.org/5.1/#sec-15.9.1.6
 

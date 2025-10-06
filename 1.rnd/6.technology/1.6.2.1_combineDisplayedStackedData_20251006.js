@@ -4,8 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.combineDisplayedStackedData = combineDisplayedStackedData;
-var _getStackSeriesIdentifier = require("../../../util/stacks/getStackSeriesIdentifier");
-var _ChartUtils = require("../../../util/ChartUtils");
+const _getStackSeriesIdentifier = require("../../../util/stacks/getStackSeriesIdentifier");
+const _ChartUtils = require("../../../util/ChartUtils");
 /**
  * In a stacked chart, each graphical item has its own data. That data could be either:
  * - defined on the chart root, in which case the item gets a unique dataKey
@@ -18,29 +18,29 @@ var _ChartUtils = require("../../../util/ChartUtils");
  */
 
 function combineDisplayedStackedData(stackedGraphicalItems, _ref, tooltipAxisSettings) {
-  var {
+  const {
     chartData = []
   } = _ref;
-  var {
+  const {
     allowDuplicatedCategory,
     dataKey: tooltipDataKey
   } = tooltipAxisSettings;
 
   // A map of tooltip data keys to the stacked data points
-  var knownItemsByDataKey = new Map();
+  const knownItemsByDataKey = new Map();
   stackedGraphicalItems.forEach(item => {
-    var _item$data;
+    let _item$data;
     // If there is no data on the individual item then we use the root chart data
-    var resolvedData = (_item$data = item.data) !== null && _item$data !== void 0 ? _item$data : chartData;
+    const resolvedData = (_item$data = item.data) !== null && _item$data !== void 0 ? _item$data : chartData;
     if (resolvedData == null || resolvedData.length === 0) {
       // if that didn't work then we skip this item
       return;
     }
-    var stackIdentifier = (0, _getStackSeriesIdentifier.getStackSeriesIdentifier)(item);
+    const stackIdentifier = (0, _getStackSeriesIdentifier.getStackSeriesIdentifier)(item);
     resolvedData.forEach((entry, index) => {
-      var tooltipValue = tooltipDataKey == null || allowDuplicatedCategory ? index : String((0, _ChartUtils.getValueByDataKey)(entry, tooltipDataKey, null));
-      var numericValue = (0, _ChartUtils.getValueByDataKey)(entry, item.dataKey, 0);
-      var curr;
+      const tooltipValue = tooltipDataKey == null || allowDuplicatedCategory ? index : String((0, _ChartUtils.getValueByDataKey)(entry, tooltipDataKey, null));
+      const numericValue = (0, _ChartUtils.getValueByDataKey)(entry, item.dataKey, 0);
+      let curr;
       if (knownItemsByDataKey.has(tooltipValue)) {
         curr = knownItemsByDataKey.get(tooltipValue);
       } else {

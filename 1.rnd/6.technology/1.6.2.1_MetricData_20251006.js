@@ -19,7 +19,7 @@ exports.DataPointType = exports.InstrumentType = void 0;
 /**
  * Supported types of metric instruments.
  */
-var InstrumentType;
+let InstrumentType;
 (function (InstrumentType) {
     InstrumentType["COUNTER"] = "COUNTER";
     InstrumentType["GAUGE"] = "GAUGE";
@@ -32,7 +32,7 @@ var InstrumentType;
 /**
  * The aggregated point data type.
  */
-var DataPointType;
+let DataPointType;
 (function (DataPointType) {
     /**
      * A histogram data point contains a histogram statistics of collected

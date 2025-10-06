@@ -19,12 +19,12 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 // USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-var common = require('./common');
-var assert = require('assert');
-var events = require('../');
+const common = require('./common');
+const assert = require('assert');
+const events = require('../');
 
 // Redirect warning output to tape.
-var consoleWarn = console.warn;
+const consoleWarn = console.warn;
 console.warn = common.test.comment;
 
 common.test.on('end', function () {

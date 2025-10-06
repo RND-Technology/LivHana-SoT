@@ -1,4 +1,4 @@
-var basePickBy = require('./_basePickBy'),
+const basePickBy = require('./_basePickBy'),
     hasIn = require('./hasIn');
 
 /**

@@ -1,14 +1,14 @@
 "use strict";
 "use client";
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+const _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _createSvgIcon = _interopRequireDefault(require("./utils/createSvgIcon"));
-var _jsxRuntime = require("react/jsx-runtime");
-var _default = exports.default = (0, _createSvgIcon.default)([/*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
+const _createSvgIcon = _interopRequireDefault(require("./utils/createSvgIcon"));
+const _jsxRuntime = require("react/jsx-runtime");
+const _default = exports.default = (0, _createSvgIcon.default)([/*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
   d: "M17.08 15.14C16.41 14.4 15.49 14 14.5 14c-1.35 0-2.58.79-3.16 2h6.32c-.14-.31-.34-.6-.58-.86",
   opacity: ".3"
 }, "0"), /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {

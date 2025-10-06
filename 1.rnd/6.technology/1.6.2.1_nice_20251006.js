@@ -1,7 +1,7 @@
 export default function nice(domain, interval) {
   domain = domain.slice();
 
-  var i0 = 0,
+  let i0 = 0,
       i1 = domain.length - 1,
       x0 = domain[i0],
       x1 = domain[i1],

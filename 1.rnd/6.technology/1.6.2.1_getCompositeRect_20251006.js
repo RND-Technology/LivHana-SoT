@@ -8,9 +8,9 @@ import isScrollParent from "./isScrollParent.js";
 import { round } from "../utils/math.js";
 
 function isElementScaled(element) {
-  var rect = element.getBoundingClientRect();
-  var scaleX = round(rect.width) / element.offsetWidth || 1;
-  var scaleY = round(rect.height) / element.offsetHeight || 1;
+  const rect = element.getBoundingClientRect();
+  const scaleX = round(rect.width) / element.offsetWidth || 1;
+  const scaleY = round(rect.height) / element.offsetHeight || 1;
   return scaleX !== 1 || scaleY !== 1;
 } // Returns the composite rect of an element relative to its offsetParent.
 // Composite means it takes into account transforms as well as layout.
@@ -21,15 +21,15 @@ export default function getCompositeRect(elementOrVirtualElement, offsetParent, 
     isFixed = false;
   }
 
-  var isOffsetParentAnElement = isHTMLElement(offsetParent);
-  var offsetParentIsScaled = isHTMLElement(offsetParent) && isElementScaled(offsetParent);
-  var documentElement = getDocumentElement(offsetParent);
-  var rect = getBoundingClientRect(elementOrVirtualElement, offsetParentIsScaled, isFixed);
-  var scroll = {
+  const isOffsetParentAnElement = isHTMLElement(offsetParent);
+  const offsetParentIsScaled = isHTMLElement(offsetParent) && isElementScaled(offsetParent);
+  const documentElement = getDocumentElement(offsetParent);
+  const rect = getBoundingClientRect(elementOrVirtualElement, offsetParentIsScaled, isFixed);
+  let scroll = {
     scrollLeft: 0,
     scrollTop: 0
   };
-  var offsets = {
+  let offsets = {
     x: 0,
     y: 0
   };

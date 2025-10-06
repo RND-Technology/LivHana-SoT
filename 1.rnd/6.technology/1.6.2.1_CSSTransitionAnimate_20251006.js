@@ -4,12 +4,12 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.CSSTransitionAnimate = CSSTransitionAnimate;
-var _react = require("react");
-var _esToolkit = require("es-toolkit");
-var _resolveDefaultProps = require("../util/resolveDefaultProps");
-var _useAnimationManager = require("./useAnimationManager");
-var _util = require("./util");
-var defaultProps = {
+const _react = require("react");
+const _esToolkit = require("es-toolkit");
+const _resolveDefaultProps = require("../util/resolveDefaultProps");
+const _useAnimationManager = require("./useAnimationManager");
+const _util = require("./util");
+const defaultProps = {
   begin: 0,
   duration: 1000,
   easing: 'ease',
@@ -19,8 +19,8 @@ var defaultProps = {
   onAnimationStart: () => {}
 };
 function CSSTransitionAnimate(outsideProps) {
-  var props = (0, _resolveDefaultProps.resolveDefaultProps)(outsideProps, defaultProps);
-  var {
+  const props = (0, _resolveDefaultProps.resolveDefaultProps)(outsideProps, defaultProps);
+  const {
     animationId,
     from,
     to,
@@ -34,15 +34,15 @@ function CSSTransitionAnimate(outsideProps) {
     onAnimationStart: onAnimationStartFromProps,
     children
   } = props;
-  var animationManager = (0, _useAnimationManager.useAnimationManager)(animationId + attributeName, props.animationManager);
-  var [style, setStyle] = (0, _react.useState)(() => {
+  const animationManager = (0, _useAnimationManager.useAnimationManager)(animationId + attributeName, props.animationManager);
+  const [style, setStyle] = (0, _react.useState)(() => {
     if (!isActive) {
       return to;
     }
     return from;
   });
-  var initialized = (0, _react.useRef)(false);
-  var onAnimationStart = (0, _react.useCallback)(() => {
+  const initialized = (0, _react.useRef)(false);
+  const onAnimationStart = (0, _react.useCallback)(() => {
     setStyle(from);
     onAnimationStartFromProps();
   }, [from, onAnimationStartFromProps]);
@@ -51,7 +51,7 @@ function CSSTransitionAnimate(outsideProps) {
       return _esToolkit.noop;
     }
     initialized.current = true;
-    var unsubscribe = animationManager.subscribe(setStyle);
+    const unsubscribe = animationManager.subscribe(setStyle);
     animationManager.start([onAnimationStart, begin, to, duration, onAnimationEnd]);
     return () => {
       animationManager.stop();
@@ -77,7 +77,7 @@ function CSSTransitionAnimate(outsideProps) {
     });
   }
   if (initialized.current) {
-    var transition = (0, _util.getTransitionVal)([attributeName], duration, easing);
+    const transition = (0, _util.getTransitionVal)([attributeName], duration, easing);
     return children({
       transition,
       [attributeName]: style

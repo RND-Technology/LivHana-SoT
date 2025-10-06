@@ -1,10 +1,10 @@
 'use strict';
 
-var common = require('./common');
-var EventEmitter = require('../').EventEmitter;
-var once = require('../').once;
-var has = require('has');
-var assert = require('assert');
+const common = require('./common');
+const EventEmitter = require('../').EventEmitter;
+const once = require('../').once;
+const has = require('has');
+const assert = require('assert');
 
 function Event(type) {
   this.type = type;
@@ -28,10 +28,10 @@ EventTargetMock.prototype.removeEventListener = function removeEventListener(nam
   if (!(name in this.events)) {
     return;
   }
-  var event = this.events[name];
-  var stack = event.listeners;
+  const event = this.events[name];
+  const stack = event.listeners;
 
-  for (var i = 0, l = stack.length; i < l; i++) {
+  for (let i = 0, l = stack.length; i < l; i++) {
     if (stack[i] === callback) {
       stack.splice(i, 1);
       if (stack.length === 0) {
@@ -47,10 +47,10 @@ EventTargetMock.prototype.dispatchEvent = function dispatchEvent(arg) {
     return true;
   }
 
-  var event = this.events[arg.type];
-  var stack = event.listeners.slice();
+  const event = this.events[arg.type];
+  const stack = event.listeners.slice();
 
-  for (var i = 0, l = stack.length; i < l; i++) {
+  for (let i = 0, l = stack.length; i < l; i++) {
     stack[i].call(null, arg);
     if (event.options.once) {
       this.removeEventListener(arg.type, stack[i]);
@@ -60,14 +60,14 @@ EventTargetMock.prototype.dispatchEvent = function dispatchEvent(arg) {
 };
 
 function onceAnEvent() {
-  var ee = new EventEmitter();
+  const ee = new EventEmitter();
 
   process.nextTick(function () {
     ee.emit('myevent', 42);
   });
 
   return once(ee, 'myevent').then(function (args) {
-    var value = args[0]
+    const value = args[0]
     assert.strictEqual(value, 42);
     assert.strictEqual(ee.listenerCount('error'), 0);
     assert.strictEqual(ee.listenerCount('myevent'), 0);
@@ -75,7 +75,7 @@ function onceAnEvent() {
 }
 
 function onceAnEventWithTwoArgs() {
-  var ee = new EventEmitter();
+  const ee = new EventEmitter();
 
   process.nextTick(function () {
     ee.emit('myevent', 42, 24);
@@ -89,10 +89,10 @@ function onceAnEventWithTwoArgs() {
 }
 
 function catchesErrors() {
-  var ee = new EventEmitter();
+  const ee = new EventEmitter();
 
-  var expected = new Error('kaboom');
-  var err;
+  const expected = new Error('kaboom');
+  let err;
   process.nextTick(function () {
     ee.emit('error', expected);
   });
@@ -107,10 +107,10 @@ function catchesErrors() {
 }
 
 function stopListeningAfterCatchingError() {
-  var ee = new EventEmitter();
+  const ee = new EventEmitter();
 
-  var expected = new Error('kaboom');
-  var err;
+  const expected = new Error('kaboom');
+  let err;
   process.nextTick(function () {
     ee.emit('error', expected);
     ee.emit('myevent', 42, 24);
@@ -127,17 +127,17 @@ function stopListeningAfterCatchingError() {
 }
 
 function onceError() {
-  var ee = new EventEmitter();
+  const ee = new EventEmitter();
 
-  var expected = new Error('kaboom');
+  const expected = new Error('kaboom');
   process.nextTick(function () {
     ee.emit('error', expected);
   });
 
-  var promise = once(ee, 'error');
+  const promise = once(ee, 'error');
   assert.strictEqual(ee.listenerCount('error'), 1);
   return promise.then(function (args) {
-    var err = args[0]
+    const err = args[0]
     assert.strictEqual(err, expected);
     assert.strictEqual(ee.listenerCount('error'), 0);
     assert.strictEqual(ee.listenerCount('myevent'), 0);
@@ -145,33 +145,33 @@ function onceError() {
 }
 
 function onceWithEventTarget() {
-  var et = new EventTargetMock();
-  var event = new Event('myevent');
+  const et = new EventTargetMock();
+  const event = new Event('myevent');
   process.nextTick(function () {
     et.dispatchEvent(event);
   });
   return once(et, 'myevent').then(function (args) {
-    var value = args[0];
+    const value = args[0];
     assert.strictEqual(value, event);
     assert.strictEqual(has(et.events, 'myevent'), false);
   });
 }
 
 function onceWithEventTargetError() {
-  var et = new EventTargetMock();
-  var error = new Event('error');
+  const et = new EventTargetMock();
+  const error = new Event('error');
   process.nextTick(function () {
     et.dispatchEvent(error);
   });
   return once(et, 'error').then(function (args) {
-    var err = args[0];
+    const err = args[0];
     assert.strictEqual(err, error);
     assert.strictEqual(has(et.events, 'error'), false);
   });
 }
 
 function prioritizesEventEmitter() {
-  var ee = new EventEmitter();
+  const ee = new EventEmitter();
   ee.addEventListener = assert.fail;
   ee.removeAllListeners = assert.fail;
   process.nextTick(function () {
@@ -180,7 +180,7 @@ function prioritizesEventEmitter() {
   return once(ee, 'foo');
 }
 
-var allTests = [
+const allTests = [
   onceAnEvent(),
   onceAnEventWithTwoArgs(),
   catchesErrors(),
@@ -191,34 +191,34 @@ var allTests = [
   prioritizesEventEmitter()
 ];
 
-var hasBrowserEventTarget = false;
+let hasBrowserEventTarget = false;
 try {
   hasBrowserEventTarget = typeof (new window.EventTarget().addEventListener) === 'function' &&
     new window.Event('xyz').type === 'xyz';
 } catch (err) {}
 
 if (hasBrowserEventTarget) {
-  var onceWithBrowserEventTarget = function onceWithBrowserEventTarget() {
-    var et = new window.EventTarget();
-    var event = new window.Event('myevent');
+  const onceWithBrowserEventTarget = function onceWithBrowserEventTarget() {
+    const et = new window.EventTarget();
+    const event = new window.Event('myevent');
     process.nextTick(function () {
       et.dispatchEvent(event);
     });
     return once(et, 'myevent').then(function (args) {
-      var value = args[0];
+      const value = args[0];
       assert.strictEqual(value, event);
       assert.strictEqual(has(et.events, 'myevent'), false);
     });
   }
 
-  var onceWithBrowserEventTargetError = function onceWithBrowserEventTargetError() {
-    var et = new window.EventTarget();
-    var error = new window.Event('error');
+  const onceWithBrowserEventTargetError = function onceWithBrowserEventTargetError() {
+    const et = new window.EventTarget();
+    const error = new window.Event('error');
     process.nextTick(function () {
       et.dispatchEvent(error);
     });
     return once(et, 'error').then(function (args) {
-      var err = args[0];
+      const err = args[0];
       assert.strictEqual(err, error);
       assert.strictEqual(has(et.events, 'error'), false);
     });

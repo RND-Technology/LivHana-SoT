@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.defaultPolarRadiusAxisProps = void 0;
-var defaultPolarRadiusAxisProps = exports.defaultPolarRadiusAxisProps = {
+const defaultPolarRadiusAxisProps = exports.defaultPolarRadiusAxisProps = {
   allowDataOverflow: false,
   allowDuplicatedCategory: true,
   angle: 0,

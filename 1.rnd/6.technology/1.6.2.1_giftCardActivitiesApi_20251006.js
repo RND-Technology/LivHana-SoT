@@ -1,13 +1,13 @@
 "use strict";
 exports.__esModule = true;
 exports.GiftCardActivitiesApi = void 0;
-var tslib_1 = require("tslib");
-var createGiftCardActivityRequest_1 = require("../models/createGiftCardActivityRequest");
-var createGiftCardActivityResponse_1 = require("../models/createGiftCardActivityResponse");
-var listGiftCardActivitiesResponse_1 = require("../models/listGiftCardActivitiesResponse");
-var schema_1 = require("../schema");
-var baseApi_1 = require("./baseApi");
-var GiftCardActivitiesApi = /** @class */ (function (_super) {
+const tslib_1 = require("tslib");
+const createGiftCardActivityRequest_1 = require("../models/createGiftCardActivityRequest");
+const createGiftCardActivityResponse_1 = require("../models/createGiftCardActivityResponse");
+const listGiftCardActivitiesResponse_1 = require("../models/listGiftCardActivitiesResponse");
+const schema_1 = require("../schema");
+const baseApi_1 = require("./baseApi");
+const GiftCardActivitiesApi = /** @class */ (function (_super) {
     tslib_1.__extends(GiftCardActivitiesApi, _super);
     function GiftCardActivitiesApi() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -46,7 +46,7 @@ var GiftCardActivitiesApi = /** @class */ (function (_super) {
      */
     GiftCardActivitiesApi.prototype.listGiftCardActivities = function (giftCardId, type, locationId, beginTime, endTime, limit, cursor, sortOrder, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET', '/v2/gift-cards/activities');
                 mapped = req.prepareArgs({
@@ -84,7 +84,7 @@ var GiftCardActivitiesApi = /** @class */ (function (_super) {
      */
     GiftCardActivitiesApi.prototype.createGiftCardActivity = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/gift-cards/activities');
                 mapped = req.prepareArgs({

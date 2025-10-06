@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = _classPrivateFieldKey;
-var id = 0;
+let id = 0;
 function _classPrivateFieldKey(name) {
   return "__private_" + id++ + "_" + name;
 }

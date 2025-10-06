@@ -3,12 +3,12 @@
 exports.__esModule = true;
 exports["default"] = stripComments;
 function stripComments(str) {
-  var s = "";
-  var commentStart = str.indexOf("/*");
-  var lastEnd = 0;
+  let s = "";
+  let commentStart = str.indexOf("/*");
+  let lastEnd = 0;
   while (commentStart >= 0) {
     s = s + str.slice(lastEnd, commentStart);
-    var commentEnd = str.indexOf("*/", commentStart + 2);
+    const commentEnd = str.indexOf("*/", commentStart + 2);
     if (commentEnd < 0) {
       return s;
     }

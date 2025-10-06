@@ -30,10 +30,10 @@
 
   function _iterableToArrayLimit(arr, i) {
     if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
-    var _arr = [];
-    var _n = true;
-    var _d = false;
-    var _e = undefined;
+    const _arr = [];
+    let _n = true;
+    let _d = false;
+    let _e = undefined;
 
     try {
       for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
@@ -58,7 +58,7 @@
   function _unsupportedIterableToArray(o, minLen) {
     if (!o) return;
     if (typeof o === "string") return _arrayLikeToArray(o, minLen);
-    var n = Object.prototype.toString.call(o).slice(8, -1);
+    let n = Object.prototype.toString.call(o).slice(8, -1);
     if (n === "Object" && o.constructor) n = o.constructor.name;
     if (n === "Map" || n === "Set") return Array.from(o);
     if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
@@ -76,7 +76,7 @@
     throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
   }
 
-  var ansiColors = {
+  const ansiColors = {
     bold: ['1', '22'],
     dim: ['2', '22'],
     italic: ['3', '23'],
@@ -105,7 +105,7 @@
     brightwhite: ['37;1', '39'],
     grey: ['90', '39']
   };
-  var styles = {
+  const styles = {
     special: 'cyan',
     number: 'yellow',
     bigint: 'yellow',
@@ -117,10 +117,10 @@
     date: 'magenta',
     regexp: 'red'
   };
-  var truncator = '…';
+  const truncator = '…';
 
   function colorise(value, styleType) {
-    var color = ansiColors[styles[styleType]] || ansiColors[styleType];
+    const color = ansiColors[styles[styleType]] || ansiColors[styleType];
 
     if (!color) {
       return String(value);
@@ -130,7 +130,7 @@
   }
 
   function normaliseOptions() {
-    var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+    const _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
         _ref$showHidden = _ref.showHidden,
         showHidden = _ref$showHidden === void 0 ? false : _ref$showHidden,
         _ref$depth = _ref.depth,
@@ -152,7 +152,7 @@
         _ref$stylize = _ref.stylize,
         stylize = _ref$stylize === void 0 ? String : _ref$stylize;
 
-    var options = {
+    const options = {
       showHidden: Boolean(showHidden),
       depth: Number(depth),
       colors: Boolean(colors),
@@ -172,10 +172,10 @@
     return options;
   }
   function truncate(string, length) {
-    var tail = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : truncator;
+    const tail = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : truncator;
     string = String(string);
-    var tailLength = tail.length;
-    var stringLength = string.length;
+    const tailLength = tail.length;
+    const stringLength = string.length;
 
     if (tailLength > length && stringLength > tailLength) {
       return tail;
@@ -189,25 +189,25 @@
   } // eslint-disable-next-line complexity
 
   function inspectList(list, options, inspectItem) {
-    var separator = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : ', ';
+    const separator = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : ', ';
     inspectItem = inspectItem || options.inspect;
-    var size = list.length;
+    const size = list.length;
     if (size === 0) return '';
-    var originalLength = options.truncate;
-    var output = '';
-    var peek = '';
-    var truncated = '';
+    const originalLength = options.truncate;
+    let output = '';
+    let peek = '';
+    let truncated = '';
 
-    for (var i = 0; i < size; i += 1) {
-      var last = i + 1 === list.length;
-      var secondToLast = i + 2 === list.length;
+    for (let i = 0; i < size; i += 1) {
+      const last = i + 1 === list.length;
+      const secondToLast = i + 2 === list.length;
       truncated = "".concat(truncator, "(").concat(list.length - i, ")");
-      var value = list[i]; // If there is more than one remaining we need to account for a separator of `, `
+      const value = list[i]; // If there is more than one remaining we need to account for a separator of `, `
 
       options.truncate = originalLength - output.length - (last ? 0 : separator.length);
-      var string = peek || inspectItem(value, options) + (last ? '' : separator);
-      var nextLength = output.length + string.length;
-      var truncatedLength = nextLength + truncated.length; // If this is the last element, and adding it would
+      const string = peek || inspectItem(value, options) + (last ? '' : separator);
+      const nextLength = output.length + string.length;
+      const truncatedLength = nextLength + truncated.length; // If this is the last element, and adding it would
       // take us over length, but adding the truncator wouldn't - then break now
 
       if (last && nextLength > originalLength && output.length + truncated.length <= originalLength) {
@@ -252,7 +252,7 @@
   }
 
   function inspectProperty(_ref2, options) {
-    var _ref3 = _slicedToArray(_ref2, 2),
+    let _ref3 = _slicedToArray(_ref2, 2),
         key = _ref3[0],
         value = _ref3[1];
 
@@ -272,12 +272,12 @@
   function inspectArray(array, options) {
     // Object.keys will always output the Array indices first, so we can slice by
     // `array.length` to get non-index properties
-    var nonIndexProperties = Object.keys(array).slice(array.length);
+    const nonIndexProperties = Object.keys(array).slice(array.length);
     if (!array.length && !nonIndexProperties.length) return '[]';
     options.truncate -= 4;
-    var listContents = inspectList(array, options);
+    const listContents = inspectList(array, options);
     options.truncate -= listContents.length;
-    var propertyContents = '';
+    let propertyContents = '';
 
     if (nonIndexProperties.length) {
       propertyContents = inspectList(nonIndexProperties.map(function (key) {
@@ -307,25 +307,25 @@
    * @api public
    */
 
-  var toString = Function.prototype.toString;
-  var functionNameMatch = /\s*function(?:\s|\s*\/\*[^(?:*\/)]+\*\/\s*)*([^\s\(\/]+)/;
-  var maxFunctionSourceLength = 512;
+  const toString = Function.prototype.toString;
+  const functionNameMatch = /\s*function(?:\s|\s*\/\*[^(?:*\/)]+\*\/\s*)*([^\s\(\/]+)/;
+  const maxFunctionSourceLength = 512;
   function getFuncName(aFunc) {
     if (typeof aFunc !== 'function') {
       return null;
     }
 
-    var name = '';
+    let name = '';
     if (typeof Function.prototype.name === 'undefined' && typeof aFunc.name === 'undefined') {
       // eslint-disable-next-line prefer-reflect
-      var functionSource = toString.call(aFunc);
+      const functionSource = toString.call(aFunc);
       // To avoid unconstrained resource consumption due to pathalogically large function names,
       // we limit the available return value to be less than 512 characters.
       if (functionSource.indexOf('(') > maxFunctionSourceLength) {
         return name;
       }
       // Here we run a polyfill if Function does not support the `name` property and if aFunc.name is not defined
-      var match = functionSource.match(functionNameMatch);
+      const match = functionSource.match(functionNameMatch);
       if (match) {
         name = match[1];
       }
@@ -337,9 +337,9 @@
     return name;
   }
 
-  var getFuncName_1 = getFuncName;
+  const getFuncName_1 = getFuncName;
 
-  var getArrayName = function getArrayName(array) {
+  const getArrayName = function getArrayName(array) {
     // We need to special case Node.js' Buffers, which report to be Uint8Array
     if (typeof Buffer === 'function' && array instanceof Buffer) {
       return 'Buffer';
@@ -353,18 +353,18 @@
   };
 
   function inspectTypedArray(array, options) {
-    var name = getArrayName(array);
+    const name = getArrayName(array);
     options.truncate -= name.length + 4; // Object.keys will always output the Array indices first, so we can slice by
     // `array.length` to get non-index properties
 
-    var nonIndexProperties = Object.keys(array).slice(array.length);
+    const nonIndexProperties = Object.keys(array).slice(array.length);
     if (!array.length && !nonIndexProperties.length) return "".concat(name, "[]"); // As we know TypedArrays only contain Unsigned Integers, we can skip inspecting each one and simply
     // stylise the toString() value of them
 
-    var output = '';
+    let output = '';
 
-    for (var i = 0; i < array.length; i++) {
-      var string = "".concat(options.stylize(truncate(array[i], options.truncate), 'number')).concat(i === array.length - 1 ? '' : ', ');
+    for (let i = 0; i < array.length; i++) {
+      const string = "".concat(options.stylize(truncate(array[i], options.truncate), 'number')).concat(i === array.length - 1 ? '' : ', ');
       options.truncate -= string.length;
 
       if (array[i] !== array.length && options.truncate <= 3) {
@@ -375,7 +375,7 @@
       output += string;
     }
 
-    var propertyContents = '';
+    let propertyContents = '';
 
     if (nonIndexProperties.length) {
       propertyContents = inspectList(nonIndexProperties.map(function (key) {
@@ -387,20 +387,20 @@
   }
 
   function inspectDate(dateObject, options) {
-    var stringRepresentation = dateObject.toJSON();
+    const stringRepresentation = dateObject.toJSON();
 
     if (stringRepresentation === null) {
       return 'Invalid Date';
     }
 
-    var split = stringRepresentation.split('T');
-    var date = split[0]; // If we need to - truncate the time portion, but never the date
+    const split = stringRepresentation.split('T');
+    const date = split[0]; // If we need to - truncate the time portion, but never the date
 
     return options.stylize("".concat(date, "T").concat(truncate(split[1], options.truncate - date.length - 1)), 'date');
   }
 
   function inspectFunction(func, options) {
-    var name = getFuncName_1(func);
+    const name = getFuncName_1(func);
 
     if (!name) {
       return options.stylize('[Function]', 'special');
@@ -410,7 +410,7 @@
   }
 
   function inspectMapEntry(_ref, options) {
-    var _ref2 = _slicedToArray(_ref, 2),
+    let _ref2 = _slicedToArray(_ref, 2),
         key = _ref2[0],
         value = _ref2[1];
 
@@ -423,7 +423,7 @@
 
 
   function mapToEntries(map) {
-    var entries = [];
+    const entries = [];
     map.forEach(function (value, key) {
       entries.push([key, value]);
     });
@@ -431,7 +431,7 @@
   }
 
   function inspectMap(map, options) {
-    var size = map.size - 1;
+    const size = map.size - 1;
 
     if (size <= 0) {
       return 'Map{}';
@@ -441,7 +441,7 @@
     return "Map{ ".concat(inspectList(mapToEntries(map), options, inspectMapEntry), " }");
   }
 
-  var isNaN = Number.isNaN || function (i) {
+  const isNaN = Number.isNaN || function (i) {
     return i !== i;
   }; // eslint-disable-line no-self-compare
 
@@ -467,20 +467,20 @@
   }
 
   function inspectBigInt(number, options) {
-    var nums = truncate(number.toString(), options.truncate - 1);
+    let nums = truncate(number.toString(), options.truncate - 1);
     if (nums !== truncator) nums += 'n';
     return options.stylize(nums, 'bigint');
   }
 
   function inspectRegExp(value, options) {
-    var flags = value.toString().split('/')[2];
-    var sourceLength = options.truncate - (2 + flags.length);
-    var source = value.source;
+    const flags = value.toString().split('/')[2];
+    const sourceLength = options.truncate - (2 + flags.length);
+    const source = value.source;
     return options.stylize("/".concat(truncate(source, sourceLength), "/").concat(flags), 'regexp');
   }
 
   function arrayFromSet(set) {
-    var values = [];
+    const values = [];
     set.forEach(function (value) {
       values.push(value);
     });
@@ -493,8 +493,8 @@
     return "Set{ ".concat(inspectList(arrayFromSet(set), options), " }");
   }
 
-  var stringEscapeChars = new RegExp("['\\u0000-\\u001f\\u007f-\\u009f\\u00ad\\u0600-\\u0604\\u070f\\u17b4\\u17b5" + "\\u200c-\\u200f\\u2028-\\u202f\\u2060-\\u206f\\ufeff\\ufff0-\\uffff]", 'g');
-  var escapeCharacters = {
+  const stringEscapeChars = new RegExp("['\\u0000-\\u001f\\u007f-\\u009f\\u00ad\\u0600-\\u0604\\u070f\\u17b4\\u17b5" + "\\u200c-\\u200f\\u2028-\\u202f\\u2060-\\u206f\\ufeff\\ufff0-\\uffff]", 'g');
+  const escapeCharacters = {
     '\b': '\\b',
     '\t': '\\t',
     '\n': '\\n',
@@ -503,8 +503,8 @@
     "'": "\\'",
     '\\': '\\\\'
   };
-  var hex = 16;
-  var unicodeLength = 4;
+  const hex = 16;
+  const unicodeLength = 4;
 
   function escape(char) {
     return escapeCharacters[char] || "\\u".concat("0000".concat(char.charCodeAt(0).toString(hex)).slice(-unicodeLength));
@@ -526,19 +526,19 @@
     return value.toString();
   }
 
-  var getPromiseValue = function getPromiseValue() {
+  let getPromiseValue = function getPromiseValue() {
     return 'Promise{…}';
   };
 
   try {
-    var _process$binding = process.binding('util'),
+    const _process$binding = process.binding('util'),
         getPromiseDetails = _process$binding.getPromiseDetails,
         kPending = _process$binding.kPending,
         kRejected = _process$binding.kRejected;
 
     if (Array.isArray(getPromiseDetails(Promise.resolve()))) {
       getPromiseValue = function getPromiseValue(value, options) {
-        var _getPromiseDetails = getPromiseDetails(value),
+        const _getPromiseDetails = getPromiseDetails(value),
             _getPromiseDetails2 = _slicedToArray(_getPromiseDetails, 2),
             state = _getPromiseDetails2[0],
             innerValue = _getPromiseDetails2[1];
@@ -554,11 +554,11 @@
     /* ignore */
   }
 
-  var inspectPromise = getPromiseValue;
+  const inspectPromise = getPromiseValue;
 
   function inspectObject(object, options) {
-    var properties = Object.getOwnPropertyNames(object);
-    var symbols = Object.getOwnPropertySymbols ? Object.getOwnPropertySymbols(object) : [];
+    const properties = Object.getOwnPropertyNames(object);
+    const symbols = Object.getOwnPropertySymbols ? Object.getOwnPropertySymbols(object) : [];
 
     if (properties.length === 0 && symbols.length === 0) {
       return '{}';
@@ -572,14 +572,14 @@
     }
 
     options.seen.push(object);
-    var propertyContents = inspectList(properties.map(function (key) {
+    const propertyContents = inspectList(properties.map(function (key) {
       return [key, object[key]];
     }), options, inspectProperty);
-    var symbolContents = inspectList(symbols.map(function (key) {
+    const symbolContents = inspectList(symbols.map(function (key) {
       return [key, object[key]];
     }), options, inspectProperty);
     options.seen.pop();
-    var sep = '';
+    let sep = '';
 
     if (propertyContents && symbolContents) {
       sep = ', ';
@@ -588,9 +588,9 @@
     return "{ ".concat(propertyContents).concat(sep).concat(symbolContents, " }");
   }
 
-  var toStringTag = typeof Symbol !== 'undefined' && Symbol.toStringTag ? Symbol.toStringTag : false;
+  const toStringTag = typeof Symbol !== 'undefined' && Symbol.toStringTag ? Symbol.toStringTag : false;
   function inspectClass(value, options) {
-    var name = '';
+    let name = '';
 
     if (toStringTag && toStringTag in value) {
       name = value[toStringTag];
@@ -612,14 +612,14 @@
     return "Arguments[ ".concat(inspectList(args, options), " ]");
   }
 
-  var errorKeys = ['stack', 'line', 'column', 'name', 'message', 'fileName', 'lineNumber', 'columnNumber', 'number', 'description'];
+  const errorKeys = ['stack', 'line', 'column', 'name', 'message', 'fileName', 'lineNumber', 'columnNumber', 'number', 'description'];
   function inspectObject$1(error, options) {
-    var properties = Object.getOwnPropertyNames(error).filter(function (key) {
+    const properties = Object.getOwnPropertyNames(error).filter(function (key) {
       return errorKeys.indexOf(key) === -1;
     });
-    var name = error.name;
+    const name = error.name;
     options.truncate -= name.length;
-    var message = '';
+    let message = '';
 
     if (typeof error.message === 'string') {
       message = truncate(error.message, options.truncate);
@@ -629,14 +629,14 @@
 
     message = message ? ": ".concat(message) : '';
     options.truncate -= message.length + 5;
-    var propertyContents = inspectList(properties.map(function (key) {
+    const propertyContents = inspectList(properties.map(function (key) {
       return [key, error[key]];
     }), options, inspectProperty);
     return "".concat(name).concat(message).concat(propertyContents ? " { ".concat(propertyContents, " }") : '');
   }
 
   function inspectAttribute(_ref, options) {
-    var _ref2 = _slicedToArray(_ref, 2),
+    const _ref2 = _slicedToArray(_ref, 2),
         key = _ref2[0],
         value = _ref2[1];
 
@@ -653,13 +653,13 @@
     return inspectList(collection, options, inspectHTML, '\n');
   }
   function inspectHTML(element, options) {
-    var properties = element.getAttributeNames();
-    var name = element.tagName.toLowerCase();
-    var head = options.stylize("<".concat(name), 'special');
-    var headClose = options.stylize(">", 'special');
-    var tail = options.stylize("</".concat(name, ">"), 'special');
+    const properties = element.getAttributeNames();
+    const name = element.tagName.toLowerCase();
+    const head = options.stylize("<".concat(name), 'special');
+    const headClose = options.stylize(">", 'special');
+    const tail = options.stylize("</".concat(name, ">"), 'special');
     options.truncate -= name.length * 2 + 5;
-    var propertyContents = '';
+    let propertyContents = '';
 
     if (properties.length > 0) {
       propertyContents += ' ';
@@ -669,8 +669,8 @@
     }
 
     options.truncate -= propertyContents.length;
-    var truncate = options.truncate;
-    var children = inspectHTMLCollection(element.children, options);
+    const truncate = options.truncate;
+    let children = inspectHTMLCollection(element.children, options);
 
     if (children && children.length > truncate) {
       children = "".concat(truncator, "(").concat(element.children.length, ")");
@@ -679,13 +679,13 @@
     return "".concat(head).concat(propertyContents).concat(headClose).concat(children).concat(tail);
   }
 
-  var symbolsSupported = typeof Symbol === 'function' && typeof Symbol.for === 'function';
-  var chaiInspect = symbolsSupported ? Symbol.for('chai/inspect') : '@@chai/inspect';
-  var nodeInspect = false;
+  const symbolsSupported = typeof Symbol === 'function' && typeof Symbol.for === 'function';
+  const chaiInspect = symbolsSupported ? Symbol.for('chai/inspect') : '@@chai/inspect';
+  let nodeInspect = false;
 
   try {
     // eslint-disable-next-line global-require
-    var nodeUtil = require('util');
+    const nodeUtil = require('util');
 
     nodeInspect = nodeUtil.inspect ? nodeUtil.inspect.custom : false;
   } catch (noNodeInspect) {
@@ -717,9 +717,9 @@
       }
     }
   };
-  var constructorMap = new (typeof WeakMap === 'function' ? WeakMap : FakeMap)();
-  var stringTagMap = {};
-  var baseTypesMap = {
+  const constructorMap = new (typeof WeakMap === 'function' ? WeakMap : FakeMap)();
+  const stringTagMap = {};
+  const baseTypesMap = {
     undefined: function undefined$1(value, options) {
       return options.stylize('undefined', 'undefined');
     },
@@ -780,7 +780,7 @@
     NodeList: inspectHTMLCollection
   }; // eslint-disable-next-line complexity
 
-  var inspectCustom = function inspectCustom(value, options, type) {
+  const inspectCustom = function inspectCustom(value, options, type) {
     if (chaiInspect in value && typeof value[chaiInspect] === 'function') {
       return value[chaiInspect](options);
     }
@@ -804,14 +804,14 @@
     return '';
   };
 
-  var toString$1 = Object.prototype.toString; // eslint-disable-next-line complexity
+  const toString$1 = Object.prototype.toString; // eslint-disable-next-line complexity
 
   function inspect(value, options) {
     options = normaliseOptions(options);
     options.inspect = inspect;
-    var _options = options,
+    const _options = options,
         customInspect = _options.customInspect;
-    var type = value === null ? 'null' : _typeof(value);
+    let type = value === null ? 'null' : _typeof(value);
 
     if (type === 'object') {
       type = toString$1.call(value).slice(8, -1);
@@ -824,7 +824,7 @@
 
 
     if (customInspect && value) {
-      var output = inspectCustom(value, options, type);
+      const output = inspectCustom(value, options, type);
 
       if (output) {
         if (typeof output === 'string') return output;
@@ -832,7 +832,7 @@
       }
     }
 
-    var proto = value ? Object.getPrototypeOf(value) : false; // If it's a plain Object then use Loupe's inspector
+    const proto = value ? Object.getPrototypeOf(value) : false; // If it's a plain Object then use Loupe's inspector
 
     if (proto === Object.prototype || proto === null) {
       return inspectObject(value, options);
@@ -878,7 +878,7 @@
     stringTagMap[stringTag] = inspector;
     return true;
   }
-  var custom = chaiInspect;
+  const custom = chaiInspect;
 
   exports.custom = custom;
   exports.default = inspect;

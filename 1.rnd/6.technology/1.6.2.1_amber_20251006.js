@@ -20,4 +20,4 @@ const amber = {
   A400: '#ffc400',
   A700: '#ffab00'
 };
-var _default = exports.default = amber;
+const _default = exports.default = amber;

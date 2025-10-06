@@ -1,12 +1,12 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _tokenizer = require('../parser/tokenizer');
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }const _tokenizer = require('../parser/tokenizer');
 
-var _Transformer = require('./Transformer'); var _Transformer2 = _interopRequireDefault(_Transformer);
+const _Transformer = require('./Transformer'); const _Transformer2 = _interopRequireDefault(_Transformer);
 
  class ReactHotLoaderTransformer extends _Transformer2.default {
    __init() {this.extractedDefaultExportName = null}
 
   constructor( tokens,  filePath) {
-    super();this.tokens = tokens;this.filePath = filePath;ReactHotLoaderTransformer.prototype.__init.call(this);;
+    super();this.tokens = tokens;this.filePath = filePath;ReactHotLoaderTransformer.prototype.__init.call(this);
   }
 
   setExtractedDefaultExportName(extractedDefaultExportName) {

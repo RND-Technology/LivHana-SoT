@@ -8,8 +8,8 @@ export const appendStringReturningExpressionToArguments = (
   path,
   expression
 ) => {
-  let lastIndex = path.node.arguments.length - 1
-  let last = path.node.arguments[lastIndex]
+  const lastIndex = path.node.arguments.length - 1
+  const last = path.node.arguments[lastIndex]
   if (t.isStringLiteral(last)) {
     if (typeof expression === 'string') {
       path.node.arguments[lastIndex].value += expression

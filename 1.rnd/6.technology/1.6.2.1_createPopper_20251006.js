@@ -7,7 +7,7 @@ import debounce from "./utils/debounce.js";
 import mergeByName from "./utils/mergeByName.js";
 import detectOverflow from "./utils/detectOverflow.js";
 import { isElement } from "./dom-utils/instanceOf.js";
-var DEFAULT_OPTIONS = {
+const DEFAULT_OPTIONS = {
   placement: 'bottom',
   modifiers: [],
   strategy: 'absolute'
@@ -28,7 +28,7 @@ export function popperGenerator(generatorOptions) {
     generatorOptions = {};
   }
 
-  var _generatorOptions = generatorOptions,
+  const _generatorOptions = generatorOptions,
       _generatorOptions$def = _generatorOptions.defaultModifiers,
       defaultModifiers = _generatorOptions$def === void 0 ? [] : _generatorOptions$def,
       _generatorOptions$def2 = _generatorOptions.defaultOptions,
@@ -38,7 +38,7 @@ export function popperGenerator(generatorOptions) {
       options = defaultOptions;
     }
 
-    var state = {
+    let state = {
       placement: 'bottom',
       orderedModifiers: [],
       options: Object.assign({}, DEFAULT_OPTIONS, defaultOptions),
@@ -50,12 +50,12 @@ export function popperGenerator(generatorOptions) {
       attributes: {},
       styles: {}
     };
-    var effectCleanupFns = [];
-    var isDestroyed = false;
+    let effectCleanupFns = [];
+    let isDestroyed = false;
     var instance = {
       state: state,
       setOptions: function setOptions(setOptionsAction) {
-        var options = typeof setOptionsAction === 'function' ? setOptionsAction(state.options) : setOptionsAction;
+        const options = typeof setOptionsAction === 'function' ? setOptionsAction(state.options) : setOptionsAction;
         cleanupModifierEffects();
         state.options = Object.assign({}, defaultOptions, state.options, options);
         state.scrollParents = {
@@ -64,7 +64,7 @@ export function popperGenerator(generatorOptions) {
         }; // Orders the modifiers based on their dependencies and `phase`
         // properties
 
-        var orderedModifiers = orderModifiers(mergeByName([].concat(defaultModifiers, state.options.modifiers))); // Strip out disabled modifiers
+        const orderedModifiers = orderModifiers(mergeByName([].concat(defaultModifiers, state.options.modifiers))); // Strip out disabled modifiers
 
         state.orderedModifiers = orderedModifiers.filter(function (m) {
           return m.enabled;
@@ -82,7 +82,7 @@ export function popperGenerator(generatorOptions) {
           return;
         }
 
-        var _state$elements = state.elements,
+        const _state$elements = state.elements,
             reference = _state$elements.reference,
             popper = _state$elements.popper; // Don't proceed if `reference` or `popper` are not valid elements
         // anymore
@@ -111,14 +111,14 @@ export function popperGenerator(generatorOptions) {
           return state.modifiersData[modifier.name] = Object.assign({}, modifier.data);
         });
 
-        for (var index = 0; index < state.orderedModifiers.length; index++) {
+        for (let index = 0; index < state.orderedModifiers.length; index++) {
           if (state.reset === true) {
             state.reset = false;
             index = -1;
             continue;
           }
 
-          var _state$orderedModifie = state.orderedModifiers[index],
+          const _state$orderedModifie = state.orderedModifiers[index],
               fn = _state$orderedModifie.fn,
               _state$orderedModifie2 = _state$orderedModifie.options,
               _options = _state$orderedModifie2 === void 0 ? {} : _state$orderedModifie2,
@@ -164,20 +164,20 @@ export function popperGenerator(generatorOptions) {
 
     function runModifierEffects() {
       state.orderedModifiers.forEach(function (_ref) {
-        var name = _ref.name,
+        const name = _ref.name,
             _ref$options = _ref.options,
             options = _ref$options === void 0 ? {} : _ref$options,
             effect = _ref.effect;
 
         if (typeof effect === 'function') {
-          var cleanupFn = effect({
+          const cleanupFn = effect({
             state: state,
             name: name,
             instance: instance,
             options: options
           });
 
-          var noopFn = function noopFn() {};
+          const noopFn = function noopFn() {};
 
           effectCleanupFns.push(cleanupFn || noopFn);
         }

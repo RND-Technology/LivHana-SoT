@@ -1,5 +1,5 @@
-let Declaration = require('../declaration')
-let flexSpec = require('./flex-spec')
+const Declaration = require('../declaration')
+const flexSpec = require('./flex-spec')
 
 class FlexDirection extends Declaration {
   /**
@@ -11,7 +11,7 @@ class FlexDirection extends Declaration {
     if (spec !== 2009) {
       return super.insert(decl, prefix, prefixes)
     }
-    let already = decl.parent.some(
+    const already = decl.parent.some(
       i =>
         i.prop === prefix + 'box-orient' || i.prop === prefix + 'box-direction'
     )
@@ -19,7 +19,7 @@ class FlexDirection extends Declaration {
       return undefined
     }
 
-    let v = decl.value
+    const v = decl.value
     let dir, orient
     if (v === 'inherit' || v === 'initial' || v === 'unset') {
       orient = v

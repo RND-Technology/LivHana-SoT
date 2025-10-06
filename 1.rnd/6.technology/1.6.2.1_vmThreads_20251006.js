@@ -31,6 +31,6 @@ class ThreadsVmWorker {
     return runVmTests(state);
   }
 }
-var vmThreads = new ThreadsVmWorker();
+const vmThreads = new ThreadsVmWorker();
 
 export { vmThreads as default };

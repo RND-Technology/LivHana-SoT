@@ -1,5 +1,5 @@
 /* Built-in method references for those with the same name as other `lodash` methods. */
-var nativeMax = Math.max,
+const nativeMax = Math.max,
     nativeMin = Math.min;
 
 /**
@@ -13,11 +13,11 @@ var nativeMax = Math.max,
  *  positions of the view.
  */
 function getView(start, end, transforms) {
-  var index = -1,
+  let index = -1,
       length = transforms.length;
 
   while (++index < length) {
-    var data = transforms[index],
+    const data = transforms[index],
         size = data.size;
 
     switch (data.type) {

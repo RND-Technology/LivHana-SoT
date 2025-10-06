@@ -18,7 +18,7 @@ exports.matchesPattern = matchesPattern;
 exports.referencesImport = referencesImport;
 exports.resolve = resolve;
 exports.willIMaybeExecuteBefore = willIMaybeExecuteBefore;
-var _t = require("@babel/types");
+const _t = require("@babel/types");
 const {
   STATEMENT_OR_BLOCK_KEYS,
   VISITOR_KEYS,
@@ -35,7 +35,7 @@ function matchesPattern(pattern, allowPartial) {
 }
 {
   exports.has = function has(key) {
-    var _this$node;
+    let _this$node;
     const val = (_this$node = this.node) == null ? void 0 : _this$node[key];
     if (val && Array.isArray(val)) {
       return !!val.length;
@@ -282,7 +282,7 @@ function resolve(dangerous, resolved) {
   return _resolve.call(this, dangerous, resolved) || this;
 }
 function _resolve(dangerous, resolved) {
-  var _resolved;
+  let _resolved;
   if ((_resolved = resolved) != null && _resolved.includes(this)) return;
   resolved = resolved || [];
   resolved.push(this);

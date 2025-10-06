@@ -15,7 +15,7 @@ module.exports = (cursor, total, maxVisible)  => {
   let startIndex = Math.min(total- maxVisible, cursor - Math.floor(maxVisible / 2));
   if (startIndex < 0) startIndex = 0;
 
-  let endIndex = Math.min(startIndex + maxVisible, total);
+  const endIndex = Math.min(startIndex + maxVisible, total);
 
   return { startIndex, endIndex };
 };

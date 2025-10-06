@@ -1,10 +1,10 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var GetUTCEpochNanoseconds = require('./GetUTCEpochNanoseconds');
+const GetUTCEpochNanoseconds = require('./GetUTCEpochNanoseconds');
 
-var isInteger = require('math-intrinsics/isInteger');
+const isInteger = require('math-intrinsics/isInteger');
 
 // https://262.ecma-international.org/14.0/#sec-getnamedtimezoneepochnanoseconds
 
@@ -56,7 +56,7 @@ module.exports = function GetNamedTimeZoneEpochNanoseconds(
 		throw new $TypeError('Assertion failed: only UTC time zone is supported'); // step 1
 	}
 
-	var epochNanoseconds = GetUTCEpochNanoseconds(
+	const epochNanoseconds = GetUTCEpochNanoseconds(
 		year,
 		month,
 		day,

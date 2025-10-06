@@ -6,9 +6,9 @@ Object.defineProperty(exports, "__esModule", {
 exports.getDirectory = getDirectory;
 exports.getDirectorySync = getDirectorySync;
 
-var _path = _interopRequireDefault(require("path"));
+const _path = _interopRequireDefault(require("path"));
 
-var _pathType = require("path-type");
+const _pathType = require("path-type");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

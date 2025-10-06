@@ -1,22 +1,22 @@
 "use strict";
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __export = (target, all) => {
+  for (const name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var matchers_exports = {};
+const __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+const matchers_exports = {};
 __export(matchers_exports, {
   toBeAttached: () => toBeAttached,
   toBeChecked: () => toBeChecked,
@@ -49,16 +49,16 @@ __export(matchers_exports, {
   toPass: () => toPass
 });
 module.exports = __toCommonJS(matchers_exports);
-var import_utils = require("playwright-core/lib/utils");
-var import_utils2 = require("playwright-core/lib/utils");
-var import_util = require("../util");
-var import_toBeTruthy = require("./toBeTruthy");
-var import_toEqual = require("./toEqual");
-var import_toHaveURL = require("./toHaveURL");
-var import_toMatchText = require("./toMatchText");
-var import_config = require("../common/config");
-var import_globals = require("../common/globals");
-var import_testInfo = require("../worker/testInfo");
+const import_utils = require("playwright-core/lib/utils");
+const import_utils2 = require("playwright-core/lib/utils");
+const import_util = require("../util");
+const import_toBeTruthy = require("./toBeTruthy");
+const import_toEqual = require("./toEqual");
+const import_toHaveURL = require("./toHaveURL");
+const import_toMatchText = require("./toMatchText");
+const import_config = require("../common/config");
+const import_globals = require("../common/globals");
+const import_testInfo = require("../worker/testInfo");
 function toBeAttached(locator, options) {
   const attached = !options || options.attached === void 0 || options.attached;
   const expected = attached ? "attached" : "detached";

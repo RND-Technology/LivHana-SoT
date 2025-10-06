@@ -1,32 +1,32 @@
 'use strict';
 
-var defineProperties = require('define-properties');
-var test = require('tape');
-var callBind = require('call-bind');
-var functionsHaveNames = require('functions-have-names')();
-var hasProto = require('has-proto')();
-var forEach = require('for-each');
-var debug = require('object-inspect');
-var v = require('es-value-fixtures');
-var hasSymbols = require('has-symbols/shams')();
-var mockProperty = require('mock-property');
+const defineProperties = require('define-properties');
+const test = require('tape');
+const callBind = require('call-bind');
+const functionsHaveNames = require('functions-have-names')();
+const hasProto = require('has-proto')();
+const forEach = require('for-each');
+const debug = require('object-inspect');
+const v = require('es-value-fixtures');
+const hasSymbols = require('has-symbols/shams')();
+const mockProperty = require('mock-property');
 
-var index = require('../Iterator.from');
-var impl = require('../Iterator.from/implementation');
+const index = require('../Iterator.from');
+const impl = require('../Iterator.from/implementation');
 
-var isEnumerable = Object.prototype.propertyIsEnumerable;
+const isEnumerable = Object.prototype.propertyIsEnumerable;
 
-var testIterator = require('./helpers/testIterator');
+const testIterator = require('./helpers/testIterator');
 
-var $Iterator = require('../Iterator/implementation');
-var iterProto = require('iterator.prototype');
+const $Iterator = require('../Iterator/implementation');
+const iterProto = require('iterator.prototype');
 
-var getCodePoints = function getCodePoints(str) {
-	var chars = [];
-	for (var i = 0; i < str.length; i++) {
-		var c1 = str.charCodeAt(i);
+const getCodePoints = function getCodePoints(str) {
+	const chars = [];
+	for (let i = 0; i < str.length; i++) {
+		const c1 = str.charCodeAt(i);
 		if (c1 >= 0xD800 && c1 < 0xDC00 && i + 1 < str.length) {
-			var c2 = str.charCodeAt(i + 1);
+			const c2 = str.charCodeAt(i + 1);
 			if (c2 >= 0xDC00 && c2 < 0xE000) {
 				chars.push(str.charAt(i) + str.charAt(i + 1));
 				i += 1;
@@ -63,7 +63,7 @@ module.exports = {
 
 		t.test('actual iteration', { skip: !hasSymbols }, function (st) {
 			forEach(v.nonFunctions, function (nonFunction) {
-				var badIterable = {};
+				const badIterable = {};
 				badIterable[Symbol.iterator] = nonFunction;
 				st['throws'](
 					function () { from(badIterable).next(); },
@@ -79,15 +79,15 @@ module.exports = {
 			// );
 
 			forEach(v.strings, function (string) {
-				var stringIt = from(string);
+				const stringIt = from(string);
 				testIterator(stringIt, getCodePoints(string), st, 'string iterator: ' + debug(string));
 			});
 
-			var arrayIt = from([1, 2, 3]);
+			const arrayIt = from([1, 2, 3]);
 			st.equal(typeof arrayIt.next, 'function', 'has a `next` function');
 
 			st.test('__proto__ is Iterator.prototype', { skip: !hasProto }, function (s2t) {
-				var fakeIterator = {
+				const fakeIterator = {
 					__proto__: iterProto,
 					next: function () {}
 				};
@@ -99,9 +99,9 @@ module.exports = {
 			});
 
 			st.test('real iterators', { skip: !hasSymbols }, function (s2t) {
-				var iter = [][Symbol.iterator]();
+				const iter = [][Symbol.iterator]();
 				// eslint-disable-next-line no-proto
-				var arrayIterHasIterProto = hasProto && iter.__proto__.__proto__ !== Object.prototype;
+				const arrayIterHasIterProto = hasProto && iter.__proto__.__proto__ !== Object.prototype;
 				s2t.equal(
 					from(iter),
 					iter,
@@ -113,8 +113,8 @@ module.exports = {
 			});
 
 			st.test('observability in a replaced String iterator', function (s2t) {
-				var originalStringIterator = String.prototype[Symbol.iterator];
-				var observedType;
+				const originalStringIterator = String.prototype[Symbol.iterator];
+				let observedType;
 				s2t.teardown(mockProperty(String.prototype, Symbol.iterator, {
 					get: function () {
 						'use strict'; // eslint-disable-line strict, lines-around-directive

@@ -174,7 +174,7 @@ function is_lhs_read_only(lhs) {
 
 /** var a = 1 --> var a*/
 function remove_initializers(var_statement) {
-    var decls = [];
+    const decls = [];
     var_statement.definitions.forEach(function(def) {
         if (def.name instanceof AST_SymbolDeclaration) {
             def.value = null;
@@ -229,7 +229,7 @@ export function tighten_body(statements, compressor) {
     const defun_scope = nearest_scope.get_defun_scope();
     const { in_loop, in_try } = find_loop_scope_try();
 
-    var CHANGED, max_iter = 10;
+    let CHANGED, max_iter = 10;
     do {
         CHANGED = false;
         eliminate_spurious_blocks(statements);
@@ -252,7 +252,7 @@ export function tighten_body(statements, compressor) {
     } while (CHANGED && max_iter-- > 0);
 
     function find_loop_scope_try() {
-        var node = compressor.self(), level = 0, in_loop = false, in_try = false;
+        let node = compressor.self(), level = 0, in_loop = false, in_try = false;
         do {
             if (node instanceof AST_IterationStatement) {
                 in_loop = true;
@@ -277,9 +277,9 @@ export function tighten_body(statements, compressor) {
     function collapse(statements, compressor) {
         if (nearest_scope.pinned() || defun_scope.pinned())
             return statements;
-        var args;
-        var candidates = [];
-        var stat_index = statements.length;
+        let args;
+        const candidates = [];
+        let stat_index = statements.length;
         var scanner = new TreeTransformer(function (node) {
             if (abort)
                 return node;
@@ -297,7 +297,7 @@ export function tighten_body(statements, compressor) {
                 return node;
             }
             // Stop immediately if these node types are encountered
-            var parent = scanner.parent();
+            const parent = scanner.parent();
             if (node instanceof AST_Assign
                     && (node.logical || node.operator != "=" && lhs.equivalent_to(node.left))
                 || node instanceof AST_Await
@@ -368,8 +368,8 @@ export function tighten_body(statements, compressor) {
                     return make_node(AST_UnaryPrefix, candidate, candidate);
                 }
                 if (candidate instanceof AST_VarDef) {
-                    var def = candidate.name.definition();
-                    var value = candidate.value;
+                    const def = candidate.name.definition();
+                    const value = candidate.value;
                     if (def.references.length - def.replaced == 1 && !compressor.exposed(def)) {
                         def.replaced++;
                         if (funarg && is_identifier_atom(value)) {
@@ -390,7 +390,7 @@ export function tighten_body(statements, compressor) {
             }
             // These node types have child nodes that execute sequentially,
             // but are otherwise not safe to scan into or beyond them.
-            var sym;
+            let sym;
             if (node instanceof AST_Call
                 || node instanceof AST_Exit
                 && (side_effects || lhs instanceof AST_PropAccess || may_modify(lhs))
@@ -520,8 +520,8 @@ export function tighten_body(statements, compressor) {
             // Scan case expressions first in a switch statement
             if (node instanceof AST_Switch) {
                 node.expression = node.expression.transform(scanner);
-                for (var i = 0, len = node.body.length; !abort && i < len; i++) {
-                    var branch = node.body[i];
+                for (let i = 0, len = node.body.length; !abort && i < len; i++) {
+                    const branch = node.body[i];
                     if (branch instanceof AST_Case) {
                         if (!hit) {
                             if (branch !== hit_stack[hit_index])
@@ -552,12 +552,12 @@ export function tighten_body(statements, compressor) {
         }
 
         function has_overlapping_symbol(fn, arg, fn_strict) {
-            var found = false, scan_this = !(fn instanceof AST_Arrow);
+            let found = false, scan_this = !(fn instanceof AST_Arrow);
             arg.walk(new TreeWalker(function (node, descend) {
                 if (found)
                     return true;
                 if (node instanceof AST_SymbolRef && (fn.variables.has(node.name) || redefined_within_scope(node.definition(), fn))) {
-                    var s = node.definition().scope;
+                    let s = node.definition().scope;
                     if (s !== defun_scope)
                         while (s = s.parent_scope) {
                             if (s === defun_scope)
@@ -569,7 +569,7 @@ export function tighten_body(statements, compressor) {
                     return found = true;
                 }
                 if (node instanceof AST_Scope && !(node instanceof AST_Arrow)) {
-                    var prev = scan_this;
+                    const prev = scan_this;
                     scan_this = false;
                     descend();
                     scan_this = prev;
@@ -588,7 +588,7 @@ export function tighten_body(statements, compressor) {
             return true;
         }
         function extract_args() {
-            var iife, fn = compressor.self();
+            let iife, fn = compressor.self();
             if (is_func_expr(fn)
                 && !fn.name
                 && !fn.uses_arguments
@@ -597,15 +597,15 @@ export function tighten_body(statements, compressor) {
                 && iife.expression === fn
                 && iife.args.every(arg_is_injectable)
             ) {
-                var fn_strict = compressor.has_directive("use strict");
+                let fn_strict = compressor.has_directive("use strict");
                 if (fn_strict && !member(fn_strict, fn.body))
                     fn_strict = false;
-                var len = fn.argnames.length;
+                const len = fn.argnames.length;
                 args = iife.args.slice(len);
-                var names = new Set();
-                for (var i = len; --i >= 0;) {
-                    var sym = fn.argnames[i];
-                    var arg = iife.args[i];
+                const names = new Set();
+                for (let i = len; --i >= 0;) {
+                    const sym = fn.argnames[i];
+                    let arg = iife.args[i];
                     // The following two line fix is a duplicate of the fix at
                     // https://github.com/terser/terser/commit/011d3eb08cefe6922c7d1bdfa113fc4aeaca1b75
                     // This might mean that these two pieces of code (one here in collapse_vars and another in reduce_vars
@@ -622,7 +622,7 @@ export function tighten_body(statements, compressor) {
                         continue;
                     names.add(sym.name);
                     if (sym instanceof AST_Expansion) {
-                        var elements = iife.args.slice(i);
+                        const elements = iife.args.slice(i);
                         if (elements.every((arg) => !has_overlapping_symbol(fn, arg, fn_strict)
                         )) {
                             candidates.unshift([make_node(AST_VarDef, sym, {
@@ -670,9 +670,9 @@ export function tighten_body(statements, compressor) {
                 extract_candidates(expr.consequent);
                 extract_candidates(expr.alternative);
             } else if (expr instanceof AST_Definitions) {
-                var len = expr.definitions.length;
+                const len = expr.definitions.length;
                 // limit number of trailing variable definitions for consideration
-                var i = len - 200;
+                let i = len - 200;
                 if (i < 0)
                     i = 0;
                 for (; i < len; i++) {
@@ -730,7 +730,7 @@ export function tighten_body(statements, compressor) {
         }
 
         function find_stop(node, level, write_only) {
-            var parent = scanner.parent(level);
+            const parent = scanner.parent(level);
             if (parent instanceof AST_Assign) {
                 if (write_only
                     && !parent.logical
@@ -784,12 +784,12 @@ export function tighten_body(statements, compressor) {
         }
 
         function mangleable_var(var_def) {
-            var value = var_def.value;
+            const value = var_def.value;
             if (!(value instanceof AST_SymbolRef))
                 return;
             if (value.name == "arguments")
                 return;
-            var def = value.definition();
+            const def = value.definition();
             if (def.undeclared)
                 return;
             return value_def = def;
@@ -799,13 +799,13 @@ export function tighten_body(statements, compressor) {
             if (expr instanceof AST_Assign && expr.logical) {
                 return false;
             } else if (expr instanceof AST_VarDef && expr.name instanceof AST_SymbolDeclaration) {
-                var def = expr.name.definition();
+                const def = expr.name.definition();
                 if (!member(expr.name, def.orig))
                     return;
-                var referenced = def.references.length - def.replaced;
+                const referenced = def.references.length - def.replaced;
                 if (!referenced)
                     return;
-                var declared = def.orig.length - def.eliminated;
+                const declared = def.orig.length - def.eliminated;
                 if (declared > 1 && !(expr.name instanceof AST_SymbolFunarg)
                     || (referenced > 1 ? mangleable_var(expr) : !compressor.exposed(def))) {
                     return make_node(AST_SymbolRef, expr.name, expr.name);
@@ -830,11 +830,11 @@ export function tighten_body(statements, compressor) {
         }
 
         function get_lvalues(expr) {
-            var lvalues = new Map();
+            const lvalues = new Map();
             if (expr instanceof AST_Unary)
                 return lvalues;
             var tw = new TreeWalker(function (node) {
-                var sym = node;
+                let sym = node;
                 while (sym instanceof AST_PropAccess)
                     sym = sym.expression;
                 if (sym instanceof AST_SymbolRef) {
@@ -853,12 +853,12 @@ export function tighten_body(statements, compressor) {
 
         function remove_candidate(expr) {
             if (expr.name instanceof AST_SymbolFunarg) {
-                var iife = compressor.parent(), argnames = compressor.self().argnames;
-                var index = argnames.indexOf(expr.name);
+                const iife = compressor.parent(), argnames = compressor.self().argnames;
+                const index = argnames.indexOf(expr.name);
                 if (index < 0) {
                     iife.args.length = Math.min(iife.args.length, argnames.length - 1);
                 } else {
-                    var args = iife.args;
+                    const args = iife.args;
                     if (args[index])
                         args[index] = make_node(AST_Number, args[index], {
                             value: 0
@@ -866,7 +866,7 @@ export function tighten_body(statements, compressor) {
                 }
                 return true;
             }
-            var found = false;
+            let found = false;
             return statements[stat_index].transform(new TreeTransformer(function (node, descend, in_list) {
                 if (found)
                     return node;
@@ -914,7 +914,7 @@ export function tighten_body(statements, compressor) {
             if (value_def)
                 return true;
             if (lhs instanceof AST_SymbolRef) {
-                var def = lhs.definition();
+                const def = lhs.definition();
                 if (def.references.length - def.replaced == (candidate instanceof AST_VarDef ? 1 : 2)) {
                     return true;
                 }
@@ -925,7 +925,7 @@ export function tighten_body(statements, compressor) {
         function may_modify(sym) {
             if (!sym.definition)
                 return true; // AST_Destructuring
-            var def = sym.definition();
+            const def = sym.definition();
             if (def.orig.length == 1 && def.orig[0] instanceof AST_SymbolDefun)
                 return false;
             if (def.scope.get_defun_scope() !== defun_scope)
@@ -969,9 +969,9 @@ export function tighten_body(statements, compressor) {
     }
 
     function eliminate_spurious_blocks(statements) {
-        var seen_dirs = [];
-        for (var i = 0; i < statements.length;) {
-            var stat = statements[i];
+        const seen_dirs = [];
+        for (let i = 0; i < statements.length;) {
+            const stat = statements[i];
             if (stat instanceof AST_BlockStatement && stat.body.every(can_be_evicted_from_block)) {
                 CHANGED = true;
                 eliminate_spurious_blocks(stat.body);
@@ -994,17 +994,17 @@ export function tighten_body(statements, compressor) {
     }
 
     function handle_if_return(statements, compressor) {
-        var self = compressor.self();
-        var multiple_if_returns = has_multiple_if_returns(statements);
-        var in_lambda = self instanceof AST_Lambda;
+        const self = compressor.self();
+        const multiple_if_returns = has_multiple_if_returns(statements);
+        const in_lambda = self instanceof AST_Lambda;
         // Prevent extremely deep nesting
         // https://github.com/terser/terser/issues/1432
         // https://github.com/webpack/webpack/issues/17548
         const iteration_start = Math.min(statements.length, 500);
         for (var i = iteration_start; --i >= 0;) {
-            var stat = statements[i];
-            var j = next_index(i);
-            var next = statements[j];
+            let stat = statements[i];
+            const j = next_index(i);
+            const next = statements[j];
 
             if (in_lambda && !next && stat instanceof AST_Return) {
                 if (!stat.value) {
@@ -1067,7 +1067,7 @@ export function tighten_body(statements, compressor) {
             }
 
             if (stat instanceof AST_If && stat.body instanceof AST_Return) {
-                var value = stat.body.value;
+                const value = stat.body.value;
                 //---
                 // pretty silly case, but:
                 // if (foo()) return; return; ==> foo(); return;
@@ -1110,7 +1110,7 @@ export function tighten_body(statements, compressor) {
                 // if sequences is not enabled, this can lead to an endless loop (issue #866).
                 // however, with sequences on this helps producing slightly better output for
                 // the example code.
-                var prev = statements[prev_index(i)];
+                const prev = statements[prev_index(i)];
                 if (compressor.option("sequences") && in_lambda && !stat.alternative
                     && prev instanceof AST_If && prev.body instanceof AST_Return
                     && next_index(j) == statements.length && next instanceof AST_SimpleStatement) {
@@ -1132,9 +1132,9 @@ export function tighten_body(statements, compressor) {
         }
 
         function has_multiple_if_returns(statements) {
-            var n = 0;
-            for (var i = statements.length; --i >= 0;) {
-                var stat = statements[i];
+            let n = 0;
+            for (let i = statements.length; --i >= 0;) {
+                const stat = statements[i];
                 if (stat instanceof AST_If && stat.body instanceof AST_Return) {
                     if (++n > 1)
                         return true;
@@ -1150,19 +1150,19 @@ export function tighten_body(statements, compressor) {
         function can_merge_flow(ab) {
             if (!ab)
                 return false;
-            for (var j = i + 1, len = statements.length; j < len; j++) {
-                var stat = statements[j];
+            for (let j = i + 1, len = statements.length; j < len; j++) {
+                const stat = statements[j];
                 if (stat instanceof AST_DefinitionsLike && !(stat instanceof AST_Var))
                     return false;
             }
-            var lct = ab instanceof AST_LoopControl ? compressor.loopcontrol_target(ab) : null;
+            const lct = ab instanceof AST_LoopControl ? compressor.loopcontrol_target(ab) : null;
             return ab instanceof AST_Return && in_lambda && is_return_void(ab.value)
                 || ab instanceof AST_Continue && self === loop_body(lct)
                 || ab instanceof AST_Break && lct instanceof AST_BlockStatement && self === lct;
         }
 
         function extract_defuns() {
-            var tail = statements.slice(i + 1);
+            const tail = statements.slice(i + 1);
             statements.length = i + 1;
             return tail.filter(function (stat) {
                 if (stat instanceof AST_Defun) {
@@ -1174,7 +1174,7 @@ export function tighten_body(statements, compressor) {
         }
 
         function as_statement_array_with_return(node, ab) {
-            var body = as_statement_array(node);
+            let body = as_statement_array(node);
             if (ab !== body[body.length - 1]) {
                 return undefined;
             }
@@ -1192,7 +1192,7 @@ export function tighten_body(statements, compressor) {
 
         function next_index(i) {
             for (var j = i + 1, len = statements.length; j < len; j++) {
-                var stat = statements[j];
+                const stat = statements[j];
                 if (!(stat instanceof AST_Var && declarations_only(stat))) {
                     break;
                 }
@@ -1202,7 +1202,7 @@ export function tighten_body(statements, compressor) {
 
         function prev_index(i) {
             for (var j = i; --j >= 0;) {
-                var stat = statements[j];
+                const stat = statements[j];
                 if (!(stat instanceof AST_Var && declarations_only(stat))) {
                     break;
                 }
@@ -1212,12 +1212,12 @@ export function tighten_body(statements, compressor) {
     }
 
     function eliminate_dead_code(statements, compressor) {
-        var has_quit;
-        var self = compressor.self();
+        let has_quit;
+        const self = compressor.self();
         for (var i = 0, n = 0, len = statements.length; i < len; i++) {
-            var stat = statements[i];
+            const stat = statements[i];
             if (stat instanceof AST_LoopControl) {
-                var lct = compressor.loopcontrol_target(stat);
+                const lct = compressor.loopcontrol_target(stat);
                 if (stat instanceof AST_Break
                     && !(lct instanceof AST_IterationStatement)
                     && loop_body(lct) === self
@@ -1252,20 +1252,20 @@ export function tighten_body(statements, compressor) {
     function sequencesize(statements, compressor) {
         if (statements.length < 2)
             return;
-        var seq = [], n = 0;
+        let seq = [], n = 0;
         function push_seq() {
             if (!seq.length)
                 return;
-            var body = make_sequence(seq[0], seq);
+            const body = make_sequence(seq[0], seq);
             statements[n++] = make_node(AST_SimpleStatement, body, { body: body });
             seq = [];
         }
         for (var i = 0, len = statements.length; i < len; i++) {
-            var stat = statements[i];
+            const stat = statements[i];
             if (stat instanceof AST_SimpleStatement) {
                 if (seq.length >= compressor.sequences_limit)
                     push_seq();
-                var body = stat.body;
+                let body = stat.body;
                 if (seq.length > 0)
                     body = body.drop_side_effect_free(compressor);
                 if (body)
@@ -1287,9 +1287,9 @@ export function tighten_body(statements, compressor) {
     function to_simple_statement(block, decls) {
         if (!(block instanceof AST_BlockStatement))
             return block;
-        var stat = null;
-        for (var i = 0, len = block.body.length; i < len; i++) {
-            var line = block.body[i];
+        let stat = null;
+        for (let i = 0, len = block.body.length; i < len; i++) {
+            const line = block.body[i];
             if (line instanceof AST_Var && declarations_only(line)) {
                 decls.push(line);
             } else if (stat || line instanceof AST_DefinitionsLike && !(line instanceof AST_Var)) {
@@ -1305,12 +1305,12 @@ export function tighten_body(statements, compressor) {
         function cons_seq(right) {
             n--;
             CHANGED = true;
-            var left = prev.body;
+            const left = prev.body;
             return make_sequence(left, [left, right]).transform(compressor);
         }
         var n = 0, prev;
-        for (var i = 0; i < statements.length; i++) {
-            var stat = statements[i];
+        for (let i = 0; i < statements.length; i++) {
+            const stat = statements[i];
             if (prev) {
                 if (stat instanceof AST_Exit) {
                     stat.value = cons_seq(stat.value || make_node(AST_Undefined, stat).transform(compressor));
@@ -1347,11 +1347,11 @@ export function tighten_body(statements, compressor) {
                 }
             }
             if (compressor.option("conditionals") && stat instanceof AST_If) {
-                var decls = [];
-                var body = to_simple_statement(stat.body, decls);
-                var alt = to_simple_statement(stat.alternative, decls);
+                const decls = [];
+                const body = to_simple_statement(stat.body, decls);
+                const alt = to_simple_statement(stat.alternative, decls);
                 if (body !== false && alt !== false && decls.length > 0) {
-                    var len = decls.length;
+                    const len = decls.length;
                     decls.push(make_node(AST_If, stat, {
                         condition: stat.condition,
                         body: body || make_node(AST_EmptyStatement, stat.body),
@@ -1375,10 +1375,10 @@ export function tighten_body(statements, compressor) {
     function join_object_assignments(defn, body) {
         if (!(defn instanceof AST_Definitions))
             return;
-        var def = defn.definitions[defn.definitions.length - 1];
+        const def = defn.definitions[defn.definitions.length - 1];
         if (!(def.value instanceof AST_Object))
             return;
-        var exprs;
+        let exprs;
         if (body instanceof AST_Assign && !body.logical) {
             exprs = [body];
         } else if (body instanceof AST_Sequence) {
@@ -1386,16 +1386,16 @@ export function tighten_body(statements, compressor) {
         }
         if (!exprs)
             return;
-        var trimmed = false;
+        let trimmed = false;
         do {
-            var node = exprs[0];
+            const node = exprs[0];
             if (!(node instanceof AST_Assign))
                 break;
             if (node.operator != "=")
                 break;
             if (!(node.left instanceof AST_PropAccess))
                 break;
-            var sym = node.left.expression;
+            const sym = node.left.expression;
             if (!(sym instanceof AST_SymbolRef))
                 break;
             if (def.name.name != sym.name)
@@ -1409,7 +1409,7 @@ export function tighten_body(statements, compressor) {
             if (prop instanceof AST_Node)
                 break;
             prop = "" + prop;
-            var diff = compressor.option("ecma") < 2015
+            const diff = compressor.option("ecma") < 2015
                 && compressor.has_directive("use strict") ? function (node) {
                     return node.key != prop && (node.key && node.key.name != prop);
                 } : function (node) {
@@ -1417,7 +1417,7 @@ export function tighten_body(statements, compressor) {
                 };
             if (!def.value.properties.every(diff))
                 break;
-            var p = def.value.properties.filter(function (p) { return p.key === prop; })[0];
+            const p = def.value.properties.filter(function (p) { return p.key === prop; })[0];
             if (!p) {
                 def.value.properties.push(make_node(AST_ObjectKeyVal, node, {
                     key: prop,
@@ -1437,7 +1437,7 @@ export function tighten_body(statements, compressor) {
     }
 
     function join_consecutive_vars(statements) {
-        var defs;
+        let defs;
         for (var i = 0, j = -1, len = statements.length; i < len; i++) {
             var stat = statements[i];
             var prev = statements[j];
@@ -1513,7 +1513,7 @@ export function tighten_body(statements, compressor) {
 
         function extract_object_assignments(value) {
             statements[++j] = stat;
-            var exprs = join_object_assignments(prev, value);
+            const exprs = join_object_assignments(prev, value);
             if (exprs) {
                 CHANGED = true;
                 if (exprs.length) {

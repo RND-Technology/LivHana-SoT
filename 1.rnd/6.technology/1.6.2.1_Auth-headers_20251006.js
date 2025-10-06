@@ -48,7 +48,7 @@ function AuthHeaders() {
         }
         authHeaders['NR-CSEC-IAST-SCAN-INSTANCE-COUNT'] = instanceCount ? instanceCount : 0
         if ((NRAgent.config.security.iast_test_identifier && !lodash.isEmpty(NRAgent.config.security.iast_test_identifier)) || process.env.NEW_RELIC_SECURITY_IAST_TEST_IDENTIFIER) {
-            let iast_test_identifier = NRAgent.config.security.iast_test_identifier || process.env.NEW_RELIC_SECURITY_IAST_TEST_IDENTIFIER
+            const iast_test_identifier = NRAgent.config.security.iast_test_identifier || process.env.NEW_RELIC_SECURITY_IAST_TEST_IDENTIFIER
             authHeaders['NR-CSEC-IAST-TEST-IDENTIFIER'] = iast_test_identifier;
             logger.debug("iast_test_identifier is:", iast_test_identifier);
             authHeaders['NR-CSEC-IAST-SCAN-INSTANCE-COUNT'] = 1;

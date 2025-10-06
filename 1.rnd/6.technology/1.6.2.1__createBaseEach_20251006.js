@@ -1,4 +1,4 @@
-var isArrayLike = require('./isArrayLike');
+const isArrayLike = require('./isArrayLike');
 
 /**
  * Creates a `baseEach` or `baseEachRight` function.
@@ -16,7 +16,7 @@ function createBaseEach(eachFunc, fromRight) {
     if (!isArrayLike(collection)) {
       return eachFunc(collection, iteratee);
     }
-    var length = collection.length,
+    let length = collection.length,
         index = fromRight ? length : -1,
         iterable = Object(collection);
 

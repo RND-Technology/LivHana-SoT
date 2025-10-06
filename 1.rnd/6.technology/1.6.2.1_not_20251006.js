@@ -1,26 +1,26 @@
 'use strict';
 module.exports = function generate_not(it, $keyword, $ruleType) {
-  var out = ' ';
-  var $lvl = it.level;
-  var $dataLvl = it.dataLevel;
-  var $schema = it.schema[$keyword];
-  var $schemaPath = it.schemaPath + it.util.getProperty($keyword);
-  var $errSchemaPath = it.errSchemaPath + '/' + $keyword;
-  var $breakOnError = !it.opts.allErrors;
-  var $data = 'data' + ($dataLvl || '');
-  var $errs = 'errs__' + $lvl;
-  var $it = it.util.copy(it);
+  let out = ' ';
+  const $lvl = it.level;
+  const $dataLvl = it.dataLevel;
+  const $schema = it.schema[$keyword];
+  const $schemaPath = it.schemaPath + it.util.getProperty($keyword);
+  const $errSchemaPath = it.errSchemaPath + '/' + $keyword;
+  const $breakOnError = !it.opts.allErrors;
+  const $data = 'data' + ($dataLvl || '');
+  const $errs = 'errs__' + $lvl;
+  const $it = it.util.copy(it);
   $it.level++;
-  var $nextValid = 'valid' + $it.level;
+  const $nextValid = 'valid' + $it.level;
   if ((it.opts.strictKeywords ? (typeof $schema == 'object' && Object.keys($schema).length > 0) || $schema === false : it.util.schemaHasRules($schema, it.RULES.all))) {
     $it.schema = $schema;
     $it.schemaPath = $schemaPath;
     $it.errSchemaPath = $errSchemaPath;
     out += ' var ' + ($errs) + ' = errors;  ';
-    var $wasComposite = it.compositeRule;
+    const $wasComposite = it.compositeRule;
     it.compositeRule = $it.compositeRule = true;
     $it.createErrors = false;
-    var $allErrorsOption;
+    let $allErrorsOption;
     if ($it.opts.allErrors) {
       $allErrorsOption = $it.opts.allErrors;
       $it.opts.allErrors = false;
@@ -45,7 +45,7 @@ module.exports = function generate_not(it, $keyword, $ruleType) {
     } else {
       out += ' {} ';
     }
-    var __err = out;
+    const __err = out;
     out = $$outStack.pop();
     if (!it.compositeRule && $breakOnError) {
       /* istanbul ignore if */

@@ -6,8 +6,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = filterItems;
 exports.isRequired = isRequired;
 exports.targetsSupported = targetsSupported;
-var _semver = require("semver");
-var _utils = require("./utils.js");
+const _semver = require("semver");
+const _utils = require("./utils.js");
 const pluginsCompatData = require("@babel/compat-data/plugins");
 function targetsSupported(target, support) {
   const targetEnvironments = Object.keys(target);

@@ -1,5 +1,5 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+const __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -24,7 +24,7 @@ const makeRequest = (fetchFn, url, method, headers, requestBody, timeoutMs, abor
     if (abortSignal != null) {
         signals.push(abortSignal);
     }
-    let newSignals = (0, signals_1.anySignal)(signals);
+    const newSignals = (0, signals_1.anySignal)(signals);
     const response = yield fetchFn(url, {
         method: method,
         headers,

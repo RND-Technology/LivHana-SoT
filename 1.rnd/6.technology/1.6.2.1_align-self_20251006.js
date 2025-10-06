@@ -1,5 +1,5 @@
-let Declaration = require('../declaration')
-let flexSpec = require('./flex-spec')
+const Declaration = require('../declaration')
+const flexSpec = require('./flex-spec')
 
 class AlignSelf extends Declaration {
   check(decl) {
@@ -34,7 +34,7 @@ class AlignSelf extends Declaration {
    * Change value for 2012 spec and ignore prefix for 2009
    */
   set(decl, prefix) {
-    let spec = flexSpec(prefix)[0]
+    const spec = flexSpec(prefix)[0]
     if (spec === 2012) {
       decl.value = AlignSelf.oldValues[decl.value] || decl.value
       return super.set(decl, prefix)

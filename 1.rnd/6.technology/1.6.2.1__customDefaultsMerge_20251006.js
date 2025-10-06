@@ -1,4 +1,4 @@
-var baseMerge = require('./_baseMerge'),
+const baseMerge = require('./_baseMerge'),
     isObject = require('./isObject');
 
 /**

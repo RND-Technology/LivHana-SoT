@@ -16,7 +16,7 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AggregationTemporalityPreference = void 0;
-var AggregationTemporalityPreference;
+let AggregationTemporalityPreference;
 (function (AggregationTemporalityPreference) {
     AggregationTemporalityPreference[AggregationTemporalityPreference["DELTA"] = 0] = "DELTA";
     AggregationTemporalityPreference[AggregationTemporalityPreference["CUMULATIVE"] = 1] = "CUMULATIVE";

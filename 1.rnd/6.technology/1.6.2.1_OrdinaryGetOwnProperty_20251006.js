@@ -1,17 +1,17 @@
 'use strict';
 
-var $gOPD = require('gopd');
-var $TypeError = require('es-errors/type');
-var isObject = require('es-object-atoms/isObject');
-var hasOwn = require('hasown');
-var callBound = require('call-bound');
+const $gOPD = require('gopd');
+const $TypeError = require('es-errors/type');
+const isObject = require('es-object-atoms/isObject');
+const hasOwn = require('hasown');
+const callBound = require('call-bound');
 
-var $isEnumerable = callBound('Object.prototype.propertyIsEnumerable');
+const $isEnumerable = callBound('Object.prototype.propertyIsEnumerable');
 
-var IsArray = require('./IsArray');
-var isPropertyKey = require('../helpers/isPropertyKey');
-var IsRegExp = require('./IsRegExp');
-var ToPropertyDescriptor = require('./ToPropertyDescriptor');
+const IsArray = require('./IsArray');
+const isPropertyKey = require('../helpers/isPropertyKey');
+const IsRegExp = require('./IsRegExp');
+const ToPropertyDescriptor = require('./ToPropertyDescriptor');
 
 // https://262.ecma-international.org/6.0/#sec-ordinarygetownproperty
 
@@ -27,8 +27,8 @@ module.exports = function OrdinaryGetOwnProperty(O, P) {
 	}
 	if (!$gOPD) {
 		// ES3 / IE 8 fallback
-		var arrayLength = IsArray(O) && P === 'length';
-		var regexLastIndex = IsRegExp(O) && P === 'lastIndex';
+		const arrayLength = IsArray(O) && P === 'length';
+		const regexLastIndex = IsRegExp(O) && P === 'lastIndex';
 		return {
 			'[[Configurable]]': !(arrayLength || regexLastIndex),
 			'[[Enumerable]]': $isEnumerable(O, P),

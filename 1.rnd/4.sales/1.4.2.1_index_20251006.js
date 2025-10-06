@@ -26,5 +26,5 @@ function readerrevenuesubscriptionlinking(versionOrOptions) {
 exports.readerrevenuesubscriptionlinking = readerrevenuesubscriptionlinking;
 const auth = new googleapis_common_1.AuthPlus();
 exports.auth = auth;
-var googleapis_common_2 = require("googleapis-common");
+const googleapis_common_2 = require("googleapis-common");
 Object.defineProperty(exports, "AuthPlus", { enumerable: true, get: function () { return googleapis_common_2.AuthPlus; } });

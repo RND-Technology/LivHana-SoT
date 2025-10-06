@@ -4,16 +4,16 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.selectRadiusAxisRangeWithReversed = exports.selectRadiusAxisRange = exports.selectRadiusAxis = exports.selectPolarViewBox = exports.selectPolarOptions = exports.selectOuterRadius = exports.selectMaxRadius = exports.selectAngleAxisRangeWithReversed = exports.selectAngleAxisRange = exports.selectAngleAxis = exports.implicitRadiusAxis = exports.implicitRadialBarRadiusAxis = exports.implicitRadialBarAngleAxis = exports.implicitAngleAxis = void 0;
-var _reselect = require("reselect");
-var _containerSelectors = require("./containerSelectors");
-var _selectChartOffsetInternal = require("./selectChartOffsetInternal");
-var _PolarUtils = require("../../util/PolarUtils");
-var _DataUtils = require("../../util/DataUtils");
-var _defaultPolarAngleAxisProps = require("../../polar/defaultPolarAngleAxisProps");
-var _defaultPolarRadiusAxisProps = require("../../polar/defaultPolarRadiusAxisProps");
-var _combineAxisRangeWithReverse = require("./combiners/combineAxisRangeWithReverse");
-var _chartLayoutContext = require("../../context/chartLayoutContext");
-var implicitAngleAxis = exports.implicitAngleAxis = {
+const _reselect = require("reselect");
+const _containerSelectors = require("./containerSelectors");
+const _selectChartOffsetInternal = require("./selectChartOffsetInternal");
+const _PolarUtils = require("../../util/PolarUtils");
+const _DataUtils = require("../../util/DataUtils");
+const _defaultPolarAngleAxisProps = require("../../polar/defaultPolarAngleAxisProps");
+const _defaultPolarRadiusAxisProps = require("../../polar/defaultPolarRadiusAxisProps");
+const _combineAxisRangeWithReverse = require("./combiners/combineAxisRangeWithReverse");
+const _chartLayoutContext = require("../../context/chartLayoutContext");
+const implicitAngleAxis = exports.implicitAngleAxis = {
   allowDataOverflow: false,
   allowDecimals: false,
   allowDuplicatedCategory: false,
@@ -31,7 +31,7 @@ var implicitAngleAxis = exports.implicitAngleAxis = {
   type: _defaultPolarAngleAxisProps.defaultPolarAngleAxisProps.type,
   unit: undefined
 };
-var implicitRadiusAxis = exports.implicitRadiusAxis = {
+const implicitRadiusAxis = exports.implicitRadiusAxis = {
   allowDataOverflow: _defaultPolarRadiusAxisProps.defaultPolarRadiusAxisProps.allowDataOverflow,
   allowDecimals: false,
   allowDuplicatedCategory: _defaultPolarRadiusAxisProps.defaultPolarRadiusAxisProps.allowDuplicatedCategory,
@@ -48,7 +48,7 @@ var implicitRadiusAxis = exports.implicitRadiusAxis = {
   type: _defaultPolarRadiusAxisProps.defaultPolarRadiusAxisProps.type,
   unit: undefined
 };
-var implicitRadialBarAngleAxis = exports.implicitRadialBarAngleAxis = {
+const implicitRadialBarAngleAxis = exports.implicitRadialBarAngleAxis = {
   allowDataOverflow: false,
   allowDecimals: false,
   allowDuplicatedCategory: _defaultPolarAngleAxisProps.defaultPolarAngleAxisProps.allowDuplicatedCategory,
@@ -65,7 +65,7 @@ var implicitRadialBarAngleAxis = exports.implicitRadialBarAngleAxis = {
   type: 'number',
   unit: undefined
 };
-var implicitRadialBarRadiusAxis = exports.implicitRadialBarRadiusAxis = {
+const implicitRadialBarRadiusAxis = exports.implicitRadialBarRadiusAxis = {
   allowDataOverflow: _defaultPolarRadiusAxisProps.defaultPolarRadiusAxisProps.allowDataOverflow,
   allowDecimals: false,
   allowDuplicatedCategory: _defaultPolarRadiusAxisProps.defaultPolarRadiusAxisProps.allowDuplicatedCategory,
@@ -82,7 +82,7 @@ var implicitRadialBarRadiusAxis = exports.implicitRadialBarRadiusAxis = {
   type: 'category',
   unit: undefined
 };
-var selectAngleAxis = (state, angleAxisId) => {
+const selectAngleAxis = (state, angleAxisId) => {
   if (state.polarAxis.angleAxis[angleAxisId] != null) {
     return state.polarAxis.angleAxis[angleAxisId];
   }
@@ -92,7 +92,7 @@ var selectAngleAxis = (state, angleAxisId) => {
   return implicitAngleAxis;
 };
 exports.selectAngleAxis = selectAngleAxis;
-var selectRadiusAxis = (state, radiusAxisId) => {
+const selectRadiusAxis = (state, radiusAxisId) => {
   if (state.polarAxis.radiusAxis[radiusAxisId] != null) {
     return state.polarAxis.radiusAxis[radiusAxisId];
   }
@@ -102,45 +102,45 @@ var selectRadiusAxis = (state, radiusAxisId) => {
   return implicitRadiusAxis;
 };
 exports.selectRadiusAxis = selectRadiusAxis;
-var selectPolarOptions = state => state.polarOptions;
+const selectPolarOptions = state => state.polarOptions;
 exports.selectPolarOptions = selectPolarOptions;
-var selectMaxRadius = exports.selectMaxRadius = (0, _reselect.createSelector)([_containerSelectors.selectChartWidth, _containerSelectors.selectChartHeight, _selectChartOffsetInternal.selectChartOffsetInternal], _PolarUtils.getMaxRadius);
-var selectInnerRadius = (0, _reselect.createSelector)([selectPolarOptions, selectMaxRadius], (polarChartOptions, maxRadius) => {
+const selectMaxRadius = exports.selectMaxRadius = (0, _reselect.createSelector)([_containerSelectors.selectChartWidth, _containerSelectors.selectChartHeight, _selectChartOffsetInternal.selectChartOffsetInternal], _PolarUtils.getMaxRadius);
+const selectInnerRadius = (0, _reselect.createSelector)([selectPolarOptions, selectMaxRadius], (polarChartOptions, maxRadius) => {
   if (polarChartOptions == null) {
     return undefined;
   }
   return (0, _DataUtils.getPercentValue)(polarChartOptions.innerRadius, maxRadius, 0);
 });
-var selectOuterRadius = exports.selectOuterRadius = (0, _reselect.createSelector)([selectPolarOptions, selectMaxRadius], (polarChartOptions, maxRadius) => {
+const selectOuterRadius = exports.selectOuterRadius = (0, _reselect.createSelector)([selectPolarOptions, selectMaxRadius], (polarChartOptions, maxRadius) => {
   if (polarChartOptions == null) {
     return undefined;
   }
   return (0, _DataUtils.getPercentValue)(polarChartOptions.outerRadius, maxRadius, maxRadius * 0.8);
 });
-var combineAngleAxisRange = polarOptions => {
+const combineAngleAxisRange = polarOptions => {
   if (polarOptions == null) {
     return [0, 0];
   }
-  var {
+  const {
     startAngle,
     endAngle
   } = polarOptions;
   return [startAngle, endAngle];
 };
-var selectAngleAxisRange = exports.selectAngleAxisRange = (0, _reselect.createSelector)([selectPolarOptions], combineAngleAxisRange);
-var selectAngleAxisRangeWithReversed = exports.selectAngleAxisRangeWithReversed = (0, _reselect.createSelector)([selectAngleAxis, selectAngleAxisRange], _combineAxisRangeWithReverse.combineAxisRangeWithReverse);
-var selectRadiusAxisRange = exports.selectRadiusAxisRange = (0, _reselect.createSelector)([selectMaxRadius, selectInnerRadius, selectOuterRadius], (maxRadius, innerRadius, outerRadius) => {
+const selectAngleAxisRange = exports.selectAngleAxisRange = (0, _reselect.createSelector)([selectPolarOptions], combineAngleAxisRange);
+const selectAngleAxisRangeWithReversed = exports.selectAngleAxisRangeWithReversed = (0, _reselect.createSelector)([selectAngleAxis, selectAngleAxisRange], _combineAxisRangeWithReverse.combineAxisRangeWithReverse);
+const selectRadiusAxisRange = exports.selectRadiusAxisRange = (0, _reselect.createSelector)([selectMaxRadius, selectInnerRadius, selectOuterRadius], (maxRadius, innerRadius, outerRadius) => {
   if (maxRadius == null || innerRadius == null || outerRadius == null) {
     return undefined;
   }
   return [innerRadius, outerRadius];
 });
-var selectRadiusAxisRangeWithReversed = exports.selectRadiusAxisRangeWithReversed = (0, _reselect.createSelector)([selectRadiusAxis, selectRadiusAxisRange], _combineAxisRangeWithReverse.combineAxisRangeWithReverse);
-var selectPolarViewBox = exports.selectPolarViewBox = (0, _reselect.createSelector)([_chartLayoutContext.selectChartLayout, selectPolarOptions, selectInnerRadius, selectOuterRadius, _containerSelectors.selectChartWidth, _containerSelectors.selectChartHeight], (layout, polarOptions, innerRadius, outerRadius, width, height) => {
+const selectRadiusAxisRangeWithReversed = exports.selectRadiusAxisRangeWithReversed = (0, _reselect.createSelector)([selectRadiusAxis, selectRadiusAxisRange], _combineAxisRangeWithReverse.combineAxisRangeWithReverse);
+const selectPolarViewBox = exports.selectPolarViewBox = (0, _reselect.createSelector)([_chartLayoutContext.selectChartLayout, selectPolarOptions, selectInnerRadius, selectOuterRadius, _containerSelectors.selectChartWidth, _containerSelectors.selectChartHeight], (layout, polarOptions, innerRadius, outerRadius, width, height) => {
   if (layout !== 'centric' && layout !== 'radial' || polarOptions == null || innerRadius == null || outerRadius == null) {
     return undefined;
   }
-  var {
+  const {
     cx,
     cy,
     startAngle,

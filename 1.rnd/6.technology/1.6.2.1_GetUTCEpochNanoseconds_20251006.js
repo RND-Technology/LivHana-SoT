@@ -1,16 +1,16 @@
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+const GetIntrinsic = require('get-intrinsic');
 
-var MakeDay = require('./MakeDay');
-var MakeTime = require('./MakeTime');
-var MakeDate = require('./MakeDate');
+const MakeDay = require('./MakeDay');
+const MakeTime = require('./MakeTime');
+const MakeDate = require('./MakeDate');
 
-var isInteger = require('math-intrinsics/isInteger');
+const isInteger = require('math-intrinsics/isInteger');
 
-var $BigInt = GetIntrinsic('%BigInt%', true);
-var $SyntaxError = GetIntrinsic('%SyntaxError%');
-var $TypeError = GetIntrinsic('%TypeError%');
+const $BigInt = GetIntrinsic('%BigInt%', true);
+const $SyntaxError = GetIntrinsic('%SyntaxError%');
+const $TypeError = GetIntrinsic('%TypeError%');
 
 // https://tc39.es/ecma262/#sec-getutcepochnanoseconds
 
@@ -54,9 +54,9 @@ module.exports = function GetUTCEpochNanoseconds(
 		throw new $TypeError('Assertion failed: `nanosecond` must be an integral Number between 0 and 999, inclusive');
 	}
 
-	var date = MakeDay(year, month - 1, day); // step 1
-	var time = MakeTime(hour, minute, second, millisecond); // step 2
-	var ms = MakeDate(date, time); // step 3
+	const date = MakeDay(year, month - 1, day); // step 1
+	const time = MakeTime(hour, minute, second, millisecond); // step 2
+	const ms = MakeDate(date, time); // step 3
 	if (!isInteger(ms)) {
 		throw new $TypeError('Assertion failed: `ms` from MakeDate is not an integral Number'); // step 4
 	}

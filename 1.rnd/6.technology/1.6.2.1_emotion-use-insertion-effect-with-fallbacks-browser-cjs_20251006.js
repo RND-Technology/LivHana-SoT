@@ -2,15 +2,15 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var React = require('react');
+const React = require('react');
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
-  var n = Object.create(null);
+  const n = Object.create(null);
   if (e) {
     Object.keys(e).forEach(function (k) {
       if (k !== 'default') {
-        var d = Object.getOwnPropertyDescriptor(e, k);
+        const d = Object.getOwnPropertyDescriptor(e, k);
         Object.defineProperty(n, k, d.get ? d : {
           enumerable: true,
           get: function () { return e[k]; }
@@ -22,15 +22,15 @@ function _interopNamespace(e) {
   return Object.freeze(n);
 }
 
-var React__namespace = /*#__PURE__*/_interopNamespace(React);
+const React__namespace = /*#__PURE__*/_interopNamespace(React);
 
-var syncFallback = function syncFallback(create) {
+const syncFallback = function syncFallback(create) {
   return create();
 };
 
-var useInsertionEffect = React__namespace['useInsertion' + 'Effect'] ? React__namespace['useInsertion' + 'Effect'] : false;
-var useInsertionEffectAlwaysWithSyncFallback = useInsertionEffect || syncFallback;
-var useInsertionEffectWithLayoutFallback = useInsertionEffect || React__namespace.useLayoutEffect;
+const useInsertionEffect = React__namespace['useInsertion' + 'Effect'] ? React__namespace['useInsertion' + 'Effect'] : false;
+const useInsertionEffectAlwaysWithSyncFallback = useInsertionEffect || syncFallback;
+const useInsertionEffectWithLayoutFallback = useInsertionEffect || React__namespace.useLayoutEffect;
 
 exports.useInsertionEffectAlwaysWithSyncFallback = useInsertionEffectAlwaysWithSyncFallback;
 exports.useInsertionEffectWithLayoutFallback = useInsertionEffectWithLayoutFallback;

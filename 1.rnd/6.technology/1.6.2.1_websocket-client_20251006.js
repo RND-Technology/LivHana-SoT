@@ -70,8 +70,8 @@ const initialize = function () {
         setInterval(sendHC, HC_INTERVAL_MS);
         sendHC();
         try {
-            let apiEndpoints = require('../../../instrumentation-security/core/route-manager').getAllAPIEndPoints();
-            let data = require('./apiEndpoints').APIEndPoint(apiEndpoints);
+            const apiEndpoints = require('../../../instrumentation-security/core/route-manager').getAllAPIEndPoints();
+            const data = require('./apiEndpoints').APIEndPoint(apiEndpoints);
             logger.debug("All API end points of the application is:", JSON.stringify(data));
             getDispatcherAndSendEvent(data);
             require('../core/ExceptionReporting').startExceptionSendingSchedular();
@@ -114,8 +114,8 @@ function initializeInMainThread() {
 
 function getTestIdentifier() {
     try {
-        let authHeaders = require('./Auth-headers').getInstance();
-        let testIdentifer = authHeaders['NR-CSEC-IAST-TEST-IDENTIFIER'] ? authHeaders['NR-CSEC-IAST-TEST-IDENTIFIER'] : '';
+        const authHeaders = require('./Auth-headers').getInstance();
+        const testIdentifer = authHeaders['NR-CSEC-IAST-TEST-IDENTIFIER'] ? authHeaders['NR-CSEC-IAST-TEST-IDENTIFIER'] : '';
         return testIdentifer
     } catch (error) {
         logger.debug("unable to get test identifier", error);
@@ -201,7 +201,7 @@ function getDispatcherAndSendEvent(eventJson) {
 function sendEvent(event, callback = DEFAULT_EVENT_SEND_CB) {
     dispatcher(event);
     callback();
-};
+}
 
 
 function obeyReconnect() {

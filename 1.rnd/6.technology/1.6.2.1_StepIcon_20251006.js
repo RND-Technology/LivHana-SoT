@@ -2,7 +2,7 @@
 
 import _extends from "@babel/runtime/helpers/esm/extends";
 import _objectWithoutPropertiesLoose from "@babel/runtime/helpers/esm/objectWithoutPropertiesLoose";
-var _circle;
+let _circle;
 const _excluded = ["active", "className", "completed", "error", "icon"];
 import * as React from 'react';
 import PropTypes from 'prop-types';

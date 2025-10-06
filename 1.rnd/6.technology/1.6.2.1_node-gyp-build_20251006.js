@@ -1,26 +1,26 @@
-var fs = require('fs')
-var path = require('path')
-var url = require('url')
-var os = require('os')
+const fs = require('fs')
+const path = require('path')
+const url = require('url')
+const os = require('os')
 // Workaround to fix webpack's build warnings: 'the request of a dependency is an expression'
 var runtimeRequire = typeof __webpack_require__ === 'function' ? __non_webpack_require__ : require // eslint-disable-line
 
-var vars = (process.config && process.config.variables) || {}
-var prebuildsOnly = !!process.env.PREBUILDS_ONLY
-var versions = process.versions
-var abi = versions.modules
+const vars = (process.config && process.config.variables) || {}
+const prebuildsOnly = !!process.env.PREBUILDS_ONLY
+const versions = process.versions
+let abi = versions.modules
 if (versions.deno || process.isBun) {
   // both Deno and Bun made the very poor decision to shoot themselves in the foot and lie about support for ABI
   // (which they do not have)
   abi = 'unsupported'
 }
-var runtime = isElectron() ? 'electron' : (isNwjs() ? 'node-webkit' : 'node')
-var arch = process.env.npm_config_arch || os.arch()
-var platform = process.env.npm_config_platform || os.platform()
-var libc = process.env.LIBC || (isMusl(platform) ? 'musl' : 'glibc')
+const runtime = isElectron() ? 'electron' : (isNwjs() ? 'node-webkit' : 'node')
+const arch = process.env.npm_config_arch || os.arch()
+const platform = process.env.npm_config_platform || os.platform()
+const libc = process.env.LIBC || (isMusl(platform) ? 'musl' : 'glibc')
 
-var armv = process.env.ARM_VERSION || (arch === 'arm64' ? '8' : vars.arm_version) || ''
-var uv = (versions.uv || '').split('.')[0]
+const armv = process.env.ARM_VERSION || (arch === 'arm64' ? '8' : vars.arm_version) || ''
+const uv = (versions.uv || '').split('.')[0]
 
 module.exports = load
 
@@ -30,39 +30,39 @@ function load (dir) {
 
 load.resolve = load.path = function (dir) {
   dir = path.resolve(dir || '.')
-  var packageName = ''
-  var packageNameError
+  let packageName = ''
+  let packageNameError
   try {
     packageName = runtimeRequire(path.join(dir, 'package.json')).name;
-    var varName = packageName.toUpperCase().replace(/-/g, '_')
+    const varName = packageName.toUpperCase().replace(/-/g, '_')
     if (process.env[varName + '_PREBUILD']) dir = process.env[varName + '_PREBUILD']
   } catch (err) {
     packageNameError = err;
   }
   if (!prebuildsOnly) {
-    var release = getFirst(path.join(dir, 'build/Release'), matchBuild)
+    const release = getFirst(path.join(dir, 'build/Release'), matchBuild)
     if (release) return release
 
-    var debug = getFirst(path.join(dir, 'build/Debug'), matchBuild)
+    const debug = getFirst(path.join(dir, 'build/Debug'), matchBuild)
     if (debug) return debug
   }
 
-  var prebuild = resolve(dir)
+  const prebuild = resolve(dir)
   if (prebuild) return prebuild
 
-  var nearby = resolve(path.dirname(process.execPath))
+  const nearby = resolve(path.dirname(process.execPath))
   if (nearby) return nearby
 
-  var platformPackage = (packageName[0] == '@' ? '' : '@' + packageName + '/') + packageName + '-' + platform + '-' + arch
-  var packageResolutionError
+  const platformPackage = (packageName[0] == '@' ? '' : '@' + packageName + '/') + packageName + '-' + platform + '-' + arch
+  let packageResolutionError
   try {
-    var prebuildPackage = path.dirname(require('module').createRequire(url.pathToFileURL(path.join(dir, 'package.json'))).resolve(platformPackage))
+    const prebuildPackage = path.dirname(require('module').createRequire(url.pathToFileURL(path.join(dir, 'package.json'))).resolve(platformPackage))
     return resolveFile(prebuildPackage)
   } catch(error) {
     packageResolutionError = error
   }
 
-  var target = [
+  const target = [
     'platform=' + platform,
     'arch=' + arch,
     'runtime=' + runtime,
@@ -86,16 +86,16 @@ load.resolve = load.path = function (dir) {
 
   function resolve (dir) {
     // Find matching "prebuilds/<platform>-<arch>" directory
-    var tuples = readdirSync(path.join(dir, 'prebuilds')).map(parseTuple)
-    var tuple = tuples.filter(matchTuple(platform, arch)).sort(compareTuples)[0]
+    const tuples = readdirSync(path.join(dir, 'prebuilds')).map(parseTuple)
+    const tuple = tuples.filter(matchTuple(platform, arch)).sort(compareTuples)[0]
     if (!tuple) return
     return resolveFile(path.join(dir, 'prebuilds', tuple.name))
   }
   function resolveFile (prebuilds) {
     // Find most specific flavor first
-    var parsed = readdirSync(prebuilds).map(parseTags)
-    var candidates = parsed.filter(matchTags(runtime, abi))
-    var winner = candidates.sort(compareTags(runtime))[0]
+    const parsed = readdirSync(prebuilds).map(parseTags)
+    const candidates = parsed.filter(matchTags(runtime, abi))
+    const winner = candidates.sort(compareTags(runtime))[0]
     if (winner) return path.join(prebuilds, winner.file)
   }
 }
@@ -109,7 +109,7 @@ function readdirSync (dir) {
 }
 
 function getFirst (dir, filter) {
-  var files = readdirSync(dir).filter(filter)
+  const files = readdirSync(dir).filter(filter)
   return files[0] && path.join(dir, files[0])
 }
 
@@ -119,11 +119,11 @@ function matchBuild (name) {
 
 function parseTuple (name) {
   // Example: darwin-x64+arm64
-  var arr = name.split('-')
+  const arr = name.split('-')
   if (arr.length !== 2) return
 
-  var platform = arr[0]
-  var architectures = arr[1].split('+')
+  const platform = arr[0]
+  const architectures = arr[1].split('+')
 
   if (!platform) return
   if (!architectures.length) return
@@ -146,14 +146,14 @@ function compareTuples (a, b) {
 }
 
 function parseTags (file) {
-  var arr = file.split('.')
-  var extension = arr.pop()
-  var tags = { file: file, specificity: 0 }
+  const arr = file.split('.')
+  const extension = arr.pop()
+  const tags = { file: file, specificity: 0 }
 
   if (extension !== 'node') return
 
-  for (var i = 0; i < arr.length; i++) {
-    var tag = arr[i]
+  for (let i = 0; i < arr.length; i++) {
+    const tag = arr[i]
 
     if (tag === 'node' || tag === 'electron' || tag === 'node-webkit') {
       tags.runtime = tag

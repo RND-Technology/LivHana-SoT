@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
 exports.checkoutMerchantSettingsSchema = void 0;
-var schema_1 = require("../schema");
-var checkoutMerchantSettingsPaymentMethods_1 = require("./checkoutMerchantSettingsPaymentMethods");
+const schema_1 = require("../schema");
+const checkoutMerchantSettingsPaymentMethods_1 = require("./checkoutMerchantSettingsPaymentMethods");
 exports.checkoutMerchantSettingsSchema = (0, schema_1.object)({
     paymentMethods: [
         'payment_methods',

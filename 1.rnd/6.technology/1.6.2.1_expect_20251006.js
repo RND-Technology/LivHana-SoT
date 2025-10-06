@@ -1,22 +1,22 @@
 "use strict";
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __export = (target, all) => {
+  for (const name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var expect_exports = {};
+const __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+const expect_exports = {};
 __export(expect_exports, {
   expect: () => expect,
   mergeExpects: () => mergeExpects,
@@ -24,15 +24,15 @@ __export(expect_exports, {
   printReceivedStringContainExpectedSubstring: () => printReceivedStringContainExpectedSubstring
 });
 module.exports = __toCommonJS(expect_exports);
-var import_utils = require("playwright-core/lib/utils");
-var import_matcherHint = require("./matcherHint");
-var import_matchers = require("./matchers");
-var import_toMatchAriaSnapshot = require("./toMatchAriaSnapshot");
-var import_toMatchSnapshot = require("./toMatchSnapshot");
-var import_expectBundle = require("../common/expectBundle");
-var import_globals = require("../common/globals");
-var import_util = require("../util");
-var import_testInfo = require("../worker/testInfo");
+const import_utils = require("playwright-core/lib/utils");
+const import_matcherHint = require("./matcherHint");
+const import_matchers = require("./matchers");
+const import_toMatchAriaSnapshot = require("./toMatchAriaSnapshot");
+const import_toMatchSnapshot = require("./toMatchSnapshot");
+const import_expectBundle = require("../common/expectBundle");
+const import_globals = require("../common/globals");
+const import_util = require("../util");
+const import_testInfo = require("../worker/testInfo");
 const printSubstring = (val) => val.replace(/"|\\/g, "\\$&");
 const printReceivedStringContainExpectedSubstring = (received, start, length) => (0, import_expectBundle.RECEIVED_COLOR)(
   '"' + printSubstring(received.slice(0, start)) + (0, import_expectBundle.INVERTED_COLOR)(printSubstring(received.slice(start, start + length))) + printSubstring(received.slice(start + length)) + '"'

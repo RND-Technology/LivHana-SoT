@@ -1,5 +1,5 @@
 //.CommonJS
-var CSSOM = {};
+const CSSOM = {};
 ///CommonJS
 
 
@@ -17,19 +17,19 @@ CSSOM.CSSValue.prototype = {
 
 	// @see: http://www.w3.org/TR/DOM-Level-2-Style/css.html#CSS-CSSValue
 	set cssText(text) {
-		var name = this._getConstructorName();
+		const name = this._getConstructorName();
 
 		throw new Error('DOMException: property "cssText" of "' + name + '" is readonly and can not be replaced with "' + text + '"!');
 	},
 
 	get cssText() {
-		var name = this._getConstructorName();
+		const name = this._getConstructorName();
 
 		throw new Error('getter "cssText" of "' + name + '" is not implemented!');
 	},
 
 	_getConstructorName: function() {
-		var s = this.constructor.toString(),
+		const s = this.constructor.toString(),
 				c = s.match(/function\s([^\(]+)/),
 				name = c[1];
 

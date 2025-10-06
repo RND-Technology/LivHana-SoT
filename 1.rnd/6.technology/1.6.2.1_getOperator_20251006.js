@@ -1,10 +1,10 @@
-var type = require('type-detect');
+const type = require('type-detect');
 
-var flag = require('./flag');
+const flag = require('./flag');
 
 function isObjectType(obj) {
-  var objectType = type(obj);
-  var objectTypes = ['Array', 'Object', 'function'];
+  const objectType = type(obj);
+  const objectTypes = ['Array', 'Object', 'function'];
 
   return objectTypes.indexOf(objectType) !== -1;
 }
@@ -26,10 +26,10 @@ function isObjectType(obj) {
  */
 
 module.exports = function getOperator(obj, args) {
-  var operator = flag(obj, 'operator');
-  var negate = flag(obj, 'negate');
-  var expected = args[3];
-  var msg = negate ? args[2] : args[1];
+  const operator = flag(obj, 'operator');
+  const negate = flag(obj, 'negate');
+  const expected = args[3];
+  let msg = negate ? args[2] : args[1];
 
   if (operator) {
     return operator;
@@ -46,7 +46,7 @@ module.exports = function getOperator(obj, args) {
     return undefined;
   }
 
-  var isObject = isObjectType(expected);
+  const isObject = isObjectType(expected);
   if (/\snot\s/.test(msg)) {
     return isObject ? 'notDeepStrictEqual' : 'notStrictEqual';
   }

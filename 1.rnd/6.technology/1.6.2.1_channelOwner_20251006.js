@@ -1,31 +1,31 @@
 "use strict";
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __export = (target, all) => {
+  for (const name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var channelOwner_exports = {};
+const __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+const channelOwner_exports = {};
 __export(channelOwner_exports, {
   ChannelOwner: () => ChannelOwner
 });
 module.exports = __toCommonJS(channelOwner_exports);
-var import_eventEmitter = require("./eventEmitter");
-var import_validator = require("../protocol/validator");
-var import_protocolMetainfo = require("../utils/isomorphic/protocolMetainfo");
-var import_clientStackTrace = require("./clientStackTrace");
-var import_stackTrace = require("../utils/isomorphic/stackTrace");
+const import_eventEmitter = require("./eventEmitter");
+const import_validator = require("../protocol/validator");
+const import_protocolMetainfo = require("../utils/isomorphic/protocolMetainfo");
+const import_clientStackTrace = require("./clientStackTrace");
+const import_stackTrace = require("../utils/isomorphic/stackTrace");
 class ChannelOwner extends import_eventEmitter.EventEmitter {
   constructor(parent, type, guid, initializer) {
     const connection = parent instanceof ChannelOwner ? parent._connection : parent;

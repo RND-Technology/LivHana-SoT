@@ -88,5 +88,5 @@ const config: Config = {`;
     ''
   ].join('\n');
 };
-var _default = generateConfigFile;
+const _default = generateConfigFile;
 exports.default = _default;

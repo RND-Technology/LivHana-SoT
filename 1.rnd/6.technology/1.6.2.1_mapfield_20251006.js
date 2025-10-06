@@ -2,10 +2,10 @@
 module.exports = MapField;
 
 // extends Field
-var Field = require("./field");
+const Field = require("./field");
 ((MapField.prototype = Object.create(Field.prototype)).constructor = MapField).className = "MapField";
 
-var types   = require("./types"),
+const types   = require("./types"),
     util    = require("./util");
 
 /**
@@ -74,7 +74,7 @@ MapField.fromJSON = function fromJSON(name, json) {
  * @returns {IMapField} Map field descriptor
  */
 MapField.prototype.toJSON = function toJSON(toJSONOptions) {
-    var keepComments = toJSONOptions ? Boolean(toJSONOptions.keepComments) : false;
+    const keepComments = toJSONOptions ? Boolean(toJSONOptions.keepComments) : false;
     return util.toObject([
         "keyType" , this.keyType,
         "type"    , this.type,

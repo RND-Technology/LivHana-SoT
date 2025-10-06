@@ -1,37 +1,37 @@
 "use strict";
 'use client';
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+const _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-var React = _interopRequireWildcard(require("react"));
-var _reactIs = require("react-is");
-var _propTypes = _interopRequireDefault(require("prop-types"));
-var _clsx = _interopRequireDefault(require("clsx"));
-var _refType = _interopRequireDefault(require("@mui/utils/refType"));
-var _composeClasses = _interopRequireDefault(require("@mui/utils/composeClasses"));
-var _RtlProvider = require("@mui/system/RtlProvider");
-var _useSlotProps = _interopRequireDefault(require("@mui/utils/useSlotProps"));
-var _styled = _interopRequireDefault(require("../styles/styled"));
-var _DefaultPropsProvider = require("../DefaultPropsProvider");
-var _useTheme = _interopRequireDefault(require("../styles/useTheme"));
-var _debounce = _interopRequireDefault(require("../utils/debounce"));
-var _scrollLeft = require("../utils/scrollLeft");
-var _animate = _interopRequireDefault(require("../internal/animate"));
-var _ScrollbarSize = _interopRequireDefault(require("./ScrollbarSize"));
-var _TabScrollButton = _interopRequireDefault(require("../TabScrollButton"));
-var _useEventCallback = _interopRequireDefault(require("../utils/useEventCallback"));
-var _tabsClasses = _interopRequireWildcard(require("./tabsClasses"));
-var _ownerDocument = _interopRequireDefault(require("../utils/ownerDocument"));
-var _ownerWindow = _interopRequireDefault(require("../utils/ownerWindow"));
-var _jsxRuntime = require("react/jsx-runtime");
+const _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+const _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+const React = _interopRequireWildcard(require("react"));
+const _reactIs = require("react-is");
+const _propTypes = _interopRequireDefault(require("prop-types"));
+const _clsx = _interopRequireDefault(require("clsx"));
+const _refType = _interopRequireDefault(require("@mui/utils/refType"));
+const _composeClasses = _interopRequireDefault(require("@mui/utils/composeClasses"));
+const _RtlProvider = require("@mui/system/RtlProvider");
+const _useSlotProps = _interopRequireDefault(require("@mui/utils/useSlotProps"));
+const _styled = _interopRequireDefault(require("../styles/styled"));
+const _DefaultPropsProvider = require("../DefaultPropsProvider");
+const _useTheme = _interopRequireDefault(require("../styles/useTheme"));
+const _debounce = _interopRequireDefault(require("../utils/debounce"));
+const _scrollLeft = require("../utils/scrollLeft");
+const _animate = _interopRequireDefault(require("../internal/animate"));
+const _ScrollbarSize = _interopRequireDefault(require("./ScrollbarSize"));
+const _TabScrollButton = _interopRequireDefault(require("../TabScrollButton"));
+const _useEventCallback = _interopRequireDefault(require("../utils/useEventCallback"));
+const _tabsClasses = _interopRequireWildcard(require("./tabsClasses"));
+const _ownerDocument = _interopRequireDefault(require("../utils/ownerDocument"));
+const _ownerWindow = _interopRequireDefault(require("../utils/ownerWindow"));
+const _jsxRuntime = require("react/jsx-runtime");
 const _excluded = ["aria-label", "aria-labelledby", "action", "centered", "children", "className", "component", "allowScrollButtonsMobile", "indicatorColor", "onChange", "orientation", "ScrollButtonComponent", "scrollButtons", "selectionFollowsFocus", "slots", "slotProps", "TabIndicatorProps", "TabScrollButtonProps", "textColor", "value", "variant", "visibleScrollbar"];
-function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
-function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; const r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; const t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); const n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (const u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { const i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 const nextItem = (list, item) => {
   if (list === item) {
     return list.firstChild;
@@ -517,11 +517,11 @@ const Tabs = /*#__PURE__*/React.forwardRef(function Tabs(inProps, ref) {
     const handleMutation = records => {
       records.forEach(record => {
         record.removedNodes.forEach(item => {
-          var _resizeObserver;
+          let _resizeObserver;
           (_resizeObserver = resizeObserver) == null || _resizeObserver.unobserve(item);
         });
         record.addedNodes.forEach(item => {
-          var _resizeObserver2;
+          let _resizeObserver2;
           (_resizeObserver2 = resizeObserver) == null || _resizeObserver2.observe(item);
         });
       });
@@ -544,7 +544,7 @@ const Tabs = /*#__PURE__*/React.forwardRef(function Tabs(inProps, ref) {
       });
     }
     return () => {
-      var _mutationObserver, _resizeObserver3;
+      let _mutationObserver, _resizeObserver3;
       handleResize.clear();
       win.removeEventListener('resize', handleResize);
       (_mutationObserver = mutationObserver) == null || _mutationObserver.disconnect();
@@ -844,4 +844,4 @@ process.env.NODE_ENV !== "production" ? Tabs.propTypes /* remove-proptypes */ = 
    */
   visibleScrollbar: _propTypes.default.bool
 } : void 0;
-var _default = exports.default = Tabs;
+const _default = exports.default = Tabs;

@@ -1,6 +1,6 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _chunk4YBV77DGjs = require('./chunk-4YBV77DG.js');
+const _chunk4YBV77DGjs = require('./chunk-4YBV77DG.js');
 
 
 
@@ -8,29 +8,29 @@ var _chunk4YBV77DGjs = require('./chunk-4YBV77DG.js');
 
 
 
-var _chunk72ZIHMEBjs = require('./chunk-72ZIHMEB.js');
+const _chunk72ZIHMEBjs = require('./chunk-72ZIHMEB.js');
 
 
 
 
 
-var _chunkA7U44ARPjs = require('./chunk-A7U44ARP.js');
+const _chunkA7U44ARPjs = require('./chunk-A7U44ARP.js');
 
 
-var _chunkSMXZPJEAjs = require('./chunk-SMXZPJEA.js');
+const _chunkSMXZPJEAjs = require('./chunk-SMXZPJEA.js');
 
 // src/interceptors/ClientRequest/index.ts
-var _http = require('http'); var _http2 = _interopRequireDefault(_http);
-var _https = require('https'); var _https2 = _interopRequireDefault(_https);
+const _http = require('http'); const _http2 = _interopRequireDefault(_http);
+const _https = require('https'); const _https2 = _interopRequireDefault(_https);
 
 // src/interceptors/ClientRequest/MockHttpSocket.ts
-var _net = require('net'); var _net2 = _interopRequireDefault(_net);
+const _net = require('net'); const _net2 = _interopRequireDefault(_net);
 
 
-var __http_common = require('_http_common');
+const __http_common = require('_http_common');
 
-var _stream = require('stream');
-var _outvariant = require('outvariant');
+const _stream = require('stream');
+const _outvariant = require('outvariant');
 
 // src/interceptors/Socket/MockSocket.ts
 
@@ -50,7 +50,7 @@ function normalizeSocketWriteArgs(args) {
 }
 
 // src/interceptors/Socket/MockSocket.ts
-var MockSocket = class extends _net2.default.Socket {
+const MockSocket = class extends _net2.default.Socket {
   constructor(options) {
     super();
     this.options = options;
@@ -107,8 +107,8 @@ function baseUrlFromConnectionOptions(options) {
 }
 
 // src/interceptors/ClientRequest/utils/recordRawHeaders.ts
-var kRawHeaders = Symbol("kRawHeaders");
-var kRestorePatches = Symbol("kRestorePatches");
+const kRawHeaders = Symbol("kRawHeaders");
+const kRestorePatches = Symbol("kRestorePatches");
 function recordRawHeader(headers, args, behavior) {
   ensureRawHeadersSymbol(headers, []);
   const rawHeaders = Reflect.get(headers, kRawHeaders);
@@ -278,12 +278,12 @@ function inferRawHeaders(headers) {
 }
 
 // src/interceptors/ClientRequest/MockHttpSocket.ts
-var kRequestId = Symbol("kRequestId");
-var MockHttpSocket = class extends MockSocket {
+const kRequestId = Symbol("kRequestId");
+const MockHttpSocket = class extends MockSocket {
   constructor(options) {
     super({
       write: (chunk, encoding, callback) => {
-        var _a;
+        let _a;
         if (this.socketState !== "passthrough") {
           this.writeBuffer.push([chunk, encoding, callback]);
         }
@@ -319,7 +319,7 @@ var MockHttpSocket = class extends MockSocket {
       this.requestRawHeadersBuffer.push(...rawHeaders);
     };
     this.onRequestStart = (versionMajor, versionMinor, rawHeaders, _, path, __, ___, ____, shouldKeepAlive) => {
-      var _a;
+      let _a;
       this.shouldKeepAlive = shouldKeepAlive;
       const url = new URL(path || "", this.baseUrl);
       const method = ((_a = this.connectionOptions.method) == null ? void 0 : _a.toUpperCase()) || "GET";
@@ -541,7 +541,7 @@ var MockHttpSocket = class extends MockSocket {
    * HTTP message and push it to the socket.
    */
   async respondWith(response) {
-    var _a;
+    let _a;
     if (this.destroyed) {
       return;
     }
@@ -669,7 +669,7 @@ var MockHttpSocket = class extends MockSocket {
 // src/interceptors/ClientRequest/agents.ts
 
 
-var MockAgent = class extends _http2.default.Agent {
+const MockAgent = class extends _http2.default.Agent {
   constructor(options) {
     super();
     this.customAgent = options.customAgent;
@@ -695,7 +695,7 @@ var MockAgent = class extends _http2.default.Agent {
     return socket;
   }
 };
-var MockHttpsAgent = class extends _https2.default.Agent {
+const MockHttpsAgent = class extends _https2.default.Agent {
   constructor(options) {
     super();
     this.customAgent = options.customAgent;
@@ -723,7 +723,7 @@ var MockHttpsAgent = class extends _https2.default.Agent {
 };
 
 // src/interceptors/ClientRequest/utils/normalizeClientRequestArgs.ts
-var _url = require('url');
+const _url = require('url');
 
 
 
@@ -734,21 +734,21 @@ var _url = require('url');
 
 
 
-var _logger = require('@open-draft/logger');
+const _logger = require('@open-draft/logger');
 
 // src/utils/getUrlByRequestOptions.ts
 
 
-var logger = new (0, _logger.Logger)("utils getUrlByRequestOptions");
-var DEFAULT_PATH = "/";
-var DEFAULT_PROTOCOL = "http:";
-var DEFAULT_HOSTNAME = "localhost";
-var SSL_PORT = 443;
+const logger = new (0, _logger.Logger)("utils getUrlByRequestOptions");
+const DEFAULT_PATH = "/";
+const DEFAULT_PROTOCOL = "http:";
+const DEFAULT_HOSTNAME = "localhost";
+const SSL_PORT = 443;
 function getAgent(options) {
   return options.agent instanceof _http.Agent ? options.agent : void 0;
 }
 function getProtocolByRequestOptions(options) {
-  var _a;
+  let _a;
   if (options.protocol) {
     return options.protocol;
   }
@@ -825,9 +825,9 @@ function getUrlByRequestOptions(options) {
 
 // src/utils/cloneObject.ts
 
-var logger2 = new (0, _logger.Logger)("cloneObject");
+const logger2 = new (0, _logger.Logger)("cloneObject");
 function isPlainObject(obj) {
-  var _a;
+  let _a;
   logger2.info("is plain object?", obj);
   if (obj == null || !((_a = obj.constructor) == null ? void 0 : _a.name)) {
     logger2.info("given object is undefined, not a plain object...");
@@ -850,7 +850,7 @@ function cloneObject(obj) {
 }
 
 // src/interceptors/ClientRequest/utils/normalizeClientRequestArgs.ts
-var logger3 = new (0, _logger.Logger)("http normalizeClientRequestArgs");
+const logger3 = new (0, _logger.Logger)("http normalizeClientRequestArgs");
 function resolveRequestOptions(args, url) {
   if (typeof args[1] === "undefined" || typeof args[1] === "function") {
     logger3.info("request options not provided, deriving from the url", url);
@@ -1106,7 +1106,7 @@ var _ClientRequestInterceptor = class extends _chunkA7U44ARPjs.Interceptor {
     });
   }
 };
-var ClientRequestInterceptor = _ClientRequestInterceptor;
+const ClientRequestInterceptor = _ClientRequestInterceptor;
 ClientRequestInterceptor.symbol = Symbol("client-request-interceptor");
 
 

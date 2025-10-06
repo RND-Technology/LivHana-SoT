@@ -19,7 +19,7 @@ exports.isSpreadProperty = isSpreadProperty;
 exports.isStatement = isStatement;
 exports.isUser = isUser;
 exports.isVar = isVar;
-var _t = require("@babel/types");
+const _t = require("@babel/types");
 const {
   isBinding,
   isBlockScoped: nodeIsBlockScoped,
@@ -139,11 +139,11 @@ function isFlow() {
   }
 }
 function isRestProperty() {
-  var _this$parentPath;
+  let _this$parentPath;
   return nodeIsRestElement(this.node) && ((_this$parentPath = this.parentPath) == null ? void 0 : _this$parentPath.isObjectPattern());
 }
 function isSpreadProperty() {
-  var _this$parentPath2;
+  let _this$parentPath2;
   return nodeIsRestElement(this.node) && ((_this$parentPath2 = this.parentPath) == null ? void 0 : _this$parentPath2.isObjectExpression());
 }
 function isForAwaitStatement() {

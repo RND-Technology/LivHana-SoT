@@ -1,4 +1,4 @@
-var baseRest = require('./_baseRest'),
+const baseRest = require('./_baseRest'),
     isIterateeCall = require('./_isIterateeCall');
 
 /**
@@ -10,7 +10,7 @@ var baseRest = require('./_baseRest'),
  */
 function createAssigner(assigner) {
   return baseRest(function(object, sources) {
-    var index = -1,
+    let index = -1,
         length = sources.length,
         customizer = length > 1 ? sources[length - 1] : undefined,
         guard = length > 2 ? sources[2] : undefined;
@@ -25,7 +25,7 @@ function createAssigner(assigner) {
     }
     object = Object(object);
     while (++index < length) {
-      var source = sources[index];
+      const source = sources[index];
       if (source) {
         assigner(object, source, index, customizer);
       }

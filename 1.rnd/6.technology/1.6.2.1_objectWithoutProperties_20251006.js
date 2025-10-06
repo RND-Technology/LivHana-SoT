@@ -4,13 +4,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = _objectWithoutProperties;
-var _objectWithoutPropertiesLoose = require("./objectWithoutPropertiesLoose.js");
+const _objectWithoutPropertiesLoose = require("./objectWithoutPropertiesLoose.js");
 function _objectWithoutProperties(source, excluded) {
   if (source == null) return {};
-  var target = (0, _objectWithoutPropertiesLoose.default)(source, excluded);
-  var key, i;
+  const target = (0, _objectWithoutPropertiesLoose.default)(source, excluded);
+  let key, i;
   if (Object.getOwnPropertySymbols) {
-    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+    const sourceSymbolKeys = Object.getOwnPropertySymbols(source);
     for (i = 0; i < sourceSymbolKeys.length; i++) {
       key = sourceSymbolKeys[i];
       if (excluded.indexOf(key) !== -1) continue;

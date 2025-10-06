@@ -1,15 +1,15 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var IsFixedLengthArrayBuffer = require('./IsFixedLengthArrayBuffer');
-var IsViewOutOfBounds = require('./IsViewOutOfBounds');
+const IsFixedLengthArrayBuffer = require('./IsFixedLengthArrayBuffer');
+const IsViewOutOfBounds = require('./IsViewOutOfBounds');
 
-var isDataViewWithBufferWitnessRecord = require('../helpers/records/data-view-with-buffer-witness-record');
+const isDataViewWithBufferWitnessRecord = require('../helpers/records/data-view-with-buffer-witness-record');
 
-var dataViewBuffer = require('data-view-buffer');
-var dataViewByteLength = require('data-view-byte-length');
-var dataViewByteOffset = require('data-view-byte-offset');
+const dataViewBuffer = require('data-view-buffer');
+const dataViewByteLength = require('data-view-byte-length');
+const dataViewByteOffset = require('data-view-byte-offset');
 
 // https://262.ecma-international.org/15.0/#sec-getviewbytelength
 
@@ -22,11 +22,11 @@ module.exports = function GetViewByteLength(viewRecord) {
 		throw new $TypeError('Assertion failed: `viewRecord` is out of bounds'); // step 1
 	}
 
-	var view = viewRecord['[[Object]]']; // step 2
+	const view = viewRecord['[[Object]]']; // step 2
 
-	var isFixed = IsFixedLengthArrayBuffer(dataViewBuffer(view));
+	const isFixed = IsFixedLengthArrayBuffer(dataViewBuffer(view));
 
-	var viewByteLength = isFixed ? dataViewByteLength(view) : 'AUTO'; // view.[[ByteLength]]
+	const viewByteLength = isFixed ? dataViewByteLength(view) : 'AUTO'; // view.[[ByteLength]]
 	if (viewByteLength !== 'AUTO') {
 		return viewByteLength; // step 3
 	}
@@ -35,9 +35,9 @@ module.exports = function GetViewByteLength(viewRecord) {
 		throw new $TypeError('Assertion failed: DataView’s ArrayBuffer is not fixed length'); // step 4
 	}
 
-	var byteOffset = dataViewByteOffset(view); // step 5
+	const byteOffset = dataViewByteOffset(view); // step 5
 
-	var byteLength = viewRecord['[[CachedBufferByteLength]]']; // step 6
+	const byteLength = viewRecord['[[CachedBufferByteLength]]']; // step 6
 
 	if (byteLength === 'DETACHED') {
 		throw new $TypeError('Assertion failed: DataView’s ArrayBuffer is detached'); // step 7

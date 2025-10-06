@@ -29,7 +29,7 @@ THE SOFTWARE.
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ValueClone = void 0;
 const is_1 = require("./is");
-var ValueClone;
+let ValueClone;
 (function (ValueClone) {
     function Array(value) {
         return value.map((element) => Clone(element));

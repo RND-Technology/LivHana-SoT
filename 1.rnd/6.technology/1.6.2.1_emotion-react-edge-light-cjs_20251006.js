@@ -2,11 +2,11 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var emotionElement = require('./emotion-element-af3dc15b.edge-light.cjs.js');
-var React = require('react');
-var utils = require('@emotion/utils');
-var useInsertionEffectWithFallbacks = require('@emotion/use-insertion-effect-with-fallbacks');
-var serialize = require('@emotion/serialize');
+const emotionElement = require('./emotion-element-af3dc15b.edge-light.cjs.js');
+const React = require('react');
+const utils = require('@emotion/utils');
+const useInsertionEffectWithFallbacks = require('@emotion/use-insertion-effect-with-fallbacks');
+const serialize = require('@emotion/serialize');
 require('@emotion/cache');
 require('@babel/runtime/helpers/extends');
 require('@emotion/weak-memoize');
@@ -15,11 +15,11 @@ require('hoist-non-react-statics');
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
-  var n = Object.create(null);
+  const n = Object.create(null);
   if (e) {
     Object.keys(e).forEach(function (k) {
       if (k !== 'default') {
-        var d = Object.getOwnPropertyDescriptor(e, k);
+        const d = Object.getOwnPropertyDescriptor(e, k);
         Object.defineProperty(n, k, d.get ? d : {
           enumerable: true,
           get: function () { return e[k]; }
@@ -31,22 +31,22 @@ function _interopNamespace(e) {
   return Object.freeze(n);
 }
 
-var React__namespace = /*#__PURE__*/_interopNamespace(React);
+const React__namespace = /*#__PURE__*/_interopNamespace(React);
 
 exports.jsx = function jsx(type, props) {
   // eslint-disable-next-line prefer-rest-params
-  var args = arguments;
+  const args = arguments;
 
   if (props == null || !emotionElement.hasOwn.call(props, 'css')) {
     return React__namespace.createElement.apply(undefined, args);
   }
 
-  var argsLength = args.length;
-  var createElementArgArray = new Array(argsLength);
+  const argsLength = args.length;
+  const createElementArgArray = new Array(argsLength);
   createElementArgArray[0] = emotionElement.Emotion;
   createElementArgArray[1] = emotionElement.createEmotionProps(type, props);
 
-  for (var i = 2; i < argsLength; i++) {
+  for (let i = 2; i < argsLength; i++) {
     createElementArgArray[i] = args[i];
   }
 
@@ -54,7 +54,7 @@ exports.jsx = function jsx(type, props) {
 };
 
 (function (_jsx) {
-  var JSX;
+  let JSX;
 
   (function (_JSX) {})(JSX || (JSX = _jsx.JSX || (_jsx.JSX = {})));
 })(exports.jsx || (exports.jsx = {}));
@@ -62,17 +62,17 @@ exports.jsx = function jsx(type, props) {
 // initial render from browser, insertBefore context.sheet.tags[0] or if a style hasn't been inserted there yet, appendChild
 // initial client-side render from SSR, use place of hydrating tag
 
-var Global = /* #__PURE__ */emotionElement.withEmotionCache(function (props, cache) {
+const Global = /* #__PURE__ */emotionElement.withEmotionCache(function (props, cache) {
 
-  var styles = props.styles;
-  var serialized = serialize.serializeStyles([styles], undefined, React__namespace.useContext(emotionElement.ThemeContext));
+  const styles = props.styles;
+  const serialized = serialize.serializeStyles([styles], undefined, React__namespace.useContext(emotionElement.ThemeContext));
 
   {
-    var _ref;
+    let _ref;
 
-    var serializedNames = serialized.name;
-    var serializedStyles = serialized.styles;
-    var next = serialized.next;
+    let serializedNames = serialized.name;
+    let serializedStyles = serialized.styles;
+    let next = serialized.next;
 
     while (next !== undefined) {
       serializedNames += ' ' + next.name;
@@ -80,8 +80,8 @@ var Global = /* #__PURE__ */emotionElement.withEmotionCache(function (props, cac
       next = next.next;
     }
 
-    var shouldCache = cache.compat === true;
-    var rules = cache.insert("", {
+    const shouldCache = cache.compat === true;
+    const rules = cache.insert("", {
       name: serializedNames,
       styles: serializedStyles
     }, cache.sheet, shouldCache);
@@ -105,8 +105,8 @@ function css() {
 }
 
 function keyframes() {
-  var insertable = css.apply(void 0, arguments);
-  var name = "animation-" + insertable.name;
+  const insertable = css.apply(void 0, arguments);
+  const name = "animation-" + insertable.name;
   return {
     name: name,
     styles: "@keyframes " + name + "{" + insertable.styles + "}",
@@ -117,15 +117,15 @@ function keyframes() {
   };
 }
 
-var classnames = function classnames(args) {
-  var len = args.length;
-  var i = 0;
-  var cls = '';
+const classnames = function classnames(args) {
+  const len = args.length;
+  let i = 0;
+  let cls = '';
 
   for (; i < len; i++) {
-    var arg = args[i];
+    const arg = args[i];
     if (arg == null) continue;
-    var toAdd = void 0;
+    let toAdd = void 0;
 
     switch (typeof arg) {
       case 'boolean':
@@ -139,7 +139,7 @@ var classnames = function classnames(args) {
 
             toAdd = '';
 
-            for (var k in arg) {
+            for (const k in arg) {
               if (arg[k] && k) {
                 toAdd && (toAdd += ' ');
                 toAdd += k;
@@ -166,8 +166,8 @@ var classnames = function classnames(args) {
 };
 
 function merge(registered, css, className) {
-  var registeredStyles = [];
-  var rawClassName = utils.getRegisteredStyles(registered, registeredStyles, className);
+  const registeredStyles = [];
+  const rawClassName = utils.getRegisteredStyles(registered, registeredStyles, className);
 
   if (registeredStyles.length < 2) {
     return className;
@@ -176,14 +176,14 @@ function merge(registered, css, className) {
   return rawClassName + css(registeredStyles);
 }
 
-var Insertion = function Insertion(_ref) {
-  var cache = _ref.cache,
+const Insertion = function Insertion(_ref) {
+  const cache = _ref.cache,
       serializedArr = _ref.serializedArr;
-  var rules = useInsertionEffectWithFallbacks.useInsertionEffectAlwaysWithSyncFallback(function () {
-    var rules = '';
+  const rules = useInsertionEffectWithFallbacks.useInsertionEffectAlwaysWithSyncFallback(function () {
+    let rules = '';
 
-    for (var i = 0; i < serializedArr.length; i++) {
-      var res = utils.insertStyles(cache, serializedArr[i], false);
+    for (let i = 0; i < serializedArr.length; i++) {
+      const res = utils.insertStyles(cache, serializedArr[i], false);
 
       if (res !== undefined) {
         rules += res;
@@ -196,7 +196,7 @@ var Insertion = function Insertion(_ref) {
   });
 
   if (rules.length !== 0) {
-    var _ref2;
+    let _ref2;
 
     return /*#__PURE__*/React__namespace.createElement("style", (_ref2 = {}, _ref2["data-emotion"] = cache.key + " " + serializedArr.map(function (serialized) {
       return serialized.name;
@@ -208,11 +208,11 @@ var Insertion = function Insertion(_ref) {
   return null;
 };
 
-var ClassNames = /* #__PURE__ */emotionElement.withEmotionCache(function (props, cache) {
-  var hasRendered = false;
-  var serializedArr = [];
+const ClassNames = /* #__PURE__ */emotionElement.withEmotionCache(function (props, cache) {
+  let hasRendered = false;
+  const serializedArr = [];
 
-  var css = function css() {
+  const css = function css() {
     if (hasRendered && emotionElement.isDevelopment) {
       throw new Error('css can only be used during render');
     }
@@ -221,14 +221,14 @@ var ClassNames = /* #__PURE__ */emotionElement.withEmotionCache(function (props,
       args[_key] = arguments[_key];
     }
 
-    var serialized = serialize.serializeStyles(args, cache.registered);
+    const serialized = serialize.serializeStyles(args, cache.registered);
     serializedArr.push(serialized); // registration has to happen here as the result of this might get consumed by `cx`
 
     utils.registerStyles(cache, serialized, false);
     return cache.key + "-" + serialized.name;
   };
 
-  var cx = function cx() {
+  const cx = function cx() {
     if (hasRendered && emotionElement.isDevelopment) {
       throw new Error('cx can only be used during render');
     }
@@ -240,12 +240,12 @@ var ClassNames = /* #__PURE__ */emotionElement.withEmotionCache(function (props,
     return merge(cache.registered, css, classnames(args));
   };
 
-  var content = {
+  const content = {
     css: css,
     cx: cx,
     theme: React__namespace.useContext(emotionElement.ThemeContext)
   };
-  var ele = props.children(content);
+  const ele = props.children(content);
   hasRendered = true;
   return /*#__PURE__*/React__namespace.createElement(React__namespace.Fragment, null, /*#__PURE__*/React__namespace.createElement(Insertion, {
     cache: cache,

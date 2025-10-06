@@ -8,7 +8,7 @@
  * Module dependencies
  */
 
-var flag = require('./flag')
+const flag = require('./flag')
   , getActual = require('./getActual')
   , objDisplay = require('./objDisplay');
 
@@ -32,7 +32,7 @@ var flag = require('./flag')
  */
 
 module.exports = function getMessage(obj, args) {
-  var negate = flag(obj, 'negate')
+  let negate = flag(obj, 'negate')
     , val = flag(obj, 'object')
     , expected = args[3]
     , actual = getActual(obj, args)

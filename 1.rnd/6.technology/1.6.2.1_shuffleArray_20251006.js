@@ -5,7 +5,7 @@ Object.defineProperty(exports, '__esModule', {
 });
 exports.default = shuffleArray;
 exports.rngBuilder = void 0;
-var _pureRand = require('pure-rand');
+const _pureRand = require('pure-rand');
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *

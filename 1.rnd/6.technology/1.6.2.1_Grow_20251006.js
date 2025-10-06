@@ -1,26 +1,26 @@
 "use strict";
 'use client';
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+const _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
-var React = _interopRequireWildcard(require("react"));
-var _propTypes = _interopRequireDefault(require("prop-types"));
-var _useTimeout = _interopRequireDefault(require("@mui/utils/useTimeout"));
-var _elementAcceptingRef = _interopRequireDefault(require("@mui/utils/elementAcceptingRef"));
-var _getReactElementRef = _interopRequireDefault(require("@mui/utils/getReactElementRef"));
-var _reactTransitionGroup = require("react-transition-group");
-var _useTheme = _interopRequireDefault(require("../styles/useTheme"));
-var _utils = require("../transitions/utils");
-var _useForkRef = _interopRequireDefault(require("../utils/useForkRef"));
-var _jsxRuntime = require("react/jsx-runtime");
+const _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+const _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+const React = _interopRequireWildcard(require("react"));
+const _propTypes = _interopRequireDefault(require("prop-types"));
+const _useTimeout = _interopRequireDefault(require("@mui/utils/useTimeout"));
+const _elementAcceptingRef = _interopRequireDefault(require("@mui/utils/elementAcceptingRef"));
+const _getReactElementRef = _interopRequireDefault(require("@mui/utils/getReactElementRef"));
+const _reactTransitionGroup = require("react-transition-group");
+const _useTheme = _interopRequireDefault(require("../styles/useTheme"));
+const _utils = require("../transitions/utils");
+const _useForkRef = _interopRequireDefault(require("../utils/useForkRef"));
+const _jsxRuntime = require("react/jsx-runtime");
 const _excluded = ["addEndListener", "appear", "children", "easing", "in", "onEnter", "onEntered", "onEntering", "onExit", "onExited", "onExiting", "style", "timeout", "TransitionComponent"];
-function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
-function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; const r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; const t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); const n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (const u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { const i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 function getScale(value) {
   return `scale(${value}, ${value ** 2})`;
 }
@@ -261,4 +261,4 @@ process.env.NODE_ENV !== "production" ? Grow.propTypes /* remove-proptypes */ = 
   })])
 } : void 0;
 Grow.muiSupportAuto = true;
-var _default = exports.default = Grow;
+const _default = exports.default = Grow;

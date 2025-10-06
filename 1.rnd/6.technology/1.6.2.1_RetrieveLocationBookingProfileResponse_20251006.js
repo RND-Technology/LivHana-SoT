@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
 exports.retrieveLocationBookingProfileResponseSchema = void 0;
-var schema_1 = require("../schema");
-var error_1 = require("./error");
-var locationBookingProfile_1 = require("./locationBookingProfile");
+const schema_1 = require("../schema");
+const error_1 = require("./error");
+const locationBookingProfile_1 = require("./locationBookingProfile");
 exports.retrieveLocationBookingProfileResponseSchema = (0, schema_1.object)({
     locationBookingProfile: [
         'location_booking_profile',

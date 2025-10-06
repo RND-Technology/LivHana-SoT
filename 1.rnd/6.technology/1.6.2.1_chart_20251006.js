@@ -142,7 +142,7 @@ class Animator {
         return this._charts.delete(chart);
     }
 }
-var animator = /* #__PURE__ */ new Animator();
+const animator = /* #__PURE__ */ new Animator();
 
 const transparent = 'transparent';
 const interpolators = {
@@ -2578,7 +2578,7 @@ class ScatterController extends DatasetController {
     }
 }
 
-var controllers = /*#__PURE__*/Object.freeze({
+const controllers = /*#__PURE__*/Object.freeze({
 __proto__: null,
 BarController: BarController,
 BubbleController: BubbleController,
@@ -2643,7 +2643,7 @@ ScatterController: ScatterController
         return abstract();
     }
 }
-var adapters = {
+const adapters = {
     _date: DateAdapterBase
 };
 
@@ -2726,7 +2726,7 @@ function binarySearch(metaset, axis, value, intersect) {
     return items;
 }
  function getNearestRadialItems(chart, position, axis, useFinalPosition) {
-    let items = [];
+    const items = [];
     function evaluationFunc(element, datasetIndex, index) {
         const { startAngle , endAngle  } = element.getProps([
             'startAngle',
@@ -2807,7 +2807,7 @@ function binarySearch(metaset, axis, value, intersect) {
     }
     return items;
 }
- var Interaction = {
+ const Interaction = {
     evaluateInteractionItems,
     modes: {
  index (chart, e, options, useFinalPosition) {
@@ -3109,7 +3109,7 @@ function placeBoxes(boxes, chartArea, params, stacks) {
     chartArea.x = x;
     chartArea.y = y;
 }
-var layouts = {
+const layouts = {
  addBox (chart, item) {
         if (!chart.boxes) {
             chart.boxes = [];
@@ -5093,7 +5093,7 @@ class Registry {
         return item;
     }
 }
-var registry = /* #__PURE__ */ new Registry();
+const registry = /* #__PURE__ */ new Registry();
 
 class PluginService {
     constructor(){
@@ -5551,7 +5551,7 @@ function needContext(proxy, names) {
     return false;
 }
 
-var version = "4.5.0";
+const version = "4.5.0";
 
 const KNOWN_POSITIONS = [
     'top',
@@ -7337,7 +7337,7 @@ class BarElement extends Element {
     }
 }
 
-var elements = /*#__PURE__*/Object.freeze({
+const elements = /*#__PURE__*/Object.freeze({
 __proto__: null,
 ArcElement: ArcElement,
 BarElement: BarElement,
@@ -7403,7 +7403,7 @@ function containsColorsDefinition(descriptor) {
 function containsDefaultColorsDefenitions() {
     return defaults.borderColor !== 'rgba(0,0,0,0.1)' || defaults.backgroundColor !== 'rgba(0,0,0,0.1)';
 }
-var plugin_colors = {
+const plugin_colors = {
     id: 'colors',
     defaults: {
         enabled: true,
@@ -7557,7 +7557,7 @@ function getStartAndCountOfVisiblePointsSimplified(meta, points) {
         count
     };
 }
-var plugin_decimation = {
+const plugin_decimation = {
     id: 'decimation',
     defaults: {
         algorithm: 'min-max',
@@ -7589,7 +7589,7 @@ var plugin_decimation = {
             if (chart.options.parsing) {
                 return;
             }
-            let { start , count  } = getStartAndCountOfVisiblePointsSimplified(meta, data);
+            const { start , count  } = getStartAndCountOfVisiblePointsSimplified(meta, data);
             const threshold = options.threshold || 4 * availableWidth;
             if (count <= threshold) {
                 cleanDecimatedDataset(dataset);
@@ -7781,7 +7781,7 @@ function _resolveTarget(sources, index, propagate) {
     if (isObject(fill)) {
         return isNaN(fill.value) ? false : fill;
     }
-    let target = parseFloat(fill);
+    const target = parseFloat(fill);
     if (isNumberFinite(target) && Math.floor(target) === target) {
         return decodeTargetIndex(fill[0], index, target, count);
     }
@@ -8206,7 +8206,7 @@ function interpolatedLineTo(ctx, target, point, property) {
     }
 }
 
-var index = {
+const index = {
     id: 'filler',
     afterDatasetsUpdate (chart, _args, options) {
         const count = (chart.data.datasets || []).length;
@@ -8729,7 +8729,7 @@ function isListened(type, opts) {
     }
     return false;
 }
-var plugin_legend = {
+const plugin_legend = {
     id: 'legend',
  _element: Legend,
     start (chart, _args, options) {
@@ -8930,7 +8930,7 @@ function createTitle(chart, titleOpts) {
     layouts.addBox(chart, title);
     chart.titleBlock = title;
 }
-var plugin_title = {
+const plugin_title = {
     id: 'title',
  _element: Title,
     start (chart, _args, options) {
@@ -8968,7 +8968,7 @@ var plugin_title = {
 };
 
 const map = new WeakMap();
-var plugin_subtitle = {
+const plugin_subtitle = {
     id: 'subtitle',
     start (chart, _args, options) {
         const title = new Title({
@@ -9016,7 +9016,7 @@ const positioners = {
             return false;
         }
         let i, len;
-        let xSet = new Set();
+        const xSet = new Set();
         let y = 0;
         let count = 0;
         for(i = 0, len = items.length; i < len; ++i){
@@ -9865,7 +9865,7 @@ class Tooltip extends Element {
         return position !== false && (caretX !== position.x || caretY !== position.y);
     }
 }
-var plugin_tooltip = {
+const plugin_tooltip = {
     id: 'tooltip',
     _element: Tooltip,
     positioners,
@@ -9992,7 +9992,7 @@ var plugin_tooltip = {
     ]
 };
 
-var plugins = /*#__PURE__*/Object.freeze({
+const plugins = /*#__PURE__*/Object.freeze({
 __proto__: null,
 Colors: plugin_colors,
 Decimation: plugin_decimation,
@@ -10265,7 +10265,7 @@ class LinearScaleBase extends Scale {
             }
         }
         if (min === max) {
-            let offset = max === 0 ? 1 : Math.abs(max * 0.05);
+            const offset = max === 0 ? 1 : Math.abs(max * 0.05);
             setMax(max + offset);
             if (!beginAtZero) {
                 setMin(min - offset);
@@ -11535,7 +11535,7 @@ class TimeSeriesScale extends TimeScale {
  _generate() {
         const min = this.min;
         const max = this.max;
-        let timestamps = super.getDataTimestamps();
+        const timestamps = super.getDataTimestamps();
         if (!timestamps.includes(min) || !timestamps.length) {
             timestamps.splice(0, 0, min);
         }
@@ -11569,7 +11569,7 @@ class TimeSeriesScale extends TimeScale {
     }
 }
 
-var scales = /*#__PURE__*/Object.freeze({
+const scales = /*#__PURE__*/Object.freeze({
 __proto__: null,
 CategoryScale: CategoryScale,
 LinearScale: LinearScale,

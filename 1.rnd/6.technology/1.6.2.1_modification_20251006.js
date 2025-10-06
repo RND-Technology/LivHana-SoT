@@ -12,12 +12,12 @@ exports.insertBefore = insertBefore;
 exports.pushContainer = pushContainer;
 exports.unshiftContainer = unshiftContainer;
 exports.updateSiblingKeys = updateSiblingKeys;
-var _cache = require("../cache.js");
-var _index = require("./index.js");
-var _context = require("./context.js");
-var _removal = require("./removal.js");
-var _t = require("@babel/types");
-var _hoister = require("./lib/hoister.js");
+const _cache = require("../cache.js");
+const _index = require("./index.js");
+const _context = require("./context.js");
+const _removal = require("./removal.js");
+const _t = require("@babel/types");
+const _hoister = require("./lib/hoister.js");
 const {
   arrowFunctionExpression,
   assertExpression,

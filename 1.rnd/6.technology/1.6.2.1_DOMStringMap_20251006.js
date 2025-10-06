@@ -180,7 +180,7 @@ class ProxyHandler {
     if (typeof P === "symbol") {
       return Reflect.getOwnPropertyDescriptor(target, P);
     }
-    let ignoreNamedProps = false;
+    const ignoreNamedProps = false;
 
     const namedValue = target[implSymbol][utils.namedGet](P);
 

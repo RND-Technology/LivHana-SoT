@@ -1,5 +1,5 @@
-let Declaration = require('../declaration')
-let { isPureNumber } = require('../utils')
+const Declaration = require('../declaration')
+const { isPureNumber } = require('../utils')
 
 class GridEnd extends Declaration {
   /**
@@ -8,10 +8,10 @@ class GridEnd extends Declaration {
   insert(decl, prefix, prefixes, result) {
     if (prefix !== '-ms-') return super.insert(decl, prefix, prefixes)
 
-    let clonedDecl = this.clone(decl)
+    const clonedDecl = this.clone(decl)
 
-    let startProp = decl.prop.replace(/end$/, 'start')
-    let spanProp = prefix + decl.prop.replace(/end$/, 'span')
+    const startProp = decl.prop.replace(/end$/, 'start')
+    const spanProp = prefix + decl.prop.replace(/end$/, 'span')
 
     if (decl.parent.some(i => i.prop === spanProp)) {
       return undefined
@@ -28,7 +28,7 @@ class GridEnd extends Declaration {
       })
       if (startDecl) {
         if (isPureNumber(startDecl.value)) {
-          let value = Number(decl.value) - Number(startDecl.value) + ''
+          const value = Number(decl.value) - Number(startDecl.value) + ''
           clonedDecl.value = value
         } else {
           return undefined

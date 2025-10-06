@@ -15,7 +15,7 @@ export function removeAlphaVariables(container, toRemove) {
       return
     }
 
-    for (let varName of toRemove) {
+    for (const varName of toRemove) {
       if (decl.value.includes(`/ var(${varName})`)) {
         decl.value = decl.value.replace(`/ var(${varName})`, '')
       } else if (decl.value.includes(`/ var(${varName}, 1)`)) {

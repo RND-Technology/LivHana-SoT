@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
 exports.bulkUpsertBookingCustomAttributesRequestSchema = void 0;
-var schema_1 = require("../schema");
-var bookingCustomAttributeUpsertRequest_1 = require("./bookingCustomAttributeUpsertRequest");
+const schema_1 = require("../schema");
+const bookingCustomAttributeUpsertRequest_1 = require("./bookingCustomAttributeUpsertRequest");
 exports.bulkUpsertBookingCustomAttributesRequestSchema = (0, schema_1.object)({
     values: [
         'values',

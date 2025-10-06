@@ -96,7 +96,7 @@ const ascendingBisect = bisector(ascending);
 const bisectRight = ascendingBisect.right;
 const bisectLeft = ascendingBisect.left;
 const bisectCenter = bisector(number).center;
-var bisect = bisectRight;
+const bisect = bisectRight;
 
 function blur(values, r) {
   if (!((r = +r) >= 0)) throw new RangeError("invalid r");
@@ -268,7 +268,7 @@ function cross(...values) {
 }
 
 function cumsum(values, valueof) {
-  var sum = 0, index = 0;
+  let sum = 0, index = 0;
   return Float64Array.from(values, valueof === undefined
     ? v => (sum += +v || 0)
     : v => (sum += +valueof(v, index++, values) || 0));
@@ -582,9 +582,9 @@ function groupSort(values, reduce, key) {
     .map(([key]) => key);
 }
 
-var array = Array.prototype;
+const array = Array.prototype;
 
-var slice = array.slice;
+const slice = array.slice;
 
 function constant(x) {
   return () => x;
@@ -668,14 +668,14 @@ function thresholdSturges(values) {
 }
 
 function bin() {
-  var value = identity,
+  let value = identity,
       domain = extent,
       threshold = thresholdSturges;
 
   function histogram(data) {
     if (!Array.isArray(data)) data = Array.from(data);
 
-    var i,
+    let i,
         n = data.length,
         x,
         step,
@@ -685,7 +685,7 @@ function bin() {
       values[i] = value(data[i], i, data);
     }
 
-    var xz = domain(values),
+    let xz = domain(values),
         x0 = xz[0],
         x1 = xz[1],
         tz = threshold(values, x0, x1);
@@ -727,12 +727,12 @@ function bin() {
 
     // Remove any thresholds outside the domain.
     // Be careful not to mutate an array owned by the user!
-    var m = tz.length, a = 0, b = m;
+    let m = tz.length, a = 0, b = m;
     while (tz[a] <= x0) ++a;
     while (tz[b - 1] > x1) --b;
     if (a || b < m) tz = tz.slice(a, b), m = b - a;
 
-    var bins = new Array(m + 1),
+    let bins = new Array(m + 1),
         bin;
 
     // Initialize bins.
@@ -957,7 +957,7 @@ function quantile(values, p, valueof) {
   if (!(n = values.length) || isNaN(p = +p)) return;
   if (p <= 0 || n < 2) return min(values);
   if (p >= 1) return max(values);
-  var n,
+  let n,
       i = (n - 1) * p,
       i0 = Math.floor(i),
       value0 = max(quickselect(values, i0).subarray(0, i0 + 1)),
@@ -969,7 +969,7 @@ function quantileSorted(values, p, valueof = number) {
   if (!(n = values.length) || isNaN(p = +p)) return;
   if (p <= 0 || n < 2) return +valueof(values[0], 0, values);
   if (p >= 1) return +valueof(values[n - 1], n - 1, values);
-  var n,
+  let n,
       i = (n - 1) * p,
       i0 = Math.floor(i),
       value0 = +valueof(values[i0], i0, values),
@@ -982,7 +982,7 @@ function quantileIndex(values, p, valueof = number) {
   numbers = Float64Array.from(values, (_, i) => number(valueof(values[i], i, values)));
   if (p <= 0) return minIndex(numbers);
   if (p >= 1) return maxIndex(numbers);
-  var numbers,
+  let numbers,
       index = Uint32Array.from(values, (_, i) => i),
       j = numbers.length - 1,
       i = Math.floor(j * p);
@@ -1042,7 +1042,7 @@ function merge(arrays) {
 function mode(values, valueof) {
   const counts = new InternMap();
   if (valueof === undefined) {
-    for (let value of values) {
+    for (const value of values) {
       if (value != null && value >= value) {
         counts.set(value, (counts.get(value) || 0) + 1);
       }
@@ -1185,7 +1185,7 @@ function scan(values, compare) {
   return index < 0 ? undefined : index;
 }
 
-var shuffle = shuffler(Math.random);
+const shuffle = shuffler(Math.random);
 
 function shuffler(random) {
   return function shuffle(array, i0 = 0, i1 = array.length) {

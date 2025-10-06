@@ -8,10 +8,10 @@ exports.printDiffLines =
   exports.diffLinesUnified =
   exports.diffLinesRaw =
     void 0;
-var _diffSequences = _interopRequireDefault(require('diff-sequences'));
-var _cleanupSemantic = require('./cleanupSemantic');
-var _joinAlignedDiffs = require('./joinAlignedDiffs');
-var _normalizeDiffOptions = require('./normalizeDiffOptions');
+const _diffSequences = _interopRequireDefault(require('diff-sequences'));
+const _cleanupSemantic = require('./cleanupSemantic');
+const _joinAlignedDiffs = require('./joinAlignedDiffs');
+const _normalizeDiffOptions = require('./normalizeDiffOptions');
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {default: obj};
 }

@@ -5,7 +5,7 @@ function transformArguments() {
     return ['CLUSTER', 'NODES'];
 }
 exports.transformArguments = transformArguments;
-var RedisClusterNodeLinkStates;
+let RedisClusterNodeLinkStates;
 (function (RedisClusterNodeLinkStates) {
     RedisClusterNodeLinkStates["CONNECTED"] = "connected";
     RedisClusterNodeLinkStates["DISCONNECTED"] = "disconnected";

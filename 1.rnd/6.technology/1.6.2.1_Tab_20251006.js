@@ -1,27 +1,27 @@
 "use strict";
 'use client';
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+const _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-var React = _interopRequireWildcard(require("react"));
-var _propTypes = _interopRequireDefault(require("prop-types"));
-var _clsx = _interopRequireDefault(require("clsx"));
-var _composeClasses = _interopRequireDefault(require("@mui/utils/composeClasses"));
-var _ButtonBase = _interopRequireDefault(require("../ButtonBase"));
-var _capitalize = _interopRequireDefault(require("../utils/capitalize"));
-var _DefaultPropsProvider = require("../DefaultPropsProvider");
-var _styled = _interopRequireDefault(require("../styles/styled"));
-var _unsupportedProp = _interopRequireDefault(require("../utils/unsupportedProp"));
-var _tabClasses = _interopRequireWildcard(require("./tabClasses"));
-var _jsxRuntime = require("react/jsx-runtime");
+const _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+const _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+const React = _interopRequireWildcard(require("react"));
+const _propTypes = _interopRequireDefault(require("prop-types"));
+const _clsx = _interopRequireDefault(require("clsx"));
+const _composeClasses = _interopRequireDefault(require("@mui/utils/composeClasses"));
+const _ButtonBase = _interopRequireDefault(require("../ButtonBase"));
+const _capitalize = _interopRequireDefault(require("../utils/capitalize"));
+const _DefaultPropsProvider = require("../DefaultPropsProvider");
+const _styled = _interopRequireDefault(require("../styles/styled"));
+const _unsupportedProp = _interopRequireDefault(require("../utils/unsupportedProp"));
+const _tabClasses = _interopRequireWildcard(require("./tabClasses"));
+const _jsxRuntime = require("react/jsx-runtime");
 const _excluded = ["className", "disabled", "disableFocusRipple", "fullWidth", "icon", "iconPosition", "indicator", "label", "onChange", "onClick", "onFocus", "selected", "selectionFollowsFocus", "textColor", "value", "wrapped"];
-function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
-function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; const r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; const t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); const n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (const u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { const i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 const useUtilityClasses = ownerState => {
   const {
     classes,
@@ -269,4 +269,4 @@ process.env.NODE_ENV !== "production" ? Tab.propTypes /* remove-proptypes */ = {
    */
   wrapped: _propTypes.default.bool
 } : void 0;
-var _default = exports.default = Tab;
+const _default = exports.default = Tab;

@@ -1,15 +1,15 @@
 "use strict";
 exports.__esModule = true;
 exports.EventsApi = void 0;
-var tslib_1 = require("tslib");
-var disableEventsResponse_1 = require("../models/disableEventsResponse");
-var enableEventsResponse_1 = require("../models/enableEventsResponse");
-var listEventTypesResponse_1 = require("../models/listEventTypesResponse");
-var searchEventsRequest_1 = require("../models/searchEventsRequest");
-var searchEventsResponse_1 = require("../models/searchEventsResponse");
-var schema_1 = require("../schema");
-var baseApi_1 = require("./baseApi");
-var EventsApi = /** @class */ (function (_super) {
+const tslib_1 = require("tslib");
+const disableEventsResponse_1 = require("../models/disableEventsResponse");
+const enableEventsResponse_1 = require("../models/enableEventsResponse");
+const listEventTypesResponse_1 = require("../models/listEventTypesResponse");
+const searchEventsRequest_1 = require("../models/searchEventsRequest");
+const searchEventsResponse_1 = require("../models/searchEventsResponse");
+const schema_1 = require("../schema");
+const baseApi_1 = require("./baseApi");
+const EventsApi = /** @class */ (function (_super) {
     tslib_1.__extends(EventsApi, _super);
     function EventsApi() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -23,7 +23,7 @@ var EventsApi = /** @class */ (function (_super) {
      */
     EventsApi.prototype.searchEvents = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/events');
                 mapped = req.prepareArgs({ body: [body, searchEventsRequest_1.searchEventsRequestSchema] });
@@ -44,7 +44,7 @@ var EventsApi = /** @class */ (function (_super) {
      */
     EventsApi.prototype.disableEvents = function (requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req;
+            let req;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('PUT', '/v2/events/disable');
                 req.authenticate([{ global: true }]);
@@ -60,7 +60,7 @@ var EventsApi = /** @class */ (function (_super) {
      */
     EventsApi.prototype.enableEvents = function (requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req;
+            let req;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('PUT', '/v2/events/enable');
                 req.authenticate([{ global: true }]);
@@ -77,7 +77,7 @@ var EventsApi = /** @class */ (function (_super) {
      */
     EventsApi.prototype.listEventTypes = function (apiVersion, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET', '/v2/events/types');
                 mapped = req.prepareArgs({

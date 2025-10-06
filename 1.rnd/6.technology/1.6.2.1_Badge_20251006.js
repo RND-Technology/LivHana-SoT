@@ -56,7 +56,7 @@ const BadgeBadge = styled('span', {
 })(({
   theme
 }) => {
-  var _theme$vars;
+  let _theme$vars;
   return {
     display: 'flex',
     flexDirection: 'row',
@@ -81,7 +81,7 @@ const BadgeBadge = styled('span', {
       duration: theme.transitions.duration.enteringScreen
     }),
     variants: [...Object.keys(((_theme$vars = theme.vars) != null ? _theme$vars : theme).palette).filter(key => {
-      var _theme$vars2, _theme$vars3;
+      let _theme$vars2, _theme$vars3;
       return ((_theme$vars2 = theme.vars) != null ? _theme$vars2 : theme).palette[key].main && ((_theme$vars3 = theme.vars) != null ? _theme$vars3 : theme).palette[key].contrastText;
     }).map(color => ({
       props: {
@@ -219,7 +219,7 @@ const BadgeBadge = styled('span', {
   };
 });
 const Badge = /*#__PURE__*/React.forwardRef(function Badge(inProps, ref) {
-  var _ref, _slots$root, _ref2, _slots$badge, _slotProps$root, _slotProps$badge;
+  let _ref, _slots$root, _ref2, _slots$badge, _slotProps$root, _slotProps$badge;
   const props = useDefaultProps({
     props: inProps,
     name: 'MuiBadge'

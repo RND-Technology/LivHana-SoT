@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.combineAxisRangeWithReverse = void 0;
-var combineAxisRangeWithReverse = (axisSettings, axisRange) => {
+const combineAxisRangeWithReverse = (axisSettings, axisRange) => {
   if (!axisSettings || !axisRange) {
     return undefined;
   }

@@ -1,24 +1,24 @@
 'use strict';
 module.exports = function generate_properties(it, $keyword, $ruleType) {
-  var out = ' ';
-  var $lvl = it.level;
-  var $dataLvl = it.dataLevel;
-  var $schema = it.schema[$keyword];
-  var $schemaPath = it.schemaPath + it.util.getProperty($keyword);
-  var $errSchemaPath = it.errSchemaPath + '/' + $keyword;
-  var $breakOnError = !it.opts.allErrors;
-  var $data = 'data' + ($dataLvl || '');
-  var $errs = 'errs__' + $lvl;
-  var $it = it.util.copy(it);
-  var $closingBraces = '';
+  let out = ' ';
+  const $lvl = it.level;
+  const $dataLvl = it.dataLevel;
+  const $schema = it.schema[$keyword];
+  const $schemaPath = it.schemaPath + it.util.getProperty($keyword);
+  let $errSchemaPath = it.errSchemaPath + '/' + $keyword;
+  const $breakOnError = !it.opts.allErrors;
+  const $data = 'data' + ($dataLvl || '');
+  const $errs = 'errs__' + $lvl;
+  const $it = it.util.copy(it);
+  let $closingBraces = '';
   $it.level++;
-  var $nextValid = 'valid' + $it.level;
-  var $key = 'key' + $lvl,
+  const $nextValid = 'valid' + $it.level;
+  const $key = 'key' + $lvl,
     $idx = 'idx' + $lvl,
     $dataNxt = $it.dataLevel = it.dataLevel + 1,
     $nextData = 'data' + $dataNxt,
     $dataProperties = 'dataProperties' + $lvl;
-  var $schemaKeys = Object.keys($schema || {}).filter(notProto),
+  const $schemaKeys = Object.keys($schema || {}).filter(notProto),
     $pProperties = it.schema.patternProperties || {},
     $pPropertyKeys = Object.keys($pProperties).filter(notProto),
     $aProperties = it.schema.additionalProperties,
@@ -29,7 +29,7 @@ module.exports = function generate_properties(it, $keyword, $ruleType) {
     $checkAdditional = $noAdditional || $additionalIsSchema || $removeAdditional,
     $ownProperties = it.opts.ownProperties,
     $currentBaseId = it.baseId;
-  var $required = it.schema.required;
+  const $required = it.schema.required;
   if ($required && !(it.opts.$data && $required.$data) && $required.length < it.opts.loopRequired) {
     var $requiredHash = it.util.toHash($required);
   }
@@ -53,7 +53,7 @@ module.exports = function generate_properties(it, $keyword, $ruleType) {
         if ($schemaKeys.length > 8) {
           out += ' || validate.schema' + ($schemaPath) + '.hasOwnProperty(' + ($key) + ') ';
         } else {
-          var arr1 = $schemaKeys;
+          const arr1 = $schemaKeys;
           if (arr1) {
             var $propertyKey, i1 = -1,
               l1 = arr1.length - 1;
@@ -65,7 +65,7 @@ module.exports = function generate_properties(it, $keyword, $ruleType) {
         }
       }
       if ($pPropertyKeys.length) {
-        var arr2 = $pPropertyKeys;
+        const arr2 = $pPropertyKeys;
         if (arr2) {
           var $pProperty, $i = -1,
             l2 = arr2.length - 1;
@@ -81,7 +81,7 @@ module.exports = function generate_properties(it, $keyword, $ruleType) {
       out += ' delete ' + ($data) + '[' + ($key) + ']; ';
     } else {
       var $currentErrorPath = it.errorPath;
-      var $additionalProperty = '\' + ' + $key + ' + \'';
+      const $additionalProperty = '\' + ' + $key + ' + \'';
       if (it.opts._errorDataPathProperty) {
         it.errorPath = it.util.getPathExpr(it.errorPath, $key, it.opts.jsonPointers);
       }
@@ -133,7 +133,7 @@ module.exports = function generate_properties(it, $keyword, $ruleType) {
       } else if ($additionalIsSchema) {
         if ($removeAdditional == 'failing') {
           out += ' var ' + ($errs) + ' = errors;  ';
-          var $wasComposite = it.compositeRule;
+          const $wasComposite = it.compositeRule;
           it.compositeRule = $it.compositeRule = true;
           $it.schema = $aProperties;
           $it.schemaPath = it.schemaPath + '.additionalProperties';
@@ -180,9 +180,9 @@ module.exports = function generate_properties(it, $keyword, $ruleType) {
       $closingBraces += '}';
     }
   }
-  var $useDefaults = it.opts.useDefaults && !it.compositeRule;
+  const $useDefaults = it.opts.useDefaults && !it.compositeRule;
   if ($schemaKeys.length) {
-    var arr3 = $schemaKeys;
+    const arr3 = $schemaKeys;
     if (arr3) {
       var $propertyKey, i3 = -1,
         l3 = arr3.length - 1;
@@ -285,7 +285,7 @@ module.exports = function generate_properties(it, $keyword, $ruleType) {
     }
   }
   if ($pPropertyKeys.length) {
-    var arr4 = $pPropertyKeys;
+    const arr4 = $pPropertyKeys;
     if (arr4) {
       var $pProperty, i4 = -1,
         l4 = arr4.length - 1;

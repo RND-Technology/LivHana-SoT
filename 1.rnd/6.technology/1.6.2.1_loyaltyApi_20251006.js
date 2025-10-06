@@ -1,38 +1,38 @@
 "use strict";
 exports.__esModule = true;
 exports.LoyaltyApi = void 0;
-var tslib_1 = require("tslib");
-var accumulateLoyaltyPointsRequest_1 = require("../models/accumulateLoyaltyPointsRequest");
-var accumulateLoyaltyPointsResponse_1 = require("../models/accumulateLoyaltyPointsResponse");
-var adjustLoyaltyPointsRequest_1 = require("../models/adjustLoyaltyPointsRequest");
-var adjustLoyaltyPointsResponse_1 = require("../models/adjustLoyaltyPointsResponse");
-var calculateLoyaltyPointsRequest_1 = require("../models/calculateLoyaltyPointsRequest");
-var calculateLoyaltyPointsResponse_1 = require("../models/calculateLoyaltyPointsResponse");
-var cancelLoyaltyPromotionResponse_1 = require("../models/cancelLoyaltyPromotionResponse");
-var createLoyaltyAccountRequest_1 = require("../models/createLoyaltyAccountRequest");
-var createLoyaltyAccountResponse_1 = require("../models/createLoyaltyAccountResponse");
-var createLoyaltyPromotionRequest_1 = require("../models/createLoyaltyPromotionRequest");
-var createLoyaltyPromotionResponse_1 = require("../models/createLoyaltyPromotionResponse");
-var createLoyaltyRewardRequest_1 = require("../models/createLoyaltyRewardRequest");
-var createLoyaltyRewardResponse_1 = require("../models/createLoyaltyRewardResponse");
-var deleteLoyaltyRewardResponse_1 = require("../models/deleteLoyaltyRewardResponse");
-var listLoyaltyProgramsResponse_1 = require("../models/listLoyaltyProgramsResponse");
-var listLoyaltyPromotionsResponse_1 = require("../models/listLoyaltyPromotionsResponse");
-var redeemLoyaltyRewardRequest_1 = require("../models/redeemLoyaltyRewardRequest");
-var redeemLoyaltyRewardResponse_1 = require("../models/redeemLoyaltyRewardResponse");
-var retrieveLoyaltyAccountResponse_1 = require("../models/retrieveLoyaltyAccountResponse");
-var retrieveLoyaltyProgramResponse_1 = require("../models/retrieveLoyaltyProgramResponse");
-var retrieveLoyaltyPromotionResponse_1 = require("../models/retrieveLoyaltyPromotionResponse");
-var retrieveLoyaltyRewardResponse_1 = require("../models/retrieveLoyaltyRewardResponse");
-var searchLoyaltyAccountsRequest_1 = require("../models/searchLoyaltyAccountsRequest");
-var searchLoyaltyAccountsResponse_1 = require("../models/searchLoyaltyAccountsResponse");
-var searchLoyaltyEventsRequest_1 = require("../models/searchLoyaltyEventsRequest");
-var searchLoyaltyEventsResponse_1 = require("../models/searchLoyaltyEventsResponse");
-var searchLoyaltyRewardsRequest_1 = require("../models/searchLoyaltyRewardsRequest");
-var searchLoyaltyRewardsResponse_1 = require("../models/searchLoyaltyRewardsResponse");
-var schema_1 = require("../schema");
-var baseApi_1 = require("./baseApi");
-var LoyaltyApi = /** @class */ (function (_super) {
+const tslib_1 = require("tslib");
+const accumulateLoyaltyPointsRequest_1 = require("../models/accumulateLoyaltyPointsRequest");
+const accumulateLoyaltyPointsResponse_1 = require("../models/accumulateLoyaltyPointsResponse");
+const adjustLoyaltyPointsRequest_1 = require("../models/adjustLoyaltyPointsRequest");
+const adjustLoyaltyPointsResponse_1 = require("../models/adjustLoyaltyPointsResponse");
+const calculateLoyaltyPointsRequest_1 = require("../models/calculateLoyaltyPointsRequest");
+const calculateLoyaltyPointsResponse_1 = require("../models/calculateLoyaltyPointsResponse");
+const cancelLoyaltyPromotionResponse_1 = require("../models/cancelLoyaltyPromotionResponse");
+const createLoyaltyAccountRequest_1 = require("../models/createLoyaltyAccountRequest");
+const createLoyaltyAccountResponse_1 = require("../models/createLoyaltyAccountResponse");
+const createLoyaltyPromotionRequest_1 = require("../models/createLoyaltyPromotionRequest");
+const createLoyaltyPromotionResponse_1 = require("../models/createLoyaltyPromotionResponse");
+const createLoyaltyRewardRequest_1 = require("../models/createLoyaltyRewardRequest");
+const createLoyaltyRewardResponse_1 = require("../models/createLoyaltyRewardResponse");
+const deleteLoyaltyRewardResponse_1 = require("../models/deleteLoyaltyRewardResponse");
+const listLoyaltyProgramsResponse_1 = require("../models/listLoyaltyProgramsResponse");
+const listLoyaltyPromotionsResponse_1 = require("../models/listLoyaltyPromotionsResponse");
+const redeemLoyaltyRewardRequest_1 = require("../models/redeemLoyaltyRewardRequest");
+const redeemLoyaltyRewardResponse_1 = require("../models/redeemLoyaltyRewardResponse");
+const retrieveLoyaltyAccountResponse_1 = require("../models/retrieveLoyaltyAccountResponse");
+const retrieveLoyaltyProgramResponse_1 = require("../models/retrieveLoyaltyProgramResponse");
+const retrieveLoyaltyPromotionResponse_1 = require("../models/retrieveLoyaltyPromotionResponse");
+const retrieveLoyaltyRewardResponse_1 = require("../models/retrieveLoyaltyRewardResponse");
+const searchLoyaltyAccountsRequest_1 = require("../models/searchLoyaltyAccountsRequest");
+const searchLoyaltyAccountsResponse_1 = require("../models/searchLoyaltyAccountsResponse");
+const searchLoyaltyEventsRequest_1 = require("../models/searchLoyaltyEventsRequest");
+const searchLoyaltyEventsResponse_1 = require("../models/searchLoyaltyEventsResponse");
+const searchLoyaltyRewardsRequest_1 = require("../models/searchLoyaltyRewardsRequest");
+const searchLoyaltyRewardsResponse_1 = require("../models/searchLoyaltyRewardsResponse");
+const schema_1 = require("../schema");
+const baseApi_1 = require("./baseApi");
+const LoyaltyApi = /** @class */ (function (_super) {
     tslib_1.__extends(LoyaltyApi, _super);
     function LoyaltyApi() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -48,7 +48,7 @@ var LoyaltyApi = /** @class */ (function (_super) {
      */
     LoyaltyApi.prototype.createLoyaltyAccount = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/loyalty/accounts');
                 mapped = req.prepareArgs({
@@ -76,7 +76,7 @@ var LoyaltyApi = /** @class */ (function (_super) {
      */
     LoyaltyApi.prototype.searchLoyaltyAccounts = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/loyalty/accounts/search');
                 mapped = req.prepareArgs({
@@ -97,7 +97,7 @@ var LoyaltyApi = /** @class */ (function (_super) {
      */
     LoyaltyApi.prototype.retrieveLoyaltyAccount = function (accountId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({ accountId: [accountId, (0, schema_1.string)()] });
@@ -137,7 +137,7 @@ var LoyaltyApi = /** @class */ (function (_super) {
      */
     LoyaltyApi.prototype.accumulateLoyaltyPoints = function (accountId, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({
@@ -169,7 +169,7 @@ var LoyaltyApi = /** @class */ (function (_super) {
      */
     LoyaltyApi.prototype.adjustLoyaltyPoints = function (accountId, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({
@@ -201,7 +201,7 @@ var LoyaltyApi = /** @class */ (function (_super) {
      */
     LoyaltyApi.prototype.searchLoyaltyEvents = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/loyalty/events/search');
                 mapped = req.prepareArgs({
@@ -229,7 +229,7 @@ var LoyaltyApi = /** @class */ (function (_super) {
      */
     LoyaltyApi.prototype.listLoyaltyPrograms = function (requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req;
+            let req;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET', '/v2/loyalty/programs');
                 req.deprecated('LoyaltyApi.listLoyaltyPrograms');
@@ -252,7 +252,7 @@ var LoyaltyApi = /** @class */ (function (_super) {
      */
     LoyaltyApi.prototype.retrieveLoyaltyProgram = function (programId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({ programId: [programId, (0, schema_1.string)()] });
@@ -294,7 +294,7 @@ var LoyaltyApi = /** @class */ (function (_super) {
      */
     LoyaltyApi.prototype.calculateLoyaltyPoints = function (programId, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({
@@ -331,7 +331,7 @@ var LoyaltyApi = /** @class */ (function (_super) {
      */
     LoyaltyApi.prototype.listLoyaltyPromotions = function (programId, status, cursor, limit, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({
@@ -369,7 +369,7 @@ var LoyaltyApi = /** @class */ (function (_super) {
      */
     LoyaltyApi.prototype.createLoyaltyPromotion = function (programId, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({
@@ -395,7 +395,7 @@ var LoyaltyApi = /** @class */ (function (_super) {
      */
     LoyaltyApi.prototype.retrieveLoyaltyPromotion = function (promotionId, programId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({
@@ -425,7 +425,7 @@ var LoyaltyApi = /** @class */ (function (_super) {
      */
     LoyaltyApi.prototype.cancelLoyaltyPromotion = function (promotionId, programId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({
@@ -455,7 +455,7 @@ var LoyaltyApi = /** @class */ (function (_super) {
      */
     LoyaltyApi.prototype.createLoyaltyReward = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/loyalty/rewards');
                 mapped = req.prepareArgs({
@@ -485,7 +485,7 @@ var LoyaltyApi = /** @class */ (function (_super) {
      */
     LoyaltyApi.prototype.searchLoyaltyRewards = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/loyalty/rewards/search');
                 mapped = req.prepareArgs({
@@ -514,7 +514,7 @@ var LoyaltyApi = /** @class */ (function (_super) {
      */
     LoyaltyApi.prototype.deleteLoyaltyReward = function (rewardId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('DELETE');
                 mapped = req.prepareArgs({ rewardId: [rewardId, (0, schema_1.string)()] });
@@ -532,7 +532,7 @@ var LoyaltyApi = /** @class */ (function (_super) {
      */
     LoyaltyApi.prototype.retrieveLoyaltyReward = function (rewardId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({ rewardId: [rewardId, (0, schema_1.string)()] });
@@ -564,7 +564,7 @@ var LoyaltyApi = /** @class */ (function (_super) {
      */
     LoyaltyApi.prototype.redeemLoyaltyReward = function (rewardId, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({
@@ -582,5 +582,5 @@ var LoyaltyApi = /** @class */ (function (_super) {
     return LoyaltyApi;
 }(baseApi_1.BaseApi));
 exports.LoyaltyApi = LoyaltyApi;
-var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6, templateObject_7, templateObject_8, templateObject_9, templateObject_10, templateObject_11, templateObject_12;
+let templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6, templateObject_7, templateObject_8, templateObject_9, templateObject_10, templateObject_11, templateObject_12;
 //# sourceMappingURL=loyaltyApi.js.map

@@ -1,22 +1,22 @@
 "use strict";
 exports.__esModule = true;
 exports.GiftCardsApi = void 0;
-var tslib_1 = require("tslib");
-var createGiftCardRequest_1 = require("../models/createGiftCardRequest");
-var createGiftCardResponse_1 = require("../models/createGiftCardResponse");
-var linkCustomerToGiftCardRequest_1 = require("../models/linkCustomerToGiftCardRequest");
-var linkCustomerToGiftCardResponse_1 = require("../models/linkCustomerToGiftCardResponse");
-var listGiftCardsResponse_1 = require("../models/listGiftCardsResponse");
-var retrieveGiftCardFromGANRequest_1 = require("../models/retrieveGiftCardFromGANRequest");
-var retrieveGiftCardFromGANResponse_1 = require("../models/retrieveGiftCardFromGANResponse");
-var retrieveGiftCardFromNonceRequest_1 = require("../models/retrieveGiftCardFromNonceRequest");
-var retrieveGiftCardFromNonceResponse_1 = require("../models/retrieveGiftCardFromNonceResponse");
-var retrieveGiftCardResponse_1 = require("../models/retrieveGiftCardResponse");
-var unlinkCustomerFromGiftCardRequest_1 = require("../models/unlinkCustomerFromGiftCardRequest");
-var unlinkCustomerFromGiftCardResponse_1 = require("../models/unlinkCustomerFromGiftCardResponse");
-var schema_1 = require("../schema");
-var baseApi_1 = require("./baseApi");
-var GiftCardsApi = /** @class */ (function (_super) {
+const tslib_1 = require("tslib");
+const createGiftCardRequest_1 = require("../models/createGiftCardRequest");
+const createGiftCardResponse_1 = require("../models/createGiftCardResponse");
+const linkCustomerToGiftCardRequest_1 = require("../models/linkCustomerToGiftCardRequest");
+const linkCustomerToGiftCardResponse_1 = require("../models/linkCustomerToGiftCardResponse");
+const listGiftCardsResponse_1 = require("../models/listGiftCardsResponse");
+const retrieveGiftCardFromGANRequest_1 = require("../models/retrieveGiftCardFromGANRequest");
+const retrieveGiftCardFromGANResponse_1 = require("../models/retrieveGiftCardFromGANResponse");
+const retrieveGiftCardFromNonceRequest_1 = require("../models/retrieveGiftCardFromNonceRequest");
+const retrieveGiftCardFromNonceResponse_1 = require("../models/retrieveGiftCardFromNonceResponse");
+const retrieveGiftCardResponse_1 = require("../models/retrieveGiftCardResponse");
+const unlinkCustomerFromGiftCardRequest_1 = require("../models/unlinkCustomerFromGiftCardRequest");
+const unlinkCustomerFromGiftCardResponse_1 = require("../models/unlinkCustomerFromGiftCardResponse");
+const schema_1 = require("../schema");
+const baseApi_1 = require("./baseApi");
+const GiftCardsApi = /** @class */ (function (_super) {
     tslib_1.__extends(GiftCardsApi, _super);
     function GiftCardsApi() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -42,7 +42,7 @@ var GiftCardsApi = /** @class */ (function (_super) {
      */
     GiftCardsApi.prototype.listGiftCards = function (type, state, limit, cursor, customerId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET', '/v2/gift-cards');
                 mapped = req.prepareArgs({
@@ -76,7 +76,7 @@ var GiftCardsApi = /** @class */ (function (_super) {
      */
     GiftCardsApi.prototype.createGiftCard = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/gift-cards');
                 mapped = req.prepareArgs({
@@ -99,7 +99,7 @@ var GiftCardsApi = /** @class */ (function (_super) {
      */
     GiftCardsApi.prototype.retrieveGiftCardFromGAN = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/gift-cards/from-gan');
                 mapped = req.prepareArgs({
@@ -122,7 +122,7 @@ var GiftCardsApi = /** @class */ (function (_super) {
      */
     GiftCardsApi.prototype.retrieveGiftCardFromNonce = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/gift-cards/from-nonce');
                 mapped = req.prepareArgs({
@@ -146,7 +146,7 @@ var GiftCardsApi = /** @class */ (function (_super) {
      */
     GiftCardsApi.prototype.linkCustomerToGiftCard = function (giftCardId, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({
@@ -172,7 +172,7 @@ var GiftCardsApi = /** @class */ (function (_super) {
      */
     GiftCardsApi.prototype.unlinkCustomerFromGiftCard = function (giftCardId, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({
@@ -195,7 +195,7 @@ var GiftCardsApi = /** @class */ (function (_super) {
      */
     GiftCardsApi.prototype.retrieveGiftCard = function (id, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({ id: [id, (0, schema_1.string)()] });
@@ -208,5 +208,5 @@ var GiftCardsApi = /** @class */ (function (_super) {
     return GiftCardsApi;
 }(baseApi_1.BaseApi));
 exports.GiftCardsApi = GiftCardsApi;
-var templateObject_1, templateObject_2, templateObject_3;
+let templateObject_1, templateObject_2, templateObject_3;
 //# sourceMappingURL=giftCardsApi.js.map

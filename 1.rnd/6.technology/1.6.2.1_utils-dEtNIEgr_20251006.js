@@ -38,7 +38,7 @@ const hookSpinnerMap = /* @__PURE__ */ new WeakMap();
 const pointer = c.yellow(F_POINTER);
 const skipped = c.dim(c.gray(F_DOWN));
 function getCols(delta = 0) {
-  var _a;
+  let _a;
   let length = (_a = process.stdout) == null ? void 0 : _a.columns;
   if (!length || Number.isNaN(length))
     length = 30;
@@ -61,7 +61,7 @@ function divider(text, left, right) {
   return F_LONG_DASH.repeat(cols);
 }
 function formatTestPath(root, path) {
-  var _a;
+  let _a;
   if (isAbsolute(path))
     path = relative(root, path);
   const dir = dirname(path);
@@ -104,7 +104,7 @@ function renderSnapshotSummary(rootDir, snapshots) {
 }
 function countTestErrors(tasks) {
   return tasks.reduce((c2, i) => {
-    var _a, _b;
+    let _a, _b;
     return c2 + (((_b = (_a = i.result) == null ? void 0 : _a.errors) == null ? void 0 : _b.length) || 0);
   }, 0);
 }
@@ -112,11 +112,11 @@ function getStateString(tasks, name = "tests", showTotal = true) {
   if (tasks.length === 0)
     return c.dim(`no ${name}`);
   const passed = tasks.filter((i) => {
-    var _a;
+    let _a;
     return ((_a = i.result) == null ? void 0 : _a.state) === "pass";
   });
   const failed = tasks.filter((i) => {
-    var _a;
+    let _a;
     return ((_a = i.result) == null ? void 0 : _a.state) === "fail";
   });
   const skipped2 = tasks.filter((i) => i.mode === "skip");
@@ -129,7 +129,7 @@ function getStateString(tasks, name = "tests", showTotal = true) {
   ].filter(Boolean).join(c.dim(" | ")) + (showTotal ? c.gray(` (${tasks.length})`) : "");
 }
 function getStateSymbol(task) {
-  var _a;
+  let _a;
   if (task.mode === "skip" || task.mode === "todo")
     return skipped;
   if (!task.result)
@@ -153,7 +153,7 @@ function getStateSymbol(task) {
   return " ";
 }
 function getHookStateSymbol(task, hookName) {
-  var _a, _b;
+  let _a, _b;
   const state = (_b = (_a = task.result) == null ? void 0 : _a.hooks) == null ? void 0 : _b[hookName];
   if (state && state === "run") {
     let spinnerMap2 = hookSpinnerMap.get(task);
@@ -194,7 +194,7 @@ function formatProjectName(name, suffix = " ") {
   return colors[index % colors.length](`|${name}|`) + suffix;
 }
 
-var utils = /*#__PURE__*/Object.freeze({
+const utils = /*#__PURE__*/Object.freeze({
 	__proto__: null,
 	countTestErrors: countTestErrors,
 	divider: divider,

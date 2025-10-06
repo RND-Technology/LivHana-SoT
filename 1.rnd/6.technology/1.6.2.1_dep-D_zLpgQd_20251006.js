@@ -54,7 +54,7 @@ const __filename = __cjs_fileURLToPath(import.meta.url);
 const __dirname = __cjs_dirname(__filename);
 const require = __cjs_createRequire(import.meta.url);
 const __require = require;
-var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
+const commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
 function getDefaultExportFromCjs (x) {
 	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
@@ -62,7 +62,7 @@ function getDefaultExportFromCjs (x) {
 
 function getAugmentedNamespace(n) {
   if (n.__esModule) return n;
-  var f = n.default;
+  const f = n.default;
 	if (typeof f == "function") {
 		var a = function a () {
 			if (this instanceof a) {
@@ -74,7 +74,7 @@ function getAugmentedNamespace(n) {
   } else a = {};
   Object.defineProperty(a, '__esModule', {value: true});
 	Object.keys(n).forEach(function (k) {
-		var d = Object.getOwnPropertyDescriptor(n, k);
+		const d = Object.getOwnPropertyDescriptor(n, k);
 		Object.defineProperty(a, k, d.get ? d : {
 			enumerable: true,
 			get: function () {
@@ -89,11 +89,11 @@ function commonjsRequire(path) {
 	throw new Error('Could not dynamically require "' + path + '". Please configure the dynamicRequireTargets or/and ignoreDynamicRequires option of @rollup/plugin-commonjs appropriately for this require call to work.');
 }
 
-var picocolors = {exports: {}};
+const picocolors = {exports: {}};
 
-let argv = process.argv || [],
+const argv = process.argv || [],
 	env$1 = process.env;
-let isColorSupported =
+const isColorSupported =
 	!("NO_COLOR" in env$1 || argv.includes("--no-color")) &&
 	("FORCE_COLOR" in env$1 ||
 		argv.includes("--color") ||
@@ -101,17 +101,17 @@ let isColorSupported =
 		(commonjsRequire != null && require$$0$3.isatty(1) && env$1.TERM !== "dumb") ||
 		"CI" in env$1);
 
-let formatter =
+const formatter =
 	(open, close, replace = open) =>
 	input => {
-		let string = "" + input;
-		let index = string.indexOf(close, open.length);
+		const string = "" + input;
+		const index = string.indexOf(close, open.length);
 		return ~index
 			? open + replaceClose(string, close, replace, index) + close
 			: open + string + close
 	};
 
-let replaceClose = (string, close, replace, index) => {
+const replaceClose = (string, close, replace, index) => {
 	let result = "";
 	let cursor = 0;
 	do {
@@ -122,8 +122,8 @@ let replaceClose = (string, close, replace, index) => {
 	return result + string.substring(cursor)
 };
 
-let createColors = (enabled = isColorSupported) => {
-	let init = enabled ? formatter : () => String;
+const createColors = (enabled = isColorSupported) => {
+	const init = enabled ? formatter : () => String;
 	return {
 		isColorSupported: enabled,
 		reset: init("\x1b[0m", "\x1b[0m"),
@@ -157,8 +157,8 @@ let createColors = (enabled = isColorSupported) => {
 picocolors.exports = createColors();
 picocolors.exports.createColors = createColors;
 
-var picocolorsExports = picocolors.exports;
-var colors$1 = /*@__PURE__*/getDefaultExportFromCjs(picocolorsExports);
+const picocolorsExports = picocolors.exports;
+const colors$1 = /*@__PURE__*/getDefaultExportFromCjs(picocolorsExports);
 
 function matches$1(pattern, importee) {
     if (pattern instanceof RegExp) {
@@ -220,7 +220,7 @@ function alias$1(options = {}) {
     return {
         name: 'alias',
         async buildStart(inputOptions) {
-            await Promise.all([...(Array.isArray(options.entries) ? options.entries : []), options].map(({ customResolver }) => { var _a; return customResolver && ((_a = getHookFunction(customResolver.buildStart)) === null || _a === void 0 ? void 0 : _a.call(this, inputOptions)); }));
+            await Promise.all([...(Array.isArray(options.entries) ? options.entries : []), options].map(({ customResolver }) => { let _a; return customResolver && ((_a = getHookFunction(customResolver.buildStart)) === null || _a === void 0 ? void 0 : _a.call(this, inputOptions)); }));
         },
         resolveId(importee, importer, resolveOptions) {
             // First match is supposed to be the correct one
@@ -290,7 +290,7 @@ const asyncFunctionDeclarationPaddingLineCount = /* @__PURE__ */ (() => {
 	replace: (node: BaseNode) => void;
 }} WalkerContext */
 
-let WalkerBase$1 = class WalkerBase {
+const WalkerBase$1 = class WalkerBase {
 	constructor() {
 		/** @type {boolean} */
 		this.should_skip = false;
@@ -356,7 +356,7 @@ let WalkerBase$1 = class WalkerBase {
  *    index: number
  * ) => void} SyncHandler */
 
-let SyncWalker$1 = class SyncWalker extends WalkerBase$1 {
+const SyncWalker$1 = class SyncWalker extends WalkerBase$1 {
 	/**
 	 *
 	 * @param {SyncHandler} enter
@@ -481,7 +481,7 @@ function walk$3(ast, { enter, leave }) {
 	return instance.visit(ast, null);
 }
 
-var utils$k = {};
+const utils$k = {};
 
 const path$m = require$$0$4;
 const WIN_SLASH = '\\\\/';
@@ -566,7 +566,7 @@ const POSIX_REGEX_SOURCE$1 = {
   xdigit: 'A-Fa-f0-9'
 };
 
-var constants$6 = {
+const constants$6 = {
   MAX_LENGTH: 1024 * 64,
   POSIX_REGEX_SOURCE: POSIX_REGEX_SOURCE$1,
 
@@ -1115,7 +1115,7 @@ const scan$2 = (input, options) => {
   return state;
 };
 
-var scan_1 = scan$2;
+const scan_1 = scan$2;
 
 const constants$5 = constants$6;
 const utils$i = utils$k;
@@ -2198,7 +2198,7 @@ parse$g.fastpaths = (input, options) => {
   return source;
 };
 
-var parse_1$3 = parse$g;
+const parse_1$3 = parse$g;
 
 const path$l = require$$0$4;
 const scan$1 = scan_1;
@@ -2539,11 +2539,11 @@ picomatch$5.constants = constants$4;
  * Expose "picomatch"
  */
 
-var picomatch_1 = picomatch$5;
+const picomatch_1 = picomatch$5;
 
-var picomatch$3 = picomatch_1;
+const picomatch$3 = picomatch_1;
 
-var picomatch$4 = /*@__PURE__*/getDefaultExportFromCjs(picomatch$3);
+const picomatch$4 = /*@__PURE__*/getDefaultExportFromCjs(picomatch$3);
 
 const extractors = {
     ArrayPattern(names, param) {
@@ -2827,7 +2827,7 @@ function isWellFormedString(input) {
     return !/\p{Surrogate}/u.test(input);
 }
 const dataToEsm = function dataToEsm(data, options = {}) {
-    var _a, _b;
+    let _a, _b;
     const t = options.compact ? '' : 'indent' in options ? options.indent : '\t';
     const _ = options.compact ? '' : ' ';
     const n = options.compact ? '' : '\n';
@@ -2877,9 +2877,9 @@ const dataToEsm = function dataToEsm(data, options = {}) {
     return `${namedExportCode}${arbitraryExportCode}${defaultExportCode}`;
 };
 
-var path$k = require$$0$4;
+const path$k = require$$0$4;
 
-var commondir = function (basedir, relfiles) {
+const commondir = function (basedir, relfiles) {
     if (relfiles) {
         var files = relfiles.map(function (r) {
             return path$k.resolve(basedir, r);
@@ -2889,12 +2889,12 @@ var commondir = function (basedir, relfiles) {
         var files = basedir;
     }
     
-    var res = files.slice(1).reduce(function (ps, file) {
+    const res = files.slice(1).reduce(function (ps, file) {
         if (!file.match(/^([A-Za-z]:)?\/|\\/)) {
             throw new Error('relative path without a basedir');
         }
         
-        var xs = file.split(/\/+|\\+/);
+        const xs = file.split(/\/+|\\+/);
         for (
             var i = 0;
             ps[i] === xs[i] && i < Math.min(ps.length, xs.length);
@@ -2907,14 +2907,14 @@ var commondir = function (basedir, relfiles) {
     return res.length > 1 ? res.join('/') : '/'
 };
 
-var getCommonDir = /*@__PURE__*/getDefaultExportFromCjs(commondir);
+const getCommonDir = /*@__PURE__*/getDefaultExportFromCjs(commondir);
 
-var balancedMatch = balanced$1;
+const balancedMatch = balanced$1;
 function balanced$1(a, b, str) {
   if (a instanceof RegExp) a = maybeMatch(a, str);
   if (b instanceof RegExp) b = maybeMatch(b, str);
 
-  var r = range$1(a, b, str);
+  const r = range$1(a, b, str);
 
   return r && {
     start: r[0],
@@ -2926,16 +2926,16 @@ function balanced$1(a, b, str) {
 }
 
 function maybeMatch(reg, str) {
-  var m = str.match(reg);
+  const m = str.match(reg);
   return m ? m[0] : null;
 }
 
 balanced$1.range = range$1;
 function range$1(a, b, str) {
-  var begs, beg, left, right, result;
-  var ai = str.indexOf(a);
-  var bi = str.indexOf(b, ai + 1);
-  var i = ai;
+  let begs, beg, left, right, result;
+  let ai = str.indexOf(a);
+  let bi = str.indexOf(b, ai + 1);
+  let i = ai;
 
   if (ai >= 0 && bi > 0) {
     if(a===b) {
@@ -2971,15 +2971,15 @@ function range$1(a, b, str) {
   return result;
 }
 
-var balanced = balancedMatch;
+const balanced = balancedMatch;
 
-var braceExpansion = expandTop;
+const braceExpansion = expandTop;
 
-var escSlash = '\0SLASH'+Math.random()+'\0';
-var escOpen = '\0OPEN'+Math.random()+'\0';
-var escClose = '\0CLOSE'+Math.random()+'\0';
-var escComma = '\0COMMA'+Math.random()+'\0';
-var escPeriod = '\0PERIOD'+Math.random()+'\0';
+const escSlash = '\0SLASH'+Math.random()+'\0';
+const escOpen = '\0OPEN'+Math.random()+'\0';
+const escClose = '\0CLOSE'+Math.random()+'\0';
+const escComma = '\0COMMA'+Math.random()+'\0';
+const escPeriod = '\0PERIOD'+Math.random()+'\0';
 
 function numeric(str) {
   return parseInt(str, 10) == str
@@ -3011,19 +3011,19 @@ function parseCommaParts(str) {
   if (!str)
     return [''];
 
-  var parts = [];
-  var m = balanced('{', '}', str);
+  const parts = [];
+  const m = balanced('{', '}', str);
 
   if (!m)
     return str.split(',');
 
-  var pre = m.pre;
-  var body = m.body;
-  var post = m.post;
-  var p = pre.split(',');
+  const pre = m.pre;
+  const body = m.body;
+  const post = m.post;
+  const p = pre.split(',');
 
   p[p.length-1] += '{' + body + '}';
-  var postParts = parseCommaParts(post);
+  const postParts = parseCommaParts(post);
   if (post.length) {
     p[p.length-1] += postParts.shift();
     p.push.apply(p, postParts);
@@ -3066,14 +3066,14 @@ function gte(i, y) {
 }
 
 function expand$3(str, isTop) {
-  var expansions = [];
+  const expansions = [];
 
-  var m = balanced('{', '}', str);
+  const m = balanced('{', '}', str);
   if (!m) return [str];
 
   // no need to expand pre, since it is guaranteed to be free of brace-sets
-  var pre = m.pre;
-  var post = m.post.length
+  const pre = m.pre;
+  const post = m.post.length
     ? expand$3(m.post, false)
     : [''];
 
@@ -3083,10 +3083,10 @@ function expand$3(str, isTop) {
       expansions.push(expansion);
     }
   } else {
-    var isNumericSequence = /^-?\d+\.\.-?\d+(?:\.\.-?\d+)?$/.test(m.body);
-    var isAlphaSequence = /^[a-zA-Z]\.\.[a-zA-Z](?:\.\.-?\d+)?$/.test(m.body);
-    var isSequence = isNumericSequence || isAlphaSequence;
-    var isOptions = m.body.indexOf(',') >= 0;
+    const isNumericSequence = /^-?\d+\.\.-?\d+(?:\.\.-?\d+)?$/.test(m.body);
+    const isAlphaSequence = /^[a-zA-Z]\.\.[a-zA-Z](?:\.\.-?\d+)?$/.test(m.body);
+    const isSequence = isNumericSequence || isAlphaSequence;
+    const isOptions = m.body.indexOf(',') >= 0;
     if (!isSequence && !isOptions) {
       // {a},b}
       if (m.post.match(/,.*\}/)) {
@@ -3096,7 +3096,7 @@ function expand$3(str, isTop) {
       return [str];
     }
 
-    var n;
+    let n;
     if (isSequence) {
       n = m.body.split(/\.\./);
     } else {
@@ -3114,26 +3114,26 @@ function expand$3(str, isTop) {
 
     // at this point, n is the parts, and we know it's not a comma set
     // with a single entry.
-    var N;
+    let N;
 
     if (isSequence) {
-      var x = numeric(n[0]);
-      var y = numeric(n[1]);
-      var width = Math.max(n[0].length, n[1].length);
-      var incr = n.length == 3
+      const x = numeric(n[0]);
+      const y = numeric(n[1]);
+      const width = Math.max(n[0].length, n[1].length);
+      let incr = n.length == 3
         ? Math.abs(numeric(n[2]))
         : 1;
-      var test = lte;
-      var reverse = y < x;
+      let test = lte;
+      const reverse = y < x;
       if (reverse) {
         incr *= -1;
         test = gte;
       }
-      var pad = n.some(isPadded);
+      const pad = n.some(isPadded);
 
       N = [];
 
-      for (var i = x; test(i, y); i += incr) {
+      for (let i = x; test(i, y); i += incr) {
         var c;
         if (isAlphaSequence) {
           c = String.fromCharCode(i);
@@ -3142,9 +3142,9 @@ function expand$3(str, isTop) {
         } else {
           c = String(i);
           if (pad) {
-            var need = width - c.length;
+            const need = width - c.length;
             if (need > 0) {
-              var z = new Array(need + 1).join('0');
+              const z = new Array(need + 1).join('0');
               if (i < 0)
                 c = '-' + z + c.slice(1);
               else
@@ -3174,7 +3174,7 @@ function expand$3(str, isTop) {
   return expansions;
 }
 
-var expand$4 = /*@__PURE__*/getDefaultExportFromCjs(braceExpansion);
+const expand$4 = /*@__PURE__*/getDefaultExportFromCjs(braceExpansion);
 
 const MAX_PATTERN_LENGTH = 1024 * 64;
 const assertValidPattern = (pattern) => {
@@ -4225,7 +4225,7 @@ class Minimatch {
         this.globParts = this.preprocess(rawGlobParts);
         this.debug(this.pattern, this.globParts);
         // glob --> regexps
-        let set = this.globParts.map((s, _, __) => {
+        const set = this.globParts.map((s, _, __) => {
             if (this.isWindows && this.windowsNoMagicRoot) {
                 // check if it's a drive or unc path.
                 const isUNC = s[0] === '' &&
@@ -4391,7 +4391,7 @@ class Minimatch {
         do {
             didSomething = false;
             // <pre>/**/../<p>/<p>/<rest> -> {<pre>/../<p>/<p>/<rest>,<pre>/**/<p>/<p>/<rest>}
-            for (let parts of globParts) {
+            for (const parts of globParts) {
                 let gs = -1;
                 while (-1 !== (gs = parts.indexOf('**', gs + 1))) {
                     let gss = gs;
@@ -4404,7 +4404,7 @@ class Minimatch {
                     if (gss > gs) {
                         parts.splice(gs + 1, gss - gs);
                     }
-                    let next = parts[gs + 1];
+                    const next = parts[gs + 1];
                     const p = parts[gs + 2];
                     const p2 = parts[gs + 3];
                     if (next !== '..')
@@ -4486,7 +4486,7 @@ class Minimatch {
     partsMatch(a, b, emptyGSMatch = false) {
         let ai = 0;
         let bi = 0;
-        let result = [];
+        const result = [];
         let which = '';
         while (ai < a.length && bi < b.length) {
             if (a[ai] === b[bi]) {
@@ -4595,8 +4595,8 @@ class Minimatch {
         this.debug('matchOne', file.length, pattern.length);
         for (var fi = 0, pi = 0, fl = file.length, pl = pattern.length; fi < fl && pi < pl; fi++, pi++) {
             this.debug('matchOne loop');
-            var p = pattern[pi];
-            var f = file[fi];
+            const p = pattern[pi];
+            const f = file[fi];
             this.debug(pattern, p, f);
             // should be impossible.
             // some invalid regexp stuff in the set.
@@ -4629,8 +4629,8 @@ class Minimatch {
                 //       - matchOne(y/z/c, c) -> no
                 //       - matchOne(z/c, c) -> no
                 //       - matchOne(c, c) yes, hit
-                var fr = fi;
-                var pr = pi + 1;
+                let fr = fi;
+                const pr = pi + 1;
                 if (pr === pl) {
                     this.debug('** at the end');
                     // a ** at the end will just swallow the rest.
@@ -4649,7 +4649,7 @@ class Minimatch {
                 }
                 // ok, let's see if we can swallow whatever we can.
                 while (fr < fl) {
-                    var swallowee = file[fr];
+                    const swallowee = file[fr];
                     this.debug('\nglobstar while', file, fr, pattern, pr, swallowee);
                     // XXX remove this slice.  Just pass the start index.
                     if (this.matchOne(file.slice(fr), pattern.slice(pr), partial)) {
@@ -6235,7 +6235,7 @@ class LRUCache {
             status,
             signal,
         };
-        let index = this.#keyMap.get(k);
+        const index = this.#keyMap.get(k);
         if (index === undefined) {
             if (status)
                 status.fetch = 'miss';
@@ -8622,7 +8622,7 @@ class PathBase {
         oldCwd.isCWD = false;
         this.isCWD = true;
         const changed = new Set([]);
-        let rp = [];
+        const rp = [];
         let p = this;
         while (p && p.parent) {
             changed.add(p);
@@ -11174,7 +11174,7 @@ function getBtoa() {
 
 const btoa$1 = /*#__PURE__*/ getBtoa();
 
-let SourceMap$1 = class SourceMap {
+const SourceMap$1 = class SourceMap {
 	constructor(properties) {
 		this.version = 3;
 		this.file = properties.file;
@@ -12251,8 +12251,8 @@ function isReference(node, parent) {
     return false;
 }
 
-var version$2 = "26.0.1";
-var peerDependencies = {
+const version$2 = "26.0.1";
+const peerDependencies = {
 	rollup: "^2.68.0||^3.0.0||^4.0.0"
 };
 
@@ -14960,15 +14960,15 @@ function cast$2(map) {
  * Returns the encoded (VLQ string) form of the SourceMap's mappings field.
  */
 function encodedMappings(map) {
-    var _a;
-    var _b;
+    let _a;
+    let _b;
     return ((_a = (_b = cast$2(map))._encoded) !== null && _a !== void 0 ? _a : (_b._encoded = encode$1(cast$2(map)._decoded)));
 }
 /**
  * Returns the decoded (array of lines of segments) form of the SourceMap's mappings field.
  */
 function decodedMappings(map) {
-    var _a;
+    let _a;
     return ((_a = cast$2(map))._decoded || (_a._decoded = decode(cast$2(map)._encoded)));
 }
 /**
@@ -15461,26 +15461,26 @@ function remapping(input, loader, options) {
     return new SourceMap(traceMappings(tree), opts);
 }
 
-var src$3 = {exports: {}};
+const src$3 = {exports: {}};
 
-var browser$3 = {exports: {}};
+const browser$3 = {exports: {}};
 
 /**
  * Helpers.
  */
 
-var ms$1;
-var hasRequiredMs$1;
+let ms$1;
+let hasRequiredMs$1;
 
 function requireMs$1 () {
 	if (hasRequiredMs$1) return ms$1;
 	hasRequiredMs$1 = 1;
-	var s = 1000;
-	var m = s * 60;
-	var h = m * 60;
-	var d = h * 24;
-	var w = d * 7;
-	var y = d * 365.25;
+	const s = 1000;
+	const m = s * 60;
+	const h = m * 60;
+	const d = h * 24;
+	const w = d * 7;
+	const y = d * 365.25;
 
 	/**
 	 * Parse or format the given `val`.
@@ -15498,7 +15498,7 @@ function requireMs$1 () {
 
 	ms$1 = function(val, options) {
 	  options = options || {};
-	  var type = typeof val;
+	  const type = typeof val;
 	  if (type === 'string' && val.length > 0) {
 	    return parse(val);
 	  } else if (type === 'number' && isFinite(val)) {
@@ -15523,14 +15523,14 @@ function requireMs$1 () {
 	  if (str.length > 100) {
 	    return;
 	  }
-	  var match = /^(-?(?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|weeks?|w|years?|yrs?|y)?$/i.exec(
+	  const match = /^(-?(?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|weeks?|w|years?|yrs?|y)?$/i.exec(
 	    str
 	  );
 	  if (!match) {
 	    return;
 	  }
-	  var n = parseFloat(match[1]);
-	  var type = (match[2] || 'ms').toLowerCase();
+	  const n = parseFloat(match[1]);
+	  const type = (match[2] || 'ms').toLowerCase();
 	  switch (type) {
 	    case 'years':
 	    case 'year':
@@ -15584,7 +15584,7 @@ function requireMs$1 () {
 	 */
 
 	function fmtShort(ms) {
-	  var msAbs = Math.abs(ms);
+	  const msAbs = Math.abs(ms);
 	  if (msAbs >= d) {
 	    return Math.round(ms / d) + 'd';
 	  }
@@ -15609,7 +15609,7 @@ function requireMs$1 () {
 	 */
 
 	function fmtLong(ms) {
-	  var msAbs = Math.abs(ms);
+	  const msAbs = Math.abs(ms);
 	  if (msAbs >= d) {
 	    return plural(ms, msAbs, d, 'day');
 	  }
@@ -15630,14 +15630,14 @@ function requireMs$1 () {
 	 */
 
 	function plural(ms, msAbs, n, name) {
-	  var isPlural = msAbs >= n * 1.5;
+	  const isPlural = msAbs >= n * 1.5;
 	  return Math.round(ms / n) + ' ' + name + (isPlural ? 's' : '');
 	}
 	return ms$1;
 }
 
-var common$b;
-var hasRequiredCommon;
+let common$b;
+let hasRequiredCommon;
 
 function requireCommon () {
 	if (hasRequiredCommon) return common$b;
@@ -15920,7 +15920,7 @@ function requireCommon () {
 
 /* eslint-env browser */
 
-var hasRequiredBrowser$1;
+let hasRequiredBrowser$1;
 
 function requireBrowser$1 () {
 	if (hasRequiredBrowser$1) return browser$3.exports;
@@ -16199,13 +16199,13 @@ function requireBrowser$1 () {
 	return browser$3.exports;
 }
 
-var node$1 = {exports: {}};
+const node$1 = {exports: {}};
 
 /**
  * Module dependencies.
  */
 
-var hasRequiredNode$1;
+let hasRequiredNode$1;
 
 function requireNode$1 () {
 	if (hasRequiredNode$1) return node$1.exports;
@@ -16485,8 +16485,8 @@ if (typeof process === 'undefined' || process.type === 'renderer' || process.bro
 	src$3.exports = requireNode$1();
 }
 
-var srcExports$1 = src$3.exports;
-var debug$i = /*@__PURE__*/getDefaultExportFromCjs(srcExports$1);
+const srcExports$1 = src$3.exports;
+const debug$i = /*@__PURE__*/getDefaultExportFromCjs(srcExports$1);
 
 let pnp;
 if (process.versions.pnp) {
@@ -18369,7 +18369,7 @@ function replaceTokens(tsconfig, configDir) {
  * @returns {Promise<string|null>} absolute path to closest tsconfig.json or null if not found
  */
 async function find(filename, options) {
-	let dir = path$n.dirname(path$n.resolve(filename));
+	const dir = path$n.dirname(path$n.resolve(filename));
 	if (options?.ignoreNodeModules && isInNodeModules(dir)) {
 		return null;
 	}
@@ -18624,7 +18624,7 @@ async function parse$e(filename, options) {
 	} = makePromise();
 	cache?.setParseResult(filename, promise, true);
 	try {
-		let tsconfigFile =
+		const tsconfigFile =
 			(await resolveTSConfigJson(filename, cache)) || (await find(filename, options));
 		if (!tsconfigFile) {
 			resolve(not_found_result);
@@ -19466,7 +19466,7 @@ async function reloadOnTsconfigChange(changedFile) {
 }
 
 // src/realWorker.ts
-var Worker = class {
+const Worker = class {
   /** @internal */
   _code;
   /** @internal */
@@ -19634,7 +19634,7 @@ parentPort.on('message', async (args) => {
 })
   `;
 }
-var FakeWorker = class {
+const FakeWorker = class {
   /** @internal */
   _fn;
   constructor(fn, options = {}) {
@@ -19670,7 +19670,7 @@ return (${fn.toString()})()
 }
 
 // src/workerWithFallback.ts
-var WorkerWithFallback = class {
+const WorkerWithFallback = class {
   /** @internal */
   _disableReal;
   /** @internal */
@@ -20194,7 +20194,7 @@ const mimes = {
 };
 
 function lookup(extn) {
-	let tmp = ('' + extn).trim().toLowerCase();
+	const tmp = ('' + extn).trim().toLowerCase();
 	let idx = tmp.lastIndexOf('.');
 	return mimes[!~idx ? tmp : tmp.substring(++idx)];
 }
@@ -20666,9 +20666,9 @@ function dataURIPlugin() {
 }
 
 /* es-module-lexer 1.5.4 */
-var ImportType;!function(A){A[A.Static=1]="Static",A[A.Dynamic=2]="Dynamic",A[A.ImportMeta=3]="ImportMeta",A[A.StaticSourcePhase=4]="StaticSourcePhase",A[A.DynamicSourcePhase=5]="DynamicSourcePhase";}(ImportType||(ImportType={}));const A=1===new Uint8Array(new Uint16Array([1]).buffer)[0];function parse$d(E,g="@"){if(!C)return init.then((()=>parse$d(E)));const I=E.length+1,w=(C.__heap_base.value||C.__heap_base)+4*I-C.memory.buffer.byteLength;w>0&&C.memory.grow(Math.ceil(w/65536));const K=C.sa(I-1);if((A?B:Q)(E,new Uint16Array(C.memory.buffer,K,I)),!C.parse())throw Object.assign(new Error(`Parse error ${g}:${E.slice(0,C.e()).split("\n").length}:${C.e()-E.lastIndexOf("\n",C.e()-1)}`),{idx:C.e()});const D=[],o=[];for(;C.ri();){const A=C.is(),Q=C.ie(),B=C.it(),g=C.ai(),I=C.id(),w=C.ss(),K=C.se();let o;C.ip()&&(o=k(E.slice(-1===I?A-1:A,-1===I?Q+1:Q))),D.push({n:o,t:B,s:A,e:Q,ss:w,se:K,d:I,a:g});}for(;C.re();){const A=C.es(),Q=C.ee(),B=C.els(),g=C.ele(),I=E.slice(A,Q),w=I[0],K=B<0?void 0:E.slice(B,g),D=K?K[0]:"";o.push({s:A,e:Q,ls:B,le:g,n:'"'===w||"'"===w?k(I):I,ln:'"'===D||"'"===D?k(K):K});}function k(A){try{return (0, eval)(A)}catch(A){}}return [D,o,!!C.f(),!!C.ms()]}function Q(A,Q){const B=A.length;let C=0;for(;C<B;){const B=A.charCodeAt(C);Q[C++]=(255&B)<<8|B>>>8;}}function B(A,Q){const B=A.length;let C=0;for(;C<B;)Q[C]=A.charCodeAt(C++);}let C;const init=WebAssembly.compile((E="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","undefined"!=typeof Buffer?Buffer.from(E,"base64"):Uint8Array.from(atob(E),(A=>A.charCodeAt(0))))).then(WebAssembly.instantiate).then((({exports:A})=>{C=A;}));var E;
+let ImportType;!function(A){A[A.Static=1]="Static",A[A.Dynamic=2]="Dynamic",A[A.ImportMeta=3]="ImportMeta",A[A.StaticSourcePhase=4]="StaticSourcePhase",A[A.DynamicSourcePhase=5]="DynamicSourcePhase";}(ImportType||(ImportType={}));const A=1===new Uint8Array(new Uint16Array([1]).buffer)[0];function parse$d(E,g="@"){if(!C)return init.then((()=>parse$d(E)));const I=E.length+1,w=(C.__heap_base.value||C.__heap_base)+4*I-C.memory.buffer.byteLength;w>0&&C.memory.grow(Math.ceil(w/65536));const K=C.sa(I-1);if((A?B:Q)(E,new Uint16Array(C.memory.buffer,K,I)),!C.parse())throw Object.assign(new Error(`Parse error ${g}:${E.slice(0,C.e()).split("\n").length}:${C.e()-E.lastIndexOf("\n",C.e()-1)}`),{idx:C.e()});const D=[],o=[];for(;C.ri();){const A=C.is(),Q=C.ie(),B=C.it(),g=C.ai(),I=C.id(),w=C.ss(),K=C.se();let o;C.ip()&&(o=k(E.slice(-1===I?A-1:A,-1===I?Q+1:Q))),D.push({n:o,t:B,s:A,e:Q,ss:w,se:K,d:I,a:g});}for(;C.re();){const A=C.es(),Q=C.ee(),B=C.els(),g=C.ele(),I=E.slice(A,Q),w=I[0],K=B<0?void 0:E.slice(B,g),D=K?K[0]:"";o.push({s:A,e:Q,ls:B,le:g,n:'"'===w||"'"===w?k(I):I,ln:'"'===D||"'"===D?k(K):K});}function k(A){try{return (0, eval)(A)}catch(A){}}return [D,o,!!C.f(),!!C.ms()]}function Q(A,Q){const B=A.length;let C=0;for(;C<B;){const B=A.charCodeAt(C);Q[C++]=(255&B)<<8|B>>>8;}}function B(A,Q){const B=A.length;let C=0;for(;C<B;)Q[C]=A.charCodeAt(C++);}let C;const init=WebAssembly.compile((E="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","undefined"!=typeof Buffer?Buffer.from(E,"base64"):Uint8Array.from(atob(E),(A=>A.charCodeAt(0))))).then(WebAssembly.instantiate).then((({exports:A})=>{C=A;}));let E;
 
-var convertSourceMap$1 = {};
+const convertSourceMap$1 = {};
 
 (function (exports) {
 
@@ -20687,7 +20687,7 @@ var convertSourceMap$1 = {};
 	  }
 	});
 
-	var decodeBase64;
+	let decodeBase64;
 	if (typeof Buffer !== 'undefined') {
 	  if (typeof Buffer.from === 'function') {
 	    decodeBase64 = decodeBase64WithBufferFrom;
@@ -20718,9 +20718,9 @@ var convertSourceMap$1 = {};
 	}
 
 	function readFromFileMap(sm, read) {
-	  var r = exports.mapFileCommentRegex.exec(sm);
+	  const r = exports.mapFileCommentRegex.exec(sm);
 	  // for some odd reason //# .. captures in 1 and /* .. */ in 2
-	  var filename = r[1] || r[2];
+	  const filename = r[1] || r[2];
 
 	  try {
 	    var sm = read(filename);
@@ -20773,12 +20773,12 @@ var convertSourceMap$1 = {};
 	}
 
 	function encodeBase64WithBufferFrom() {
-	  var json = this.toJSON();
+	  const json = this.toJSON();
 	  return Buffer.from(json, 'utf8').toString('base64');
 	}
 
 	function encodeBase64WithNewBuffer() {
-	  var json = this.toJSON();
+	  const json = this.toJSON();
 	  if (typeof json === 'number') {
 	    throw new TypeError('The json to encode must not be of type number.');
 	  }
@@ -20786,17 +20786,17 @@ var convertSourceMap$1 = {};
 	}
 
 	function encodeBase64WithBtoa() {
-	  var json = this.toJSON();
+	  const json = this.toJSON();
 	  return btoa(unescape(encodeURIComponent(json)));
 	}
 
 	Converter.prototype.toURI = function () {
-	  var json = this.toJSON();
+	  const json = this.toJSON();
 	  return encodeURIComponent(json);
 	};
 
 	Converter.prototype.toComment = function (options) {
-	  var encoding, content, data;
+	  let encoding, content, data;
 	  if (options != null && options.encoding === 'uri') {
 	    encoding = '';
 	    content = this.toURI();
@@ -20844,7 +20844,7 @@ var convertSourceMap$1 = {};
 	};
 
 	exports.fromComment = function (comment) {
-	  var m, encoding;
+	  let m, encoding;
 	  comment = comment
 	    .replace(/^\/\*/g, '//')
 	    .replace(/\*\/$/g, '');
@@ -20865,7 +20865,7 @@ var convertSourceMap$1 = {};
 	    )
 	  }
 
-	  var sm = readFromFileMap(comment, read);
+	  const sm = readFromFileMap(comment, read);
 	  if (sm != null && typeof sm.then === 'function') {
 	    return sm.then(makeConverter);
 	  } else {
@@ -20875,7 +20875,7 @@ var convertSourceMap$1 = {};
 
 	// Finds last sourcemap comment in file or returns null if none was found
 	exports.fromSource = function (content) {
-	  var m = content.match(exports.commentRegex);
+	  const m = content.match(exports.commentRegex);
 	  return m ? exports.fromComment(m.pop()) : null;
 	};
 
@@ -20887,7 +20887,7 @@ var convertSourceMap$1 = {};
 	      'Please review the Upgrading documentation at https://github.com/thlorenz/convert-source-map#upgrading'
 	    )
 	  }
-	  var m = content.match(exports.mapFileCommentRegex);
+	  const m = content.match(exports.mapFileCommentRegex);
 	  return m ? exports.fromMapFileComment(m.pop(), read) : null;
 	};
 
@@ -20900,12 +20900,12 @@ var convertSourceMap$1 = {};
 	};
 
 	exports.generateMapFileComment = function (file, options) {
-	  var data = 'sourceMappingURL=' + file;
+	  const data = 'sourceMappingURL=' + file;
 	  return options && options.multiline ? '/*# ' + data + ' */' : '//# ' + data;
 	}; 
 } (convertSourceMap$1));
 
-var convertSourceMap = /*@__PURE__*/getDefaultExportFromCjs(convertSourceMap$1);
+const convertSourceMap = /*@__PURE__*/getDefaultExportFromCjs(convertSourceMap$1);
 
 const debug$g = createDebugger("vite:sourcemap", {
   onlyWhenFocused: true
@@ -21019,11 +21019,11 @@ function createConvertSourceMapReadMap(originalFileName) {
   };
 }
 
-var tasks = {};
+const tasks = {};
 
-var utils$g = {};
+const utils$g = {};
 
-var array$1 = {};
+const array$1 = {};
 
 Object.defineProperty(array$1, "__esModule", { value: true });
 array$1.splitWhen = array$1.flatten = void 0;
@@ -21047,7 +21047,7 @@ function splitWhen(items, predicate) {
 }
 array$1.splitWhen = splitWhen;
 
-var errno$1 = {};
+const errno$1 = {};
 
 Object.defineProperty(errno$1, "__esModule", { value: true });
 errno$1.isEnoentCodeError = void 0;
@@ -21056,11 +21056,11 @@ function isEnoentCodeError(error) {
 }
 errno$1.isEnoentCodeError = isEnoentCodeError;
 
-var fs$i = {};
+const fs$i = {};
 
 Object.defineProperty(fs$i, "__esModule", { value: true });
 fs$i.createDirentFromStats = void 0;
-let DirentFromStats$1 = class DirentFromStats {
+const DirentFromStats$1 = class DirentFromStats {
     constructor(name, stats) {
         this.name = name;
         this.isBlockDevice = stats.isBlockDevice.bind(stats);
@@ -21077,7 +21077,7 @@ function createDirentFromStats$1(name, stats) {
 }
 fs$i.createDirentFromStats = createDirentFromStats$1;
 
-var path$i = {};
+const path$i = {};
 
 Object.defineProperty(path$i, "__esModule", { value: true });
 path$i.convertPosixPathToPattern = path$i.convertWindowsPathToPattern = path$i.convertPathToPattern = path$i.escapePosixPath = path$i.escapeWindowsPath = path$i.escape = path$i.removeLeadingDotSegment = path$i.makeAbsolute = path$i.unixify = void 0;
@@ -21147,7 +21147,7 @@ function convertPosixPathToPattern(filepath) {
 }
 path$i.convertPosixPathToPattern = convertPosixPathToPattern;
 
-var pattern$1 = {};
+const pattern$1 = {};
 
 /*!
  * is-extglob <https://github.com/jonschlinkert/is-extglob>
@@ -21156,12 +21156,12 @@ var pattern$1 = {};
  * Licensed under the MIT License.
  */
 
-var isExtglob$1 = function isExtglob(str) {
+const isExtglob$1 = function isExtglob(str) {
   if (typeof str !== 'string' || str === '') {
     return false;
   }
 
-  var match;
+  let match;
   while ((match = /(\\).|([@?!+*]\(.*\))/g.exec(str))) {
     if (match[2]) return true;
     str = str.slice(match.index + match[0].length);
@@ -21177,18 +21177,18 @@ var isExtglob$1 = function isExtglob(str) {
  * Released under the MIT License.
  */
 
-var isExtglob = isExtglob$1;
-var chars = { '{': '}', '(': ')', '[': ']'};
-var strictCheck = function(str) {
+const isExtglob = isExtglob$1;
+const chars = { '{': '}', '(': ')', '[': ']'};
+const strictCheck = function(str) {
   if (str[0] === '!') {
     return true;
   }
-  var index = 0;
-  var pipeIndex = -2;
-  var closeSquareIndex = -2;
-  var closeCurlyIndex = -2;
-  var closeParenIndex = -2;
-  var backSlashIndex = -2;
+  let index = 0;
+  let pipeIndex = -2;
+  let closeSquareIndex = -2;
+  let closeCurlyIndex = -2;
+  let closeParenIndex = -2;
+  let backSlashIndex = -2;
   while (index < str.length) {
     if (str[index] === '*') {
       return true;
@@ -21249,12 +21249,12 @@ var strictCheck = function(str) {
     }
 
     if (str[index] === '\\') {
-      var open = str[index + 1];
+      const open = str[index + 1];
       index += 2;
-      var close = chars[open];
+      const close = chars[open];
 
       if (close) {
-        var n = str.indexOf(close, index);
+        const n = str.indexOf(close, index);
         if (n !== -1) {
           index = n + 1;
         }
@@ -21270,23 +21270,23 @@ var strictCheck = function(str) {
   return false;
 };
 
-var relaxedCheck = function(str) {
+const relaxedCheck = function(str) {
   if (str[0] === '!') {
     return true;
   }
-  var index = 0;
+  let index = 0;
   while (index < str.length) {
     if (/[*?{}()[\]]/.test(str[index])) {
       return true;
     }
 
     if (str[index] === '\\') {
-      var open = str[index + 1];
+      const open = str[index + 1];
       index += 2;
-      var close = chars[open];
+      const close = chars[open];
 
       if (close) {
-        var n = str.indexOf(close, index);
+        const n = str.indexOf(close, index);
         if (n !== -1) {
           index = n + 1;
         }
@@ -21302,7 +21302,7 @@ var relaxedCheck = function(str) {
   return false;
 };
 
-var isGlob$2 = function isGlob(str, options) {
+const isGlob$2 = function isGlob(str, options) {
   if (typeof str !== 'string' || str === '') {
     return false;
   }
@@ -21311,7 +21311,7 @@ var isGlob$2 = function isGlob(str, options) {
     return true;
   }
 
-  var check = strictCheck;
+  let check = strictCheck;
 
   // optionally relax check
   if (options && options.strict === false) {
@@ -21321,15 +21321,15 @@ var isGlob$2 = function isGlob(str, options) {
   return check(str);
 };
 
-var isGlob$1 = isGlob$2;
-var pathPosixDirname = require$$0$4.posix.dirname;
-var isWin32 = require$$2.platform() === 'win32';
+const isGlob$1 = isGlob$2;
+const pathPosixDirname = require$$0$4.posix.dirname;
+const isWin32 = require$$2.platform() === 'win32';
 
-var slash = '/';
-var backslash = /\\/g;
-var enclosure = /[\{\[].*[\}\]]$/;
-var globby = /(^|[^\\])([\{\[]|\([^\)]+$)/;
-var escaped = /\\([\!\*\?\|\[\]\(\)\{\}])/g;
+const slash = '/';
+const backslash = /\\/g;
+const enclosure = /[\{\[].*[\}\]]$/;
+const globby = /(^|[^\\])([\{\[]|\([^\)]+$)/;
+const escaped = /\\([\!\*\?\|\[\]\(\)\{\}])/g;
 
 /**
  * @param {string} str
@@ -21337,8 +21337,8 @@ var escaped = /\\([\!\*\?\|\[\]\(\)\{\}])/g;
  * @param {boolean} [opts.flipBackslashes=true]
  * @returns {string}
  */
-var globParent$2 = function globParent(str, opts) {
-  var options = Object.assign({ flipBackslashes: true }, opts);
+const globParent$2 = function globParent(str, opts) {
+  const options = Object.assign({ flipBackslashes: true }, opts);
 
   // flip windows path separators
   if (options.flipBackslashes && isWin32 && str.indexOf(slash) < 0) {
@@ -21362,7 +21362,7 @@ var globParent$2 = function globParent(str, opts) {
   return str.replace(escaped, '$1');
 };
 
-var utils$f = {};
+const utils$f = {};
 
 (function (exports) {
 
@@ -21490,7 +21490,7 @@ var utils$f = {};
 
 const utils$e = utils$f;
 
-var stringify$7 = (ast, options = {}) => {
+const stringify$7 = (ast, options = {}) => {
   const stringify = (node, parent = {}) => {
     const invalidBlock = options.escapeInvalid && utils$e.isInvalidBrace(parent);
     const invalidNode = node.invalid === true && options.escapeInvalid === true;
@@ -21525,7 +21525,7 @@ var stringify$7 = (ast, options = {}) => {
  * Released under the MIT License.
  */
 
-var isNumber$2 = function(num) {
+const isNumber$2 = function(num) {
   if (typeof num === 'number') {
     return num - num === 0;
   }
@@ -21557,26 +21557,26 @@ const toRegexRange$1 = (min, max, options) => {
     throw new TypeError('toRegexRange: expected the second argument to be a number.');
   }
 
-  let opts = { relaxZeros: true, ...options };
+  const opts = { relaxZeros: true, ...options };
   if (typeof opts.strictZeros === 'boolean') {
     opts.relaxZeros = opts.strictZeros === false;
   }
 
-  let relax = String(opts.relaxZeros);
-  let shorthand = String(opts.shorthand);
-  let capture = String(opts.capture);
-  let wrap = String(opts.wrap);
-  let cacheKey = min + ':' + max + '=' + relax + shorthand + capture + wrap;
+  const relax = String(opts.relaxZeros);
+  const shorthand = String(opts.shorthand);
+  const capture = String(opts.capture);
+  const wrap = String(opts.wrap);
+  const cacheKey = min + ':' + max + '=' + relax + shorthand + capture + wrap;
 
   if (toRegexRange$1.cache.hasOwnProperty(cacheKey)) {
     return toRegexRange$1.cache[cacheKey].result;
   }
 
   let a = Math.min(min, max);
-  let b = Math.max(min, max);
+  const b = Math.max(min, max);
 
   if (Math.abs(a - b) === 1) {
-    let result = min + '|' + max;
+    const result = min + '|' + max;
     if (opts.capture) {
       return `(${result})`;
     }
@@ -21586,8 +21586,8 @@ const toRegexRange$1 = (min, max, options) => {
     return `(?:${result})`;
   }
 
-  let isPadded = hasPadding(min) || hasPadding(max);
-  let state = { min, max, a, b };
+  const isPadded = hasPadding(min) || hasPadding(max);
+  const state = { min, max, a, b };
   let positives = [];
   let negatives = [];
 
@@ -21597,7 +21597,7 @@ const toRegexRange$1 = (min, max, options) => {
   }
 
   if (a < 0) {
-    let newMin = b < 0 ? Math.abs(b) : 1;
+    const newMin = b < 0 ? Math.abs(b) : 1;
     negatives = splitToPatterns(newMin, Math.abs(a), state, opts);
     a = state.a = 0;
   }
@@ -21621,10 +21621,10 @@ const toRegexRange$1 = (min, max, options) => {
 };
 
 function collatePatterns(neg, pos, options) {
-  let onlyNegative = filterPatterns(neg, pos, '-', false) || [];
-  let onlyPositive = filterPatterns(pos, neg, '', false) || [];
-  let intersected = filterPatterns(neg, pos, '-?', true) || [];
-  let subpatterns = onlyNegative.concat(intersected).concat(onlyPositive);
+  const onlyNegative = filterPatterns(neg, pos, '-', false) || [];
+  const onlyPositive = filterPatterns(pos, neg, '', false) || [];
+  const intersected = filterPatterns(neg, pos, '-?', true) || [];
+  const subpatterns = onlyNegative.concat(intersected).concat(onlyPositive);
   return subpatterns.join('|');
 }
 
@@ -21666,13 +21666,13 @@ function rangeToPattern(start, stop, options) {
     return { pattern: start, count: [], digits: 0 };
   }
 
-  let zipped = zip(start, stop);
-  let digits = zipped.length;
+  const zipped = zip(start, stop);
+  const digits = zipped.length;
   let pattern = '';
   let count = 0;
 
   for (let i = 0; i < digits; i++) {
-    let [startDigit, stopDigit] = zipped[i];
+    const [startDigit, stopDigit] = zipped[i];
 
     if (startDigit === stopDigit) {
       pattern += startDigit;
@@ -21693,14 +21693,14 @@ function rangeToPattern(start, stop, options) {
 }
 
 function splitToPatterns(min, max, tok, options) {
-  let ranges = splitToRanges(min, max);
-  let tokens = [];
+  const ranges = splitToRanges(min, max);
+  const tokens = [];
   let start = min;
   let prev;
 
   for (let i = 0; i < ranges.length; i++) {
-    let max = ranges[i];
-    let obj = rangeToPattern(String(start), String(max), options);
+    const max = ranges[i];
+    const obj = rangeToPattern(String(start), String(max), options);
     let zeros = '';
 
     if (!tok.isPadded && prev && prev.pattern === obj.pattern) {
@@ -21728,10 +21728,10 @@ function splitToPatterns(min, max, tok, options) {
 }
 
 function filterPatterns(arr, comparison, prefix, intersection, options) {
-  let result = [];
+  const result = [];
 
-  for (let ele of arr) {
-    let { string } = ele;
+  for (const ele of arr) {
+    const { string } = ele;
 
     // only push if _both_ are negative...
     if (!intersection && !contains(comparison, 'string', string)) {
@@ -21751,7 +21751,7 @@ function filterPatterns(arr, comparison, prefix, intersection, options) {
  */
 
 function zip(a, b) {
-  let arr = [];
+  const arr = [];
   for (let i = 0; i < a.length; i++) arr.push([a[i], b[i]]);
   return arr;
 }
@@ -21773,7 +21773,7 @@ function countZeros(integer, zeros) {
 }
 
 function toQuantifier(digits) {
-  let [start = 0, stop = ''] = digits;
+  const [start = 0, stop = ''] = digits;
   if (stop || start > 1) {
     return `{${start + (stop ? ',' + stop : '')}}`;
   }
@@ -21793,8 +21793,8 @@ function padZeros(value, tok, options) {
     return value;
   }
 
-  let diff = Math.abs(tok.maxLen - String(value).length);
-  let relax = options.relaxZeros !== false;
+  const diff = Math.abs(tok.maxLen - String(value).length);
+  const relax = options.relaxZeros !== false;
 
   switch (diff) {
     case 0:
@@ -21820,7 +21820,7 @@ toRegexRange$1.clearCache = () => (toRegexRange$1.cache = {});
  * Expose `toRegexRange`
  */
 
-var toRegexRange_1 = toRegexRange$1;
+const toRegexRange_1 = toRegexRange$1;
 
 /*!
  * fill-range <https://github.com/jonschlinkert/fill-range>
@@ -21862,7 +21862,7 @@ const stringify$6 = (start, end, options) => {
 
 const pad = (input, maxLength, toNumber) => {
   if (maxLength > 0) {
-    let dash = input[0] === '-' ? '-' : '';
+    const dash = input[0] === '-' ? '-' : '';
     if (dash) input = input.slice(1);
     input = (dash + input.padStart(dash ? maxLength - 1 : maxLength, '0'));
   }
@@ -21873,7 +21873,7 @@ const pad = (input, maxLength, toNumber) => {
 };
 
 const toMaxLen = (input, maxLength) => {
-  let negative = input[0] === '-' ? '-' : '';
+  const negative = input[0] === '-' ? '-' : '';
   if (negative) {
     input = input.slice(1);
     maxLength--;
@@ -21886,7 +21886,7 @@ const toSequence = (parts, options, maxLen) => {
   parts.negatives.sort((a, b) => a < b ? -1 : a > b ? 1 : 0);
   parts.positives.sort((a, b) => a < b ? -1 : a > b ? 1 : 0);
 
-  let prefix = options.capture ? '' : '?:';
+  const prefix = options.capture ? '' : '?:';
   let positives = '';
   let negatives = '';
   let result;
@@ -21917,17 +21917,17 @@ const toRange = (a, b, isNumbers, options) => {
     return toRegexRange(a, b, { wrap: false, ...options });
   }
 
-  let start = String.fromCharCode(a);
+  const start = String.fromCharCode(a);
   if (a === b) return start;
 
-  let stop = String.fromCharCode(b);
+  const stop = String.fromCharCode(b);
   return `[${start}-${stop}]`;
 };
 
 const toRegex = (start, end, options) => {
   if (Array.isArray(start)) {
-    let wrap = options.wrap === true;
-    let prefix = options.capture ? '' : '?:';
+    const wrap = options.wrap === true;
+    const prefix = options.capture ? '' : '?:';
     return wrap ? `(${prefix}${start.join('|')})` : start.join('|');
   }
   return toRegexRange(start, end, options);
@@ -21962,24 +21962,24 @@ const fillNumbers = (start, end, step = 1, options = {}) => {
   if (a === 0) a = 0;
   if (b === 0) b = 0;
 
-  let descending = a > b;
-  let startString = String(start);
-  let endString = String(end);
-  let stepString = String(step);
+  const descending = a > b;
+  const startString = String(start);
+  const endString = String(end);
+  const stepString = String(step);
   step = Math.max(Math.abs(step), 1);
 
-  let padded = zeros(startString) || zeros(endString) || zeros(stepString);
-  let maxLen = padded ? Math.max(startString.length, endString.length, stepString.length) : 0;
-  let toNumber = padded === false && stringify$6(start, end, options) === false;
-  let format = options.transform || transform(toNumber);
+  const padded = zeros(startString) || zeros(endString) || zeros(stepString);
+  const maxLen = padded ? Math.max(startString.length, endString.length, stepString.length) : 0;
+  const toNumber = padded === false && stringify$6(start, end, options) === false;
+  const format = options.transform || transform(toNumber);
 
   if (options.toRegex && step === 1) {
     return toRange(toMaxLen(start, maxLen), toMaxLen(end, maxLen), true, options);
   }
 
-  let parts = { negatives: [], positives: [] };
-  let push = num => parts[num < 0 ? 'negatives' : 'positives'].push(Math.abs(num));
-  let range = [];
+  const parts = { negatives: [], positives: [] };
+  const push = num => parts[num < 0 ? 'negatives' : 'positives'].push(Math.abs(num));
+  const range = [];
   let index = 0;
 
   while (descending ? a >= b : a <= b) {
@@ -22006,19 +22006,19 @@ const fillLetters = (start, end, step = 1, options = {}) => {
     return invalidRange(start, end, options);
   }
 
-  let format = options.transform || (val => String.fromCharCode(val));
+  const format = options.transform || (val => String.fromCharCode(val));
   let a = `${start}`.charCodeAt(0);
-  let b = `${end}`.charCodeAt(0);
+  const b = `${end}`.charCodeAt(0);
 
-  let descending = a > b;
-  let min = Math.min(a, b);
-  let max = Math.max(a, b);
+  const descending = a > b;
+  const min = Math.min(a, b);
+  const max = Math.max(a, b);
 
   if (options.toRegex && step === 1) {
     return toRange(min, max, false, options);
   }
 
-  let range = [];
+  const range = [];
   let index = 0;
 
   while (descending ? a >= b : a <= b) {
@@ -22051,7 +22051,7 @@ const fill$2 = (start, end, step, options = {}) => {
     return fill$2(start, end, 0, step);
   }
 
-  let opts = { ...options };
+  const opts = { ...options };
   if (opts.capture === true) opts.wrap = true;
   step = step || opts.step || 1;
 
@@ -22067,7 +22067,7 @@ const fill$2 = (start, end, step, options = {}) => {
   return fillLetters(start, end, Math.max(Math.abs(step), 1), opts);
 };
 
-var fillRange = fill$2;
+const fillRange = fill$2;
 
 const fill$1 = fillRange;
 const utils$d = utils$f;
@@ -22126,7 +22126,7 @@ const compile$1 = (ast, options = {}) => {
   return walk(ast);
 };
 
-var compile_1 = compile$1;
+const compile_1 = compile$1;
 
 const fill = fillRange;
 const stringify$5 = stringify$7;
@@ -22238,9 +22238,9 @@ const expand$2 = (ast, options = {}) => {
   return utils$c.flatten(walk(ast));
 };
 
-var expand_1$1 = expand$2;
+const expand_1$1 = expand$2;
 
-var constants$3 = {
+const constants$3 = {
   MAX_LENGTH: 10000,
 
   // Digits
@@ -22624,7 +22624,7 @@ const parse$c = (input, options = {}) => {
   return ast;
 };
 
-var parse_1$2 = parse$c;
+const parse_1$2 = parse$c;
 
 const stringify$3 = stringify$7;
 const compile = compile_1;
@@ -22793,7 +22793,7 @@ braces$2.create = (input, options = {}) => {
  * Expose "braces"
  */
 
-var braces_1 = braces$2;
+const braces_1 = braces$2;
 
 const util = require$$0$5;
 const braces$1 = braces_1;
@@ -22828,12 +22828,12 @@ const micromatch$1 = (list, patterns, options) => {
   patterns = [].concat(patterns);
   list = [].concat(list);
 
-  let omit = new Set();
-  let keep = new Set();
-  let items = new Set();
+  const omit = new Set();
+  const keep = new Set();
+  const items = new Set();
   let negatives = 0;
 
-  let onResult = state => {
+  const onResult = state => {
     items.add(state.output);
     if (options && options.onResult) {
       options.onResult(state);
@@ -22841,14 +22841,14 @@ const micromatch$1 = (list, patterns, options) => {
   };
 
   for (let i = 0; i < patterns.length; i++) {
-    let isMatch = picomatch$2(String(patterns[i]), { ...options, onResult }, true);
-    let negated = isMatch.state.negated || isMatch.state.negatedExtglob;
+    const isMatch = picomatch$2(String(patterns[i]), { ...options, onResult }, true);
+    const negated = isMatch.state.negated || isMatch.state.negatedExtglob;
     if (negated) negatives++;
 
-    for (let item of list) {
-      let matched = isMatch(item, true);
+    for (const item of list) {
+      const matched = isMatch(item, true);
 
-      let match = negated ? !matched.isMatch : matched.isMatch;
+      const match = negated ? !matched.isMatch : matched.isMatch;
       if (!match) continue;
 
       if (negated) {
@@ -22860,8 +22860,8 @@ const micromatch$1 = (list, patterns, options) => {
     }
   }
 
-  let result = negatives === patterns.length ? [...items] : [...keep];
-  let matches = result.filter(item => !omit.has(item));
+  const result = negatives === patterns.length ? [...items] : [...keep];
+  const matches = result.filter(item => !omit.has(item));
 
   if (options && matches.length === 0) {
     if (options.failglob === true) {
@@ -22947,17 +22947,17 @@ micromatch$1.any = micromatch$1.isMatch;
 
 micromatch$1.not = (list, patterns, options = {}) => {
   patterns = [].concat(patterns).map(String);
-  let result = new Set();
-  let items = [];
+  const result = new Set();
+  const items = [];
 
-  let onResult = state => {
+  const onResult = state => {
     if (options.onResult) options.onResult(state);
     items.push(state.output);
   };
 
-  let matches = new Set(micromatch$1(list, patterns, { ...options, onResult }));
+  const matches = new Set(micromatch$1(list, patterns, { ...options, onResult }));
 
-  for (let item of items) {
+  for (const item of items) {
     if (!matches.has(item)) {
       result.add(item);
     }
@@ -23031,9 +23031,9 @@ micromatch$1.matchKeys = (obj, patterns, options) => {
   if (!utils$b.isObject(obj)) {
     throw new TypeError('Expected the first argument to be an object');
   }
-  let keys = micromatch$1(Object.keys(obj), patterns, options);
-  let res = {};
-  for (let key of keys) res[key] = obj[key];
+  const keys = micromatch$1(Object.keys(obj), patterns, options);
+  const res = {};
+  for (const key of keys) res[key] = obj[key];
   return res;
 };
 
@@ -23057,10 +23057,10 @@ micromatch$1.matchKeys = (obj, patterns, options) => {
  */
 
 micromatch$1.some = (list, patterns, options) => {
-  let items = [].concat(list);
+  const items = [].concat(list);
 
-  for (let pattern of [].concat(patterns)) {
-    let isMatch = picomatch$2(String(pattern), options);
+  for (const pattern of [].concat(patterns)) {
+    const isMatch = picomatch$2(String(pattern), options);
     if (items.some(item => isMatch(item))) {
       return true;
     }
@@ -23093,10 +23093,10 @@ micromatch$1.some = (list, patterns, options) => {
  */
 
 micromatch$1.every = (list, patterns, options) => {
-  let items = [].concat(list);
+  const items = [].concat(list);
 
-  for (let pattern of [].concat(patterns)) {
-    let isMatch = picomatch$2(String(pattern), options);
+  for (const pattern of [].concat(patterns)) {
+    const isMatch = picomatch$2(String(pattern), options);
     if (!items.every(item => isMatch(item))) {
       return false;
     }
@@ -23159,9 +23159,9 @@ micromatch$1.all = (str, patterns, options) => {
  */
 
 micromatch$1.capture = (glob, input, options) => {
-  let posix = utils$b.isWindows(options);
-  let regex = picomatch$2.makeRe(String(glob), { ...options, capture: true });
-  let match = regex.exec(posix ? utils$b.toPosixSlashes(input) : input);
+  const posix = utils$b.isWindows(options);
+  const regex = picomatch$2.makeRe(String(glob), { ...options, capture: true });
+  const match = regex.exec(posix ? utils$b.toPosixSlashes(input) : input);
 
   if (match) {
     return match.slice(1).map(v => v === void 0 ? '' : v);
@@ -23217,9 +23217,9 @@ micromatch$1.scan = (...args) => picomatch$2.scan(...args);
  */
 
 micromatch$1.parse = (patterns, options) => {
-  let res = [];
-  for (let pattern of [].concat(patterns || [])) {
-    for (let str of braces$1(String(pattern), options)) {
+  const res = [];
+  for (const pattern of [].concat(patterns || [])) {
+    for (const str of braces$1(String(pattern), options)) {
       res.push(picomatch$2.parse(str, options));
     }
   }
@@ -23266,9 +23266,9 @@ micromatch$1.braceExpand = (pattern, options) => {
 
 // exposed for tests
 micromatch$1.hasBraces = hasBraces;
-var micromatch_1 = micromatch$1;
+const micromatch_1 = micromatch$1;
 
-var micromatch$2 = /*@__PURE__*/getDefaultExportFromCjs(micromatch_1);
+const micromatch$2 = /*@__PURE__*/getDefaultExportFromCjs(micromatch_1);
 
 Object.defineProperty(pattern$1, "__esModule", { value: true });
 pattern$1.removeDuplicateSlashes = pattern$1.matchAny = pattern$1.convertPatternsToRe = pattern$1.makeRe = pattern$1.getPatternParts = pattern$1.expandBraceExpansion = pattern$1.expandPatternsWithBraceExpansion = pattern$1.isAffectDepthOfReadingPattern = pattern$1.endsWithSlashGlobStar = pattern$1.hasGlobStar = pattern$1.getBaseDirectory = pattern$1.isPatternRelatedToParentDirectory = pattern$1.getPatternsOutsideCurrentDirectory = pattern$1.getPatternsInsideCurrentDirectory = pattern$1.getPositivePatterns = pattern$1.getNegativePatterns = pattern$1.isPositivePattern = pattern$1.isNegativePattern = pattern$1.convertToNegativePattern = pattern$1.convertToPositivePattern = pattern$1.isDynamicPattern = pattern$1.isStaticPattern = void 0;
@@ -23458,7 +23458,7 @@ function removeDuplicateSlashes(pattern) {
 }
 pattern$1.removeDuplicateSlashes = removeDuplicateSlashes;
 
-var stream$4 = {};
+const stream$4 = {};
 
 /*
  * merge2
@@ -23471,7 +23471,7 @@ const Stream = require$$0$6;
 const PassThrough = Stream.PassThrough;
 const slice = Array.prototype.slice;
 
-var merge2_1 = merge2$1;
+const merge2_1 = merge2$1;
 
 function merge2$1 () {
   const streamsQueue = [];
@@ -23621,7 +23621,7 @@ function propagateCloseEventToSources(streams) {
     streams.forEach((stream) => stream.emit('close'));
 }
 
-var string$2 = {};
+const string$2 = {};
 
 Object.defineProperty(string$2, "__esModule", { value: true });
 string$2.isEmpty = string$2.isString = void 0;
@@ -23761,23 +23761,23 @@ function convertPatternGroupToTask(base, positive, negative, dynamic) {
 }
 tasks.convertPatternGroupToTask = convertPatternGroupToTask;
 
-var async$7 = {};
+const async$7 = {};
 
-var async$6 = {};
+const async$6 = {};
 
-var out$3 = {};
+const out$3 = {};
 
-var async$5 = {};
+const async$5 = {};
 
-var async$4 = {};
+const async$4 = {};
 
-var out$2 = {};
+const out$2 = {};
 
-var async$3 = {};
+const async$3 = {};
 
-var out$1 = {};
+const out$1 = {};
 
-var async$2 = {};
+const async$2 = {};
 
 Object.defineProperty(async$2, "__esModule", { value: true });
 async$2.read = void 0;
@@ -23815,7 +23815,7 @@ function callSuccessCallback$2(callback, result) {
     callback(null, result);
 }
 
-var sync$8 = {};
+const sync$8 = {};
 
 Object.defineProperty(sync$8, "__esModule", { value: true });
 sync$8.read = void 0;
@@ -23840,9 +23840,9 @@ function read$2(path, settings) {
 }
 sync$8.read = read$2;
 
-var settings$3 = {};
+const settings$3 = {};
 
-var fs$g = {};
+const fs$g = {};
 
 (function (exports) {
 	Object.defineProperty(exports, "__esModule", { value: true });
@@ -23865,7 +23865,7 @@ var fs$g = {};
 
 Object.defineProperty(settings$3, "__esModule", { value: true });
 const fs$f = fs$g;
-let Settings$2 = class Settings {
+const Settings$2 = class Settings {
     constructor(_options = {}) {
         this._options = _options;
         this.followSymbolicLink = this._getValue(this._options.followSymbolicLink, true);
@@ -23909,7 +23909,7 @@ function getSettings$2(settingsOrOptions = {}) {
 
 let promise;
 
-var queueMicrotask_1 = typeof queueMicrotask === 'function'
+const queueMicrotask_1 = typeof queueMicrotask === 'function'
   ? queueMicrotask.bind(typeof window !== 'undefined' ? window : commonjsGlobal)
   // reuse resolved promise, and allocate it lazily
   : cb => (promise || (promise = Promise.resolve()))
@@ -23918,7 +23918,7 @@ var queueMicrotask_1 = typeof queueMicrotask === 'function'
 
 /*! run-parallel. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
 
-var runParallel_1 = runParallel;
+const runParallel_1 = runParallel;
 
 const queueMicrotask$1 = queueMicrotask_1;
 
@@ -23969,7 +23969,7 @@ function runParallel (tasks, cb) {
   isSync = false;
 }
 
-var constants$2 = {};
+const constants$2 = {};
 
 Object.defineProperty(constants$2, "__esModule", { value: true });
 constants$2.IS_SUPPORT_READDIR_WITH_FILE_TYPES = void 0;
@@ -23988,9 +23988,9 @@ const IS_MATCHED_BY_MAJOR_AND_MINOR = MAJOR_VERSION === SUPPORTED_MAJOR_VERSION 
  */
 constants$2.IS_SUPPORT_READDIR_WITH_FILE_TYPES = IS_MATCHED_BY_MAJOR || IS_MATCHED_BY_MAJOR_AND_MINOR;
 
-var utils$9 = {};
+const utils$9 = {};
 
-var fs$e = {};
+const fs$e = {};
 
 Object.defineProperty(fs$e, "__esModule", { value: true });
 fs$e.createDirentFromStats = void 0;
@@ -24016,7 +24016,7 @@ utils$9.fs = void 0;
 const fs$d = fs$e;
 utils$9.fs = fs$d;
 
-var common$a = {};
+const common$a = {};
 
 Object.defineProperty(common$a, "__esModule", { value: true });
 common$a.joinPathSegments = void 0;
@@ -24135,7 +24135,7 @@ function callSuccessCallback$1(callback, result) {
     callback(null, result);
 }
 
-var sync$6 = {};
+const sync$6 = {};
 
 Object.defineProperty(sync$6, "__esModule", { value: true });
 sync$6.readdir = sync$6.readdirWithFileTypes = sync$6.read = void 0;
@@ -24191,9 +24191,9 @@ function readdir$2(directory, settings) {
 }
 sync$6.readdir = readdir$2;
 
-var settings$2 = {};
+const settings$2 = {};
 
-var fs$c = {};
+const fs$c = {};
 
 (function (exports) {
 	Object.defineProperty(exports, "__esModule", { value: true });
@@ -24220,7 +24220,7 @@ Object.defineProperty(settings$2, "__esModule", { value: true });
 const path$e = require$$0$4;
 const fsStat$3 = out$1;
 const fs$b = fs$c;
-let Settings$1 = class Settings {
+const Settings$1 = class Settings {
     constructor(_options = {}) {
         this._options = _options;
         this.followSymbolicLinks = this._getValue(this._options.followSymbolicLinks, false);
@@ -24266,14 +24266,14 @@ function getSettings$1(settingsOrOptions = {}) {
     return new settings_1$2.default(settingsOrOptions);
 }
 
-var queue = {exports: {}};
+const queue = {exports: {}};
 
 function reusify$1 (Constructor) {
-  var head = new Constructor();
-  var tail = head;
+  let head = new Constructor();
+  let tail = head;
 
   function get () {
-    var current = head;
+    const current = head;
 
     if (current.next) {
       head = current.next;
@@ -24298,7 +24298,7 @@ function reusify$1 (Constructor) {
   }
 }
 
-var reusify_1 = reusify$1;
+const reusify_1 = reusify$1;
 
 /* eslint-disable no-var */
 
@@ -24649,7 +24649,7 @@ var reader$1 = {};
 
 Object.defineProperty(reader$1, "__esModule", { value: true });
 const common$6 = common$7;
-let Reader$1 = class Reader {
+const Reader$1 = class Reader {
     constructor(_root, _settings) {
         this._root = _root;
         this._settings = _settings;
@@ -42944,7 +42944,7 @@ const setFsWatchFileListener = (path, fullPath, options, handlers) => {
 /**
  * @mixin
  */
-let NodeFsHandler$1 = class NodeFsHandler {
+const NodeFsHandler$1 = class NodeFsHandler {
 
 /**
  * @param {import("../index").FSWatcher} fsW
@@ -43520,7 +43520,7 @@ const sameTypes = (info, stats) => (
 /**
  * @mixin
  */
-let FsEventsHandler$1 = class FsEventsHandler {
+const FsEventsHandler$1 = class FsEventsHandler {
 
 /**
  * @param {import('../index').FSWatcher} fsw
@@ -46039,7 +46039,7 @@ function stattag (stat) {
 
 var getEtag = /*@__PURE__*/getDefaultExportFromCjs(etag_1);
 
-function e(e,n,r){throw new Error(r?`No known conditions for "${n}" specifier in "${e}" package`:`Missing "${n}" specifier in "${e}" package`)}function n(n,i,o,f){let s,u,l=r(n,o),c=function(e){let n=new Set(["default",...e.conditions||[]]);return e.unsafe||n.add(e.require?"require":"import"),e.unsafe||n.add(e.browser?"browser":"node"),n}(f||{}),a=i[l];if(void 0===a){let e,n,r,t;for(t in i)n&&t.length<n.length||("/"===t[t.length-1]&&l.startsWith(t)?(u=l.substring(t.length),n=t):t.length>1&&(r=t.indexOf("*",1),~r&&(e=RegExp("^"+t.substring(0,r)+"(.*)"+t.substring(1+r)).exec(l),e&&e[1]&&(u=e[1],n=t))));a=i[n];}return a||e(n,l),s=t(a,c),s||e(n,l,1),u&&function(e,n){let r,t=0,i=e.length,o=/[*]/g,f=/[/]$/;for(;t<i;t++)e[t]=o.test(r=e[t])?r.replace(o,n):f.test(r)?r+n:r;}(s,u),s}function r(e,n,r){if(e===n||"."===n)return ".";let t=e+"/",i=t.length,o=n.slice(0,i)===t,f=o?n.slice(i):n;return "#"===f[0]?f:o||!r?"./"===f.slice(0,2)?f:"./"+f:f}function t(e,n,r){if(e){if("string"==typeof e)return r&&r.add(e),[e];let i,o;if(Array.isArray(e)){for(o=r||new Set,i=0;i<e.length;i++)t(e[i],n,o);if(!r&&o.size)return [...o]}else for(i in e)if(n.has(i))return t(e[i],n,r)}}function o(e,r,t){let i,o=e.exports;if(o){if("string"==typeof o)o={".":o};else for(i in o){"."!==i[0]&&(o={".":o});break}return n(e.name,o,r||".",t)}}function f(e,r,t){if(e.imports)return n(e.name,e.imports,r,t)}
+function e(e,n,r){throw new Error(r?`No known conditions for "${n}" specifier in "${e}" package`:`Missing "${n}" specifier in "${e}" package`)}function n(n,i,o,f){let s,u,l=r(n,o),c=function(e){const n=new Set(["default",...e.conditions||[]]);return e.unsafe||n.add(e.require?"require":"import"),e.unsafe||n.add(e.browser?"browser":"node"),n}(f||{}),a=i[l];if(void 0===a){let e,n,r,t;for(t in i)n&&t.length<n.length||("/"===t[t.length-1]&&l.startsWith(t)?(u=l.substring(t.length),n=t):t.length>1&&(r=t.indexOf("*",1),~r&&(e=RegExp("^"+t.substring(0,r)+"(.*)"+t.substring(1+r)).exec(l),e&&e[1]&&(u=e[1],n=t))));a=i[n];}return a||e(n,l),s=t(a,c),s||e(n,l,1),u&&function(e,n){let r,t=0,i=e.length,o=/[*]/g,f=/[/]$/;for(;t<i;t++)e[t]=o.test(r=e[t])?r.replace(o,n):f.test(r)?r+n:r;}(s,u),s}function r(e,n,r){if(e===n||"."===n)return ".";const t=e+"/",i=t.length,o=n.slice(0,i)===t,f=o?n.slice(i):n;return "#"===f[0]?f:o||!r?"./"===f.slice(0,2)?f:"./"+f:f}function t(e,n,r){if(e){if("string"==typeof e)return r&&r.add(e),[e];let i,o;if(Array.isArray(e)){for(o=r||new Set,i=0;i<e.length;i++)t(e[i],n,o);if(!r&&o.size)return [...o]}else for(i in e)if(n.has(i))return t(e[i],n,r)}}function o(e,r,t){let i,o=e.exports;if(o){if("string"==typeof o)o={".":o};else for(i in o){"."!==i[0]&&(o={".":o});break}return n(e.name,o,r||".",t)}}function f(e,r,t){if(e.imports)return n(e.name,e.imports,r,t)}
 
 const normalizedClientEntry$1 = normalizePath$3(CLIENT_ENTRY);
 const normalizedEnvEntry$1 = normalizePath$3(ENV_ENTRY);
@@ -51360,7 +51360,7 @@ var index$1 = {
 
 function totalist(dir, callback, pre='') {
 	dir = resolve$3('.', dir);
-	let arr = readdirSync(dir);
+	const arr = readdirSync(dir);
 	let i=0, abs, stats;
 	for (; i < arr.length; i++) {
 		abs = join$1(dir, arr[i]);
@@ -51387,16 +51387,16 @@ function totalist(dir, callback, pre='') {
  * @returns {ParsedURL|void}
  */
 function parse$5(req) {
-	let raw = req.url;
+	const raw = req.url;
 	if (raw == null) return;
 
-	let prev = req._parsedUrl;
+	const prev = req._parsedUrl;
 	if (prev && prev.raw === raw) return prev;
 
 	let pathname=raw, search='', query;
 
 	if (raw.length > 1) {
-		let idx = raw.indexOf('?', 1);
+		const idx = raw.indexOf('?', 1);
 
 		if (idx !== -1) {
 			search = raw.substring(idx);
@@ -51424,7 +51424,7 @@ function toAssume(uri, extns) {
 		uri = uri.substring(0, len);
 	}
 
-	let arr=[], tmp=`${uri}/index`;
+	const arr=[], tmp=`${uri}/index`;
 	for (; i < extns.length; i++) {
 		x = extns[i] ? `.${extns[i]}` : '';
 		if (uri) arr.push(uri + x);
@@ -51465,7 +51465,7 @@ function send$1(req, res, file, stats, headers) {
 	let code=200, tmp, opts={};
 	headers = { ...headers };
 
-	for (let key in headers) {
+	for (const key in headers) {
 		tmp = res.getHeader(key);
 		if (tmp) headers[key] = tmp;
 	}
@@ -51476,9 +51476,9 @@ function send$1(req, res, file, stats, headers) {
 
 	if (req.headers.range) {
 		code = 206;
-		let [x, y] = req.headers.range.replace('bytes=', '').split('-');
+		const [x, y] = req.headers.range.replace('bytes=', '').split('-');
 		let end = opts.end = parseInt(y, 10) || stats.size - 1;
-		let start = opts.start = parseInt(x, 10) || 0;
+		const start = opts.start = parseInt(x, 10) || 0;
 
 		if (end >= stats.size) {
 			end = stats.size - 1;
@@ -51505,12 +51505,12 @@ const ENCODING = {
 };
 
 function toHeaders(name, stats, isEtag) {
-	let enc = ENCODING[name.slice(-3)];
+	const enc = ENCODING[name.slice(-3)];
 
 	let ctype = lookup(name.slice(0, enc && -3)) || '';
 	if (ctype === 'text/html') ctype += ';charset=utf-8';
 
-	let headers = {
+	const headers = {
 		'Content-Length': stats.size,
 		'Content-Type': ctype,
 		'Last-Modified': stats.mtime.toUTCString(),
@@ -51525,24 +51525,24 @@ function toHeaders(name, stats, isEtag) {
 function sirv (dir, opts={}) {
 	dir = resolve$3(dir || '.');
 
-	let isNotFound = opts.onNoMatch || is404;
-	let setHeaders = opts.setHeaders || noop$2;
+	const isNotFound = opts.onNoMatch || is404;
+	const setHeaders = opts.setHeaders || noop$2;
 
-	let extensions = opts.extensions || ['html', 'htm'];
-	let gzips = opts.gzip && extensions.map(x => `${x}.gz`).concat('gz');
-	let brots = opts.brotli && extensions.map(x => `${x}.br`).concat('br');
+	const extensions = opts.extensions || ['html', 'htm'];
+	const gzips = opts.gzip && extensions.map(x => `${x}.gz`).concat('gz');
+	const brots = opts.brotli && extensions.map(x => `${x}.br`).concat('br');
 
 	const FILES = {};
 
 	let fallback = '/';
-	let isEtag = !!opts.etag;
-	let isSPA = !!opts.single;
+	const isEtag = !!opts.etag;
+	const isSPA = !!opts.single;
 	if (typeof opts.single === 'string') {
-		let idx = opts.single.lastIndexOf('.');
-		fallback += !!~idx ? opts.single.substring(0, idx) : opts.single;
+		const idx = opts.single.lastIndexOf('.');
+		fallback += ~idx ? opts.single.substring(0, idx) : opts.single;
 	}
 
-	let ignores = [];
+	const ignores = [];
 	if (opts.ignores !== false) {
 		ignores.push(/[/]([A-Za-z\s\d~$._-]+\.\w+){1,}$/); // any extn
 		if (opts.dotfiles) ignores.push(/\/\.\w/);
@@ -51561,19 +51561,19 @@ function sirv (dir, opts={}) {
 			if (/\.well-known[\\+\/]/.test(name)) ; // keep
 			else if (!opts.dotfiles && /(^\.|[\\+|\/+]\.)/.test(name)) return;
 
-			let headers = toHeaders(name, stats, isEtag);
+			const headers = toHeaders(name, stats, isEtag);
 			if (cc) headers['Cache-Control'] = cc;
 
 			FILES['/' + name.normalize().replace(/\\+/g, '/')] = { abs, stats, headers };
 		});
 	}
 
-	let lookup = opts.dev ? viaLocal.bind(0, dir.endsWith(sep$1) ? dir : dir + sep$1, isEtag) : viaCache.bind(0, FILES);
+	const lookup = opts.dev ? viaLocal.bind(0, dir.endsWith(sep$1) ? dir : dir + sep$1, isEtag) : viaCache.bind(0, FILES);
 
 	return function (req, res, next) {
-		let extns = [''];
+		const extns = [''];
 		let pathname = parse$5(req).pathname;
-		let val = req.headers['accept-encoding'] || '';
+		const val = req.headers['accept-encoding'] || '';
 		if (gzips && val.includes('gzip')) extns.unshift(...gzips);
 		if (brots && /(br|brotli)/i.test(val)) extns.unshift(...brots);
 		extns.push(...extensions); // [...br, ...gz, orig, ...exts]
@@ -51583,7 +51583,7 @@ function sirv (dir, opts={}) {
 			catch (err) { /* malform uri */ }
 		}
 
-		let data = lookup(pathname, extns, opts.shouldServe) || isSPA && !isMatch(pathname, ignores) && lookup(fallback, extns, opts.shouldServe);
+		const data = lookup(pathname, extns, opts.shouldServe) || isSPA && !isMatch(pathname, ignores) && lookup(fallback, extns, opts.shouldServe);
 		if (!data) return next ? next() : isNotFound(req, res);
 
 		if (isEtag && req.headers['if-none-match'] === data.headers['ETag']) {
@@ -54724,7 +54724,7 @@ const kRun = Symbol('kRun');
  * A very simple job queue with adjustable concurrency. Adapted from
  * https://github.com/STRML/async-limiter
  */
-let Limiter$1 = class Limiter {
+const Limiter$1 = class Limiter {
   /**
    * Creates a new `Limiter`.
    *
@@ -54797,7 +54797,7 @@ let zlibLimiter;
 /**
  * permessage-deflate implementation.
  */
-let PerMessageDeflate$4 = class PerMessageDeflate {
+const PerMessageDeflate$4 = class PerMessageDeflate {
   /**
    * Creates a PerMessageDeflate instance.
    *
@@ -55466,7 +55466,7 @@ const DEFER_EVENT = 6;
  *
  * @extends Writable
  */
-let Receiver$1 = class Receiver extends Writable$1 {
+const Receiver$1 = class Receiver extends Writable$1 {
   /**
    * Creates a Receiver instance.
    *
@@ -56165,7 +56165,7 @@ const GET_BLOB_DATA = 2;
 /**
  * HyBi Sender implementation.
  */
-let Sender$1 = class Sender {
+const Sender$1 = class Sender {
   /**
    * Creates a Sender instance.
    *
@@ -56757,7 +56757,7 @@ const kWasClean = Symbol('kWasClean');
 /**
  * Class representing an event.
  */
-let Event$1 = class Event {
+const Event$1 = class Event {
   /**
    * Create a new `Event`.
    *
@@ -57278,7 +57278,7 @@ const subprotocolRegex = /^[!#$%&'*+\-.0-9A-Z^_`|a-z~]+$/;
  *
  * @extends EventEmitter
  */
-let WebSocket$1 = class WebSocket extends EventEmitter$1 {
+const WebSocket$1 = class WebSocket extends EventEmitter$1 {
   /**
    * Create a new `WebSocket`.
    *
@@ -66171,7 +66171,7 @@ function compression ({ threshold = 1024, level = -1, brotli = false, gzip = tru
 
 		res.writeHead = function (status, reason, headers) {
 			if (typeof reason !== 'string') [headers, reason] = [reason, headers];
-			if (headers) for (let k in headers) res.setHeader(k, headers[k]);
+			if (headers) for (const k in headers) res.setHeader(k, headers[k]);
 			pendingStatus = status;
 			return this;
 		};

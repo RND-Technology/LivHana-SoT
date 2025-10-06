@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = createSpacing;
-var _spacing = require("../spacing");
+const _spacing = require("../spacing");
 // The different signatures imply different meaning for their arguments that can't be expressed structurally.
 // We express the difference with variable names.
 

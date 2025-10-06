@@ -9,4 +9,4 @@ export function SyntaxError(message, input, offset) {
             '  ' + input + '\n' +
             '--' + new Array((offset || input.length) + 1).join('-') + '^'
     });
-};
+}

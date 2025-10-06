@@ -13,7 +13,7 @@ fs.writeFileSync(
     .join(' | ')}`
 )
 
-let colorsWithoutDeprecatedColors = Object.fromEntries(
+const colorsWithoutDeprecatedColors = Object.fromEntries(
   Object.entries(Object.getOwnPropertyDescriptors(colors))
     .filter(([_, { value }]) => {
       return typeof value !== 'undefined'
@@ -21,18 +21,18 @@ let colorsWithoutDeprecatedColors = Object.fromEntries(
     .map(([name, definition]) => [name, definition.value])
 )
 
-let deprecatedColors = Object.entries(Object.getOwnPropertyDescriptors(colors))
+const deprecatedColors = Object.entries(Object.getOwnPropertyDescriptors(colors))
   .filter(([_, { value }]) => {
     return typeof value === 'undefined'
   })
   .map(([name, definition]) => {
-    let warn = console.warn
-    let messages = []
+    const warn = console.warn
+    const messages = []
     console.warn = (...args) => messages.push(args.pop())
     definition.get()
     console.warn = warn
-    let message = messages.join(' ').trim()
-    let newColor = message.match(/renamed to `(.*)`/)[1]
+    const message = messages.join(' ').trim()
+    const newColor = message.match(/renamed to `(.*)`/)[1]
     return `/** @deprecated ${message} */${name}: DefaultColors['${newColor}'],`
   })
   .join('\n')

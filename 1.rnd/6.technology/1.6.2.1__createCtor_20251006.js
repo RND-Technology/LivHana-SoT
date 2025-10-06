@@ -1,4 +1,4 @@
-var baseCreate = require('./_baseCreate'),
+const baseCreate = require('./_baseCreate'),
     isObject = require('./isObject');
 
 /**
@@ -14,7 +14,7 @@ function createCtor(Ctor) {
     // Use a `switch` statement to work with class constructors. See
     // http://ecma-international.org/ecma-262/7.0/#sec-ecmascript-function-objects-call-thisargument-argumentslist
     // for more details.
-    var args = arguments;
+    const args = arguments;
     switch (args.length) {
       case 0: return new Ctor;
       case 1: return new Ctor(args[0]);
@@ -25,7 +25,7 @@ function createCtor(Ctor) {
       case 6: return new Ctor(args[0], args[1], args[2], args[3], args[4], args[5]);
       case 7: return new Ctor(args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
     }
-    var thisBinding = baseCreate(Ctor.prototype),
+    const thisBinding = baseCreate(Ctor.prototype),
         result = Ctor.apply(thisBinding, args);
 
     // Mimic the constructor's `return` behavior.

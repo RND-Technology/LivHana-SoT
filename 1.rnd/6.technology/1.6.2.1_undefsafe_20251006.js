@@ -4,12 +4,12 @@ function undefsafe(obj, path, value, __res) {
   // I'm not super keen on this private function, but it's because
   // it'll also be use in the browser and I wont *one* function exposed
   function split(path) {
-    var res = [];
-    var level = 0;
-    var key = '';
+    const res = [];
+    let level = 0;
+    let key = '';
 
-    for (var i = 0; i < path.length; i++) {
-      var c = path.substr(i, 1);
+    for (let i = 0; i < path.length; i++) {
+      let c = path.substr(i, 1);
 
       if (level === 0 && (c === '.' || c === '[')) {
         if (c === '[') {
@@ -45,13 +45,13 @@ function undefsafe(obj, path, value, __res) {
     return undefined;
   }
 
-  var parts = split(path);
-  var key = null;
-  var type = typeof obj;
-  var root = obj;
-  var parent = obj;
+  const parts = split(path);
+  let key = null;
+  const type = typeof obj;
+  const root = obj;
+  let parent = obj;
 
-  var star =
+  const star =
     parts.filter(function(_) {
       return _ === '*';
     }).length > 0;
@@ -64,18 +64,18 @@ function undefsafe(obj, path, value, __res) {
   }
 
   key = parts[0];
-  var i = 0;
+  let i = 0;
   for (; i < parts.length; i++) {
     key = parts[i];
     parent = obj;
 
     if (key === '*') {
       // loop through each property
-      var prop = '';
-      var res = __res || [];
+      let prop = '';
+      const res = __res || [];
 
       for (prop in parent) {
-        var shallowObj = undefsafe(
+        const shallowObj = undefsafe(
           obj[prop],
           parts.slice(i + 1).join('.'),
           value,

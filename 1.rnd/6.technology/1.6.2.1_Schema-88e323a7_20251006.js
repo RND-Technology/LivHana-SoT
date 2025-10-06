@@ -1,8 +1,8 @@
 'use strict';
 
-var PlainValue = require('./PlainValue-ec8e588e.js');
-var resolveSeq = require('./resolveSeq-d03cb037.js');
-var warnings = require('./warnings-1000a372.js');
+const PlainValue = require('./PlainValue-ec8e588e.js');
+const resolveSeq = require('./resolveSeq-d03cb037.js');
+const warnings = require('./warnings-1000a372.js');
 
 function createMap(schema, obj, ctx) {
   const map = new resolveSeq.YAMLMap(schema);

@@ -20,7 +20,7 @@ exports.adexchangebuyer_v1_2 = void 0;
 /* eslint-disable @typescript-eslint/no-namespace */
 /* eslint-disable no-irregular-whitespace */
 const googleapis_common_1 = require("googleapis-common");
-var adexchangebuyer_v1_2;
+let adexchangebuyer_v1_2;
 (function (adexchangebuyer_v1_2) {
     /**
      * Ad Exchange Buyer API

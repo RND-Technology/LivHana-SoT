@@ -3,7 +3,7 @@
 //
 // approximate distribution percentiles from a stream of reals
 //
-var RBTree = require('bintrees').RBTree;
+const RBTree = require('bintrees').RBTree;
 
 function TDigest(delta, K, CX) {
     // allocate a TDigest structure.
@@ -46,7 +46,7 @@ TDigest.prototype.size = function() {
 TDigest.prototype.toArray = function(everything) {
     // return {mean,n} of centroids as an array ordered by mean.
     //
-    var result = [];
+    const result = [];
     if (everything) {
         this._cumulate(true); // be sure cumns are exact
         this.centroids.each(function(c) { result.push(c); });
@@ -57,8 +57,8 @@ TDigest.prototype.toArray = function(everything) {
 };
 
 TDigest.prototype.summary = function() {
-    var approx = (this.discrete) ? "exact " : "approximating ";
-    var s = [approx + this.n + " samples using " + this.size() + " centroids",
+    const approx = (this.discrete) ? "exact " : "approximating ";
+    const s = [approx + this.n + " samples using " + this.size() + " centroids",
              "min = "+this.percentile(0),
              "Q1  = "+this.percentile(0.25),
              "Q2  = "+this.percentile(0.5),
@@ -85,7 +85,7 @@ TDigest.prototype.push = function(x, n) {
     //
     n = n || 1;
     x = Array.isArray(x) ? x : [x];
-    for (var i = 0 ; i < x.length ; i++) {
+    for (let i = 0 ; i < x.length ; i++) {
         this._digest(x[i], n);
     }
 };
@@ -94,7 +94,7 @@ TDigest.prototype.push_centroid = function(c) {
     // incorporate centroid or array of centroids c
     //
     c = Array.isArray(c) ? c : [c];
-    for (var i = 0 ; i < c.length ; i++) {
+    for (let i = 0 ; i < c.length ; i++) {
         this._digest(c[i].mean, c[i].n);
     }
 };
@@ -112,7 +112,7 @@ TDigest.prototype._cumulate = function(exact) {
         !exact && this.CX && this.CX > (this.n / this.last_cumulate)) {
         return;
     }
-    var cumn = 0;
+    let cumn = 0;
     this.centroids.each(function(c) {
         c.mean_cumn = cumn + c.n / 2; // half of n at the mean
         cumn = c.cumn = cumn + c.n;
@@ -128,12 +128,12 @@ TDigest.prototype.find_nearest = function(x) {
     if (this.size() === 0) {
         return null;
     }
-    var iter = this.centroids.lowerBound({mean:x}); // x <= iter || iter==null
-    var c = (iter.data() === null) ? iter.prev() : iter.data();
+    const iter = this.centroids.lowerBound({mean:x}); // x <= iter || iter==null
+    const c = (iter.data() === null) ? iter.prev() : iter.data();
     if (c.mean === x || this.discrete) {
         return c; // c is either x or a neighbor (discrete: no distance func)
     }
-    var prev = iter.prev();
+    const prev = iter.prev();
     if (prev && Math.abs(prev.mean - x) < Math.abs(c.mean - x)) {
         return prev;
     } else {
@@ -145,7 +145,7 @@ TDigest.prototype._new_centroid = function(x, n, cumn) {
     // create and insert a new centroid into the digest (don't update
     // cumulatives).
     //
-    var c = {mean:x, n:n, cumn:cumn};
+    const c = {mean:x, n:n, cumn:cumn};
     this.centroids.insert(c);
     this.n += n;
     return c;
@@ -168,9 +168,9 @@ TDigest.prototype._addweight = function(nearest, x, n) {
 TDigest.prototype._digest = function(x, n) {
     // incorporate value x, having count n into the TDigest.
     //
-    var min = this.centroids.min();
-    var max = this.centroids.max();
-    var nearest = this.find_nearest(x);
+    const min = this.centroids.min();
+    const max = this.centroids.max();
+    const nearest = this.find_nearest(x);
     if (nearest && nearest.mean === x) {
         // accumulate exact matches into the centroid without
         // limit. this is a departure from the paper, made so
@@ -187,8 +187,8 @@ TDigest.prototype._digest = function(x, n) {
         // there's not room for all of n, don't bother merging any of
         // it into nearest, as we'll have to make a new centroid
         // anyway for the remainder (departure from the paper).
-        var p = nearest.mean_cumn / this.n;
-        var max_n = Math.floor(4 * this.n * this.delta * p * (1 - p));
+        const p = nearest.mean_cumn / this.n;
+        const max_n = Math.floor(4 * this.n * this.delta * p * (1 - p));
         if (max_n - nearest.n >= n) {
             this._addweight(nearest, x, n);
         } else {
@@ -207,9 +207,9 @@ TDigest.prototype.bound_mean = function(x) {
     // upper.mean or lower.mean === x === upper.mean. Don't call
     // this for x out of bounds.
     //
-    var iter = this.centroids.upperBound({mean:x}); // x < iter
-    var lower = iter.prev();      // lower <= x
-    var upper = (lower.mean === x) ? lower : iter.next();
+    const iter = this.centroids.upperBound({mean:x}); // x < iter
+    const lower = iter.prev();      // lower <= x
+    const upper = (lower.mean === x) ? lower : iter.next();
     return [lower, upper];
 };
 
@@ -225,8 +225,8 @@ TDigest.prototype.p_rank = function(x_or_xlist) {
     //
     // this triggers cumulate() if cumn's are out of date.
     //
-    var xs = Array.isArray(x_or_xlist) ? x_or_xlist : [x_or_xlist];
-    var ps = xs.map(this._p_rank, this);
+    const xs = Array.isArray(x_or_xlist) ? x_or_xlist : [x_or_xlist];
+    const ps = xs.map(this._p_rank, this);
     return Array.isArray(x_or_xlist) ? ps : ps[0];
 };
 
@@ -241,12 +241,12 @@ TDigest.prototype._p_rank = function(x) {
     // find centroids that bracket x and interpolate x's cumn from
     // their cumn's.
     this._cumulate(true); // be sure cumns are exact
-    var bound = this.bound_mean(x);
-    var lower = bound[0], upper = bound[1];
+    const bound = this.bound_mean(x);
+    const lower = bound[0], upper = bound[1];
     if (this.discrete) {
         return lower.cumn / this.n;
     } else {
-        var cumn = lower.mean_cumn;
+        let cumn = lower.mean_cumn;
         if (lower !== upper) {
             cumn += (x - lower.mean) * (upper.mean_cumn - lower.mean_cumn) / (upper.mean - lower.mean);
         }
@@ -262,10 +262,10 @@ TDigest.prototype.bound_mean_cumn = function(cumn) {
     // XXX because mean and mean_cumn give rise to the same sort order
     // (up to identical means), use the mean rbtree for our search.
     this.centroids._comparator = compare_centroid_mean_cumns;
-    var iter = this.centroids.upperBound({mean_cumn:cumn}); // cumn < iter
+    const iter = this.centroids.upperBound({mean_cumn:cumn}); // cumn < iter
     this.centroids._comparator = compare_centroid_means;
-    var lower = iter.prev();      // lower <= cumn
-    var upper = (lower && lower.mean_cumn === cumn) ? lower : iter.next();
+    const lower = iter.prev();      // lower <= cumn
+    const upper = (lower && lower.mean_cumn === cumn) ? lower : iter.next();
     return [lower, upper];
 };
 
@@ -284,8 +284,8 @@ TDigest.prototype.percentile = function(p_or_plist) {
     //
     // this triggers cumulate() if cumn's are out of date.
     //
-    var ps = Array.isArray(p_or_plist) ? p_or_plist : [p_or_plist];
-    var qs = ps.map(this._percentile, this);
+    const ps = Array.isArray(p_or_plist) ? p_or_plist : [p_or_plist];
+    const qs = ps.map(this._percentile, this);
     return Array.isArray(p_or_plist) ? qs : qs[0];
 };
 
@@ -294,9 +294,9 @@ TDigest.prototype._percentile = function(p) {
         return undefined;
     }
     this._cumulate(true); // be sure cumns are exact
-    var h = this.n * p;
-    var bound = this.bound_mean_cumn(h);
-    var lower = bound[0], upper = bound[1];
+    const h = this.n * p;
+    const bound = this.bound_mean_cumn(h);
+    const lower = bound[0], upper = bound[1];
 
     if (upper === lower || lower === null || upper === null) {
         return (lower || upper).mean;
@@ -313,7 +313,7 @@ function pop_random(choices) {
     // remove and return an item randomly chosen from the array of choices
     // (mutates choices)
     //
-    var idx = Math.floor(Math.random() * choices.length);
+    const idx = Math.floor(Math.random() * choices.length);
     return choices.splice(idx, 1)[0];
 }
 
@@ -326,7 +326,7 @@ TDigest.prototype.compress = function() {
     if (this.compressing) {
         return;
     }
-    var points = this.toArray();
+    const points = this.toArray();
     this.reset();
     this.compressing = true;
     while (points.length > 0) {

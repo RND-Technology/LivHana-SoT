@@ -1,6 +1,6 @@
 'use strict'
 
-let Container = require('./container')
+const Container = require('./container')
 
 class AtRule extends Container {
   constructor(defaults) {

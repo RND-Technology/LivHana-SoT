@@ -1,9 +1,9 @@
-var apply = require('./_apply'),
+const apply = require('./_apply'),
     createCtor = require('./_createCtor'),
     root = require('./_root');
 
 /** Used to compose bitmasks for function metadata. */
-var WRAP_BIND_FLAG = 1;
+const WRAP_BIND_FLAG = 1;
 
 /**
  * Creates a function that wraps `func` to invoke it with the `this` binding
@@ -18,11 +18,11 @@ var WRAP_BIND_FLAG = 1;
  * @returns {Function} Returns the new wrapped function.
  */
 function createPartial(func, bitmask, thisArg, partials) {
-  var isBind = bitmask & WRAP_BIND_FLAG,
+  const isBind = bitmask & WRAP_BIND_FLAG,
       Ctor = createCtor(func);
 
   function wrapper() {
-    var argsIndex = -1,
+    let argsIndex = -1,
         argsLength = arguments.length,
         leftIndex = -1,
         leftLength = partials.length,

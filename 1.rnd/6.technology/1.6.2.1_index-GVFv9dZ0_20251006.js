@@ -22,7 +22,7 @@ const nodeGlobals = new Map(
     return [nodeGlobalsKey, descriptor];
   })
 );
-var node = {
+const node = {
   name: "node",
   transformMode: "ssr",
   // this is largely copied from jest's node environment
@@ -432,7 +432,7 @@ function catchWindowErrors(window) {
     window.removeEventListener("error", throwUnhandlerError);
   };
 }
-var jsdom = {
+const jsdom = {
   name: "jsdom",
   transformMode: "web",
   async setupVM({ jsdom = {} }) {
@@ -558,7 +558,7 @@ async function teardownWindow(win) {
     win.happyDOM.cancelAsync();
   }
 }
-var happy = {
+const happy = {
   name: "happy-dom",
   transformMode: "web",
   async setupVM({ happyDOM = {} }) {
@@ -611,7 +611,7 @@ var happy = {
   }
 };
 
-var edge = {
+const edge = {
   name: "edge-runtime",
   transformMode: "ssr",
   async setupVM() {

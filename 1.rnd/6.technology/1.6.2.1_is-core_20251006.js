@@ -1,4 +1,4 @@
-var isCoreModule = require('is-core-module');
+const isCoreModule = require('is-core-module');
 
 module.exports = function isCore(x) {
     return isCoreModule(x);

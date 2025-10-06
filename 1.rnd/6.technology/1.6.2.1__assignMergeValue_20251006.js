@@ -1,4 +1,4 @@
-var baseAssignValue = require('./_baseAssignValue'),
+const baseAssignValue = require('./_baseAssignValue'),
     eq = require('./eq');
 
 /**

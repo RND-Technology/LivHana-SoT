@@ -1,5 +1,5 @@
 
-var TreeBase = require('./treebase');
+const TreeBase = require('./treebase');
 
 function Node(data) {
     this.data = data;
@@ -37,11 +37,11 @@ BinTree.prototype.insert = function(data) {
         return true;
     }
 
-    var dir = 0;
+    let dir = 0;
 
     // setup
-    var p = null; // parent
-    var node = this._root;
+    let p = null; // parent
+    let node = this._root;
 
     // search down
     while(true) {
@@ -73,17 +73,17 @@ BinTree.prototype.remove = function(data) {
         return false;
     }
 
-    var head = new Node(undefined); // fake tree root
-    var node = head;
+    const head = new Node(undefined); // fake tree root
+    let node = head;
     node.right = this._root;
-    var p = null; // parent
-    var found = null; // found item
-    var dir = 1;
+    let p = null; // parent
+    let found = null; // found item
+    let dir = 1;
 
     while(node.get_child(dir) !== null) {
         p = node;
         node = node.get_child(dir);
-        var cmp = this._comparator(data, node.data);
+        const cmp = this._comparator(data, node.data);
         dir = cmp > 0;
 
         if(cmp === 0) {

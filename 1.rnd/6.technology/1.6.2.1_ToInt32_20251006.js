@@ -1,6 +1,6 @@
 'use strict';
 
-var ToNumber = require('./ToNumber');
+const ToNumber = require('./ToNumber');
 
 // http://262.ecma-international.org/5.1/#sec-9.5
 

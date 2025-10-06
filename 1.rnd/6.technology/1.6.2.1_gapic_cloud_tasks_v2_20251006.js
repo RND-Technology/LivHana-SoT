@@ -33,7 +33,7 @@ const dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = protobuf.Root.fromJSON(JSON.parse(fs.readFileSync(path.join(dirname, '..', '..', 'protos/protos.json'), 'utf8')));
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function getTypeDefaultValue(typeName, fields) {
-    var _a, _b, _c;
+    let _a, _b, _c;
     let type = root.lookupType(typeName);
     for (const field of fields.slice(0, -1)) {
         type = (_a = type === null || type === void 0 ? void 0 : type.fields[field]) === null || _a === void 0 ? void 0 : _a.resolvedType;
@@ -436,7 +436,7 @@ describe('v2.CloudTasksClient', () => {
     });
     describe('updateQueue', () => {
         it('invokes updateQueue without error', async () => {
-            var _a;
+            let _a;
             const client = new cloudtasksModule.v2.CloudTasksClient({
                 credentials: { client_email: 'bogus', private_key: 'bogus' },
                 projectId: 'bogus',
@@ -457,7 +457,7 @@ describe('v2.CloudTasksClient', () => {
             assert(actualHeaderRequestParams.includes(expectedHeaderRequestParams));
         });
         it('invokes updateQueue without error using callback', async () => {
-            var _a;
+            let _a;
             const client = new cloudtasksModule.v2.CloudTasksClient({
                 credentials: { client_email: 'bogus', private_key: 'bogus' },
                 projectId: 'bogus',
@@ -489,7 +489,7 @@ describe('v2.CloudTasksClient', () => {
             assert(actualHeaderRequestParams.includes(expectedHeaderRequestParams));
         });
         it('invokes updateQueue with error', async () => {
-            var _a;
+            let _a;
             const client = new cloudtasksModule.v2.CloudTasksClient({
                 credentials: { client_email: 'bogus', private_key: 'bogus' },
                 projectId: 'bogus',
@@ -509,7 +509,7 @@ describe('v2.CloudTasksClient', () => {
             assert(actualHeaderRequestParams.includes(expectedHeaderRequestParams));
         });
         it('invokes updateQueue with closed client', async () => {
-            var _a;
+            let _a;
             const client = new cloudtasksModule.v2.CloudTasksClient({
                 credentials: { client_email: 'bogus', private_key: 'bogus' },
                 projectId: 'bogus',

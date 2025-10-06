@@ -1,28 +1,28 @@
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
-var callBound = require('call-bound');
+const GetIntrinsic = require('get-intrinsic');
+const callBound = require('call-bound');
 
-var $RangeError = require('es-errors/range');
-var $SyntaxError = require('es-errors/syntax');
-var $TypeError = require('es-errors/type');
-var $BigInt = GetIntrinsic('%BigInt%', true);
+const $RangeError = require('es-errors/range');
+const $SyntaxError = require('es-errors/syntax');
+const $TypeError = require('es-errors/type');
+const $BigInt = GetIntrinsic('%BigInt%', true);
 
-var hasOwnProperty = require('./HasOwnProperty');
-var IsArray = require('./IsArray');
-var IsBigIntElementType = require('./IsBigIntElementType');
-var IsUnsignedElementType = require('./IsUnsignedElementType');
+const hasOwnProperty = require('./HasOwnProperty');
+const IsArray = require('./IsArray');
+const IsBigIntElementType = require('./IsBigIntElementType');
+const IsUnsignedElementType = require('./IsUnsignedElementType');
 
-var bytesAsFloat32 = require('../helpers/bytesAsFloat32');
-var bytesAsFloat64 = require('../helpers/bytesAsFloat64');
-var bytesAsInteger = require('../helpers/bytesAsInteger');
-var every = require('../helpers/every');
-var isByteValue = require('../helpers/isByteValue');
+const bytesAsFloat32 = require('../helpers/bytesAsFloat32');
+const bytesAsFloat64 = require('../helpers/bytesAsFloat64');
+const bytesAsInteger = require('../helpers/bytesAsInteger');
+const every = require('../helpers/every');
+const isByteValue = require('../helpers/isByteValue');
 
-var $reverse = callBound('Array.prototype.reverse');
-var $slice = callBound('Array.prototype.slice');
+const $reverse = callBound('Array.prototype.reverse');
+const $slice = callBound('Array.prototype.slice');
 
-var tableTAO = require('./tables/typed-array-objects');
+const tableTAO = require('./tables/typed-array-objects');
 
 // https://262.ecma-international.org/11.0/#sec-rawbytestonumeric
 
@@ -37,14 +37,14 @@ module.exports = function RawBytesToNumeric(type, rawBytes, isLittleEndian) {
 		throw new $TypeError('Assertion failed: `isLittleEndian` must be a Boolean');
 	}
 
-	var elementSize = tableTAO.size['$' + type]; // step 1
+	const elementSize = tableTAO.size['$' + type]; // step 1
 
 	if (rawBytes.length !== elementSize) {
 		// this assertion is not in the spec, but it'd be an editorial error if it were ever violated
 		throw new $RangeError('Assertion failed: `rawBytes` must have a length of ' + elementSize + ' for type ' + type);
 	}
 
-	var isBigInt = IsBigIntElementType(type);
+	const isBigInt = IsBigIntElementType(type);
 	if (isBigInt && !$BigInt) {
 		throw new $SyntaxError('this environment does not support BigInts');
 	}

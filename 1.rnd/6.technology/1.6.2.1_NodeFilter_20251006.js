@@ -10,7 +10,7 @@ exports.convert = (globalObject, value, { context = "The provided value" } = {})
 
   function callTheUserObjectsOperation(node) {
     let thisArg = utils.tryWrapperForImpl(this);
-    let O = value;
+    const O = value;
     let X = O;
 
     if (typeof O !== "function") {

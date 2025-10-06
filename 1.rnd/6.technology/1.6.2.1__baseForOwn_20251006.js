@@ -1,4 +1,4 @@
-var baseFor = require('./_baseFor'),
+const baseFor = require('./_baseFor'),
     keys = require('./keys');
 
 /**

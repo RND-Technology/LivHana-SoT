@@ -1,8 +1,8 @@
 "use strict";
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+const __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
+    let desc = Object.getOwnPropertyDescriptor(m, k);
     if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
       desc = { enumerable: true, get: function() { return m[k]; } };
     }
@@ -11,15 +11,15 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
 }));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+const __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
     Object.defineProperty(o, "default", { enumerable: true, value: v });
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || function (mod) {
+const __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    const result = {};
+    if (mod != null) for (const k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
     __setModuleDefault(result, mod);
     return result;
 };
@@ -44,7 +44,7 @@ class Embeddings extends resource_1.APIResource {
         const hasUserProvidedEncodingFormat = !!body.encoding_format;
         // No encoding_format specified, defaulting to base64 for performance reasons
         // See https://github.com/openai/openai-node/pull/1312
-        let encoding_format = hasUserProvidedEncodingFormat ? body.encoding_format : 'base64';
+        const encoding_format = hasUserProvidedEncodingFormat ? body.encoding_format : 'base64';
         if (hasUserProvidedEncodingFormat) {
             Core.debug('Request', 'User defined encoding_format:', body.encoding_format);
         }

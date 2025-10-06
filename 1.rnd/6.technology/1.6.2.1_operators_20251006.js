@@ -250,7 +250,7 @@ class ReduceAwareErrMissingArgs extends ERR_MISSING_ARGS {
   }
 }
 async function reduce(reducer, initialValue, options) {
-  var _options$signal2
+  let _options$signal2
   if (typeof reducer !== 'function') {
     throw new ERR_INVALID_ARG_TYPE('reducer', ['Function', 'AsyncFunction'], reducer)
   }
@@ -370,7 +370,7 @@ function drop(number, options = undefined) {
   }
   number = toIntegerOrInfinity(number)
   return async function* drop() {
-    var _options$signal5
+    let _options$signal5
     if (
       options !== null &&
       options !== undefined &&
@@ -406,7 +406,7 @@ function take(number, options = undefined) {
   }
   number = toIntegerOrInfinity(number)
   return async function* take() {
-    var _options$signal7
+    let _options$signal7
     if (
       options !== null &&
       options !== undefined &&

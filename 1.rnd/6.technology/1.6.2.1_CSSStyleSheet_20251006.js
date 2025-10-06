@@ -1,5 +1,5 @@
 //.CommonJS
-var CSSOM = {
+const CSSOM = {
 	StyleSheet: require("./StyleSheet").StyleSheet,
 	CSSStyleRule: require("./CSSStyleRule").CSSStyleRule
 };
@@ -40,7 +40,7 @@ CSSOM.CSSStyleSheet.prototype.insertRule = function(rule, index) {
 	if (index < 0 || index > this.cssRules.length) {
 		throw new RangeError("INDEX_SIZE_ERR");
 	}
-	var cssRule = CSSOM.parse(rule).cssRules[0];
+	const cssRule = CSSOM.parse(rule).cssRules[0];
 	cssRule.parentStyleSheet = this;
 	this.cssRules.splice(index, 0, cssRule);
 	return index;
@@ -73,9 +73,9 @@ CSSOM.CSSStyleSheet.prototype.deleteRule = function(index) {
  * @return {string} serialize stylesheet
  */
 CSSOM.CSSStyleSheet.prototype.toString = function() {
-	var result = "";
-	var rules = this.cssRules;
-	for (var i=0; i<rules.length; i++) {
+	let result = "";
+	const rules = this.cssRules;
+	for (let i=0; i<rules.length; i++) {
 		result += rules[i].cssText + "\n";
 	}
 	return result;

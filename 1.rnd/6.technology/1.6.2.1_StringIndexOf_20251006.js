@@ -1,11 +1,11 @@
 'use strict';
 
-var callBound = require('call-bound');
+const callBound = require('call-bound');
 
-var $TypeError = require('es-errors/type');
-var isInteger = require('math-intrinsics/isInteger');
+const $TypeError = require('es-errors/type');
+const isInteger = require('math-intrinsics/isInteger');
 
-var $slice = callBound('String.prototype.slice');
+const $slice = callBound('String.prototype.slice');
 
 // https://262.ecma-international.org/12.0/#sec-stringindexof
 
@@ -20,14 +20,14 @@ module.exports = function StringIndexOf(string, searchValue, fromIndex) {
 		throw new $TypeError('Assertion failed: `fromIndex` must be a non-negative integer');
 	}
 
-	var len = string.length;
+	const len = string.length;
 	if (searchValue === '' && fromIndex <= len) {
 		return fromIndex;
 	}
 
-	var searchLen = searchValue.length;
-	for (var i = fromIndex; i <= (len - searchLen); i += 1) {
-		var candidate = $slice(string, i, i + searchLen);
+	const searchLen = searchValue.length;
+	for (let i = fromIndex; i <= (len - searchLen); i += 1) {
+		const candidate = $slice(string, i, i + searchLen);
 		if (candidate === searchValue) {
 			return i;
 		}

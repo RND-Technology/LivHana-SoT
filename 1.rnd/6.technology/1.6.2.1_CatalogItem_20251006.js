@@ -1,13 +1,13 @@
 "use strict";
 exports.__esModule = true;
 exports.catalogItemSchema = void 0;
-var schema_1 = require("../schema");
-var catalogEcomSeoData_1 = require("./catalogEcomSeoData");
-var catalogItemFoodAndBeverageDetails_1 = require("./catalogItemFoodAndBeverageDetails");
-var catalogItemModifierListInfo_1 = require("./catalogItemModifierListInfo");
-var catalogItemOptionForItem_1 = require("./catalogItemOptionForItem");
-var catalogObject_1 = require("./catalogObject");
-var catalogObjectCategory_1 = require("./catalogObjectCategory");
+const schema_1 = require("../schema");
+const catalogEcomSeoData_1 = require("./catalogEcomSeoData");
+const catalogItemFoodAndBeverageDetails_1 = require("./catalogItemFoodAndBeverageDetails");
+const catalogItemModifierListInfo_1 = require("./catalogItemModifierListInfo");
+const catalogItemOptionForItem_1 = require("./catalogItemOptionForItem");
+const catalogObject_1 = require("./catalogObject");
+const catalogObjectCategory_1 = require("./catalogObjectCategory");
 exports.catalogItemSchema = (0, schema_1.object)({
     name: ['name', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.string)()))],
     description: ['description', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.string)()))],

@@ -19,7 +19,7 @@ exports.tpu_v2alpha1 = void 0;
 /* eslint-disable @typescript-eslint/no-namespace */
 /* eslint-disable no-irregular-whitespace */
 const googleapis_common_1 = require("googleapis-common");
-var tpu_v2alpha1;
+let tpu_v2alpha1;
 (function (tpu_v2alpha1) {
     /**
      * Cloud TPU API

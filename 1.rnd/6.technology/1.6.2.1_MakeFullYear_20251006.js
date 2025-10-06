@@ -1,10 +1,10 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var ToIntegerOrInfinity = require('./ToIntegerOrInfinity');
+const ToIntegerOrInfinity = require('./ToIntegerOrInfinity');
 
-var isNaN = require('math-intrinsics/isNaN');
+const isNaN = require('math-intrinsics/isNaN');
 
 // https://262.ecma-international.org/15.0/#sec-makefullyear
 
@@ -17,7 +17,7 @@ module.exports = function MakeFullYear(year) {
 		return NaN; // step 1
 	}
 
-	var truncated = ToIntegerOrInfinity(year); // step 2
+	const truncated = ToIntegerOrInfinity(year); // step 2
 	if (0 <= truncated && truncated <= 99) {
 		return 1900 + truncated; // step 3
 	}

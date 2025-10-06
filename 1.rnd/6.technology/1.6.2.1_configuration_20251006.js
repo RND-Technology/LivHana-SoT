@@ -40,7 +40,7 @@ function fixConfig(ts, config) {
 }
 /** @internal */
 function findAndReadConfig(rawOptions) {
-    var _a, _b, _c, _d, _e;
+    let _a, _b, _c, _d, _e;
     const cwd = (0, path_1.resolve)((_c = (_b = (_a = rawOptions.cwd) !== null && _a !== void 0 ? _a : rawOptions.dir) !== null && _b !== void 0 ? _b : index_1.DEFAULTS.cwd) !== null && _c !== void 0 ? _c : process.cwd());
     const compilerName = (_d = rawOptions.compiler) !== null && _d !== void 0 ? _d : index_1.DEFAULTS.compiler;
     // Compute minimum options to read the config file.
@@ -81,7 +81,7 @@ exports.findAndReadConfig = findAndReadConfig;
  * @internal
  */
 function readConfig(cwd, ts, rawApiOptions) {
-    var _a, _b, _c;
+    let _a, _b, _c;
     // Ordered [a, b, c] where config a extends b extends c
     const configChain = [];
     let config = { compilerOptions: {} };

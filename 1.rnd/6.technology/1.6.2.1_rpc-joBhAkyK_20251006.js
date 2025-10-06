@@ -4,7 +4,7 @@ import { g as getWorkerState } from './global.CkGT_TMy.js';
 
 const { get } = Reflect;
 function withSafeTimers(fn) {
-  var _a;
+  let _a;
   const { setTimeout, clearTimeout, nextTick, setImmediate, clearImmediate } = getSafeTimers();
   const currentSetTimeout = globalThis.setTimeout;
   const currentClearTimeout = globalThis.clearTimeout;
@@ -52,7 +52,7 @@ function createRuntimeRpc(options) {
     {
       eventNames: ["onUserConsoleLog", "onFinished", "onCollected", "onCancel"],
       onTimeoutError(functionName, args) {
-        var _a;
+        let _a;
         let message = `[vitest-worker]: Timeout calling "${functionName}"`;
         if (functionName === "fetch" || functionName === "transform" || functionName === "resolveId")
           message += ` with "${JSON.stringify(args)}"`;

@@ -7,7 +7,7 @@
  * MIT License <https://github.com/nodejs/nan/blob/master/LICENSE.md>
  ********************************************************************/
 
-var commander = require('commander'),
+let commander = require('commander'),
     fs = require('fs'),
     glob = require('glob'),
     groups = [],
@@ -172,7 +172,7 @@ groups.push([2, '(\\W)(?:v8\\:\\:)?(Persistent)(\\W)']);
 /* counts the number of capturing groups in a well-formed regular expression,
    ignoring non-capturing groups and escaped parentheses */
 function groupcount(s) {
-  var positive = s.match(/\((?!\?)/g),
+  const positive = s.match(/\((?!\?)/g),
       negative = s.match(/\\\(/g);
   return (positive ? positive.length : 0) - (negative ? negative.length : 0);
 }

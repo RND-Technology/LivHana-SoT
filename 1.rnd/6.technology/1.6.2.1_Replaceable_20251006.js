@@ -4,7 +4,7 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 exports.default = void 0;
-var _jestGetType = require('jest-get-type');
+const _jestGetType = require('jest-get-type');
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *

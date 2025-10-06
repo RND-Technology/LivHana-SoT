@@ -4,7 +4,7 @@ import hoistNonReactStatics$1 from 'hoist-non-react-statics';
 // and if this module doesn't actually contain any logic of its own
 // then Rollup just use 'hoist-non-react-statics' directly in other chunks
 
-var hoistNonReactStatics = (function (targetComponent, sourceComponent) {
+const hoistNonReactStatics = (function (targetComponent, sourceComponent) {
   return hoistNonReactStatics$1(targetComponent, sourceComponent);
 });
 

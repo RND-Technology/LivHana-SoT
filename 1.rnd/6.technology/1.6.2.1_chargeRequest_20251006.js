@@ -1,10 +1,10 @@
 "use strict";
 exports.__esModule = true;
 exports.chargeRequestSchema = void 0;
-var schema_1 = require("../schema");
-var address_1 = require("./address");
-var chargeRequestAdditionalRecipient_1 = require("./chargeRequestAdditionalRecipient");
-var money_1 = require("./money");
+const schema_1 = require("../schema");
+const address_1 = require("./address");
+const chargeRequestAdditionalRecipient_1 = require("./chargeRequestAdditionalRecipient");
+const money_1 = require("./money");
 exports.chargeRequestSchema = (0, schema_1.object)({
     idempotencyKey: ['idempotency_key', (0, schema_1.string)()],
     amountMoney: ['amount_money', (0, schema_1.lazy)(function () { return money_1.moneySchema; })],

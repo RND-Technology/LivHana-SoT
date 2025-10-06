@@ -1,7 +1,7 @@
 'use strict';
 
-var SLOT = require('internal-slot');
-var keptObjects = [];
+const SLOT = require('internal-slot');
+const keptObjects = [];
 
 // https://262.ecma-international.org/12.0/#sec-clear-kept-objects
 

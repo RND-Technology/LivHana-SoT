@@ -1,31 +1,31 @@
 'use strict';
 module.exports = function generate_if(it, $keyword, $ruleType) {
-  var out = ' ';
-  var $lvl = it.level;
-  var $dataLvl = it.dataLevel;
-  var $schema = it.schema[$keyword];
-  var $schemaPath = it.schemaPath + it.util.getProperty($keyword);
-  var $errSchemaPath = it.errSchemaPath + '/' + $keyword;
-  var $breakOnError = !it.opts.allErrors;
-  var $data = 'data' + ($dataLvl || '');
-  var $valid = 'valid' + $lvl;
-  var $errs = 'errs__' + $lvl;
-  var $it = it.util.copy(it);
+  let out = ' ';
+  const $lvl = it.level;
+  const $dataLvl = it.dataLevel;
+  const $schema = it.schema[$keyword];
+  const $schemaPath = it.schemaPath + it.util.getProperty($keyword);
+  const $errSchemaPath = it.errSchemaPath + '/' + $keyword;
+  const $breakOnError = !it.opts.allErrors;
+  const $data = 'data' + ($dataLvl || '');
+  const $valid = 'valid' + $lvl;
+  const $errs = 'errs__' + $lvl;
+  const $it = it.util.copy(it);
   $it.level++;
-  var $nextValid = 'valid' + $it.level;
-  var $thenSch = it.schema['then'],
+  const $nextValid = 'valid' + $it.level;
+  const $thenSch = it.schema['then'],
     $elseSch = it.schema['else'],
     $thenPresent = $thenSch !== undefined && (it.opts.strictKeywords ? (typeof $thenSch == 'object' && Object.keys($thenSch).length > 0) || $thenSch === false : it.util.schemaHasRules($thenSch, it.RULES.all)),
     $elsePresent = $elseSch !== undefined && (it.opts.strictKeywords ? (typeof $elseSch == 'object' && Object.keys($elseSch).length > 0) || $elseSch === false : it.util.schemaHasRules($elseSch, it.RULES.all)),
     $currentBaseId = $it.baseId;
   if ($thenPresent || $elsePresent) {
-    var $ifClause;
+    let $ifClause;
     $it.createErrors = false;
     $it.schema = $schema;
     $it.schemaPath = $schemaPath;
     $it.errSchemaPath = $errSchemaPath;
     out += ' var ' + ($errs) + ' = errors; var ' + ($valid) + ' = true;  ';
-    var $wasComposite = it.compositeRule;
+    const $wasComposite = it.compositeRule;
     it.compositeRule = $it.compositeRule = true;
     out += '  ' + (it.validate($it)) + ' ';
     $it.baseId = $currentBaseId;

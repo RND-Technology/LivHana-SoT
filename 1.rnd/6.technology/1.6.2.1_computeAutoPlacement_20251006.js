@@ -7,7 +7,7 @@ export default function computeAutoPlacement(state, options) {
     options = {};
   }
 
-  var _options = options,
+  const _options = options,
       placement = _options.placement,
       boundary = _options.boundary,
       rootBoundary = _options.rootBoundary,
@@ -15,11 +15,11 @@ export default function computeAutoPlacement(state, options) {
       flipVariations = _options.flipVariations,
       _options$allowedAutoP = _options.allowedAutoPlacements,
       allowedAutoPlacements = _options$allowedAutoP === void 0 ? allPlacements : _options$allowedAutoP;
-  var variation = getVariation(placement);
-  var placements = variation ? flipVariations ? variationPlacements : variationPlacements.filter(function (placement) {
+  const variation = getVariation(placement);
+  const placements = variation ? flipVariations ? variationPlacements : variationPlacements.filter(function (placement) {
     return getVariation(placement) === variation;
   }) : basePlacements;
-  var allowedPlacements = placements.filter(function (placement) {
+  let allowedPlacements = placements.filter(function (placement) {
     return allowedAutoPlacements.indexOf(placement) >= 0;
   });
 
@@ -28,7 +28,7 @@ export default function computeAutoPlacement(state, options) {
   } // $FlowFixMe[incompatible-type]: Flow seems to have problems with two array unions...
 
 
-  var overflows = allowedPlacements.reduce(function (acc, placement) {
+  const overflows = allowedPlacements.reduce(function (acc, placement) {
     acc[placement] = detectOverflow(state, {
       placement: placement,
       boundary: boundary,

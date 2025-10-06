@@ -5,14 +5,14 @@
  * http://opensource.org/licenses/BSD-3-Clause
  */
 
-var util = require('./util');
-var binarySearch = require('./binary-search');
-var ArraySet = require('./array-set').ArraySet;
-var base64VLQ = require('./base64-vlq');
-var quickSort = require('./quick-sort').quickSort;
+const util = require('./util');
+const binarySearch = require('./binary-search');
+const ArraySet = require('./array-set').ArraySet;
+const base64VLQ = require('./base64-vlq');
+const quickSort = require('./quick-sort').quickSort;
 
 function SourceMapConsumer(aSourceMap, aSourceMapURL) {
-  var sourceMap = aSourceMap;
+  let sourceMap = aSourceMap;
   if (typeof aSourceMap === 'string') {
     sourceMap = util.parseSourceMapInput(aSourceMap);
   }
@@ -89,7 +89,7 @@ Object.defineProperty(SourceMapConsumer.prototype, '_originalMappings', {
 
 SourceMapConsumer.prototype._charIsMappingSeparator =
   function SourceMapConsumer_charIsMappingSeparator(aStr, index) {
-    var c = aStr.charAt(index);
+    const c = aStr.charAt(index);
     return c === ";" || c === ",";
   };
 
@@ -127,10 +127,10 @@ SourceMapConsumer.LEAST_UPPER_BOUND = 2;
  */
 SourceMapConsumer.prototype.eachMapping =
   function SourceMapConsumer_eachMapping(aCallback, aContext, aOrder) {
-    var context = aContext || null;
-    var order = aOrder || SourceMapConsumer.GENERATED_ORDER;
+    const context = aContext || null;
+    const order = aOrder || SourceMapConsumer.GENERATED_ORDER;
 
-    var mappings;
+    let mappings;
     switch (order) {
     case SourceMapConsumer.GENERATED_ORDER:
       mappings = this._generatedMappings;
@@ -142,15 +142,15 @@ SourceMapConsumer.prototype.eachMapping =
       throw new Error("Unknown order of iteration.");
     }
 
-    var sourceRoot = this.sourceRoot;
-    var boundCallback = aCallback.bind(context);
-    var names = this._names;
-    var sources = this._sources;
-    var sourceMapURL = this._sourceMapURL;
+    const sourceRoot = this.sourceRoot;
+    const boundCallback = aCallback.bind(context);
+    const names = this._names;
+    const sources = this._sources;
+    const sourceMapURL = this._sourceMapURL;
 
-    for (var i = 0, n = mappings.length; i < n; i++) {
-      var mapping = mappings[i];
-      var source = mapping.source === null ? null : sources.at(mapping.source);
+    for (let i = 0, n = mappings.length; i < n; i++) {
+      const mapping = mappings[i];
+      let source = mapping.source === null ? null : sources.at(mapping.source);
       if(source !== null) {
         source = util.computeSourceURL(sourceRoot, source, sourceMapURL);
       }
@@ -189,13 +189,13 @@ SourceMapConsumer.prototype.eachMapping =
  */
 SourceMapConsumer.prototype.allGeneratedPositionsFor =
   function SourceMapConsumer_allGeneratedPositionsFor(aArgs) {
-    var line = util.getArg(aArgs, 'line');
+    const line = util.getArg(aArgs, 'line');
 
     // When there is no exact match, BasicSourceMapConsumer.prototype._findMapping
     // returns the index of the closest mapping less than the needle. By
     // setting needle.originalColumn to 0, we thus find the last mapping for
     // the given line, provided such a mapping exists.
-    var needle = {
+    const needle = {
       source: util.getArg(aArgs, 'source'),
       originalLine: line,
       originalColumn: util.getArg(aArgs, 'column', 0)
@@ -206,19 +206,19 @@ SourceMapConsumer.prototype.allGeneratedPositionsFor =
       return [];
     }
 
-    var mappings = [];
+    const mappings = [];
 
-    var index = this._findMapping(needle,
+    let index = this._findMapping(needle,
                                   this._originalMappings,
                                   "originalLine",
                                   "originalColumn",
                                   util.compareByOriginalPositions,
                                   binarySearch.LEAST_UPPER_BOUND);
     if (index >= 0) {
-      var mapping = this._originalMappings[index];
+      let mapping = this._originalMappings[index];
 
       if (aArgs.column === undefined) {
-        var originalLine = mapping.originalLine;
+        const originalLine = mapping.originalLine;
 
         // Iterate until either we run out of mappings, or we run into
         // a mapping for a different line than the one we found. Since
@@ -234,7 +234,7 @@ SourceMapConsumer.prototype.allGeneratedPositionsFor =
           mapping = this._originalMappings[++index];
         }
       } else {
-        var originalColumn = mapping.originalColumn;
+        const originalColumn = mapping.originalColumn;
 
         // Iterate until either we run out of mappings, or we run into
         // a mapping for a different line than the one we were searching for.
@@ -294,20 +294,20 @@ exports.SourceMapConsumer = SourceMapConsumer;
  * [0]: https://docs.google.com/document/d/1U1RGAehQwRypUTovF1KRlpiOFze0b-_2gc6fAH0KY0k/edit?pli=1#
  */
 function BasicSourceMapConsumer(aSourceMap, aSourceMapURL) {
-  var sourceMap = aSourceMap;
+  let sourceMap = aSourceMap;
   if (typeof aSourceMap === 'string') {
     sourceMap = util.parseSourceMapInput(aSourceMap);
   }
 
-  var version = util.getArg(sourceMap, 'version');
-  var sources = util.getArg(sourceMap, 'sources');
+  const version = util.getArg(sourceMap, 'version');
+  let sources = util.getArg(sourceMap, 'sources');
   // Sass 3.3 leaves out the 'names' array, so we deviate from the spec (which
   // requires the array) to play nice here.
-  var names = util.getArg(sourceMap, 'names', []);
-  var sourceRoot = util.getArg(sourceMap, 'sourceRoot', null);
-  var sourcesContent = util.getArg(sourceMap, 'sourcesContent', null);
-  var mappings = util.getArg(sourceMap, 'mappings');
-  var file = util.getArg(sourceMap, 'file', null);
+  const names = util.getArg(sourceMap, 'names', []);
+  let sourceRoot = util.getArg(sourceMap, 'sourceRoot', null);
+  const sourcesContent = util.getArg(sourceMap, 'sourcesContent', null);
+  const mappings = util.getArg(sourceMap, 'mappings');
+  const file = util.getArg(sourceMap, 'file', null);
 
   // Once again, Sass deviates from the spec and supplies the version as a
   // string rather than a number, so we use loose equality checking here.
@@ -361,7 +361,7 @@ BasicSourceMapConsumer.prototype.consumer = SourceMapConsumer;
  * found.
  */
 BasicSourceMapConsumer.prototype._findSourceIndex = function(aSource) {
-  var relativeSource = aSource;
+  let relativeSource = aSource;
   if (this.sourceRoot != null) {
     relativeSource = util.relative(this.sourceRoot, relativeSource);
   }
@@ -372,7 +372,7 @@ BasicSourceMapConsumer.prototype._findSourceIndex = function(aSource) {
 
   // Maybe aSource is an absolute URL as returned by |sources|.  In
   // this case we can't simply undo the transform.
-  var i;
+  let i;
   for (i = 0; i < this._absoluteSources.length; ++i) {
     if (this._absoluteSources[i] == aSource) {
       return i;
@@ -393,10 +393,10 @@ BasicSourceMapConsumer.prototype._findSourceIndex = function(aSource) {
  */
 BasicSourceMapConsumer.fromSourceMap =
   function SourceMapConsumer_fromSourceMap(aSourceMap, aSourceMapURL) {
-    var smc = Object.create(BasicSourceMapConsumer.prototype);
+    const smc = Object.create(BasicSourceMapConsumer.prototype);
 
-    var names = smc._names = ArraySet.fromArray(aSourceMap._names.toArray(), true);
-    var sources = smc._sources = ArraySet.fromArray(aSourceMap._sources.toArray(), true);
+    const names = smc._names = ArraySet.fromArray(aSourceMap._names.toArray(), true);
+    const sources = smc._sources = ArraySet.fromArray(aSourceMap._sources.toArray(), true);
     smc.sourceRoot = aSourceMap._sourceRoot;
     smc.sourcesContent = aSourceMap._generateSourcesContent(smc._sources.toArray(),
                                                             smc.sourceRoot);
@@ -411,13 +411,13 @@ BasicSourceMapConsumer.fromSourceMap =
     // a copy of the entry or else bad things happen. Shared mutable state
     // strikes again! See github issue #191.
 
-    var generatedMappings = aSourceMap._mappings.toArray().slice();
-    var destGeneratedMappings = smc.__generatedMappings = [];
-    var destOriginalMappings = smc.__originalMappings = [];
+    const generatedMappings = aSourceMap._mappings.toArray().slice();
+    const destGeneratedMappings = smc.__generatedMappings = [];
+    const destOriginalMappings = smc.__originalMappings = [];
 
-    for (var i = 0, length = generatedMappings.length; i < length; i++) {
-      var srcMapping = generatedMappings[i];
-      var destMapping = new Mapping;
+    for (let i = 0, length = generatedMappings.length; i < length; i++) {
+      const srcMapping = generatedMappings[i];
+      const destMapping = new Mapping;
       destMapping.generatedLine = srcMapping.generatedLine;
       destMapping.generatedColumn = srcMapping.generatedColumn;
 
@@ -475,13 +475,13 @@ function Mapping() {
 
 const compareGenerated = util.compareByGeneratedPositionsDeflatedNoLine;
 function sortGenerated(array, start) {
-  let l = array.length;
-  let n = array.length - start;
+  const l = array.length;
+  const n = array.length - start;
   if (n <= 1) {
     return;
   } else if (n == 2) {
-    let a = array[start];
-    let b = array[start + 1];
+    const a = array[start];
+    const b = array[start + 1];
     if (compareGenerated(a, b) > 0) {
       array[start] = b;
       array[start + 1] = a;
@@ -489,8 +489,8 @@ function sortGenerated(array, start) {
   } else if (n < 20) {
     for (let i = start; i < l; i++) {
       for (let j = i; j > start; j--) {
-        let a = array[j - 1];
-        let b = array[j];
+        const a = array[j - 1];
+        const b = array[j];
         if (compareGenerated(a, b) <= 0) {
           break;
         }
@@ -504,19 +504,19 @@ function sortGenerated(array, start) {
 }
 BasicSourceMapConsumer.prototype._parseMappings =
   function SourceMapConsumer_parseMappings(aStr, aSourceRoot) {
-    var generatedLine = 1;
-    var previousGeneratedColumn = 0;
-    var previousOriginalLine = 0;
-    var previousOriginalColumn = 0;
-    var previousSource = 0;
-    var previousName = 0;
-    var length = aStr.length;
-    var index = 0;
-    var cachedSegments = {};
-    var temp = {};
-    var originalMappings = [];
-    var generatedMappings = [];
-    var mapping, str, segment, end, value;
+    let generatedLine = 1;
+    let previousGeneratedColumn = 0;
+    let previousOriginalLine = 0;
+    let previousOriginalColumn = 0;
+    let previousSource = 0;
+    let previousName = 0;
+    const length = aStr.length;
+    let index = 0;
+    const cachedSegments = {};
+    const temp = {};
+    const originalMappings = [];
+    const generatedMappings = [];
+    let mapping, str, segment, end, value;
 
     let subarrayStart = 0;
     while (index < length) {
@@ -586,7 +586,7 @@ BasicSourceMapConsumer.prototype._parseMappings =
 
         generatedMappings.push(mapping);
         if (typeof mapping.originalLine === 'number') {
-          let currentSource = mapping.source;
+          const currentSource = mapping.source;
           while (originalMappings.length <= currentSource) {
             originalMappings.push(null);
           }
@@ -601,7 +601,7 @@ BasicSourceMapConsumer.prototype._parseMappings =
     sortGenerated(generatedMappings, subarrayStart);
     this.__generatedMappings = generatedMappings;
 
-    for (var i = 0; i < originalMappings.length; i++) {
+    for (let i = 0; i < originalMappings.length; i++) {
       if (originalMappings[i] != null) {
         quickSort(originalMappings[i], util.compareByOriginalPositionsNoSource);
       }
@@ -639,15 +639,15 @@ BasicSourceMapConsumer.prototype._findMapping =
  */
 BasicSourceMapConsumer.prototype.computeColumnSpans =
   function SourceMapConsumer_computeColumnSpans() {
-    for (var index = 0; index < this._generatedMappings.length; ++index) {
-      var mapping = this._generatedMappings[index];
+    for (let index = 0; index < this._generatedMappings.length; ++index) {
+      const mapping = this._generatedMappings[index];
 
       // Mappings do not contain a field for the last generated columnt. We
       // can come up with an optimistic estimate, however, by assuming that
       // mappings are contiguous (i.e. given two consecutive mappings, the
       // first mapping ends where the second one starts).
       if (index + 1 < this._generatedMappings.length) {
-        var nextMapping = this._generatedMappings[index + 1];
+        const nextMapping = this._generatedMappings[index + 1];
 
         if (mapping.generatedLine === nextMapping.generatedLine) {
           mapping.lastGeneratedColumn = nextMapping.generatedColumn - 1;
@@ -686,12 +686,12 @@ BasicSourceMapConsumer.prototype.computeColumnSpans =
  */
 BasicSourceMapConsumer.prototype.originalPositionFor =
   function SourceMapConsumer_originalPositionFor(aArgs) {
-    var needle = {
+    const needle = {
       generatedLine: util.getArg(aArgs, 'line'),
       generatedColumn: util.getArg(aArgs, 'column')
     };
 
-    var index = this._findMapping(
+    const index = this._findMapping(
       needle,
       this._generatedMappings,
       "generatedLine",
@@ -701,15 +701,15 @@ BasicSourceMapConsumer.prototype.originalPositionFor =
     );
 
     if (index >= 0) {
-      var mapping = this._generatedMappings[index];
+      const mapping = this._generatedMappings[index];
 
       if (mapping.generatedLine === needle.generatedLine) {
-        var source = util.getArg(mapping, 'source', null);
+        let source = util.getArg(mapping, 'source', null);
         if (source !== null) {
           source = this._sources.at(source);
           source = util.computeSourceURL(this.sourceRoot, source, this._sourceMapURL);
         }
-        var name = util.getArg(mapping, 'name', null);
+        let name = util.getArg(mapping, 'name', null);
         if (name !== null) {
           name = this._names.at(name);
         }
@@ -754,24 +754,24 @@ BasicSourceMapConsumer.prototype.sourceContentFor =
       return null;
     }
 
-    var index = this._findSourceIndex(aSource);
+    const index = this._findSourceIndex(aSource);
     if (index >= 0) {
       return this.sourcesContent[index];
     }
 
-    var relativeSource = aSource;
+    let relativeSource = aSource;
     if (this.sourceRoot != null) {
       relativeSource = util.relative(this.sourceRoot, relativeSource);
     }
 
-    var url;
+    let url;
     if (this.sourceRoot != null
         && (url = util.urlParse(this.sourceRoot))) {
       // XXX: file:// URIs and absolute paths lead to unexpected behavior for
       // many users. We can help them out when they expect file:// URIs to
       // behave like it would if they were running a local HTTP server. See
       // https://bugzilla.mozilla.org/show_bug.cgi?id=885597.
-      var fileUriAbsPath = relativeSource.replace(/^file:\/\//, "");
+      const fileUriAbsPath = relativeSource.replace(/^file:\/\//, "");
       if (url.scheme == "file"
           && this._sources.has(fileUriAbsPath)) {
         return this.sourcesContent[this._sources.indexOf(fileUriAbsPath)]
@@ -820,7 +820,7 @@ BasicSourceMapConsumer.prototype.sourceContentFor =
  */
 BasicSourceMapConsumer.prototype.generatedPositionFor =
   function SourceMapConsumer_generatedPositionFor(aArgs) {
-    var source = util.getArg(aArgs, 'source');
+    let source = util.getArg(aArgs, 'source');
     source = this._findSourceIndex(source);
     if (source < 0) {
       return {
@@ -830,13 +830,13 @@ BasicSourceMapConsumer.prototype.generatedPositionFor =
       };
     }
 
-    var needle = {
+    const needle = {
       source: source,
       originalLine: util.getArg(aArgs, 'line'),
       originalColumn: util.getArg(aArgs, 'column')
     };
 
-    var index = this._findMapping(
+    const index = this._findMapping(
       needle,
       this._originalMappings,
       "originalLine",
@@ -846,7 +846,7 @@ BasicSourceMapConsumer.prototype.generatedPositionFor =
     );
 
     if (index >= 0) {
-      var mapping = this._originalMappings[index];
+      const mapping = this._originalMappings[index];
 
       if (mapping.source === needle.source) {
         return {
@@ -916,13 +916,13 @@ exports.BasicSourceMapConsumer = BasicSourceMapConsumer;
  * [0]: https://docs.google.com/document/d/1U1RGAehQwRypUTovF1KRlpiOFze0b-_2gc6fAH0KY0k/edit#heading=h.535es3xeprgt
  */
 function IndexedSourceMapConsumer(aSourceMap, aSourceMapURL) {
-  var sourceMap = aSourceMap;
+  let sourceMap = aSourceMap;
   if (typeof aSourceMap === 'string') {
     sourceMap = util.parseSourceMapInput(aSourceMap);
   }
 
-  var version = util.getArg(sourceMap, 'version');
-  var sections = util.getArg(sourceMap, 'sections');
+  const version = util.getArg(sourceMap, 'version');
+  const sections = util.getArg(sourceMap, 'sections');
 
   if (version != this._version) {
     throw new Error('Unsupported version: ' + version);
@@ -931,7 +931,7 @@ function IndexedSourceMapConsumer(aSourceMap, aSourceMapURL) {
   this._sources = new ArraySet();
   this._names = new ArraySet();
 
-  var lastOffset = {
+  let lastOffset = {
     line: -1,
     column: 0
   };
@@ -941,9 +941,9 @@ function IndexedSourceMapConsumer(aSourceMap, aSourceMapURL) {
       // See https://github.com/mozilla/source-map/issues/16
       throw new Error('Support for url field in sections not implemented.');
     }
-    var offset = util.getArg(s, 'offset');
-    var offsetLine = util.getArg(offset, 'line');
-    var offsetColumn = util.getArg(offset, 'column');
+    const offset = util.getArg(s, 'offset');
+    const offsetLine = util.getArg(offset, 'line');
+    const offsetColumn = util.getArg(offset, 'column');
 
     if (offsetLine < lastOffset.line ||
         (offsetLine === lastOffset.line && offsetColumn < lastOffset.column)) {
@@ -976,9 +976,9 @@ IndexedSourceMapConsumer.prototype._version = 3;
  */
 Object.defineProperty(IndexedSourceMapConsumer.prototype, 'sources', {
   get: function () {
-    var sources = [];
-    for (var i = 0; i < this._sections.length; i++) {
-      for (var j = 0; j < this._sections[i].consumer.sources.length; j++) {
+    const sources = [];
+    for (let i = 0; i < this._sections.length; i++) {
+      for (let j = 0; j < this._sections[i].consumer.sources.length; j++) {
         sources.push(this._sections[i].consumer.sources[j]);
       }
     }
@@ -1007,16 +1007,16 @@ Object.defineProperty(IndexedSourceMapConsumer.prototype, 'sources', {
  */
 IndexedSourceMapConsumer.prototype.originalPositionFor =
   function IndexedSourceMapConsumer_originalPositionFor(aArgs) {
-    var needle = {
+    const needle = {
       generatedLine: util.getArg(aArgs, 'line'),
       generatedColumn: util.getArg(aArgs, 'column')
     };
 
     // Find the section containing the generated position we're trying to map
     // to an original position.
-    var sectionIndex = binarySearch.search(needle, this._sections,
+    const sectionIndex = binarySearch.search(needle, this._sections,
       function(needle, section) {
-        var cmp = needle.generatedLine - section.generatedOffset.generatedLine;
+        const cmp = needle.generatedLine - section.generatedOffset.generatedLine;
         if (cmp) {
           return cmp;
         }
@@ -1024,7 +1024,7 @@ IndexedSourceMapConsumer.prototype.originalPositionFor =
         return (needle.generatedColumn -
                 section.generatedOffset.generatedColumn);
       });
-    var section = this._sections[sectionIndex];
+    const section = this._sections[sectionIndex];
 
     if (!section) {
       return {
@@ -1064,10 +1064,10 @@ IndexedSourceMapConsumer.prototype.hasContentsOfAllSources =
  */
 IndexedSourceMapConsumer.prototype.sourceContentFor =
   function IndexedSourceMapConsumer_sourceContentFor(aSource, nullOnMissing) {
-    for (var i = 0; i < this._sections.length; i++) {
-      var section = this._sections[i];
+    for (let i = 0; i < this._sections.length; i++) {
+      const section = this._sections[i];
 
-      var content = section.consumer.sourceContentFor(aSource, true);
+      const content = section.consumer.sourceContentFor(aSource, true);
       if (content || content === '') {
         return content;
       }
@@ -1100,17 +1100,17 @@ IndexedSourceMapConsumer.prototype.sourceContentFor =
  */
 IndexedSourceMapConsumer.prototype.generatedPositionFor =
   function IndexedSourceMapConsumer_generatedPositionFor(aArgs) {
-    for (var i = 0; i < this._sections.length; i++) {
-      var section = this._sections[i];
+    for (let i = 0; i < this._sections.length; i++) {
+      const section = this._sections[i];
 
       // Only consider this section if the requested source is in the list of
       // sources of the consumer.
       if (section.consumer._findSourceIndex(util.getArg(aArgs, 'source')) === -1) {
         continue;
       }
-      var generatedPosition = section.consumer.generatedPositionFor(aArgs);
+      const generatedPosition = section.consumer.generatedPositionFor(aArgs);
       if (generatedPosition) {
-        var ret = {
+        const ret = {
           line: generatedPosition.line +
             (section.generatedOffset.generatedLine - 1),
           column: generatedPosition.column +
@@ -1137,20 +1137,20 @@ IndexedSourceMapConsumer.prototype._parseMappings =
   function IndexedSourceMapConsumer_parseMappings(aStr, aSourceRoot) {
     this.__generatedMappings = [];
     this.__originalMappings = [];
-    for (var i = 0; i < this._sections.length; i++) {
-      var section = this._sections[i];
-      var sectionMappings = section.consumer._generatedMappings;
-      for (var j = 0; j < sectionMappings.length; j++) {
-        var mapping = sectionMappings[j];
+    for (let i = 0; i < this._sections.length; i++) {
+      const section = this._sections[i];
+      const sectionMappings = section.consumer._generatedMappings;
+      for (let j = 0; j < sectionMappings.length; j++) {
+        const mapping = sectionMappings[j];
 
-        var source = section.consumer._sources.at(mapping.source);
+        let source = section.consumer._sources.at(mapping.source);
         if(source !== null) {
           source = util.computeSourceURL(section.consumer.sourceRoot, source, this._sourceMapURL);
         }
         this._sources.add(source);
         source = this._sources.indexOf(source);
 
-        var name = null;
+        let name = null;
         if (mapping.name) {
           name = section.consumer._names.at(mapping.name);
           this._names.add(name);
@@ -1161,7 +1161,7 @@ IndexedSourceMapConsumer.prototype._parseMappings =
         // generated positions relative to the start of the section, so we
         // need to offset them to be relative to the start of the concatenated
         // generated file.
-        var adjustedMapping = {
+        const adjustedMapping = {
           source: source,
           generatedLine: mapping.generatedLine +
             (section.generatedOffset.generatedLine - 1),

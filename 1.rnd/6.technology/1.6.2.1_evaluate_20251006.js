@@ -94,7 +94,7 @@ export const nullish = Symbol("This AST_Chain is nullish");
 AST_Node.DEFMETHOD("evaluate", function (compressor) {
     if (!compressor.option("evaluate"))
         return this;
-    var val = this._eval(compressor, 1);
+    const val = this._eval(compressor, 1);
     if (!val || val instanceof RegExp)
         return val;
     if (typeof val == "function" || typeof val == "object" || val == nullish)
@@ -109,7 +109,7 @@ AST_Node.DEFMETHOD("evaluate", function (compressor) {
     return val;
 });
 
-var unaryPrefix = makePredicate("! ~ - + void");
+const unaryPrefix = makePredicate("! ~ - + void");
 AST_Node.DEFMETHOD("is_constant", function () {
     // Accomodate when compress option evaluate=false
     // as well as the common constant expressions !0 and -1
@@ -168,7 +168,7 @@ def_eval(AST_TemplateString, function () {
 
 def_eval(AST_Function, function (compressor) {
     if (compressor.option("unsafe")) {
-        var fn = function () { };
+        const fn = function () { };
         fn.node = this;
         fn.toString = () => this.print_to_string();
         return fn;
@@ -178,10 +178,10 @@ def_eval(AST_Function, function (compressor) {
 
 def_eval(AST_Array, function (compressor, depth) {
     if (compressor.option("unsafe")) {
-        var elements = [];
-        for (var i = 0, len = this.elements.length; i < len; i++) {
-            var element = this.elements[i];
-            var value = element._eval(compressor, depth);
+        const elements = [];
+        for (let i = 0, len = this.elements.length; i < len; i++) {
+            const element = this.elements[i];
+            const value = element._eval(compressor, depth);
             if (element === value)
                 return this;
             elements.push(value);
@@ -193,12 +193,12 @@ def_eval(AST_Array, function (compressor, depth) {
 
 def_eval(AST_Object, function (compressor, depth) {
     if (compressor.option("unsafe")) {
-        var val = {};
-        for (var i = 0, len = this.properties.length; i < len; i++) {
-            var prop = this.properties[i];
+        const val = {};
+        for (let i = 0, len = this.properties.length; i < len; i++) {
+            const prop = this.properties[i];
             if (prop instanceof AST_Expansion)
                 return this;
-            var key = prop.key;
+            let key = prop.key;
             if (key instanceof AST_Symbol) {
                 key = key.name;
             } else if (key instanceof AST_Node) {
@@ -220,9 +220,9 @@ def_eval(AST_Object, function (compressor, depth) {
     return this;
 });
 
-var non_converting_unary = makePredicate("! typeof void");
+const non_converting_unary = makePredicate("! typeof void");
 def_eval(AST_UnaryPrefix, function (compressor, depth) {
-    var e = this.expression;
+    let e = this.expression;
     if (compressor.option("typeofs")
         && this.operator == "typeof") {
         // Function would be evaluated to an array and so typeof would
@@ -264,7 +264,7 @@ def_eval(AST_UnaryPrefix, function (compressor, depth) {
     return this;
 });
 
-var non_converting_binary = makePredicate("&& || ?? === !==");
+const non_converting_binary = makePredicate("&& || ?? === !==");
 const identity_comparison = makePredicate("== != === !==");
 const has_identity = value => typeof value === "object"
     || typeof value === "function"
@@ -274,10 +274,10 @@ def_eval(AST_Binary, function (compressor, depth) {
     if (!non_converting_binary.has(this.operator))
         depth++;
 
-    var left = this.left._eval(compressor, depth);
+    const left = this.left._eval(compressor, depth);
     if (left === this.left)
         return this;
-    var right = this.right._eval(compressor, depth);
+    const right = this.right._eval(compressor, depth);
     if (right === this.right)
         return this;
 
@@ -301,7 +301,7 @@ def_eval(AST_Binary, function (compressor, depth) {
         return this;
     }
 
-    var result;
+    let result;
     switch (this.operator) {
         case "&&": result = left && right; break;
         case "||": result = left || right; break;
@@ -337,11 +337,11 @@ def_eval(AST_Binary, function (compressor, depth) {
 });
 
 def_eval(AST_Conditional, function (compressor, depth) {
-    var condition = this.condition._eval(compressor, depth);
+    const condition = this.condition._eval(compressor, depth);
     if (condition === this.condition)
         return this;
-    var node = condition ? this.consequent : this.alternative;
-    var value = node._eval(compressor, depth);
+    const node = condition ? this.consequent : this.alternative;
+    const value = node._eval(compressor, depth);
     return value === node ? this : value;
 });
 
@@ -352,7 +352,7 @@ def_eval(AST_SymbolRef, function (compressor, depth) {
     if (reentrant_ref_eval.has(this))
         return this;
 
-    var fixed = this.fixed_value();
+    const fixed = this.fixed_value();
     if (!fixed)
         return this;
 
@@ -364,7 +364,7 @@ def_eval(AST_SymbolRef, function (compressor, depth) {
         return this;
 
     if (value && typeof value == "object") {
-        var escaped = this.definition().escaped;
+        const escaped = this.definition().escaped;
         if (escaped && depth > escaped)
             return this;
     }
@@ -405,17 +405,17 @@ def_eval(AST_PropAccess, function (compressor, depth) {
     }
 
     if (compressor.option("unsafe")) {
-        var key = this.property;
+        let key = this.property;
         if (key instanceof AST_Node) {
             key = key._eval(compressor, depth);
             if (key === this.property)
                 return this;
         }
 
-        var exp = this.expression;
+        const exp = this.expression;
         if (is_undeclared_ref(exp)) {
-            var aa;
-            var first_arg = exp.name === "hasOwnProperty"
+            let aa;
+            let first_arg = exp.name === "hasOwnProperty"
                 && key === "call"
                 && (aa = compressor.parent() && compressor.parent().args)
                 && (aa && aa[0]
@@ -465,22 +465,22 @@ def_eval(AST_Chain, function (compressor, depth) {
 });
 
 def_eval(AST_Call, function (compressor, depth) {
-    var exp = this.expression;
+    const exp = this.expression;
 
     const callee = exp._eval(compressor, depth);
     if (callee === nullish || (this.optional && callee == null)) return nullish;
 
     if (compressor.option("unsafe") && exp instanceof AST_PropAccess) {
-        var key = exp.property;
+        let key = exp.property;
         if (key instanceof AST_Node) {
             key = key._eval(compressor, depth);
             if (key === exp.property)
                 return this;
         }
-        var val;
-        var e = exp.expression;
+        let val;
+        const e = exp.expression;
         if (is_undeclared_ref(e)) {
-            var first_arg = e.name === "hasOwnProperty" &&
+            let first_arg = e.name === "hasOwnProperty" &&
                 key === "call" &&
                 (this.args[0] && this.args[0].evaluate(compressor));
 
@@ -498,10 +498,10 @@ def_eval(AST_Call, function (compressor, depth) {
             if (!is_pure_native_method(val.constructor.name, key))
                 return this;
         }
-        var args = [];
-        for (var i = 0, len = this.args.length; i < len; i++) {
-            var arg = this.args[i];
-            var value = arg._eval(compressor, depth);
+        const args = [];
+        for (let i = 0, len = this.args.length; i < len; i++) {
+            const arg = this.args[i];
+            const value = arg._eval(compressor, depth);
             if (arg === value)
                 return this;
             if (arg instanceof AST_Lambda)

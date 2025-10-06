@@ -27,22 +27,22 @@
 'use strict';
 
 /*<replacement>*/
-var objectKeys = Object.keys || function (obj) {
-  var keys = [];
-  for (var key in obj) keys.push(key);
+const objectKeys = Object.keys || function (obj) {
+  const keys = [];
+  for (const key in obj) keys.push(key);
   return keys;
 };
 /*</replacement>*/
 
 module.exports = Duplex;
-var Readable = require('./_stream_readable');
-var Writable = require('./_stream_writable');
+const Readable = require('./_stream_readable');
+const Writable = require('./_stream_writable');
 require('inherits')(Duplex, Readable);
 {
   // Allow the keys array to be GC'ed.
-  var keys = objectKeys(Writable.prototype);
-  for (var v = 0; v < keys.length; v++) {
-    var method = keys[v];
+  const keys = objectKeys(Writable.prototype);
+  for (let v = 0; v < keys.length; v++) {
+    const method = keys[v];
     if (!Duplex.prototype[method]) Duplex.prototype[method] = Writable.prototype[method];
   }
 }

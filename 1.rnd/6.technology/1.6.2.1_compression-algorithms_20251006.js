@@ -17,7 +17,7 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CompressionAlgorithms = void 0;
-var CompressionAlgorithms;
+let CompressionAlgorithms;
 (function (CompressionAlgorithms) {
     CompressionAlgorithms[CompressionAlgorithms["identity"] = 0] = "identity";
     CompressionAlgorithms[CompressionAlgorithms["deflate"] = 1] = "deflate";

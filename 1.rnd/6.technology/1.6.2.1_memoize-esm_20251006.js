@@ -1,5 +1,5 @@
 function memoize(fn) {
-  var cache = {};
+  const cache = {};
   return function (arg) {
     if (cache[arg] === undefined) cache[arg] = fn(arg);
     return cache[arg];

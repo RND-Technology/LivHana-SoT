@@ -1,5 +1,5 @@
 import { passThroughInterceptor } from '@apimatic/core-interfaces';
-var basicAuthenticationProvider = function (basicAuthUserName, basicAuthPassword) {
+const basicAuthenticationProvider = function (basicAuthUserName, basicAuthPassword) {
   return function (requiresAuth) {
     if (!requiresAuth) {
       return passThroughInterceptor;

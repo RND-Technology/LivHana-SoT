@@ -1,4 +1,4 @@
-var convert = require('./convert'),
+const convert = require('./convert'),
     func = convert('chain', require('../chain'), require('./_falseOptions'));
 
 func.placeholder = require('./placeholder');

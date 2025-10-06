@@ -1,5 +1,5 @@
-let Declaration = require('../declaration')
-let flexSpec = require('./flex-spec')
+const Declaration = require('../declaration')
+const flexSpec = require('./flex-spec')
 
 class AlignItems extends Declaration {
   /**
@@ -28,7 +28,7 @@ class AlignItems extends Declaration {
    * Change value for 2009 and 2012 specs
    */
   set(decl, prefix) {
-    let spec = flexSpec(prefix)[0]
+    const spec = flexSpec(prefix)[0]
     if (spec === 2009 || spec === 2012) {
       decl.value = AlignItems.oldValues[decl.value] || decl.value
     }

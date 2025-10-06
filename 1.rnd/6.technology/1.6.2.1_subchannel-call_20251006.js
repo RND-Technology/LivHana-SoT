@@ -73,7 +73,7 @@ function mapHttpStatusCode(code) {
 }
 class Http2SubchannelCall {
     constructor(http2Stream, callEventTracker, listener, transport, callId) {
-        var _a;
+        let _a;
         this.http2Stream = http2Stream;
         this.callEventTracker = callEventTracker;
         this.listener = listener;
@@ -172,7 +172,7 @@ class Http2SubchannelCall {
              * "error" event that may be emitted at about the same time, so that
              * we can bubble up the error message from that event. */
             process.nextTick(() => {
-                var _a;
+                let _a;
                 this.trace('HTTP/2 stream closed with code ' + http2Stream.rstCode);
                 /* If we have a final status with an OK status code, that means that
                  * we have received all of the messages and we have processed the
@@ -442,7 +442,7 @@ class Http2SubchannelCall {
         this.endCall(status);
     }
     destroyHttp2Stream() {
-        var _a;
+        let _a;
         // The http2 stream could already have been destroyed if cancelWithStatus
         // is called in response to an internal http2 error.
         if (this.http2Stream.destroyed) {
@@ -510,7 +510,7 @@ class Http2SubchannelCall {
              * stack of the write callback, in order to hopefully work around
              * https://github.com/nodejs/node/issues/49147 */
             process.nextTick(() => {
-                var _a;
+                let _a;
                 let code = constants_1.Status.UNAVAILABLE;
                 if ((error === null || error === void 0 ? void 0 : error.code) ===
                     'ERR_STREAM_WRITE_AFTER_END') {

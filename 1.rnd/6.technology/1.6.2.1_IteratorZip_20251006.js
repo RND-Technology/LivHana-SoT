@@ -1,28 +1,28 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var CreateIteratorFromClosure = require('./CreateIteratorFromClosure');
-var IteratorCloseAll = require('./IteratorCloseAll');
-var IteratorStep = require('es-abstract/2024/IteratorStep');
-var IteratorStepValue = require('es-abstract/2024/IteratorStepValue');
-var NormalCompletion = require('es-abstract/2024/NormalCompletion');
-var ThrowCompletion = require('es-abstract/2024/ThrowCompletion');
+const CreateIteratorFromClosure = require('./CreateIteratorFromClosure');
+const IteratorCloseAll = require('./IteratorCloseAll');
+const IteratorStep = require('es-abstract/2024/IteratorStep');
+const IteratorStepValue = require('es-abstract/2024/IteratorStepValue');
+const NormalCompletion = require('es-abstract/2024/NormalCompletion');
+const ThrowCompletion = require('es-abstract/2024/ThrowCompletion');
 
-var isAbstractClosure = require('es-abstract/helpers/isAbstractClosure');
-var IsArray = require('es-abstract/helpers/IsArray');
-var isIteratorRecord = require('es-abstract/helpers/records/iterator-record');
-var every = require('es-abstract/helpers/every');
+const isAbstractClosure = require('es-abstract/helpers/isAbstractClosure');
+const IsArray = require('es-abstract/helpers/IsArray');
+const isIteratorRecord = require('es-abstract/helpers/records/iterator-record');
+const every = require('es-abstract/helpers/every');
 
-var callBound = require('call-bound');
+const callBound = require('call-bound');
 
-var $indexOf = callBound('Array.prototype.indexOf');
-var $slice = callBound('Array.prototype.slice');
-var $splice = callBound('Array.prototype.splice');
+const $indexOf = callBound('Array.prototype.indexOf');
+const $slice = callBound('Array.prototype.slice');
+const $splice = callBound('Array.prototype.splice');
 
-var iterHelperProto = require('../IteratorHelperPrototype');
+const iterHelperProto = require('../IteratorHelperPrototype');
 
-var SLOT = require('internal-slot');
+const SLOT = require('internal-slot');
 
 // https://tc39.es/proposal-joint-iteration/#sec-IteratorZip
 
@@ -43,12 +43,12 @@ module.exports = function IteratorZip(iters, mode, padding, finishResults) {
 		throw new $TypeError('`finishResults` must be an Abstract Closure');
 	}
 
-	var iterCount = iters.length; // step 1
+	const iterCount = iters.length; // step 1
 
-	var openIters = $slice(iters); // step 2
+	const openIters = $slice(iters); // step 2
 
-	var sentinel = {};
-	var closure = function () {
+	const sentinel = {};
+	const closure = function () {
 		if (iterCount === 0) {
 			// 1. If iterCount = 0, return ReturnCompletion(undefined).
 			return sentinel; // step 1
@@ -59,11 +59,11 @@ module.exports = function IteratorZip(iters, mode, padding, finishResults) {
 			if (openIters.length === 0) {
 				throw new $TypeError('Assertion failed: `openIters` is empty'); // step 3.b.ii
 			}
-			for (var i = 0; i < iterCount; ++i) { // step 3.b.iii
+			for (let i = 0; i < iterCount; ++i) { // step 3.b.iii
 				// for (var i = 0; i < iterCount; i += 1) { // step 3.b.iii
 				var result;
 
-				var iter = iters[i];
+				const iter = iters[i];
 				if (iter === null) { // step 3.b.iii.1
 					if (mode !== 'longest') {
 						throw new $TypeError('Assertion failed: `mode` is not "longest"'); // step 3.b.iii.1.a
@@ -88,7 +88,7 @@ module.exports = function IteratorZip(iters, mode, padding, finishResults) {
 									ThrowCompletion(new $TypeError('Assertion failed: `i` is not 0'))
 								); // step 3.b.iii.2.d.iii.i.i
 							}
-							for (var k = 1; k < iterCount; k += 1) { // step 3.b.iii.2.d.iii.ii
+							for (let k = 1; k < iterCount; k += 1) { // step 3.b.iii.2.d.iii.ii
 								if (iters[k] === null) {
 									throw new $TypeError('Assertion failed: `iters[k]` is `null`'); // step 3.b.iii.2.d.iii.ii.i
 								}
@@ -139,7 +139,7 @@ module.exports = function IteratorZip(iters, mode, padding, finishResults) {
 	SLOT.set(closure, '[[Sentinel]]', sentinel); // for the userland implementation
 	SLOT.set(closure, '[[CloseIfAbrupt]]', finishResults); // for the userland implementation
 
-	var gen = CreateIteratorFromClosure(closure, 'Iterator Helper', iterHelperProto, ['[[UnderlyingIterators]]']); // step 4
+	const gen = CreateIteratorFromClosure(closure, 'Iterator Helper', iterHelperProto, ['[[UnderlyingIterators]]']); // step 4
 
 	SLOT.set(gen, '[[UnderlyingIterators]]', openIters); // step 5
 

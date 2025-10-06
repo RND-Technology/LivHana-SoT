@@ -1,29 +1,29 @@
 "use strict";
 'use client';
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+const _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
-var React = _interopRequireWildcard(require("react"));
-var _clsx = _interopRequireDefault(require("clsx"));
-var _propTypes = _interopRequireDefault(require("prop-types"));
-var _composeClasses = _interopRequireDefault(require("@mui/utils/composeClasses"));
-var _NativeSelectInput = _interopRequireDefault(require("./NativeSelectInput"));
-var _formControlState = _interopRequireDefault(require("../FormControl/formControlState"));
-var _useFormControl = _interopRequireDefault(require("../FormControl/useFormControl"));
-var _ArrowDropDown = _interopRequireDefault(require("../internal/svg-icons/ArrowDropDown"));
-var _Input = _interopRequireDefault(require("../Input"));
-var _DefaultPropsProvider = require("../DefaultPropsProvider");
-var _nativeSelectClasses = require("./nativeSelectClasses");
-var _jsxRuntime = require("react/jsx-runtime");
+const _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+const _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+const React = _interopRequireWildcard(require("react"));
+const _clsx = _interopRequireDefault(require("clsx"));
+const _propTypes = _interopRequireDefault(require("prop-types"));
+const _composeClasses = _interopRequireDefault(require("@mui/utils/composeClasses"));
+const _NativeSelectInput = _interopRequireDefault(require("./NativeSelectInput"));
+const _formControlState = _interopRequireDefault(require("../FormControl/formControlState"));
+const _useFormControl = _interopRequireDefault(require("../FormControl/useFormControl"));
+const _ArrowDropDown = _interopRequireDefault(require("../internal/svg-icons/ArrowDropDown"));
+const _Input = _interopRequireDefault(require("../Input"));
+const _DefaultPropsProvider = require("../DefaultPropsProvider");
+const _nativeSelectClasses = require("./nativeSelectClasses");
+const _jsxRuntime = require("react/jsx-runtime");
 const _excluded = ["className", "children", "classes", "IconComponent", "input", "inputProps", "variant"],
   _excluded2 = ["root"];
-function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
-function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; const r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; const t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); const n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (const u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { const i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 const useUtilityClasses = ownerState => {
   const {
     classes
@@ -134,4 +134,4 @@ process.env.NODE_ENV !== "production" ? NativeSelect.propTypes /* remove-proptyp
   variant: _propTypes.default.oneOf(['filled', 'outlined', 'standard'])
 } : void 0;
 NativeSelect.muiName = 'Select';
-var _default = exports.default = NativeSelect;
+const _default = exports.default = NativeSelect;

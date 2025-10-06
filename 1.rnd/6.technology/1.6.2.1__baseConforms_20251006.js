@@ -1,4 +1,4 @@
-var baseConformsTo = require('./_baseConformsTo'),
+const baseConformsTo = require('./_baseConformsTo'),
     keys = require('./keys');
 
 /**
@@ -9,7 +9,7 @@ var baseConformsTo = require('./_baseConformsTo'),
  * @returns {Function} Returns the new spec function.
  */
 function baseConforms(source) {
-  var props = keys(source);
+  const props = keys(source);
   return function(object) {
     return baseConformsTo(object, source, props);
   };

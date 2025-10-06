@@ -20,4 +20,4 @@ const green = {
   A400: '#00e676',
   A700: '#00c853'
 };
-var _default = exports.default = green;
+const _default = exports.default = green;

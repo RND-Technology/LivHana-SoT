@@ -56,7 +56,7 @@ exports.REPL_NAME = '<repl>';
  * @category REPL
  */
 function createRepl(options = {}) {
-    var _a, _b, _c, _d, _e;
+    let _a, _b, _c, _d, _e;
     const { ignoreDiagnosticsThatAreAnnoyingInInteractiveRepl = true } = options;
     let service = options.service;
     let nodeReplServer;
@@ -155,7 +155,7 @@ function createRepl(options = {}) {
         // well-known errors, and invoke `callback()`
         // TODO should evalCode API get the same error-handling benefits?
         function handleError(error) {
-            var _a, _b;
+            let _a, _b;
             // Don't show TLA hint if the user explicitly disabled repl top level await
             const canLogTopLevelAwaitHint = service.options.experimentalReplAwait !== false &&
                 !service.shouldReplAwait;
@@ -175,7 +175,7 @@ function createRepl(options = {}) {
                 }
             }
             else {
-                let _error = error;
+                const _error = error;
                 if (canLogTopLevelAwaitHint &&
                     _error instanceof SyntaxError &&
                     ((_a = _error.message) === null || _a === void 0 ? void 0 : _a.includes('await is only valid'))) {
@@ -410,7 +410,7 @@ function appendCompileAndEvalInput(options) {
             return all;
         });
     }
-    let commands = [];
+    const commands = [];
     let containsTopLevelAwait = false;
     // Build a list of "commands": bits of JS code in the diff that must be executed.
     for (const change of changes) {

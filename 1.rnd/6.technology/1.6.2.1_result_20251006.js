@@ -1,6 +1,6 @@
 'use strict'
 
-let Warning = require('./warning')
+const Warning = require('./warning')
 
 class Result {
   get content() {
@@ -27,7 +27,7 @@ class Result {
       }
     }
 
-    let warning = new Warning(text, opts)
+    const warning = new Warning(text, opts)
     this.messages.push(warning)
 
     return warning

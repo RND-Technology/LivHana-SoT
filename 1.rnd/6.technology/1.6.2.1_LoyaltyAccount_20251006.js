@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
 exports.loyaltyAccountSchema = void 0;
-var schema_1 = require("../schema");
-var loyaltyAccountExpiringPointDeadline_1 = require("./loyaltyAccountExpiringPointDeadline");
-var loyaltyAccountMapping_1 = require("./loyaltyAccountMapping");
+const schema_1 = require("../schema");
+const loyaltyAccountExpiringPointDeadline_1 = require("./loyaltyAccountExpiringPointDeadline");
+const loyaltyAccountMapping_1 = require("./loyaltyAccountMapping");
 exports.loyaltyAccountSchema = (0, schema_1.object)({
     id: ['id', (0, schema_1.optional)((0, schema_1.string)())],
     programId: ['program_id', (0, schema_1.string)()],

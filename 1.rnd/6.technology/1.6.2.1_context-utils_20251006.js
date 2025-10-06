@@ -75,7 +75,7 @@ exports.setSpanContext = setSpanContext;
  * @param context context to get values from
  */
 function getSpanContext(context) {
-    var _a;
+    let _a;
     return (_a = getSpan(context)) === null || _a === void 0 ? void 0 : _a.spanContext();
 }
 exports.getSpanContext = getSpanContext;

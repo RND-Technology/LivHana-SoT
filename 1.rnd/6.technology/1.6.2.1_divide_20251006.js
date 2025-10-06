@@ -1,8 +1,8 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
-var isFinite = require('math-intrinsics/isFinite');
-var isNaN = require('math-intrinsics/isNaN');
+const $TypeError = require('es-errors/type');
+const isFinite = require('math-intrinsics/isFinite');
+const isNaN = require('math-intrinsics/isNaN');
 
 // https://262.ecma-international.org/11.0/#sec-numeric-types-number-divide
 

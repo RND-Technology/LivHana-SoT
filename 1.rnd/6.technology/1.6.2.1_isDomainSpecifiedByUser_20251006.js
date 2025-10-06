@@ -7,12 +7,12 @@ exports.extendDomain = extendDomain;
 exports.isWellFormedNumberDomain = isWellFormedNumberDomain;
 exports.numericalDomainSpecifiedWithoutRequiringData = numericalDomainSpecifiedWithoutRequiringData;
 exports.parseNumericalUserDomain = parseNumericalUserDomain;
-var _ChartUtils = require("./ChartUtils");
-var _DataUtils = require("./DataUtils");
-var _isWellBehavedNumber = require("./isWellBehavedNumber");
+const _ChartUtils = require("./ChartUtils");
+const _DataUtils = require("./DataUtils");
+const _isWellBehavedNumber = require("./isWellBehavedNumber");
 function isWellFormedNumberDomain(v) {
   if (Array.isArray(v) && v.length === 2) {
-    var [min, max] = v;
+    const [min, max] = v;
     if ((0, _isWellBehavedNumber.isWellBehavedNumber)(min) && (0, _isWellBehavedNumber.isWellBehavedNumber)(max)) {
       return true;
     }
@@ -64,8 +64,8 @@ function numericalDomainSpecifiedWithoutRequiringData(userDomain, allowDataOverf
     return undefined;
   }
   if (Array.isArray(userDomain) && userDomain.length === 2) {
-    var [providedMin, providedMax] = userDomain;
-    var finalMin, finalMax;
+    const [providedMin, providedMax] = userDomain;
+    let finalMin, finalMax;
     if ((0, _isWellBehavedNumber.isWellBehavedNumber)(providedMin)) {
       finalMin = providedMin;
     } else if (typeof providedMin === 'function') {
@@ -78,7 +78,7 @@ function numericalDomainSpecifiedWithoutRequiringData(userDomain, allowDataOverf
       // The user function expects the data to be provided as an argument
       return undefined;
     }
-    var candidate = [finalMin, finalMax];
+    const candidate = [finalMin, finalMax];
     if (isWellFormedNumberDomain(candidate)) {
       return candidate;
     }
@@ -113,7 +113,7 @@ function parseNumericalUserDomain(userDomain, dataDomain, allowDataOverflow) {
   }
   if (typeof userDomain === 'function' && dataDomain != null) {
     try {
-      var result = userDomain(dataDomain, allowDataOverflow);
+      const result = userDomain(dataDomain, allowDataOverflow);
       if (isWellFormedNumberDomain(result)) {
         return extendDomain(result, dataDomain, allowDataOverflow);
       }
@@ -122,8 +122,8 @@ function parseNumericalUserDomain(userDomain, dataDomain, allowDataOverflow) {
     }
   }
   if (Array.isArray(userDomain) && userDomain.length === 2) {
-    var [providedMin, providedMax] = userDomain;
-    var finalMin, finalMax;
+    const [providedMin, providedMax] = userDomain;
+    let finalMin, finalMax;
     if (providedMin === 'auto') {
       if (dataDomain != null) {
         finalMin = Math.min(...dataDomain);
@@ -139,11 +139,11 @@ function parseNumericalUserDomain(userDomain, dataDomain, allowDataOverflow) {
         /* ignore the exception and compute domain from data later */
       }
     } else if (typeof providedMin === 'string' && _ChartUtils.MIN_VALUE_REG.test(providedMin)) {
-      var match = _ChartUtils.MIN_VALUE_REG.exec(providedMin);
+      const match = _ChartUtils.MIN_VALUE_REG.exec(providedMin);
       if (match == null || dataDomain == null) {
         finalMin = undefined;
       } else {
-        var value = +match[1];
+        const value = +match[1];
         finalMin = dataDomain[0] - value;
       }
     } else {
@@ -164,17 +164,17 @@ function parseNumericalUserDomain(userDomain, dataDomain, allowDataOverflow) {
         /* ignore the exception and compute domain from data later */
       }
     } else if (typeof providedMax === 'string' && _ChartUtils.MAX_VALUE_REG.test(providedMax)) {
-      var _match = _ChartUtils.MAX_VALUE_REG.exec(providedMax);
+      const _match = _ChartUtils.MAX_VALUE_REG.exec(providedMax);
       if (_match == null || dataDomain == null) {
         finalMax = undefined;
       } else {
-        var _value = +_match[1];
+        const _value = +_match[1];
         finalMax = dataDomain[1] + _value;
       }
     } else {
       finalMax = dataDomain === null || dataDomain === void 0 ? void 0 : dataDomain[1];
     }
-    var candidate = [finalMin, finalMax];
+    const candidate = [finalMin, finalMax];
     if (isWellFormedNumberDomain(candidate)) {
       if (dataDomain == null) {
         return candidate;

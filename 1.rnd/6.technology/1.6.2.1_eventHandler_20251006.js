@@ -4,13 +4,13 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 exports.default = void 0;
-var _jestUtil = require('jest-util');
-var _globalErrorHandlers = require('./globalErrorHandlers');
-var _types = require('./types');
-var _utils = require('./utils');
+const _jestUtil = require('jest-util');
+const _globalErrorHandlers = require('./globalErrorHandlers');
+const _types = require('./types');
+const _utils = require('./utils');
 var Symbol = globalThis['jest-symbol-do-not-touch'] || globalThis.Symbol;
 var Symbol = globalThis['jest-symbol-do-not-touch'] || globalThis.Symbol;
-var jestNow = globalThis[Symbol.for('jest-native-now')] || globalThis.Date.now;
+const jestNow = globalThis[Symbol.for('jest-native-now')] || globalThis.Date.now;
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -277,5 +277,5 @@ const eventHandler = (event, state) => {
     }
   }
 };
-var _default = eventHandler;
+const _default = eventHandler;
 exports.default = _default;

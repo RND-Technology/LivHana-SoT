@@ -1,4 +1,4 @@
-var Uint8Array = require('./_Uint8Array');
+const Uint8Array = require('./_Uint8Array');
 
 /**
  * Creates a clone of `arrayBuffer`.
@@ -8,7 +8,7 @@ var Uint8Array = require('./_Uint8Array');
  * @returns {ArrayBuffer} Returns the cloned array buffer.
  */
 function cloneArrayBuffer(arrayBuffer) {
-  var result = new arrayBuffer.constructor(arrayBuffer.byteLength);
+  const result = new arrayBuffer.constructor(arrayBuffer.byteLength);
   new Uint8Array(result).set(new Uint8Array(arrayBuffer));
   return result;
 }

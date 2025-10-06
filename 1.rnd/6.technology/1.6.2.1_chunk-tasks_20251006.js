@@ -153,7 +153,7 @@ function hasTests(suite) {
 }
 function hasFailed(suite) {
   return toArray(suite).some((s) => {
-    var _a;
+    let _a;
     return ((_a = s.result) == null ? void 0 : _a.state) === "fail" || s.type === "suite" && hasFailed(s.tasks);
   });
 }

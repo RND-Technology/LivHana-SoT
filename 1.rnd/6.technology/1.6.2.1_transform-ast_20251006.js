@@ -13,9 +13,9 @@ function _gensync() {
   };
   return data;
 }
-var _index = require("./config/index.js");
-var _index2 = require("./transformation/index.js");
-var _rewriteStackTrace = require("./errors/rewrite-stack-trace.js");
+const _index = require("./config/index.js");
+const _index2 = require("./transformation/index.js");
+const _rewriteStackTrace = require("./errors/rewrite-stack-trace.js");
 const transformFromAstRunner = _gensync()(function* (ast, code, opts) {
   const config = yield* (0, _index.default)(opts);
   if (config === null) return null;

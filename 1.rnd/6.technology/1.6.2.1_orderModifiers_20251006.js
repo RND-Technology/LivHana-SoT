@@ -1,19 +1,19 @@
 import { modifierPhases } from "../enums.js"; // source: https://stackoverflow.com/questions/49875255
 
 function order(modifiers) {
-  var map = new Map();
-  var visited = new Set();
-  var result = [];
+  const map = new Map();
+  const visited = new Set();
+  const result = [];
   modifiers.forEach(function (modifier) {
     map.set(modifier.name, modifier);
   }); // On visiting object, check for its dependencies and visit them recursively
 
   function sort(modifier) {
     visited.add(modifier.name);
-    var requires = [].concat(modifier.requires || [], modifier.requiresIfExists || []);
+    const requires = [].concat(modifier.requires || [], modifier.requiresIfExists || []);
     requires.forEach(function (dep) {
       if (!visited.has(dep)) {
-        var depModifier = map.get(dep);
+        const depModifier = map.get(dep);
 
         if (depModifier) {
           sort(depModifier);
@@ -34,7 +34,7 @@ function order(modifiers) {
 
 export default function orderModifiers(modifiers) {
   // order based on dependencies
-  var orderedModifiers = order(modifiers); // order based on phase
+  const orderedModifiers = order(modifiers); // order based on phase
 
   return modifierPhases.reduce(function (acc, phase) {
     return acc.concat(orderedModifiers.filter(function (modifier) {

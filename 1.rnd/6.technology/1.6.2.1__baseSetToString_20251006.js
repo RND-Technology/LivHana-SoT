@@ -1,4 +1,4 @@
-var constant = require('./constant'),
+const constant = require('./constant'),
     defineProperty = require('./_defineProperty'),
     identity = require('./identity');
 
@@ -10,7 +10,7 @@ var constant = require('./constant'),
  * @param {Function} string The `toString` result.
  * @returns {Function} Returns `func`.
  */
-var baseSetToString = !defineProperty ? identity : function(func, string) {
+const baseSetToString = !defineProperty ? identity : function(func, string) {
   return defineProperty(func, 'toString', {
     'configurable': true,
     'enumerable': false,

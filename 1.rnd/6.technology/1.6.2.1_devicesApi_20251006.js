@@ -1,16 +1,16 @@
 "use strict";
 exports.__esModule = true;
 exports.DevicesApi = void 0;
-var tslib_1 = require("tslib");
-var createDeviceCodeRequest_1 = require("../models/createDeviceCodeRequest");
-var createDeviceCodeResponse_1 = require("../models/createDeviceCodeResponse");
-var getDeviceCodeResponse_1 = require("../models/getDeviceCodeResponse");
-var getDeviceResponse_1 = require("../models/getDeviceResponse");
-var listDeviceCodesResponse_1 = require("../models/listDeviceCodesResponse");
-var listDevicesResponse_1 = require("../models/listDevicesResponse");
-var schema_1 = require("../schema");
-var baseApi_1 = require("./baseApi");
-var DevicesApi = /** @class */ (function (_super) {
+const tslib_1 = require("tslib");
+const createDeviceCodeRequest_1 = require("../models/createDeviceCodeRequest");
+const createDeviceCodeResponse_1 = require("../models/createDeviceCodeResponse");
+const getDeviceCodeResponse_1 = require("../models/getDeviceCodeResponse");
+const getDeviceResponse_1 = require("../models/getDeviceResponse");
+const listDeviceCodesResponse_1 = require("../models/listDeviceCodesResponse");
+const listDevicesResponse_1 = require("../models/listDevicesResponse");
+const schema_1 = require("../schema");
+const baseApi_1 = require("./baseApi");
+const DevicesApi = /** @class */ (function (_super) {
     tslib_1.__extends(DevicesApi, _super);
     function DevicesApi() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -31,7 +31,7 @@ var DevicesApi = /** @class */ (function (_super) {
      */
     DevicesApi.prototype.listDevices = function (cursor, sortOrder, limit, locationId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET', '/v2/devices');
                 mapped = req.prepareArgs({
@@ -66,7 +66,7 @@ var DevicesApi = /** @class */ (function (_super) {
      */
     DevicesApi.prototype.listDeviceCodes = function (cursor, locationId, productType, status, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET', '/v2/devices/codes');
                 mapped = req.prepareArgs({
@@ -94,7 +94,7 @@ var DevicesApi = /** @class */ (function (_super) {
      */
     DevicesApi.prototype.createDeviceCode = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/devices/codes');
                 mapped = req.prepareArgs({
@@ -115,7 +115,7 @@ var DevicesApi = /** @class */ (function (_super) {
      */
     DevicesApi.prototype.getDeviceCode = function (id, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({ id: [id, (0, schema_1.string)()] });
@@ -133,7 +133,7 @@ var DevicesApi = /** @class */ (function (_super) {
      */
     DevicesApi.prototype.getDevice = function (deviceId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({ deviceId: [deviceId, (0, schema_1.string)()] });
@@ -146,5 +146,5 @@ var DevicesApi = /** @class */ (function (_super) {
     return DevicesApi;
 }(baseApi_1.BaseApi));
 exports.DevicesApi = DevicesApi;
-var templateObject_1, templateObject_2;
+let templateObject_1, templateObject_2;
 //# sourceMappingURL=devicesApi.js.map

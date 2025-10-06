@@ -1,19 +1,19 @@
-let featureQueries = require('caniuse-lite/data/features/css-featurequeries.js')
-let feature = require('caniuse-lite/dist/unpacker/feature')
-let { parse } = require('postcss')
+const featureQueries = require('caniuse-lite/data/features/css-featurequeries.js')
+const feature = require('caniuse-lite/dist/unpacker/feature')
+const { parse } = require('postcss')
 
-let brackets = require('./brackets')
-let Browsers = require('./browsers')
-let utils = require('./utils')
-let Value = require('./value')
+const brackets = require('./brackets')
+const Browsers = require('./browsers')
+const utils = require('./utils')
+const Value = require('./value')
 
-let data = feature(featureQueries)
+const data = feature(featureQueries)
 
-let supported = []
-for (let browser in data.stats) {
-  let versions = data.stats[browser]
-  for (let version in versions) {
-    let support = versions[version]
+const supported = []
+for (const browser in data.stats) {
+  const versions = data.stats[browser]
+  for (const version in versions) {
+    const support = versions[version]
     if (/y/.test(support)) {
       supported.push(browser + ' ' + version)
     }
@@ -32,7 +32,7 @@ class Supports {
   add(nodes, all) {
     return nodes.map(i => {
       if (this.isProp(i)) {
-        let prefixed = this.prefixed(i[0])
+        const prefixed = this.prefixed(i[0])
         if (prefixed.length > 1) {
           return this.convert(prefixed)
         }
@@ -69,8 +69,8 @@ class Supports {
    * Add " or " between properties and convert it to brackets format
    */
   convert(progress) {
-    let result = ['']
-    for (let i of progress) {
+    const result = ['']
+    for (const i of progress) {
       result.push([`${i.prop}: ${i.value}`])
       result.push(' or ')
     }
@@ -95,7 +95,7 @@ class Supports {
       if (node.prop === 'display' && node.value.includes('flex')) {
         return true
       }
-      let other = ['order', 'justify-content', 'align-items', 'align-content']
+      const other = ['order', 'justify-content', 'align-items', 'align-content']
       if (node.prop.includes('flex') || other.includes(node.prop)) {
         return true
       }
@@ -108,7 +108,7 @@ class Supports {
    * Return true if prefixed property has no unprefixed
    */
   isHack(all, unprefixed) {
-    let check = new RegExp(`(\\(|\\s)${utils.escapeRegexp(unprefixed)}:`)
+    const check = new RegExp(`(\\(|\\s)${utils.escapeRegexp(unprefixed)}:`)
     return !check.test(all)
   }
 
@@ -148,7 +148,7 @@ class Supports {
     nodes = nodes.filter(i => i !== '')
 
     if (typeof nodes[0] === 'string') {
-      let firstNode = nodes[0].trim()
+      const firstNode = nodes[0].trim()
 
       if (
         firstNode.includes(':') ||
@@ -165,8 +165,8 @@ class Supports {
    * Parse string into declaration property and value
    */
   parse(str) {
-    let parts = str.split(':')
-    let prop = parts[0]
+    const parts = str.split(':')
+    const prop = parts[0]
     let value = parts[1]
     if (!value) value = ''
     return [prop.trim(), value.trim()]
@@ -176,18 +176,18 @@ class Supports {
    * Return array of Declaration with all necessary prefixes
    */
   prefixed(str) {
-    let rule = this.virtual(str)
+    const rule = this.virtual(str)
     if (this.disabled(rule.first)) {
       return rule.nodes
     }
 
-    let result = { warn: () => null }
+    const result = { warn: () => null }
 
-    let prefixer = this.prefixer().add[rule.first.prop]
+    const prefixer = this.prefixer().add[rule.first.prop]
     prefixer && prefixer.process && prefixer.process(rule.first, result)
 
-    for (let decl of rule.nodes) {
-      for (let value of this.prefixer().values('add', rule.first.prop)) {
+    for (const decl of rule.nodes) {
+      for (const value of this.prefixer().values('add', rule.first.prop)) {
         value.process(decl)
       }
       Value.save(this.all, decl)
@@ -204,11 +204,11 @@ class Supports {
       return this.prefixerCache
     }
 
-    let filtered = this.all.browsers.selected.filter(i => {
+    const filtered = this.all.browsers.selected.filter(i => {
       return supported.includes(i)
     })
 
-    let browsers = new Browsers(
+    const browsers = new Browsers(
       this.all.browsers.data,
       filtered,
       this.all.options
@@ -266,10 +266,10 @@ class Supports {
    * Return true if we need to remove node
    */
   toRemove(str, all) {
-    let [prop, value] = this.parse(str)
-    let unprefixed = this.all.unprefixed(prop)
+    const [prop, value] = this.parse(str)
+    const unprefixed = this.all.unprefixed(prop)
 
-    let cleaner = this.all.cleaner()
+    const cleaner = this.all.cleaner()
 
     if (
       cleaner.remove[prop] &&
@@ -279,7 +279,7 @@ class Supports {
       return true
     }
 
-    for (let checker of cleaner.values('remove', unprefixed)) {
+    for (const checker of cleaner.values('remove', unprefixed)) {
       if (checker.check(value)) {
         return true
       }
@@ -292,8 +292,8 @@ class Supports {
    * Create virtual rule to process it by prefixer
    */
   virtual(str) {
-    let [prop, value] = this.parse(str)
-    let rule = parse('a{}').first
+    const [prop, value] = this.parse(str)
+    const rule = parse('a{}').first
     rule.append({ prop, raws: { before: '' }, value })
     return rule
   }

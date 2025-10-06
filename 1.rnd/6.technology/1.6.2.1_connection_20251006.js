@@ -1,53 +1,53 @@
 "use strict";
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __export = (target, all) => {
+  for (const name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var connection_exports = {};
+const __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+const connection_exports = {};
 __export(connection_exports, {
   Connection: () => Connection
 });
 module.exports = __toCommonJS(connection_exports);
-var import_eventEmitter = require("./eventEmitter");
-var import_android = require("./android");
-var import_artifact = require("./artifact");
-var import_browser = require("./browser");
-var import_browserContext = require("./browserContext");
-var import_browserType = require("./browserType");
-var import_cdpSession = require("./cdpSession");
-var import_channelOwner = require("./channelOwner");
-var import_clientInstrumentation = require("./clientInstrumentation");
-var import_dialog = require("./dialog");
-var import_electron = require("./electron");
-var import_elementHandle = require("./elementHandle");
-var import_errors = require("./errors");
-var import_fetch = require("./fetch");
-var import_frame = require("./frame");
-var import_jsHandle = require("./jsHandle");
-var import_jsonPipe = require("./jsonPipe");
-var import_localUtils = require("./localUtils");
-var import_network = require("./network");
-var import_page = require("./page");
-var import_playwright = require("./playwright");
-var import_stream = require("./stream");
-var import_tracing = require("./tracing");
-var import_worker = require("./worker");
-var import_writableStream = require("./writableStream");
-var import_validator = require("../protocol/validator");
-var import_stackTrace = require("../utils/isomorphic/stackTrace");
+const import_eventEmitter = require("./eventEmitter");
+const import_android = require("./android");
+const import_artifact = require("./artifact");
+const import_browser = require("./browser");
+const import_browserContext = require("./browserContext");
+const import_browserType = require("./browserType");
+const import_cdpSession = require("./cdpSession");
+const import_channelOwner = require("./channelOwner");
+const import_clientInstrumentation = require("./clientInstrumentation");
+const import_dialog = require("./dialog");
+const import_electron = require("./electron");
+const import_elementHandle = require("./elementHandle");
+const import_errors = require("./errors");
+const import_fetch = require("./fetch");
+const import_frame = require("./frame");
+const import_jsHandle = require("./jsHandle");
+const import_jsonPipe = require("./jsonPipe");
+const import_localUtils = require("./localUtils");
+const import_network = require("./network");
+const import_page = require("./page");
+const import_playwright = require("./playwright");
+const import_stream = require("./stream");
+const import_tracing = require("./tracing");
+const import_worker = require("./worker");
+const import_writableStream = require("./writableStream");
+const import_validator = require("../protocol/validator");
+const import_stackTrace = require("../utils/isomorphic/stackTrace");
 class Root extends import_channelOwner.ChannelOwner {
   constructor(connection) {
     super(connection, "Root", "", {});

@@ -1,19 +1,19 @@
 'use strict';
 module.exports = function generate_allOf(it, $keyword, $ruleType) {
-  var out = ' ';
-  var $schema = it.schema[$keyword];
-  var $schemaPath = it.schemaPath + it.util.getProperty($keyword);
-  var $errSchemaPath = it.errSchemaPath + '/' + $keyword;
-  var $breakOnError = !it.opts.allErrors;
-  var $it = it.util.copy(it);
-  var $closingBraces = '';
+  let out = ' ';
+  const $schema = it.schema[$keyword];
+  const $schemaPath = it.schemaPath + it.util.getProperty($keyword);
+  const $errSchemaPath = it.errSchemaPath + '/' + $keyword;
+  const $breakOnError = !it.opts.allErrors;
+  const $it = it.util.copy(it);
+  let $closingBraces = '';
   $it.level++;
-  var $nextValid = 'valid' + $it.level;
-  var $currentBaseId = $it.baseId,
+  const $nextValid = 'valid' + $it.level;
+  let $currentBaseId = $it.baseId,
     $allSchemasEmpty = true;
-  var arr1 = $schema;
+  const arr1 = $schema;
   if (arr1) {
-    var $sch, $i = -1,
+    let $sch, $i = -1,
       l1 = arr1.length - 1;
     while ($i < l1) {
       $sch = arr1[$i += 1];

@@ -1,27 +1,27 @@
 "use strict";
 'use client';
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+const _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = exports.TouchRippleRoot = exports.TouchRippleRipple = exports.DELAY_RIPPLE = void 0;
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
-var React = _interopRequireWildcard(require("react"));
-var _propTypes = _interopRequireDefault(require("prop-types"));
-var _reactTransitionGroup = require("react-transition-group");
-var _clsx = _interopRequireDefault(require("clsx"));
-var _system = require("@mui/system");
-var _useTimeout = _interopRequireDefault(require("@mui/utils/useTimeout"));
-var _styled = _interopRequireDefault(require("../styles/styled"));
-var _DefaultPropsProvider = require("../DefaultPropsProvider");
-var _Ripple = _interopRequireDefault(require("./Ripple"));
-var _touchRippleClasses = _interopRequireDefault(require("./touchRippleClasses"));
-var _jsxRuntime = require("react/jsx-runtime");
+const _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+const _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+const React = _interopRequireWildcard(require("react"));
+const _propTypes = _interopRequireDefault(require("prop-types"));
+const _reactTransitionGroup = require("react-transition-group");
+const _clsx = _interopRequireDefault(require("clsx"));
+const _system = require("@mui/system");
+const _useTimeout = _interopRequireDefault(require("@mui/utils/useTimeout"));
+const _styled = _interopRequireDefault(require("../styles/styled"));
+const _DefaultPropsProvider = require("../DefaultPropsProvider");
+const _Ripple = _interopRequireDefault(require("./Ripple"));
+const _touchRippleClasses = _interopRequireDefault(require("./touchRippleClasses"));
+const _jsxRuntime = require("react/jsx-runtime");
 const _excluded = ["center", "classes", "className"];
-function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
-function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; const r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; const t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); const n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (const u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { const i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 const DURATION = 550;
 const DELAY_RIPPLE = exports.DELAY_RIPPLE = 80;
 const enterKeyframe = (0, _system.keyframes)`
@@ -333,4 +333,4 @@ process.env.NODE_ENV !== "production" ? TouchRipple.propTypes = {
    */
   className: _propTypes.default.string
 } : void 0;
-var _default = exports.default = TouchRipple;
+const _default = exports.default = TouchRipple;

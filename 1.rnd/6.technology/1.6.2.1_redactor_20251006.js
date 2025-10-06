@@ -39,13 +39,13 @@ function redactTmpl (secret, isCensorFct, censorFctTakesPath) {
     const skip = leadingBracket ? 1 : 0
     const delim = leadingBracket ? '' : '.'
     const hops = []
-    var match
+    let match
     while ((match = rx.exec(path)) !== null) {
       const [ , ix ] = match
       const { index, input } = match
       if (index > skip) hops.push(input.substring(0, index - (ix ? 0 : 1)))
     }
-    var existence = hops.map((p) => `o${delim}${p}`).join(' && ')
+    let existence = hops.map((p) => `o${delim}${p}`).join(' && ')
     if (existence.length === 0) existence += `o${delim}${path} != null`
     else existence += ` && o${delim}${path} != null`
 

@@ -263,12 +263,12 @@ exports.mutate = {
 
 /** Used to map real names to their aliases. */
 exports.realToAlias = (function() {
-  var hasOwnProperty = Object.prototype.hasOwnProperty,
+  const hasOwnProperty = Object.prototype.hasOwnProperty,
       object = exports.aliasToReal,
       result = {};
 
-  for (var key in object) {
-    var value = object[key];
+  for (const key in object) {
+    const value = object[key];
     if (hasOwnProperty.call(result, value)) {
       result[value].push(key);
     } else {

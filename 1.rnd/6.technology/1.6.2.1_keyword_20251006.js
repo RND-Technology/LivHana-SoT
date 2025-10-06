@@ -1,8 +1,8 @@
 'use strict';
 
-var IDENTIFIER = /^[a-z_$][a-z0-9_$-]*$/i;
-var customRuleCode = require('./dotjs/custom');
-var definitionSchema = require('./definition_schema');
+const IDENTIFIER = /^[a-z_$][a-z0-9_$-]*$/i;
+const customRuleCode = require('./dotjs/custom');
+const definitionSchema = require('./definition_schema');
 
 module.exports = {
   add: addKeyword,
@@ -22,7 +22,7 @@ module.exports = {
 function addKeyword(keyword, definition) {
   /* jshint validthis: true */
   /* eslint no-shadow: 0 */
-  var RULES = this.RULES;
+  const RULES = this.RULES;
   if (RULES.keywords[keyword])
     throw new Error('Keyword ' + keyword + ' is already defined');
 
@@ -32,15 +32,15 @@ function addKeyword(keyword, definition) {
   if (definition) {
     this.validateKeyword(definition, true);
 
-    var dataType = definition.type;
+    const dataType = definition.type;
     if (Array.isArray(dataType)) {
-      for (var i=0; i<dataType.length; i++)
+      for (let i=0; i<dataType.length; i++)
         _addRule(keyword, dataType[i], definition);
     } else {
       _addRule(keyword, dataType, definition);
     }
 
-    var metaSchema = definition.metaSchema;
+    let metaSchema = definition.metaSchema;
     if (metaSchema) {
       if (definition.$data && this._opts.$data) {
         metaSchema = {
@@ -58,9 +58,9 @@ function addKeyword(keyword, definition) {
 
 
   function _addRule(keyword, dataType, definition) {
-    var ruleGroup;
-    for (var i=0; i<RULES.length; i++) {
-      var rg = RULES[i];
+    let ruleGroup;
+    for (let i=0; i<RULES.length; i++) {
+      const rg = RULES[i];
       if (rg.type == dataType) {
         ruleGroup = rg;
         break;
@@ -72,7 +72,7 @@ function addKeyword(keyword, definition) {
       RULES.push(ruleGroup);
     }
 
-    var rule = {
+    const rule = {
       keyword: keyword,
       definition: definition,
       custom: true,
@@ -95,7 +95,7 @@ function addKeyword(keyword, definition) {
  */
 function getKeyword(keyword) {
   /* jshint validthis: true */
-  var rule = this.RULES.custom[keyword];
+  const rule = this.RULES.custom[keyword];
   return rule ? rule.definition : this.RULES.keywords[keyword] || false;
 }
 
@@ -108,13 +108,13 @@ function getKeyword(keyword) {
  */
 function removeKeyword(keyword) {
   /* jshint validthis: true */
-  var RULES = this.RULES;
+  const RULES = this.RULES;
   delete RULES.keywords[keyword];
   delete RULES.all[keyword];
   delete RULES.custom[keyword];
-  for (var i=0; i<RULES.length; i++) {
-    var rules = RULES[i].rules;
-    for (var j=0; j<rules.length; j++) {
+  for (let i=0; i<RULES.length; i++) {
+    const rules = RULES[i].rules;
+    for (let j=0; j<rules.length; j++) {
       if (rules[j].keyword == keyword) {
         rules.splice(j, 1);
         break;
@@ -134,7 +134,7 @@ function removeKeyword(keyword) {
  */
 function validateKeyword(definition, throwError) {
   validateKeyword.errors = null;
-  var v = this._validateKeyword = this._validateKeyword
+  const v = this._validateKeyword = this._validateKeyword
                                   || this.compile(definitionSchema, true);
 
   if (v(definition)) return true;

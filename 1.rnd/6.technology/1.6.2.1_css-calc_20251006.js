@@ -1,11 +1,11 @@
-var __typeError = (msg) => {
+const __typeError = (msg) => {
   throw TypeError(msg);
 };
-var __accessCheck = (obj, member, msg) => member.has(obj) || __typeError("Cannot " + msg);
-var __privateGet = (obj, member, getter) => (__accessCheck(obj, member, "read from private field"), getter ? getter.call(obj) : member.get(obj));
-var __privateAdd = (obj, member, value) => member.has(obj) ? __typeError("Cannot add the same private member more than once") : member instanceof WeakSet ? member.add(obj) : member.set(obj, value);
-var __privateSet = (obj, member, value, setter) => (__accessCheck(obj, member, "write to private field"), setter ? setter.call(obj, value) : member.set(obj, value), value);
-var _hasNum, _numSum, _numMul, _hasPct, _pctSum, _pctMul, _hasDim, _dimSum, _dimSub, _dimMul, _dimDiv, _hasEtc, _etcSum, _etcSub, _etcMul, _etcDiv;
+const __accessCheck = (obj, member, msg) => member.has(obj) || __typeError("Cannot " + msg);
+const __privateGet = (obj, member, getter) => (__accessCheck(obj, member, "read from private field"), getter ? getter.call(obj) : member.get(obj));
+const __privateAdd = (obj, member, value) => member.has(obj) ? __typeError("Cannot add the same private member more than once") : member instanceof WeakSet ? member.add(obj) : member.set(obj, value);
+const __privateSet = (obj, member, value, setter) => (__accessCheck(obj, member, "write to private field"), setter ? setter.call(obj, value) : member.set(obj, value), value);
+let _hasNum, _numSum, _numMul, _hasPct, _pctSum, _pctMul, _hasDim, _dimSum, _dimSub, _dimMul, _dimDiv, _hasEtc, _etcSum, _etcSub, _etcMul, _etcDiv;
 import { calc } from "@csstools/css-calc";
 import { TokenType, tokenize } from "@csstools/css-tokenizer";
 import { createCacheKey, getCache, CacheItem, setCache, NullObject } from "./cache.js";

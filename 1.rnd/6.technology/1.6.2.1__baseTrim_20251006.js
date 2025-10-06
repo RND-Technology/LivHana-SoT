@@ -1,7 +1,7 @@
-var trimmedEndIndex = require('./_trimmedEndIndex');
+const trimmedEndIndex = require('./_trimmedEndIndex');
 
 /** Used to match leading whitespace. */
-var reTrimStart = /^\s+/;
+const reTrimStart = /^\s+/;
 
 /**
  * The base implementation of `_.trim`.

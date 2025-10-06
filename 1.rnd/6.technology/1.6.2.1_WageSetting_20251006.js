@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
 exports.wageSettingSchema = void 0;
-var schema_1 = require("../schema");
-var jobAssignment_1 = require("./jobAssignment");
+const schema_1 = require("../schema");
+const jobAssignment_1 = require("./jobAssignment");
 exports.wageSettingSchema = (0, schema_1.object)({
     teamMemberId: ['team_member_id', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.string)()))],
     jobAssignments: [

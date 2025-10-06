@@ -26,7 +26,7 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 function FormatStackTrace(error, frames) {
-    var lines = [];
+    const lines = [];
     try {
         lines.push(error.toString());
     } catch (e) {
@@ -36,8 +36,8 @@ function FormatStackTrace(error, frames) {
             lines.push("<error>");
         }
     }
-    for (var i = 0; i < frames.length; i++) {
-        var frame = frames[i];
+    for (let i = 0; i < frames.length; i++) {
+        const frame = frames[i];
         var line;
         try {
             line = frame.toString();

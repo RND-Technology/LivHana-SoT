@@ -8,11 +8,11 @@
 
     function _interopNamespace(e) {
         if (e && e.__esModule) return e;
-        var n = Object.create(null);
+        const n = Object.create(null);
         if (e) {
             Object.keys(e).forEach(function (k) {
                 if (k !== 'default') {
-                    var d = Object.getOwnPropertyDescriptor(e, k);
+                    const d = Object.getOwnPropertyDescriptor(e, k);
                     Object.defineProperty(n, k, d.get ? d : {
                         enumerable: true,
                         get: function () { return e[k]; }
@@ -24,8 +24,8 @@
         return Object.freeze(n);
     }
 
-    var React__namespace = /*#__PURE__*/_interopNamespace(React);
-    var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
+    const React__namespace = /*#__PURE__*/_interopNamespace(React);
+    const React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
     /**
      * @public
@@ -2294,7 +2294,7 @@
     };
 
     function test(v) {
-        var _a, _b;
+        let _a, _b;
         return (isNaN(v) &&
             isString(v) &&
             (((_a = v.match(floatRegex)) === null || _a === void 0 ? void 0 : _a.length) || 0) +
@@ -4240,7 +4240,7 @@
         }
     }
     function checkTargetForNewValues(visualElement, target, origin) {
-        var _a, _b;
+        let _a, _b;
         const newValueKeys = Object.keys(target).filter((key) => !visualElement.hasValue(key));
         const numNewValues = newValueKeys.length;
         if (!numNewValues)
@@ -4735,12 +4735,12 @@
          * Change whether a certain animation type is active.
          */
         function setActive(type, isActive, options) {
-            var _a;
+            let _a;
             // If the active state hasn't changed, we can safely do nothing here
             if (state[type].isActive === isActive)
                 return Promise.resolve();
             // Propagate active change to children
-            (_a = visualElement.variantChildren) === null || _a === void 0 ? void 0 : _a.forEach((child) => { var _a; return (_a = child.animationState) === null || _a === void 0 ? void 0 : _a.setActive(type, isActive); });
+            (_a = visualElement.variantChildren) === null || _a === void 0 ? void 0 : _a.forEach((child) => { let _a; return (_a = child.animationState) === null || _a === void 0 ? void 0 : _a.setActive(type, isActive); });
             state[type].isActive = isActive;
             const animations = animateChanges(options, type);
             for (const key in state) {
@@ -5497,7 +5497,7 @@
             };
             const onSessionEnd = (event, info) => this.stop(event, info);
             const resumeAnimation = () => eachAxis((axis) => {
-                var _a;
+                let _a;
                 return this.getAnimationState(axis) === "paused" &&
                     ((_a = this.getAxisMotionValue(axis).animation) === null || _a === void 0 ? void 0 : _a.play());
             });
@@ -5555,7 +5555,7 @@
             axisValue.set(next);
         }
         resolveConstraints() {
-            var _a;
+            let _a;
             const { dragConstraints, dragElastic } = this.getProps();
             const layout = this.visualElement.projection &&
                 !this.visualElement.projection.layout
@@ -5661,10 +5661,10 @@
             eachAxis((axis) => this.getAxisMotionValue(axis).stop());
         }
         pauseAnimation() {
-            eachAxis((axis) => { var _a; return (_a = this.getAxisMotionValue(axis).animation) === null || _a === void 0 ? void 0 : _a.pause(); });
+            eachAxis((axis) => { let _a; return (_a = this.getAxisMotionValue(axis).animation) === null || _a === void 0 ? void 0 : _a.pause(); });
         }
         getAnimationState(axis) {
-            var _a;
+            let _a;
             return (_a = this.getAxisMotionValue(axis).animation) === null || _a === void 0 ? void 0 : _a.state;
         }
         /**
@@ -6291,7 +6291,7 @@
     }
 
     function resolveElements(elements, scope, selectorCache) {
-        var _a;
+        let _a;
         if (typeof elements === "string") {
             let root = document;
             if (scope) {
@@ -7241,7 +7241,7 @@
          * directly from the instance (which might have performance implications).
          */
         readValue(key) {
-            var _a;
+            let _a;
             return this.latestValues[key] !== undefined || !this.current
                 ? this.latestValues[key]
                 : (_a = this.getBaseTargetFromProps(this.props, key)) !== null && _a !== void 0 ? _a : this.readValueFromInstance(this.current, key, this.options);
@@ -7258,7 +7258,7 @@
          * props.
          */
         getBaseTarget(key) {
-            var _a;
+            let _a;
             const { initial } = this.props;
             const valueFromInitial = typeof initial === "string" || typeof initial === "object"
                 ? (_a = resolveVariantFromProps(this.props, initial)) === null || _a === void 0 ? void 0 : _a[key]
@@ -7474,7 +7474,7 @@
      * calculate an absolute time for the next keyframes.
      */
     function calcNextTime(current, next, prev, labels) {
-        var _a;
+        let _a;
         if (typeof next === "number") {
             return next;
         }
@@ -7841,7 +7841,7 @@
         }
     }
     function notifyTarget({ target, contentRect, borderBoxSize, }) {
-        var _a;
+        let _a;
         (_a = resizeHandlers.get(target)) === null || _a === void 0 ? void 0 : _a.forEach((handler) => {
             handler({
                 target,
@@ -8115,7 +8115,7 @@
             : { width: target.clientWidth, height: target.clientHeight };
     }
     function resolveOffsets(container, info, options) {
-        let { offset: offsetDefinition = ScrollOffset.All } = options;
+        const { offset: offsetDefinition = ScrollOffset.All } = options;
         const { target = container, axis = "y" } = options;
         const lengthLabel = axis === "y" ? "height" : "width";
         const inset = target !== container ? calcInset(target, container) : point;
@@ -8257,7 +8257,7 @@
         const listener = scrollListeners.get(container);
         frame.read(listener, false, true);
         return () => {
-            var _a;
+            let _a;
             cancelFrame(listener);
             /**
              * Check if we even have any handlers for this container.
@@ -9038,7 +9038,7 @@
                 }
             }
             resolveTargetDelta(forceRecalculation = false) {
-                var _a;
+                let _a;
                 /**
                  * Once the dirty status of nodes has been spread through the tree, we also
                  * need to check if we have a shared node of a different depth that has itself
@@ -9117,7 +9117,7 @@
                      */
                 }
                 else if (this.targetDelta) {
-                    if (Boolean(this.resumingFrom)) {
+                    if (this.resumingFrom) {
                         // TODO: This is creating a new object every frame
                         this.target = this.applyTransform(this.layout.layoutBox);
                     }
@@ -9180,7 +9180,7 @@
                     this.layout);
             }
             calcProjection() {
-                var _a;
+                let _a;
                 const lead = this.getLead();
                 const isShared = Boolean(this.resumingFrom) || this !== lead;
                 let canSkip = true;
@@ -9473,12 +9473,12 @@
                 return stack ? stack.lead === this : true;
             }
             getLead() {
-                var _a;
+                let _a;
                 const { layoutId } = this.options;
                 return layoutId ? ((_a = this.getStack()) === null || _a === void 0 ? void 0 : _a.lead) || this : this;
             }
             getPrevLead() {
-                var _a;
+                let _a;
                 const { layoutId } = this.options;
                 return layoutId ? (_a = this.getStack()) === null || _a === void 0 ? void 0 : _a.prevLead : undefined;
             }
@@ -9549,7 +9549,7 @@
                 visualElement.scheduleRender();
             }
             getProjectionStyles(styleProp) {
-                var _a, _b;
+                let _a, _b;
                 if (!this.instance || this.isSVG)
                     return undefined;
                 if (!this.isVisible) {
@@ -9666,7 +9666,7 @@
             }
             // Only run on root
             resetTree() {
-                this.root.nodes.forEach((node) => { var _a; return (_a = node.currentAnimation) === null || _a === void 0 ? void 0 : _a.stop(); });
+                this.root.nodes.forEach((node) => { let _a; return (_a = node.currentAnimation) === null || _a === void 0 ? void 0 : _a.stop(); });
                 this.root.nodes.forEach(clearMeasurements);
                 this.root.sharedNodes.clear();
             }
@@ -9676,7 +9676,7 @@
         node.updateLayout();
     }
     function notifyLayoutUpdate(node) {
-        var _a;
+        let _a;
         const snapshot = ((_a = node.resumeFrom) === null || _a === void 0 ? void 0 : _a.snapshot) || node.snapshot;
         if (node.isLead() &&
             node.layout &&

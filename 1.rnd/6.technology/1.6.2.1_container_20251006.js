@@ -2,29 +2,29 @@
 
 exports.__esModule = true;
 exports["default"] = void 0;
-var _node = _interopRequireDefault(require("./node"));
-var types = _interopRequireWildcard(require("./types"));
-function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
-function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+const _node = _interopRequireDefault(require("./node"));
+const types = _interopRequireWildcard(require("./types"));
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; const cacheBabelInterop = new WeakMap(); const cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { "default": obj }; } const cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } const newObj = {}; const hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (const key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { const desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-function _createForOfIteratorHelperLoose(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (it) return (it = it.call(o)).next.bind(it); if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; return function () { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _createForOfIteratorHelperLoose(o, allowArrayLike) { let it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (it) return (it = it.call(o)).next.bind(it); if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; let i = 0; return function () { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); let n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _defineProperties(target, props) { for (let i = 0; i < props.length; i++) { const descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; _setPrototypeOf(subClass, superClass); }
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-var Container = /*#__PURE__*/function (_Node) {
+const Container = /*#__PURE__*/function (_Node) {
   _inheritsLoose(Container, _Node);
   function Container(opts) {
-    var _this;
+    let _this;
     _this = _Node.call(this, opts) || this;
     if (!_this.nodes) {
       _this.nodes = [];
     }
     return _this;
   }
-  var _proto = Container.prototype;
+  const _proto = Container.prototype;
   _proto.append = function append(selector) {
     selector.parent = this;
     this.nodes.push(selector);
@@ -48,8 +48,8 @@ var Container = /*#__PURE__*/function (_Node) {
     child = this.index(child);
     this.at(child).parent = undefined;
     this.nodes.splice(child, 1);
-    var index;
-    for (var id in this.indexes) {
+    let index;
+    for (const id in this.indexes) {
       index = this.indexes[id];
       if (index >= child) {
         this.indexes[id] = index - 1;
@@ -59,7 +59,7 @@ var Container = /*#__PURE__*/function (_Node) {
   };
   _proto.removeAll = function removeAll() {
     for (var _iterator = _createForOfIteratorHelperLoose(this.nodes), _step; !(_step = _iterator()).done;) {
-      var node = _step.value;
+      const node = _step.value;
       node.parent = undefined;
     }
     this.nodes = [];
@@ -70,11 +70,11 @@ var Container = /*#__PURE__*/function (_Node) {
   };
   _proto.insertAfter = function insertAfter(oldNode, newNode) {
     newNode.parent = this;
-    var oldIndex = this.index(oldNode);
+    const oldIndex = this.index(oldNode);
     this.nodes.splice(oldIndex + 1, 0, newNode);
     newNode.parent = this;
-    var index;
-    for (var id in this.indexes) {
+    let index;
+    for (const id in this.indexes) {
       index = this.indexes[id];
       if (oldIndex <= index) {
         this.indexes[id] = index + 1;
@@ -84,11 +84,11 @@ var Container = /*#__PURE__*/function (_Node) {
   };
   _proto.insertBefore = function insertBefore(oldNode, newNode) {
     newNode.parent = this;
-    var oldIndex = this.index(oldNode);
+    const oldIndex = this.index(oldNode);
     this.nodes.splice(oldIndex, 0, newNode);
     newNode.parent = this;
-    var index;
-    for (var id in this.indexes) {
+    let index;
+    for (const id in this.indexes) {
       index = this.indexes[id];
       if (index <= oldIndex) {
         this.indexes[id] = index + 1;
@@ -97,10 +97,10 @@ var Container = /*#__PURE__*/function (_Node) {
     return this;
   };
   _proto._findChildAtPosition = function _findChildAtPosition(line, col) {
-    var found = undefined;
+    let found = undefined;
     this.each(function (node) {
       if (node.atPosition) {
-        var foundChild = node.atPosition(line, col);
+        const foundChild = node.atPosition(line, col);
         if (foundChild) {
           found = foundChild;
           return false;
@@ -148,12 +148,12 @@ var Container = /*#__PURE__*/function (_Node) {
       this.indexes = {};
     }
     this.lastEach++;
-    var id = this.lastEach;
+    const id = this.lastEach;
     this.indexes[id] = 0;
     if (!this.length) {
       return undefined;
     }
-    var index, result;
+    let index, result;
     while (this.indexes[id] < this.length) {
       index = this.indexes[id];
       result = callback(this.at(index), index);
@@ -169,7 +169,7 @@ var Container = /*#__PURE__*/function (_Node) {
   };
   _proto.walk = function walk(callback) {
     return this.each(function (node, i) {
-      var result = callback(node, i);
+      let result = callback(node, i);
       if (result !== false && node.length) {
         result = node.walk(callback);
       }
@@ -179,7 +179,7 @@ var Container = /*#__PURE__*/function (_Node) {
     });
   };
   _proto.walkAttributes = function walkAttributes(callback) {
-    var _this2 = this;
+    const _this2 = this;
     return this.walk(function (selector) {
       if (selector.type === types.ATTRIBUTE) {
         return callback.call(_this2, selector);
@@ -187,7 +187,7 @@ var Container = /*#__PURE__*/function (_Node) {
     });
   };
   _proto.walkClasses = function walkClasses(callback) {
-    var _this3 = this;
+    const _this3 = this;
     return this.walk(function (selector) {
       if (selector.type === types.CLASS) {
         return callback.call(_this3, selector);
@@ -195,7 +195,7 @@ var Container = /*#__PURE__*/function (_Node) {
     });
   };
   _proto.walkCombinators = function walkCombinators(callback) {
-    var _this4 = this;
+    const _this4 = this;
     return this.walk(function (selector) {
       if (selector.type === types.COMBINATOR) {
         return callback.call(_this4, selector);
@@ -203,7 +203,7 @@ var Container = /*#__PURE__*/function (_Node) {
     });
   };
   _proto.walkComments = function walkComments(callback) {
-    var _this5 = this;
+    const _this5 = this;
     return this.walk(function (selector) {
       if (selector.type === types.COMMENT) {
         return callback.call(_this5, selector);
@@ -211,7 +211,7 @@ var Container = /*#__PURE__*/function (_Node) {
     });
   };
   _proto.walkIds = function walkIds(callback) {
-    var _this6 = this;
+    const _this6 = this;
     return this.walk(function (selector) {
       if (selector.type === types.ID) {
         return callback.call(_this6, selector);
@@ -219,7 +219,7 @@ var Container = /*#__PURE__*/function (_Node) {
     });
   };
   _proto.walkNesting = function walkNesting(callback) {
-    var _this7 = this;
+    const _this7 = this;
     return this.walk(function (selector) {
       if (selector.type === types.NESTING) {
         return callback.call(_this7, selector);
@@ -227,7 +227,7 @@ var Container = /*#__PURE__*/function (_Node) {
     });
   };
   _proto.walkPseudos = function walkPseudos(callback) {
-    var _this8 = this;
+    const _this8 = this;
     return this.walk(function (selector) {
       if (selector.type === types.PSEUDO) {
         return callback.call(_this8, selector);
@@ -235,7 +235,7 @@ var Container = /*#__PURE__*/function (_Node) {
     });
   };
   _proto.walkTags = function walkTags(callback) {
-    var _this9 = this;
+    const _this9 = this;
     return this.walk(function (selector) {
       if (selector.type === types.TAG) {
         return callback.call(_this9, selector);
@@ -243,7 +243,7 @@ var Container = /*#__PURE__*/function (_Node) {
     });
   };
   _proto.walkUniversals = function walkUniversals(callback) {
-    var _this10 = this;
+    const _this10 = this;
     return this.walk(function (selector) {
       if (selector.type === types.UNIVERSAL) {
         return callback.call(_this10, selector);
@@ -251,10 +251,10 @@ var Container = /*#__PURE__*/function (_Node) {
     });
   };
   _proto.split = function split(callback) {
-    var _this11 = this;
-    var current = [];
+    const _this11 = this;
+    let current = [];
     return this.reduce(function (memo, node, index) {
-      var split = callback.call(_this11, node);
+      const split = callback.call(_this11, node);
       current.push(node);
       if (split) {
         memo.push(current);

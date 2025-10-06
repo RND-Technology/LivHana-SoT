@@ -7,14 +7,14 @@ exports.getTooltipCSSClassName = getTooltipCSSClassName;
 exports.getTooltipTranslate = getTooltipTranslate;
 exports.getTooltipTranslateXY = getTooltipTranslateXY;
 exports.getTransformStyle = getTransformStyle;
-var _clsx = require("clsx");
-var _DataUtils = require("../DataUtils");
-var CSS_CLASS_PREFIX = 'recharts-tooltip-wrapper';
-var TOOLTIP_HIDDEN = {
+const _clsx = require("clsx");
+const _DataUtils = require("../DataUtils");
+const CSS_CLASS_PREFIX = 'recharts-tooltip-wrapper';
+const TOOLTIP_HIDDEN = {
   visibility: 'hidden'
 };
 function getTooltipCSSClassName(_ref) {
-  var {
+  const {
     coordinate,
     translateX,
     translateY
@@ -27,7 +27,7 @@ function getTooltipCSSClassName(_ref) {
   });
 }
 function getTooltipTranslateXY(_ref2) {
-  var {
+  const {
     allowEscapeViewBox,
     coordinate,
     key,
@@ -41,18 +41,18 @@ function getTooltipTranslateXY(_ref2) {
   if (position && (0, _DataUtils.isNumber)(position[key])) {
     return position[key];
   }
-  var negative = coordinate[key] - tooltipDimension - (offsetTopLeft > 0 ? offsetTopLeft : 0);
-  var positive = coordinate[key] + offsetTopLeft;
+  const negative = coordinate[key] - tooltipDimension - (offsetTopLeft > 0 ? offsetTopLeft : 0);
+  const positive = coordinate[key] + offsetTopLeft;
   if (allowEscapeViewBox[key]) {
     return reverseDirection[key] ? negative : positive;
   }
-  var viewBoxKey = viewBox[key];
+  const viewBoxKey = viewBox[key];
   if (viewBoxKey == null) {
     return 0;
   }
   if (reverseDirection[key]) {
-    var _tooltipBoundary = negative;
-    var _viewBoxBoundary = viewBoxKey;
+    const _tooltipBoundary = negative;
+    const _viewBoxBoundary = viewBoxKey;
     if (_tooltipBoundary < _viewBoxBoundary) {
       return Math.max(positive, viewBoxKey);
     }
@@ -61,15 +61,15 @@ function getTooltipTranslateXY(_ref2) {
   if (viewBoxDimension == null) {
     return 0;
   }
-  var tooltipBoundary = positive + tooltipDimension;
-  var viewBoxBoundary = viewBoxKey + viewBoxDimension;
+  const tooltipBoundary = positive + tooltipDimension;
+  const viewBoxBoundary = viewBoxKey + viewBoxDimension;
   if (tooltipBoundary > viewBoxBoundary) {
     return Math.max(negative, viewBoxKey);
   }
   return Math.max(positive, viewBoxKey);
 }
 function getTransformStyle(_ref3) {
-  var {
+  const {
     translateX,
     translateY,
     useTranslate3d
@@ -79,7 +79,7 @@ function getTransformStyle(_ref3) {
   };
 }
 function getTooltipTranslate(_ref4) {
-  var {
+  const {
     allowEscapeViewBox,
     coordinate,
     offsetTopLeft,
@@ -89,7 +89,7 @@ function getTooltipTranslate(_ref4) {
     useTranslate3d,
     viewBox
   } = _ref4;
-  var cssProperties, translateX, translateY;
+  let cssProperties, translateX, translateY;
   if (tooltipBox.height > 0 && tooltipBox.width > 0 && coordinate) {
     translateX = getTooltipTranslateXY({
       allowEscapeViewBox,

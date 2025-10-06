@@ -1,12 +1,12 @@
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+const GetIntrinsic = require('get-intrinsic');
 
-var $Date = GetIntrinsic('%Date%');
+const $Date = GetIntrinsic('%Date%');
 
-var callBound = require('call-bound');
+const callBound = require('call-bound');
 
-var $getUTCFullYear = callBound('Date.prototype.getUTCFullYear');
+const $getUTCFullYear = callBound('Date.prototype.getUTCFullYear');
 
 // https://262.ecma-international.org/5.1/#sec-15.9.1.3
 

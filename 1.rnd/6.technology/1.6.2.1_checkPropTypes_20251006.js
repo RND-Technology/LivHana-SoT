@@ -7,7 +7,7 @@
 
 'use strict';
 
-var printWarning = function() {};
+let printWarning = function() {};
 
 if (process.env.NODE_ENV !== 'production') {
   var ReactPropTypesSecret = require('./lib/ReactPropTypesSecret');
@@ -15,7 +15,7 @@ if (process.env.NODE_ENV !== 'production') {
   var has = require('./lib/has');
 
   printWarning = function(text) {
-    var message = 'Warning: ' + text;
+    const message = 'Warning: ' + text;
     if (typeof console !== 'undefined') {
       console.error(message);
     }
@@ -41,7 +41,7 @@ if (process.env.NODE_ENV !== 'production') {
  */
 function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
   if (process.env.NODE_ENV !== 'production') {
-    for (var typeSpecName in typeSpecs) {
+    for (const typeSpecName in typeSpecs) {
       if (has(typeSpecs, typeSpecName)) {
         var error;
         // Prop type validation may throw. In case they do, we don't want to
@@ -51,7 +51,7 @@ function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
           // This is intentionally an invariant that gets caught. It's the same
           // behavior as without this statement except with a better message.
           if (typeof typeSpecs[typeSpecName] !== 'function') {
-            var err = Error(
+            const err = Error(
               (componentName || 'React class') + ': ' + location + ' type `' + typeSpecName + '` is invalid; ' +
               'it must be a function, usually from the `prop-types` package, but received `' + typeof typeSpecs[typeSpecName] + '`.' +
               'This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.'
@@ -78,7 +78,7 @@ function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
           // same error.
           loggedTypeFailures[error.message] = true;
 
-          var stack = getStack ? getStack() : '';
+          const stack = getStack ? getStack() : '';
 
           printWarning(
             'Failed ' + location + ' type: ' + error.message + (stack != null ? stack : '')

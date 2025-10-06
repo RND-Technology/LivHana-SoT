@@ -1,12 +1,12 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var HasEitherUnicodeFlag = require('./HasEitherUnicodeFlag');
+const HasEitherUnicodeFlag = require('./HasEitherUnicodeFlag');
 
-var isRegExpRecord = require('../helpers/records/regexp-record');
+const isRegExpRecord = require('../helpers/records/regexp-record');
 
-var CharSet = require('../helpers/CharSet');
+const CharSet = require('../helpers/CharSet');
 
 // https://262.ecma-international.org/15.0/#sec-allcharacters
 

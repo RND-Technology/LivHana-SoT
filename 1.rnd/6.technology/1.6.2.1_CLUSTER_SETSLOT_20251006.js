@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.transformArguments = exports.ClusterSlotStates = void 0;
-var ClusterSlotStates;
+let ClusterSlotStates;
 (function (ClusterSlotStates) {
     ClusterSlotStates["IMPORTING"] = "IMPORTING";
     ClusterSlotStates["MIGRATING"] = "MIGRATING";

@@ -1,15 +1,15 @@
 "use strict";
 exports.__esModule = true;
 exports.loyaltyEventSchema = void 0;
-var schema_1 = require("../schema");
-var loyaltyEventAccumulatePoints_1 = require("./loyaltyEventAccumulatePoints");
-var loyaltyEventAccumulatePromotionPoints_1 = require("./loyaltyEventAccumulatePromotionPoints");
-var loyaltyEventAdjustPoints_1 = require("./loyaltyEventAdjustPoints");
-var loyaltyEventCreateReward_1 = require("./loyaltyEventCreateReward");
-var loyaltyEventDeleteReward_1 = require("./loyaltyEventDeleteReward");
-var loyaltyEventExpirePoints_1 = require("./loyaltyEventExpirePoints");
-var loyaltyEventOther_1 = require("./loyaltyEventOther");
-var loyaltyEventRedeemReward_1 = require("./loyaltyEventRedeemReward");
+const schema_1 = require("../schema");
+const loyaltyEventAccumulatePoints_1 = require("./loyaltyEventAccumulatePoints");
+const loyaltyEventAccumulatePromotionPoints_1 = require("./loyaltyEventAccumulatePromotionPoints");
+const loyaltyEventAdjustPoints_1 = require("./loyaltyEventAdjustPoints");
+const loyaltyEventCreateReward_1 = require("./loyaltyEventCreateReward");
+const loyaltyEventDeleteReward_1 = require("./loyaltyEventDeleteReward");
+const loyaltyEventExpirePoints_1 = require("./loyaltyEventExpirePoints");
+const loyaltyEventOther_1 = require("./loyaltyEventOther");
+const loyaltyEventRedeemReward_1 = require("./loyaltyEventRedeemReward");
 exports.loyaltyEventSchema = (0, schema_1.object)({
     id: ['id', (0, schema_1.string)()],
     type: ['type', (0, schema_1.string)()],

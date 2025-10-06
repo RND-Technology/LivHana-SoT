@@ -1,13 +1,13 @@
 'use strict';
 
-var $SyntaxError = require('es-errors/syntax');
-var $TypeError = require('es-errors/type');
+const $SyntaxError = require('es-errors/syntax');
+const $TypeError = require('es-errors/type');
 
-var isArrayBuffer = require('is-array-buffer');
+const isArrayBuffer = require('is-array-buffer');
 
-var IsDetachedBuffer = require('./IsDetachedBuffer');
+const IsDetachedBuffer = require('./IsDetachedBuffer');
 
-var MessageChannel;
+let MessageChannel;
 try {
 	// eslint-disable-next-line global-require
 	MessageChannel = require('worker_threads').MessageChannel; // node 11.7+

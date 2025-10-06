@@ -1,11 +1,11 @@
 "use strict";
 exports.__esModule = true;
 exports.loyaltyProgramSchema = void 0;
-var schema_1 = require("../schema");
-var loyaltyProgramAccrualRule_1 = require("./loyaltyProgramAccrualRule");
-var loyaltyProgramExpirationPolicy_1 = require("./loyaltyProgramExpirationPolicy");
-var loyaltyProgramRewardTier_1 = require("./loyaltyProgramRewardTier");
-var loyaltyProgramTerminology_1 = require("./loyaltyProgramTerminology");
+const schema_1 = require("../schema");
+const loyaltyProgramAccrualRule_1 = require("./loyaltyProgramAccrualRule");
+const loyaltyProgramExpirationPolicy_1 = require("./loyaltyProgramExpirationPolicy");
+const loyaltyProgramRewardTier_1 = require("./loyaltyProgramRewardTier");
+const loyaltyProgramTerminology_1 = require("./loyaltyProgramTerminology");
 exports.loyaltyProgramSchema = (0, schema_1.object)({
     id: ['id', (0, schema_1.optional)((0, schema_1.string)())],
     status: ['status', (0, schema_1.optional)((0, schema_1.string)())],

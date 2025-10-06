@@ -20,7 +20,7 @@ exports.sql_v1beta4 = void 0;
 /* eslint-disable @typescript-eslint/no-namespace */
 /* eslint-disable no-irregular-whitespace */
 const googleapis_common_1 = require("googleapis-common");
-var sql_v1beta4;
+let sql_v1beta4;
 (function (sql_v1beta4) {
     /**
      * Cloud SQL Admin API

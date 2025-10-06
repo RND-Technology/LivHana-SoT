@@ -8,8 +8,8 @@ function createThunkMiddleware(extraArgument) {
   };
   return middleware;
 }
-var thunk = createThunkMiddleware();
-var withExtraArgument = createThunkMiddleware;
+const thunk = createThunkMiddleware();
+const withExtraArgument = createThunkMiddleware;
 export {
   thunk,
   withExtraArgument

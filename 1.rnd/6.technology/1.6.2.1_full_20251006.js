@@ -11,13 +11,13 @@ function _gensync() {
   };
   return data;
 }
-var _async = require("../gensync-utils/async.js");
-var _util = require("./util.js");
-var context = require("../index.js");
-var _plugin = require("./plugin.js");
-var _item = require("./item.js");
-var _configChain = require("./config-chain.js");
-var _deepArray = require("./helpers/deep-array.js");
+const _async = require("../gensync-utils/async.js");
+const _util = require("./util.js");
+const context = require("../index.js");
+const _plugin = require("./plugin.js");
+const _item = require("./item.js");
+const _configChain = require("./config-chain.js");
+const _deepArray = require("./helpers/deep-array.js");
 function _traverse() {
   const data = require("@babel/traverse");
   _traverse = function () {
@@ -25,14 +25,14 @@ function _traverse() {
   };
   return data;
 }
-var _caching = require("./caching.js");
-var _options = require("./validation/options.js");
-var _plugins = require("./validation/plugins.js");
-var _configApi = require("./helpers/config-api.js");
-var _partial = require("./partial.js");
-var _configError = require("../errors/config-error.js");
-var _default = exports.default = _gensync()(function* loadFullConfig(inputOpts) {
-  var _opts$assumptions;
+const _caching = require("./caching.js");
+const _options = require("./validation/options.js");
+const _plugins = require("./validation/plugins.js");
+const _configApi = require("./helpers/config-api.js");
+const _partial = require("./partial.js");
+const _configError = require("../errors/config-error.js");
+const _default = exports.default = _gensync()(function* loadFullConfig(inputOpts) {
+  let _opts$assumptions;
   const result = yield* (0, _partial.default)(inputOpts);
   if (!result) {
     return null;
@@ -156,7 +156,7 @@ function enhanceError(context, fn) {
       return yield* fn(arg1, arg2);
     } catch (e) {
       if (!/^\[BABEL\]/.test(e.message)) {
-        var _context$filename;
+        let _context$filename;
         e.message = `[BABEL] ${(_context$filename = context.filename) != null ? _context$filename : "unknown file"}: ${e.message}`;
       }
       throw e;
@@ -267,7 +267,7 @@ const validateIfOptionNeedsFilename = (options, descriptor) => {
 };
 const validatePreset = (preset, context, descriptor) => {
   if (!context.filename) {
-    var _options$overrides;
+    let _options$overrides;
     const {
       options
     } = preset;

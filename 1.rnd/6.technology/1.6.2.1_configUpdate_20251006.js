@@ -4,16 +4,16 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = exports.alpha = void 0;
-var _util = require("./util");
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+const _util = require("./util");
+function ownKeys(e, r) { const t = Object.keys(e); if (Object.getOwnPropertySymbols) { let o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (let r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-var alpha = (begin, end, k) => begin + (end - begin) * k;
+function _toPropertyKey(t) { const i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; const e = t[Symbol.toPrimitive]; if (void 0 !== e) { const i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+const alpha = (begin, end, k) => begin + (end - begin) * k;
 exports.alpha = alpha;
-var needContinue = _ref => {
-  var {
+const needContinue = _ref => {
+  const {
     from,
     to
   } = _ref;
@@ -23,10 +23,10 @@ var needContinue = _ref => {
  * @description: cal new from value and velocity in each stepper
  * @return: { [styleProperty]: { from, to, velocity } }
  */
-var calStepperVals = (easing, preVals, steps) => {
-  var nextStepVals = (0, _util.mapObject)((key, val) => {
+const calStepperVals = (easing, preVals, steps) => {
+  const nextStepVals = (0, _util.mapObject)((key, val) => {
     if (needContinue(val)) {
-      var [newX, newV] = easing(val.from, val.to, val.velocity);
+      const [newX, newV] = easing(val.from, val.to, val.velocity);
       return _objectSpread(_objectSpread({}, val), {}, {
         from: newX,
         velocity: newV
@@ -48,23 +48,23 @@ var calStepperVals = (easing, preVals, steps) => {
   return calStepperVals(easing, nextStepVals, steps - 1);
 };
 function createStepperUpdate(from, to, easing, interKeys, render, timeoutController) {
-  var preTime;
-  var stepperStyle = interKeys.reduce((res, key) => _objectSpread(_objectSpread({}, res), {}, {
+  let preTime;
+  let stepperStyle = interKeys.reduce((res, key) => _objectSpread(_objectSpread({}, res), {}, {
     [key]: {
       from: from[key],
       velocity: 0,
       to: to[key]
     }
   }), {});
-  var getCurrStyle = () => (0, _util.mapObject)((key, val) => val.from, stepperStyle);
-  var shouldStopAnimation = () => !Object.values(stepperStyle).filter(needContinue).length;
-  var stopAnimation = null;
-  var stepperUpdate = now => {
+  const getCurrStyle = () => (0, _util.mapObject)((key, val) => val.from, stepperStyle);
+  const shouldStopAnimation = () => !Object.values(stepperStyle).filter(needContinue).length;
+  let stopAnimation = null;
+  const stepperUpdate = now => {
     if (!preTime) {
       preTime = now;
     }
-    var deltaTime = now - preTime;
-    var steps = deltaTime / easing.dt;
+    const deltaTime = now - preTime;
+    const steps = deltaTime / easing.dt;
     stepperStyle = calStepperVals(easing, stepperStyle, steps);
     // get union set and add compatible prefix
     render(_objectSpread(_objectSpread(_objectSpread({}, from), to), getCurrStyle()));
@@ -85,24 +85,24 @@ function createStepperUpdate(from, to, easing, interKeys, render, timeoutControl
   };
 }
 function createTimingUpdate(from, to, easing, duration, interKeys, render, timeoutController) {
-  var stopAnimation = null;
-  var timingStyle = interKeys.reduce((res, key) => _objectSpread(_objectSpread({}, res), {}, {
+  let stopAnimation = null;
+  const timingStyle = interKeys.reduce((res, key) => _objectSpread(_objectSpread({}, res), {}, {
     [key]: [from[key], to[key]]
   }), {});
-  var beginTime;
-  var timingUpdate = now => {
+  let beginTime;
+  const timingUpdate = now => {
     if (!beginTime) {
       beginTime = now;
     }
-    var t = (now - beginTime) / duration;
-    var currStyle = (0, _util.mapObject)((key, val) => alpha(...val, easing(t)), timingStyle);
+    const t = (now - beginTime) / duration;
+    const currStyle = (0, _util.mapObject)((key, val) => alpha(...val, easing(t)), timingStyle);
 
     // get union set and add compatible prefix
     render(_objectSpread(_objectSpread(_objectSpread({}, from), to), currStyle));
     if (t < 1) {
       stopAnimation = timeoutController.setTimeout(timingUpdate);
     } else {
-      var finalStyle = (0, _util.mapObject)((key, val) => alpha(...val, easing(1)), timingStyle);
+      const finalStyle = (0, _util.mapObject)((key, val) => alpha(...val, easing(1)), timingStyle);
       render(_objectSpread(_objectSpread(_objectSpread({}, from), to), finalStyle));
     }
   };
@@ -120,8 +120,8 @@ function createTimingUpdate(from, to, easing, duration, interKeys, render, timeo
 
 // configure update function
 // eslint-disable-next-line import/no-default-export
-var _default = (from, to, easing, duration, render, timeoutController) => {
-  var interKeys = (0, _util.getIntersectionKeys)(from, to);
+const _default = (from, to, easing, duration, render, timeoutController) => {
+  const interKeys = (0, _util.getIntersectionKeys)(from, to);
   return easing.isStepper === true ? createStepperUpdate(from, to, easing, interKeys, render, timeoutController) : createTimingUpdate(from, to, easing, duration, interKeys, render, timeoutController);
 };
 exports.default = _default;

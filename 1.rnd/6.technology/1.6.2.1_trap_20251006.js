@@ -1,8 +1,8 @@
 module['exports'] = function runTheTrap(text, options) {
-  var result = '';
+  let result = '';
   text = text || 'Run the trap, drop the bass';
   text = text.split('');
-  var trap = {
+  const trap = {
     a: ['\u0040', '\u0104', '\u023a', '\u0245', '\u0394', '\u039b', '\u0414'],
     b: ['\u00df', '\u0181', '\u0243', '\u026e', '\u03b2', '\u0e3f'],
     c: ['\u00a9', '\u023b', '\u03fe'],
@@ -34,8 +34,8 @@ module['exports'] = function runTheTrap(text, options) {
   };
   text.forEach(function(c) {
     c = c.toLowerCase();
-    var chars = trap[c] || [' '];
-    var rand = Math.floor(Math.random() * chars.length);
+    const chars = trap[c] || [' '];
+    const rand = Math.floor(Math.random() * chars.length);
     if (typeof trap[c] !== 'undefined') {
       result += trap[c][rand];
     } else {

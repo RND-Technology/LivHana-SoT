@@ -69,7 +69,7 @@ function extractParams(shim, req) {
     const transaction = shim.tracer.getTransaction(); 
     if (transaction) {
 
-        let request = requestManager.getRequestFromId(transaction.id);
+        const request = requestManager.getRequestFromId(transaction.id);
         if (req.params && request) {
             try {
                 Object.keys(req.params).forEach(function (key) {

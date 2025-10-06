@@ -1,4 +1,4 @@
-var nativeCreate = require('./_nativeCreate');
+const nativeCreate = require('./_nativeCreate');
 
 /**
  * Removes all key-value entries from the hash.

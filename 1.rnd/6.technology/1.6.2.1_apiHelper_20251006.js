@@ -11,14 +11,14 @@ import warning from 'tiny-warning';
  */
 function sanitizeUrl(url) {
   // ensure that the urls are absolute
-  var protocolRegex = /^https?:\/\/[^/]+/;
-  var match = url.match(protocolRegex);
+  const protocolRegex = /^https?:\/\/[^/]+/;
+  const match = url.match(protocolRegex);
   if (match === null) {
     throw new Error("Invalid URL format: ".concat(url));
   }
   // remove redundant double-forward slashes
-  var protocol = match[0];
-  var queryUrl = url.substring(protocol.length).replace(/\/\/+/g, '/');
+  const protocol = match[0];
+  const queryUrl = url.substring(protocol.length).replace(/\/\/+/g, '/');
   return protocol + queryUrl;
 }
 /**
@@ -31,7 +31,7 @@ function sanitizeUrl(url) {
  * @param notice Optional message for deprecation
  */
 function deprecated(methodName, notice) {
-  var message = "Method ".concat(methodName, " is deprecated.");
+  let message = "Method ".concat(methodName, " is deprecated.");
   if (notice) {
     message += " ".concat(notice);
   }
@@ -46,8 +46,8 @@ function deprecated(methodName, notice) {
  * @returns Updated user-agent value
  */
 function updateUserAgent(userAgent, apiVersion, detail) {
-  var updatedAgent = userAgent;
-  var result = detect();
+  let updatedAgent = userAgent;
+  const result = detect();
   if (result) {
     updatedAgent = updatedAgent.replace('{engine}', result.name);
   }
@@ -78,12 +78,12 @@ function assertUserAgentDetail(detail) {
  * @returns Updated message value
  */
 function updateErrorMessage(message, response) {
-  var placeholders = message.match(/\{\$.*?\}/g);
-  var statusCodePlaceholder = placeholders === null || placeholders === void 0 ? void 0 : placeholders.includes('{$statusCode}');
-  var headerPlaceholders = placeholders === null || placeholders === void 0 ? void 0 : placeholders.filter(function (value) {
+  const placeholders = message.match(/\{\$.*?\}/g);
+  const statusCodePlaceholder = placeholders === null || placeholders === void 0 ? void 0 : placeholders.includes('{$statusCode}');
+  const headerPlaceholders = placeholders === null || placeholders === void 0 ? void 0 : placeholders.filter(function (value) {
     return value.startsWith('{$response.header');
   });
-  var bodyPlaceholders = placeholders === null || placeholders === void 0 ? void 0 : placeholders.filter(function (value) {
+  const bodyPlaceholders = placeholders === null || placeholders === void 0 ? void 0 : placeholders.filter(function (value) {
     return value.startsWith('{$response.body');
   });
   message = replaceStatusCodePlaceholder(message, response.statusCode, statusCodePlaceholder);
@@ -102,10 +102,10 @@ function replaceStatusCodePlaceholder(message, statusCode, statusCodePlaceholder
 function replaceHeaderPlaceholders(message, headers, headerPlaceholders) {
   if (headerPlaceholders) {
     headerPlaceholders.forEach(function (element) {
-      var _a, _b;
-      var headerName = (_a = element.split('.').pop()) === null || _a === void 0 ? void 0 : _a.slice(0, -1);
+      let _a, _b;
+      const headerName = (_a = element.split('.').pop()) === null || _a === void 0 ? void 0 : _a.slice(0, -1);
       if (typeof headerName !== 'undefined') {
-        var value = (_b = getHeader(headers, headerName)) !== null && _b !== void 0 ? _b : '';
+        const value = (_b = getHeader(headers, headerName)) !== null && _b !== void 0 ? _b : '';
         message = message.replace(element, value);
       }
     });
@@ -113,21 +113,21 @@ function replaceHeaderPlaceholders(message, headers, headerPlaceholders) {
   return message;
 }
 function replaceBodyPlaceholders(message, body, bodyPlaceholders) {
-  var parsed = '';
+  let parsed = '';
   try {
     parsed = JSON.parse(body);
   } catch (error) {
     // Handle the error if needed, or you can leave the catch block empty
   }
   bodyPlaceholders === null || bodyPlaceholders === void 0 ? void 0 : bodyPlaceholders.forEach(function (element) {
-    var _a;
+    let _a;
     if (element.includes('#')) {
-      var _b = __read(element === null || element === void 0 ? void 0 : element.split('#')),
+      const _b = __read(element === null || element === void 0 ? void 0 : element.split('#')),
         rest = _b.slice(1);
-      var nodePointer = (_a = rest.join('#')) === null || _a === void 0 ? void 0 : _a.slice(0, -1);
+      const nodePointer = (_a = rest.join('#')) === null || _a === void 0 ? void 0 : _a.slice(0, -1);
       if (nodePointer) {
-        var value = getValueByJsonPointer(parsed, nodePointer);
-        var replaced_value = value !== null ? JSON.stringify(value) : '';
+        const value = getValueByJsonPointer(parsed, nodePointer);
+        const replaced_value = value !== null ? JSON.stringify(value) : '';
         message = message.replace(element, replaced_value);
       }
     } else {
@@ -137,15 +137,15 @@ function replaceBodyPlaceholders(message, body, bodyPlaceholders) {
   return message;
 }
 function getValueByJsonPointer(obj, pointer) {
-  var e_1, _a;
+  let e_1, _a;
   if (pointer === '') {
     return obj;
   }
-  var pathParts = pointer.split('/').filter(Boolean);
-  var result = obj;
+  const pathParts = pointer.split('/').filter(Boolean);
+  let result = obj;
   try {
     for (var pathParts_1 = __values(pathParts), pathParts_1_1 = pathParts_1.next(); !pathParts_1_1.done; pathParts_1_1 = pathParts_1.next()) {
-      var key = pathParts_1_1.value;
+      const key = pathParts_1_1.value;
       if (!result || typeof result !== 'object' || !(key in result)) {
         return null;
       }
@@ -177,9 +177,9 @@ function updateAtPath(updater, current, parts, index) {
   if (!current || typeof current !== 'object') {
     return current;
   }
-  var key = parts[index];
-  var next = current[key];
-  var cloned = Array.isArray(current) ? __spreadArray([], __read(current), false) : __assign({}, current);
+  const key = parts[index];
+  const next = current[key];
+  const cloned = Array.isArray(current) ? __spreadArray([], __read(current), false) : __assign({}, current);
   cloned[key] = index === parts.length - 1 ? updater(next) // update directly for last part
   : updateAtPath(updater, next, parts, index + 1); // call recursively
   return cloned;

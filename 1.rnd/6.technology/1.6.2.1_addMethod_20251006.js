@@ -4,11 +4,11 @@
  * MIT Licensed
  */
 
-var addLengthGuard = require('./addLengthGuard');
-var chai = require('../../chai');
-var flag = require('./flag');
-var proxify = require('./proxify');
-var transferFlags = require('./transferFlags');
+const addLengthGuard = require('./addLengthGuard');
+const chai = require('../../chai');
+const flag = require('./flag');
+const proxify = require('./proxify');
+const transferFlags = require('./transferFlags');
 
 /**
  * ### .addMethod(ctx, name, method)
@@ -37,7 +37,7 @@ var transferFlags = require('./transferFlags');
  */
 
 module.exports = function addMethod(ctx, name, method) {
-  var methodWrapper = function () {
+  const methodWrapper = function () {
     // Setting the `ssfi` flag to `methodWrapper` causes this function to be the
     // starting point for removing implementation frames from the stack trace of
     // a failed assertion.
@@ -54,11 +54,11 @@ module.exports = function addMethod(ctx, name, method) {
       flag(this, 'ssfi', methodWrapper);
     }
 
-    var result = method.apply(this, arguments);
+    const result = method.apply(this, arguments);
     if (result !== undefined)
       return result;
 
-    var newAssertion = new chai.Assertion();
+    const newAssertion = new chai.Assertion();
     transferFlags(this, newAssertion);
     return newAssertion;
   };

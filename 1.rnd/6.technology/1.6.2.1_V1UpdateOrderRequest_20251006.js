@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
 exports.v1UpdateOrderRequestSchema = void 0;
-var schema_1 = require("../schema");
+const schema_1 = require("../schema");
 exports.v1UpdateOrderRequestSchema = (0, schema_1.object)({
     action: ['action', (0, schema_1.string)()],
     shippedTrackingNumber: [

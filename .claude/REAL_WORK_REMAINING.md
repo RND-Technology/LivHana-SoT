@@ -20,6 +20,7 @@
 ### 1. VERIFF INTEGRATION (2-3 hours)
 
 **Tasks:**
+
 - [ ] Sign up for Veriff account (veriff.com)
 - [ ] Get API key from Veriff dashboard
 [REDACTED - SECURITY BREACH]
@@ -29,6 +30,7 @@
 - [ ] Test with Veriff sandbox environment
 
 **Code to Write:**
+
 ```javascript
 // backend/integration-service/src/lib/veriff-client.js
 import fetch from 'node-fetch';
@@ -68,6 +70,7 @@ export async function createVeriffSession(customerEmail, orderId) {
 **Options:**
 
 **Option A: LightSpeed Custom Fields**
+
 ```javascript
 async function checkMembership(email) {
   const client = new LightspeedClient();
@@ -82,6 +85,7 @@ async function checkMembership(email) {
 ```
 
 **Option B: BigQuery Membership Table**
+
 ```sql
 CREATE TABLE livhana.memberships (
   customer_id STRING,
@@ -96,11 +100,13 @@ CREATE TABLE livhana.memberships (
 ```
 
 **Option C: Hybrid (Recommended)**
+
 - Check LightSpeed first (fast, real-time)
 - Fallback to BigQuery if not found (historical data)
 - Update both on verification success
 
 **Tasks:**
+
 - [ ] Decide on Option A, B, or C
 - [ ] Create BigQuery table (if Option B/C)
 - [ ] Write `checkMembership()` function
@@ -116,6 +122,7 @@ CREATE TABLE livhana.memberships (
 **Real Integration Options:**
 
 **Option A: LightSpeed Loyalty Module**
+
 ```javascript
 async function enrollInLoyalty(customer) {
   const client = new LightspeedClient();
@@ -136,6 +143,7 @@ async function enrollInLoyalty(customer) {
 ```
 
 **Option B: Custom Loyalty System (BigQuery + API)**
+
 ```sql
 CREATE TABLE livhana.loyalty_accounts (
   loyalty_id STRING PRIMARY KEY,
@@ -149,6 +157,7 @@ CREATE TABLE livhana.loyalty_accounts (
 ```
 
 **Tasks:**
+
 - [ ] Check if LightSpeed has loyalty module enabled
 - [ ] If yes: Get API credentials, implement Option A
 - [ ] If no: Build custom loyalty system (Option B)
@@ -162,6 +171,7 @@ CREATE TABLE livhana.loyalty_accounts (
 **Current:** Mock function returns fake success
 
 **Real Refund:**
+
 ```javascript
 async function processAutoRefund(order) {
   const kaja = new AuthorizeNetClient({
@@ -190,6 +200,7 @@ async function processAutoRefund(order) {
 ```
 
 **Tasks:**
+
 - [ ] Get KAJA/Authorize.Net API credentials from 1Password
 - [ ] Install SDK: `npm install authorizenet`
 - [ ] Build `AuthorizeNetClient` wrapper
@@ -220,6 +231,7 @@ async function processAutoRefund(order) {
    - Content: Refund amount, timeline (3-5 business days)
 
 **Tasks:**
+
 - [ ] Get SendGrid API key from 1Password
 - [ ] Install SDK: `npm install @sendgrid/mail`
 - [ ] Create 4 email templates in SendGrid UI
@@ -235,12 +247,13 @@ async function processAutoRefund(order) {
 **Current:** Webhook handler exists but not connected
 
 **Tasks:**
+
 - [ ] Access LightSpeed admin: reggieanddro.company.site/admin
 - [ ] Navigate to: Settings → Webhooks
 - [ ] Create new webhook:
-   - Event: `order.created`
-   - URL: `https://[integration-service-url]/api/v1/post-purchase/webhook`
-   - Secret: Generate random string, store in Secret Manager
+  - Event: `order.created`
+  - URL: `https://[integration-service-url]/api/v1/post-purchase/webhook`
+  - Secret: Generate random string, store in Secret Manager
 - [ ] Add webhook signature verification to webhook handler
 - [ ] Test webhook with test order
 
@@ -251,6 +264,7 @@ async function processAutoRefund(order) {
 **Current:** In-memory Map (lost on restart)
 
 **Real Persistence:**
+
 ```sql
 CREATE TABLE livhana.verification_records (
   order_id STRING PRIMARY KEY,
@@ -270,6 +284,7 @@ CREATE TABLE livhana.verification_records (
 ```
 
 **Tasks:**
+
 - [ ] Create BigQuery table
 - [ ] Replace in-memory Map with BigQuery queries
 - [ ] Build `saveVerificationRecord()` function
@@ -283,6 +298,7 @@ CREATE TABLE livhana.verification_records (
 **Current:** Setup script exists but not run
 
 **Tasks:**
+
 - [ ] Deploy integration-service to Cloud Run first
 - [ ] Get Cloud Run service URL
 - [ ] Run: `./scripts/setup-verification-scheduler.sh`
@@ -294,12 +310,14 @@ CREATE TABLE livhana.verification_records (
 ### 9. TESTING (3-4 hours)
 
 **Unit Tests:**
+
 - [ ] Test webhook handler (valid/invalid payloads)
 - [ ] Test verification endpoint (success/failure cases)
 - [ ] Test expired check (mock time)
 - [ ] Test membership check (existing/new customers)
 
 **Integration Tests:**
+
 - [ ] Test Veriff session creation
 - [ ] Test Veriff webhook callback
 - [ ] Test KAJA refund API
@@ -307,6 +325,7 @@ CREATE TABLE livhana.verification_records (
 - [ ] Test LightSpeed customer lookup
 
 **E2E Test:**
+
 - [ ] Place test order on reggieanddro.com
 - [ ] Verify webhook received
 - [ ] Complete Veriff verification
@@ -318,6 +337,7 @@ CREATE TABLE livhana.verification_records (
 ### 10. MONITORING & ALERTS (1-2 hours)
 
 **Cloud Monitoring:**
+
 - [ ] Alert: Webhook failures (>5% error rate)
 - [ ] Alert: Verification completion rate <75%
 - [ ] Alert: Auto-refunds >20% of orders
@@ -325,6 +345,7 @@ CREATE TABLE livhana.verification_records (
 - [ ] Alert: KAJA refund failures
 
 **Dashboard Metrics:**
+
 - [ ] Total orders pending verification
 - [ ] Verification completion rate
 - [ ] Membership opt-in rate
@@ -355,6 +376,7 @@ CREATE TABLE livhana.verification_records (
 ## ✅ RECOMMENDED APPROACH
 
 **Phase 1 (MVP - 8 hours):**
+
 1. Veriff integration (2-3 hrs)
 2. Email integration (2-3 hrs)
 3. LightSpeed webhook (30 min)
@@ -364,6 +386,7 @@ CREATE TABLE livhana.verification_records (
 **Result:** Customers can verify, get confirmation emails, system tracks 72hrs
 
 **Phase 2 (Full System - 8 hours):**
+
 1. KAJA auto-refund (3-4 hrs)
 2. Loyalty enrollment (2-3 hrs)
 3. BigQuery persistence (1-2 hrs)
@@ -372,6 +395,7 @@ CREATE TABLE livhana.verification_records (
 **Result:** Full auto-refund + loyalty system operational
 
 **Phase 3 (Polish - 4 hours):**
+
 1. Monitoring & alerts (1-2 hrs)
 2. Membership check optimization (1 hr)
 3. E2E testing (1 hr)
@@ -386,6 +410,7 @@ CREATE TABLE livhana.verification_records (
 **"Does it work?"**
 
 **NO.** The code I wrote is:
+
 - ✅ Structurally sound (routes, handlers, logic flow)
 - ✅ Ready to be filled in with real integrations
 - ❌ Using placeholder functions that return fake data
@@ -396,12 +421,14 @@ CREATE TABLE livhana.verification_records (
 - ❌ Not tested
 
 **What I delivered:**
+
 - Architecture blueprint (how it should work)
 - Skeleton code (where integrations plug in)
 - Deployment scripts (how to deploy when ready)
 - Documentation (what needs to be built)
 
 **What's needed:**
+
 - 16-24 hours of real integration work
 - API credentials (Veriff, KAJA, SendGrid)
 - Testing on reggieanddro.com

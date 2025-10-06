@@ -5,27 +5,27 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Cursor = Cursor;
 exports.CursorInternal = CursorInternal;
-var _react = _interopRequireWildcard(require("react"));
-var React = _react;
-var _clsx = require("clsx");
-var _Curve = require("../shape/Curve");
-var _Cross = require("../shape/Cross");
-var _getCursorRectangle = require("../util/cursor/getCursorRectangle");
-var _Rectangle = require("../shape/Rectangle");
-var _getRadialCursorPoints = require("../util/cursor/getRadialCursorPoints");
-var _Sector = require("../shape/Sector");
-var _getCursorPoints = require("../util/cursor/getCursorPoints");
-var _ReactUtils = require("../util/ReactUtils");
-var _chartLayoutContext = require("../context/chartLayoutContext");
-var _useTooltipAxis = require("../context/useTooltipAxis");
-var _selectors = require("../state/selectors/selectors");
-function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
-function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+const _react = _interopRequireWildcard(require("react"));
+const React = _react;
+const _clsx = require("clsx");
+const _Curve = require("../shape/Curve");
+const _Cross = require("../shape/Cross");
+const _getCursorRectangle = require("../util/cursor/getCursorRectangle");
+const _Rectangle = require("../shape/Rectangle");
+const _getRadialCursorPoints = require("../util/cursor/getRadialCursorPoints");
+const _Sector = require("../shape/Sector");
+const _getCursorPoints = require("../util/cursor/getCursorPoints");
+const _ReactUtils = require("../util/ReactUtils");
+const _chartLayoutContext = require("../context/chartLayoutContext");
+const _useTooltipAxis = require("../context/useTooltipAxis");
+const _selectors = require("../state/selectors/selectors");
+function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; let o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (const _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (let e = 1; e < arguments.length; e++) { const t = arguments[e]; for (const r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+function ownKeys(e, r) { const t = Object.keys(e); if (Object.getOwnPropertySymbols) { let o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (let r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _toPropertyKey(t) { const i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; const e = t[Symbol.toPrimitive]; if (void 0 !== e) { const i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 /**
  * If set false, no cursor will be drawn when tooltip is active.
  * If set an object, the option is the configuration of cursor.
@@ -33,7 +33,7 @@ function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = 
  */
 
 function CursorInternal(props) {
-  var {
+  const {
     coordinate,
     payload,
     index,
@@ -46,13 +46,13 @@ function CursorInternal(props) {
   } = props;
 
   // The cursor is a part of the Tooltip, and it should be shown (by default) when the Tooltip is active.
-  var activeCoordinate = coordinate;
-  var activePayload = payload;
-  var activeTooltipIndex = index;
+  const activeCoordinate = coordinate;
+  const activePayload = payload;
+  const activeTooltipIndex = index;
   if (!cursor || !activeCoordinate || chartName !== 'ScatterChart' && tooltipEventType !== 'axis') {
     return null;
   }
-  var restProps, cursorComp;
+  let restProps, cursorComp;
   if (chartName === 'ScatterChart') {
     restProps = activeCoordinate;
     cursorComp = _Cross.Cross;
@@ -61,7 +61,7 @@ function CursorInternal(props) {
     cursorComp = _Rectangle.Rectangle;
   } else if (layout === 'radial') {
     // @ts-expect-error TODO the state is marked as containing Coordinate but actually in polar charts it contains PolarCoordinate, we should keep the polar state separate
-    var {
+    const {
       cx,
       cy,
       radius,
@@ -83,8 +83,8 @@ function CursorInternal(props) {
     };
     cursorComp = _Curve.Curve;
   }
-  var extraClassName = typeof cursor === 'object' && 'className' in cursor ? cursor.className : undefined;
-  var cursorProps = _objectSpread(_objectSpread(_objectSpread(_objectSpread({
+  const extraClassName = typeof cursor === 'object' && 'className' in cursor ? cursor.className : undefined;
+  const cursorProps = _objectSpread(_objectSpread(_objectSpread(_objectSpread({
     stroke: '#ccc',
     pointerEvents: 'none'
   }, offset), restProps), (0, _ReactUtils.filterProps)(cursor, false)), {}, {
@@ -104,10 +104,10 @@ function CursorInternal(props) {
  * to emphasise which part of the chart does the tooltip refer to.
  */
 function Cursor(props) {
-  var tooltipAxisBandSize = (0, _useTooltipAxis.useTooltipAxisBandSize)();
-  var offset = (0, _chartLayoutContext.useOffsetInternal)();
-  var layout = (0, _chartLayoutContext.useChartLayout)();
-  var chartName = (0, _selectors.useChartName)();
+  const tooltipAxisBandSize = (0, _useTooltipAxis.useTooltipAxisBandSize)();
+  const offset = (0, _chartLayoutContext.useOffsetInternal)();
+  const layout = (0, _chartLayoutContext.useChartLayout)();
+  const chartName = (0, _selectors.useChartName)();
   return /*#__PURE__*/React.createElement(CursorInternal, _extends({}, props, {
     coordinate: props.coordinate,
     index: props.index,

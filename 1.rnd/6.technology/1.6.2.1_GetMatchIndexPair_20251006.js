@@ -1,8 +1,8 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var isMatchRecord = require('../helpers/records/match-record');
+const isMatchRecord = require('../helpers/records/match-record');
 
 // https://262.ecma-international.org/13.0/#sec-getmatchindexpair
 

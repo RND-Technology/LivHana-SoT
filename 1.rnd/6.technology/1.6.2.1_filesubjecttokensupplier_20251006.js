@@ -12,7 +12,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-var _a, _b, _c;
+let _a, _b, _c;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FileSubjectTokenSupplier = void 0;
 const util_1 = require("util");

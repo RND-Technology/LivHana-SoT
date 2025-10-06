@@ -14,4 +14,4 @@ const getOverlayAlpha = elevation => {
   }
   return (alphaValue / 100).toFixed(2);
 };
-var _default = exports.default = getOverlayAlpha;
+const _default = exports.default = getOverlayAlpha;

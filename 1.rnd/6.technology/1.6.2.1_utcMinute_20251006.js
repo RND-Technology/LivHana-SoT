@@ -4,10 +4,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.utcMinutes = exports.default = void 0;
-var _interval = _interopRequireDefault(require("./interval.js"));
-var _duration = require("./duration.js");
+const _interval = _interopRequireDefault(require("./interval.js"));
+const _duration = require("./duration.js");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-var utcMinute = (0, _interval.default)(function (date) {
+const utcMinute = (0, _interval.default)(function (date) {
   date.setUTCSeconds(0, 0);
 }, function (date, step) {
   date.setTime(+date + step * _duration.durationMinute);
@@ -16,5 +16,5 @@ var utcMinute = (0, _interval.default)(function (date) {
 }, function (date) {
   return date.getUTCMinutes();
 });
-var _default = exports.default = utcMinute;
-var utcMinutes = exports.utcMinutes = utcMinute.range;
+const _default = exports.default = utcMinute;
+const utcMinutes = exports.utcMinutes = utcMinute.range;

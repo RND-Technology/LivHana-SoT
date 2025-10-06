@@ -1,4 +1,4 @@
-var convert = require('./convert'),
+const convert = require('./convert'),
     func = convert('trimCharsStart', require('../trimStart'));
 
 func.placeholder = require('./placeholder');

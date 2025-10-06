@@ -1,53 +1,53 @@
 "use strict";
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __export = (target, all) => {
+  for (const name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var page_exports = {};
+const __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+const page_exports = {};
 __export(page_exports, {
   BindingCall: () => BindingCall,
   Page: () => Page
 });
 module.exports = __toCommonJS(page_exports);
-var import_accessibility = require("./accessibility");
-var import_artifact = require("./artifact");
-var import_channelOwner = require("./channelOwner");
-var import_clientHelper = require("./clientHelper");
-var import_coverage = require("./coverage");
-var import_download = require("./download");
-var import_elementHandle = require("./elementHandle");
-var import_errors = require("./errors");
-var import_events = require("./events");
-var import_fileChooser = require("./fileChooser");
-var import_frame = require("./frame");
-var import_harRouter = require("./harRouter");
-var import_input = require("./input");
-var import_jsHandle = require("./jsHandle");
-var import_network = require("./network");
-var import_video = require("./video");
-var import_waiter = require("./waiter");
-var import_worker = require("./worker");
-var import_timeoutSettings = require("./timeoutSettings");
-var import_assert = require("../utils/isomorphic/assert");
-var import_fileUtils = require("./fileUtils");
-var import_headers = require("../utils/isomorphic/headers");
-var import_stringUtils = require("../utils/isomorphic/stringUtils");
-var import_urlMatch = require("../utils/isomorphic/urlMatch");
-var import_manualPromise = require("../utils/isomorphic/manualPromise");
-var import_rtti = require("../utils/isomorphic/rtti");
+const import_accessibility = require("./accessibility");
+const import_artifact = require("./artifact");
+const import_channelOwner = require("./channelOwner");
+const import_clientHelper = require("./clientHelper");
+const import_coverage = require("./coverage");
+const import_download = require("./download");
+const import_elementHandle = require("./elementHandle");
+const import_errors = require("./errors");
+const import_events = require("./events");
+const import_fileChooser = require("./fileChooser");
+const import_frame = require("./frame");
+const import_harRouter = require("./harRouter");
+const import_input = require("./input");
+const import_jsHandle = require("./jsHandle");
+const import_network = require("./network");
+const import_video = require("./video");
+const import_waiter = require("./waiter");
+const import_worker = require("./worker");
+const import_timeoutSettings = require("./timeoutSettings");
+const import_assert = require("../utils/isomorphic/assert");
+const import_fileUtils = require("./fileUtils");
+const import_headers = require("../utils/isomorphic/headers");
+const import_stringUtils = require("../utils/isomorphic/stringUtils");
+const import_urlMatch = require("../utils/isomorphic/urlMatch");
+const import_manualPromise = require("../utils/isomorphic/manualPromise");
+const import_rtti = require("../utils/isomorphic/rtti");
 class Page extends import_channelOwner.ChannelOwner {
   constructor(parent, type, guid, initializer) {
     super(parent, type, guid, initializer);

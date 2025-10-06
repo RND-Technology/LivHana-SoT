@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createForm = exports.multipartFormRequestOptions = exports.maybeMultipartFormRequestOptions = exports.isMultipartBody = exports.toFile = exports.isUploadable = exports.isBlobLike = exports.isFileLike = exports.isResponseLike = exports.fileFromPath = void 0;
 const index_1 = require("./_shims/index.js");
-var index_2 = require("./_shims/index.js");
+const index_2 = require("./_shims/index.js");
 Object.defineProperty(exports, "fileFromPath", { enumerable: true, get: function () { return index_2.fileFromPath; } });
 const isResponseLike = (value) => value != null &&
     typeof value === 'object' &&
@@ -68,7 +68,7 @@ async function toFile(value, name, options) {
 }
 exports.toFile = toFile;
 async function getBytes(value) {
-    let parts = [];
+    const parts = [];
     if (typeof value === 'string' ||
         ArrayBuffer.isView(value) || // includes Uint8Array, Buffer, etc.
         value instanceof ArrayBuffer) {

@@ -19,19 +19,19 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 // USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-var common = require('./common');
-var assert = require('assert');
-var events = require('../');
-var test = require('tape');
+const common = require('./common');
+const assert = require('assert');
+const events = require('../');
+const test = require('tape');
 
 function expect(expected) {
-  var actual = [];
+  const actual = [];
   test.onFinish(function() {
-    var sortedActual = actual.sort();
-    var sortedExpected = expected.sort();
+    const sortedActual = actual.sort();
+    const sortedExpected = expected.sort();
     assert.strictEqual(sortedActual.length, sortedExpected.length);
-    for (var index = 0; index < sortedActual.length; index++) {
-      var value = sortedActual[index];
+    for (let index = 0; index < sortedActual.length; index++) {
+      const value = sortedActual[index];
       assert.strictEqual(value, sortedExpected[index]);
     }
   });
@@ -43,14 +43,14 @@ function expect(expected) {
 
 {
   var ee = new events.EventEmitter();
-  var noop = common.mustNotCall();
+  const noop = common.mustNotCall();
   ee.on('foo', noop);
   ee.on('bar', noop);
   ee.on('baz', noop);
   ee.on('baz', noop);
-  var fooListeners = ee.listeners('foo');
-  var barListeners = ee.listeners('bar');
-  var bazListeners = ee.listeners('baz');
+  const fooListeners = ee.listeners('foo');
+  const barListeners = ee.listeners('bar');
+  const bazListeners = ee.listeners('baz');
   ee.on('removeListener', expect(['bar', 'baz', 'baz']));
   ee.removeAllListeners('bar');
   ee.removeAllListeners('baz');
@@ -109,7 +109,7 @@ function expect(expected) {
 
 {
   var ee = new events.EventEmitter();
-  var expectLength = 2;
+  let expectLength = 2;
   ee.on('removeListener', function() {
     assert.strictEqual(expectLength--, this.listeners('baz').length);
   });

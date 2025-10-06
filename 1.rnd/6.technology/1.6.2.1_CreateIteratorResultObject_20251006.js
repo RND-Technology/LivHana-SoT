@@ -1,6 +1,6 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
 // https://262.ecma-international.org/16.0/#sec-createiterresultobject
 

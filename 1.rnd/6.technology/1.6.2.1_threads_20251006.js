@@ -21,6 +21,6 @@ class ThreadsBaseWorker {
     return runBaseTests(state);
   }
 }
-var threads = new ThreadsBaseWorker();
+const threads = new ThreadsBaseWorker();
 
 export { threads as default };

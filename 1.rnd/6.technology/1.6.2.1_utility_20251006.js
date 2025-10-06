@@ -7,7 +7,7 @@
 (function () {
     'use strict';
 
-    var VERSION;
+    let VERSION;
 
     VERSION = require('../package.json').version;
     exports.VERSION = VERSION;
@@ -17,7 +17,7 @@
         this.message = message;
     }
     DoctrineError.prototype = (function () {
-        var Middle = function () { };
+        const Middle = function () { };
         Middle.prototype = Error.prototype;
         return new Middle();
     }());

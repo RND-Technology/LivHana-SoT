@@ -1,11 +1,11 @@
-var cloneArrayBuffer = require('./_cloneArrayBuffer'),
+const cloneArrayBuffer = require('./_cloneArrayBuffer'),
     cloneDataView = require('./_cloneDataView'),
     cloneRegExp = require('./_cloneRegExp'),
     cloneSymbol = require('./_cloneSymbol'),
     cloneTypedArray = require('./_cloneTypedArray');
 
 /** `Object#toString` result references. */
-var boolTag = '[object Boolean]',
+const boolTag = '[object Boolean]',
     dateTag = '[object Date]',
     mapTag = '[object Map]',
     numberTag = '[object Number]',
@@ -14,7 +14,7 @@ var boolTag = '[object Boolean]',
     stringTag = '[object String]',
     symbolTag = '[object Symbol]';
 
-var arrayBufferTag = '[object ArrayBuffer]',
+const arrayBufferTag = '[object ArrayBuffer]',
     dataViewTag = '[object DataView]',
     float32Tag = '[object Float32Array]',
     float64Tag = '[object Float64Array]',
@@ -39,7 +39,7 @@ var arrayBufferTag = '[object ArrayBuffer]',
  * @returns {Object} Returns the initialized clone.
  */
 function initCloneByTag(object, tag, isDeep) {
-  var Ctor = object.constructor;
+  const Ctor = object.constructor;
   switch (tag) {
     case arrayBufferTag:
       return cloneArrayBuffer(object);

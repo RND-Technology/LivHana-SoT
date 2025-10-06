@@ -18,7 +18,7 @@ function inject(key) {
   return workerState.providedContext[key];
 }
 
-var dist = {};
+const dist = {};
 
 (function (exports) {
 	Object.defineProperty(exports, "__esModule", { value: true });
@@ -97,7 +97,7 @@ function noop() {
 }
 const assertType = noop;
 
-var VitestIndex = /*#__PURE__*/Object.freeze({
+const VitestIndex = /*#__PURE__*/Object.freeze({
   __proto__: null,
   afterAll: afterAll,
   afterEach: afterEach,

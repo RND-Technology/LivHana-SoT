@@ -4,7 +4,7 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 exports.default = void 0;
-var _jestUtil = require('jest-util');
+const _jestUtil = require('jest-util');
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -113,5 +113,5 @@ const _addSnapshotData = (results, snapshotState) => {
   // Copy the array to prevent memory leaks
   results.snapshot.uncheckedKeys = Array.from(uncheckedKeys);
 };
-var _default = jestAdapter;
+const _default = jestAdapter;
 exports.default = _default;

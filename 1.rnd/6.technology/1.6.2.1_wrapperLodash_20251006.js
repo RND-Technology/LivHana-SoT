@@ -1,4 +1,4 @@
-var LazyWrapper = require('./_LazyWrapper'),
+const LazyWrapper = require('./_LazyWrapper'),
     LodashWrapper = require('./_LodashWrapper'),
     baseLodash = require('./_baseLodash'),
     isArray = require('./isArray'),
@@ -6,10 +6,10 @@ var LazyWrapper = require('./_LazyWrapper'),
     wrapperClone = require('./_wrapperClone');
 
 /** Used for built-in method references. */
-var objectProto = Object.prototype;
+const objectProto = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty = objectProto.hasOwnProperty;
+const hasOwnProperty = objectProto.hasOwnProperty;
 
 /**
  * Creates a `lodash` object which wraps `value` to enable implicit method

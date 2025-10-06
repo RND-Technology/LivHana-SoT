@@ -1,31 +1,31 @@
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+const GetIntrinsic = require('get-intrinsic');
 
-var $SyntaxError = require('es-errors/syntax');
-var $TypeError = require('es-errors/type');
-var isObject = require('es-object-atoms/isObject');
-var $Promise = GetIntrinsic('%Promise%', true);
+const $SyntaxError = require('es-errors/syntax');
+const $TypeError = require('es-errors/type');
+const isObject = require('es-object-atoms/isObject');
+const $Promise = GetIntrinsic('%Promise%', true);
 
-var Call = require('./Call');
-var CreateIterResultObject = require('./CreateIterResultObject');
-var Get = require('./Get');
-var GetMethod = require('./GetMethod');
-var IteratorComplete = require('./IteratorComplete');
-var IteratorNext = require('./IteratorNext');
-var IteratorValue = require('./IteratorValue');
-var ObjectCreate = require('./ObjectCreate');
-var PromiseResolve = require('./PromiseResolve');
+const Call = require('./Call');
+const CreateIterResultObject = require('./CreateIterResultObject');
+const Get = require('./Get');
+const GetMethod = require('./GetMethod');
+const IteratorComplete = require('./IteratorComplete');
+const IteratorNext = require('./IteratorNext');
+const IteratorValue = require('./IteratorValue');
+const ObjectCreate = require('./ObjectCreate');
+const PromiseResolve = require('./PromiseResolve');
 
-var isIteratorRecord = require('../helpers/records/iterator-record-2023');
+const isIteratorRecord = require('../helpers/records/iterator-record-2023');
 
-var SLOT = require('internal-slot');
+const SLOT = require('internal-slot');
 
-var callBound = require('call-bound');
+const callBound = require('call-bound');
 
-var $then = callBound('Promise.prototype.then', true);
+const $then = callBound('Promise.prototype.then', true);
 
-var AsyncFromSyncIteratorContinuation = function AsyncFromSyncIteratorContinuation(result) {
+const AsyncFromSyncIteratorContinuation = function AsyncFromSyncIteratorContinuation(result) {
 	if (!isObject(result)) {
 		throw new $TypeError('Assertion failed: Type(O) is not Object');
 	}
@@ -39,33 +39,33 @@ var AsyncFromSyncIteratorContinuation = function AsyncFromSyncIteratorContinuati
 	}
 
 	return new $Promise(function (resolve) {
-		var done = IteratorComplete(result); // step 2
-		var value = IteratorValue(result); // step 4
-		var valueWrapper = PromiseResolve($Promise, value); // step 6
+		const done = IteratorComplete(result); // step 2
+		const value = IteratorValue(result); // step 4
+		const valueWrapper = PromiseResolve($Promise, value); // step 6
 
 		// eslint-disable-next-line no-shadow
-		var onFulfilled = function (value) { // steps 8-9
+		const onFulfilled = function (value) { // steps 8-9
 			return CreateIterResultObject(value, done); // step 8.a
 		};
 		resolve($then(valueWrapper, onFulfilled)); // step 11
 	}); // step 12
 };
 
-var $AsyncFromSyncIteratorPrototype = GetIntrinsic('%AsyncFromSyncIteratorPrototype%', true) || {
+const $AsyncFromSyncIteratorPrototype = GetIntrinsic('%AsyncFromSyncIteratorPrototype%', true) || {
 	next: function next(value) {
 		if (!$Promise) {
 			throw new $SyntaxError('This environment does not support Promises.');
 		}
 
-		var O = this; // step 1
+		const O = this; // step 1
 
 		SLOT.assert(O, '[[SyncIteratorRecord]]'); // step 2
 
-		var argsLength = arguments.length;
+		const argsLength = arguments.length;
 
 		return new $Promise(function (resolve) { // step 3
-			var syncIteratorRecord = SLOT.get(O, '[[SyncIteratorRecord]]'); // step 4
-			var result;
+			const syncIteratorRecord = SLOT.get(O, '[[SyncIteratorRecord]]'); // step 4
+			let result;
 			if (argsLength > 0) {
 				result = IteratorNext(syncIteratorRecord['[[Iterator]]'], value); // step 5.a
 			} else { // step 6
@@ -79,23 +79,23 @@ var $AsyncFromSyncIteratorPrototype = GetIntrinsic('%AsyncFromSyncIteratorProtot
 			throw new $SyntaxError('This environment does not support Promises.');
 		}
 
-		var O = this; // step 1
+		const O = this; // step 1
 
 		SLOT.assert(O, '[[SyncIteratorRecord]]'); // step 2
 
-		var valueIsPresent = arguments.length > 0;
-		var value = valueIsPresent ? arguments[0] : void undefined;
+		const valueIsPresent = arguments.length > 0;
+		const value = valueIsPresent ? arguments[0] : void undefined;
 
 		return new $Promise(function (resolve, reject) { // step 3
-			var syncIterator = SLOT.get(O, '[[SyncIteratorRecord]]')['[[Iterator]]']; // step 4
-			var iteratorReturn = GetMethod(syncIterator, 'return'); // step 5
+			const syncIterator = SLOT.get(O, '[[SyncIteratorRecord]]')['[[Iterator]]']; // step 4
+			const iteratorReturn = GetMethod(syncIterator, 'return'); // step 5
 
 			if (typeof iteratorReturn === 'undefined') { // step 7
-				var iterResult = CreateIterResultObject(value, true); // step 7.a
+				const iterResult = CreateIterResultObject(value, true); // step 7.a
 				Call(resolve, undefined, [iterResult]); // step 7.b
 				return;
 			}
-			var result;
+			let result;
 			if (valueIsPresent) { // step 8
 				result = Call(iteratorReturn, syncIterator, [value]); // step 8.a
 			} else { // step 9
@@ -114,24 +114,24 @@ var $AsyncFromSyncIteratorPrototype = GetIntrinsic('%AsyncFromSyncIteratorProtot
 			throw new $SyntaxError('This environment does not support Promises.');
 		}
 
-		var O = this; // step 1
+		const O = this; // step 1
 
 		SLOT.assert(O, '[[SyncIteratorRecord]]'); // step 2
 
-		var valueIsPresent = arguments.length > 0;
-		var value = valueIsPresent ? arguments[0] : void undefined;
+		const valueIsPresent = arguments.length > 0;
+		const value = valueIsPresent ? arguments[0] : void undefined;
 
 		return new $Promise(function (resolve, reject) { // step 3
-			var syncIterator = SLOT.get(O, '[[SyncIteratorRecord]]')['[[Iterator]]']; // step 4
+			const syncIterator = SLOT.get(O, '[[SyncIteratorRecord]]')['[[Iterator]]']; // step 4
 
-			var throwMethod = GetMethod(syncIterator, 'throw'); // step 5
+			const throwMethod = GetMethod(syncIterator, 'throw'); // step 5
 
 			if (typeof throwMethod === 'undefined') { // step 7
 				Call(reject, undefined, [value]); // step 7.a
 				return;
 			}
 
-			var result;
+			let result;
 			if (valueIsPresent) { // step 8
 				result = Call(throwMethod, syncIterator, [value]); // step 8.a
 			} else { // step 9
@@ -155,11 +155,11 @@ module.exports = function CreateAsyncFromSyncIterator(syncIteratorRecord) {
 	}
 
 	// var asyncIterator = ObjectCreate(%AsyncFromSyncIteratorPrototype%, « [[SyncIteratorRecord]] »); // step 1
-	var asyncIterator = ObjectCreate($AsyncFromSyncIteratorPrototype);
+	const asyncIterator = ObjectCreate($AsyncFromSyncIteratorPrototype);
 
 	SLOT.set(asyncIterator, '[[SyncIteratorRecord]]', syncIteratorRecord); // step 2
 
-	var nextMethod = Get(asyncIterator, 'next'); // step 3
+	const nextMethod = Get(asyncIterator, 'next'); // step 3
 
 	return { // steps 3-4
 		'[[Iterator]]': asyncIterator,

@@ -8,19 +8,19 @@ exports.calcLineCount = calcLineCount;
 exports.merge = merge;
 
 /*istanbul ignore end*/
-var
+const
 /*istanbul ignore start*/
 _create = require("./create")
 /*istanbul ignore end*/
 ;
 
-var
+const
 /*istanbul ignore start*/
 _parse = require("./parse")
 /*istanbul ignore end*/
 ;
 
-var
+const
 /*istanbul ignore start*/
 _array = require("../util/array")
 /*istanbul ignore end*/
@@ -37,7 +37,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 /*istanbul ignore end*/
 function calcLineCount(hunk) {
   /*istanbul ignore start*/
-  var _calcOldNewLineCount =
+  const _calcOldNewLineCount =
   /*istanbul ignore end*/
   calcOldNewLineCount(hunk.lines),
       oldLines = _calcOldNewLineCount.oldLines,
@@ -59,7 +59,7 @@ function calcLineCount(hunk) {
 function merge(mine, theirs, base) {
   mine = loadPatch(mine, base);
   theirs = loadPatch(theirs, base);
-  var ret = {}; // For index we just let it pass through as it doesn't have any necessary meaning.
+  const ret = {}; // For index we just let it pass through as it doesn't have any necessary meaning.
   // Leaving sanity checks on this to the API consumer that may know more about the
   // meaning in their own context.
 
@@ -90,13 +90,13 @@ function merge(mine, theirs, base) {
   }
 
   ret.hunks = [];
-  var mineIndex = 0,
+  let mineIndex = 0,
       theirsIndex = 0,
       mineOffset = 0,
       theirsOffset = 0;
 
   while (mineIndex < mine.hunks.length || theirsIndex < theirs.hunks.length) {
-    var mineCurrent = mine.hunks[mineIndex] || {
+    const mineCurrent = mine.hunks[mineIndex] || {
       oldStart: Infinity
     },
         theirsCurrent = theirs.hunks[theirsIndex] || {
@@ -115,7 +115,7 @@ function merge(mine, theirs, base) {
       mineOffset += theirsCurrent.newLines - theirsCurrent.oldLines;
     } else {
       // Overlap, merge as best we can
-      var mergedHunk = {
+      const mergedHunk = {
         oldStart: Math.min(mineCurrent.oldStart, theirsCurrent.oldStart),
         oldLines: 0,
         newStart: Math.min(mineCurrent.newStart + mineOffset, theirsCurrent.oldStart + theirsOffset),
@@ -207,7 +207,7 @@ function cloneHunk(hunk, offset) {
 function mergeLines(hunk, mineOffset, mineLines, theirOffset, theirLines) {
   // This will generally result in a conflicted hunk, but there are cases where the context
   // is the only overlap where we can successfully merge the content here.
-  var mine = {
+  const mine = {
     offset: mineOffset,
     lines: mineLines,
     index: 0
@@ -222,7 +222,7 @@ function mergeLines(hunk, mineOffset, mineLines, theirOffset, theirLines) {
   insertLeading(hunk, their, mine); // Now in the overlap content. Scan through and select the best changes from each.
 
   while (mine.index < mine.lines.length && their.index < their.lines.length) {
-    var mineCurrent = mine.lines[mine.index],
+    const mineCurrent = mine.lines[mine.index],
         theirCurrent = their.lines[their.index];
 
     if ((mineCurrent[0] === '-' || mineCurrent[0] === '+') && (theirCurrent[0] === '-' || theirCurrent[0] === '+')) {
@@ -298,7 +298,7 @@ function mergeLines(hunk, mineOffset, mineLines, theirOffset, theirLines) {
 }
 
 function mutualChange(hunk, mine, their) {
-  var myChanges = collectChange(mine),
+  const myChanges = collectChange(mine),
       theirChanges = collectChange(their);
 
   if (allRemoves(myChanges) && allRemoves(theirChanges)) {
@@ -317,7 +317,7 @@ function mutualChange(hunk, mine, their) {
     /*istanbul ignore end*/
     (myChanges, theirChanges) && skipRemoveSuperset(their, myChanges, myChanges.length - theirChanges.length)) {
       /*istanbul ignore start*/
-      var _hunk$lines3;
+      let _hunk$lines3;
 
       /*istanbul ignore end*/
 
@@ -353,7 +353,7 @@ function mutualChange(hunk, mine, their) {
     /*istanbul ignore end*/
     (theirChanges, myChanges) && skipRemoveSuperset(mine, theirChanges, theirChanges.length - myChanges.length)) {
       /*istanbul ignore start*/
-      var _hunk$lines4;
+      let _hunk$lines4;
 
       /*istanbul ignore end*/
 
@@ -390,7 +390,7 @@ function mutualChange(hunk, mine, their) {
   /*istanbul ignore end*/
   (myChanges, theirChanges)) {
     /*istanbul ignore start*/
-    var _hunk$lines5;
+    let _hunk$lines5;
 
     /*istanbul ignore end*/
 
@@ -418,12 +418,12 @@ function mutualChange(hunk, mine, their) {
 }
 
 function removal(hunk, mine, their, swap) {
-  var myChanges = collectChange(mine),
+  const myChanges = collectChange(mine),
       theirChanges = collectContext(their, myChanges);
 
   if (theirChanges.merged) {
     /*istanbul ignore start*/
-    var _hunk$lines6;
+    let _hunk$lines6;
 
     /*istanbul ignore end*/
 
@@ -459,7 +459,7 @@ function conflict(hunk, mine, their) {
 
 function insertLeading(hunk, insert, their) {
   while (insert.offset < their.offset && insert.index < insert.lines.length) {
-    var line = insert.lines[insert.index++];
+    const line = insert.lines[insert.index++];
     hunk.lines.push(line);
     insert.offset++;
   }
@@ -467,17 +467,17 @@ function insertLeading(hunk, insert, their) {
 
 function insertTrailing(hunk, insert) {
   while (insert.index < insert.lines.length) {
-    var line = insert.lines[insert.index++];
+    const line = insert.lines[insert.index++];
     hunk.lines.push(line);
   }
 }
 
 function collectChange(state) {
-  var ret = [],
+  let ret = [],
       operation = state.lines[state.index][0];
 
   while (state.index < state.lines.length) {
-    var line = state.lines[state.index]; // Group additions that are immediately after subtractions and treat them as one "atomic" modify change.
+    const line = state.lines[state.index]; // Group additions that are immediately after subtractions and treat them as one "atomic" modify change.
 
     if (operation === '-' && line[0] === '+') {
       operation = '+';
@@ -495,14 +495,14 @@ function collectChange(state) {
 }
 
 function collectContext(state, matchChanges) {
-  var changes = [],
+  let changes = [],
       merged = [],
       matchIndex = 0,
       contextChanges = false,
       conflicted = false;
 
   while (matchIndex < matchChanges.length && state.index < state.lines.length) {
-    var change = state.lines[state.index],
+    let change = state.lines[state.index],
         match = matchChanges[matchIndex]; // Once we've hit our add, then we are done
 
     if (match[0] === '+') {
@@ -556,8 +556,8 @@ function allRemoves(changes) {
 }
 
 function skipRemoveSuperset(state, removeChanges, delta) {
-  for (var i = 0; i < delta; i++) {
-    var changeContent = removeChanges[removeChanges.length - delta + i].substr(1);
+  for (let i = 0; i < delta; i++) {
+    const changeContent = removeChanges[removeChanges.length - delta + i].substr(1);
 
     if (state.lines[state.index + i] !== ' ' + changeContent) {
       return false;
@@ -569,12 +569,12 @@ function skipRemoveSuperset(state, removeChanges, delta) {
 }
 
 function calcOldNewLineCount(lines) {
-  var oldLines = 0;
-  var newLines = 0;
+  let oldLines = 0;
+  let newLines = 0;
   lines.forEach(function (line) {
     if (typeof line !== 'string') {
-      var myCount = calcOldNewLineCount(line.mine);
-      var theirCount = calcOldNewLineCount(line.theirs);
+      const myCount = calcOldNewLineCount(line.mine);
+      const theirCount = calcOldNewLineCount(line.theirs);
 
       if (oldLines !== undefined) {
         if (myCount.oldLines === theirCount.oldLines) {

@@ -2,7 +2,7 @@
 
 /* eslint global-require: 0 */
 // https://262.ecma-international.org/15.0/#sec-abstract-operations
-var ES2024 = {
+const ES2024 = {
 	abs: require('./2024/abs'),
 	AddEntriesFromIterable: require('./2024/AddEntriesFromIterable'),
 	AddToKeptObjects: require('./2024/AddToKeptObjects'),

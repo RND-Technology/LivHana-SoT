@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
 exports.orderQuantityUnitSchema = void 0;
-var schema_1 = require("../schema");
-var measurementUnit_1 = require("./measurementUnit");
+const schema_1 = require("../schema");
+const measurementUnit_1 = require("./measurementUnit");
 exports.orderQuantityUnitSchema = (0, schema_1.object)({
     measurementUnit: [
         'measurement_unit',

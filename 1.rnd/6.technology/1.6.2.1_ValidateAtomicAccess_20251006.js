@@ -1,12 +1,12 @@
 'use strict';
 
-var $RangeError = require('es-errors/range');
-var $TypeError = require('es-errors/type');
+const $RangeError = require('es-errors/range');
+const $TypeError = require('es-errors/type');
 
-var ToIndex = require('./ToIndex');
+const ToIndex = require('./ToIndex');
 
-var isTypedArray = require('is-typed-array');
-var typedArrayLength = require('typed-array-length');
+const isTypedArray = require('is-typed-array');
+const typedArrayLength = require('typed-array-length');
 
 // https://262.ecma-international.org/8.0/#sec-validateatomicaccess
 
@@ -15,9 +15,9 @@ module.exports = function ValidateAtomicAccess(typedArray, requestIndex) {
 		throw new $TypeError('Assertion failed: `typedArray` must be a TypedArray'); // step 1
 	}
 
-	var accessIndex = ToIndex(requestIndex); // step 2
+	const accessIndex = ToIndex(requestIndex); // step 2
 
-	var length = typedArrayLength(typedArray); // step 3
+	const length = typedArrayLength(typedArray); // step 3
 
 	/*
 	// this assertion can never be reached

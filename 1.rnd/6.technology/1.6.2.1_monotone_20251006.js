@@ -7,7 +7,7 @@ function sign(x) {
 // Interpolation in One Dimension. Astronomy and Astrophysics, Vol. 239, NO.
 // NOV(II), P. 443, 1990.
 function slope3(that, x2, y2) {
-  var h0 = that._x1 - that._x0,
+  const h0 = that._x1 - that._x0,
       h1 = x2 - that._x1,
       s0 = (that._y1 - that._y0) / (h0 || h1 < 0 && -0),
       s1 = (y2 - that._y1) / (h1 || h0 < 0 && -0),
@@ -17,7 +17,7 @@ function slope3(that, x2, y2) {
 
 // Calculate a one-sided slope.
 function slope2(that, t) {
-  var h = that._x1 - that._x0;
+  const h = that._x1 - that._x0;
   return h ? (3 * (that._y1 - that._y0) / h - t) / 2 : t;
 }
 
@@ -25,7 +25,7 @@ function slope2(that, t) {
 // "you can express cubic Hermite interpolation in terms of cubic Bézier curves
 // with respect to the four values p0, p0 + m0 / 3, p1 - m1 / 3, p1".
 function point(that, t0, t1) {
-  var x0 = that._x0,
+  const x0 = that._x0,
       y0 = that._y0,
       x1 = that._x1,
       y1 = that._y1,
@@ -59,7 +59,7 @@ MonotoneX.prototype = {
     this._line = 1 - this._line;
   },
   point: function(x, y) {
-    var t1 = NaN;
+    let t1 = NaN;
 
     x = +x, y = +y;
     if (x === this._x1 && y === this._y1) return; // Ignore coincident points.

@@ -59,5 +59,5 @@ class JestHooks {
     return this._emitter;
   }
 }
-var _default = JestHooks;
+const _default = JestHooks;
 exports.default = _default;

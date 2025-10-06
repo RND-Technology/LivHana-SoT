@@ -8,6 +8,6 @@ exports.Cell = void 0;
  * @fileOverview Cross
  */
 
-var Cell = _props => null;
+const Cell = _props => null;
 exports.Cell = Cell;
 Cell.displayName = 'Cell';

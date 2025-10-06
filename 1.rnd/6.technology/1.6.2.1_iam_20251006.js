@@ -16,7 +16,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Iam = exports.IAMExceptionMessages = void 0;
 const promisify_1 = require("@google-cloud/promisify");
 const util_js_1 = require("./util.js");
-var IAMExceptionMessages;
+let IAMExceptionMessages;
 (function (IAMExceptionMessages) {
     IAMExceptionMessages["POLICY_OBJECT_REQUIRED"] = "A policy object is required.";
     IAMExceptionMessages["PERMISSIONS_REQUIRED"] = "Permissions are required.";

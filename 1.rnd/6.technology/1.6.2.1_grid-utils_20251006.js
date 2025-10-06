@@ -1,9 +1,9 @@
-let parser = require('postcss-value-parser')
-let list = require('postcss').list
+const parser = require('postcss-value-parser')
+const list = require('postcss').list
 
-let uniq = require('../utils').uniq
-let escapeRegexp = require('../utils').escapeRegexp
-let splitSelector = require('../utils').splitSelector
+const uniq = require('../utils').uniq
+const escapeRegexp = require('../utils').escapeRegexp
+const splitSelector = require('../utils').splitSelector
 
 function convert(value) {
   if (
@@ -25,15 +25,15 @@ function convert(value) {
 exports.translate = translate
 
 function translate(values, startIndex, endIndex) {
-  let startValue = values[startIndex]
-  let endValue = values[endIndex]
+  const startValue = values[startIndex]
+  const endValue = values[endIndex]
 
   if (!startValue) {
     return [false, false]
   }
 
-  let [start, spanStart] = convert(startValue)
-  let [end, spanEnd] = convert(endValue)
+  const [start, spanStart] = convert(startValue)
+  const [end, spanEnd] = convert(endValue)
 
   if (start && !endValue) {
     return [start, false]
@@ -57,13 +57,13 @@ function translate(values, startIndex, endIndex) {
 exports.parse = parse
 
 function parse(decl) {
-  let node = parser(decl.value)
+  const node = parser(decl.value)
 
-  let values = []
+  const values = []
   let current = 0
   values[current] = []
 
-  for (let i of node.nodes) {
+  for (const i of node.nodes) {
     if (i.type === 'div') {
       current += 1
       values[current] = []
@@ -114,7 +114,7 @@ function transformRepeat({ nodes }, { gap }) {
   // insert gap values
   if (gap) {
     size = size.filter(i => i.trim())
-    let val = []
+    const val = []
     for (let i = 1; i <= count; i++) {
       size.forEach((item, index) => {
         if (index > 0 || i > 1) {
@@ -133,7 +133,7 @@ function transformRepeat({ nodes }, { gap }) {
 exports.prefixTrackValue = prefixTrackValue
 
 function prefixTrackValue({ gap, value }) {
-  let result = parser(value).nodes.reduce((nodes, node) => {
+  const result = parser(value).nodes.reduce((nodes, node) => {
     if (node.type === 'function' && node.value === 'repeat') {
       return nodes.concat({
         type: 'word',
@@ -161,7 +161,7 @@ function prefixTrackValue({ gap, value }) {
 
 // Parse grid-template-areas
 
-let DOTS = /^\.+$/
+const DOTS = /^\.+$/
 
 function track(start, end) {
   return { end, span: end - start, start }
@@ -190,7 +190,7 @@ function parseGridAreas({ gap, rows }) {
           row: track(rowIndex + 1, rowIndex + 2)
         }
       } else {
-        let { column, row } = areas[area]
+        const { column, row } = areas[area]
 
         column.start = Math.min(column.start, columnIndex + 1)
         column.end = Math.max(column.end, columnIndex + 2)
@@ -222,9 +222,9 @@ function verifyRowSize(result) {
 exports.parseTemplate = parseTemplate
 
 function parseTemplate({ decl, gap }) {
-  let gridTemplate = parser(decl.value).nodes.reduce(
+  const gridTemplate = parser(decl.value).nodes.reduce(
     (result, node) => {
-      let { type, value } = node
+      const { type, value } = node
 
       if (testTrack(node) || type === 'space') return result
 
@@ -281,7 +281,7 @@ function parseTemplate({ decl, gap }) {
  * @return {Array<Object>}
  */
 function getMSDecls(area, addRowSpan = false, addColumnSpan = false) {
-  let result = [
+  const result = [
     {
       prop: '-ms-grid-row',
       value: String(area.row.start)
@@ -324,8 +324,8 @@ function getParentMedia(parent) {
  */
 function changeDuplicateAreaSelectors(ruleSelectors, templateSelectors) {
   ruleSelectors = ruleSelectors.map(selector => {
-    let selectorBySpace = list.space(selector)
-    let selectorByComma = list.comma(selector)
+    const selectorBySpace = list.space(selector)
+    const selectorByComma = list.comma(selector)
 
     if (selectorBySpace.length > selectorByComma.length) {
       selector = selectorBySpace.slice(-1).join('')
@@ -334,8 +334,8 @@ function changeDuplicateAreaSelectors(ruleSelectors, templateSelectors) {
   })
 
   return ruleSelectors.map(ruleSelector => {
-    let newSelector = templateSelectors.map((tplSelector, index) => {
-      let space = index === 0 ? '' : ' '
+    const newSelector = templateSelectors.map((tplSelector, index) => {
+      const space = index === 0 ? '' : ' '
       return `${space}${tplSelector} > ${ruleSelector}`
     })
 
@@ -361,17 +361,17 @@ function selectorsEqual(ruleA, ruleB) {
  * @return {Object} parsed data
  */
 function parseGridTemplatesData(css) {
-  let parsed = []
+  const parsed = []
 
   // we walk through every grid-template(-areas) declaration and store
   // data with the same area names inside the item
   css.walkDecls(/grid-template(-areas)?$/, d => {
-    let rule = d.parent
-    let media = getParentMedia(rule)
-    let gap = getGridGap(d)
-    let inheritedGap = inheritGridGap(d, gap)
-    let { areas } = parseTemplate({ decl: d, gap: inheritedGap || gap })
-    let areaNames = Object.keys(areas)
+    const rule = d.parent
+    const media = getParentMedia(rule)
+    const gap = getGridGap(d)
+    const inheritedGap = inheritGridGap(d, gap)
+    const { areas } = parseTemplate({ decl: d, gap: inheritedGap || gap })
+    const areaNames = Object.keys(areas)
 
     // skip node if it doesn't have areas
     if (areaNames.length === 0) {
@@ -380,24 +380,24 @@ function parseGridTemplatesData(css) {
 
     // check parsed array for item that include the same area names
     // return index of that item
-    let index = parsed.reduce((acc, { allAreas }, idx) => {
-      let hasAreas = allAreas && areaNames.some(area => allAreas.includes(area))
+    const index = parsed.reduce((acc, { allAreas }, idx) => {
+      const hasAreas = allAreas && areaNames.some(area => allAreas.includes(area))
       return hasAreas ? idx : acc
     }, null)
 
     if (index !== null) {
       // index is found, add the grid-template data to that item
-      let { allAreas, rules } = parsed[index]
+      const { allAreas, rules } = parsed[index]
 
       // check if rule has no duplicate area names
-      let hasNoDuplicates = rules.some(r => {
+      const hasNoDuplicates = rules.some(r => {
         return r.hasDuplicates === false && selectorsEqual(r, rule)
       })
 
       let duplicatesFound = false
 
       // check need to gather all duplicate area names
-      let duplicateAreaNames = rules.reduce((acc, r) => {
+      const duplicateAreaNames = rules.reduce((acc, r) => {
         if (!r.params && selectorsEqual(r, rule)) {
           duplicatesFound = true
           return r.duplicateAreaNames
@@ -416,7 +416,7 @@ function parseGridTemplatesData(css) {
       // area names. @see #1084 and #1146
       rules.forEach(r => {
         areaNames.forEach(name => {
-          let area = r.areas[name]
+          const area = r.areas[name]
           if (area && area.row.span !== areas[name].row.span) {
             areas[name].row.updateSpan = true
           }
@@ -471,7 +471,7 @@ exports.insertAreas = insertAreas
 
 function insertAreas(css, isDisabled) {
   // parse grid-template declarations
-  let gridTemplatesData = parseGridTemplatesData(css)
+  const gridTemplatesData = parseGridTemplatesData(css)
 
   // return undefined if no declarations found
   if (gridTemplatesData.length === 0) {
@@ -479,31 +479,31 @@ function insertAreas(css, isDisabled) {
   }
 
   // we need to store the rules that we will insert later
-  let rulesToInsert = {}
+  const rulesToInsert = {}
 
   css.walkDecls('grid-area', gridArea => {
-    let gridAreaRule = gridArea.parent
-    let hasPrefixedRow = gridAreaRule.first.prop === '-ms-grid-row'
-    let gridAreaMedia = getParentMedia(gridAreaRule)
+    const gridAreaRule = gridArea.parent
+    const hasPrefixedRow = gridAreaRule.first.prop === '-ms-grid-row'
+    const gridAreaMedia = getParentMedia(gridAreaRule)
 
     if (isDisabled(gridArea)) {
       return undefined
     }
 
-    let gridAreaRuleIndex = css.index(gridAreaMedia || gridAreaRule)
+    const gridAreaRuleIndex = css.index(gridAreaMedia || gridAreaRule)
 
-    let value = gridArea.value
+    const value = gridArea.value
     // found the data that matches grid-area identifier
-    let data = gridTemplatesData.filter(d => d.allAreas.includes(value))[0]
+    const data = gridTemplatesData.filter(d => d.allAreas.includes(value))[0]
 
     if (!data) {
       return true
     }
 
-    let lastArea = data.allAreas[data.allAreas.length - 1]
-    let selectorBySpace = list.space(gridAreaRule.selector)
-    let selectorByComma = list.comma(gridAreaRule.selector)
-    let selectorIsComplex =
+    const lastArea = data.allAreas[data.allAreas.length - 1]
+    const selectorBySpace = list.space(gridAreaRule.selector)
+    const selectorByComma = list.comma(gridAreaRule.selector)
+    const selectorIsComplex =
       selectorBySpace.length > 1 &&
       selectorBySpace.length > selectorByComma.length
 
@@ -521,13 +521,13 @@ function insertAreas(css, isDisabled) {
     let lastRuleIsSet = false
 
     // walk through every grid-template rule data
-    for (let rule of data.rules) {
-      let area = rule.areas[value]
-      let hasDuplicateName = rule.duplicateAreaNames.includes(value)
+    for (const rule of data.rules) {
+      const area = rule.areas[value]
+      const hasDuplicateName = rule.duplicateAreaNames.includes(value)
 
       // if we can't find the area name, update lastRule and continue
       if (!area) {
-        let lastRule = rulesToInsert[lastArea].lastRule
+        const lastRule = rulesToInsert[lastArea].lastRule
         let lastRuleIndex
         if (lastRule) {
           lastRuleIndex = css.index(lastRule)
@@ -567,7 +567,7 @@ function insertAreas(css, isDisabled) {
         lastRuleIsSet = true
       } else if (rule.hasDuplicates && !rule.params && !selectorIsComplex) {
         // grid-template has duplicates and not inside media rule
-        let cloned = gridAreaRule.clone()
+        const cloned = gridAreaRule.clone()
         cloned.removeAll()
 
         getMSDecls(area, area.row.updateSpan, area.column.updateSpan)
@@ -617,7 +617,7 @@ function insertAreas(css, isDisabled) {
         // if we're inside media rule, we need to store prefixed rules
         // inside rulesToInsert object to be able to preserve the order of media
         // rules and merge them easily
-        let cloned = gridAreaRule.clone()
+        const cloned = gridAreaRule.clone()
         cloned.removeAll()
 
         getMSDecls(area, area.row.updateSpan, area.column.updateSpan)
@@ -663,8 +663,8 @@ function insertAreas(css, isDisabled) {
 
   // append stored rules inside the media rules
   Object.keys(rulesToInsert).forEach(area => {
-    let data = rulesToInsert[area]
-    let lastRule = data.lastRule
+    const data = rulesToInsert[area]
+    const lastRule = data.lastRule
     Object.keys(data)
       .reverse()
       .filter(p => p !== 'lastRule')
@@ -713,12 +713,12 @@ function warnMissedAreas(areas, decl, result) {
 exports.warnTemplateSelectorNotFound = warnTemplateSelectorNotFound
 
 function warnTemplateSelectorNotFound(decl, result) {
-  let rule = decl.parent
-  let root = decl.root()
+  const rule = decl.parent
+  const root = decl.root()
   let duplicatesFound = false
 
   // slice selector array. Remove the last part (for comparison)
-  let slicedSelectorArr = list
+  const slicedSelectorArr = list
     .space(rule.selector)
     .filter(str => str !== '>')
     .slice(0, -1)
@@ -730,18 +730,18 @@ function warnTemplateSelectorNotFound(decl, result) {
     let foundAreaSelector = null
 
     root.walkDecls(/grid-template(-areas)?$/, d => {
-      let parent = d.parent
-      let templateSelectors = parent.selectors
+      const parent = d.parent
+      const templateSelectors = parent.selectors
 
-      let { areas } = parseTemplate({ decl: d, gap: getGridGap(d) })
-      let hasArea = areas[decl.value]
+      const { areas } = parseTemplate({ decl: d, gap: getGridGap(d) })
+      const hasArea = areas[decl.value]
 
       // find the the matching selectors
-      for (let tplSelector of templateSelectors) {
+      for (const tplSelector of templateSelectors) {
         if (gridTemplateFound) {
           break
         }
-        let tplSelectorArr = list.space(tplSelector).filter(str => str !== '>')
+        const tplSelectorArr = list.space(tplSelector).filter(str => str !== '>')
 
         gridTemplateFound = tplSelectorArr.every(
           (item, idx) => item === slicedSelectorArr[idx]
@@ -786,8 +786,8 @@ function warnTemplateSelectorNotFound(decl, result) {
 exports.warnIfGridRowColumnExists = warnIfGridRowColumnExists
 
 function warnIfGridRowColumnExists(decl, result) {
-  let rule = decl.parent
-  let decls = []
+  const rule = decl.parent
+  const decls = []
   rule.walkDecls(/^grid-(row|column)/, d => {
     if (
       !d.prop.endsWith('-end') &&
@@ -815,13 +815,13 @@ function warnIfGridRowColumnExists(decl, result) {
 exports.getGridGap = getGridGap
 
 function getGridGap(decl) {
-  let gap = {}
+  const gap = {}
 
   // try to find gap
-  let testGap = /^(grid-)?((row|column)-)?gap$/
+  const testGap = /^(grid-)?((row|column)-)?gap$/
   decl.parent.walkDecls(testGap, ({ prop, value }) => {
     if (/^(grid-)?gap$/.test(prop)) {
-      let [row, , column] = parser(value).nodes
+      const [row, , column] = parser(value).nodes
 
       gap.row = row && parser.stringify(row)
       gap.column = column ? parser.stringify(column) : gap.row
@@ -842,7 +842,7 @@ function parseMediaParams(params) {
   if (!params) {
     return []
   }
-  let parsed = parser(params)
+  const parsed = parser(params)
   let prop
   let value
 
@@ -868,8 +868,8 @@ function shouldInheritGap(selA, selB) {
   let result
 
   // get arrays of selector split in 3-deep array
-  let splitSelectorArrA = splitSelector(selA)
-  let splitSelectorArrB = splitSelector(selB)
+  const splitSelectorArrA = splitSelector(selA)
+  const splitSelectorArrB = splitSelector(selB)
 
   if (splitSelectorArrA[0].length < splitSelectorArrB[0].length) {
     // abort if selectorA has lower descendant specificity then selectorB
@@ -879,8 +879,8 @@ function shouldInheritGap(selA, selB) {
     // if selectorA has higher descendant specificity then selectorB
     // (e.g '.foo .bar .grid' and '.grid')
 
-    let idx = splitSelectorArrA[0].reduce((res, [item], index) => {
-      let firstSelectorPart = splitSelectorArrB[0][0][0]
+    const idx = splitSelectorArrA[0].reduce((res, [item], index) => {
+      const firstSelectorPart = splitSelectorArrB[0][0][0]
       if (item === firstSelectorPart) {
         return index
       }
@@ -921,12 +921,12 @@ function shouldInheritGap(selA, selB) {
 exports.inheritGridGap = inheritGridGap
 
 function inheritGridGap(decl, gap) {
-  let rule = decl.parent
-  let mediaRule = getParentMedia(rule)
-  let root = rule.root()
+  const rule = decl.parent
+  const mediaRule = getParentMedia(rule)
+  const root = rule.root()
 
   // get an array of selector split in 3-deep array
-  let splitSelectorArr = splitSelector(rule.selector)
+  const splitSelectorArr = splitSelector(rule.selector)
 
   // abort if the rule already has gaps
   if (Object.keys(gap).length > 0) {
@@ -934,15 +934,15 @@ function inheritGridGap(decl, gap) {
   }
 
   // e.g ['min-width']
-  let [prop] = parseMediaParams(mediaRule.params)
+  const [prop] = parseMediaParams(mediaRule.params)
 
-  let lastBySpace = splitSelectorArr[0]
+  const lastBySpace = splitSelectorArr[0]
 
   // get escaped value from the selector
   // if we have '.grid-2.foo.bar' selector, will be '\.grid\-2'
-  let escaped = escapeRegexp(lastBySpace[lastBySpace.length - 1][0])
+  const escaped = escapeRegexp(lastBySpace[lastBySpace.length - 1][0])
 
-  let regexp = new RegExp(`(${escaped}$)|(${escaped}[,.])`)
+  const regexp = new RegExp(`(${escaped}$)|(${escaped}[,.])`)
 
   // find the closest rule with the same selector
   let closestRuleGap
@@ -967,11 +967,11 @@ function inheritGridGap(decl, gap) {
       return true
     }
 
-    let media = getParentMedia(r)
+    const media = getParentMedia(r)
     if (media) {
       // if we are inside media, we need to check that media props match
       // e.g ('min-width' === 'min-width')
-      let propToCompare = parseMediaParams(media.params)[0]
+      const propToCompare = parseMediaParams(media.params)[0]
       if (propToCompare === prop) {
         closestRuleGap = gridGap
         return true
@@ -994,7 +994,7 @@ function inheritGridGap(decl, gap) {
 exports.warnGridGap = warnGridGap
 
 function warnGridGap({ decl, gap, hasColumns, result }) {
-  let hasBothGaps = gap.row && gap.column
+  const hasBothGaps = gap.row && gap.column
   if (!hasColumns && (hasBothGaps || (gap.column && !gap.row))) {
     delete gap.column
     decl.warn(
@@ -1013,11 +1013,11 @@ function warnGridGap({ decl, gap, hasColumns, result }) {
  * normalized // <= ['1fr', '20px', '50px', '20px', '50px', '1fr']
  */
 function normalizeRowColumn(str) {
-  let normalized = parser(str).nodes.reduce((result, node) => {
+  const normalized = parser(str).nodes.reduce((result, node) => {
     if (node.type === 'function' && node.value === 'repeat') {
       let key = 'count'
 
-      let [count, value] = node.nodes.reduce(
+      const [count, value] = node.nodes.reduce(
         (acc, n) => {
           if (n.type === 'word' && key === 'count') {
             acc[0] = Math.abs(parseInt(n.value))
@@ -1064,23 +1064,23 @@ exports.autoplaceGridItems = autoplaceGridItems
  * @see https://github.com/postcss/autoprefixer/issues/1148
  */
 function autoplaceGridItems(decl, result, gap, autoflowValue = 'row') {
-  let { parent } = decl
+  const { parent } = decl
 
-  let rowDecl = parent.nodes.find(i => i.prop === 'grid-template-rows')
-  let rows = normalizeRowColumn(rowDecl.value)
-  let columns = normalizeRowColumn(decl.value)
+  const rowDecl = parent.nodes.find(i => i.prop === 'grid-template-rows')
+  const rows = normalizeRowColumn(rowDecl.value)
+  const columns = normalizeRowColumn(decl.value)
 
   // Build array of area names with dummy values. If we have 3 columns and
   // 2 rows, filledRows will be equal to ['1 2 3', '4 5 6']
-  let filledRows = rows.map((_, rowIndex) => {
+  const filledRows = rows.map((_, rowIndex) => {
     return Array.from(
       { length: columns.length },
       (v, k) => k + rowIndex * columns.length + 1
     ).join(' ')
   })
 
-  let areas = parseGridAreas({ gap, rows: filledRows })
-  let keys = Object.keys(areas)
+  const areas = parseGridAreas({ gap, rows: filledRows })
+  const keys = Object.keys(areas)
   let items = keys.map(i => areas[i])
 
   // Change the order of cells if grid-auto-flow value is 'column'
@@ -1090,13 +1090,13 @@ function autoplaceGridItems(decl, result, gap, autoflowValue = 'row') {
 
   // Insert new rules
   items.reverse().forEach((item, index) => {
-    let { column, row } = item
-    let nodeSelector = parent.selectors
+    const { column, row } = item
+    const nodeSelector = parent.selectors
       .map(sel => sel + ` > *:nth-child(${keys.length - index})`)
       .join(', ')
 
     // create new rule
-    let node = parent.clone().removeAll()
+    const node = parent.clone().removeAll()
 
     // change rule selector
     node.selector = nodeSelector

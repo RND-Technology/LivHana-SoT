@@ -102,6 +102,7 @@
 **Action Plan:**
 
 1. **Root Directory Cleanup**
+
    ```
    BEFORE (cluttered):
    ├── 1.2.1.8.local-delivery-api.20251002/
@@ -122,12 +123,14 @@
    ```
 
 2. **Move RPM directories → docs/projects/**
+
    ```bash
    mkdir -p docs/projects
    mv 1.*.* 2.*.* 3.*.* 4.*.* 5.*.* docs/projects/
    ```
 
 3. **Refactor backend/ → services/**
+
    ```
    services/
    ├── integration-service/    (LightSpeed, Leafly, Square)
@@ -139,6 +142,7 @@
    ```
 
 4. **Standardize .evidence/ structure**
+
    ```
    .evidence/
    ├── YYYY-MM-DD/
@@ -150,6 +154,7 @@
    ```
 
 5. **Optimize .gitignore**
+
    ```gitignore
    node_modules/
    .next/
@@ -170,14 +175,17 @@
 **Action Plan:**
 
 1. **Run full quality sweep**
+
    ```bash
    ./scripts/run_full_sweep.sh
    ```
+
    - Target: 0 ESLint errors
    - Target: <50 shellcheck warnings
    - Target: <1000 markdownlint errors
 
 2. **Add pre-commit hooks**
+
    ```bash
    # .husky/pre-commit
    npm run lint
@@ -203,6 +211,7 @@
 **Action Plan:**
 
 1. **Create AGENT_README.md (agent-first documentation)**
+
    ```markdown
    # Quick Agent Onboarding
 
@@ -223,6 +232,7 @@
    ```
 
 2. **Create executable mission templates**
+
    ```markdown
    # missions/TEMPLATE.md
 
@@ -242,6 +252,7 @@
    ```
 
 3. **Add context hints for Claude**
+
    ```javascript
    // services/integration-service/src/lightspeed-api.js
 
@@ -262,15 +273,18 @@
 ## 🚀 EXECUTION PRIORITY
 
 ### IMMEDIATE (Today - 1 hour)
+
 1. ✅ Complete Mission 15 (LightSpeed API) - DONE
 2. 🔄 Phase 1: Consolidate .claude files (30 min)
 3. ⏳ Update product pages (remove "weed", add ingredients) (30 min)
 
 ### SHORT-TERM (This Week - 4 hours)
+
 4. Phase 2: Repo structure cleanup (2 hours)
 5. Phase 3: Code quality sweep (2 hours)
 
 ### MEDIUM-TERM (Next Week - 6 hours)
+
 6. Phase 4: Agent workflow optimization (2 hours)
 7. Service deployment (voice + reasoning) (4 hours)
 
@@ -279,12 +293,14 @@
 ## 💎 HOW HIGH IS HIGH?
 
 **Current State:** Tier 2 (functional but cluttered)
+
 - ✅ Code works
 - ⚠️ Structure messy
 - ⚠️ Documentation heavy
 - ⚠️ Agent-hostile
 
 **Target State:** Tier 0 (world-class agent-first architecture)
+
 - ✅ Self-documenting code
 - ✅ Flat service hierarchy
 - ✅ 90%+ test coverage
@@ -296,9 +312,11 @@
 **What "Highest" Looks Like:**
 
 1. **One Command to Rule Them All**
+
    ```bash
    ./deploy.sh --feature=texas-takeover --verify
    ```
+
    Agent reads mission, executes, verifies, deploys, proves—no human intervention.
 
 2. **Context = Executable**
@@ -320,16 +338,19 @@
 **Jesse, choose your path:**
 
 **Option A: Quick Win (30 min)**
+
 - Consolidate .claude files NOW
 - Fix product pages NOW
 - Ship improved structure immediately
 
 **Option B: Full Reorg (4 hours)**
+
 - Execute all 4 phases today
 - Emerge with Tier-0 architecture
 - Never deal with this mess again
 
 **Option C: Hybrid (1 hour)**
+
 - Phase 1 + Phase 4 (agent-first files)
 - Clean .claude + add agent helpers
 - Leave repo structure for later

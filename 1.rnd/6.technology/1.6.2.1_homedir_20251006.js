@@ -1,12 +1,12 @@
 'use strict';
 
-var os = require('os');
+const os = require('os');
 
 // adapted from https://github.com/sindresorhus/os-homedir/blob/11e089f4754db38bb535e5a8416320c4446e8cfd/index.js
 
 module.exports = os.homedir || function homedir() {
-    var home = process.env.HOME;
-    var user = process.env.LOGNAME || process.env.USER || process.env.LNAME || process.env.USERNAME;
+    const home = process.env.HOME;
+    const user = process.env.LOGNAME || process.env.USER || process.env.LNAME || process.env.USERNAME;
 
     if (process.platform === 'win32') {
         return process.env.USERPROFILE || process.env.HOMEDRIVE + process.env.HOMEPATH || home || null;

@@ -4,23 +4,23 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.getPath = exports.Curve = void 0;
-var React = _interopRequireWildcard(require("react"));
-var _d3Shape = require("victory-vendor/d3-shape");
-var _clsx = require("clsx");
-var _types = require("../util/types");
-var _DataUtils = require("../util/DataUtils");
-var _isWellBehavedNumber = require("../util/isWellBehavedNumber");
-var _svgPropertiesNoEvents = require("../util/svgPropertiesNoEvents");
-function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
-function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+const React = _interopRequireWildcard(require("react"));
+const _d3Shape = require("victory-vendor/d3-shape");
+const _clsx = require("clsx");
+const _types = require("../util/types");
+const _DataUtils = require("../util/DataUtils");
+const _isWellBehavedNumber = require("../util/isWellBehavedNumber");
+const _svgPropertiesNoEvents = require("../util/svgPropertiesNoEvents");
+function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; let o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (const _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (let e = 1; e < arguments.length; e++) { const t = arguments[e]; for (const r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+function ownKeys(e, r) { const t = Object.keys(e); if (Object.getOwnPropertySymbols) { let o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (let r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
+function _toPropertyKey(t) { const i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; const e = t[Symbol.toPrimitive]; if (void 0 !== e) { const i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
  * @fileOverview Curve
  */
-var CURVE_FACTORIES = {
+const CURVE_FACTORIES = {
   curveBasisClosed: _d3Shape.curveBasisClosed,
   curveBasisOpen: _d3Shape.curveBasisOpen,
   curveBasis: _d3Shape.curveBasis,
@@ -46,14 +46,14 @@ var CURVE_FACTORIES = {
  * Duplicated with `NullableCoordinate` in `util/types.ts`
  */
 
-var defined = p => (0, _isWellBehavedNumber.isWellBehavedNumber)(p.x) && (0, _isWellBehavedNumber.isWellBehavedNumber)(p.y);
-var getX = p => p.x;
-var getY = p => p.y;
-var getCurveFactory = (type, layout) => {
+const defined = p => (0, _isWellBehavedNumber.isWellBehavedNumber)(p.x) && (0, _isWellBehavedNumber.isWellBehavedNumber)(p.y);
+const getX = p => p.x;
+const getY = p => p.y;
+const getCurveFactory = (type, layout) => {
   if (typeof type === 'function') {
     return type;
   }
-  var name = "curve".concat((0, _DataUtils.upperFirst)(type));
+  const name = "curve".concat((0, _DataUtils.upperFirst)(type));
   if ((name === 'curveMonotone' || name === 'curveBump') && layout) {
     return CURVE_FACTORIES["".concat(name).concat(layout === 'vertical' ? 'Y' : 'X')];
   }
@@ -63,20 +63,20 @@ var getCurveFactory = (type, layout) => {
  * Calculate the path of curve. Returns null if points is an empty array.
  * @return path or null
  */
-var getPath = _ref => {
-  var {
+const getPath = _ref => {
+  const {
     type = 'linear',
     points = [],
     baseLine,
     layout,
     connectNulls = false
   } = _ref;
-  var curveFactory = getCurveFactory(type, layout);
-  var formatPoints = connectNulls ? points.filter(defined) : points;
-  var lineFunction;
+  const curveFactory = getCurveFactory(type, layout);
+  const formatPoints = connectNulls ? points.filter(defined) : points;
+  let lineFunction;
   if (Array.isArray(baseLine)) {
-    var formatBaseLine = connectNulls ? baseLine.filter(base => defined(base)) : baseLine;
-    var areaPoints = formatPoints.map((entry, index) => _objectSpread(_objectSpread({}, entry), {}, {
+    const formatBaseLine = connectNulls ? baseLine.filter(base => defined(base)) : baseLine;
+    const areaPoints = formatPoints.map((entry, index) => _objectSpread(_objectSpread({}, entry), {}, {
       base: formatBaseLine[index]
     }));
     if (layout === 'vertical') {
@@ -98,8 +98,8 @@ var getPath = _ref => {
   return lineFunction(formatPoints);
 };
 exports.getPath = getPath;
-var Curve = props => {
-  var {
+const Curve = props => {
+  const {
     className,
     points,
     path,
@@ -108,7 +108,7 @@ var Curve = props => {
   if ((!points || !points.length) && !path) {
     return null;
   }
-  var realPath = points && points.length ? getPath(props) : path;
+  const realPath = points && points.length ? getPath(props) : path;
   return /*#__PURE__*/React.createElement("path", _extends({}, (0, _svgPropertiesNoEvents.svgPropertiesNoEvents)(props), (0, _types.adaptEventHandlers)(props), {
     className: (0, _clsx.clsx)('recharts-curve', className),
     d: realPath === null ? undefined : realPath,

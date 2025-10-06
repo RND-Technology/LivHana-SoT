@@ -1,31 +1,31 @@
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+const GetIntrinsic = require('get-intrinsic');
 
-var $parseInt = GetIntrinsic('%parseInt%');
-var $abs = require('math-intrinsics/abs');
-var $floor = require('math-intrinsics/floor');
-var isNegativeZero = require('math-intrinsics/isNegativeZero');
+const $parseInt = GetIntrinsic('%parseInt%');
+const $abs = require('math-intrinsics/abs');
+const $floor = require('math-intrinsics/floor');
+const isNegativeZero = require('math-intrinsics/isNegativeZero');
 
-var callBound = require('call-bound');
+const callBound = require('call-bound');
 
-var $strIndexOf = callBound('String.prototype.indexOf');
-var $strSlice = callBound('String.prototype.slice');
+const $strIndexOf = callBound('String.prototype.indexOf');
+const $strSlice = callBound('String.prototype.slice');
 
-var fractionToBitString = require('../helpers/fractionToBinaryString');
-var intToBinString = require('../helpers/intToBinaryString');
+const fractionToBitString = require('../helpers/fractionToBinaryString');
+const intToBinString = require('../helpers/intToBinaryString');
 
-var float64bias = 1023;
+const float64bias = 1023;
 
-var elevenOnes = '11111111111';
-var elevenZeroes = '00000000000';
-var fiftyOneZeroes = elevenZeroes + elevenZeroes + elevenZeroes + elevenZeroes + '0000000';
+const elevenOnes = '11111111111';
+const elevenZeroes = '00000000000';
+const fiftyOneZeroes = elevenZeroes + elevenZeroes + elevenZeroes + elevenZeroes + '0000000';
 
 // IEEE 754-1985
 module.exports = function valueToFloat64Bytes(value, isLittleEndian) {
-	var signBit = value < 0 || isNegativeZero(value) ? '1' : '0';
-	var exponentBits;
-	var significandBits;
+	const signBit = value < 0 || isNegativeZero(value) ? '1' : '0';
+	let exponentBits;
+	let significandBits;
 
 	if (isNaN(value)) {
 		exponentBits = elevenOnes;
@@ -40,17 +40,17 @@ module.exports = function valueToFloat64Bytes(value, isLittleEndian) {
 		value = $abs(value); // eslint-disable-line no-param-reassign
 
 		// Isolate the integer part (digits before the decimal):
-		var integerPart = $floor(value);
+		const integerPart = $floor(value);
 
-		var intBinString = intToBinString(integerPart); // bit string for integer part
-		var fracBinString = fractionToBitString(value - integerPart); // bit string for fractional part
+		const intBinString = intToBinString(integerPart); // bit string for integer part
+		const fracBinString = fractionToBitString(value - integerPart); // bit string for fractional part
 
-		var numberOfBits;
+		let numberOfBits;
 		// find exponent needed to normalize integer+fractional parts
 		if (intBinString) {
 			exponentBits = intBinString.length - 1; // move the decimal to the left
 		} else {
-			var first1 = $strIndexOf(fracBinString, '1');
+			const first1 = $strIndexOf(fracBinString, '1');
 			if (first1 > -1) {
 				numberOfBits = first1 + 1;
 			}
@@ -72,10 +72,10 @@ module.exports = function valueToFloat64Bytes(value, isLittleEndian) {
 		significandBits = $strSlice(significandBits + fiftyOneZeroes + '0', 0, 52); // fill in any trailing zeros and ensure we have only 52 fraction bits
 	}
 
-	var bits = signBit + exponentBits + significandBits;
-	var rawBytes = [];
-	for (var i = 0; i < 8; i++) {
-		var targetIndex = isLittleEndian ? 8 - i - 1 : i;
+	const bits = signBit + exponentBits + significandBits;
+	const rawBytes = [];
+	for (let i = 0; i < 8; i++) {
+		const targetIndex = isLittleEndian ? 8 - i - 1 : i;
 		rawBytes[targetIndex] = $parseInt($strSlice(bits, i * 8, (i + 1) * 8), 2);
 	}
 

@@ -1149,7 +1149,7 @@ const mixColor = (from, to) => {
 };
 
 function test(v) {
-    var _a, _b;
+    let _a, _b;
     return (isNaN(v) &&
         isString(v) &&
         (((_a = v.match(floatRegex)) === null || _a === void 0 ? void 0 : _a.length) || 0) +
@@ -3095,7 +3095,7 @@ function setValues(visualElement, definition) {
     }
 }
 function checkTargetForNewValues(visualElement, target, origin) {
-    var _a, _b;
+    let _a, _b;
     const newValueKeys = Object.keys(target).filter((key) => !visualElement.hasValue(key));
     const numNewValues = newValueKeys.length;
     if (!numNewValues)
@@ -3485,7 +3485,7 @@ function delay(callback, timeout) {
 }
 
 function resolveElements(elements, scope, selectorCache) {
-    var _a;
+    let _a;
     if (typeof elements === "string") {
         let root = document;
         if (scope) {
@@ -4436,7 +4436,7 @@ class VisualElement {
      * directly from the instance (which might have performance implications).
      */
     readValue(key) {
-        var _a;
+        let _a;
         return this.latestValues[key] !== undefined || !this.current
             ? this.latestValues[key]
             : (_a = this.getBaseTargetFromProps(this.props, key)) !== null && _a !== void 0 ? _a : this.readValueFromInstance(this.current, key, this.options);
@@ -4453,7 +4453,7 @@ class VisualElement {
      * props.
      */
     getBaseTarget(key) {
-        var _a;
+        let _a;
         const { initial } = this.props;
         const valueFromInitial = typeof initial === "string" || typeof initial === "object"
             ? (_a = resolveVariantFromProps(this.props, initial)) === null || _a === void 0 ? void 0 : _a[key]
@@ -4669,7 +4669,7 @@ function createGeneratorEasing(options, scale = 100) {
  * calculate an absolute time for the next keyframes.
  */
 function calcNextTime(current, next, prev, labels) {
-    var _a;
+    let _a;
     if (typeof next === "number") {
         return next;
     }
@@ -5036,7 +5036,7 @@ function getElementSize(target, borderBoxSize) {
     }
 }
 function notifyTarget({ target, contentRect, borderBoxSize, }) {
-    var _a;
+    let _a;
     (_a = resizeHandlers.get(target)) === null || _a === void 0 ? void 0 : _a.forEach((handler) => {
         handler({
             target,
@@ -5310,7 +5310,7 @@ function getTargetSize(target) {
         : { width: target.clientWidth, height: target.clientHeight };
 }
 function resolveOffsets(container, info, options) {
-    let { offset: offsetDefinition = ScrollOffset.All } = options;
+    const { offset: offsetDefinition = ScrollOffset.All } = options;
     const { target = container, axis = "y" } = options;
     const lengthLabel = axis === "y" ? "height" : "width";
     const inset = target !== container ? calcInset(target, container) : point;
@@ -5452,7 +5452,7 @@ function scrollInfo(onScroll, { container = document.documentElement, ...options
     const listener = scrollListeners.get(container);
     frame.read(listener, false, true);
     return () => {
-        var _a;
+        let _a;
         cancelFrame(listener);
         /**
          * Check if we even have any handlers for this container.

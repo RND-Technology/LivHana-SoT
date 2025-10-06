@@ -1,20 +1,20 @@
 "use strict";
 
-var assert = require("@sinonjs/referee-sinon").assert;
-var calledInOrder = require("./called-in-order");
-var sinon = require("@sinonjs/referee-sinon").sinon;
+const assert = require("@sinonjs/referee-sinon").assert;
+const calledInOrder = require("./called-in-order");
+const sinon = require("@sinonjs/referee-sinon").sinon;
 
-var testObject1 = {
+const testObject1 = {
     someFunction: function () {
         return;
     },
 };
-var testObject2 = {
+const testObject2 = {
     otherFunction: function () {
         return;
     },
 };
-var testObject3 = {
+const testObject3 = {
     thirdFunction: function () {
         return;
     },

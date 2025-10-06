@@ -1,14 +1,14 @@
 "use strict";
 
-var _assert = _interopRequireDefault(require("assert"));
+const _assert = _interopRequireDefault(require("assert"));
 
-var _v = _interopRequireDefault(require("./v1.js"));
+const _v = _interopRequireDefault(require("./v1.js"));
 
-var _v2 = _interopRequireDefault(require("./v3.js"));
+const _v2 = _interopRequireDefault(require("./v3.js"));
 
-var _v3 = _interopRequireDefault(require("./v4.js"));
+const _v3 = _interopRequireDefault(require("./v4.js"));
 
-var _v4 = _interopRequireDefault(require("./v5.js"));
+const _v4 = _interopRequireDefault(require("./v5.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

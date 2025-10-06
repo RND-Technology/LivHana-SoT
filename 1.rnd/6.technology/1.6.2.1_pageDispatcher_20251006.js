@@ -1,41 +1,41 @@
 "use strict";
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __export = (target, all) => {
+  for (const name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var pageDispatcher_exports = {};
+const __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+const pageDispatcher_exports = {};
 __export(pageDispatcher_exports, {
   BindingCallDispatcher: () => BindingCallDispatcher,
   PageDispatcher: () => PageDispatcher,
   WorkerDispatcher: () => WorkerDispatcher
 });
 module.exports = __toCommonJS(pageDispatcher_exports);
-var import_page = require("../page");
-var import_dispatcher = require("./dispatcher");
-var import_errors = require("../errors");
-var import_artifactDispatcher = require("./artifactDispatcher");
-var import_elementHandlerDispatcher = require("./elementHandlerDispatcher");
-var import_frameDispatcher = require("./frameDispatcher");
-var import_jsHandleDispatcher = require("./jsHandleDispatcher");
-var import_networkDispatchers = require("./networkDispatchers");
-var import_networkDispatchers2 = require("./networkDispatchers");
-var import_networkDispatchers3 = require("./networkDispatchers");
-var import_webSocketRouteDispatcher = require("./webSocketRouteDispatcher");
-var import_instrumentation = require("../instrumentation");
-var import_urlMatch = require("../../utils/isomorphic/urlMatch");
+const import_page = require("../page");
+const import_dispatcher = require("./dispatcher");
+const import_errors = require("../errors");
+const import_artifactDispatcher = require("./artifactDispatcher");
+const import_elementHandlerDispatcher = require("./elementHandlerDispatcher");
+const import_frameDispatcher = require("./frameDispatcher");
+const import_jsHandleDispatcher = require("./jsHandleDispatcher");
+const import_networkDispatchers = require("./networkDispatchers");
+const import_networkDispatchers2 = require("./networkDispatchers");
+const import_networkDispatchers3 = require("./networkDispatchers");
+const import_webSocketRouteDispatcher = require("./webSocketRouteDispatcher");
+const import_instrumentation = require("../instrumentation");
+const import_urlMatch = require("../../utils/isomorphic/urlMatch");
 class PageDispatcher extends import_dispatcher.Dispatcher {
   constructor(parentScope, page) {
     const mainFrame = import_frameDispatcher.FrameDispatcher.from(parentScope, page.mainFrame());

@@ -7,7 +7,7 @@
  * @returns {number} Returns the placeholder count.
  */
 function countHolders(array, placeholder) {
-  var length = array.length,
+  let length = array.length,
       result = 0;
 
   while (length--) {

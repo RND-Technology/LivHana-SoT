@@ -2,16 +2,16 @@
 module.exports = Field;
 
 // extends ReflectionObject
-var ReflectionObject = require("./object");
+const ReflectionObject = require("./object");
 ((Field.prototype = Object.create(ReflectionObject.prototype)).constructor = Field).className = "Field";
 
-var Enum  = require("./enum"),
+const Enum  = require("./enum"),
     types = require("./types"),
     util  = require("./util");
 
-var Type; // cyclic
+let Type; // cyclic
 
-var ruleRe = /^required|optional|repeated$/;
+const ruleRe = /^required|optional|repeated$/;
 
 /**
  * Constructs a new message field instance. Note that {@link MapField|map fields} have their own class.
@@ -35,7 +35,7 @@ var ruleRe = /^required|optional|repeated$/;
  * @throws {TypeError} If arguments are invalid
  */
 Field.fromJSON = function fromJSON(name, json) {
-    var field = new Field(name, json.id, json.type, json.rule, json.extend, json.options, json.comment);
+    const field = new Field(name, json.id, json.type, json.rule, json.extend, json.options, json.comment);
     if (json.edition)
         field._edition = json.edition;
     field._defaultEdition = "proto3";  // For backwards-compatibility.
@@ -278,7 +278,7 @@ Field.prototype.setOption = function setOption(name, value, ifNotSet) {
  * @returns {IField} Field descriptor
  */
 Field.prototype.toJSON = function toJSON(toJSONOptions) {
-    var keepComments = toJSONOptions ? Boolean(toJSONOptions.keepComments) : false;
+    const keepComments = toJSONOptions ? Boolean(toJSONOptions.keepComments) : false;
     return util.toObject([
         "edition" , this._editionToJSON(),
         "rule"    , this.rule !== "optional" && this.rule || undefined,
@@ -335,7 +335,7 @@ Field.prototype.resolve = function resolve() {
             Object.freeze(this.typeDefault); // long instances are meant to be immutable anyway (i.e. use small int cache that even requires it)
 
     } else if (this.bytes && typeof this.typeDefault === "string") {
-        var buf;
+        let buf;
         if (util.base64.test(this.typeDefault))
             util.base64.decode(this.typeDefault, buf = util.newBuffer(util.base64.length(this.typeDefault)), 0);
         else
@@ -369,7 +369,7 @@ Field.prototype._inferLegacyProtoFeatures = function _inferLegacyProtoFeatures(e
         return {};
     }
 
-    var features = {};
+    const features = {};
 
     if (this.rule === "required") {
         features.field_presence = "LEGACY_REQUIRED";
@@ -378,7 +378,7 @@ Field.prototype._inferLegacyProtoFeatures = function _inferLegacyProtoFeatures(e
         // We can't use resolvedType because types may not have been resolved yet.  However,
         // legacy groups are always in the same scope as the field so we don't have to do a
         // full scan of the tree.
-        var type = this.parent.get(this.type.split(".").pop());
+        const type = this.parent.get(this.type.split(".").pop());
         if (type && type instanceof Type && type.group) {
             features.message_encoding = "DELIMITED";
         }

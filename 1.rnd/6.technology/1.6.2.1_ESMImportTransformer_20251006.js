@@ -1,21 +1,21 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 
-var _keywords = require('../parser/tokenizer/keywords');
-var _types = require('../parser/tokenizer/types');
+const _keywords = require('../parser/tokenizer/keywords');
+const _types = require('../parser/tokenizer/types');
 
-var _elideImportEquals = require('../util/elideImportEquals'); var _elideImportEquals2 = _interopRequireDefault(_elideImportEquals);
+const _elideImportEquals = require('../util/elideImportEquals'); const _elideImportEquals2 = _interopRequireDefault(_elideImportEquals);
 
 
 
-var _getDeclarationInfo = require('../util/getDeclarationInfo'); var _getDeclarationInfo2 = _interopRequireDefault(_getDeclarationInfo);
-var _getImportExportSpecifierInfo = require('../util/getImportExportSpecifierInfo'); var _getImportExportSpecifierInfo2 = _interopRequireDefault(_getImportExportSpecifierInfo);
-var _getNonTypeIdentifiers = require('../util/getNonTypeIdentifiers');
-var _isExportFrom = require('../util/isExportFrom'); var _isExportFrom2 = _interopRequireDefault(_isExportFrom);
-var _removeMaybeImportAttributes = require('../util/removeMaybeImportAttributes');
-var _shouldElideDefaultExport = require('../util/shouldElideDefaultExport'); var _shouldElideDefaultExport2 = _interopRequireDefault(_shouldElideDefaultExport);
+const _getDeclarationInfo = require('../util/getDeclarationInfo'); const _getDeclarationInfo2 = _interopRequireDefault(_getDeclarationInfo);
+const _getImportExportSpecifierInfo = require('../util/getImportExportSpecifierInfo'); const _getImportExportSpecifierInfo2 = _interopRequireDefault(_getImportExportSpecifierInfo);
+const _getNonTypeIdentifiers = require('../util/getNonTypeIdentifiers');
+const _isExportFrom = require('../util/isExportFrom'); const _isExportFrom2 = _interopRequireDefault(_isExportFrom);
+const _removeMaybeImportAttributes = require('../util/removeMaybeImportAttributes');
+const _shouldElideDefaultExport = require('../util/shouldElideDefaultExport'); const _shouldElideDefaultExport2 = _interopRequireDefault(_shouldElideDefaultExport);
 
-var _Transformer = require('./Transformer'); var _Transformer2 = _interopRequireDefault(_Transformer);
+const _Transformer = require('./Transformer'); const _Transformer2 = _interopRequireDefault(_Transformer);
 
 /**
  * Class for editing import statements when we are keeping the code as ESM. We still need to remove
@@ -36,7 +36,7 @@ var _Transformer = require('./Transformer'); var _Transformer2 = _interopRequire
      keepUnusedImports,
     options,
   ) {
-    super();this.tokens = tokens;this.nameManager = nameManager;this.helperManager = helperManager;this.reactHotLoaderTransformer = reactHotLoaderTransformer;this.isTypeScriptTransformEnabled = isTypeScriptTransformEnabled;this.isFlowTransformEnabled = isFlowTransformEnabled;this.keepUnusedImports = keepUnusedImports;;
+    super();this.tokens = tokens;this.nameManager = nameManager;this.helperManager = helperManager;this.reactHotLoaderTransformer = reactHotLoaderTransformer;this.isTypeScriptTransformEnabled = isTypeScriptTransformEnabled;this.isFlowTransformEnabled = isFlowTransformEnabled;this.keepUnusedImports = keepUnusedImports;
     this.nonTypeIdentifiers =
       isTypeScriptTransformEnabled && !keepUnusedImports
         ? _getNonTypeIdentifiers.getNonTypeIdentifiers.call(void 0, tokens, options)

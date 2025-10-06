@@ -14,33 +14,33 @@ if (process.env.NODE_ENV !== "production") {
   (function() {
 'use strict';
 
-var React = require('react');
+const React = require('react');
 
 // ATTENTION
 // When adding new symbols to this file,
 // Please consider also adding to 'react-devtools-shared/src/backend/ReactSymbols'
 // The Symbol used to tag the ReactElement-like types.
-var REACT_ELEMENT_TYPE = Symbol.for('react.element');
-var REACT_PORTAL_TYPE = Symbol.for('react.portal');
-var REACT_FRAGMENT_TYPE = Symbol.for('react.fragment');
-var REACT_STRICT_MODE_TYPE = Symbol.for('react.strict_mode');
-var REACT_PROFILER_TYPE = Symbol.for('react.profiler');
-var REACT_PROVIDER_TYPE = Symbol.for('react.provider');
-var REACT_CONTEXT_TYPE = Symbol.for('react.context');
-var REACT_FORWARD_REF_TYPE = Symbol.for('react.forward_ref');
-var REACT_SUSPENSE_TYPE = Symbol.for('react.suspense');
-var REACT_SUSPENSE_LIST_TYPE = Symbol.for('react.suspense_list');
-var REACT_MEMO_TYPE = Symbol.for('react.memo');
-var REACT_LAZY_TYPE = Symbol.for('react.lazy');
-var REACT_OFFSCREEN_TYPE = Symbol.for('react.offscreen');
-var MAYBE_ITERATOR_SYMBOL = Symbol.iterator;
-var FAUX_ITERATOR_SYMBOL = '@@iterator';
+const REACT_ELEMENT_TYPE = Symbol.for('react.element');
+const REACT_PORTAL_TYPE = Symbol.for('react.portal');
+const REACT_FRAGMENT_TYPE = Symbol.for('react.fragment');
+const REACT_STRICT_MODE_TYPE = Symbol.for('react.strict_mode');
+const REACT_PROFILER_TYPE = Symbol.for('react.profiler');
+const REACT_PROVIDER_TYPE = Symbol.for('react.provider');
+const REACT_CONTEXT_TYPE = Symbol.for('react.context');
+const REACT_FORWARD_REF_TYPE = Symbol.for('react.forward_ref');
+const REACT_SUSPENSE_TYPE = Symbol.for('react.suspense');
+const REACT_SUSPENSE_LIST_TYPE = Symbol.for('react.suspense_list');
+const REACT_MEMO_TYPE = Symbol.for('react.memo');
+const REACT_LAZY_TYPE = Symbol.for('react.lazy');
+const REACT_OFFSCREEN_TYPE = Symbol.for('react.offscreen');
+const MAYBE_ITERATOR_SYMBOL = Symbol.iterator;
+const FAUX_ITERATOR_SYMBOL = '@@iterator';
 function getIteratorFn(maybeIterable) {
   if (maybeIterable === null || typeof maybeIterable !== 'object') {
     return null;
   }
 
-  var maybeIterator = MAYBE_ITERATOR_SYMBOL && maybeIterable[MAYBE_ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL];
+  const maybeIterator = MAYBE_ITERATOR_SYMBOL && maybeIterable[MAYBE_ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL];
 
   if (typeof maybeIterator === 'function') {
     return maybeIterator;
@@ -49,7 +49,7 @@ function getIteratorFn(maybeIterable) {
   return null;
 }
 
-var ReactSharedInternals = React.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+const ReactSharedInternals = React.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
 
 function error(format) {
   {
@@ -67,8 +67,8 @@ function printWarning(level, format, args) {
   // When changing this logic, you might want to also
   // update consoleWithStackDev.www.js as well.
   {
-    var ReactDebugCurrentFrame = ReactSharedInternals.ReactDebugCurrentFrame;
-    var stack = ReactDebugCurrentFrame.getStackAddendum();
+    const ReactDebugCurrentFrame = ReactSharedInternals.ReactDebugCurrentFrame;
+    const stack = ReactDebugCurrentFrame.getStackAddendum();
 
     if (stack !== '') {
       format += '%s';
@@ -76,7 +76,7 @@ function printWarning(level, format, args) {
     } // eslint-disable-next-line react-internal/safe-string-coercion
 
 
-    var argsWithFormat = args.map(function (item) {
+    const argsWithFormat = args.map(function (item) {
       return String(item);
     }); // Careful: RN currently depends on this prefix
 
@@ -90,17 +90,17 @@ function printWarning(level, format, args) {
 
 // -----------------------------------------------------------------------------
 
-var enableScopeAPI = false; // Experimental Create Event Handle API.
-var enableCacheElement = false;
-var enableTransitionTracing = false; // No known bugs, but needs performance testing
+const enableScopeAPI = false; // Experimental Create Event Handle API.
+const enableCacheElement = false;
+const enableTransitionTracing = false; // No known bugs, but needs performance testing
 
-var enableLegacyHidden = false; // Enables unstable_avoidThisFallback feature in Fiber
+const enableLegacyHidden = false; // Enables unstable_avoidThisFallback feature in Fiber
 // stuff. Intended to enable React core members to more easily debug scheduling
 // issues in DEV builds.
 
-var enableDebugTracing = false; // Track which Fiber(s) schedule render work.
+const enableDebugTracing = false; // Track which Fiber(s) schedule render work.
 
-var REACT_MODULE_REFERENCE;
+let REACT_MODULE_REFERENCE;
 
 {
   REACT_MODULE_REFERENCE = Symbol.for('react.module.reference');
@@ -130,13 +130,13 @@ function isValidElementType(type) {
 }
 
 function getWrappedName(outerType, innerType, wrapperName) {
-  var displayName = outerType.displayName;
+  const displayName = outerType.displayName;
 
   if (displayName) {
     return displayName;
   }
 
-  var functionName = innerType.displayName || innerType.name || '';
+  const functionName = innerType.displayName || innerType.name || '';
   return functionName !== '' ? wrapperName + "(" + functionName + ")" : wrapperName;
 } // Keep in sync with react-reconciler/getComponentNameFromFiber
 
@@ -211,9 +211,9 @@ function getComponentNameFromType(type) {
 
       case REACT_LAZY_TYPE:
         {
-          var lazyComponent = type;
-          var payload = lazyComponent._payload;
-          var init = lazyComponent._init;
+          const lazyComponent = type;
+          const payload = lazyComponent._payload;
+          const init = lazyComponent._init;
 
           try {
             return getComponentNameFromType(init(payload));
@@ -229,20 +229,20 @@ function getComponentNameFromType(type) {
   return null;
 }
 
-var assign = Object.assign;
+const assign = Object.assign;
 
 // Helpers to patch console.logs to avoid logging during side-effect free
 // replaying on render function. This currently only patches the object
 // lazily which won't cover if the log function was extracted eagerly.
 // We could also eagerly patch the method.
-var disabledDepth = 0;
-var prevLog;
-var prevInfo;
-var prevWarn;
-var prevError;
-var prevGroup;
-var prevGroupCollapsed;
-var prevGroupEnd;
+let disabledDepth = 0;
+let prevLog;
+let prevInfo;
+let prevWarn;
+let prevError;
+let prevGroup;
+let prevGroupCollapsed;
+let prevGroupEnd;
 
 function disabledLog() {}
 
@@ -259,7 +259,7 @@ function disableLogs() {
       prevGroupCollapsed = console.groupCollapsed;
       prevGroupEnd = console.groupEnd; // https://github.com/facebook/react/issues/19099
 
-      var props = {
+      const props = {
         configurable: true,
         enumerable: true,
         value: disabledLog,
@@ -287,7 +287,7 @@ function reenableLogs() {
 
     if (disabledDepth === 0) {
       /* eslint-disable react-internal/no-production-logging */
-      var props = {
+      const props = {
         configurable: true,
         enumerable: true,
         writable: true
@@ -325,8 +325,8 @@ function reenableLogs() {
   }
 }
 
-var ReactCurrentDispatcher = ReactSharedInternals.ReactCurrentDispatcher;
-var prefix;
+const ReactCurrentDispatcher = ReactSharedInternals.ReactCurrentDispatcher;
+let prefix;
 function describeBuiltInComponentFrame(name, source, ownerFn) {
   {
     if (prefix === undefined) {
@@ -334,7 +334,7 @@ function describeBuiltInComponentFrame(name, source, ownerFn) {
       try {
         throw Error();
       } catch (x) {
-        var match = x.stack.trim().match(/\n( *(at )?)/);
+        const match = x.stack.trim().match(/\n( *(at )?)/);
         prefix = match && match[1] || '';
       }
     } // We use the prefix to ensure our stacks line up with native stack frames.
@@ -343,11 +343,11 @@ function describeBuiltInComponentFrame(name, source, ownerFn) {
     return '\n' + prefix + name;
   }
 }
-var reentry = false;
-var componentFrameCache;
+let reentry = false;
+let componentFrameCache;
 
 {
-  var PossiblyWeakMap = typeof WeakMap === 'function' ? WeakMap : Map;
+  const PossiblyWeakMap = typeof WeakMap === 'function' ? WeakMap : Map;
   componentFrameCache = new PossiblyWeakMap();
 }
 
@@ -358,19 +358,19 @@ function describeNativeComponentFrame(fn, construct) {
   }
 
   {
-    var frame = componentFrameCache.get(fn);
+    const frame = componentFrameCache.get(fn);
 
     if (frame !== undefined) {
       return frame;
     }
   }
 
-  var control;
+  let control;
   reentry = true;
-  var previousPrepareStackTrace = Error.prepareStackTrace; // $FlowFixMe It does accept undefined.
+  const previousPrepareStackTrace = Error.prepareStackTrace; // $FlowFixMe It does accept undefined.
 
   Error.prepareStackTrace = undefined;
-  var previousDispatcher;
+  let previousDispatcher;
 
   {
     previousDispatcher = ReactCurrentDispatcher.current; // Set the dispatcher in DEV because this might be call in the render function
@@ -384,7 +384,7 @@ function describeNativeComponentFrame(fn, construct) {
     // This should throw.
     if (construct) {
       // Something should be setting the props in the constructor.
-      var Fake = function () {
+      const Fake = function () {
         throw Error();
       }; // $FlowFixMe
 
@@ -430,10 +430,10 @@ function describeNativeComponentFrame(fn, construct) {
     if (sample && control && typeof sample.stack === 'string') {
       // This extracts the first frame from the sample that isn't also in the control.
       // Skipping one frame that we assume is the frame that calls the two.
-      var sampleLines = sample.stack.split('\n');
-      var controlLines = control.stack.split('\n');
-      var s = sampleLines.length - 1;
-      var c = controlLines.length - 1;
+      const sampleLines = sample.stack.split('\n');
+      const controlLines = control.stack.split('\n');
+      let s = sampleLines.length - 1;
+      let c = controlLines.length - 1;
 
       while (s >= 1 && c >= 0 && sampleLines[s] !== controlLines[c]) {
         // We expect at least one stack frame to be shared.
@@ -462,7 +462,7 @@ function describeNativeComponentFrame(fn, construct) {
 
               if (c < 0 || sampleLines[s] !== controlLines[c]) {
                 // V8 adds a "new" prefix for native classes. Let's remove it to make it prettier.
-                var _frame = '\n' + sampleLines[s].replace(' at new ', ' at '); // If our component frame is labeled "<anonymous>"
+                let _frame = '\n' + sampleLines[s].replace(' at new ', ' at '); // If our component frame is labeled "<anonymous>"
                 // but we have a user-provided "displayName"
                 // splice it in to make the stack more readable.
 
@@ -499,8 +499,8 @@ function describeNativeComponentFrame(fn, construct) {
   } // Fallback to just using the name if we couldn't make it throw.
 
 
-  var name = fn ? fn.displayName || fn.name : '';
-  var syntheticFrame = name ? describeBuiltInComponentFrame(name) : '';
+  const name = fn ? fn.displayName || fn.name : '';
+  const syntheticFrame = name ? describeBuiltInComponentFrame(name) : '';
 
   {
     if (typeof fn === 'function') {
@@ -517,7 +517,7 @@ function describeFunctionComponentFrame(fn, source, ownerFn) {
 }
 
 function shouldConstruct(Component) {
-  var prototype = Component.prototype;
+  const prototype = Component.prototype;
   return !!(prototype && prototype.isReactComponent);
 }
 
@@ -556,9 +556,9 @@ function describeUnknownElementTypeFrameInDEV(type, source, ownerFn) {
 
       case REACT_LAZY_TYPE:
         {
-          var lazyComponent = type;
-          var payload = lazyComponent._payload;
-          var init = lazyComponent._init;
+          const lazyComponent = type;
+          const payload = lazyComponent._payload;
+          const init = lazyComponent._init;
 
           try {
             // Lazy may contain any component type so we recursively resolve it.
@@ -571,16 +571,16 @@ function describeUnknownElementTypeFrameInDEV(type, source, ownerFn) {
   return '';
 }
 
-var hasOwnProperty = Object.prototype.hasOwnProperty;
+const hasOwnProperty = Object.prototype.hasOwnProperty;
 
-var loggedTypeFailures = {};
-var ReactDebugCurrentFrame = ReactSharedInternals.ReactDebugCurrentFrame;
+const loggedTypeFailures = {};
+const ReactDebugCurrentFrame = ReactSharedInternals.ReactDebugCurrentFrame;
 
 function setCurrentlyValidatingElement(element) {
   {
     if (element) {
-      var owner = element._owner;
-      var stack = describeUnknownElementTypeFrameInDEV(element.type, element._source, owner ? owner.type : null);
+      const owner = element._owner;
+      const stack = describeUnknownElementTypeFrameInDEV(element.type, element._source, owner ? owner.type : null);
       ReactDebugCurrentFrame.setExtraStackFrame(stack);
     } else {
       ReactDebugCurrentFrame.setExtraStackFrame(null);
@@ -591,11 +591,11 @@ function setCurrentlyValidatingElement(element) {
 function checkPropTypes(typeSpecs, values, location, componentName, element) {
   {
     // $FlowFixMe This is okay but Flow doesn't know it.
-    var has = Function.call.bind(hasOwnProperty);
+    const has = Function.call.bind(hasOwnProperty);
 
-    for (var typeSpecName in typeSpecs) {
+    for (const typeSpecName in typeSpecs) {
       if (has(typeSpecs, typeSpecName)) {
-        var error$1 = void 0; // Prop type validation may throw. In case they do, we don't want to
+        let error$1 = void 0; // Prop type validation may throw. In case they do, we don't want to
         // fail the render phase where it didn't fail before. So we log it.
         // After these have been cleaned up, we'll let them throw.
 
@@ -604,7 +604,7 @@ function checkPropTypes(typeSpecs, values, location, componentName, element) {
           // behavior as without this statement except with a better message.
           if (typeof typeSpecs[typeSpecName] !== 'function') {
             // eslint-disable-next-line react-internal/prod-error-codes
-            var err = Error((componentName || 'React class') + ': ' + location + ' type `' + typeSpecName + '` is invalid; ' + 'it must be a function, usually from the `prop-types` package, but received `' + typeof typeSpecs[typeSpecName] + '`.' + 'This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.');
+            const err = Error((componentName || 'React class') + ': ' + location + ' type `' + typeSpecName + '` is invalid; ' + 'it must be a function, usually from the `prop-types` package, but received `' + typeof typeSpecs[typeSpecName] + '`.' + 'This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.');
             err.name = 'Invariant Violation';
             throw err;
           }
@@ -637,7 +637,7 @@ function checkPropTypes(typeSpecs, values, location, componentName, element) {
   }
 }
 
-var isArrayImpl = Array.isArray; // eslint-disable-next-line no-redeclare
+const isArrayImpl = Array.isArray; // eslint-disable-next-line no-redeclare
 
 function isArray(a) {
   return isArrayImpl(a);
@@ -656,8 +656,8 @@ function isArray(a) {
 function typeName(value) {
   {
     // toStringTag is needed for namespaced types like Temporal.Instant
-    var hasToStringTag = typeof Symbol === 'function' && Symbol.toStringTag;
-    var type = hasToStringTag && value[Symbol.toStringTag] || value.constructor.name || 'Object';
+    const hasToStringTag = typeof Symbol === 'function' && Symbol.toStringTag;
+    const type = hasToStringTag && value[Symbol.toStringTag] || value.constructor.name || 'Object';
     return type;
   }
 } // $FlowFixMe only called in DEV, so void return is not possible.
@@ -710,16 +710,16 @@ function checkKeyStringCoercion(value) {
   }
 }
 
-var ReactCurrentOwner = ReactSharedInternals.ReactCurrentOwner;
-var RESERVED_PROPS = {
+const ReactCurrentOwner = ReactSharedInternals.ReactCurrentOwner;
+const RESERVED_PROPS = {
   key: true,
   ref: true,
   __self: true,
   __source: true
 };
-var specialPropKeyWarningShown;
-var specialPropRefWarningShown;
-var didWarnAboutStringRefs;
+let specialPropKeyWarningShown;
+let specialPropRefWarningShown;
+let didWarnAboutStringRefs;
 
 {
   didWarnAboutStringRefs = {};
@@ -728,7 +728,7 @@ var didWarnAboutStringRefs;
 function hasValidRef(config) {
   {
     if (hasOwnProperty.call(config, 'ref')) {
-      var getter = Object.getOwnPropertyDescriptor(config, 'ref').get;
+      const getter = Object.getOwnPropertyDescriptor(config, 'ref').get;
 
       if (getter && getter.isReactWarning) {
         return false;
@@ -742,7 +742,7 @@ function hasValidRef(config) {
 function hasValidKey(config) {
   {
     if (hasOwnProperty.call(config, 'key')) {
-      var getter = Object.getOwnPropertyDescriptor(config, 'key').get;
+      const getter = Object.getOwnPropertyDescriptor(config, 'key').get;
 
       if (getter && getter.isReactWarning) {
         return false;
@@ -756,7 +756,7 @@ function hasValidKey(config) {
 function warnIfStringRefCannotBeAutoConverted(config, self) {
   {
     if (typeof config.ref === 'string' && ReactCurrentOwner.current && self && ReactCurrentOwner.current.stateNode !== self) {
-      var componentName = getComponentNameFromType(ReactCurrentOwner.current.type);
+      const componentName = getComponentNameFromType(ReactCurrentOwner.current.type);
 
       if (!didWarnAboutStringRefs[componentName]) {
         error('Component "%s" contains the string ref "%s". ' + 'Support for string refs will be removed in a future major release. ' + 'This case cannot be automatically converted to an arrow function. ' + 'We ask you to manually fix this case by using useRef() or createRef() instead. ' + 'Learn more about using refs safely here: ' + 'https://reactjs.org/link/strict-mode-string-ref', getComponentNameFromType(ReactCurrentOwner.current.type), config.ref);
@@ -769,7 +769,7 @@ function warnIfStringRefCannotBeAutoConverted(config, self) {
 
 function defineKeyPropWarningGetter(props, displayName) {
   {
-    var warnAboutAccessingKey = function () {
+    const warnAboutAccessingKey = function () {
       if (!specialPropKeyWarningShown) {
         specialPropKeyWarningShown = true;
 
@@ -787,7 +787,7 @@ function defineKeyPropWarningGetter(props, displayName) {
 
 function defineRefPropWarningGetter(props, displayName) {
   {
-    var warnAboutAccessingRef = function () {
+    const warnAboutAccessingRef = function () {
       if (!specialPropRefWarningShown) {
         specialPropRefWarningShown = true;
 
@@ -824,8 +824,8 @@ function defineRefPropWarningGetter(props, displayName) {
  */
 
 
-var ReactElement = function (type, key, ref, self, source, owner, props) {
-  var element = {
+const ReactElement = function (type, key, ref, self, source, owner, props) {
+  const element = {
     // This tag allows us to uniquely identify this as a React Element
     $$typeof: REACT_ELEMENT_TYPE,
     // Built-in properties that belong on the element
@@ -886,11 +886,11 @@ var ReactElement = function (type, key, ref, self, source, owner, props) {
 
 function jsxDEV(type, config, maybeKey, source, self) {
   {
-    var propName; // Reserved names are extracted
+    let propName; // Reserved names are extracted
 
-    var props = {};
-    var key = null;
-    var ref = null; // Currently, key can be spread in as a prop. This causes a potential
+    const props = {};
+    let key = null;
+    let ref = null; // Currently, key can be spread in as a prop. This causes a potential
     // issue if key is also explicitly declared (ie. <div {...props} key="Hi" />
     // or <div key="Hi" {...props} /> ). We want to deprecate key spread,
     // but as an intermediary step, we will use jsxDEV for everything except
@@ -927,7 +927,7 @@ function jsxDEV(type, config, maybeKey, source, self) {
 
 
     if (type && type.defaultProps) {
-      var defaultProps = type.defaultProps;
+      const defaultProps = type.defaultProps;
 
       for (propName in defaultProps) {
         if (props[propName] === undefined) {
@@ -937,7 +937,7 @@ function jsxDEV(type, config, maybeKey, source, self) {
     }
 
     if (key || ref) {
-      var displayName = typeof type === 'function' ? type.displayName || type.name || 'Unknown' : type;
+      const displayName = typeof type === 'function' ? type.displayName || type.name || 'Unknown' : type;
 
       if (key) {
         defineKeyPropWarningGetter(props, displayName);
@@ -952,14 +952,14 @@ function jsxDEV(type, config, maybeKey, source, self) {
   }
 }
 
-var ReactCurrentOwner$1 = ReactSharedInternals.ReactCurrentOwner;
-var ReactDebugCurrentFrame$1 = ReactSharedInternals.ReactDebugCurrentFrame;
+const ReactCurrentOwner$1 = ReactSharedInternals.ReactCurrentOwner;
+const ReactDebugCurrentFrame$1 = ReactSharedInternals.ReactDebugCurrentFrame;
 
 function setCurrentlyValidatingElement$1(element) {
   {
     if (element) {
-      var owner = element._owner;
-      var stack = describeUnknownElementTypeFrameInDEV(element.type, element._source, owner ? owner.type : null);
+      const owner = element._owner;
+      const stack = describeUnknownElementTypeFrameInDEV(element.type, element._source, owner ? owner.type : null);
       ReactDebugCurrentFrame$1.setExtraStackFrame(stack);
     } else {
       ReactDebugCurrentFrame$1.setExtraStackFrame(null);
@@ -967,7 +967,7 @@ function setCurrentlyValidatingElement$1(element) {
   }
 }
 
-var propTypesMisspellWarningShown;
+let propTypesMisspellWarningShown;
 
 {
   propTypesMisspellWarningShown = false;
@@ -990,7 +990,7 @@ function isValidElement(object) {
 function getDeclarationErrorAddendum() {
   {
     if (ReactCurrentOwner$1.current) {
-      var name = getComponentNameFromType(ReactCurrentOwner$1.current.type);
+      const name = getComponentNameFromType(ReactCurrentOwner$1.current.type);
 
       if (name) {
         return '\n\nCheck the render method of `' + name + '`.';
@@ -1004,8 +1004,8 @@ function getDeclarationErrorAddendum() {
 function getSourceInfoErrorAddendum(source) {
   {
     if (source !== undefined) {
-      var fileName = source.fileName.replace(/^.*[\\\/]/, '');
-      var lineNumber = source.lineNumber;
+      const fileName = source.fileName.replace(/^.*[\\\/]/, '');
+      const lineNumber = source.lineNumber;
       return '\n\nCheck your code at ' + fileName + ':' + lineNumber + '.';
     }
 
@@ -1019,14 +1019,14 @@ function getSourceInfoErrorAddendum(source) {
  */
 
 
-var ownerHasKeyUseWarning = {};
+const ownerHasKeyUseWarning = {};
 
 function getCurrentComponentErrorInfo(parentType) {
   {
-    var info = getDeclarationErrorAddendum();
+    let info = getDeclarationErrorAddendum();
 
     if (!info) {
-      var parentName = typeof parentType === 'string' ? parentType : parentType.displayName || parentType.name;
+      const parentName = typeof parentType === 'string' ? parentType : parentType.displayName || parentType.name;
 
       if (parentName) {
         info = "\n\nCheck the top-level render call using <" + parentName + ">.";
@@ -1056,7 +1056,7 @@ function validateExplicitKey(element, parentType) {
     }
 
     element._store.validated = true;
-    var currentComponentErrorInfo = getCurrentComponentErrorInfo(parentType);
+    const currentComponentErrorInfo = getCurrentComponentErrorInfo(parentType);
 
     if (ownerHasKeyUseWarning[currentComponentErrorInfo]) {
       return;
@@ -1066,7 +1066,7 @@ function validateExplicitKey(element, parentType) {
     // property, it may be the creator of the child that's responsible for
     // assigning it a key.
 
-    var childOwner = '';
+    let childOwner = '';
 
     if (element && element._owner && element._owner !== ReactCurrentOwner$1.current) {
       // Give the component that originally created this child.
@@ -1098,8 +1098,8 @@ function validateChildKeys(node, parentType) {
     }
 
     if (isArray(node)) {
-      for (var i = 0; i < node.length; i++) {
-        var child = node[i];
+      for (let i = 0; i < node.length; i++) {
+        const child = node[i];
 
         if (isValidElement(child)) {
           validateExplicitKey(child, parentType);
@@ -1111,14 +1111,14 @@ function validateChildKeys(node, parentType) {
         node._store.validated = true;
       }
     } else if (node) {
-      var iteratorFn = getIteratorFn(node);
+      const iteratorFn = getIteratorFn(node);
 
       if (typeof iteratorFn === 'function') {
         // Entry iterators used to provide implicit keys,
         // but now we print a separate warning for them later.
         if (iteratorFn !== node.entries) {
-          var iterator = iteratorFn.call(node);
-          var step;
+          const iterator = iteratorFn.call(node);
+          let step;
 
           while (!(step = iterator.next()).done) {
             if (isValidElement(step.value)) {
@@ -1140,13 +1140,13 @@ function validateChildKeys(node, parentType) {
 
 function validatePropTypes(element) {
   {
-    var type = element.type;
+    const type = element.type;
 
     if (type === null || type === undefined || typeof type === 'string') {
       return;
     }
 
-    var propTypes;
+    let propTypes;
 
     if (typeof type === 'function') {
       propTypes = type.propTypes;
@@ -1160,12 +1160,12 @@ function validatePropTypes(element) {
 
     if (propTypes) {
       // Intentionally inside to avoid triggering lazy initializers:
-      var name = getComponentNameFromType(type);
+      const name = getComponentNameFromType(type);
       checkPropTypes(propTypes, element.props, 'prop', name, element);
     } else if (type.PropTypes !== undefined && !propTypesMisspellWarningShown) {
       propTypesMisspellWarningShown = true; // Intentionally inside to avoid triggering lazy initializers:
 
-      var _name = getComponentNameFromType(type);
+      const _name = getComponentNameFromType(type);
 
       error('Component %s declared `PropTypes` instead of `propTypes`. Did you misspell the property assignment?', _name || 'Unknown');
     }
@@ -1183,10 +1183,10 @@ function validatePropTypes(element) {
 
 function validateFragmentProps(fragment) {
   {
-    var keys = Object.keys(fragment.props);
+    const keys = Object.keys(fragment.props);
 
-    for (var i = 0; i < keys.length; i++) {
-      var key = keys[i];
+    for (let i = 0; i < keys.length; i++) {
+      const key = keys[i];
 
       if (key !== 'children' && key !== 'key') {
         setCurrentlyValidatingElement$1(fragment);
@@ -1208,20 +1208,20 @@ function validateFragmentProps(fragment) {
   }
 }
 
-var didWarnAboutKeySpread = {};
+const didWarnAboutKeySpread = {};
 function jsxWithValidation(type, props, key, isStaticChildren, source, self) {
   {
-    var validType = isValidElementType(type); // We warn in this case but don't throw. We expect the element creation to
+    const validType = isValidElementType(type); // We warn in this case but don't throw. We expect the element creation to
     // succeed and there will likely be errors in render.
 
     if (!validType) {
-      var info = '';
+      let info = '';
 
       if (type === undefined || typeof type === 'object' && type !== null && Object.keys(type).length === 0) {
         info += ' You likely forgot to export your component from the file ' + "it's defined in, or you might have mixed up default and named imports.";
       }
 
-      var sourceInfo = getSourceInfoErrorAddendum(source);
+      const sourceInfo = getSourceInfoErrorAddendum(source);
 
       if (sourceInfo) {
         info += sourceInfo;
@@ -1229,7 +1229,7 @@ function jsxWithValidation(type, props, key, isStaticChildren, source, self) {
         info += getDeclarationErrorAddendum();
       }
 
-      var typeString;
+      let typeString;
 
       if (type === null) {
         typeString = 'null';
@@ -1245,7 +1245,7 @@ function jsxWithValidation(type, props, key, isStaticChildren, source, self) {
       error('React.jsx: type is invalid -- expected a string (for ' + 'built-in components) or a class/function (for composite ' + 'components) but got: %s.%s', typeString, info);
     }
 
-    var element = jsxDEV(type, props, key, source, self); // The result can be nullish if a mock or a custom function is used.
+    const element = jsxDEV(type, props, key, source, self); // The result can be nullish if a mock or a custom function is used.
     // TODO: Drop this when these are no longer allowed as the type argument.
 
     if (element == null) {
@@ -1258,12 +1258,12 @@ function jsxWithValidation(type, props, key, isStaticChildren, source, self) {
 
 
     if (validType) {
-      var children = props.children;
+      const children = props.children;
 
       if (children !== undefined) {
         if (isStaticChildren) {
           if (isArray(children)) {
-            for (var i = 0; i < children.length; i++) {
+            for (let i = 0; i < children.length; i++) {
               validateChildKeys(children[i], type);
             }
 
@@ -1281,14 +1281,14 @@ function jsxWithValidation(type, props, key, isStaticChildren, source, self) {
 
     {
       if (hasOwnProperty.call(props, 'key')) {
-        var componentName = getComponentNameFromType(type);
-        var keys = Object.keys(props).filter(function (k) {
+        const componentName = getComponentNameFromType(type);
+        const keys = Object.keys(props).filter(function (k) {
           return k !== 'key';
         });
-        var beforeExample = keys.length > 0 ? '{key: someKey, ' + keys.join(': ..., ') + ': ...}' : '{key: someKey}';
+        const beforeExample = keys.length > 0 ? '{key: someKey, ' + keys.join(': ..., ') + ': ...}' : '{key: someKey}';
 
         if (!didWarnAboutKeySpread[componentName + beforeExample]) {
-          var afterExample = keys.length > 0 ? '{' + keys.join(': ..., ') + ': ...}' : '{}';
+          const afterExample = keys.length > 0 ? '{' + keys.join(': ..., ') + ': ...}' : '{}';
 
           error('A props object containing a "key" prop is being spread into JSX:\n' + '  let props = %s;\n' + '  <%s {...props} />\n' + 'React keys must be passed directly to JSX without using spread:\n' + '  let props = %s;\n' + '  <%s key={someKey} {...props} />', beforeExample, componentName, afterExample, componentName);
 
@@ -1321,10 +1321,10 @@ function jsxWithValidationDynamic(type, props, key) {
   }
 }
 
-var jsx =  jsxWithValidationDynamic ; // we may want to special case jsxs internally to take advantage of static children.
+const jsx =  jsxWithValidationDynamic ; // we may want to special case jsxs internally to take advantage of static children.
 // for now we can ship identical prod functions
 
-var jsxs =  jsxWithValidationStatic ;
+const jsxs =  jsxWithValidationStatic ;
 
 exports.Fragment = REACT_FRAGMENT_TYPE;
 exports.jsx = jsx;

@@ -1,4 +1,4 @@
-var CSSOM = {};
+const CSSOM = {};
 
 
 /**
@@ -39,7 +39,7 @@ CSSOM.CSSStyleDeclaration.prototype = {
 	setProperty: function(name, value, priority) {
 		if (this[name]) {
 			// Property already exist. Overwrite it.
-			var index = Array.prototype.indexOf.call(this, name);
+			const index = Array.prototype.indexOf.call(this, name);
 			if (index < 0) {
 				this[this.length] = name;
 				this.length++;
@@ -64,11 +64,11 @@ CSSOM.CSSStyleDeclaration.prototype = {
 		if (!(name in this)) {
 			return "";
 		}
-		var index = Array.prototype.indexOf.call(this, name);
+		const index = Array.prototype.indexOf.call(this, name);
 		if (index < 0) {
 			return "";
 		}
-		var prevValue = this[name];
+		const prevValue = this[name];
 		this[name] = "";
 
 		// That's what WebKit and Opera do
@@ -108,11 +108,11 @@ CSSOM.CSSStyleDeclaration.prototype = {
 
 	// Doesn't work in IE < 9
 	get cssText(){
-		var properties = [];
-		for (var i=0, length=this.length; i < length; ++i) {
-			var name = this[i];
-			var value = this.getPropertyValue(name);
-			var priority = this.getPropertyPriority(name);
+		const properties = [];
+		for (let i=0, length=this.length; i < length; ++i) {
+			const name = this[i];
+			const value = this.getPropertyValue(name);
+			let priority = this.getPropertyPriority(name);
 			if (priority) {
 				priority = " !" + priority;
 			}
@@ -122,7 +122,7 @@ CSSOM.CSSStyleDeclaration.prototype = {
 	},
 
 	set cssText(text){
-		var i, name;
+		let i, name;
 		for (i = this.length; i--;) {
 			name = this[i];
 			this[name] = "";
@@ -130,8 +130,8 @@ CSSOM.CSSStyleDeclaration.prototype = {
 		Array.prototype.splice.call(this, 0, this.length);
 		this._importants = {};
 
-		var dummyRule = CSSOM.parse('#bogus{' + text + '}').cssRules[0].style;
-		var length = dummyRule.length;
+		const dummyRule = CSSOM.parse('#bogus{' + text + '}').cssRules[0].style;
+		const length = dummyRule.length;
 		for (i = 0; i < length; ++i) {
 			name = dummyRule[i];
 			this.setProperty(dummyRule[i], dummyRule.getPropertyValue(name), dummyRule.getPropertyPriority(name));
@@ -212,7 +212,7 @@ CSSOM.CSSGroupingRule.prototype.constructor = CSSOM.CSSGroupingRule;
 	if (index < 0 || index > this.cssRules.length) {
 		throw new RangeError("INDEX_SIZE_ERR");
 	}
-	var cssRule = CSSOM.parse(rule).cssRules[0];
+	const cssRule = CSSOM.parse(rule).cssRules[0];
 	cssRule.parentRule = this;
 	this.cssRules.splice(index, 0, cssRule);
 	return index;
@@ -271,7 +271,7 @@ CSSOM.CSSStyleRule.prototype.type = 1;
 
 Object.defineProperty(CSSOM.CSSStyleRule.prototype, "cssText", {
 	get: function() {
-		var text;
+		let text;
 		if (this.selectorText) {
 			text = this.selectorText + " {" + this.style.cssText + "}";
 		} else {
@@ -280,7 +280,7 @@ Object.defineProperty(CSSOM.CSSStyleRule.prototype, "cssText", {
 		return text;
 	},
 	set: function(cssText) {
-		var rule = CSSOM.CSSStyleRule.parse(cssText);
+		const rule = CSSOM.CSSStyleRule.parse(cssText);
 		this.style = rule.style;
 		this.selectorText = rule.selectorText;
 	}
@@ -294,19 +294,19 @@ Object.defineProperty(CSSOM.CSSStyleRule.prototype, "cssText", {
  * @return CSSStyleRule
  */
 CSSOM.CSSStyleRule.parse = function(ruleText) {
-	var i = 0;
-	var state = "selector";
-	var index;
-	var j = i;
-	var buffer = "";
+	let i = 0;
+	let state = "selector";
+	let index;
+	let j = i;
+	let buffer = "";
 
-	var SIGNIFICANT_WHITESPACE = {
+	const SIGNIFICANT_WHITESPACE = {
 		"selector": true,
 		"value": true
 	};
 
-	var styleRule = new CSSOM.CSSStyleRule();
-	var name, priority="";
+	const styleRule = new CSSOM.CSSStyleRule();
+	let name, priority="";
 
 	for (var character; (character = ruleText.charAt(i)); i++) {
 
@@ -456,9 +456,9 @@ CSSOM.MediaList.prototype = {
 	 * @param {string} value
 	 */
 	set mediaText(value) {
-		var values = value.split(",");
-		var length = this.length = values.length;
-		for (var i=0; i<length; i++) {
+		const values = value.split(",");
+		const length = this.length = values.length;
+		for (let i=0; i<length; i++) {
 			this[i] = values[i].trim();
 		}
 	},
@@ -477,7 +477,7 @@ CSSOM.MediaList.prototype = {
 	 * @param {string} medium
 	 */
 	deleteMedium: function(medium) {
-		var index = Array.prototype.indexOf.call(this, medium);
+		const index = Array.prototype.indexOf.call(this, medium);
 		if (index !== -1) {
 			Array.prototype.splice.call(this, index, 1);
 		}
@@ -515,8 +515,8 @@ Object.defineProperties(CSSOM.CSSMediaRule.prototype, {
   },
   "cssText": {
     get: function() {
-      var cssTexts = [];
-      for (var i=0, length=this.cssRules.length; i < length; i++) {
+      const cssTexts = [];
+      for (let i=0, length=this.cssRules.length; i < length; i++) {
         cssTexts.push(this.cssRules[i].cssText);
       }
       return "@media " + this.media.mediaText + " {" + cssTexts.join("") + "}";
@@ -554,8 +554,8 @@ Object.defineProperties(CSSOM.CSSContainerRule.prototype, {
   },
   "cssText": {
     get: function() {
-      var cssTexts = [];
-      for (var i=0, length=this.cssRules.length; i < length; i++) {
+      const cssTexts = [];
+      for (let i=0, length=this.cssRules.length; i < length; i++) {
         cssTexts.push(this.cssRules[i].cssText);
       }
       return "@container " + this.containerText + " {" + cssTexts.join("") + "}";
@@ -581,9 +581,9 @@ CSSOM.CSSSupportsRule.prototype.type = 12;
 
 Object.defineProperty(CSSOM.CSSSupportsRule.prototype, "cssText", {
   get: function() {
-    var cssTexts = [];
+    const cssTexts = [];
 
-    for (var i = 0, length = this.cssRules.length; i < length; i++) {
+    for (let i = 0, length = this.cssRules.length; i < length; i++) {
       cssTexts.push(this.cssRules[i].cssText);
     }
 
@@ -610,11 +610,11 @@ CSSOM.CSSImportRule.prototype.type = 3;
 
 Object.defineProperty(CSSOM.CSSImportRule.prototype, "cssText", {
   get: function() {
-    var mediaText = this.media.mediaText;
+    const mediaText = this.media.mediaText;
     return "@import url(" + this.href + ")" + (mediaText ? " " + mediaText : "") + ";";
   },
   set: function(cssText) {
-    var i = 0;
+    let i = 0;
 
     /**
      * @import url(partial.css) screen, handheld;
@@ -623,10 +623,10 @@ Object.defineProperty(CSSOM.CSSImportRule.prototype, "cssText", {
      *         |
      *         url
      */
-    var state = '';
+    let state = '';
 
-    var buffer = '';
-    var index;
+    let buffer = '';
+    let index;
     for (var character; (character = cssText.charAt(i)); i++) {
 
       switch (character) {
@@ -657,7 +657,7 @@ Object.defineProperty(CSSOM.CSSImportRule.prototype, "cssText", {
               throw i + ': ")" not found';
             }
             i += 'url('.length;
-            var url = cssText.slice(i, index);
+            let url = cssText.slice(i, index);
             if (url[0] === url[url.length - 1]) {
               if (url[0] === '"' || url[0] === "'") {
                 url = url.slice(1, -1);
@@ -757,8 +757,8 @@ CSSOM.CSSHostRule.prototype.type = 1001;
 
 Object.defineProperty(CSSOM.CSSHostRule.prototype, "cssText", {
 	get: function() {
-		var cssTexts = [];
-		for (var i=0, length=this.cssRules.length; i < length; i++) {
+		const cssTexts = [];
+		for (let i=0, length=this.cssRules.length; i < length; i++) {
 			cssTexts.push(this.cssRules[i].cssText);
 		}
 		return "@host {" + cssTexts.join("") + "}";
@@ -785,8 +785,8 @@ CSSOM.CSSStartingStyleRule.prototype.type = 1002;
 
 Object.defineProperty(CSSOM.CSSStartingStyleRule.prototype, "cssText", {
 	get: function() {
-		var cssTexts = [];
-		for (var i=0, length=this.cssRules.length; i < length; i++) {
+		const cssTexts = [];
+		for (let i=0, length=this.cssRules.length; i < length; i++) {
 			cssTexts.push(this.cssRules[i].cssText);
 		}
 		return "@starting-style {" + cssTexts.join("") + "}";
@@ -839,7 +839,7 @@ CSSOM.CSSStyleSheet.prototype.insertRule = function(rule, index) {
 	if (index < 0 || index > this.cssRules.length) {
 		throw new RangeError("INDEX_SIZE_ERR");
 	}
-	var cssRule = CSSOM.parse(rule).cssRules[0];
+	const cssRule = CSSOM.parse(rule).cssRules[0];
 	cssRule.parentStyleSheet = this;
 	this.cssRules.splice(index, 0, cssRule);
 	return index;
@@ -872,9 +872,9 @@ CSSOM.CSSStyleSheet.prototype.deleteRule = function(index) {
  * @return {string} serialize stylesheet
  */
 CSSOM.CSSStyleSheet.prototype.toString = function() {
-	var result = "";
-	var rules = this.cssRules;
-	for (var i=0; i<rules.length; i++) {
+	let result = "";
+	const rules = this.cssRules;
+	for (let i=0; i<rules.length; i++) {
 		result += rules[i].cssText + "\n";
 	}
 	return result;
@@ -902,8 +902,8 @@ CSSOM.CSSKeyframesRule.prototype.type = 7;
 // http://www.opensource.apple.com/source/WebCore/WebCore-955.66.1/css/WebKitCSSKeyframesRule.cpp
 Object.defineProperty(CSSOM.CSSKeyframesRule.prototype, "cssText", {
   get: function() {
-    var cssTexts = [];
-    for (var i=0, length=this.cssRules.length; i < length; i++) {
+    const cssTexts = [];
+    for (let i=0, length=this.cssRules.length; i < length; i++) {
       cssTexts.push("  " + this.cssRules[i].cssText);
     }
     return "@" + (this._vendorPrefix || '') + "keyframes " + this.name + " { \n" + cssTexts.join("\n") + "\n}";
@@ -963,9 +963,9 @@ CSSOM.MatcherList.prototype = {
      */
     set matcherText(value) {
         // just a temporary solution, actually it may be wrong by just split the value with ',', because a url can include ','.
-        var values = value.split(",");
-        var length = this.length = values.length;
-        for (var i=0; i<length; i++) {
+        const values = value.split(",");
+        const length = this.length = values.length;
+        for (let i=0; i<length; i++) {
             this[i] = values[i].trim();
         }
     },
@@ -984,7 +984,7 @@ CSSOM.MatcherList.prototype = {
      * @param {string} matcher
      */
     deleteMatcher: function(matcher) {
-        var index = Array.prototype.indexOf.call(this, matcher);
+        const index = Array.prototype.indexOf.call(this, matcher);
         if (index !== -1) {
             Array.prototype.splice.call(this, index, 1);
         }
@@ -1013,8 +1013,8 @@ CSSOM.CSSDocumentRule.prototype.type = 10;
 
 Object.defineProperty(CSSOM.CSSDocumentRule.prototype, "cssText", {
   get: function() {
-    var cssTexts = [];
-    for (var i=0, length=this.cssRules.length; i < length; i++) {
+    const cssTexts = [];
+    for (let i=0, length=this.cssRules.length; i < length; i++) {
         cssTexts.push(this.cssRules[i].cssText);
     }
     return "@-moz-document " + this.matcher.matcherText + " {" + cssTexts.join("") + "}";
@@ -1037,19 +1037,19 @@ CSSOM.CSSValue.prototype = {
 
 	// @see: http://www.w3.org/TR/DOM-Level-2-Style/css.html#CSS-CSSValue
 	set cssText(text) {
-		var name = this._getConstructorName();
+		const name = this._getConstructorName();
 
 		throw new Error('DOMException: property "cssText" of "' + name + '" is readonly and can not be replaced with "' + text + '"!');
 	},
 
 	get cssText() {
-		var name = this._getConstructorName();
+		const name = this._getConstructorName();
 
 		throw new Error('getter "cssText" of "' + name + '" is not implemented!');
 	},
 
 	_getConstructorName: function() {
-		var s = this.constructor.toString(),
+		const s = this.constructor.toString(),
 				c = s.match(/function\s([^\(]+)/),
 				name = c[1];
 
@@ -1088,10 +1088,10 @@ CSSOM.CSSValueExpression.prototype.constructor = CSSOM.CSSValueExpression;
  * }
  */
 CSSOM.CSSValueExpression.prototype.parse = function() {
-	var token = this._token,
+	let token = this._token,
 			idx = this._idx;
 
-	var character = '',
+	let character = '',
 			expression = '',
 			error = '',
 			info,
@@ -1160,7 +1160,7 @@ CSSOM.CSSValueExpression.prototype.parse = function() {
 		}
 	}
 
-	var ret;
+	let ret;
 	if (error) {
 		ret = {
 			error: error
@@ -1188,11 +1188,11 @@ CSSOM.CSSValueExpression.prototype.parse = function() {
  *
  */
 CSSOM.CSSValueExpression.prototype._parseJSComment = function(token, idx) {
-	var nextChar = token.charAt(idx + 1),
+	let nextChar = token.charAt(idx + 1),
 			text;
 
 	if (nextChar === '/' || nextChar === '*') {
-		var startIdx = idx,
+		let startIdx = idx,
 				endIdx,
 				commentEndChar;
 
@@ -1211,7 +1211,7 @@ CSSOM.CSSValueExpression.prototype._parseJSComment = function(token, idx) {
 				text: text
 			};
 		} else {
-			var error = 'css expression error: unfinished comment in expression!';
+			const error = 'css expression error: unfinished comment in expression!';
 			return {
 				error: error
 			};
@@ -1232,7 +1232,7 @@ CSSOM.CSSValueExpression.prototype._parseJSComment = function(token, idx) {
  *
  */
 CSSOM.CSSValueExpression.prototype._parseJSString = function(token, idx, sep) {
-	var endIdx = this._findMatchedIdx(token, idx, sep),
+	let endIdx = this._findMatchedIdx(token, idx, sep),
 			text;
 
 	if (endIdx === -1) {
@@ -1307,7 +1307,7 @@ instanceof /a/
 
 */
 CSSOM.CSSValueExpression.prototype._parseJSRexExp = function(token, idx) {
-	var before = token.substring(0, idx).replace(/\s+$/, ""),
+	const before = token.substring(0, idx).replace(/\s+$/, ""),
 			legalRegx = [
 				/^$/,
 				/\($/,
@@ -1335,14 +1335,14 @@ CSSOM.CSSValueExpression.prototype._parseJSRexExp = function(token, idx) {
 				/void$/
 			];
 
-	var isLegal = legalRegx.some(function(reg) {
+	const isLegal = legalRegx.some(function(reg) {
 		return reg.test(before);
 	});
 
 	if (!isLegal) {
 		return false;
 	} else {
-		var sep = '/';
+		const sep = '/';
 
 		// same logic as string
 		return this._parseJSString(token, idx, sep);
@@ -1358,10 +1358,10 @@ CSSOM.CSSValueExpression.prototype._parseJSRexExp = function(token, idx) {
  *
  */
 CSSOM.CSSValueExpression.prototype._findMatchedIdx = function(token, idx, sep) {
-	var startIdx = idx,
+	let startIdx = idx,
 			endIdx;
 
-	var NOT_FOUND = -1;
+	const NOT_FOUND = -1;
 
 	while(true) {
 		endIdx = token.indexOf(sep, startIdx + 1);
@@ -1370,7 +1370,7 @@ CSSOM.CSSValueExpression.prototype._findMatchedIdx = function(token, idx, sep) {
 			endIdx = NOT_FOUND;
 			break;
 		} else {
-			var text = token.substring(idx + 1, endIdx),
+			const text = token.substring(idx + 1, endIdx),
 					matched = text.match(/\\+$/);
 			if (!matched || matched[0] % 2 === 0) { // not escaped
 				break;
@@ -1381,7 +1381,7 @@ CSSOM.CSSValueExpression.prototype._findMatchedIdx = function(token, idx, sep) {
 	}
 
 	// boundary must be in the same line(js sting or regexp)
-	var nextNewLineIdx = token.indexOf('\n', idx + 1);
+	const nextNewLineIdx = token.indexOf('\n', idx + 1);
 	if (nextNewLineIdx < endIdx) {
 		endIdx = NOT_FOUND;
 	}
@@ -1421,8 +1421,8 @@ Object.defineProperties(CSSOM.CSSLayerBlockRule.prototype, {
   },
   cssText: {
     get: function () {
-      var cssTexts = [];
-      for (var i = 0, length = this.cssRules.length; i < length; i++) {
+      const cssTexts = [];
+      for (let i = 0, length = this.cssRules.length; i < length; i++) {
         cssTexts.push(this.cssRules[i].cssText);
       }
       return "@layer " + this.layerNameText + " {" + cssTexts.join("") + "}";
@@ -1438,7 +1438,7 @@ Object.defineProperties(CSSOM.CSSLayerBlockRule.prototype, {
  */
 CSSOM.parse = function parse(token) {
 
-	var i = 0;
+	let i = 0;
 
 	/**
 		"before-selector" or
@@ -1451,13 +1451,13 @@ CSSOM.parse = function parse(token) {
 		"before-value" or
 		"value"
 	*/
-	var state = "before-selector";
+	let state = "before-selector";
 
-	var index;
-	var buffer = "";
-	var valueParenthesisDepth = 0;
+	let index;
+	let buffer = "";
+	let valueParenthesisDepth = 0;
 
-	var SIGNIFICANT_WHITESPACE = {
+	const SIGNIFICANT_WHITESPACE = {
 		"selector": true,
 		"value": true,
 		"value-parenthesis": true,
@@ -1471,27 +1471,27 @@ CSSOM.parse = function parse(token) {
 		"layerBlock": true
 	};
 
-	var styleSheet = new CSSOM.CSSStyleSheet();
+	const styleSheet = new CSSOM.CSSStyleSheet();
 
 	// @type CSSStyleSheet|CSSMediaRule|CSSContainerRule|CSSSupportsRule|CSSFontFaceRule|CSSKeyframesRule|CSSDocumentRule
-	var currentScope = styleSheet;
+	let currentScope = styleSheet;
 
 	// @type CSSMediaRule|CSSContainerRule|CSSSupportsRule|CSSKeyframesRule|CSSDocumentRule
-	var parentRule;
+	let parentRule;
 
-	var ancestorRules = [];
-	var hasAncestors = false;
-	var prevScope;
+	const ancestorRules = [];
+	let hasAncestors = false;
+	let prevScope;
 
-	var name, priority="", styleRule, mediaRule, containerRule, supportsRule, importRule, fontFaceRule, keyframesRule, documentRule, hostRule, startingStyleRule, layerBlockRule;
+	let name, priority="", styleRule, mediaRule, containerRule, supportsRule, importRule, fontFaceRule, keyframesRule, documentRule, hostRule, startingStyleRule, layerBlockRule;
 
-	var atKeyframesRegExp = /@(-(?:\w+-)+)?keyframes/g;
+	const atKeyframesRegExp = /@(-(?:\w+-)+)?keyframes/g;
 
-	var parseError = function(message) {
-		var lines = token.substring(0, i).split('\n');
-		var lineCount = lines.length;
-		var charCount = lines.pop().length + 1;
-		var error = new Error(message + ' (line ' + lineCount + ', char ' + charCount + ')');
+	const parseError = function(message) {
+		const lines = token.substring(0, i).split('\n');
+		const lineCount = lines.length;
+		const charCount = lines.pop().length + 1;
+		const error = new Error(message + ' (line ' + lineCount + ', char ' + charCount + ')');
 		error.line = lineCount;
 		/* jshint sub : true */
 		error['char'] = charCount;
@@ -1638,7 +1638,7 @@ CSSOM.parse = function parse(token) {
 				break;
 			} else {
 				atKeyframesRegExp.lastIndex = i;
-				var matchKeyframes = atKeyframesRegExp.exec(token);
+				const matchKeyframes = atKeyframesRegExp.exec(token);
 				if (matchKeyframes && matchKeyframes.index === i) {
 					state = "keyframesRule-begin";
 					keyframesRule = new CSSOM.CSSKeyframesRule();
@@ -1774,7 +1774,7 @@ CSSOM.parse = function parse(token) {
 			if (state === 'value') {
 				// ie css expression mode
 				if (buffer.trim() === 'expression') {
-					var info = (new CSSOM.CSSValueExpression(token, i)).parse();
+					const info = (new CSSOM.CSSValueExpression(token, i)).parse();
 
 					if (info.error) {
 						parseError(info.error);
@@ -1941,22 +1941,22 @@ CSSOM.parse = function parse(token) {
  */
 CSSOM.clone = function clone(stylesheet) {
 
-	var cloned = new CSSOM.CSSStyleSheet();
+	const cloned = new CSSOM.CSSStyleSheet();
 
-	var rules = stylesheet.cssRules;
+	const rules = stylesheet.cssRules;
 	if (!rules) {
 		return cloned;
 	}
 
-	for (var i = 0, rulesLength = rules.length; i < rulesLength; i++) {
-		var rule = rules[i];
-		var ruleClone = cloned.cssRules[i] = new rule.constructor();
+	for (let i = 0, rulesLength = rules.length; i < rulesLength; i++) {
+		const rule = rules[i];
+		const ruleClone = cloned.cssRules[i] = new rule.constructor();
 
-		var style = rule.style;
+		const style = rule.style;
 		if (style) {
-			var styleClone = ruleClone.style = new CSSOM.CSSStyleDeclaration();
-			for (var j = 0, styleLength = style.length; j < styleLength; j++) {
-				var name = styleClone[j] = style[j];
+			const styleClone = ruleClone.style = new CSSOM.CSSStyleDeclaration();
+			for (let j = 0, styleLength = style.length; j < styleLength; j++) {
+				const name = styleClone[j] = style[j];
 				styleClone[name] = style[name];
 				styleClone._importants[name] = style.getPropertyPriority(name);
 			}

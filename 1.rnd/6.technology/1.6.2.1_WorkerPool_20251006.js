@@ -4,7 +4,7 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 exports.default = void 0;
-var _BaseWorkerPool = _interopRequireDefault(require('./base/BaseWorkerPool'));
+const _BaseWorkerPool = _interopRequireDefault(require('./base/BaseWorkerPool'));
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {default: obj};
 }
@@ -30,5 +30,5 @@ class WorkerPool extends _BaseWorkerPool.default {
     return new Worker(workerOptions);
   }
 }
-var _default = WorkerPool;
+const _default = WorkerPool;
 exports.default = _default;

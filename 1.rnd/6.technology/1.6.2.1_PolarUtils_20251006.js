@@ -4,24 +4,24 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.radianToDegree = exports.polarToCartesian = exports.inRangeOfSector = exports.getTickClassName = exports.getMaxRadius = exports.getAngleOfPoint = exports.formatAngleOfSector = exports.distanceBetweenPoints = exports.degreeToRadian = exports.RADIAN = void 0;
-var _react = require("react");
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+const _react = require("react");
+function ownKeys(e, r) { const t = Object.keys(e); if (Object.getOwnPropertySymbols) { let o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (let r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-var RADIAN = exports.RADIAN = Math.PI / 180;
-var degreeToRadian = angle => angle * Math.PI / 180;
+function _toPropertyKey(t) { const i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; const e = t[Symbol.toPrimitive]; if (void 0 !== e) { const i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+const RADIAN = exports.RADIAN = Math.PI / 180;
+const degreeToRadian = angle => angle * Math.PI / 180;
 exports.degreeToRadian = degreeToRadian;
-var radianToDegree = angleInRadian => angleInRadian * 180 / Math.PI;
+const radianToDegree = angleInRadian => angleInRadian * 180 / Math.PI;
 exports.radianToDegree = radianToDegree;
-var polarToCartesian = (cx, cy, radius, angle) => ({
+const polarToCartesian = (cx, cy, radius, angle) => ({
   x: cx + Math.cos(-RADIAN * angle) * radius,
   y: cy + Math.sin(-RADIAN * angle) * radius
 });
 exports.polarToCartesian = polarToCartesian;
-var getMaxRadius = exports.getMaxRadius = function getMaxRadius(width, height) {
-  var offset = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {
+const getMaxRadius = exports.getMaxRadius = function getMaxRadius(width, height) {
+  const offset = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {
     top: 0,
     right: 0,
     bottom: 0,
@@ -32,28 +32,28 @@ var getMaxRadius = exports.getMaxRadius = function getMaxRadius(width, height) {
   };
   return Math.min(Math.abs(width - (offset.left || 0) - (offset.right || 0)), Math.abs(height - (offset.top || 0) - (offset.bottom || 0))) / 2;
 };
-var distanceBetweenPoints = (point, anotherPoint) => {
-  var {
+const distanceBetweenPoints = (point, anotherPoint) => {
+  const {
     x: x1,
     y: y1
   } = point;
-  var {
+  const {
     x: x2,
     y: y2
   } = anotherPoint;
   return Math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2);
 };
 exports.distanceBetweenPoints = distanceBetweenPoints;
-var getAngleOfPoint = (_ref, _ref2) => {
-  var {
+const getAngleOfPoint = (_ref, _ref2) => {
+  const {
     x,
     y
   } = _ref;
-  var {
+  const {
     cx,
     cy
   } = _ref2;
-  var radius = distanceBetweenPoints({
+  const radius = distanceBetweenPoints({
     x,
     y
   }, {
@@ -66,8 +66,8 @@ var getAngleOfPoint = (_ref, _ref2) => {
       angle: 0
     };
   }
-  var cos = (x - cx) / radius;
-  var angleInRadian = Math.acos(cos);
+  const cos = (x - cx) / radius;
+  let angleInRadian = Math.acos(cos);
   if (y > cy) {
     angleInRadian = 2 * Math.PI - angleInRadian;
   }
@@ -78,43 +78,43 @@ var getAngleOfPoint = (_ref, _ref2) => {
   };
 };
 exports.getAngleOfPoint = getAngleOfPoint;
-var formatAngleOfSector = _ref3 => {
-  var {
+const formatAngleOfSector = _ref3 => {
+  const {
     startAngle,
     endAngle
   } = _ref3;
-  var startCnt = Math.floor(startAngle / 360);
-  var endCnt = Math.floor(endAngle / 360);
-  var min = Math.min(startCnt, endCnt);
+  const startCnt = Math.floor(startAngle / 360);
+  const endCnt = Math.floor(endAngle / 360);
+  const min = Math.min(startCnt, endCnt);
   return {
     startAngle: startAngle - min * 360,
     endAngle: endAngle - min * 360
   };
 };
 exports.formatAngleOfSector = formatAngleOfSector;
-var reverseFormatAngleOfSector = (angle, _ref4) => {
-  var {
+const reverseFormatAngleOfSector = (angle, _ref4) => {
+  const {
     startAngle,
     endAngle
   } = _ref4;
-  var startCnt = Math.floor(startAngle / 360);
-  var endCnt = Math.floor(endAngle / 360);
-  var min = Math.min(startCnt, endCnt);
+  const startCnt = Math.floor(startAngle / 360);
+  const endCnt = Math.floor(endAngle / 360);
+  const min = Math.min(startCnt, endCnt);
   return angle + min * 360;
 };
-var inRangeOfSector = (_ref5, viewBox) => {
-  var {
+const inRangeOfSector = (_ref5, viewBox) => {
+  const {
     x,
     y
   } = _ref5;
-  var {
+  const {
     radius,
     angle
   } = getAngleOfPoint({
     x,
     y
   }, viewBox);
-  var {
+  const {
     innerRadius,
     outerRadius
   } = viewBox;
@@ -124,12 +124,12 @@ var inRangeOfSector = (_ref5, viewBox) => {
   if (radius === 0) {
     return null;
   }
-  var {
+  const {
     startAngle,
     endAngle
   } = formatAngleOfSector(viewBox);
-  var formatAngle = angle;
-  var inRange;
+  let formatAngle = angle;
+  let inRange;
   if (startAngle <= endAngle) {
     while (formatAngle > endAngle) {
       formatAngle -= 360;
@@ -156,5 +156,5 @@ var inRangeOfSector = (_ref5, viewBox) => {
   return null;
 };
 exports.inRangeOfSector = inRangeOfSector;
-var getTickClassName = tick => ! /*#__PURE__*/(0, _react.isValidElement)(tick) && typeof tick !== 'function' && typeof tick !== 'boolean' && tick != null ? tick.className : '';
+const getTickClassName = tick => ! /*#__PURE__*/(0, _react.isValidElement)(tick) && typeof tick !== 'function' && typeof tick !== 'boolean' && tick != null ? tick.className : '';
 exports.getTickClassName = getTickClassName;

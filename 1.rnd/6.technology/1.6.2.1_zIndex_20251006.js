@@ -16,4 +16,4 @@ const zIndex = {
   snackbar: 1400,
   tooltip: 1500
 };
-var _default = exports.default = zIndex;
+const _default = exports.default = zIndex;

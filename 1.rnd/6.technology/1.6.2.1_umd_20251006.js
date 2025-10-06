@@ -4,7 +4,7 @@
 	(global = global || self, global.deepmerge = factory());
 }(this, function () { 'use strict';
 
-	var isMergeableObject = function isMergeableObject(value) {
+	const isMergeableObject = function isMergeableObject(value) {
 		return isNonNullObject(value)
 			&& !isSpecial(value)
 	};
@@ -14,7 +14,7 @@
 	}
 
 	function isSpecial(value) {
-		var stringValue = Object.prototype.toString.call(value);
+		const stringValue = Object.prototype.toString.call(value);
 
 		return stringValue === '[object RegExp]'
 			|| stringValue === '[object Date]'
@@ -22,8 +22,8 @@
 	}
 
 	// see https://github.com/facebook/react/blob/b5ac963fb791d1298e7f396236383bc955f916c1/src/isomorphic/classic/element/ReactElement.js#L21-L25
-	var canUseSymbol = typeof Symbol === 'function' && Symbol.for;
-	var REACT_ELEMENT_TYPE = canUseSymbol ? Symbol.for('react.element') : 0xeac7;
+	const canUseSymbol = typeof Symbol === 'function' && Symbol.for;
+	const REACT_ELEMENT_TYPE = canUseSymbol ? Symbol.for('react.element') : 0xeac7;
 
 	function isReactElement(value) {
 		return value.$$typeof === REACT_ELEMENT_TYPE
@@ -49,7 +49,7 @@
 		if (!options.customMerge) {
 			return deepmerge
 		}
-		var customMerge = options.customMerge(key);
+		const customMerge = options.customMerge(key);
 		return typeof customMerge === 'function' ? customMerge : deepmerge
 	}
 
@@ -81,7 +81,7 @@
 	}
 
 	function mergeObject(target, source, options) {
-		var destination = {};
+		const destination = {};
 		if (options.isMergeableObject(target)) {
 			getKeys(target).forEach(function(key) {
 				destination[key] = cloneUnlessOtherwiseSpecified(target[key], options);
@@ -109,9 +109,9 @@
 		// implementations can use it. The caller may not replace it.
 		options.cloneUnlessOtherwiseSpecified = cloneUnlessOtherwiseSpecified;
 
-		var sourceIsArray = Array.isArray(source);
-		var targetIsArray = Array.isArray(target);
-		var sourceAndTargetTypesMatch = sourceIsArray === targetIsArray;
+		const sourceIsArray = Array.isArray(source);
+		const targetIsArray = Array.isArray(target);
+		const sourceAndTargetTypesMatch = sourceIsArray === targetIsArray;
 
 		if (!sourceAndTargetTypesMatch) {
 			return cloneUnlessOtherwiseSpecified(source, options)
@@ -132,7 +132,7 @@
 		}, {})
 	};
 
-	var deepmerge_1 = deepmerge;
+	const deepmerge_1 = deepmerge;
 
 	return deepmerge_1;
 

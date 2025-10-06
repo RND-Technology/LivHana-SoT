@@ -1,16 +1,16 @@
 'use strict';
 
-var $abs = require('./abs');
-var $floor = require('./floor');
+const $abs = require('./abs');
+const $floor = require('./floor');
 
-var $isNaN = require('./isNaN');
-var $isFinite = require('./isFinite');
+const $isNaN = require('./isNaN');
+const $isFinite = require('./isFinite');
 
 /** @type {import('./isInteger')} */
 module.exports = function isInteger(argument) {
 	if (typeof argument !== 'number' || $isNaN(argument) || !$isFinite(argument)) {
 		return false;
 	}
-	var absValue = $abs(argument);
+	const absValue = $abs(argument);
 	return $floor(absValue) === absValue;
 };

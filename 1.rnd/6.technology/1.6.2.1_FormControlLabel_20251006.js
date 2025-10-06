@@ -95,7 +95,7 @@ const AsteriskComponent = styled('span', {
  * Use this component if you want to display an extra label.
  */
 const FormControlLabel = /*#__PURE__*/React.forwardRef(function FormControlLabel(inProps, ref) {
-  var _ref, _slotProps$typography;
+  let _ref, _slotProps$typography;
   const props = useDefaultProps({
     props: inProps,
     name: 'MuiFormControlLabel'

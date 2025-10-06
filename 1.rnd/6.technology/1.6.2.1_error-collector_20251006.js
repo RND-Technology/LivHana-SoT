@@ -181,14 +181,14 @@ class ErrorCollector {
 
     // collect other exceptions only if status code is not ignored
     if (transaction.exceptions.length && !isIgnoredErrorStatusCode) {
-      ;[collectedErrors, expectedErrors] = this._processErrors(
+      [collectedErrors, expectedErrors] = this._processErrors(
         transaction,
         collectedErrors,
         expectedErrors,
         'transactionException'
       )
     } else if (isErroredTransaction) {
-      ;[collectedErrors, expectedErrors] = this._processErrors(
+      [collectedErrors, expectedErrors] = this._processErrors(
         transaction,
         collectedErrors,
         expectedErrors,

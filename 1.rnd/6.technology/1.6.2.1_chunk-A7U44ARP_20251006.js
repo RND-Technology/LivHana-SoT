@@ -1,7 +1,7 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true});// src/Interceptor.ts
-var _logger = require('@open-draft/logger');
-var _stricteventemitter = require('strict-event-emitter');
-var INTERNAL_REQUEST_ID_HEADER_NAME = "x-interceptors-internal-request-id";
+const _logger = require('@open-draft/logger');
+const _stricteventemitter = require('strict-event-emitter');
+const INTERNAL_REQUEST_ID_HEADER_NAME = "x-interceptors-internal-request-id";
 function getGlobalSymbol(symbol) {
   return (
     // @ts-ignore https://github.com/Microsoft/TypeScript/issues/24587
@@ -22,7 +22,7 @@ var InterceptorReadyState = /* @__PURE__ */ ((InterceptorReadyState2) => {
   InterceptorReadyState2["DISPOSED"] = "DISPOSED";
   return InterceptorReadyState2;
 })(InterceptorReadyState || {});
-var Interceptor = class {
+const Interceptor = class {
   constructor(symbol) {
     this.symbol = symbol;
     this.readyState = "INACTIVE" /* INACTIVE */;
@@ -138,7 +138,7 @@ var Interceptor = class {
     this.readyState = "DISPOSED" /* DISPOSED */;
   }
   getInstance() {
-    var _a;
+    let _a;
     const instance = getGlobalSymbol(this.symbol);
     this.logger.info("retrieved global instance:", (_a = instance == null ? void 0 : instance.constructor) == null ? void 0 : _a.name);
     return instance;
@@ -222,7 +222,7 @@ var _FetchResponse = class extends Response {
     return headers;
   }
   constructor(body, init = {}) {
-    var _a;
+    let _a;
     const status = (_a = init.status) != null ? _a : 200;
     const safeStatus = _FetchResponse.isConfigurableStatusCode(status) ? status : 200;
     const finalBody = _FetchResponse.isResponseWithBody(status) ? body : null;
@@ -247,7 +247,7 @@ var _FetchResponse = class extends Response {
     _FetchResponse.setUrl(init.url, this);
   }
 };
-var FetchResponse = _FetchResponse;
+const FetchResponse = _FetchResponse;
 /**
  * Response status codes for responses that cannot have body.
  * @see https://fetch.spec.whatwg.org/#statuses

@@ -39,9 +39,9 @@ function _convertSourceMap() {
   };
   return data;
 }
-var _file = require("./file/file.js");
-var _index = require("../parser/index.js");
-var _cloneDeep = require("./util/clone-deep.js");
+const _file = require("./file/file.js");
+const _index = require("../parser/index.js");
+const _cloneDeep = require("./util/clone-deep.js");
 const {
   file,
   traverseFast

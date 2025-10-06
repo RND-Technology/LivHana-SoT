@@ -1,8 +1,8 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var isPrefixOf = require('../helpers/isPrefixOf');
+const isPrefixOf = require('../helpers/isPrefixOf');
 
 // var callBound = require('call-bound');
 

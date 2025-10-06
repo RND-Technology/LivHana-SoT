@@ -4,8 +4,8 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 exports.default = void 0;
-var _diffSequences = _interopRequireDefault(require('diff-sequences'));
-var _cleanupSemantic = require('./cleanupSemantic');
+const _diffSequences = _interopRequireDefault(require('diff-sequences'));
+const _cleanupSemantic = require('./cleanupSemantic');
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {default: obj};
 }
@@ -62,5 +62,5 @@ const diffStrings = (a, b) => {
   }
   return diffs;
 };
-var _default = diffStrings;
+const _default = diffStrings;
 exports.default = _default;

@@ -20,9 +20,9 @@
 // USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 require('./common');
-var assert = require('assert');
-var events = require('../');
-var util = require('util');
+const assert = require('assert');
+const events = require('../');
+const util = require('util');
 
 function listener() {}
 function listener2() {}
@@ -39,7 +39,7 @@ util.inherits(TestStream, events.EventEmitter);
 {
   var ee = new events.EventEmitter();
   ee.on('foo', listener);
-  var fooListeners = ee.listeners('foo');
+  const fooListeners = ee.listeners('foo');
 
   var listeners = ee.listeners('foo');
   assert.ok(Array.isArray(listeners));
@@ -129,7 +129,7 @@ util.inherits(TestStream, events.EventEmitter);
 }
 
 {
-  var s = new TestStream();
+  const s = new TestStream();
   var listeners = s.listeners('foo');
   assert.ok(Array.isArray(listeners));
   assert.strictEqual(listeners.length, 0);
@@ -139,12 +139,12 @@ util.inherits(TestStream, events.EventEmitter);
 {
   var ee = new events.EventEmitter();
   ee.on('foo', listener);
-  var wrappedListener = ee.rawListeners('foo');
+  const wrappedListener = ee.rawListeners('foo');
   assert.strictEqual(wrappedListener.length, 1);
   assert.strictEqual(wrappedListener[0], listener);
   assert.notStrictEqual(wrappedListener, ee.rawListeners('foo'));
   ee.once('foo', listener);
-  var wrappedListeners = ee.rawListeners('foo');
+  const wrappedListeners = ee.rawListeners('foo');
   assert.strictEqual(wrappedListeners.length, 2);
   assert.strictEqual(wrappedListeners[0], listener);
   assert.notStrictEqual(wrappedListeners[1], listener);
@@ -159,10 +159,10 @@ util.inherits(TestStream, events.EventEmitter);
   var ee = new events.EventEmitter();
   ee.once('foo', listener3);
   ee.on('foo', listener4);
-  var rawListeners = ee.rawListeners('foo');
+  const rawListeners = ee.rawListeners('foo');
   assert.strictEqual(rawListeners.length, 2);
   assert.strictEqual(rawListeners[0](), 0);
-  var rawListener = ee.rawListeners('foo');
+  const rawListener = ee.rawListeners('foo');
   assert.strictEqual(rawListener.length, 1);
   assert.strictEqual(rawListener[0](), 1);
 }

@@ -1,8 +1,8 @@
-(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.Ajv = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{let g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.Ajv = f()}})(function(){let define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){const c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);const a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}const p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){const n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 'use strict';
 
 
-var Cache = module.exports = function Cache() {
+const Cache = module.exports = function Cache() {
   this._cache = {};
 };
 
@@ -29,7 +29,7 @@ Cache.prototype.clear = function Cache_clear() {
 },{}],2:[function(require,module,exports){
 'use strict';
 
-var MissingRefError = require('./error_classes').MissingRef;
+const MissingRefError = require('./error_classes').MissingRef;
 
 module.exports = compileAsync;
 
@@ -47,7 +47,7 @@ function compileAsync(schema, meta, callback) {
   /* eslint no-shadow: 0 */
   /* global Promise */
   /* jshint validthis: true */
-  var self = this;
+  const self = this;
   if (typeof this._opts.loadSchema != 'function')
     throw new Error('options.loadSchema should be a function');
 
@@ -56,8 +56,8 @@ function compileAsync(schema, meta, callback) {
     meta = undefined;
   }
 
-  var p = loadMetaSchemaOf(schema).then(function () {
-    var schemaObj = self._addSchema(schema, undefined, meta);
+  const p = loadMetaSchemaOf(schema).then(function () {
+    const schemaObj = self._addSchema(schema, undefined, meta);
     return schemaObj.validate || _compileAsync(schemaObj);
   });
 
@@ -72,7 +72,7 @@ function compileAsync(schema, meta, callback) {
 
 
   function loadMetaSchemaOf(sch) {
-    var $schema = sch.$schema;
+    const $schema = sch.$schema;
     return $schema && !self.getSchema($schema)
             ? compileAsync.call(self, { $ref: $schema }, true)
             : Promise.resolve();
@@ -88,10 +88,10 @@ function compileAsync(schema, meta, callback) {
 
 
     function loadMissingSchema(e) {
-      var ref = e.missingSchema;
+      const ref = e.missingSchema;
       if (added(ref)) throw new Error('Schema ' + ref + ' is loaded but ' + e.missingRef + ' cannot be resolved');
 
-      var schemaPromise = self._loadingSchemas[ref];
+      let schemaPromise = self._loadingSchemas[ref];
       if (!schemaPromise) {
         schemaPromise = self._loadingSchemas[ref] = self._opts.loadSchema(ref);
         schemaPromise.then(removePromise, removePromise);
@@ -121,7 +121,7 @@ function compileAsync(schema, meta, callback) {
 },{"./error_classes":3}],3:[function(require,module,exports){
 'use strict';
 
-var resolve = require('./resolve');
+const resolve = require('./resolve');
 
 module.exports = {
   Validation: errorSubclass(ValidationError),
@@ -157,25 +157,25 @@ function errorSubclass(Subclass) {
 },{"./resolve":6}],4:[function(require,module,exports){
 'use strict';
 
-var util = require('./util');
+const util = require('./util');
 
-var DATE = /^(\d\d\d\d)-(\d\d)-(\d\d)$/;
-var DAYS = [0,31,28,31,30,31,30,31,31,30,31,30,31];
-var TIME = /^(\d\d):(\d\d):(\d\d)(\.\d+)?(z|[+-]\d\d(?::?\d\d)?)?$/i;
-var HOSTNAME = /^(?=.{1,253}\.?$)[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?(?:\.[a-z0-9](?:[-0-9a-z]{0,61}[0-9a-z])?)*\.?$/i;
-var URI = /^(?:[a-z][a-z0-9+\-.]*:)(?:\/?\/(?:(?:[a-z0-9\-._~!$&'()*+,;=:]|%[0-9a-f]{2})*@)?(?:\[(?:(?:(?:(?:[0-9a-f]{1,4}:){6}|::(?:[0-9a-f]{1,4}:){5}|(?:[0-9a-f]{1,4})?::(?:[0-9a-f]{1,4}:){4}|(?:(?:[0-9a-f]{1,4}:){0,1}[0-9a-f]{1,4})?::(?:[0-9a-f]{1,4}:){3}|(?:(?:[0-9a-f]{1,4}:){0,2}[0-9a-f]{1,4})?::(?:[0-9a-f]{1,4}:){2}|(?:(?:[0-9a-f]{1,4}:){0,3}[0-9a-f]{1,4})?::[0-9a-f]{1,4}:|(?:(?:[0-9a-f]{1,4}:){0,4}[0-9a-f]{1,4})?::)(?:[0-9a-f]{1,4}:[0-9a-f]{1,4}|(?:(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(?:25[0-5]|2[0-4]\d|[01]?\d\d?))|(?:(?:[0-9a-f]{1,4}:){0,5}[0-9a-f]{1,4})?::[0-9a-f]{1,4}|(?:(?:[0-9a-f]{1,4}:){0,6}[0-9a-f]{1,4})?::)|[Vv][0-9a-f]+\.[a-z0-9\-._~!$&'()*+,;=:]+)\]|(?:(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(?:25[0-5]|2[0-4]\d|[01]?\d\d?)|(?:[a-z0-9\-._~!$&'()*+,;=]|%[0-9a-f]{2})*)(?::\d*)?(?:\/(?:[a-z0-9\-._~!$&'()*+,;=:@]|%[0-9a-f]{2})*)*|\/(?:(?:[a-z0-9\-._~!$&'()*+,;=:@]|%[0-9a-f]{2})+(?:\/(?:[a-z0-9\-._~!$&'()*+,;=:@]|%[0-9a-f]{2})*)*)?|(?:[a-z0-9\-._~!$&'()*+,;=:@]|%[0-9a-f]{2})+(?:\/(?:[a-z0-9\-._~!$&'()*+,;=:@]|%[0-9a-f]{2})*)*)(?:\?(?:[a-z0-9\-._~!$&'()*+,;=:@/?]|%[0-9a-f]{2})*)?(?:#(?:[a-z0-9\-._~!$&'()*+,;=:@/?]|%[0-9a-f]{2})*)?$/i;
-var URIREF = /^(?:[a-z][a-z0-9+\-.]*:)?(?:\/?\/(?:(?:[a-z0-9\-._~!$&'()*+,;=:]|%[0-9a-f]{2})*@)?(?:\[(?:(?:(?:(?:[0-9a-f]{1,4}:){6}|::(?:[0-9a-f]{1,4}:){5}|(?:[0-9a-f]{1,4})?::(?:[0-9a-f]{1,4}:){4}|(?:(?:[0-9a-f]{1,4}:){0,1}[0-9a-f]{1,4})?::(?:[0-9a-f]{1,4}:){3}|(?:(?:[0-9a-f]{1,4}:){0,2}[0-9a-f]{1,4})?::(?:[0-9a-f]{1,4}:){2}|(?:(?:[0-9a-f]{1,4}:){0,3}[0-9a-f]{1,4})?::[0-9a-f]{1,4}:|(?:(?:[0-9a-f]{1,4}:){0,4}[0-9a-f]{1,4})?::)(?:[0-9a-f]{1,4}:[0-9a-f]{1,4}|(?:(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(?:25[0-5]|2[0-4]\d|[01]?\d\d?))|(?:(?:[0-9a-f]{1,4}:){0,5}[0-9a-f]{1,4})?::[0-9a-f]{1,4}|(?:(?:[0-9a-f]{1,4}:){0,6}[0-9a-f]{1,4})?::)|[Vv][0-9a-f]+\.[a-z0-9\-._~!$&'()*+,;=:]+)\]|(?:(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(?:25[0-5]|2[0-4]\d|[01]?\d\d?)|(?:[a-z0-9\-._~!$&'"()*+,;=]|%[0-9a-f]{2})*)(?::\d*)?(?:\/(?:[a-z0-9\-._~!$&'"()*+,;=:@]|%[0-9a-f]{2})*)*|\/(?:(?:[a-z0-9\-._~!$&'"()*+,;=:@]|%[0-9a-f]{2})+(?:\/(?:[a-z0-9\-._~!$&'"()*+,;=:@]|%[0-9a-f]{2})*)*)?|(?:[a-z0-9\-._~!$&'"()*+,;=:@]|%[0-9a-f]{2})+(?:\/(?:[a-z0-9\-._~!$&'"()*+,;=:@]|%[0-9a-f]{2})*)*)?(?:\?(?:[a-z0-9\-._~!$&'"()*+,;=:@/?]|%[0-9a-f]{2})*)?(?:#(?:[a-z0-9\-._~!$&'"()*+,;=:@/?]|%[0-9a-f]{2})*)?$/i;
+const DATE = /^(\d\d\d\d)-(\d\d)-(\d\d)$/;
+const DAYS = [0,31,28,31,30,31,30,31,31,30,31,30,31];
+const TIME = /^(\d\d):(\d\d):(\d\d)(\.\d+)?(z|[+-]\d\d(?::?\d\d)?)?$/i;
+const HOSTNAME = /^(?=.{1,253}\.?$)[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?(?:\.[a-z0-9](?:[-0-9a-z]{0,61}[0-9a-z])?)*\.?$/i;
+const URI = /^(?:[a-z][a-z0-9+\-.]*:)(?:\/?\/(?:(?:[a-z0-9\-._~!$&'()*+,;=:]|%[0-9a-f]{2})*@)?(?:\[(?:(?:(?:(?:[0-9a-f]{1,4}:){6}|::(?:[0-9a-f]{1,4}:){5}|(?:[0-9a-f]{1,4})?::(?:[0-9a-f]{1,4}:){4}|(?:(?:[0-9a-f]{1,4}:){0,1}[0-9a-f]{1,4})?::(?:[0-9a-f]{1,4}:){3}|(?:(?:[0-9a-f]{1,4}:){0,2}[0-9a-f]{1,4})?::(?:[0-9a-f]{1,4}:){2}|(?:(?:[0-9a-f]{1,4}:){0,3}[0-9a-f]{1,4})?::[0-9a-f]{1,4}:|(?:(?:[0-9a-f]{1,4}:){0,4}[0-9a-f]{1,4})?::)(?:[0-9a-f]{1,4}:[0-9a-f]{1,4}|(?:(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(?:25[0-5]|2[0-4]\d|[01]?\d\d?))|(?:(?:[0-9a-f]{1,4}:){0,5}[0-9a-f]{1,4})?::[0-9a-f]{1,4}|(?:(?:[0-9a-f]{1,4}:){0,6}[0-9a-f]{1,4})?::)|[Vv][0-9a-f]+\.[a-z0-9\-._~!$&'()*+,;=:]+)\]|(?:(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(?:25[0-5]|2[0-4]\d|[01]?\d\d?)|(?:[a-z0-9\-._~!$&'()*+,;=]|%[0-9a-f]{2})*)(?::\d*)?(?:\/(?:[a-z0-9\-._~!$&'()*+,;=:@]|%[0-9a-f]{2})*)*|\/(?:(?:[a-z0-9\-._~!$&'()*+,;=:@]|%[0-9a-f]{2})+(?:\/(?:[a-z0-9\-._~!$&'()*+,;=:@]|%[0-9a-f]{2})*)*)?|(?:[a-z0-9\-._~!$&'()*+,;=:@]|%[0-9a-f]{2})+(?:\/(?:[a-z0-9\-._~!$&'()*+,;=:@]|%[0-9a-f]{2})*)*)(?:\?(?:[a-z0-9\-._~!$&'()*+,;=:@/?]|%[0-9a-f]{2})*)?(?:#(?:[a-z0-9\-._~!$&'()*+,;=:@/?]|%[0-9a-f]{2})*)?$/i;
+const URIREF = /^(?:[a-z][a-z0-9+\-.]*:)?(?:\/?\/(?:(?:[a-z0-9\-._~!$&'()*+,;=:]|%[0-9a-f]{2})*@)?(?:\[(?:(?:(?:(?:[0-9a-f]{1,4}:){6}|::(?:[0-9a-f]{1,4}:){5}|(?:[0-9a-f]{1,4})?::(?:[0-9a-f]{1,4}:){4}|(?:(?:[0-9a-f]{1,4}:){0,1}[0-9a-f]{1,4})?::(?:[0-9a-f]{1,4}:){3}|(?:(?:[0-9a-f]{1,4}:){0,2}[0-9a-f]{1,4})?::(?:[0-9a-f]{1,4}:){2}|(?:(?:[0-9a-f]{1,4}:){0,3}[0-9a-f]{1,4})?::[0-9a-f]{1,4}:|(?:(?:[0-9a-f]{1,4}:){0,4}[0-9a-f]{1,4})?::)(?:[0-9a-f]{1,4}:[0-9a-f]{1,4}|(?:(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(?:25[0-5]|2[0-4]\d|[01]?\d\d?))|(?:(?:[0-9a-f]{1,4}:){0,5}[0-9a-f]{1,4})?::[0-9a-f]{1,4}|(?:(?:[0-9a-f]{1,4}:){0,6}[0-9a-f]{1,4})?::)|[Vv][0-9a-f]+\.[a-z0-9\-._~!$&'()*+,;=:]+)\]|(?:(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(?:25[0-5]|2[0-4]\d|[01]?\d\d?)|(?:[a-z0-9\-._~!$&'"()*+,;=]|%[0-9a-f]{2})*)(?::\d*)?(?:\/(?:[a-z0-9\-._~!$&'"()*+,;=:@]|%[0-9a-f]{2})*)*|\/(?:(?:[a-z0-9\-._~!$&'"()*+,;=:@]|%[0-9a-f]{2})+(?:\/(?:[a-z0-9\-._~!$&'"()*+,;=:@]|%[0-9a-f]{2})*)*)?|(?:[a-z0-9\-._~!$&'"()*+,;=:@]|%[0-9a-f]{2})+(?:\/(?:[a-z0-9\-._~!$&'"()*+,;=:@]|%[0-9a-f]{2})*)*)?(?:\?(?:[a-z0-9\-._~!$&'"()*+,;=:@/?]|%[0-9a-f]{2})*)?(?:#(?:[a-z0-9\-._~!$&'"()*+,;=:@/?]|%[0-9a-f]{2})*)?$/i;
 // uri-template: https://tools.ietf.org/html/rfc6570
-var URITEMPLATE = /^(?:(?:[^\x00-\x20"'<>%\\^`{|}]|%[0-9a-f]{2})|\{[+#./;?&=,!@|]?(?:[a-z0-9_]|%[0-9a-f]{2})+(?::[1-9][0-9]{0,3}|\*)?(?:,(?:[a-z0-9_]|%[0-9a-f]{2})+(?::[1-9][0-9]{0,3}|\*)?)*\})*$/i;
+const URITEMPLATE = /^(?:(?:[^\x00-\x20"'<>%\\^`{|}]|%[0-9a-f]{2})|\{[+#./;?&=,!@|]?(?:[a-z0-9_]|%[0-9a-f]{2})+(?::[1-9][0-9]{0,3}|\*)?(?:,(?:[a-z0-9_]|%[0-9a-f]{2})+(?::[1-9][0-9]{0,3}|\*)?)*\})*$/i;
 // For the source: https://gist.github.com/dperini/729294
 // For test cases: https://mathiasbynens.be/demo/url-regex
 // @todo Delete current URL in favour of the commented out URL rule when this issue is fixed https://github.com/eslint/eslint/issues/7983.
 // var URL = /^(?:(?:https?|ftp):\/\/)(?:\S+(?::\S*)?@)?(?:(?!10(?:\.\d{1,3}){3})(?!127(?:\.\d{1,3}){3})(?!169\.254(?:\.\d{1,3}){2})(?!192\.168(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u{00a1}-\u{ffff}0-9]+-)*[a-z\u{00a1}-\u{ffff}0-9]+)(?:\.(?:[a-z\u{00a1}-\u{ffff}0-9]+-)*[a-z\u{00a1}-\u{ffff}0-9]+)*(?:\.(?:[a-z\u{00a1}-\u{ffff}]{2,})))(?::\d{2,5})?(?:\/[^\s]*)?$/iu;
-var URL = /^(?:(?:http[s\u017F]?|ftp):\/\/)(?:(?:[\0-\x08\x0E-\x1F!-\x9F\xA1-\u167F\u1681-\u1FFF\u200B-\u2027\u202A-\u202E\u2030-\u205E\u2060-\u2FFF\u3001-\uD7FF\uE000-\uFEFE\uFF00-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])+(?::(?:[\0-\x08\x0E-\x1F!-\x9F\xA1-\u167F\u1681-\u1FFF\u200B-\u2027\u202A-\u202E\u2030-\u205E\u2060-\u2FFF\u3001-\uD7FF\uE000-\uFEFE\uFF00-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])*)?@)?(?:(?!10(?:\.[0-9]{1,3}){3})(?!127(?:\.[0-9]{1,3}){3})(?!169\.254(?:\.[0-9]{1,3}){2})(?!192\.168(?:\.[0-9]{1,3}){2})(?!172\.(?:1[6-9]|2[0-9]|3[01])(?:\.[0-9]{1,3}){2})(?:[1-9][0-9]?|1[0-9][0-9]|2[01][0-9]|22[0-3])(?:\.(?:1?[0-9]{1,2}|2[0-4][0-9]|25[0-5])){2}(?:\.(?:[1-9][0-9]?|1[0-9][0-9]|2[0-4][0-9]|25[0-4]))|(?:(?:(?:[0-9a-z\xA1-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])+-)*(?:[0-9a-z\xA1-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])+)(?:\.(?:(?:[0-9a-z\xA1-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])+-)*(?:[0-9a-z\xA1-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])+)*(?:\.(?:(?:[a-z\xA1-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]){2,})))(?::[0-9]{2,5})?(?:\/(?:[\0-\x08\x0E-\x1F!-\x9F\xA1-\u167F\u1681-\u1FFF\u200B-\u2027\u202A-\u202E\u2030-\u205E\u2060-\u2FFF\u3001-\uD7FF\uE000-\uFEFE\uFF00-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])*)?$/i;
-var UUID = /^(?:urn:uuid:)?[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
-var JSON_POINTER = /^(?:\/(?:[^~/]|~0|~1)*)*$/;
-var JSON_POINTER_URI_FRAGMENT = /^#(?:\/(?:[a-z0-9_\-.!$&'()*+,;:=@]|%[0-9a-f]{2}|~0|~1)*)*$/i;
-var RELATIVE_JSON_POINTER = /^(?:0|[1-9][0-9]*)(?:#|(?:\/(?:[^~/]|~0|~1)*)*)$/;
+const URL = /^(?:(?:http[s\u017F]?|ftp):\/\/)(?:(?:[\0-\x08\x0E-\x1F!-\x9F\xA1-\u167F\u1681-\u1FFF\u200B-\u2027\u202A-\u202E\u2030-\u205E\u2060-\u2FFF\u3001-\uD7FF\uE000-\uFEFE\uFF00-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])+(?::(?:[\0-\x08\x0E-\x1F!-\x9F\xA1-\u167F\u1681-\u1FFF\u200B-\u2027\u202A-\u202E\u2030-\u205E\u2060-\u2FFF\u3001-\uD7FF\uE000-\uFEFE\uFF00-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])*)?@)?(?:(?!10(?:\.[0-9]{1,3}){3})(?!127(?:\.[0-9]{1,3}){3})(?!169\.254(?:\.[0-9]{1,3}){2})(?!192\.168(?:\.[0-9]{1,3}){2})(?!172\.(?:1[6-9]|2[0-9]|3[01])(?:\.[0-9]{1,3}){2})(?:[1-9][0-9]?|1[0-9][0-9]|2[01][0-9]|22[0-3])(?:\.(?:1?[0-9]{1,2}|2[0-4][0-9]|25[0-5])){2}(?:\.(?:[1-9][0-9]?|1[0-9][0-9]|2[0-4][0-9]|25[0-4]))|(?:(?:(?:[0-9a-z\xA1-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])+-)*(?:[0-9a-z\xA1-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])+)(?:\.(?:(?:[0-9a-z\xA1-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])+-)*(?:[0-9a-z\xA1-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])+)*(?:\.(?:(?:[a-z\xA1-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]){2,})))(?::[0-9]{2,5})?(?:\/(?:[\0-\x08\x0E-\x1F!-\x9F\xA1-\u167F\u1681-\u1FFF\u200B-\u2027\u202A-\u202E\u2030-\u205E\u2060-\u2FFF\u3001-\uD7FF\uE000-\uFEFE\uFF00-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])*)?$/i;
+const UUID = /^(?:urn:uuid:)?[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
+const JSON_POINTER = /^(?:\/(?:[^~/]|~0|~1)*)*$/;
+const JSON_POINTER_URI_FRAGMENT = /^#(?:\/(?:[a-z0-9_\-.!$&'()*+,;:=@]|%[0-9a-f]{2}|~0|~1)*)*$/i;
+const RELATIVE_JSON_POINTER = /^(?:0|[1-9][0-9]*)(?:#|(?:\/(?:[^~/]|~0|~1)*)*)$/;
 
 
 module.exports = formats;
@@ -246,12 +246,12 @@ function isLeapYear(year) {
 
 function date(str) {
   // full-date from http://tools.ietf.org/html/rfc3339#section-5.6
-  var matches = str.match(DATE);
+  const matches = str.match(DATE);
   if (!matches) return false;
 
-  var year = +matches[1];
-  var month = +matches[2];
-  var day = +matches[3];
+  const year = +matches[1];
+  const month = +matches[2];
+  const day = +matches[3];
 
   return month >= 1 && month <= 12 && day >= 1 &&
           day <= (month == 2 && isLeapYear(year) ? 29 : DAYS[month]);
@@ -259,35 +259,35 @@ function date(str) {
 
 
 function time(str, full) {
-  var matches = str.match(TIME);
+  const matches = str.match(TIME);
   if (!matches) return false;
 
-  var hour = matches[1];
-  var minute = matches[2];
-  var second = matches[3];
-  var timeZone = matches[5];
+  const hour = matches[1];
+  const minute = matches[2];
+  const second = matches[3];
+  const timeZone = matches[5];
   return ((hour <= 23 && minute <= 59 && second <= 59) ||
           (hour == 23 && minute == 59 && second == 60)) &&
          (!full || timeZone);
 }
 
 
-var DATE_TIME_SEPARATOR = /t|\s/i;
+const DATE_TIME_SEPARATOR = /t|\s/i;
 function date_time(str) {
   // http://tools.ietf.org/html/rfc3339#section-5.6
-  var dateTime = str.split(DATE_TIME_SEPARATOR);
+  const dateTime = str.split(DATE_TIME_SEPARATOR);
   return dateTime.length == 2 && date(dateTime[0]) && time(dateTime[1], true);
 }
 
 
-var NOT_URI_FRAGMENT = /\/|:/;
+const NOT_URI_FRAGMENT = /\/|:/;
 function uri(str) {
   // http://jmrware.com/articles/2009/uri_regexp/URI_regex.html + optional protocol + required "."
   return NOT_URI_FRAGMENT.test(str) && URI.test(str);
 }
 
 
-var Z_ANCHOR = /[^\\]\\Z/;
+const Z_ANCHOR = /[^\\]\\Z/;
 function regex(str) {
   if (Z_ANCHOR.test(str)) return false;
   try {
@@ -301,22 +301,22 @@ function regex(str) {
 },{"./util":10}],5:[function(require,module,exports){
 'use strict';
 
-var resolve = require('./resolve')
+const resolve = require('./resolve')
   , util = require('./util')
   , errorClasses = require('./error_classes')
   , stableStringify = require('fast-json-stable-stringify');
 
-var validateGenerator = require('../dotjs/validate');
+const validateGenerator = require('../dotjs/validate');
 
 /**
  * Functions below are used inside compiled validations function
  */
 
-var ucs2length = util.ucs2length;
-var equal = require('fast-deep-equal');
+const ucs2length = util.ucs2length;
+const equal = require('fast-deep-equal');
 
 // this error is thrown by async schemas to return validation errors via exception
-var ValidationError = errorClasses.Validation;
+const ValidationError = errorClasses.Validation;
 
 module.exports = compile;
 
@@ -333,7 +333,7 @@ module.exports = compile;
 function compile(schema, root, localRefs, baseId) {
   /* jshint validthis: true, evil: true */
   /* eslint no-shadow: 0 */
-  var self = this
+  const self = this
     , opts = this._opts
     , refVal = [ undefined ]
     , refs = {}
@@ -345,17 +345,17 @@ function compile(schema, root, localRefs, baseId) {
 
   root = root || { schema: schema, refVal: refVal, refs: refs };
 
-  var c = checkCompiling.call(this, schema, root, baseId);
-  var compilation = this._compilations[c.index];
+  const c = checkCompiling.call(this, schema, root, baseId);
+  const compilation = this._compilations[c.index];
   if (c.compiling) return (compilation.callValidate = callValidate);
 
-  var formats = this._formats;
-  var RULES = this.RULES;
+  const formats = this._formats;
+  const RULES = this.RULES;
 
   try {
-    var v = localCompile(schema, root, localRefs, baseId);
+    const v = localCompile(schema, root, localRefs, baseId);
     compilation.validate = v;
-    var cv = compilation.callValidate;
+    const cv = compilation.callValidate;
     if (cv) {
       cv.schema = v.schema;
       cv.errors = null;
@@ -373,20 +373,20 @@ function compile(schema, root, localRefs, baseId) {
   /* @this   {*} - custom context, see passContext option */
   function callValidate() {
     /* jshint validthis: true */
-    var validate = compilation.validate;
-    var result = validate.apply(this, arguments);
+    const validate = compilation.validate;
+    const result = validate.apply(this, arguments);
     callValidate.errors = validate.errors;
     return result;
   }
 
   function localCompile(_schema, _root, localRefs, baseId) {
-    var isRoot = !_root || (_root && _root.schema == _schema);
+    const isRoot = !_root || (_root && _root.schema == _schema);
     if (_root.schema != root.schema)
       return compile.call(self, _schema, _root, localRefs, baseId);
 
-    var $async = _schema.$async === true;
+    const $async = _schema.$async === true;
 
-    var sourceCode = validateGenerator({
+    let sourceCode = validateGenerator({
       isTop: true,
       schema: _schema,
       isRoot: isRoot,
@@ -416,9 +416,9 @@ function compile(schema, root, localRefs, baseId) {
 
     if (opts.processCode) sourceCode = opts.processCode(sourceCode, _schema);
     // console.log('\n\n\n *** \n', JSON.stringify(sourceCode));
-    var validate;
+    let validate;
     try {
-      var makeValidate = new Function(
+      const makeValidate = new Function(
         'self',
         'RULES',
         'formats',
@@ -470,15 +470,15 @@ function compile(schema, root, localRefs, baseId) {
 
   function resolveRef(baseId, ref, isRoot) {
     ref = resolve.url(baseId, ref);
-    var refIndex = refs[ref];
-    var _refVal, refCode;
+    const refIndex = refs[ref];
+    let _refVal, refCode;
     if (refIndex !== undefined) {
       _refVal = refVal[refIndex];
       refCode = 'refVal[' + refIndex + ']';
       return resolvedRef(_refVal, refCode);
     }
     if (!isRoot && root.refs) {
-      var rootRefId = root.refs[ref];
+      const rootRefId = root.refs[ref];
       if (rootRefId !== undefined) {
         _refVal = root.refVal[rootRefId];
         refCode = addLocalRef(ref, _refVal);
@@ -487,9 +487,9 @@ function compile(schema, root, localRefs, baseId) {
     }
 
     refCode = addLocalRef(ref);
-    var v = resolve.call(self, localCompile, root, ref);
+    let v = resolve.call(self, localCompile, root, ref);
     if (v === undefined) {
-      var localSchema = localRefs && localRefs[ref];
+      const localSchema = localRefs && localRefs[ref];
       if (localSchema) {
         v = resolve.inlineRef(localSchema, opts.inlineRefs)
             ? localSchema
@@ -506,7 +506,7 @@ function compile(schema, root, localRefs, baseId) {
   }
 
   function addLocalRef(ref, v) {
-    var refId = refVal.length;
+    const refId = refVal.length;
     refVal[refId] = v;
     refs[ref] = refId;
     return 'refVal' + refId;
@@ -517,7 +517,7 @@ function compile(schema, root, localRefs, baseId) {
   }
 
   function replaceLocalRef(ref, v) {
-    var refId = refs[ref];
+    const refId = refs[ref];
     refVal[refId] = v;
   }
 
@@ -528,7 +528,7 @@ function compile(schema, root, localRefs, baseId) {
   }
 
   function usePattern(regexStr) {
-    var index = patternsHash[regexStr];
+    let index = patternsHash[regexStr];
     if (index === undefined) {
       index = patternsHash[regexStr] = patterns.length;
       patterns[index] = regexStr;
@@ -557,28 +557,28 @@ function compile(schema, root, localRefs, baseId) {
 
   function useCustomRule(rule, schema, parentSchema, it) {
     if (self._opts.validateSchema !== false) {
-      var deps = rule.definition.dependencies;
+      const deps = rule.definition.dependencies;
       if (deps && !deps.every(function(keyword) {
         return Object.prototype.hasOwnProperty.call(parentSchema, keyword);
       }))
         throw new Error('parent schema must have all required keywords: ' + deps.join(','));
 
-      var validateSchema = rule.definition.validateSchema;
+      const validateSchema = rule.definition.validateSchema;
       if (validateSchema) {
-        var valid = validateSchema(schema);
+        const valid = validateSchema(schema);
         if (!valid) {
-          var message = 'keyword schema is invalid: ' + self.errorsText(validateSchema.errors);
+          const message = 'keyword schema is invalid: ' + self.errorsText(validateSchema.errors);
           if (self._opts.validateSchema == 'log') self.logger.error(message);
           else throw new Error(message);
         }
       }
     }
 
-    var compile = rule.definition.compile
+    const compile = rule.definition.compile
       , inline = rule.definition.inline
       , macro = rule.definition.macro;
 
-    var validate;
+    let validate;
     if (compile) {
       validate = compile.call(self, schema, parentSchema, it);
     } else if (macro) {
@@ -594,7 +594,7 @@ function compile(schema, root, localRefs, baseId) {
     if (validate === undefined)
       throw new Error('custom keyword "' + rule.keyword + '"failed to compile');
 
-    var index = customRules.length;
+    const index = customRules.length;
     customRules[index] = validate;
 
     return {
@@ -615,7 +615,7 @@ function compile(schema, root, localRefs, baseId) {
  */
 function checkCompiling(schema, root, baseId) {
   /* jshint validthis: true */
-  var index = compIndex.call(this, schema, root, baseId);
+  let index = compIndex.call(this, schema, root, baseId);
   if (index >= 0) return { index: index, compiling: true };
   index = this._compilations.length;
   this._compilations[index] = {
@@ -636,7 +636,7 @@ function checkCompiling(schema, root, baseId) {
  */
 function endCompiling(schema, root, baseId) {
   /* jshint validthis: true */
-  var i = compIndex.call(this, schema, root, baseId);
+  const i = compIndex.call(this, schema, root, baseId);
   if (i >= 0) this._compilations.splice(i, 1);
 }
 
@@ -651,8 +651,8 @@ function endCompiling(schema, root, baseId) {
  */
 function compIndex(schema, root, baseId) {
   /* jshint validthis: true */
-  for (var i=0; i<this._compilations.length; i++) {
-    var c = this._compilations[i];
+  for (let i=0; i<this._compilations.length; i++) {
+    const c = this._compilations[i];
     if (c.schema == schema && c.root == root && c.baseId == baseId) return i;
   }
   return -1;
@@ -681,8 +681,8 @@ function customRuleCode(i) {
 
 function vars(arr, statement) {
   if (!arr.length) return '';
-  var code = '';
-  for (var i=0; i<arr.length; i++)
+  let code = '';
+  for (let i=0; i<arr.length; i++)
     code += statement(i, arr);
   return code;
 }
@@ -690,7 +690,7 @@ function vars(arr, statement) {
 },{"../dotjs/validate":38,"./error_classes":3,"./resolve":6,"./util":10,"fast-deep-equal":42,"fast-json-stable-stringify":43}],6:[function(require,module,exports){
 'use strict';
 
-var URI = require('uri-js')
+const URI = require('uri-js')
   , equal = require('fast-deep-equal')
   , util = require('./util')
   , SchemaObject = require('./schema_obj')
@@ -715,7 +715,7 @@ resolve.schema = resolveSchema;
  */
 function resolve(compile, root, ref) {
   /* jshint validthis: true */
-  var refVal = this._refs[ref];
+  let refVal = this._refs[ref];
   if (typeof refVal == 'string') {
     if (this._refs[refVal]) refVal = this._refs[refVal];
     else return resolve.call(this, compile, root, refVal);
@@ -728,8 +728,8 @@ function resolve(compile, root, ref) {
             : refVal.validate || this._compile(refVal);
   }
 
-  var res = resolveSchema.call(this, root, ref);
-  var schema, v, baseId;
+  const res = resolveSchema.call(this, root, ref);
+  let schema, v, baseId;
   if (res) {
     schema = res.schema;
     root = res.root;
@@ -757,12 +757,12 @@ function resolve(compile, root, ref) {
  */
 function resolveSchema(root, ref) {
   /* jshint validthis: true */
-  var p = URI.parse(ref)
+  let p = URI.parse(ref)
     , refPath = _getFullPath(p)
     , baseId = getFullPath(this._getId(root.schema));
   if (Object.keys(root.schema).length === 0 || refPath !== baseId) {
-    var id = normalizeId(refPath);
-    var refVal = this._refs[id];
+    const id = normalizeId(refPath);
+    let refVal = this._refs[id];
     if (typeof refVal == 'string') {
       return resolveRecursive.call(this, root, refVal, p);
     } else if (refVal instanceof SchemaObject) {
@@ -789,28 +789,28 @@ function resolveSchema(root, ref) {
 /* @this Ajv */
 function resolveRecursive(root, ref, parsedRef) {
   /* jshint validthis: true */
-  var res = resolveSchema.call(this, root, ref);
+  const res = resolveSchema.call(this, root, ref);
   if (res) {
-    var schema = res.schema;
-    var baseId = res.baseId;
+    const schema = res.schema;
+    let baseId = res.baseId;
     root = res.root;
-    var id = this._getId(schema);
+    const id = this._getId(schema);
     if (id) baseId = resolveUrl(baseId, id);
     return getJsonPointer.call(this, parsedRef, baseId, schema, root);
   }
 }
 
 
-var PREVENT_SCOPE_CHANGE = util.toHash(['properties', 'patternProperties', 'enum', 'dependencies', 'definitions']);
+const PREVENT_SCOPE_CHANGE = util.toHash(['properties', 'patternProperties', 'enum', 'dependencies', 'definitions']);
 /* @this Ajv */
 function getJsonPointer(parsedRef, baseId, schema, root) {
   /* jshint validthis: true */
   parsedRef.fragment = parsedRef.fragment || '';
   if (parsedRef.fragment.slice(0,1) != '/') return;
-  var parts = parsedRef.fragment.split('/');
+  const parts = parsedRef.fragment.split('/');
 
-  for (var i = 1; i < parts.length; i++) {
-    var part = parts[i];
+  for (let i = 1; i < parts.length; i++) {
+    let part = parts[i];
     if (part) {
       part = util.unescapeFragment(part);
       schema = schema[part];
@@ -820,8 +820,8 @@ function getJsonPointer(parsedRef, baseId, schema, root) {
         id = this._getId(schema);
         if (id) baseId = resolveUrl(baseId, id);
         if (schema.$ref) {
-          var $ref = resolveUrl(baseId, schema.$ref);
-          var res = resolveSchema.call(this, root, $ref);
+          const $ref = resolveUrl(baseId, schema.$ref);
+          const res = resolveSchema.call(this, root, $ref);
           if (res) {
             schema = res.schema;
             root = res.root;
@@ -836,7 +836,7 @@ function getJsonPointer(parsedRef, baseId, schema, root) {
 }
 
 
-var SIMPLE_INLINED = util.toHash([
+const SIMPLE_INLINED = util.toHash([
   'type', 'format', 'pattern',
   'maxLength', 'minLength',
   'maxProperties', 'minProperties',
@@ -853,14 +853,14 @@ function inlineRef(schema, limit) {
 
 
 function checkNoRef(schema) {
-  var item;
+  let item;
   if (Array.isArray(schema)) {
-    for (var i=0; i<schema.length; i++) {
+    for (let i=0; i<schema.length; i++) {
       item = schema[i];
       if (typeof item == 'object' && !checkNoRef(item)) return false;
     }
   } else {
-    for (var key in schema) {
+    for (const key in schema) {
       if (key == '$ref') return false;
       item = schema[key];
       if (typeof item == 'object' && !checkNoRef(item)) return false;
@@ -871,15 +871,15 @@ function checkNoRef(schema) {
 
 
 function countKeys(schema) {
-  var count = 0, item;
+  let count = 0, item;
   if (Array.isArray(schema)) {
-    for (var i=0; i<schema.length; i++) {
+    for (let i=0; i<schema.length; i++) {
       item = schema[i];
       if (typeof item == 'object') count += countKeys(item);
       if (count == Infinity) return Infinity;
     }
   } else {
-    for (var key in schema) {
+    for (const key in schema) {
       if (key == '$ref') return Infinity;
       if (SIMPLE_INLINED[key]) {
         count++;
@@ -896,7 +896,7 @@ function countKeys(schema) {
 
 function getFullPath(id, normalize) {
   if (normalize !== false) id = normalizeId(id);
-  var p = URI.parse(id);
+  const p = URI.parse(id);
   return _getFullPath(p);
 }
 
@@ -906,7 +906,7 @@ function _getFullPath(p) {
 }
 
 
-var TRAILING_SLASH_HASH = /#\/?$/;
+const TRAILING_SLASH_HASH = /#\/?$/;
 function normalizeId(id) {
   return id ? id.replace(TRAILING_SLASH_HASH, '') : '';
 }
@@ -920,24 +920,24 @@ function resolveUrl(baseId, id) {
 
 /* @this Ajv */
 function resolveIds(schema) {
-  var schemaId = normalizeId(this._getId(schema));
-  var baseIds = {'': schemaId};
-  var fullPaths = {'': getFullPath(schemaId, false)};
-  var localRefs = {};
-  var self = this;
+  const schemaId = normalizeId(this._getId(schema));
+  const baseIds = {'': schemaId};
+  const fullPaths = {'': getFullPath(schemaId, false)};
+  const localRefs = {};
+  const self = this;
 
   traverse(schema, {allKeys: true}, function(sch, jsonPtr, rootSchema, parentJsonPtr, parentKeyword, parentSchema, keyIndex) {
     if (jsonPtr === '') return;
-    var id = self._getId(sch);
-    var baseId = baseIds[parentJsonPtr];
-    var fullPath = fullPaths[parentJsonPtr] + '/' + parentKeyword;
+    let id = self._getId(sch);
+    let baseId = baseIds[parentJsonPtr];
+    let fullPath = fullPaths[parentJsonPtr] + '/' + parentKeyword;
     if (keyIndex !== undefined)
       fullPath += '/' + (typeof keyIndex == 'number' ? keyIndex : util.escapeFragment(keyIndex));
 
     if (typeof id == 'string') {
       id = baseId = normalizeId(baseId ? URI.resolve(baseId, id) : id);
 
-      var refVal = self._refs[id];
+      let refVal = self._refs[id];
       if (typeof refVal == 'string') refVal = self._refs[refVal];
       if (refVal && refVal.schema) {
         if (!equal(sch, refVal.schema))
@@ -962,11 +962,11 @@ function resolveIds(schema) {
 },{"./schema_obj":8,"./util":10,"fast-deep-equal":42,"json-schema-traverse":44,"uri-js":45}],7:[function(require,module,exports){
 'use strict';
 
-var ruleModules = require('../dotjs')
+const ruleModules = require('../dotjs')
   , toHash = require('./util').toHash;
 
 module.exports = function rules() {
-  var RULES = [
+  const RULES = [
     { type: 'number',
       rules: [ { 'maximum': ['exclusiveMaximum'] },
                { 'minimum': ['exclusiveMinimum'] }, 'multipleOf', 'format'] },
@@ -980,23 +980,23 @@ module.exports = function rules() {
     { rules: [ '$ref', 'const', 'enum', 'not', 'anyOf', 'oneOf', 'allOf', 'if' ] }
   ];
 
-  var ALL = [ 'type', '$comment' ];
-  var KEYWORDS = [
+  const ALL = [ 'type', '$comment' ];
+  const KEYWORDS = [
     '$schema', '$id', 'id', '$data', '$async', 'title',
     'description', 'default', 'definitions',
     'examples', 'readOnly', 'writeOnly',
     'contentMediaType', 'contentEncoding',
     'additionalItems', 'then', 'else'
   ];
-  var TYPES = [ 'number', 'integer', 'string', 'array', 'object', 'boolean', 'null' ];
+  const TYPES = [ 'number', 'integer', 'string', 'array', 'object', 'boolean', 'null' ];
   RULES.all = toHash(ALL);
   RULES.types = toHash(TYPES);
 
   RULES.forEach(function (group) {
     group.rules = group.rules.map(function (keyword) {
-      var implKeywords;
+      let implKeywords;
       if (typeof keyword == 'object') {
-        var key = Object.keys(keyword)[0];
+        const key = Object.keys(keyword)[0];
         implKeywords = keyword[key];
         keyword = key;
         implKeywords.forEach(function (k) {
@@ -1005,7 +1005,7 @@ module.exports = function rules() {
         });
       }
       ALL.push(keyword);
-      var rule = RULES.all[keyword] = {
+      const rule = RULES.all[keyword] = {
         keyword: keyword,
         code: ruleModules[keyword],
         implements: implKeywords
@@ -1030,7 +1030,7 @@ module.exports = function rules() {
 },{"../dotjs":27,"./util":10}],8:[function(require,module,exports){
 'use strict';
 
-var util = require('./util');
+const util = require('./util');
 
 module.exports = SchemaObject;
 
@@ -1044,7 +1044,7 @@ function SchemaObject(obj) {
 // https://mathiasbynens.be/notes/javascript-encoding
 // https://github.com/bestiejs/punycode.js - punycode.ucs2.decode
 module.exports = function ucs2length(str) {
-  var length = 0
+  let length = 0
     , len = str.length
     , pos = 0
     , value;
@@ -1092,13 +1092,13 @@ module.exports = {
 
 function copy(o, to) {
   to = to || {};
-  for (var key in o) to[key] = o[key];
+  for (const key in o) to[key] = o[key];
   return to;
 }
 
 
 function checkDataType(dataType, data, strictNumbers, negate) {
-  var EQUAL = negate ? ' !== ' : ' === '
+  const EQUAL = negate ? ' !== ' : ' === '
     , AND = negate ? ' || ' : ' && '
     , OK = negate ? '!' : ''
     , NOT = negate ? '' : '!';
@@ -1133,7 +1133,7 @@ function checkDataTypes(dataTypes, data, strictNumbers) {
         delete types.object;
       }
       if (types.number) delete types.integer;
-      for (var t in types)
+      for (const t in types)
         code += (code ? ' && ' : '' ) + checkDataType(t, data, strictNumbers, true);
 
       return code;
@@ -1141,12 +1141,12 @@ function checkDataTypes(dataTypes, data, strictNumbers) {
 }
 
 
-var COERCE_TO_TYPES = toHash([ 'string', 'number', 'integer', 'boolean', 'null' ]);
+const COERCE_TO_TYPES = toHash([ 'string', 'number', 'integer', 'boolean', 'null' ]);
 function coerceToTypes(optionCoerceTypes, dataTypes) {
   if (Array.isArray(dataTypes)) {
-    var types = [];
-    for (var i=0; i<dataTypes.length; i++) {
-      var t = dataTypes[i];
+    const types = [];
+    for (let i=0; i<dataTypes.length; i++) {
+      const t = dataTypes[i];
       if (COERCE_TO_TYPES[t]) types[types.length] = t;
       else if (optionCoerceTypes === 'array' && t === 'array') types[types.length] = t;
     }
@@ -1160,14 +1160,14 @@ function coerceToTypes(optionCoerceTypes, dataTypes) {
 
 
 function toHash(arr) {
-  var hash = {};
-  for (var i=0; i<arr.length; i++) hash[arr[i]] = true;
+  const hash = {};
+  for (let i=0; i<arr.length; i++) hash[arr[i]] = true;
   return hash;
 }
 
 
-var IDENTIFIER = /^[a-z$_][a-z$_0-9]*$/i;
-var SINGLE_QUOTE = /'|\\/g;
+const IDENTIFIER = /^[a-z$_][a-z$_0-9]*$/i;
+const SINGLE_QUOTE = /'|\\/g;
 function getProperty(key) {
   return typeof key == 'number'
           ? '[' + key + ']'
@@ -1188,7 +1188,7 @@ function escapeQuotes(str) {
 
 function varOccurences(str, dataVar) {
   dataVar += '[^0-9]';
-  var matches = str.match(new RegExp(dataVar, 'g'));
+  const matches = str.match(new RegExp(dataVar, 'g'));
   return matches ? matches.length : 0;
 }
 
@@ -1202,19 +1202,19 @@ function varReplace(str, dataVar, expr) {
 
 function schemaHasRules(schema, rules) {
   if (typeof schema == 'boolean') return !schema;
-  for (var key in schema) if (rules[key]) return true;
+  for (const key in schema) if (rules[key]) return true;
 }
 
 
 function schemaHasRulesExcept(schema, rules, exceptKeyword) {
   if (typeof schema == 'boolean') return !schema && exceptKeyword != 'not';
-  for (var key in schema) if (key != exceptKeyword && rules[key]) return true;
+  for (const key in schema) if (key != exceptKeyword && rules[key]) return true;
 }
 
 
 function schemaUnknownRules(schema, rules) {
   if (typeof schema == 'boolean') return;
-  for (var key in schema) if (!rules[key]) return key;
+  for (const key in schema) if (!rules[key]) return key;
 }
 
 
@@ -1224,7 +1224,7 @@ function toQuotedString(str) {
 
 
 function getPathExpr(currentPath, expr, jsonPointers, isNumber) {
-  var path = jsonPointers // false by default
+  const path = jsonPointers // false by default
               ? '\'/\' + ' + expr + (isNumber ? '' : '.replace(/~/g, \'~0\').replace(/\\//g, \'~1\')')
               : (isNumber ? '\'[\' + ' + expr + ' + \']\'' : '\'[\\\'\' + ' + expr + ' + \'\\\']\'');
   return joinPaths(currentPath, path);
@@ -1232,17 +1232,17 @@ function getPathExpr(currentPath, expr, jsonPointers, isNumber) {
 
 
 function getPath(currentPath, prop, jsonPointers) {
-  var path = jsonPointers // false by default
+  const path = jsonPointers // false by default
               ? toQuotedString('/' + escapeJsonPointer(prop))
               : toQuotedString(getProperty(prop));
   return joinPaths(currentPath, path);
 }
 
 
-var JSON_POINTER = /^\/(?:[^~]|~0|~1)*$/;
-var RELATIVE_JSON_POINTER = /^([0-9]+)(#|\/(?:[^~]|~0|~1)*)?$/;
+const JSON_POINTER = /^\/(?:[^~]|~0|~1)*$/;
+const RELATIVE_JSON_POINTER = /^([0-9]+)(#|\/(?:[^~]|~0|~1)*)?$/;
 function getData($data, lvl, paths) {
-  var up, jsonPointer, data, matches;
+  let up, jsonPointer, data, matches;
   if ($data === '') return 'rootData';
   if ($data[0] == '/') {
     if (!JSON_POINTER.test($data)) throw new Error('Invalid JSON-pointer: ' + $data);
@@ -1263,10 +1263,10 @@ function getData($data, lvl, paths) {
     if (!jsonPointer) return data;
   }
 
-  var expr = data;
-  var segments = jsonPointer.split('/');
-  for (var i=0; i<segments.length; i++) {
-    var segment = segments[i];
+  let expr = data;
+  const segments = jsonPointer.split('/');
+  for (let i=0; i<segments.length; i++) {
+    const segment = segments[i];
     if (segment) {
       data += getProperty(unescapeJsonPointer(segment));
       expr += ' && ' + data;
@@ -1304,7 +1304,7 @@ function unescapeJsonPointer(str) {
 },{"./ucs2length":9,"fast-deep-equal":42}],11:[function(require,module,exports){
 'use strict';
 
-var KEYWORDS = [
+const KEYWORDS = [
   'multipleOf',
   'maximum',
   'exclusiveMaximum',
@@ -1327,17 +1327,17 @@ var KEYWORDS = [
 ];
 
 module.exports = function (metaSchema, keywordsJsonPointers) {
-  for (var i=0; i<keywordsJsonPointers.length; i++) {
+  for (let i=0; i<keywordsJsonPointers.length; i++) {
     metaSchema = JSON.parse(JSON.stringify(metaSchema));
-    var segments = keywordsJsonPointers[i].split('/');
-    var keywords = metaSchema;
+    const segments = keywordsJsonPointers[i].split('/');
+    let keywords = metaSchema;
     var j;
     for (j=1; j<segments.length; j++)
       keywords = keywords[segments[j]];
 
     for (j=0; j<KEYWORDS.length; j++) {
-      var key = KEYWORDS[j];
-      var schema = keywords[key];
+      const key = KEYWORDS[j];
+      const schema = keywords[key];
       if (schema) {
         keywords[key] = {
           anyOf: [
@@ -1355,7 +1355,7 @@ module.exports = function (metaSchema, keywordsJsonPointers) {
 },{}],12:[function(require,module,exports){
 'use strict';
 
-var metaSchema = require('./refs/json-schema-draft-07.json');
+const metaSchema = require('./refs/json-schema-draft-07.json');
 
 module.exports = {
   $id: 'https://github.com/ajv-validator/ajv/blob/master/lib/definition_schema.js',
@@ -1394,16 +1394,16 @@ module.exports = {
 },{"./refs/json-schema-draft-07.json":41}],13:[function(require,module,exports){
 'use strict';
 module.exports = function generate__limit(it, $keyword, $ruleType) {
-  var out = ' ';
-  var $lvl = it.level;
-  var $dataLvl = it.dataLevel;
-  var $schema = it.schema[$keyword];
-  var $schemaPath = it.schemaPath + it.util.getProperty($keyword);
-  var $errSchemaPath = it.errSchemaPath + '/' + $keyword;
-  var $breakOnError = !it.opts.allErrors;
+  let out = ' ';
+  const $lvl = it.level;
+  const $dataLvl = it.dataLevel;
+  const $schema = it.schema[$keyword];
+  const $schemaPath = it.schemaPath + it.util.getProperty($keyword);
+  let $errSchemaPath = it.errSchemaPath + '/' + $keyword;
+  const $breakOnError = !it.opts.allErrors;
   var $errorKeyword;
-  var $data = 'data' + ($dataLvl || '');
-  var $isData = it.opts.$data && $schema && $schema.$data,
+  const $data = 'data' + ($dataLvl || '');
+  let $isData = it.opts.$data && $schema && $schema.$data,
     $schemaValue;
   if ($isData) {
     out += ' var schema' + ($lvl) + ' = ' + (it.util.getData($schema.$data, $dataLvl, it.dataPathArr)) + '; ';
@@ -1559,16 +1559,16 @@ module.exports = function generate__limit(it, $keyword, $ruleType) {
 },{}],14:[function(require,module,exports){
 'use strict';
 module.exports = function generate__limitItems(it, $keyword, $ruleType) {
-  var out = ' ';
-  var $lvl = it.level;
-  var $dataLvl = it.dataLevel;
-  var $schema = it.schema[$keyword];
-  var $schemaPath = it.schemaPath + it.util.getProperty($keyword);
-  var $errSchemaPath = it.errSchemaPath + '/' + $keyword;
-  var $breakOnError = !it.opts.allErrors;
+  let out = ' ';
+  const $lvl = it.level;
+  const $dataLvl = it.dataLevel;
+  const $schema = it.schema[$keyword];
+  const $schemaPath = it.schemaPath + it.util.getProperty($keyword);
+  const $errSchemaPath = it.errSchemaPath + '/' + $keyword;
+  const $breakOnError = !it.opts.allErrors;
   var $errorKeyword;
-  var $data = 'data' + ($dataLvl || '');
-  var $isData = it.opts.$data && $schema && $schema.$data,
+  const $data = 'data' + ($dataLvl || '');
+  let $isData = it.opts.$data && $schema && $schema.$data,
     $schemaValue;
   if ($isData) {
     out += ' var schema' + ($lvl) + ' = ' + (it.util.getData($schema.$data, $dataLvl, it.dataPathArr)) + '; ';
@@ -1579,7 +1579,7 @@ module.exports = function generate__limitItems(it, $keyword, $ruleType) {
   if (!($isData || typeof $schema == 'number')) {
     throw new Error($keyword + ' must be number');
   }
-  var $op = $keyword == 'maxItems' ? '>' : '<';
+  const $op = $keyword == 'maxItems' ? '>' : '<';
   out += 'if ( ';
   if ($isData) {
     out += ' (' + ($schemaValue) + ' !== undefined && typeof ' + ($schemaValue) + ' != \'number\') || ';
@@ -1619,7 +1619,7 @@ module.exports = function generate__limitItems(it, $keyword, $ruleType) {
   } else {
     out += ' {} ';
   }
-  var __err = out;
+  const __err = out;
   out = $$outStack.pop();
   if (!it.compositeRule && $breakOnError) {
     /* istanbul ignore if */
@@ -1641,16 +1641,16 @@ module.exports = function generate__limitItems(it, $keyword, $ruleType) {
 },{}],15:[function(require,module,exports){
 'use strict';
 module.exports = function generate__limitLength(it, $keyword, $ruleType) {
-  var out = ' ';
-  var $lvl = it.level;
-  var $dataLvl = it.dataLevel;
-  var $schema = it.schema[$keyword];
-  var $schemaPath = it.schemaPath + it.util.getProperty($keyword);
-  var $errSchemaPath = it.errSchemaPath + '/' + $keyword;
-  var $breakOnError = !it.opts.allErrors;
+  let out = ' ';
+  const $lvl = it.level;
+  const $dataLvl = it.dataLevel;
+  const $schema = it.schema[$keyword];
+  const $schemaPath = it.schemaPath + it.util.getProperty($keyword);
+  const $errSchemaPath = it.errSchemaPath + '/' + $keyword;
+  const $breakOnError = !it.opts.allErrors;
   var $errorKeyword;
-  var $data = 'data' + ($dataLvl || '');
-  var $isData = it.opts.$data && $schema && $schema.$data,
+  const $data = 'data' + ($dataLvl || '');
+  let $isData = it.opts.$data && $schema && $schema.$data,
     $schemaValue;
   if ($isData) {
     out += ' var schema' + ($lvl) + ' = ' + (it.util.getData($schema.$data, $dataLvl, it.dataPathArr)) + '; ';
@@ -1661,7 +1661,7 @@ module.exports = function generate__limitLength(it, $keyword, $ruleType) {
   if (!($isData || typeof $schema == 'number')) {
     throw new Error($keyword + ' must be number');
   }
-  var $op = $keyword == 'maxLength' ? '>' : '<';
+  const $op = $keyword == 'maxLength' ? '>' : '<';
   out += 'if ( ';
   if ($isData) {
     out += ' (' + ($schemaValue) + ' !== undefined && typeof ' + ($schemaValue) + ' != \'number\') || ';
@@ -1706,7 +1706,7 @@ module.exports = function generate__limitLength(it, $keyword, $ruleType) {
   } else {
     out += ' {} ';
   }
-  var __err = out;
+  const __err = out;
   out = $$outStack.pop();
   if (!it.compositeRule && $breakOnError) {
     /* istanbul ignore if */
@@ -1728,16 +1728,16 @@ module.exports = function generate__limitLength(it, $keyword, $ruleType) {
 },{}],16:[function(require,module,exports){
 'use strict';
 module.exports = function generate__limitProperties(it, $keyword, $ruleType) {
-  var out = ' ';
-  var $lvl = it.level;
-  var $dataLvl = it.dataLevel;
-  var $schema = it.schema[$keyword];
-  var $schemaPath = it.schemaPath + it.util.getProperty($keyword);
-  var $errSchemaPath = it.errSchemaPath + '/' + $keyword;
-  var $breakOnError = !it.opts.allErrors;
+  let out = ' ';
+  const $lvl = it.level;
+  const $dataLvl = it.dataLevel;
+  const $schema = it.schema[$keyword];
+  const $schemaPath = it.schemaPath + it.util.getProperty($keyword);
+  const $errSchemaPath = it.errSchemaPath + '/' + $keyword;
+  const $breakOnError = !it.opts.allErrors;
   var $errorKeyword;
-  var $data = 'data' + ($dataLvl || '');
-  var $isData = it.opts.$data && $schema && $schema.$data,
+  const $data = 'data' + ($dataLvl || '');
+  let $isData = it.opts.$data && $schema && $schema.$data,
     $schemaValue;
   if ($isData) {
     out += ' var schema' + ($lvl) + ' = ' + (it.util.getData($schema.$data, $dataLvl, it.dataPathArr)) + '; ';
@@ -1748,7 +1748,7 @@ module.exports = function generate__limitProperties(it, $keyword, $ruleType) {
   if (!($isData || typeof $schema == 'number')) {
     throw new Error($keyword + ' must be number');
   }
-  var $op = $keyword == 'maxProperties' ? '>' : '<';
+  const $op = $keyword == 'maxProperties' ? '>' : '<';
   out += 'if ( ';
   if ($isData) {
     out += ' (' + ($schemaValue) + ' !== undefined && typeof ' + ($schemaValue) + ' != \'number\') || ';
@@ -1788,7 +1788,7 @@ module.exports = function generate__limitProperties(it, $keyword, $ruleType) {
   } else {
     out += ' {} ';
   }
-  var __err = out;
+  const __err = out;
   out = $$outStack.pop();
   if (!it.compositeRule && $breakOnError) {
     /* istanbul ignore if */
@@ -1810,20 +1810,20 @@ module.exports = function generate__limitProperties(it, $keyword, $ruleType) {
 },{}],17:[function(require,module,exports){
 'use strict';
 module.exports = function generate_allOf(it, $keyword, $ruleType) {
-  var out = ' ';
-  var $schema = it.schema[$keyword];
-  var $schemaPath = it.schemaPath + it.util.getProperty($keyword);
-  var $errSchemaPath = it.errSchemaPath + '/' + $keyword;
-  var $breakOnError = !it.opts.allErrors;
-  var $it = it.util.copy(it);
-  var $closingBraces = '';
+  let out = ' ';
+  const $schema = it.schema[$keyword];
+  const $schemaPath = it.schemaPath + it.util.getProperty($keyword);
+  const $errSchemaPath = it.errSchemaPath + '/' + $keyword;
+  const $breakOnError = !it.opts.allErrors;
+  const $it = it.util.copy(it);
+  let $closingBraces = '';
   $it.level++;
-  var $nextValid = 'valid' + $it.level;
-  var $currentBaseId = $it.baseId,
+  const $nextValid = 'valid' + $it.level;
+  let $currentBaseId = $it.baseId,
     $allSchemasEmpty = true;
-  var arr1 = $schema;
+  const arr1 = $schema;
   if (arr1) {
-    var $sch, $i = -1,
+    let $sch, $i = -1,
       l1 = arr1.length - 1;
     while ($i < l1) {
       $sch = arr1[$i += 1];
@@ -1854,31 +1854,31 @@ module.exports = function generate_allOf(it, $keyword, $ruleType) {
 },{}],18:[function(require,module,exports){
 'use strict';
 module.exports = function generate_anyOf(it, $keyword, $ruleType) {
-  var out = ' ';
-  var $lvl = it.level;
-  var $dataLvl = it.dataLevel;
-  var $schema = it.schema[$keyword];
-  var $schemaPath = it.schemaPath + it.util.getProperty($keyword);
-  var $errSchemaPath = it.errSchemaPath + '/' + $keyword;
-  var $breakOnError = !it.opts.allErrors;
-  var $data = 'data' + ($dataLvl || '');
-  var $valid = 'valid' + $lvl;
-  var $errs = 'errs__' + $lvl;
-  var $it = it.util.copy(it);
-  var $closingBraces = '';
+  let out = ' ';
+  const $lvl = it.level;
+  const $dataLvl = it.dataLevel;
+  const $schema = it.schema[$keyword];
+  const $schemaPath = it.schemaPath + it.util.getProperty($keyword);
+  const $errSchemaPath = it.errSchemaPath + '/' + $keyword;
+  const $breakOnError = !it.opts.allErrors;
+  const $data = 'data' + ($dataLvl || '');
+  const $valid = 'valid' + $lvl;
+  const $errs = 'errs__' + $lvl;
+  const $it = it.util.copy(it);
+  let $closingBraces = '';
   $it.level++;
-  var $nextValid = 'valid' + $it.level;
-  var $noEmptySchema = $schema.every(function($sch) {
+  const $nextValid = 'valid' + $it.level;
+  const $noEmptySchema = $schema.every(function($sch) {
     return (it.opts.strictKeywords ? (typeof $sch == 'object' && Object.keys($sch).length > 0) || $sch === false : it.util.schemaHasRules($sch, it.RULES.all));
   });
   if ($noEmptySchema) {
-    var $currentBaseId = $it.baseId;
+    const $currentBaseId = $it.baseId;
     out += ' var ' + ($errs) + ' = errors; var ' + ($valid) + ' = false;  ';
-    var $wasComposite = it.compositeRule;
+    const $wasComposite = it.compositeRule;
     it.compositeRule = $it.compositeRule = true;
-    var arr1 = $schema;
+    const arr1 = $schema;
     if (arr1) {
-      var $sch, $i = -1,
+      let $sch, $i = -1,
         l1 = arr1.length - 1;
       while ($i < l1) {
         $sch = arr1[$i += 1];
@@ -1929,11 +1929,11 @@ module.exports = function generate_anyOf(it, $keyword, $ruleType) {
 },{}],19:[function(require,module,exports){
 'use strict';
 module.exports = function generate_comment(it, $keyword, $ruleType) {
-  var out = ' ';
-  var $schema = it.schema[$keyword];
-  var $errSchemaPath = it.errSchemaPath + '/' + $keyword;
-  var $breakOnError = !it.opts.allErrors;
-  var $comment = it.util.toQuotedString($schema);
+  let out = ' ';
+  const $schema = it.schema[$keyword];
+  const $errSchemaPath = it.errSchemaPath + '/' + $keyword;
+  const $breakOnError = !it.opts.allErrors;
+  const $comment = it.util.toQuotedString($schema);
   if (it.opts.$comment === true) {
     out += ' console.log(' + ($comment) + ');';
   } else if (typeof it.opts.$comment == 'function') {
@@ -1945,16 +1945,16 @@ module.exports = function generate_comment(it, $keyword, $ruleType) {
 },{}],20:[function(require,module,exports){
 'use strict';
 module.exports = function generate_const(it, $keyword, $ruleType) {
-  var out = ' ';
-  var $lvl = it.level;
-  var $dataLvl = it.dataLevel;
-  var $schema = it.schema[$keyword];
-  var $schemaPath = it.schemaPath + it.util.getProperty($keyword);
-  var $errSchemaPath = it.errSchemaPath + '/' + $keyword;
-  var $breakOnError = !it.opts.allErrors;
-  var $data = 'data' + ($dataLvl || '');
-  var $valid = 'valid' + $lvl;
-  var $isData = it.opts.$data && $schema && $schema.$data,
+  let out = ' ';
+  const $lvl = it.level;
+  const $dataLvl = it.dataLevel;
+  const $schema = it.schema[$keyword];
+  const $schemaPath = it.schemaPath + it.util.getProperty($keyword);
+  const $errSchemaPath = it.errSchemaPath + '/' + $keyword;
+  const $breakOnError = !it.opts.allErrors;
+  const $data = 'data' + ($dataLvl || '');
+  const $valid = 'valid' + $lvl;
+  let $isData = it.opts.$data && $schema && $schema.$data,
     $schemaValue;
   if ($isData) {
     out += ' var schema' + ($lvl) + ' = ' + (it.util.getData($schema.$data, $dataLvl, it.dataPathArr)) + '; ';
@@ -1981,7 +1981,7 @@ module.exports = function generate_const(it, $keyword, $ruleType) {
   } else {
     out += ' {} ';
   }
-  var __err = out;
+  const __err = out;
   out = $$outStack.pop();
   if (!it.compositeRule && $breakOnError) {
     /* istanbul ignore if */
@@ -2003,37 +2003,37 @@ module.exports = function generate_const(it, $keyword, $ruleType) {
 },{}],21:[function(require,module,exports){
 'use strict';
 module.exports = function generate_contains(it, $keyword, $ruleType) {
-  var out = ' ';
-  var $lvl = it.level;
-  var $dataLvl = it.dataLevel;
-  var $schema = it.schema[$keyword];
-  var $schemaPath = it.schemaPath + it.util.getProperty($keyword);
-  var $errSchemaPath = it.errSchemaPath + '/' + $keyword;
-  var $breakOnError = !it.opts.allErrors;
-  var $data = 'data' + ($dataLvl || '');
-  var $valid = 'valid' + $lvl;
-  var $errs = 'errs__' + $lvl;
-  var $it = it.util.copy(it);
-  var $closingBraces = '';
+  let out = ' ';
+  const $lvl = it.level;
+  const $dataLvl = it.dataLevel;
+  const $schema = it.schema[$keyword];
+  const $schemaPath = it.schemaPath + it.util.getProperty($keyword);
+  const $errSchemaPath = it.errSchemaPath + '/' + $keyword;
+  const $breakOnError = !it.opts.allErrors;
+  const $data = 'data' + ($dataLvl || '');
+  const $valid = 'valid' + $lvl;
+  const $errs = 'errs__' + $lvl;
+  const $it = it.util.copy(it);
+  const $closingBraces = '';
   $it.level++;
-  var $nextValid = 'valid' + $it.level;
-  var $idx = 'i' + $lvl,
+  const $nextValid = 'valid' + $it.level;
+  const $idx = 'i' + $lvl,
     $dataNxt = $it.dataLevel = it.dataLevel + 1,
     $nextData = 'data' + $dataNxt,
     $currentBaseId = it.baseId,
     $nonEmptySchema = (it.opts.strictKeywords ? (typeof $schema == 'object' && Object.keys($schema).length > 0) || $schema === false : it.util.schemaHasRules($schema, it.RULES.all));
   out += 'var ' + ($errs) + ' = errors;var ' + ($valid) + ';';
   if ($nonEmptySchema) {
-    var $wasComposite = it.compositeRule;
+    const $wasComposite = it.compositeRule;
     it.compositeRule = $it.compositeRule = true;
     $it.schema = $schema;
     $it.schemaPath = $schemaPath;
     $it.errSchemaPath = $errSchemaPath;
     out += ' var ' + ($nextValid) + ' = false; for (var ' + ($idx) + ' = 0; ' + ($idx) + ' < ' + ($data) + '.length; ' + ($idx) + '++) { ';
     $it.errorPath = it.util.getPathExpr(it.errorPath, $idx, it.opts.jsonPointers, true);
-    var $passData = $data + '[' + $idx + ']';
+    const $passData = $data + '[' + $idx + ']';
     $it.dataPathArr[$dataNxt] = $idx;
-    var $code = it.validate($it);
+    const $code = it.validate($it);
     $it.baseId = $currentBaseId;
     if (it.util.varOccurences($code, $nextData) < 2) {
       out += ' ' + (it.util.varReplace($code, $nextData, $passData)) + ' ';
@@ -2061,7 +2061,7 @@ module.exports = function generate_contains(it, $keyword, $ruleType) {
   } else {
     out += ' {} ';
   }
-  var __err = out;
+  const __err = out;
   out = $$outStack.pop();
   if (!it.compositeRule && $breakOnError) {
     /* istanbul ignore if */
@@ -2086,18 +2086,18 @@ module.exports = function generate_contains(it, $keyword, $ruleType) {
 },{}],22:[function(require,module,exports){
 'use strict';
 module.exports = function generate_custom(it, $keyword, $ruleType) {
-  var out = ' ';
-  var $lvl = it.level;
-  var $dataLvl = it.dataLevel;
-  var $schema = it.schema[$keyword];
-  var $schemaPath = it.schemaPath + it.util.getProperty($keyword);
-  var $errSchemaPath = it.errSchemaPath + '/' + $keyword;
-  var $breakOnError = !it.opts.allErrors;
-  var $errorKeyword;
-  var $data = 'data' + ($dataLvl || '');
-  var $valid = 'valid' + $lvl;
-  var $errs = 'errs__' + $lvl;
-  var $isData = it.opts.$data && $schema && $schema.$data,
+  let out = ' ';
+  const $lvl = it.level;
+  const $dataLvl = it.dataLevel;
+  const $schema = it.schema[$keyword];
+  const $schemaPath = it.schemaPath + it.util.getProperty($keyword);
+  const $errSchemaPath = it.errSchemaPath + '/' + $keyword;
+  const $breakOnError = !it.opts.allErrors;
+  let $errorKeyword;
+  const $data = 'data' + ($dataLvl || '');
+  const $valid = 'valid' + $lvl;
+  const $errs = 'errs__' + $lvl;
+  let $isData = it.opts.$data && $schema && $schema.$data,
     $schemaValue;
   if ($isData) {
     out += ' var schema' + ($lvl) + ' = ' + (it.util.getData($schema.$data, $dataLvl, it.dataPathArr)) + '; ';
@@ -2109,7 +2109,7 @@ module.exports = function generate_custom(it, $keyword, $ruleType) {
     $definition = 'definition' + $lvl,
     $rDef = $rule.definition,
     $closingBraces = '';
-  var $compile, $inline, $macro, $ruleValidate, $validateCode;
+  let $compile, $inline, $macro, $ruleValidate, $validateCode;
   if ($isData && $rDef.$data) {
     $validateCode = 'keywordValidate' + $lvl;
     var $validateSchema = $rDef.validateSchema;
@@ -2123,7 +2123,7 @@ module.exports = function generate_custom(it, $keyword, $ruleType) {
     $inline = $rDef.inline;
     $macro = $rDef.macro;
   }
-  var $ruleErrs = $validateCode + '.errors',
+  let $ruleErrs = $validateCode + '.errors',
     $i = 'i' + $lvl,
     $ruleErr = 'ruleErr' + $lvl,
     $asyncKeyword = $rDef.async;
@@ -2147,15 +2147,15 @@ module.exports = function generate_custom(it, $keyword, $ruleType) {
       out += ' ' + ($valid) + ' = ' + ($ruleValidate.validate) + '; ';
     }
   } else if ($macro) {
-    var $it = it.util.copy(it);
+    const $it = it.util.copy(it);
     var $closingBraces = '';
     $it.level++;
     var $nextValid = 'valid' + $it.level;
     $it.schema = $ruleValidate.validate;
     $it.schemaPath = '';
-    var $wasComposite = it.compositeRule;
+    const $wasComposite = it.compositeRule;
     it.compositeRule = $it.compositeRule = true;
-    var $code = it.validate($it).replace(/validate\.schema/g, $validateCode);
+    const $code = it.validate($it).replace(/validate\.schema/g, $validateCode);
     it.compositeRule = $it.compositeRule = $wasComposite;
     out += ' ' + ($code);
   } else {
@@ -2180,7 +2180,7 @@ module.exports = function generate_custom(it, $keyword, $ruleType) {
     var $parentData = $dataLvl ? 'data' + (($dataLvl - 1) || '') : 'parentData',
       $parentDataProperty = $dataLvl ? it.dataPathArr[$dataLvl] : 'parentDataProperty';
     out += ' , ' + ($parentData) + ' , ' + ($parentDataProperty) + ' , rootData )  ';
-    var def_callRuleValidate = out;
+    const def_callRuleValidate = out;
     out = $$outStack.pop();
     if ($rDef.errors === false) {
       out += ' ' + ($valid) + ' = ';
@@ -2237,7 +2237,7 @@ module.exports = function generate_custom(it, $keyword, $ruleType) {
     } else {
       out += ' {} ';
     }
-    var __err = out;
+    const __err = out;
     out = $$outStack.pop();
     if (!it.compositeRule && $breakOnError) {
       /* istanbul ignore if */
@@ -2249,7 +2249,7 @@ module.exports = function generate_custom(it, $keyword, $ruleType) {
     } else {
       out += ' var err = ' + (__err) + ';  if (vErrors === null) vErrors = [err]; else vErrors.push(err); errors++; ';
     }
-    var def_customError = out;
+    const def_customError = out;
     out = $$outStack.pop();
     if ($inline) {
       if ($rDef.errors) {
@@ -2316,20 +2316,20 @@ module.exports = function generate_custom(it, $keyword, $ruleType) {
 },{}],23:[function(require,module,exports){
 'use strict';
 module.exports = function generate_dependencies(it, $keyword, $ruleType) {
-  var out = ' ';
-  var $lvl = it.level;
-  var $dataLvl = it.dataLevel;
-  var $schema = it.schema[$keyword];
-  var $schemaPath = it.schemaPath + it.util.getProperty($keyword);
-  var $errSchemaPath = it.errSchemaPath + '/' + $keyword;
-  var $breakOnError = !it.opts.allErrors;
-  var $data = 'data' + ($dataLvl || '');
-  var $errs = 'errs__' + $lvl;
-  var $it = it.util.copy(it);
-  var $closingBraces = '';
+  let out = ' ';
+  const $lvl = it.level;
+  const $dataLvl = it.dataLevel;
+  const $schema = it.schema[$keyword];
+  const $schemaPath = it.schemaPath + it.util.getProperty($keyword);
+  const $errSchemaPath = it.errSchemaPath + '/' + $keyword;
+  const $breakOnError = !it.opts.allErrors;
+  const $data = 'data' + ($dataLvl || '');
+  const $errs = 'errs__' + $lvl;
+  const $it = it.util.copy(it);
+  let $closingBraces = '';
   $it.level++;
-  var $nextValid = 'valid' + $it.level;
-  var $schemaDeps = {},
+  const $nextValid = 'valid' + $it.level;
+  const $schemaDeps = {},
     $propertyDeps = {},
     $ownProperties = it.opts.ownProperties;
   for ($property in $schema) {
@@ -2339,7 +2339,7 @@ module.exports = function generate_dependencies(it, $keyword, $ruleType) {
     $deps[$property] = $sch;
   }
   out += 'var ' + ($errs) + ' = errors;';
-  var $currentErrorPath = it.errorPath;
+  const $currentErrorPath = it.errorPath;
   out += 'var missing' + ($lvl) + ';';
   for (var $property in $propertyDeps) {
     $deps = $propertyDeps[$property];
@@ -2350,7 +2350,7 @@ module.exports = function generate_dependencies(it, $keyword, $ruleType) {
       }
       if ($breakOnError) {
         out += ' && ( ';
-        var arr1 = $deps;
+        const arr1 = $deps;
         if (arr1) {
           var $propertyKey, $i = -1,
             l1 = arr1.length - 1;
@@ -2395,7 +2395,7 @@ module.exports = function generate_dependencies(it, $keyword, $ruleType) {
         } else {
           out += ' {} ';
         }
-        var __err = out;
+        const __err = out;
         out = $$outStack.pop();
         if (!it.compositeRule && $breakOnError) {
           /* istanbul ignore if */
@@ -2409,7 +2409,7 @@ module.exports = function generate_dependencies(it, $keyword, $ruleType) {
         }
       } else {
         out += ' ) { ';
-        var arr2 = $deps;
+        const arr2 = $deps;
         if (arr2) {
           var $propertyKey, i2 = -1,
             l2 = arr2.length - 1;
@@ -2456,7 +2456,7 @@ module.exports = function generate_dependencies(it, $keyword, $ruleType) {
     }
   }
   it.errorPath = $currentErrorPath;
-  var $currentBaseId = $it.baseId;
+  const $currentBaseId = $it.baseId;
   for (var $property in $schemaDeps) {
     var $sch = $schemaDeps[$property];
     if ((it.opts.strictKeywords ? (typeof $sch == 'object' && Object.keys($sch).length > 0) || $sch === false : it.util.schemaHasRules($sch, it.RULES.all))) {
@@ -2486,16 +2486,16 @@ module.exports = function generate_dependencies(it, $keyword, $ruleType) {
 },{}],24:[function(require,module,exports){
 'use strict';
 module.exports = function generate_enum(it, $keyword, $ruleType) {
-  var out = ' ';
-  var $lvl = it.level;
-  var $dataLvl = it.dataLevel;
-  var $schema = it.schema[$keyword];
-  var $schemaPath = it.schemaPath + it.util.getProperty($keyword);
-  var $errSchemaPath = it.errSchemaPath + '/' + $keyword;
-  var $breakOnError = !it.opts.allErrors;
-  var $data = 'data' + ($dataLvl || '');
-  var $valid = 'valid' + $lvl;
-  var $isData = it.opts.$data && $schema && $schema.$data,
+  let out = ' ';
+  const $lvl = it.level;
+  const $dataLvl = it.dataLevel;
+  const $schema = it.schema[$keyword];
+  const $schemaPath = it.schemaPath + it.util.getProperty($keyword);
+  const $errSchemaPath = it.errSchemaPath + '/' + $keyword;
+  const $breakOnError = !it.opts.allErrors;
+  const $data = 'data' + ($dataLvl || '');
+  const $valid = 'valid' + $lvl;
+  let $isData = it.opts.$data && $schema && $schema.$data,
     $schemaValue;
   if ($isData) {
     out += ' var schema' + ($lvl) + ' = ' + (it.util.getData($schema.$data, $dataLvl, it.dataPathArr)) + '; ';
@@ -2503,7 +2503,7 @@ module.exports = function generate_enum(it, $keyword, $ruleType) {
   } else {
     $schemaValue = $schema;
   }
-  var $i = 'i' + $lvl,
+  const $i = 'i' + $lvl,
     $vSchema = 'schema' + $lvl;
   if (!$isData) {
     out += ' var ' + ($vSchema) + ' = validate.schema' + ($schemaPath) + ';';
@@ -2532,7 +2532,7 @@ module.exports = function generate_enum(it, $keyword, $ruleType) {
   } else {
     out += ' {} ';
   }
-  var __err = out;
+  const __err = out;
   out = $$outStack.pop();
   if (!it.compositeRule && $breakOnError) {
     /* istanbul ignore if */
@@ -2554,21 +2554,21 @@ module.exports = function generate_enum(it, $keyword, $ruleType) {
 },{}],25:[function(require,module,exports){
 'use strict';
 module.exports = function generate_format(it, $keyword, $ruleType) {
-  var out = ' ';
-  var $lvl = it.level;
-  var $dataLvl = it.dataLevel;
-  var $schema = it.schema[$keyword];
-  var $schemaPath = it.schemaPath + it.util.getProperty($keyword);
-  var $errSchemaPath = it.errSchemaPath + '/' + $keyword;
-  var $breakOnError = !it.opts.allErrors;
-  var $data = 'data' + ($dataLvl || '');
+  let out = ' ';
+  const $lvl = it.level;
+  const $dataLvl = it.dataLevel;
+  const $schema = it.schema[$keyword];
+  const $schemaPath = it.schemaPath + it.util.getProperty($keyword);
+  const $errSchemaPath = it.errSchemaPath + '/' + $keyword;
+  const $breakOnError = !it.opts.allErrors;
+  const $data = 'data' + ($dataLvl || '');
   if (it.opts.format === false) {
     if ($breakOnError) {
       out += ' if (true) { ';
     }
     return out;
   }
-  var $isData = it.opts.$data && $schema && $schema.$data,
+  let $isData = it.opts.$data && $schema && $schema.$data,
     $schemaValue;
   if ($isData) {
     out += ' var schema' + ($lvl) + ' = ' + (it.util.getData($schema.$data, $dataLvl, it.dataPathArr)) + '; ';
@@ -2576,7 +2576,7 @@ module.exports = function generate_format(it, $keyword, $ruleType) {
   } else {
     $schemaValue = $schema;
   }
-  var $unknownFormats = it.opts.unknownFormats,
+  const $unknownFormats = it.opts.unknownFormats,
     $allowUnknown = Array.isArray($unknownFormats);
   if ($isData) {
     var $format = 'format' + $lvl,
@@ -2684,7 +2684,7 @@ module.exports = function generate_format(it, $keyword, $ruleType) {
   } else {
     out += ' {} ';
   }
-  var __err = out;
+  const __err = out;
   out = $$outStack.pop();
   if (!it.compositeRule && $breakOnError) {
     /* istanbul ignore if */
@@ -2706,32 +2706,32 @@ module.exports = function generate_format(it, $keyword, $ruleType) {
 },{}],26:[function(require,module,exports){
 'use strict';
 module.exports = function generate_if(it, $keyword, $ruleType) {
-  var out = ' ';
-  var $lvl = it.level;
-  var $dataLvl = it.dataLevel;
-  var $schema = it.schema[$keyword];
-  var $schemaPath = it.schemaPath + it.util.getProperty($keyword);
-  var $errSchemaPath = it.errSchemaPath + '/' + $keyword;
-  var $breakOnError = !it.opts.allErrors;
-  var $data = 'data' + ($dataLvl || '');
-  var $valid = 'valid' + $lvl;
-  var $errs = 'errs__' + $lvl;
-  var $it = it.util.copy(it);
+  let out = ' ';
+  const $lvl = it.level;
+  const $dataLvl = it.dataLevel;
+  const $schema = it.schema[$keyword];
+  const $schemaPath = it.schemaPath + it.util.getProperty($keyword);
+  const $errSchemaPath = it.errSchemaPath + '/' + $keyword;
+  const $breakOnError = !it.opts.allErrors;
+  const $data = 'data' + ($dataLvl || '');
+  const $valid = 'valid' + $lvl;
+  const $errs = 'errs__' + $lvl;
+  const $it = it.util.copy(it);
   $it.level++;
-  var $nextValid = 'valid' + $it.level;
-  var $thenSch = it.schema['then'],
+  const $nextValid = 'valid' + $it.level;
+  const $thenSch = it.schema['then'],
     $elseSch = it.schema['else'],
     $thenPresent = $thenSch !== undefined && (it.opts.strictKeywords ? (typeof $thenSch == 'object' && Object.keys($thenSch).length > 0) || $thenSch === false : it.util.schemaHasRules($thenSch, it.RULES.all)),
     $elsePresent = $elseSch !== undefined && (it.opts.strictKeywords ? (typeof $elseSch == 'object' && Object.keys($elseSch).length > 0) || $elseSch === false : it.util.schemaHasRules($elseSch, it.RULES.all)),
     $currentBaseId = $it.baseId;
   if ($thenPresent || $elsePresent) {
-    var $ifClause;
+    let $ifClause;
     $it.createErrors = false;
     $it.schema = $schema;
     $it.schemaPath = $schemaPath;
     $it.errSchemaPath = $errSchemaPath;
     out += ' var ' + ($errs) + ' = errors; var ' + ($valid) + ' = true;  ';
-    var $wasComposite = it.compositeRule;
+    const $wasComposite = it.compositeRule;
     it.compositeRule = $it.compositeRule = true;
     out += '  ' + (it.validate($it)) + ' ';
     $it.baseId = $currentBaseId;
@@ -2846,30 +2846,30 @@ module.exports = {
 },{"./_limit":13,"./_limitItems":14,"./_limitLength":15,"./_limitProperties":16,"./allOf":17,"./anyOf":18,"./comment":19,"./const":20,"./contains":21,"./dependencies":23,"./enum":24,"./format":25,"./if":26,"./items":28,"./multipleOf":29,"./not":30,"./oneOf":31,"./pattern":32,"./properties":33,"./propertyNames":34,"./ref":35,"./required":36,"./uniqueItems":37,"./validate":38}],28:[function(require,module,exports){
 'use strict';
 module.exports = function generate_items(it, $keyword, $ruleType) {
-  var out = ' ';
-  var $lvl = it.level;
-  var $dataLvl = it.dataLevel;
-  var $schema = it.schema[$keyword];
-  var $schemaPath = it.schemaPath + it.util.getProperty($keyword);
-  var $errSchemaPath = it.errSchemaPath + '/' + $keyword;
-  var $breakOnError = !it.opts.allErrors;
-  var $data = 'data' + ($dataLvl || '');
-  var $valid = 'valid' + $lvl;
-  var $errs = 'errs__' + $lvl;
-  var $it = it.util.copy(it);
-  var $closingBraces = '';
+  let out = ' ';
+  const $lvl = it.level;
+  const $dataLvl = it.dataLevel;
+  const $schema = it.schema[$keyword];
+  const $schemaPath = it.schemaPath + it.util.getProperty($keyword);
+  let $errSchemaPath = it.errSchemaPath + '/' + $keyword;
+  const $breakOnError = !it.opts.allErrors;
+  const $data = 'data' + ($dataLvl || '');
+  const $valid = 'valid' + $lvl;
+  const $errs = 'errs__' + $lvl;
+  const $it = it.util.copy(it);
+  let $closingBraces = '';
   $it.level++;
-  var $nextValid = 'valid' + $it.level;
-  var $idx = 'i' + $lvl,
+  const $nextValid = 'valid' + $it.level;
+  const $idx = 'i' + $lvl,
     $dataNxt = $it.dataLevel = it.dataLevel + 1,
     $nextData = 'data' + $dataNxt,
     $currentBaseId = it.baseId;
   out += 'var ' + ($errs) + ' = errors;var ' + ($valid) + ';';
   if (Array.isArray($schema)) {
-    var $additionalItems = it.schema.additionalItems;
+    const $additionalItems = it.schema.additionalItems;
     if ($additionalItems === false) {
       out += ' ' + ($valid) + ' = ' + ($data) + '.length <= ' + ($schema.length) + '; ';
-      var $currErrSchemaPath = $errSchemaPath;
+      const $currErrSchemaPath = $errSchemaPath;
       $errSchemaPath = it.errSchemaPath + '/additionalItems';
       out += '  if (!' + ($valid) + ') {   ';
       var $$outStack = $$outStack || [];
@@ -2887,7 +2887,7 @@ module.exports = function generate_items(it, $keyword, $ruleType) {
       } else {
         out += ' {} ';
       }
-      var __err = out;
+      const __err = out;
       out = $$outStack.pop();
       if (!it.compositeRule && $breakOnError) {
         /* istanbul ignore if */
@@ -2906,9 +2906,9 @@ module.exports = function generate_items(it, $keyword, $ruleType) {
         out += ' else { ';
       }
     }
-    var arr1 = $schema;
+    const arr1 = $schema;
     if (arr1) {
-      var $sch, $i = -1,
+      let $sch, $i = -1,
         l1 = arr1.length - 1;
       while ($i < l1) {
         $sch = arr1[$i += 1];
@@ -2988,15 +2988,15 @@ module.exports = function generate_items(it, $keyword, $ruleType) {
 },{}],29:[function(require,module,exports){
 'use strict';
 module.exports = function generate_multipleOf(it, $keyword, $ruleType) {
-  var out = ' ';
-  var $lvl = it.level;
-  var $dataLvl = it.dataLevel;
-  var $schema = it.schema[$keyword];
-  var $schemaPath = it.schemaPath + it.util.getProperty($keyword);
-  var $errSchemaPath = it.errSchemaPath + '/' + $keyword;
-  var $breakOnError = !it.opts.allErrors;
-  var $data = 'data' + ($dataLvl || '');
-  var $isData = it.opts.$data && $schema && $schema.$data,
+  let out = ' ';
+  const $lvl = it.level;
+  const $dataLvl = it.dataLevel;
+  const $schema = it.schema[$keyword];
+  const $schemaPath = it.schemaPath + it.util.getProperty($keyword);
+  const $errSchemaPath = it.errSchemaPath + '/' + $keyword;
+  const $breakOnError = !it.opts.allErrors;
+  const $data = 'data' + ($dataLvl || '');
+  let $isData = it.opts.$data && $schema && $schema.$data,
     $schemaValue;
   if ($isData) {
     out += ' var schema' + ($lvl) + ' = ' + (it.util.getData($schema.$data, $dataLvl, it.dataPathArr)) + '; ';
@@ -3048,7 +3048,7 @@ module.exports = function generate_multipleOf(it, $keyword, $ruleType) {
   } else {
     out += ' {} ';
   }
-  var __err = out;
+  const __err = out;
   out = $$outStack.pop();
   if (!it.compositeRule && $breakOnError) {
     /* istanbul ignore if */
@@ -3070,27 +3070,27 @@ module.exports = function generate_multipleOf(it, $keyword, $ruleType) {
 },{}],30:[function(require,module,exports){
 'use strict';
 module.exports = function generate_not(it, $keyword, $ruleType) {
-  var out = ' ';
-  var $lvl = it.level;
-  var $dataLvl = it.dataLevel;
-  var $schema = it.schema[$keyword];
-  var $schemaPath = it.schemaPath + it.util.getProperty($keyword);
-  var $errSchemaPath = it.errSchemaPath + '/' + $keyword;
-  var $breakOnError = !it.opts.allErrors;
-  var $data = 'data' + ($dataLvl || '');
-  var $errs = 'errs__' + $lvl;
-  var $it = it.util.copy(it);
+  let out = ' ';
+  const $lvl = it.level;
+  const $dataLvl = it.dataLevel;
+  const $schema = it.schema[$keyword];
+  const $schemaPath = it.schemaPath + it.util.getProperty($keyword);
+  const $errSchemaPath = it.errSchemaPath + '/' + $keyword;
+  const $breakOnError = !it.opts.allErrors;
+  const $data = 'data' + ($dataLvl || '');
+  const $errs = 'errs__' + $lvl;
+  const $it = it.util.copy(it);
   $it.level++;
-  var $nextValid = 'valid' + $it.level;
+  const $nextValid = 'valid' + $it.level;
   if ((it.opts.strictKeywords ? (typeof $schema == 'object' && Object.keys($schema).length > 0) || $schema === false : it.util.schemaHasRules($schema, it.RULES.all))) {
     $it.schema = $schema;
     $it.schemaPath = $schemaPath;
     $it.errSchemaPath = $errSchemaPath;
     out += ' var ' + ($errs) + ' = errors;  ';
-    var $wasComposite = it.compositeRule;
+    const $wasComposite = it.compositeRule;
     it.compositeRule = $it.compositeRule = true;
     $it.createErrors = false;
-    var $allErrorsOption;
+    let $allErrorsOption;
     if ($it.opts.allErrors) {
       $allErrorsOption = $it.opts.allErrors;
       $it.opts.allErrors = false;
@@ -3115,7 +3115,7 @@ module.exports = function generate_not(it, $keyword, $ruleType) {
     } else {
       out += ' {} ';
     }
-    var __err = out;
+    const __err = out;
     out = $$outStack.pop();
     if (!it.compositeRule && $breakOnError) {
       /* istanbul ignore if */
@@ -3156,29 +3156,29 @@ module.exports = function generate_not(it, $keyword, $ruleType) {
 },{}],31:[function(require,module,exports){
 'use strict';
 module.exports = function generate_oneOf(it, $keyword, $ruleType) {
-  var out = ' ';
-  var $lvl = it.level;
-  var $dataLvl = it.dataLevel;
-  var $schema = it.schema[$keyword];
-  var $schemaPath = it.schemaPath + it.util.getProperty($keyword);
-  var $errSchemaPath = it.errSchemaPath + '/' + $keyword;
-  var $breakOnError = !it.opts.allErrors;
-  var $data = 'data' + ($dataLvl || '');
-  var $valid = 'valid' + $lvl;
-  var $errs = 'errs__' + $lvl;
-  var $it = it.util.copy(it);
-  var $closingBraces = '';
+  let out = ' ';
+  const $lvl = it.level;
+  const $dataLvl = it.dataLevel;
+  const $schema = it.schema[$keyword];
+  const $schemaPath = it.schemaPath + it.util.getProperty($keyword);
+  const $errSchemaPath = it.errSchemaPath + '/' + $keyword;
+  const $breakOnError = !it.opts.allErrors;
+  const $data = 'data' + ($dataLvl || '');
+  const $valid = 'valid' + $lvl;
+  const $errs = 'errs__' + $lvl;
+  const $it = it.util.copy(it);
+  let $closingBraces = '';
   $it.level++;
-  var $nextValid = 'valid' + $it.level;
-  var $currentBaseId = $it.baseId,
+  const $nextValid = 'valid' + $it.level;
+  const $currentBaseId = $it.baseId,
     $prevValid = 'prevValid' + $lvl,
     $passingSchemas = 'passingSchemas' + $lvl;
   out += 'var ' + ($errs) + ' = errors , ' + ($prevValid) + ' = false , ' + ($valid) + ' = false , ' + ($passingSchemas) + ' = null; ';
-  var $wasComposite = it.compositeRule;
+  const $wasComposite = it.compositeRule;
   it.compositeRule = $it.compositeRule = true;
-  var arr1 = $schema;
+  const arr1 = $schema;
   if (arr1) {
-    var $sch, $i = -1,
+    let $sch, $i = -1,
       l1 = arr1.length - 1;
     while ($i < l1) {
       $sch = arr1[$i += 1];
@@ -3231,15 +3231,15 @@ module.exports = function generate_oneOf(it, $keyword, $ruleType) {
 },{}],32:[function(require,module,exports){
 'use strict';
 module.exports = function generate_pattern(it, $keyword, $ruleType) {
-  var out = ' ';
-  var $lvl = it.level;
-  var $dataLvl = it.dataLevel;
-  var $schema = it.schema[$keyword];
-  var $schemaPath = it.schemaPath + it.util.getProperty($keyword);
-  var $errSchemaPath = it.errSchemaPath + '/' + $keyword;
-  var $breakOnError = !it.opts.allErrors;
-  var $data = 'data' + ($dataLvl || '');
-  var $isData = it.opts.$data && $schema && $schema.$data,
+  let out = ' ';
+  const $lvl = it.level;
+  const $dataLvl = it.dataLevel;
+  const $schema = it.schema[$keyword];
+  const $schemaPath = it.schemaPath + it.util.getProperty($keyword);
+  const $errSchemaPath = it.errSchemaPath + '/' + $keyword;
+  const $breakOnError = !it.opts.allErrors;
+  const $data = 'data' + ($dataLvl || '');
+  let $isData = it.opts.$data && $schema && $schema.$data,
     $schemaValue;
   if ($isData) {
     out += ' var schema' + ($lvl) + ' = ' + (it.util.getData($schema.$data, $dataLvl, it.dataPathArr)) + '; ';
@@ -3247,7 +3247,7 @@ module.exports = function generate_pattern(it, $keyword, $ruleType) {
   } else {
     $schemaValue = $schema;
   }
-  var $regexp = $isData ? '(new RegExp(' + $schemaValue + '))' : it.usePattern($schema);
+  const $regexp = $isData ? '(new RegExp(' + $schemaValue + '))' : it.usePattern($schema);
   out += 'if ( ';
   if ($isData) {
     out += ' (' + ($schemaValue) + ' !== undefined && typeof ' + ($schemaValue) + ' != \'string\') || ';
@@ -3286,7 +3286,7 @@ module.exports = function generate_pattern(it, $keyword, $ruleType) {
   } else {
     out += ' {} ';
   }
-  var __err = out;
+  const __err = out;
   out = $$outStack.pop();
   if (!it.compositeRule && $breakOnError) {
     /* istanbul ignore if */
@@ -3308,25 +3308,25 @@ module.exports = function generate_pattern(it, $keyword, $ruleType) {
 },{}],33:[function(require,module,exports){
 'use strict';
 module.exports = function generate_properties(it, $keyword, $ruleType) {
-  var out = ' ';
-  var $lvl = it.level;
-  var $dataLvl = it.dataLevel;
-  var $schema = it.schema[$keyword];
-  var $schemaPath = it.schemaPath + it.util.getProperty($keyword);
-  var $errSchemaPath = it.errSchemaPath + '/' + $keyword;
-  var $breakOnError = !it.opts.allErrors;
-  var $data = 'data' + ($dataLvl || '');
-  var $errs = 'errs__' + $lvl;
-  var $it = it.util.copy(it);
-  var $closingBraces = '';
+  let out = ' ';
+  const $lvl = it.level;
+  const $dataLvl = it.dataLevel;
+  const $schema = it.schema[$keyword];
+  const $schemaPath = it.schemaPath + it.util.getProperty($keyword);
+  let $errSchemaPath = it.errSchemaPath + '/' + $keyword;
+  const $breakOnError = !it.opts.allErrors;
+  const $data = 'data' + ($dataLvl || '');
+  const $errs = 'errs__' + $lvl;
+  const $it = it.util.copy(it);
+  let $closingBraces = '';
   $it.level++;
-  var $nextValid = 'valid' + $it.level;
-  var $key = 'key' + $lvl,
+  const $nextValid = 'valid' + $it.level;
+  const $key = 'key' + $lvl,
     $idx = 'idx' + $lvl,
     $dataNxt = $it.dataLevel = it.dataLevel + 1,
     $nextData = 'data' + $dataNxt,
     $dataProperties = 'dataProperties' + $lvl;
-  var $schemaKeys = Object.keys($schema || {}).filter(notProto),
+  const $schemaKeys = Object.keys($schema || {}).filter(notProto),
     $pProperties = it.schema.patternProperties || {},
     $pPropertyKeys = Object.keys($pProperties).filter(notProto),
     $aProperties = it.schema.additionalProperties,
@@ -3337,7 +3337,7 @@ module.exports = function generate_properties(it, $keyword, $ruleType) {
     $checkAdditional = $noAdditional || $additionalIsSchema || $removeAdditional,
     $ownProperties = it.opts.ownProperties,
     $currentBaseId = it.baseId;
-  var $required = it.schema.required;
+  const $required = it.schema.required;
   if ($required && !(it.opts.$data && $required.$data) && $required.length < it.opts.loopRequired) {
     var $requiredHash = it.util.toHash($required);
   }
@@ -3361,7 +3361,7 @@ module.exports = function generate_properties(it, $keyword, $ruleType) {
         if ($schemaKeys.length > 8) {
           out += ' || validate.schema' + ($schemaPath) + '.hasOwnProperty(' + ($key) + ') ';
         } else {
-          var arr1 = $schemaKeys;
+          const arr1 = $schemaKeys;
           if (arr1) {
             var $propertyKey, i1 = -1,
               l1 = arr1.length - 1;
@@ -3373,7 +3373,7 @@ module.exports = function generate_properties(it, $keyword, $ruleType) {
         }
       }
       if ($pPropertyKeys.length) {
-        var arr2 = $pPropertyKeys;
+        const arr2 = $pPropertyKeys;
         if (arr2) {
           var $pProperty, $i = -1,
             l2 = arr2.length - 1;
@@ -3389,7 +3389,7 @@ module.exports = function generate_properties(it, $keyword, $ruleType) {
       out += ' delete ' + ($data) + '[' + ($key) + ']; ';
     } else {
       var $currentErrorPath = it.errorPath;
-      var $additionalProperty = '\' + ' + $key + ' + \'';
+      const $additionalProperty = '\' + ' + $key + ' + \'';
       if (it.opts._errorDataPathProperty) {
         it.errorPath = it.util.getPathExpr(it.errorPath, $key, it.opts.jsonPointers);
       }
@@ -3441,7 +3441,7 @@ module.exports = function generate_properties(it, $keyword, $ruleType) {
       } else if ($additionalIsSchema) {
         if ($removeAdditional == 'failing') {
           out += ' var ' + ($errs) + ' = errors;  ';
-          var $wasComposite = it.compositeRule;
+          const $wasComposite = it.compositeRule;
           it.compositeRule = $it.compositeRule = true;
           $it.schema = $aProperties;
           $it.schemaPath = it.schemaPath + '.additionalProperties';
@@ -3488,9 +3488,9 @@ module.exports = function generate_properties(it, $keyword, $ruleType) {
       $closingBraces += '}';
     }
   }
-  var $useDefaults = it.opts.useDefaults && !it.compositeRule;
+  const $useDefaults = it.opts.useDefaults && !it.compositeRule;
   if ($schemaKeys.length) {
-    var arr3 = $schemaKeys;
+    const arr3 = $schemaKeys;
     if (arr3) {
       var $propertyKey, i3 = -1,
         l3 = arr3.length - 1;
@@ -3593,7 +3593,7 @@ module.exports = function generate_properties(it, $keyword, $ruleType) {
     }
   }
   if ($pPropertyKeys.length) {
-    var arr4 = $pPropertyKeys;
+    const arr4 = $pPropertyKeys;
     if (arr4) {
       var $pProperty, i4 = -1,
         l4 = arr4.length - 1;
@@ -3645,25 +3645,25 @@ module.exports = function generate_properties(it, $keyword, $ruleType) {
 },{}],34:[function(require,module,exports){
 'use strict';
 module.exports = function generate_propertyNames(it, $keyword, $ruleType) {
-  var out = ' ';
-  var $lvl = it.level;
-  var $dataLvl = it.dataLevel;
-  var $schema = it.schema[$keyword];
-  var $schemaPath = it.schemaPath + it.util.getProperty($keyword);
-  var $errSchemaPath = it.errSchemaPath + '/' + $keyword;
-  var $breakOnError = !it.opts.allErrors;
-  var $data = 'data' + ($dataLvl || '');
-  var $errs = 'errs__' + $lvl;
-  var $it = it.util.copy(it);
-  var $closingBraces = '';
+  let out = ' ';
+  const $lvl = it.level;
+  const $dataLvl = it.dataLevel;
+  const $schema = it.schema[$keyword];
+  const $schemaPath = it.schemaPath + it.util.getProperty($keyword);
+  const $errSchemaPath = it.errSchemaPath + '/' + $keyword;
+  const $breakOnError = !it.opts.allErrors;
+  const $data = 'data' + ($dataLvl || '');
+  const $errs = 'errs__' + $lvl;
+  const $it = it.util.copy(it);
+  const $closingBraces = '';
   $it.level++;
-  var $nextValid = 'valid' + $it.level;
+  const $nextValid = 'valid' + $it.level;
   out += 'var ' + ($errs) + ' = errors;';
   if ((it.opts.strictKeywords ? (typeof $schema == 'object' && Object.keys($schema).length > 0) || $schema === false : it.util.schemaHasRules($schema, it.RULES.all))) {
     $it.schema = $schema;
     $it.schemaPath = $schemaPath;
     $it.errSchemaPath = $errSchemaPath;
-    var $key = 'key' + $lvl,
+    const $key = 'key' + $lvl,
       $idx = 'idx' + $lvl,
       $i = 'i' + $lvl,
       $invalidName = '\' + ' + $key + ' + \'',
@@ -3681,10 +3681,10 @@ module.exports = function generate_propertyNames(it, $keyword, $ruleType) {
       out += ' for (var ' + ($key) + ' in ' + ($data) + ') { ';
     }
     out += ' var startErrs' + ($lvl) + ' = errors; ';
-    var $passData = $key;
-    var $wasComposite = it.compositeRule;
+    const $passData = $key;
+    const $wasComposite = it.compositeRule;
     it.compositeRule = $it.compositeRule = true;
-    var $code = it.validate($it);
+    const $code = it.validate($it);
     $it.baseId = $currentBaseId;
     if (it.util.varOccurences($code, $nextData) < 2) {
       out += ' ' + (it.util.varReplace($code, $nextData, $passData)) + ' ';
@@ -3728,15 +3728,15 @@ module.exports = function generate_propertyNames(it, $keyword, $ruleType) {
 },{}],35:[function(require,module,exports){
 'use strict';
 module.exports = function generate_ref(it, $keyword, $ruleType) {
-  var out = ' ';
-  var $lvl = it.level;
-  var $dataLvl = it.dataLevel;
-  var $schema = it.schema[$keyword];
-  var $errSchemaPath = it.errSchemaPath + '/' + $keyword;
-  var $breakOnError = !it.opts.allErrors;
-  var $data = 'data' + ($dataLvl || '');
-  var $valid = 'valid' + $lvl;
-  var $async, $refCode;
+  let out = ' ';
+  const $lvl = it.level;
+  const $dataLvl = it.dataLevel;
+  const $schema = it.schema[$keyword];
+  const $errSchemaPath = it.errSchemaPath + '/' + $keyword;
+  const $breakOnError = !it.opts.allErrors;
+  const $data = 'data' + ($dataLvl || '');
+  const $valid = 'valid' + $lvl;
+  let $async, $refCode;
   if ($schema == '#' || $schema == '#/') {
     if (it.isRoot) {
       $async = it.async;
@@ -3746,9 +3746,9 @@ module.exports = function generate_ref(it, $keyword, $ruleType) {
       $refCode = 'root.refVal[0]';
     }
   } else {
-    var $refVal = it.resolveRef(it.baseId, $schema, it.isRoot);
+    const $refVal = it.resolveRef(it.baseId, $schema, it.isRoot);
     if ($refVal === undefined) {
-      var $message = it.MissingRefError.message(it.baseId, $schema);
+      const $message = it.MissingRefError.message(it.baseId, $schema);
       if (it.opts.missingRefs == 'fail') {
         it.logger.error($message);
         var $$outStack = $$outStack || [];
@@ -3766,7 +3766,7 @@ module.exports = function generate_ref(it, $keyword, $ruleType) {
         } else {
           out += ' {} ';
         }
-        var __err = out;
+        const __err = out;
         out = $$outStack.pop();
         if (!it.compositeRule && $breakOnError) {
           /* istanbul ignore if */
@@ -3790,13 +3790,13 @@ module.exports = function generate_ref(it, $keyword, $ruleType) {
         throw new it.MissingRefError(it.baseId, $schema, $message);
       }
     } else if ($refVal.inline) {
-      var $it = it.util.copy(it);
+      const $it = it.util.copy(it);
       $it.level++;
-      var $nextValid = 'valid' + $it.level;
+      const $nextValid = 'valid' + $it.level;
       $it.schema = $refVal.schema;
       $it.schemaPath = '';
       $it.errSchemaPath = $schema;
-      var $code = it.validate($it).replace(/validate\.schema/g, $refVal.code);
+      const $code = it.validate($it).replace(/validate\.schema/g, $refVal.code);
       out += ' ' + ($code) + ' ';
       if ($breakOnError) {
         out += ' if (' + ($nextValid) + ') { ';
@@ -3819,10 +3819,10 @@ module.exports = function generate_ref(it, $keyword, $ruleType) {
     if (it.errorPath != '""') {
       out += ' + ' + (it.errorPath);
     }
-    var $parentData = $dataLvl ? 'data' + (($dataLvl - 1) || '') : 'parentData',
+    const $parentData = $dataLvl ? 'data' + (($dataLvl - 1) || '') : 'parentData',
       $parentDataProperty = $dataLvl ? it.dataPathArr[$dataLvl] : 'parentDataProperty';
     out += ' , ' + ($parentData) + ' , ' + ($parentDataProperty) + ', rootData)  ';
-    var __callValidate = out;
+    const __callValidate = out;
     out = $$outStack.pop();
     if ($async) {
       if (!it.async) throw new Error('async schema referenced by sync schema');
@@ -3854,16 +3854,16 @@ module.exports = function generate_ref(it, $keyword, $ruleType) {
 },{}],36:[function(require,module,exports){
 'use strict';
 module.exports = function generate_required(it, $keyword, $ruleType) {
-  var out = ' ';
-  var $lvl = it.level;
-  var $dataLvl = it.dataLevel;
-  var $schema = it.schema[$keyword];
-  var $schemaPath = it.schemaPath + it.util.getProperty($keyword);
-  var $errSchemaPath = it.errSchemaPath + '/' + $keyword;
-  var $breakOnError = !it.opts.allErrors;
-  var $data = 'data' + ($dataLvl || '');
-  var $valid = 'valid' + $lvl;
-  var $isData = it.opts.$data && $schema && $schema.$data,
+  let out = ' ';
+  const $lvl = it.level;
+  const $dataLvl = it.dataLevel;
+  const $schema = it.schema[$keyword];
+  const $schemaPath = it.schemaPath + it.util.getProperty($keyword);
+  const $errSchemaPath = it.errSchemaPath + '/' + $keyword;
+  const $breakOnError = !it.opts.allErrors;
+  const $data = 'data' + ($dataLvl || '');
+  const $valid = 'valid' + $lvl;
+  let $isData = it.opts.$data && $schema && $schema.$data,
     $schemaValue;
   if ($isData) {
     out += ' var schema' + ($lvl) + ' = ' + (it.util.getData($schema.$data, $dataLvl, it.dataPathArr)) + '; ';
@@ -3871,17 +3871,17 @@ module.exports = function generate_required(it, $keyword, $ruleType) {
   } else {
     $schemaValue = $schema;
   }
-  var $vSchema = 'schema' + $lvl;
+  const $vSchema = 'schema' + $lvl;
   if (!$isData) {
     if ($schema.length < it.opts.loopRequired && it.schema.properties && Object.keys(it.schema.properties).length) {
       var $required = [];
-      var arr1 = $schema;
+      const arr1 = $schema;
       if (arr1) {
-        var $property, i1 = -1,
+        let $property, i1 = -1,
           l1 = arr1.length - 1;
         while (i1 < l1) {
           $property = arr1[i1 += 1];
-          var $propertySch = it.schema.properties[$property];
+          const $propertySch = it.schema.properties[$property];
           if (!($propertySch && (it.opts.strictKeywords ? (typeof $propertySch == 'object' && Object.keys($propertySch).length > 0) || $propertySch === false : it.util.schemaHasRules($propertySch, it.RULES.all)))) {
             $required[$required.length] = $property;
           }
@@ -3892,7 +3892,7 @@ module.exports = function generate_required(it, $keyword, $ruleType) {
     }
   }
   if ($isData || $required.length) {
-    var $currentErrorPath = it.errorPath,
+    const $currentErrorPath = it.errorPath,
       $loopRequired = $isData || $required.length >= it.opts.loopRequired,
       $ownProperties = it.opts.ownProperties;
     if ($breakOnError) {
@@ -3956,7 +3956,7 @@ module.exports = function generate_required(it, $keyword, $ruleType) {
         out += ' } else { ';
       } else {
         out += ' if ( ';
-        var arr2 = $required;
+        const arr2 = $required;
         if (arr2) {
           var $propertyKey, $i = -1,
             l2 = arr2.length - 1;
@@ -4076,7 +4076,7 @@ module.exports = function generate_required(it, $keyword, $ruleType) {
           out += '  }  ';
         }
       } else {
-        var arr3 = $required;
+        const arr3 = $required;
         if (arr3) {
           var $propertyKey, i3 = -1,
             l3 = arr3.length - 1;
@@ -4126,16 +4126,16 @@ module.exports = function generate_required(it, $keyword, $ruleType) {
 },{}],37:[function(require,module,exports){
 'use strict';
 module.exports = function generate_uniqueItems(it, $keyword, $ruleType) {
-  var out = ' ';
-  var $lvl = it.level;
-  var $dataLvl = it.dataLevel;
-  var $schema = it.schema[$keyword];
-  var $schemaPath = it.schemaPath + it.util.getProperty($keyword);
-  var $errSchemaPath = it.errSchemaPath + '/' + $keyword;
-  var $breakOnError = !it.opts.allErrors;
-  var $data = 'data' + ($dataLvl || '');
-  var $valid = 'valid' + $lvl;
-  var $isData = it.opts.$data && $schema && $schema.$data,
+  let out = ' ';
+  const $lvl = it.level;
+  const $dataLvl = it.dataLevel;
+  const $schema = it.schema[$keyword];
+  const $schemaPath = it.schemaPath + it.util.getProperty($keyword);
+  const $errSchemaPath = it.errSchemaPath + '/' + $keyword;
+  const $breakOnError = !it.opts.allErrors;
+  const $data = 'data' + ($dataLvl || '');
+  const $valid = 'valid' + $lvl;
+  let $isData = it.opts.$data && $schema && $schema.$data,
     $schemaValue;
   if ($isData) {
     out += ' var schema' + ($lvl) + ' = ' + (it.util.getData($schema.$data, $dataLvl, it.dataPathArr)) + '; ';
@@ -4148,13 +4148,13 @@ module.exports = function generate_uniqueItems(it, $keyword, $ruleType) {
       out += ' var ' + ($valid) + '; if (' + ($schemaValue) + ' === false || ' + ($schemaValue) + ' === undefined) ' + ($valid) + ' = true; else if (typeof ' + ($schemaValue) + ' != \'boolean\') ' + ($valid) + ' = false; else { ';
     }
     out += ' var i = ' + ($data) + '.length , ' + ($valid) + ' = true , j; if (i > 1) { ';
-    var $itemType = it.schema.items && it.schema.items.type,
+    const $itemType = it.schema.items && it.schema.items.type,
       $typeIsArray = Array.isArray($itemType);
     if (!$itemType || $itemType == 'object' || $itemType == 'array' || ($typeIsArray && ($itemType.indexOf('object') >= 0 || $itemType.indexOf('array') >= 0))) {
       out += ' outer: for (;i--;) { for (j = i; j--;) { if (equal(' + ($data) + '[i], ' + ($data) + '[j])) { ' + ($valid) + ' = false; break outer; } } } ';
     } else {
       out += ' var itemIndices = {}, item; for (;i--;) { var item = ' + ($data) + '[i]; ';
-      var $method = 'checkDataType' + ($typeIsArray ? 's' : '');
+      const $method = 'checkDataType' + ($typeIsArray ? 's' : '');
       out += ' if (' + (it.util[$method]($itemType, 'item', it.opts.strictNumbers, true)) + ') continue; ';
       if ($typeIsArray) {
         out += ' if (typeof item == \'string\') item = \'"\' + item; ';
@@ -4187,7 +4187,7 @@ module.exports = function generate_uniqueItems(it, $keyword, $ruleType) {
     } else {
       out += ' {} ';
     }
-    var __err = out;
+    const __err = out;
     out = $$outStack.pop();
     if (!it.compositeRule && $breakOnError) {
       /* istanbul ignore if */
@@ -4214,14 +4214,14 @@ module.exports = function generate_uniqueItems(it, $keyword, $ruleType) {
 },{}],38:[function(require,module,exports){
 'use strict';
 module.exports = function generate_validate(it, $keyword, $ruleType) {
-  var out = '';
-  var $async = it.schema.$async === true,
+  let out = '';
+  let $async = it.schema.$async === true,
     $refKeywords = it.util.schemaHasRulesExcept(it.schema, it.RULES.all, '$ref'),
     $id = it.self._getId(it.schema);
   if (it.opts.strictKeywords) {
-    var $unknownKwd = it.util.schemaUnknownRules(it.schema, it.RULES.keywords);
+    const $unknownKwd = it.util.schemaUnknownRules(it.schema, it.RULES.keywords);
     if ($unknownKwd) {
-      var $keywordsMsg = 'unknown keyword: ' + $unknownKwd;
+      const $keywordsMsg = 'unknown keyword: ' + $unknownKwd;
       if (it.opts.strictKeywords === 'log') it.logger.warn($keywordsMsg);
       else throw new Error($keywordsMsg);
     }
@@ -4327,7 +4327,7 @@ module.exports = function generate_validate(it, $keyword, $ruleType) {
     $closingBraces1 = '',
     $closingBraces2 = '';
   var $errorKeyword;
-  var $typeSchema = it.schema.type,
+  let $typeSchema = it.schema.type,
     $typeIsArray = Array.isArray($typeSchema);
   if ($typeSchema && it.opts.nullable && it.schema.nullable === true) {
     if ($typeIsArray) {
@@ -4365,14 +4365,14 @@ module.exports = function generate_validate(it, $keyword, $ruleType) {
         $method = $typeIsArray ? 'checkDataTypes' : 'checkDataType';
       out += ' if (' + (it.util[$method]($typeSchema, $data, it.opts.strictNumbers, true)) + ') { ';
       if ($coerceToTypes) {
-        var $dataType = 'dataType' + $lvl,
+        const $dataType = 'dataType' + $lvl,
           $coerced = 'coerced' + $lvl;
         out += ' var ' + ($dataType) + ' = typeof ' + ($data) + '; var ' + ($coerced) + ' = undefined; ';
         if (it.opts.coerceTypes == 'array') {
           out += ' if (' + ($dataType) + ' == \'object\' && Array.isArray(' + ($data) + ') && ' + ($data) + '.length == 1) { ' + ($data) + ' = ' + ($data) + '[0]; ' + ($dataType) + ' = typeof ' + ($data) + '; if (' + (it.util.checkDataType(it.schema.type, $data, it.opts.strictNumbers)) + ') ' + ($coerced) + ' = ' + ($data) + '; } ';
         }
         out += ' if (' + ($coerced) + ' !== undefined) ; ';
-        var arr1 = $coerceToTypes;
+        const arr1 = $coerceToTypes;
         if (arr1) {
           var $type, $i = -1,
             l1 = arr1.length - 1;
@@ -4436,7 +4436,7 @@ module.exports = function generate_validate(it, $keyword, $ruleType) {
           out += ' var err = ' + (__err) + ';  if (vErrors === null) vErrors = [err]; else vErrors.push(err); errors++; ';
         }
         out += ' } if (' + ($coerced) + ' !== undefined) {  ';
-        var $parentData = $dataLvl ? 'data' + (($dataLvl - 1) || '') : 'parentData',
+        const $parentData = $dataLvl ? 'data' + (($dataLvl - 1) || '') : 'parentData',
           $parentDataProperty = $dataLvl ? it.dataPathArr[$dataLvl] : 'parentDataProperty';
         out += ' ' + ($data) + ' = ' + ($coerced) + '; ';
         if (!$dataLvl) {
@@ -4500,7 +4500,7 @@ module.exports = function generate_validate(it, $keyword, $ruleType) {
       $closingBraces2 += '}';
     }
   } else {
-    var arr2 = it.RULES;
+    const arr2 = it.RULES;
     if (arr2) {
       var $rulesGroup, i2 = -1,
         l2 = arr2.length - 1;
@@ -4514,7 +4514,7 @@ module.exports = function generate_validate(it, $keyword, $ruleType) {
             if ($rulesGroup.type == 'object' && it.schema.properties) {
               var $schema = it.schema.properties,
                 $schemaKeys = Object.keys($schema);
-              var arr3 = $schemaKeys;
+              const arr3 = $schemaKeys;
               if (arr3) {
                 var $propertyKey, i3 = -1,
                   l3 = arr3.length - 1;
@@ -4546,7 +4546,7 @@ module.exports = function generate_validate(it, $keyword, $ruleType) {
                 }
               }
             } else if ($rulesGroup.type == 'array' && Array.isArray(it.schema.items)) {
-              var arr4 = it.schema.items;
+              const arr4 = it.schema.items;
               if (arr4) {
                 var $sch, $i = -1,
                   l4 = arr4.length - 1;
@@ -4578,14 +4578,14 @@ module.exports = function generate_validate(it, $keyword, $ruleType) {
               }
             }
           }
-          var arr5 = $rulesGroup.rules;
+          const arr5 = $rulesGroup.rules;
           if (arr5) {
             var $rule, i5 = -1,
               l5 = arr5.length - 1;
             while (i5 < l5) {
               $rule = arr5[i5 += 1];
               if ($shouldUseRule($rule)) {
-                var $code = $rule.code(it, $rule.keyword, $rulesGroup.type);
+                const $code = $rule.code(it, $rule.keyword, $rulesGroup.type);
                 if ($code) {
                   out += ' ' + ($code) + ' ';
                   if ($breakOnError) {
@@ -4678,8 +4678,8 @@ module.exports = function generate_validate(it, $keyword, $ruleType) {
   }
 
   function $shouldUseGroup($rulesGroup) {
-    var rules = $rulesGroup.rules;
-    for (var i = 0; i < rules.length; i++)
+    const rules = $rulesGroup.rules;
+    for (let i = 0; i < rules.length; i++)
       if ($shouldUseRule(rules[i])) return true;
   }
 
@@ -4688,8 +4688,8 @@ module.exports = function generate_validate(it, $keyword, $ruleType) {
   }
 
   function $ruleImplementsSomeKeyword($rule) {
-    var impl = $rule.implements;
-    for (var i = 0; i < impl.length; i++)
+    const impl = $rule.implements;
+    for (let i = 0; i < impl.length; i++)
       if (it.schema[impl[i]] !== undefined) return true;
   }
   return out;
@@ -4698,9 +4698,9 @@ module.exports = function generate_validate(it, $keyword, $ruleType) {
 },{}],39:[function(require,module,exports){
 'use strict';
 
-var IDENTIFIER = /^[a-z_$][a-z0-9_$-]*$/i;
-var customRuleCode = require('./dotjs/custom');
-var definitionSchema = require('./definition_schema');
+const IDENTIFIER = /^[a-z_$][a-z0-9_$-]*$/i;
+const customRuleCode = require('./dotjs/custom');
+const definitionSchema = require('./definition_schema');
 
 module.exports = {
   add: addKeyword,
@@ -4720,7 +4720,7 @@ module.exports = {
 function addKeyword(keyword, definition) {
   /* jshint validthis: true */
   /* eslint no-shadow: 0 */
-  var RULES = this.RULES;
+  const RULES = this.RULES;
   if (RULES.keywords[keyword])
     throw new Error('Keyword ' + keyword + ' is already defined');
 
@@ -4730,15 +4730,15 @@ function addKeyword(keyword, definition) {
   if (definition) {
     this.validateKeyword(definition, true);
 
-    var dataType = definition.type;
+    const dataType = definition.type;
     if (Array.isArray(dataType)) {
-      for (var i=0; i<dataType.length; i++)
+      for (let i=0; i<dataType.length; i++)
         _addRule(keyword, dataType[i], definition);
     } else {
       _addRule(keyword, dataType, definition);
     }
 
-    var metaSchema = definition.metaSchema;
+    let metaSchema = definition.metaSchema;
     if (metaSchema) {
       if (definition.$data && this._opts.$data) {
         metaSchema = {
@@ -4756,9 +4756,9 @@ function addKeyword(keyword, definition) {
 
 
   function _addRule(keyword, dataType, definition) {
-    var ruleGroup;
-    for (var i=0; i<RULES.length; i++) {
-      var rg = RULES[i];
+    let ruleGroup;
+    for (let i=0; i<RULES.length; i++) {
+      const rg = RULES[i];
       if (rg.type == dataType) {
         ruleGroup = rg;
         break;
@@ -4770,7 +4770,7 @@ function addKeyword(keyword, definition) {
       RULES.push(ruleGroup);
     }
 
-    var rule = {
+    const rule = {
       keyword: keyword,
       definition: definition,
       custom: true,
@@ -4793,7 +4793,7 @@ function addKeyword(keyword, definition) {
  */
 function getKeyword(keyword) {
   /* jshint validthis: true */
-  var rule = this.RULES.custom[keyword];
+  const rule = this.RULES.custom[keyword];
   return rule ? rule.definition : this.RULES.keywords[keyword] || false;
 }
 
@@ -4806,13 +4806,13 @@ function getKeyword(keyword) {
  */
 function removeKeyword(keyword) {
   /* jshint validthis: true */
-  var RULES = this.RULES;
+  const RULES = this.RULES;
   delete RULES.keywords[keyword];
   delete RULES.all[keyword];
   delete RULES.custom[keyword];
-  for (var i=0; i<RULES.length; i++) {
-    var rules = RULES[i].rules;
-    for (var j=0; j<rules.length; j++) {
+  for (let i=0; i<RULES.length; i++) {
+    const rules = RULES[i].rules;
+    for (let j=0; j<rules.length; j++) {
       if (rules[j].keyword == keyword) {
         rules.splice(j, 1);
         break;
@@ -4832,7 +4832,7 @@ function removeKeyword(keyword) {
  */
 function validateKeyword(definition, throwError) {
   validateKeyword.errors = null;
-  var v = this._validateKeyword = this._validateKeyword
+  const v = this._validateKeyword = this._validateKeyword
                                   || this.compile(definitionSchema, true);
 
   if (v(definition)) return true;
@@ -5045,7 +5045,7 @@ module.exports = function equal(a, b) {
   if (a && b && typeof a == 'object' && typeof b == 'object') {
     if (a.constructor !== b.constructor) return false;
 
-    var length, i, keys;
+    let length, i, keys;
     if (Array.isArray(a)) {
       length = a.length;
       if (length != b.length) return false;
@@ -5068,7 +5068,7 @@ module.exports = function equal(a, b) {
       if (!Object.prototype.hasOwnProperty.call(b, keys[i])) return false;
 
     for (i = length; i-- !== 0;) {
-      var key = keys[i];
+      const key = keys[i];
 
       if (!equal(a[key], b[key])) return false;
     }
@@ -5086,19 +5086,19 @@ module.exports = function equal(a, b) {
 module.exports = function (data, opts) {
     if (!opts) opts = {};
     if (typeof opts === 'function') opts = { cmp: opts };
-    var cycles = (typeof opts.cycles === 'boolean') ? opts.cycles : false;
+    const cycles = (typeof opts.cycles === 'boolean') ? opts.cycles : false;
 
-    var cmp = opts.cmp && (function (f) {
+    const cmp = opts.cmp && (function (f) {
         return function (node) {
             return function (a, b) {
-                var aobj = { key: a, value: node[a] };
-                var bobj = { key: b, value: node[b] };
+                const aobj = { key: a, value: node[a] };
+                const bobj = { key: b, value: node[b] };
                 return f(aobj, bobj);
             };
         };
     })(opts.cmp);
 
-    var seen = [];
+    const seen = [];
     return (function stringify (node) {
         if (node && node.toJSON && typeof node.toJSON === 'function') {
             node = node.toJSON();
@@ -5108,7 +5108,7 @@ module.exports = function (data, opts) {
         if (typeof node == 'number') return isFinite(node) ? '' + node : 'null';
         if (typeof node !== 'object') return JSON.stringify(node);
 
-        var i, out;
+        let i, out;
         if (Array.isArray(node)) {
             out = '[';
             for (i = 0; i < node.length; i++) {
@@ -5125,12 +5125,12 @@ module.exports = function (data, opts) {
             throw new TypeError('Converting circular structure to JSON');
         }
 
-        var seenIndex = seen.push(node) - 1;
-        var keys = Object.keys(node).sort(cmp && cmp(node));
+        const seenIndex = seen.push(node) - 1;
+        const keys = Object.keys(node).sort(cmp && cmp(node));
         out = '';
         for (i = 0; i < keys.length; i++) {
-            var key = keys[i];
-            var value = stringify(node[key]);
+            const key = keys[i];
+            const value = stringify(node[key]);
 
             if (!value) continue;
             if (out) out += ',';
@@ -5144,7 +5144,7 @@ module.exports = function (data, opts) {
 },{}],44:[function(require,module,exports){
 'use strict';
 
-var traverse = module.exports = function (schema, opts, cb) {
+const traverse = module.exports = function (schema, opts, cb) {
   // Legacy support for v0.3.1 and earlier.
   if (typeof opts == 'function') {
     cb = opts;
@@ -5152,8 +5152,8 @@ var traverse = module.exports = function (schema, opts, cb) {
   }
 
   cb = opts.cb || cb;
-  var pre = (typeof cb == 'function') ? cb : cb.pre || function() {};
-  var post = cb.post || function() {};
+  const pre = (typeof cb == 'function') ? cb : cb.pre || function() {};
+  const post = cb.post || function() {};
 
   _traverse(opts, pre, post, schema, '', schema);
 };
@@ -5207,16 +5207,16 @@ traverse.skipKeywords = {
 function _traverse(opts, pre, post, schema, jsonPtr, rootSchema, parentJsonPtr, parentKeyword, parentSchema, keyIndex) {
   if (schema && typeof schema == 'object' && !Array.isArray(schema)) {
     pre(schema, jsonPtr, rootSchema, parentJsonPtr, parentKeyword, parentSchema, keyIndex);
-    for (var key in schema) {
-      var sch = schema[key];
+    for (const key in schema) {
+      const sch = schema[key];
       if (Array.isArray(sch)) {
         if (key in traverse.arrayKeywords) {
-          for (var i=0; i<sch.length; i++)
+          for (let i=0; i<sch.length; i++)
             _traverse(opts, pre, post, sch[i], jsonPtr + '/' + key + '/' + i, rootSchema, jsonPtr, key, schema, i);
         }
       } else if (key in traverse.propsKeywords) {
         if (sch && typeof sch == 'object') {
-          for (var prop in sch)
+          for (const prop in sch)
             _traverse(opts, pre, post, sch[prop], jsonPtr + '/' + key + '/' + escapeJsonPtr(prop), rootSchema, jsonPtr, key, schema, prop);
         }
       } else if (key in traverse.keywords || (opts.allKeys && !(key in traverse.skipKeywords))) {
@@ -5247,8 +5247,8 @@ function merge() {
 
     if (sets.length > 1) {
         sets[0] = sets[0].slice(0, -1);
-        var xl = sets.length - 1;
-        for (var x = 1; x < xl; ++x) {
+        const xl = sets.length - 1;
+        for (let x = 1; x < xl; ++x) {
             sets[x] = sets[x].slice(1, -1);
         }
         sets[xl] = sets[xl].slice(1);
@@ -5270,9 +5270,9 @@ function toArray(obj) {
     return obj !== undefined && obj !== null ? obj instanceof Array ? obj : typeof obj.length !== "number" || obj.split || obj.setInterval || obj.call ? [obj] : Array.prototype.slice.call(obj) : [];
 }
 function assign(target, source) {
-    var obj = target;
+    const obj = target;
     if (source) {
-        for (var key in source) {
+        for (const key in source) {
             obj[key] = source[key];
         }
     }
@@ -5280,7 +5280,7 @@ function assign(target, source) {
 }
 
 function buildExps(isIRI) {
-    var ALPHA$$ = "[A-Za-z]",
+    const ALPHA$$ = "[A-Za-z]",
         CR$ = "[\\x0D]",
         DIGIT$$ = "[0-9]",
         DQUOTE$$ = "[\\x22]",
@@ -5380,16 +5380,16 @@ function buildExps(isIRI) {
         IPV6ADDRESS: new RegExp("^\\[?(" + IPV6ADDRESS$ + ")" + subexp(subexp("\\%25|\\%(?!" + HEXDIG$$ + "{2})") + "(" + ZONEID$ + ")") + "?\\]?$") //RFC 6874, with relaxed parsing rules
     };
 }
-var URI_PROTOCOL = buildExps(false);
+const URI_PROTOCOL = buildExps(false);
 
-var IRI_PROTOCOL = buildExps(true);
+const IRI_PROTOCOL = buildExps(true);
 
-var slicedToArray = function () {
+const slicedToArray = function () {
   function sliceIterator(arr, i) {
-    var _arr = [];
-    var _n = true;
-    var _d = false;
-    var _e = undefined;
+    const _arr = [];
+    let _n = true;
+    let _d = false;
+    let _e = undefined;
 
     try {
       for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
@@ -5434,7 +5434,7 @@ var slicedToArray = function () {
 
 
 
-var toConsumableArray = function (arr) {
+const toConsumableArray = function (arr) {
   if (Array.isArray(arr)) {
     for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
 
@@ -5446,34 +5446,34 @@ var toConsumableArray = function (arr) {
 
 /** Highest positive signed 32-bit float value */
 
-var maxInt = 2147483647; // aka. 0x7FFFFFFF or 2^31-1
+const maxInt = 2147483647; // aka. 0x7FFFFFFF or 2^31-1
 
 /** Bootstring parameters */
-var base = 36;
-var tMin = 1;
-var tMax = 26;
-var skew = 38;
-var damp = 700;
-var initialBias = 72;
-var initialN = 128; // 0x80
-var delimiter = '-'; // '\x2D'
+const base = 36;
+const tMin = 1;
+const tMax = 26;
+const skew = 38;
+const damp = 700;
+const initialBias = 72;
+const initialN = 128; // 0x80
+const delimiter = '-'; // '\x2D'
 
 /** Regular expressions */
-var regexPunycode = /^xn--/;
-var regexNonASCII = /[^\0-\x7E]/; // non-ASCII chars
-var regexSeparators = /[\x2E\u3002\uFF0E\uFF61]/g; // RFC 3490 separators
+const regexPunycode = /^xn--/;
+const regexNonASCII = /[^\0-\x7E]/; // non-ASCII chars
+const regexSeparators = /[\x2E\u3002\uFF0E\uFF61]/g; // RFC 3490 separators
 
 /** Error messages */
-var errors = {
+const errors = {
 	'overflow': 'Overflow: input needs wider integers to process',
 	'not-basic': 'Illegal input >= 0x80 (not a basic code point)',
 	'invalid-input': 'Invalid input'
 };
 
 /** Convenience shortcuts */
-var baseMinusTMin = base - tMin;
-var floor = Math.floor;
-var stringFromCharCode = String.fromCharCode;
+const baseMinusTMin = base - tMin;
+const floor = Math.floor;
+const stringFromCharCode = String.fromCharCode;
 
 /*--------------------------------------------------------------------------*/
 
@@ -5496,8 +5496,8 @@ function error$1(type) {
  * @returns {Array} A new array of values returned by the callback function.
  */
 function map(array, fn) {
-	var result = [];
-	var length = array.length;
+	const result = [];
+	let length = array.length;
 	while (length--) {
 		result[length] = fn(array[length]);
 	}
@@ -5515,8 +5515,8 @@ function map(array, fn) {
  * function.
  */
 function mapDomain(string, fn) {
-	var parts = string.split('@');
-	var result = '';
+	const parts = string.split('@');
+	let result = '';
 	if (parts.length > 1) {
 		// In email addresses, only the domain name should be punycoded. Leave
 		// the local part (i.e. everything up to `@`) intact.
@@ -5525,8 +5525,8 @@ function mapDomain(string, fn) {
 	}
 	// Avoid `split(regex)` for IE8 compatibility. See #17.
 	string = string.replace(regexSeparators, '\x2E');
-	var labels = string.split('.');
-	var encoded = map(labels, fn).join('.');
+	const labels = string.split('.');
+	const encoded = map(labels, fn).join('.');
 	return result + encoded;
 }
 
@@ -5544,14 +5544,14 @@ function mapDomain(string, fn) {
  * @returns {Array} The new array of code points.
  */
 function ucs2decode(string) {
-	var output = [];
-	var counter = 0;
-	var length = string.length;
+	const output = [];
+	let counter = 0;
+	const length = string.length;
 	while (counter < length) {
-		var value = string.charCodeAt(counter++);
+		const value = string.charCodeAt(counter++);
 		if (value >= 0xD800 && value <= 0xDBFF && counter < length) {
 			// It's a high surrogate, and there is a next character.
-			var extra = string.charCodeAt(counter++);
+			const extra = string.charCodeAt(counter++);
 			if ((extra & 0xFC00) == 0xDC00) {
 				// Low surrogate.
 				output.push(((value & 0x3FF) << 10) + (extra & 0x3FF) + 0x10000);
@@ -5576,7 +5576,7 @@ function ucs2decode(string) {
  * @param {Array} codePoints The array of numeric code points.
  * @returns {String} The new Unicode string (UCS-2).
  */
-var ucs2encode = function ucs2encode(array) {
+const ucs2encode = function ucs2encode(array) {
 	return String.fromCodePoint.apply(String, toConsumableArray(array));
 };
 
@@ -5589,7 +5589,7 @@ var ucs2encode = function ucs2encode(array) {
  * representing integers) in the range `0` to `base - 1`, or `base` if
  * the code point does not represent a value.
  */
-var basicToDigit = function basicToDigit(codePoint) {
+const basicToDigit = function basicToDigit(codePoint) {
 	if (codePoint - 0x30 < 0x0A) {
 		return codePoint - 0x16;
 	}
@@ -5613,7 +5613,7 @@ var basicToDigit = function basicToDigit(codePoint) {
  * used; else, the lowercase form is used. The behavior is undefined
  * if `flag` is non-zero and `digit` has no uppercase form.
  */
-var digitToBasic = function digitToBasic(digit, flag) {
+const digitToBasic = function digitToBasic(digit, flag) {
 	//  0..25 map to ASCII a..z or A..Z
 	// 26..35 map to ASCII 0..9
 	return digit + 22 + 75 * (digit < 26) - ((flag != 0) << 5);
@@ -5624,8 +5624,8 @@ var digitToBasic = function digitToBasic(digit, flag) {
  * https://tools.ietf.org/html/rfc3492#section-3.4
  * @private
  */
-var adapt = function adapt(delta, numPoints, firstTime) {
-	var k = 0;
+const adapt = function adapt(delta, numPoints, firstTime) {
+	let k = 0;
 	delta = firstTime ? floor(delta / damp) : delta >> 1;
 	delta += floor(delta / numPoints);
 	for (; /* no initialization */delta > baseMinusTMin * tMax >> 1; k += base) {
@@ -5641,24 +5641,24 @@ var adapt = function adapt(delta, numPoints, firstTime) {
  * @param {String} input The Punycode string of ASCII-only symbols.
  * @returns {String} The resulting string of Unicode symbols.
  */
-var decode = function decode(input) {
+const decode = function decode(input) {
 	// Don't use UCS-2.
-	var output = [];
-	var inputLength = input.length;
-	var i = 0;
-	var n = initialN;
-	var bias = initialBias;
+	const output = [];
+	const inputLength = input.length;
+	let i = 0;
+	let n = initialN;
+	let bias = initialBias;
 
 	// Handle the basic code points: let `basic` be the number of input code
 	// points before the last delimiter, or `0` if there is none, then copy
 	// the first basic code points to the output.
 
-	var basic = input.lastIndexOf(delimiter);
+	let basic = input.lastIndexOf(delimiter);
 	if (basic < 0) {
 		basic = 0;
 	}
 
-	for (var j = 0; j < basic; ++j) {
+	for (let j = 0; j < basic; ++j) {
 		// if it's not a basic code point
 		if (input.charCodeAt(j) >= 0x80) {
 			error$1('not-basic');
@@ -5669,34 +5669,34 @@ var decode = function decode(input) {
 	// Main decoding loop: start just after the last delimiter if any basic code
 	// points were copied; start at the beginning otherwise.
 
-	for (var index = basic > 0 ? basic + 1 : 0; index < inputLength;) /* no final expression */{
+	for (let index = basic > 0 ? basic + 1 : 0; index < inputLength;) /* no final expression */{
 
 		// `index` is the index of the next character to be consumed.
 		// Decode a generalized variable-length integer into `delta`,
 		// which gets added to `i`. The overflow checking is easier
 		// if we increase `i` as we go, then subtract off its starting
 		// value at the end to obtain `delta`.
-		var oldi = i;
-		for (var w = 1, k = base;; /* no condition */k += base) {
+		const oldi = i;
+		for (let w = 1, k = base;; /* no condition */k += base) {
 
 			if (index >= inputLength) {
 				error$1('invalid-input');
 			}
 
-			var digit = basicToDigit(input.charCodeAt(index++));
+			const digit = basicToDigit(input.charCodeAt(index++));
 
 			if (digit >= base || digit > floor((maxInt - i) / w)) {
 				error$1('overflow');
 			}
 
 			i += digit * w;
-			var t = k <= bias ? tMin : k >= bias + tMax ? tMax : k - bias;
+			const t = k <= bias ? tMin : k >= bias + tMax ? tMax : k - bias;
 
 			if (digit < t) {
 				break;
 			}
 
-			var baseMinusT = base - t;
+			const baseMinusT = base - t;
 			if (w > floor(maxInt / baseMinusT)) {
 				error$1('overflow');
 			}
@@ -5704,7 +5704,7 @@ var decode = function decode(input) {
 			w *= baseMinusT;
 		}
 
-		var out = output.length + 1;
+		const out = output.length + 1;
 		bias = adapt(i - oldi, out, oldi == 0);
 
 		// `i` was supposed to wrap around from `out` to `0`,
@@ -5730,28 +5730,28 @@ var decode = function decode(input) {
  * @param {String} input The string of Unicode symbols.
  * @returns {String} The resulting Punycode string of ASCII-only symbols.
  */
-var encode = function encode(input) {
-	var output = [];
+const encode = function encode(input) {
+	const output = [];
 
 	// Convert the input in UCS-2 to an array of Unicode code points.
 	input = ucs2decode(input);
 
 	// Cache the length.
-	var inputLength = input.length;
+	const inputLength = input.length;
 
 	// Initialize the state.
-	var n = initialN;
-	var delta = 0;
-	var bias = initialBias;
+	let n = initialN;
+	let delta = 0;
+	let bias = initialBias;
 
 	// Handle the basic code points.
-	var _iteratorNormalCompletion = true;
-	var _didIteratorError = false;
-	var _iteratorError = undefined;
+	let _iteratorNormalCompletion = true;
+	let _didIteratorError = false;
+	let _iteratorError = undefined;
 
 	try {
 		for (var _iterator = input[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-			var _currentValue2 = _step.value;
+			const _currentValue2 = _step.value;
 
 			if (_currentValue2 < 0x80) {
 				output.push(stringFromCharCode(_currentValue2));
@@ -5772,8 +5772,8 @@ var encode = function encode(input) {
 		}
 	}
 
-	var basicLength = output.length;
-	var handledCPCount = basicLength;
+	const basicLength = output.length;
+	let handledCPCount = basicLength;
 
 	// `handledCPCount` is the number of code points that have been handled;
 	// `basicLength` is the number of basic code points.
@@ -5788,14 +5788,14 @@ var encode = function encode(input) {
 
 		// All non-basic code points < n have been handled already. Find the next
 		// larger one:
-		var m = maxInt;
-		var _iteratorNormalCompletion2 = true;
-		var _didIteratorError2 = false;
-		var _iteratorError2 = undefined;
+		let m = maxInt;
+		let _iteratorNormalCompletion2 = true;
+		let _didIteratorError2 = false;
+		let _iteratorError2 = undefined;
 
 		try {
 			for (var _iterator2 = input[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-				var currentValue = _step2.value;
+				const currentValue = _step2.value;
 
 				if (currentValue >= n && currentValue < m) {
 					m = currentValue;
@@ -5819,7 +5819,7 @@ var encode = function encode(input) {
 			}
 		}
 
-		var handledCPCountPlusOne = handledCPCount + 1;
+		const handledCPCountPlusOne = handledCPCount + 1;
 		if (m - n > floor((maxInt - delta) / handledCPCountPlusOne)) {
 			error$1('overflow');
 		}
@@ -5827,27 +5827,27 @@ var encode = function encode(input) {
 		delta += (m - n) * handledCPCountPlusOne;
 		n = m;
 
-		var _iteratorNormalCompletion3 = true;
-		var _didIteratorError3 = false;
-		var _iteratorError3 = undefined;
+		let _iteratorNormalCompletion3 = true;
+		let _didIteratorError3 = false;
+		let _iteratorError3 = undefined;
 
 		try {
 			for (var _iterator3 = input[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-				var _currentValue = _step3.value;
+				const _currentValue = _step3.value;
 
 				if (_currentValue < n && ++delta > maxInt) {
 					error$1('overflow');
 				}
 				if (_currentValue == n) {
 					// Represent delta as a generalized variable-length integer.
-					var q = delta;
-					for (var k = base;; /* no condition */k += base) {
-						var t = k <= bias ? tMin : k >= bias + tMax ? tMax : k - bias;
+					let q = delta;
+					for (let k = base;; /* no condition */k += base) {
+						const t = k <= bias ? tMin : k >= bias + tMax ? tMax : k - bias;
 						if (q < t) {
 							break;
 						}
-						var qMinusT = q - t;
-						var baseMinusT = base - t;
+						const qMinusT = q - t;
+						const baseMinusT = base - t;
 						output.push(stringFromCharCode(digitToBasic(t + qMinusT % baseMinusT, 0)));
 						q = floor(qMinusT / baseMinusT);
 					}
@@ -5890,7 +5890,7 @@ var encode = function encode(input) {
  * @returns {String} The Unicode representation of the given Punycode
  * string.
  */
-var toUnicode = function toUnicode(input) {
+const toUnicode = function toUnicode(input) {
 	return mapDomain(input, function (string) {
 		return regexPunycode.test(string) ? decode(string.slice(4).toLowerCase()) : string;
 	});
@@ -5907,7 +5907,7 @@ var toUnicode = function toUnicode(input) {
  * @returns {String} The Punycode representation of the given domain name or
  * email address.
  */
-var toASCII = function toASCII(input) {
+const toASCII = function toASCII(input) {
 	return mapDomain(input, function (string) {
 		return regexNonASCII.test(string) ? 'xn--' + encode(string) : string;
 	});
@@ -5916,7 +5916,7 @@ var toASCII = function toASCII(input) {
 /*--------------------------------------------------------------------------*/
 
 /** Define the public API */
-var punycode = {
+const punycode = {
 	/**
   * A string representing the current Punycode.js version number.
   * @memberOf punycode
@@ -5974,25 +5974,25 @@ var punycode = {
  * authors and should not be interpreted as representing official policies, either expressed
  * or implied, of Gary Court.
  */
-var SCHEMES = {};
+const SCHEMES = {};
 function pctEncChar(chr) {
-    var c = chr.charCodeAt(0);
-    var e = void 0;
+    const c = chr.charCodeAt(0);
+    let e = void 0;
     if (c < 16) e = "%0" + c.toString(16).toUpperCase();else if (c < 128) e = "%" + c.toString(16).toUpperCase();else if (c < 2048) e = "%" + (c >> 6 | 192).toString(16).toUpperCase() + "%" + (c & 63 | 128).toString(16).toUpperCase();else e = "%" + (c >> 12 | 224).toString(16).toUpperCase() + "%" + (c >> 6 & 63 | 128).toString(16).toUpperCase() + "%" + (c & 63 | 128).toString(16).toUpperCase();
     return e;
 }
 function pctDecChars(str) {
-    var newStr = "";
-    var i = 0;
-    var il = str.length;
+    let newStr = "";
+    let i = 0;
+    const il = str.length;
     while (i < il) {
-        var c = parseInt(str.substr(i + 1, 2), 16);
+        const c = parseInt(str.substr(i + 1, 2), 16);
         if (c < 128) {
             newStr += String.fromCharCode(c);
             i += 3;
         } else if (c >= 194 && c < 224) {
             if (il - i >= 6) {
-                var c2 = parseInt(str.substr(i + 4, 2), 16);
+                const c2 = parseInt(str.substr(i + 4, 2), 16);
                 newStr += String.fromCharCode((c & 31) << 6 | c2 & 63);
             } else {
                 newStr += str.substr(i, 6);
@@ -6000,8 +6000,8 @@ function pctDecChars(str) {
             i += 6;
         } else if (c >= 224) {
             if (il - i >= 9) {
-                var _c = parseInt(str.substr(i + 4, 2), 16);
-                var c3 = parseInt(str.substr(i + 7, 2), 16);
+                const _c = parseInt(str.substr(i + 4, 2), 16);
+                const c3 = parseInt(str.substr(i + 7, 2), 16);
                 newStr += String.fromCharCode((c & 15) << 12 | (_c & 63) << 6 | c3 & 63);
             } else {
                 newStr += str.substr(i, 9);
@@ -6016,7 +6016,7 @@ function pctDecChars(str) {
 }
 function _normalizeComponentEncoding(components, protocol) {
     function decodeUnreserved(str) {
-        var decStr = pctDecChars(str);
+        const decStr = pctDecChars(str);
         return !decStr.match(protocol.UNRESERVED) ? str : decStr;
     }
     if (components.scheme) components.scheme = String(components.scheme).replace(protocol.PCT_ENCODED, decodeUnreserved).toLowerCase().replace(protocol.NOT_SCHEME, "");
@@ -6032,9 +6032,9 @@ function _stripLeadingZeros(str) {
     return str.replace(/^0*(.*)/, "$1") || "0";
 }
 function _normalizeIPv4(host, protocol) {
-    var matches = host.match(protocol.IPV4ADDRESS) || [];
+    const matches = host.match(protocol.IPV4ADDRESS) || [];
 
-    var _matches = slicedToArray(matches, 2),
+    const _matches = slicedToArray(matches, 2),
         address = _matches[1];
 
     if (address) {
@@ -6044,33 +6044,33 @@ function _normalizeIPv4(host, protocol) {
     }
 }
 function _normalizeIPv6(host, protocol) {
-    var matches = host.match(protocol.IPV6ADDRESS) || [];
+    const matches = host.match(protocol.IPV6ADDRESS) || [];
 
-    var _matches2 = slicedToArray(matches, 3),
+    const _matches2 = slicedToArray(matches, 3),
         address = _matches2[1],
         zone = _matches2[2];
 
     if (address) {
-        var _address$toLowerCase$ = address.toLowerCase().split('::').reverse(),
+        const _address$toLowerCase$ = address.toLowerCase().split('::').reverse(),
             _address$toLowerCase$2 = slicedToArray(_address$toLowerCase$, 2),
             last = _address$toLowerCase$2[0],
             first = _address$toLowerCase$2[1];
 
-        var firstFields = first ? first.split(":").map(_stripLeadingZeros) : [];
-        var lastFields = last.split(":").map(_stripLeadingZeros);
-        var isLastFieldIPv4Address = protocol.IPV4ADDRESS.test(lastFields[lastFields.length - 1]);
-        var fieldCount = isLastFieldIPv4Address ? 7 : 8;
-        var lastFieldsStart = lastFields.length - fieldCount;
-        var fields = Array(fieldCount);
-        for (var x = 0; x < fieldCount; ++x) {
+        const firstFields = first ? first.split(":").map(_stripLeadingZeros) : [];
+        const lastFields = last.split(":").map(_stripLeadingZeros);
+        const isLastFieldIPv4Address = protocol.IPV4ADDRESS.test(lastFields[lastFields.length - 1]);
+        const fieldCount = isLastFieldIPv4Address ? 7 : 8;
+        const lastFieldsStart = lastFields.length - fieldCount;
+        const fields = Array(fieldCount);
+        for (let x = 0; x < fieldCount; ++x) {
             fields[x] = firstFields[x] || lastFields[lastFieldsStart + x] || '';
         }
         if (isLastFieldIPv4Address) {
             fields[fieldCount - 1] = _normalizeIPv4(fields[fieldCount - 1], protocol);
         }
-        var allZeroFields = fields.reduce(function (acc, field, index) {
+        const allZeroFields = fields.reduce(function (acc, field, index) {
             if (!field || field === "0") {
-                var lastLongest = acc[acc.length - 1];
+                const lastLongest = acc[acc.length - 1];
                 if (lastLongest && lastLongest.index + lastLongest.length === index) {
                     lastLongest.length++;
                 } else {
@@ -6079,13 +6079,13 @@ function _normalizeIPv6(host, protocol) {
             }
             return acc;
         }, []);
-        var longestZeroFields = allZeroFields.sort(function (a, b) {
+        const longestZeroFields = allZeroFields.sort(function (a, b) {
             return b.length - a.length;
         })[0];
-        var newHost = void 0;
+        let newHost = void 0;
         if (longestZeroFields && longestZeroFields.length > 1) {
-            var newFirst = fields.slice(0, longestZeroFields.index);
-            var newLast = fields.slice(longestZeroFields.index + longestZeroFields.length);
+            const newFirst = fields.slice(0, longestZeroFields.index);
+            const newLast = fields.slice(longestZeroFields.index + longestZeroFields.length);
             newHost = newFirst.join(":") + "::" + newLast.join(":");
         } else {
             newHost = fields.join(":");
@@ -6098,15 +6098,15 @@ function _normalizeIPv6(host, protocol) {
         return host;
     }
 }
-var URI_PARSE = /^(?:([^:\/?#]+):)?(?:\/\/((?:([^\/?#@]*)@)?(\[[^\/?#\]]+\]|[^\/?#:]*)(?:\:(\d*))?))?([^?#]*)(?:\?([^#]*))?(?:#((?:.|\n|\r)*))?/i;
-var NO_MATCH_IS_UNDEFINED = "".match(/(){0}/)[1] === undefined;
+const URI_PARSE = /^(?:([^:\/?#]+):)?(?:\/\/((?:([^\/?#@]*)@)?(\[[^\/?#\]]+\]|[^\/?#:]*)(?:\:(\d*))?))?([^?#]*)(?:\?([^#]*))?(?:#((?:.|\n|\r)*))?/i;
+const NO_MATCH_IS_UNDEFINED = "".match(/(){0}/)[1] === undefined;
 function parse(uriString) {
-    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    const options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-    var components = {};
-    var protocol = options.iri !== false ? IRI_PROTOCOL : URI_PROTOCOL;
+    const components = {};
+    const protocol = options.iri !== false ? IRI_PROTOCOL : URI_PROTOCOL;
     if (options.reference === "suffix") uriString = (options.scheme ? options.scheme + ":" : "") + "//" + uriString;
-    var matches = uriString.match(URI_PARSE);
+    const matches = uriString.match(URI_PARSE);
     if (matches) {
         if (NO_MATCH_IS_UNDEFINED) {
             //store each component
@@ -6155,7 +6155,7 @@ function parse(uriString) {
             components.error = components.error || "URI is not a " + options.reference + " reference.";
         }
         //find scheme handler
-        var schemeHandler = SCHEMES[(options.scheme || components.scheme || "").toLowerCase()];
+        const schemeHandler = SCHEMES[(options.scheme || components.scheme || "").toLowerCase()];
         //check if scheme can't handle IRIs
         if (!options.unicodeSupport && (!schemeHandler || !schemeHandler.unicodeSupport)) {
             //if host component is a domain name
@@ -6184,8 +6184,8 @@ function parse(uriString) {
 }
 
 function _recomposeAuthority(components, options) {
-    var protocol = options.iri !== false ? IRI_PROTOCOL : URI_PROTOCOL;
-    var uriTokens = [];
+    const protocol = options.iri !== false ? IRI_PROTOCOL : URI_PROTOCOL;
+    const uriTokens = [];
     if (components.userinfo !== undefined) {
         uriTokens.push(components.userinfo);
         uriTokens.push("@");
@@ -6203,12 +6203,12 @@ function _recomposeAuthority(components, options) {
     return uriTokens.length ? uriTokens.join("") : undefined;
 }
 
-var RDS1 = /^\.\.?\//;
-var RDS2 = /^\/\.(\/|$)/;
-var RDS3 = /^\/\.\.(\/|$)/;
-var RDS5 = /^\/?(?:.|\n)*?(?=\/|$)/;
+const RDS1 = /^\.\.?\//;
+const RDS2 = /^\/\.(\/|$)/;
+const RDS3 = /^\/\.\.(\/|$)/;
+const RDS5 = /^\/?(?:.|\n)*?(?=\/|$)/;
 function removeDotSegments(input) {
-    var output = [];
+    const output = [];
     while (input.length) {
         if (input.match(RDS1)) {
             input = input.replace(RDS1, "");
@@ -6220,9 +6220,9 @@ function removeDotSegments(input) {
         } else if (input === "." || input === "..") {
             input = "";
         } else {
-            var im = input.match(RDS5);
+            const im = input.match(RDS5);
             if (im) {
-                var s = im[0];
+                const s = im[0];
                 input = input.slice(s.length);
                 output.push(s);
             } else {
@@ -6234,12 +6234,12 @@ function removeDotSegments(input) {
 }
 
 function serialize(components) {
-    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    const options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-    var protocol = options.iri ? IRI_PROTOCOL : URI_PROTOCOL;
-    var uriTokens = [];
+    const protocol = options.iri ? IRI_PROTOCOL : URI_PROTOCOL;
+    const uriTokens = [];
     //find scheme handler
-    var schemeHandler = SCHEMES[(options.scheme || components.scheme || "").toLowerCase()];
+    const schemeHandler = SCHEMES[(options.scheme || components.scheme || "").toLowerCase()];
     //perform scheme specific serialization
     if (schemeHandler && schemeHandler.serialize) schemeHandler.serialize(components, options);
     if (components.host) {
@@ -6263,7 +6263,7 @@ function serialize(components) {
         uriTokens.push(components.scheme);
         uriTokens.push(":");
     }
-    var authority = _recomposeAuthority(components, options);
+    const authority = _recomposeAuthority(components, options);
     if (authority !== undefined) {
         if (options.reference !== "suffix") {
             uriTokens.push("//");
@@ -6274,7 +6274,7 @@ function serialize(components) {
         }
     }
     if (components.path !== undefined) {
-        var s = components.path;
+        let s = components.path;
         if (!options.absolutePath && (!schemeHandler || !schemeHandler.absolutePath)) {
             s = removeDotSegments(s);
         }
@@ -6295,10 +6295,10 @@ function serialize(components) {
 }
 
 function resolveComponents(base, relative) {
-    var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-    var skipNormalization = arguments[3];
+    let options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+    const skipNormalization = arguments[3];
 
-    var target = {};
+    const target = {};
     if (!skipNormalization) {
         base = parse(serialize(base, options), options); //normalize base components
         relative = parse(serialize(relative, options), options); //normalize relative components
@@ -6355,7 +6355,7 @@ function resolveComponents(base, relative) {
 }
 
 function resolve(baseURI, relativeURI, options) {
-    var schemelessOptions = assign({ scheme: 'null' }, options);
+    const schemelessOptions = assign({ scheme: 'null' }, options);
     return serialize(resolveComponents(parse(baseURI, schemelessOptions), parse(relativeURI, schemelessOptions), schemelessOptions, true), schemelessOptions);
 }
 
@@ -6390,7 +6390,7 @@ function unescapeComponent(str, options) {
     return str && str.toString().replace(!options || !options.iri ? URI_PROTOCOL.PCT_ENCODED : IRI_PROTOCOL.PCT_ENCODED, pctDecChars);
 }
 
-var handler = {
+const handler = {
     scheme: "http",
     domainHost: true,
     parse: function parse(components, options) {
@@ -6401,7 +6401,7 @@ var handler = {
         return components;
     },
     serialize: function serialize(components, options) {
-        var secure = String(components.scheme).toLowerCase() === "https";
+        const secure = String(components.scheme).toLowerCase() === "https";
         //normalize the default port
         if (components.port === (secure ? 443 : 80) || components.port === "") {
             components.port = undefined;
@@ -6417,7 +6417,7 @@ var handler = {
     }
 };
 
-var handler$1 = {
+const handler$1 = {
     scheme: "https",
     domainHost: handler.domainHost,
     parse: handler.parse,
@@ -6428,11 +6428,11 @@ function isSecure(wsComponents) {
     return typeof wsComponents.secure === 'boolean' ? wsComponents.secure : String(wsComponents.scheme).toLowerCase() === "wss";
 }
 //RFC 6455
-var handler$2 = {
+const handler$2 = {
     scheme: "ws",
     domainHost: true,
     parse: function parse(components, options) {
-        var wsComponents = components;
+        const wsComponents = components;
         //indicate if the secure flag is set
         wsComponents.secure = isSecure(wsComponents);
         //construct resouce name
@@ -6453,7 +6453,7 @@ var handler$2 = {
         }
         //reconstruct path from resource name
         if (wsComponents.resourceName) {
-            var _wsComponents$resourc = wsComponents.resourceName.split('?'),
+            const _wsComponents$resourc = wsComponents.resourceName.split('?'),
                 _wsComponents$resourc2 = slicedToArray(_wsComponents$resourc, 2),
                 path = _wsComponents$resourc2[0],
                 query = _wsComponents$resourc2[1];
@@ -6468,19 +6468,19 @@ var handler$2 = {
     }
 };
 
-var handler$3 = {
+const handler$3 = {
     scheme: "wss",
     domainHost: handler$2.domainHost,
     parse: handler$2.parse,
     serialize: handler$2.serialize
 };
 
-var O = {};
-var isIRI = true;
+const O = {};
+const isIRI = true;
 //RFC 3986
-var UNRESERVED$$ = "[A-Za-z0-9\\-\\.\\_\\~" + (isIRI ? "\\xA0-\\u200D\\u2010-\\u2029\\u202F-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF" : "") + "]";
-var HEXDIG$$ = "[0-9A-Fa-f]"; //case-insensitive
-var PCT_ENCODED$ = subexp(subexp("%[EFef]" + HEXDIG$$ + "%" + HEXDIG$$ + HEXDIG$$ + "%" + HEXDIG$$ + HEXDIG$$) + "|" + subexp("%[89A-Fa-f]" + HEXDIG$$ + "%" + HEXDIG$$ + HEXDIG$$) + "|" + subexp("%" + HEXDIG$$ + HEXDIG$$)); //expanded
+const UNRESERVED$$ = "[A-Za-z0-9\\-\\.\\_\\~" + (isIRI ? "\\xA0-\\u200D\\u2010-\\u2029\\u202F-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF" : "") + "]";
+const HEXDIG$$ = "[0-9A-Fa-f]"; //case-insensitive
+const PCT_ENCODED$ = subexp(subexp("%[EFef]" + HEXDIG$$ + "%" + HEXDIG$$ + HEXDIG$$ + "%" + HEXDIG$$ + HEXDIG$$) + "|" + subexp("%[89A-Fa-f]" + HEXDIG$$ + "%" + HEXDIG$$ + HEXDIG$$) + "|" + subexp("%" + HEXDIG$$ + HEXDIG$$)); //expanded
 //RFC 5322, except these symbols as per RFC 6068: @ : / ? # [ ] & ; =
 //const ATEXT$$ = "[A-Za-z0-9\\!\\#\\$\\%\\&\\'\\*\\+\\-\\/\\=\\?\\^\\_\\`\\{\\|\\}\\~]";
 //const WSP$$ = "[\\x20\\x09]";
@@ -6492,35 +6492,35 @@ var PCT_ENCODED$ = subexp(subexp("%[EFef]" + HEXDIG$$ + "%" + HEXDIG$$ + HEXDIG$
 //const FWS$ = subexp(subexp(WSP$$ + "*" + "\\x0D\\x0A") + "?" + WSP$$ + "+");
 //const QUOTED_PAIR$ = subexp(subexp("\\\\" + subexp(VCHAR$$ + "|" + WSP$$)) + "|" + OBS_QP$);
 //const QUOTED_STRING$ = subexp('\\"' + subexp(FWS$ + "?" + QCONTENT$) + "*" + FWS$ + "?" + '\\"');
-var ATEXT$$ = "[A-Za-z0-9\\!\\$\\%\\'\\*\\+\\-\\^\\_\\`\\{\\|\\}\\~]";
-var QTEXT$$ = "[\\!\\$\\%\\'\\(\\)\\*\\+\\,\\-\\.0-9\\<\\>A-Z\\x5E-\\x7E]";
-var VCHAR$$ = merge(QTEXT$$, "[\\\"\\\\]");
-var SOME_DELIMS$$ = "[\\!\\$\\'\\(\\)\\*\\+\\,\\;\\:\\@]";
-var UNRESERVED = new RegExp(UNRESERVED$$, "g");
-var PCT_ENCODED = new RegExp(PCT_ENCODED$, "g");
-var NOT_LOCAL_PART = new RegExp(merge("[^]", ATEXT$$, "[\\.]", '[\\"]', VCHAR$$), "g");
-var NOT_HFNAME = new RegExp(merge("[^]", UNRESERVED$$, SOME_DELIMS$$), "g");
-var NOT_HFVALUE = NOT_HFNAME;
+const ATEXT$$ = "[A-Za-z0-9\\!\\$\\%\\'\\*\\+\\-\\^\\_\\`\\{\\|\\}\\~]";
+const QTEXT$$ = "[\\!\\$\\%\\'\\(\\)\\*\\+\\,\\-\\.0-9\\<\\>A-Z\\x5E-\\x7E]";
+const VCHAR$$ = merge(QTEXT$$, "[\\\"\\\\]");
+const SOME_DELIMS$$ = "[\\!\\$\\'\\(\\)\\*\\+\\,\\;\\:\\@]";
+const UNRESERVED = new RegExp(UNRESERVED$$, "g");
+const PCT_ENCODED = new RegExp(PCT_ENCODED$, "g");
+const NOT_LOCAL_PART = new RegExp(merge("[^]", ATEXT$$, "[\\.]", '[\\"]', VCHAR$$), "g");
+const NOT_HFNAME = new RegExp(merge("[^]", UNRESERVED$$, SOME_DELIMS$$), "g");
+const NOT_HFVALUE = NOT_HFNAME;
 function decodeUnreserved(str) {
-    var decStr = pctDecChars(str);
+    const decStr = pctDecChars(str);
     return !decStr.match(UNRESERVED) ? str : decStr;
 }
-var handler$4 = {
+const handler$4 = {
     scheme: "mailto",
     parse: function parse$$1(components, options) {
-        var mailtoComponents = components;
-        var to = mailtoComponents.to = mailtoComponents.path ? mailtoComponents.path.split(",") : [];
+        const mailtoComponents = components;
+        const to = mailtoComponents.to = mailtoComponents.path ? mailtoComponents.path.split(",") : [];
         mailtoComponents.path = undefined;
         if (mailtoComponents.query) {
-            var unknownHeaders = false;
-            var headers = {};
-            var hfields = mailtoComponents.query.split("&");
-            for (var x = 0, xl = hfields.length; x < xl; ++x) {
-                var hfield = hfields[x].split("=");
+            let unknownHeaders = false;
+            const headers = {};
+            const hfields = mailtoComponents.query.split("&");
+            for (let x = 0, xl = hfields.length; x < xl; ++x) {
+                const hfield = hfields[x].split("=");
                 switch (hfield[0]) {
                     case "to":
                         var toAddrs = hfield[1].split(",");
-                        for (var _x = 0, _xl = toAddrs.length; _x < _xl; ++_x) {
+                        for (let _x = 0, _xl = toAddrs.length; _x < _xl; ++_x) {
                             to.push(toAddrs[_x]);
                         }
                         break;
@@ -6539,8 +6539,8 @@ var handler$4 = {
             if (unknownHeaders) mailtoComponents.headers = headers;
         }
         mailtoComponents.query = undefined;
-        for (var _x2 = 0, _xl2 = to.length; _x2 < _xl2; ++_x2) {
-            var addr = to[_x2].split("@");
+        for (let _x2 = 0, _xl2 = to.length; _x2 < _xl2; ++_x2) {
+            const addr = to[_x2].split("@");
             addr[0] = unescapeComponent(addr[0]);
             if (!options.unicodeSupport) {
                 //convert Unicode IDN -> ASCII IDN
@@ -6557,14 +6557,14 @@ var handler$4 = {
         return mailtoComponents;
     },
     serialize: function serialize$$1(mailtoComponents, options) {
-        var components = mailtoComponents;
-        var to = toArray(mailtoComponents.to);
+        const components = mailtoComponents;
+        const to = toArray(mailtoComponents.to);
         if (to) {
-            for (var x = 0, xl = to.length; x < xl; ++x) {
-                var toAddr = String(to[x]);
-                var atIdx = toAddr.lastIndexOf("@");
-                var localPart = toAddr.slice(0, atIdx).replace(PCT_ENCODED, decodeUnreserved).replace(PCT_ENCODED, toUpperCase).replace(NOT_LOCAL_PART, pctEncChar);
-                var domain = toAddr.slice(atIdx + 1);
+            for (let x = 0, xl = to.length; x < xl; ++x) {
+                const toAddr = String(to[x]);
+                const atIdx = toAddr.lastIndexOf("@");
+                const localPart = toAddr.slice(0, atIdx).replace(PCT_ENCODED, decodeUnreserved).replace(PCT_ENCODED, toUpperCase).replace(NOT_LOCAL_PART, pctEncChar);
+                let domain = toAddr.slice(atIdx + 1);
                 //convert IDN via punycode
                 try {
                     domain = !options.iri ? punycode.toASCII(unescapeComponent(domain, options).toLowerCase()) : punycode.toUnicode(domain);
@@ -6575,11 +6575,11 @@ var handler$4 = {
             }
             components.path = to.join(",");
         }
-        var headers = mailtoComponents.headers = mailtoComponents.headers || {};
+        const headers = mailtoComponents.headers = mailtoComponents.headers || {};
         if (mailtoComponents.subject) headers["subject"] = mailtoComponents.subject;
         if (mailtoComponents.body) headers["body"] = mailtoComponents.body;
-        var fields = [];
-        for (var name in headers) {
+        const fields = [];
+        for (const name in headers) {
             if (headers[name] !== O[name]) {
                 fields.push(name.replace(PCT_ENCODED, decodeUnreserved).replace(PCT_ENCODED, toUpperCase).replace(NOT_HFNAME, pctEncChar) + "=" + headers[name].replace(PCT_ENCODED, decodeUnreserved).replace(PCT_ENCODED, toUpperCase).replace(NOT_HFVALUE, pctEncChar));
             }
@@ -6591,19 +6591,19 @@ var handler$4 = {
     }
 };
 
-var URN_PARSE = /^([^\:]+)\:(.*)/;
+const URN_PARSE = /^([^\:]+)\:(.*)/;
 //RFC 2141
-var handler$5 = {
+const handler$5 = {
     scheme: "urn",
     parse: function parse$$1(components, options) {
-        var matches = components.path && components.path.match(URN_PARSE);
-        var urnComponents = components;
+        const matches = components.path && components.path.match(URN_PARSE);
+        let urnComponents = components;
         if (matches) {
-            var scheme = options.scheme || urnComponents.scheme || "urn";
-            var nid = matches[1].toLowerCase();
-            var nss = matches[2];
-            var urnScheme = scheme + ":" + (options.nid || nid);
-            var schemeHandler = SCHEMES[urnScheme];
+            const scheme = options.scheme || urnComponents.scheme || "urn";
+            const nid = matches[1].toLowerCase();
+            const nss = matches[2];
+            const urnScheme = scheme + ":" + (options.nid || nid);
+            const schemeHandler = SCHEMES[urnScheme];
             urnComponents.nid = nid;
             urnComponents.nss = nss;
             urnComponents.path = undefined;
@@ -6616,26 +6616,26 @@ var handler$5 = {
         return urnComponents;
     },
     serialize: function serialize$$1(urnComponents, options) {
-        var scheme = options.scheme || urnComponents.scheme || "urn";
-        var nid = urnComponents.nid;
-        var urnScheme = scheme + ":" + (options.nid || nid);
-        var schemeHandler = SCHEMES[urnScheme];
+        const scheme = options.scheme || urnComponents.scheme || "urn";
+        const nid = urnComponents.nid;
+        const urnScheme = scheme + ":" + (options.nid || nid);
+        const schemeHandler = SCHEMES[urnScheme];
         if (schemeHandler) {
             urnComponents = schemeHandler.serialize(urnComponents, options);
         }
-        var uriComponents = urnComponents;
-        var nss = urnComponents.nss;
+        const uriComponents = urnComponents;
+        const nss = urnComponents.nss;
         uriComponents.path = (nid || options.nid) + ":" + nss;
         return uriComponents;
     }
 };
 
-var UUID = /^[0-9A-Fa-f]{8}(?:\-[0-9A-Fa-f]{4}){3}\-[0-9A-Fa-f]{12}$/;
+const UUID = /^[0-9A-Fa-f]{8}(?:\-[0-9A-Fa-f]{4}){3}\-[0-9A-Fa-f]{12}$/;
 //RFC 4122
-var handler$6 = {
+const handler$6 = {
     scheme: "urn:uuid",
     parse: function parse(urnComponents, options) {
-        var uuidComponents = urnComponents;
+        const uuidComponents = urnComponents;
         uuidComponents.uuid = uuidComponents.nss;
         uuidComponents.nss = undefined;
         if (!options.tolerant && (!uuidComponents.uuid || !uuidComponents.uuid.match(UUID))) {
@@ -6644,7 +6644,7 @@ var handler$6 = {
         return uuidComponents;
     },
     serialize: function serialize(uuidComponents, options) {
-        var urnComponents = uuidComponents;
+        const urnComponents = uuidComponents;
         //normalize UUID
         urnComponents.nss = (uuidComponents.uuid || "").toLowerCase();
         return urnComponents;
@@ -6680,7 +6680,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 },{}],"ajv":[function(require,module,exports){
 'use strict';
 
-var compileSchema = require('./compile')
+const compileSchema = require('./compile')
   , resolve = require('./compile/resolve')
   , Cache = require('./cache')
   , SchemaObject = require('./compile/schema_obj')
@@ -6706,21 +6706,21 @@ Ajv.prototype._addSchema = _addSchema;
 Ajv.prototype._compile = _compile;
 
 Ajv.prototype.compileAsync = require('./compile/async');
-var customKeyword = require('./keyword');
+const customKeyword = require('./keyword');
 Ajv.prototype.addKeyword = customKeyword.add;
 Ajv.prototype.getKeyword = customKeyword.get;
 Ajv.prototype.removeKeyword = customKeyword.remove;
 Ajv.prototype.validateKeyword = customKeyword.validate;
 
-var errorClasses = require('./compile/error_classes');
+const errorClasses = require('./compile/error_classes');
 Ajv.ValidationError = errorClasses.Validation;
 Ajv.MissingRefError = errorClasses.MissingRef;
 Ajv.$dataMetaSchema = $dataMetaSchema;
 
-var META_SCHEMA_ID = 'http://json-schema.org/draft-07/schema';
+const META_SCHEMA_ID = 'http://json-schema.org/draft-07/schema';
 
-var META_IGNORE_OPTIONS = [ 'removeAdditional', 'useDefaults', 'coerceTypes', 'strictDefaults' ];
-var META_SUPPORT_DATA = ['/properties'];
+const META_IGNORE_OPTIONS = [ 'removeAdditional', 'useDefaults', 'coerceTypes', 'strictDefaults' ];
+const META_SUPPORT_DATA = ['/properties'];
 
 /**
  * Creates validator instance.
@@ -6767,16 +6767,16 @@ function Ajv(opts) {
  * @return {Boolean} validation result. Errors from the last validation will be available in `ajv.errors` (and also in compiled schema: `schema.errors`).
  */
 function validate(schemaKeyRef, data) {
-  var v;
+  let v;
   if (typeof schemaKeyRef == 'string') {
     v = this.getSchema(schemaKeyRef);
     if (!v) throw new Error('no schema with key or ref "' + schemaKeyRef + '"');
   } else {
-    var schemaObj = this._addSchema(schemaKeyRef);
+    const schemaObj = this._addSchema(schemaKeyRef);
     v = schemaObj.validate || this._compile(schemaObj);
   }
 
-  var valid = v(data);
+  const valid = v(data);
   if (v.$async !== true) this.errors = v.errors;
   return valid;
 }
@@ -6790,7 +6790,7 @@ function validate(schemaKeyRef, data) {
  * @return {Function} validating function
  */
 function compile(schema, _meta) {
-  var schemaObj = this._addSchema(schema, undefined, _meta);
+  const schemaObj = this._addSchema(schema, undefined, _meta);
   return schemaObj.validate || this._compile(schemaObj);
 }
 
@@ -6806,10 +6806,10 @@ function compile(schema, _meta) {
  */
 function addSchema(schema, key, _skipValidation, _meta) {
   if (Array.isArray(schema)){
-    for (var i=0; i<schema.length; i++) this.addSchema(schema[i], undefined, _skipValidation, _meta);
+    for (let i=0; i<schema.length; i++) this.addSchema(schema[i], undefined, _skipValidation, _meta);
     return this;
   }
-  var id = this._getId(schema);
+  const id = this._getId(schema);
   if (id !== undefined && typeof id != 'string')
     throw new Error('schema id must be string');
   key = resolve.normalizeId(key || id);
@@ -6842,7 +6842,7 @@ function addMetaSchema(schema, key, skipValidation) {
  * @return {Boolean} true if schema is valid
  */
 function validateSchema(schema, throwOrLogError) {
-  var $schema = schema.$schema;
+  let $schema = schema.$schema;
   if ($schema !== undefined && typeof $schema != 'string')
     throw new Error('$schema must be a string');
   $schema = $schema || this._opts.defaultMeta || defaultMeta(this);
@@ -6851,9 +6851,9 @@ function validateSchema(schema, throwOrLogError) {
     this.errors = null;
     return true;
   }
-  var valid = this.validate($schema, schema);
+  const valid = this.validate($schema, schema);
   if (!valid && throwOrLogError) {
-    var message = 'schema is invalid: ' + this.errorsText();
+    const message = 'schema is invalid: ' + this.errorsText();
     if (this._opts.validateSchema == 'log') this.logger.error(message);
     else throw new Error(message);
   }
@@ -6862,7 +6862,7 @@ function validateSchema(schema, throwOrLogError) {
 
 
 function defaultMeta(self) {
-  var meta = self._opts.meta;
+  const meta = self._opts.meta;
   self._opts.defaultMeta = typeof meta == 'object'
                             ? self._getId(meta) || meta
                             : self.getSchema(META_SCHEMA_ID)
@@ -6879,7 +6879,7 @@ function defaultMeta(self) {
  * @return {Function} schema validating function (with property `schema`).
  */
 function getSchema(keyRef) {
-  var schemaObj = _getSchemaObj(this, keyRef);
+  const schemaObj = _getSchemaObj(this, keyRef);
   switch (typeof schemaObj) {
     case 'object': return schemaObj.validate || this._compile(schemaObj);
     case 'string': return this.getSchema(schemaObj);
@@ -6889,12 +6889,12 @@ function getSchema(keyRef) {
 
 
 function _getSchemaFragment(self, ref) {
-  var res = resolve.schema.call(self, { schema: {} }, ref);
+  const res = resolve.schema.call(self, { schema: {} }, ref);
   if (res) {
-    var schema = res.schema
+    const schema = res.schema
       , root = res.root
       , baseId = res.baseId;
-    var v = compileSchema.call(self, schema, root, undefined, baseId);
+    const v = compileSchema.call(self, schema, root, undefined, baseId);
     self._fragments[ref] = new SchemaObject({
       ref: ref,
       fragment: true,
@@ -6957,8 +6957,8 @@ function removeSchema(schemaKeyRef) {
 
 
 function _removeAllSchemas(self, schemas, regex) {
-  for (var keyRef in schemas) {
-    var schemaObj = schemas[keyRef];
+  for (const keyRef in schemas) {
+    const schemaObj = schemas[keyRef];
     if (!schemaObj.meta && (!regex || regex.test(keyRef))) {
       self._cache.del(schemaObj.cacheKey);
       delete schemas[keyRef];
@@ -6971,24 +6971,24 @@ function _removeAllSchemas(self, schemas, regex) {
 function _addSchema(schema, skipValidation, meta, shouldAddSchema) {
   if (typeof schema != 'object' && typeof schema != 'boolean')
     throw new Error('schema should be object or boolean');
-  var serialize = this._opts.serialize;
-  var cacheKey = serialize ? serialize(schema) : schema;
-  var cached = this._cache.get(cacheKey);
+  const serialize = this._opts.serialize;
+  const cacheKey = serialize ? serialize(schema) : schema;
+  const cached = this._cache.get(cacheKey);
   if (cached) return cached;
 
   shouldAddSchema = shouldAddSchema || this._opts.addUsedSchema !== false;
 
-  var id = resolve.normalizeId(this._getId(schema));
+  const id = resolve.normalizeId(this._getId(schema));
   if (id && shouldAddSchema) checkUnique(this, id);
 
-  var willValidate = this._opts.validateSchema !== false && !skipValidation;
-  var recursiveMeta;
+  const willValidate = this._opts.validateSchema !== false && !skipValidation;
+  let recursiveMeta;
   if (willValidate && !(recursiveMeta = id && id == resolve.normalizeId(schema.$schema)))
     this.validateSchema(schema, true);
 
-  var localRefs = resolve.ids.call(this, schema);
+  const localRefs = resolve.ids.call(this, schema);
 
-  var schemaObj = new SchemaObject({
+  const schemaObj = new SchemaObject({
     id: id,
     schema: schema,
     localRefs: localRefs,
@@ -7018,13 +7018,13 @@ function _compile(schemaObj, root) {
   }
   schemaObj.compiling = true;
 
-  var currentOpts;
+  let currentOpts;
   if (schemaObj.meta) {
     currentOpts = this._opts;
     this._opts = this._metaOpts;
   }
 
-  var v;
+  let v;
   try { v = compileSchema.call(this, schemaObj.schema, root, schemaObj.localRefs); }
   catch(e) {
     delete schemaObj.validate;
@@ -7045,8 +7045,8 @@ function _compile(schemaObj, root) {
   /* @this   {*} - custom context, see passContext option */
   function callValidate() {
     /* jshint validthis: true */
-    var _validate = schemaObj.validate;
-    var result = _validate.apply(this, arguments);
+    const _validate = schemaObj.validate;
+    const result = _validate.apply(this, arguments);
     callValidate.errors = _validate.errors;
     return result;
   }
@@ -7092,12 +7092,12 @@ function errorsText(errors, options) {
   errors = errors || this.errors;
   if (!errors) return 'No errors';
   options = options || {};
-  var separator = options.separator === undefined ? ', ' : options.separator;
-  var dataVar = options.dataVar === undefined ? 'data' : options.dataVar;
+  const separator = options.separator === undefined ? ', ' : options.separator;
+  const dataVar = options.dataVar === undefined ? 'data' : options.dataVar;
 
-  var text = '';
-  for (var i=0; i<errors.length; i++) {
-    var e = errors[i];
+  let text = '';
+  for (let i=0; i<errors.length; i++) {
+    const e = errors[i];
     if (e) text += dataVar + e.dataPath + ' ' + e.message + separator;
   }
   return text.slice(0, -separator.length);
@@ -7119,13 +7119,13 @@ function addFormat(name, format) {
 
 
 function addDefaultMetaSchema(self) {
-  var $dataSchema;
+  let $dataSchema;
   if (self._opts.$data) {
     $dataSchema = require('./refs/data.json');
     self.addMetaSchema($dataSchema, $dataSchema.$id, true);
   }
   if (self._opts.meta === false) return;
-  var metaSchema = require('./refs/json-schema-draft-07.json');
+  let metaSchema = require('./refs/json-schema-draft-07.json');
   if (self._opts.$data) metaSchema = $dataMetaSchema(metaSchema, META_SUPPORT_DATA);
   self.addMetaSchema(metaSchema, META_SCHEMA_ID, true);
   self._refs['http://json-schema.org/schema'] = META_SCHEMA_ID;
@@ -7133,24 +7133,24 @@ function addDefaultMetaSchema(self) {
 
 
 function addInitialSchemas(self) {
-  var optsSchemas = self._opts.schemas;
+  const optsSchemas = self._opts.schemas;
   if (!optsSchemas) return;
   if (Array.isArray(optsSchemas)) self.addSchema(optsSchemas);
-  else for (var key in optsSchemas) self.addSchema(optsSchemas[key], key);
+  else for (const key in optsSchemas) self.addSchema(optsSchemas[key], key);
 }
 
 
 function addInitialFormats(self) {
-  for (var name in self._opts.formats) {
-    var format = self._opts.formats[name];
+  for (const name in self._opts.formats) {
+    const format = self._opts.formats[name];
     self.addFormat(name, format);
   }
 }
 
 
 function addInitialKeywords(self) {
-  for (var name in self._opts.keywords) {
-    var keyword = self._opts.keywords[name];
+  for (const name in self._opts.keywords) {
+    const keyword = self._opts.keywords[name];
     self.addKeyword(name, keyword);
   }
 }
@@ -7163,15 +7163,15 @@ function checkUnique(self, id) {
 
 
 function getMetaSchemaOptions(self) {
-  var metaOpts = util.copy(self._opts);
-  for (var i=0; i<META_IGNORE_OPTIONS.length; i++)
+  const metaOpts = util.copy(self._opts);
+  for (let i=0; i<META_IGNORE_OPTIONS.length; i++)
     delete metaOpts[META_IGNORE_OPTIONS[i]];
   return metaOpts;
 }
 
 
 function setLogger(self) {
-  var logger = self._opts.logger;
+  let logger = self._opts.logger;
   if (logger === false) {
     self.logger = {log: noop, warn: noop, error: noop};
   } else {

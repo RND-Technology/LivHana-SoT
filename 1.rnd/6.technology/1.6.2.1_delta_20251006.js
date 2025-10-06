@@ -67,7 +67,7 @@ exports.ValueDeltaUnableToDiffUnknownValue = ValueDeltaUnableToDiffUnknownValue;
 // ---------------------------------------------------------------------
 // ValueDelta
 // ---------------------------------------------------------------------
-var ValueDelta;
+let ValueDelta;
 (function (ValueDelta) {
     // ---------------------------------------------------------------------
     // Edits

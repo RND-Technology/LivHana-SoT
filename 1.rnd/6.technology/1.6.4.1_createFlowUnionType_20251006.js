@@ -4,8 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = createFlowUnionType;
-var _index = require("../generated/index.js");
-var _removeTypeDuplicates = require("../../modifications/flow/removeTypeDuplicates.js");
+const _index = require("../generated/index.js");
+const _removeTypeDuplicates = require("../../modifications/flow/removeTypeDuplicates.js");
 function createFlowUnionType(types) {
   const flattened = (0, _removeTypeDuplicates.default)(types);
   if (flattened.length === 1) {

@@ -28,31 +28,31 @@ require('bole').output({
 
 const run = bench([
   function benchBunyanChild (cb) {
-    for (var i = 0; i < max; i++) {
+    for (let i = 0; i < max; i++) {
       blog.info({ hello: 'world' })
     }
     setImmediate(cb)
   },
   function benchBoleChild (cb) {
-    for (var i = 0; i < max; i++) {
+    for (let i = 0; i < max; i++) {
       bole.info({ hello: 'world' })
     }
     setImmediate(cb)
   },
   function benchPinoChild (cb) {
-    for (var i = 0; i < max; i++) {
+    for (let i = 0; i < max; i++) {
       plogDest.info({ hello: 'world' })
     }
     setImmediate(cb)
   },
   function benchPinoMinLengthChild (cb) {
-    for (var i = 0; i < max; i++) {
+    for (let i = 0; i < max; i++) {
       plogMinLength.info({ hello: 'world' })
     }
     setImmediate(cb)
   },
   function benchPinoNodeStreamChild (cb) {
-    for (var i = 0; i < max; i++) {
+    for (let i = 0; i < max; i++) {
       plogNodeStream.info({ hello: 'world' })
     }
     setImmediate(cb)

@@ -1,13 +1,13 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var isTypedArray = require('is-typed-array');
-var typedArrayBuffer = require('typed-array-buffer');
-var typedArrayLength = require('typed-array-length');
+const isTypedArray = require('is-typed-array');
+const typedArrayBuffer = require('typed-array-buffer');
+const typedArrayLength = require('typed-array-length');
 
-var IsFixedLengthArrayBuffer = require('./IsFixedLengthArrayBuffer');
-var IsSharedArrayBuffer = require('./IsSharedArrayBuffer');
+const IsFixedLengthArrayBuffer = require('./IsFixedLengthArrayBuffer');
+const IsSharedArrayBuffer = require('./IsSharedArrayBuffer');
 
 // https://262.ecma-international.org/16.0/#sec-istypedarrayfixedlength
 
@@ -17,11 +17,11 @@ module.exports = function IsTypedArrayFixedLength(O) {
 	}
 
 	// 2. Let buffer be O.[[ViewedArrayBuffer]].
-	var buffer = typedArrayBuffer(O); // step 2
+	const buffer = typedArrayBuffer(O); // step 2
 
-	var isFixed = IsFixedLengthArrayBuffer(buffer);
+	const isFixed = IsFixedLengthArrayBuffer(buffer);
 
-	var length = isFixed ? typedArrayLength(O) : 'AUTO';
+	const length = isFixed ? typedArrayLength(O) : 'AUTO';
 	if (length === 'AUTO') {
 		return false; // step 1
 	}

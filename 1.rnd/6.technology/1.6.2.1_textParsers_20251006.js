@@ -1,8 +1,8 @@
-var array = require('postgres-array')
-var arrayParser = require('./arrayParser');
-var parseDate = require('postgres-date');
-var parseInterval = require('postgres-interval');
-var parseByteA = require('postgres-bytea');
+const array = require('postgres-array')
+const arrayParser = require('./arrayParser');
+const parseDate = require('postgres-date');
+const parseInterval = require('postgres-interval');
+const parseByteA = require('postgres-bytea');
 
 function allowNull (fn) {
   return function nullAllowed (value) {
@@ -43,9 +43,9 @@ function parseBigIntegerArray (value) {
   }))
 }
 
-var parsePointArray = function(value) {
+const parsePointArray = function(value) {
   if(!value) { return null; }
-  var p = arrayParser.create(value, function(entry) {
+  const p = arrayParser.create(value, function(entry) {
     if(entry !== null) {
       entry = parsePoint(entry);
     }
@@ -55,9 +55,9 @@ var parsePointArray = function(value) {
   return p.parse();
 };
 
-var parseFloatArray = function(value) {
+const parseFloatArray = function(value) {
   if(!value) { return null; }
-  var p = arrayParser.create(value, function(entry) {
+  const p = arrayParser.create(value, function(entry) {
     if(entry !== null) {
       entry = parseFloat(entry);
     }
@@ -67,17 +67,17 @@ var parseFloatArray = function(value) {
   return p.parse();
 };
 
-var parseStringArray = function(value) {
+const parseStringArray = function(value) {
   if(!value) { return null; }
 
-  var p = arrayParser.create(value);
+  const p = arrayParser.create(value);
   return p.parse();
 };
 
-var parseDateArray = function(value) {
+const parseDateArray = function(value) {
   if (!value) { return null; }
 
-  var p = arrayParser.create(value, function(entry) {
+  const p = arrayParser.create(value, function(entry) {
     if (entry !== null) {
       entry = parseDate(entry);
     }
@@ -87,10 +87,10 @@ var parseDateArray = function(value) {
   return p.parse();
 };
 
-var parseIntervalArray = function(value) {
+const parseIntervalArray = function(value) {
   if (!value) { return null; }
 
-  var p = arrayParser.create(value, function(entry) {
+  const p = arrayParser.create(value, function(entry) {
     if (entry !== null) {
       entry = parseInterval(entry);
     }
@@ -100,23 +100,23 @@ var parseIntervalArray = function(value) {
   return p.parse();
 };
 
-var parseByteAArray = function(value) {
+const parseByteAArray = function(value) {
   if (!value) { return null; }
 
   return array.parse(value, allowNull(parseByteA));
 };
 
-var parseInteger = function(value) {
+const parseInteger = function(value) {
   return parseInt(value, 10);
 };
 
 var parseBigInteger = function(value) {
-  var valStr = String(value);
+  const valStr = String(value);
   if (/^\d+$/.test(valStr)) { return valStr; }
   return value;
 };
 
-var parseJsonArray = function(value) {
+const parseJsonArray = function(value) {
   if (!value) { return null; }
 
   return array.parse(value, allowNull(JSON.parse));
@@ -133,13 +133,13 @@ var parsePoint = function(value) {
   };
 };
 
-var parseCircle = function(value) {
+const parseCircle = function(value) {
   if (value[0] !== '<' && value[1] !== '(') { return null; }
 
-  var point = '(';
-  var radius = '';
-  var pointParsed = false;
-  for (var i = 2; i < value.length - 1; i++){
+  let point = '(';
+  let radius = '';
+  let pointParsed = false;
+  for (let i = 2; i < value.length - 1; i++){
     if (!pointParsed) {
       point += value[i];
     }
@@ -157,13 +157,13 @@ var parseCircle = function(value) {
 
     radius += value[i];
   }
-  var result = parsePoint(point);
+  const result = parsePoint(point);
   result.radius = parseFloat(radius);
 
   return result;
 };
 
-var init = function(register) {
+const init = function(register) {
   register(20, parseBigInteger); // int8
   register(21, parseInteger); // int2
   register(23, parseInteger); // int4

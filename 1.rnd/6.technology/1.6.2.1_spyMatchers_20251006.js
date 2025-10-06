@@ -4,10 +4,10 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 exports.default = void 0;
-var _expectUtils = require('@jest/expect-utils');
-var _jestGetType = require('jest-get-type');
-var _jestMatcherUtils = require('jest-matcher-utils');
-var _jestMatchersObject = require('./jestMatchersObject');
+const _expectUtils = require('@jest/expect-utils');
+const _jestGetType = require('jest-get-type');
+const _jestMatcherUtils = require('jest-matcher-utils');
+const _jestMatchersObject = require('./jestMatchersObject');
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -1250,5 +1250,5 @@ const ensureMock = (received, matcherName, expectedArgument, options) => {
     );
   }
 };
-var _default = spyMatchers;
+const _default = spyMatchers;
 exports.default = _default;

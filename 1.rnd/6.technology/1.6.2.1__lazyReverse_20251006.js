@@ -1,4 +1,4 @@
-var LazyWrapper = require('./_LazyWrapper');
+const LazyWrapper = require('./_LazyWrapper');
 
 /**
  * Reverses the direction of lazy iteration.

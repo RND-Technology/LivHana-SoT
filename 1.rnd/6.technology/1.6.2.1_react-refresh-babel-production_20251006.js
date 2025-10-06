@@ -11,7 +11,7 @@
 "use strict";
 module.exports = function (babel) {
   function createRegistration(programPath, persistentID) {
-    var handle = programPath.scope.generateUidIdentifier("c");
+    const handle = programPath.scope.generateUidIdentifier("c");
     registrationsByProgramPath.has(programPath) ||
       registrationsByProgramPath.set(programPath, []);
     registrationsByProgramPath
@@ -23,7 +23,7 @@ module.exports = function (babel) {
     return "string" === typeof name && "A" <= name[0] && "Z" >= name[0];
   }
   function findInnerComponents(inferredName, path, callback) {
-    var node = path.node;
+    let node = path.node;
     switch (node.type) {
       case "Identifier":
         if (!isComponentishName(node.name)) break;
@@ -91,7 +91,7 @@ module.exports = function (babel) {
           path = !1;
           calleePath = calleePath.referencePaths;
           for (calleeType = 0; calleeType < calleePath.length; calleeType++) {
-            var ref = calleePath[calleeType];
+            let ref = calleePath[calleeType];
             if (
               !ref.node ||
               "JSXIdentifier" === ref.node.type ||
@@ -101,7 +101,7 @@ module.exports = function (babel) {
               if ("JSXOpeningElement" === ref.type) path = !0;
               else if ("CallExpression" === ref.type) {
                 ref = ref.callee;
-                var fnName = void 0;
+                let fnName = void 0;
                 switch (ref.type) {
                   case "Identifier":
                     fnName = ref.name;
@@ -189,10 +189,10 @@ module.exports = function (babel) {
   }
   function hasForceResetComment(path) {
     path = path.hub.file;
-    var hasForceReset = hasForceResetCommentByFile.get(path);
+    let hasForceReset = hasForceResetCommentByFile.get(path);
     if (void 0 !== hasForceReset) return hasForceReset;
     hasForceReset = !1;
-    for (var comments = path.ast.comments, i = 0; i < comments.length; i++)
+    for (let comments = path.ast.comments, i = 0; i < comments.length; i++)
       if (-1 !== comments[i].value.indexOf("@refresh reset")) {
         hasForceReset = !0;
         break;
@@ -201,9 +201,9 @@ module.exports = function (babel) {
     return hasForceReset;
   }
   function createArgumentsForSignature(node, signature, scope) {
-    var key = signature.key;
+    const key = signature.key;
     signature = signature.customHooks;
-    var forceReset = hasForceResetComment(scope.path),
+    let forceReset = hasForceResetComment(scope.path),
       customHooksInScope = [];
     signature.forEach(function (callee) {
       switch (callee.type) {
@@ -241,9 +241,9 @@ module.exports = function (babel) {
     return node;
   }
   function findHOCCallPathsAbove(path) {
-    for (var calls = []; ; ) {
+    for (let calls = []; ; ) {
       if (!path) return calls;
-      var parentPath = path.parentPath;
+      const parentPath = path.parentPath;
       if (!parentPath) return calls;
       if (
         "AssignmentExpression" === parentPath.node.type &&
@@ -261,7 +261,7 @@ module.exports = function (babel) {
   var opts =
     1 < arguments.length && void 0 !== arguments[1] ? arguments[1] : {};
   if ("function" === typeof babel.env) {
-    var env = babel.env();
+    const env = babel.env();
     if ("development" !== env && !opts.skipEnvCheck)
       throw Error(
         'React Refresh Babel transform should only be enabled in development environment. Instead, the environment is: "' +
@@ -280,7 +280,7 @@ module.exports = function (babel) {
     hookCalls = new WeakMap(),
     HookCallsVisitor = {
       CallExpression: function (path) {
-        var callee = path.node.callee,
+        let callee = path.node.callee,
           name = null;
         switch (callee.type) {
           case "Identifier":
@@ -297,10 +297,10 @@ module.exports = function (babel) {
           callee = callee.block;
           hookCalls.has(callee) || hookCalls.set(callee, []);
           callee = hookCalls.get(callee);
-          var key = "";
+          let key = "";
           "VariableDeclarator" === path.parent.type &&
             (key = path.parentPath.get("id").getSource());
-          var args = path.get("arguments");
+          const args = path.get("arguments");
           "useState" === name && 0 < args.length
             ? (key += "(" + args[0].getSource() + ")")
             : "useReducer" === name &&
@@ -313,12 +313,12 @@ module.exports = function (babel) {
   return {
     visitor: {
       ExportDefaultDeclaration: function (path) {
-        var node = path.node,
+        const node = path.node,
           decl = node.declaration,
           declPath = path.get("declaration");
         if ("CallExpression" === decl.type && !seenForRegistration.has(node)) {
           seenForRegistration.add(node);
-          var programPath = path.parentPath;
+          const programPath = path.parentPath;
           findInnerComponents(
             "%default%",
             declPath,
@@ -334,7 +334,7 @@ module.exports = function (babel) {
       },
       FunctionDeclaration: {
         enter: function (path) {
-          var node = path.node,
+          let node = path.node,
             modulePrefix = "";
           switch (path.parent.type) {
             case "Program":
@@ -371,7 +371,7 @@ module.exports = function (babel) {
               }
               programPath = programPath.parentPath;
             }
-          var id = node.id;
+          let id = node.id;
           null !== id &&
             ((id = id.name),
             isComponentishName(id) &&
@@ -391,10 +391,10 @@ module.exports = function (babel) {
               )));
         },
         exit: function (path) {
-          var node = path.node,
+          let node = path.node,
             id = node.id;
           if (null !== id) {
-            var signature = getHookCallsSignature(node);
+            const signature = getHookCallsSignature(node);
             if (null !== signature && !seenForSignature.has(node)) {
               seenForSignature.add(node);
               node = path.scope.generateUidIdentifier("_s");
@@ -408,7 +408,7 @@ module.exports = function (babel) {
                   "body",
                   t.expressionStatement(t.callExpression(node, []))
                 );
-              var insertAfterPath = null;
+              let insertAfterPath = null;
               path.find(function (p) {
                 if (p.parentPath.isBlock()) return (insertAfterPath = p), !0;
               });
@@ -431,11 +431,11 @@ module.exports = function (babel) {
       },
       "ArrowFunctionExpression|FunctionExpression": {
         exit: function (path) {
-          var node = path.node,
+          const node = path.node,
             signature = getHookCallsSignature(node);
           if (null !== signature && !seenForSignature.has(node)) {
             seenForSignature.add(node);
-            var sigCallID = path.scope.generateUidIdentifier("_s");
+            const sigCallID = path.scope.generateUidIdentifier("_s");
             path.scope.parent.push({
               id: sigCallID,
               init: t.callExpression(refreshSig, [])
@@ -451,7 +451,7 @@ module.exports = function (babel) {
                 t.expressionStatement(t.callExpression(sigCallID, []))
               );
             if ("VariableDeclarator" === path.parent.type) {
-              var insertAfterPath = null;
+              let insertAfterPath = null;
               path.find(function (p) {
                 if (p.parentPath.isBlock()) return (insertAfterPath = p), !0;
               });
@@ -481,7 +481,7 @@ module.exports = function (babel) {
         }
       },
       VariableDeclaration: function (path) {
-        var node = path.node,
+        let node = path.node,
           modulePrefix = "";
         switch (path.parent.type) {
           case "Program":
@@ -524,7 +524,7 @@ module.exports = function (babel) {
           (path = path.get("declarations")),
           1 === path.length)
         ) {
-          var declPath = path[0];
+          const declPath = path[0];
           findInnerComponents(
             modulePrefix + declPath.node.id.name,
             declPath,
@@ -553,19 +553,19 @@ module.exports = function (babel) {
           path.traverse(HookCallsVisitor);
         },
         exit: function (path) {
-          var registrations = registrationsByProgramPath.get(path);
+          const registrations = registrationsByProgramPath.get(path);
           if (void 0 !== registrations) {
-            var node = path.node;
+            const node = path.node;
             if (!seenForOutro.has(node)) {
               seenForOutro.add(node);
               registrationsByProgramPath.delete(path);
-              var declarators = [];
+              const declarators = [];
               path.pushContainer(
                 "body",
                 t.variableDeclaration("var", declarators)
               );
               registrations.forEach(function (_ref) {
-                var handle = _ref.handle;
+                const handle = _ref.handle;
                 path.pushContainer(
                   "body",
                   t.expressionStatement(

@@ -16,26 +16,26 @@
   function def(m) { return 'default' in m.exports ? m.exports.default : m.exports; }
 })(this, (function (module) {
 "use strict";
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __export = (target, all) => {
+  for (const name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+const __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/sourcemap-codec.ts
-var sourcemap_codec_exports = {};
+const sourcemap_codec_exports = {};
 __export(sourcemap_codec_exports, {
   decode: () => decode,
   decodeGeneratedRanges: () => decodeGeneratedRanges,
@@ -47,11 +47,11 @@ __export(sourcemap_codec_exports, {
 module.exports = __toCommonJS(sourcemap_codec_exports);
 
 // src/vlq.ts
-var comma = ",".charCodeAt(0);
-var semicolon = ";".charCodeAt(0);
-var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-var intToChar = new Uint8Array(64);
-var charToInt = new Uint8Array(128);
+const comma = ",".charCodeAt(0);
+const semicolon = ";".charCodeAt(0);
+const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+const intToChar = new Uint8Array(64);
+const charToInt = new Uint8Array(128);
 for (let i = 0; i < chars.length; i++) {
   const c = chars.charCodeAt(i);
   intToChar[i] = c;
@@ -91,8 +91,8 @@ function hasMoreVlq(reader, max) {
 }
 
 // src/strings.ts
-var bufLength = 1024 * 16;
-var td = typeof TextDecoder !== "undefined" ? /* @__PURE__ */ new TextDecoder() : typeof Buffer !== "undefined" ? {
+const bufLength = 1024 * 16;
+const td = typeof TextDecoder !== "undefined" ? /* @__PURE__ */ new TextDecoder() : typeof Buffer !== "undefined" ? {
   decode(buf) {
     const out = Buffer.from(buf.buffer, buf.byteOffset, buf.byteLength);
     return out.toString();
@@ -106,7 +106,7 @@ var td = typeof TextDecoder !== "undefined" ? /* @__PURE__ */ new TextDecoder() 
     return out;
   }
 };
-var StringWriter = class {
+const StringWriter = class {
   constructor() {
     this.pos = 0;
     this.out = "";
@@ -125,7 +125,7 @@ var StringWriter = class {
     return pos > 0 ? out + td.decode(buffer.subarray(0, pos)) : out;
   }
 };
-var StringReader = class {
+const StringReader = class {
   constructor(buffer) {
     this.pos = 0;
     this.buffer = buffer;
@@ -144,7 +144,7 @@ var StringReader = class {
 };
 
 // src/scopes.ts
-var EMPTY = [];
+const EMPTY = [];
 function decodeOriginalScopes(input) {
   const { length } = input;
   const reader = new StringReader(input);

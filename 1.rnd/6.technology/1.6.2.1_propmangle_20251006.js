@@ -80,9 +80,9 @@ function find_builtins(reserved) {
     domprops.forEach(add);
 
     // Compatibility fix for some standard defined globals not defined on every js environment
-    var new_globals = ["Symbol", "Map", "Promise", "Proxy", "Reflect", "Set", "WeakMap", "WeakSet"];
-    var objects = {};
-    var global_ref = typeof global === "object" ? global : self;
+    const new_globals = ["Symbol", "Map", "Promise", "Proxy", "Reflect", "Set", "WeakMap", "WeakSet"];
+    const objects = {};
+    const global_ref = typeof global === "object" ? global : self;
 
     new_globals.forEach(function (new_global) {
         objects[new_global] = global_ref[new_global] || function() {};
@@ -150,9 +150,9 @@ function addStrings(node, add) {
 }
 
 function mangle_private_properties(ast, options) {
-    var cprivate = -1;
-    var private_cache = new Map();
-    var nth_identifier = options.nth_identifier || base54;
+    let cprivate = -1;
+    const private_cache = new Map();
+    const nth_identifier = options.nth_identifier || base54;
 
     ast =  ast.transform(new TreeTransformer(function(node) {
         if (
@@ -181,7 +181,7 @@ function mangle_private_properties(ast, options) {
 }
 
 function find_annotated_props(ast) {
-    var annotated_props = new Set();
+    const annotated_props = new Set();
     walk(ast, node => {
         if (
             node instanceof AST_ClassPrivateProperty
@@ -227,41 +227,41 @@ function mangle_properties(ast, options, annotated_props = find_annotated_props(
         only_annotated: false,
     }, true);
 
-    var nth_identifier = options.nth_identifier;
+    const nth_identifier = options.nth_identifier;
 
-    var reserved_option = options.reserved;
+    let reserved_option = options.reserved;
     if (!Array.isArray(reserved_option)) reserved_option = [reserved_option];
-    var reserved = new Set(reserved_option);
+    const reserved = new Set(reserved_option);
     if (!options.builtins) find_builtins(reserved);
 
-    var cname = -1;
+    let cname = -1;
 
-    var cache;
+    let cache;
     if (options.cache) {
         cache = options.cache.props;
     } else {
         cache = new Map();
     }
 
-    var only_annotated = options.only_annotated;
-    var regex = options.regex && new RegExp(options.regex);
+    const only_annotated = options.only_annotated;
+    const regex = options.regex && new RegExp(options.regex);
 
     // note debug is either false (disabled), or a string of the debug suffix to use (enabled).
     // note debug may be enabled as an empty string, which is falsey. Also treat passing 'true'
     // the same as passing an empty string.
-    var debug = options.debug !== false;
-    var debug_name_suffix;
+    const debug = options.debug !== false;
+    let debug_name_suffix;
     if (debug) {
         debug_name_suffix = (options.debug === true ? "" : options.debug);
     }
 
-    var names_to_mangle = new Set();
-    var unmangleable = new Set();
+    const names_to_mangle = new Set();
+    const unmangleable = new Set();
     // Track each already-mangled name to prevent nth_identifier from generating
     // the same name.
     cache.forEach((mangled_name) => unmangleable.add(mangled_name));
 
-    var keep_quoted = !!options.keep_quoted;
+    const keep_quoted = !!options.keep_quoted;
 
     // step 1: find candidates to mangle
     ast.walk(new TreeWalker(function(node) {
@@ -283,9 +283,9 @@ function mangle_properties(ast, options, annotated_props = find_annotated_props(
                 add(node.key.name);
             }
         } else if (node instanceof AST_Dot) {
-            var declared = !!options.undeclared;
+            let declared = !!options.undeclared;
             if (!declared) {
-                var root = node;
+                let root = node;
                 while (root.expression) {
                     root = root.expression;
                 }
@@ -385,11 +385,11 @@ function mangle_properties(ast, options, annotated_props = find_annotated_props(
             return name;
         }
 
-        var mangled = cache.get(name);
+        let mangled = cache.get(name);
         if (!mangled) {
             if (debug) {
                 // debug mode: use a prefix and suffix to preserve readability, e.g. o.foo -> o._$foo$NNN_.
-                var debug_mangled = "_$" + name + "$" + debug_name_suffix + "_";
+                const debug_mangled = "_$" + name + "$" + debug_name_suffix + "_";
 
                 if (can_mangle(debug_mangled)) {
                     mangled = debug_mangled;
@@ -411,7 +411,7 @@ function mangle_properties(ast, options, annotated_props = find_annotated_props(
     function mangleStrings(node) {
         return node.transform(new TreeTransformer(function(node) {
             if (node instanceof AST_Sequence) {
-                var last = node.expressions.length - 1;
+                const last = node.expressions.length - 1;
                 node.expressions[last] = mangleStrings(node.expressions[last]);
             } else if (node instanceof AST_String) {
                 // Clear _KEY annotation to prevent double mangling

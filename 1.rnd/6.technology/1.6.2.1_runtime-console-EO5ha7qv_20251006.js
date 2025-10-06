@@ -11,7 +11,7 @@ import 'std-env';
 
 const UNKNOWN_TEST_ID = "__vitest__unknown_test__";
 function getTaskIdByStack(root) {
-  var _a, _b;
+  let _a, _b;
   const stack = (_a = new Error("STACK_TRACE_ERROR").stack) == null ? void 0 : _a.split("\n");
   if (!stack)
     return UNKNOWN_TEST_ID;
@@ -78,7 +78,7 @@ function createCustomConsole() {
   }
   const stdout = new Writable({
     write(data, encoding, callback) {
-      var _a, _b, _c;
+      let _a, _b, _c;
       const s = state();
       const id = ((_a = s == null ? void 0 : s.current) == null ? void 0 : _a.id) || ((_c = (_b = s == null ? void 0 : s.current) == null ? void 0 : _b.file) == null ? void 0 : _c.id) || getTaskIdByStack(s.config.root);
       let timer = timers.get(id);
@@ -100,7 +100,7 @@ function createCustomConsole() {
   });
   const stderr = new Writable({
     write(data, encoding, callback) {
-      var _a, _b, _c;
+      let _a, _b, _c;
       const s = state();
       const id = ((_a = s == null ? void 0 : s.current) == null ? void 0 : _a.id) || ((_c = (_b = s == null ? void 0 : s.current) == null ? void 0 : _b.file) == null ? void 0 : _c.id) || getTaskIdByStack(s.config.root);
       let timer = timers.get(id);

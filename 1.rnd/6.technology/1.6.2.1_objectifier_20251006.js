@@ -1,6 +1,6 @@
-let camelcase = require('camelcase-css')
+const camelcase = require('camelcase-css')
 
-let UNITLESS = {
+const UNITLESS = {
   boxFlex: true,
   boxFlexGroup: true,
   columnCount: true,
@@ -35,8 +35,8 @@ function atRule(node) {
 
 function process(node, options = {}) {
   let name
-  let result = {}
-  let { stringifyImportant } = options;
+  const result = {}
+  const { stringifyImportant } = options;
 
   node.each(child => {
     if (child.type === 'atrule') {
@@ -50,10 +50,10 @@ function process(node, options = {}) {
         result[name] = [result[name], atRule(child)]
       }
     } else if (child.type === 'rule') {
-      let body = process(child)
+      const body = process(child)
       if (result[child.selector]) {
-        for (let i in body) {
-          let object = result[child.selector];
+        for (const i in body) {
+          const object = result[child.selector];
           if (stringifyImportant && object[i] && object[i].endsWith('!important')) {
             if (body[i].endsWith('!important')) {
               object[i] = body[i]

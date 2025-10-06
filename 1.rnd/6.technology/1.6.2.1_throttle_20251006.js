@@ -6,7 +6,7 @@
  */
 function throttle(fn, freq) {
   let timestamp = 0;
-  let threshold = 1000 / freq;
+  const threshold = 1000 / freq;
   let lastArgs;
   let timer;
 

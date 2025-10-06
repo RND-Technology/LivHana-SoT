@@ -204,7 +204,7 @@ class MultiselectPrompt extends Prompt {
       return color.red('No matches for this query.');
     }
 
-    let { startIndex, endIndex } = entriesToDisplay(this.cursor, options.length, this.optionsPerPage);
+    const { startIndex, endIndex } = entriesToDisplay(this.cursor, options.length, this.optionsPerPage);
     let prefix, styledOptions = [];
 
     for (let i = startIndex; i < endIndex; i++) {

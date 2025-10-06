@@ -37,7 +37,7 @@ function hexSequence(token, offset, allowDash) {
 
         if (++hexlen > 6) {
             return 0; // too many hex digits
-        };
+        }
     }
 
     return hexlen;
@@ -148,4 +148,4 @@ export default function urange(token, getNextToken) {
     }
 
     return 0;
-};
+}

@@ -198,11 +198,11 @@
 	}
 
 	// src/vlq.ts
-	var comma = ",".charCodeAt(0);
-	var semicolon = ";".charCodeAt(0);
-	var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-	var intToChar = new Uint8Array(64);
-	var charToInt = new Uint8Array(128);
+	const comma = ",".charCodeAt(0);
+	const semicolon = ";".charCodeAt(0);
+	const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+	const intToChar = new Uint8Array(64);
+	const charToInt = new Uint8Array(128);
 	for (let i = 0; i < chars.length; i++) {
 	  const c = chars.charCodeAt(i);
 	  intToChar[i] = c;
@@ -221,8 +221,8 @@
 	}
 
 	// src/strings.ts
-	var bufLength = 1024 * 16;
-	var td = typeof TextDecoder !== "undefined" ? /* @__PURE__ */ new TextDecoder() : typeof Buffer !== "undefined" ? {
+	const bufLength = 1024 * 16;
+	const td = typeof TextDecoder !== "undefined" ? /* @__PURE__ */ new TextDecoder() : typeof Buffer !== "undefined" ? {
 	  decode(buf) {
 	    const out = Buffer.from(buf.buffer, buf.byteOffset, buf.byteLength);
 	    return out.toString();
@@ -236,7 +236,7 @@
 	    return out;
 	  }
 	};
-	var StringWriter = class {
+	const StringWriter = class {
 	  constructor() {
 	    this.pos = 0;
 	    this.out = "";

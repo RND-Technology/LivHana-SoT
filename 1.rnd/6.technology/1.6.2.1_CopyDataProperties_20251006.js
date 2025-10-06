@@ -1,23 +1,23 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
-var isObject = require('es-object-atoms/isObject');
-var callBound = require('call-bound');
-var OwnPropertyKeys = require('own-keys');
+const $TypeError = require('es-errors/type');
+const isObject = require('es-object-atoms/isObject');
+const callBound = require('call-bound');
+const OwnPropertyKeys = require('own-keys');
 
-var every = require('../helpers/every');
-var forEach = require('../helpers/forEach');
+const every = require('../helpers/every');
+const forEach = require('../helpers/forEach');
 
-var $isEnumerable = callBound('Object.prototype.propertyIsEnumerable');
+const $isEnumerable = callBound('Object.prototype.propertyIsEnumerable');
 
-var CreateDataProperty = require('./CreateDataProperty');
-var Get = require('./Get');
-var IsArray = require('./IsArray');
-var IsInteger = require('./IsInteger');
-var isPropertyKey = require('../helpers/isPropertyKey');
-var SameValue = require('./SameValue');
-var ToNumber = require('./ToNumber');
-var ToObject = require('./ToObject');
+const CreateDataProperty = require('./CreateDataProperty');
+const Get = require('./Get');
+const IsArray = require('./IsArray');
+const IsInteger = require('./IsInteger');
+const isPropertyKey = require('../helpers/isPropertyKey');
+const SameValue = require('./SameValue');
+const ToNumber = require('./ToNumber');
+const ToObject = require('./ToObject');
 
 // https://262.ecma-international.org/9.0/#sec-copydataproperties
 
@@ -34,11 +34,11 @@ module.exports = function CopyDataProperties(target, source, excludedItems) {
 		return target;
 	}
 
-	var fromObj = ToObject(source);
+	const fromObj = ToObject(source);
 
-	var sourceKeys = OwnPropertyKeys(fromObj);
+	const sourceKeys = OwnPropertyKeys(fromObj);
 	forEach(sourceKeys, function (nextKey) {
-		var excluded = false;
+		let excluded = false;
 
 		forEach(excludedItems, function (e) {
 			if (SameValue(e, nextKey) === true) {
@@ -46,14 +46,14 @@ module.exports = function CopyDataProperties(target, source, excludedItems) {
 			}
 		});
 
-		var enumerable = $isEnumerable(fromObj, nextKey) || (
+		const enumerable = $isEnumerable(fromObj, nextKey) || (
 			// this is to handle string keys being non-enumerable in older engines
 			typeof source === 'string'
 			&& nextKey >= 0
 			&& IsInteger(ToNumber(nextKey))
 		);
 		if (excluded === false && enumerable) {
-			var propValue = Get(fromObj, nextKey);
+			const propValue = Get(fromObj, nextKey);
 			CreateDataProperty(target, nextKey, propValue);
 		}
 	});

@@ -19,7 +19,7 @@ exports.cloudbuild_v1alpha2 = void 0;
 /* eslint-disable @typescript-eslint/no-namespace */
 /* eslint-disable no-irregular-whitespace */
 const googleapis_common_1 = require("googleapis-common");
-var cloudbuild_v1alpha2;
+let cloudbuild_v1alpha2;
 (function (cloudbuild_v1alpha2) {
     /**
      * Cloud Build API

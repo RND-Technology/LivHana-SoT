@@ -8,7 +8,7 @@
  * @returns {Array} Returns the array of results.
  */
 function baseTimes(n, iteratee) {
-  var index = -1,
+  let index = -1,
       result = Array(n);
 
   while (++index < n) {

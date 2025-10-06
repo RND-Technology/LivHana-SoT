@@ -30,8 +30,8 @@ exports.TSUnionType = TSUnionType;
 exports.IntersectionTypeAnnotation = exports.UnionTypeAnnotation = UnionTypeAnnotation;
 exports.UpdateExpression = UpdateExpression;
 exports.AwaitExpression = exports.YieldExpression = YieldExpression;
-var _t = require("@babel/types");
-var _index = require("./index.js");
+const _t = require("@babel/types");
+const _index = require("./index.js");
 const {
   isArrayTypeAnnotation,
   isBinaryExpression,
@@ -228,7 +228,7 @@ function LogicalExpression(node, parent) {
   }
 }
 function Identifier(node, parent, tokenContext, getRawIdentifier) {
-  var _node$extra;
+  let _node$extra;
   const parentType = parent.type;
   if ((_node$extra = node.extra) != null && _node$extra.parenthesized && parentType === "AssignmentExpression" && parent.left === node) {
     const rightType = parent.right.type;

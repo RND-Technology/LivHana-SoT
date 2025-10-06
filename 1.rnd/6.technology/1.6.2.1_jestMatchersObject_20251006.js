@@ -11,9 +11,9 @@ exports.setState =
   exports.addCustomEqualityTesters =
   exports.INTERNAL_MATCHER_FLAG =
     void 0;
-var _jestGetType = require('jest-get-type');
-var _asymmetricMatchers = require('./asymmetricMatchers');
-var Symbol = globalThis['jest-symbol-do-not-touch'] || globalThis.Symbol;
+const _jestGetType = require('jest-get-type');
+const _asymmetricMatchers = require('./asymmetricMatchers');
+const Symbol = globalThis['jest-symbol-do-not-touch'] || globalThis.Symbol;
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *

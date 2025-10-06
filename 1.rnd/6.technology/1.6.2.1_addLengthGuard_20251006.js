@@ -1,4 +1,4 @@
-var fnLengthDesc = Object.getOwnPropertyDescriptor(function () {}, 'length');
+const fnLengthDesc = Object.getOwnPropertyDescriptor(function () {}, 'length');
 
 /*!
  * Chai - addLengthGuard utility

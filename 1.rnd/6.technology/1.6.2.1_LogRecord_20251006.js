@@ -16,7 +16,7 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SeverityNumber = void 0;
-var SeverityNumber;
+let SeverityNumber;
 (function (SeverityNumber) {
     SeverityNumber[SeverityNumber["UNSPECIFIED"] = 0] = "UNSPECIFIED";
     SeverityNumber[SeverityNumber["TRACE"] = 1] = "TRACE";

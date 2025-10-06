@@ -4,13 +4,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = _createForOfIteratorHelperLoose;
-var _unsupportedIterableToArray = require("./unsupportedIterableToArray.js");
+const _unsupportedIterableToArray = require("./unsupportedIterableToArray.js");
 function _createForOfIteratorHelperLoose(o, allowArrayLike) {
-  var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"];
+  let it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"];
   if (it) return (it = it.call(o)).next.bind(it);
   if (Array.isArray(o) || (it = (0, _unsupportedIterableToArray.default)(o)) || allowArrayLike && o && typeof o.length === "number") {
     if (it) o = it;
-    var i = 0;
+    let i = 0;
     return function () {
       if (i >= o.length) {
         return {

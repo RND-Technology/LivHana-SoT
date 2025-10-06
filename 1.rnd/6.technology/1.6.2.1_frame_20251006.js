@@ -1,23 +1,23 @@
 "use strict";
-var __create = Object.create;
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getProtoOf = Object.getPrototypeOf;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
+const __create = Object.create;
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __getProtoOf = Object.getPrototypeOf;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __export = (target, all) => {
+  for (const name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+const __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
   // If the importer is in node compatibility mode or this is not an ESM
   // file that has been converted to a CommonJS file using a Babel-
   // compatible transform (i.e. "__esModule" has not been set), then set
@@ -25,27 +25,27 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
   mod
 ));
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var frame_exports = {};
+const __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+const frame_exports = {};
 __export(frame_exports, {
   Frame: () => Frame,
   verifyLoadState: () => verifyLoadState
 });
 module.exports = __toCommonJS(frame_exports);
-var import_eventEmitter = require("./eventEmitter");
-var import_channelOwner = require("./channelOwner");
-var import_clientHelper = require("./clientHelper");
-var import_elementHandle = require("./elementHandle");
-var import_events = require("./events");
-var import_jsHandle = require("./jsHandle");
-var import_locator = require("./locator");
-var network = __toESM(require("./network"));
-var import_types = require("./types");
-var import_waiter = require("./waiter");
-var import_assert = require("../utils/isomorphic/assert");
-var import_locatorUtils = require("../utils/isomorphic/locatorUtils");
-var import_urlMatch = require("../utils/isomorphic/urlMatch");
-var import_timeoutSettings = require("./timeoutSettings");
+const import_eventEmitter = require("./eventEmitter");
+const import_channelOwner = require("./channelOwner");
+const import_clientHelper = require("./clientHelper");
+const import_elementHandle = require("./elementHandle");
+const import_events = require("./events");
+const import_jsHandle = require("./jsHandle");
+const import_locator = require("./locator");
+const network = __toESM(require("./network"));
+const import_types = require("./types");
+const import_waiter = require("./waiter");
+const import_assert = require("../utils/isomorphic/assert");
+const import_locatorUtils = require("../utils/isomorphic/locatorUtils");
+const import_urlMatch = require("../utils/isomorphic/urlMatch");
+const import_timeoutSettings = require("./timeoutSettings");
 class Frame extends import_channelOwner.ChannelOwner {
   constructor(parent, type, guid, initializer) {
     super(parent, type, guid, initializer);

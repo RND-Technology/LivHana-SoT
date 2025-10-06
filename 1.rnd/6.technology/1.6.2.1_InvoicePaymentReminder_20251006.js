@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
 exports.invoicePaymentReminderSchema = void 0;
-var schema_1 = require("../schema");
+const schema_1 = require("../schema");
 exports.invoicePaymentReminderSchema = (0, schema_1.object)({
     uid: ['uid', (0, schema_1.optional)((0, schema_1.string)())],
     relativeScheduledDays: [

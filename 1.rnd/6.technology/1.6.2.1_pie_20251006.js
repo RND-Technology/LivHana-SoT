@@ -5,48 +5,48 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Pie = Pie;
 exports.computePieSectors = computePieSectors;
-var _react = _interopRequireWildcard(require("react"));
-var React = _react;
-var _get = _interopRequireDefault(require("es-toolkit/compat/get"));
-var _clsx = require("clsx");
-var _pieSelectors = require("../state/selectors/pieSelectors");
-var _hooks = require("../state/hooks");
-var _Layer = require("../container/Layer");
-var _Curve = require("../shape/Curve");
-var _Text = require("../component/Text");
-var _Cell = require("../component/Cell");
-var _ReactUtils = require("../util/ReactUtils");
-var _Global = require("../util/Global");
-var _PolarUtils = require("../util/PolarUtils");
-var _DataUtils = require("../util/DataUtils");
-var _ChartUtils = require("../util/ChartUtils");
-var _types = require("../util/types");
-var _ActiveShapeUtils = require("../util/ActiveShapeUtils");
-var _tooltipContext = require("../context/tooltipContext");
-var _SetTooltipEntrySettings = require("../state/SetTooltipEntrySettings");
-var _tooltipSelectors = require("../state/selectors/tooltipSelectors");
-var _SetLegendPayload = require("../state/SetLegendPayload");
-var _Constants = require("../util/Constants");
-var _useAnimationId = require("../util/useAnimationId");
-var _resolveDefaultProps = require("../util/resolveDefaultProps");
-var _RegisterGraphicalItemId = require("../context/RegisterGraphicalItemId");
-var _SetGraphicalItem = require("../state/SetGraphicalItem");
-var _svgPropertiesNoEvents = require("../util/svgPropertiesNoEvents");
-var _JavascriptAnimate = require("../animation/JavascriptAnimate");
-var _LabelList = require("../component/LabelList");
-var _excluded = ["onMouseEnter", "onClick", "onMouseLeave"],
+const _react = _interopRequireWildcard(require("react"));
+const React = _react;
+const _get = _interopRequireDefault(require("es-toolkit/compat/get"));
+const _clsx = require("clsx");
+const _pieSelectors = require("../state/selectors/pieSelectors");
+const _hooks = require("../state/hooks");
+const _Layer = require("../container/Layer");
+const _Curve = require("../shape/Curve");
+const _Text = require("../component/Text");
+const _Cell = require("../component/Cell");
+const _ReactUtils = require("../util/ReactUtils");
+const _Global = require("../util/Global");
+const _PolarUtils = require("../util/PolarUtils");
+const _DataUtils = require("../util/DataUtils");
+const _ChartUtils = require("../util/ChartUtils");
+const _types = require("../util/types");
+const _ActiveShapeUtils = require("../util/ActiveShapeUtils");
+const _tooltipContext = require("../context/tooltipContext");
+const _SetTooltipEntrySettings = require("../state/SetTooltipEntrySettings");
+const _tooltipSelectors = require("../state/selectors/tooltipSelectors");
+const _SetLegendPayload = require("../state/SetLegendPayload");
+const _Constants = require("../util/Constants");
+const _useAnimationId = require("../util/useAnimationId");
+const _resolveDefaultProps = require("../util/resolveDefaultProps");
+const _RegisterGraphicalItemId = require("../context/RegisterGraphicalItemId");
+const _SetGraphicalItem = require("../state/SetGraphicalItem");
+const _svgPropertiesNoEvents = require("../util/svgPropertiesNoEvents");
+const _JavascriptAnimate = require("../animation/JavascriptAnimate");
+const _LabelList = require("../component/LabelList");
+const _excluded = ["onMouseEnter", "onClick", "onMouseLeave"],
   _excluded2 = ["id"],
   _excluded3 = ["id"];
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
-function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
-function _objectWithoutProperties(e, t) { if (null == e) return {}; var o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { var n = Object.getOwnPropertySymbols(e); for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
-function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t = {}; for (var n in r) if ({}.hasOwnProperty.call(r, n)) { if (-1 !== e.indexOf(n)) continue; t[n] = r[n]; } return t; }
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; let o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (const _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
+function _objectWithoutProperties(e, t) { if (null == e) return {}; let o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { const n = Object.getOwnPropertySymbols(e); for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
+function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; const t = {}; for (const n in r) if ({}.hasOwnProperty.call(r, n)) { if (-1 !== e.indexOf(n)) continue; t[n] = r[n]; } return t; }
+function ownKeys(e, r) { const t = Object.keys(e); if (Object.getOwnPropertySymbols) { let o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (let r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+function _toPropertyKey(t) { const i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; const e = t[Symbol.toPrimitive]; if (void 0 !== e) { const i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (let e = 1; e < arguments.length; e++) { const t = arguments[e]; for (const r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 /**
  * The `label` prop in Pie accepts a variety of alternatives.
  */
@@ -56,8 +56,8 @@ function _extends() { return _extends = Object.assign ? Object.assign.bind() : f
  */
 
 function SetPiePayloadLegend(props) {
-  var cells = (0, _react.useMemo)(() => (0, _ReactUtils.findAllByType)(props.children, _Cell.Cell), [props.children]);
-  var legendPayload = (0, _hooks.useAppSelector)(state => (0, _pieSelectors.selectPieLegend)(state, props.id, cells));
+  const cells = (0, _react.useMemo)(() => (0, _ReactUtils.findAllByType)(props.children, _Cell.Cell), [props.children]);
+  const legendPayload = (0, _hooks.useAppSelector)(state => (0, _pieSelectors.selectPieLegend)(state, props.id, cells));
   if (legendPayload == null) {
     return null;
   }
@@ -66,7 +66,7 @@ function SetPiePayloadLegend(props) {
   });
 }
 function getTooltipEntrySettings(props) {
-  var {
+  const {
     dataKey,
     nameKey,
     sectors,
@@ -94,7 +94,7 @@ function getTooltipEntrySettings(props) {
     }
   };
 }
-var getTextAnchor = (x, cx) => {
+const getTextAnchor = (x, cx) => {
   if (x > cx) {
     return 'start';
   }
@@ -103,25 +103,25 @@ var getTextAnchor = (x, cx) => {
   }
   return 'middle';
 };
-var getOuterRadius = (dataPoint, outerRadius, maxPieRadius) => {
+const getOuterRadius = (dataPoint, outerRadius, maxPieRadius) => {
   if (typeof outerRadius === 'function') {
     return (0, _DataUtils.getPercentValue)(outerRadius(dataPoint), maxPieRadius, maxPieRadius * 0.8);
   }
   return (0, _DataUtils.getPercentValue)(outerRadius, maxPieRadius, maxPieRadius * 0.8);
 };
-var parseCoordinateOfPie = (pieSettings, offset, dataPoint) => {
-  var {
+const parseCoordinateOfPie = (pieSettings, offset, dataPoint) => {
+  const {
     top,
     left,
     width,
     height
   } = offset;
-  var maxPieRadius = (0, _PolarUtils.getMaxRadius)(width, height);
-  var cx = left + (0, _DataUtils.getPercentValue)(pieSettings.cx, width, width / 2);
-  var cy = top + (0, _DataUtils.getPercentValue)(pieSettings.cy, height, height / 2);
-  var innerRadius = (0, _DataUtils.getPercentValue)(pieSettings.innerRadius, maxPieRadius, 0);
-  var outerRadius = getOuterRadius(dataPoint, pieSettings.outerRadius, maxPieRadius);
-  var maxRadius = pieSettings.maxRadius || Math.sqrt(width * width + height * height) / 2;
+  const maxPieRadius = (0, _PolarUtils.getMaxRadius)(width, height);
+  const cx = left + (0, _DataUtils.getPercentValue)(pieSettings.cx, width, width / 2);
+  const cy = top + (0, _DataUtils.getPercentValue)(pieSettings.cy, height, height / 2);
+  const innerRadius = (0, _DataUtils.getPercentValue)(pieSettings.innerRadius, maxPieRadius, 0);
+  const outerRadius = getOuterRadius(dataPoint, pieSettings.outerRadius, maxPieRadius);
+  const maxRadius = pieSettings.maxRadius || Math.sqrt(width * width + height * height) / 2;
   return {
     cx,
     cy,
@@ -130,9 +130,9 @@ var parseCoordinateOfPie = (pieSettings, offset, dataPoint) => {
     maxRadius
   };
 };
-var parseDeltaAngle = (startAngle, endAngle) => {
-  var sign = (0, _DataUtils.mathSign)(endAngle - startAngle);
-  var deltaAngle = Math.min(Math.abs(endAngle - startAngle), 360);
+const parseDeltaAngle = (startAngle, endAngle) => {
+  const sign = (0, _DataUtils.mathSign)(endAngle - startAngle);
+  const deltaAngle = Math.min(Math.abs(endAngle - startAngle), 360);
   return sign * deltaAngle;
 };
 function getClassNamePropertyIfExists(u) {
@@ -141,44 +141,44 @@ function getClassNamePropertyIfExists(u) {
   }
   return '';
 }
-var renderLabelLineItem = (option, props) => {
+const renderLabelLineItem = (option, props) => {
   if (/*#__PURE__*/React.isValidElement(option)) {
     return /*#__PURE__*/React.cloneElement(option, props);
   }
   if (typeof option === 'function') {
     return option(props);
   }
-  var className = (0, _clsx.clsx)('recharts-pie-label-line', typeof option !== 'boolean' ? option.className : '');
+  const className = (0, _clsx.clsx)('recharts-pie-label-line', typeof option !== 'boolean' ? option.className : '');
   return /*#__PURE__*/React.createElement(_Curve.Curve, _extends({}, props, {
     type: "linear",
     className: className
   }));
 };
-var renderLabelItem = (option, props, value) => {
+const renderLabelItem = (option, props, value) => {
   if (/*#__PURE__*/React.isValidElement(option)) {
     // @ts-expect-error element cloning is not typed
     return /*#__PURE__*/React.cloneElement(option, props);
   }
-  var label = value;
+  let label = value;
   if (typeof option === 'function') {
     label = option(props);
     if (/*#__PURE__*/React.isValidElement(label)) {
       return label;
     }
   }
-  var className = (0, _clsx.clsx)('recharts-pie-label-text', getClassNamePropertyIfExists(option));
+  const className = (0, _clsx.clsx)('recharts-pie-label-text', getClassNamePropertyIfExists(option));
   return /*#__PURE__*/React.createElement(_Text.Text, _extends({}, props, {
     alignmentBaseline: "middle",
     className: className
   }), label);
 };
 function PieLabels(_ref) {
-  var {
+  const {
     sectors,
     props,
     showLabels
   } = _ref;
-  var {
+  const {
     label,
     labelLine,
     dataKey
@@ -186,20 +186,20 @@ function PieLabels(_ref) {
   if (!showLabels || !label || !sectors) {
     return null;
   }
-  var pieProps = (0, _svgPropertiesNoEvents.svgPropertiesNoEvents)(props);
-  var customLabelProps = (0, _ReactUtils.filterProps)(label, false);
-  var customLabelLineProps = (0, _ReactUtils.filterProps)(labelLine, false);
-  var offsetRadius = typeof label === 'object' && 'offsetRadius' in label && typeof label.offsetRadius === 'number' && label.offsetRadius || 20;
-  var labels = sectors.map((entry, i) => {
-    var midAngle = (entry.startAngle + entry.endAngle) / 2;
-    var endPoint = (0, _PolarUtils.polarToCartesian)(entry.cx, entry.cy, entry.outerRadius + offsetRadius, midAngle);
-    var labelProps = _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, pieProps), entry), {}, {
+  const pieProps = (0, _svgPropertiesNoEvents.svgPropertiesNoEvents)(props);
+  const customLabelProps = (0, _ReactUtils.filterProps)(label, false);
+  const customLabelLineProps = (0, _ReactUtils.filterProps)(labelLine, false);
+  const offsetRadius = typeof label === 'object' && 'offsetRadius' in label && typeof label.offsetRadius === 'number' && label.offsetRadius || 20;
+  const labels = sectors.map((entry, i) => {
+    const midAngle = (entry.startAngle + entry.endAngle) / 2;
+    const endPoint = (0, _PolarUtils.polarToCartesian)(entry.cx, entry.cy, entry.outerRadius + offsetRadius, midAngle);
+    const labelProps = _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, pieProps), entry), {}, {
       stroke: 'none'
     }, customLabelProps), {}, {
       index: i,
       textAnchor: getTextAnchor(endPoint.x, entry.cx)
     }, endPoint);
-    var lineProps = _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, pieProps), entry), {}, {
+    const lineProps = _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, pieProps), entry), {}, {
       fill: 'none',
       stroke: entry.fill
     }, customLabelLineProps), {}, {
@@ -220,12 +220,12 @@ function PieLabels(_ref) {
   }, labels);
 }
 function PieLabelList(_ref2) {
-  var {
+  const {
     sectors,
     props,
     showLabels
   } = _ref2;
-  var {
+  const {
     label
   } = props;
   if (typeof label === 'object' && label != null && 'position' in label) {
@@ -240,31 +240,31 @@ function PieLabelList(_ref2) {
   });
 }
 function PieSectors(props) {
-  var {
+  const {
     sectors,
     activeShape,
     inactiveShape: inactiveShapeProp,
     allOtherPieProps
   } = props;
-  var activeIndex = (0, _hooks.useAppSelector)(_tooltipSelectors.selectActiveTooltipIndex);
-  var {
+  const activeIndex = (0, _hooks.useAppSelector)(_tooltipSelectors.selectActiveTooltipIndex);
+  let {
       onMouseEnter: onMouseEnterFromProps,
       onClick: onItemClickFromProps,
       onMouseLeave: onMouseLeaveFromProps
     } = allOtherPieProps,
     restOfAllOtherProps = _objectWithoutProperties(allOtherPieProps, _excluded);
-  var onMouseEnterFromContext = (0, _tooltipContext.useMouseEnterItemDispatch)(onMouseEnterFromProps, allOtherPieProps.dataKey);
-  var onMouseLeaveFromContext = (0, _tooltipContext.useMouseLeaveItemDispatch)(onMouseLeaveFromProps);
-  var onClickFromContext = (0, _tooltipContext.useMouseClickItemDispatch)(onItemClickFromProps, allOtherPieProps.dataKey);
+  const onMouseEnterFromContext = (0, _tooltipContext.useMouseEnterItemDispatch)(onMouseEnterFromProps, allOtherPieProps.dataKey);
+  const onMouseLeaveFromContext = (0, _tooltipContext.useMouseLeaveItemDispatch)(onMouseLeaveFromProps);
+  const onClickFromContext = (0, _tooltipContext.useMouseClickItemDispatch)(onItemClickFromProps, allOtherPieProps.dataKey);
   if (sectors == null || sectors.length === 0) {
     return null;
   }
   return /*#__PURE__*/React.createElement(React.Fragment, null, sectors.map((entry, i) => {
     if ((entry === null || entry === void 0 ? void 0 : entry.startAngle) === 0 && (entry === null || entry === void 0 ? void 0 : entry.endAngle) === 0 && sectors.length !== 1) return null;
-    var isSectorActive = activeShape && String(i) === activeIndex;
-    var inactiveShape = activeIndex ? inactiveShapeProp : null;
-    var sectorOptions = isSectorActive ? activeShape : inactiveShape;
-    var sectorProps = _objectSpread(_objectSpread({}, entry), {}, {
+    const isSectorActive = activeShape && String(i) === activeIndex;
+    const inactiveShape = activeIndex ? inactiveShapeProp : null;
+    const sectorOptions = isSectorActive ? activeShape : inactiveShape;
+    const sectorProps = _objectSpread(_objectSpread({}, entry), {}, {
       stroke: entry.stroke,
       tabIndex: -1,
       [_Constants.DATA_ITEM_INDEX_ATTRIBUTE_NAME]: i,
@@ -293,14 +293,14 @@ function PieSectors(props) {
   }));
 }
 function computePieSectors(_ref3) {
-  var _pieSettings$paddingA;
-  var {
+  let _pieSettings$paddingA;
+  const {
     pieSettings,
     displayedData,
     cells,
     offset
   } = _ref3;
-  var {
+  const {
     cornerRadius,
     startAngle,
     endAngle,
@@ -308,45 +308,45 @@ function computePieSectors(_ref3) {
     nameKey,
     tooltipType
   } = pieSettings;
-  var minAngle = Math.abs(pieSettings.minAngle);
-  var deltaAngle = parseDeltaAngle(startAngle, endAngle);
-  var absDeltaAngle = Math.abs(deltaAngle);
-  var paddingAngle = displayedData.length <= 1 ? 0 : (_pieSettings$paddingA = pieSettings.paddingAngle) !== null && _pieSettings$paddingA !== void 0 ? _pieSettings$paddingA : 0;
-  var notZeroItemCount = displayedData.filter(entry => (0, _ChartUtils.getValueByDataKey)(entry, dataKey, 0) !== 0).length;
-  var totalPaddingAngle = (absDeltaAngle >= 360 ? notZeroItemCount : notZeroItemCount - 1) * paddingAngle;
-  var realTotalAngle = absDeltaAngle - notZeroItemCount * minAngle - totalPaddingAngle;
-  var sum = displayedData.reduce((result, entry) => {
-    var val = (0, _ChartUtils.getValueByDataKey)(entry, dataKey, 0);
+  const minAngle = Math.abs(pieSettings.minAngle);
+  const deltaAngle = parseDeltaAngle(startAngle, endAngle);
+  const absDeltaAngle = Math.abs(deltaAngle);
+  const paddingAngle = displayedData.length <= 1 ? 0 : (_pieSettings$paddingA = pieSettings.paddingAngle) !== null && _pieSettings$paddingA !== void 0 ? _pieSettings$paddingA : 0;
+  const notZeroItemCount = displayedData.filter(entry => (0, _ChartUtils.getValueByDataKey)(entry, dataKey, 0) !== 0).length;
+  const totalPaddingAngle = (absDeltaAngle >= 360 ? notZeroItemCount : notZeroItemCount - 1) * paddingAngle;
+  const realTotalAngle = absDeltaAngle - notZeroItemCount * minAngle - totalPaddingAngle;
+  const sum = displayedData.reduce((result, entry) => {
+    const val = (0, _ChartUtils.getValueByDataKey)(entry, dataKey, 0);
     return result + ((0, _DataUtils.isNumber)(val) ? val : 0);
   }, 0);
-  var sectors;
+  let sectors;
   if (sum > 0) {
-    var prev;
+    let prev;
     sectors = displayedData.map((entry, i) => {
       // @ts-expect-error getValueByDataKey does not validate the output type
-      var val = (0, _ChartUtils.getValueByDataKey)(entry, dataKey, 0);
+      const val = (0, _ChartUtils.getValueByDataKey)(entry, dataKey, 0);
       // @ts-expect-error getValueByDataKey does not validate the output type
-      var name = (0, _ChartUtils.getValueByDataKey)(entry, nameKey, i);
-      var coordinate = parseCoordinateOfPie(pieSettings, offset, entry);
-      var percent = ((0, _DataUtils.isNumber)(val) ? val : 0) / sum;
-      var tempStartAngle;
-      var entryWithCellInfo = _objectSpread(_objectSpread({}, entry), cells && cells[i] && cells[i].props);
+      const name = (0, _ChartUtils.getValueByDataKey)(entry, nameKey, i);
+      const coordinate = parseCoordinateOfPie(pieSettings, offset, entry);
+      const percent = ((0, _DataUtils.isNumber)(val) ? val : 0) / sum;
+      let tempStartAngle;
+      const entryWithCellInfo = _objectSpread(_objectSpread({}, entry), cells && cells[i] && cells[i].props);
       if (i) {
         tempStartAngle = prev.endAngle + (0, _DataUtils.mathSign)(deltaAngle) * paddingAngle * (val !== 0 ? 1 : 0);
       } else {
         tempStartAngle = startAngle;
       }
-      var tempEndAngle = tempStartAngle + (0, _DataUtils.mathSign)(deltaAngle) * ((val !== 0 ? minAngle : 0) + percent * realTotalAngle);
-      var midAngle = (tempStartAngle + tempEndAngle) / 2;
-      var middleRadius = (coordinate.innerRadius + coordinate.outerRadius) / 2;
-      var tooltipPayload = [{
+      const tempEndAngle = tempStartAngle + (0, _DataUtils.mathSign)(deltaAngle) * ((val !== 0 ? minAngle : 0) + percent * realTotalAngle);
+      const midAngle = (tempStartAngle + tempEndAngle) / 2;
+      const middleRadius = (coordinate.innerRadius + coordinate.outerRadius) / 2;
+      const tooltipPayload = [{
         name,
         value: val,
         payload: entryWithCellInfo,
         dataKey,
         type: tooltipType
       }];
-      var tooltipPosition = (0, _PolarUtils.polarToCartesian)(coordinate.cx, coordinate.cy, middleRadius, midAngle);
+      const tooltipPosition = (0, _PolarUtils.polarToCartesian)(coordinate.cx, coordinate.cy, middleRadius, midAngle);
       prev = _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, pieSettings.presentationProps), {}, {
         percent,
         cornerRadius,
@@ -368,12 +368,12 @@ function computePieSectors(_ref3) {
   return sectors;
 }
 function PieLabelListProvider(_ref4) {
-  var {
+  const {
     showLabels,
     sectors,
     children
   } = _ref4;
-  var labelListEntries = (0, _react.useMemo)(() => {
+  const labelListEntries = (0, _react.useMemo)(() => {
     if (!showLabels || !sectors) {
       return [];
     }
@@ -399,11 +399,11 @@ function PieLabelListProvider(_ref4) {
   }, children);
 }
 function SectorsWithAnimation(_ref5) {
-  var {
+  const {
     props,
     previousSectorsRef
   } = _ref5;
-  var {
+  const {
     sectors,
     isAnimationActive,
     animationBegin,
@@ -414,16 +414,16 @@ function SectorsWithAnimation(_ref5) {
     onAnimationStart,
     onAnimationEnd
   } = props;
-  var animationId = (0, _useAnimationId.useAnimationId)(props, 'recharts-pie-');
-  var prevSectors = previousSectorsRef.current;
-  var [isAnimating, setIsAnimating] = (0, _react.useState)(false);
-  var handleAnimationEnd = (0, _react.useCallback)(() => {
+  const animationId = (0, _useAnimationId.useAnimationId)(props, 'recharts-pie-');
+  const prevSectors = previousSectorsRef.current;
+  const [isAnimating, setIsAnimating] = (0, _react.useState)(false);
+  const handleAnimationEnd = (0, _react.useCallback)(() => {
     if (typeof onAnimationEnd === 'function') {
       onAnimationEnd();
     }
     setIsAnimating(false);
   }, [onAnimationEnd]);
-  var handleAnimationStart = (0, _react.useCallback)(() => {
+  const handleAnimationStart = (0, _react.useCallback)(() => {
     if (typeof onAnimationStart === 'function') {
       onAnimationStart();
     }
@@ -442,27 +442,27 @@ function SectorsWithAnimation(_ref5) {
     onAnimationEnd: handleAnimationEnd,
     key: animationId
   }, t => {
-    var stepData = [];
-    var first = sectors && sectors[0];
-    var curAngle = first === null || first === void 0 ? void 0 : first.startAngle;
+    const stepData = [];
+    const first = sectors && sectors[0];
+    let curAngle = first === null || first === void 0 ? void 0 : first.startAngle;
     sectors === null || sectors === void 0 || sectors.forEach((entry, index) => {
-      var prev = prevSectors && prevSectors[index];
-      var paddingAngle = index > 0 ? (0, _get.default)(entry, 'paddingAngle', 0) : 0;
+      const prev = prevSectors && prevSectors[index];
+      const paddingAngle = index > 0 ? (0, _get.default)(entry, 'paddingAngle', 0) : 0;
       if (prev) {
-        var angle = (0, _DataUtils.interpolate)(prev.endAngle - prev.startAngle, entry.endAngle - entry.startAngle, t);
-        var latest = _objectSpread(_objectSpread({}, entry), {}, {
+        const angle = (0, _DataUtils.interpolate)(prev.endAngle - prev.startAngle, entry.endAngle - entry.startAngle, t);
+        const latest = _objectSpread(_objectSpread({}, entry), {}, {
           startAngle: curAngle + paddingAngle,
           endAngle: curAngle + angle + paddingAngle
         });
         stepData.push(latest);
         curAngle = latest.endAngle;
       } else {
-        var {
+        const {
           endAngle,
           startAngle
         } = entry;
-        var deltaAngle = (0, _DataUtils.interpolate)(0, endAngle - startAngle, t);
-        var _latest = _objectSpread(_objectSpread({}, entry), {}, {
+        const deltaAngle = (0, _DataUtils.interpolate)(0, endAngle - startAngle, t);
+        const _latest = _objectSpread(_objectSpread({}, entry), {}, {
           startAngle: curAngle + paddingAngle,
           endAngle: curAngle + deltaAngle + paddingAngle
         });
@@ -485,7 +485,7 @@ function SectorsWithAnimation(_ref5) {
     props: props
   }), props.children);
 }
-var defaultPieProps = {
+const defaultPieProps = {
   animationBegin: 400,
   animationDuration: 1500,
   animationEasing: 'ease',
@@ -508,19 +508,19 @@ var defaultPieProps = {
   stroke: '#fff'
 };
 function PieImpl(props) {
-  var {
+  let {
       id
     } = props,
     propsWithoutId = _objectWithoutProperties(props, _excluded2);
-  var {
+  const {
     hide,
     className,
     rootTabIndex
   } = props;
-  var cells = (0, _react.useMemo)(() => (0, _ReactUtils.findAllByType)(props.children, _Cell.Cell), [props.children]);
-  var sectors = (0, _hooks.useAppSelector)(state => (0, _pieSelectors.selectPieSectors)(state, id, cells));
-  var previousSectorsRef = (0, _react.useRef)(null);
-  var layerClass = (0, _clsx.clsx)('recharts-pie', className);
+  const cells = (0, _react.useMemo)(() => (0, _ReactUtils.findAllByType)(props.children, _Cell.Cell), [props.children]);
+  const sectors = (0, _hooks.useAppSelector)(state => (0, _pieSelectors.selectPieSectors)(state, id, cells));
+  const previousSectorsRef = (0, _react.useRef)(null);
+  const layerClass = (0, _clsx.clsx)('recharts-pie', className);
   if (hide || sectors == null) {
     previousSectorsRef.current = null;
     return /*#__PURE__*/React.createElement(_Layer.Layer, {
@@ -544,12 +544,12 @@ function PieImpl(props) {
   })));
 }
 function Pie(outsideProps) {
-  var props = (0, _resolveDefaultProps.resolveDefaultProps)(outsideProps, defaultPieProps);
-  var {
+  const props = (0, _resolveDefaultProps.resolveDefaultProps)(outsideProps, defaultPieProps);
+  let {
       id: externalId
     } = props,
     propsWithoutId = _objectWithoutProperties(props, _excluded3);
-  var presentationProps = (0, _svgPropertiesNoEvents.svgPropertiesNoEvents)(propsWithoutId);
+  const presentationProps = (0, _svgPropertiesNoEvents.svgPropertiesNoEvents)(propsWithoutId);
   return /*#__PURE__*/React.createElement(_RegisterGraphicalItemId.RegisterGraphicalItemId, {
     id: externalId,
     type: "pie"

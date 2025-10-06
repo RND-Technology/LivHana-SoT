@@ -2,7 +2,7 @@ import curveRadial, {curveRadialLinear} from "./curve/radial.js";
 import line from "./line.js";
 
 export function lineRadial(l) {
-  var c = l.curve;
+  const c = l.curve;
 
   l.angle = l.x, delete l.x;
   l.radius = l.y, delete l.y;

@@ -1,7 +1,7 @@
 "use strict";
 
-var refute = require("@sinonjs/referee-sinon").refute;
-var copyPrototypeMethods = require("./copy-prototype-methods");
+const refute = require("@sinonjs/referee-sinon").refute;
+const copyPrototypeMethods = require("./copy-prototype-methods");
 
 describe("copyPrototypeMethods", function () {
     it("does not throw for Map", function () {

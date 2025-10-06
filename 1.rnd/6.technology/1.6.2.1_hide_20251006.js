@@ -24,21 +24,21 @@ function isAnySideFullyClipped(overflow) {
 }
 
 function hide(_ref) {
-  var state = _ref.state,
+  const state = _ref.state,
       name = _ref.name;
-  var referenceRect = state.rects.reference;
-  var popperRect = state.rects.popper;
-  var preventedOffsets = state.modifiersData.preventOverflow;
-  var referenceOverflow = detectOverflow(state, {
+  const referenceRect = state.rects.reference;
+  const popperRect = state.rects.popper;
+  const preventedOffsets = state.modifiersData.preventOverflow;
+  const referenceOverflow = detectOverflow(state, {
     elementContext: 'reference'
   });
-  var popperAltOverflow = detectOverflow(state, {
+  const popperAltOverflow = detectOverflow(state, {
     altBoundary: true
   });
-  var referenceClippingOffsets = getSideOffsets(referenceOverflow, referenceRect);
-  var popperEscapeOffsets = getSideOffsets(popperAltOverflow, popperRect, preventedOffsets);
-  var isReferenceHidden = isAnySideFullyClipped(referenceClippingOffsets);
-  var hasPopperEscaped = isAnySideFullyClipped(popperEscapeOffsets);
+  const referenceClippingOffsets = getSideOffsets(referenceOverflow, referenceRect);
+  const popperEscapeOffsets = getSideOffsets(popperAltOverflow, popperRect, preventedOffsets);
+  const isReferenceHidden = isAnySideFullyClipped(referenceClippingOffsets);
+  const hasPopperEscaped = isAnySideFullyClipped(popperEscapeOffsets);
   state.modifiersData[name] = {
     referenceClippingOffsets: referenceClippingOffsets,
     popperEscapeOffsets: popperEscapeOffsets,

@@ -1,4 +1,4 @@
-var eaw = {};
+const eaw = {};
 
 if ('undefined' == typeof module) {
   window.eastasianwidth = eaw;
@@ -7,9 +7,9 @@ if ('undefined' == typeof module) {
 }
 
 eaw.eastAsianWidth = function(character) {
-  var x = character.charCodeAt(0);
-  var y = (character.length == 2) ? character.charCodeAt(1) : 0;
-  var codePoint = x;
+  let x = character.charCodeAt(0);
+  let y = (character.length == 2) ? character.charCodeAt(1) : 0;
+  let codePoint = x;
   if ((0xD800 <= x && x <= 0xDBFF) && (0xDC00 <= y && y <= 0xDFFF)) {
     x &= 0x3FF;
     y &= 0x3FF;
@@ -260,7 +260,7 @@ eaw.eastAsianWidth = function(character) {
 };
 
 eaw.characterLength = function(character) {
-  var code = this.eastAsianWidth(character);
+  const code = this.eastAsianWidth(character);
   if (code == 'F' || code == 'W' || code == 'A') {
     return 2;
   } else {
@@ -274,9 +274,9 @@ function stringToArray(string) {
 }
 
 eaw.length = function(string) {
-  var characters = stringToArray(string);
-  var len = 0;
-  for (var i = 0; i < characters.length; i++) {
+  const characters = stringToArray(string);
+  let len = 0;
+  for (let i = 0; i < characters.length; i++) {
     len = len + this.characterLength(characters[i]);
   }
   return len;
@@ -292,12 +292,12 @@ eaw.slice = function(text, start, end) {
   if (end < 0) {
       end = textLen + end;
   }
-  var result = '';
-  var eawLen = 0;
-  var chars = stringToArray(text);
-  for (var i = 0; i < chars.length; i++) {
-    var char = chars[i];
-    var charLen = eaw.length(char);
+  let result = '';
+  let eawLen = 0;
+  const chars = stringToArray(text);
+  for (let i = 0; i < chars.length; i++) {
+    const char = chars[i];
+    const charLen = eaw.length(char);
     if (eawLen >= start - (charLen == 2 ? 1 : 0)) {
         if (eawLen + charLen <= end) {
             result += char;

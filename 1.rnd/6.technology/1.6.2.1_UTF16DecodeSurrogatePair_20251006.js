@@ -1,12 +1,12 @@
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+const GetIntrinsic = require('get-intrinsic');
 
-var $TypeError = require('es-errors/type');
-var $fromCharCode = GetIntrinsic('%String.fromCharCode%');
+const $TypeError = require('es-errors/type');
+const $fromCharCode = GetIntrinsic('%String.fromCharCode%');
 
-var isLeadingSurrogate = require('../helpers/isLeadingSurrogate');
-var isTrailingSurrogate = require('../helpers/isTrailingSurrogate');
+const isLeadingSurrogate = require('../helpers/isLeadingSurrogate');
+const isTrailingSurrogate = require('../helpers/isTrailingSurrogate');
 
 // https://262.ecma-international.org/11.0/#sec-utf16decodesurrogatepair
 

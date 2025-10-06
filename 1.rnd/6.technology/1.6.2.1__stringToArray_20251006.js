@@ -1,4 +1,4 @@
-var asciiToArray = require('./_asciiToArray'),
+const asciiToArray = require('./_asciiToArray'),
     hasUnicode = require('./_hasUnicode'),
     unicodeToArray = require('./_unicodeToArray');
 

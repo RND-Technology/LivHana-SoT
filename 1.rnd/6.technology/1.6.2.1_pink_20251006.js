@@ -20,4 +20,4 @@ const pink = {
   A400: '#f50057',
   A700: '#c51162'
 };
-var _default = exports.default = pink;
+const _default = exports.default = pink;

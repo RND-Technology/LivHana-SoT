@@ -16,7 +16,7 @@ const applicationInfo = require('./applicationinfo').getInstance();
  * @param {*} stacktrace
  */
 function logMessageException(exception) {
-    let exceptionObject = {};
+    const exceptionObject = {};
     try {
         exceptionObject.message = exception.message ? exception.message : '';
         exceptionObject.cause = null;

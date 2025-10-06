@@ -15,7 +15,7 @@ function readStopNode(xmlDoc, tagName, i){
       if( xmlDoc[i] === "<"){
         if (xmlDoc[i+1] === "/") {//close tag
             const closeIndex = findSubStrIndex(xmlDoc, ">", i, `${tagName} is not closed`);
-            let closeTagName = xmlDoc.substring(i+2,closeIndex).trim();
+            const closeTagName = xmlDoc.substring(i+2,closeIndex).trim();
             if(closeTagName === tagName){
               openTagCount--;
               if (openTagCount === 0) {
@@ -58,7 +58,7 @@ function readStopNode(xmlDoc, tagName, i){
 function readClosingTagName(source){
   let text = ""; //temporary data
   while(source.canRead()){
-    let ch = source.readCh();
+    const ch = source.readCh();
     // if (ch === null || ch === undefined) break;
     // source.updateBuffer();
 
@@ -184,8 +184,8 @@ function parseAttributesExp(attrStr, parser) {
   const matches = getAllMatches(attrStr, attrsRegx);
   const len = matches.length; //don't make it inline
   for (let i = 0; i < len; i++) {
-    let attrName = parser.processAttrName(matches[i][1]);
-    let attrVal = parser.replaceEntities(matches[i][4] || true);
+    const attrName = parser.processAttrName(matches[i][1]);
+    const attrVal = parser.replaceEntities(matches[i][4] || true);
 
     parser.outputBuilder.addAttribute(attrName, attrVal);
   }

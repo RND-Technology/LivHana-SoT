@@ -6,5 +6,5 @@ function transformArguments(key, value) {
     return ['SETNX', key, value];
 }
 exports.transformArguments = transformArguments;
-var generic_transformers_1 = require("./generic-transformers");
+const generic_transformers_1 = require("./generic-transformers");
 Object.defineProperty(exports, "transformReply", { enumerable: true, get: function () { return generic_transformers_1.transformBooleanReply; } });

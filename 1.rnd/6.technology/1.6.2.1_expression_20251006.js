@@ -28,9 +28,9 @@
 
 
 
-var _flow = require('../plugins/flow');
-var _index = require('../plugins/jsx/index');
-var _types = require('../plugins/types');
+const _flow = require('../plugins/flow');
+const _index = require('../plugins/jsx/index');
+const _types = require('../plugins/types');
 
 
 
@@ -40,7 +40,7 @@ var _types = require('../plugins/types');
 
 
 
-var _typescript = require('../plugins/typescript');
+const _typescript = require('../plugins/typescript');
 
 
 
@@ -53,28 +53,20 @@ var _typescript = require('../plugins/typescript');
 
 
 
-var _index3 = require('../tokenizer/index');
-var _keywords = require('../tokenizer/keywords');
-var _state = require('../tokenizer/state');
-var _types3 = require('../tokenizer/types');
-var _charcodes = require('../util/charcodes');
-var _identifier = require('../util/identifier');
-var _base = require('./base');
+const _index3 = require('../tokenizer/index');
+const _keywords = require('../tokenizer/keywords');
+const _state = require('../tokenizer/state');
+const _types3 = require('../tokenizer/types');
+const _charcodes = require('../util/charcodes');
+const _identifier = require('../util/identifier');
+const _base = require('./base');
 
 
 
 
 
 
-var _lval = require('./lval');
-
-
-
-
-
-
-
-var _statement = require('./statement');
+const _lval = require('./lval');
 
 
 
@@ -82,9 +74,17 @@ var _statement = require('./statement');
 
 
 
+const _statement = require('./statement');
 
 
-var _util = require('./util');
+
+
+
+
+
+
+
+const _util = require('./util');
 
  class StopState {
   

@@ -2,17 +2,17 @@ const {readPiExp} = require("./XmlPartReader");
 
 function readCdata(parser){
   //<![ are already read till this point
-  let str = parser.source.readStr(6); //CDATA[
+  const str = parser.source.readStr(6); //CDATA[
   parser.source.updateBufferBoundary(6);
 
   if(str !== "CDATA[") throw new Error(`Invalid CDATA expression at ${parser.source.line}:${parser.source.cols}`);
 
-  let text = parser.source.readUpto("]]>");
+  const text = parser.source.readUpto("]]>");
   parser.outputBuilder.addCdata(text);
 }
 function readPiTag(parser){
   //<? are already read till this point
-  let tagExp = readPiExp(parser, "?>");
+  const tagExp = readPiExp(parser, "?>");
   if(!tagExp) throw new Error("Invalid Pi Tag expression.");
 
   if (tagExp.tagName === "?xml") {//TODO: test if tagName is just xml
@@ -24,10 +24,10 @@ function readPiTag(parser){
 
 function readComment(parser){
   //<!- are already read till this point
-  let ch = parser.source.readCh();
+  const ch = parser.source.readCh();
   if(ch !== "-") throw new Error(`Invalid comment expression at ${parser.source.line}:${parser.source.cols}`);
 
-  let text = parser.source.readUpto("-->");
+  const text = parser.source.readUpto("-->");
   parser.outputBuilder.addComment(text);
 }
 
@@ -38,7 +38,7 @@ const DOCTYPE_tags = {
 }
 function readDocType(parser){
   //<!D are already read till this point
-  let str = parser.source.readStr(6); //OCTYPE
+  const str = parser.source.readStr(6); //OCTYPE
   parser.source.updateBufferBoundary(6);
 
   if(str !== "OCTYPE") throw new Error(`Invalid DOCTYPE expression at ${parser.source.line}:${parser.source.cols}`);
@@ -47,13 +47,13 @@ function readDocType(parser){
 
   while(parser.source.canRead()){
     //TODO: use readChAt like used in partReader
-    let ch = parser.source.readCh();
+    const ch = parser.source.readCh();
     if(hasBody){
       if (ch === '<') { //Determine the tag type
-        let str = parser.source.readStr(2);
+        const str = parser.source.readStr(2);
         parser.source.updateBufferBoundary(2);
         if(str === "EN"){ //ENTITY
-          let str = parser.source.readStr(4);
+          const str = parser.source.readStr(4);
           parser.source.updateBufferBoundary(4);
           if(str !== "TITY") throw new Error("Invalid DOCTYPE ENTITY expression");
 
@@ -61,7 +61,7 @@ function readDocType(parser){
         }else if(str === "!-") {//comment
           readComment(parser);
         }else{ //ELEMENT, ATTLIST, NOTATION
-          let dTagExp = parser.source.readUpto(">");
+          const dTagExp = parser.source.readUpto(">");
           const regx = DOCTYPE_tags[str];
           if(regx){
             const match = dTagExp.match(regx);
@@ -87,7 +87,7 @@ function registerEntity(parser){
   let attrBoundary="";
   let name ="", val ="";
   while(source.canRead()){
-    let ch = source.readCh();
+    const ch = source.readCh();
 
     if(attrBoundary){
       if (ch === attrBoundary){

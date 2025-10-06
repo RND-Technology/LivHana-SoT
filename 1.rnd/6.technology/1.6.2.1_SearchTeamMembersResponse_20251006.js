@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
 exports.searchTeamMembersResponseSchema = void 0;
-var schema_1 = require("../schema");
-var error_1 = require("./error");
-var teamMember_1 = require("./teamMember");
+const schema_1 = require("../schema");
+const error_1 = require("./error");
+const teamMember_1 = require("./teamMember");
 exports.searchTeamMembersResponseSchema = (0, schema_1.object)({
     teamMembers: [
         'team_members',

@@ -8,13 +8,13 @@ exports.applyPatch = applyPatch;
 exports.applyPatches = applyPatches;
 
 /*istanbul ignore end*/
-var
+const
 /*istanbul ignore start*/
 _parse = require("./parse")
 /*istanbul ignore end*/
 ;
 
-var
+const
 /*istanbul ignore start*/
 _distanceIterator = _interopRequireDefault(require("../util/distance-iterator"))
 /*istanbul ignore end*/
@@ -25,7 +25,7 @@ _distanceIterator = _interopRequireDefault(require("../util/distance-iterator"))
 /*istanbul ignore end*/
 function applyPatch(source, uniDiff) {
   /*istanbul ignore start*/
-  var
+  const
   /*istanbul ignore end*/
   options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
 
@@ -54,7 +54,7 @@ function applyPatch(source, uniDiff) {
   } // Apply the diff to the input
 
 
-  var lines = source.split(/\r\n|[\n\v\f\r\x85]/),
+  let lines = source.split(/\r\n|[\n\v\f\r\x85]/),
       delimiters = source.match(/\r\n|[\n\v\f\r\x85]/g) || [],
       hunks = uniDiff.hunks,
       compareLine = options.compareLine || function (lineNumber, line, operation, patchContent)
@@ -77,8 +77,8 @@ function applyPatch(source, uniDiff) {
 
 
   function hunkFits(hunk, toPos) {
-    for (var j = 0; j < hunk.lines.length; j++) {
-      var line = hunk.lines[j],
+    for (let j = 0; j < hunk.lines.length; j++) {
+      const line = hunk.lines[j],
           operation = line.length > 0 ? line[0] : ' ',
           content = line.length > 0 ? line.substr(1) : line;
 
@@ -100,12 +100,12 @@ function applyPatch(source, uniDiff) {
   } // Search best fit offsets for each hunk based on the previous ones
 
 
-  for (var i = 0; i < hunks.length; i++) {
-    var hunk = hunks[i],
+  for (let i = 0; i < hunks.length; i++) {
+    let hunk = hunks[i],
         maxLine = lines.length - hunk.oldLines,
         localOffset = 0,
         toPos = offset + hunk.oldStart - 1;
-    var iterator =
+    const iterator =
     /*istanbul ignore start*/
     (0,
     /*istanbul ignore end*/
@@ -136,10 +136,10 @@ function applyPatch(source, uniDiff) {
   } // Apply patch hunks
 
 
-  var diffOffset = 0;
+  let diffOffset = 0;
 
-  for (var _i = 0; _i < hunks.length; _i++) {
-    var _hunk = hunks[_i],
+  for (let _i = 0; _i < hunks.length; _i++) {
+    let _hunk = hunks[_i],
         _toPos = _hunk.oldStart + _hunk.offset + diffOffset - 1;
 
     diffOffset += _hunk.newLines - _hunk.oldLines;
@@ -149,8 +149,8 @@ function applyPatch(source, uniDiff) {
       _toPos = 0;
     }
 
-    for (var j = 0; j < _hunk.lines.length; j++) {
-      var line = _hunk.lines[j],
+    for (let j = 0; j < _hunk.lines.length; j++) {
+      const line = _hunk.lines[j],
           operation = line.length > 0 ? line[0] : ' ',
           content = line.length > 0 ? line.substr(1) : line,
           delimiter = _hunk.linedelimiters[j];
@@ -166,7 +166,7 @@ function applyPatch(source, uniDiff) {
         delimiters.splice(_toPos, 0, delimiter);
         _toPos++;
       } else if (operation === '\\') {
-        var previousOperation = _hunk.lines[j - 1] ? _hunk.lines[j - 1][0] : null;
+        const previousOperation = _hunk.lines[j - 1] ? _hunk.lines[j - 1][0] : null;
 
         if (previousOperation === '+') {
           removeEOFNL = true;
@@ -188,7 +188,7 @@ function applyPatch(source, uniDiff) {
     delimiters.push('\n');
   }
 
-  for (var _k = 0; _k < lines.length - 1; _k++) {
+  for (let _k = 0; _k < lines.length - 1; _k++) {
     lines[_k] = lines[_k] + delimiters[_k];
   }
 
@@ -213,10 +213,10 @@ function applyPatches(uniDiff, options) {
     (uniDiff);
   }
 
-  var currentIndex = 0;
+  let currentIndex = 0;
 
   function processIndex() {
-    var index = uniDiff[currentIndex++];
+    const index = uniDiff[currentIndex++];
 
     if (!index) {
       return options.complete();
@@ -227,7 +227,7 @@ function applyPatches(uniDiff, options) {
         return options.complete(err);
       }
 
-      var updatedContent = applyPatch(data, index, options);
+      const updatedContent = applyPatch(data, index, options);
       options.patched(index, updatedContent, function (err) {
         if (err) {
           return options.complete(err);

@@ -1,23 +1,23 @@
 "use strict";
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+const _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.isWidthUp = exports.isWidthDown = exports.default = void 0;
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
-var React = _interopRequireWildcard(require("react"));
-var _propTypes = _interopRequireDefault(require("prop-types"));
-var _getDisplayName = _interopRequireDefault(require("@mui/utils/getDisplayName"));
-var _useThemeProps = require("@mui/system/useThemeProps");
-var _useTheme = _interopRequireDefault(require("../styles/useTheme"));
-var _useEnhancedEffect = _interopRequireDefault(require("../utils/useEnhancedEffect"));
-var _useMediaQuery = _interopRequireDefault(require("../useMediaQuery"));
-var _jsxRuntime = require("react/jsx-runtime");
+const _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+const _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+const React = _interopRequireWildcard(require("react"));
+const _propTypes = _interopRequireDefault(require("prop-types"));
+const _getDisplayName = _interopRequireDefault(require("@mui/utils/getDisplayName"));
+const _useThemeProps = require("@mui/system/useThemeProps");
+const _useTheme = _interopRequireDefault(require("../styles/useTheme"));
+const _useEnhancedEffect = _interopRequireDefault(require("../utils/useEnhancedEffect"));
+const _useMediaQuery = _interopRequireDefault(require("../useMediaQuery"));
+const _jsxRuntime = require("react/jsx-runtime");
 const _excluded = ["initialWidth", "width"];
-function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
-function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; const r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; const t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); const n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (const u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { const i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 const breakpointKeys = ['xs', 'sm', 'md', 'lg', 'xl'];
 
 // By default, returns true if screen width is the same or greater than the given breakpoint.
@@ -114,4 +114,4 @@ const withWidth = (options = {}) => Component => {
   }
   return WithWidth;
 };
-var _default = exports.default = withWidth;
+const _default = exports.default = withWidth;

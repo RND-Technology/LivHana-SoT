@@ -8,10 +8,10 @@ exports.convertChangesToXML = convertChangesToXML;
 
 /*istanbul ignore end*/
 function convertChangesToXML(changes) {
-  var ret = [];
+  const ret = [];
 
-  for (var i = 0; i < changes.length; i++) {
-    var change = changes[i];
+  for (let i = 0; i < changes.length; i++) {
+    const change = changes[i];
 
     if (change.added) {
       ret.push('<ins>');
@@ -32,7 +32,7 @@ function convertChangesToXML(changes) {
 }
 
 function escapeHTML(s) {
-  var n = s;
+  let n = s;
   n = n.replace(/&/g, '&amp;');
   n = n.replace(/</g, '&lt;');
   n = n.replace(/>/g, '&gt;');

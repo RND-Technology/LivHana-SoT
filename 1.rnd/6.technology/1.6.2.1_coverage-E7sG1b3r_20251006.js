@@ -29,21 +29,21 @@ async function getCoverageProvider(options, loader) {
   return null;
 }
 async function startCoverageInsideWorker(options, loader) {
-  var _a;
+  let _a;
   const coverageModule = await resolveCoverageProviderModule(options, loader);
   if (coverageModule)
     return (_a = coverageModule.startCoverage) == null ? void 0 : _a.call(coverageModule);
   return null;
 }
 async function takeCoverageInsideWorker(options, loader) {
-  var _a;
+  let _a;
   const coverageModule = await resolveCoverageProviderModule(options, loader);
   if (coverageModule)
     return (_a = coverageModule.takeCoverage) == null ? void 0 : _a.call(coverageModule);
   return null;
 }
 async function stopCoverageInsideWorker(options, loader) {
-  var _a;
+  let _a;
   const coverageModule = await resolveCoverageProviderModule(options, loader);
   if (coverageModule)
     return (_a = coverageModule.stopCoverage) == null ? void 0 : _a.call(coverageModule);

@@ -47,4 +47,4 @@ export default function(value, syntax) {
     }
 
     return syntax.generate(value, astToTokens);
-};
+}

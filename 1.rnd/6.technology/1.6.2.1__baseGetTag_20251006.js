@@ -1,13 +1,13 @@
-var Symbol = require('./_Symbol'),
+const Symbol = require('./_Symbol'),
     getRawTag = require('./_getRawTag'),
     objectToString = require('./_objectToString');
 
 /** `Object#toString` result references. */
-var nullTag = '[object Null]',
+const nullTag = '[object Null]',
     undefinedTag = '[object Undefined]';
 
 /** Built-in value references. */
-var symToStringTag = Symbol ? Symbol.toStringTag : undefined;
+const symToStringTag = Symbol ? Symbol.toStringTag : undefined;
 
 /**
  * The base implementation of `getTag` without fallbacks for buggy environments.

@@ -1,11 +1,11 @@
 "use strict";
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+const _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 exports.__esModule = true;
 exports.default = activeElement;
 
-var _ownerDocument = _interopRequireDefault(require("./ownerDocument"));
+const _ownerDocument = _interopRequireDefault(require("./ownerDocument"));
 
 /**
  * Returns the actively focused element safely.
@@ -20,7 +20,7 @@ function activeElement(doc) {
   // Support: IE 9 only
   // IE9 throws an "Unspecified error" accessing document.activeElement from an <iframe>
   try {
-    var active = doc.activeElement; // IE11 returns a seemingly empty object in some cases when accessing
+    const active = doc.activeElement; // IE11 returns a seemingly empty object in some cases when accessing
     // document.activeElement from an <iframe>
 
     if (!active || !active.nodeName) return null;

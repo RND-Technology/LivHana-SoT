@@ -60,7 +60,7 @@ function _mergeNamespaces(n, m) {
   m.forEach(function (e) {
     e && typeof e !== 'string' && !Array.isArray(e) && Object.keys(e).forEach(function (k) {
       if (k !== 'default' && !(k in n)) {
-        var d = Object.getOwnPropertyDescriptor(e, k);
+        const d = Object.getOwnPropertyDescriptor(e, k);
         Object.defineProperty(n, k, d.get ? d : {
           enumerable: true,
           get: function () { return e[k]; }
@@ -395,11 +395,11 @@ async function findUp(name, options = {}) {
 	return matches[0];
 }
 
-var tasks = {};
+const tasks = {};
 
-var utils$b = {};
+const utils$b = {};
 
-var array$1 = {};
+const array$1 = {};
 
 Object.defineProperty(array$1, "__esModule", { value: true });
 array$1.splitWhen = array$1.flatten = void 0;
@@ -423,7 +423,7 @@ function splitWhen(items, predicate) {
 }
 array$1.splitWhen = splitWhen;
 
-var errno$1 = {};
+const errno$1 = {};
 
 Object.defineProperty(errno$1, "__esModule", { value: true });
 errno$1.isEnoentCodeError = void 0;
@@ -432,11 +432,11 @@ function isEnoentCodeError(error) {
 }
 errno$1.isEnoentCodeError = isEnoentCodeError;
 
-var fs$7 = {};
+const fs$7 = {};
 
 Object.defineProperty(fs$7, "__esModule", { value: true });
 fs$7.createDirentFromStats = void 0;
-let DirentFromStats$1 = class DirentFromStats {
+const DirentFromStats$1 = class DirentFromStats {
     constructor(name, stats) {
         this.name = name;
         this.isBlockDevice = stats.isBlockDevice.bind(stats);
@@ -453,7 +453,7 @@ function createDirentFromStats$1(name, stats) {
 }
 fs$7.createDirentFromStats = createDirentFromStats$1;
 
-var path$7 = {};
+const path$7 = {};
 
 Object.defineProperty(path$7, "__esModule", { value: true });
 path$7.convertPosixPathToPattern = path$7.convertWindowsPathToPattern = path$7.convertPathToPattern = path$7.escapePosixPath = path$7.escapeWindowsPath = path$7.escape = path$7.removeLeadingDotSegment = path$7.makeAbsolute = path$7.unixify = void 0;
@@ -523,7 +523,7 @@ function convertPosixPathToPattern(filepath) {
 }
 path$7.convertPosixPathToPattern = convertPosixPathToPattern;
 
-var pattern$1 = {};
+const pattern$1 = {};
 
 /*!
  * is-extglob <https://github.com/jonschlinkert/is-extglob>
@@ -532,12 +532,12 @@ var pattern$1 = {};
  * Licensed under the MIT License.
  */
 
-var isExtglob$1 = function isExtglob(str) {
+const isExtglob$1 = function isExtglob(str) {
   if (typeof str !== 'string' || str === '') {
     return false;
   }
 
-  var match;
+  let match;
   while ((match = /(\\).|([@?!+*]\(.*\))/g.exec(str))) {
     if (match[2]) return true;
     str = str.slice(match.index + match[0].length);
@@ -553,18 +553,18 @@ var isExtglob$1 = function isExtglob(str) {
  * Released under the MIT License.
  */
 
-var isExtglob = isExtglob$1;
-var chars = { '{': '}', '(': ')', '[': ']'};
-var strictCheck = function(str) {
+const isExtglob = isExtglob$1;
+const chars = { '{': '}', '(': ')', '[': ']'};
+const strictCheck = function(str) {
   if (str[0] === '!') {
     return true;
   }
-  var index = 0;
-  var pipeIndex = -2;
-  var closeSquareIndex = -2;
-  var closeCurlyIndex = -2;
-  var closeParenIndex = -2;
-  var backSlashIndex = -2;
+  let index = 0;
+  let pipeIndex = -2;
+  let closeSquareIndex = -2;
+  let closeCurlyIndex = -2;
+  let closeParenIndex = -2;
+  let backSlashIndex = -2;
   while (index < str.length) {
     if (str[index] === '*') {
       return true;
@@ -625,12 +625,12 @@ var strictCheck = function(str) {
     }
 
     if (str[index] === '\\') {
-      var open = str[index + 1];
+      const open = str[index + 1];
       index += 2;
-      var close = chars[open];
+      const close = chars[open];
 
       if (close) {
-        var n = str.indexOf(close, index);
+        const n = str.indexOf(close, index);
         if (n !== -1) {
           index = n + 1;
         }
@@ -646,23 +646,23 @@ var strictCheck = function(str) {
   return false;
 };
 
-var relaxedCheck = function(str) {
+const relaxedCheck = function(str) {
   if (str[0] === '!') {
     return true;
   }
-  var index = 0;
+  let index = 0;
   while (index < str.length) {
     if (/[*?{}()[\]]/.test(str[index])) {
       return true;
     }
 
     if (str[index] === '\\') {
-      var open = str[index + 1];
+      const open = str[index + 1];
       index += 2;
-      var close = chars[open];
+      const close = chars[open];
 
       if (close) {
-        var n = str.indexOf(close, index);
+        const n = str.indexOf(close, index);
         if (n !== -1) {
           index = n + 1;
         }
@@ -678,7 +678,7 @@ var relaxedCheck = function(str) {
   return false;
 };
 
-var isGlob$1 = function isGlob(str, options) {
+const isGlob$1 = function isGlob(str, options) {
   if (typeof str !== 'string' || str === '') {
     return false;
   }
@@ -687,7 +687,7 @@ var isGlob$1 = function isGlob(str, options) {
     return true;
   }
 
-  var check = strictCheck;
+  let check = strictCheck;
 
   // optionally relax check
   if (options && options.strict === false) {
@@ -697,15 +697,15 @@ var isGlob$1 = function isGlob(str, options) {
   return check(str);
 };
 
-var isGlob = isGlob$1;
-var pathPosixDirname = p.posix.dirname;
-var isWin32 = require$$0.platform() === 'win32';
+const isGlob = isGlob$1;
+const pathPosixDirname = p.posix.dirname;
+const isWin32 = require$$0.platform() === 'win32';
 
-var slash = '/';
-var backslash = /\\/g;
-var enclosure = /[\{\[].*[\}\]]$/;
-var globby = /(^|[^\\])([\{\[]|\([^\)]+$)/;
-var escaped = /\\([\!\*\?\|\[\]\(\)\{\}])/g;
+const slash = '/';
+const backslash = /\\/g;
+const enclosure = /[\{\[].*[\}\]]$/;
+const globby = /(^|[^\\])([\{\[]|\([^\)]+$)/;
+const escaped = /\\([\!\*\?\|\[\]\(\)\{\}])/g;
 
 /**
  * @param {string} str
@@ -713,8 +713,8 @@ var escaped = /\\([\!\*\?\|\[\]\(\)\{\}])/g;
  * @param {boolean} [opts.flipBackslashes=true]
  * @returns {string}
  */
-var globParent$1 = function globParent(str, opts) {
-  var options = Object.assign({ flipBackslashes: true }, opts);
+const globParent$1 = function globParent(str, opts) {
+  const options = Object.assign({ flipBackslashes: true }, opts);
 
   // flip windows path separators
   if (options.flipBackslashes && isWin32 && str.indexOf(slash) < 0) {
@@ -926,7 +926,7 @@ function removeDuplicateSlashes(pattern) {
 }
 pattern$1.removeDuplicateSlashes = removeDuplicateSlashes;
 
-var stream$4 = {};
+const stream$4 = {};
 
 /*
  * merge2
@@ -939,7 +939,7 @@ const Stream = require$$0$1;
 const PassThrough = Stream.PassThrough;
 const slice = Array.prototype.slice;
 
-var merge2_1 = merge2$1;
+const merge2_1 = merge2$1;
 
 function merge2$1 () {
   const streamsQueue = [];
@@ -1089,7 +1089,7 @@ function propagateCloseEventToSources(streams) {
     streams.forEach((stream) => stream.emit('close'));
 }
 
-var string$1 = {};
+const string$1 = {};
 
 Object.defineProperty(string$1, "__esModule", { value: true });
 string$1.isEmpty = string$1.isString = void 0;
@@ -1229,23 +1229,23 @@ function convertPatternGroupToTask(base, positive, negative, dynamic) {
 }
 tasks.convertPatternGroupToTask = convertPatternGroupToTask;
 
-var async$7 = {};
+const async$7 = {};
 
-var async$6 = {};
+const async$6 = {};
 
-var out$3 = {};
+const out$3 = {};
 
-var async$5 = {};
+const async$5 = {};
 
-var async$4 = {};
+const async$4 = {};
 
-var out$2 = {};
+const out$2 = {};
 
-var async$3 = {};
+const async$3 = {};
 
-var out$1 = {};
+const out$1 = {};
 
-var async$2 = {};
+const async$2 = {};
 
 Object.defineProperty(async$2, "__esModule", { value: true });
 async$2.read = void 0;
@@ -1283,7 +1283,7 @@ function callSuccessCallback$2(callback, result) {
     callback(null, result);
 }
 
-var sync$7 = {};
+const sync$7 = {};
 
 Object.defineProperty(sync$7, "__esModule", { value: true });
 sync$7.read = void 0;
@@ -1308,9 +1308,9 @@ function read$2(path, settings) {
 }
 sync$7.read = read$2;
 
-var settings$3 = {};
+const settings$3 = {};
 
-var fs$5 = {};
+const fs$5 = {};
 
 (function (exports) {
 	Object.defineProperty(exports, "__esModule", { value: true });
@@ -1333,7 +1333,7 @@ var fs$5 = {};
 
 Object.defineProperty(settings$3, "__esModule", { value: true });
 const fs$4 = fs$5;
-let Settings$2 = class Settings {
+const Settings$2 = class Settings {
     constructor(_options = {}) {
         this._options = _options;
         this.followSymbolicLink = this._getValue(this._options.followSymbolicLink, true);
@@ -1377,7 +1377,7 @@ function getSettings$2(settingsOrOptions = {}) {
 
 let promise$1;
 
-var queueMicrotask_1 = typeof queueMicrotask === 'function'
+const queueMicrotask_1 = typeof queueMicrotask === 'function'
   ? queueMicrotask.bind(typeof window !== 'undefined' ? window : commonjsGlobal)
   // reuse resolved promise, and allocate it lazily
   : cb => (promise$1 || (promise$1 = Promise.resolve()))
@@ -1386,7 +1386,7 @@ var queueMicrotask_1 = typeof queueMicrotask === 'function'
 
 /*! run-parallel. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
 
-var runParallel_1 = runParallel;
+const runParallel_1 = runParallel;
 
 const queueMicrotask$1 = queueMicrotask_1;
 
@@ -1437,7 +1437,7 @@ function runParallel (tasks, cb) {
   isSync = false;
 }
 
-var constants$1 = {};
+const constants$1 = {};
 
 Object.defineProperty(constants$1, "__esModule", { value: true });
 constants$1.IS_SUPPORT_READDIR_WITH_FILE_TYPES = void 0;
@@ -1456,9 +1456,9 @@ const IS_MATCHED_BY_MAJOR_AND_MINOR = MAJOR_VERSION === SUPPORTED_MAJOR_VERSION 
  */
 constants$1.IS_SUPPORT_READDIR_WITH_FILE_TYPES = IS_MATCHED_BY_MAJOR || IS_MATCHED_BY_MAJOR_AND_MINOR;
 
-var utils$9 = {};
+const utils$9 = {};
 
-var fs$3 = {};
+const fs$3 = {};
 
 Object.defineProperty(fs$3, "__esModule", { value: true });
 fs$3.createDirentFromStats = void 0;
@@ -1484,7 +1484,7 @@ utils$9.fs = void 0;
 const fs$2 = fs$3;
 utils$9.fs = fs$2;
 
-var common$6 = {};
+const common$6 = {};
 
 Object.defineProperty(common$6, "__esModule", { value: true });
 common$6.joinPathSegments = void 0;
@@ -1603,7 +1603,7 @@ function callSuccessCallback$1(callback, result) {
     callback(null, result);
 }
 
-var sync$5 = {};
+const sync$5 = {};
 
 Object.defineProperty(sync$5, "__esModule", { value: true });
 sync$5.readdir = sync$5.readdirWithFileTypes = sync$5.read = void 0;
@@ -1659,9 +1659,9 @@ function readdir(directory, settings) {
 }
 sync$5.readdir = readdir;
 
-var settings$2 = {};
+const settings$2 = {};
 
-var fs$1 = {};
+const fs$1 = {};
 
 (function (exports) {
 	Object.defineProperty(exports, "__esModule", { value: true });
@@ -1688,7 +1688,7 @@ Object.defineProperty(settings$2, "__esModule", { value: true });
 const path$3 = p;
 const fsStat$3 = out$1;
 const fs = fs$1;
-let Settings$1 = class Settings {
+const Settings$1 = class Settings {
     constructor(_options = {}) {
         this._options = _options;
         this.followSymbolicLinks = this._getValue(this._options.followSymbolicLinks, false);
@@ -1734,14 +1734,14 @@ function getSettings$1(settingsOrOptions = {}) {
     return new settings_1$2.default(settingsOrOptions);
 }
 
-var queue = {exports: {}};
+const queue = {exports: {}};
 
 function reusify$1 (Constructor) {
-  var head = new Constructor();
-  var tail = head;
+  let head = new Constructor();
+  let tail = head;
 
   function get () {
-    var current = head;
+    const current = head;
 
     if (current.next) {
       head = current.next;
@@ -1766,7 +1766,7 @@ function reusify$1 (Constructor) {
   }
 }
 
-var reusify_1 = reusify$1;
+const reusify_1 = reusify$1;
 
 /* eslint-disable no-var */
 
@@ -2089,7 +2089,7 @@ var reader$1 = {};
 
 Object.defineProperty(reader$1, "__esModule", { value: true });
 const common$2 = common$3;
-let Reader$1 = class Reader {
+const Reader$1 = class Reader {
     constructor(_root, _settings) {
         this._root = _root;
         this._settings = _settings;
@@ -3376,7 +3376,7 @@ const kRun = Symbol('kRun');
  * A very simple job queue with adjustable concurrency. Adapted from
  * https://github.com/STRML/async-limiter
  */
-let Limiter$1 = class Limiter {
+const Limiter$1 = class Limiter {
   /**
    * Creates a new `Limiter`.
    *
@@ -3449,7 +3449,7 @@ let zlibLimiter;
 /**
  * permessage-deflate implementation.
  */
-let PerMessageDeflate$4 = class PerMessageDeflate {
+const PerMessageDeflate$4 = class PerMessageDeflate {
   /**
    * Creates a PerMessageDeflate instance.
    *
@@ -4105,7 +4105,7 @@ const WAIT_MICROTASK = 6;
  *
  * @extends Writable
  */
-let Receiver$1 = class Receiver extends Writable {
+const Receiver$1 = class Receiver extends Writable {
   /**
    * Creates a Receiver instance.
    *
@@ -4763,7 +4763,7 @@ const maskBuffer = Buffer.alloc(4);
 /**
  * HyBi Sender implementation.
  */
-let Sender$1 = class Sender {
+const Sender$1 = class Sender {
   /**
    * Creates a Sender instance.
    *
@@ -5756,7 +5756,7 @@ const subprotocolRegex = /^[!#$%&'*+\-.0-9A-Z^_`|a-z~]+$/;
  *
  * @extends EventEmitter
  */
-let WebSocket$1 = class WebSocket extends EventEmitter$1 {
+const WebSocket$1 = class WebSocket extends EventEmitter$1 {
   /**
    * Create a new `WebSocket`.
    *
@@ -11819,7 +11819,7 @@ function requireKleur () {
 	}
 
 	function chain(has, keys) {
-		let ctx = { has, keys };
+		const ctx = { has, keys };
 
 		ctx.reset = $.reset.bind(ctx);
 		ctx.bold = $.bold.bind(ctx);
@@ -11854,7 +11854,7 @@ function requireKleur () {
 	}
 
 	function init(open, close) {
-		let blk = {
+		const blk = {
 			open: `\x1b[${open}m`,
 			close: `\x1b[${close}m`,
 			rgx: new RegExp(`\\x1b\\[${close}m`, 'g')
@@ -12035,7 +12035,7 @@ function requireClear$1 () {
 
 	  try {
 	    for (_iterator.s(); !(_step = _iterator.n()).done;) {
-	      let line = _step.value;
+	      const line = _step.value;
 	      rows += 1 + Math.floor(Math.max(width(line) - 1, 0) / perLine);
 	    }
 	  } catch (err) {
@@ -12163,7 +12163,7 @@ function requireLines$1 () {
 
 
 	lines$1 = function (msg, perLine) {
-	  let lines = String(strip(msg) || '').split(/\r?\n/);
+	  const lines = String(strip(msg) || '').split(/\r?\n/);
 	  if (!perLine) return lines.length;
 	  return lines.map(l => Math.ceil(l.length / perLine)).reduce((a, b) => a + b);
 	};
@@ -12214,7 +12214,7 @@ function requireEntriesToDisplay$1 () {
 	  maxVisible = maxVisible || total;
 	  let startIndex = Math.min(total - maxVisible, cursor - Math.floor(maxVisible / 2));
 	  if (startIndex < 0) startIndex = 0;
-	  let endIndex = Math.min(startIndex + maxVisible, total);
+	  const endIndex = Math.min(startIndex + maxVisible, total);
 	  return {
 	    startIndex,
 	    endIndex
@@ -12287,7 +12287,7 @@ function requirePrompt$1 () {
 	    const isSelect = ['SelectPrompt', 'MultiselectPrompt'].indexOf(this.constructor.name) > -1;
 
 	    const keypress = (str, key) => {
-	      let a = action(key, isSelect);
+	      const a = action(key, isSelect);
 
 	      if (a === false) {
 	        this._ && this._(str, key);
@@ -12490,8 +12490,8 @@ function requireText$1 () {
 	  }
 
 	  _(c, key) {
-	    let s1 = this.value.slice(0, this.cursor);
-	    let s2 = this.value.slice(this.cursor);
+	    const s1 = this.value.slice(0, this.cursor);
+	    const s2 = this.value.slice(this.cursor);
 	    this.value = `${s1}${c}${s2}`;
 	    this.red = false;
 	    this.cursor = this.placeholder ? 0 : s1.length + 1;
@@ -12500,8 +12500,8 @@ function requireText$1 () {
 
 	  delete() {
 	    if (this.isCursorAtStart()) return this.bell();
-	    let s1 = this.value.slice(0, this.cursor - 1);
-	    let s2 = this.value.slice(this.cursor);
+	    const s1 = this.value.slice(0, this.cursor - 1);
+	    const s2 = this.value.slice(this.cursor);
 	    this.value = `${s1}${s2}`;
 	    this.red = false;
 
@@ -12517,8 +12517,8 @@ function requireText$1 () {
 
 	  deleteForward() {
 	    if (this.cursor * this.scale >= this.rendered.length || this.placeholder) return this.bell();
-	    let s1 = this.value.slice(0, this.cursor);
-	    let s2 = this.value.slice(this.cursor + 1);
+	    const s1 = this.value.slice(0, this.cursor);
+	    const s2 = this.value.slice(this.cursor + 1);
 	    this.value = `${s1}${s2}`;
 	    this.red = false;
 
@@ -12728,7 +12728,7 @@ function requireSelect$1 () {
 	    if (this.firstRender) this.out.write(cursor.hide);else this.out.write(clear(this.outputText, this.out.columns));
 	    super.render();
 
-	    let _entriesToDisplay = entriesToDisplay(this.cursor, this.choices.length, this.optionsPerPage),
+	    const _entriesToDisplay = entriesToDisplay(this.cursor, this.choices.length, this.optionsPerPage),
 	        startIndex = _entriesToDisplay.startIndex,
 	        endIndex = _entriesToDisplay.endIndex; // Print prompt
 
@@ -12948,7 +12948,7 @@ function requireDatepart$1 () {
 	  setTo(val) {}
 
 	  prev() {
-	    let parts = [].concat(this.parts).reverse();
+	    const parts = [].concat(this.parts).reverse();
 	    const currentIdx = parts.indexOf(this);
 	    return parts.find((part, idx) => idx > currentIdx && part instanceof DatePart);
 	  }
@@ -12986,7 +12986,7 @@ function requireMeridiem$1 () {
 	  }
 
 	  toString() {
-	    let meridiem = this.date.getHours() > 12 ? 'pm' : 'am';
+	    const meridiem = this.date.getHours() > 12 ? 'pm' : 'am';
 	    return /\A/.test(this.token) ? meridiem.toUpperCase() : meridiem;
 	  }
 
@@ -13028,8 +13028,8 @@ function requireDay$1 () {
 	  }
 
 	  toString() {
-	    let date = this.date.getDate();
-	    let day = this.date.getDay();
+	    const date = this.date.getDate();
+	    const day = this.date.getDay();
 	    return this.token === 'DD' ? String(date).padStart(2, '0') : this.token === 'Do' ? date + pos(date) : this.token === 'd' ? day + 1 : this.token === 'ddd' ? this.locales.weekdaysShort[day] : this.token === 'dddd' ? this.locales.weekdays[day] : date;
 	  }
 
@@ -13140,7 +13140,7 @@ function requireMinutes$1 () {
 	  }
 
 	  toString() {
-	    let m = this.date.getMinutes();
+	    const m = this.date.getMinutes();
 	    return this.token.length > 1 ? String(m).padStart(2, '0') : m;
 	  }
 
@@ -13178,8 +13178,8 @@ function requireMonth$1 () {
 	  }
 
 	  toString() {
-	    let month = this.date.getMonth();
-	    let tl = this.token.length;
+	    const month = this.date.getMonth();
+	    const tl = this.token.length;
 	    return tl === 2 ? String(month + 1).padStart(2, '0') : tl === 3 ? this.locales.monthsShort[month] : tl === 4 ? this.locales.months[month] : String(month + 1);
 	  }
 
@@ -13216,7 +13216,7 @@ function requireSeconds$1 () {
 	  }
 
 	  toString() {
-	    let s = this.date.getSeconds();
+	    const s = this.date.getSeconds();
 	    return this.token.length > 1 ? String(s).padStart(2, '0') : s;
 	  }
 
@@ -13253,7 +13253,7 @@ function requireYear$1 () {
 	  }
 
 	  toString() {
-	    let year = String(this.date.getFullYear()).padStart(4, '0');
+	    const year = String(this.date.getFullYear()).padStart(4, '0');
 	    return this.token.length === 2 ? year.substr(-2) : year;
 	  }
 
@@ -13394,8 +13394,8 @@ function requireDate$1 () {
 	    this.parts = [];
 
 	    while (result = regex.exec(mask)) {
-	      let match = result.shift();
-	      let idx = result.findIndex(gr => gr != null);
+	      const match = result.shift();
+	      const idx = result.findIndex(gr => gr != null);
 	      this.parts.push(idx in regexGroups ? regexGroups[idx]({
 	        token: result[idx] || match,
 	        date: this.date,
@@ -13404,7 +13404,7 @@ function requireDate$1 () {
 	      }) : result[idx] || match);
 	    }
 
-	    let parts = this.parts.reduce((arr, i) => {
+	    const parts = this.parts.reduce((arr, i) => {
 	      if (typeof i === 'string' && typeof arr[arr.length - 1] === 'string') arr[arr.length - 1] += i;else arr.push(i);
 	      return arr;
 	    }, []);
@@ -13495,21 +13495,21 @@ function requireDate$1 () {
 	  }
 
 	  left() {
-	    let prev = this.parts[this.cursor].prev();
+	    const prev = this.parts[this.cursor].prev();
 	    if (prev == null) return this.bell();
 	    this.moveCursor(this.parts.indexOf(prev));
 	    this.render();
 	  }
 
 	  right() {
-	    let next = this.parts[this.cursor].next();
+	    const next = this.parts[this.cursor].next();
 	    if (next == null) return this.bell();
 	    this.moveCursor(this.parts.indexOf(next));
 	    this.render();
 	  }
 
 	  next() {
-	    let next = this.parts[this.cursor].next();
+	    const next = this.parts[this.cursor].next();
 	    this.moveCursor(next ? this.parts.indexOf(next) : this.parts.findIndex(part => part instanceof DatePart));
 	    this.render();
 	  }
@@ -13572,7 +13572,7 @@ function requireNumber$1 () {
 	const isDef = any => any !== undefined;
 
 	const round = (number, precision) => {
-	  let factor = Math.pow(10, precision);
+	  const factor = Math.pow(10, precision);
 	  return Math.round(number * factor) / factor;
 	};
 	/**
@@ -13653,7 +13653,7 @@ function requireNumber$1 () {
 	  }
 
 	  abort() {
-	    let x = this.value;
+	    const x = this.value;
 	    this.value = x !== `` ? x : this.initial;
 	    this.done = this.aborted = true;
 	    this.error = false;
@@ -13694,7 +13694,7 @@ function requireNumber$1 () {
 	        return;
 	      }
 
-	      let x = _this2.value;
+	      const x = _this2.value;
 	      _this2.value = x !== `` ? x : _this2.initial;
 	      _this2.done = true;
 	      _this2.aborted = false;
@@ -14029,7 +14029,7 @@ function requireMultiselect$1 () {
 	      return color.red('No matches for this query.');
 	    }
 
-	    let _entriesToDisplay = entriesToDisplay(this.cursor, options.length, this.optionsPerPage),
+	    const _entriesToDisplay = entriesToDisplay(this.cursor, options.length, this.optionsPerPage),
 	        startIndex = _entriesToDisplay.startIndex,
 	        endIndex = _entriesToDisplay.endIndex;
 
@@ -14258,8 +14258,8 @@ function requireAutocomplete$1 () {
 	  }
 
 	  _(c, key) {
-	    let s1 = this.input.slice(0, this.cursor);
-	    let s2 = this.input.slice(this.cursor);
+	    const s1 = this.input.slice(0, this.cursor);
+	    const s2 = this.input.slice(this.cursor);
 	    this.input = `${s1}${c}${s2}`;
 	    this.cursor = s1.length + 1;
 	    this.complete(this.render);
@@ -14268,8 +14268,8 @@ function requireAutocomplete$1 () {
 
 	  delete() {
 	    if (this.cursor === 0) return this.bell();
-	    let s1 = this.input.slice(0, this.cursor - 1);
-	    let s2 = this.input.slice(this.cursor);
+	    const s1 = this.input.slice(0, this.cursor - 1);
+	    const s2 = this.input.slice(this.cursor);
 	    this.input = `${s1}${s2}`;
 	    this.complete(this.render);
 	    this.cursor = this.cursor - 1;
@@ -14278,8 +14278,8 @@ function requireAutocomplete$1 () {
 
 	  deleteForward() {
 	    if (this.cursor * this.scale >= this.rendered.length) return this.bell();
-	    let s1 = this.input.slice(0, this.cursor);
-	    let s2 = this.input.slice(this.cursor + 1);
+	    const s1 = this.input.slice(0, this.cursor);
+	    const s2 = this.input.slice(this.cursor + 1);
 	    this.input = `${s1}${s2}`;
 	    this.complete(this.render);
 	    this.render();
@@ -14348,7 +14348,7 @@ function requireAutocomplete$1 () {
 	  renderOption(v, hovered, isStart, isEnd) {
 	    let desc;
 	    let prefix = isStart ? figures.arrowUp : isEnd ? figures.arrowDown : ' ';
-	    let title = hovered ? color.cyan().underline(v.title) : v.title;
+	    const title = hovered ? color.cyan().underline(v.title) : v.title;
 	    prefix = (hovered ? color.cyan(figures.pointer) + ' ' : '  ') + prefix;
 
 	    if (v.description) {
@@ -14370,7 +14370,7 @@ function requireAutocomplete$1 () {
 	    if (this.firstRender) this.out.write(cursor.hide);else this.out.write(clear(this.outputText, this.out.columns));
 	    super.render();
 
-	    let _entriesToDisplay = entriesToDisplay(this.select, this.choices.length, this.limit),
+	    const _entriesToDisplay = entriesToDisplay(this.select, this.choices.length, this.limit),
 	        startIndex = _entriesToDisplay.startIndex,
 	        endIndex = _entriesToDisplay.endIndex;
 
@@ -15035,9 +15035,9 @@ function requireDist () {
 
 	        if (!type) continue; // if property is a function, invoke it unless it's a special function
 
-	        for (let key in question) {
+	        for (const key in question) {
 	          if (passOn.includes(key)) continue;
-	          let value = question[key];
+	          const value = question[key];
 	          question[key] = typeof value === 'function' ? yield value(answer, _objectSpread({}, answers), lastPrompt) : value;
 	        }
 
@@ -15203,7 +15203,7 @@ function requireClear () {
 
 	  let rows = 0;
 	  const lines = prompt.split(/\r?\n/);
-	  for (let line of lines) {
+	  for (const line of lines) {
 	    rows += 1 + Math.floor(Math.max(width(line) - 1, 0) / perLine);
 	  }
 
@@ -15315,7 +15315,7 @@ function requireLines () {
 	 * @param {number} perLine
 	 */
 	lines = function (msg, perLine) {
-	  let lines = String(strip(msg) || '').split(/\r?\n/);
+	  const lines = String(strip(msg) || '').split(/\r?\n/);
 
 	  if (!perLine) return lines.length;
 	  return lines.map(l => Math.ceil(l.length / perLine))
@@ -15381,7 +15381,7 @@ function requireEntriesToDisplay () {
 	  let startIndex = Math.min(total- maxVisible, cursor - Math.floor(maxVisible / 2));
 	  if (startIndex < 0) startIndex = 0;
 
-	  let endIndex = Math.min(startIndex + maxVisible, total);
+	  const endIndex = Math.min(startIndex + maxVisible, total);
 
 	  return { startIndex, endIndex };
 	};
@@ -15440,7 +15440,7 @@ function requirePrompt () {
 	    if (this.in.isTTY) this.in.setRawMode(true);
 	    const isSelect = [ 'SelectPrompt', 'MultiselectPrompt' ].indexOf(this.constructor.name) > -1;
 	    const keypress = (str, key) => {
-	      let a = action(key, isSelect);
+	      const a = action(key, isSelect);
 	      if (a === false) {
 	        this._ && this._(str, key);
 	      } else if (typeof this[a] === 'function') {
@@ -15604,8 +15604,8 @@ function requireText () {
 	  }
 
 	  _(c, key) {
-	    let s1 = this.value.slice(0, this.cursor);
-	    let s2 = this.value.slice(this.cursor);
+	    const s1 = this.value.slice(0, this.cursor);
+	    const s2 = this.value.slice(this.cursor);
 	    this.value = `${s1}${c}${s2}`;
 	    this.red = false;
 	    this.cursor = this.placeholder ? 0 : s1.length+1;
@@ -15614,8 +15614,8 @@ function requireText () {
 
 	  delete() {
 	    if (this.isCursorAtStart()) return this.bell();
-	    let s1 = this.value.slice(0, this.cursor-1);
-	    let s2 = this.value.slice(this.cursor);
+	    const s1 = this.value.slice(0, this.cursor-1);
+	    const s2 = this.value.slice(this.cursor);
 	    this.value = `${s1}${s2}`;
 	    this.red = false;
 	    if (this.isCursorAtStart()) {
@@ -15629,8 +15629,8 @@ function requireText () {
 
 	  deleteForward() {
 	    if(this.cursor*this.scale >= this.rendered.length || this.placeholder) return this.bell();
-	    let s1 = this.value.slice(0, this.cursor);
-	    let s2 = this.value.slice(this.cursor+1);
+	    const s1 = this.value.slice(0, this.cursor);
+	    const s2 = this.value.slice(this.cursor+1);
 	    this.value = `${s1}${s2}`;
 	    this.red = false;
 	    if (this.isCursorAtEnd()) {
@@ -15831,7 +15831,7 @@ function requireSelect () {
 	    else this.out.write(clear(this.outputText, this.out.columns));
 	    super.render();
 
-	    let { startIndex, endIndex } = entriesToDisplay(this.cursor, this.choices.length, this.optionsPerPage);
+	    const { startIndex, endIndex } = entriesToDisplay(this.cursor, this.choices.length, this.optionsPerPage);
 
 	    // Print prompt
 	    this.outputText = [
@@ -16038,7 +16038,7 @@ function requireDatepart () {
 	  setTo(val) {}
 
 	  prev() {
-	    let parts = [].concat(this.parts).reverse();
+	    const parts = [].concat(this.parts).reverse();
 	    const currentIdx = parts.indexOf(this);
 	    return parts.find((part, idx) => idx > currentIdx && part instanceof DatePart);
 	  }
@@ -16075,7 +16075,7 @@ function requireMeridiem () {
 	  }
 
 	  toString() {
-	    let meridiem = this.date.getHours() > 12 ? 'pm' : 'am';
+	    const meridiem = this.date.getHours() > 12 ? 'pm' : 'am';
 	    return /\A/.test(this.token) ? meridiem.toUpperCase() : meridiem;
 	  }
 	}
@@ -16119,8 +16119,8 @@ function requireDay () {
 	  }
 
 	  toString() {
-	    let date = this.date.getDate();
-	    let day = this.date.getDay();
+	    const date = this.date.getDate();
+	    const day = this.date.getDay();
 	    return this.token === 'DD' ? String(date).padStart(2, '0')
 	         : this.token === 'Do' ? date + pos(date)
 	         : this.token === 'd' ? day + 1
@@ -16235,7 +16235,7 @@ function requireMinutes () {
 	  }
 
 	  toString() {
-	    let m = this.date.getMinutes();
+	    const m = this.date.getMinutes();
 	    return this.token.length > 1 ? String(m).padStart(2, '0') : m;
 	  }
 	}
@@ -16272,8 +16272,8 @@ function requireMonth () {
 	  }
 
 	  toString() {
-	    let month = this.date.getMonth();
-	    let tl = this.token.length;
+	    const month = this.date.getMonth();
+	    const tl = this.token.length;
 	    return tl === 2 ? String(month + 1).padStart(2, '0')
 	           : tl === 3 ? this.locales.monthsShort[month]
 	             : tl === 4 ? this.locales.months[month]
@@ -16312,7 +16312,7 @@ function requireSeconds () {
 	  }
 
 	  toString() {
-	    let s = this.date.getSeconds();
+	    const s = this.date.getSeconds();
 	    return this.token.length > 1 ? String(s).padStart(2, '0') : s;
 	  }
 	}
@@ -16348,7 +16348,7 @@ function requireYear () {
 	  }
 
 	  toString() {
-	    let year = String(this.date.getFullYear()).padStart(4, '0');
+	    const year = String(this.date.getFullYear()).padStart(4, '0');
 	    return this.token.length === 2 ? year.substr(-2) : year;
 	  }
 	}
@@ -16455,14 +16455,14 @@ function requireDate () {
 	    let result;
 	    this.parts = [];
 	    while(result = regex.exec(mask)) {
-	      let match = result.shift();
-	      let idx = result.findIndex(gr => gr != null);
+	      const match = result.shift();
+	      const idx = result.findIndex(gr => gr != null);
 	      this.parts.push(idx in regexGroups
 	        ? regexGroups[idx]({ token: result[idx] || match, date: this.date, parts: this.parts, locales: this.locales })
 	        : result[idx] || match);
 	    }
 
-	    let parts = this.parts.reduce((arr, i) => {
+	    const parts = this.parts.reduce((arr, i) => {
 	      if (typeof i === 'string' && typeof arr[arr.length - 1] === 'string')
 	        arr[arr.length - 1] += i;
 	      else arr.push(i);
@@ -16537,21 +16537,21 @@ function requireDate () {
 	  }
 
 	  left() {
-	    let prev = this.parts[this.cursor].prev();
+	    const prev = this.parts[this.cursor].prev();
 	    if (prev == null) return this.bell();
 	    this.moveCursor(this.parts.indexOf(prev));
 	    this.render();
 	  }
 
 	  right() {
-	    let next = this.parts[this.cursor].next();
+	    const next = this.parts[this.cursor].next();
 	    if (next == null) return this.bell();
 	    this.moveCursor(this.parts.indexOf(next));
 	    this.render();
 	  }
 
 	  next() {
-	    let next = this.parts[this.cursor].next();
+	    const next = this.parts[this.cursor].next();
 	    this.moveCursor(next
 	      ? this.parts.indexOf(next)
 	      : this.parts.findIndex((part) => part instanceof DatePart));
@@ -16609,7 +16609,7 @@ function requireNumber () {
 	const isNumber = /[0-9]/;
 	const isDef = any => any !== undefined;
 	const round = (number, precision) => {
-	  let factor = Math.pow(10, precision);
+	  const factor = Math.pow(10, precision);
 	  return Math.round(number * factor) / factor;
 	};
 
@@ -16686,7 +16686,7 @@ function requireNumber () {
 	  }
 
 	  abort() {
-	    let x = this.value;
+	    const x = this.value;
 	    this.value = x !== `` ? x : this.initial;
 	    this.done = this.aborted = true;
 	    this.error = false;
@@ -16713,7 +16713,7 @@ function requireNumber () {
 	      this.render();
 	      return;
 	    }
-	    let x = this.value;
+	    const x = this.value;
 	    this.value = x !== `` ? x : this.initial;
 	    this.done = true;
 	    this.aborted = false;
@@ -17028,7 +17028,7 @@ function requireMultiselect () {
 	      return color.red('No matches for this query.');
 	    }
 
-	    let { startIndex, endIndex } = entriesToDisplay(this.cursor, options.length, this.optionsPerPage);
+	    const { startIndex, endIndex } = entriesToDisplay(this.cursor, options.length, this.optionsPerPage);
 	    let prefix, styledOptions = [];
 
 	    for (let i = startIndex; i < endIndex; i++) {
@@ -17233,8 +17233,8 @@ function requireAutocomplete () {
 	  }
 
 	  _(c, key) {
-	    let s1 = this.input.slice(0, this.cursor);
-	    let s2 = this.input.slice(this.cursor);
+	    const s1 = this.input.slice(0, this.cursor);
+	    const s2 = this.input.slice(this.cursor);
 	    this.input = `${s1}${c}${s2}`;
 	    this.cursor = s1.length+1;
 	    this.complete(this.render);
@@ -17243,8 +17243,8 @@ function requireAutocomplete () {
 
 	  delete() {
 	    if (this.cursor === 0) return this.bell();
-	    let s1 = this.input.slice(0, this.cursor-1);
-	    let s2 = this.input.slice(this.cursor);
+	    const s1 = this.input.slice(0, this.cursor-1);
+	    const s2 = this.input.slice(this.cursor);
 	    this.input = `${s1}${s2}`;
 	    this.complete(this.render);
 	    this.cursor = this.cursor-1;
@@ -17253,8 +17253,8 @@ function requireAutocomplete () {
 
 	  deleteForward() {
 	    if(this.cursor*this.scale >= this.rendered.length) return this.bell();
-	    let s1 = this.input.slice(0, this.cursor);
-	    let s2 = this.input.slice(this.cursor+1);
+	    const s1 = this.input.slice(0, this.cursor);
+	    const s2 = this.input.slice(this.cursor+1);
 	    this.input = `${s1}${s2}`;
 	    this.complete(this.render);
 	    this.render();
@@ -17320,7 +17320,7 @@ function requireAutocomplete () {
 	  renderOption(v, hovered, isStart, isEnd) {
 	    let desc;
 	    let prefix = isStart ? figures.arrowUp : isEnd ? figures.arrowDown : ' ';
-	    let title = hovered ? color.cyan().underline(v.title) : v.title;
+	    const title = hovered ? color.cyan().underline(v.title) : v.title;
 	    prefix = (hovered ? color.cyan(figures.pointer) + ' ' : '  ') + prefix;
 	    if (v.description) {
 	      desc = ` - ${v.description}`;
@@ -17338,7 +17338,7 @@ function requireAutocomplete () {
 	    else this.out.write(clear(this.outputText, this.out.columns));
 	    super.render();
 
-	    let { startIndex, endIndex } = entriesToDisplay(this.select, this.choices.length, this.limit);
+	    const { startIndex, endIndex } = entriesToDisplay(this.select, this.choices.length, this.limit);
 
 	    this.outputText = [
 	      style.symbol(this.done, this.aborted, this.exited),
@@ -17947,9 +17947,9 @@ function requireLib () {
 	    if (!type) continue;
 
 	    // if property is a function, invoke it unless it's a special function
-	    for (let key in question) {
+	    for (const key in question) {
 	      if (passOn.includes(key)) continue;
-	      let value = question[key];
+	      const value = question[key];
 	      question[key] = typeof value === 'function' ? await value(answer, { ...answers }, lastPrompt) : value;
 	    }
 

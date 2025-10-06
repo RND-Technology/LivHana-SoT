@@ -2,14 +2,14 @@ import { c as _classCallCheck, j as _inherits, k as _createSuper, b as _createCl
 
 function addCommentBefore(str, indent, comment) {
   if (!comment) return str;
-  var cc = comment.replace(/[\s\S]^/gm, "$&".concat(indent, "#"));
+  const cc = comment.replace(/[\s\S]^/gm, "$&".concat(indent, "#"));
   return "#".concat(cc, "\n").concat(indent).concat(str);
 }
 function addComment(str, indent, comment) {
   return !comment ? str : comment.indexOf('\n') === -1 ? "".concat(str, " #").concat(comment) : "".concat(str, "\n") + comment.replace(/^/gm, "".concat(indent || '', "#"));
 }
 
-var Node = function Node() {
+const Node = function Node() {
   _classCallCheck(this, Node);
 };
 
@@ -19,12 +19,12 @@ function toJSON(value, arg, ctx) {
   });
 
   if (value && typeof value.toJSON === 'function') {
-    var anchor = ctx && ctx.anchors && ctx.anchors.get(value);
+    const anchor = ctx && ctx.anchors && ctx.anchors.get(value);
     if (anchor) ctx.onCreate = function (res) {
       anchor.res = res;
       delete ctx.onCreate;
     };
-    var res = value.toJSON(arg, ctx);
+    const res = value.toJSON(arg, ctx);
     if (anchor && ctx.onCreate) ctx.onCreate(res);
     return res;
   }
@@ -33,13 +33,13 @@ function toJSON(value, arg, ctx) {
   return value;
 }
 
-var Scalar = /*#__PURE__*/function (_Node) {
+const Scalar = /*#__PURE__*/function (_Node) {
   _inherits(Scalar, _Node);
 
-  var _super = _createSuper(Scalar);
+  const _super = _createSuper(Scalar);
 
   function Scalar(value) {
-    var _this;
+    let _this;
 
     _classCallCheck(this, Scalar);
 
@@ -64,17 +64,17 @@ var Scalar = /*#__PURE__*/function (_Node) {
 }(Node);
 
 function collectionFromPath(schema, path, value) {
-  var v = value;
+  let v = value;
 
-  for (var i = path.length - 1; i >= 0; --i) {
-    var k = path[i];
+  for (let i = path.length - 1; i >= 0; --i) {
+    const k = path[i];
 
     if (Number.isInteger(k) && k >= 0) {
-      var a = [];
+      const a = [];
       a[k] = v;
       v = a;
     } else {
-      var o = {};
+      const o = {};
       Object.defineProperty(o, k, {
         value: v,
         writable: true,
@@ -89,16 +89,16 @@ function collectionFromPath(schema, path, value) {
 } // null, undefined, or an empty non-string iterable (e.g. [])
 
 
-var isEmptyPath = function isEmptyPath(path) {
+const isEmptyPath = function isEmptyPath(path) {
   return path == null || _typeof(path) === 'object' && path[Symbol.iterator]().next().done;
 };
-var Collection = /*#__PURE__*/function (_Node) {
+const Collection = /*#__PURE__*/function (_Node) {
   _inherits(Collection, _Node);
 
-  var _super = _createSuper(Collection);
+  const _super = _createSuper(Collection);
 
   function Collection(schema) {
-    var _this;
+    let _this;
 
     _classCallCheck(this, Collection);
 
@@ -114,33 +114,33 @@ var Collection = /*#__PURE__*/function (_Node) {
     key: "addIn",
     value: function addIn(path, value) {
       if (isEmptyPath(path)) this.add(value);else {
-        var _path = _toArray(path),
+        const _path = _toArray(path),
             key = _path[0],
             rest = _path.slice(1);
 
-        var node = this.get(key, true);
+        const node = this.get(key, true);
         if (node instanceof Collection) node.addIn(rest, value);else if (node === undefined && this.schema) this.set(key, collectionFromPath(this.schema, rest, value));else throw new Error("Expected YAML collection at ".concat(key, ". Remaining path: ").concat(rest));
       }
     }
   }, {
     key: "deleteIn",
     value: function deleteIn(_ref) {
-      var _ref2 = _toArray(_ref),
+      const _ref2 = _toArray(_ref),
           key = _ref2[0],
           rest = _ref2.slice(1);
 
       if (rest.length === 0) return this.delete(key);
-      var node = this.get(key, true);
+      const node = this.get(key, true);
       if (node instanceof Collection) return node.deleteIn(rest);else throw new Error("Expected YAML collection at ".concat(key, ". Remaining path: ").concat(rest));
     }
   }, {
     key: "getIn",
     value: function getIn(_ref3, keepScalar) {
-      var _ref4 = _toArray(_ref3),
+      const _ref4 = _toArray(_ref3),
           key = _ref4[0],
           rest = _ref4.slice(1);
 
-      var node = this.get(key, true);
+      const node = this.get(key, true);
       if (rest.length === 0) return !keepScalar && node instanceof Scalar ? node.value : node;else return node instanceof Collection ? node.getIn(rest, keepScalar) : undefined;
     }
   }, {
@@ -148,32 +148,32 @@ var Collection = /*#__PURE__*/function (_Node) {
     value: function hasAllNullValues() {
       return this.items.every(function (node) {
         if (!node || node.type !== 'PAIR') return false;
-        var n = node.value;
+        const n = node.value;
         return n == null || n instanceof Scalar && n.value == null && !n.commentBefore && !n.comment && !n.tag;
       });
     }
   }, {
     key: "hasIn",
     value: function hasIn(_ref5) {
-      var _ref6 = _toArray(_ref5),
+      const _ref6 = _toArray(_ref5),
           key = _ref6[0],
           rest = _ref6.slice(1);
 
       if (rest.length === 0) return this.has(key);
-      var node = this.get(key, true);
+      const node = this.get(key, true);
       return node instanceof Collection ? node.hasIn(rest) : false;
     }
   }, {
     key: "setIn",
     value: function setIn(_ref7, value) {
-      var _ref8 = _toArray(_ref7),
+      const _ref8 = _toArray(_ref7),
           key = _ref8[0],
           rest = _ref8.slice(1);
 
       if (rest.length === 0) {
         this.set(key, value);
       } else {
-        var node = this.get(key, true);
+        const node = this.get(key, true);
         if (node instanceof Collection) node.setIn(rest, value);else if (node === undefined && this.schema) this.set(key, collectionFromPath(this.schema, rest, value));else throw new Error("Expected YAML collection at ".concat(key, ". Remaining path: ").concat(rest));
       }
     } // overridden in implementations
@@ -188,29 +188,29 @@ var Collection = /*#__PURE__*/function (_Node) {
   }, {
     key: "toString",
     value: function toString(ctx, _ref9, onComment, onChompKeep) {
-      var _this2 = this;
+      const _this2 = this;
 
-      var blockItem = _ref9.blockItem,
+      let blockItem = _ref9.blockItem,
           flowChars = _ref9.flowChars,
           isMap = _ref9.isMap,
           itemIndent = _ref9.itemIndent;
-      var _ctx = ctx,
+      const _ctx = ctx,
           indent = _ctx.indent,
           indentStep = _ctx.indentStep,
           stringify = _ctx.stringify;
-      var inFlow = this.type === Type.FLOW_MAP || this.type === Type.FLOW_SEQ || ctx.inFlow;
+      const inFlow = this.type === Type.FLOW_MAP || this.type === Type.FLOW_SEQ || ctx.inFlow;
       if (inFlow) itemIndent += indentStep;
-      var allNullValues = isMap && this.hasAllNullValues();
+      const allNullValues = isMap && this.hasAllNullValues();
       ctx = Object.assign({}, ctx, {
         allNullValues: allNullValues,
         indent: itemIndent,
         inFlow: inFlow,
         type: null
       });
-      var chompKeep = false;
-      var hasItemWithNewLine = false;
-      var nodes = this.items.reduce(function (nodes, item, i) {
-        var comment;
+      let chompKeep = false;
+      let hasItemWithNewLine = false;
+      const nodes = this.items.reduce(function (nodes, item, i) {
+        let comment;
 
         if (item) {
           if (!chompKeep && item.spaceBefore) nodes.push({
@@ -228,7 +228,7 @@ var Collection = /*#__PURE__*/function (_Node) {
         }
 
         chompKeep = false;
-        var str = stringify(item, ctx, function () {
+        let str = stringify(item, ctx, function () {
           return comment = null;
         }, function () {
           return chompKeep = true;
@@ -243,14 +243,14 @@ var Collection = /*#__PURE__*/function (_Node) {
         });
         return nodes;
       }, []);
-      var str;
+      let str;
 
       if (nodes.length === 0) {
         str = flowChars.start + flowChars.end;
       } else if (inFlow) {
-        var start = flowChars.start,
+        const start = flowChars.start,
             end = flowChars.end;
-        var strings = nodes.map(function (n) {
+        const strings = nodes.map(function (n) {
           return n.str;
         });
 
@@ -259,12 +259,12 @@ var Collection = /*#__PURE__*/function (_Node) {
         }, 2) > Collection.maxFlowStringSingleLineLength) {
           str = start;
 
-          var _iterator = _createForOfIteratorHelper(strings),
+          let _iterator = _createForOfIteratorHelper(strings),
               _step;
 
           try {
             for (_iterator.s(); !(_step = _iterator.n()).done;) {
-              var s = _step.value;
+              const s = _step.value;
               str += s ? "\n".concat(indentStep).concat(indent).concat(s) : '\n';
             }
           } catch (err) {
@@ -278,16 +278,16 @@ var Collection = /*#__PURE__*/function (_Node) {
           str = "".concat(start, " ").concat(strings.join(' '), " ").concat(end);
         }
       } else {
-        var _strings = nodes.map(blockItem);
+        const _strings = nodes.map(blockItem);
 
         str = _strings.shift();
 
-        var _iterator2 = _createForOfIteratorHelper(_strings),
+        let _iterator2 = _createForOfIteratorHelper(_strings),
             _step2;
 
         try {
           for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-            var _s = _step2.value;
+            const _s = _step2.value;
             str += _s ? "\n".concat(indent).concat(_s) : '\n';
           }
         } catch (err) {
@@ -312,15 +312,15 @@ var Collection = /*#__PURE__*/function (_Node) {
 _defineProperty(Collection, "maxFlowStringSingleLineLength", 60);
 
 function asItemIndex(key) {
-  var idx = key instanceof Scalar ? key.value : key;
+  let idx = key instanceof Scalar ? key.value : key;
   if (idx && typeof idx === 'string') idx = Number(idx);
   return Number.isInteger(idx) && idx >= 0 ? idx : null;
 }
 
-var YAMLSeq = /*#__PURE__*/function (_Collection) {
+const YAMLSeq = /*#__PURE__*/function (_Collection) {
   _inherits(YAMLSeq, _Collection);
 
-  var _super = _createSuper(YAMLSeq);
+  const _super = _createSuper(YAMLSeq);
 
   function YAMLSeq() {
     _classCallCheck(this, YAMLSeq);
@@ -336,45 +336,45 @@ var YAMLSeq = /*#__PURE__*/function (_Collection) {
   }, {
     key: "delete",
     value: function _delete(key) {
-      var idx = asItemIndex(key);
+      const idx = asItemIndex(key);
       if (typeof idx !== 'number') return false;
-      var del = this.items.splice(idx, 1);
+      const del = this.items.splice(idx, 1);
       return del.length > 0;
     }
   }, {
     key: "get",
     value: function get(key, keepScalar) {
-      var idx = asItemIndex(key);
+      const idx = asItemIndex(key);
       if (typeof idx !== 'number') return undefined;
-      var it = this.items[idx];
+      const it = this.items[idx];
       return !keepScalar && it instanceof Scalar ? it.value : it;
     }
   }, {
     key: "has",
     value: function has(key) {
-      var idx = asItemIndex(key);
+      const idx = asItemIndex(key);
       return typeof idx === 'number' && idx < this.items.length;
     }
   }, {
     key: "set",
     value: function set(key, value) {
-      var idx = asItemIndex(key);
+      const idx = asItemIndex(key);
       if (typeof idx !== 'number') throw new Error("Expected a valid index, not ".concat(key, "."));
       this.items[idx] = value;
     }
   }, {
     key: "toJSON",
     value: function toJSON$1(_, ctx) {
-      var seq = [];
+      const seq = [];
       if (ctx && ctx.onCreate) ctx.onCreate(seq);
-      var i = 0;
+      let i = 0;
 
-      var _iterator = _createForOfIteratorHelper(this.items),
+      let _iterator = _createForOfIteratorHelper(this.items),
           _step;
 
       try {
         for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var item = _step.value;
+          const item = _step.value;
           seq.push(toJSON(item, String(i++), ctx));
         }
       } catch (err) {
@@ -406,7 +406,7 @@ var YAMLSeq = /*#__PURE__*/function (_Collection) {
   return YAMLSeq;
 }(Collection);
 
-var stringifyKey = function stringifyKey(key, jsKey, ctx) {
+const stringifyKey = function stringifyKey(key, jsKey, ctx) {
   if (jsKey === null) return '';
   if (_typeof(jsKey) !== 'object') return String(jsKey);
   if (key instanceof Node && ctx && ctx.doc) return key.toString({
@@ -421,15 +421,15 @@ var stringifyKey = function stringifyKey(key, jsKey, ctx) {
   return JSON.stringify(jsKey);
 };
 
-var Pair = /*#__PURE__*/function (_Node) {
+const Pair = /*#__PURE__*/function (_Node) {
   _inherits(Pair, _Node);
 
-  var _super = _createSuper(Pair);
+  const _super = _createSuper(Pair);
 
   function Pair(key) {
-    var _this;
+    let _this;
 
-    var value = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+    const value = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 
     _classCallCheck(this, Pair);
 
@@ -448,24 +448,24 @@ var Pair = /*#__PURE__*/function (_Node) {
     set: function set(cb) {
       if (this.key == null) this.key = new Scalar(null);
       if (this.key instanceof Node) this.key.commentBefore = cb;else {
-        var msg = 'Pair.commentBefore is an alias for Pair.key.commentBefore. To set it, the key must be a Node.';
+        const msg = 'Pair.commentBefore is an alias for Pair.key.commentBefore. To set it, the key must be a Node.';
         throw new Error(msg);
       }
     }
   }, {
     key: "addToJSMap",
     value: function addToJSMap(ctx, map) {
-      var key = toJSON(this.key, '', ctx);
+      const key = toJSON(this.key, '', ctx);
 
       if (map instanceof Map) {
-        var value = toJSON(this.value, key, ctx);
+        const value = toJSON(this.value, key, ctx);
         map.set(key, value);
       } else if (map instanceof Set) {
         map.add(key);
       } else {
-        var stringKey = stringifyKey(this.key, key, ctx);
+        const stringKey = stringifyKey(this.key, key, ctx);
 
-        var _value = toJSON(this.value, stringKey, ctx);
+        const _value = toJSON(this.value, stringKey, ctx);
 
         if (stringKey in map) Object.defineProperty(map, stringKey, {
           value: _value,
@@ -480,20 +480,20 @@ var Pair = /*#__PURE__*/function (_Node) {
   }, {
     key: "toJSON",
     value: function toJSON(_, ctx) {
-      var pair = ctx && ctx.mapAsMap ? new Map() : {};
+      const pair = ctx && ctx.mapAsMap ? new Map() : {};
       return this.addToJSMap(ctx, pair);
     }
   }, {
     key: "toString",
     value: function toString(ctx, onComment, onChompKeep) {
       if (!ctx || !ctx.doc) return JSON.stringify(this);
-      var _ctx$doc$options = ctx.doc.options,
+      const _ctx$doc$options = ctx.doc.options,
           indentSize = _ctx$doc$options.indent,
           indentSeq = _ctx$doc$options.indentSeq,
           simpleKeys = _ctx$doc$options.simpleKeys;
-      var key = this.key,
+      let key = this.key,
           value = this.value;
-      var keyComment = key instanceof Node && key.comment;
+      let keyComment = key instanceof Node && key.comment;
 
       if (simpleKeys) {
         if (keyComment) {
@@ -501,13 +501,13 @@ var Pair = /*#__PURE__*/function (_Node) {
         }
 
         if (key instanceof Collection) {
-          var msg = 'With simple keys, collection cannot be used as a key value';
+          const msg = 'With simple keys, collection cannot be used as a key value';
           throw new Error(msg);
         }
       }
 
-      var explicitKey = !simpleKeys && (!key || keyComment || (key instanceof Node ? key instanceof Collection || key.type === Type.BLOCK_FOLDED || key.type === Type.BLOCK_LITERAL : _typeof(key) === 'object'));
-      var _ctx = ctx,
+      let explicitKey = !simpleKeys && (!key || keyComment || (key instanceof Node ? key instanceof Collection || key.type === Type.BLOCK_FOLDED || key.type === Type.BLOCK_LITERAL : _typeof(key) === 'object'));
+      const _ctx = ctx,
           doc = _ctx.doc,
           indent = _ctx.indent,
           indentStep = _ctx.indentStep,
@@ -516,8 +516,8 @@ var Pair = /*#__PURE__*/function (_Node) {
         implicitKey: !explicitKey,
         indent: indent + indentStep
       });
-      var chompKeep = false;
-      var str = stringify(key, ctx, function () {
+      let chompKeep = false;
+      let str = stringify(key, ctx, function () {
         return keyComment = null;
       }, function () {
         return chompKeep = true;
@@ -546,14 +546,14 @@ var Pair = /*#__PURE__*/function (_Node) {
         if (onComment) onComment();
       }
 
-      var vcb = '';
-      var valueComment = null;
+      let vcb = '';
+      let valueComment = null;
 
       if (value instanceof Node) {
         if (value.spaceBefore) vcb = '\n';
 
         if (value.commentBefore) {
-          var cs = value.commentBefore.replace(/^/gm, "".concat(ctx.indent, "#"));
+          const cs = value.commentBefore.replace(/^/gm, "".concat(ctx.indent, "#"));
           vcb += "\n".concat(cs);
         }
 
@@ -571,17 +571,17 @@ var Pair = /*#__PURE__*/function (_Node) {
         ctx.indent = ctx.indent.substr(2);
       }
 
-      var valueStr = stringify(value, ctx, function () {
+      const valueStr = stringify(value, ctx, function () {
         return valueComment = null;
       }, function () {
         return chompKeep = true;
       });
-      var ws = ' ';
+      let ws = ' ';
 
       if (vcb || this.comment) {
         ws = "".concat(vcb, "\n").concat(ctx.indent);
       } else if (!explicitKey && value instanceof Collection) {
-        var flow = valueStr[0] === '[' || valueStr[0] === '{';
+        const flow = valueStr[0] === '[' || valueStr[0] === '{';
         if (!flow || valueStr.includes('\n')) ws = "\n".concat(ctx.indent);
       } else if (valueStr[0] === '\n') ws = '';
 
@@ -598,20 +598,20 @@ _defineProperty(Pair, "Type", {
   MERGE_PAIR: 'MERGE_PAIR'
 });
 
-var getAliasCount = function getAliasCount(node, anchors) {
+const getAliasCount = function getAliasCount(node, anchors) {
   if (node instanceof Alias) {
-    var anchor = anchors.get(node.source);
+    const anchor = anchors.get(node.source);
     return anchor.count * anchor.aliasCount;
   } else if (node instanceof Collection) {
-    var count = 0;
+    let count = 0;
 
-    var _iterator = _createForOfIteratorHelper(node.items),
+    let _iterator = _createForOfIteratorHelper(node.items),
         _step;
 
     try {
       for (_iterator.s(); !(_step = _iterator.n()).done;) {
-        var item = _step.value;
-        var c = getAliasCount(item, anchors);
+        const item = _step.value;
+        const c = getAliasCount(item, anchors);
         if (c > count) count = c;
       }
     } catch (err) {
@@ -622,8 +622,8 @@ var getAliasCount = function getAliasCount(node, anchors) {
 
     return count;
   } else if (node instanceof Pair) {
-    var kc = getAliasCount(node.key, anchors);
-    var vc = getAliasCount(node.value, anchors);
+    const kc = getAliasCount(node.key, anchors);
+    const vc = getAliasCount(node.value, anchors);
     return Math.max(kc, vc);
   }
 
@@ -633,10 +633,10 @@ var getAliasCount = function getAliasCount(node, anchors) {
 var Alias = /*#__PURE__*/function (_Node) {
   _inherits(Alias, _Node);
 
-  var _super = _createSuper(Alias);
+  const _super = _createSuper(Alias);
 
   function Alias(source) {
-    var _this;
+    let _this;
 
     _classCallCheck(this, Alias);
 
@@ -655,13 +655,13 @@ var Alias = /*#__PURE__*/function (_Node) {
     key: "toJSON",
     value: function toJSON$1(arg, ctx) {
       if (!ctx) return toJSON(this.source, arg, ctx);
-      var anchors = ctx.anchors,
+      const anchors = ctx.anchors,
           maxAliasCount = ctx.maxAliasCount;
-      var anchor = anchors.get(this.source);
+      const anchor = anchors.get(this.source);
       /* istanbul ignore if */
 
       if (!anchor || anchor.res === undefined) {
-        var msg = 'This should not happen: Alias anchor was not resolved?';
+        const msg = 'This should not happen: Alias anchor was not resolved?';
         if (this.cstNode) throw new YAMLReferenceError(this.cstNode, msg);else throw new ReferenceError(msg);
       }
 
@@ -670,7 +670,7 @@ var Alias = /*#__PURE__*/function (_Node) {
         if (anchor.aliasCount === 0) anchor.aliasCount = getAliasCount(this.source, anchors);
 
         if (anchor.count * anchor.aliasCount > maxAliasCount) {
-          var _msg = 'Excessive alias count indicates a resource exhaustion attack';
+          const _msg = 'Excessive alias count indicates a resource exhaustion attack';
           if (this.cstNode) throw new YAMLReferenceError(this.cstNode, _msg);else throw new ReferenceError(_msg);
         }
       }
@@ -687,18 +687,18 @@ var Alias = /*#__PURE__*/function (_Node) {
   }], [{
     key: "stringify",
     value: function stringify(_ref, _ref2) {
-      var range = _ref.range,
+      const range = _ref.range,
           source = _ref.source;
-      var anchors = _ref2.anchors,
+      const anchors = _ref2.anchors,
           doc = _ref2.doc,
           implicitKey = _ref2.implicitKey,
           inStringifyKey = _ref2.inStringifyKey;
-      var anchor = Object.keys(anchors).find(function (a) {
+      let anchor = Object.keys(anchors).find(function (a) {
         return anchors[a] === source;
       });
       if (!anchor && inStringifyKey) anchor = doc.anchors.getName(source) || doc.anchors.newName();
       if (anchor) return "*".concat(anchor).concat(implicitKey ? ' ' : '');
-      var msg = doc.anchors.getName(source) ? 'Alias node must be after source node' : 'Source node not found for alias node';
+      const msg = doc.anchors.getName(source) ? 'Alias node must be after source node' : 'Source node not found for alias node';
       throw new Error("".concat(msg, " [").concat(range, "]"));
     }
   }]);
@@ -709,14 +709,14 @@ var Alias = /*#__PURE__*/function (_Node) {
 _defineProperty(Alias, "default", true);
 
 function findPair(items, key) {
-  var k = key instanceof Scalar ? key.value : key;
+  const k = key instanceof Scalar ? key.value : key;
 
-  var _iterator = _createForOfIteratorHelper(items),
+  let _iterator = _createForOfIteratorHelper(items),
       _step;
 
   try {
     for (_iterator.s(); !(_step = _iterator.n()).done;) {
-      var it = _step.value;
+      const it = _step.value;
 
       if (it instanceof Pair) {
         if (it.key === key || it.key === k) return it;
@@ -731,10 +731,10 @@ function findPair(items, key) {
 
   return undefined;
 }
-var YAMLMap = /*#__PURE__*/function (_Collection) {
+const YAMLMap = /*#__PURE__*/function (_Collection) {
   _inherits(YAMLMap, _Collection);
 
-  var _super = _createSuper(YAMLMap);
+  const _super = _createSuper(YAMLMap);
 
   function YAMLMap() {
     _classCallCheck(this, YAMLMap);
@@ -746,13 +746,13 @@ var YAMLMap = /*#__PURE__*/function (_Collection) {
     key: "add",
     value: function add(pair, overwrite) {
       if (!pair) pair = new Pair(pair);else if (!(pair instanceof Pair)) pair = new Pair(pair.key || pair, pair.value);
-      var prev = findPair(this.items, pair.key);
-      var sortEntries = this.schema && this.schema.sortMapEntries;
+      const prev = findPair(this.items, pair.key);
+      const sortEntries = this.schema && this.schema.sortMapEntries;
 
       if (prev) {
         if (overwrite) prev.value = pair.value;else throw new Error("Key ".concat(pair.key, " already set"));
       } else if (sortEntries) {
-        var i = this.items.findIndex(function (item) {
+        const i = this.items.findIndex(function (item) {
           return sortEntries(pair, item) < 0;
         });
         if (i === -1) this.items.push(pair);else this.items.splice(i, 0, pair);
@@ -763,16 +763,16 @@ var YAMLMap = /*#__PURE__*/function (_Collection) {
   }, {
     key: "delete",
     value: function _delete(key) {
-      var it = findPair(this.items, key);
+      const it = findPair(this.items, key);
       if (!it) return false;
-      var del = this.items.splice(this.items.indexOf(it), 1);
+      const del = this.items.splice(this.items.indexOf(it), 1);
       return del.length > 0;
     }
   }, {
     key: "get",
     value: function get(key, keepScalar) {
-      var it = findPair(this.items, key);
-      var node = it && it.value;
+      const it = findPair(this.items, key);
+      const node = it && it.value;
       return !keepScalar && node instanceof Scalar ? node.value : node;
     }
   }, {
@@ -795,15 +795,15 @@ var YAMLMap = /*#__PURE__*/function (_Collection) {
   }, {
     key: "toJSON",
     value: function toJSON(_, ctx, Type) {
-      var map = Type ? new Type() : ctx && ctx.mapAsMap ? new Map() : {};
+      const map = Type ? new Type() : ctx && ctx.mapAsMap ? new Map() : {};
       if (ctx && ctx.onCreate) ctx.onCreate(map);
 
-      var _iterator2 = _createForOfIteratorHelper(this.items),
+      let _iterator2 = _createForOfIteratorHelper(this.items),
           _step2;
 
       try {
         for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-          var item = _step2.value;
+          const item = _step2.value;
           item.addToJSMap(ctx, map);
         }
       } catch (err) {
@@ -819,12 +819,12 @@ var YAMLMap = /*#__PURE__*/function (_Collection) {
     value: function toString(ctx, onComment, onChompKeep) {
       if (!ctx) return JSON.stringify(this);
 
-      var _iterator3 = _createForOfIteratorHelper(this.items),
+      let _iterator3 = _createForOfIteratorHelper(this.items),
           _step3;
 
       try {
         for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-          var item = _step3.value;
+          const item = _step3.value;
           if (!(item instanceof Pair)) throw new Error("Map items must all be pairs; found ".concat(JSON.stringify(item), " instead"));
         }
       } catch (err) {
@@ -850,19 +850,19 @@ var YAMLMap = /*#__PURE__*/function (_Collection) {
   return YAMLMap;
 }(Collection);
 
-var MERGE_KEY = '<<';
-var Merge = /*#__PURE__*/function (_Pair) {
+const MERGE_KEY = '<<';
+const Merge = /*#__PURE__*/function (_Pair) {
   _inherits(Merge, _Pair);
 
-  var _super = _createSuper(Merge);
+  const _super = _createSuper(Merge);
 
   function Merge(pair) {
-    var _this;
+    let _this;
 
     _classCallCheck(this, Merge);
 
     if (pair instanceof Pair) {
-      var seq = pair.value;
+      let seq = pair.value;
 
       if (!(seq instanceof YAMLSeq)) {
         seq = new YAMLSeq();
@@ -890,21 +890,21 @@ var Merge = /*#__PURE__*/function (_Pair) {
   _createClass(Merge, [{
     key: "addToJSMap",
     value: function addToJSMap(ctx, map) {
-      var _iterator = _createForOfIteratorHelper(this.value.items),
+      let _iterator = _createForOfIteratorHelper(this.value.items),
           _step;
 
       try {
         for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var source = _step.value.source;
+          const source = _step.value.source;
           if (!(source instanceof YAMLMap)) throw new Error('Merge sources must be maps');
-          var srcMap = source.toJSON(null, ctx, Map);
+          const srcMap = source.toJSON(null, ctx, Map);
 
           var _iterator2 = _createForOfIteratorHelper(srcMap),
               _step2;
 
           try {
             for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-              var _step2$value = _slicedToArray(_step2.value, 2),
+              const _step2$value = _slicedToArray(_step2.value, 2),
                   key = _step2$value[0],
                   value = _step2$value[1];
 
@@ -938,11 +938,11 @@ var Merge = /*#__PURE__*/function (_Pair) {
   }, {
     key: "toString",
     value: function toString(ctx, onComment) {
-      var seq = this.value;
+      const seq = this.value;
       if (seq.items.length > 1) return _get(_getPrototypeOf(Merge.prototype), "toString", this).call(this, ctx, onComment);
       this.value = seq.items[0];
 
-      var str = _get(_getPrototypeOf(Merge.prototype), "toString", this).call(this, ctx, onComment);
+      const str = _get(_getPrototypeOf(Merge.prototype), "toString", this).call(this, ctx, onComment);
 
       this.value = seq;
       return str;
@@ -952,21 +952,21 @@ var Merge = /*#__PURE__*/function (_Pair) {
   return Merge;
 }(Pair);
 
-var binaryOptions = {
+const binaryOptions = {
   defaultType: Type.BLOCK_LITERAL,
   lineWidth: 76
 };
-var boolOptions = {
+const boolOptions = {
   trueStr: 'true',
   falseStr: 'false'
 };
-var intOptions = {
+const intOptions = {
   asBigInt: false
 };
-var nullOptions = {
+const nullOptions = {
   nullStr: 'null'
 };
-var strOptions = {
+const strOptions = {
   defaultType: Type.PLAIN,
   doubleQuoted: {
     jsonEncoding: false,
@@ -979,21 +979,21 @@ var strOptions = {
 };
 
 function resolveScalar(str, tags, scalarFallback) {
-  var _iterator = _createForOfIteratorHelper(tags),
+  let _iterator = _createForOfIteratorHelper(tags),
       _step;
 
   try {
     for (_iterator.s(); !(_step = _iterator.n()).done;) {
-      var _step$value = _step.value,
+      const _step$value = _step.value,
           format = _step$value.format,
           test = _step$value.test,
           resolve = _step$value.resolve;
 
       if (test) {
-        var match = str.match(test);
+        const match = str.match(test);
 
         if (match) {
-          var res = resolve.apply(null, match);
+          let res = resolve.apply(null, match);
           if (!(res instanceof Scalar)) res = new Scalar(res);
           if (format) res.format = format;
           return res;
@@ -1010,13 +1010,13 @@ function resolveScalar(str, tags, scalarFallback) {
   return new Scalar(str);
 }
 
-var FOLD_FLOW = 'flow';
-var FOLD_BLOCK = 'block';
-var FOLD_QUOTED = 'quoted'; // presumes i+1 is at the start of a line
+const FOLD_FLOW = 'flow';
+const FOLD_BLOCK = 'block';
+const FOLD_QUOTED = 'quoted'; // presumes i+1 is at the start of a line
 // returns index of last newline in more-indented block
 
-var consumeMoreIndentedLines = function consumeMoreIndentedLines(text, i) {
-  var ch = text[i + 1];
+const consumeMoreIndentedLines = function consumeMoreIndentedLines(text, i) {
+  let ch = text[i + 1];
 
   while (ch === ' ' || ch === '\t') {
     do {
@@ -1051,7 +1051,7 @@ var consumeMoreIndentedLines = function consumeMoreIndentedLines(text, i) {
 
 
 function foldFlowLines(text, indent, mode, _ref) {
-  var indentAtStart = _ref.indentAtStart,
+  const indentAtStart = _ref.indentAtStart,
       _ref$lineWidth = _ref.lineWidth,
       lineWidth = _ref$lineWidth === void 0 ? 80 : _ref$lineWidth,
       _ref$minContentWidth = _ref.minContentWidth,
@@ -1059,22 +1059,22 @@ function foldFlowLines(text, indent, mode, _ref) {
       onFold = _ref.onFold,
       onOverflow = _ref.onOverflow;
   if (!lineWidth || lineWidth < 0) return text;
-  var endStep = Math.max(1 + minContentWidth, 1 + lineWidth - indent.length);
+  const endStep = Math.max(1 + minContentWidth, 1 + lineWidth - indent.length);
   if (text.length <= endStep) return text;
-  var folds = [];
-  var escapedFolds = {};
-  var end = lineWidth - indent.length;
+  const folds = [];
+  const escapedFolds = {};
+  let end = lineWidth - indent.length;
 
   if (typeof indentAtStart === 'number') {
     if (indentAtStart > lineWidth - Math.max(2, minContentWidth)) folds.push(0);else end = lineWidth - indentAtStart;
   }
 
-  var split = undefined;
-  var prev = undefined;
-  var overflow = false;
-  var i = -1;
-  var escStart = -1;
-  var escEnd = -1;
+  let split = undefined;
+  let prev = undefined;
+  let overflow = false;
+  let i = -1;
+  let escStart = -1;
+  let escEnd = -1;
 
   if (mode === FOLD_BLOCK) {
     i = consumeMoreIndentedLines(text, i);
@@ -1112,7 +1112,7 @@ function foldFlowLines(text, indent, mode, _ref) {
     } else {
       if (ch === ' ' && prev && prev !== ' ' && prev !== '\n' && prev !== '\t') {
         // space surrounded by non-space can be replaced with newline + indent
-        var next = text[i + 1];
+        const next = text[i + 1];
         if (next && next !== ' ' && next !== '\n' && next !== '\t') split = i;
       }
 
@@ -1130,7 +1130,7 @@ function foldFlowLines(text, indent, mode, _ref) {
           } // Account for newline escape, but don't break preceding escape
 
 
-          var j = i > escEnd + 1 ? i - 2 : escStart - 1; // Bail out if lineWidth & minContentWidth are shorter than an escape string
+          const j = i > escEnd + 1 ? i - 2 : escStart - 1; // Bail out if lineWidth & minContentWidth are shorter than an escape string
 
           if (escapedFolds[j]) return text;
           folds.push(j);
@@ -1149,12 +1149,12 @@ function foldFlowLines(text, indent, mode, _ref) {
   if (overflow && onOverflow) onOverflow();
   if (folds.length === 0) return text;
   if (onFold) onFold();
-  var res = text.slice(0, folds[0]);
+  let res = text.slice(0, folds[0]);
 
-  for (var _i = 0; _i < folds.length; ++_i) {
-    var fold = folds[_i];
+  for (let _i = 0; _i < folds.length; ++_i) {
+    const fold = folds[_i];
 
-    var _end = folds[_i + 1] || text.length;
+    const _end = folds[_i + 1] || text.length;
 
     if (fold === 0) res = "\n".concat(indent).concat(text.slice(0, _end));else {
       if (mode === FOLD_QUOTED && escapedFolds[fold]) res += "".concat(text[fold], "\\");
@@ -1165,8 +1165,8 @@ function foldFlowLines(text, indent, mode, _ref) {
   return res;
 }
 
-var getFoldOptions = function getFoldOptions(_ref) {
-  var indentAtStart = _ref.indentAtStart;
+const getFoldOptions = function getFoldOptions(_ref) {
+  const indentAtStart = _ref.indentAtStart;
   return indentAtStart ? Object.assign({
     indentAtStart: indentAtStart
   }, strOptions.fold) : strOptions.fold;
@@ -1174,17 +1174,17 @@ var getFoldOptions = function getFoldOptions(_ref) {
 // presume that's starting a new document.
 
 
-var containsDocumentMarker = function containsDocumentMarker(str) {
+const containsDocumentMarker = function containsDocumentMarker(str) {
   return /^(%|---|\.\.\.)/m.test(str);
 };
 
 function lineLengthOverLimit(str, lineWidth, indentLength) {
   if (!lineWidth || lineWidth < 0) return false;
-  var limit = lineWidth - indentLength;
-  var strLen = str.length;
+  const limit = lineWidth - indentLength;
+  const strLen = str.length;
   if (strLen <= limit) return false;
 
-  for (var i = 0, start = 0; i < strLen; ++i) {
+  for (let i = 0, start = 0; i < strLen; ++i) {
     if (str[i] === '\n') {
       if (i - start > limit) return true;
       start = i + 1;
@@ -1196,17 +1196,17 @@ function lineLengthOverLimit(str, lineWidth, indentLength) {
 }
 
 function doubleQuotedString(value, ctx) {
-  var implicitKey = ctx.implicitKey;
-  var _strOptions$doubleQuo = strOptions.doubleQuoted,
+  const implicitKey = ctx.implicitKey;
+  const _strOptions$doubleQuo = strOptions.doubleQuoted,
       jsonEncoding = _strOptions$doubleQuo.jsonEncoding,
       minMultiLineLength = _strOptions$doubleQuo.minMultiLineLength;
-  var json = JSON.stringify(value);
+  const json = JSON.stringify(value);
   if (jsonEncoding) return json;
-  var indent = ctx.indent || (containsDocumentMarker(value) ? '  ' : '');
-  var str = '';
-  var start = 0;
+  const indent = ctx.indent || (containsDocumentMarker(value) ? '  ' : '');
+  let str = '';
+  let start = 0;
 
-  for (var i = 0, ch = json[i]; ch; ch = json[++i]) {
+  for (let i = 0, ch = json[i]; ch; ch = json[++i]) {
     if (ch === ' ' && json[i + 1] === '\\' && json[i + 2] === 'n') {
       // space before newline needs to be escaped to not be folded
       str += json.slice(start, i) + '\\ ';
@@ -1219,7 +1219,7 @@ function doubleQuotedString(value, ctx) {
       case 'u':
         {
           str += json.slice(start, i);
-          var code = json.substr(i + 2, 4);
+          const code = json.substr(i + 2, 4);
 
           switch (code) {
             case '0000':
@@ -1301,13 +1301,13 @@ function singleQuotedString(value, ctx) {
     if (/[ \t]\n|\n[ \t]/.test(value)) return doubleQuotedString(value, ctx);
   }
 
-  var indent = ctx.indent || (containsDocumentMarker(value) ? '  ' : '');
-  var res = "'" + value.replace(/'/g, "''").replace(/\n+/g, "$&\n".concat(indent)) + "'";
+  const indent = ctx.indent || (containsDocumentMarker(value) ? '  ' : '');
+  const res = "'" + value.replace(/'/g, "''").replace(/\n+/g, "$&\n".concat(indent)) + "'";
   return ctx.implicitKey ? res : foldFlowLines(res, indent, FOLD_FLOW, getFoldOptions(ctx));
 }
 
 function blockString(_ref2, ctx, onComment, onChompKeep) {
-  var comment = _ref2.comment,
+  let comment = _ref2.comment,
       type = _ref2.type,
       value = _ref2.value;
 
@@ -1317,16 +1317,16 @@ function blockString(_ref2, ctx, onComment, onChompKeep) {
     return doubleQuotedString(value, ctx);
   }
 
-  var indent = ctx.indent || (ctx.forceBlockIndent || containsDocumentMarker(value) ? '  ' : '');
-  var indentSize = indent ? '2' : '1'; // root is at -1
+  const indent = ctx.indent || (ctx.forceBlockIndent || containsDocumentMarker(value) ? '  ' : '');
+  const indentSize = indent ? '2' : '1'; // root is at -1
 
-  var literal = type === Type.BLOCK_FOLDED ? false : type === Type.BLOCK_LITERAL ? true : !lineLengthOverLimit(value, strOptions.fold.lineWidth, indent.length);
-  var header = literal ? '|' : '>';
+  const literal = type === Type.BLOCK_FOLDED ? false : type === Type.BLOCK_LITERAL ? true : !lineLengthOverLimit(value, strOptions.fold.lineWidth, indent.length);
+  let header = literal ? '|' : '>';
   if (!value) return header + '\n';
-  var wsStart = '';
-  var wsEnd = '';
+  let wsStart = '';
+  let wsEnd = '';
   value = value.replace(/[\n\t ]*$/, function (ws) {
-    var n = ws.indexOf('\n');
+    const n = ws.indexOf('\n');
 
     if (n === -1) {
       header += '-'; // strip
@@ -1340,7 +1340,7 @@ function blockString(_ref2, ctx, onComment, onChompKeep) {
     return '';
   }).replace(/^[\n ]*/, function (ws) {
     if (ws.indexOf(' ') !== -1) header += indentSize;
-    var m = ws.match(/ +$/);
+    const m = ws.match(/ +$/);
 
     if (m) {
       wsStart = ws.slice(0, -m[0].length);
@@ -1368,15 +1368,15 @@ function blockString(_ref2, ctx, onComment, onChompKeep) {
   value = value.replace(/\n+/g, '\n$&').replace(/(?:^|\n)([\t ].*)(?:([\n\t ]*)\n(?![\n\t ]))?/g, '$1$2') // more-indented lines aren't folded
   //         ^ ind.line  ^ empty     ^ capture next empty lines only at end of indent
   .replace(/\n+/g, "$&".concat(indent));
-  var body = foldFlowLines("".concat(wsStart).concat(value).concat(wsEnd), indent, FOLD_BLOCK, strOptions.fold);
+  const body = foldFlowLines("".concat(wsStart).concat(value).concat(wsEnd), indent, FOLD_BLOCK, strOptions.fold);
   return "".concat(header, "\n").concat(indent).concat(body);
 }
 
 function plainString(item, ctx, onComment, onChompKeep) {
-  var comment = item.comment,
+  const comment = item.comment,
       type = item.type,
       value = item.value;
-  var actualString = ctx.actualString,
+  const actualString = ctx.actualString,
       implicitKey = ctx.implicitKey,
       indent = ctx.indent,
       inFlow = ctx.inFlow;
@@ -1405,17 +1405,17 @@ function plainString(item, ctx, onComment, onChompKeep) {
     return blockString(item, ctx, onComment, onChompKeep);
   }
 
-  var str = value.replace(/\n+/g, "$&\n".concat(indent)); // Verify that output will be parsed as a string, as e.g. plain numbers and
+  const str = value.replace(/\n+/g, "$&\n".concat(indent)); // Verify that output will be parsed as a string, as e.g. plain numbers and
   // booleans get parsed with those types in v1.2 (e.g. '42', 'true' & '0.9e-3'),
   // and others in v1.1.
 
   if (actualString) {
-    var tags = ctx.doc.schema.tags;
-    var resolved = resolveScalar(str, tags, tags.scalarFallback).value;
+    const tags = ctx.doc.schema.tags;
+    const resolved = resolveScalar(str, tags, tags.scalarFallback).value;
     if (typeof resolved !== 'string') return doubleQuotedString(value, ctx);
   }
 
-  var body = implicitKey ? str : foldFlowLines(str, indent, FOLD_FLOW, getFoldOptions(ctx));
+  const body = implicitKey ? str : foldFlowLines(str, indent, FOLD_FLOW, getFoldOptions(ctx));
 
   if (comment && !inFlow && (body.indexOf('\n') !== -1 || comment.indexOf('\n') !== -1)) {
     if (onComment) onComment();
@@ -1426,10 +1426,10 @@ function plainString(item, ctx, onComment, onChompKeep) {
 }
 
 function stringifyString(item, ctx, onComment, onChompKeep) {
-  var defaultType = strOptions.defaultType;
-  var implicitKey = ctx.implicitKey,
+  const defaultType = strOptions.defaultType;
+  const implicitKey = ctx.implicitKey,
       inFlow = ctx.inFlow;
-  var _item = item,
+  let _item = item,
       type = _item.type,
       value = _item.value;
 
@@ -1440,7 +1440,7 @@ function stringifyString(item, ctx, onComment, onChompKeep) {
     });
   }
 
-  var _stringify = function _stringify(_type) {
+  const _stringify = function _stringify(_type) {
     switch (_type) {
       case Type.BLOCK_FOLDED:
       case Type.BLOCK_LITERAL:
@@ -1468,7 +1468,7 @@ function stringifyString(item, ctx, onComment, onChompKeep) {
     type = Type.QUOTE_DOUBLE;
   }
 
-  var res = _stringify(type);
+  let res = _stringify(type);
 
   if (res === null) {
     res = _stringify(defaultType);
@@ -1479,23 +1479,23 @@ function stringifyString(item, ctx, onComment, onChompKeep) {
 }
 
 function stringifyNumber(_ref) {
-  var format = _ref.format,
+  const format = _ref.format,
       minFractionDigits = _ref.minFractionDigits,
       tag = _ref.tag,
       value = _ref.value;
   if (typeof value === 'bigint') return String(value);
   if (!isFinite(value)) return isNaN(value) ? '.nan' : value < 0 ? '-.inf' : '.inf';
-  var n = JSON.stringify(value);
+  let n = JSON.stringify(value);
 
   if (!format && minFractionDigits && (!tag || tag === 'tag:yaml.org,2002:float') && /^\d/.test(n)) {
-    var i = n.indexOf('.');
+    let i = n.indexOf('.');
 
     if (i < 0) {
       i = n.length;
       n += '.';
     }
 
-    var d = minFractionDigits - (n.length - i - 1);
+    let d = minFractionDigits - (n.length - i - 1);
 
     while (d-- > 0) {
       n += '0';
@@ -1506,7 +1506,7 @@ function stringifyNumber(_ref) {
 }
 
 function checkFlowCollectionEnd(errors, cst) {
-  var char, name;
+  let char, name;
 
   switch (cst.type) {
     case Type.FLOW_MAP:
@@ -1524,10 +1524,10 @@ function checkFlowCollectionEnd(errors, cst) {
       return;
   }
 
-  var lastItem;
+  let lastItem;
 
-  for (var i = cst.items.length - 1; i >= 0; --i) {
-    var item = cst.items[i];
+  for (let i = cst.items.length - 1; i >= 0; --i) {
+    const item = cst.items[i];
 
     if (!item || item.type !== Type.COMMENT) {
       lastItem = item;
@@ -1536,8 +1536,8 @@ function checkFlowCollectionEnd(errors, cst) {
   }
 
   if (lastItem && lastItem.char !== char) {
-    var msg = "Expected ".concat(name, " to end with ").concat(char);
-    var err;
+    const msg = "Expected ".concat(name, " to end with ").concat(char);
+    let err;
 
     if (typeof lastItem.offset === 'number') {
       err = new YAMLSemanticError(cst, msg);
@@ -1551,29 +1551,29 @@ function checkFlowCollectionEnd(errors, cst) {
   }
 }
 function checkFlowCommentSpace(errors, comment) {
-  var prev = comment.context.src[comment.range.start - 1];
+  const prev = comment.context.src[comment.range.start - 1];
 
   if (prev !== '\n' && prev !== '\t' && prev !== ' ') {
-    var msg = 'Comments must be separated from other tokens by white space characters';
+    const msg = 'Comments must be separated from other tokens by white space characters';
     errors.push(new YAMLSemanticError(comment, msg));
   }
 }
 function getLongKeyError(source, key) {
-  var sk = String(key);
-  var k = sk.substr(0, 8) + '...' + sk.substr(-8);
+  const sk = String(key);
+  const k = sk.substr(0, 8) + '...' + sk.substr(-8);
   return new YAMLSemanticError(source, "The \"".concat(k, "\" key is too long"));
 }
 function resolveComments(collection, comments) {
-  var _iterator = _createForOfIteratorHelper(comments),
+  let _iterator = _createForOfIteratorHelper(comments),
       _step;
 
   try {
     for (_iterator.s(); !(_step = _iterator.n()).done;) {
-      var _step$value = _step.value,
+      const _step$value = _step.value,
           afterKey = _step$value.afterKey,
           before = _step$value.before,
           comment = _step$value.comment;
-      var item = collection.items[before];
+      let item = collection.items[before];
 
       if (!item) {
         if (comment !== undefined) {
@@ -1598,7 +1598,7 @@ function resolveComments(collection, comments) {
 
 // on error, will return { str: string, errors: Error[] }
 function resolveString(doc, node) {
-  var res = node.strValue;
+  const res = node.strValue;
   if (!res) return '';
   if (typeof res === 'string') return res;
   res.errors.forEach(function (error) {
@@ -1609,15 +1609,15 @@ function resolveString(doc, node) {
 }
 
 function resolveTagHandle(doc, node) {
-  var _node$tag = node.tag,
+  const _node$tag = node.tag,
       handle = _node$tag.handle,
       suffix = _node$tag.suffix;
-  var prefix = doc.tagPrefixes.find(function (p) {
+  let prefix = doc.tagPrefixes.find(function (p) {
     return p.handle === handle;
   });
 
   if (!prefix) {
-    var dtp = doc.getDefaults().tagPrefixes;
+    const dtp = doc.getDefaults().tagPrefixes;
     if (dtp) prefix = dtp.find(function (p) {
       return p.handle === handle;
     });
@@ -1634,7 +1634,7 @@ function resolveTagHandle(doc, node) {
 
     if (/[:/]/.test(suffix)) {
       // word/foo -> tag:word.yaml.org,2002:foo
-      var vocab = suffix.match(/^([a-z0-9-]+)\/(.*)/i);
+      const vocab = suffix.match(/^([a-z0-9-]+)\/(.*)/i);
       return vocab ? "tag:".concat(vocab[1], ".yaml.org,2002:").concat(vocab[2]) : "tag:".concat(suffix);
     }
   }
@@ -1643,18 +1643,18 @@ function resolveTagHandle(doc, node) {
 }
 
 function resolveTagName(doc, node) {
-  var tag = node.tag,
+  const tag = node.tag,
       type = node.type;
-  var nonSpecific = false;
+  let nonSpecific = false;
 
   if (tag) {
-    var handle = tag.handle,
+    const handle = tag.handle,
         suffix = tag.suffix,
         verbatim = tag.verbatim;
 
     if (verbatim) {
       if (verbatim !== '!' && verbatim !== '!!') return verbatim;
-      var msg = "Verbatim tags aren't resolved, so ".concat(verbatim, " is invalid.");
+      const msg = "Verbatim tags aren't resolved, so ".concat(verbatim, " is invalid.");
       doc.errors.push(new YAMLSemanticError(node, msg));
     } else if (handle === '!' && !suffix) {
       nonSpecific = true;
@@ -1691,19 +1691,19 @@ function resolveTagName(doc, node) {
 }
 
 function resolveByTagName(doc, node, tagName) {
-  var tags = doc.schema.tags;
-  var matchWithTest = [];
+  const tags = doc.schema.tags;
+  const matchWithTest = [];
 
-  var _iterator = _createForOfIteratorHelper(tags),
+  let _iterator = _createForOfIteratorHelper(tags),
       _step;
 
   try {
     for (_iterator.s(); !(_step = _iterator.n()).done;) {
-      var tag = _step.value;
+      const tag = _step.value;
 
       if (tag.tag === tagName) {
         if (tag.test) matchWithTest.push(tag);else {
-          var res = tag.resolve(doc, node);
+          const res = tag.resolve(doc, node);
           return res instanceof Collection ? res : new Scalar(res);
         }
       }
@@ -1714,13 +1714,13 @@ function resolveByTagName(doc, node, tagName) {
     _iterator.f();
   }
 
-  var str = resolveString(doc, node);
+  const str = resolveString(doc, node);
   if (typeof str === 'string' && matchWithTest.length > 0) return resolveScalar(str, matchWithTest, tags.scalarFallback);
   return null;
 }
 
 function getFallbackTagName(_ref) {
-  var type = _ref.type;
+  const type = _ref.type;
 
   switch (type) {
     case Type.FLOW_MAP:
@@ -1738,7 +1738,7 @@ function getFallbackTagName(_ref) {
 
 function resolveTag(doc, node, tagName) {
   try {
-    var res = resolveByTagName(doc, node, tagName);
+    const res = resolveByTagName(doc, node, tagName);
 
     if (res) {
       if (tagName && node.tag) res.tag = tagName;
@@ -1752,44 +1752,44 @@ function resolveTag(doc, node, tagName) {
   }
 
   try {
-    var fallback = getFallbackTagName(node);
+    const fallback = getFallbackTagName(node);
     if (!fallback) throw new Error("The tag ".concat(tagName, " is unavailable"));
-    var msg = "The tag ".concat(tagName, " is unavailable, falling back to ").concat(fallback);
+    const msg = "The tag ".concat(tagName, " is unavailable, falling back to ").concat(fallback);
     doc.warnings.push(new YAMLWarning(node, msg));
 
-    var _res = resolveByTagName(doc, node, fallback);
+    const _res = resolveByTagName(doc, node, fallback);
 
     _res.tag = tagName;
     return _res;
   } catch (error) {
-    var refError = new YAMLReferenceError(node, error.message);
+    const refError = new YAMLReferenceError(node, error.message);
     refError.stack = error.stack;
     doc.errors.push(refError);
     return null;
   }
 }
 
-var isCollectionItem = function isCollectionItem(node) {
+const isCollectionItem = function isCollectionItem(node) {
   if (!node) return false;
-  var type = node.type;
+  const type = node.type;
   return type === Type.MAP_KEY || type === Type.MAP_VALUE || type === Type.SEQ_ITEM;
 };
 
 function resolveNodeProps(errors, node) {
-  var comments = {
+  const comments = {
     before: [],
     after: []
   };
-  var hasAnchor = false;
-  var hasTag = false;
-  var props = isCollectionItem(node.context.parent) ? node.context.parent.props.concat(node.props) : node.props;
+  let hasAnchor = false;
+  let hasTag = false;
+  const props = isCollectionItem(node.context.parent) ? node.context.parent.props.concat(node.props) : node.props;
 
-  var _iterator = _createForOfIteratorHelper(props),
+  let _iterator = _createForOfIteratorHelper(props),
       _step;
 
   try {
     for (_iterator.s(); !(_step = _iterator.n()).done;) {
-      var _step$value = _step.value,
+      const _step$value = _step.value,
           start = _step$value.start,
           end = _step$value.end;
 
@@ -1797,13 +1797,13 @@ function resolveNodeProps(errors, node) {
         case Char.COMMENT:
           {
             if (!node.commentHasRequiredWhitespace(start)) {
-              var msg = 'Comments must be separated from other tokens by white space characters';
+              const msg = 'Comments must be separated from other tokens by white space characters';
               errors.push(new YAMLSemanticError(node, msg));
             }
 
-            var header = node.header,
+            const header = node.header,
                 valueRange = node.valueRange;
-            var cc = valueRange && (start > valueRange.start || header && start > header.start) ? comments.after : comments.before;
+            const cc = valueRange && (start > valueRange.start || header && start > header.start) ? comments.after : comments.before;
             cc.push(node.context.src.slice(start + 1, end));
             break;
           }
@@ -1811,7 +1811,7 @@ function resolveNodeProps(errors, node) {
 
         case Char.ANCHOR:
           if (hasAnchor) {
-            var _msg = 'A node can have at most one anchor';
+            const _msg = 'A node can have at most one anchor';
             errors.push(new YAMLSemanticError(node, _msg));
           }
 
@@ -1820,7 +1820,7 @@ function resolveNodeProps(errors, node) {
 
         case Char.TAG:
           if (hasTag) {
-            var _msg2 = 'A node can have at most one tag';
+            const _msg2 = 'A node can have at most one tag';
             errors.push(new YAMLSemanticError(node, _msg2));
           }
 
@@ -1842,40 +1842,40 @@ function resolveNodeProps(errors, node) {
 }
 
 function resolveNodeValue(doc, node) {
-  var anchors = doc.anchors,
+  const anchors = doc.anchors,
       errors = doc.errors,
       schema = doc.schema;
 
   if (node.type === Type.ALIAS) {
-    var name = node.rawValue;
-    var src = anchors.getNode(name);
+    const name = node.rawValue;
+    const src = anchors.getNode(name);
 
     if (!src) {
-      var msg = "Aliased anchor not found: ".concat(name);
+      const msg = "Aliased anchor not found: ".concat(name);
       errors.push(new YAMLReferenceError(node, msg));
       return null;
     } // Lazy resolution for circular references
 
 
-    var res = new Alias(src);
+    const res = new Alias(src);
 
     anchors._cstAliases.push(res);
 
     return res;
   }
 
-  var tagName = resolveTagName(doc, node);
+  const tagName = resolveTagName(doc, node);
   if (tagName) return resolveTag(doc, node, tagName);
 
   if (node.type !== Type.PLAIN) {
-    var _msg3 = "Failed to resolve ".concat(node.type, " node here");
+    const _msg3 = "Failed to resolve ".concat(node.type, " node here");
 
     errors.push(new YAMLSyntaxError(node, _msg3));
     return null;
   }
 
   try {
-    var str = resolveString(doc, node);
+    const str = resolveString(doc, node);
     return resolveScalar(str, schema.tags, schema.tags.scalarFallback);
   } catch (error) {
     if (!error.source) error.source = node;
@@ -1889,15 +1889,15 @@ function resolveNode(doc, node) {
   if (!node) return null;
   if (node.error) doc.errors.push(node.error);
 
-  var _resolveNodeProps = resolveNodeProps(doc.errors, node),
+  const _resolveNodeProps = resolveNodeProps(doc.errors, node),
       comments = _resolveNodeProps.comments,
       hasAnchor = _resolveNodeProps.hasAnchor,
       hasTag = _resolveNodeProps.hasTag;
 
   if (hasAnchor) {
-    var anchors = doc.anchors;
-    var name = node.anchor;
-    var prev = anchors.getNode(name); // At this point, aliases for any preceding node with the same anchor
+    const anchors = doc.anchors;
+    const name = node.anchor;
+    const prev = anchors.getNode(name); // At this point, aliases for any preceding node with the same anchor
     // name have already been resolved, so it may safely be renamed.
 
     if (prev) anchors.map[anchors.newName(name)] = prev; // During parsing, we need to store the CST node in anchors.map as
@@ -1908,23 +1908,23 @@ function resolveNode(doc, node) {
   }
 
   if (node.type === Type.ALIAS && (hasAnchor || hasTag)) {
-    var msg = 'An alias node must not specify any properties';
+    const msg = 'An alias node must not specify any properties';
     doc.errors.push(new YAMLSemanticError(node, msg));
   }
 
-  var res = resolveNodeValue(doc, node);
+  const res = resolveNodeValue(doc, node);
 
   if (res) {
     res.range = [node.range.start, node.range.end];
     if (doc.options.keepCstNodes) res.cstNode = node;
     if (doc.options.keepNodeTypes) res.type = node.type;
-    var cb = comments.before.join('\n');
+    const cb = comments.before.join('\n');
 
     if (cb) {
       res.commentBefore = res.commentBefore ? "".concat(res.commentBefore, "\n").concat(cb) : cb;
     }
 
-    var ca = comments.after.join('\n');
+    const ca = comments.after.join('\n');
     if (ca) res.comment = res.comment ? "".concat(res.comment, "\n").concat(ca) : ca;
   }
 
@@ -1933,33 +1933,33 @@ function resolveNode(doc, node) {
 
 function resolveMap(doc, cst) {
   if (cst.type !== Type.MAP && cst.type !== Type.FLOW_MAP) {
-    var msg = "A ".concat(cst.type, " node cannot be resolved as a mapping");
+    const msg = "A ".concat(cst.type, " node cannot be resolved as a mapping");
     doc.errors.push(new YAMLSyntaxError(cst, msg));
     return null;
   }
 
-  var _ref = cst.type === Type.FLOW_MAP ? resolveFlowMapItems(doc, cst) : resolveBlockMapItems(doc, cst),
+  const _ref = cst.type === Type.FLOW_MAP ? resolveFlowMapItems(doc, cst) : resolveBlockMapItems(doc, cst),
       comments = _ref.comments,
       items = _ref.items;
 
-  var map = new YAMLMap();
+  const map = new YAMLMap();
   map.items = items;
   resolveComments(map, comments);
-  var hasCollectionKey = false;
+  let hasCollectionKey = false;
 
-  for (var i = 0; i < items.length; ++i) {
-    var iKey = items[i].key;
+  for (let i = 0; i < items.length; ++i) {
+    const iKey = items[i].key;
     if (iKey instanceof Collection) hasCollectionKey = true;
 
     if (doc.schema.merge && iKey && iKey.value === MERGE_KEY) {
       items[i] = new Merge(items[i]);
-      var sources = items[i].value.items;
+      const sources = items[i].value.items;
       var error = null;
       sources.some(function (node) {
         if (node instanceof Alias) {
           // During parsing, alias sources are CST nodes; to account for
           // circular references their resolved values can't be used here.
-          var type = node.source.type;
+          const type = node.source.type;
           if (type === Type.MAP || type === Type.FLOW_MAP) return false;
           return error = 'Merge nodes aliases can only point to maps';
         }
@@ -1968,11 +1968,11 @@ function resolveMap(doc, cst) {
       });
       if (error) doc.errors.push(new YAMLSemanticError(cst, error));
     } else {
-      for (var j = i + 1; j < items.length; ++j) {
-        var jKey = items[j].key;
+      for (let j = i + 1; j < items.length; ++j) {
+        const jKey = items[j].key;
 
         if (iKey === jKey || iKey && jKey && Object.prototype.hasOwnProperty.call(iKey, 'value') && iKey.value === jKey.value) {
-          var _msg = "Map keys must be unique; \"".concat(iKey, "\" is repeated");
+          const _msg = "Map keys must be unique; \"".concat(iKey, "\" is repeated");
 
           doc.errors.push(new YAMLSemanticError(cst, _msg));
           break;
@@ -1982,7 +1982,7 @@ function resolveMap(doc, cst) {
   }
 
   if (hasCollectionKey && !doc.options.mapAsMap) {
-    var warn = 'Keys with collection values will be stringified as YAML due to JS Object restrictions. Use mapAsMap: true to avoid this.';
+    const warn = 'Keys with collection values will be stringified as YAML due to JS Object restrictions. Use mapAsMap: true to avoid this.';
     doc.warnings.push(new YAMLWarning(cst, warn));
   }
 
@@ -1990,18 +1990,18 @@ function resolveMap(doc, cst) {
   return map;
 }
 
-var valueHasPairComment = function valueHasPairComment(_ref2) {
-  var _ref2$context = _ref2.context,
+const valueHasPairComment = function valueHasPairComment(_ref2) {
+  const _ref2$context = _ref2.context,
       lineStart = _ref2$context.lineStart,
       node = _ref2$context.node,
       src = _ref2$context.src,
       props = _ref2.props;
   if (props.length === 0) return false;
-  var start = props[0].start;
+  const start = props[0].start;
   if (node && start > node.valueRange.start) return false;
   if (src[start] !== Char.COMMENT) return false;
 
-  for (var i = lineStart; i < start; ++i) {
+  for (let i = lineStart; i < start; ++i) {
     if (src[i] === '\n') return false;
   }
 
@@ -2010,15 +2010,15 @@ var valueHasPairComment = function valueHasPairComment(_ref2) {
 
 function resolvePairComment(item, pair) {
   if (!valueHasPairComment(item)) return;
-  var comment = item.getPropValue(0, Char.COMMENT, true);
-  var found = false;
-  var cb = pair.value.commentBefore;
+  const comment = item.getPropValue(0, Char.COMMENT, true);
+  let found = false;
+  const cb = pair.value.commentBefore;
 
   if (cb && cb.startsWith(comment)) {
     pair.value.commentBefore = cb.substr(comment.length + 1);
     found = true;
   } else {
-    var cc = pair.value.comment;
+    const cc = pair.value.comment;
 
     if (!item.node && cc && cc.startsWith(comment)) {
       pair.value.comment = cc.substr(comment.length + 1);
@@ -2030,13 +2030,13 @@ function resolvePairComment(item, pair) {
 }
 
 function resolveBlockMapItems(doc, cst) {
-  var comments = [];
-  var items = [];
-  var key = undefined;
-  var keyStart = null;
+  const comments = [];
+  const items = [];
+  let key = undefined;
+  let keyStart = null;
 
-  for (var i = 0; i < cst.items.length; ++i) {
-    var item = cst.items[i];
+  for (let i = 0; i < cst.items.length; ++i) {
+    const item = cst.items[i];
 
     switch (item.type) {
       case Type.BLANK_LINE:
@@ -2067,11 +2067,11 @@ function resolveBlockMapItems(doc, cst) {
           if (item.error) doc.errors.push(item.error);
 
           if (!item.context.atLineStart && item.node && item.node.type === Type.MAP && !item.node.context.atLineStart) {
-            var msg = 'Nested mappings are not allowed in compact mappings';
+            const msg = 'Nested mappings are not allowed in compact mappings';
             doc.errors.push(new YAMLSemanticError(item.node, msg));
           }
 
-          var valueNode = item.node;
+          let valueNode = item.node;
 
           if (!valueNode && item.props.length > 0) {
             // Comments on an empty mapping value need to be preserved, so we
@@ -2082,7 +2082,7 @@ function resolveBlockMapItems(doc, cst) {
               parent: item,
               src: item.context.src
             };
-            var pos = item.range.start + 1;
+            const pos = item.range.start + 1;
             valueNode.range = {
               start: pos,
               end: pos
@@ -2093,13 +2093,13 @@ function resolveBlockMapItems(doc, cst) {
             };
 
             if (typeof item.range.origStart === 'number') {
-              var origPos = item.range.origStart + 1;
+              const origPos = item.range.origStart + 1;
               valueNode.range.origStart = valueNode.range.origEnd = origPos;
               valueNode.valueRange.origStart = valueNode.valueRange.origEnd = origPos;
             }
           }
 
-          var pair = new Pair(key, resolveNode(doc, valueNode));
+          const pair = new Pair(key, resolveNode(doc, valueNode));
           resolvePairComment(item, pair);
           items.push(pair);
 
@@ -2118,8 +2118,8 @@ function resolveBlockMapItems(doc, cst) {
         keyStart = item.range.start;
         if (item.error) doc.errors.push(item.error);
 
-        next: for (var j = i + 1;; ++j) {
-          var nextItem = cst.items[j];
+        next: for (let j = i + 1;; ++j) {
+          const nextItem = cst.items[j];
 
           switch (nextItem && nextItem.type) {
             case Type.BLANK_LINE:
@@ -2131,7 +2131,7 @@ function resolveBlockMapItems(doc, cst) {
 
             default:
               {
-                var _msg2 = 'Implicit map keys need to be followed by map values';
+                const _msg2 = 'Implicit map keys need to be followed by map values';
                 doc.errors.push(new YAMLSemanticError(item, _msg2));
                 break next;
               }
@@ -2139,7 +2139,7 @@ function resolveBlockMapItems(doc, cst) {
         }
 
         if (item.valueRangeContainsNewline) {
-          var _msg3 = 'Implicit map keys need to be on a single line';
+          const _msg3 = 'Implicit map keys need to be on a single line';
           doc.errors.push(new YAMLSemanticError(item, _msg3));
         }
 
@@ -2154,17 +2154,17 @@ function resolveBlockMapItems(doc, cst) {
 }
 
 function resolveFlowMapItems(doc, cst) {
-  var comments = [];
-  var items = [];
-  var key = undefined;
-  var explicitKey = false;
-  var next = '{';
+  const comments = [];
+  const items = [];
+  let key = undefined;
+  let explicitKey = false;
+  let next = '{';
 
-  for (var i = 0; i < cst.items.length; ++i) {
-    var item = cst.items[i];
+  for (let i = 0; i < cst.items.length; ++i) {
+    const item = cst.items[i];
 
     if (typeof item.char === 'string') {
-      var char = item.char,
+      const char = item.char,
           offset = item.offset;
 
       if (char === '?' && key === undefined && !explicitKey) {
@@ -2204,8 +2204,8 @@ function resolveFlowMapItems(doc, cst) {
         continue;
       }
 
-      var msg = "Flow map contains an unexpected ".concat(char);
-      var err = new YAMLSyntaxError(cst, msg);
+      const msg = "Flow map contains an unexpected ".concat(char);
+      const err = new YAMLSyntaxError(cst, msg);
       err.offset = offset;
       doc.errors.push(err);
     } else if (item.type === Type.BLANK_LINE) {
@@ -2241,23 +2241,23 @@ function resolveFlowMapItems(doc, cst) {
 
 function resolveSeq(doc, cst) {
   if (cst.type !== Type.SEQ && cst.type !== Type.FLOW_SEQ) {
-    var msg = "A ".concat(cst.type, " node cannot be resolved as a sequence");
+    const msg = "A ".concat(cst.type, " node cannot be resolved as a sequence");
     doc.errors.push(new YAMLSyntaxError(cst, msg));
     return null;
   }
 
-  var _ref = cst.type === Type.FLOW_SEQ ? resolveFlowSeqItems(doc, cst) : resolveBlockSeqItems(doc, cst),
+  const _ref = cst.type === Type.FLOW_SEQ ? resolveFlowSeqItems(doc, cst) : resolveBlockSeqItems(doc, cst),
       comments = _ref.comments,
       items = _ref.items;
 
-  var seq = new YAMLSeq();
+  const seq = new YAMLSeq();
   seq.items = items;
   resolveComments(seq, comments);
 
   if (!doc.options.mapAsMap && items.some(function (it) {
     return it instanceof Pair && it.key instanceof Collection;
   })) {
-    var warn = 'Keys with collection values will be stringified as YAML due to JS Object restrictions. Use mapAsMap: true to avoid this.';
+    const warn = 'Keys with collection values will be stringified as YAML due to JS Object restrictions. Use mapAsMap: true to avoid this.';
     doc.warnings.push(new YAMLWarning(cst, warn));
   }
 
@@ -2266,11 +2266,11 @@ function resolveSeq(doc, cst) {
 }
 
 function resolveBlockSeqItems(doc, cst) {
-  var comments = [];
-  var items = [];
+  const comments = [];
+  const items = [];
 
-  for (var i = 0; i < cst.items.length; ++i) {
-    var item = cst.items[i];
+  for (let i = 0; i < cst.items.length; ++i) {
+    const item = cst.items[i];
 
     switch (item.type) {
       case Type.BLANK_LINE:
@@ -2291,7 +2291,7 @@ function resolveBlockSeqItems(doc, cst) {
         items.push(resolveNode(doc, item.node));
 
         if (item.hasProps) {
-          var msg = 'Sequence items cannot have tags or anchors before the - indicator';
+          const msg = 'Sequence items cannot have tags or anchors before the - indicator';
           doc.errors.push(new YAMLSemanticError(item, msg));
         }
 
@@ -2310,19 +2310,19 @@ function resolveBlockSeqItems(doc, cst) {
 }
 
 function resolveFlowSeqItems(doc, cst) {
-  var comments = [];
-  var items = [];
-  var explicitKey = false;
-  var key = undefined;
-  var keyStart = null;
-  var next = '[';
-  var prevItem = null;
+  const comments = [];
+  const items = [];
+  let explicitKey = false;
+  let key = undefined;
+  let keyStart = null;
+  let next = '[';
+  let prevItem = null;
 
-  for (var i = 0; i < cst.items.length; ++i) {
-    var item = cst.items[i];
+  for (let i = 0; i < cst.items.length; ++i) {
+    const item = cst.items[i];
 
     if (typeof item.char === 'string') {
-      var char = item.char,
+      const char = item.char,
           offset = item.offset;
 
       if (char !== ':' && (explicitKey || key !== undefined)) {
@@ -2342,20 +2342,20 @@ function resolveFlowSeqItems(doc, cst) {
           key = items.pop();
 
           if (key instanceof Pair) {
-            var msg = 'Chaining flow sequence pairs is invalid';
-            var err = new YAMLSemanticError(cst, msg);
+            const msg = 'Chaining flow sequence pairs is invalid';
+            const err = new YAMLSemanticError(cst, msg);
             err.offset = offset;
             doc.errors.push(err);
           }
 
           if (!explicitKey && typeof keyStart === 'number') {
-            var keyEnd = item.range ? item.range.start : item.offset;
+            const keyEnd = item.range ? item.range.start : item.offset;
             if (keyEnd > keyStart + 1024) doc.errors.push(getLongKeyError(cst, key));
-            var src = prevItem.context.src;
+            const src = prevItem.context.src;
 
-            for (var _i = keyStart; _i < keyEnd; ++_i) {
+            for (let _i = keyStart; _i < keyEnd; ++_i) {
               if (src[_i] === '\n') {
-                var _msg = 'Implicit keys of flow sequence pairs need to be on a single line';
+                const _msg = 'Implicit keys of flow sequence pairs need to be on a single line';
                 doc.errors.push(new YAMLSemanticError(prevItem, _msg));
                 break;
               }
@@ -2369,9 +2369,9 @@ function resolveFlowSeqItems(doc, cst) {
         explicitKey = false;
         next = null;
       } else if (next === '[' || char !== ']' || i < cst.items.length - 1) {
-        var _msg2 = "Flow sequence contains an unexpected ".concat(char);
+        const _msg2 = "Flow sequence contains an unexpected ".concat(char);
 
-        var _err = new YAMLSyntaxError(cst, _msg2);
+        const _err = new YAMLSyntaxError(cst, _msg2);
 
         _err.offset = offset;
         doc.errors.push(_err);
@@ -2388,12 +2388,12 @@ function resolveFlowSeqItems(doc, cst) {
       });
     } else {
       if (next) {
-        var _msg3 = "Expected a ".concat(next, " in flow sequence");
+        const _msg3 = "Expected a ".concat(next, " in flow sequence");
 
         doc.errors.push(new YAMLSemanticError(item, _msg3));
       }
 
-      var value = resolveNode(doc, item);
+      const value = resolveNode(doc, item);
 
       if (key === undefined) {
         items.push(value);

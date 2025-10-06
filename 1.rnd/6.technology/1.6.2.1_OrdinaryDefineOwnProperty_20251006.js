@@ -1,18 +1,18 @@
 'use strict';
 
-var $gOPD = require('gopd');
-var $SyntaxError = require('es-errors/syntax');
-var $TypeError = require('es-errors/type');
-var isObject = require('es-object-atoms/isObject');
+const $gOPD = require('gopd');
+const $SyntaxError = require('es-errors/syntax');
+const $TypeError = require('es-errors/type');
+const isObject = require('es-object-atoms/isObject');
 
-var isPropertyDescriptor = require('../helpers/records/property-descriptor');
+const isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
-var IsAccessorDescriptor = require('./IsAccessorDescriptor');
-var IsExtensible = require('./IsExtensible');
-var isPropertyKey = require('../helpers/isPropertyKey');
-var ToPropertyDescriptor = require('./ToPropertyDescriptor');
-var SameValue = require('./SameValue');
-var ValidateAndApplyPropertyDescriptor = require('./ValidateAndApplyPropertyDescriptor');
+const IsAccessorDescriptor = require('./IsAccessorDescriptor');
+const IsExtensible = require('./IsExtensible');
+const isPropertyKey = require('../helpers/isPropertyKey');
+const ToPropertyDescriptor = require('./ToPropertyDescriptor');
+const SameValue = require('./SameValue');
+const ValidateAndApplyPropertyDescriptor = require('./ValidateAndApplyPropertyDescriptor');
 
 // https://262.ecma-international.org/6.0/#sec-ordinarydefineownproperty
 
@@ -31,12 +31,12 @@ module.exports = function OrdinaryDefineOwnProperty(O, P, Desc) {
 		if (IsAccessorDescriptor(Desc)) {
 			throw new $SyntaxError('This environment does not support accessor property descriptors.');
 		}
-		var creatingNormalDataProperty = !(P in O)
+		const creatingNormalDataProperty = !(P in O)
 			&& Desc['[[Writable]]']
 			&& Desc['[[Enumerable]]']
 			&& Desc['[[Configurable]]']
 			&& '[[Value]]' in Desc;
-		var settingExistingDataProperty = (P in O)
+		const settingExistingDataProperty = (P in O)
 			&& (!('[[Configurable]]' in Desc) || Desc['[[Configurable]]'])
 			&& (!('[[Enumerable]]' in Desc) || Desc['[[Enumerable]]'])
 			&& (!('[[Writable]]' in Desc) || Desc['[[Writable]]'])
@@ -47,8 +47,8 @@ module.exports = function OrdinaryDefineOwnProperty(O, P, Desc) {
 		}
 		throw new $SyntaxError('This environment does not support defining non-writable, non-enumerable, or non-configurable properties');
 	}
-	var desc = $gOPD(O, P);
-	var current = desc && ToPropertyDescriptor(desc);
-	var extensible = IsExtensible(O);
+	const desc = $gOPD(O, P);
+	const current = desc && ToPropertyDescriptor(desc);
+	const extensible = IsExtensible(O);
 	return ValidateAndApplyPropertyDescriptor(O, P, extensible, Desc, current);
 };

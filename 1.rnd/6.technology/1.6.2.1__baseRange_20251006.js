@@ -1,5 +1,5 @@
 /* Built-in method references for those with the same name as other `lodash` methods. */
-var nativeCeil = Math.ceil,
+const nativeCeil = Math.ceil,
     nativeMax = Math.max;
 
 /**
@@ -14,7 +14,7 @@ var nativeCeil = Math.ceil,
  * @returns {Array} Returns the range of numbers.
  */
 function baseRange(start, end, step, fromRight) {
-  var index = -1,
+  let index = -1,
       length = nativeMax(nativeCeil((end - start) / (step || 1)), 0),
       result = Array(length);
 

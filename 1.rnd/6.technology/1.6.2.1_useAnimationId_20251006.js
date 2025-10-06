@@ -4,8 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.useAnimationId = useAnimationId;
-var _react = require("react");
-var _DataUtils = require("./DataUtils");
+const _react = require("react");
+const _DataUtils = require("./DataUtils");
 /**
  * This hook returns a unique animation id for the object input.
  * If input changes (as in, reference equality is different), the animation id will change.
@@ -21,9 +21,9 @@ var _DataUtils = require("./DataUtils");
  * @returns A unique animation id
  */
 function useAnimationId(input) {
-  var prefix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'animation-';
-  var animationId = (0, _react.useRef)((0, _DataUtils.uniqueId)(prefix));
-  var prevProps = (0, _react.useRef)(input);
+  const prefix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'animation-';
+  const animationId = (0, _react.useRef)((0, _DataUtils.uniqueId)(prefix));
+  const prevProps = (0, _react.useRef)(input);
   if (prevProps.current !== input) {
     animationId.current = (0, _DataUtils.uniqueId)(prefix);
     prevProps.current = input;

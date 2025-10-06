@@ -1,23 +1,23 @@
 "use strict";
-var __create = Object.create;
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getProtoOf = Object.getPrototypeOf;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
+const __create = Object.create;
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __getProtoOf = Object.getPrototypeOf;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __export = (target, all) => {
+  for (const name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+const __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
   // If the importer is in node compatibility mode or this is not an ESM
   // file that has been converted to a CommonJS file using a Babel-
   // compatible transform (i.e. "__esModule" has not been set), then set
@@ -25,26 +25,26 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
   mod
 ));
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var watchMode_exports = {};
+const __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+const watchMode_exports = {};
 __export(watchMode_exports, {
   runWatchModeLoop: () => runWatchModeLoop
 });
 module.exports = __toCommonJS(watchMode_exports);
-var import_fs = __toESM(require("fs"));
-var import_path = __toESM(require("path"));
-var import_readline = __toESM(require("readline"));
-var import_stream = require("stream");
-var import_playwrightServer = require("playwright-core/lib/remote/playwrightServer");
-var import_utils = require("playwright-core/lib/utils");
-var import_utils2 = require("playwright-core/lib/utils");
-var import_base = require("../reporters/base");
-var import_utilsBundle = require("../utilsBundle");
-var import_testServer = require("./testServer");
-var import_teleSuiteUpdater = require("../isomorphic/teleSuiteUpdater");
-var import_testServerConnection = require("../isomorphic/testServerConnection");
-var import_util = require("../util");
-var import_babelBundle = require("../transform/babelBundle");
+const import_fs = __toESM(require("fs"));
+const import_path = __toESM(require("path"));
+const import_readline = __toESM(require("readline"));
+const import_stream = require("stream");
+const import_playwrightServer = require("playwright-core/lib/remote/playwrightServer");
+const import_utils = require("playwright-core/lib/utils");
+const import_utils2 = require("playwright-core/lib/utils");
+const import_base = require("../reporters/base");
+const import_utilsBundle = require("../utilsBundle");
+const import_testServer = require("./testServer");
+const import_teleSuiteUpdater = require("../isomorphic/teleSuiteUpdater");
+const import_testServerConnection = require("../isomorphic/testServerConnection");
+const import_util = require("../util");
+const import_babelBundle = require("../transform/babelBundle");
 class InMemoryTransport extends import_stream.EventEmitter {
   constructor(send) {
     super();

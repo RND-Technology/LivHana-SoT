@@ -1,11 +1,11 @@
-var __defProp = Object.defineProperty;
-var __defProps = Object.defineProperties;
-var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
-var __getOwnPropSymbols = Object.getOwnPropertySymbols;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __propIsEnum = Object.prototype.propertyIsEnumerable;
-var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-var __spreadValues = (a, b) => {
+const __defProp = Object.defineProperty;
+const __defProps = Object.defineProperties;
+const __getOwnPropDescs = Object.getOwnPropertyDescriptors;
+const __getOwnPropSymbols = Object.getOwnPropertySymbols;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __propIsEnum = Object.prototype.propertyIsEnumerable;
+const __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+const __spreadValues = (a, b) => {
   for (var prop in b || (b = {}))
     if (__hasOwnProp.call(b, prop))
       __defNormalProp(a, prop, b[prop]);
@@ -16,9 +16,9 @@ var __spreadValues = (a, b) => {
     }
   return a;
 };
-var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
-var __objRest = (source, exclude) => {
-  var target = {};
+const __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
+const __objRest = (source, exclude) => {
+  const target = {};
   for (var prop in source)
     if (__hasOwnProp.call(source, prop) && exclude.indexOf(prop) < 0)
       target[prop] = source[prop];
@@ -75,7 +75,7 @@ import { useCallback, useDebugValue, useEffect as useEffect3, useLayoutEffect, u
 import { shallowEqual as shallowEqual2 } from "react-redux";
 
 // src/query/react/constants.ts
-var UNINITIALIZED_VALUE = Symbol();
+const UNINITIALIZED_VALUE = Symbol();
 
 // src/query/react/useSerializedStableValue.ts
 import { useEffect, useRef, useMemo } from "react";
@@ -105,13 +105,13 @@ function useShallowStableValue(value) {
 }
 
 // src/query/react/buildHooks.ts
-var canUseDOM = () => !!(typeof window !== "undefined" && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined");
-var isDOM = /* @__PURE__ */ canUseDOM();
-var isRunningInReactNative = () => typeof navigator !== "undefined" && navigator.product === "ReactNative";
-var isReactNative = /* @__PURE__ */ isRunningInReactNative();
-var getUseIsomorphicLayoutEffect = () => isDOM || isReactNative ? useLayoutEffect : useEffect3;
-var useIsomorphicLayoutEffect = /* @__PURE__ */ getUseIsomorphicLayoutEffect();
-var noPendingQueryStateSelector = (selected) => {
+const canUseDOM = () => !!(typeof window !== "undefined" && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined");
+const isDOM = /* @__PURE__ */ canUseDOM();
+const isRunningInReactNative = () => typeof navigator !== "undefined" && navigator.product === "ReactNative";
+const isReactNative = /* @__PURE__ */ isRunningInReactNative();
+const getUseIsomorphicLayoutEffect = () => isDOM || isReactNative ? useLayoutEffect : useEffect3;
+const useIsomorphicLayoutEffect = /* @__PURE__ */ getUseIsomorphicLayoutEffect();
+const noPendingQueryStateSelector = (selected) => {
   if (selected.isUninitialized) {
     return __spreadProps(__spreadValues({}, selected), {
       isUninitialized: false,
@@ -129,7 +129,7 @@ function pick(obj, ...keys) {
   });
   return ret;
 }
-var COMMON_HOOK_DEBUG_FIELDS = ["data", "status", "isLoading", "isSuccess", "isError", "error"];
+const COMMON_HOOK_DEBUG_FIELDS = ["data", "status", "isLoading", "isSuccess", "isError", "error"];
 function buildHooks({
   api,
   moduleOptions: {
@@ -218,7 +218,7 @@ function buildHooks({
     return useCallback((arg, options) => dispatch(api.util.prefetch(endpointName, arg, __spreadValues(__spreadValues({}, stableDefaultOptions), options))), [endpointName, dispatch, stableDefaultOptions]);
   }
   function useQuerySubscriptionCommonImpl(endpointName, arg, _a = {}) {
-    var _b = _a, {
+    const _b = _a, {
       refetchOnReconnect,
       refetchOnFocus,
       refetchOnMountOrArgChange,
@@ -258,7 +258,7 @@ function buildHooks({
     const initialPageParam = rest.initialPageParam;
     const stableInitialPageParam = useShallowStableValue(initialPageParam);
     const promiseRef = useRef3(void 0);
-    let {
+    const {
       queryCacheKey,
       requestId
     } = promiseRef.current || {};
@@ -273,7 +273,7 @@ function buildHooks({
       }
     }, [subscriptionRemoved]);
     usePossiblyImmediateEffect(() => {
-      var _a2;
+      let _a2;
       const lastPromise = promiseRef.current;
       if (typeof process !== "undefined" && process.env.NODE_ENV === "removeMeOnCompilation") {
         console.log(subscriptionRemoved);
@@ -343,7 +343,7 @@ function buildHooks({
   function usePromiseRefUnsubscribeOnUnmount(promiseRef) {
     useEffect3(() => {
       return () => {
-        var _a, _b;
+        let _a, _b;
         (_b = (_a = promiseRef.current) == null ? void 0 : _a.unsubscribe) == null ? void 0 : _b.call(_a);
         promiseRef.current = void 0;
       };
@@ -383,7 +383,7 @@ function buildHooks({
         skipPollingIfUnfocused
       });
       usePossiblyImmediateEffect(() => {
-        var _a, _b;
+        let _a, _b;
         const lastSubscriptionOptions = (_a = promiseRef.current) == null ? void 0 : _a.subscriptionOptions;
         if (stableSubscriptionOptions !== lastSubscriptionOptions) {
           (_b = promiseRef.current) == null ? void 0 : _b.updateSubscriptionOptions(stableSubscriptionOptions);
@@ -396,7 +396,7 @@ function buildHooks({
       const trigger = useCallback(function(arg2, preferCacheValue = false) {
         let promise;
         batch(() => {
-          var _a;
+          let _a;
           (_a = promiseRef.current) == null ? void 0 : _a.unsubscribe();
           promiseRef.current = promise = dispatch(initiate(arg2, {
             subscriptionOptions: subscriptionOptionsRef.current,
@@ -407,7 +407,7 @@ function buildHooks({
         return promise;
       }, [dispatch, initiate]);
       const reset = useCallback(() => {
-        var _a, _b;
+        let _a, _b;
         if ((_a = promiseRef.current) == null ? void 0 : _a.queryCacheKey) {
           dispatch(api.internalActions.removeQueryResult({
             queryCacheKey: (_b = promiseRef.current) == null ? void 0 : _b.queryCacheKey
@@ -416,7 +416,7 @@ function buildHooks({
       }, [dispatch]);
       useEffect3(() => {
         return () => {
-          var _a;
+          let _a;
           (_a = promiseRef == null ? void 0 : promiseRef.current) == null ? void 0 : _a.unsubscribe();
         };
       }, []);
@@ -469,7 +469,7 @@ function buildHooks({
       const trigger = useCallback(function(arg2, direction) {
         let promise;
         batch(() => {
-          var _a;
+          let _a;
           (_a = promiseRef.current) == null ? void 0 : _a.unsubscribe();
           promiseRef.current = promise = dispatch(initiate(arg2, {
             subscriptionOptions: subscriptionOptionsRef.current,
@@ -580,9 +580,9 @@ function buildHooks({
 }
 
 // src/query/react/module.ts
-var reactHooksModuleName = /* @__PURE__ */ Symbol();
-var reactHooksModule = (_a = {}) => {
-  var _b = _a, {
+const reactHooksModuleName = /* @__PURE__ */ Symbol();
+const reactHooksModule = (_a = {}) => {
+  const _b = _a, {
     batch = rrBatch,
     hooks = {
       useDispatch: rrUseDispatch,
@@ -716,7 +716,7 @@ function ApiProvider(props) {
 }
 
 // src/query/react/index.ts
-var createApi = /* @__PURE__ */ buildCreateApi(coreModule(), reactHooksModule());
+const createApi = /* @__PURE__ */ buildCreateApi(coreModule(), reactHooksModule());
 export {
   ApiProvider,
   UNINITIALIZED_VALUE,

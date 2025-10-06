@@ -12,18 +12,18 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (receiver, state, kind, f) {
+const __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (receiver, state, kind, f) {
     if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
     return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 };
-var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
+const __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
     if (kind === "m") throw new TypeError("Private method is not writable");
     if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
     return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 };
-var _BaseExternalAccountClient_instances, _BaseExternalAccountClient_pendingAccessToken, _BaseExternalAccountClient_internalRefreshAccessTokenAsync;
+let _BaseExternalAccountClient_instances, _BaseExternalAccountClient_pendingAccessToken, _BaseExternalAccountClient_internalRefreshAccessTokenAsync;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BaseExternalAccountClient = exports.DEFAULT_UNIVERSE = exports.CLOUD_RESOURCE_MANAGER = exports.EXTERNAL_ACCOUNT_TYPE = exports.EXPIRATION_TIME_OFFSET = void 0;
 const stream = require("stream");
@@ -68,7 +68,7 @@ const pkg = require('../../../package.json');
 /**
  * For backwards compatibility.
  */
-var authclient_2 = require("./authclient");
+const authclient_2 = require("./authclient");
 Object.defineProperty(exports, "DEFAULT_UNIVERSE", { enumerable: true, get: function () { return authclient_2.DEFAULT_UNIVERSE; } });
 /**
  * Base external account client. This is used to instantiate AuthClients for
@@ -92,7 +92,7 @@ class BaseExternalAccountClient extends authclient_1.AuthClient {
      *   on 401/403 API request errors.
      */
     constructor(options, additionalOptions) {
-        var _a;
+        let _a;
         super({ ...options, ...additionalOptions });
         _BaseExternalAccountClient_instances.add(this);
         /**
@@ -153,7 +153,7 @@ class BaseExternalAccountClient extends authclient_1.AuthClient {
     }
     /** The service account email to be impersonated, if available. */
     getServiceAccountEmail() {
-        var _a;
+        let _a;
         if (this.serviceAccountImpersonationUrl) {
             if (this.serviceAccountImpersonationUrl.length > 256) {
                 /**

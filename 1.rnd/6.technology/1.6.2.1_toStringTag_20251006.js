@@ -1,14 +1,14 @@
 'use strict';
 
-var test = require('tape');
-var hasToStringTag = require('has-tostringtag/shams')();
+const test = require('tape');
+const hasToStringTag = require('has-tostringtag/shams')();
 
-var inspect = require('../');
+const inspect = require('../');
 
 test('Symbol.toStringTag', { skip: !hasToStringTag }, function (t) {
     t.plan(4);
 
-    var obj = { a: 1 };
+    const obj = { a: 1 };
     t.equal(inspect(obj), '{ a: 1 }', 'object, no Symbol.toStringTag');
 
     obj[Symbol.toStringTag] = 'foo';
@@ -17,7 +17,7 @@ test('Symbol.toStringTag', { skip: !hasToStringTag }, function (t) {
     t.test('null objects', { skip: 'toString' in { __proto__: null } }, function (st) {
         st.plan(2);
 
-        var dict = { __proto__: null, a: 1 };
+        const dict = { __proto__: null, a: 1 };
         st.equal(inspect(dict), '[Object: null prototype] { a: 1 }', 'null object with Symbol.toStringTag');
 
         dict[Symbol.toStringTag] = 'Dict';

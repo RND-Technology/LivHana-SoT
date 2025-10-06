@@ -1,15 +1,15 @@
 'use strict'
 
-var tap = require('tap')
-var test = tap.test
-var sinon = require('sinon')
-var shimmer = require('../index.js')
+const tap = require('tap')
+const test = tap.test
+const sinon = require('sinon')
+const shimmer = require('../index.js')
 
-var outsider = 0
+let outsider = 0
 function counter () { return ++outsider }
 function anticounter () { return --outsider }
 
-var generator = {
+const generator = {
   inc: counter
 }
 Object.defineProperty(generator, 'dec', {
@@ -26,12 +26,12 @@ test('should wrap safely', function (t) {
   t.doesNotThrow(function () { generator.inc() }, 'original function works')
   t.equal(1, outsider, 'calls have side effects')
 
-  var count = 0
+  let count = 0
   function wrapper (original, name) {
     t.equal(name, 'inc')
     return function () {
       count++
-      var returned = original.apply(this, arguments)
+      const returned = original.apply(this, arguments)
       count++
       return returned
     }
@@ -61,7 +61,7 @@ test('should wrap safely', function (t) {
 test('wrap called with no arguments', function (t) {
   t.plan(2)
 
-  var mock = sinon.expectation
+  const mock = sinon.expectation
     .create('logger')
     .withExactArgs('no original function undefined to wrap')
     .once()
@@ -79,7 +79,7 @@ test('wrap called with no arguments', function (t) {
 test('wrap called with module but nothing else', function (t) {
   t.plan(2)
 
-  var mock = sinon.expectation
+  const mock = sinon.expectation
     .create('logger')
     .withExactArgs('no original function undefined to wrap')
     .once()
@@ -97,7 +97,7 @@ test('wrap called with module but nothing else', function (t) {
 test('wrap called with original but no wrapper', function (t) {
   t.plan(2)
 
-  var mock = sinon.expectation
+  const mock = sinon.expectation
     .create('logger')
     .twice()
   shimmer({ logger: mock })
@@ -114,7 +114,7 @@ test('wrap called with original but no wrapper', function (t) {
 test('wrap called with non-function original', function (t) {
   t.plan(2)
 
-  var mock = sinon.expectation
+  const mock = sinon.expectation
     .create('logger')
     .withExactArgs('original object and wrapper must be functions')
     .once()
@@ -132,7 +132,7 @@ test('wrap called with non-function original', function (t) {
 test('wrap called with non-function wrapper', function (t) {
   t.plan(2)
 
-  var mock = sinon.expectation
+  const mock = sinon.expectation
     .create('logger')
     .withArgs('original object and wrapper must be functions')
     .once()

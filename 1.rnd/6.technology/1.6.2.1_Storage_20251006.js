@@ -28,18 +28,18 @@ const package_json_helper_cjs_1 = require("./package-json-helper.cjs");
 const hmacKey_js_1 = require("./hmacKey.js");
 const crc32c_js_1 = require("./crc32c.js");
 const google_auth_library_1 = require("google-auth-library");
-var IdempotencyStrategy;
+let IdempotencyStrategy;
 (function (IdempotencyStrategy) {
     IdempotencyStrategy[IdempotencyStrategy["RetryAlways"] = 0] = "RetryAlways";
     IdempotencyStrategy[IdempotencyStrategy["RetryConditional"] = 1] = "RetryConditional";
     IdempotencyStrategy[IdempotencyStrategy["RetryNever"] = 2] = "RetryNever";
 })(IdempotencyStrategy || (exports.IdempotencyStrategy = IdempotencyStrategy = {}));
-var ExceptionMessages;
+let ExceptionMessages;
 (function (ExceptionMessages) {
     ExceptionMessages["EXPIRATION_DATE_INVALID"] = "The expiration date provided was invalid.";
     ExceptionMessages["EXPIRATION_DATE_PAST"] = "An expiration date cannot be in the past.";
 })(ExceptionMessages || (exports.ExceptionMessages = ExceptionMessages = {}));
-var StorageExceptionMessages;
+let StorageExceptionMessages;
 (function (StorageExceptionMessages) {
     StorageExceptionMessages["BUCKET_NAME_REQUIRED"] = "A bucket name is needed to use Cloud Storage.";
     StorageExceptionMessages["BUCKET_NAME_REQUIRED_CREATE"] = "A name is required to create a bucket.";
@@ -93,7 +93,7 @@ const IDEMPOTENCY_STRATEGY_DEFAULT = IdempotencyStrategy.RetryConditional;
  * @return {boolean} True if the API request should be retried, false otherwise.
  */
 const RETRYABLE_ERR_FN_DEFAULT = function (err) {
-    var _a;
+    let _a;
     const isConnectionProblem = (reason) => {
         return (reason.includes('eai_again') || // DNS lookup error
             reason === 'econnreset' ||
@@ -455,7 +455,7 @@ class Storage extends index_js_1.Service {
      * @param {StorageOptions} [options] Configuration options.
      */
     constructor(options = {}) {
-        var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p;
+        let _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p;
         const universe = options.universeDomain || google_auth_library_1.DEFAULT_UNIVERSE;
         let apiEndpoint = `https://storage.${universe}`;
         let customEndpoint = false;

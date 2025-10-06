@@ -295,7 +295,7 @@ export function getEmbeddingLevels (string, baseDirection) {
           }
         }
         // determine the sos/eos types:
-        let firstLevel = embedLevels[seqIndices[0]]
+        const firstLevel = embedLevels[seqIndices[0]]
         let prevLevel = paragraph.level
         for (let i = seqIndices[0] - 1; i >= 0; i--) {
           if (!(charTypes[i] & BN_LIKE_TYPES)) { //5.2
@@ -304,7 +304,7 @@ export function getEmbeddingLevels (string, baseDirection) {
           }
         }
         const lastIndex = seqIndices[seqIndices.length - 1]
-        let lastLevel = embedLevels[lastIndex]
+        const lastLevel = embedLevels[lastIndex]
         let nextLevel = paragraph.level
         if (!(charTypes[lastIndex] & ISOLATE_INIT_TYPES)) {
           for (let i = lastIndex + 1; i <= paragraph.end; i++) {

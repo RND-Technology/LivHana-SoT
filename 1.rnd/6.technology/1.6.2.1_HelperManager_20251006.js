@@ -130,7 +130,7 @@ const HELPERS = {
  class HelperManager {
   __init() {this.helperNames = {}}
   __init2() {this.createRequireName = null}
-  constructor( nameManager) {;this.nameManager = nameManager;HelperManager.prototype.__init.call(this);HelperManager.prototype.__init2.call(this);}
+  constructor( nameManager) {this.nameManager = nameManager;HelperManager.prototype.__init.call(this);HelperManager.prototype.__init2.call(this);}
 
   getHelperName(baseName) {
     let helperName = this.helperNames[baseName];

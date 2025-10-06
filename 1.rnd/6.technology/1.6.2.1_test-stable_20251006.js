@@ -229,7 +229,7 @@ test('null property', function (assert) {
 })
 
 test('nested child circular reference in toJSON', function (assert) {
-  var circle = { some: 'data' }
+  const circle = { some: 'data' }
   circle.circle = circle
   var a = {
     b: {
@@ -246,7 +246,7 @@ test('nested child circular reference in toJSON', function (assert) {
       }
     }
   }
-  var o = {
+  const o = {
     a,
     bar: a
   }

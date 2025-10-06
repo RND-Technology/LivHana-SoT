@@ -1,5 +1,5 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true});// src/getRawRequest.ts
-var kRawRequest = Symbol("kRawRequest");
+const kRawRequest = Symbol("kRawRequest");
 function getRawRequest(request) {
   return Reflect.get(request, kRawRequest);
 }

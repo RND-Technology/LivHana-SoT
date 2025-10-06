@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = traverseFast;
-var _index = require("../definitions/index.js");
+const _index = require("../definitions/index.js");
 const _skip = Symbol();
 const _stop = Symbol();
 function traverseFast(node, enter, opts) {

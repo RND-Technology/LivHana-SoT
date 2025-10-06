@@ -14,7 +14,7 @@ Natural.prototype = {
     this._y = [];
   },
   lineEnd: function() {
-    var x = this._x,
+    const x = this._x,
         y = this._y,
         n = x.length;
 
@@ -23,9 +23,9 @@ Natural.prototype = {
       if (n === 2) {
         this._context.lineTo(x[1], y[1]);
       } else {
-        var px = controlPoints(x),
+        const px = controlPoints(x),
             py = controlPoints(y);
-        for (var i0 = 0, i1 = 1; i1 < n; ++i0, ++i1) {
+        for (let i0 = 0, i1 = 1; i1 < n; ++i0, ++i1) {
           this._context.bezierCurveTo(px[0][i0], py[0][i0], px[1][i0], py[1][i0], x[i1], y[i1]);
         }
       }
@@ -43,7 +43,7 @@ Natural.prototype = {
 
 // See https://www.particleincell.com/2012/bezier-splines/ for derivation.
 function controlPoints(x) {
-  var i,
+  let i,
       n = x.length - 1,
       m,
       a = new Array(n),

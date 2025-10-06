@@ -86,7 +86,7 @@ function mergeContextFixtures(fixtures, context, runner) {
 	const fixtureArray = Object.entries(fixtures).map(([prop, value]) => {
 		const fixtureItem = { value };
 		if (Array.isArray(value) && value.length >= 2 && isObject(value[1]) && Object.keys(value[1]).some((key) => fixtureOptionKeys.includes(key))) {
-			var _runner$injectValue;
+			let _runner$injectValue;
 			// fixture with options
 			Object.assign(fixtureItem, value[1]);
 			const userValue = value[0];
@@ -114,7 +114,7 @@ function mergeContextFixtures(fixtures, context, runner) {
 			}
 			// test can access anything, so we ignore it
 			if (fixture.scope !== "test") {
-				var _fixture$deps2;
+				let _fixture$deps2;
 				(_fixture$deps2 = fixture.deps) === null || _fixture$deps2 === void 0 ? void 0 : _fixture$deps2.forEach((dep) => {
 					if (!dep.isFn) {
 						// non fn fixtures are always resolved and available to anyone
@@ -193,14 +193,14 @@ function withFixtures(runner, fn, testContext) {
 }
 const globalFixturePromise = new WeakMap();
 function resolveFixtureValue(runner, fixture, context, cleanupFnArray) {
-	var _runner$getWorkerCont;
+	let _runner$getWorkerCont;
 	const fileContext = getFileContext(context.task.file);
 	const workerContext = (_runner$getWorkerCont = runner.getWorkerContext) === null || _runner$getWorkerCont === void 0 ? void 0 : _runner$getWorkerCont.call(runner);
 	if (!fixture.isFn) {
-		var _fixture$prop;
+		let _fixture$prop;
 		fileContext[_fixture$prop = fixture.prop] ?? (fileContext[_fixture$prop] = fixture.value);
 		if (workerContext) {
-			var _fixture$prop2;
+			let _fixture$prop2;
 			workerContext[_fixture$prop2 = fixture.prop] ?? (workerContext[_fixture$prop2] = fixture.value);
 		}
 		return fixture.value;
@@ -602,7 +602,7 @@ function createSuiteCollector(name, factory = () => {}, mode, each, suiteOptions
 	let suite;
 	initSuite(true);
 	const task = function(name = "", options = {}) {
-		var _collectorContext$cur;
+		let _collectorContext$cur;
 		const timeout = (options === null || options === void 0 ? void 0 : options.timeout) ?? runner.config.testTimeout;
 		const task = {
 			id: "",
@@ -693,7 +693,7 @@ function createSuiteCollector(name, factory = () => {}, mode, each, suiteOptions
 		getHooks(suite)[name].push(...fn);
 	}
 	function initSuite(includeLocation) {
-		var _collectorContext$cur2;
+		let _collectorContext$cur2;
 		if (typeof suiteOptions === "number") {
 			suiteOptions = { timeout: suiteOptions };
 		}
@@ -763,7 +763,7 @@ function withAwaitAsyncAssertions(fn, task) {
 }
 function createSuite() {
 	function suiteFn(name, factoryOrOptions, optionsOrFactory) {
-		var _currentSuite$options;
+		let _currentSuite$options;
 		const mode = this.only ? "only" : this.skip ? "skip" : this.todo ? "todo" : "run";
 		const currentSuite = collectorContext.currentSuite || defaultSuite;
 		let { options, handler: factory } = parseArguments(factoryOrOptions, optionsOrFactory);
@@ -950,7 +950,7 @@ function formatTitle(template, items, idx) {
 	let formatted = format(template, ...items.slice(0, count));
 	const isObjectItem = isObject(items[0]);
 	formatted = formatted.replace(/\$([$\w.]+)/g, (_, key) => {
-		var _runner$config;
+		let _runner$config;
 		const isArrayKey = /^\d+$/.test(key);
 		if (!isObjectItem && !isArrayKey) {
 			return `$${key}`;
@@ -1334,7 +1334,7 @@ function hasTests(suite) {
 }
 function hasFailed(suite) {
 	return toArray(suite).some((s) => {
-		var _s$result;
+		let _s$result;
 		return ((_s$result = s.result) === null || _s$result === void 0 ? void 0 : _s$result.state) === "fail" || s.type === "suite" && hasFailed(s.tasks);
 	});
 }
@@ -1455,7 +1455,7 @@ const eventsPacks = [];
 const pendingTasksUpdates = [];
 function sendTasksUpdate(runner) {
 	if (packs.size) {
-		var _runner$onTaskUpdate;
+		let _runner$onTaskUpdate;
 		const taskPacks = Array.from(packs).map(([id, task]) => {
 			return [
 				id,
@@ -1526,7 +1526,7 @@ async function callCleanupHooks(runner, cleanups) {
 	}
 }
 async function runTest(test, runner) {
-	var _runner$onBeforeRunTa, _test$result, _runner$onAfterRunTas;
+	let _runner$onBeforeRunTa, _test$result, _runner$onAfterRunTas;
 	await ((_runner$onBeforeRunTa = runner.onBeforeRunTask) === null || _runner$onBeforeRunTa === void 0 ? void 0 : _runner$onBeforeRunTa.call(runner, test));
 	if (test.mode !== "run" && test.mode !== "queued") {
 		updateTask("test-prepare", test, runner);
@@ -1679,7 +1679,7 @@ function markTasksAsSkipped(suite, runner) {
 	});
 }
 async function runSuite(suite, runner) {
-	var _runner$onBeforeRunSu, _suite$result;
+	let _runner$onBeforeRunSu, _suite$result;
 	await ((_runner$onBeforeRunSu = runner.onBeforeRunSuite) === null || _runner$onBeforeRunSu === void 0 ? void 0 : _runner$onBeforeRunSu.call(runner, suite));
 	if (((_suite$result = suite.result) === null || _suite$result === void 0 ? void 0 : _suite$result.state) === "fail") {
 		markTasksAsSkipped(suite, runner);
@@ -1702,7 +1702,7 @@ async function runSuite(suite, runner) {
 		suite.result.state = "todo";
 		updateTask("suite-finished", suite, runner);
 	} else {
-		var _runner$onAfterRunSui;
+		let _runner$onAfterRunSui;
 		try {
 			try {
 				beforeAllCleanups = await callSuiteHook(suite, suite, "beforeAll", runner, [suite]);
@@ -1746,7 +1746,7 @@ async function runSuite(suite, runner) {
 		}
 		if (suite.mode === "run" || suite.mode === "queued") {
 			if (!runner.config.passWithNoTests && !hasTests(suite)) {
-				var _suite$result$errors;
+				let _suite$result$errors;
 				suite.result.state = "fail";
 				if (!((_suite$result$errors = suite.result.errors) === null || _suite$result$errors === void 0 ? void 0 : _suite$result$errors.length)) {
 					const error = processError(new Error(`No test found in suite ${suite.name}`));
@@ -1789,7 +1789,7 @@ async function runFiles(files, runner) {
 }
 const workerRunners = new WeakSet();
 async function startTests(specs, runner) {
-	var _runner$cancel;
+	let _runner$cancel;
 	const cancel = (_runner$cancel = runner.cancel) === null || _runner$cancel === void 0 ? void 0 : _runner$cancel.bind(runner);
 	// Ideally, we need to have an event listener for this, but only have a runner here.
 	// Adding another onCancel felt wrong (maybe it needs to be refactored)
@@ -1800,9 +1800,9 @@ async function startTests(specs, runner) {
 		return cancel === null || cancel === void 0 ? void 0 : cancel(reason);
 	};
 	if (!workerRunners.has(runner)) {
-		var _runner$onCleanupWork;
+		let _runner$onCleanupWork;
 		(_runner$onCleanupWork = runner.onCleanupWorkerContext) === null || _runner$onCleanupWork === void 0 ? void 0 : _runner$onCleanupWork.call(runner, async () => {
-			var _runner$getWorkerCont;
+			let _runner$getWorkerCont;
 			const context = (_runner$getWorkerCont = runner.getWorkerContext) === null || _runner$getWorkerCont === void 0 ? void 0 : _runner$getWorkerCont.call(runner);
 			if (context) {
 				await callFixtureCleanup(context);
@@ -1811,7 +1811,7 @@ async function startTests(specs, runner) {
 		workerRunners.add(runner);
 	}
 	try {
-		var _runner$onBeforeColle, _runner$onCollected, _runner$onBeforeRunFi, _runner$onAfterRunFil;
+		let _runner$onBeforeColle, _runner$onCollected, _runner$onBeforeRunFi, _runner$onAfterRunFil;
 		const paths = specs.map((f) => typeof f === "string" ? f : f.filepath);
 		await ((_runner$onBeforeColle = runner.onBeforeCollect) === null || _runner$onBeforeColle === void 0 ? void 0 : _runner$onBeforeColle.call(runner, paths));
 		const files = await collectTests(specs, runner);
@@ -1826,7 +1826,7 @@ async function startTests(specs, runner) {
 	}
 }
 async function publicCollect(specs, runner) {
-	var _runner$onBeforeColle2, _runner$onCollected2;
+	let _runner$onBeforeColle2, _runner$onCollected2;
 	const paths = specs.map((f) => typeof f === "string" ? f : f.filepath);
 	await ((_runner$onBeforeColle2 = runner.onBeforeCollect) === null || _runner$onBeforeColle2 === void 0 ? void 0 : _runner$onBeforeColle2.call(runner, paths));
 	const files = await collectTests(specs, runner);
@@ -1840,7 +1840,7 @@ const collectorContext = {
 	currentSuite: null
 };
 function collectTask(task) {
-	var _collectorContext$cur;
+	let _collectorContext$cur;
 	(_collectorContext$cur = collectorContext.currentSuite) === null || _collectorContext$cur === void 0 ? void 0 : _collectorContext$cur.tasks.push(task);
 }
 async function runWithSuite(suite, fn) {
@@ -1861,7 +1861,7 @@ function withTimeout(fn, timeout, isHook = false, stackTraceError, onTimeout) {
 		runner._currentTaskStartTime = startTime;
 		runner._currentTaskTimeout = timeout;
 		return new Promise((resolve_, reject_) => {
-			var _timer$unref;
+			let _timer$unref;
 			const timer = setTimeout(() => {
 				clearTimeout(timer);
 				rejectTimeoutError();
@@ -1921,7 +1921,7 @@ function abortContextSignal(context, error) {
 	abortController === null || abortController === void 0 ? void 0 : abortController.abort(error);
 }
 function createTestContext(test, runner) {
-	var _runner$extendTaskCon;
+	let _runner$extendTaskCon;
 	const context = function() {
 		throw new Error("done() callback is deprecated, use promise instead");
 	};

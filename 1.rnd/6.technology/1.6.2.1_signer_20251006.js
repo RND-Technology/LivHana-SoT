@@ -12,9 +12,9 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+const __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
+    let desc = Object.getOwnPropertyDescriptor(m, k);
     if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
       desc = { enumerable: true, get: function() { return m[k]; } };
     }
@@ -23,24 +23,24 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
 }));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+const __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
     Object.defineProperty(o, "default", { enumerable: true, value: v });
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || (function () {
-    var ownKeys = function(o) {
+const __importStar = (this && this.__importStar) || (function () {
+    let ownKeys = function(o) {
         ownKeys = Object.getOwnPropertyNames || function (o) {
-            var ar = [];
-            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            const ar = [];
+            for (const k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
             return ar;
         };
         return ownKeys(o);
     };
     return function (mod) {
         if (mod && mod.__esModule) return mod;
-        var result = {};
-        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        const result = {};
+        if (mod != null) for (let k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
         __setModuleDefault(result, mod);
         return result;
     };
@@ -51,7 +51,7 @@ const crypto = __importStar(require("crypto"));
 const url = __importStar(require("url"));
 const storage_js_1 = require("./storage.js");
 const util_js_1 = require("./util.js");
-var SignerExceptionMessages;
+let SignerExceptionMessages;
 (function (SignerExceptionMessages) {
     SignerExceptionMessages["ACCESSIBLE_DATE_INVALID"] = "The accessible at date provided was invalid.";
     SignerExceptionMessages["EXPIRATION_BEFORE_ACCESSIBLE_DATE"] = "An expiration date cannot be before accessible date.";
@@ -123,7 +123,7 @@ class URLSigner {
             throw new Error(`Invalid signed URL version: ${version}. Supported versions are 'v2' and 'v4'.`);
         }
         return promise.then(query => {
-            var _a;
+            let _a;
             query = Object.assign(query, cfg.queryParams);
             const signedUrl = new url.URL(((_a = cfg.host) === null || _a === void 0 ? void 0 : _a.toString()) || config.cname || this.storage.apiEndpoint);
             signedUrl.pathname = this.getResourcePath(!!config.cname, this.bucket.name, config.file);
@@ -143,7 +143,7 @@ class URLSigner {
             canonicalHeadersString + resourcePath,
         ].join('\n');
         const sign = async () => {
-            var _a;
+            let _a;
             const auth = this.auth;
             try {
                 const signature = await auth.sign(blobToSign, (_a = config.signingEndpoint) === null || _a === void 0 ? void 0 : _a.toString());
@@ -164,7 +164,7 @@ class URLSigner {
         return sign();
     }
     getSignedUrlV4(config) {
-        var _a;
+        let _a;
         config.accessibleAt = config.accessibleAt
             ? config.accessibleAt
             : new Date();
@@ -200,7 +200,7 @@ class URLSigner {
         const datestamp = (0, util_js_1.formatAsUTCISO)(config.accessibleAt);
         const credentialScope = `${datestamp}/auto/storage/goog4_request`;
         const sign = async () => {
-            var _a;
+            let _a;
             const credentials = await this.auth.getCredentials();
             const credential = `${credentials.client_email}/${credentialScope}`;
             const dateISO = (0, util_js_1.formatAsUTCISO)(config.accessibleAt ? config.accessibleAt : new Date(), true);

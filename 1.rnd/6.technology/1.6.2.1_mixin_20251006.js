@@ -1,4 +1,4 @@
-var arrayEach = require('./_arrayEach'),
+const arrayEach = require('./_arrayEach'),
     arrayPush = require('./_arrayPush'),
     baseFunctions = require('./_baseFunctions'),
     copyArray = require('./_copyArray'),
@@ -43,20 +43,20 @@ var arrayEach = require('./_arrayEach'),
  * // => ['e']
  */
 function mixin(object, source, options) {
-  var props = keys(source),
+  const props = keys(source),
       methodNames = baseFunctions(source, props);
 
-  var chain = !(isObject(options) && 'chain' in options) || !!options.chain,
+  const chain = !(isObject(options) && 'chain' in options) || !!options.chain,
       isFunc = isFunction(object);
 
   arrayEach(methodNames, function(methodName) {
-    var func = source[methodName];
+    const func = source[methodName];
     object[methodName] = func;
     if (isFunc) {
       object.prototype[methodName] = function() {
-        var chainAll = this.__chain__;
+        const chainAll = this.__chain__;
         if (chain || chainAll) {
-          var result = object(this.__wrapped__),
+          const result = object(this.__wrapped__),
               actions = result.__actions__ = copyArray(this.__actions__);
 
           actions.push({ 'func': func, 'args': arguments, 'thisArg': object });

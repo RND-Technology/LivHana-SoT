@@ -34,7 +34,7 @@ const SOURCE = [
     '*.js'
 ];
 
-let ESLINT_OPTION = {
+const ESLINT_OPTION = {
     parser: 'babel-eslint',
     parserOptions: {
         'sourceType': 'module'
@@ -56,7 +56,7 @@ let ESLINT_OPTION = {
 };
 
 gulp.task('test', function() {
-    let options = minimist(process.argv.slice(2), {
+    const options = minimist(process.argv.slice(2), {
         string: 'test',
         default: {
             test: 'test/*.js'
@@ -73,7 +73,7 @@ gulp.task('lint', () =>
     .pipe(eslint.failOnError())
 );
 
-let inc = importance =>
+const inc = importance =>
     gulp.src(['./package.json'])
         .pipe(bump({type: importance}))
         .pipe(gulp.dest('./'))

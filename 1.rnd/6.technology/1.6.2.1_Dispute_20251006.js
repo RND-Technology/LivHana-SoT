@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
 exports.disputeSchema = void 0;
-var schema_1 = require("../schema");
-var disputedPayment_1 = require("./disputedPayment");
-var money_1 = require("./money");
+const schema_1 = require("../schema");
+const disputedPayment_1 = require("./disputedPayment");
+const money_1 = require("./money");
 exports.disputeSchema = (0, schema_1.object)({
     disputeId: ['dispute_id', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.string)()))],
     id: ['id', (0, schema_1.optional)((0, schema_1.string)())],

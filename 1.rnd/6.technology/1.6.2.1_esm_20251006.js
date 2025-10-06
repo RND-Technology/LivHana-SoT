@@ -110,7 +110,7 @@ function createEsmHooks(tsNodeService) {
     // `load` from new loader hook API (See description at the top of this file)
     async function load(url, context, defaultLoad) {
         return addShortCircuitFlag(async () => {
-            var _a;
+            let _a;
             // If we get a format hint from resolve() on the context then use it
             // otherwise call the old getFormat() hook using node's old built-in defaultGetFormat() that ships with ts-node
             const format = (_a = context.format) !== null && _a !== void 0 ? _a : (await getFormat(url, context, nodeGetFormatImplementation.defaultGetFormat)).format;

@@ -2,20 +2,20 @@
 
 exports.__esModule = true;
 exports["default"] = void 0;
-var _parser = _interopRequireDefault(require("./parser"));
+const _parser = _interopRequireDefault(require("./parser"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-var Processor = /*#__PURE__*/function () {
+const Processor = /*#__PURE__*/function () {
   function Processor(func, options) {
     this.func = func || function noop() {};
     this.funcRes = null;
     this.options = options;
   }
-  var _proto = Processor.prototype;
+  const _proto = Processor.prototype;
   _proto._shouldUpdateSelector = function _shouldUpdateSelector(rule, options) {
     if (options === void 0) {
       options = {};
     }
-    var merged = Object.assign({}, this.options, options);
+    const merged = Object.assign({}, this.options, options);
     if (merged.updateSelector === false) {
       return false;
     } else {
@@ -26,7 +26,7 @@ var Processor = /*#__PURE__*/function () {
     if (options === void 0) {
       options = {};
     }
-    var merged = Object.assign({}, this.options, options);
+    const merged = Object.assign({}, this.options, options);
     if (merged.lossless === false) {
       return true;
     } else {
@@ -37,7 +37,7 @@ var Processor = /*#__PURE__*/function () {
     if (options === void 0) {
       options = {};
     }
-    var parser = new _parser["default"](rule, this._parseOptions(options));
+    const parser = new _parser["default"](rule, this._parseOptions(options));
     return parser.root;
   };
   _proto._parseOptions = function _parseOptions(options) {
@@ -46,15 +46,15 @@ var Processor = /*#__PURE__*/function () {
     };
   };
   _proto._run = function _run(rule, options) {
-    var _this = this;
+    const _this = this;
     if (options === void 0) {
       options = {};
     }
     return new Promise(function (resolve, reject) {
       try {
-        var root = _this._root(rule, options);
+        const root = _this._root(rule, options);
         Promise.resolve(_this.func(root)).then(function (transform) {
-          var string = undefined;
+          let string = undefined;
           if (_this._shouldUpdateSelector(rule, options)) {
             string = root.toString();
             rule.selector = string;
@@ -75,12 +75,12 @@ var Processor = /*#__PURE__*/function () {
     if (options === void 0) {
       options = {};
     }
-    var root = this._root(rule, options);
-    var transform = this.func(root);
+    const root = this._root(rule, options);
+    const transform = this.func(root);
     if (transform && typeof transform.then === "function") {
       throw new Error("Selector processor returned a promise to a synchronous call.");
     }
-    var string = undefined;
+    let string = undefined;
     if (options.updateSelector && typeof rule !== "string") {
       string = root.toString();
       rule.selector = string;
@@ -161,7 +161,7 @@ var Processor = /*#__PURE__*/function () {
    * @returns {string} the selector after processing.
    */;
   _proto.processSync = function processSync(rule, options) {
-    var result = this._runSync(rule, options);
+    const result = this._runSync(rule, options);
     return result.string || result.root.toString();
   };
   return Processor;

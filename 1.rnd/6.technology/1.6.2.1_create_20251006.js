@@ -9,7 +9,7 @@ exports.createTwoFilesPatch = createTwoFilesPatch;
 exports.createPatch = createPatch;
 
 /*istanbul ignore end*/
-var
+const
 /*istanbul ignore start*/
 _line = require("../diff/line")
 /*istanbul ignore end*/
@@ -33,7 +33,7 @@ function structuredPatch(oldFileName, newFileName, oldStr, newStr, oldHeader, ne
     options.context = 4;
   }
 
-  var diff =
+  const diff =
   /*istanbul ignore start*/
   (0,
   /*istanbul ignore end*/
@@ -57,29 +57,29 @@ function structuredPatch(oldFileName, newFileName, oldStr, newStr, oldHeader, ne
     });
   }
 
-  var hunks = [];
-  var oldRangeStart = 0,
+  const hunks = [];
+  let oldRangeStart = 0,
       newRangeStart = 0,
       curRange = [],
       oldLine = 1,
       newLine = 1;
 
   /*istanbul ignore start*/
-  var _loop = function _loop(
+  const _loop = function _loop(
   /*istanbul ignore end*/
   i) {
-    var current = diff[i],
+    const current = diff[i],
         lines = current.lines || current.value.replace(/\n$/, '').split('\n');
     current.lines = lines;
 
     if (current.added || current.removed) {
       /*istanbul ignore start*/
-      var _curRange;
+      let _curRange;
 
       /*istanbul ignore end*/
       // If we have previous context, start with that
       if (!oldRangeStart) {
-        var prev = diff[i - 1];
+        const prev = diff[i - 1];
         oldRangeStart = oldLine;
         newRangeStart = newLine;
 
@@ -122,7 +122,7 @@ function structuredPatch(oldFileName, newFileName, oldStr, newStr, oldHeader, ne
         // Close out any changes that have been output (or join overlapping)
         if (lines.length <= options.context * 2 && i < diff.length - 2) {
           /*istanbul ignore start*/
-          var _curRange2;
+          let _curRange2;
 
           /*istanbul ignore end*/
           // Overlapping
@@ -145,11 +145,11 @@ function structuredPatch(oldFileName, newFileName, oldStr, newStr, oldHeader, ne
           contextLines(lines)));
         } else {
           /*istanbul ignore start*/
-          var _curRange3;
+          let _curRange3;
 
           /*istanbul ignore end*/
           // end the range and output
-          var contextSize = Math.min(lines.length, options.context);
+          const contextSize = Math.min(lines.length, options.context);
 
           /*istanbul ignore start*/
           (_curRange3 =
@@ -168,7 +168,7 @@ function structuredPatch(oldFileName, newFileName, oldStr, newStr, oldHeader, ne
           /*istanbul ignore end*/
           contextLines(lines.slice(0, contextSize))));
 
-          var hunk = {
+          const hunk = {
             oldStart: oldRangeStart,
             oldLines: oldLine - oldRangeStart + contextSize,
             newStart: newRangeStart,
@@ -178,9 +178,9 @@ function structuredPatch(oldFileName, newFileName, oldStr, newStr, oldHeader, ne
 
           if (i >= diff.length - 2 && lines.length <= options.context) {
             // EOF is inside this hunk
-            var oldEOFNewline = /\n$/.test(oldStr);
-            var newEOFNewline = /\n$/.test(newStr);
-            var noNlBeforeAdds = lines.length == 0 && curRange.length > hunk.oldLines;
+            const oldEOFNewline = /\n$/.test(oldStr);
+            const newEOFNewline = /\n$/.test(newStr);
+            const noNlBeforeAdds = lines.length == 0 && curRange.length > hunk.oldLines;
 
             if (!oldEOFNewline && noNlBeforeAdds) {
               // special case: old has no eol and no trailing context; no-nl can end up before adds
@@ -204,7 +204,7 @@ function structuredPatch(oldFileName, newFileName, oldStr, newStr, oldHeader, ne
     }
   };
 
-  for (var i = 0; i < diff.length; i++) {
+  for (let i = 0; i < diff.length; i++) {
     /*istanbul ignore start*/
     _loop(
     /*istanbul ignore end*/
@@ -221,8 +221,8 @@ function structuredPatch(oldFileName, newFileName, oldStr, newStr, oldHeader, ne
 }
 
 function createTwoFilesPatch(oldFileName, newFileName, oldStr, newStr, oldHeader, newHeader, options) {
-  var diff = structuredPatch(oldFileName, newFileName, oldStr, newStr, oldHeader, newHeader, options);
-  var ret = [];
+  const diff = structuredPatch(oldFileName, newFileName, oldStr, newStr, oldHeader, newHeader, options);
+  const ret = [];
 
   if (oldFileName == newFileName) {
     ret.push('Index: ' + oldFileName);
@@ -232,8 +232,8 @@ function createTwoFilesPatch(oldFileName, newFileName, oldStr, newStr, oldHeader
   ret.push('--- ' + diff.oldFileName + (typeof diff.oldHeader === 'undefined' ? '' : '\t' + diff.oldHeader));
   ret.push('+++ ' + diff.newFileName + (typeof diff.newHeader === 'undefined' ? '' : '\t' + diff.newHeader));
 
-  for (var i = 0; i < diff.hunks.length; i++) {
-    var hunk = diff.hunks[i];
+  for (let i = 0; i < diff.hunks.length; i++) {
+    const hunk = diff.hunks[i];
     ret.push('@@ -' + hunk.oldStart + ',' + hunk.oldLines + ' +' + hunk.newStart + ',' + hunk.newLines + ' @@');
     ret.push.apply(ret, hunk.lines);
   }

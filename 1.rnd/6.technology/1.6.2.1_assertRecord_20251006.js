@@ -2,17 +2,17 @@
 
 // TODO, semver-major: delete this
 
-var $TypeError = require('es-errors/type');
-var $SyntaxError = require('es-errors/syntax');
+const $TypeError = require('es-errors/type');
+const $SyntaxError = require('es-errors/syntax');
 
-var isMatchRecord = require('./records/match-record');
-var isPropertyDescriptor = require('./records/property-descriptor');
-var isIteratorRecord = require('./records/iterator-record-2023');
-var isPromiseCapabilityRecord = require('./records/promise-capability-record');
-var isAsyncGeneratorRequestRecord = require('./records/async-generator-request-record');
-var isRegExpRecord = require('./records/regexp-record');
+const isMatchRecord = require('./records/match-record');
+const isPropertyDescriptor = require('./records/property-descriptor');
+const isIteratorRecord = require('./records/iterator-record-2023');
+const isPromiseCapabilityRecord = require('./records/promise-capability-record');
+const isAsyncGeneratorRequestRecord = require('./records/async-generator-request-record');
+const isRegExpRecord = require('./records/regexp-record');
 
-var predicates = {
+const predicates = {
 	'Property Descriptor': isPropertyDescriptor,
 	'Match Record': isMatchRecord,
 	'Iterator Record': isIteratorRecord,
@@ -22,7 +22,7 @@ var predicates = {
 };
 
 module.exports = function assertRecord(Type, recordType, argumentName, value) {
-	var predicate = predicates[recordType];
+	const predicate = predicates[recordType];
 	if (typeof predicate !== 'function') {
 		throw new $SyntaxError('unknown record type: ' + recordType);
 	}

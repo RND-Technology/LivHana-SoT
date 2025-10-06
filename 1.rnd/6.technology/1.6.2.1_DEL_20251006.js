@@ -1,5 +1,5 @@
-var rimraf = require('rimraf').sync;
-var fs = require('fs');
+const rimraf = require('rimraf').sync;
+const fs = require('fs');
 
 module.exports = function del(file) {
   if (fs.existsSync(file)) {

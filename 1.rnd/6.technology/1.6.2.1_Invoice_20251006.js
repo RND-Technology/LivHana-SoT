@@ -1,13 +1,13 @@
 "use strict";
 exports.__esModule = true;
 exports.invoiceSchema = void 0;
-var schema_1 = require("../schema");
-var invoiceAcceptedPaymentMethods_1 = require("./invoiceAcceptedPaymentMethods");
-var invoiceAttachment_1 = require("./invoiceAttachment");
-var invoiceCustomField_1 = require("./invoiceCustomField");
-var invoicePaymentRequest_1 = require("./invoicePaymentRequest");
-var invoiceRecipient_1 = require("./invoiceRecipient");
-var money_1 = require("./money");
+const schema_1 = require("../schema");
+const invoiceAcceptedPaymentMethods_1 = require("./invoiceAcceptedPaymentMethods");
+const invoiceAttachment_1 = require("./invoiceAttachment");
+const invoiceCustomField_1 = require("./invoiceCustomField");
+const invoicePaymentRequest_1 = require("./invoicePaymentRequest");
+const invoiceRecipient_1 = require("./invoiceRecipient");
+const money_1 = require("./money");
 exports.invoiceSchema = (0, schema_1.object)({
     id: ['id', (0, schema_1.optional)((0, schema_1.string)())],
     version: ['version', (0, schema_1.optional)((0, schema_1.number)())],

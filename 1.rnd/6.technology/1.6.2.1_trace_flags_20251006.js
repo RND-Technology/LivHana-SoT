@@ -16,7 +16,7 @@ exports.TraceFlags = void 0;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-var TraceFlags;
+let TraceFlags;
 (function (TraceFlags) {
     /** Represents no flag set. */
     TraceFlags[TraceFlags["NONE"] = 0] = "NONE";

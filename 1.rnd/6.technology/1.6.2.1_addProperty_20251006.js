@@ -4,10 +4,10 @@
  * MIT Licensed
  */
 
-var chai = require('../../chai');
-var flag = require('./flag');
-var isProxyEnabled = require('./isProxyEnabled');
-var transferFlags = require('./transferFlags');
+const chai = require('../../chai');
+const flag = require('./flag');
+const isProxyEnabled = require('./isProxyEnabled');
+const transferFlags = require('./transferFlags');
 
 /**
  * ### .addProperty(ctx, name, getter)
@@ -59,11 +59,11 @@ module.exports = function addProperty(ctx, name, getter) {
           flag(this, 'ssfi', propertyGetter);
         }
 
-        var result = getter.call(this);
+        const result = getter.call(this);
         if (result !== undefined)
           return result;
 
-        var newAssertion = new chai.Assertion();
+        const newAssertion = new chai.Assertion();
         transferFlags(this, newAssertion);
         return newAssertion;
       }

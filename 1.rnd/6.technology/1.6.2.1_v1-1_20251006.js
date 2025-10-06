@@ -20,7 +20,7 @@ exports.androidpublisher_v1_1 = void 0;
 /* eslint-disable @typescript-eslint/no-namespace */
 /* eslint-disable no-irregular-whitespace */
 const googleapis_common_1 = require("googleapis-common");
-var androidpublisher_v1_1;
+let androidpublisher_v1_1;
 (function (androidpublisher_v1_1) {
     /**
      * Google Play Developer API

@@ -82,7 +82,7 @@ class VitestTestRunner {
     this.workerState.current = suite;
   }
   onBeforeTryTask(test) {
-    var _a, _b;
+    let _a, _b;
     setState({
       assertionCalls: 0,
       isExpectingAssertions: false,
@@ -149,7 +149,7 @@ function createBenchmarkResult(name) {
 }
 const benchmarkTasks = /* @__PURE__ */ new WeakMap();
 async function runBenchmarkSuite(suite, runner) {
-  var _a;
+  let _a;
   const { Task, Bench } = await runner.importTinybench();
   const start = performance.now();
   const benchmarkGroup = [];

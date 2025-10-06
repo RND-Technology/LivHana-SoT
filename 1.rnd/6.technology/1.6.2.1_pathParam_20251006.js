@@ -1,4 +1,4 @@
-var PathParam =
+const PathParam =
 /*#__PURE__*/
 /** @class */
 function () {

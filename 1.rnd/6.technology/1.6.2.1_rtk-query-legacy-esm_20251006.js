@@ -1,11 +1,11 @@
-var __defProp = Object.defineProperty;
-var __defProps = Object.defineProperties;
-var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
-var __getOwnPropSymbols = Object.getOwnPropertySymbols;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __propIsEnum = Object.prototype.propertyIsEnumerable;
-var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-var __spreadValues = (a, b) => {
+const __defProp = Object.defineProperty;
+const __defProps = Object.defineProperties;
+const __getOwnPropDescs = Object.getOwnPropertyDescriptors;
+const __getOwnPropSymbols = Object.getOwnPropertySymbols;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __propIsEnum = Object.prototype.propertyIsEnumerable;
+const __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+const __spreadValues = (a, b) => {
   for (var prop in b || (b = {}))
     if (__hasOwnProp.call(b, prop))
       __defNormalProp(a, prop, b[prop]);
@@ -16,10 +16,10 @@ var __spreadValues = (a, b) => {
     }
   return a;
 };
-var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
-var __restKey = (key) => typeof key === "symbol" ? key : key + "";
-var __objRest = (source, exclude) => {
-  var target = {};
+const __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
+const __restKey = (key) => typeof key === "symbol" ? key : key + "";
+const __objRest = (source, exclude) => {
+  const target = {};
   for (var prop in source)
     if (__hasOwnProp.call(source, prop) && exclude.indexOf(prop) < 0)
       target[prop] = source[prop];
@@ -53,7 +53,7 @@ function getRequestStatusFlags(status) {
 import { createAction, createSlice, createSelector, createAsyncThunk, combineReducers, createNextState, isAnyOf, isAllOf, isAction, isPending, isRejected, isFulfilled, isRejectedWithValue, isAsyncThunkAction, prepareAutoBatched, SHOULD_AUTOBATCH, isPlainObject, nanoid } from "@reduxjs/toolkit";
 
 // src/query/utils/copyWithStructuralSharing.ts
-var isPlainObject2 = isPlainObject;
+const isPlainObject2 = isPlainObject;
 function copyWithStructuralSharing(oldObj, newObj) {
   if (oldObj === newObj || !(isPlainObject2(oldObj) && isPlainObject2(newObj) || Array.isArray(oldObj) && Array.isArray(newObj))) {
     return newObj;
@@ -79,7 +79,7 @@ function countObjectKeys(obj) {
 }
 
 // src/query/utils/flatten.ts
-var flatten = (arr) => [].concat(...arr);
+const flatten = (arr) => [].concat(...arr);
 
 // src/query/utils/isAbsoluteUrl.ts
 function isAbsoluteUrl(url) {
@@ -105,8 +105,8 @@ function isOnline() {
 }
 
 // src/query/utils/joinUrls.ts
-var withoutTrailingSlash = (url) => url.replace(/\/$/, "");
-var withoutLeadingSlash = (url) => url.replace(/^\//, "");
+const withoutTrailingSlash = (url) => url.replace(/\/$/, "");
+const withoutLeadingSlash = (url) => url.replace(/^\//, "");
 function joinUrls(base, url) {
   if (!base) {
     return url;
@@ -132,12 +132,12 @@ function getOrInsertComputed(map, key, compute) {
   if (map.has(key)) return map.get(key);
   return map.set(key, compute(key)).get(key);
 }
-var createNewMap = () => /* @__PURE__ */ new Map();
+const createNewMap = () => /* @__PURE__ */ new Map();
 
 // src/query/fetchBaseQuery.ts
-var defaultFetchFn = (...args) => fetch(...args);
-var defaultValidateStatus = (response) => response.status >= 200 && response.status <= 299;
-var defaultIsJsonContentType = (headers) => (
+const defaultFetchFn = (...args) => fetch(...args);
+const defaultValidateStatus = (response) => response.status >= 200 && response.status <= 299;
+const defaultIsJsonContentType = (headers) => (
   /*applicat*/
   /ion\/(vnd\.api\+)?json/.test(headers.get("content-type") || "")
 );
@@ -152,7 +152,7 @@ function stripUndefined(obj) {
   return copy;
 }
 function fetchBaseQuery(_a = {}) {
-  var _b = _a, {
+  const _b = _a, {
     baseUrl,
     prepareHeaders = (x) => x,
     fetchFn = defaultFetchFn,
@@ -210,7 +210,7 @@ function fetchBaseQuery(_a = {}) {
       api.signal.addEventListener("abort", abortController.abort);
       signal = abortController.signal;
     }
-    let config = __spreadValues(__spreadProps(__spreadValues({}, baseFetchOptions), {
+    const config = __spreadValues(__spreadProps(__spreadValues({}, baseFetchOptions), {
       signal
     }), rest);
     headers = new Headers(stripUndefined(headers));
@@ -311,7 +311,7 @@ function fetchBaseQuery(_a = {}) {
 }
 
 // src/query/HandledError.ts
-var HandledError = class {
+const HandledError = class {
   constructor(value, meta = void 0) {
     this.value = value;
     this.meta = meta;
@@ -332,8 +332,8 @@ function fail(error, meta) {
     throwImmediately: true
   });
 }
-var EMPTY_OPTIONS = {};
-var retryWithBackoff = (baseQuery, defaultOptions) => async (args, api, extraOptions) => {
+const EMPTY_OPTIONS = {};
+const retryWithBackoff = (baseQuery, defaultOptions) => async (args, api, extraOptions) => {
   const possibleMaxRetries = [5, (defaultOptions || EMPTY_OPTIONS).maxRetries, (extraOptions || EMPTY_OPTIONS).maxRetries].filter((x) => x !== void 0);
   const [maxRetries] = possibleMaxRetries.slice(-1);
   const defaultRetryCondition = (_, __, {
@@ -371,16 +371,16 @@ var retryWithBackoff = (baseQuery, defaultOptions) => async (args, api, extraOpt
     }
   }
 };
-var retry = /* @__PURE__ */ Object.assign(retryWithBackoff, {
+const retry = /* @__PURE__ */ Object.assign(retryWithBackoff, {
   fail
 });
 
 // src/query/core/setupListeners.ts
-var onFocus = /* @__PURE__ */ createAction("__rtkq/focused");
-var onFocusLost = /* @__PURE__ */ createAction("__rtkq/unfocused");
-var onOnline = /* @__PURE__ */ createAction("__rtkq/online");
-var onOffline = /* @__PURE__ */ createAction("__rtkq/offline");
-var initialized = false;
+const onFocus = /* @__PURE__ */ createAction("__rtkq/focused");
+const onFocusLost = /* @__PURE__ */ createAction("__rtkq/unfocused");
+const onOnline = /* @__PURE__ */ createAction("__rtkq/online");
+const onOffline = /* @__PURE__ */ createAction("__rtkq/offline");
+let initialized = false;
 function setupListeners(dispatch, customHandler) {
   function defaultHandler() {
     const handleFocus = () => dispatch(onFocus());
@@ -463,8 +463,8 @@ function asSafePromise(promise, fallback) {
 }
 
 // src/query/core/buildInitiate.ts
-var forceQueryFnSymbol = Symbol("forceQueryFn");
-var isUpsertQuery = (arg) => typeof arg[forceQueryFnSymbol] === "function";
+const forceQueryFnSymbol = Symbol("forceQueryFn");
+const isUpsertQuery = (arg) => typeof arg[forceQueryFnSymbol] === "function";
 function buildInitiate({
   serializeQueryArgs,
   queryThunk,
@@ -494,7 +494,7 @@ function buildInitiate({
   };
   function getRunningQueryThunk(endpointName, queryArgs) {
     return (dispatch) => {
-      var _a;
+      let _a;
       const endpointDefinition = context.endpointDefinitions[endpointName];
       const queryCacheKey = serializeQueryArgs({
         queryArgs,
@@ -506,7 +506,7 @@ function buildInitiate({
   }
   function getRunningMutationThunk(_endpointName, fixedCacheKeyOrRequestId) {
     return (dispatch) => {
-      var _a;
+      let _a;
       return (_a = runningMutations.get(dispatch)) == null ? void 0 : _a[fixedCacheKeyOrRequestId];
     };
   }
@@ -529,7 +529,7 @@ You must add the middleware for RTK-Query to function correctly!`);
   }
   function buildInitiateAnyQuery(endpointName, endpointDefinition) {
     const queryAction = (arg, _a = {}) => {
-      var _b = _a, {
+      const _b = _a, {
         subscribe = true,
         forceRefetch,
         subscriptionOptions,
@@ -541,7 +541,7 @@ You must add the middleware for RTK-Query to function correctly!`);
         __restKey(forceQueryFnSymbol)
       ]);
       return (dispatch, getState) => {
-        var _a2;
+        let _a2;
         const queryCacheKey = serializeQueryArgs({
           queryArgs: arg,
           endpointDefinition,
@@ -715,7 +715,7 @@ You must add the middleware for RTK-Query to function correctly!`);
 
 // src/query/standardSchema.ts
 import { SchemaError } from "@standard-schema/utils";
-var NamedSchemaError = class extends SchemaError {
+const NamedSchemaError = class extends SchemaError {
   constructor(issues, value, schemaName, _bqMeta) {
     super(issues);
     this.value = value;
@@ -723,7 +723,7 @@ var NamedSchemaError = class extends SchemaError {
     this._bqMeta = _bqMeta;
   }
 };
-var shouldSkip = (skipSchemaValidation, schemaName) => Array.isArray(skipSchemaValidation) ? skipSchemaValidation.includes(schemaName) : !!skipSchemaValidation;
+const shouldSkip = (skipSchemaValidation, schemaName) => Array.isArray(skipSchemaValidation) ? skipSchemaValidation.includes(schemaName) : !!skipSchemaValidation;
 async function parseWithSchema(schema, data, schemaName, bqMeta) {
   const result = await schema["~standard"].validate(data);
   if (result.issues) {
@@ -736,7 +736,7 @@ async function parseWithSchema(schema, data, schemaName, bqMeta) {
 function defaultTransformResponse(baseQueryReturnValue) {
   return baseQueryReturnValue;
 }
-var addShouldAutoBatch = (arg = {}) => {
+const addShouldAutoBatch = (arg = {}) => {
   return __spreadProps(__spreadValues({}, arg), {
     [SHOULD_AUTOBATCH]: true
   });
@@ -850,7 +850,7 @@ function buildThunks({
     getState,
     extra
   }) => {
-    var _a, _b, _c, _d;
+    let _a, _b, _c, _d;
     const endpointDefinition = endpointDefinitions[arg.endpointName];
     const {
       metaSchema,
@@ -1012,7 +1012,7 @@ function buildThunks({
     } catch (error) {
       let caughtError = error;
       if (caughtError instanceof HandledError) {
-        let transformErrorResponse = getTransformCallbackForEndpoint(endpointDefinition, "transformErrorResponse");
+        const transformErrorResponse = getTransformCallbackForEndpoint(endpointDefinition, "transformErrorResponse");
         const {
           rawErrorResponseSchema,
           errorResponseSchema
@@ -1071,7 +1071,7 @@ In the case of an unhandled error, no tags will be "provided" or "invalidated".`
     }
   };
   function isForcedQuery(arg, state) {
-    var _a;
+    let _a;
     const requestState = selectors.selectQueryEntry(state, arg.queryCacheKey);
     const baseFetchOnMountOrArgChange = selectors.selectConfig(state).refetchOnMountOrArgChange;
     const fulfilledVal = requestState == null ? void 0 : requestState.fulfilledTimeStamp;
@@ -1096,7 +1096,7 @@ In the case of an unhandled error, no tags will be "provided" or "invalidated".`
       condition(queryThunkArg, {
         getState
       }) {
-        var _a;
+        let _a;
         const state = getState();
         const requestState = selectors.selectQueryEntry(state, queryThunkArg.queryCacheKey);
         const fulfilledVal = requestState == null ? void 0 : requestState.fulfilledTimeStamp;
@@ -1170,7 +1170,7 @@ In the case of an unhandled error, no tags will be "provided" or "invalidated".`
   };
   function matchesEndpoint(endpointName) {
     return (action) => {
-      var _a, _b;
+      let _a, _b;
       return ((_b = (_a = action == null ? void 0 : action.meta) == null ? void 0 : _a.arg) == null ? void 0 : _b.endpointName) === endpointName;
     };
   }
@@ -1203,7 +1203,7 @@ function getPreviousPageParam(options, {
   pages,
   pageParams
 }, queryArg) {
-  var _a;
+  let _a;
   return (_a = options.getPreviousPageParam) == null ? void 0 : _a.call(options, pages[0], pages, pageParams[0], pageParams, queryArg);
 }
 function calculateProvidedByThunk(action, type, endpointDefinitions, assertTagType) {
@@ -1220,7 +1220,7 @@ function updateQuerySubstateIfExists(state, queryCacheKey, update) {
   }
 }
 function getMutationCacheKey(id) {
-  var _a;
+  let _a;
   return (_a = "arg" in id ? id.arg.fixedCacheKey : id.fixedCacheKey) != null ? _a : id.requestId;
 }
 function updateMutationSubstateIfExists(state, id, update) {
@@ -1229,7 +1229,7 @@ function updateMutationSubstateIfExists(state, id, update) {
     update(substate);
   }
 }
-var initialState = {};
+const initialState = {};
 function buildSlice({
   reducerPath,
   queryThunk,
@@ -1246,7 +1246,7 @@ function buildSlice({
 }) {
   const resetApiState = createAction(`${reducerPath}/resetApiState`);
   function writePendingCacheEntry(draft, arg, upserting, meta) {
-    var _a, _b;
+    let _a, _b;
     (_b = draft[_a = arg.queryCacheKey]) != null ? _b : draft[_a] = {
       status: "uninitialized" /* uninitialized */,
       endpointName: arg.endpointName
@@ -1266,14 +1266,14 @@ function buildSlice({
       substate.startedTimeStamp = meta.startedTimeStamp;
       const endpointDefinition = definitions[meta.arg.endpointName];
       if (isInfiniteQueryDefinition(endpointDefinition) && "direction" in arg) {
-        ;
+        
         substate.direction = arg.direction;
       }
     });
   }
   function writeFulfilledCacheEntry(draft, meta, payload, upserting) {
     updateQuerySubstateIfExists(draft, meta.arg.queryCacheKey, (substate) => {
-      var _a;
+      let _a;
       if (substate.requestId !== meta.requestId && !upserting) return;
       const {
         merge
@@ -1287,7 +1287,7 @@ function buildSlice({
             baseQueryMeta,
             requestId
           } = meta;
-          let newData = createNextState(substate.data, (draftSubstateData) => {
+          const newData = createNextState(substate.data, (draftSubstateData) => {
             return merge(draftSubstateData, payload, {
               arg: arg.originalArgs,
               baseQueryMeta,
@@ -1521,7 +1521,7 @@ function buildSlice({
     reducers: {
       updateProvidedBy: {
         reducer(draft, action) {
-          var _a, _b, _c, _d, _e;
+          let _a, _b, _c, _d, _e;
           for (const {
             queryCacheKey,
             providedTags
@@ -1551,7 +1551,7 @@ function buildSlice({
       }) => {
         removeCacheKeyFromTags(draft, queryCacheKey);
       }).addMatcher(hasRehydrationInfo, (draft, action) => {
-        var _a, _b, _c, _d, _e, _f;
+        let _a, _b, _c, _d, _e, _f;
         const {
           provided
         } = extractRehydrationInfo(action);
@@ -1589,7 +1589,7 @@ function buildSlice({
     }
   });
   function removeCacheKeyFromTags(draft, queryCacheKey) {
-    var _a, _b, _c;
+    let _a, _b, _c;
     const existingTags = (_a = draft.keys[queryCacheKey]) != null ? _a : [];
     for (const tag of existingTags) {
       const tagType = tag.type;
@@ -1682,13 +1682,13 @@ function buildSlice({
 }
 
 // src/query/core/buildSelectors.ts
-var skipToken = /* @__PURE__ */ Symbol.for("RTKQ/skipToken");
-var initialSubState = {
+const skipToken = /* @__PURE__ */ Symbol.for("RTKQ/skipToken");
+const initialSubState = {
   status: "uninitialized" /* uninitialized */
 };
-var defaultQuerySubState = /* @__PURE__ */ createNextState(initialSubState, () => {
+const defaultQuerySubState = /* @__PURE__ */ createNextState(initialSubState, () => {
 });
-var defaultMutationSubState = /* @__PURE__ */ createNextState(initialSubState, () => {
+const defaultMutationSubState = /* @__PURE__ */ createNextState(initialSubState, () => {
 });
 function buildSelectors({
   serializeQueryArgs,
@@ -1724,19 +1724,19 @@ function buildSelectors({
     return state;
   }
   function selectQueries(rootState) {
-    var _a;
+    let _a;
     return (_a = selectApiState(rootState)) == null ? void 0 : _a.queries;
   }
   function selectQueryEntry(rootState, cacheKey) {
-    var _a;
+    let _a;
     return (_a = selectQueries(rootState)) == null ? void 0 : _a[cacheKey];
   }
   function selectMutations(rootState) {
-    var _a;
+    let _a;
     return (_a = selectApiState(rootState)) == null ? void 0 : _a.mutations;
   }
   function selectConfig(rootState) {
-    var _a;
+    let _a;
     return (_a = selectApiState(rootState)) == null ? void 0 : _a.config;
   }
   function buildAnyQuerySelector(endpointName, endpointDefinition, combiner) {
@@ -1750,7 +1750,7 @@ function buildSelectors({
         endpointName
       });
       const selectQuerySubstate = (state) => {
-        var _a;
+        let _a;
         return (_a = selectQueryEntry(state, serializedArgs)) != null ? _a : defaultQuerySubState;
       };
       return createSelector2(selectQuerySubstate, combiner);
@@ -1785,7 +1785,7 @@ function buildSelectors({
   }
   function buildMutationSelector() {
     return (id) => {
-      var _a;
+      let _a;
       let mutationId;
       if (typeof id === "object") {
         mutationId = (_a = getMutationCacheKey(id)) != null ? _a : skipToken;
@@ -1793,7 +1793,7 @@ function buildSelectors({
         mutationId = id;
       }
       const selectMutationSubstate = (state) => {
-        var _a2, _b, _c;
+        let _a2, _b, _c;
         return (_c = (_b = (_a2 = selectApiState(state)) == null ? void 0 : _a2.mutations) == null ? void 0 : _b[mutationId]) != null ? _c : defaultMutationSubState;
       };
       const finalSelectMutationSubstate = mutationId === skipToken ? selectSkippedMutation : selectMutationSubstate;
@@ -1801,7 +1801,7 @@ function buildSelectors({
     };
   }
   function selectInvalidatedBy(state, tags) {
-    var _a;
+    let _a;
     const apiState = state[reducerPath];
     const toInvalidate = /* @__PURE__ */ new Set();
     for (const tag of tags.filter(isNotNullish).map(expandTagDescription)) {
@@ -1809,7 +1809,7 @@ function buildSelectors({
       if (!provided) {
         continue;
       }
-      let invalidateSubscriptions = (_a = tag.id !== void 0 ? (
+      const invalidateSubscriptions = (_a = tag.id !== void 0 ? (
         // id given: invalidate all queries that provide this type & id
         provided[tag.id]
       ) : (
@@ -1846,8 +1846,8 @@ function buildSelectors({
 import { formatProdErrorMessage as _formatProdErrorMessage2, formatProdErrorMessage as _formatProdErrorMessage22, formatProdErrorMessage as _formatProdErrorMessage3 } from "@reduxjs/toolkit";
 
 // src/query/defaultSerializeQueryArgs.ts
-var cache = WeakMap ? /* @__PURE__ */ new WeakMap() : void 0;
-var defaultSerializeQueryArgs = ({
+const cache = WeakMap ? /* @__PURE__ */ new WeakMap() : void 0;
+const defaultSerializeQueryArgs = ({
   endpointName,
   queryArgs
 }) => {
@@ -1879,7 +1879,7 @@ import { weakMapMemoize } from "reselect";
 function buildCreateApi(...modules) {
   return function baseCreateApi(options) {
     const extractRehydrationInfo = weakMapMemoize((action) => {
-      var _a, _b;
+      let _a, _b;
       return (_b = options.extractRehydrationInfo) == null ? void 0 : _b.call(options, action, {
         reducerPath: (_a = options.reducerPath) != null ? _a : "api"
       });
@@ -1932,7 +1932,7 @@ function buildCreateApi(...modules) {
         if (addTagTypes) {
           for (const eT of addTagTypes) {
             if (!optionsWithDefaults.tagTypes.includes(eT)) {
-              ;
+              
               optionsWithDefaults.tagTypes.push(eT);
             }
           }
@@ -2005,7 +2005,7 @@ function buildCreateApi(...modules) {
 
 // src/query/fakeBaseQuery.ts
 import { formatProdErrorMessage as _formatProdErrorMessage4 } from "@reduxjs/toolkit";
-var _NEVER = /* @__PURE__ */ Symbol();
+const _NEVER = /* @__PURE__ */ Symbol();
 function fakeBaseQuery() {
   return function() {
     throw new Error(process.env.NODE_ENV === "production" ? _formatProdErrorMessage4(33) : "When using `fakeBaseQuery`, all queries & mutations must use the `queryFn` definition syntax.");
@@ -2024,7 +2024,7 @@ function safeAssign(target, ...args) {
 
 // src/query/core/buildMiddleware/batchActions.ts
 import { produceWithPatches as produceWithPatches2 } from "immer";
-var buildBatchedActionsHandler = ({
+const buildBatchedActionsHandler = ({
   api,
   queryThunk,
   internalState,
@@ -2038,7 +2038,7 @@ var buildBatchedActionsHandler = ({
     unsubscribeQueryResult
   } = api.internalActions;
   const actuallyMutateSubscriptions = (currentSubscriptions, action) => {
-    var _a, _b, _c, _d;
+    let _a, _b, _c, _d;
     if (updateSubscriptionOptions.match(action)) {
       const {
         queryCacheKey,
@@ -2098,13 +2098,13 @@ var buildBatchedActionsHandler = ({
   };
   const getSubscriptions = () => internalState.currentSubscriptions;
   const getSubscriptionCount = (queryCacheKey) => {
-    var _a;
+    let _a;
     const subscriptions = getSubscriptions();
     const subscriptionsForQueryArg = subscriptions.get(queryCacheKey);
     return (_a = subscriptionsForQueryArg == null ? void 0 : subscriptionsForQueryArg.size) != null ? _a : 0;
   };
   const isRequestSubscribed = (queryCacheKey, requestId) => {
-    var _a;
+    let _a;
     const subscriptions = getSubscriptions();
     return !!((_a = subscriptions == null ? void 0 : subscriptions.get(queryCacheKey)) == null ? void 0 : _a.get(requestId));
   };
@@ -2153,8 +2153,8 @@ var buildBatchedActionsHandler = ({
 };
 
 // src/query/core/buildMiddleware/cacheCollection.ts
-var THIRTY_TWO_BIT_MAX_TIMER_SECONDS = 2147483647 / 1e3 - 1;
-var buildCacheCollectionHandler = ({
+const THIRTY_TWO_BIT_MAX_TIMER_SECONDS = 2147483647 / 1e3 - 1;
+const buildCacheCollectionHandler = ({
   reducerPath,
   api,
   queryThunk,
@@ -2222,7 +2222,7 @@ var buildCacheCollectionHandler = ({
     }
   }
   function handleUnsubscribe(queryCacheKey, endpointName, api2, config) {
-    var _a;
+    let _a;
     const endpointDefinition = context.endpointDefinitions[endpointName];
     const keepUnusedDataFor = (_a = endpointDefinition == null ? void 0 : endpointDefinition.keepUnusedDataFor) != null ? _a : config.keepUnusedDataFor;
     if (keepUnusedDataFor === Infinity) {
@@ -2253,8 +2253,8 @@ var buildCacheCollectionHandler = ({
 };
 
 // src/query/core/buildMiddleware/cacheLifecycle.ts
-var neverResolvedError = new Error("Promise never resolved before cacheEntryRemoved.");
-var buildCacheLifecycleHandler = ({
+const neverResolvedError = new Error("Promise never resolved before cacheEntryRemoved.");
+const buildCacheLifecycleHandler = ({
   api,
   reducerPath,
   context,
@@ -2327,7 +2327,7 @@ var buildCacheLifecycleHandler = ({
     }
   };
   function getCacheKey(action) {
-    var _a;
+    let _a;
     if (isQueryThunk(action)) return action.meta.arg.queryCacheKey;
     if (isMutationThunk(action)) {
       return (_a = action.meta.arg.fixedCacheKey) != null ? _a : action.meta.requestId;
@@ -2372,7 +2372,7 @@ var buildCacheLifecycleHandler = ({
 };
 
 // src/query/core/buildMiddleware/devMiddleware.ts
-var buildDevCheckHandler = ({
+const buildDevCheckHandler = ({
   api,
   context: {
     apiUid
@@ -2380,7 +2380,7 @@ var buildDevCheckHandler = ({
   reducerPath
 }) => {
   return (action, mwApi) => {
-    var _a, _b;
+    let _a, _b;
     if (api.util.resetApiState.match(action)) {
       mwApi.dispatch(api.internalActions.middlewareRegistered(apiUid));
     }
@@ -2395,7 +2395,7 @@ If you have multiple apis, you *have* to specify the reducerPath option when usi
 };
 
 // src/query/core/buildMiddleware/invalidationByTags.ts
-var buildInvalidationByTagsHandler = ({
+const buildInvalidationByTagsHandler = ({
   reducerPath,
   context,
   context: {
@@ -2424,7 +2424,7 @@ var buildInvalidationByTagsHandler = ({
     }
   };
   function hasPendingRequests(state) {
-    var _a;
+    let _a;
     const {
       queries,
       mutations
@@ -2470,7 +2470,7 @@ var buildInvalidationByTagsHandler = ({
 };
 
 // src/query/core/buildMiddleware/polling.ts
-var buildPollingHandler = ({
+const buildPollingHandler = ({
   reducerPath,
   queryThunk,
   api,
@@ -2557,7 +2557,7 @@ var buildPollingHandler = ({
   function updatePollingInterval({
     queryCacheKey
   }, api2) {
-    var _a, _b;
+    let _a, _b;
     const state = api2.getState()[reducerPath];
     const querySubState = state.queries[queryCacheKey];
     const subscriptions = currentSubscriptions.get(queryCacheKey);
@@ -2600,7 +2600,7 @@ var buildPollingHandler = ({
     let skipPollingIfUnfocused = false;
     let lowestPollingInterval = Number.POSITIVE_INFINITY;
     for (const entry of subscribers.values()) {
-      if (!!entry.pollingInterval) {
+      if (entry.pollingInterval) {
         lowestPollingInterval = Math.min(entry.pollingInterval, lowestPollingInterval);
         skipPollingIfUnfocused = entry.skipPollingIfUnfocused || skipPollingIfUnfocused;
       }
@@ -2614,7 +2614,7 @@ var buildPollingHandler = ({
 };
 
 // src/query/core/buildMiddleware/queryLifecycle.ts
-var buildQueryLifecycleHandler = ({
+const buildQueryLifecycleHandler = ({
   api,
   context,
   queryThunk,
@@ -2625,7 +2625,7 @@ var buildQueryLifecycleHandler = ({
   const isFullfilledThunk = isFulfilled(queryThunk, mutationThunk);
   const lifecycleMap = {};
   const handler = (action, mwApi) => {
-    var _a, _b, _c;
+    let _a, _b, _c;
     if (isPendingThunk(action)) {
       const {
         requestId,
@@ -2684,7 +2684,7 @@ var buildQueryLifecycleHandler = ({
 };
 
 // src/query/core/buildMiddleware/windowEventHandling.ts
-var buildWindowEventHandler = ({
+const buildWindowEventHandler = ({
   reducerPath,
   context,
   api,
@@ -2776,7 +2776,7 @@ function buildMiddleware(input) {
         } else {
           res = internalProbeResult;
         }
-        if (!!mwApi.getState()[reducerPath]) {
+        if (mwApi.getState()[reducerPath]) {
           windowEventsHandler(action, mwApiWithNext, stateBefore);
           if (isThisApiSliceAction(action) || context.hasRehydrationInfo(action)) {
             for (const handler of handlers) {
@@ -2801,8 +2801,8 @@ function buildMiddleware(input) {
 }
 
 // src/query/core/module.ts
-var coreModuleName = /* @__PURE__ */ Symbol();
-var coreModule = ({
+const coreModuleName = /* @__PURE__ */ Symbol();
+const coreModule = ({
   createSelector: createSelector2 = createSelector
 } = {}) => ({
   name: coreModuleName,
@@ -2959,7 +2959,7 @@ var coreModule = ({
     return {
       name: coreModuleName,
       injectEndpoint(endpointName, definition) {
-        var _a, _b;
+        let _a, _b;
         const anyApi = api;
         const endpoint = (_b = (_a = anyApi.endpoints)[endpointName]) != null ? _b : _a[endpointName] = {};
         if (isQueryDefinition(definition)) {
@@ -2989,7 +2989,7 @@ var coreModule = ({
 });
 
 // src/query/core/index.ts
-var createApi = /* @__PURE__ */ buildCreateApi(coreModule());
+const createApi = /* @__PURE__ */ buildCreateApi(coreModule());
 export {
   NamedSchemaError,
   QueryStatus,

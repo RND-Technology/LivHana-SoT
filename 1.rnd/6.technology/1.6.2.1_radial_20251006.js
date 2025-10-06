@@ -12,13 +12,13 @@ function unsquare(x) {
 }
 
 export default function radial() {
-  var squared = continuous(),
+  let squared = continuous(),
       range = [0, 1],
       round = false,
       unknown;
 
   function scale(x) {
-    var y = unsquare(squared(x));
+    const y = unsquare(squared(x));
     return isNaN(y) ? unknown : round ? Math.round(y) : y;
   }
 

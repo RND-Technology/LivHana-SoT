@@ -1,16 +1,16 @@
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+const GetIntrinsic = require('get-intrinsic');
 
-var $Number = GetIntrinsic('%Number%');
-var $TypeError = require('es-errors/type');
-var $isNaN = require('math-intrinsics/isNaN');
-var $isFinite = require('math-intrinsics/isFinite');
+const $Number = GetIntrinsic('%Number%');
+const $TypeError = require('es-errors/type');
+const $isNaN = require('math-intrinsics/isNaN');
+const $isFinite = require('math-intrinsics/isFinite');
 
-var isPrefixOf = require('../helpers/isPrefixOf');
+const isPrefixOf = require('../helpers/isPrefixOf');
 
-var ToNumber = require('./ToNumber');
-var ToPrimitive = require('./ToPrimitive');
+const ToNumber = require('./ToNumber');
+const ToPrimitive = require('./ToPrimitive');
 
 // https://262.ecma-international.org/5.1/#sec-11.8.5
 
@@ -19,8 +19,8 @@ module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
 	if (typeof LeftFirst !== 'boolean') {
 		throw new $TypeError('Assertion failed: LeftFirst argument must be a Boolean');
 	}
-	var px;
-	var py;
+	let px;
+	let py;
 	if (LeftFirst) {
 		px = ToPrimitive(x, $Number);
 		py = ToPrimitive(y, $Number);
@@ -28,10 +28,10 @@ module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
 		py = ToPrimitive(y, $Number);
 		px = ToPrimitive(x, $Number);
 	}
-	var bothStrings = typeof px === 'string' && typeof py === 'string';
+	const bothStrings = typeof px === 'string' && typeof py === 'string';
 	if (!bothStrings) {
-		var nx = ToNumber(px);
-		var ny = ToNumber(py);
+		const nx = ToNumber(px);
+		const ny = ToNumber(py);
 		if ($isNaN(nx) || $isNaN(ny)) {
 			return undefined;
 		}

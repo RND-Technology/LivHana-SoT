@@ -21,7 +21,7 @@
         console.error(
           "You are using an outdated, pre-release alpha of React 18 that does not support useSyncExternalStore. The use-sync-external-store shim will not work correctly. Upgrade to a newer pre-release."
         ));
-      var value = getSnapshot();
+      const value = getSnapshot();
       if (!didWarnUncachedGetSnapshot) {
         var cachedValue = getSnapshot();
         objectIs(value, cachedValue) ||
@@ -33,7 +33,7 @@
       cachedValue = useState({
         inst: { value: value, getSnapshot: getSnapshot }
       });
-      var inst = cachedValue[0].inst,
+      const inst = cachedValue[0].inst,
         forceUpdate = cachedValue[1];
       useLayoutEffect(
         function () {
@@ -56,10 +56,10 @@
       return value;
     }
     function checkIfSnapshotChanged(inst) {
-      var latestGetSnapshot = inst.getSnapshot;
+      const latestGetSnapshot = inst.getSnapshot;
       inst = inst.value;
       try {
-        var nextValue = latestGetSnapshot();
+        const nextValue = latestGetSnapshot();
         return !objectIs(inst, nextValue);
       } catch (error) {
         return !0;

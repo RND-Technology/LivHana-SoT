@@ -20,8 +20,8 @@ function getEveryNthWithCondition(array, n, isValid) {
   if (n === 1 && isValid === undefined) {
     return array;
   }
-  var result = [];
-  for (var i = 0; i < array.length; i += n) {
+  const result = [];
+  for (let i = 0; i < array.length; i += n) {
     if (isValid === undefined || isValid(array[i]) === true) {
       result.push(array[i]);
     } else {

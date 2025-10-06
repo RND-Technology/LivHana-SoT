@@ -16,7 +16,7 @@ const index_10 = require("../guard/index");
 class ExtendsResolverError extends index_9.TypeBoxError {
 }
 exports.ExtendsResolverError = ExtendsResolverError;
-var ExtendsResult;
+let ExtendsResult;
 (function (ExtendsResult) {
     ExtendsResult[ExtendsResult["Union"] = 0] = "Union";
     ExtendsResult[ExtendsResult["True"] = 1] = "True";

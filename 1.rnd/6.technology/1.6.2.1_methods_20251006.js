@@ -12,8 +12,8 @@ exports._parameters = _parameters;
 exports._params = _params;
 exports._predicate = _predicate;
 exports._shouldPrintArrowParamsParens = _shouldPrintArrowParamsParens;
-var _t = require("@babel/types");
-var _index = require("../node/index.js");
+const _t = require("@babel/types");
+const _index = require("../node/index.js");
 const {
   isIdentifier
 } = _t;
@@ -136,7 +136,7 @@ function ArrowFunctionExpression(node, parent) {
   this.print(node.body);
 }
 function _shouldPrintArrowParamsParens(node) {
-  var _firstParam$leadingCo, _firstParam$trailingC;
+  let _firstParam$leadingCo, _firstParam$trailingC;
   if (node.params.length !== 1) return true;
   if (node.typeParameters || node.returnType || node.predicate) {
     return true;
@@ -174,19 +174,19 @@ function _getFuncIdName(idNode, parent) {
   if (!id) return;
   let nameInfo;
   if (id.type === "Identifier") {
-    var _id$loc, _id$loc2;
+    let _id$loc, _id$loc2;
     nameInfo = {
       pos: (_id$loc = id.loc) == null ? void 0 : _id$loc.start,
       name: ((_id$loc2 = id.loc) == null ? void 0 : _id$loc2.identifierName) || id.name
     };
   } else if (id.type === "PrivateName") {
-    var _id$loc3;
+    let _id$loc3;
     nameInfo = {
       pos: (_id$loc3 = id.loc) == null ? void 0 : _id$loc3.start,
       name: "#" + id.id.name
     };
   } else if (id.type === "StringLiteral") {
-    var _id$loc4;
+    let _id$loc4;
     nameInfo = {
       pos: (_id$loc4 = id.loc) == null ? void 0 : _id$loc4.start,
       name: id.value

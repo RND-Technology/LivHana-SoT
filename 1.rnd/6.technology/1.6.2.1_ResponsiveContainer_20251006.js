@@ -4,21 +4,21 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.ResponsiveContainer = void 0;
-var _clsx = require("clsx");
-var _react = _interopRequireWildcard(require("react"));
-var React = _react;
-var _throttle = _interopRequireDefault(require("es-toolkit/compat/throttle"));
-var _DataUtils = require("../util/DataUtils");
-var _LogUtils = require("../util/LogUtils");
+const _clsx = require("clsx");
+const _react = _interopRequireWildcard(require("react"));
+const React = _react;
+const _throttle = _interopRequireDefault(require("es-toolkit/compat/throttle"));
+const _DataUtils = require("../util/DataUtils");
+const _LogUtils = require("../util/LogUtils");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
-function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; let o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (const _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
+function ownKeys(e, r) { const t = Object.keys(e); if (Object.getOwnPropertySymbols) { let o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (let r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-var ResponsiveContainer = exports.ResponsiveContainer = /*#__PURE__*/(0, _react.forwardRef)((_ref, ref) => {
-  var {
+function _toPropertyKey(t) { const i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; const e = t[Symbol.toPrimitive]; if (void 0 !== e) { const i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+const ResponsiveContainer = exports.ResponsiveContainer = /*#__PURE__*/(0, _react.forwardRef)((_ref, ref) => {
+  const {
     aspect,
     initialDimension = {
       width: -1,
@@ -40,18 +40,18 @@ var ResponsiveContainer = exports.ResponsiveContainer = /*#__PURE__*/(0, _react.
     onResize,
     style = {}
   } = _ref;
-  var containerRef = (0, _react.useRef)(null);
-  var onResizeRef = (0, _react.useRef)();
+  const containerRef = (0, _react.useRef)(null);
+  const onResizeRef = (0, _react.useRef)();
   onResizeRef.current = onResize;
   (0, _react.useImperativeHandle)(ref, () => containerRef.current);
-  var [sizes, setSizes] = (0, _react.useState)({
+  const [sizes, setSizes] = (0, _react.useState)({
     containerWidth: initialDimension.width,
     containerHeight: initialDimension.height
   });
-  var setContainerSize = (0, _react.useCallback)((newWidth, newHeight) => {
+  const setContainerSize = (0, _react.useCallback)((newWidth, newHeight) => {
     setSizes(prevState => {
-      var roundedWidth = Math.round(newWidth);
-      var roundedHeight = Math.round(newHeight);
+      const roundedWidth = Math.round(newWidth);
+      const roundedHeight = Math.round(newHeight);
       if (prevState.containerWidth === roundedWidth && prevState.containerHeight === roundedHeight) {
         return prevState;
       }
@@ -62,9 +62,9 @@ var ResponsiveContainer = exports.ResponsiveContainer = /*#__PURE__*/(0, _react.
     });
   }, []);
   (0, _react.useEffect)(() => {
-    var callback = entries => {
-      var _onResizeRef$current;
-      var {
+    let callback = entries => {
+      let _onResizeRef$current;
+      const {
         width: containerWidth,
         height: containerHeight
       } = entries[0].contentRect;
@@ -77,8 +77,8 @@ var ResponsiveContainer = exports.ResponsiveContainer = /*#__PURE__*/(0, _react.
         leading: false
       });
     }
-    var observer = new ResizeObserver(callback);
-    var {
+    const observer = new ResizeObserver(callback);
+    const {
       width: containerWidth,
       height: containerHeight
     } = containerRef.current.getBoundingClientRect();
@@ -88,8 +88,8 @@ var ResponsiveContainer = exports.ResponsiveContainer = /*#__PURE__*/(0, _react.
       observer.disconnect();
     };
   }, [setContainerSize, debounce]);
-  var chartContent = (0, _react.useMemo)(() => {
-    var {
+  const chartContent = (0, _react.useMemo)(() => {
+    const {
       containerWidth,
       containerHeight
     } = sizes;
@@ -98,8 +98,8 @@ var ResponsiveContainer = exports.ResponsiveContainer = /*#__PURE__*/(0, _react.
     }
     (0, _LogUtils.warn)((0, _DataUtils.isPercent)(width) || (0, _DataUtils.isPercent)(height), "The width(%s) and height(%s) are both fixed numbers,\n       maybe you don't need to use a ResponsiveContainer.", width, height);
     (0, _LogUtils.warn)(!aspect || aspect > 0, 'The aspect(%s) must be greater than zero.', aspect);
-    var calculatedWidth = (0, _DataUtils.isPercent)(width) ? containerWidth : width;
-    var calculatedHeight = (0, _DataUtils.isPercent)(height) ? containerHeight : height;
+    let calculatedWidth = (0, _DataUtils.isPercent)(width) ? containerWidth : width;
+    let calculatedHeight = (0, _DataUtils.isPercent)(height) ? containerHeight : height;
     if (aspect && aspect > 0) {
       // Preserve the desired aspect ratio
       if (calculatedWidth) {

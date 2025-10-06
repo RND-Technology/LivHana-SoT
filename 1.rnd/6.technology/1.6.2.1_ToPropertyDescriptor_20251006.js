@@ -1,12 +1,12 @@
 'use strict';
 
-var hasOwn = require('hasown');
+const hasOwn = require('hasown');
 
-var $TypeError = require('es-errors/type');
-var isObject = require('es-object-atoms/isObject');
+const $TypeError = require('es-errors/type');
+const isObject = require('es-object-atoms/isObject');
 
-var IsCallable = require('./IsCallable');
-var ToBoolean = require('./ToBoolean');
+const IsCallable = require('./IsCallable');
+const ToBoolean = require('./ToBoolean');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.5
 
@@ -15,7 +15,7 @@ module.exports = function ToPropertyDescriptor(Obj) {
 		throw new $TypeError('ToPropertyDescriptor requires an object');
 	}
 
-	var desc = {};
+	const desc = {};
 	if (hasOwn(Obj, 'enumerable')) {
 		desc['[[Enumerable]]'] = ToBoolean(Obj.enumerable);
 	}
@@ -29,14 +29,14 @@ module.exports = function ToPropertyDescriptor(Obj) {
 		desc['[[Writable]]'] = ToBoolean(Obj.writable);
 	}
 	if (hasOwn(Obj, 'get')) {
-		var getter = Obj.get;
+		const getter = Obj.get;
 		if (typeof getter !== 'undefined' && !IsCallable(getter)) {
 			throw new $TypeError('getter must be a function');
 		}
 		desc['[[Get]]'] = getter;
 	}
 	if (hasOwn(Obj, 'set')) {
-		var setter = Obj.set;
+		const setter = Obj.set;
 		if (typeof setter !== 'undefined' && !IsCallable(setter)) {
 			throw new $TypeError('setter must be a function');
 		}

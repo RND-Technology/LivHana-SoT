@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = _defineAccessor;
 function _defineAccessor(type, obj, key, fn) {
-  var desc = {
+  const desc = {
     configurable: true,
     enumerable: true
   };

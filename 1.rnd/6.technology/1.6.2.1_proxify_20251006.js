@@ -1,7 +1,7 @@
-var config = require('../config');
-var flag = require('./flag');
-var getProperties = require('./getProperties');
-var isProxyEnabled = require('./isProxyEnabled');
+const config = require('../config');
+const flag = require('./flag');
+const getProperties = require('./getProperties');
+const isProxyEnabled = require('./isProxyEnabled');
 
 /*!
  * Chai - proxify utility
@@ -28,7 +28,7 @@ var isProxyEnabled = require('./isProxyEnabled');
  * @name proxify
  */
 
-var builtins = ['__flags', '__methods', '_obj', 'assert'];
+const builtins = ['__flags', '__methods', '_obj', 'assert'];
 
 module.exports = function proxify(obj, nonChainableMethodName) {
   if (!isProxyEnabled()) return obj;
@@ -52,14 +52,14 @@ module.exports = function proxify(obj, nonChainableMethodName) {
         // If the property is reasonably close to an existing Chai property,
         // suggest that property to the user. Only suggest properties with a
         // distance less than 4.
-        var suggestion = null;
-        var suggestionDistance = 4;
+        let suggestion = null;
+        let suggestionDistance = 4;
         getProperties(target).forEach(function(prop) {
           if (
             !Object.prototype.hasOwnProperty(prop) &&
             builtins.indexOf(prop) === -1
           ) {
-            var dist = stringDistanceCapped(
+            const dist = stringDistanceCapped(
               property,
               prop,
               suggestionDistance
@@ -115,7 +115,7 @@ function stringDistanceCapped(strA, strB, cap) {
     return cap;
   }
 
-  var memo = [];
+  const memo = [];
   // `memo` is a two-dimensional array containing distances.
   // memo[i][j] is the distance between strA.slice(0, i) and
   // strB.slice(0, j).
@@ -128,7 +128,7 @@ function stringDistanceCapped(strA, strB, cap) {
   }
 
   for (var i = 1; i <= strA.length; i++) {
-    var ch = strA.charCodeAt(i - 1);
+    const ch = strA.charCodeAt(i - 1);
     for (var j = 1; j <= strB.length; j++) {
       if (Math.abs(i - j) >= cap) {
         memo[i][j] = cap;

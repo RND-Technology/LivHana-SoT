@@ -170,7 +170,7 @@ export function generateRowGap({
     styles = handleBreakpoints({
       theme
     }, rowSpacingValues, (propValue, breakpoint) => {
-      var _zeroValueBreakpointK;
+      let _zeroValueBreakpointK;
       const themeSpacing = theme.spacing(propValue);
       if (themeSpacing !== '0px') {
         return {
@@ -217,7 +217,7 @@ export function generateColumnGap({
     styles = handleBreakpoints({
       theme
     }, columnSpacingValues, (propValue, breakpoint) => {
-      var _zeroValueBreakpointK2;
+      let _zeroValueBreakpointK2;
       const themeSpacing = theme.spacing(propValue);
       if (themeSpacing !== '0px') {
         return {

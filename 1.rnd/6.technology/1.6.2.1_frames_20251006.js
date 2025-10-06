@@ -1,23 +1,23 @@
 "use strict";
-var __create = Object.create;
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getProtoOf = Object.getPrototypeOf;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
+const __create = Object.create;
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __getProtoOf = Object.getPrototypeOf;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __export = (target, all) => {
+  for (const name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+const __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
   // If the importer is in node compatibility mode or this is not an ESM
   // file that has been converted to a CommonJS file using a Babel-
   // compatible transform (i.e. "__esModule" has not been set), then set
@@ -25,33 +25,33 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
   mod
 ));
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var frames_exports = {};
+const __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+const frames_exports = {};
 __export(frames_exports, {
   Frame: () => Frame,
   FrameManager: () => FrameManager,
   NavigationAbortedError: () => NavigationAbortedError
 });
 module.exports = __toCommonJS(frames_exports);
-var import_browserContext = require("./browserContext");
-var dom = __toESM(require("./dom"));
-var import_errors = require("./errors");
-var import_fileUploadUtils = require("./fileUploadUtils");
-var import_frameSelectors = require("./frameSelectors");
-var import_helper = require("./helper");
-var import_instrumentation = require("./instrumentation");
-var js = __toESM(require("./javascript"));
-var network = __toESM(require("./network"));
-var import_page = require("./page");
-var import_progress = require("./progress");
-var types = __toESM(require("./types"));
-var import_utils = require("../utils");
-var import_protocolError = require("./protocolError");
-var import_debugLogger = require("./utils/debugLogger");
-var import_eventsHelper = require("./utils/eventsHelper");
-var import_selectorParser = require("../utils/isomorphic/selectorParser");
-var import_manualPromise = require("../utils/isomorphic/manualPromise");
-var import_callLog = require("./callLog");
+const import_browserContext = require("./browserContext");
+const dom = __toESM(require("./dom"));
+const import_errors = require("./errors");
+const import_fileUploadUtils = require("./fileUploadUtils");
+const import_frameSelectors = require("./frameSelectors");
+const import_helper = require("./helper");
+const import_instrumentation = require("./instrumentation");
+const js = __toESM(require("./javascript"));
+const network = __toESM(require("./network"));
+const import_page = require("./page");
+const import_progress = require("./progress");
+const types = __toESM(require("./types"));
+const import_utils = require("../utils");
+const import_protocolError = require("./protocolError");
+const import_debugLogger = require("./utils/debugLogger");
+const import_eventsHelper = require("./utils/eventsHelper");
+const import_selectorParser = require("../utils/isomorphic/selectorParser");
+const import_manualPromise = require("../utils/isomorphic/manualPromise");
+const import_callLog = require("./callLog");
 class NavigationAbortedError extends Error {
   constructor(documentId, message) {
     super(message);

@@ -78,7 +78,7 @@ export class CloudTasksClient {
      *     ```
      */
     constructor(opts, gaxInstance) {
-        var _a, _b, _c, _d, _e;
+        let _a, _b, _c, _d, _e;
         this._terminated = false;
         this.descriptors = {
             page: {},
@@ -300,7 +300,7 @@ export class CloudTasksClient {
         return this.auth.getProjectId();
     }
     getQueue(request, optionsOrCallback, callback) {
-        var _a;
+        let _a;
         request = request || {};
         let options;
         if (typeof optionsOrCallback === 'function' && callback === undefined) {
@@ -321,7 +321,7 @@ export class CloudTasksClient {
         return this.innerApiCalls.getQueue(request, options, callback);
     }
     createQueue(request, optionsOrCallback, callback) {
-        var _a;
+        let _a;
         request = request || {};
         let options;
         if (typeof optionsOrCallback === 'function' && callback === undefined) {
@@ -342,7 +342,7 @@ export class CloudTasksClient {
         return this.innerApiCalls.createQueue(request, options, callback);
     }
     updateQueue(request, optionsOrCallback, callback) {
-        var _a;
+        let _a;
         request = request || {};
         let options;
         if (typeof optionsOrCallback === 'function' && callback === undefined) {
@@ -363,7 +363,7 @@ export class CloudTasksClient {
         return this.innerApiCalls.updateQueue(request, options, callback);
     }
     deleteQueue(request, optionsOrCallback, callback) {
-        var _a;
+        let _a;
         request = request || {};
         let options;
         if (typeof optionsOrCallback === 'function' && callback === undefined) {
@@ -384,7 +384,7 @@ export class CloudTasksClient {
         return this.innerApiCalls.deleteQueue(request, options, callback);
     }
     purgeQueue(request, optionsOrCallback, callback) {
-        var _a;
+        let _a;
         request = request || {};
         let options;
         if (typeof optionsOrCallback === 'function' && callback === undefined) {
@@ -405,7 +405,7 @@ export class CloudTasksClient {
         return this.innerApiCalls.purgeQueue(request, options, callback);
     }
     pauseQueue(request, optionsOrCallback, callback) {
-        var _a;
+        let _a;
         request = request || {};
         let options;
         if (typeof optionsOrCallback === 'function' && callback === undefined) {
@@ -426,7 +426,7 @@ export class CloudTasksClient {
         return this.innerApiCalls.pauseQueue(request, options, callback);
     }
     resumeQueue(request, optionsOrCallback, callback) {
-        var _a;
+        let _a;
         request = request || {};
         let options;
         if (typeof optionsOrCallback === 'function' && callback === undefined) {
@@ -447,7 +447,7 @@ export class CloudTasksClient {
         return this.innerApiCalls.resumeQueue(request, options, callback);
     }
     getIamPolicy(request, optionsOrCallback, callback) {
-        var _a;
+        let _a;
         request = request || {};
         let options;
         if (typeof optionsOrCallback === 'function' && callback === undefined) {
@@ -468,7 +468,7 @@ export class CloudTasksClient {
         return this.innerApiCalls.getIamPolicy(request, options, callback);
     }
     setIamPolicy(request, optionsOrCallback, callback) {
-        var _a;
+        let _a;
         request = request || {};
         let options;
         if (typeof optionsOrCallback === 'function' && callback === undefined) {
@@ -489,7 +489,7 @@ export class CloudTasksClient {
         return this.innerApiCalls.setIamPolicy(request, options, callback);
     }
     testIamPermissions(request, optionsOrCallback, callback) {
-        var _a;
+        let _a;
         request = request || {};
         let options;
         if (typeof optionsOrCallback === 'function' && callback === undefined) {
@@ -510,7 +510,7 @@ export class CloudTasksClient {
         return this.innerApiCalls.testIamPermissions(request, options, callback);
     }
     getTask(request, optionsOrCallback, callback) {
-        var _a;
+        let _a;
         request = request || {};
         let options;
         if (typeof optionsOrCallback === 'function' && callback === undefined) {
@@ -531,7 +531,7 @@ export class CloudTasksClient {
         return this.innerApiCalls.getTask(request, options, callback);
     }
     createTask(request, optionsOrCallback, callback) {
-        var _a;
+        let _a;
         request = request || {};
         let options;
         if (typeof optionsOrCallback === 'function' && callback === undefined) {
@@ -552,7 +552,7 @@ export class CloudTasksClient {
         return this.innerApiCalls.createTask(request, options, callback);
     }
     deleteTask(request, optionsOrCallback, callback) {
-        var _a;
+        let _a;
         request = request || {};
         let options;
         if (typeof optionsOrCallback === 'function' && callback === undefined) {
@@ -573,7 +573,7 @@ export class CloudTasksClient {
         return this.innerApiCalls.deleteTask(request, options, callback);
     }
     runTask(request, optionsOrCallback, callback) {
-        var _a;
+        let _a;
         request = request || {};
         let options;
         if (typeof optionsOrCallback === 'function' && callback === undefined) {
@@ -594,7 +594,7 @@ export class CloudTasksClient {
         return this.innerApiCalls.runTask(request, options, callback);
     }
     listQueues(request, optionsOrCallback, callback) {
-        var _a;
+        let _a;
         request = request || {};
         let options;
         if (typeof optionsOrCallback === 'function' && callback === undefined) {
@@ -668,7 +668,7 @@ export class CloudTasksClient {
      *   for more details and examples.
      */
     listQueuesStream(request, options) {
-        var _a;
+        let _a;
         request = request || {};
         options = options || {};
         options.otherArgs = options.otherArgs || {};
@@ -739,7 +739,7 @@ export class CloudTasksClient {
      * region_tag:cloudtasks_v2beta3_generated_CloudTasks_ListQueues_async
      */
     listQueuesAsync(request, options) {
-        var _a;
+        let _a;
         request = request || {};
         options = options || {};
         options.otherArgs = options.otherArgs || {};
@@ -754,7 +754,7 @@ export class CloudTasksClient {
         return this.descriptors.page.listQueues.asyncIterate(this.innerApiCalls['listQueues'], request, callSettings);
     }
     listTasks(request, optionsOrCallback, callback) {
-        var _a;
+        let _a;
         request = request || {};
         let options;
         if (typeof optionsOrCallback === 'function' && callback === undefined) {
@@ -826,7 +826,7 @@ export class CloudTasksClient {
      *   for more details and examples.
      */
     listTasksStream(request, options) {
-        var _a;
+        let _a;
         request = request || {};
         options = options || {};
         options.otherArgs = options.otherArgs || {};
@@ -895,7 +895,7 @@ export class CloudTasksClient {
      * region_tag:cloudtasks_v2beta3_generated_CloudTasks_ListTasks_async
      */
     listTasksAsync(request, options) {
-        var _a;
+        let _a;
         request = request || {};
         options = options || {};
         options.otherArgs = options.otherArgs || {};

@@ -9,7 +9,7 @@ const assertType = function assertType() {};
 
 // TODO: deprecate <reference types="vitest" /> in favor of `<reference types="vitest/config" />`
 
-var VitestIndex = /*#__PURE__*/Object.freeze({
+const VitestIndex = /*#__PURE__*/Object.freeze({
   __proto__: null,
   afterAll: afterAll,
   afterEach: afterEach,

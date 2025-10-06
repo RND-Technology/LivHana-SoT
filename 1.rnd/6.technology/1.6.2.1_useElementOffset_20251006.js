@@ -4,8 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.useElementOffset = useElementOffset;
-var _react = require("react");
-var EPS = 1;
+const _react = require("react");
+const EPS = 1;
 
 /**
  * TODO this documentation does not reflect what this hook is doing, update it.
@@ -21,17 +21,17 @@ var EPS = 1;
  * @returns [lastElementOffset, updateElementOffset] most recent value, and setter. Pass the setter to a DOM element ref like this: `<div ref={updateElementOffset}>`
  */
 function useElementOffset() {
-  var extraDependencies = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-  var [lastBoundingBox, setLastBoundingBox] = (0, _react.useState)({
+  const extraDependencies = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  const [lastBoundingBox, setLastBoundingBox] = (0, _react.useState)({
     height: 0,
     left: 0,
     top: 0,
     width: 0
   });
-  var updateBoundingBox = (0, _react.useCallback)(node => {
+  const updateBoundingBox = (0, _react.useCallback)(node => {
     if (node != null) {
-      var rect = node.getBoundingClientRect();
-      var box = {
+      const rect = node.getBoundingClientRect();
+      const box = {
         height: rect.height,
         left: rect.left,
         top: rect.top,

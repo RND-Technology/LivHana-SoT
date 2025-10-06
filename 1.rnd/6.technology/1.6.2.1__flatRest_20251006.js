@@ -1,4 +1,4 @@
-var flatten = require('./flatten'),
+const flatten = require('./flatten'),
     overRest = require('./_overRest'),
     setToString = require('./_setToString');
 

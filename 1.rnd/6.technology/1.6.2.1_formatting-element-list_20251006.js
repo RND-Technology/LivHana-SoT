@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.FormattingElementList = exports.EntryType = void 0;
 //Const
 const NOAH_ARK_CAPACITY = 3;
-var EntryType;
+let EntryType;
 (function (EntryType) {
     EntryType[EntryType["Marker"] = 0] = "Marker";
     EntryType[EntryType["Element"] = 1] = "Element";

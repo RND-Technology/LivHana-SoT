@@ -1,31 +1,31 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true});
 
-var _chunkR6JVCM7Xjs = require('./chunk-R6JVCM7X.js');
+const _chunkR6JVCM7Xjs = require('./chunk-R6JVCM7X.js');
 
 
-var _chunkN4ZZFE24js = require('./chunk-N4ZZFE24.js');
+const _chunkN4ZZFE24js = require('./chunk-N4ZZFE24.js');
 require('./chunk-4YBV77DG.js');
 
 
-var _chunkVV2LUF5Kjs = require('./chunk-VV2LUF5K.js');
+const _chunkVV2LUF5Kjs = require('./chunk-VV2LUF5K.js');
 require('./chunk-LK6DILFK.js');
 
 
-var _chunkZ5LWCBZSjs = require('./chunk-Z5LWCBZS.js');
+const _chunkZ5LWCBZSjs = require('./chunk-Z5LWCBZS.js');
 require('./chunk-PFGO5BSM.js');
 require('./chunk-73NOP3T5.js');
 
 
 
-var _chunk72ZIHMEBjs = require('./chunk-72ZIHMEB.js');
+const _chunk72ZIHMEBjs = require('./chunk-72ZIHMEB.js');
 
 
 
-var _chunkA7U44ARPjs = require('./chunk-A7U44ARP.js');
+const _chunkA7U44ARPjs = require('./chunk-A7U44ARP.js');
 require('./chunk-SMXZPJEA.js');
 
 // src/RemoteHttpInterceptor.ts
-var RemoteHttpInterceptor = class extends _chunkR6JVCM7Xjs.BatchInterceptor {
+const RemoteHttpInterceptor = class extends _chunkR6JVCM7Xjs.BatchInterceptor {
   constructor() {
     super({
       name: "remote-interceptor",
@@ -40,7 +40,7 @@ var RemoteHttpInterceptor = class extends _chunkR6JVCM7Xjs.BatchInterceptor {
     super.setup();
     let handleParentMessage;
     this.on("request", async ({ request, requestId, controller }) => {
-      var _a;
+      let _a;
       const serializedRequest = JSON.stringify({
         id: requestId,
         method: request.method,
@@ -183,7 +183,7 @@ var _RemoteHttpResolver = class extends _chunkA7U44ARPjs.Interceptor {
     this.process.once("exit", () => this.dispose());
   }
 };
-var RemoteHttpResolver = _RemoteHttpResolver;
+const RemoteHttpResolver = _RemoteHttpResolver;
 RemoteHttpResolver.symbol = Symbol("remote-resolver");
 
 

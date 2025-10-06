@@ -12,8 +12,8 @@ exports.getCalculatedYAxisWidth = void 0;
  * @param {number} [params.labelGapWithTick=5] - The gap between the label and the tick.
  * @returns {number} The calculated width of the Y-axis.
  */
-var getCalculatedYAxisWidth = _ref => {
-  var {
+const getCalculatedYAxisWidth = _ref => {
+  const {
     ticks,
     label,
     labelGapWithTick = 5,
@@ -22,11 +22,11 @@ var getCalculatedYAxisWidth = _ref => {
     tickMargin = 0
   } = _ref;
   // find the max width of the tick labels
-  var maxTickWidth = 0;
+  let maxTickWidth = 0;
   if (ticks) {
     ticks.forEach(tickNode => {
       if (tickNode) {
-        var bbox = tickNode.getBoundingClientRect();
+        const bbox = tickNode.getBoundingClientRect();
         if (bbox.width > maxTickWidth) {
           maxTickWidth = bbox.width;
         }
@@ -34,11 +34,11 @@ var getCalculatedYAxisWidth = _ref => {
     });
 
     // calculate width of the axis label
-    var labelWidth = label ? label.getBoundingClientRect().width : 0;
-    var tickWidth = tickSize + tickMargin;
+    const labelWidth = label ? label.getBoundingClientRect().width : 0;
+    const tickWidth = tickSize + tickMargin;
 
     // calculate the updated width of the y-axis
-    var updatedYAxisWidth = maxTickWidth + tickWidth + labelWidth + (label ? labelGapWithTick : 0);
+    const updatedYAxisWidth = maxTickWidth + tickWidth + labelWidth + (label ? labelGapWithTick : 0);
     return Math.round(updatedYAxisWidth);
   }
   return 0;

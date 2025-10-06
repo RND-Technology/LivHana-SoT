@@ -1,14 +1,14 @@
 'use strict';
 
-var $SyntaxError = require('es-errors/syntax');
-var $TypeError = require('es-errors/type');
+const $SyntaxError = require('es-errors/syntax');
+const $TypeError = require('es-errors/type');
 
-var IsArray = require('./IsArray');
-var IsConstructor = require('./IsConstructor');
-var ValidateTypedArray = require('./ValidateTypedArray');
+const IsArray = require('./IsArray');
+const IsConstructor = require('./IsConstructor');
+const ValidateTypedArray = require('./ValidateTypedArray');
 
-var availableTypedArrays = require('available-typed-arrays')();
-var typedArrayLength = require('typed-array-length');
+const availableTypedArrays = require('available-typed-arrays')();
+const typedArrayLength = require('typed-array-length');
 
 // https://262.ecma-international.org/7.0/#typedarray-create
 
@@ -24,7 +24,7 @@ module.exports = function TypedArrayCreate(constructor, argumentList) {
 	}
 
 	// var newTypedArray = Construct(constructor, argumentList); // step 1
-	var newTypedArray;
+	let newTypedArray;
 	if (argumentList.length === 0) {
 		newTypedArray = new constructor();
 	} else if (argumentList.length === 1) {

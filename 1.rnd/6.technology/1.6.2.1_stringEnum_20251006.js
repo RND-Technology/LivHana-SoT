@@ -3,7 +3,7 @@ function createEnumChecker(enumVariable, allowForUnknownProps) {
   if (allowForUnknownProps === void 0) {
     allowForUnknownProps = false;
   }
-  var enumValues = Object.values(enumVariable);
+  const enumValues = Object.values(enumVariable);
   if (allowForUnknownProps) {
     return function (value) {
       return typeof value === 'string';
@@ -21,7 +21,7 @@ function stringEnum(enumVariable, allowForUnknownProps) {
   if (allowForUnknownProps === void 0) {
     allowForUnknownProps = false;
   }
-  var validate = toValidator(createEnumChecker(enumVariable, allowForUnknownProps));
+  const validate = toValidator(createEnumChecker(enumVariable, allowForUnknownProps));
   return createSymmetricSchema({
     type: "Enum<".concat(Object.values(enumVariable).map(literalToString).join(','), ">"),
     map: identityFn,

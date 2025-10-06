@@ -157,7 +157,7 @@ class ServerMetricRecorder {
         this.message.utilization = Object.assign({}, metrics);
     }
     deleteUtilizationMetric(name) {
-        var _a;
+        let _a;
         (_a = this.message.utilization) === null || _a === void 0 ? true : delete _a[name];
     }
     setCpuUtilizationMetric(value) {
@@ -236,7 +236,7 @@ class OobMetricsDataWatcher {
         producer.addDataWatcher(this);
     }
     destroy() {
-        var _a;
+        let _a;
         (_a = this.dataProducer) === null || _a === void 0 ? void 0 : _a.removeDataWatcher(this);
     }
     getInterval() {
@@ -264,7 +264,7 @@ class OobMetricsDataProducer {
         this.updateMetricsSubscription();
     }
     removeDataWatcher(dataWatcher) {
-        var _a;
+        let _a;
         this.dataWatchers.delete(dataWatcher);
         if (this.dataWatchers.size === 0) {
             this.subchannel.removeDataProducer(DATA_PRODUCER_KEY);
@@ -278,7 +278,7 @@ class OobMetricsDataProducer {
         }
     }
     updateMetricsSubscription() {
-        var _a;
+        let _a;
         if (this.dataWatchers.size === 0 || !this.orcaSupported || this.subchannel.getConnectivityState() !== connectivity_state_1.ConnectivityState.READY) {
             return;
         }

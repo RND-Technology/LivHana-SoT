@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.readFile = readFile;
 exports.readFileSync = readFileSync;
 
-var _fs = _interopRequireDefault(require("fs"));
+const _fs = _interopRequireDefault(require("fs"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

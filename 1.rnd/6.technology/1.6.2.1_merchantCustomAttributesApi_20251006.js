@@ -1,26 +1,26 @@
 "use strict";
 exports.__esModule = true;
 exports.MerchantCustomAttributesApi = void 0;
-var tslib_1 = require("tslib");
-var bulkDeleteMerchantCustomAttributesRequest_1 = require("../models/bulkDeleteMerchantCustomAttributesRequest");
-var bulkDeleteMerchantCustomAttributesResponse_1 = require("../models/bulkDeleteMerchantCustomAttributesResponse");
-var bulkUpsertMerchantCustomAttributesRequest_1 = require("../models/bulkUpsertMerchantCustomAttributesRequest");
-var bulkUpsertMerchantCustomAttributesResponse_1 = require("../models/bulkUpsertMerchantCustomAttributesResponse");
-var createMerchantCustomAttributeDefinitionRequest_1 = require("../models/createMerchantCustomAttributeDefinitionRequest");
-var createMerchantCustomAttributeDefinitionResponse_1 = require("../models/createMerchantCustomAttributeDefinitionResponse");
-var deleteMerchantCustomAttributeDefinitionResponse_1 = require("../models/deleteMerchantCustomAttributeDefinitionResponse");
-var deleteMerchantCustomAttributeResponse_1 = require("../models/deleteMerchantCustomAttributeResponse");
-var listMerchantCustomAttributeDefinitionsResponse_1 = require("../models/listMerchantCustomAttributeDefinitionsResponse");
-var listMerchantCustomAttributesResponse_1 = require("../models/listMerchantCustomAttributesResponse");
-var retrieveMerchantCustomAttributeDefinitionResponse_1 = require("../models/retrieveMerchantCustomAttributeDefinitionResponse");
-var retrieveMerchantCustomAttributeResponse_1 = require("../models/retrieveMerchantCustomAttributeResponse");
-var updateMerchantCustomAttributeDefinitionRequest_1 = require("../models/updateMerchantCustomAttributeDefinitionRequest");
-var updateMerchantCustomAttributeDefinitionResponse_1 = require("../models/updateMerchantCustomAttributeDefinitionResponse");
-var upsertMerchantCustomAttributeRequest_1 = require("../models/upsertMerchantCustomAttributeRequest");
-var upsertMerchantCustomAttributeResponse_1 = require("../models/upsertMerchantCustomAttributeResponse");
-var schema_1 = require("../schema");
-var baseApi_1 = require("./baseApi");
-var MerchantCustomAttributesApi = /** @class */ (function (_super) {
+const tslib_1 = require("tslib");
+const bulkDeleteMerchantCustomAttributesRequest_1 = require("../models/bulkDeleteMerchantCustomAttributesRequest");
+const bulkDeleteMerchantCustomAttributesResponse_1 = require("../models/bulkDeleteMerchantCustomAttributesResponse");
+const bulkUpsertMerchantCustomAttributesRequest_1 = require("../models/bulkUpsertMerchantCustomAttributesRequest");
+const bulkUpsertMerchantCustomAttributesResponse_1 = require("../models/bulkUpsertMerchantCustomAttributesResponse");
+const createMerchantCustomAttributeDefinitionRequest_1 = require("../models/createMerchantCustomAttributeDefinitionRequest");
+const createMerchantCustomAttributeDefinitionResponse_1 = require("../models/createMerchantCustomAttributeDefinitionResponse");
+const deleteMerchantCustomAttributeDefinitionResponse_1 = require("../models/deleteMerchantCustomAttributeDefinitionResponse");
+const deleteMerchantCustomAttributeResponse_1 = require("../models/deleteMerchantCustomAttributeResponse");
+const listMerchantCustomAttributeDefinitionsResponse_1 = require("../models/listMerchantCustomAttributeDefinitionsResponse");
+const listMerchantCustomAttributesResponse_1 = require("../models/listMerchantCustomAttributesResponse");
+const retrieveMerchantCustomAttributeDefinitionResponse_1 = require("../models/retrieveMerchantCustomAttributeDefinitionResponse");
+const retrieveMerchantCustomAttributeResponse_1 = require("../models/retrieveMerchantCustomAttributeResponse");
+const updateMerchantCustomAttributeDefinitionRequest_1 = require("../models/updateMerchantCustomAttributeDefinitionRequest");
+const updateMerchantCustomAttributeDefinitionResponse_1 = require("../models/updateMerchantCustomAttributeDefinitionResponse");
+const upsertMerchantCustomAttributeRequest_1 = require("../models/upsertMerchantCustomAttributeRequest");
+const upsertMerchantCustomAttributeResponse_1 = require("../models/upsertMerchantCustomAttributeResponse");
+const schema_1 = require("../schema");
+const baseApi_1 = require("./baseApi");
+const MerchantCustomAttributesApi = /** @class */ (function (_super) {
     tslib_1.__extends(MerchantCustomAttributesApi, _super);
     function MerchantCustomAttributesApi() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -46,7 +46,7 @@ var MerchantCustomAttributesApi = /** @class */ (function (_super) {
      */
     MerchantCustomAttributesApi.prototype.listMerchantCustomAttributeDefinitions = function (visibilityFilter, limit, cursor, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET', '/v2/merchants/custom-attribute-definitions');
                 mapped = req.prepareArgs({
@@ -81,7 +81,7 @@ var MerchantCustomAttributesApi = /** @class */ (function (_super) {
      */
     MerchantCustomAttributesApi.prototype.createMerchantCustomAttributeDefinition = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/merchants/custom-attribute-definitions');
                 mapped = req.prepareArgs({
@@ -106,7 +106,7 @@ var MerchantCustomAttributesApi = /** @class */ (function (_super) {
      */
     MerchantCustomAttributesApi.prototype.deleteMerchantCustomAttributeDefinition = function (key, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('DELETE');
                 mapped = req.prepareArgs({ key: [key, (0, schema_1.string)()] });
@@ -133,7 +133,7 @@ var MerchantCustomAttributesApi = /** @class */ (function (_super) {
      */
     MerchantCustomAttributesApi.prototype.retrieveMerchantCustomAttributeDefinition = function (key, version, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({
@@ -164,7 +164,7 @@ var MerchantCustomAttributesApi = /** @class */ (function (_super) {
      */
     MerchantCustomAttributesApi.prototype.updateMerchantCustomAttributeDefinition = function (key, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('PUT');
                 mapped = req.prepareArgs({
@@ -191,7 +191,7 @@ var MerchantCustomAttributesApi = /** @class */ (function (_super) {
      */
     MerchantCustomAttributesApi.prototype.bulkDeleteMerchantCustomAttributes = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/merchants/custom-attributes/bulk-delete');
                 mapped = req.prepareArgs({
@@ -225,7 +225,7 @@ var MerchantCustomAttributesApi = /** @class */ (function (_super) {
      */
     MerchantCustomAttributesApi.prototype.bulkUpsertMerchantCustomAttributes = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/merchants/custom-attributes/bulk-upsert');
                 mapped = req.prepareArgs({
@@ -266,7 +266,7 @@ var MerchantCustomAttributesApi = /** @class */ (function (_super) {
      */
     MerchantCustomAttributesApi.prototype.listMerchantCustomAttributes = function (merchantId, visibilityFilter, limit, cursor, withDefinitions, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({
@@ -299,7 +299,7 @@ var MerchantCustomAttributesApi = /** @class */ (function (_super) {
      */
     MerchantCustomAttributesApi.prototype.deleteMerchantCustomAttribute = function (merchantId, key, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('DELETE');
                 mapped = req.prepareArgs({
@@ -337,7 +337,7 @@ var MerchantCustomAttributesApi = /** @class */ (function (_super) {
      */
     MerchantCustomAttributesApi.prototype.retrieveMerchantCustomAttribute = function (merchantId, key, withDefinition, version, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({
@@ -379,7 +379,7 @@ var MerchantCustomAttributesApi = /** @class */ (function (_super) {
      */
     MerchantCustomAttributesApi.prototype.upsertMerchantCustomAttribute = function (merchantId, key, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({
@@ -398,5 +398,5 @@ var MerchantCustomAttributesApi = /** @class */ (function (_super) {
     return MerchantCustomAttributesApi;
 }(baseApi_1.BaseApi));
 exports.MerchantCustomAttributesApi = MerchantCustomAttributesApi;
-var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6, templateObject_7;
+let templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6, templateObject_7;
 //# sourceMappingURL=merchantCustomAttributesApi.js.map

@@ -1,22 +1,22 @@
 "use strict";
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __export = (target, all) => {
+  for (const name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var network_exports = {};
+const __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+const network_exports = {};
 __export(network_exports, {
   RawHeaders: () => RawHeaders,
   Request: () => Request,
@@ -29,21 +29,21 @@ __export(network_exports, {
   validateHeaders: () => validateHeaders
 });
 module.exports = __toCommonJS(network_exports);
-var import_channelOwner = require("./channelOwner");
-var import_errors = require("./errors");
-var import_events = require("./events");
-var import_fetch = require("./fetch");
-var import_frame = require("./frame");
-var import_waiter = require("./waiter");
-var import_worker = require("./worker");
-var import_assert = require("../utils/isomorphic/assert");
-var import_headers = require("../utils/isomorphic/headers");
-var import_urlMatch = require("../utils/isomorphic/urlMatch");
-var import_manualPromise = require("../utils/isomorphic/manualPromise");
-var import_multimap = require("../utils/isomorphic/multimap");
-var import_rtti = require("../utils/isomorphic/rtti");
-var import_stackTrace = require("../utils/isomorphic/stackTrace");
-var import_mimeType = require("../utils/isomorphic/mimeType");
+const import_channelOwner = require("./channelOwner");
+const import_errors = require("./errors");
+const import_events = require("./events");
+const import_fetch = require("./fetch");
+const import_frame = require("./frame");
+const import_waiter = require("./waiter");
+const import_worker = require("./worker");
+const import_assert = require("../utils/isomorphic/assert");
+const import_headers = require("../utils/isomorphic/headers");
+const import_urlMatch = require("../utils/isomorphic/urlMatch");
+const import_manualPromise = require("../utils/isomorphic/manualPromise");
+const import_multimap = require("../utils/isomorphic/multimap");
+const import_rtti = require("../utils/isomorphic/rtti");
+const import_stackTrace = require("../utils/isomorphic/stackTrace");
+const import_mimeType = require("../utils/isomorphic/mimeType");
 class Request extends import_channelOwner.ChannelOwner {
   constructor(parent, type, guid, initializer) {
     super(parent, type, guid, initializer);

@@ -1,9 +1,9 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
-var isObject = require('es-object-atoms/isObject');
+const $TypeError = require('es-errors/type');
+const isObject = require('es-object-atoms/isObject');
 
-var isPropertyKey = require('../helpers/isPropertyKey');
+const isPropertyKey = require('../helpers/isPropertyKey');
 
 // https://262.ecma-international.org/6.0/#sec-deletepropertyorthrow
 
@@ -17,7 +17,7 @@ module.exports = function DeletePropertyOrThrow(O, P) {
 	}
 
 	// eslint-disable-next-line no-param-reassign
-	var success = delete O[P];
+	const success = delete O[P];
 	if (!success) {
 		throw new $TypeError('Attempt to delete property failed.');
 	}

@@ -1,13 +1,13 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var callBound = require('call-bound');
+const callBound = require('call-bound');
 
-var ToLength = require('./ToLength');
-var ToString = require('./ToString');
+const ToLength = require('./ToLength');
+const ToString = require('./ToString');
 
-var $strSlice = callBound('String.prototype.slice');
+const $strSlice = callBound('String.prototype.slice');
 
 // https://262.ecma-international.org/11.0/#sec-stringpad
 
@@ -15,20 +15,20 @@ module.exports = function StringPad(O, maxLength, fillString, placement) {
 	if (placement !== 'start' && placement !== 'end') {
 		throw new $TypeError('Assertion failed: `placement` must be "start" or "end"');
 	}
-	var S = ToString(O);
-	var intMaxLength = ToLength(maxLength);
-	var stringLength = S.length;
+	const S = ToString(O);
+	const intMaxLength = ToLength(maxLength);
+	const stringLength = S.length;
 	if (intMaxLength <= stringLength) {
 		return S;
 	}
-	var filler = typeof fillString === 'undefined' ? ' ' : ToString(fillString);
+	const filler = typeof fillString === 'undefined' ? ' ' : ToString(fillString);
 	if (filler === '') {
 		return S;
 	}
-	var fillLen = intMaxLength - stringLength;
+	const fillLen = intMaxLength - stringLength;
 
 	// the String value consisting of repeated concatenations of filler truncated to length fillLen.
-	var truncatedStringFiller = '';
+	let truncatedStringFiller = '';
 	while (truncatedStringFiller.length < fillLen) {
 		truncatedStringFiller += filler;
 	}

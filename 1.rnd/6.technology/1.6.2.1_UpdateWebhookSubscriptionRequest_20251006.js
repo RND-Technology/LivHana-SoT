@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
 exports.updateWebhookSubscriptionRequestSchema = void 0;
-var schema_1 = require("../schema");
-var webhookSubscription_1 = require("./webhookSubscription");
+const schema_1 = require("../schema");
+const webhookSubscription_1 = require("./webhookSubscription");
 exports.updateWebhookSubscriptionRequestSchema = (0, schema_1.object)({
     subscription: [
         'subscription',

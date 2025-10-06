@@ -44,7 +44,7 @@ class ExternalAccountClient {
      *   provided do not correspond to an external account credential.
      */
     static fromJSON(options, additionalOptions) {
-        var _a, _b;
+        let _a, _b;
         if (options && options.type === baseexternalclient_1.EXTERNAL_ACCOUNT_TYPE) {
             if ((_a = options.credential_source) === null || _a === void 0 ? void 0 : _a.environment_id) {
                 return new awsclient_1.AwsClient(options, additionalOptions);

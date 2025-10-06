@@ -1,4 +1,4 @@
-var equal = require('../');
+const equal = require('../');
 console.dir([
     equal(
         { a : [ 2, 3 ], b : [ 4 ] },

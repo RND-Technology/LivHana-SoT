@@ -1,12 +1,12 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
-var isObject = require('es-object-atoms/isObject');
+const $TypeError = require('es-errors/type');
+const isObject = require('es-object-atoms/isObject');
 
-var IsDetachedBuffer = require('./IsDetachedBuffer');
+const IsDetachedBuffer = require('./IsDetachedBuffer');
 
-var isTypedArray = require('is-typed-array');
-var typedArrayBuffer = require('typed-array-buffer');
+const isTypedArray = require('is-typed-array');
+const typedArrayBuffer = require('typed-array-buffer');
 
 // https://262.ecma-international.org/6.0/#sec-validatetypedarray
 
@@ -18,7 +18,7 @@ module.exports = function ValidateTypedArray(O) {
 		throw new $TypeError('Assertion failed: `O` must be a Typed Array'); // steps 2 - 3
 	}
 
-	var buffer = typedArrayBuffer(O); // step 4
+	const buffer = typedArrayBuffer(O); // step 4
 
 	if (IsDetachedBuffer(buffer)) {
 		throw new $TypeError('`O` must be backed by a non-detached buffer'); // step 5

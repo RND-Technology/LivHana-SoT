@@ -5,14 +5,14 @@
  * MIT Licensed
  */
 
-var config = require('./config');
+const config = require('./config');
 
 module.exports = function (_chai, util) {
   /*!
    * Module dependencies.
    */
 
-  var AssertionError = _chai.AssertionError
+  const AssertionError = _chai.AssertionError
     , flag = util.flag;
 
   /*!
@@ -133,21 +133,21 @@ module.exports = function (_chai, util) {
    */
 
   Assertion.prototype.assert = function (expr, msg, negateMsg, expected, _actual, showDiff) {
-    var ok = util.test(this, arguments);
+    const ok = util.test(this, arguments);
     if (false !== showDiff) showDiff = true;
     if (undefined === expected && undefined === _actual) showDiff = false;
     if (true !== config.showDiff) showDiff = false;
 
     if (!ok) {
       msg = util.getMessage(this, arguments);
-      var actual = util.getActual(this, arguments);
-      var assertionErrorObjectProperties = {
+      const actual = util.getActual(this, arguments);
+      const assertionErrorObjectProperties = {
           actual: actual
         , expected: expected
         , showDiff: showDiff
       };
 
-      var operator = util.getOperator(this, arguments);
+      const operator = util.getOperator(this, arguments);
       if (operator) {
         assertionErrorObjectProperties.operator = operator;
       }

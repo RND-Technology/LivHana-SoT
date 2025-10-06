@@ -1699,7 +1699,7 @@
     const cssVariableRegex = /var\s*\(\s*--[\w-]+(\s*,\s*(?:(?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)+)?\s*\)/g;
 
     function test(v) {
-        var _a, _b;
+        let _a, _b;
         return (isNaN(v) &&
             isString(v) &&
             (((_a = v.match(floatRegex)) === null || _a === void 0 ? void 0 : _a.length) || 0) +
@@ -3252,7 +3252,7 @@
     }
 
     function checkTargetForNewValues(visualElement, target, origin) {
-        var _a, _b;
+        let _a, _b;
         const newValueKeys = Object.keys(target).filter((key) => !visualElement.hasValue(key));
         const numNewValues = newValueKeys.length;
         if (!numNewValues)
@@ -4234,7 +4234,7 @@
          * directly from the instance (which might have performance implications).
          */
         readValue(key) {
-            var _a;
+            let _a;
             return this.latestValues[key] !== undefined || !this.current
                 ? this.latestValues[key]
                 : (_a = this.getBaseTargetFromProps(this.props, key)) !== null && _a !== void 0 ? _a : this.readValueFromInstance(this.current, key, this.options);
@@ -4251,7 +4251,7 @@
          * props.
          */
         getBaseTarget(key) {
-            var _a;
+            let _a;
             const { initial } = this.props;
             const valueFromInitial = typeof initial === "string" || typeof initial === "object"
                 ? (_a = resolveVariantFromProps(this.props, initial)) === null || _a === void 0 ? void 0 : _a[key]
@@ -5176,7 +5176,7 @@
                 }
             }
             resolveTargetDelta(forceRecalculation = false) {
-                var _a;
+                let _a;
                 /**
                  * Once the dirty status of nodes has been spread through the tree, we also
                  * need to check if we have a shared node of a different depth that has itself
@@ -5255,7 +5255,7 @@
                      */
                 }
                 else if (this.targetDelta) {
-                    if (Boolean(this.resumingFrom)) {
+                    if (this.resumingFrom) {
                         // TODO: This is creating a new object every frame
                         this.target = this.applyTransform(this.layout.layoutBox);
                     }
@@ -5318,7 +5318,7 @@
                     this.layout);
             }
             calcProjection() {
-                var _a;
+                let _a;
                 const lead = this.getLead();
                 const isShared = Boolean(this.resumingFrom) || this !== lead;
                 let canSkip = true;
@@ -5611,12 +5611,12 @@
                 return stack ? stack.lead === this : true;
             }
             getLead() {
-                var _a;
+                let _a;
                 const { layoutId } = this.options;
                 return layoutId ? ((_a = this.getStack()) === null || _a === void 0 ? void 0 : _a.lead) || this : this;
             }
             getPrevLead() {
-                var _a;
+                let _a;
                 const { layoutId } = this.options;
                 return layoutId ? (_a = this.getStack()) === null || _a === void 0 ? void 0 : _a.prevLead : undefined;
             }
@@ -5687,7 +5687,7 @@
                 visualElement.scheduleRender();
             }
             getProjectionStyles(styleProp) {
-                var _a, _b;
+                let _a, _b;
                 if (!this.instance || this.isSVG)
                     return undefined;
                 if (!this.isVisible) {
@@ -5804,7 +5804,7 @@
             }
             // Only run on root
             resetTree() {
-                this.root.nodes.forEach((node) => { var _a; return (_a = node.currentAnimation) === null || _a === void 0 ? void 0 : _a.stop(); });
+                this.root.nodes.forEach((node) => { let _a; return (_a = node.currentAnimation) === null || _a === void 0 ? void 0 : _a.stop(); });
                 this.root.nodes.forEach(clearMeasurements);
                 this.root.sharedNodes.clear();
             }
@@ -5814,7 +5814,7 @@
         node.updateLayout();
     }
     function notifyLayoutUpdate(node) {
-        var _a;
+        let _a;
         const snapshot = ((_a = node.resumeFrom) === null || _a === void 0 ? void 0 : _a.snapshot) || node.snapshot;
         if (node.isLead() &&
             node.layout &&

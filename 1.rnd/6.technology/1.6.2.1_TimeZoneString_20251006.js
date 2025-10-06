@@ -1,17 +1,17 @@
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+const GetIntrinsic = require('get-intrinsic');
 
-var $Date = GetIntrinsic('%Date%');
-var $TypeError = require('es-errors/type');
+const $Date = GetIntrinsic('%Date%');
+const $TypeError = require('es-errors/type');
 
-var isNaN = require('math-intrinsics/isNaN');
+const isNaN = require('math-intrinsics/isNaN');
 
-var callBound = require('call-bound');
+const callBound = require('call-bound');
 
-var $indexOf = callBound('String.prototype.indexOf');
-var $slice = callBound('String.prototype.slice');
-var $toTimeString = callBound('Date.prototype.toTimeString');
+const $indexOf = callBound('String.prototype.indexOf');
+const $slice = callBound('String.prototype.slice');
+const $toTimeString = callBound('Date.prototype.toTimeString');
 
 // https://262.ecma-international.org/9.0/#sec-timezoneestring
 
@@ -28,6 +28,6 @@ module.exports = function TimeZoneString(tv) {
 	// 8. Return the string-concatenation of offsetSign, offsetHour, offsetMin, and tzName.
 
 	// hack until LocalTZA, and "implementation-defined string" are available
-	var ts = $toTimeString(new $Date(tv));
+	const ts = $toTimeString(new $Date(tv));
 	return $slice(ts, $indexOf(ts, '(') + 1, $indexOf(ts, ')'));
 };

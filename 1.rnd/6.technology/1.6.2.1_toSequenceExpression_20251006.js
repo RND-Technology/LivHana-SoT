@@ -4,8 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = toSequenceExpression;
-var _gatherSequenceExpressions = require("./gatherSequenceExpressions.js");
-;
+const _gatherSequenceExpressions = require("./gatherSequenceExpressions.js");
+
 function toSequenceExpression(nodes, scope) {
   if (!(nodes != null && nodes.length)) return;
   const declars = [];

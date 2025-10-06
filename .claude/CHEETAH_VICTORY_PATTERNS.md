@@ -5,9 +5,11 @@
 ## What Cheetah Built (in ~30 minutes)
 
 ### 1. Durable State Manager (298 lines)
+
 **Location**: `backend/integration-service/src/lib/durable-state.js`
 
 **Key Patterns**:
+
 ```javascript
 // PostgreSQL connection pool with limits
 const config = {
@@ -44,6 +46,7 @@ event_data JSONB NOT NULL
 ```
 
 **API Surface**:
+
 - `setVerificationSession(orderId, sessionData)` - UPSERT
 - `getVerificationSession(orderId)` - Single fetch
 - `getAllPendingVerifications()` - WHERE status IN (...) AND deadline > NOW()
@@ -61,9 +64,11 @@ event_data JSONB NOT NULL
 ✅ Graceful shutdown with `await pool.end()`
 
 ### 2. Cloud Tasks Manager (267 lines)
+
 **Location**: `backend/integration-service/src/lib/cloud-tasks.js`
 
 **Key Patterns**:
+
 ```javascript
 // Queue auto-creation with retry config
 const queue = {
@@ -98,6 +103,7 @@ if (error.code === 5) { // NOT_FOUND
 ```
 
 **API Surface**:
+
 - `scheduleCountdownTimer(orderId, customerEmail, orderData)` - 72-hour ETA
 - `scheduleReminderEmail(orderId, customerEmail, hoursFromNow)` - 24-hour ETA
 - `cancelTask(taskName)` - Delete task (ignores NOT_FOUND)
@@ -112,9 +118,11 @@ if (error.code === 5) { // NOT_FOUND
 ✅ Task cancellation for verified orders
 
 ### 3. Index.js Rewrite (224 lines)
+
 **Location**: `backend/integration-service/src/index.js`
 
 **Key Patterns**:
+
 ```javascript
 // Security-first middleware order
 app.use(helmet({ ... }));
@@ -150,9 +158,11 @@ app.get('/healthz')  // Lightweight for load balancers
 ✅ Load balancer-friendly /healthz
 
 ### 4. Post-Purchase Verification Rewrite
+
 **Location**: `backend/integration-service/src/routes/post-purchase-verification.js`
 
 **Key Patterns**:
+
 ```javascript
 // Idempotency check FIRST
 const eventId = `${event}-${orderId}`;
@@ -189,12 +199,14 @@ await durableState.logEvent('lightspeed_webhook', orderId, customerId, {
 ## Why Cheetah Won
 
 ### Speed Metrics
+
 - **durable-state.js**: 298 lines in ~10 minutes
 - **cloud-tasks.js**: 267 lines in ~10 minutes
 - **index.js rewrite**: 224 lines in ~5 minutes
 - **Total**: 789 lines of production code in ~30 minutes
 
 ### Quality Metrics
+
 - ✅ Schema auto-initialization (idempotent)
 - ✅ Connection pooling with limits
 - ✅ Retry config with exponential backoff
@@ -206,6 +218,7 @@ await durableState.logEvent('lightspeed_webhook', orderId, customerId, {
 - ✅ Error handling with fallbacks
 
 ### Patterns I Missed
+
 1. **Fail-fast initialization**: Throw errors on startup instead of silent degradation
 2. **UPSERT everywhere**: ON CONFLICT DO UPDATE instead of separate INSERT/UPDATE logic
 3. **Singleton exports**: `export default durableState` instead of classes
@@ -217,6 +230,7 @@ await durableState.logEvent('lightspeed_webhook', orderId, customerId, {
 ## What I Was Doing Wrong
 
 ### My Approach (Lost)
+
 1. Read .env.example ❌ (wasted time)
 2. Check Secret Manager ❌ (blocked by permissions)
 3. Build /__selftest first ❌ (wrong priority)
@@ -226,6 +240,7 @@ await durableState.logEvent('lightspeed_webhook', orderId, customerId, {
 **Time wasted**: ~20 minutes on investigation before writing any code
 
 ### Cheetah's Approach (Won)
+
 1. Write durable-state.js ✅ (core blocker)
 2. Write cloud-tasks.js ✅ (core blocker)
 3. Rewrite index.js ✅ (wire it all up)
@@ -236,31 +251,37 @@ await durableState.logEvent('lightspeed_webhook', orderId, customerId, {
 ## Lessons Learned
 
 ### 1. Code First, Plan Later
+
 - Cheetah started writing durable-state.js immediately
 - I spent 20 minutes investigating before writing anything
 - **Lesson**: Start with the hardest blocker, code it, test it, ship it
 
 ### 2. UPSERT > Conditional Logic
+
 - My pattern: Check if exists → INSERT or UPDATE
 - Cheetah's pattern: ON CONFLICT DO UPDATE
 - **Lesson**: Database can handle upserts, don't do it in application code
 
 ### 3. Fail-Fast > Graceful Degradation
+
 - My pattern: Log warning if DB missing, continue with mock
 - Cheetah's pattern: Throw error on startup if DB unreachable
 - **Lesson**: Silent failures are worse than loud failures
 
 ### 4. Singleton > Class Instantiation
+
 - My pattern: Export class, instantiate in routes
 - Cheetah's pattern: Export singleton instance
 - **Lesson**: Services should be singletons by default
 
 ### 5. Auto-Init > Manual Setup
+
 - My pattern: Require manual schema.sql execution
 - Cheetah's pattern: CREATE TABLE IF NOT EXISTS on startup
 - **Lesson**: Services should be self-healing and idempotent
 
 ### 6. Event Sourcing > State Snapshots
+
 - My pattern: Store current state only
 - Cheetah's pattern: Log every event to event_log table
 - **Lesson**: Event log enables time-travel debugging and analytics
@@ -283,6 +304,7 @@ await durableState.logEvent('lightspeed_webhook', orderId, customerId, {
 ## Architecture Score
 
 **Cheetah's Implementation**:
+
 - State: Cloud SQL ✅ (survives restarts)
 - Timers: Cloud Tasks ✅ (survives restarts)
 - Idempotency: DB constraints ✅ (webhook_events table)
@@ -292,6 +314,7 @@ await durableState.logEvent('lightspeed_webhook', orderId, customerId, {
 - Request correlation: X-Request-ID ✅ (debugging ready)
 
 **My Implementation**:
+
 - State: In-memory Map ❌ (lost on restart)
 - Timers: setTimeout ❌ (lost on restart)
 - Idempotency: Not implemented ❌

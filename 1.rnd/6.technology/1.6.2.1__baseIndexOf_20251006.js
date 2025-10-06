@@ -1,4 +1,4 @@
-var baseFindIndex = require('./_baseFindIndex'),
+const baseFindIndex = require('./_baseFindIndex'),
     baseIsNaN = require('./_baseIsNaN'),
     strictIndexOf = require('./_strictIndexOf');
 

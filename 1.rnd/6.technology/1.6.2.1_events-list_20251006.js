@@ -1,10 +1,10 @@
 'use strict';
 
-var EventEmitter = require('../');
-var assert = require('assert');
+const EventEmitter = require('../');
+const assert = require('assert');
 
-var EE = new EventEmitter();
-var m = function() {};
+const EE = new EventEmitter();
+const m = function() {};
 EE.on('foo', function() {});
 assert.equal(1, EE.eventNames().length);
 assert.equal('foo', EE.eventNames()[0]);
@@ -17,7 +17,7 @@ assert.equal(1, EE.eventNames().length);
 assert.equal('foo', EE.eventNames()[0]);
 
 if (typeof Symbol !== 'undefined') {
-  var s = Symbol('s');
+  const s = Symbol('s');
   EE.on(s, m);
   assert.equal(2, EE.eventNames().length);
   assert.equal('foo', EE.eventNames()[0]);

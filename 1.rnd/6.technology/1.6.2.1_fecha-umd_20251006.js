@@ -4,43 +4,43 @@
   (factory((global.fecha = {})));
 }(this, (function (exports) { 'use strict';
 
-  var token = /d{1,4}|M{1,4}|YY(?:YY)?|S{1,3}|Do|ZZ|Z|([HhMsDm])\1?|[aA]|"[^"]*"|'[^']*'/g;
-  var twoDigitsOptional = "\\d\\d?";
-  var twoDigits = "\\d\\d";
-  var threeDigits = "\\d{3}";
-  var fourDigits = "\\d{4}";
-  var word = "[^\\s]+";
-  var literal = /\[([^]*?)\]/gm;
+  const token = /d{1,4}|M{1,4}|YY(?:YY)?|S{1,3}|Do|ZZ|Z|([HhMsDm])\1?|[aA]|"[^"]*"|'[^']*'/g;
+  const twoDigitsOptional = "\\d\\d?";
+  const twoDigits = "\\d\\d";
+  const threeDigits = "\\d{3}";
+  const fourDigits = "\\d{4}";
+  const word = "[^\\s]+";
+  const literal = /\[([^]*?)\]/gm;
   function shorten(arr, sLen) {
-      var newArr = [];
-      for (var i = 0, len = arr.length; i < len; i++) {
+      const newArr = [];
+      for (let i = 0, len = arr.length; i < len; i++) {
           newArr.push(arr[i].substr(0, sLen));
       }
       return newArr;
   }
-  var monthUpdate = function (arrName) { return function (v, i18n) {
-      var lowerCaseArr = i18n[arrName].map(function (v) { return v.toLowerCase(); });
-      var index = lowerCaseArr.indexOf(v.toLowerCase());
+  const monthUpdate = function (arrName) { return function (v, i18n) {
+      const lowerCaseArr = i18n[arrName].map(function (v) { return v.toLowerCase(); });
+      const index = lowerCaseArr.indexOf(v.toLowerCase());
       if (index > -1) {
           return index;
       }
       return null;
   }; };
   function assign(origObj) {
-      var args = [];
-      for (var _i = 1; _i < arguments.length; _i++) {
+      const args = [];
+      for (let _i = 1; _i < arguments.length; _i++) {
           args[_i - 1] = arguments[_i];
       }
-      for (var _a = 0, args_1 = args; _a < args_1.length; _a++) {
-          var obj = args_1[_a];
-          for (var key in obj) {
+      for (let _a = 0, args_1 = args; _a < args_1.length; _a++) {
+          const obj = args_1[_a];
+          for (const key in obj) {
               // @ts-ignore ex
               origObj[key] = obj[key];
           }
       }
       return origObj;
   }
-  var dayNames = [
+  const dayNames = [
       "Sunday",
       "Monday",
       "Tuesday",
@@ -49,7 +49,7 @@
       "Friday",
       "Saturday"
   ];
-  var monthNames = [
+  const monthNames = [
       "January",
       "February",
       "March",
@@ -63,9 +63,9 @@
       "November",
       "December"
   ];
-  var monthNamesShort = shorten(monthNames, 3);
-  var dayNamesShort = shorten(dayNames, 3);
-  var defaultI18n = {
+  const monthNamesShort = shorten(monthNames, 3);
+  const dayNamesShort = shorten(dayNames, 3);
+  const defaultI18n = {
       dayNamesShort: dayNamesShort,
       dayNames: dayNames,
       monthNamesShort: monthNamesShort,
@@ -78,14 +78,14 @@
                   : ((dayOfMonth - (dayOfMonth % 10) !== 10 ? 1 : 0) * dayOfMonth) % 10]);
       }
   };
-  var globalI18n = assign({}, defaultI18n);
-  var setGlobalDateI18n = function (i18n) {
+  let globalI18n = assign({}, defaultI18n);
+  const setGlobalDateI18n = function (i18n) {
       return (globalI18n = assign(globalI18n, i18n));
   };
-  var regexEscape = function (str) {
+  const regexEscape = function (str) {
       return str.replace(/[|\\{()[^$+*?.-]/g, "\\$&");
   };
-  var pad = function (val, len) {
+  const pad = function (val, len) {
       if (len === void 0) { len = 2; }
       val = String(val);
       while (val.length < len) {
@@ -93,7 +93,7 @@
       }
       return val;
   };
-  var formatFlags = {
+  const formatFlags = {
       D: function (dateObj) { return String(dateObj.getDate()); },
       DD: function (dateObj) { return pad(dateObj.getDate()); },
       Do: function (dateObj, i18n) {
@@ -143,26 +143,26 @@
               : i18n.amPm[1].toUpperCase();
       },
       ZZ: function (dateObj) {
-          var offset = dateObj.getTimezoneOffset();
+          const offset = dateObj.getTimezoneOffset();
           return ((offset > 0 ? "-" : "+") +
               pad(Math.floor(Math.abs(offset) / 60) * 100 + (Math.abs(offset) % 60), 4));
       },
       Z: function (dateObj) {
-          var offset = dateObj.getTimezoneOffset();
+          const offset = dateObj.getTimezoneOffset();
           return ((offset > 0 ? "-" : "+") +
               pad(Math.floor(Math.abs(offset) / 60), 2) +
               ":" +
               pad(Math.abs(offset) % 60, 2));
       }
   };
-  var monthParse = function (v) { return +v - 1; };
-  var emptyDigits = [null, twoDigitsOptional];
-  var emptyWord = [null, word];
-  var amPm = [
+  const monthParse = function (v) { return +v - 1; };
+  const emptyDigits = [null, twoDigitsOptional];
+  const emptyWord = [null, word];
+  const amPm = [
       "isPm",
       word,
       function (v, i18n) {
-          var val = v.toLowerCase();
+          const val = v.toLowerCase();
           if (val === i18n.amPm[0]) {
               return 0;
           }
@@ -172,19 +172,19 @@
           return null;
       }
   ];
-  var timezoneOffset = [
+  const timezoneOffset = [
       "timezoneOffset",
       "[^\\s]*?[\\+\\-]\\d\\d:?\\d\\d|[^\\s]*?Z?",
       function (v) {
-          var parts = (v + "").match(/([+-]|\d\d)/gi);
+          const parts = (v + "").match(/([+-]|\d\d)/gi);
           if (parts) {
-              var minutes = +parts[1] * 60 + parseInt(parts[2], 10);
+              const minutes = +parts[1] * 60 + parseInt(parts[2], 10);
               return parts[0] === "+" ? minutes : -minutes;
           }
           return 0;
       }
   ];
-  var parseFlags = {
+  const parseFlags = {
       D: ["day", twoDigitsOptional],
       DD: ["day", twoDigits],
       Do: ["day", twoDigitsOptional + word, function (v) { return parseInt(v, 10); }],
@@ -194,8 +194,8 @@
           "year",
           twoDigits,
           function (v) {
-              var now = new Date();
-              var cent = +("" + now.getFullYear()).substr(0, 2);
+              const now = new Date();
+              const cent = +("" + now.getFullYear()).substr(0, 2);
               return +("" + (+v > 68 ? cent - 1 : cent) + v);
           }
       ],
@@ -223,7 +223,7 @@
       Z: timezoneOffset
   };
   // Some common format strings
-  var globalMasks = {
+  const globalMasks = {
       default: "ddd MMM DD YYYY HH:mm:ss",
       shortDate: "M/D/YY",
       mediumDate: "MMM D, YYYY",
@@ -235,7 +235,7 @@
       mediumTime: "HH:mm:ss",
       longTime: "HH:mm:ss.SSS"
   };
-  var setGlobalDateMasks = function (masks) { return assign(globalMasks, masks); };
+  const setGlobalDateMasks = function (masks) { return assign(globalMasks, masks); };
   /***
    * Format a date
    * @method format
@@ -243,7 +243,7 @@
    * @param {string} mask Format of the date, i.e. 'mm-dd-yy' or 'shortDate'
    * @returns {string} Formatted date string
    */
-  var format = function (dateObj, mask, i18n) {
+  const format = function (dateObj, mask, i18n) {
       if (mask === void 0) { mask = globalMasks["default"]; }
       if (i18n === void 0) { i18n = {}; }
       if (typeof dateObj === "number") {
@@ -254,13 +254,13 @@
           throw new Error("Invalid Date pass to format");
       }
       mask = globalMasks[mask] || mask;
-      var literals = [];
+      const literals = [];
       // Make literals inactive by replacing them with @@@
       mask = mask.replace(literal, function ($0, $1) {
           literals.push($1);
           return "@@@";
       });
-      var combinedI18nSettings = assign(assign({}, globalI18n), i18n);
+      const combinedI18nSettings = assign(assign({}, globalI18n), i18n);
       // Apply formatting rules
       mask = mask.replace(token, function ($0) {
           return formatFlags[$0](dateObj, combinedI18nSettings);
@@ -289,8 +289,8 @@
           return null;
       }
       // Default to the beginning of the year.
-      var today = new Date();
-      var dateInfo = {
+      const today = new Date();
+      const dateInfo = {
           year: today.getFullYear(),
           month: 0,
           day: 1,
@@ -301,19 +301,19 @@
           isPm: null,
           timezoneOffset: null
       };
-      var parseInfo = [];
-      var literals = [];
+      const parseInfo = [];
+      const literals = [];
       // Replace all the literals with @@@. Hopefully a string that won't exist in the format
-      var newFormat = format.replace(literal, function ($0, $1) {
+      let newFormat = format.replace(literal, function ($0, $1) {
           literals.push(regexEscape($1));
           return "@@@";
       });
-      var specifiedFields = {};
-      var requiredFields = {};
+      const specifiedFields = {};
+      const requiredFields = {};
       // Change every token that we find into the correct regex
       newFormat = regexEscape(newFormat).replace(token, function ($0) {
-          var info = parseFlags[$0];
-          var field = info[0], regex = info[1], requiredField = info[3];
+          const info = parseFlags[$0];
+          const field = info[0], regex = info[1], requiredField = info[3];
           // Check if the person has specified the same field twice. This will lead to confusing results.
           if (specifiedFields[field]) {
               throw new Error("Invalid format. " + field + " specified twice in format");
@@ -335,15 +335,15 @@
       // Add back all the literals after
       newFormat = newFormat.replace(/@@@/g, function () { return literals.shift(); });
       // Check if the date string matches the format. If it doesn't return null
-      var matches = dateStr.match(new RegExp(newFormat, "i"));
+      const matches = dateStr.match(new RegExp(newFormat, "i"));
       if (!matches) {
           return null;
       }
-      var combinedI18nSettings = assign(assign({}, globalI18n), i18n);
+      const combinedI18nSettings = assign(assign({}, globalI18n), i18n);
       // For each match, call the parser function for that date part
       for (var i = 1; i < matches.length; i++) {
-          var _a = parseInfo[i - 1], field = _a[0], parser = _a[2];
-          var value = parser
+          const _a = parseInfo[i - 1], field = _a[0], parser = _a[2];
+          const value = parser
               ? parser(matches[i], combinedI18nSettings)
               : +matches[i];
           // If the parser can't make sense of the value, return null
@@ -358,10 +358,10 @@
       else if (dateInfo.isPm === 0 && +dateInfo.hour === 12) {
           dateInfo.hour = 0;
       }
-      var dateTZ;
+      let dateTZ;
       if (dateInfo.timezoneOffset == null) {
           dateTZ = new Date(dateInfo.year, dateInfo.month, dateInfo.day, dateInfo.hour, dateInfo.minute, dateInfo.second, dateInfo.millisecond);
-          var validateFields = [
+          const validateFields = [
               ["month", "getMonth"],
               ["day", "getDate"],
               ["hour", "getHours"],
@@ -396,7 +396,7 @@
       // Don't allow invalid dates
       return dateTZ;
   }
-  var fecha = {
+  const fecha = {
       format: format,
       parse: parse,
       defaultI18n: defaultI18n,

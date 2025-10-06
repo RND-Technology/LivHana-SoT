@@ -1,5 +1,5 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+const __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -14,7 +14,7 @@ const json_1 = require("../json");
 const getResponseBody_1 = require("./getResponseBody");
 function getErrorResponseBody(response) {
     return __awaiter(this, void 0, void 0, function* () {
-        var _a, _b, _c;
+        let _a, _b, _c;
         let contentType = (_a = response.headers.get("Content-Type")) === null || _a === void 0 ? void 0 : _a.toLowerCase();
         if (contentType == null || contentType.length === 0) {
             return (0, getResponseBody_1.getResponseBody)(response);

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.transformArguments = exports.RedisFlushModes = void 0;
-var RedisFlushModes;
+let RedisFlushModes;
 (function (RedisFlushModes) {
     RedisFlushModes["ASYNC"] = "ASYNC";
     RedisFlushModes["SYNC"] = "SYNC";

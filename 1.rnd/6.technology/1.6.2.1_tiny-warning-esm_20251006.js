@@ -1,11 +1,11 @@
-var isProduction = process.env.NODE_ENV === 'production';
+const isProduction = process.env.NODE_ENV === 'production';
 function warning(condition, message) {
   if (!isProduction) {
     if (condition) {
       return;
     }
 
-    var text = "Warning: " + message;
+    const text = "Warning: " + message;
 
     if (typeof console !== 'undefined') {
       console.warn(text);

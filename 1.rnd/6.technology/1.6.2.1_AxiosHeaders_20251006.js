@@ -300,7 +300,7 @@ AxiosHeaders.accessor(['Content-Type', 'Content-Length', 'Accept', 'Accept-Encod
 
 // reserved names hotfix
 utils.reduceDescriptors(AxiosHeaders.prototype, ({value}, key) => {
-  let mapped = key[0].toUpperCase() + key.slice(1); // map `set` => `Set`
+  const mapped = key[0].toUpperCase() + key.slice(1); // map `set` => `Set`
   return {
     get: () => value,
     set(headerValue) {

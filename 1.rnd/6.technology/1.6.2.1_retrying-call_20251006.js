@@ -56,7 +56,7 @@ class MessageBufferTracker {
         this.allocatedPerCall = new Map();
     }
     allocate(size, callId) {
-        var _a;
+        let _a;
         const currentPerCall = (_a = this.allocatedPerCall.get(callId)) !== null && _a !== void 0 ? _a : 0;
         if (this.limitPerCall - currentPerCall < size ||
             this.totalLimit - this.totalAllocated < size) {
@@ -67,7 +67,7 @@ class MessageBufferTracker {
         return true;
     }
     free(size, callId) {
-        var _a;
+        let _a;
         if (this.totalAllocated < size) {
             throw new Error(`Invalid buffer allocation state: call ${callId} freed ${size} > total allocated ${this.totalAllocated}`);
         }
@@ -79,7 +79,7 @@ class MessageBufferTracker {
         this.allocatedPerCall.set(callId, currentPerCall - size);
     }
     freeAll(callId) {
-        var _a;
+        let _a;
         const currentPerCall = (_a = this.allocatedPerCall.get(callId)) !== null && _a !== void 0 ? _a : 0;
         if (this.totalAllocated < currentPerCall) {
             throw new Error(`Invalid buffer allocation state: call ${callId} allocated ${currentPerCall} > total allocated ${this.totalAllocated}`);
@@ -93,7 +93,7 @@ const PREVIONS_RPC_ATTEMPTS_METADATA_KEY = 'grpc-previous-rpc-attempts';
 const DEFAULT_MAX_ATTEMPTS_LIMIT = 5;
 class RetryingCall {
     constructor(channel, callConfig, methodName, host, credentials, deadline, callNumber, bufferTracker, retryThrottler) {
-        var _a;
+        let _a;
         this.channel = channel;
         this.callConfig = callConfig;
         this.methodName = methodName;
@@ -182,7 +182,7 @@ class RetryingCall {
         this.writeBufferOffset = this.writeBufferOffset + this.writeBuffer.length;
         this.writeBuffer = [];
         process.nextTick(() => {
-            var _a;
+            let _a;
             // Explicitly construct status object to remove progress field
             (_a = this.listener) === null || _a === void 0 ? void 0 : _a.onReceiveStatus({
                 code: statusObject.code,
@@ -207,7 +207,7 @@ class RetryingCall {
         }
     }
     getBufferEntry(messageIndex) {
-        var _a;
+        let _a;
         return ((_a = this.writeBuffer[messageIndex - this.writeBufferOffset]) !== null && _a !== void 0 ? _a : {
             entryType: 'FREED',
             allocated: false,
@@ -240,7 +240,7 @@ class RetryingCall {
         this.writeBufferOffset = earliestNeededMessageIndex;
     }
     commitCall(index) {
-        var _a, _b;
+        let _a, _b;
         if (this.state === 'COMMITTED') {
             return;
         }
@@ -287,7 +287,7 @@ class RetryingCall {
     }
     isStatusCodeInList(list, code) {
         return list.some(value => {
-            var _a;
+            let _a;
             return value === code ||
                 value.toString().toLowerCase() === ((_a = constants_1.Status[code]) === null || _a === void 0 ? void 0 : _a.toLowerCase());
         });
@@ -297,7 +297,7 @@ class RetryingCall {
         return Math.random() * (1.2 - 0.8) + 0.8;
     }
     getNextRetryBackoffMs() {
-        var _a;
+        let _a;
         const retryPolicy = (_a = this.callConfig) === null || _a === void 0 ? void 0 : _a.methodConfig.retryPolicy;
         if (!retryPolicy) {
             return 0;
@@ -331,7 +331,7 @@ class RetryingCall {
             this.nextRetryBackoffSec = this.initialRetryBackoffSec;
         }
         setTimeout(() => {
-            var _a, _b;
+            let _a, _b;
             if (this.state !== 'RETRY') {
                 callback(false);
                 return;
@@ -357,7 +357,7 @@ class RetryingCall {
         return count;
     }
     handleProcessedStatus(status, callIndex, pushback) {
-        var _a, _b, _c;
+        let _a, _b, _c;
         switch (this.state) {
             case 'COMMITTED':
             case 'NO_RETRY':
@@ -425,7 +425,7 @@ class RetryingCall {
         }
     }
     handleChildStatus(status, callIndex) {
-        var _a;
+        let _a;
         if (this.underlyingCalls[callIndex].state === 'COMPLETED') {
             return;
         }
@@ -493,7 +493,7 @@ class RetryingCall {
         this.maybeStartHedgingTimer();
     }
     maybeStartHedgingTimer() {
-        var _a, _b, _c;
+        let _a, _b, _c;
         if (this.hedgingTimer) {
             clearTimeout(this.hedgingTimer);
         }
@@ -574,7 +574,7 @@ class RetryingCall {
         this.maybeStartHedgingTimer();
     }
     handleChildWriteCompleted(childIndex) {
-        var _a, _b;
+        let _a, _b;
         const childCall = this.underlyingCalls[childIndex];
         const messageIndex = childCall.nextMessageToSend;
         (_b = (_a = this.getBufferEntry(messageIndex)).callback) === null || _b === void 0 ? void 0 : _b.call(_a);
@@ -609,7 +609,7 @@ class RetryingCall {
         }
     }
     sendMessageWithContext(context, message) {
-        var _a;
+        let _a;
         this.trace('write() called with message of length ' + message.length);
         const writeObj = {
             message,

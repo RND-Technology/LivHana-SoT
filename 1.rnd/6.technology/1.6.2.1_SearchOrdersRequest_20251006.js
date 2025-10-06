@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
 exports.searchOrdersRequestSchema = void 0;
-var schema_1 = require("../schema");
-var searchOrdersQuery_1 = require("./searchOrdersQuery");
+const schema_1 = require("../schema");
+const searchOrdersQuery_1 = require("./searchOrdersQuery");
 exports.searchOrdersRequestSchema = (0, schema_1.object)({
     locationIds: ['location_ids', (0, schema_1.optional)((0, schema_1.array)((0, schema_1.string)()))],
     cursor: ['cursor', (0, schema_1.optional)((0, schema_1.string)())],

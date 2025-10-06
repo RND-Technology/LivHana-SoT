@@ -1,8 +1,8 @@
 'use strict';
 
-var callBound = require('call-bound');
+const callBound = require('call-bound');
 
-var $NumberValueOf = callBound('Number.prototype.valueOf');
+const $NumberValueOf = callBound('Number.prototype.valueOf');
 
 // https://262.ecma-international.org/6.0/#sec-properties-of-the-number-prototype-object
 

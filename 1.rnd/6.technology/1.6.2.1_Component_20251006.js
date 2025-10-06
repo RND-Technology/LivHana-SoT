@@ -1,12 +1,12 @@
 "use strict";
 exports.__esModule = true;
 exports.componentSchema = void 0;
-var schema_1 = require("../schema");
-var deviceComponentDetailsApplicationDetails_1 = require("./deviceComponentDetailsApplicationDetails");
-var deviceComponentDetailsBatteryDetails_1 = require("./deviceComponentDetailsBatteryDetails");
-var deviceComponentDetailsCardReaderDetails_1 = require("./deviceComponentDetailsCardReaderDetails");
-var deviceComponentDetailsEthernetDetails_1 = require("./deviceComponentDetailsEthernetDetails");
-var deviceComponentDetailsWiFiDetails_1 = require("./deviceComponentDetailsWiFiDetails");
+const schema_1 = require("../schema");
+const deviceComponentDetailsApplicationDetails_1 = require("./deviceComponentDetailsApplicationDetails");
+const deviceComponentDetailsBatteryDetails_1 = require("./deviceComponentDetailsBatteryDetails");
+const deviceComponentDetailsCardReaderDetails_1 = require("./deviceComponentDetailsCardReaderDetails");
+const deviceComponentDetailsEthernetDetails_1 = require("./deviceComponentDetailsEthernetDetails");
+const deviceComponentDetailsWiFiDetails_1 = require("./deviceComponentDetailsWiFiDetails");
 exports.componentSchema = (0, schema_1.object)({
     type: ['type', (0, schema_1.string)()],
     applicationDetails: [

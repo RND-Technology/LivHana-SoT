@@ -1,4 +1,4 @@
-var composeArgs = require('./_composeArgs'),
+const composeArgs = require('./_composeArgs'),
     composeArgsRight = require('./_composeArgsRight'),
     countHolders = require('./_countHolders'),
     createCtor = require('./_createCtor'),
@@ -9,7 +9,7 @@ var composeArgs = require('./_composeArgs'),
     root = require('./_root');
 
 /** Used to compose bitmasks for function metadata. */
-var WRAP_BIND_FLAG = 1,
+const WRAP_BIND_FLAG = 1,
     WRAP_BIND_KEY_FLAG = 2,
     WRAP_CURRY_FLAG = 8,
     WRAP_CURRY_RIGHT_FLAG = 16,
@@ -36,7 +36,7 @@ var WRAP_BIND_FLAG = 1,
  * @returns {Function} Returns the new wrapped function.
  */
 function createHybrid(func, bitmask, thisArg, partials, holders, partialsRight, holdersRight, argPos, ary, arity) {
-  var isAry = bitmask & WRAP_ARY_FLAG,
+  const isAry = bitmask & WRAP_ARY_FLAG,
       isBind = bitmask & WRAP_BIND_FLAG,
       isBindKey = bitmask & WRAP_BIND_KEY_FLAG,
       isCurried = bitmask & (WRAP_CURRY_FLAG | WRAP_CURRY_RIGHT_FLAG),
@@ -44,7 +44,7 @@ function createHybrid(func, bitmask, thisArg, partials, holders, partialsRight, 
       Ctor = isBindKey ? undefined : createCtor(func);
 
   function wrapper() {
-    var length = arguments.length,
+    let length = arguments.length,
         args = Array(length),
         index = length;
 
@@ -63,13 +63,13 @@ function createHybrid(func, bitmask, thisArg, partials, holders, partialsRight, 
     }
     length -= holdersCount;
     if (isCurried && length < arity) {
-      var newHolders = replaceHolders(args, placeholder);
+      const newHolders = replaceHolders(args, placeholder);
       return createRecurry(
         func, bitmask, createHybrid, wrapper.placeholder, thisArg,
         args, newHolders, argPos, ary, arity - length
       );
     }
-    var thisBinding = isBind ? thisArg : this,
+    let thisBinding = isBind ? thisArg : this,
         fn = isBindKey ? thisBinding[func] : func;
 
     length = args.length;

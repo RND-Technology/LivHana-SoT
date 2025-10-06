@@ -1,26 +1,26 @@
 "use strict";
 exports.__esModule = true;
 exports.LocationCustomAttributesApi = void 0;
-var tslib_1 = require("tslib");
-var bulkDeleteLocationCustomAttributesRequest_1 = require("../models/bulkDeleteLocationCustomAttributesRequest");
-var bulkDeleteLocationCustomAttributesResponse_1 = require("../models/bulkDeleteLocationCustomAttributesResponse");
-var bulkUpsertLocationCustomAttributesRequest_1 = require("../models/bulkUpsertLocationCustomAttributesRequest");
-var bulkUpsertLocationCustomAttributesResponse_1 = require("../models/bulkUpsertLocationCustomAttributesResponse");
-var createLocationCustomAttributeDefinitionRequest_1 = require("../models/createLocationCustomAttributeDefinitionRequest");
-var createLocationCustomAttributeDefinitionResponse_1 = require("../models/createLocationCustomAttributeDefinitionResponse");
-var deleteLocationCustomAttributeDefinitionResponse_1 = require("../models/deleteLocationCustomAttributeDefinitionResponse");
-var deleteLocationCustomAttributeResponse_1 = require("../models/deleteLocationCustomAttributeResponse");
-var listLocationCustomAttributeDefinitionsResponse_1 = require("../models/listLocationCustomAttributeDefinitionsResponse");
-var listLocationCustomAttributesResponse_1 = require("../models/listLocationCustomAttributesResponse");
-var retrieveLocationCustomAttributeDefinitionResponse_1 = require("../models/retrieveLocationCustomAttributeDefinitionResponse");
-var retrieveLocationCustomAttributeResponse_1 = require("../models/retrieveLocationCustomAttributeResponse");
-var updateLocationCustomAttributeDefinitionRequest_1 = require("../models/updateLocationCustomAttributeDefinitionRequest");
-var updateLocationCustomAttributeDefinitionResponse_1 = require("../models/updateLocationCustomAttributeDefinitionResponse");
-var upsertLocationCustomAttributeRequest_1 = require("../models/upsertLocationCustomAttributeRequest");
-var upsertLocationCustomAttributeResponse_1 = require("../models/upsertLocationCustomAttributeResponse");
-var schema_1 = require("../schema");
-var baseApi_1 = require("./baseApi");
-var LocationCustomAttributesApi = /** @class */ (function (_super) {
+const tslib_1 = require("tslib");
+const bulkDeleteLocationCustomAttributesRequest_1 = require("../models/bulkDeleteLocationCustomAttributesRequest");
+const bulkDeleteLocationCustomAttributesResponse_1 = require("../models/bulkDeleteLocationCustomAttributesResponse");
+const bulkUpsertLocationCustomAttributesRequest_1 = require("../models/bulkUpsertLocationCustomAttributesRequest");
+const bulkUpsertLocationCustomAttributesResponse_1 = require("../models/bulkUpsertLocationCustomAttributesResponse");
+const createLocationCustomAttributeDefinitionRequest_1 = require("../models/createLocationCustomAttributeDefinitionRequest");
+const createLocationCustomAttributeDefinitionResponse_1 = require("../models/createLocationCustomAttributeDefinitionResponse");
+const deleteLocationCustomAttributeDefinitionResponse_1 = require("../models/deleteLocationCustomAttributeDefinitionResponse");
+const deleteLocationCustomAttributeResponse_1 = require("../models/deleteLocationCustomAttributeResponse");
+const listLocationCustomAttributeDefinitionsResponse_1 = require("../models/listLocationCustomAttributeDefinitionsResponse");
+const listLocationCustomAttributesResponse_1 = require("../models/listLocationCustomAttributesResponse");
+const retrieveLocationCustomAttributeDefinitionResponse_1 = require("../models/retrieveLocationCustomAttributeDefinitionResponse");
+const retrieveLocationCustomAttributeResponse_1 = require("../models/retrieveLocationCustomAttributeResponse");
+const updateLocationCustomAttributeDefinitionRequest_1 = require("../models/updateLocationCustomAttributeDefinitionRequest");
+const updateLocationCustomAttributeDefinitionResponse_1 = require("../models/updateLocationCustomAttributeDefinitionResponse");
+const upsertLocationCustomAttributeRequest_1 = require("../models/upsertLocationCustomAttributeRequest");
+const upsertLocationCustomAttributeResponse_1 = require("../models/upsertLocationCustomAttributeResponse");
+const schema_1 = require("../schema");
+const baseApi_1 = require("./baseApi");
+const LocationCustomAttributesApi = /** @class */ (function (_super) {
     tslib_1.__extends(LocationCustomAttributesApi, _super);
     function LocationCustomAttributesApi() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -46,7 +46,7 @@ var LocationCustomAttributesApi = /** @class */ (function (_super) {
      */
     LocationCustomAttributesApi.prototype.listLocationCustomAttributeDefinitions = function (visibilityFilter, limit, cursor, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET', '/v2/locations/custom-attribute-definitions');
                 mapped = req.prepareArgs({
@@ -80,7 +80,7 @@ var LocationCustomAttributesApi = /** @class */ (function (_super) {
      */
     LocationCustomAttributesApi.prototype.createLocationCustomAttributeDefinition = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/locations/custom-attribute-definitions');
                 mapped = req.prepareArgs({
@@ -105,7 +105,7 @@ var LocationCustomAttributesApi = /** @class */ (function (_super) {
      */
     LocationCustomAttributesApi.prototype.deleteLocationCustomAttributeDefinition = function (key, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('DELETE');
                 mapped = req.prepareArgs({ key: [key, (0, schema_1.string)()] });
@@ -132,7 +132,7 @@ var LocationCustomAttributesApi = /** @class */ (function (_super) {
      */
     LocationCustomAttributesApi.prototype.retrieveLocationCustomAttributeDefinition = function (key, version, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({
@@ -163,7 +163,7 @@ var LocationCustomAttributesApi = /** @class */ (function (_super) {
      */
     LocationCustomAttributesApi.prototype.updateLocationCustomAttributeDefinition = function (key, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('PUT');
                 mapped = req.prepareArgs({
@@ -190,7 +190,7 @@ var LocationCustomAttributesApi = /** @class */ (function (_super) {
      */
     LocationCustomAttributesApi.prototype.bulkDeleteLocationCustomAttributes = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/locations/custom-attributes/bulk-delete');
                 mapped = req.prepareArgs({
@@ -224,7 +224,7 @@ var LocationCustomAttributesApi = /** @class */ (function (_super) {
      */
     LocationCustomAttributesApi.prototype.bulkUpsertLocationCustomAttributes = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/locations/custom-attributes/bulk-upsert');
                 mapped = req.prepareArgs({
@@ -265,7 +265,7 @@ var LocationCustomAttributesApi = /** @class */ (function (_super) {
      */
     LocationCustomAttributesApi.prototype.listLocationCustomAttributes = function (locationId, visibilityFilter, limit, cursor, withDefinitions, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({
@@ -298,7 +298,7 @@ var LocationCustomAttributesApi = /** @class */ (function (_super) {
      */
     LocationCustomAttributesApi.prototype.deleteLocationCustomAttribute = function (locationId, key, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('DELETE');
                 mapped = req.prepareArgs({
@@ -336,7 +336,7 @@ var LocationCustomAttributesApi = /** @class */ (function (_super) {
      */
     LocationCustomAttributesApi.prototype.retrieveLocationCustomAttribute = function (locationId, key, withDefinition, version, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({
@@ -378,7 +378,7 @@ var LocationCustomAttributesApi = /** @class */ (function (_super) {
      */
     LocationCustomAttributesApi.prototype.upsertLocationCustomAttribute = function (locationId, key, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({
@@ -397,5 +397,5 @@ var LocationCustomAttributesApi = /** @class */ (function (_super) {
     return LocationCustomAttributesApi;
 }(baseApi_1.BaseApi));
 exports.LocationCustomAttributesApi = LocationCustomAttributesApi;
-var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6, templateObject_7;
+let templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6, templateObject_7;
 //# sourceMappingURL=locationCustomAttributesApi.js.map

@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
 exports.listBankAccountsResponseSchema = void 0;
-var schema_1 = require("../schema");
-var bankAccount_1 = require("./bankAccount");
-var error_1 = require("./error");
+const schema_1 = require("../schema");
+const bankAccount_1 = require("./bankAccount");
+const error_1 = require("./error");
 exports.listBankAccountsResponseSchema = (0, schema_1.object)({
     errors: ['errors', (0, schema_1.optional)((0, schema_1.array)((0, schema_1.lazy)(function () { return error_1.errorSchema; })))],
     bankAccounts: [

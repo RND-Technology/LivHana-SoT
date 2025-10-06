@@ -31,7 +31,7 @@ function eatHexSequence(offset, allowDash) {
 
         if (++len > 6) {
             this.error('Too many hex digits', pos);
-        };
+        }
     }
 
     this.next();

@@ -1,12 +1,12 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
-var isObject = require('es-object-atoms/isObject');
+const $TypeError = require('es-errors/type');
+const isObject = require('es-object-atoms/isObject');
 
-var Call = require('./Call');
-var CompletionRecord = require('./CompletionRecord');
-var GetMethod = require('./GetMethod');
-var IsCallable = require('./IsCallable');
+const Call = require('./Call');
+const CompletionRecord = require('./CompletionRecord');
+const GetMethod = require('./GetMethod');
+const IsCallable = require('./IsCallable');
 
 // https://262.ecma-international.org/6.0/#sec-iteratorclose
 
@@ -17,15 +17,15 @@ module.exports = function IteratorClose(iterator, completion) {
 	if (!IsCallable(completion) && !(completion instanceof CompletionRecord)) {
 		throw new $TypeError('Assertion failed: completion is not a thunk representing a Completion Record, nor a Completion Record instance');
 	}
-	var completionThunk = completion instanceof CompletionRecord ? function () { return completion['?'](); } : completion;
+	let completionThunk = completion instanceof CompletionRecord ? function () { return completion['?'](); } : completion;
 
-	var iteratorReturn = GetMethod(iterator, 'return');
+	const iteratorReturn = GetMethod(iterator, 'return');
 
 	if (typeof iteratorReturn === 'undefined') {
 		return completionThunk();
 	}
 
-	var completionRecord;
+	let completionRecord;
 	try {
 		var innerResult = Call(iteratorReturn, iterator, []);
 	} catch (e) {

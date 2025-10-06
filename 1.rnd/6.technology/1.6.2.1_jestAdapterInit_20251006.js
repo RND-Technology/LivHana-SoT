@@ -4,17 +4,17 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 exports.runAndTransformResultsToJestFormat = exports.initialize = void 0;
-var _expect = require('@jest/expect');
-var _testResult = require('@jest/test-result');
-var _jestMessageUtil = require('jest-message-util');
-var _jestSnapshot = require('jest-snapshot');
-var _ = _interopRequireDefault(require('..'));
-var _run = _interopRequireDefault(require('../run'));
-var _state = require('../state');
-var _testCaseReportHandler = _interopRequireDefault(
+const _expect = require('@jest/expect');
+const _testResult = require('@jest/test-result');
+const _jestMessageUtil = require('jest-message-util');
+const _jestSnapshot = require('jest-snapshot');
+const _ = _interopRequireDefault(require('..'));
+const _run = _interopRequireDefault(require('../run'));
+const _state = require('../state');
+const _testCaseReportHandler = _interopRequireDefault(
   require('../testCaseReportHandler')
 );
-var _utils = require('../utils');
+const _utils = require('../utils');
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {default: obj};
 }

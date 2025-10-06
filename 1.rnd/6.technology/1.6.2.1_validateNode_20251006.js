@@ -4,8 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = validateNode;
-var _validate = require("../validators/validate.js");
-var _index = require("../index.js");
+const _validate = require("../validators/validate.js");
+const _index = require("../index.js");
 function validateNode(node) {
   if (node == null || typeof node !== "object") return;
   const fields = _index.NODE_FIELDS[node.type];

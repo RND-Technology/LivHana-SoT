@@ -7,8 +7,8 @@ exports.getDigitCount = getDigitCount;
 exports.interpolateNumber = void 0;
 exports.rangeStep = rangeStep;
 exports.uninterpolateTruncation = exports.uninterpolateNumber = void 0;
-var _decimal = _interopRequireDefault(require("decimal.js-light"));
-var _utils = require("./utils");
+const _decimal = _interopRequireDefault(require("decimal.js-light"));
+const _utils = require("./utils");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * @fileOverview Some common arithmetic methods
@@ -26,7 +26,7 @@ function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e
  * @return {Integer}      Digit count
  */
 function getDigitCount(value) {
-  var result;
+  let result;
   if (value === 0) {
     result = 1;
   } else {
@@ -45,9 +45,9 @@ function getDigitCount(value) {
  * @return {Array}         Array of numbers
  */
 function rangeStep(start, end, step) {
-  var num = new _decimal.default(start);
-  var i = 0;
-  var result = [];
+  let num = new _decimal.default(start);
+  let i = 0;
+  const result = [];
 
   // magic number to prevent infinite loop
   while (num.lt(end) && i < 100000) {
@@ -66,9 +66,9 @@ function rangeStep(start, end, step) {
  * @param  {Number} t  A value in [0, 1]
  * @return {Number}    A value in the domain
  */
-var interpolateNumber = exports.interpolateNumber = (0, _utils.curry)((a, b, t) => {
-  var newA = +a;
-  var newB = +b;
+const interpolateNumber = exports.interpolateNumber = (0, _utils.curry)((a, b, t) => {
+  const newA = +a;
+  const newB = +b;
   return newA + t * (newB - newA);
 });
 
@@ -80,8 +80,8 @@ var interpolateNumber = exports.interpolateNumber = (0, _utils.curry)((a, b, t) 
  * @param  {Number} x Can be considered as an output value after interpolation
  * @return {Number}   When x is in the range a ~ b, the return value is in [0, 1]
  */
-var uninterpolateNumber = exports.uninterpolateNumber = (0, _utils.curry)((a, b, x) => {
-  var diff = b - +a;
+const uninterpolateNumber = exports.uninterpolateNumber = (0, _utils.curry)((a, b, x) => {
+  let diff = b - +a;
   diff = diff || Infinity;
   return (x - a) / diff;
 });
@@ -95,8 +95,8 @@ var uninterpolateNumber = exports.uninterpolateNumber = (0, _utils.curry)((a, b,
  * @return {Number}   When x is in the interval a ~ b, the return value is in [0, 1].
  *                    When x is not in the interval a ~ b, it will be truncated to the interval a ~ b.
  */
-var uninterpolateTruncation = exports.uninterpolateTruncation = (0, _utils.curry)((a, b, x) => {
-  var diff = b - +a;
+const uninterpolateTruncation = exports.uninterpolateTruncation = (0, _utils.curry)((a, b, x) => {
+  let diff = b - +a;
   diff = diff || Infinity;
   return Math.max(0, Math.min(1, (x - a) / diff));
 });

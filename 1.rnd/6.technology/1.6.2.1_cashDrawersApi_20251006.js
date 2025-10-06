@@ -1,13 +1,13 @@
 "use strict";
 exports.__esModule = true;
 exports.CashDrawersApi = void 0;
-var tslib_1 = require("tslib");
-var listCashDrawerShiftEventsResponse_1 = require("../models/listCashDrawerShiftEventsResponse");
-var listCashDrawerShiftsResponse_1 = require("../models/listCashDrawerShiftsResponse");
-var retrieveCashDrawerShiftResponse_1 = require("../models/retrieveCashDrawerShiftResponse");
-var schema_1 = require("../schema");
-var baseApi_1 = require("./baseApi");
-var CashDrawersApi = /** @class */ (function (_super) {
+const tslib_1 = require("tslib");
+const listCashDrawerShiftEventsResponse_1 = require("../models/listCashDrawerShiftEventsResponse");
+const listCashDrawerShiftsResponse_1 = require("../models/listCashDrawerShiftsResponse");
+const retrieveCashDrawerShiftResponse_1 = require("../models/retrieveCashDrawerShiftResponse");
+const schema_1 = require("../schema");
+const baseApi_1 = require("./baseApi");
+const CashDrawersApi = /** @class */ (function (_super) {
     tslib_1.__extends(CashDrawersApi, _super);
     function CashDrawersApi() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -27,7 +27,7 @@ var CashDrawersApi = /** @class */ (function (_super) {
      */
     CashDrawersApi.prototype.listCashDrawerShifts = function (locationId, sortOrder, beginTime, endTime, limit, cursor, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET', '/v2/cash-drawers/shifts');
                 mapped = req.prepareArgs({
@@ -60,7 +60,7 @@ var CashDrawersApi = /** @class */ (function (_super) {
      */
     CashDrawersApi.prototype.retrieveCashDrawerShift = function (locationId, shiftId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({
@@ -85,7 +85,7 @@ var CashDrawersApi = /** @class */ (function (_super) {
      */
     CashDrawersApi.prototype.listCashDrawerShiftEvents = function (locationId, shiftId, limit, cursor, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({
@@ -106,5 +106,5 @@ var CashDrawersApi = /** @class */ (function (_super) {
     return CashDrawersApi;
 }(baseApi_1.BaseApi));
 exports.CashDrawersApi = CashDrawersApi;
-var templateObject_1, templateObject_2;
+let templateObject_1, templateObject_2;
 //# sourceMappingURL=cashDrawersApi.js.map

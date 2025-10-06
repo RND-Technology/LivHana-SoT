@@ -38,6 +38,6 @@ class ForksVmWorker {
     }
   }
 }
-var vmForks = new ForksVmWorker();
+const vmForks = new ForksVmWorker();
 
 export { vmForks as default };

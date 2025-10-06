@@ -19,7 +19,7 @@ exports.AggregationTemporality = void 0;
 /**
  * AggregationTemporality indicates the way additive quantities are expressed.
  */
-var AggregationTemporality;
+let AggregationTemporality;
 (function (AggregationTemporality) {
     AggregationTemporality[AggregationTemporality["DELTA"] = 0] = "DELTA";
     AggregationTemporality[AggregationTemporality["CUMULATIVE"] = 1] = "CUMULATIVE";

@@ -4,19 +4,19 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.useViewBox = exports.useOffsetInternal = exports.useMargin = exports.useChartWidth = exports.useChartLayout = exports.useChartHeight = exports.selectChartLayout = exports.ReportChartSize = exports.ReportChartMargin = void 0;
-var _react = require("react");
-var _hooks = require("../state/hooks");
-var _layoutSlice = require("../state/layoutSlice");
-var _selectChartOffsetInternal = require("../state/selectors/selectChartOffsetInternal");
-var _containerSelectors = require("../state/selectors/containerSelectors");
-var _PanoramaContext = require("./PanoramaContext");
-var _brushSelectors = require("../state/selectors/brushSelectors");
-var useViewBox = () => {
-  var _useAppSelector;
-  var panorama = (0, _PanoramaContext.useIsPanorama)();
-  var rootViewBox = (0, _hooks.useAppSelector)(_selectChartOffsetInternal.selectChartViewBox);
-  var brushDimensions = (0, _hooks.useAppSelector)(_brushSelectors.selectBrushDimensions);
-  var brushPadding = (_useAppSelector = (0, _hooks.useAppSelector)(_brushSelectors.selectBrushSettings)) === null || _useAppSelector === void 0 ? void 0 : _useAppSelector.padding;
+const _react = require("react");
+const _hooks = require("../state/hooks");
+const _layoutSlice = require("../state/layoutSlice");
+const _selectChartOffsetInternal = require("../state/selectors/selectChartOffsetInternal");
+const _containerSelectors = require("../state/selectors/containerSelectors");
+const _PanoramaContext = require("./PanoramaContext");
+const _brushSelectors = require("../state/selectors/brushSelectors");
+const useViewBox = () => {
+  let _useAppSelector;
+  const panorama = (0, _PanoramaContext.useIsPanorama)();
+  const rootViewBox = (0, _hooks.useAppSelector)(_selectChartOffsetInternal.selectChartViewBox);
+  const brushDimensions = (0, _hooks.useAppSelector)(_brushSelectors.selectBrushDimensions);
+  const brushPadding = (_useAppSelector = (0, _hooks.useAppSelector)(_brushSelectors.selectBrushSettings)) === null || _useAppSelector === void 0 ? void 0 : _useAppSelector.padding;
   if (!panorama || !brushDimensions || !brushPadding) {
     return rootViewBox;
   }
@@ -28,7 +28,7 @@ var useViewBox = () => {
   };
 };
 exports.useViewBox = useViewBox;
-var manyComponentsThrowErrorsIfOffsetIsUndefined = {
+const manyComponentsThrowErrorsIfOffsetIsUndefined = {
   top: 0,
   bottom: 0,
   left: 0,
@@ -44,8 +44,8 @@ var manyComponentsThrowErrorsIfOffsetIsUndefined = {
  *
  * @returns {ChartOffsetInternal} The offset of the chart in pixels, or a default value if not in a chart context.
  */
-var useOffsetInternal = () => {
-  var _useAppSelector2;
+const useOffsetInternal = () => {
+  let _useAppSelector2;
   return (_useAppSelector2 = (0, _hooks.useAppSelector)(_selectChartOffsetInternal.selectChartOffsetInternal)) !== null && _useAppSelector2 !== void 0 ? _useAppSelector2 : manyComponentsThrowErrorsIfOffsetIsUndefined;
 };
 
@@ -69,7 +69,7 @@ var useOffsetInternal = () => {
  * @returns {number | undefined} The width of the chart in pixels, or `undefined` if not in a chart context.
  */
 exports.useOffsetInternal = useOffsetInternal;
-var useChartWidth = () => {
+const useChartWidth = () => {
   return (0, _hooks.useAppSelector)(_containerSelectors.selectChartWidth);
 };
 
@@ -93,7 +93,7 @@ var useChartWidth = () => {
  * @returns {number | undefined} The height of the chart in pixels, or `undefined` if not in a chart context.
  */
 exports.useChartWidth = useChartWidth;
-var useChartHeight = () => {
+const useChartHeight = () => {
   return (0, _hooks.useAppSelector)(_containerSelectors.selectChartHeight);
 };
 
@@ -108,27 +108,27 @@ var useChartHeight = () => {
  * @returns {Margin | undefined} The margin of the chart in pixels, or `undefined` if not in a chart context.
  */
 exports.useChartHeight = useChartHeight;
-var useMargin = () => {
+const useMargin = () => {
   return (0, _hooks.useAppSelector)(state => state.layout.margin);
 };
 exports.useMargin = useMargin;
-var selectChartLayout = state => state.layout.layoutType;
+const selectChartLayout = state => state.layout.layoutType;
 exports.selectChartLayout = selectChartLayout;
-var useChartLayout = () => (0, _hooks.useAppSelector)(selectChartLayout);
+const useChartLayout = () => (0, _hooks.useAppSelector)(selectChartLayout);
 exports.useChartLayout = useChartLayout;
-var ReportChartSize = props => {
-  var dispatch = (0, _hooks.useAppDispatch)();
+const ReportChartSize = props => {
+  const dispatch = (0, _hooks.useAppDispatch)();
   (0, _react.useEffect)(() => {
     dispatch((0, _layoutSlice.setChartSize)(props));
   }, [dispatch, props]);
   return null;
 };
 exports.ReportChartSize = ReportChartSize;
-var ReportChartMargin = _ref => {
-  var {
+const ReportChartMargin = _ref => {
+  const {
     margin
   } = _ref;
-  var dispatch = (0, _hooks.useAppDispatch)();
+  const dispatch = (0, _hooks.useAppDispatch)();
   (0, _react.useEffect)(() => {
     dispatch((0, _layoutSlice.setMargin)(margin));
   }, [dispatch, margin]);

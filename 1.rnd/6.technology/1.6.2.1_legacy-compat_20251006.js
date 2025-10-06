@@ -3,9 +3,9 @@ if (!global.console) {
     console = {}
 }
 
-var fns = ['log', 'error', 'trace'];
-for (var i=0 ; i<fns.length ; ++i) {
-    var fn = fns[i];
+const fns = ['log', 'error', 'trace'];
+for (let i=0 ; i<fns.length ; ++i) {
+    const fn = fns[i];
     if (!console[fn]) {
         console[fn] = function() {};
     }

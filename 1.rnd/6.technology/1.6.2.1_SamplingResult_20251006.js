@@ -21,7 +21,7 @@ exports.SamplingDecision = void 0;
  * A sampling decision that determines how a {@link Span} will be recorded
  * and collected.
  */
-var SamplingDecision;
+let SamplingDecision;
 (function (SamplingDecision) {
     /**
      * `Span.isRecording() === false`, span will not be recorded and all events

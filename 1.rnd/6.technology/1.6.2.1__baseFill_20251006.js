@@ -1,4 +1,4 @@
-var toInteger = require('./toInteger'),
+const toInteger = require('./toInteger'),
     toLength = require('./toLength');
 
 /**
@@ -12,7 +12,7 @@ var toInteger = require('./toInteger'),
  * @returns {Array} Returns `array`.
  */
 function baseFill(array, value, start, end) {
-  var length = array.length;
+  const length = array.length;
 
   start = toInteger(start);
   if (start < 0) {

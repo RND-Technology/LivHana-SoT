@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.nodes = void 0;
-var _t = require("@babel/types");
+const _t = require("@babel/types");
 const {
   FLIPPED_ALIAS_KEYS,
   isArrayExpression,
@@ -118,19 +118,19 @@ nodes.ObjectProperty = nodes.ObjectTypeProperty = nodes.ObjectMethod = function 
   }
 };
 nodes.ObjectTypeCallProperty = function (node, parent) {
-  var _parent$properties;
+  let _parent$properties;
   if (parent.callProperties[0] === node && !((_parent$properties = parent.properties) != null && _parent$properties.length)) {
     return 1;
   }
 };
 nodes.ObjectTypeIndexer = function (node, parent) {
-  var _parent$properties2, _parent$callPropertie;
+  let _parent$properties2, _parent$callPropertie;
   if (parent.indexers[0] === node && !((_parent$properties2 = parent.properties) != null && _parent$properties2.length) && !((_parent$callPropertie = parent.callProperties) != null && _parent$callPropertie.length)) {
     return 1;
   }
 };
 nodes.ObjectTypeInternalSlot = function (node, parent) {
-  var _parent$properties3, _parent$callPropertie2, _parent$indexers;
+  let _parent$properties3, _parent$callPropertie2, _parent$indexers;
   if (parent.internalSlots[0] === node && !((_parent$properties3 = parent.properties) != null && _parent$properties3.length) && !((_parent$callPropertie2 = parent.callProperties) != null && _parent$callPropertie2.length) && !((_parent$indexers = parent.indexers) != null && _parent$indexers.length)) {
     return 1;
   }

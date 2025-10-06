@@ -2,15 +2,15 @@ function last(array) {
   return array[array.length - 1]
 }
 
-let brackets = {
+const brackets = {
   /**
    * Parse string to nodes tree
    */
   parse(str) {
     let current = ['']
-    let stack = [current]
+    const stack = [current]
 
-    for (let sym of str) {
+    for (const sym of str) {
       if (sym === '(') {
         current = ['']
         last(stack).push(current)
@@ -36,7 +36,7 @@ let brackets = {
    */
   stringify(ast) {
     let result = ''
-    for (let i of ast) {
+    for (const i of ast) {
       if (typeof i === 'object') {
         result += `(${brackets.stringify(i)})`
         continue

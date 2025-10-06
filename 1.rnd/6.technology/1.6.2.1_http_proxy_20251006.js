@@ -152,7 +152,7 @@ function hostMatchesNoProxyList(serverHost) {
     return false;
 }
 function mapProxyName(target, options) {
-    var _a;
+    let _a;
     const noProxyResult = {
         target: target,
         extraOptions: {},
@@ -191,7 +191,7 @@ function mapProxyName(target, options) {
     };
 }
 function getProxiedConnection(address, channelOptions) {
-    var _a;
+    let _a;
     if (!('grpc.http_connect_target' in channelOptions)) {
         return Promise.resolve(null);
     }

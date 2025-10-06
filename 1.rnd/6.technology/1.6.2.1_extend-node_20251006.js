@@ -1,11 +1,11 @@
 "use strict";
-var Buffer = require("buffer").Buffer;
+const Buffer = require("buffer").Buffer;
 // Note: not polyfilled with safer-buffer on a purpose, as overrides Buffer
 
 // == Extend Node primitives to use iconv-lite =================================
 
 module.exports = function (iconv) {
-    var original = undefined; // Place to keep original methods.
+    let original = undefined; // Place to keep original methods.
 
     // Node authors rewrote Buffer internals to make it compatible with
     // Uint8Array and we cannot patch key functions since then.
@@ -22,7 +22,7 @@ module.exports = function (iconv) {
             return;
         }
 
-        var nodeNativeEncodings = {
+        const nodeNativeEncodings = {
             'hex': true, 'utf8': true, 'utf-8': true, 'ascii': true, 'binary': true, 
             'base64': true, 'ucs2': true, 'ucs-2': true, 'utf16le': true, 'utf-16le': true,
         };
@@ -32,7 +32,7 @@ module.exports = function (iconv) {
         }
 
         // -- SlowBuffer -----------------------------------------------------------
-        var SlowBuffer = require('buffer').SlowBuffer;
+        const SlowBuffer = require('buffer').SlowBuffer;
 
         original.SlowBufferToString = SlowBuffer.prototype.toString;
         SlowBuffer.prototype.toString = function(encoding, start, end) {
@@ -58,14 +58,14 @@ module.exports = function (iconv) {
                     length = undefined;
                 }
             } else {  // legacy
-                var swap = encoding;
+                const swap = encoding;
                 encoding = offset;
                 offset = length;
                 length = swap;
             }
 
             offset = +offset || 0;
-            var remaining = this.length - offset;
+            const remaining = this.length - offset;
             if (!length) {
                 length = remaining;
             } else {
@@ -84,7 +84,7 @@ module.exports = function (iconv) {
                 throw new RangeError('attempt to write beyond buffer bounds');
 
             // Otherwise, use our encoding method.
-            var buf = iconv.encode(string, encoding);
+            const buf = iconv.encode(string, encoding);
             if (buf.length < length) length = buf.length;
             buf.copy(this, offset, 0, length);
             return length;
@@ -125,7 +125,7 @@ module.exports = function (iconv) {
 
         original.BufferWrite = Buffer.prototype.write;
         Buffer.prototype.write = function(string, offset, length, encoding) {
-            var _offset = offset, _length = length, _encoding = encoding;
+            const _offset = offset, _length = length, _encoding = encoding;
             // Support both (string, offset, length, encoding)
             // and the legacy (string, encoding, offset, length)
             if (isFinite(offset)) {
@@ -134,7 +134,7 @@ module.exports = function (iconv) {
                     length = undefined;
                 }
             } else {  // legacy
-                var swap = encoding;
+                const swap = encoding;
                 encoding = offset;
                 offset = length;
                 length = swap;
@@ -147,7 +147,7 @@ module.exports = function (iconv) {
                 return original.BufferWrite.call(this, string, _offset, _length, _encoding);
 
             offset = +offset || 0;
-            var remaining = this.length - offset;
+            const remaining = this.length - offset;
             if (!length) {
                 length = remaining;
             } else {
@@ -161,7 +161,7 @@ module.exports = function (iconv) {
                 throw new RangeError('attempt to write beyond buffer bounds');
 
             // Otherwise, use our encoding method.
-            var buf = iconv.encode(string, encoding);
+            const buf = iconv.encode(string, encoding);
             if (buf.length < length) length = buf.length;
             buf.copy(this, offset, 0, length);
             return length;
@@ -172,7 +172,7 @@ module.exports = function (iconv) {
 
         // -- Readable -------------------------------------------------------------
         if (iconv.supportsStreams) {
-            var Readable = require('stream').Readable;
+            const Readable = require('stream').Readable;
 
             original.ReadableSetEncoding = Readable.prototype.setEncoding;
             Readable.prototype.setEncoding = function setEncoding(enc, options) {
@@ -195,7 +195,7 @@ module.exports = function (iconv) {
 
         delete Buffer.isNativeEncoding;
 
-        var SlowBuffer = require('buffer').SlowBuffer;
+        const SlowBuffer = require('buffer').SlowBuffer;
 
         SlowBuffer.prototype.toString = original.SlowBufferToString;
         SlowBuffer.prototype.write = original.SlowBufferWrite;
@@ -206,7 +206,7 @@ module.exports = function (iconv) {
         Buffer.prototype.write = original.BufferWrite;
 
         if (iconv.supportsStreams) {
-            var Readable = require('stream').Readable;
+            const Readable = require('stream').Readable;
 
             Readable.prototype.setEncoding = original.ReadableSetEncoding;
             delete Readable.prototype.collect;

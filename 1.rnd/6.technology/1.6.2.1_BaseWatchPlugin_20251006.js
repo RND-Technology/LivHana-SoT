@@ -31,5 +31,5 @@ class BaseWatchPlugin {
     return Promise.resolve();
   }
 }
-var _default = BaseWatchPlugin;
+const _default = BaseWatchPlugin;
 exports.default = _default;

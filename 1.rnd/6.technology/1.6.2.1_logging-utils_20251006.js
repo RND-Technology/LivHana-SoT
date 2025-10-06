@@ -12,9 +12,9 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+const __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
+    let desc = Object.getOwnPropertyDescriptor(m, k);
     if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
       desc = { enumerable: true, get: function() { return m[k]; } };
     }
@@ -23,15 +23,15 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
 }));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+const __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
     Object.defineProperty(o, "default", { enumerable: true, value: v });
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || function (mod) {
+const __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    const result = {};
+    if (mod != null) for (const k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
     __setModuleDefault(result, mod);
     return result;
 };
@@ -67,7 +67,7 @@ const colours_1 = require("./colours");
  * Possible log levels. These are a subset of Cloud Observability levels.
  * https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry#LogSeverity
  */
-var LogSeverity;
+let LogSeverity;
 (function (LogSeverity) {
     LogSeverity["DEFAULT"] = "DEFAULT";
     LogSeverity["DEBUG"] = "DEBUG";
@@ -128,7 +128,7 @@ exports.placeholder = new AdhocDebugLogger('', () => { }).func;
  */
 class DebugLogBackendBase {
     constructor() {
-        var _a;
+        let _a;
         this.cached = new Map();
         this.filters = [];
         this.filtersSet = false;
@@ -185,7 +185,7 @@ class NodeBackend extends DebugLogBackendBase {
             return () => { };
         }
         return (fields, ...args) => {
-            var _a;
+            let _a;
             // TODO: `fields` needs to be turned into a string here, one way or another.
             const nscolour = `${colours_1.Colours.green}${namespace}${colours_1.Colours.reset}`;
             const pid = `${colours_1.Colours.yellow}${process.pid}${colours_1.Colours.reset}`;
@@ -246,7 +246,7 @@ class DebugBackend extends DebugLogBackendBase {
         };
     }
     setFilters() {
-        var _a;
+        let _a;
         const existingFilters = (_a = process.env['NODE_DEBUG']) !== null && _a !== void 0 ? _a : '';
         process.env['NODE_DEBUG'] = `${existingFilters}${existingFilters ? ',' : ''}${this.filters.join(',')}`;
     }
@@ -277,14 +277,14 @@ function getDebugBackend(debugPkg) {
  */
 class StructuredBackend extends DebugLogBackendBase {
     constructor(upstream) {
-        var _a;
+        let _a;
         super();
         this.upstream = (_a = upstream) !== null && _a !== void 0 ? _a : new NodeBackend();
     }
     makeLogger(namespace) {
         const debugLogger = this.upstream.makeLogger(namespace);
         return (fields, ...args) => {
-            var _a;
+            let _a;
             const severity = (_a = fields.severity) !== null && _a !== void 0 ? _a : LogSeverity.INFO;
             const json = Object.assign({
                 severity,

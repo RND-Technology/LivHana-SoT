@@ -21,7 +21,7 @@ module.exports.preferredEncodings = preferredEncodings;
  * @private
  */
 
-var simpleEncodingRegExp = /^\s*([^\s;]+)\s*(?:;(.*))?$/;
+const simpleEncodingRegExp = /^\s*([^\s;]+)\s*(?:;(.*))?$/;
 
 /**
  * Parse the Accept-Encoding header.
@@ -29,12 +29,12 @@ var simpleEncodingRegExp = /^\s*([^\s;]+)\s*(?:;(.*))?$/;
  */
 
 function parseAcceptEncoding(accept) {
-  var accepts = accept.split(',');
-  var hasIdentity = false;
-  var minQuality = 1;
+  const accepts = accept.split(',');
+  let hasIdentity = false;
+  let minQuality = 1;
 
   for (var i = 0, j = 0; i < accepts.length; i++) {
-    var encoding = parseEncoding(accepts[i].trim(), i);
+    const encoding = parseEncoding(accepts[i].trim(), i);
 
     if (encoding) {
       accepts[j++] = encoding;
@@ -67,15 +67,15 @@ function parseAcceptEncoding(accept) {
  */
 
 function parseEncoding(str, i) {
-  var match = simpleEncodingRegExp.exec(str);
+  const match = simpleEncodingRegExp.exec(str);
   if (!match) return null;
 
-  var encoding = match[1];
-  var q = 1;
+  const encoding = match[1];
+  let q = 1;
   if (match[2]) {
-    var params = match[2].split(';');
-    for (var j = 0; j < params.length; j++) {
-      var p = params[j].trim().split('=');
+    const params = match[2].split(';');
+    for (let j = 0; j < params.length; j++) {
+      const p = params[j].trim().split('=');
       if (p[0] === 'q') {
         q = parseFloat(p[1]);
         break;
@@ -96,10 +96,10 @@ function parseEncoding(str, i) {
  */
 
 function getEncodingPriority(encoding, accepted, index) {
-  var priority = {encoding: encoding, o: -1, q: 0, s: 0};
+  let priority = {encoding: encoding, o: -1, q: 0, s: 0};
 
-  for (var i = 0; i < accepted.length; i++) {
-    var spec = specify(encoding, accepted[i], index);
+  for (let i = 0; i < accepted.length; i++) {
+    const spec = specify(encoding, accepted[i], index);
 
     if (spec && (priority.s - spec.s || priority.q - spec.q || priority.o - spec.o) < 0) {
       priority = spec;
@@ -115,7 +115,7 @@ function getEncodingPriority(encoding, accepted, index) {
  */
 
 function specify(encoding, spec, index) {
-  var s = 0;
+  let s = 0;
   if(spec.encoding.toLowerCase() === encoding.toLowerCase()){
     s |= 1;
   } else if (spec.encoding !== '*' ) {
@@ -129,7 +129,7 @@ function specify(encoding, spec, index) {
     q: spec.q,
     s: s
   }
-};
+}
 
 /**
  * Get the preferred encodings from an Accept-Encoding header.
@@ -137,15 +137,15 @@ function specify(encoding, spec, index) {
  */
 
 function preferredEncodings(accept, provided, preferred) {
-  var accepts = parseAcceptEncoding(accept || '');
+  const accepts = parseAcceptEncoding(accept || '');
 
-  var comparator = preferred ? function comparator (a, b) {
+  const comparator = preferred ? function comparator (a, b) {
     if (a.q !== b.q) {
       return b.q - a.q // higher quality first
     }
 
-    var aPreferred = preferred.indexOf(a.encoding)
-    var bPreferred = preferred.indexOf(b.encoding)
+    const aPreferred = preferred.indexOf(a.encoding)
+    const bPreferred = preferred.indexOf(b.encoding)
 
     if (aPreferred === -1 && bPreferred === -1) {
       // consider the original specifity/order
@@ -167,7 +167,7 @@ function preferredEncodings(accept, provided, preferred) {
       .map(getFullEncoding);
   }
 
-  var priorities = provided.map(function getPriority(type, index) {
+  const priorities = provided.map(function getPriority(type, index) {
     return getEncodingPriority(type, accepts, index);
   });
 

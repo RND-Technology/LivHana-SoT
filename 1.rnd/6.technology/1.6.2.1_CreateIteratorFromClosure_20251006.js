@@ -1,19 +1,19 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var GeneratorStart = require('./GeneratorStart');
-var IsArray = require('es-abstract/2024/IsArray');
-var IsCallable = require('es-abstract/2024/IsCallable');
-var OrdinaryObjectCreate = require('es-abstract/2024/OrdinaryObjectCreate');
+const GeneratorStart = require('./GeneratorStart');
+const IsArray = require('es-abstract/2024/IsArray');
+const IsCallable = require('es-abstract/2024/IsCallable');
+const OrdinaryObjectCreate = require('es-abstract/2024/OrdinaryObjectCreate');
 
-var every = require('es-abstract/helpers/every');
+const every = require('es-abstract/helpers/every');
 
-var SLOT = require('internal-slot');
+const SLOT = require('internal-slot');
 
-var safeConcat = require('safe-array-concat');
+const safeConcat = require('safe-array-concat');
 
-var isString = function isString(slot) {
+const isString = function isString(slot) {
 	return typeof slot === 'string';
 };
 
@@ -24,14 +24,14 @@ module.exports = function CreateIteratorFromClosure(closure, generatorBrand, pro
 	if (typeof generatorBrand !== 'string') {
 		throw new $TypeError('`generatorBrand` must be a string');
 	}
-	var extraSlots = arguments.length > 3 ? arguments[3] : [];
+	const extraSlots = arguments.length > 3 ? arguments[3] : [];
 	if (arguments.length > 3) {
 		if (!IsArray(extraSlots) || !every(extraSlots, isString)) {
 			throw new $TypeError('`extraSlots` must be a List of String internal slot names');
 		}
 	}
-	var internalSlotsList = safeConcat(extraSlots, ['[[GeneratorContext]]', '[[GeneratorBrand]]', '[[GeneratorState]]']); // step 3
-	var generator = OrdinaryObjectCreate(proto, internalSlotsList); // steps 4, 6
+	const internalSlotsList = safeConcat(extraSlots, ['[[GeneratorContext]]', '[[GeneratorBrand]]', '[[GeneratorState]]']); // step 3
+	const generator = OrdinaryObjectCreate(proto, internalSlotsList); // steps 4, 6
 	SLOT.set(generator, '[[GeneratorBrand]]', generatorBrand); // step 5
 
 	SLOT.assert(closure, '[[Sentinel]]'); // our userland slot

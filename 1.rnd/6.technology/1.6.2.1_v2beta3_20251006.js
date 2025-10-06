@@ -19,7 +19,7 @@ exports.cloudtasks_v2beta3 = void 0;
 /* eslint-disable @typescript-eslint/no-namespace */
 /* eslint-disable no-irregular-whitespace */
 const googleapis_common_1 = require("googleapis-common");
-var cloudtasks_v2beta3;
+let cloudtasks_v2beta3;
 (function (cloudtasks_v2beta3) {
     /**
      * Cloud Tasks API

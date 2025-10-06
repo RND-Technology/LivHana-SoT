@@ -169,8 +169,8 @@ import { is_basic_identifier_string } from "./parse.js";
 
 (function() {
 
-    var normalize_directives = function(body) {
-        for (var i = 0; i < body.length; i++) {
+    const normalize_directives = function(body) {
+        for (let i = 0; i < body.length; i++) {
             if (body[i] instanceof AST_Statement && body[i].body instanceof AST_String) {
                 body[i] = new AST_Directive({
                     start: body[i].start,
@@ -204,7 +204,7 @@ import { is_basic_identifier_string } from "./parse.js";
         return null;
     }
 
-    var MOZ_TO_ME = {
+    const MOZ_TO_ME = {
         Program: function(M) {
             return new AST_Toplevel({
                 start: my_start_token(M),
@@ -272,8 +272,8 @@ import { is_basic_identifier_string } from "./parse.js";
         },
 
         TemplateLiteral: function(M) {
-            var segments = [];
-            for (var i = 0; i < M.quasis.length; i++) {
+            const segments = [];
+            for (let i = 0; i < M.quasis.length; i++) {
                 segments.push(from_moz(M.quasis[i]));
                 if (M.expressions[i]) {
                     segments.push(from_moz(M.expressions[i]));
@@ -333,7 +333,7 @@ import { is_basic_identifier_string } from "./parse.js";
         },
 
         TryStatement: function(M) {
-            var handlers = M.handlers || [M.handler];
+            const handlers = M.handlers || [M.handler];
             if (handlers.length > 1 || M.guardedHandlers && M.guardedHandlers.length) {
                 throw new Error("Multiple catch clauses are not supported.");
             }
@@ -361,7 +361,7 @@ import { is_basic_identifier_string } from "./parse.js";
 
                 return new AST_ObjectKeyVal(args);
             } else {
-                var value = from_moz_lambda(M.value, /*is_method=*/true);
+                const value = from_moz_lambda(M.value, /*is_method=*/true);
                 var args = {
                     start    : my_start_token(M.key || M.value),
                     end      : my_end_token(M.value),
@@ -383,7 +383,7 @@ import { is_basic_identifier_string } from "./parse.js";
             const is_private = M.key.type === "PrivateIdentifier";
             const key = M.computed ? from_moz(M.key) : new AST_SymbolMethod({ name: M.key.name || String(M.key.value) });
 
-            var args = {
+            const args = {
                 start    : my_start_token(M),
                 end      : my_end_token(M),
                 key,
@@ -569,8 +569,8 @@ import { is_basic_identifier_string } from "./parse.js";
         },
 
         ImportDeclaration: function(M) {
-            var imported_name = null;
-            var imported_names = null;
+            let imported_name = null;
+            let imported_names = null;
             M.specifiers.forEach(function (specifier) {
                 if (specifier.type === "ImportSpecifier" || specifier.type === "ImportNamespaceSpecifier") {
                     if (!imported_names) { imported_names = []; }
@@ -629,7 +629,7 @@ import { is_basic_identifier_string } from "./parse.js";
         },
 
         ExportAllDeclaration: function(M) {
-            var foreign_name = M.exported == null ?
+            const foreign_name = M.exported == null ?
                 new AST_SymbolExportForeign({ name: "*" }) :
                 from_moz_symbol(AST_SymbolExportForeign, M.exported, M.exported.type === "Literal");
             return new AST_Export({
@@ -690,11 +690,11 @@ import { is_basic_identifier_string } from "./parse.js";
         },
 
         Literal: function(M) {
-            var val = M.value, args = {
+            const val = M.value, args = {
                 start  : my_start_token(M),
                 end    : my_end_token(M)
             };
-            var rx = M.regex;
+            const rx = M.regex;
             if (rx && rx.pattern) {
                 // RegExpLiteral as per ESTree AST spec
                 args.value = {
@@ -1021,7 +1021,7 @@ import { is_basic_identifier_string } from "./parse.js";
 
     MOZ_TO_ME.UpdateExpression =
     MOZ_TO_ME.UnaryExpression = function To_Moz_Unary(M) {
-        var prefix = "prefix" in M ? M.prefix
+        const prefix = "prefix" in M ? M.prefix
             : M.type == "UnaryExpression" ? true : false;
         return new (prefix ? AST_UnaryPrefix : AST_UnaryPostfix)({
             start      : my_start_token(M),
@@ -1235,9 +1235,9 @@ import { is_basic_identifier_string } from "./parse.js";
     });
 
     def_to_moz(AST_TemplateString, function To_Moz_TemplateLiteral(M) {
-        var quasis = [];
-        var expressions = [];
-        for (var i = 0; i < M.segments.length; i++) {
+        const quasis = [];
+        const expressions = [];
+        for (let i = 0; i < M.segments.length; i++) {
             if (i % 2 !== 0) {
                 expressions.push(to_moz(M.segments[i]));
             } else {
@@ -1281,7 +1281,7 @@ import { is_basic_identifier_string } from "./parse.js";
     });
 
     def_to_moz(AST_Arrow, function To_Moz_ArrowFunctionExpression(M) {
-        var body = M.body.length === 1 && M.body[0] instanceof AST_Return && M.body[0].value
+        const body = M.body.length === 1 && M.body[0] instanceof AST_Return && M.body[0].value
             ? to_moz(M.body[0].value)
             : {
                 type: "BlockStatement",
@@ -1308,7 +1308,7 @@ import { is_basic_identifier_string } from "./parse.js";
             type: "ObjectPattern",
             properties: M.names.map(M => {
                 if (M instanceof AST_ObjectKeyVal) {
-                    var computed = M.computed_key();
+                    const computed = M.computed_key();
                     const [shorthand, key] = to_moz_property_key(M.key, computed, M.quote, M.value);
 
                     return {
@@ -1411,10 +1411,10 @@ import { is_basic_identifier_string } from "./parse.js";
 
     def_to_moz(AST_Export, function To_Moz_ExportDeclaration(M) {
         if (M.exported_names) {
-            var first_exported = M.exported_names[0];
+            const first_exported = M.exported_names[0];
             if (first_exported && first_exported.name.name === "*" && !first_exported.name.quote) {
-                var foreign_name = first_exported.foreign_name;
-                var exported = foreign_name.name === "*" && !foreign_name.quote
+                const foreign_name = first_exported.foreign_name;
+                const exported = foreign_name.name === "*" && !foreign_name.quote
                     ? null
                     : to_moz(foreign_name);
                 return {
@@ -1455,7 +1455,7 @@ import { is_basic_identifier_string } from "./parse.js";
     });
 
     def_to_moz(AST_Import, function To_Moz_ImportDeclaration(M) {
-        var specifiers = [];
+        const specifiers = [];
         if (M.imported_name) {
             specifiers.push({
                 type: "ImportDefaultSpecifier",
@@ -1463,7 +1463,7 @@ import { is_basic_identifier_string } from "./parse.js";
             });
         }
         if (M.imported_names) {
-            var first_imported_foreign_name = M.imported_names[0].foreign_name;
+            const first_imported_foreign_name = M.imported_names[0].foreign_name;
             if (first_imported_foreign_name.name === "*" && !first_imported_foreign_name.quote) {
                 specifiers.push({
                     type: "ImportNamespaceSpecifier",
@@ -1522,7 +1522,7 @@ import { is_basic_identifier_string } from "./parse.js";
     });
 
     def_to_moz(AST_PropAccess, function To_Moz_MemberExpression(M) {
-        var isComputed = M instanceof AST_Sub;
+        const isComputed = M instanceof AST_Sub;
         return {
             type: "MemberExpression",
             object: to_moz(M.expression),
@@ -1602,10 +1602,10 @@ import { is_basic_identifier_string } from "./parse.js";
     });
 
     def_to_moz(AST_ObjectProperty, function To_Moz_Property(M, parent) {
-        var computed = M.computed_key();
+        const computed = M.computed_key();
         const [shorthand, key] = to_moz_property_key(M.key, computed, M.quote, M.value);
 
-        var kind;
+        let kind;
         if (M instanceof AST_ObjectGetter) {
             kind = "get";
         } else
@@ -1669,7 +1669,7 @@ import { is_basic_identifier_string } from "./parse.js";
     });
 
     def_to_moz(AST_ObjectKeyVal, function To_Moz_Property(M) {
-        var computed = M.computed_key();
+        const computed = M.computed_key();
         const [shorthand, key] = to_moz_property_key(M.key, computed, M.quote, M.value);
 
         return {
@@ -1721,7 +1721,7 @@ import { is_basic_identifier_string } from "./parse.js";
     });
 
     def_to_moz(AST_Class, function To_Moz_Class(M) {
-        var type = M instanceof AST_ClassExpression ? "ClassExpression" : "ClassDeclaration";
+        const type = M instanceof AST_ClassExpression ? "ClassExpression" : "ClassDeclaration";
         return {
             type: type,
             superClass: to_moz(M.extends),
@@ -1768,7 +1768,7 @@ import { is_basic_identifier_string } from "./parse.js";
                 value: M.name
             };
         }
-        var def = M.definition();
+        const def = M.definition();
         return {
             type: "Identifier",
             name: def ? def.mangled_name || def.name : M.name
@@ -1787,7 +1787,7 @@ import { is_basic_identifier_string } from "./parse.js";
     });
 
     def_to_moz(AST_Constant, function To_Moz_Literal(M) {
-        var value = M.value;
+        const value = M.value;
         return {
             type: "Literal",
             value: value,
@@ -1823,8 +1823,8 @@ import { is_basic_identifier_string } from "./parse.js";
     /* -----[ tools ]----- */
 
     function my_start_token(moznode) {
-        var loc = moznode.loc, start = loc && loc.start;
-        var range = moznode.range;
+        const loc = moznode.loc, start = loc && loc.start;
+        const range = moznode.range;
         return new AST_Token(
             "",
             "",
@@ -1839,8 +1839,8 @@ import { is_basic_identifier_string } from "./parse.js";
     }
 
     function my_end_token(moznode) {
-        var loc = moznode.loc, end = loc && loc.end;
-        var range = moznode.range;
+        const loc = moznode.loc, end = loc && loc.end;
+        const range = moznode.range;
         return new AST_Token(
             "",
             "",
@@ -1977,16 +1977,16 @@ import { is_basic_identifier_string } from "./parse.js";
     }
 
     AST_Node.from_mozilla_ast = function(node) {
-        var save_labels = FROM_MOZ_LABELS;
+        const save_labels = FROM_MOZ_LABELS;
         FROM_MOZ_LABELS = [];
-        var ast = from_moz(node);
+        const ast = from_moz(node);
         FROM_MOZ_LABELS = save_labels;
         return ast;
     };
 
     function set_moz_loc(mynode, moznode) {
-        var start = mynode.start;
-        var end = mynode.end;
+        const start = mynode.start;
+        const end = mynode.end;
         if (!(start && end)) {
             return moznode;
         }
@@ -2011,12 +2011,12 @@ import { is_basic_identifier_string } from "./parse.js";
         });
     }
 
-    var TO_MOZ_STACK = null;
+    let TO_MOZ_STACK = null;
 
     function to_moz(node) {
         if (TO_MOZ_STACK === null) { TO_MOZ_STACK = []; }
         TO_MOZ_STACK.push(node);
-        var ast = node != null ? node.to_mozilla_ast(TO_MOZ_STACK[TO_MOZ_STACK.length - 2]) : null;
+        const ast = node != null ? node.to_mozilla_ast(TO_MOZ_STACK[TO_MOZ_STACK.length - 2]) : null;
         TO_MOZ_STACK.pop();
         if (TO_MOZ_STACK.length === 0) { TO_MOZ_STACK = null; }
         return ast;
@@ -2069,7 +2069,7 @@ import { is_basic_identifier_string } from "./parse.js";
     }
 
     function to_moz_in_destructuring() {
-        var i = TO_MOZ_STACK.length;
+        let i = TO_MOZ_STACK.length;
         while (i--) {
             if (TO_MOZ_STACK[i] instanceof AST_Destructuring) {
                 return true;
@@ -2086,7 +2086,7 @@ import { is_basic_identifier_string } from "./parse.js";
     }
 
     function to_moz_scope(type, node) {
-        var body = node.body.map(to_moz);
+        const body = node.body.map(to_moz);
         if (node.body[0] instanceof AST_SimpleStatement && node.body[0].body instanceof AST_String) {
             body.unshift(to_moz(new AST_EmptyStatement(node.body[0])));
         }

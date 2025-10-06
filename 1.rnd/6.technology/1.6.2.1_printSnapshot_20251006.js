@@ -17,15 +17,15 @@ exports.printSnapshotAndReceived =
   exports.PROPERTIES_ARG =
   exports.HINT_ARG =
     void 0;
-var _chalk = _interopRequireDefault(require('chalk'));
-var _expectUtils = require('@jest/expect-utils');
-var _jestDiff = require('jest-diff');
-var _jestGetType = require('jest-get-type');
-var _jestMatcherUtils = require('jest-matcher-utils');
-var _prettyFormat = require('pretty-format');
-var _colors = require('./colors');
-var _dedentLines = require('./dedentLines');
-var _utils = require('./utils');
+const _chalk = _interopRequireDefault(require('chalk'));
+const _expectUtils = require('@jest/expect-utils');
+const _jestDiff = require('jest-diff');
+const _jestGetType = require('jest-get-type');
+const _jestMatcherUtils = require('jest-matcher-utils');
+const _prettyFormat = require('pretty-format');
+const _colors = require('./colors');
+const _dedentLines = require('./dedentLines');
+const _utils = require('./utils');
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {default: obj};
 }

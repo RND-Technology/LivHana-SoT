@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = _regeneratorValues;
 function _regeneratorValues(iterable) {
   if (iterable != null) {
-    var iteratorMethod = iterable[typeof Symbol === "function" && Symbol.iterator || "@@iterator"],
+    let iteratorMethod = iterable[typeof Symbol === "function" && Symbol.iterator || "@@iterator"],
       i = 0;
     if (iteratorMethod) {
       return iteratorMethod.call(iterable);

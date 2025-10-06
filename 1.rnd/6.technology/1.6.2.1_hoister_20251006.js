@@ -4,8 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _t = require("@babel/types");
-var _t2 = _t;
+const _t = require("@babel/types");
+const _t2 = _t;
 const {
   react
 } = _t;

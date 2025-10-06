@@ -3,17 +3,17 @@
 /*eslint-disable no-bitwise*/
 
 
-var Type = require('../type');
+const Type = require('../type');
 
 
 // [ 64, 65, 66 ] -> [ padding, CR, LF ]
-var BASE64_MAP = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=\n\r';
+const BASE64_MAP = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=\n\r';
 
 
 function resolveYamlBinary(data) {
   if (data === null) return false;
 
-  var code, idx, bitlen = 0, max = data.length, map = BASE64_MAP;
+  let code, idx, bitlen = 0, max = data.length, map = BASE64_MAP;
 
   // Convert one by one.
   for (idx = 0; idx < max; idx++) {
@@ -33,7 +33,7 @@ function resolveYamlBinary(data) {
 }
 
 function constructYamlBinary(data) {
-  var idx, tailbits,
+  let idx, tailbits,
       input = data.replace(/[\r\n=]/g, ''), // remove CR/LF & padding to simplify scan
       max = input.length,
       map = BASE64_MAP,
@@ -71,7 +71,7 @@ function constructYamlBinary(data) {
 }
 
 function representYamlBinary(object /*, style*/) {
-  var result = '', bits = 0, idx, tail,
+  let result = '', bits = 0, idx, tail,
       max = object.length,
       map = BASE64_MAP;
 

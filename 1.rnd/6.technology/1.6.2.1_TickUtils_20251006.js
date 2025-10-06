@@ -7,18 +7,18 @@ exports.getAngledTickWidth = getAngledTickWidth;
 exports.getNumberIntervalTicks = getNumberIntervalTicks;
 exports.getTickBoundaries = getTickBoundaries;
 exports.isVisible = isVisible;
-var _CartesianUtils = require("./CartesianUtils");
-var _getEveryNthWithCondition = require("./getEveryNthWithCondition");
+const _CartesianUtils = require("./CartesianUtils");
+const _getEveryNthWithCondition = require("./getEveryNthWithCondition");
 function getAngledTickWidth(contentSize, unitSize, angle) {
-  var size = {
+  const size = {
     width: contentSize.width + unitSize.width,
     height: contentSize.height + unitSize.height
   };
   return (0, _CartesianUtils.getAngledRectangleWidth)(size, angle);
 }
 function getTickBoundaries(viewBox, sign, sizeKey) {
-  var isWidth = sizeKey === 'width';
-  var {
+  const isWidth = sizeKey === 'width';
+  const {
     x,
     y,
     width,
@@ -41,7 +41,7 @@ function isVisible(sign, tickPosition, getSize, start, end) {
   if (sign * tickPosition < sign * start || sign * tickPosition > sign * end) {
     return false;
   }
-  var size = getSize();
+  const size = getSize();
   return sign * (tickPosition - sign * size / 2 - start) >= 0 && sign * (tickPosition + sign * size / 2 - end) <= 0;
 }
 function getNumberIntervalTicks(ticks, interval) {

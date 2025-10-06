@@ -1,4 +1,4 @@
-var colors = require('../safe');
+const colors = require('../safe');
 
 console.log(colors.yellow('First some yellow text'));
 

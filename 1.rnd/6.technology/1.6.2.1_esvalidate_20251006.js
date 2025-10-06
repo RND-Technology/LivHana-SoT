@@ -26,7 +26,7 @@
 /*jslint sloppy:true plusplus:true node:true rhino:true */
 /*global phantom:true */
 
-var fs, system, esprima, options, fnames, forceFile, count;
+let fs, system, esprima, options, fnames, forceFile, count;
 
 if (typeof esprima === 'undefined') {
     // PhantomJS can only require() relative files
@@ -132,7 +132,7 @@ if (options.format === 'junit') {
 count = 0;
 
 function run(fname, content) {
-    var timestamp, syntax, name;
+    let timestamp, syntax, name;
     try {
         if (typeof content !== 'string') {
             throw content;
@@ -159,7 +159,7 @@ function run(fname, content) {
                 '">');
 
             syntax.errors.forEach(function (error) {
-                var msg = error.message;
+                let msg = error.message;
                 msg = msg.replace(/^Line\ [0-9]*\:\ /, '');
                 console.log('  <testcase name="Line ' + error.lineNumber + ': ' + msg + '" ' +
                     ' time="0">');
@@ -174,7 +174,7 @@ function run(fname, content) {
         } else if (options.format === 'plain') {
 
             syntax.errors.forEach(function (error) {
-                var msg = error.message;
+                let msg = error.message;
                 msg = msg.replace(/^Line\ [0-9]*\:\ /, '');
                 msg = fname + ':' + error.lineNumber + ': ' + msg;
                 console.log(msg);
@@ -200,7 +200,7 @@ function run(fname, content) {
 }
 
 fnames.forEach(function (fname) {
-    var content = '';
+    let content = '';
     try {
         if (fname && (fname !== '-' || forceFile)) {
             content = fs.readFileSync(fname, 'utf-8');

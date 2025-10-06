@@ -123,7 +123,7 @@ class VitestMocker {
     VitestMocker.pendingIds = [];
   }
   async callFunctionMock(dep, mock) {
-    var _a, _b;
+    let _a, _b;
     const cached = (_a = this.moduleCache.get(dep)) == null ? void 0 : _a.exports;
     if (cached)
       return cached;
@@ -245,7 +245,7 @@ If you need to partially mock a module, you can use "importOriginal" helper insi
         if (!define(newContainer, property, isFunction ? value : {}))
           continue;
         if (isFunction) {
-          let mockFunction2 = function() {
+          const mockFunction2 = function() {
             if (this instanceof newContainer[property]) {
               for (const { key, descriptor: descriptor2 } of getAllMockableProperties(this, false, primitives)) {
                 if (descriptor2.get)
@@ -374,7 +374,7 @@ function listenForErrors(state) {
   dispose.forEach((fn) => fn());
   dispose.length = 0;
   function catchError(err, type) {
-    var _a;
+    let _a;
     const worker = state();
     const error = processError(err);
     if (!isPrimitive(error)) {
@@ -521,7 +521,7 @@ class VitestExecutor extends ViteNodeRunner {
     return globalThis.__vitest_worker__ || this.options.state;
   }
   shouldResolveId(id, _importee) {
-    var _a;
+    let _a;
     if (isInternalRequest(id) || id.startsWith("data:"))
       return false;
     const transformMode = ((_a = this.state.environment) == null ? void 0 : _a.transformMode) ?? "ssr";

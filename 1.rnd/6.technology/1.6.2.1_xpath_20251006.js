@@ -33,7 +33,7 @@
     document.dispatchEvent(evt);
  */
 module.exports = core => {
-  var xpath = {};
+  const xpath = {};
 
   // Helper function to deal with the migration of Attr to no longer have a nodeName property despite this codebase
   // assuming it does.
@@ -48,7 +48,7 @@ module.exports = core => {
    * The XPath lexer is basically a single regular expression, along with
    * some helper functions to pop different types.
    */
-  var Stream = xpath.Stream = function Stream(str) {
+  const Stream = xpath.Stream = function Stream(str) {
     this.original = this.str = str;
     this.peeked = null;
     // TODO: not really needed, but supposedly tokenizer also disambiguates
@@ -59,7 +59,7 @@ module.exports = core => {
   Stream.prototype = {
     peek: function() {
       if (this.peeked) return this.peeked;
-      var m = this.re.exec(this.str);
+      const m = this.re.exec(this.str);
       if (!m) return null;
       this.str = this.str.substr(m[0].length);
       return this.peeked = m[1];
@@ -67,29 +67,29 @@ module.exports = core => {
     /** Peek 2 tokens ahead. */
     peek2: function() {
       this.peek();  // make sure this.peeked is set
-      var m = this.re.exec(this.str);
+      const m = this.re.exec(this.str);
       if (!m) return null;
       return m[1];
     },
     pop: function() {
-      var r = this.peek();
+      const r = this.peek();
       this.peeked = null;
       this.prevprev = this.prev;
       this.prev = r;
       return r;
     },
     trypop: function(tokens) {
-      var tok = this.peek();
+      const tok = this.peek();
       if (tok === tokens) return this.pop();
       if (Array.isArray(tokens)) {
-        for (var i = 0; i < tokens.length; ++i) {
-          var t = tokens[i];
-          if (t == tok) return this.pop();;
+        for (let i = 0; i < tokens.length; ++i) {
+          const t = tokens[i];
+          if (t == tok) return this.pop();
         }
       }
     },
     trypopfuncname: function() {
-      var tok = this.peek();
+      const tok = this.peek();
       if (!this.isQnameRe.test(tok))
         return null;
       switch (tok) {
@@ -100,7 +100,7 @@ module.exports = core => {
       return this.pop();
     },
     trypopaxisname: function() {
-      var tok = this.peek();
+      const tok = this.peek();
       switch (tok) {
         case 'ancestor': case 'ancestor-or-self': case 'attribute':
         case 'child': case 'descendant': case 'descendant-or-self':
@@ -111,15 +111,15 @@ module.exports = core => {
       return null;
     },
     trypopnametest: function() {
-      var tok = this.peek();
+      const tok = this.peek();
       if ('*' === tok || this.startsWithNcNameRe.test(tok)) return this.pop();
       return null;
     },
     trypopliteral: function() {
-      var tok = this.peek();
+      const tok = this.peek();
       if (null == tok) return null;
-      var first = tok.charAt(0);
-      var last = tok.charAt(tok.length - 1);
+      const first = tok.charAt(0);
+      const last = tok.charAt(tok.length - 1);
       if ('"' === first && '"' === last ||
           "'" === first && "'" === last) {
         this.pop();
@@ -128,12 +128,12 @@ module.exports = core => {
       return null;
     },
     trypopnumber: function() {
-      var tok = this.peek();
+      const tok = this.peek();
       if (this.isNumberRe.test(tok)) return parseFloat(this.pop()) ?? null;
       else return null;
     },
     trypopvarref: function() {
-      var tok = this.peek();
+      const tok = this.peek();
       if (null == tok) return null;
       if ('$' === tok.charAt(0)) return this.pop().substr(1) ?? null;
       else return null;
@@ -144,27 +144,27 @@ module.exports = core => {
   };
   (function() {
     // http://www.w3.org/TR/REC-xml-names/#NT-NCName
-    var nameStartCharsExceptColon =
+    const nameStartCharsExceptColon =
         'A-Z_a-z\xc0-\xd6\xd8-\xf6\xF8-\u02FF\u0370-\u037D\u037F-\u1FFF' +
         '\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF' +
         '\uFDF0-\uFFFD';  // JS doesn't support [#x10000-#xEFFFF]
-    var nameCharExceptColon = nameStartCharsExceptColon +
+    const nameCharExceptColon = nameStartCharsExceptColon +
         '\\-\\.0-9\xb7\u0300-\u036F\u203F-\u2040';
-    var ncNameChars = '[' + nameStartCharsExceptColon +
+    const ncNameChars = '[' + nameStartCharsExceptColon +
         '][' + nameCharExceptColon + ']*'
     // http://www.w3.org/TR/REC-xml-names/#NT-QName
-    var qNameChars = ncNameChars + '(?::' + ncNameChars + ')?';
-    var otherChars = '\\.\\.|[\\(\\)\\[\\].@,]|::';  // .. must come before [.]
-    var operatorChars =
+    const qNameChars = ncNameChars + '(?::' + ncNameChars + ')?';
+    const otherChars = '\\.\\.|[\\(\\)\\[\\].@,]|::';  // .. must come before [.]
+    const operatorChars =
         'and|or|mod|div|' +
         '//|!=|<=|>=|[*/|+\\-=<>]';  // //, !=, <=, >= before individual ones.
-    var literal = '"[^"]*"|' + "'[^']*'";
-    var numberChars = '[0-9]+(?:\\.[0-9]*)?|\\.[0-9]+';
-    var variableReference = '\\$' + qNameChars;
-    var nameTestChars = '\\*|' + ncNameChars + ':\\*|' + qNameChars;
-    var optionalSpace = '[ \t\r\n]*';  // stricter than regexp \s.
-    var nodeType = 'comment|text|processing-instruction|node';
-    var re = new RegExp(
+    const literal = '"[^"]*"|' + "'[^']*'";
+    const numberChars = '[0-9]+(?:\\.[0-9]*)?|\\.[0-9]+';
+    const variableReference = '\\$' + qNameChars;
+    const nameTestChars = '\\*|' + ncNameChars + ':\\*|' + qNameChars;
+    const optionalSpace = '[ \t\r\n]*';  // stricter than regexp \s.
+    const nodeType = 'comment|text|processing-instruction|node';
+    const re = new RegExp(
         // numberChars before otherChars so that leading-decimal doesn't become .
         '^' + optionalSpace + '(' + numberChars + '|' + otherChars + '|' +
         nameTestChars + '|' + operatorChars + '|' + literal + '|' +
@@ -181,9 +181,9 @@ module.exports = core => {
   /***************************************************************************
    *                               Parsing                                   *
    ***************************************************************************/
-  var parse = xpath.parse = function parse(stream, a) {
-    var r = orExpr(stream,a);
-    var x, unparsed = [];
+  const parse = xpath.parse = function parse(stream, a) {
+    const r = orExpr(stream,a);
+    let x, unparsed = [];
     while (x = stream.pop()) {
       unparsed.push(x);
     }
@@ -200,11 +200,11 @@ module.exports = core => {
    * so a op b op c becomes ((a op b) op c)
    */
   function binaryL(subExpr, stream, a, ops) {
-    var lhs = subExpr(stream, a);
+    let lhs = subExpr(stream, a);
     if (lhs == null) return null;
-    var op;
+    let op;
     while (op = stream.trypop(ops)) {
-      var rhs = subExpr(stream, a);
+      const rhs = subExpr(stream, a);
       if (rhs == null)
         throw new XPathException(XPathException.INVALID_EXPRESSION_ERR,
                                  'Position ' + stream.position() +
@@ -221,11 +221,11 @@ module.exports = core => {
    * so a op b op c becomes (a op (b op c))
    */
   function binaryR(subExpr, stream, a, ops) {
-    var lhs = subExpr(stream, a);
+    const lhs = subExpr(stream, a);
     if (lhs == null) return null;
-    var op = stream.trypop(ops);
+    const op = stream.trypop(ops);
     if (op) {
-      var rhs = binaryR(stream, a);
+      const rhs = binaryR(stream, a);
       if (rhs == null)
         throw new XPathException(XPathException.INVALID_EXPRESSION_ERR,
                                  'Position ' + stream.position() +
@@ -246,9 +246,9 @@ module.exports = core => {
    *  [10] AbbreviatedAbsoluteLocationPath::= '//' RelativeLocationPath
    */
   function absoluteLocationPath(stream, a) {
-    var op = stream.peek();
+    const op = stream.peek();
     if ('/' === op || '//' === op) {
-      var lhs = a.node('Root');
+      const lhs = a.node('Root');
       return relativeLocationPath(lhs, stream, a, true);
     } else {
       return null;
@@ -264,13 +264,13 @@ module.exports = core => {
       lhs = step(stream, a);
       if (null == lhs) return lhs;
     }
-    var op;
+    let op;
     while (op = stream.trypop(['/', '//'])) {
       if ('//' === op) {
         lhs = a.node('/', lhs,
                      a.node('Axis', 'descendant-or-self', 'node', undefined));
       }
-      var rhs = step(stream, a);
+      const rhs = step(stream, a);
       if (null == rhs && '/' === op && isOnlyRootOk) return lhs;
       else isOnlyRootOk = false;
       if (null == rhs)
@@ -286,15 +286,15 @@ module.exports = core => {
    * e.g. @href, self::p, p, a[@href], ., ..
    */
   function step(stream, a) {
-    var abbrStep = stream.trypop(['.', '..']);
+    const abbrStep = stream.trypop(['.', '..']);
     if ('.' === abbrStep)  // A location step of . is short for self::node().
       return a.node('Axis', 'self', 'node');
     if ('..' === abbrStep)  // A location step of .. is short for parent::node()
       return a.node('Axis', 'parent', 'node');
 
-    var axis = axisSpecifier(stream, a);
-    var nodeType = nodeTypeTest(stream, a);
-    var nodeName;
+    let axis = axisSpecifier(stream, a);
+    let nodeType = nodeTypeTest(stream, a);
+    let nodeName;
     if (null == nodeType) nodeName = nodeNameTest(stream, a);
     if (null == axis && null == nodeType && null == nodeName) return null;
     if (null == nodeType && null == nodeName)
@@ -311,8 +311,8 @@ module.exports = core => {
       else if ('namespace' === axis) nodeType = 'namespace';
       else nodeType = 'element';
     }
-    var lhs = a.node('Axis', axis, nodeType, nodeName);
-    var pred;
+    let lhs = a.node('Axis', axis, nodeType, nodeName);
+    let pred;
     while (null != (pred = predicate(lhs, stream, a))) {
       lhs = pred;
     }
@@ -326,11 +326,11 @@ module.exports = core => {
    *  [13] AbbreviatedAxisSpecifier::= '@'?
    */
   function axisSpecifier(stream, a) {
-    var attr = stream.trypop('@');
+    const attr = stream.trypop('@');
     if (null != attr) return 'attribute';
-    var axisName = stream.trypopaxisname();
+    const axisName = stream.trypopaxisname();
     if (null != axisName) {
-      var coloncolon = stream.trypop('::');
+      const coloncolon = stream.trypop('::');
       if (null == coloncolon)
         throw new XPathException(XPathException.INVALID_EXPRESSION_ERR,
                                  'Position ' + stream.position() +
@@ -346,13 +346,13 @@ module.exports = core => {
     if ('(' !== stream.peek2()) {
       return null;
     }
-    var type = stream.trypop(['comment', 'text', 'processing-instruction', 'node']);
+    const type = stream.trypop(['comment', 'text', 'processing-instruction', 'node']);
     if (null != type) {
       if (null == stream.trypop('('))
         throw new XPathException(XPathException.INVALID_EXPRESSION_ERR,
                                  'Position ' + stream.position() +
                                  ': Should not happen.');
-      var param = undefined;
+      let param = undefined;
       if (type == 'processing-instruction') {
         param = stream.trypopliteral();
       }
@@ -364,7 +364,7 @@ module.exports = core => {
     }
   }
   function nodeNameTest(stream, a) {
-    var name = stream.trypopnametest();
+    const name = stream.trypopnametest();
     if (name != null) return name;
     else return null;
   }
@@ -373,7 +373,7 @@ module.exports = core => {
    */
   function predicate(lhs, stream, a) {
     if (null == stream.trypop('[')) return null;
-    var expr = orExpr(stream, a);
+    const expr = orExpr(stream, a);
     if (null == expr)
       throw new XPathException(XPathException.INVALID_EXPRESSION_ERR,
                                'Position ' + stream.position() +
@@ -390,20 +390,20 @@ module.exports = core => {
    * e.g. $x,  (3+4),  "hi",  32,  f(x)
    */
   function primaryExpr(stream, a) {
-    var x = stream.trypopliteral();
+    let x = stream.trypopliteral();
     if (null == x)
       x = stream.trypopnumber();
     if (null != x) {
       return x;
     }
-    var varRef = stream.trypopvarref();
+    const varRef = stream.trypopvarref();
     if (null != varRef) return a.node('VariableReference', varRef);
-    var funCall = functionCall(stream, a);
+    const funCall = functionCall(stream, a);
     if (null != funCall) {
       return funCall;
     }
     if (stream.trypop('(')) {
-      var e = orExpr(stream, a);
+      const e = orExpr(stream, a);
       if (null == e)
         throw new XPathException(XPathException.INVALID_EXPRESSION_ERR,
                                  'Position ' + stream.position() +
@@ -420,21 +420,21 @@ module.exports = core => {
    *  [17] Argument::= Expr
    */
   function functionCall(stream, a) {
-    var name = stream.trypopfuncname(stream, a);
+    const name = stream.trypopfuncname(stream, a);
     if (null == name) return null;
     if (null == stream.trypop('('))
       throw new XPathException(XPathException.INVALID_EXPRESSION_ERR,
                                'Position ' + stream.position() +
                                ': Expected ( ) after function name.');
-    var params = [];
-    var first = true;
+    const params = [];
+    let first = true;
     while (null == stream.trypop(')')) {
       if (!first && null == stream.trypop(','))
         throw new XPathException(XPathException.INVALID_EXPRESSION_ERR,
                                  'Position ' + stream.position() +
                                  ': Expected , between arguments of the function.');
       first = false;
-      var param = orExpr(stream, a);
+      const param = orExpr(stream, a);
       if (param == null)
         throw new XPathException(XPathException.INVALID_EXPRESSION_ERR,
                                  'Position ' + stream.position() +
@@ -457,9 +457,9 @@ module.exports = core => {
   function pathExpr(stream, a) {
     // We have to do FilterExpr before LocationPath because otherwise
     // LocationPath will eat up the name from a function call.
-    var filter = filterExpr(stream, a);
+    const filter = filterExpr(stream, a);
     if (null == filter) {
-      var loc = locationPath(stream, a);
+      const loc = locationPath(stream, a);
       if (null == loc) {
         throw new Error
         throw new XPathException(XPathException.INVALID_EXPRESSION_ERR,
@@ -468,7 +468,7 @@ module.exports = core => {
       }
       return a.node('PathExpr', loc);
     }
-    var rel = relativeLocationPath(filter, stream, a, false);
+    const rel = relativeLocationPath(filter, stream, a, false);
     if (filter === rel) return rel;
     else return a.node('PathExpr', rel);
   }
@@ -476,9 +476,9 @@ module.exports = core => {
    * aka. FilterExpr ::= PrimaryExpr Predicate*
    */
   function filterExpr(stream, a) {
-    var primary = primaryExpr(stream, a);
+    const primary = primaryExpr(stream, a);
     if (primary == null) return null;
-    var pred, lhs = primary;
+    let pred, lhs = primary;
     while (null != (pred = predicate(lhs, stream, a))) {
       lhs = pred;
     }
@@ -488,9 +488,9 @@ module.exports = core => {
   /** [21] OrExpr::= AndExpr | OrExpr 'or' AndExpr
    */
   function orExpr(stream, a) {
-    var orig = (stream.peeked || '') + stream.str
-    var r = binaryL(andExpr, stream, a, 'or');
-    var now = (stream.peeked || '') + stream.str;
+    const orig = (stream.peeked || '') + stream.str
+    const r = binaryL(andExpr, stream, a, 'or');
+    const now = (stream.peeked || '') + stream.str;
     return r;
   }
   /** [22] AndExpr::= EqualityExpr | AndExpr 'and' EqualityExpr
@@ -521,7 +521,7 @@ module.exports = core => {
    */
   function unaryExpr(stream, a) {
     if (stream.trypop('-')) {
-      var e = unaryExpr(stream, a);
+      const e = unaryExpr(stream, a);
       if (null == e)
         throw new XPathException(XPathException.INVALID_EXPRESSION_ERR,
                                  'Position ' + stream.position() +
@@ -530,7 +530,7 @@ module.exports = core => {
     }
     else return unionExpr(stream, a);
   }
-  var astFactory = {
+  const astFactory = {
     node: function() {return Array.prototype.slice.call(arguments);}
   };
 
@@ -588,11 +588,11 @@ module.exports = core => {
     },
     popSeries: function popSeries() {
       console.assert(0 < this.nextPos.length, this.nextPos);
-      var last = this.nextPos.pop() - 1,
+      const last = this.nextPos.pop() - 1,
           indexInPos = this.nextPos.length,
           seriesBeginIndex = this.seriesIndexes.pop(),
           seriesEndIndex = this.nodes.length;
-      for (var i = seriesBeginIndex; i < seriesEndIndex; ++i) {
+      for (let i = seriesBeginIndex; i < seriesEndIndex; ++i) {
         console.assert(indexInPos < this.lasts[i].length);
         console.assert(undefined === this.lasts[i][indexInPos]);
         this.lasts[i][indexInPos] = last;
@@ -601,9 +601,9 @@ module.exports = core => {
     finalize: function() {
       if (null == this.nextPos) return this;
       console.assert(0 === this.nextPos.length);
-      var lastsJSON = JSON.stringify(this.lasts);
-      for (var i = 0; i < this.lasts.length; ++i) {
-        for (var j = 0; j < this.lasts[i].length; ++j) {
+      const lastsJSON = JSON.stringify(this.lasts);
+      for (let i = 0; i < this.lasts.length; ++i) {
+        for (let j = 0; j < this.lasts[i].length; ++j) {
           console.assert(null != this.lasts[i][j], i + ',' + j + ':' + lastsJSON);
         }
       }
@@ -617,7 +617,7 @@ module.exports = core => {
       this._pushToNodes.call(this.nodes, node)
       this._pushToNodes.call(this.pos, this.nextPos.slice());
       this._pushToNodes.call(this.lasts, new Array(this.nextPos.length));
-      for (var i = 0; i < this.nextPos.length; ++i) this.nextPos[i]++;
+      for (let i = 0; i < this.nextPos.length; ++i) this.nextPos[i]++;
     },
     simplify: function() {
       this.finalize();
@@ -625,13 +625,13 @@ module.exports = core => {
     }
   };
   function eachContext(nodeMultiSet) {
-    var r = [];
-    for (var i = 0; i < nodeMultiSet.nodes.length; i++) {
-      var node = nodeMultiSet.nodes[i];
+    const r = [];
+    for (let i = 0; i < nodeMultiSet.nodes.length; i++) {
+      const node = nodeMultiSet.nodes[i];
       if (!nodeMultiSet.pos) {
         r.push({nodes:[node], pos: [[i + 1]], lasts: [[nodeMultiSet.nodes.length]]});
       } else {
-        for (var j = 0; j < nodeMultiSet.pos[i].length; ++j) {
+        for (let j = 0; j < nodeMultiSet.pos[i].length; ++j) {
           r.push({nodes:[node], pos: [[nodeMultiSet.pos[i][j]]], lasts: [[nodeMultiSet.lasts[i][j]]]});
         }
       }
@@ -673,14 +673,14 @@ module.exports = core => {
   };
 
   function followingSiblingHelper(nodeList  /*destructive!*/, nodeTypeNum, nodeName, shouldLowerCase, shift, peek, followingNode, andSelf, isReverseAxis) {
-    var matcher = new NodeMatcher(nodeTypeNum, nodeName, shouldLowerCase);
-    var nodeMultiSet = new NodeMultiSet(isReverseAxis);
+    const matcher = new NodeMatcher(nodeTypeNum, nodeName, shouldLowerCase);
+    const nodeMultiSet = new NodeMultiSet(isReverseAxis);
     while (0 < nodeList.length) {  // can be if for following, preceding
-      var node = shift.call(nodeList);
+      let node = shift.call(nodeList);
       console.assert(node != null);
       node = followingNode(node);
       nodeMultiSet.pushSeries();
-      var numPushed = 1;
+      let numPushed = 1;
       while (null != node) {
         if (! andSelf && matcher.matches(node))
           nodeMultiSet.addNode(node);
@@ -756,20 +756,20 @@ module.exports = core => {
   /** This axis is inefficient if there are many nodes in the nodeList.
    * But I think it's a pretty useless axis so it's ok. */
   function followingHelper(nodeList  /*destructive!*/, nodeTypeNum, nodeName, shouldLowerCase) {
-    var matcher = new NodeMatcher(nodeTypeNum, nodeName, shouldLowerCase);
-    var nodeMultiSet = new NodeMultiSet(false);
-    var cursor = nodeList[0];
-    var unorderedFollowingStarts = [];
+    const matcher = new NodeMatcher(nodeTypeNum, nodeName, shouldLowerCase);
+    const nodeMultiSet = new NodeMultiSet(false);
+    let cursor = nodeList[0];
+    const unorderedFollowingStarts = [];
     for (var i = 0; i < nodeList.length; i++) {
-      var node = nodeList[i];
-      var start = followingNonDescendantNode(node);
+      const node = nodeList[i];
+      const start = followingNonDescendantNode(node);
       if (start)
         unorderedFollowingStarts.push(start);
     }
     if (0 === unorderedFollowingStarts.length)
       return {nodes:[]};
-    var pos = [], nextPos = [];
-    var started = 0;
+    const pos = [], nextPos = [];
+    let started = 0;
     while (cursor = followingNode(cursor)) {
       for (var i = unorderedFollowingStarts.length - 1; i >= 0; i--){
         if (cursor === unorderedFollowingStarts[i]) {
@@ -788,17 +788,17 @@ module.exports = core => {
     return nodeMultiSet.finalize();
   }
   function precedingHelper(nodeList  /*destructive!*/, nodeTypeNum, nodeName, shouldLowerCase) {
-    var matcher = new NodeMatcher(nodeTypeNum, nodeName, shouldLowerCase);
-    var cursor = nodeList.pop();
+    const matcher = new NodeMatcher(nodeTypeNum, nodeName, shouldLowerCase);
+    let cursor = nodeList.pop();
     if (null == cursor) return {nodes:{}};
-    var r = {nodes:[], pos:[], lasts:[]};
-    var nextParents = [cursor.parentNode || cursor.ownerElement], nextPos = [1];
+    const r = {nodes:[], pos:[], lasts:[]};
+    const nextParents = [cursor.parentNode || cursor.ownerElement], nextPos = [1];
     while (cursor = precedingNode(cursor)) {
       if (cursor === nodeList[nodeList.length - 1]) {
         nextParents.push(nodeList.pop());
         nextPos.push(1);
       }
-      var matches = matcher.matches(cursor);
+      const matches = matcher.matches(cursor);
       var pos, someoneUsed = false;
       if (matches)
         pos = nextPos.slice();
@@ -822,9 +822,9 @@ module.exports = core => {
       }
     }
     for (var i = 0; i < r.pos.length; ++i) {
-      var lasts = [];
+      const lasts = [];
       r.lasts.push(lasts);
-      for (var j = r.pos[i].length - 1; j >= 0; j--) {
+      for (let j = r.pos[i].length - 1; j >= 0; j--) {
         if (null == r.pos[i][j]) {
           r.pos[i].splice(j, j+1);
         } else {
@@ -838,7 +838,7 @@ module.exports = core => {
   /** node-set, axis -> node-set */
   function descendantDfs(nodeMultiSet, node, remaining, matcher, andSelf, attrIndices, attrNodes) {
     while (0 < remaining.length && null != remaining[0].ownerElement) {
-      var attr = remaining.shift();
+      const attr = remaining.shift();
       if (andSelf && matcher.matches(attr)) {
         attrNodes.push(attr);
         attrIndices.push(nodeMultiSet.nodes.length);
@@ -848,7 +848,7 @@ module.exports = core => {
       if (matcher.matches(node))
         nodeMultiSet.addNode(node);
     }
-    var pushed = false;
+    let pushed = false;
     if (null == node) {
       if (0 === remaining.length) return;
       node = remaining.shift();
@@ -865,9 +865,9 @@ module.exports = core => {
     }
     // TODO: use optimization. Also try element.getElementsByTagName
     // var nodeList = 1 === nodeTypeNum && null != node.children ? node.children : node.childNodes;
-    var nodeList = node.childNodes;
-    for (var j = 0; j < nodeList.length; ++j) {
-      var child = nodeList[j];
+    const nodeList = node.childNodes;
+    for (let j = 0; j < nodeList.length; ++j) {
+      const child = nodeList[j];
       descendantDfs(nodeMultiSet, child, remaining, matcher, andSelf, attrIndices, attrNodes);
     }
     if (pushed) {
@@ -875,15 +875,15 @@ module.exports = core => {
     }
   }
   function descenantHelper(nodeList  /*destructive!*/, nodeTypeNum, nodeName, shouldLowerCase, andSelf) {
-    var matcher = new NodeMatcher(nodeTypeNum, nodeName, shouldLowerCase);
-    var nodeMultiSet = new NodeMultiSet(false);
-    var attrIndices = [], attrNodes = [];
+    const matcher = new NodeMatcher(nodeTypeNum, nodeName, shouldLowerCase);
+    const nodeMultiSet = new NodeMultiSet(false);
+    const attrIndices = [], attrNodes = [];
     while (0 < nodeList.length) {
       // var node = nodeList.shift();
       descendantDfs(nodeMultiSet, null, nodeList, matcher, andSelf, attrIndices, attrNodes);
     }
     nodeMultiSet.finalize();
-    for (var i = attrNodes.length-1; i >= 0; --i) {
+    for (let i = attrNodes.length-1; i >= 0; --i) {
       nodeMultiSet.nodes.splice(attrIndices[i], attrIndices[i], attrNodes[i]);
       nodeMultiSet.pos.splice(attrIndices[i], attrIndices[i], [1]);
       nodeMultiSet.lasts.splice(attrIndices[i], attrIndices[i], [1]);
@@ -893,12 +893,12 @@ module.exports = core => {
   /**
    */
   function ancestorHelper(nodeList  /*destructive!*/, nodeTypeNum, nodeName, shouldLowerCase, andSelf) {
-    var matcher = new NodeMatcher(nodeTypeNum, nodeName, shouldLowerCase);
-    var ancestors = []; // array of non-empty arrays of matching ancestors
+    const matcher = new NodeMatcher(nodeTypeNum, nodeName, shouldLowerCase);
+    const ancestors = []; // array of non-empty arrays of matching ancestors
     for (var i = 0; i < nodeList.length; ++i) {
       var node = nodeList[i];
-      var isFirst = true;
-      var a = [];
+      let isFirst = true;
+      const a = [];
       while (null != node) {
         if (!isFirst || andSelf) {
           if (matcher.matches(node))
@@ -910,13 +910,13 @@ module.exports = core => {
       if (0 < a.length)
         ancestors.push(a);
     }
-    var lasts = [];
+    const lasts = [];
     for (var i = 0; i < ancestors.length; ++i) lasts.push(ancestors[i].length);
-    var nodeMultiSet = new NodeMultiSet(true);
-    var newCtx = {nodes:[], pos:[], lasts:[]};
+    const nodeMultiSet = new NodeMultiSet(true);
+    const newCtx = {nodes:[], pos:[], lasts:[]};
     while (0 < ancestors.length) {
-      var pos = [ancestors[0].length];
-      var last = [lasts[0]];
+      const pos = [ancestors[0].length];
+      const last = [lasts[0]];
       var node = ancestors[0].pop();
       for (var i = ancestors.length - 1; i > 0; --i) {
         if (node === ancestors[i][ancestors[i].length - 1]) {
@@ -944,13 +944,13 @@ module.exports = core => {
    * For convenience, the node is the first element of the array.
    */
   function addressVector(node) {
-    var r = [node];
+    const r = [node];
     if (null != node.ownerElement) {
       node = node.ownerElement;
       r.push(-1);
     }
     while (null != node) {
-      var i = 0;
+      let i = 0;
       while (null != node.previousSibling) {
         node = node.previousSibling;
         i++;
@@ -961,12 +961,12 @@ module.exports = core => {
     return r;
   }
   function addressComparator(a, b) {
-    var minlen = Math.min(a.length - 1, b.length - 1),  // not including [0]=node
+    const minlen = Math.min(a.length - 1, b.length - 1),  // not including [0]=node
         alen = a.length,
         blen = b.length;
     if (a[0] === b[0]) return 0;
-    var c;
-    for (var i = 0; i < minlen; ++i) {
+    let c;
+    for (let i = 0; i < minlen; ++i) {
       c = a[alen - i - 1] - b[blen - i - 1];
       if (0 !== c)
         break;
@@ -981,15 +981,15 @@ module.exports = core => {
       c = 1;
     return c;
   }
-  var sortUniqDocumentOrder = xpath.sortUniqDocumentOrder = function(nodes) {
-    var a = [];
+  const sortUniqDocumentOrder = xpath.sortUniqDocumentOrder = function(nodes) {
+    const a = [];
     for (var i = 0; i < nodes.length; i++) {
-      var node = nodes[i];
-      var v = addressVector(node);
+      const node = nodes[i];
+      const v = addressVector(node);
       a.push(v);
     }
     a.sort(addressComparator);
-    var b = [];
+    const b = [];
     for (var i = 0; i < a.length; i++) {
       if (0 < i && a[i][0] === a[i - 1][0])
         continue;
@@ -999,14 +999,14 @@ module.exports = core => {
   }
   /** Sort node multiset. Does not do any de-duping. */
   function sortNodeMultiSet(nodeMultiSet) {
-    var a = [];
+    const a = [];
     for (var i = 0; i < nodeMultiSet.nodes.length; i++) {
-      var v = addressVector(nodeMultiSet.nodes[i]);
+      const v = addressVector(nodeMultiSet.nodes[i]);
       a.push({v:v, n:nodeMultiSet.nodes[i],
               p:nodeMultiSet.pos[i], l:nodeMultiSet.lasts[i]});
     }
     a.sort(compare);
-    var r = {nodes:[], pos:[], lasts:[]};
+    const r = {nodes:[], pos:[], lasts:[]};
     for (var i = 0; i < a.length; ++i) {
       r.nodes.push(a[i].n);
       r.pos.push(a[i].p);
@@ -1021,8 +1021,8 @@ module.exports = core => {
    * The array starts with document.
    */
   function nodeAndAncestors(node) {
-    var ancestors = [node];
-    var p = node;
+    const ancestors = [node];
+    let p = node;
     while (p = p.parentNode || p.ownerElement) {
       ancestors.unshift(p);
     }
@@ -1030,7 +1030,7 @@ module.exports = core => {
   }
   function compareSiblings(a, b) {
     if (a === b) return 0;
-    var c = a;
+    let c = a;
     while (c = c.previousSibling) {
       if (c === b)
         return 1;  // b < a
@@ -1044,7 +1044,7 @@ module.exports = core => {
   }
   /** The merge in merge-sort.*/
   function mergeNodeLists(x, y) {
-    var a, b, aanc, banc, r = [];
+    let a, b, aanc, banc, r = [];
     if ('object' !== typeof x)
       throw new XPathException(XPathException.INVALID_EXPRESSION_ERR,
                                'Invalid LHS for | operator ' +
@@ -1065,7 +1065,7 @@ module.exports = core => {
           banc = addressVector(b);
       }
       if (null == a || null == b) break;
-      var c = addressComparator(aanc, banc);
+      const c = addressComparator(aanc, banc);
       if (c < 0) {
         r.push(a);
         a = null;
@@ -1105,7 +1105,7 @@ module.exports = core => {
     return r;
   }
   function comparisonHelper(test, x, y, isNumericComparison) {
-    var coersion;
+    let coersion;
     if (isNumericComparison)
       coersion = fn.number;
     else coersion =
@@ -1113,11 +1113,11 @@ module.exports = core => {
       'number' === typeof x || 'number' === typeof y ? fn.number :
       fn.string;
     if ('object' === typeof x && 'object' === typeof y) {
-      var aMap = {};
+      const aMap = {};
       for (var i = 0; i < x.nodes.length; ++i) {
         var xi = coersion({nodes:[x.nodes[i]]});
-        for (var j = 0; j < y.nodes.length; ++j) {
-          var yj = coersion({nodes:[y.nodes[j]]});
+        for (let j = 0; j < y.nodes.length; ++j) {
+          const yj = coersion({nodes:[y.nodes[j]]});
           if (test(xi, yj)) return true;
         }
       }
@@ -1141,7 +1141,7 @@ module.exports = core => {
       return test(xc, yc);
     }
   }
-  var axes = xpath.axes = {
+  const axes = xpath.axes = {
     'ancestor':
       function ancestor(nodeList  /*destructive!*/, nodeTypeNum, nodeName, shouldLowerCase) {
         return ancestorHelper(
@@ -1155,8 +1155,8 @@ module.exports = core => {
     'attribute':
       function attribute(nodeList  /*destructive!*/, nodeTypeNum, nodeName, shouldLowerCase) {
         // TODO: figure out whether positions should be undefined here.
-        var matcher = new NodeMatcher(nodeTypeNum, nodeName, shouldLowerCase);
-        var nodeMultiSet = new NodeMultiSet(false);
+        const matcher = new NodeMatcher(nodeTypeNum, nodeName, shouldLowerCase);
+        const nodeMultiSet = new NodeMultiSet(false);
         if (null != nodeName) {
           // TODO: with namespace
           for (var i = 0; i < nodeList.length; ++i) {
@@ -1175,7 +1175,7 @@ module.exports = core => {
             var node = nodeList[i];
             if (null != node.attributes) {
               nodeMultiSet.pushSeries();
-              for (var j = 0; j < node.attributes.length; j++) {  // all nodes have .attributes
+              for (let j = 0; j < node.attributes.length; j++) {  // all nodes have .attributes
                 var attr = node.attributes[j];
                 if (matcher.matches(attr))  // TODO: I think this check is unnecessary
                   nodeMultiSet.addNode(attr);
@@ -1188,18 +1188,18 @@ module.exports = core => {
       },
     'child':
       function child(nodeList  /*destructive!*/, nodeTypeNum, nodeName, shouldLowerCase) {
-        var matcher = new NodeMatcher(nodeTypeNum, nodeName, shouldLowerCase);
-        var nodeMultiSet = new NodeMultiSet(false);
-        for (var i = 0; i < nodeList.length; ++i) {
-          var n = nodeList[i];
+        const matcher = new NodeMatcher(nodeTypeNum, nodeName, shouldLowerCase);
+        const nodeMultiSet = new NodeMultiSet(false);
+        for (let i = 0; i < nodeList.length; ++i) {
+          const n = nodeList[i];
           if (n.ownerElement)  // skip attribute nodes' text child.
             continue;
           if (n.childNodes) {
             nodeMultiSet.pushSeries();
-            var childList = 1 === nodeTypeNum && null != n.children ?
+            const childList = 1 === nodeTypeNum && null != n.children ?
                 n.children : n.childNodes;
-            for (var j = 0; j < childList.length; ++j) {
-              var child = childList[j];
+            for (let j = 0; j < childList.length; ++j) {
+              const child = childList[j];
               if (matcher.matches(child)) {
                 nodeMultiSet.addNode(child);
               }
@@ -1239,10 +1239,10 @@ module.exports = core => {
       },
     'parent':
       function parent(nodeList  /*destructive!*/, nodeTypeNum, nodeName, shouldLowerCase) {
-        var matcher = new NodeMatcher(nodeTypeNum, nodeName, shouldLowerCase);
-        var nodes = [], pos = [];
-        for (var i = 0; i < nodeList.length; ++i) {
-          var parent = nodeList[i].parentNode || nodeList[i].ownerElement;
+        const matcher = new NodeMatcher(nodeTypeNum, nodeName, shouldLowerCase);
+        const nodes = [], pos = [];
+        for (let i = 0; i < nodeList.length; ++i) {
+          const parent = nodeList[i].parentNode || nodeList[i].ownerElement;
           if (null == parent)
             continue;
           if (!matcher.matches(parent))
@@ -1269,9 +1269,9 @@ module.exports = core => {
       },
     'self':
       function self(nodeList  /*destructive!*/, nodeTypeNum, nodeName, shouldLowerCase) {
-        var nodes = [], pos = [];
-        var matcher = new NodeMatcher(nodeTypeNum, nodeName, shouldLowerCase);
-        for (var i = 0; i < nodeList.length; ++i) {
+        const nodes = [], pos = [];
+        const matcher = new NodeMatcher(nodeTypeNum, nodeName, shouldLowerCase);
+        for (let i = 0; i < nodeList.length; ++i) {
           if (matcher.matches(nodeList[i])) {
             nodes.push(nodeList[i]);
             pos.push([1]);
@@ -1333,15 +1333,15 @@ module.exports = core => {
       return nodeSet.nodes.length;
     },
     'id': function id(object) {
-      var r = {nodes: []};
-      var doc = this.nodes[0].ownerDocument || this.nodes[0];
+      const r = {nodes: []};
+      const doc = this.nodes[0].ownerDocument || this.nodes[0];
       console.assert(doc);
-      var ids;
+      let ids;
       if ('object' === typeof object) {
         // for node-sets, map id over each node value.
         ids = [];
         for (var i = 0; i < object.nodes.length; ++i) {
-          var idNode = object.nodes[i];
+          const idNode = object.nodes[i];
           var idsString = fn.string({nodes:[idNode]});
           var a = idsString.split(/[ \t\r\n]+/g);
           Array.prototype.push.apply(ids, a);
@@ -1352,10 +1352,10 @@ module.exports = core => {
         ids = a;
       }
       for (var i = 0; i < ids.length; ++i) {
-        var id = ids[i];
+        const id = ids[i];
         if (0 === id.length)
           continue;
-        var node = doc.getElementById(id);
+        const node = doc.getElementById(id);
         if (null != node)
           r.nodes.push(node);
       }
@@ -1386,31 +1386,31 @@ module.exports = core => {
       return nodeSet.nodes[0].name;
     },
     'concat': function concat(x) {
-      var l = [];
-      for (var i = 0; i < arguments.length; ++i) {
+      const l = [];
+      for (let i = 0; i < arguments.length; ++i) {
         l.push(fn.string(arguments[i]));
       }
       return l.join('');
     },
     'starts-with': function startsWith(a, b) {
-      var as = fn.string(a), bs = fn.string(b);
+      const as = fn.string(a), bs = fn.string(b);
       return as.substr(0, bs.length) === bs;
     },
     'contains': function contains(a, b) {
-      var as = fn.string(a), bs = fn.string(b);
-      var i = as.indexOf(bs);
+      const as = fn.string(a), bs = fn.string(b);
+      const i = as.indexOf(bs);
       if (-1 === i) return false;
       return true;
     },
     'substring-before': function substringBefore(a, b) {
-      var as = fn.string(a), bs = fn.string(b);
-      var i = as.indexOf(bs);
+      const as = fn.string(a), bs = fn.string(b);
+      const i = as.indexOf(bs);
       if (-1 === i) return '';
       return as.substr(0, i);
     },
     'substring-after': function substringBefore(a, b) {
-      var as = fn.string(a), bs = fn.string(b);
-      var i = as.indexOf(bs);
+      const as = fn.string(a), bs = fn.string(b);
+      const i = as.indexOf(bs);
       if (-1 === i) return '';
       return as.substr(i + bs.length);
     },
@@ -1419,7 +1419,7 @@ module.exports = core => {
         throw new XPathException(XPathException.INVALID_EXPRESSION_ERR,
                                  'Must be at least 2 arguments to string()');
       }
-      var sString = fn.string(string),
+      const sString = fn.string(string),
           iStart = fn.round(start),
           iEnd = optEnd == null ? null : fn.round(optEnd);
       // Note that xpath string positions user 1-based index
@@ -1432,29 +1432,29 @@ module.exports = core => {
       return fn.string.call(this, optString).length;
     },
     'normalize-space': function normalizeSpace(optString) {
-      var s = fn.string.call(this, optString);
+      const s = fn.string.call(this, optString);
       return s.replace(/[ \t\r\n]+/g, ' ').replace(/^ | $/g, '');
     },
     'translate': function translate(string, from, to) {
-      var sString = fn.string.call(this, string),
+      const sString = fn.string.call(this, string),
           sFrom = fn.string(from),
           sTo = fn.string(to);
-      var eachCharRe = [];
-      var map = {};
-      for (var i = 0; i < sFrom.length; ++i) {
-        var c = sFrom.charAt(i);
+      const eachCharRe = [];
+      const map = {};
+      for (let i = 0; i < sFrom.length; ++i) {
+        const c = sFrom.charAt(i);
         map[c] = sTo.charAt(i);  // returns '' if beyond length of sTo.
         // copied from goog.string.regExpEscape in the Closure library.
         eachCharRe.push(
           c.replace(/([-()\[\]{}+?*.$\^|,:#<!\\])/g, '\\$1').
             replace(/\x08/g, '\\x08'));
       }
-      var re = new RegExp(eachCharRe.join('|'), 'g');
+      const re = new RegExp(eachCharRe.join('|'), 'g');
       return sString.replace(re, function(c) {return map[c];});
     },
     /// Boolean functions
     'not': function not(x) {
-      var bx = fn['boolean'](x);
+      const bx = fn['boolean'](x);
       return !bx;
     },
     'true': function trueVal() { return true; },
@@ -1464,10 +1464,10 @@ module.exports = core => {
     'sum': function sum(optNodeSet) {
       if (null == optNodeSet) return fn.sum(this);
       // for node-sets, map id over each node value.
-      var sum = 0;
-      for (var i = 0; i < optNodeSet.nodes.length; ++i) {
-        var node = optNodeSet.nodes[i];
-        var x = fn.number({nodes:[node]});
+      let sum = 0;
+      for (let i = 0; i < optNodeSet.nodes.length; ++i) {
+        const node = optNodeSet.nodes[i];
+        const x = fn.number({nodes:[node]});
         sum += x;
       }
       return sum;
@@ -1485,7 +1485,7 @@ module.exports = core => {
   /***************************************************************************
    *                         Evaluation: operators                           *
    ***************************************************************************/
-  var more = {
+  const more = {
     UnaryMinus: function(x) { return -fn.number(x); },
     '+': function(x, y) { return fn.number(x) + fn.number(y); },
     '-': function(x, y) { return fn.number(x) - fn.number(y); },
@@ -1510,7 +1510,7 @@ module.exports = core => {
     '=': function(x, y) {
       // optimization for two node-sets case: avoid n^2 comparisons.
       if ('object' === typeof x && 'object' === typeof y) {
-        var aMap = {};
+        const aMap = {};
         for (var i = 0; i < x.nodes.length; ++i) {
           var s = fn.string({nodes:[x.nodes[i]]});
           aMap[s] = true;
@@ -1528,7 +1528,7 @@ module.exports = core => {
       // optimization for two node-sets case: avoid n^2 comparisons.
       if ('object' === typeof x && 'object' === typeof y) {
         if (0 === x.nodes.length || 0 === y.nodes.length) return false;
-        var aMap = {};
+        const aMap = {};
         for (var i = 0; i < x.nodes.length; ++i) {
           var s = fn.string({nodes:[x.nodes[i]]});
           aMap[s] = true;
@@ -1543,7 +1543,7 @@ module.exports = core => {
       }
     }
   };
-  var nodeTypes = xpath.nodeTypes = {
+  const nodeTypes = xpath.nodeTypes = {
     'node': 0,
     'attribute': 2,
     'comment': 8, // this.doc.COMMENT_NODE,
@@ -1553,8 +1553,8 @@ module.exports = core => {
   };
   /** For debugging and unit tests: returnjs a stringified version of the
    * argument. */
-  var stringifyObject = xpath.stringifyObject = function stringifyObject(ctx) {
-    var seenKey = 'seen' + Math.floor(Math.random()*1000000000);
+  const stringifyObject = xpath.stringifyObject = function stringifyObject(ctx) {
+    const seenKey = 'seen' + Math.floor(Math.random()*1000000000);
     return JSON.stringify(helper(ctx));
 
     function helper(ctx) {
@@ -1568,8 +1568,8 @@ module.exports = core => {
       if (null != ctx.nodeValue) return ctx.nodeName + '=' + ctx.nodeValue;
       if (ctx[seenKey]) return '[circular]';
       ctx[seenKey] = true;
-      var nicer = {};
-      for (var key in ctx) {
+      const nicer = {};
+      for (const key in ctx) {
         if (seenKey === key)
           continue;
         try {
@@ -1582,7 +1582,7 @@ module.exports = core => {
       return nicer;
     }
   }
-  var Evaluator = xpath.Evaluator = function Evaluator(doc) {
+  const Evaluator = xpath.Evaluator = function Evaluator(doc) {
     this.doc = doc;
   }
   Evaluator.prototype = {
@@ -1616,8 +1616,8 @@ module.exports = core => {
           var ret = {nodes: []};
           var contexts = eachContext(lhs);
           for (var i = 0; i < contexts.length; ++i) {
-            var singleNodeSet = contexts[i];
-            var rhs = this.val(ast[2], singleNodeSet);
+            const singleNodeSet = contexts[i];
+            const rhs = this.val(ast[2], singleNodeSet);
             var success;
             if ('number' === typeof rhs) {
               success = rhs === singleNodeSet.pos[0][0];
@@ -1625,7 +1625,7 @@ module.exports = core => {
               success = fn['boolean'](rhs);
             }
             if (success) {
-              var node = singleNodeSet.nodes[0];
+              const node = singleNodeSet.nodes[0];
               ret.nodes.push(node);
               // skip over all the rest of the same node.
               while (i+1 < contexts.length && node === contexts[i+1].nodes[0]) {
@@ -1667,11 +1667,11 @@ module.exports = core => {
       }
     }
   };
-  var evaluate = xpath.evaluate = function evaluate(expr, doc, context) {
+  const evaluate = xpath.evaluate = function evaluate(expr, doc, context) {
     //var astFactory = new AstEvaluatorFactory(doc, context);
-    var stream = new Stream(expr);
-    var ast = parse(stream, astFactory);
-    var val = new Evaluator(doc).val(ast, {nodes: [context]});
+    const stream = new Stream(expr);
+    const ast = parse(stream, astFactory);
+    const val = new Evaluator(doc).val(ast, {nodes: [context]});
     return val;
   }
 
@@ -1679,7 +1679,7 @@ module.exports = core => {
    *                           DOM interface                                 *
    ***************************************************************************/
   var XPathException = xpath.XPathException = function XPathException(code, message) {
-    var e = new Error(message);
+    const e = new Error(message);
     e.name = 'XPathException';
     e.code = code;
     return e;
@@ -1688,7 +1688,7 @@ module.exports = core => {
   XPathException.TYPE_ERR = 52;
 
 
-  var XPathEvaluator = xpath.XPathEvaluator = function XPathEvaluator() {}
+  const XPathEvaluator = xpath.XPathEvaluator = function XPathEvaluator() {}
   XPathEvaluator.prototype = {
     createExpression: function(expression, resolver) {
       return new XPathExpression(expression, resolver);
@@ -1697,14 +1697,14 @@ module.exports = core => {
       // TODO
     },
     evaluate: function evaluate(expression, contextNode, resolver, type, result) {
-      var expr = new XPathExpression(expression, resolver);
+      const expr = new XPathExpression(expression, resolver);
       return expr.evaluate(contextNode, type, result);
     }
   };
 
 
   var XPathExpression = xpath.XPathExpression = function XPathExpression(expression, resolver, optDoc) {
-    var stream = new Stream(expression);
+    const stream = new Stream(expression);
     this._ast = parse(stream, astFactory);
     this._doc = optDoc;
   }
@@ -1712,14 +1712,14 @@ module.exports = core => {
     evaluate: function evaluate(contextNode, type, result) {
       if (null == contextNode.nodeType)
         throw new Error('bad argument (expected context node): ' + contextNode);
-      var doc = contextNode.ownerDocument || contextNode;
+      const doc = contextNode.ownerDocument || contextNode;
       if (null != this._doc && this._doc !== doc) {
         throw new core.DOMException(
             core.DOMException.WRONG_DOCUMENT_ERR,
             'The document must be the same as the context node\'s document.');
       }
-      var evaluator = new Evaluator(doc);
-      var value = evaluator.val(this._ast, {nodes: [contextNode]});
+      const evaluator = new Evaluator(doc);
+      let value = evaluator.val(this._ast, {nodes: [contextNode]});
       if (XPathResult.NUMBER_TYPE === type)
         value = fn.number(value);
       else if (XPathResult.STRING_TYPE === type)
@@ -1773,7 +1773,7 @@ module.exports = core => {
   XPathResult.ORDERED_NODE_SNAPSHOT_TYPE = 7;
   XPathResult.ANY_UNORDERED_NODE_TYPE = 8;
   XPathResult.FIRST_ORDERED_NODE_TYPE = 9;
-  var proto = {
+  const proto = {
     // XPathResultType
     get resultType() {
       if (this._resultType) return this._resultType;

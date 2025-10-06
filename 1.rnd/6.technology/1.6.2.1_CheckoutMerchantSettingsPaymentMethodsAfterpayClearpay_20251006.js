@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
 exports.checkoutMerchantSettingsPaymentMethodsAfterpayClearpaySchema = void 0;
-var schema_1 = require("../schema");
-var checkoutMerchantSettingsPaymentMethodsAfterpayClearpayEligibilityRange_1 = require("./checkoutMerchantSettingsPaymentMethodsAfterpayClearpayEligibilityRange");
+const schema_1 = require("../schema");
+const checkoutMerchantSettingsPaymentMethodsAfterpayClearpayEligibilityRange_1 = require("./checkoutMerchantSettingsPaymentMethodsAfterpayClearpayEligibilityRange");
 exports.checkoutMerchantSettingsPaymentMethodsAfterpayClearpaySchema = (0, schema_1.object)({
     orderEligibilityRange: [
         'order_eligibility_range',

@@ -2,7 +2,7 @@ import appearance from "./appearance.js";
 import {sum} from "./ascending.js";
 
 export default function(series) {
-  var n = series.length,
+  let n = series.length,
       i,
       j,
       sums = series.map(sum),

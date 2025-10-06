@@ -2,12 +2,12 @@
 
 'use strict'
 
-var buffer = require('buffer')
-var Buffer = buffer.Buffer
+const buffer = require('buffer')
+const Buffer = buffer.Buffer
 
-var safer = {}
+const safer = {}
 
-var key
+let key
 
 for (key in buffer) {
   if (!buffer.hasOwnProperty(key)) continue
@@ -15,7 +15,7 @@ for (key in buffer) {
   safer[key] = buffer[key]
 }
 
-var Safer = safer.Buffer = {}
+const Safer = safer.Buffer = {}
 for (key in Buffer) {
   if (!Buffer.hasOwnProperty(key)) continue
   if (key === 'allocUnsafe' || key === 'allocUnsafeSlow') continue
@@ -44,7 +44,7 @@ if (!Safer.alloc) {
     if (size < 0 || size >= 2 * (1 << 30)) {
       throw new RangeError('The value "' + size + '" is invalid for option "size"')
     }
-    var buf = Buffer(size)
+    const buf = Buffer(size)
     if (!fill || fill.length === 0) {
       buf.fill(0)
     } else if (typeof encoding === 'string') {

@@ -4,21 +4,21 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.Sector = void 0;
-var React = _interopRequireWildcard(require("react"));
-var _clsx = require("clsx");
-var _ReactUtils = require("../util/ReactUtils");
-var _PolarUtils = require("../util/PolarUtils");
-var _DataUtils = require("../util/DataUtils");
-var _resolveDefaultProps = require("../util/resolveDefaultProps");
-function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
-function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-var getDeltaAngle = (startAngle, endAngle) => {
-  var sign = (0, _DataUtils.mathSign)(endAngle - startAngle);
-  var deltaAngle = Math.min(Math.abs(endAngle - startAngle), 359.999);
+const React = _interopRequireWildcard(require("react"));
+const _clsx = require("clsx");
+const _ReactUtils = require("../util/ReactUtils");
+const _PolarUtils = require("../util/PolarUtils");
+const _DataUtils = require("../util/DataUtils");
+const _resolveDefaultProps = require("../util/resolveDefaultProps");
+function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; let o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (const _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (let e = 1; e < arguments.length; e++) { const t = arguments[e]; for (const r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+const getDeltaAngle = (startAngle, endAngle) => {
+  const sign = (0, _DataUtils.mathSign)(endAngle - startAngle);
+  const deltaAngle = Math.min(Math.abs(endAngle - startAngle), 359.999);
   return sign * deltaAngle;
 };
-var getTangentCircle = _ref => {
-  var {
+const getTangentCircle = _ref => {
+  const {
     cx,
     cy,
     radius,
@@ -28,15 +28,15 @@ var getTangentCircle = _ref => {
     cornerRadius,
     cornerIsExternal
   } = _ref;
-  var centerRadius = cornerRadius * (isExternal ? 1 : -1) + radius;
-  var theta = Math.asin(cornerRadius / centerRadius) / _PolarUtils.RADIAN;
-  var centerAngle = cornerIsExternal ? angle : angle + sign * theta;
-  var center = (0, _PolarUtils.polarToCartesian)(cx, cy, centerRadius, centerAngle);
+  const centerRadius = cornerRadius * (isExternal ? 1 : -1) + radius;
+  const theta = Math.asin(cornerRadius / centerRadius) / _PolarUtils.RADIAN;
+  const centerAngle = cornerIsExternal ? angle : angle + sign * theta;
+  const center = (0, _PolarUtils.polarToCartesian)(cx, cy, centerRadius, centerAngle);
   // The coordinate of point which is tangent to the circle
-  var circleTangency = (0, _PolarUtils.polarToCartesian)(cx, cy, radius, centerAngle);
+  const circleTangency = (0, _PolarUtils.polarToCartesian)(cx, cy, radius, centerAngle);
   // The coordinate of point which is tangent to the radius line
-  var lineTangencyAngle = cornerIsExternal ? angle - sign * theta : angle;
-  var lineTangency = (0, _PolarUtils.polarToCartesian)(cx, cy, centerRadius * Math.cos(theta * _PolarUtils.RADIAN), lineTangencyAngle);
+  const lineTangencyAngle = cornerIsExternal ? angle - sign * theta : angle;
+  const lineTangency = (0, _PolarUtils.polarToCartesian)(cx, cy, centerRadius * Math.cos(theta * _PolarUtils.RADIAN), lineTangencyAngle);
   return {
     center,
     circleTangency,
@@ -44,8 +44,8 @@ var getTangentCircle = _ref => {
     theta
   };
 };
-var getSectorPath = _ref2 => {
-  var {
+const getSectorPath = _ref2 => {
+  const {
     cx,
     cy,
     innerRadius,
@@ -53,24 +53,24 @@ var getSectorPath = _ref2 => {
     startAngle,
     endAngle
   } = _ref2;
-  var angle = getDeltaAngle(startAngle, endAngle);
+  const angle = getDeltaAngle(startAngle, endAngle);
 
   // When the angle of sector equals to 360, star point and end point coincide
-  var tempEndAngle = startAngle + angle;
-  var outerStartPoint = (0, _PolarUtils.polarToCartesian)(cx, cy, outerRadius, startAngle);
-  var outerEndPoint = (0, _PolarUtils.polarToCartesian)(cx, cy, outerRadius, tempEndAngle);
-  var path = "M ".concat(outerStartPoint.x, ",").concat(outerStartPoint.y, "\n    A ").concat(outerRadius, ",").concat(outerRadius, ",0,\n    ").concat(+(Math.abs(angle) > 180), ",").concat(+(startAngle > tempEndAngle), ",\n    ").concat(outerEndPoint.x, ",").concat(outerEndPoint.y, "\n  ");
+  const tempEndAngle = startAngle + angle;
+  const outerStartPoint = (0, _PolarUtils.polarToCartesian)(cx, cy, outerRadius, startAngle);
+  const outerEndPoint = (0, _PolarUtils.polarToCartesian)(cx, cy, outerRadius, tempEndAngle);
+  let path = "M ".concat(outerStartPoint.x, ",").concat(outerStartPoint.y, "\n    A ").concat(outerRadius, ",").concat(outerRadius, ",0,\n    ").concat(+(Math.abs(angle) > 180), ",").concat(+(startAngle > tempEndAngle), ",\n    ").concat(outerEndPoint.x, ",").concat(outerEndPoint.y, "\n  ");
   if (innerRadius > 0) {
-    var innerStartPoint = (0, _PolarUtils.polarToCartesian)(cx, cy, innerRadius, startAngle);
-    var innerEndPoint = (0, _PolarUtils.polarToCartesian)(cx, cy, innerRadius, tempEndAngle);
+    const innerStartPoint = (0, _PolarUtils.polarToCartesian)(cx, cy, innerRadius, startAngle);
+    const innerEndPoint = (0, _PolarUtils.polarToCartesian)(cx, cy, innerRadius, tempEndAngle);
     path += "L ".concat(innerEndPoint.x, ",").concat(innerEndPoint.y, "\n            A ").concat(innerRadius, ",").concat(innerRadius, ",0,\n            ").concat(+(Math.abs(angle) > 180), ",").concat(+(startAngle <= tempEndAngle), ",\n            ").concat(innerStartPoint.x, ",").concat(innerStartPoint.y, " Z");
   } else {
     path += "L ".concat(cx, ",").concat(cy, " Z");
   }
   return path;
 };
-var getSectorWithCorner = _ref3 => {
-  var {
+const getSectorWithCorner = _ref3 => {
+  const {
     cx,
     cy,
     innerRadius,
@@ -81,8 +81,8 @@ var getSectorWithCorner = _ref3 => {
     startAngle,
     endAngle
   } = _ref3;
-  var sign = (0, _DataUtils.mathSign)(endAngle - startAngle);
-  var {
+  const sign = (0, _DataUtils.mathSign)(endAngle - startAngle);
+  const {
     circleTangency: soct,
     lineTangency: solt,
     theta: sot
@@ -95,7 +95,7 @@ var getSectorWithCorner = _ref3 => {
     cornerRadius,
     cornerIsExternal
   });
-  var {
+  const {
     circleTangency: eoct,
     lineTangency: eolt,
     theta: eot
@@ -108,7 +108,7 @@ var getSectorWithCorner = _ref3 => {
     cornerRadius,
     cornerIsExternal
   });
-  var outerArcAngle = cornerIsExternal ? Math.abs(startAngle - endAngle) : Math.abs(startAngle - endAngle) - sot - eot;
+  const outerArcAngle = cornerIsExternal ? Math.abs(startAngle - endAngle) : Math.abs(startAngle - endAngle) - sot - eot;
   if (outerArcAngle < 0) {
     if (forceCornerRadius) {
       return "M ".concat(solt.x, ",").concat(solt.y, "\n        a").concat(cornerRadius, ",").concat(cornerRadius, ",0,0,1,").concat(cornerRadius * 2, ",0\n        a").concat(cornerRadius, ",").concat(cornerRadius, ",0,0,1,").concat(-cornerRadius * 2, ",0\n      ");
@@ -122,9 +122,9 @@ var getSectorWithCorner = _ref3 => {
       endAngle
     });
   }
-  var path = "M ".concat(solt.x, ",").concat(solt.y, "\n    A").concat(cornerRadius, ",").concat(cornerRadius, ",0,0,").concat(+(sign < 0), ",").concat(soct.x, ",").concat(soct.y, "\n    A").concat(outerRadius, ",").concat(outerRadius, ",0,").concat(+(outerArcAngle > 180), ",").concat(+(sign < 0), ",").concat(eoct.x, ",").concat(eoct.y, "\n    A").concat(cornerRadius, ",").concat(cornerRadius, ",0,0,").concat(+(sign < 0), ",").concat(eolt.x, ",").concat(eolt.y, "\n  ");
+  let path = "M ".concat(solt.x, ",").concat(solt.y, "\n    A").concat(cornerRadius, ",").concat(cornerRadius, ",0,0,").concat(+(sign < 0), ",").concat(soct.x, ",").concat(soct.y, "\n    A").concat(outerRadius, ",").concat(outerRadius, ",0,").concat(+(outerArcAngle > 180), ",").concat(+(sign < 0), ",").concat(eoct.x, ",").concat(eoct.y, "\n    A").concat(cornerRadius, ",").concat(cornerRadius, ",0,0,").concat(+(sign < 0), ",").concat(eolt.x, ",").concat(eolt.y, "\n  ");
   if (innerRadius > 0) {
-    var {
+    const {
       circleTangency: sict,
       lineTangency: silt,
       theta: sit
@@ -138,7 +138,7 @@ var getSectorWithCorner = _ref3 => {
       cornerRadius,
       cornerIsExternal
     });
-    var {
+    const {
       circleTangency: eict,
       lineTangency: eilt,
       theta: eit
@@ -152,7 +152,7 @@ var getSectorWithCorner = _ref3 => {
       cornerRadius,
       cornerIsExternal
     });
-    var innerArcAngle = cornerIsExternal ? Math.abs(startAngle - endAngle) : Math.abs(startAngle - endAngle) - sit - eit;
+    const innerArcAngle = cornerIsExternal ? Math.abs(startAngle - endAngle) : Math.abs(startAngle - endAngle) - sit - eit;
     if (innerArcAngle < 0 && cornerRadius === 0) {
       return "".concat(path, "L").concat(cx, ",").concat(cy, "Z");
     }
@@ -168,7 +168,7 @@ var getSectorWithCorner = _ref3 => {
  * override the types here.
  */
 
-var defaultProps = {
+const defaultProps = {
   cx: 0,
   cy: 0,
   innerRadius: 0,
@@ -179,9 +179,9 @@ var defaultProps = {
   forceCornerRadius: false,
   cornerIsExternal: false
 };
-var Sector = sectorProps => {
-  var props = (0, _resolveDefaultProps.resolveDefaultProps)(sectorProps, defaultProps);
-  var {
+const Sector = sectorProps => {
+  const props = (0, _resolveDefaultProps.resolveDefaultProps)(sectorProps, defaultProps);
+  const {
     cx,
     cy,
     innerRadius,
@@ -196,10 +196,10 @@ var Sector = sectorProps => {
   if (outerRadius < innerRadius || startAngle === endAngle) {
     return null;
   }
-  var layerClass = (0, _clsx.clsx)('recharts-sector', className);
-  var deltaRadius = outerRadius - innerRadius;
-  var cr = (0, _DataUtils.getPercentValue)(cornerRadius, deltaRadius, 0, true);
-  var path;
+  const layerClass = (0, _clsx.clsx)('recharts-sector', className);
+  const deltaRadius = outerRadius - innerRadius;
+  const cr = (0, _DataUtils.getPercentValue)(cornerRadius, deltaRadius, 0, true);
+  let path;
   if (cr > 0 && Math.abs(startAngle - endAngle) < 360) {
     path = getSectorWithCorner({
       cx,

@@ -16,8 +16,8 @@ exports.ImportExpression = ImportExpression;
 exports.ImportNamespaceSpecifier = ImportNamespaceSpecifier;
 exports.ImportSpecifier = ImportSpecifier;
 exports._printAttributes = _printAttributes;
-var _t = require("@babel/types");
-var _index = require("../node/index.js");
+const _t = require("@babel/types");
+const _index = require("../node/index.js");
 const {
   isClassDeclaration,
   isExportDefaultSpecifier,
@@ -67,7 +67,7 @@ function ExportNamespaceSpecifier(node) {
 }
 let warningShown = false;
 function _printAttributes(node, hasPreviousBrace) {
-  var _node$extra;
+  let _node$extra;
   const {
     importAttributesKeyword
   } = this.format;
@@ -100,7 +100,7 @@ Please specify the "importAttributesKeyword" generator option, whose value can b
   this.token("}", null, occurrenceCount);
 }
 function ExportAllDeclaration(node) {
-  var _node$attributes, _node$assertions;
+  let _node$attributes, _node$assertions;
   this.word("export");
   this.space();
   if (node.exportKind === "type") {
@@ -165,7 +165,7 @@ function ExportNamedDeclaration(node) {
       this.tokenChar(125);
     }
     if (node.source) {
-      var _node$attributes2, _node$assertions2;
+      let _node$attributes2, _node$assertions2;
       this.space();
       this.word("from");
       this.space();
@@ -193,7 +193,7 @@ function ExportDefaultDeclaration(node) {
   if (!isStatement(declar)) this.semicolon();
 }
 function ImportDeclaration(node) {
-  var _node$attributes3, _node$assertions3;
+  let _node$attributes3, _node$assertions3;
   this.word("import");
   this.space();
   const isTypeKind = node.importKind === "type" || node.importKind === "typeof";

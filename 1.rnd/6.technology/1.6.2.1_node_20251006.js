@@ -1,9 +1,9 @@
 "use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
+const __extends = (this && this.__extends) || (function () {
+    let extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+            function (d, b) { for (const p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
@@ -18,7 +18,7 @@ var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
             s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            for (const p in s) if (Object.prototype.hasOwnProperty.call(s, p))
                 t[p] = s[p];
         }
         return t;
@@ -27,12 +27,12 @@ var __assign = (this && this.__assign) || function () {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.cloneNode = exports.hasChildren = exports.isDocument = exports.isDirective = exports.isComment = exports.isText = exports.isCDATA = exports.isTag = exports.Element = exports.Document = exports.CDATA = exports.NodeWithChildren = exports.ProcessingInstruction = exports.Comment = exports.Text = exports.DataNode = exports.Node = void 0;
-var domelementtype_1 = require("domelementtype");
+const domelementtype_1 = require("domelementtype");
 /**
  * This object will be used as the prototype for Nodes when creating a
  * DOM-Level-1-compliant structure.
  */
-var Node = /** @class */ (function () {
+const Node = /** @class */ (function () {
     function Node() {
         /** Parent of the node */
         this.parent = null;
@@ -104,13 +104,13 @@ exports.Node = Node;
 /**
  * A node that contains some data.
  */
-var DataNode = /** @class */ (function (_super) {
+const DataNode = /** @class */ (function (_super) {
     __extends(DataNode, _super);
     /**
      * @param data The content of the data node
      */
     function DataNode(data) {
-        var _this = _super.call(this) || this;
+        const _this = _super.call(this) || this;
         _this.data = data;
         return _this;
     }
@@ -134,10 +134,10 @@ exports.DataNode = DataNode;
 /**
  * Text within the document.
  */
-var Text = /** @class */ (function (_super) {
+const Text = /** @class */ (function (_super) {
     __extends(Text, _super);
     function Text() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
+        const _this = _super !== null && _super.apply(this, arguments) || this;
         _this.type = domelementtype_1.ElementType.Text;
         return _this;
     }
@@ -154,10 +154,10 @@ exports.Text = Text;
 /**
  * Comments within the document.
  */
-var Comment = /** @class */ (function (_super) {
+const Comment = /** @class */ (function (_super) {
     __extends(Comment, _super);
     function Comment() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
+        const _this = _super !== null && _super.apply(this, arguments) || this;
         _this.type = domelementtype_1.ElementType.Comment;
         return _this;
     }
@@ -174,10 +174,10 @@ exports.Comment = Comment;
 /**
  * Processing instructions, including doc types.
  */
-var ProcessingInstruction = /** @class */ (function (_super) {
+const ProcessingInstruction = /** @class */ (function (_super) {
     __extends(ProcessingInstruction, _super);
     function ProcessingInstruction(name, data) {
-        var _this = _super.call(this, data) || this;
+        const _this = _super.call(this, data) || this;
         _this.name = name;
         _this.type = domelementtype_1.ElementType.Directive;
         return _this;
@@ -195,13 +195,13 @@ exports.ProcessingInstruction = ProcessingInstruction;
 /**
  * A `Node` that can have children.
  */
-var NodeWithChildren = /** @class */ (function (_super) {
+const NodeWithChildren = /** @class */ (function (_super) {
     __extends(NodeWithChildren, _super);
     /**
      * @param children Children of the node. Only certain node types can have children.
      */
     function NodeWithChildren(children) {
-        var _this = _super.call(this) || this;
+        const _this = _super.call(this) || this;
         _this.children = children;
         return _this;
     }
@@ -209,7 +209,7 @@ var NodeWithChildren = /** @class */ (function (_super) {
         // Aliases
         /** First child of the node. */
         get: function () {
-            var _a;
+            let _a;
             return (_a = this.children[0]) !== null && _a !== void 0 ? _a : null;
         },
         enumerable: false,
@@ -242,10 +242,10 @@ var NodeWithChildren = /** @class */ (function (_super) {
     return NodeWithChildren;
 }(Node));
 exports.NodeWithChildren = NodeWithChildren;
-var CDATA = /** @class */ (function (_super) {
+const CDATA = /** @class */ (function (_super) {
     __extends(CDATA, _super);
     function CDATA() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
+        const _this = _super !== null && _super.apply(this, arguments) || this;
         _this.type = domelementtype_1.ElementType.CDATA;
         return _this;
     }
@@ -262,10 +262,10 @@ exports.CDATA = CDATA;
 /**
  * The root node of the document.
  */
-var Document = /** @class */ (function (_super) {
+const Document = /** @class */ (function (_super) {
     __extends(Document, _super);
     function Document() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
+        const _this = _super !== null && _super.apply(this, arguments) || this;
         _this.type = domelementtype_1.ElementType.Root;
         return _this;
     }
@@ -282,7 +282,7 @@ exports.Document = Document;
 /**
  * An element within the DOM.
  */
-var Element = /** @class */ (function (_super) {
+const Element = /** @class */ (function (_super) {
     __extends(Element, _super);
     /**
      * @param name Name of the tag, eg. `div`, `span`.
@@ -296,7 +296,7 @@ var Element = /** @class */ (function (_super) {
             : name === "style"
                 ? domelementtype_1.ElementType.Style
                 : domelementtype_1.ElementType.Tag; }
-        var _this = _super.call(this, children) || this;
+        const _this = _super.call(this, children) || this;
         _this.name = name;
         _this.attribs = attribs;
         _this.type = type;
@@ -326,9 +326,9 @@ var Element = /** @class */ (function (_super) {
     });
     Object.defineProperty(Element.prototype, "attributes", {
         get: function () {
-            var _this = this;
+            const _this = this;
             return Object.keys(this.attribs).map(function (name) {
-                var _a, _b;
+                let _a, _b;
                 return ({
                     name: name,
                     value: _this.attribs[name],
@@ -407,7 +407,7 @@ exports.hasChildren = hasChildren;
  */
 function cloneNode(node, recursive) {
     if (recursive === void 0) { recursive = false; }
-    var result;
+    let result;
     if (isText(node)) {
         result = new Text(node.data);
     }
@@ -416,7 +416,7 @@ function cloneNode(node, recursive) {
     }
     else if (isTag(node)) {
         var children = recursive ? cloneChildren(node.children) : [];
-        var clone_1 = new Element(node.name, __assign({}, node.attribs), children);
+        const clone_1 = new Element(node.name, __assign({}, node.attribs), children);
         children.forEach(function (child) { return (child.parent = clone_1); });
         if (node.namespace != null) {
             clone_1.namespace = node.namespace;
@@ -431,13 +431,13 @@ function cloneNode(node, recursive) {
     }
     else if (isCDATA(node)) {
         var children = recursive ? cloneChildren(node.children) : [];
-        var clone_2 = new CDATA(children);
+        const clone_2 = new CDATA(children);
         children.forEach(function (child) { return (child.parent = clone_2); });
         result = clone_2;
     }
     else if (isDocument(node)) {
         var children = recursive ? cloneChildren(node.children) : [];
-        var clone_3 = new Document(children);
+        const clone_3 = new Document(children);
         children.forEach(function (child) { return (child.parent = clone_3); });
         if (node["x-mode"]) {
             clone_3["x-mode"] = node["x-mode"];
@@ -445,7 +445,7 @@ function cloneNode(node, recursive) {
         result = clone_3;
     }
     else if (isDirective(node)) {
-        var instruction = new ProcessingInstruction(node.name, node.data);
+        const instruction = new ProcessingInstruction(node.name, node.data);
         if (node["x-name"] != null) {
             instruction["x-name"] = node["x-name"];
             instruction["x-publicId"] = node["x-publicId"];
@@ -465,8 +465,8 @@ function cloneNode(node, recursive) {
 }
 exports.cloneNode = cloneNode;
 function cloneChildren(childs) {
-    var children = childs.map(function (child) { return cloneNode(child, true); });
-    for (var i = 1; i < children.length; i++) {
+    const children = childs.map(function (child) { return cloneNode(child, true); });
+    for (let i = 1; i < children.length; i++) {
         children[i].prev = children[i - 1];
         children[i - 1].next = children[i];
     }

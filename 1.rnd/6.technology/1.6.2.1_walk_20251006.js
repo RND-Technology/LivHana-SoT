@@ -25,7 +25,7 @@
   function simple(node, visitors, baseVisitor, state, override) {
     if (!baseVisitor) { baseVisitor = base
     ; }(function c(node, st, override) {
-      var type = override || node.type;
+      const type = override || node.type;
       baseVisitor[type](node, st, c);
       if (visitors[type]) { visitors[type](node, st); }
     })(node, state, override);
@@ -35,11 +35,11 @@
   // current node) and passes them to the callback as third parameter
   // (and also as state parameter when no other state is present).
   function ancestor(node, visitors, baseVisitor, state, override) {
-    var ancestors = [];
+    const ancestors = [];
     if (!baseVisitor) { baseVisitor = base
     ; }(function c(node, st, override) {
-      var type = override || node.type;
-      var isNew = node !== ancestors[ancestors.length - 1];
+      const type = override || node.type;
+      const isNew = node !== ancestors[ancestors.length - 1];
       if (isNew) { ancestors.push(node); }
       baseVisitor[type](node, st, c);
       if (visitors[type]) { visitors[type](node, st || ancestors, ancestors); }
@@ -53,7 +53,7 @@
   // their child nodes (by calling their third argument on these
   // nodes).
   function recursive(node, state, funcs, baseVisitor, override) {
-    var visitor = funcs ? make(funcs, baseVisitor || undefined) : baseVisitor
+    const visitor = funcs ? make(funcs, baseVisitor || undefined) : baseVisitor
     ;(function c(node, st, override) {
       visitor[override || node.type](node, st, c);
     })(node, state, override);
@@ -68,14 +68,14 @@
       { return test }
   }
 
-  var Found = function Found(node, state) { this.node = node; this.state = state; };
+  const Found = function Found(node, state) { this.node = node; this.state = state; };
 
   // A full walk triggers the callback on each node
   function full(node, callback, baseVisitor, state, override) {
     if (!baseVisitor) { baseVisitor = base; }
-    var last
+    let last
     ;(function c(node, st, override) {
-      var type = override || node.type;
+      const type = override || node.type;
       baseVisitor[type](node, st, c);
       if (last !== node) {
         callback(node, st, type);
@@ -88,10 +88,10 @@
   // the callback on each node
   function fullAncestor(node, callback, baseVisitor, state) {
     if (!baseVisitor) { baseVisitor = base; }
-    var ancestors = [], last
+    let ancestors = [], last
     ;(function c(node, st, override) {
-      var type = override || node.type;
-      var isNew = node !== ancestors[ancestors.length - 1];
+      const type = override || node.type;
+      const isNew = node !== ancestors[ancestors.length - 1];
       if (isNew) { ancestors.push(node); }
       baseVisitor[type](node, st, c);
       if (last !== node) {
@@ -110,7 +110,7 @@
     test = makeTest(test);
     try {
       (function c(node, st, override) {
-        var type = override || node.type;
+        const type = override || node.type;
         if ((start == null || node.start <= start) &&
             (end == null || node.end >= end))
           { baseVisitor[type](node, st, c); }
@@ -132,7 +132,7 @@
     if (!baseVisitor) { baseVisitor = base; }
     try {
       (function c(node, st, override) {
-        var type = override || node.type;
+        const type = override || node.type;
         if (node.start > pos || node.end < pos) { return }
         baseVisitor[type](node, st, c);
         if (test(type, node)) { throw new Found(node, st) }
@@ -150,7 +150,7 @@
     try {
       (function c(node, st, override) {
         if (node.end < pos) { return }
-        var type = override || node.type;
+        const type = override || node.type;
         if (node.start >= pos && test(type, node)) { throw new Found(node, st) }
         baseVisitor[type](node, st, c);
       })(node, state);
@@ -164,10 +164,10 @@
   function findNodeBefore(node, pos, test, baseVisitor, state) {
     test = makeTest(test);
     if (!baseVisitor) { baseVisitor = base; }
-    var max
+    let max
     ;(function c(node, st, override) {
       if (node.start > pos) { return }
-      var type = override || node.type;
+      const type = override || node.type;
       if (node.end <= pos && (!max || max.node.end < node.end) && test(type, node))
         { max = new Found(node, st); }
       baseVisitor[type](node, st, c);
@@ -178,8 +178,8 @@
   // Used to create a custom walker. Will fill in all missing node
   // type properties with the defaults.
   function make(funcs, baseVisitor) {
-    var visitor = Object.create(baseVisitor || base);
-    for (var type in funcs) { visitor[type] = funcs[type]; }
+    const visitor = Object.create(baseVisitor || base);
+    for (const type in funcs) { visitor[type] = funcs[type]; }
     return visitor
   }
 
@@ -191,9 +191,9 @@
   var base = {};
 
   base.Program = base.BlockStatement = base.StaticBlock = function (node, st, c) {
-    for (var i = 0, list = node.body; i < list.length; i += 1)
+    for (let i = 0, list = node.body; i < list.length; i += 1)
       {
-      var stmt = list[i];
+      const stmt = list[i];
 
       c(stmt, st, "Statement");
     }
@@ -215,17 +215,17 @@
   };
   base.SwitchStatement = function (node, st, c) {
     c(node.discriminant, st, "Expression");
-    for (var i = 0, list = node.cases; i < list.length; i += 1) {
-      var cs = list[i];
+    for (let i = 0, list = node.cases; i < list.length; i += 1) {
+      const cs = list[i];
 
       c(cs, st);
     }
   };
   base.SwitchCase = function (node, st, c) {
     if (node.test) { c(node.test, st, "Expression"); }
-    for (var i = 0, list = node.consequent; i < list.length; i += 1)
+    for (let i = 0, list = node.consequent; i < list.length; i += 1)
       {
-      var cons = list[i];
+      const cons = list[i];
 
       c(cons, st, "Statement");
     }
@@ -267,9 +267,9 @@
 
   base.FunctionDeclaration = function (node, st, c) { return c(node, st, "Function"); };
   base.VariableDeclaration = function (node, st, c) {
-    for (var i = 0, list = node.declarations; i < list.length; i += 1)
+    for (let i = 0, list = node.declarations; i < list.length; i += 1)
       {
-      var decl = list[i];
+      const decl = list[i];
 
       c(decl, st);
     }
@@ -281,9 +281,9 @@
 
   base.Function = function (node, st, c) {
     if (node.id) { c(node.id, st, "Pattern"); }
-    for (var i = 0, list = node.params; i < list.length; i += 1)
+    for (let i = 0, list = node.params; i < list.length; i += 1)
       {
-      var param = list[i];
+      const param = list[i];
 
       c(param, st, "Pattern");
     }
@@ -302,15 +302,15 @@
   base.MemberPattern = skipThrough;
   base.RestElement = function (node, st, c) { return c(node.argument, st, "Pattern"); };
   base.ArrayPattern = function (node, st, c) {
-    for (var i = 0, list = node.elements; i < list.length; i += 1) {
-      var elt = list[i];
+    for (let i = 0, list = node.elements; i < list.length; i += 1) {
+      const elt = list[i];
 
       if (elt) { c(elt, st, "Pattern"); }
     }
   };
   base.ObjectPattern = function (node, st, c) {
-    for (var i = 0, list = node.properties; i < list.length; i += 1) {
-      var prop = list[i];
+    for (let i = 0, list = node.properties; i < list.length; i += 1) {
+      const prop = list[i];
 
       if (prop.type === "Property") {
         if (prop.computed) { c(prop.key, st, "Expression"); }
@@ -324,40 +324,40 @@
   base.Expression = skipThrough;
   base.ThisExpression = base.Super = base.MetaProperty = ignore;
   base.ArrayExpression = function (node, st, c) {
-    for (var i = 0, list = node.elements; i < list.length; i += 1) {
-      var elt = list[i];
+    for (let i = 0, list = node.elements; i < list.length; i += 1) {
+      const elt = list[i];
 
       if (elt) { c(elt, st, "Expression"); }
     }
   };
   base.ObjectExpression = function (node, st, c) {
-    for (var i = 0, list = node.properties; i < list.length; i += 1)
+    for (let i = 0, list = node.properties; i < list.length; i += 1)
       {
-      var prop = list[i];
+      const prop = list[i];
 
       c(prop, st);
     }
   };
   base.FunctionExpression = base.ArrowFunctionExpression = base.FunctionDeclaration;
   base.SequenceExpression = function (node, st, c) {
-    for (var i = 0, list = node.expressions; i < list.length; i += 1)
+    for (let i = 0, list = node.expressions; i < list.length; i += 1)
       {
-      var expr = list[i];
+      const expr = list[i];
 
       c(expr, st, "Expression");
     }
   };
   base.TemplateLiteral = function (node, st, c) {
-    for (var i = 0, list = node.quasis; i < list.length; i += 1)
+    for (let i = 0, list = node.quasis; i < list.length; i += 1)
       {
-      var quasi = list[i];
+      const quasi = list[i];
 
       c(quasi, st);
     }
 
-    for (var i$1 = 0, list$1 = node.expressions; i$1 < list$1.length; i$1 += 1)
+    for (let i$1 = 0, list$1 = node.expressions; i$1 < list$1.length; i$1 += 1)
       {
-      var expr = list$1[i$1];
+      const expr = list$1[i$1];
 
       c(expr, st, "Expression");
     }
@@ -382,9 +382,9 @@
   base.NewExpression = base.CallExpression = function (node, st, c) {
     c(node.callee, st, "Expression");
     if (node.arguments)
-      { for (var i = 0, list = node.arguments; i < list.length; i += 1)
+      { for (let i = 0, list = node.arguments; i < list.length; i += 1)
         {
-          var arg = list[i];
+          const arg = list[i];
 
           c(arg, st, "Expression");
         } }
@@ -404,9 +404,9 @@
     c(node.source, st, "Expression");
   };
   base.ImportDeclaration = function (node, st, c) {
-    for (var i = 0, list = node.specifiers; i < list.length; i += 1)
+    for (let i = 0, list = node.specifiers; i < list.length; i += 1)
       {
-      var spec = list[i];
+      const spec = list[i];
 
       c(spec, st);
     }
@@ -428,9 +428,9 @@
     c(node.body, st);
   };
   base.ClassBody = function (node, st, c) {
-    for (var i = 0, list = node.body; i < list.length; i += 1)
+    for (let i = 0, list = node.body; i < list.length; i += 1)
       {
-      var elt = list[i];
+      const elt = list[i];
 
       c(elt, st);
     }

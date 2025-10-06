@@ -1,6 +1,6 @@
 export default function(grouping, thousands) {
   return function(value, width) {
-    var i = value.length,
+    let i = value.length,
         t = [],
         j = 0,
         g = grouping[0],

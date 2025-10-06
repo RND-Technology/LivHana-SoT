@@ -33,7 +33,7 @@ let lastFuzzEventTime = 0;
 let iastIntervalConst;
 let coolDownIntervalConst;
 let additionalCoolDownTime = 0;
-let fuzzedApiIDSet = new Set();
+const fuzzedApiIDSet = new Set();
 const API = require('../../../../../../nr-security-api');
 const NRAgent = API.getNRAgent();
 
@@ -43,7 +43,7 @@ const NRAgent = API.getNRAgent();
  */
 function startIASTSchedular() {
     if (Agent.getAgent().delayed) {
-        let delayFromConfig = parseInt(NRAgent.config.security.scan_schedule.delay);
+        const delayFromConfig = parseInt(NRAgent.config.security.scan_schedule.delay);
         let delay = delayFromConfig;
         if (isNaN(delay) || delay < 0) {
             delay = 0;
@@ -71,11 +71,11 @@ function startIASTSchedular() {
         if (Agent.getAgent().status.getStatus() == 'disabled' || Agent.getAgent().delayed) {
             return;
         }
-        let data = IASTUtil.generateIASTDataRequest();
-        let currentTime = Date.now();
-        let completedListSize = IASTUtil.getCompletedRequestsMap().size;
-        let pendingListSize = IASTUtil.getPendingRequestIds().length;
-        let timeDiffInSeconds = ((currentTime - lastFuzzEventTime) / 1000);
+        const data = IASTUtil.generateIASTDataRequest();
+        const currentTime = Date.now();
+        const completedListSize = IASTUtil.getCompletedRequestsMap().size;
+        const pendingListSize = IASTUtil.getPendingRequestIds().length;
+        const timeDiffInSeconds = ((currentTime - lastFuzzEventTime) / 1000);
         logger.trace("Time difference since last fuzz request:", timeDiffInSeconds);
         logger.trace("Completed requests so far:", completedListSize);
         logger.trace("Pending requests so far:", pendingListSize);
@@ -92,7 +92,7 @@ function startIASTSchedular() {
  */
 function logScannedApiId(fuzzHeader, requestURL) {
     try {
-        let apiId = fuzzHeader.split(CSEC_SEP)[0]
+        const apiId = fuzzHeader.split(CSEC_SEP)[0]
         if (apiId && !fuzzedApiIDSet.has(apiId)) {
             fuzzedApiIDSet.add(apiId);
             logger.info("IAST Scan for API %s with ID : %s started.", requestURL, apiId);
@@ -140,7 +140,7 @@ function handler(json) {
     const fuzzDetails = { fuzzRequest, rawFuzzRequest };
     lastFuzzEventTime = Date.now();
     handleFuzzRequest(fuzzDetails);
-};
+}
 
 /**
  * Handles the fuzz request logic after
@@ -224,8 +224,8 @@ function handleFuzzResponse(response, fuzzDetails) {
  * @param {JSON} requestObject
  */
 function parseAxiosHttpRequestToFuzz(requestObject) {
-    let serverName = requestObject.serverName ? requestObject.serverName : LOCALHOST;
-    let host = serverName + COLON + requestObject.serverPort;
+    const serverName = requestObject.serverName ? requestObject.serverName : LOCALHOST;
+    const host = serverName + COLON + requestObject.serverPort;
     if (requestObject.headers && requestObject.headers['content-length']) {
         delete requestObject.headers['content-length'];
     }
@@ -247,8 +247,8 @@ function parseAxiosHttpRequestToFuzz(requestObject) {
  * @param {JSON} requestObject
  */
 function parseGRPCRequestToFuzz(requestObject) {
-    let serverName = requestObject.serverName ? requestObject.serverName : LOCALHOST;
-    let host = serverName + COLON + requestObject.serverPort
+    const serverName = requestObject.serverName ? requestObject.serverName : LOCALHOST;
+    const host = serverName + COLON + requestObject.serverPort
     return {
         url: requestObject.protocol + COLON_SLASH_SLASH + host + requestObject.url,
         requestURI: requestObject.requestURI,
@@ -268,7 +268,7 @@ function parseGRPCRequestToFuzz(requestObject) {
  */
 function setLogger(l) {
     logger = l;
-};
+}
 
 /**
  * Sets the last fuzz event time epoch

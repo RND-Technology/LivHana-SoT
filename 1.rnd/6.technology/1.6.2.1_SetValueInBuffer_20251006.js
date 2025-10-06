@@ -1,27 +1,27 @@
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+const GetIntrinsic = require('get-intrinsic');
 
-var $TypeError = require('es-errors/type');
-var $Uint8Array = GetIntrinsic('%Uint8Array%', true);
+const $TypeError = require('es-errors/type');
+const $Uint8Array = GetIntrinsic('%Uint8Array%', true);
 
-var isInteger = require('math-intrinsics/isInteger');
+const isInteger = require('math-intrinsics/isInteger');
 
-var IsDetachedBuffer = require('./IsDetachedBuffer');
-var ToInt16 = require('./ToInt16');
-var ToInt32 = require('./ToInt32');
-var ToInt8 = require('./ToInt8');
-var ToUint16 = require('./ToUint16');
-var ToUint32 = require('./ToUint32');
-var ToUint8 = require('./ToUint8');
-var ToUint8Clamp = require('./ToUint8Clamp');
+const IsDetachedBuffer = require('./IsDetachedBuffer');
+const ToInt16 = require('./ToInt16');
+const ToInt32 = require('./ToInt32');
+const ToInt8 = require('./ToInt8');
+const ToUint16 = require('./ToUint16');
+const ToUint32 = require('./ToUint32');
+const ToUint8 = require('./ToUint8');
+const ToUint8Clamp = require('./ToUint8Clamp');
 
-var isArrayBuffer = require('is-array-buffer');
-var hasOwn = require('hasown');
+const isArrayBuffer = require('is-array-buffer');
+const hasOwn = require('hasown');
 
-var tableTAO = require('./tables/typed-array-objects');
+const tableTAO = require('./tables/typed-array-objects');
 
-var TypeToAO = {
+const TypeToAO = {
 	__proto__: null,
 	$Int8: ToInt8,
 	$Uint8: ToUint8,
@@ -32,11 +32,11 @@ var TypeToAO = {
 	$Uint32: ToUint32
 };
 
-var defaultEndianness = require('../helpers/defaultEndianness');
-var forEach = require('../helpers/forEach');
-var integerToNBytes = require('../helpers/integerToNBytes');
-var valueToFloat32Bytes = require('../helpers/valueToFloat32Bytes');
-var valueToFloat64Bytes = require('../helpers/valueToFloat64Bytes');
+const defaultEndianness = require('../helpers/defaultEndianness');
+const forEach = require('../helpers/forEach');
+const integerToNBytes = require('../helpers/integerToNBytes');
+const valueToFloat32Bytes = require('../helpers/valueToFloat32Bytes');
+const valueToFloat64Bytes = require('../helpers/valueToFloat64Bytes');
 
 // https://262.ecma-international.org/6.0/#sec-setvalueinbuffer
 
@@ -77,31 +77,31 @@ module.exports = function SetValueInBuffer(arrayBuffer, byteIndex, type, value) 
 
 	// 6. Assert: block is not undefined.
 
-	var elementSize = tableTAO.size['$' + type]; // step 7
+	const elementSize = tableTAO.size['$' + type]; // step 7
 	if (!elementSize) {
 		throw new $TypeError('Assertion failed: `type` must be one of ' + tableTAO.choices);
 	}
 
 	// 8. If isLittleEndian is not present, set isLittleEndian to either true or false. The choice is implementation dependent and should be the alternative that is most efficient for the implementation. An implementation must use the same value each time this step is executed and the same value must be used for the corresponding step in the GetValueFromBuffer abstract operation.
-	var isLittleEndian = arguments.length > 4 ? arguments[4] : defaultEndianness === 'little'; // step 8
+	const isLittleEndian = arguments.length > 4 ? arguments[4] : defaultEndianness === 'little'; // step 8
 
-	var rawBytes;
+	let rawBytes;
 	if (type === 'Float32') { // step 1
 		rawBytes = valueToFloat32Bytes(value, isLittleEndian);
 	} else if (type === 'Float64') { // step 2
 		rawBytes = valueToFloat64Bytes(value, isLittleEndian);
 	} else {
-		var n = elementSize; // step 3.a
+		const n = elementSize; // step 3.a
 
-		var convOp = TypeToAO['$' + type]; // step 3.b
+		const convOp = TypeToAO['$' + type]; // step 3.b
 
-		var intValue = convOp(value); // step 3.c
+		const intValue = convOp(value); // step 3.c
 
 		rawBytes = integerToNBytes(intValue, n, isLittleEndian); // step 3.d, 3.e, 4
 	}
 
 	// 12. Store the individual bytes of rawBytes into block, in order, starting at block[byteIndex].
-	var arr = new $Uint8Array(arrayBuffer, byteIndex, elementSize);
+	const arr = new $Uint8Array(arrayBuffer, byteIndex, elementSize);
 	forEach(rawBytes, function (rawByte, i) {
 		arr[i] = rawByte;
 	});

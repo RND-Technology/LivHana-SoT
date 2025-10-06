@@ -1,20 +1,20 @@
 'use strict';
 module.exports = function generate_format(it, $keyword, $ruleType) {
-  var out = ' ';
-  var $lvl = it.level;
-  var $dataLvl = it.dataLevel;
-  var $schema = it.schema[$keyword];
-  var $schemaPath = it.schemaPath + it.util.getProperty($keyword);
-  var $errSchemaPath = it.errSchemaPath + '/' + $keyword;
-  var $breakOnError = !it.opts.allErrors;
-  var $data = 'data' + ($dataLvl || '');
+  let out = ' ';
+  const $lvl = it.level;
+  const $dataLvl = it.dataLevel;
+  const $schema = it.schema[$keyword];
+  const $schemaPath = it.schemaPath + it.util.getProperty($keyword);
+  const $errSchemaPath = it.errSchemaPath + '/' + $keyword;
+  const $breakOnError = !it.opts.allErrors;
+  const $data = 'data' + ($dataLvl || '');
   if (it.opts.format === false) {
     if ($breakOnError) {
       out += ' if (true) { ';
     }
     return out;
   }
-  var $isData = it.opts.$data && $schema && $schema.$data,
+  let $isData = it.opts.$data && $schema && $schema.$data,
     $schemaValue;
   if ($isData) {
     out += ' var schema' + ($lvl) + ' = ' + (it.util.getData($schema.$data, $dataLvl, it.dataPathArr)) + '; ';
@@ -22,7 +22,7 @@ module.exports = function generate_format(it, $keyword, $ruleType) {
   } else {
     $schemaValue = $schema;
   }
-  var $unknownFormats = it.opts.unknownFormats,
+  const $unknownFormats = it.opts.unknownFormats,
     $allowUnknown = Array.isArray($unknownFormats);
   if ($isData) {
     var $format = 'format' + $lvl,
@@ -130,7 +130,7 @@ module.exports = function generate_format(it, $keyword, $ruleType) {
   } else {
     out += ' {} ';
   }
-  var __err = out;
+  const __err = out;
   out = $$outStack.pop();
   if (!it.compositeRule && $breakOnError) {
     /* istanbul ignore if */

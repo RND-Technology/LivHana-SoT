@@ -1,17 +1,17 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
-var callBound = require('call-bound');
-var isInteger = require('math-intrinsics/isInteger');
-var isObject = require('es-object-atoms/isObject');
+const $TypeError = require('es-errors/type');
+const callBound = require('call-bound');
+const isInteger = require('math-intrinsics/isInteger');
+const isObject = require('es-object-atoms/isObject');
 
-var Get = require('./Get');
-var HasProperty = require('./HasProperty');
-var ToString = require('./ToString');
+const Get = require('./Get');
+const HasProperty = require('./HasProperty');
+const ToString = require('./ToString');
 
-var isAbstractClosure = require('../helpers/isAbstractClosure');
+const isAbstractClosure = require('../helpers/isAbstractClosure');
 
-var $sort = callBound('Array.prototype.sort');
+const $sort = callBound('Array.prototype.sort');
 
 // https://262.ecma-international.org/14.0/#sec-sortindexedproperties
 
@@ -29,15 +29,15 @@ module.exports = function SortIndexedProperties(obj, len, SortCompare, holes) {
 		throw new $TypeError('Assertion failed: `holes` must be either ~skip-holes~ or ~read-through-holes~');
 	}
 
-	var items = []; // step 1
+	const items = []; // step 1
 
-	var k = 0; // step 2
+	let k = 0; // step 2
 
 	while (k < len) { // step 3
-		var Pk = ToString(k);
-		var kRead = holes === 'skip-holes' ? HasProperty(obj, Pk) : true; // step 3.b - 3.c
+		const Pk = ToString(k);
+		const kRead = holes === 'skip-holes' ? HasProperty(obj, Pk) : true; // step 3.b - 3.c
 		if (kRead) { // step 3.d
-			var kValue = Get(obj, Pk);
+			const kValue = Get(obj, Pk);
 			items[items.length] = kValue;
 		}
 		k += 1; // step 3.e

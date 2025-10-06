@@ -5,21 +5,21 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.useAppDispatch = void 0;
 exports.useAppSelector = useAppSelector;
-var _withSelector = require("use-sync-external-store/shim/with-selector");
-var _react = require("react");
-var _RechartsReduxContext = require("./RechartsReduxContext");
-var noopDispatch = a => a;
-var useAppDispatch = () => {
-  var context = (0, _react.useContext)(_RechartsReduxContext.RechartsReduxContext);
+const _withSelector = require("use-sync-external-store/shim/with-selector");
+const _react = require("react");
+const _RechartsReduxContext = require("./RechartsReduxContext");
+const noopDispatch = a => a;
+const useAppDispatch = () => {
+  const context = (0, _react.useContext)(_RechartsReduxContext.RechartsReduxContext);
   if (context) {
     return context.store.dispatch;
   }
   return noopDispatch;
 };
 exports.useAppDispatch = useAppDispatch;
-var noop = () => {};
-var addNestedSubNoop = () => noop;
-var refEquality = (a, b) => a === b;
+const noop = () => {};
+const addNestedSubNoop = () => noop;
+const refEquality = (a, b) => a === b;
 
 /**
  * This is a recharts variant of `useSelector` from 'react-redux' package.
@@ -38,6 +38,6 @@ var refEquality = (a, b) => a === b;
  * @return whatever the selector returned; or undefined when outside of Redux store
  */
 function useAppSelector(selector) {
-  var context = (0, _react.useContext)(_RechartsReduxContext.RechartsReduxContext);
+  const context = (0, _react.useContext)(_RechartsReduxContext.RechartsReduxContext);
   return (0, _withSelector.useSyncExternalStoreWithSelector)(context ? context.subscription.addNestedSub : addNestedSubNoop, context ? context.store.getState : noop, context ? context.store.getState : noop, context ? selector : noop, refEquality);
 }

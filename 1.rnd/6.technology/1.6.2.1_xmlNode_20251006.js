@@ -18,8 +18,8 @@ class XmlNode{
     }else{
       this.child.push( { [node.tagname]: node.child });
     }
-  };
-};
+  }
+}
 
 
 module.exports = XmlNode;

@@ -138,7 +138,7 @@ export class YargsParser {
         }
         if (typeof opts.config !== 'undefined') {
             if (Array.isArray(opts.config) || typeof opts.config === 'string') {
-                ;
+                
                 [].concat(opts.config).filter(Boolean).forEach(function (key) {
                     flags.configs[key] = true;
                 });
@@ -394,7 +394,7 @@ export class YargsParser {
             });
         }
         if (configuration['strip-aliased']) {
-            ;
+            
             [].concat(...Object.keys(aliases).map(k => aliases[k])).forEach(alias => {
                 if (configuration['camel-case-expansion'] && alias.includes('-')) {
                     delete argv[alias.split('.').map(prop => camelCase(prop)).join('.')];
@@ -519,7 +519,7 @@ export class YargsParser {
             }
             // handle populating aliases of the first element of the dot-notation key
             if (splitKey.length > 1 && configuration['dot-notation']) {
-                ;
+                
                 (flags.aliases[splitKey[0]] || []).forEach(function (x) {
                     let keyProperties = x.split('.');
                     // expand alias with nested objects in key

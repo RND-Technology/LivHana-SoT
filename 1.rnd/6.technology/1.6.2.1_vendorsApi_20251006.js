@@ -1,23 +1,23 @@
 "use strict";
 exports.__esModule = true;
 exports.VendorsApi = void 0;
-var tslib_1 = require("tslib");
-var bulkCreateVendorsRequest_1 = require("../models/bulkCreateVendorsRequest");
-var bulkCreateVendorsResponse_1 = require("../models/bulkCreateVendorsResponse");
-var bulkRetrieveVendorsRequest_1 = require("../models/bulkRetrieveVendorsRequest");
-var bulkRetrieveVendorsResponse_1 = require("../models/bulkRetrieveVendorsResponse");
-var bulkUpdateVendorsRequest_1 = require("../models/bulkUpdateVendorsRequest");
-var bulkUpdateVendorsResponse_1 = require("../models/bulkUpdateVendorsResponse");
-var createVendorRequest_1 = require("../models/createVendorRequest");
-var createVendorResponse_1 = require("../models/createVendorResponse");
-var retrieveVendorResponse_1 = require("../models/retrieveVendorResponse");
-var searchVendorsRequest_1 = require("../models/searchVendorsRequest");
-var searchVendorsResponse_1 = require("../models/searchVendorsResponse");
-var updateVendorRequest_1 = require("../models/updateVendorRequest");
-var updateVendorResponse_1 = require("../models/updateVendorResponse");
-var schema_1 = require("../schema");
-var baseApi_1 = require("./baseApi");
-var VendorsApi = /** @class */ (function (_super) {
+const tslib_1 = require("tslib");
+const bulkCreateVendorsRequest_1 = require("../models/bulkCreateVendorsRequest");
+const bulkCreateVendorsResponse_1 = require("../models/bulkCreateVendorsResponse");
+const bulkRetrieveVendorsRequest_1 = require("../models/bulkRetrieveVendorsRequest");
+const bulkRetrieveVendorsResponse_1 = require("../models/bulkRetrieveVendorsResponse");
+const bulkUpdateVendorsRequest_1 = require("../models/bulkUpdateVendorsRequest");
+const bulkUpdateVendorsResponse_1 = require("../models/bulkUpdateVendorsResponse");
+const createVendorRequest_1 = require("../models/createVendorRequest");
+const createVendorResponse_1 = require("../models/createVendorResponse");
+const retrieveVendorResponse_1 = require("../models/retrieveVendorResponse");
+const searchVendorsRequest_1 = require("../models/searchVendorsRequest");
+const searchVendorsResponse_1 = require("../models/searchVendorsResponse");
+const updateVendorRequest_1 = require("../models/updateVendorRequest");
+const updateVendorResponse_1 = require("../models/updateVendorResponse");
+const schema_1 = require("../schema");
+const baseApi_1 = require("./baseApi");
+const VendorsApi = /** @class */ (function (_super) {
     tslib_1.__extends(VendorsApi, _super);
     function VendorsApi() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -31,7 +31,7 @@ var VendorsApi = /** @class */ (function (_super) {
      */
     VendorsApi.prototype.bulkCreateVendors = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/vendors/bulk-create');
                 mapped = req.prepareArgs({
@@ -54,7 +54,7 @@ var VendorsApi = /** @class */ (function (_super) {
      */
     VendorsApi.prototype.bulkRetrieveVendors = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/vendors/bulk-retrieve');
                 mapped = req.prepareArgs({
@@ -76,7 +76,7 @@ var VendorsApi = /** @class */ (function (_super) {
      */
     VendorsApi.prototype.bulkUpdateVendors = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('PUT', '/v2/vendors/bulk-update');
                 mapped = req.prepareArgs({
@@ -98,7 +98,7 @@ var VendorsApi = /** @class */ (function (_super) {
      */
     VendorsApi.prototype.createVendor = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/vendors/create');
                 mapped = req.prepareArgs({ body: [body, createVendorRequest_1.createVendorRequestSchema] });
@@ -119,7 +119,7 @@ var VendorsApi = /** @class */ (function (_super) {
      */
     VendorsApi.prototype.searchVendors = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/vendors/search');
                 mapped = req.prepareArgs({
@@ -140,7 +140,7 @@ var VendorsApi = /** @class */ (function (_super) {
      */
     VendorsApi.prototype.retrieveVendor = function (vendorId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({ vendorId: [vendorId, (0, schema_1.string)()] });
@@ -160,7 +160,7 @@ var VendorsApi = /** @class */ (function (_super) {
      */
     VendorsApi.prototype.updateVendor = function (body, vendorId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('PUT');
                 mapped = req.prepareArgs({
@@ -178,5 +178,5 @@ var VendorsApi = /** @class */ (function (_super) {
     return VendorsApi;
 }(baseApi_1.BaseApi));
 exports.VendorsApi = VendorsApi;
-var templateObject_1, templateObject_2;
+let templateObject_1, templateObject_2;
 //# sourceMappingURL=vendorsApi.js.map

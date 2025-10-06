@@ -1,8 +1,8 @@
 'use strict';
 /* global describe it */
 
-var assert = require('assert');
-var hash = require('../');
+const assert = require('assert');
+const hash = require('../');
 
 describe('Hmac', function() {
   describe('mixed test vector', function() {
@@ -49,7 +49,7 @@ describe('Hmac', function() {
 
     function test(opt) {
       it('should not fail at ' + opt.name, function() {
-        var h = hash.hmac(hash.sha256, opt.key, 'hex');
+        let h = hash.hmac(hash.sha256, opt.key, 'hex');
         assert.equal(h.update(opt.msg, opt.msgEnc).digest('hex'), opt.res);
         h = hash.hmac(hash.sha256, opt.key, 'hex');
         assert.equal(h

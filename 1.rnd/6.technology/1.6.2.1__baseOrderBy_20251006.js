@@ -1,4 +1,4 @@
-var arrayMap = require('./_arrayMap'),
+const arrayMap = require('./_arrayMap'),
     baseGet = require('./_baseGet'),
     baseIteratee = require('./_baseIteratee'),
     baseMap = require('./_baseMap'),
@@ -31,11 +31,11 @@ function baseOrderBy(collection, iteratees, orders) {
     iteratees = [identity];
   }
 
-  var index = -1;
+  let index = -1;
   iteratees = arrayMap(iteratees, baseUnary(baseIteratee));
 
-  var result = baseMap(collection, function(value, key, collection) {
-    var criteria = arrayMap(iteratees, function(iteratee) {
+  const result = baseMap(collection, function(value, key, collection) {
+    const criteria = arrayMap(iteratees, function(iteratee) {
       return iteratee(value);
     });
     return { 'criteria': criteria, 'index': ++index, 'value': value };

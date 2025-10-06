@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _default = exports.default = {
+const _default = exports.default = {
   auxiliaryComment: {
     message: "Use `auxiliaryCommentBefore` or `auxiliaryCommentAfter`"
   },

@@ -4,7 +4,7 @@ exports.DocumentPosition = void 0;
 exports.removeSubsets = removeSubsets;
 exports.compareDocumentPosition = compareDocumentPosition;
 exports.uniqueSort = uniqueSort;
-var domhandler_1 = require("domhandler");
+const domhandler_1 = require("domhandler");
 /**
  * Given an array of nodes, remove any member that is contained by another
  * member.
@@ -14,13 +14,13 @@ var domhandler_1 = require("domhandler");
  * @returns Remaining nodes that aren't contained by other nodes.
  */
 function removeSubsets(nodes) {
-    var idx = nodes.length;
+    let idx = nodes.length;
     /*
      * Check if each node (or one of its ancestors) is already contained in the
      * array.
      */
     while (--idx >= 0) {
-        var node = nodes[idx];
+        const node = nodes[idx];
         /*
          * Remove the node if it is not unique.
          * We are going through the array from the end, so we only
@@ -30,7 +30,7 @@ function removeSubsets(nodes) {
             nodes.splice(idx, 1);
             continue;
         }
-        for (var ancestor = node.parent; ancestor; ancestor = ancestor.parent) {
+        for (let ancestor = node.parent; ancestor; ancestor = ancestor.parent) {
             if (nodes.includes(ancestor)) {
                 nodes.splice(idx, 1);
                 break;
@@ -43,7 +43,7 @@ function removeSubsets(nodes) {
  * @category Helpers
  * @see {@link http://dom.spec.whatwg.org/#dom-node-comparedocumentposition}
  */
-var DocumentPosition;
+let DocumentPosition;
 (function (DocumentPosition) {
     DocumentPosition[DocumentPosition["DISCONNECTED"] = 1] = "DISCONNECTED";
     DocumentPosition[DocumentPosition["PRECEDING"] = 2] = "PRECEDING";
@@ -78,12 +78,12 @@ var DocumentPosition;
  * a description of these values.
  */
 function compareDocumentPosition(nodeA, nodeB) {
-    var aParents = [];
-    var bParents = [];
+    const aParents = [];
+    const bParents = [];
     if (nodeA === nodeB) {
         return 0;
     }
-    var current = (0, domhandler_1.hasChildren)(nodeA) ? nodeA : nodeA.parent;
+    let current = (0, domhandler_1.hasChildren)(nodeA) ? nodeA : nodeA.parent;
     while (current) {
         aParents.unshift(current);
         current = current.parent;
@@ -93,18 +93,18 @@ function compareDocumentPosition(nodeA, nodeB) {
         bParents.unshift(current);
         current = current.parent;
     }
-    var maxIdx = Math.min(aParents.length, bParents.length);
-    var idx = 0;
+    const maxIdx = Math.min(aParents.length, bParents.length);
+    let idx = 0;
     while (idx < maxIdx && aParents[idx] === bParents[idx]) {
         idx++;
     }
     if (idx === 0) {
         return DocumentPosition.DISCONNECTED;
     }
-    var sharedParent = aParents[idx - 1];
-    var siblings = sharedParent.children;
-    var aSibling = aParents[idx];
-    var bSibling = bParents[idx];
+    const sharedParent = aParents[idx - 1];
+    const siblings = sharedParent.children;
+    const aSibling = aParents[idx];
+    const bSibling = bParents[idx];
     if (siblings.indexOf(aSibling) > siblings.indexOf(bSibling)) {
         if (sharedParent === nodeB) {
             return DocumentPosition.FOLLOWING | DocumentPosition.CONTAINED_BY;
@@ -128,7 +128,7 @@ function compareDocumentPosition(nodeA, nodeB) {
 function uniqueSort(nodes) {
     nodes = nodes.filter(function (node, i, arr) { return !arr.includes(node, i + 1); });
     nodes.sort(function (a, b) {
-        var relative = compareDocumentPosition(a, b);
+        const relative = compareDocumentPosition(a, b);
         if (relative & DocumentPosition.PRECEDING) {
             return -1;
         }

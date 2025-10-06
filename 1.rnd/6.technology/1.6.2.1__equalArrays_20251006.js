@@ -1,9 +1,9 @@
-var SetCache = require('./_SetCache'),
+const SetCache = require('./_SetCache'),
     arraySome = require('./_arraySome'),
     cacheHas = require('./_cacheHas');
 
 /** Used to compose bitmasks for value comparisons. */
-var COMPARE_PARTIAL_FLAG = 1,
+const COMPARE_PARTIAL_FLAG = 1,
     COMPARE_UNORDERED_FLAG = 2;
 
 /**
@@ -20,7 +20,7 @@ var COMPARE_PARTIAL_FLAG = 1,
  * @returns {boolean} Returns `true` if the arrays are equivalent, else `false`.
  */
 function equalArrays(array, other, bitmask, customizer, equalFunc, stack) {
-  var isPartial = bitmask & COMPARE_PARTIAL_FLAG,
+  const isPartial = bitmask & COMPARE_PARTIAL_FLAG,
       arrLength = array.length,
       othLength = other.length;
 
@@ -28,12 +28,12 @@ function equalArrays(array, other, bitmask, customizer, equalFunc, stack) {
     return false;
   }
   // Check that cyclic values are equal.
-  var arrStacked = stack.get(array);
-  var othStacked = stack.get(other);
+  const arrStacked = stack.get(array);
+  const othStacked = stack.get(other);
   if (arrStacked && othStacked) {
     return arrStacked == other && othStacked == array;
   }
-  var index = -1,
+  let index = -1,
       result = true,
       seen = (bitmask & COMPARE_UNORDERED_FLAG) ? new SetCache : undefined;
 

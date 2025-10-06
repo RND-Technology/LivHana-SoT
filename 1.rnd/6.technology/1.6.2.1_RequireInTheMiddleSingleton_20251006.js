@@ -87,7 +87,7 @@ class RequireInTheMiddleSingleton {
      * @returns {RequireInTheMiddleSingleton} Singleton of `RequireInTheMiddleSingleton`
      */
     static getInstance() {
-        var _a;
+        let _a;
         // Mocha runs all test suites in the same process
         // This prevents test suites from sharing a singleton
         if (isMocha)

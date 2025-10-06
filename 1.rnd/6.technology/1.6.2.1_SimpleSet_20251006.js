@@ -3,12 +3,12 @@
 exports.__esModule = true;
 exports.default = void 0;
 
-var SimpleSet = /*#__PURE__*/function () {
+const SimpleSet = /*#__PURE__*/function () {
   function SimpleSet() {
     this.v = [];
   }
 
-  var _proto = SimpleSet.prototype;
+  const _proto = SimpleSet.prototype;
 
   _proto.clear = function clear() {
     this.v.length = 0;
@@ -24,7 +24,7 @@ var SimpleSet = /*#__PURE__*/function () {
   };
 
   _proto.delete = function _delete(k) {
-    var idx = this.v.indexOf(k);
+    const idx = this.v.indexOf(k);
     if (idx === -1) return false;
     this.v.splice(idx, 1);
     return true;

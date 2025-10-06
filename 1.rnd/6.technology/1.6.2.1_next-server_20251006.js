@@ -148,7 +148,7 @@ function extractAttrs(args, version) {
     page = match?.definition?.pathname
     params = { ...match?.params }
   } else {
-    ;[, , , params, page] = args
+    [, , , params, page] = args
   }
 
   return { params, page }

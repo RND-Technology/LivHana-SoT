@@ -1,13 +1,13 @@
 'use strict';
 
-var Type = require('../type');
+const Type = require('../type');
 
-var _toString = Object.prototype.toString;
+const _toString = Object.prototype.toString;
 
 function resolveYamlPairs(data) {
   if (data === null) return true;
 
-  var index, length, pair, keys, result,
+  let index, length, pair, keys, result,
       object = data;
 
   result = new Array(object.length);
@@ -30,7 +30,7 @@ function resolveYamlPairs(data) {
 function constructYamlPairs(data) {
   if (data === null) return [];
 
-  var index, length, pair, keys, result,
+  let index, length, pair, keys, result,
       object = data;
 
   result = new Array(object.length);

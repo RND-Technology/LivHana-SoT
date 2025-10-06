@@ -1,24 +1,24 @@
 "use strict";
 exports.__esModule = true;
 exports.CustomerCustomAttributesApi = void 0;
-var tslib_1 = require("tslib");
-var bulkUpsertCustomerCustomAttributesRequest_1 = require("../models/bulkUpsertCustomerCustomAttributesRequest");
-var bulkUpsertCustomerCustomAttributesResponse_1 = require("../models/bulkUpsertCustomerCustomAttributesResponse");
-var createCustomerCustomAttributeDefinitionRequest_1 = require("../models/createCustomerCustomAttributeDefinitionRequest");
-var createCustomerCustomAttributeDefinitionResponse_1 = require("../models/createCustomerCustomAttributeDefinitionResponse");
-var deleteCustomerCustomAttributeDefinitionResponse_1 = require("../models/deleteCustomerCustomAttributeDefinitionResponse");
-var deleteCustomerCustomAttributeResponse_1 = require("../models/deleteCustomerCustomAttributeResponse");
-var listCustomerCustomAttributeDefinitionsResponse_1 = require("../models/listCustomerCustomAttributeDefinitionsResponse");
-var listCustomerCustomAttributesResponse_1 = require("../models/listCustomerCustomAttributesResponse");
-var retrieveCustomerCustomAttributeDefinitionResponse_1 = require("../models/retrieveCustomerCustomAttributeDefinitionResponse");
-var retrieveCustomerCustomAttributeResponse_1 = require("../models/retrieveCustomerCustomAttributeResponse");
-var updateCustomerCustomAttributeDefinitionRequest_1 = require("../models/updateCustomerCustomAttributeDefinitionRequest");
-var updateCustomerCustomAttributeDefinitionResponse_1 = require("../models/updateCustomerCustomAttributeDefinitionResponse");
-var upsertCustomerCustomAttributeRequest_1 = require("../models/upsertCustomerCustomAttributeRequest");
-var upsertCustomerCustomAttributeResponse_1 = require("../models/upsertCustomerCustomAttributeResponse");
-var schema_1 = require("../schema");
-var baseApi_1 = require("./baseApi");
-var CustomerCustomAttributesApi = /** @class */ (function (_super) {
+const tslib_1 = require("tslib");
+const bulkUpsertCustomerCustomAttributesRequest_1 = require("../models/bulkUpsertCustomerCustomAttributesRequest");
+const bulkUpsertCustomerCustomAttributesResponse_1 = require("../models/bulkUpsertCustomerCustomAttributesResponse");
+const createCustomerCustomAttributeDefinitionRequest_1 = require("../models/createCustomerCustomAttributeDefinitionRequest");
+const createCustomerCustomAttributeDefinitionResponse_1 = require("../models/createCustomerCustomAttributeDefinitionResponse");
+const deleteCustomerCustomAttributeDefinitionResponse_1 = require("../models/deleteCustomerCustomAttributeDefinitionResponse");
+const deleteCustomerCustomAttributeResponse_1 = require("../models/deleteCustomerCustomAttributeResponse");
+const listCustomerCustomAttributeDefinitionsResponse_1 = require("../models/listCustomerCustomAttributeDefinitionsResponse");
+const listCustomerCustomAttributesResponse_1 = require("../models/listCustomerCustomAttributesResponse");
+const retrieveCustomerCustomAttributeDefinitionResponse_1 = require("../models/retrieveCustomerCustomAttributeDefinitionResponse");
+const retrieveCustomerCustomAttributeResponse_1 = require("../models/retrieveCustomerCustomAttributeResponse");
+const updateCustomerCustomAttributeDefinitionRequest_1 = require("../models/updateCustomerCustomAttributeDefinitionRequest");
+const updateCustomerCustomAttributeDefinitionResponse_1 = require("../models/updateCustomerCustomAttributeDefinitionResponse");
+const upsertCustomerCustomAttributeRequest_1 = require("../models/upsertCustomerCustomAttributeRequest");
+const upsertCustomerCustomAttributeResponse_1 = require("../models/upsertCustomerCustomAttributeResponse");
+const schema_1 = require("../schema");
+const baseApi_1 = require("./baseApi");
+const CustomerCustomAttributesApi = /** @class */ (function (_super) {
     tslib_1.__extends(CustomerCustomAttributesApi, _super);
     function CustomerCustomAttributesApi() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -46,7 +46,7 @@ var CustomerCustomAttributesApi = /** @class */ (function (_super) {
      */
     CustomerCustomAttributesApi.prototype.listCustomerCustomAttributeDefinitions = function (limit, cursor, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET', '/v2/customers/custom-attribute-definitions');
                 mapped = req.prepareArgs({
@@ -82,7 +82,7 @@ var CustomerCustomAttributesApi = /** @class */ (function (_super) {
      */
     CustomerCustomAttributesApi.prototype.createCustomerCustomAttributeDefinition = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/customers/custom-attribute-definitions');
                 mapped = req.prepareArgs({
@@ -109,7 +109,7 @@ var CustomerCustomAttributesApi = /** @class */ (function (_super) {
      */
     CustomerCustomAttributesApi.prototype.deleteCustomerCustomAttributeDefinition = function (key, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('DELETE');
                 mapped = req.prepareArgs({ key: [key, (0, schema_1.string)()] });
@@ -139,7 +139,7 @@ var CustomerCustomAttributesApi = /** @class */ (function (_super) {
      */
     CustomerCustomAttributesApi.prototype.retrieveCustomerCustomAttributeDefinition = function (key, version, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({
@@ -173,7 +173,7 @@ var CustomerCustomAttributesApi = /** @class */ (function (_super) {
      */
     CustomerCustomAttributesApi.prototype.updateCustomerCustomAttributeDefinition = function (key, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('PUT');
                 mapped = req.prepareArgs({
@@ -214,7 +214,7 @@ var CustomerCustomAttributesApi = /** @class */ (function (_super) {
      */
     CustomerCustomAttributesApi.prototype.bulkUpsertCustomerCustomAttributes = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/customers/custom-attributes/bulk-upsert');
                 mapped = req.prepareArgs({
@@ -256,7 +256,7 @@ var CustomerCustomAttributesApi = /** @class */ (function (_super) {
      */
     CustomerCustomAttributesApi.prototype.listCustomerCustomAttributes = function (customerId, limit, cursor, withDefinitions, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({
@@ -289,7 +289,7 @@ var CustomerCustomAttributesApi = /** @class */ (function (_super) {
      */
     CustomerCustomAttributesApi.prototype.deleteCustomerCustomAttribute = function (customerId, key, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('DELETE');
                 mapped = req.prepareArgs({
@@ -331,7 +331,7 @@ var CustomerCustomAttributesApi = /** @class */ (function (_super) {
      */
     CustomerCustomAttributesApi.prototype.retrieveCustomerCustomAttribute = function (customerId, key, withDefinition, version, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({
@@ -376,7 +376,7 @@ var CustomerCustomAttributesApi = /** @class */ (function (_super) {
      */
     CustomerCustomAttributesApi.prototype.upsertCustomerCustomAttribute = function (customerId, key, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({
@@ -395,5 +395,5 @@ var CustomerCustomAttributesApi = /** @class */ (function (_super) {
     return CustomerCustomAttributesApi;
 }(baseApi_1.BaseApi));
 exports.CustomerCustomAttributesApi = CustomerCustomAttributesApi;
-var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6, templateObject_7;
+let templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6, templateObject_7;
 //# sourceMappingURL=customerCustomAttributesApi.js.map

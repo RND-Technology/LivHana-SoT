@@ -1,23 +1,23 @@
 "use strict";
-var __create = Object.create;
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getProtoOf = Object.getPrototypeOf;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
+const __create = Object.create;
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __getProtoOf = Object.getPrototypeOf;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __export = (target, all) => {
+  for (const name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+const __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
   // If the importer is in node compatibility mode or this is not an ESM
   // file that has been converted to a CommonJS file using a Babel-
   // compatible transform (i.e. "__esModule" has not been set), then set
@@ -25,27 +25,27 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
   mod
 ));
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var chunk_KDPLGCY6_exports = {};
+const __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+const chunk_KDPLGCY6_exports = {};
 __export(chunk_KDPLGCY6_exports, {
   getProxyAgent: () => getProxyAgent
 });
 module.exports = __toCommonJS(chunk_KDPLGCY6_exports);
-var import_chunk_AH6QHEOA = require("./chunk-AH6QHEOA.js");
-var import_debug = __toESM(require("@prisma/debug"));
-var import_url = __toESM(require("url"));
-var require_ms = (0, import_chunk_AH6QHEOA.__commonJS)({
+const import_chunk_AH6QHEOA = require("./chunk-AH6QHEOA.js");
+const import_debug = __toESM(require("@prisma/debug"));
+const import_url = __toESM(require("url"));
+const require_ms = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/ms@2.1.2/node_modules/ms/index.js"(exports, module2) {
     "use strict";
-    var s = 1e3;
-    var m = s * 60;
-    var h = m * 60;
-    var d = h * 24;
-    var w = d * 7;
-    var y = d * 365.25;
+    const s = 1e3;
+    const m = s * 60;
+    const h = m * 60;
+    const d = h * 24;
+    const w = d * 7;
+    const y = d * 365.25;
     module2.exports = function(val, options) {
       options = options || {};
-      var type = typeof val;
+      const type = typeof val;
       if (type === "string" && val.length > 0) {
         return parse(val);
       } else if (type === "number" && isFinite(val)) {
@@ -60,14 +60,14 @@ var require_ms = (0, import_chunk_AH6QHEOA.__commonJS)({
       if (str.length > 100) {
         return;
       }
-      var match = /^(-?(?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|weeks?|w|years?|yrs?|y)?$/i.exec(
+      const match = /^(-?(?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|weeks?|w|years?|yrs?|y)?$/i.exec(
         str
       );
       if (!match) {
         return;
       }
-      var n = parseFloat(match[1]);
-      var type = (match[2] || "ms").toLowerCase();
+      const n = parseFloat(match[1]);
+      const type = (match[2] || "ms").toLowerCase();
       switch (type) {
         case "years":
         case "year":
@@ -112,7 +112,7 @@ var require_ms = (0, import_chunk_AH6QHEOA.__commonJS)({
       }
     }
     function fmtShort(ms) {
-      var msAbs = Math.abs(ms);
+      const msAbs = Math.abs(ms);
       if (msAbs >= d) {
         return Math.round(ms / d) + "d";
       }
@@ -128,7 +128,7 @@ var require_ms = (0, import_chunk_AH6QHEOA.__commonJS)({
       return ms + "ms";
     }
     function fmtLong(ms) {
-      var msAbs = Math.abs(ms);
+      const msAbs = Math.abs(ms);
       if (msAbs >= d) {
         return plural(ms, msAbs, d, "day");
       }
@@ -144,12 +144,12 @@ var require_ms = (0, import_chunk_AH6QHEOA.__commonJS)({
       return ms + " ms";
     }
     function plural(ms, msAbs, n, name) {
-      var isPlural = msAbs >= n * 1.5;
+      const isPlural = msAbs >= n * 1.5;
       return Math.round(ms / n) + " " + name + (isPlural ? "s" : "");
     }
   }
 });
-var require_common = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_common = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/debug@4.3.6/node_modules/debug/src/common.js"(exports, module2) {
     "use strict";
     function setup(env) {
@@ -311,7 +311,7 @@ var require_common = (0, import_chunk_AH6QHEOA.__commonJS)({
     module2.exports = setup;
   }
 });
-var require_browser = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_browser = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/debug@4.3.6/node_modules/debug/src/browser.js"(exports, module2) {
     "use strict";
     exports.formatArgs = formatArgs;
@@ -470,7 +470,7 @@ var require_browser = (0, import_chunk_AH6QHEOA.__commonJS)({
       }
     }
     module2.exports = require_common()(exports);
-    var { formatters } = module2.exports;
+    const { formatters } = module2.exports;
     formatters.j = function(v) {
       try {
         return JSON.stringify(v);
@@ -480,7 +480,7 @@ var require_browser = (0, import_chunk_AH6QHEOA.__commonJS)({
     };
   }
 });
-var require_has_flag = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_has_flag = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/has-flag@4.0.0/node_modules/has-flag/index.js"(exports, module2) {
     "use strict";
     module2.exports = (flag, argv = process.argv) => {
@@ -491,14 +491,14 @@ var require_has_flag = (0, import_chunk_AH6QHEOA.__commonJS)({
     };
   }
 });
-var require_supports_color = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_supports_color = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/supports-color@8.1.1/node_modules/supports-color/index.js"(exports, module2) {
     "use strict";
-    var os = (0, import_chunk_AH6QHEOA.__require)("os");
-    var tty = (0, import_chunk_AH6QHEOA.__require)("tty");
-    var hasFlag = require_has_flag();
-    var { env } = process;
-    var flagForceColor;
+    const os = (0, import_chunk_AH6QHEOA.__require)("os");
+    const tty = (0, import_chunk_AH6QHEOA.__require)("tty");
+    const hasFlag = require_has_flag();
+    const { env } = process;
+    let flagForceColor;
     if (hasFlag("no-color") || hasFlag("no-colors") || hasFlag("color=false") || hasFlag("color=never")) {
       flagForceColor = 0;
     } else if (hasFlag("color") || hasFlag("colors") || hasFlag("color=true") || hasFlag("color=always")) {
@@ -603,11 +603,11 @@ var require_supports_color = (0, import_chunk_AH6QHEOA.__commonJS)({
     };
   }
 });
-var require_node = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_node = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/debug@4.3.6/node_modules/debug/src/node.js"(exports, module2) {
     "use strict";
-    var tty = (0, import_chunk_AH6QHEOA.__require)("tty");
-    var util = (0, import_chunk_AH6QHEOA.__require)("util");
+    const tty = (0, import_chunk_AH6QHEOA.__require)("tty");
+    const util = (0, import_chunk_AH6QHEOA.__require)("util");
     exports.init = init;
     exports.log = log;
     exports.formatArgs = formatArgs;
@@ -765,7 +765,7 @@ var require_node = (0, import_chunk_AH6QHEOA.__commonJS)({
       }
     }
     module2.exports = require_common()(exports);
-    var { formatters } = module2.exports;
+    const { formatters } = module2.exports;
     formatters.o = function(v) {
       this.inspectOpts.colors = this.useColors;
       return util.inspect(v, this.inspectOpts).split("\n").map((str) => str.trim()).join(" ");
@@ -776,7 +776,7 @@ var require_node = (0, import_chunk_AH6QHEOA.__commonJS)({
     };
   }
 });
-var require_src = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_src = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/debug@4.3.6/node_modules/debug/src/index.js"(exports, module2) {
     "use strict";
     if (typeof process === "undefined" || process.type === "renderer" || process.browser === true || process.__nwjs) {
@@ -786,12 +786,12 @@ var require_src = (0, import_chunk_AH6QHEOA.__commonJS)({
     }
   }
 });
-var require_helpers = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_helpers = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/agent-base@7.1.0/node_modules/agent-base/dist/helpers.js"(exports) {
     "use strict";
-    var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
+    const __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0) k2 = k;
-      var desc = Object.getOwnPropertyDescriptor(m, k);
+      let desc = Object.getOwnPropertyDescriptor(m, k);
       if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
         desc = { enumerable: true, get: function() {
           return m[k];
@@ -802,24 +802,24 @@ var require_helpers = (0, import_chunk_AH6QHEOA.__commonJS)({
       if (k2 === void 0) k2 = k;
       o[k2] = m[k];
     });
-    var __setModuleDefault = exports && exports.__setModuleDefault || (Object.create ? function(o, v) {
+    const __setModuleDefault = exports && exports.__setModuleDefault || (Object.create ? function(o, v) {
       Object.defineProperty(o, "default", { enumerable: true, value: v });
     } : function(o, v) {
       o["default"] = v;
     });
-    var __importStar = exports && exports.__importStar || function(mod) {
+    const __importStar = exports && exports.__importStar || function(mod) {
       if (mod && mod.__esModule) return mod;
-      var result = {};
+      const result = {};
       if (mod != null) {
-        for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+        for (const k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
       }
       __setModuleDefault(result, mod);
       return result;
     };
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.req = exports.json = exports.toBuffer = void 0;
-    var http = __importStar((0, import_chunk_AH6QHEOA.__require)("http"));
-    var https = __importStar((0, import_chunk_AH6QHEOA.__require)("https"));
+    const http = __importStar((0, import_chunk_AH6QHEOA.__require)("http"));
+    const https = __importStar((0, import_chunk_AH6QHEOA.__require)("https"));
     async function toBuffer(stream) {
       let length = 0;
       const chunks = [];
@@ -854,12 +854,12 @@ var require_helpers = (0, import_chunk_AH6QHEOA.__commonJS)({
     exports.req = req;
   }
 });
-var require_dist = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_dist = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/agent-base@7.1.0/node_modules/agent-base/dist/index.js"(exports) {
     "use strict";
-    var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
+    const __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0) k2 = k;
-      var desc = Object.getOwnPropertyDescriptor(m, k);
+      let desc = Object.getOwnPropertyDescriptor(m, k);
       if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
         desc = { enumerable: true, get: function() {
           return m[k];
@@ -870,29 +870,29 @@ var require_dist = (0, import_chunk_AH6QHEOA.__commonJS)({
       if (k2 === void 0) k2 = k;
       o[k2] = m[k];
     });
-    var __setModuleDefault = exports && exports.__setModuleDefault || (Object.create ? function(o, v) {
+    const __setModuleDefault = exports && exports.__setModuleDefault || (Object.create ? function(o, v) {
       Object.defineProperty(o, "default", { enumerable: true, value: v });
     } : function(o, v) {
       o["default"] = v;
     });
-    var __importStar = exports && exports.__importStar || function(mod) {
+    const __importStar = exports && exports.__importStar || function(mod) {
       if (mod && mod.__esModule) return mod;
-      var result = {};
+      const result = {};
       if (mod != null) {
-        for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+        for (const k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
       }
       __setModuleDefault(result, mod);
       return result;
     };
-    var __exportStar = exports && exports.__exportStar || function(m, exports2) {
-      for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports2, p)) __createBinding(exports2, m, p);
+    const __exportStar = exports && exports.__exportStar || function(m, exports2) {
+      for (const p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports2, p)) __createBinding(exports2, m, p);
     };
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Agent = void 0;
-    var http = __importStar((0, import_chunk_AH6QHEOA.__require)("http"));
+    const http = __importStar((0, import_chunk_AH6QHEOA.__require)("http"));
     __exportStar(require_helpers(), exports);
-    var INTERNAL = Symbol("AgentBaseInternalState");
-    var Agent = class extends http.Agent {
+    const INTERNAL = Symbol("AgentBaseInternalState");
+    const Agent = class extends http.Agent {
       constructor(opts) {
         super(opts);
         this[INTERNAL] = {};
@@ -955,12 +955,12 @@ var require_dist = (0, import_chunk_AH6QHEOA.__commonJS)({
     exports.Agent = Agent;
   }
 });
-var require_dist2 = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_dist2 = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/http-proxy-agent@7.0.2/node_modules/http-proxy-agent/dist/index.js"(exports) {
     "use strict";
-    var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
+    const __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0) k2 = k;
-      var desc = Object.getOwnPropertyDescriptor(m, k);
+      let desc = Object.getOwnPropertyDescriptor(m, k);
       if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
         desc = { enumerable: true, get: function() {
           return m[k];
@@ -971,33 +971,33 @@ var require_dist2 = (0, import_chunk_AH6QHEOA.__commonJS)({
       if (k2 === void 0) k2 = k;
       o[k2] = m[k];
     });
-    var __setModuleDefault = exports && exports.__setModuleDefault || (Object.create ? function(o, v) {
+    const __setModuleDefault = exports && exports.__setModuleDefault || (Object.create ? function(o, v) {
       Object.defineProperty(o, "default", { enumerable: true, value: v });
     } : function(o, v) {
       o["default"] = v;
     });
-    var __importStar = exports && exports.__importStar || function(mod) {
+    const __importStar = exports && exports.__importStar || function(mod) {
       if (mod && mod.__esModule) return mod;
-      var result = {};
+      const result = {};
       if (mod != null) {
-        for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+        for (const k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
       }
       __setModuleDefault(result, mod);
       return result;
     };
-    var __importDefault = exports && exports.__importDefault || function(mod) {
+    const __importDefault = exports && exports.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
     };
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.HttpProxyAgent = void 0;
-    var net = __importStar((0, import_chunk_AH6QHEOA.__require)("net"));
-    var tls = __importStar((0, import_chunk_AH6QHEOA.__require)("tls"));
-    var debug_1 = __importDefault(require_src());
-    var events_1 = (0, import_chunk_AH6QHEOA.__require)("events");
-    var agent_base_1 = require_dist();
-    var url_1 = (0, import_chunk_AH6QHEOA.__require)("url");
-    var debug2 = (0, debug_1.default)("http-proxy-agent");
-    var HttpProxyAgent2 = class extends agent_base_1.Agent {
+    const net = __importStar((0, import_chunk_AH6QHEOA.__require)("net"));
+    const tls = __importStar((0, import_chunk_AH6QHEOA.__require)("tls"));
+    const debug_1 = __importDefault(require_src());
+    const events_1 = (0, import_chunk_AH6QHEOA.__require)("events");
+    const agent_base_1 = require_dist();
+    const url_1 = (0, import_chunk_AH6QHEOA.__require)("url");
+    const debug2 = (0, debug_1.default)("http-proxy-agent");
+    const HttpProxyAgent2 = class extends agent_base_1.Agent {
       constructor(proxy, opts) {
         super(opts);
         this.proxy = typeof proxy === "string" ? new url_1.URL(proxy) : proxy;
@@ -1083,16 +1083,16 @@ var require_dist2 = (0, import_chunk_AH6QHEOA.__commonJS)({
     }
   }
 });
-var require_parse_proxy_response = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_parse_proxy_response = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/https-proxy-agent@7.0.5/node_modules/https-proxy-agent/dist/parse-proxy-response.js"(exports) {
     "use strict";
-    var __importDefault = exports && exports.__importDefault || function(mod) {
+    const __importDefault = exports && exports.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
     };
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.parseProxyResponse = void 0;
-    var debug_1 = __importDefault(require_src());
-    var debug2 = (0, debug_1.default)("https-proxy-agent:parse-proxy-response");
+    const debug_1 = __importDefault(require_src());
+    const debug2 = (0, debug_1.default)("https-proxy-agent:parse-proxy-response");
     function parseProxyResponse(socket) {
       return new Promise((resolve, reject) => {
         let buffersLength = 0;
@@ -1177,12 +1177,12 @@ var require_parse_proxy_response = (0, import_chunk_AH6QHEOA.__commonJS)({
     exports.parseProxyResponse = parseProxyResponse;
   }
 });
-var require_dist3 = (0, import_chunk_AH6QHEOA.__commonJS)({
+const require_dist3 = (0, import_chunk_AH6QHEOA.__commonJS)({
   "../../node_modules/.pnpm/https-proxy-agent@7.0.5/node_modules/https-proxy-agent/dist/index.js"(exports) {
     "use strict";
-    var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
+    const __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0) k2 = k;
-      var desc = Object.getOwnPropertyDescriptor(m, k);
+      let desc = Object.getOwnPropertyDescriptor(m, k);
       if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
         desc = { enumerable: true, get: function() {
           return m[k];
@@ -1193,34 +1193,34 @@ var require_dist3 = (0, import_chunk_AH6QHEOA.__commonJS)({
       if (k2 === void 0) k2 = k;
       o[k2] = m[k];
     });
-    var __setModuleDefault = exports && exports.__setModuleDefault || (Object.create ? function(o, v) {
+    const __setModuleDefault = exports && exports.__setModuleDefault || (Object.create ? function(o, v) {
       Object.defineProperty(o, "default", { enumerable: true, value: v });
     } : function(o, v) {
       o["default"] = v;
     });
-    var __importStar = exports && exports.__importStar || function(mod) {
+    const __importStar = exports && exports.__importStar || function(mod) {
       if (mod && mod.__esModule) return mod;
-      var result = {};
+      const result = {};
       if (mod != null) {
-        for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+        for (const k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
       }
       __setModuleDefault(result, mod);
       return result;
     };
-    var __importDefault = exports && exports.__importDefault || function(mod) {
+    const __importDefault = exports && exports.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
     };
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.HttpsProxyAgent = void 0;
-    var net = __importStar((0, import_chunk_AH6QHEOA.__require)("net"));
-    var tls = __importStar((0, import_chunk_AH6QHEOA.__require)("tls"));
-    var assert_1 = __importDefault((0, import_chunk_AH6QHEOA.__require)("assert"));
-    var debug_1 = __importDefault(require_src());
-    var agent_base_1 = require_dist();
-    var url_1 = (0, import_chunk_AH6QHEOA.__require)("url");
-    var parse_proxy_response_1 = require_parse_proxy_response();
-    var debug2 = (0, debug_1.default)("https-proxy-agent");
-    var HttpsProxyAgent2 = class extends agent_base_1.Agent {
+    const net = __importStar((0, import_chunk_AH6QHEOA.__require)("net"));
+    const tls = __importStar((0, import_chunk_AH6QHEOA.__require)("tls"));
+    const assert_1 = __importDefault((0, import_chunk_AH6QHEOA.__require)("assert"));
+    const debug_1 = __importDefault(require_src());
+    const agent_base_1 = require_dist();
+    const url_1 = (0, import_chunk_AH6QHEOA.__require)("url");
+    const parse_proxy_response_1 = require_parse_proxy_response();
+    const debug2 = (0, debug_1.default)("https-proxy-agent");
+    const HttpsProxyAgent2 = class extends agent_base_1.Agent {
       constructor(proxy, opts) {
         super(opts);
         this.options = { path: void 0 };
@@ -1322,9 +1322,9 @@ var require_dist3 = (0, import_chunk_AH6QHEOA.__commonJS)({
     }
   }
 });
-var import_http_proxy_agent = (0, import_chunk_AH6QHEOA.__toESM)(require_dist2());
-var import_https_proxy_agent = (0, import_chunk_AH6QHEOA.__toESM)(require_dist3());
-var debug = (0, import_debug.default)("prisma:fetch-engine:getProxyAgent");
+const import_http_proxy_agent = (0, import_chunk_AH6QHEOA.__toESM)(require_dist2());
+const import_https_proxy_agent = (0, import_chunk_AH6QHEOA.__toESM)(require_dist3());
+const debug = (0, import_debug.default)("prisma:fetch-engine:getProxyAgent");
 function formatHostname(hostname) {
   return hostname.replace(/^\.*/, ".").toLowerCase();
 }

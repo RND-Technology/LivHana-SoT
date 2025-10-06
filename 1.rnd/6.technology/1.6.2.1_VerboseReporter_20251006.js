@@ -18,7 +18,7 @@ function _jestUtil() {
   };
   return data;
 }
-var _DefaultReporter = _interopRequireDefault(require('./DefaultReporter'));
+const _DefaultReporter = _interopRequireDefault(require('./DefaultReporter'));
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {default: obj};
 }

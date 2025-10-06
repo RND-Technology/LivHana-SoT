@@ -1,4 +1,4 @@
-var baseProperty = require('./_baseProperty');
+const baseProperty = require('./_baseProperty');
 
 /**
  * Gets the size of an ASCII `string`.
@@ -7,6 +7,6 @@ var baseProperty = require('./_baseProperty');
  * @param {string} string The string inspect.
  * @returns {number} Returns the string size.
  */
-var asciiSize = baseProperty('length');
+const asciiSize = baseProperty('length');
 
 module.exports = asciiSize;

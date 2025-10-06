@@ -1,4 +1,4 @@
-let Declaration = require('../declaration')
+const Declaration = require('../declaration')
 
 class TransformDecl extends Declaration {
   /**
@@ -9,7 +9,7 @@ class TransformDecl extends Declaration {
       return false
     }
 
-    for (let func of TransformDecl.functions3d) {
+    for (const func of TransformDecl.functions3d) {
       if (decl.value.includes(`${func}(`)) {
         return true
       }
@@ -45,7 +45,7 @@ class TransformDecl extends Declaration {
       if (parent.type === 'atrule' && parent.name === 'keyframes') {
         return true
       }
-      ;({ parent } = parent)
+      ({ parent } = parent)
     }
     return false
   }

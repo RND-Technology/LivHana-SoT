@@ -10,7 +10,7 @@ import { __values } from 'tslib';
  * @param value Header value
  */
 function setHeader(headers, name, value) {
-  var realHeaderName = lookupCaseInsensitive(headers, name);
+  const realHeaderName = lookupCaseInsensitive(headers, name);
   setHeaderInternal(headers, realHeaderName, name, value);
 }
 function setHeaderInternal(headers, realHeaderName, name, value) {
@@ -31,7 +31,7 @@ function setHeaderInternal(headers, realHeaderName, name, value) {
  * @param value Header value
  */
 function setHeaderIfNotSet(headers, name, value) {
-  var realHeaderName = lookupCaseInsensitive(headers, name);
+  const realHeaderName = lookupCaseInsensitive(headers, name);
   if (!realHeaderName) {
     setHeaderInternal(headers, realHeaderName, name, value);
   }
@@ -45,7 +45,7 @@ function setHeaderIfNotSet(headers, name, value) {
  * @param name Header name
  */
 function getHeader(headers, name) {
-  var prop = lookupCaseInsensitive(headers, name);
+  const prop = lookupCaseInsensitive(headers, name);
   if (prop) {
     return headers[prop];
   }
@@ -62,7 +62,7 @@ function getHeader(headers, name) {
  */
 function lookupCaseInsensitive(obj, prop) {
   prop = prop.toLowerCase();
-  for (var p in obj) {
+  for (const p in obj) {
     if (Object.prototype.hasOwnProperty.call(obj, p) && prop === p.toLowerCase()) {
       return p;
     }
@@ -80,8 +80,8 @@ function lookupCaseInsensitive(obj, prop) {
  * @param headersToMerge Headers to set
  */
 function mergeHeaders(headers, headersToMerge) {
-  var e_1, _a, e_2, _b;
-  var headerKeys = {};
+  let e_1, _a, e_2, _b;
+  const headerKeys = {};
   try {
     // Create a map of lower-cased-header-name to original-header-names
     for (var _c = __values(Object.getOwnPropertyNames(headers)), _d = _c.next(); !_d.done; _d = _c.next()) {
@@ -103,7 +103,7 @@ function mergeHeaders(headers, headersToMerge) {
     // Override headers with new values
     for (var _e = __values(Object.getOwnPropertyNames(headersToMerge)), _f = _e.next(); !_f.done; _f = _e.next()) {
       var headerName = _f.value;
-      var lowerCasedName = headerName.toLowerCase();
+      const lowerCasedName = headerName.toLowerCase();
       if (headerKeys[lowerCasedName]) {
         delete headers[headerKeys[lowerCasedName]];
       }
@@ -126,17 +126,17 @@ function mergeHeaders(headers, headersToMerge) {
  * Assert headers object is valid
  */
 function assertHeaders(headers) {
-  var e_3, _a;
+  let e_3, _a;
   if (headers === null || typeof headers !== 'object') {
     throw new TypeError('Headers must be an object.');
   }
   try {
     for (var _b = __values(Object.getOwnPropertyNames(headers)), _c = _b.next(); !_c.done; _c = _b.next()) {
-      var headerName = _c.value;
+      const headerName = _c.value;
       if (!isValidHeaderName(headerName)) {
         throw new Error("\"".concat(headerName, "\" is not a valid header name."));
       }
-      var headerValue = headers[headerName];
+      const headerValue = headers[headerName];
       if (typeof headerValue !== 'string') {
         throw new TypeError("Header value must be string but ".concat(typeof headerValue, " provided."));
       }
@@ -160,12 +160,12 @@ function assertHeaders(headers) {
 function isValidHeaderName(headerName) {
   return /^[\w!#$%&'*+.^`|~-]+$/.test(headerName);
 }
-var CONTENT_TYPE_HEADER = 'content-type';
-var ACCEPT_HEADER = 'accept';
-var CONTENT_LENGTH_HEADER = 'content-length';
-var AUTHORIZATION_HEADER = 'authorization';
-var FORM_URLENCODED_CONTENT_TYPE = 'application/x-www-form-urlencoded';
-var JSON_CONTENT_TYPE = 'application/json';
-var TEXT_CONTENT_TYPE = 'text/plain; charset=utf-8';
-var XML_CONTENT_TYPE = 'application/xml';
+const CONTENT_TYPE_HEADER = 'content-type';
+const ACCEPT_HEADER = 'accept';
+const CONTENT_LENGTH_HEADER = 'content-length';
+const AUTHORIZATION_HEADER = 'authorization';
+const FORM_URLENCODED_CONTENT_TYPE = 'application/x-www-form-urlencoded';
+const JSON_CONTENT_TYPE = 'application/json';
+const TEXT_CONTENT_TYPE = 'text/plain; charset=utf-8';
+const XML_CONTENT_TYPE = 'application/xml';
 export { ACCEPT_HEADER, AUTHORIZATION_HEADER, CONTENT_LENGTH_HEADER, CONTENT_TYPE_HEADER, FORM_URLENCODED_CONTENT_TYPE, JSON_CONTENT_TYPE, TEXT_CONTENT_TYPE, XML_CONTENT_TYPE, assertHeaders, getHeader, isValidHeaderName, lookupCaseInsensitive, mergeHeaders, setHeader, setHeaderIfNotSet };

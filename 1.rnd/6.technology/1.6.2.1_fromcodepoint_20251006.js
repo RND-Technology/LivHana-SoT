@@ -1,30 +1,30 @@
 /*! http://mths.be/fromcodepoint v0.2.1 by @mathias */
 if (!String.fromCodePoint) {
 	(function() {
-		var defineProperty = (function() {
+		const defineProperty = (function() {
 			// IE 8 only supports `Object.defineProperty` on DOM elements
 			try {
-				var object = {};
-				var $defineProperty = Object.defineProperty;
+				const object = {};
+				const $defineProperty = Object.defineProperty;
 				var result = $defineProperty(object, object, object) && $defineProperty;
 			} catch(error) {}
 			return result;
 		}());
-		var stringFromCharCode = String.fromCharCode;
-		var floor = Math.floor;
-		var fromCodePoint = function(_) {
-			var MAX_SIZE = 0x4000;
-			var codeUnits = [];
-			var highSurrogate;
-			var lowSurrogate;
-			var index = -1;
-			var length = arguments.length;
+		const stringFromCharCode = String.fromCharCode;
+		const floor = Math.floor;
+		const fromCodePoint = function(_) {
+			const MAX_SIZE = 0x4000;
+			const codeUnits = [];
+			let highSurrogate;
+			let lowSurrogate;
+			let index = -1;
+			const length = arguments.length;
 			if (!length) {
 				return '';
 			}
-			var result = '';
+			let result = '';
 			while (++index < length) {
-				var codePoint = Number(arguments[index]);
+				let codePoint = Number(arguments[index]);
 				if (
 					!isFinite(codePoint) || // `NaN`, `+Infinity`, or `-Infinity`
 					codePoint < 0 || // not a valid Unicode code point

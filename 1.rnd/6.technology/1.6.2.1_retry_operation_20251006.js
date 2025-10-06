@@ -48,7 +48,7 @@ RetryOperation.prototype.retry = function(err) {
   if (!err) {
     return false;
   }
-  var currentTime = new Date().getTime();
+  const currentTime = new Date().getTime();
   if (err && currentTime - this._operationStart >= this._maxRetryTime) {
     this._errors.push(err);
     this._errors.unshift(new Error('RetryOperation timeout occurred'));
@@ -57,7 +57,7 @@ RetryOperation.prototype.retry = function(err) {
 
   this._errors.push(err);
 
-  var timeout = this._timeouts.shift();
+  let timeout = this._timeouts.shift();
   if (timeout === undefined) {
     if (this._cachedTimeouts) {
       // retry forever, only keep last error
@@ -68,7 +68,7 @@ RetryOperation.prototype.retry = function(err) {
     }
   }
 
-  var self = this;
+  const self = this;
   this._timer = setTimeout(function() {
     self._attempts++;
 
@@ -104,7 +104,7 @@ RetryOperation.prototype.attempt = function(fn, timeoutOps) {
     }
   }
 
-  var self = this;
+  const self = this;
   if (this._operationTimeoutCb) {
     this._timeout = setTimeout(function() {
       self._operationTimeoutCb();
@@ -141,14 +141,14 @@ RetryOperation.prototype.mainError = function() {
     return null;
   }
 
-  var counts = {};
-  var mainError = null;
-  var mainErrorCount = 0;
+  const counts = {};
+  let mainError = null;
+  let mainErrorCount = 0;
 
-  for (var i = 0; i < this._errors.length; i++) {
-    var error = this._errors[i];
-    var message = error.message;
-    var count = (counts[message] || 0) + 1;
+  for (let i = 0; i < this._errors.length; i++) {
+    const error = this._errors[i];
+    const message = error.message;
+    const count = (counts[message] || 0) + 1;
 
     counts[message] = count;
 

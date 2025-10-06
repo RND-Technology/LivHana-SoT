@@ -1,14 +1,14 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
-var gOPD = require('gopd');
+const $TypeError = require('es-errors/type');
+const gOPD = require('gopd');
 
-var isObject = require('../helpers/isObject');
-var isPropertyKey = require('../helpers/isPropertyKey');
+const isObject = require('../helpers/isObject');
+const isPropertyKey = require('../helpers/isPropertyKey');
 
-var CreateDataPropertyOrThrow = require('./CreateDataPropertyOrThrow');
-var SameValue = require('./SameValue');
-var Set = require('./Set');
+const CreateDataPropertyOrThrow = require('./CreateDataPropertyOrThrow');
+const SameValue = require('./SameValue');
+const Set = require('./Set');
 
 // https://262.ecma-international.org/16.0/#sec-SetterThatIgnoresPrototypeProperties
 
@@ -28,7 +28,7 @@ module.exports = function SetterThatIgnoresPrototypeProperties(thisValue, home, 
 		throw new $TypeError('Throwing here emulates assignment to a non-writable data property on the `home` object in strict mode code'); // step 2.b
 	}
 
-	var desc = gOPD(thisValue, p); // step 3
+	const desc = gOPD(thisValue, p); // step 3
 
 	if (typeof desc === 'undefined') { // step 4
 		CreateDataPropertyOrThrow(thisValue, p, v); // step 4.a

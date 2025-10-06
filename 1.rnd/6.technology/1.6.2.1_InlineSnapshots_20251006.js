@@ -4,18 +4,18 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 exports.saveInlineSnapshots = saveInlineSnapshots;
-var path = _interopRequireWildcard(require('path'));
-var _util = require('util');
-var fs = _interopRequireWildcard(require('graceful-fs'));
-var _semver = _interopRequireDefault(require('semver'));
-var _utils = require('./utils');
+const path = _interopRequireWildcard(require('path'));
+const _util = require('util');
+const fs = _interopRequireWildcard(require('graceful-fs'));
+const _semver = _interopRequireDefault(require('semver'));
+const _utils = require('./utils');
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {default: obj};
 }
 function _getRequireWildcardCache(nodeInterop) {
   if (typeof WeakMap !== 'function') return null;
-  var cacheBabelInterop = new WeakMap();
-  var cacheNodeInterop = new WeakMap();
+  const cacheBabelInterop = new WeakMap();
+  const cacheNodeInterop = new WeakMap();
   return (_getRequireWildcardCache = function (nodeInterop) {
     return nodeInterop ? cacheNodeInterop : cacheBabelInterop;
   })(nodeInterop);
@@ -27,16 +27,16 @@ function _interopRequireWildcard(obj, nodeInterop) {
   if (obj === null || (typeof obj !== 'object' && typeof obj !== 'function')) {
     return {default: obj};
   }
-  var cache = _getRequireWildcardCache(nodeInterop);
+  const cache = _getRequireWildcardCache(nodeInterop);
   if (cache && cache.has(obj)) {
     return cache.get(obj);
   }
-  var newObj = {};
-  var hasPropertyDescriptor =
+  const newObj = {};
+  const hasPropertyDescriptor =
     Object.defineProperty && Object.getOwnPropertyDescriptor;
-  for (var key in obj) {
+  for (const key in obj) {
     if (key !== 'default' && Object.prototype.hasOwnProperty.call(obj, key)) {
-      var desc = hasPropertyDescriptor
+      const desc = hasPropertyDescriptor
         ? Object.getOwnPropertyDescriptor(obj, key)
         : null;
       if (desc && (desc.get || desc.set)) {
@@ -54,10 +54,10 @@ function _interopRequireWildcard(obj, nodeInterop) {
 }
 var Symbol = globalThis['jest-symbol-do-not-touch'] || globalThis.Symbol;
 var Symbol = globalThis['jest-symbol-do-not-touch'] || globalThis.Symbol;
-var jestWriteFile =
+const jestWriteFile =
   globalThis[Symbol.for('jest-native-write-file')] || fs.writeFileSync;
 var Symbol = globalThis['jest-symbol-do-not-touch'] || globalThis.Symbol;
-var jestReadFile =
+const jestReadFile =
   globalThis[Symbol.for('jest-native-read-file')] || fs.readFileSync;
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.

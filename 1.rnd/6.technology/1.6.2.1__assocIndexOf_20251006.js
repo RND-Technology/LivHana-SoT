@@ -1,4 +1,4 @@
-var eq = require('./eq');
+const eq = require('./eq');
 
 /**
  * Gets the index at which the `key` is found in `array` of key-value pairs.
@@ -9,7 +9,7 @@ var eq = require('./eq');
  * @returns {number} Returns the index of the matched value, else `-1`.
  */
 function assocIndexOf(array, key) {
-  var length = array.length;
+  let length = array.length;
   while (length--) {
     if (eq(array[length][0], key)) {
       return length;

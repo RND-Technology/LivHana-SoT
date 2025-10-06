@@ -4,8 +4,8 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 exports.default = void 0;
-var _FifoQueue = _interopRequireDefault(require('./FifoQueue'));
-var _types = require('./types');
+const _FifoQueue = _interopRequireDefault(require('./FifoQueue'));
+const _types = require('./types');
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {default: obj};
 }

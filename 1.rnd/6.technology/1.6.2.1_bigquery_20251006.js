@@ -874,7 +874,7 @@ class BigQuery extends common_1.Service {
     static valueToQueryParameter_(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     value, providedType) {
-        var _a, _b;
+        let _a, _b;
         if (is.date(value)) {
             value = BigQuery.timestamp(value);
         }
@@ -1102,7 +1102,7 @@ class BigQuery extends common_1.Service {
         };
     }
     createJob(options, callback) {
-        var _a;
+        let _a;
         const JOB_ID_PROVIDED = typeof options.jobId !== 'undefined';
         const DRY_RUN = ((_a = options.configuration) === null || _a === void 0 ? void 0 : _a.dryRun)
             ? options.configuration.dryRun

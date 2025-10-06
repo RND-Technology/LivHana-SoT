@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
 exports.catalogInfoResponseLimitsSchema = void 0;
-var schema_1 = require("../schema");
+const schema_1 = require("../schema");
 exports.catalogInfoResponseLimitsSchema = (0, schema_1.object)({
     batchUpsertMaxObjectsPerBatch: [
         'batch_upsert_max_objects_per_batch',

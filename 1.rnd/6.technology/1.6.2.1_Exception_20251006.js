@@ -4,7 +4,7 @@
 
 
 function formatError(exception, compact) {
-  var where = '', message = exception.reason || '(unknown reason)';
+  let where = '', message = exception.reason || '(unknown reason)';
 
   if (!exception.mark) return message;
 

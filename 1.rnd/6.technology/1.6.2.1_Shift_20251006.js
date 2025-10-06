@@ -1,10 +1,10 @@
 "use strict";
 exports.__esModule = true;
 exports.shiftSchema = void 0;
-var schema_1 = require("../schema");
-var break_1 = require("./break");
-var money_1 = require("./money");
-var shiftWage_1 = require("./shiftWage");
+const schema_1 = require("../schema");
+const break_1 = require("./break");
+const money_1 = require("./money");
+const shiftWage_1 = require("./shiftWage");
 exports.shiftSchema = (0, schema_1.object)({
     id: ['id', (0, schema_1.optional)((0, schema_1.string)())],
     employeeId: ['employee_id', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.string)()))],

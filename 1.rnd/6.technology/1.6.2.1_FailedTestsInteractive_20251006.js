@@ -11,7 +11,7 @@ function _jestWatcher() {
   };
   return data;
 }
-var _FailedTestsInteractiveMode = _interopRequireDefault(
+const _FailedTestsInteractiveMode = _interopRequireDefault(
   require('../FailedTestsInteractiveMode')
 );
 function _interopRequireDefault(obj) {

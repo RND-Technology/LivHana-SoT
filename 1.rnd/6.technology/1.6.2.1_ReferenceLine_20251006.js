@@ -4,27 +4,27 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.getEndPoints = exports.ReferenceLine = void 0;
-var _react = _interopRequireWildcard(require("react"));
-var React = _react;
-var _clsx = require("clsx");
-var _Layer = require("../container/Layer");
-var _Label = require("../component/Label");
-var _DataUtils = require("../util/DataUtils");
-var _CartesianUtils = require("../util/CartesianUtils");
-var _ReactUtils = require("../util/ReactUtils");
-var _chartLayoutContext = require("../context/chartLayoutContext");
-var _referenceElementsSlice = require("../state/referenceElementsSlice");
-var _hooks = require("../state/hooks");
-var _axisSelectors = require("../state/selectors/axisSelectors");
-var _PanoramaContext = require("../context/PanoramaContext");
-var _ClipPathProvider = require("../container/ClipPathProvider");
-function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+const _react = _interopRequireWildcard(require("react"));
+const React = _react;
+const _clsx = require("clsx");
+const _Layer = require("../container/Layer");
+const _Label = require("../component/Label");
+const _DataUtils = require("../util/DataUtils");
+const _CartesianUtils = require("../util/CartesianUtils");
+const _ReactUtils = require("../util/ReactUtils");
+const _chartLayoutContext = require("../context/chartLayoutContext");
+const _referenceElementsSlice = require("../state/referenceElementsSlice");
+const _hooks = require("../state/hooks");
+const _axisSelectors = require("../state/selectors/axisSelectors");
+const _PanoramaContext = require("../context/PanoramaContext");
+const _ClipPathProvider = require("../container/ClipPathProvider");
+function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; let o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (const _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
+function ownKeys(e, r) { const t = Object.keys(e); if (Object.getOwnPropertySymbols) { let o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (let r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); } /**
+function _toPropertyKey(t) { const i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; const e = t[Symbol.toPrimitive]; if (void 0 !== e) { const i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (let e = 1; e < arguments.length; e++) { const t = arguments[e]; for (const r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); } /**
  * @fileOverview Reference Line
  */
 /**
@@ -34,8 +34,8 @@ function _extends() { return _extends = Object.assign ? Object.assign.bind() : f
  * 2. Internally the component calls `filterProps` which filters the viewBox away anyway
  */
 
-var renderLine = (option, props) => {
-  var line;
+const renderLine = (option, props) => {
+  let line;
   if (/*#__PURE__*/React.isValidElement(option)) {
     line = /*#__PURE__*/React.cloneElement(option, props);
   } else if (typeof option === 'function') {
@@ -48,18 +48,18 @@ var renderLine = (option, props) => {
   return line;
 };
 // TODO: ScaleHelper
-var getEndPoints = (scales, isFixedX, isFixedY, isSegment, viewBox, position, xAxisOrientation, yAxisOrientation, props) => {
-  var {
+const getEndPoints = (scales, isFixedX, isFixedY, isSegment, viewBox, position, xAxisOrientation, yAxisOrientation, props) => {
+  const {
     x,
     y,
     width,
     height
   } = viewBox;
   if (isFixedY) {
-    var {
+    const {
       y: yCoord
     } = props;
-    var coord = scales.y.apply(yCoord, {
+    const coord = scales.y.apply(yCoord, {
       position
     });
     // don't render the line if the scale can't compute a result that makes sense
@@ -67,7 +67,7 @@ var getEndPoints = (scales, isFixedX, isFixedY, isSegment, viewBox, position, xA
     if (props.ifOverflow === 'discard' && !scales.y.isInRange(coord)) {
       return null;
     }
-    var points = [{
+    const points = [{
       x: x + width,
       y: coord
     }, {
@@ -77,10 +77,10 @@ var getEndPoints = (scales, isFixedX, isFixedY, isSegment, viewBox, position, xA
     return yAxisOrientation === 'left' ? points.reverse() : points;
   }
   if (isFixedX) {
-    var {
+    const {
       x: xCoord
     } = props;
-    var _coord = scales.x.apply(xCoord, {
+    const _coord = scales.x.apply(xCoord, {
       position
     });
     // don't render the line if the scale can't compute a result that makes sense
@@ -88,7 +88,7 @@ var getEndPoints = (scales, isFixedX, isFixedY, isSegment, viewBox, position, xA
     if (props.ifOverflow === 'discard' && !scales.x.isInRange(_coord)) {
       return null;
     }
-    var _points = [{
+    const _points = [{
       x: _coord,
       y: y + height
     }, {
@@ -98,10 +98,10 @@ var getEndPoints = (scales, isFixedX, isFixedY, isSegment, viewBox, position, xA
     return xAxisOrientation === 'top' ? _points.reverse() : _points;
   }
   if (isSegment) {
-    var {
+    const {
       segment
     } = props;
-    var _points2 = segment.map(p => scales.apply(p, {
+    const _points2 = segment.map(p => scales.apply(p, {
       position
     }));
     if (props.ifOverflow === 'discard' && _points2.some(p => !scales.isInRange(p))) {
@@ -113,7 +113,7 @@ var getEndPoints = (scales, isFixedX, isFixedY, isSegment, viewBox, position, xA
 };
 exports.getEndPoints = getEndPoints;
 function ReportReferenceLine(props) {
-  var dispatch = (0, _hooks.useAppDispatch)();
+  const dispatch = (0, _hooks.useAppDispatch)();
   (0, _react.useEffect)(() => {
     dispatch((0, _referenceElementsSlice.addLine)(props));
     return () => {
@@ -123,7 +123,7 @@ function ReportReferenceLine(props) {
   return null;
 }
 function ReferenceLineImpl(props) {
-  var {
+  const {
     x: fixedX,
     y: fixedY,
     segment,
@@ -133,36 +133,36 @@ function ReferenceLineImpl(props) {
     className,
     ifOverflow
   } = props;
-  var isPanorama = (0, _PanoramaContext.useIsPanorama)();
-  var clipPathId = (0, _ClipPathProvider.useClipPathId)();
-  var xAxis = (0, _hooks.useAppSelector)(state => (0, _axisSelectors.selectXAxisSettings)(state, xAxisId));
-  var yAxis = (0, _hooks.useAppSelector)(state => (0, _axisSelectors.selectYAxisSettings)(state, yAxisId));
-  var xAxisScale = (0, _hooks.useAppSelector)(state => (0, _axisSelectors.selectAxisScale)(state, 'xAxis', xAxisId, isPanorama));
-  var yAxisScale = (0, _hooks.useAppSelector)(state => (0, _axisSelectors.selectAxisScale)(state, 'yAxis', yAxisId, isPanorama));
-  var viewBox = (0, _chartLayoutContext.useViewBox)();
-  var isFixedX = (0, _DataUtils.isNumOrStr)(fixedX);
-  var isFixedY = (0, _DataUtils.isNumOrStr)(fixedY);
+  const isPanorama = (0, _PanoramaContext.useIsPanorama)();
+  const clipPathId = (0, _ClipPathProvider.useClipPathId)();
+  const xAxis = (0, _hooks.useAppSelector)(state => (0, _axisSelectors.selectXAxisSettings)(state, xAxisId));
+  const yAxis = (0, _hooks.useAppSelector)(state => (0, _axisSelectors.selectYAxisSettings)(state, yAxisId));
+  const xAxisScale = (0, _hooks.useAppSelector)(state => (0, _axisSelectors.selectAxisScale)(state, 'xAxis', xAxisId, isPanorama));
+  const yAxisScale = (0, _hooks.useAppSelector)(state => (0, _axisSelectors.selectAxisScale)(state, 'yAxis', yAxisId, isPanorama));
+  const viewBox = (0, _chartLayoutContext.useViewBox)();
+  const isFixedX = (0, _DataUtils.isNumOrStr)(fixedX);
+  const isFixedY = (0, _DataUtils.isNumOrStr)(fixedY);
   if (!clipPathId || !viewBox || xAxis == null || yAxis == null || xAxisScale == null || yAxisScale == null) {
     return null;
   }
-  var scales = (0, _CartesianUtils.createLabeledScales)({
+  const scales = (0, _CartesianUtils.createLabeledScales)({
     x: xAxisScale,
     y: yAxisScale
   });
-  var isSegment = segment && segment.length === 2;
-  var endPoints = getEndPoints(scales, isFixedX, isFixedY, isSegment, viewBox, props.position, xAxis.orientation, yAxis.orientation, props);
+  const isSegment = segment && segment.length === 2;
+  const endPoints = getEndPoints(scales, isFixedX, isFixedY, isSegment, viewBox, props.position, xAxis.orientation, yAxis.orientation, props);
   if (!endPoints) {
     return null;
   }
-  var [{
+  const [{
     x: x1,
     y: y1
   }, {
     x: x2,
     y: y2
   }] = endPoints;
-  var clipPath = ifOverflow === 'hidden' ? "url(#".concat(clipPathId, ")") : undefined;
-  var lineProps = _objectSpread(_objectSpread({
+  const clipPath = ifOverflow === 'hidden' ? "url(#".concat(clipPathId, ")") : undefined;
+  const lineProps = _objectSpread(_objectSpread({
     clipPath
   }, (0, _ReactUtils.filterProps)(props, true)), {}, {
     x1,

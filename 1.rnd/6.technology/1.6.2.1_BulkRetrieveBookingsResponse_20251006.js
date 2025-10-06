@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
 exports.bulkRetrieveBookingsResponseSchema = void 0;
-var schema_1 = require("../schema");
-var error_1 = require("./error");
-var retrieveBookingResponse_1 = require("./retrieveBookingResponse");
+const schema_1 = require("../schema");
+const error_1 = require("./error");
+const retrieveBookingResponse_1 = require("./retrieveBookingResponse");
 exports.bulkRetrieveBookingsResponseSchema = (0, schema_1.object)({
     bookings: [
         'bookings',

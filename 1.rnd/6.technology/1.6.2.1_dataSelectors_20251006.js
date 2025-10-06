@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.selectChartDataWithIndexesIfNotInPanorama = exports.selectChartDataWithIndexes = exports.selectChartDataAndAlwaysIgnoreIndexes = void 0;
-var _reselect = require("reselect");
+const _reselect = require("reselect");
 /**
  * This selector always returns the data with the indexes set by a Brush.
  * Trouble is, that might or might not be what you want.
@@ -17,7 +17,7 @@ var _reselect = require("reselect");
  * @param state RechartsRootState
  * @returns data defined on the chart root element, such as BarChart or ScatterChart
  */
-var selectChartDataWithIndexes = state => state.chartData;
+const selectChartDataWithIndexes = state => state.chartData;
 
 /**
  * This selector will always return the full range of data, ignoring the indexes set by a Brush.
@@ -25,8 +25,8 @@ var selectChartDataWithIndexes = state => state.chartData;
  * For example: in the Brush panorama, in Legend, in Tooltip.
  */
 exports.selectChartDataWithIndexes = selectChartDataWithIndexes;
-var selectChartDataAndAlwaysIgnoreIndexes = exports.selectChartDataAndAlwaysIgnoreIndexes = (0, _reselect.createSelector)([selectChartDataWithIndexes], dataState => {
-  var dataEndIndex = dataState.chartData != null ? dataState.chartData.length - 1 : 0;
+const selectChartDataAndAlwaysIgnoreIndexes = exports.selectChartDataAndAlwaysIgnoreIndexes = (0, _reselect.createSelector)([selectChartDataWithIndexes], dataState => {
+  const dataEndIndex = dataState.chartData != null ? dataState.chartData.length - 1 : 0;
   return {
     chartData: dataState.chartData,
     computedData: dataState.computedData,
@@ -34,7 +34,7 @@ var selectChartDataAndAlwaysIgnoreIndexes = exports.selectChartDataAndAlwaysIgno
     dataStartIndex: 0
   };
 });
-var selectChartDataWithIndexesIfNotInPanorama = (state, _unused1, _unused2, isPanorama) => {
+const selectChartDataWithIndexesIfNotInPanorama = (state, _unused1, _unused2, isPanorama) => {
   if (isPanorama) {
     return selectChartDataAndAlwaysIgnoreIndexes(state);
   }

@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
 exports.catalogQuickAmountsSettingsSchema = void 0;
-var schema_1 = require("../schema");
-var catalogQuickAmount_1 = require("./catalogQuickAmount");
+const schema_1 = require("../schema");
+const catalogQuickAmount_1 = require("./catalogQuickAmount");
 exports.catalogQuickAmountsSettingsSchema = (0, schema_1.object)({
     option: ['option', (0, schema_1.string)()],
     eligibleForAutoAmounts: [

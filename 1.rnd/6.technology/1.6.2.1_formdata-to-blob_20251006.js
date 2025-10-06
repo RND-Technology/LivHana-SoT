@@ -18,7 +18,7 @@ export function formDataToBlob (formData, BlobClass = Blob) {
   const chunks = []
   const prefix = `--${boundary}\r\nContent-Disposition: form-data; name="`
 
-  for (let [name, value] of formData) {
+  for (const [name, value] of formData) {
     if (typeof value === 'string') {
       chunks.push(prefix + escape(name) + `"\r\n\r\n${value.replace(/\r(?!\n)|(?<!\r)\n/g, '\r\n')}\r\n`)
     } else {

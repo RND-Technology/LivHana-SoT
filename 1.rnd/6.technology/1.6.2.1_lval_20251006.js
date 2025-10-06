@@ -1,5 +1,5 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true});var _flow = require('../plugins/flow');
-var _typescript = require('../plugins/typescript');
+"use strict";Object.defineProperty(exports, "__esModule", {value: true});const _flow = require('../plugins/flow');
+const _typescript = require('../plugins/typescript');
 
 
 
@@ -7,12 +7,12 @@ var _typescript = require('../plugins/typescript');
 
 
 
-var _index = require('../tokenizer/index');
-var _keywords = require('../tokenizer/keywords');
-var _types = require('../tokenizer/types');
-var _base = require('./base');
-var _expression = require('./expression');
-var _util = require('./util');
+const _index = require('../tokenizer/index');
+const _keywords = require('../tokenizer/keywords');
+const _types = require('../tokenizer/types');
+const _base = require('./base');
+const _expression = require('./expression');
+const _util = require('./util');
 
  function parseSpread() {
   _index.next.call(void 0, );

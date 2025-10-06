@@ -11,7 +11,7 @@ function _jestWatcher() {
   };
   return data;
 }
-var _SnapshotInteractiveMode = _interopRequireDefault(
+const _SnapshotInteractiveMode = _interopRequireDefault(
   require('../SnapshotInteractiveMode')
 );
 function _interopRequireDefault(obj) {
@@ -95,5 +95,5 @@ class UpdateSnapshotInteractivePlugin extends _jestWatcher().BaseWatchPlugin {
     return null;
   }
 }
-var _default = UpdateSnapshotInteractivePlugin;
+const _default = UpdateSnapshotInteractivePlugin;
 exports.default = _default;

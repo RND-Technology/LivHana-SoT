@@ -1,7 +1,7 @@
 "use strict";
 module.exports = verifier;
 
-var Enum      = require("./enum"),
+const Enum      = require("./enum"),
     util      = require("./util");
 
 function invalid(field, expected) {
@@ -24,7 +24,7 @@ function genVerifyValue(gen, field, fieldIndex, ref) {
             ("switch(%s){", ref)
                 ("default:")
                     ("return%j", invalid(field, "enum value"));
-            for (var keys = Object.keys(field.resolvedType.values), j = 0; j < keys.length; ++j) gen
+            for (let keys = Object.keys(field.resolvedType.values), j = 0; j < keys.length; ++j) gen
                 ("case %i:", field.resolvedType.values[keys[j]]);
             gen
                     ("break")
@@ -122,16 +122,16 @@ function genVerifyKey(gen, field, ref) {
 function verifier(mtype) {
     /* eslint-disable no-unexpected-multiline */
 
-    var gen = util.codegen(["m"], mtype.name + "$verify")
+    const gen = util.codegen(["m"], mtype.name + "$verify")
     ("if(typeof m!==\"object\"||m===null)")
         ("return%j", "object expected");
-    var oneofs = mtype.oneofsArray,
+    const oneofs = mtype.oneofsArray,
         seenFirstField = {};
     if (oneofs.length) gen
     ("var p={}");
 
-    for (var i = 0; i < /* initializes */ mtype.fieldsArray.length; ++i) {
-        var field = mtype._fieldsArray[i].resolve(),
+    for (let i = 0; i < /* initializes */ mtype.fieldsArray.length; ++i) {
+        const field = mtype._fieldsArray[i].resolve(),
             ref   = "m" + util.safeProp(field.name);
 
         if (field.optional) gen
@@ -158,7 +158,7 @@ function verifier(mtype) {
         // required or present fields
         } else {
             if (field.partOf) {
-                var oneofProp = util.safeProp(field.partOf.name);
+                const oneofProp = util.safeProp(field.partOf.name);
                 if (seenFirstField[field.partOf.name] === 1) gen
             ("if(p%s===1)", oneofProp)
                 ("return%j", field.partOf.name + ": multiple values");

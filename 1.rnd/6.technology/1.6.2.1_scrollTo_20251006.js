@@ -1,34 +1,34 @@
 "use strict";
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+const _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 exports.__esModule = true;
 exports.default = scrollTo;
 
-var _animationFrame = require("./animationFrame");
+const _animationFrame = require("./animationFrame");
 
-var _height = _interopRequireDefault(require("./height"));
+const _height = _interopRequireDefault(require("./height"));
 
-var _isWindow = _interopRequireDefault(require("./isWindow"));
+const _isWindow = _interopRequireDefault(require("./isWindow"));
 
-var _offset = _interopRequireDefault(require("./offset"));
+const _offset = _interopRequireDefault(require("./offset"));
 
-var _scrollParent = _interopRequireDefault(require("./scrollParent"));
+const _scrollParent = _interopRequireDefault(require("./scrollParent"));
 
-var _scrollTop = _interopRequireDefault(require("./scrollTop"));
+const _scrollTop = _interopRequireDefault(require("./scrollTop"));
 
 /* eslint-disable no-nested-ternary */
 function scrollTo(selected, scrollParent) {
-  var offset = (0, _offset.default)(selected);
-  var poff = {
+  let offset = (0, _offset.default)(selected);
+  let poff = {
     top: 0,
     left: 0
   };
   if (!selected) return undefined;
-  var list = scrollParent || (0, _scrollParent.default)(selected);
-  var isWin = (0, _isWindow.default)(list);
-  var listScrollTop = (0, _scrollTop.default)(list);
-  var listHeight = (0, _height.default)(list, true);
+  const list = scrollParent || (0, _scrollParent.default)(selected);
+  const isWin = (0, _isWindow.default)(list);
+  let listScrollTop = (0, _scrollTop.default)(list);
+  const listHeight = (0, _height.default)(list, true);
   if (!isWin) poff = (0, _offset.default)(list);
   offset = {
     top: offset.top - poff.top,
@@ -36,11 +36,11 @@ function scrollTo(selected, scrollParent) {
     height: offset.height,
     width: offset.width
   };
-  var selectedHeight = offset.height;
-  var selectedTop = offset.top + (isWin ? 0 : listScrollTop);
-  var bottom = selectedTop + selectedHeight;
+  const selectedHeight = offset.height;
+  const selectedTop = offset.top + (isWin ? 0 : listScrollTop);
+  const bottom = selectedTop + selectedHeight;
   listScrollTop = listScrollTop > selectedTop ? selectedTop : bottom > listScrollTop + listHeight ? bottom - listHeight : listScrollTop;
-  var id = (0, _animationFrame.request)(function () {
+  const id = (0, _animationFrame.request)(function () {
     return (0, _scrollTop.default)(list, listScrollTop);
   });
   return function () {

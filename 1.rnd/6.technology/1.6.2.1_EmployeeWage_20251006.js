@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
 exports.employeeWageSchema = void 0;
-var schema_1 = require("../schema");
-var money_1 = require("./money");
+const schema_1 = require("../schema");
+const money_1 = require("./money");
 exports.employeeWageSchema = (0, schema_1.object)({
     id: ['id', (0, schema_1.optional)((0, schema_1.string)())],
     employeeId: ['employee_id', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.string)()))],

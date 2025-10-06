@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
 exports.catalogQueryItemVariationsForItemOptionValuesSchema = void 0;
-var schema_1 = require("../schema");
+const schema_1 = require("../schema");
 exports.catalogQueryItemVariationsForItemOptionValuesSchema = (0, schema_1.object)({
     itemOptionValueIds: [
         'item_option_value_ids',

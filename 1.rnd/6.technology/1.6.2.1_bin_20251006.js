@@ -329,7 +329,7 @@ function getEntryPointInfo(state) {
     };
 }
 function phase4(payload) {
-    var _a, _b, _c, _d, _e, _f, _g;
+    let _a, _b, _c, _d, _e, _f, _g;
     const { isInChildProcess, tsNodeScript } = payload;
     const { version, showConfig, restArgs, code, print, argv } = payload.parseArgvResult;
     const { cwd } = payload.phase2Result;

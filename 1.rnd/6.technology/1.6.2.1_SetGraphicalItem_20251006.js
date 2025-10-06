@@ -5,12 +5,12 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.SetCartesianGraphicalItem = SetCartesianGraphicalItem;
 exports.SetPolarGraphicalItem = SetPolarGraphicalItem;
-var _react = require("react");
-var _hooks = require("./hooks");
-var _graphicalItemsSlice = require("./graphicalItemsSlice");
+const _react = require("react");
+const _hooks = require("./hooks");
+const _graphicalItemsSlice = require("./graphicalItemsSlice");
 function SetCartesianGraphicalItem(props) {
-  var dispatch = (0, _hooks.useAppDispatch)();
-  var prevPropsRef = (0, _react.useRef)(null);
+  const dispatch = (0, _hooks.useAppDispatch)();
+  const prevPropsRef = (0, _react.useRef)(null);
   (0, _react.useEffect)(() => {
     if (prevPropsRef.current === null) {
       dispatch((0, _graphicalItemsSlice.addCartesianGraphicalItem)(props));
@@ -46,7 +46,7 @@ function SetCartesianGraphicalItem(props) {
   return null;
 }
 function SetPolarGraphicalItem(props) {
-  var dispatch = (0, _hooks.useAppDispatch)();
+  const dispatch = (0, _hooks.useAppDispatch)();
   (0, _react.useEffect)(() => {
     dispatch((0, _graphicalItemsSlice.addPolarGraphicalItem)(props));
     return () => {

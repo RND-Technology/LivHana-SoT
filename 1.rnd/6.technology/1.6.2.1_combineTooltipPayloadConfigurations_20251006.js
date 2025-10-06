@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.combineTooltipPayloadConfigurations = void 0;
-var combineTooltipPayloadConfigurations = (tooltipState, tooltipEventType, trigger, defaultIndex) => {
+const combineTooltipPayloadConfigurations = (tooltipState, tooltipEventType, trigger, defaultIndex) => {
   // if tooltip reacts to axis interaction, then we display all items at the same time.
   if (tooltipEventType === 'axis') {
     return tooltipState.tooltipItemPayloads;
@@ -17,7 +17,7 @@ var combineTooltipPayloadConfigurations = (tooltipState, tooltipEventType, trigg
     // No point filtering if the payload is empty
     return [];
   }
-  var filterByDataKey;
+  let filterByDataKey;
   if (trigger === 'hover') {
     filterByDataKey = tooltipState.itemInteraction.hover.dataKey;
   } else {
@@ -32,7 +32,7 @@ var combineTooltipPayloadConfigurations = (tooltipState, tooltipEventType, trigg
     return [tooltipState.tooltipItemPayloads[0]];
   }
   return tooltipState.tooltipItemPayloads.filter(tpc => {
-    var _tpc$settings;
+    let _tpc$settings;
     return ((_tpc$settings = tpc.settings) === null || _tpc$settings === void 0 ? void 0 : _tpc$settings.dataKey) === filterByDataKey;
   });
 };

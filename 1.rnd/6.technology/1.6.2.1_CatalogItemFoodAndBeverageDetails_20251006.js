@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
 exports.catalogItemFoodAndBeverageDetailsSchema = void 0;
-var schema_1 = require("../schema");
-var catalogItemFoodAndBeverageDetailsDietaryPreference_1 = require("./catalogItemFoodAndBeverageDetailsDietaryPreference");
-var catalogItemFoodAndBeverageDetailsIngredient_1 = require("./catalogItemFoodAndBeverageDetailsIngredient");
+const schema_1 = require("../schema");
+const catalogItemFoodAndBeverageDetailsDietaryPreference_1 = require("./catalogItemFoodAndBeverageDetailsDietaryPreference");
+const catalogItemFoodAndBeverageDetailsIngredient_1 = require("./catalogItemFoodAndBeverageDetailsIngredient");
 exports.catalogItemFoodAndBeverageDetailsSchema = (0, schema_1.object)({
     calorieCount: ['calorie_count', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.number)()))],
     dietaryPreferences: [

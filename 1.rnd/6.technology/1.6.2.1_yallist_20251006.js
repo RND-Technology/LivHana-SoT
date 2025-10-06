@@ -5,7 +5,7 @@ Yallist.Node = Node
 Yallist.create = Yallist
 
 function Yallist (list) {
-  var self = this
+  let self = this
   if (!(self instanceof Yallist)) {
     self = new Yallist()
   }
@@ -19,7 +19,7 @@ function Yallist (list) {
       self.push(item)
     })
   } else if (arguments.length > 0) {
-    for (var i = 0, l = arguments.length; i < l; i++) {
+    for (let i = 0, l = arguments.length; i < l; i++) {
       self.push(arguments[i])
     }
   }
@@ -32,8 +32,8 @@ Yallist.prototype.removeNode = function (node) {
     throw new Error('removing node which does not belong to this list')
   }
 
-  var next = node.next
-  var prev = node.prev
+  const next = node.next
+  const prev = node.prev
 
   if (next) {
     next.prev = prev
@@ -67,7 +67,7 @@ Yallist.prototype.unshiftNode = function (node) {
     node.list.removeNode(node)
   }
 
-  var head = this.head
+  const head = this.head
   node.list = this
   node.next = head
   if (head) {
@@ -90,7 +90,7 @@ Yallist.prototype.pushNode = function (node) {
     node.list.removeNode(node)
   }
 
-  var tail = this.tail
+  const tail = this.tail
   node.list = this
   node.prev = tail
   if (tail) {
@@ -105,14 +105,14 @@ Yallist.prototype.pushNode = function (node) {
 }
 
 Yallist.prototype.push = function () {
-  for (var i = 0, l = arguments.length; i < l; i++) {
+  for (let i = 0, l = arguments.length; i < l; i++) {
     push(this, arguments[i])
   }
   return this.length
 }
 
 Yallist.prototype.unshift = function () {
-  for (var i = 0, l = arguments.length; i < l; i++) {
+  for (let i = 0, l = arguments.length; i < l; i++) {
     unshift(this, arguments[i])
   }
   return this.length
@@ -123,7 +123,7 @@ Yallist.prototype.pop = function () {
     return undefined
   }
 
-  var res = this.tail.value
+  const res = this.tail.value
   this.tail = this.tail.prev
   if (this.tail) {
     this.tail.next = null
@@ -139,7 +139,7 @@ Yallist.prototype.shift = function () {
     return undefined
   }
 
-  var res = this.head.value
+  const res = this.head.value
   this.head = this.head.next
   if (this.head) {
     this.head.prev = null
@@ -152,7 +152,7 @@ Yallist.prototype.shift = function () {
 
 Yallist.prototype.forEach = function (fn, thisp) {
   thisp = thisp || this
-  for (var walker = this.head, i = 0; walker !== null; i++) {
+  for (let walker = this.head, i = 0; walker !== null; i++) {
     fn.call(thisp, walker.value, i, this)
     walker = walker.next
   }
@@ -160,7 +160,7 @@ Yallist.prototype.forEach = function (fn, thisp) {
 
 Yallist.prototype.forEachReverse = function (fn, thisp) {
   thisp = thisp || this
-  for (var walker = this.tail, i = this.length - 1; walker !== null; i--) {
+  for (let walker = this.tail, i = this.length - 1; walker !== null; i--) {
     fn.call(thisp, walker.value, i, this)
     walker = walker.prev
   }
@@ -188,8 +188,8 @@ Yallist.prototype.getReverse = function (n) {
 
 Yallist.prototype.map = function (fn, thisp) {
   thisp = thisp || this
-  var res = new Yallist()
-  for (var walker = this.head; walker !== null;) {
+  const res = new Yallist()
+  for (let walker = this.head; walker !== null;) {
     res.push(fn.call(thisp, walker.value, this))
     walker = walker.next
   }
@@ -198,8 +198,8 @@ Yallist.prototype.map = function (fn, thisp) {
 
 Yallist.prototype.mapReverse = function (fn, thisp) {
   thisp = thisp || this
-  var res = new Yallist()
-  for (var walker = this.tail; walker !== null;) {
+  const res = new Yallist()
+  for (let walker = this.tail; walker !== null;) {
     res.push(fn.call(thisp, walker.value, this))
     walker = walker.prev
   }
@@ -207,8 +207,8 @@ Yallist.prototype.mapReverse = function (fn, thisp) {
 }
 
 Yallist.prototype.reduce = function (fn, initial) {
-  var acc
-  var walker = this.head
+  let acc
+  let walker = this.head
   if (arguments.length > 1) {
     acc = initial
   } else if (this.head) {
@@ -218,7 +218,7 @@ Yallist.prototype.reduce = function (fn, initial) {
     throw new TypeError('Reduce of empty list with no initial value')
   }
 
-  for (var i = 0; walker !== null; i++) {
+  for (let i = 0; walker !== null; i++) {
     acc = fn(acc, walker.value, i)
     walker = walker.next
   }
@@ -227,8 +227,8 @@ Yallist.prototype.reduce = function (fn, initial) {
 }
 
 Yallist.prototype.reduceReverse = function (fn, initial) {
-  var acc
-  var walker = this.tail
+  let acc
+  let walker = this.tail
   if (arguments.length > 1) {
     acc = initial
   } else if (this.tail) {
@@ -238,7 +238,7 @@ Yallist.prototype.reduceReverse = function (fn, initial) {
     throw new TypeError('Reduce of empty list with no initial value')
   }
 
-  for (var i = this.length - 1; walker !== null; i--) {
+  for (let i = this.length - 1; walker !== null; i--) {
     acc = fn(acc, walker.value, i)
     walker = walker.prev
   }
@@ -247,8 +247,8 @@ Yallist.prototype.reduceReverse = function (fn, initial) {
 }
 
 Yallist.prototype.toArray = function () {
-  var arr = new Array(this.length)
-  for (var i = 0, walker = this.head; walker !== null; i++) {
+  const arr = new Array(this.length)
+  for (let i = 0, walker = this.head; walker !== null; i++) {
     arr[i] = walker.value
     walker = walker.next
   }
@@ -256,8 +256,8 @@ Yallist.prototype.toArray = function () {
 }
 
 Yallist.prototype.toArrayReverse = function () {
-  var arr = new Array(this.length)
-  for (var i = 0, walker = this.tail; walker !== null; i++) {
+  const arr = new Array(this.length)
+  for (let i = 0, walker = this.tail; walker !== null; i++) {
     arr[i] = walker.value
     walker = walker.prev
   }
@@ -273,7 +273,7 @@ Yallist.prototype.slice = function (from, to) {
   if (from < 0) {
     from += this.length
   }
-  var ret = new Yallist()
+  const ret = new Yallist()
   if (to < from || to < 0) {
     return ret
   }
@@ -301,7 +301,7 @@ Yallist.prototype.sliceReverse = function (from, to) {
   if (from < 0) {
     from += this.length
   }
-  var ret = new Yallist()
+  const ret = new Yallist()
   if (to < from || to < 0) {
     return ret
   }
@@ -332,7 +332,7 @@ Yallist.prototype.splice = function (start, deleteCount /*, ...nodes */) {
     walker = walker.next
   }
 
-  var ret = []
+  const ret = []
   for (var i = 0; walker && i < deleteCount; i++) {
     ret.push(walker.value)
     walker = this.removeNode(walker)
@@ -352,10 +352,10 @@ Yallist.prototype.splice = function (start, deleteCount /*, ...nodes */) {
 }
 
 Yallist.prototype.reverse = function () {
-  var head = this.head
-  var tail = this.tail
-  for (var walker = head; walker !== null; walker = walker.prev) {
-    var p = walker.prev
+  const head = this.head
+  const tail = this.tail
+  for (let walker = head; walker !== null; walker = walker.prev) {
+    const p = walker.prev
     walker.prev = walker.next
     walker.next = p
   }
@@ -365,7 +365,7 @@ Yallist.prototype.reverse = function () {
 }
 
 function insert (self, node, value) {
-  var inserted = node === self.head ?
+  const inserted = node === self.head ?
     new Node(value, null, node, self) :
     new Node(value, node, node.next, self)
 

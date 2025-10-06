@@ -1,14 +1,14 @@
 'use strict';
 
 
-var common = require('./common');
+const common = require('./common');
 
 
 // get snippet for a single line, respecting maxLength
 function getLine(buffer, lineStart, lineEnd, position, maxLineLength) {
-  var head = '';
-  var tail = '';
-  var maxHalfLength = Math.floor(maxLineLength / 2) - 1;
+  let head = '';
+  let tail = '';
+  const maxHalfLength = Math.floor(maxLineLength / 2) - 1;
 
   if (position - lineStart > maxHalfLength) {
     head = ' ... ';
@@ -42,11 +42,11 @@ function makeSnippet(mark, options) {
   if (typeof options.linesBefore !== 'number') options.linesBefore = 3;
   if (typeof options.linesAfter  !== 'number') options.linesAfter  = 2;
 
-  var re = /\r?\n|\r|\0/g;
-  var lineStarts = [ 0 ];
-  var lineEnds = [];
-  var match;
-  var foundLineNo = -1;
+  const re = /\r?\n|\r|\0/g;
+  const lineStarts = [ 0 ];
+  const lineEnds = [];
+  let match;
+  let foundLineNo = -1;
 
   while ((match = re.exec(mark.buffer))) {
     lineEnds.push(match.index);
@@ -59,9 +59,9 @@ function makeSnippet(mark, options) {
 
   if (foundLineNo < 0) foundLineNo = lineStarts.length - 1;
 
-  var result = '', i, line;
-  var lineNoLength = Math.min(mark.line + options.linesAfter, lineEnds.length).toString().length;
-  var maxLineLength = options.maxLength - (options.indent + lineNoLength + 3);
+  let result = '', i, line;
+  const lineNoLength = Math.min(mark.line + options.linesAfter, lineEnds.length).toString().length;
+  const maxLineLength = options.maxLength - (options.indent + lineNoLength + 3);
 
   for (i = 1; i <= options.linesBefore; i++) {
     if (foundLineNo - i < 0) break;

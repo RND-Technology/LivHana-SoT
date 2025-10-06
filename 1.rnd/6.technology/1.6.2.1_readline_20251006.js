@@ -1,13 +1,13 @@
-var readline = require('readline')
-var Promise = require('any-promise')
-var objectAssign = require('object-assign')
-var Interface = readline.Interface
+const readline = require('readline')
+const Promise = require('any-promise')
+const objectAssign = require('object-assign')
+const Interface = readline.Interface
 
 function wrapCompleter (completer) {
   if (completer.length === 2) return completer
 
   return function (line, cb) {
-    var result = completer(line)
+    const result = completer(line)
 
     if (typeof result.then !== 'function') {
       return cb(null, result)
@@ -21,7 +21,7 @@ function wrapCompleter (completer) {
 
 function InterfaceAsPromised (input, output, completer, terminal) {
   if (arguments.length === 1) {
-    var options = input
+    let options = input
 
     if (typeof options.completer === 'function') {
       options = objectAssign({}, options, {
@@ -46,7 +46,7 @@ InterfaceAsPromised.prototype.question = function (question, callback) {
     return Interface.prototype.question.call(this, question, callback)
   }
 
-  var self = this
+  const self = this
   return new Promise(function (resolve) {
     Interface.prototype.question.call(self, question, resolve)
   })

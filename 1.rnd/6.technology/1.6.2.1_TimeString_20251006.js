@@ -1,13 +1,13 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var $isNaN = require('math-intrinsics/isNaN');
-var padTimeComponent = require('../helpers/padTimeComponent');
+const $isNaN = require('math-intrinsics/isNaN');
+const padTimeComponent = require('../helpers/padTimeComponent');
 
-var HourFromTime = require('./HourFromTime');
-var MinFromTime = require('./MinFromTime');
-var SecFromTime = require('./SecFromTime');
+const HourFromTime = require('./HourFromTime');
+const MinFromTime = require('./MinFromTime');
+const SecFromTime = require('./SecFromTime');
 
 // https://262.ecma-international.org/9.0/#sec-timestring
 
@@ -15,8 +15,8 @@ module.exports = function TimeString(tv) {
 	if (typeof tv !== 'number' || $isNaN(tv)) {
 		throw new $TypeError('Assertion failed: `tv` must be a non-NaN Number');
 	}
-	var hour = HourFromTime(tv);
-	var minute = MinFromTime(tv);
-	var second = SecFromTime(tv);
+	const hour = HourFromTime(tv);
+	const minute = MinFromTime(tv);
+	const second = SecFromTime(tv);
 	return padTimeComponent(hour) + ':' + padTimeComponent(minute) + ':' + padTimeComponent(second) + '\x20GMT';
 };

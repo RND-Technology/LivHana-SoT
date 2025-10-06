@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
 exports.orderFulfillmentDeliveryDetailsSchema = void 0;
-var schema_1 = require("../schema");
-var orderFulfillmentRecipient_1 = require("./orderFulfillmentRecipient");
+const schema_1 = require("../schema");
+const orderFulfillmentRecipient_1 = require("./orderFulfillmentRecipient");
 exports.orderFulfillmentDeliveryDetailsSchema = (0, schema_1.object)({
     recipient: [
         'recipient',

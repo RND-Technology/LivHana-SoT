@@ -43,5 +43,5 @@ const plugin = {
   serialize,
   test
 };
-var _default = plugin;
+const _default = plugin;
 exports.default = _default;

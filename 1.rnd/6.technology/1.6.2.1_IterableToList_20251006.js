@@ -1,19 +1,19 @@
 'use strict';
 
-var GetIterator = require('./GetIterator');
-var IteratorStep = require('./IteratorStep');
-var IteratorValue = require('./IteratorValue');
+const GetIterator = require('./GetIterator');
+const IteratorStep = require('./IteratorStep');
+const IteratorValue = require('./IteratorValue');
 
 // https://262.ecma-international.org/8.0/#sec-iterabletolist
 
 module.exports = function IterableToList(items, method) {
-	var iterator = GetIterator(items, method);
-	var values = [];
-	var next = true;
+	const iterator = GetIterator(items, method);
+	const values = [];
+	let next = true;
 	while (next) {
 		next = IteratorStep(iterator);
 		if (next) {
-			var nextValue = IteratorValue(next);
+			const nextValue = IteratorValue(next);
 			values[values.length] = nextValue;
 		}
 	}

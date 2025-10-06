@@ -110,11 +110,11 @@ function commonjsRequire(path) {
 	throw new Error('Could not dynamically require "' + path + '". Please configure the dynamicRequireTargets or/and ignoreDynamicRequires option of @rollup/plugin-commonjs appropriately for this require call to work.');
 }
 
-var chaiSubset$1 = {exports: {}};
+const chaiSubset$1 = {exports: {}};
 
-var chaiSubset = chaiSubset$1.exports;
+const chaiSubset = chaiSubset$1.exports;
 
-var hasRequiredChaiSubset;
+let hasRequiredChaiSubset;
 
 function requireChaiSubset () {
 	if (hasRequiredChaiSubset) return chaiSubset$1.exports;
@@ -128,12 +128,12 @@ function requireChaiSubset () {
 					return chai.use(chaiSubset);
 				}
 			})(function(chai, utils) {
-				var Assertion = chai.Assertion;
-				var assertionPrototype = Assertion.prototype;
+				const Assertion = chai.Assertion;
+				const assertionPrototype = Assertion.prototype;
 
 				Assertion.addMethod('containSubset', function (expected) {
-					var actual = utils.flag(this, 'object');
-					var showDiff = chai.config.showDiff;
+					const actual = utils.flag(this, 'object');
+					const showDiff = chai.config.showDiff;
 
 					assertionPrototype.assert.call(this,
 						compare(expected, actual),
@@ -167,7 +167,7 @@ function requireChaiSubset () {
 						if (typeof(actual.length) !== 'number') {
 							return false;
 						}
-						var aa = Array.prototype.slice.call(actual);
+						const aa = Array.prototype.slice.call(actual);
 						return expected.every(function (exp) {
 							return aa.some(function (act) {
 								return compare(exp, act);
@@ -184,8 +184,8 @@ function requireChaiSubset () {
 					}
 
 					return Object.keys(expected).every(function (key) {
-						var eo = expected[key];
-						var ao = actual[key];
+						const eo = expected[key];
+						const ao = actual[key];
 						if (typeof(eo) === 'object' && eo !== null && ao !== null) {
 							return compare(eo, ao);
 						}
@@ -202,8 +202,8 @@ function requireChaiSubset () {
 	return chaiSubset$1.exports;
 }
 
-var chaiSubsetExports = requireChaiSubset();
-var Subset = /*@__PURE__*/getDefaultExportFromCjs(chaiSubsetExports);
+const chaiSubsetExports = requireChaiSubset();
+const Subset = /*@__PURE__*/getDefaultExportFromCjs(chaiSubsetExports);
 
 function createAssertionMessage(util, assertion, hasArgs) {
 	const not = util.flag(assertion, "negate") ? "not." : "";
@@ -477,10 +477,10 @@ function inject(key) {
 	return workerState.providedContext[key];
 }
 
-var fakeTimersSrc = {};
+const fakeTimersSrc = {};
 
-var global;
-var hasRequiredGlobal;
+let global;
+let hasRequiredGlobal;
 
 function requireGlobal () {
 	if (hasRequiredGlobal) return global;
@@ -490,7 +490,7 @@ function requireGlobal () {
 	 * A reference to the global object
 	 * @type {object} globalObject
 	 */
-	var globalObject;
+	let globalObject;
 
 	/* istanbul ignore else */
 	if (typeof commonjsGlobal !== "undefined") {
@@ -508,8 +508,8 @@ function requireGlobal () {
 	return global;
 }
 
-var throwsOnProto_1;
-var hasRequiredThrowsOnProto;
+let throwsOnProto_1;
+let hasRequiredThrowsOnProto;
 
 function requireThrowsOnProto () {
 	if (hasRequiredThrowsOnProto) return throwsOnProto_1;
@@ -540,17 +540,17 @@ function requireThrowsOnProto () {
 	return throwsOnProto_1;
 }
 
-var copyPrototypeMethods;
-var hasRequiredCopyPrototypeMethods;
+let copyPrototypeMethods;
+let hasRequiredCopyPrototypeMethods;
 
 function requireCopyPrototypeMethods () {
 	if (hasRequiredCopyPrototypeMethods) return copyPrototypeMethods;
 	hasRequiredCopyPrototypeMethods = 1;
 
-	var call = Function.call;
-	var throwsOnProto = requireThrowsOnProto();
+	const call = Function.call;
+	const throwsOnProto = requireThrowsOnProto();
 
-	var disallowedProperties = [
+	const disallowedProperties = [
 	    // ignore size because it throws from Map
 	    "size",
 	    "caller",
@@ -588,27 +588,27 @@ function requireCopyPrototypeMethods () {
 	return copyPrototypeMethods;
 }
 
-var array;
-var hasRequiredArray;
+let array;
+let hasRequiredArray;
 
 function requireArray () {
 	if (hasRequiredArray) return array;
 	hasRequiredArray = 1;
 
-	var copyPrototype = requireCopyPrototypeMethods();
+	const copyPrototype = requireCopyPrototypeMethods();
 
 	array = copyPrototype(Array.prototype);
 	return array;
 }
 
-var calledInOrder_1;
-var hasRequiredCalledInOrder;
+let calledInOrder_1;
+let hasRequiredCalledInOrder;
 
 function requireCalledInOrder () {
 	if (hasRequiredCalledInOrder) return calledInOrder_1;
 	hasRequiredCalledInOrder = 1;
 
-	var every = requireArray().every;
+	const every = requireArray().every;
 
 	/**
 	 * @private
@@ -625,7 +625,7 @@ function requireCalledInOrder () {
 	 * @private
 	 */
 	function checkAdjacentCalls(callMap, spy, index, spies) {
-	    var calledBeforeNext = true;
+	    let calledBeforeNext = true;
 
 	    if (index !== spies.length - 1) {
 	        calledBeforeNext = spy.calledBefore(spies[index + 1]);
@@ -653,9 +653,9 @@ function requireCalledInOrder () {
 	 * @returns {boolean} true when spies are called in order, false otherwise
 	 */
 	function calledInOrder(spies) {
-	    var callMap = {};
+	    const callMap = {};
 	    // eslint-disable-next-line no-underscore-dangle
-	    var _spies = arguments.length > 1 ? arguments : spies;
+	    const _spies = arguments.length > 1 ? arguments : spies;
 
 	    return every(_spies, checkAdjacentCalls.bind(null, callMap));
 	}
@@ -664,8 +664,8 @@ function requireCalledInOrder () {
 	return calledInOrder_1;
 }
 
-var className_1;
-var hasRequiredClassName;
+let className_1;
+let hasRequiredClassName;
 
 function requireClassName () {
 	if (hasRequiredClassName) return className_1;
@@ -685,11 +685,11 @@ function requireClassName () {
 	return className_1;
 }
 
-var deprecated = {};
+const deprecated = {};
 
 /* eslint-disable no-console */
 
-var hasRequiredDeprecated;
+let hasRequiredDeprecated;
 
 function requireDeprecated () {
 	if (hasRequiredDeprecated) return deprecated;
@@ -704,7 +704,7 @@ function requireDeprecated () {
 		 * @returns {Function}
 		 */
 		exports.wrap = function (func, msg) {
-		    var wrapped = function () {
+		    const wrapped = function () {
 		        exports.printWarning(msg);
 		        return func.apply(this, arguments);
 		    };
@@ -745,8 +745,8 @@ function requireDeprecated () {
 	return deprecated;
 }
 
-var every;
-var hasRequiredEvery;
+let every;
+let hasRequiredEvery;
 
 function requireEvery () {
 	if (hasRequiredEvery) return every;
@@ -760,7 +760,7 @@ function requireEvery () {
 	 * @returns {boolean}
 	 */
 	every = function every(obj, fn) {
-	    var pass = true;
+	    let pass = true;
 
 	    try {
 	        // eslint-disable-next-line @sinonjs/no-prototype-methods/no-prototype-methods
@@ -779,8 +779,8 @@ function requireEvery () {
 	return every;
 }
 
-var functionName;
-var hasRequiredFunctionName;
+let functionName;
+let hasRequiredFunctionName;
 
 function requireFunctionName () {
 	if (hasRequiredFunctionName) return functionName;
@@ -815,25 +815,25 @@ function requireFunctionName () {
 	return functionName;
 }
 
-var orderByFirstCall_1;
-var hasRequiredOrderByFirstCall;
+let orderByFirstCall_1;
+let hasRequiredOrderByFirstCall;
 
 function requireOrderByFirstCall () {
 	if (hasRequiredOrderByFirstCall) return orderByFirstCall_1;
 	hasRequiredOrderByFirstCall = 1;
 
-	var sort = requireArray().sort;
-	var slice = requireArray().slice;
+	const sort = requireArray().sort;
+	const slice = requireArray().slice;
 
 	/**
 	 * @private
 	 */
 	function comparator(a, b) {
 	    // uuid, won't ever be equal
-	    var aCall = a.getCall(0);
-	    var bCall = b.getCall(0);
-	    var aId = (aCall && aCall.callId) || -1;
-	    var bId = (bCall && bCall.callId) || -1;
+	    const aCall = a.getCall(0);
+	    const bCall = b.getCall(0);
+	    const aId = (aCall && aCall.callId) || -1;
+	    const bId = (bCall && bCall.callId) || -1;
 
 	    return aId < bId ? -1 : 1;
 	}
@@ -857,73 +857,73 @@ function requireOrderByFirstCall () {
 	return orderByFirstCall_1;
 }
 
-var _function;
-var hasRequired_function;
+let _function;
+let hasRequired_function;
 
 function require_function () {
 	if (hasRequired_function) return _function;
 	hasRequired_function = 1;
 
-	var copyPrototype = requireCopyPrototypeMethods();
+	const copyPrototype = requireCopyPrototypeMethods();
 
 	_function = copyPrototype(Function.prototype);
 	return _function;
 }
 
-var map;
-var hasRequiredMap;
+let map;
+let hasRequiredMap;
 
 function requireMap () {
 	if (hasRequiredMap) return map;
 	hasRequiredMap = 1;
 
-	var copyPrototype = requireCopyPrototypeMethods();
+	const copyPrototype = requireCopyPrototypeMethods();
 
 	map = copyPrototype(Map.prototype);
 	return map;
 }
 
-var object;
-var hasRequiredObject;
+let object;
+let hasRequiredObject;
 
 function requireObject () {
 	if (hasRequiredObject) return object;
 	hasRequiredObject = 1;
 
-	var copyPrototype = requireCopyPrototypeMethods();
+	const copyPrototype = requireCopyPrototypeMethods();
 
 	object = copyPrototype(Object.prototype);
 	return object;
 }
 
-var set;
-var hasRequiredSet;
+let set;
+let hasRequiredSet;
 
 function requireSet () {
 	if (hasRequiredSet) return set;
 	hasRequiredSet = 1;
 
-	var copyPrototype = requireCopyPrototypeMethods();
+	const copyPrototype = requireCopyPrototypeMethods();
 
 	set = copyPrototype(Set.prototype);
 	return set;
 }
 
-var string;
-var hasRequiredString;
+let string;
+let hasRequiredString;
 
 function requireString () {
 	if (hasRequiredString) return string;
 	hasRequiredString = 1;
 
-	var copyPrototype = requireCopyPrototypeMethods();
+	const copyPrototype = requireCopyPrototypeMethods();
 
 	string = copyPrototype(String.prototype);
 	return string;
 }
 
-var prototypes;
-var hasRequiredPrototypes;
+let prototypes;
+let hasRequiredPrototypes;
 
 function requirePrototypes () {
 	if (hasRequiredPrototypes) return prototypes;
@@ -940,11 +940,11 @@ function requirePrototypes () {
 	return prototypes;
 }
 
-var typeDetect$1 = {exports: {}};
+const typeDetect$1 = {exports: {}};
 
-var typeDetect = typeDetect$1.exports;
+const typeDetect = typeDetect$1.exports;
 
-var hasRequiredTypeDetect;
+let hasRequiredTypeDetect;
 
 function requireTypeDetect () {
 	if (hasRequiredTypeDetect) return typeDetect$1.exports;
@@ -958,29 +958,29 @@ function requireTypeDetect () {
 		 * Copyright(c) 2013 jake luer <jake@alogicalparadox.com>
 		 * MIT Licensed
 		 */
-		var promiseExists = typeof Promise === 'function';
+		const promiseExists = typeof Promise === 'function';
 
 		/* eslint-disable no-undef */
-		var globalObject = typeof self === 'object' ? self : commonjsGlobal; // eslint-disable-line id-blacklist
+		const globalObject = typeof self === 'object' ? self : commonjsGlobal; // eslint-disable-line id-blacklist
 
-		var symbolExists = typeof Symbol !== 'undefined';
-		var mapExists = typeof Map !== 'undefined';
-		var setExists = typeof Set !== 'undefined';
-		var weakMapExists = typeof WeakMap !== 'undefined';
-		var weakSetExists = typeof WeakSet !== 'undefined';
-		var dataViewExists = typeof DataView !== 'undefined';
-		var symbolIteratorExists = symbolExists && typeof Symbol.iterator !== 'undefined';
-		var symbolToStringTagExists = symbolExists && typeof Symbol.toStringTag !== 'undefined';
-		var setEntriesExists = setExists && typeof Set.prototype.entries === 'function';
-		var mapEntriesExists = mapExists && typeof Map.prototype.entries === 'function';
-		var setIteratorPrototype = setEntriesExists && Object.getPrototypeOf(new Set().entries());
-		var mapIteratorPrototype = mapEntriesExists && Object.getPrototypeOf(new Map().entries());
-		var arrayIteratorExists = symbolIteratorExists && typeof Array.prototype[Symbol.iterator] === 'function';
-		var arrayIteratorPrototype = arrayIteratorExists && Object.getPrototypeOf([][Symbol.iterator]());
-		var stringIteratorExists = symbolIteratorExists && typeof String.prototype[Symbol.iterator] === 'function';
-		var stringIteratorPrototype = stringIteratorExists && Object.getPrototypeOf(''[Symbol.iterator]());
-		var toStringLeftSliceLength = 8;
-		var toStringRightSliceLength = -1;
+		const symbolExists = typeof Symbol !== 'undefined';
+		const mapExists = typeof Map !== 'undefined';
+		const setExists = typeof Set !== 'undefined';
+		const weakMapExists = typeof WeakMap !== 'undefined';
+		const weakSetExists = typeof WeakSet !== 'undefined';
+		const dataViewExists = typeof DataView !== 'undefined';
+		const symbolIteratorExists = symbolExists && typeof Symbol.iterator !== 'undefined';
+		const symbolToStringTagExists = symbolExists && typeof Symbol.toStringTag !== 'undefined';
+		const setEntriesExists = setExists && typeof Set.prototype.entries === 'function';
+		const mapEntriesExists = mapExists && typeof Map.prototype.entries === 'function';
+		const setIteratorPrototype = setEntriesExists && Object.getPrototypeOf(new Set().entries());
+		const mapIteratorPrototype = mapEntriesExists && Object.getPrototypeOf(new Map().entries());
+		const arrayIteratorExists = symbolIteratorExists && typeof Array.prototype[Symbol.iterator] === 'function';
+		const arrayIteratorPrototype = arrayIteratorExists && Object.getPrototypeOf([][Symbol.iterator]());
+		const stringIteratorExists = symbolIteratorExists && typeof String.prototype[Symbol.iterator] === 'function';
+		const stringIteratorPrototype = stringIteratorExists && Object.getPrototypeOf(''[Symbol.iterator]());
+		const toStringLeftSliceLength = 8;
+		const toStringRightSliceLength = -1;
 		/**
 		 * ### typeOf (obj)
 		 *
@@ -1006,7 +1006,7 @@ function requireTypeDetect () {
 		   *   undefined          x 32,363,368 ops/sec ±1.07% (82 runs sampled)
 		   *   function           x 31,296,870 ops/sec ±0.96% (83 runs sampled)
 		   */
-		  var typeofObj = typeof obj;
+		  const typeofObj = typeof obj;
 		  if (typeofObj !== 'object') {
 		    return typeofObj;
 		  }
@@ -1184,12 +1184,12 @@ function requireTypeDetect () {
 		  *   Int8Array          x 6,606,078 ops/sec ±1.74% (81 runs sampled)
 		  *   Uint8ClampedArray  x 6,602,224 ops/sec ±1.77% (83 runs sampled)
 		  */
-		  var stringTag = (symbolToStringTagExists && obj[Symbol.toStringTag]);
+		  const stringTag = (symbolToStringTagExists && obj[Symbol.toStringTag]);
 		  if (typeof stringTag === 'string') {
 		    return stringTag;
 		  }
 
-		  var objPrototype = Object.getPrototypeOf(obj);
+		  const objPrototype = Object.getPrototypeOf(obj);
 		  /* ! Speed optimisation
 		  * Pre:
 		  *   regex literal      x 1,772,385 ops/sec ±1.85% (77 runs sampled)
@@ -1339,14 +1339,14 @@ function requireTypeDetect () {
 	return typeDetect$1.exports;
 }
 
-var typeOf;
-var hasRequiredTypeOf;
+let typeOf;
+let hasRequiredTypeOf;
 
 function requireTypeOf () {
 	if (hasRequiredTypeOf) return typeOf;
 	hasRequiredTypeOf = 1;
 
-	var type = requireTypeDetect();
+	const type = requireTypeDetect();
 
 	/**
 	 * Returns the lower-case result of running type from type-detect on the value
@@ -1359,8 +1359,8 @@ function requireTypeOf () {
 	return typeOf;
 }
 
-var valueToString_1;
-var hasRequiredValueToString;
+let valueToString_1;
+let hasRequiredValueToString;
 
 function requireValueToString () {
 	if (hasRequiredValueToString) return valueToString_1;
@@ -1383,8 +1383,8 @@ function requireValueToString () {
 	return valueToString_1;
 }
 
-var lib;
-var hasRequiredLib;
+let lib;
+let hasRequiredLib;
 
 function requireLib () {
 	if (hasRequiredLib) return lib;
@@ -1405,7 +1405,7 @@ function requireLib () {
 	return lib;
 }
 
-var hasRequiredFakeTimersSrc;
+let hasRequiredFakeTimersSrc;
 
 function requireFakeTimersSrc () {
 	if (hasRequiredFakeTimersSrc) return fakeTimersSrc;
@@ -3568,7 +3568,7 @@ function requireFakeTimersSrc () {
 	return fakeTimersSrc;
 }
 
-var fakeTimersSrcExports = requireFakeTimersSrc();
+const fakeTimersSrcExports = requireFakeTimersSrc();
 
 class FakeTimers {
 	_global;

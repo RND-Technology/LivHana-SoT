@@ -1,5 +1,5 @@
-let Declaration = require('../declaration')
-let utils = require('./grid-utils')
+const Declaration = require('../declaration')
+const utils = require('./grid-utils')
 
 class GridArea extends Declaration {
   /**
@@ -8,10 +8,10 @@ class GridArea extends Declaration {
   insert(decl, prefix, prefixes, result) {
     if (prefix !== '-ms-') return super.insert(decl, prefix, prefixes)
 
-    let values = utils.parse(decl)
+    const values = utils.parse(decl)
 
-    let [rowStart, rowSpan] = utils.translate(values, 0, 2)
-    let [columnStart, columnSpan] = utils.translate(values, 1, 3)
+    const [rowStart, rowSpan] = utils.translate(values, 0, 2)
+    const [columnStart, columnSpan] = utils.translate(values, 1, 3)
 
     ;[
       ['grid-row', rowStart],

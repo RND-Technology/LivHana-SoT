@@ -30,7 +30,7 @@ module.exports = function initialize(shim, nextjs) {
     logger.debug("allAPIEndpoints:", allAPIEndpoints);
     for (let index = 0; index < allAPIEndpoints.length; index++) {
       const element = allAPIEndpoints[index];
-      let key = "*" + ATTHERATE + element;
+      const key = "*" + ATTHERATE + element;
       routeManager.setRoute(key, EMPTY_STR);
     }
   } catch (error) {
@@ -80,7 +80,7 @@ function extractAttrs(args, version) {
     page = match?.definition?.pathname
     params = { ...match?.params }
   } else {
-    ;[, , , params, page] = args
+    [, , , params, page] = args
   }
 
   return { params, page }
@@ -95,7 +95,7 @@ function extractParams(shim, page, params) {
   try {
     const transaction = shim.tracer.getTransaction();
     if (transaction) {
-      let request = requestManager.getRequestFromId(transaction.id);
+      const request = requestManager.getRequestFromId(transaction.id);
       Object.keys(params).forEach(function (key) {
         if (params[key]) {
           if (!request.parameterMap[key]) {

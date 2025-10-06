@@ -1,4 +1,4 @@
-let utils = require('./utils')
+const utils = require('./utils')
 
 class OldValue {
   constructor(unprefixed, prefixed, string, regexp) {

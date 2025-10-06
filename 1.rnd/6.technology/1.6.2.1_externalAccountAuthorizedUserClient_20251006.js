@@ -107,7 +107,7 @@ class ExternalAccountAuthorizedUserClient extends authclient_1.AuthClient {
      *   on 401/403 API request errors.
      */
     constructor(options, additionalOptions) {
-        var _a;
+        let _a;
         super({ ...options, ...additionalOptions });
         if (options.universe_domain) {
             this.universeDomain = options.universe_domain;

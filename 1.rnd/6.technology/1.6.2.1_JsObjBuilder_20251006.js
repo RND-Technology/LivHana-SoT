@@ -65,7 +65,7 @@ class JsObjBuilder extends BaseOutputBuilder{
   closeTag(){
     const tagName = this.tagName;
     let value = this.value;
-    let textValue = this.textValue;
+    const textValue = this.textValue;
 
     //update tag text value
     if(typeof value !== "object" && !Array.isArray(value)){
@@ -88,7 +88,7 @@ class JsObjBuilder extends BaseOutputBuilder{
     }
 
     //set parent node in scope
-    let arr = this.tagsStack.pop(); 
+    const arr = this.tagsStack.pop(); 
     let parentTag = arr[2];
     parentTag=this._addChildTo(resultTag.tagName, resultTag.value, parentTag);
 

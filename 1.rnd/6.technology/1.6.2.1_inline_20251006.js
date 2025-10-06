@@ -122,7 +122,7 @@ import {
  */
 
 function within_array_or_object_literal(compressor) {
-    var node, level = 0;
+    let node, level = 0;
     while (node = compressor.parent(level++)) {
         if (node instanceof AST_Statement) return false;
         if (node instanceof AST_Array
@@ -221,7 +221,7 @@ export function inline_into_symbolref(self, compressor) {
         } else if (def.scope !== self.scope || def.orig[0] instanceof AST_SymbolFunarg) {
             single_use = fixed.is_constant_expression(self.scope);
             if (single_use == "f") {
-                var scope = self.scope;
+                let scope = self.scope;
                 do {
                     if (scope instanceof AST_Defun || is_func_expr(scope)) {
                         set_flag(scope, INLINED);
@@ -290,7 +290,7 @@ export function inline_into_symbolref(self, compressor) {
                 replace = fixed;
             }
         } else {
-            var ev = fixed.evaluate(compressor);
+            const ev = fixed.evaluate(compressor);
             if (
                 ev !== fixed
                 && (compressor.option("unsafe_regexp") || !(ev instanceof RegExp))
@@ -322,9 +322,9 @@ export function inline_into_symbolref(self, compressor) {
 export function inline_into_call(self, compressor) {
     if (compressor.in_computed_key()) return self;
 
-    var exp = self.expression;
-    var fn = exp;
-    var simple_args = self.args.every((arg) => !(arg instanceof AST_Expansion));
+    const exp = self.expression;
+    let fn = exp;
+    const simple_args = self.args.every((arg) => !(arg instanceof AST_Expansion));
 
     if (compressor.option("reduce_vars")
         && fn instanceof AST_SymbolRef
@@ -347,11 +347,11 @@ export function inline_into_call(self, compressor) {
         && !has_annotation(self, _INLINE)
     ) return self;
 
-    var is_func = fn instanceof AST_Lambda;
+    const is_func = fn instanceof AST_Lambda;
 
-    var stat = is_func && fn.body[0];
-    var is_regular_func = is_func && !fn.is_generator && !fn.async;
-    var can_inline = is_regular_func && compressor.option("inline") && !self.is_callee_pure(compressor);
+    const stat = is_func && fn.body[0];
+    const is_regular_func = is_func && !fn.is_generator && !fn.async;
+    const can_inline = is_regular_func && compressor.option("inline") && !self.is_callee_pure(compressor);
     if (can_inline && stat instanceof AST_Return) {
         let returned = stat.value;
         if (!returned || returned.is_constant_expression()) {
@@ -456,7 +456,7 @@ export function inline_into_call(self, compressor) {
 
     const can_drop_this_call = is_regular_func && compressor.option("side_effects") && fn.body.every(is_empty);
     if (can_drop_this_call) {
-        var args = self.args.concat(make_node(AST_Undefined, self));
+        const args = self.args.concat(make_node(AST_Undefined, self));
         return make_sequence(self, args).optimize(compressor);
     }
 
@@ -466,7 +466,7 @@ export function inline_into_call(self, compressor) {
         return self.negate(compressor, true);
     }
 
-    var ev = self.evaluate(compressor);
+    let ev = self.evaluate(compressor);
     if (ev !== self) {
         ev = make_node_from_constant(ev, self).optimize(compressor);
         return best_of(compressor, ev, self);
@@ -489,14 +489,14 @@ export function inline_into_call(self, compressor) {
     }
 
     function can_flatten_body(stat) {
-        var body = fn.body;
-        var len = body.length;
+        const body = fn.body;
+        const len = body.length;
         if (compressor.option("inline") < 3) {
             return len == 1 && return_value(stat);
         }
         stat = null;
-        for (var i = 0; i < len; i++) {
-            var line = body[i];
+        for (let i = 0; i < len; i++) {
+            const line = body[i];
             if (line instanceof AST_Var) {
                 if (stat && !line.definitions.every((var_def) =>
                     !var_def.value
@@ -513,8 +513,8 @@ export function inline_into_call(self, compressor) {
     }
 
     function can_inject_args(block_scoped, safe_to_inject) {
-        for (var i = 0, len = fn.argnames.length; i < len; i++) {
-            var arg = fn.argnames[i];
+        for (let i = 0, len = fn.argnames.length; i < len; i++) {
+            const arg = fn.argnames[i];
             if (arg instanceof AST_DefaultAssign) {
                 if (has_flag(arg.left, UNUSED)) continue;
                 return false;
@@ -537,13 +537,13 @@ export function inline_into_call(self, compressor) {
     }
 
     function can_inject_vars(block_scoped, safe_to_inject) {
-        var len = fn.body.length;
-        for (var i = 0; i < len; i++) {
-            var stat = fn.body[i];
+        const len = fn.body.length;
+        for (let i = 0; i < len; i++) {
+            const stat = fn.body[i];
             if (!(stat instanceof AST_Var)) continue;
             if (!safe_to_inject) return false;
-            for (var j = stat.definitions.length; --j >= 0;) {
-                var name = stat.definitions[j].name;
+            for (let j = stat.definitions.length; --j >= 0;) {
+                const name = stat.definitions[j].name;
                 if (name instanceof AST_Destructuring
                     || block_scoped.has(name.name)
                     || identifier_atom.has(name.name)
@@ -557,7 +557,7 @@ export function inline_into_call(self, compressor) {
     }
 
     function can_inject_symbols() {
-        var block_scoped = new Set();
+        const block_scoped = new Set();
         do {
             scope = compressor.parent(++level);
             if (scope.is_block_scope() && scope.block_scope) {
@@ -579,15 +579,15 @@ export function inline_into_call(self, compressor) {
             }
         } while (!(scope instanceof AST_Scope));
 
-        var safe_to_inject = !(scope instanceof AST_Toplevel) || compressor.toplevel.vars;
-        var inline = compressor.option("inline");
+        const safe_to_inject = !(scope instanceof AST_Toplevel) || compressor.toplevel.vars;
+        const inline = compressor.option("inline");
         if (!can_inject_vars(block_scoped, inline >= 3 && safe_to_inject)) return false;
         if (!can_inject_args(block_scoped, inline >= 2 && safe_to_inject)) return false;
         return !in_loop || in_loop.length == 0 || !is_reachable(fn, in_loop);
     }
 
     function append_var(decls, expressions, name, value) {
-        var def = name.definition();
+        const def = name.definition();
 
         // Name already exists, only when a function argument had the same name
         const already_appended = scope.variables.has(name.name);
@@ -600,7 +600,7 @@ export function inline_into_call(self, compressor) {
             }));
         }
 
-        var sym = make_node(AST_SymbolRef, name, name);
+        const sym = make_node(AST_SymbolRef, name, name);
         def.references.push(sym);
         if (value) expressions.push(make_node(AST_Assign, self, {
             operator: "=",
@@ -611,17 +611,17 @@ export function inline_into_call(self, compressor) {
     }
 
     function flatten_args(decls, expressions) {
-        var len = fn.argnames.length;
+        const len = fn.argnames.length;
         for (var i = self.args.length; --i >= len;) {
             expressions.push(self.args[i]);
         }
         for (i = len; --i >= 0;) {
-            var name = fn.argnames[i];
-            var value = self.args[i];
+            const name = fn.argnames[i];
+            let value = self.args[i];
             if (has_flag(name, UNUSED) || !name.name || scope.conflicting_def(name.name)) {
                 if (value) expressions.push(value);
             } else {
-                var symbol = make_node(AST_SymbolVar, name, name);
+                const symbol = make_node(AST_SymbolVar, name, name);
                 name.definition().orig.push(symbol);
                 if (!value && in_loop) value = make_node(AST_Undefined, self);
                 append_var(decls, expressions, symbol, value);
@@ -632,19 +632,19 @@ export function inline_into_call(self, compressor) {
     }
 
     function flatten_vars(decls, expressions) {
-        var pos = expressions.length;
-        for (var i = 0, lines = fn.body.length; i < lines; i++) {
-            var stat = fn.body[i];
+        let pos = expressions.length;
+        for (let i = 0, lines = fn.body.length; i < lines; i++) {
+            const stat = fn.body[i];
             if (!(stat instanceof AST_Var)) continue;
-            for (var j = 0, defs = stat.definitions.length; j < defs; j++) {
-                var var_def = stat.definitions[j];
+            for (let j = 0, defs = stat.definitions.length; j < defs; j++) {
+                const var_def = stat.definitions[j];
                 var name = var_def.name;
                 append_var(decls, expressions, name, var_def.value);
                 if (in_loop && fn.argnames.every((argname) =>
                     argname.name != name.name
                 )) {
-                    var def = fn.variables.get(name.name);
-                    var sym = make_node(AST_SymbolRef, name, name);
+                    const def = fn.variables.get(name.name);
+                    const sym = make_node(AST_SymbolRef, name, name);
                     def.references.push(sym);
                     expressions.splice(pos++, 0, make_node(AST_Assign, var_def, {
                         operator: "=",
@@ -658,8 +658,8 @@ export function inline_into_call(self, compressor) {
     }
 
     function flatten_fn(returned_value) {
-        var decls = [];
-        var expressions = [];
+        const decls = [];
+        const expressions = [];
         flatten_args(decls, expressions);
         flatten_vars(decls, expressions);
         expressions.push(returned_value);

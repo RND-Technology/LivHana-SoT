@@ -48,14 +48,14 @@ function compositeAuthenticationProvider(providerConfig) {
     }
     // Find an auth combination in the list of optional combinations that can be
     // applied given the current auth configuration.
-    var matchingAuthCombination = findMatchingAuth(securityRequirements, providerConfig);
+    const matchingAuthCombination = findMatchingAuth(securityRequirements, providerConfig);
     // If no auth combination satisfies the security requirements, raise an
     // error.
     if (!matchingAuthCombination) {
       throw new Error('Required authentication credentials for this API call are not provided or all provided auth combinations are disabled');
     }
     // Get interceptors for the selected auth combination.
-    var authInterceptors = getHttpInterceptorsForAuths(matchingAuthCombination, providerConfig);
+    const authInterceptors = getHttpInterceptorsForAuths(matchingAuthCombination, providerConfig);
     return combineHttpInterceptors(authInterceptors);
   };
 }
@@ -77,7 +77,7 @@ function findMatchingAuth(securityRequirements, providerConfig) {
  */
 function getHttpInterceptorsForAuths(matchingRequirements, providerConfig) {
   return Object.entries(matchingRequirements).map(function (_a) {
-    var _b = __read(_a, 2),
+    const _b = __read(_a, 2),
       authProvider = _b[0],
       authParam = _b[1];
     if (providerConfig[authProvider] !== undefined) {

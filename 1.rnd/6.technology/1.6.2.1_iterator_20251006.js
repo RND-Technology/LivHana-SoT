@@ -1,13 +1,13 @@
 'use strict';
 
-var defineProperties = require('define-properties');
-var test = require('tape');
-var functionsHaveNames = require('functions-have-names')();
+const defineProperties = require('define-properties');
+const test = require('tape');
+const functionsHaveNames = require('functions-have-names')();
 
-var index = require('../Iterator');
-var impl = require('../Iterator/implementation');
+const index = require('../Iterator');
+const impl = require('../Iterator/implementation');
 
-var isEnumerable = Object.prototype.propertyIsEnumerable;
+const isEnumerable = Object.prototype.propertyIsEnumerable;
 
 module.exports = {
 	tests: function (Iter, name, t) {
@@ -25,8 +25,8 @@ module.exports = {
 			name + ' throws when Construct-ed'
 		);
 
-		var SubIter;
-		var SubSubIter;
+		let SubIter;
+		let SubSubIter;
 		try {
 			/* eslint no-new-func: 0 */
 			SubIter = Function('Iter', 'return class SubIter extends Iter {};')(Iter);
@@ -73,7 +73,7 @@ module.exports = {
 			});
 
 			t.test('prototype descriptor', { skip: !defineProperties.supportsDescriptors }, function (pt) {
-				var desc = Object.getOwnPropertyDescriptor(Iterator, 'prototype');
+				const desc = Object.getOwnPropertyDescriptor(Iterator, 'prototype');
 				pt.deepEqual(
 					desc,
 					{

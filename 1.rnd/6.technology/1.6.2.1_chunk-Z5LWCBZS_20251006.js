@@ -1,27 +1,27 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _chunkPFGO5BSMjs = require('./chunk-PFGO5BSM.js');
+const _chunkPFGO5BSMjs = require('./chunk-PFGO5BSM.js');
 
 
-var _chunk73NOP3T5js = require('./chunk-73NOP3T5.js');
-
-
-
-
-var _chunk72ZIHMEBjs = require('./chunk-72ZIHMEB.js');
+const _chunk73NOP3T5js = require('./chunk-73NOP3T5.js');
 
 
 
 
+const _chunk72ZIHMEBjs = require('./chunk-72ZIHMEB.js');
 
-var _chunkA7U44ARPjs = require('./chunk-A7U44ARP.js');
 
 
-var _chunkSMXZPJEAjs = require('./chunk-SMXZPJEA.js');
+
+
+const _chunkA7U44ARPjs = require('./chunk-A7U44ARP.js');
+
+
+const _chunkSMXZPJEAjs = require('./chunk-SMXZPJEA.js');
 
 // src/interceptors/fetch/index.ts
-var _outvariant = require('outvariant');
-var _deferredpromise = require('@open-draft/deferred-promise');
+const _outvariant = require('outvariant');
+const _deferredpromise = require('@open-draft/deferred-promise');
 
 // src/interceptors/fetch/utils/createNetworkError.ts
 function createNetworkError(cause) {
@@ -31,14 +31,14 @@ function createNetworkError(cause) {
 }
 
 // src/interceptors/fetch/utils/followRedirect.ts
-var REQUEST_BODY_HEADERS = [
+const REQUEST_BODY_HEADERS = [
   "content-encoding",
   "content-language",
   "content-location",
   "content-type",
   "content-length"
 ];
-var kRedirectCount = Symbol("kRedirectCount");
+const kRedirectCount = Symbol("kRedirectCount");
 async function followFetchRedirect(request, response) {
   if (response.status !== 303 && request.body != null) {
     return Promise.reject(createNetworkError());
@@ -99,8 +99,8 @@ function sameOrigin(left, right) {
 }
 
 // src/interceptors/fetch/utils/brotli-decompress.ts
-var _zlib = require('zlib'); var _zlib2 = _interopRequireDefault(_zlib);
-var BrotliDecompressionStream = class extends TransformStream {
+const _zlib = require('zlib'); const _zlib2 = _interopRequireDefault(_zlib);
+const BrotliDecompressionStream = class extends TransformStream {
   constructor() {
     const decompress = _zlib2.default.createBrotliDecompress({
       flush: _zlib2.default.constants.BROTLI_OPERATION_FLUSH,
@@ -128,7 +128,7 @@ var BrotliDecompressionStream = class extends TransformStream {
 };
 
 // src/interceptors/fetch/utils/decompression.ts
-var PipelineStream = class extends TransformStream {
+const PipelineStream = class extends TransformStream {
   constructor(transformStreams, ...strategies) {
     super({}, ...strategies);
     const readable = [super.readable, ...transformStreams].reduce(
@@ -304,7 +304,7 @@ var _FetchInterceptor = class extends _chunkA7U44ARPjs.Interceptor {
     });
   }
 };
-var FetchInterceptor = _FetchInterceptor;
+const FetchInterceptor = _FetchInterceptor;
 FetchInterceptor.symbol = Symbol("fetch");
 
 

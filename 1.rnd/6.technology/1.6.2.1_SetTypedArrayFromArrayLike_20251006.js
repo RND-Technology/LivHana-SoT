@@ -1,31 +1,31 @@
 'use strict';
 
-var $RangeError = require('es-errors/range');
-var $TypeError = require('es-errors/type');
+const $RangeError = require('es-errors/range');
+const $TypeError = require('es-errors/type');
 
-var isTypedArray = require('is-typed-array');
-var typedArrayBuffer = require('typed-array-buffer');
-var typedArrayByteOffset = require('typed-array-byte-offset');
-var typedArrayLength = require('typed-array-length');
-var whichTypedArray = require('which-typed-array');
-var isInteger = require('math-intrinsics/isInteger');
+const isTypedArray = require('is-typed-array');
+const typedArrayBuffer = require('typed-array-buffer');
+const typedArrayByteOffset = require('typed-array-byte-offset');
+const typedArrayLength = require('typed-array-length');
+const whichTypedArray = require('which-typed-array');
+const isInteger = require('math-intrinsics/isInteger');
 
-var Get = require('./Get');
-var IsBigIntElementType = require('./IsBigIntElementType');
-var IsDetachedBuffer = require('./IsDetachedBuffer');
-var LengthOfArrayLike = require('./LengthOfArrayLike');
-var SetValueInBuffer = require('./SetValueInBuffer');
-var ToBigInt = require('./ToBigInt');
-var ToNumber = require('./ToNumber');
-var ToObject = require('./ToObject');
-var ToString = require('./ToString');
+const Get = require('./Get');
+const IsBigIntElementType = require('./IsBigIntElementType');
+const IsDetachedBuffer = require('./IsDetachedBuffer');
+const LengthOfArrayLike = require('./LengthOfArrayLike');
+const SetValueInBuffer = require('./SetValueInBuffer');
+const ToBigInt = require('./ToBigInt');
+const ToNumber = require('./ToNumber');
+const ToObject = require('./ToObject');
+const ToString = require('./ToString');
 
-var tableTAO = require('./tables/typed-array-objects');
+const tableTAO = require('./tables/typed-array-objects');
 
 // https://262.ecma-international.org/12.0/#sec-settypedarrayfromarraylike
 
 module.exports = function SetTypedArrayFromArrayLike(target, targetOffset, source) {
-	var whichTarget = whichTypedArray(target);
+	const whichTarget = whichTypedArray(target);
 	if (!whichTarget) {
 		throw new $TypeError('Assertion failed: target must be a TypedArray instance');
 	}
@@ -38,25 +38,25 @@ module.exports = function SetTypedArrayFromArrayLike(target, targetOffset, sourc
 		throw new $TypeError('Assertion failed: source must not be a TypedArray instance'); // step 1
 	}
 
-	var targetBuffer = typedArrayBuffer(target); // step 2
+	const targetBuffer = typedArrayBuffer(target); // step 2
 
 	if (IsDetachedBuffer(targetBuffer)) {
 		throw new $TypeError('target’s buffer is detached'); // step 3
 	}
 
-	var targetLength = typedArrayLength(target); // step 4
+	const targetLength = typedArrayLength(target); // step 4
 
-	var targetName = whichTarget; // step 5
+	const targetName = whichTarget; // step 5
 
-	var targetType = tableTAO.name['$' + targetName]; // step 7
+	const targetType = tableTAO.name['$' + targetName]; // step 7
 
-	var targetElementSize = tableTAO.size['$' + targetType]; // step 6
+	const targetElementSize = tableTAO.size['$' + targetType]; // step 6
 
-	var targetByteOffset = typedArrayByteOffset(target); // step 8
+	const targetByteOffset = typedArrayByteOffset(target); // step 8
 
-	var src = ToObject(source); // step 9
+	const src = ToObject(source); // step 9
 
-	var srcLength = LengthOfArrayLike(src); // step 10
+	const srcLength = LengthOfArrayLike(src); // step 10
 
 	if (targetOffset === Infinity) {
 		throw new $RangeError('targetOffset must be a finite integer'); // step 11
@@ -66,16 +66,16 @@ module.exports = function SetTypedArrayFromArrayLike(target, targetOffset, sourc
 		throw new $RangeError('targetOffset + srcLength must be <= target.length'); // step 12
 	}
 
-	var targetByteIndex = (targetOffset * targetElementSize) + targetByteOffset; // step 13
+	let targetByteIndex = (targetOffset * targetElementSize) + targetByteOffset; // step 13
 
-	var k = 0; // step 14
+	let k = 0; // step 14
 
-	var limit = targetByteIndex + (targetElementSize * srcLength); // step 15
+	const limit = targetByteIndex + (targetElementSize * srcLength); // step 15
 
 	while (targetByteIndex < limit) { // step 16
-		var Pk = ToString(k); // step 16.a
+		const Pk = ToString(k); // step 16.a
 
-		var value = Get(src, Pk); // step 16.b
+		let value = Get(src, Pk); // step 16.b
 
 		if (IsBigIntElementType(targetType)) {
 			value = ToBigInt(value); // step 16.c

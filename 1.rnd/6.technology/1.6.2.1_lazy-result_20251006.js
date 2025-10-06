@@ -1,14 +1,14 @@
 'use strict'
 
-let Container = require('./container')
-let Document = require('./document')
-let MapGenerator = require('./map-generator')
-let parse = require('./parse')
-let Result = require('./result')
-let Root = require('./root')
-let stringify = require('./stringify')
-let { isClean, my } = require('./symbols')
-let warnOnce = require('./warn-once')
+const Container = require('./container')
+const Document = require('./document')
+const MapGenerator = require('./map-generator')
+const parse = require('./parse')
+const Result = require('./result')
+const Root = require('./root')
+const stringify = require('./stringify')
+const { isClean, my } = require('./symbols')
+const warnOnce = require('./warn-once')
 
 const TYPE_TO_CLASS_NAME = {
   atrule: 'AtRule',
@@ -52,7 +52,7 @@ function isPromise(obj) {
 
 function getEvents(node) {
   let key = false
-  let type = TYPE_TO_CLASS_NAME[node.type]
+  const type = TYPE_TO_CLASS_NAME[node.type]
   if (node.type === 'decl') {
     key = node.prop.toLowerCase()
   } else if (node.type === 'atrule') {
@@ -207,7 +207,7 @@ class LazyResult {
   }
 
   handleError(error, node) {
-    let plugin = this.result.lastPlugin
+    const plugin = this.result.lastPlugin
     try {
       if (node) node.addToError(error)
       this.error = error
@@ -216,11 +216,11 @@ class LazyResult {
         error.setMessage()
       } else if (plugin.postcssVersion) {
         if (process.env.NODE_ENV !== 'production') {
-          let pluginName = plugin.postcssPlugin
-          let pluginVer = plugin.postcssVersion
-          let runtimeVer = this.result.processor.version
-          let a = pluginVer.split('.')
-          let b = runtimeVer.split('.')
+          const pluginName = plugin.postcssPlugin
+          const pluginVer = plugin.postcssVersion
+          const runtimeVer = this.result.processor.version
+          const a = pluginVer.split('.')
+          const b = runtimeVer.split('.')
 
           if (a[0] !== b[0] || parseInt(a[1]) > parseInt(b[1])) {
             // eslint-disable-next-line no-console
@@ -247,13 +247,13 @@ class LazyResult {
 
   prepareVisitors() {
     this.listeners = {}
-    let add = (plugin, type, cb) => {
+    const add = (plugin, type, cb) => {
       if (!this.listeners[type]) this.listeners[type] = []
       this.listeners[type].push([plugin, cb])
     }
-    for (let plugin of this.plugins) {
+    for (const plugin of this.plugins) {
       if (typeof plugin === 'object') {
-        for (let event in plugin) {
+        for (const event in plugin) {
           if (!PLUGIN_PROPS[event] && /^[A-Z]/.test(event)) {
             throw new Error(
               `Unknown event ${event} in ${plugin.postcssPlugin}. ` +
@@ -262,7 +262,7 @@ class LazyResult {
           }
           if (!NOT_VISITORS[event]) {
             if (typeof plugin[event] === 'object') {
-              for (let filter in plugin[event]) {
+              for (const filter in plugin[event]) {
                 if (filter === '*') {
                   add(plugin, event, plugin[event][filter])
                 } else {
@@ -286,8 +286,8 @@ class LazyResult {
   async runAsync() {
     this.plugin = 0
     for (let i = 0; i < this.plugins.length; i++) {
-      let plugin = this.plugins[i]
-      let promise = this.runOnRoot(plugin)
+      const plugin = this.plugins[i]
+      const promise = this.runOnRoot(plugin)
       if (isPromise(promise)) {
         try {
           await promise
@@ -299,17 +299,17 @@ class LazyResult {
 
     this.prepareVisitors()
     if (this.hasListener) {
-      let root = this.result.root
+      const root = this.result.root
       while (!root[isClean]) {
         root[isClean] = true
-        let stack = [toStack(root)]
+        const stack = [toStack(root)]
         while (stack.length > 0) {
-          let promise = this.visitTick(stack)
+          const promise = this.visitTick(stack)
           if (isPromise(promise)) {
             try {
               await promise
             } catch (e) {
-              let node = stack[stack.length - 1].node
+              const node = stack[stack.length - 1].node
               throw this.handleError(e, node)
             }
           }
@@ -317,11 +317,11 @@ class LazyResult {
       }
 
       if (this.listeners.OnceExit) {
-        for (let [plugin, visitor] of this.listeners.OnceExit) {
+        for (const [plugin, visitor] of this.listeners.OnceExit) {
           this.result.lastPlugin = plugin
           try {
             if (root.type === 'document') {
-              let roots = root.nodes.map(subRoot =>
+              const roots = root.nodes.map(subRoot =>
                 visitor(subRoot, this.helpers)
               )
 
@@ -345,7 +345,7 @@ class LazyResult {
     try {
       if (typeof plugin === 'object' && plugin.Once) {
         if (this.result.root.type === 'document') {
-          let roots = this.result.root.nodes.map(root =>
+          const roots = this.result.root.nodes.map(root =>
             plugin.Once(root, this.helpers)
           )
 
@@ -372,14 +372,14 @@ class LazyResult {
 
     this.sync()
 
-    let opts = this.result.opts
+    const opts = this.result.opts
     let str = stringify
     if (opts.syntax) str = opts.syntax.stringify
     if (opts.stringifier) str = opts.stringifier
     if (str.stringify) str = str.stringify
 
-    let map = new MapGenerator(str, this.result.root, this.result.opts)
-    let data = map.generate()
+    const map = new MapGenerator(str, this.result.root, this.result.opts)
+    const data = map.generate()
     this.result.css = data[0]
     this.result.map = data[1]
 
@@ -395,8 +395,8 @@ class LazyResult {
       throw this.getAsyncError()
     }
 
-    for (let plugin of this.plugins) {
-      let promise = this.runOnRoot(plugin)
+    for (const plugin of this.plugins) {
+      const promise = this.runOnRoot(plugin)
       if (isPromise(promise)) {
         throw this.getAsyncError()
       }
@@ -404,14 +404,14 @@ class LazyResult {
 
     this.prepareVisitors()
     if (this.hasListener) {
-      let root = this.result.root
+      const root = this.result.root
       while (!root[isClean]) {
         root[isClean] = true
         this.walkSync(root)
       }
       if (this.listeners.OnceExit) {
         if (root.type === 'document') {
-          for (let subRoot of root.nodes) {
+          for (const subRoot of root.nodes) {
             this.visitSync(this.listeners.OnceExit, subRoot)
           }
         } else {
@@ -441,7 +441,7 @@ class LazyResult {
   }
 
   visitSync(visitors, node) {
-    for (let [plugin, visitor] of visitors) {
+    for (const [plugin, visitor] of visitors) {
       this.result.lastPlugin = plugin
       let promise
       try {
@@ -459,8 +459,8 @@ class LazyResult {
   }
 
   visitTick(stack) {
-    let visit = stack[stack.length - 1]
-    let { node, visitors } = visit
+    const visit = stack[stack.length - 1]
+    const { node, visitors } = visit
 
     if (node.type !== 'root' && node.type !== 'document' && !node.parent) {
       stack.pop()
@@ -468,7 +468,7 @@ class LazyResult {
     }
 
     if (visitors.length > 0 && visit.visitorIndex < visitors.length) {
-      let [plugin, visitor] = visitors[visit.visitorIndex]
+      const [plugin, visitor] = visitors[visit.visitorIndex]
       visit.visitorIndex += 1
       if (visit.visitorIndex === visitors.length) {
         visit.visitors = []
@@ -483,7 +483,7 @@ class LazyResult {
     }
 
     if (visit.iterator !== 0) {
-      let iterator = visit.iterator
+      const iterator = visit.iterator
       let child
       while ((child = node.nodes[node.indexes[iterator]])) {
         node.indexes[iterator] += 1
@@ -497,9 +497,9 @@ class LazyResult {
       delete node.indexes[iterator]
     }
 
-    let events = visit.events
+    const events = visit.events
     while (visit.eventIndex < events.length) {
-      let event = events[visit.eventIndex]
+      const event = events[visit.eventIndex]
       visit.eventIndex += 1
       if (event === CHILDREN) {
         if (node.nodes && node.nodes.length) {
@@ -517,8 +517,8 @@ class LazyResult {
 
   walkSync(node) {
     node[isClean] = true
-    let events = getEvents(node)
-    for (let event of events) {
+    const events = getEvents(node)
+    for (const event of events) {
       if (event === CHILDREN) {
         if (node.nodes) {
           node.each(child => {
@@ -526,7 +526,7 @@ class LazyResult {
           })
         }
       } else {
-        let visitors = this.listeners[event]
+        const visitors = this.listeners[event]
         if (visitors) {
           if (this.visitSync(visitors, node.toProxy())) return
         }

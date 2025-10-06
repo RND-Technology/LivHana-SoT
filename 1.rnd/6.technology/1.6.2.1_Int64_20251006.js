@@ -28,12 +28,12 @@
  */
 
 // Useful masks and values for bit twiddling
-var MASK31 =  0x7fffffff, VAL31 = 0x80000000;
-var MASK32 =  0xffffffff, VAL32 = 0x100000000;
+const MASK31 =  0x7fffffff, VAL31 = 0x80000000;
+const MASK32 =  0xffffffff, VAL32 = 0x100000000;
 
 // Map for converting hex octets to strings
-var _HEX = [];
-for (var i = 0; i < 256; i++) {
+const _HEX = [];
+for (let i = 0; i < 256; i++) {
   _HEX[i] = (i > 0xF ? '' : '0') + i.toString(16);
 }
 
@@ -50,7 +50,7 @@ for (var i = 0; i < 256; i++) {
  * new Int64(number)             - Number (throws if n is outside int64 range)
  * new Int64(hi, lo)             - Raw bits as two 32-bit values
  */
-var Int64 = module.exports = function(a1, a2) {
+const Int64 = module.exports = function(a1, a2) {
   if (a1 instanceof Buffer) {
     this.buffer = a1;
     this.offset = a2 || 0;
@@ -84,9 +84,9 @@ Int64.prototype = {
    * http://en.wikipedia.org/wiki/Two's_complement
    */
   _2scomp: function() {
-    var b = this.buffer, o = this.offset, carry = 1;
-    for (var i = o + 7; i >= o; i--) {
-      var v = (b[i] ^ 0xff) + carry;
+    let b = this.buffer, o = this.offset, carry = 1;
+    for (let i = o + 7; i >= o; i--) {
+      const v = (b[i] ^ 0xff) + carry;
       b[i] = v & 0xff;
       carry = v >> 8;
     }
@@ -100,7 +100,7 @@ Int64.prototype = {
    * setValue(hi, lo) - Raw bits as two 32-bit values
    */
   setValue: function(hi, lo) {
-    var negate = false;
+    let negate = false;
     if (arguments.length == 1) {
       if (typeof(hi) == 'number') {
         // Simplify bitfield retrieval by using abs() value.  We restore sign
@@ -126,8 +126,8 @@ Int64.prototype = {
     // it's not worth the effort. Anything past the 32'nd bit is ignored.
 
     // Copy bytes to buffer
-    var b = this.buffer, o = this.offset;
-    for (var i = 7; i >= 0; i--) {
+    const b = this.buffer, o = this.offset;
+    for (let i = 7; i >= 0; i--) {
       b[o+i] = lo & 0xff;
       lo = i == 4 ? hi : lo >>> 8;
     }
@@ -148,12 +148,12 @@ Int64.prototype = {
    * Infinity.
    */
   toNumber: function(allowImprecise) {
-    var b = this.buffer, o = this.offset;
+    const b = this.buffer, o = this.offset;
 
     // Running sum of octets, doing a 2's complement
-    var negate = b[o] & 0x80, x = 0, carry = 1;
-    for (var i = 7, m = 1; i >= 0; i--, m *= 256) {
-      var v = b[o+i];
+    let negate = b[o] & 0x80, x = 0, carry = 1;
+    for (let i = 7, m = 1; i >= 0; i--, m *= 256) {
+      let v = b[o+i];
 
       // 2's complement for negative numbers
       if (negate) {
@@ -196,9 +196,9 @@ Int64.prototype = {
    * @param sep separator string. default is '' (empty string)
    */
   toOctetString: function(sep) {
-    var out = new Array(8);
-    var b = this.buffer, o = this.offset;
-    for (var i = 0; i < 8; i++) {
+    const out = new Array(8);
+    const b = this.buffer, o = this.offset;
+    for (let i = 0; i < 8; i++) {
       out[i] = _HEX[b[o+i]];
     }
     return out.join(sep || '');
@@ -213,7 +213,7 @@ Int64.prototype = {
   toBuffer: function(rawBuffer) {
     if (rawBuffer && this.offset === 0) return this.buffer;
 
-    var out = new Buffer(8);
+    const out = new Buffer(8);
     this.buffer.copy(out, 0, this.offset, this.offset + 8);
     return out;
   },
@@ -242,7 +242,7 @@ Int64.prototype = {
     }
 
     // otherwise, compare bytes lexicographically
-    for (var i = 0; i < 8; i++) {
+    for (let i = 0; i < 8; i++) {
       if (this.buffer[this.offset+i] !== other.buffer[other.offset+i]) {
         return this.buffer[this.offset+i] - other.buffer[other.offset+i];
       }

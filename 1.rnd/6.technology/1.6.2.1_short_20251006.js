@@ -1,7 +1,7 @@
 'use strict';
 
-var parse = require('../');
-var test = require('tape');
+const parse = require('../');
+const test = require('tape');
 
 test('numeric short args', function (t) {
 	t.plan(2);

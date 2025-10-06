@@ -6,7 +6,7 @@ function cubehelix(hue) {
     y = +y;
 
     function cubehelix(start, end) {
-      var h = hue((start = colorCubehelix(start)).h, (end = colorCubehelix(end)).h),
+      const h = hue((start = colorCubehelix(start)).h, (end = colorCubehelix(end)).h),
           s = color(start.s, end.s),
           l = color(start.l, end.l),
           opacity = color(start.opacity, end.opacity);

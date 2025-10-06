@@ -4,8 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = rewriteThis;
-var _core = require("@babel/core");
-var _traverse = require("@babel/traverse");
+const _core = require("@babel/core");
+const _traverse = require("@babel/traverse");
 let rewriteThisVisitor;
 function rewriteThis(programPath) {
   if (!rewriteThisVisitor) {

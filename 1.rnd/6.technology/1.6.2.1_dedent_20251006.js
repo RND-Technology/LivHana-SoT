@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 const dedent = createDedent({});
-var _default = exports.default = dedent;
+const _default = exports.default = dedent;
 function createDedent(options) {
   dedent.withOptions = newOptions => createDedent({
     ...options,

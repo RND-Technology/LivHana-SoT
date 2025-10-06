@@ -1,45 +1,45 @@
 //compile doT templates to js functions
 'use strict';
 
-var glob = require('glob')
+const glob = require('glob')
   , fs = require('fs')
   , path = require('path')
   , doT = require('dot')
   , beautify = require('js-beautify').js_beautify;
 
-var defsRootPath = process.argv[2] || path.join(__dirname, '../lib');
+const defsRootPath = process.argv[2] || path.join(__dirname, '../lib');
 
-var defs = {};
-var defFiles = glob.sync('./dot/**/*.def', { cwd: defsRootPath });
+const defs = {};
+const defFiles = glob.sync('./dot/**/*.def', { cwd: defsRootPath });
 defFiles.forEach(function (f) {
-  var name = path.basename(f, '.def');
+  const name = path.basename(f, '.def');
   defs[name] = fs.readFileSync(path.join(defsRootPath, f));
 });
 
-var filesRootPath = process.argv[3] || path.join(__dirname, '../lib');
-var files = glob.sync('./dot/**/*.jst', { cwd: filesRootPath });
+const filesRootPath = process.argv[3] || path.join(__dirname, '../lib');
+const files = glob.sync('./dot/**/*.jst', { cwd: filesRootPath });
 
-var dotjsPath = path.join(filesRootPath, './dotjs');
+const dotjsPath = path.join(filesRootPath, './dotjs');
 try { fs.mkdirSync(dotjsPath); } catch(e) {}
 
 console.log('\n\nCompiling:');
 
-var FUNCTION_NAME = /function\s+anonymous\s*\(it[^)]*\)\s*{/;
-var OUT_EMPTY_STRING = /out\s*\+=\s*'\s*';/g;
-var ISTANBUL = /'(istanbul[^']+)';/g;
-var ERROR_KEYWORD = /\$errorKeyword/g;
-var ERROR_KEYWORD_OR = /\$errorKeyword\s+\|\|/g;
-var VARS = [
+const FUNCTION_NAME = /function\s+anonymous\s*\(it[^)]*\)\s*{/;
+const OUT_EMPTY_STRING = /out\s*\+=\s*'\s*';/g;
+const ISTANBUL = /'(istanbul[^']+)';/g;
+const ERROR_KEYWORD = /\$errorKeyword/g;
+const ERROR_KEYWORD_OR = /\$errorKeyword\s+\|\|/g;
+const VARS = [
   '$errs', '$valid', '$lvl', '$data', '$dataLvl',
   '$errorKeyword', '$closingBraces', '$schemaPath',
   '$validate'
 ];
 
 files.forEach(function (f) {
-  var keyword = path.basename(f, '.jst');
-  var targetPath = path.join(dotjsPath, keyword + '.js');
-  var template = fs.readFileSync(path.join(filesRootPath, f));
-  var code = doT.compile(template, defs);
+  const keyword = path.basename(f, '.jst');
+  const targetPath = path.join(dotjsPath, keyword + '.js');
+  const template = fs.readFileSync(path.join(filesRootPath, f));
+  let code = doT.compile(template, defs);
   code = code.toString()
              .replace(OUT_EMPTY_STRING, '')
              .replace(FUNCTION_NAME, 'function generate_' + keyword + '(it, $keyword, $ruleType) {')
@@ -53,8 +53,8 @@ files.forEach(function (f) {
 
   function removeUnusedVar(v) {
     v = v.replace(/\$/g, '\\$$');
-    var regexp = new RegExp(v + '[^A-Za-z0-9_$]', 'g');
-    var count = occurrences(regexp);
+    let regexp = new RegExp(v + '[^A-Za-z0-9_$]', 'g');
+    const count = occurrences(regexp);
     if (count == 1) {
       regexp = new RegExp('var\\s+' + v + '\\s*=[^;]+;|var\\s+' + v + ';');
       code = code.replace(regexp, '');
@@ -62,8 +62,8 @@ files.forEach(function (f) {
   }
 
   function removeAlwaysFalsyInOr() {
-    var countUsed = occurrences(ERROR_KEYWORD);
-    var countOr = occurrences(ERROR_KEYWORD_OR);
+    const countUsed = occurrences(ERROR_KEYWORD);
+    const countOr = occurrences(ERROR_KEYWORD_OR);
     if (countUsed == countOr + 1) code = code.replace(ERROR_KEYWORD_OR, '');
   }
 

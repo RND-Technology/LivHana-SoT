@@ -1,6 +1,6 @@
 module.exports = {
   prefix(prop) {
-    let match = prop.match(/^(-\w+-)/)
+    const match = prop.match(/^(-\w+-)/)
     if (match) {
       return match[0]
     }

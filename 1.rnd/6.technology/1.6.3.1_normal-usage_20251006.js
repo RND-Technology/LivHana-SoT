@@ -1,4 +1,4 @@
-var colors = require('../lib/index');
+const colors = require('../lib/index');
 
 console.log('First some yellow text'.yellow);
 

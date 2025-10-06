@@ -1,6 +1,6 @@
-var util = require('util');
-var Stream = require('stream').Stream;
-var DelayedStream = require('delayed-stream');
+const util = require('util');
+const Stream = require('stream').Stream;
+const DelayedStream = require('delayed-stream');
 
 module.exports = CombinedStream;
 function CombinedStream() {
@@ -19,10 +19,10 @@ function CombinedStream() {
 util.inherits(CombinedStream, Stream);
 
 CombinedStream.create = function(options) {
-  var combinedStream = new this();
+  const combinedStream = new this();
 
   options = options || {};
-  for (var option in options) {
+  for (const option in options) {
     combinedStream[option] = options[option];
   }
 
@@ -38,11 +38,11 @@ CombinedStream.isStreamLike = function(stream) {
 };
 
 CombinedStream.prototype.append = function(stream) {
-  var isStreamLike = CombinedStream.isStreamLike(stream);
+  const isStreamLike = CombinedStream.isStreamLike(stream);
 
   if (isStreamLike) {
     if (!(stream instanceof DelayedStream)) {
-      var newStream = DelayedStream.create(stream, {
+      const newStream = DelayedStream.create(stream, {
         maxDataSize: Infinity,
         pauseStream: this.pauseStreams,
       });
@@ -87,7 +87,7 @@ CombinedStream.prototype._getNext = function() {
 };
 
 CombinedStream.prototype._realGetNext = function() {
-  var stream = this._streams.shift();
+  const stream = this._streams.shift();
 
 
   if (typeof stream == 'undefined') {
@@ -100,9 +100,9 @@ CombinedStream.prototype._realGetNext = function() {
     return;
   }
 
-  var getStream = stream;
+  const getStream = stream;
   getStream(function(stream) {
-    var isStreamLike = CombinedStream.isStreamLike(stream);
+    const isStreamLike = CombinedStream.isStreamLike(stream);
     if (isStreamLike) {
       stream.on('data', this._checkDataSize.bind(this));
       this._handleErrors(stream);
@@ -115,20 +115,20 @@ CombinedStream.prototype._realGetNext = function() {
 CombinedStream.prototype._pipeNext = function(stream) {
   this._currentStream = stream;
 
-  var isStreamLike = CombinedStream.isStreamLike(stream);
+  const isStreamLike = CombinedStream.isStreamLike(stream);
   if (isStreamLike) {
     stream.on('end', this._getNext.bind(this));
     stream.pipe(this, {end: false});
     return;
   }
 
-  var value = stream;
+  const value = stream;
   this.write(value);
   this._getNext();
 };
 
 CombinedStream.prototype._handleErrors = function(stream) {
-  var self = this;
+  const self = this;
   stream.on('error', function(err) {
     self._emitError(err);
   });
@@ -180,7 +180,7 @@ CombinedStream.prototype._checkDataSize = function() {
     return;
   }
 
-  var message =
+  const message =
     'DelayedStream#maxDataSize of ' + this.maxDataSize + ' bytes exceeded.';
   this._emitError(new Error(message));
 };
@@ -188,7 +188,7 @@ CombinedStream.prototype._checkDataSize = function() {
 CombinedStream.prototype._updateDataSize = function() {
   this.dataSize = 0;
 
-  var self = this;
+  const self = this;
   this._streams.forEach(function(stream) {
     if (!stream.dataSize) {
       return;

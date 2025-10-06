@@ -1,4 +1,4 @@
-var copyObject = require('./_copyObject'),
+const copyObject = require('./_copyObject'),
     getSymbols = require('./_getSymbols');
 
 /**

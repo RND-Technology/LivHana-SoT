@@ -1,18 +1,18 @@
 'use strict';
 
-var $RangeError = require('es-errors/range');
+const $RangeError = require('es-errors/range');
 
-var DayWithinYear = require('./DayWithinYear');
-var InLeapYear = require('./InLeapYear');
+const DayWithinYear = require('./DayWithinYear');
+const InLeapYear = require('./InLeapYear');
 
 // https://262.ecma-international.org/5.1/#sec-15.9.1.4
 
 module.exports = function MonthFromTime(t) {
-	var day = DayWithinYear(t);
+	const day = DayWithinYear(t);
 	if (0 <= day && day < 31) {
 		return 0;
 	}
-	var leap = InLeapYear(t);
+	const leap = InLeapYear(t);
 	if (31 <= day && day < (59 + leap)) {
 		return 1;
 	}

@@ -1,5 +1,5 @@
-var Stream = require('stream').Stream;
-var util = require('util');
+const Stream = require('stream').Stream;
+const util = require('util');
 
 module.exports = DelayedStream;
 function DelayedStream() {
@@ -15,16 +15,16 @@ function DelayedStream() {
 util.inherits(DelayedStream, Stream);
 
 DelayedStream.create = function(source, options) {
-  var delayedStream = new this();
+  const delayedStream = new this();
 
   options = options || {};
-  for (var option in options) {
+  for (const option in options) {
     delayedStream[option] = options[option];
   }
 
   delayedStream.source = source;
 
-  var realEmit = source.emit;
+  const realEmit = source.emit;
   source.emit = function() {
     delayedStream._handleEmit(arguments);
     return realEmit.apply(source, arguments);
@@ -72,7 +72,7 @@ DelayedStream.prototype.release = function() {
 };
 
 DelayedStream.prototype.pipe = function() {
-  var r = Stream.prototype.pipe.apply(this, arguments);
+  const r = Stream.prototype.pipe.apply(this, arguments);
   this.resume();
   return r;
 };
@@ -101,7 +101,7 @@ DelayedStream.prototype._checkIfMaxDataSizeExceeded = function() {
   }
 
   this._maxDataSizeExceeded = true;
-  var message =
+  const message =
     'DelayedStream#maxDataSize of ' + this.maxDataSize + ' bytes exceeded.'
   this.emit('error', new Error(message));
 };

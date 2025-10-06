@@ -7,17 +7,17 @@
  **/
 'use strict';
 
-var util    = require('util');
-var format  = require('util').format;
+const util    = require('util');
+const format  = require('util').format;
 
 
-var Action = require('../action');
+const Action = require('../action');
 
 // Constants
-var c = require('../const');
+const c = require('../const');
 
 // Errors
-var argumentErrorHelper = require('../argument/error');
+const argumentErrorHelper = require('../argument/error');
 
 
 /*:nodoc:*
@@ -27,7 +27,7 @@ var argumentErrorHelper = require('../argument/error');
  *
  **/
 function ChoicesPseudoAction(name, help) {
-  var options = {
+  const options = {
     optionStrings: [],
     dest: name,
     help: help
@@ -73,9 +73,9 @@ util.inherits(ActionSubparsers, Action);
  *
  **/
 ActionSubparsers.prototype.addParser = function (name, options) {
-  var parser;
+  let parser;
 
-  var self = this;
+  const self = this;
 
   options = options || {};
 
@@ -86,14 +86,14 @@ ActionSubparsers.prototype.addParser = function (name, options) {
     options.prog = this._progPrefix + ' ' + name;
   }
 
-  var aliases = options.aliases || [];
+  const aliases = options.aliases || [];
 
   // create a pseudo-action to hold the choice help
   if (!!options.help || typeof options.help === 'string') {
-    var help = options.help;
+    const help = options.help;
     delete options.help;
 
-    var choiceAction = new ChoicesPseudoAction(name, help);
+    const choiceAction = new ChoicesPseudoAction(name, help);
     this._choicesActions.push(choiceAction);
   }
 
@@ -123,8 +123,8 @@ ActionSubparsers.prototype._getSubactions = function () {
  * Call the action. Parse input aguments
  **/
 ActionSubparsers.prototype.call = function (parser, namespace, values) {
-  var parserName = values[0];
-  var argStrings = values.slice(1);
+  const parserName = values[0];
+  const argStrings = values.slice(1);
 
   // set the parser name if requested
   if (this.dest !== c.SUPPRESS) {

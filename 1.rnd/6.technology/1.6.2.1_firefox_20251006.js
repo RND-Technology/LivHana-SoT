@@ -1,23 +1,23 @@
 "use strict";
-var __create = Object.create;
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getProtoOf = Object.getPrototypeOf;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
+const __create = Object.create;
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __getProtoOf = Object.getPrototypeOf;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __export = (target, all) => {
+  for (const name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+const __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
   // If the importer is in node compatibility mode or this is not an ESM
   // file that has been converted to a CommonJS file using a Babel-
   // compatible transform (i.e. "__esModule" has not been set), then set
@@ -25,19 +25,19 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
   mod
 ));
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var firefox_exports = {};
+const __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+const firefox_exports = {};
 __export(firefox_exports, {
   Firefox: () => Firefox
 });
 module.exports = __toCommonJS(firefox_exports);
-var import_os = __toESM(require("os"));
-var import_path = __toESM(require("path"));
-var import_ffBrowser = require("./ffBrowser");
-var import_ffConnection = require("./ffConnection");
-var import_ascii = require("../utils/ascii");
-var import_browserType = require("../browserType");
-var import_manualPromise = require("../../utils/isomorphic/manualPromise");
+const import_os = __toESM(require("os"));
+const import_path = __toESM(require("path"));
+const import_ffBrowser = require("./ffBrowser");
+const import_ffConnection = require("./ffConnection");
+const import_ascii = require("../utils/ascii");
+const import_browserType = require("../browserType");
+const import_manualPromise = require("../../utils/isomorphic/manualPromise");
 class Firefox extends import_browserType.BrowserType {
   constructor(parent) {
     super(parent, "firefox");

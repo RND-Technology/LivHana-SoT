@@ -1,10 +1,10 @@
 /*global module*/
-var Buffer = require('safe-buffer').Buffer;
-var DataStream = require('./data-stream');
-var jwa = require('jwa');
-var Stream = require('stream');
-var toString = require('./tostring');
-var util = require('util');
+const Buffer = require('safe-buffer').Buffer;
+const DataStream = require('./data-stream');
+const jwa = require('jwa');
+const Stream = require('stream');
+const toString = require('./tostring');
+const util = require('util');
 
 function base64url(string, encoding) {
   return Buffer
@@ -17,25 +17,25 @@ function base64url(string, encoding) {
 
 function jwsSecuredInput(header, payload, encoding) {
   encoding = encoding || 'utf8';
-  var encodedHeader = base64url(toString(header), 'binary');
-  var encodedPayload = base64url(toString(payload), encoding);
+  const encodedHeader = base64url(toString(header), 'binary');
+  const encodedPayload = base64url(toString(payload), encoding);
   return util.format('%s.%s', encodedHeader, encodedPayload);
 }
 
 function jwsSign(opts) {
-  var header = opts.header;
-  var payload = opts.payload;
-  var secretOrKey = opts.secret || opts.privateKey;
-  var encoding = opts.encoding;
-  var algo = jwa(header.alg);
-  var securedInput = jwsSecuredInput(header, payload, encoding);
-  var signature = algo.sign(securedInput, secretOrKey);
+  const header = opts.header;
+  const payload = opts.payload;
+  const secretOrKey = opts.secret || opts.privateKey;
+  const encoding = opts.encoding;
+  const algo = jwa(header.alg);
+  const securedInput = jwsSecuredInput(header, payload, encoding);
+  const signature = algo.sign(securedInput, secretOrKey);
   return util.format('%s.%s', securedInput, signature);
 }
 
 function SignStream(opts) {
-  var secret = opts.secret||opts.privateKey||opts.key;
-  var secretStream = new DataStream(secret);
+  const secret = opts.secret||opts.privateKey||opts.key;
+  const secretStream = new DataStream(secret);
   this.readable = true;
   this.header = opts.header;
   this.encoding = opts.encoding;
@@ -55,7 +55,7 @@ util.inherits(SignStream, Stream);
 
 SignStream.prototype.sign = function sign() {
   try {
-    var signature = jwsSign({
+    const signature = jwsSign({
       header: this.header,
       payload: this.payload.buffer,
       secret: this.secret.buffer,

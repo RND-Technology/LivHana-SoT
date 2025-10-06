@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
 exports.createLoyaltyPromotionResponseSchema = void 0;
-var schema_1 = require("../schema");
-var error_1 = require("./error");
-var loyaltyPromotion_1 = require("./loyaltyPromotion");
+const schema_1 = require("../schema");
+const error_1 = require("./error");
+const loyaltyPromotion_1 = require("./loyaltyPromotion");
 exports.createLoyaltyPromotionResponseSchema = (0, schema_1.object)({
     errors: ['errors', (0, schema_1.optional)((0, schema_1.array)((0, schema_1.lazy)(function () { return error_1.errorSchema; })))],
     loyaltyPromotion: [

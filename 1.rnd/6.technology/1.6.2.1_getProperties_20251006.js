@@ -18,7 +18,7 @@
  */
 
 module.exports = function getProperties(object) {
-  var result = Object.getOwnPropertyNames(object);
+  const result = Object.getOwnPropertyNames(object);
 
   function addProperty(property) {
     if (result.indexOf(property) === -1) {
@@ -26,7 +26,7 @@ module.exports = function getProperties(object) {
     }
   }
 
-  var proto = Object.getPrototypeOf(object);
+  let proto = Object.getPrototypeOf(object);
   while (proto !== null) {
     Object.getOwnPropertyNames(proto).forEach(addProperty);
     proto = Object.getPrototypeOf(proto);

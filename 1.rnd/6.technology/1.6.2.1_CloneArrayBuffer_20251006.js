@@ -1,15 +1,15 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var GetPrototypeFromConstructor = require('./GetPrototypeFromConstructor');
-var IsConstructor = require('./IsConstructor');
-var IsDetachedBuffer = require('./IsDetachedBuffer');
-var OrdinarySetPrototypeOf = require('./OrdinarySetPrototypeOf');
+const GetPrototypeFromConstructor = require('./GetPrototypeFromConstructor');
+const IsConstructor = require('./IsConstructor');
+const IsDetachedBuffer = require('./IsDetachedBuffer');
+const OrdinarySetPrototypeOf = require('./OrdinarySetPrototypeOf');
 
-var isInteger = require('math-intrinsics/isInteger');
-var isArrayBuffer = require('is-array-buffer');
-var arrayBufferSlice = require('arraybuffer.prototype.slice');
+const isInteger = require('math-intrinsics/isInteger');
+const isArrayBuffer = require('is-array-buffer');
+const arrayBufferSlice = require('arraybuffer.prototype.slice');
 
 // https://262.ecma-international.org/12.0/#sec-clonearraybuffer
 
@@ -28,7 +28,7 @@ module.exports = function CloneArrayBuffer(srcBuffer, srcByteOffset, srcLength, 
 	}
 
 	// 3. Let targetBuffer be ? AllocateArrayBuffer(cloneConstructor, srcLength).
-	var proto = GetPrototypeFromConstructor(cloneConstructor, '%ArrayBufferPrototype%'); // step 3, kinda
+	const proto = GetPrototypeFromConstructor(cloneConstructor, '%ArrayBufferPrototype%'); // step 3, kinda
 
 	if (IsDetachedBuffer(srcBuffer)) {
 		throw new $TypeError('`srcBuffer` must not be a detached ArrayBuffer'); // step 4
@@ -39,7 +39,7 @@ module.exports = function CloneArrayBuffer(srcBuffer, srcByteOffset, srcLength, 
     6. Let targetBlock be targetBuffer.[[ArrayBufferData]].
     7. Perform CopyDataBlockBytes(targetBlock, 0, srcBlock, srcByteOffset, srcLength).
     */
-	var targetBuffer = arrayBufferSlice(srcBuffer, srcByteOffset, srcByteOffset + srcLength); // steps 5-7
+	const targetBuffer = arrayBufferSlice(srcBuffer, srcByteOffset, srcByteOffset + srcLength); // steps 5-7
 	OrdinarySetPrototypeOf(targetBuffer, proto); // step 3
 
 	return targetBuffer; // step 8

@@ -1,7 +1,7 @@
 'use strict';
 
-var utils = require('./utils');
-var assert = require('minimalistic-assert');
+const utils = require('./utils');
+const assert = require('minimalistic-assert');
 
 function Hmac(hash, key, enc) {
   if (!(this instanceof Hmac))

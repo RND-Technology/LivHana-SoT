@@ -1,15 +1,15 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var GetValueFromBuffer = require('./GetValueFromBuffer');
-var IsValidIntegerIndex = require('./IsValidIntegerIndex');
-var TypedArrayElementSize = require('./TypedArrayElementSize');
-var TypedArrayElementType = require('./TypedArrayElementType');
+const GetValueFromBuffer = require('./GetValueFromBuffer');
+const IsValidIntegerIndex = require('./IsValidIntegerIndex');
+const TypedArrayElementSize = require('./TypedArrayElementSize');
+const TypedArrayElementType = require('./TypedArrayElementType');
 
-var isTypedArray = require('is-typed-array');
-var typedArrayBuffer = require('typed-array-buffer');
-var typedArrayByteOffset = require('typed-array-byte-offset');
+const isTypedArray = require('is-typed-array');
+const typedArrayBuffer = require('typed-array-buffer');
+const typedArrayByteOffset = require('typed-array-byte-offset');
 
 // https://262.ecma-international.org/15.0/#sec-typedarraygetelement
 
@@ -25,13 +25,13 @@ module.exports = function TypedArrayGetElement(O, index) {
 		return undefined; // step 1
 	}
 
-	var offset = typedArrayByteOffset(O); // step 2
+	const offset = typedArrayByteOffset(O); // step 2
 
-	var elementSize = TypedArrayElementSize(O); // step 3
+	const elementSize = TypedArrayElementSize(O); // step 3
 
-	var byteIndexInBuffer = (index * elementSize) + offset; // step 4
+	const byteIndexInBuffer = (index * elementSize) + offset; // step 4
 
-	var elementType = TypedArrayElementType(O); // step 5
+	const elementType = TypedArrayElementType(O); // step 5
 
 	return GetValueFromBuffer(typedArrayBuffer(O), byteIndexInBuffer, elementType, true, 'UNORDERED'); // step 6
 };

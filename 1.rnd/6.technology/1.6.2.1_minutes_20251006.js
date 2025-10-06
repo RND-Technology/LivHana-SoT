@@ -20,7 +20,7 @@ class Minutes extends DatePart {
   }
 
   toString() {
-    let m = this.date.getMinutes();
+    const m = this.date.getMinutes();
     return this.token.length > 1 ? String(m).padStart(2, '0') : m;
   }
 }

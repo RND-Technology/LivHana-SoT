@@ -23,7 +23,7 @@ const stream_1 = require("stream");
 const constants_1 = require("./constants");
 const metadata_1 = require("./metadata");
 function serverErrorToStatus(error, overrideTrailers) {
-    var _a;
+    let _a;
     const status = {
         code: constants_1.Status.UNKNOWN,
         details: 'message' in error ? error.message : 'Unknown Error',
@@ -150,7 +150,7 @@ class ServerWritableStreamImpl extends stream_1.Writable {
         this.call.sendMessage(chunk, callback);
     }
     _final(callback) {
-        var _a;
+        let _a;
         callback(null);
         this.call.sendStatus(Object.assign(Object.assign({}, this.pendingStatus), { metadata: (_a = this.pendingStatus.metadata) !== null && _a !== void 0 ? _a : this.trailingMetadata }));
     }
@@ -210,7 +210,7 @@ class ServerDuplexStreamImpl extends stream_1.Duplex {
         this.call.sendMessage(chunk, callback);
     }
     _final(callback) {
-        var _a;
+        let _a;
         callback(null);
         this.call.sendStatus(Object.assign(Object.assign({}, this.pendingStatus), { metadata: (_a = this.pendingStatus.metadata) !== null && _a !== void 0 ? _a : this.trailingMetadata }));
     }

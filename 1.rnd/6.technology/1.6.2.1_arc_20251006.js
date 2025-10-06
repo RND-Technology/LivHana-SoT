@@ -23,7 +23,7 @@ function arcPadAngle(d) {
 }
 
 function intersect(x0, y0, x1, y1, x2, y2, x3, y3) {
-  var x10 = x1 - x0, y10 = y1 - y0,
+  let x10 = x1 - x0, y10 = y1 - y0,
       x32 = x3 - x2, y32 = y3 - y2,
       t = y32 * x10 - x32 * y10;
   if (t * t < epsilon) return;
@@ -34,7 +34,7 @@ function intersect(x0, y0, x1, y1, x2, y2, x3, y3) {
 // Compute perpendicular offset line of length rc.
 // http://mathworld.wolfram.com/Circle-LineIntersection.html
 function cornerTangents(x0, y0, x1, y1, r1, rc, cw) {
-  var x01 = x0 - x1,
+  let x01 = x0 - x1,
       y01 = y0 - y1,
       lo = (cw ? rc : -rc) / sqrt(x01 * x01 + y01 * y01),
       ox = lo * y01,
@@ -75,7 +75,7 @@ function cornerTangents(x0, y0, x1, y1, r1, rc, cw) {
 }
 
 export default function() {
-  var innerRadius = arcInnerRadius,
+  let innerRadius = arcInnerRadius,
       outerRadius = arcOuterRadius,
       cornerRadius = constant(0),
       padRadius = null,
@@ -86,7 +86,7 @@ export default function() {
       path = withPath(arc);
 
   function arc() {
-    var buffer,
+    let buffer,
         r,
         r0 = +innerRadius.apply(this, arguments),
         r1 = +outerRadius.apply(this, arguments),
@@ -115,7 +115,7 @@ export default function() {
 
     // Or is it a circular or annular sector?
     else {
-      var a01 = a0,
+      let a01 = a0,
           a11 = a1,
           a00 = a0,
           a10 = a1,
@@ -131,7 +131,7 @@ export default function() {
 
       // Apply padding? Note that since r1 ≥ r0, da1 ≥ da0.
       if (rp > epsilon) {
-        var p0 = asin(rp / r0 * sin(ap)),
+        let p0 = asin(rp / r0 * sin(ap)),
             p1 = asin(rp / r1 * sin(ap));
         if ((da0 -= p0 * 2) > epsilon) p0 *= (cw ? 1 : -1), a00 += p0, a10 -= p0;
         else da0 = 0, a00 = a10 = (a0 + a1) / 2;
@@ -139,7 +139,7 @@ export default function() {
         else da1 = 0, a01 = a11 = (a0 + a1) / 2;
       }
 
-      var x01 = r1 * cos(a01),
+      const x01 = r1 * cos(a01),
           y01 = r1 * sin(a01),
           x10 = r0 * cos(a10),
           y10 = r0 * sin(a10);
@@ -157,7 +157,7 @@ export default function() {
         // disable the corner radius entirely.
         if (da < pi) {
           if (oc = intersect(x01, y01, x00, y00, x11, y11, x10, y10)) {
-            var ax = x01 - oc[0],
+            const ax = x01 - oc[0],
                 ay = y01 - oc[1],
                 bx = x11 - oc[0],
                 by = y11 - oc[1],
@@ -227,7 +227,7 @@ export default function() {
   }
 
   arc.centroid = function() {
-    var r = (+innerRadius.apply(this, arguments) + +outerRadius.apply(this, arguments)) / 2,
+    const r = (+innerRadius.apply(this, arguments) + +outerRadius.apply(this, arguments)) / 2,
         a = (+startAngle.apply(this, arguments) + +endAngle.apply(this, arguments)) / 2 - pi / 2;
     return [cos(a) * r, sin(a) * r];
   };

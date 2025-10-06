@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.defaultPolarAngleAxisProps = void 0;
-var defaultPolarAngleAxisProps = exports.defaultPolarAngleAxisProps = {
+const defaultPolarAngleAxisProps = exports.defaultPolarAngleAxisProps = {
   allowDuplicatedCategory: true,
   // if I set this to false then Tooltip synchronisation stops working in Radar, wtf
   angleAxisId: 0,

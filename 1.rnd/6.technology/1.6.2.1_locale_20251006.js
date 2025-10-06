@@ -13,7 +13,7 @@ import {
 
 function localDate(d) {
   if (0 <= d.y && d.y < 100) {
-    var date = new Date(-1, d.m, d.d, d.H, d.M, d.S, d.L);
+    const date = new Date(-1, d.m, d.d, d.H, d.M, d.S, d.L);
     date.setFullYear(d.y);
     return date;
   }
@@ -22,7 +22,7 @@ function localDate(d) {
 
 function utcDate(d) {
   if (0 <= d.y && d.y < 100) {
-    var date = new Date(Date.UTC(-1, d.m, d.d, d.H, d.M, d.S, d.L));
+    const date = new Date(Date.UTC(-1, d.m, d.d, d.H, d.M, d.S, d.L));
     date.setUTCFullYear(d.y);
     return date;
   }
@@ -34,7 +34,7 @@ function newDate(y, m, d) {
 }
 
 export default function formatLocale(locale) {
-  var locale_dateTime = locale.dateTime,
+  const locale_dateTime = locale.dateTime,
       locale_date = locale.date,
       locale_time = locale.time,
       locale_periods = locale.periods,
@@ -43,7 +43,7 @@ export default function formatLocale(locale) {
       locale_months = locale.months,
       locale_shortMonths = locale.shortMonths;
 
-  var periodRe = formatRe(locale_periods),
+  const periodRe = formatRe(locale_periods),
       periodLookup = formatLookup(locale_periods),
       weekdayRe = formatRe(locale_weekdays),
       weekdayLookup = formatLookup(locale_weekdays),
@@ -54,7 +54,7 @@ export default function formatLocale(locale) {
       shortMonthRe = formatRe(locale_shortMonths),
       shortMonthLookup = formatLookup(locale_shortMonths);
 
-  var formats = {
+  const formats = {
     "a": formatShortWeekday,
     "A": formatWeekday,
     "b": formatShortMonth,
@@ -89,7 +89,7 @@ export default function formatLocale(locale) {
     "%": formatLiteralPercent
   };
 
-  var utcFormats = {
+  const utcFormats = {
     "a": formatUTCShortWeekday,
     "A": formatUTCWeekday,
     "b": formatUTCShortMonth,
@@ -124,7 +124,7 @@ export default function formatLocale(locale) {
     "%": formatLiteralPercent
   };
 
-  var parses = {
+  const parses = {
     "a": parseShortWeekday,
     "A": parseWeekday,
     "b": parseShortMonth,
@@ -169,7 +169,7 @@ export default function formatLocale(locale) {
 
   function newFormat(specifier, formats) {
     return function(date) {
-      var string = [],
+      let string = [],
           i = -1,
           j = 0,
           n = specifier.length,
@@ -197,7 +197,7 @@ export default function formatLocale(locale) {
 
   function newParse(specifier, Z) {
     return function(string) {
-      var d = newDate(1900, undefined, 1),
+      let d = newDate(1900, undefined, 1),
           i = parseSpecifier(d, specifier, string += "", 0),
           week, day;
       if (i != string.length) return null;
@@ -255,7 +255,7 @@ export default function formatLocale(locale) {
   }
 
   function parseSpecifier(d, specifier, string, j) {
-    var i = 0,
+    let i = 0,
         n = specifier.length,
         m = string.length,
         c,
@@ -277,27 +277,27 @@ export default function formatLocale(locale) {
   }
 
   function parsePeriod(d, string, i) {
-    var n = periodRe.exec(string.slice(i));
+    const n = periodRe.exec(string.slice(i));
     return n ? (d.p = periodLookup.get(n[0].toLowerCase()), i + n[0].length) : -1;
   }
 
   function parseShortWeekday(d, string, i) {
-    var n = shortWeekdayRe.exec(string.slice(i));
+    const n = shortWeekdayRe.exec(string.slice(i));
     return n ? (d.w = shortWeekdayLookup.get(n[0].toLowerCase()), i + n[0].length) : -1;
   }
 
   function parseWeekday(d, string, i) {
-    var n = weekdayRe.exec(string.slice(i));
+    const n = weekdayRe.exec(string.slice(i));
     return n ? (d.w = weekdayLookup.get(n[0].toLowerCase()), i + n[0].length) : -1;
   }
 
   function parseShortMonth(d, string, i) {
-    var n = shortMonthRe.exec(string.slice(i));
+    const n = shortMonthRe.exec(string.slice(i));
     return n ? (d.m = shortMonthLookup.get(n[0].toLowerCase()), i + n[0].length) : -1;
   }
 
   function parseMonth(d, string, i) {
-    var n = monthRe.exec(string.slice(i));
+    const n = monthRe.exec(string.slice(i));
     return n ? (d.m = monthLookup.get(n[0].toLowerCase()), i + n[0].length) : -1;
   }
 
@@ -363,22 +363,22 @@ export default function formatLocale(locale) {
 
   return {
     format: function(specifier) {
-      var f = newFormat(specifier += "", formats);
+      const f = newFormat(specifier += "", formats);
       f.toString = function() { return specifier; };
       return f;
     },
     parse: function(specifier) {
-      var p = newParse(specifier += "", false);
+      const p = newParse(specifier += "", false);
       p.toString = function() { return specifier; };
       return p;
     },
     utcFormat: function(specifier) {
-      var f = newFormat(specifier += "", utcFormats);
+      const f = newFormat(specifier += "", utcFormats);
       f.toString = function() { return specifier; };
       return f;
     },
     utcParse: function(specifier) {
-      var p = newParse(specifier += "", true);
+      const p = newParse(specifier += "", true);
       p.toString = function() { return specifier; };
       return p;
     }
@@ -391,7 +391,7 @@ var pads = {"-": "", "_": " ", "0": "0"},
     requoteRe = /[\\^$*+?|[\]().{}]/g;
 
 function pad(value, fill, width) {
-  var sign = value < 0 ? "-" : "",
+  const sign = value < 0 ? "-" : "",
       string = (sign ? -value : value) + "",
       length = string.length;
   return sign + (length < width ? new Array(width - length + 1).join(fill) + string : string);
@@ -410,102 +410,102 @@ function formatLookup(names) {
 }
 
 function parseWeekdayNumberSunday(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 1));
+  const n = numberRe.exec(string.slice(i, i + 1));
   return n ? (d.w = +n[0], i + n[0].length) : -1;
 }
 
 function parseWeekdayNumberMonday(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 1));
+  const n = numberRe.exec(string.slice(i, i + 1));
   return n ? (d.u = +n[0], i + n[0].length) : -1;
 }
 
 function parseWeekNumberSunday(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 2));
+  const n = numberRe.exec(string.slice(i, i + 2));
   return n ? (d.U = +n[0], i + n[0].length) : -1;
 }
 
 function parseWeekNumberISO(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 2));
+  const n = numberRe.exec(string.slice(i, i + 2));
   return n ? (d.V = +n[0], i + n[0].length) : -1;
 }
 
 function parseWeekNumberMonday(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 2));
+  const n = numberRe.exec(string.slice(i, i + 2));
   return n ? (d.W = +n[0], i + n[0].length) : -1;
 }
 
 function parseFullYear(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 4));
+  const n = numberRe.exec(string.slice(i, i + 4));
   return n ? (d.y = +n[0], i + n[0].length) : -1;
 }
 
 function parseYear(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 2));
+  const n = numberRe.exec(string.slice(i, i + 2));
   return n ? (d.y = +n[0] + (+n[0] > 68 ? 1900 : 2000), i + n[0].length) : -1;
 }
 
 function parseZone(d, string, i) {
-  var n = /^(Z)|([+-]\d\d)(?::?(\d\d))?/.exec(string.slice(i, i + 6));
+  const n = /^(Z)|([+-]\d\d)(?::?(\d\d))?/.exec(string.slice(i, i + 6));
   return n ? (d.Z = n[1] ? 0 : -(n[2] + (n[3] || "00")), i + n[0].length) : -1;
 }
 
 function parseQuarter(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 1));
+  const n = numberRe.exec(string.slice(i, i + 1));
   return n ? (d.q = n[0] * 3 - 3, i + n[0].length) : -1;
 }
 
 function parseMonthNumber(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 2));
+  const n = numberRe.exec(string.slice(i, i + 2));
   return n ? (d.m = n[0] - 1, i + n[0].length) : -1;
 }
 
 function parseDayOfMonth(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 2));
+  const n = numberRe.exec(string.slice(i, i + 2));
   return n ? (d.d = +n[0], i + n[0].length) : -1;
 }
 
 function parseDayOfYear(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 3));
+  const n = numberRe.exec(string.slice(i, i + 3));
   return n ? (d.m = 0, d.d = +n[0], i + n[0].length) : -1;
 }
 
 function parseHour24(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 2));
+  const n = numberRe.exec(string.slice(i, i + 2));
   return n ? (d.H = +n[0], i + n[0].length) : -1;
 }
 
 function parseMinutes(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 2));
+  const n = numberRe.exec(string.slice(i, i + 2));
   return n ? (d.M = +n[0], i + n[0].length) : -1;
 }
 
 function parseSeconds(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 2));
+  const n = numberRe.exec(string.slice(i, i + 2));
   return n ? (d.S = +n[0], i + n[0].length) : -1;
 }
 
 function parseMilliseconds(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 3));
+  const n = numberRe.exec(string.slice(i, i + 3));
   return n ? (d.L = +n[0], i + n[0].length) : -1;
 }
 
 function parseMicroseconds(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 6));
+  const n = numberRe.exec(string.slice(i, i + 6));
   return n ? (d.L = Math.floor(n[0] / 1000), i + n[0].length) : -1;
 }
 
 function parseLiteralPercent(d, string, i) {
-  var n = percentRe.exec(string.slice(i, i + 1));
+  const n = percentRe.exec(string.slice(i, i + 1));
   return n ? i + n[0].length : -1;
 }
 
 function parseUnixTimestamp(d, string, i) {
-  var n = numberRe.exec(string.slice(i));
+  const n = numberRe.exec(string.slice(i));
   return n ? (d.Q = +n[0], i + n[0].length) : -1;
 }
 
 function parseUnixTimestampSeconds(d, string, i) {
-  var n = numberRe.exec(string.slice(i));
+  const n = numberRe.exec(string.slice(i));
   return n ? (d.s = +n[0], i + n[0].length) : -1;
 }
 
@@ -546,7 +546,7 @@ function formatSeconds(d, p) {
 }
 
 function formatWeekdayNumberMonday(d) {
-  var day = d.getDay();
+  const day = d.getDay();
   return day === 0 ? 7 : day;
 }
 
@@ -555,7 +555,7 @@ function formatWeekNumberSunday(d, p) {
 }
 
 function dISO(d) {
-  var day = d.getDay();
+  const day = d.getDay();
   return (day >= 4 || day === 0) ? timeThursday(d) : timeThursday.ceil(d);
 }
 
@@ -586,13 +586,13 @@ function formatFullYear(d, p) {
 }
 
 function formatFullYearISO(d, p) {
-  var day = d.getDay();
+  const day = d.getDay();
   d = (day >= 4 || day === 0) ? timeThursday(d) : timeThursday.ceil(d);
   return pad(d.getFullYear() % 10000, p, 4);
 }
 
 function formatZone(d) {
-  var z = d.getTimezoneOffset();
+  let z = d.getTimezoneOffset();
   return (z > 0 ? "-" : (z *= -1, "+"))
       + pad(z / 60 | 0, "0", 2)
       + pad(z % 60, "0", 2);
@@ -635,7 +635,7 @@ function formatUTCSeconds(d, p) {
 }
 
 function formatUTCWeekdayNumberMonday(d) {
-  var dow = d.getUTCDay();
+  const dow = d.getUTCDay();
   return dow === 0 ? 7 : dow;
 }
 
@@ -644,7 +644,7 @@ function formatUTCWeekNumberSunday(d, p) {
 }
 
 function UTCdISO(d) {
-  var day = d.getUTCDay();
+  const day = d.getUTCDay();
   return (day >= 4 || day === 0) ? utcThursday(d) : utcThursday.ceil(d);
 }
 
@@ -675,7 +675,7 @@ function formatUTCFullYear(d, p) {
 }
 
 function formatUTCFullYearISO(d, p) {
-  var day = d.getUTCDay();
+  const day = d.getUTCDay();
   d = (day >= 4 || day === 0) ? utcThursday(d) : utcThursday.ceil(d);
   return pad(d.getUTCFullYear() % 10000, p, 4);
 }

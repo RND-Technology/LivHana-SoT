@@ -105,7 +105,7 @@ function useModal(parameters) {
     }
   }, [open, handleClose, hasTransition, closeAfterTransition, handleOpen]);
   const createHandleKeyDown = otherHandlers => event => {
-    var _otherHandlers$onKeyD;
+    let _otherHandlers$onKeyD;
     (_otherHandlers$onKeyD = otherHandlers.onKeyDown) == null || _otherHandlers$onKeyD.call(otherHandlers, event);
 
     // The handler doesn't take event.defaultPrevented into account:
@@ -128,7 +128,7 @@ function useModal(parameters) {
     }
   };
   const createHandleBackdropClick = otherHandlers => event => {
-    var _otherHandlers$onClic;
+    let _otherHandlers$onClic;
     (_otherHandlers$onClic = otherHandlers.onClick) == null || _otherHandlers$onClic.call(otherHandlers, event);
     if (event.target !== event.currentTarget) {
       return;

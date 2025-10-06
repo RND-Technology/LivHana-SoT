@@ -1,5 +1,5 @@
-var expect = require('expect.js');
-var RingBuffer = require('..');
+const expect = require('expect.js');
+const RingBuffer = require('..');
 
 describe('RingBuffer()', function() {
   it('returns an new RingBuffer', function() {
@@ -12,19 +12,19 @@ describe('RingBuffer()', function() {
 
   describe('#capacity()', function() {
     it('returns the capacity of the ring buffer', function() {
-      var buffer = new RingBuffer(2);
+      const buffer = new RingBuffer(2);
       expect(buffer.capacity()).to.be(2);
     });
   });
 
   describe('#isEmpty()', function() {
     it('returns true when the ring buffer is empty', function() {
-      var buffer = new RingBuffer();
+      const buffer = new RingBuffer();
       expect(buffer.isEmpty()).to.be(true);
     });
 
     it('returns false when the ring buffer is not empty', function() {
-      var buffer = new RingBuffer();
+      const buffer = new RingBuffer();
       buffer.enq('jano');
       expect(buffer.isEmpty()).to.be(false);
     });
@@ -32,12 +32,12 @@ describe('RingBuffer()', function() {
 
   describe('#isFull()', function() {
     it('returns false when the ring buffer is not full', function() {
-      var buffer = new RingBuffer(1);
+      const buffer = new RingBuffer(1);
       expect(buffer.isFull()).to.be(false);
     });
 
     it('returns true when the ring buffer is full', function() {
-      var buffer = new RingBuffer(1);
+      const buffer = new RingBuffer(1);
       buffer.enq('jano');
       expect(buffer.isFull()).to.be(true);
     });
@@ -45,14 +45,14 @@ describe('RingBuffer()', function() {
 
   describe('#peek()', function() {
     it('fails when the ring buffer is empty', function() {
-      var buffer = new RingBuffer();
+      const buffer = new RingBuffer();
       expect(function() {
         buffer.peek();
       }).to.throwException('RingBuffer is empty');
     });
 
     it('returns the top element of the ring buffer', function() {
-      var buffer = new RingBuffer();
+      const buffer = new RingBuffer();
       buffer.enq('jano');
       buffer.enq('valentina');
       expect(buffer.peek()).to.be('jano');
@@ -61,7 +61,7 @@ describe('RingBuffer()', function() {
 
   describe('#peekN()', function() {
     it ('fails when too many elements are requested', function() {
-      var buffer = new RingBuffer();
+      const buffer = new RingBuffer();
       buffer.enq('jano');
       buffer.enq('valentina');
       expect(function() {
@@ -70,14 +70,14 @@ describe('RingBuffer()', function() {
     });
 
     it('returns elements of the ring buffer', function() {
-      var buffer = new RingBuffer();
+      const buffer = new RingBuffer();
       buffer.enq('jano');
       buffer.enq('valentina');
       expect(buffer.peekN(2)).to.eql(['jano', 'valentina']);
     });
 
     it('returns elements when wrapping round', function() {
-      var buffer = new RingBuffer(3);
+      const buffer = new RingBuffer(3);
       buffer.enq('jano');
       buffer.enq('valentina');
       buffer.enq('fran');
@@ -89,14 +89,14 @@ describe('RingBuffer()', function() {
 
   describe('#deq()', function() {
     it('fails when the ring buffer is empty', function() {
-      var buffer = new RingBuffer();
+      const buffer = new RingBuffer();
       expect(function() {
         buffer.deq();
       }).to.throwException('RingBuffer is empty');
     });
 
     it('dequeues the top element of the ring buffer', function() {
-      var buffer = new RingBuffer();
+      const buffer = new RingBuffer();
       buffer.enq('jano');
       buffer.enq('valentina');
       expect(buffer.deq()).to.be('jano');
@@ -106,7 +106,7 @@ describe('RingBuffer()', function() {
 
   describe('#deqN()', function() {
     it ('fails when too many elements are requested', function() {
-      var buffer = new RingBuffer();
+      const buffer = new RingBuffer();
       buffer.enq('jano');
       buffer.enq('valentina');
       expect(function() {
@@ -115,7 +115,7 @@ describe('RingBuffer()', function() {
     });
 
     it('dequeues elements', function() {
-      var buffer = new RingBuffer();
+      const buffer = new RingBuffer();
       buffer.enq('jano');
       buffer.enq('valentina');
       expect(buffer.deqN(2)).to.eql(['jano', 'valentina']);
@@ -123,7 +123,7 @@ describe('RingBuffer()', function() {
     });
 
     it('dequeues elements when wrapping round', function() {
-      var buffer = new RingBuffer(3);
+      const buffer = new RingBuffer(3);
       buffer.enq('jano');
       buffer.enq('valentina');
       buffer.enq('fran');
@@ -143,7 +143,7 @@ describe('RingBuffer()', function() {
   describe('#enq()', function() {
     context('when the buffer is not full', function() {
       it('enqueues an element at the end of the ring buffer', function() {
-        var buffer = new RingBuffer();
+        const buffer = new RingBuffer();
         buffer.enq('jano');
         buffer.enq('valentina');
         expect(buffer.peek()).to.be('jano');
@@ -151,14 +151,14 @@ describe('RingBuffer()', function() {
       });
 
       it('returns the new size of the ring buffer', function() {
-        var buffer = new RingBuffer();
+        const buffer = new RingBuffer();
         expect(buffer.enq('jano')).to.be(1);
       });
     });
 
     context('when the buffer is full', function() {
       it('overwrites the oldest element', function() {
-        var buffer = new RingBuffer(2);
+        const buffer = new RingBuffer(2);
         buffer.enq('jano');
         buffer.enq('valentina');
         buffer.enq('fran');
@@ -166,19 +166,19 @@ describe('RingBuffer()', function() {
       });
 
       it('returns the new size of the ring buffer', function() {
-        var buffer = new RingBuffer(2);
+        const buffer = new RingBuffer(2);
         expect(buffer.enq('jano')).to.be(1);
         expect(buffer.enq('valentina')).to.be(2);
         expect(buffer.enq('fran')).to.be(2);
       });
 
       it('triggers a evicted element callback', function() {
-        var hit = 0;
+        let hit = 0;
         function evictedCb(evicted) {
           expect(evicted).to.be('jano');
           ++hit;
         }
-        var buffer = new RingBuffer(2, evictedCb);
+        const buffer = new RingBuffer(2, evictedCb);
         expect(buffer.enq('jano')).to.be(1);
         expect(buffer.enq('valentina')).to.be(2);
         expect(buffer.enq('fran')).to.be(2);
@@ -189,12 +189,12 @@ describe('RingBuffer()', function() {
 
   describe('#size()', function() {
     it('returns 0 when the ring buffer is empty', function() {
-      var buffer = new RingBuffer();
+      const buffer = new RingBuffer();
       expect(buffer.size()).to.be(0);
     });
 
     it('returns the size of the ring buffer', function() {
-      var buffer = new RingBuffer();
+      const buffer = new RingBuffer();
       buffer.enq('jano');
       buffer.enq('valentina');
       expect(buffer.size()).to.be(2);

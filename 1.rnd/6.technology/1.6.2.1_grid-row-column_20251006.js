@@ -1,5 +1,5 @@
-let Declaration = require('../declaration')
-let utils = require('./grid-utils')
+const Declaration = require('../declaration')
+const utils = require('./grid-utils')
 
 class GridRowColumn extends Declaration {
   /**
@@ -8,16 +8,16 @@ class GridRowColumn extends Declaration {
   insert(decl, prefix, prefixes) {
     if (prefix !== '-ms-') return super.insert(decl, prefix, prefixes)
 
-    let values = utils.parse(decl)
+    const values = utils.parse(decl)
     let [start, span] = utils.translate(values, 0, 1)
 
-    let hasStartValueSpan = values[0] && values[0].includes('span')
+    const hasStartValueSpan = values[0] && values[0].includes('span')
 
     if (hasStartValueSpan) {
       span = values[0].join('').replace(/\D/g, '')
     }
 
-    ;[
+    [
       [decl.prop, start],
       [`${decl.prop}-span`, span]
     ].forEach(([prop, value]) => {

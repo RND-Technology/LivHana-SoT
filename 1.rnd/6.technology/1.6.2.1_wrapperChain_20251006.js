@@ -1,4 +1,4 @@
-var chain = require('./chain');
+const chain = require('./chain');
 
 /**
  * Creates a `lodash` wrapper instance with explicit method chain sequences enabled.

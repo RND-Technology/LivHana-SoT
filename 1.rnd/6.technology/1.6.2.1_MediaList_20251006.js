@@ -1,5 +1,5 @@
 //.CommonJS
-var CSSOM = {};
+const CSSOM = {};
 ///CommonJS
 
 
@@ -26,9 +26,9 @@ CSSOM.MediaList.prototype = {
 	 * @param {string} value
 	 */
 	set mediaText(value) {
-		var values = value.split(",");
-		var length = this.length = values.length;
-		for (var i=0; i<length; i++) {
+		const values = value.split(",");
+		const length = this.length = values.length;
+		for (let i=0; i<length; i++) {
 			this[i] = values[i].trim();
 		}
 	},
@@ -47,7 +47,7 @@ CSSOM.MediaList.prototype = {
 	 * @param {string} medium
 	 */
 	deleteMedium: function(medium) {
-		var index = Array.prototype.indexOf.call(this, medium);
+		const index = Array.prototype.indexOf.call(this, medium);
 		if (index !== -1) {
 			Array.prototype.splice.call(this, index, 1);
 		}

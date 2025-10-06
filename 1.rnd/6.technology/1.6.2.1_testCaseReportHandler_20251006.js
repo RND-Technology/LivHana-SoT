@@ -4,7 +4,7 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 exports.default = void 0;
-var _utils = require('./utils');
+const _utils = require('./utils');
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -28,5 +28,5 @@ const testCaseReportHandler = (testPath, sendMessageToJest) => event => {
     }
   }
 };
-var _default = testCaseReportHandler;
+const _default = testCaseReportHandler;
 exports.default = _default;

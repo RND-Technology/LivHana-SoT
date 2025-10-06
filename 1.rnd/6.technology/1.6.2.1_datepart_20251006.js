@@ -20,7 +20,7 @@ class DatePart {
   setTo(val) {}
 
   prev() {
-    let parts = [].concat(this.parts).reverse();
+    const parts = [].concat(this.parts).reverse();
     const currentIdx = parts.indexOf(this);
     return parts.find((part, idx) => idx > currentIdx && part instanceof DatePart);
   }

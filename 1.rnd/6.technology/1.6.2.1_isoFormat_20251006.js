@@ -6,7 +6,7 @@ function formatIsoNative(date) {
   return date.toISOString();
 }
 
-var formatIso = Date.prototype.toISOString
+const formatIso = Date.prototype.toISOString
     ? formatIsoNative
     : utcFormat(isoSpecifier);
 

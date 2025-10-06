@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = rewriteLiveReferences;
-var _core = require("@babel/core");
+const _core = require("@babel/core");
 function isInType(path) {
   do {
     switch (path.parent.type) {
@@ -64,14 +64,14 @@ function rewriteLiveReferences(programPath, metadata, wrapReference) {
       meta.referenced = true;
       if (localName) {
         if (meta.wrap) {
-          var _wrapReference;
+          let _wrapReference;
           identNode = (_wrapReference = wrapReference(identNode, meta.wrap)) != null ? _wrapReference : identNode;
         }
         return identNode;
       }
       let namespace = _core.types.identifier(meta.name);
       if (meta.wrap) {
-        var _wrapReference2;
+        let _wrapReference2;
         namespace = (_wrapReference2 = wrapReference(namespace, meta.wrap)) != null ? _wrapReference2 : namespace;
       }
       if (importName === "default" && meta.interop === "node-default") {

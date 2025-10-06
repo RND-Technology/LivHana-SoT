@@ -30,7 +30,7 @@ exports.DEFAULT_UNIVERSE = 'googleapis.com';
 exports.DEFAULT_EAGER_REFRESH_THRESHOLD_MILLIS = 5 * 60 * 1000;
 class AuthClient extends events_1.EventEmitter {
     constructor(opts = {}) {
-        var _a, _b, _c, _d, _e;
+        let _a, _b, _c, _d, _e;
         super();
         this.credentials = {};
         this.eagerRefreshThresholdMillis = exports.DEFAULT_EAGER_REFRESH_THRESHOLD_MILLIS;

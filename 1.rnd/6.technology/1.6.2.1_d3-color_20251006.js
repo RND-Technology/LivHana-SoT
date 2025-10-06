@@ -11,17 +11,17 @@ function define(constructor, factory, prototype) {
 }
 
 function extend(parent, definition) {
-  var prototype = Object.create(parent.prototype);
-  for (var key in definition) prototype[key] = definition[key];
+  const prototype = Object.create(parent.prototype);
+  for (const key in definition) prototype[key] = definition[key];
   return prototype;
 }
 
 function Color() {}
 
-var darker = 0.7;
-var brighter = 1 / darker;
+const darker = 0.7;
+const brighter = 1 / darker;
 
-var reI = "\\s*([+-]?\\d+)\\s*",
+const reI = "\\s*([+-]?\\d+)\\s*",
     reN = "\\s*([+-]?(?:\\d*\\.)?\\d+(?:[eE][+-]?\\d+)?)\\s*",
     reP = "\\s*([+-]?(?:\\d*\\.)?\\d+(?:[eE][+-]?\\d+)?)%\\s*",
     reHex = /^#([0-9a-f]{3,8})$/,
@@ -32,7 +32,7 @@ var reI = "\\s*([+-]?\\d+)\\s*",
     reHslPercent = new RegExp(`^hsl\\(${reN},${reP},${reP}\\)$`),
     reHslaPercent = new RegExp(`^hsla\\(${reN},${reP},${reP},${reN}\\)$`);
 
-var named = {
+const named = {
   aliceblue: 0xf0f8ff,
   antiquewhite: 0xfaebd7,
   aqua: 0x00ffff,
@@ -215,7 +215,7 @@ function color_formatRgb() {
 }
 
 function color(format) {
-  var m, l;
+  let m, l;
   format = (format + "").trim().toLowerCase();
   return (m = reHex.exec(format)) ? (l = m[1].length, m = parseInt(m[1], 16), l === 6 ? rgbn(m) // #ff0000
       : l === 3 ? new Rgb((m >> 8 & 0xf) | (m >> 4 & 0xf0), (m >> 4 & 0xf) | (m & 0xf0), ((m & 0xf) << 4) | (m & 0xf), 1) // #f00
@@ -327,7 +327,7 @@ function hslConvert(o) {
   if (!o) return new Hsl;
   if (o instanceof Hsl) return o;
   o = o.rgb();
-  var r = o.r / 255,
+  let r = o.r / 255,
       g = o.g / 255,
       b = o.b / 255,
       min = Math.min(r, g, b),
@@ -368,7 +368,7 @@ define(Hsl, hsl, extend(Color, {
     return new Hsl(this.h, this.s, this.l * k, this.opacity);
   },
   rgb() {
-    var h = this.h % 360 + (this.h < 0) * 360,
+    const h = this.h % 360 + (this.h < 0) * 360,
         s = isNaN(h) || isNaN(this.s) ? 0 : this.s,
         l = this.l,
         m2 = l + (l < 0.5 ? l : 1 - l) * s,
@@ -428,7 +428,7 @@ function labConvert(o) {
   if (o instanceof Lab) return new Lab(o.l, o.a, o.b, o.opacity);
   if (o instanceof Hcl) return hcl2lab(o);
   if (!(o instanceof Rgb)) o = rgbConvert(o);
-  var r = rgb2lrgb(o.r),
+  let r = rgb2lrgb(o.r),
       g = rgb2lrgb(o.g),
       b = rgb2lrgb(o.b),
       y = xyz2lab((0.2225045 * r + 0.7168786 * g + 0.0606169 * b) / Yn), x, z;
@@ -462,7 +462,7 @@ define(Lab, lab, extend(Color, {
     return new Lab(this.l - K * (k == null ? 1 : k), this.a, this.b, this.opacity);
   },
   rgb() {
-    var y = (this.l + 16) / 116,
+    let y = (this.l + 16) / 116,
         x = isNaN(this.a) ? y : y + this.a / 500,
         z = isNaN(this.b) ? y : y - this.b / 200;
     x = Xn * lab2xyz(x);
@@ -497,7 +497,7 @@ function hclConvert(o) {
   if (o instanceof Hcl) return new Hcl(o.h, o.c, o.l, o.opacity);
   if (!(o instanceof Lab)) o = labConvert(o);
   if (o.a === 0 && o.b === 0) return new Hcl(NaN, 0 < o.l && o.l < 100 ? 0 : NaN, o.l, o.opacity);
-  var h = Math.atan2(o.b, o.a) * degrees;
+  const h = Math.atan2(o.b, o.a) * degrees;
   return new Hcl(h < 0 ? h + 360 : h, Math.sqrt(o.a * o.a + o.b * o.b), o.l, o.opacity);
 }
 
@@ -518,7 +518,7 @@ function Hcl(h, c, l, opacity) {
 
 function hcl2lab(o) {
   if (isNaN(o.h)) return new Lab(o.l, 0, 0, o.opacity);
-  var h = o.h * radians;
+  const h = o.h * radians;
   return new Lab(o.l, Math.cos(h) * o.c, Math.sin(h) * o.c, o.opacity);
 }
 
@@ -534,7 +534,7 @@ define(Hcl, hcl, extend(Color, {
   }
 }));
 
-var A = -0.14861,
+const A = -0.14861,
     B = +1.78277,
     C = -0.29227,
     D = -0.90649,
@@ -546,7 +546,7 @@ var A = -0.14861,
 function cubehelixConvert(o) {
   if (o instanceof Cubehelix) return new Cubehelix(o.h, o.s, o.l, o.opacity);
   if (!(o instanceof Rgb)) o = rgbConvert(o);
-  var r = o.r / 255,
+  const r = o.r / 255,
       g = o.g / 255,
       b = o.b / 255,
       l = (BC_DA * b + ED * r - EB * g) / (BC_DA + ED - EB),
@@ -578,7 +578,7 @@ define(Cubehelix, cubehelix, extend(Color, {
     return new Cubehelix(this.h, this.s, this.l * k, this.opacity);
   },
   rgb() {
-    var h = isNaN(this.h) ? 0 : (this.h + 120) * radians,
+    const h = isNaN(this.h) ? 0 : (this.h + 120) * radians,
         l = +this.l,
         a = isNaN(this.s) ? 0 : this.s * l * (1 - l),
         cosh = Math.cos(h),

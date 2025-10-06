@@ -3,26 +3,26 @@
 exports.__esModule = true;
 exports["default"] = void 0;
 exports.unescapeValue = unescapeValue;
-var _cssesc = _interopRequireDefault(require("cssesc"));
-var _unesc = _interopRequireDefault(require("../util/unesc"));
-var _namespace = _interopRequireDefault(require("./namespace"));
-var _types = require("./types");
-var _CSSESC_QUOTE_OPTIONS;
+const _cssesc = _interopRequireDefault(require("cssesc"));
+const _unesc = _interopRequireDefault(require("../util/unesc"));
+const _namespace = _interopRequireDefault(require("./namespace"));
+const _types = require("./types");
+let _CSSESC_QUOTE_OPTIONS;
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _defineProperties(target, props) { for (let i = 0; i < props.length; i++) { const descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; _setPrototypeOf(subClass, superClass); }
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-var deprecate = require("util-deprecate");
-var WRAPPED_IN_QUOTES = /^('|")([^]*)\1$/;
-var warnOfDeprecatedValueAssignment = deprecate(function () {}, "Assigning an attribute a value containing characters that might need to be escaped is deprecated. " + "Call attribute.setValue() instead.");
-var warnOfDeprecatedQuotedAssignment = deprecate(function () {}, "Assigning attr.quoted is deprecated and has no effect. Assign to attr.quoteMark instead.");
-var warnOfDeprecatedConstructor = deprecate(function () {}, "Constructing an Attribute selector with a value without specifying quoteMark is deprecated. Note: The value should be unescaped now.");
+const deprecate = require("util-deprecate");
+const WRAPPED_IN_QUOTES = /^('|")([^]*)\1$/;
+const warnOfDeprecatedValueAssignment = deprecate(function () {}, "Assigning an attribute a value containing characters that might need to be escaped is deprecated. " + "Call attribute.setValue() instead.");
+const warnOfDeprecatedQuotedAssignment = deprecate(function () {}, "Assigning attr.quoted is deprecated and has no effect. Assign to attr.quoteMark instead.");
+const warnOfDeprecatedConstructor = deprecate(function () {}, "Constructing an Attribute selector with a value without specifying quoteMark is deprecated. Note: The value should be unescaped now.");
 function unescapeValue(value) {
-  var deprecatedUsage = false;
-  var quoteMark = null;
-  var unescaped = value;
-  var m = unescaped.match(WRAPPED_IN_QUOTES);
+  let deprecatedUsage = false;
+  let quoteMark = null;
+  let unescaped = value;
+  const m = unescaped.match(WRAPPED_IN_QUOTES);
   if (m) {
     quoteMark = m[1];
     unescaped = m[2];
@@ -45,7 +45,7 @@ function handleDeprecatedContructorOpts(opts) {
     return opts;
   }
   warnOfDeprecatedConstructor();
-  var _unescapeValue = unescapeValue(opts.value),
+  const _unescapeValue = unescapeValue(opts.value),
     quoteMark = _unescapeValue.quoteMark,
     unescaped = _unescapeValue.unescaped;
   if (!opts.raws) {
@@ -58,10 +58,10 @@ function handleDeprecatedContructorOpts(opts) {
   opts.quoteMark = quoteMark;
   return opts;
 }
-var Attribute = /*#__PURE__*/function (_Namespace) {
+const Attribute = /*#__PURE__*/function (_Namespace) {
   _inheritsLoose(Attribute, _Namespace);
   function Attribute(opts) {
-    var _this;
+    let _this;
     if (opts === void 0) {
       opts = {};
     }
@@ -101,14 +101,14 @@ var Attribute = /*#__PURE__*/function (_Namespace) {
    *     and the other options specified here. See the `smartQuoteMark()`
    *     method.
    **/
-  var _proto = Attribute.prototype;
+  const _proto = Attribute.prototype;
   _proto.getQuotedValue = function getQuotedValue(options) {
     if (options === void 0) {
       options = {};
     }
-    var quoteMark = this._determineQuoteMark(options);
-    var cssescopts = CSSESC_QUOTE_OPTIONS[quoteMark];
-    var escaped = (0, _cssesc["default"])(this._value, cssescopts);
+    const quoteMark = this._determineQuoteMark(options);
+    const cssescopts = CSSESC_QUOTE_OPTIONS[quoteMark];
+    const escaped = (0, _cssesc["default"])(this._value, cssescopts);
     return escaped;
   };
   _proto._determineQuoteMark = function _determineQuoteMark(options) {
@@ -142,22 +142,22 @@ var Attribute = /*#__PURE__*/function (_Namespace) {
    * from the quoteValue method.
    */;
   _proto.smartQuoteMark = function smartQuoteMark(options) {
-    var v = this.value;
-    var numSingleQuotes = v.replace(/[^']/g, '').length;
-    var numDoubleQuotes = v.replace(/[^"]/g, '').length;
+    const v = this.value;
+    const numSingleQuotes = v.replace(/[^']/g, '').length;
+    const numDoubleQuotes = v.replace(/[^"]/g, '').length;
     if (numSingleQuotes + numDoubleQuotes === 0) {
-      var escaped = (0, _cssesc["default"])(v, {
+      const escaped = (0, _cssesc["default"])(v, {
         isIdentifier: true
       });
       if (escaped === v) {
         return Attribute.NO_QUOTE;
       } else {
-        var pref = this.preferredQuoteMark(options);
+        const pref = this.preferredQuoteMark(options);
         if (pref === Attribute.NO_QUOTE) {
           // pick a quote mark that isn't none and see if it's smaller
-          var quote = this.quoteMark || options.quoteMark || Attribute.DOUBLE_QUOTE;
-          var opts = CSSESC_QUOTE_OPTIONS[quote];
-          var quoteValue = (0, _cssesc["default"])(v, opts);
+          const quote = this.quoteMark || options.quoteMark || Attribute.DOUBLE_QUOTE;
+          const opts = CSSESC_QUOTE_OPTIONS[quote];
+          const quoteValue = (0, _cssesc["default"])(v, opts);
           if (quoteValue.length < escaped.length) {
             return quote;
           }
@@ -179,7 +179,7 @@ var Attribute = /*#__PURE__*/function (_Namespace) {
    * instead.
    */;
   _proto.preferredQuoteMark = function preferredQuoteMark(options) {
-    var quoteMark = options.preferCurrentQuoteMark ? this.quoteMark : options.quoteMark;
+    let quoteMark = options.preferCurrentQuoteMark ? this.quoteMark : options.quoteMark;
     if (quoteMark === undefined) {
       quoteMark = options.preferCurrentQuoteMark ? options.quoteMark : this.quoteMark;
     }
@@ -189,7 +189,7 @@ var Attribute = /*#__PURE__*/function (_Namespace) {
     return quoteMark;
   };
   _proto._syncRawValue = function _syncRawValue() {
-    var rawValue = (0, _cssesc["default"])(this._value, CSSESC_QUOTE_OPTIONS[this.quoteMark]);
+    const rawValue = (0, _cssesc["default"])(this._value, CSSESC_QUOTE_OPTIONS[this.quoteMark]);
     if (rawValue === this._value) {
       if (this.raws) {
         delete this.raws.value;
@@ -200,7 +200,7 @@ var Attribute = /*#__PURE__*/function (_Namespace) {
   };
   _proto._handleEscapes = function _handleEscapes(prop, value) {
     if (this._constructed) {
-      var escaped = (0, _cssesc["default"])(value, {
+      const escaped = (0, _cssesc["default"])(value, {
         isIdentifier: true
       });
       if (escaped !== value) {
@@ -211,12 +211,12 @@ var Attribute = /*#__PURE__*/function (_Namespace) {
     }
   };
   _proto._spacesFor = function _spacesFor(name) {
-    var attrSpaces = {
+    const attrSpaces = {
       before: '',
       after: ''
     };
-    var spaces = this.spaces[name] || {};
-    var rawSpaces = this.raws.spaces && this.raws.spaces[name] || {};
+    const spaces = this.spaces[name] || {};
+    const rawSpaces = this.raws.spaces && this.raws.spaces[name] || {};
     return Object.assign(attrSpaces, spaces, rawSpaces);
   };
   _proto._stringFor = function _stringFor(name, spaceName, concat) {
@@ -226,7 +226,7 @@ var Attribute = /*#__PURE__*/function (_Namespace) {
     if (concat === void 0) {
       concat = defaultAttrConcat;
     }
-    var attrSpaces = this._spacesFor(spaceName);
+    const attrSpaces = this._spacesFor(spaceName);
     return concat(this.stringifyProperty(name), attrSpaces);
   }
 
@@ -245,8 +245,8 @@ var Attribute = /*#__PURE__*/function (_Namespace) {
    * @returns -1 if the name is invalid or the value doesn't exist in this attribute.
    */;
   _proto.offsetOf = function offsetOf(name) {
-    var count = 1;
-    var attributeSpaces = this._spacesFor("attribute");
+    let count = 1;
+    const attributeSpaces = this._spacesFor("attribute");
     count += attributeSpaces.before.length;
     if (name === "namespace" || name === "ns") {
       return this.namespace ? count : -1;
@@ -263,23 +263,23 @@ var Attribute = /*#__PURE__*/function (_Namespace) {
     }
     count += this.stringifyProperty("attribute").length;
     count += attributeSpaces.after.length;
-    var operatorSpaces = this._spacesFor("operator");
+    const operatorSpaces = this._spacesFor("operator");
     count += operatorSpaces.before.length;
-    var operator = this.stringifyProperty("operator");
+    const operator = this.stringifyProperty("operator");
     if (name === "operator") {
       return operator ? count : -1;
     }
     count += operator.length;
     count += operatorSpaces.after.length;
-    var valueSpaces = this._spacesFor("value");
+    const valueSpaces = this._spacesFor("value");
     count += valueSpaces.before.length;
-    var value = this.stringifyProperty("value");
+    const value = this.stringifyProperty("value");
     if (name === "value") {
       return value ? count : -1;
     }
     count += value.length;
     count += valueSpaces.after.length;
-    var insensitiveSpaces = this._spacesFor("insensitive");
+    const insensitiveSpaces = this._spacesFor("insensitive");
     count += insensitiveSpaces.before.length;
     if (name === "insensitive") {
       return this.insensitive ? count : -1;
@@ -287,8 +287,8 @@ var Attribute = /*#__PURE__*/function (_Namespace) {
     return -1;
   };
   _proto.toString = function toString() {
-    var _this2 = this;
-    var selector = [this.rawSpaceBefore, '['];
+    const _this2 = this;
+    const selector = [this.rawSpaceBefore, '['];
     selector.push(this._stringFor('qualifiedAttribute', 'attribute'));
     if (this.operator && (this.value || this.value === '')) {
       selector.push(this._stringFor('operator'));
@@ -307,7 +307,7 @@ var Attribute = /*#__PURE__*/function (_Namespace) {
   _createClass(Attribute, [{
     key: "quoted",
     get: function get() {
-      var qm = this.quoteMark;
+      const qm = this.quoteMark;
       return qm === "'" || qm === '"';
     },
     set: function set(value) {
@@ -373,7 +373,7 @@ var Attribute = /*#__PURE__*/function (_Namespace) {
      */
     function set(v) {
       if (this._constructed) {
-        var _unescapeValue2 = unescapeValue(v),
+        const _unescapeValue2 = unescapeValue(v),
           deprecatedUsage = _unescapeValue2.deprecatedUsage,
           unescaped = _unescapeValue2.unescaped,
           quoteMark = _unescapeValue2.quoteMark;

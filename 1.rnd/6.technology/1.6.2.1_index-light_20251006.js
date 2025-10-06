@@ -1,5 +1,5 @@
 "use strict";
-var protobuf = module.exports = require("./index-minimal");
+const protobuf = module.exports = require("./index-minimal");
 
 protobuf.build = "light";
 

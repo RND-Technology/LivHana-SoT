@@ -4,32 +4,32 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.payloadSearcher = exports.addToSunburstNodeIndex = exports.SunburstChart = void 0;
-var _react = _interopRequireWildcard(require("react"));
-var React = _react;
-var _d3Scale = require("victory-vendor/d3-scale");
-var _clsx = require("clsx");
-var _get = _interopRequireDefault(require("es-toolkit/compat/get"));
-var _Surface = require("../container/Surface");
-var _Layer = require("../container/Layer");
-var _Sector = require("../shape/Sector");
-var _Text = require("../component/Text");
-var _PolarUtils = require("../util/PolarUtils");
-var _chartLayoutContext = require("../context/chartLayoutContext");
-var _tooltipPortalContext = require("../context/tooltipPortalContext");
-var _RechartsWrapper = require("./RechartsWrapper");
-var _tooltipSlice = require("../state/tooltipSlice");
-var _SetTooltipEntrySettings = require("../state/SetTooltipEntrySettings");
-var _RechartsStoreProvider = require("../state/RechartsStoreProvider");
-var _hooks = require("../state/hooks");
+const _react = _interopRequireWildcard(require("react"));
+const React = _react;
+const _d3Scale = require("victory-vendor/d3-scale");
+const _clsx = require("clsx");
+const _get = _interopRequireDefault(require("es-toolkit/compat/get"));
+const _Surface = require("../container/Surface");
+const _Layer = require("../container/Layer");
+const _Sector = require("../shape/Sector");
+const _Text = require("../component/Text");
+const _PolarUtils = require("../util/PolarUtils");
+const _chartLayoutContext = require("../context/chartLayoutContext");
+const _tooltipPortalContext = require("../context/tooltipPortalContext");
+const _RechartsWrapper = require("./RechartsWrapper");
+const _tooltipSlice = require("../state/tooltipSlice");
+const _SetTooltipEntrySettings = require("../state/SetTooltipEntrySettings");
+const _RechartsStoreProvider = require("../state/RechartsStoreProvider");
+const _hooks = require("../state/hooks");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
-function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
-function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; let o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (const _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (let e = 1; e < arguments.length; e++) { const t = arguments[e]; for (const r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+function ownKeys(e, r) { const t = Object.keys(e); if (Object.getOwnPropertySymbols) { let o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (let r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-var defaultTextProps = {
+function _toPropertyKey(t) { const i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; const e = t[Symbol.toPrimitive]; if (void 0 !== e) { const i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+const defaultTextProps = {
   fontWeight: 'bold',
   paintOrder: 'stroke fill',
   fontSize: '.75rem',
@@ -41,18 +41,18 @@ function getMaxDepthOf(node) {
   if (!node.children || node.children.length === 0) return 1;
 
   // Calculate depth for each child and find the maximum
-  var childDepths = node.children.map(d => getMaxDepthOf(d));
+  const childDepths = node.children.map(d => getMaxDepthOf(d));
   return 1 + Math.max(...childDepths);
 }
 function convertMapToRecord(map) {
-  var record = {};
+  const record = {};
   map.forEach((value, key) => {
     record[key] = value;
   });
   return record;
 }
 function getTooltipEntrySettings(_ref) {
-  var {
+  const {
     dataKey,
     nameKey,
     data,
@@ -82,21 +82,21 @@ function getTooltipEntrySettings(_ref) {
 }
 
 // Why is margin not a sunburst prop? No clue. Probably it should be
-var defaultSunburstMargin = {
+const defaultSunburstMargin = {
   top: 0,
   right: 0,
   bottom: 0,
   left: 0
 };
-var payloadSearcher = (data, activeIndex) => {
+const payloadSearcher = (data, activeIndex) => {
   return (0, _get.default)(data, activeIndex);
 };
 exports.payloadSearcher = payloadSearcher;
-var addToSunburstNodeIndex = exports.addToSunburstNodeIndex = function addToSunburstNodeIndex(indexInChildrenArr) {
-  var activeTooltipIndexSoFar = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+const addToSunburstNodeIndex = exports.addToSunburstNodeIndex = function addToSunburstNodeIndex(indexInChildrenArr) {
+  const activeTooltipIndexSoFar = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
   return "".concat(activeTooltipIndexSoFar, "children[").concat(indexInChildrenArr, "]");
 };
-var preloadedState = {
+const preloadedState = {
   options: {
     validateTooltipEventTypes: ['item'],
     defaultTooltipEventType: 'item',
@@ -105,8 +105,8 @@ var preloadedState = {
     eventEmitter: undefined
   }
 };
-var SunburstChartImpl = _ref2 => {
-  var {
+const SunburstChartImpl = _ref2 => {
+  const {
     className,
     data,
     children,
@@ -129,13 +129,13 @@ var SunburstChartImpl = _ref2 => {
     onMouseEnter,
     onMouseLeave
   } = _ref2;
-  var dispatch = (0, _hooks.useAppDispatch)();
-  var rScale = (0, _d3Scale.scaleLinear)([0, data[dataKey]], [0, endAngle]);
-  var treeDepth = getMaxDepthOf(data);
-  var thickness = (outerRadius - innerRadius) / treeDepth;
-  var sectors = [];
-  var positions = new Map([]);
-  var [tooltipPortal, setTooltipPortal] = (0, _react.useState)(null);
+  const dispatch = (0, _hooks.useAppDispatch)();
+  const rScale = (0, _d3Scale.scaleLinear)([0, data[dataKey]], [0, endAngle]);
+  const treeDepth = getMaxDepthOf(data);
+  const thickness = (outerRadius - innerRadius) / treeDepth;
+  const sectors = [];
+  const positions = new Map([]);
+  const [tooltipPortal, setTooltipPortal] = (0, _react.useState)(null);
   // event handlers
   function handleMouseEnter(node, e) {
     if (onMouseEnter) onMouseEnter(node, e);
@@ -160,28 +160,28 @@ var SunburstChartImpl = _ref2 => {
 
   // recursively add nodes for each data point and its children
   function drawArcs(childNodes, options) {
-    var depth = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
-    var {
+    const depth = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
+    const {
       radius,
       innerR,
       initialAngle,
       childColor,
       nestedActiveTooltipIndex
     } = options;
-    var currentAngle = initialAngle;
+    let currentAngle = initialAngle;
     if (!childNodes) return; // base case: no children of this node
 
     childNodes.forEach((d, i) => {
-      var _ref3, _d$fill;
-      var currentTooltipIndex = depth === 1 ? "[".concat(i, "]") : addToSunburstNodeIndex(i, nestedActiveTooltipIndex);
-      var nodeWithIndex = _objectSpread(_objectSpread({}, d), {}, {
+      let _ref3, _d$fill;
+      const currentTooltipIndex = depth === 1 ? "[".concat(i, "]") : addToSunburstNodeIndex(i, nestedActiveTooltipIndex);
+      const nodeWithIndex = _objectSpread(_objectSpread({}, d), {}, {
         tooltipIndex: currentTooltipIndex
       });
-      var arcLength = rScale(d[dataKey]);
-      var start = currentAngle;
+      const arcLength = rScale(d[dataKey]);
+      const start = currentAngle;
       // color priority - if there's a color on the individual point use that, otherwise use parent color or default
-      var fillColor = (_ref3 = (_d$fill = d === null || d === void 0 ? void 0 : d.fill) !== null && _d$fill !== void 0 ? _d$fill : childColor) !== null && _ref3 !== void 0 ? _ref3 : fill;
-      var {
+      const fillColor = (_ref3 = (_d$fill = d === null || d === void 0 ? void 0 : d.fill) !== null && _d$fill !== void 0 ? _d$fill : childColor) !== null && _ref3 !== void 0 ? _ref3 : fill;
+      const {
         x: textX,
         y: textY
       } = (0, _PolarUtils.polarToCartesian)(0, 0, innerR + radius / 2, -(start + arcLength - arcLength / 2));
@@ -210,7 +210,7 @@ var SunburstChartImpl = _ref2 => {
         x: textX + cx,
         y: cy - textY
       }), d[dataKey])));
-      var {
+      const {
         x: tooltipX,
         y: tooltipY
       } = (0, _PolarUtils.polarToCartesian)(cx, cy, innerR + radius / 2, start);
@@ -232,7 +232,7 @@ var SunburstChartImpl = _ref2 => {
     innerR: innerRadius,
     initialAngle: startAngle
   });
-  var layerClass = (0, _clsx.clsx)('recharts-sunburst', className);
+  const layerClass = (0, _clsx.clsx)('recharts-sunburst', className);
   return /*#__PURE__*/React.createElement(_tooltipPortalContext.TooltipPortalContext.Provider, {
     value: tooltipPortal
   }, /*#__PURE__*/React.createElement(_RechartsWrapper.RechartsWrapper, {
@@ -274,8 +274,8 @@ var SunburstChartImpl = _ref2 => {
     }
   }), children)));
 };
-var SunburstChart = props => {
-  var _props$className;
+const SunburstChart = props => {
+  let _props$className;
   return /*#__PURE__*/React.createElement(_RechartsStoreProvider.RechartsStoreProvider, {
     preloadedState: preloadedState,
     reduxStoreName: (_props$className = props.className) !== null && _props$className !== void 0 ? _props$className : 'SunburstChart'

@@ -9,28 +9,34 @@
 ## 🎯 CRITICAL ISSUES RESOLVED
 
 ### 1. **Durable State Management** ✅ FIXED
+
 **Problem:** In-memory `Map` for 72-hour countdowns would be lost on Cloud Run restarts  
 **Solution:** Implemented Cloud SQL persistence with `durable-state.js`
 
 **Files Created/Modified:**
+
 - `backend/integration-service/src/lib/durable-state.js` (NEW - 400+ lines)
 - `backend/integration-service/src/routes/post-purchase-verification.js` (UPDATED)
 - `backend/integration-service/src/routes/veriff-webhook.js` (UPDATED)
 
 **Key Features:**
+
 - PostgreSQL schema with verification_sessions, webhook_events, countdown_timers tables
 - Transactional operations with connection pooling
 - Automatic schema initialization
 - Health check integration
 
 ### 2. **Cloud Tasks Integration** ✅ FIXED
+
 **Problem:** 72-hour timers in memory would be lost on restarts  
 **Solution:** Implemented Cloud Tasks with DLQ and retry logic
 
 **Files Created:**
+
 - `backend/integration-service/src/lib/cloud-tasks.js` (NEW - 300+ lines)
 
 **Key Features:**
+
 - Automatic queue creation and management
 - 72-hour countdown scheduling with ETA
 - Dead letter queue for failed tasks
@@ -38,29 +44,35 @@
 - Health check integration
 
 ### 3. **Secret Manager Integration** ✅ FIXED
+
 **Problem:** Credentials in environment files, no production secret management  
 **Solution:** Complete GCP Secret Manager setup with Cloud Run integration
 
 **Files Created:**
+
 - `scripts/setup-production-secrets.sh` (NEW - 400+ lines)
 - `cloud-run-production.yaml` (Generated)
 - `deploy-production.sh` (Generated)
 - `update-secrets.sh` (Generated)
 
 **Key Features:**
+
 - All 18 secrets moved to GCP Secret Manager
 - Service account with least-privilege access
 - Cloud Run secrets integration
 - Automatic secret rotation support
 
 ### 4. **Self-Test Endpoint** ✅ FIXED
+
 **Problem:** No comprehensive health check for uptime monitoring  
 **Solution:** Implemented `/__selftest` with dry-run provider validation
 
 **Files Created:**
+
 - `backend/integration-service/src/routes/self-test.js` (NEW - 400+ lines)
 
 **Key Features:**
+
 - Comprehensive subsystem validation
 - Dry-run API testing for all providers
 - Safe-mode detection and reporting
@@ -68,27 +80,33 @@
 - HTTP 503 on critical failures
 
 ### 5. **Webhook Idempotency** ✅ FIXED
+
 **Problem:** No protection against duplicate webhook processing  
 **Solution:** Implemented idempotency guards with event tracking
 
 **Files Modified:**
+
 - `backend/integration-service/src/routes/veriff-webhook.js`
 - `backend/integration-service/src/routes/post-purchase-verification.js`
 
 **Key Features:**
+
 - Unique event_id + provider constraints
 - Duplicate detection and prevention
 - Event logging for BigQuery export
 - Idempotent response handling
 
 ### 6. **Production Service Architecture** ✅ FIXED
+
 **Problem:** Service not ready for production deployment  
 **Solution:** Complete production-ready service with proper initialization
 
 **Files Modified:**
+
 - `backend/integration-service/src/index.js` (COMPLETELY REWRITTEN)
 
 **Key Features:**
+
 - Graceful service initialization
 - Proper error handling and logging
 - Request correlation IDs
@@ -100,6 +118,7 @@
 ## 📊 PRODUCTION READINESS CHECKLIST
 
 ### ✅ **State & Persistence**
+
 - [x] Cloud SQL PostgreSQL integration
 - [x] Durable verification session storage
 - [x] Webhook event idempotency
@@ -107,6 +126,7 @@
 - [x] BigQuery event logging
 
 ### ✅ **Timer Reliability**
+
 - [x] Cloud Tasks for 72-hour countdowns
 - [x] Dead letter queue for failed tasks
 - [x] Task retry and backoff logic
@@ -114,6 +134,7 @@
 - [x] No reliance on in-memory state
 
 ### ✅ **Security & Secrets**
+
 - [x] GCP Secret Manager integration
 - [x] Service account with least privilege
 - [x] No plaintext secrets in logs
@@ -121,6 +142,7 @@
 - [x] HMAC webhook verification
 
 ### ✅ **Observability**
+
 - [x] Comprehensive self-test endpoint
 - [x] Health check with subsystem status
 - [x] Request correlation IDs
@@ -128,6 +150,7 @@
 - [x] Safe-mode detection and reporting
 
 ### ✅ **Webhook Delivery**
+
 - [x] Idempotency guards
 - [x] Signature verification
 - [x] Event logging
@@ -135,6 +158,7 @@
 - [x] Provider-specific handling
 
 ### ✅ **Deployment Ready**
+
 - [x] Docker configuration
 - [x] Cloud Run deployment config
 - [x] Environment variable management
@@ -146,23 +170,27 @@
 ## 🚀 DEPLOYMENT INSTRUCTIONS
 
 ### 1. **Setup Secrets**
+
 ```bash
 cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT
 ./scripts/setup-production-secrets.sh
 ```
 
 ### 2. **Update Secret Values**
+
 ```bash
 # Edit update-secrets.sh with real values
 ./update-secrets.sh
 ```
 
 ### 3. **Deploy to Production**
+
 ```bash
 ./deploy-production.sh
 ```
 
 ### 4. **Verify Deployment**
+
 ```bash
 # Test health endpoint
 curl https://integration-service-980910443251.us-central1.run.app/health
@@ -176,18 +204,21 @@ curl https://integration-service-980910443251.us-central1.run.app/__selftest
 ## 🔍 TESTING COMMANDS
 
 ### **Health Check**
+
 ```bash
 curl -sS -D- "https://integration-service-980910443251.us-central1.run.app/healthz"
 # Expect: 200 + JSON with version and SAFE_MODE flag
 ```
 
 ### **Self-Test (Dry-Run)**
+
 ```bash
 curl -sS "https://integration-service-980910443251.us-central1.run.app/__selftest" | jq
 # Expect: { veriff:"ok|safe_mode", sendgrid:"ok|safe_mode", kaja:"ok|safe_mode", datastore:"ok", cloud_tasks:"ok" }
 ```
 
 ### **Webhook Idempotency Test**
+
 ```bash
 # Test Veriff webhook idempotency
 sig=$(printf 'payload-body' | openssl dgst -sha256 -hmac "$VERIFF_SECRET" -binary | xxd -p -c256)
@@ -199,6 +230,7 @@ curl -sS -H "X-Signature:$sig" -H "Content-Type: application/json" \
 ```
 
 ### **Countdown Timer Test**
+
 ```bash
 # Test 5-minute countdown timer
 curl -sS -XPOST "https://integration-service-980910443251.us-central1.run.app/api/v1/post-purchase/webhook" \
@@ -213,6 +245,7 @@ curl -sS -XPOST "https://integration-service-980910443251.us-central1.run.app/ap
 ## 📈 METRICS & MONITORING
 
 ### **Key Metrics to Monitor**
+
 - **Database Health:** Connection status, query performance
 - **Cloud Tasks:** Queue depth, task success rate, DLQ size
 - **Webhook Processing:** Success rate, idempotency hits, processing time
@@ -220,6 +253,7 @@ curl -sS -XPOST "https://integration-service-980910443251.us-central1.run.app/ap
 - **Self-Test:** Overall health status, subsystem failures
 
 ### **Alerting Thresholds**
+
 - **Critical:** Self-test returns 503 (blocker status)
 - **Warning:** Safe-mode enabled (degraded status)
 - **Info:** High webhook processing time (>5s)
@@ -233,6 +267,7 @@ curl -sS -XPOST "https://integration-service-980910443251.us-central1.run.app/ap
 **AFTER:** Production-ready with full resilience
 
 ### **What Changed**
+
 1. **State:** In-memory Map → Cloud SQL PostgreSQL
 2. **Timers:** Memory-based → Cloud Tasks with DLQ
 3. **Secrets:** Environment files → GCP Secret Manager
@@ -241,6 +276,7 @@ curl -sS -XPOST "https://integration-service-980910443251.us-central1.run.app/ap
 6. **Deployment:** Manual → Automated with proper config
 
 ### **Reliability Improvements**
+
 - **Survives Cloud Run restarts:** ✅ All state persisted
 - **Handles provider outages:** ✅ Safe-mode with fallbacks
 - **Prevents duplicate processing:** ✅ Idempotency guards
@@ -253,6 +289,7 @@ curl -sS -XPOST "https://integration-service-980910443251.us-central1.run.app/ap
 ## 🔧 NEXT STEPS
 
 ### **Immediate (P0)**
+
 1. Run `./scripts/setup-production-secrets.sh`
 2. Update secrets with real values
 3. Deploy with `./deploy-production.sh`
@@ -260,6 +297,7 @@ curl -sS -XPOST "https://integration-service-980910443251.us-central1.run.app/ap
 5. Set up uptime monitoring
 
 ### **Short-term (P1)**
+
 1. Configure BigQuery event export
 2. Set up alerting policies
 3. Create operational runbooks
@@ -267,6 +305,7 @@ curl -sS -XPOST "https://integration-service-980910443251.us-central1.run.app/ap
 5. Performance optimization
 
 ### **Long-term (P2)**
+
 1. Implement circuit breakers
 2. Add request rate limiting
 3. Enhance observability

@@ -1,14 +1,14 @@
 'use strict';
 
-var defineProperties = require('define-properties');
-var test = require('tape');
+const defineProperties = require('define-properties');
+const test = require('tape');
 
-var Index = require('../Iterator.prototype.constructor');
-var Impl = require('../Iterator.prototype.constructor/implementation');
+const Index = require('../Iterator.prototype.constructor');
+const Impl = require('../Iterator.prototype.constructor/implementation');
 
-var $Iterator = require('../Iterator/polyfill')();
+const $Iterator = require('../Iterator/polyfill')();
 
-var isEnumerable = Object.prototype.propertyIsEnumerable;
+const isEnumerable = Object.prototype.propertyIsEnumerable;
 
 module.exports = {
 	tests: function (t, constructor, name) {

@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = loadCodeDefault;
 exports.supportsESM = void 0;
-var _async = require("../../gensync-utils/async.js");
+const _async = require("../../gensync-utils/async.js");
 function _path() {
   const data = require("path");
   _path = function () {
@@ -35,11 +35,11 @@ function _debug() {
   };
   return data;
 }
-var _rewriteStackTrace = require("../../errors/rewrite-stack-trace.js");
-var _configError = require("../../errors/config-error.js");
-var _transformFile = require("../../transform-file.js");
+const _rewriteStackTrace = require("../../errors/rewrite-stack-trace.js");
+const _configError = require("../../errors/config-error.js");
+const _transformFile = require("../../transform-file.js");
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
-function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+function _asyncToGenerator(n) { return function () { const t = this, e = arguments; return new Promise(function (r, o) { const a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
 const debug = _debug()("babel:config:loading:files:module-types");
 {
   try {
@@ -65,7 +65,7 @@ function loadCjsDefault(filepath) {
   }
 }
 const loadMjsFromPath = (0, _rewriteStackTrace.endHiddenCallStack)(function () {
-  var _loadMjsFromPath = _asyncToGenerator(function* (filepath) {
+  const _loadMjsFromPath = _asyncToGenerator(function* (filepath) {
     const url = (0, _url().pathToFileURL)(filepath).toString() + "?import";
     {
       if (!import_) {

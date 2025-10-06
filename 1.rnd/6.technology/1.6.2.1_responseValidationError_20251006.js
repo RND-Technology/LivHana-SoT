@@ -3,15 +3,15 @@ import { __extends } from 'tslib';
 /**
  * Thrown when the API response does not match the schema.
  */
-var ResponseValidationError =
+const ResponseValidationError =
 /*#__PURE__*/
 /** @class */
 function (_super) {
   __extends(ResponseValidationError, _super);
   function ResponseValidationError(apiResponse, errors) {
-    var _newTarget = this.constructor;
-    var _this = this;
-    var message = 'The response did not match the response schema.';
+    const _newTarget = this.constructor;
+    let _this = this;
+    let message = 'The response did not match the response schema.';
     if (errors.length === 1) {
       message += "\n\n".concat(errors[0].message);
     } else {

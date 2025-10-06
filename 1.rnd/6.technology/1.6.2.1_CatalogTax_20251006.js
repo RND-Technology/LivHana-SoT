@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
 exports.catalogTaxSchema = void 0;
-var schema_1 = require("../schema");
+const schema_1 = require("../schema");
 exports.catalogTaxSchema = (0, schema_1.object)({
     name: ['name', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.string)()))],
     calculationPhase: ['calculation_phase', (0, schema_1.optional)((0, schema_1.string)())],

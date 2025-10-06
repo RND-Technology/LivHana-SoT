@@ -1,21 +1,21 @@
 'use strict'
 
-let AtRule = require('./at-rule')
-let Comment = require('./comment')
-let Declaration = require('./declaration')
-let Input = require('./input')
-let PreviousMap = require('./previous-map')
-let Root = require('./root')
-let Rule = require('./rule')
+const AtRule = require('./at-rule')
+const Comment = require('./comment')
+const Declaration = require('./declaration')
+const Input = require('./input')
+const PreviousMap = require('./previous-map')
+const Root = require('./root')
+const Rule = require('./rule')
 
 function fromJSON(json, inputs) {
   if (Array.isArray(json)) return json.map(n => fromJSON(n))
 
-  let { inputs: ownInputs, ...defaults } = json
+  const { inputs: ownInputs, ...defaults } = json
   if (ownInputs) {
     inputs = []
-    for (let input of ownInputs) {
-      let inputHydrated = { ...input, __proto__: Input.prototype }
+    for (const input of ownInputs) {
+      const inputHydrated = { ...input, __proto__: Input.prototype }
       if (inputHydrated.map) {
         inputHydrated.map = {
           ...inputHydrated.map,
@@ -29,7 +29,7 @@ function fromJSON(json, inputs) {
     defaults.nodes = json.nodes.map(n => fromJSON(n, inputs))
   }
   if (defaults.source) {
-    let { inputId, ...source } = defaults.source
+    const { inputId, ...source } = defaults.source
     defaults.source = source
     if (inputId != null) {
       defaults.source.input = inputs[inputId]

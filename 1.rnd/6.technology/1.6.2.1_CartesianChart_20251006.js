@@ -4,27 +4,27 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.CartesianChart = void 0;
-var _react = _interopRequireWildcard(require("react"));
-var React = _react;
-var _RechartsStoreProvider = require("../state/RechartsStoreProvider");
-var _chartDataContext = require("../context/chartDataContext");
-var _ReportMainChartProps = require("../state/ReportMainChartProps");
-var _ReportChartProps = require("../state/ReportChartProps");
-var _CategoricalChart = require("./CategoricalChart");
-var _resolveDefaultProps = require("../util/resolveDefaultProps");
-var _isWellBehavedNumber = require("../util/isWellBehavedNumber");
-var _excluded = ["width", "height"];
-function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
-function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-function _objectWithoutProperties(e, t) { if (null == e) return {}; var o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { var n = Object.getOwnPropertySymbols(e); for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
-function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t = {}; for (var n in r) if ({}.hasOwnProperty.call(r, n)) { if (-1 !== e.indexOf(n)) continue; t[n] = r[n]; } return t; }
-var defaultMargin = {
+const _react = _interopRequireWildcard(require("react"));
+const React = _react;
+const _RechartsStoreProvider = require("../state/RechartsStoreProvider");
+const _chartDataContext = require("../context/chartDataContext");
+const _ReportMainChartProps = require("../state/ReportMainChartProps");
+const _ReportChartProps = require("../state/ReportChartProps");
+const _CategoricalChart = require("./CategoricalChart");
+const _resolveDefaultProps = require("../util/resolveDefaultProps");
+const _isWellBehavedNumber = require("../util/isWellBehavedNumber");
+const _excluded = ["width", "height"];
+function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; let o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (const _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (let e = 1; e < arguments.length; e++) { const t = arguments[e]; for (const r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+function _objectWithoutProperties(e, t) { if (null == e) return {}; let o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { const n = Object.getOwnPropertySymbols(e); for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
+function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; const t = {}; for (const n in r) if ({}.hasOwnProperty.call(r, n)) { if (-1 !== e.indexOf(n)) continue; t[n] = r[n]; } return t; }
+const defaultMargin = {
   top: 5,
   right: 5,
   bottom: 5,
   left: 5
 };
-var defaultProps = {
+const defaultProps = {
   accessibilityLayer: true,
   layout: 'horizontal',
   stackOffset: 'none',
@@ -41,10 +41,10 @@ var defaultProps = {
  * but usually we would expect that they use one of the convenience components like BarChart, LineChart, etc.
  */
 
-var CartesianChart = exports.CartesianChart = /*#__PURE__*/(0, _react.forwardRef)(function CartesianChart(props, ref) {
-  var _categoricalChartProp;
-  var rootChartProps = (0, _resolveDefaultProps.resolveDefaultProps)(props.categoricalChartProps, defaultProps);
-  var {
+const CartesianChart = exports.CartesianChart = /*#__PURE__*/(0, _react.forwardRef)(function CartesianChart(props, ref) {
+  let _categoricalChartProp;
+  const rootChartProps = (0, _resolveDefaultProps.resolveDefaultProps)(props.categoricalChartProps, defaultProps);
+  let {
       width,
       height
     } = rootChartProps,
@@ -52,14 +52,14 @@ var CartesianChart = exports.CartesianChart = /*#__PURE__*/(0, _react.forwardRef
   if (!(0, _isWellBehavedNumber.isPositiveNumber)(width) || !(0, _isWellBehavedNumber.isPositiveNumber)(height)) {
     return null;
   }
-  var {
+  const {
     chartName,
     defaultTooltipEventType,
     validateTooltipEventTypes,
     tooltipPayloadSearcher,
     categoricalChartProps
   } = props;
-  var options = {
+  const options = {
     chartName,
     defaultTooltipEventType,
     validateTooltipEventTypes,

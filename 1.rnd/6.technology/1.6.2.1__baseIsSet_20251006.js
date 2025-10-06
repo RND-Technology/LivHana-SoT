@@ -1,8 +1,8 @@
-var getTag = require('./_getTag'),
+const getTag = require('./_getTag'),
     isObjectLike = require('./isObjectLike');
 
 /** `Object#toString` result references. */
-var setTag = '[object Set]';
+const setTag = '[object Set]';
 
 /**
  * The base implementation of `_.isSet` without Node.js optimizations.

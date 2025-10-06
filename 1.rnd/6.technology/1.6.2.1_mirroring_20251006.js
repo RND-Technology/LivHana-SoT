@@ -31,7 +31,7 @@ export function getMirroredCharacter (char) {
  * @return {Map<number, string>}
  */
 export function getMirroredCharactersMap(string, embeddingLevels, start, end) {
-  let strLen = string.length
+  const strLen = string.length
   start = Math.max(0, start == null ? 0 : +start)
   end = Math.min(strLen - 1, end == null ? strLen - 1 : +end)
 

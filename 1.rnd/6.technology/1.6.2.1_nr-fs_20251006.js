@@ -38,7 +38,7 @@ const functionsProbableToFA = [
   "realpath",
 ];
 
-let functionProbableToFI = [
+const functionProbableToFI = [
   "rename",
   "ftruncate",
   "rmdir",
@@ -121,7 +121,7 @@ function openHook(shim, mod, moduleName) {
   shim.wrap(mod, "open", function makeOpenWrapper(shim, fn) {
     logger.debug(`Instrumenting ${moduleName}.open`);
     return function openWrapper() {
-      let parameters = Array.prototype.slice.apply(arguments);
+      const parameters = Array.prototype.slice.apply(arguments);
       const interceptedArgs = [arguments[0]];
       shim.interceptedArgs = interceptedArgs;
       const request = requestManager.getRequest(shim);
@@ -149,7 +149,7 @@ function openHook(shim, mod, moduleName) {
           } catch (error) {
 
           }
-          let absoluteParameters = [parameters[0]];
+          const absoluteParameters = [parameters[0]];
           const traceObject = secUtils.getTraceObject(shim);
           const secMetadata = securityMetaData.getSecurityMetaData(request, absoluteParameters, traceObject, secUtils.getExecutionId(), getCaseType(parameters[1], parameters[0]), EVENT_CATEGORY.FILE)
           this.secEvent = API.generateSecEvent(secMetadata);
@@ -183,13 +183,13 @@ function probableToFAHooks(shim, mod, moduleName) {
     shim.wrap(mod, fun, function makeFAWrapper(shim, fn) {
       logger.debug(`Instrumenting ${moduleName}.${fun}`);
       return function FAWrapper() {
-        let parameters = Array.prototype.slice.apply(arguments);
+        const parameters = Array.prototype.slice.apply(arguments);
         const interceptedArgs = [arguments[0]];
         shim.interceptedArgs = interceptedArgs;
         const request = requestManager.getRequest(shim);
         if (request && typeof arguments[0] === STRING && !lodash.isEmpty(arguments[0])) {
           const traceObject = secUtils.getTraceObject(shim);
-          let absoluteParameters = [parameters[0]];
+          const absoluteParameters = [parameters[0]];
           const secMetadata = securityMetaData.getSecurityMetaData(request, absoluteParameters, traceObject, secUtils.getExecutionId(), EVENT_TYPE.FILE_OPERATION, EVENT_CATEGORY.FILE)
           this.secEvent = API.generateSecEvent(secMetadata);
           API.sendEvent(this.secEvent);
@@ -218,13 +218,13 @@ function probableToFIHooks(shim, mod, moduleName) {
     shim.wrap(mod, fun, function makeFIWrapper(shim, fn) {
       logger.debug(`Instrumenting ${moduleName}.${fun}`);
       return function FIWrapper() {
-        let parameters = Array.prototype.slice.apply(arguments);
+        const parameters = Array.prototype.slice.apply(arguments);
         const interceptedArgs = [arguments[0]];
         shim.interceptedArgs = interceptedArgs;
         const request = requestManager.getRequest(shim);
         if (request && typeof arguments[0] === STRING && !lodash.isEmpty(arguments[0])) {
           const traceObject = secUtils.getTraceObject(shim);
-          let absoluteParameters = [parameters[0]];
+          const absoluteParameters = [parameters[0]];
           if (fun === COPY_FILE || fun === RENAME) {
             const secMetadata = securityMetaData.getSecurityMetaData(request, parameters[1], traceObject, secUtils.getExecutionId(), getCase(arguments[1]), EVENT_CATEGORY.FILE)
             this.secEvent = API.generateSecEvent(secMetadata);
@@ -255,13 +255,13 @@ function probablePromiseToFAHooks(shim, mod, moduleName) {
     logger.debug(`Instrumenting Promise ${moduleName}.${fun}`);
     shim.wrap(mod, fun, function makeFAWrapper(shim, fn) {
       return function FAWrapper() {
-        let parameters = Array.prototype.slice.apply(arguments);
+        const parameters = Array.prototype.slice.apply(arguments);
         const interceptedArgs = [arguments[0]];
         shim.interceptedArgs = interceptedArgs;
         const request = requestManager.getRequest(shim);
         if (request && typeof arguments[0] === STRING && !lodash.isEmpty(arguments[0])) {
           const traceObject = secUtils.getTraceObject(shim);
-          let absoluteParameters = [parameters[0]];
+          const absoluteParameters = [parameters[0]];
           const secMetadata = securityMetaData.getSecurityMetaData(request, absoluteParameters, traceObject, secUtils.getExecutionId(), EVENT_TYPE.FILE_OPERATION, EVENT_CATEGORY.FILE)
           this.secEvent = API.generateSecEvent(secMetadata);
           API.sendEvent(this.secEvent);
@@ -283,13 +283,13 @@ function probablePromiseToFIHooks(shim, mod, moduleName) {
     logger.debug(`Instrumenting Promise ${moduleName}.${fun}`);
     shim.wrap(mod, fun, function makeFIWrapper(shim, fn) {
       return function FIWrapper() {
-        let parameters = Array.prototype.slice.apply(arguments);
+        const parameters = Array.prototype.slice.apply(arguments);
         const interceptedArgs = [arguments[0]];
         shim.interceptedArgs = interceptedArgs;
         const request = requestManager.getRequest(shim);
         if (request && typeof arguments[0] === STRING && !lodash.isEmpty(arguments[0])) {
           const traceObject = secUtils.getTraceObject(shim);
-          let absoluteParameters = [parameters[0]];
+          const absoluteParameters = [parameters[0]];
           if (fun === COPY_FILE || fun === RENAME) {
             const secMetadata = securityMetaData.getSecurityMetaData(request, parameters[1], traceObject, secUtils.getExecutionId(), getCase(arguments[1]), EVENT_CATEGORY.FILE)
             this.secEvent = API.generateSecEvent(secMetadata);

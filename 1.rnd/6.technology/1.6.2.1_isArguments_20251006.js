@@ -1,10 +1,10 @@
 'use strict';
 
-var toStr = Object.prototype.toString;
+const toStr = Object.prototype.toString;
 
 module.exports = function isArguments(value) {
-	var str = toStr.call(value);
-	var isArgs = str === '[object Arguments]';
+	const str = toStr.call(value);
+	let isArgs = str === '[object Arguments]';
 	if (!isArgs) {
 		isArgs = str !== '[object Array]' &&
 			value !== null &&

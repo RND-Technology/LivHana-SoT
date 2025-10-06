@@ -34,7 +34,7 @@ function lookupInTrie(parts, trie, index, allowedMask) {
  * Check if `hostname` has a valid public suffix in `trie`.
  */
 function suffixLookup(hostname, options, out) {
-    var _a;
+    let _a;
     if ((0, tldts_core_1.fastPathLookup)(hostname, options, out)) {
         return;
     }

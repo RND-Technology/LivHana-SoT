@@ -75,5 +75,5 @@ function stringToBytes(input, percentageReference) {
 }
 
 // https://github.com/import-js/eslint-plugin-import/issues/1590
-var _default = stringToBytes;
+const _default = stringToBytes;
 exports.default = _default;

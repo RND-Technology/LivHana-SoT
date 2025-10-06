@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
 exports.orderFulfillmentPickupDetailsSchema = void 0;
-var schema_1 = require("../schema");
-var orderFulfillmentPickupDetailsCurbsidePickupDetails_1 = require("./orderFulfillmentPickupDetailsCurbsidePickupDetails");
-var orderFulfillmentRecipient_1 = require("./orderFulfillmentRecipient");
+const schema_1 = require("../schema");
+const orderFulfillmentPickupDetailsCurbsidePickupDetails_1 = require("./orderFulfillmentPickupDetailsCurbsidePickupDetails");
+const orderFulfillmentRecipient_1 = require("./orderFulfillmentRecipient");
 exports.orderFulfillmentPickupDetailsSchema = (0, schema_1.object)({
     recipient: [
         'recipient',

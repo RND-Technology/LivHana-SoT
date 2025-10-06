@@ -14,8 +14,8 @@ module.exports = arrayFlatten
  * @return {Array}
  */
 function flattenWithDepth (array, result, depth) {
-  for (var i = 0; i < array.length; i++) {
-    var value = array[i]
+  for (let i = 0; i < array.length; i++) {
+    const value = array[i]
 
     if (depth > 0 && Array.isArray(value)) {
       flattenWithDepth(value, result, depth - 1)
@@ -35,8 +35,8 @@ function flattenWithDepth (array, result, depth) {
  * @return {Array}
  */
 function flattenForever (array, result) {
-  for (var i = 0; i < array.length; i++) {
-    var value = array[i]
+  for (let i = 0; i < array.length; i++) {
+    const value = array[i]
 
     if (Array.isArray(value)) {
       flattenForever(value, result)

@@ -1,4 +1,4 @@
-var Symbol = require('./_Symbol'),
+const Symbol = require('./_Symbol'),
     Uint8Array = require('./_Uint8Array'),
     eq = require('./eq'),
     equalArrays = require('./_equalArrays'),
@@ -6,11 +6,11 @@ var Symbol = require('./_Symbol'),
     setToArray = require('./_setToArray');
 
 /** Used to compose bitmasks for value comparisons. */
-var COMPARE_PARTIAL_FLAG = 1,
+const COMPARE_PARTIAL_FLAG = 1,
     COMPARE_UNORDERED_FLAG = 2;
 
 /** `Object#toString` result references. */
-var boolTag = '[object Boolean]',
+const boolTag = '[object Boolean]',
     dateTag = '[object Date]',
     errorTag = '[object Error]',
     mapTag = '[object Map]',
@@ -20,11 +20,11 @@ var boolTag = '[object Boolean]',
     stringTag = '[object String]',
     symbolTag = '[object Symbol]';
 
-var arrayBufferTag = '[object ArrayBuffer]',
+const arrayBufferTag = '[object ArrayBuffer]',
     dataViewTag = '[object DataView]';
 
 /** Used to convert symbols to primitives and strings. */
-var symbolProto = Symbol ? Symbol.prototype : undefined,
+const symbolProto = Symbol ? Symbol.prototype : undefined,
     symbolValueOf = symbolProto ? symbolProto.valueOf : undefined;
 
 /**

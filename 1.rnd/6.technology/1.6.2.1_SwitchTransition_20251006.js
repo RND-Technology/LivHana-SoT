@@ -3,15 +3,15 @@
 exports.__esModule = true;
 exports.default = exports.modes = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+const _react = _interopRequireDefault(require("react"));
 
-var _propTypes = _interopRequireDefault(require("prop-types"));
+const _propTypes = _interopRequireDefault(require("prop-types"));
 
-var _Transition = require("./Transition");
+const _Transition = require("./Transition");
 
-var _TransitionGroupContext = _interopRequireDefault(require("./TransitionGroupContext"));
+const _TransitionGroupContext = _interopRequireDefault(require("./TransitionGroupContext"));
 
-var _leaveRenders, _enterRenders;
+let _leaveRenders, _enterRenders;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -32,23 +32,23 @@ function areChildrenDifferent(oldChildren, newChildren) {
  */
 
 
-var modes = {
+const modes = {
   out: 'out-in',
   in: 'in-out'
 };
 exports.modes = modes;
 
-var callHook = function callHook(element, name, cb) {
+const callHook = function callHook(element, name, cb) {
   return function () {
-    var _element$props;
+    let _element$props;
 
     element.props[name] && (_element$props = element.props)[name].apply(_element$props, arguments);
     cb();
   };
 };
 
-var leaveRenders = (_leaveRenders = {}, _leaveRenders[modes.out] = function (_ref) {
-  var current = _ref.current,
+const leaveRenders = (_leaveRenders = {}, _leaveRenders[modes.out] = function (_ref) {
+  const current = _ref.current,
       changeState = _ref.changeState;
   return _react.default.cloneElement(current, {
     in: false,
@@ -57,7 +57,7 @@ var leaveRenders = (_leaveRenders = {}, _leaveRenders[modes.out] = function (_re
     })
   });
 }, _leaveRenders[modes.in] = function (_ref2) {
-  var current = _ref2.current,
+  const current = _ref2.current,
       changeState = _ref2.changeState,
       children = _ref2.children;
   return [current, _react.default.cloneElement(children, {
@@ -67,8 +67,8 @@ var leaveRenders = (_leaveRenders = {}, _leaveRenders[modes.out] = function (_re
     })
   })];
 }, _leaveRenders);
-var enterRenders = (_enterRenders = {}, _enterRenders[modes.out] = function (_ref3) {
-  var children = _ref3.children,
+const enterRenders = (_enterRenders = {}, _enterRenders[modes.out] = function (_ref3) {
+  const children = _ref3.children,
       changeState = _ref3.changeState;
   return _react.default.cloneElement(children, {
     in: true,
@@ -79,7 +79,7 @@ var enterRenders = (_enterRenders = {}, _enterRenders[modes.out] = function (_re
     })
   });
 }, _enterRenders[modes.in] = function (_ref4) {
-  var current = _ref4.current,
+  const current = _ref4.current,
       children = _ref4.children,
       changeState = _ref4.changeState;
   return [_react.default.cloneElement(current, {
@@ -146,11 +146,11 @@ var enterRenders = (_enterRenders = {}, _enterRenders[modes.out] = function (_re
  * ```
  */
 
-var SwitchTransition = /*#__PURE__*/function (_React$Component) {
+const SwitchTransition = /*#__PURE__*/function (_React$Component) {
   _inheritsLoose(SwitchTransition, _React$Component);
 
   function SwitchTransition() {
-    var _this;
+    let _this;
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
@@ -177,7 +177,7 @@ var SwitchTransition = /*#__PURE__*/function (_React$Component) {
     return _this;
   }
 
-  var _proto = SwitchTransition.prototype;
+  const _proto = SwitchTransition.prototype;
 
   _proto.componentDidMount = function componentDidMount() {
     this.appeared = true;
@@ -210,19 +210,19 @@ var SwitchTransition = /*#__PURE__*/function (_React$Component) {
   };
 
   _proto.render = function render() {
-    var _this$props = this.props,
+    const _this$props = this.props,
         children = _this$props.children,
         mode = _this$props.mode,
         _this$state = this.state,
         status = _this$state.status,
         current = _this$state.current;
-    var data = {
+    const data = {
       children: children,
       current: current,
       changeState: this.changeState,
       status: status
     };
-    var component;
+    let component;
 
     switch (status) {
       case _Transition.ENTERING:
@@ -265,5 +265,5 @@ SwitchTransition.propTypes = process.env.NODE_ENV !== "production" ? {
 SwitchTransition.defaultProps = {
   mode: modes.out
 };
-var _default = SwitchTransition;
+const _default = SwitchTransition;
 exports.default = _default;

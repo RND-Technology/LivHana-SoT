@@ -1,6 +1,6 @@
 'use strict';
 
-var resolve = require('./resolve');
+const resolve = require('./resolve');
 
 module.exports = {
   Validation: errorSubclass(ValidationError),

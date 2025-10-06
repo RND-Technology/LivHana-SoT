@@ -15,10 +15,10 @@ exports.RequestAnimationFrameTimeoutController = void 0;
 
 class RequestAnimationFrameTimeoutController {
   setTimeout(callback) {
-    var delay = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-    var startTime = performance.now();
-    var requestId = null;
-    var executeCallback = now => {
+    const delay = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+    const startTime = performance.now();
+    let requestId = null;
+    const executeCallback = now => {
       if (now - startTime >= delay) {
         callback(now);
         // tests fail without the extra if, even when five lines below it's not needed

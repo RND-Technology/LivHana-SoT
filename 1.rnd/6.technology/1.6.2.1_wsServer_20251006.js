@@ -1,30 +1,30 @@
 "use strict";
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __export = (target, all) => {
+  for (const name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var wsServer_exports = {};
+const __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+const wsServer_exports = {};
 __export(wsServer_exports, {
   WSServer: () => WSServer,
   perMessageDeflate: () => perMessageDeflate
 });
 module.exports = __toCommonJS(wsServer_exports);
-var import_network = require("./network");
-var import_utilsBundle = require("../../utilsBundle");
-var import_debugLogger = require("./debugLogger");
+const import_network = require("./network");
+const import_utilsBundle = require("../../utilsBundle");
+const import_debugLogger = require("./debugLogger");
 let lastConnectionId = 0;
 const kConnectionSymbol = Symbol("kConnection");
 const perMessageDeflate = {

@@ -181,7 +181,7 @@ function getCompressionHandler(compressionName, maxReceiveMessageSize) {
 }
 class CompressionFilter extends filter_1.BaseFilter {
     constructor(channelOptions, sharedFilterConfig) {
-        var _a, _b, _c;
+        let _a, _b, _c;
         super();
         this.sharedFilterConfig = sharedFilterConfig;
         this.sendCompression = new IdentityHandler();
@@ -250,7 +250,7 @@ class CompressionFilter extends filter_1.BaseFilter {
         return metadata;
     }
     async sendMessage(message) {
-        var _a;
+        let _a;
         /* This filter is special. The input message is the bare message bytes,
          * and the output is a framed and possibly compressed message. For this
          * reason, this filter should be at the bottom of the filter stack */

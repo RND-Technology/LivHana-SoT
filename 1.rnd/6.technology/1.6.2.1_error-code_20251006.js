@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ErrorCode = void 0;
-var ErrorCode;
+let ErrorCode;
 (function (ErrorCode) {
     ErrorCode[ErrorCode["JobNotExist"] = -1] = "JobNotExist";
     ErrorCode[ErrorCode["JobLockNotExist"] = -2] = "JobLockNotExist";

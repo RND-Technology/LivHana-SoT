@@ -4,23 +4,23 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.Polygon = void 0;
-var React = _interopRequireWildcard(require("react"));
-var _clsx = require("clsx");
-var _ReactUtils = require("../util/ReactUtils");
-var _excluded = ["points", "className", "baseLinePoints", "connectNulls"];
+const React = _interopRequireWildcard(require("react"));
+const _clsx = require("clsx");
+const _ReactUtils = require("../util/ReactUtils");
+const _excluded = ["points", "className", "baseLinePoints", "connectNulls"];
 /**
  * @fileOverview Polygon
  */
-function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
-function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-function _objectWithoutProperties(e, t) { if (null == e) return {}; var o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { var n = Object.getOwnPropertySymbols(e); for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
-function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t = {}; for (var n in r) if ({}.hasOwnProperty.call(r, n)) { if (-1 !== e.indexOf(n)) continue; t[n] = r[n]; } return t; }
-var isValidatePoint = point => {
+function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; let o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (const _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (let e = 1; e < arguments.length; e++) { const t = arguments[e]; for (const r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+function _objectWithoutProperties(e, t) { if (null == e) return {}; let o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { const n = Object.getOwnPropertySymbols(e); for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
+function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; const t = {}; for (const n in r) if ({}.hasOwnProperty.call(r, n)) { if (-1 !== e.indexOf(n)) continue; t[n] = r[n]; } return t; }
+const isValidatePoint = point => {
   return point && point.x === +point.x && point.y === +point.y;
 };
-var getParsedPoints = function getParsedPoints() {
-  var points = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-  var segmentPoints = [[]];
+const getParsedPoints = function getParsedPoints() {
+  const points = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  let segmentPoints = [[]];
   points.forEach(entry => {
     if (isValidatePoint(entry)) {
       segmentPoints[segmentPoints.length - 1].push(entry);
@@ -37,26 +37,26 @@ var getParsedPoints = function getParsedPoints() {
   }
   return segmentPoints;
 };
-var getSinglePolygonPath = (points, connectNulls) => {
-  var segmentPoints = getParsedPoints(points);
+const getSinglePolygonPath = (points, connectNulls) => {
+  let segmentPoints = getParsedPoints(points);
   if (connectNulls) {
     segmentPoints = [segmentPoints.reduce((res, segPoints) => {
       return [...res, ...segPoints];
     }, [])];
   }
-  var polygonPath = segmentPoints.map(segPoints => {
+  const polygonPath = segmentPoints.map(segPoints => {
     return segPoints.reduce((path, point, index) => {
       return "".concat(path).concat(index === 0 ? 'M' : 'L').concat(point.x, ",").concat(point.y);
     }, '');
   }).join('');
   return segmentPoints.length === 1 ? "".concat(polygonPath, "Z") : polygonPath;
 };
-var getRanglePath = (points, baseLinePoints, connectNulls) => {
-  var outerPath = getSinglePolygonPath(points, connectNulls);
+const getRanglePath = (points, baseLinePoints, connectNulls) => {
+  const outerPath = getSinglePolygonPath(points, connectNulls);
   return "".concat(outerPath.slice(-1) === 'Z' ? outerPath.slice(0, -1) : outerPath, "L").concat(getSinglePolygonPath(Array.from(baseLinePoints).reverse(), connectNulls).slice(1));
 };
-var Polygon = props => {
-  var {
+const Polygon = props => {
+  let {
       points,
       className,
       baseLinePoints,
@@ -66,10 +66,10 @@ var Polygon = props => {
   if (!points || !points.length) {
     return null;
   }
-  var layerClass = (0, _clsx.clsx)('recharts-polygon', className);
+  const layerClass = (0, _clsx.clsx)('recharts-polygon', className);
   if (baseLinePoints && baseLinePoints.length) {
-    var hasStroke = others.stroke && others.stroke !== 'none';
-    var rangePath = getRanglePath(points, baseLinePoints, connectNulls);
+    const hasStroke = others.stroke && others.stroke !== 'none';
+    const rangePath = getRanglePath(points, baseLinePoints, connectNulls);
     return /*#__PURE__*/React.createElement("g", {
       className: layerClass
     }, /*#__PURE__*/React.createElement("path", _extends({}, (0, _ReactUtils.filterProps)(others, true), {
@@ -84,7 +84,7 @@ var Polygon = props => {
       d: getSinglePolygonPath(baseLinePoints, connectNulls)
     })) : null);
   }
-  var singlePath = getSinglePolygonPath(points, connectNulls);
+  const singlePath = getSinglePolygonPath(points, connectNulls);
   return /*#__PURE__*/React.createElement("path", _extends({}, (0, _ReactUtils.filterProps)(others, true), {
     fill: singlePath.slice(-1) === 'Z' ? others.fill : 'none',
     className: layerClass,

@@ -5,10 +5,10 @@
 }(this, (function () { 'use strict';
 
   function bidiFactory() {
-  var bidi = (function (exports) {
+  const bidi = (function (exports) {
 
     // Bidi character types data, auto generated
-    var DATA = {
+    const DATA = {
       "R": "13k,1a,2,3,3,2+1j,ch+16,a+1,5+2,2+n,5,a,4,6+16,4+3,h+1b,4mo,179q,2+9,2+11,2i9+7y,2+68,4,3+4,5+13,4+3,2+4k,3+29,8+cf,1t+7z,w+17,3+3m,1t+3z,16o1+5r,8+30,8+mc,29+1r,29+4v,75+73",
       "EN": "1c+9,3d+1,6,187+9,513,4+5,7+9,sf+j,175h+9,qw+q,161f+1d,4xt+a,25i+9",
       "ES": "17,2,6dp+1,f+1,av,16vr,mx+1,4o,2",
@@ -33,8 +33,8 @@
       "PDI": "6eh"
     };
 
-    var TYPES = {};
-    var TYPES_TO_NAMES = {};
+    const TYPES = {};
+    const TYPES_TO_NAMES = {};
     TYPES.L = 1; //L is the default
     TYPES_TO_NAMES[1] = 'L';
     Object.keys(DATA).forEach(function (type, i) {
@@ -43,36 +43,36 @@
     });
     Object.freeze(TYPES);
 
-    var ISOLATE_INIT_TYPES = TYPES.LRI | TYPES.RLI | TYPES.FSI;
-    var STRONG_TYPES = TYPES.L | TYPES.R | TYPES.AL;
-    var NEUTRAL_ISOLATE_TYPES = TYPES.B | TYPES.S | TYPES.WS | TYPES.ON | TYPES.FSI | TYPES.LRI | TYPES.RLI | TYPES.PDI;
-    var BN_LIKE_TYPES = TYPES.BN | TYPES.RLE | TYPES.LRE | TYPES.RLO | TYPES.LRO | TYPES.PDF;
-    var TRAILING_TYPES = TYPES.S | TYPES.WS | TYPES.B | ISOLATE_INIT_TYPES | TYPES.PDI | BN_LIKE_TYPES;
+    const ISOLATE_INIT_TYPES = TYPES.LRI | TYPES.RLI | TYPES.FSI;
+    const STRONG_TYPES = TYPES.L | TYPES.R | TYPES.AL;
+    const NEUTRAL_ISOLATE_TYPES = TYPES.B | TYPES.S | TYPES.WS | TYPES.ON | TYPES.FSI | TYPES.LRI | TYPES.RLI | TYPES.PDI;
+    const BN_LIKE_TYPES = TYPES.BN | TYPES.RLE | TYPES.LRE | TYPES.RLO | TYPES.LRO | TYPES.PDF;
+    const TRAILING_TYPES = TYPES.S | TYPES.WS | TYPES.B | ISOLATE_INIT_TYPES | TYPES.PDI | BN_LIKE_TYPES;
 
-    var map = null;
+    let map = null;
 
     function parseData () {
       if (!map) {
         //const start = performance.now()
         map = new Map();
-        var loop = function ( type ) {
+        const loop = function ( type ) {
           if (DATA.hasOwnProperty(type)) {
-            var lastCode = 0;
+            let lastCode = 0;
             DATA[type].split(',').forEach(function (range) {
-              var ref = range.split('+');
-              var skip = ref[0];
-              var step = ref[1];
+              const ref = range.split('+');
+              let skip = ref[0];
+              let step = ref[1];
               skip = parseInt(skip, 36);
               step = step ? parseInt(step, 36) : 0;
               map.set(lastCode += skip, TYPES[type]);
-              for (var i = 0; i < step; i++) {
+              for (let i = 0; i < step; i++) {
                 map.set(++lastCode, TYPES[type]);
               }
             });
           }
         };
 
-        for (var type in DATA) loop( type );
+        for (const type in DATA) loop( type );
         //console.log(`char types parsed in ${performance.now() - start}ms`)
       }
     }
@@ -91,7 +91,7 @@
     }
 
     // Bidi bracket pairs data, auto generated
-    var data$1 = {
+    const data$1 = {
       "pairs": "14>1,1e>2,u>2,2wt>1,1>1,1ge>1,1wp>1,1j>1,f>1,hm>1,1>1,u>1,u6>1,1>1,+5,28>1,w>1,1>1,+3,b8>1,1>1,+3,1>3,-1>-1,3>1,1>1,+2,1s>1,1>1,x>1,th>1,1>1,+2,db>1,1>1,+3,3>1,1>1,+2,14qm>1,1>1,+1,4q>1,1e>2,u>2,2>1,+1",
       "canonical": "6f1>-6dx,6dy>-6dx,6ec>-6ed,6ee>-6ed,6ww>2jj,-2ji>2jj,14r4>-1e7l,1e7m>-1e7l,1e7m>-1e5c,1e5d>-1e5b,1e5c>-14qx,14qy>-14qx,14vn>-1ecg,1ech>-1ecg,1edu>-1ecg,1eci>-1ecg,1eda>-1ecg,1eci>-1ecg,1eci>-168q,168r>-168q,168s>-14ye,14yf>-14ye"
     };
@@ -105,21 +105,21 @@
      * @return {{map: Map<number, number>, reverseMap?: Map<number, number>}}
      */
     function parseCharacterMap (encodedString, includeReverse) {
-      var radix = 36;
-      var lastCode = 0;
-      var map = new Map();
-      var reverseMap = includeReverse && new Map();
-      var prevPair;
+      const radix = 36;
+      let lastCode = 0;
+      const map = new Map();
+      const reverseMap = includeReverse && new Map();
+      let prevPair;
       encodedString.split(',').forEach(function visit(entry) {
         if (entry.indexOf('+') !== -1) {
-          for (var i = +entry; i--;) {
+          for (let i = +entry; i--;) {
             visit(prevPair);
           }
         } else {
           prevPair = entry;
-          var ref = entry.split('>');
-          var a = ref[0];
-          var b = ref[1];
+          const ref = entry.split('>');
+          let a = ref[0];
+          let b = ref[1];
           a = String.fromCodePoint(lastCode += parseInt(a, radix));
           b = String.fromCodePoint(lastCode += parseInt(b, radix));
           map.set(a, b);
@@ -129,14 +129,14 @@
       return { map: map, reverseMap: reverseMap }
     }
 
-    var openToClose, closeToOpen, canonical;
+    let openToClose, closeToOpen, canonical;
 
     function parse$1 () {
       if (!openToClose) {
         //const start = performance.now()
-        var ref = parseCharacterMap(data$1.pairs, true);
-        var map = ref.map;
-        var reverseMap = ref.reverseMap;
+        const ref = parseCharacterMap(data$1.pairs, true);
+        const map = ref.map;
+        const reverseMap = ref.reverseMap;
         openToClose = map;
         closeToOpen = reverseMap;
         canonical = parseCharacterMap(data$1.canonical, false).map;
@@ -160,28 +160,28 @@
     }
 
     // Local type aliases
-    var TYPE_L = TYPES.L;
-    var TYPE_R = TYPES.R;
-    var TYPE_EN = TYPES.EN;
-    var TYPE_ES = TYPES.ES;
-    var TYPE_ET = TYPES.ET;
-    var TYPE_AN = TYPES.AN;
-    var TYPE_CS = TYPES.CS;
-    var TYPE_B = TYPES.B;
-    var TYPE_S = TYPES.S;
-    var TYPE_ON = TYPES.ON;
-    var TYPE_BN = TYPES.BN;
-    var TYPE_NSM = TYPES.NSM;
-    var TYPE_AL = TYPES.AL;
-    var TYPE_LRO = TYPES.LRO;
-    var TYPE_RLO = TYPES.RLO;
-    var TYPE_LRE = TYPES.LRE;
-    var TYPE_RLE = TYPES.RLE;
-    var TYPE_PDF = TYPES.PDF;
-    var TYPE_LRI = TYPES.LRI;
-    var TYPE_RLI = TYPES.RLI;
-    var TYPE_FSI = TYPES.FSI;
-    var TYPE_PDI = TYPES.PDI;
+    const TYPE_L = TYPES.L;
+    const TYPE_R = TYPES.R;
+    const TYPE_EN = TYPES.EN;
+    const TYPE_ES = TYPES.ES;
+    const TYPE_ET = TYPES.ET;
+    const TYPE_AN = TYPES.AN;
+    const TYPE_CS = TYPES.CS;
+    const TYPE_B = TYPES.B;
+    const TYPE_S = TYPES.S;
+    const TYPE_ON = TYPES.ON;
+    const TYPE_BN = TYPES.BN;
+    const TYPE_NSM = TYPES.NSM;
+    const TYPE_AL = TYPES.AL;
+    const TYPE_LRO = TYPES.LRO;
+    const TYPE_RLO = TYPES.RLO;
+    const TYPE_LRE = TYPES.LRE;
+    const TYPE_RLE = TYPES.RLE;
+    const TYPE_PDF = TYPES.PDF;
+    const TYPE_LRI = TYPES.LRI;
+    const TYPE_RLI = TYPES.RLI;
+    const TYPE_FSI = TYPES.FSI;
+    const TYPE_PDI = TYPES.PDI;
 
     /**
      * @typedef {object} GetEmbeddingLevelsResult
@@ -200,17 +200,17 @@
      * @return {GetEmbeddingLevelsResult}
      */
     function getEmbeddingLevels (string, baseDirection) {
-      var MAX_DEPTH = 125;
+      const MAX_DEPTH = 125;
 
       // Start by mapping all characters to their unicode type, as a bitmask integer
-      var charTypes = new Uint32Array(string.length);
-      for (var i = 0; i < string.length; i++) {
+      const charTypes = new Uint32Array(string.length);
+      for (let i = 0; i < string.length; i++) {
         charTypes[i] = getBidiCharType(string[i]);
       }
 
-      var charTypeCounts = new Map(); //will be cleared at start of each paragraph
+      const charTypeCounts = new Map(); //will be cleared at start of each paragraph
       function changeCharType(i, type) {
-        var oldType = charTypes[i];
+        const oldType = charTypes[i];
         charTypes[i] = type;
         charTypeCounts.set(oldType, charTypeCounts.get(oldType) - 1);
         if (oldType & NEUTRAL_ISOLATE_TYPES) {
@@ -222,14 +222,14 @@
         }
       }
 
-      var embedLevels = new Uint8Array(string.length);
-      var isolationPairs = new Map(); //init->pdi and pdi->init
+      const embedLevels = new Uint8Array(string.length);
+      const isolationPairs = new Map(); //init->pdi and pdi->init
 
       // === 3.3.1 The Paragraph Level ===
       // 3.3.1 P1: Split the text into paragraphs
-      var paragraphs = []; // [{start, end, level}, ...]
-      var paragraph = null;
-      for (var i$1 = 0; i$1 < string.length; i$1++) {
+      const paragraphs = []; // [{start, end, level}, ...]
+      let paragraph = null;
+      for (let i$1 = 0; i$1 < string.length; i$1++) {
         if (!paragraph) {
           paragraphs.push(paragraph = {
             start: i$1,
@@ -244,27 +244,27 @@
         }
       }
 
-      var FORMATTING_TYPES = TYPE_RLE | TYPE_LRE | TYPE_RLO | TYPE_LRO | ISOLATE_INIT_TYPES | TYPE_PDI | TYPE_PDF | TYPE_B;
-      var nextEven = function (n) { return n + ((n & 1) ? 1 : 2); };
-      var nextOdd = function (n) { return n + ((n & 1) ? 2 : 1); };
+      const FORMATTING_TYPES = TYPE_RLE | TYPE_LRE | TYPE_RLO | TYPE_LRO | ISOLATE_INIT_TYPES | TYPE_PDI | TYPE_PDF | TYPE_B;
+      const nextEven = function (n) { return n + ((n & 1) ? 1 : 2); };
+      const nextOdd = function (n) { return n + ((n & 1) ? 2 : 1); };
 
       // Everything from here on will operate per paragraph.
-      for (var paraIdx = 0; paraIdx < paragraphs.length; paraIdx++) {
+      for (let paraIdx = 0; paraIdx < paragraphs.length; paraIdx++) {
         paragraph = paragraphs[paraIdx];
-        var statusStack = [{
+        const statusStack = [{
           _level: paragraph.level,
           _override: 0, //0=neutral, 1=L, 2=R
           _isolate: 0 //bool
         }];
-        var stackTop = (void 0);
-        var overflowIsolateCount = 0;
-        var overflowEmbeddingCount = 0;
-        var validIsolateCount = 0;
+        let stackTop = (void 0);
+        let overflowIsolateCount = 0;
+        let overflowEmbeddingCount = 0;
+        let validIsolateCount = 0;
         charTypeCounts.clear();
 
         // === 3.3.2 Explicit Levels and Directions ===
-        for (var i$2 = paragraph.start; i$2 <= paragraph.end; i$2++) {
-          var charType = charTypes[i$2];
+        for (let i$2 = paragraph.start; i$2 <= paragraph.end; i$2++) {
+          let charType = charTypes[i$2];
           stackTop = statusStack[statusStack.length - 1];
 
           // Set initial counts
@@ -277,7 +277,7 @@
           if (charType & FORMATTING_TYPES) { //prefilter all formatters
             if (charType & (TYPE_RLE | TYPE_LRE)) {
               embedLevels[i$2] = stackTop._level; // 5.2
-              var level = (charType === TYPE_RLE ? nextOdd : nextEven)(stackTop._level);
+              const level = (charType === TYPE_RLE ? nextOdd : nextEven)(stackTop._level);
               if (level <= MAX_DEPTH && !overflowIsolateCount && !overflowEmbeddingCount) {
                 statusStack.push({
                   _level: level,
@@ -292,7 +292,7 @@
             // Explicit Overrides: 3.3.2 X4 - X5
             else if (charType & (TYPE_RLO | TYPE_LRO)) {
               embedLevels[i$2] = stackTop._level; // 5.2
-              var level$1 = (charType === TYPE_RLO ? nextOdd : nextEven)(stackTop._level);
+              const level$1 = (charType === TYPE_RLO ? nextOdd : nextEven)(stackTop._level);
               if (level$1 <= MAX_DEPTH && !overflowIsolateCount && !overflowEmbeddingCount) {
                 statusStack.push({
                   _level: level$1,
@@ -315,7 +315,7 @@
               if (stackTop._override) {
                 changeCharType(i$2, stackTop._override);
               }
-              var level$2 = (charType === TYPE_RLI ? nextOdd : nextEven)(stackTop._level);
+              const level$2 = (charType === TYPE_RLI ? nextOdd : nextEven)(stackTop._level);
               if (level$2 <= MAX_DEPTH && overflowIsolateCount === 0 && overflowEmbeddingCount === 0) {
                 validIsolateCount++;
                 statusStack.push({
@@ -339,7 +339,7 @@
                   statusStack.pop();
                 }
                 // Add to isolation pairs bidirectional mapping:
-                var isolInitIndex = statusStack[statusStack.length - 1]._isolInitIndex;
+                const isolInitIndex = statusStack[statusStack.length - 1]._isolInitIndex;
                 if (isolInitIndex != null) {
                   isolationPairs.set(isolInitIndex, i$2);
                   isolationPairs.set(i$2, isolInitIndex);
@@ -392,14 +392,14 @@
 
         // 3.3.3 X10
         // Compute the set of isolating run sequences as specified by BD13
-        var levelRuns = [];
-        var currentRun = null;
-        for (var i$3 = paragraph.start; i$3 <= paragraph.end; i$3++) {
-          var charType$1 = charTypes[i$3];
+        const levelRuns = [];
+        let currentRun = null;
+        for (let i$3 = paragraph.start; i$3 <= paragraph.end; i$3++) {
+          const charType$1 = charTypes[i$3];
           if (!(charType$1 & BN_LIKE_TYPES)) {
-            var lvl = embedLevels[i$3];
-            var isIsolInit = charType$1 & ISOLATE_INIT_TYPES;
-            var isPDI = charType$1 === TYPE_PDI;
+            const lvl = embedLevels[i$3];
+            const isIsolInit = charType$1 & ISOLATE_INIT_TYPES;
+            const isPDI = charType$1 === TYPE_PDI;
             if (currentRun && lvl === currentRun._level) {
               currentRun._end = i$3;
               currentRun._endsWithIsolInit = isIsolInit;
@@ -414,13 +414,13 @@
             }
           }
         }
-        var isolatingRunSeqs = []; // [{seqIndices: [], sosType: L|R, eosType: L|R}]
-        for (var runIdx = 0; runIdx < levelRuns.length; runIdx++) {
-          var run = levelRuns[runIdx];
+        const isolatingRunSeqs = []; // [{seqIndices: [], sosType: L|R, eosType: L|R}]
+        for (let runIdx = 0; runIdx < levelRuns.length; runIdx++) {
+          const run = levelRuns[runIdx];
           if (!run._startsWithPDI || (run._startsWithPDI && !isolationPairs.has(run._start))) {
-            var seqRuns = [currentRun = run];
-            for (var pdiIndex = (void 0); currentRun && currentRun._endsWithIsolInit && (pdiIndex = isolationPairs.get(currentRun._end)) != null;) {
-              for (var i$4 = runIdx + 1; i$4 < levelRuns.length; i$4++) {
+            const seqRuns = [currentRun = run];
+            for (let pdiIndex = (void 0); currentRun && currentRun._endsWithIsolInit && (pdiIndex = isolationPairs.get(currentRun._end)) != null;) {
+              for (let i$4 = runIdx + 1; i$4 < levelRuns.length; i$4++) {
                 if (levelRuns[i$4]._start === pdiIndex) {
                   seqRuns.push(currentRun = levelRuns[i$4]);
                   break
@@ -428,27 +428,27 @@
               }
             }
             // build flat list of indices across all runs:
-            var seqIndices = [];
-            for (var i$5 = 0; i$5 < seqRuns.length; i$5++) {
-              var run$1 = seqRuns[i$5];
-              for (var j = run$1._start; j <= run$1._end; j++) {
+            const seqIndices = [];
+            for (let i$5 = 0; i$5 < seqRuns.length; i$5++) {
+              const run$1 = seqRuns[i$5];
+              for (let j = run$1._start; j <= run$1._end; j++) {
                 seqIndices.push(j);
               }
             }
             // determine the sos/eos types:
-            var firstLevel = embedLevels[seqIndices[0]];
-            var prevLevel = paragraph.level;
-            for (var i$6 = seqIndices[0] - 1; i$6 >= 0; i$6--) {
+            const firstLevel = embedLevels[seqIndices[0]];
+            let prevLevel = paragraph.level;
+            for (let i$6 = seqIndices[0] - 1; i$6 >= 0; i$6--) {
               if (!(charTypes[i$6] & BN_LIKE_TYPES)) { //5.2
                 prevLevel = embedLevels[i$6];
                 break
               }
             }
-            var lastIndex = seqIndices[seqIndices.length - 1];
-            var lastLevel = embedLevels[lastIndex];
-            var nextLevel = paragraph.level;
+            const lastIndex = seqIndices[seqIndices.length - 1];
+            const lastLevel = embedLevels[lastIndex];
+            let nextLevel = paragraph.level;
             if (!(charTypes[lastIndex] & ISOLATE_INIT_TYPES)) {
-              for (var i$7 = lastIndex + 1; i$7 <= paragraph.end; i$7++) {
+              for (let i$7 = lastIndex + 1; i$7 <= paragraph.end; i$7++) {
                 if (!(charTypes[i$7] & BN_LIKE_TYPES)) { //5.2
                   nextLevel = embedLevels[i$7];
                   break
@@ -464,17 +464,17 @@
         }
 
         // The next steps are done per isolating run sequence
-        for (var seqIdx = 0; seqIdx < isolatingRunSeqs.length; seqIdx++) {
-          var ref = isolatingRunSeqs[seqIdx];
-          var seqIndices$1 = ref._seqIndices;
-          var sosType = ref._sosType;
-          var eosType = ref._eosType;
+        for (let seqIdx = 0; seqIdx < isolatingRunSeqs.length; seqIdx++) {
+          const ref = isolatingRunSeqs[seqIdx];
+          const seqIndices$1 = ref._seqIndices;
+          const sosType = ref._sosType;
+          const eosType = ref._eosType;
           /**
            * All the level runs in an isolating run sequence have the same embedding level.
            * 
            * DO NOT change any `embedLevels[i]` within the current scope.
            */
-          var embedDirection = ((embedLevels[seqIndices$1[0]]) & 1) ? TYPE_R : TYPE_L;
+          const embedDirection = ((embedLevels[seqIndices$1[0]]) & 1) ? TYPE_R : TYPE_L;
 
           // === 3.3.4 Resolving Weak Types ===
 
@@ -482,11 +482,11 @@
           // bidirectional type is not BN, and set the NSM to ON if it is an isolate initiator or PDI, and to its
           // type otherwise. If the NSM is the first non-BN character, change the NSM to the type of sos.
           if (charTypeCounts.get(TYPE_NSM)) {
-            for (var si = 0; si < seqIndices$1.length; si++) {
-              var i$8 = seqIndices$1[si];
+            for (let si = 0; si < seqIndices$1.length; si++) {
+              const i$8 = seqIndices$1[si];
               if (charTypes[i$8] & TYPE_NSM) {
-                var prevType = sosType;
-                for (var sj = si - 1; sj >= 0; sj--) {
+                let prevType = sosType;
+                for (let sj = si - 1; sj >= 0; sj--) {
                   if (!(charTypes[seqIndices$1[sj]] & BN_LIKE_TYPES)) { //5.2 scan back to first non-BN
                     prevType = charTypes[seqIndices$1[sj]];
                     break
@@ -500,11 +500,11 @@
           // W2. Search backward from each instance of a European number until the first strong type (R, L, AL, or sos)
           // is found. If an AL is found, change the type of the European number to Arabic number.
           if (charTypeCounts.get(TYPE_EN)) {
-            for (var si$1 = 0; si$1 < seqIndices$1.length; si$1++) {
-              var i$9 = seqIndices$1[si$1];
+            for (let si$1 = 0; si$1 < seqIndices$1.length; si$1++) {
+              const i$9 = seqIndices$1[si$1];
               if (charTypes[i$9] & TYPE_EN) {
-                for (var sj$1 = si$1 - 1; sj$1 >= -1; sj$1--) {
-                  var prevCharType = sj$1 === -1 ? sosType : charTypes[seqIndices$1[sj$1]];
+                for (let sj$1 = si$1 - 1; sj$1 >= -1; sj$1--) {
+                  const prevCharType = sj$1 === -1 ? sosType : charTypes[seqIndices$1[sj$1]];
                   if (prevCharType & STRONG_TYPES) {
                     if (prevCharType === TYPE_AL) {
                       changeCharType(i$9, TYPE_AN);
@@ -518,8 +518,8 @@
 
           // W3. Change all ALs to R
           if (charTypeCounts.get(TYPE_AL)) {
-            for (var si$2 = 0; si$2 < seqIndices$1.length; si$2++) {
-              var i$10 = seqIndices$1[si$2];
+            for (let si$2 = 0; si$2 < seqIndices$1.length; si$2++) {
+              const i$10 = seqIndices$1[si$2];
               if (charTypes[i$10] & TYPE_AL) {
                 changeCharType(i$10, TYPE_R);
               }
@@ -529,17 +529,17 @@
           // W4. A single European separator between two European numbers changes to a European number. A single common
           // separator between two numbers of the same type changes to that type.
           if (charTypeCounts.get(TYPE_ES) || charTypeCounts.get(TYPE_CS)) {
-            for (var si$3 = 1; si$3 < seqIndices$1.length - 1; si$3++) {
-              var i$11 = seqIndices$1[si$3];
+            for (let si$3 = 1; si$3 < seqIndices$1.length - 1; si$3++) {
+              const i$11 = seqIndices$1[si$3];
               if (charTypes[i$11] & (TYPE_ES | TYPE_CS)) {
-                var prevType$1 = 0, nextType = 0;
-                for (var sj$2 = si$3 - 1; sj$2 >= 0; sj$2--) {
+                let prevType$1 = 0, nextType = 0;
+                for (let sj$2 = si$3 - 1; sj$2 >= 0; sj$2--) {
                   prevType$1 = charTypes[seqIndices$1[sj$2]];
                   if (!(prevType$1 & BN_LIKE_TYPES)) { //5.2
                     break
                   }
                 }
-                for (var sj$3 = si$3 + 1; sj$3 < seqIndices$1.length; sj$3++) {
+                for (let sj$3 = si$3 + 1; sj$3 < seqIndices$1.length; sj$3++) {
                   nextType = charTypes[seqIndices$1[sj$3]];
                   if (!(nextType & BN_LIKE_TYPES)) { //5.2
                     break
@@ -554,10 +554,10 @@
 
           // W5. A sequence of European terminators adjacent to European numbers changes to all European numbers.
           if (charTypeCounts.get(TYPE_EN)) {
-            for (var si$4 = 0; si$4 < seqIndices$1.length; si$4++) {
-              var i$12 = seqIndices$1[si$4];
+            for (let si$4 = 0; si$4 < seqIndices$1.length; si$4++) {
+              const i$12 = seqIndices$1[si$4];
               if (charTypes[i$12] & TYPE_EN) {
-                for (var sj$4 = si$4 - 1; sj$4 >= 0 && (charTypes[seqIndices$1[sj$4]] & (TYPE_ET | BN_LIKE_TYPES)); sj$4--) {
+                for (let sj$4 = si$4 - 1; sj$4 >= 0 && (charTypes[seqIndices$1[sj$4]] & (TYPE_ET | BN_LIKE_TYPES)); sj$4--) {
                   changeCharType(seqIndices$1[sj$4], TYPE_EN);
                 }
                 for (si$4++; si$4 < seqIndices$1.length && (charTypes[seqIndices$1[si$4]] & (TYPE_ET | BN_LIKE_TYPES | TYPE_EN)); si$4++) {
@@ -571,15 +571,15 @@
 
           // W6. Otherwise, separators and terminators change to Other Neutral.
           if (charTypeCounts.get(TYPE_ET) || charTypeCounts.get(TYPE_ES) || charTypeCounts.get(TYPE_CS)) {
-            for (var si$5 = 0; si$5 < seqIndices$1.length; si$5++) {
-              var i$13 = seqIndices$1[si$5];
+            for (let si$5 = 0; si$5 < seqIndices$1.length; si$5++) {
+              const i$13 = seqIndices$1[si$5];
               if (charTypes[i$13] & (TYPE_ET | TYPE_ES | TYPE_CS)) {
                 changeCharType(i$13, TYPE_ON);
                 // 5.2 transform adjacent BNs too:
-                for (var sj$5 = si$5 - 1; sj$5 >= 0 && (charTypes[seqIndices$1[sj$5]] & BN_LIKE_TYPES); sj$5--) {
+                for (let sj$5 = si$5 - 1; sj$5 >= 0 && (charTypes[seqIndices$1[sj$5]] & BN_LIKE_TYPES); sj$5--) {
                   changeCharType(seqIndices$1[sj$5], TYPE_ON);
                 }
-                for (var sj$6 = si$5 + 1; sj$6 < seqIndices$1.length && (charTypes[seqIndices$1[sj$6]] & BN_LIKE_TYPES); sj$6++) {
+                for (let sj$6 = si$5 + 1; sj$6 < seqIndices$1.length && (charTypes[seqIndices$1[sj$6]] & BN_LIKE_TYPES); sj$6++) {
                   changeCharType(seqIndices$1[sj$6], TYPE_ON);
                 }
               }
@@ -590,9 +590,9 @@
           // is found. If an L is found, then change the type of the European number to L.
           // NOTE: implemented in single forward pass for efficiency
           if (charTypeCounts.get(TYPE_EN)) {
-            for (var si$6 = 0, prevStrongType = sosType; si$6 < seqIndices$1.length; si$6++) {
-              var i$14 = seqIndices$1[si$6];
-              var type = charTypes[i$14];
+            for (let si$6 = 0, prevStrongType = sosType; si$6 < seqIndices$1.length; si$6++) {
+              const i$14 = seqIndices$1[si$6];
+              const type = charTypes[i$14];
               if (type & TYPE_EN) {
                 if (prevStrongType === TYPE_L) {
                   changeCharType(i$14, TYPE_L);
@@ -609,20 +609,20 @@
             // N0. Process bracket pairs in an isolating run sequence sequentially in the logical order of the text
             // positions of the opening paired brackets using the logic given below. Within this scope, bidirectional
             // types EN and AN are treated as R.
-            var R_TYPES_FOR_N_STEPS = (TYPE_R | TYPE_EN | TYPE_AN);
-            var STRONG_TYPES_FOR_N_STEPS = R_TYPES_FOR_N_STEPS | TYPE_L;
+            const R_TYPES_FOR_N_STEPS = (TYPE_R | TYPE_EN | TYPE_AN);
+            const STRONG_TYPES_FOR_N_STEPS = R_TYPES_FOR_N_STEPS | TYPE_L;
 
             // * Identify the bracket pairs in the current isolating run sequence according to BD16.
-            var bracketPairs = [];
+            const bracketPairs = [];
             {
-              var openerStack = [];
-              for (var si$7 = 0; si$7 < seqIndices$1.length; si$7++) {
+              const openerStack = [];
+              for (let si$7 = 0; si$7 < seqIndices$1.length; si$7++) {
                 // NOTE: for any potential bracket character we also test that it still carries a NI
                 // type, as that may have been changed earlier. This doesn't seem to be explicitly
                 // called out in the spec, but is required for passage of certain tests.
                 if (charTypes[seqIndices$1[si$7]] & NEUTRAL_ISOLATE_TYPES) {
-                  var char = string[seqIndices$1[si$7]];
-                  var oppositeBracket = (void 0);
+                  const char = string[seqIndices$1[si$7]];
+                  let oppositeBracket = (void 0);
                   // Opening bracket
                   if (openingToClosingBracket(char) !== null) {
                     if (openerStack.length < 63) {
@@ -633,8 +633,8 @@
                   }
                   // Closing bracket
                   else if ((oppositeBracket = closingToOpeningBracket(char)) !== null) {
-                    for (var stackIdx = openerStack.length - 1; stackIdx >= 0; stackIdx--) {
-                      var stackChar = openerStack[stackIdx].char;
+                    for (let stackIdx = openerStack.length - 1; stackIdx >= 0; stackIdx--) {
+                      const stackChar = openerStack[stackIdx].char;
                       if (stackChar === oppositeBracket ||
                         stackChar === closingToOpeningBracket(getCanonicalBracket(char)) ||
                         openingToClosingBracket(getCanonicalBracket(stackChar)) === char
@@ -650,20 +650,20 @@
               bracketPairs.sort(function (a, b) { return a[0] - b[0]; });
             }
             // * For each bracket-pair element in the list of pairs of text positions
-            for (var pairIdx = 0; pairIdx < bracketPairs.length; pairIdx++) {
-              var ref$1 = bracketPairs[pairIdx];
-              var openSeqIdx = ref$1[0];
-              var closeSeqIdx = ref$1[1];
+            for (let pairIdx = 0; pairIdx < bracketPairs.length; pairIdx++) {
+              const ref$1 = bracketPairs[pairIdx];
+              const openSeqIdx = ref$1[0];
+              const closeSeqIdx = ref$1[1];
               // a. Inspect the bidirectional types of the characters enclosed within the bracket pair.
               // b. If any strong type (either L or R) matching the embedding direction is found, set the type for both
               // brackets in the pair to match the embedding direction.
-              var foundStrongType = false;
-              var useStrongType = 0;
-              for (var si$8 = openSeqIdx + 1; si$8 < closeSeqIdx; si$8++) {
-                var i$15 = seqIndices$1[si$8];
+              let foundStrongType = false;
+              let useStrongType = 0;
+              for (let si$8 = openSeqIdx + 1; si$8 < closeSeqIdx; si$8++) {
+                const i$15 = seqIndices$1[si$8];
                 if (charTypes[i$15] & STRONG_TYPES_FOR_N_STEPS) {
                   foundStrongType = true;
-                  var lr = (charTypes[i$15] & R_TYPES_FOR_N_STEPS) ? TYPE_R : TYPE_L;
+                  const lr = (charTypes[i$15] & R_TYPES_FOR_N_STEPS) ? TYPE_R : TYPE_L;
                   if (lr === embedDirection) {
                     useStrongType = lr;
                     break
@@ -678,10 +678,10 @@
               //    2. Otherwise set the type for both brackets in the pair to the embedding direction.
               if (foundStrongType && !useStrongType) {
                 useStrongType = sosType;
-                for (var si$9 = openSeqIdx - 1; si$9 >= 0; si$9--) {
-                  var i$16 = seqIndices$1[si$9];
+                for (let si$9 = openSeqIdx - 1; si$9 >= 0; si$9--) {
+                  const i$16 = seqIndices$1[si$9];
                   if (charTypes[i$16] & STRONG_TYPES_FOR_N_STEPS) {
-                    var lr$1 = (charTypes[i$16] & R_TYPES_FOR_N_STEPS) ? TYPE_R : TYPE_L;
+                    const lr$1 = (charTypes[i$16] & R_TYPES_FOR_N_STEPS) ? TYPE_R : TYPE_L;
                     if (lr$1 !== embedDirection) {
                       useStrongType = lr$1;
                     } else {
@@ -697,7 +697,7 @@
                 // of W1 that immediately follow a paired bracket which changed to L or R under N0 should change to match
                 // the type of their preceding bracket.
                 if (useStrongType !== embedDirection) {
-                  for (var si$10 = openSeqIdx + 1; si$10 < seqIndices$1.length; si$10++) {
+                  for (let si$10 = openSeqIdx + 1; si$10 < seqIndices$1.length; si$10++) {
                     if (!(charTypes[seqIndices$1[si$10]] & BN_LIKE_TYPES)) {
                       if (getBidiCharType(string[seqIndices$1[si$10]]) & TYPE_NSM) {
                         charTypes[seqIndices$1[si$10]] = useStrongType;
@@ -707,7 +707,7 @@
                   }
                 }
                 if (useStrongType !== embedDirection) {
-                  for (var si$11 = closeSeqIdx + 1; si$11 < seqIndices$1.length; si$11++) {
+                  for (let si$11 = closeSeqIdx + 1; si$11 < seqIndices$1.length; si$11++) {
                     if (!(charTypes[seqIndices$1[si$11]] & BN_LIKE_TYPES)) {
                       if (getBidiCharType(string[seqIndices$1[si$11]]) & TYPE_NSM) {
                         charTypes[seqIndices$1[si$11]] = useStrongType;
@@ -722,11 +722,11 @@
             // N1. A sequence of NIs takes the direction of the surrounding strong text if the text on both sides has the
             // same direction.
             // N2. Any remaining NIs take the embedding direction.
-            for (var si$12 = 0; si$12 < seqIndices$1.length; si$12++) {
+            for (let si$12 = 0; si$12 < seqIndices$1.length; si$12++) {
               if (charTypes[seqIndices$1[si$12]] & NEUTRAL_ISOLATE_TYPES) {
-                var niRunStart = si$12, niRunEnd = si$12;
-                var prevType$2 = sosType; //si === 0 ? sosType : (charTypes[seqIndices[si - 1]] & R_TYPES_FOR_N_STEPS) ? TYPE_R : TYPE_L
-                for (var si2 = si$12 - 1; si2 >= 0; si2--) {
+                let niRunStart = si$12, niRunEnd = si$12;
+                let prevType$2 = sosType; //si === 0 ? sosType : (charTypes[seqIndices[si - 1]] & R_TYPES_FOR_N_STEPS) ? TYPE_R : TYPE_L
+                for (let si2 = si$12 - 1; si2 >= 0; si2--) {
                   if (charTypes[seqIndices$1[si2]] & BN_LIKE_TYPES) {
                     niRunStart = si2; //5.2 treat BNs adjacent to NIs as NIs
                   } else {
@@ -734,8 +734,8 @@
                     break
                   }
                 }
-                var nextType$1 = eosType;
-                for (var si2$1 = si$12 + 1; si2$1 < seqIndices$1.length; si2$1++) {
+                let nextType$1 = eosType;
+                for (let si2$1 = si$12 + 1; si2$1 < seqIndices$1.length; si2$1++) {
                   if (charTypes[seqIndices$1[si2$1]] & (NEUTRAL_ISOLATE_TYPES | BN_LIKE_TYPES)) {
                     niRunEnd = si2$1;
                   } else {
@@ -743,7 +743,7 @@
                     break
                   }
                 }
-                for (var sj$7 = niRunStart; sj$7 <= niRunEnd; sj$7++) {
+                for (let sj$7 = niRunStart; sj$7 <= niRunEnd; sj$7++) {
                   charTypes[seqIndices$1[sj$7]] = prevType$2 === nextType$1 ? prevType$2 : embedDirection;
                 }
                 si$12 = niRunEnd;
@@ -754,9 +754,9 @@
 
         // === 3.3.6 Resolving Implicit Levels ===
 
-        for (var i$17 = paragraph.start; i$17 <= paragraph.end; i$17++) {
-          var level$3 = embedLevels[i$17];
-          var type$1 = charTypes[i$17];
+        for (let i$17 = paragraph.start; i$17 <= paragraph.end; i$17++) {
+          const level$3 = embedLevels[i$17];
+          const type$1 = charTypes[i$17];
           // I2. For all characters with an odd (right-to-left) embedding level, those of type L, EN or AN go up one level.
           if (level$3 & 1) {
             if (type$1 & (TYPE_L | TYPE_EN | TYPE_AN)) {
@@ -783,7 +783,7 @@
           // isolate formatting characters preceding them or the end of the paragraph, to the paragraph level.
           // NOTE: this will also need to be applied to each individual line ending after line wrapping occurs.
           if (i$17 === paragraph.end || getBidiCharType(string[i$17]) & (TYPE_S | TYPE_B)) {
-            for (var j$1 = i$17; j$1 >= 0 && (getBidiCharType(string[j$1]) & TRAILING_TYPES); j$1--) {
+            for (let j$1 = i$17; j$1 >= 0 && (getBidiCharType(string[j$1]) & TRAILING_TYPES); j$1--) {
               embedLevels[j$1] = paragraph.level;
             }
           }
@@ -799,8 +799,8 @@
 
       function determineAutoEmbedLevel (start, isFSI) {
         // 3.3.1 P2 - P3
-        for (var i = start; i < string.length; i++) {
-          var charType = charTypes[i];
+        for (let i = start; i < string.length; i++) {
+          const charType = charTypes[i];
           if (charType & (TYPE_R | TYPE_AL)) {
             return 1
           }
@@ -808,7 +808,7 @@
             return 0
           }
           if (charType & ISOLATE_INIT_TYPES) {
-            var pdi = indexOfMatchingPDI(i);
+            const pdi = indexOfMatchingPDI(i);
             i = pdi === -1 ? string.length : pdi;
           }
         }
@@ -817,9 +817,9 @@
 
       function indexOfMatchingPDI (isolateStart) {
         // 3.1.2 BD9
-        var isolationLevel = 1;
-        for (var i = isolateStart + 1; i < string.length; i++) {
-          var charType = charTypes[i];
+        let isolationLevel = 1;
+        for (let i = isolateStart + 1; i < string.length; i++) {
+          const charType = charTypes[i];
           if (charType & TYPE_B) {
             break
           }
@@ -836,16 +836,16 @@
     }
 
     // Bidi mirrored chars data, auto generated
-    var data = "14>1,j>2,t>2,u>2,1a>g,2v3>1,1>1,1ge>1,1wd>1,b>1,1j>1,f>1,ai>3,-2>3,+1,8>1k0,-1jq>1y7,-1y6>1hf,-1he>1h6,-1h5>1ha,-1h8>1qi,-1pu>1,6>3u,-3s>7,6>1,1>1,f>1,1>1,+2,3>1,1>1,+13,4>1,1>1,6>1eo,-1ee>1,3>1mg,-1me>1mk,-1mj>1mi,-1mg>1mi,-1md>1,1>1,+2,1>10k,-103>1,1>1,4>1,5>1,1>1,+10,3>1,1>8,-7>8,+1,-6>7,+1,a>1,1>1,u>1,u6>1,1>1,+5,26>1,1>1,2>1,2>2,8>1,7>1,4>1,1>1,+5,b8>1,1>1,+3,1>3,-2>1,2>1,1>1,+2,c>1,3>1,1>1,+2,h>1,3>1,a>1,1>1,2>1,3>1,1>1,d>1,f>1,3>1,1a>1,1>1,6>1,7>1,13>1,k>1,1>1,+19,4>1,1>1,+2,2>1,1>1,+18,m>1,a>1,1>1,lk>1,1>1,4>1,2>1,f>1,3>1,1>1,+3,db>1,1>1,+3,3>1,1>1,+2,14qm>1,1>1,+1,6>1,4j>1,j>2,t>2,u>2,2>1,+1";
+    const data = "14>1,j>2,t>2,u>2,1a>g,2v3>1,1>1,1ge>1,1wd>1,b>1,1j>1,f>1,ai>3,-2>3,+1,8>1k0,-1jq>1y7,-1y6>1hf,-1he>1h6,-1h5>1ha,-1h8>1qi,-1pu>1,6>3u,-3s>7,6>1,1>1,f>1,1>1,+2,3>1,1>1,+13,4>1,1>1,6>1eo,-1ee>1,3>1mg,-1me>1mk,-1mj>1mi,-1mg>1mi,-1md>1,1>1,+2,1>10k,-103>1,1>1,4>1,5>1,1>1,+10,3>1,1>8,-7>8,+1,-6>7,+1,a>1,1>1,u>1,u6>1,1>1,+5,26>1,1>1,2>1,2>2,8>1,7>1,4>1,1>1,+5,b8>1,1>1,+3,1>3,-2>1,2>1,1>1,+2,c>1,3>1,1>1,+2,h>1,3>1,a>1,1>1,2>1,3>1,1>1,d>1,f>1,3>1,1a>1,1>1,6>1,7>1,13>1,k>1,1>1,+19,4>1,1>1,+2,2>1,1>1,+18,m>1,a>1,1>1,lk>1,1>1,4>1,2>1,f>1,3>1,1>1,+3,db>1,1>1,+3,3>1,1>1,+2,14qm>1,1>1,+1,6>1,4j>1,j>2,t>2,u>2,2>1,+1";
 
-    var mirrorMap;
+    let mirrorMap;
 
     function parse () {
       if (!mirrorMap) {
         //const start = performance.now()
-        var ref = parseCharacterMap(data, true);
-        var map = ref.map;
-        var reverseMap = ref.reverseMap;
+        const ref = parseCharacterMap(data, true);
+        const map = ref.map;
+        const reverseMap = ref.reverseMap;
         // Combine both maps into one
         reverseMap.forEach(function (value, key) {
           map.set(key, value);
@@ -870,14 +870,14 @@
      * @return {Map<number, string>}
      */
     function getMirroredCharactersMap(string, embeddingLevels, start, end) {
-      var strLen = string.length;
+      const strLen = string.length;
       start = Math.max(0, start == null ? 0 : +start);
       end = Math.min(strLen - 1, end == null ? strLen - 1 : +end);
 
-      var map = new Map();
-      for (var i = start; i <= end; i++) {
+      const map = new Map();
+      for (let i = start; i <= end; i++) {
         if (embeddingLevels[i] & 1) { //only odd (rtl) levels
-          var mirror = getMirroredCharacter(string[i]);
+          const mirror = getMirroredCharacter(string[i]);
           if (mirror !== null) {
             map.set(i, mirror);
           }
@@ -896,37 +896,37 @@
      * @return {number[][]} - the list of start/end segments that should be flipped, in order.
      */
     function getReorderSegments(string, embeddingLevelsResult, start, end) {
-      var strLen = string.length;
+      const strLen = string.length;
       start = Math.max(0, start == null ? 0 : +start);
       end = Math.min(strLen - 1, end == null ? strLen - 1 : +end);
 
-      var segments = [];
+      const segments = [];
       embeddingLevelsResult.paragraphs.forEach(function (paragraph) {
-        var lineStart = Math.max(start, paragraph.start);
-        var lineEnd = Math.min(end, paragraph.end);
+        const lineStart = Math.max(start, paragraph.start);
+        const lineEnd = Math.min(end, paragraph.end);
         if (lineStart < lineEnd) {
           // Local slice for mutation
-          var lineLevels = embeddingLevelsResult.levels.slice(lineStart, lineEnd + 1);
+          const lineLevels = embeddingLevelsResult.levels.slice(lineStart, lineEnd + 1);
 
           // 3.4 L1.4: Reset any sequence of whitespace characters and/or isolate formatting characters at the
           // end of the line to the paragraph level.
-          for (var i = lineEnd; i >= lineStart && (getBidiCharType(string[i]) & TRAILING_TYPES); i--) {
+          for (let i = lineEnd; i >= lineStart && (getBidiCharType(string[i]) & TRAILING_TYPES); i--) {
             lineLevels[i] = paragraph.level;
           }
 
           // L2. From the highest level found in the text to the lowest odd level on each line, including intermediate levels
           // not actually present in the text, reverse any contiguous sequence of characters that are at that level or higher.
-          var maxLevel = paragraph.level;
-          var minOddLevel = Infinity;
-          for (var i$1 = 0; i$1 < lineLevels.length; i$1++) {
-            var level = lineLevels[i$1];
+          let maxLevel = paragraph.level;
+          let minOddLevel = Infinity;
+          for (let i$1 = 0; i$1 < lineLevels.length; i$1++) {
+            const level = lineLevels[i$1];
             if (level > maxLevel) { maxLevel = level; }
             if (level < minOddLevel) { minOddLevel = level | 1; }
           }
-          for (var lvl = maxLevel; lvl >= minOddLevel; lvl--) {
-            for (var i$2 = 0; i$2 < lineLevels.length; i$2++) {
+          for (let lvl = maxLevel; lvl >= minOddLevel; lvl--) {
+            for (let i$2 = 0; i$2 < lineLevels.length; i$2++) {
               if (lineLevels[i$2] >= lvl) {
-                var segStart = i$2;
+                const segStart = i$2;
                 while (i$2 + 1 < lineLevels.length && lineLevels[i$2 + 1] >= lvl) {
                   i$2++;
                 }
@@ -949,8 +949,8 @@
      * @return {string} the new string with bidi segments reordered
      */
     function getReorderedString(string, embedLevelsResult, start, end) {
-      var indices = getReorderedIndices(string, embedLevelsResult, start, end);
-      var chars = [].concat( string );
+      const indices = getReorderedIndices(string, embedLevelsResult, start, end);
+      const chars = [].concat( string );
       indices.forEach(function (charIndex, i) {
         chars[i] = (
           (embedLevelsResult.levels[charIndex] & 1) ? getMirroredCharacter(string[charIndex]) : null
@@ -967,19 +967,19 @@
      * @return {number[]} an array with character indices in their new bidi order
      */
     function getReorderedIndices(string, embedLevelsResult, start, end) {
-      var segments = getReorderSegments(string, embedLevelsResult, start, end);
+      const segments = getReorderSegments(string, embedLevelsResult, start, end);
       // Fill an array with indices
-      var indices = [];
-      for (var i = 0; i < string.length; i++) {
+      const indices = [];
+      for (let i = 0; i < string.length; i++) {
         indices[i] = i;
       }
       // Reverse each segment in order
       segments.forEach(function (ref) {
-        var start = ref[0];
-        var end = ref[1];
+        const start = ref[0];
+        const end = ref[1];
 
-        var slice = indices.slice(start, end + 1);
-        for (var i = slice.length; i--;) {
+        const slice = indices.slice(start, end + 1);
+        for (let i = slice.length; i--;) {
           indices[end - i] = slice[i];
         }
       });

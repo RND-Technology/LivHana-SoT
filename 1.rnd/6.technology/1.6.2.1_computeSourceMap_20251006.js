@@ -1,8 +1,8 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true});var _genmapping = require('@jridgewell/gen-mapping');
+"use strict";Object.defineProperty(exports, "__esModule", {value: true});const _genmapping = require('@jridgewell/gen-mapping');
 
 
 
-var _charcodes = require('./parser/util/charcodes');
+const _charcodes = require('./parser/util/charcodes');
 
 
 

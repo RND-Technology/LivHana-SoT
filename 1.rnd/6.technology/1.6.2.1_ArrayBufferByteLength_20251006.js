@@ -1,22 +1,22 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
 // https://262.ecma-international.org/15.0/#sec-arraybufferbytelength
 
-var IsDetachedBuffer = require('./IsDetachedBuffer');
+const IsDetachedBuffer = require('./IsDetachedBuffer');
 
-var isArrayBuffer = require('is-array-buffer');
-var isSharedArrayBuffer = require('is-shared-array-buffer');
-var arrayBufferByteLength = require('array-buffer-byte-length');
+const isArrayBuffer = require('is-array-buffer');
+const isSharedArrayBuffer = require('is-shared-array-buffer');
+const arrayBufferByteLength = require('array-buffer-byte-length');
 
-var callBound = require('call-bound');
-var $sabByteLength = callBound('SharedArrayBuffer.prototype.byteLength', true);
+const callBound = require('call-bound');
+const $sabByteLength = callBound('SharedArrayBuffer.prototype.byteLength', true);
 
-var isGrowable = false; // TODO: support this
+const isGrowable = false; // TODO: support this
 
 module.exports = function ArrayBufferByteLength(arrayBuffer, order) {
-	var isSAB = isSharedArrayBuffer(arrayBuffer);
+	const isSAB = isSharedArrayBuffer(arrayBuffer);
 	if (!isArrayBuffer(arrayBuffer) && !isSAB) {
 		throw new $TypeError('Assertion failed: `arrayBuffer` must be an ArrayBuffer or a SharedArrayBuffer');
 	}

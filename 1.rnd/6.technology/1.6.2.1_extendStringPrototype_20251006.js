@@ -1,10 +1,10 @@
-var colors = require('./colors');
+const colors = require('./colors');
 
 module['exports'] = function() {
   //
   // Extends prototype of native string object to allow for "foo".red syntax
   //
-  var addProperty = function(color, func) {
+  const addProperty = function(color, func) {
     String.prototype.__defineGetter__(color, func);
   };
 
@@ -43,7 +43,7 @@ module['exports'] = function() {
   //
   // Iterate through all default styles and colors
   //
-  var x = Object.keys(colors.styles);
+  const x = Object.keys(colors.styles);
   x.forEach(function(style) {
     addProperty(style, function() {
       return colors.stylize(this, style);
@@ -55,7 +55,7 @@ module['exports'] = function() {
     // Remark: This is a list of methods that exist
     // on String that you should not overwrite.
     //
-    var stringPrototypeBlacklist = [
+    const stringPrototypeBlacklist = [
       '__defineGetter__', '__defineSetter__', '__lookupGetter__',
       '__lookupSetter__', 'charAt', 'constructor', 'hasOwnProperty',
       'isPrototypeOf', 'propertyIsEnumerable', 'toLocaleString', 'toString',
@@ -77,9 +77,9 @@ module['exports'] = function() {
             return colors[prop](this);
           });
         } else {
-          var themePropApplicator = function(str) {
-            var ret = str || this;
-            for (var t = 0; t < theme[prop].length; t++) {
+          const themePropApplicator = function(str) {
+            let ret = str || this;
+            for (let t = 0; t < theme[prop].length; t++) {
               ret = colors[theme[prop][t]](ret);
             }
             return ret;

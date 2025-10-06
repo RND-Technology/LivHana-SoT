@@ -4,7 +4,7 @@ export default function getWindow(node) {
   }
 
   if (node.toString() !== '[object Window]') {
-    var ownerDocument = node.ownerDocument;
+    const ownerDocument = node.ownerDocument;
     return ownerDocument ? ownerDocument.defaultView || window : window;
   }
 

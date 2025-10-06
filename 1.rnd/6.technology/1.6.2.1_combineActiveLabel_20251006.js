@@ -4,10 +4,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.combineActiveLabel = void 0;
-var _DataUtils = require("../../../util/DataUtils");
-var combineActiveLabel = (tooltipTicks, activeIndex) => {
-  var _tooltipTicks$n;
-  var n = Number(activeIndex);
+const _DataUtils = require("../../../util/DataUtils");
+const combineActiveLabel = (tooltipTicks, activeIndex) => {
+  let _tooltipTicks$n;
+  const n = Number(activeIndex);
   if ((0, _DataUtils.isNan)(n) || activeIndex == null) {
     return undefined;
   }

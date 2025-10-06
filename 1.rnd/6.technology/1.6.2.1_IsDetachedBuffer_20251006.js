@@ -1,12 +1,12 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var $byteLength = require('array-buffer-byte-length');
+const $byteLength = require('array-buffer-byte-length');
 
-var isArrayBuffer = require('is-array-buffer');
+const isArrayBuffer = require('is-array-buffer');
 
-var availableTypedArrays = require('available-typed-arrays')();
+const availableTypedArrays = require('available-typed-arrays')();
 
 // https://262.ecma-international.org/6.0/#sec-isdetachedbuffer
 

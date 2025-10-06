@@ -10,7 +10,7 @@
  * @returns {*} Returns the found element or its key, else `undefined`.
  */
 function baseFindKey(collection, predicate, eachFunc) {
-  var result;
+  let result;
   eachFunc(collection, function(value, key, collection) {
     if (predicate(value, key, collection)) {
       result = key;

@@ -15,5 +15,5 @@ function transformArguments(key, timestamp, mode) {
     return args;
 }
 exports.transformArguments = transformArguments;
-var generic_transformers_2 = require("./generic-transformers");
+const generic_transformers_2 = require("./generic-transformers");
 Object.defineProperty(exports, "transformReply", { enumerable: true, get: function () { return generic_transformers_2.transformBooleanReply; } });

@@ -11,7 +11,7 @@ function shouldUseGroup(schema, group) {
 }
 exports.shouldUseGroup = shouldUseGroup;
 function shouldUseRule(schema, rule) {
-    var _a;
+    let _a;
     return (schema[rule.keyword] !== undefined ||
         ((_a = rule.definition.implements) === null || _a === void 0 ? void 0 : _a.some((kwd) => schema[kwd] !== undefined)));
 }

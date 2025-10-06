@@ -1,5 +1,5 @@
 //.CommonJS
-var CSSOM = {
+const CSSOM = {
 	CSSRule: require("./CSSRule").CSSRule,
 	CSSGroupingRule: require("./CSSGroupingRule").CSSGroupingRule,
 	CSSConditionRule: require("./CSSConditionRule").CSSConditionRule,
@@ -33,8 +33,8 @@ Object.defineProperties(CSSOM.CSSContainerRule.prototype, {
   },
   "cssText": {
     get: function() {
-      var cssTexts = [];
-      for (var i=0, length=this.cssRules.length; i < length; i++) {
+      const cssTexts = [];
+      for (let i=0, length=this.cssRules.length; i < length; i++) {
         cssTexts.push(this.cssRules[i].cssText);
       }
       return "@container " + this.containerText + " {" + cssTexts.join("") + "}";

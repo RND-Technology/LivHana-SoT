@@ -1,8 +1,8 @@
 'use strict';
 
-var bind = require('function-bind');
-var $apply = require('./functionApply');
-var actualApply = require('./actualApply');
+const bind = require('function-bind');
+const $apply = require('./functionApply');
+const actualApply = require('./actualApply');
 
 /** @type {import('./applyBind')} */
 module.exports = function applyBind() {

@@ -2,11 +2,11 @@ import getBoundingClientRect from "./getBoundingClientRect.js"; // Returns the l
 // means it doesn't take into account transforms.
 
 export default function getLayoutRect(element) {
-  var clientRect = getBoundingClientRect(element); // Use the clientRect sizes if it's not been transformed.
+  const clientRect = getBoundingClientRect(element); // Use the clientRect sizes if it's not been transformed.
   // Fixes https://github.com/popperjs/popper-core/issues/1223
 
-  var width = element.offsetWidth;
-  var height = element.offsetHeight;
+  let width = element.offsetWidth;
+  let height = element.offsetHeight;
 
   if (Math.abs(clientRect.width - width) <= 1) {
     width = clientRect.width;

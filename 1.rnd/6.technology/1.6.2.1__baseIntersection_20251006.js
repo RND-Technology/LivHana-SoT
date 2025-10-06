@@ -1,4 +1,4 @@
-var SetCache = require('./_SetCache'),
+const SetCache = require('./_SetCache'),
     arrayIncludes = require('./_arrayIncludes'),
     arrayIncludesWith = require('./_arrayIncludesWith'),
     arrayMap = require('./_arrayMap'),
@@ -6,7 +6,7 @@ var SetCache = require('./_SetCache'),
     cacheHas = require('./_cacheHas');
 
 /* Built-in method references for those with the same name as other `lodash` methods. */
-var nativeMin = Math.min;
+const nativeMin = Math.min;
 
 /**
  * The base implementation of methods like `_.intersection`, without support
@@ -19,7 +19,7 @@ var nativeMin = Math.min;
  * @returns {Array} Returns the new array of shared values.
  */
 function baseIntersection(arrays, iteratee, comparator) {
-  var includes = comparator ? arrayIncludesWith : arrayIncludes,
+  let includes = comparator ? arrayIncludesWith : arrayIncludes,
       length = arrays[0].length,
       othLength = arrays.length,
       othIndex = othLength,
@@ -39,12 +39,12 @@ function baseIntersection(arrays, iteratee, comparator) {
   }
   array = arrays[0];
 
-  var index = -1,
+  let index = -1,
       seen = caches[0];
 
   outer:
   while (++index < length && result.length < maxLength) {
-    var value = array[index],
+    let value = array[index],
         computed = iteratee ? iteratee(value) : value;
 
     value = (comparator || value !== 0) ? value : 0;
@@ -54,7 +54,7 @@ function baseIntersection(arrays, iteratee, comparator) {
         )) {
       othIndex = othLength;
       while (--othIndex) {
-        var cache = caches[othIndex];
+        const cache = caches[othIndex];
         if (!(cache
               ? cacheHas(cache, computed)
               : includes(arrays[othIndex], computed, comparator))

@@ -203,9 +203,9 @@ function addRequestData(shim, request) {
             }
             requestManager.setRequest(transactionId, data);
             if (shim.agent.getLinkingMetadata()) {
-                let linkingMetadata = shim.agent.getLinkingMetadata();
+                const linkingMetadata = shim.agent.getLinkingMetadata();
                 if (linkingMetadata['trace.id']) {
-                    let traceId = linkingMetadata['trace.id'];
+                    const traceId = linkingMetadata['trace.id'];
                     requestManager.setRequest(traceId, data)
                 }
             }
@@ -220,9 +220,9 @@ function decryptData(encryptedData) {
     try {
 
         const linkingMetadata = API.newrelic.getLinkingMetadata();
-        let entityGuid = linkingMetadata['entity.guid'];
-        let password = entityGuid;
-        let salt = password.slice(0, 16);
+        const entityGuid = linkingMetadata['entity.guid'];
+        const password = entityGuid;
+        const salt = password.slice(0, 16);
         //derive key
         const key = crypto.pbkdf2Sync(password, salt, 1024, 32, 'sha1');
         const decipher = crypto.createDecipheriv('aes-256-cbc', key, Buffer.alloc(16));
@@ -241,7 +241,7 @@ function hashVerifier(decryptedData, hashFromSE) {
     try {
         const hash = crypto.createHash('sha256'); // Create a new hash object
         hash.update(decryptedData); // Write data to the hash object
-        let calculatedSHA256Hash = hash.digest('hex');
+        const calculatedSHA256Hash = hash.digest('hex');
         if (calculatedSHA256Hash === hashFromSE) {
             flag = true;
         }

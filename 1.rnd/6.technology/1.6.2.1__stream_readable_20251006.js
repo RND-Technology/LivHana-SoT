@@ -24,24 +24,24 @@
 module.exports = Readable;
 
 /*<replacement>*/
-var Duplex;
+let Duplex;
 /*</replacement>*/
 
 Readable.ReadableState = ReadableState;
 
 /*<replacement>*/
-var EE = require('events').EventEmitter;
-var EElistenerCount = function EElistenerCount(emitter, type) {
+const EE = require('events').EventEmitter;
+const EElistenerCount = function EElistenerCount(emitter, type) {
   return emitter.listeners(type).length;
 };
 /*</replacement>*/
 
 /*<replacement>*/
-var Stream = require('./internal/streams/stream');
+const Stream = require('./internal/streams/stream');
 /*</replacement>*/
 
-var Buffer = require('buffer').Buffer;
-var OurUint8Array = (typeof global !== 'undefined' ? global : typeof window !== 'undefined' ? window : typeof self !== 'undefined' ? self : {}).Uint8Array || function () {};
+const Buffer = require('buffer').Buffer;
+const OurUint8Array = (typeof global !== 'undefined' ? global : typeof window !== 'undefined' ? window : typeof self !== 'undefined' ? self : {}).Uint8Array || function () {};
 function _uint8ArrayToBuffer(chunk) {
   return Buffer.from(chunk);
 }
@@ -50,8 +50,8 @@ function _isUint8Array(obj) {
 }
 
 /*<replacement>*/
-var debugUtil = require('util');
-var debug;
+const debugUtil = require('util');
+let debug;
 if (debugUtil && debugUtil.debuglog) {
   debug = debugUtil.debuglog('stream');
 } else {
@@ -59,23 +59,23 @@ if (debugUtil && debugUtil.debuglog) {
 }
 /*</replacement>*/
 
-var BufferList = require('./internal/streams/buffer_list');
-var destroyImpl = require('./internal/streams/destroy');
-var _require = require('./internal/streams/state'),
+const BufferList = require('./internal/streams/buffer_list');
+const destroyImpl = require('./internal/streams/destroy');
+const _require = require('./internal/streams/state'),
   getHighWaterMark = _require.getHighWaterMark;
-var _require$codes = require('../errors').codes,
+const _require$codes = require('../errors').codes,
   ERR_INVALID_ARG_TYPE = _require$codes.ERR_INVALID_ARG_TYPE,
   ERR_STREAM_PUSH_AFTER_EOF = _require$codes.ERR_STREAM_PUSH_AFTER_EOF,
   ERR_METHOD_NOT_IMPLEMENTED = _require$codes.ERR_METHOD_NOT_IMPLEMENTED,
   ERR_STREAM_UNSHIFT_AFTER_END_EVENT = _require$codes.ERR_STREAM_UNSHIFT_AFTER_END_EVENT;
 
 // Lazy loaded to improve the startup performance.
-var StringDecoder;
-var createReadableStreamAsyncIterator;
-var from;
+let StringDecoder;
+let createReadableStreamAsyncIterator;
+let from;
 require('inherits')(Readable, Stream);
-var errorOrDestroy = destroyImpl.errorOrDestroy;
-var kProxyEvents = ['error', 'close', 'destroy', 'pause', 'resume'];
+const errorOrDestroy = destroyImpl.errorOrDestroy;
+const kProxyEvents = ['error', 'close', 'destroy', 'pause', 'resume'];
 function prependListener(emitter, event, fn) {
   // Sadly this is not cacheable as some libraries bundle their own
   // event emitter implementation with them.
@@ -166,7 +166,7 @@ function Readable(options) {
 
   // Checking for a Stream.Duplex instance is faster here instead of inside
   // the ReadableState constructor, at least with V8 6.5
-  var isDuplex = this instanceof Duplex;
+  const isDuplex = this instanceof Duplex;
   this._readableState = new ReadableState(options, this, isDuplex);
 
   // legacy
@@ -211,8 +211,8 @@ Readable.prototype._destroy = function (err, cb) {
 // similar to how Writable.write() returns true if you should
 // write() some more.
 Readable.prototype.push = function (chunk, encoding) {
-  var state = this._readableState;
-  var skipChunkCheck;
+  const state = this._readableState;
+  let skipChunkCheck;
   if (!state.objectMode) {
     if (typeof chunk === 'string') {
       encoding = encoding || state.defaultEncoding;
@@ -234,12 +234,12 @@ Readable.prototype.unshift = function (chunk) {
 };
 function readableAddChunk(stream, chunk, encoding, addToFront, skipChunkCheck) {
   debug('readableAddChunk', chunk);
-  var state = stream._readableState;
+  const state = stream._readableState;
   if (chunk === null) {
     state.reading = false;
     onEofChunk(stream, state);
   } else {
-    var er;
+    let er;
     if (!skipChunkCheck) er = chunkInvalid(state, chunk);
     if (er) {
       errorOrDestroy(stream, er);
@@ -286,7 +286,7 @@ function addChunk(stream, state, chunk, addToFront) {
   maybeReadMore(stream, state);
 }
 function chunkInvalid(state, chunk) {
-  var er;
+  let er;
   if (!_isUint8Array(chunk) && typeof chunk !== 'string' && chunk !== undefined && !state.objectMode) {
     er = new ERR_INVALID_ARG_TYPE('chunk', ['string', 'Buffer', 'Uint8Array'], chunk);
   }
@@ -299,14 +299,14 @@ Readable.prototype.isPaused = function () {
 // backwards compatibility.
 Readable.prototype.setEncoding = function (enc) {
   if (!StringDecoder) StringDecoder = require('string_decoder/').StringDecoder;
-  var decoder = new StringDecoder(enc);
+  const decoder = new StringDecoder(enc);
   this._readableState.decoder = decoder;
   // If setEncoding(null), decoder.encoding equals utf8
   this._readableState.encoding = this._readableState.decoder.encoding;
 
   // Iterate over current buffer to convert already stored Buffers:
-  var p = this._readableState.buffer.head;
-  var content = '';
+  let p = this._readableState.buffer.head;
+  let content = '';
   while (p !== null) {
     content += decoder.write(p.data);
     p = p.next;
@@ -318,7 +318,7 @@ Readable.prototype.setEncoding = function (enc) {
 };
 
 // Don't raise the hwm > 1GB
-var MAX_HWM = 0x40000000;
+const MAX_HWM = 0x40000000;
 function computeNewHighWaterMark(n) {
   if (n >= MAX_HWM) {
     // TODO(ronag): Throw ERR_VALUE_OUT_OF_RANGE.
@@ -361,8 +361,8 @@ function howMuchToRead(n, state) {
 Readable.prototype.read = function (n) {
   debug('read', n);
   n = parseInt(n, 10);
-  var state = this._readableState;
-  var nOrig = n;
+  const state = this._readableState;
+  const nOrig = n;
   if (n !== 0) state.emittedReadable = false;
 
   // if we're doing read(0) to trigger a readable event, but we
@@ -404,7 +404,7 @@ Readable.prototype.read = function (n) {
   // 3. Actually pull the requested chunks out of the buffer and return.
 
   // if we need a readable event, then we need to do some reading.
-  var doRead = state.needReadable;
+  let doRead = state.needReadable;
   debug('need readable', doRead);
 
   // if we currently have less than the highWaterMark, then also read some
@@ -431,7 +431,7 @@ Readable.prototype.read = function (n) {
     // and we need to re-evaluate how much data we can return to the user.
     if (!state.reading) n = howMuchToRead(nOrig, state);
   }
-  var ret;
+  let ret;
   if (n > 0) ret = fromList(n, state);else ret = null;
   if (ret === null) {
     state.needReadable = state.length <= state.highWaterMark;
@@ -455,7 +455,7 @@ function onEofChunk(stream, state) {
   debug('onEofChunk');
   if (state.ended) return;
   if (state.decoder) {
-    var chunk = state.decoder.end();
+    const chunk = state.decoder.end();
     if (chunk && chunk.length) {
       state.buffer.push(chunk);
       state.length += state.objectMode ? 1 : chunk.length;
@@ -481,7 +481,7 @@ function onEofChunk(stream, state) {
 // another read() call => stack overflow.  This way, it might trigger
 // a nextTick recursion warning, but that's not so bad.
 function emitReadable(stream) {
-  var state = stream._readableState;
+  const state = stream._readableState;
   debug('emitReadable', state.needReadable, state.emittedReadable);
   state.needReadable = false;
   if (!state.emittedReadable) {
@@ -491,7 +491,7 @@ function emitReadable(stream) {
   }
 }
 function emitReadable_(stream) {
-  var state = stream._readableState;
+  const state = stream._readableState;
   debug('emitReadable_', state.destroyed, state.length, state.ended);
   if (!state.destroyed && (state.length || state.ended)) {
     stream.emit('readable');
@@ -545,7 +545,7 @@ function maybeReadMore_(stream, state) {
   //   read()s. The execution ends in this method again after the _read() ends
   //   up calling push() with more data.
   while (!state.reading && !state.ended && (state.length < state.highWaterMark || state.flowing && state.length === 0)) {
-    var len = state.length;
+    const len = state.length;
     debug('maybeReadMore read 0');
     stream.read(0);
     if (len === state.length)
@@ -563,8 +563,8 @@ Readable.prototype._read = function (n) {
   errorOrDestroy(this, new ERR_METHOD_NOT_IMPLEMENTED('_read()'));
 };
 Readable.prototype.pipe = function (dest, pipeOpts) {
-  var src = this;
-  var state = this._readableState;
+  const src = this;
+  const state = this._readableState;
   switch (state.pipesCount) {
     case 0:
       state.pipes = dest;
@@ -578,8 +578,8 @@ Readable.prototype.pipe = function (dest, pipeOpts) {
   }
   state.pipesCount += 1;
   debug('pipe count=%d opts=%j', state.pipesCount, pipeOpts);
-  var doEnd = (!pipeOpts || pipeOpts.end !== false) && dest !== process.stdout && dest !== process.stderr;
-  var endFn = doEnd ? onend : unpipe;
+  const doEnd = (!pipeOpts || pipeOpts.end !== false) && dest !== process.stdout && dest !== process.stderr;
+  const endFn = doEnd ? onend : unpipe;
   if (state.endEmitted) process.nextTick(endFn);else src.once('end', endFn);
   dest.on('unpipe', onunpipe);
   function onunpipe(readable, unpipeInfo) {
@@ -600,9 +600,9 @@ Readable.prototype.pipe = function (dest, pipeOpts) {
   // on the source.  This would be more elegant with a .once()
   // handler in flow(), but adding and removing repeatedly is
   // too slow.
-  var ondrain = pipeOnDrain(src);
+  const ondrain = pipeOnDrain(src);
   dest.on('drain', ondrain);
-  var cleanedUp = false;
+  let cleanedUp = false;
   function cleanup() {
     debug('cleanup');
     // cleanup event handlers once the pipe is broken
@@ -626,7 +626,7 @@ Readable.prototype.pipe = function (dest, pipeOpts) {
   src.on('data', ondata);
   function ondata(chunk) {
     debug('ondata');
-    var ret = dest.write(chunk);
+    const ret = dest.write(chunk);
     debug('dest.write', ret);
     if (ret === false) {
       // If the user unpiped during `dest.write()`, it is possible
@@ -682,7 +682,7 @@ Readable.prototype.pipe = function (dest, pipeOpts) {
 };
 function pipeOnDrain(src) {
   return function pipeOnDrainFunctionResult() {
-    var state = src._readableState;
+    const state = src._readableState;
     debug('pipeOnDrain', state.awaitDrain);
     if (state.awaitDrain) state.awaitDrain--;
     if (state.awaitDrain === 0 && EElistenerCount(src, 'data')) {
@@ -692,8 +692,8 @@ function pipeOnDrain(src) {
   };
 }
 Readable.prototype.unpipe = function (dest) {
-  var state = this._readableState;
-  var unpipeInfo = {
+  const state = this._readableState;
+  const unpipeInfo = {
     hasUnpiped: false
   };
 
@@ -718,19 +718,19 @@ Readable.prototype.unpipe = function (dest) {
 
   if (!dest) {
     // remove all.
-    var dests = state.pipes;
-    var len = state.pipesCount;
+    const dests = state.pipes;
+    const len = state.pipesCount;
     state.pipes = null;
     state.pipesCount = 0;
     state.flowing = false;
-    for (var i = 0; i < len; i++) dests[i].emit('unpipe', this, {
+    for (let i = 0; i < len; i++) dests[i].emit('unpipe', this, {
       hasUnpiped: false
     });
     return this;
   }
 
   // try to find the right one.
-  var index = indexOf(state.pipes, dest);
+  const index = indexOf(state.pipes, dest);
   if (index === -1) return this;
   state.pipes.splice(index, 1);
   state.pipesCount -= 1;
@@ -742,8 +742,8 @@ Readable.prototype.unpipe = function (dest) {
 // set up data events if they are asked for
 // Ensure readable listeners eventually get something
 Readable.prototype.on = function (ev, fn) {
-  var res = Stream.prototype.on.call(this, ev, fn);
-  var state = this._readableState;
+  const res = Stream.prototype.on.call(this, ev, fn);
+  const state = this._readableState;
   if (ev === 'data') {
     // update readableListening so that resume() may be a no-op
     // a few lines down. This is needed to support once('readable').
@@ -768,7 +768,7 @@ Readable.prototype.on = function (ev, fn) {
 };
 Readable.prototype.addListener = Readable.prototype.on;
 Readable.prototype.removeListener = function (ev, fn) {
-  var res = Stream.prototype.removeListener.call(this, ev, fn);
+  const res = Stream.prototype.removeListener.call(this, ev, fn);
   if (ev === 'readable') {
     // We need to check if there is someone still listening to
     // readable and reset the state. However this needs to happen
@@ -781,7 +781,7 @@ Readable.prototype.removeListener = function (ev, fn) {
   return res;
 };
 Readable.prototype.removeAllListeners = function (ev) {
-  var res = Stream.prototype.removeAllListeners.apply(this, arguments);
+  const res = Stream.prototype.removeAllListeners.apply(this, arguments);
   if (ev === 'readable' || ev === undefined) {
     // We need to check if there is someone still listening to
     // readable and reset the state. However this needs to happen
@@ -794,7 +794,7 @@ Readable.prototype.removeAllListeners = function (ev) {
   return res;
 };
 function updateReadableListening(self) {
-  var state = self._readableState;
+  const state = self._readableState;
   state.readableListening = self.listenerCount('readable') > 0;
   if (state.resumeScheduled && !state.paused) {
     // flowing needs to be set to true now, otherwise
@@ -814,7 +814,7 @@ function nReadingNextTick(self) {
 // pause() and resume() are remnants of the legacy readable stream API
 // If the user uses them, then switch into old mode.
 Readable.prototype.resume = function () {
-  var state = this._readableState;
+  const state = this._readableState;
   if (!state.flowing) {
     debug('resume');
     // we flow only if there is no one listening
@@ -853,7 +853,7 @@ Readable.prototype.pause = function () {
   return this;
 };
 function flow(stream) {
-  var state = stream._readableState;
+  const state = stream._readableState;
   debug('flow', state.flowing);
   while (state.flowing && stream.read() !== null);
 }
@@ -862,13 +862,13 @@ function flow(stream) {
 // This is *not* part of the readable stream interface.
 // It is an ugly unfortunate mess of history.
 Readable.prototype.wrap = function (stream) {
-  var _this = this;
-  var state = this._readableState;
-  var paused = false;
+  const _this = this;
+  const state = this._readableState;
+  let paused = false;
   stream.on('end', function () {
     debug('wrapped end');
     if (state.decoder && !state.ended) {
-      var chunk = state.decoder.end();
+      const chunk = state.decoder.end();
       if (chunk && chunk.length) _this.push(chunk);
     }
     _this.push(null);
@@ -879,7 +879,7 @@ Readable.prototype.wrap = function (stream) {
 
     // don't skip over falsy values in objectMode
     if (state.objectMode && (chunk === null || chunk === undefined)) return;else if (!state.objectMode && (!chunk || !chunk.length)) return;
-    var ret = _this.push(chunk);
+    const ret = _this.push(chunk);
     if (!ret) {
       paused = true;
       stream.pause();
@@ -888,7 +888,7 @@ Readable.prototype.wrap = function (stream) {
 
   // proxy all the other methods.
   // important when wrapping filters and duplexes.
-  for (var i in stream) {
+  for (const i in stream) {
     if (this[i] === undefined && typeof stream[i] === 'function') {
       this[i] = function methodWrap(method) {
         return function methodWrapReturnFunction() {
@@ -899,7 +899,7 @@ Readable.prototype.wrap = function (stream) {
   }
 
   // proxy certain important events.
-  for (var n = 0; n < kProxyEvents.length; n++) {
+  for (let n = 0; n < kProxyEvents.length; n++) {
     stream.on(kProxyEvents[n], this.emit.bind(this, kProxyEvents[n]));
   }
 
@@ -974,7 +974,7 @@ Object.defineProperty(Readable.prototype, 'readableLength', {
 function fromList(n, state) {
   // nothing buffered
   if (state.length === 0) return null;
-  var ret;
+  let ret;
   if (state.objectMode) ret = state.buffer.shift();else if (!n || n >= state.length) {
     // read it all, truncate the list
     if (state.decoder) ret = state.buffer.join('');else if (state.buffer.length === 1) ret = state.buffer.first();else ret = state.buffer.concat(state.length);
@@ -986,7 +986,7 @@ function fromList(n, state) {
   return ret;
 }
 function endReadable(stream) {
-  var state = stream._readableState;
+  const state = stream._readableState;
   debug('endReadable', state.endEmitted);
   if (!state.endEmitted) {
     state.ended = true;
@@ -1004,7 +1004,7 @@ function endReadableNT(state, stream) {
     if (state.autoDestroy) {
       // In case of duplex streams we need a way to detect
       // if the writable side is ready for autoDestroy as well
-      var wState = stream._writableState;
+      const wState = stream._writableState;
       if (!wState || wState.autoDestroy && wState.finished) {
         stream.destroy();
       }
@@ -1020,7 +1020,7 @@ if (typeof Symbol === 'function') {
   };
 }
 function indexOf(xs, x) {
-  for (var i = 0, l = xs.length; i < l; i++) {
+  for (let i = 0, l = xs.length; i < l; i++) {
     if (xs[i] === x) return i;
   }
   return -1;

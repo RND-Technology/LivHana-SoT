@@ -1,14 +1,14 @@
 "use strict";
 exports.__esModule = true;
 exports.TransactionsApi = void 0;
-var tslib_1 = require("tslib");
-var captureTransactionResponse_1 = require("../models/captureTransactionResponse");
-var listTransactionsResponse_1 = require("../models/listTransactionsResponse");
-var retrieveTransactionResponse_1 = require("../models/retrieveTransactionResponse");
-var voidTransactionResponse_1 = require("../models/voidTransactionResponse");
-var schema_1 = require("../schema");
-var baseApi_1 = require("./baseApi");
-var TransactionsApi = /** @class */ (function (_super) {
+const tslib_1 = require("tslib");
+const captureTransactionResponse_1 = require("../models/captureTransactionResponse");
+const listTransactionsResponse_1 = require("../models/listTransactionsResponse");
+const retrieveTransactionResponse_1 = require("../models/retrieveTransactionResponse");
+const voidTransactionResponse_1 = require("../models/voidTransactionResponse");
+const schema_1 = require("../schema");
+const baseApi_1 = require("./baseApi");
+const TransactionsApi = /** @class */ (function (_super) {
     tslib_1.__extends(TransactionsApi, _super);
     function TransactionsApi() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -40,7 +40,7 @@ var TransactionsApi = /** @class */ (function (_super) {
      */
     TransactionsApi.prototype.listTransactions = function (locationId, beginTime, endTime, sortOrder, cursor, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({
@@ -71,7 +71,7 @@ var TransactionsApi = /** @class */ (function (_super) {
      */
     TransactionsApi.prototype.retrieveTransaction = function (locationId, transactionId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({
@@ -101,7 +101,7 @@ var TransactionsApi = /** @class */ (function (_super) {
      */
     TransactionsApi.prototype.captureTransaction = function (locationId, transactionId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({
@@ -131,7 +131,7 @@ var TransactionsApi = /** @class */ (function (_super) {
      */
     TransactionsApi.prototype.voidTransaction = function (locationId, transactionId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({
@@ -148,5 +148,5 @@ var TransactionsApi = /** @class */ (function (_super) {
     return TransactionsApi;
 }(baseApi_1.BaseApi));
 exports.TransactionsApi = TransactionsApi;
-var templateObject_1, templateObject_2, templateObject_3, templateObject_4;
+let templateObject_1, templateObject_2, templateObject_3, templateObject_4;
 //# sourceMappingURL=transactionsApi.js.map

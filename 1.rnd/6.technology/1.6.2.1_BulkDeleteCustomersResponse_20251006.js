@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
 exports.bulkDeleteCustomersResponseSchema = void 0;
-var schema_1 = require("../schema");
-var deleteCustomerResponse_1 = require("./deleteCustomerResponse");
-var error_1 = require("./error");
+const schema_1 = require("../schema");
+const deleteCustomerResponse_1 = require("./deleteCustomerResponse");
+const error_1 = require("./error");
 exports.bulkDeleteCustomersResponseSchema = (0, schema_1.object)({
     responses: [
         'responses',

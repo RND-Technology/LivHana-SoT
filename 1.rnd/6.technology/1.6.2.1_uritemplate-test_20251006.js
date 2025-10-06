@@ -1,4 +1,4 @@
-var template, expect, examples;
+let template, expect, examples;
 
 if (typeof require !== 'undefined') {
   template = require('../lib/url-template.js');
@@ -22,7 +22,7 @@ function createTestContext(c) {
 
 describe('spec-examples', function () {
   Object.keys(examples).forEach(function (section) {
-    var assert = createTestContext(examples[section].variables);
+    const assert = createTestContext(examples[section].variables);
     examples[section].testcases.forEach(function (testcase) {
       it(section + ' ' + testcase[0], function () {
         assert(testcase[0], testcase[1]);

@@ -26,7 +26,7 @@ const autoLoaderUtils_1 = require("./autoLoaderUtils");
  *   registered
  */
 function registerInstrumentations(options) {
-    var _a, _b;
+    let _a, _b;
     const tracerProvider = options.tracerProvider || api_1.trace.getTracerProvider();
     const meterProvider = options.meterProvider || api_1.metrics.getMeterProvider();
     const loggerProvider = options.loggerProvider || api_logs_1.logs.getLoggerProvider();

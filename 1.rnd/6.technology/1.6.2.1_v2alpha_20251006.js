@@ -19,7 +19,7 @@ exports.retail_v2alpha = void 0;
 /* eslint-disable @typescript-eslint/no-namespace */
 /* eslint-disable no-irregular-whitespace */
 const googleapis_common_1 = require("googleapis-common");
-var retail_v2alpha;
+let retail_v2alpha;
 (function (retail_v2alpha) {
     /**
      * Retail API

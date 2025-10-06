@@ -1,4 +1,4 @@
-var iterate    = require('./lib/iterate.js')
+const iterate    = require('./lib/iterate.js')
   , initState  = require('./lib/state.js')
   , terminator = require('./lib/terminator.js')
   ;
@@ -20,7 +20,7 @@ module.exports.descending = descending;
  */
 function serialOrdered(list, iterator, sortMethod, callback)
 {
-  var state = initState(list, sortMethod);
+  const state = initState(list, sortMethod);
 
   iterate(list, iterator, state, function iteratorHandler(error, result)
   {

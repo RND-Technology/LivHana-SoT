@@ -1,12 +1,12 @@
-var drawChart = (function (exports) {
+const drawChart = (function (exports) {
   'use strict';
 
-  var n,l$1,u$2,i$1,r$1,o$1,e$1,f$2,c$1,s$1,a$1,h$1,p$1={},v$1=[],y$1=/acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord|itera/i,w$1=Array.isArray;function d$1(n,l){for(var u in l)n[u]=l[u];return n}function g(n){n&&n.parentNode&&n.parentNode.removeChild(n);}function _$1(l,u,t){var i,r,o,e={};for(o in u)"key"==o?i=u[o]:"ref"==o?r=u[o]:e[o]=u[o];if(arguments.length>2&&(e.children=arguments.length>3?n.call(arguments,2):t),"function"==typeof l&&null!=l.defaultProps)for(o in l.defaultProps) void 0===e[o]&&(e[o]=l.defaultProps[o]);return m$1(l,e,i,r,null)}function m$1(n,t,i,r,o){var e={type:n,props:t,key:i,ref:r,__k:null,__:null,__b:0,__e:null,__c:null,constructor:void 0,__v:null==o?++u$2:o,__i:-1,__u:0};return null==o&&null!=l$1.vnode&&l$1.vnode(e),e}function k$1(n){return n.children}function x$1(n,l){this.props=n,this.context=l;}function S(n,l){if(null==l)return n.__?S(n.__,n.__i+1):null;for(var u;l<n.__k.length;l++)if(null!=(u=n.__k[l])&&null!=u.__e)return u.__e;return "function"==typeof n.type?S(n):null}function C$1(n){var l,u;if(null!=(n=n.__)&&null!=n.__c){for(n.__e=n.__c.base=null,l=0;l<n.__k.length;l++)if(null!=(u=n.__k[l])&&null!=u.__e){n.__e=n.__c.base=u.__e;break}return C$1(n)}}function M(n){(!n.__d&&(n.__d=true)&&i$1.push(n)&&!$.__r++||r$1!=l$1.debounceRendering)&&((r$1=l$1.debounceRendering)||o$1)($);}function $(){for(var n,u,t,r,o,f,c,s=1;i$1.length;)i$1.length>s&&i$1.sort(e$1),n=i$1.shift(),s=i$1.length,n.__d&&(t=void 0,o=(r=(u=n).__v).__e,f=[],c=[],u.__P&&((t=d$1({},r)).__v=r.__v+1,l$1.vnode&&l$1.vnode(t),O(u.__P,t,r,u.__n,u.__P.namespaceURI,32&r.__u?[o]:null,f,null==o?S(r):o,!!(32&r.__u),c),t.__v=r.__v,t.__.__k[t.__i]=t,z$1(f,t,c),t.__e!=o&&C$1(t)));$.__r=0;}function I(n,l,u,t,i,r,o,e,f,c,s){var a,h,y,w,d,g,_=t&&t.__k||v$1,m=l.length;for(f=P(u,l,_,f,m),a=0;a<m;a++)null!=(y=u.__k[a])&&(h=-1==y.__i?p$1:_[y.__i]||p$1,y.__i=a,g=O(n,y,h,i,r,o,e,f,c,s),w=y.__e,y.ref&&h.ref!=y.ref&&(h.ref&&q$1(h.ref,null,y),s.push(y.ref,y.__c||w,y)),null==d&&null!=w&&(d=w),4&y.__u||h.__k===y.__k?f=A$1(y,f,n):"function"==typeof y.type&&void 0!==g?f=g:w&&(f=w.nextSibling),y.__u&=-7);return u.__e=d,f}function P(n,l,u,t,i){var r,o,e,f,c,s=u.length,a=s,h=0;for(n.__k=new Array(i),r=0;r<i;r++)null!=(o=l[r])&&"boolean"!=typeof o&&"function"!=typeof o?(f=r+h,(o=n.__k[r]="string"==typeof o||"number"==typeof o||"bigint"==typeof o||o.constructor==String?m$1(null,o,null,null,null):w$1(o)?m$1(k$1,{children:o},null,null,null):null==o.constructor&&o.__b>0?m$1(o.type,o.props,o.key,o.ref?o.ref:null,o.__v):o).__=n,o.__b=n.__b+1,e=null,-1!=(c=o.__i=L(o,u,f,a))&&(a--,(e=u[c])&&(e.__u|=2)),null==e||null==e.__v?(-1==c&&(i>s?h--:i<s&&h++),"function"!=typeof o.type&&(o.__u|=4)):c!=f&&(c==f-1?h--:c==f+1?h++:(c>f?h--:h++,o.__u|=4))):n.__k[r]=null;if(a)for(r=0;r<s;r++)null!=(e=u[r])&&0==(2&e.__u)&&(e.__e==t&&(t=S(e)),B$1(e,e));return t}function A$1(n,l,u){var t,i;if("function"==typeof n.type){for(t=n.__k,i=0;t&&i<t.length;i++)t[i]&&(t[i].__=n,l=A$1(t[i],l,u));return l}n.__e!=l&&(l&&n.type&&!u.contains(l)&&(l=S(n)),u.insertBefore(n.__e,l||null),l=n.__e);do{l=l&&l.nextSibling;}while(null!=l&&8==l.nodeType);return l}function L(n,l,u,t){var i,r,o=n.key,e=n.type,f=l[u];if(null===f&&null==n.key||f&&o==f.key&&e==f.type&&0==(2&f.__u))return u;if(t>(null!=f&&0==(2&f.__u)?1:0))for(i=u-1,r=u+1;i>=0||r<l.length;){if(i>=0){if((f=l[i])&&0==(2&f.__u)&&o==f.key&&e==f.type)return i;i--;}if(r<l.length){if((f=l[r])&&0==(2&f.__u)&&o==f.key&&e==f.type)return r;r++;}}return  -1}function T$1(n,l,u){"-"==l[0]?n.setProperty(l,null==u?"":u):n[l]=null==u?"":"number"!=typeof u||y$1.test(l)?u:u+"px";}function j$1(n,l,u,t,i){var r,o;n:if("style"==l)if("string"==typeof u)n.style.cssText=u;else {if("string"==typeof t&&(n.style.cssText=t=""),t)for(l in t)u&&l in u||T$1(n.style,l,"");if(u)for(l in u)t&&u[l]==t[l]||T$1(n.style,l,u[l]);}else if("o"==l[0]&&"n"==l[1])r=l!=(l=l.replace(f$2,"$1")),o=l.toLowerCase(),l=o in n||"onFocusOut"==l||"onFocusIn"==l?o.slice(2):l.slice(2),n.l||(n.l={}),n.l[l+r]=u,u?t?u.u=t.u:(u.u=c$1,n.addEventListener(l,r?a$1:s$1,r)):n.removeEventListener(l,r?a$1:s$1,r);else {if("http://www.w3.org/2000/svg"==i)l=l.replace(/xlink(H|:h)/,"h").replace(/sName$/,"s");else if("width"!=l&&"height"!=l&&"href"!=l&&"list"!=l&&"form"!=l&&"tabIndex"!=l&&"download"!=l&&"rowSpan"!=l&&"colSpan"!=l&&"role"!=l&&"popover"!=l&&l in n)try{n[l]=null==u?"":u;break n}catch(n){}"function"==typeof u||(null==u||false===u&&"-"!=l[4]?n.removeAttribute(l):n.setAttribute(l,"popover"==l&&1==u?"":u));}}function F(n){return function(u){if(this.l){var t=this.l[u.type+n];if(null==u.t)u.t=c$1++;else if(u.t<t.u)return;return t(l$1.event?l$1.event(u):u)}}}function O(n,u,t,i,r,o,e,f,c,s){var a,h,p,v,y,_,m,b,S,C,M,$,P,A,H,L,T,j=u.type;if(null!=u.constructor)return null;128&t.__u&&(c=!!(32&t.__u),o=[f=u.__e=t.__e]),(a=l$1.__b)&&a(u);n:if("function"==typeof j)try{if(b=u.props,S="prototype"in j&&j.prototype.render,C=(a=j.contextType)&&i[a.__c],M=a?C?C.props.value:a.__:i,t.__c?m=(h=u.__c=t.__c).__=h.__E:(S?u.__c=h=new j(b,M):(u.__c=h=new x$1(b,M),h.constructor=j,h.render=D$1),C&&C.sub(h),h.props=b,h.state||(h.state={}),h.context=M,h.__n=i,p=h.__d=!0,h.__h=[],h._sb=[]),S&&null==h.__s&&(h.__s=h.state),S&&null!=j.getDerivedStateFromProps&&(h.__s==h.state&&(h.__s=d$1({},h.__s)),d$1(h.__s,j.getDerivedStateFromProps(b,h.__s))),v=h.props,y=h.state,h.__v=u,p)S&&null==j.getDerivedStateFromProps&&null!=h.componentWillMount&&h.componentWillMount(),S&&null!=h.componentDidMount&&h.__h.push(h.componentDidMount);else {if(S&&null==j.getDerivedStateFromProps&&b!==v&&null!=h.componentWillReceiveProps&&h.componentWillReceiveProps(b,M),!h.__e&&null!=h.shouldComponentUpdate&&!1===h.shouldComponentUpdate(b,h.__s,M)||u.__v==t.__v){for(u.__v!=t.__v&&(h.props=b,h.state=h.__s,h.__d=!1),u.__e=t.__e,u.__k=t.__k,u.__k.some(function(n){n&&(n.__=u);}),$=0;$<h._sb.length;$++)h.__h.push(h._sb[$]);h._sb=[],h.__h.length&&e.push(h);break n}null!=h.componentWillUpdate&&h.componentWillUpdate(b,h.__s,M),S&&null!=h.componentDidUpdate&&h.__h.push(function(){h.componentDidUpdate(v,y,_);});}if(h.context=M,h.props=b,h.__P=n,h.__e=!1,P=l$1.__r,A=0,S){for(h.state=h.__s,h.__d=!1,P&&P(u),a=h.render(h.props,h.state,h.context),H=0;H<h._sb.length;H++)h.__h.push(h._sb[H]);h._sb=[];}else do{h.__d=!1,P&&P(u),a=h.render(h.props,h.state,h.context),h.state=h.__s;}while(h.__d&&++A<25);h.state=h.__s,null!=h.getChildContext&&(i=d$1(d$1({},i),h.getChildContext())),S&&!p&&null!=h.getSnapshotBeforeUpdate&&(_=h.getSnapshotBeforeUpdate(v,y)),L=a,null!=a&&a.type===k$1&&null==a.key&&(L=N(a.props.children)),f=I(n,w$1(L)?L:[L],u,t,i,r,o,e,f,c,s),h.base=u.__e,u.__u&=-161,h.__h.length&&e.push(h),m&&(h.__E=h.__=null);}catch(n){if(u.__v=null,c||null!=o)if(n.then){for(u.__u|=c?160:128;f&&8==f.nodeType&&f.nextSibling;)f=f.nextSibling;o[o.indexOf(f)]=null,u.__e=f;}else for(T=o.length;T--;)g(o[T]);else u.__e=t.__e,u.__k=t.__k;l$1.__e(n,u,t);}else null==o&&u.__v==t.__v?(u.__k=t.__k,u.__e=t.__e):f=u.__e=V(t.__e,u,t,i,r,o,e,c,s);return (a=l$1.diffed)&&a(u),128&u.__u?void 0:f}function z$1(n,u,t){for(var i=0;i<t.length;i++)q$1(t[i],t[++i],t[++i]);l$1.__c&&l$1.__c(u,n),n.some(function(u){try{n=u.__h,u.__h=[],n.some(function(n){n.call(u);});}catch(n){l$1.__e(n,u.__v);}});}function N(n){return "object"!=typeof n||null==n||n.__b&&n.__b>0?n:w$1(n)?n.map(N):d$1({},n)}function V(u,t,i,r,o,e,f,c,s){var a,h,v,y,d,_,m,b=i.props,k=t.props,x=t.type;if("svg"==x?o="http://www.w3.org/2000/svg":"math"==x?o="http://www.w3.org/1998/Math/MathML":o||(o="http://www.w3.org/1999/xhtml"),null!=e)for(a=0;a<e.length;a++)if((d=e[a])&&"setAttribute"in d==!!x&&(x?d.localName==x:3==d.nodeType)){u=d,e[a]=null;break}if(null==u){if(null==x)return document.createTextNode(k);u=document.createElementNS(o,x,k.is&&k),c&&(l$1.__m&&l$1.__m(t,e),c=false),e=null;}if(null==x)b===k||c&&u.data==k||(u.data=k);else {if(e=e&&n.call(u.childNodes),b=i.props||p$1,!c&&null!=e)for(b={},a=0;a<u.attributes.length;a++)b[(d=u.attributes[a]).name]=d.value;for(a in b)if(d=b[a],"children"==a);else if("dangerouslySetInnerHTML"==a)v=d;else if(!(a in k)){if("value"==a&&"defaultValue"in k||"checked"==a&&"defaultChecked"in k)continue;j$1(u,a,null,d,o);}for(a in k)d=k[a],"children"==a?y=d:"dangerouslySetInnerHTML"==a?h=d:"value"==a?_=d:"checked"==a?m=d:c&&"function"!=typeof d||b[a]===d||j$1(u,a,d,b[a],o);if(h)c||v&&(h.__html==v.__html||h.__html==u.innerHTML)||(u.innerHTML=h.__html),t.__k=[];else if(v&&(u.innerHTML=""),I("template"==t.type?u.content:u,w$1(y)?y:[y],t,i,r,"foreignObject"==x?"http://www.w3.org/1999/xhtml":o,e,f,e?e[0]:i.__k&&S(i,0),c,s),null!=e)for(a=e.length;a--;)g(e[a]);c||(a="value","progress"==x&&null==_?u.removeAttribute("value"):null!=_&&(_!==u[a]||"progress"==x&&!_||"option"==x&&_!=b[a])&&j$1(u,a,_,b[a],o),a="checked",null!=m&&m!=u[a]&&j$1(u,a,m,b[a],o));}return u}function q$1(n,u,t){try{if("function"==typeof n){var i="function"==typeof n.__u;i&&n.__u(),i&&null==u||(n.__u=n(u));}else n.current=u;}catch(n){l$1.__e(n,t);}}function B$1(n,u,t){var i,r;if(l$1.unmount&&l$1.unmount(n),(i=n.ref)&&(i.current&&i.current!=n.__e||q$1(i,null,u)),null!=(i=n.__c)){if(i.componentWillUnmount)try{i.componentWillUnmount();}catch(n){l$1.__e(n,u);}i.base=i.__P=null;}if(i=n.__k)for(r=0;r<i.length;r++)i[r]&&B$1(i[r],u,t||"function"!=typeof n.type);t||g(n.__e),n.__c=n.__=n.__e=void 0;}function D$1(n,l,u){return this.constructor(n,u)}function E(u,t,i){var r,o,e,f;t==document&&(t=document.documentElement),l$1.__&&l$1.__(u,t),o=(r="function"=="undefined")?null:t.__k,e=[],f=[],O(t,u=(t).__k=_$1(k$1,null,[u]),o||p$1,p$1,t.namespaceURI,o?null:t.firstChild?n.call(t.childNodes):null,e,o?o.__e:t.firstChild,r,f),z$1(e,u,f);}function K(n){function l(n){var u,t;return this.getChildContext||(u=new Set,(t={})[l.__c]=this,this.getChildContext=function(){return t},this.componentWillUnmount=function(){u=null;},this.shouldComponentUpdate=function(n){this.props.value!=n.value&&u.forEach(function(n){n.__e=true,M(n);});},this.sub=function(n){u.add(n);var l=n.componentWillUnmount;n.componentWillUnmount=function(){u&&u.delete(n),l&&l.call(n);};}),n.children}return l.__c="__cC"+h$1++,l.__=n,l.Provider=l.__l=(l.Consumer=function(n,l){return n.children(l)}).contextType=l,l}n=v$1.slice,l$1={__e:function(n,l,u,t){for(var i,r,o;l=l.__;)if((i=l.__c)&&!i.__)try{if((r=i.constructor)&&null!=r.getDerivedStateFromError&&(i.setState(r.getDerivedStateFromError(n)),o=i.__d),null!=i.componentDidCatch&&(i.componentDidCatch(n,t||{}),o=i.__d),o)return i.__E=i}catch(l){n=l;}throw n}},u$2=0,x$1.prototype.setState=function(n,l){var u;u=null!=this.__s&&this.__s!=this.state?this.__s:this.__s=d$1({},this.state),"function"==typeof n&&(n=n(d$1({},u),this.props)),n&&d$1(u,n),null!=n&&this.__v&&(l&&this._sb.push(l),M(this));},x$1.prototype.forceUpdate=function(n){this.__v&&(this.__e=true,n&&this.__h.push(n),M(this));},x$1.prototype.render=k$1,i$1=[],o$1="function"==typeof Promise?Promise.prototype.then.bind(Promise.resolve()):setTimeout,e$1=function(n,l){return n.__v.__b-l.__v.__b},$.__r=0,f$2=/(PointerCapture)$|Capture$/i,c$1=0,s$1=F(false),a$1=F(true),h$1=0;
+  let n,l$1,u$2,i$1,r$1,o$1,e$1,f$2,c$1,s$1,a$1,h$1,p$1={},v$1=[],y$1=/acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord|itera/i,w$1=Array.isArray;function d$1(n,l){for(const u in l)n[u]=l[u];return n}function g(n){n&&n.parentNode&&n.parentNode.removeChild(n);}function _$1(l,u,t){let i,r,o,e={};for(o in u)"key"==o?i=u[o]:"ref"==o?r=u[o]:e[o]=u[o];if(arguments.length>2&&(e.children=arguments.length>3?n.call(arguments,2):t),"function"==typeof l&&null!=l.defaultProps)for(o in l.defaultProps) void 0===e[o]&&(e[o]=l.defaultProps[o]);return m$1(l,e,i,r,null)}function m$1(n,t,i,r,o){const e={type:n,props:t,key:i,ref:r,__k:null,__:null,__b:0,__e:null,__c:null,constructor:void 0,__v:null==o?++u$2:o,__i:-1,__u:0};return null==o&&null!=l$1.vnode&&l$1.vnode(e),e}function k$1(n){return n.children}function x$1(n,l){this.props=n,this.context=l;}function S(n,l){if(null==l)return n.__?S(n.__,n.__i+1):null;for(var u;l<n.__k.length;l++)if(null!=(u=n.__k[l])&&null!=u.__e)return u.__e;return "function"==typeof n.type?S(n):null}function C$1(n){let l,u;if(null!=(n=n.__)&&null!=n.__c){for(n.__e=n.__c.base=null,l=0;l<n.__k.length;l++)if(null!=(u=n.__k[l])&&null!=u.__e){n.__e=n.__c.base=u.__e;break}return C$1(n)}}function M(n){(!n.__d&&(n.__d=true)&&i$1.push(n)&&!$.__r++||r$1!=l$1.debounceRendering)&&((r$1=l$1.debounceRendering)||o$1)($);}function $(){for(var n,u,t,r,o,f,c,s=1;i$1.length;)i$1.length>s&&i$1.sort(e$1),n=i$1.shift(),s=i$1.length,n.__d&&(t=void 0,o=(r=(u=n).__v).__e,f=[],c=[],u.__P&&((t=d$1({},r)).__v=r.__v+1,l$1.vnode&&l$1.vnode(t),O(u.__P,t,r,u.__n,u.__P.namespaceURI,32&r.__u?[o]:null,f,null==o?S(r):o,!!(32&r.__u),c),t.__v=r.__v,t.__.__k[t.__i]=t,z$1(f,t,c),t.__e!=o&&C$1(t)));$.__r=0;}function I(n,l,u,t,i,r,o,e,f,c,s){let a,h,y,w,d,g,_=t&&t.__k||v$1,m=l.length;for(f=P(u,l,_,f,m),a=0;a<m;a++)null!=(y=u.__k[a])&&(h=-1==y.__i?p$1:_[y.__i]||p$1,y.__i=a,g=O(n,y,h,i,r,o,e,f,c,s),w=y.__e,y.ref&&h.ref!=y.ref&&(h.ref&&q$1(h.ref,null,y),s.push(y.ref,y.__c||w,y)),null==d&&null!=w&&(d=w),4&y.__u||h.__k===y.__k?f=A$1(y,f,n):"function"==typeof y.type&&void 0!==g?f=g:w&&(f=w.nextSibling),y.__u&=-7);return u.__e=d,f}function P(n,l,u,t,i){let r,o,e,f,c,s=u.length,a=s,h=0;for(n.__k=new Array(i),r=0;r<i;r++)null!=(o=l[r])&&"boolean"!=typeof o&&"function"!=typeof o?(f=r+h,(o=n.__k[r]="string"==typeof o||"number"==typeof o||"bigint"==typeof o||o.constructor==String?m$1(null,o,null,null,null):w$1(o)?m$1(k$1,{children:o},null,null,null):null==o.constructor&&o.__b>0?m$1(o.type,o.props,o.key,o.ref?o.ref:null,o.__v):o).__=n,o.__b=n.__b+1,e=null,-1!=(c=o.__i=L(o,u,f,a))&&(a--,(e=u[c])&&(e.__u|=2)),null==e||null==e.__v?(-1==c&&(i>s?h--:i<s&&h++),"function"!=typeof o.type&&(o.__u|=4)):c!=f&&(c==f-1?h--:c==f+1?h++:(c>f?h--:h++,o.__u|=4))):n.__k[r]=null;if(a)for(r=0;r<s;r++)null!=(e=u[r])&&0==(2&e.__u)&&(e.__e==t&&(t=S(e)),B$1(e,e));return t}function A$1(n,l,u){let t,i;if("function"==typeof n.type){for(t=n.__k,i=0;t&&i<t.length;i++)t[i]&&(t[i].__=n,l=A$1(t[i],l,u));return l}n.__e!=l&&(l&&n.type&&!u.contains(l)&&(l=S(n)),u.insertBefore(n.__e,l||null),l=n.__e);do{l=l&&l.nextSibling;}while(null!=l&&8==l.nodeType);return l}function L(n,l,u,t){let i,r,o=n.key,e=n.type,f=l[u];if(null===f&&null==n.key||f&&o==f.key&&e==f.type&&0==(2&f.__u))return u;if(t>(null!=f&&0==(2&f.__u)?1:0))for(i=u-1,r=u+1;i>=0||r<l.length;){if(i>=0){if((f=l[i])&&0==(2&f.__u)&&o==f.key&&e==f.type)return i;i--;}if(r<l.length){if((f=l[r])&&0==(2&f.__u)&&o==f.key&&e==f.type)return r;r++;}}return  -1}function T$1(n,l,u){"-"==l[0]?n.setProperty(l,null==u?"":u):n[l]=null==u?"":"number"!=typeof u||y$1.test(l)?u:u+"px";}function j$1(n,l,u,t,i){let r,o;n:if("style"==l)if("string"==typeof u)n.style.cssText=u;else {if("string"==typeof t&&(n.style.cssText=t=""),t)for(l in t)u&&l in u||T$1(n.style,l,"");if(u)for(l in u)t&&u[l]==t[l]||T$1(n.style,l,u[l]);}else if("o"==l[0]&&"n"==l[1])r=l!=(l=l.replace(f$2,"$1")),o=l.toLowerCase(),l=o in n||"onFocusOut"==l||"onFocusIn"==l?o.slice(2):l.slice(2),n.l||(n.l={}),n.l[l+r]=u,u?t?u.u=t.u:(u.u=c$1,n.addEventListener(l,r?a$1:s$1,r)):n.removeEventListener(l,r?a$1:s$1,r);else {if("http://www.w3.org/2000/svg"==i)l=l.replace(/xlink(H|:h)/,"h").replace(/sName$/,"s");else if("width"!=l&&"height"!=l&&"href"!=l&&"list"!=l&&"form"!=l&&"tabIndex"!=l&&"download"!=l&&"rowSpan"!=l&&"colSpan"!=l&&"role"!=l&&"popover"!=l&&l in n)try{n[l]=null==u?"":u;break n}catch(n){}"function"==typeof u||(null==u||false===u&&"-"!=l[4]?n.removeAttribute(l):n.setAttribute(l,"popover"==l&&1==u?"":u));}}function F(n){return function(u){if(this.l){const t=this.l[u.type+n];if(null==u.t)u.t=c$1++;else if(u.t<t.u)return;return t(l$1.event?l$1.event(u):u)}}}function O(n,u,t,i,r,o,e,f,c,s){let a,h,p,v,y,_,m,b,S,C,M,$,P,A,H,L,T,j=u.type;if(null!=u.constructor)return null;128&t.__u&&(c=!!(32&t.__u),o=[f=u.__e=t.__e]),(a=l$1.__b)&&a(u);n:if("function"==typeof j)try{if(b=u.props,S="prototype"in j&&j.prototype.render,C=(a=j.contextType)&&i[a.__c],M=a?C?C.props.value:a.__:i,t.__c?m=(h=u.__c=t.__c).__=h.__E:(S?u.__c=h=new j(b,M):(u.__c=h=new x$1(b,M),h.constructor=j,h.render=D$1),C&&C.sub(h),h.props=b,h.state||(h.state={}),h.context=M,h.__n=i,p=h.__d=!0,h.__h=[],h._sb=[]),S&&null==h.__s&&(h.__s=h.state),S&&null!=j.getDerivedStateFromProps&&(h.__s==h.state&&(h.__s=d$1({},h.__s)),d$1(h.__s,j.getDerivedStateFromProps(b,h.__s))),v=h.props,y=h.state,h.__v=u,p)S&&null==j.getDerivedStateFromProps&&null!=h.componentWillMount&&h.componentWillMount(),S&&null!=h.componentDidMount&&h.__h.push(h.componentDidMount);else {if(S&&null==j.getDerivedStateFromProps&&b!==v&&null!=h.componentWillReceiveProps&&h.componentWillReceiveProps(b,M),!h.__e&&null!=h.shouldComponentUpdate&&!1===h.shouldComponentUpdate(b,h.__s,M)||u.__v==t.__v){for(u.__v!=t.__v&&(h.props=b,h.state=h.__s,h.__d=!1),u.__e=t.__e,u.__k=t.__k,u.__k.some(function(n){n&&(n.__=u);}),$=0;$<h._sb.length;$++)h.__h.push(h._sb[$]);h._sb=[],h.__h.length&&e.push(h);break n}null!=h.componentWillUpdate&&h.componentWillUpdate(b,h.__s,M),S&&null!=h.componentDidUpdate&&h.__h.push(function(){h.componentDidUpdate(v,y,_);});}if(h.context=M,h.props=b,h.__P=n,h.__e=!1,P=l$1.__r,A=0,S){for(h.state=h.__s,h.__d=!1,P&&P(u),a=h.render(h.props,h.state,h.context),H=0;H<h._sb.length;H++)h.__h.push(h._sb[H]);h._sb=[];}else do{h.__d=!1,P&&P(u),a=h.render(h.props,h.state,h.context),h.state=h.__s;}while(h.__d&&++A<25);h.state=h.__s,null!=h.getChildContext&&(i=d$1(d$1({},i),h.getChildContext())),S&&!p&&null!=h.getSnapshotBeforeUpdate&&(_=h.getSnapshotBeforeUpdate(v,y)),L=a,null!=a&&a.type===k$1&&null==a.key&&(L=N(a.props.children)),f=I(n,w$1(L)?L:[L],u,t,i,r,o,e,f,c,s),h.base=u.__e,u.__u&=-161,h.__h.length&&e.push(h),m&&(h.__E=h.__=null);}catch(n){if(u.__v=null,c||null!=o)if(n.then){for(u.__u|=c?160:128;f&&8==f.nodeType&&f.nextSibling;)f=f.nextSibling;o[o.indexOf(f)]=null,u.__e=f;}else for(T=o.length;T--;)g(o[T]);else u.__e=t.__e,u.__k=t.__k;l$1.__e(n,u,t);}else null==o&&u.__v==t.__v?(u.__k=t.__k,u.__e=t.__e):f=u.__e=V(t.__e,u,t,i,r,o,e,c,s);return (a=l$1.diffed)&&a(u),128&u.__u?void 0:f}function z$1(n,u,t){for(let i=0;i<t.length;i++)q$1(t[i],t[++i],t[++i]);l$1.__c&&l$1.__c(u,n),n.some(function(u){try{n=u.__h,u.__h=[],n.some(function(n){n.call(u);});}catch(n){l$1.__e(n,u.__v);}});}function N(n){return "object"!=typeof n||null==n||n.__b&&n.__b>0?n:w$1(n)?n.map(N):d$1({},n)}function V(u,t,i,r,o,e,f,c,s){let a,h,v,y,d,_,m,b=i.props,k=t.props,x=t.type;if("svg"==x?o="http://www.w3.org/2000/svg":"math"==x?o="http://www.w3.org/1998/Math/MathML":o||(o="http://www.w3.org/1999/xhtml"),null!=e)for(a=0;a<e.length;a++)if((d=e[a])&&"setAttribute"in d==!!x&&(x?d.localName==x:3==d.nodeType)){u=d,e[a]=null;break}if(null==u){if(null==x)return document.createTextNode(k);u=document.createElementNS(o,x,k.is&&k),c&&(l$1.__m&&l$1.__m(t,e),c=false),e=null;}if(null==x)b===k||c&&u.data==k||(u.data=k);else {if(e=e&&n.call(u.childNodes),b=i.props||p$1,!c&&null!=e)for(b={},a=0;a<u.attributes.length;a++)b[(d=u.attributes[a]).name]=d.value;for(a in b)if(d=b[a],"children"==a);else if("dangerouslySetInnerHTML"==a)v=d;else if(!(a in k)){if("value"==a&&"defaultValue"in k||"checked"==a&&"defaultChecked"in k)continue;j$1(u,a,null,d,o);}for(a in k)d=k[a],"children"==a?y=d:"dangerouslySetInnerHTML"==a?h=d:"value"==a?_=d:"checked"==a?m=d:c&&"function"!=typeof d||b[a]===d||j$1(u,a,d,b[a],o);if(h)c||v&&(h.__html==v.__html||h.__html==u.innerHTML)||(u.innerHTML=h.__html),t.__k=[];else if(v&&(u.innerHTML=""),I("template"==t.type?u.content:u,w$1(y)?y:[y],t,i,r,"foreignObject"==x?"http://www.w3.org/1999/xhtml":o,e,f,e?e[0]:i.__k&&S(i,0),c,s),null!=e)for(a=e.length;a--;)g(e[a]);c||(a="value","progress"==x&&null==_?u.removeAttribute("value"):null!=_&&(_!==u[a]||"progress"==x&&!_||"option"==x&&_!=b[a])&&j$1(u,a,_,b[a],o),a="checked",null!=m&&m!=u[a]&&j$1(u,a,m,b[a],o));}return u}function q$1(n,u,t){try{if("function"==typeof n){const i="function"==typeof n.__u;i&&n.__u(),i&&null==u||(n.__u=n(u));}else n.current=u;}catch(n){l$1.__e(n,t);}}function B$1(n,u,t){let i,r;if(l$1.unmount&&l$1.unmount(n),(i=n.ref)&&(i.current&&i.current!=n.__e||q$1(i,null,u)),null!=(i=n.__c)){if(i.componentWillUnmount)try{i.componentWillUnmount();}catch(n){l$1.__e(n,u);}i.base=i.__P=null;}if(i=n.__k)for(r=0;r<i.length;r++)i[r]&&B$1(i[r],u,t||"function"!=typeof n.type);t||g(n.__e),n.__c=n.__=n.__e=void 0;}function D$1(n,l,u){return this.constructor(n,u)}function E(u,t,i){let r,o,e,f;t==document&&(t=document.documentElement),l$1.__&&l$1.__(u,t),o=(r="function"=="undefined")?null:t.__k,e=[],f=[],O(t,u=(t).__k=_$1(k$1,null,[u]),o||p$1,p$1,t.namespaceURI,o?null:t.firstChild?n.call(t.childNodes):null,e,o?o.__e:t.firstChild,r,f),z$1(e,u,f);}function K(n){function l(n){let u,t;return this.getChildContext||(u=new Set,(t={})[l.__c]=this,this.getChildContext=function(){return t},this.componentWillUnmount=function(){u=null;},this.shouldComponentUpdate=function(n){this.props.value!=n.value&&u.forEach(function(n){n.__e=true,M(n);});},this.sub=function(n){u.add(n);const l=n.componentWillUnmount;n.componentWillUnmount=function(){u&&u.delete(n),l&&l.call(n);};}),n.children}return l.__c="__cC"+h$1++,l.__=n,l.Provider=l.__l=(l.Consumer=function(n,l){return n.children(l)}).contextType=l,l}n=v$1.slice,l$1={__e:function(n,l,u,t){for(var i,r,o;l=l.__;)if((i=l.__c)&&!i.__)try{if((r=i.constructor)&&null!=r.getDerivedStateFromError&&(i.setState(r.getDerivedStateFromError(n)),o=i.__d),null!=i.componentDidCatch&&(i.componentDidCatch(n,t||{}),o=i.__d),o)return i.__E=i}catch(l){n=l;}throw n}},u$2=0,x$1.prototype.setState=function(n,l){let u;u=null!=this.__s&&this.__s!=this.state?this.__s:this.__s=d$1({},this.state),"function"==typeof n&&(n=n(d$1({},u),this.props)),n&&d$1(u,n),null!=n&&this.__v&&(l&&this._sb.push(l),M(this));},x$1.prototype.forceUpdate=function(n){this.__v&&(this.__e=true,n&&this.__h.push(n),M(this));},x$1.prototype.render=k$1,i$1=[],o$1="function"==typeof Promise?Promise.prototype.then.bind(Promise.resolve()):setTimeout,e$1=function(n,l){return n.__v.__b-l.__v.__b},$.__r=0,f$2=/(PointerCapture)$|Capture$/i,c$1=0,s$1=F(false),a$1=F(true),h$1=0;
 
-  var f$1=0;function u$1(e,t,n,o,i,u){t||(t={});var a,c,p=t;if("ref"in p)for(c in p={},t)"ref"==c?a=t[c]:p[c]=t[c];var l={type:e,props:p,key:n,ref:a,__k:null,__:null,__b:0,__e:null,__c:null,constructor:void 0,__v:--f$1,__i:-1,__u:0,__source:i,__self:u};if("function"==typeof e&&(a=e.defaultProps))for(c in a) void 0===p[c]&&(p[c]=a[c]);return l$1.vnode&&l$1.vnode(l),l}
+  let f$1=0;function u$1(e,t,n,o,i,u){t||(t={});let a,c,p=t;if("ref"in p)for(c in p={},t)"ref"==c?a=t[c]:p[c]=t[c];const l={type:e,props:p,key:n,ref:a,__k:null,__:null,__b:0,__e:null,__c:null,constructor:void 0,__v:--f$1,__i:-1,__u:0,__source:i,__self:u};if("function"==typeof e&&(a=e.defaultProps))for(c in a) void 0===p[c]&&(p[c]=a[c]);return l$1.vnode&&l$1.vnode(l),l}
 
   function count$1(node) {
-    var sum = 0,
+    let sum = 0,
         children = node.children,
         i = children && children.length;
     if (!i) sum = 1;
@@ -27,7 +27,7 @@ var drawChart = (function (exports) {
   }
 
   function node_eachBefore(callback, that) {
-    var node = this, nodes = [node], children, i, index = -1;
+    let node = this, nodes = [node], children, i, index = -1;
     while (node = nodes.pop()) {
       callback.call(that, node, ++index, this);
       if (children = node.children) {
@@ -40,7 +40,7 @@ var drawChart = (function (exports) {
   }
 
   function node_eachAfter(callback, that) {
-    var node = this, nodes = [node], next = [], children, i, n, index = -1;
+    let node = this, nodes = [node], next = [], children, i, n, index = -1;
     while (node = nodes.pop()) {
       next.push(node);
       if (children = node.children) {
@@ -66,7 +66,7 @@ var drawChart = (function (exports) {
 
   function node_sum(value) {
     return this.eachAfter(function(node) {
-      var sum = +value(node.data) || 0,
+      let sum = +value(node.data) || 0,
           children = node.children,
           i = children && children.length;
       while (--i >= 0) sum += children[i].value;
@@ -83,14 +83,14 @@ var drawChart = (function (exports) {
   }
 
   function node_path(end) {
-    var start = this,
+    let start = this,
         ancestor = leastCommonAncestor(start, end),
         nodes = [start];
     while (start !== ancestor) {
       start = start.parent;
       nodes.push(start);
     }
-    var k = nodes.length;
+    const k = nodes.length;
     while (end !== ancestor) {
       nodes.splice(k, 0, end);
       end = end.parent;
@@ -100,7 +100,7 @@ var drawChart = (function (exports) {
 
   function leastCommonAncestor(a, b) {
     if (a === b) return a;
-    var aNodes = a.ancestors(),
+    let aNodes = a.ancestors(),
         bNodes = b.ancestors(),
         c = null;
     a = aNodes.pop();
@@ -114,7 +114,7 @@ var drawChart = (function (exports) {
   }
 
   function node_ancestors() {
-    var node = this, nodes = [node];
+    let node = this, nodes = [node];
     while (node = node.parent) {
       nodes.push(node);
     }
@@ -126,7 +126,7 @@ var drawChart = (function (exports) {
   }
 
   function node_leaves() {
-    var leaves = [];
+    const leaves = [];
     this.eachBefore(function(node) {
       if (!node.children) {
         leaves.push(node);
@@ -136,7 +136,7 @@ var drawChart = (function (exports) {
   }
 
   function node_links() {
-    var root = this, links = [];
+    const root = this, links = [];
     root.each(function(node) {
       if (node !== root) { // Don’t include the root’s parent, if any.
         links.push({source: node.parent, target: node});
@@ -146,7 +146,7 @@ var drawChart = (function (exports) {
   }
 
   function* node_iterator() {
-    var node = this, current, next = [node], children, i, n;
+    let node = this, current, next = [node], children, i, n;
     do {
       current = next.reverse(), next = [];
       while (node = current.pop()) {
@@ -168,7 +168,7 @@ var drawChart = (function (exports) {
       children = objectChildren;
     }
 
-    var root = new Node$1(data),
+    let root = new Node$1(data),
         node,
         nodes = [root],
         child,
@@ -208,7 +208,7 @@ var drawChart = (function (exports) {
   }
 
   function computeHeight(node) {
-    var height = 0;
+    let height = 0;
     do node.height = height;
     while ((node = node.parent) && (node.height < ++height));
   }
@@ -261,7 +261,7 @@ var drawChart = (function (exports) {
   }
 
   function treemapDice(parent, x0, y0, x1, y1) {
-    var nodes = parent.children,
+    let nodes = parent.children,
         node,
         i = -1,
         n = nodes.length,
@@ -274,7 +274,7 @@ var drawChart = (function (exports) {
   }
 
   function treemapSlice(parent, x0, y0, x1, y1) {
-    var nodes = parent.children,
+    let nodes = parent.children,
         node,
         i = -1,
         n = nodes.length,
@@ -286,10 +286,10 @@ var drawChart = (function (exports) {
     }
   }
 
-  var phi = (1 + Math.sqrt(5)) / 2;
+  const phi = (1 + Math.sqrt(5)) / 2;
 
   function squarifyRatio(ratio, parent, x0, y0, x1, y1) {
-    var rows = [],
+    let rows = [],
         nodes = parent.children,
         row,
         nodeValue,
@@ -337,7 +337,7 @@ var drawChart = (function (exports) {
     return rows;
   }
 
-  var squarify = (function custom(ratio) {
+  const squarify = (function custom(ratio) {
 
     function squarify(parent, x0, y0, x1, y1) {
       squarifyRatio(ratio, parent, x0, y0, x1, y1);
@@ -351,7 +351,7 @@ var drawChart = (function (exports) {
   })(phi);
 
   function treemap() {
-    var tile = squarify,
+    let tile = squarify,
         round = false,
         dx = 1,
         dy = 1,
@@ -374,7 +374,7 @@ var drawChart = (function (exports) {
     }
 
     function positionNode(node) {
-      var p = paddingStack[node.depth],
+      let p = paddingStack[node.depth],
           x0 = node.x0 + p,
           y0 = node.y0 + p,
           x1 = node.x1 - p,
@@ -440,7 +440,7 @@ var drawChart = (function (exports) {
     return treemap;
   }
 
-  var treemapResquarify = (function custom(ratio) {
+  const treemapResquarify = (function custom(ratio) {
 
     function resquarify(parent, x0, y0, x1, y1) {
       if ((rows = parent._squarify) && (rows.ratio === ratio)) {
@@ -515,7 +515,7 @@ var drawChart = (function (exports) {
       return availableSizeProperties;
   };
 
-  var t,r,u,i,o=0,f=[],c=l$1,e=c.__b,a=c.__r,v=c.diffed,l=c.__c,m=c.unmount,s=c.__;function p(n,t){c.__h&&c.__h(r,n,o||t),o=0;var u=r.__H||(r.__H={__:[],__h:[]});return n>=u.__.length&&u.__.push({}),u.__[n]}function d(n){return o=1,h(D,n)}function h(n,u,i){var o=p(t++,2);if(o.t=n,!o.__c&&(o.__=[D(void 0,u),function(n){var t=o.__N?o.__N[0]:o.__[0],r=o.t(t,n);t!==r&&(o.__N=[r,o.__[1]],o.__c.setState({}));}],o.__c=r,!r.__f)){var f=function(n,t,r){if(!o.__c.__H)return  true;var u=o.__c.__H.__.filter(function(n){return !!n.__c});if(u.every(function(n){return !n.__N}))return !c||c.call(this,n,t,r);var i=o.__c.props!==n;return u.forEach(function(n){if(n.__N){var t=n.__[0];n.__=n.__N,n.__N=void 0,t!==n.__[0]&&(i=true);}}),c&&c.call(this,n,t,r)||i};r.__f=true;var c=r.shouldComponentUpdate,e=r.componentWillUpdate;r.componentWillUpdate=function(n,t,r){if(this.__e){var u=c;c=void 0,f(n,t,r),c=u;}e&&e.call(this,n,t,r);},r.shouldComponentUpdate=f;}return o.__N||o.__}function y(n,u){var i=p(t++,3);!c.__s&&C(i.__H,u)&&(i.__=n,i.u=u,r.__H.__h.push(i));}function _(n,u){var i=p(t++,4);!c.__s&&C(i.__H,u)&&(i.__=n,i.u=u,r.__h.push(i));}function A(n){return o=5,T(function(){return {current:n}},[])}function T(n,r){var u=p(t++,7);return C(u.__H,r)&&(u.__=n(),u.__H=r,u.__h=n),u.__}function q(n,t){return o=8,T(function(){return n},t)}function x(n){var u=r.context[n.__c],i=p(t++,9);return i.c=n,u?(null==i.__&&(i.__=true,u.sub(r)),u.props.value):n.__}function j(){for(var n;n=f.shift();)if(n.__P&&n.__H)try{n.__H.__h.forEach(z),n.__H.__h.forEach(B),n.__H.__h=[];}catch(t){n.__H.__h=[],c.__e(t,n.__v);}}c.__b=function(n){r=null,e&&e(n);},c.__=function(n,t){n&&t.__k&&t.__k.__m&&(n.__m=t.__k.__m),s&&s(n,t);},c.__r=function(n){a&&a(n),t=0;var i=(r=n.__c).__H;i&&(u===r?(i.__h=[],r.__h=[],i.__.forEach(function(n){n.__N&&(n.__=n.__N),n.u=n.__N=void 0;})):(i.__h.forEach(z),i.__h.forEach(B),i.__h=[],t=0)),u=r;},c.diffed=function(n){v&&v(n);var t=n.__c;t&&t.__H&&(t.__H.__h.length&&(1!==f.push(t)&&i===c.requestAnimationFrame||((i=c.requestAnimationFrame)||w)(j)),t.__H.__.forEach(function(n){n.u&&(n.__H=n.u),n.u=void 0;})),u=r=null;},c.__c=function(n,t){t.some(function(n){try{n.__h.forEach(z),n.__h=n.__h.filter(function(n){return !n.__||B(n)});}catch(r){t.some(function(n){n.__h&&(n.__h=[]);}),t=[],c.__e(r,n.__v);}}),l&&l(n,t);},c.unmount=function(n){m&&m(n);var t,r=n.__c;r&&r.__H&&(r.__H.__.forEach(function(n){try{z(n);}catch(n){t=n;}}),r.__H=void 0,t&&c.__e(t,r.__v));};var k="function"==typeof requestAnimationFrame;function w(n){var t,r=function(){clearTimeout(u),k&&cancelAnimationFrame(t),setTimeout(n);},u=setTimeout(r,35);k&&(t=requestAnimationFrame(r));}function z(n){var t=r,u=n.__c;"function"==typeof u&&(n.__c=void 0,u()),r=t;}function B(n){var t=r;n.__c=n.__(),r=t;}function C(n,t){return !n||n.length!==t.length||t.some(function(t,r){return t!==n[r]})}function D(n,t){return "function"==typeof t?t(n):t}
+  let t,r,u,i,o=0,f=[],c=l$1,e=c.__b,a=c.__r,v=c.diffed,l=c.__c,m=c.unmount,s=c.__;function p(n,t){c.__h&&c.__h(r,n,o||t),o=0;const u=r.__H||(r.__H={__:[],__h:[]});return n>=u.__.length&&u.__.push({}),u.__[n]}function d(n){return o=1,h(D,n)}function h(n,u,i){const o=p(t++,2);if(o.t=n,!o.__c&&(o.__=[D(void 0,u),function(n){const t=o.__N?o.__N[0]:o.__[0],r=o.t(t,n);t!==r&&(o.__N=[r,o.__[1]],o.__c.setState({}));}],o.__c=r,!r.__f)){const f=function(n,t,r){if(!o.__c.__H)return  true;const u=o.__c.__H.__.filter(function(n){return !!n.__c});if(u.every(function(n){return !n.__N}))return !c||c.call(this,n,t,r);let i=o.__c.props!==n;return u.forEach(function(n){if(n.__N){const t=n.__[0];n.__=n.__N,n.__N=void 0,t!==n.__[0]&&(i=true);}}),c&&c.call(this,n,t,r)||i};r.__f=true;var c=r.shouldComponentUpdate,e=r.componentWillUpdate;r.componentWillUpdate=function(n,t,r){if(this.__e){const u=c;c=void 0,f(n,t,r),c=u;}e&&e.call(this,n,t,r);},r.shouldComponentUpdate=f;}return o.__N||o.__}function y(n,u){const i=p(t++,3);!c.__s&&C(i.__H,u)&&(i.__=n,i.u=u,r.__H.__h.push(i));}function _(n,u){const i=p(t++,4);!c.__s&&C(i.__H,u)&&(i.__=n,i.u=u,r.__h.push(i));}function A(n){return o=5,T(function(){return {current:n}},[])}function T(n,r){const u=p(t++,7);return C(u.__H,r)&&(u.__=n(),u.__H=r,u.__h=n),u.__}function q(n,t){return o=8,T(function(){return n},t)}function x(n){const u=r.context[n.__c],i=p(t++,9);return i.c=n,u?(null==i.__&&(i.__=true,u.sub(r)),u.props.value):n.__}function j(){for(var n;n=f.shift();)if(n.__P&&n.__H)try{n.__H.__h.forEach(z),n.__H.__h.forEach(B),n.__H.__h=[];}catch(t){n.__H.__h=[],c.__e(t,n.__v);}}c.__b=function(n){r=null,e&&e(n);},c.__=function(n,t){n&&t.__k&&t.__k.__m&&(n.__m=t.__k.__m),s&&s(n,t);},c.__r=function(n){a&&a(n),t=0;const i=(r=n.__c).__H;i&&(u===r?(i.__h=[],r.__h=[],i.__.forEach(function(n){n.__N&&(n.__=n.__N),n.u=n.__N=void 0;})):(i.__h.forEach(z),i.__h.forEach(B),i.__h=[],t=0)),u=r;},c.diffed=function(n){v&&v(n);const t=n.__c;t&&t.__H&&(t.__H.__h.length&&(1!==f.push(t)&&i===c.requestAnimationFrame||((i=c.requestAnimationFrame)||w)(j)),t.__H.__.forEach(function(n){n.u&&(n.__H=n.u),n.u=void 0;})),u=r=null;},c.__c=function(n,t){t.some(function(n){try{n.__h.forEach(z),n.__h=n.__h.filter(function(n){return !n.__||B(n)});}catch(r){t.some(function(n){n.__h&&(n.__h=[]);}),t=[],c.__e(r,n.__v);}}),l&&l(n,t);},c.unmount=function(n){m&&m(n);let t,r=n.__c;r&&r.__H&&(r.__H.__.forEach(function(n){try{z(n);}catch(n){t=n;}}),r.__H=void 0,t&&c.__e(t,r.__v));};const k="function"==typeof requestAnimationFrame;function w(n){var t,r=function(){clearTimeout(u),k&&cancelAnimationFrame(t),setTimeout(n);},u=setTimeout(r,35);k&&(t=requestAnimationFrame(r));}function z(n){const t=r,u=n.__c;"function"==typeof u&&(n.__c=void 0,u()),r=t;}function B(n){const t=r;n.__c=n.__(),r=t;}function C(n,t){return !n||n.length!==t.length||t.some(function(t,r){return t!==n[r]})}function D(n,t){return "function"==typeof t?t(n):t}
 
   const PLACEHOLDER = "*/**/file.js";
   const SideBar = ({ availableSizeProperties, sizeProperty, setSizeProperty, onExcludeChange, onIncludeChange, }) => {
@@ -547,10 +547,10 @@ var drawChart = (function (exports) {
   	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
   }
 
-  var utils = {};
+  const utils = {};
 
-  var constants$1;
-  var hasRequiredConstants;
+  let constants$1;
+  let hasRequiredConstants;
 
   function requireConstants () {
   	if (hasRequiredConstants) return constants$1;
@@ -738,7 +738,7 @@ var drawChart = (function (exports) {
 
   /*global navigator*/
 
-  var hasRequiredUtils;
+  let hasRequiredUtils;
 
   function requireUtils () {
   	if (hasRequiredUtils) return utils;
@@ -818,8 +818,8 @@ var drawChart = (function (exports) {
   	return utils;
   }
 
-  var scan_1;
-  var hasRequiredScan;
+  let scan_1;
+  let hasRequiredScan;
 
   function requireScan () {
   	if (hasRequiredScan) return scan_1;
@@ -1217,8 +1217,8 @@ var drawChart = (function (exports) {
   	return scan_1;
   }
 
-  var parse_1;
-  var hasRequiredParse;
+  let parse_1;
+  let hasRequiredParse;
 
   function requireParse () {
   	if (hasRequiredParse) return parse_1;
@@ -2310,8 +2310,8 @@ var drawChart = (function (exports) {
   	return parse_1;
   }
 
-  var picomatch_1$1;
-  var hasRequiredPicomatch$1;
+  let picomatch_1$1;
+  let hasRequiredPicomatch$1;
 
   function requirePicomatch$1 () {
   	if (hasRequiredPicomatch$1) return picomatch_1$1;
@@ -2659,8 +2659,8 @@ var drawChart = (function (exports) {
   	return picomatch_1$1;
   }
 
-  var picomatch_1;
-  var hasRequiredPicomatch;
+  let picomatch_1;
+  let hasRequiredPicomatch;
 
   function requirePicomatch () {
   	if (hasRequiredPicomatch) return picomatch_1;
@@ -2684,8 +2684,8 @@ var drawChart = (function (exports) {
   	return picomatch_1;
   }
 
-  var picomatchExports = /*@__PURE__*/ requirePicomatch();
-  var pm = /*@__PURE__*/getDefaultExportFromCjs(picomatchExports);
+  const picomatchExports = /*@__PURE__*/ requirePicomatch();
+  const pm = /*@__PURE__*/getDefaultExportFromCjs(picomatchExports);
 
   function isArray(arg) {
       return Array.isArray(arg);
@@ -3050,7 +3050,7 @@ var drawChart = (function (exports) {
               event.stopPropagation();
               onMouseOver(node);
           }, children: [u$1("rect", { fill: backgroundColor, rx: 2, ry: 2, width: x1 - x0, height: y1 - y0, stroke: selected ? "#fff" : undefined, "stroke-width": selected ? 2 : undefined }), u$1("text", Object.assign({ ref: textRef, fill: fontColor, onClick: (event) => {
-                      var _a;
+                      let _a;
                       if (((_a = window.getSelection()) === null || _a === void 0 ? void 0 : _a.toString()) !== "") {
                           event.stopPropagation();
                       }
@@ -3078,7 +3078,7 @@ var drawChart = (function (exports) {
           }) }));
   };
 
-  var bytes = {exports: {}};
+  const bytes = {exports: {}};
 
   /*!
    * bytes
@@ -3087,7 +3087,7 @@ var drawChart = (function (exports) {
    * MIT Licensed
    */
 
-  var hasRequiredBytes;
+  let hasRequiredBytes;
 
   function requireBytes () {
   	if (hasRequiredBytes) return bytes.exports;
@@ -3107,11 +3107,11 @@ var drawChart = (function (exports) {
   	 * @private
   	 */
 
-  	var formatThousandsRegExp = /\B(?=(\d{3})+(?!\d))/g;
+  	const formatThousandsRegExp = /\B(?=(\d{3})+(?!\d))/g;
 
-  	var formatDecimalsRegExp = /(?:\.0*|(\.[^0]+)0+)$/;
+  	const formatDecimalsRegExp = /(?:\.0*|(\.[^0]+)0+)$/;
 
-  	var map = {
+  	const map = {
   	  b:  1,
   	  kb: 1 << 10,
   	  mb: 1 << 20,
@@ -3120,7 +3120,7 @@ var drawChart = (function (exports) {
   	  pb: Math.pow(1024, 5),
   	};
 
-  	var parseRegExp = /^((-|\+)?(\d+(?:\.\d+)?)) *(kb|mb|gb|tb|pb)$/i;
+  	const parseRegExp = /^((-|\+)?(\d+(?:\.\d+)?)) *(kb|mb|gb|tb|pb)$/i;
 
   	/**
   	 * Convert the given value in bytes into a string or parse to string to an integer in bytes.
@@ -3172,12 +3172,12 @@ var drawChart = (function (exports) {
   	    return null;
   	  }
 
-  	  var mag = Math.abs(value);
-  	  var thousandsSeparator = (options && options.thousandsSeparator) || '';
-  	  var unitSeparator = (options && options.unitSeparator) || '';
-  	  var decimalPlaces = (options && options.decimalPlaces !== undefined) ? options.decimalPlaces : 2;
-  	  var fixedDecimals = Boolean(options && options.fixedDecimals);
-  	  var unit = (options && options.unit) || '';
+  	  const mag = Math.abs(value);
+  	  const thousandsSeparator = (options && options.thousandsSeparator) || '';
+  	  const unitSeparator = (options && options.unitSeparator) || '';
+  	  const decimalPlaces = (options && options.decimalPlaces !== undefined) ? options.decimalPlaces : 2;
+  	  const fixedDecimals = Boolean(options && options.fixedDecimals);
+  	  let unit = (options && options.unit) || '';
 
   	  if (!unit || !map[unit.toLowerCase()]) {
   	    if (mag >= map.pb) {
@@ -3195,8 +3195,8 @@ var drawChart = (function (exports) {
   	    }
   	  }
 
-  	  var val = value / map[unit.toLowerCase()];
-  	  var str = val.toFixed(decimalPlaces);
+  	  const val = value / map[unit.toLowerCase()];
+  	  let str = val.toFixed(decimalPlaces);
 
   	  if (!fixedDecimals) {
   	    str = str.replace(formatDecimalsRegExp, '$1');
@@ -3234,9 +3234,9 @@ var drawChart = (function (exports) {
   	  }
 
   	  // Test if the string passed is valid
-  	  var results = parseRegExp.exec(val);
-  	  var floatValue;
-  	  var unit = 'b';
+  	  const results = parseRegExp.exec(val);
+  	  let floatValue;
+  	  let unit = 'b';
 
   	  if (!results) {
   	    // Nothing could be extracted from the given string
@@ -3257,7 +3257,7 @@ var drawChart = (function (exports) {
   	return bytes.exports;
   }
 
-  var bytesExports = requireBytes();
+  const bytesExports = requireBytes();
 
   const Tooltip_marginX = 10;
   const Tooltip_marginY = 30;
@@ -3386,7 +3386,7 @@ var drawChart = (function (exports) {
       const root = T(() => {
           const rootWithSizesAndSorted = rawHierarchy
               .sum((node) => {
-              var _a;
+              let _a;
               if (isModuleTree(node))
                   return 0;
               const meta = data.nodeMetas[data.nodeParts[node.uid].metaUid];
@@ -3445,17 +3445,17 @@ var drawChart = (function (exports) {
   }
 
   function extend(parent, definition) {
-    var prototype = Object.create(parent.prototype);
-    for (var key in definition) prototype[key] = definition[key];
+    const prototype = Object.create(parent.prototype);
+    for (const key in definition) prototype[key] = definition[key];
     return prototype;
   }
 
   function Color() {}
 
-  var darker = 0.7;
-  var brighter = 1 / darker;
+  const darker = 0.7;
+  const brighter = 1 / darker;
 
-  var reI = "\\s*([+-]?\\d+)\\s*",
+  const reI = "\\s*([+-]?\\d+)\\s*",
       reN = "\\s*([+-]?(?:\\d*\\.)?\\d+(?:[eE][+-]?\\d+)?)\\s*",
       reP = "\\s*([+-]?(?:\\d*\\.)?\\d+(?:[eE][+-]?\\d+)?)%\\s*",
       reHex = /^#([0-9a-f]{3,8})$/,
@@ -3466,7 +3466,7 @@ var drawChart = (function (exports) {
       reHslPercent = new RegExp(`^hsl\\(${reN},${reP},${reP}\\)$`),
       reHslaPercent = new RegExp(`^hsla\\(${reN},${reP},${reP},${reN}\\)$`);
 
-  var named = {
+  const named = {
     aliceblue: 0xf0f8ff,
     antiquewhite: 0xfaebd7,
     aqua: 0x00ffff,
@@ -3649,7 +3649,7 @@ var drawChart = (function (exports) {
   }
 
   function color(format) {
-    var m, l;
+    let m, l;
     format = (format + "").trim().toLowerCase();
     return (m = reHex.exec(format)) ? (l = m[1].length, m = parseInt(m[1], 16), l === 6 ? rgbn(m) // #ff0000
         : l === 3 ? new Rgb((m >> 8 & 0xf) | (m >> 4 & 0xf0), (m >> 4 & 0xf) | (m & 0xf0), ((m & 0xf) << 4) | (m & 0xf), 1) // #f00
@@ -3761,7 +3761,7 @@ var drawChart = (function (exports) {
     if (!o) return new Hsl;
     if (o instanceof Hsl) return o;
     o = o.rgb();
-    var r = o.r / 255,
+    let r = o.r / 255,
         g = o.g / 255,
         b = o.b / 255,
         min = Math.min(r, g, b),
@@ -3802,7 +3802,7 @@ var drawChart = (function (exports) {
       return new Hsl(this.h, this.s, this.l * k, this.opacity);
     },
     rgb() {
-      var h = this.h % 360 + (this.h < 0) * 360,
+      const h = this.h % 360 + (this.h < 0) * 360,
           s = isNaN(h) || isNaN(this.s) ? 0 : this.s,
           l = this.l,
           m2 = l + (l < 0.5 ? l : 1 - l) * s,
@@ -3845,7 +3845,7 @@ var drawChart = (function (exports) {
         : m1) * 255;
   }
 
-  var constant = x => () => x;
+  const constant = x => () => x;
 
   function linear$1(a, d) {
     return function(t) {
@@ -3866,15 +3866,15 @@ var drawChart = (function (exports) {
   }
 
   function nogamma(a, b) {
-    var d = b - a;
+    const d = b - a;
     return d ? linear$1(a, d) : constant(isNaN(a) ? b : a);
   }
 
-  var rgb = (function rgbGamma(y) {
-    var color = gamma(y);
+  const rgb = (function rgbGamma(y) {
+    const color = gamma(y);
 
     function rgb(start, end) {
-      var r = color((start = rgb$1(start)).r, (end = rgb$1(end)).r),
+      const r = color((start = rgb$1(start)).r, (end = rgb$1(end)).r),
           g = color(start.g, end.g),
           b = color(start.b, end.b),
           opacity = nogamma(start.opacity, end.opacity);
@@ -3894,7 +3894,7 @@ var drawChart = (function (exports) {
 
   function numberArray(a, b) {
     if (!b) b = [];
-    var n = a ? Math.min(b.length, a.length) : 0,
+    let n = a ? Math.min(b.length, a.length) : 0,
         c = b.slice(),
         i;
     return function(t) {
@@ -3908,7 +3908,7 @@ var drawChart = (function (exports) {
   }
 
   function genericArray(a, b) {
-    var nb = b ? b.length : 0,
+    let nb = b ? b.length : 0,
         na = a ? Math.min(nb, a.length) : 0,
         x = new Array(na),
         c = new Array(nb),
@@ -3924,7 +3924,7 @@ var drawChart = (function (exports) {
   }
 
   function date(a, b) {
-    var d = new Date;
+    const d = new Date;
     return a = +a, b = +b, function(t) {
       return d.setTime(a * (1 - t) + b * t), d;
     };
@@ -3937,7 +3937,7 @@ var drawChart = (function (exports) {
   }
 
   function object(a, b) {
-    var i = {},
+    let i = {},
         c = {},
         k;
 
@@ -3958,7 +3958,7 @@ var drawChart = (function (exports) {
     };
   }
 
-  var reA = /[-+]?(?:\d+\.?\d*|\.?\d+)(?:[eE][-+]?\d+)?/g,
+  const reA = /[-+]?(?:\d+\.?\d*|\.?\d+)(?:[eE][-+]?\d+)?/g,
       reB = new RegExp(reA.source, "g");
 
   function zero(b) {
@@ -3974,7 +3974,7 @@ var drawChart = (function (exports) {
   }
 
   function string(a, b) {
-    var bi = reA.lastIndex = reB.lastIndex = 0, // scan index for next number in b
+    let bi = reA.lastIndex = reB.lastIndex = 0, // scan index for next number in b
         am, // current match in a
         bm, // current match in b
         bs, // string preceding current number in b, if any
@@ -4022,7 +4022,7 @@ var drawChart = (function (exports) {
   }
 
   function interpolate(a, b) {
-    var t = typeof b, c;
+    let t = typeof b, c;
     return b == null || t === "boolean" ? constant(b)
         : (t === "number" ? interpolateNumber
         : t === "string" ? ((c = color(b)) ? (b = c, rgb) : string)
@@ -4050,7 +4050,7 @@ var drawChart = (function (exports) {
     return +x;
   }
 
-  var unit = [0, 1];
+  const unit = [0, 1];
 
   function identity$1(x) {
     return x;
@@ -4063,7 +4063,7 @@ var drawChart = (function (exports) {
   }
 
   function clamper(a, b) {
-    var t;
+    let t;
     if (a > b) t = a, a = b, b = t;
     return function(x) { return Math.max(a, Math.min(b, x)); };
   }
@@ -4071,14 +4071,14 @@ var drawChart = (function (exports) {
   // normalize(a, b)(x) takes a domain value x in [a,b] and returns the corresponding parameter t in [0,1].
   // interpolate(a, b)(t) takes a parameter t in [0,1] and returns the corresponding range value x in [a,b].
   function bimap(domain, range, interpolate) {
-    var d0 = domain[0], d1 = domain[1], r0 = range[0], r1 = range[1];
+    let d0 = domain[0], d1 = domain[1], r0 = range[0], r1 = range[1];
     if (d1 < d0) d0 = normalize(d1, d0), r0 = interpolate(r1, r0);
     else d0 = normalize(d0, d1), r0 = interpolate(r0, r1);
     return function(x) { return r0(d0(x)); };
   }
 
   function polymap(domain, range, interpolate) {
-    var j = Math.min(domain.length, range.length) - 1,
+    let j = Math.min(domain.length, range.length) - 1,
         d = new Array(j),
         r = new Array(j),
         i = -1;
@@ -4095,7 +4095,7 @@ var drawChart = (function (exports) {
     }
 
     return function(x) {
-      var i = bisectRight(domain, x, 1, j) - 1;
+      const i = bisectRight(domain, x, 1, j) - 1;
       return r[i](d[i](x));
     };
   }
@@ -4110,7 +4110,7 @@ var drawChart = (function (exports) {
   }
 
   function transformer$1() {
-    var domain = unit,
+    let domain = unit,
         range = unit,
         interpolate$1 = interpolate,
         transform,
@@ -4122,7 +4122,7 @@ var drawChart = (function (exports) {
         input;
 
     function rescale() {
-      var n = Math.min(domain.length, range.length);
+      const n = Math.min(domain.length, range.length);
       if (clamp !== identity$1) clamp = clamper(domain[0], domain[n - 1]);
       piecewise = n > 2 ? polymap : bimap;
       output = input = null;
@@ -4182,7 +4182,7 @@ var drawChart = (function (exports) {
   // For example, formatDecimalParts(1.23) returns ["123", 0].
   function formatDecimalParts(x, p) {
     if ((i = (x = p ? x.toExponential(p - 1) : x.toExponential()).indexOf("e")) < 0) return null; // NaN, ±Infinity
-    var i, coefficient = x.slice(0, i);
+    let i, coefficient = x.slice(0, i);
 
     // The string returned by toExponential either has the form \d\.\d+e[-+]\d+
     // (e.g., 1.2e+3) or the form \de[-+]\d+ (e.g., 1e+3).
@@ -4198,7 +4198,7 @@ var drawChart = (function (exports) {
 
   function formatGroup(grouping, thousands) {
     return function(value, width) {
-      var i = value.length,
+      let i = value.length,
           t = [],
           j = 0,
           g = grouping[0],
@@ -4224,11 +4224,11 @@ var drawChart = (function (exports) {
   }
 
   // [[fill]align][sign][symbol][0][width][,][.precision][~][type]
-  var re = /^(?:(.)?([<>=^]))?([+\-( ])?([$#])?(0)?(\d+)?(,)?(\.\d+)?(~)?([a-z%])?$/i;
+  const re = /^(?:(.)?([<>=^]))?([+\-( ])?([$#])?(0)?(\d+)?(,)?(\.\d+)?(~)?([a-z%])?$/i;
 
   function formatSpecifier(specifier) {
     if (!(match = re.exec(specifier))) throw new Error("invalid format: " + specifier);
-    var match;
+    let match;
     return new FormatSpecifier({
       fill: match[1],
       align: match[2],
@@ -4283,12 +4283,12 @@ var drawChart = (function (exports) {
     return i0 > 0 ? s.slice(0, i0) + s.slice(i1 + 1) : s;
   }
 
-  var prefixExponent;
+  let prefixExponent;
 
   function formatPrefixAuto(x, p) {
-    var d = formatDecimalParts(x, p);
+    const d = formatDecimalParts(x, p);
     if (!d) return x + "";
-    var coefficient = d[0],
+    const coefficient = d[0],
         exponent = d[1],
         i = exponent - (prefixExponent = Math.max(-8, Math.min(8, Math.floor(exponent / 3))) * 3) + 1,
         n = coefficient.length;
@@ -4299,16 +4299,16 @@ var drawChart = (function (exports) {
   }
 
   function formatRounded(x, p) {
-    var d = formatDecimalParts(x, p);
+    const d = formatDecimalParts(x, p);
     if (!d) return x + "";
-    var coefficient = d[0],
+    const coefficient = d[0],
         exponent = d[1];
     return exponent < 0 ? "0." + new Array(-exponent).join("0") + coefficient
         : coefficient.length > exponent + 1 ? coefficient.slice(0, exponent + 1) + "." + coefficient.slice(exponent + 1)
         : coefficient + new Array(exponent - coefficient.length + 2).join("0");
   }
 
-  var formatTypes = {
+  const formatTypes = {
     "%": (x, p) => (x * 100).toFixed(p),
     "b": (x) => Math.round(x).toString(2),
     "c": (x) => x + "",
@@ -4328,11 +4328,11 @@ var drawChart = (function (exports) {
     return x;
   }
 
-  var map = Array.prototype.map,
+  const map = Array.prototype.map,
       prefixes = ["y","z","a","f","p","n","µ","m","","k","M","G","T","P","E","Z","Y"];
 
   function formatLocale(locale) {
-    var group = locale.grouping === undefined || locale.thousands === undefined ? identity : formatGroup(map.call(locale.grouping, Number), locale.thousands + ""),
+    const group = locale.grouping === undefined || locale.thousands === undefined ? identity : formatGroup(map.call(locale.grouping, Number), locale.thousands + ""),
         currencyPrefix = locale.currency === undefined ? "" : locale.currency[0] + "",
         currencySuffix = locale.currency === undefined ? "" : locale.currency[1] + "",
         decimal = locale.decimal === undefined ? "." : locale.decimal + "",
@@ -4344,7 +4344,7 @@ var drawChart = (function (exports) {
     function newFormat(specifier) {
       specifier = formatSpecifier(specifier);
 
-      var fill = specifier.fill,
+      let fill = specifier.fill,
           align = specifier.align,
           sign = specifier.sign,
           symbol = specifier.symbol,
@@ -4366,13 +4366,13 @@ var drawChart = (function (exports) {
 
       // Compute the prefix and suffix.
       // For SI-prefix, the suffix is lazily computed.
-      var prefix = symbol === "$" ? currencyPrefix : symbol === "#" && /[boxX]/.test(type) ? "0" + type.toLowerCase() : "",
+      const prefix = symbol === "$" ? currencyPrefix : symbol === "#" && /[boxX]/.test(type) ? "0" + type.toLowerCase() : "",
           suffix = symbol === "$" ? currencySuffix : /[%p]/.test(type) ? percent : "";
 
       // What format function should we use?
       // Is this an integer type?
       // Can this type generate exponential notation?
-      var formatType = formatTypes[type],
+      const formatType = formatTypes[type],
           maybeSuffix = /[defgprs%]/.test(type);
 
       // Set the default precision if not specified,
@@ -4384,7 +4384,7 @@ var drawChart = (function (exports) {
           : Math.max(0, Math.min(20, precision));
 
       function format(value) {
-        var valuePrefix = prefix,
+        let valuePrefix = prefix,
             valueSuffix = suffix,
             i, n, c;
 
@@ -4395,7 +4395,7 @@ var drawChart = (function (exports) {
           value = +value;
 
           // Determine the sign. -0 is not less than 0, but 1 / -0 is!
-          var valueNegative = value < 0 || 1 / value < 0;
+          let valueNegative = value < 0 || 1 / value < 0;
 
           // Perform the initial formatting.
           value = isNaN(value) ? nan : formatType(Math.abs(value), precision);
@@ -4428,7 +4428,7 @@ var drawChart = (function (exports) {
         if (comma && !zero) value = group(value, Infinity);
 
         // Compute the padding.
-        var length = valuePrefix.length + value.length + valueSuffix.length,
+        let length = valuePrefix.length + value.length + valueSuffix.length,
             padding = length < width ? new Array(width - length + 1).join(fill) : "";
 
         // If the fill character is "0", grouping is applied after padding.
@@ -4453,7 +4453,7 @@ var drawChart = (function (exports) {
     }
 
     function formatPrefix(specifier, value) {
-      var f = newFormat((specifier = formatSpecifier(specifier), specifier.type = "f", specifier)),
+      const f = newFormat((specifier = formatSpecifier(specifier), specifier.type = "f", specifier)),
           e = Math.max(-8, Math.min(8, Math.floor(exponent(value) / 3))) * 3,
           k = Math.pow(10, -e),
           prefix = prefixes[8 + e / 3];
@@ -4468,9 +4468,9 @@ var drawChart = (function (exports) {
     };
   }
 
-  var locale;
-  var format;
-  var formatPrefix;
+  let locale;
+  let format;
+  let formatPrefix;
 
   defaultLocale({
     thousands: ",",
@@ -4499,12 +4499,12 @@ var drawChart = (function (exports) {
   }
 
   function tickFormat(start, stop, count, specifier) {
-    var step = tickStep(start, stop, count),
+    let step = tickStep(start, stop, count),
         precision;
     specifier = formatSpecifier(specifier == null ? ",f" : specifier);
     switch (specifier.type) {
       case "s": {
-        var value = Math.max(Math.abs(start), Math.abs(stop));
+        const value = Math.max(Math.abs(start), Math.abs(stop));
         if (specifier.precision == null && !isNaN(precision = precisionPrefix(step, value))) specifier.precision = precision;
         return formatPrefix(specifier, value);
       }
@@ -4526,29 +4526,29 @@ var drawChart = (function (exports) {
   }
 
   function linearish(scale) {
-    var domain = scale.domain;
+    const domain = scale.domain;
 
     scale.ticks = function(count) {
-      var d = domain();
+      const d = domain();
       return ticks(d[0], d[d.length - 1], count == null ? 10 : count);
     };
 
     scale.tickFormat = function(count, specifier) {
-      var d = domain();
+      const d = domain();
       return tickFormat(d[0], d[d.length - 1], count == null ? 10 : count, specifier);
     };
 
     scale.nice = function(count) {
       if (count == null) count = 10;
 
-      var d = domain();
-      var i0 = 0;
-      var i1 = d.length - 1;
-      var start = d[i0];
-      var stop = d[i1];
-      var prestep;
-      var step;
-      var maxIter = 10;
+      const d = domain();
+      let i0 = 0;
+      let i1 = d.length - 1;
+      let start = d[i0];
+      let stop = d[i1];
+      let prestep;
+      let step;
+      let maxIter = 10;
 
       if (stop < start) {
         step = start, start = stop, stop = step;
@@ -4580,7 +4580,7 @@ var drawChart = (function (exports) {
   }
 
   function linear() {
-    var scale = continuous();
+    const scale = continuous();
 
     scale.copy = function() {
       return copy$1(scale, linear());
@@ -4592,7 +4592,7 @@ var drawChart = (function (exports) {
   }
 
   function transformer() {
-    var x0 = 0,
+    let x0 = 0,
         x1 = 1,
         t0,
         t1,
@@ -4620,7 +4620,7 @@ var drawChart = (function (exports) {
 
     function range(interpolate) {
       return function(_) {
-        var r0, r1;
+        let r0, r1;
         return arguments.length ? ([r0, r1] = _, interpolator = interpolate(r0, r1), scale) : [interpolator(0), interpolator(1)];
       };
     }
@@ -4648,7 +4648,7 @@ var drawChart = (function (exports) {
   }
 
   function sequential() {
-    var scale = linearish(transformer()(identity$1));
+    const scale = linearish(transformer()(identity$1));
 
     scale.copy = function() {
       return copy(scale, sequential());
@@ -4728,10 +4728,10 @@ var drawChart = (function (exports) {
       console.timeEnd("rawHierarchy create");
       const nodeSizesCache = new Map();
       const nodeIdsCache = new Map();
-      const getModuleSize = (node, sizeKey) => { var _a, _b; return (_b = (_a = nodeSizesCache.get(node)) === null || _a === void 0 ? void 0 : _a[sizeKey]) !== null && _b !== void 0 ? _b : 0; };
+      const getModuleSize = (node, sizeKey) => { let _a, _b; return (_b = (_a = nodeSizesCache.get(node)) === null || _a === void 0 ? void 0 : _a[sizeKey]) !== null && _b !== void 0 ? _b : 0; };
       console.time("rawHierarchy eachAfter cache");
       rawHierarchy.eachAfter((node) => {
-          var _a;
+          let _a;
           const nodeData = node.data;
           nodeIdsCache.set(nodeData, {
               nodeUid: generateUniqueId("node"),

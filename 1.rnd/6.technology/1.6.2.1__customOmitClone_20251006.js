@@ -1,4 +1,4 @@
-var isPlainObject = require('./isPlainObject');
+const isPlainObject = require('./isPlainObject');
 
 /**
  * Used by `_.omit` to customize its `_.cloneDeep` use to only clone plain

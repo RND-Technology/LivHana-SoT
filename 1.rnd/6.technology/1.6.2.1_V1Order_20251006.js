@@ -1,12 +1,12 @@
 "use strict";
 exports.__esModule = true;
 exports.v1OrderSchema = void 0;
-var schema_1 = require("../schema");
-var address_1 = require("./address");
-var error_1 = require("./error");
-var v1Money_1 = require("./v1Money");
-var v1OrderHistoryEntry_1 = require("./v1OrderHistoryEntry");
-var v1Tender_1 = require("./v1Tender");
+const schema_1 = require("../schema");
+const address_1 = require("./address");
+const error_1 = require("./error");
+const v1Money_1 = require("./v1Money");
+const v1OrderHistoryEntry_1 = require("./v1OrderHistoryEntry");
+const v1Tender_1 = require("./v1Tender");
 exports.v1OrderSchema = (0, schema_1.object)({
     errors: ['errors', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.array)((0, schema_1.lazy)(function () { return error_1.errorSchema; }))))],
     id: ['id', (0, schema_1.optional)((0, schema_1.string)())],

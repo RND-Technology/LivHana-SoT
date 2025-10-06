@@ -1,9 +1,9 @@
-var __defProp = Object.defineProperty;
-var __getOwnPropSymbols = Object.getOwnPropertySymbols;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __propIsEnum = Object.prototype.propertyIsEnumerable;
-var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-var __spreadValues = (a, b) => {
+const __defProp = Object.defineProperty;
+const __getOwnPropSymbols = Object.getOwnPropertySymbols;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __propIsEnum = Object.prototype.propertyIsEnumerable;
+const __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+const __spreadValues = (a, b) => {
   for (var prop in b || (b = {}))
     if (__hasOwnProp.call(b, prop))
       __defNormalProp(a, prop, b[prop]);
@@ -16,12 +16,12 @@ var __spreadValues = (a, b) => {
 };
 
 // src/utils/env.ts
-var NOTHING = Symbol.for("immer-nothing");
-var DRAFTABLE = Symbol.for("immer-draftable");
-var DRAFT_STATE = Symbol.for("immer-state");
+const NOTHING = Symbol.for("immer-nothing");
+const DRAFTABLE = Symbol.for("immer-draftable");
+const DRAFT_STATE = Symbol.for("immer-state");
 
 // src/utils/errors.ts
-var errors = process.env.NODE_ENV !== "production" ? [
+const errors = process.env.NODE_ENV !== "production" ? [
   // All error codes, starting by 0:
   function(plugin) {
     return `The plugin for '${plugin}' has not been loaded into Immer. To enable the plugin, import and call \`enable${plugin}()\` when initializing your application.`;
@@ -64,17 +64,17 @@ function die(error, ...args) {
 }
 
 // src/utils/common.ts
-var getPrototypeOf = Object.getPrototypeOf;
+const getPrototypeOf = Object.getPrototypeOf;
 function isDraft(value) {
   return !!value && !!value[DRAFT_STATE];
 }
 function isDraftable(value) {
-  var _a;
+  let _a;
   if (!value)
     return false;
   return isPlainObject(value) || Array.isArray(value) || !!value[DRAFTABLE] || !!((_a = value.constructor) == null ? void 0 : _a[DRAFTABLE]) || isMap(value) || isSet(value);
 }
-var objectCtorString = Object.prototype.constructor.toString();
+const objectCtorString = Object.prototype.constructor.toString();
 function isPlainObject(value) {
   if (!value || typeof value !== "object")
     return false;
@@ -149,7 +149,7 @@ function shallowCopy(base, strict) {
   if (strict === true || strict === "class_only" && !isPlain) {
     const descriptors = Object.getOwnPropertyDescriptors(base);
     delete descriptors[DRAFT_STATE];
-    let keys = Reflect.ownKeys(descriptors);
+    const keys = Reflect.ownKeys(descriptors);
     for (let i = 0; i < keys.length; i++) {
       const key = keys[i];
       const desc = descriptors[key];
@@ -200,7 +200,7 @@ function isFrozen(obj) {
 }
 
 // src/utils/plugins.ts
-var plugins = {};
+const plugins = {};
 function getPlugin(pluginKey) {
   const plugin = plugins[pluginKey];
   if (!plugin) {
@@ -214,7 +214,7 @@ function loadPlugin(pluginKey, implementation) {
 }
 
 // src/core/scope.ts
-var currentScope;
+let currentScope;
 function getCurrentScope() {
   return currentScope;
 }
@@ -512,7 +512,7 @@ function peek(draft, prop) {
   return source[prop];
 }
 function readPropFromProto(state, source, prop) {
-  var _a;
+  let _a;
   const desc = getDescriptorFromProto(source, prop);
   return desc ? `value` in desc ? desc.value : (
     // This is a very special case, if the prop is a getter defined by the
@@ -550,7 +550,7 @@ function prepareCopy(state) {
 }
 
 // src/core/immerClass.ts
-var Immer2 = class {
+const Immer2 = class {
   constructor(config) {
     this.autoFreeze_ = true;
     this.useStrictShallowCopy_ = false;
@@ -771,7 +771,7 @@ function enablePatches() {
     let { base_, assigned_ } = state;
     let copy_ = state.copy_;
     if (copy_.length < base_.length) {
-      ;
+      
       [base_, copy_] = [copy_, base_];
       [patches, inversePatches] = [inversePatches, patches];
     }
@@ -826,7 +826,7 @@ function enablePatches() {
     });
   }
   function generateSetPatches(state, basePath, patches, inversePatches) {
-    let { base_, copy_ } = state;
+    const { base_, copy_ } = state;
     let i = 0;
     base_.forEach((value) => {
       if (!copy_.has(value)) {
@@ -1215,18 +1215,18 @@ function enableMapSet() {
 }
 
 // src/immer.ts
-var immer = new Immer2();
-var produce = immer.produce;
-var produceWithPatches = /* @__PURE__ */ immer.produceWithPatches.bind(
+const immer = new Immer2();
+const produce = immer.produce;
+const produceWithPatches = /* @__PURE__ */ immer.produceWithPatches.bind(
   immer
 );
-var setAutoFreeze = /* @__PURE__ */ immer.setAutoFreeze.bind(immer);
-var setUseStrictShallowCopy = /* @__PURE__ */ immer.setUseStrictShallowCopy.bind(
+const setAutoFreeze = /* @__PURE__ */ immer.setAutoFreeze.bind(immer);
+const setUseStrictShallowCopy = /* @__PURE__ */ immer.setUseStrictShallowCopy.bind(
   immer
 );
-var applyPatches = /* @__PURE__ */ immer.applyPatches.bind(immer);
-var createDraft = /* @__PURE__ */ immer.createDraft.bind(immer);
-var finishDraft = /* @__PURE__ */ immer.finishDraft.bind(immer);
+const applyPatches = /* @__PURE__ */ immer.applyPatches.bind(immer);
+const createDraft = /* @__PURE__ */ immer.createDraft.bind(immer);
+const finishDraft = /* @__PURE__ */ immer.finishDraft.bind(immer);
 function castDraft(value) {
   return value;
 }

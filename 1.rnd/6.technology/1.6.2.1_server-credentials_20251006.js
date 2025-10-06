@@ -58,7 +58,7 @@ class ServerCredentials {
         return new InsecureServerCredentials();
     }
     static createSsl(rootCerts, keyCertPairs, checkClientCertificate = false) {
-        var _a;
+        let _a;
         if (rootCerts !== null && !Buffer.isBuffer(rootCerts)) {
             throw new TypeError('rootCerts must be null or a Buffer');
         }
@@ -210,7 +210,7 @@ class CertificateProviderServerCredentials extends ServerCredentials {
         this.identityCertificateUpdateListener = this.handleIdentityCertitificateUpdate.bind(this);
     }
     _addWatcher(watcher) {
-        var _a;
+        let _a;
         if (this.getWatcherCount() === 0) {
             (_a = this.caCertificateProvider) === null || _a === void 0 ? void 0 : _a.addCaCertificateListener(this.caCertificateUpdateListener);
             this.identityCertificateProvider.addIdentityCertificateListener(this.identityCertificateUpdateListener);
@@ -218,7 +218,7 @@ class CertificateProviderServerCredentials extends ServerCredentials {
         super._addWatcher(watcher);
     }
     _removeWatcher(watcher) {
-        var _a;
+        let _a;
         super._removeWatcher(watcher);
         if (this.getWatcherCount() === 0) {
             (_a = this.caCertificateProvider) === null || _a === void 0 ? void 0 : _a.removeCaCertificateListener(this.caCertificateUpdateListener);
@@ -237,7 +237,7 @@ class CertificateProviderServerCredentials extends ServerCredentials {
             this.requireClientCertificate === other.requireClientCertificate);
     }
     calculateSecureContextOptions() {
-        var _a;
+        let _a;
         if (this.latestIdentityUpdate === null) {
             return null;
         }

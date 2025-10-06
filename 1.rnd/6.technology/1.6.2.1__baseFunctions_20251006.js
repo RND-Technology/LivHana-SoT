@@ -1,4 +1,4 @@
-var arrayFilter = require('./_arrayFilter'),
+const arrayFilter = require('./_arrayFilter'),
     isFunction = require('./isFunction');
 
 /**

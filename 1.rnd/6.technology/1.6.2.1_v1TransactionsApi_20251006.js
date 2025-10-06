@@ -1,12 +1,12 @@
 "use strict";
 exports.__esModule = true;
 exports.V1TransactionsApi = void 0;
-var tslib_1 = require("tslib");
-var v1Order_1 = require("../models/v1Order");
-var v1UpdateOrderRequest_1 = require("../models/v1UpdateOrderRequest");
-var schema_1 = require("../schema");
-var baseApi_1 = require("./baseApi");
-var V1TransactionsApi = /** @class */ (function (_super) {
+const tslib_1 = require("tslib");
+const v1Order_1 = require("../models/v1Order");
+const v1UpdateOrderRequest_1 = require("../models/v1UpdateOrderRequest");
+const schema_1 = require("../schema");
+const baseApi_1 = require("./baseApi");
+const V1TransactionsApi = /** @class */ (function (_super) {
     tslib_1.__extends(V1TransactionsApi, _super);
     function V1TransactionsApi() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -25,7 +25,7 @@ var V1TransactionsApi = /** @class */ (function (_super) {
      */
     V1TransactionsApi.prototype.v1ListOrders = function (locationId, order, limit, batchToken, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({
@@ -55,7 +55,7 @@ var V1TransactionsApi = /** @class */ (function (_super) {
      */
     V1TransactionsApi.prototype.v1RetrieveOrder = function (locationId, orderId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({
@@ -83,7 +83,7 @@ var V1TransactionsApi = /** @class */ (function (_super) {
      */
     V1TransactionsApi.prototype.v1UpdateOrder = function (locationId, orderId, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('PUT');
                 mapped = req.prepareArgs({
@@ -103,5 +103,5 @@ var V1TransactionsApi = /** @class */ (function (_super) {
     return V1TransactionsApi;
 }(baseApi_1.BaseApi));
 exports.V1TransactionsApi = V1TransactionsApi;
-var templateObject_1, templateObject_2, templateObject_3;
+let templateObject_1, templateObject_2, templateObject_3;
 //# sourceMappingURL=v1TransactionsApi.js.map

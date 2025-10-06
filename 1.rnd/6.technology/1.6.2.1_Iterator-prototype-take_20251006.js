@@ -1,24 +1,24 @@
 'use strict';
 
-var defineProperties = require('define-properties');
-var test = require('tape');
-var callBind = require('call-bind');
-var functionsHaveNames = require('functions-have-names')();
-var hasStrictMode = require('has-strict-mode')();
-var forEach = require('for-each');
-var debug = require('object-inspect');
-var v = require('es-value-fixtures');
-var hasSymbols = require('has-symbols/shams')();
-var iterate = require('iterate-iterator');
+const defineProperties = require('define-properties');
+const test = require('tape');
+const callBind = require('call-bind');
+const functionsHaveNames = require('functions-have-names')();
+const hasStrictMode = require('has-strict-mode')();
+const forEach = require('for-each');
+const debug = require('object-inspect');
+const v = require('es-value-fixtures');
+const hasSymbols = require('has-symbols/shams')();
+const iterate = require('iterate-iterator');
 
-var index = require('../Iterator.prototype.take');
-var impl = require('../Iterator.prototype.take/implementation');
+const index = require('../Iterator.prototype.take');
+const impl = require('../Iterator.prototype.take/implementation');
 
-var fnName = 'take';
+const fnName = 'take';
 
-var isEnumerable = Object.prototype.propertyIsEnumerable;
+const isEnumerable = Object.prototype.propertyIsEnumerable;
 
-var testIterator = require('./helpers/testIterator');
+const testIterator = require('./helpers/testIterator');
 
 module.exports = {
 	tests: function (take, name, t) {
@@ -36,7 +36,7 @@ module.exports = {
 			);
 
 			if (nonIterator != null && typeof nonIterator !== 'string') {
-				var badNext = { next: nonIterator };
+				const badNext = { next: nonIterator };
 				t['throws'](
 					function () { iterate(take(badNext, 1)); },
 					TypeError,
@@ -45,10 +45,10 @@ module.exports = {
 			}
 		});
 
-		var arr = [1, 2, 3];
+		const arr = [1, 2, 3];
 
 		t.test('actual iteration', { skip: !hasSymbols }, function (st) {
-			var iterator = callBind(arr[Symbol.iterator], arr);
+			const iterator = callBind(arr[Symbol.iterator], arr);
 
 			st['throws'](
 				function () { take(iterator(), -3); },

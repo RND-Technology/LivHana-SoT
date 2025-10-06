@@ -7,7 +7,7 @@ import {symlogish} from "./symlog.js";
 import {powish} from "./pow.js";
 
 function transformer() {
-  var x0 = 0,
+  let x0 = 0,
       x1 = 1,
       t0,
       t1,
@@ -35,7 +35,7 @@ function transformer() {
 
   function range(interpolate) {
     return function(_) {
-      var r0, r1;
+      let r0, r1;
       return arguments.length ? ([r0, r1] = _, interpolator = interpolate(r0, r1), scale) : [interpolator(0), interpolator(1)];
     };
   }
@@ -63,7 +63,7 @@ export function copy(source, target) {
 }
 
 export default function sequential() {
-  var scale = linearish(transformer()(identity));
+  const scale = linearish(transformer()(identity));
 
   scale.copy = function() {
     return copy(scale, sequential());
@@ -73,7 +73,7 @@ export default function sequential() {
 }
 
 export function sequentialLog() {
-  var scale = loggish(transformer()).domain([1, 10]);
+  const scale = loggish(transformer()).domain([1, 10]);
 
   scale.copy = function() {
     return copy(scale, sequentialLog()).base(scale.base());
@@ -83,7 +83,7 @@ export function sequentialLog() {
 }
 
 export function sequentialSymlog() {
-  var scale = symlogish(transformer());
+  const scale = symlogish(transformer());
 
   scale.copy = function() {
     return copy(scale, sequentialSymlog()).constant(scale.constant());
@@ -93,7 +93,7 @@ export function sequentialSymlog() {
 }
 
 export function sequentialPow() {
-  var scale = powish(transformer());
+  const scale = powish(transformer());
 
   scale.copy = function() {
     return copy(scale, sequentialPow()).exponent(scale.exponent());

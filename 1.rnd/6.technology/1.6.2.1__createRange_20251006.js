@@ -1,4 +1,4 @@
-var baseRange = require('./_baseRange'),
+const baseRange = require('./_baseRange'),
     isIterateeCall = require('./_isIterateeCall'),
     toFinite = require('./toFinite');
 

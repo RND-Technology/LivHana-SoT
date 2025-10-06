@@ -1,7 +1,7 @@
 function _iterableToArrayLimit(arr, i) {
-  var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"];
+  let _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"];
   if (null != _i) {
-    var _s,
+    let _s,
       _e,
       _x,
       _r,
@@ -52,7 +52,7 @@ function _iterableToArray(iter) {
 function _unsupportedIterableToArray(o, minLen) {
   if (!o) return;
   if (typeof o === "string") return _arrayLikeToArray(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
+  let n = Object.prototype.toString.call(o).slice(8, -1);
   if (n === "Object" && o.constructor) n = o.constructor.name;
   if (n === "Map" || n === "Set") return Array.from(o);
   if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
@@ -69,13 +69,13 @@ function _nonIterableRest() {
   throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
 
-var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
+const commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
 function createCommonjsModule(fn, module) {
 	return module = { exports: {} }, fn(module, module.exports), module.exports;
 }
 
-var estraverse = createCommonjsModule(function (module, exports) {
+const estraverse = createCommonjsModule(function (module, exports) {
   /*
     Copyright (C) 2012-2013 Yusuke Suzuki <utatane.tea@gmail.com>
     Copyright (C) 2012 Ariya Hidayat <ariya.hidayat@gmail.com>
@@ -105,9 +105,9 @@ var estraverse = createCommonjsModule(function (module, exports) {
   /*global exports:true*/
   (function clone(exports) {
 
-    var Syntax, VisitorOption, VisitorKeys, BREAK, SKIP, REMOVE;
+    let Syntax, VisitorOption, VisitorKeys, BREAK, SKIP, REMOVE;
     function deepCopy(obj) {
-      var ret = {},
+      let ret = {},
         key,
         val;
       for (key in obj) {
@@ -127,7 +127,7 @@ var estraverse = createCommonjsModule(function (module, exports) {
     // MIT License
 
     function upperBound(array, func) {
-      var diff, len, i, current;
+      let diff, len, i, current;
       len = array.length;
       i = 0;
       while (len) {
@@ -341,7 +341,7 @@ var estraverse = createCommonjsModule(function (module, exports) {
     // API:
     // return property path array from root to current node
     Controller.prototype.path = function path() {
-      var i, iz, j, jz, result, element;
+      let i, iz, j, jz, result, element;
       function addToPath(result, path) {
         if (Array.isArray(path)) {
           for (j = 0, jz = path.length; j < jz; ++j) {
@@ -370,14 +370,14 @@ var estraverse = createCommonjsModule(function (module, exports) {
     // API:
     // return type of current node
     Controller.prototype.type = function () {
-      var node = this.current();
+      const node = this.current();
       return node.type || this.__current.wrap;
     };
 
     // API:
     // return array of parent elements
     Controller.prototype.parents = function parents() {
-      var i, iz, result;
+      let i, iz, result;
 
       // first node is sentinel
       result = [];
@@ -393,7 +393,7 @@ var estraverse = createCommonjsModule(function (module, exports) {
       return this.__current.node;
     };
     Controller.prototype.__execute = function __execute(callback, element) {
-      var previous, result;
+      let previous, result;
       result = undefined;
       previous = this.__current;
       this.__current = element;
@@ -456,7 +456,7 @@ var estraverse = createCommonjsModule(function (module, exports) {
       return (nodeType === Syntax.ObjectExpression || nodeType === Syntax.ObjectPattern) && 'properties' === key;
     }
     function candidateExistsInLeaveList(leavelist, candidate) {
-      for (var i = leavelist.length - 1; i >= 0; --i) {
+      for (let i = leavelist.length - 1; i >= 0; --i) {
         if (leavelist[i].node === candidate) {
           return true;
         }
@@ -464,7 +464,7 @@ var estraverse = createCommonjsModule(function (module, exports) {
       return false;
     }
     Controller.prototype.traverse = function traverse(root, visitor) {
-      var worklist, leavelist, element, node, nodeType, ret, key, current, current2, candidates, candidate, sentinel;
+      let worklist, leavelist, element, node, nodeType, ret, key, current, current2, candidates, candidate, sentinel;
       this.__initialize(root, visitor);
       sentinel = {};
 
@@ -541,9 +541,9 @@ var estraverse = createCommonjsModule(function (module, exports) {
       }
     };
     Controller.prototype.replace = function replace(root, visitor) {
-      var worklist, leavelist, node, nodeType, target, element, current, current2, candidates, candidate, sentinel, outer, key;
+      let worklist, leavelist, node, nodeType, target, element, current, current2, candidates, candidate, sentinel, outer, key;
       function removeElem(element) {
-        var i, key, nextElem, parent;
+        let i, key, nextElem, parent;
         if (element.ref.remove()) {
           // When the reference is an element of an array.
           key = element.ref.key;
@@ -662,15 +662,15 @@ var estraverse = createCommonjsModule(function (module, exports) {
       return outer.root;
     };
     function traverse(root, visitor) {
-      var controller = new Controller();
+      const controller = new Controller();
       return controller.traverse(root, visitor);
     }
     function replace(root, visitor) {
-      var controller = new Controller();
+      const controller = new Controller();
       return controller.replace(root, visitor);
     }
     function extendCommentRange(comment, tokens) {
-      var target;
+      let target;
       target = upperBound(tokens, function search(token) {
         return token.range[0] > comment.range[0];
       });
@@ -686,7 +686,7 @@ var estraverse = createCommonjsModule(function (module, exports) {
     }
     function attachComments(tree, providedComments, tokens) {
       // At first, we should calculate extended comment ranges.
-      var comments = [],
+      let comments = [],
         comment,
         len,
         i,
@@ -715,7 +715,7 @@ var estraverse = createCommonjsModule(function (module, exports) {
       cursor = 0;
       traverse(tree, {
         enter: function (node) {
-          var comment;
+          let comment;
           while (cursor < comments.length) {
             comment = comments[cursor];
             if (comment.extendedRange[1] > node.range[0]) {
@@ -744,7 +744,7 @@ var estraverse = createCommonjsModule(function (module, exports) {
       cursor = 0;
       traverse(tree, {
         leave: function (node) {
-          var comment;
+          let comment;
           while (cursor < comments.length) {
             comment = comments[cursor];
             if (node.range[1] < comment.extendedRange[0]) {
@@ -787,7 +787,7 @@ var estraverse = createCommonjsModule(function (module, exports) {
   /* vim: set sw=4 ts=4 et tw=80 : */
 });
 
-var parser = createCommonjsModule(function (module) {
+const parser = createCommonjsModule(function (module) {
   /*
    * Generated by PEG.js 0.10.0.
    *
@@ -818,12 +818,12 @@ var parser = createCommonjsModule(function (module) {
     }
     peg$subclass(peg$SyntaxError, Error);
     peg$SyntaxError.buildMessage = function (expected, found) {
-      var DESCRIBE_EXPECTATION_FNS = {
+      const DESCRIBE_EXPECTATION_FNS = {
         literal: function literal(expectation) {
           return "\"" + literalEscape(expectation.text) + "\"";
         },
         "class": function _class(expectation) {
-          var escapedParts = "",
+          let escapedParts = "",
             i;
           for (i = 0; i < expectation.parts.length; i++) {
             escapedParts += expectation.parts[i] instanceof Array ? classEscape(expectation.parts[i][0]) + "-" + classEscape(expectation.parts[i][1]) : classEscape(expectation.parts[i]);
@@ -861,7 +861,7 @@ var parser = createCommonjsModule(function (module) {
         return DESCRIBE_EXPECTATION_FNS[expectation.type](expectation);
       }
       function describeExpected(expected) {
-        var descriptions = new Array(expected.length),
+        let descriptions = new Array(expected.length),
           i,
           j;
         for (i = 0; i < expected.length; i++) {
@@ -893,7 +893,7 @@ var parser = createCommonjsModule(function (module) {
     };
     function peg$parse(input, options) {
       options = options !== void 0 ? options : {};
-      var peg$FAILED = {},
+      let peg$FAILED = {},
         peg$startRuleFunctions = {
           start: peg$parsestart
         },
@@ -961,7 +961,7 @@ var parser = createCommonjsModule(function (module) {
         peg$c22 = "!",
         peg$c23 = peg$literalExpectation("!", false),
         peg$c24 = function peg$c24(subject, as) {
-          var b = as.length === 1 ? as[0] : {
+          const b = as.length === 1 ? as[0] : {
             type: 'compound',
             selectors: as
           };
@@ -1043,7 +1043,7 @@ var parser = createCommonjsModule(function (module) {
         peg$c62 = peg$classExpectation([["0", "9"]], false, false),
         peg$c63 = function peg$c63(a, b) {
           // Can use `a.flat().join('')` once supported
-          var leadingDecimals = a ? [].concat.apply([], a).join('') : '';
+          const leadingDecimals = a ? [].concat.apply([], a).join('') : '';
           return {
             type: 'literal',
             value: parseFloat(leadingDecimals + b.join(''))
@@ -1180,7 +1180,7 @@ var parser = createCommonjsModule(function (module) {
         };
       }
       function peg$computePosDetails(pos) {
-        var details = peg$posDetailsCache[pos],
+        let details = peg$posDetailsCache[pos],
           p;
         if (details) {
           return details;
@@ -1208,7 +1208,7 @@ var parser = createCommonjsModule(function (module) {
         }
       }
       function peg$computeLocation(startPos, endPos) {
-        var startPosDetails = peg$computePosDetails(startPos),
+        const startPosDetails = peg$computePosDetails(startPos),
           endPosDetails = peg$computePosDetails(endPos);
         return {
           start: {
@@ -1237,8 +1237,8 @@ var parser = createCommonjsModule(function (module) {
         return new peg$SyntaxError(peg$SyntaxError.buildMessage(expected, found), expected, found, location);
       }
       function peg$parsestart() {
-        var s0, s1, s2, s3;
-        var key = peg$currPos * 32 + 0,
+        let s0, s1, s2, s3;
+        const key = peg$currPos * 32 + 0,
           cached = peg$resultsCache[key];
         if (cached) {
           peg$currPos = cached.nextPos;
@@ -1280,8 +1280,8 @@ var parser = createCommonjsModule(function (module) {
         return s0;
       }
       function peg$parse_() {
-        var s0, s1;
-        var key = peg$currPos * 32 + 1,
+        let s0, s1;
+        const key = peg$currPos * 32 + 1,
           cached = peg$resultsCache[key];
         if (cached) {
           peg$currPos = cached.nextPos;
@@ -1316,8 +1316,8 @@ var parser = createCommonjsModule(function (module) {
         return s0;
       }
       function peg$parseidentifierName() {
-        var s0, s1, s2;
-        var key = peg$currPos * 32 + 2,
+        let s0, s1, s2;
+        const key = peg$currPos * 32 + 2,
           cached = peg$resultsCache[key];
         if (cached) {
           peg$currPos = cached.nextPos;
@@ -1361,8 +1361,8 @@ var parser = createCommonjsModule(function (module) {
         return s0;
       }
       function peg$parsebinaryOp() {
-        var s0, s1, s2, s3;
-        var key = peg$currPos * 32 + 3,
+        let s0, s1, s2, s3;
+        const key = peg$currPos * 32 + 3,
           cached = peg$resultsCache[key];
         if (cached) {
           peg$currPos = cached.nextPos;
@@ -1491,8 +1491,8 @@ var parser = createCommonjsModule(function (module) {
         return s0;
       }
       function peg$parsehasSelectors() {
-        var s0, s1, s2, s3, s4, s5, s6, s7;
-        var key = peg$currPos * 32 + 4,
+        let s0, s1, s2, s3, s4, s5, s6, s7;
+        const key = peg$currPos * 32 + 4,
           cached = peg$resultsCache[key];
         if (cached) {
           peg$currPos = cached.nextPos;
@@ -1593,8 +1593,8 @@ var parser = createCommonjsModule(function (module) {
         return s0;
       }
       function peg$parseselectors() {
-        var s0, s1, s2, s3, s4, s5, s6, s7;
-        var key = peg$currPos * 32 + 5,
+        let s0, s1, s2, s3, s4, s5, s6, s7;
+        const key = peg$currPos * 32 + 5,
           cached = peg$resultsCache[key];
         if (cached) {
           peg$currPos = cached.nextPos;
@@ -1695,8 +1695,8 @@ var parser = createCommonjsModule(function (module) {
         return s0;
       }
       function peg$parsehasSelector() {
-        var s0, s1, s2;
-        var key = peg$currPos * 32 + 6,
+        let s0, s1, s2;
+        const key = peg$currPos * 32 + 6,
           cached = peg$resultsCache[key];
         if (cached) {
           peg$currPos = cached.nextPos;
@@ -1727,8 +1727,8 @@ var parser = createCommonjsModule(function (module) {
         return s0;
       }
       function peg$parseselector() {
-        var s0, s1, s2, s3, s4, s5;
-        var key = peg$currPos * 32 + 7,
+        let s0, s1, s2, s3, s4, s5;
+        const key = peg$currPos * 32 + 7,
           cached = peg$resultsCache[key];
         if (cached) {
           peg$currPos = cached.nextPos;
@@ -1789,8 +1789,8 @@ var parser = createCommonjsModule(function (module) {
         return s0;
       }
       function peg$parsesequence() {
-        var s0, s1, s2, s3;
-        var key = peg$currPos * 32 + 8,
+        let s0, s1, s2, s3;
+        const key = peg$currPos * 32 + 8,
           cached = peg$resultsCache[key];
         if (cached) {
           peg$currPos = cached.nextPos;
@@ -1838,8 +1838,8 @@ var parser = createCommonjsModule(function (module) {
         return s0;
       }
       function peg$parseatom() {
-        var s0;
-        var key = peg$currPos * 32 + 9,
+        let s0;
+        const key = peg$currPos * 32 + 9,
           cached = peg$resultsCache[key];
         if (cached) {
           peg$currPos = cached.nextPos;
@@ -1886,8 +1886,8 @@ var parser = createCommonjsModule(function (module) {
         return s0;
       }
       function peg$parsewildcard() {
-        var s0, s1;
-        var key = peg$currPos * 32 + 10,
+        let s0, s1;
+        const key = peg$currPos * 32 + 10,
           cached = peg$resultsCache[key];
         if (cached) {
           peg$currPos = cached.nextPos;
@@ -1914,8 +1914,8 @@ var parser = createCommonjsModule(function (module) {
         return s0;
       }
       function peg$parseidentifier() {
-        var s0, s1, s2;
-        var key = peg$currPos * 32 + 11,
+        let s0, s1, s2;
+        const key = peg$currPos * 32 + 11,
           cached = peg$resultsCache[key];
         if (cached) {
           peg$currPos = cached.nextPos;
@@ -1954,8 +1954,8 @@ var parser = createCommonjsModule(function (module) {
         return s0;
       }
       function peg$parseattr() {
-        var s0, s1, s2, s3, s4, s5;
-        var key = peg$currPos * 32 + 12,
+        let s0, s1, s2, s3, s4, s5;
+        const key = peg$currPos * 32 + 12,
           cached = peg$resultsCache[key];
         if (cached) {
           peg$currPos = cached.nextPos;
@@ -2017,8 +2017,8 @@ var parser = createCommonjsModule(function (module) {
         return s0;
       }
       function peg$parseattrOps() {
-        var s0, s1, s2;
-        var key = peg$currPos * 32 + 13,
+        let s0, s1, s2;
+        const key = peg$currPos * 32 + 13,
           cached = peg$resultsCache[key];
         if (cached) {
           peg$currPos = cached.nextPos;
@@ -2076,8 +2076,8 @@ var parser = createCommonjsModule(function (module) {
         return s0;
       }
       function peg$parseattrEqOps() {
-        var s0, s1, s2;
-        var key = peg$currPos * 32 + 14,
+        let s0, s1, s2;
+        const key = peg$currPos * 32 + 14,
           cached = peg$resultsCache[key];
         if (cached) {
           peg$currPos = cached.nextPos;
@@ -2124,8 +2124,8 @@ var parser = createCommonjsModule(function (module) {
         return s0;
       }
       function peg$parseattrName() {
-        var s0, s1, s2, s3, s4, s5;
-        var key = peg$currPos * 32 + 15,
+        let s0, s1, s2, s3, s4, s5;
+        const key = peg$currPos * 32 + 15,
           cached = peg$resultsCache[key];
         if (cached) {
           peg$currPos = cached.nextPos;
@@ -2202,8 +2202,8 @@ var parser = createCommonjsModule(function (module) {
         return s0;
       }
       function peg$parseattrValue() {
-        var s0, s1, s2, s3, s4, s5;
-        var key = peg$currPos * 32 + 16,
+        let s0, s1, s2, s3, s4, s5;
+        const key = peg$currPos * 32 + 16,
           cached = peg$resultsCache[key];
         if (cached) {
           peg$currPos = cached.nextPos;
@@ -2301,8 +2301,8 @@ var parser = createCommonjsModule(function (module) {
         return s0;
       }
       function peg$parsestring() {
-        var s0, s1, s2, s3, s4, s5;
-        var key = peg$currPos * 32 + 17,
+        let s0, s1, s2, s3, s4, s5;
+        const key = peg$currPos * 32 + 17,
           cached = peg$resultsCache[key];
         if (cached) {
           peg$currPos = cached.nextPos;
@@ -2565,8 +2565,8 @@ var parser = createCommonjsModule(function (module) {
         return s0;
       }
       function peg$parsenumber() {
-        var s0, s1, s2, s3;
-        var key = peg$currPos * 32 + 18,
+        let s0, s1, s2, s3;
+        const key = peg$currPos * 32 + 18,
           cached = peg$resultsCache[key];
         if (cached) {
           peg$currPos = cached.nextPos;
@@ -2665,8 +2665,8 @@ var parser = createCommonjsModule(function (module) {
         return s0;
       }
       function peg$parsepath() {
-        var s0, s1;
-        var key = peg$currPos * 32 + 19,
+        let s0, s1;
+        const key = peg$currPos * 32 + 19,
           cached = peg$resultsCache[key];
         if (cached) {
           peg$currPos = cached.nextPos;
@@ -2685,8 +2685,8 @@ var parser = createCommonjsModule(function (module) {
         return s0;
       }
       function peg$parsetype() {
-        var s0, s1, s2, s3, s4, s5;
-        var key = peg$currPos * 32 + 20,
+        let s0, s1, s2, s3, s4, s5;
+        const key = peg$currPos * 32 + 20,
           cached = peg$resultsCache[key];
         if (cached) {
           peg$currPos = cached.nextPos;
@@ -2773,8 +2773,8 @@ var parser = createCommonjsModule(function (module) {
         return s0;
       }
       function peg$parseflags() {
-        var s0, s1;
-        var key = peg$currPos * 32 + 21,
+        let s0, s1;
+        const key = peg$currPos * 32 + 21,
           cached = peg$resultsCache[key];
         if (cached) {
           peg$currPos = cached.nextPos;
@@ -2813,8 +2813,8 @@ var parser = createCommonjsModule(function (module) {
         return s0;
       }
       function peg$parseregex() {
-        var s0, s1, s2, s3, s4;
-        var key = peg$currPos * 32 + 22,
+        let s0, s1, s2, s3, s4;
+        const key = peg$currPos * 32 + 22,
           cached = peg$resultsCache[key];
         if (cached) {
           peg$currPos = cached.nextPos;
@@ -2898,8 +2898,8 @@ var parser = createCommonjsModule(function (module) {
         return s0;
       }
       function peg$parsefield() {
-        var s0, s1, s2, s3, s4, s5, s6;
-        var key = peg$currPos * 32 + 23,
+        let s0, s1, s2, s3, s4, s5, s6;
+        const key = peg$currPos * 32 + 23,
           cached = peg$resultsCache[key];
         if (cached) {
           peg$currPos = cached.nextPos;
@@ -2990,8 +2990,8 @@ var parser = createCommonjsModule(function (module) {
         return s0;
       }
       function peg$parsenegation() {
-        var s0, s1, s2, s3, s4, s5;
-        var key = peg$currPos * 32 + 24,
+        let s0, s1, s2, s3, s4, s5;
+        const key = peg$currPos * 32 + 24,
           cached = peg$resultsCache[key];
         if (cached) {
           peg$currPos = cached.nextPos;
@@ -3053,8 +3053,8 @@ var parser = createCommonjsModule(function (module) {
         return s0;
       }
       function peg$parsematches() {
-        var s0, s1, s2, s3, s4, s5;
-        var key = peg$currPos * 32 + 25,
+        let s0, s1, s2, s3, s4, s5;
+        const key = peg$currPos * 32 + 25,
           cached = peg$resultsCache[key];
         if (cached) {
           peg$currPos = cached.nextPos;
@@ -3116,8 +3116,8 @@ var parser = createCommonjsModule(function (module) {
         return s0;
       }
       function peg$parsehas() {
-        var s0, s1, s2, s3, s4, s5;
-        var key = peg$currPos * 32 + 26,
+        let s0, s1, s2, s3, s4, s5;
+        const key = peg$currPos * 32 + 26,
           cached = peg$resultsCache[key];
         if (cached) {
           peg$currPos = cached.nextPos;
@@ -3179,8 +3179,8 @@ var parser = createCommonjsModule(function (module) {
         return s0;
       }
       function peg$parsefirstChild() {
-        var s0, s1;
-        var key = peg$currPos * 32 + 27,
+        let s0, s1;
+        const key = peg$currPos * 32 + 27,
           cached = peg$resultsCache[key];
         if (cached) {
           peg$currPos = cached.nextPos;
@@ -3207,8 +3207,8 @@ var parser = createCommonjsModule(function (module) {
         return s0;
       }
       function peg$parselastChild() {
-        var s0, s1;
-        var key = peg$currPos * 32 + 28,
+        let s0, s1;
+        const key = peg$currPos * 32 + 28,
           cached = peg$resultsCache[key];
         if (cached) {
           peg$currPos = cached.nextPos;
@@ -3235,8 +3235,8 @@ var parser = createCommonjsModule(function (module) {
         return s0;
       }
       function peg$parsenthChild() {
-        var s0, s1, s2, s3, s4, s5;
-        var key = peg$currPos * 32 + 29,
+        let s0, s1, s2, s3, s4, s5;
+        const key = peg$currPos * 32 + 29,
           cached = peg$resultsCache[key];
         if (cached) {
           peg$currPos = cached.nextPos;
@@ -3323,8 +3323,8 @@ var parser = createCommonjsModule(function (module) {
         return s0;
       }
       function peg$parsenthLastChild() {
-        var s0, s1, s2, s3, s4, s5;
-        var key = peg$currPos * 32 + 30,
+        let s0, s1, s2, s3, s4, s5;
+        const key = peg$currPos * 32 + 30,
           cached = peg$resultsCache[key];
         if (cached) {
           peg$currPos = cached.nextPos;
@@ -3411,8 +3411,8 @@ var parser = createCommonjsModule(function (module) {
         return s0;
       }
       function peg$parseclass() {
-        var s0, s1, s2;
-        var key = peg$currPos * 32 + 31,
+        let s0, s1, s2;
+        const key = peg$currPos * 32 + 31,
           cached = peg$resultsCache[key];
         if (cached) {
           peg$currPos = cached.nextPos;
@@ -3506,8 +3506,8 @@ var parser = createCommonjsModule(function (module) {
 * @typedef {"LEFT_SIDE"|"RIGHT_SIDE"} Side
 */
 
-var LEFT_SIDE = 'LEFT_SIDE';
-var RIGHT_SIDE = 'RIGHT_SIDE';
+const LEFT_SIDE = 'LEFT_SIDE';
+const RIGHT_SIDE = 'RIGHT_SIDE';
 
 /**
  * @external AST
@@ -3533,7 +3533,7 @@ var RIGHT_SIDE = 'RIGHT_SIDE';
  * @returns {undefined|boolean|string|number|external:AST}
  */
 function getPath(obj, keys) {
-  for (var i = 0; i < keys.length; ++i) {
+  for (let i = 0; i < keys.length; ++i) {
     if (obj == null) {
       return obj;
     }
@@ -3552,14 +3552,14 @@ function getPath(obj, keys) {
  * @returns {boolean}
  */
 function inPath(node, ancestor, path, fromPathIndex) {
-  var current = ancestor;
-  for (var i = fromPathIndex; i < path.length; ++i) {
+  let current = ancestor;
+  for (let i = fromPathIndex; i < path.length; ++i) {
     if (current == null) {
       return false;
     }
-    var field = current[path[i]];
+    const field = current[path[i]];
     if (Array.isArray(field)) {
-      for (var k = 0; k < field.length; ++k) {
+      for (let k = 0; k < field.length; ++k) {
         if (inPath(node, field[k], path, i + 1)) {
           return true;
         }
@@ -3584,7 +3584,7 @@ function inPath(node, ancestor, path, fromPathIndex) {
  * A WeakMap for holding cached matcher functions for selectors.
  * @type {WeakMap<SelectorAST, SelectorMatcher>}
 */
-var MATCHER_CACHE = typeof WeakMap === 'function' ? new WeakMap() : null;
+const MATCHER_CACHE = typeof WeakMap === 'function' ? new WeakMap() : null;
 
 /**
  * Look up a matcher function for `selector` in the cache.
@@ -3600,7 +3600,7 @@ function getMatcher(selector) {
     };
   }
   if (MATCHER_CACHE != null) {
-    var matcher = MATCHER_CACHE.get(selector);
+    let matcher = MATCHER_CACHE.get(selector);
     if (matcher != null) {
       return matcher;
     }
@@ -3624,9 +3624,9 @@ function generateMatcher(selector) {
       };
     case 'identifier':
       {
-        var value = selector.value.toLowerCase();
+        const value = selector.value.toLowerCase();
         return function (node, ancestry, options) {
-          var nodeTypeKey = options && options.nodeTypeKey || 'type';
+          const nodeTypeKey = options && options.nodeTypeKey || 'type';
           return value === node[nodeTypeKey].toLowerCase();
         };
       }
@@ -3636,17 +3636,17 @@ function generateMatcher(selector) {
       };
     case 'field':
       {
-        var path = selector.name.split('.');
+        const path = selector.name.split('.');
         return function (node, ancestry) {
-          var ancestor = ancestry[path.length - 1];
+          const ancestor = ancestry[path.length - 1];
           return inPath(node, ancestor, path, 0);
         };
       }
     case 'matches':
       {
-        var matchers = selector.selectors.map(getMatcher);
+        const matchers = selector.selectors.map(getMatcher);
         return function (node, ancestry, options) {
-          for (var i = 0; i < matchers.length; ++i) {
+          for (let i = 0; i < matchers.length; ++i) {
             if (matchers[i](node, ancestry, options)) {
               return true;
             }
@@ -3656,9 +3656,9 @@ function generateMatcher(selector) {
       }
     case 'compound':
       {
-        var _matchers = selector.selectors.map(getMatcher);
+        const _matchers = selector.selectors.map(getMatcher);
         return function (node, ancestry, options) {
-          for (var i = 0; i < _matchers.length; ++i) {
+          for (let i = 0; i < _matchers.length; ++i) {
             if (!_matchers[i](node, ancestry, options)) {
               return false;
             }
@@ -3668,9 +3668,9 @@ function generateMatcher(selector) {
       }
     case 'not':
       {
-        var _matchers2 = selector.selectors.map(getMatcher);
+        const _matchers2 = selector.selectors.map(getMatcher);
         return function (node, ancestry, options) {
-          for (var i = 0; i < _matchers2.length; ++i) {
+          for (let i = 0; i < _matchers2.length; ++i) {
             if (_matchers2[i](node, ancestry, options)) {
               return false;
             }
@@ -3680,16 +3680,16 @@ function generateMatcher(selector) {
       }
     case 'has':
       {
-        var _matchers3 = selector.selectors.map(getMatcher);
+        const _matchers3 = selector.selectors.map(getMatcher);
         return function (node, ancestry, options) {
-          var result = false;
-          var a = [];
+          let result = false;
+          const a = [];
           estraverse.traverse(node, {
             enter: function enter(node, parent) {
               if (parent != null) {
                 a.unshift(parent);
               }
-              for (var i = 0; i < _matchers3.length; ++i) {
+              for (let i = 0; i < _matchers3.length; ++i) {
                 if (_matchers3[i](node, a, options)) {
                   result = true;
                   this["break"]();
@@ -3708,8 +3708,8 @@ function generateMatcher(selector) {
       }
     case 'child':
       {
-        var left = getMatcher(selector.left);
-        var right = getMatcher(selector.right);
+        const left = getMatcher(selector.left);
+        const right = getMatcher(selector.right);
         return function (node, ancestry, options) {
           if (ancestry.length > 0 && right(node, ancestry, options)) {
             return left(ancestry[0], ancestry.slice(1), options);
@@ -3719,11 +3719,11 @@ function generateMatcher(selector) {
       }
     case 'descendant':
       {
-        var _left = getMatcher(selector.left);
-        var _right = getMatcher(selector.right);
+        const _left = getMatcher(selector.left);
+        const _right = getMatcher(selector.right);
         return function (node, ancestry, options) {
           if (_right(node, ancestry, options)) {
-            for (var i = 0, l = ancestry.length; i < l; ++i) {
+            for (let i = 0, l = ancestry.length; i < l; ++i) {
               if (_left(ancestry[i], ancestry.slice(i + 1), options)) {
                 return true;
               }
@@ -3734,7 +3734,7 @@ function generateMatcher(selector) {
       }
     case 'attribute':
       {
-        var _path = selector.name.split('.');
+        const _path = selector.name.split('.');
         switch (selector.operator) {
           case void 0:
             return function (node) {
@@ -3744,12 +3744,12 @@ function generateMatcher(selector) {
             switch (selector.value.type) {
               case 'regexp':
                 return function (node) {
-                  var p = getPath(node, _path);
+                  const p = getPath(node, _path);
                   return typeof p === 'string' && selector.value.value.test(p);
                 };
               case 'literal':
                 {
-                  var literal = "".concat(selector.value.value);
+                  const literal = "".concat(selector.value.value);
                   return function (node) {
                     return literal === "".concat(getPath(node, _path));
                   };
@@ -3768,7 +3768,7 @@ function generateMatcher(selector) {
                 };
               case 'literal':
                 {
-                  var _literal = "".concat(selector.value.value);
+                  const _literal = "".concat(selector.value.value);
                   return function (node) {
                     return _literal !== "".concat(getPath(node, _path));
                   };
@@ -3800,39 +3800,39 @@ function generateMatcher(selector) {
       }
     case 'sibling':
       {
-        var _left2 = getMatcher(selector.left);
-        var _right2 = getMatcher(selector.right);
+        const _left2 = getMatcher(selector.left);
+        const _right2 = getMatcher(selector.right);
         return function (node, ancestry, options) {
           return _right2(node, ancestry, options) && sibling(node, _left2, ancestry, LEFT_SIDE, options) || selector.left.subject && _left2(node, ancestry, options) && sibling(node, _right2, ancestry, RIGHT_SIDE, options);
         };
       }
     case 'adjacent':
       {
-        var _left3 = getMatcher(selector.left);
-        var _right3 = getMatcher(selector.right);
+        const _left3 = getMatcher(selector.left);
+        const _right3 = getMatcher(selector.right);
         return function (node, ancestry, options) {
           return _right3(node, ancestry, options) && adjacent(node, _left3, ancestry, LEFT_SIDE, options) || selector.right.subject && _left3(node, ancestry, options) && adjacent(node, _right3, ancestry, RIGHT_SIDE, options);
         };
       }
     case 'nth-child':
       {
-        var nth = selector.index.value;
-        var _right4 = getMatcher(selector.right);
+        const nth = selector.index.value;
+        const _right4 = getMatcher(selector.right);
         return function (node, ancestry, options) {
           return _right4(node, ancestry, options) && nthChild(node, ancestry, nth, options);
         };
       }
     case 'nth-last-child':
       {
-        var _nth = -selector.index.value;
-        var _right5 = getMatcher(selector.right);
+        const _nth = -selector.index.value;
+        const _right5 = getMatcher(selector.right);
         return function (node, ancestry, options) {
           return _right5(node, ancestry, options) && nthChild(node, ancestry, _nth, options);
         };
       }
     case 'class':
       {
-        var name = selector.name.toLowerCase();
+        const name = selector.name.toLowerCase();
         return function (node, ancestry, options) {
           if (options && options.matchClass) {
             return options.matchClass(selector.name, node, ancestry);
@@ -3912,8 +3912,8 @@ function matches(node, selector, ancestry, options) {
  * @returns {string[]} Visitor keys of the node.
  */
 function getVisitorKeys(node, options) {
-  var nodeTypeKey = options && options.nodeTypeKey || 'type';
-  var nodeType = node[nodeTypeKey];
+  const nodeTypeKey = options && options.nodeTypeKey || 'type';
+  const nodeType = node[nodeTypeKey];
   if (options && options.visitorKeys && options.visitorKeys[nodeType]) {
     return options.visitorKeys[nodeType];
   }
@@ -3936,7 +3936,7 @@ function getVisitorKeys(node, options) {
  * @returns {boolean} `true` if the value is an ASTNode.
  */
 function isNode(node, options) {
-  var nodeTypeKey = options && options.nodeTypeKey || 'type';
+  const nodeTypeKey = options && options.nodeTypeKey || 'type';
   return node !== null && _typeof(node) === 'object' && typeof node[nodeTypeKey] === 'string';
 }
 
@@ -3951,20 +3951,20 @@ function isNode(node, options) {
  * @returns {boolean}
  */
 function sibling(node, matcher, ancestry, side, options) {
-  var _ancestry = _slicedToArray(ancestry, 1),
+  const _ancestry = _slicedToArray(ancestry, 1),
     parent = _ancestry[0];
   if (!parent) {
     return false;
   }
-  var keys = getVisitorKeys(parent, options);
-  for (var i = 0; i < keys.length; ++i) {
-    var listProp = parent[keys[i]];
+  const keys = getVisitorKeys(parent, options);
+  for (let i = 0; i < keys.length; ++i) {
+    const listProp = parent[keys[i]];
     if (Array.isArray(listProp)) {
-      var startIndex = listProp.indexOf(node);
+      const startIndex = listProp.indexOf(node);
       if (startIndex < 0) {
         continue;
       }
-      var lowerBound = void 0,
+      let lowerBound = void 0,
         upperBound = void 0;
       if (side === LEFT_SIDE) {
         lowerBound = 0;
@@ -3973,7 +3973,7 @@ function sibling(node, matcher, ancestry, side, options) {
         lowerBound = startIndex + 1;
         upperBound = listProp.length;
       }
-      for (var k = lowerBound; k < upperBound; ++k) {
+      for (let k = lowerBound; k < upperBound; ++k) {
         if (isNode(listProp[k], options) && matcher(listProp[k], ancestry, options)) {
           return true;
         }
@@ -3994,16 +3994,16 @@ function sibling(node, matcher, ancestry, side, options) {
  * @returns {boolean}
  */
 function adjacent(node, matcher, ancestry, side, options) {
-  var _ancestry2 = _slicedToArray(ancestry, 1),
+  const _ancestry2 = _slicedToArray(ancestry, 1),
     parent = _ancestry2[0];
   if (!parent) {
     return false;
   }
-  var keys = getVisitorKeys(parent, options);
-  for (var i = 0; i < keys.length; ++i) {
-    var listProp = parent[keys[i]];
+  const keys = getVisitorKeys(parent, options);
+  for (let i = 0; i < keys.length; ++i) {
+    const listProp = parent[keys[i]];
     if (Array.isArray(listProp)) {
-      var idx = listProp.indexOf(node);
+      const idx = listProp.indexOf(node);
       if (idx < 0) {
         continue;
       }
@@ -4032,16 +4032,16 @@ function nthChild(node, ancestry, nth, options) {
   if (nth === 0) {
     return false;
   }
-  var _ancestry3 = _slicedToArray(ancestry, 1),
+  const _ancestry3 = _slicedToArray(ancestry, 1),
     parent = _ancestry3[0];
   if (!parent) {
     return false;
   }
-  var keys = getVisitorKeys(parent, options);
-  for (var i = 0; i < keys.length; ++i) {
-    var listProp = parent[keys[i]];
+  const keys = getVisitorKeys(parent, options);
+  for (let i = 0; i < keys.length; ++i) {
+    const listProp = parent[keys[i]];
     if (Array.isArray(listProp)) {
-      var idx = nth < 0 ? listProp.length + nth : nth - 1;
+      const idx = nth < 0 ? listProp.length + nth : nth - 1;
       if (idx >= 0 && idx < listProp.length && listProp[idx] === node) {
         return true;
       }
@@ -4064,11 +4064,11 @@ function subjects(selector, ancestor) {
   if (ancestor == null) {
     ancestor = selector;
   }
-  var results = selector.subject ? [ancestor] : [];
-  var keys = Object.keys(selector);
-  for (var i = 0; i < keys.length; ++i) {
-    var p = keys[i];
-    var sel = selector[p];
+  const results = selector.subject ? [ancestor] : [];
+  const keys = Object.keys(selector);
+  for (let i = 0; i < keys.length; ++i) {
+    const p = keys[i];
+    const sel = selector[p];
     results.push.apply(results, _toConsumableArray(subjects(sel, p === 'left' ? sel : ancestor)));
   }
   return results;
@@ -4094,9 +4094,9 @@ function traverse(ast, selector, visitor, options) {
   if (!selector) {
     return;
   }
-  var ancestry = [];
-  var matcher = getMatcher(selector);
-  var altSubjects = subjects(selector).map(getMatcher);
+  const ancestry = [];
+  const matcher = getMatcher(selector);
+  const altSubjects = subjects(selector).map(getMatcher);
   estraverse.traverse(ast, {
     enter: function enter(node, parent) {
       if (parent != null) {
@@ -4104,12 +4104,12 @@ function traverse(ast, selector, visitor, options) {
       }
       if (matcher(node, ancestry, options)) {
         if (altSubjects.length) {
-          for (var i = 0, l = altSubjects.length; i < l; ++i) {
+          for (let i = 0, l = altSubjects.length; i < l; ++i) {
             if (altSubjects[i](node, ancestry, options)) {
               visitor(node, parent, ancestry);
             }
-            for (var k = 0, m = ancestry.length; k < m; ++k) {
-              var succeedingAncestry = ancestry.slice(k + 1);
+            for (let k = 0, m = ancestry.length; k < m; ++k) {
+              const succeedingAncestry = ancestry.slice(k + 1);
               if (altSubjects[i](ancestry[k], succeedingAncestry, options)) {
                 visitor(ancestry[k], parent, succeedingAncestry);
               }
@@ -4137,7 +4137,7 @@ function traverse(ast, selector, visitor, options) {
  * @returns {external:AST[]}
  */
 function match(ast, selector, options) {
-  var results = [];
+  const results = [];
   traverse(ast, selector, function (node) {
     results.push(node);
   }, options);

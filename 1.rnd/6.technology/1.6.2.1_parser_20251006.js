@@ -1,7 +1,7 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+const __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
+    let desc = Object.getOwnPropertyDescriptor(m, k);
     if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
       desc = { enumerable: true, get: function() { return m[k]; } };
     }
@@ -10,23 +10,23 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
 }));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+const __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
     Object.defineProperty(o, "default", { enumerable: true, value: v });
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || function (mod) {
+const __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    const result = {};
+    if (mod != null) for (const k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
     __setModuleDefault(result, mod);
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Parser = void 0;
-var Tokenizer_js_1 = __importStar(require("./Tokenizer.js"));
-var decode_js_1 = require("entities/lib/decode.js");
-var formTags = new Set([
+const Tokenizer_js_1 = __importStar(require("./Tokenizer.js"));
+const decode_js_1 = require("entities/lib/decode.js");
+const formTags = new Set([
     "input",
     "option",
     "optgroup",
@@ -35,11 +35,11 @@ var formTags = new Set([
     "datalist",
     "textarea",
 ]);
-var pTag = new Set(["p"]);
-var tableSectionTags = new Set(["thead", "tbody"]);
-var ddtTags = new Set(["dd", "dt"]);
-var rtpTags = new Set(["rt", "rp"]);
-var openImpliesClose = new Map([
+const pTag = new Set(["p"]);
+const tableSectionTags = new Set(["thead", "tbody"]);
+const ddtTags = new Set(["dd", "dt"]);
+const rtpTags = new Set(["rt", "rp"]);
+const openImpliesClose = new Map([
     ["tr", new Set(["tr", "th", "td"])],
     ["th", new Set(["th"])],
     ["td", new Set(["thead", "th", "td"])],
@@ -88,7 +88,7 @@ var openImpliesClose = new Map([
     ["tbody", tableSectionTags],
     ["tfoot", tableSectionTags],
 ]);
-var voidElements = new Set([
+const voidElements = new Set([
     "area",
     "base",
     "basefont",
@@ -109,8 +109,8 @@ var voidElements = new Set([
     "track",
     "wbr",
 ]);
-var foreignContextElements = new Set(["math", "svg"]);
-var htmlIntegrationElements = new Set([
+const foreignContextElements = new Set(["math", "svg"]);
+const htmlIntegrationElements = new Set([
     "mi",
     "mo",
     "mn",
@@ -121,11 +121,11 @@ var htmlIntegrationElements = new Set([
     "desc",
     "title",
 ]);
-var reNameEnd = /\s|\//;
-var Parser = /** @class */ (function () {
+const reNameEnd = /\s|\//;
+const Parser = /** @class */ (function () {
     function Parser(cbs, options) {
         if (options === void 0) { options = {}; }
-        var _a, _b, _c, _d, _e;
+        let _a, _b, _c, _d, _e;
         this.options = options;
         /** The start index of the last event. */
         this.startIndex = 0;
@@ -158,20 +158,20 @@ var Parser = /** @class */ (function () {
     // Tokenizer event handlers
     /** @internal */
     Parser.prototype.ontext = function (start, endIndex) {
-        var _a, _b;
-        var data = this.getSlice(start, endIndex);
+        let _a, _b;
+        const data = this.getSlice(start, endIndex);
         this.endIndex = endIndex - 1;
         (_b = (_a = this.cbs).ontext) === null || _b === void 0 ? void 0 : _b.call(_a, data);
         this.startIndex = endIndex;
     };
     /** @internal */
     Parser.prototype.ontextentity = function (cp) {
-        var _a, _b;
+        let _a, _b;
         /*
          * Entities can be emitted on the character, or directly after.
          * We use the section start here to get accurate indices.
          */
-        var index = this.tokenizer.getSectionStart();
+        const index = this.tokenizer.getSectionStart();
         this.endIndex = index - 1;
         (_b = (_a = this.cbs).ontext) === null || _b === void 0 ? void 0 : _b.call(_a, (0, decode_js_1.fromCodePoint)(cp));
         this.startIndex = index;
@@ -182,21 +182,21 @@ var Parser = /** @class */ (function () {
     /** @internal */
     Parser.prototype.onopentagname = function (start, endIndex) {
         this.endIndex = endIndex;
-        var name = this.getSlice(start, endIndex);
+        let name = this.getSlice(start, endIndex);
         if (this.lowerCaseTagNames) {
             name = name.toLowerCase();
         }
         this.emitOpenTag(name);
     };
     Parser.prototype.emitOpenTag = function (name) {
-        var _a, _b, _c, _d;
+        let _a, _b, _c, _d;
         this.openTagStart = this.startIndex;
         this.tagname = name;
-        var impliesClose = !this.options.xmlMode && openImpliesClose.get(name);
+        const impliesClose = !this.options.xmlMode && openImpliesClose.get(name);
         if (impliesClose) {
             while (this.stack.length > 0 &&
                 impliesClose.has(this.stack[this.stack.length - 1])) {
-                var element = this.stack.pop();
+                const element = this.stack.pop();
                 (_b = (_a = this.cbs).onclosetag) === null || _b === void 0 ? void 0 : _b.call(_a, element, true);
             }
         }
@@ -214,7 +214,7 @@ var Parser = /** @class */ (function () {
             this.attribs = {};
     };
     Parser.prototype.endOpenTag = function (isImplied) {
-        var _a, _b;
+        let _a, _b;
         this.startIndex = this.openTagStart;
         if (this.attribs) {
             (_b = (_a = this.cbs).onopentag) === null || _b === void 0 ? void 0 : _b.call(_a, this.tagname, this.attribs, isImplied);
@@ -234,9 +234,9 @@ var Parser = /** @class */ (function () {
     };
     /** @internal */
     Parser.prototype.onclosetag = function (start, endIndex) {
-        var _a, _b, _c, _d, _e, _f;
+        let _a, _b, _c, _d, _e, _f;
         this.endIndex = endIndex;
-        var name = this.getSlice(start, endIndex);
+        let name = this.getSlice(start, endIndex);
         if (this.lowerCaseTagNames) {
             name = name.toLowerCase();
         }
@@ -245,10 +245,10 @@ var Parser = /** @class */ (function () {
             this.foreignContext.pop();
         }
         if (!this.isVoidElement(name)) {
-            var pos = this.stack.lastIndexOf(name);
+            const pos = this.stack.lastIndexOf(name);
             if (pos !== -1) {
                 if (this.cbs.onclosetag) {
-                    var count = this.stack.length - pos;
+                    let count = this.stack.length - pos;
                     while (count--) {
                         // We know the stack has sufficient elements.
                         this.cbs.onclosetag(this.stack.pop(), count !== 0);
@@ -288,8 +288,8 @@ var Parser = /** @class */ (function () {
         }
     };
     Parser.prototype.closeCurrentTag = function (isOpenImplied) {
-        var _a, _b;
-        var name = this.tagname;
+        let _a, _b;
+        const name = this.tagname;
         this.endOpenTag(isOpenImplied);
         // Self-closing tags will be on the top of the stack
         if (this.stack[this.stack.length - 1] === name) {
@@ -301,7 +301,7 @@ var Parser = /** @class */ (function () {
     /** @internal */
     Parser.prototype.onattribname = function (start, endIndex) {
         this.startIndex = start;
-        var name = this.getSlice(start, endIndex);
+        const name = this.getSlice(start, endIndex);
         this.attribname = this.lowerCaseAttributeNames
             ? name.toLowerCase()
             : name;
@@ -316,7 +316,7 @@ var Parser = /** @class */ (function () {
     };
     /** @internal */
     Parser.prototype.onattribend = function (quote, endIndex) {
-        var _a, _b;
+        let _a, _b;
         this.endIndex = endIndex;
         (_b = (_a = this.cbs).onattribute) === null || _b === void 0 ? void 0 : _b.call(_a, this.attribname, this.attribvalue, quote === Tokenizer_js_1.QuoteType.Double
             ? '"'
@@ -332,8 +332,8 @@ var Parser = /** @class */ (function () {
         this.attribvalue = "";
     };
     Parser.prototype.getInstructionName = function (value) {
-        var index = value.search(reNameEnd);
-        var name = index < 0 ? value : value.substr(0, index);
+        const index = value.search(reNameEnd);
+        let name = index < 0 ? value : value.substr(0, index);
         if (this.lowerCaseTagNames) {
             name = name.toLowerCase();
         }
@@ -342,9 +342,9 @@ var Parser = /** @class */ (function () {
     /** @internal */
     Parser.prototype.ondeclaration = function (start, endIndex) {
         this.endIndex = endIndex;
-        var value = this.getSlice(start, endIndex);
+        const value = this.getSlice(start, endIndex);
         if (this.cbs.onprocessinginstruction) {
-            var name = this.getInstructionName(value);
+            const name = this.getInstructionName(value);
             this.cbs.onprocessinginstruction("!".concat(name), "!".concat(value));
         }
         // Set `startIndex` for next node
@@ -353,9 +353,9 @@ var Parser = /** @class */ (function () {
     /** @internal */
     Parser.prototype.onprocessinginstruction = function (start, endIndex) {
         this.endIndex = endIndex;
-        var value = this.getSlice(start, endIndex);
+        const value = this.getSlice(start, endIndex);
         if (this.cbs.onprocessinginstruction) {
-            var name = this.getInstructionName(value);
+            const name = this.getInstructionName(value);
             this.cbs.onprocessinginstruction("?".concat(name), "?".concat(value));
         }
         // Set `startIndex` for next node
@@ -363,7 +363,7 @@ var Parser = /** @class */ (function () {
     };
     /** @internal */
     Parser.prototype.oncomment = function (start, endIndex, offset) {
-        var _a, _b, _c, _d;
+        let _a, _b, _c, _d;
         this.endIndex = endIndex;
         (_b = (_a = this.cbs).oncomment) === null || _b === void 0 ? void 0 : _b.call(_a, this.getSlice(start, endIndex - offset));
         (_d = (_c = this.cbs).oncommentend) === null || _d === void 0 ? void 0 : _d.call(_c);
@@ -372,9 +372,9 @@ var Parser = /** @class */ (function () {
     };
     /** @internal */
     Parser.prototype.oncdata = function (start, endIndex, offset) {
-        var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
+        let _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
         this.endIndex = endIndex;
-        var value = this.getSlice(start, endIndex - offset);
+        const value = this.getSlice(start, endIndex - offset);
         if (this.options.xmlMode || this.options.recognizeCDATA) {
             (_b = (_a = this.cbs).oncdatastart) === null || _b === void 0 ? void 0 : _b.call(_a);
             (_d = (_c = this.cbs).ontext) === null || _d === void 0 ? void 0 : _d.call(_c, value);
@@ -389,11 +389,11 @@ var Parser = /** @class */ (function () {
     };
     /** @internal */
     Parser.prototype.onend = function () {
-        var _a, _b;
+        let _a, _b;
         if (this.cbs.onclosetag) {
             // Set the end index for all remaining tags
             this.endIndex = this.startIndex;
-            for (var index = this.stack.length; index > 0; this.cbs.onclosetag(this.stack[--index], true))
+            for (let index = this.stack.length; index > 0; this.cbs.onclosetag(this.stack[--index], true))
                 ;
         }
         (_b = (_a = this.cbs).onend) === null || _b === void 0 ? void 0 : _b.call(_a);
@@ -402,7 +402,7 @@ var Parser = /** @class */ (function () {
      * Resets the parser to a blank state, ready to parse a new HTML document
      */
     Parser.prototype.reset = function () {
-        var _a, _b, _c, _d;
+        let _a, _b, _c, _d;
         (_b = (_a = this.cbs).onreset) === null || _b === void 0 ? void 0 : _b.call(_a);
         this.tokenizer.reset();
         this.tagname = "";
@@ -431,7 +431,7 @@ var Parser = /** @class */ (function () {
         while (start - this.bufferOffset >= this.buffers[0].length) {
             this.shiftBuffer();
         }
-        var slice = this.buffers[0].slice(start - this.bufferOffset, end - this.bufferOffset);
+        let slice = this.buffers[0].slice(start - this.bufferOffset, end - this.bufferOffset);
         while (end - this.bufferOffset > this.buffers[0].length) {
             this.shiftBuffer();
             slice += this.buffers[0].slice(0, end - this.bufferOffset);
@@ -449,7 +449,7 @@ var Parser = /** @class */ (function () {
      * @param chunk Chunk to parse.
      */
     Parser.prototype.write = function (chunk) {
-        var _a, _b;
+        let _a, _b;
         if (this.ended) {
             (_b = (_a = this.cbs).onerror) === null || _b === void 0 ? void 0 : _b.call(_a, new Error(".write() after done!"));
             return;
@@ -466,7 +466,7 @@ var Parser = /** @class */ (function () {
      * @param chunk Optional final chunk to parse.
      */
     Parser.prototype.end = function (chunk) {
-        var _a, _b;
+        let _a, _b;
         if (this.ended) {
             (_b = (_a = this.cbs).onerror) === null || _b === void 0 ? void 0 : _b.call(_a, new Error(".end() after done!"));
             return;

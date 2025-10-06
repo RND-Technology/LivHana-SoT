@@ -1,5 +1,5 @@
-let Declaration = require('../declaration')
-let utils = require('../utils')
+const Declaration = require('../declaration')
+const utils = require('../utils')
 
 class BackdropFilter extends Declaration {
   constructor(name, prefixes, all) {

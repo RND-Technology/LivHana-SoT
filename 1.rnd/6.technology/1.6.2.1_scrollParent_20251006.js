@@ -1,15 +1,15 @@
 "use strict";
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+const _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 exports.__esModule = true;
 exports.default = scrollParent;
 
-var _css = _interopRequireDefault(require("./css"));
+const _css = _interopRequireDefault(require("./css"));
 
-var _height = _interopRequireDefault(require("./height"));
+const _height = _interopRequireDefault(require("./height"));
 
-var _isDocument = _interopRequireDefault(require("./isDocument"));
+const _isDocument = _interopRequireDefault(require("./isDocument"));
 
 /* eslint-disable no-cond-assign, no-continue */
 
@@ -20,14 +20,14 @@ var _isDocument = _interopRequireDefault(require("./isDocument"));
  * @param firstPossible Stop at the first scrollable parent, even if it's not currently scrollable
  */
 function scrollParent(element, firstPossible) {
-  var position = (0, _css.default)(element, 'position');
-  var excludeStatic = position === 'absolute';
-  var ownerDoc = element.ownerDocument;
+  const position = (0, _css.default)(element, 'position');
+  const excludeStatic = position === 'absolute';
+  const ownerDoc = element.ownerDocument;
   if (position === 'fixed') return ownerDoc || document; // @ts-ignore
 
   while ((element = element.parentNode) && !(0, _isDocument.default)(element)) {
-    var isStatic = excludeStatic && (0, _css.default)(element, 'position') === 'static';
-    var style = ((0, _css.default)(element, 'overflow') || '') + ((0, _css.default)(element, 'overflow-y') || '') + (0, _css.default)(element, 'overflow-x');
+    const isStatic = excludeStatic && (0, _css.default)(element, 'position') === 'static';
+    const style = ((0, _css.default)(element, 'overflow') || '') + ((0, _css.default)(element, 'overflow-y') || '') + (0, _css.default)(element, 'overflow-x');
     if (isStatic) continue;
 
     if (/(auto|scroll)/.test(style) && (firstPossible || (0, _height.default)(element) < element.scrollHeight)) {

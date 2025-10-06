@@ -170,7 +170,7 @@ function safe_to_read(tw, def) {
     if (def.single_use == "m") return false;
     if (tw.safe_ids[def.id]) {
         if (def.fixed == null) {
-            var orig = def.orig[0];
+            const orig = def.orig[0];
             if (orig instanceof AST_SymbolFunarg || orig.name == "arguments") return false;
             def.fixed = make_node(AST_Undefined, orig);
         }
@@ -227,7 +227,7 @@ function is_immutable(value) {
 // of that def before an escape occurs. This is useful for evaluating
 // property accesses, where you need to know when to stop.
 function mark_escaped(tw, d, scope, node, value, level = 0, depth = 1) {
-    var parent = tw.parent(level);
+    const parent = tw.parent(level);
     if (value) {
         if (value.is_constant()) return;
         if (value instanceof AST_ClassExpression) return;
@@ -253,7 +253,7 @@ function mark_escaped(tw, d, scope, node, value, level = 0, depth = 1) {
     ) {
         mark_escaped(tw, d, scope, parent, parent, level + 1, depth);
     } else if (parent instanceof AST_ObjectKeyVal && node === parent.value) {
-        var obj = tw.parent(level + 1);
+        const obj = tw.parent(level + 1);
 
         mark_escaped(tw, d, scope, obj, obj, level + 2, depth);
     } else if (parent instanceof AST_PropAccess && node === parent.expression) {
@@ -272,7 +272,7 @@ function mark_escaped(tw, d, scope, node, value, level = 0, depth = 1) {
 
 const suppress = node => walk(node, node => {
     if (!(node instanceof AST_Symbol)) return;
-    var d = node.definition();
+    const d = node.definition();
     if (!d) return;
     if (node instanceof AST_SymbolRef) d.references.push(node);
     d.fixed = false;
@@ -287,7 +287,7 @@ def_reduce_vars(AST_Accessor, function(tw, descend, compressor) {
 });
 
 def_reduce_vars(AST_Assign, function(tw, descend, compressor) {
-    var node = this;
+    const node = this;
     if (node.left instanceof AST_Destructuring) {
         suppress(node.left);
         return;
@@ -305,19 +305,19 @@ def_reduce_vars(AST_Assign, function(tw, descend, compressor) {
         }
     };
 
-    var sym = node.left;
+    const sym = node.left;
     if (!(sym instanceof AST_SymbolRef)) return finish_walk();
 
-    var def = sym.definition();
-    var safe = safe_to_assign(tw, def, sym.scope, node.right);
+    const def = sym.definition();
+    const safe = safe_to_assign(tw, def, sym.scope, node.right);
     def.assignments++;
     if (!safe) return finish_walk();
 
-    var fixed = def.fixed;
+    const fixed = def.fixed;
     if (!fixed && node.operator != "=" && !node.logical) return finish_walk();
 
-    var eq = node.operator == "=";
-    var value = eq ? node.right : node;
+    const eq = node.operator == "=";
+    const value = eq ? node.right : node;
     if (is_modified(compressor, tw, node, value, 0)) return finish_walk();
 
     def.references.push(sym);
@@ -451,7 +451,7 @@ function mark_lambda(tw, descend, compressor) {
     push(tw);
     reset_variables(tw, compressor, this);
 
-    var iife;
+    let iife;
     if (!this.name
         && !this.uses_arguments
         && !this.pinned()
@@ -465,7 +465,7 @@ function mark_lambda(tw, descend, compressor) {
         // So existing transformation rules can work on them.
         this.argnames.forEach((arg, i) => {
             if (!arg.definition) return;
-            var d = arg.definition();
+            const d = arg.definition();
             // Avoid setting fixed when there's more than one origin for a variable value
             if (d.orig.length > 1) return;
             if (d.fixed === undefined && (!this.uses_arguments || tw.has_directive("use strict"))) {
@@ -623,7 +623,7 @@ function handle_defined_after_hoist(parent) {
         // Update all dependencies of `defun`
         const queue = new Set(defun_dependencies_map.get(defun));
         for (const enclosed_defun of queue) {
-            let enclosed_defun_first_read = defun_first_read_map.get(enclosed_defun);
+            const enclosed_defun_first_read = defun_first_read_map.get(enclosed_defun);
             if (enclosed_defun_first_read != null && enclosed_defun_first_read < defun_first_read) {
                 continue;
             }
@@ -649,7 +649,7 @@ function handle_defined_after_hoist(parent) {
                 continue;
             }
 
-            let def_last_write = symbol_last_write_map.get(def.id) || 0;
+            const def_last_write = symbol_last_write_map.get(def.id) || 0;
 
             if (defun_first_read < def_last_write) {
                 def.fixed = false;
@@ -734,14 +734,14 @@ def_reduce_vars(AST_SymbolCatch, function() {
 });
 
 def_reduce_vars(AST_SymbolRef, function(tw, descend, compressor) {
-    var d = this.definition();
+    const d = this.definition();
     d.references.push(this);
     if (d.references.length == 1
         && !d.fixed
         && d.orig[0] instanceof AST_SymbolDefun) {
         tw.loop_ids.set(d.id, tw.in_loop);
     }
-    var fixed_value;
+    let fixed_value;
     if (d.fixed === undefined || !safe_to_read(tw, d)) {
         d.fixed = false;
     } else if (d.fixed) {
@@ -798,15 +798,15 @@ def_reduce_vars(AST_Try, function(tw, descend, compressor) {
 });
 
 def_reduce_vars(AST_Unary, function(tw) {
-    var node = this;
+    const node = this;
     if (node.operator !== "++" && node.operator !== "--") return;
-    var exp = node.expression;
+    const exp = node.expression;
     if (!(exp instanceof AST_SymbolRef)) return;
-    var def = exp.definition();
-    var safe = safe_to_assign(tw, def, exp.scope, true);
+    const def = exp.definition();
+    const safe = safe_to_assign(tw, def, exp.scope, true);
     def.assignments++;
     if (!safe) return;
-    var fixed = def.fixed;
+    const fixed = def.fixed;
     if (!fixed) return;
     def.references.push(exp);
     def.chained = true;
@@ -827,12 +827,12 @@ def_reduce_vars(AST_Unary, function(tw) {
 });
 
 def_reduce_vars(AST_VarDef, function(tw, descend) {
-    var node = this;
+    const node = this;
     if (node.name instanceof AST_Destructuring) {
         suppress(node.name);
         return;
     }
-    var d = node.name.definition();
+    const d = node.name.definition();
     if (node.value) {
         if (safe_to_assign(tw, d, node.name.scope, node.value)) {
             d.fixed = function() {

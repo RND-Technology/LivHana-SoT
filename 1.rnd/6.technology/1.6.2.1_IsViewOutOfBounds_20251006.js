@@ -1,15 +1,15 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var IsDetachedBuffer = require('./IsDetachedBuffer');
-var IsFixedLengthArrayBuffer = require('./IsFixedLengthArrayBuffer');
+const IsDetachedBuffer = require('./IsDetachedBuffer');
+const IsFixedLengthArrayBuffer = require('./IsFixedLengthArrayBuffer');
 
-var isDataViewWithBufferWitnessRecord = require('../helpers/records/data-view-with-buffer-witness-record');
+const isDataViewWithBufferWitnessRecord = require('../helpers/records/data-view-with-buffer-witness-record');
 
-var dataViewBuffer = require('data-view-buffer');
-var dataViewByteLength = require('data-view-byte-length');
-var dataViewByteOffset = require('data-view-byte-offset');
+const dataViewBuffer = require('data-view-buffer');
+const dataViewByteLength = require('data-view-byte-length');
+const dataViewByteOffset = require('data-view-byte-offset');
 
 // https://262.ecma-international.org/15.0/#sec-isviewoutofbounds
 
@@ -18,9 +18,9 @@ module.exports = function IsViewOutOfBounds(viewRecord) {
 		throw new $TypeError('Assertion failed: `viewRecord` must be a DataView With Buffer Witness Record');
 	}
 
-	var view = viewRecord['[[Object]]']; // step 1
+	const view = viewRecord['[[Object]]']; // step 1
 
-	var bufferByteLength = viewRecord['[[CachedBufferByteLength]]']; // step 2
+	const bufferByteLength = viewRecord['[[CachedBufferByteLength]]']; // step 2
 
 	if (IsDetachedBuffer(dataViewBuffer(view)) !== (bufferByteLength === 'DETACHED')) {
 		// step 3
@@ -31,12 +31,12 @@ module.exports = function IsViewOutOfBounds(viewRecord) {
 		return true; // step 4
 	}
 
-	var byteOffsetStart = dataViewByteOffset(view); // step 5
+	const byteOffsetStart = dataViewByteOffset(view); // step 5
 
-	var isFixed = IsFixedLengthArrayBuffer(dataViewBuffer(view));
+	const isFixed = IsFixedLengthArrayBuffer(dataViewBuffer(view));
 
-	var viewByteLength = isFixed ? dataViewByteLength(view) : 'AUTO'; // view.[[ByteLength]]
-	var byteOffsetEnd = viewByteLength === 'AUTO' ? bufferByteLength : byteOffsetStart + viewByteLength; // steps 6 - 7
+	const viewByteLength = isFixed ? dataViewByteLength(view) : 'AUTO'; // view.[[ByteLength]]
+	const byteOffsetEnd = viewByteLength === 'AUTO' ? bufferByteLength : byteOffsetStart + viewByteLength; // steps 6 - 7
 
 	if (byteOffsetStart > bufferByteLength || byteOffsetEnd > bufferByteLength) {
 		return true; // step 8

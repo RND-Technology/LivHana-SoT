@@ -1,24 +1,24 @@
 'use strict';
 
-var defineProperties = require('define-properties');
-var test = require('tape');
-var callBind = require('call-bind');
-var functionsHaveNames = require('functions-have-names')();
-var hasStrictMode = require('has-strict-mode')();
-var forEach = require('for-each');
-var debug = require('object-inspect');
-var v = require('es-value-fixtures');
-var hasSymbols = require('has-symbols/shams')();
-var iterate = require('iterate-iterator');
+const defineProperties = require('define-properties');
+const test = require('tape');
+const callBind = require('call-bind');
+const functionsHaveNames = require('functions-have-names')();
+const hasStrictMode = require('has-strict-mode')();
+const forEach = require('for-each');
+const debug = require('object-inspect');
+const v = require('es-value-fixtures');
+const hasSymbols = require('has-symbols/shams')();
+const iterate = require('iterate-iterator');
 
-var index = require('../Iterator.prototype.some');
-var impl = require('../Iterator.prototype.some/implementation');
+const index = require('../Iterator.prototype.some');
+const impl = require('../Iterator.prototype.some/implementation');
 
-var fnName = 'some';
+const fnName = 'some';
 
-var isEnumerable = Object.prototype.propertyIsEnumerable;
+const isEnumerable = Object.prototype.propertyIsEnumerable;
 
-var testIterator = require('./helpers/testIterator');
+const testIterator = require('./helpers/testIterator');
 
 module.exports = {
 	tests: function (some, name, t) {
@@ -35,7 +35,7 @@ module.exports = {
 				debug(nonIterator) + ' is not an Object with a callable `next` method'
 			);
 
-			var badNext = { next: nonIterator };
+			const badNext = { next: nonIterator };
 			t['throws'](
 				function () { iterate(some(badNext, function () {})); },
 				TypeError,
@@ -52,8 +52,8 @@ module.exports = {
 		});
 
 		t.test('actual iteration', { skip: !hasSymbols }, function (st) {
-			var arr = [1, 2, 3];
-			var iterator = callBind(arr[Symbol.iterator], arr);
+			const arr = [1, 2, 3];
+			const iterator = callBind(arr[Symbol.iterator], arr);
 
 			st['throws'](
 				function () { return new some(iterator()); }, // eslint-disable-line new-cap

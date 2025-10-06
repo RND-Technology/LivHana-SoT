@@ -1,11 +1,11 @@
-let Declaration = require('../declaration')
+const Declaration = require('../declaration')
 
 class MaskComposite extends Declaration {
   /**
    * Prefix mask-composite for webkit
    */
   insert(decl, prefix, prefixes) {
-    let isCompositeProp = decl.prop === 'mask-composite'
+    const isCompositeProp = decl.prop === 'mask-composite'
 
     let compositeValues
 
@@ -16,7 +16,7 @@ class MaskComposite extends Declaration {
     }
 
     compositeValues = compositeValues.map(el => el.trim()).filter(el => el)
-    let hasCompositeValues = compositeValues.length
+    const hasCompositeValues = compositeValues.length
 
     let compositeDecl
 
@@ -45,7 +45,7 @@ class MaskComposite extends Declaration {
       return decl.parent.insertBefore(decl, compositeDecl)
     }
 
-    let cloned = this.clone(decl)
+    const cloned = this.clone(decl)
     cloned.prop = prefix + cloned.prop
 
     if (hasCompositeValues) {

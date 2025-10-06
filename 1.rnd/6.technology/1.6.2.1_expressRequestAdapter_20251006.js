@@ -1,6 +1,6 @@
 import { __read } from 'tslib';
 import JSONBig from '@apimatic/json-bigint';
-var validHttpMethods = ['GET', 'DELETE', 'HEAD', 'OPTIONS', 'POST', 'PUT', 'PATCH', 'LINK', 'UNLINK'];
+const validHttpMethods = ['GET', 'DELETE', 'HEAD', 'OPTIONS', 'POST', 'PUT', 'PATCH', 'LINK', 'UNLINK'];
 /**
  * Converts an Express request into a normalized HttpRequest.
  *
@@ -11,27 +11,27 @@ var validHttpMethods = ['GET', 'DELETE', 'HEAD', 'OPTIONS', 'POST', 'PUT', 'PATC
  * @throws Error if the method, host, or URL is invalid.
  */
 function convertExpressRequest(req) {
-  var _a;
-  var method = (_a = req.method) === null || _a === void 0 ? void 0 : _a.toUpperCase();
+  let _a;
+  const method = (_a = req.method) === null || _a === void 0 ? void 0 : _a.toUpperCase();
   if (!isHttpMethod(method)) {
     throw new Error("Unsupported HTTP method: ".concat(req.method));
   }
-  var host = req.get('host');
+  const host = req.get('host');
   if (!host || host.trim() === '' || host === 'undefined') {
     throw new Error('Missing host header');
   }
-  var url = "".concat(req.protocol, "://").concat(req.get('host')).concat(req.originalUrl);
+  const url = "".concat(req.protocol, "://").concat(req.get('host')).concat(req.originalUrl);
   if (!isValidUrl(url)) {
     throw new Error("Invalid URL: ".concat(url));
   }
-  var headers = req.headers;
+  const headers = req.headers;
   if (!headers || typeof headers !== 'object' || Array.isArray(headers)) {
     throw new Error("Invalid headers: expected an object, got ".concat(typeof headers));
   }
   return {
     method: method,
     headers: Object.entries(headers).reduce(function (acc, _a) {
-      var _b = __read(_a, 2),
+      const _b = __read(_a, 2),
         k = _b[0],
         v = _b[1];
       acc[k] = String(v);
@@ -45,8 +45,8 @@ function isHttpMethod(method) {
   return validHttpMethods.includes(method);
 }
 function isValidUrl(url) {
-  var protocolRegex = /^https?:\/\/[^/]+/;
-  var match = protocolRegex.exec(url);
+  const protocolRegex = /^https?:\/\/[^/]+/;
+  const match = protocolRegex.exec(url);
   return match !== null;
 }
 function toBodyContent(body) {

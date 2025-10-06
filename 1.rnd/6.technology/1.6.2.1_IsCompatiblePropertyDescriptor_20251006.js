@@ -1,6 +1,6 @@
 'use strict';
 
-var ValidateAndApplyPropertyDescriptor = require('./ValidateAndApplyPropertyDescriptor');
+const ValidateAndApplyPropertyDescriptor = require('./ValidateAndApplyPropertyDescriptor');
 
 // https://262.ecma-international.org/6.0/#sec-iscompatiblepropertydescriptor
 

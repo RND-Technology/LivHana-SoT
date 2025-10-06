@@ -5,7 +5,7 @@ import { getHeader, CONTENT_TYPE_HEADER, CONTENT_LENGTH_HEADER, setHeader } from
  * Represents a logger implementation for API logging.
  * This logger provides methods to log HTTP requests and responses.
  */
-var ApiLogger =
+const ApiLogger =
 /*#__PURE__*/
 /** @class */
 function () {
@@ -22,9 +22,9 @@ function () {
    * @param request The HTTP request to log.
    */
   ApiLogger.prototype.logRequest = function (request) {
-    var logLevel = this._loggingOptions.logLevel;
-    var contentTypeHeader = this._getContentType(request.headers);
-    var url = this._loggingOptions.logRequest.includeQueryInPath ? request.url : this._removeQueryParams(request.url);
+    const logLevel = this._loggingOptions.logLevel;
+    const contentTypeHeader = this._getContentType(request.headers);
+    const url = this._loggingOptions.logRequest.includeQueryInPath ? request.url : this._removeQueryParams(request.url);
     this._logger.log(logLevel, 'Request ${method} ${url} ${contentType}', {
       method: request.method,
       url: url,
@@ -37,9 +37,9 @@ function () {
    * @param response The HTTP response to log.
    */
   ApiLogger.prototype.logResponse = function (response) {
-    var logLevel = this._loggingOptions.logLevel;
-    var contentTypeHeader = this._getContentType(response.headers);
-    var contentLengthHeader = this._getContentLength(response.headers);
+    const logLevel = this._loggingOptions.logLevel;
+    const contentTypeHeader = this._getContentType(response.headers);
+    const contentLengthHeader = this._getContentLength(response.headers);
     this._logger.log(logLevel, 'Response ${statusCode} ${contentLength} ${contentType}', {
       statusCode: response.statusCode,
       contentLength: contentLengthHeader,
@@ -52,19 +52,19 @@ function () {
     this._applyLogRequestBody(level, request, this._loggingOptions.logRequest);
   };
   ApiLogger.prototype._applyLogRequestHeaders = function (level, request, logRequest) {
-    var _a, _b;
-    var logHeaders = logRequest.logHeaders,
+    let _a, _b;
+    const logHeaders = logRequest.logHeaders,
       headersToInclude = logRequest.headersToInclude,
       headersToExclude = logRequest.headersToExclude,
       headersToWhitelist = logRequest.headersToWhitelist;
     if (logHeaders) {
-      var clonedHeaders = __assign({}, request.headers);
+      const clonedHeaders = __assign({}, request.headers);
       // If request.auth exists, encode it as Basic Auth and add it in cloned headers
       if (((_a = request.auth) === null || _a === void 0 ? void 0 : _a.username) && ((_b = request.auth) === null || _b === void 0 ? void 0 : _b.password)) {
-        var authString = "".concat(request.auth.username, ":").concat(request.auth.password);
+        const authString = "".concat(request.auth.username, ":").concat(request.auth.password);
         clonedHeaders.Authorization = "Basic ".concat(Buffer.from(authString, 'utf-8').toString('base64'));
       }
-      var headersToLog = this._extractHeadersToLog(headersToInclude, headersToExclude, headersToWhitelist, clonedHeaders);
+      const headersToLog = this._extractHeadersToLog(headersToInclude, headersToExclude, headersToWhitelist, clonedHeaders);
       this._logger.log(level, 'Request headers ${headers}', {
         headers: headersToLog
       });
@@ -82,12 +82,12 @@ function () {
     this._applyLogResponseBody(level, response, this._loggingOptions.logResponse);
   };
   ApiLogger.prototype._applyLogResponseHeaders = function (level, response, logResponse) {
-    var logHeaders = logResponse.logHeaders,
+    const logHeaders = logResponse.logHeaders,
       headersToInclude = logResponse.headersToInclude,
       headersToExclude = logResponse.headersToExclude,
       headersToWhitelist = logResponse.headersToWhitelist;
     if (logHeaders) {
-      var headersToLog = this._extractHeadersToLog(headersToInclude, headersToExclude, headersToWhitelist, response.headers);
+      const headersToLog = this._extractHeadersToLog(headersToInclude, headersToExclude, headersToWhitelist, response.headers);
       this._logger.log(level, 'Response headers ${headers}', {
         headers: headersToLog
       });
@@ -101,19 +101,19 @@ function () {
     }
   };
   ApiLogger.prototype._getContentType = function (headers) {
-    var _a;
+    let _a;
     return headers ? (_a = getHeader(headers, CONTENT_TYPE_HEADER)) !== null && _a !== void 0 ? _a : '' : '';
   };
   ApiLogger.prototype._getContentLength = function (headers) {
-    var _a;
+    let _a;
     return headers ? (_a = getHeader(headers, CONTENT_LENGTH_HEADER)) !== null && _a !== void 0 ? _a : '' : '';
   };
   ApiLogger.prototype._removeQueryParams = function (url) {
-    var queryStringIndex = url.indexOf('?');
+    const queryStringIndex = url.indexOf('?');
     return queryStringIndex !== -1 ? url.substring(0, queryStringIndex) : url;
   };
   ApiLogger.prototype._extractHeadersToLog = function (headersToInclude, headersToExclude, headersToWhitelist, headers) {
-    var filteredHeaders = {};
+    let filteredHeaders = {};
     if (!headers) {
       return {};
     }
@@ -129,10 +129,10 @@ function () {
   ApiLogger.prototype._includeHeadersToLog = function (headers, filteredHeaders, headersToInclude) {
     // Filter headers based on the keys specified in headersToInclude
     headersToInclude.forEach(function (name) {
-      var key = Object.keys(headers).find(function (headerKey) {
+      const key = Object.keys(headers).find(function (headerKey) {
         return headerKey.toLowerCase() === name.toLowerCase();
       });
-      var val = getHeader(headers, name);
+      const val = getHeader(headers, name);
       if (val !== null && key) {
         filteredHeaders[key] = val;
       }
@@ -140,12 +140,12 @@ function () {
     return filteredHeaders;
   };
   ApiLogger.prototype._excludeHeadersToLog = function (headers, filteredHeaders, headersToExclude) {
-    var e_1, _a;
-    var _loop_1 = function (key) {
+    let e_1, _a;
+    const _loop_1 = function (key) {
       if (!headersToExclude.some(function (excludedName) {
         return excludedName.toLowerCase() === key.toLowerCase();
       })) {
-        var value = getHeader(headers, key);
+        const value = getHeader(headers, key);
         if (value !== null) {
           filteredHeaders[key] = value;
         }
@@ -154,7 +154,7 @@ function () {
     try {
       // Filter headers based on the keys specified in headersToExclude
       for (var _b = __values(Object.keys(headers)), _c = _b.next(); !_c.done; _c = _b.next()) {
-        var key = _c.value;
+        const key = _c.value;
         _loop_1(key);
       }
     } catch (e_1_1) {
@@ -171,14 +171,14 @@ function () {
     return filteredHeaders;
   };
   ApiLogger.prototype._maskSenstiveHeaders = function (headers, headersToWhitelist) {
-    var e_2, _a;
-    var _b;
-    var masked_headers = __assign({}, headers);
+    let e_2, _a;
+    let _b;
+    const masked_headers = __assign({}, headers);
     if (this._loggingOptions.maskSensitiveHeaders) {
       try {
         for (var _c = __values(Object.keys(headers)), _d = _c.next(); !_d.done; _d = _c.next()) {
-          var key = _d.value;
-          var val = (_b = getHeader(headers, key)) !== null && _b !== void 0 ? _b : '';
+          const key = _d.value;
+          const val = (_b = getHeader(headers, key)) !== null && _b !== void 0 ? _b : '';
           setHeader(masked_headers, key, this._maskIfSenstiveHeader(key, val, headersToWhitelist));
         }
       } catch (e_2_1) {
@@ -196,8 +196,8 @@ function () {
     return masked_headers;
   };
   ApiLogger.prototype._maskIfSenstiveHeader = function (name, value, headersToWhiteList) {
-    var nonSensitiveHeaders = ['accept', 'accept-charset', 'accept-encoding', 'accept-language', 'access-control-allow-origin', 'cache-control', 'connection', 'content-encoding', 'content-language', 'content-length', 'content-location', 'content-md5', 'content-range', 'content-type', 'date', 'etag', 'expect', 'expires', 'from', 'host', 'if-match', 'if-modified-since', 'if-none-match', 'if-range', 'if-unmodified-since', 'keep-alive', 'last-modified', 'location', 'max-forwards', 'pragma', 'range', 'referer', 'retry-after', 'server', 'trailer', 'transfer-encoding', 'upgrade', 'user-agent', 'vary', 'via', 'warning', 'x-forwarded-for', 'x-requested-with', 'x-powered-by'];
-    var lowerCaseHeadersToWhiteList = headersToWhiteList.map(function (header) {
+    const nonSensitiveHeaders = ['accept', 'accept-charset', 'accept-encoding', 'accept-language', 'access-control-allow-origin', 'cache-control', 'connection', 'content-encoding', 'content-language', 'content-length', 'content-location', 'content-md5', 'content-range', 'content-type', 'date', 'etag', 'expect', 'expires', 'from', 'host', 'if-match', 'if-modified-since', 'if-none-match', 'if-range', 'if-unmodified-since', 'keep-alive', 'last-modified', 'location', 'max-forwards', 'pragma', 'range', 'referer', 'retry-after', 'server', 'trailer', 'transfer-encoding', 'upgrade', 'user-agent', 'vary', 'via', 'warning', 'x-forwarded-for', 'x-requested-with', 'x-powered-by'];
+    const lowerCaseHeadersToWhiteList = headersToWhiteList.map(function (header) {
       return header.toLowerCase();
     });
     return nonSensitiveHeaders.includes(name.toLowerCase()) || lowerCaseHeadersToWhiteList.includes(name.toLowerCase()) ? value : '**Redacted**';

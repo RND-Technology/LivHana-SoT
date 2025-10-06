@@ -7,5 +7,5 @@ function sortAscending(list) {
     return a - b;
   });
 }
-;
+
 module.exports = exports.default;

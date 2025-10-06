@@ -1,18 +1,18 @@
 'use strict';
 
-var callBound = require('call-bound');
+const callBound = require('call-bound');
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var $charAt = callBound('String.prototype.charAt');
+const $charAt = callBound('String.prototype.charAt');
 
-var isString = require('is-string');
-var isNegativeZero = require('math-intrinsics/isNegativeZero');
-var unbox = require('unbox-primitive');
+const isString = require('is-string');
+const isNegativeZero = require('math-intrinsics/isNegativeZero');
+const unbox = require('unbox-primitive');
 
-var CanonicalNumericIndexString = require('./CanonicalNumericIndexString');
-var IsInteger = require('./IsInteger');
-var isPropertyKey = require('../helpers/isPropertyKey');
+const CanonicalNumericIndexString = require('./CanonicalNumericIndexString');
+const IsInteger = require('./IsInteger');
+const isPropertyKey = require('../helpers/isPropertyKey');
 
 // https://262.ecma-international.org/6.0/#sec-stringgetindexproperty
 
@@ -28,18 +28,18 @@ module.exports = function StringGetIndexProperty(S, P) {
 		return void undefined;
 	}
 
-	var index = CanonicalNumericIndexString(P);
+	const index = CanonicalNumericIndexString(P);
 	if (typeof index === 'undefined' || !IsInteger(index) || isNegativeZero(index)) {
 		return void undefined;
 	}
 
-	var str = unbox(S);
-	var len = str.length;
+	const str = unbox(S);
+	const len = str.length;
 	if (index < 0 || len <= index) {
 		return void undefined;
 	}
 
-	var resultStr = $charAt(str, index);
+	const resultStr = $charAt(str, index);
 
 	return {
 		'[[Configurable]]': false,

@@ -1,0 +1,6 @@
+FROM node:18-alpine
+WORKDIR /app
+RUN npm install express cookie-parser
+COPY age-verification-smart-gate-fixed.js .
+EXPOSE 8080
+CMD ["node", "age-verification-smart-gate-fixed.js"]

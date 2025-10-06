@@ -1,9 +1,9 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var forEach = require('../helpers/forEach');
-var isArray = require('../helpers/IsArray');
+const forEach = require('../helpers/forEach');
+const isArray = require('../helpers/IsArray');
 
 // https://262.ecma-international.org/16.0/#sec-setdatasize
 
@@ -18,7 +18,7 @@ module.exports = function SetDataSize(setData) {
 		return 0;
 	}
 
-	var count = 0; // step 1
+	let count = 0; // step 1
 
 	forEach(setData, function (e, i) { // step 2
 		if (i in setData /* && e !== ~EMPTY~ */) {

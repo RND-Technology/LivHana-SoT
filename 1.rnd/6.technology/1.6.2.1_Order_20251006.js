@@ -1,5 +1,5 @@
-let Declaration = require('../declaration')
-let flexSpec = require('./flex-spec')
+const Declaration = require('../declaration')
+const flexSpec = require('./flex-spec')
 
 class Order extends Declaration {
   /**
@@ -28,7 +28,7 @@ class Order extends Declaration {
    * Fix value for 2009 spec
    */
   set(decl, prefix) {
-    let spec = flexSpec(prefix)[0]
+    const spec = flexSpec(prefix)[0]
     if (spec === 2009 && /\d/.test(decl.value)) {
       decl.value = (parseInt(decl.value) + 1).toString()
       return super.set(decl, prefix)

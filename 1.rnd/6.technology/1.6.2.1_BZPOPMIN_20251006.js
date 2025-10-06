@@ -9,5 +9,5 @@ function transformArguments(key, timeout) {
     return args;
 }
 exports.transformArguments = transformArguments;
-var BZPOPMAX_1 = require("./BZPOPMAX");
+const BZPOPMAX_1 = require("./BZPOPMAX");
 Object.defineProperty(exports, "transformReply", { enumerable: true, get: function () { return BZPOPMAX_1.transformReply; } });

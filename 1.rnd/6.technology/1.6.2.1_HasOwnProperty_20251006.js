@@ -1,11 +1,11 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var hasOwn = require('hasown');
-var isObject = require('es-object-atoms/isObject');
+const hasOwn = require('hasown');
+const isObject = require('es-object-atoms/isObject');
 
-var isPropertyKey = require('../helpers/isPropertyKey');
+const isPropertyKey = require('../helpers/isPropertyKey');
 
 // https://262.ecma-international.org/6.0/#sec-hasownproperty
 

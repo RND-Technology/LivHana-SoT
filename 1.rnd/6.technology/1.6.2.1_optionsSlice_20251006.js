@@ -5,8 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.arrayTooltipSearcher = arrayTooltipSearcher;
 exports.optionsReducer = exports.createEventEmitter = void 0;
-var _toolkit = require("@reduxjs/toolkit");
-var _DataUtils = require("../util/DataUtils");
+const _toolkit = require("@reduxjs/toolkit");
+const _DataUtils = require("../util/DataUtils");
 /**
  * These chart options are decided internally, by Recharts,
  * and will not change during the lifetime of the chart.
@@ -20,19 +20,19 @@ var _DataUtils = require("../util/DataUtils");
 
 function arrayTooltipSearcher(data, strIndex) {
   if (!strIndex) return undefined;
-  var numIndex = Number.parseInt(strIndex, 10);
+  const numIndex = Number.parseInt(strIndex, 10);
   if ((0, _DataUtils.isNan)(numIndex)) {
     return undefined;
   }
   return data === null || data === void 0 ? void 0 : data[numIndex];
 }
-var initialState = {
+const initialState = {
   chartName: '',
   tooltipPayloadSearcher: undefined,
   eventEmitter: undefined,
   defaultTooltipEventType: 'axis'
 };
-var optionsSlice = (0, _toolkit.createSlice)({
+const optionsSlice = (0, _toolkit.createSlice)({
   name: 'options',
   initialState,
   reducers: {
@@ -43,8 +43,8 @@ var optionsSlice = (0, _toolkit.createSlice)({
     }
   }
 });
-var optionsReducer = exports.optionsReducer = optionsSlice.reducer;
-var {
+const optionsReducer = exports.optionsReducer = optionsSlice.reducer;
+const {
   createEventEmitter
 } = optionsSlice.actions;
 exports.createEventEmitter = createEventEmitter;

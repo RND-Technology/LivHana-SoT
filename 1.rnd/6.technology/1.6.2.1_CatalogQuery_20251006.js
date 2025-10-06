@@ -1,17 +1,17 @@
 "use strict";
 exports.__esModule = true;
 exports.catalogQuerySchema = void 0;
-var schema_1 = require("../schema");
-var catalogQueryExact_1 = require("./catalogQueryExact");
-var catalogQueryItemsForItemOptions_1 = require("./catalogQueryItemsForItemOptions");
-var catalogQueryItemsForModifierList_1 = require("./catalogQueryItemsForModifierList");
-var catalogQueryItemsForTax_1 = require("./catalogQueryItemsForTax");
-var catalogQueryItemVariationsForItemOptionValues_1 = require("./catalogQueryItemVariationsForItemOptionValues");
-var catalogQueryPrefix_1 = require("./catalogQueryPrefix");
-var catalogQueryRange_1 = require("./catalogQueryRange");
-var catalogQuerySet_1 = require("./catalogQuerySet");
-var catalogQuerySortedAttribute_1 = require("./catalogQuerySortedAttribute");
-var catalogQueryText_1 = require("./catalogQueryText");
+const schema_1 = require("../schema");
+const catalogQueryExact_1 = require("./catalogQueryExact");
+const catalogQueryItemsForItemOptions_1 = require("./catalogQueryItemsForItemOptions");
+const catalogQueryItemsForModifierList_1 = require("./catalogQueryItemsForModifierList");
+const catalogQueryItemsForTax_1 = require("./catalogQueryItemsForTax");
+const catalogQueryItemVariationsForItemOptionValues_1 = require("./catalogQueryItemVariationsForItemOptionValues");
+const catalogQueryPrefix_1 = require("./catalogQueryPrefix");
+const catalogQueryRange_1 = require("./catalogQueryRange");
+const catalogQuerySet_1 = require("./catalogQuerySet");
+const catalogQuerySortedAttribute_1 = require("./catalogQuerySortedAttribute");
+const catalogQueryText_1 = require("./catalogQueryText");
 exports.catalogQuerySchema = (0, schema_1.object)({
     sortedAttributeQuery: [
         'sorted_attribute_query',

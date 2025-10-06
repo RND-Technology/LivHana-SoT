@@ -50,11 +50,11 @@ class Xml2JsParser {
       this.currentTagDetail = this.root;
 
       while(this.source.canRead()){
-        let ch = this.source.readCh();
+        const ch = this.source.readCh();
         if (ch === "") break;
         
         if(ch === "<"){//tagStart
-          let nextChar = this.source.readChAt(0);
+          const nextChar = this.source.readChAt(0);
           if (nextChar === "" ) throw new Error("Unexpected end of source");
           
         
@@ -112,7 +112,7 @@ class Xml2JsParser {
       this.addTextNode();
 
       //create new tag
-      let tagExp = readTagExp(this, ">" );
+      const tagExp = readTagExp(this, ">" );
       
       // process and skip from tagsStack For unpaired tag, self closing tag, and stop node
       const tagDetail = new TagDetail(tagExp.tagName);
@@ -143,7 +143,7 @@ class Xml2JsParser {
 
     readSpecialTag(startCh){
       if(startCh == "!"){
-        let nextChar = this.source.readCh();
+        const nextChar = this.source.readCh();
         if (nextChar === null || nextChar === undefined) throw new Error("Unexpected ending of the source");
         
         if(nextChar === "-"){//comment

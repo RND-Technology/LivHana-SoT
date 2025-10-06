@@ -4,17 +4,17 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = _wrapAsyncGenerator;
-var _OverloadYield = require("./OverloadYield.js");
+const _OverloadYield = require("./OverloadYield.js");
 function _wrapAsyncGenerator(fn) {
   return function () {
     return new AsyncGenerator(fn.apply(this, arguments));
   };
 }
 function AsyncGenerator(gen) {
-  var front, back;
+  let front, back;
   function send(key, arg) {
     return new Promise(function (resolve, reject) {
-      var request = {
+      const request = {
         key: key,
         arg: arg,
         resolve: resolve,
@@ -31,12 +31,12 @@ function AsyncGenerator(gen) {
   }
   function resume(key, arg) {
     try {
-      var result = gen[key](arg);
-      var value = result.value;
-      var overloaded = value instanceof _OverloadYield.default;
+      const result = gen[key](arg);
+      const value = result.value;
+      const overloaded = value instanceof _OverloadYield.default;
       Promise.resolve(overloaded ? value.v : value).then(function (arg) {
         if (overloaded) {
-          var nextKey = key === "return" ? "return" : "next";
+          const nextKey = key === "return" ? "return" : "next";
           if (!value.k || arg.done) {
             return resume(nextKey, arg);
           } else {

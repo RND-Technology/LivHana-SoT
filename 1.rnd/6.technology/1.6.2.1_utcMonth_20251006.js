@@ -4,9 +4,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.utcMonths = exports.default = void 0;
-var _interval = _interopRequireDefault(require("./interval.js"));
+const _interval = _interopRequireDefault(require("./interval.js"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-var utcMonth = (0, _interval.default)(function (date) {
+const utcMonth = (0, _interval.default)(function (date) {
   date.setUTCDate(1);
   date.setUTCHours(0, 0, 0, 0);
 }, function (date, step) {
@@ -16,5 +16,5 @@ var utcMonth = (0, _interval.default)(function (date) {
 }, function (date) {
   return date.getUTCMonth();
 });
-var _default = exports.default = utcMonth;
-var utcMonths = exports.utcMonths = utcMonth.range;
+const _default = exports.default = utcMonth;
+const utcMonths = exports.utcMonths = utcMonth.range;

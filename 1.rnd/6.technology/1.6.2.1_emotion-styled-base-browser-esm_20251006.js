@@ -6,25 +6,25 @@ import { getRegisteredStyles, registerStyles, insertStyles } from '@emotion/util
 import * as React from 'react';
 import isPropValid from '@emotion/is-prop-valid';
 
-var isDevelopment = false;
+const isDevelopment = false;
 
-var testOmitPropsOnStringTag = isPropValid;
+const testOmitPropsOnStringTag = isPropValid;
 
-var testOmitPropsOnComponent = function testOmitPropsOnComponent(key) {
+const testOmitPropsOnComponent = function testOmitPropsOnComponent(key) {
   return key !== 'theme';
 };
 
-var getDefaultShouldForwardProp = function getDefaultShouldForwardProp(tag) {
+const getDefaultShouldForwardProp = function getDefaultShouldForwardProp(tag) {
   return typeof tag === 'string' && // 96 is one less than the char code
   // for "a" so this is checking that
   // it's a lowercase character
   tag.charCodeAt(0) > 96 ? testOmitPropsOnStringTag : testOmitPropsOnComponent;
 };
-var composeShouldForwardProps = function composeShouldForwardProps(tag, options, isReal) {
-  var shouldForwardProp;
+const composeShouldForwardProps = function composeShouldForwardProps(tag, options, isReal) {
+  let shouldForwardProp;
 
   if (options) {
-    var optionsShouldForwardProp = options.shouldForwardProp;
+    const optionsShouldForwardProp = options.shouldForwardProp;
     shouldForwardProp = tag.__emotion_forwardProp && optionsShouldForwardProp ? function (propName) {
       return tag.__emotion_forwardProp(propName) && optionsShouldForwardProp(propName);
     } : optionsShouldForwardProp;
@@ -37,8 +37,8 @@ var composeShouldForwardProps = function composeShouldForwardProps(tag, options,
   return shouldForwardProp;
 };
 
-var Insertion = function Insertion(_ref) {
-  var cache = _ref.cache,
+const Insertion = function Insertion(_ref) {
+  const cache = _ref.cache,
       serialized = _ref.serialized,
       isStringTag = _ref.isStringTag;
   registerStyles(cache, serialized, isStringTag);
@@ -49,25 +49,25 @@ var Insertion = function Insertion(_ref) {
   return null;
 };
 
-var createStyled = function createStyled(tag, options) {
+const createStyled = function createStyled(tag, options) {
 
-  var isReal = tag.__emotion_real === tag;
-  var baseTag = isReal && tag.__emotion_base || tag;
-  var identifierName;
-  var targetClassName;
+  const isReal = tag.__emotion_real === tag;
+  const baseTag = isReal && tag.__emotion_base || tag;
+  let identifierName;
+  let targetClassName;
 
   if (options !== undefined) {
     identifierName = options.label;
     targetClassName = options.target;
   }
 
-  var shouldForwardProp = composeShouldForwardProps(tag, options, isReal);
-  var defaultShouldForwardProp = shouldForwardProp || getDefaultShouldForwardProp(baseTag);
-  var shouldUseAs = !defaultShouldForwardProp('as');
+  const shouldForwardProp = composeShouldForwardProps(tag, options, isReal);
+  const defaultShouldForwardProp = shouldForwardProp || getDefaultShouldForwardProp(baseTag);
+  const shouldUseAs = !defaultShouldForwardProp('as');
   return function () {
     // eslint-disable-next-line prefer-rest-params
-    var args = arguments;
-    var styles = isReal && tag.__emotion_styles !== undefined ? tag.__emotion_styles.slice(0) : [];
+    const args = arguments;
+    const styles = isReal && tag.__emotion_styles !== undefined ? tag.__emotion_styles.slice(0) : [];
 
     if (identifierName !== undefined) {
       styles.push("label:" + identifierName + ";");
@@ -77,11 +77,11 @@ var createStyled = function createStyled(tag, options) {
       // eslint-disable-next-line prefer-spread
       styles.push.apply(styles, args);
     } else {
-      var templateStringsArr = args[0];
+      const templateStringsArr = args[0];
 
       styles.push(templateStringsArr[0]);
-      var len = args.length;
-      var i = 1;
+      const len = args.length;
+      let i = 1;
 
       for (; i < len; i++) {
 
@@ -89,16 +89,16 @@ var createStyled = function createStyled(tag, options) {
       }
     }
 
-    var Styled = withEmotionCache(function (props, cache, ref) {
-      var FinalTag = shouldUseAs && props.as || baseTag;
-      var className = '';
-      var classInterpolations = [];
-      var mergedProps = props;
+    const Styled = withEmotionCache(function (props, cache, ref) {
+      const FinalTag = shouldUseAs && props.as || baseTag;
+      let className = '';
+      const classInterpolations = [];
+      let mergedProps = props;
 
       if (props.theme == null) {
         mergedProps = {};
 
-        for (var key in props) {
+        for (const key in props) {
           mergedProps[key] = props[key];
         }
 
@@ -111,17 +111,17 @@ var createStyled = function createStyled(tag, options) {
         className = props.className + " ";
       }
 
-      var serialized = serializeStyles(styles.concat(classInterpolations), cache.registered, mergedProps);
+      const serialized = serializeStyles(styles.concat(classInterpolations), cache.registered, mergedProps);
       className += cache.key + "-" + serialized.name;
 
       if (targetClassName !== undefined) {
         className += " " + targetClassName;
       }
 
-      var finalShouldForwardProp = shouldUseAs && shouldForwardProp === undefined ? getDefaultShouldForwardProp(FinalTag) : defaultShouldForwardProp;
-      var newProps = {};
+      const finalShouldForwardProp = shouldUseAs && shouldForwardProp === undefined ? getDefaultShouldForwardProp(FinalTag) : defaultShouldForwardProp;
+      const newProps = {};
 
-      for (var _key in props) {
+      for (const _key in props) {
         if (shouldUseAs && _key === 'as') continue;
 
         if (finalShouldForwardProp(_key)) {
@@ -158,7 +158,7 @@ var createStyled = function createStyled(tag, options) {
     });
 
     Styled.withComponent = function (nextTag, nextOptions) {
-      var newStyled = createStyled(nextTag, _extends({}, options, nextOptions, {
+      const newStyled = createStyled(nextTag, _extends({}, options, nextOptions, {
         shouldForwardProp: composeShouldForwardProps(Styled, nextOptions, true)
       }));
       return newStyled.apply(void 0, styles);

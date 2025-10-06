@@ -4,10 +4,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = _toConsumableArray;
-var _arrayWithoutHoles = require("./arrayWithoutHoles.js");
-var _iterableToArray = require("./iterableToArray.js");
-var _unsupportedIterableToArray = require("./unsupportedIterableToArray.js");
-var _nonIterableSpread = require("./nonIterableSpread.js");
+const _arrayWithoutHoles = require("./arrayWithoutHoles.js");
+const _iterableToArray = require("./iterableToArray.js");
+const _unsupportedIterableToArray = require("./unsupportedIterableToArray.js");
+const _nonIterableSpread = require("./nonIterableSpread.js");
 function _toConsumableArray(arr) {
   return (0, _arrayWithoutHoles.default)(arr) || (0, _iterableToArray.default)(arr) || (0, _unsupportedIterableToArray.default)(arr) || (0, _nonIterableSpread.default)();
 }

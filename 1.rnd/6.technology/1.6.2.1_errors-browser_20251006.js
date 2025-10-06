@@ -2,7 +2,7 @@
 
 function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
 
-var codes = {};
+const codes = {};
 
 function createErrorType(code, message, Base) {
   if (!Base) {
@@ -17,7 +17,7 @@ function createErrorType(code, message, Base) {
     }
   }
 
-  var NodeError =
+  const NodeError =
   /*#__PURE__*/
   function (_Base) {
     _inheritsLoose(NodeError, _Base);
@@ -37,7 +37,7 @@ function createErrorType(code, message, Base) {
 
 function oneOf(expected, thing) {
   if (Array.isArray(expected)) {
-    var len = expected.length;
+    const len = expected.length;
     expected = expected.map(function (i) {
       return String(i);
     });
@@ -86,7 +86,7 @@ createErrorType('ERR_INVALID_OPT_VALUE', function (name, value) {
 }, TypeError);
 createErrorType('ERR_INVALID_ARG_TYPE', function (name, expected, actual) {
   // determiner: 'must be' or 'must not be'
-  var determiner;
+  let determiner;
 
   if (typeof expected === 'string' && startsWith(expected, 'not ')) {
     determiner = 'must not be';
@@ -95,13 +95,13 @@ createErrorType('ERR_INVALID_ARG_TYPE', function (name, expected, actual) {
     determiner = 'must be';
   }
 
-  var msg;
+  let msg;
 
   if (endsWith(name, ' argument')) {
     // For cases like 'first argument'
     msg = "The ".concat(name, " ").concat(determiner, " ").concat(oneOf(expected, 'type'));
   } else {
-    var type = includes(name, '.') ? 'property' : 'argument';
+    const type = includes(name, '.') ? 'property' : 'argument';
     msg = "The \"".concat(name, "\" ").concat(type, " ").concat(determiner, " ").concat(oneOf(expected, 'type'));
   }
 

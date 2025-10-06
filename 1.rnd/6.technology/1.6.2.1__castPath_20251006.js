@@ -1,4 +1,4 @@
-var isArray = require('./isArray'),
+const isArray = require('./isArray'),
     isKey = require('./_isKey'),
     stringToPath = require('./_stringToPath'),
     toString = require('./toString');

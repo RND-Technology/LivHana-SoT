@@ -1,10 +1,10 @@
-var pump = require('./index')
+const pump = require('./index')
 
-var rs = require('fs').createReadStream('/dev/random')
-var ws = require('fs').createWriteStream('/dev/null')
+const rs = require('fs').createReadStream('/dev/random')
+const ws = require('fs').createWriteStream('/dev/null')
 
-var toHex = function () {
-  var reverse = new (require('stream').Transform)()
+const toHex = function () {
+  const reverse = new (require('stream').Transform)()
 
   reverse._transform = function (chunk, enc, callback) {
     reverse.push(chunk.toString('hex'))
@@ -14,11 +14,11 @@ var toHex = function () {
   return reverse
 }
 
-var wsClosed = false
-var rsClosed = false
-var callbackCalled = false
+let wsClosed = false
+let rsClosed = false
+let callbackCalled = false
 
-var check = function () {
+const check = function () {
   if (wsClosed && rsClosed && callbackCalled) {
     console.log('test-node.js passes')
     clearTimeout(timeout)
@@ -35,7 +35,7 @@ rs.on('close', function () {
   check()
 })
 
-var res = pump(rs, toHex(), toHex(), toHex(), ws, function () {
+const res = pump(rs, toHex(), toHex(), toHex(), ws, function () {
   callbackCalled = true
   check()
 })

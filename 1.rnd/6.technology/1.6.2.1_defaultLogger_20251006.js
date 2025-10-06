@@ -1,7 +1,7 @@
 /**
  * Represents a logger implementation that logs messages to the console.
  */
-var ConsoleLogger =
+const ConsoleLogger =
 /*#__PURE__*/
 /** @class */
 function () {
@@ -13,7 +13,7 @@ function () {
    * @param params Additional parameters to include in the log message.
    */
   ConsoleLogger.prototype.log = function (level, message, params) {
-    var formattedMessage = formatMessage(message, params);
+    const formattedMessage = formatMessage(message, params);
     // tslint:disable-next-line:no-console
     console.log(level + ': ' + formattedMessage);
   };
@@ -27,10 +27,10 @@ function () {
  */
 function formatMessage(msg, obj) {
   // Use a regular expression to match placeholders in the message string
-  var regex = /\${([^}]+)}/g;
-  var formattedMsg = msg.replace(regex, function (match, key) {
+  const regex = /\${([^}]+)}/g;
+  const formattedMsg = msg.replace(regex, function (match, key) {
     if (obj.hasOwnProperty(key)) {
-      var value = obj[key];
+      const value = obj[key];
       return typeof value === 'object' ? JSON.stringify(value) : String(value);
     }
     return match;

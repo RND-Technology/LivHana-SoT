@@ -1,7 +1,7 @@
 "use strict";
 'use client';
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+const _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -12,40 +12,40 @@ Object.defineProperty(exports, "createFilterOptions", {
   }
 });
 exports.default = void 0;
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-var React = _interopRequireWildcard(require("react"));
-var _propTypes = _interopRequireDefault(require("prop-types"));
-var _clsx = _interopRequireDefault(require("clsx"));
-var _integerPropType = _interopRequireDefault(require("@mui/utils/integerPropType"));
-var _chainPropTypes = _interopRequireDefault(require("@mui/utils/chainPropTypes"));
-var _composeClasses = _interopRequireDefault(require("@mui/utils/composeClasses"));
-var _colorManipulator = require("@mui/system/colorManipulator");
+const _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+const _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+const React = _interopRequireWildcard(require("react"));
+const _propTypes = _interopRequireDefault(require("prop-types"));
+const _clsx = _interopRequireDefault(require("clsx"));
+const _integerPropType = _interopRequireDefault(require("@mui/utils/integerPropType"));
+const _chainPropTypes = _interopRequireDefault(require("@mui/utils/chainPropTypes"));
+const _composeClasses = _interopRequireDefault(require("@mui/utils/composeClasses"));
+const _colorManipulator = require("@mui/system/colorManipulator");
 var _useAutocomplete = _interopRequireWildcard(require("../useAutocomplete"));
-var _Popper = _interopRequireDefault(require("../Popper"));
-var _ListSubheader = _interopRequireDefault(require("../ListSubheader"));
-var _Paper = _interopRequireDefault(require("../Paper"));
-var _IconButton = _interopRequireDefault(require("../IconButton"));
-var _Chip = _interopRequireDefault(require("../Chip"));
-var _inputClasses = _interopRequireDefault(require("../Input/inputClasses"));
-var _inputBaseClasses = _interopRequireDefault(require("../InputBase/inputBaseClasses"));
-var _outlinedInputClasses = _interopRequireDefault(require("../OutlinedInput/outlinedInputClasses"));
-var _filledInputClasses = _interopRequireDefault(require("../FilledInput/filledInputClasses"));
-var _Close = _interopRequireDefault(require("../internal/svg-icons/Close"));
-var _ArrowDropDown = _interopRequireDefault(require("../internal/svg-icons/ArrowDropDown"));
-var _zeroStyled = require("../zero-styled");
-var _DefaultPropsProvider = require("../DefaultPropsProvider");
-var _autocompleteClasses = _interopRequireWildcard(require("./autocompleteClasses"));
-var _capitalize = _interopRequireDefault(require("../utils/capitalize"));
-var _useForkRef = _interopRequireDefault(require("../utils/useForkRef"));
-var _jsxRuntime = require("react/jsx-runtime");
-var _ClearIcon, _ArrowDropDownIcon;
+const _Popper = _interopRequireDefault(require("../Popper"));
+const _ListSubheader = _interopRequireDefault(require("../ListSubheader"));
+const _Paper = _interopRequireDefault(require("../Paper"));
+const _IconButton = _interopRequireDefault(require("../IconButton"));
+const _Chip = _interopRequireDefault(require("../Chip"));
+const _inputClasses = _interopRequireDefault(require("../Input/inputClasses"));
+const _inputBaseClasses = _interopRequireDefault(require("../InputBase/inputBaseClasses"));
+const _outlinedInputClasses = _interopRequireDefault(require("../OutlinedInput/outlinedInputClasses"));
+const _filledInputClasses = _interopRequireDefault(require("../FilledInput/filledInputClasses"));
+const _Close = _interopRequireDefault(require("../internal/svg-icons/Close"));
+const _ArrowDropDown = _interopRequireDefault(require("../internal/svg-icons/ArrowDropDown"));
+const _zeroStyled = require("../zero-styled");
+const _DefaultPropsProvider = require("../DefaultPropsProvider");
+const _autocompleteClasses = _interopRequireWildcard(require("./autocompleteClasses"));
+const _capitalize = _interopRequireDefault(require("../utils/capitalize"));
+const _useForkRef = _interopRequireDefault(require("../utils/useForkRef"));
+const _jsxRuntime = require("react/jsx-runtime");
+let _ClearIcon, _ArrowDropDownIcon;
 const _excluded = ["autoComplete", "autoHighlight", "autoSelect", "blurOnSelect", "ChipProps", "className", "clearIcon", "clearOnBlur", "clearOnEscape", "clearText", "closeText", "componentsProps", "defaultValue", "disableClearable", "disableCloseOnSelect", "disabled", "disabledItemsFocusable", "disableListWrap", "disablePortal", "filterOptions", "filterSelectedOptions", "forcePopupIcon", "freeSolo", "fullWidth", "getLimitTagsText", "getOptionDisabled", "getOptionKey", "getOptionLabel", "isOptionEqualToValue", "groupBy", "handleHomeEndKeys", "id", "includeInputInList", "inputValue", "limitTags", "ListboxComponent", "ListboxProps", "loading", "loadingText", "multiple", "noOptionsText", "onChange", "onClose", "onHighlightChange", "onInputChange", "onOpen", "open", "openOnFocus", "openText", "options", "PaperComponent", "PopperComponent", "popupIcon", "readOnly", "renderGroup", "renderInput", "renderOption", "renderTags", "selectOnFocus", "size", "slotProps", "value"],
   _excluded2 = ["ref"],
   _excluded3 = ["key"],
   _excluded4 = ["key"];
-function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
-function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; const r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; const t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); const n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (const u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { const i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 const useUtilityClasses = ownerState => {
   const {
     classes,
@@ -418,7 +418,7 @@ const AutocompleteGroupUl = (0, _zeroStyled.styled)('ul', {
   }
 });
 const Autocomplete = /*#__PURE__*/React.forwardRef(function Autocomplete(inProps, ref) {
-  var _slotProps$clearIndic, _slotProps$paper, _slotProps$popper, _slotProps$popupIndic;
+  let _slotProps$clearIndic, _slotProps$paper, _slotProps$popper, _slotProps$popupIndic;
   const props = (0, _DefaultPropsProvider.useDefaultProps)({
     props: inProps,
     name: 'MuiAutocomplete'
@@ -518,7 +518,7 @@ const Autocomplete = /*#__PURE__*/React.forwardRef(function Autocomplete(inProps
     otherListboxProps = (0, _objectWithoutPropertiesLoose2.default)(_getListboxProps, _excluded2);
   const combinedListboxRef = (0, _useForkRef.default)(listboxRef, externalListboxRef);
   const defaultGetOptionLabel = option => {
-    var _option$label;
+    let _option$label;
     return (_option$label = option.label) != null ? _option$label : option;
   };
   const getOptionLabel = getOptionLabelProp || defaultGetOptionLabel;
@@ -1139,4 +1139,4 @@ process.env.NODE_ENV !== "production" ? Autocomplete.propTypes /* remove-proptyp
     return null;
   })
 } : void 0;
-var _default = exports.default = Autocomplete;
+const _default = exports.default = Autocomplete;

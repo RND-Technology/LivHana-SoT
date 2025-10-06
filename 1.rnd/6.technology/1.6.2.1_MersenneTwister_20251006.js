@@ -1,8 +1,8 @@
 "use strict";
-var __read = (this && this.__read) || function (o, n) {
-    var m = typeof Symbol === "function" && o[Symbol.iterator];
+const __read = (this && this.__read) || function (o, n) {
+    let m = typeof Symbol === "function" && o[Symbol.iterator];
     if (!m) return o;
-    var i = m.call(o), r, ar = [], e;
+    let i = m.call(o), r, ar = [], e;
     try {
         while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
     }
@@ -15,7 +15,7 @@ var __read = (this && this.__read) || function (o, n) {
     }
     return ar;
 };
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+const __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
         if (ar || !(i in from)) {
             if (!ar) ar = Array.prototype.slice.call(from, 0, i);
@@ -25,30 +25,30 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     return to.concat(ar || Array.prototype.slice.call(from));
 };
 exports.__esModule = true;
-var MersenneTwister = (function () {
+const MersenneTwister = (function () {
     function MersenneTwister(states, index) {
         this.states = states;
         this.index = index;
     }
     MersenneTwister.twist = function (prev) {
-        var mt = prev.slice();
+        const mt = prev.slice();
         for (var idx = 0; idx !== MersenneTwister.N - MersenneTwister.M; ++idx) {
-            var y_1 = (mt[idx] & MersenneTwister.MASK_UPPER) + (mt[idx + 1] & MersenneTwister.MASK_LOWER);
+            const y_1 = (mt[idx] & MersenneTwister.MASK_UPPER) + (mt[idx + 1] & MersenneTwister.MASK_LOWER);
             mt[idx] = mt[idx + MersenneTwister.M] ^ (y_1 >>> 1) ^ (-(y_1 & 1) & MersenneTwister.A);
         }
         for (var idx = MersenneTwister.N - MersenneTwister.M; idx !== MersenneTwister.N - 1; ++idx) {
-            var y_2 = (mt[idx] & MersenneTwister.MASK_UPPER) + (mt[idx + 1] & MersenneTwister.MASK_LOWER);
+            const y_2 = (mt[idx] & MersenneTwister.MASK_UPPER) + (mt[idx + 1] & MersenneTwister.MASK_LOWER);
             mt[idx] = mt[idx + MersenneTwister.M - MersenneTwister.N] ^ (y_2 >>> 1) ^ (-(y_2 & 1) & MersenneTwister.A);
         }
-        var y = (mt[MersenneTwister.N - 1] & MersenneTwister.MASK_UPPER) + (mt[0] & MersenneTwister.MASK_LOWER);
+        const y = (mt[MersenneTwister.N - 1] & MersenneTwister.MASK_UPPER) + (mt[0] & MersenneTwister.MASK_LOWER);
         mt[MersenneTwister.N - 1] = mt[MersenneTwister.M - 1] ^ (y >>> 1) ^ (-(y & 1) & MersenneTwister.A);
         return mt;
     };
     MersenneTwister.seeded = function (seed) {
-        var out = Array(MersenneTwister.N);
+        const out = Array(MersenneTwister.N);
         out[0] = seed;
-        for (var idx = 1; idx !== MersenneTwister.N; ++idx) {
-            var xored = out[idx - 1] ^ (out[idx - 1] >>> 30);
+        for (let idx = 1; idx !== MersenneTwister.N; ++idx) {
+            const xored = out[idx - 1] ^ (out[idx - 1] >>> 30);
             out[idx] = (Math.imul(MersenneTwister.F, xored) + idx) | 0;
         }
         return out;
@@ -60,12 +60,12 @@ var MersenneTwister = (function () {
         return new MersenneTwister(this.states, this.index);
     };
     MersenneTwister.prototype.next = function () {
-        var nextRng = new MersenneTwister(this.states, this.index);
-        var out = nextRng.unsafeNext();
+        const nextRng = new MersenneTwister(this.states, this.index);
+        const out = nextRng.unsafeNext();
         return [out, nextRng];
     };
     MersenneTwister.prototype.unsafeNext = function () {
-        var y = this.states[this.index];
+        let y = this.states[this.index];
         y ^= this.states[this.index] >>> MersenneTwister.U;
         y ^= (y << MersenneTwister.S) & MersenneTwister.B;
         y ^= (y << MersenneTwister.T) & MersenneTwister.C;
@@ -80,7 +80,7 @@ var MersenneTwister = (function () {
         return __spreadArray([this.index], __read(this.states), false);
     };
     MersenneTwister.fromState = function (state) {
-        var valid = state.length === MersenneTwister.N + 1 && state[0] >= 0 && state[0] < MersenneTwister.N;
+        const valid = state.length === MersenneTwister.N + 1 && state[0] >= 0 && state[0] < MersenneTwister.N;
         if (!valid) {
             throw new Error('The state must have been produced by a mersenne RandomGenerator');
         }

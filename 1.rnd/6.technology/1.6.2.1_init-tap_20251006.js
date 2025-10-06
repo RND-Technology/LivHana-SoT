@@ -1,16 +1,16 @@
 'use strict'
 
-var tap = require('tap')
-var test = tap.test
-var sinon = require('sinon')
-var shimmer = require('../index.js')
+const tap = require('tap')
+const test = tap.test
+const sinon = require('sinon')
+const shimmer = require('../index.js')
 
 test('shimmer initialization', function (t) {
   t.plan(4)
 
   t.doesNotThrow(function () { shimmer() })
 
-  var mock = sinon.expectation
+  const mock = sinon.expectation
     .create('logger')
     .withArgs('no original function undefined to wrap')
     .once()
@@ -31,7 +31,7 @@ test('shimmer initialization', function (t) {
 test('shimmer initialized with non-function logger', function (t) {
   t.plan(2)
 
-  var mock = sinon.expectation
+  const mock = sinon.expectation
     .create('logger')
     .withArgs("new logger isn't a function, not replacing")
     .once()

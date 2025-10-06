@@ -30,7 +30,7 @@ function initialize(shim, mod, moduleName) {
   }
   logger.info('Instrumenting ' + moduleName);
   fetchHook(shim, mod, "fetch");
-  let util = shim.require('./lib/core/util');
+  const util = shim.require('./lib/core/util');
   parseOriginHook(shim, util, "parseOrigin")
 
 }
@@ -50,7 +50,7 @@ function parseOriginHook(shim, mod, methodName) {
       const request = requestManager.getRequest(shim);
       try {
         if (typeof arguments[0] === 'string') {
-          let URLObject = new URL(arguments[0]);
+          const URLObject = new URL(arguments[0]);
           const data = {};
           data.headers = {};
           data.path = URLObject.pathname ? URLObject.pathname : EMPTY_STRING;

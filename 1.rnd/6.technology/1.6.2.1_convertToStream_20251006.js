@@ -3,7 +3,7 @@ function convertToStream(content) {
     return content;
   }
   // ref: https://stackoverflow.com/a/22085851
-  var rs = new (require('stream').Readable)();
+  const rs = new (require('stream').Readable)();
   // tslint:disable-next-line:no-empty
   rs._read = function () {};
   rs.push(content);

@@ -18,8 +18,8 @@
  */
 
 module.exports = function getEnumerableProperties(object) {
-  var result = [];
-  for (var name in object) {
+  const result = [];
+  for (const name in object) {
     result.push(name);
   }
   return result;

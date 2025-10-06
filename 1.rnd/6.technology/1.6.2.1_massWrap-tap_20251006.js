@@ -1,25 +1,25 @@
 'use strict'
 
-var tap = require('tap')
-var test = tap.test
-var sinon = require('sinon')
-var shimmer = require('../index.js')
+const tap = require('tap')
+const test = tap.test
+const sinon = require('sinon')
+const shimmer = require('../index.js')
 
-var outsider = 0
+let outsider = 0
 function counter () { return ++outsider }
 function anticounter () { return --outsider }
 
-var generator = {
+const generator = {
   inc: counter,
   dec: anticounter
 }
 
-var arrow = {
+const arrow = {
   in: counter,
   out: anticounter
 }
 
-var nester = {
+const nester = {
   in: counter,
   out: anticounter
 }
@@ -33,11 +33,11 @@ test('should wrap multiple functions safely', function (t) {
   t.doesNotThrow(function () { generator.dec() })
   t.equal(0, outsider, 'calls have side effects')
 
-  var count = 0
+  let count = 0
   function wrapper (original) {
     return function () {
       count++
-      var returned = original.apply(this, arguments)
+      const returned = original.apply(this, arguments)
       count++
       return returned
     }
@@ -65,11 +65,11 @@ test('should wrap multiple functions on multiple modules safely', function (t) {
 
   t.equal(0, outsider, 'calls have side effects')
 
-  var count = 0
+  let count = 0
   function wrapper (original) {
     return function () {
       count++
-      var returned = original.apply(this, arguments)
+      const returned = original.apply(this, arguments)
       count++
       return returned
     }
@@ -88,7 +88,7 @@ test('should wrap multiple functions on multiple modules safely', function (t) {
 test('wrap called with no arguments', function (t) {
   t.plan(2)
 
-  var mock = sinon.expectation
+  const mock = sinon.expectation
     .create('logger')
     .twice()
   shimmer({ logger: mock })
@@ -105,7 +105,7 @@ test('wrap called with no arguments', function (t) {
 test('wrap called with module but nothing else', function (t) {
   t.plan(2)
 
-  var mock = sinon.expectation
+  const mock = sinon.expectation
     .create('logger')
     .withExactArgs('must provide one or more functions to wrap on modules')
     .once()
@@ -123,7 +123,7 @@ test('wrap called with module but nothing else', function (t) {
 test('wrap called with original but no wrapper', function (t) {
   t.plan(2)
 
-  var mock = sinon.expectation
+  const mock = sinon.expectation
     .create('logger')
     .twice()
   shimmer({ logger: mock })
@@ -140,7 +140,7 @@ test('wrap called with original but no wrapper', function (t) {
 test('wrap called with non-function original', function (t) {
   t.plan(2)
 
-  var mock = sinon.expectation
+  const mock = sinon.expectation
     .create('logger')
     .withExactArgs('must provide one or more functions to wrap on modules')
     .once()
@@ -158,7 +158,7 @@ test('wrap called with non-function original', function (t) {
 test('wrap called with non-function wrapper', function (t) {
   t.plan(2)
 
-  var mock = sinon.expectation
+  const mock = sinon.expectation
     .create('logger')
     .withArgs('must provide one or more functions to wrap on modules')
     .once()

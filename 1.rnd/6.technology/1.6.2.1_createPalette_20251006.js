@@ -1,25 +1,25 @@
 "use strict";
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+const _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.dark = void 0;
 exports.default = createPalette;
 exports.light = void 0;
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
-var _formatMuiErrorMessage2 = _interopRequireDefault(require("@mui/utils/formatMuiErrorMessage"));
-var _deepmerge = _interopRequireDefault(require("@mui/utils/deepmerge"));
-var _colorManipulator = require("@mui/system/colorManipulator");
-var _common = _interopRequireDefault(require("../colors/common"));
-var _grey = _interopRequireDefault(require("../colors/grey"));
-var _purple = _interopRequireDefault(require("../colors/purple"));
-var _red = _interopRequireDefault(require("../colors/red"));
-var _orange = _interopRequireDefault(require("../colors/orange"));
-var _blue = _interopRequireDefault(require("../colors/blue"));
-var _lightBlue = _interopRequireDefault(require("../colors/lightBlue"));
-var _green = _interopRequireDefault(require("../colors/green"));
+const _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+const _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+const _formatMuiErrorMessage2 = _interopRequireDefault(require("@mui/utils/formatMuiErrorMessage"));
+const _deepmerge = _interopRequireDefault(require("@mui/utils/deepmerge"));
+const _colorManipulator = require("@mui/system/colorManipulator");
+const _common = _interopRequireDefault(require("../colors/common"));
+const _grey = _interopRequireDefault(require("../colors/grey"));
+const _purple = _interopRequireDefault(require("../colors/purple"));
+const _red = _interopRequireDefault(require("../colors/red"));
+const _orange = _interopRequireDefault(require("../colors/orange"));
+const _blue = _interopRequireDefault(require("../colors/blue"));
+const _lightBlue = _interopRequireDefault(require("../colors/lightBlue"));
+const _green = _interopRequireDefault(require("../colors/green"));
 const _excluded = ["mode", "contrastThreshold", "tonalOffset"];
 const light = exports.light = {
   // The colors used to style the text.

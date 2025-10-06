@@ -196,7 +196,7 @@ class PickFirstLoadBalancer {
         this.children.every(child => child.hasReportedTransientFailure = false);
     }
     calculateAndReportNewState() {
-        var _a;
+        let _a;
         if (this.currentPick) {
             if (this.reportHealthStatus && !this.currentPick.isHealthy()) {
                 const errorMessage = `Picked subchannel ${this.currentPick.getAddress()} is unhealthy`;
@@ -259,7 +259,7 @@ class PickFirstLoadBalancer {
         }
     }
     onSubchannelStateUpdate(subchannel, previousState, newState, errorMessage) {
-        var _a;
+        let _a;
         if ((_a = this.currentPick) === null || _a === void 0 ? void 0 : _a.realSubchannelEquals(subchannel)) {
             if (newState !== connectivity_state_1.ConnectivityState.READY) {
                 this.removeCurrentPick();
@@ -306,7 +306,7 @@ class PickFirstLoadBalancer {
      * @param subchannelIndex The index into the `subchannels` list.
      */
     startConnecting(subchannelIndex) {
-        var _a, _b;
+        let _a, _b;
         clearTimeout(this.connectionDelayTimeout);
         this.currentSubchannelIndex = subchannelIndex;
         if (this.children[subchannelIndex].subchannel.getConnectivityState() ===
@@ -314,7 +314,7 @@ class PickFirstLoadBalancer {
             trace('Start connecting to subchannel with address ' +
                 this.children[subchannelIndex].subchannel.getAddress());
             process.nextTick(() => {
-                var _a;
+                let _a;
                 (_a = this.children[subchannelIndex]) === null || _a === void 0 ? void 0 : _a.subchannel.startConnecting();
             });
         }

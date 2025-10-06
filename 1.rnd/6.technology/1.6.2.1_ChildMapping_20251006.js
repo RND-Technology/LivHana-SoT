@@ -6,7 +6,7 @@ exports.mergeChildMappings = mergeChildMappings;
 exports.getInitialChildMapping = getInitialChildMapping;
 exports.getNextChildMapping = getNextChildMapping;
 
-var _react = require("react");
+const _react = require("react");
 
 /**
  * Given `this.props.children`, return an object mapping key to child.
@@ -15,11 +15,11 @@ var _react = require("react");
  * @return {object} Mapping of key to child
  */
 function getChildMapping(children, mapFn) {
-  var mapper = function mapper(child) {
+  const mapper = function mapper(child) {
     return mapFn && (0, _react.isValidElement)(child) ? mapFn(child) : child;
   };
 
-  var result = Object.create(null);
+  const result = Object.create(null);
   if (children) _react.Children.map(children, function (c) {
     return c;
   }).forEach(function (child) {
@@ -57,10 +57,10 @@ function mergeChildMappings(prev, next) {
   // the combined list
 
 
-  var nextKeysPending = Object.create(null);
-  var pendingKeys = [];
+  const nextKeysPending = Object.create(null);
+  let pendingKeys = [];
 
-  for (var prevKey in prev) {
+  for (const prevKey in prev) {
     if (prevKey in next) {
       if (pendingKeys.length) {
         nextKeysPending[prevKey] = pendingKeys;
@@ -71,13 +71,13 @@ function mergeChildMappings(prev, next) {
     }
   }
 
-  var i;
-  var childMapping = {};
+  let i;
+  const childMapping = {};
 
-  for (var nextKey in next) {
+  for (const nextKey in next) {
     if (nextKeysPending[nextKey]) {
       for (i = 0; i < nextKeysPending[nextKey].length; i++) {
-        var pendingNextKey = nextKeysPending[nextKey][i];
+        const pendingNextKey = nextKeysPending[nextKey][i];
         childMapping[nextKeysPending[nextKey][i]] = getValueForKey(pendingNextKey);
       }
     }
@@ -110,15 +110,15 @@ function getInitialChildMapping(props, onExited) {
 }
 
 function getNextChildMapping(nextProps, prevChildMapping, onExited) {
-  var nextChildMapping = getChildMapping(nextProps.children);
-  var children = mergeChildMappings(prevChildMapping, nextChildMapping);
+  const nextChildMapping = getChildMapping(nextProps.children);
+  const children = mergeChildMappings(prevChildMapping, nextChildMapping);
   Object.keys(children).forEach(function (key) {
-    var child = children[key];
+    const child = children[key];
     if (!(0, _react.isValidElement)(child)) return;
-    var hasPrev = (key in prevChildMapping);
-    var hasNext = (key in nextChildMapping);
-    var prevChild = prevChildMapping[key];
-    var isLeaving = (0, _react.isValidElement)(prevChild) && !prevChild.props.in; // item is new (entering)
+    const hasPrev = (key in prevChildMapping);
+    const hasNext = (key in nextChildMapping);
+    const prevChild = prevChildMapping[key];
+    const isLeaving = (0, _react.isValidElement)(prevChild) && !prevChild.props.in; // item is new (entering)
 
     if (hasNext && (!hasPrev || isLeaving)) {
       // console.log('entering', key)

@@ -1,4 +1,4 @@
-var asciiSize = require('./_asciiSize'),
+const asciiSize = require('./_asciiSize'),
     hasUnicode = require('./_hasUnicode'),
     unicodeSize = require('./_unicodeSize');
 

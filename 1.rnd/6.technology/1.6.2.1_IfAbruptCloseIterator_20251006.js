@@ -1,9 +1,9 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var CompletionRecord = require('./CompletionRecord');
-var IteratorClose = require('./IteratorClose');
+const CompletionRecord = require('./CompletionRecord');
+const IteratorClose = require('./IteratorClose');
 
 // https://262.ecma-international.org/16.0/#sec-ifabruptcloseiterator
 

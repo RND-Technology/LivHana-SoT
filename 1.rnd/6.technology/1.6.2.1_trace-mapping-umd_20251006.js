@@ -6,7 +6,7 @@
 
     function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
-    var resolveUri__default = /*#__PURE__*/_interopDefaultLegacy(resolveUri);
+    const resolveUri__default = /*#__PURE__*/_interopDefaultLegacy(resolveUri);
 
     function resolve(input, base) {
         // The base is always treated as a directory, if it's not empty.
@@ -381,7 +381,7 @@
     }
     (() => {
         exports.encodedMappings = (map) => {
-            var _a;
+            let _a;
             return ((_a = map._encoded) !== null && _a !== void 0 ? _a : (map._encoded = sourcemapCodec.encode(map._decoded)));
         };
         exports.decodedMappings = (map) => {

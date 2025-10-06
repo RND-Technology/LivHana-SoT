@@ -1,11 +1,11 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var IsAccessorDescriptor = require('./IsAccessorDescriptor');
-var IsDataDescriptor = require('./IsDataDescriptor');
+const IsAccessorDescriptor = require('./IsAccessorDescriptor');
+const IsDataDescriptor = require('./IsDataDescriptor');
 
-var isPropertyDescriptor = require('./IsPropertyDescriptor');
+const isPropertyDescriptor = require('./IsPropertyDescriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.3
 

@@ -20,14 +20,14 @@
 // USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 require('./common');
-var assert = require('assert');
-var events = require('../');
+const assert = require('assert');
+const events = require('../');
 
-var e = new events.EventEmitter();
-var num_args_emitted = [];
+const e = new events.EventEmitter();
+const num_args_emitted = [];
 
 e.on('numArgs', function() {
-  var numArgs = arguments.length;
+  const numArgs = arguments.length;
   num_args_emitted.push(numArgs);
 });
 

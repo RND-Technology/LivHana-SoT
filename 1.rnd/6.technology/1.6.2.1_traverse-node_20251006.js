@@ -4,10 +4,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.traverseNode = traverseNode;
-var _context = require("./context.js");
-var _index = require("./path/index.js");
-var _t = require("@babel/types");
-var _context2 = require("./path/context.js");
+const _context = require("./context.js");
+const _index = require("./path/index.js");
+const _t = require("@babel/types");
+const _context2 = require("./path/context.js");
 const {
   VISITOR_KEYS
 } = _t;
@@ -48,7 +48,7 @@ function _visitPaths(ctx, paths) {
   return stop;
 }
 function _visit(ctx, path) {
-  var _opts$denylist;
+  let _opts$denylist;
   const node = path.node;
   if (!node) {
     return false;
@@ -64,7 +64,7 @@ function _visit(ctx, path) {
   if (path.shouldSkip) return path.shouldStop;
   if (_context2._call.call(path, opts.enter)) return path.shouldStop;
   if (path.node) {
-    var _opts$node$type;
+    let _opts$node$type;
     if (_context2._call.call(path, (_opts$node$type = opts[node.type]) == null ? void 0 : _opts$node$type.enter)) return path.shouldStop;
   }
   path.shouldStop = _traverse(path.node, opts, path.scope, ctx.state, path, path.skipKeys);
@@ -72,7 +72,7 @@ function _visit(ctx, path) {
     if (_context2._call.call(path, opts.exit)) return true;
   }
   if (path.node) {
-    var _opts$node$type2;
+    let _opts$node$type2;
     _context2._call.call(path, (_opts$node$type2 = opts[node.type]) == null ? void 0 : _opts$node$type2.exit);
   }
   return path.shouldStop;
@@ -118,7 +118,7 @@ function _traverse(node, opts, scope, state, path, skipKeys, visitSelf) {
   return false;
 }
 function traverseNode(node, opts, scope, state, path, skipKeys, visitSelf) {
-  ;
+  
   const keys = VISITOR_KEYS[node.type];
   if (!keys) return false;
   const context = new _context.default(scope, opts, state, path);

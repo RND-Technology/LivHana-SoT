@@ -1,11 +1,11 @@
 "use strict";
 exports.__esModule = true;
 exports.ApplePayApi = void 0;
-var tslib_1 = require("tslib");
-var registerDomainRequest_1 = require("../models/registerDomainRequest");
-var registerDomainResponse_1 = require("../models/registerDomainResponse");
-var baseApi_1 = require("./baseApi");
-var ApplePayApi = /** @class */ (function (_super) {
+const tslib_1 = require("tslib");
+const registerDomainRequest_1 = require("../models/registerDomainRequest");
+const registerDomainResponse_1 = require("../models/registerDomainResponse");
+const baseApi_1 = require("./baseApi");
+const ApplePayApi = /** @class */ (function (_super) {
     tslib_1.__extends(ApplePayApi, _super);
     function ApplePayApi() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -36,7 +36,7 @@ var ApplePayApi = /** @class */ (function (_super) {
      */
     ApplePayApi.prototype.registerDomain = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/apple-pay/domains');
                 mapped = req.prepareArgs({

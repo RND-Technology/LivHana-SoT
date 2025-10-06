@@ -1,10 +1,10 @@
 "use strict";
 exports.__esModule = true;
 exports.inventoryAdjustmentSchema = void 0;
-var schema_1 = require("../schema");
-var inventoryAdjustmentGroup_1 = require("./inventoryAdjustmentGroup");
-var money_1 = require("./money");
-var sourceApplication_1 = require("./sourceApplication");
+const schema_1 = require("../schema");
+const inventoryAdjustmentGroup_1 = require("./inventoryAdjustmentGroup");
+const money_1 = require("./money");
+const sourceApplication_1 = require("./sourceApplication");
 exports.inventoryAdjustmentSchema = (0, schema_1.object)({
     id: ['id', (0, schema_1.optional)((0, schema_1.string)())],
     referenceId: ['reference_id', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.string)()))],

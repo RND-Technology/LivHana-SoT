@@ -4,11 +4,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var t = require("@babel/types");
-var _t = t;
-var _traverseNode = require("../../traverse-node.js");
-var _visitors = require("../../visitors.js");
-var _context = require("../../path/context.js");
+const t = require("@babel/types");
+const _t = t;
+const _traverseNode = require("../../traverse-node.js");
+const _visitors = require("../../visitors.js");
+const _context = require("../../path/context.js");
 const {
   getAssignmentIdentifiers
 } = _t;
@@ -42,7 +42,7 @@ const renameVisitor = {
     if (node.shorthand && (name === state.oldName || name === state.newName) && scope.getBindingIdentifier(name) === state.binding.identifier) {
       node.shorthand = false;
       {
-        var _node$extra;
+        let _node$extra;
         if ((_node$extra = node.extra) != null && _node$extra.shorthand) node.extra.shorthand = false;
       }
     }

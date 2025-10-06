@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
 exports.customAttributeDefinitionSchema = void 0;
-var schema_1 = require("../schema");
+const schema_1 = require("../schema");
 exports.customAttributeDefinitionSchema = (0, schema_1.object)({
     key: ['key', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.string)()))],
     schema: ['schema', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.dict)((0, schema_1.unknown)())))],

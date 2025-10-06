@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ChildProcessor = void 0;
 const enums_1 = require("../enums");
 const utils_1 = require("../utils");
-var ChildStatus;
+let ChildStatus;
 (function (ChildStatus) {
     ChildStatus[ChildStatus["Idle"] = 0] = "Idle";
     ChildStatus[ChildStatus["Started"] = 1] = "Started";

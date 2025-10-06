@@ -12,7 +12,7 @@
 })(this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
-/******/ 	var installedModules = {};
+/******/ 	const installedModules = {};
 
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
@@ -23,7 +23,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 			return installedModules[moduleId].exports;
 
 /******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
+/******/ 		const module = installedModules[moduleId] = {
 /******/ 			exports: {},
 /******/ 			id: moduleId,
 /******/ 			loaded: false
@@ -82,13 +82,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	*/
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var comment_handler_1 = __webpack_require__(1);
-	var jsx_parser_1 = __webpack_require__(3);
-	var parser_1 = __webpack_require__(8);
-	var tokenizer_1 = __webpack_require__(15);
+	const comment_handler_1 = __webpack_require__(1);
+	const jsx_parser_1 = __webpack_require__(3);
+	const parser_1 = __webpack_require__(8);
+	const tokenizer_1 = __webpack_require__(15);
 	function parse(code, options, delegate) {
-	    var commentHandler = null;
-	    var proxyDelegate = function (node, metadata) {
+	    let commentHandler = null;
+	    const proxyDelegate = function (node, metadata) {
 	        if (delegate) {
 	            delegate(node, metadata);
 	        }
@@ -96,11 +96,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	            commentHandler.visit(node, metadata);
 	        }
 	    };
-	    var parserDelegate = (typeof delegate === 'function') ? proxyDelegate : null;
-	    var collectComment = false;
+	    let parserDelegate = (typeof delegate === 'function') ? proxyDelegate : null;
+	    let collectComment = false;
 	    if (options) {
 	        collectComment = (typeof options.comment === 'boolean' && options.comment);
-	        var attachComment = (typeof options.attachComment === 'boolean' && options.attachComment);
+	        const attachComment = (typeof options.attachComment === 'boolean' && options.attachComment);
 	        if (collectComment || attachComment) {
 	            commentHandler = new comment_handler_1.CommentHandler();
 	            commentHandler.attach = attachComment;
@@ -108,19 +108,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	            parserDelegate = proxyDelegate;
 	        }
 	    }
-	    var isModule = false;
+	    let isModule = false;
 	    if (options && typeof options.sourceType === 'string') {
 	        isModule = (options.sourceType === 'module');
 	    }
-	    var parser;
+	    let parser;
 	    if (options && typeof options.jsx === 'boolean' && options.jsx) {
 	        parser = new jsx_parser_1.JSXParser(code, options, parserDelegate);
 	    }
 	    else {
 	        parser = new parser_1.Parser(code, options, parserDelegate);
 	    }
-	    var program = isModule ? parser.parseModule() : parser.parseScript();
-	    var ast = program;
+	    const program = isModule ? parser.parseModule() : parser.parseScript();
+	    const ast = program;
 	    if (collectComment && commentHandler) {
 	        ast.comments = commentHandler.comments;
 	    }
@@ -134,24 +134,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 	exports.parse = parse;
 	function parseModule(code, options, delegate) {
-	    var parsingOptions = options || {};
+	    const parsingOptions = options || {};
 	    parsingOptions.sourceType = 'module';
 	    return parse(code, parsingOptions, delegate);
 	}
 	exports.parseModule = parseModule;
 	function parseScript(code, options, delegate) {
-	    var parsingOptions = options || {};
+	    const parsingOptions = options || {};
 	    parsingOptions.sourceType = 'script';
 	    return parse(code, parsingOptions, delegate);
 	}
 	exports.parseScript = parseScript;
 	function tokenize(code, options, delegate) {
-	    var tokenizer = new tokenizer_1.Tokenizer(code, options);
-	    var tokens;
+	    const tokenizer = new tokenizer_1.Tokenizer(code, options);
+	    let tokens;
 	    tokens = [];
 	    try {
 	        while (true) {
-	            var token = tokenizer.getNextToken();
+	            let token = tokenizer.getNextToken();
 	            if (!token) {
 	                break;
 	            }
@@ -170,7 +170,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return tokens;
 	}
 	exports.tokenize = tokenize;
-	var syntax_1 = __webpack_require__(2);
+	const syntax_1 = __webpack_require__(2);
 	exports.Syntax = syntax_1.Syntax;
 	// Sync with *.json manifests.
 	exports.version = '4.0.1';
@@ -182,8 +182,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var syntax_1 = __webpack_require__(2);
-	var CommentHandler = (function () {
+	const syntax_1 = __webpack_require__(2);
+	const CommentHandler = (function () {
 	    function CommentHandler() {
 	        this.attach = false;
 	        this.comments = [];
@@ -195,9 +195,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        //  innnerComments for properties empty block
 	        //  `function a() {/** comments **\/}`
 	        if (node.type === syntax_1.Syntax.BlockStatement && node.body.length === 0) {
-	            var innerComments = [];
-	            for (var i = this.leading.length - 1; i >= 0; --i) {
-	                var entry = this.leading[i];
+	            const innerComments = [];
+	            for (let i = this.leading.length - 1; i >= 0; --i) {
+	                const entry = this.leading[i];
 	                if (metadata.end.offset >= entry.start) {
 	                    innerComments.unshift(entry.comment);
 	                    this.leading.splice(i, 1);
@@ -210,10 +210,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    };
 	    CommentHandler.prototype.findTrailingComments = function (metadata) {
-	        var trailingComments = [];
+	        let trailingComments = [];
 	        if (this.trailing.length > 0) {
-	            for (var i = this.trailing.length - 1; i >= 0; --i) {
-	                var entry_1 = this.trailing[i];
+	            for (let i = this.trailing.length - 1; i >= 0; --i) {
+	                const entry_1 = this.trailing[i];
 	                if (entry_1.start >= metadata.end.offset) {
 	                    trailingComments.unshift(entry_1.comment);
 	                }
@@ -221,9 +221,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.trailing.length = 0;
 	            return trailingComments;
 	        }
-	        var entry = this.stack[this.stack.length - 1];
+	        const entry = this.stack[this.stack.length - 1];
 	        if (entry && entry.node.trailingComments) {
-	            var firstComment = entry.node.trailingComments[0];
+	            const firstComment = entry.node.trailingComments[0];
 	            if (firstComment && firstComment.range[0] >= metadata.end.offset) {
 	                trailingComments = entry.node.trailingComments;
 	                delete entry.node.trailingComments;
@@ -232,8 +232,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return trailingComments;
 	    };
 	    CommentHandler.prototype.findLeadingComments = function (metadata) {
-	        var leadingComments = [];
-	        var target;
+	        const leadingComments = [];
+	        let target;
 	        while (this.stack.length > 0) {
 	            var entry = this.stack[this.stack.length - 1];
 	            if (entry && entry.start >= metadata.start.offset) {
@@ -245,9 +245,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	        }
 	        if (target) {
-	            var count = target.leadingComments ? target.leadingComments.length : 0;
+	            const count = target.leadingComments ? target.leadingComments.length : 0;
 	            for (var i = count - 1; i >= 0; --i) {
-	                var comment = target.leadingComments[i];
+	                const comment = target.leadingComments[i];
 	                if (comment.range[1] <= metadata.start.offset) {
 	                    leadingComments.unshift(comment);
 	                    target.leadingComments.splice(i, 1);
@@ -272,8 +272,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return;
 	        }
 	        this.insertInnerComments(node, metadata);
-	        var trailingComments = this.findTrailingComments(metadata);
-	        var leadingComments = this.findLeadingComments(metadata);
+	        const trailingComments = this.findTrailingComments(metadata);
+	        const leadingComments = this.findLeadingComments(metadata);
 	        if (leadingComments.length > 0) {
 	            node.leadingComments = leadingComments;
 	        }
@@ -286,8 +286,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        });
 	    };
 	    CommentHandler.prototype.visitComment = function (node, metadata) {
-	        var type = (node.type[0] === 'L') ? 'Line' : 'Block';
-	        var comment = {
+	        const type = (node.type[0] === 'L') ? 'Line' : 'Block';
+	        const comment = {
 	            type: type,
 	            value: node.value
 	        };
@@ -299,7 +299,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        this.comments.push(comment);
 	        if (this.attach) {
-	            var entry = {
+	            const entry = {
 	                comment: {
 	                    type: type,
 	                    value: node.value,
@@ -413,10 +413,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	"use strict";
 /* istanbul ignore next */
-	var __extends = (this && this.__extends) || (function () {
-	    var extendStatics = Object.setPrototypeOf ||
+	const __extends = (this && this.__extends) || (function () {
+	    const extendStatics = Object.setPrototypeOf ||
 	        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-	        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+	        function (d, b) { for (const p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
 	    return function (d, b) {
 	        extendStatics(d, b);
 	        function __() { this.constructor = d; }
@@ -424,18 +424,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	})();
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var character_1 = __webpack_require__(4);
-	var JSXNode = __webpack_require__(5);
-	var jsx_syntax_1 = __webpack_require__(6);
-	var Node = __webpack_require__(7);
-	var parser_1 = __webpack_require__(8);
-	var token_1 = __webpack_require__(13);
-	var xhtml_entities_1 = __webpack_require__(14);
+	const character_1 = __webpack_require__(4);
+	const JSXNode = __webpack_require__(5);
+	const jsx_syntax_1 = __webpack_require__(6);
+	const Node = __webpack_require__(7);
+	const parser_1 = __webpack_require__(8);
+	const token_1 = __webpack_require__(13);
+	const xhtml_entities_1 = __webpack_require__(14);
 	token_1.TokenName[100 /* Identifier */] = 'JSXIdentifier';
 	token_1.TokenName[101 /* Text */] = 'JSXText';
 	// Fully qualified element name, e.g. <svg:path> returns "svg:path"
 	function getQualifiedElementName(elementName) {
-	    var qualifiedName;
+	    let qualifiedName;
 	    switch (elementName.type) {
 	        case jsx_syntax_1.JSXSyntax.JSXIdentifier:
 	            var id = elementName;
@@ -457,7 +457,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	    return qualifiedName;
 	}
-	var JSXParser = (function (_super) {
+	const JSXParser = (function (_super) {
 	    __extends(JSXParser, _super);
 	    function JSXParser(code, options, delegate) {
 	        return _super.call(this, code, options, delegate) || this;
@@ -499,13 +499,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        };
 	    };
 	    JSXParser.prototype.scanXHTMLEntity = function (quote) {
-	        var result = '&';
-	        var valid = true;
-	        var terminated = false;
-	        var numeric = false;
-	        var hex = false;
+	        let result = '&';
+	        let valid = true;
+	        let terminated = false;
+	        let numeric = false;
+	        let hex = false;
 	        while (!this.scanner.eof() && valid && !terminated) {
-	            var ch = this.scanner.source[this.scanner.index];
+	            const ch = this.scanner.source[this.scanner.index];
 	            if (ch === quote) {
 	                break;
 	            }
@@ -535,7 +535,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        if (valid && terminated && result.length > 2) {
 	            // e.g. '&#x41;' becomes just '#x41'
-	            var str = result.substr(1, result.length - 2);
+	            const str = result.substr(1, result.length - 2);
 	            if (numeric && str.length > 1) {
 	                result = String.fromCharCode(parseInt(str.substr(1), 10));
 	            }
@@ -550,7 +550,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    // Scan the next JSX token. This replaces Scanner#lex when in JSX mode.
 	    JSXParser.prototype.lexJSX = function () {
-	        var cp = this.scanner.source.charCodeAt(this.scanner.index);
+	        const cp = this.scanner.source.charCodeAt(this.scanner.index);
 	        // < > / : = { }
 	        if (cp === 60 || cp === 62 || cp === 47 || cp === 58 || cp === 61 || cp === 123 || cp === 125) {
 	            var value = this.scanner.source[this.scanner.index++];
@@ -566,8 +566,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        // " '
 	        if (cp === 34 || cp === 39) {
 	            var start = this.scanner.index;
-	            var quote = this.scanner.source[this.scanner.index++];
-	            var str = '';
+	            const quote = this.scanner.source[this.scanner.index++];
+	            let str = '';
 	            while (!this.scanner.eof()) {
 	                var ch = this.scanner.source[this.scanner.index++];
 	                if (ch === quote) {
@@ -591,8 +591,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        // ... or .
 	        if (cp === 46) {
-	            var n1 = this.scanner.source.charCodeAt(this.scanner.index + 1);
-	            var n2 = this.scanner.source.charCodeAt(this.scanner.index + 2);
+	            const n1 = this.scanner.source.charCodeAt(this.scanner.index + 1);
+	            const n2 = this.scanner.source.charCodeAt(this.scanner.index + 2);
 	            var value = (n1 === 46 && n2 === 46) ? '...' : '.';
 	            var start = this.scanner.index;
 	            this.scanner.index += value.length;
@@ -634,7 +634,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    break;
 	                }
 	            }
-	            var id = this.scanner.source.slice(start, this.scanner.index);
+	            const id = this.scanner.source.slice(start, this.scanner.index);
 	            return {
 	                type: 100 /* Identifier */,
 	                value: id,
@@ -651,7 +651,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.startMarker.index = this.scanner.index;
 	        this.startMarker.line = this.scanner.lineNumber;
 	        this.startMarker.column = this.scanner.index - this.scanner.lineStart;
-	        var token = this.lexJSX();
+	        const token = this.lexJSX();
 	        this.lastMarker.index = this.scanner.index;
 	        this.lastMarker.line = this.scanner.lineNumber;
 	        this.lastMarker.column = this.scanner.index - this.scanner.lineStart;
@@ -664,10 +664,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.startMarker.index = this.scanner.index;
 	        this.startMarker.line = this.scanner.lineNumber;
 	        this.startMarker.column = this.scanner.index - this.scanner.lineStart;
-	        var start = this.scanner.index;
-	        var text = '';
+	        const start = this.scanner.index;
+	        let text = '';
 	        while (!this.scanner.eof()) {
-	            var ch = this.scanner.source[this.scanner.index];
+	            const ch = this.scanner.source[this.scanner.index];
 	            if (ch === '{' || ch === '<') {
 	                break;
 	            }
@@ -684,7 +684,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.lastMarker.index = this.scanner.index;
 	        this.lastMarker.line = this.scanner.lineNumber;
 	        this.lastMarker.column = this.scanner.index - this.scanner.lineStart;
-	        var token = {
+	        const token = {
 	            type: 101 /* Text */,
 	            value: text,
 	            lineNumber: this.scanner.lineNumber,
@@ -698,60 +698,60 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return token;
 	    };
 	    JSXParser.prototype.peekJSXToken = function () {
-	        var state = this.scanner.saveState();
+	        const state = this.scanner.saveState();
 	        this.scanner.scanComments();
-	        var next = this.lexJSX();
+	        const next = this.lexJSX();
 	        this.scanner.restoreState(state);
 	        return next;
 	    };
 	    // Expect the next JSX token to match the specified punctuator.
 	    // If not, an exception will be thrown.
 	    JSXParser.prototype.expectJSX = function (value) {
-	        var token = this.nextJSXToken();
+	        const token = this.nextJSXToken();
 	        if (token.type !== 7 /* Punctuator */ || token.value !== value) {
 	            this.throwUnexpectedToken(token);
 	        }
 	    };
 	    // Return true if the next JSX token matches the specified punctuator.
 	    JSXParser.prototype.matchJSX = function (value) {
-	        var next = this.peekJSXToken();
+	        const next = this.peekJSXToken();
 	        return next.type === 7 /* Punctuator */ && next.value === value;
 	    };
 	    JSXParser.prototype.parseJSXIdentifier = function () {
-	        var node = this.createJSXNode();
-	        var token = this.nextJSXToken();
+	        const node = this.createJSXNode();
+	        const token = this.nextJSXToken();
 	        if (token.type !== 100 /* Identifier */) {
 	            this.throwUnexpectedToken(token);
 	        }
 	        return this.finalize(node, new JSXNode.JSXIdentifier(token.value));
 	    };
 	    JSXParser.prototype.parseJSXElementName = function () {
-	        var node = this.createJSXNode();
-	        var elementName = this.parseJSXIdentifier();
+	        const node = this.createJSXNode();
+	        let elementName = this.parseJSXIdentifier();
 	        if (this.matchJSX(':')) {
-	            var namespace = elementName;
+	            const namespace = elementName;
 	            this.expectJSX(':');
-	            var name_1 = this.parseJSXIdentifier();
+	            const name_1 = this.parseJSXIdentifier();
 	            elementName = this.finalize(node, new JSXNode.JSXNamespacedName(namespace, name_1));
 	        }
 	        else if (this.matchJSX('.')) {
 	            while (this.matchJSX('.')) {
-	                var object = elementName;
+	                const object = elementName;
 	                this.expectJSX('.');
-	                var property = this.parseJSXIdentifier();
+	                const property = this.parseJSXIdentifier();
 	                elementName = this.finalize(node, new JSXNode.JSXMemberExpression(object, property));
 	            }
 	        }
 	        return elementName;
 	    };
 	    JSXParser.prototype.parseJSXAttributeName = function () {
-	        var node = this.createJSXNode();
-	        var attributeName;
-	        var identifier = this.parseJSXIdentifier();
+	        const node = this.createJSXNode();
+	        let attributeName;
+	        const identifier = this.parseJSXIdentifier();
 	        if (this.matchJSX(':')) {
-	            var namespace = identifier;
+	            const namespace = identifier;
 	            this.expectJSX(':');
-	            var name_2 = this.parseJSXIdentifier();
+	            const name_2 = this.parseJSXIdentifier();
 	            attributeName = this.finalize(node, new JSXNode.JSXNamespacedName(namespace, name_2));
 	        }
 	        else {
@@ -760,22 +760,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return attributeName;
 	    };
 	    JSXParser.prototype.parseJSXStringLiteralAttribute = function () {
-	        var node = this.createJSXNode();
-	        var token = this.nextJSXToken();
+	        const node = this.createJSXNode();
+	        const token = this.nextJSXToken();
 	        if (token.type !== 8 /* StringLiteral */) {
 	            this.throwUnexpectedToken(token);
 	        }
-	        var raw = this.getTokenRaw(token);
+	        const raw = this.getTokenRaw(token);
 	        return this.finalize(node, new Node.Literal(token.value, raw));
 	    };
 	    JSXParser.prototype.parseJSXExpressionAttribute = function () {
-	        var node = this.createJSXNode();
+	        const node = this.createJSXNode();
 	        this.expectJSX('{');
 	        this.finishJSX();
 	        if (this.match('}')) {
 	            this.tolerateError('JSX attributes must only be assigned a non-empty expression');
 	        }
-	        var expression = this.parseAssignmentExpression();
+	        const expression = this.parseAssignmentExpression();
 	        this.reenterJSX();
 	        return this.finalize(node, new JSXNode.JSXExpressionContainer(expression));
 	    };
@@ -784,9 +784,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.matchJSX('<') ? this.parseJSXElement() : this.parseJSXStringLiteralAttribute();
 	    };
 	    JSXParser.prototype.parseJSXNameValueAttribute = function () {
-	        var node = this.createJSXNode();
-	        var name = this.parseJSXAttributeName();
-	        var value = null;
+	        const node = this.createJSXNode();
+	        const name = this.parseJSXAttributeName();
+	        let value = null;
 	        if (this.matchJSX('=')) {
 	            this.expectJSX('=');
 	            value = this.parseJSXAttributeValue();
@@ -794,29 +794,29 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return this.finalize(node, new JSXNode.JSXAttribute(name, value));
 	    };
 	    JSXParser.prototype.parseJSXSpreadAttribute = function () {
-	        var node = this.createJSXNode();
+	        const node = this.createJSXNode();
 	        this.expectJSX('{');
 	        this.expectJSX('...');
 	        this.finishJSX();
-	        var argument = this.parseAssignmentExpression();
+	        const argument = this.parseAssignmentExpression();
 	        this.reenterJSX();
 	        return this.finalize(node, new JSXNode.JSXSpreadAttribute(argument));
 	    };
 	    JSXParser.prototype.parseJSXAttributes = function () {
-	        var attributes = [];
+	        const attributes = [];
 	        while (!this.matchJSX('/') && !this.matchJSX('>')) {
-	            var attribute = this.matchJSX('{') ? this.parseJSXSpreadAttribute() :
+	            const attribute = this.matchJSX('{') ? this.parseJSXSpreadAttribute() :
 	                this.parseJSXNameValueAttribute();
 	            attributes.push(attribute);
 	        }
 	        return attributes;
 	    };
 	    JSXParser.prototype.parseJSXOpeningElement = function () {
-	        var node = this.createJSXNode();
+	        const node = this.createJSXNode();
 	        this.expectJSX('<');
-	        var name = this.parseJSXElementName();
-	        var attributes = this.parseJSXAttributes();
-	        var selfClosing = this.matchJSX('/');
+	        const name = this.parseJSXElementName();
+	        const attributes = this.parseJSXAttributes();
+	        const selfClosing = this.matchJSX('/');
 	        if (selfClosing) {
 	            this.expectJSX('/');
 	        }
@@ -824,17 +824,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return this.finalize(node, new JSXNode.JSXOpeningElement(name, selfClosing, attributes));
 	    };
 	    JSXParser.prototype.parseJSXBoundaryElement = function () {
-	        var node = this.createJSXNode();
+	        const node = this.createJSXNode();
 	        this.expectJSX('<');
 	        if (this.matchJSX('/')) {
 	            this.expectJSX('/');
-	            var name_3 = this.parseJSXElementName();
+	            const name_3 = this.parseJSXElementName();
 	            this.expectJSX('>');
 	            return this.finalize(node, new JSXNode.JSXClosingElement(name_3));
 	        }
-	        var name = this.parseJSXElementName();
-	        var attributes = this.parseJSXAttributes();
-	        var selfClosing = this.matchJSX('/');
+	        const name = this.parseJSXElementName();
+	        const attributes = this.parseJSXAttributes();
+	        const selfClosing = this.matchJSX('/');
 	        if (selfClosing) {
 	            this.expectJSX('/');
 	        }
@@ -842,7 +842,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return this.finalize(node, new JSXNode.JSXOpeningElement(name, selfClosing, attributes));
 	    };
 	    JSXParser.prototype.parseJSXEmptyExpression = function () {
-	        var node = this.createJSXChildNode();
+	        const node = this.createJSXChildNode();
 	        this.collectComments();
 	        this.lastMarker.index = this.scanner.index;
 	        this.lastMarker.line = this.scanner.lineNumber;
@@ -850,9 +850,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return this.finalize(node, new JSXNode.JSXEmptyExpression());
 	    };
 	    JSXParser.prototype.parseJSXExpressionContainer = function () {
-	        var node = this.createJSXNode();
+	        const node = this.createJSXNode();
 	        this.expectJSX('{');
-	        var expression;
+	        let expression;
 	        if (this.matchJSX('}')) {
 	            expression = this.parseJSXEmptyExpression();
 	            this.expectJSX('}');
@@ -865,17 +865,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return this.finalize(node, new JSXNode.JSXExpressionContainer(expression));
 	    };
 	    JSXParser.prototype.parseJSXChildren = function () {
-	        var children = [];
+	        const children = [];
 	        while (!this.scanner.eof()) {
-	            var node = this.createJSXChildNode();
-	            var token = this.nextJSXText();
+	            const node = this.createJSXChildNode();
+	            const token = this.nextJSXText();
 	            if (token.start < token.end) {
-	                var raw = this.getTokenRaw(token);
-	                var child = this.finalize(node, new JSXNode.JSXText(token.value, raw));
+	                const raw = this.getTokenRaw(token);
+	                const child = this.finalize(node, new JSXNode.JSXText(token.value, raw));
 	                children.push(child);
 	            }
 	            if (this.scanner.source[this.scanner.index] === '{') {
-	                var container = this.parseJSXExpressionContainer();
+	                const container = this.parseJSXExpressionContainer();
 	                children.push(container);
 	            }
 	            else {
@@ -885,13 +885,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return children;
 	    };
 	    JSXParser.prototype.parseComplexJSXElement = function (el) {
-	        var stack = [];
+	        const stack = [];
 	        while (!this.scanner.eof()) {
 	            el.children = el.children.concat(this.parseJSXChildren());
-	            var node = this.createJSXChildNode();
-	            var element = this.parseJSXBoundaryElement();
+	            const node = this.createJSXChildNode();
+	            const element = this.parseJSXBoundaryElement();
 	            if (element.type === jsx_syntax_1.JSXSyntax.JSXOpeningElement) {
-	                var opening = element;
+	                const opening = element;
 	                if (opening.selfClosing) {
 	                    var child = this.finalize(node, new JSXNode.JSXElement(opening, [], null));
 	                    el.children.push(child);
@@ -903,8 +903,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	            if (element.type === jsx_syntax_1.JSXSyntax.JSXClosingElement) {
 	                el.closing = element;
-	                var open_1 = getQualifiedElementName(el.opening.name);
-	                var close_1 = getQualifiedElementName(el.closing.name);
+	                const open_1 = getQualifiedElementName(el.opening.name);
+	                const close_1 = getQualifiedElementName(el.closing.name);
 	                if (open_1 !== close_1) {
 	                    this.tolerateError('Expected corresponding JSX closing tag for %0', open_1);
 	                }
@@ -922,12 +922,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return el;
 	    };
 	    JSXParser.prototype.parseJSXElement = function () {
-	        var node = this.createJSXNode();
-	        var opening = this.parseJSXOpeningElement();
-	        var children = [];
-	        var closing = null;
+	        const node = this.createJSXNode();
+	        const opening = this.parseJSXOpeningElement();
+	        let children = [];
+	        let closing = null;
 	        if (!opening.selfClosing) {
-	            var el = this.parseComplexJSXElement({ node: node, opening: opening, closing: closing, children: children });
+	            const el = this.parseComplexJSXElement({ node: node, opening: opening, closing: closing, children: children });
 	            children = el.children;
 	            closing = el.closing;
 	        }
@@ -939,7 +939,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.tokens.pop();
 	        }
 	        this.startJSX();
-	        var element = this.parseJSXElement();
+	        const element = this.parseJSXElement();
 	        this.finishJSX();
 	        return element;
 	    };
@@ -958,7 +958,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
 	// See also tools/generate-unicode-regex.js.
-	var Regex = {
+	const Regex = {
 	    // Unicode v8.0.0 NonAsciiIdentifierStart:
 	    NonAsciiIdentifierStart: /[\xAA\xB5\xBA\xC0-\xD6\xD8-\xF6\xF8-\u02C1\u02C6-\u02D1\u02E0-\u02E4\u02EC\u02EE\u0370-\u0374\u0376\u0377\u037A-\u037D\u037F\u0386\u0388-\u038A\u038C\u038E-\u03A1\u03A3-\u03F5\u03F7-\u0481\u048A-\u052F\u0531-\u0556\u0559\u0561-\u0587\u05D0-\u05EA\u05F0-\u05F2\u0620-\u064A\u066E\u066F\u0671-\u06D3\u06D5\u06E5\u06E6\u06EE\u06EF\u06FA-\u06FC\u06FF\u0710\u0712-\u072F\u074D-\u07A5\u07B1\u07CA-\u07EA\u07F4\u07F5\u07FA\u0800-\u0815\u081A\u0824\u0828\u0840-\u0858\u08A0-\u08B4\u0904-\u0939\u093D\u0950\u0958-\u0961\u0971-\u0980\u0985-\u098C\u098F\u0990\u0993-\u09A8\u09AA-\u09B0\u09B2\u09B6-\u09B9\u09BD\u09CE\u09DC\u09DD\u09DF-\u09E1\u09F0\u09F1\u0A05-\u0A0A\u0A0F\u0A10\u0A13-\u0A28\u0A2A-\u0A30\u0A32\u0A33\u0A35\u0A36\u0A38\u0A39\u0A59-\u0A5C\u0A5E\u0A72-\u0A74\u0A85-\u0A8D\u0A8F-\u0A91\u0A93-\u0AA8\u0AAA-\u0AB0\u0AB2\u0AB3\u0AB5-\u0AB9\u0ABD\u0AD0\u0AE0\u0AE1\u0AF9\u0B05-\u0B0C\u0B0F\u0B10\u0B13-\u0B28\u0B2A-\u0B30\u0B32\u0B33\u0B35-\u0B39\u0B3D\u0B5C\u0B5D\u0B5F-\u0B61\u0B71\u0B83\u0B85-\u0B8A\u0B8E-\u0B90\u0B92-\u0B95\u0B99\u0B9A\u0B9C\u0B9E\u0B9F\u0BA3\u0BA4\u0BA8-\u0BAA\u0BAE-\u0BB9\u0BD0\u0C05-\u0C0C\u0C0E-\u0C10\u0C12-\u0C28\u0C2A-\u0C39\u0C3D\u0C58-\u0C5A\u0C60\u0C61\u0C85-\u0C8C\u0C8E-\u0C90\u0C92-\u0CA8\u0CAA-\u0CB3\u0CB5-\u0CB9\u0CBD\u0CDE\u0CE0\u0CE1\u0CF1\u0CF2\u0D05-\u0D0C\u0D0E-\u0D10\u0D12-\u0D3A\u0D3D\u0D4E\u0D5F-\u0D61\u0D7A-\u0D7F\u0D85-\u0D96\u0D9A-\u0DB1\u0DB3-\u0DBB\u0DBD\u0DC0-\u0DC6\u0E01-\u0E30\u0E32\u0E33\u0E40-\u0E46\u0E81\u0E82\u0E84\u0E87\u0E88\u0E8A\u0E8D\u0E94-\u0E97\u0E99-\u0E9F\u0EA1-\u0EA3\u0EA5\u0EA7\u0EAA\u0EAB\u0EAD-\u0EB0\u0EB2\u0EB3\u0EBD\u0EC0-\u0EC4\u0EC6\u0EDC-\u0EDF\u0F00\u0F40-\u0F47\u0F49-\u0F6C\u0F88-\u0F8C\u1000-\u102A\u103F\u1050-\u1055\u105A-\u105D\u1061\u1065\u1066\u106E-\u1070\u1075-\u1081\u108E\u10A0-\u10C5\u10C7\u10CD\u10D0-\u10FA\u10FC-\u1248\u124A-\u124D\u1250-\u1256\u1258\u125A-\u125D\u1260-\u1288\u128A-\u128D\u1290-\u12B0\u12B2-\u12B5\u12B8-\u12BE\u12C0\u12C2-\u12C5\u12C8-\u12D6\u12D8-\u1310\u1312-\u1315\u1318-\u135A\u1380-\u138F\u13A0-\u13F5\u13F8-\u13FD\u1401-\u166C\u166F-\u167F\u1681-\u169A\u16A0-\u16EA\u16EE-\u16F8\u1700-\u170C\u170E-\u1711\u1720-\u1731\u1740-\u1751\u1760-\u176C\u176E-\u1770\u1780-\u17B3\u17D7\u17DC\u1820-\u1877\u1880-\u18A8\u18AA\u18B0-\u18F5\u1900-\u191E\u1950-\u196D\u1970-\u1974\u1980-\u19AB\u19B0-\u19C9\u1A00-\u1A16\u1A20-\u1A54\u1AA7\u1B05-\u1B33\u1B45-\u1B4B\u1B83-\u1BA0\u1BAE\u1BAF\u1BBA-\u1BE5\u1C00-\u1C23\u1C4D-\u1C4F\u1C5A-\u1C7D\u1CE9-\u1CEC\u1CEE-\u1CF1\u1CF5\u1CF6\u1D00-\u1DBF\u1E00-\u1F15\u1F18-\u1F1D\u1F20-\u1F45\u1F48-\u1F4D\u1F50-\u1F57\u1F59\u1F5B\u1F5D\u1F5F-\u1F7D\u1F80-\u1FB4\u1FB6-\u1FBC\u1FBE\u1FC2-\u1FC4\u1FC6-\u1FCC\u1FD0-\u1FD3\u1FD6-\u1FDB\u1FE0-\u1FEC\u1FF2-\u1FF4\u1FF6-\u1FFC\u2071\u207F\u2090-\u209C\u2102\u2107\u210A-\u2113\u2115\u2118-\u211D\u2124\u2126\u2128\u212A-\u2139\u213C-\u213F\u2145-\u2149\u214E\u2160-\u2188\u2C00-\u2C2E\u2C30-\u2C5E\u2C60-\u2CE4\u2CEB-\u2CEE\u2CF2\u2CF3\u2D00-\u2D25\u2D27\u2D2D\u2D30-\u2D67\u2D6F\u2D80-\u2D96\u2DA0-\u2DA6\u2DA8-\u2DAE\u2DB0-\u2DB6\u2DB8-\u2DBE\u2DC0-\u2DC6\u2DC8-\u2DCE\u2DD0-\u2DD6\u2DD8-\u2DDE\u3005-\u3007\u3021-\u3029\u3031-\u3035\u3038-\u303C\u3041-\u3096\u309B-\u309F\u30A1-\u30FA\u30FC-\u30FF\u3105-\u312D\u3131-\u318E\u31A0-\u31BA\u31F0-\u31FF\u3400-\u4DB5\u4E00-\u9FD5\uA000-\uA48C\uA4D0-\uA4FD\uA500-\uA60C\uA610-\uA61F\uA62A\uA62B\uA640-\uA66E\uA67F-\uA69D\uA6A0-\uA6EF\uA717-\uA71F\uA722-\uA788\uA78B-\uA7AD\uA7B0-\uA7B7\uA7F7-\uA801\uA803-\uA805\uA807-\uA80A\uA80C-\uA822\uA840-\uA873\uA882-\uA8B3\uA8F2-\uA8F7\uA8FB\uA8FD\uA90A-\uA925\uA930-\uA946\uA960-\uA97C\uA984-\uA9B2\uA9CF\uA9E0-\uA9E4\uA9E6-\uA9EF\uA9FA-\uA9FE\uAA00-\uAA28\uAA40-\uAA42\uAA44-\uAA4B\uAA60-\uAA76\uAA7A\uAA7E-\uAAAF\uAAB1\uAAB5\uAAB6\uAAB9-\uAABD\uAAC0\uAAC2\uAADB-\uAADD\uAAE0-\uAAEA\uAAF2-\uAAF4\uAB01-\uAB06\uAB09-\uAB0E\uAB11-\uAB16\uAB20-\uAB26\uAB28-\uAB2E\uAB30-\uAB5A\uAB5C-\uAB65\uAB70-\uABE2\uAC00-\uD7A3\uD7B0-\uD7C6\uD7CB-\uD7FB\uF900-\uFA6D\uFA70-\uFAD9\uFB00-\uFB06\uFB13-\uFB17\uFB1D\uFB1F-\uFB28\uFB2A-\uFB36\uFB38-\uFB3C\uFB3E\uFB40\uFB41\uFB43\uFB44\uFB46-\uFBB1\uFBD3-\uFD3D\uFD50-\uFD8F\uFD92-\uFDC7\uFDF0-\uFDFB\uFE70-\uFE74\uFE76-\uFEFC\uFF21-\uFF3A\uFF41-\uFF5A\uFF66-\uFFBE\uFFC2-\uFFC7\uFFCA-\uFFCF\uFFD2-\uFFD7\uFFDA-\uFFDC]|\uD800[\uDC00-\uDC0B\uDC0D-\uDC26\uDC28-\uDC3A\uDC3C\uDC3D\uDC3F-\uDC4D\uDC50-\uDC5D\uDC80-\uDCFA\uDD40-\uDD74\uDE80-\uDE9C\uDEA0-\uDED0\uDF00-\uDF1F\uDF30-\uDF4A\uDF50-\uDF75\uDF80-\uDF9D\uDFA0-\uDFC3\uDFC8-\uDFCF\uDFD1-\uDFD5]|\uD801[\uDC00-\uDC9D\uDD00-\uDD27\uDD30-\uDD63\uDE00-\uDF36\uDF40-\uDF55\uDF60-\uDF67]|\uD802[\uDC00-\uDC05\uDC08\uDC0A-\uDC35\uDC37\uDC38\uDC3C\uDC3F-\uDC55\uDC60-\uDC76\uDC80-\uDC9E\uDCE0-\uDCF2\uDCF4\uDCF5\uDD00-\uDD15\uDD20-\uDD39\uDD80-\uDDB7\uDDBE\uDDBF\uDE00\uDE10-\uDE13\uDE15-\uDE17\uDE19-\uDE33\uDE60-\uDE7C\uDE80-\uDE9C\uDEC0-\uDEC7\uDEC9-\uDEE4\uDF00-\uDF35\uDF40-\uDF55\uDF60-\uDF72\uDF80-\uDF91]|\uD803[\uDC00-\uDC48\uDC80-\uDCB2\uDCC0-\uDCF2]|\uD804[\uDC03-\uDC37\uDC83-\uDCAF\uDCD0-\uDCE8\uDD03-\uDD26\uDD50-\uDD72\uDD76\uDD83-\uDDB2\uDDC1-\uDDC4\uDDDA\uDDDC\uDE00-\uDE11\uDE13-\uDE2B\uDE80-\uDE86\uDE88\uDE8A-\uDE8D\uDE8F-\uDE9D\uDE9F-\uDEA8\uDEB0-\uDEDE\uDF05-\uDF0C\uDF0F\uDF10\uDF13-\uDF28\uDF2A-\uDF30\uDF32\uDF33\uDF35-\uDF39\uDF3D\uDF50\uDF5D-\uDF61]|\uD805[\uDC80-\uDCAF\uDCC4\uDCC5\uDCC7\uDD80-\uDDAE\uDDD8-\uDDDB\uDE00-\uDE2F\uDE44\uDE80-\uDEAA\uDF00-\uDF19]|\uD806[\uDCA0-\uDCDF\uDCFF\uDEC0-\uDEF8]|\uD808[\uDC00-\uDF99]|\uD809[\uDC00-\uDC6E\uDC80-\uDD43]|[\uD80C\uD840-\uD868\uD86A-\uD86C\uD86F-\uD872][\uDC00-\uDFFF]|\uD80D[\uDC00-\uDC2E]|\uD811[\uDC00-\uDE46]|\uD81A[\uDC00-\uDE38\uDE40-\uDE5E\uDED0-\uDEED\uDF00-\uDF2F\uDF40-\uDF43\uDF63-\uDF77\uDF7D-\uDF8F]|\uD81B[\uDF00-\uDF44\uDF50\uDF93-\uDF9F]|\uD82C[\uDC00\uDC01]|\uD82F[\uDC00-\uDC6A\uDC70-\uDC7C\uDC80-\uDC88\uDC90-\uDC99]|\uD835[\uDC00-\uDC54\uDC56-\uDC9C\uDC9E\uDC9F\uDCA2\uDCA5\uDCA6\uDCA9-\uDCAC\uDCAE-\uDCB9\uDCBB\uDCBD-\uDCC3\uDCC5-\uDD05\uDD07-\uDD0A\uDD0D-\uDD14\uDD16-\uDD1C\uDD1E-\uDD39\uDD3B-\uDD3E\uDD40-\uDD44\uDD46\uDD4A-\uDD50\uDD52-\uDEA5\uDEA8-\uDEC0\uDEC2-\uDEDA\uDEDC-\uDEFA\uDEFC-\uDF14\uDF16-\uDF34\uDF36-\uDF4E\uDF50-\uDF6E\uDF70-\uDF88\uDF8A-\uDFA8\uDFAA-\uDFC2\uDFC4-\uDFCB]|\uD83A[\uDC00-\uDCC4]|\uD83B[\uDE00-\uDE03\uDE05-\uDE1F\uDE21\uDE22\uDE24\uDE27\uDE29-\uDE32\uDE34-\uDE37\uDE39\uDE3B\uDE42\uDE47\uDE49\uDE4B\uDE4D-\uDE4F\uDE51\uDE52\uDE54\uDE57\uDE59\uDE5B\uDE5D\uDE5F\uDE61\uDE62\uDE64\uDE67-\uDE6A\uDE6C-\uDE72\uDE74-\uDE77\uDE79-\uDE7C\uDE7E\uDE80-\uDE89\uDE8B-\uDE9B\uDEA1-\uDEA3\uDEA5-\uDEA9\uDEAB-\uDEBB]|\uD869[\uDC00-\uDED6\uDF00-\uDFFF]|\uD86D[\uDC00-\uDF34\uDF40-\uDFFF]|\uD86E[\uDC00-\uDC1D\uDC20-\uDFFF]|\uD873[\uDC00-\uDEA1]|\uD87E[\uDC00-\uDE1D]/,
 	    // Unicode v8.0.0 NonAsciiIdentifierPart:
@@ -1017,9 +1017,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var jsx_syntax_1 = __webpack_require__(6);
+	const jsx_syntax_1 = __webpack_require__(6);
 	/* tslint:disable:max-classes-per-file */
-	var JSXClosingElement = (function () {
+	const JSXClosingElement = (function () {
 	    function JSXClosingElement(name) {
 	        this.type = jsx_syntax_1.JSXSyntax.JSXClosingElement;
 	        this.name = name;
@@ -1027,7 +1027,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return JSXClosingElement;
 	}());
 	exports.JSXClosingElement = JSXClosingElement;
-	var JSXElement = (function () {
+	const JSXElement = (function () {
 	    function JSXElement(openingElement, children, closingElement) {
 	        this.type = jsx_syntax_1.JSXSyntax.JSXElement;
 	        this.openingElement = openingElement;
@@ -1037,14 +1037,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return JSXElement;
 	}());
 	exports.JSXElement = JSXElement;
-	var JSXEmptyExpression = (function () {
+	const JSXEmptyExpression = (function () {
 	    function JSXEmptyExpression() {
 	        this.type = jsx_syntax_1.JSXSyntax.JSXEmptyExpression;
 	    }
 	    return JSXEmptyExpression;
 	}());
 	exports.JSXEmptyExpression = JSXEmptyExpression;
-	var JSXExpressionContainer = (function () {
+	const JSXExpressionContainer = (function () {
 	    function JSXExpressionContainer(expression) {
 	        this.type = jsx_syntax_1.JSXSyntax.JSXExpressionContainer;
 	        this.expression = expression;
@@ -1052,7 +1052,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return JSXExpressionContainer;
 	}());
 	exports.JSXExpressionContainer = JSXExpressionContainer;
-	var JSXIdentifier = (function () {
+	const JSXIdentifier = (function () {
 	    function JSXIdentifier(name) {
 	        this.type = jsx_syntax_1.JSXSyntax.JSXIdentifier;
 	        this.name = name;
@@ -1060,7 +1060,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return JSXIdentifier;
 	}());
 	exports.JSXIdentifier = JSXIdentifier;
-	var JSXMemberExpression = (function () {
+	const JSXMemberExpression = (function () {
 	    function JSXMemberExpression(object, property) {
 	        this.type = jsx_syntax_1.JSXSyntax.JSXMemberExpression;
 	        this.object = object;
@@ -1069,7 +1069,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return JSXMemberExpression;
 	}());
 	exports.JSXMemberExpression = JSXMemberExpression;
-	var JSXAttribute = (function () {
+	const JSXAttribute = (function () {
 	    function JSXAttribute(name, value) {
 	        this.type = jsx_syntax_1.JSXSyntax.JSXAttribute;
 	        this.name = name;
@@ -1078,7 +1078,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return JSXAttribute;
 	}());
 	exports.JSXAttribute = JSXAttribute;
-	var JSXNamespacedName = (function () {
+	const JSXNamespacedName = (function () {
 	    function JSXNamespacedName(namespace, name) {
 	        this.type = jsx_syntax_1.JSXSyntax.JSXNamespacedName;
 	        this.namespace = namespace;
@@ -1087,7 +1087,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return JSXNamespacedName;
 	}());
 	exports.JSXNamespacedName = JSXNamespacedName;
-	var JSXOpeningElement = (function () {
+	const JSXOpeningElement = (function () {
 	    function JSXOpeningElement(name, selfClosing, attributes) {
 	        this.type = jsx_syntax_1.JSXSyntax.JSXOpeningElement;
 	        this.name = name;
@@ -1097,7 +1097,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return JSXOpeningElement;
 	}());
 	exports.JSXOpeningElement = JSXOpeningElement;
-	var JSXSpreadAttribute = (function () {
+	const JSXSpreadAttribute = (function () {
 	    function JSXSpreadAttribute(argument) {
 	        this.type = jsx_syntax_1.JSXSyntax.JSXSpreadAttribute;
 	        this.argument = argument;
@@ -1105,7 +1105,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return JSXSpreadAttribute;
 	}());
 	exports.JSXSpreadAttribute = JSXSpreadAttribute;
-	var JSXText = (function () {
+	const JSXText = (function () {
 	    function JSXText(value, raw) {
 	        this.type = jsx_syntax_1.JSXSyntax.JSXText;
 	        this.value = value;
@@ -1143,9 +1143,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var syntax_1 = __webpack_require__(2);
+	const syntax_1 = __webpack_require__(2);
 	/* tslint:disable:max-classes-per-file */
-	var ArrayExpression = (function () {
+	const ArrayExpression = (function () {
 	    function ArrayExpression(elements) {
 	        this.type = syntax_1.Syntax.ArrayExpression;
 	        this.elements = elements;
@@ -1153,7 +1153,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return ArrayExpression;
 	}());
 	exports.ArrayExpression = ArrayExpression;
-	var ArrayPattern = (function () {
+	const ArrayPattern = (function () {
 	    function ArrayPattern(elements) {
 	        this.type = syntax_1.Syntax.ArrayPattern;
 	        this.elements = elements;
@@ -1161,7 +1161,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return ArrayPattern;
 	}());
 	exports.ArrayPattern = ArrayPattern;
-	var ArrowFunctionExpression = (function () {
+	const ArrowFunctionExpression = (function () {
 	    function ArrowFunctionExpression(params, body, expression) {
 	        this.type = syntax_1.Syntax.ArrowFunctionExpression;
 	        this.id = null;
@@ -1174,7 +1174,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return ArrowFunctionExpression;
 	}());
 	exports.ArrowFunctionExpression = ArrowFunctionExpression;
-	var AssignmentExpression = (function () {
+	const AssignmentExpression = (function () {
 	    function AssignmentExpression(operator, left, right) {
 	        this.type = syntax_1.Syntax.AssignmentExpression;
 	        this.operator = operator;
@@ -1184,7 +1184,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return AssignmentExpression;
 	}());
 	exports.AssignmentExpression = AssignmentExpression;
-	var AssignmentPattern = (function () {
+	const AssignmentPattern = (function () {
 	    function AssignmentPattern(left, right) {
 	        this.type = syntax_1.Syntax.AssignmentPattern;
 	        this.left = left;
@@ -1193,7 +1193,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return AssignmentPattern;
 	}());
 	exports.AssignmentPattern = AssignmentPattern;
-	var AsyncArrowFunctionExpression = (function () {
+	const AsyncArrowFunctionExpression = (function () {
 	    function AsyncArrowFunctionExpression(params, body, expression) {
 	        this.type = syntax_1.Syntax.ArrowFunctionExpression;
 	        this.id = null;
@@ -1206,7 +1206,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return AsyncArrowFunctionExpression;
 	}());
 	exports.AsyncArrowFunctionExpression = AsyncArrowFunctionExpression;
-	var AsyncFunctionDeclaration = (function () {
+	const AsyncFunctionDeclaration = (function () {
 	    function AsyncFunctionDeclaration(id, params, body) {
 	        this.type = syntax_1.Syntax.FunctionDeclaration;
 	        this.id = id;
@@ -1219,7 +1219,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return AsyncFunctionDeclaration;
 	}());
 	exports.AsyncFunctionDeclaration = AsyncFunctionDeclaration;
-	var AsyncFunctionExpression = (function () {
+	const AsyncFunctionExpression = (function () {
 	    function AsyncFunctionExpression(id, params, body) {
 	        this.type = syntax_1.Syntax.FunctionExpression;
 	        this.id = id;
@@ -1232,7 +1232,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return AsyncFunctionExpression;
 	}());
 	exports.AsyncFunctionExpression = AsyncFunctionExpression;
-	var AwaitExpression = (function () {
+	const AwaitExpression = (function () {
 	    function AwaitExpression(argument) {
 	        this.type = syntax_1.Syntax.AwaitExpression;
 	        this.argument = argument;
@@ -1240,9 +1240,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return AwaitExpression;
 	}());
 	exports.AwaitExpression = AwaitExpression;
-	var BinaryExpression = (function () {
+	const BinaryExpression = (function () {
 	    function BinaryExpression(operator, left, right) {
-	        var logical = (operator === '||' || operator === '&&');
+	        const logical = (operator === '||' || operator === '&&');
 	        this.type = logical ? syntax_1.Syntax.LogicalExpression : syntax_1.Syntax.BinaryExpression;
 	        this.operator = operator;
 	        this.left = left;
@@ -1251,7 +1251,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return BinaryExpression;
 	}());
 	exports.BinaryExpression = BinaryExpression;
-	var BlockStatement = (function () {
+	const BlockStatement = (function () {
 	    function BlockStatement(body) {
 	        this.type = syntax_1.Syntax.BlockStatement;
 	        this.body = body;
@@ -1259,7 +1259,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return BlockStatement;
 	}());
 	exports.BlockStatement = BlockStatement;
-	var BreakStatement = (function () {
+	const BreakStatement = (function () {
 	    function BreakStatement(label) {
 	        this.type = syntax_1.Syntax.BreakStatement;
 	        this.label = label;
@@ -1267,7 +1267,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return BreakStatement;
 	}());
 	exports.BreakStatement = BreakStatement;
-	var CallExpression = (function () {
+	const CallExpression = (function () {
 	    function CallExpression(callee, args) {
 	        this.type = syntax_1.Syntax.CallExpression;
 	        this.callee = callee;
@@ -1276,7 +1276,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return CallExpression;
 	}());
 	exports.CallExpression = CallExpression;
-	var CatchClause = (function () {
+	const CatchClause = (function () {
 	    function CatchClause(param, body) {
 	        this.type = syntax_1.Syntax.CatchClause;
 	        this.param = param;
@@ -1285,7 +1285,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return CatchClause;
 	}());
 	exports.CatchClause = CatchClause;
-	var ClassBody = (function () {
+	const ClassBody = (function () {
 	    function ClassBody(body) {
 	        this.type = syntax_1.Syntax.ClassBody;
 	        this.body = body;
@@ -1293,7 +1293,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return ClassBody;
 	}());
 	exports.ClassBody = ClassBody;
-	var ClassDeclaration = (function () {
+	const ClassDeclaration = (function () {
 	    function ClassDeclaration(id, superClass, body) {
 	        this.type = syntax_1.Syntax.ClassDeclaration;
 	        this.id = id;
@@ -1303,7 +1303,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return ClassDeclaration;
 	}());
 	exports.ClassDeclaration = ClassDeclaration;
-	var ClassExpression = (function () {
+	const ClassExpression = (function () {
 	    function ClassExpression(id, superClass, body) {
 	        this.type = syntax_1.Syntax.ClassExpression;
 	        this.id = id;
@@ -1313,7 +1313,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return ClassExpression;
 	}());
 	exports.ClassExpression = ClassExpression;
-	var ComputedMemberExpression = (function () {
+	const ComputedMemberExpression = (function () {
 	    function ComputedMemberExpression(object, property) {
 	        this.type = syntax_1.Syntax.MemberExpression;
 	        this.computed = true;
@@ -1323,7 +1323,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return ComputedMemberExpression;
 	}());
 	exports.ComputedMemberExpression = ComputedMemberExpression;
-	var ConditionalExpression = (function () {
+	const ConditionalExpression = (function () {
 	    function ConditionalExpression(test, consequent, alternate) {
 	        this.type = syntax_1.Syntax.ConditionalExpression;
 	        this.test = test;
@@ -1333,7 +1333,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return ConditionalExpression;
 	}());
 	exports.ConditionalExpression = ConditionalExpression;
-	var ContinueStatement = (function () {
+	const ContinueStatement = (function () {
 	    function ContinueStatement(label) {
 	        this.type = syntax_1.Syntax.ContinueStatement;
 	        this.label = label;
@@ -1341,14 +1341,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return ContinueStatement;
 	}());
 	exports.ContinueStatement = ContinueStatement;
-	var DebuggerStatement = (function () {
+	const DebuggerStatement = (function () {
 	    function DebuggerStatement() {
 	        this.type = syntax_1.Syntax.DebuggerStatement;
 	    }
 	    return DebuggerStatement;
 	}());
 	exports.DebuggerStatement = DebuggerStatement;
-	var Directive = (function () {
+	const Directive = (function () {
 	    function Directive(expression, directive) {
 	        this.type = syntax_1.Syntax.ExpressionStatement;
 	        this.expression = expression;
@@ -1357,7 +1357,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return Directive;
 	}());
 	exports.Directive = Directive;
-	var DoWhileStatement = (function () {
+	const DoWhileStatement = (function () {
 	    function DoWhileStatement(body, test) {
 	        this.type = syntax_1.Syntax.DoWhileStatement;
 	        this.body = body;
@@ -1366,14 +1366,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return DoWhileStatement;
 	}());
 	exports.DoWhileStatement = DoWhileStatement;
-	var EmptyStatement = (function () {
+	const EmptyStatement = (function () {
 	    function EmptyStatement() {
 	        this.type = syntax_1.Syntax.EmptyStatement;
 	    }
 	    return EmptyStatement;
 	}());
 	exports.EmptyStatement = EmptyStatement;
-	var ExportAllDeclaration = (function () {
+	const ExportAllDeclaration = (function () {
 	    function ExportAllDeclaration(source) {
 	        this.type = syntax_1.Syntax.ExportAllDeclaration;
 	        this.source = source;
@@ -1381,7 +1381,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return ExportAllDeclaration;
 	}());
 	exports.ExportAllDeclaration = ExportAllDeclaration;
-	var ExportDefaultDeclaration = (function () {
+	const ExportDefaultDeclaration = (function () {
 	    function ExportDefaultDeclaration(declaration) {
 	        this.type = syntax_1.Syntax.ExportDefaultDeclaration;
 	        this.declaration = declaration;
@@ -1389,7 +1389,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return ExportDefaultDeclaration;
 	}());
 	exports.ExportDefaultDeclaration = ExportDefaultDeclaration;
-	var ExportNamedDeclaration = (function () {
+	const ExportNamedDeclaration = (function () {
 	    function ExportNamedDeclaration(declaration, specifiers, source) {
 	        this.type = syntax_1.Syntax.ExportNamedDeclaration;
 	        this.declaration = declaration;
@@ -1399,7 +1399,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return ExportNamedDeclaration;
 	}());
 	exports.ExportNamedDeclaration = ExportNamedDeclaration;
-	var ExportSpecifier = (function () {
+	const ExportSpecifier = (function () {
 	    function ExportSpecifier(local, exported) {
 	        this.type = syntax_1.Syntax.ExportSpecifier;
 	        this.exported = exported;
@@ -1408,7 +1408,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return ExportSpecifier;
 	}());
 	exports.ExportSpecifier = ExportSpecifier;
-	var ExpressionStatement = (function () {
+	const ExpressionStatement = (function () {
 	    function ExpressionStatement(expression) {
 	        this.type = syntax_1.Syntax.ExpressionStatement;
 	        this.expression = expression;
@@ -1416,7 +1416,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return ExpressionStatement;
 	}());
 	exports.ExpressionStatement = ExpressionStatement;
-	var ForInStatement = (function () {
+	const ForInStatement = (function () {
 	    function ForInStatement(left, right, body) {
 	        this.type = syntax_1.Syntax.ForInStatement;
 	        this.left = left;
@@ -1427,7 +1427,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return ForInStatement;
 	}());
 	exports.ForInStatement = ForInStatement;
-	var ForOfStatement = (function () {
+	const ForOfStatement = (function () {
 	    function ForOfStatement(left, right, body) {
 	        this.type = syntax_1.Syntax.ForOfStatement;
 	        this.left = left;
@@ -1437,7 +1437,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return ForOfStatement;
 	}());
 	exports.ForOfStatement = ForOfStatement;
-	var ForStatement = (function () {
+	const ForStatement = (function () {
 	    function ForStatement(init, test, update, body) {
 	        this.type = syntax_1.Syntax.ForStatement;
 	        this.init = init;
@@ -1448,7 +1448,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return ForStatement;
 	}());
 	exports.ForStatement = ForStatement;
-	var FunctionDeclaration = (function () {
+	const FunctionDeclaration = (function () {
 	    function FunctionDeclaration(id, params, body, generator) {
 	        this.type = syntax_1.Syntax.FunctionDeclaration;
 	        this.id = id;
@@ -1461,7 +1461,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return FunctionDeclaration;
 	}());
 	exports.FunctionDeclaration = FunctionDeclaration;
-	var FunctionExpression = (function () {
+	const FunctionExpression = (function () {
 	    function FunctionExpression(id, params, body, generator) {
 	        this.type = syntax_1.Syntax.FunctionExpression;
 	        this.id = id;
@@ -1474,7 +1474,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return FunctionExpression;
 	}());
 	exports.FunctionExpression = FunctionExpression;
-	var Identifier = (function () {
+	const Identifier = (function () {
 	    function Identifier(name) {
 	        this.type = syntax_1.Syntax.Identifier;
 	        this.name = name;
@@ -1482,7 +1482,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return Identifier;
 	}());
 	exports.Identifier = Identifier;
-	var IfStatement = (function () {
+	const IfStatement = (function () {
 	    function IfStatement(test, consequent, alternate) {
 	        this.type = syntax_1.Syntax.IfStatement;
 	        this.test = test;
@@ -1492,7 +1492,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return IfStatement;
 	}());
 	exports.IfStatement = IfStatement;
-	var ImportDeclaration = (function () {
+	const ImportDeclaration = (function () {
 	    function ImportDeclaration(specifiers, source) {
 	        this.type = syntax_1.Syntax.ImportDeclaration;
 	        this.specifiers = specifiers;
@@ -1501,7 +1501,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return ImportDeclaration;
 	}());
 	exports.ImportDeclaration = ImportDeclaration;
-	var ImportDefaultSpecifier = (function () {
+	const ImportDefaultSpecifier = (function () {
 	    function ImportDefaultSpecifier(local) {
 	        this.type = syntax_1.Syntax.ImportDefaultSpecifier;
 	        this.local = local;
@@ -1509,7 +1509,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return ImportDefaultSpecifier;
 	}());
 	exports.ImportDefaultSpecifier = ImportDefaultSpecifier;
-	var ImportNamespaceSpecifier = (function () {
+	const ImportNamespaceSpecifier = (function () {
 	    function ImportNamespaceSpecifier(local) {
 	        this.type = syntax_1.Syntax.ImportNamespaceSpecifier;
 	        this.local = local;
@@ -1517,7 +1517,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return ImportNamespaceSpecifier;
 	}());
 	exports.ImportNamespaceSpecifier = ImportNamespaceSpecifier;
-	var ImportSpecifier = (function () {
+	const ImportSpecifier = (function () {
 	    function ImportSpecifier(local, imported) {
 	        this.type = syntax_1.Syntax.ImportSpecifier;
 	        this.local = local;
@@ -1526,7 +1526,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return ImportSpecifier;
 	}());
 	exports.ImportSpecifier = ImportSpecifier;
-	var LabeledStatement = (function () {
+	const LabeledStatement = (function () {
 	    function LabeledStatement(label, body) {
 	        this.type = syntax_1.Syntax.LabeledStatement;
 	        this.label = label;
@@ -1535,7 +1535,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return LabeledStatement;
 	}());
 	exports.LabeledStatement = LabeledStatement;
-	var Literal = (function () {
+	const Literal = (function () {
 	    function Literal(value, raw) {
 	        this.type = syntax_1.Syntax.Literal;
 	        this.value = value;
@@ -1544,7 +1544,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return Literal;
 	}());
 	exports.Literal = Literal;
-	var MetaProperty = (function () {
+	const MetaProperty = (function () {
 	    function MetaProperty(meta, property) {
 	        this.type = syntax_1.Syntax.MetaProperty;
 	        this.meta = meta;
@@ -1553,7 +1553,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return MetaProperty;
 	}());
 	exports.MetaProperty = MetaProperty;
-	var MethodDefinition = (function () {
+	const MethodDefinition = (function () {
 	    function MethodDefinition(key, computed, value, kind, isStatic) {
 	        this.type = syntax_1.Syntax.MethodDefinition;
 	        this.key = key;
@@ -1565,7 +1565,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return MethodDefinition;
 	}());
 	exports.MethodDefinition = MethodDefinition;
-	var Module = (function () {
+	const Module = (function () {
 	    function Module(body) {
 	        this.type = syntax_1.Syntax.Program;
 	        this.body = body;
@@ -1574,7 +1574,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return Module;
 	}());
 	exports.Module = Module;
-	var NewExpression = (function () {
+	const NewExpression = (function () {
 	    function NewExpression(callee, args) {
 	        this.type = syntax_1.Syntax.NewExpression;
 	        this.callee = callee;
@@ -1583,7 +1583,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return NewExpression;
 	}());
 	exports.NewExpression = NewExpression;
-	var ObjectExpression = (function () {
+	const ObjectExpression = (function () {
 	    function ObjectExpression(properties) {
 	        this.type = syntax_1.Syntax.ObjectExpression;
 	        this.properties = properties;
@@ -1591,7 +1591,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return ObjectExpression;
 	}());
 	exports.ObjectExpression = ObjectExpression;
-	var ObjectPattern = (function () {
+	const ObjectPattern = (function () {
 	    function ObjectPattern(properties) {
 	        this.type = syntax_1.Syntax.ObjectPattern;
 	        this.properties = properties;
@@ -1599,7 +1599,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return ObjectPattern;
 	}());
 	exports.ObjectPattern = ObjectPattern;
-	var Property = (function () {
+	const Property = (function () {
 	    function Property(kind, key, computed, value, method, shorthand) {
 	        this.type = syntax_1.Syntax.Property;
 	        this.key = key;
@@ -1612,7 +1612,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return Property;
 	}());
 	exports.Property = Property;
-	var RegexLiteral = (function () {
+	const RegexLiteral = (function () {
 	    function RegexLiteral(value, raw, pattern, flags) {
 	        this.type = syntax_1.Syntax.Literal;
 	        this.value = value;
@@ -1622,7 +1622,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return RegexLiteral;
 	}());
 	exports.RegexLiteral = RegexLiteral;
-	var RestElement = (function () {
+	const RestElement = (function () {
 	    function RestElement(argument) {
 	        this.type = syntax_1.Syntax.RestElement;
 	        this.argument = argument;
@@ -1630,7 +1630,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return RestElement;
 	}());
 	exports.RestElement = RestElement;
-	var ReturnStatement = (function () {
+	const ReturnStatement = (function () {
 	    function ReturnStatement(argument) {
 	        this.type = syntax_1.Syntax.ReturnStatement;
 	        this.argument = argument;
@@ -1638,7 +1638,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return ReturnStatement;
 	}());
 	exports.ReturnStatement = ReturnStatement;
-	var Script = (function () {
+	const Script = (function () {
 	    function Script(body) {
 	        this.type = syntax_1.Syntax.Program;
 	        this.body = body;
@@ -1647,7 +1647,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return Script;
 	}());
 	exports.Script = Script;
-	var SequenceExpression = (function () {
+	const SequenceExpression = (function () {
 	    function SequenceExpression(expressions) {
 	        this.type = syntax_1.Syntax.SequenceExpression;
 	        this.expressions = expressions;
@@ -1655,7 +1655,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return SequenceExpression;
 	}());
 	exports.SequenceExpression = SequenceExpression;
-	var SpreadElement = (function () {
+	const SpreadElement = (function () {
 	    function SpreadElement(argument) {
 	        this.type = syntax_1.Syntax.SpreadElement;
 	        this.argument = argument;
@@ -1663,7 +1663,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return SpreadElement;
 	}());
 	exports.SpreadElement = SpreadElement;
-	var StaticMemberExpression = (function () {
+	const StaticMemberExpression = (function () {
 	    function StaticMemberExpression(object, property) {
 	        this.type = syntax_1.Syntax.MemberExpression;
 	        this.computed = false;
@@ -1673,14 +1673,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return StaticMemberExpression;
 	}());
 	exports.StaticMemberExpression = StaticMemberExpression;
-	var Super = (function () {
+	const Super = (function () {
 	    function Super() {
 	        this.type = syntax_1.Syntax.Super;
 	    }
 	    return Super;
 	}());
 	exports.Super = Super;
-	var SwitchCase = (function () {
+	const SwitchCase = (function () {
 	    function SwitchCase(test, consequent) {
 	        this.type = syntax_1.Syntax.SwitchCase;
 	        this.test = test;
@@ -1689,7 +1689,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return SwitchCase;
 	}());
 	exports.SwitchCase = SwitchCase;
-	var SwitchStatement = (function () {
+	const SwitchStatement = (function () {
 	    function SwitchStatement(discriminant, cases) {
 	        this.type = syntax_1.Syntax.SwitchStatement;
 	        this.discriminant = discriminant;
@@ -1698,7 +1698,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return SwitchStatement;
 	}());
 	exports.SwitchStatement = SwitchStatement;
-	var TaggedTemplateExpression = (function () {
+	const TaggedTemplateExpression = (function () {
 	    function TaggedTemplateExpression(tag, quasi) {
 	        this.type = syntax_1.Syntax.TaggedTemplateExpression;
 	        this.tag = tag;
@@ -1707,7 +1707,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return TaggedTemplateExpression;
 	}());
 	exports.TaggedTemplateExpression = TaggedTemplateExpression;
-	var TemplateElement = (function () {
+	const TemplateElement = (function () {
 	    function TemplateElement(value, tail) {
 	        this.type = syntax_1.Syntax.TemplateElement;
 	        this.value = value;
@@ -1716,7 +1716,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return TemplateElement;
 	}());
 	exports.TemplateElement = TemplateElement;
-	var TemplateLiteral = (function () {
+	const TemplateLiteral = (function () {
 	    function TemplateLiteral(quasis, expressions) {
 	        this.type = syntax_1.Syntax.TemplateLiteral;
 	        this.quasis = quasis;
@@ -1725,14 +1725,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return TemplateLiteral;
 	}());
 	exports.TemplateLiteral = TemplateLiteral;
-	var ThisExpression = (function () {
+	const ThisExpression = (function () {
 	    function ThisExpression() {
 	        this.type = syntax_1.Syntax.ThisExpression;
 	    }
 	    return ThisExpression;
 	}());
 	exports.ThisExpression = ThisExpression;
-	var ThrowStatement = (function () {
+	const ThrowStatement = (function () {
 	    function ThrowStatement(argument) {
 	        this.type = syntax_1.Syntax.ThrowStatement;
 	        this.argument = argument;
@@ -1740,7 +1740,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return ThrowStatement;
 	}());
 	exports.ThrowStatement = ThrowStatement;
-	var TryStatement = (function () {
+	const TryStatement = (function () {
 	    function TryStatement(block, handler, finalizer) {
 	        this.type = syntax_1.Syntax.TryStatement;
 	        this.block = block;
@@ -1750,7 +1750,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return TryStatement;
 	}());
 	exports.TryStatement = TryStatement;
-	var UnaryExpression = (function () {
+	const UnaryExpression = (function () {
 	    function UnaryExpression(operator, argument) {
 	        this.type = syntax_1.Syntax.UnaryExpression;
 	        this.operator = operator;
@@ -1760,7 +1760,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return UnaryExpression;
 	}());
 	exports.UnaryExpression = UnaryExpression;
-	var UpdateExpression = (function () {
+	const UpdateExpression = (function () {
 	    function UpdateExpression(operator, argument, prefix) {
 	        this.type = syntax_1.Syntax.UpdateExpression;
 	        this.operator = operator;
@@ -1770,7 +1770,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return UpdateExpression;
 	}());
 	exports.UpdateExpression = UpdateExpression;
-	var VariableDeclaration = (function () {
+	const VariableDeclaration = (function () {
 	    function VariableDeclaration(declarations, kind) {
 	        this.type = syntax_1.Syntax.VariableDeclaration;
 	        this.declarations = declarations;
@@ -1779,7 +1779,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return VariableDeclaration;
 	}());
 	exports.VariableDeclaration = VariableDeclaration;
-	var VariableDeclarator = (function () {
+	const VariableDeclarator = (function () {
 	    function VariableDeclarator(id, init) {
 	        this.type = syntax_1.Syntax.VariableDeclarator;
 	        this.id = id;
@@ -1788,7 +1788,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return VariableDeclarator;
 	}());
 	exports.VariableDeclarator = VariableDeclarator;
-	var WhileStatement = (function () {
+	const WhileStatement = (function () {
 	    function WhileStatement(test, body) {
 	        this.type = syntax_1.Syntax.WhileStatement;
 	        this.test = test;
@@ -1797,7 +1797,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return WhileStatement;
 	}());
 	exports.WhileStatement = WhileStatement;
-	var WithStatement = (function () {
+	const WithStatement = (function () {
 	    function WithStatement(object, body) {
 	        this.type = syntax_1.Syntax.WithStatement;
 	        this.object = object;
@@ -1806,7 +1806,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return WithStatement;
 	}());
 	exports.WithStatement = WithStatement;
-	var YieldExpression = (function () {
+	const YieldExpression = (function () {
 	    function YieldExpression(argument, delegate) {
 	        this.type = syntax_1.Syntax.YieldExpression;
 	        this.argument = argument;
@@ -1823,15 +1823,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var assert_1 = __webpack_require__(9);
-	var error_handler_1 = __webpack_require__(10);
-	var messages_1 = __webpack_require__(11);
-	var Node = __webpack_require__(7);
-	var scanner_1 = __webpack_require__(12);
-	var syntax_1 = __webpack_require__(2);
-	var token_1 = __webpack_require__(13);
-	var ArrowParameterPlaceHolder = 'ArrowParameterPlaceHolder';
-	var Parser = (function () {
+	const assert_1 = __webpack_require__(9);
+	const error_handler_1 = __webpack_require__(10);
+	const messages_1 = __webpack_require__(11);
+	const Node = __webpack_require__(7);
+	const scanner_1 = __webpack_require__(12);
+	const syntax_1 = __webpack_require__(2);
+	const token_1 = __webpack_require__(13);
+	const ArrowParameterPlaceHolder = 'ArrowParameterPlaceHolder';
+	const Parser = (function () {
 	    function Parser(code, options, delegate) {
 	        if (options === void 0) { options = {}; }
 	        this.config = {
@@ -1921,39 +1921,39 @@ return /******/ (function(modules) { // webpackBootstrap
 	        };
 	    }
 	    Parser.prototype.throwError = function (messageFormat) {
-	        var values = [];
-	        for (var _i = 1; _i < arguments.length; _i++) {
+	        const values = [];
+	        for (let _i = 1; _i < arguments.length; _i++) {
 	            values[_i - 1] = arguments[_i];
 	        }
-	        var args = Array.prototype.slice.call(arguments, 1);
-	        var msg = messageFormat.replace(/%(\d)/g, function (whole, idx) {
+	        const args = Array.prototype.slice.call(arguments, 1);
+	        const msg = messageFormat.replace(/%(\d)/g, function (whole, idx) {
 	            assert_1.assert(idx < args.length, 'Message reference must be in range');
 	            return args[idx];
 	        });
-	        var index = this.lastMarker.index;
-	        var line = this.lastMarker.line;
-	        var column = this.lastMarker.column + 1;
+	        const index = this.lastMarker.index;
+	        const line = this.lastMarker.line;
+	        const column = this.lastMarker.column + 1;
 	        throw this.errorHandler.createError(index, line, column, msg);
 	    };
 	    Parser.prototype.tolerateError = function (messageFormat) {
-	        var values = [];
-	        for (var _i = 1; _i < arguments.length; _i++) {
+	        const values = [];
+	        for (let _i = 1; _i < arguments.length; _i++) {
 	            values[_i - 1] = arguments[_i];
 	        }
-	        var args = Array.prototype.slice.call(arguments, 1);
-	        var msg = messageFormat.replace(/%(\d)/g, function (whole, idx) {
+	        const args = Array.prototype.slice.call(arguments, 1);
+	        const msg = messageFormat.replace(/%(\d)/g, function (whole, idx) {
 	            assert_1.assert(idx < args.length, 'Message reference must be in range');
 	            return args[idx];
 	        });
-	        var index = this.lastMarker.index;
-	        var line = this.scanner.lineNumber;
-	        var column = this.lastMarker.column + 1;
+	        const index = this.lastMarker.index;
+	        const line = this.scanner.lineNumber;
+	        const column = this.lastMarker.column + 1;
 	        this.errorHandler.tolerateError(index, line, column, msg);
 	    };
 	    // Throw an exception because of the token.
 	    Parser.prototype.unexpectedTokenError = function (token, message) {
-	        var msg = message || messages_1.Messages.UnexpectedToken;
-	        var value;
+	        let msg = message || messages_1.Messages.UnexpectedToken;
+	        let value;
 	        if (token) {
 	            if (!message) {
 	                msg = (token.type === 2 /* EOF */) ? messages_1.Messages.UnexpectedEOS :
@@ -1980,7 +1980,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (token && typeof token.lineNumber === 'number') {
 	            var index = token.start;
 	            var line = token.lineNumber;
-	            var lastMarkerLineStart = this.lastMarker.index - this.lastMarker.column;
+	            const lastMarkerLineStart = this.lastMarker.index - this.lastMarker.column;
 	            var column = token.start - lastMarkerLineStart + 1;
 	            return this.errorHandler.createError(index, line, column, msg);
 	        }
@@ -2002,11 +2002,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.scanner.scanComments();
 	        }
 	        else {
-	            var comments = this.scanner.scanComments();
+	            const comments = this.scanner.scanComments();
 	            if (comments.length > 0 && this.delegate) {
-	                for (var i = 0; i < comments.length; ++i) {
-	                    var e = comments[i];
-	                    var node = void 0;
+	                for (let i = 0; i < comments.length; ++i) {
+	                    const e = comments[i];
+	                    let node = void 0;
 	                    node = {
 	                        type: e.multiLine ? 'BlockComment' : 'LineComment',
 	                        value: this.scanner.source.slice(e.slice[0], e.slice[1])
@@ -2017,7 +2017,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    if (this.config.loc) {
 	                        node.loc = e.loc;
 	                    }
-	                    var metadata = {
+	                    const metadata = {
 	                        start: {
 	                            line: e.loc.start.line,
 	                            column: e.loc.start.column,
@@ -2039,7 +2039,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return this.scanner.source.slice(token.start, token.end);
 	    };
 	    Parser.prototype.convertToken = function (token) {
-	        var t = {
+	        const t = {
 	            type: token_1.TokenName[token.type],
 	            value: this.getTokenRaw(token)
 	        };
@@ -2059,14 +2059,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	            };
 	        }
 	        if (token.type === 9 /* RegularExpression */) {
-	            var pattern = token.pattern;
-	            var flags = token.flags;
+	            const pattern = token.pattern;
+	            const flags = token.flags;
 	            t.regex = { pattern: pattern, flags: flags };
 	        }
 	        return t;
 	    };
 	    Parser.prototype.nextToken = function () {
-	        var token = this.lookahead;
+	        const token = this.lookahead;
 	        this.lastMarker.index = this.scanner.index;
 	        this.lastMarker.line = this.scanner.lineNumber;
 	        this.lastMarker.column = this.scanner.index - this.scanner.lineStart;
@@ -2076,7 +2076,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.startMarker.line = this.scanner.lineNumber;
 	            this.startMarker.column = this.scanner.index - this.scanner.lineStart;
 	        }
-	        var next = this.scanner.lex();
+	        const next = this.scanner.lex();
 	        this.hasLineTerminator = (token.lineNumber !== next.lineNumber);
 	        if (next && this.context.strict && next.type === 3 /* Identifier */) {
 	            if (this.scanner.isStrictModeReservedWord(next.value)) {
@@ -2091,7 +2091,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    Parser.prototype.nextRegexToken = function () {
 	        this.collectComments();
-	        var token = this.scanner.scanRegExp();
+	        const token = this.scanner.scanRegExp();
 	        if (this.config.tokens) {
 	            // Pop the previous token, '/' or '/='
 	            // This is added from the lookahead token.
@@ -2112,8 +2112,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    Parser.prototype.startNode = function (token, lastLineStart) {
 	        if (lastLineStart === void 0) { lastLineStart = 0; }
-	        var column = token.start - token.lineStart;
-	        var line = token.lineNumber;
+	        let column = token.start - token.lineStart;
+	        let line = token.lineNumber;
 	        if (column < 0) {
 	            column += lastLineStart;
 	            line--;
@@ -2144,7 +2144,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	        }
 	        if (this.delegate) {
-	            var metadata = {
+	            const metadata = {
 	                start: {
 	                    line: marker.line,
 	                    column: marker.column,
@@ -2163,7 +2163,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // Expect the next token to match the specified punctuator.
 	    // If not, an exception will be thrown.
 	    Parser.prototype.expect = function (value) {
-	        var token = this.nextToken();
+	        const token = this.nextToken();
 	        if (token.type !== 7 /* Punctuator */ || token.value !== value) {
 	            this.throwUnexpectedToken(token);
 	        }
@@ -2171,7 +2171,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // Quietly expect a comma when in tolerant mode, otherwise delegates to expect().
 	    Parser.prototype.expectCommaSeparator = function () {
 	        if (this.config.tolerant) {
-	            var token = this.lookahead;
+	            const token = this.lookahead;
 	            if (token.type === 7 /* Punctuator */ && token.value === ',') {
 	                this.nextToken();
 	            }
@@ -2190,7 +2190,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // Expect the next token to match the specified keyword.
 	    // If not, an exception will be thrown.
 	    Parser.prototype.expectKeyword = function (keyword) {
-	        var token = this.nextToken();
+	        const token = this.nextToken();
 	        if (token.type !== 4 /* Keyword */ || token.value !== keyword) {
 	            this.throwUnexpectedToken(token);
 	        }
@@ -2213,7 +2213,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (this.lookahead.type !== 7 /* Punctuator */) {
 	            return false;
 	        }
-	        var op = this.lookahead.value;
+	        const op = this.lookahead.value;
 	        return op === '=' ||
 	            op === '*=' ||
 	            op === '**=' ||
@@ -2260,13 +2260,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // the flags outside of the parser. This means the production the parser parses is used as a part of a potential
 	    // pattern. The CoverInitializedName check is deferred.
 	    Parser.prototype.isolateCoverGrammar = function (parseFunction) {
-	        var previousIsBindingElement = this.context.isBindingElement;
-	        var previousIsAssignmentTarget = this.context.isAssignmentTarget;
-	        var previousFirstCoverInitializedNameError = this.context.firstCoverInitializedNameError;
+	        const previousIsBindingElement = this.context.isBindingElement;
+	        const previousIsAssignmentTarget = this.context.isAssignmentTarget;
+	        const previousFirstCoverInitializedNameError = this.context.firstCoverInitializedNameError;
 	        this.context.isBindingElement = true;
 	        this.context.isAssignmentTarget = true;
 	        this.context.firstCoverInitializedNameError = null;
-	        var result = parseFunction.call(this);
+	        const result = parseFunction.call(this);
 	        if (this.context.firstCoverInitializedNameError !== null) {
 	            this.throwUnexpectedToken(this.context.firstCoverInitializedNameError);
 	        }
@@ -2276,13 +2276,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return result;
 	    };
 	    Parser.prototype.inheritCoverGrammar = function (parseFunction) {
-	        var previousIsBindingElement = this.context.isBindingElement;
-	        var previousIsAssignmentTarget = this.context.isAssignmentTarget;
-	        var previousFirstCoverInitializedNameError = this.context.firstCoverInitializedNameError;
+	        const previousIsBindingElement = this.context.isBindingElement;
+	        const previousIsAssignmentTarget = this.context.isAssignmentTarget;
+	        const previousFirstCoverInitializedNameError = this.context.firstCoverInitializedNameError;
 	        this.context.isBindingElement = true;
 	        this.context.isAssignmentTarget = true;
 	        this.context.firstCoverInitializedNameError = null;
-	        var result = parseFunction.call(this);
+	        const result = parseFunction.call(this);
 	        this.context.isBindingElement = this.context.isBindingElement && previousIsBindingElement;
 	        this.context.isAssignmentTarget = this.context.isAssignmentTarget && previousIsAssignmentTarget;
 	        this.context.firstCoverInitializedNameError = previousFirstCoverInitializedNameError || this.context.firstCoverInitializedNameError;
@@ -2303,9 +2303,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    // https://tc39.github.io/ecma262/#sec-primary-expression
 	    Parser.prototype.parsePrimaryExpression = function () {
-	        var node = this.createNode();
-	        var expr;
-	        var token, raw;
+	        const node = this.createNode();
+	        let expr;
+	        let token, raw;
 	        switch (this.lookahead.type) {
 	            case 3 /* Identifier */:
 	                if ((this.context.isModule || this.context.await) && this.lookahead.value === 'await') {
@@ -2398,14 +2398,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    // https://tc39.github.io/ecma262/#sec-array-initializer
 	    Parser.prototype.parseSpreadElement = function () {
-	        var node = this.createNode();
+	        const node = this.createNode();
 	        this.expect('...');
-	        var arg = this.inheritCoverGrammar(this.parseAssignmentExpression);
+	        const arg = this.inheritCoverGrammar(this.parseAssignmentExpression);
 	        return this.finalize(node, new Node.SpreadElement(arg));
 	    };
 	    Parser.prototype.parseArrayInitializer = function () {
-	        var node = this.createNode();
-	        var elements = [];
+	        const node = this.createNode();
+	        const elements = [];
 	        this.expect('[');
 	        while (!this.match(']')) {
 	            if (this.match(',')) {
@@ -2413,7 +2413,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                elements.push(null);
 	            }
 	            else if (this.match('...')) {
-	                var element = this.parseSpreadElement();
+	                const element = this.parseSpreadElement();
 	                if (!this.match(']')) {
 	                    this.context.isAssignmentTarget = false;
 	                    this.context.isBindingElement = false;
@@ -2435,10 +2435,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    Parser.prototype.parsePropertyMethod = function (params) {
 	        this.context.isAssignmentTarget = false;
 	        this.context.isBindingElement = false;
-	        var previousStrict = this.context.strict;
-	        var previousAllowStrictDirective = this.context.allowStrictDirective;
+	        const previousStrict = this.context.strict;
+	        const previousAllowStrictDirective = this.context.allowStrictDirective;
 	        this.context.allowStrictDirective = params.simple;
-	        var body = this.isolateCoverGrammar(this.parseFunctionSourceElements);
+	        const body = this.isolateCoverGrammar(this.parseFunctionSourceElements);
 	        if (this.context.strict && params.firstRestricted) {
 	            this.tolerateUnexpectedToken(params.firstRestricted, params.message);
 	        }
@@ -2450,31 +2450,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return body;
 	    };
 	    Parser.prototype.parsePropertyMethodFunction = function () {
-	        var isGenerator = false;
-	        var node = this.createNode();
-	        var previousAllowYield = this.context.allowYield;
+	        const isGenerator = false;
+	        const node = this.createNode();
+	        const previousAllowYield = this.context.allowYield;
 	        this.context.allowYield = true;
-	        var params = this.parseFormalParameters();
-	        var method = this.parsePropertyMethod(params);
+	        const params = this.parseFormalParameters();
+	        const method = this.parsePropertyMethod(params);
 	        this.context.allowYield = previousAllowYield;
 	        return this.finalize(node, new Node.FunctionExpression(null, params.params, method, isGenerator));
 	    };
 	    Parser.prototype.parsePropertyMethodAsyncFunction = function () {
-	        var node = this.createNode();
-	        var previousAllowYield = this.context.allowYield;
-	        var previousAwait = this.context.await;
+	        const node = this.createNode();
+	        const previousAllowYield = this.context.allowYield;
+	        const previousAwait = this.context.await;
 	        this.context.allowYield = false;
 	        this.context.await = true;
-	        var params = this.parseFormalParameters();
-	        var method = this.parsePropertyMethod(params);
+	        const params = this.parseFormalParameters();
+	        const method = this.parsePropertyMethod(params);
 	        this.context.allowYield = previousAllowYield;
 	        this.context.await = previousAwait;
 	        return this.finalize(node, new Node.AsyncFunctionExpression(null, params.params, method));
 	    };
 	    Parser.prototype.parseObjectPropertyKey = function () {
-	        var node = this.createNode();
-	        var token = this.nextToken();
-	        var key;
+	        const node = this.createNode();
+	        const token = this.nextToken();
+	        let key;
 	        switch (token.type) {
 	            case 8 /* StringLiteral */:
 	            case 6 /* NumericLiteral */:
@@ -2509,15 +2509,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	            (key.type === syntax_1.Syntax.Literal && key.value === value);
 	    };
 	    Parser.prototype.parseObjectProperty = function (hasProto) {
-	        var node = this.createNode();
-	        var token = this.lookahead;
-	        var kind;
-	        var key = null;
-	        var value = null;
-	        var computed = false;
-	        var method = false;
-	        var shorthand = false;
-	        var isAsync = false;
+	        const node = this.createNode();
+	        const token = this.lookahead;
+	        let kind;
+	        let key = null;
+	        let value = null;
+	        let computed = false;
+	        let method = false;
+	        let shorthand = false;
+	        let isAsync = false;
 	        if (token.type === 3 /* Identifier */) {
 	            var id = token.value;
 	            this.nextToken();
@@ -2533,7 +2533,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            computed = this.match('[');
 	            key = this.parseObjectPropertyKey();
 	        }
-	        var lookaheadPropertyKey = this.qualifiedPropertyName(this.lookahead);
+	        const lookaheadPropertyKey = this.qualifiedPropertyName(this.lookahead);
 	        if (token.type === 3 /* Identifier */ && !isAsync && token.value === 'get' && lookaheadPropertyKey) {
 	            kind = 'get';
 	            computed = this.match('[');
@@ -2579,7 +2579,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    this.context.firstCoverInitializedNameError = this.lookahead;
 	                    this.nextToken();
 	                    shorthand = true;
-	                    var init = this.isolateCoverGrammar(this.parseAssignmentExpression);
+	                    const init = this.isolateCoverGrammar(this.parseAssignmentExpression);
 	                    value = this.finalize(node, new Node.AssignmentPattern(id, init));
 	                }
 	                else {
@@ -2594,10 +2594,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return this.finalize(node, new Node.Property(kind, key, computed, value, method, shorthand));
 	    };
 	    Parser.prototype.parseObjectInitializer = function () {
-	        var node = this.createNode();
+	        const node = this.createNode();
 	        this.expect('{');
-	        var properties = [];
-	        var hasProto = { value: false };
+	        const properties = [];
+	        const hasProto = { value: false };
 	        while (!this.match('}')) {
 	            properties.push(this.parseObjectProperty(hasProto));
 	            if (!this.match('}')) {
@@ -2610,27 +2610,27 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // https://tc39.github.io/ecma262/#sec-template-literals
 	    Parser.prototype.parseTemplateHead = function () {
 	        assert_1.assert(this.lookahead.head, 'Template literal must start with a template head');
-	        var node = this.createNode();
-	        var token = this.nextToken();
-	        var raw = token.value;
-	        var cooked = token.cooked;
+	        const node = this.createNode();
+	        const token = this.nextToken();
+	        const raw = token.value;
+	        const cooked = token.cooked;
 	        return this.finalize(node, new Node.TemplateElement({ raw: raw, cooked: cooked }, token.tail));
 	    };
 	    Parser.prototype.parseTemplateElement = function () {
 	        if (this.lookahead.type !== 10 /* Template */) {
 	            this.throwUnexpectedToken();
 	        }
-	        var node = this.createNode();
-	        var token = this.nextToken();
-	        var raw = token.value;
-	        var cooked = token.cooked;
+	        const node = this.createNode();
+	        const token = this.nextToken();
+	        const raw = token.value;
+	        const cooked = token.cooked;
 	        return this.finalize(node, new Node.TemplateElement({ raw: raw, cooked: cooked }, token.tail));
 	    };
 	    Parser.prototype.parseTemplateLiteral = function () {
-	        var node = this.createNode();
-	        var expressions = [];
-	        var quasis = [];
-	        var quasi = this.parseTemplateHead();
+	        const node = this.createNode();
+	        const expressions = [];
+	        const quasis = [];
+	        let quasi = this.parseTemplateHead();
 	        quasis.push(quasi);
 	        while (!quasi.tail) {
 	            expressions.push(this.parseExpression());
@@ -2676,7 +2676,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    };
 	    Parser.prototype.parseGroupExpression = function () {
-	        var expr;
+	        let expr;
 	        this.expect('(');
 	        if (this.match(')')) {
 	            this.nextToken();
@@ -2690,8 +2690,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            };
 	        }
 	        else {
-	            var startToken = this.lookahead;
-	            var params = [];
+	            const startToken = this.lookahead;
+	            const params = [];
 	            if (this.match('...')) {
 	                expr = this.parseRestElement(params);
 	                this.expect(')');
@@ -2705,11 +2705,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	                };
 	            }
 	            else {
-	                var arrow = false;
+	                let arrow = false;
 	                this.context.isBindingElement = true;
 	                expr = this.inheritCoverGrammar(this.parseAssignmentExpression);
 	                if (this.match(',')) {
-	                    var expressions = [];
+	                    const expressions = [];
 	                    this.context.isAssignmentTarget = false;
 	                    expressions.push(expr);
 	                    while (this.lookahead.type !== 2 /* EOF */) {
@@ -2783,7 +2783,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                            else {
 	                                this.reinterpretExpressionAsPattern(expr);
 	                            }
-	                            var parameters = (expr.type === syntax_1.Syntax.SequenceExpression ? expr.expressions : [expr]);
+	                            const parameters = (expr.type === syntax_1.Syntax.SequenceExpression ? expr.expressions : [expr]);
 	                            expr = {
 	                                type: ArrowParameterPlaceHolder,
 	                                params: parameters,
@@ -2800,10 +2800,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // https://tc39.github.io/ecma262/#sec-left-hand-side-expressions
 	    Parser.prototype.parseArguments = function () {
 	        this.expect('(');
-	        var args = [];
+	        const args = [];
 	        if (!this.match(')')) {
 	            while (true) {
-	                var expr = this.match('...') ? this.parseSpreadElement() :
+	                const expr = this.match('...') ? this.parseSpreadElement() :
 	                    this.isolateCoverGrammar(this.parseAssignmentExpression);
 	                args.push(expr);
 	                if (this.match(')')) {
@@ -2825,22 +2825,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	            token.type === 5 /* NullLiteral */;
 	    };
 	    Parser.prototype.parseIdentifierName = function () {
-	        var node = this.createNode();
-	        var token = this.nextToken();
+	        const node = this.createNode();
+	        const token = this.nextToken();
 	        if (!this.isIdentifierName(token)) {
 	            this.throwUnexpectedToken(token);
 	        }
 	        return this.finalize(node, new Node.Identifier(token.value));
 	    };
 	    Parser.prototype.parseNewExpression = function () {
-	        var node = this.createNode();
-	        var id = this.parseIdentifierName();
+	        const node = this.createNode();
+	        const id = this.parseIdentifierName();
 	        assert_1.assert(id.name === 'new', 'New expression must start with `new`');
-	        var expr;
+	        let expr;
 	        if (this.match('.')) {
 	            this.nextToken();
 	            if (this.lookahead.type === 3 /* Identifier */ && this.context.inFunctionBody && this.lookahead.value === 'target') {
-	                var property = this.parseIdentifierName();
+	                const property = this.parseIdentifierName();
 	                expr = new Node.MetaProperty(id, property);
 	            }
 	            else {
@@ -2848,8 +2848,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	        }
 	        else {
-	            var callee = this.isolateCoverGrammar(this.parseLeftHandSideExpression);
-	            var args = this.match('(') ? this.parseArguments() : [];
+	            const callee = this.isolateCoverGrammar(this.parseLeftHandSideExpression);
+	            const args = this.match('(') ? this.parseArguments() : [];
 	            expr = new Node.NewExpression(callee, args);
 	            this.context.isAssignmentTarget = false;
 	            this.context.isBindingElement = false;
@@ -2857,16 +2857,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return this.finalize(node, expr);
 	    };
 	    Parser.prototype.parseAsyncArgument = function () {
-	        var arg = this.parseAssignmentExpression();
+	        const arg = this.parseAssignmentExpression();
 	        this.context.firstCoverInitializedNameError = null;
 	        return arg;
 	    };
 	    Parser.prototype.parseAsyncArguments = function () {
 	        this.expect('(');
-	        var args = [];
+	        const args = [];
 	        if (!this.match(')')) {
 	            while (true) {
-	                var expr = this.match('...') ? this.parseSpreadElement() :
+	                const expr = this.match('...') ? this.parseSpreadElement() :
 	                    this.isolateCoverGrammar(this.parseAsyncArgument);
 	                args.push(expr);
 	                if (this.match(')')) {
@@ -2882,11 +2882,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return args;
 	    };
 	    Parser.prototype.parseLeftHandSideExpressionAllowCall = function () {
-	        var startToken = this.lookahead;
-	        var maybeAsync = this.matchContextualKeyword('async');
-	        var previousAllowIn = this.context.allowIn;
+	        const startToken = this.lookahead;
+	        const maybeAsync = this.matchContextualKeyword('async');
+	        const previousAllowIn = this.context.allowIn;
 	        this.context.allowIn = true;
-	        var expr;
+	        let expr;
 	        if (this.matchKeyword('super') && this.context.inFunctionBody) {
 	            expr = this.createNode();
 	            this.nextToken();
@@ -2907,13 +2907,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	                expr = this.finalize(this.startNode(startToken), new Node.StaticMemberExpression(expr, property));
 	            }
 	            else if (this.match('(')) {
-	                var asyncArrow = maybeAsync && (startToken.lineNumber === this.lookahead.lineNumber);
+	                const asyncArrow = maybeAsync && (startToken.lineNumber === this.lookahead.lineNumber);
 	                this.context.isBindingElement = false;
 	                this.context.isAssignmentTarget = false;
-	                var args = asyncArrow ? this.parseAsyncArguments() : this.parseArguments();
+	                const args = asyncArrow ? this.parseAsyncArguments() : this.parseArguments();
 	                expr = this.finalize(this.startNode(startToken), new Node.CallExpression(expr, args));
 	                if (asyncArrow && this.match('=>')) {
-	                    for (var i = 0; i < args.length; ++i) {
+	                    for (let i = 0; i < args.length; ++i) {
 	                        this.reinterpretExpressionAsPattern(args[i]);
 	                    }
 	                    expr = {
@@ -2932,7 +2932,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                expr = this.finalize(this.startNode(startToken), new Node.ComputedMemberExpression(expr, property));
 	            }
 	            else if (this.lookahead.type === 10 /* Template */ && this.lookahead.head) {
-	                var quasi = this.parseTemplateLiteral();
+	                const quasi = this.parseTemplateLiteral();
 	                expr = this.finalize(this.startNode(startToken), new Node.TaggedTemplateExpression(expr, quasi));
 	            }
 	            else {
@@ -2943,7 +2943,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return expr;
 	    };
 	    Parser.prototype.parseSuper = function () {
-	        var node = this.createNode();
+	        const node = this.createNode();
 	        this.expectKeyword('super');
 	        if (!this.match('[') && !this.match('.')) {
 	            this.throwUnexpectedToken(this.lookahead);
@@ -2952,8 +2952,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    Parser.prototype.parseLeftHandSideExpression = function () {
 	        assert_1.assert(this.context.allowIn, 'callee of new expression always allow in keyword.');
-	        var node = this.startNode(this.lookahead);
-	        var expr = (this.matchKeyword('super') && this.context.inFunctionBody) ? this.parseSuper() :
+	        const node = this.startNode(this.lookahead);
+	        let expr = (this.matchKeyword('super') && this.context.inFunctionBody) ? this.parseSuper() :
 	            this.inheritCoverGrammar(this.matchKeyword('new') ? this.parseNewExpression : this.parsePrimaryExpression);
 	        while (true) {
 	            if (this.match('[')) {
@@ -2972,7 +2972,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                expr = this.finalize(node, new Node.StaticMemberExpression(expr, property));
 	            }
 	            else if (this.lookahead.type === 10 /* Template */ && this.lookahead.head) {
-	                var quasi = this.parseTemplateLiteral();
+	                const quasi = this.parseTemplateLiteral();
 	                expr = this.finalize(node, new Node.TaggedTemplateExpression(expr, quasi));
 	            }
 	            else {
@@ -2983,11 +2983,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    // https://tc39.github.io/ecma262/#sec-update-expressions
 	    Parser.prototype.parseUpdateExpression = function () {
-	        var expr;
-	        var startToken = this.lookahead;
+	        let expr;
+	        const startToken = this.lookahead;
 	        if (this.match('++') || this.match('--')) {
-	            var node = this.startNode(startToken);
-	            var token = this.nextToken();
+	            const node = this.startNode(startToken);
+	            const token = this.nextToken();
 	            expr = this.inheritCoverGrammar(this.parseUnaryExpression);
 	            if (this.context.strict && expr.type === syntax_1.Syntax.Identifier && this.scanner.isRestrictedWord(expr.name)) {
 	                this.tolerateError(messages_1.Messages.StrictLHSPrefix);
@@ -3012,7 +3012,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    }
 	                    this.context.isAssignmentTarget = false;
 	                    this.context.isBindingElement = false;
-	                    var operator = this.nextToken().value;
+	                    const operator = this.nextToken().value;
 	                    var prefix = false;
 	                    expr = this.finalize(this.startNode(startToken), new Node.UpdateExpression(operator, expr, prefix));
 	                }
@@ -3022,17 +3022,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    // https://tc39.github.io/ecma262/#sec-unary-operators
 	    Parser.prototype.parseAwaitExpression = function () {
-	        var node = this.createNode();
+	        const node = this.createNode();
 	        this.nextToken();
-	        var argument = this.parseUnaryExpression();
+	        const argument = this.parseUnaryExpression();
 	        return this.finalize(node, new Node.AwaitExpression(argument));
 	    };
 	    Parser.prototype.parseUnaryExpression = function () {
-	        var expr;
+	        let expr;
 	        if (this.match('+') || this.match('-') || this.match('~') || this.match('!') ||
 	            this.matchKeyword('delete') || this.matchKeyword('void') || this.matchKeyword('typeof')) {
-	            var node = this.startNode(this.lookahead);
-	            var token = this.nextToken();
+	            const node = this.startNode(this.lookahead);
+	            const token = this.nextToken();
 	            expr = this.inheritCoverGrammar(this.parseUnaryExpression);
 	            expr = this.finalize(node, new Node.UnaryExpression(token.value, expr));
 	            if (this.context.strict && expr.operator === 'delete' && expr.argument.type === syntax_1.Syntax.Identifier) {
@@ -3050,14 +3050,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return expr;
 	    };
 	    Parser.prototype.parseExponentiationExpression = function () {
-	        var startToken = this.lookahead;
-	        var expr = this.inheritCoverGrammar(this.parseUnaryExpression);
+	        const startToken = this.lookahead;
+	        let expr = this.inheritCoverGrammar(this.parseUnaryExpression);
 	        if (expr.type !== syntax_1.Syntax.UnaryExpression && this.match('**')) {
 	            this.nextToken();
 	            this.context.isAssignmentTarget = false;
 	            this.context.isBindingElement = false;
-	            var left = expr;
-	            var right = this.isolateCoverGrammar(this.parseExponentiationExpression);
+	            const left = expr;
+	            const right = this.isolateCoverGrammar(this.parseExponentiationExpression);
 	            expr = this.finalize(this.startNode(startToken), new Node.BinaryExpression('**', left, right));
 	        }
 	        return expr;
@@ -3071,8 +3071,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // https://tc39.github.io/ecma262/#sec-binary-bitwise-operators
 	    // https://tc39.github.io/ecma262/#sec-binary-logical-operators
 	    Parser.prototype.binaryPrecedence = function (token) {
-	        var op = token.value;
-	        var precedence;
+	        const op = token.value;
+	        let precedence;
 	        if (token.type === 7 /* Punctuator */) {
 	            precedence = this.operatorPrecedence[op] || 0;
 	        }
@@ -3085,19 +3085,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return precedence;
 	    };
 	    Parser.prototype.parseBinaryExpression = function () {
-	        var startToken = this.lookahead;
-	        var expr = this.inheritCoverGrammar(this.parseExponentiationExpression);
-	        var token = this.lookahead;
-	        var prec = this.binaryPrecedence(token);
+	        const startToken = this.lookahead;
+	        let expr = this.inheritCoverGrammar(this.parseExponentiationExpression);
+	        const token = this.lookahead;
+	        let prec = this.binaryPrecedence(token);
 	        if (prec > 0) {
 	            this.nextToken();
 	            this.context.isAssignmentTarget = false;
 	            this.context.isBindingElement = false;
-	            var markers = [startToken, this.lookahead];
-	            var left = expr;
-	            var right = this.isolateCoverGrammar(this.parseExponentiationExpression);
-	            var stack = [left, token.value, right];
-	            var precedences = [prec];
+	            const markers = [startToken, this.lookahead];
+	            let left = expr;
+	            let right = this.isolateCoverGrammar(this.parseExponentiationExpression);
+	            const stack = [left, token.value, right];
+	            const precedences = [prec];
 	            while (true) {
 	                prec = this.binaryPrecedence(this.lookahead);
 	                if (prec <= 0) {
@@ -3120,12 +3120,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	                stack.push(this.isolateCoverGrammar(this.parseExponentiationExpression));
 	            }
 	            // Final reduce to clean-up the stack.
-	            var i = stack.length - 1;
+	            let i = stack.length - 1;
 	            expr = stack[i];
-	            var lastMarker = markers.pop();
+	            let lastMarker = markers.pop();
 	            while (i > 1) {
-	                var marker = markers.pop();
-	                var lastLineStart = lastMarker && lastMarker.lineStart;
+	                const marker = markers.pop();
+	                const lastLineStart = lastMarker && lastMarker.lineStart;
 	                var node = this.startNode(marker, lastLineStart);
 	                var operator = stack[i - 1];
 	                expr = this.finalize(node, new Node.BinaryExpression(operator, stack[i - 2], expr));
@@ -3137,16 +3137,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    // https://tc39.github.io/ecma262/#sec-conditional-operator
 	    Parser.prototype.parseConditionalExpression = function () {
-	        var startToken = this.lookahead;
-	        var expr = this.inheritCoverGrammar(this.parseBinaryExpression);
+	        const startToken = this.lookahead;
+	        let expr = this.inheritCoverGrammar(this.parseBinaryExpression);
 	        if (this.match('?')) {
 	            this.nextToken();
-	            var previousAllowIn = this.context.allowIn;
+	            const previousAllowIn = this.context.allowIn;
 	            this.context.allowIn = true;
-	            var consequent = this.isolateCoverGrammar(this.parseAssignmentExpression);
+	            const consequent = this.isolateCoverGrammar(this.parseAssignmentExpression);
 	            this.context.allowIn = previousAllowIn;
 	            this.expect(':');
-	            var alternate = this.isolateCoverGrammar(this.parseAssignmentExpression);
+	            const alternate = this.isolateCoverGrammar(this.parseAssignmentExpression);
 	            expr = this.finalize(this.startNode(startToken), new Node.ConditionalExpression(expr, consequent, alternate));
 	            this.context.isAssignmentTarget = false;
 	            this.context.isBindingElement = false;
@@ -3183,9 +3183,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        options.simple = options.simple && (param instanceof Node.Identifier);
 	    };
 	    Parser.prototype.reinterpretAsCoverFormalsList = function (expr) {
-	        var params = [expr];
-	        var options;
-	        var asyncArrow = false;
+	        let params = [expr];
+	        let options;
+	        let asyncArrow = false;
 	        switch (expr.type) {
 	            case syntax_1.Syntax.Identifier:
 	                break;
@@ -3228,7 +3228,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	        }
 	        if (options.message === messages_1.Messages.StrictParamDupe) {
-	            var token = this.context.strict ? options.stricted : options.firstRestricted;
+	            const token = this.context.strict ? options.stricted : options.firstRestricted;
 	            this.throwUnexpectedToken(token, options.message);
 	        }
 	        return {
@@ -3240,17 +3240,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	        };
 	    };
 	    Parser.prototype.parseAssignmentExpression = function () {
-	        var expr;
+	        let expr;
 	        if (!this.context.allowYield && this.matchKeyword('yield')) {
 	            expr = this.parseYieldExpression();
 	        }
 	        else {
-	            var startToken = this.lookahead;
-	            var token = startToken;
+	            const startToken = this.lookahead;
+	            let token = startToken;
 	            expr = this.parseConditionalExpression();
 	            if (token.type === 3 /* Identifier */ && (token.lineNumber === this.lookahead.lineNumber) && token.value === 'async') {
 	                if (this.lookahead.type === 3 /* Identifier */ || this.matchKeyword('yield')) {
-	                    var arg = this.parsePrimaryExpression();
+	                    const arg = this.parsePrimaryExpression();
 	                    this.reinterpretExpressionAsPattern(arg);
 	                    expr = {
 	                        type: ArrowParameterPlaceHolder,
@@ -3263,25 +3263,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	                // https://tc39.github.io/ecma262/#sec-arrow-function-definitions
 	                this.context.isAssignmentTarget = false;
 	                this.context.isBindingElement = false;
-	                var isAsync = expr.async;
-	                var list = this.reinterpretAsCoverFormalsList(expr);
+	                const isAsync = expr.async;
+	                const list = this.reinterpretAsCoverFormalsList(expr);
 	                if (list) {
 	                    if (this.hasLineTerminator) {
 	                        this.tolerateUnexpectedToken(this.lookahead);
 	                    }
 	                    this.context.firstCoverInitializedNameError = null;
-	                    var previousStrict = this.context.strict;
-	                    var previousAllowStrictDirective = this.context.allowStrictDirective;
+	                    const previousStrict = this.context.strict;
+	                    const previousAllowStrictDirective = this.context.allowStrictDirective;
 	                    this.context.allowStrictDirective = list.simple;
-	                    var previousAllowYield = this.context.allowYield;
-	                    var previousAwait = this.context.await;
+	                    const previousAllowYield = this.context.allowYield;
+	                    const previousAwait = this.context.await;
 	                    this.context.allowYield = true;
 	                    this.context.await = isAsync;
-	                    var node = this.startNode(startToken);
+	                    const node = this.startNode(startToken);
 	                    this.expect('=>');
-	                    var body = void 0;
+	                    let body = void 0;
 	                    if (this.match('{')) {
-	                        var previousAllowIn = this.context.allowIn;
+	                        const previousAllowIn = this.context.allowIn;
 	                        this.context.allowIn = true;
 	                        body = this.parseFunctionSourceElements();
 	                        this.context.allowIn = previousAllowIn;
@@ -3289,7 +3289,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    else {
 	                        body = this.isolateCoverGrammar(this.parseAssignmentExpression);
 	                    }
-	                    var expression = body.type !== syntax_1.Syntax.BlockStatement;
+	                    const expression = body.type !== syntax_1.Syntax.BlockStatement;
 	                    if (this.context.strict && list.firstRestricted) {
 	                        this.throwUnexpectedToken(list.firstRestricted, list.message);
 	                    }
@@ -3310,7 +3310,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        this.tolerateError(messages_1.Messages.InvalidLHSInAssignment);
 	                    }
 	                    if (this.context.strict && expr.type === syntax_1.Syntax.Identifier) {
-	                        var id = expr;
+	                        const id = expr;
 	                        if (this.scanner.isRestrictedWord(id.name)) {
 	                            this.tolerateUnexpectedToken(token, messages_1.Messages.StrictLHSAssignment);
 	                        }
@@ -3326,8 +3326,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        this.reinterpretExpressionAsPattern(expr);
 	                    }
 	                    token = this.nextToken();
-	                    var operator = token.value;
-	                    var right = this.isolateCoverGrammar(this.parseAssignmentExpression);
+	                    const operator = token.value;
+	                    const right = this.isolateCoverGrammar(this.parseAssignmentExpression);
 	                    expr = this.finalize(this.startNode(startToken), new Node.AssignmentExpression(operator, expr, right));
 	                    this.context.firstCoverInitializedNameError = null;
 	                }
@@ -3337,10 +3337,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    // https://tc39.github.io/ecma262/#sec-comma-operator
 	    Parser.prototype.parseExpression = function () {
-	        var startToken = this.lookahead;
-	        var expr = this.isolateCoverGrammar(this.parseAssignmentExpression);
+	        const startToken = this.lookahead;
+	        let expr = this.isolateCoverGrammar(this.parseAssignmentExpression);
 	        if (this.match(',')) {
-	            var expressions = [];
+	            const expressions = [];
 	            expressions.push(expr);
 	            while (this.lookahead.type !== 2 /* EOF */) {
 	                if (!this.match(',')) {
@@ -3355,7 +3355,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    // https://tc39.github.io/ecma262/#sec-block
 	    Parser.prototype.parseStatementListItem = function () {
-	        var statement;
+	        let statement;
 	        this.context.isAssignmentTarget = true;
 	        this.context.isBindingElement = true;
 	        if (this.lookahead.type === 4 /* Keyword */) {
@@ -3395,9 +3395,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return statement;
 	    };
 	    Parser.prototype.parseBlock = function () {
-	        var node = this.createNode();
+	        const node = this.createNode();
 	        this.expect('{');
-	        var block = [];
+	        const block = [];
 	        while (true) {
 	            if (this.match('}')) {
 	                break;
@@ -3409,15 +3409,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    // https://tc39.github.io/ecma262/#sec-let-and-const-declarations
 	    Parser.prototype.parseLexicalBinding = function (kind, options) {
-	        var node = this.createNode();
-	        var params = [];
-	        var id = this.parsePattern(params, kind);
+	        const node = this.createNode();
+	        const params = [];
+	        const id = this.parsePattern(params, kind);
 	        if (this.context.strict && id.type === syntax_1.Syntax.Identifier) {
 	            if (this.scanner.isRestrictedWord(id.name)) {
 	                this.tolerateError(messages_1.Messages.StrictVarName);
 	            }
 	        }
-	        var init = null;
+	        let init = null;
 	        if (kind === 'const') {
 	            if (!this.matchKeyword('in') && !this.matchContextualKeyword('of')) {
 	                if (this.match('=')) {
@@ -3436,7 +3436,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return this.finalize(node, new Node.VariableDeclarator(id, init));
 	    };
 	    Parser.prototype.parseBindingList = function (kind, options) {
-	        var list = [this.parseLexicalBinding(kind, options)];
+	        const list = [this.parseLexicalBinding(kind, options)];
 	        while (this.match(',')) {
 	            this.nextToken();
 	            list.push(this.parseLexicalBinding(kind, options));
@@ -3444,9 +3444,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return list;
 	    };
 	    Parser.prototype.isLexicalDeclaration = function () {
-	        var state = this.scanner.saveState();
+	        const state = this.scanner.saveState();
 	        this.scanner.scanComments();
-	        var next = this.scanner.lex();
+	        const next = this.scanner.lex();
 	        this.scanner.restoreState(state);
 	        return (next.type === 3 /* Identifier */) ||
 	            (next.type === 7 /* Punctuator */ && next.value === '[') ||
@@ -3455,24 +3455,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	            (next.type === 4 /* Keyword */ && next.value === 'yield');
 	    };
 	    Parser.prototype.parseLexicalDeclaration = function (options) {
-	        var node = this.createNode();
-	        var kind = this.nextToken().value;
+	        const node = this.createNode();
+	        const kind = this.nextToken().value;
 	        assert_1.assert(kind === 'let' || kind === 'const', 'Lexical declaration must be either let or const');
-	        var declarations = this.parseBindingList(kind, options);
+	        const declarations = this.parseBindingList(kind, options);
 	        this.consumeSemicolon();
 	        return this.finalize(node, new Node.VariableDeclaration(declarations, kind));
 	    };
 	    // https://tc39.github.io/ecma262/#sec-destructuring-binding-patterns
 	    Parser.prototype.parseBindingRestElement = function (params, kind) {
-	        var node = this.createNode();
+	        const node = this.createNode();
 	        this.expect('...');
-	        var arg = this.parsePattern(params, kind);
+	        const arg = this.parsePattern(params, kind);
 	        return this.finalize(node, new Node.RestElement(arg));
 	    };
 	    Parser.prototype.parseArrayPattern = function (params, kind) {
-	        var node = this.createNode();
+	        const node = this.createNode();
 	        this.expect('[');
-	        var elements = [];
+	        const elements = [];
 	        while (!this.match(']')) {
 	            if (this.match(',')) {
 	                this.nextToken();
@@ -3495,21 +3495,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return this.finalize(node, new Node.ArrayPattern(elements));
 	    };
 	    Parser.prototype.parsePropertyPattern = function (params, kind) {
-	        var node = this.createNode();
-	        var computed = false;
-	        var shorthand = false;
-	        var method = false;
-	        var key;
-	        var value;
+	        const node = this.createNode();
+	        let computed = false;
+	        let shorthand = false;
+	        const method = false;
+	        let key;
+	        let value;
 	        if (this.lookahead.type === 3 /* Identifier */) {
-	            var keyToken = this.lookahead;
+	            const keyToken = this.lookahead;
 	            key = this.parseVariableIdentifier();
-	            var init = this.finalize(node, new Node.Identifier(keyToken.value));
+	            const init = this.finalize(node, new Node.Identifier(keyToken.value));
 	            if (this.match('=')) {
 	                params.push(keyToken);
 	                shorthand = true;
 	                this.nextToken();
-	                var expr = this.parseAssignmentExpression();
+	                const expr = this.parseAssignmentExpression();
 	                value = this.finalize(this.startNode(keyToken), new Node.AssignmentPattern(init, expr));
 	            }
 	            else if (!this.match(':')) {
@@ -3531,8 +3531,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return this.finalize(node, new Node.Property('init', key, computed, value, method, shorthand));
 	    };
 	    Parser.prototype.parseObjectPattern = function (params, kind) {
-	        var node = this.createNode();
-	        var properties = [];
+	        const node = this.createNode();
+	        const properties = [];
 	        this.expect('{');
 	        while (!this.match('}')) {
 	            properties.push(this.parsePropertyPattern(params, kind));
@@ -3544,7 +3544,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return this.finalize(node, new Node.ObjectPattern(properties));
 	    };
 	    Parser.prototype.parsePattern = function (params, kind) {
-	        var pattern;
+	        let pattern;
 	        if (this.match('[')) {
 	            pattern = this.parseArrayPattern(params, kind);
 	        }
@@ -3561,13 +3561,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return pattern;
 	    };
 	    Parser.prototype.parsePatternWithDefault = function (params, kind) {
-	        var startToken = this.lookahead;
-	        var pattern = this.parsePattern(params, kind);
+	        const startToken = this.lookahead;
+	        let pattern = this.parsePattern(params, kind);
 	        if (this.match('=')) {
 	            this.nextToken();
-	            var previousAllowYield = this.context.allowYield;
+	            const previousAllowYield = this.context.allowYield;
 	            this.context.allowYield = true;
-	            var right = this.isolateCoverGrammar(this.parseAssignmentExpression);
+	            const right = this.isolateCoverGrammar(this.parseAssignmentExpression);
 	            this.context.allowYield = previousAllowYield;
 	            pattern = this.finalize(this.startNode(startToken), new Node.AssignmentPattern(pattern, right));
 	        }
@@ -3575,8 +3575,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    // https://tc39.github.io/ecma262/#sec-variable-statement
 	    Parser.prototype.parseVariableIdentifier = function (kind) {
-	        var node = this.createNode();
-	        var token = this.nextToken();
+	        const node = this.createNode();
+	        const token = this.nextToken();
 	        if (token.type === 4 /* Keyword */ && token.value === 'yield') {
 	            if (this.context.strict) {
 	                this.tolerateUnexpectedToken(token, messages_1.Messages.StrictReservedWord);
@@ -3601,15 +3601,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return this.finalize(node, new Node.Identifier(token.value));
 	    };
 	    Parser.prototype.parseVariableDeclaration = function (options) {
-	        var node = this.createNode();
-	        var params = [];
-	        var id = this.parsePattern(params, 'var');
+	        const node = this.createNode();
+	        const params = [];
+	        const id = this.parsePattern(params, 'var');
 	        if (this.context.strict && id.type === syntax_1.Syntax.Identifier) {
 	            if (this.scanner.isRestrictedWord(id.name)) {
 	                this.tolerateError(messages_1.Messages.StrictVarName);
 	            }
 	        }
-	        var init = null;
+	        let init = null;
 	        if (this.match('=')) {
 	            this.nextToken();
 	            init = this.isolateCoverGrammar(this.parseAssignmentExpression);
@@ -3620,8 +3620,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return this.finalize(node, new Node.VariableDeclarator(id, init));
 	    };
 	    Parser.prototype.parseVariableDeclarationList = function (options) {
-	        var opt = { inFor: options.inFor };
-	        var list = [];
+	        const opt = { inFor: options.inFor };
+	        const list = [];
 	        list.push(this.parseVariableDeclaration(opt));
 	        while (this.match(',')) {
 	            this.nextToken();
@@ -3630,22 +3630,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return list;
 	    };
 	    Parser.prototype.parseVariableStatement = function () {
-	        var node = this.createNode();
+	        const node = this.createNode();
 	        this.expectKeyword('var');
-	        var declarations = this.parseVariableDeclarationList({ inFor: false });
+	        const declarations = this.parseVariableDeclarationList({ inFor: false });
 	        this.consumeSemicolon();
 	        return this.finalize(node, new Node.VariableDeclaration(declarations, 'var'));
 	    };
 	    // https://tc39.github.io/ecma262/#sec-empty-statement
 	    Parser.prototype.parseEmptyStatement = function () {
-	        var node = this.createNode();
+	        const node = this.createNode();
 	        this.expect(';');
 	        return this.finalize(node, new Node.EmptyStatement());
 	    };
 	    // https://tc39.github.io/ecma262/#sec-expression-statement
 	    Parser.prototype.parseExpressionStatement = function () {
-	        var node = this.createNode();
-	        var expr = this.parseExpression();
+	        const node = this.createNode();
+	        const expr = this.parseExpression();
 	        this.consumeSemicolon();
 	        return this.finalize(node, new Node.ExpressionStatement(expr));
 	    };
@@ -3657,12 +3657,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return this.parseStatement();
 	    };
 	    Parser.prototype.parseIfStatement = function () {
-	        var node = this.createNode();
-	        var consequent;
-	        var alternate = null;
+	        const node = this.createNode();
+	        let consequent;
+	        let alternate = null;
 	        this.expectKeyword('if');
 	        this.expect('(');
-	        var test = this.parseExpression();
+	        const test = this.parseExpression();
 	        if (!this.match(')') && this.config.tolerant) {
 	            this.tolerateUnexpectedToken(this.nextToken());
 	            consequent = this.finalize(this.createNode(), new Node.EmptyStatement());
@@ -3679,15 +3679,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    // https://tc39.github.io/ecma262/#sec-do-while-statement
 	    Parser.prototype.parseDoWhileStatement = function () {
-	        var node = this.createNode();
+	        const node = this.createNode();
 	        this.expectKeyword('do');
-	        var previousInIteration = this.context.inIteration;
+	        const previousInIteration = this.context.inIteration;
 	        this.context.inIteration = true;
-	        var body = this.parseStatement();
+	        const body = this.parseStatement();
 	        this.context.inIteration = previousInIteration;
 	        this.expectKeyword('while');
 	        this.expect('(');
-	        var test = this.parseExpression();
+	        const test = this.parseExpression();
 	        if (!this.match(')') && this.config.tolerant) {
 	            this.tolerateUnexpectedToken(this.nextToken());
 	        }
@@ -3701,18 +3701,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    // https://tc39.github.io/ecma262/#sec-while-statement
 	    Parser.prototype.parseWhileStatement = function () {
-	        var node = this.createNode();
-	        var body;
+	        const node = this.createNode();
+	        let body;
 	        this.expectKeyword('while');
 	        this.expect('(');
-	        var test = this.parseExpression();
+	        const test = this.parseExpression();
 	        if (!this.match(')') && this.config.tolerant) {
 	            this.tolerateUnexpectedToken(this.nextToken());
 	            body = this.finalize(this.createNode(), new Node.EmptyStatement());
 	        }
 	        else {
 	            this.expect(')');
-	            var previousInIteration = this.context.inIteration;
+	            const previousInIteration = this.context.inIteration;
 	            this.context.inIteration = true;
 	            body = this.parseStatement();
 	            this.context.inIteration = previousInIteration;
@@ -3722,12 +3722,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // https://tc39.github.io/ecma262/#sec-for-statement
 	    // https://tc39.github.io/ecma262/#sec-for-in-and-for-of-statements
 	    Parser.prototype.parseForStatement = function () {
-	        var init = null;
-	        var test = null;
-	        var update = null;
-	        var forIn = true;
-	        var left, right;
-	        var node = this.createNode();
+	        let init = null;
+	        let test = null;
+	        let update = null;
+	        let forIn = true;
+	        let left, right;
+	        const node = this.createNode();
 	        this.expectKeyword('for');
 	        this.expect('(');
 	        if (this.match(';')) {
@@ -3742,7 +3742,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                var declarations = this.parseVariableDeclarationList({ inFor: true });
 	                this.context.allowIn = previousAllowIn;
 	                if (declarations.length === 1 && this.matchKeyword('in')) {
-	                    var decl = declarations[0];
+	                    const decl = declarations[0];
 	                    if (decl.init && (decl.id.type === syntax_1.Syntax.ArrayPattern || decl.id.type === syntax_1.Syntax.ObjectPattern || this.context.strict)) {
 	                        this.tolerateError(messages_1.Messages.ForInOfLoopInitializer, 'for-in');
 	                    }
@@ -3767,7 +3767,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	            else if (this.matchKeyword('const') || this.matchKeyword('let')) {
 	                init = this.createNode();
-	                var kind = this.nextToken().value;
+	                const kind = this.nextToken().value;
 	                if (!this.context.strict && this.lookahead.value === 'in') {
 	                    init = this.finalize(init, new Node.Identifier(kind));
 	                    this.nextToken();
@@ -3802,7 +3802,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            }
 	            else {
-	                var initStartToken = this.lookahead;
+	                const initStartToken = this.lookahead;
 	                var previousAllowIn = this.context.allowIn;
 	                this.context.allowIn = false;
 	                init = this.inheritCoverGrammar(this.parseAssignmentExpression);
@@ -3830,7 +3830,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	                else {
 	                    if (this.match(',')) {
-	                        var initSeq = [init];
+	                        const initSeq = [init];
 	                        while (this.match(',')) {
 	                            this.nextToken();
 	                            initSeq.push(this.isolateCoverGrammar(this.parseAssignmentExpression));
@@ -3850,14 +3850,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	                update = this.parseExpression();
 	            }
 	        }
-	        var body;
+	        let body;
 	        if (!this.match(')') && this.config.tolerant) {
 	            this.tolerateUnexpectedToken(this.nextToken());
 	            body = this.finalize(this.createNode(), new Node.EmptyStatement());
 	        }
 	        else {
 	            this.expect(')');
-	            var previousInIteration = this.context.inIteration;
+	            const previousInIteration = this.context.inIteration;
 	            this.context.inIteration = true;
 	            body = this.isolateCoverGrammar(this.parseStatement);
 	            this.context.inIteration = previousInIteration;
@@ -3869,13 +3869,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    // https://tc39.github.io/ecma262/#sec-continue-statement
 	    Parser.prototype.parseContinueStatement = function () {
-	        var node = this.createNode();
+	        const node = this.createNode();
 	        this.expectKeyword('continue');
-	        var label = null;
+	        let label = null;
 	        if (this.lookahead.type === 3 /* Identifier */ && !this.hasLineTerminator) {
-	            var id = this.parseVariableIdentifier();
+	            const id = this.parseVariableIdentifier();
 	            label = id;
-	            var key = '$' + id.name;
+	            const key = '$' + id.name;
 	            if (!Object.prototype.hasOwnProperty.call(this.context.labelSet, key)) {
 	                this.throwError(messages_1.Messages.UnknownLabel, id.name);
 	            }
@@ -3888,12 +3888,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    // https://tc39.github.io/ecma262/#sec-break-statement
 	    Parser.prototype.parseBreakStatement = function () {
-	        var node = this.createNode();
+	        const node = this.createNode();
 	        this.expectKeyword('break');
-	        var label = null;
+	        let label = null;
 	        if (this.lookahead.type === 3 /* Identifier */ && !this.hasLineTerminator) {
-	            var id = this.parseVariableIdentifier();
-	            var key = '$' + id.name;
+	            const id = this.parseVariableIdentifier();
+	            const key = '$' + id.name;
 	            if (!Object.prototype.hasOwnProperty.call(this.context.labelSet, key)) {
 	                this.throwError(messages_1.Messages.UnknownLabel, id.name);
 	            }
@@ -3910,13 +3910,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (!this.context.inFunctionBody) {
 	            this.tolerateError(messages_1.Messages.IllegalReturn);
 	        }
-	        var node = this.createNode();
+	        const node = this.createNode();
 	        this.expectKeyword('return');
-	        var hasArgument = (!this.match(';') && !this.match('}') &&
+	        const hasArgument = (!this.match(';') && !this.match('}') &&
 	            !this.hasLineTerminator && this.lookahead.type !== 2 /* EOF */) ||
 	            this.lookahead.type === 8 /* StringLiteral */ ||
 	            this.lookahead.type === 10 /* Template */;
-	        var argument = hasArgument ? this.parseExpression() : null;
+	        const argument = hasArgument ? this.parseExpression() : null;
 	        this.consumeSemicolon();
 	        return this.finalize(node, new Node.ReturnStatement(argument));
 	    };
@@ -3925,11 +3925,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (this.context.strict) {
 	            this.tolerateError(messages_1.Messages.StrictModeWith);
 	        }
-	        var node = this.createNode();
-	        var body;
+	        const node = this.createNode();
+	        let body;
 	        this.expectKeyword('with');
 	        this.expect('(');
-	        var object = this.parseExpression();
+	        const object = this.parseExpression();
 	        if (!this.match(')') && this.config.tolerant) {
 	            this.tolerateUnexpectedToken(this.nextToken());
 	            body = this.finalize(this.createNode(), new Node.EmptyStatement());
@@ -3942,8 +3942,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    // https://tc39.github.io/ecma262/#sec-switch-statement
 	    Parser.prototype.parseSwitchCase = function () {
-	        var node = this.createNode();
-	        var test;
+	        const node = this.createNode();
+	        let test;
 	        if (this.matchKeyword('default')) {
 	            this.nextToken();
 	            test = null;
@@ -3953,7 +3953,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            test = this.parseExpression();
 	        }
 	        this.expect(':');
-	        var consequent = [];
+	        const consequent = [];
 	        while (true) {
 	            if (this.match('}') || this.matchKeyword('default') || this.matchKeyword('case')) {
 	                break;
@@ -3963,21 +3963,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return this.finalize(node, new Node.SwitchCase(test, consequent));
 	    };
 	    Parser.prototype.parseSwitchStatement = function () {
-	        var node = this.createNode();
+	        const node = this.createNode();
 	        this.expectKeyword('switch');
 	        this.expect('(');
-	        var discriminant = this.parseExpression();
+	        const discriminant = this.parseExpression();
 	        this.expect(')');
-	        var previousInSwitch = this.context.inSwitch;
+	        const previousInSwitch = this.context.inSwitch;
 	        this.context.inSwitch = true;
-	        var cases = [];
-	        var defaultFound = false;
+	        const cases = [];
+	        let defaultFound = false;
 	        this.expect('{');
 	        while (true) {
 	            if (this.match('}')) {
 	                break;
 	            }
-	            var clause = this.parseSwitchCase();
+	            const clause = this.parseSwitchCase();
 	            if (clause.test === null) {
 	                if (defaultFound) {
 	                    this.throwError(messages_1.Messages.MultipleDefaultsInSwitch);
@@ -3992,25 +3992,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    // https://tc39.github.io/ecma262/#sec-labelled-statements
 	    Parser.prototype.parseLabelledStatement = function () {
-	        var node = this.createNode();
-	        var expr = this.parseExpression();
-	        var statement;
+	        const node = this.createNode();
+	        const expr = this.parseExpression();
+	        let statement;
 	        if ((expr.type === syntax_1.Syntax.Identifier) && this.match(':')) {
 	            this.nextToken();
-	            var id = expr;
-	            var key = '$' + id.name;
+	            const id = expr;
+	            const key = '$' + id.name;
 	            if (Object.prototype.hasOwnProperty.call(this.context.labelSet, key)) {
 	                this.throwError(messages_1.Messages.Redeclaration, 'Label', id.name);
 	            }
 	            this.context.labelSet[key] = true;
-	            var body = void 0;
+	            let body = void 0;
 	            if (this.matchKeyword('class')) {
 	                this.tolerateUnexpectedToken(this.lookahead);
 	                body = this.parseClassDeclaration();
 	            }
 	            else if (this.matchKeyword('function')) {
-	                var token = this.lookahead;
-	                var declaration = this.parseFunctionDeclaration();
+	                const token = this.lookahead;
+	                const declaration = this.parseFunctionDeclaration();
 	                if (this.context.strict) {
 	                    this.tolerateUnexpectedToken(token, messages_1.Messages.StrictFunction);
 	                }
@@ -4033,28 +4033,28 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    // https://tc39.github.io/ecma262/#sec-throw-statement
 	    Parser.prototype.parseThrowStatement = function () {
-	        var node = this.createNode();
+	        const node = this.createNode();
 	        this.expectKeyword('throw');
 	        if (this.hasLineTerminator) {
 	            this.throwError(messages_1.Messages.NewlineAfterThrow);
 	        }
-	        var argument = this.parseExpression();
+	        const argument = this.parseExpression();
 	        this.consumeSemicolon();
 	        return this.finalize(node, new Node.ThrowStatement(argument));
 	    };
 	    // https://tc39.github.io/ecma262/#sec-try-statement
 	    Parser.prototype.parseCatchClause = function () {
-	        var node = this.createNode();
+	        const node = this.createNode();
 	        this.expectKeyword('catch');
 	        this.expect('(');
 	        if (this.match(')')) {
 	            this.throwUnexpectedToken(this.lookahead);
 	        }
-	        var params = [];
-	        var param = this.parsePattern(params);
-	        var paramMap = {};
-	        for (var i = 0; i < params.length; i++) {
-	            var key = '$' + params[i].value;
+	        const params = [];
+	        const param = this.parsePattern(params);
+	        const paramMap = {};
+	        for (let i = 0; i < params.length; i++) {
+	            const key = '$' + params[i].value;
 	            if (Object.prototype.hasOwnProperty.call(paramMap, key)) {
 	                this.tolerateError(messages_1.Messages.DuplicateBinding, params[i].value);
 	            }
@@ -4066,7 +4066,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	        }
 	        this.expect(')');
-	        var body = this.parseBlock();
+	        const body = this.parseBlock();
 	        return this.finalize(node, new Node.CatchClause(param, body));
 	    };
 	    Parser.prototype.parseFinallyClause = function () {
@@ -4074,11 +4074,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return this.parseBlock();
 	    };
 	    Parser.prototype.parseTryStatement = function () {
-	        var node = this.createNode();
+	        const node = this.createNode();
 	        this.expectKeyword('try');
-	        var block = this.parseBlock();
-	        var handler = this.matchKeyword('catch') ? this.parseCatchClause() : null;
-	        var finalizer = this.matchKeyword('finally') ? this.parseFinallyClause() : null;
+	        const block = this.parseBlock();
+	        const handler = this.matchKeyword('catch') ? this.parseCatchClause() : null;
+	        const finalizer = this.matchKeyword('finally') ? this.parseFinallyClause() : null;
 	        if (!handler && !finalizer) {
 	            this.throwError(messages_1.Messages.NoCatchOrFinally);
 	        }
@@ -4086,14 +4086,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    // https://tc39.github.io/ecma262/#sec-debugger-statement
 	    Parser.prototype.parseDebuggerStatement = function () {
-	        var node = this.createNode();
+	        const node = this.createNode();
 	        this.expectKeyword('debugger');
 	        this.consumeSemicolon();
 	        return this.finalize(node, new Node.DebuggerStatement());
 	    };
 	    // https://tc39.github.io/ecma262/#sec-ecmascript-language-statements-and-declarations
 	    Parser.prototype.parseStatement = function () {
-	        var statement;
+	        let statement;
 	        switch (this.lookahead.type) {
 	            case 1 /* BooleanLiteral */:
 	            case 5 /* NullLiteral */:
@@ -4177,13 +4177,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    // https://tc39.github.io/ecma262/#sec-function-definitions
 	    Parser.prototype.parseFunctionSourceElements = function () {
-	        var node = this.createNode();
+	        const node = this.createNode();
 	        this.expect('{');
-	        var body = this.parseDirectivePrologues();
-	        var previousLabelSet = this.context.labelSet;
-	        var previousInIteration = this.context.inIteration;
-	        var previousInSwitch = this.context.inSwitch;
-	        var previousInFunctionBody = this.context.inFunctionBody;
+	        const body = this.parseDirectivePrologues();
+	        const previousLabelSet = this.context.labelSet;
+	        const previousInIteration = this.context.inIteration;
+	        const previousInSwitch = this.context.inSwitch;
+	        const previousInFunctionBody = this.context.inFunctionBody;
 	        this.context.labelSet = {};
 	        this.context.inIteration = false;
 	        this.context.inSwitch = false;
@@ -4202,7 +4202,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return this.finalize(node, new Node.BlockStatement(body));
 	    };
 	    Parser.prototype.validateParam = function (options, param, name) {
-	        var key = '$' + name;
+	        const key = '$' + name;
 	        if (this.context.strict) {
 	            if (this.scanner.isRestrictedWord(name)) {
 	                options.stricted = param;
@@ -4236,9 +4236,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    };
 	    Parser.prototype.parseRestElement = function (params) {
-	        var node = this.createNode();
+	        const node = this.createNode();
 	        this.expect('...');
-	        var arg = this.parsePattern(params);
+	        const arg = this.parsePattern(params);
 	        if (this.match('=')) {
 	            this.throwError(messages_1.Messages.DefaultRestParameter);
 	        }
@@ -4248,16 +4248,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return this.finalize(node, new Node.RestElement(arg));
 	    };
 	    Parser.prototype.parseFormalParameter = function (options) {
-	        var params = [];
-	        var param = this.match('...') ? this.parseRestElement(params) : this.parsePatternWithDefault(params);
-	        for (var i = 0; i < params.length; i++) {
+	        const params = [];
+	        const param = this.match('...') ? this.parseRestElement(params) : this.parsePatternWithDefault(params);
+	        for (let i = 0; i < params.length; i++) {
 	            this.validateParam(options, params[i], params[i].value);
 	        }
 	        options.simple = options.simple && (param instanceof Node.Identifier);
 	        options.params.push(param);
 	    };
 	    Parser.prototype.parseFormalParameters = function (firstRestricted) {
-	        var options;
+	        let options;
 	        options = {
 	            simple: true,
 	            params: [],
@@ -4287,32 +4287,32 @@ return /******/ (function(modules) { // webpackBootstrap
 	        };
 	    };
 	    Parser.prototype.matchAsyncFunction = function () {
-	        var match = this.matchContextualKeyword('async');
+	        let match = this.matchContextualKeyword('async');
 	        if (match) {
-	            var state = this.scanner.saveState();
+	            const state = this.scanner.saveState();
 	            this.scanner.scanComments();
-	            var next = this.scanner.lex();
+	            const next = this.scanner.lex();
 	            this.scanner.restoreState(state);
 	            match = (state.lineNumber === next.lineNumber) && (next.type === 4 /* Keyword */) && (next.value === 'function');
 	        }
 	        return match;
 	    };
 	    Parser.prototype.parseFunctionDeclaration = function (identifierIsOptional) {
-	        var node = this.createNode();
-	        var isAsync = this.matchContextualKeyword('async');
+	        const node = this.createNode();
+	        const isAsync = this.matchContextualKeyword('async');
 	        if (isAsync) {
 	            this.nextToken();
 	        }
 	        this.expectKeyword('function');
-	        var isGenerator = isAsync ? false : this.match('*');
+	        const isGenerator = isAsync ? false : this.match('*');
 	        if (isGenerator) {
 	            this.nextToken();
 	        }
-	        var message;
-	        var id = null;
-	        var firstRestricted = null;
+	        let message;
+	        let id = null;
+	        let firstRestricted = null;
 	        if (!identifierIsOptional || !this.match('(')) {
-	            var token = this.lookahead;
+	            const token = this.lookahead;
 	            id = this.parseVariableIdentifier();
 	            if (this.context.strict) {
 	                if (this.scanner.isRestrictedWord(token.value)) {
@@ -4330,21 +4330,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            }
 	        }
-	        var previousAllowAwait = this.context.await;
-	        var previousAllowYield = this.context.allowYield;
+	        const previousAllowAwait = this.context.await;
+	        const previousAllowYield = this.context.allowYield;
 	        this.context.await = isAsync;
 	        this.context.allowYield = !isGenerator;
-	        var formalParameters = this.parseFormalParameters(firstRestricted);
-	        var params = formalParameters.params;
-	        var stricted = formalParameters.stricted;
+	        const formalParameters = this.parseFormalParameters(firstRestricted);
+	        const params = formalParameters.params;
+	        const stricted = formalParameters.stricted;
 	        firstRestricted = formalParameters.firstRestricted;
 	        if (formalParameters.message) {
 	            message = formalParameters.message;
 	        }
-	        var previousStrict = this.context.strict;
-	        var previousAllowStrictDirective = this.context.allowStrictDirective;
+	        const previousStrict = this.context.strict;
+	        const previousAllowStrictDirective = this.context.allowStrictDirective;
 	        this.context.allowStrictDirective = formalParameters.simple;
-	        var body = this.parseFunctionSourceElements();
+	        const body = this.parseFunctionSourceElements();
 	        if (this.context.strict && firstRestricted) {
 	            this.throwUnexpectedToken(firstRestricted, message);
 	        }
@@ -4359,25 +4359,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.finalize(node, new Node.FunctionDeclaration(id, params, body, isGenerator));
 	    };
 	    Parser.prototype.parseFunctionExpression = function () {
-	        var node = this.createNode();
-	        var isAsync = this.matchContextualKeyword('async');
+	        const node = this.createNode();
+	        const isAsync = this.matchContextualKeyword('async');
 	        if (isAsync) {
 	            this.nextToken();
 	        }
 	        this.expectKeyword('function');
-	        var isGenerator = isAsync ? false : this.match('*');
+	        const isGenerator = isAsync ? false : this.match('*');
 	        if (isGenerator) {
 	            this.nextToken();
 	        }
-	        var message;
-	        var id = null;
-	        var firstRestricted;
-	        var previousAllowAwait = this.context.await;
-	        var previousAllowYield = this.context.allowYield;
+	        let message;
+	        let id = null;
+	        let firstRestricted;
+	        const previousAllowAwait = this.context.await;
+	        const previousAllowYield = this.context.allowYield;
 	        this.context.await = isAsync;
 	        this.context.allowYield = !isGenerator;
 	        if (!this.match('(')) {
-	            var token = this.lookahead;
+	            const token = this.lookahead;
 	            id = (!this.context.strict && !isGenerator && this.matchKeyword('yield')) ? this.parseIdentifierName() : this.parseVariableIdentifier();
 	            if (this.context.strict) {
 	                if (this.scanner.isRestrictedWord(token.value)) {
@@ -4395,17 +4395,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            }
 	        }
-	        var formalParameters = this.parseFormalParameters(firstRestricted);
-	        var params = formalParameters.params;
-	        var stricted = formalParameters.stricted;
+	        const formalParameters = this.parseFormalParameters(firstRestricted);
+	        const params = formalParameters.params;
+	        const stricted = formalParameters.stricted;
 	        firstRestricted = formalParameters.firstRestricted;
 	        if (formalParameters.message) {
 	            message = formalParameters.message;
 	        }
-	        var previousStrict = this.context.strict;
-	        var previousAllowStrictDirective = this.context.allowStrictDirective;
+	        const previousStrict = this.context.strict;
+	        const previousAllowStrictDirective = this.context.allowStrictDirective;
 	        this.context.allowStrictDirective = formalParameters.simple;
-	        var body = this.parseFunctionSourceElements();
+	        const body = this.parseFunctionSourceElements();
 	        if (this.context.strict && firstRestricted) {
 	            this.throwUnexpectedToken(firstRestricted, message);
 	        }
@@ -4421,24 +4421,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    // https://tc39.github.io/ecma262/#sec-directive-prologues-and-the-use-strict-directive
 	    Parser.prototype.parseDirective = function () {
-	        var token = this.lookahead;
-	        var node = this.createNode();
-	        var expr = this.parseExpression();
-	        var directive = (expr.type === syntax_1.Syntax.Literal) ? this.getTokenRaw(token).slice(1, -1) : null;
+	        const token = this.lookahead;
+	        const node = this.createNode();
+	        const expr = this.parseExpression();
+	        const directive = (expr.type === syntax_1.Syntax.Literal) ? this.getTokenRaw(token).slice(1, -1) : null;
 	        this.consumeSemicolon();
 	        return this.finalize(node, directive ? new Node.Directive(expr, directive) : new Node.ExpressionStatement(expr));
 	    };
 	    Parser.prototype.parseDirectivePrologues = function () {
-	        var firstRestricted = null;
-	        var body = [];
+	        let firstRestricted = null;
+	        const body = [];
 	        while (true) {
-	            var token = this.lookahead;
+	            const token = this.lookahead;
 	            if (token.type !== 8 /* StringLiteral */) {
 	                break;
 	            }
-	            var statement = this.parseDirective();
+	            const statement = this.parseDirective();
 	            body.push(statement);
-	            var directive = statement.directive;
+	            const directive = statement.directive;
 	            if (typeof directive !== 'string') {
 	                break;
 	            }
@@ -4477,49 +4477,49 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return false;
 	    };
 	    Parser.prototype.parseGetterMethod = function () {
-	        var node = this.createNode();
-	        var isGenerator = false;
-	        var previousAllowYield = this.context.allowYield;
+	        const node = this.createNode();
+	        const isGenerator = false;
+	        const previousAllowYield = this.context.allowYield;
 	        this.context.allowYield = !isGenerator;
-	        var formalParameters = this.parseFormalParameters();
+	        const formalParameters = this.parseFormalParameters();
 	        if (formalParameters.params.length > 0) {
 	            this.tolerateError(messages_1.Messages.BadGetterArity);
 	        }
-	        var method = this.parsePropertyMethod(formalParameters);
+	        const method = this.parsePropertyMethod(formalParameters);
 	        this.context.allowYield = previousAllowYield;
 	        return this.finalize(node, new Node.FunctionExpression(null, formalParameters.params, method, isGenerator));
 	    };
 	    Parser.prototype.parseSetterMethod = function () {
-	        var node = this.createNode();
-	        var isGenerator = false;
-	        var previousAllowYield = this.context.allowYield;
+	        const node = this.createNode();
+	        const isGenerator = false;
+	        const previousAllowYield = this.context.allowYield;
 	        this.context.allowYield = !isGenerator;
-	        var formalParameters = this.parseFormalParameters();
+	        const formalParameters = this.parseFormalParameters();
 	        if (formalParameters.params.length !== 1) {
 	            this.tolerateError(messages_1.Messages.BadSetterArity);
 	        }
 	        else if (formalParameters.params[0] instanceof Node.RestElement) {
 	            this.tolerateError(messages_1.Messages.BadSetterRestParameter);
 	        }
-	        var method = this.parsePropertyMethod(formalParameters);
+	        const method = this.parsePropertyMethod(formalParameters);
 	        this.context.allowYield = previousAllowYield;
 	        return this.finalize(node, new Node.FunctionExpression(null, formalParameters.params, method, isGenerator));
 	    };
 	    Parser.prototype.parseGeneratorMethod = function () {
-	        var node = this.createNode();
-	        var isGenerator = true;
-	        var previousAllowYield = this.context.allowYield;
+	        const node = this.createNode();
+	        const isGenerator = true;
+	        const previousAllowYield = this.context.allowYield;
 	        this.context.allowYield = true;
-	        var params = this.parseFormalParameters();
+	        const params = this.parseFormalParameters();
 	        this.context.allowYield = false;
-	        var method = this.parsePropertyMethod(params);
+	        const method = this.parsePropertyMethod(params);
 	        this.context.allowYield = previousAllowYield;
 	        return this.finalize(node, new Node.FunctionExpression(null, params.params, method, isGenerator));
 	    };
 	    // https://tc39.github.io/ecma262/#sec-generator-function-definitions
 	    Parser.prototype.isStartOfExpression = function () {
-	        var start = true;
-	        var value = this.lookahead.value;
+	        let start = true;
+	        const value = this.lookahead.value;
 	        switch (this.lookahead.type) {
 	            case 7 /* Punctuator */:
 	                start = (value === '[') || (value === '(') || (value === '{') ||
@@ -4540,12 +4540,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return start;
 	    };
 	    Parser.prototype.parseYieldExpression = function () {
-	        var node = this.createNode();
+	        const node = this.createNode();
 	        this.expectKeyword('yield');
-	        var argument = null;
-	        var delegate = false;
+	        let argument = null;
+	        let delegate = false;
 	        if (!this.hasLineTerminator) {
-	            var previousAllowYield = this.context.allowYield;
+	            const previousAllowYield = this.context.allowYield;
 	            this.context.allowYield = false;
 	            delegate = this.match('*');
 	            if (delegate) {
@@ -4561,22 +4561,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    // https://tc39.github.io/ecma262/#sec-class-definitions
 	    Parser.prototype.parseClassElement = function (hasConstructor) {
-	        var token = this.lookahead;
-	        var node = this.createNode();
-	        var kind = '';
-	        var key = null;
-	        var value = null;
-	        var computed = false;
-	        var method = false;
-	        var isStatic = false;
-	        var isAsync = false;
+	        let token = this.lookahead;
+	        const node = this.createNode();
+	        let kind = '';
+	        let key = null;
+	        let value = null;
+	        let computed = false;
+	        let method = false;
+	        let isStatic = false;
+	        let isAsync = false;
 	        if (this.match('*')) {
 	            this.nextToken();
 	        }
 	        else {
 	            computed = this.match('[');
 	            key = this.parseObjectPropertyKey();
-	            var id = key;
+	            const id = key;
 	            if (id.name === 'static' && (this.qualifiedPropertyName(this.lookahead) || this.match('*'))) {
 	                token = this.lookahead;
 	                isStatic = true;
@@ -4589,7 +4589,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            }
 	            if ((token.type === 3 /* Identifier */) && !this.hasLineTerminator && (token.value === 'async')) {
-	                var punctuator = this.lookahead.value;
+	                const punctuator = this.lookahead.value;
 	                if (punctuator !== ':' && punctuator !== '(' && punctuator !== '*') {
 	                    isAsync = true;
 	                    token = this.lookahead;
@@ -4600,7 +4600,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            }
 	        }
-	        var lookaheadPropertyKey = this.qualifiedPropertyName(this.lookahead);
+	        const lookaheadPropertyKey = this.qualifiedPropertyName(this.lookahead);
 	        if (token.type === 3 /* Identifier */) {
 	            if (token.value === 'get' && lookaheadPropertyKey) {
 	                kind = 'get';
@@ -4654,8 +4654,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return this.finalize(node, new Node.MethodDefinition(key, computed, value, kind, isStatic));
 	    };
 	    Parser.prototype.parseClassElementList = function () {
-	        var body = [];
-	        var hasConstructor = { value: false };
+	        const body = [];
+	        const hasConstructor = { value: false };
 	        this.expect('{');
 	        while (!this.match('}')) {
 	            if (this.match(';')) {
@@ -4669,37 +4669,37 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return body;
 	    };
 	    Parser.prototype.parseClassBody = function () {
-	        var node = this.createNode();
-	        var elementList = this.parseClassElementList();
+	        const node = this.createNode();
+	        const elementList = this.parseClassElementList();
 	        return this.finalize(node, new Node.ClassBody(elementList));
 	    };
 	    Parser.prototype.parseClassDeclaration = function (identifierIsOptional) {
-	        var node = this.createNode();
-	        var previousStrict = this.context.strict;
+	        const node = this.createNode();
+	        const previousStrict = this.context.strict;
 	        this.context.strict = true;
 	        this.expectKeyword('class');
-	        var id = (identifierIsOptional && (this.lookahead.type !== 3 /* Identifier */)) ? null : this.parseVariableIdentifier();
-	        var superClass = null;
+	        const id = (identifierIsOptional && (this.lookahead.type !== 3 /* Identifier */)) ? null : this.parseVariableIdentifier();
+	        let superClass = null;
 	        if (this.matchKeyword('extends')) {
 	            this.nextToken();
 	            superClass = this.isolateCoverGrammar(this.parseLeftHandSideExpressionAllowCall);
 	        }
-	        var classBody = this.parseClassBody();
+	        const classBody = this.parseClassBody();
 	        this.context.strict = previousStrict;
 	        return this.finalize(node, new Node.ClassDeclaration(id, superClass, classBody));
 	    };
 	    Parser.prototype.parseClassExpression = function () {
-	        var node = this.createNode();
-	        var previousStrict = this.context.strict;
+	        const node = this.createNode();
+	        const previousStrict = this.context.strict;
 	        this.context.strict = true;
 	        this.expectKeyword('class');
-	        var id = (this.lookahead.type === 3 /* Identifier */) ? this.parseVariableIdentifier() : null;
-	        var superClass = null;
+	        const id = (this.lookahead.type === 3 /* Identifier */) ? this.parseVariableIdentifier() : null;
+	        let superClass = null;
 	        if (this.matchKeyword('extends')) {
 	            this.nextToken();
 	            superClass = this.isolateCoverGrammar(this.parseLeftHandSideExpressionAllowCall);
 	        }
-	        var classBody = this.parseClassBody();
+	        const classBody = this.parseClassBody();
 	        this.context.strict = previousStrict;
 	        return this.finalize(node, new Node.ClassExpression(id, superClass, classBody));
 	    };
@@ -4709,16 +4709,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.context.strict = true;
 	        this.context.isModule = true;
 	        this.scanner.isModule = true;
-	        var node = this.createNode();
-	        var body = this.parseDirectivePrologues();
+	        const node = this.createNode();
+	        const body = this.parseDirectivePrologues();
 	        while (this.lookahead.type !== 2 /* EOF */) {
 	            body.push(this.parseStatementListItem());
 	        }
 	        return this.finalize(node, new Node.Module(body));
 	    };
 	    Parser.prototype.parseScript = function () {
-	        var node = this.createNode();
-	        var body = this.parseDirectivePrologues();
+	        const node = this.createNode();
+	        const body = this.parseDirectivePrologues();
 	        while (this.lookahead.type !== 2 /* EOF */) {
 	            body.push(this.parseStatementListItem());
 	        }
@@ -4726,19 +4726,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    // https://tc39.github.io/ecma262/#sec-imports
 	    Parser.prototype.parseModuleSpecifier = function () {
-	        var node = this.createNode();
+	        const node = this.createNode();
 	        if (this.lookahead.type !== 8 /* StringLiteral */) {
 	            this.throwError(messages_1.Messages.InvalidModuleSpecifier);
 	        }
-	        var token = this.nextToken();
-	        var raw = this.getTokenRaw(token);
+	        const token = this.nextToken();
+	        const raw = this.getTokenRaw(token);
 	        return this.finalize(node, new Node.Literal(token.value, raw));
 	    };
 	    // import {<foo as bar>} ...;
 	    Parser.prototype.parseImportSpecifier = function () {
-	        var node = this.createNode();
-	        var imported;
-	        var local;
+	        const node = this.createNode();
+	        let imported;
+	        let local;
 	        if (this.lookahead.type === 3 /* Identifier */) {
 	            imported = this.parseVariableIdentifier();
 	            local = imported;
@@ -4763,7 +4763,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // {foo, bar as bas}
 	    Parser.prototype.parseNamedImports = function () {
 	        this.expect('{');
-	        var specifiers = [];
+	        const specifiers = [];
 	        while (!this.match('}')) {
 	            specifiers.push(this.parseImportSpecifier());
 	            if (!this.match('}')) {
@@ -4775,29 +4775,29 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    // import <foo> ...;
 	    Parser.prototype.parseImportDefaultSpecifier = function () {
-	        var node = this.createNode();
-	        var local = this.parseIdentifierName();
+	        const node = this.createNode();
+	        const local = this.parseIdentifierName();
 	        return this.finalize(node, new Node.ImportDefaultSpecifier(local));
 	    };
 	    // import <* as foo> ...;
 	    Parser.prototype.parseImportNamespaceSpecifier = function () {
-	        var node = this.createNode();
+	        const node = this.createNode();
 	        this.expect('*');
 	        if (!this.matchContextualKeyword('as')) {
 	            this.throwError(messages_1.Messages.NoAsAfterImportNamespace);
 	        }
 	        this.nextToken();
-	        var local = this.parseIdentifierName();
+	        const local = this.parseIdentifierName();
 	        return this.finalize(node, new Node.ImportNamespaceSpecifier(local));
 	    };
 	    Parser.prototype.parseImportDeclaration = function () {
 	        if (this.context.inFunctionBody) {
 	            this.throwError(messages_1.Messages.IllegalImportDeclaration);
 	        }
-	        var node = this.createNode();
+	        const node = this.createNode();
 	        this.expectKeyword('import');
-	        var src;
-	        var specifiers = [];
+	        let src;
+	        let specifiers = [];
 	        if (this.lookahead.type === 8 /* StringLiteral */) {
 	            // import 'foo';
 	            src = this.parseModuleSpecifier();
@@ -4833,7 +4833,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                this.throwUnexpectedToken(this.nextToken());
 	            }
 	            if (!this.matchContextualKeyword('from')) {
-	                var message = this.lookahead.value ? messages_1.Messages.UnexpectedToken : messages_1.Messages.MissingFromClause;
+	                const message = this.lookahead.value ? messages_1.Messages.UnexpectedToken : messages_1.Messages.MissingFromClause;
 	                this.throwError(message, this.lookahead.value);
 	            }
 	            this.nextToken();
@@ -4844,9 +4844,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    // https://tc39.github.io/ecma262/#sec-exports
 	    Parser.prototype.parseExportSpecifier = function () {
-	        var node = this.createNode();
-	        var local = this.parseIdentifierName();
-	        var exported = local;
+	        const node = this.createNode();
+	        const local = this.parseIdentifierName();
+	        let exported = local;
 	        if (this.matchContextualKeyword('as')) {
 	            this.nextToken();
 	            exported = this.parseIdentifierName();
@@ -4857,9 +4857,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (this.context.inFunctionBody) {
 	            this.throwError(messages_1.Messages.IllegalExportDeclaration);
 	        }
-	        var node = this.createNode();
+	        const node = this.createNode();
 	        this.expectKeyword('export');
-	        var exportDeclaration;
+	        let exportDeclaration;
 	        if (this.matchKeyword('default')) {
 	            // export default ...
 	            this.nextToken();
@@ -4902,7 +4902,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                this.throwError(message, this.lookahead.value);
 	            }
 	            this.nextToken();
-	            var src = this.parseModuleSpecifier();
+	            const src = this.parseModuleSpecifier();
 	            this.consumeSemicolon();
 	            exportDeclaration = this.finalize(node, new Node.ExportAllDeclaration(src));
 	        }
@@ -4929,9 +4929,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            exportDeclaration = this.finalize(node, new Node.ExportNamedDeclaration(declaration, [], null));
 	        }
 	        else {
-	            var specifiers = [];
-	            var source = null;
-	            var isExportFromIdentifier = false;
+	            const specifiers = [];
+	            let source = null;
+	            let isExportFromIdentifier = false;
 	            this.expect('{');
 	            while (!this.match('}')) {
 	                isExportFromIdentifier = isExportFromIdentifier || this.matchKeyword('default');
@@ -4992,7 +4992,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	"use strict";
 	/* tslint:disable:max-classes-per-file */
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var ErrorHandler = (function () {
+	const ErrorHandler = (function () {
 	    function ErrorHandler() {
 	        this.errors = [];
 	        this.tolerant = false;
@@ -5009,7 +5009,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    };
 	    ErrorHandler.prototype.constructError = function (msg, column) {
-	        var error = new Error(msg);
+	        let error = new Error(msg);
 	        try {
 	            throw error;
 	        }
@@ -5024,8 +5024,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return error;
 	    };
 	    ErrorHandler.prototype.createError = function (index, line, col, description) {
-	        var msg = 'Line ' + line + ': ' + description;
-	        var error = this.constructError(msg, col);
+	        const msg = 'Line ' + line + ': ' + description;
+	        const error = this.constructError(msg, col);
 	        error.index = index;
 	        error.lineNumber = line;
 	        error.description = description;
@@ -5035,7 +5035,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        throw this.createError(index, line, col, description);
 	    };
 	    ErrorHandler.prototype.tolerateError = function (index, line, col, description) {
-	        var error = this.createError(index, line, col, description);
+	        const error = this.createError(index, line, col, description);
 	        if (this.tolerant) {
 	            this.recordError(error);
 	        }
@@ -5123,16 +5123,16 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var assert_1 = __webpack_require__(9);
-	var character_1 = __webpack_require__(4);
-	var messages_1 = __webpack_require__(11);
+	const assert_1 = __webpack_require__(9);
+	const character_1 = __webpack_require__(4);
+	const messages_1 = __webpack_require__(11);
 	function hexValue(ch) {
 	    return '0123456789abcdef'.indexOf(ch.toLowerCase());
 	}
 	function octalValue(ch) {
 	    return '01234567'.indexOf(ch);
 	}
-	var Scanner = (function () {
+	const Scanner = (function () {
 	    function Scanner(code, handler) {
 	        this.source = code;
 	        this.errorHandler = handler;
@@ -5169,8 +5169,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    // https://tc39.github.io/ecma262/#sec-comments
 	    Scanner.prototype.skipSingleLineComment = function (offset) {
-	        var comments = [];
-	        var start, loc;
+	        let comments = [];
+	        let start, loc;
 	        if (this.trackComment) {
 	            comments = [];
 	            start = this.index - offset;
@@ -5183,7 +5183,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            };
 	        }
 	        while (!this.eof()) {
-	            var ch = this.source.charCodeAt(this.index);
+	            const ch = this.source.charCodeAt(this.index);
 	            ++this.index;
 	            if (character_1.Character.isLineTerminator(ch)) {
 	                if (this.trackComment) {
@@ -5223,8 +5223,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return comments;
 	    };
 	    Scanner.prototype.skipMultiLineComment = function () {
-	        var comments = [];
-	        var start, loc;
+	        let comments = [];
+	        let start, loc;
 	        if (this.trackComment) {
 	            comments = [];
 	            start = this.index - 2;
@@ -5237,7 +5237,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            };
 	        }
 	        while (!this.eof()) {
-	            var ch = this.source.charCodeAt(this.index);
+	            const ch = this.source.charCodeAt(this.index);
 	            if (character_1.Character.isLineTerminator(ch)) {
 	                if (ch === 0x0D && this.source.charCodeAt(this.index + 1) === 0x0A) {
 	                    ++this.index;
@@ -5289,13 +5289,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return comments;
 	    };
 	    Scanner.prototype.scanComments = function () {
-	        var comments;
+	        let comments;
 	        if (this.trackComment) {
 	            comments = [];
 	        }
-	        var start = (this.index === 0);
+	        let start = (this.index === 0);
 	        while (!this.eof()) {
-	            var ch = this.source.charCodeAt(this.index);
+	            let ch = this.source.charCodeAt(this.index);
 	            if (character_1.Character.isWhiteSpace(ch)) {
 	                ++this.index;
 	            }
@@ -5421,20 +5421,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    };
 	    Scanner.prototype.codePointAt = function (i) {
-	        var cp = this.source.charCodeAt(i);
+	        let cp = this.source.charCodeAt(i);
 	        if (cp >= 0xD800 && cp <= 0xDBFF) {
-	            var second = this.source.charCodeAt(i + 1);
+	            const second = this.source.charCodeAt(i + 1);
 	            if (second >= 0xDC00 && second <= 0xDFFF) {
-	                var first = cp;
+	                const first = cp;
 	                cp = (first - 0xD800) * 0x400 + second - 0xDC00 + 0x10000;
 	            }
 	        }
 	        return cp;
 	    };
 	    Scanner.prototype.scanHexEscape = function (prefix) {
-	        var len = (prefix === 'u') ? 4 : 2;
-	        var code = 0;
-	        for (var i = 0; i < len; ++i) {
+	        const len = (prefix === 'u') ? 4 : 2;
+	        let code = 0;
+	        for (let i = 0; i < len; ++i) {
 	            if (!this.eof() && character_1.Character.isHexDigit(this.source.charCodeAt(this.index))) {
 	                code = code * 16 + hexValue(this.source[this.index++]);
 	            }
@@ -5445,8 +5445,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return String.fromCharCode(code);
 	    };
 	    Scanner.prototype.scanUnicodeCodePointEscape = function () {
-	        var ch = this.source[this.index];
-	        var code = 0;
+	        let ch = this.source[this.index];
+	        let code = 0;
 	        // At least, one hex digit is required.
 	        if (ch === '}') {
 	            this.throwUnexpectedToken();
@@ -5464,9 +5464,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return character_1.Character.fromCodePoint(code);
 	    };
 	    Scanner.prototype.getIdentifier = function () {
-	        var start = this.index++;
+	        const start = this.index++;
 	        while (!this.eof()) {
-	            var ch = this.source.charCodeAt(this.index);
+	            const ch = this.source.charCodeAt(this.index);
 	            if (ch === 0x5C) {
 	                // Blackslash (U+005C) marks Unicode escape sequence.
 	                this.index = start;
@@ -5487,11 +5487,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return this.source.slice(start, this.index);
 	    };
 	    Scanner.prototype.getComplexIdentifier = function () {
-	        var cp = this.codePointAt(this.index);
-	        var id = character_1.Character.fromCodePoint(cp);
+	        let cp = this.codePointAt(this.index);
+	        let id = character_1.Character.fromCodePoint(cp);
 	        this.index += id.length;
 	        // '\u' (U+005C, U+0075) denotes an escaped character.
-	        var ch;
+	        let ch;
 	        if (cp === 0x5C) {
 	            if (this.source.charCodeAt(this.index) !== 0x75) {
 	                this.throwUnexpectedToken();
@@ -5541,8 +5541,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    Scanner.prototype.octalToDecimal = function (ch) {
 	        // \0 is not octal escape sequence
-	        var octal = (ch !== '0');
-	        var code = octalValue(ch);
+	        let octal = (ch !== '0');
+	        let code = octalValue(ch);
 	        if (!this.eof() && character_1.Character.isOctalDigit(this.source.charCodeAt(this.index))) {
 	            octal = true;
 	            code = code * 8 + octalValue(this.source[this.index++]);
@@ -5559,10 +5559,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    // https://tc39.github.io/ecma262/#sec-names-and-keywords
 	    Scanner.prototype.scanIdentifier = function () {
-	        var type;
-	        var start = this.index;
+	        let type;
+	        const start = this.index;
 	        // Backslash (U+005C) starts an escaped character.
-	        var id = (this.source.charCodeAt(start) === 0x5C) ? this.getComplexIdentifier() : this.getIdentifier();
+	        const id = (this.source.charCodeAt(start) === 0x5C) ? this.getComplexIdentifier() : this.getIdentifier();
 	        // There is no keyword or literal with only one character.
 	        // Thus, it must be an identifier.
 	        if (id.length === 1) {
@@ -5581,7 +5581,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            type = 3 /* Identifier */;
 	        }
 	        if (type !== 3 /* Identifier */ && (start + id.length !== this.index)) {
-	            var restore = this.index;
+	            const restore = this.index;
 	            this.index = start;
 	            this.tolerateUnexpectedToken(messages_1.Messages.InvalidEscapedReservedWord);
 	            this.index = restore;
@@ -5597,9 +5597,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    // https://tc39.github.io/ecma262/#sec-punctuators
 	    Scanner.prototype.scanPunctuator = function () {
-	        var start = this.index;
+	        const start = this.index;
 	        // Check for most common single-character punctuators.
-	        var str = this.source[this.index];
+	        let str = this.source[this.index];
 	        switch (str) {
 	            case '(':
 	            case '{':
@@ -5677,7 +5677,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    // https://tc39.github.io/ecma262/#sec-literals-numeric-literals
 	    Scanner.prototype.scanHexLiteral = function (start) {
-	        var num = '';
+	        let num = '';
 	        while (!this.eof()) {
 	            if (!character_1.Character.isHexDigit(this.source.charCodeAt(this.index))) {
 	                break;
@@ -5700,8 +5700,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        };
 	    };
 	    Scanner.prototype.scanBinaryLiteral = function (start) {
-	        var num = '';
-	        var ch;
+	        let num = '';
+	        let ch;
 	        while (!this.eof()) {
 	            ch = this.source[this.index];
 	            if (ch !== '0' && ch !== '1') {
@@ -5730,8 +5730,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        };
 	    };
 	    Scanner.prototype.scanOctalLiteral = function (prefix, start) {
-	        var num = '';
-	        var octal = false;
+	        let num = '';
+	        let octal = false;
 	        if (character_1.Character.isOctalDigit(prefix.charCodeAt(0))) {
 	            octal = true;
 	            num = '0' + this.source[this.index++];
@@ -5765,8 +5765,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    Scanner.prototype.isImplicitOctalLiteral = function () {
 	        // Implicit octal, unless there is a non-octal digit.
 	        // (Annex B.1.1 on Numeric Literals)
-	        for (var i = this.index + 1; i < this.length; ++i) {
-	            var ch = this.source[i];
+	        for (let i = this.index + 1; i < this.length; ++i) {
+	            const ch = this.source[i];
 	            if (ch === '8' || ch === '9') {
 	                return false;
 	            }
@@ -5777,10 +5777,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return true;
 	    };
 	    Scanner.prototype.scanNumericLiteral = function () {
-	        var start = this.index;
-	        var ch = this.source[start];
+	        const start = this.index;
+	        let ch = this.source[start];
 	        assert_1.assert(character_1.Character.isDecimalDigit(ch.charCodeAt(0)) || (ch === '.'), 'Numeric literal must start with a decimal digit or a decimal point');
-	        var num = '';
+	        let num = '';
 	        if (ch !== '.') {
 	            num = this.source[this.index++];
 	            ch = this.source[this.index];
@@ -5847,14 +5847,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    // https://tc39.github.io/ecma262/#sec-literals-string-literals
 	    Scanner.prototype.scanStringLiteral = function () {
-	        var start = this.index;
-	        var quote = this.source[start];
+	        const start = this.index;
+	        let quote = this.source[start];
 	        assert_1.assert((quote === '\'' || quote === '"'), 'String literal must starts with a quote');
 	        ++this.index;
-	        var octal = false;
-	        var str = '';
+	        let octal = false;
+	        let str = '';
 	        while (!this.eof()) {
-	            var ch = this.source[this.index++];
+	            let ch = this.source[this.index++];
 	            if (ch === quote) {
 	                quote = '';
 	                break;
@@ -5869,7 +5869,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                str += this.scanUnicodeCodePointEscape();
 	                            }
 	                            else {
-	                                var unescaped_1 = this.scanHexEscape(ch);
+	                                const unescaped_1 = this.scanHexEscape(ch);
 	                                if (unescaped_1 === null) {
 	                                    this.throwUnexpectedToken();
 	                                }
@@ -5908,7 +5908,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                            break;
 	                        default:
 	                            if (ch && character_1.Character.isOctalDigit(ch.charCodeAt(0))) {
-	                                var octToDec = this.octalToDecimal(ch);
+	                                const octToDec = this.octalToDecimal(ch);
 	                                octal = octToDec.octal || octal;
 	                                str += String.fromCharCode(octToDec.code);
 	                            }
@@ -5949,15 +5949,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    // https://tc39.github.io/ecma262/#sec-template-literal-lexical-components
 	    Scanner.prototype.scanTemplate = function () {
-	        var cooked = '';
-	        var terminated = false;
-	        var start = this.index;
-	        var head = (this.source[start] === '`');
-	        var tail = false;
-	        var rawOffset = 2;
+	        let cooked = '';
+	        let terminated = false;
+	        const start = this.index;
+	        const head = (this.source[start] === '`');
+	        let tail = false;
+	        let rawOffset = 2;
 	        ++this.index;
 	        while (!this.eof()) {
-	            var ch = this.source[this.index++];
+	            let ch = this.source[this.index++];
 	            if (ch === '`') {
 	                rawOffset = 1;
 	                tail = true;
@@ -5992,8 +5992,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                cooked += this.scanUnicodeCodePointEscape();
 	                            }
 	                            else {
-	                                var restore = this.index;
-	                                var unescaped_2 = this.scanHexEscape(ch);
+	                                const restore = this.index;
+	                                const unescaped_2 = this.scanHexEscape(ch);
 	                                if (unescaped_2 !== null) {
 	                                    cooked += unescaped_2;
 	                                }
@@ -6083,13 +6083,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        // Note: replacing with '\uFFFF' enables false positives in unlikely
 	        // scenarios. For example, `[\u{1044f}-\u{10440}]` is an invalid
 	        // pattern that would not be detected by this substitution.
-	        var astralSubstitute = '\uFFFF';
-	        var tmp = pattern;
-	        var self = this;
+	        const astralSubstitute = '\uFFFF';
+	        let tmp = pattern;
+	        const self = this;
 	        if (flags.indexOf('u') >= 0) {
 	            tmp = tmp
 	                .replace(/\\u\{([0-9a-fA-F]+)\}|\\u([a-fA-F0-9]{4})/g, function ($0, $1, $2) {
-	                var codePoint = parseInt($1 || $2, 16);
+	                const codePoint = parseInt($1 || $2, 16);
 	                if (codePoint > 0x10FFFF) {
 	                    self.throwUnexpectedToken(messages_1.Messages.InvalidRegExp);
 	                }
@@ -6119,11 +6119,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    };
 	    Scanner.prototype.scanRegExpBody = function () {
-	        var ch = this.source[this.index];
+	        let ch = this.source[this.index];
 	        assert_1.assert(ch === '/', 'Regular expression literal must start with a slash');
-	        var str = this.source[this.index++];
-	        var classMarker = false;
-	        var terminated = false;
+	        let str = this.source[this.index++];
+	        let classMarker = false;
+	        let terminated = false;
 	        while (!this.eof()) {
 	            ch = this.source[this.index++];
 	            str += ch;
@@ -6160,10 +6160,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return str.substr(1, str.length - 2);
 	    };
 	    Scanner.prototype.scanRegExpFlags = function () {
-	        var str = '';
-	        var flags = '';
+	        let str = '';
+	        let flags = '';
 	        while (!this.eof()) {
-	            var ch = this.source[this.index];
+	            let ch = this.source[this.index];
 	            if (!character_1.Character.isIdentifierPart(ch.charCodeAt(0))) {
 	                break;
 	            }
@@ -6172,8 +6172,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                ch = this.source[this.index];
 	                if (ch === 'u') {
 	                    ++this.index;
-	                    var restore = this.index;
-	                    var char = this.scanHexEscape('u');
+	                    let restore = this.index;
+	                    const char = this.scanHexEscape('u');
 	                    if (char !== null) {
 	                        flags += char;
 	                        for (str += '\\u'; restore < this.index; ++restore) {
@@ -6200,10 +6200,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return flags;
 	    };
 	    Scanner.prototype.scanRegExp = function () {
-	        var start = this.index;
-	        var pattern = this.scanRegExpBody();
-	        var flags = this.scanRegExpFlags();
-	        var value = this.testRegExp(pattern, flags);
+	        const start = this.index;
+	        const pattern = this.scanRegExpBody();
+	        const flags = this.scanRegExpFlags();
+	        const value = this.testRegExp(pattern, flags);
 	        return {
 	            type: 9 /* RegularExpression */,
 	            value: '',
@@ -6227,7 +6227,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                end: this.index
 	            };
 	        }
-	        var cp = this.source.charCodeAt(this.index);
+	        const cp = this.source.charCodeAt(this.index);
 	        if (character_1.Character.isIdentifierStart(cp)) {
 	            return this.scanIdentifier();
 	        }
@@ -6556,10 +6556,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var error_handler_1 = __webpack_require__(10);
-	var scanner_1 = __webpack_require__(12);
-	var token_1 = __webpack_require__(13);
-	var Reader = (function () {
+	const error_handler_1 = __webpack_require__(10);
+	const scanner_1 = __webpack_require__(12);
+	const token_1 = __webpack_require__(13);
+	const Reader = (function () {
 	    function Reader() {
 	        this.values = [];
 	        this.curly = this.paren = -1;
@@ -6579,8 +6579,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // Determine if forward slash (/) is an operator or part of a regular expression
 	    // https://github.com/mozilla/sweet.js/wiki/design
 	    Reader.prototype.isRegexStart = function () {
-	        var previous = this.values[this.values.length - 1];
-	        var regex = (previous !== null);
+	        const previous = this.values[this.values.length - 1];
+	        let regex = (previous !== null);
 	        switch (previous) {
 	            case 'this':
 	            case ']':
@@ -6626,7 +6626,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    return Reader;
 	}());
-	var Tokenizer = (function () {
+	const Tokenizer = (function () {
 	    function Tokenizer(code, config) {
 	        this.errorHandler = new error_handler_1.ErrorHandler();
 	        this.errorHandler.tolerant = config ? (typeof config.tolerant === 'boolean' && config.tolerant) : false;
@@ -6642,12 +6642,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    Tokenizer.prototype.getNextToken = function () {
 	        if (this.buffer.length === 0) {
-	            var comments = this.scanner.scanComments();
+	            const comments = this.scanner.scanComments();
 	            if (this.scanner.trackComment) {
-	                for (var i = 0; i < comments.length; ++i) {
-	                    var e = comments[i];
-	                    var value = this.scanner.source.slice(e.slice[0], e.slice[1]);
-	                    var comment = {
+	                for (let i = 0; i < comments.length; ++i) {
+	                    const e = comments[i];
+	                    const value = this.scanner.source.slice(e.slice[0], e.slice[1]);
+	                    const comment = {
 	                        type: e.multiLine ? 'BlockComment' : 'LineComment',
 	                        value: value
 	                    };
@@ -6661,7 +6661,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            }
 	            if (!this.scanner.eof()) {
-	                var loc = void 0;
+	                let loc = void 0;
 	                if (this.trackLoc) {
 	                    loc = {
 	                        start: {
@@ -6671,10 +6671,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        end: {}
 	                    };
 	                }
-	                var startRegex = (this.scanner.source[this.scanner.index] === '/') && this.reader.isRegexStart();
-	                var token = startRegex ? this.scanner.scanRegExp() : this.scanner.lex();
+	                const startRegex = (this.scanner.source[this.scanner.index] === '/') && this.reader.isRegexStart();
+	                const token = startRegex ? this.scanner.scanRegExp() : this.scanner.lex();
 	                this.reader.push(token);
-	                var entry = {
+	                const entry = {
 	                    type: token_1.TokenName[token.type],
 	                    value: this.scanner.source.slice(token.start, token.end)
 	                };
@@ -6689,8 +6689,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    entry.loc = loc;
 	                }
 	                if (token.type === 9 /* RegularExpression */) {
-	                    var pattern = token.pattern;
-	                    var flags = token.flags;
+	                    const pattern = token.pattern;
+	                    const flags = token.flags;
 	                    entry.regex = { pattern: pattern, flags: flags };
 	                }
 	                this.buffer.push(entry);
@@ -6706,4 +6706,3 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ }
 /******/ ])
 });
-;

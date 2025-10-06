@@ -1,16 +1,16 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var IsFixedLengthArrayBuffer = require('./IsFixedLengthArrayBuffer');
-var IsTypedArrayOutOfBounds = require('./IsTypedArrayOutOfBounds');
-var TypedArrayElementSize = require('./TypedArrayElementSize');
-var TypedArrayLength = require('./TypedArrayLength');
+const IsFixedLengthArrayBuffer = require('./IsFixedLengthArrayBuffer');
+const IsTypedArrayOutOfBounds = require('./IsTypedArrayOutOfBounds');
+const TypedArrayElementSize = require('./TypedArrayElementSize');
+const TypedArrayLength = require('./TypedArrayLength');
 
-var isTypedArrayWithBufferWitnessRecord = require('../helpers/records/typed-array-with-buffer-witness-record');
+const isTypedArrayWithBufferWitnessRecord = require('../helpers/records/typed-array-with-buffer-witness-record');
 
-var typedArrayByffer = require('typed-array-buffer');
-var typedArrayByteLength = require('typed-array-byte-length');
+const typedArrayByffer = require('typed-array-buffer');
+const typedArrayByteLength = require('typed-array-byte-length');
 
 // https://262.ecma-international.org/15.0/#sec-typedarraybytelength
 
@@ -22,22 +22,22 @@ module.exports = function TypedArrayByteLength(taRecord) {
 	if (IsTypedArrayOutOfBounds(taRecord)) {
 		return 0; // step 1
 	}
-	var length = TypedArrayLength(taRecord); // step 2
+	const length = TypedArrayLength(taRecord); // step 2
 
 	if (length === 0) {
 		return 0; // step 3
 	}
 
-	var O = taRecord['[[Object]]']; // step 4
+	const O = taRecord['[[Object]]']; // step 4
 
-	var isFixed = IsFixedLengthArrayBuffer(typedArrayByffer(O));
+	const isFixed = IsFixedLengthArrayBuffer(typedArrayByffer(O));
 
-	var byteLength = isFixed ? typedArrayByteLength(O) : 'AUTO';
+	const byteLength = isFixed ? typedArrayByteLength(O) : 'AUTO';
 	if (byteLength !== 'AUTO') {
 		return byteLength; // step 5
 	}
 
-	var elementSize = TypedArrayElementSize(O); // step 6
+	const elementSize = TypedArrayElementSize(O); // step 6
 
 	return length * elementSize; // step 7
 };

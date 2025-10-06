@@ -18,10 +18,10 @@ module.exports = function tailwindcss(configOrPath) {
         // path for the file being processed
         configOrPath = findAtConfigPath(root, result) ?? configOrPath
 
-        let context = setupTrackingContext(configOrPath)
+        const context = setupTrackingContext(configOrPath)
 
         if (root.type === 'document') {
-          let roots = root.nodes.filter((node) => node.type === 'root')
+          const roots = root.nodes.filter((node) => node.type === 'root')
 
           for (const root of roots) {
             if (root.type === 'root') {

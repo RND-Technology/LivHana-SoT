@@ -66,7 +66,7 @@ function massageParams(arg, arg2, arg3) {
  * @param fn
  */
 function handleFn(span, opts, fn) {
-    var _a;
+    let _a;
     const onException = (_a = opts.onException) !== null && _a !== void 0 ? _a : defaultOnException;
     const errorHandler = (e) => {
         onException(e, span);

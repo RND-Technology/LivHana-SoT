@@ -72,7 +72,7 @@ module.exports.wrapCall = function wrappedCall(shim, call) {
     return function wrappedCallErrorFromStatus() {
       const errRes = fn.apply(this, arguments);
       try {
-        let error = new Error(errRes.message);
+        const error = new Error(errRes.message);
         error.stack = errRes.stack;
         const request = requestManager.getRequest(shim);
         if (request) {
@@ -128,7 +128,7 @@ function wrapStart(shim, original) {
     const url = `${protocol}//${authorityName}${method}`;
     logger.debug("grpc url is:", url)
     const request = requestManager.getRequest(shim);
-    let urlObj = {
+    const urlObj = {
       "headers":
       {
         "host": authorityName
@@ -165,10 +165,10 @@ function wrapAddService(shim, original) {
     try {
       const stakTrace = secUtils.traceElementForRoute();
       const splittedStack = stakTrace[0].split(DOUBLE_DOLLAR);
-      let serviceValues = Object.values(arguments[0]);
+      const serviceValues = Object.values(arguments[0]);
       for (const [key, value] of Object.entries(serviceValues)) {
         const routeKey = ASTERISK + ATTHERATE + value.path;
-        let finalHandler = value.originalName + ATTHERATE + splittedStack[0];
+        const finalHandler = value.originalName + ATTHERATE + splittedStack[0];
         routeManager.setRoute(routeKey, finalHandler);
       }
     } catch (error) {
@@ -189,7 +189,7 @@ function wrapLoadPackageDefinition(shim, original) {
     return original
   }
   return function wrappedbindAsync() {
-    let serviceObject = arguments[0];
+    const serviceObject = arguments[0];
     const result = original.apply(this, arguments);
     iterateNestedObjectForServiceLookup(result, serviceObject);
     return result;
@@ -287,7 +287,7 @@ function wrapCallback(shim, mod, method) {
           }
 
           if (arguments[0].code && responseErrorSet.has(arguments[0].code) && request) {
-            let responseCode = arguments[0].code
+            const responseCode = arguments[0].code
             ExceptionReporting.generate5xxReportingEvent(null, request, responseCode);
           }
         }
@@ -318,8 +318,8 @@ function addRequestData(shim, type, path, args) {
       data.uri = path;
       data.headers = args.metadata.getMap();
       if (data.headers && data.headers[NR_CSEC_FUZZ_REQUEST_ID]) {
-        let bufferObj = Buffer.from(data.headers[NR_CSEC_FUZZ_REQUEST_ID], "base64");
-        let decodedString = bufferObj.toString("utf8");
+        const bufferObj = Buffer.from(data.headers[NR_CSEC_FUZZ_REQUEST_ID], "base64");
+        const decodedString = bufferObj.toString("utf8");
         data.headers[NR_CSEC_FUZZ_REQUEST_ID] = decodedString;
       }
       data.type = type;
@@ -340,9 +340,9 @@ function addRequestData(shim, type, path, args) {
  * @param {*} serviceObject 
  */
 function serviceUtil(serviceObject) {
-  let serviceValues = Object.values(serviceObject)[0];
+  const serviceValues = Object.values(serviceObject)[0];
   for (const [key, value] of Object.entries(serviceValues)) {
-    let servObj = {
+    const servObj = {
       'serviceName': serviceObject.serviceName,
       'originalName': value.originalName,
     }
@@ -356,7 +356,7 @@ function iterateNestedObjectForServiceLookup(result, serviceObject) {
       if (typeof result[key] === 'object' && result[key] !== 'null') {
         iterateNestedObjectForServiceLookup(result[key], serviceObject); // Recurse into nested object
       } else {
-        let value = result[key];
+        const value = result[key];
         if (value && value.serviceName) {
           if (!value.type && value.serviceName) {
             grpcutils.setService(value.serviceName, serviceObject);

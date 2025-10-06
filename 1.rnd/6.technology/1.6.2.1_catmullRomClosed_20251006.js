@@ -41,7 +41,7 @@ CatmullRomClosed.prototype = {
     x = +x, y = +y;
 
     if (this._point) {
-      var x23 = this._x2 - x,
+      const x23 = this._x2 - x,
           y23 = this._y2 - y;
       this._l23_a = Math.sqrt(this._l23_2a = Math.pow(x23 * x23 + y23 * y23, this._alpha));
     }

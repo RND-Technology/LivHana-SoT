@@ -5,7 +5,7 @@
  * Released under MIT license. See LICENSE in the project root for details.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-var NodeListIterator = /** @class */ (function () {
+const NodeListIterator = /** @class */ (function () {
     /**
      * Creates an Iterator used to simplify the consolidate() method. It works by
      * making a shallow copy of the nodes in the root list and iterating over the
@@ -15,7 +15,7 @@ var NodeListIterator = /** @class */ (function () {
     function NodeListIterator(start) {
         this._index = -1;
         this._items = [];
-        var current = start;
+        let current = start;
         do {
             this._items.push(current);
             current = current.next;

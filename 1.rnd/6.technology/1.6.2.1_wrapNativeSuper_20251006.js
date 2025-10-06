@@ -4,12 +4,12 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = _wrapNativeSuper;
-var _getPrototypeOf = require("./getPrototypeOf.js");
-var _setPrototypeOf = require("./setPrototypeOf.js");
-var _isNativeFunction = require("./isNativeFunction.js");
-var _construct = require("./construct.js");
+const _getPrototypeOf = require("./getPrototypeOf.js");
+const _setPrototypeOf = require("./setPrototypeOf.js");
+const _isNativeFunction = require("./isNativeFunction.js");
+const _construct = require("./construct.js");
 function _wrapNativeSuper(Class) {
-  var _cache = typeof Map === "function" ? new Map() : undefined;
+  const _cache = typeof Map === "function" ? new Map() : undefined;
   exports.default = _wrapNativeSuper = function _wrapNativeSuper(Class) {
     if (Class === null || !(0, _isNativeFunction.default)(Class)) return Class;
     if (typeof Class !== "function") {

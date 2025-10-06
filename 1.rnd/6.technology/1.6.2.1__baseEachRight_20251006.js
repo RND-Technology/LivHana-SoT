@@ -1,4 +1,4 @@
-var baseForOwnRight = require('./_baseForOwnRight'),
+const baseForOwnRight = require('./_baseForOwnRight'),
     createBaseEach = require('./_createBaseEach');
 
 /**
@@ -9,6 +9,6 @@ var baseForOwnRight = require('./_baseForOwnRight'),
  * @param {Function} iteratee The function invoked per iteration.
  * @returns {Array|Object} Returns `collection`.
  */
-var baseEachRight = createBaseEach(baseForOwnRight, true);
+const baseEachRight = createBaseEach(baseForOwnRight, true);
 
 module.exports = baseEachRight;

@@ -1,5 +1,5 @@
 //.CommonJS
-var CSSOM = {
+const CSSOM = {
 	CSSRule: require("./CSSRule").CSSRule,
 	CSSStyleSheet: require("./CSSStyleSheet").CSSStyleSheet,
 	MediaList: require("./MediaList").MediaList
@@ -25,11 +25,11 @@ CSSOM.CSSImportRule.prototype.type = 3;
 
 Object.defineProperty(CSSOM.CSSImportRule.prototype, "cssText", {
   get: function() {
-    var mediaText = this.media.mediaText;
+    const mediaText = this.media.mediaText;
     return "@import url(" + this.href + ")" + (mediaText ? " " + mediaText : "") + ";";
   },
   set: function(cssText) {
-    var i = 0;
+    let i = 0;
 
     /**
      * @import url(partial.css) screen, handheld;
@@ -38,10 +38,10 @@ Object.defineProperty(CSSOM.CSSImportRule.prototype, "cssText", {
      *         |
      *         url
      */
-    var state = '';
+    let state = '';
 
-    var buffer = '';
-    var index;
+    let buffer = '';
+    let index;
     for (var character; (character = cssText.charAt(i)); i++) {
 
       switch (character) {
@@ -72,7 +72,7 @@ Object.defineProperty(CSSOM.CSSImportRule.prototype, "cssText", {
               throw i + ': ")" not found';
             }
             i += 'url('.length;
-            var url = cssText.slice(i, index);
+            let url = cssText.slice(i, index);
             if (url[0] === url[url.length - 1]) {
               if (url[0] === '"' || url[0] === "'") {
                 url = url.slice(1, -1);

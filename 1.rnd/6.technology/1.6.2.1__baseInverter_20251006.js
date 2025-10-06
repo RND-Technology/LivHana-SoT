@@ -1,4 +1,4 @@
-var baseForOwn = require('./_baseForOwn');
+const baseForOwn = require('./_baseForOwn');
 
 /**
  * The base implementation of `_.invert` and `_.invertBy` which inverts

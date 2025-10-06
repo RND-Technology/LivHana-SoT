@@ -13,8 +13,8 @@ function _semver() {
   };
   return data;
 }
-var _index = require("../../index.js");
-var _caching = require("../caching.js");
+const _index = require("../../index.js");
+const _caching = require("../caching.js");
 function makeConfigAPI(cache) {
   const env = value => cache.using(data => {
     if (value === undefined) return data.envName;

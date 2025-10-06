@@ -4,7 +4,7 @@ import {initRange} from "./init.js";
 export const implicit = Symbol("implicit");
 
 export default function ordinal() {
-  var index = new InternMap(),
+  let index = new InternMap(),
       domain = [],
       range = [],
       unknown = implicit;

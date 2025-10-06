@@ -1,5 +1,5 @@
 //.CommonJS
-var CSSOM = {
+const CSSOM = {
   CSSRule: require("./CSSRule").CSSRule,
   CSSGroupingRule: require("./CSSGroupingRule").CSSGroupingRule,
   CSSConditionRule: require("./CSSConditionRule").CSSConditionRule
@@ -21,9 +21,9 @@ CSSOM.CSSSupportsRule.prototype.type = 12;
 
 Object.defineProperty(CSSOM.CSSSupportsRule.prototype, "cssText", {
   get: function() {
-    var cssTexts = [];
+    const cssTexts = [];
 
-    for (var i = 0, length = this.cssRules.length; i < length; i++) {
+    for (let i = 0, length = this.cssRules.length; i < length; i++) {
       cssTexts.push(this.cssRules[i].cssText);
     }
 

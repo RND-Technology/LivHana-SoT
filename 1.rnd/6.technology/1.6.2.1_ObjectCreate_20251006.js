@@ -1,19 +1,19 @@
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+const GetIntrinsic = require('get-intrinsic');
 
-var $ObjectCreate = GetIntrinsic('%Object.create%', true);
-var $TypeError = require('es-errors/type');
-var $SyntaxError = require('es-errors/syntax');
-var isObject = require('es-object-atoms/isObject');
+const $ObjectCreate = GetIntrinsic('%Object.create%', true);
+const $TypeError = require('es-errors/type');
+const $SyntaxError = require('es-errors/syntax');
+const isObject = require('es-object-atoms/isObject');
 
-var IsArray = require('./IsArray');
+const IsArray = require('./IsArray');
 
-var forEach = require('../helpers/forEach');
+const forEach = require('../helpers/forEach');
 
-var SLOT = require('internal-slot');
+const SLOT = require('internal-slot');
 
-var hasProto = require('has-proto')();
+const hasProto = require('has-proto')();
 
 // https://262.ecma-international.org/6.0/#sec-objectcreate
 
@@ -21,12 +21,12 @@ module.exports = function ObjectCreate(proto, internalSlotsList) {
 	if (proto !== null && !isObject(proto)) {
 		throw new $TypeError('Assertion failed: `proto` must be null or an object');
 	}
-	var slots = arguments.length < 2 ? [] : internalSlotsList; // step 1
+	const slots = arguments.length < 2 ? [] : internalSlotsList; // step 1
 	if (arguments.length >= 2 && !IsArray(slots)) {
 		throw new $TypeError('Assertion failed: `internalSlotsList` must be an Array');
 	}
 
-	var O;
+	let O;
 	if (hasProto) {
 		O = { __proto__: proto };
 	} else if ($ObjectCreate) {
@@ -35,7 +35,7 @@ module.exports = function ObjectCreate(proto, internalSlotsList) {
 		if (proto === null) {
 			throw new $SyntaxError('native Object.create support is required to create null objects');
 		}
-		var T = function T() {};
+		const T = function T() {};
 		T.prototype = proto;
 		O = new T();
 	}

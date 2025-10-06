@@ -1,23 +1,23 @@
 "use strict";
-var __create = Object.create;
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getProtoOf = Object.getPrototypeOf;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
+const __create = Object.create;
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __getProtoOf = Object.getPrototypeOf;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __export = (target, all) => {
+  for (const name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+const __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
   // If the importer is in node compatibility mode or this is not an ESM
   // file that has been converted to a CommonJS file using a Babel-
   // compatible transform (i.e. "__esModule" has not been set), then set
@@ -25,23 +25,23 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
   mod
 ));
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var nodePlatform_exports = {};
+const __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+const nodePlatform_exports = {};
 __export(nodePlatform_exports, {
   nodePlatform: () => nodePlatform,
   setBoxedStackPrefixes: () => setBoxedStackPrefixes
 });
 module.exports = __toCommonJS(nodePlatform_exports);
-var import_crypto = __toESM(require("crypto"));
-var import_fs = __toESM(require("fs"));
-var import_path = __toESM(require("path"));
-var util = __toESM(require("util"));
-var import_stream = require("stream");
-var import_events = require("events");
-var import_utilsBundle = require("../../utilsBundle");
-var import_debugLogger = require("./debugLogger");
-var import_zones = require("./zones");
-var import_debug = require("./debug");
+const import_crypto = __toESM(require("crypto"));
+const import_fs = __toESM(require("fs"));
+const import_path = __toESM(require("path"));
+const util = __toESM(require("util"));
+const import_stream = require("stream");
+const import_events = require("events");
+const import_utilsBundle = require("../../utilsBundle");
+const import_debugLogger = require("./debugLogger");
+const import_zones = require("./zones");
+const import_debug = require("./debug");
 const pipelineAsync = util.promisify(import_stream.pipeline);
 class NodeZone {
   constructor(zone) {

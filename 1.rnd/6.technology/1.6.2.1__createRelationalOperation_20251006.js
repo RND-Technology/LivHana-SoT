@@ -1,4 +1,4 @@
-var toNumber = require('./toNumber');
+const toNumber = require('./toNumber');
 
 /**
  * Creates a function that performs a relational operation on two values.

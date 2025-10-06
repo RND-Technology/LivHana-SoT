@@ -14,10 +14,10 @@ if (process.env.NODE_ENV !== "production") {
   (function() {
 'use strict';
 
-var React = require('react');
-var ReactDOM = require('react-dom');
+const React = require('react');
+const ReactDOM = require('react-dom');
 
-var ReactSharedInternals = React.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+const ReactSharedInternals = React.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
 
 // by calls to these methods by a Babel plugin.
 //
@@ -51,8 +51,8 @@ function printWarning(level, format, args) {
   // When changing this logic, you might want to also
   // update consoleWithStackDev.www.js as well.
   {
-    var ReactDebugCurrentFrame = ReactSharedInternals.ReactDebugCurrentFrame;
-    var stack = ReactDebugCurrentFrame.getStackAddendum();
+    const ReactDebugCurrentFrame = ReactSharedInternals.ReactDebugCurrentFrame;
+    const stack = ReactDebugCurrentFrame.getStackAddendum();
 
     if (stack !== '') {
       format += '%s';
@@ -60,7 +60,7 @@ function printWarning(level, format, args) {
     } // eslint-disable-next-line react-internal/safe-string-coercion
 
 
-    var argsWithFormat = args.map(function (item) {
+    const argsWithFormat = args.map(function (item) {
       return String(item);
     }); // Careful: RN currently depends on this prefix
 
@@ -85,35 +85,35 @@ function get(key) {
   return key._reactInternals;
 }
 
-var FunctionComponent = 0;
-var ClassComponent = 1;
+const FunctionComponent = 0;
+const ClassComponent = 1;
 
-var HostRoot = 3; // Root of a host tree. Could be nested inside another node.
+const HostRoot = 3; // Root of a host tree. Could be nested inside another node.
 
-var HostComponent = 5;
-var HostText = 6;
+const HostComponent = 5;
+const HostText = 6;
 
 // Don't change these two values. They're used by React Dev Tools.
-var NoFlags =
+const NoFlags =
 /*                      */
 0;
 
-var Placement =
+const Placement =
 /*                    */
 2;
-var Hydrating =
+const Hydrating =
 /*                    */
 4096;
 
-var ReactCurrentOwner = ReactSharedInternals.ReactCurrentOwner;
+const ReactCurrentOwner = ReactSharedInternals.ReactCurrentOwner;
 function getNearestMountedFiber(fiber) {
-  var node = fiber;
-  var nearestMounted = fiber;
+  let node = fiber;
+  let nearestMounted = fiber;
 
   if (!fiber.alternate) {
     // If there is no alternate, this might be a new tree that isn't inserted
     // yet. If it is, then it will have a pending insertion effect on it.
-    var nextNode = node;
+    let nextNode = node;
 
     do {
       node = nextNode;
@@ -151,11 +151,11 @@ function assertIsMounted(fiber) {
 }
 
 function findCurrentFiberUsingSlowPath(fiber) {
-  var alternate = fiber.alternate;
+  const alternate = fiber.alternate;
 
   if (!alternate) {
     // If there is no alternate, then we only need to check if it is mounted.
-    var nearestMounted = getNearestMountedFiber(fiber);
+    const nearestMounted = getNearestMountedFiber(fiber);
 
     if (nearestMounted === null) {
       throw new Error('Unable to find node on an unmounted component.');
@@ -171,25 +171,25 @@ function findCurrentFiberUsingSlowPath(fiber) {
   // special cases and we'll deal with them.
 
 
-  var a = fiber;
-  var b = alternate;
+  let a = fiber;
+  let b = alternate;
 
   while (true) {
-    var parentA = a.return;
+    const parentA = a.return;
 
     if (parentA === null) {
       // We're at the root.
       break;
     }
 
-    var parentB = parentA.alternate;
+    const parentB = parentA.alternate;
 
     if (parentB === null) {
       // There is no alternate. This is an unusual case. Currently, it only
       // happens when a Suspense component is hidden. An extra fragment fiber
       // is inserted in between the Suspense fiber and its children. Skip
       // over this extra fragment fiber and proceed to the next parent.
-      var nextParent = parentA.return;
+      const nextParent = parentA.return;
 
       if (nextParent !== null) {
         a = b = nextParent;
@@ -204,7 +204,7 @@ function findCurrentFiberUsingSlowPath(fiber) {
 
 
     if (parentA.child === parentB.child) {
-      var child = parentA.child;
+      let child = parentA.child;
 
       while (child) {
         if (child === a) {
@@ -240,8 +240,8 @@ function findCurrentFiberUsingSlowPath(fiber) {
       // which child belongs to which set.
       //
       // Search parent A's child set
-      var didFindChild = false;
-      var _child = parentA.child;
+      let didFindChild = false;
+      let _child = parentA.child;
 
       while (_child) {
         if (_child === a) {
@@ -309,7 +309,7 @@ function findCurrentFiberUsingSlowPath(fiber) {
   return alternate;
 }
 
-var assign = Object.assign;
+const assign = Object.assign;
 
 /**
  * `charCode` represents the actual "character code" and is safe to use with
@@ -322,8 +322,8 @@ var assign = Object.assign;
  * @return {number} Normalized `charCode` property.
  */
 function getEventCharCode(nativeEvent) {
-  var charCode;
-  var keyCode = nativeEvent.keyCode;
+  let charCode;
+  const keyCode = nativeEvent.keyCode;
 
   if ('charCode' in nativeEvent) {
     charCode = nativeEvent.charCode; // FF does not set `charCode` for the Enter-key, check against `keyCode`.
@@ -383,12 +383,12 @@ function createSyntheticEvent(Interface) {
     this.target = nativeEventTarget;
     this.currentTarget = null;
 
-    for (var _propName in Interface) {
+    for (const _propName in Interface) {
       if (!Interface.hasOwnProperty(_propName)) {
         continue;
       }
 
-      var normalize = Interface[_propName];
+      const normalize = Interface[_propName];
 
       if (normalize) {
         this[_propName] = normalize(nativeEvent);
@@ -397,7 +397,7 @@ function createSyntheticEvent(Interface) {
       }
     }
 
-    var defaultPrevented = nativeEvent.defaultPrevented != null ? nativeEvent.defaultPrevented : nativeEvent.returnValue === false;
+    const defaultPrevented = nativeEvent.defaultPrevented != null ? nativeEvent.defaultPrevented : nativeEvent.returnValue === false;
 
     if (defaultPrevented) {
       this.isDefaultPrevented = functionThatReturnsTrue;
@@ -412,7 +412,7 @@ function createSyntheticEvent(Interface) {
   assign(SyntheticBaseEvent.prototype, {
     preventDefault: function () {
       this.defaultPrevented = true;
-      var event = this.nativeEvent;
+      const event = this.nativeEvent;
 
       if (!event) {
         return;
@@ -427,7 +427,7 @@ function createSyntheticEvent(Interface) {
       this.isDefaultPrevented = functionThatReturnsTrue;
     },
     stopPropagation: function () {
-      var event = this.nativeEvent;
+      const event = this.nativeEvent;
 
       if (!event) {
         return;
@@ -470,7 +470,7 @@ function createSyntheticEvent(Interface) {
  */
 
 
-var EventInterface = {
+const EventInterface = {
   eventPhase: 0,
   bubbles: 0,
   cancelable: 0,
@@ -480,17 +480,17 @@ var EventInterface = {
   defaultPrevented: 0,
   isTrusted: 0
 };
-var SyntheticEvent = createSyntheticEvent(EventInterface);
+const SyntheticEvent = createSyntheticEvent(EventInterface);
 
-var UIEventInterface = assign({}, EventInterface, {
+const UIEventInterface = assign({}, EventInterface, {
   view: 0,
   detail: 0
 });
 
-var SyntheticUIEvent = createSyntheticEvent(UIEventInterface);
-var lastMovementX;
-var lastMovementY;
-var lastMouseEvent;
+const SyntheticUIEvent = createSyntheticEvent(UIEventInterface);
+let lastMovementX;
+let lastMovementY;
+let lastMouseEvent;
 
 function updateMouseMovementPolyfillState(event) {
   if (event !== lastMouseEvent) {
@@ -511,7 +511,7 @@ function updateMouseMovementPolyfillState(event) {
  */
 
 
-var MouseEventInterface = assign({}, UIEventInterface, {
+const MouseEventInterface = assign({}, UIEventInterface, {
   screenX: 0,
   screenY: 0,
   clientX: 0,
@@ -549,68 +549,68 @@ var MouseEventInterface = assign({}, UIEventInterface, {
   }
 });
 
-var SyntheticMouseEvent = createSyntheticEvent(MouseEventInterface);
+const SyntheticMouseEvent = createSyntheticEvent(MouseEventInterface);
 /**
  * @interface DragEvent
  * @see http://www.w3.org/TR/DOM-Level-3-Events/
  */
 
-var DragEventInterface = assign({}, MouseEventInterface, {
+const DragEventInterface = assign({}, MouseEventInterface, {
   dataTransfer: 0
 });
 
-var SyntheticDragEvent = createSyntheticEvent(DragEventInterface);
+const SyntheticDragEvent = createSyntheticEvent(DragEventInterface);
 /**
  * @interface FocusEvent
  * @see http://www.w3.org/TR/DOM-Level-3-Events/
  */
 
-var FocusEventInterface = assign({}, UIEventInterface, {
+const FocusEventInterface = assign({}, UIEventInterface, {
   relatedTarget: 0
 });
 
-var SyntheticFocusEvent = createSyntheticEvent(FocusEventInterface);
+const SyntheticFocusEvent = createSyntheticEvent(FocusEventInterface);
 /**
  * @interface Event
  * @see http://www.w3.org/TR/css3-animations/#AnimationEvent-interface
  * @see https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent
  */
 
-var AnimationEventInterface = assign({}, EventInterface, {
+const AnimationEventInterface = assign({}, EventInterface, {
   animationName: 0,
   elapsedTime: 0,
   pseudoElement: 0
 });
 
-var SyntheticAnimationEvent = createSyntheticEvent(AnimationEventInterface);
+const SyntheticAnimationEvent = createSyntheticEvent(AnimationEventInterface);
 /**
  * @interface Event
  * @see http://www.w3.org/TR/clipboard-apis/
  */
 
-var ClipboardEventInterface = assign({}, EventInterface, {
+const ClipboardEventInterface = assign({}, EventInterface, {
   clipboardData: function (event) {
     return 'clipboardData' in event ? event.clipboardData : window.clipboardData;
   }
 });
 
-var SyntheticClipboardEvent = createSyntheticEvent(ClipboardEventInterface);
+const SyntheticClipboardEvent = createSyntheticEvent(ClipboardEventInterface);
 /**
  * @interface Event
  * @see http://www.w3.org/TR/DOM-Level-3-Events/#events-compositionevents
  */
 
-var CompositionEventInterface = assign({}, EventInterface, {
+const CompositionEventInterface = assign({}, EventInterface, {
   data: 0
 });
 
-var SyntheticCompositionEvent = createSyntheticEvent(CompositionEventInterface);
+const SyntheticCompositionEvent = createSyntheticEvent(CompositionEventInterface);
 /**
  * Normalization of deprecated HTML5 `key` values
  * @see https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent#Key_names
  */
 
-var normalizeKey = {
+const normalizeKey = {
   Esc: 'Escape',
   Spacebar: ' ',
   Left: 'ArrowLeft',
@@ -630,7 +630,7 @@ var normalizeKey = {
  * @see https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent#Key_names
  */
 
-var translateToKey = {
+const translateToKey = {
   '8': 'Backspace',
   '9': 'Tab',
   '12': 'Clear',
@@ -679,7 +679,7 @@ function getEventKey(nativeEvent) {
     // implementations of a working draft specification.
     // FireFox implements `key` but returns `MozPrintableKey` for all
     // printable characters (normalized to `Unidentified`), ignore it.
-    var key = normalizeKey[nativeEvent.key] || nativeEvent.key;
+    const key = normalizeKey[nativeEvent.key] || nativeEvent.key;
 
     if (key !== 'Unidentified') {
       return key;
@@ -688,7 +688,7 @@ function getEventKey(nativeEvent) {
 
 
   if (nativeEvent.type === 'keypress') {
-    var charCode = getEventCharCode(nativeEvent); // The enter-key is technically both printable and non-printable and can
+    const charCode = getEventCharCode(nativeEvent); // The enter-key is technically both printable and non-printable and can
     // thus be captured by `keypress`, no other non-printable key should.
 
     return charCode === 13 ? 'Enter' : String.fromCharCode(charCode);
@@ -708,7 +708,7 @@ function getEventKey(nativeEvent) {
  */
 
 
-var modifierKeyToProp = {
+const modifierKeyToProp = {
   Alt: 'altKey',
   Control: 'ctrlKey',
   Meta: 'metaKey',
@@ -718,14 +718,14 @@ var modifierKeyToProp = {
 // modifier keys exposed by the event. In this case, Lock-keys are not supported.
 
 function modifierStateGetter(keyArg) {
-  var syntheticEvent = this;
-  var nativeEvent = syntheticEvent.nativeEvent;
+  const syntheticEvent = this;
+  const nativeEvent = syntheticEvent.nativeEvent;
 
   if (nativeEvent.getModifierState) {
     return nativeEvent.getModifierState(keyArg);
   }
 
-  var keyProp = modifierKeyToProp[keyArg];
+  const keyProp = modifierKeyToProp[keyArg];
   return keyProp ? !!nativeEvent[keyProp] : false;
 }
 
@@ -738,7 +738,7 @@ function getEventModifierState(nativeEvent) {
  */
 
 
-var KeyboardEventInterface = assign({}, UIEventInterface, {
+const KeyboardEventInterface = assign({}, UIEventInterface, {
   key: getEventKey,
   code: 0,
   location: 0,
@@ -789,13 +789,13 @@ var KeyboardEventInterface = assign({}, UIEventInterface, {
   }
 });
 
-var SyntheticKeyboardEvent = createSyntheticEvent(KeyboardEventInterface);
+const SyntheticKeyboardEvent = createSyntheticEvent(KeyboardEventInterface);
 /**
  * @interface PointerEvent
  * @see http://www.w3.org/TR/pointerevents/
  */
 
-var PointerEventInterface = assign({}, MouseEventInterface, {
+const PointerEventInterface = assign({}, MouseEventInterface, {
   pointerId: 0,
   width: 0,
   height: 0,
@@ -808,13 +808,13 @@ var PointerEventInterface = assign({}, MouseEventInterface, {
   isPrimary: 0
 });
 
-var SyntheticPointerEvent = createSyntheticEvent(PointerEventInterface);
+const SyntheticPointerEvent = createSyntheticEvent(PointerEventInterface);
 /**
  * @interface TouchEvent
  * @see http://www.w3.org/TR/touch-events/
  */
 
-var TouchEventInterface = assign({}, UIEventInterface, {
+const TouchEventInterface = assign({}, UIEventInterface, {
   touches: 0,
   targetTouches: 0,
   changedTouches: 0,
@@ -825,26 +825,26 @@ var TouchEventInterface = assign({}, UIEventInterface, {
   getModifierState: getEventModifierState
 });
 
-var SyntheticTouchEvent = createSyntheticEvent(TouchEventInterface);
+const SyntheticTouchEvent = createSyntheticEvent(TouchEventInterface);
 /**
  * @interface Event
  * @see http://www.w3.org/TR/2009/WD-css3-transitions-20090320/#transition-events-
  * @see https://developer.mozilla.org/en-US/docs/Web/API/TransitionEvent
  */
 
-var TransitionEventInterface = assign({}, EventInterface, {
+const TransitionEventInterface = assign({}, EventInterface, {
   propertyName: 0,
   elapsedTime: 0,
   pseudoElement: 0
 });
 
-var SyntheticTransitionEvent = createSyntheticEvent(TransitionEventInterface);
+const SyntheticTransitionEvent = createSyntheticEvent(TransitionEventInterface);
 /**
  * @interface WheelEvent
  * @see http://www.w3.org/TR/DOM-Level-3-Events/
  */
 
-var WheelEventInterface = assign({}, MouseEventInterface, {
+const WheelEventInterface = assign({}, MouseEventInterface, {
   deltaX: function (event) {
     return 'deltaX' in event ? event.deltaX : // Fallback to `wheelDeltaX` for Webkit and normalize (right is positive).
     'wheelDeltaX' in event ? -event.wheelDeltaX : 0;
@@ -862,15 +862,15 @@ var WheelEventInterface = assign({}, MouseEventInterface, {
   deltaMode: 0
 });
 
-var SyntheticWheelEvent = createSyntheticEvent(WheelEventInterface);
+const SyntheticWheelEvent = createSyntheticEvent(WheelEventInterface);
 
 /**
  * HTML nodeType values that represent the type of the node
  */
-var ELEMENT_NODE = 1;
+const ELEMENT_NODE = 1;
 
 function invokeGuardedCallbackProd(name, func, context, a, b, c, d, e, f) {
-  var funcArgs = Array.prototype.slice.call(arguments, 3);
+  const funcArgs = Array.prototype.slice.call(arguments, 3);
 
   try {
     func.apply(context, funcArgs);
@@ -879,7 +879,7 @@ function invokeGuardedCallbackProd(name, func, context, a, b, c, d, e, f) {
   }
 }
 
-var invokeGuardedCallbackImpl = invokeGuardedCallbackProd;
+let invokeGuardedCallbackImpl = invokeGuardedCallbackProd;
 
 {
   // In DEV mode, we swap out invokeGuardedCallback for a special version
@@ -903,7 +903,7 @@ var invokeGuardedCallbackImpl = invokeGuardedCallbackProd;
   // Check that the browser supports the APIs we need to implement our special
   // DEV version of invokeGuardedCallback
   if (typeof window !== 'undefined' && typeof window.dispatchEvent === 'function' && typeof document !== 'undefined' && typeof document.createEvent === 'function') {
-    var fakeNode = document.createElement('react');
+    const fakeNode = document.createElement('react');
 
     invokeGuardedCallbackImpl = function invokeGuardedCallbackDev(name, func, context, a, b, c, d, e, f) {
       // If document doesn't exist we know for sure we will crash in this method
@@ -914,22 +914,22 @@ var invokeGuardedCallbackImpl = invokeGuardedCallbackProd;
         throw new Error('The `document` global was defined when React was initialized, but is not ' + 'defined anymore. This can happen in a test environment if a component ' + 'schedules an update from an asynchronous callback, but the test has already ' + 'finished running. To solve this, you can either unmount the component at ' + 'the end of your test (and ensure that any asynchronous operations get ' + 'canceled in `componentWillUnmount`), or you can change the test itself ' + 'to be asynchronous.');
       }
 
-      var evt = document.createEvent('Event');
-      var didCall = false; // Keeps track of whether the user-provided callback threw an error. We
+      const evt = document.createEvent('Event');
+      let didCall = false; // Keeps track of whether the user-provided callback threw an error. We
       // set this to true at the beginning, then set it to false right after
       // calling the function. If the function errors, `didError` will never be
       // set to false. This strategy works even if the browser is flaky and
       // fails to call our global error handler, because it doesn't rely on
       // the error event at all.
 
-      var didError = true; // Keeps track of the value of window.event so that we can reset it
+      let didError = true; // Keeps track of the value of window.event so that we can reset it
       // during the callback to let user code access window.event in the
       // browsers that support it.
 
-      var windowEvent = window.event; // Keeps track of the descriptor of window.event to restore it after event
+      const windowEvent = window.event; // Keeps track of the descriptor of window.event to restore it after event
       // dispatching: https://github.com/facebook/react/issues/13688
 
-      var windowEventDescriptor = Object.getOwnPropertyDescriptor(window, 'event');
+      const windowEventDescriptor = Object.getOwnPropertyDescriptor(window, 'event');
 
       function restoreAfterDispatch() {
         // We immediately remove the callback from event listeners so that
@@ -949,7 +949,7 @@ var invokeGuardedCallbackImpl = invokeGuardedCallbackProd;
       // call the user-provided callback.
 
 
-      var funcArgs = Array.prototype.slice.call(arguments, 3);
+      const funcArgs = Array.prototype.slice.call(arguments, 3);
 
       function callCallback() {
         didCall = true;
@@ -969,10 +969,10 @@ var invokeGuardedCallbackImpl = invokeGuardedCallbackProd;
       // ignore it because `didError` will be false, as described above.
 
 
-      var error; // Use this to track whether the error event is ever called.
+      let error; // Use this to track whether the error event is ever called.
 
-      var didSetError = false;
-      var isCrossOriginError = false;
+      let didSetError = false;
+      let isCrossOriginError = false;
 
       function handleWindowError(event) {
         error = event.error;
@@ -1037,14 +1037,14 @@ var invokeGuardedCallbackImpl = invokeGuardedCallbackProd;
   }
 }
 
-var invokeGuardedCallbackImpl$1 = invokeGuardedCallbackImpl;
+const invokeGuardedCallbackImpl$1 = invokeGuardedCallbackImpl;
 
-var hasError = false;
-var caughtError = null; // Used by event system to capture/rethrow the first error.
+let hasError = false;
+let caughtError = null; // Used by event system to capture/rethrow the first error.
 
-var hasRethrowError = false;
-var rethrowError = null;
-var reporter = {
+let hasRethrowError = false;
+let rethrowError = null;
+const reporter = {
   onError: function (error) {
     hasError = true;
     caughtError = error;
@@ -1084,7 +1084,7 @@ function invokeGuardedCallbackAndCatchFirstError(name, func, context, a, b, c, d
   invokeGuardedCallback.apply(this, arguments);
 
   if (hasError) {
-    var error = clearCaughtError();
+    const error = clearCaughtError();
 
     if (!hasRethrowError) {
       hasRethrowError = true;
@@ -1099,7 +1099,7 @@ function invokeGuardedCallbackAndCatchFirstError(name, func, context, a, b, c, d
 
 function rethrowCaughtError() {
   if (hasRethrowError) {
-    var error = rethrowError;
+    const error = rethrowError;
     hasRethrowError = false;
     rethrowError = null;
     throw error;
@@ -1107,7 +1107,7 @@ function rethrowCaughtError() {
 }
 function clearCaughtError() {
   if (hasError) {
-    var error = caughtError;
+    const error = caughtError;
     hasError = false;
     caughtError = null;
     return error;
@@ -1116,24 +1116,24 @@ function clearCaughtError() {
   }
 }
 
-var isArrayImpl = Array.isArray; // eslint-disable-next-line no-redeclare
+const isArrayImpl = Array.isArray; // eslint-disable-next-line no-redeclare
 
 function isArray(a) {
   return isArrayImpl(a);
 }
 
-var SecretInternals = ReactDOM.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
-var EventInternals = SecretInternals.Events;
-var getInstanceFromNode = EventInternals[0];
-var getNodeFromInstance = EventInternals[1];
-var getFiberCurrentPropsFromNode = EventInternals[2];
-var enqueueStateRestore = EventInternals[3];
-var restoreStateIfNeeded = EventInternals[4];
-var reactAct = React.unstable_act;
+const SecretInternals = ReactDOM.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+const EventInternals = SecretInternals.Events;
+const getInstanceFromNode = EventInternals[0];
+const getNodeFromInstance = EventInternals[1];
+const getFiberCurrentPropsFromNode = EventInternals[2];
+const enqueueStateRestore = EventInternals[3];
+const restoreStateIfNeeded = EventInternals[4];
+const reactAct = React.unstable_act;
 
 function Event(suffix) {}
 
-var hasWarnedAboutDeprecatedMockComponent = false;
+let hasWarnedAboutDeprecatedMockComponent = false;
 /**
  * @class ReactTestUtils
  */
@@ -1143,18 +1143,18 @@ function findAllInRenderedFiberTreeInternal(fiber, test) {
     return [];
   }
 
-  var currentParent = findCurrentFiberUsingSlowPath(fiber);
+  const currentParent = findCurrentFiberUsingSlowPath(fiber);
 
   if (!currentParent) {
     return [];
   }
 
-  var node = currentParent;
-  var ret = [];
+  let node = currentParent;
+  const ret = [];
 
   while (true) {
     if (node.tag === HostComponent || node.tag === HostText || node.tag === ClassComponent || node.tag === FunctionComponent) {
-      var publicInst = node.stateNode;
+      const publicInst = node.stateNode;
 
       if (test(publicInst)) {
         ret.push(publicInst);
@@ -1195,8 +1195,8 @@ function validateClassInstance(inst, methodName) {
     return;
   }
 
-  var received;
-  var stringified = String(inst);
+  let received;
+  const stringified = String(inst);
 
   if (isArray(inst)) {
     received = 'an array';
@@ -1221,7 +1221,7 @@ function validateClassInstance(inst, methodName) {
  */
 
 
-var didWarnAboutReactTestUtilsDeprecation = false;
+let didWarnAboutReactTestUtilsDeprecation = false;
 
 function renderIntoDocument(element) {
   {
@@ -1232,7 +1232,7 @@ function renderIntoDocument(element) {
     }
   }
 
-  var div = document.createElement('div'); // None of our tests actually require attaching the container to the
+  const div = document.createElement('div'); // None of our tests actually require attaching the container to the
   // DOM, and doing so creates a mess that we rely on test isolation to
   // clean up, so we're going to stop honoring the name of this method
   // (and probably rename it eventually) if no problems arise.
@@ -1272,8 +1272,8 @@ function isCompositeComponentWithType(inst, type) {
     return false;
   }
 
-  var internalInstance = get(inst);
-  var constructor = internalInstance.type;
+  const internalInstance = get(inst);
+  const constructor = internalInstance.type;
   return constructor === type;
 }
 
@@ -1284,7 +1284,7 @@ function findAllInRenderedTree(inst, test) {
     return [];
   }
 
-  var internalInstance = get(inst);
+  const internalInstance = get(inst);
   return findAllInRenderedFiberTreeInternal(internalInstance, test);
 }
 /**
@@ -1298,14 +1298,14 @@ function scryRenderedDOMComponentsWithClass(root, classNames) {
   validateClassInstance(root, 'scryRenderedDOMComponentsWithClass');
   return findAllInRenderedTree(root, function (inst) {
     if (isDOMComponent(inst)) {
-      var className = inst.className;
+      let className = inst.className;
 
       if (typeof className !== 'string') {
         // SVG, probably.
         className = inst.getAttribute('class') || '';
       }
 
-      var classList = className.split(/\s+/);
+      const classList = className.split(/\s+/);
 
       if (!isArray(classNames)) {
         if (classNames === undefined) {
@@ -1333,7 +1333,7 @@ function scryRenderedDOMComponentsWithClass(root, classNames) {
 
 function findRenderedDOMComponentWithClass(root, className) {
   validateClassInstance(root, 'findRenderedDOMComponentWithClass');
-  var all = scryRenderedDOMComponentsWithClass(root, className);
+  const all = scryRenderedDOMComponentsWithClass(root, className);
 
   if (all.length !== 1) {
     throw new Error('Did not find exactly one match (found: ' + all.length + ') ' + 'for class:' + className);
@@ -1364,7 +1364,7 @@ function scryRenderedDOMComponentsWithTag(root, tagName) {
 
 function findRenderedDOMComponentWithTag(root, tagName) {
   validateClassInstance(root, 'findRenderedDOMComponentWithTag');
-  var all = scryRenderedDOMComponentsWithTag(root, tagName);
+  const all = scryRenderedDOMComponentsWithTag(root, tagName);
 
   if (all.length !== 1) {
     throw new Error('Did not find exactly one match (found: ' + all.length + ') ' + 'for tag:' + tagName);
@@ -1394,7 +1394,7 @@ function scryRenderedComponentsWithType(root, componentType) {
 
 function findRenderedComponentWithType(root, componentType) {
   validateClassInstance(root, 'findRenderedComponentWithType');
-  var all = scryRenderedComponentsWithType(root, componentType);
+  const all = scryRenderedComponentsWithType(root, componentType);
 
   if (all.length !== 1) {
     throw new Error('Did not find exactly one match (found: ' + all.length + ') ' + 'for componentType:' + componentType);
@@ -1453,7 +1453,7 @@ function nativeTouchData(x, y) {
 
 
 function executeDispatch(event, listener, inst) {
-  var type = event.type || 'unknown-event';
+  const type = event.type || 'unknown-event';
   event.currentTarget = getNodeFromInstance(inst);
   invokeGuardedCallbackAndCatchFirstError(type, listener, undefined, event);
   event.currentTarget = null;
@@ -1464,11 +1464,11 @@ function executeDispatch(event, listener, inst) {
 
 
 function executeDispatchesInOrder(event) {
-  var dispatchListeners = event._dispatchListeners;
-  var dispatchInstances = event._dispatchInstances;
+  const dispatchListeners = event._dispatchListeners;
+  const dispatchInstances = event._dispatchInstances;
 
   if (isArray(dispatchListeners)) {
-    for (var i = 0; i < dispatchListeners.length; i++) {
+    for (let i = 0; i < dispatchListeners.length; i++) {
       if (event.isPropagationStopped()) {
         break;
       } // Listeners and Instances are two parallel arrays that are always in sync.
@@ -1491,7 +1491,7 @@ function executeDispatchesInOrder(event) {
  */
 
 
-var executeDispatchesAndRelease = function (event) {
+const executeDispatchesAndRelease = function (event) {
   if (event) {
     executeDispatchesInOrder(event);
 
@@ -1526,14 +1526,14 @@ function getParent(inst) {
 
 
 function traverseTwoPhase(inst, fn, arg) {
-  var path = [];
+  const path = [];
 
   while (inst) {
     path.push(inst);
     inst = getParent(inst);
   }
 
-  var i;
+  let i;
 
   for (i = path.length; i-- > 0;) {
     fn(path[i], 'captured', arg);
@@ -1573,21 +1573,21 @@ function shouldPreventMouseEvent(name, type, props) {
 function getListener(inst, registrationName) {
   // TODO: shouldPreventMouseEvent is DOM-specific and definitely should not
   // live here; needs to be moved to a better place soon
-  var stateNode = inst.stateNode;
+  const stateNode = inst.stateNode;
 
   if (!stateNode) {
     // Work in progress (ex: onload events in incremental mode).
     return null;
   }
 
-  var props = getFiberCurrentPropsFromNode(stateNode);
+  const props = getFiberCurrentPropsFromNode(stateNode);
 
   if (!props) {
     // Work in progress.
     return null;
   }
 
-  var listener = props[registrationName];
+  const listener = props[registrationName];
 
   if (shouldPreventMouseEvent(registrationName, inst.type, props)) {
     return null;
@@ -1601,7 +1601,7 @@ function getListener(inst, registrationName) {
 }
 
 function listenerAtPhase(inst, event, propagationPhase) {
-  var registrationName = event._reactName;
+  let registrationName = event._reactName;
 
   if (propagationPhase === 'captured') {
     registrationName += 'Capture';
@@ -1612,8 +1612,8 @@ function listenerAtPhase(inst, event, propagationPhase) {
 
 function accumulateDispatches(inst, ignoredDirection, event) {
   if (inst && event && event._reactName) {
-    var registrationName = event._reactName;
-    var listener = getListener(inst, registrationName);
+    const registrationName = event._reactName;
+    const listener = getListener(inst, registrationName);
 
     if (listener) {
       if (event._dispatchListeners == null) {
@@ -1638,7 +1638,7 @@ function accumulateDirectionalDispatches(inst, phase, event) {
     }
   }
 
-  var listener = listenerAtPhase(inst, event, phase);
+  const listener = listenerAtPhase(inst, event, phase);
 
   if (listener) {
     if (event._dispatchListeners == null) {
@@ -1668,8 +1668,8 @@ function accumulateTwoPhaseDispatchesSingle(event) {
 } // End of inline
 
 
-var Simulate = {};
-var directDispatchEventTypes = new Set(['mouseEnter', 'mouseLeave', 'pointerEnter', 'pointerLeave']);
+const Simulate = {};
+const directDispatchEventTypes = new Set(['mouseEnter', 'mouseLeave', 'pointerEnter', 'pointerLeave']);
 /**
  * Exports:
  *
@@ -1689,12 +1689,12 @@ function makeSimulator(eventType) {
       throw new Error('TestUtils.Simulate expected a DOM node as the first argument but received ' + 'a component instance. Pass the DOM node you wish to simulate the event on instead.');
     }
 
-    var reactName = 'on' + eventType[0].toUpperCase() + eventType.slice(1);
-    var fakeNativeEvent = new Event();
+    const reactName = 'on' + eventType[0].toUpperCase() + eventType.slice(1);
+    const fakeNativeEvent = new Event();
     fakeNativeEvent.target = domNode;
     fakeNativeEvent.type = eventType.toLowerCase();
-    var targetInst = getInstanceFromNode(domNode);
-    var event = new SyntheticEvent(reactName, fakeNativeEvent.type, targetInst, fakeNativeEvent, domNode); // Since we aren't using pooling, always persist the event. This will make
+    const targetInst = getInstanceFromNode(domNode);
+    const event = new SyntheticEvent(reactName, fakeNativeEvent.type, targetInst, fakeNativeEvent, domNode); // Since we aren't using pooling, always persist the event. This will make
     // sure it's marked and won't warn when setting additional properties.
 
     event.persist();
@@ -1718,7 +1718,7 @@ function makeSimulator(eventType) {
 } // A one-time snapshot with no plans to update. We'll probably want to deprecate Simulate API.
 
 
-var simulatedEventTypes = ['blur', 'cancel', 'click', 'close', 'contextMenu', 'copy', 'cut', 'auxClick', 'doubleClick', 'dragEnd', 'dragStart', 'drop', 'focus', 'input', 'invalid', 'keyDown', 'keyPress', 'keyUp', 'mouseDown', 'mouseUp', 'paste', 'pause', 'play', 'pointerCancel', 'pointerDown', 'pointerUp', 'rateChange', 'reset', 'resize', 'seeked', 'submit', 'touchCancel', 'touchEnd', 'touchStart', 'volumeChange', 'drag', 'dragEnter', 'dragExit', 'dragLeave', 'dragOver', 'mouseMove', 'mouseOut', 'mouseOver', 'pointerMove', 'pointerOut', 'pointerOver', 'scroll', 'toggle', 'touchMove', 'wheel', 'abort', 'animationEnd', 'animationIteration', 'animationStart', 'canPlay', 'canPlayThrough', 'durationChange', 'emptied', 'encrypted', 'ended', 'error', 'gotPointerCapture', 'load', 'loadedData', 'loadedMetadata', 'loadStart', 'lostPointerCapture', 'playing', 'progress', 'seeking', 'stalled', 'suspend', 'timeUpdate', 'transitionEnd', 'waiting', 'mouseEnter', 'mouseLeave', 'pointerEnter', 'pointerLeave', 'change', 'select', 'beforeInput', 'compositionEnd', 'compositionStart', 'compositionUpdate'];
+const simulatedEventTypes = ['blur', 'cancel', 'click', 'close', 'contextMenu', 'copy', 'cut', 'auxClick', 'doubleClick', 'dragEnd', 'dragStart', 'drop', 'focus', 'input', 'invalid', 'keyDown', 'keyPress', 'keyUp', 'mouseDown', 'mouseUp', 'paste', 'pause', 'play', 'pointerCancel', 'pointerDown', 'pointerUp', 'rateChange', 'reset', 'resize', 'seeked', 'submit', 'touchCancel', 'touchEnd', 'touchStart', 'volumeChange', 'drag', 'dragEnter', 'dragExit', 'dragLeave', 'dragOver', 'mouseMove', 'mouseOut', 'mouseOver', 'pointerMove', 'pointerOut', 'pointerOver', 'scroll', 'toggle', 'touchMove', 'wheel', 'abort', 'animationEnd', 'animationIteration', 'animationStart', 'canPlay', 'canPlayThrough', 'durationChange', 'emptied', 'encrypted', 'ended', 'error', 'gotPointerCapture', 'load', 'loadedData', 'loadedMetadata', 'loadStart', 'lostPointerCapture', 'playing', 'progress', 'seeking', 'stalled', 'suspend', 'timeUpdate', 'transitionEnd', 'waiting', 'mouseEnter', 'mouseLeave', 'pointerEnter', 'pointerLeave', 'change', 'select', 'beforeInput', 'compositionEnd', 'compositionStart', 'compositionUpdate'];
 
 function buildSimulators() {
   simulatedEventTypes.forEach(function (eventType) {
@@ -1727,8 +1727,8 @@ function buildSimulators() {
 }
 
 buildSimulators();
-var didWarnAboutUsingAct = false;
-var act =  function actWithWarning(callback) {
+let didWarnAboutUsingAct = false;
+const act =  function actWithWarning(callback) {
   {
     if (!didWarnAboutUsingAct) {
       didWarnAboutUsingAct = true;

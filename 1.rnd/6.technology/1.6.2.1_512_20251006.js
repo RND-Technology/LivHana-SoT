@@ -1,24 +1,24 @@
 'use strict';
 
-var utils = require('../utils');
-var common = require('../common');
-var assert = require('minimalistic-assert');
+const utils = require('../utils');
+const common = require('../common');
+const assert = require('minimalistic-assert');
 
-var rotr64_hi = utils.rotr64_hi;
-var rotr64_lo = utils.rotr64_lo;
-var shr64_hi = utils.shr64_hi;
-var shr64_lo = utils.shr64_lo;
-var sum64 = utils.sum64;
-var sum64_hi = utils.sum64_hi;
-var sum64_lo = utils.sum64_lo;
-var sum64_4_hi = utils.sum64_4_hi;
-var sum64_4_lo = utils.sum64_4_lo;
-var sum64_5_hi = utils.sum64_5_hi;
-var sum64_5_lo = utils.sum64_5_lo;
+const rotr64_hi = utils.rotr64_hi;
+const rotr64_lo = utils.rotr64_lo;
+const shr64_hi = utils.shr64_hi;
+const shr64_lo = utils.shr64_lo;
+const sum64 = utils.sum64;
+const sum64_hi = utils.sum64_hi;
+const sum64_lo = utils.sum64_lo;
+const sum64_4_hi = utils.sum64_4_hi;
+const sum64_4_lo = utils.sum64_4_lo;
+const sum64_5_hi = utils.sum64_5_hi;
+const sum64_5_lo = utils.sum64_5_lo;
 
-var BlockHash = common.BlockHash;
+const BlockHash = common.BlockHash;
 
-var sha512_K = [
+const sha512_K = [
   0x428a2f98, 0xd728ae22, 0x71374491, 0x23ef65cd,
   0xb5c0fbcf, 0xec4d3b2f, 0xe9b5dba5, 0x8189dbbc,
   0x3956c25b, 0xf348b538, 0x59f111f1, 0xb605d019,
@@ -87,20 +87,20 @@ SHA512.hmacStrength = 192;
 SHA512.padLength = 128;
 
 SHA512.prototype._prepareBlock = function _prepareBlock(msg, start) {
-  var W = this.W;
+  const W = this.W;
 
   // 32 x 32bit words
   for (var i = 0; i < 32; i++)
     W[i] = msg[start + i];
   for (; i < W.length; i += 2) {
-    var c0_hi = g1_512_hi(W[i - 4], W[i - 3]);  // i - 2
-    var c0_lo = g1_512_lo(W[i - 4], W[i - 3]);
-    var c1_hi = W[i - 14];  // i - 7
-    var c1_lo = W[i - 13];
-    var c2_hi = g0_512_hi(W[i - 30], W[i - 29]);  // i - 15
-    var c2_lo = g0_512_lo(W[i - 30], W[i - 29]);
-    var c3_hi = W[i - 32];  // i - 16
-    var c3_lo = W[i - 31];
+    const c0_hi = g1_512_hi(W[i - 4], W[i - 3]);  // i - 2
+    const c0_lo = g1_512_lo(W[i - 4], W[i - 3]);
+    const c1_hi = W[i - 14];  // i - 7
+    const c1_lo = W[i - 13];
+    const c2_hi = g0_512_hi(W[i - 30], W[i - 29]);  // i - 15
+    const c2_lo = g0_512_lo(W[i - 30], W[i - 29]);
+    const c3_hi = W[i - 32];  // i - 16
+    const c3_lo = W[i - 31];
 
     W[i] = sum64_4_hi(
       c0_hi, c0_lo,
@@ -118,45 +118,45 @@ SHA512.prototype._prepareBlock = function _prepareBlock(msg, start) {
 SHA512.prototype._update = function _update(msg, start) {
   this._prepareBlock(msg, start);
 
-  var W = this.W;
+  const W = this.W;
 
-  var ah = this.h[0];
-  var al = this.h[1];
-  var bh = this.h[2];
-  var bl = this.h[3];
-  var ch = this.h[4];
-  var cl = this.h[5];
-  var dh = this.h[6];
-  var dl = this.h[7];
-  var eh = this.h[8];
-  var el = this.h[9];
-  var fh = this.h[10];
-  var fl = this.h[11];
-  var gh = this.h[12];
-  var gl = this.h[13];
-  var hh = this.h[14];
-  var hl = this.h[15];
+  let ah = this.h[0];
+  let al = this.h[1];
+  let bh = this.h[2];
+  let bl = this.h[3];
+  let ch = this.h[4];
+  let cl = this.h[5];
+  let dh = this.h[6];
+  let dl = this.h[7];
+  let eh = this.h[8];
+  let el = this.h[9];
+  let fh = this.h[10];
+  let fl = this.h[11];
+  let gh = this.h[12];
+  let gl = this.h[13];
+  let hh = this.h[14];
+  let hl = this.h[15];
 
   assert(this.k.length === W.length);
-  for (var i = 0; i < W.length; i += 2) {
-    var c0_hi = hh;
-    var c0_lo = hl;
-    var c1_hi = s1_512_hi(eh, el);
-    var c1_lo = s1_512_lo(eh, el);
-    var c2_hi = ch64_hi(eh, el, fh, fl, gh, gl);
-    var c2_lo = ch64_lo(eh, el, fh, fl, gh, gl);
-    var c3_hi = this.k[i];
-    var c3_lo = this.k[i + 1];
-    var c4_hi = W[i];
-    var c4_lo = W[i + 1];
+  for (let i = 0; i < W.length; i += 2) {
+    let c0_hi = hh;
+    let c0_lo = hl;
+    let c1_hi = s1_512_hi(eh, el);
+    let c1_lo = s1_512_lo(eh, el);
+    const c2_hi = ch64_hi(eh, el, fh, fl, gh, gl);
+    const c2_lo = ch64_lo(eh, el, fh, fl, gh, gl);
+    const c3_hi = this.k[i];
+    const c3_lo = this.k[i + 1];
+    const c4_hi = W[i];
+    const c4_lo = W[i + 1];
 
-    var T1_hi = sum64_5_hi(
+    const T1_hi = sum64_5_hi(
       c0_hi, c0_lo,
       c1_hi, c1_lo,
       c2_hi, c2_lo,
       c3_hi, c3_lo,
       c4_hi, c4_lo);
-    var T1_lo = sum64_5_lo(
+    const T1_lo = sum64_5_lo(
       c0_hi, c0_lo,
       c1_hi, c1_lo,
       c2_hi, c2_lo,
@@ -168,8 +168,8 @@ SHA512.prototype._update = function _update(msg, start) {
     c1_hi = maj64_hi(ah, al, bh, bl, ch, cl);
     c1_lo = maj64_lo(ah, al, bh, bl, ch, cl);
 
-    var T2_hi = sum64_hi(c0_hi, c0_lo, c1_hi, c1_lo);
-    var T2_lo = sum64_lo(c0_hi, c0_lo, c1_hi, c1_lo);
+    const T2_hi = sum64_hi(c0_hi, c0_lo, c1_hi, c1_lo);
+    const T2_lo = sum64_lo(c0_hi, c0_lo, c1_hi, c1_lo);
 
     hh = gh;
     hl = gl;
@@ -214,116 +214,116 @@ SHA512.prototype._digest = function digest(enc) {
 };
 
 function ch64_hi(xh, xl, yh, yl, zh) {
-  var r = (xh & yh) ^ ((~xh) & zh);
+  let r = (xh & yh) ^ ((~xh) & zh);
   if (r < 0)
     r += 0x100000000;
   return r;
 }
 
 function ch64_lo(xh, xl, yh, yl, zh, zl) {
-  var r = (xl & yl) ^ ((~xl) & zl);
+  let r = (xl & yl) ^ ((~xl) & zl);
   if (r < 0)
     r += 0x100000000;
   return r;
 }
 
 function maj64_hi(xh, xl, yh, yl, zh) {
-  var r = (xh & yh) ^ (xh & zh) ^ (yh & zh);
+  let r = (xh & yh) ^ (xh & zh) ^ (yh & zh);
   if (r < 0)
     r += 0x100000000;
   return r;
 }
 
 function maj64_lo(xh, xl, yh, yl, zh, zl) {
-  var r = (xl & yl) ^ (xl & zl) ^ (yl & zl);
+  let r = (xl & yl) ^ (xl & zl) ^ (yl & zl);
   if (r < 0)
     r += 0x100000000;
   return r;
 }
 
 function s0_512_hi(xh, xl) {
-  var c0_hi = rotr64_hi(xh, xl, 28);
-  var c1_hi = rotr64_hi(xl, xh, 2);  // 34
-  var c2_hi = rotr64_hi(xl, xh, 7);  // 39
+  const c0_hi = rotr64_hi(xh, xl, 28);
+  const c1_hi = rotr64_hi(xl, xh, 2);  // 34
+  const c2_hi = rotr64_hi(xl, xh, 7);  // 39
 
-  var r = c0_hi ^ c1_hi ^ c2_hi;
+  let r = c0_hi ^ c1_hi ^ c2_hi;
   if (r < 0)
     r += 0x100000000;
   return r;
 }
 
 function s0_512_lo(xh, xl) {
-  var c0_lo = rotr64_lo(xh, xl, 28);
-  var c1_lo = rotr64_lo(xl, xh, 2);  // 34
-  var c2_lo = rotr64_lo(xl, xh, 7);  // 39
+  const c0_lo = rotr64_lo(xh, xl, 28);
+  const c1_lo = rotr64_lo(xl, xh, 2);  // 34
+  const c2_lo = rotr64_lo(xl, xh, 7);  // 39
 
-  var r = c0_lo ^ c1_lo ^ c2_lo;
+  let r = c0_lo ^ c1_lo ^ c2_lo;
   if (r < 0)
     r += 0x100000000;
   return r;
 }
 
 function s1_512_hi(xh, xl) {
-  var c0_hi = rotr64_hi(xh, xl, 14);
-  var c1_hi = rotr64_hi(xh, xl, 18);
-  var c2_hi = rotr64_hi(xl, xh, 9);  // 41
+  const c0_hi = rotr64_hi(xh, xl, 14);
+  const c1_hi = rotr64_hi(xh, xl, 18);
+  const c2_hi = rotr64_hi(xl, xh, 9);  // 41
 
-  var r = c0_hi ^ c1_hi ^ c2_hi;
+  let r = c0_hi ^ c1_hi ^ c2_hi;
   if (r < 0)
     r += 0x100000000;
   return r;
 }
 
 function s1_512_lo(xh, xl) {
-  var c0_lo = rotr64_lo(xh, xl, 14);
-  var c1_lo = rotr64_lo(xh, xl, 18);
-  var c2_lo = rotr64_lo(xl, xh, 9);  // 41
+  const c0_lo = rotr64_lo(xh, xl, 14);
+  const c1_lo = rotr64_lo(xh, xl, 18);
+  const c2_lo = rotr64_lo(xl, xh, 9);  // 41
 
-  var r = c0_lo ^ c1_lo ^ c2_lo;
+  let r = c0_lo ^ c1_lo ^ c2_lo;
   if (r < 0)
     r += 0x100000000;
   return r;
 }
 
 function g0_512_hi(xh, xl) {
-  var c0_hi = rotr64_hi(xh, xl, 1);
-  var c1_hi = rotr64_hi(xh, xl, 8);
-  var c2_hi = shr64_hi(xh, xl, 7);
+  const c0_hi = rotr64_hi(xh, xl, 1);
+  const c1_hi = rotr64_hi(xh, xl, 8);
+  const c2_hi = shr64_hi(xh, xl, 7);
 
-  var r = c0_hi ^ c1_hi ^ c2_hi;
+  let r = c0_hi ^ c1_hi ^ c2_hi;
   if (r < 0)
     r += 0x100000000;
   return r;
 }
 
 function g0_512_lo(xh, xl) {
-  var c0_lo = rotr64_lo(xh, xl, 1);
-  var c1_lo = rotr64_lo(xh, xl, 8);
-  var c2_lo = shr64_lo(xh, xl, 7);
+  const c0_lo = rotr64_lo(xh, xl, 1);
+  const c1_lo = rotr64_lo(xh, xl, 8);
+  const c2_lo = shr64_lo(xh, xl, 7);
 
-  var r = c0_lo ^ c1_lo ^ c2_lo;
+  let r = c0_lo ^ c1_lo ^ c2_lo;
   if (r < 0)
     r += 0x100000000;
   return r;
 }
 
 function g1_512_hi(xh, xl) {
-  var c0_hi = rotr64_hi(xh, xl, 19);
-  var c1_hi = rotr64_hi(xl, xh, 29);  // 61
-  var c2_hi = shr64_hi(xh, xl, 6);
+  const c0_hi = rotr64_hi(xh, xl, 19);
+  const c1_hi = rotr64_hi(xl, xh, 29);  // 61
+  const c2_hi = shr64_hi(xh, xl, 6);
 
-  var r = c0_hi ^ c1_hi ^ c2_hi;
+  let r = c0_hi ^ c1_hi ^ c2_hi;
   if (r < 0)
     r += 0x100000000;
   return r;
 }
 
 function g1_512_lo(xh, xl) {
-  var c0_lo = rotr64_lo(xh, xl, 19);
-  var c1_lo = rotr64_lo(xl, xh, 29);  // 61
-  var c2_lo = shr64_lo(xh, xl, 6);
+  const c0_lo = rotr64_lo(xh, xl, 19);
+  const c1_lo = rotr64_lo(xl, xh, 29);  // 61
+  const c2_lo = shr64_lo(xh, xl, 6);
 
-  var r = c0_lo ^ c1_lo ^ c2_lo;
+  let r = c0_lo ^ c1_lo ^ c2_lo;
   if (r < 0)
     r += 0x100000000;
   return r;

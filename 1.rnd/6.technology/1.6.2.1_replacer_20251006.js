@@ -1,11 +1,11 @@
-var test = require('tape');
-var stringify = require('../');
+const test = require('tape');
+const stringify = require('../');
 
 test('replace root', function (t) {
 	t.plan(1);
 
-	var obj = { a: 1, b: 2, c: false };
-	var replacer = function(key, value) { return 'one'; };
+	const obj = { a: 1, b: 2, c: false };
+	const replacer = function(key, value) { return 'one'; };
 
 	t.equal(stringify(obj, { replacer: replacer }), '"one"');
 });
@@ -13,8 +13,8 @@ test('replace root', function (t) {
 test('replace numbers', function (t) {
 	t.plan(1);
 
-	var obj = { a: 1, b: 2, c: false };
-	var replacer = function(key, value) {
+	const obj = { a: 1, b: 2, c: false };
+	const replacer = function(key, value) {
 		if(value === 1) return 'one';
 		if(value === 2) return 'two';
 		return value;
@@ -26,8 +26,8 @@ test('replace numbers', function (t) {
 test('replace with object', function (t) {
 	t.plan(1);
 
-	var obj = { a: 1, b: 2, c: false };
-	var replacer = function(key, value) {
+	const obj = { a: 1, b: 2, c: false };
+	const replacer = function(key, value) {
 		if(key === 'b') return { d: 1 };
 		if(value === 1) return 'one';
 		return value;
@@ -39,8 +39,8 @@ test('replace with object', function (t) {
 test('replace with undefined', function (t) {
 	t.plan(1);
 
-	var obj = { a: 1, b: 2, c: false };
-	var replacer = function(key, value) {
+	const obj = { a: 1, b: 2, c: false };
+	const replacer = function(key, value) {
 		if(value === false) return;
 		return value;
 	};
@@ -51,8 +51,8 @@ test('replace with undefined', function (t) {
 test('replace with array', function (t) {
 	t.plan(1);
 
-	var obj = { a: 1, b: 2, c: false };
-	var replacer = function(key, value) {
+	const obj = { a: 1, b: 2, c: false };
+	const replacer = function(key, value) {
 		if(key === 'b') return ['one', 'two'];
 		return value;
 	};
@@ -63,8 +63,8 @@ test('replace with array', function (t) {
 test('replace array item', function (t) {
 	t.plan(1);
 
-	var obj = { a: 1, b: 2, c: [1,2] };
-	var replacer = function(key, value) {
+	const obj = { a: 1, b: 2, c: [1,2] };
+	const replacer = function(key, value) {
 		if(value === 1) return 'one';
 		if(value === 2) return 'two';
 		return value;

@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
 exports.teamMemberSchema = void 0;
-var schema_1 = require("../schema");
-var teamMemberAssignedLocations_1 = require("./teamMemberAssignedLocations");
-var wageSetting_1 = require("./wageSetting");
+const schema_1 = require("../schema");
+const teamMemberAssignedLocations_1 = require("./teamMemberAssignedLocations");
+const wageSetting_1 = require("./wageSetting");
 exports.teamMemberSchema = (0, schema_1.object)({
     id: ['id', (0, schema_1.optional)((0, schema_1.string)())],
     referenceId: ['reference_id', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.string)()))],

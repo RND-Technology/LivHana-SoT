@@ -1,4 +1,4 @@
-var copyArray = require('./_copyArray'),
+const copyArray = require('./_copyArray'),
     shuffleSelf = require('./_shuffleSelf');
 
 /**

@@ -1,6 +1,6 @@
 'use strict';
 
-var sourcemapCodec = require('@jridgewell/sourcemap-codec');
+const sourcemapCodec = require('@jridgewell/sourcemap-codec');
 
 class BitSet {
 	constructor(arg) {

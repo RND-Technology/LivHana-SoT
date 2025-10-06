@@ -1,9 +1,9 @@
 'use strict';
 
-var inspect = require('../');
-var test = require('tape');
-var hasToStringTag = require('has-tostringtag/shams')();
-var forEach = require('for-each');
+const inspect = require('../');
+const test = require('tape');
+const hasToStringTag = require('has-tostringtag/shams')();
+const forEach = require('for-each');
 
 test('fakes', { skip: !hasToStringTag }, function (t) {
     forEach([
@@ -15,7 +15,7 @@ test('fakes', { skip: !hasToStringTag }, function (t) {
         'RegExp',
         'String'
     ], function (expected) {
-        var faker = {};
+        const faker = {};
         faker[Symbol.toStringTag] = expected;
 
         t.equal(

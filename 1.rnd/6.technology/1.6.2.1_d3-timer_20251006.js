@@ -5,7 +5,7 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
 (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.d3 = global.d3 || {}));
 }(this, (function (exports) { 'use strict';
 
-var frame = 0, // is an animation frame pending?
+let frame = 0, // is an animation frame pending?
     timeout$1 = 0, // is a timeout pending?
     interval$1 = 0, // are any timers active?
     pokeDelay = 1000, // how frequently we check for clock skew
@@ -55,7 +55,7 @@ Timer.prototype = timer.prototype = {
 };
 
 function timer(callback, delay, time) {
-  var t = new Timer;
+  const t = new Timer;
   t.restart(callback, delay, time);
   return t;
 }
@@ -63,7 +63,7 @@ function timer(callback, delay, time) {
 function timerFlush() {
   now(); // Get the current time, if not already set.
   ++frame; // Pretend we’ve set an alarm, if we haven’t already.
-  var t = taskHead, e;
+  let t = taskHead, e;
   while (t) {
     if ((e = clockNow - t._time) >= 0) t._call.call(undefined, e);
     t = t._next;
@@ -84,12 +84,12 @@ function wake() {
 }
 
 function poke() {
-  var now = clock.now(), delay = now - clockLast;
+  const now = clock.now(), delay = now - clockLast;
   if (delay > pokeDelay) clockSkew -= delay, clockLast = now;
 }
 
 function nap() {
-  var t0, t1 = taskHead, t2, time = Infinity;
+  let t0, t1 = taskHead, t2, time = Infinity;
   while (t1) {
     if (t1._call) {
       if (time > t1._time) time = t1._time;
@@ -106,7 +106,7 @@ function nap() {
 function sleep(time) {
   if (frame) return; // Soonest alarm already set, or will be.
   if (timeout$1) timeout$1 = clearTimeout(timeout$1);
-  var delay = time - clockNow; // Strictly less than if we recomputed clockNow.
+  const delay = time - clockNow; // Strictly less than if we recomputed clockNow.
   if (delay > 24) {
     if (time < Infinity) timeout$1 = setTimeout(wake, time - clock.now() - clockSkew);
     if (interval$1) interval$1 = clearInterval(interval$1);
@@ -117,7 +117,7 @@ function sleep(time) {
 }
 
 function timeout(callback, delay, time) {
-  var t = new Timer;
+  const t = new Timer;
   delay = delay == null ? 0 : +delay;
   t.restart(elapsed => {
     t.stop();
@@ -127,7 +127,7 @@ function timeout(callback, delay, time) {
 }
 
 function interval(callback, delay, time) {
-  var t = new Timer, total = delay;
+  let t = new Timer, total = delay;
   if (delay == null) return t.restart(callback, delay, time), t;
   t._restart = t.restart;
   t.restart = function(callback, delay, time) {

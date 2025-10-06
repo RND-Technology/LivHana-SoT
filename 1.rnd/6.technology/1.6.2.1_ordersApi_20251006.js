@@ -1,25 +1,25 @@
 "use strict";
 exports.__esModule = true;
 exports.OrdersApi = void 0;
-var tslib_1 = require("tslib");
-var batchRetrieveOrdersRequest_1 = require("../models/batchRetrieveOrdersRequest");
-var batchRetrieveOrdersResponse_1 = require("../models/batchRetrieveOrdersResponse");
-var calculateOrderRequest_1 = require("../models/calculateOrderRequest");
-var calculateOrderResponse_1 = require("../models/calculateOrderResponse");
-var cloneOrderRequest_1 = require("../models/cloneOrderRequest");
-var cloneOrderResponse_1 = require("../models/cloneOrderResponse");
-var createOrderRequest_1 = require("../models/createOrderRequest");
-var createOrderResponse_1 = require("../models/createOrderResponse");
-var payOrderRequest_1 = require("../models/payOrderRequest");
-var payOrderResponse_1 = require("../models/payOrderResponse");
-var retrieveOrderResponse_1 = require("../models/retrieveOrderResponse");
-var searchOrdersRequest_1 = require("../models/searchOrdersRequest");
-var searchOrdersResponse_1 = require("../models/searchOrdersResponse");
-var updateOrderRequest_1 = require("../models/updateOrderRequest");
-var updateOrderResponse_1 = require("../models/updateOrderResponse");
-var schema_1 = require("../schema");
-var baseApi_1 = require("./baseApi");
-var OrdersApi = /** @class */ (function (_super) {
+const tslib_1 = require("tslib");
+const batchRetrieveOrdersRequest_1 = require("../models/batchRetrieveOrdersRequest");
+const batchRetrieveOrdersResponse_1 = require("../models/batchRetrieveOrdersResponse");
+const calculateOrderRequest_1 = require("../models/calculateOrderRequest");
+const calculateOrderResponse_1 = require("../models/calculateOrderResponse");
+const cloneOrderRequest_1 = require("../models/cloneOrderRequest");
+const cloneOrderResponse_1 = require("../models/cloneOrderResponse");
+const createOrderRequest_1 = require("../models/createOrderRequest");
+const createOrderResponse_1 = require("../models/createOrderResponse");
+const payOrderRequest_1 = require("../models/payOrderRequest");
+const payOrderResponse_1 = require("../models/payOrderResponse");
+const retrieveOrderResponse_1 = require("../models/retrieveOrderResponse");
+const searchOrdersRequest_1 = require("../models/searchOrdersRequest");
+const searchOrdersResponse_1 = require("../models/searchOrdersResponse");
+const updateOrderRequest_1 = require("../models/updateOrderRequest");
+const updateOrderResponse_1 = require("../models/updateOrderResponse");
+const schema_1 = require("../schema");
+const baseApi_1 = require("./baseApi");
+const OrdersApi = /** @class */ (function (_super) {
     tslib_1.__extends(OrdersApi, _super);
     function OrdersApi() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -39,7 +39,7 @@ var OrdersApi = /** @class */ (function (_super) {
      */
     OrdersApi.prototype.createOrder = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/orders');
                 mapped = req.prepareArgs({ body: [body, createOrderRequest_1.createOrderRequestSchema] });
@@ -62,7 +62,7 @@ var OrdersApi = /** @class */ (function (_super) {
      */
     OrdersApi.prototype.batchRetrieveOrders = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/orders/batch-retrieve');
                 mapped = req.prepareArgs({
@@ -84,7 +84,7 @@ var OrdersApi = /** @class */ (function (_super) {
      */
     OrdersApi.prototype.calculateOrder = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/orders/calculate');
                 mapped = req.prepareArgs({
@@ -108,7 +108,7 @@ var OrdersApi = /** @class */ (function (_super) {
      */
     OrdersApi.prototype.cloneOrder = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/orders/clone');
                 mapped = req.prepareArgs({ body: [body, cloneOrderRequest_1.cloneOrderRequestSchema] });
@@ -144,7 +144,7 @@ var OrdersApi = /** @class */ (function (_super) {
      */
     OrdersApi.prototype.searchOrders = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/orders/search');
                 mapped = req.prepareArgs({ body: [body, searchOrdersRequest_1.searchOrdersRequestSchema] });
@@ -163,7 +163,7 @@ var OrdersApi = /** @class */ (function (_super) {
      */
     OrdersApi.prototype.retrieveOrder = function (orderId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({ orderId: [orderId, (0, schema_1.string)()] });
@@ -199,7 +199,7 @@ var OrdersApi = /** @class */ (function (_super) {
      */
     OrdersApi.prototype.updateOrder = function (orderId, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('PUT');
                 mapped = req.prepareArgs({
@@ -239,7 +239,7 @@ var OrdersApi = /** @class */ (function (_super) {
      */
     OrdersApi.prototype.payOrder = function (orderId, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({
@@ -257,5 +257,5 @@ var OrdersApi = /** @class */ (function (_super) {
     return OrdersApi;
 }(baseApi_1.BaseApi));
 exports.OrdersApi = OrdersApi;
-var templateObject_1, templateObject_2, templateObject_3;
+let templateObject_1, templateObject_2, templateObject_3;
 //# sourceMappingURL=ordersApi.js.map

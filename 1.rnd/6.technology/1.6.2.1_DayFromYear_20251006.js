@@ -1,6 +1,6 @@
 'use strict';
 
-var floor = require('./floor');
+const floor = require('./floor');
 
 // https://262.ecma-international.org/5.1/#sec-15.9.1.3
 

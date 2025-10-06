@@ -9,14 +9,14 @@ exports.replaceInline = replaceInline;
 exports.replaceWith = replaceWith;
 exports.replaceWithMultiple = replaceWithMultiple;
 exports.replaceWithSourceString = replaceWithSourceString;
-var _codeFrame = require("@babel/code-frame");
-var _index = require("../index.js");
-var _index2 = require("./index.js");
-var _cache = require("../cache.js");
-var _modification = require("./modification.js");
-var _parser = require("@babel/parser");
-var _t = require("@babel/types");
-var _context = require("./context.js");
+const _codeFrame = require("@babel/code-frame");
+const _index = require("../index.js");
+const _index2 = require("./index.js");
+const _cache = require("../cache.js");
+const _modification = require("./modification.js");
+const _parser = require("@babel/parser");
+const _t = require("@babel/types");
+const _context = require("./context.js");
 const {
   FUNCTION_TYPES,
   arrowFunctionExpression,
@@ -48,7 +48,7 @@ const {
   yieldExpression
 } = _t;
 function replaceWithMultiple(nodes) {
-  var _getCachedPaths;
+  let _getCachedPaths;
   _context.resync.call(this);
   const verifiedNodes = _modification._verifyNodeList.call(this, nodes);
   inheritLeadingComments(verifiedNodes[0], this.node);
@@ -131,7 +131,7 @@ function replaceWith(replacementPath) {
   return [nodePath ? this.get(nodePath) : this];
 }
 function _replaceWith(node) {
-  var _getCachedPaths2;
+  let _getCachedPaths2;
   if (!this.container) {
     throw new ReferenceError("Container is falsy");
   }

@@ -4,46 +4,46 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.CartesianGrid = CartesianGrid;
-var React = _interopRequireWildcard(require("react"));
-var _LogUtils = require("../util/LogUtils");
-var _DataUtils = require("../util/DataUtils");
-var _ChartUtils = require("../util/ChartUtils");
-var _getTicks = require("./getTicks");
-var _CartesianAxis = require("./CartesianAxis");
-var _chartLayoutContext = require("../context/chartLayoutContext");
-var _axisSelectors = require("../state/selectors/axisSelectors");
-var _hooks = require("../state/hooks");
-var _PanoramaContext = require("../context/PanoramaContext");
-var _resolveDefaultProps = require("../util/resolveDefaultProps");
-var _svgPropertiesNoEvents = require("../util/svgPropertiesNoEvents");
-var _excluded = ["x1", "y1", "x2", "y2", "key"],
+const React = _interopRequireWildcard(require("react"));
+const _LogUtils = require("../util/LogUtils");
+const _DataUtils = require("../util/DataUtils");
+const _ChartUtils = require("../util/ChartUtils");
+const _getTicks = require("./getTicks");
+const _CartesianAxis = require("./CartesianAxis");
+const _chartLayoutContext = require("../context/chartLayoutContext");
+const _axisSelectors = require("../state/selectors/axisSelectors");
+const _hooks = require("../state/hooks");
+const _PanoramaContext = require("../context/PanoramaContext");
+const _resolveDefaultProps = require("../util/resolveDefaultProps");
+const _svgPropertiesNoEvents = require("../util/svgPropertiesNoEvents");
+const _excluded = ["x1", "y1", "x2", "y2", "key"],
   _excluded2 = ["offset"],
   _excluded3 = ["xAxisId", "yAxisId"],
   _excluded4 = ["xAxisId", "yAxisId"];
 /**
  * @fileOverview Cartesian Grid
  */
-function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; let o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (const _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
+function ownKeys(e, r) { const t = Object.keys(e); if (Object.getOwnPropertySymbols) { let o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (let r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-function _objectWithoutProperties(e, t) { if (null == e) return {}; var o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { var n = Object.getOwnPropertySymbols(e); for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
-function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t = {}; for (var n in r) if ({}.hasOwnProperty.call(r, n)) { if (-1 !== e.indexOf(n)) continue; t[n] = r[n]; } return t; }
+function _toPropertyKey(t) { const i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; const e = t[Symbol.toPrimitive]; if (void 0 !== e) { const i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (let e = 1; e < arguments.length; e++) { const t = arguments[e]; for (const r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+function _objectWithoutProperties(e, t) { if (null == e) return {}; let o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { const n = Object.getOwnPropertySymbols(e); for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
+function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; const t = {}; for (const n in r) if ({}.hasOwnProperty.call(r, n)) { if (-1 !== e.indexOf(n)) continue; t[n] = r[n]; } return t; }
 /**
  * The <CartesianGrid horizontal
  */
 
-var Background = props => {
-  var {
+const Background = props => {
+  const {
     fill
   } = props;
   if (!fill || fill === 'none') {
     return null;
   }
-  var {
+  const {
     fillOpacity,
     x,
     y,
@@ -64,14 +64,14 @@ var Background = props => {
   });
 };
 function renderLineItem(option, props) {
-  var lineItem;
+  let lineItem;
   if (/*#__PURE__*/React.isValidElement(option)) {
     // @ts-expect-error typescript does not see the props type when cloning an element
     lineItem = /*#__PURE__*/React.cloneElement(option, props);
   } else if (typeof option === 'function') {
     lineItem = option(props);
   } else {
-    var {
+    let {
         x1,
         y1,
         x2,
@@ -79,7 +79,7 @@ function renderLineItem(option, props) {
         key
       } = props,
       others = _objectWithoutProperties(props, _excluded);
-    var _svgPropertiesNoEvent = (0, _svgPropertiesNoEvents.svgPropertiesNoEvents)(others),
+    const _svgPropertiesNoEvent = (0, _svgPropertiesNoEvents.svgPropertiesNoEvents)(others),
       {
         offset: __
       } = _svgPropertiesNoEvent,
@@ -96,7 +96,7 @@ function renderLineItem(option, props) {
   return lineItem;
 }
 function HorizontalGridLines(props) {
-  var {
+  const {
     x,
     width,
     horizontal = true,
@@ -105,13 +105,13 @@ function HorizontalGridLines(props) {
   if (!horizontal || !horizontalPoints || !horizontalPoints.length) {
     return null;
   }
-  var {
+  let {
       xAxisId,
       yAxisId
     } = props,
     otherLineItemProps = _objectWithoutProperties(props, _excluded3);
-  var items = horizontalPoints.map((entry, i) => {
-    var lineItemProps = _objectSpread(_objectSpread({}, otherLineItemProps), {}, {
+  const items = horizontalPoints.map((entry, i) => {
+    const lineItemProps = _objectSpread(_objectSpread({}, otherLineItemProps), {}, {
       x1: x,
       y1: entry,
       x2: x + width,
@@ -126,7 +126,7 @@ function HorizontalGridLines(props) {
   }, items);
 }
 function VerticalGridLines(props) {
-  var {
+  const {
     y,
     height,
     vertical = true,
@@ -135,13 +135,13 @@ function VerticalGridLines(props) {
   if (!vertical || !verticalPoints || !verticalPoints.length) {
     return null;
   }
-  var {
+  let {
       xAxisId,
       yAxisId
     } = props,
     otherLineItemProps = _objectWithoutProperties(props, _excluded4);
-  var items = verticalPoints.map((entry, i) => {
-    var lineItemProps = _objectSpread(_objectSpread({}, otherLineItemProps), {}, {
+  const items = verticalPoints.map((entry, i) => {
+    const lineItemProps = _objectSpread(_objectSpread({}, otherLineItemProps), {}, {
       x1: entry,
       y1: y,
       x2: entry,
@@ -156,7 +156,7 @@ function VerticalGridLines(props) {
   }, items);
 }
 function HorizontalStripes(props) {
-  var {
+  const {
     horizontalFill,
     fillOpacity,
     x,
@@ -171,19 +171,19 @@ function HorizontalStripes(props) {
   }
 
   // Why =y -y? I was trying to find any difference that this makes, with floating point numbers and edge cases but ... nothing.
-  var roundedSortedHorizontalPoints = horizontalPoints.map(e => Math.round(e + y - y)).sort((a, b) => a - b);
+  const roundedSortedHorizontalPoints = horizontalPoints.map(e => Math.round(e + y - y)).sort((a, b) => a - b);
   // Why is this condition `!==` instead of `<=` ?
   if (y !== roundedSortedHorizontalPoints[0]) {
     roundedSortedHorizontalPoints.unshift(0);
   }
-  var items = roundedSortedHorizontalPoints.map((entry, i) => {
+  const items = roundedSortedHorizontalPoints.map((entry, i) => {
     // Why do we strip only the last stripe if it is invisible, and not all invisible stripes?
-    var lastStripe = !roundedSortedHorizontalPoints[i + 1];
-    var lineHeight = lastStripe ? y + height - entry : roundedSortedHorizontalPoints[i + 1] - entry;
+    const lastStripe = !roundedSortedHorizontalPoints[i + 1];
+    const lineHeight = lastStripe ? y + height - entry : roundedSortedHorizontalPoints[i + 1] - entry;
     if (lineHeight <= 0) {
       return null;
     }
-    var colorIndex = i % horizontalFill.length;
+    const colorIndex = i % horizontalFill.length;
     return /*#__PURE__*/React.createElement("rect", {
       key: "react-".concat(i) // eslint-disable-line react/no-array-index-key
       ,
@@ -202,7 +202,7 @@ function HorizontalStripes(props) {
   }, items);
 }
 function VerticalStripes(props) {
-  var {
+  const {
     vertical = true,
     verticalFill,
     fillOpacity,
@@ -215,17 +215,17 @@ function VerticalStripes(props) {
   if (!vertical || !verticalFill || !verticalFill.length) {
     return null;
   }
-  var roundedSortedVerticalPoints = verticalPoints.map(e => Math.round(e + x - x)).sort((a, b) => a - b);
+  const roundedSortedVerticalPoints = verticalPoints.map(e => Math.round(e + x - x)).sort((a, b) => a - b);
   if (x !== roundedSortedVerticalPoints[0]) {
     roundedSortedVerticalPoints.unshift(0);
   }
-  var items = roundedSortedVerticalPoints.map((entry, i) => {
-    var lastStripe = !roundedSortedVerticalPoints[i + 1];
-    var lineWidth = lastStripe ? x + width - entry : roundedSortedVerticalPoints[i + 1] - entry;
+  const items = roundedSortedVerticalPoints.map((entry, i) => {
+    const lastStripe = !roundedSortedVerticalPoints[i + 1];
+    const lineWidth = lastStripe ? x + width - entry : roundedSortedVerticalPoints[i + 1] - entry;
     if (lineWidth <= 0) {
       return null;
     }
-    var colorIndex = i % verticalFill.length;
+    const colorIndex = i % verticalFill.length;
     return /*#__PURE__*/React.createElement("rect", {
       key: "react-".concat(i) // eslint-disable-line react/no-array-index-key
       ,
@@ -243,8 +243,8 @@ function VerticalStripes(props) {
     className: "recharts-cartesian-gridstripes-vertical"
   }, items);
 }
-var defaultVerticalCoordinatesGenerator = (_ref, syncWithTicks) => {
-  var {
+const defaultVerticalCoordinatesGenerator = (_ref, syncWithTicks) => {
+  const {
     xAxis,
     width,
     height,
@@ -260,8 +260,8 @@ var defaultVerticalCoordinatesGenerator = (_ref, syncWithTicks) => {
     }
   })), offset.left, offset.left + offset.width, syncWithTicks);
 };
-var defaultHorizontalCoordinatesGenerator = (_ref2, syncWithTicks) => {
-  var {
+const defaultHorizontalCoordinatesGenerator = (_ref2, syncWithTicks) => {
+  const {
     yAxis,
     width,
     height,
@@ -277,7 +277,7 @@ var defaultHorizontalCoordinatesGenerator = (_ref2, syncWithTicks) => {
     }
   })), offset.top, offset.top + offset.height, syncWithTicks);
 };
-var defaultProps = {
+const defaultProps = {
   horizontal: true,
   vertical: true,
   // The ordinates of horizontal grid lines
@@ -293,16 +293,16 @@ var defaultProps = {
   yAxisId: 0
 };
 function CartesianGrid(props) {
-  var chartWidth = (0, _chartLayoutContext.useChartWidth)();
-  var chartHeight = (0, _chartLayoutContext.useChartHeight)();
-  var offset = (0, _chartLayoutContext.useOffsetInternal)();
-  var propsIncludingDefaults = _objectSpread(_objectSpread({}, (0, _resolveDefaultProps.resolveDefaultProps)(props, defaultProps)), {}, {
+  const chartWidth = (0, _chartLayoutContext.useChartWidth)();
+  const chartHeight = (0, _chartLayoutContext.useChartHeight)();
+  const offset = (0, _chartLayoutContext.useOffsetInternal)();
+  const propsIncludingDefaults = _objectSpread(_objectSpread({}, (0, _resolveDefaultProps.resolveDefaultProps)(props, defaultProps)), {}, {
     x: (0, _DataUtils.isNumber)(props.x) ? props.x : offset.left,
     y: (0, _DataUtils.isNumber)(props.y) ? props.y : offset.top,
     width: (0, _DataUtils.isNumber)(props.width) ? props.width : offset.width,
     height: (0, _DataUtils.isNumber)(props.height) ? props.height : offset.height
   });
-  var {
+  const {
     xAxisId,
     yAxisId,
     x,
@@ -313,9 +313,9 @@ function CartesianGrid(props) {
     horizontalValues,
     verticalValues
   } = propsIncludingDefaults;
-  var isPanorama = (0, _PanoramaContext.useIsPanorama)();
-  var xAxis = (0, _hooks.useAppSelector)(state => (0, _axisSelectors.selectAxisPropsNeededForCartesianGridTicksGenerator)(state, 'xAxis', xAxisId, isPanorama));
-  var yAxis = (0, _hooks.useAppSelector)(state => (0, _axisSelectors.selectAxisPropsNeededForCartesianGridTicksGenerator)(state, 'yAxis', yAxisId, isPanorama));
+  const isPanorama = (0, _PanoramaContext.useIsPanorama)();
+  const xAxis = (0, _hooks.useAppSelector)(state => (0, _axisSelectors.selectAxisPropsNeededForCartesianGridTicksGenerator)(state, 'xAxis', xAxisId, isPanorama));
+  const yAxis = (0, _hooks.useAppSelector)(state => (0, _axisSelectors.selectAxisPropsNeededForCartesianGridTicksGenerator)(state, 'yAxis', yAxisId, isPanorama));
   if (!(0, _DataUtils.isNumber)(width) || width <= 0 || !(0, _DataUtils.isNumber)(height) || height <= 0 || !(0, _DataUtils.isNumber)(x) || x !== +x || !(0, _DataUtils.isNumber)(y) || y !== +y) {
     return null;
   }
@@ -327,17 +327,17 @@ function CartesianGrid(props) {
    * If we add these two to propsIncludingDefaults then we are changing public API.
    * Not a bad thing per se but also not necessary.
    */
-  var verticalCoordinatesGenerator = propsIncludingDefaults.verticalCoordinatesGenerator || defaultVerticalCoordinatesGenerator;
-  var horizontalCoordinatesGenerator = propsIncludingDefaults.horizontalCoordinatesGenerator || defaultHorizontalCoordinatesGenerator;
-  var {
+  const verticalCoordinatesGenerator = propsIncludingDefaults.verticalCoordinatesGenerator || defaultVerticalCoordinatesGenerator;
+  const horizontalCoordinatesGenerator = propsIncludingDefaults.horizontalCoordinatesGenerator || defaultHorizontalCoordinatesGenerator;
+  let {
     horizontalPoints,
     verticalPoints
   } = propsIncludingDefaults;
 
   // No horizontal points are specified
   if ((!horizontalPoints || !horizontalPoints.length) && typeof horizontalCoordinatesGenerator === 'function') {
-    var isHorizontalValues = horizontalValues && horizontalValues.length;
-    var generatorResult = horizontalCoordinatesGenerator({
+    const isHorizontalValues = horizontalValues && horizontalValues.length;
+    const generatorResult = horizontalCoordinatesGenerator({
       yAxis: yAxis ? _objectSpread(_objectSpread({}, yAxis), {}, {
         ticks: isHorizontalValues ? horizontalValues : yAxis.ticks
       }) : undefined,
@@ -353,8 +353,8 @@ function CartesianGrid(props) {
 
   // No vertical points are specified
   if ((!verticalPoints || !verticalPoints.length) && typeof verticalCoordinatesGenerator === 'function') {
-    var isVerticalValues = verticalValues && verticalValues.length;
-    var _generatorResult = verticalCoordinatesGenerator({
+    const isVerticalValues = verticalValues && verticalValues.length;
+    const _generatorResult = verticalCoordinatesGenerator({
       xAxis: xAxis ? _objectSpread(_objectSpread({}, xAxis), {}, {
         ticks: isVerticalValues ? verticalValues : xAxis.ticks
       }) : undefined,

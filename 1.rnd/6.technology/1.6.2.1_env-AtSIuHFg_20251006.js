@@ -1,6 +1,6 @@
 import 'std-env';
 
-var _a;
+let _a;
 const isNode = typeof process < "u" && typeof process.stdout < "u" && !((_a = process.versions) == null ? void 0 : _a.deno) && !globalThis.window;
 const isWindows = isNode && process.platform === "win32";
 

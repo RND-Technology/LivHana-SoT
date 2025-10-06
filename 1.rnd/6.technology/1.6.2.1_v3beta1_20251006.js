@@ -19,7 +19,7 @@ exports.translate_v3beta1 = void 0;
 /* eslint-disable @typescript-eslint/no-namespace */
 /* eslint-disable no-irregular-whitespace */
 const googleapis_common_1 = require("googleapis-common");
-var translate_v3beta1;
+let translate_v3beta1;
 (function (translate_v3beta1) {
     /**
      * Cloud Translation API

@@ -15,22 +15,22 @@ and limitations under the License.
 
 
 "use strict";
-var __create = Object.create;
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getProtoOf = Object.getPrototypeOf;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __copyProps = (to, from, except, desc) => {
+const __create = Object.create;
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __getProtoOf = Object.getPrototypeOf;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __reExport = (target, mod, secondTarget) => (__copyProps(target, mod, "default"), secondTarget && __copyProps(secondTarget, mod, "default"));
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+const __reExport = (target, mod, secondTarget) => (__copyProps(target, mod, "default"), secondTarget && __copyProps(secondTarget, mod, "default"));
+const __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
   // If the importer is in node compatibility mode or this is not an ESM
   // file that has been converted to a CommonJS file using a Babel-
   // compatible transform (i.e. "__esModule" has not been set), then set
@@ -40,16 +40,16 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 
 // src/typingsInstaller/nodeTypingsInstaller.ts
-var import_child_process = require("child_process");
-var fs = __toESM(require("fs"));
-var path = __toESM(require("path"));
+const import_child_process = require("child_process");
+const fs = __toESM(require("fs"));
+const path = __toESM(require("path"));
 
 // src/typescript/typescript.ts
-var typescript_exports = {};
+const typescript_exports = {};
 __reExport(typescript_exports, require("./typescript.js"));
 
 // src/typingsInstaller/nodeTypingsInstaller.ts
-var FileLog = class {
+const FileLog = class {
   constructor(logFile) {
     this.logFile = logFile;
     this.isEnabled = () => {
@@ -94,11 +94,11 @@ function loadTypesRegistryFile(typesRegistryFilePath, host, log2) {
     return /* @__PURE__ */ new Map();
   }
 }
-var typesRegistryPackageName = "types-registry";
+const typesRegistryPackageName = "types-registry";
 function getTypesRegistryFileLocation(globalTypingsCacheLocation2) {
   return (0, typescript_exports.combinePaths)((0, typescript_exports.normalizeSlashes)(globalTypingsCacheLocation2), `node_modules/${typesRegistryPackageName}/index.json`);
 }
-var NodeTypingsInstaller = class extends typescript_exports.server.typingsInstaller.TypingsInstaller {
+const NodeTypingsInstaller = class extends typescript_exports.server.typingsInstaller.TypingsInstaller {
   constructor(globalTypingsCacheLocation2, typingSafeListLocation2, typesMapLocation2, npmLocation2, validateDefaultNpmLocation2, throttleLimit, log2) {
     const libDirectory = (0, typescript_exports.getDirectoryPath)((0, typescript_exports.normalizePath)(typescript_exports.sys.getExecutingFilePath()));
     super(
@@ -184,13 +184,13 @@ var NodeTypingsInstaller = class extends typescript_exports.server.typingsInstal
     }
   }
 };
-var logFilePath = typescript_exports.server.findArgument(typescript_exports.server.Arguments.LogFile);
-var globalTypingsCacheLocation = typescript_exports.server.findArgument(typescript_exports.server.Arguments.GlobalCacheLocation);
-var typingSafeListLocation = typescript_exports.server.findArgument(typescript_exports.server.Arguments.TypingSafeListLocation);
-var typesMapLocation = typescript_exports.server.findArgument(typescript_exports.server.Arguments.TypesMapLocation);
-var npmLocation = typescript_exports.server.findArgument(typescript_exports.server.Arguments.NpmLocation);
-var validateDefaultNpmLocation = typescript_exports.server.hasArgument(typescript_exports.server.Arguments.ValidateDefaultNpmLocation);
-var log = new FileLog(logFilePath);
+const logFilePath = typescript_exports.server.findArgument(typescript_exports.server.Arguments.LogFile);
+const globalTypingsCacheLocation = typescript_exports.server.findArgument(typescript_exports.server.Arguments.GlobalCacheLocation);
+const typingSafeListLocation = typescript_exports.server.findArgument(typescript_exports.server.Arguments.TypingSafeListLocation);
+const typesMapLocation = typescript_exports.server.findArgument(typescript_exports.server.Arguments.TypesMapLocation);
+const npmLocation = typescript_exports.server.findArgument(typescript_exports.server.Arguments.NpmLocation);
+const validateDefaultNpmLocation = typescript_exports.server.hasArgument(typescript_exports.server.Arguments.ValidateDefaultNpmLocation);
+const log = new FileLog(logFilePath);
 if (log.isEnabled()) {
   process.on("uncaughtException", (e) => {
     log.writeLine(`Unhandled exception: ${e} at ${e.stack}`);
@@ -202,7 +202,7 @@ process.on("disconnect", () => {
   }
   process.exit(0);
 });
-var installer;
+let installer;
 process.on("message", (req) => {
   installer ?? (installer = new NodeTypingsInstaller(
     globalTypingsCacheLocation,

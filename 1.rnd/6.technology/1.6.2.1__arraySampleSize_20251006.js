@@ -1,4 +1,4 @@
-var baseClamp = require('./_baseClamp'),
+const baseClamp = require('./_baseClamp'),
     copyArray = require('./_copyArray'),
     shuffleSelf = require('./_shuffleSelf');
 

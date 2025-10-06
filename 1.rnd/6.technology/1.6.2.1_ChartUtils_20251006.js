@@ -13,18 +13,18 @@ exports.getTooltipNameProp = getTooltipNameProp;
 exports.getValueByDataKey = getValueByDataKey;
 exports.inRange = inRange;
 exports.truncateByDomain = exports.offsetSign = exports.offsetPositive = exports.isCategoricalAxis = void 0;
-var _sortBy = _interopRequireDefault(require("es-toolkit/compat/sortBy"));
-var _get = _interopRequireDefault(require("es-toolkit/compat/get"));
-var _d3Shape = require("victory-vendor/d3-shape");
-var _DataUtils = require("./DataUtils");
-var _PolarUtils = require("./PolarUtils");
-var _getSliced = require("./getSliced");
+const _sortBy = _interopRequireDefault(require("es-toolkit/compat/sortBy"));
+const _get = _interopRequireDefault(require("es-toolkit/compat/get"));
+const _d3Shape = require("victory-vendor/d3-shape");
+const _DataUtils = require("./DataUtils");
+const _PolarUtils = require("./PolarUtils");
+const _getSliced = require("./getSliced");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function ownKeys(e, r) { const t = Object.keys(e); if (Object.getOwnPropertySymbols) { let o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (let r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _toPropertyKey(t) { const i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; const e = t[Symbol.toPrimitive]; if (void 0 !== e) { const i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 function getValueByDataKey(obj, dataKey, defaultValue) {
   if ((0, _DataUtils.isNullish)(obj) || (0, _DataUtils.isNullish)(dataKey)) {
     return defaultValue;
@@ -37,10 +37,10 @@ function getValueByDataKey(obj, dataKey, defaultValue) {
   }
   return defaultValue;
 }
-var calculateActiveTickIndex = (coordinate, ticks, unsortedTicks, axisType, range) => {
-  var _ticks$length;
-  var index = -1;
-  var len = (_ticks$length = ticks === null || ticks === void 0 ? void 0 : ticks.length) !== null && _ticks$length !== void 0 ? _ticks$length : 0;
+const calculateActiveTickIndex = (coordinate, ticks, unsortedTicks, axisType, range) => {
+  let _ticks$length;
+  let index = -1;
+  const len = (_ticks$length = ticks === null || ticks === void 0 ? void 0 : ticks.length) !== null && _ticks$length !== void 0 ? _ticks$length : 0;
 
   // if there are 1 or fewer ticks or if there is no coordinate then the active tick is at index 0
   if (len <= 1 || coordinate == null) {
@@ -48,25 +48,25 @@ var calculateActiveTickIndex = (coordinate, ticks, unsortedTicks, axisType, rang
   }
   if (axisType === 'angleAxis' && range != null && Math.abs(Math.abs(range[1] - range[0]) - 360) <= 1e-6) {
     // ticks are distributed in a circle
-    for (var i = 0; i < len; i++) {
-      var before = i > 0 ? unsortedTicks[i - 1].coordinate : unsortedTicks[len - 1].coordinate;
-      var cur = unsortedTicks[i].coordinate;
-      var after = i >= len - 1 ? unsortedTicks[0].coordinate : unsortedTicks[i + 1].coordinate;
-      var sameDirectionCoord = void 0;
+    for (let i = 0; i < len; i++) {
+      const before = i > 0 ? unsortedTicks[i - 1].coordinate : unsortedTicks[len - 1].coordinate;
+      const cur = unsortedTicks[i].coordinate;
+      const after = i >= len - 1 ? unsortedTicks[0].coordinate : unsortedTicks[i + 1].coordinate;
+      let sameDirectionCoord = void 0;
       if ((0, _DataUtils.mathSign)(cur - before) !== (0, _DataUtils.mathSign)(after - cur)) {
-        var diffInterval = [];
+        const diffInterval = [];
         if ((0, _DataUtils.mathSign)(after - cur) === (0, _DataUtils.mathSign)(range[1] - range[0])) {
           sameDirectionCoord = after;
-          var curInRange = cur + range[1] - range[0];
+          const curInRange = cur + range[1] - range[0];
           diffInterval[0] = Math.min(curInRange, (curInRange + before) / 2);
           diffInterval[1] = Math.max(curInRange, (curInRange + before) / 2);
         } else {
           sameDirectionCoord = before;
-          var afterInRange = after + range[1] - range[0];
+          const afterInRange = after + range[1] - range[0];
           diffInterval[0] = Math.min(cur, (afterInRange + cur) / 2);
           diffInterval[1] = Math.max(cur, (afterInRange + cur) / 2);
         }
-        var sameInterval = [Math.min(cur, (sameDirectionCoord + cur) / 2), Math.max(cur, (sameDirectionCoord + cur) / 2)];
+        const sameInterval = [Math.min(cur, (sameDirectionCoord + cur) / 2), Math.max(cur, (sameDirectionCoord + cur) / 2)];
         if (coordinate > sameInterval[0] && coordinate <= sameInterval[1] || coordinate >= diffInterval[0] && coordinate <= diffInterval[1]) {
           ({
             index
@@ -74,8 +74,8 @@ var calculateActiveTickIndex = (coordinate, ticks, unsortedTicks, axisType, rang
           break;
         }
       } else {
-        var minValue = Math.min(before, after);
-        var maxValue = Math.max(before, after);
+        const minValue = Math.min(before, after);
+        const maxValue = Math.max(before, after);
         if (coordinate > (minValue + cur) / 2 && coordinate <= (maxValue + cur) / 2) {
           ({
             index
@@ -86,7 +86,7 @@ var calculateActiveTickIndex = (coordinate, ticks, unsortedTicks, axisType, rang
     }
   } else if (ticks) {
     // ticks are distributed in a single direction
-    for (var _i = 0; _i < len; _i++) {
+    for (let _i = 0; _i < len; _i++) {
       if (_i === 0 && coordinate <= (ticks[_i].coordinate + ticks[_i + 1].coordinate) / 2 || _i > 0 && _i < len - 1 && coordinate > (ticks[_i].coordinate + ticks[_i - 1].coordinate) / 2 && coordinate <= (ticks[_i].coordinate + ticks[_i + 1].coordinate) / 2 || _i === len - 1 && coordinate > (ticks[_i].coordinate + ticks[_i - 1].coordinate) / 2) {
         ({
           index
@@ -98,13 +98,13 @@ var calculateActiveTickIndex = (coordinate, ticks, unsortedTicks, axisType, rang
   return index;
 };
 exports.calculateActiveTickIndex = calculateActiveTickIndex;
-var appendOffsetOfLegend = (offset, legendSettings, legendSize) => {
+const appendOffsetOfLegend = (offset, legendSettings, legendSize) => {
   if (legendSettings && legendSize) {
-    var {
+    const {
       width: boxWidth,
       height: boxHeight
     } = legendSize;
-    var {
+    const {
       align,
       verticalAlign,
       layout
@@ -123,7 +123,7 @@ var appendOffsetOfLegend = (offset, legendSettings, legendSize) => {
   return offset;
 };
 exports.appendOffsetOfLegend = appendOffsetOfLegend;
-var isCategoricalAxis = (layout, axisType) => layout === 'horizontal' && axisType === 'xAxis' || layout === 'vertical' && axisType === 'yAxis' || layout === 'centric' && axisType === 'angleAxis' || layout === 'radial' && axisType === 'radiusAxis';
+const isCategoricalAxis = (layout, axisType) => layout === 'horizontal' && axisType === 'xAxis' || layout === 'vertical' && axisType === 'yAxis' || layout === 'centric' && axisType === 'angleAxis' || layout === 'radial' && axisType === 'radiusAxis';
 
 /**
  * Calculate the Coordinates of grid
@@ -134,12 +134,12 @@ var isCategoricalAxis = (layout, axisType) => layout === 'horizontal' && axisTyp
  * @return {Array}                 Coordinates
  */
 exports.isCategoricalAxis = isCategoricalAxis;
-var getCoordinatesOfGrid = (ticks, minValue, maxValue, syncWithTicks) => {
+const getCoordinatesOfGrid = (ticks, minValue, maxValue, syncWithTicks) => {
   if (syncWithTicks) {
     return ticks.map(entry => entry.coordinate);
   }
-  var hasMin, hasMax;
-  var values = ticks.map(entry => {
+  let hasMin, hasMax;
+  const values = ticks.map(entry => {
     if (entry.coordinate === minValue) {
       hasMin = true;
     }
@@ -168,11 +168,11 @@ exports.getCoordinatesOfGrid = getCoordinatesOfGrid;
  * @param {Boolean} isAll Return the ticks of all the points or not
  * @return {Array}  Ticks
  */
-var getTicksOfAxis = (axis, isGrid, isAll) => {
+const getTicksOfAxis = (axis, isGrid, isAll) => {
   if (!axis) {
     return null;
   }
-  var {
+  const {
     duplicateDomain,
     type,
     range,
@@ -188,14 +188,14 @@ var getTicksOfAxis = (axis, isGrid, isAll) => {
   if (!scale) {
     return null;
   }
-  var offsetForBand = realScaleType === 'scaleBand' && scale.bandwidth ? scale.bandwidth() / 2 : 2;
-  var offset = (isGrid || isAll) && type === 'category' && scale.bandwidth ? scale.bandwidth() / offsetForBand : 0;
+  const offsetForBand = realScaleType === 'scaleBand' && scale.bandwidth ? scale.bandwidth() / 2 : 2;
+  let offset = (isGrid || isAll) && type === 'category' && scale.bandwidth ? scale.bandwidth() / offsetForBand : 0;
   offset = axisType === 'angleAxis' && range && range.length >= 2 ? (0, _DataUtils.mathSign)(range[0] - range[1]) * 2 * offset : offset;
 
   // The ticks set by user should only affect the ticks adjacent to axis line
   if (isGrid && (ticks || niceTicks)) {
-    var result = (ticks || niceTicks || []).map((entry, index) => {
-      var scaleContent = duplicateDomain ? duplicateDomain.indexOf(entry) : entry;
+    const result = (ticks || niceTicks || []).map((entry, index) => {
+      const scaleContent = duplicateDomain ? duplicateDomain.indexOf(entry) : entry;
       return {
         // If the scaleContent is not a number, the coordinate will be NaN.
         // That could be the case for example with a PointScale and a string as domain.
@@ -235,18 +235,18 @@ var getTicksOfAxis = (axis, isGrid, isAll) => {
   }));
 };
 exports.getTicksOfAxis = getTicksOfAxis;
-var EPS = 1e-4;
-var checkDomainOfScale = scale => {
-  var domain = scale.domain();
+const EPS = 1e-4;
+const checkDomainOfScale = scale => {
+  const domain = scale.domain();
   if (!domain || domain.length <= 2) {
     return;
   }
-  var len = domain.length;
-  var range = scale.range();
-  var minValue = Math.min(range[0], range[1]) - EPS;
-  var maxValue = Math.max(range[0], range[1]) + EPS;
-  var first = scale(domain[0]);
-  var last = scale(domain[len - 1]);
+  const len = domain.length;
+  const range = scale.range();
+  const minValue = Math.min(range[0], range[1]) - EPS;
+  const maxValue = Math.max(range[0], range[1]) + EPS;
+  const first = scale(domain[0]);
+  const last = scale(domain[len - 1]);
   if (first < minValue || first > maxValue || last < minValue || last > maxValue) {
     scale.domain([domain[0], domain[len - 1]]);
   }
@@ -260,13 +260,13 @@ var checkDomainOfScale = scale => {
  * @returns tuple of two numbers
  */
 exports.checkDomainOfScale = checkDomainOfScale;
-var truncateByDomain = (value, domain) => {
+const truncateByDomain = (value, domain) => {
   if (!domain || domain.length !== 2 || !(0, _DataUtils.isNumber)(domain[0]) || !(0, _DataUtils.isNumber)(domain[1])) {
     return value;
   }
-  var minValue = Math.min(domain[0], domain[1]);
-  var maxValue = Math.max(domain[0], domain[1]);
-  var result = [value[0], value[1]];
+  const minValue = Math.min(domain[0], domain[1]);
+  const maxValue = Math.max(domain[0], domain[1]);
+  const result = [value[0], value[1]];
   if (!(0, _DataUtils.isNumber)(value[0]) || value[0] < minValue) {
     result[0] = minValue;
   }
@@ -291,16 +291,16 @@ var truncateByDomain = (value, domain) => {
  * @return {Array} series with applied offset
  */
 exports.truncateByDomain = truncateByDomain;
-var offsetSign = series => {
-  var n = series.length;
+const offsetSign = series => {
+  const n = series.length;
   if (n <= 0) {
     return;
   }
-  for (var j = 0, m = series[0].length; j < m; ++j) {
-    var positive = 0;
-    var negative = 0;
-    for (var i = 0; i < n; ++i) {
-      var value = (0, _DataUtils.isNan)(series[i][j][1]) ? series[i][j][0] : series[i][j][1];
+  for (let j = 0, m = series[0].length; j < m; ++j) {
+    let positive = 0;
+    let negative = 0;
+    for (let i = 0; i < n; ++i) {
+      const value = (0, _DataUtils.isNan)(series[i][j][1]) ? series[i][j][0] : series[i][j][1];
 
       /* eslint-disable prefer-destructuring, no-param-reassign */
       if (value >= 0) {
@@ -326,15 +326,15 @@ var offsetSign = series => {
  * @return {Array} series with applied offset
  */
 exports.offsetSign = offsetSign;
-var offsetPositive = series => {
-  var n = series.length;
+const offsetPositive = series => {
+  const n = series.length;
   if (n <= 0) {
     return;
   }
-  for (var j = 0, m = series[0].length; j < m; ++j) {
-    var positive = 0;
-    for (var i = 0; i < n; ++i) {
-      var value = (0, _DataUtils.isNan)(series[i][j][1]) ? series[i][j][0] : series[i][j][1];
+  for (let j = 0, m = series[0].length; j < m; ++j) {
+    let positive = 0;
+    for (let i = 0; i < n; ++i) {
+      const value = (0, _DataUtils.isNan)(series[i][j][1]) ? series[i][j][0] : series[i][j][1];
 
       /* eslint-disable prefer-destructuring, no-param-reassign */
       if (value >= 0) {
@@ -365,7 +365,7 @@ var offsetPositive = series => {
  * https://github.com/DefinitelyTyped/DefinitelyTyped/discussions/66042
  */
 exports.offsetPositive = offsetPositive;
-var STACK_OFFSET_MAP = {
+const STACK_OFFSET_MAP = {
   sign: offsetSign,
   // @ts-expect-error definitelytyped types are incorrect
   expand: _d3Shape.stackOffsetExpand,
@@ -377,9 +377,9 @@ var STACK_OFFSET_MAP = {
   wiggle: _d3Shape.stackOffsetWiggle,
   positive: offsetPositive
 };
-var getStackedData = (data, dataKeys, offsetType) => {
-  var offsetAccessor = STACK_OFFSET_MAP[offsetType];
-  var stack = (0, _d3Shape.stack)().keys(dataKeys).value((d, key) => +getValueByDataKey(d, key, 0)).order(_d3Shape.stackOrderNone)
+const getStackedData = (data, dataKeys, offsetType) => {
+  const offsetAccessor = STACK_OFFSET_MAP[offsetType];
+  const stack = (0, _d3Shape.stack)().keys(dataKeys).value((d, key) => +getValueByDataKey(d, key, 0)).order(_d3Shape.stackOrderNone)
   // @ts-expect-error definitelytyped types are incorrect
   .offset(offsetAccessor);
   return stack(data);
@@ -395,7 +395,7 @@ function getNormalizedStackId(publicStackId) {
   return publicStackId == null ? undefined : String(publicStackId);
 }
 function getCateCoordinateOfLine(_ref) {
-  var {
+  const {
     axis,
     ticks,
     bandSize,
@@ -408,20 +408,20 @@ function getCateCoordinateOfLine(_ref) {
     // @ts-expect-error why does this use direct object access instead of getValueByDataKey?
     if (!axis.allowDuplicatedCategory && axis.dataKey && !(0, _DataUtils.isNullish)(entry[axis.dataKey])) {
       // @ts-expect-error why does this use direct object access instead of getValueByDataKey?
-      var matchedTick = (0, _DataUtils.findEntryInArray)(ticks, 'value', entry[axis.dataKey]);
+      const matchedTick = (0, _DataUtils.findEntryInArray)(ticks, 'value', entry[axis.dataKey]);
       if (matchedTick) {
         return matchedTick.coordinate + bandSize / 2;
       }
     }
     return ticks[index] ? ticks[index].coordinate + bandSize / 2 : null;
   }
-  var value = getValueByDataKey(entry, !(0, _DataUtils.isNullish)(dataKey) ? dataKey : axis.dataKey);
+  const value = getValueByDataKey(entry, !(0, _DataUtils.isNullish)(dataKey) ? dataKey : axis.dataKey);
 
   // @ts-expect-error getValueByDataKey does not validate the output type
   return !(0, _DataUtils.isNullish)(value) ? axis.scale(value) : null;
 }
-var getCateCoordinateOfBar = _ref2 => {
-  var {
+const getCateCoordinateOfBar = _ref2 => {
+  const {
     axis,
     ticks,
     offset,
@@ -432,20 +432,20 @@ var getCateCoordinateOfBar = _ref2 => {
   if (axis.type === 'category') {
     return ticks[index] ? ticks[index].coordinate + offset : null;
   }
-  var value = getValueByDataKey(entry, axis.dataKey, axis.scale.domain()[index]);
+  const value = getValueByDataKey(entry, axis.dataKey, axis.scale.domain()[index]);
   return !(0, _DataUtils.isNullish)(value) ? axis.scale(value) - bandSize / 2 + offset : null;
 };
 exports.getCateCoordinateOfBar = getCateCoordinateOfBar;
-var getBaseValueOfBar = _ref3 => {
-  var {
+const getBaseValueOfBar = _ref3 => {
+  const {
     numericAxis
   } = _ref3;
-  var domain = numericAxis.scale.domain();
+  const domain = numericAxis.scale.domain();
   if (numericAxis.type === 'number') {
     // @ts-expect-error type number means the domain has numbers in it but this relationship is not known to typescript
-    var minValue = Math.min(domain[0], domain[1]);
+    const minValue = Math.min(domain[0], domain[1]);
     // @ts-expect-error type number means the domain has numbers in it but this relationship is not known to typescript
-    var maxValue = Math.max(domain[0], domain[1]);
+    const maxValue = Math.max(domain[0], domain[1]);
     if (minValue <= 0 && maxValue >= 0) {
       return 0;
     }
@@ -457,33 +457,33 @@ var getBaseValueOfBar = _ref3 => {
   return domain[0];
 };
 exports.getBaseValueOfBar = getBaseValueOfBar;
-var getDomainOfSingle = data => {
-  var flat = data.flat(2).filter(_DataUtils.isNumber);
+const getDomainOfSingle = data => {
+  const flat = data.flat(2).filter(_DataUtils.isNumber);
   return [Math.min(...flat), Math.max(...flat)];
 };
-var makeDomainFinite = domain => {
+const makeDomainFinite = domain => {
   return [domain[0] === Infinity ? 0 : domain[0], domain[1] === -Infinity ? 0 : domain[1]];
 };
-var getDomainOfStackGroups = (stackGroups, startIndex, endIndex) => {
+const getDomainOfStackGroups = (stackGroups, startIndex, endIndex) => {
   if (stackGroups == null) {
     return undefined;
   }
   return makeDomainFinite(Object.keys(stackGroups).reduce((result, stackId) => {
-    var group = stackGroups[stackId];
-    var {
+    const group = stackGroups[stackId];
+    const {
       stackedData
     } = group;
-    var domain = stackedData.reduce((res, entry) => {
-      var sliced = (0, _getSliced.getSliced)(entry, startIndex, endIndex);
-      var s = getDomainOfSingle(sliced);
+    const domain = stackedData.reduce((res, entry) => {
+      const sliced = (0, _getSliced.getSliced)(entry, startIndex, endIndex);
+      const s = getDomainOfSingle(sliced);
       return [Math.min(res[0], s[0]), Math.max(res[1], s[1])];
     }, [Infinity, -Infinity]);
     return [Math.min(domain[0], result[0]), Math.max(domain[1], result[1])];
   }, [Infinity, -Infinity]));
 };
 exports.getDomainOfStackGroups = getDomainOfStackGroups;
-var MIN_VALUE_REG = exports.MIN_VALUE_REG = /^dataMin[\s]*-[\s]*([0-9]+([.]{1}[0-9]+){0,1})$/;
-var MAX_VALUE_REG = exports.MAX_VALUE_REG = /^dataMax[\s]*\+[\s]*([0-9]+([.]{1}[0-9]+){0,1})$/;
+const MIN_VALUE_REG = exports.MIN_VALUE_REG = /^dataMin[\s]*-[\s]*([0-9]+([.]{1}[0-9]+){0,1})$/;
+const MAX_VALUE_REG = exports.MAX_VALUE_REG = /^dataMax[\s]*\+[\s]*([0-9]+([.]{1}[0-9]+){0,1})$/;
 
 /**
  * Calculate the size between two category
@@ -492,19 +492,19 @@ var MAX_VALUE_REG = exports.MAX_VALUE_REG = /^dataMax[\s]*\+[\s]*([0-9]+([.]{1}[
  * @param  {Boolean} isBar if items in axis are bars
  * @return {Number} Size
  */
-var getBandSizeOfAxis = (axis, ticks, isBar) => {
+const getBandSizeOfAxis = (axis, ticks, isBar) => {
   if (axis && axis.scale && axis.scale.bandwidth) {
-    var bandWidth = axis.scale.bandwidth();
+    const bandWidth = axis.scale.bandwidth();
     if (!isBar || bandWidth > 0) {
       return bandWidth;
     }
   }
   if (axis && ticks && ticks.length >= 2) {
-    var orderedTicks = (0, _sortBy.default)(ticks, o => o.coordinate);
-    var bandSize = Infinity;
-    for (var i = 1, len = orderedTicks.length; i < len; i++) {
-      var cur = orderedTicks[i];
-      var prev = orderedTicks[i - 1];
+    const orderedTicks = (0, _sortBy.default)(ticks, o => o.coordinate);
+    let bandSize = Infinity;
+    for (let i = 1, len = orderedTicks.length; i < len; i++) {
+      const cur = orderedTicks[i];
+      const prev = orderedTicks[i - 1];
       bandSize = Math.min((cur.coordinate || 0) - (prev.coordinate || 0), bandSize);
     }
     return bandSize === Infinity ? 0 : bandSize;
@@ -513,7 +513,7 @@ var getBandSizeOfAxis = (axis, ticks, isBar) => {
 };
 exports.getBandSizeOfAxis = getBandSizeOfAxis;
 function getTooltipEntry(_ref4) {
-  var {
+  const {
     tooltipEntrySettings,
     dataKey,
     payload,
@@ -538,7 +538,7 @@ function getTooltipNameProp(nameFromItem, dataKey) {
 }
 function inRange(x, y, layout, polarViewBox, offset) {
   if (layout === 'horizontal' || layout === 'vertical') {
-    var isInRange = x >= offset.left && x <= offset.left + offset.width && y >= offset.top && y <= offset.top + offset.height;
+    const isInRange = x >= offset.left && x <= offset.left + offset.width && y >= offset.top && y <= offset.top + offset.height;
     return isInRange ? {
       x,
       y
@@ -552,8 +552,8 @@ function inRange(x, y, layout, polarViewBox, offset) {
   }
   return null;
 }
-var getActiveCoordinate = (layout, tooltipTicks, activeIndex, rangeObj) => {
-  var entry = tooltipTicks.find(tick => tick && tick.index === activeIndex);
+const getActiveCoordinate = (layout, tooltipTicks, activeIndex, rangeObj) => {
+  const entry = tooltipTicks.find(tick => tick && tick.index === activeIndex);
   if (entry) {
     if (layout === 'horizontal') {
       return {
@@ -568,8 +568,8 @@ var getActiveCoordinate = (layout, tooltipTicks, activeIndex, rangeObj) => {
       };
     }
     if (layout === 'centric') {
-      var _angle = entry.coordinate;
-      var {
+      const _angle = entry.coordinate;
+      const {
         radius: _radius
       } = rangeObj;
       return _objectSpread(_objectSpread(_objectSpread({}, rangeObj), (0, _PolarUtils.polarToCartesian)(rangeObj.cx, rangeObj.cy, _radius, _angle)), {}, {
@@ -577,8 +577,8 @@ var getActiveCoordinate = (layout, tooltipTicks, activeIndex, rangeObj) => {
         radius: _radius
       });
     }
-    var radius = entry.coordinate;
-    var {
+    const radius = entry.coordinate;
+    const {
       angle
     } = rangeObj;
     return _objectSpread(_objectSpread(_objectSpread({}, rangeObj), (0, _PolarUtils.polarToCartesian)(rangeObj.cx, rangeObj.cy, radius, angle)), {}, {
@@ -592,7 +592,7 @@ var getActiveCoordinate = (layout, tooltipTicks, activeIndex, rangeObj) => {
   };
 };
 exports.getActiveCoordinate = getActiveCoordinate;
-var calculateTooltipPos = (rangeObj, layout) => {
+const calculateTooltipPos = (rangeObj, layout) => {
   if (layout === 'horizontal') {
     return rangeObj.x;
   }

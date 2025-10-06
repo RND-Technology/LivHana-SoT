@@ -8,7 +8,7 @@
  * @returns {boolean} Returns `true` if `target` is found, else `false`.
  */
 function arrayIncludesWith(array, value, comparator) {
-  var index = -1,
+  let index = -1,
       length = array == null ? 0 : array.length;
 
   while (++index < length) {

@@ -1,4 +1,4 @@
-var isSymbol = require('./isSymbol');
+const isSymbol = require('./isSymbol');
 
 /**
  * Compares values to sort them in ascending order.
@@ -10,12 +10,12 @@ var isSymbol = require('./isSymbol');
  */
 function compareAscending(value, other) {
   if (value !== other) {
-    var valIsDefined = value !== undefined,
+    const valIsDefined = value !== undefined,
         valIsNull = value === null,
         valIsReflexive = value === value,
         valIsSymbol = isSymbol(value);
 
-    var othIsDefined = other !== undefined,
+    const othIsDefined = other !== undefined,
         othIsNull = other === null,
         othIsReflexive = other === other,
         othIsSymbol = isSymbol(other);

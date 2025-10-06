@@ -5,9 +5,9 @@
  * Released under MIT license. See LICENSE in the project root for details.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-var node_1 = require("./node");
-var nodeListIterator_1 = require("./nodeListIterator");
-var FibonacciHeap = /** @class */ (function () {
+const node_1 = require("./node");
+const nodeListIterator_1 = require("./nodeListIterator");
+const FibonacciHeap = /** @class */ (function () {
     function FibonacciHeap(compare) {
         this._minNode = null;
         this._nodeCount = 0;
@@ -33,7 +33,7 @@ var FibonacciHeap = /** @class */ (function () {
             throw new Error('New key is larger than old key');
         }
         node.key = newKey;
-        var parent = node.parent;
+        const parent = node.parent;
         if (parent && this._compare(node, parent) < 0) {
             this._cut(node, parent, this._minNode);
             this._cascadingCut(parent, this._minNode);
@@ -50,7 +50,7 @@ var FibonacciHeap = /** @class */ (function () {
         // This is a special implementation of decreaseKey that sets the argument to
         // the minimum value. This is necessary to make generic keys work, since there
         // is no MIN_VALUE constant for generic types.
-        var parent = node.parent;
+        const parent = node.parent;
         if (parent) {
             this._cut(node, parent, this._minNode);
             this._cascadingCut(parent, this._minNode);
@@ -63,17 +63,17 @@ var FibonacciHeap = /** @class */ (function () {
      * @return The heap's minimum node or null if the heap is empty.
      */
     FibonacciHeap.prototype.extractMinimum = function () {
-        var extractedMin = this._minNode;
+        const extractedMin = this._minNode;
         if (extractedMin) {
             // Set parent to null for the minimum's children
             if (extractedMin.child) {
-                var child = extractedMin.child;
+                let child = extractedMin.child;
                 do {
                     child.parent = null;
                     child = child.next;
                 } while (child !== extractedMin.child);
             }
-            var nextInRootList = null;
+            let nextInRootList = null;
             if (extractedMin.next !== extractedMin) {
                 nextInRootList = extractedMin.next;
             }
@@ -102,7 +102,7 @@ var FibonacciHeap = /** @class */ (function () {
      * @return node The inserted node.
      */
     FibonacciHeap.prototype.insert = function (key, value) {
-        var node = new node_1.Node(key, value);
+        const node = new node_1.Node(key, value);
         this._minNode = this._mergeLists(this._minNode, node);
         this._nodeCount++;
         return node;
@@ -162,7 +162,7 @@ var FibonacciHeap = /** @class */ (function () {
             parent.child = node.next;
         }
         this._removeNodeFromList(node);
-        var newMinNode = this._mergeLists(minNode, node);
+        const newMinNode = this._mergeLists(minNode, node);
         node.isMarked = false;
         return newMinNode;
     };
@@ -174,7 +174,7 @@ var FibonacciHeap = /** @class */ (function () {
      * @return The heap's new minimum node.
      */
     FibonacciHeap.prototype._cascadingCut = function (node, minNode) {
-        var parent = node.parent;
+        const parent = node.parent;
         if (parent) {
             if (node.isMarked) {
                 minNode = this._cut(node, parent, minNode);
@@ -193,15 +193,15 @@ var FibonacciHeap = /** @class */ (function () {
      * @return The new minimum node.
      */
     FibonacciHeap.prototype._consolidate = function (minNode) {
-        var aux = [];
-        var it = new nodeListIterator_1.NodeListIterator(minNode);
+        const aux = [];
+        const it = new nodeListIterator_1.NodeListIterator(minNode);
         while (it.hasNext()) {
-            var current = it.next();
+            let current = it.next();
             // If there exists another node with the same degree, merge them
-            var auxCurrent = aux[current.degree];
+            let auxCurrent = aux[current.degree];
             while (auxCurrent) {
                 if (this._compare(current, auxCurrent) > 0) {
-                    var temp = current;
+                    const temp = current;
                     current = auxCurrent;
                     auxCurrent = temp;
                 }
@@ -212,9 +212,9 @@ var FibonacciHeap = /** @class */ (function () {
             }
             aux[current.degree] = current;
         }
-        var newMinNode = null;
-        for (var i = 0; i < aux.length; i++) {
-            var node = aux[i];
+        let newMinNode = null;
+        for (let i = 0; i < aux.length; i++) {
+            const node = aux[i];
             if (node) {
                 // Remove siblings before merging
                 node.next = node;
@@ -229,8 +229,8 @@ var FibonacciHeap = /** @class */ (function () {
      * @param node The node to remove.
      */
     FibonacciHeap.prototype._removeNodeFromList = function (node) {
-        var prev = node.prev;
-        var next = node.next;
+        const prev = node.prev;
+        const next = node.next;
         prev.next = next;
         next.prev = prev;
         node.next = node;
@@ -267,7 +267,7 @@ var FibonacciHeap = /** @class */ (function () {
         if (!b) {
             return a;
         }
-        var temp = a.next;
+        const temp = a.next;
         a.next = b.next;
         a.next.prev = a;
         b.next = temp;
@@ -280,8 +280,8 @@ var FibonacciHeap = /** @class */ (function () {
      * @return The size of the node list.
      */
     FibonacciHeap.prototype._getNodeListSize = function (node) {
-        var count = 0;
-        var current = node;
+        let count = 0;
+        let current = node;
         do {
             count++;
             if (current.child) {

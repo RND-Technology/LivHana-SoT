@@ -13,40 +13,40 @@ OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.
 ***************************************************************************** */
 /* global global, define, Symbol, Reflect, Promise, SuppressedError, Iterator */
-var __extends;
-var __assign;
-var __rest;
-var __decorate;
-var __param;
-var __esDecorate;
-var __runInitializers;
-var __propKey;
-var __setFunctionName;
-var __metadata;
-var __awaiter;
-var __generator;
-var __exportStar;
-var __values;
-var __read;
-var __spread;
-var __spreadArrays;
-var __spreadArray;
-var __await;
-var __asyncGenerator;
-var __asyncDelegator;
-var __asyncValues;
-var __makeTemplateObject;
-var __importStar;
-var __importDefault;
-var __classPrivateFieldGet;
-var __classPrivateFieldSet;
-var __classPrivateFieldIn;
-var __createBinding;
-var __addDisposableResource;
-var __disposeResources;
-var __rewriteRelativeImportExtension;
+let __extends;
+let __assign;
+let __rest;
+let __decorate;
+let __param;
+let __esDecorate;
+let __runInitializers;
+let __propKey;
+let __setFunctionName;
+let __metadata;
+let __awaiter;
+let __generator;
+let __exportStar;
+let __values;
+let __read;
+let __spread;
+let __spreadArrays;
+let __spreadArray;
+let __await;
+let __asyncGenerator;
+let __asyncDelegator;
+let __asyncValues;
+let __makeTemplateObject;
+let __importStar;
+let __importDefault;
+let __classPrivateFieldGet;
+let __classPrivateFieldSet;
+let __classPrivateFieldIn;
+let __createBinding;
+let __addDisposableResource;
+let __disposeResources;
+let __rewriteRelativeImportExtension;
 (function (factory) {
-    var root = typeof global === "object" ? global : typeof self === "object" ? self : typeof this === "object" ? this : {};
+    const root = typeof global === "object" ? global : typeof self === "object" ? self : typeof this === "object" ? this : {};
     if (typeof define === "function" && define.amd) {
         define("tslib", ["exports"], function (exports) { factory(createExporter(root, createExporter(exports))); });
     }
@@ -69,9 +69,9 @@ var __rewriteRelativeImportExtension;
     }
 })
 (function (exporter) {
-    var extendStatics = Object.setPrototypeOf ||
+    const extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        function (d, b) { for (const p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
 
     __extends = function (d, b) {
         if (typeof b !== "function" && b !== null)
@@ -84,13 +84,13 @@ var __rewriteRelativeImportExtension;
     __assign = Object.assign || function (t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
             s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+            for (const p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
         }
         return t;
     };
 
     __rest = function (s, e) {
-        var t = {};
+        const t = {};
         for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
             t[p] = s[p];
         if (s != null && typeof Object.getOwnPropertySymbols === "function")
@@ -102,9 +102,9 @@ var __rewriteRelativeImportExtension;
     };
 
     __decorate = function (decorators, target, key, desc) {
-        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        let c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        else for (let i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
 
@@ -114,16 +114,16 @@ var __rewriteRelativeImportExtension;
 
     __esDecorate = function (ctor, descriptorIn, decorators, contextIn, initializers, extraInitializers) {
         function accept(f) { if (f !== void 0 && typeof f !== "function") throw new TypeError("Function expected"); return f; }
-        var kind = contextIn.kind, key = kind === "getter" ? "get" : kind === "setter" ? "set" : "value";
-        var target = !descriptorIn && ctor ? contextIn["static"] ? ctor : ctor.prototype : null;
-        var descriptor = descriptorIn || (target ? Object.getOwnPropertyDescriptor(target, contextIn.name) : {});
-        var _, done = false;
-        for (var i = decorators.length - 1; i >= 0; i--) {
-            var context = {};
+        const kind = contextIn.kind, key = kind === "getter" ? "get" : kind === "setter" ? "set" : "value";
+        const target = !descriptorIn && ctor ? contextIn["static"] ? ctor : ctor.prototype : null;
+        const descriptor = descriptorIn || (target ? Object.getOwnPropertyDescriptor(target, contextIn.name) : {});
+        let _, done = false;
+        for (let i = decorators.length - 1; i >= 0; i--) {
+            const context = {};
             for (var p in contextIn) context[p] = p === "access" ? {} : contextIn[p];
             for (var p in contextIn.access) context.access[p] = contextIn.access[p];
             context.addInitializer = function (f) { if (done) throw new TypeError("Cannot add initializers after decoration has completed"); extraInitializers.push(accept(f || null)); };
-            var result = (0, decorators[i])(kind === "accessor" ? { get: descriptor.get, set: descriptor.set } : descriptor[key], context);
+            const result = (0, decorators[i])(kind === "accessor" ? { get: descriptor.get, set: descriptor.set } : descriptor[key], context);
             if (kind === "accessor") {
                 if (result === void 0) continue;
                 if (result === null || typeof result !== "object") throw new TypeError("Object expected");
@@ -141,8 +141,8 @@ var __rewriteRelativeImportExtension;
     };
 
     __runInitializers = function (thisArg, initializers, value) {
-        var useValue = arguments.length > 2;
-        for (var i = 0; i < initializers.length; i++) {
+        const useValue = arguments.length > 2;
+        for (let i = 0; i < initializers.length; i++) {
             value = useValue ? initializers[i].call(thisArg, value) : initializers[i].call(thisArg);
         }
         return useValue ? value : void 0;
@@ -172,7 +172,7 @@ var __rewriteRelativeImportExtension;
     };
 
     __generator = function (thisArg, body) {
-        var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
+        let _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
         return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
         function verb(n) { return function (v) { return step([n, v]); }; }
         function step(op) {
@@ -200,12 +200,12 @@ var __rewriteRelativeImportExtension;
     };
 
     __exportStar = function(m, o) {
-        for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(o, p)) __createBinding(o, m, p);
+        for (const p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(o, p)) __createBinding(o, m, p);
     };
 
     __createBinding = Object.create ? (function(o, m, k, k2) {
         if (k2 === undefined) k2 = k;
-        var desc = Object.getOwnPropertyDescriptor(m, k);
+        let desc = Object.getOwnPropertyDescriptor(m, k);
         if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
             desc = { enumerable: true, get: function() { return m[k]; } };
         }
@@ -216,7 +216,7 @@ var __rewriteRelativeImportExtension;
     });
 
     __values = function (o) {
-        var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+        let s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
         if (m) return m.call(o);
         if (o && typeof o.length === "number") return {
             next: function () {
@@ -228,9 +228,9 @@ var __rewriteRelativeImportExtension;
     };
 
     __read = function (o, n) {
-        var m = typeof Symbol === "function" && o[Symbol.iterator];
+        let m = typeof Symbol === "function" && o[Symbol.iterator];
         if (!m) return o;
-        var i = m.call(o), r, ar = [], e;
+        let i = m.call(o), r, ar = [], e;
         try {
             while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
         }
@@ -255,7 +255,7 @@ var __rewriteRelativeImportExtension;
     __spreadArrays = function () {
         for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
         for (var r = Array(s), k = 0, i = 0; i < il; i++)
-            for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            for (let a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
                 r[k] = a[j];
         return r;
     };
@@ -276,7 +276,7 @@ var __rewriteRelativeImportExtension;
 
     __asyncGenerator = function (thisArg, _arguments, generator) {
         if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
-        var g = generator.apply(thisArg, _arguments || []), i, q = [];
+        let g = generator.apply(thisArg, _arguments || []), i, q = [];
         return i = Object.create((typeof AsyncIterator === "function" ? AsyncIterator : Object).prototype), verb("next"), verb("throw"), verb("return", awaitReturn), i[Symbol.asyncIterator] = function () { return this; }, i;
         function awaitReturn(f) { return function (v) { return Promise.resolve(v).then(f, reject); }; }
         function verb(n, f) { if (g[n]) { i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; if (f) i[n] = f(i[n]); } }
@@ -288,14 +288,14 @@ var __rewriteRelativeImportExtension;
     };
 
     __asyncDelegator = function (o) {
-        var i, p;
+        let i, p;
         return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[Symbol.iterator] = function () { return this; }, i;
         function verb(n, f) { i[n] = o[n] ? function (v) { return (p = !p) ? { value: __await(o[n](v)), done: false } : f ? f(v) : v; } : f; }
     };
 
     __asyncValues = function (o) {
         if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
-        var m = o[Symbol.asyncIterator], i;
+        let m = o[Symbol.asyncIterator], i;
         return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
         function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
         function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
@@ -306,16 +306,16 @@ var __rewriteRelativeImportExtension;
         return cooked;
     };
 
-    var __setModuleDefault = Object.create ? (function(o, v) {
+    const __setModuleDefault = Object.create ? (function(o, v) {
         Object.defineProperty(o, "default", { enumerable: true, value: v });
     }) : function(o, v) {
         o["default"] = v;
     };
 
-    var ownKeys = function(o) {
+    let ownKeys = function(o) {
         ownKeys = Object.getOwnPropertyNames || function (o) {
-            var ar = [];
-            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            const ar = [];
+            for (const k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
             return ar;
         };
         return ownKeys(o);
@@ -323,8 +323,8 @@ var __rewriteRelativeImportExtension;
 
     __importStar = function (mod) {
         if (mod && mod.__esModule) return mod;
-        var result = {};
-        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        const result = {};
+        if (mod != null) for (let k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
         __setModuleDefault(result, mod);
         return result;
     };
@@ -354,7 +354,7 @@ var __rewriteRelativeImportExtension;
     __addDisposableResource = function (env, value, async) {
         if (value !== null && value !== void 0) {
             if (typeof value !== "object" && typeof value !== "function") throw new TypeError("Object expected.");
-            var dispose, inner;
+            let dispose, inner;
             if (async) {
                 if (!Symbol.asyncDispose) throw new TypeError("Symbol.asyncDispose is not defined.");
                 dispose = value[Symbol.asyncDispose];
@@ -374,8 +374,8 @@ var __rewriteRelativeImportExtension;
         return value;
     };
 
-    var _SuppressedError = typeof SuppressedError === "function" ? SuppressedError : function (error, suppressed, message) {
-        var e = new Error(message);
+    const _SuppressedError = typeof SuppressedError === "function" ? SuppressedError : function (error, suppressed, message) {
+        const e = new Error(message);
         return e.name = "SuppressedError", e.error = error, e.suppressed = suppressed, e;
     };
 
@@ -384,13 +384,13 @@ var __rewriteRelativeImportExtension;
             env.error = env.hasError ? new _SuppressedError(e, env.error, "An error was suppressed during disposal.") : e;
             env.hasError = true;
         }
-        var r, s = 0;
+        let r, s = 0;
         function next() {
             while (r = env.stack.pop()) {
                 try {
                     if (!r.async && s === 1) return s = 0, env.stack.push(r), Promise.resolve().then(next);
                     if (r.dispose) {
-                        var result = r.dispose.call(r.value);
+                        const result = r.dispose.call(r.value);
                         if (r.async) return s |= 2, Promise.resolve(result).then(next, function(e) { fail(e); return next(); });
                     }
                     else s |= 1;

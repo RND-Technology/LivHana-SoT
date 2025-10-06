@@ -1,6 +1,6 @@
 "use strict"
 
-var BOMChar = "\uFEFF"
+const BOMChar = "\uFEFF"
 
 exports.PrependBOM = PrependBOMWrapper
 function PrependBOMWrapper (encoder, options) {
@@ -31,7 +31,7 @@ function StripBOMWrapper (decoder, options) {
 }
 
 StripBOMWrapper.prototype.write = function (buf) {
-  var res = this.decoder.write(buf)
+  let res = this.decoder.write(buf)
   if (this.pass || !res) { return res }
 
   if (res[0] === BOMChar) {

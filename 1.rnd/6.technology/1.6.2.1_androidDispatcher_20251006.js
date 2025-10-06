@@ -1,33 +1,33 @@
 "use strict";
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __export = (target, all) => {
+  for (const name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var androidDispatcher_exports = {};
+const __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+const androidDispatcher_exports = {};
 __export(androidDispatcher_exports, {
   AndroidDeviceDispatcher: () => AndroidDeviceDispatcher,
   AndroidDispatcher: () => AndroidDispatcher,
   AndroidSocketDispatcher: () => AndroidSocketDispatcher
 });
 module.exports = __toCommonJS(androidDispatcher_exports);
-var import_browserContextDispatcher = require("./browserContextDispatcher");
-var import_dispatcher = require("./dispatcher");
-var import_android = require("../android/android");
-var import_eventsHelper = require("../utils/eventsHelper");
-var import_instrumentation = require("../instrumentation");
+const import_browserContextDispatcher = require("./browserContextDispatcher");
+const import_dispatcher = require("./dispatcher");
+const import_android = require("../android/android");
+const import_eventsHelper = require("../utils/eventsHelper");
+const import_instrumentation = require("../instrumentation");
 class AndroidDispatcher extends import_dispatcher.Dispatcher {
   constructor(scope, android) {
     super(scope, android, "Android", {});

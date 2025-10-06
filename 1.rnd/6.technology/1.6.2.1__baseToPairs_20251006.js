@@ -1,4 +1,4 @@
-var arrayMap = require('./_arrayMap');
+const arrayMap = require('./_arrayMap');
 
 /**
  * The base implementation of `_.toPairs` and `_.toPairsIn` which creates an array

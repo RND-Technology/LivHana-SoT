@@ -1,8 +1,8 @@
 'use strict'
 
-let { existsSync, readFileSync } = require('fs')
-let { dirname, join } = require('path')
-let { SourceMapConsumer, SourceMapGenerator } = require('source-map-js')
+const { existsSync, readFileSync } = require('fs')
+const { dirname, join } = require('path')
+const { SourceMapConsumer, SourceMapGenerator } = require('source-map-js')
 
 function fromBase64(str) {
   if (Buffer) {
@@ -19,8 +19,8 @@ class PreviousMap {
     this.loadAnnotation(css)
     this.inline = this.startWith(this.annotation, 'data:')
 
-    let prev = opts.map ? opts.map.prev : undefined
-    let text = this.loadMap(opts.from, prev)
+    const prev = opts.map ? opts.map.prev : undefined
+    const text = this.loadMap(opts.from, prev)
     if (!this.mapFile && opts.from) {
       this.mapFile = opts.from
     }
@@ -36,22 +36,22 @@ class PreviousMap {
   }
 
   decodeInline(text) {
-    let baseCharsetUri = /^data:application\/json;charset=utf-?8;base64,/
-    let baseUri = /^data:application\/json;base64,/
-    let charsetUri = /^data:application\/json;charset=utf-?8,/
-    let uri = /^data:application\/json,/
+    const baseCharsetUri = /^data:application\/json;charset=utf-?8;base64,/
+    const baseUri = /^data:application\/json;base64,/
+    const charsetUri = /^data:application\/json;charset=utf-?8,/
+    const uri = /^data:application\/json,/
 
-    let uriMatch = text.match(charsetUri) || text.match(uri)
+    const uriMatch = text.match(charsetUri) || text.match(uri)
     if (uriMatch) {
       return decodeURIComponent(text.substr(uriMatch[0].length))
     }
 
-    let baseUriMatch = text.match(baseCharsetUri) || text.match(baseUri)
+    const baseUriMatch = text.match(baseCharsetUri) || text.match(baseUri)
     if (baseUriMatch) {
       return fromBase64(text.substr(baseUriMatch[0].length))
     }
 
-    let encoding = text.match(/data:application\/json;([^,]+),/)[1]
+    const encoding = text.match(/data:application\/json;([^,]+),/)[1]
     throw new Error('Unsupported source map encoding ' + encoding)
   }
 
@@ -69,12 +69,12 @@ class PreviousMap {
   }
 
   loadAnnotation(css) {
-    let comments = css.match(/\/\*\s*# sourceMappingURL=/g)
+    const comments = css.match(/\/\*\s*# sourceMappingURL=/g)
     if (!comments) return
 
     // sourceMappingURLs from comments, strings, etc.
-    let start = css.lastIndexOf(comments.pop())
-    let end = css.indexOf('*/', start)
+    const start = css.lastIndexOf(comments.pop())
+    const end = css.indexOf('*/', start)
 
     if (start > -1 && end > -1) {
       // Locate the last sourceMappingURL to avoid pickin
@@ -97,9 +97,9 @@ class PreviousMap {
       if (typeof prev === 'string') {
         return prev
       } else if (typeof prev === 'function') {
-        let prevPath = prev(file)
+        const prevPath = prev(file)
         if (prevPath) {
-          let map = this.loadFile(prevPath)
+          const map = this.loadFile(prevPath)
           if (!map) {
             throw new Error(
               'Unable to load previous source map: ' + prevPath.toString()

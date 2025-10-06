@@ -20,7 +20,7 @@ exports.dataproc_v1beta2 = void 0;
 /* eslint-disable @typescript-eslint/no-namespace */
 /* eslint-disable no-irregular-whitespace */
 const googleapis_common_1 = require("googleapis-common");
-var dataproc_v1beta2;
+let dataproc_v1beta2;
 (function (dataproc_v1beta2) {
     /**
      * Cloud Dataproc API

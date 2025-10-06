@@ -20,7 +20,7 @@ test('thread-stream sync true should log synchronously', async (t) => {
   })
   const instance = pino(transport)
 
-  var value = { message: 'sync' }
+  const value = { message: 'sync' }
   instance.info(value)
   instance.info(value)
   instance.info(value)

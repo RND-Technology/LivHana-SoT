@@ -8,7 +8,7 @@
  * Module dependencies
  */
 
-var getOwnEnumerablePropertySymbols = require('./getOwnEnumerablePropertySymbols');
+const getOwnEnumerablePropertySymbols = require('./getOwnEnumerablePropertySymbols');
 
 /**
  * ### .getOwnEnumerableProperties(object)

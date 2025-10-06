@@ -12,9 +12,9 @@
  **/
 'use strict';
 
-var util = require('util');
+const util = require('util');
 
-var ArgumentGroup = require('./group');
+const ArgumentGroup = require('./group');
 
 /**
  * new MutuallyExclusiveGroup(container, options)
@@ -24,8 +24,8 @@ var ArgumentGroup = require('./group');
  * `required` could be an argument itself, but making it a property of
  * the options argument is more consistent with the JS adaptation of the Python)
  **/
-var MutuallyExclusiveGroup = module.exports = function MutuallyExclusiveGroup(container, options) {
-  var required;
+const MutuallyExclusiveGroup = module.exports = function MutuallyExclusiveGroup(container, options) {
+  let required;
   options = options || {};
   required = options.required || false;
   ArgumentGroup.call(this, container);
@@ -36,7 +36,7 @@ util.inherits(MutuallyExclusiveGroup, ArgumentGroup);
 
 
 MutuallyExclusiveGroup.prototype._addAction = function (action) {
-  var msg;
+  let msg;
   if (action.required) {
     msg = 'mutually exclusive arguments must be optional';
     throw new Error(msg);

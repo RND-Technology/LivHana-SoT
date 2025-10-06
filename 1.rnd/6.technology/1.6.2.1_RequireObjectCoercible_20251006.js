@@ -1,6 +1,6 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
 /** @type {import('./RequireObjectCoercible')} */
 module.exports = function RequireObjectCoercible(value) {

@@ -1,34 +1,34 @@
 "use strict";
 'use client';
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+const _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-var React = _interopRequireWildcard(require("react"));
-var _propTypes = _interopRequireDefault(require("prop-types"));
-var _clsx = _interopRequireDefault(require("clsx"));
-var _composeClasses = _interopRequireDefault(require("@mui/utils/composeClasses"));
-var _colorManipulator = require("@mui/system/colorManipulator");
-var _zeroStyled = require("../zero-styled");
-var _DefaultPropsProvider = require("../DefaultPropsProvider");
-var _useSlot = _interopRequireDefault(require("../utils/useSlot"));
-var _capitalize = _interopRequireDefault(require("../utils/capitalize"));
-var _Paper = _interopRequireDefault(require("../Paper"));
-var _alertClasses = _interopRequireWildcard(require("./alertClasses"));
-var _IconButton = _interopRequireDefault(require("../IconButton"));
-var _SuccessOutlined = _interopRequireDefault(require("../internal/svg-icons/SuccessOutlined"));
-var _ReportProblemOutlined = _interopRequireDefault(require("../internal/svg-icons/ReportProblemOutlined"));
-var _ErrorOutline = _interopRequireDefault(require("../internal/svg-icons/ErrorOutline"));
-var _InfoOutlined = _interopRequireDefault(require("../internal/svg-icons/InfoOutlined"));
-var _Close = _interopRequireDefault(require("../internal/svg-icons/Close"));
-var _jsxRuntime = require("react/jsx-runtime");
+const _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+const _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+const React = _interopRequireWildcard(require("react"));
+const _propTypes = _interopRequireDefault(require("prop-types"));
+const _clsx = _interopRequireDefault(require("clsx"));
+const _composeClasses = _interopRequireDefault(require("@mui/utils/composeClasses"));
+const _colorManipulator = require("@mui/system/colorManipulator");
+const _zeroStyled = require("../zero-styled");
+const _DefaultPropsProvider = require("../DefaultPropsProvider");
+const _useSlot = _interopRequireDefault(require("../utils/useSlot"));
+const _capitalize = _interopRequireDefault(require("../utils/capitalize"));
+const _Paper = _interopRequireDefault(require("../Paper"));
+const _alertClasses = _interopRequireWildcard(require("./alertClasses"));
+const _IconButton = _interopRequireDefault(require("../IconButton"));
+const _SuccessOutlined = _interopRequireDefault(require("../internal/svg-icons/SuccessOutlined"));
+const _ReportProblemOutlined = _interopRequireDefault(require("../internal/svg-icons/ReportProblemOutlined"));
+const _ErrorOutline = _interopRequireDefault(require("../internal/svg-icons/ErrorOutline"));
+const _InfoOutlined = _interopRequireDefault(require("../internal/svg-icons/InfoOutlined"));
+const _Close = _interopRequireDefault(require("../internal/svg-icons/Close"));
+const _jsxRuntime = require("react/jsx-runtime");
 const _excluded = ["action", "children", "className", "closeText", "color", "components", "componentsProps", "icon", "iconMapping", "onClose", "role", "severity", "slotProps", "slots", "variant"];
-function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
-function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; const r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; const t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); const n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (const u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { const i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 const useUtilityClasses = ownerState => {
   const {
     variant,
@@ -352,4 +352,4 @@ process.env.NODE_ENV !== "production" ? Alert.propTypes /* remove-proptypes */ =
    */
   variant: _propTypes.default /* @typescript-to-proptypes-ignore */.oneOfType([_propTypes.default.oneOf(['filled', 'outlined', 'standard']), _propTypes.default.string])
 } : void 0;
-var _default = exports.default = Alert;
+const _default = exports.default = Alert;

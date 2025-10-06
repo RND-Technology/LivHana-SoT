@@ -55,4 +55,4 @@ function validatorNoop() {
 }
 validator.isRequired = requiredInteger;
 validatorNoop.isRequired = validatorNoop;
-var _default = exports.default = process.env.NODE_ENV === 'production' ? validatorNoop : validator;
+const _default = exports.default = process.env.NODE_ENV === 'production' ? validatorNoop : validator;

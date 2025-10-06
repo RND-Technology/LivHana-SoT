@@ -9,37 +9,37 @@ exports.Label = Label;
 exports.PolarLabelContextProvider = void 0;
 exports.PolarLabelFromLabelProp = PolarLabelFromLabelProp;
 exports.usePolarLabelContext = exports.isLabelContentAFunction = void 0;
-var _react = _interopRequireWildcard(require("react"));
-var React = _react;
-var _clsx = require("clsx");
-var _Text = require("./Text");
-var _ReactUtils = require("../util/ReactUtils");
-var _DataUtils = require("../util/DataUtils");
-var _PolarUtils = require("../util/PolarUtils");
-var _chartLayoutContext = require("../context/chartLayoutContext");
-var _hooks = require("../state/hooks");
-var _polarAxisSelectors = require("../state/selectors/polarAxisSelectors");
-var _resolveDefaultProps = require("../util/resolveDefaultProps");
-var _excluded = ["labelRef"];
-function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
-function _objectWithoutProperties(e, t) { if (null == e) return {}; var o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { var n = Object.getOwnPropertySymbols(e); for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
-function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t = {}; for (var n in r) if ({}.hasOwnProperty.call(r, n)) { if (-1 !== e.indexOf(n)) continue; t[n] = r[n]; } return t; }
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+const _react = _interopRequireWildcard(require("react"));
+const React = _react;
+const _clsx = require("clsx");
+const _Text = require("./Text");
+const _ReactUtils = require("../util/ReactUtils");
+const _DataUtils = require("../util/DataUtils");
+const _PolarUtils = require("../util/PolarUtils");
+const _chartLayoutContext = require("../context/chartLayoutContext");
+const _hooks = require("../state/hooks");
+const _polarAxisSelectors = require("../state/selectors/polarAxisSelectors");
+const _resolveDefaultProps = require("../util/resolveDefaultProps");
+const _excluded = ["labelRef"];
+function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; let o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (const _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
+function _objectWithoutProperties(e, t) { if (null == e) return {}; let o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { const n = Object.getOwnPropertySymbols(e); for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
+function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; const t = {}; for (const n in r) if ({}.hasOwnProperty.call(r, n)) { if (-1 !== e.indexOf(n)) continue; t[n] = r[n]; } return t; }
+function ownKeys(e, r) { const t = Object.keys(e); if (Object.getOwnPropertySymbols) { let o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (let r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-var CartesianLabelContext = /*#__PURE__*/(0, _react.createContext)(null);
-var CartesianLabelContextProvider = _ref => {
-  var {
+function _toPropertyKey(t) { const i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; const e = t[Symbol.toPrimitive]; if (void 0 !== e) { const i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (let e = 1; e < arguments.length; e++) { const t = arguments[e]; for (const r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+const CartesianLabelContext = /*#__PURE__*/(0, _react.createContext)(null);
+const CartesianLabelContextProvider = _ref => {
+  const {
     x,
     y,
     width,
     height,
     children
   } = _ref;
-  var viewBox = (0, _react.useMemo)(() => ({
+  const viewBox = (0, _react.useMemo)(() => ({
     x,
     y,
     width,
@@ -50,14 +50,14 @@ var CartesianLabelContextProvider = _ref => {
   }, children);
 };
 exports.CartesianLabelContextProvider = CartesianLabelContextProvider;
-var useCartesianLabelContext = () => {
-  var labelChildContext = (0, _react.useContext)(CartesianLabelContext);
-  var chartContext = (0, _chartLayoutContext.useViewBox)();
+const useCartesianLabelContext = () => {
+  const labelChildContext = (0, _react.useContext)(CartesianLabelContext);
+  const chartContext = (0, _chartLayoutContext.useViewBox)();
   return labelChildContext || chartContext;
 };
-var PolarLabelContext = /*#__PURE__*/(0, _react.createContext)(null);
-var PolarLabelContextProvider = _ref2 => {
-  var {
+const PolarLabelContext = /*#__PURE__*/(0, _react.createContext)(null);
+const PolarLabelContextProvider = _ref2 => {
+  const {
     cx,
     cy,
     innerRadius,
@@ -67,7 +67,7 @@ var PolarLabelContextProvider = _ref2 => {
     clockWise,
     children
   } = _ref2;
-  var viewBox = (0, _react.useMemo)(() => ({
+  const viewBox = (0, _react.useMemo)(() => ({
     cx,
     cy,
     innerRadius,
@@ -81,38 +81,38 @@ var PolarLabelContextProvider = _ref2 => {
   }, children);
 };
 exports.PolarLabelContextProvider = PolarLabelContextProvider;
-var usePolarLabelContext = () => {
-  var labelChildContext = (0, _react.useContext)(PolarLabelContext);
-  var chartContext = (0, _hooks.useAppSelector)(_polarAxisSelectors.selectPolarViewBox);
+const usePolarLabelContext = () => {
+  const labelChildContext = (0, _react.useContext)(PolarLabelContext);
+  const chartContext = (0, _hooks.useAppSelector)(_polarAxisSelectors.selectPolarViewBox);
   return labelChildContext || chartContext;
 };
 exports.usePolarLabelContext = usePolarLabelContext;
-var getLabel = props => {
-  var {
+const getLabel = props => {
+  const {
     value,
     formatter
   } = props;
-  var label = (0, _DataUtils.isNullish)(props.children) ? value : props.children;
+  const label = (0, _DataUtils.isNullish)(props.children) ? value : props.children;
   if (typeof formatter === 'function') {
     return formatter(label);
   }
   return label;
 };
-var isLabelContentAFunction = content => {
+const isLabelContentAFunction = content => {
   return content != null && typeof content === 'function';
 };
 exports.isLabelContentAFunction = isLabelContentAFunction;
-var getDeltaAngle = (startAngle, endAngle) => {
-  var sign = (0, _DataUtils.mathSign)(endAngle - startAngle);
-  var deltaAngle = Math.min(Math.abs(endAngle - startAngle), 360);
+const getDeltaAngle = (startAngle, endAngle) => {
+  const sign = (0, _DataUtils.mathSign)(endAngle - startAngle);
+  const deltaAngle = Math.min(Math.abs(endAngle - startAngle), 360);
   return sign * deltaAngle;
 };
-var renderRadialLabel = (labelProps, position, label, attrs, viewBox) => {
-  var {
+const renderRadialLabel = (labelProps, position, label, attrs, viewBox) => {
+  const {
     offset,
     className
   } = labelProps;
-  var {
+  const {
     cx,
     cy,
     innerRadius,
@@ -121,10 +121,10 @@ var renderRadialLabel = (labelProps, position, label, attrs, viewBox) => {
     endAngle,
     clockWise
   } = viewBox;
-  var radius = (innerRadius + outerRadius) / 2;
-  var deltaAngle = getDeltaAngle(startAngle, endAngle);
-  var sign = deltaAngle >= 0 ? 1 : -1;
-  var labelAngle, direction;
+  const radius = (innerRadius + outerRadius) / 2;
+  const deltaAngle = getDeltaAngle(startAngle, endAngle);
+  const sign = deltaAngle >= 0 ? 1 : -1;
+  let labelAngle, direction;
   switch (position) {
     case 'insideStart':
       labelAngle = startAngle + sign * offset;
@@ -142,10 +142,10 @@ var renderRadialLabel = (labelProps, position, label, attrs, viewBox) => {
       throw new Error("Unsupported position ".concat(position));
   }
   direction = deltaAngle <= 0 ? direction : !direction;
-  var startPoint = (0, _PolarUtils.polarToCartesian)(cx, cy, radius, labelAngle);
-  var endPoint = (0, _PolarUtils.polarToCartesian)(cx, cy, radius, labelAngle + (direction ? 1 : -1) * 359);
-  var path = "M".concat(startPoint.x, ",").concat(startPoint.y, "\n    A").concat(radius, ",").concat(radius, ",0,1,").concat(direction ? 0 : 1, ",\n    ").concat(endPoint.x, ",").concat(endPoint.y);
-  var id = (0, _DataUtils.isNullish)(labelProps.id) ? (0, _DataUtils.uniqueId)('recharts-radial-line-') : labelProps.id;
+  const startPoint = (0, _PolarUtils.polarToCartesian)(cx, cy, radius, labelAngle);
+  const endPoint = (0, _PolarUtils.polarToCartesian)(cx, cy, radius, labelAngle + (direction ? 1 : -1) * 359);
+  const path = "M".concat(startPoint.x, ",").concat(startPoint.y, "\n    A").concat(radius, ",").concat(radius, ",0,1,").concat(direction ? 0 : 1, ",\n    ").concat(endPoint.x, ",").concat(endPoint.y);
+  const id = (0, _DataUtils.isNullish)(labelProps.id) ? (0, _DataUtils.uniqueId)('recharts-radial-line-') : labelProps.id;
   return /*#__PURE__*/React.createElement("text", _extends({}, attrs, {
     dominantBaseline: "central",
     className: (0, _clsx.clsx)('recharts-radial-bar-label', className)
@@ -156,8 +156,8 @@ var renderRadialLabel = (labelProps, position, label, attrs, viewBox) => {
     xlinkHref: "#".concat(id)
   }, label));
 };
-var getAttrsOfPolarLabel = (viewBox, offset, position) => {
-  var {
+const getAttrsOfPolarLabel = (viewBox, offset, position) => {
+  const {
     cx,
     cy,
     innerRadius,
@@ -165,9 +165,9 @@ var getAttrsOfPolarLabel = (viewBox, offset, position) => {
     startAngle,
     endAngle
   } = viewBox;
-  var midAngle = (startAngle + endAngle) / 2;
+  const midAngle = (startAngle + endAngle) / 2;
   if (position === 'outside') {
-    var {
+    const {
       x: _x,
       y: _y
     } = (0, _PolarUtils.polarToCartesian)(cx, cy, outerRadius + offset, midAngle);
@@ -202,8 +202,8 @@ var getAttrsOfPolarLabel = (viewBox, offset, position) => {
       verticalAnchor: 'end'
     };
   }
-  var r = (innerRadius + outerRadius) / 2;
-  var {
+  const r = (innerRadius + outerRadius) / 2;
+  const {
     x,
     y
   } = (0, _PolarUtils.polarToCartesian)(cx, cy, r, midAngle);
@@ -214,19 +214,19 @@ var getAttrsOfPolarLabel = (viewBox, offset, position) => {
     verticalAnchor: 'middle'
   };
 };
-var isPolar = viewBox => 'cx' in viewBox && (0, _DataUtils.isNumber)(viewBox.cx);
-var getAttrsOfCartesianLabel = (props, viewBox) => {
-  var {
+const isPolar = viewBox => 'cx' in viewBox && (0, _DataUtils.isNumber)(viewBox.cx);
+const getAttrsOfCartesianLabel = (props, viewBox) => {
+  const {
     parentViewBox: parentViewBoxFromProps,
     offset,
     position
   } = props;
-  var parentViewBox;
+  let parentViewBox;
   if (parentViewBoxFromProps != null && !isPolar(parentViewBoxFromProps)) {
     // Check that nobody is trying to pass a polar viewBox to a cartesian label
     parentViewBox = parentViewBoxFromProps;
   }
-  var {
+  const {
     x,
     y,
     width,
@@ -234,18 +234,18 @@ var getAttrsOfCartesianLabel = (props, viewBox) => {
   } = viewBox;
 
   // Define vertical offsets and position inverts based on the value being positive or negative
-  var verticalSign = height >= 0 ? 1 : -1;
-  var verticalOffset = verticalSign * offset;
-  var verticalEnd = verticalSign > 0 ? 'end' : 'start';
-  var verticalStart = verticalSign > 0 ? 'start' : 'end';
+  const verticalSign = height >= 0 ? 1 : -1;
+  const verticalOffset = verticalSign * offset;
+  const verticalEnd = verticalSign > 0 ? 'end' : 'start';
+  const verticalStart = verticalSign > 0 ? 'start' : 'end';
 
   // Define horizontal offsets and position inverts based on the value being positive or negative
-  var horizontalSign = width >= 0 ? 1 : -1;
-  var horizontalOffset = horizontalSign * offset;
-  var horizontalEnd = horizontalSign > 0 ? 'end' : 'start';
-  var horizontalStart = horizontalSign > 0 ? 'start' : 'end';
+  const horizontalSign = width >= 0 ? 1 : -1;
+  const horizontalOffset = horizontalSign * offset;
+  const horizontalEnd = horizontalSign > 0 ? 'end' : 'start';
+  const horizontalStart = horizontalSign > 0 ? 'start' : 'end';
   if (position === 'top') {
-    var attrs = {
+    const attrs = {
       x: x + width / 2,
       y: y - verticalSign * offset,
       textAnchor: 'middle',
@@ -257,7 +257,7 @@ var getAttrsOfCartesianLabel = (props, viewBox) => {
     } : {});
   }
   if (position === 'bottom') {
-    var _attrs = {
+    const _attrs = {
       x: x + width / 2,
       y: y + height + verticalOffset,
       textAnchor: 'middle',
@@ -269,7 +269,7 @@ var getAttrsOfCartesianLabel = (props, viewBox) => {
     } : {});
   }
   if (position === 'left') {
-    var _attrs2 = {
+    const _attrs2 = {
       x: x - horizontalOffset,
       y: y + height / 2,
       textAnchor: horizontalEnd,
@@ -281,7 +281,7 @@ var getAttrsOfCartesianLabel = (props, viewBox) => {
     } : {});
   }
   if (position === 'right') {
-    var _attrs3 = {
+    const _attrs3 = {
       x: x + width + horizontalOffset,
       y: y + height / 2,
       textAnchor: horizontalStart,
@@ -292,7 +292,7 @@ var getAttrsOfCartesianLabel = (props, viewBox) => {
       height
     } : {});
   }
-  var sizeAttrs = parentViewBox ? {
+  const sizeAttrs = parentViewBox ? {
     width,
     height
   } : {};
@@ -375,12 +375,12 @@ var getAttrsOfCartesianLabel = (props, viewBox) => {
     verticalAnchor: 'middle'
   }, sizeAttrs);
 };
-var defaultLabelProps = {
+const defaultLabelProps = {
   offset: 5
 };
 function Label(outerProps) {
-  var props = (0, _resolveDefaultProps.resolveDefaultProps)(outerProps, defaultLabelProps);
-  var {
+  const props = (0, _resolveDefaultProps.resolveDefaultProps)(outerProps, defaultLabelProps);
+  const {
     viewBox: viewBoxFromProps,
     position,
     value,
@@ -390,30 +390,30 @@ function Label(outerProps) {
     textBreakAll,
     labelRef
   } = props;
-  var polarViewBox = usePolarLabelContext();
-  var cartesianViewBox = useCartesianLabelContext();
+  const polarViewBox = usePolarLabelContext();
+  const cartesianViewBox = useCartesianLabelContext();
 
   /*
    * I am not proud about this solution but it's a quick fix for https://github.com/recharts/recharts/issues/6030#issuecomment-3155352460.
    * What we should really do is split Label into two components: CartesianLabel and PolarLabel and then handle their respective viewBoxes separately.
    * Also other components should set its own viewBox in a context so that we can fix https://github.com/recharts/recharts/issues/6156
    */
-  var resolvedViewBox = position === 'center' ? cartesianViewBox : polarViewBox !== null && polarViewBox !== void 0 ? polarViewBox : cartesianViewBox;
-  var viewBox = viewBoxFromProps || resolvedViewBox;
+  const resolvedViewBox = position === 'center' ? cartesianViewBox : polarViewBox !== null && polarViewBox !== void 0 ? polarViewBox : cartesianViewBox;
+  const viewBox = viewBoxFromProps || resolvedViewBox;
   if (!viewBox || (0, _DataUtils.isNullish)(value) && (0, _DataUtils.isNullish)(children) && ! /*#__PURE__*/(0, _react.isValidElement)(content) && typeof content !== 'function') {
     return null;
   }
-  var propsWithViewBox = _objectSpread(_objectSpread({}, props), {}, {
+  const propsWithViewBox = _objectSpread(_objectSpread({}, props), {}, {
     viewBox
   });
   if (/*#__PURE__*/(0, _react.isValidElement)(content)) {
-    var {
+    let {
         labelRef: _
       } = propsWithViewBox,
       propsWithoutLabelRef = _objectWithoutProperties(propsWithViewBox, _excluded);
     return /*#__PURE__*/(0, _react.cloneElement)(content, propsWithoutLabelRef);
   }
-  var label;
+  let label;
   if (typeof content === 'function') {
     label = /*#__PURE__*/(0, _react.createElement)(content, propsWithViewBox);
     if (/*#__PURE__*/(0, _react.isValidElement)(label)) {
@@ -422,12 +422,12 @@ function Label(outerProps) {
   } else {
     label = getLabel(props);
   }
-  var isPolarLabel = isPolar(viewBox);
-  var attrs = (0, _ReactUtils.filterProps)(props, true);
+  const isPolarLabel = isPolar(viewBox);
+  const attrs = (0, _ReactUtils.filterProps)(props, true);
   if (isPolarLabel && (position === 'insideStart' || position === 'insideEnd' || position === 'end')) {
     return renderRadialLabel(props, position, label, attrs, viewBox);
   }
-  var positionAttrs = isPolarLabel ? getAttrsOfPolarLabel(viewBox, props.offset, props.position) : getAttrsOfCartesianLabel(props, viewBox);
+  const positionAttrs = isPolarLabel ? getAttrsOfPolarLabel(viewBox, props.offset, props.position) : getAttrsOfCartesianLabel(props, viewBox);
   return /*#__PURE__*/React.createElement(_Text.Text, _extends({
     ref: labelRef,
     className: (0, _clsx.clsx)('recharts-label', className)
@@ -436,11 +436,11 @@ function Label(outerProps) {
   }), label);
 }
 Label.displayName = 'Label';
-var parseLabel = (label, viewBox, labelRef) => {
+const parseLabel = (label, viewBox, labelRef) => {
   if (!label) {
     return null;
   }
-  var commonProps = {
+  const commonProps = {
     viewBox,
     labelRef
   };
@@ -480,16 +480,16 @@ var parseLabel = (label, viewBox, labelRef) => {
   return null;
 };
 function CartesianLabelFromLabelProp(_ref3) {
-  var {
+  const {
     label
   } = _ref3;
-  var viewBox = useCartesianLabelContext();
+  const viewBox = useCartesianLabelContext();
   return parseLabel(label, viewBox) || null;
 }
 function PolarLabelFromLabelProp(_ref4) {
-  var {
+  const {
     label
   } = _ref4;
-  var viewBox = usePolarLabelContext();
+  const viewBox = usePolarLabelContext();
   return parseLabel(label, viewBox) || null;
 }

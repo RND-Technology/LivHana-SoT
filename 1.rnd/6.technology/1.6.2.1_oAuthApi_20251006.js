@@ -1,15 +1,15 @@
 "use strict";
 exports.__esModule = true;
 exports.OAuthApi = void 0;
-var tslib_1 = require("tslib");
-var obtainTokenRequest_1 = require("../models/obtainTokenRequest");
-var obtainTokenResponse_1 = require("../models/obtainTokenResponse");
-var retrieveTokenStatusResponse_1 = require("../models/retrieveTokenStatusResponse");
-var revokeTokenRequest_1 = require("../models/revokeTokenRequest");
-var revokeTokenResponse_1 = require("../models/revokeTokenResponse");
-var schema_1 = require("../schema");
-var baseApi_1 = require("./baseApi");
-var OAuthApi = /** @class */ (function (_super) {
+const tslib_1 = require("tslib");
+const obtainTokenRequest_1 = require("../models/obtainTokenRequest");
+const obtainTokenResponse_1 = require("../models/obtainTokenResponse");
+const retrieveTokenStatusResponse_1 = require("../models/retrieveTokenStatusResponse");
+const revokeTokenRequest_1 = require("../models/revokeTokenRequest");
+const revokeTokenResponse_1 = require("../models/revokeTokenResponse");
+const schema_1 = require("../schema");
+const baseApi_1 = require("./baseApi");
+const OAuthApi = /** @class */ (function (_super) {
     tslib_1.__extends(OAuthApi, _super);
     function OAuthApi() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -37,7 +37,7 @@ var OAuthApi = /** @class */ (function (_super) {
      */
     OAuthApi.prototype.revokeToken = function (body, authorization, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/oauth2/revoke');
                 mapped = req.prepareArgs({
@@ -77,7 +77,7 @@ var OAuthApi = /** @class */ (function (_super) {
      */
     OAuthApi.prototype.obtainToken = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/oauth2/token');
                 mapped = req.prepareArgs({ body: [body, obtainTokenRequest_1.obtainTokenRequestSchema] });
@@ -113,7 +113,7 @@ var OAuthApi = /** @class */ (function (_super) {
      */
     OAuthApi.prototype.retrieveTokenStatus = function (requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req;
+            let req;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/oauth2/token/status');
                 req.authenticate([{ global: true }]);

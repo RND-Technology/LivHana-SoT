@@ -4,10 +4,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.getCursorPoints = getCursorPoints;
-var _PolarUtils = require("../PolarUtils");
-var _getRadialCursorPoints = require("./getRadialCursorPoints");
+const _PolarUtils = require("../PolarUtils");
+const _getRadialCursorPoints = require("./getRadialCursorPoints");
 function getCursorPoints(layout, activeCoordinate, offset) {
-  var x1, y1, x2, y2;
+  let x1, y1, x2, y2;
   if (layout === 'horizontal') {
     x1 = activeCoordinate.x;
     x2 = x1;
@@ -20,15 +20,15 @@ function getCursorPoints(layout, activeCoordinate, offset) {
     x2 = offset.left + offset.width;
   } else if (activeCoordinate.cx != null && activeCoordinate.cy != null) {
     if (layout === 'centric') {
-      var {
+      const {
         cx,
         cy,
         innerRadius,
         outerRadius,
         angle
       } = activeCoordinate;
-      var innerPoint = (0, _PolarUtils.polarToCartesian)(cx, cy, innerRadius, angle);
-      var outerPoint = (0, _PolarUtils.polarToCartesian)(cx, cy, outerRadius, angle);
+      const innerPoint = (0, _PolarUtils.polarToCartesian)(cx, cy, innerRadius, angle);
+      const outerPoint = (0, _PolarUtils.polarToCartesian)(cx, cy, outerRadius, angle);
       x1 = innerPoint.x;
       y1 = innerPoint.y;
       x2 = outerPoint.x;

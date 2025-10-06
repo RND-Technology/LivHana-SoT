@@ -19,7 +19,7 @@ exports.compute_alpha = void 0;
 /* eslint-disable @typescript-eslint/no-namespace */
 /* eslint-disable no-irregular-whitespace */
 const googleapis_common_1 = require("googleapis-common");
-var compute_alpha;
+let compute_alpha;
 (function (compute_alpha) {
     /**
      * Compute Engine API

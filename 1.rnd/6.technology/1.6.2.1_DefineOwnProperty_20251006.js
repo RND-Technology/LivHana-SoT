@@ -1,17 +1,17 @@
 'use strict';
 
-var hasPropertyDescriptors = require('has-property-descriptors');
+const hasPropertyDescriptors = require('has-property-descriptors');
 
-var $defineProperty = require('es-define-property');
+const $defineProperty = require('es-define-property');
 
-var hasArrayLengthDefineBug = hasPropertyDescriptors.hasArrayLengthDefineBug();
+const hasArrayLengthDefineBug = hasPropertyDescriptors.hasArrayLengthDefineBug();
 
 // eslint-disable-next-line global-require
-var isArray = hasArrayLengthDefineBug && require('../helpers/IsArray');
+const isArray = hasArrayLengthDefineBug && require('../helpers/IsArray');
 
-var callBound = require('call-bound');
+const callBound = require('call-bound');
 
-var $isEnumerable = callBound('Object.prototype.propertyIsEnumerable');
+const $isEnumerable = callBound('Object.prototype.propertyIsEnumerable');
 
 // eslint-disable-next-line max-params
 module.exports = function DefineOwnProperty(IsDataDescriptor, SameValue, FromPropertyDescriptor, O, P, desc) {
@@ -31,7 +31,7 @@ module.exports = function DefineOwnProperty(IsDataDescriptor, SameValue, FromPro
 		}
 
 		// property does not exist at all, or exists but is enumerable
-		var V = desc['[[Value]]'];
+		const V = desc['[[Value]]'];
 		// eslint-disable-next-line no-param-reassign
 		O[P] = V; // will use [[Define]]
 		return SameValue(O[P], V);

@@ -1,31 +1,31 @@
 "use strict";
 exports.__esModule = true;
 exports.TerminalApi = void 0;
-var tslib_1 = require("tslib");
-var cancelTerminalActionResponse_1 = require("../models/cancelTerminalActionResponse");
-var cancelTerminalCheckoutResponse_1 = require("../models/cancelTerminalCheckoutResponse");
-var cancelTerminalRefundResponse_1 = require("../models/cancelTerminalRefundResponse");
-var createTerminalActionRequest_1 = require("../models/createTerminalActionRequest");
-var createTerminalActionResponse_1 = require("../models/createTerminalActionResponse");
-var createTerminalCheckoutRequest_1 = require("../models/createTerminalCheckoutRequest");
-var createTerminalCheckoutResponse_1 = require("../models/createTerminalCheckoutResponse");
-var createTerminalRefundRequest_1 = require("../models/createTerminalRefundRequest");
-var createTerminalRefundResponse_1 = require("../models/createTerminalRefundResponse");
-var dismissTerminalActionResponse_1 = require("../models/dismissTerminalActionResponse");
-var dismissTerminalCheckoutResponse_1 = require("../models/dismissTerminalCheckoutResponse");
-var dismissTerminalRefundResponse_1 = require("../models/dismissTerminalRefundResponse");
-var getTerminalActionResponse_1 = require("../models/getTerminalActionResponse");
-var getTerminalCheckoutResponse_1 = require("../models/getTerminalCheckoutResponse");
-var getTerminalRefundResponse_1 = require("../models/getTerminalRefundResponse");
-var searchTerminalActionsRequest_1 = require("../models/searchTerminalActionsRequest");
-var searchTerminalActionsResponse_1 = require("../models/searchTerminalActionsResponse");
-var searchTerminalCheckoutsRequest_1 = require("../models/searchTerminalCheckoutsRequest");
-var searchTerminalCheckoutsResponse_1 = require("../models/searchTerminalCheckoutsResponse");
-var searchTerminalRefundsRequest_1 = require("../models/searchTerminalRefundsRequest");
-var searchTerminalRefundsResponse_1 = require("../models/searchTerminalRefundsResponse");
-var schema_1 = require("../schema");
-var baseApi_1 = require("./baseApi");
-var TerminalApi = /** @class */ (function (_super) {
+const tslib_1 = require("tslib");
+const cancelTerminalActionResponse_1 = require("../models/cancelTerminalActionResponse");
+const cancelTerminalCheckoutResponse_1 = require("../models/cancelTerminalCheckoutResponse");
+const cancelTerminalRefundResponse_1 = require("../models/cancelTerminalRefundResponse");
+const createTerminalActionRequest_1 = require("../models/createTerminalActionRequest");
+const createTerminalActionResponse_1 = require("../models/createTerminalActionResponse");
+const createTerminalCheckoutRequest_1 = require("../models/createTerminalCheckoutRequest");
+const createTerminalCheckoutResponse_1 = require("../models/createTerminalCheckoutResponse");
+const createTerminalRefundRequest_1 = require("../models/createTerminalRefundRequest");
+const createTerminalRefundResponse_1 = require("../models/createTerminalRefundResponse");
+const dismissTerminalActionResponse_1 = require("../models/dismissTerminalActionResponse");
+const dismissTerminalCheckoutResponse_1 = require("../models/dismissTerminalCheckoutResponse");
+const dismissTerminalRefundResponse_1 = require("../models/dismissTerminalRefundResponse");
+const getTerminalActionResponse_1 = require("../models/getTerminalActionResponse");
+const getTerminalCheckoutResponse_1 = require("../models/getTerminalCheckoutResponse");
+const getTerminalRefundResponse_1 = require("../models/getTerminalRefundResponse");
+const searchTerminalActionsRequest_1 = require("../models/searchTerminalActionsRequest");
+const searchTerminalActionsResponse_1 = require("../models/searchTerminalActionsResponse");
+const searchTerminalCheckoutsRequest_1 = require("../models/searchTerminalCheckoutsRequest");
+const searchTerminalCheckoutsResponse_1 = require("../models/searchTerminalCheckoutsResponse");
+const searchTerminalRefundsRequest_1 = require("../models/searchTerminalRefundsRequest");
+const searchTerminalRefundsResponse_1 = require("../models/searchTerminalRefundsResponse");
+const schema_1 = require("../schema");
+const baseApi_1 = require("./baseApi");
+const TerminalApi = /** @class */ (function (_super) {
     tslib_1.__extends(TerminalApi, _super);
     function TerminalApi() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -40,7 +40,7 @@ var TerminalApi = /** @class */ (function (_super) {
      */
     TerminalApi.prototype.createTerminalAction = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/terminals/actions');
                 mapped = req.prepareArgs({
@@ -64,7 +64,7 @@ var TerminalApi = /** @class */ (function (_super) {
      */
     TerminalApi.prototype.searchTerminalActions = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/terminals/actions/search');
                 mapped = req.prepareArgs({
@@ -86,7 +86,7 @@ var TerminalApi = /** @class */ (function (_super) {
      */
     TerminalApi.prototype.getTerminalAction = function (actionId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({ actionId: [actionId, (0, schema_1.string)()] });
@@ -104,7 +104,7 @@ var TerminalApi = /** @class */ (function (_super) {
      */
     TerminalApi.prototype.cancelTerminalAction = function (actionId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({ actionId: [actionId, (0, schema_1.string)()] });
@@ -125,7 +125,7 @@ var TerminalApi = /** @class */ (function (_super) {
      */
     TerminalApi.prototype.dismissTerminalAction = function (actionId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({ actionId: [actionId, (0, schema_1.string)()] });
@@ -146,7 +146,7 @@ var TerminalApi = /** @class */ (function (_super) {
      */
     TerminalApi.prototype.createTerminalCheckout = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/terminals/checkouts');
                 mapped = req.prepareArgs({
@@ -171,7 +171,7 @@ var TerminalApi = /** @class */ (function (_super) {
      */
     TerminalApi.prototype.searchTerminalCheckouts = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/terminals/checkouts/search');
                 mapped = req.prepareArgs({
@@ -193,7 +193,7 @@ var TerminalApi = /** @class */ (function (_super) {
      */
     TerminalApi.prototype.getTerminalCheckout = function (checkoutId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({ checkoutId: [checkoutId, (0, schema_1.string)()] });
@@ -211,7 +211,7 @@ var TerminalApi = /** @class */ (function (_super) {
      */
     TerminalApi.prototype.cancelTerminalCheckout = function (checkoutId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({ checkoutId: [checkoutId, (0, schema_1.string)()] });
@@ -229,7 +229,7 @@ var TerminalApi = /** @class */ (function (_super) {
      */
     TerminalApi.prototype.dismissTerminalCheckout = function (checkoutId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({ checkoutId: [checkoutId, (0, schema_1.string)()] });
@@ -252,7 +252,7 @@ var TerminalApi = /** @class */ (function (_super) {
      */
     TerminalApi.prototype.createTerminalRefund = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/terminals/refunds');
                 mapped = req.prepareArgs({
@@ -276,7 +276,7 @@ var TerminalApi = /** @class */ (function (_super) {
      */
     TerminalApi.prototype.searchTerminalRefunds = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/terminals/refunds/search');
                 mapped = req.prepareArgs({
@@ -297,7 +297,7 @@ var TerminalApi = /** @class */ (function (_super) {
      */
     TerminalApi.prototype.getTerminalRefund = function (terminalRefundId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({
@@ -318,7 +318,7 @@ var TerminalApi = /** @class */ (function (_super) {
      */
     TerminalApi.prototype.cancelTerminalRefund = function (terminalRefundId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({
@@ -338,7 +338,7 @@ var TerminalApi = /** @class */ (function (_super) {
      */
     TerminalApi.prototype.dismissTerminalRefund = function (terminalRefundId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST');
                 mapped = req.prepareArgs({
@@ -353,5 +353,5 @@ var TerminalApi = /** @class */ (function (_super) {
     return TerminalApi;
 }(baseApi_1.BaseApi));
 exports.TerminalApi = TerminalApi;
-var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6, templateObject_7, templateObject_8, templateObject_9;
+let templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6, templateObject_7, templateObject_8, templateObject_9;
 //# sourceMappingURL=terminalApi.js.map

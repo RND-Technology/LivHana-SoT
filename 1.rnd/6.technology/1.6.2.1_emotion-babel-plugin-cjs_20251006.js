@@ -2,29 +2,29 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var _createForOfIteratorHelperLoose = require('@babel/runtime/helpers/createForOfIteratorHelperLoose');
-var _extends = require('@babel/runtime/helpers/extends');
-var _objectWithoutPropertiesLoose = require('@babel/runtime/helpers/objectWithoutPropertiesLoose');
-var nodePath = require('path');
-var sourceMap = require('source-map');
-var convert = require('convert-source-map');
-var findRoot = require('find-root');
-var memoize = require('@emotion/memoize');
-var hashString = require('@emotion/hash');
-var escapeRegexp = require('escape-string-regexp');
-var serialize = require('@emotion/serialize');
-var stylis = require('stylis');
-var helperModuleImports = require('@babel/helper-module-imports');
-var babelPluginMacros = require('babel-plugin-macros');
+const _createForOfIteratorHelperLoose = require('@babel/runtime/helpers/createForOfIteratorHelperLoose');
+const _extends = require('@babel/runtime/helpers/extends');
+const _objectWithoutPropertiesLoose = require('@babel/runtime/helpers/objectWithoutPropertiesLoose');
+const nodePath = require('path');
+const sourceMap = require('source-map');
+const convert = require('convert-source-map');
+const findRoot = require('find-root');
+const memoize = require('@emotion/memoize');
+const hashString = require('@emotion/hash');
+const escapeRegexp = require('escape-string-regexp');
+const serialize = require('@emotion/serialize');
+const stylis = require('stylis');
+const helperModuleImports = require('@babel/helper-module-imports');
+const babelPluginMacros = require('babel-plugin-macros');
 
 function _interopDefault (e) { return e && e.__esModule ? e : { 'default': e }; }
 
-var nodePath__default = /*#__PURE__*/_interopDefault(nodePath);
-var convert__default = /*#__PURE__*/_interopDefault(convert);
-var findRoot__default = /*#__PURE__*/_interopDefault(findRoot);
-var memoize__default = /*#__PURE__*/_interopDefault(memoize);
-var hashString__default = /*#__PURE__*/_interopDefault(hashString);
-var escapeRegexp__default = /*#__PURE__*/_interopDefault(escapeRegexp);
+const nodePath__default = /*#__PURE__*/_interopDefault(nodePath);
+const convert__default = /*#__PURE__*/_interopDefault(convert);
+const findRoot__default = /*#__PURE__*/_interopDefault(findRoot);
+const memoize__default = /*#__PURE__*/_interopDefault(memoize);
+const hashString__default = /*#__PURE__*/_interopDefault(hashString);
+const escapeRegexp__default = /*#__PURE__*/_interopDefault(escapeRegexp);
 
 /*
 type LabelFormatOptions = {
@@ -33,9 +33,9 @@ type LabelFormatOptions = {
 }
 */
 
-var invalidClassNameCharacters = /[!"#$%&'()*+,./:;<=>?@[\]^`|}~{]/g;
+const invalidClassNameCharacters = /[!"#$%&'()*+,./:;<=>?@[\]^`|}~{]/g;
 
-var sanitizeLabelPart = function sanitizeLabelPart(labelPart
+const sanitizeLabelPart = function sanitizeLabelPart(labelPart
 /*: string */
 ) {
   return labelPart.trim().replace(invalidClassNameCharacters, '-');
@@ -49,7 +49,7 @@ function getLabel(identifierName
 /*: string */
 ) {
   if (!identifierName) return null;
-  var sanitizedName = sanitizeLabelPart(identifierName);
+  const sanitizedName = sanitizeLabelPart(identifierName);
 
   if (!labelFormat) {
     return sanitizedName;
@@ -62,9 +62,9 @@ function getLabel(identifierName
     });
   }
 
-  var parsedPath = nodePath__default["default"].parse(filename);
-  var localDirname = nodePath__default["default"].basename(parsedPath.dir);
-  var localFilename = parsedPath.name;
+  const parsedPath = nodePath__default["default"].parse(filename);
+  const localDirname = nodePath__default["default"].basename(parsedPath.dir);
+  let localFilename = parsedPath.name;
 
   if (localFilename === 'index') {
     localFilename = localDirname;
@@ -77,7 +77,7 @@ function getLabelFromPath(path, state, t) {
   return getLabel(getIdentifierName(path, t), state.opts.labelFormat, state.file.opts.filename);
 }
 
-var getObjPropertyLikeName = function getObjPropertyLikeName(path, t) {
+const getObjPropertyLikeName = function getObjPropertyLikeName(path, t) {
   if (!t.isObjectProperty(path) && !t.isObjectMethod(path) || path.node.computed) {
     return null;
   }
@@ -94,7 +94,7 @@ var getObjPropertyLikeName = function getObjPropertyLikeName(path, t) {
 };
 
 function getDeclaratorName(path, t) {
-  var parent = path.findParent(function (p) {
+  const parent = path.findParent(function (p) {
     return p.isVariableDeclarator() || p.isAssignmentExpression() || p.isFunctionDeclaration() || p.isFunctionExpression() || p.isArrowFunctionExpression() || p.isObjectProperty() || p.isObjectMethod();
   });
 
@@ -113,15 +113,15 @@ function getDeclaratorName(path, t) {
   }
 
   if (parent.isAssignmentExpression()) {
-    var left = parent.node.left;
+    const left = parent.node.left;
 
     if (t.isIdentifier(left)) {
       return left.name;
     }
 
     if (t.isMemberExpression(left)) {
-      var memberExpression = left;
-      var name = '';
+      let memberExpression = left;
+      let name = '';
 
       while (true) {
         if (!t.isIdentifier(memberExpression.property)) {
@@ -163,13 +163,13 @@ function getDeclaratorName(path, t) {
   } // we could also have an object property
 
 
-  var objPropertyLikeName = getObjPropertyLikeName(parent, t);
+  const objPropertyLikeName = getObjPropertyLikeName(parent, t);
 
   if (objPropertyLikeName) {
     return objPropertyLikeName;
   }
 
-  var variableDeclarator = parent.findParent(function (p) {
+  const variableDeclarator = parent.findParent(function (p) {
     return p.isVariableDeclarator();
   });
 
@@ -181,13 +181,13 @@ function getDeclaratorName(path, t) {
 }
 
 function getIdentifierName(path, t) {
-  var objPropertyLikeName = getObjPropertyLikeName(path.parentPath, t);
+  const objPropertyLikeName = getObjPropertyLikeName(path.parentPath, t);
 
   if (objPropertyLikeName) {
     return objPropertyLikeName;
   }
 
-  var classOrClassPropertyParent = path.findParent(function (p) {
+  const classOrClassPropertyParent = path.findParent(function (p) {
     return t.isClassProperty(p) || t.isClass(p);
   });
 
@@ -201,7 +201,7 @@ function getIdentifierName(path, t) {
     }
   }
 
-  var declaratorName = getDeclaratorName(path, t); // if the name starts with _ it was probably generated by babel so we should ignore it
+  const declaratorName = getDeclaratorName(path, t); // if the name starts with _ it was probably generated by babel so we should ignore it
 
   if (declaratorName.charAt(0) === '_') {
     return '';
@@ -215,9 +215,9 @@ function getGeneratorOpts(file) {
 }
 
 function makeSourceMapGenerator(file) {
-  var generatorOpts = getGeneratorOpts(file);
-  var filename = generatorOpts.sourceFileName;
-  var generator = new sourceMap.SourceMapGenerator({
+  const generatorOpts = getGeneratorOpts(file);
+  const filename = generatorOpts.sourceFileName;
+  const generator = new sourceMap.SourceMapGenerator({
     file: filename,
     sourceRoot: generatorOpts.sourceRoot
   });
@@ -232,8 +232,8 @@ column: number
 , state)
 /*: string */
 {
-  var generator = makeSourceMapGenerator(state.file);
-  var generatorOpts = getGeneratorOpts(state.file);
+  const generator = makeSourceMapGenerator(state.file);
+  const generatorOpts = getGeneratorOpts(state.file);
 
   if (generatorOpts.sourceFileName && generatorOpts.sourceFileName !== 'unknown') {
     generator.addMapping({
@@ -252,19 +252,19 @@ column: number
   return '';
 }
 
-var hashArray = function hashArray(arr
+const hashArray = function hashArray(arr
 /*: Array<string> */
 ) {
   return hashString__default["default"](arr.join(''));
 };
 
-var unsafeRequire = require;
-var getPackageRootPath = memoize__default["default"](function (filename) {
+const unsafeRequire = require;
+const getPackageRootPath = memoize__default["default"](function (filename) {
   return findRoot__default["default"](filename);
 });
-var separator = new RegExp(escapeRegexp__default["default"](nodePath__default["default"].sep), 'g');
+const separator = new RegExp(escapeRegexp__default["default"](nodePath__default["default"].sep), 'g');
 
-var normalizePath = function normalizePath(path) {
+const normalizePath = function normalizePath(path) {
   return nodePath__default["default"].normalize(path).replace(separator, '/');
 };
 
@@ -273,21 +273,21 @@ function getTargetClassName(state, t) {
     state.emotionTargetClassNameCount = 0;
   }
 
-  var hasFilepath = state.file.opts.filename && state.file.opts.filename !== 'unknown';
-  var filename = hasFilepath ? state.file.opts.filename : ''; // normalize the file path to ignore folder structure
+  const hasFilepath = state.file.opts.filename && state.file.opts.filename !== 'unknown';
+  const filename = hasFilepath ? state.file.opts.filename : ''; // normalize the file path to ignore folder structure
   // outside the current node project and arch-specific delimiters
 
-  var moduleName = '';
-  var rootPath = filename;
+  let moduleName = '';
+  let rootPath = filename;
 
   try {
     rootPath = getPackageRootPath(filename);
     moduleName = unsafeRequire(rootPath + '/package.json').name;
   } catch (err) {}
 
-  var finalPath = filename === rootPath ? 'root' : filename.slice(rootPath.length);
-  var positionInFile = state.emotionTargetClassNameCount++;
-  var stuffToHash = [moduleName];
+  const finalPath = filename === rootPath ? 'root' : filename.slice(rootPath.length);
+  const positionInFile = state.emotionTargetClassNameCount++;
+  const stuffToHash = [moduleName];
 
   if (finalPath) {
     stuffToHash.push(normalizePath(finalPath));
@@ -295,7 +295,7 @@ function getTargetClassName(state, t) {
     stuffToHash.push(state.file.code);
   }
 
-  var stableClassName = "e" + hashArray(stuffToHash) + positionInFile;
+  const stableClassName = "e" + hashArray(stuffToHash) + positionInFile;
   return stableClassName;
 }
 
@@ -305,25 +305,25 @@ function getTargetClassName(state, t) {
 function simplifyObject(node, t
 /*: Object */
 ) {
-  var finalString = '';
+  let finalString = '';
 
-  for (var i = 0; i < node.properties.length; i++) {
+  for (let i = 0; i < node.properties.length; i++) {
     var _ref;
 
-    var property = node.properties[i];
+    const property = node.properties[i];
 
     if (!t.isObjectProperty(property) || property.computed || !t.isIdentifier(property.key) && !t.isStringLiteral(property.key) || !t.isStringLiteral(property.value) && !t.isNumericLiteral(property.value) && !t.isObjectExpression(property.value)) {
       return node;
     }
 
-    var key = property.key.name || property.key.value;
+    const key = property.key.name || property.key.value;
 
     if (key === 'styles') {
       return node;
     }
 
     if (t.isObjectExpression(property.value)) {
-      var simplifiedChild = simplifyObject(property.value, t);
+      const simplifiedChild = simplifyObject(property.value, t);
 
       if (!t.isStringLiteral(simplifiedChild)) {
         return node;
@@ -333,25 +333,25 @@ function simplifyObject(node, t
       continue;
     }
 
-    var value = property.value.value;
+    const value = property.value.value;
     finalString += serialize.serializeStyles([(_ref = {}, _ref[key] = value, _ref)]).styles;
   }
 
   return t.stringLiteral(finalString);
 }
 
-var haveSameLocation = function haveSameLocation(element1, element2) {
+const haveSameLocation = function haveSameLocation(element1, element2) {
   return element1.line === element2.line && element1.column === element2.column;
 };
 
-var isAutoInsertedRule = function isAutoInsertedRule(element) {
+const isAutoInsertedRule = function isAutoInsertedRule(element) {
   return element.type === 'rule' && element.parent && haveSameLocation(element, element.parent);
 };
 
-var toInputTree = function toInputTree(elements, tree) {
-  for (var i = 0; i < elements.length; i++) {
-    var element = elements[i];
-    var parent = element.parent,
+const toInputTree = function toInputTree(elements, tree) {
+  for (let i = 0; i < elements.length; i++) {
+    const element = elements[i];
+    const parent = element.parent,
         children = element.children;
 
     if (!parent) {
@@ -369,7 +369,7 @@ var toInputTree = function toInputTree(elements, tree) {
   return tree;
 };
 
-var stringifyTree = function stringifyTree(elements) {
+const stringifyTree = function stringifyTree(elements) {
   return elements.map(function (element) {
     switch (element.type) {
       case 'import':
@@ -396,7 +396,7 @@ var stringifyTree = function stringifyTree(elements) {
   }).join('');
 };
 
-var interleave = function interleave(strings
+const interleave = function interleave(strings
 /*: Array<*> */
 , interpolations
 /*: Array<*> */
@@ -409,9 +409,9 @@ var interleave = function interleave(strings
 function getDynamicMatches(str
 /*: string */
 ) {
-  var re = /xxx(\d+):xxx/gm;
-  var match;
-  var matches = [];
+  const re = /xxx(\d+):xxx/gm;
+  let match;
+  const matches = [];
 
   while ((match = re.exec(str)) !== null) {
     if (match !== null) {
@@ -431,7 +431,7 @@ function replacePlaceholdersWithExpressions(str
 , expressions
 /*: Array<*> */
 , t) {
-  var matches = getDynamicMatches(str);
+  const matches = getDynamicMatches(str);
 
   if (matches.length === 0) {
     if (str === '') {
@@ -441,14 +441,14 @@ function replacePlaceholdersWithExpressions(str
     return [t.stringLiteral(str)];
   }
 
-  var strings = [];
-  var finalExpressions = [];
-  var cursor = 0;
+  const strings = [];
+  const finalExpressions = [];
+  let cursor = 0;
   matches.forEach(function (_ref, i) {
-    var value = _ref.value,
+    const value = _ref.value,
         p1 = _ref.p1,
         index = _ref.index;
-    var preMatch = str.substring(cursor, index);
+    const preMatch = str.substring(cursor, index);
     cursor = cursor + preMatch.length + value.length;
 
     if (!preMatch && i === 0) {
@@ -475,10 +475,10 @@ function createRawStringFromTemplateLiteral(quasi
 quasis: Array<{ value: { cooked: string } }>
 } */
 ) {
-  var strs = quasi.quasis.map(function (x) {
+  const strs = quasi.quasis.map(function (x) {
     return x.value.cooked;
   });
-  var src = strs.reduce(function (arr, str, i) {
+  const src = strs.reduce(function (arr, str, i) {
     arr.push(str);
 
     if (i !== strs.length - 1) {
@@ -491,10 +491,10 @@ quasis: Array<{ value: { cooked: string } }>
 }
 
 function minify(path, t) {
-  var quasi = path.node.quasi;
-  var raw = createRawStringFromTemplateLiteral(quasi);
-  var minified = stringifyTree(toInputTree(stylis.compile(raw), []));
-  var expressions = replacePlaceholdersWithExpressions(minified, quasi.expressions || [], t);
+  const quasi = path.node.quasi;
+  const raw = createRawStringFromTemplateLiteral(quasi);
+  const minified = stringifyTree(toInputTree(stylis.compile(raw), []));
+  const expressions = replacePlaceholdersWithExpressions(minified, quasi.expressions || [], t);
   path.replaceWith(t.callExpression(path.node.tag, expressions));
 }
 
@@ -505,7 +505,7 @@ function getTypeScriptMakeTemplateObjectPath(path) {
     return null;
   }
 
-  var firstArgPath = path.get('arguments')[0];
+  const firstArgPath = path.get('arguments')[0];
 
   if (firstArgPath.isLogicalExpression() && firstArgPath.get('left').isIdentifier() && firstArgPath.get('right').isAssignmentExpression() && firstArgPath.get('right.right').isCallExpression() && firstArgPath.get('right.right.callee').isIdentifier() && firstArgPath.node.right.right.callee.name.includes('makeTemplateObject') && firstArgPath.node.right.right.arguments.length === 2) {
     return firstArgPath.get('right.right');
@@ -522,37 +522,37 @@ function isTaggedTemplateTranspiledByBabel(path) {
     return false;
   }
 
-  var firstArgPath = path.get('arguments')[0];
+  const firstArgPath = path.get('arguments')[0];
 
   if (!firstArgPath.isCallExpression() || !firstArgPath.get('callee').isIdentifier()) {
     return false;
   }
 
-  var calleeName = firstArgPath.node.callee.name;
+  const calleeName = firstArgPath.node.callee.name;
 
   if (!calleeName.includes('templateObject')) {
     return false;
   }
 
-  var bindingPath = path.scope.getBinding(calleeName).path;
+  const bindingPath = path.scope.getBinding(calleeName).path;
 
   if (!bindingPath.isFunction()) {
     return false;
   }
 
-  var functionBody = bindingPath.get('body.body');
+  const functionBody = bindingPath.get('body.body');
 
   if (!functionBody[0].isVariableDeclaration()) {
     return false;
   }
 
-  var declarationInit = functionBody[0].get('declarations')[0].get('init');
+  const declarationInit = functionBody[0].get('declarations')[0].get('init');
 
   if (!declarationInit.isCallExpression()) {
     return false;
   }
 
-  var declarationInitArguments = declarationInit.get('arguments');
+  const declarationInitArguments = declarationInit.get('arguments');
 
   if (declarationInitArguments.length === 0 || declarationInitArguments.length > 2 || declarationInitArguments.some(function (argPath) {
     return !argPath.isArrayExpression();
@@ -563,9 +563,9 @@ function isTaggedTemplateTranspiledByBabel(path) {
   return true;
 }
 
-var appendStringReturningExpressionToArguments = function appendStringReturningExpressionToArguments(t, path, expression) {
-  var lastIndex = path.node.arguments.length - 1;
-  var last = path.node.arguments[lastIndex];
+const appendStringReturningExpressionToArguments = function appendStringReturningExpressionToArguments(t, path, expression) {
+  const lastIndex = path.node.arguments.length - 1;
+  const last = path.node.arguments[lastIndex];
 
   if (t.isStringLiteral(last)) {
     if (typeof expression === 'string') {
@@ -574,12 +574,12 @@ var appendStringReturningExpressionToArguments = function appendStringReturningE
       path.node.arguments[lastIndex] = t.binaryExpression('+', last, expression);
     }
   } else {
-    var makeTemplateObjectCallPath = getTypeScriptMakeTemplateObjectPath(path);
+    const makeTemplateObjectCallPath = getTypeScriptMakeTemplateObjectPath(path);
 
     if (makeTemplateObjectCallPath) {
       makeTemplateObjectCallPath.get('arguments').forEach(function (argPath) {
-        var elements = argPath.get('elements');
-        var lastElement = elements[elements.length - 1];
+        const elements = argPath.get('elements');
+        const lastElement = elements[elements.length - 1];
 
         if (typeof expression === 'string') {
           lastElement.replaceWith(t.stringLiteral(lastElement.node.value + expression));
@@ -596,7 +596,7 @@ var appendStringReturningExpressionToArguments = function appendStringReturningE
     }
   }
 };
-var joinStringLiterals = function joinStringLiterals(expressions
+const joinStringLiterals = function joinStringLiterals(expressions
 /*: Array<*> */
 , t) {
   return expressions.reduce(function (finalExpressions, currentExpression, i) {
@@ -616,8 +616,8 @@ function createNodeEnvConditional(t, production, development) {
   return t.conditionalExpression(t.binaryExpression('===', t.memberExpression(t.memberExpression(t.identifier('process'), t.identifier('env')), t.identifier('NODE_ENV')), t.stringLiteral('production')), production, development);
 }
 
-var CSS_OBJECT_STRINGIFIED_ERROR = "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop).";
-var transformExpressionWithStyles = function transformExpressionWithStyles(_ref
+const CSS_OBJECT_STRINGIFIED_ERROR = "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop).";
+const transformExpressionWithStyles = function transformExpressionWithStyles(_ref
 /*: {
 babel,
 state,
@@ -626,14 +626,14 @@ shouldLabel: boolean,
 sourceMap?: string
 } */
 ) {
-  var babel = _ref.babel,
+  let babel = _ref.babel,
       state = _ref.state,
       path = _ref.path,
       shouldLabel = _ref.shouldLabel,
       _ref$sourceMap = _ref.sourceMap,
       sourceMap = _ref$sourceMap === void 0 ? '' : _ref$sourceMap;
-  var autoLabel = state.opts.autoLabel || 'dev-only';
-  var t = babel.types;
+  const autoLabel = state.opts.autoLabel || 'dev-only';
+  const t = babel.types;
 
   if (t.isTaggedTemplateExpression(path)) {
     if (!sourceMap && state.emotionSourceMap && path.node.quasi.loc !== undefined) {
@@ -644,7 +644,7 @@ sourceMap?: string
   }
 
   if (t.isCallExpression(path)) {
-    var canAppendStrings = path.node.arguments.every(function (arg) {
+    const canAppendStrings = path.node.arguments.every(function (arg) {
       return arg.type !== 'SpreadElement';
     });
     path.get('arguments').forEach(function (node) {
@@ -658,17 +658,17 @@ sourceMap?: string
       sourceMap = getSourceMap(path.node.loc.start, state);
     }
 
-    var label = shouldLabel && autoLabel !== 'never' ? getLabelFromPath(path, state, t) : null;
+    const label = shouldLabel && autoLabel !== 'never' ? getLabelFromPath(path, state, t) : null;
 
     if (path.node.arguments.length === 1 && t.isStringLiteral(path.node.arguments[0])) {
-      var cssString = path.node.arguments[0].value.replace(/;$/, '');
-      var res = serialize.serializeStyles(["" + cssString + (label && autoLabel === 'always' ? ";label:" + label + ";" : '')]);
-      var prodNode = t.objectExpression([t.objectProperty(t.identifier('name'), t.stringLiteral(res.name)), t.objectProperty(t.identifier('styles'), t.stringLiteral(res.styles))]);
+      const cssString = path.node.arguments[0].value.replace(/;$/, '');
+      let res = serialize.serializeStyles(["" + cssString + (label && autoLabel === 'always' ? ";label:" + label + ";" : '')]);
+      const prodNode = t.objectExpression([t.objectProperty(t.identifier('name'), t.stringLiteral(res.name)), t.objectProperty(t.identifier('styles'), t.stringLiteral(res.styles))]);
 
       if (!state.emotionStringifiedCssId) {
-        var uid = state.file.scope.generateUidIdentifier('__EMOTION_STRINGIFIED_CSS_ERROR__');
+        const uid = state.file.scope.generateUidIdentifier('__EMOTION_STRINGIFIED_CSS_ERROR__');
         state.emotionStringifiedCssId = uid;
-        var cssObjectToString = t.functionDeclaration(uid, [], t.blockStatement([t.returnStatement(t.stringLiteral(CSS_OBJECT_STRINGIFIED_ERROR))]));
+        const cssObjectToString = t.functionDeclaration(uid, [], t.blockStatement([t.returnStatement(t.stringLiteral(CSS_OBJECT_STRINGIFIED_ERROR))]));
         cssObjectToString._compact = true;
         state.file.path.unshiftContainer('body', [cssObjectToString]);
       }
@@ -677,17 +677,17 @@ sourceMap?: string
         res = serialize.serializeStyles([cssString + ";label:" + label + ";"]);
       }
 
-      var devNode = t.objectExpression([t.objectProperty(t.identifier('name'), t.stringLiteral(res.name)), t.objectProperty(t.identifier('styles'), t.stringLiteral(res.styles + sourceMap)), t.objectProperty(t.identifier('toString'), t.cloneNode(state.emotionStringifiedCssId))].filter(Boolean));
+      const devNode = t.objectExpression([t.objectProperty(t.identifier('name'), t.stringLiteral(res.name)), t.objectProperty(t.identifier('styles'), t.stringLiteral(res.styles + sourceMap)), t.objectProperty(t.identifier('toString'), t.cloneNode(state.emotionStringifiedCssId))].filter(Boolean));
       return createNodeEnvConditional(t, prodNode, devNode);
     }
 
     if (canAppendStrings && label) {
-      var labelString = ";label:" + label + ";";
+      const labelString = ";label:" + label + ";";
 
       switch (autoLabel) {
         case 'dev-only':
           {
-            var labelConditional = createNodeEnvConditional(t, t.stringLiteral(''), t.stringLiteral(labelString));
+            const labelConditional = createNodeEnvConditional(t, t.stringLiteral(''), t.stringLiteral(labelString));
             appendStringReturningExpressionToArguments(t, path, labelConditional);
             break;
           }
@@ -699,13 +699,13 @@ sourceMap?: string
     }
 
     if (sourceMap) {
-      var sourceMapConditional = createNodeEnvConditional(t, t.stringLiteral(''), t.stringLiteral(sourceMap));
+      const sourceMapConditional = createNodeEnvConditional(t, t.stringLiteral(''), t.stringLiteral(sourceMap));
       appendStringReturningExpressionToArguments(t, path, sourceMapConditional);
     }
   }
 };
 
-var getKnownProperties = function getKnownProperties(t, node) {
+const getKnownProperties = function getKnownProperties(t, node) {
   return new Set(node.properties.filter(function (n) {
     return t.isObjectProperty(n) && !n.computed;
   }).map(function (n) {
@@ -713,7 +713,7 @@ var getKnownProperties = function getKnownProperties(t, node) {
   }));
 };
 
-var createObjectSpreadLike = function createObjectSpreadLike(t, file) {
+const createObjectSpreadLike = function createObjectSpreadLike(t, file) {
   for (var _len = arguments.length, objs = new Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
     objs[_key - 2] = arguments[_key];
   }
@@ -721,22 +721,22 @@ var createObjectSpreadLike = function createObjectSpreadLike(t, file) {
   return t.callExpression(file.addHelper('extends'), [t.objectExpression([])].concat(objs));
 };
 
-var getStyledOptions = function getStyledOptions(t, path, state) {
-  var autoLabel = state.opts.autoLabel || 'dev-only';
-  var args = path.node.arguments;
-  var optionsArgument = args.length >= 2 ? args[1] : null;
-  var prodProperties = [];
-  var devProperties = null;
-  var knownProperties = optionsArgument && t.isObjectExpression(optionsArgument) ? getKnownProperties(t, optionsArgument) : new Set();
+const getStyledOptions = function getStyledOptions(t, path, state) {
+  const autoLabel = state.opts.autoLabel || 'dev-only';
+  const args = path.node.arguments;
+  const optionsArgument = args.length >= 2 ? args[1] : null;
+  const prodProperties = [];
+  let devProperties = null;
+  const knownProperties = optionsArgument && t.isObjectExpression(optionsArgument) ? getKnownProperties(t, optionsArgument) : new Set();
 
   if (!knownProperties.has('target')) {
     prodProperties.push(t.objectProperty(t.identifier('target'), t.stringLiteral(getTargetClassName(state))));
   }
 
-  var label = autoLabel !== 'never' && !knownProperties.has('label') ? getLabelFromPath(path, state, t) : null;
+  const label = autoLabel !== 'never' && !knownProperties.has('label') ? getLabelFromPath(path, state, t) : null;
 
   if (label) {
-    var labelNode = t.objectProperty(t.identifier('label'), t.stringLiteral(label));
+    const labelNode = t.objectProperty(t.identifier('label'), t.stringLiteral(label));
 
     switch (autoLabel) {
       case 'always':
@@ -757,7 +757,7 @@ var getStyledOptions = function getStyledOptions(t, path, state) {
     }
 
     if (!t.isObjectExpression(optionsArgument)) {
-      var prodNode = createObjectSpreadLike(t, state.file, t.objectExpression(prodProperties), optionsArgument);
+      const prodNode = createObjectSpreadLike(t, state.file, t.objectExpression(prodProperties), optionsArgument);
       return devProperties ? createNodeEnvConditional(t, prodNode, t.cloneNode(createObjectSpreadLike(t, state.file, t.objectExpression(prodProperties.concat(devProperties)), optionsArgument))) : prodNode;
     }
 
@@ -774,10 +774,10 @@ function addImport(state, importSource
 , nameHint
 /* ?: string */
 ) {
-  var cacheKey = ['import', importSource, importedSpecifier].join(':');
+  const cacheKey = ['import', importSource, importedSpecifier].join(':');
 
   if (state[cacheKey] === undefined) {
-    var importIdentifier;
+    let importIdentifier;
 
     if (importedSpecifier === 'default') {
       importIdentifier = helperModuleImports.addDefault(state.file.path, importSource, {
@@ -807,9 +807,9 @@ function createTransformerMacro(transformers
 , _ref
 /*: { importSource: string } */
 ) {
-  var importSource = _ref.importSource;
-  var macro = babelPluginMacros.createMacro(function (_ref2) {
-    var path = _ref2.path,
+  const importSource = _ref.importSource;
+  const macro = babelPluginMacros.createMacro(function (_ref2) {
+    let path = _ref2.path,
         source = _ref2.source,
         references = _ref2.references,
         state = _ref2.state,
@@ -833,8 +833,8 @@ function createTransformerMacro(transformers
     Object.keys(references).forEach(function (importSpecifierName) {
       if (transformers[importSpecifierName]) {
         references[importSpecifierName].reverse().forEach(function (reference) {
-          var options;
-          var transformer;
+          let options;
+          let transformer;
 
           if (Array.isArray(transformers[importSpecifierName])) {
             transformer = transformers[importSpecifierName][0];
@@ -864,12 +864,12 @@ function createTransformerMacro(transformers
   return macro;
 }
 
-var isAlreadyTranspiled = function isAlreadyTranspiled(path) {
+const isAlreadyTranspiled = function isAlreadyTranspiled(path) {
   if (!path.isCallExpression()) {
     return false;
   }
 
-  var firstArgPath = path.get('arguments.0');
+  const firstArgPath = path.get('arguments.0');
 
   if (!firstArgPath) {
     return false;
@@ -879,13 +879,13 @@ var isAlreadyTranspiled = function isAlreadyTranspiled(path) {
     return false;
   }
 
-  var alternatePath = firstArgPath.get('alternate');
+  const alternatePath = firstArgPath.get('alternate');
 
   if (!alternatePath.isObjectExpression()) {
     return false;
   }
 
-  var properties = new Set(alternatePath.get('properties').map(function (p) {
+  const properties = new Set(alternatePath.get('properties').map(function (p) {
     return p.node.key.name;
   }));
   return ['name', 'styles'].every(function (p) {
@@ -893,18 +893,18 @@ var isAlreadyTranspiled = function isAlreadyTranspiled(path) {
   });
 };
 
-var createEmotionTransformer = function createEmotionTransformer(isPure
+const createEmotionTransformer = function createEmotionTransformer(isPure
 /*: boolean */
 ) {
   return function (_ref
   /*: Object */
   ) {
-    var state = _ref.state,
+    const state = _ref.state,
         babel = _ref.babel;
         _ref.importSource;
-        var reference = _ref.reference;
+        const reference = _ref.reference;
         _ref.importSpecifierName;
-    var path = reference.parentPath;
+    const path = reference.parentPath;
 
     if (isAlreadyTranspiled(path)) {
       return;
@@ -914,7 +914,7 @@ var createEmotionTransformer = function createEmotionTransformer(isPure
       path.addComment('leading', '#__PURE__');
     }
 
-    var node = transformExpressionWithStyles({
+    const node = transformExpressionWithStyles({
       babel: babel,
       state: state,
       path: path,
@@ -927,12 +927,12 @@ var createEmotionTransformer = function createEmotionTransformer(isPure
   };
 };
 
-var transformers$1 = {
+const transformers$1 = {
   css: createEmotionTransformer(true),
   injectGlobal: createEmotionTransformer(false),
   keyframes: createEmotionTransformer(true)
 };
-var createEmotionMacro = function createEmotionMacro(importSource
+const createEmotionMacro = function createEmotionMacro(importSource
 /*: string */
 ) {
   return createTransformerMacro(transformers$1, {
@@ -940,8 +940,8 @@ var createEmotionMacro = function createEmotionMacro(importSource
   });
 };
 
-var getReferencedSpecifier = function getReferencedSpecifier(path, specifierName) {
-  var specifiers = path.get('specifiers');
+const getReferencedSpecifier = function getReferencedSpecifier(path, specifierName) {
+  const specifiers = path.get('specifiers');
   return specifierName === 'default' ? specifiers.find(function (p) {
     return p.isImportDefaultSpecifier();
   }) : specifiers.find(function (p) {
@@ -949,7 +949,7 @@ var getReferencedSpecifier = function getReferencedSpecifier(path, specifierName
   });
 };
 
-var styledTransformer = function styledTransformer(_ref
+const styledTransformer = function styledTransformer(_ref
 /*: {
 state: Object,
 babel: Object,
@@ -960,7 +960,7 @@ reference: Object,
 options: { styledBaseImport?: [string, string], isWeb: boolean }
 } */
 ) {
-  var state = _ref.state,
+  const state = _ref.state,
       babel = _ref.babel,
       path = _ref.path,
       importSource = _ref.importSource,
@@ -969,15 +969,15 @@ options: { styledBaseImport?: [string, string], isWeb: boolean }
       _ref$options = _ref.options,
       styledBaseImport = _ref$options.styledBaseImport,
       isWeb = _ref$options.isWeb;
-  var t = babel.types;
+  const t = babel.types;
 
-  var getStyledIdentifier = function getStyledIdentifier() {
+  const getStyledIdentifier = function getStyledIdentifier() {
     if (!styledBaseImport || styledBaseImport[0] === importSource && styledBaseImport[1] === importSpecifierName) {
       return t.cloneNode(reference.node);
     }
 
     if (path.node) {
-      var referencedSpecifier = getReferencedSpecifier(path, importSpecifierName);
+      const referencedSpecifier = getReferencedSpecifier(path, importSpecifierName);
 
       if (referencedSpecifier) {
         referencedSpecifier.remove();
@@ -988,12 +988,12 @@ options: { styledBaseImport?: [string, string], isWeb: boolean }
       }
     }
 
-    var baseImportSource = styledBaseImport[0],
+    const baseImportSource = styledBaseImport[0],
         baseSpecifierName = styledBaseImport[1];
     return addImport(state, baseImportSource, baseSpecifierName, 'styled');
   };
 
-  var createStyledComponentPath = null;
+  let createStyledComponentPath = null;
 
   if (t.isMemberExpression(reference.parent) && reference.parent.computed === false) {
     if ( // checks if the first character is lowercase
@@ -1015,8 +1015,8 @@ options: { styledBaseImport?: [string, string], isWeb: boolean }
     return;
   }
 
-  var styledCallLikeWithStylesPath = createStyledComponentPath.parentPath;
-  var node = transformExpressionWithStyles({
+  const styledCallLikeWithStylesPath = createStyledComponentPath.parentPath;
+  const node = transformExpressionWithStyles({
     path: styledCallLikeWithStylesPath,
     state: state,
     babel: babel,
@@ -1034,7 +1034,7 @@ options: { styledBaseImport?: [string, string], isWeb: boolean }
     createStyledComponentPath.node.arguments[1] = getStyledOptions(t, createStyledComponentPath, state);
   }
 };
-var createStyledMacro = function createStyledMacro(_ref2
+const createStyledMacro = function createStyledMacro(_ref2
 /*: {
 importSource: string,
 originalImportSource?: string,
@@ -1042,7 +1042,7 @@ baseImportName?: string,
 isWeb: boolean
 } */
 ) {
-  var importSource = _ref2.importSource,
+  const importSource = _ref2.importSource,
       _ref2$originalImportS = _ref2.originalImportSource,
       originalImportSource = _ref2$originalImportS === void 0 ? importSource : _ref2$originalImportS,
       _ref2$baseImportName = _ref2.baseImportName,
@@ -1058,7 +1058,7 @@ isWeb: boolean
   });
 };
 
-var transformCssCallExpression = function transformCssCallExpression(_ref
+const transformCssCallExpression = function transformCssCallExpression(_ref
 /*: {
 state: *,
 babel: *,
@@ -1067,13 +1067,13 @@ sourceMap?: string,
 annotateAsPure?: boolean
 } */
 ) {
-  var state = _ref.state,
+  const state = _ref.state,
       babel = _ref.babel,
       path = _ref.path,
       sourceMap = _ref.sourceMap,
       _ref$annotateAsPure = _ref.annotateAsPure,
       annotateAsPure = _ref$annotateAsPure === void 0 ? true : _ref$annotateAsPure;
-  var node = transformExpressionWithStyles({
+  const node = transformExpressionWithStyles({
     babel: babel,
     state: state,
     path: path,
@@ -1088,19 +1088,19 @@ annotateAsPure?: boolean
     path.addComment('leading', '#__PURE__');
   }
 };
-var transformCsslessArrayExpression = function transformCsslessArrayExpression(_ref2
+const transformCsslessArrayExpression = function transformCsslessArrayExpression(_ref2
 /*: {
 babel: *,
 state: *,
 path: *
 } */
 ) {
-  var state = _ref2.state,
+  const state = _ref2.state,
       babel = _ref2.babel,
       path = _ref2.path;
-  var t = babel.types;
-  var expressionPath = path.get('value.expression');
-  var sourceMap = state.emotionSourceMap && path.node.loc !== undefined ? getSourceMap(path.node.loc.start, state) : '';
+  const t = babel.types;
+  const expressionPath = path.get('value.expression');
+  const sourceMap = state.emotionSourceMap && path.node.loc !== undefined ? getSourceMap(path.node.loc.start, state) : '';
   expressionPath.replaceWith(t.callExpression( // the name of this identifier doesn't really matter at all
   // it'll never appear in generated code
   t.identifier('___shouldNeverAppearCSS'), path.node.value.expression.elements));
@@ -1116,7 +1116,7 @@ path: *
     expressionPath.replaceWith(t.arrayExpression(expressionPath.node.arguments));
   }
 };
-var transformCsslessObjectExpression = function transformCsslessObjectExpression(_ref3
+const transformCsslessObjectExpression = function transformCsslessObjectExpression(_ref3
 /*: {
 babel: *,
 state: *,
@@ -1124,13 +1124,13 @@ path: *,
 cssImport: { importSource: string, cssExport: string }
 } */
 ) {
-  var state = _ref3.state,
+  const state = _ref3.state,
       babel = _ref3.babel,
       path = _ref3.path,
       cssImport = _ref3.cssImport;
-  var t = babel.types;
-  var expressionPath = path.get('value.expression');
-  var sourceMap = state.emotionSourceMap && path.node.loc !== undefined ? getSourceMap(path.node.loc.start, state) : '';
+  const t = babel.types;
+  const expressionPath = path.get('value.expression');
+  const sourceMap = state.emotionSourceMap && path.node.loc !== undefined ? getSourceMap(path.node.loc.start, state) : '';
   expressionPath.replaceWith(t.callExpression( // the name of this identifier doesn't really matter at all
   // it'll never appear in generated code
   t.identifier('___shouldNeverAppearCSS'), [path.node.value.expression]));
@@ -1146,14 +1146,14 @@ cssImport: { importSource: string, cssExport: string }
   }
 };
 
-var cssTransformer = function cssTransformer(_ref4
+const cssTransformer = function cssTransformer(_ref4
 /*: {
 state: any,
 babel: any,
 reference: any
 } */
 ) {
-  var state = _ref4.state,
+  const state = _ref4.state,
       babel = _ref4.babel,
       reference = _ref4.reference;
   transformCssCallExpression({
@@ -1163,7 +1163,7 @@ reference: any
   });
 };
 
-var globalTransformer = function globalTransformer(_ref5
+const globalTransformer = function globalTransformer(_ref5
 /*: {
 state: any,
 babel: any,
@@ -1172,18 +1172,18 @@ importSource: string,
 options: { cssExport?: string }
 } */
 ) {
-  var state = _ref5.state,
+  const state = _ref5.state,
       babel = _ref5.babel,
       reference = _ref5.reference,
       importSource = _ref5.importSource,
       options = _ref5.options;
-  var t = babel.types;
+  const t = babel.types;
 
   if (!t.isJSXIdentifier(reference.node) || !t.isJSXOpeningElement(reference.parentPath.node)) {
     return;
   }
 
-  var stylesPropPath = reference.parentPath.get('attributes').find(function (p) {
+  const stylesPropPath = reference.parentPath.get('attributes').find(function (p) {
     return t.isJSXAttribute(p.node) && p.node.name.name === 'styles';
   });
 
@@ -1215,7 +1215,7 @@ options: { cssExport?: string }
   }
 };
 
-var transformers = {
+const transformers = {
   // this is an empty function because this transformer is never called
   // we don't run any transforms on `jsx` directly
   // instead we use it as a hint to enable css prop optimization
@@ -1223,15 +1223,15 @@ var transformers = {
   css: cssTransformer,
   Global: globalTransformer
 };
-var coreMacro = createTransformerMacro(transformers, {
+const coreMacro = createTransformerMacro(transformers, {
   importSource: '@emotion/react'
 });
 
-var _excluded = ["canonicalImport"];
+const _excluded = ["canonicalImport"];
 
-var getCssExport = function getCssExport(reexported, importSource, mapping) {
-  var cssExport = Object.keys(mapping).find(function (localExportName) {
-    var _mapping$localExportN = mapping[localExportName].canonicalImport,
+const getCssExport = function getCssExport(reexported, importSource, mapping) {
+  const cssExport = Object.keys(mapping).find(function (localExportName) {
+    const _mapping$localExportN = mapping[localExportName].canonicalImport,
         packageName = _mapping$localExportN[0],
         exportName = _mapping$localExportN[1];
     return packageName === '@emotion/react' && exportName === 'css';
@@ -1244,23 +1244,23 @@ var getCssExport = function getCssExport(reexported, importSource, mapping) {
   return cssExport;
 };
 
-var webStyledMacro = createStyledMacro({
+const webStyledMacro = createStyledMacro({
   importSource: '@emotion/styled/base',
   originalImportSource: '@emotion/styled',
   isWeb: true
 });
-var nativeStyledMacro = createStyledMacro({
+const nativeStyledMacro = createStyledMacro({
   importSource: '@emotion/native',
   originalImportSource: '@emotion/native',
   isWeb: false
 });
-var primitivesStyledMacro = createStyledMacro({
+const primitivesStyledMacro = createStyledMacro({
   importSource: '@emotion/primitives',
   originalImportSource: '@emotion/primitives',
   isWeb: false
 });
-var vanillaEmotionMacro = createEmotionMacro('@emotion/css');
-var transformersSource = {
+const vanillaEmotionMacro = createEmotionMacro('@emotion/css');
+const transformersSource = {
   '@emotion/css': transformers$1,
   '@emotion/react': transformers,
   '@emotion/styled': {
@@ -1280,7 +1280,7 @@ var transformersSource = {
     }]
   }
 };
-var macros = {
+const macros = {
   core: coreMacro,
   nativeStyled: nativeStyledMacro,
   primitivesStyled: primitivesStyledMacro,
@@ -1293,7 +1293,7 @@ export type BabelPath = any
 export type EmotionBabelPluginPass = any
 */
 
-var AUTO_LABEL_VALUES = ['dev-only', 'never', 'always'];
+const AUTO_LABEL_VALUES = ['dev-only', 'never', 'always'];
 function index (babel, options) {
   if (options.autoLabel !== undefined && !AUTO_LABEL_VALUES.includes(options.autoLabel)) {
     throw new Error("The 'autoLabel' option must be undefined, or one of the following: " + AUTO_LABEL_VALUES.map(function (s) {
@@ -1301,15 +1301,15 @@ function index (babel, options) {
     }).join(', '));
   }
 
-  var t = babel.types;
+  const t = babel.types;
   return {
     name: '@emotion',
     // https://github.com/babel/babel/blob/0c97749e0fe8ad845b902e0b23a24b308b0bf05d/packages/babel-plugin-syntax-jsx/src/index.ts#L9-L18
     manipulateOptions: function manipulateOptions(opts, parserOpts) {
-      var plugins = parserOpts.plugins;
+      const plugins = parserOpts.plugins;
 
       if (plugins.some(function (p) {
-        var plugin = Array.isArray(p) ? p[0] : p;
+        const plugin = Array.isArray(p) ? p[0] : p;
         return plugin === 'typescript' || plugin === 'jsx';
       })) {
         return;
@@ -1319,7 +1319,7 @@ function index (babel, options) {
     },
     visitor: {
       ImportDeclaration: function ImportDeclaration(path, state) {
-        var macro = state.pluginMacros[path.node.source.value]; // most of this is from https://github.com/kentcdodds/babel-plugin-macros/blob/main/src/index.js
+        const macro = state.pluginMacros[path.node.source.value]; // most of this is from https://github.com/kentcdodds/babel-plugin-macros/blob/main/src/index.js
 
         if (macro === undefined) {
           return;
@@ -1329,18 +1329,18 @@ function index (babel, options) {
           return;
         }
 
-        var imports = path.node.specifiers.map(function (s) {
+        const imports = path.node.specifiers.map(function (s) {
           return {
             localName: s.local.name,
             importedName: s.type === 'ImportDefaultSpecifier' ? 'default' : s.imported.name
           };
         });
-        var shouldExit = false;
-        var hasReferences = false;
-        var referencePathsByImportName = imports.reduce(function (byName, _ref) {
-          var importedName = _ref.importedName,
+        let shouldExit = false;
+        let hasReferences = false;
+        const referencePathsByImportName = imports.reduce(function (byName, _ref) {
+          const importedName = _ref.importedName,
               localName = _ref.localName;
-          var binding = path.scope.getBinding(localName);
+          const binding = path.scope.getBinding(localName);
 
           if (!binding) {
             shouldExit = true;
@@ -1378,8 +1378,8 @@ function index (babel, options) {
         });
       },
       Program: function Program(path, state) {
-        var macros = {};
-        var jsxReactImports
+        const macros = {};
+        const jsxReactImports
         /*: Array<{
         importSource: string,
         export: string,
@@ -1392,14 +1392,14 @@ function index (babel, options) {
         }];
         state.jsxReactImport = jsxReactImports[0];
         Object.keys(state.opts.importMap || {}).forEach(function (importSource) {
-          var value = state.opts.importMap[importSource];
-          var transformers = {};
+          const value = state.opts.importMap[importSource];
+          const transformers = {};
           Object.keys(value).forEach(function (localExportName) {
-            var _value$localExportNam = value[localExportName],
+            const _value$localExportNam = value[localExportName],
                 canonicalImport = _value$localExportNam.canonicalImport,
                 options = _objectWithoutPropertiesLoose(_value$localExportNam, _excluded);
 
-            var packageName = canonicalImport[0],
+            const packageName = canonicalImport[0],
                 exportName = canonicalImport[1];
 
             if (packageName === '@emotion/react' && exportName === 'jsx') {
@@ -1411,13 +1411,13 @@ function index (babel, options) {
               return;
             }
 
-            var packageTransformers = transformersSource[packageName];
+            const packageTransformers = transformersSource[packageName];
 
             if (packageTransformers === undefined) {
               throw new Error("There is no transformer for the export '" + exportName + "' in '" + packageName + "'");
             }
 
-            var extraOptions;
+            let extraOptions;
 
             if (packageName === '@emotion/react' && exportName === 'Global') {
               // this option is not supposed to be set in importMap
@@ -1432,7 +1432,7 @@ function index (babel, options) {
               };
             }
 
-            var _ref2 = Array.isArray(packageTransformers[exportName]) ? packageTransformers[exportName] : [packageTransformers[exportName]],
+            const _ref2 = Array.isArray(packageTransformers[exportName]) ? packageTransformers[exportName] : [packageTransformers[exportName]],
                 exportTransformer = _ref2[0],
                 defaultOptions = _ref2[1];
 
@@ -1450,11 +1450,11 @@ function index (babel, options) {
           '@emotion/css': vanillaEmotionMacro
         }, macros);
 
-        var _loop = function _loop() {
-          var node = _step.value;
+        const _loop = function _loop() {
+          const node = _step.value;
 
           if (t.isImportDeclaration(node)) {
-            var jsxReactImport = jsxReactImports.find(function (thing) {
+            const jsxReactImport = jsxReactImports.find(function (thing) {
               return node.source.value === thing.importSource && node.specifiers.some(function (x) {
                 return t.isImportSpecifier(x) && x.imported.name === thing["export"];
               });
@@ -1468,7 +1468,7 @@ function index (babel, options) {
         };
 
         for (var _iterator = _createForOfIteratorHelperLoose(path.node.body), _step; !(_step = _iterator()).done;) {
-          var _ret = _loop();
+          const _ret = _loop();
 
           if (_ret === "break") break;
         }

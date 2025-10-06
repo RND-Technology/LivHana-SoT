@@ -191,8 +191,8 @@ export default function anPlusB(token, getNextToken) {
     // <n-dimension> <signed-integer>
     // <n-dimension> ['+' | '-'] <signless-integer>
     else if (token.type === Dimension) {
-        let code = token.value.charCodeAt(0);
-        let sign = code === PLUSSIGN || code === HYPHENMINUS ? 1 : 0;
+        const code = token.value.charCodeAt(0);
+        const sign = code === PLUSSIGN || code === HYPHENMINUS ? 1 : 0;
         let i = sign;
 
         for (; i < token.value.length; i++) {
@@ -235,4 +235,4 @@ export default function anPlusB(token, getNextToken) {
     }
 
     return 0;
-};
+}

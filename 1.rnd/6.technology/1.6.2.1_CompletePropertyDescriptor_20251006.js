@@ -1,13 +1,13 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var hasOwn = require('hasown');
+const hasOwn = require('hasown');
 
-var IsDataDescriptor = require('./IsDataDescriptor');
-var IsGenericDescriptor = require('./IsGenericDescriptor');
+const IsDataDescriptor = require('./IsDataDescriptor');
+const IsGenericDescriptor = require('./IsGenericDescriptor');
 
-var isPropertyDescriptor = require('../helpers/records/property-descriptor');
+const isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/6.0/#sec-completepropertydescriptor
 

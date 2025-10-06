@@ -1,13 +1,13 @@
 "use strict";
 exports.__esModule = true;
 exports.PayoutsApi = void 0;
-var tslib_1 = require("tslib");
-var getPayoutResponse_1 = require("../models/getPayoutResponse");
-var listPayoutEntriesResponse_1 = require("../models/listPayoutEntriesResponse");
-var listPayoutsResponse_1 = require("../models/listPayoutsResponse");
-var schema_1 = require("../schema");
-var baseApi_1 = require("./baseApi");
-var PayoutsApi = /** @class */ (function (_super) {
+const tslib_1 = require("tslib");
+const getPayoutResponse_1 = require("../models/getPayoutResponse");
+const listPayoutEntriesResponse_1 = require("../models/listPayoutEntriesResponse");
+const listPayoutsResponse_1 = require("../models/listPayoutsResponse");
+const schema_1 = require("../schema");
+const baseApi_1 = require("./baseApi");
+const PayoutsApi = /** @class */ (function (_super) {
     tslib_1.__extends(PayoutsApi, _super);
     function PayoutsApi() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -39,7 +39,7 @@ var PayoutsApi = /** @class */ (function (_super) {
      */
     PayoutsApi.prototype.listPayouts = function (locationId, status, beginTime, endTime, sortOrder, cursor, limit, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET', '/v2/payouts');
                 mapped = req.prepareArgs({
@@ -72,7 +72,7 @@ var PayoutsApi = /** @class */ (function (_super) {
      */
     PayoutsApi.prototype.getPayout = function (payoutId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({ payoutId: [payoutId, (0, schema_1.string)()] });
@@ -101,7 +101,7 @@ var PayoutsApi = /** @class */ (function (_super) {
      */
     PayoutsApi.prototype.listPayoutEntries = function (payoutId, sortOrder, cursor, limit, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({
@@ -122,5 +122,5 @@ var PayoutsApi = /** @class */ (function (_super) {
     return PayoutsApi;
 }(baseApi_1.BaseApi));
 exports.PayoutsApi = PayoutsApi;
-var templateObject_1, templateObject_2;
+let templateObject_1, templateObject_2;
 //# sourceMappingURL=payoutsApi.js.map

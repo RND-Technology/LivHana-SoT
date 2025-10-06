@@ -18,7 +18,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getRPCMetadata = exports.deleteRPCMetadata = exports.setRPCMetadata = exports.RPCType = void 0;
 const api_1 = require("@opentelemetry/api");
 const RPC_METADATA_KEY = (0, api_1.createContextKey)('OpenTelemetry SDK Context Key RPC_METADATA');
-var RPCType;
+let RPCType;
 (function (RPCType) {
     RPCType["HTTP"] = "http";
 })(RPCType = exports.RPCType || (exports.RPCType = {}));

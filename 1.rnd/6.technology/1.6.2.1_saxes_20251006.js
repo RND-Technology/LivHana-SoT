@@ -4,16 +4,16 @@ exports.SaxesParser = exports.EVENTS = void 0;
 const ed5 = require("xmlchars/xml/1.0/ed5");
 const ed2 = require("xmlchars/xml/1.1/ed2");
 const NSed3 = require("xmlchars/xmlns/1.0/ed3");
-var isS = ed5.isS;
-var isChar10 = ed5.isChar;
-var isNameStartChar = ed5.isNameStartChar;
-var isNameChar = ed5.isNameChar;
-var S_LIST = ed5.S_LIST;
-var NAME_RE = ed5.NAME_RE;
-var isChar11 = ed2.isChar;
-var isNCNameStartChar = NSed3.isNCNameStartChar;
-var isNCNameChar = NSed3.isNCNameChar;
-var NC_NAME_RE = NSed3.NC_NAME_RE;
+const isS = ed5.isS;
+const isChar10 = ed5.isChar;
+const isNameStartChar = ed5.isNameStartChar;
+const isNameChar = ed5.isNameChar;
+const S_LIST = ed5.S_LIST;
+const NAME_RE = ed5.NAME_RE;
+const isChar11 = ed2.isChar;
+const isNCNameStartChar = NSed3.isNCNameStartChar;
+const isNCNameChar = NSed3.isNCNameChar;
+const NC_NAME_RE = NSed3.NC_NAME_RE;
 const XML_NAMESPACE = "http://www.w3.org/XML/1998/namespace";
 const XMLNS_NAMESPACE = "http://www.w3.org/2000/xmlns/";
 const rootNS = {
@@ -290,7 +290,7 @@ class SaxesParser {
         return this._closed;
     }
     _init() {
-        var _a;
+        let _a;
         this.openWakaBang = "";
         this.text = "";
         this.name = "";
@@ -398,7 +398,7 @@ class SaxesParser {
      * @returns An error object with a properly formatted message.
      */
     makeError(message) {
-        var _a;
+        let _a;
         let msg = (_a = this.fileName) !== null && _a !== void 0 ? _a : "";
         if (this.trackPosition) {
             if (msg.length > 0) {
@@ -811,7 +811,7 @@ class SaxesParser {
         }
     }
     sDoctype() {
-        var _a;
+        let _a;
         const c = this.captureTo(DOCTYPE_TERMINATOR);
         switch (c) {
             case GREATER: {
@@ -1062,7 +1062,7 @@ class SaxesParser {
         }
     }
     sCommentEnding() {
-        var _a;
+        let _a;
         const c = this.getCodeNorm();
         if (c === MINUS) {
             this.state = S_COMMENT_ENDED;
@@ -1103,7 +1103,7 @@ class SaxesParser {
         }
     }
     sCDataEnding2() {
-        var _a;
+        let _a;
         const c = this.getCodeNorm();
         switch (c) {
             case GREATER: {
@@ -1192,7 +1192,7 @@ class SaxesParser {
         }
     }
     sPIEnding() {
-        var _a;
+        let _a;
         const c = this.getCodeNorm();
         if (c === GREATER) {
             const { piTarget } = this;
@@ -1369,7 +1369,7 @@ class SaxesParser {
         this.state = S_XML_DECL_NAME_START;
     }
     sXMLDeclEnding() {
-        var _a;
+        let _a;
         const c = this.getCodeNorm();
         if (c === GREATER) {
             if (this.piTarget !== "xml") {
@@ -1393,7 +1393,7 @@ class SaxesParser {
         this.xmlDeclPossible = false;
     }
     sOpenTag() {
-        var _a;
+        let _a;
         const c = this.captureNameChars();
         if (c === EOC) {
             return;
@@ -1775,7 +1775,7 @@ class SaxesParser {
         }
     }
     pushAttribNS(name, value) {
-        var _a;
+        let _a;
         const { prefix, local } = this.qname(name);
         const attr = { name, prefix, local, value };
         this.attribList.push(attr);
@@ -1795,7 +1795,7 @@ class SaxesParser {
         }
     }
     pushAttribPlain(name, value) {
-        var _a;
+        let _a;
         const attr = { name, value };
         this.attribList.push(attr);
         (_a = this.attributeHandler) === null || _a === void 0 ? void 0 : _a.call(this, attr);
@@ -1807,7 +1807,7 @@ class SaxesParser {
      * @returns this
      */
     end() {
-        var _a, _b;
+        let _a, _b;
         if (!this.sawRoot) {
             this.fail("document must contain a root element.");
         }
@@ -1837,7 +1837,7 @@ class SaxesParser {
      * @returns The namespace URI or ``undefined`` if the prefix is not defined.
      */
     resolve(prefix) {
-        var _a, _b;
+        let _a, _b;
         let uri = this.topNS[prefix];
         if (uri !== undefined) {
             return uri;
@@ -1876,7 +1876,7 @@ class SaxesParser {
         return { prefix, local };
     }
     processAttribsNS() {
-        var _a;
+        let _a;
         const { attribList } = this;
         const tag = this.tag;
         {
@@ -1947,7 +1947,7 @@ class SaxesParser {
      * ``onopentag``.
      */
     openTag() {
-        var _a;
+        let _a;
         this.processAttribs();
         const { tags } = this;
         const tag = this.tag;
@@ -1965,7 +1965,7 @@ class SaxesParser {
      * ``onopentag`` and ``onclosetag``.
      */
     openSelfClosingTag() {
-        var _a, _b, _c;
+        let _a, _b, _c;
         this.processAttribs();
         const { tags } = this;
         const tag = this.tag;

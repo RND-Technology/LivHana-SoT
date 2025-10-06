@@ -1,4 +1,4 @@
-var exponent = 3;
+const exponent = 3;
 
 export var polyIn = (function custom(e) {
   e = +e;

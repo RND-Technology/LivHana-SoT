@@ -1,11 +1,11 @@
 "use strict";
 exports.__esModule = true;
 exports.catalogItemVariationSchema = void 0;
-var schema_1 = require("../schema");
-var catalogItemOptionValueForItemVariation_1 = require("./catalogItemOptionValueForItemVariation");
-var catalogStockConversion_1 = require("./catalogStockConversion");
-var itemVariationLocationOverrides_1 = require("./itemVariationLocationOverrides");
-var money_1 = require("./money");
+const schema_1 = require("../schema");
+const catalogItemOptionValueForItemVariation_1 = require("./catalogItemOptionValueForItemVariation");
+const catalogStockConversion_1 = require("./catalogStockConversion");
+const itemVariationLocationOverrides_1 = require("./itemVariationLocationOverrides");
+const money_1 = require("./money");
 exports.catalogItemVariationSchema = (0, schema_1.object)({
     itemId: ['item_id', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.string)()))],
     name: ['name', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.string)()))],

@@ -20,14 +20,14 @@ const gaxios = require("gaxios");
 const minimist = require("yargs-parser");
 const generator_1 = require("./generator");
 const download_1 = require("./download");
-var Semverity;
+let Semverity;
 (function (Semverity) {
     Semverity[Semverity["PATCH"] = 1] = "PATCH";
     Semverity[Semverity["MINOR"] = 2] = "MINOR";
     Semverity[Semverity["MAJOR"] = 3] = "MAJOR";
 })(Semverity || (exports.Semverity = Semverity = {}));
 async function synth(options = {}) {
-    var _a, _b, _c, _d, _e, _f;
+    let _a, _b, _c, _d, _e, _f;
     const gen = new generator_1.Generator();
     let changeSets = [];
     if (!options.useCache) {

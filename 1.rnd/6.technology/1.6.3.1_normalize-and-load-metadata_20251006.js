@@ -7,8 +7,8 @@ exports.default = normalizeModuleAndLoadMetadata;
 exports.hasExports = hasExports;
 exports.isSideEffectImport = isSideEffectImport;
 exports.validateImportInteropOption = validateImportInteropOption;
-var _path = require("path");
-var _helperValidatorIdentifier = require("@babel/helper-validator-identifier");
+const _path = require("path");
+const _helperValidatorIdentifier = require("@babel/helper-validator-identifier");
 function hasExports(metadata) {
   return metadata.hasExports;
 }
@@ -279,7 +279,7 @@ function getLocalExportMetadata(programPath, initializeReexports, stringSpecifie
     const localName = idPath.node.name;
     let metadata = localMetadata.get(localName);
     if (!metadata) {
-      var _bindingKindLookup$ge, _programScope$getBind;
+      let _bindingKindLookup$ge, _programScope$getBind;
       const kind = (_bindingKindLookup$ge = bindingKindLookup.get(localName)) != null ? _bindingKindLookup$ge : (_programScope$getBind = programScope.getBinding(localName)) == null ? void 0 : _programScope$getBind.kind;
       if (kind === undefined) {
         throw idPath.buildCodeFrameError(`Exporting local "${localName}", which is not declared.`);
@@ -330,7 +330,7 @@ function nameAnonymousExports(programPath) {
   programPath.get("body").forEach(child => {
     if (!child.isExportDefaultDeclaration()) return;
     {
-      var _child$splitExportDec;
+      let _child$splitExportDec;
       (_child$splitExportDec = child.splitExportDeclaration) != null ? _child$splitExportDec : child.splitExportDeclaration = require("@babel/traverse").NodePath.prototype.splitExportDeclaration;
     }
     child.splitExportDeclaration();

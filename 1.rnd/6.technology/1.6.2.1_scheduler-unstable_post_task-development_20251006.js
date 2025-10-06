@@ -15,25 +15,25 @@ if (process.env.NODE_ENV !== "production") {
 'use strict';
 
 // TODO: Use symbols?
-var ImmediatePriority = 1;
-var UserBlockingPriority = 2;
-var NormalPriority = 3;
-var LowPriority = 4;
-var IdlePriority = 5;
+const ImmediatePriority = 1;
+const UserBlockingPriority = 2;
+const NormalPriority = 3;
+const LowPriority = 4;
+const IdlePriority = 5;
 
-var perf = window.performance;
-var setTimeout = window.setTimeout; // Use experimental Chrome Scheduler postTask API.
+const perf = window.performance;
+const setTimeout = window.setTimeout; // Use experimental Chrome Scheduler postTask API.
 
-var scheduler = global.scheduler;
-var getCurrentTime = perf.now.bind(perf);
-var unstable_now = getCurrentTime; // Scheduler periodically yields in case there is other work on the main
+const scheduler = global.scheduler;
+const getCurrentTime = perf.now.bind(perf);
+const unstable_now = getCurrentTime; // Scheduler periodically yields in case there is other work on the main
 // thread, like user events. By default, it yields multiple times per frame.
 // It does not attempt to align with frame boundaries, since most tasks don't
 // need to be frame aligned; for those that do, use requestAnimationFrame.
 
-var yieldInterval = 5;
-var deadline = 0;
-var currentPriorityLevel_DEPRECATED = NormalPriority; // `isInputPending` is not available. Since we have no way of knowing if
+const yieldInterval = 5;
+let deadline = 0;
+let currentPriorityLevel_DEPRECATED = NormalPriority; // `isInputPending` is not available. Since we have no way of knowing if
 // there's pending input, always yield at the end of the frame.
 
 function unstable_shouldYield() {
@@ -42,7 +42,7 @@ function unstable_shouldYield() {
 function unstable_requestPaint() {// Since we yield every frame regardless, `requestPaint` has no effect.
 }
 function unstable_scheduleCallback(priorityLevel, callback, options) {
-  var postTaskPriority;
+  let postTaskPriority;
 
   switch (priorityLevel) {
     case ImmediatePriority:
@@ -64,13 +64,13 @@ function unstable_scheduleCallback(priorityLevel, callback, options) {
       break;
   }
 
-  var controller = new TaskController();
-  var postTaskOptions = {
+  const controller = new TaskController();
+  const postTaskOptions = {
     priority: postTaskPriority,
     delay: typeof options === 'object' && options !== null ? options.delay : 0,
     signal: controller.signal
   };
-  var node = {
+  const node = {
     _controller: controller
   };
   scheduler.postTask(runTask.bind(null, priorityLevel, postTaskPriority, node, callback), postTaskOptions).catch(handleAbortError);
@@ -82,14 +82,14 @@ function runTask(priorityLevel, postTaskPriority, node, callback) {
 
   try {
     currentPriorityLevel_DEPRECATED = priorityLevel;
-    var _didTimeout_DEPRECATED = false;
-    var result = callback(_didTimeout_DEPRECATED);
+    const _didTimeout_DEPRECATED = false;
+    const result = callback(_didTimeout_DEPRECATED);
 
     if (typeof result === 'function') {
       // Assume this is a continuation
-      var continuation = result;
-      var continuationController = new TaskController();
-      var continuationOptions = {
+      const continuation = result;
+      const continuationController = new TaskController();
+      const continuationOptions = {
         priority: postTaskPriority,
         signal: continuationController.signal
       }; // Update the original callback node's controller, since even though we're
@@ -120,11 +120,11 @@ function handleAbortError(error) {// Abort errors are an implementation detail. 
 }
 
 function unstable_cancelCallback(node) {
-  var controller = node._controller;
+  const controller = node._controller;
   controller.abort();
 }
 function unstable_runWithPriority(priorityLevel, callback) {
-  var previousPriorityLevel = currentPriorityLevel_DEPRECATED;
+  const previousPriorityLevel = currentPriorityLevel_DEPRECATED;
   currentPriorityLevel_DEPRECATED = priorityLevel;
 
   try {
@@ -137,7 +137,7 @@ function unstable_getCurrentPriorityLevel() {
   return currentPriorityLevel_DEPRECATED;
 }
 function unstable_next(callback) {
-  var priorityLevel;
+  let priorityLevel;
 
   switch (currentPriorityLevel_DEPRECATED) {
     case ImmediatePriority:
@@ -153,7 +153,7 @@ function unstable_next(callback) {
       break;
   }
 
-  var previousPriorityLevel = currentPriorityLevel_DEPRECATED;
+  const previousPriorityLevel = currentPriorityLevel_DEPRECATED;
   currentPriorityLevel_DEPRECATED = priorityLevel;
 
   try {
@@ -163,9 +163,9 @@ function unstable_next(callback) {
   }
 }
 function unstable_wrapCallback(callback) {
-  var parentPriorityLevel = currentPriorityLevel_DEPRECATED;
+  const parentPriorityLevel = currentPriorityLevel_DEPRECATED;
   return function () {
-    var previousPriorityLevel = currentPriorityLevel_DEPRECATED;
+    const previousPriorityLevel = currentPriorityLevel_DEPRECATED;
     currentPriorityLevel_DEPRECATED = parentPriorityLevel;
 
     try {
@@ -182,7 +182,7 @@ function unstable_getFirstCallbackNode() {
   return null;
 } // Currently no profiling build
 
-var unstable_Profiling = null;
+const unstable_Profiling = null;
 
 exports.unstable_IdlePriority = IdlePriority;
 exports.unstable_ImmediatePriority = ImmediatePriority;

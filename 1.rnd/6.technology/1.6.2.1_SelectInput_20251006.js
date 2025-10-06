@@ -1,35 +1,35 @@
 "use strict";
 'use client';
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+const _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
-var _formatMuiErrorMessage2 = _interopRequireDefault(require("@mui/utils/formatMuiErrorMessage"));
-var React = _interopRequireWildcard(require("react"));
-var _reactIs = require("react-is");
-var _propTypes = _interopRequireDefault(require("prop-types"));
-var _clsx = _interopRequireDefault(require("clsx"));
-var _composeClasses = _interopRequireDefault(require("@mui/utils/composeClasses"));
-var _useId = _interopRequireDefault(require("@mui/utils/useId"));
-var _refType = _interopRequireDefault(require("@mui/utils/refType"));
-var _ownerDocument = _interopRequireDefault(require("../utils/ownerDocument"));
-var _capitalize = _interopRequireDefault(require("../utils/capitalize"));
-var _Menu = _interopRequireDefault(require("../Menu/Menu"));
-var _NativeSelectInput = require("../NativeSelect/NativeSelectInput");
-var _utils = require("../InputBase/utils");
-var _styled = _interopRequireWildcard(require("../styles/styled"));
-var _useForkRef = _interopRequireDefault(require("../utils/useForkRef"));
-var _useControlled = _interopRequireDefault(require("../utils/useControlled"));
-var _selectClasses = _interopRequireWildcard(require("./selectClasses"));
-var _jsxRuntime = require("react/jsx-runtime");
-var _span;
+const _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+const _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+const _formatMuiErrorMessage2 = _interopRequireDefault(require("@mui/utils/formatMuiErrorMessage"));
+const React = _interopRequireWildcard(require("react"));
+const _reactIs = require("react-is");
+const _propTypes = _interopRequireDefault(require("prop-types"));
+const _clsx = _interopRequireDefault(require("clsx"));
+const _composeClasses = _interopRequireDefault(require("@mui/utils/composeClasses"));
+const _useId = _interopRequireDefault(require("@mui/utils/useId"));
+const _refType = _interopRequireDefault(require("@mui/utils/refType"));
+const _ownerDocument = _interopRequireDefault(require("../utils/ownerDocument"));
+const _capitalize = _interopRequireDefault(require("../utils/capitalize"));
+const _Menu = _interopRequireDefault(require("../Menu/Menu"));
+const _NativeSelectInput = require("../NativeSelect/NativeSelectInput");
+const _utils = require("../InputBase/utils");
+const _styled = _interopRequireWildcard(require("../styles/styled"));
+const _useForkRef = _interopRequireDefault(require("../utils/useForkRef"));
+const _useControlled = _interopRequireDefault(require("../utils/useControlled"));
+const _selectClasses = _interopRequireWildcard(require("./selectClasses"));
+const _jsxRuntime = require("react/jsx-runtime");
+let _span;
 const _excluded = ["aria-describedby", "aria-label", "autoFocus", "autoWidth", "children", "className", "defaultOpen", "defaultValue", "disabled", "displayEmpty", "error", "IconComponent", "inputRef", "labelId", "MenuProps", "multiple", "name", "onBlur", "onChange", "onClose", "onFocus", "onOpen", "open", "readOnly", "renderValue", "SelectDisplayProps", "tabIndex", "type", "value", "variant"];
-function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
-function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; const r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; const t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); const n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (const u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { const i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 const SelectSelect = (0, _styled.default)('div', {
   name: 'MuiSelect',
   slot: 'Select',
@@ -117,7 +117,7 @@ const useUtilityClasses = ownerState => {
  * @ignore - internal component.
  */
 const SelectInput = /*#__PURE__*/React.forwardRef(function SelectInput(props, ref) {
-  var _MenuProps$slotProps;
+  let _MenuProps$slotProps;
   const {
       'aria-describedby': ariaDescribedby,
       'aria-label': ariaLabel,
@@ -661,4 +661,4 @@ process.env.NODE_ENV !== "production" ? SelectInput.propTypes = {
    */
   variant: _propTypes.default.oneOf(['standard', 'outlined', 'filled'])
 } : void 0;
-var _default = exports.default = SelectInput;
+const _default = exports.default = SelectInput;

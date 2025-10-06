@@ -1,4 +1,4 @@
-var convert = require('./convert'),
+const convert = require('./convert'),
     func = convert('invokeArgsMap', require('../invokeMap'));
 
 func.placeholder = require('./placeholder');

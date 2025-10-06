@@ -232,7 +232,7 @@ const parseXml = function(xmlData) {
         i = closeIndex;
       } else if( xmlData[i+1] === '?') {
 
-        let tagData = readTagExp(xmlData,i, false, "?>");
+        const tagData = readTagExp(xmlData,i, false, "?>");
         if(!tagData) throw new Error("Pi Tag is not closed.");
 
         textData = this.saveTextToParentTag(textData, currentNode, jPath);
@@ -284,12 +284,12 @@ const parseXml = function(xmlData) {
         
         i = closeIndex + 2;
       }else {//Opening tag
-        let result = readTagExp(xmlData,i, this.options.removeNSPrefix);
+        const result = readTagExp(xmlData,i, this.options.removeNSPrefix);
         let tagName= result.tagName;
         const rawTagName = result.rawTagName;
         let tagExp = result.tagExp;
-        let attrExpPresent = result.attrExpPresent;
-        let closeIndex = result.closeIndex;
+        const attrExpPresent = result.attrExpPresent;
+        const closeIndex = result.closeIndex;
 
         if (this.options.transformTagName) {
           tagName = this.options.transformTagName(tagName);
@@ -409,16 +409,16 @@ function addChild(currentNode, childNode, jPath){
 const replaceEntitiesValue = function(val){
 
   if(this.options.processEntities){
-    for(let entityName in this.docTypeEntities){
+    for(const entityName in this.docTypeEntities){
       const entity = this.docTypeEntities[entityName];
       val = val.replace( entity.regx, entity.val);
     }
-    for(let entityName in this.lastEntities){
+    for(const entityName in this.lastEntities){
       const entity = this.lastEntities[entityName];
       val = val.replace( entity.regex, entity.val);
     }
     if(this.options.htmlEntities){
-      for(let entityName in this.htmlEntities){
+      for(const entityName in this.htmlEntities){
         const entity = this.htmlEntities[entityName];
         val = val.replace( entity.regex, entity.val);
       }
@@ -551,7 +551,7 @@ function readStopNodeData(xmlData, tagName, i){
     if( xmlData[i] === "<"){ 
       if (xmlData[i+1] === "/") {//close tag
           const closeIndex = findClosingIndex(xmlData, ">", i, `${tagName} is not closed`);
-          let closeTagName = xmlData.substring(i+2,closeIndex).trim();
+          const closeTagName = xmlData.substring(i+2,closeIndex).trim();
           if(closeTagName === tagName){
             openTagCount--;
             if (openTagCount === 0) {

@@ -1,11 +1,11 @@
 "use strict";
 module.exports = Writer;
 
-var util      = require("./util/minimal");
+const util      = require("./util/minimal");
 
-var BufferWriter; // cyclic
+let BufferWriter; // cyclic
 
-var LongBits  = util.LongBits,
+const LongBits  = util.LongBits,
     base64    = util.base64,
     utf8      = util.utf8;
 
@@ -121,7 +121,7 @@ function Writer() {
     // part is just a linked list walk calling operations with already prepared values.
 }
 
-var create = function create() {
+const create = function create() {
     return util.Buffer
         ? function create_buffer_setup() {
             return (Writer.create = function create_buffer() {
@@ -259,7 +259,7 @@ function writeVarint64(val, buf, pos) {
  * @throws {TypeError} If `value` is a string and no long library is present.
  */
 Writer.prototype.uint64 = function write_uint64(value) {
-    var bits = LongBits.from(value);
+    const bits = LongBits.from(value);
     return this._push(writeVarint64, bits.length(), bits);
 };
 
@@ -279,7 +279,7 @@ Writer.prototype.int64 = Writer.prototype.uint64;
  * @throws {TypeError} If `value` is a string and no long library is present.
  */
 Writer.prototype.sint64 = function write_sint64(value) {
-    var bits = LongBits.from(value).zzEncode();
+    const bits = LongBits.from(value).zzEncode();
     return this._push(writeVarint64, bits.length(), bits);
 };
 
@@ -323,7 +323,7 @@ Writer.prototype.sfixed32 = Writer.prototype.fixed32;
  * @throws {TypeError} If `value` is a string and no long library is present.
  */
 Writer.prototype.fixed64 = function write_fixed64(value) {
-    var bits = LongBits.from(value);
+    const bits = LongBits.from(value);
     return this._push(writeFixed32, 4, bits.lo)._push(writeFixed32, 4, bits.hi);
 };
 
@@ -356,13 +356,13 @@ Writer.prototype.double = function write_double(value) {
     return this._push(util.float.writeDoubleLE, 8, value);
 };
 
-var writeBytes = util.Array.prototype.set
+const writeBytes = util.Array.prototype.set
     ? function writeBytes_set(val, buf, pos) {
         buf.set(val, pos); // also works for plain array values
     }
     /* istanbul ignore next */
     : function writeBytes_for(val, buf, pos) {
-        for (var i = 0; i < val.length; ++i)
+        for (let i = 0; i < val.length; ++i)
             buf[pos + i] = val[i];
     };
 
@@ -372,11 +372,11 @@ var writeBytes = util.Array.prototype.set
  * @returns {Writer} `this`
  */
 Writer.prototype.bytes = function write_bytes(value) {
-    var len = value.length >>> 0;
+    let len = value.length >>> 0;
     if (!len)
         return this._push(writeByte, 1, 0);
     if (util.isString(value)) {
-        var buf = Writer.alloc(len = base64.length(value));
+        const buf = Writer.alloc(len = base64.length(value));
         base64.decode(value, buf, 0);
         value = buf;
     }
@@ -389,7 +389,7 @@ Writer.prototype.bytes = function write_bytes(value) {
  * @returns {Writer} `this`
  */
 Writer.prototype.string = function write_string(value) {
-    var len = utf8.length(value);
+    const len = utf8.length(value);
     return len
         ? this.uint32(len)._push(utf8.write, len, value)
         : this._push(writeByte, 1, 0);
@@ -429,7 +429,7 @@ Writer.prototype.reset = function reset() {
  * @returns {Writer} `this`
  */
 Writer.prototype.ldelim = function ldelim() {
-    var head = this.head,
+    const head = this.head,
         tail = this.tail,
         len  = this.len;
     this.reset().uint32(len);
@@ -446,7 +446,7 @@ Writer.prototype.ldelim = function ldelim() {
  * @returns {Uint8Array} Finished buffer
  */
 Writer.prototype.finish = function finish() {
-    var head = this.head.next, // skip noop
+    let head = this.head.next, // skip noop
         buf  = this.constructor.alloc(this.len),
         pos  = 0;
     while (head) {

@@ -13,19 +13,19 @@
   (function () {
     function computeFullKey(signature) {
       if (null !== signature.fullKey) return signature.fullKey;
-      var fullKey = signature.ownKey;
+      let fullKey = signature.ownKey;
       try {
         var hooks = signature.getCustomHooks();
       } catch (err) {
         return (signature.forceReset = !0), (signature.fullKey = fullKey);
       }
-      for (var i = 0; i < hooks.length; i++) {
-        var hook = hooks[i];
+      for (let i = 0; i < hooks.length; i++) {
+        let hook = hooks[i];
         if ("function" !== typeof hook)
           return (signature.forceReset = !0), (signature.fullKey = fullKey);
         hook = allSignaturesByType.get(hook);
         if (void 0 !== hook) {
-          var nestedHookKey = computeFullKey(hook);
+          const nestedHookKey = computeFullKey(hook);
           hook.forceReset && (signature.forceReset = !0);
           fullKey += "\n---\n" + nestedHookKey;
         }
@@ -36,14 +36,14 @@
       return updatedFamiliesByType.get(type);
     }
     function cloneMap(map) {
-      var clone = new Map();
+      const clone = new Map();
       map.forEach(function (value, key) {
         clone.set(key, value);
       });
       return clone;
     }
     function cloneSet(set) {
-      var clone = new Set();
+      const clone = new Set();
       set.forEach(function (value) {
         clone.add(value);
       });
@@ -62,7 +62,7 @@
           allFamiliesByType.has(type)
         )
       ) {
-        var family = allFamiliesByID.get(id);
+        let family = allFamiliesByID.get(id);
         void 0 === family
           ? ((family = { current: type }), allFamiliesByID.set(id, family))
           : pendingUpdates.push([family, type]);
@@ -78,7 +78,7 @@
       }
     }
     function setSignature(type, key) {
-      var forceReset =
+      const forceReset =
           2 < arguments.length && void 0 !== arguments[2] ? arguments[2] : !1,
         getCustomHooks = 3 < arguments.length ? arguments[3] : void 0;
       allSignaturesByType.has(type) ||
@@ -124,7 +124,7 @@
     };
     exports.collectCustomHooksForSignature = collectCustomHooksForSignature;
     exports.createSignatureFunctionForTransform = function () {
-      var savedType,
+      let savedType,
         hasCustomHooks,
         didCollectHooks = !1;
       return function (type, key, forceReset, getCustomHooks) {
@@ -153,9 +153,9 @@
       return !1;
     };
     exports.injectIntoGlobalHook = function (globalObject) {
-      var hook = globalObject.__REACT_DEVTOOLS_GLOBAL_HOOK__;
+      let hook = globalObject.__REACT_DEVTOOLS_GLOBAL_HOOK__;
       if (void 0 === hook) {
-        var nextID = 0;
+        let nextID = 0;
         globalObject.__REACT_DEVTOOLS_GLOBAL_HOOK__ = hook = {
           renderers: new Map(),
           supportsFiber: !0,
@@ -172,9 +172,9 @@
           "Something has shimmed the React DevTools global hook (__REACT_DEVTOOLS_GLOBAL_HOOK__). Fast Refresh is not compatible with this shim and will be disabled."
         );
       else {
-        var oldInject = hook.inject;
+        const oldInject = hook.inject;
         hook.inject = function (injected) {
-          var id = oldInject.apply(this, arguments);
+          const id = oldInject.apply(this, arguments);
           "function" === typeof injected.scheduleRefresh &&
             "function" === typeof injected.setRefreshHandler &&
             helpersByRendererID.set(id, injected);
@@ -185,7 +185,7 @@
             "function" === typeof injected.setRefreshHandler &&
             helpersByRendererID.set(id, injected);
         });
-        var oldOnCommitFiberRoot = hook.onCommitFiberRoot,
+        const oldOnCommitFiberRoot = hook.onCommitFiberRoot,
           oldOnScheduleFiberRoot = hook.onScheduleFiberRoot || function () {};
         hook.onScheduleFiberRoot = function (id, root, children) {
           isPerformingRefresh ||
@@ -199,11 +199,11 @@
           maybePriorityLevel,
           didError
         ) {
-          var helpers = helpersByRendererID.get(id);
+          let helpers = helpersByRendererID.get(id);
           if (void 0 !== helpers) {
             helpersByRoot.set(root, helpers);
             helpers = root.current;
-            var alternate = helpers.alternate;
+            let alternate = helpers.alternate;
             null !== alternate
               ? ((alternate =
                   null != alternate.memoizedState &&
@@ -234,7 +234,7 @@
         case "function":
           if (null != type.prototype) {
             if (type.prototype.isReactComponent) return !0;
-            var ownNames = Object.getOwnPropertyNames(type.prototype);
+            const ownNames = Object.getOwnPropertyNames(type.prototype);
             if (
               1 < ownNames.length ||
               "constructor" !== ownNames[0] ||
@@ -260,14 +260,14 @@
       if (0 === pendingUpdates.length || isPerformingRefresh) return null;
       isPerformingRefresh = !0;
       try {
-        var staleFamilies = new Set(),
+        const staleFamilies = new Set(),
           updatedFamilies = new Set(),
           updates = pendingUpdates;
         pendingUpdates = [];
         updates.forEach(function (_ref) {
-          var family = _ref[0];
+          const family = _ref[0];
           _ref = _ref[1];
-          var prevType = family.current;
+          let prevType = family.current;
           updatedFamiliesByType.set(prevType, family);
           updatedFamiliesByType.set(_ref, family);
           family.current = _ref;
@@ -286,27 +286,27 @@
                   : !1));
           _ref ? updatedFamilies.add(family) : staleFamilies.add(family);
         });
-        var update = {
+        const update = {
           updatedFamilies: updatedFamilies,
           staleFamilies: staleFamilies
         };
         helpersByRendererID.forEach(function (helpers) {
           helpers.setRefreshHandler(resolveFamily);
         });
-        var didError = !1,
+        let didError = !1,
           firstError = null,
           failedRootsSnapshot = cloneSet(failedRoots),
           mountedRootsSnapshot = cloneSet(mountedRoots),
           helpersByRootSnapshot = cloneMap(helpersByRoot);
         failedRootsSnapshot.forEach(function (root) {
-          var helpers = helpersByRootSnapshot.get(root);
+          const helpers = helpersByRootSnapshot.get(root);
           if (void 0 === helpers)
             throw Error(
               "Could not find helpers for a root. This is a bug in React Refresh."
             );
           failedRoots.has(root);
           if (null !== rootElements && rootElements.has(root)) {
-            var element = rootElements.get(root);
+            const element = rootElements.get(root);
             try {
               helpers.scheduleRoot(root, element);
             } catch (err) {
@@ -315,7 +315,7 @@
           }
         });
         mountedRootsSnapshot.forEach(function (root) {
-          var helpers = helpersByRootSnapshot.get(root);
+          const helpers = helpersByRootSnapshot.get(root);
           if (void 0 === helpers)
             throw Error(
               "Could not find helpers for a root. This is a bug in React Refresh."

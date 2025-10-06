@@ -20,4 +20,4 @@ const indigo = {
   A400: '#3d5afe',
   A700: '#304ffe'
 };
-var _default = exports.default = indigo;
+const _default = exports.default = indigo;

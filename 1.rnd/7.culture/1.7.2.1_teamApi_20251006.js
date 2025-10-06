@@ -1,30 +1,30 @@
 "use strict";
 exports.__esModule = true;
 exports.TeamApi = void 0;
-var tslib_1 = require("tslib");
-var bulkCreateTeamMembersRequest_1 = require("../models/bulkCreateTeamMembersRequest");
-var bulkCreateTeamMembersResponse_1 = require("../models/bulkCreateTeamMembersResponse");
-var bulkUpdateTeamMembersRequest_1 = require("../models/bulkUpdateTeamMembersRequest");
-var bulkUpdateTeamMembersResponse_1 = require("../models/bulkUpdateTeamMembersResponse");
-var createJobRequest_1 = require("../models/createJobRequest");
-var createJobResponse_1 = require("../models/createJobResponse");
-var createTeamMemberRequest_1 = require("../models/createTeamMemberRequest");
-var createTeamMemberResponse_1 = require("../models/createTeamMemberResponse");
-var listJobsResponse_1 = require("../models/listJobsResponse");
-var retrieveJobResponse_1 = require("../models/retrieveJobResponse");
-var retrieveTeamMemberResponse_1 = require("../models/retrieveTeamMemberResponse");
-var retrieveWageSettingResponse_1 = require("../models/retrieveWageSettingResponse");
-var searchTeamMembersRequest_1 = require("../models/searchTeamMembersRequest");
-var searchTeamMembersResponse_1 = require("../models/searchTeamMembersResponse");
-var updateJobRequest_1 = require("../models/updateJobRequest");
-var updateJobResponse_1 = require("../models/updateJobResponse");
-var updateTeamMemberRequest_1 = require("../models/updateTeamMemberRequest");
-var updateTeamMemberResponse_1 = require("../models/updateTeamMemberResponse");
-var updateWageSettingRequest_1 = require("../models/updateWageSettingRequest");
-var updateWageSettingResponse_1 = require("../models/updateWageSettingResponse");
-var schema_1 = require("../schema");
-var baseApi_1 = require("./baseApi");
-var TeamApi = /** @class */ (function (_super) {
+const tslib_1 = require("tslib");
+const bulkCreateTeamMembersRequest_1 = require("../models/bulkCreateTeamMembersRequest");
+const bulkCreateTeamMembersResponse_1 = require("../models/bulkCreateTeamMembersResponse");
+const bulkUpdateTeamMembersRequest_1 = require("../models/bulkUpdateTeamMembersRequest");
+const bulkUpdateTeamMembersResponse_1 = require("../models/bulkUpdateTeamMembersResponse");
+const createJobRequest_1 = require("../models/createJobRequest");
+const createJobResponse_1 = require("../models/createJobResponse");
+const createTeamMemberRequest_1 = require("../models/createTeamMemberRequest");
+const createTeamMemberResponse_1 = require("../models/createTeamMemberResponse");
+const listJobsResponse_1 = require("../models/listJobsResponse");
+const retrieveJobResponse_1 = require("../models/retrieveJobResponse");
+const retrieveTeamMemberResponse_1 = require("../models/retrieveTeamMemberResponse");
+const retrieveWageSettingResponse_1 = require("../models/retrieveWageSettingResponse");
+const searchTeamMembersRequest_1 = require("../models/searchTeamMembersRequest");
+const searchTeamMembersResponse_1 = require("../models/searchTeamMembersResponse");
+const updateJobRequest_1 = require("../models/updateJobRequest");
+const updateJobResponse_1 = require("../models/updateJobResponse");
+const updateTeamMemberRequest_1 = require("../models/updateTeamMemberRequest");
+const updateTeamMemberResponse_1 = require("../models/updateTeamMemberResponse");
+const updateWageSettingRequest_1 = require("../models/updateWageSettingRequest");
+const updateWageSettingResponse_1 = require("../models/updateWageSettingResponse");
+const schema_1 = require("../schema");
+const baseApi_1 = require("./baseApi");
+const TeamApi = /** @class */ (function (_super) {
     tslib_1.__extends(TeamApi, _super);
     function TeamApi() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -44,7 +44,7 @@ var TeamApi = /** @class */ (function (_super) {
      */
     TeamApi.prototype.createTeamMember = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/team-members');
                 mapped = req.prepareArgs({
@@ -76,7 +76,7 @@ var TeamApi = /** @class */ (function (_super) {
      */
     TeamApi.prototype.bulkCreateTeamMembers = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/team-members/bulk-create');
                 mapped = req.prepareArgs({
@@ -107,7 +107,7 @@ var TeamApi = /** @class */ (function (_super) {
      */
     TeamApi.prototype.bulkUpdateTeamMembers = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/team-members/bulk-update');
                 mapped = req.prepareArgs({
@@ -131,7 +131,7 @@ var TeamApi = /** @class */ (function (_super) {
      */
     TeamApi.prototype.listJobs = function (cursor, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET', '/v2/team-members/jobs');
                 mapped = req.prepareArgs({ cursor: [cursor, (0, schema_1.optional)((0, schema_1.string)())] });
@@ -151,7 +151,7 @@ var TeamApi = /** @class */ (function (_super) {
      */
     TeamApi.prototype.createJob = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/team-members/jobs');
                 mapped = req.prepareArgs({ body: [body, createJobRequest_1.createJobRequestSchema] });
@@ -170,7 +170,7 @@ var TeamApi = /** @class */ (function (_super) {
      */
     TeamApi.prototype.retrieveJob = function (jobId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({ jobId: [jobId, (0, schema_1.string)()] });
@@ -192,7 +192,7 @@ var TeamApi = /** @class */ (function (_super) {
      */
     TeamApi.prototype.updateJob = function (jobId, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('PUT');
                 mapped = req.prepareArgs({
@@ -218,7 +218,7 @@ var TeamApi = /** @class */ (function (_super) {
      */
     TeamApi.prototype.searchTeamMembers = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/v2/team-members/search');
                 mapped = req.prepareArgs({
@@ -241,7 +241,7 @@ var TeamApi = /** @class */ (function (_super) {
      */
     TeamApi.prototype.retrieveTeamMember = function (teamMemberId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({ teamMemberId: [teamMemberId, (0, schema_1.string)()] });
@@ -263,7 +263,7 @@ var TeamApi = /** @class */ (function (_super) {
      */
     TeamApi.prototype.updateTeamMember = function (teamMemberId, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('PUT');
                 mapped = req.prepareArgs({
@@ -293,7 +293,7 @@ var TeamApi = /** @class */ (function (_super) {
      */
     TeamApi.prototype.retrieveWageSetting = function (teamMemberId, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('GET');
                 mapped = req.prepareArgs({ teamMemberId: [teamMemberId, (0, schema_1.string)()] });
@@ -324,7 +324,7 @@ var TeamApi = /** @class */ (function (_super) {
      */
     TeamApi.prototype.updateWageSetting = function (teamMemberId, body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('PUT');
                 mapped = req.prepareArgs({
@@ -342,5 +342,5 @@ var TeamApi = /** @class */ (function (_super) {
     return TeamApi;
 }(baseApi_1.BaseApi));
 exports.TeamApi = TeamApi;
-var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6;
+let templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6;
 //# sourceMappingURL=teamApi.js.map

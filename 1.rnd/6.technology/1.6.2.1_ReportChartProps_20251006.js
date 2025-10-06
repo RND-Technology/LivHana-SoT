@@ -4,11 +4,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.ReportChartProps = ReportChartProps;
-var _react = require("react");
-var _rootPropsSlice = require("./rootPropsSlice");
-var _hooks = require("./hooks");
+const _react = require("react");
+const _rootPropsSlice = require("./rootPropsSlice");
+const _hooks = require("./hooks");
 function ReportChartProps(props) {
-  var dispatch = (0, _hooks.useAppDispatch)();
+  const dispatch = (0, _hooks.useAppDispatch)();
   (0, _react.useEffect)(() => {
     dispatch((0, _rootPropsSlice.updateOptions)(props));
   }, [dispatch, props]);

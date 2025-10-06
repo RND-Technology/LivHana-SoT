@@ -1,11 +1,11 @@
-var path = require('path');
-var test = require('tape');
-var resolve = require('../');
+const path = require('path');
+const test = require('tape');
+const resolve = require('../');
 
 test('filter', function (t) {
     t.plan(5);
-    var dir = path.join(__dirname, 'resolver');
-    var packageFilterArgs;
+    const dir = path.join(__dirname, 'resolver');
+    let packageFilterArgs;
     resolve('./baz', {
         basedir: dir,
         packageFilter: function (pkg, pkgfile, dir) {
@@ -18,18 +18,18 @@ test('filter', function (t) {
 
         t.equal(res, path.join(dir, 'baz/doom.js'), 'changing the package "main" works');
 
-        var packageData = packageFilterArgs[0];
+        const packageData = packageFilterArgs[0];
         t.equal(pkg, packageData, 'first packageFilter argument is "pkg"');
         t.equal(packageData.main, 'doom', 'package "main" was altered');
 
-        var packageFile = packageFilterArgs[1];
+        const packageFile = packageFilterArgs[1];
         t.equal(
             packageFile,
             path.join(dir, 'baz/package.json'),
             'second packageFilter argument is "pkgfile"'
         );
 
-        var packageFileDir = packageFilterArgs[2];
+        const packageFileDir = packageFilterArgs[2];
         t.equal(packageFileDir, path.join(dir, 'baz'), 'third packageFilter argument is "dir"');
 
         t.end();

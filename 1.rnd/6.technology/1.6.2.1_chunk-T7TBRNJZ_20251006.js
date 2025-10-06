@@ -1,5 +1,5 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true});// src/glossary.ts
-var IS_PATCHED_MODULE = Symbol("isPatchedModule");
+const IS_PATCHED_MODULE = Symbol("isPatchedModule");
 
 // src/utils/canParseUrl.ts
 function canParseUrl(url) {
@@ -65,7 +65,7 @@ var _FetchResponse = class extends Response {
     return headers;
   }
   constructor(body, init = {}) {
-    var _a;
+    let _a;
     const status = (_a = init.status) != null ? _a : 200;
     const safeStatus = _FetchResponse.isConfigurableStatusCode(status) ? status : 200;
     const finalBody = _FetchResponse.isResponseWithBody(status) ? body : null;
@@ -90,7 +90,7 @@ var _FetchResponse = class extends Response {
     _FetchResponse.setUrl(init.url, this);
   }
 };
-var FetchResponse = _FetchResponse;
+const FetchResponse = _FetchResponse;
 /**
  * Response status codes for responses that cannot have body.
  * @see https://fetch.spec.whatwg.org/#statuses
@@ -99,7 +99,7 @@ FetchResponse.STATUS_CODES_WITHOUT_BODY = [101, 103, 204, 205, 304];
 FetchResponse.STATUS_CODES_WITH_REDIRECT = [301, 302, 303, 307, 308];
 
 // src/getRawRequest.ts
-var kRawRequest = Symbol("kRawRequest");
+const kRawRequest = Symbol("kRawRequest");
 function getRawRequest(request) {
   return Reflect.get(request, kRawRequest);
 }

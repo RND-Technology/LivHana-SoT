@@ -1,6 +1,6 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true});// src/RequestController.ts
-var _outvariant = require('outvariant');
-var _deferredpromise = require('@open-draft/deferred-promise');
+const _outvariant = require('outvariant');
+const _deferredpromise = require('@open-draft/deferred-promise');
 
 // src/InterceptorError.ts
 var InterceptorError = class extends Error {
@@ -12,9 +12,9 @@ var InterceptorError = class extends Error {
 };
 
 // src/RequestController.ts
-var kRequestHandled = Symbol("kRequestHandled");
-var kResponsePromise = Symbol("kResponsePromise");
-var RequestController = class {
+const kRequestHandled = Symbol("kRequestHandled");
+const kResponsePromise = Symbol("kResponsePromise");
+const RequestController = class {
   constructor(request) {
     this.request = request;
     this[kRequestHandled] = false;
@@ -73,7 +73,7 @@ async function emitAsync(emitter, eventName, ...data) {
 
 // src/utils/handleRequest.ts
 
-var _until = require('@open-draft/until');
+const _until = require('@open-draft/until');
 
 // src/utils/isObject.ts
 function isObject(value, loose = false) {

@@ -47,5 +47,5 @@ class UpdateSnapshotsPlugin extends _jestWatcher().BaseWatchPlugin {
     return null;
   }
 }
-var _default = UpdateSnapshotsPlugin;
+const _default = UpdateSnapshotsPlugin;
 exports.default = _default;

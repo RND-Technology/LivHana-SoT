@@ -1,5 +1,5 @@
-let OldValue = require('../old-value')
-let Value = require('../value')
+const OldValue = require('../old-value')
+const Value = require('../value')
 
 class Pixelated extends Value {
   /**

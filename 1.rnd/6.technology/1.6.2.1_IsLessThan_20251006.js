@@ -1,20 +1,20 @@
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+const GetIntrinsic = require('get-intrinsic');
 
-var $Number = GetIntrinsic('%Number%');
-var $TypeError = require('es-errors/type');
-var min = require('math-intrinsics/min');
-var $isNaN = require('math-intrinsics/isNaN');
+const $Number = GetIntrinsic('%Number%');
+const $TypeError = require('es-errors/type');
+const min = require('math-intrinsics/min');
+const $isNaN = require('math-intrinsics/isNaN');
 
-var $charCodeAt = require('call-bound')('String.prototype.charCodeAt');
+const $charCodeAt = require('call-bound')('String.prototype.charCodeAt');
 
-var StringToBigInt = require('./StringToBigInt');
-var ToNumeric = require('./ToNumeric');
-var ToPrimitive = require('./ToPrimitive');
+const StringToBigInt = require('./StringToBigInt');
+const ToNumeric = require('./ToNumeric');
+const ToPrimitive = require('./ToPrimitive');
 
-var BigIntLessThan = require('./BigInt/lessThan');
-var NumberLessThan = require('./Number/lessThan');
+const BigIntLessThan = require('./BigInt/lessThan');
+const NumberLessThan = require('./Number/lessThan');
 
 // https://262.ecma-international.org/14.0/#sec-islessthan
 
@@ -23,8 +23,8 @@ module.exports = function IsLessThan(x, y, LeftFirst) {
 	if (typeof LeftFirst !== 'boolean') {
 		throw new $TypeError('Assertion failed: LeftFirst argument must be a Boolean');
 	}
-	var px;
-	var py;
+	let px;
+	let py;
 	if (LeftFirst) {
 		px = ToPrimitive(x, $Number);
 		py = ToPrimitive(y, $Number);
@@ -43,11 +43,11 @@ module.exports = function IsLessThan(x, y, LeftFirst) {
 		// iv. If cx > cy, return false.
 		// d. If lx < ly, return true. Otherwise, return false.
 
-		var lx = px.length; // step 3.a
-		var ly = py.length; // step 3.b
-		for (var i = 0; i < min(lx, ly); i++) { // step 3.c
-			var cx = $charCodeAt(px, i); // step 3.c.i
-			var cy = $charCodeAt(py, i); // step 3.c.ii
+		const lx = px.length; // step 3.a
+		const ly = py.length; // step 3.b
+		for (let i = 0; i < min(lx, ly); i++) { // step 3.c
+			const cx = $charCodeAt(px, i); // step 3.c.i
+			const cy = $charCodeAt(py, i); // step 3.c.ii
 			if (cx < cy) {
 				return true; // step 3.c.iii
 			}
@@ -58,8 +58,8 @@ module.exports = function IsLessThan(x, y, LeftFirst) {
 		return lx < ly; // step 3.d
 	}
 
-	var nx;
-	var ny;
+	let nx;
+	let ny;
 	if (typeof px === 'bigint' && typeof py === 'string') {
 		ny = StringToBigInt(py);
 		if (typeof ny === 'undefined') {

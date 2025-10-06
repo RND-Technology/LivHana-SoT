@@ -1,5 +1,5 @@
 
-let imports = {};
+const imports = {};
 imports['__wbindgen_placeholder__'] = module.exports;
 let wasm;
 const { TextEncoder, TextDecoder } = require(`util`);
@@ -15,7 +15,7 @@ function getUint8ArrayMemory0() {
     return cachedUint8ArrayMemory0;
 }
 
-let cachedTextEncoder = new TextEncoder('utf-8');
+const cachedTextEncoder = new TextEncoder('utf-8');
 
 const encodeString = (typeof cachedTextEncoder.encodeInto === 'function'
     ? function (arg, view) {
@@ -162,7 +162,7 @@ function debugString(val) {
     return className;
 }
 
-let cachedTextDecoder = new TextDecoder('utf-8', { ignoreBOM: true, fatal: true });
+const cachedTextDecoder = new TextDecoder('utf-8', { ignoreBOM: true, fatal: true });
 
 cachedTextDecoder.decode();
 
@@ -195,8 +195,8 @@ function passArrayJsValueToWasm0(array, malloc) {
 module.exports.create = function(configs, dc_module) {
     const ptr0 = passArrayJsValueToWasm0(configs, wasm.__wbindgen_malloc);
     const len0 = WASM_VECTOR_LEN;
-    var ptr1 = isLikeNone(dc_module) ? 0 : passStringToWasm0(dc_module, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-    var len1 = WASM_VECTOR_LEN;
+    const ptr1 = isLikeNone(dc_module) ? 0 : passStringToWasm0(dc_module, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len1 = WASM_VECTOR_LEN;
     const ret = wasm.create(ptr0, len0, ptr1, len1);
     return InstrumentationMatcher.__wrap(ret);
 };
@@ -289,8 +289,8 @@ class Transformer {
     transform(code, module_type, sourcemap) {
         const ptr0 = passStringToWasm0(code, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
         const len0 = WASM_VECTOR_LEN;
-        var ptr1 = isLikeNone(sourcemap) ? 0 : passStringToWasm0(sourcemap, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-        var len1 = WASM_VECTOR_LEN;
+        const ptr1 = isLikeNone(sourcemap) ? 0 : passStringToWasm0(sourcemap, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len1 = WASM_VECTOR_LEN;
         const ret = wasm.transformer_transform(this.__wbg_ptr, ptr0, len0, module_type, ptr1, len1);
         if (ret[2]) {
             throw takeFromExternrefTable0(ret[1]);
@@ -483,7 +483,7 @@ module.exports.__wbindgen_init_externref_table = function() {
     table.set(offset + 1, null);
     table.set(offset + 2, true);
     table.set(offset + 3, false);
-    ;
+    
 };
 
 module.exports.__wbindgen_is_bigint = function(arg0) {
@@ -537,8 +537,8 @@ module.exports.__wbindgen_number_get = function(arg0, arg1) {
 module.exports.__wbindgen_string_get = function(arg0, arg1) {
     const obj = arg1;
     const ret = typeof(obj) === 'string' ? obj : undefined;
-    var ptr1 = isLikeNone(ret) ? 0 : passStringToWasm0(ret, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-    var len1 = WASM_VECTOR_LEN;
+    const ptr1 = isLikeNone(ret) ? 0 : passStringToWasm0(ret, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len1 = WASM_VECTOR_LEN;
     getDataViewMemory0().setInt32(arg0 + 4 * 1, len1, true);
     getDataViewMemory0().setInt32(arg0 + 4 * 0, ptr1, true);
 };

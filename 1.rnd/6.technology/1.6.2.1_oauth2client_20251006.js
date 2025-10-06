@@ -21,12 +21,12 @@ const formatEcdsa = require("ecdsa-sig-formatter");
 const crypto_1 = require("../crypto/crypto");
 const authclient_1 = require("./authclient");
 const loginticket_1 = require("./loginticket");
-var CodeChallengeMethod;
+let CodeChallengeMethod;
 (function (CodeChallengeMethod) {
     CodeChallengeMethod["Plain"] = "plain";
     CodeChallengeMethod["S256"] = "S256";
 })(CodeChallengeMethod || (exports.CodeChallengeMethod = CodeChallengeMethod = {}));
-var CertificateFormat;
+let CertificateFormat;
 (function (CertificateFormat) {
     CertificateFormat["PEM"] = "PEM";
     CertificateFormat["JWK"] = "JWK";
@@ -35,7 +35,7 @@ var CertificateFormat;
  * The client authentication type. Supported values are basic, post, and none.
  * https://datatracker.ietf.org/doc/html/rfc7591#section-2
  */
-var ClientAuthentication;
+let ClientAuthentication;
 (function (ClientAuthentication) {
     ClientAuthentication["ClientSecretPost"] = "ClientSecretPost";
     ClientAuthentication["ClientSecretBasic"] = "ClientSecretBasic";
@@ -195,7 +195,7 @@ class OAuth2Client extends authclient_1.AuthClient {
         return p;
     }
     async refreshTokenNoCache(refreshToken) {
-        var _a;
+        let _a;
         if (!refreshToken) {
             throw new Error('No refresh token is set.');
         }

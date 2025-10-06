@@ -1,4 +1,4 @@
-var Stack = require('./_Stack'),
+const Stack = require('./_Stack'),
     assignMergeValue = require('./_assignMergeValue'),
     baseFor = require('./_baseFor'),
     baseMergeDeep = require('./_baseMergeDeep'),
@@ -27,7 +27,7 @@ function baseMerge(object, source, srcIndex, customizer, stack) {
       baseMergeDeep(object, source, key, srcIndex, baseMerge, customizer, stack);
     }
     else {
-      var newValue = customizer
+      let newValue = customizer
         ? customizer(safeGet(object, key), srcValue, (key + ''), object, source, stack)
         : undefined;
 

@@ -2,20 +2,20 @@ import {epsilon} from "../math.js";
 import {Cardinal} from "./cardinal.js";
 
 export function point(that, x, y) {
-  var x1 = that._x1,
+  let x1 = that._x1,
       y1 = that._y1,
       x2 = that._x2,
       y2 = that._y2;
 
   if (that._l01_a > epsilon) {
-    var a = 2 * that._l01_2a + 3 * that._l01_a * that._l12_a + that._l12_2a,
+    const a = 2 * that._l01_2a + 3 * that._l01_a * that._l12_a + that._l12_2a,
         n = 3 * that._l01_a * (that._l01_a + that._l12_a);
     x1 = (x1 * a - that._x0 * that._l12_2a + that._x2 * that._l01_2a) / n;
     y1 = (y1 * a - that._y0 * that._l12_2a + that._y2 * that._l01_2a) / n;
   }
 
   if (that._l23_a > epsilon) {
-    var b = 2 * that._l23_2a + 3 * that._l23_a * that._l12_a + that._l12_2a,
+    const b = 2 * that._l23_2a + 3 * that._l23_a * that._l12_a + that._l12_2a,
         m = 3 * that._l23_a * (that._l23_a + that._l12_a);
     x2 = (x2 * b + that._x1 * that._l23_2a - x * that._l12_2a) / m;
     y2 = (y2 * b + that._y1 * that._l23_2a - y * that._l12_2a) / m;
@@ -55,7 +55,7 @@ CatmullRom.prototype = {
     x = +x, y = +y;
 
     if (this._point) {
-      var x23 = this._x2 - x,
+      const x23 = this._x2 - x,
           y23 = this._y2 - y;
       this._l23_a = Math.sqrt(this._l23_2a = Math.pow(x23 * x23 + y23 * y23, this._alpha));
     }

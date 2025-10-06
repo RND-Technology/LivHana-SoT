@@ -1,5 +1,5 @@
 "use strict";
-var protobuf = exports;
+const protobuf = exports;
 
 /**
  * Build type, one of `"full"`, `"light"` or `"minimal"`.

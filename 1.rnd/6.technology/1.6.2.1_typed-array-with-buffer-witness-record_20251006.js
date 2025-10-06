@@ -1,9 +1,9 @@
 'use strict';
 
-var hasOwn = require('hasown');
-var isTypedArray = require('is-typed-array');
+const hasOwn = require('hasown');
+const isTypedArray = require('is-typed-array');
 
-var isInteger = require('../isInteger');
+const isInteger = require('../isInteger');
 
 module.exports = function isTypedArrayWithBufferWitnessRecord(value) {
 	return !!value

@@ -6,4 +6,4 @@ export function adoptBuffer(buffer = null, size) {
     }
 
     return buffer;
-};
+}

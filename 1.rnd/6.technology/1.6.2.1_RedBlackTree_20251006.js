@@ -24,7 +24,7 @@ function RedBlackNode(node) {
 RedBlackTree.prototype = {
   constructor: RedBlackTree,
   insert: function (after, node) {
-    var parent, grandpa, uncle;
+    let parent, grandpa, uncle;
     if (after) {
       node.P = after;
       node.N = after.N;
@@ -96,7 +96,7 @@ RedBlackTree.prototype = {
     if (node.N) node.N.P = node.P;
     if (node.P) node.P.N = node.N;
     node.N = node.P = null;
-    var parent = node.U,
+    let parent = node.U,
       sibling,
       left = node.L,
       right = node.R,
@@ -188,7 +188,7 @@ RedBlackTree.prototype = {
   }
 };
 function RedBlackRotateLeft(tree, node) {
-  var p = node,
+  const p = node,
     q = node.R,
     parent = p.U;
   if (parent) {
@@ -203,7 +203,7 @@ function RedBlackRotateLeft(tree, node) {
   q.L = p;
 }
 function RedBlackRotateRight(tree, node) {
-  var p = node,
+  const p = node,
     q = node.L,
     parent = p.U;
   if (parent) {
@@ -221,4 +221,4 @@ function RedBlackFirst(node) {
   while (node.L) node = node.L;
   return node;
 }
-var _default = exports.default = RedBlackTree;
+const _default = exports.default = RedBlackTree;

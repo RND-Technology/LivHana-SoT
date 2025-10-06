@@ -1,17 +1,17 @@
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
-var callBound = require('call-bound');
+const GetIntrinsic = require('get-intrinsic');
+const callBound = require('call-bound');
 
-var $fromCharCode = GetIntrinsic('%String.fromCharCode%');
-var $TypeError = require('es-errors/type');
-var $charCodeAt = callBound('String.prototype.charCodeAt');
+const $fromCharCode = GetIntrinsic('%String.fromCharCode%');
+const $TypeError = require('es-errors/type');
+const $charCodeAt = callBound('String.prototype.charCodeAt');
 
-var CharSet = require('../helpers/CharSet').CharSet;
+const CharSet = require('../helpers/CharSet').CharSet;
 
 module.exports = function CharacterRange(A, B) {
-	var a;
-	var b;
+	let a;
+	let b;
 
 	if (A instanceof CharSet || B instanceof CharSet) {
 		if (!(A instanceof CharSet) || !(B instanceof CharSet)) {
@@ -38,15 +38,15 @@ module.exports = function CharacterRange(A, B) {
 		b = B[0];
 	}
 
-	var i = $charCodeAt(a, 0);
-	var j = $charCodeAt(b, 0);
+	const i = $charCodeAt(a, 0);
+	const j = $charCodeAt(b, 0);
 
 	if (!(i <= j)) {
 		throw new $TypeError('Assertion failed: i is not <= j');
 	}
 
-	var arr = [];
-	for (var k = i; k <= j; k += 1) {
+	const arr = [];
+	for (let k = i; k <= j; k += 1) {
 		arr[arr.length] = $fromCharCode(k);
 	}
 	return arr;

@@ -1,5 +1,5 @@
 //.CommonJS
-var CSSOM = {
+const CSSOM = {
   CSSRule: require("./CSSRule").CSSRule,
   CSSGroupingRule: require("./CSSGroupingRule").CSSGroupingRule,
 };
@@ -32,8 +32,8 @@ Object.defineProperties(CSSOM.CSSLayerBlockRule.prototype, {
   },
   cssText: {
     get: function () {
-      var cssTexts = [];
-      for (var i = 0, length = this.cssRules.length; i < length; i++) {
+      const cssTexts = [];
+      for (let i = 0, length = this.cssRules.length; i < length; i++) {
         cssTexts.push(this.cssRules[i].cssText);
       }
       return "@layer " + this.layerNameText + " {" + cssTexts.join("") + "}";

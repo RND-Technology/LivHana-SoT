@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
 exports.bulkUpsertCustomerCustomAttributesRequestSchema = void 0;
-var schema_1 = require("../schema");
-var bulkUpsertCustomerCustomAttributesRequestCustomerCustomAttributeUpsertRequest_1 = require("./bulkUpsertCustomerCustomAttributesRequestCustomerCustomAttributeUpsertRequest");
+const schema_1 = require("../schema");
+const bulkUpsertCustomerCustomAttributesRequestCustomerCustomAttributeUpsertRequest_1 = require("./bulkUpsertCustomerCustomAttributesRequestCustomerCustomAttributeUpsertRequest");
 exports.bulkUpsertCustomerCustomAttributesRequestSchema = (0, schema_1.object)({
     values: [
         'values',

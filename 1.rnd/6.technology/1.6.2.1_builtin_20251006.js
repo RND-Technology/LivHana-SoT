@@ -1,18 +1,18 @@
 'use strict';
 
-var test = require('tape');
-var defineProperties = require('define-properties');
-var callBind = require('call-bind');
+const test = require('tape');
+const defineProperties = require('define-properties');
+const callBind = require('call-bind');
 
-var isEnumerable = Object.prototype.propertyIsEnumerable;
-var functionsHaveNames = require('functions-have-names')();
-var functionsHaveConfigurableNames = require('functions-have-names').functionsHaveConfigurableNames();
-var hasStrictMode = require('has-strict-mode')();
+const isEnumerable = Object.prototype.propertyIsEnumerable;
+const functionsHaveNames = require('functions-have-names')();
+const functionsHaveConfigurableNames = require('functions-have-names').functionsHaveConfigurableNames();
+const hasStrictMode = require('has-strict-mode')();
 
-var runTests = require('./tests');
+const runTests = require('./tests');
 
 test('builtin', function (t) {
-	var descriptor = Object.getOwnPropertyDescriptor(RegExp.prototype, 'flags');
+	const descriptor = Object.getOwnPropertyDescriptor(RegExp.prototype, 'flags');
 
 	t.equal(descriptor.get.length, 0, 'RegExp#flags getter has a length of 0');
 

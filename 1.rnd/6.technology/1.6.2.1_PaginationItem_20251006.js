@@ -1,32 +1,32 @@
 "use strict";
 'use client';
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+const _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-var React = _interopRequireWildcard(require("react"));
-var _propTypes = _interopRequireDefault(require("prop-types"));
-var _clsx = _interopRequireDefault(require("clsx"));
-var _composeClasses = _interopRequireDefault(require("@mui/utils/composeClasses"));
-var _colorManipulator = require("@mui/system/colorManipulator");
-var _RtlProvider = require("@mui/system/RtlProvider");
-var _DefaultPropsProvider = require("../DefaultPropsProvider");
-var _paginationItemClasses = _interopRequireWildcard(require("./paginationItemClasses"));
-var _ButtonBase = _interopRequireDefault(require("../ButtonBase"));
-var _capitalize = _interopRequireDefault(require("../utils/capitalize"));
-var _FirstPage = _interopRequireDefault(require("../internal/svg-icons/FirstPage"));
-var _LastPage = _interopRequireDefault(require("../internal/svg-icons/LastPage"));
-var _NavigateBefore = _interopRequireDefault(require("../internal/svg-icons/NavigateBefore"));
-var _NavigateNext = _interopRequireDefault(require("../internal/svg-icons/NavigateNext"));
-var _styled = _interopRequireDefault(require("../styles/styled"));
-var _jsxRuntime = require("react/jsx-runtime");
+const _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+const _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+const React = _interopRequireWildcard(require("react"));
+const _propTypes = _interopRequireDefault(require("prop-types"));
+const _clsx = _interopRequireDefault(require("clsx"));
+const _composeClasses = _interopRequireDefault(require("@mui/utils/composeClasses"));
+const _colorManipulator = require("@mui/system/colorManipulator");
+const _RtlProvider = require("@mui/system/RtlProvider");
+const _DefaultPropsProvider = require("../DefaultPropsProvider");
+const _paginationItemClasses = _interopRequireWildcard(require("./paginationItemClasses"));
+const _ButtonBase = _interopRequireDefault(require("../ButtonBase"));
+const _capitalize = _interopRequireDefault(require("../utils/capitalize"));
+const _FirstPage = _interopRequireDefault(require("../internal/svg-icons/FirstPage"));
+const _LastPage = _interopRequireDefault(require("../internal/svg-icons/LastPage"));
+const _NavigateBefore = _interopRequireDefault(require("../internal/svg-icons/NavigateBefore"));
+const _NavigateNext = _interopRequireDefault(require("../internal/svg-icons/NavigateNext"));
+const _styled = _interopRequireDefault(require("../styles/styled"));
+const _jsxRuntime = require("react/jsx-runtime");
 const _excluded = ["className", "color", "component", "components", "disabled", "page", "selected", "shape", "size", "slots", "type", "variant"];
-function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
-function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; const r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; const t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); const n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (const u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { const i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 const overridesResolver = (props, styles) => {
   const {
     ownerState
@@ -369,4 +369,4 @@ process.env.NODE_ENV !== "production" ? PaginationItem.propTypes /* remove-propt
    */
   variant: _propTypes.default /* @typescript-to-proptypes-ignore */.oneOfType([_propTypes.default.oneOf(['outlined', 'text']), _propTypes.default.string])
 } : void 0;
-var _default = exports.default = PaginationItem;
+const _default = exports.default = PaginationItem;

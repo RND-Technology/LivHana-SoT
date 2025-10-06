@@ -1,11 +1,11 @@
 "use strict";
 exports.__esModule = true;
 exports.MobileAuthorizationApi = void 0;
-var tslib_1 = require("tslib");
-var createMobileAuthorizationCodeRequest_1 = require("../models/createMobileAuthorizationCodeRequest");
-var createMobileAuthorizationCodeResponse_1 = require("../models/createMobileAuthorizationCodeResponse");
-var baseApi_1 = require("./baseApi");
-var MobileAuthorizationApi = /** @class */ (function (_super) {
+const tslib_1 = require("tslib");
+const createMobileAuthorizationCodeRequest_1 = require("../models/createMobileAuthorizationCodeRequest");
+const createMobileAuthorizationCodeResponse_1 = require("../models/createMobileAuthorizationCodeResponse");
+const baseApi_1 = require("./baseApi");
+const MobileAuthorizationApi = /** @class */ (function (_super) {
     tslib_1.__extends(MobileAuthorizationApi, _super);
     function MobileAuthorizationApi() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -33,7 +33,7 @@ var MobileAuthorizationApi = /** @class */ (function (_super) {
      */
     MobileAuthorizationApi.prototype.createMobileAuthorizationCode = function (body, requestOptions) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var req, mapped;
+            let req, mapped;
             return tslib_1.__generator(this, function (_a) {
                 req = this.createRequest('POST', '/mobile/authorization-code');
                 mapped = req.prepareArgs({

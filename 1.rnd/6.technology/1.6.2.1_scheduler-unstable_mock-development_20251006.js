@@ -14,11 +14,11 @@ if (process.env.NODE_ENV !== "production") {
   (function() {
 'use strict';
 
-var enableSchedulerDebugging = false;
-var enableProfiling = false;
+const enableSchedulerDebugging = false;
+const enableProfiling = false;
 
 function push(heap, node) {
-  var index = heap.length;
+  const index = heap.length;
   heap.push(node);
   siftUp(heap, node, index);
 }
@@ -30,8 +30,8 @@ function pop(heap) {
     return null;
   }
 
-  var first = heap[0];
-  var last = heap.pop();
+  const first = heap[0];
+  const last = heap.pop();
 
   if (last !== first) {
     heap[0] = last;
@@ -42,11 +42,11 @@ function pop(heap) {
 }
 
 function siftUp(heap, node, i) {
-  var index = i;
+  let index = i;
 
   while (index > 0) {
-    var parentIndex = index - 1 >>> 1;
-    var parent = heap[parentIndex];
+    const parentIndex = index - 1 >>> 1;
+    const parent = heap[parentIndex];
 
     if (compare(parent, node) > 0) {
       // The parent is larger. Swap positions.
@@ -61,15 +61,15 @@ function siftUp(heap, node, i) {
 }
 
 function siftDown(heap, node, i) {
-  var index = i;
-  var length = heap.length;
-  var halfLength = length >>> 1;
+  let index = i;
+  const length = heap.length;
+  const halfLength = length >>> 1;
 
   while (index < halfLength) {
-    var leftIndex = (index + 1) * 2 - 1;
-    var left = heap[leftIndex];
-    var rightIndex = leftIndex + 1;
-    var right = heap[rightIndex]; // If the left or right node is smaller, swap with the smaller of those.
+    const leftIndex = (index + 1) * 2 - 1;
+    const left = heap[leftIndex];
+    const rightIndex = leftIndex + 1;
+    const right = heap[rightIndex]; // If the left or right node is smaller, swap with the smaller of those.
 
     if (compare(left, node) < 0) {
       if (rightIndex < length && compare(right, left) < 0) {
@@ -94,16 +94,16 @@ function siftDown(heap, node, i) {
 
 function compare(a, b) {
   // Compare sort index first, then task id.
-  var diff = a.sortIndex - b.sortIndex;
+  const diff = a.sortIndex - b.sortIndex;
   return diff !== 0 ? diff : a.id - b.id;
 }
 
 // TODO: Use symbols?
-var ImmediatePriority = 1;
-var UserBlockingPriority = 2;
-var NormalPriority = 3;
-var LowPriority = 4;
-var IdlePriority = 5;
+const ImmediatePriority = 1;
+const UserBlockingPriority = 2;
+const NormalPriority = 3;
+const LowPriority = 4;
+const IdlePriority = 5;
 
 function markTaskErrored(task, ms) {
 }

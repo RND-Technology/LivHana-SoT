@@ -10,7 +10,7 @@ const SecAgentStatus = function () {
         SecAgentStatus.instance = this;
         let status = SecAgentStatus.codes.CONNECTING;
         const codeList = [];
-        for (let code in SecAgentStatus.codes) {
+        for (const code in SecAgentStatus.codes) {
             codeList.push(SecAgentStatus.codes[code])
         }
         this.getStatus = function () {

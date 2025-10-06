@@ -1,4 +1,4 @@
-var overshoot = 1.70158;
+const overshoot = 1.70158;
 
 export var backIn = (function custom(s) {
   s = +s;

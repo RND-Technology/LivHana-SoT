@@ -26,15 +26,18 @@
 6. `cat LivHana-SoT/.claude/CURRENT_SESSION_STATE.md`
 
 **Acknowledge:**
+
 ```
 Learning Ledger read: <failures #> (focus on Failure #7 + Failure #12)
 Verification Protocol read: <gates #>
 Honesty Constraints read: <rules #>
 Current Achilles Heels: [list from ledger]
 ```
+
 Then restate mission in numbered steps with concrete metrics + proof targets + verification timestamps.
 
 **CRITICAL LESSON FROM FAILURE #7:**
+
 - NEVER make claims >5 minutes after verification
 - Include timestamp with every claim: "Verified: YYYY-MM-DD HH:MM:SS"
 - Evidence BEFORE claims, not after
@@ -45,6 +48,7 @@ Then restate mission in numbered steps with concrete metrics + proof targets + v
 ## 2. LIVE SYSTEM SNAPSHOT (CLAUDE SONNET)
 
 Run the fused info sweep before touching code:
+
 ```bash
 cd LivHana-SoT
 ./START.sh status || true
@@ -53,6 +57,7 @@ git status --short
 nslookup reggieanddro.com
 curl -I https://reggieanddro.com
 ```
+
 - If `START.sh` missing service data, run individual health curls (`curl -s localhost:4002/health`, etc.).  
 - Log output to `.claude/SESSION_PROGRESS.md` (timestamp + command + keep raw output short).
 
@@ -61,10 +66,12 @@ curl -I https://reggieanddro.com
 ## 3. FULL POWER ACTIVATION SCRIPT (CLAUDE SONNET)
 
 Kick the autonomous harness:
+
 ```bash
 bash scripts/run_full_sweep.sh
 cd LivHana-SoT/backend/voice-service && npm ci --omit=dev
 ```
+
 - Do **not** continue until the sweep finishes; capture exit code & path to log file under `.evidence/<date>/`.  
 - If non-zero, resolve in place; rerun until clean.  
 - Append summary + TODOs to `.claude/SESSION_PROGRESS.md`.
@@ -82,6 +89,7 @@ cd LivHana-SoT/backend/voice-service && npm ci --omit=dev
 7. Re-run `scripts/run_full_sweep.sh` after major changes; stop immediately on failures.
 
 **5-MINUTE VERIFICATION RULE (Failure #7 Prevention):**
+
 - Execute → Verify (<5 min) → Claim with timestamp
 - If >5 min elapsed: Re-verify before claiming
 - Example: "Shellcheck: 107 warnings (Verified: Oct 3 05:15:42)"

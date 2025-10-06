@@ -9,10 +9,10 @@ function toArr(any) {
 }
 
 function toVal(out, key, val, opts) {
-	var x, old=out[key], nxt=(
-		!!~opts.string.indexOf(key) ? (val == null || val === true ? '' : String(val))
+	let x, old=out[key], nxt=(
+		~opts.string.indexOf(key) ? (val == null || val === true ? '' : String(val))
 		: typeof val === 'boolean' ? val
-		: !!~opts.boolean.indexOf(key) ? (val === 'false' ? false : val === 'true' || (out._.push((x = +val,x * 0 === 0) ? x : val),!!val))
+		: ~opts.boolean.indexOf(key) ? (val === 'false' ? false : val === 'true' || (out._.push((x = +val,x * 0 === 0) ? x : val),!!val))
 		: (x = +val,x * 0 === 0) ? x : val
 	);
 	out[key] = old == null ? nxt : (Array.isArray(old) ? old.concat(nxt) : [old, nxt]);
@@ -22,8 +22,8 @@ function mri2 (args, opts) {
 	args = args || [];
 	opts = opts || {};
 
-	var k, arr, arg, name, val, out={ _:[] };
-	var i=0, j=0, idx=0, len=args.length;
+	let k, arr, arg, name, val, out={ _:[] };
+	let i=0, j=0, idx=0, len=args.length;
 
 	const alibi = opts.alias !== void 0;
 	const strict = opts.unknown !== void 0;
@@ -188,10 +188,10 @@ const camelcase = (input) => {
 };
 const setDotProp = (obj, keys, val, transforms) => {
   let i = 0;
-  let length = keys.length;
+  const length = keys.length;
   let t = obj;
   let x;
-  let convertKey = (i) => {
+  const convertKey = (i) => {
     let key = keys[i];
     i--;
     while(i >= 0) {
@@ -429,7 +429,7 @@ class GlobalCommand extends Command {
   }
 }
 
-var __assign = Object.assign;
+const __assign = Object.assign;
 class CAC extends EventEmitter {
   constructor(name = "") {
     super();
@@ -571,7 +571,7 @@ class CAC extends EventEmitter {
       "--": argsAfterDoubleDashes
     };
     const ignoreDefault = command && command.config.ignoreOptionDefaultValue ? command.config.ignoreOptionDefaultValue : this.globalCommand.config.ignoreOptionDefaultValue;
-    let transforms = Object.create(null);
+    const transforms = Object.create(null);
     for (const cliOption of cliOptions) {
       if (!ignoreDefault && cliOption.config.default !== void 0) {
         for (const name of cliOption.names) {
@@ -618,7 +618,7 @@ class CAC extends EventEmitter {
 
 const cac = (name = "") => new CAC(name);
 
-var version = "1.6.1";
+const version = "1.6.1";
 
 const apiConfig = (port) => ({
   port: {
@@ -1300,7 +1300,7 @@ function createCLI(options = {}) {
   addCliOptions(cli, cliOptionsConfig);
   cli.help((info) => {
     const helpSection = info.find((current) => {
-      var _a;
+      let _a;
       return (_a = current.title) == null ? void 0 : _a.startsWith("For more info, run any command");
     });
     if (helpSection)

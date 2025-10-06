@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ParentCommand = void 0;
-var ParentCommand;
+let ParentCommand;
 (function (ParentCommand) {
     ParentCommand[ParentCommand["Completed"] = 0] = "Completed";
     ParentCommand[ParentCommand["Error"] = 1] = "Error";

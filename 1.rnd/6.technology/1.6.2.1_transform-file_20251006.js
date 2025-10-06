@@ -13,9 +13,9 @@ function _gensync() {
   };
   return data;
 }
-var _index = require("./config/index.js");
-var _index2 = require("./transformation/index.js");
-var fs = require("./gensync-utils/fs.js");
+const _index = require("./config/index.js");
+const _index2 = require("./transformation/index.js");
+const fs = require("./gensync-utils/fs.js");
 ({});
 const transformFileRunner = _gensync()(function* (filename, opts) {
   const options = Object.assign({}, opts, {

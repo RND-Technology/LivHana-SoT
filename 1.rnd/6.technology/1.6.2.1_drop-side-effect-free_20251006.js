@@ -108,12 +108,12 @@ function def_drop_side_effect_free(node_or_nodes, func) {
 // if all elements were dropped. Note: original array may be
 // returned if nothing changed.
 function trim(nodes, compressor, first_in_statement) {
-    var len = nodes.length;
+    const len = nodes.length;
     if (!len)  return null;
 
-    var ret = [], changed = false;
-    for (var i = 0; i < len; i++) {
-        var node = nodes[i].drop_side_effect_free(compressor, first_in_statement);
+    let ret = [], changed = false;
+    for (let i = 0; i < len; i++) {
+        const node = nodes[i].drop_side_effect_free(compressor, first_in_statement);
         changed |= node !== nodes[i];
         if (node) {
             ret.push(node);
@@ -134,21 +134,21 @@ def_drop_side_effect_free(AST_Call, function (compressor, first_in_statement) {
 
     if (!this.is_callee_pure(compressor)) {
         if (this.expression.is_call_pure(compressor)) {
-            var exprs = this.args.slice();
+            let exprs = this.args.slice();
             exprs.unshift(this.expression.expression);
             exprs = trim(exprs, compressor, first_in_statement);
             return exprs && make_sequence(this, exprs);
         }
         if (is_func_expr(this.expression)
             && (!this.expression.name || !this.expression.name.definition().references.length)) {
-            var node = this.clone();
+            const node = this.clone();
             node.expression.process_expression(false, compressor);
             return node;
         }
         return this;
     }
 
-    var args = trim(this.args, compressor, first_in_statement);
+    const args = trim(this.args, compressor, first_in_statement);
     return args && make_sequence(this, args);
 });
 
@@ -206,17 +206,17 @@ def_drop_side_effect_free([
 });
 
 def_drop_side_effect_free(AST_Binary, function (compressor, first_in_statement) {
-    var right = this.right.drop_side_effect_free(compressor);
+    const right = this.right.drop_side_effect_free(compressor);
     if (!right)
         return this.left.drop_side_effect_free(compressor, first_in_statement);
     if (lazy_op.has(this.operator)) {
         if (right === this.right)
             return this;
-        var node = this.clone();
+        const node = this.clone();
         node.right = right;
         return node;
     } else {
-        var left = this.left.drop_side_effect_free(compressor, first_in_statement);
+        const left = this.left.drop_side_effect_free(compressor, first_in_statement);
         if (!left)
             return this.right.drop_side_effect_free(compressor, first_in_statement);
         return make_sequence(this, [left, right]);
@@ -227,7 +227,7 @@ def_drop_side_effect_free(AST_Assign, function (compressor) {
     if (this.logical)
         return this;
 
-    var left = this.left;
+    let left = this.left;
     if (left.has_side_effects(compressor)
         || compressor.has_directive("use strict")
         && left instanceof AST_PropAccess
@@ -245,8 +245,8 @@ def_drop_side_effect_free(AST_Assign, function (compressor) {
 });
 
 def_drop_side_effect_free(AST_Conditional, function (compressor) {
-    var consequent = this.consequent.drop_side_effect_free(compressor);
-    var alternative = this.alternative.drop_side_effect_free(compressor);
+    const consequent = this.consequent.drop_side_effect_free(compressor);
+    const alternative = this.alternative.drop_side_effect_free(compressor);
     if (consequent === this.consequent && alternative === this.alternative)
         return this;
     if (!consequent)
@@ -261,7 +261,7 @@ def_drop_side_effect_free(AST_Conditional, function (compressor) {
             left: this.condition,
             right: consequent
         });
-    var node = this.clone();
+    const node = this.clone();
     node.consequent = consequent;
     node.alternative = alternative;
     return node;
@@ -278,7 +278,7 @@ def_drop_side_effect_free(AST_Unary, function (compressor, first_in_statement) {
     }
     if (this.operator == "typeof" && this.expression instanceof AST_SymbolRef)
         return null;
-    var expression = this.expression.drop_side_effect_free(compressor, first_in_statement);
+    const expression = this.expression.drop_side_effect_free(compressor, first_in_statement);
     if (first_in_statement && expression && is_iife_call(expression)) {
         if (expression === this.expression && this.operator == "!")
             return this;
@@ -294,7 +294,7 @@ def_drop_side_effect_free(AST_SymbolRef, function (compressor) {
 });
 
 def_drop_side_effect_free(AST_Object, function (compressor, first_in_statement) {
-    var values = trim(this.properties, compressor, first_in_statement);
+    const values = trim(this.properties, compressor, first_in_statement);
     return values && make_sequence(this, values);
 });
 
@@ -325,7 +325,7 @@ def_drop_side_effect_free([
 });
 
 def_drop_side_effect_free(AST_Array, function (compressor, first_in_statement) {
-    var values = trim(this.elements, compressor, first_in_statement);
+    const values = trim(this.elements, compressor, first_in_statement);
     return values && make_sequence(this, values);
 });
 
@@ -348,10 +348,10 @@ def_drop_side_effect_free(AST_Sub, function (compressor, first_in_statement) {
         return this;
     }
 
-    var property = this.property.drop_side_effect_free(compressor);
+    const property = this.property.drop_side_effect_free(compressor);
     if (property && this.optional) return this;
 
-    var expression = this.expression.drop_side_effect_free(compressor, first_in_statement);
+    const expression = this.expression.drop_side_effect_free(compressor, first_in_statement);
 
     if (expression && property) return make_sequence(this, [expression, property]);
     return expression || property;
@@ -362,11 +362,11 @@ def_drop_side_effect_free(AST_Chain, function (compressor, first_in_statement) {
 });
 
 def_drop_side_effect_free(AST_Sequence, function (compressor) {
-    var last = this.tail_node();
-    var expr = last.drop_side_effect_free(compressor);
+    const last = this.tail_node();
+    const expr = last.drop_side_effect_free(compressor);
     if (expr === last)
         return this;
-    var expressions = this.expressions.slice(0, -1);
+    const expressions = this.expressions.slice(0, -1);
     if (expr)
         expressions.push(expr);
     if (!expressions.length) {
@@ -382,6 +382,6 @@ def_drop_side_effect_free(AST_Expansion, function (compressor, first_in_statemen
 def_drop_side_effect_free(AST_TemplateSegment, return_null);
 
 def_drop_side_effect_free(AST_TemplateString, function (compressor) {
-    var values = trim(this.segments, compressor, first_in_statement);
+    const values = trim(this.segments, compressor, first_in_statement);
     return values && make_sequence(this, values);
 });

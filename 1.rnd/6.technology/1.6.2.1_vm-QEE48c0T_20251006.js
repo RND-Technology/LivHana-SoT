@@ -228,7 +228,7 @@ function interopCommonJsModule(interopDefault, mod) {
       keys: Array.from(allKeys),
       moduleExports: new Proxy(mod, {
         get(mod2, prop) {
-          var _a;
+          let _a;
           return mod2[prop] ?? ((_a = mod2.default) == null ? void 0 : _a[prop]);
         }
       }),
@@ -244,26 +244,26 @@ function interopCommonJsModule(interopDefault, mod) {
 const SyntheticModule$1 = vm.SyntheticModule;
 const SourceTextModule = vm.SourceTextModule;
 
-var __defProp$1 = Object.defineProperty;
-var __defNormalProp$1 = (obj, key, value) => key in obj ? __defProp$1(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-var __publicField$1 = (obj, key, value) => {
+const __defProp$1 = Object.defineProperty;
+const __defNormalProp$1 = (obj, key, value) => key in obj ? __defProp$1(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+const __publicField$1 = (obj, key, value) => {
   __defNormalProp$1(obj, typeof key !== "symbol" ? key + "" : key, value);
   return value;
 };
-var __accessCheck$1 = (obj, member, msg) => {
+const __accessCheck$1 = (obj, member, msg) => {
   if (!member.has(obj))
     throw TypeError("Cannot " + msg);
 };
-var __privateGet$1 = (obj, member, getter) => {
+const __privateGet$1 = (obj, member, getter) => {
   __accessCheck$1(obj, member, "read from private field");
   return getter ? getter.call(obj) : member.get(obj);
 };
-var __privateAdd$1 = (obj, member, value) => {
+const __privateAdd$1 = (obj, member, value) => {
   if (member.has(obj))
     throw TypeError("Cannot add the same private member more than once");
   member instanceof WeakSet ? member.add(obj) : member.set(obj, value);
 };
-var _httpIp;
+let _httpIp;
 const dataURIRegex = /^data:(?<mime>text\/javascript|application\/json|application\/wasm)(?:;(?<encoding>charset=utf-8|base64))?,(?<code>.*)$/;
 class EsmExecutor {
   constructor(executor, options) {
@@ -504,7 +504,7 @@ class ViteExecutor {
     return module;
   }
   canResolve = (fileUrl) => {
-    var _a;
+    let _a;
     const transformMode = this.workerState.environment.transformMode;
     if (transformMode !== "web")
       return false;
@@ -522,31 +522,31 @@ class ViteExecutor {
   };
 }
 
-var __defProp = Object.defineProperty;
-var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-var __publicField = (obj, key, value) => {
+const __defProp = Object.defineProperty;
+const __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+const __publicField = (obj, key, value) => {
   __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
   return value;
 };
-var __accessCheck = (obj, member, msg) => {
+const __accessCheck = (obj, member, msg) => {
   if (!member.has(obj))
     throw TypeError("Cannot " + msg);
 };
-var __privateGet = (obj, member, getter) => {
+const __privateGet = (obj, member, getter) => {
   __accessCheck(obj, member, "read from private field");
   return getter ? getter.call(obj) : member.get(obj);
 };
-var __privateAdd = (obj, member, value) => {
+const __privateAdd = (obj, member, value) => {
   if (member.has(obj))
     throw TypeError("Cannot add the same private member more than once");
   member instanceof WeakSet ? member.add(obj) : member.set(obj, value);
 };
-var __privateSet = (obj, member, value, setter) => {
+const __privateSet = (obj, member, value, setter) => {
   __accessCheck(obj, member, "write to private field");
   setter ? setter.call(obj, value) : member.set(obj, value);
   return value;
 };
-var _networkSupported;
+let _networkSupported;
 const SyntheticModule = vm.SyntheticModule;
 const nativeResolve = import.meta.resolve;
 class ExternalModulesExecutor {
@@ -608,7 +608,7 @@ class ExternalModulesExecutor {
     return nativeResolve(specifier, parent);
   }
   findNearestPackageData(basedir) {
-    var _a;
+    let _a;
     const originalBasedir = basedir;
     const packageCache = this.options.packageCache;
     while (basedir) {
@@ -724,7 +724,7 @@ class ExternalModulesExecutor {
     }
   }
   get isNetworkSupported() {
-    var _a;
+    let _a;
     if (__privateGet(this, _networkSupported) == null) {
       if (process.execArgv.includes("--experimental-network-imports"))
         __privateSet(this, _networkSupported, true);
@@ -763,7 +763,7 @@ const entryFile = pathToFileURL(resolve(distDir, "workers/runVmTests.js")).href;
 const fileMap = new FileMap();
 const packageCache = /* @__PURE__ */ new Map();
 async function runVmTests(state) {
-  var _a;
+  let _a;
   const { environment, ctx, rpc } = state;
   if (!environment.setupVM) {
     const envName = ctx.environment.name;

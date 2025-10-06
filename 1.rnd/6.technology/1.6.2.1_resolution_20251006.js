@@ -1,7 +1,7 @@
-let FractionJs = require('fraction.js')
+const FractionJs = require('fraction.js')
 
-let Prefixer = require('./prefixer')
-let utils = require('./utils')
+const Prefixer = require('./prefixer')
+const utils = require('./utils')
 
 const REGEXP = /(min|max)-resolution\s*:\s*\d*\.?\d+(dppx|dpcm|dpi|x)/gi
 const SPLIT = /(min|max)-resolution(\s*:\s*)(\d*\.?\d+)(dppx|dpcm|dpi|x)/i
@@ -13,7 +13,7 @@ class Resolution extends Prefixer {
   clean(rule) {
     if (!this.bad) {
       this.bad = []
-      for (let prefix of this.prefixes) {
+      for (const prefix of this.prefixes) {
         this.bad.push(this.prefixName(prefix, 'min'))
         this.bad.push(this.prefixName(prefix, 'max'))
       }
@@ -60,11 +60,11 @@ class Resolution extends Prefixer {
    * Add prefixed queries
    */
   process(rule) {
-    let parent = this.parentPrefix(rule)
-    let prefixes = parent ? [parent] : this.prefixes
+    const parent = this.parentPrefix(rule)
+    const prefixes = parent ? [parent] : this.prefixes
 
     rule.params = utils.editList(rule.params, (origin, prefixed) => {
-      for (let query of origin) {
+      for (const query of origin) {
         if (
           !query.includes('min-resolution') &&
           !query.includes('max-resolution')
@@ -73,9 +73,9 @@ class Resolution extends Prefixer {
           continue
         }
 
-        for (let prefix of prefixes) {
-          let processed = query.replace(REGEXP, str => {
-            let parts = str.match(SPLIT)
+        for (const prefix of prefixes) {
+          const processed = query.replace(REGEXP, str => {
+            const parts = str.match(SPLIT)
             return this.prefixQuery(
               prefix,
               parts[1],

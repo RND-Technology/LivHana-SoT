@@ -12,8 +12,8 @@ function _chalk() {
   };
   return data;
 }
-var _clearLine = _interopRequireDefault(require('./clearLine'));
-var _isInteractive = _interopRequireDefault(require('./isInteractive'));
+const _clearLine = _interopRequireDefault(require('./clearLine'));
+const _isInteractive = _interopRequireDefault(require('./isInteractive'));
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {default: obj};
 }

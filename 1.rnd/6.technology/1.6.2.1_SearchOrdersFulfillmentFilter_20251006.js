@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
 exports.searchOrdersFulfillmentFilterSchema = void 0;
-var schema_1 = require("../schema");
+const schema_1 = require("../schema");
 exports.searchOrdersFulfillmentFilterSchema = (0, schema_1.object)({
     fulfillmentTypes: [
         'fulfillment_types',

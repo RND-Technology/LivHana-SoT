@@ -87,7 +87,7 @@ const sleep = (timeout) => new Promise((resolve) => {
 function generateSecEvent(securityMetadata) {
     const traceObject = securityMetadata.traceObject;
     const request = securityMetadata.request;
-    let appServerInfo = {};
+    const appServerInfo = {};
 
     if (request && request.headers[NR_CSEC_FUZZ_REQUEST_ID]) {
         HC.getInstance().iastEventStats.processed++;
@@ -106,7 +106,7 @@ function generateSecEvent(securityMetadata) {
     }
 
     try {
-        let stakTrace = traceObject.stacktrace;
+        const stakTrace = traceObject.stacktrace;
         let uri = EMPTY_STR;
         if (request.uri) {
             uri += request.uri;

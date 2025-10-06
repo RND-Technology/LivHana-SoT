@@ -3,7 +3,7 @@ import { M as MockerRegistry, R as RedirectedModule, A as AutomockedModule } fro
 import { e as extname, j as join } from './chunk-pathe.M-eThtNZ.js';
 
 // src/index.ts
-var f = {
+const f = {
   reset: [0, 0],
   bold: [1, 22, "\x1B[22m\x1B[1m"],
   dim: [2, 22, "\x1B[22m\x1B[2m"],
@@ -52,26 +52,26 @@ function a(n) {
 a.open = "";
 a.close = "";
 function C(n = false) {
-  let e = typeof process != "undefined" ? process : void 0, i = (e == null ? void 0 : e.env) || {}, g = (e == null ? void 0 : e.argv) || [];
+  const e = typeof process != "undefined" ? process : void 0, i = (e == null ? void 0 : e.env) || {}, g = (e == null ? void 0 : e.argv) || [];
   return !("NO_COLOR" in i || g.includes("--no-color")) && ("FORCE_COLOR" in i || g.includes("--color") || (e == null ? void 0 : e.platform) === "win32" || n && i.TERM !== "dumb" || "CI" in i) || typeof window != "undefined" && !!window.chrome;
 }
 function p(n = false) {
-  let e = C(n), i = (r, t, c, o) => {
+  const e = C(n), i = (r, t, c, o) => {
     let l = "", s = 0;
     do
       l += r.substring(s, o) + c, s = o + t.length, o = r.indexOf(t, s);
     while (~o);
     return l + r.substring(s);
   }, g = (r, t, c = r) => {
-    let o = (l) => {
-      let s = String(l), b = s.indexOf(t, r.length);
+    const o = (l) => {
+      const s = String(l), b = s.indexOf(t, r.length);
       return ~b ? r + i(s, t, c, b) + t : r + s + t;
     };
     return o.open = r, o.close = t, o;
   }, u = {
     isColorSupported: e
   }, d = (r) => `\x1B[${r}m`;
-  for (let [r, t] of h)
+  for (const [r, t] of h)
     u[r] = e ? g(
       d(t[0]),
       d(t[1]),
@@ -86,7 +86,7 @@ function _mergeNamespaces(n, m) {
 	m.forEach(function(e) {
 		e && typeof e !== "string" && !Array.isArray(e) && Object.keys(e).forEach(function(k) {
 			if (k !== "default" && !(k in n)) {
-				var d = Object.getOwnPropertyDescriptor(e, k);
+				const d = Object.getOwnPropertyDescriptor(e, k);
 				Object.defineProperty(n, k, d.get ? d : {
 					enumerable: true,
 					get: function() {
@@ -101,8 +101,8 @@ function _mergeNamespaces(n, m) {
 function getDefaultExportFromCjs(x) {
 	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default") ? x["default"] : x;
 }
-var reactIs$1 = { exports: {} };
-var reactIs_production = {};
+const reactIs$1 = { exports: {} };
+const reactIs_production = {};
 /**
 * @license React
 * react-is.production.js
@@ -112,15 +112,15 @@ var reactIs_production = {};
 * This source code is licensed under the MIT license found in the
 * LICENSE file in the root directory of this source tree.
 */
-var hasRequiredReactIs_production;
+let hasRequiredReactIs_production;
 function requireReactIs_production() {
 	if (hasRequiredReactIs_production) return reactIs_production;
 	hasRequiredReactIs_production = 1;
-	var REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler");
-	var REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy"), REACT_VIEW_TRANSITION_TYPE = Symbol.for("react.view_transition"), REACT_CLIENT_REFERENCE = Symbol.for("react.client.reference");
+	const REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler");
+	const REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy"), REACT_VIEW_TRANSITION_TYPE = Symbol.for("react.view_transition"), REACT_CLIENT_REFERENCE = Symbol.for("react.client.reference");
 	function typeOf(object) {
 		if ("object" === typeof object && null !== object) {
-			var $$typeof = object.$$typeof;
+			const $$typeof = object.$$typeof;
 			switch ($$typeof) {
 				case REACT_ELEMENT_TYPE: switch (object = object.type, object) {
 					case REACT_FRAGMENT_TYPE:
@@ -196,7 +196,7 @@ function requireReactIs_production() {
 	reactIs_production.typeOf = typeOf;
 	return reactIs_production;
 }
-var reactIs_development$1 = {};
+const reactIs_development$1 = {};
 /**
 * @license React
 * react-is.development.js
@@ -206,14 +206,14 @@ var reactIs_development$1 = {};
 * This source code is licensed under the MIT license found in the
 * LICENSE file in the root directory of this source tree.
 */
-var hasRequiredReactIs_development$1;
+let hasRequiredReactIs_development$1;
 function requireReactIs_development$1() {
 	if (hasRequiredReactIs_development$1) return reactIs_development$1;
 	hasRequiredReactIs_development$1 = 1;
 	"production" !== process.env.NODE_ENV && function() {
 		function typeOf(object) {
 			if ("object" === typeof object && null !== object) {
-				var $$typeof = object.$$typeof;
+				const $$typeof = object.$$typeof;
 				switch ($$typeof) {
 					case REACT_ELEMENT_TYPE: switch (object = object.type, object) {
 						case REACT_FRAGMENT_TYPE:
@@ -292,7 +292,7 @@ function requireReactIs_development$1() {
 	}();
 	return reactIs_development$1;
 }
-var hasRequiredReactIs$1;
+let hasRequiredReactIs$1;
 function requireReactIs$1() {
 	if (hasRequiredReactIs$1) return reactIs$1.exports;
 	hasRequiredReactIs$1 = 1;
@@ -303,14 +303,14 @@ function requireReactIs$1() {
 	}
 	return reactIs$1.exports;
 }
-var reactIsExports$1 = requireReactIs$1();
-var index$1 = /* @__PURE__ */ getDefaultExportFromCjs(reactIsExports$1);
-var ReactIs19 = /* @__PURE__ */ _mergeNamespaces({
+const reactIsExports$1 = requireReactIs$1();
+const index$1 = /* @__PURE__ */ getDefaultExportFromCjs(reactIsExports$1);
+const ReactIs19 = /* @__PURE__ */ _mergeNamespaces({
 	__proto__: null,
 	default: index$1
 }, [reactIsExports$1]);
-var reactIs = { exports: {} };
-var reactIs_production_min = {};
+const reactIs = { exports: {} };
+const reactIs_production_min = {};
 /**
 * @license React
 * react-is.production.min.js
@@ -320,15 +320,15 @@ var reactIs_production_min = {};
 * This source code is licensed under the MIT license found in the
 * LICENSE file in the root directory of this source tree.
 */
-var hasRequiredReactIs_production_min;
+let hasRequiredReactIs_production_min;
 function requireReactIs_production_min() {
 	if (hasRequiredReactIs_production_min) return reactIs_production_min;
 	hasRequiredReactIs_production_min = 1;
-	var b = Symbol.for("react.element"), c = Symbol.for("react.portal"), d = Symbol.for("react.fragment"), e = Symbol.for("react.strict_mode"), f = Symbol.for("react.profiler"), g = Symbol.for("react.provider"), h = Symbol.for("react.context"), k = Symbol.for("react.server_context"), l = Symbol.for("react.forward_ref"), m = Symbol.for("react.suspense"), n = Symbol.for("react.suspense_list"), p = Symbol.for("react.memo"), q = Symbol.for("react.lazy"), t = Symbol.for("react.offscreen"), u;
+	let b = Symbol.for("react.element"), c = Symbol.for("react.portal"), d = Symbol.for("react.fragment"), e = Symbol.for("react.strict_mode"), f = Symbol.for("react.profiler"), g = Symbol.for("react.provider"), h = Symbol.for("react.context"), k = Symbol.for("react.server_context"), l = Symbol.for("react.forward_ref"), m = Symbol.for("react.suspense"), n = Symbol.for("react.suspense_list"), p = Symbol.for("react.memo"), q = Symbol.for("react.lazy"), t = Symbol.for("react.offscreen"), u;
 	u = Symbol.for("react.module.reference");
 	function v(a) {
 		if ("object" === typeof a && null !== a) {
-			var r = a.$$typeof;
+			const r = a.$$typeof;
 			switch (r) {
 				case b: switch (a = a.type, a) {
 					case d:
@@ -410,7 +410,7 @@ function requireReactIs_production_min() {
 	reactIs_production_min.typeOf = v;
 	return reactIs_production_min;
 }
-var reactIs_development = {};
+const reactIs_development = {};
 /**
 * @license React
 * react-is.development.js
@@ -420,7 +420,7 @@ var reactIs_development = {};
 * This source code is licensed under the MIT license found in the
 * LICENSE file in the root directory of this source tree.
 */
-var hasRequiredReactIs_development;
+let hasRequiredReactIs_development;
 function requireReactIs_development() {
 	if (hasRequiredReactIs_development) return reactIs_development;
 	hasRequiredReactIs_development = 1;
@@ -430,29 +430,29 @@ function requireReactIs_development() {
 			// When adding new symbols to this file,
 			// Please consider also adding to 'react-devtools-shared/src/backend/ReactSymbols'
 			// The Symbol used to tag the ReactElement-like types.
-			var REACT_ELEMENT_TYPE = Symbol.for("react.element");
-			var REACT_PORTAL_TYPE = Symbol.for("react.portal");
-			var REACT_FRAGMENT_TYPE = Symbol.for("react.fragment");
-			var REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode");
-			var REACT_PROFILER_TYPE = Symbol.for("react.profiler");
-			var REACT_PROVIDER_TYPE = Symbol.for("react.provider");
-			var REACT_CONTEXT_TYPE = Symbol.for("react.context");
-			var REACT_SERVER_CONTEXT_TYPE = Symbol.for("react.server_context");
-			var REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref");
-			var REACT_SUSPENSE_TYPE = Symbol.for("react.suspense");
-			var REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list");
-			var REACT_MEMO_TYPE = Symbol.for("react.memo");
-			var REACT_LAZY_TYPE = Symbol.for("react.lazy");
-			var REACT_OFFSCREEN_TYPE = Symbol.for("react.offscreen");
+			const REACT_ELEMENT_TYPE = Symbol.for("react.element");
+			const REACT_PORTAL_TYPE = Symbol.for("react.portal");
+			const REACT_FRAGMENT_TYPE = Symbol.for("react.fragment");
+			const REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode");
+			const REACT_PROFILER_TYPE = Symbol.for("react.profiler");
+			const REACT_PROVIDER_TYPE = Symbol.for("react.provider");
+			const REACT_CONTEXT_TYPE = Symbol.for("react.context");
+			const REACT_SERVER_CONTEXT_TYPE = Symbol.for("react.server_context");
+			const REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref");
+			const REACT_SUSPENSE_TYPE = Symbol.for("react.suspense");
+			const REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list");
+			const REACT_MEMO_TYPE = Symbol.for("react.memo");
+			const REACT_LAZY_TYPE = Symbol.for("react.lazy");
+			const REACT_OFFSCREEN_TYPE = Symbol.for("react.offscreen");
 			// -----------------------------------------------------------------------------
-			var enableScopeAPI = false;
-			var enableCacheElement = false;
-			var enableTransitionTracing = false;
-			var enableLegacyHidden = false;
+			const enableScopeAPI = false;
+			const enableCacheElement = false;
+			const enableTransitionTracing = false;
+			const enableLegacyHidden = false;
 			// stuff. Intended to enable React core members to more easily debug scheduling
 			// issues in DEV builds.
-			var enableDebugTracing = false;
-			var REACT_MODULE_REFERENCE;
+			const enableDebugTracing = false;
+			let REACT_MODULE_REFERENCE;
 			{
 				REACT_MODULE_REFERENCE = Symbol.for("react.module.reference");
 			}
@@ -472,7 +472,7 @@ function requireReactIs_development() {
 			}
 			function typeOf(object) {
 				if (typeof object === "object" && object !== null) {
-					var $$typeof = object.$$typeof;
+					const $$typeof = object.$$typeof;
 					switch ($$typeof) {
 						case REACT_ELEMENT_TYPE:
 							var type = object.type;
@@ -499,20 +499,20 @@ function requireReactIs_development() {
 				}
 				return undefined;
 			}
-			var ContextConsumer = REACT_CONTEXT_TYPE;
-			var ContextProvider = REACT_PROVIDER_TYPE;
-			var Element = REACT_ELEMENT_TYPE;
-			var ForwardRef = REACT_FORWARD_REF_TYPE;
-			var Fragment = REACT_FRAGMENT_TYPE;
-			var Lazy = REACT_LAZY_TYPE;
-			var Memo = REACT_MEMO_TYPE;
-			var Portal = REACT_PORTAL_TYPE;
-			var Profiler = REACT_PROFILER_TYPE;
-			var StrictMode = REACT_STRICT_MODE_TYPE;
-			var Suspense = REACT_SUSPENSE_TYPE;
-			var SuspenseList = REACT_SUSPENSE_LIST_TYPE;
-			var hasWarnedAboutDeprecatedIsAsyncMode = false;
-			var hasWarnedAboutDeprecatedIsConcurrentMode = false;
+			const ContextConsumer = REACT_CONTEXT_TYPE;
+			const ContextProvider = REACT_PROVIDER_TYPE;
+			const Element = REACT_ELEMENT_TYPE;
+			const ForwardRef = REACT_FORWARD_REF_TYPE;
+			const Fragment = REACT_FRAGMENT_TYPE;
+			const Lazy = REACT_LAZY_TYPE;
+			const Memo = REACT_MEMO_TYPE;
+			const Portal = REACT_PORTAL_TYPE;
+			const Profiler = REACT_PROFILER_TYPE;
+			const StrictMode = REACT_STRICT_MODE_TYPE;
+			const Suspense = REACT_SUSPENSE_TYPE;
+			const SuspenseList = REACT_SUSPENSE_LIST_TYPE;
+			let hasWarnedAboutDeprecatedIsAsyncMode = false;
+			let hasWarnedAboutDeprecatedIsConcurrentMode = false;
 			function isAsyncMode(object) {
 				{
 					if (!hasWarnedAboutDeprecatedIsAsyncMode) {
@@ -599,7 +599,7 @@ function requireReactIs_development() {
 	}
 	return reactIs_development;
 }
-var hasRequiredReactIs;
+let hasRequiredReactIs;
 function requireReactIs() {
 	if (hasRequiredReactIs) return reactIs.exports;
 	hasRequiredReactIs = 1;
@@ -610,9 +610,9 @@ function requireReactIs() {
 	}
 	return reactIs.exports;
 }
-var reactIsExports = requireReactIs();
-var index = /* @__PURE__ */ getDefaultExportFromCjs(reactIsExports);
-var ReactIs18 = /* @__PURE__ */ _mergeNamespaces({
+const reactIsExports = requireReactIs();
+const index = /* @__PURE__ */ getDefaultExportFromCjs(reactIsExports);
+const ReactIs18 = /* @__PURE__ */ _mergeNamespaces({
 	__proto__: null,
 	default: index
 }, [reactIsExports]);
@@ -671,14 +671,14 @@ function createSimpleStackTrace(options) {
 	return stackTrace;
 }
 
-var jsTokens_1;
-var hasRequiredJsTokens;
+let jsTokens_1;
+let hasRequiredJsTokens;
 function requireJsTokens() {
 	if (hasRequiredJsTokens) return jsTokens_1;
 	hasRequiredJsTokens = 1;
 	// Copyright 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023 Simon Lydell
 	// License: MIT.
-	var Identifier, JSXIdentifier, JSXPunctuator, JSXString, JSXText, KeywordsWithExpressionAfter, KeywordsWithNoLineTerminatorAfter, LineTerminatorSequence, MultiLineComment, Newline, NumericLiteral, Punctuator, RegularExpressionLiteral, SingleLineComment, StringLiteral, Template, TokensNotPrecedingObjectLiteral, TokensPrecedingExpression, WhiteSpace;
+	let Identifier, JSXIdentifier, JSXPunctuator, JSXString, JSXText, KeywordsWithExpressionAfter, KeywordsWithNoLineTerminatorAfter, LineTerminatorSequence, MultiLineComment, Newline, NumericLiteral, Punctuator, RegularExpressionLiteral, SingleLineComment, StringLiteral, Template, TokensNotPrecedingObjectLiteral, TokensPrecedingExpression, WhiteSpace;
 	RegularExpressionLiteral = /\/(?![*\/])(?:\[(?:(?![\]\\]).|\\.)*\]|(?![\/\\]).|\\.)*(\/[$_\u200C\u200D\p{ID_Continue}]*|\\)?/uy;
 	Punctuator = /--|\+\+|=>|\.{3}|\??\.(?!\d)|(?:&&|\|\||\?\?|[+\-%&|^]|\*{1,2}|<{1,2}|>{1,3}|!=?|={1,2}|\/(?![\/*]))=?|[?~,:;[\](){}]/y;
 	Identifier = /(\x23?)(?=[$_\p{ID_Start}\\])(?:[$_\u200C\u200D\p{ID_Continue}]|\\u[\da-fA-F]{4}|\\u\{[\da-fA-F]+\})+/uy;
@@ -699,7 +699,7 @@ function requireJsTokens() {
 	KeywordsWithNoLineTerminatorAfter = /^(?:return|throw|yield)$/;
 	Newline = RegExp(LineTerminatorSequence.source);
 	jsTokens_1 = function* (input, { jsx = false } = {}) {
-		var braces, firstCodePoint, isExpression, lastIndex, lastSignificantToken, length, match, mode, nextLastIndex, nextLastSignificantToken, parenNesting, postfixIncDec, punctuator, stack;
+		let braces, firstCodePoint, isExpression, lastIndex, lastSignificantToken, length, match, mode, nextLastIndex, nextLastSignificantToken, parenNesting, postfixIncDec, punctuator, stack;
 		({length} = input);
 		lastIndex = 0;
 		lastSignificantToken = "";
@@ -1062,7 +1062,7 @@ function requireJsTokens() {
 }
 requireJsTokens();
 // src/index.ts
-var reservedWords = {
+const reservedWords = {
 	keyword: [
 		"break",
 		"case",
@@ -1121,7 +1121,7 @@ for (let i = 0; i < chars.length; i++) {
 	intToChar[i] = c;
 	charToInt[c] = i;
 }
-var UrlType;
+let UrlType;
 (function(UrlType) {
 	UrlType[UrlType["Empty"] = 1] = "Empty";
 	UrlType[UrlType["Hash"] = 2] = "Hash";

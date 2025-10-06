@@ -84,7 +84,7 @@ exports.ValueCastDereferenceError = ValueCastDereferenceError;
 // to prevent large property counts biasing results. Properties that match literal values are
 // maximally awarded as literals are typically used as union discriminator fields.
 // ----------------------------------------------------------------------------------------------
-var UnionCastCreate;
+let UnionCastCreate;
 (function (UnionCastCreate) {
     function Score(schema, references, value) {
         if (schema[Types.Kind] === 'Object' && typeof value === 'object' && value !== null) {
@@ -125,7 +125,7 @@ var UnionCastCreate;
     }
     UnionCastCreate.Create = Create;
 })(UnionCastCreate || (UnionCastCreate = {}));
-var ValueCast;
+let ValueCast;
 (function (ValueCast) {
     // ----------------------------------------------------------------------------------------------
     // Guards

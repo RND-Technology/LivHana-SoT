@@ -2,10 +2,10 @@
 module.exports = BufferWriter;
 
 // extends Writer
-var Writer = require("./writer");
+const Writer = require("./writer");
 (BufferWriter.prototype = Object.create(Writer.prototype)).constructor = BufferWriter;
 
-var util = require("./util/minimal");
+const util = require("./util/minimal");
 
 /**
  * Constructs a new buffer writer instance.
@@ -35,7 +35,7 @@ BufferWriter._configure = function () {
         : function writeBytesBuffer_copy(val, buf, pos) {
           if (val.copy) // Buffer values
             val.copy(buf, pos, 0, val.length);
-          else for (var i = 0; i < val.length;) // plain array values
+          else for (let i = 0; i < val.length;) // plain array values
             buf[pos++] = val[i++];
         };
 };
@@ -47,7 +47,7 @@ BufferWriter._configure = function () {
 BufferWriter.prototype.bytes = function write_bytes_buffer(value) {
     if (util.isString(value))
         value = util._Buffer_from(value, "base64");
-    var len = value.length >>> 0;
+    const len = value.length >>> 0;
     this.uint32(len);
     if (len)
         this._push(BufferWriter.writeBytesBuffer, len, value);
@@ -67,7 +67,7 @@ function writeStringBuffer(val, buf, pos) {
  * @override
  */
 BufferWriter.prototype.string = function write_string_buffer(value) {
-    var len = util.Buffer.byteLength(value);
+    const len = util.Buffer.byteLength(value);
     this.uint32(len);
     if (len)
         this._push(writeStringBuffer, len, value);

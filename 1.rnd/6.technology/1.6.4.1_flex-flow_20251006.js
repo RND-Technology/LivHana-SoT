@@ -1,5 +1,5 @@
-let Declaration = require('../declaration')
-let flexSpec = require('./flex-spec')
+const Declaration = require('../declaration')
+const flexSpec = require('./flex-spec')
 
 class FlexFlow extends Declaration {
   /**
@@ -11,14 +11,14 @@ class FlexFlow extends Declaration {
     if (spec !== 2009) {
       return super.insert(decl, prefix, prefixes)
     }
-    let values = decl.value
+    const values = decl.value
       .split(/\s+/)
       .filter(i => i !== 'wrap' && i !== 'nowrap' && 'wrap-reverse')
     if (values.length === 0) {
       return undefined
     }
 
-    let already = decl.parent.some(
+    const already = decl.parent.some(
       i =>
         i.prop === prefix + 'box-orient' || i.prop === prefix + 'box-direction'
     )
@@ -26,9 +26,9 @@ class FlexFlow extends Declaration {
       return undefined
     }
 
-    let value = values[0]
-    let orient = value.includes('row') ? 'horizontal' : 'vertical'
-    let dir = value.includes('reverse') ? 'reverse' : 'normal'
+    const value = values[0]
+    const orient = value.includes('row') ? 'horizontal' : 'vertical'
+    const dir = value.includes('reverse') ? 'reverse' : 'normal'
 
     let cloned = this.clone(decl)
     cloned.prop = prefix + 'box-orient'

@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
 exports.checkoutLocationSettingsTippingSchema = void 0;
-var schema_1 = require("../schema");
-var money_1 = require("./money");
+const schema_1 = require("../schema");
+const money_1 = require("./money");
 exports.checkoutLocationSettingsTippingSchema = (0, schema_1.object)({
     percentages: ['percentages', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.array)((0, schema_1.number)())))],
     smartTippingEnabled: [

@@ -3,7 +3,7 @@ import area from "./area.js";
 import {lineRadial} from "./lineRadial.js";
 
 export default function() {
-  var a = area().curve(curveRadialLinear),
+  const a = area().curve(curveRadialLinear),
       c = a.curve,
       x0 = a.lineX0,
       x1 = a.lineX1,

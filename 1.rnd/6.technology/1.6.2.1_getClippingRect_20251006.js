@@ -14,7 +14,7 @@ import rectToClientRect from "../utils/rectToClientRect.js";
 import { max, min } from "../utils/math.js";
 
 function getInnerBoundingClientRect(element, strategy) {
-  var rect = getBoundingClientRect(element, false, strategy === 'fixed');
+  const rect = getBoundingClientRect(element, false, strategy === 'fixed');
   rect.top = rect.top + element.clientTop;
   rect.left = rect.left + element.clientLeft;
   rect.bottom = rect.top + element.clientHeight;
@@ -34,9 +34,9 @@ function getClientRectFromMixedType(element, clippingParent, strategy) {
 
 
 function getClippingParents(element) {
-  var clippingParents = listScrollParents(getParentNode(element));
-  var canEscapeClipping = ['absolute', 'fixed'].indexOf(getComputedStyle(element).position) >= 0;
-  var clipperElement = canEscapeClipping && isHTMLElement(element) ? getOffsetParent(element) : element;
+  const clippingParents = listScrollParents(getParentNode(element));
+  const canEscapeClipping = ['absolute', 'fixed'].indexOf(getComputedStyle(element).position) >= 0;
+  const clipperElement = canEscapeClipping && isHTMLElement(element) ? getOffsetParent(element) : element;
 
   if (!isElement(clipperElement)) {
     return [];
@@ -51,11 +51,11 @@ function getClippingParents(element) {
 
 
 export default function getClippingRect(element, boundary, rootBoundary, strategy) {
-  var mainClippingParents = boundary === 'clippingParents' ? getClippingParents(element) : [].concat(boundary);
-  var clippingParents = [].concat(mainClippingParents, [rootBoundary]);
-  var firstClippingParent = clippingParents[0];
-  var clippingRect = clippingParents.reduce(function (accRect, clippingParent) {
-    var rect = getClientRectFromMixedType(element, clippingParent, strategy);
+  const mainClippingParents = boundary === 'clippingParents' ? getClippingParents(element) : [].concat(boundary);
+  const clippingParents = [].concat(mainClippingParents, [rootBoundary]);
+  const firstClippingParent = clippingParents[0];
+  const clippingRect = clippingParents.reduce(function (accRect, clippingParent) {
+    const rect = getClientRectFromMixedType(element, clippingParent, strategy);
     accRect.top = max(rect.top, accRect.top);
     accRect.right = min(rect.right, accRect.right);
     accRect.bottom = min(rect.bottom, accRect.bottom);

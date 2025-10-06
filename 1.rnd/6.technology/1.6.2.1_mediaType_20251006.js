@@ -21,7 +21,7 @@ module.exports.preferredMediaTypes = preferredMediaTypes;
  * @private
  */
 
-var simpleMediaTypeRegExp = /^\s*([^\s\/;]+)\/([^;\s]+)\s*(?:;(.*))?$/;
+const simpleMediaTypeRegExp = /^\s*([^\s\/;]+)\/([^;\s]+)\s*(?:;(.*))?$/;
 
 /**
  * Parse the Accept header.
@@ -29,10 +29,10 @@ var simpleMediaTypeRegExp = /^\s*([^\s\/;]+)\/([^;\s]+)\s*(?:;(.*))?$/;
  */
 
 function parseAccept(accept) {
-  var accepts = splitMediaTypes(accept);
+  const accepts = splitMediaTypes(accept);
 
   for (var i = 0, j = 0; i < accepts.length; i++) {
-    var mediaType = parseMediaType(accepts[i].trim(), i);
+    const mediaType = parseMediaType(accepts[i].trim(), i);
 
     if (mediaType) {
       accepts[j++] = mediaType;
@@ -51,24 +51,24 @@ function parseAccept(accept) {
  */
 
 function parseMediaType(str, i) {
-  var match = simpleMediaTypeRegExp.exec(str);
+  const match = simpleMediaTypeRegExp.exec(str);
   if (!match) return null;
 
-  var params = Object.create(null);
-  var q = 1;
-  var subtype = match[2];
-  var type = match[1];
+  const params = Object.create(null);
+  let q = 1;
+  const subtype = match[2];
+  const type = match[1];
 
   if (match[3]) {
-    var kvps = splitParameters(match[3]).map(splitKeyValuePair);
+    const kvps = splitParameters(match[3]).map(splitKeyValuePair);
 
-    for (var j = 0; j < kvps.length; j++) {
-      var pair = kvps[j];
-      var key = pair[0].toLowerCase();
-      var val = pair[1];
+    for (let j = 0; j < kvps.length; j++) {
+      const pair = kvps[j];
+      const key = pair[0].toLowerCase();
+      const val = pair[1];
 
       // get the value, unwrapping quotes
-      var value = val && val[0] === '"' && val[val.length - 1] === '"'
+      const value = val && val[0] === '"' && val[val.length - 1] === '"'
         ? val.slice(1, -1)
         : val;
 
@@ -97,10 +97,10 @@ function parseMediaType(str, i) {
  */
 
 function getMediaTypePriority(type, accepted, index) {
-  var priority = {o: -1, q: 0, s: 0};
+  let priority = {o: -1, q: 0, s: 0};
 
-  for (var i = 0; i < accepted.length; i++) {
-    var spec = specify(type, accepted[i], index);
+  for (let i = 0; i < accepted.length; i++) {
+    const spec = specify(type, accepted[i], index);
 
     if (spec && (priority.s - spec.s || priority.q - spec.q || priority.o - spec.o) < 0) {
       priority = spec;
@@ -116,8 +116,8 @@ function getMediaTypePriority(type, accepted, index) {
  */
 
 function specify(type, spec, index) {
-  var p = parseMediaType(type);
-  var s = 0;
+  const p = parseMediaType(type);
+  let s = 0;
 
   if (!p) {
     return null;
@@ -135,7 +135,7 @@ function specify(type, spec, index) {
     return null;
   }
 
-  var keys = Object.keys(spec.params);
+  const keys = Object.keys(spec.params);
   if (keys.length > 0) {
     if (keys.every(function (k) {
       return spec.params[k] == '*' || (spec.params[k] || '').toLowerCase() == (p.params[k] || '').toLowerCase();
@@ -161,7 +161,7 @@ function specify(type, spec, index) {
 
 function preferredMediaTypes(accept, provided) {
   // RFC 2616 sec 14.2: no header = */*
-  var accepts = parseAccept(accept === undefined ? '*/*' : accept || '');
+  const accepts = parseAccept(accept === undefined ? '*/*' : accept || '');
 
   if (!provided) {
     // sorted list of all types
@@ -171,7 +171,7 @@ function preferredMediaTypes(accept, provided) {
       .map(getFullType);
   }
 
-  var priorities = provided.map(function getPriority(type, index) {
+  const priorities = provided.map(function getPriority(type, index) {
     return getMediaTypePriority(type, accepts, index);
   });
 
@@ -214,8 +214,8 @@ function isQuality(spec) {
  */
 
 function quoteCount(string) {
-  var count = 0;
-  var index = 0;
+  let count = 0;
+  let index = 0;
 
   while ((index = string.indexOf('"', index)) !== -1) {
     count++;
@@ -231,9 +231,9 @@ function quoteCount(string) {
  */
 
 function splitKeyValuePair(str) {
-  var index = str.indexOf('=');
-  var key;
-  var val;
+  const index = str.indexOf('=');
+  let key;
+  let val;
 
   if (index === -1) {
     key = str;
@@ -251,7 +251,7 @@ function splitKeyValuePair(str) {
  */
 
 function splitMediaTypes(accept) {
-  var accepts = accept.split(',');
+  const accepts = accept.split(',');
 
   for (var i = 1, j = 0; i < accepts.length; i++) {
     if (quoteCount(accepts[j]) % 2 == 0) {
@@ -273,7 +273,7 @@ function splitMediaTypes(accept) {
  */
 
 function splitParameters(str) {
-  var parameters = str.split(';');
+  const parameters = str.split(';');
 
   for (var i = 1, j = 0; i < parameters.length; i++) {
     if (quoteCount(parameters[j]) % 2 == 0) {

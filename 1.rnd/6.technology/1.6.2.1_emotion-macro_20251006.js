@@ -28,7 +28,7 @@ const isAlreadyTranspiled = path => {
   return ['name', 'styles'].every(p => properties.has(p))
 }
 
-let createEmotionTransformer =
+const createEmotionTransformer =
   (isPure /*: boolean */) =>
   (
     { state, babel, importSource, reference, importSpecifierName } /*: Object */
@@ -43,7 +43,7 @@ let createEmotionTransformer =
       path.addComment('leading', '#__PURE__')
     }
 
-    let node = transformExpressionWithStyles({
+    const node = transformExpressionWithStyles({
       babel,
       state,
       path,
@@ -54,11 +54,11 @@ let createEmotionTransformer =
     }
   }
 
-export let transformers = {
+export const transformers = {
   css: createEmotionTransformer(true),
   injectGlobal: createEmotionTransformer(false),
   keyframes: createEmotionTransformer(true)
 }
 
-export let createEmotionMacro = (importSource /*: string */) =>
+export const createEmotionMacro = (importSource /*: string */) =>
   createTransformerMacro(transformers, { importSource })

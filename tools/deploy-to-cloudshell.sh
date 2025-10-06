@@ -327,14 +327,16 @@ main() {
     
     # Execute deployment steps
     check_prerequisites
-    local package_path=$(prepare_package)
+    local package_path
+    package_path=$(prepare_package)
     upload_to_cloudshell "$package_path"
     extract_in_cloudshell
     setup_environment
     install_dependencies
     validate_deployment
     deploy_services
-    local report_file=$(generate_report)
+    local report_file
+    report_file=$(generate_report)
     
     echo ""
     echo "🎉 DEPLOYMENT SUCCESSFUL!"

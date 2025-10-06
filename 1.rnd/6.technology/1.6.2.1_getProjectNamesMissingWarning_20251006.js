@@ -11,7 +11,7 @@ function _chalk() {
   };
   return data;
 }
-var _getProjectDisplayName = _interopRequireDefault(
+const _getProjectDisplayName = _interopRequireDefault(
   require('./getProjectDisplayName')
 );
 function _interopRequireDefault(obj) {

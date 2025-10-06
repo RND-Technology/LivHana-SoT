@@ -1,31 +1,31 @@
 "use strict";
 'use client';
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+const _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-var React = _interopRequireWildcard(require("react"));
-var _clsx = _interopRequireDefault(require("clsx"));
-var _propTypes = _interopRequireDefault(require("prop-types"));
-var _reactTransitionGroup = require("react-transition-group");
-var _useTimeout = _interopRequireDefault(require("@mui/utils/useTimeout"));
-var _elementTypeAcceptingRef = _interopRequireDefault(require("@mui/utils/elementTypeAcceptingRef"));
-var _composeClasses = _interopRequireDefault(require("@mui/utils/composeClasses"));
-var _styled = _interopRequireDefault(require("../styles/styled"));
-var _DefaultPropsProvider = require("../DefaultPropsProvider");
-var _createTransitions = require("../styles/createTransitions");
-var _utils = require("../transitions/utils");
-var _useTheme = _interopRequireDefault(require("../styles/useTheme"));
-var _utils2 = require("../utils");
-var _collapseClasses = require("./collapseClasses");
-var _jsxRuntime = require("react/jsx-runtime");
+const _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+const _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+const React = _interopRequireWildcard(require("react"));
+const _clsx = _interopRequireDefault(require("clsx"));
+const _propTypes = _interopRequireDefault(require("prop-types"));
+const _reactTransitionGroup = require("react-transition-group");
+const _useTimeout = _interopRequireDefault(require("@mui/utils/useTimeout"));
+const _elementTypeAcceptingRef = _interopRequireDefault(require("@mui/utils/elementTypeAcceptingRef"));
+const _composeClasses = _interopRequireDefault(require("@mui/utils/composeClasses"));
+const _styled = _interopRequireDefault(require("../styles/styled"));
+const _DefaultPropsProvider = require("../DefaultPropsProvider");
+const _createTransitions = require("../styles/createTransitions");
+const _utils = require("../transitions/utils");
+const _useTheme = _interopRequireDefault(require("../styles/useTheme"));
+const _utils2 = require("../utils");
+const _collapseClasses = require("./collapseClasses");
+const _jsxRuntime = require("react/jsx-runtime");
 const _excluded = ["addEndListener", "children", "className", "collapsedSize", "component", "easing", "in", "onEnter", "onEntered", "onEntering", "onExit", "onExited", "onExiting", "orientation", "style", "timeout", "TransitionComponent"];
-function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
-function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; const r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; const t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); const n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (const u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { const i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 const useUtilityClasses = ownerState => {
   const {
     orientation,
@@ -382,4 +382,4 @@ process.env.NODE_ENV !== "production" ? Collapse.propTypes /* remove-proptypes *
   })])
 } : void 0;
 Collapse.muiSupportAuto = true;
-var _default = exports.default = Collapse;
+const _default = exports.default = Collapse;

@@ -20,7 +20,7 @@ class Seconds extends DatePart {
   }
 
   toString() {
-    let s = this.date.getSeconds();
+    const s = this.date.getSeconds();
     return this.token.length > 1 ? String(s).padStart(2, '0') : s;
   }
 }

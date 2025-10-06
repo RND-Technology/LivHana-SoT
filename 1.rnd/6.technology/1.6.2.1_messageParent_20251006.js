@@ -11,7 +11,7 @@ function _worker_threads() {
   };
   return data;
 }
-var _types = require('../types');
+const _types = require('../types');
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *

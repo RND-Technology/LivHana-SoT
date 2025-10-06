@@ -1,12 +1,12 @@
 "use strict";
 exports.__esModule = true;
 exports.WebhooksHelper = void 0;
-var tslib_1 = require("tslib");
-var crypto_1 = tslib_1.__importDefault(require("crypto"));
+const tslib_1 = require("tslib");
+const crypto_1 = tslib_1.__importDefault(require("crypto"));
 /**
  * Utility to help with {@link https://developer.squareup.com/docs/webhooks/overview Square Webhooks }
  */
-var WebhooksHelper = /** @class */ (function () {
+const WebhooksHelper = /** @class */ (function () {
     function WebhooksHelper() {
     }
     /**
@@ -30,13 +30,13 @@ var WebhooksHelper = /** @class */ (function () {
             throw new Error('notificationUrl is null or empty');
         }
         // Perform UTF-8 encoding to bytes
-        var payloadBytes = Buffer.from(notificationUrl + requestBody, 'utf-8');
-        var signatureKeyBytes = Buffer.from(signatureKey, 'utf-8');
+        const payloadBytes = Buffer.from(notificationUrl + requestBody, 'utf-8');
+        const signatureKeyBytes = Buffer.from(signatureKey, 'utf-8');
         // Compute the hash value
-        var hmac = crypto_1["default"].createHmac('sha256', signatureKeyBytes);
+        const hmac = crypto_1["default"].createHmac('sha256', signatureKeyBytes);
         hmac.update(payloadBytes);
         // Compare the computed hash vs the value in the signature header
-        var hashBase64 = hmac.digest('base64');
+        const hashBase64 = hmac.digest('base64');
         return hashBase64 === signatureHeader;
     };
     return WebhooksHelper;

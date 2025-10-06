@@ -1,7 +1,7 @@
 'use strict';
 
 
-var Cache = module.exports = function Cache() {
+const Cache = module.exports = function Cache() {
   this._cache = {};
 };
 

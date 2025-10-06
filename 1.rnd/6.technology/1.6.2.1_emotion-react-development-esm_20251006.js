@@ -10,9 +10,9 @@ import '@emotion/weak-memoize';
 import '../_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.esm.js';
 import 'hoist-non-react-statics';
 
-var isDevelopment = true;
+const isDevelopment = true;
 
-var pkg = {
+const pkg = {
 	name: "@emotion/react",
 	version: "11.14.0",
 	main: "dist/emotion-react.cjs.js",
@@ -331,20 +331,20 @@ var pkg = {
 	}
 };
 
-var jsx = function jsx(type, props) {
+let jsx = function jsx(type, props) {
   // eslint-disable-next-line prefer-rest-params
-  var args = arguments;
+  const args = arguments;
 
   if (props == null || !hasOwn.call(props, 'css')) {
     return React.createElement.apply(undefined, args);
   }
 
-  var argsLength = args.length;
-  var createElementArgArray = new Array(argsLength);
+  const argsLength = args.length;
+  const createElementArgArray = new Array(argsLength);
   createElementArgArray[0] = Emotion;
   createElementArgArray[1] = createEmotionProps(type, props);
 
-  for (var i = 2; i < argsLength; i++) {
+  for (let i = 2; i < argsLength; i++) {
     createElementArgArray[i] = args[i];
   }
 
@@ -352,16 +352,16 @@ var jsx = function jsx(type, props) {
 };
 
 (function (_jsx) {
-  var JSX;
+  let JSX;
 
   (function (_JSX) {})(JSX || (JSX = _jsx.JSX || (_jsx.JSX = {})));
 })(jsx || (jsx = {}));
 
-var warnedAboutCssPropForGlobal = false; // maintain place over rerenders.
+let warnedAboutCssPropForGlobal = false; // maintain place over rerenders.
 // initial render from browser, insertBefore context.sheet.tags[0] or if a style hasn't been inserted there yet, appendChild
 // initial client-side render from SSR, use place of hydrating tag
 
-var Global = /* #__PURE__ */withEmotionCache(function (props, cache) {
+const Global = /* #__PURE__ */withEmotionCache(function (props, cache) {
   if (!warnedAboutCssPropForGlobal && ( // check for className as well since the user is
   // probably using the custom createElement which
   // means it will be turned into a className prop
@@ -371,15 +371,15 @@ var Global = /* #__PURE__ */withEmotionCache(function (props, cache) {
     warnedAboutCssPropForGlobal = true;
   }
 
-  var styles = props.styles;
-  var serialized = serializeStyles([styles], undefined, React.useContext(ThemeContext));
+  const styles = props.styles;
+  const serialized = serializeStyles([styles], undefined, React.useContext(ThemeContext));
 
   if (!isBrowser$1) {
-    var _ref;
+    let _ref;
 
-    var serializedNames = serialized.name;
-    var serializedStyles = serialized.styles;
-    var next = serialized.next;
+    let serializedNames = serialized.name;
+    let serializedStyles = serialized.styles;
+    let next = serialized.next;
 
     while (next !== undefined) {
       serializedNames += ' ' + next.name;
@@ -387,8 +387,8 @@ var Global = /* #__PURE__ */withEmotionCache(function (props, cache) {
       next = next.next;
     }
 
-    var shouldCache = cache.compat === true;
-    var rules = cache.insert("", {
+    const shouldCache = cache.compat === true;
+    const rules = cache.insert("", {
       name: serializedNames,
       styles: serializedStyles
     }, cache.sheet, shouldCache);
@@ -406,18 +406,18 @@ var Global = /* #__PURE__ */withEmotionCache(function (props, cache) {
   // so it's not actually breaking anything
 
 
-  var sheetRef = React.useRef();
+  const sheetRef = React.useRef();
   useInsertionEffectWithLayoutFallback(function () {
-    var key = cache.key + "-global"; // use case of https://github.com/emotion-js/emotion/issues/2675
+    const key = cache.key + "-global"; // use case of https://github.com/emotion-js/emotion/issues/2675
 
-    var sheet = new cache.sheet.constructor({
+    const sheet = new cache.sheet.constructor({
       key: key,
       nonce: cache.sheet.nonce,
       container: cache.sheet.container,
       speedy: cache.sheet.isSpeedy
     });
-    var rehydrating = false;
-    var node = document.querySelector("style[data-emotion=\"" + key + " " + serialized.name + "\"]");
+    let rehydrating = false;
+    const node = document.querySelector("style[data-emotion=\"" + key + " " + serialized.name + "\"]");
 
     if (cache.sheet.tags.length) {
       sheet.before = cache.sheet.tags[0];
@@ -436,8 +436,8 @@ var Global = /* #__PURE__ */withEmotionCache(function (props, cache) {
     };
   }, [cache]);
   useInsertionEffectWithLayoutFallback(function () {
-    var sheetRefCurrent = sheetRef.current;
-    var sheet = sheetRefCurrent[0],
+    const sheetRefCurrent = sheetRef.current;
+    const sheet = sheetRefCurrent[0],
         rehydrating = sheetRefCurrent[1];
 
     if (rehydrating) {
@@ -452,7 +452,7 @@ var Global = /* #__PURE__ */withEmotionCache(function (props, cache) {
 
     if (sheet.tags.length) {
       // if this doesn't exist then it will be null so the style element will be appended
-      var element = sheet.tags[sheet.tags.length - 1].nextElementSibling;
+      const element = sheet.tags[sheet.tags.length - 1].nextElementSibling;
       sheet.before = element;
       sheet.flush();
     }
@@ -475,8 +475,8 @@ function css() {
 }
 
 function keyframes() {
-  var insertable = css.apply(void 0, arguments);
-  var name = "animation-" + insertable.name;
+  const insertable = css.apply(void 0, arguments);
+  const name = "animation-" + insertable.name;
   return {
     name: name,
     styles: "@keyframes " + name + "{" + insertable.styles + "}",
@@ -487,15 +487,15 @@ function keyframes() {
   };
 }
 
-var classnames = function classnames(args) {
-  var len = args.length;
-  var i = 0;
-  var cls = '';
+const classnames = function classnames(args) {
+  const len = args.length;
+  let i = 0;
+  let cls = '';
 
   for (; i < len; i++) {
-    var arg = args[i];
+    const arg = args[i];
     if (arg == null) continue;
-    var toAdd = void 0;
+    let toAdd = void 0;
 
     switch (typeof arg) {
       case 'boolean':
@@ -512,7 +512,7 @@ var classnames = function classnames(args) {
 
             toAdd = '';
 
-            for (var k in arg) {
+            for (const k in arg) {
               if (arg[k] && k) {
                 toAdd && (toAdd += ' ');
                 toAdd += k;
@@ -539,8 +539,8 @@ var classnames = function classnames(args) {
 };
 
 function merge(registered, css, className) {
-  var registeredStyles = [];
-  var rawClassName = getRegisteredStyles(registered, registeredStyles, className);
+  const registeredStyles = [];
+  const rawClassName = getRegisteredStyles(registered, registeredStyles, className);
 
   if (registeredStyles.length < 2) {
     return className;
@@ -549,14 +549,14 @@ function merge(registered, css, className) {
   return rawClassName + css(registeredStyles);
 }
 
-var Insertion = function Insertion(_ref) {
-  var cache = _ref.cache,
+const Insertion = function Insertion(_ref) {
+  const cache = _ref.cache,
       serializedArr = _ref.serializedArr;
-  var rules = useInsertionEffectAlwaysWithSyncFallback(function () {
-    var rules = '';
+  const rules = useInsertionEffectAlwaysWithSyncFallback(function () {
+    let rules = '';
 
-    for (var i = 0; i < serializedArr.length; i++) {
-      var res = insertStyles(cache, serializedArr[i], false);
+    for (let i = 0; i < serializedArr.length; i++) {
+      const res = insertStyles(cache, serializedArr[i], false);
 
       if (!isBrowser$1 && res !== undefined) {
         rules += res;
@@ -569,7 +569,7 @@ var Insertion = function Insertion(_ref) {
   });
 
   if (!isBrowser$1 && rules.length !== 0) {
-    var _ref2;
+    let _ref2;
 
     return /*#__PURE__*/React.createElement("style", (_ref2 = {}, _ref2["data-emotion"] = cache.key + " " + serializedArr.map(function (serialized) {
       return serialized.name;
@@ -581,11 +581,11 @@ var Insertion = function Insertion(_ref) {
   return null;
 };
 
-var ClassNames = /* #__PURE__ */withEmotionCache(function (props, cache) {
-  var hasRendered = false;
-  var serializedArr = [];
+const ClassNames = /* #__PURE__ */withEmotionCache(function (props, cache) {
+  let hasRendered = false;
+  const serializedArr = [];
 
-  var css = function css() {
+  const css = function css() {
     if (hasRendered && isDevelopment) {
       throw new Error('css can only be used during render');
     }
@@ -594,14 +594,14 @@ var ClassNames = /* #__PURE__ */withEmotionCache(function (props, cache) {
       args[_key] = arguments[_key];
     }
 
-    var serialized = serializeStyles(args, cache.registered);
+    const serialized = serializeStyles(args, cache.registered);
     serializedArr.push(serialized); // registration has to happen here as the result of this might get consumed by `cx`
 
     registerStyles(cache, serialized, false);
     return cache.key + "-" + serialized.name;
   };
 
-  var cx = function cx() {
+  const cx = function cx() {
     if (hasRendered && isDevelopment) {
       throw new Error('cx can only be used during render');
     }
@@ -613,12 +613,12 @@ var ClassNames = /* #__PURE__ */withEmotionCache(function (props, cache) {
     return merge(cache.registered, css, classnames(args));
   };
 
-  var content = {
+  const content = {
     css: css,
     cx: cx,
     theme: React.useContext(ThemeContext)
   };
-  var ele = props.children(content);
+  const ele = props.children(content);
   hasRendered = true;
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Insertion, {
     cache: cache,
@@ -631,15 +631,15 @@ var ClassNames = /* #__PURE__ */withEmotionCache(function (props, cache) {
 }
 
 {
-  var isBrowser = typeof document !== 'undefined'; // #1727, #2905 for some reason Jest and Vitest evaluate modules twice if some consuming module gets mocked
+  const isBrowser = typeof document !== 'undefined'; // #1727, #2905 for some reason Jest and Vitest evaluate modules twice if some consuming module gets mocked
 
-  var isTestEnv = typeof jest !== 'undefined' || typeof vi !== 'undefined';
+  const isTestEnv = typeof jest !== 'undefined' || typeof vi !== 'undefined';
 
   if (isBrowser && !isTestEnv) {
     // globalThis has wide browser support - https://caniuse.com/?search=globalThis, Node.js 12 and later
-    var globalContext = typeof globalThis !== 'undefined' ? globalThis // eslint-disable-line no-undef
+    const globalContext = typeof globalThis !== 'undefined' ? globalThis // eslint-disable-line no-undef
     : isBrowser ? window : global;
-    var globalKey = "__EMOTION_REACT_" + pkg.version.split('.')[0] + "__";
+    const globalKey = "__EMOTION_REACT_" + pkg.version.split('.')[0] + "__";
 
     if (globalContext[globalKey]) {
       console.warn('You are loading @emotion/react when it is already loaded. Running ' + 'multiple instances may cause problems. This can happen if multiple ' + 'versions are used, or if multiple builds of the same version are ' + 'used.');

@@ -1,16 +1,16 @@
 "use strict";
 
-var every = require("@sinonjs/commons").prototypes.array.every;
-var concat = require("@sinonjs/commons").prototypes.array.concat;
-var typeOf = require("@sinonjs/commons").typeOf;
+const every = require("@sinonjs/commons").prototypes.array.every;
+const concat = require("@sinonjs/commons").prototypes.array.concat;
+const typeOf = require("@sinonjs/commons").typeOf;
 
-var deepEqualFactory = require("../deep-equal").use;
+const deepEqualFactory = require("../deep-equal").use;
 
-var identical = require("../identical");
-var isMatcher = require("./is-matcher");
+const identical = require("../identical");
+const isMatcher = require("./is-matcher");
 
-var keys = Object.keys;
-var getOwnPropertySymbols = Object.getOwnPropertySymbols;
+const keys = Object.keys;
+const getOwnPropertySymbols = Object.getOwnPropertySymbols;
 
 /**
  * Matches `actual` with `expectation`
@@ -22,20 +22,20 @@ var getOwnPropertySymbols = Object.getOwnPropertySymbols;
  * @returns {boolean} Returns true when `actual` matches all properties in `expectation`
  */
 function matchObject(actual, expectation, matcher) {
-    var deepEqual = deepEqualFactory(matcher);
+    const deepEqual = deepEqualFactory(matcher);
     if (actual === null || actual === undefined) {
         return false;
     }
 
-    var expectedKeys = keys(expectation);
+    let expectedKeys = keys(expectation);
     /* istanbul ignore else: cannot collect coverage for engine that doesn't support Symbol */
     if (typeOf(getOwnPropertySymbols) === "function") {
         expectedKeys = concat(expectedKeys, getOwnPropertySymbols(expectation));
     }
 
     return every(expectedKeys, function (key) {
-        var exp = expectation[key];
-        var act = actual[key];
+        const exp = expectation[key];
+        const act = actual[key];
 
         if (isMatcher(exp)) {
             if (!exp.test(act)) {

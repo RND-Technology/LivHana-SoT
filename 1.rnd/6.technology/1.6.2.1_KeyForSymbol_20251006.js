@@ -1,10 +1,10 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var callBound = require('call-bound');
+const callBound = require('call-bound');
 
-var $keyFor = callBound('Symbol.keyFor', true);
+const $keyFor = callBound('Symbol.keyFor', true);
 
 // https://262.ecma-international.org/14.0/#sec-keyforsymbol
 

@@ -1,4 +1,4 @@
-var baseSetData = require('./_baseSetData'),
+const baseSetData = require('./_baseSetData'),
     shortOut = require('./_shortOut');
 
 /**
@@ -15,6 +15,6 @@ var baseSetData = require('./_baseSetData'),
  * @param {*} data The metadata.
  * @returns {Function} Returns `func`.
  */
-var setData = shortOut(baseSetData);
+const setData = shortOut(baseSetData);
 
 module.exports = setData;

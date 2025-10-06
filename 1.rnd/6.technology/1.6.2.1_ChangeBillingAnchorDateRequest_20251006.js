@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
 exports.changeBillingAnchorDateRequestSchema = void 0;
-var schema_1 = require("../schema");
+const schema_1 = require("../schema");
 exports.changeBillingAnchorDateRequestSchema = (0, schema_1.object)({
     monthlyBillingAnchorDate: [
         'monthly_billing_anchor_date',

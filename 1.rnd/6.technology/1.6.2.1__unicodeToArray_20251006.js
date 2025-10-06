@@ -1,5 +1,5 @@
 /** Used to compose unicode character classes. */
-var rsAstralRange = '\\ud800-\\udfff',
+const rsAstralRange = '\\ud800-\\udfff',
     rsComboMarksRange = '\\u0300-\\u036f',
     reComboHalfMarksRange = '\\ufe20-\\ufe2f',
     rsComboSymbolsRange = '\\u20d0-\\u20ff',
@@ -7,7 +7,7 @@ var rsAstralRange = '\\ud800-\\udfff',
     rsVarRange = '\\ufe0e\\ufe0f';
 
 /** Used to compose unicode capture groups. */
-var rsAstral = '[' + rsAstralRange + ']',
+const rsAstral = '[' + rsAstralRange + ']',
     rsCombo = '[' + rsComboRange + ']',
     rsFitz = '\\ud83c[\\udffb-\\udfff]',
     rsModifier = '(?:' + rsCombo + '|' + rsFitz + ')',
@@ -17,14 +17,14 @@ var rsAstral = '[' + rsAstralRange + ']',
     rsZWJ = '\\u200d';
 
 /** Used to compose unicode regexes. */
-var reOptMod = rsModifier + '?',
+const reOptMod = rsModifier + '?',
     rsOptVar = '[' + rsVarRange + ']?',
     rsOptJoin = '(?:' + rsZWJ + '(?:' + [rsNonAstral, rsRegional, rsSurrPair].join('|') + ')' + rsOptVar + reOptMod + ')*',
     rsSeq = rsOptVar + reOptMod + rsOptJoin,
     rsSymbol = '(?:' + [rsNonAstral + rsCombo + '?', rsCombo, rsRegional, rsSurrPair, rsAstral].join('|') + ')';
 
 /** Used to match [string symbols](https://mathiasbynens.be/notes/javascript-unicode). */
-var reUnicode = RegExp(rsFitz + '(?=' + rsFitz + ')|' + rsSymbol + rsSeq, 'g');
+const reUnicode = RegExp(rsFitz + '(?=' + rsFitz + ')|' + rsSymbol + rsSeq, 'g');
 
 /**
  * Converts a Unicode `string` to an array.

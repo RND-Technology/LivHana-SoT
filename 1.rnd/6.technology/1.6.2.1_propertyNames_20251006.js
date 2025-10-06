@@ -1,24 +1,24 @@
 'use strict';
 module.exports = function generate_propertyNames(it, $keyword, $ruleType) {
-  var out = ' ';
-  var $lvl = it.level;
-  var $dataLvl = it.dataLevel;
-  var $schema = it.schema[$keyword];
-  var $schemaPath = it.schemaPath + it.util.getProperty($keyword);
-  var $errSchemaPath = it.errSchemaPath + '/' + $keyword;
-  var $breakOnError = !it.opts.allErrors;
-  var $data = 'data' + ($dataLvl || '');
-  var $errs = 'errs__' + $lvl;
-  var $it = it.util.copy(it);
-  var $closingBraces = '';
+  let out = ' ';
+  const $lvl = it.level;
+  const $dataLvl = it.dataLevel;
+  const $schema = it.schema[$keyword];
+  const $schemaPath = it.schemaPath + it.util.getProperty($keyword);
+  const $errSchemaPath = it.errSchemaPath + '/' + $keyword;
+  const $breakOnError = !it.opts.allErrors;
+  const $data = 'data' + ($dataLvl || '');
+  const $errs = 'errs__' + $lvl;
+  const $it = it.util.copy(it);
+  const $closingBraces = '';
   $it.level++;
-  var $nextValid = 'valid' + $it.level;
+  const $nextValid = 'valid' + $it.level;
   out += 'var ' + ($errs) + ' = errors;';
   if ((it.opts.strictKeywords ? (typeof $schema == 'object' && Object.keys($schema).length > 0) || $schema === false : it.util.schemaHasRules($schema, it.RULES.all))) {
     $it.schema = $schema;
     $it.schemaPath = $schemaPath;
     $it.errSchemaPath = $errSchemaPath;
-    var $key = 'key' + $lvl,
+    const $key = 'key' + $lvl,
       $idx = 'idx' + $lvl,
       $i = 'i' + $lvl,
       $invalidName = '\' + ' + $key + ' + \'',
@@ -36,10 +36,10 @@ module.exports = function generate_propertyNames(it, $keyword, $ruleType) {
       out += ' for (var ' + ($key) + ' in ' + ($data) + ') { ';
     }
     out += ' var startErrs' + ($lvl) + ' = errors; ';
-    var $passData = $key;
-    var $wasComposite = it.compositeRule;
+    const $passData = $key;
+    const $wasComposite = it.compositeRule;
     it.compositeRule = $it.compositeRule = true;
-    var $code = it.validate($it);
+    const $code = it.validate($it);
     $it.baseId = $currentBaseId;
     if (it.util.varOccurences($code, $nextData) < 2) {
       out += ' ' + (it.util.varReplace($code, $nextData, $passData)) + ' ';

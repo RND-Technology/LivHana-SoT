@@ -1,4 +1,4 @@
-var metaMap = require('./_metaMap'),
+const metaMap = require('./_metaMap'),
     noop = require('./noop');
 
 /**
@@ -8,7 +8,7 @@ var metaMap = require('./_metaMap'),
  * @param {Function} func The function to query.
  * @returns {*} Returns the metadata for `func`.
  */
-var getData = !metaMap ? noop : function(func) {
+const getData = !metaMap ? noop : function(func) {
   return metaMap.get(func);
 };
 

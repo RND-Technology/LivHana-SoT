@@ -44,7 +44,7 @@ exports.PatternBooleanExact = `^${exports.PatternBoolean}$`;
 exports.PatternNumberExact = `^${exports.PatternNumber}$`;
 exports.PatternStringExact = `^${exports.PatternString}$`;
 /** A registry for user defined types */
-var TypeRegistry;
+let TypeRegistry;
 (function (TypeRegistry) {
     const map = new Map();
     /** Returns the entries in this registry */
@@ -74,7 +74,7 @@ var TypeRegistry;
     TypeRegistry.Get = Get;
 })(TypeRegistry = exports.TypeRegistry || (exports.TypeRegistry = {}));
 /** A registry for user defined string formats */
-var FormatRegistry;
+let FormatRegistry;
 (function (FormatRegistry) {
     const map = new Map();
     /** Returns the entries in this registry */
@@ -114,7 +114,7 @@ class TypeGuardUnknownTypeError extends Error {
 }
 exports.TypeGuardUnknownTypeError = TypeGuardUnknownTypeError;
 /** Provides functions to test if JavaScript values are TypeBox types */
-var TypeGuard;
+let TypeGuard;
 (function (TypeGuard) {
     function IsObject(value) {
         return typeof value === 'object' && value !== null && !Array.isArray(value);
@@ -605,7 +605,7 @@ var TypeGuard;
 // ExtendsUndefined
 // --------------------------------------------------------------------------
 /** Fast undefined check used for properties of type undefined */
-var ExtendsUndefined;
+let ExtendsUndefined;
 (function (ExtendsUndefined) {
     function Check(schema) {
         if (schema[exports.Kind] === 'Undefined')
@@ -621,13 +621,13 @@ var ExtendsUndefined;
 // --------------------------------------------------------------------------
 // TypeExtends
 // --------------------------------------------------------------------------
-var TypeExtendsResult;
+let TypeExtendsResult;
 (function (TypeExtendsResult) {
     TypeExtendsResult[TypeExtendsResult["Union"] = 0] = "Union";
     TypeExtendsResult[TypeExtendsResult["True"] = 1] = "True";
     TypeExtendsResult[TypeExtendsResult["False"] = 2] = "False";
 })(TypeExtendsResult = exports.TypeExtendsResult || (exports.TypeExtendsResult = {}));
-var TypeExtends;
+let TypeExtends;
 (function (TypeExtends) {
     // --------------------------------------------------------------------------
     // IntoBooleanResult
@@ -1355,7 +1355,7 @@ var TypeExtends;
 // TypeClone
 // --------------------------------------------------------------------------
 /** Specialized Clone for Types */
-var TypeClone;
+let TypeClone;
 (function (TypeClone) {
     function IsObject(value) {
         return typeof value === 'object' && value !== null;
@@ -1391,7 +1391,7 @@ var TypeClone;
 // --------------------------------------------------------------------------
 // ObjectMap
 // --------------------------------------------------------------------------
-var ObjectMap;
+let ObjectMap;
 (function (ObjectMap) {
     function Intersect(schema, callback) {
         // prettier-ignore
@@ -1425,7 +1425,7 @@ var ObjectMap;
 // --------------------------------------------------------------------------
 // KeyResolver
 // --------------------------------------------------------------------------
-var KeyResolver;
+let KeyResolver;
 (function (KeyResolver) {
     function IsKeyable(schema) {
         return TypeGuard.TIntersect(schema) || TypeGuard.TUnion(schema) || (TypeGuard.TObject(schema) && globalThis.Object.getOwnPropertyNames(schema.properties).length > 0);
@@ -1457,7 +1457,7 @@ var KeyResolver;
 // --------------------------------------------------------------------------
 // TemplateLiteralPattern
 // --------------------------------------------------------------------------
-var TemplateLiteralPattern;
+let TemplateLiteralPattern;
 (function (TemplateLiteralPattern) {
     function Escape(value) {
         return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -1504,7 +1504,7 @@ var TemplateLiteralPattern;
 // --------------------------------------------------------------------------------------
 // TemplateLiteralResolver
 // --------------------------------------------------------------------------------------
-var TemplateLiteralResolver;
+let TemplateLiteralResolver;
 (function (TemplateLiteralResolver) {
     function Resolve(template) {
         const expression = TemplateLiteralParser.ParseExact(template.pattern);
@@ -1524,7 +1524,7 @@ class TemplateLiteralParserError extends Error {
     }
 }
 exports.TemplateLiteralParserError = TemplateLiteralParserError;
-var TemplateLiteralParser;
+let TemplateLiteralParser;
 (function (TemplateLiteralParser) {
     function IsNonEscaped(pattern, index, char) {
         return pattern[index] === char && pattern.charCodeAt(index - 1) !== 92;
@@ -1662,7 +1662,7 @@ var TemplateLiteralParser;
 // --------------------------------------------------------------------------------------
 // TemplateLiteralFinite
 // --------------------------------------------------------------------------------------
-var TemplateLiteralFinite;
+let TemplateLiteralFinite;
 (function (TemplateLiteralFinite) {
     function IsNumber(expression) {
         // prettier-ignore
@@ -1703,7 +1703,7 @@ var TemplateLiteralFinite;
 // --------------------------------------------------------------------------------------
 // TemplateLiteralGenerator
 // --------------------------------------------------------------------------------------
-var TemplateLiteralGenerator;
+let TemplateLiteralGenerator;
 (function (TemplateLiteralGenerator) {
     function* Reduce(buffer) {
         if (buffer.length === 1)

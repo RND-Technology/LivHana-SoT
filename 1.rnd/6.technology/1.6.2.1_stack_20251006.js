@@ -1,15 +1,15 @@
 "use strict";
 'use client';
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+const _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _propTypes = _interopRequireDefault(require("prop-types"));
-var _system = require("@mui/system");
-var _styled = _interopRequireDefault(require("../styles/styled"));
-var _DefaultPropsProvider = require("../DefaultPropsProvider");
+const _propTypes = _interopRequireDefault(require("prop-types"));
+const _system = require("@mui/system");
+const _styled = _interopRequireDefault(require("../styles/styled"));
+const _DefaultPropsProvider = require("../DefaultPropsProvider");
 const Stack = (0, _system.createStack)({
   createStyledComponent: (0, _styled.default)('div', {
     name: 'MuiStack',
@@ -65,4 +65,4 @@ process.env.NODE_ENV !== "production" ? Stack.propTypes /* remove-proptypes */ =
    */
   useFlexGap: _propTypes.default.bool
 } : void 0;
-var _default = exports.default = Stack;
+const _default = exports.default = Stack;

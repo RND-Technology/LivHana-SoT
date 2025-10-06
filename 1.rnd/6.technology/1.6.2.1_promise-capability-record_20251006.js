@@ -1,6 +1,6 @@
 'use strict';
 
-var hasOwn = require('hasown');
+const hasOwn = require('hasown');
 
 module.exports = function isPromiseCapabilityRecord(value) {
 	return !!value

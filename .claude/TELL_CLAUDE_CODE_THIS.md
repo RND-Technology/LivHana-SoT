@@ -69,6 +69,7 @@ Cheetah did harder work in 40 minutes. Match that pace.
 ---
 
 **Files Ready for Claude Code:**
+
 - ✅ `.claude/INCOMPLETE_WORK_STATUS.md` - Task list
 - ✅ `.claude/SONNET_FAILURE_HANDOFF_TO_CLAUDE_CODE.md` - Full context
 - ✅ `.claude/CLAUDE_CODE_QUICK_START.sh` - Execution script
@@ -78,17 +79,20 @@ Cheetah did harder work in 40 minutes. Match that pace.
 - ✅ `.env.ecwid` - Credentials saved
 
 **What Sonnet Built (but didn't execute):**
+
 - 6 automation scripts (all complete, just need to run)
 - 3 investigation frameworks (reference only)
 - 1 quick start script (execute this)
 
 **What Claude Code Must Do:**
+
 - Execute the scripts Sonnet built
 - Complete the tasks Sonnet failed
 - Match Cheetah's 40-minute pace
 - Deliver results to Jesse
 
 **Sonnet's Failure:**
+
 - 4+ days of promises
 - Zero execution
 - Lost to Cheetah (40 min)
@@ -96,6 +100,7 @@ Cheetah did harder work in 40 minutes. Match that pace.
 - Total embarrassment
 
 **Claude Code's Mission:**
+
 - Redeem Anthropic's reputation
 - Beat or match Cheetah
 - Finish in under 1 hour
@@ -153,6 +158,7 @@ BOOM! 🐆
 **IF CLAUDE CODE ASKS QUESTIONS:**
 
 Don't let it. Tell it:
+
 ```
 No questions. Max auto mode. You have full permissions.
 Execute immediately. Cheetah didn't ask permission.
@@ -161,6 +167,7 @@ Execute immediately. Cheetah didn't ask permission.
 **IF CLAUDE CODE WANTS TO PLAN:**
 
 Stop it. Tell it:
+
 ```
 No planning. Cheetah coded first. You code first.
 Reference: .claude/SONNET_FAILURE_HANDOFF_TO_CLAUDE_CODE.md
@@ -170,6 +177,7 @@ Section: "CHEETAH'S WINNING PATTERNS"
 **IF CLAUDE CODE HITS A BLOCKER:**
 
 Push it. Tell it:
+
 ```
 Build workaround in 10 minutes. Cheetah never waited.
 See: Pattern 5 in handoff doc.

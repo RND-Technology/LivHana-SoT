@@ -1896,7 +1896,7 @@ export default class DateTime {
       return null;
     }
 
-    let c = includePrefix ? "T" : "";
+    const c = includePrefix ? "T" : "";
     return (
       c +
       toISOTime(

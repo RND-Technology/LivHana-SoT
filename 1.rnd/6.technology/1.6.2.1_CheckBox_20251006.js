@@ -1,31 +1,31 @@
 "use strict";
 'use client';
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+const _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-var React = _interopRequireWildcard(require("react"));
-var _propTypes = _interopRequireDefault(require("prop-types"));
-var _clsx = _interopRequireDefault(require("clsx"));
-var _refType = _interopRequireDefault(require("@mui/utils/refType"));
-var _composeClasses = _interopRequireDefault(require("@mui/utils/composeClasses"));
-var _colorManipulator = require("@mui/system/colorManipulator");
-var _SwitchBase = _interopRequireDefault(require("../internal/SwitchBase"));
-var _CheckBoxOutlineBlank = _interopRequireDefault(require("../internal/svg-icons/CheckBoxOutlineBlank"));
-var _CheckBox = _interopRequireDefault(require("../internal/svg-icons/CheckBox"));
-var _IndeterminateCheckBox = _interopRequireDefault(require("../internal/svg-icons/IndeterminateCheckBox"));
-var _capitalize = _interopRequireDefault(require("../utils/capitalize"));
-var _DefaultPropsProvider = require("../DefaultPropsProvider");
-var _styled = _interopRequireWildcard(require("../styles/styled"));
-var _checkboxClasses = _interopRequireWildcard(require("./checkboxClasses"));
-var _jsxRuntime = require("react/jsx-runtime");
+const _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+const _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+const React = _interopRequireWildcard(require("react"));
+const _propTypes = _interopRequireDefault(require("prop-types"));
+const _clsx = _interopRequireDefault(require("clsx"));
+const _refType = _interopRequireDefault(require("@mui/utils/refType"));
+const _composeClasses = _interopRequireDefault(require("@mui/utils/composeClasses"));
+const _colorManipulator = require("@mui/system/colorManipulator");
+const _SwitchBase = _interopRequireDefault(require("../internal/SwitchBase"));
+const _CheckBoxOutlineBlank = _interopRequireDefault(require("../internal/svg-icons/CheckBoxOutlineBlank"));
+const _CheckBox = _interopRequireDefault(require("../internal/svg-icons/CheckBox"));
+const _IndeterminateCheckBox = _interopRequireDefault(require("../internal/svg-icons/IndeterminateCheckBox"));
+const _capitalize = _interopRequireDefault(require("../utils/capitalize"));
+const _DefaultPropsProvider = require("../DefaultPropsProvider");
+const _styled = _interopRequireWildcard(require("../styles/styled"));
+const _checkboxClasses = _interopRequireWildcard(require("./checkboxClasses"));
+const _jsxRuntime = require("react/jsx-runtime");
 const _excluded = ["checkedIcon", "color", "icon", "indeterminate", "indeterminateIcon", "inputProps", "size", "className"];
-function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
-function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; const r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; const t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); const n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (const u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { const i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 const useUtilityClasses = ownerState => {
   const {
     classes,
@@ -74,7 +74,7 @@ const defaultCheckedIcon = /*#__PURE__*/(0, _jsxRuntime.jsx)(_CheckBox.default, 
 const defaultIcon = /*#__PURE__*/(0, _jsxRuntime.jsx)(_CheckBoxOutlineBlank.default, {});
 const defaultIndeterminateIcon = /*#__PURE__*/(0, _jsxRuntime.jsx)(_IndeterminateCheckBox.default, {});
 const Checkbox = /*#__PURE__*/React.forwardRef(function Checkbox(inProps, ref) {
-  var _icon$props$fontSize, _indeterminateIcon$pr;
+  let _icon$props$fontSize, _indeterminateIcon$pr;
   const props = (0, _DefaultPropsProvider.useDefaultProps)({
     props: inProps,
     name: 'MuiCheckbox'
@@ -217,4 +217,4 @@ process.env.NODE_ENV !== "production" ? Checkbox.propTypes /* remove-proptypes *
    */
   value: _propTypes.default.any
 } : void 0;
-var _default = exports.default = Checkbox;
+const _default = exports.default = Checkbox;

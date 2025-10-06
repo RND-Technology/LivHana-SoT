@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
 exports.cashDrawerShiftSchema = void 0;
-var schema_1 = require("../schema");
-var cashDrawerDevice_1 = require("./cashDrawerDevice");
-var money_1 = require("./money");
+const schema_1 = require("../schema");
+const cashDrawerDevice_1 = require("./cashDrawerDevice");
+const money_1 = require("./money");
 exports.cashDrawerShiftSchema = (0, schema_1.object)({
     id: ['id', (0, schema_1.optional)((0, schema_1.string)())],
     state: ['state', (0, schema_1.optional)((0, schema_1.string)())],

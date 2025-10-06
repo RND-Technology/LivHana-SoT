@@ -17,7 +17,7 @@ if (process.env.NODE_ENV !== "production") {
 function _unsupportedIterableToArray(o, minLen) {
   if (!o) return;
   if (typeof o === "string") return _arrayLikeToArray(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
+  let n = Object.prototype.toString.call(o).slice(8, -1);
   if (n === "Object" && o.constructor) n = o.constructor.name;
   if (n === "Map" || n === "Set") return Array.from(o);
   if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
@@ -32,14 +32,14 @@ function _arrayLikeToArray(arr, len) {
 }
 
 function _createForOfIteratorHelper(o, allowArrayLike) {
-  var it;
+  let it;
 
   if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) {
     if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
       if (it) o = it;
-      var i = 0;
+      let i = 0;
 
-      var F = function () {};
+      const F = function () {};
 
       return {
         s: F,
@@ -62,7 +62,7 @@ function _createForOfIteratorHelper(o, allowArrayLike) {
     throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
   }
 
-  var normalCompletion = true,
+  let normalCompletion = true,
       didErr = false,
       err;
   return {
@@ -70,7 +70,7 @@ function _createForOfIteratorHelper(o, allowArrayLike) {
       it = o[Symbol.iterator]();
     },
     n: function () {
-      var step = it.next();
+      const step = it.next();
       normalCompletion = step.done;
       return step;
     },
@@ -103,8 +103,8 @@ function isHook(node) {
   if (node.type === 'Identifier') {
     return isHookName(node.name);
   } else if (node.type === 'MemberExpression' && !node.computed && isHook(node.property)) {
-    var obj = node.object;
-    var isPascalCaseNameSpace = /^[A-Z].*/;
+    const obj = node.object;
+    const isPascalCaseNameSpace = /^[A-Z].*/;
     return obj.type === 'Identifier' && isPascalCaseNameSpace.test(obj.name);
   } else {
     return false;
@@ -149,7 +149,7 @@ function isMemoCallback(node) {
 
 function isInsideComponentOrHook(node) {
   while (node) {
-    var functionName = getFunctionName(node);
+    const functionName = getFunctionName(node);
 
     if (functionName) {
       if (isComponentName(functionName) || isHook(functionName)) {
@@ -167,7 +167,7 @@ function isInsideComponentOrHook(node) {
   return false;
 }
 
-var RulesOfHooks = {
+const RulesOfHooks = {
   meta: {
     type: 'problem',
     docs: {
@@ -177,8 +177,8 @@ var RulesOfHooks = {
     }
   },
   create: function (context) {
-    var codePathReactHooksMapStack = [];
-    var codePathSegmentStack = [];
+    const codePathReactHooksMapStack = [];
+    const codePathSegmentStack = [];
     return {
       // Maintain code segment path stack as we traverse.
       onCodePathSegmentStart: function (segment) {
@@ -196,14 +196,14 @@ var RulesOfHooks = {
       // Everything is ok if all React Hooks are both reachable from the initial
       // segment and reachable from every final segment.
       onCodePathEnd: function (codePath, codePathNode) {
-        var reactHooksMap = codePathReactHooksMapStack.pop();
+        const reactHooksMap = codePathReactHooksMapStack.pop();
 
         if (reactHooksMap.size === 0) {
           return;
         } // All of the segments which are cyclic are recorded in this set.
 
 
-        var cyclic = new Set();
+        const cyclic = new Set();
         /**
          * Count the number of code paths from the start of the function to this
          * segment. For example:
@@ -227,21 +227,21 @@ var RulesOfHooks = {
          */
 
         function countPathsFromStart(segment, pathHistory) {
-          var cache = countPathsFromStart.cache;
-          var paths = cache.get(segment.id);
-          var pathList = new Set(pathHistory); // If `pathList` includes the current segment then we've found a cycle!
+          const cache = countPathsFromStart.cache;
+          let paths = cache.get(segment.id);
+          const pathList = new Set(pathHistory); // If `pathList` includes the current segment then we've found a cycle!
           // We need to fill `cyclic` with all segments inside cycle
 
           if (pathList.has(segment.id)) {
-            var pathArray = [].concat(pathList);
-            var cyclicSegments = pathArray.slice(pathArray.indexOf(segment.id) + 1);
+            const pathArray = [].concat(pathList);
+            const cyclicSegments = pathArray.slice(pathArray.indexOf(segment.id) + 1);
 
-            var _iterator = _createForOfIteratorHelper(cyclicSegments),
+            let _iterator = _createForOfIteratorHelper(cyclicSegments),
                 _step;
 
             try {
               for (_iterator.s(); !(_step = _iterator.n()).done;) {
-                var cyclicSegment = _step.value;
+                const cyclicSegment = _step.value;
                 cyclic.add(cyclicSegment);
               }
             } catch (err) {
@@ -267,12 +267,12 @@ var RulesOfHooks = {
           } else {
             paths = BigInt('0');
 
-            var _iterator2 = _createForOfIteratorHelper(segment.prevSegments),
+            let _iterator2 = _createForOfIteratorHelper(segment.prevSegments),
                 _step2;
 
             try {
               for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-                var prevSegment = _step2.value;
+                const prevSegment = _step2.value;
                 paths += countPathsFromStart(prevSegment, pathList);
               }
             } catch (err) {
@@ -316,21 +316,21 @@ var RulesOfHooks = {
 
 
         function countPathsToEnd(segment, pathHistory) {
-          var cache = countPathsToEnd.cache;
-          var paths = cache.get(segment.id);
-          var pathList = new Set(pathHistory); // If `pathList` includes the current segment then we've found a cycle!
+          const cache = countPathsToEnd.cache;
+          let paths = cache.get(segment.id);
+          const pathList = new Set(pathHistory); // If `pathList` includes the current segment then we've found a cycle!
           // We need to fill `cyclic` with all segments inside cycle
 
           if (pathList.has(segment.id)) {
-            var pathArray = Array.from(pathList);
-            var cyclicSegments = pathArray.slice(pathArray.indexOf(segment.id) + 1);
+            const pathArray = Array.from(pathList);
+            const cyclicSegments = pathArray.slice(pathArray.indexOf(segment.id) + 1);
 
-            var _iterator3 = _createForOfIteratorHelper(cyclicSegments),
+            let _iterator3 = _createForOfIteratorHelper(cyclicSegments),
                 _step3;
 
             try {
               for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-                var cyclicSegment = _step3.value;
+                const cyclicSegment = _step3.value;
                 cyclic.add(cyclicSegment);
               }
             } catch (err) {
@@ -356,12 +356,12 @@ var RulesOfHooks = {
           } else {
             paths = BigInt('0');
 
-            var _iterator4 = _createForOfIteratorHelper(segment.nextSegments),
+            let _iterator4 = _createForOfIteratorHelper(segment.nextSegments),
                 _step4;
 
             try {
               for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
-                var nextSegment = _step4.value;
+                const nextSegment = _step4.value;
                 paths += countPathsToEnd(nextSegment, pathList);
               }
             } catch (err) {
@@ -398,8 +398,8 @@ var RulesOfHooks = {
 
 
         function shortestPathLengthToStart(segment) {
-          var cache = shortestPathLengthToStart.cache;
-          var length = cache.get(segment.id); // If `length` is null then we found a cycle! Return infinity since
+          const cache = shortestPathLengthToStart.cache;
+          let length = cache.get(segment.id); // If `length` is null then we found a cycle! Return infinity since
           // the shortest path is definitely not the one where we looped.
 
           if (length === null) {
@@ -419,13 +419,13 @@ var RulesOfHooks = {
           } else {
             length = Infinity;
 
-            var _iterator5 = _createForOfIteratorHelper(segment.prevSegments),
+            let _iterator5 = _createForOfIteratorHelper(segment.prevSegments),
                 _step5;
 
             try {
               for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
-                var prevSegment = _step5.value;
-                var prevLength = shortestPathLengthToStart(prevSegment);
+                const prevSegment = _step5.value;
+                const prevLength = shortestPathLengthToStart(prevSegment);
 
                 if (prevLength < length) {
                   length = prevLength;
@@ -449,35 +449,35 @@ var RulesOfHooks = {
         shortestPathLengthToStart.cache = new Map(); // Count all code paths to the end of our component/hook. Also primes
         // the `countPathsToEnd` cache.
 
-        var allPathsFromStartToEnd = countPathsToEnd(codePath.initialSegment); // Gets the function name for our code path. If the function name is
+        const allPathsFromStartToEnd = countPathsToEnd(codePath.initialSegment); // Gets the function name for our code path. If the function name is
         // `undefined` then we know either that we have an anonymous function
         // expression or our code path is not in a function. In both cases we
         // will want to error since neither are React function components or
         // hook functions - unless it is an anonymous function argument to
         // forwardRef or memo.
 
-        var codePathFunctionName = getFunctionName(codePathNode); // This is a valid code path for React hooks if we are directly in a React
+        const codePathFunctionName = getFunctionName(codePathNode); // This is a valid code path for React hooks if we are directly in a React
         // function component or we are in a hook function.
 
-        var isSomewhereInsideComponentOrHook = isInsideComponentOrHook(codePathNode);
-        var isDirectlyInsideComponentOrHook = codePathFunctionName ? isComponentName(codePathFunctionName) || isHook(codePathFunctionName) : isForwardRefCallback(codePathNode) || isMemoCallback(codePathNode); // Compute the earliest finalizer level using information from the
+        const isSomewhereInsideComponentOrHook = isInsideComponentOrHook(codePathNode);
+        const isDirectlyInsideComponentOrHook = codePathFunctionName ? isComponentName(codePathFunctionName) || isHook(codePathFunctionName) : isForwardRefCallback(codePathNode) || isMemoCallback(codePathNode); // Compute the earliest finalizer level using information from the
         // cache. We expect all reachable final segments to have a cache entry
         // after calling `visitSegment()`.
 
-        var shortestFinalPathLength = Infinity;
+        let shortestFinalPathLength = Infinity;
 
-        var _iterator6 = _createForOfIteratorHelper(codePath.finalSegments),
+        let _iterator6 = _createForOfIteratorHelper(codePath.finalSegments),
             _step6;
 
         try {
           for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
-            var finalSegment = _step6.value;
+            const finalSegment = _step6.value;
 
             if (!finalSegment.reachable) {
               continue;
             }
 
-            var length = shortestPathLengthToStart(finalSegment);
+            const length = shortestPathLengthToStart(finalSegment);
 
             if (length < shortestFinalPathLength) {
               shortestFinalPathLength = length;
@@ -491,12 +491,12 @@ var RulesOfHooks = {
           _iterator6.f();
         }
 
-        var _iterator7 = _createForOfIteratorHelper(reactHooksMap),
+        let _iterator7 = _createForOfIteratorHelper(reactHooksMap),
             _step7;
 
         try {
           for (_iterator7.s(); !(_step7 = _iterator7.n()).done;) {
-            var _step7$value = _step7.value,
+            const _step7$value = _step7.value,
                 segment = _step7$value[0],
                 reactHooks = _step7$value[1];
 
@@ -512,7 +512,7 @@ var RulesOfHooks = {
             // possibly be early returns.
 
 
-            var possiblyHasEarlyReturn = segment.nextSegments.length === 0 ? shortestFinalPathLength <= shortestPathLengthToStart(segment) : shortestFinalPathLength < shortestPathLengthToStart(segment); // Count all the paths from the start of our code path to the end of
+            const possiblyHasEarlyReturn = segment.nextSegments.length === 0 ? shortestFinalPathLength <= shortestPathLengthToStart(segment) : shortestFinalPathLength < shortestPathLengthToStart(segment); // Count all the paths from the start of our code path to the end of
             // our code path that go _through_ this segment. The critical piece
             // of this is _through_. If we just call `countPathsToEnd(segment)`
             // then we neglect that we may have gone through multiple paths to get
@@ -548,16 +548,16 @@ var RulesOfHooks = {
             // If we multiply the paths from start (two) by the paths to end (two)
             // for segment 3 we get four. Which is our desired count.
 
-            var pathsFromStartToEnd = countPathsFromStart(segment) * countPathsToEnd(segment); // Is this hook a part of a cyclic segment?
+            const pathsFromStartToEnd = countPathsFromStart(segment) * countPathsToEnd(segment); // Is this hook a part of a cyclic segment?
 
-            var cycled = cyclic.has(segment.id);
+            const cycled = cyclic.has(segment.id);
 
             var _iterator8 = _createForOfIteratorHelper(reactHooks),
                 _step8;
 
             try {
               for (_iterator8.s(); !(_step8 = _iterator8.n()).done;) {
-                var hook = _step8.value;
+                const hook = _step8.value;
 
                 // Report an error if a hook may be called more then once.
                 if (cycled) {
@@ -578,7 +578,7 @@ var RulesOfHooks = {
                   //
                   // Special case when we think there might be an early return.
                   if (!cycled && pathsFromStartToEnd !== allPathsFromStartToEnd) {
-                    var message = "React Hook \"" + context.getSource(hook) + "\" is called " + 'conditionally. React Hooks must be called in the exact ' + 'same order in every component render.' + (possiblyHasEarlyReturn ? ' Did you accidentally call a React Hook after an' + ' early return?' : '');
+                    const message = "React Hook \"" + context.getSource(hook) + "\" is called " + 'conditionally. React Hooks must be called in the exact ' + 'same order in every component render.' + (possiblyHasEarlyReturn ? ' Did you accidentally call a React Hook after an' + ' early return?' : '');
                     context.report({
                       node: hook,
                       message: message
@@ -586,7 +586,7 @@ var RulesOfHooks = {
                   }
                 } else if (codePathNode.parent && (codePathNode.parent.type === 'MethodDefinition' || codePathNode.parent.type === 'ClassProperty') && codePathNode.parent.value === codePathNode) {
                   // Custom message for hooks inside a class
-                  var _message = "React Hook \"" + context.getSource(hook) + "\" cannot be called " + 'in a class component. React Hooks must be called in a ' + 'React function component or a custom React Hook function.';
+                  const _message = "React Hook \"" + context.getSource(hook) + "\" cannot be called " + 'in a class component. React Hooks must be called in a ' + 'React function component or a custom React Hook function.';
 
                   context.report({
                     node: hook,
@@ -594,7 +594,7 @@ var RulesOfHooks = {
                   });
                 } else if (codePathFunctionName) {
                   // Custom message if we found an invalid function name.
-                  var _message2 = "React Hook \"" + context.getSource(hook) + "\" is called in " + ("function \"" + context.getSource(codePathFunctionName) + "\" ") + 'that is neither a React function component nor a custom ' + 'React Hook function.' + ' React component names must start with an uppercase letter.' + ' React Hook names must start with the word "use".';
+                  const _message2 = "React Hook \"" + context.getSource(hook) + "\" is called in " + ("function \"" + context.getSource(codePathFunctionName) + "\" ") + 'that is neither a React function component nor a custom ' + 'React Hook function.' + ' React component names must start with an uppercase letter.' + ' React Hook names must start with the word "use".';
 
                   context.report({
                     node: hook,
@@ -602,7 +602,7 @@ var RulesOfHooks = {
                   });
                 } else if (codePathNode.type === 'Program') {
                   // These are dangerous if you have inline requires enabled.
-                  var _message3 = "React Hook \"" + context.getSource(hook) + "\" cannot be called " + 'at the top level. React Hooks must be called in a ' + 'React function component or a custom React Hook function.';
+                  const _message3 = "React Hook \"" + context.getSource(hook) + "\" cannot be called " + 'at the top level. React Hooks must be called in a ' + 'React function component or a custom React Hook function.';
 
                   context.report({
                     node: hook,
@@ -615,7 +615,7 @@ var RulesOfHooks = {
                   // enough in the common case that the incorrect message in
                   // uncommon cases doesn't matter.
                   if (isSomewhereInsideComponentOrHook) {
-                    var _message4 = "React Hook \"" + context.getSource(hook) + "\" cannot be called " + 'inside a callback. React Hooks must be called in a ' + 'React function component or a custom React Hook function.';
+                    const _message4 = "React Hook \"" + context.getSource(hook) + "\" cannot be called " + 'inside a callback. React Hooks must be called in a ' + 'React function component or a custom React Hook function.';
 
                     context.report({
                       node: hook,
@@ -644,9 +644,9 @@ var RulesOfHooks = {
         if (isHook(node.callee)) {
           // Add the hook node to a map keyed by the code path segment. We will
           // do full code path analysis at the end of our code path.
-          var reactHooksMap = last(codePathReactHooksMapStack);
-          var codePathSegment = last(codePathSegmentStack);
-          var reactHooks = reactHooksMap.get(codePathSegment);
+          const reactHooksMap = last(codePathReactHooksMapStack);
+          const codePathSegment = last(codePathSegmentStack);
+          let reactHooks = reactHooksMap.get(codePathSegment);
 
           if (!reactHooks) {
             reactHooks = [];
@@ -715,7 +715,7 @@ function last(array) {
 }
 
 /* eslint-disable no-for-of-loops/no-for-of-loops */
-var ExhaustiveDeps = {
+const ExhaustiveDeps = {
   meta: {
     type: 'suggestion',
     docs: {
@@ -741,9 +741,9 @@ var ExhaustiveDeps = {
   },
   create: function (context) {
     // Parse the `additionalHooks` regex.
-    var additionalHooks = context.options && context.options[0] && context.options[0].additionalHooks ? new RegExp(context.options[0].additionalHooks) : undefined;
-    var enableDangerousAutofixThisMayCauseInfiniteLoops = context.options && context.options[0] && context.options[0].enableDangerousAutofixThisMayCauseInfiniteLoops || false;
-    var options = {
+    const additionalHooks = context.options && context.options[0] && context.options[0].additionalHooks ? new RegExp(context.options[0].additionalHooks) : undefined;
+    const enableDangerousAutofixThisMayCauseInfiniteLoops = context.options && context.options[0] && context.options[0].enableDangerousAutofixThisMayCauseInfiniteLoops || false;
+    const options = {
       additionalHooks: additionalHooks,
       enableDangerousAutofixThisMayCauseInfiniteLoops: enableDangerousAutofixThisMayCauseInfiniteLoops
     };
@@ -760,12 +760,12 @@ var ExhaustiveDeps = {
       context.report(problem);
     }
 
-    var scopeManager = context.getSourceCode().scopeManager; // Should be shared between visitors.
+    const scopeManager = context.getSourceCode().scopeManager; // Should be shared between visitors.
 
-    var setStateCallSites = new WeakMap();
-    var stateVariables = new WeakSet();
-    var stableKnownValueCache = new WeakMap();
-    var functionWithoutCapturedValueCache = new WeakMap();
+    const setStateCallSites = new WeakMap();
+    const stateVariables = new WeakSet();
+    const stableKnownValueCache = new WeakMap();
+    const functionWithoutCapturedValueCache = new WeakMap();
 
     function memoizeWithWeakMap(fn, map) {
       return function (arg) {
@@ -775,7 +775,7 @@ var ExhaustiveDeps = {
           return map.get(arg);
         }
 
-        var result = fn(arg);
+        const result = fn(arg);
         map.set(arg, result);
         return result;
       };
@@ -794,7 +794,7 @@ var ExhaustiveDeps = {
       } // Get the current scope.
 
 
-      var scope = scopeManager.acquire(node); // Find all our "pure scopes". On every re-render of a component these
+      const scope = scopeManager.acquire(node); // Find all our "pure scopes". On every re-render of a component these
       // pure scopes may have changes to the variables declared within. So all
       // variables used in our reactive hook callback but declared in a pure
       // scope need to be listed as dependencies of our reactive hook callback.
@@ -803,10 +803,10 @@ var ExhaustiveDeps = {
       // scope. We can't enforce this in a lint so we trust that all variables
       // declared outside of pure scope are indeed frozen.
 
-      var pureScopes = new Set();
-      var componentScope = null;
+      const pureScopes = new Set();
+      let componentScope = null;
       {
-        var currentScope = scope.upper;
+        let currentScope = scope.upper;
 
         while (currentScope) {
           pureScopes.add(currentScope);
@@ -827,7 +827,7 @@ var ExhaustiveDeps = {
 
         componentScope = currentScope;
       }
-      var isArray = Array.isArray; // Next we'll define a few helpers that helps us
+      const isArray = Array.isArray; // Next we'll define a few helpers that helps us
       // tell if some values don't have to be declared as deps.
       // Some are known to be stable based on Hook calls.
       // const [state, setState] = useState() / React.useState()
@@ -843,7 +843,7 @@ var ExhaustiveDeps = {
           return false;
         }
 
-        var def = resolved.defs[0];
+        const def = resolved.defs[0];
 
         if (def == null) {
           return false;
@@ -854,7 +854,7 @@ var ExhaustiveDeps = {
           return false;
         }
 
-        var init = def.node.init;
+        let init = def.node.init;
 
         if (init == null) {
           return false;
@@ -866,7 +866,7 @@ var ExhaustiveDeps = {
         // const foo = 42
 
 
-        var declaration = def.node.parent;
+        let declaration = def.node.parent;
 
         if (declaration == null) {
           // This might happen if variable is declared after the callback.
@@ -891,7 +891,7 @@ var ExhaustiveDeps = {
           return false;
         }
 
-        var callee = init.callee; // Step into `= React.something` initializer.
+        let callee = init.callee; // Step into `= React.something` initializer.
 
         if (callee.type === 'MemberExpression' && callee.object.name === 'React' && callee.property != null && !callee.computed) {
           callee = callee.property;
@@ -901,8 +901,8 @@ var ExhaustiveDeps = {
           return false;
         }
 
-        var id = def.node.id;
-        var _callee = callee,
+        const id = def.node.id;
+        const _callee = callee,
             name = _callee.name;
 
         if (name === 'useRef' && id.type === 'Identifier') {
@@ -914,10 +914,10 @@ var ExhaustiveDeps = {
             // Is second tuple value the same reference we're checking?
             if (id.elements[1] === resolved.identifiers[0]) {
               if (name === 'useState') {
-                var references = resolved.references;
-                var writeCount = 0;
+                const references = resolved.references;
+                let writeCount = 0;
 
-                for (var i = 0; i < references.length; i++) {
+                for (let i = 0; i < references.length; i++) {
                   if (references[i].isWrite()) {
                     writeCount++;
                   }
@@ -934,9 +934,9 @@ var ExhaustiveDeps = {
               return true;
             } else if (id.elements[0] === resolved.identifiers[0]) {
               if (name === 'useState') {
-                var _references = resolved.references;
+                const _references = resolved.references;
 
-                for (var _i = 0; _i < _references.length; _i++) {
+                for (let _i = 0; _i < _references.length; _i++) {
                   stateVariables.add(_references[_i].identifier);
                 }
               } // State variable itself is dynamic.
@@ -966,7 +966,7 @@ var ExhaustiveDeps = {
           return false;
         }
 
-        var def = resolved.defs[0];
+        const def = resolved.defs[0];
 
         if (def == null) {
           return false;
@@ -978,14 +978,14 @@ var ExhaustiveDeps = {
         // top-level function definitions matching this reference.
 
 
-        var fnNode = def.node;
-        var childScopes = componentScope.childScopes;
-        var fnScope = null;
-        var i;
+        const fnNode = def.node;
+        const childScopes = componentScope.childScopes;
+        let fnScope = null;
+        let i;
 
         for (i = 0; i < childScopes.length; i++) {
-          var childScope = childScopes[i];
-          var childScopeBlock = childScope.block;
+          const childScope = childScopes[i];
+          const childScopeBlock = childScope.block;
 
           if ( // function handleChange() {}
           fnNode.type === 'FunctionDeclaration' && childScopeBlock === fnNode || // const handleChange = () => {}
@@ -1004,7 +1004,7 @@ var ExhaustiveDeps = {
 
 
         for (i = 0; i < fnScope.through.length; i++) {
-          var ref = fnScope.through[i];
+          const ref = fnScope.through[i];
 
           if (ref.resolved == null) {
             continue;
@@ -1024,15 +1024,15 @@ var ExhaustiveDeps = {
 
 
       var memoizedIsStableKnownHookValue = memoizeWithWeakMap(isStableKnownHookValue, stableKnownValueCache);
-      var memoizedIsFunctionWithoutCapturedValues = memoizeWithWeakMap(isFunctionWithoutCapturedValues, functionWithoutCapturedValueCache); // These are usually mistaken. Collect them.
+      const memoizedIsFunctionWithoutCapturedValues = memoizeWithWeakMap(isFunctionWithoutCapturedValues, functionWithoutCapturedValueCache); // These are usually mistaken. Collect them.
 
-      var currentRefsInEffectCleanup = new Map(); // Is this reference inside a cleanup function for this effect node?
+      const currentRefsInEffectCleanup = new Map(); // Is this reference inside a cleanup function for this effect node?
       // We can check by traversing scopes upwards  from the reference, and checking
       // if the last "return () => " we encounter is located directly inside the effect.
 
       function isInsideEffectCleanup(reference) {
-        var curScope = reference.from;
-        var isInReturnedFunction = false;
+        let curScope = reference.from;
+        let isInReturnedFunction = false;
 
         while (curScope.block !== node) {
           if (curScope.type === 'function') {
@@ -1047,17 +1047,17 @@ var ExhaustiveDeps = {
       // Key is dependency string, value is whether it's stable.
 
 
-      var dependencies = new Map();
-      var optionalChains = new Map();
+      const dependencies = new Map();
+      const optionalChains = new Map();
       gatherDependenciesRecursively(scope);
 
       function gatherDependenciesRecursively(currentScope) {
-        var _iterator = _createForOfIteratorHelper(currentScope.references),
+        let _iterator = _createForOfIteratorHelper(currentScope.references),
             _step;
 
         try {
           for (_iterator.s(); !(_step = _iterator.n()).done;) {
-            var reference = _step.value;
+            const reference = _step.value;
 
             // If this reference is not resolved or it is not declared in a pure
             // scope then we don't care about this reference.
@@ -1071,9 +1071,9 @@ var ExhaustiveDeps = {
             // Then normalize the narrowed dependency.
 
 
-            var referenceNode = fastFindReferenceWithParent(node, reference.identifier);
-            var dependencyNode = getDependency(referenceNode);
-            var dependency = analyzePropertyChain(dependencyNode, optionalChains); // Accessing ref.current inside effect cleanup is bad.
+            const referenceNode = fastFindReferenceWithParent(node, reference.identifier);
+            const dependencyNode = getDependency(referenceNode);
+            const dependency = analyzePropertyChain(dependencyNode, optionalChains); // Accessing ref.current inside effect cleanup is bad.
 
             if ( // We're in an effect...
             isEffect && // ... and this look like accessing .current...
@@ -1089,7 +1089,7 @@ var ExhaustiveDeps = {
               continue;
             }
 
-            var def = reference.resolved.defs[0];
+            const def = reference.resolved.defs[0];
 
             if (def == null) {
               continue;
@@ -1108,8 +1108,8 @@ var ExhaustiveDeps = {
 
 
             if (!dependencies.has(dependency)) {
-              var resolved = reference.resolved;
-              var isStable = memoizedIsStableKnownHookValue(resolved) || memoizedIsFunctionWithoutCapturedValues(resolved);
+              const resolved = reference.resolved;
+              const isStable = memoizedIsStableKnownHookValue(resolved) || memoizedIsFunctionWithoutCapturedValues(resolved);
               dependencies.set(dependency, {
                 isStable: isStable,
                 references: [reference]
@@ -1124,12 +1124,12 @@ var ExhaustiveDeps = {
           _iterator.f();
         }
 
-        var _iterator2 = _createForOfIteratorHelper(currentScope.childScopes),
+        let _iterator2 = _createForOfIteratorHelper(currentScope.childScopes),
             _step2;
 
         try {
           for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-            var childScope = _step2.value;
+            const childScope = _step2.value;
             gatherDependenciesRecursively(childScope);
           }
         } catch (err) {
@@ -1141,16 +1141,16 @@ var ExhaustiveDeps = {
 
 
       currentRefsInEffectCleanup.forEach(function (_ref, dependency) {
-        var reference = _ref.reference,
+        const reference = _ref.reference,
             dependencyNode = _ref.dependencyNode;
-        var references = reference.resolved.references; // Is React managing this ref or us?
+        const references = reference.resolved.references; // Is React managing this ref or us?
         // Let's see if we can find a .current assignment.
 
-        var foundCurrentAssignment = false;
+        let foundCurrentAssignment = false;
 
-        for (var i = 0; i < references.length; i++) {
-          var identifier = references[i].identifier;
-          var parent = identifier.parent;
+        for (let i = 0; i < references.length; i++) {
+          const identifier = references[i].identifier;
+          const parent = identifier.parent;
 
           if (parent != null && // ref.current
           // Note: no need to handle OptionalMemberExpression because it can't be LHS.
@@ -1173,7 +1173,7 @@ var ExhaustiveDeps = {
       }); // Warn about assigning to variables in the outer scope.
       // Those are usually bugs.
 
-      var staleAssignments = new Set();
+      const staleAssignments = new Set();
 
       function reportStaleAssignment(writeExpr, key) {
         if (staleAssignments.has(key)) {
@@ -1188,9 +1188,9 @@ var ExhaustiveDeps = {
       } // Remember which deps are stable and report bad usage first.
 
 
-      var stableDependencies = new Set();
+      const stableDependencies = new Set();
       dependencies.forEach(function (_ref2, key) {
-        var isStable = _ref2.isStable,
+        const isStable = _ref2.isStable,
             references = _ref2.references;
 
         if (isStable) {
@@ -1212,9 +1212,9 @@ var ExhaustiveDeps = {
       if (!declaredDependenciesNode) {
         // Check if there are any top-level setState() calls.
         // Those tend to lead to infinite loops.
-        var setStateInsideEffectWithoutDeps = null;
+        let setStateInsideEffectWithoutDeps = null;
         dependencies.forEach(function (_ref3, key) {
-          var isStable = _ref3.isStable,
+          const isStable = _ref3.isStable,
               references = _ref3.references;
 
           if (setStateInsideEffectWithoutDeps) {
@@ -1226,20 +1226,20 @@ var ExhaustiveDeps = {
               return;
             }
 
-            var id = reference.identifier;
-            var isSetState = setStateCallSites.has(id);
+            const id = reference.identifier;
+            const isSetState = setStateCallSites.has(id);
 
             if (!isSetState) {
               return;
             }
 
-            var fnScope = reference.from;
+            let fnScope = reference.from;
 
             while (fnScope.type !== 'function') {
               fnScope = fnScope.upper;
             }
 
-            var isDirectlyInsideEffect = fnScope.block === node;
+            const isDirectlyInsideEffect = fnScope.block === node;
 
             if (isDirectlyInsideEffect) {
               // TODO: we could potentially ignore early returns.
@@ -1249,7 +1249,7 @@ var ExhaustiveDeps = {
         });
 
         if (setStateInsideEffectWithoutDeps) {
-          var _collectRecommendatio = collectRecommendations({
+          const _collectRecommendatio = collectRecommendations({
             dependencies: dependencies,
             declaredDependencies: [],
             stableDependencies: stableDependencies,
@@ -1273,8 +1273,8 @@ var ExhaustiveDeps = {
         return;
       }
 
-      var declaredDependencies = [];
-      var externalDependencies = new Set();
+      const declaredDependencies = [];
+      const externalDependencies = new Set();
 
       if (declaredDependenciesNode.type !== 'ArrayExpression') {
         // If the declared dependencies are not an array expression then we
@@ -1302,7 +1302,7 @@ var ExhaustiveDeps = {
           // will be thrown. We will catch that error and report an error.
 
 
-          var declaredDependency;
+          let declaredDependency;
 
           try {
             declaredDependency = analyzePropertyChain(declaredDependencyNode, null);
@@ -1333,13 +1333,13 @@ var ExhaustiveDeps = {
             }
           }
 
-          var maybeID = declaredDependencyNode;
+          let maybeID = declaredDependencyNode;
 
           while (maybeID.type === 'MemberExpression' || maybeID.type === 'OptionalMemberExpression' || maybeID.type === 'ChainExpression') {
             maybeID = maybeID.object || maybeID.expression.object;
           }
 
-          var isDeclaredInComponent = !componentScope.through.some(function (ref) {
+          const isDeclaredInComponent = !componentScope.through.some(function (ref) {
             return ref.identifier === maybeID;
           }); // Add the dependency to our declared dependency map.
 
@@ -1354,7 +1354,7 @@ var ExhaustiveDeps = {
         });
       }
 
-      var _collectRecommendatio2 = collectRecommendations({
+      const _collectRecommendatio2 = collectRecommendations({
         dependencies: dependencies,
         declaredDependencies: declaredDependencies,
         stableDependencies: stableDependencies,
@@ -1366,29 +1366,29 @@ var ExhaustiveDeps = {
           missingDependencies = _collectRecommendatio2.missingDependencies,
           duplicateDependencies = _collectRecommendatio2.duplicateDependencies;
 
-      var suggestedDeps = suggestedDependencies;
-      var problemCount = duplicateDependencies.size + missingDependencies.size + unnecessaryDependencies.size;
+      let suggestedDeps = suggestedDependencies;
+      const problemCount = duplicateDependencies.size + missingDependencies.size + unnecessaryDependencies.size;
 
       if (problemCount === 0) {
         // If nothing else to report, check if some dependencies would
         // invalidate on every render.
-        var constructions = scanForConstructions({
+        const constructions = scanForConstructions({
           declaredDependencies: declaredDependencies,
           declaredDependenciesNode: declaredDependenciesNode,
           componentScope: componentScope,
           scope: scope
         });
         constructions.forEach(function (_ref4) {
-          var construction = _ref4.construction,
+          const construction = _ref4.construction,
               isUsedOutsideOfHook = _ref4.isUsedOutsideOfHook,
               depType = _ref4.depType;
-          var wrapperHook = depType === 'function' ? 'useCallback' : 'useMemo';
-          var constructionType = depType === 'function' ? 'definition' : 'initialization';
-          var defaultAdvice = "wrap the " + constructionType + " of '" + construction.name.name + "' in its own " + wrapperHook + "() Hook.";
-          var advice = isUsedOutsideOfHook ? "To fix this, " + defaultAdvice : "Move it inside the " + reactiveHookName + " callback. Alternatively, " + defaultAdvice;
-          var causation = depType === 'conditional' || depType === 'logical expression' ? 'could make' : 'makes';
-          var message = "The '" + construction.name.name + "' " + depType + " " + causation + " the dependencies of " + (reactiveHookName + " Hook (at line " + declaredDependenciesNode.loc.start.line + ") ") + ("change on every render. " + advice);
-          var suggest; // Only handle the simple case of variable assignments.
+          const wrapperHook = depType === 'function' ? 'useCallback' : 'useMemo';
+          const constructionType = depType === 'function' ? 'definition' : 'initialization';
+          const defaultAdvice = "wrap the " + constructionType + " of '" + construction.name.name + "' in its own " + wrapperHook + "() Hook.";
+          const advice = isUsedOutsideOfHook ? "To fix this, " + defaultAdvice : "Move it inside the " + reactiveHookName + " callback. Alternatively, " + defaultAdvice;
+          const causation = depType === 'conditional' || depType === 'logical expression' ? 'could make' : 'makes';
+          const message = "The '" + construction.name.name + "' " + depType + " " + causation + " the dependencies of " + (reactiveHookName + " Hook (at line " + declaredDependenciesNode.loc.start.line + ") ") + ("change on every render. " + advice);
+          let suggest; // Only handle the simple case of variable assignments.
           // Wrapping function declarations can mess up hoisting.
 
           if (isUsedOutsideOfHook && construction.type === 'Variable' && // Objects may be mutated after construction, which would make this
@@ -1398,7 +1398,7 @@ var ExhaustiveDeps = {
             suggest = [{
               desc: "Wrap the " + constructionType + " of '" + construction.name.name + "' in its own " + wrapperHook + "() Hook.",
               fix: function (fixer) {
-                var _ref5 = wrapperHook === 'useMemo' ? ["useMemo(() => { return ", '; })'] : ['useCallback(', ')'],
+                const _ref5 = wrapperHook === 'useMemo' ? ["useMemo(() => { return ", '; })'] : ['useCallback(', ')'],
                     before = _ref5[0],
                     after = _ref5[1];
 
@@ -1447,10 +1447,10 @@ var ExhaustiveDeps = {
           return true;
         }
 
-        var declaredDepKeys = declaredDependencies.map(function (dep) {
+        const declaredDepKeys = declaredDependencies.map(function (dep) {
           return dep.key;
         });
-        var sortedDeclaredDepKeys = declaredDepKeys.slice().sort();
+        const sortedDeclaredDepKeys = declaredDepKeys.slice().sort();
         return declaredDepKeys.join(',') === sortedDeclaredDepKeys.join(',');
       }
 
@@ -1463,13 +1463,13 @@ var ExhaustiveDeps = {
 
 
       function formatDependency(path) {
-        var members = path.split('.');
-        var finalPath = '';
+        const members = path.split('.');
+        let finalPath = '';
 
-        for (var i = 0; i < members.length; i++) {
+        for (let i = 0; i < members.length; i++) {
           if (i !== 0) {
-            var pathSoFar = members.slice(0, i + 1).join('.');
-            var isOptional = optionalChains.get(pathSoFar) === true;
+            const pathSoFar = members.slice(0, i + 1).join('.');
+            const isOptional = optionalChains.get(pathSoFar) === true;
             finalPath += isOptional ? '?.' : '.';
           }
 
@@ -1489,10 +1489,10 @@ var ExhaustiveDeps = {
         })) + (". Either " + fixVerb + " " + (deps.size > 1 ? 'them' : 'it') + " or remove the dependency array.");
       }
 
-      var extraWarning = '';
+      let extraWarning = '';
 
       if (unnecessaryDependencies.size > 0) {
-        var badRef = null;
+        let badRef = null;
         Array.from(unnecessaryDependencies.keys()).forEach(function (key) {
           if (badRef !== null) {
             return;
@@ -1506,7 +1506,7 @@ var ExhaustiveDeps = {
         if (badRef !== null) {
           extraWarning = " Mutable values like '" + badRef + "' aren't valid dependencies " + "because mutating them doesn't re-render the component.";
         } else if (externalDependencies.size > 0) {
-          var dep = Array.from(externalDependencies)[0]; // Don't show this warning for things that likely just got moved *inside* the callback
+          const dep = Array.from(externalDependencies)[0]; // Don't show this warning for things that likely just got moved *inside* the callback
           // because in that case they're clearly not referring to globals.
 
           if (!scope.set.has(dep)) {
@@ -1519,30 +1519,30 @@ var ExhaustiveDeps = {
 
 
       if (!extraWarning && missingDependencies.has('props')) {
-        var propDep = dependencies.get('props');
+        const propDep = dependencies.get('props');
 
         if (propDep == null) {
           return;
         }
 
-        var refs = propDep.references;
+        const refs = propDep.references;
 
         if (!Array.isArray(refs)) {
           return;
         }
 
-        var isPropsOnlyUsedInMembers = true;
+        let isPropsOnlyUsedInMembers = true;
 
-        for (var i = 0; i < refs.length; i++) {
-          var ref = refs[i];
-          var id = fastFindReferenceWithParent(componentScope.block, ref.identifier);
+        for (let i = 0; i < refs.length; i++) {
+          const ref = refs[i];
+          const id = fastFindReferenceWithParent(componentScope.block, ref.identifier);
 
           if (!id) {
             isPropsOnlyUsedInMembers = false;
             break;
           }
 
-          var parent = id.parent;
+          const parent = id.parent;
 
           if (parent == null) {
             isPropsOnlyUsedInMembers = false;
@@ -1563,32 +1563,32 @@ var ExhaustiveDeps = {
       if (!extraWarning && missingDependencies.size > 0) {
         // See if the user is trying to avoid specifying a callable prop.
         // This usually means they're unaware of useCallback.
-        var missingCallbackDep = null;
+        let missingCallbackDep = null;
         missingDependencies.forEach(function (missingDep) {
           if (missingCallbackDep) {
             return;
           } // Is this a variable from top scope?
 
 
-          var topScopeRef = componentScope.set.get(missingDep);
-          var usedDep = dependencies.get(missingDep);
+          const topScopeRef = componentScope.set.get(missingDep);
+          const usedDep = dependencies.get(missingDep);
 
           if (usedDep.references[0].resolved !== topScopeRef) {
             return;
           } // Is this a destructured prop?
 
 
-          var def = topScopeRef.defs[0];
+          const def = topScopeRef.defs[0];
 
           if (def == null || def.name == null || def.type !== 'Parameter') {
             return;
           } // Was it called in at least one case? Then it's a function.
 
 
-          var isFunctionCall = false;
-          var id;
+          let isFunctionCall = false;
+          let id;
 
-          for (var _i2 = 0; _i2 < usedDep.references.length; _i2++) {
+          for (let _i2 = 0; _i2 < usedDep.references.length; _i2++) {
             id = usedDep.references[_i2].identifier;
 
             if (id != null && id.parent != null && (id.parent.type === 'CallExpression' || id.parent.type === 'OptionalCallExpression') && id.parent.callee === id) {
@@ -1613,24 +1613,24 @@ var ExhaustiveDeps = {
       }
 
       if (!extraWarning && missingDependencies.size > 0) {
-        var setStateRecommendation = null;
+        let setStateRecommendation = null;
         missingDependencies.forEach(function (missingDep) {
           if (setStateRecommendation !== null) {
             return;
           }
 
-          var usedDep = dependencies.get(missingDep);
-          var references = usedDep.references;
-          var id;
-          var maybeCall;
+          const usedDep = dependencies.get(missingDep);
+          const references = usedDep.references;
+          let id;
+          let maybeCall;
 
-          for (var _i3 = 0; _i3 < references.length; _i3++) {
+          for (let _i3 = 0; _i3 < references.length; _i3++) {
             id = references[_i3].identifier;
             maybeCall = id.parent; // Try to see if we have setState(someExpr(missingDep)).
 
             while (maybeCall != null && maybeCall !== componentScope.block) {
               if (maybeCall.type === 'CallExpression') {
-                var correspondingStateVariable = setStateCallSites.get(maybeCall.callee);
+                const correspondingStateVariable = setStateCallSites.get(maybeCall.callee);
 
                 if (correspondingStateVariable != null) {
                   if (correspondingStateVariable.name === missingDep) {
@@ -1648,13 +1648,13 @@ var ExhaustiveDeps = {
                       form: 'reducer'
                     };
                   } else {
-                    var resolved = references[_i3].resolved;
+                    const resolved = references[_i3].resolved;
 
                     if (resolved != null) {
                       // If it's a parameter *and* a missing dep,
                       // it must be a prop or something inside a prop.
                       // Therefore, recommend an inline reducer.
-                      var def = resolved.defs[0];
+                      const def = resolved.defs[0];
 
                       if (def != null && def.type === 'Parameter') {
                         setStateRecommendation = {
@@ -1714,18 +1714,18 @@ var ExhaustiveDeps = {
     }
 
     function visitCallExpression(node) {
-      var callbackIndex = getReactiveHookCallbackIndex(node.callee, options);
+      const callbackIndex = getReactiveHookCallbackIndex(node.callee, options);
 
       if (callbackIndex === -1) {
         // Not a React Hook call that needs deps.
         return;
       }
 
-      var callback = node.arguments[callbackIndex];
-      var reactiveHook = node.callee;
-      var reactiveHookName = getNodeWithoutReactNamespace(reactiveHook).name;
-      var declaredDependenciesNode = node.arguments[callbackIndex + 1];
-      var isEffect = /Effect($|[^a-z])/g.test(reactiveHookName); // Check whether a callback is supplied. If there is no callback supplied
+      const callback = node.arguments[callbackIndex];
+      const reactiveHook = node.callee;
+      const reactiveHookName = getNodeWithoutReactNamespace(reactiveHook).name;
+      const declaredDependenciesNode = node.arguments[callbackIndex + 1];
+      const isEffect = /Effect($|[^a-z])/g.test(reactiveHookName); // Check whether a callback is supplied. If there is no callback supplied
       // then the hook will not work and React will throw a TypeError.
       // So no need to check for dependency inclusion.
 
@@ -1860,7 +1860,7 @@ var ExhaustiveDeps = {
 }; // The meat of the logic.
 
 function collectRecommendations(_ref6) {
-  var dependencies = _ref6.dependencies,
+  const dependencies = _ref6.dependencies,
       declaredDependencies = _ref6.declaredDependencies,
       stableDependencies = _ref6.stableDependencies,
       externalDependencies = _ref6.externalDependencies,
@@ -1874,7 +1874,7 @@ function collectRecommendations(_ref6) {
   // We'll use it to mark nodes that are *used* by the programmer,
   // and the nodes that were *declared* as deps. Then we will
   // traverse it to learn which deps are missing or unnecessary.
-  var depTree = createDepTree();
+  const depTree = createDepTree();
 
   function createDepTree() {
     return {
@@ -1892,7 +1892,7 @@ function collectRecommendations(_ref6) {
 
 
   dependencies.forEach(function (_, key) {
-    var node = getOrCreateNodeByPath(depTree, key);
+    const node = getOrCreateNodeByPath(depTree, key);
     node.isUsed = true;
     markAllParentsByPath(depTree, key, function (parent) {
       parent.isSubtreeUsed = true;
@@ -1901,26 +1901,26 @@ function collectRecommendations(_ref6) {
   // Imagine checkmarks next to each declared dependency.
 
   declaredDependencies.forEach(function (_ref7) {
-    var key = _ref7.key;
-    var node = getOrCreateNodeByPath(depTree, key);
+    const key = _ref7.key;
+    const node = getOrCreateNodeByPath(depTree, key);
     node.isSatisfiedRecursively = true;
   });
   stableDependencies.forEach(function (key) {
-    var node = getOrCreateNodeByPath(depTree, key);
+    const node = getOrCreateNodeByPath(depTree, key);
     node.isSatisfiedRecursively = true;
   }); // Tree manipulation helpers.
 
   function getOrCreateNodeByPath(rootNode, path) {
-    var keys = path.split('.');
-    var node = rootNode;
+    const keys = path.split('.');
+    let node = rootNode;
 
-    var _iterator3 = _createForOfIteratorHelper(keys),
+    let _iterator3 = _createForOfIteratorHelper(keys),
         _step3;
 
     try {
       for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-        var key = _step3.value;
-        var child = node.children.get(key);
+        const key = _step3.value;
+        let child = node.children.get(key);
 
         if (!child) {
           child = createDepTree();
@@ -1939,16 +1939,16 @@ function collectRecommendations(_ref6) {
   }
 
   function markAllParentsByPath(rootNode, path, fn) {
-    var keys = path.split('.');
-    var node = rootNode;
+    const keys = path.split('.');
+    let node = rootNode;
 
-    var _iterator4 = _createForOfIteratorHelper(keys),
+    let _iterator4 = _createForOfIteratorHelper(keys),
         _step4;
 
     try {
       for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
-        var key = _step4.value;
-        var child = node.children.get(key);
+        const key = _step4.value;
+        const child = node.children.get(key);
 
         if (!child) {
           return;
@@ -1965,15 +1965,15 @@ function collectRecommendations(_ref6) {
   } // Now we can learn which dependencies are missing or necessary.
 
 
-  var missingDependencies = new Set();
-  var satisfyingDependencies = new Set();
+  const missingDependencies = new Set();
+  const satisfyingDependencies = new Set();
   scanTreeRecursively(depTree, missingDependencies, satisfyingDependencies, function (key) {
     return key;
   });
 
   function scanTreeRecursively(node, missingPaths, satisfyingPaths, keyToPath) {
     node.children.forEach(function (child, key) {
-      var path = keyToPath(key);
+      const path = keyToPath(key);
 
       if (child.isSatisfiedRecursively) {
         if (child.isSubtreeUsed) {
@@ -2002,11 +2002,11 @@ function collectRecommendations(_ref6) {
   } // Collect suggestions in the order they were originally specified.
 
 
-  var suggestedDependencies = [];
-  var unnecessaryDependencies = new Set();
-  var duplicateDependencies = new Set();
+  const suggestedDependencies = [];
+  const unnecessaryDependencies = new Set();
+  const duplicateDependencies = new Set();
   declaredDependencies.forEach(function (_ref8) {
-    var key = _ref8.key;
+    const key = _ref8.key;
 
     // Does this declared dep satisfy a real need?
     if (satisfyingDependencies.has(key)) {
@@ -2111,13 +2111,13 @@ function getConstructionExpressionType(node) {
 
 
 function scanForConstructions(_ref9) {
-  var declaredDependencies = _ref9.declaredDependencies,
+  const declaredDependencies = _ref9.declaredDependencies,
       declaredDependenciesNode = _ref9.declaredDependenciesNode,
       componentScope = _ref9.componentScope,
       scope = _ref9.scope;
-  var constructions = declaredDependencies.map(function (_ref10) {
-    var key = _ref10.key;
-    var ref = componentScope.variables.find(function (v) {
+  const constructions = declaredDependencies.map(function (_ref10) {
+    const key = _ref10.key;
+    const ref = componentScope.variables.find(function (v) {
       return v.name === key;
     });
 
@@ -2125,7 +2125,7 @@ function scanForConstructions(_ref9) {
       return null;
     }
 
-    var node = ref.defs[0];
+    const node = ref.defs[0];
 
     if (node == null) {
       return null;
@@ -2138,7 +2138,7 @@ function scanForConstructions(_ref9) {
 
     if (node.type === 'Variable' && node.node.type === 'VariableDeclarator' && node.node.id.type === 'Identifier' && // Ensure this is not destructed assignment
     node.node.init != null) {
-      var constantExpressionType = getConstructionExpressionType(node.node.init);
+      const constantExpressionType = getConstructionExpressionType(node.node.init);
 
       if (constantExpressionType != null) {
         return [ref, constantExpressionType];
@@ -2159,10 +2159,10 @@ function scanForConstructions(_ref9) {
   }).filter(Boolean);
 
   function isUsedOutsideOfHook(ref) {
-    var foundWriteExpr = false;
+    let foundWriteExpr = false;
 
-    for (var i = 0; i < ref.references.length; i++) {
-      var reference = ref.references[i];
+    for (let i = 0; i < ref.references.length; i++) {
+      const reference = ref.references[i];
 
       if (reference.writeExpr) {
         if (foundWriteExpr) {
@@ -2175,7 +2175,7 @@ function scanForConstructions(_ref9) {
         }
       }
 
-      var currentScope = reference.from;
+      let currentScope = reference.from;
 
       while (currentScope !== scope && currentScope != null) {
         currentScope = currentScope.upper;
@@ -2194,7 +2194,7 @@ function scanForConstructions(_ref9) {
   }
 
   return constructions.map(function (_ref11) {
-    var ref = _ref11[0],
+    const ref = _ref11[0],
         depType = _ref11[1];
     return {
       construction: ref.defs[0],
@@ -2255,7 +2255,7 @@ function markNode(node, optionalChains, result) {
 
 function analyzePropertyChain(node, optionalChains) {
   if (node.type === 'Identifier' || node.type === 'JSXIdentifier') {
-    var result = node.name;
+    const result = node.name;
 
     if (optionalChains) {
       // Mark as required.
@@ -2264,34 +2264,34 @@ function analyzePropertyChain(node, optionalChains) {
 
     return result;
   } else if (node.type === 'MemberExpression' && !node.computed) {
-    var object = analyzePropertyChain(node.object, optionalChains);
-    var property = analyzePropertyChain(node.property, null);
+    const object = analyzePropertyChain(node.object, optionalChains);
+    const property = analyzePropertyChain(node.property, null);
 
-    var _result = object + "." + property;
+    const _result = object + "." + property;
 
     markNode(node, optionalChains, _result);
     return _result;
   } else if (node.type === 'OptionalMemberExpression' && !node.computed) {
-    var _object = analyzePropertyChain(node.object, optionalChains);
+    const _object = analyzePropertyChain(node.object, optionalChains);
 
-    var _property = analyzePropertyChain(node.property, null);
+    const _property = analyzePropertyChain(node.property, null);
 
-    var _result2 = _object + "." + _property;
+    const _result2 = _object + "." + _property;
 
     markNode(node, optionalChains, _result2);
     return _result2;
   } else if (node.type === 'ChainExpression' && !node.computed) {
-    var expression = node.expression;
+    const expression = node.expression;
 
     if (expression.type === 'CallExpression') {
       throw new Error("Unsupported node type: " + expression.type);
     }
 
-    var _object2 = analyzePropertyChain(expression.object, optionalChains);
+    const _object2 = analyzePropertyChain(expression.object, optionalChains);
 
-    var _property2 = analyzePropertyChain(expression.property, null);
+    const _property2 = analyzePropertyChain(expression.property, null);
 
-    var _result3 = _object2 + "." + _property2;
+    const _result3 = _object2 + "." + _property2;
 
     markNode(expression, optionalChains, _result3);
     return _result3;
@@ -2314,7 +2314,7 @@ function getNodeWithoutReactNamespace(node, options) {
 
 
 function getReactiveHookCallbackIndex(calleeNode, options) {
-  var node = getNodeWithoutReactNamespace(calleeNode);
+  const node = getNodeWithoutReactNamespace(calleeNode);
 
   if (node.type !== 'Identifier') {
     return -1;
@@ -2336,7 +2336,7 @@ function getReactiveHookCallbackIndex(calleeNode, options) {
       if (node === calleeNode && options && options.additionalHooks) {
         // Allow the user to provide a regular expression which enables the lint to
         // target custom reactive hooks.
-        var name;
+        let name;
 
         try {
           name = analyzePropertyChain(node, null);
@@ -2368,8 +2368,8 @@ function getReactiveHookCallbackIndex(calleeNode, options) {
 
 
 function fastFindReferenceWithParent(start, target) {
-  var queue = [start];
-  var item = null;
+  const queue = [start];
+  let item = null;
 
   while (queue.length) {
     item = queue.shift();
@@ -2382,8 +2382,8 @@ function fastFindReferenceWithParent(start, target) {
       continue;
     }
 
-    for (var _i4 = 0, _Object$entries = Object.entries(item); _i4 < _Object$entries.length; _i4++) {
-      var _Object$entries$_i = _Object$entries[_i4],
+    for (let _i4 = 0, _Object$entries = Object.entries(item); _i4 < _Object$entries.length; _i4++) {
+      const _Object$entries$_i = _Object$entries[_i4],
           key = _Object$entries$_i[0],
           value = _Object$entries$_i[1];
 
@@ -2409,9 +2409,9 @@ function fastFindReferenceWithParent(start, target) {
 }
 
 function joinEnglish(arr) {
-  var s = '';
+  let s = '';
 
-  for (var i = 0; i < arr.length; i++) {
+  for (let i = 0; i < arr.length; i++) {
     s += arr[i];
 
     if (i === 0 && arr.length === 2) {
@@ -2438,7 +2438,7 @@ function isAncestorNodeOf(a, b) {
   return a.range[0] <= b.range[0] && a.range[1] >= b.range[1];
 }
 
-var configs = {
+const configs = {
   recommended: {
     plugins: ['react-hooks'],
     rules: {
@@ -2447,7 +2447,7 @@ var configs = {
     }
   }
 };
-var rules = {
+const rules = {
   'rules-of-hooks': RulesOfHooks,
   'exhaustive-deps': ExhaustiveDeps
 };

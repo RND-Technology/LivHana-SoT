@@ -6,45 +6,45 @@ Object.defineProperty(exports, "__esModule", {
 exports.Area = void 0;
 exports.computeArea = computeArea;
 exports.getBaseValue = void 0;
-var _react = _interopRequireWildcard(require("react"));
-var React = _react;
-var _clsx = require("clsx");
-var _Curve = require("../shape/Curve");
-var _Dot = require("../shape/Dot");
-var _Layer = require("../container/Layer");
-var _LabelList = require("../component/LabelList");
-var _Global = require("../util/Global");
-var _DataUtils = require("../util/DataUtils");
-var _ChartUtils = require("../util/ChartUtils");
-var _ReactUtils = require("../util/ReactUtils");
-var _ActivePoints = require("../component/ActivePoints");
-var _SetTooltipEntrySettings = require("../state/SetTooltipEntrySettings");
-var _GraphicalItemClipPath = require("./GraphicalItemClipPath");
-var _areaSelectors = require("../state/selectors/areaSelectors");
-var _PanoramaContext = require("../context/PanoramaContext");
-var _chartLayoutContext = require("../context/chartLayoutContext");
-var _selectors = require("../state/selectors/selectors");
-var _SetLegendPayload = require("../state/SetLegendPayload");
-var _hooks = require("../state/hooks");
-var _useAnimationId = require("../util/useAnimationId");
-var _resolveDefaultProps2 = require("../util/resolveDefaultProps");
-var _isWellBehavedNumber = require("../util/isWellBehavedNumber");
-var _hooks2 = require("../hooks");
-var _RegisterGraphicalItemId = require("../context/RegisterGraphicalItemId");
-var _SetGraphicalItem = require("../state/SetGraphicalItem");
-var _svgPropertiesNoEvents = require("../util/svgPropertiesNoEvents");
-var _JavascriptAnimate = require("../animation/JavascriptAnimate");
-var _excluded = ["id"],
+const _react = _interopRequireWildcard(require("react"));
+const React = _react;
+const _clsx = require("clsx");
+const _Curve = require("../shape/Curve");
+const _Dot = require("../shape/Dot");
+const _Layer = require("../container/Layer");
+const _LabelList = require("../component/LabelList");
+const _Global = require("../util/Global");
+const _DataUtils = require("../util/DataUtils");
+const _ChartUtils = require("../util/ChartUtils");
+const _ReactUtils = require("../util/ReactUtils");
+const _ActivePoints = require("../component/ActivePoints");
+const _SetTooltipEntrySettings = require("../state/SetTooltipEntrySettings");
+const _GraphicalItemClipPath = require("./GraphicalItemClipPath");
+const _areaSelectors = require("../state/selectors/areaSelectors");
+const _PanoramaContext = require("../context/PanoramaContext");
+const _chartLayoutContext = require("../context/chartLayoutContext");
+const _selectors = require("../state/selectors/selectors");
+const _SetLegendPayload = require("../state/SetLegendPayload");
+const _hooks = require("../state/hooks");
+const _useAnimationId = require("../util/useAnimationId");
+const _resolveDefaultProps2 = require("../util/resolveDefaultProps");
+const _isWellBehavedNumber = require("../util/isWellBehavedNumber");
+const _hooks2 = require("../hooks");
+const _RegisterGraphicalItemId = require("../context/RegisterGraphicalItemId");
+const _SetGraphicalItem = require("../state/SetGraphicalItem");
+const _svgPropertiesNoEvents = require("../util/svgPropertiesNoEvents");
+const _JavascriptAnimate = require("../animation/JavascriptAnimate");
+const _excluded = ["id"],
   _excluded2 = ["activeDot", "animationBegin", "animationDuration", "animationEasing", "connectNulls", "dot", "fill", "fillOpacity", "hide", "isAnimationActive", "legendType", "stroke", "xAxisId", "yAxisId"];
-function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
-function _objectWithoutProperties(e, t) { if (null == e) return {}; var o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { var n = Object.getOwnPropertySymbols(e); for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
-function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t = {}; for (var n in r) if ({}.hasOwnProperty.call(r, n)) { if (-1 !== e.indexOf(n)) continue; t[n] = r[n]; } return t; }
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; let o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (const _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
+function _objectWithoutProperties(e, t) { if (null == e) return {}; let o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { const n = Object.getOwnPropertySymbols(e); for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
+function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; const t = {}; for (const n in r) if ({}.hasOwnProperty.call(r, n)) { if (-1 !== e.indexOf(n)) continue; t[n] = r[n]; } return t; }
+function ownKeys(e, r) { const t = Object.keys(e); if (Object.getOwnPropertySymbols) { let o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (let r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+function _toPropertyKey(t) { const i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; const e = t[Symbol.toPrimitive]; if (void 0 !== e) { const i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (let e = 1; e < arguments.length; e++) { const t = arguments[e]; for (const r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 /**
  * Internal props, combination of external props + defaultProps + private Recharts state
  */
@@ -60,8 +60,8 @@ function _extends() { return _extends = Object.assign ? Object.assign.bind() : f
 function getLegendItemColor(stroke, fill) {
   return stroke && stroke !== 'none' ? stroke : fill;
 }
-var computeLegendPayloadFromAreaData = props => {
-  var {
+const computeLegendPayloadFromAreaData = props => {
+  const {
     dataKey,
     name,
     stroke,
@@ -79,7 +79,7 @@ var computeLegendPayloadFromAreaData = props => {
   }];
 };
 function getTooltipEntrySettings(props) {
-  var {
+  const {
     dataKey,
     data,
     stroke,
@@ -106,14 +106,14 @@ function getTooltipEntrySettings(props) {
     }
   };
 }
-var renderDotItem = (option, props) => {
-  var dotItem;
+const renderDotItem = (option, props) => {
+  let dotItem;
   if (/*#__PURE__*/React.isValidElement(option)) {
     dotItem = /*#__PURE__*/React.cloneElement(option, props);
   } else if (typeof option === 'function') {
     dotItem = option(props);
   } else {
-    var className = (0, _clsx.clsx)('recharts-area-dot', typeof option !== 'boolean' ? option.className : '');
+    const className = (0, _clsx.clsx)('recharts-area-dot', typeof option !== 'boolean' ? option.className : '');
     dotItem = /*#__PURE__*/React.createElement(_Dot.Dot, _extends({}, props, {
       className: className
     }));
@@ -130,12 +130,12 @@ function shouldRenderDots(points, dot) {
   return points.length === 1;
 }
 function Dots(_ref) {
-  var {
+  const {
     clipPathId,
     points,
     props
   } = _ref;
-  var {
+  const {
     needClip,
     dot,
     dataKey
@@ -143,11 +143,11 @@ function Dots(_ref) {
   if (!shouldRenderDots(points, dot)) {
     return null;
   }
-  var clipDot = (0, _ReactUtils.isClipDot)(dot);
-  var areaProps = (0, _svgPropertiesNoEvents.svgPropertiesNoEvents)(props);
-  var customDotProps = (0, _ReactUtils.filterProps)(dot, true);
-  var dots = points.map((entry, i) => {
-    var dotProps = _objectSpread(_objectSpread(_objectSpread({
+  const clipDot = (0, _ReactUtils.isClipDot)(dot);
+  const areaProps = (0, _svgPropertiesNoEvents.svgPropertiesNoEvents)(props);
+  const customDotProps = (0, _ReactUtils.filterProps)(dot, true);
+  const dots = points.map((entry, i) => {
+    const dotProps = _objectSpread(_objectSpread(_objectSpread({
       key: "dot-".concat(i),
       r: 3
     }, areaProps), customDotProps), {}, {
@@ -161,7 +161,7 @@ function Dots(_ref) {
     });
     return renderDotItem(dot, dotProps);
   });
-  var dotsProps = {
+  const dotsProps = {
     clipPath: needClip ? "url(#clipPath-".concat(clipDot ? '' : 'dots-').concat(clipPathId, ")") : undefined
   };
   return /*#__PURE__*/React.createElement(_Layer.Layer, _extends({
@@ -169,13 +169,13 @@ function Dots(_ref) {
   }, dotsProps), dots);
 }
 function AreaLabelListProvider(_ref2) {
-  var {
+  const {
     showLabels,
     children,
     points
   } = _ref2;
-  var labelListEntries = points.map(point => {
-    var viewBox = {
+  const labelListEntries = points.map(point => {
+    const viewBox = {
       x: point.x,
       y: point.y,
       width: 0,
@@ -194,25 +194,25 @@ function AreaLabelListProvider(_ref2) {
   }, children);
 }
 function StaticArea(_ref3) {
-  var {
+  const {
     points,
     baseLine,
     needClip,
     clipPathId,
     props
   } = _ref3;
-  var {
+  const {
     layout,
     type,
     stroke,
     connectNulls,
     isRange
   } = props;
-  var {
+  let {
       id
     } = props,
     propsWithoutId = _objectWithoutProperties(props, _excluded);
-  var allOtherProps = (0, _svgPropertiesNoEvents.svgPropertiesNoEvents)(propsWithoutId);
+  const allOtherProps = (0, _svgPropertiesNoEvents.svgPropertiesNoEvents)(propsWithoutId);
   return /*#__PURE__*/React.createElement(React.Fragment, null, (points === null || points === void 0 ? void 0 : points.length) > 1 && /*#__PURE__*/React.createElement(_Layer.Layer, {
     clipPath: needClip ? "url(#clipPath-".concat(clipPathId, ")") : undefined
   }, /*#__PURE__*/React.createElement(_Curve.Curve, _extends({}, allOtherProps, {
@@ -245,19 +245,19 @@ function StaticArea(_ref3) {
   }));
 }
 function VerticalRect(_ref4) {
-  var {
+  const {
     alpha,
     baseLine,
     points,
     strokeWidth
   } = _ref4;
-  var startY = points[0].y;
-  var endY = points[points.length - 1].y;
+  const startY = points[0].y;
+  const endY = points[points.length - 1].y;
   if (!(0, _isWellBehavedNumber.isWellBehavedNumber)(startY) || !(0, _isWellBehavedNumber.isWellBehavedNumber)(endY)) {
     return null;
   }
-  var height = alpha * Math.abs(startY - endY);
-  var maxX = Math.max(...points.map(entry => entry.x || 0));
+  const height = alpha * Math.abs(startY - endY);
+  let maxX = Math.max(...points.map(entry => entry.x || 0));
   if ((0, _DataUtils.isNumber)(baseLine)) {
     maxX = Math.max(baseLine, maxX);
   } else if (baseLine && Array.isArray(baseLine) && baseLine.length) {
@@ -274,19 +274,19 @@ function VerticalRect(_ref4) {
   return null;
 }
 function HorizontalRect(_ref5) {
-  var {
+  const {
     alpha,
     baseLine,
     points,
     strokeWidth
   } = _ref5;
-  var startX = points[0].x;
-  var endX = points[points.length - 1].x;
+  const startX = points[0].x;
+  const endX = points[points.length - 1].x;
   if (!(0, _isWellBehavedNumber.isWellBehavedNumber)(startX) || !(0, _isWellBehavedNumber.isWellBehavedNumber)(endX)) {
     return null;
   }
-  var width = alpha * Math.abs(startX - endX);
-  var maxY = Math.max(...points.map(entry => entry.y || 0));
+  const width = alpha * Math.abs(startX - endX);
+  let maxY = Math.max(...points.map(entry => entry.y || 0));
   if ((0, _DataUtils.isNumber)(baseLine)) {
     maxY = Math.max(baseLine, maxY);
   } else if (baseLine && Array.isArray(baseLine) && baseLine.length) {
@@ -303,7 +303,7 @@ function HorizontalRect(_ref5) {
   return null;
 }
 function ClipRect(_ref6) {
-  var {
+  const {
     alpha,
     layout,
     points,
@@ -326,14 +326,14 @@ function ClipRect(_ref6) {
   });
 }
 function AreaWithAnimation(_ref7) {
-  var {
+  const {
     needClip,
     clipPathId,
     props,
     previousPointsRef,
     previousBaselineRef
   } = _ref7;
-  var {
+  const {
     points,
     baseLine,
     isAnimationActive,
@@ -343,23 +343,23 @@ function AreaWithAnimation(_ref7) {
     onAnimationStart,
     onAnimationEnd
   } = props;
-  var animationId = (0, _useAnimationId.useAnimationId)(props, 'recharts-area-');
-  var [isAnimating, setIsAnimating] = (0, _react.useState)(false);
-  var showLabels = !isAnimating;
-  var handleAnimationEnd = (0, _react.useCallback)(() => {
+  const animationId = (0, _useAnimationId.useAnimationId)(props, 'recharts-area-');
+  const [isAnimating, setIsAnimating] = (0, _react.useState)(false);
+  const showLabels = !isAnimating;
+  const handleAnimationEnd = (0, _react.useCallback)(() => {
     if (typeof onAnimationEnd === 'function') {
       onAnimationEnd();
     }
     setIsAnimating(false);
   }, [onAnimationEnd]);
-  var handleAnimationStart = (0, _react.useCallback)(() => {
+  const handleAnimationStart = (0, _react.useCallback)(() => {
     if (typeof onAnimationStart === 'function') {
       onAnimationStart();
     }
     setIsAnimating(true);
   }, [onAnimationStart]);
-  var prevPoints = previousPointsRef.current;
-  var prevBaseLine = previousBaselineRef.current;
+  const prevPoints = previousPointsRef.current;
+  const prevBaseLine = previousBaselineRef.current;
   return /*#__PURE__*/React.createElement(AreaLabelListProvider, {
     showLabels: showLabels,
     points: points
@@ -374,8 +374,8 @@ function AreaWithAnimation(_ref7) {
     key: animationId
   }, t => {
     if (prevPoints) {
-      var prevPointsDiffFactor = prevPoints.length / points.length;
-      var stepPoints =
+      const prevPointsDiffFactor = prevPoints.length / points.length;
+      const stepPoints =
       /*
        * Here it is important that at the very end of the animation, on the last frame,
        * we render the original points without any interpolation.
@@ -384,9 +384,9 @@ function AreaWithAnimation(_ref7) {
        * then we would break animations.
        */
       t === 1 ? points : points.map((entry, index) => {
-        var prevPointIndex = Math.floor(index * prevPointsDiffFactor);
+        const prevPointIndex = Math.floor(index * prevPointsDiffFactor);
         if (prevPoints[prevPointIndex]) {
-          var prev = prevPoints[prevPointIndex];
+          const prev = prevPoints[prevPointIndex];
           return _objectSpread(_objectSpread({}, entry), {}, {
             x: (0, _DataUtils.interpolate)(prev.x, entry.x, t),
             y: (0, _DataUtils.interpolate)(prev.y, entry.y, t)
@@ -394,16 +394,16 @@ function AreaWithAnimation(_ref7) {
         }
         return entry;
       });
-      var stepBaseLine;
+      let stepBaseLine;
       if ((0, _DataUtils.isNumber)(baseLine)) {
         stepBaseLine = (0, _DataUtils.interpolate)(prevBaseLine, baseLine, t);
       } else if ((0, _DataUtils.isNullish)(baseLine) || (0, _DataUtils.isNan)(baseLine)) {
         stepBaseLine = (0, _DataUtils.interpolate)(prevBaseLine, 0, t);
       } else {
         stepBaseLine = baseLine.map((entry, index) => {
-          var prevPointIndex = Math.floor(index * prevPointsDiffFactor);
+          const prevPointIndex = Math.floor(index * prevPointsDiffFactor);
           if (Array.isArray(prevBaseLine) && prevBaseLine[prevPointIndex]) {
-            var prev = prevBaseLine[prevPointIndex];
+            const prev = prevBaseLine[prevPointIndex];
             return _objectSpread(_objectSpread({}, entry), {}, {
               x: (0, _DataUtils.interpolate)(prev.x, entry.x, t),
               y: (0, _DataUtils.interpolate)(prev.y, entry.y, t)
@@ -466,7 +466,7 @@ function AreaWithAnimation(_ref7) {
  * It also holds the state of the animation.
  */
 function RenderArea(_ref8) {
-  var {
+  const {
     needClip,
     clipPathId,
     props
@@ -479,8 +479,8 @@ function RenderArea(_ref8) {
    * If this was a useState, then every step in the animation would trigger a re-render.
    * So, useRef it is.
    */
-  var previousPointsRef = (0, _react.useRef)(null);
-  var previousBaselineRef = (0, _react.useRef)();
+  const previousPointsRef = (0, _react.useRef)(null);
+  const previousBaselineRef = (0, _react.useRef)();
   return /*#__PURE__*/React.createElement(AreaWithAnimation, {
     needClip: needClip,
     clipPathId: clipPathId,
@@ -491,8 +491,8 @@ function RenderArea(_ref8) {
 }
 class AreaWithState extends _react.PureComponent {
   render() {
-    var _filterProps;
-    var {
+    let _filterProps;
+    const {
       hide,
       dot,
       points,
@@ -510,17 +510,17 @@ class AreaWithState extends _react.PureComponent {
     if (hide) {
       return null;
     }
-    var layerClass = (0, _clsx.clsx)('recharts-area', className);
-    var clipPathId = id;
-    var {
+    const layerClass = (0, _clsx.clsx)('recharts-area', className);
+    const clipPathId = id;
+    const {
       r = 3,
       strokeWidth = 2
     } = (_filterProps = (0, _ReactUtils.filterProps)(dot, false)) !== null && _filterProps !== void 0 ? _filterProps : {
       r: 3,
       strokeWidth: 2
     };
-    var clipDot = (0, _ReactUtils.isClipDot)(dot);
-    var dotSize = r * 2 + strokeWidth;
+    const clipDot = (0, _ReactUtils.isClipDot)(dot);
+    const dotSize = r * 2 + strokeWidth;
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_Layer.Layer, {
       className: layerClass
     }, needClip && /*#__PURE__*/React.createElement("defs", null, /*#__PURE__*/React.createElement(_GraphicalItemClipPath.GraphicalItemClipPath, {
@@ -551,7 +551,7 @@ class AreaWithState extends _react.PureComponent {
     }));
   }
 }
-var defaultAreaProps = {
+const defaultAreaProps = {
   activeDot: true,
   animationBegin: 0,
   animationDuration: 1500,
@@ -568,8 +568,8 @@ var defaultAreaProps = {
   yAxisId: 0
 };
 function AreaImpl(props) {
-  var _useAppSelector;
-  var _resolveDefaultProps = (0, _resolveDefaultProps2.resolveDefaultProps)(props, defaultAreaProps),
+  let _useAppSelector;
+  const _resolveDefaultProps = (0, _resolveDefaultProps2.resolveDefaultProps)(props, defaultAreaProps),
     {
       activeDot,
       animationBegin,
@@ -587,18 +587,18 @@ function AreaImpl(props) {
       yAxisId
     } = _resolveDefaultProps,
     everythingElse = _objectWithoutProperties(_resolveDefaultProps, _excluded2);
-  var layout = (0, _chartLayoutContext.useChartLayout)();
-  var chartName = (0, _selectors.useChartName)();
-  var {
+  const layout = (0, _chartLayoutContext.useChartLayout)();
+  const chartName = (0, _selectors.useChartName)();
+  const {
     needClip
   } = (0, _GraphicalItemClipPath.useNeedsClip)(xAxisId, yAxisId);
-  var isPanorama = (0, _PanoramaContext.useIsPanorama)();
-  var {
+  const isPanorama = (0, _PanoramaContext.useIsPanorama)();
+  const {
     points,
     isRange,
     baseLine
   } = (_useAppSelector = (0, _hooks.useAppSelector)(state => (0, _areaSelectors.selectArea)(state, xAxisId, yAxisId, isPanorama, props.id))) !== null && _useAppSelector !== void 0 ? _useAppSelector : {};
-  var plotArea = (0, _hooks2.usePlotArea)();
+  const plotArea = (0, _hooks2.usePlotArea)();
   if (layout !== 'horizontal' && layout !== 'vertical' || plotArea == null) {
     // Can't render Area in an unsupported layout
     return null;
@@ -607,7 +607,7 @@ function AreaImpl(props) {
     // There is nothing stopping us from rendering Area in other charts, except for historical reasons. Do we want to allow that?
     return null;
   }
-  var {
+  const {
     height,
     width,
     x: left,
@@ -642,19 +642,19 @@ function AreaImpl(props) {
     yAxisId: yAxisId
   }));
 }
-var getBaseValue = (layout, chartBaseValue, itemBaseValue, xAxis, yAxis) => {
+const getBaseValue = (layout, chartBaseValue, itemBaseValue, xAxis, yAxis) => {
   // The baseValue can be defined both on the AreaChart, and on the Area.
   // The value for the item takes precedence.
-  var baseValue = itemBaseValue !== null && itemBaseValue !== void 0 ? itemBaseValue : chartBaseValue;
+  const baseValue = itemBaseValue !== null && itemBaseValue !== void 0 ? itemBaseValue : chartBaseValue;
   if ((0, _DataUtils.isNumber)(baseValue)) {
     return baseValue;
   }
-  var numericAxis = layout === 'horizontal' ? yAxis : xAxis;
+  const numericAxis = layout === 'horizontal' ? yAxis : xAxis;
   // @ts-expect-error d3scale .domain() returns unknown, Math.max expects number
-  var domain = numericAxis.scale.domain();
+  const domain = numericAxis.scale.domain();
   if (numericAxis.type === 'number') {
-    var domainMax = Math.max(domain[0], domain[1]);
-    var domainMin = Math.min(domain[0], domain[1]);
+    const domainMax = Math.max(domain[0], domain[1]);
+    const domainMin = Math.min(domain[0], domain[1]);
     if (baseValue === 'dataMin') {
       return domainMin;
     }
@@ -673,7 +673,7 @@ var getBaseValue = (layout, chartBaseValue, itemBaseValue, xAxis, yAxis) => {
 };
 exports.getBaseValue = getBaseValue;
 function computeArea(_ref9) {
-  var {
+  const {
     areaSettings: {
       connectNulls,
       baseValue: itemBaseValue,
@@ -690,12 +690,12 @@ function computeArea(_ref9) {
     yAxisTicks,
     bandSize
   } = _ref9;
-  var hasStack = stackedData && stackedData.length;
-  var baseValue = getBaseValue(layout, chartBaseValue, itemBaseValue, xAxis, yAxis);
-  var isHorizontalLayout = layout === 'horizontal';
-  var isRange = false;
-  var points = displayedData.map((entry, index) => {
-    var value;
+  const hasStack = stackedData && stackedData.length;
+  const baseValue = getBaseValue(layout, chartBaseValue, itemBaseValue, xAxis, yAxis);
+  const isHorizontalLayout = layout === 'horizontal';
+  let isRange = false;
+  const points = displayedData.map((entry, index) => {
+    let value;
     if (hasStack) {
       value = stackedData[dataStartIndex + index];
     } else {
@@ -706,7 +706,7 @@ function computeArea(_ref9) {
         isRange = true;
       }
     }
-    var isBreakPoint = value[1] == null || hasStack && !connectNulls && (0, _ChartUtils.getValueByDataKey)(entry, dataKey) == null;
+    const isBreakPoint = value[1] == null || hasStack && !connectNulls && (0, _ChartUtils.getValueByDataKey)(entry, dataKey) == null;
     if (isHorizontalLayout) {
       return {
         x: (0, _ChartUtils.getCateCoordinateOfLine)({
@@ -734,10 +734,10 @@ function computeArea(_ref9) {
       payload: entry
     };
   });
-  var baseLine;
+  let baseLine;
   if (hasStack || isRange) {
     baseLine = points.map(entry => {
-      var x = Array.isArray(entry.value) ? entry.value[0] : null;
+      const x = Array.isArray(entry.value) ? entry.value[0] : null;
       if (isHorizontalLayout) {
         return {
           x: entry.x,
@@ -761,8 +761,8 @@ function computeArea(_ref9) {
   };
 }
 function AreaFn(outsideProps) {
-  var props = (0, _resolveDefaultProps2.resolveDefaultProps)(outsideProps, defaultAreaProps);
-  var isPanorama = (0, _PanoramaContext.useIsPanorama)();
+  const props = (0, _resolveDefaultProps2.resolveDefaultProps)(outsideProps, defaultAreaProps);
+  const isPanorama = (0, _PanoramaContext.useIsPanorama)();
   // Report all props to Redux store first, before calling any hooks, to avoid circular dependencies.
   return /*#__PURE__*/React.createElement(_RegisterGraphicalItemId.RegisterGraphicalItemId, {
     id: props.id,
@@ -790,5 +790,5 @@ function AreaFn(outsideProps) {
     id: id
   }))));
 }
-var Area = exports.Area = /*#__PURE__*/React.memo(AreaFn);
+const Area = exports.Area = /*#__PURE__*/React.memo(AreaFn);
 Area.displayName = 'Area';

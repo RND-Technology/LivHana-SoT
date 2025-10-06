@@ -2,40 +2,40 @@
 
 /*eslint-disable no-use-before-define*/
 
-var common              = require('./common');
-var YAMLException       = require('./exception');
-var DEFAULT_SCHEMA      = require('./schema/default');
+const common              = require('./common');
+const YAMLException       = require('./exception');
+const DEFAULT_SCHEMA      = require('./schema/default');
 
-var _toString       = Object.prototype.toString;
-var _hasOwnProperty = Object.prototype.hasOwnProperty;
+const _toString       = Object.prototype.toString;
+const _hasOwnProperty = Object.prototype.hasOwnProperty;
 
-var CHAR_BOM                  = 0xFEFF;
-var CHAR_TAB                  = 0x09; /* Tab */
-var CHAR_LINE_FEED            = 0x0A; /* LF */
-var CHAR_CARRIAGE_RETURN      = 0x0D; /* CR */
-var CHAR_SPACE                = 0x20; /* Space */
-var CHAR_EXCLAMATION          = 0x21; /* ! */
-var CHAR_DOUBLE_QUOTE         = 0x22; /* " */
-var CHAR_SHARP                = 0x23; /* # */
-var CHAR_PERCENT              = 0x25; /* % */
-var CHAR_AMPERSAND            = 0x26; /* & */
-var CHAR_SINGLE_QUOTE         = 0x27; /* ' */
-var CHAR_ASTERISK             = 0x2A; /* * */
-var CHAR_COMMA                = 0x2C; /* , */
-var CHAR_MINUS                = 0x2D; /* - */
-var CHAR_COLON                = 0x3A; /* : */
-var CHAR_EQUALS               = 0x3D; /* = */
-var CHAR_GREATER_THAN         = 0x3E; /* > */
-var CHAR_QUESTION             = 0x3F; /* ? */
-var CHAR_COMMERCIAL_AT        = 0x40; /* @ */
-var CHAR_LEFT_SQUARE_BRACKET  = 0x5B; /* [ */
-var CHAR_RIGHT_SQUARE_BRACKET = 0x5D; /* ] */
-var CHAR_GRAVE_ACCENT         = 0x60; /* ` */
-var CHAR_LEFT_CURLY_BRACKET   = 0x7B; /* { */
-var CHAR_VERTICAL_LINE        = 0x7C; /* | */
-var CHAR_RIGHT_CURLY_BRACKET  = 0x7D; /* } */
+const CHAR_BOM                  = 0xFEFF;
+const CHAR_TAB                  = 0x09; /* Tab */
+const CHAR_LINE_FEED            = 0x0A; /* LF */
+const CHAR_CARRIAGE_RETURN      = 0x0D; /* CR */
+const CHAR_SPACE                = 0x20; /* Space */
+const CHAR_EXCLAMATION          = 0x21; /* ! */
+const CHAR_DOUBLE_QUOTE         = 0x22; /* " */
+const CHAR_SHARP                = 0x23; /* # */
+const CHAR_PERCENT              = 0x25; /* % */
+const CHAR_AMPERSAND            = 0x26; /* & */
+const CHAR_SINGLE_QUOTE         = 0x27; /* ' */
+const CHAR_ASTERISK             = 0x2A; /* * */
+const CHAR_COMMA                = 0x2C; /* , */
+const CHAR_MINUS                = 0x2D; /* - */
+const CHAR_COLON                = 0x3A; /* : */
+const CHAR_EQUALS               = 0x3D; /* = */
+const CHAR_GREATER_THAN         = 0x3E; /* > */
+const CHAR_QUESTION             = 0x3F; /* ? */
+const CHAR_COMMERCIAL_AT        = 0x40; /* @ */
+const CHAR_LEFT_SQUARE_BRACKET  = 0x5B; /* [ */
+const CHAR_RIGHT_SQUARE_BRACKET = 0x5D; /* ] */
+const CHAR_GRAVE_ACCENT         = 0x60; /* ` */
+const CHAR_LEFT_CURLY_BRACKET   = 0x7B; /* { */
+const CHAR_VERTICAL_LINE        = 0x7C; /* | */
+const CHAR_RIGHT_CURLY_BRACKET  = 0x7D; /* } */
 
-var ESCAPE_SEQUENCES = {};
+const ESCAPE_SEQUENCES = {};
 
 ESCAPE_SEQUENCES[0x00]   = '\\0';
 ESCAPE_SEQUENCES[0x07]   = '\\a';
@@ -53,15 +53,15 @@ ESCAPE_SEQUENCES[0xA0]   = '\\_';
 ESCAPE_SEQUENCES[0x2028] = '\\L';
 ESCAPE_SEQUENCES[0x2029] = '\\P';
 
-var DEPRECATED_BOOLEANS_SYNTAX = [
+const DEPRECATED_BOOLEANS_SYNTAX = [
   'y', 'Y', 'yes', 'Yes', 'YES', 'on', 'On', 'ON',
   'n', 'N', 'no', 'No', 'NO', 'off', 'Off', 'OFF'
 ];
 
-var DEPRECATED_BASE60_SYNTAX = /^[-+]?[0-9_]+(?::[0-9_]+)+(?:\.[0-9_]*)?$/;
+const DEPRECATED_BASE60_SYNTAX = /^[-+]?[0-9_]+(?::[0-9_]+)+(?:\.[0-9_]*)?$/;
 
 function compileStyleMap(schema, map) {
-  var result, keys, index, length, tag, style, type;
+  let result, keys, index, length, tag, style, type;
 
   if (map === null) return {};
 
@@ -88,7 +88,7 @@ function compileStyleMap(schema, map) {
 }
 
 function encodeHex(character) {
-  var string, handle, length;
+  let string, handle, length;
 
   string = character.toString(16).toUpperCase();
 
@@ -109,7 +109,7 @@ function encodeHex(character) {
 }
 
 
-var QUOTING_TYPE_SINGLE = 1,
+const QUOTING_TYPE_SINGLE = 1,
     QUOTING_TYPE_DOUBLE = 2;
 
 function State(options) {
@@ -140,7 +140,7 @@ function State(options) {
 
 // Indents every line in a string. Empty lines (\n only) are not indented.
 function indentString(string, spaces) {
-  var ind = common.repeat(' ', spaces),
+  let ind = common.repeat(' ', spaces),
       position = 0,
       next = -1,
       result = '',
@@ -170,7 +170,7 @@ function generateNextLine(state, level) {
 }
 
 function testImplicitResolving(state, str) {
-  var index, length, type;
+  let index, length, type;
 
   for (index = 0, length = state.implicitTypes.length; index < length; index += 1) {
     type = state.implicitTypes[index];
@@ -222,8 +222,8 @@ function isNsCharOrWhitespace(c) {
 //                            | ( /* An ns-char preceding */ “#” )
 //                            | ( “:” /* Followed by an ns-plain-safe(c) */ )
 function isPlainSafe(c, prev, inblock) {
-  var cIsNsCharOrWhitespace = isNsCharOrWhitespace(c);
-  var cIsNsChar = cIsNsCharOrWhitespace && !isWhitespace(c);
+  const cIsNsCharOrWhitespace = isNsCharOrWhitespace(c);
+  const cIsNsChar = cIsNsCharOrWhitespace && !isWhitespace(c);
   return (
     // ns-plain-safe
     inblock ? // c = flow-in
@@ -284,7 +284,7 @@ function isPlainSafeLast(c) {
 
 // Same as 'string'.codePointAt(pos), but works in older browsers.
 function codePointAt(string, pos) {
-  var first = string.charCodeAt(pos), second;
+  let first = string.charCodeAt(pos), second;
   if (first >= 0xD800 && first <= 0xDBFF && pos + 1 < string.length) {
     second = string.charCodeAt(pos + 1);
     if (second >= 0xDC00 && second <= 0xDFFF) {
@@ -297,11 +297,11 @@ function codePointAt(string, pos) {
 
 // Determines whether block indentation indicator is required.
 function needIndentIndicator(string) {
-  var leadingSpaceRe = /^\n* /;
+  const leadingSpaceRe = /^\n* /;
   return leadingSpaceRe.test(string);
 }
 
-var STYLE_PLAIN   = 1,
+const STYLE_PLAIN   = 1,
     STYLE_SINGLE  = 2,
     STYLE_LITERAL = 3,
     STYLE_FOLDED  = 4,
@@ -317,14 +317,14 @@ var STYLE_PLAIN   = 1,
 function chooseScalarStyle(string, singleLineOnly, indentPerLevel, lineWidth,
   testAmbiguousType, quotingType, forceQuotes, inblock) {
 
-  var i;
-  var char = 0;
-  var prevChar = null;
-  var hasLineBreak = false;
-  var hasFoldableLine = false; // only checked if shouldTrackWidth
-  var shouldTrackWidth = lineWidth !== -1;
-  var previousLineBreak = -1; // count the first line correctly
-  var plain = isPlainSafeFirst(codePointAt(string, 0))
+  let i;
+  let char = 0;
+  let prevChar = null;
+  let hasLineBreak = false;
+  let hasFoldableLine = false; // only checked if shouldTrackWidth
+  const shouldTrackWidth = lineWidth !== -1;
+  let previousLineBreak = -1; // count the first line correctly
+  let plain = isPlainSafeFirst(codePointAt(string, 0))
           && isPlainSafeLast(codePointAt(string, string.length - 1));
 
   if (singleLineOnly || forceQuotes) {
@@ -403,7 +403,7 @@ function writeScalar(state, string, level, iskey, inblock) {
       }
     }
 
-    var indent = state.indent * Math.max(1, level); // no 0-indent scalars
+    const indent = state.indent * Math.max(1, level); // no 0-indent scalars
     // As indentation gets deeper, let the width decrease monotonically
     // to the lower bound min(state.lineWidth, 40).
     // Note that this implies
@@ -411,11 +411,11 @@ function writeScalar(state, string, level, iskey, inblock) {
     //  state.lineWidth > 40 + state.indent: width decreases until the lower bound.
     // This behaves better than a constant minimum width which disallows narrower options,
     // or an indent threshold which causes the width to suddenly increase.
-    var lineWidth = state.lineWidth === -1
+    const lineWidth = state.lineWidth === -1
       ? -1 : Math.max(Math.min(state.lineWidth, 40), state.lineWidth - indent);
 
     // Without knowing if keys are implicit/explicit, assume implicit for safety.
-    var singleLineOnly = iskey
+    const singleLineOnly = iskey
       // No block styles in flow mode.
       || (state.flowLevel > -1 && level >= state.flowLevel);
     function testAmbiguity(string) {
@@ -445,12 +445,12 @@ function writeScalar(state, string, level, iskey, inblock) {
 
 // Pre-conditions: string is valid for a block scalar, 1 <= indentPerLevel <= 9.
 function blockHeader(string, indentPerLevel) {
-  var indentIndicator = needIndentIndicator(string) ? String(indentPerLevel) : '';
+  const indentIndicator = needIndentIndicator(string) ? String(indentPerLevel) : '';
 
   // note the special case: the string '\n' counts as a "trailing" empty line.
-  var clip =          string[string.length - 1] === '\n';
-  var keep = clip && (string[string.length - 2] === '\n' || string === '\n');
-  var chomp = keep ? '+' : (clip ? '' : '-');
+  const clip =          string[string.length - 1] === '\n';
+  const keep = clip && (string[string.length - 2] === '\n' || string === '\n');
+  const chomp = keep ? '+' : (clip ? '' : '-');
 
   return indentIndicator + chomp + '\n';
 }
@@ -467,23 +467,23 @@ function foldString(string, width) {
   // unless they're before or after a more-indented line, or at the very
   // beginning or end, in which case $k$ maps to $k$.
   // Therefore, parse each chunk as newline(s) followed by a content line.
-  var lineRe = /(\n+)([^\n]*)/g;
+  const lineRe = /(\n+)([^\n]*)/g;
 
   // first line (possibly an empty line)
-  var result = (function () {
-    var nextLF = string.indexOf('\n');
+  let result = (function () {
+    let nextLF = string.indexOf('\n');
     nextLF = nextLF !== -1 ? nextLF : string.length;
     lineRe.lastIndex = nextLF;
     return foldLine(string.slice(0, nextLF), width);
   }());
   // If we haven't reached the first content line yet, don't add an extra \n.
-  var prevMoreIndented = string[0] === '\n' || string[0] === ' ';
-  var moreIndented;
+  let prevMoreIndented = string[0] === '\n' || string[0] === ' ';
+  let moreIndented;
 
   // rest of the lines
-  var match;
+  let match;
   while ((match = lineRe.exec(string))) {
-    var prefix = match[1], line = match[2];
+    const prefix = match[1], line = match[2];
     moreIndented = (line[0] === ' ');
     result += prefix
       + (!prevMoreIndented && !moreIndented && line !== ''
@@ -503,11 +503,11 @@ function foldLine(line, width) {
   if (line === '' || line[0] === ' ') return line;
 
   // Since a more-indented line adds a \n, breaks can't be followed by a space.
-  var breakRe = / [^ ]/g; // note: the match index will always be <= length-2.
-  var match;
+  const breakRe = / [^ ]/g; // note: the match index will always be <= length-2.
+  let match;
   // start is an inclusive index. end, curr, and next are exclusive.
-  var start = 0, end, curr = 0, next = 0;
-  var result = '';
+  let start = 0, end, curr = 0, next = 0;
+  let result = '';
 
   // Invariants: 0 <= start <= length-1.
   //   0 <= curr <= next <= max(0, length-2). curr - start <= width.
@@ -540,11 +540,11 @@ function foldLine(line, width) {
 
 // Escapes a double-quoted string.
 function escapeString(string) {
-  var result = '';
-  var char = 0;
-  var escapeSeq;
+  let result = '';
+  let char = 0;
+  let escapeSeq;
 
-  for (var i = 0; i < string.length; char >= 0x10000 ? i += 2 : i++) {
+  for (let i = 0; i < string.length; char >= 0x10000 ? i += 2 : i++) {
     char = codePointAt(string, i);
     escapeSeq = ESCAPE_SEQUENCES[char];
 
@@ -560,7 +560,7 @@ function escapeString(string) {
 }
 
 function writeFlowSequence(state, level, object) {
-  var _result = '',
+  let _result = '',
       _tag    = state.tag,
       index,
       length,
@@ -588,7 +588,7 @@ function writeFlowSequence(state, level, object) {
 }
 
 function writeBlockSequence(state, level, object, compact) {
-  var _result = '',
+  let _result = '',
       _tag    = state.tag,
       index,
       length,
@@ -625,7 +625,7 @@ function writeBlockSequence(state, level, object, compact) {
 }
 
 function writeFlowMapping(state, level, object) {
-  var _result       = '',
+  let _result       = '',
       _tag          = state.tag,
       objectKeyList = Object.keys(object),
       index,
@@ -671,7 +671,7 @@ function writeFlowMapping(state, level, object) {
 }
 
 function writeBlockMapping(state, level, object, compact) {
-  var _result       = '',
+  let _result       = '',
       _tag          = state.tag,
       objectKeyList = Object.keys(object),
       index,
@@ -749,7 +749,7 @@ function writeBlockMapping(state, level, object, compact) {
 }
 
 function detectType(state, object, explicit) {
-  var _result, typeList, index, length, type, style;
+  let _result, typeList, index, length, type, style;
 
   typeList = explicit ? state.explicitTypes : state.implicitTypes;
 
@@ -802,15 +802,15 @@ function writeNode(state, level, object, block, compact, iskey, isblockseq) {
     detectType(state, object, true);
   }
 
-  var type = _toString.call(state.dump);
-  var inblock = block;
-  var tagStr;
+  const type = _toString.call(state.dump);
+  const inblock = block;
+  let tagStr;
 
   if (block) {
     block = (state.flowLevel < 0 || state.flowLevel > level);
   }
 
-  var objectOrArray = type === '[object Object]' || type === '[object Array]',
+  let objectOrArray = type === '[object Object]' || type === '[object Array]',
       duplicateIndex,
       duplicate;
 
@@ -902,7 +902,7 @@ function writeNode(state, level, object, block, compact, iskey, isblockseq) {
 }
 
 function getDuplicateReferences(object, state) {
-  var objects = [],
+  let objects = [],
       duplicatesIndexes = [],
       index,
       length;
@@ -916,7 +916,7 @@ function getDuplicateReferences(object, state) {
 }
 
 function inspectNode(object, objects, duplicatesIndexes) {
-  var objectKeyList,
+  let objectKeyList,
       index,
       length;
 
@@ -947,11 +947,11 @@ function inspectNode(object, objects, duplicatesIndexes) {
 function dump(input, options) {
   options = options || {};
 
-  var state = new State(options);
+  const state = new State(options);
 
   if (!state.noRefs) getDuplicateReferences(input, state);
 
-  var value = input;
+  let value = input;
 
   if (state.replacer) {
     value = state.replacer.call({ '': value }, '', value);

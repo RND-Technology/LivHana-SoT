@@ -1,9 +1,9 @@
-let imports = {};
+const imports = {};
 imports['__wbindgen_placeholder__'] = module.exports;
 let wasm;
 const { TextDecoder, TextEncoder } = require(`util`);
 
-let cachedTextDecoder = new TextDecoder('utf-8', { ignoreBOM: true, fatal: true });
+const cachedTextDecoder = new TextDecoder('utf-8', { ignoreBOM: true, fatal: true });
 
 cachedTextDecoder.decode();
 
@@ -37,7 +37,7 @@ function addHeapObject(obj) {
 
 let WASM_VECTOR_LEN = 0;
 
-let cachedTextEncoder = new TextEncoder('utf-8');
+const cachedTextEncoder = new TextEncoder('utf-8');
 
 const encodeString = (typeof cachedTextEncoder.encodeInto === 'function'
     ? function (arg, view) {
@@ -144,10 +144,10 @@ module.exports.get_config = function(params) {
         const ptr0 = passStringToWasm0(params, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
         const len0 = WASM_VECTOR_LEN;
         wasm.get_config(retptr, ptr0, len0);
-        var r0 = getInt32Memory0()[retptr / 4 + 0];
-        var r1 = getInt32Memory0()[retptr / 4 + 1];
-        var r2 = getInt32Memory0()[retptr / 4 + 2];
-        var r3 = getInt32Memory0()[retptr / 4 + 3];
+        const r0 = getInt32Memory0()[retptr / 4 + 0];
+        const r1 = getInt32Memory0()[retptr / 4 + 1];
+        const r2 = getInt32Memory0()[retptr / 4 + 2];
+        const r3 = getInt32Memory0()[retptr / 4 + 3];
         var ptr1 = r0;
         var len1 = r1;
         if (r3) {
@@ -172,10 +172,10 @@ module.exports.get_dmmf = function(params) {
         const ptr0 = passStringToWasm0(params, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
         const len0 = WASM_VECTOR_LEN;
         wasm.get_dmmf(retptr, ptr0, len0);
-        var r0 = getInt32Memory0()[retptr / 4 + 0];
-        var r1 = getInt32Memory0()[retptr / 4 + 1];
-        var r2 = getInt32Memory0()[retptr / 4 + 2];
-        var r3 = getInt32Memory0()[retptr / 4 + 3];
+        const r0 = getInt32Memory0()[retptr / 4 + 0];
+        const r1 = getInt32Memory0()[retptr / 4 + 1];
+        const r2 = getInt32Memory0()[retptr / 4 + 2];
+        const r3 = getInt32Memory0()[retptr / 4 + 3];
         var ptr1 = r0;
         var len1 = r1;
         if (r3) {
@@ -217,8 +217,8 @@ module.exports.validate = function(params) {
         const ptr0 = passStringToWasm0(params, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
         const len0 = WASM_VECTOR_LEN;
         wasm.validate(retptr, ptr0, len0);
-        var r0 = getInt32Memory0()[retptr / 4 + 0];
-        var r1 = getInt32Memory0()[retptr / 4 + 1];
+        const r0 = getInt32Memory0()[retptr / 4 + 0];
+        const r1 = getInt32Memory0()[retptr / 4 + 1];
         if (r1) {
             throw takeObject(r0);
         }

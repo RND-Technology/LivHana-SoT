@@ -6,7 +6,7 @@
  * @returns {Array} Returns the values.
  */
 function setToArray(set) {
-  var index = -1,
+  let index = -1,
       result = Array(set.size);
 
   set.forEach(function(value) {

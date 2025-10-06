@@ -1,25 +1,25 @@
 'use strict';
 
-var defineProperties = require('define-properties');
-var test = require('tape');
-var callBind = require('call-bind');
-var functionsHaveNames = require('functions-have-names')();
-var hasStrictMode = require('has-strict-mode')();
-var forEach = require('for-each');
-var debug = require('object-inspect');
-var v = require('es-value-fixtures');
-var hasSymbols = require('has-symbols/shams')();
-var hasPropertyDescriptors = require('has-property-descriptors')();
-var iterate = require('iterate-iterator');
+const defineProperties = require('define-properties');
+const test = require('tape');
+const callBind = require('call-bind');
+const functionsHaveNames = require('functions-have-names')();
+const hasStrictMode = require('has-strict-mode')();
+const forEach = require('for-each');
+const debug = require('object-inspect');
+const v = require('es-value-fixtures');
+const hasSymbols = require('has-symbols/shams')();
+const hasPropertyDescriptors = require('has-property-descriptors')();
+const iterate = require('iterate-iterator');
 
-var index = require('../Iterator.prototype.drop');
-var impl = require('../Iterator.prototype.drop/implementation');
+const index = require('../Iterator.prototype.drop');
+const impl = require('../Iterator.prototype.drop/implementation');
 
-var fnName = 'drop';
+const fnName = 'drop';
 
-var isEnumerable = Object.prototype.propertyIsEnumerable;
+const isEnumerable = Object.prototype.propertyIsEnumerable;
 
-var testIterator = require('./helpers/testIterator');
+const testIterator = require('./helpers/testIterator');
 
 module.exports = {
 	tests: function (drop, name, t) {
@@ -36,7 +36,7 @@ module.exports = {
 				debug(nonIterator) + ' is not an Object with a callable `next` method'
 			);
 
-			var badNext = { next: nonIterator };
+			const badNext = { next: nonIterator };
 			t['throws'](
 				function () { iterate(drop(badNext, 0)); },
 				TypeError,
@@ -45,9 +45,9 @@ module.exports = {
 		});
 
 		t.test('observable lookups', { skip: !hasPropertyDescriptors }, function (st) {
-			var effects = [];
+			const effects = [];
 
-			var obj = {};
+			const obj = {};
 			Object.defineProperty(obj, 'next', {
 				configurable: true,
 				enumerable: true,
@@ -72,10 +72,10 @@ module.exports = {
 			st.end();
 		});
 
-		var arr = [1, 2, 3];
+		const arr = [1, 2, 3];
 
 		t.test('actual iteration', { skip: !hasSymbols }, function (st) {
-			var iterator = callBind(arr[Symbol.iterator], arr);
+			const iterator = callBind(arr[Symbol.iterator], arr);
 
 			st['throws'](
 				function () { drop(iterator(), -3); },
@@ -105,7 +105,7 @@ module.exports = {
 		});
 
 		t.test('262: test/built-ins/Iterator/prototype/drop/get-return-method-throws', { skip: !hasPropertyDescriptors }, function (st) {
-			var badIterator = {
+			const badIterator = {
 				next: function next() {
 					return {
 						done: false,
@@ -120,7 +120,7 @@ module.exports = {
 				get: function () { throw new SyntaxError(); }
 			});
 
-			var iter = drop(badIterator, 1);
+			const iter = drop(badIterator, 1);
 			iter.next();
 
 			st['throws'](
@@ -133,9 +133,9 @@ module.exports = {
 		});
 
 		t.test('262: test/built-ins/Iterator/prototype/drop/return-is-forwarded', function (st) {
-			var returnCount = 0;
+			let returnCount = 0;
 
-			var makeBadIterator = function makeBadIterator() {
+			const makeBadIterator = function makeBadIterator() {
 				return {
 					next: function next() {
 						return {
@@ -150,18 +150,18 @@ module.exports = {
 				};
 			};
 
-			var iter1 = drop(makeBadIterator(), 0);
+			const iter1 = drop(makeBadIterator(), 0);
 			st.equal(returnCount, 0, 'iter1, before return()');
 			iter1['return']();
 			st.equal(returnCount, 1, 'iter1, after return()');
 
-			var iter2 = drop(makeBadIterator(), 1);
+			const iter2 = drop(makeBadIterator(), 1);
 			st.equal(returnCount, 1, 'iter2, before return()');
 			iter2['return']();
 			st.equal(returnCount, 2, 'iter2, after return()');
 
 			// 5 drops (i wish i had pipeline)
-			var iter3 = drop(
+			const iter3 = drop(
 				drop(
 					drop(
 						drop(
@@ -185,7 +185,7 @@ module.exports = {
 		});
 
 		t.test('262: test/built-ins/Iterator/prototype/drop/return-is-not-forwarded-after-exhaustion', { skip: !hasPropertyDescriptors }, function (st) {
-			var makeBadIterator = function makeBadIterator() {
+			const makeBadIterator = function makeBadIterator() {
 				return {
 					next: function next() {
 						return {
@@ -199,7 +199,7 @@ module.exports = {
 				};
 			};
 
-			var iter1 = drop(makeBadIterator(), 0);
+			const iter1 = drop(makeBadIterator(), 0);
 			st['throws'](
 				function () { iter1['return'](); },
 				SyntaxError,
@@ -208,7 +208,7 @@ module.exports = {
 			iter1.next();
 			iter1['return']();
 
-			var iter2 = drop(makeBadIterator(), 1);
+			const iter2 = drop(makeBadIterator(), 1);
 			st['throws'](
 				function () { iter2['return'](); },
 				SyntaxError,
@@ -218,7 +218,7 @@ module.exports = {
 			iter2['return']();
 
 			// 5 drops (i wish i had pipeline)
-			var iter3 = drop(
+			const iter3 = drop(
 				drop(
 					drop(
 						drop(
@@ -242,7 +242,7 @@ module.exports = {
 			iter3.next();
 			iter3['return']();
 
-			var iter4 = drop(makeBadIterator(), 10);
+			const iter4 = drop(makeBadIterator(), 10);
 			st['throws'](
 				function () { iter4['return'](); },
 				SyntaxError,

@@ -19,7 +19,7 @@ exports.metastore_v1alpha = void 0;
 /* eslint-disable @typescript-eslint/no-namespace */
 /* eslint-disable no-irregular-whitespace */
 const googleapis_common_1 = require("googleapis-common");
-var metastore_v1alpha;
+let metastore_v1alpha;
 (function (metastore_v1alpha) {
     /**
      * Dataproc Metastore API

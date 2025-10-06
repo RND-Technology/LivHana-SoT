@@ -10,7 +10,7 @@ module.exports = {
 function groupRestore ({ keys, values, target }) {
   if (target == null || typeof target === 'string') return
   const length = keys.length
-  for (var i = 0; i < length; i++) {
+  for (let i = 0; i < length; i++) {
     const k = keys[i]
     target[k] = values[i]
   }
@@ -25,7 +25,7 @@ function groupRedact (o, path, censor, isCensorFct, censorFctTakesPath) {
   const pathWithKey = censorFctTakesPath ? [...path] : undefined
   const values = new Array(keysLength)
 
-  for (var i = 0; i < keysLength; i++) {
+  for (let i = 0; i < keysLength; i++) {
     const key = keys[i]
     values[i] = target[key]
 
@@ -60,7 +60,7 @@ function nestedRedact (store, o, path, ns, censor, isCensorFct, censorFctTakesPa
   if (target == null) return
   const keys = Object.keys(target)
   const keysLength = keys.length
-  for (var i = 0; i < keysLength; i++) {
+  for (let i = 0; i < keysLength; i++) {
     const key = keys[i]
     specialSet(store, target, key, path, ns, censor, isCensorFct, censorFctTakesPath)
   }
@@ -77,19 +77,19 @@ function specialSet (store, o, k, path, afterPath, censor, isCensorFct, censorFc
   const afterPathLen = afterPath.length
   const lastPathIndex = afterPathLen - 1
   const originalKey = k
-  var i = -1
-  var n
-  var nv
-  var ov
-  var oov = null
-  var wc = null
-  var kIsWc
-  var wcov
-  var consecutive = false
-  var level = 0
+  let i = -1
+  let n
+  let nv
+  let ov
+  let oov = null
+  let wc = null
+  let kIsWc
+  let wcov
+  let consecutive = false
+  let level = 0
   // need to track depth of the `redactPath` tree
-  var depth = 0
-  var redactPathCurrent = tree()
+  let depth = 0
+  let redactPathCurrent = tree()
   ov = n = o[k]
   if (typeof n !== 'object') return
   while (n != null && ++i < afterPathLen) {
@@ -110,7 +110,7 @@ function specialSet (store, o, k, path, afterPath, censor, isCensorFct, censorFc
     }
     if (wc) {
       const wcKeys = Object.keys(n)
-      for (var j = 0; j < wcKeys.length; j++) {
+      for (let j = 0; j < wcKeys.length; j++) {
         const wck = wcKeys[j]
         wcov = n[wck]
         kIsWc = k === '*'
@@ -176,9 +176,9 @@ function specialSet (store, o, k, path, afterPath, censor, isCensorFct, censorFc
 }
 
 function get (o, p) {
-  var i = -1
-  var l = p.length
-  var n = o
+  let i = -1
+  const l = p.length
+  let n = o
   while (n != null && ++i < l) {
     n = n[p[i]]
   }
@@ -252,7 +252,7 @@ function node (parent, key, depth) {
     return node(parent.parent, key, depth)
   }
 
-  var child = {
+  const child = {
     parent,
     key,
     depth,

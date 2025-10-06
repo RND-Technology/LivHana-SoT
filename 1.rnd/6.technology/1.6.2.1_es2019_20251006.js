@@ -2,7 +2,7 @@
 
 /* eslint global-require: 0 */
 // https://262.ecma-international.org/10.0/#sec-abstract-operations
-var ES2019 = {
+const ES2019 = {
 	'Abstract Equality Comparison': require('./2019/AbstractEqualityComparison'),
 	'Abstract Relational Comparison': require('./2019/AbstractRelationalComparison'),
 	'Strict Equality Comparison': require('./2019/StrictEqualityComparison'),

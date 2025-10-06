@@ -114,10 +114,10 @@ AST_Scope.DEFMETHOD("drop_unused", function(compressor) {
     if (compressor.has_directive("use asm")) return;
     if (!this.variables) return; // not really a scope (eg: AST_Class)
 
-    var self = this;
+    const self = this;
     if (self.pinned()) return;
-    var drop_funcs = !(self instanceof AST_Toplevel) || compressor.toplevel.funcs;
-    var drop_vars = !(self instanceof AST_Toplevel) || compressor.toplevel.vars;
+    const drop_funcs = !(self instanceof AST_Toplevel) || compressor.toplevel.funcs;
+    const drop_vars = !(self instanceof AST_Toplevel) || compressor.toplevel.vars;
     const assign_as_unused = r_keep_assign.test(compressor.option("unused")) ? return_false : function(node) {
         if (node instanceof AST_Assign
             && !node.logical
@@ -129,8 +129,8 @@ AST_Scope.DEFMETHOD("drop_unused", function(compressor) {
             return node.expression;
         }
     };
-    var in_use_ids = new Map();
-    var fixed_ids = new Map();
+    const in_use_ids = new Map();
+    const fixed_ids = new Map();
     if (self instanceof AST_Toplevel && compressor.top_retain) {
         self.variables.forEach(function(def) {
             if (compressor.top_retain(def)) {
@@ -138,17 +138,17 @@ AST_Scope.DEFMETHOD("drop_unused", function(compressor) {
             }
         });
     }
-    var var_defs_by_id = new Map();
-    var initializations = new Map();
+    const var_defs_by_id = new Map();
+    const initializations = new Map();
 
     // pass 1: find out which symbols are directly used in
     // this scope (not in nested scopes).
-    var scope = this;
+    let scope = this;
     var tw = new TreeWalker(function(node, descend) {
         if (node instanceof AST_Lambda && node.uses_arguments && !tw.has_directive("use strict")) {
             node.argnames.forEach(function(argname) {
                 if (!(argname instanceof AST_SymbolDeclaration)) return;
-                var def = argname.definition();
+                const def = argname.definition();
                 in_use_ids.set(def.id, def);
             });
         }
@@ -161,7 +161,7 @@ AST_Scope.DEFMETHOD("drop_unused", function(compressor) {
             }
         }
         if (node instanceof AST_Defun || node instanceof AST_DefClass) {
-            var node_def = node.name.definition();
+            const node_def = node.name.definition();
             const in_export = tw.parent() instanceof AST_Export;
             if (in_export || !drop_funcs && scope === self) {
                 if (node_def.global) {
@@ -197,7 +197,7 @@ AST_Scope.DEFMETHOD("drop_unused", function(compressor) {
                     def.walk(tw);
                 }
                 if (def.name instanceof AST_SymbolDeclaration && def.value) {
-                    var node_def = def.name.definition();
+                    const node_def = def.name.definition();
                     map_add(initializations, node_def.id, def.value);
                     if (!node_def.chained && def.name.fixed_value() === def.value) {
                         fixed_ids.set(node_def.id, def);
@@ -217,7 +217,7 @@ AST_Scope.DEFMETHOD("drop_unused", function(compressor) {
     // symbols (that may not be in_use).
     tw = new TreeWalker(scan_ref_scoped);
     in_use_ids.forEach(function (def) {
-        var init = initializations.get(def.id);
+        const init = initializations.get(def.id);
         if (init) init.forEach(function(init) {
             init.walk(tw);
         });
@@ -225,12 +225,12 @@ AST_Scope.DEFMETHOD("drop_unused", function(compressor) {
     // pass 3: we should drop declarations not in_use
     var tt = new TreeTransformer(
         function before(node, descend, in_list) {
-            var parent = tt.parent();
+            const parent = tt.parent();
             if (drop_vars) {
                 const sym = assign_as_unused(node);
                 if (sym instanceof AST_SymbolRef) {
                     var def = sym.definition();
-                    var in_use = in_use_ids.has(def.id);
+                    const in_use = in_use_ids.has(def.id);
                     if (node instanceof AST_Assign) {
                         if (!in_use || fixed_ids.has(def.id) && fixed_ids.get(def.id) !== node) {
                             const assignee = node.right.transform(tt);
@@ -257,15 +257,15 @@ AST_Scope.DEFMETHOD("drop_unused", function(compressor) {
                 if (!in_use_ids.has(def.id) || def.orig.length > 1) node.name = null;
             }
             if (node instanceof AST_Lambda && !(node instanceof AST_Accessor)) {
-                var trim =
+                let trim =
                     !compressor.option("keep_fargs")
                     // Is this an IIFE that won't refer to its name?
                     || parent instanceof AST_Call
                         && parent.expression === node
                         && !node.pinned()
                         && (!node.name || node.name.unreferenced());
-                for (var a = node.argnames, i = a.length; --i >= 0;) {
-                    var sym = a[i];
+                for (let a = node.argnames, i = a.length; --i >= 0;) {
+                    let sym = a[i];
                     if (sym instanceof AST_Expansion) {
                         sym = sym.expression;
                     }
@@ -310,17 +310,17 @@ AST_Scope.DEFMETHOD("drop_unused", function(compressor) {
                 }
             }
             if (node instanceof AST_Definitions && !(parent instanceof AST_ForIn && parent.init === node)) {
-                var drop_block = !(parent instanceof AST_Toplevel) && !(node instanceof AST_Var);
+                const drop_block = !(parent instanceof AST_Toplevel) && !(node instanceof AST_Var);
                 // place uninitialized names at the start
-                var body = [], head = [], tail = [];
+                const body = [], head = [], tail = [];
                 // for unused names whose initialization has
                 // side effects, we can cascade the init. code
                 // into the next one, or next statement.
-                var side_effects = [];
+                let side_effects = [];
                 node.definitions.forEach(function(def) {
                     if (def.value) def.value = def.value.transform(tt);
-                    var is_destructure = def.name instanceof AST_Destructuring;
-                    var sym = is_destructure
+                    const is_destructure = def.name instanceof AST_Destructuring;
+                    const sym = is_destructure
                         ? new SymbolDef(null, { name: "<destructure>" }) /* fake SymbolDef */
                         : def.name.definition();
                     if (drop_block && sym.global) return tail.push(def);
@@ -335,12 +335,12 @@ AST_Scope.DEFMETHOD("drop_unused", function(compressor) {
                             def.value = def.value.drop_side_effect_free(compressor);
                         }
                         if (def.name instanceof AST_SymbolVar) {
-                            var var_defs = var_defs_by_id.get(sym.id);
+                            const var_defs = var_defs_by_id.get(sym.id);
                             if (var_defs.length > 1 && (!def.value || sym.orig.indexOf(def.name) > sym.eliminated)) {
                                 if (def.value) {
-                                    var ref = make_node(AST_SymbolRef, def.name, def.name);
+                                    const ref = make_node(AST_SymbolRef, def.name, def.name);
                                     sym.references.push(ref);
-                                    var assign = make_node(AST_Assign, def, {
+                                    const assign = make_node(AST_Assign, def, {
                                         operator: "=",
                                         logical: false,
                                         left: ref,
@@ -464,7 +464,7 @@ AST_Scope.DEFMETHOD("drop_unused", function(compressor) {
     self.transform(tt);
 
     function scan_ref_scoped(node, descend) {
-        var node_def;
+        let node_def;
         const sym = assign_as_unused(node);
         if (sym instanceof AST_SymbolRef
             && !is_ref_of(node.left, AST_SymbolBlockDeclaration)
@@ -495,7 +495,7 @@ AST_Scope.DEFMETHOD("drop_unused", function(compressor) {
             return true;
         }
         if (node instanceof AST_Scope && !(node instanceof AST_ClassStaticBlock)) {
-            var save_scope = scope;
+            const save_scope = scope;
             scope = node;
             descend();
             scope = save_scope;

@@ -48,7 +48,7 @@ class ValueConvertDereferenceError extends Error {
     }
 }
 exports.ValueConvertDereferenceError = ValueConvertDereferenceError;
-var ValueConvert;
+let ValueConvert;
 (function (ValueConvert) {
     // ----------------------------------------------------------------------------------------------
     // Guards

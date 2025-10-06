@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
 exports.v1TenderSchema = void 0;
-var schema_1 = require("../schema");
-var v1Money_1 = require("./v1Money");
+const schema_1 = require("../schema");
+const v1Money_1 = require("./v1Money");
 exports.v1TenderSchema = (0, schema_1.object)({
     id: ['id', (0, schema_1.optional)((0, schema_1.string)())],
     type: ['type', (0, schema_1.optional)((0, schema_1.string)())],

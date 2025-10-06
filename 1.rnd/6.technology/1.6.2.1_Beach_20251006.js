@@ -5,18 +5,18 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.addBeach = addBeach;
 exports.removeBeach = removeBeach;
-var _RedBlackTree = require("./RedBlackTree");
-var _Cell = require("./Cell");
-var _Circle = require("./Circle");
-var _Edge = require("./Edge");
-var _Diagram = require("./Diagram");
-var beachPool = [];
+const _RedBlackTree = require("./RedBlackTree");
+const _Cell = require("./Cell");
+const _Circle = require("./Circle");
+const _Edge = require("./Edge");
+const _Diagram = require("./Diagram");
+const beachPool = [];
 function Beach() {
   (0, _RedBlackTree.RedBlackNode)(this);
   this.edge = this.site = this.circle = null;
 }
 function createBeach(site) {
-  var beach = beachPool.pop() || new Beach();
+  const beach = beachPool.pop() || new Beach();
   beach.site = site;
   return beach;
 }
@@ -27,7 +27,7 @@ function detachBeach(beach) {
   (0, _RedBlackTree.RedBlackNode)(beach);
 }
 function removeBeach(beach) {
-  var circle = beach.circle,
+  let circle = beach.circle,
     x = circle.x,
     y = circle.cy,
     vertex = [x, y],
@@ -35,7 +35,7 @@ function removeBeach(beach) {
     next = beach.N,
     disappearing = [beach];
   detachBeach(beach);
-  var lArc = previous;
+  let lArc = previous;
   while (lArc.circle && Math.abs(x - lArc.circle.x) < _Diagram.epsilon && Math.abs(y - lArc.circle.cy) < _Diagram.epsilon) {
     previous = lArc.P;
     disappearing.unshift(lArc);
@@ -44,7 +44,7 @@ function removeBeach(beach) {
   }
   disappearing.unshift(lArc);
   (0, _Circle.detachCircle)(lArc);
-  var rArc = next;
+  let rArc = next;
   while (rArc.circle && Math.abs(x - rArc.circle.x) < _Diagram.epsilon && Math.abs(y - rArc.circle.cy) < _Diagram.epsilon) {
     next = rArc.N;
     disappearing.push(rArc);
@@ -53,7 +53,7 @@ function removeBeach(beach) {
   }
   disappearing.push(rArc);
   (0, _Circle.detachCircle)(rArc);
-  var nArcs = disappearing.length,
+  let nArcs = disappearing.length,
     iArc;
   for (iArc = 1; iArc < nArcs; ++iArc) {
     rArc = disappearing[iArc];
@@ -67,7 +67,7 @@ function removeBeach(beach) {
   (0, _Circle.attachCircle)(rArc);
 }
 function addBeach(site) {
-  var x = site[0],
+  let x = site[0],
     directrix = site[1],
     lArc,
     rArc,
@@ -99,7 +99,7 @@ function addBeach(site) {
     }
   }
   (0, _Cell.createCell)(site);
-  var newArc = createBeach(site);
+  const newArc = createBeach(site);
   _Diagram.beaches.insert(lArc, newArc);
   if (!lArc && !rArc) return;
   if (lArc === rArc) {
@@ -120,7 +120,7 @@ function addBeach(site) {
   // else lArc !== rArc
   (0, _Circle.detachCircle)(lArc);
   (0, _Circle.detachCircle)(rArc);
-  var lSite = lArc.site,
+  const lSite = lArc.site,
     ax = lSite[0],
     ay = lSite[1],
     bx = site[0] - ax,
@@ -139,27 +139,27 @@ function addBeach(site) {
   (0, _Circle.attachCircle)(rArc);
 }
 function leftBreakPoint(arc, directrix) {
-  var site = arc.site,
+  let site = arc.site,
     rfocx = site[0],
     rfocy = site[1],
     pby2 = rfocy - directrix;
   if (!pby2) return rfocx;
-  var lArc = arc.P;
+  const lArc = arc.P;
   if (!lArc) return -Infinity;
   site = lArc.site;
-  var lfocx = site[0],
+  const lfocx = site[0],
     lfocy = site[1],
     plby2 = lfocy - directrix;
   if (!plby2) return lfocx;
-  var hl = lfocx - rfocx,
+  const hl = lfocx - rfocx,
     aby2 = 1 / pby2 - 1 / plby2,
     b = hl / plby2;
   if (aby2) return (-b + Math.sqrt(b * b - 2 * aby2 * (hl * hl / (-2 * plby2) - lfocy + plby2 / 2 + rfocy - pby2 / 2))) / aby2 + rfocx;
   return (rfocx + lfocx) / 2;
 }
 function rightBreakPoint(arc, directrix) {
-  var rArc = arc.N;
+  const rArc = arc.N;
   if (rArc) return leftBreakPoint(rArc, directrix);
-  var site = arc.site;
+  const site = arc.site;
   return site[1] === directrix ? site[0] : Infinity;
 }

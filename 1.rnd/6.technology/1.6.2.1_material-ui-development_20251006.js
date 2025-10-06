@@ -14,11 +14,11 @@
   'use client';
 
   function _interopNamespaceDefault(e) {
-    var n = Object.create(null);
+    const n = Object.create(null);
     if (e) {
       Object.keys(e).forEach(function (k) {
         if (k !== 'default') {
-          var d = Object.getOwnPropertyDescriptor(e, k);
+          const d = Object.getOwnPropertyDescriptor(e, k);
           Object.defineProperty(n, k, d.get ? d : {
             enumerable: true,
             get: function () { return e[k]; }
@@ -30,16 +30,16 @@
     return Object.freeze(n);
   }
 
-  var React__namespace = /*#__PURE__*/_interopNamespaceDefault(React);
-  var ReactDOM__namespace = /*#__PURE__*/_interopNamespaceDefault(ReactDOM);
+  const React__namespace = /*#__PURE__*/_interopNamespaceDefault(React);
+  const ReactDOM__namespace = /*#__PURE__*/_interopNamespaceDefault(ReactDOM);
 
-  var common = {
+  const common = {
     black: '#000',
     white: '#fff'
   };
-  var common$1 = common;
+  const common$1 = common;
 
-  var red = {
+  const red = {
     50: '#ffebee',
     100: '#ffcdd2',
     200: '#ef9a9a',
@@ -55,9 +55,9 @@
     A400: '#ff1744',
     A700: '#d50000'
   };
-  var red$1 = red;
+  const red$1 = red;
 
-  var pink = {
+  const pink = {
     50: '#fce4ec',
     100: '#f8bbd0',
     200: '#f48fb1',
@@ -73,9 +73,9 @@
     A400: '#f50057',
     A700: '#c51162'
   };
-  var pink$1 = pink;
+  const pink$1 = pink;
 
-  var purple = {
+  const purple = {
     50: '#f3e5f5',
     100: '#e1bee7',
     200: '#ce93d8',
@@ -91,9 +91,9 @@
     A400: '#d500f9',
     A700: '#aa00ff'
   };
-  var purple$1 = purple;
+  const purple$1 = purple;
 
-  var deepPurple = {
+  const deepPurple = {
     50: '#ede7f6',
     100: '#d1c4e9',
     200: '#b39ddb',
@@ -109,9 +109,9 @@
     A400: '#651fff',
     A700: '#6200ea'
   };
-  var deepPurple$1 = deepPurple;
+  const deepPurple$1 = deepPurple;
 
-  var indigo = {
+  const indigo = {
     50: '#e8eaf6',
     100: '#c5cae9',
     200: '#9fa8da',
@@ -127,9 +127,9 @@
     A400: '#3d5afe',
     A700: '#304ffe'
   };
-  var indigo$1 = indigo;
+  const indigo$1 = indigo;
 
-  var blue = {
+  const blue = {
     50: '#e3f2fd',
     100: '#bbdefb',
     200: '#90caf9',
@@ -145,9 +145,9 @@
     A400: '#2979ff',
     A700: '#2962ff'
   };
-  var blue$1 = blue;
+  const blue$1 = blue;
 
-  var lightBlue = {
+  const lightBlue = {
     50: '#e1f5fe',
     100: '#b3e5fc',
     200: '#81d4fa',
@@ -163,9 +163,9 @@
     A400: '#00b0ff',
     A700: '#0091ea'
   };
-  var lightBlue$1 = lightBlue;
+  const lightBlue$1 = lightBlue;
 
-  var cyan = {
+  const cyan = {
     50: '#e0f7fa',
     100: '#b2ebf2',
     200: '#80deea',
@@ -181,9 +181,9 @@
     A400: '#00e5ff',
     A700: '#00b8d4'
   };
-  var cyan$1 = cyan;
+  const cyan$1 = cyan;
 
-  var teal = {
+  const teal = {
     50: '#e0f2f1',
     100: '#b2dfdb',
     200: '#80cbc4',
@@ -199,9 +199,9 @@
     A400: '#1de9b6',
     A700: '#00bfa5'
   };
-  var teal$1 = teal;
+  const teal$1 = teal;
 
-  var green = {
+  const green = {
     50: '#e8f5e9',
     100: '#c8e6c9',
     200: '#a5d6a7',
@@ -217,9 +217,9 @@
     A400: '#00e676',
     A700: '#00c853'
   };
-  var green$1 = green;
+  const green$1 = green;
 
-  var lightGreen = {
+  const lightGreen = {
     50: '#f1f8e9',
     100: '#dcedc8',
     200: '#c5e1a5',
@@ -235,9 +235,9 @@
     A400: '#76ff03',
     A700: '#64dd17'
   };
-  var lightGreen$1 = lightGreen;
+  const lightGreen$1 = lightGreen;
 
-  var lime = {
+  const lime = {
     50: '#f9fbe7',
     100: '#f0f4c3',
     200: '#e6ee9c',
@@ -253,9 +253,9 @@
     A400: '#c6ff00',
     A700: '#aeea00'
   };
-  var lime$1 = lime;
+  const lime$1 = lime;
 
-  var yellow = {
+  const yellow = {
     50: '#fffde7',
     100: '#fff9c4',
     200: '#fff59d',
@@ -271,9 +271,9 @@
     A400: '#ffea00',
     A700: '#ffd600'
   };
-  var yellow$1 = yellow;
+  const yellow$1 = yellow;
 
-  var amber = {
+  const amber = {
     50: '#fff8e1',
     100: '#ffecb3',
     200: '#ffe082',
@@ -289,9 +289,9 @@
     A400: '#ffc400',
     A700: '#ffab00'
   };
-  var amber$1 = amber;
+  const amber$1 = amber;
 
-  var orange = {
+  const orange = {
     50: '#fff3e0',
     100: '#ffe0b2',
     200: '#ffcc80',
@@ -307,9 +307,9 @@
     A400: '#ff9100',
     A700: '#ff6d00'
   };
-  var orange$1 = orange;
+  const orange$1 = orange;
 
-  var deepOrange = {
+  const deepOrange = {
     50: '#fbe9e7',
     100: '#ffccbc',
     200: '#ffab91',
@@ -325,9 +325,9 @@
     A400: '#ff3d00',
     A700: '#dd2c00'
   };
-  var deepOrange$1 = deepOrange;
+  const deepOrange$1 = deepOrange;
 
-  var brown = {
+  const brown = {
     50: '#efebe9',
     100: '#d7ccc8',
     200: '#bcaaa4',
@@ -343,9 +343,9 @@
     A400: '#8d6e63',
     A700: '#5d4037'
   };
-  var brown$1 = brown;
+  const brown$1 = brown;
 
-  var grey = {
+  const grey = {
     50: '#fafafa',
     100: '#f5f5f5',
     200: '#eeeeee',
@@ -361,9 +361,9 @@
     A400: '#bdbdbd',
     A700: '#616161'
   };
-  var grey$1 = grey;
+  const grey$1 = grey;
 
-  var blueGrey = {
+  const blueGrey = {
     50: '#eceff1',
     100: '#cfd8dc',
     200: '#b0bec5',
@@ -379,9 +379,9 @@
     A400: '#78909c',
     A700: '#455a64'
   };
-  var blueGrey$1 = blueGrey;
+  const blueGrey$1 = blueGrey;
 
-  var index = /*#__PURE__*/Object.freeze({
+  const index = /*#__PURE__*/Object.freeze({
     __proto__: null,
     amber: amber$1,
     blue: blue$1,
@@ -405,12 +405,12 @@
     yellow: yellow$1
   });
 
-  var global$1 = (typeof global !== "undefined" ? global :
+  const global$1 = (typeof global !== "undefined" ? global :
               typeof self !== "undefined" ? self :
               typeof window !== "undefined" ? window : {});
 
   // from https://github.com/kumavis/browser-process-hrtime/blob/master/index.js
-  var performance$1 = global$1.performance || {};
+  const performance$1 = global$1.performance || {};
   performance$1.now        ||
     performance$1.mozNow     ||
     performance$1.msNow      ||
@@ -418,7 +418,7 @@
     performance$1.webkitNow  ||
     function(){ return (new Date()).getTime() };
 
-  var THEME_ID = '$$material';
+  const THEME_ID = '$$material';
 
   function _typeof(o) {
     "@babel/helpers - typeof";
@@ -432,9 +432,9 @@
 
   function toPrimitive(t, r) {
     if ("object" != _typeof(t) || !t) return t;
-    var e = t[Symbol.toPrimitive];
+    const e = t[Symbol.toPrimitive];
     if (void 0 !== e) {
-      var i = e.call(t, r || "default");
+      const i = e.call(t, r || "default");
       if ("object" != _typeof(i)) return i;
       throw new TypeError("@@toPrimitive must return a primitive value.");
     }
@@ -442,7 +442,7 @@
   }
 
   function toPropertyKey(t) {
-    var i = toPrimitive(t, "string");
+    const i = toPrimitive(t, "string");
     return "symbol" == _typeof(i) ? i : String(i);
   }
 
@@ -463,9 +463,9 @@
 
   function _extends() {
     _extends = Object.assign ? Object.assign.bind() : function (target) {
-      for (var i = 1; i < arguments.length; i++) {
-        var source = arguments[i];
-        for (var key in source) {
+      for (let i = 1; i < arguments.length; i++) {
+        const source = arguments[i];
+        for (const key in source) {
           if (Object.prototype.hasOwnProperty.call(source, key)) {
             target[key] = source[key];
           }
@@ -478,9 +478,9 @@
 
   function _objectWithoutPropertiesLoose(source, excluded) {
     if (source == null) return {};
-    var target = {};
-    var sourceKeys = Object.keys(source);
-    var key, i;
+    const target = {};
+    const sourceKeys = Object.keys(source);
+    let key, i;
     for (i = 0; i < sourceKeys.length; i++) {
       key = sourceKeys[i];
       if (excluded.indexOf(key) >= 0) continue;
@@ -491,10 +491,10 @@
 
   function _objectWithoutProperties(source, excluded) {
     if (source == null) return {};
-    var target = _objectWithoutPropertiesLoose(source, excluded);
-    var key, i;
+    const target = _objectWithoutPropertiesLoose(source, excluded);
+    let key, i;
     if (Object.getOwnPropertySymbols) {
-      var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+      const sourceSymbolKeys = Object.getOwnPropertySymbols(source);
       for (i = 0; i < sourceSymbolKeys.length; i++) {
         key = sourceSymbolKeys[i];
         if (excluded.indexOf(key) >= 0) continue;
@@ -505,7 +505,7 @@
     return target;
   }
 
-  var isDevelopment$3 = false;
+  const isDevelopment$3 = false;
 
   /*
 
@@ -538,7 +538,7 @@
     /* istanbul ignore next */
 
 
-    for (var i = 0; i < document.styleSheets.length; i++) {
+    for (let i = 0; i < document.styleSheets.length; i++) {
       if (document.styleSheets[i].ownerNode === tag) {
         return document.styleSheets[i];
       }
@@ -550,7 +550,7 @@
   }
 
   function createStyleElement(options) {
-    var tag = document.createElement('style');
+    const tag = document.createElement('style');
     tag.setAttribute('data-emotion', options.key);
 
     if (options.nonce !== undefined) {
@@ -562,13 +562,13 @@
     return tag;
   }
 
-  var StyleSheet = /*#__PURE__*/function () {
+  const StyleSheet = /*#__PURE__*/function () {
     // Using Node instead of HTMLElement since container may be a ShadowRoot
     function StyleSheet(options) {
-      var _this = this;
+      const _this = this;
 
       this._insertTag = function (tag) {
-        var before;
+        let before;
 
         if (_this.tags.length === 0) {
           if (_this.insertionPoint) {
@@ -599,7 +599,7 @@
       this.before = null;
     }
 
-    var _proto = StyleSheet.prototype;
+    const _proto = StyleSheet.prototype;
 
     _proto.hydrate = function hydrate(nodes) {
       nodes.forEach(this._insertTag);
@@ -613,10 +613,10 @@
         this._insertTag(createStyleElement(this));
       }
 
-      var tag = this.tags[this.tags.length - 1];
+      const tag = this.tags[this.tags.length - 1];
 
       if (this.isSpeedy) {
-        var sheet = sheetForTag(tag);
+        const sheet = sheetForTag(tag);
 
         try {
           // this is the ultrafast version, works across browsers
@@ -633,7 +633,7 @@
 
     _proto.flush = function flush() {
       this.tags.forEach(function (tag) {
-        var _tag$parentNode;
+        let _tag$parentNode;
 
         return (_tag$parentNode = tag.parentNode) == null ? void 0 : _tag$parentNode.removeChild(tag);
       });
@@ -644,34 +644,34 @@
     return StyleSheet;
   }();
 
-  var MS = '-ms-';
-  var MOZ = '-moz-';
-  var WEBKIT = '-webkit-';
+  const MS = '-ms-';
+  const MOZ = '-moz-';
+  const WEBKIT = '-webkit-';
 
-  var COMMENT = 'comm';
-  var RULESET = 'rule';
-  var DECLARATION = 'decl';
-  var IMPORT = '@import';
-  var KEYFRAMES = '@keyframes';
-  var LAYER = '@layer';
+  const COMMENT = 'comm';
+  const RULESET = 'rule';
+  const DECLARATION = 'decl';
+  const IMPORT = '@import';
+  const KEYFRAMES = '@keyframes';
+  const LAYER = '@layer';
 
   /**
    * @param {number}
    * @return {number}
    */
-  var abs = Math.abs;
+  const abs = Math.abs;
 
   /**
    * @param {number}
    * @return {string}
    */
-  var from = String.fromCharCode;
+  const from = String.fromCharCode;
 
   /**
    * @param {object}
    * @return {object}
    */
-  var assign = Object.assign;
+  const assign = Object.assign;
 
   /**
    * @param {string} value
@@ -771,12 +771,12 @@
   	return array.map(callback).join('')
   }
 
-  var line = 1;
-  var column = 1;
-  var length = 0;
-  var position = 0;
-  var character = 0;
-  var characters = '';
+  let line = 1;
+  let column = 1;
+  let length = 0;
+  let position = 0;
+  let character = 0;
+  let characters = '';
 
   /**
    * @param {string} value
@@ -1012,21 +1012,21 @@
    * @return {object}
    */
   function parse (value, root, parent, rule, rules, rulesets, pseudo, points, declarations) {
-  	var index = 0;
-  	var offset = 0;
-  	var length = pseudo;
-  	var atrule = 0;
-  	var property = 0;
-  	var previous = 0;
-  	var variable = 1;
-  	var scanning = 1;
-  	var ampersand = 1;
-  	var character = 0;
-  	var type = '';
-  	var props = rules;
-  	var children = rulesets;
-  	var reference = rule;
-  	var characters = type;
+  	let index = 0;
+  	let offset = 0;
+  	let length = pseudo;
+  	let atrule = 0;
+  	let property = 0;
+  	let previous = 0;
+  	let variable = 1;
+  	let scanning = 1;
+  	let ampersand = 1;
+  	let character = 0;
+  	let type = '';
+  	let props = rules;
+  	let children = rulesets;
+  	let reference = rule;
+  	let characters = type;
 
   	while (scanning)
   		switch (previous = character, character = next()) {
@@ -1146,12 +1146,12 @@
    * @return {object}
    */
   function ruleset (value, root, parent, index, offset, rules, points, type, props, children, length) {
-  	var post = offset - 1;
-  	var rule = offset === 0 ? rules : [''];
-  	var size = sizeof(rule);
+  	let post = offset - 1;
+  	const rule = offset === 0 ? rules : [''];
+  	const size = sizeof(rule);
 
-  	for (var i = 0, j = 0, k = 0; i < index; ++i)
-  		for (var x = 0, y = substr(value, post + 1, post = abs(j = points[i])), z = value; x < size; ++x)
+  	for (let i = 0, j = 0, k = 0; i < index; ++i)
+  		for (let x = 0, y = substr(value, post + 1, post = abs(j = points[i])), z = value; x < size; ++x)
   			if (z = trim(j > 0 ? rule[x] + ' ' + y : replace(y, /&\f/g, rule[x])))
   				props[k++] = z;
 
@@ -1185,10 +1185,10 @@
    * @return {string}
    */
   function serialize (children, callback) {
-  	var output = '';
-  	var length = sizeof(children);
+  	let output = '';
+  	const length = sizeof(children);
 
-  	for (var i = 0; i < length; i++)
+  	for (let i = 0; i < length; i++)
   		output += callback(children[i], i, children, callback) || '';
 
   	return output
@@ -1218,12 +1218,12 @@
    * @return {function}
    */
   function middleware (collection) {
-  	var length = sizeof(collection);
+  	const length = sizeof(collection);
 
   	return function (element, index, children, callback) {
-  		var output = '';
+  		let output = '';
 
-  		for (var i = 0; i < length; i++)
+  		for (let i = 0; i < length; i++)
   			output += collection[i](element, index, children, callback) || '';
 
   		return output
@@ -1242,8 +1242,8 @@
   	}
   }
 
-  var weakMemoize = function weakMemoize(func) {
-    var cache = new WeakMap();
+  const weakMemoize = function weakMemoize(func) {
+    const cache = new WeakMap();
     return function (arg) {
       if (cache.has(arg)) {
         // Use non-null assertion because we just checked that the cache `has` it
@@ -1251,25 +1251,25 @@
         return cache.get(arg);
       }
 
-      var ret = func(arg);
+      const ret = func(arg);
       cache.set(arg, ret);
       return ret;
     };
   };
 
   function memoize$1(fn) {
-    var cache = Object.create(null);
+    const cache = Object.create(null);
     return function (arg) {
       if (cache[arg] === undefined) cache[arg] = fn(arg);
       return cache[arg];
     };
   }
 
-  var isBrowser$4 = typeof document !== 'undefined';
+  const isBrowser$4 = typeof document !== 'undefined';
 
-  var identifierWithPointTracking = function identifierWithPointTracking(begin, points, index) {
-    var previous = 0;
-    var character = 0;
+  const identifierWithPointTracking = function identifierWithPointTracking(begin, points, index) {
+    let previous = 0;
+    let character = 0;
 
     while (true) {
       previous = character;
@@ -1289,10 +1289,10 @@
     return slice(begin, position);
   };
 
-  var toRules = function toRules(parsed, points) {
+  const toRules = function toRules(parsed, points) {
     // pretend we've started with a comma
-    var index = -1;
-    var character = 44;
+    let index = -1;
+    let character = 44;
 
     do {
       switch (token(character)) {
@@ -1332,22 +1332,22 @@
     return parsed;
   };
 
-  var getRules = function getRules(value, points) {
+  const getRules = function getRules(value, points) {
     return dealloc(toRules(alloc(value), points));
   }; // WeakSet would be more appropriate, but only WeakMap is supported in IE11
 
 
-  var fixedElements = /* #__PURE__ */new WeakMap();
-  var compat = function compat(element) {
+  const fixedElements = /* #__PURE__ */new WeakMap();
+  const compat = function compat(element) {
     if (element.type !== 'rule' || !element.parent || // positive .length indicates that this rule contains pseudo
     // negative .length indicates that this rule has been already prefixed
     element.length < 1) {
       return;
     }
 
-    var value = element.value;
-    var parent = element.parent;
-    var isImplicitRule = element.column === parent.column && element.line === parent.line;
+    const value = element.value;
+    let parent = element.parent;
+    const isImplicitRule = element.column === parent.column && element.line === parent.line;
 
     while (parent.type !== 'rule') {
       parent = parent.parent;
@@ -1368,19 +1368,19 @@
     }
 
     fixedElements.set(element, true);
-    var points = [];
-    var rules = getRules(value, points);
-    var parentRules = parent.props;
+    const points = [];
+    const rules = getRules(value, points);
+    const parentRules = parent.props;
 
-    for (var i = 0, k = 0; i < rules.length; i++) {
-      for (var j = 0; j < parentRules.length; j++, k++) {
+    for (let i = 0, k = 0; i < rules.length; i++) {
+      for (let j = 0; j < parentRules.length; j++, k++) {
         element.props[k] = points[i] ? rules[i].replace(/&\f/g, parentRules[j]) : parentRules[j] + " " + rules[i];
       }
     }
   };
-  var removeLabel = function removeLabel(element) {
+  const removeLabel = function removeLabel(element) {
     if (element.type === 'decl') {
-      var value = element.value;
+      const value = element.value;
 
       if ( // charcode for l
       value.charCodeAt(0) === 108 && // charcode for b
@@ -1567,7 +1567,7 @@
     return value;
   }
 
-  var prefixer = function prefixer(element, index, children, callback) {
+  const prefixer = function prefixer(element, index, children, callback) {
     if (element.length > -1) if (!element["return"]) switch (element.type) {
       case DECLARATION:
         element["return"] = prefix(element.value, element.length);
@@ -1604,18 +1604,18 @@
     }
   };
 
-  var getServerStylisCache = isBrowser$4 ? undefined : weakMemoize(function () {
+  const getServerStylisCache = isBrowser$4 ? undefined : weakMemoize(function () {
     return memoize$1(function () {
       return {};
     });
   });
-  var defaultStylisPlugins = [prefixer];
+  const defaultStylisPlugins = [prefixer];
 
-  var createCache = function createCache(options) {
-    var key = options.key;
+  const createCache = function createCache(options) {
+    const key = options.key;
 
     if (isBrowser$4 && key === 'css') {
-      var ssrStyles = document.querySelectorAll("style[data-emotion]:not([data-s])"); // get SSRed styles out of the way of React's hydration
+      const ssrStyles = document.querySelectorAll("style[data-emotion]:not([data-s])"); // get SSRed styles out of the way of React's hydration
       // document.head is a safe place to move them to(though note document.head is not necessarily the last place they will be)
       // note this very very intentionally targets all style elements regardless of the key to ensure
       // that creating a cache works inside of render of a React component
@@ -1627,7 +1627,7 @@
         // Emotion 10 client-side inserted styles did not have data-s (but importantly did not have a space in their data-emotion attributes)
         // so checking for the space ensures that loading Emotion 11 after Emotion 10 has inserted some styles
         // will not result in the Emotion 10 styles being destroyed
-        var dataEmotionAttribute = node.getAttribute('data-emotion');
+        const dataEmotionAttribute = node.getAttribute('data-emotion');
 
         if (dataEmotionAttribute.indexOf(' ') === -1) {
           return;
@@ -1638,20 +1638,20 @@
       });
     }
 
-    var stylisPlugins = options.stylisPlugins || defaultStylisPlugins;
+    const stylisPlugins = options.stylisPlugins || defaultStylisPlugins;
 
-    var inserted = {};
-    var container;
-    var nodesToHydrate = [];
+    const inserted = {};
+    let container;
+    const nodesToHydrate = [];
 
     if (isBrowser$4) {
       container = options.container || document.head;
       Array.prototype.forEach.call( // this means we will ignore elements which don't have a space in them which
       // means that the style elements we're looking at are only Emotion 11 server-rendered style elements
       document.querySelectorAll("style[data-emotion^=\"" + key + " \"]"), function (node) {
-        var attrib = node.getAttribute("data-emotion").split(' ');
+        const attrib = node.getAttribute("data-emotion").split(' ');
 
-        for (var i = 1; i < attrib.length; i++) {
+        for (let i = 1; i < attrib.length; i++) {
           inserted[attrib[i]] = true;
         }
 
@@ -1659,18 +1659,18 @@
       });
     }
 
-    var _insert;
+    let _insert;
 
-    var omnipresentPlugins = [compat, removeLabel];
+    const omnipresentPlugins = [compat, removeLabel];
 
     if (!getServerStylisCache) {
-      var currentSheet;
-      var finalizingPlugins = [stringify, rulesheet(function (rule) {
+      let currentSheet;
+      const finalizingPlugins = [stringify, rulesheet(function (rule) {
         currentSheet.insert(rule);
       })];
-      var serializer = middleware(omnipresentPlugins.concat(stylisPlugins, finalizingPlugins));
+      const serializer = middleware(omnipresentPlugins.concat(stylisPlugins, finalizingPlugins));
 
-      var stylis = function stylis(styles) {
+      const stylis = function stylis(styles) {
         return serialize(compile(styles), serializer);
       };
 
@@ -1684,18 +1684,18 @@
         }
       };
     } else {
-      var _finalizingPlugins = [stringify];
+      const _finalizingPlugins = [stringify];
 
-      var _serializer = middleware(omnipresentPlugins.concat(stylisPlugins, _finalizingPlugins));
+      const _serializer = middleware(omnipresentPlugins.concat(stylisPlugins, _finalizingPlugins));
 
-      var _stylis = function _stylis(styles) {
+      const _stylis = function _stylis(styles) {
         return serialize(compile(styles), _serializer);
       };
 
-      var serverStylisCache = getServerStylisCache(stylisPlugins)(key);
+      const serverStylisCache = getServerStylisCache(stylisPlugins)(key);
 
-      var getRules = function getRules(selector, serialized) {
-        var name = serialized.name;
+      const getRules = function getRules(selector, serialized) {
+        const name = serialized.name;
 
         if (serverStylisCache[name] === undefined) {
           serverStylisCache[name] = _stylis(selector ? selector + "{" + serialized.styles + "}" : serialized.styles);
@@ -1705,8 +1705,8 @@
       };
 
       _insert = function _insert(selector, serialized, sheet, shouldCache) {
-        var name = serialized.name;
-        var rules = getRules(selector, serialized);
+        const name = serialized.name;
+        const rules = getRules(selector, serialized);
 
         if (cache.compat === undefined) {
           // in regular mode, we don't set the styles on the inserted cache
@@ -1757,11 +1757,11 @@
   	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
   }
 
-  var reactIs$1 = {exports: {}};
+  const reactIs$1 = {exports: {}};
 
-  var reactIs_development$1 = {};
+  const reactIs_development$1 = {};
 
-  var hasRequiredReactIs_development$1;
+  let hasRequiredReactIs_development$1;
 
   function requireReactIs_development$1 () {
   	if (hasRequiredReactIs_development$1) return reactIs_development$1;
@@ -1774,27 +1774,27 @@
 
   	// The Symbol used to tag the ReactElement-like types. If there is no native Symbol
   	// nor polyfill, then a plain number is used for performance.
-  	var hasSymbol = typeof Symbol === 'function' && Symbol.for;
-  	var REACT_ELEMENT_TYPE = hasSymbol ? Symbol.for('react.element') : 0xeac7;
-  	var REACT_PORTAL_TYPE = hasSymbol ? Symbol.for('react.portal') : 0xeaca;
-  	var REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for('react.fragment') : 0xeacb;
-  	var REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for('react.strict_mode') : 0xeacc;
-  	var REACT_PROFILER_TYPE = hasSymbol ? Symbol.for('react.profiler') : 0xead2;
-  	var REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for('react.provider') : 0xeacd;
-  	var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace; // TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
+  	const hasSymbol = typeof Symbol === 'function' && Symbol.for;
+  	const REACT_ELEMENT_TYPE = hasSymbol ? Symbol.for('react.element') : 0xeac7;
+  	const REACT_PORTAL_TYPE = hasSymbol ? Symbol.for('react.portal') : 0xeaca;
+  	const REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for('react.fragment') : 0xeacb;
+  	const REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for('react.strict_mode') : 0xeacc;
+  	const REACT_PROFILER_TYPE = hasSymbol ? Symbol.for('react.profiler') : 0xead2;
+  	const REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for('react.provider') : 0xeacd;
+  	const REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace; // TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
   	// (unstable) APIs that have been removed. Can we remove the symbols?
 
-  	var REACT_ASYNC_MODE_TYPE = hasSymbol ? Symbol.for('react.async_mode') : 0xeacf;
-  	var REACT_CONCURRENT_MODE_TYPE = hasSymbol ? Symbol.for('react.concurrent_mode') : 0xeacf;
-  	var REACT_FORWARD_REF_TYPE = hasSymbol ? Symbol.for('react.forward_ref') : 0xead0;
-  	var REACT_SUSPENSE_TYPE = hasSymbol ? Symbol.for('react.suspense') : 0xead1;
-  	var REACT_SUSPENSE_LIST_TYPE = hasSymbol ? Symbol.for('react.suspense_list') : 0xead8;
-  	var REACT_MEMO_TYPE = hasSymbol ? Symbol.for('react.memo') : 0xead3;
-  	var REACT_LAZY_TYPE = hasSymbol ? Symbol.for('react.lazy') : 0xead4;
-  	var REACT_BLOCK_TYPE = hasSymbol ? Symbol.for('react.block') : 0xead9;
-  	var REACT_FUNDAMENTAL_TYPE = hasSymbol ? Symbol.for('react.fundamental') : 0xead5;
-  	var REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for('react.responder') : 0xead6;
-  	var REACT_SCOPE_TYPE = hasSymbol ? Symbol.for('react.scope') : 0xead7;
+  	const REACT_ASYNC_MODE_TYPE = hasSymbol ? Symbol.for('react.async_mode') : 0xeacf;
+  	const REACT_CONCURRENT_MODE_TYPE = hasSymbol ? Symbol.for('react.concurrent_mode') : 0xeacf;
+  	const REACT_FORWARD_REF_TYPE = hasSymbol ? Symbol.for('react.forward_ref') : 0xead0;
+  	const REACT_SUSPENSE_TYPE = hasSymbol ? Symbol.for('react.suspense') : 0xead1;
+  	const REACT_SUSPENSE_LIST_TYPE = hasSymbol ? Symbol.for('react.suspense_list') : 0xead8;
+  	const REACT_MEMO_TYPE = hasSymbol ? Symbol.for('react.memo') : 0xead3;
+  	const REACT_LAZY_TYPE = hasSymbol ? Symbol.for('react.lazy') : 0xead4;
+  	const REACT_BLOCK_TYPE = hasSymbol ? Symbol.for('react.block') : 0xead9;
+  	const REACT_FUNDAMENTAL_TYPE = hasSymbol ? Symbol.for('react.fundamental') : 0xead5;
+  	const REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for('react.responder') : 0xead6;
+  	const REACT_SCOPE_TYPE = hasSymbol ? Symbol.for('react.scope') : 0xead7;
 
   	function isValidElementType(type) {
   	  return typeof type === 'string' || typeof type === 'function' || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
@@ -1803,7 +1803,7 @@
 
   	function typeOf(object) {
   	  if (typeof object === 'object' && object !== null) {
-  	    var $$typeof = object.$$typeof;
+  	    const $$typeof = object.$$typeof;
 
   	    switch ($$typeof) {
   	      case REACT_ELEMENT_TYPE:
@@ -1843,20 +1843,20 @@
   	  return undefined;
   	} // AsyncMode is deprecated along with isAsyncMode
 
-  	var AsyncMode = REACT_ASYNC_MODE_TYPE;
-  	var ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
-  	var ContextConsumer = REACT_CONTEXT_TYPE;
-  	var ContextProvider = REACT_PROVIDER_TYPE;
-  	var Element = REACT_ELEMENT_TYPE;
-  	var ForwardRef = REACT_FORWARD_REF_TYPE;
-  	var Fragment = REACT_FRAGMENT_TYPE;
-  	var Lazy = REACT_LAZY_TYPE;
-  	var Memo = REACT_MEMO_TYPE;
-  	var Portal = REACT_PORTAL_TYPE;
-  	var Profiler = REACT_PROFILER_TYPE;
-  	var StrictMode = REACT_STRICT_MODE_TYPE;
-  	var Suspense = REACT_SUSPENSE_TYPE;
-  	var hasWarnedAboutDeprecatedIsAsyncMode = false; // AsyncMode should be deprecated
+  	const AsyncMode = REACT_ASYNC_MODE_TYPE;
+  	const ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
+  	const ContextConsumer = REACT_CONTEXT_TYPE;
+  	const ContextProvider = REACT_PROVIDER_TYPE;
+  	const Element = REACT_ELEMENT_TYPE;
+  	const ForwardRef = REACT_FORWARD_REF_TYPE;
+  	const Fragment = REACT_FRAGMENT_TYPE;
+  	const Lazy = REACT_LAZY_TYPE;
+  	const Memo = REACT_MEMO_TYPE;
+  	const Portal = REACT_PORTAL_TYPE;
+  	const Profiler = REACT_PROFILER_TYPE;
+  	const StrictMode = REACT_STRICT_MODE_TYPE;
+  	const Suspense = REACT_SUSPENSE_TYPE;
+  	let hasWarnedAboutDeprecatedIsAsyncMode = false; // AsyncMode should be deprecated
 
   	function isAsyncMode(object) {
   	  {
@@ -1939,7 +1939,7 @@
   	return reactIs_development$1;
   }
 
-  var hasRequiredReactIs$1;
+  let hasRequiredReactIs$1;
 
   function requireReactIs$1 () {
   	if (hasRequiredReactIs$1) return reactIs$1.exports;
@@ -1951,20 +1951,20 @@
   	return reactIs$1.exports;
   }
 
-  var hoistNonReactStatics_cjs;
-  var hasRequiredHoistNonReactStatics_cjs;
+  let hoistNonReactStatics_cjs;
+  let hasRequiredHoistNonReactStatics_cjs;
 
   function requireHoistNonReactStatics_cjs () {
   	if (hasRequiredHoistNonReactStatics_cjs) return hoistNonReactStatics_cjs;
   	hasRequiredHoistNonReactStatics_cjs = 1;
 
-  	var reactIs = requireReactIs$1();
+  	const reactIs = requireReactIs$1();
 
   	/**
   	 * Copyright 2015, Yahoo! Inc.
   	 * Copyrights licensed under the New BSD License. See the accompanying LICENSE file for terms.
   	 */
-  	var REACT_STATICS = {
+  	const REACT_STATICS = {
   	  childContextTypes: true,
   	  contextType: true,
   	  contextTypes: true,
@@ -1977,7 +1977,7 @@
   	  propTypes: true,
   	  type: true
   	};
-  	var KNOWN_STATICS = {
+  	const KNOWN_STATICS = {
   	  name: true,
   	  length: true,
   	  prototype: true,
@@ -1986,14 +1986,14 @@
   	  arguments: true,
   	  arity: true
   	};
-  	var FORWARD_REF_STATICS = {
+  	const FORWARD_REF_STATICS = {
   	  '$$typeof': true,
   	  render: true,
   	  defaultProps: true,
   	  displayName: true,
   	  propTypes: true
   	};
-  	var MEMO_STATICS = {
+  	const MEMO_STATICS = {
   	  '$$typeof': true,
   	  compare: true,
   	  defaultProps: true,
@@ -2001,7 +2001,7 @@
   	  propTypes: true,
   	  type: true
   	};
-  	var TYPE_STATICS = {};
+  	const TYPE_STATICS = {};
   	TYPE_STATICS[reactIs.ForwardRef] = FORWARD_REF_STATICS;
   	TYPE_STATICS[reactIs.Memo] = MEMO_STATICS;
 
@@ -2015,37 +2015,37 @@
   	  return TYPE_STATICS[component['$$typeof']] || REACT_STATICS;
   	}
 
-  	var defineProperty = Object.defineProperty;
-  	var getOwnPropertyNames = Object.getOwnPropertyNames;
-  	var getOwnPropertySymbols = Object.getOwnPropertySymbols;
-  	var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
-  	var getPrototypeOf = Object.getPrototypeOf;
-  	var objectPrototype = Object.prototype;
+  	const defineProperty = Object.defineProperty;
+  	const getOwnPropertyNames = Object.getOwnPropertyNames;
+  	const getOwnPropertySymbols = Object.getOwnPropertySymbols;
+  	const getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
+  	const getPrototypeOf = Object.getPrototypeOf;
+  	const objectPrototype = Object.prototype;
   	function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
   	  if (typeof sourceComponent !== 'string') {
   	    // don't hoist over string (html) components
   	    if (objectPrototype) {
-  	      var inheritedComponent = getPrototypeOf(sourceComponent);
+  	      const inheritedComponent = getPrototypeOf(sourceComponent);
 
   	      if (inheritedComponent && inheritedComponent !== objectPrototype) {
   	        hoistNonReactStatics(targetComponent, inheritedComponent, blacklist);
   	      }
   	    }
 
-  	    var keys = getOwnPropertyNames(sourceComponent);
+  	    let keys = getOwnPropertyNames(sourceComponent);
 
   	    if (getOwnPropertySymbols) {
   	      keys = keys.concat(getOwnPropertySymbols(sourceComponent));
   	    }
 
-  	    var targetStatics = getStatics(targetComponent);
-  	    var sourceStatics = getStatics(sourceComponent);
+  	    const targetStatics = getStatics(targetComponent);
+  	    const sourceStatics = getStatics(sourceComponent);
 
-  	    for (var i = 0; i < keys.length; ++i) {
-  	      var key = keys[i];
+  	    for (let i = 0; i < keys.length; ++i) {
+  	      const key = keys[i];
 
   	      if (!KNOWN_STATICS[key] && !(blacklist && blacklist[key]) && !(sourceStatics && sourceStatics[key]) && !(targetStatics && targetStatics[key])) {
-  	        var descriptor = getOwnPropertyDescriptor(sourceComponent, key);
+  	        const descriptor = getOwnPropertyDescriptor(sourceComponent, key);
 
   	        try {
   	          // Avoid failures from read-only properties
@@ -2064,10 +2064,10 @@
 
   requireHoistNonReactStatics_cjs();
 
-  var isBrowser$3 = typeof document !== 'undefined';
+  const isBrowser$3 = typeof document !== 'undefined';
 
   function getRegisteredStyles(registered, registeredStyles, classNames) {
-    var rawClassName = '';
+    let rawClassName = '';
     classNames.split(' ').forEach(function (className) {
       if (registered[className] !== undefined) {
         registeredStyles.push(registered[className] + ";");
@@ -2077,8 +2077,8 @@
     });
     return rawClassName;
   }
-  var registerStyles = function registerStyles(cache, serialized, isStringTag) {
-    var className = cache.key + "-" + serialized.name;
+  const registerStyles = function registerStyles(cache, serialized, isStringTag) {
+    const className = cache.key + "-" + serialized.name;
 
     if ( // we only need to add the styles to the registered cache if the
     // class name could be used further down
@@ -2093,16 +2093,16 @@
       cache.registered[className] = serialized.styles;
     }
   };
-  var insertStyles = function insertStyles(cache, serialized, isStringTag) {
+  const insertStyles = function insertStyles(cache, serialized, isStringTag) {
     registerStyles(cache, serialized, isStringTag);
-    var className = cache.key + "-" + serialized.name;
+    const className = cache.key + "-" + serialized.name;
 
     if (cache.inserted[serialized.name] === undefined) {
-      var stylesForSSR = '';
-      var current = serialized;
+      let stylesForSSR = '';
+      let current = serialized;
 
       do {
-        var maybeStyles = cache.insert(serialized === current ? "." + className : '', current, cache.sheet, true);
+        const maybeStyles = cache.insert(serialized === current ? "." + className : '', current, cache.sheet, true);
 
         if (!isBrowser$3 && maybeStyles !== undefined) {
           stylesForSSR += maybeStyles;

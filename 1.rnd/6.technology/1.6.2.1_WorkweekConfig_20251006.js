@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
 exports.workweekConfigSchema = void 0;
-var schema_1 = require("../schema");
+const schema_1 = require("../schema");
 exports.workweekConfigSchema = (0, schema_1.object)({
     id: ['id', (0, schema_1.optional)((0, schema_1.string)())],
     startOfWeek: ['start_of_week', (0, schema_1.string)()],

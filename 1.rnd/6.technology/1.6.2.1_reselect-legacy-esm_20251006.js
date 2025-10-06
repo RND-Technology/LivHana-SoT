@@ -1,9 +1,9 @@
-var __defProp = Object.defineProperty;
-var __getOwnPropSymbols = Object.getOwnPropertySymbols;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __propIsEnum = Object.prototype.propertyIsEnumerable;
-var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-var __spreadValues = (a, b) => {
+const __defProp = Object.defineProperty;
+const __getOwnPropSymbols = Object.getOwnPropertySymbols;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __propIsEnum = Object.prototype.propertyIsEnumerable;
+const __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+const __spreadValues = (a, b) => {
   for (var prop in b || (b = {}))
     if (__hasOwnProp.call(b, prop))
       __defNormalProp(a, prop, b[prop]);
@@ -14,13 +14,13 @@ var __spreadValues = (a, b) => {
     }
   return a;
 };
-var __publicField = (obj, key, value) => {
+const __publicField = (obj, key, value) => {
   __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
   return value;
 };
 
 // src/devModeChecks/identityFunctionCheck.ts
-var runIdentityFunctionCheck = (resultFunc, inputSelectorsResults, outputSelectorResult) => {
+const runIdentityFunctionCheck = (resultFunc, inputSelectorsResults, outputSelectorResult) => {
   if (inputSelectorsResults.length === 1 && inputSelectorsResults[0] === outputSelectorResult) {
     let isInputSameAsOutput = false;
     try {
@@ -34,7 +34,7 @@ var runIdentityFunctionCheck = (resultFunc, inputSelectorsResults, outputSelecto
       try {
         throw new Error();
       } catch (e) {
-        ;
+        
         ({ stack } = e);
       }
       console.warn(
@@ -46,7 +46,7 @@ var runIdentityFunctionCheck = (resultFunc, inputSelectorsResults, outputSelecto
 };
 
 // src/devModeChecks/inputStabilityCheck.ts
-var runInputStabilityCheck = (inputSelectorResultsObject, options, inputSelectorArgs) => {
+const runInputStabilityCheck = (inputSelectorResultsObject, options, inputSelectorArgs) => {
   const { memoize, memoizeOptions } = options;
   const { inputSelectorResults, inputSelectorResultsCopy } = inputSelectorResultsObject;
   const createAnEmptyObject = memoize(() => ({}), ...memoizeOptions);
@@ -56,7 +56,7 @@ var runInputStabilityCheck = (inputSelectorResultsObject, options, inputSelector
     try {
       throw new Error();
     } catch (e) {
-      ;
+      
       ({ stack } = e);
     }
     console.warn(
@@ -72,16 +72,16 @@ var runInputStabilityCheck = (inputSelectorResultsObject, options, inputSelector
 };
 
 // src/devModeChecks/setGlobalDevModeChecks.ts
-var globalDevModeChecks = {
+const globalDevModeChecks = {
   inputStabilityCheck: "once",
   identityFunctionCheck: "once"
 };
-var setGlobalDevModeChecks = (devModeChecks) => {
+const setGlobalDevModeChecks = (devModeChecks) => {
   Object.assign(globalDevModeChecks, devModeChecks);
 };
 
 // src/utils.ts
-var NOT_FOUND = /* @__PURE__ */ Symbol("NOT_FOUND");
+const NOT_FOUND = /* @__PURE__ */ Symbol("NOT_FOUND");
 function assertIsFunction(func, errorMessage = `expected a function, instead received ${typeof func}`) {
   if (typeof func !== "function") {
     throw new TypeError(errorMessage);
@@ -100,7 +100,7 @@ function assertIsArrayOfFunctions(array, errorMessage = `expected all items to b
     throw new TypeError(`${errorMessage}[${itemTypes}]`);
   }
 }
-var ensureIsArray = (item) => {
+const ensureIsArray = (item) => {
   return Array.isArray(item) ? item : [item];
 };
 function getDependencies(createSelectorArgs) {
@@ -119,7 +119,7 @@ function collectInputSelectorResults(dependencies, inputSelectorArgs) {
   }
   return inputSelectorResults;
 }
-var getDevModeChecksExecutionInfo = (firstRun, devModeChecks) => {
+const getDevModeChecksExecutionInfo = (firstRun, devModeChecks) => {
   const { identityFunctionCheck, inputStabilityCheck } = __spreadValues(__spreadValues({}, globalDevModeChecks), devModeChecks);
   return {
     identityFunctionCheck: {
@@ -134,9 +134,9 @@ var getDevModeChecksExecutionInfo = (firstRun, devModeChecks) => {
 };
 
 // src/autotrackMemoize/autotracking.ts
-var $REVISION = 0;
-var CURRENT_TRACKER = null;
-var Cell = class {
+let $REVISION = 0;
+let CURRENT_TRACKER = null;
+const Cell = class {
   constructor(initialValue, isEqual = tripleEq) {
     __publicField(this, "revision", $REVISION);
     __publicField(this, "_value");
@@ -166,7 +166,7 @@ var Cell = class {
 function tripleEq(a, b) {
   return a === b;
 }
-var TrackingCache = class {
+const TrackingCache = class {
   constructor(fn) {
     __publicField(this, "_cachedValue");
     __publicField(this, "_cachedRevision", -1);
@@ -226,21 +226,21 @@ function createCache(fn) {
 }
 
 // src/autotrackMemoize/tracking.ts
-var neverEq = (a, b) => false;
+const neverEq = (a, b) => false;
 function createTag() {
   return createCell(null, neverEq);
 }
 function dirtyTag(tag, value) {
   setValue(tag, value);
 }
-var consumeCollection = (node) => {
+const consumeCollection = (node) => {
   let tag = node.collectionTag;
   if (tag === null) {
     tag = node.collectionTag = createTag();
   }
   getValue(tag);
 };
-var dirtyCollection = (node) => {
+const dirtyCollection = (node) => {
   const tag = node.collectionTag;
   if (tag !== null) {
     dirtyTag(tag, null);
@@ -248,10 +248,10 @@ var dirtyCollection = (node) => {
 };
 
 // src/autotrackMemoize/proxy.ts
-var REDUX_PROXY_LABEL = Symbol();
-var nextId = 0;
-var proto = Object.getPrototypeOf({});
-var ObjectTreeNode = class {
+const REDUX_PROXY_LABEL = Symbol();
+let nextId = 0;
+const proto = Object.getPrototypeOf({});
+const ObjectTreeNode = class {
   constructor(value) {
     this.value = value;
     __publicField(this, "proxy", new Proxy(this, objectProxyHandler));
@@ -308,7 +308,7 @@ var objectProxyHandler = {
     return Reflect.has(node.value, prop);
   }
 };
-var ArrayTreeNode = class {
+const ArrayTreeNode = class {
   constructor(value) {
     this.value = value;
     __publicField(this, "proxy", new Proxy([this], arrayProxyHandler));
@@ -459,7 +459,7 @@ function createLruCache(maxSize, equals) {
   }
   return { get, put, getEntries, clear };
 }
-var referenceEqualityCheck = (a, b) => a === b;
+const referenceEqualityCheck = (a, b) => a === b;
 function createCacheKeyComparator(equalityCheck) {
   return function areArgumentsShallowlyEqual(prev, next) {
     if (prev === null || next === null || prev.length !== next.length) {
@@ -539,7 +539,7 @@ function autotrackMemoize(func) {
 }
 
 // src/weakMapMemoize.ts
-var StrongRef = class {
+const StrongRef = class {
   constructor(value) {
     this.value = value;
   }
@@ -547,9 +547,9 @@ var StrongRef = class {
     return this.value;
   }
 };
-var Ref = typeof WeakRef !== "undefined" ? WeakRef : StrongRef;
-var UNTERMINATED = 0;
-var TERMINATED = 1;
+const Ref = typeof WeakRef !== "undefined" ? WeakRef : StrongRef;
+const UNTERMINATED = 0;
+const TERMINATED = 1;
 function createCacheNode() {
   return {
     s: UNTERMINATED,
@@ -564,7 +564,7 @@ function weakMapMemoize(func, options = {}) {
   let lastResult;
   let resultsCount = 0;
   function memoized() {
-    var _a, _b;
+    let _a, _b;
     let cacheNode = fnNode;
     const { length } = arguments;
     for (let i = 0, l = length; i < l; i++) {
@@ -720,7 +720,7 @@ function createSelectorCreator(memoizeOrOptions, ...memoizeOptionsFromArgs) {
   });
   return createSelector2;
 }
-var createSelector = /* @__PURE__ */ createSelectorCreator(weakMapMemoize);
+const createSelector = /* @__PURE__ */ createSelectorCreator(weakMapMemoize);
 
 // src/createStructuredSelector.ts
 var createStructuredSelector = Object.assign(

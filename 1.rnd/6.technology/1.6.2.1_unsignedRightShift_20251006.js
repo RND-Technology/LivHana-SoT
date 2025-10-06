@@ -1,9 +1,9 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
+const $TypeError = require('es-errors/type');
 
-var ToInt32 = require('../ToInt32');
-var ToUint32 = require('../ToUint32');
+const ToInt32 = require('../ToInt32');
+const ToUint32 = require('../ToUint32');
 
 // https://262.ecma-international.org/11.0/#sec-numeric-types-number-unsignedRightShift
 
@@ -12,10 +12,10 @@ module.exports = function NumberUnsignedRightShift(x, y) {
 		throw new $TypeError('Assertion failed: `x` and `y` arguments must be Numbers');
 	}
 
-	var lnum = ToInt32(x);
-	var rnum = ToUint32(y);
+	const lnum = ToInt32(x);
+	const rnum = ToUint32(y);
 
-	var shiftCount = rnum & 0x1F;
+	const shiftCount = rnum & 0x1F;
 
 	return lnum >>> shiftCount;
 };

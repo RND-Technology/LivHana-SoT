@@ -5,10 +5,10 @@
  * http://opensource.org/licenses/BSD-3-Clause
  */
 
-var base64VLQ = require('./base64-vlq');
-var util = require('./util');
-var ArraySet = require('./array-set').ArraySet;
-var MappingList = require('./mapping-list').MappingList;
+const base64VLQ = require('./base64-vlq');
+const util = require('./util');
+const ArraySet = require('./array-set').ArraySet;
+const MappingList = require('./mapping-list').MappingList;
 
 /**
  * An instance of the SourceMapGenerator represents a source map which is
@@ -41,13 +41,13 @@ SourceMapGenerator.prototype._version = 3;
  */
 SourceMapGenerator.fromSourceMap =
   function SourceMapGenerator_fromSourceMap(aSourceMapConsumer, generatorOps) {
-    var sourceRoot = aSourceMapConsumer.sourceRoot;
-    var generator = new SourceMapGenerator(Object.assign(generatorOps || {}, {
+    const sourceRoot = aSourceMapConsumer.sourceRoot;
+    const generator = new SourceMapGenerator(Object.assign(generatorOps || {}, {
       file: aSourceMapConsumer.file,
       sourceRoot: sourceRoot
     }));
     aSourceMapConsumer.eachMapping(function (mapping) {
-      var newMapping = {
+      const newMapping = {
         generated: {
           line: mapping.generatedLine,
           column: mapping.generatedColumn
@@ -73,7 +73,7 @@ SourceMapGenerator.fromSourceMap =
       generator.addMapping(newMapping);
     });
     aSourceMapConsumer.sources.forEach(function (sourceFile) {
-      var sourceRelative = sourceFile;
+      let sourceRelative = sourceFile;
       if (sourceRoot !== null) {
         sourceRelative = util.relative(sourceRoot, sourceFile);
       }
@@ -82,7 +82,7 @@ SourceMapGenerator.fromSourceMap =
         generator._sources.add(sourceRelative);
       }
 
-      var content = aSourceMapConsumer.sourceContentFor(sourceFile);
+      const content = aSourceMapConsumer.sourceContentFor(sourceFile);
       if (content != null) {
         generator.setSourceContent(sourceFile, content);
       }
@@ -102,10 +102,10 @@ SourceMapGenerator.fromSourceMap =
  */
 SourceMapGenerator.prototype.addMapping =
   function SourceMapGenerator_addMapping(aArgs) {
-    var generated = util.getArg(aArgs, 'generated');
-    var original = util.getArg(aArgs, 'original', null);
-    var source = util.getArg(aArgs, 'source', null);
-    var name = util.getArg(aArgs, 'name', null);
+    const generated = util.getArg(aArgs, 'generated');
+    const original = util.getArg(aArgs, 'original', null);
+    let source = util.getArg(aArgs, 'source', null);
+    let name = util.getArg(aArgs, 'name', null);
 
     if (!this._skipValidation) {
       if (this._validateMapping(generated, original, source, name) === false) {
@@ -142,7 +142,7 @@ SourceMapGenerator.prototype.addMapping =
  */
 SourceMapGenerator.prototype.setSourceContent =
   function SourceMapGenerator_setSourceContent(aSourceFile, aSourceContent) {
-    var source = aSourceFile;
+    let source = aSourceFile;
     if (this._sourceRoot != null) {
       source = util.relative(this._sourceRoot, source);
     }
@@ -182,7 +182,7 @@ SourceMapGenerator.prototype.setSourceContent =
  */
 SourceMapGenerator.prototype.applySourceMap =
   function SourceMapGenerator_applySourceMap(aSourceMapConsumer, aSourceFile, aSourceMapPath) {
-    var sourceFile = aSourceFile;
+    let sourceFile = aSourceFile;
     // If aSourceFile is omitted, we will use the file property of the SourceMap
     if (aSourceFile == null) {
       if (aSourceMapConsumer.file == null) {
@@ -193,21 +193,21 @@ SourceMapGenerator.prototype.applySourceMap =
       }
       sourceFile = aSourceMapConsumer.file;
     }
-    var sourceRoot = this._sourceRoot;
+    const sourceRoot = this._sourceRoot;
     // Make "sourceFile" relative if an absolute Url is passed.
     if (sourceRoot != null) {
       sourceFile = util.relative(sourceRoot, sourceFile);
     }
     // Applying the SourceMap can add and remove items from the sources and
     // the names array.
-    var newSources = new ArraySet();
-    var newNames = new ArraySet();
+    const newSources = new ArraySet();
+    const newNames = new ArraySet();
 
     // Find mappings for the "sourceFile"
     this._mappings.unsortedForEach(function (mapping) {
       if (mapping.source === sourceFile && mapping.originalLine != null) {
         // Check if it can be mapped by the source map, then update the mapping.
-        var original = aSourceMapConsumer.originalPositionFor({
+        const original = aSourceMapConsumer.originalPositionFor({
           line: mapping.originalLine,
           column: mapping.originalColumn
         });
@@ -228,12 +228,12 @@ SourceMapGenerator.prototype.applySourceMap =
         }
       }
 
-      var source = mapping.source;
+      const source = mapping.source;
       if (source != null && !newSources.has(source)) {
         newSources.add(source);
       }
 
-      var name = mapping.name;
+      const name = mapping.name;
       if (name != null && !newNames.has(name)) {
         newNames.add(name);
       }
@@ -244,7 +244,7 @@ SourceMapGenerator.prototype.applySourceMap =
 
     // Copy sourcesContents of applied map.
     aSourceMapConsumer.sources.forEach(function (sourceFile) {
-      var content = aSourceMapConsumer.sourceContentFor(sourceFile);
+      const content = aSourceMapConsumer.sourceContentFor(sourceFile);
       if (content != null) {
         if (aSourceMapPath != null) {
           sourceFile = util.join(aSourceMapPath, sourceFile);
@@ -329,20 +329,20 @@ SourceMapGenerator.prototype._validateMapping =
  */
 SourceMapGenerator.prototype._serializeMappings =
   function SourceMapGenerator_serializeMappings() {
-    var previousGeneratedColumn = 0;
-    var previousGeneratedLine = 1;
-    var previousOriginalColumn = 0;
-    var previousOriginalLine = 0;
-    var previousName = 0;
-    var previousSource = 0;
-    var result = '';
-    var next;
-    var mapping;
-    var nameIdx;
-    var sourceIdx;
+    let previousGeneratedColumn = 0;
+    let previousGeneratedLine = 1;
+    let previousOriginalColumn = 0;
+    let previousOriginalLine = 0;
+    let previousName = 0;
+    let previousSource = 0;
+    let result = '';
+    let next;
+    let mapping;
+    let nameIdx;
+    let sourceIdx;
 
-    var mappings = this._mappings.toArray();
-    for (var i = 0, len = mappings.length; i < len; i++) {
+    const mappings = this._mappings.toArray();
+    for (let i = 0, len = mappings.length; i < len; i++) {
       mapping = mappings[i];
       next = ''
 
@@ -402,7 +402,7 @@ SourceMapGenerator.prototype._generateSourcesContent =
       if (aSourceRoot != null) {
         source = util.relative(aSourceRoot, source);
       }
-      var key = util.toSetString(source);
+      const key = util.toSetString(source);
       return Object.prototype.hasOwnProperty.call(this._sourcesContents, key)
         ? this._sourcesContents[key]
         : null;
@@ -414,7 +414,7 @@ SourceMapGenerator.prototype._generateSourcesContent =
  */
 SourceMapGenerator.prototype.toJSON =
   function SourceMapGenerator_toJSON() {
-    var map = {
+    const map = {
       version: this._version,
       sources: this._sources.toArray(),
       names: this._names.toArray(),

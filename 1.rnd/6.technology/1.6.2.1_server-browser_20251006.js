@@ -1,6 +1,6 @@
 'use strict';
 
-var l, s;
+let l, s;
 if (process.env.NODE_ENV === 'production') {
   l = require('./cjs/react-dom-server-legacy.browser.production.min.js');
   s = require('./cjs/react-dom-server.browser.production.min.js');

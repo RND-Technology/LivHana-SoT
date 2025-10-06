@@ -5,18 +5,18 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.GraphicalItemClipPath = GraphicalItemClipPath;
 exports.useNeedsClip = useNeedsClip;
-var React = _interopRequireWildcard(require("react"));
-var _hooks = require("../state/hooks");
-var _axisSelectors = require("../state/selectors/axisSelectors");
-var _hooks2 = require("../hooks");
-function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
+const React = _interopRequireWildcard(require("react"));
+const _hooks = require("../state/hooks");
+const _axisSelectors = require("../state/selectors/axisSelectors");
+const _hooks2 = require("../hooks");
+function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; let o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (const _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
 function useNeedsClip(xAxisId, yAxisId) {
-  var _xAxis$allowDataOverf, _yAxis$allowDataOverf;
-  var xAxis = (0, _hooks.useAppSelector)(state => (0, _axisSelectors.selectXAxisSettings)(state, xAxisId));
-  var yAxis = (0, _hooks.useAppSelector)(state => (0, _axisSelectors.selectYAxisSettings)(state, yAxisId));
-  var needClipX = (_xAxis$allowDataOverf = xAxis === null || xAxis === void 0 ? void 0 : xAxis.allowDataOverflow) !== null && _xAxis$allowDataOverf !== void 0 ? _xAxis$allowDataOverf : _axisSelectors.implicitXAxis.allowDataOverflow;
-  var needClipY = (_yAxis$allowDataOverf = yAxis === null || yAxis === void 0 ? void 0 : yAxis.allowDataOverflow) !== null && _yAxis$allowDataOverf !== void 0 ? _yAxis$allowDataOverf : _axisSelectors.implicitYAxis.allowDataOverflow;
-  var needClip = needClipX || needClipY;
+  let _xAxis$allowDataOverf, _yAxis$allowDataOverf;
+  const xAxis = (0, _hooks.useAppSelector)(state => (0, _axisSelectors.selectXAxisSettings)(state, xAxisId));
+  const yAxis = (0, _hooks.useAppSelector)(state => (0, _axisSelectors.selectYAxisSettings)(state, yAxisId));
+  const needClipX = (_xAxis$allowDataOverf = xAxis === null || xAxis === void 0 ? void 0 : xAxis.allowDataOverflow) !== null && _xAxis$allowDataOverf !== void 0 ? _xAxis$allowDataOverf : _axisSelectors.implicitXAxis.allowDataOverflow;
+  const needClipY = (_yAxis$allowDataOverf = yAxis === null || yAxis === void 0 ? void 0 : yAxis.allowDataOverflow) !== null && _yAxis$allowDataOverf !== void 0 ? _yAxis$allowDataOverf : _axisSelectors.implicitYAxis.allowDataOverflow;
+  const needClip = needClipX || needClipY;
   return {
     needClip,
     needClipX,
@@ -24,13 +24,13 @@ function useNeedsClip(xAxisId, yAxisId) {
   };
 }
 function GraphicalItemClipPath(_ref) {
-  var {
+  const {
     xAxisId,
     yAxisId,
     clipPathId
   } = _ref;
-  var plotArea = (0, _hooks2.usePlotArea)();
-  var {
+  const plotArea = (0, _hooks2.usePlotArea)();
+  const {
     needClipX,
     needClipY,
     needClip
@@ -38,7 +38,7 @@ function GraphicalItemClipPath(_ref) {
   if (!needClip) {
     return null;
   }
-  var {
+  const {
     x,
     y,
     width,

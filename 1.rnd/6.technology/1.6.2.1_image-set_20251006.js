@@ -1,4 +1,4 @@
-let Value = require('../value')
+const Value = require('../value')
 
 class ImageSet extends Value {
   /**

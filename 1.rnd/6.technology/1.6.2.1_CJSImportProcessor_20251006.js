@@ -1,12 +1,12 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 
-var _tokenizer = require('./parser/tokenizer');
-var _keywords = require('./parser/tokenizer/keywords');
-var _types = require('./parser/tokenizer/types');
+const _tokenizer = require('./parser/tokenizer');
+const _keywords = require('./parser/tokenizer/keywords');
+const _types = require('./parser/tokenizer/types');
 
-var _getImportExportSpecifierInfo = require('./util/getImportExportSpecifierInfo'); var _getImportExportSpecifierInfo2 = _interopRequireDefault(_getImportExportSpecifierInfo);
-var _getNonTypeIdentifiers = require('./util/getNonTypeIdentifiers');
+const _getImportExportSpecifierInfo = require('./util/getImportExportSpecifierInfo'); const _getImportExportSpecifierInfo2 = _interopRequireDefault(_getImportExportSpecifierInfo);
+const _getNonTypeIdentifiers = require('./util/getNonTypeIdentifiers');
 
 
 
@@ -45,7 +45,7 @@ var _getNonTypeIdentifiers = require('./util/getNonTypeIdentifiers');
      isTypeScriptTransformEnabled,
      keepUnusedImports,
      helperManager,
-  ) {;this.nameManager = nameManager;this.tokens = tokens;this.enableLegacyTypeScriptModuleInterop = enableLegacyTypeScriptModuleInterop;this.options = options;this.isTypeScriptTransformEnabled = isTypeScriptTransformEnabled;this.keepUnusedImports = keepUnusedImports;this.helperManager = helperManager;CJSImportProcessor.prototype.__init.call(this);CJSImportProcessor.prototype.__init2.call(this);CJSImportProcessor.prototype.__init3.call(this);CJSImportProcessor.prototype.__init4.call(this);CJSImportProcessor.prototype.__init5.call(this);}
+  ) {this.nameManager = nameManager;this.tokens = tokens;this.enableLegacyTypeScriptModuleInterop = enableLegacyTypeScriptModuleInterop;this.options = options;this.isTypeScriptTransformEnabled = isTypeScriptTransformEnabled;this.keepUnusedImports = keepUnusedImports;this.helperManager = helperManager;CJSImportProcessor.prototype.__init.call(this);CJSImportProcessor.prototype.__init2.call(this);CJSImportProcessor.prototype.__init3.call(this);CJSImportProcessor.prototype.__init4.call(this);CJSImportProcessor.prototype.__init5.call(this);}
 
   preprocessTokens() {
     for (let i = 0; i < this.tokens.tokens.length; i++) {

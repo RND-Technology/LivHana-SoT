@@ -2,7 +2,7 @@
 
 exports.__esModule = true;
 exports.default = isInput;
-var regExpInputs = /^(?:input|select|textarea|button)$/i;
+const regExpInputs = /^(?:input|select|textarea|button)$/i;
 /**
  * Checks if a given element is an input (input, select, textarea or button).
  * 

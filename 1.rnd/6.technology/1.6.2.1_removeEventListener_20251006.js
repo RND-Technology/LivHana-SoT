@@ -12,7 +12,7 @@ exports.default = void 0;
  * @param options event options
  */
 function removeEventListener(node, eventName, handler, options) {
-  var capture = options && typeof options !== 'boolean' ? options.capture : options;
+  const capture = options && typeof options !== 'boolean' ? options.capture : options;
   node.removeEventListener(eventName, handler, capture);
 
   if (handler.__once) {
@@ -20,6 +20,6 @@ function removeEventListener(node, eventName, handler, options) {
   }
 }
 
-var _default = removeEventListener;
+const _default = removeEventListener;
 exports.default = _default;
 module.exports = exports["default"];

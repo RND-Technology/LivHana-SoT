@@ -18,13 +18,13 @@
  * @api public
  */
 
-var AssertionError = require('assertion-error');
-var flag = require('./flag');
-var type = require('type-detect');
+const AssertionError = require('assertion-error');
+const flag = require('./flag');
+const type = require('type-detect');
 
 module.exports = function expectTypes(obj, types) {
-  var flagMsg = flag(obj, 'message');
-  var ssfi = flag(obj, 'ssfi');
+  let flagMsg = flag(obj, 'message');
+  const ssfi = flag(obj, 'ssfi');
 
   flagMsg = flagMsg ? flagMsg + ': ' : '';
 
@@ -33,13 +33,13 @@ module.exports = function expectTypes(obj, types) {
   types.sort();
 
   // Transforms ['lorem', 'ipsum'] into 'a lorem, or an ipsum'
-  var str = types.map(function (t, index) {
-    var art = ~[ 'a', 'e', 'i', 'o', 'u' ].indexOf(t.charAt(0)) ? 'an' : 'a';
-    var or = types.length > 1 && index === types.length - 1 ? 'or ' : '';
+  const str = types.map(function (t, index) {
+    const art = ~[ 'a', 'e', 'i', 'o', 'u' ].indexOf(t.charAt(0)) ? 'an' : 'a';
+    const or = types.length > 1 && index === types.length - 1 ? 'or ' : '';
     return or + art + ' ' + t;
   }).join(', ');
 
-  var objType = type(obj).toLowerCase();
+  const objType = type(obj).toLowerCase();
 
   if (!types.some(function (expected) { return objType === expected; })) {
     throw new AssertionError(

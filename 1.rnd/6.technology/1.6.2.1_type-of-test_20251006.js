@@ -1,7 +1,7 @@
 "use strict";
 
-var assert = require("@sinonjs/referee-sinon").assert;
-var typeOf = require("./type-of");
+const assert = require("@sinonjs/referee-sinon").assert;
+const typeOf = require("./type-of");
 
 describe("typeOf", function () {
     it("returns boolean", function () {

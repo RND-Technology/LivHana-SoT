@@ -19,7 +19,7 @@ exports.cloudsupport_v2beta = void 0;
 /* eslint-disable @typescript-eslint/no-namespace */
 /* eslint-disable no-irregular-whitespace */
 const googleapis_common_1 = require("googleapis-common");
-var cloudsupport_v2beta;
+let cloudsupport_v2beta;
 (function (cloudsupport_v2beta) {
     /**
      * Google Cloud Support API

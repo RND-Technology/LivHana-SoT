@@ -4,8 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = cloneNode;
-var _index = require("../definitions/index.js");
-var _index2 = require("../validators/generated/index.js");
+const _index = require("../definitions/index.js");
+const _index2 = require("../validators/generated/index.js");
 const {
   hasOwn
 } = {

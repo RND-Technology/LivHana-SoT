@@ -1,22 +1,22 @@
 "use strict";
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
+const __defProp = Object.defineProperty;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __export = (target, all) => {
+  for (const name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
+    for (const key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var bidiProtocolCore_exports = {};
+const __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+const bidiProtocolCore_exports = {};
 __export(bidiProtocolCore_exports, {
   BrowsingContext: () => BrowsingContext,
   Emulation: () => Emulation,
@@ -60,7 +60,7 @@ var ErrorCode = /* @__PURE__ */ ((ErrorCode2) => {
   ErrorCode2["UnsupportedOperation"] = "unsupported operation";
   return ErrorCode2;
 })(ErrorCode || {});
-var Session;
+let Session;
 ((Session2) => {
   let UserPromptHandlerType;
   ((UserPromptHandlerType2) => {
@@ -69,7 +69,7 @@ var Session;
     UserPromptHandlerType2["Ignore"] = "ignore";
   })(UserPromptHandlerType = Session2.UserPromptHandlerType || (Session2.UserPromptHandlerType = {}));
 })(Session || (Session = {}));
-var BrowsingContext;
+let BrowsingContext;
 ((BrowsingContext2) => {
   let ReadinessState;
   ((ReadinessState2) => {
@@ -94,7 +94,7 @@ var BrowsingContext;
     CreateType2["Window"] = "window";
   })(CreateType = BrowsingContext2.CreateType || (BrowsingContext2.CreateType = {}));
 })(BrowsingContext || (BrowsingContext = {}));
-var Emulation;
+let Emulation;
 ((Emulation2) => {
   let ForcedColorsModeTheme;
   ((ForcedColorsModeTheme2) => {
@@ -109,7 +109,7 @@ var Emulation;
     ScreenOrientationNatural2["Landscape"] = "landscape";
   })(ScreenOrientationNatural = Emulation2.ScreenOrientationNatural || (Emulation2.ScreenOrientationNatural = {}));
 })(Emulation || (Emulation = {}));
-var Network;
+let Network;
 ((Network2) => {
   let CollectorType;
   ((CollectorType2) => {
@@ -139,7 +139,7 @@ var Network;
     InterceptPhase2["AuthRequired"] = "authRequired";
   })(InterceptPhase = Network2.InterceptPhase || (Network2.InterceptPhase = {}));
 })(Network || (Network = {}));
-var Script;
+let Script;
 ((Script2) => {
   let ResultOwnership;
   ((ResultOwnership2) => {
@@ -147,7 +147,7 @@ var Script;
     ResultOwnership2["None"] = "none";
   })(ResultOwnership = Script2.ResultOwnership || (Script2.ResultOwnership = {}));
 })(Script || (Script = {}));
-var Log;
+let Log;
 ((Log2) => {
   let Level;
   ((Level2) => {
@@ -157,7 +157,7 @@ var Log;
     Level2["Error"] = "error";
   })(Level = Log2.Level || (Log2.Level = {}));
 })(Log || (Log = {}));
-var Input;
+let Input;
 ((Input2) => {
   let PointerType;
   ((PointerType2) => {

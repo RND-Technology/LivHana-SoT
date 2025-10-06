@@ -11,10 +11,10 @@ function _jestWatcher() {
   };
   return data;
 }
-var _TestPathPatternPrompt = _interopRequireDefault(
+const _TestPathPatternPrompt = _interopRequireDefault(
   require('../TestPathPatternPrompt')
 );
-var _activeFiltersMessage = _interopRequireDefault(
+const _activeFiltersMessage = _interopRequireDefault(
   require('../lib/activeFiltersMessage')
 );
 function _interopRequireDefault(obj) {
@@ -66,5 +66,5 @@ class TestPathPatternPlugin extends _jestWatcher().BaseWatchPlugin {
     });
   }
 }
-var _default = TestPathPatternPlugin;
+const _default = TestPathPatternPlugin;
 exports.default = _default;

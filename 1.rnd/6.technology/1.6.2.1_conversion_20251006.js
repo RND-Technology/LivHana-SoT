@@ -9,10 +9,10 @@ exports.ensureFunctionName = ensureFunctionName;
 exports.splitExportDeclaration = splitExportDeclaration;
 exports.toComputedKey = toComputedKey;
 exports.unwrapFunctionEnvironment = unwrapFunctionEnvironment;
-var _t = require("@babel/types");
-var _template = require("@babel/template");
-var _visitors = require("../visitors.js");
-var _context = require("./context.js");
+const _t = require("@babel/types");
+const _template = require("@babel/template");
+const _visitors = require("../visitors.js");
+const _context = require("./context.js");
 const {
   arrowFunctionExpression,
   assignmentExpression,
@@ -125,7 +125,7 @@ function arrowFunctionToExpression({
   }
   let self = this;
   if (!noNewArrows) {
-    var _self$ensureFunctionN;
+    let _self$ensureFunctionN;
     self = (_self$ensureFunctionN = self.ensureFunctionName(false)) != null ? _self$ensureFunctionN : self;
   }
   const {

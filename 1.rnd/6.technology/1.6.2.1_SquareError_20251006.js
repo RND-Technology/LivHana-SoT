@@ -12,7 +12,7 @@ const fallbackError = {
 };
 class SquareError extends Error {
     constructor({ message, statusCode, body, rawResponse, }) {
-        var _a, _b;
+        let _a, _b;
         super(buildMessage({ message, statusCode, body }));
         Object.setPrototypeOf(this, SquareError.prototype);
         this.statusCode = statusCode;
@@ -41,7 +41,7 @@ class SquareError extends Error {
 }
 exports.SquareError = SquareError;
 function buildMessage({ message, statusCode, body, }) {
-    let lines = [];
+    const lines = [];
     if (message != null) {
         lines.push(message);
     }

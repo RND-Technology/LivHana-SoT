@@ -1,5 +1,5 @@
 "use strict";
-var util = exports;
+const util = exports;
 
 // used to return a Promise where callback is omitted
 util.asPromise = require("@protobufjs/aspromise");
@@ -106,7 +106,7 @@ util.isset =
  * @returns {boolean} `true` if considered to be present, otherwise `false`
  */
 util.isSet = function isSet(obj, prop) {
-    var value = obj[prop];
+    const value = obj[prop];
     if (value != null && obj.hasOwnProperty(prop)) // eslint-disable-line eqeqeq, no-prototype-builtins
         return typeof value !== "object" || (Array.isArray(value) ? value.length : Object.keys(value).length) > 0;
     return false;
@@ -125,7 +125,7 @@ util.isSet = function isSet(obj, prop) {
  */
 util.Buffer = (function() {
     try {
-        var Buffer = util.inquire("buffer").Buffer;
+        const Buffer = util.inquire("buffer").Buffer;
         // refuse to use non-node buffers if not explicitly assigned (perf reasons):
         return Buffer.prototype.utf8Write ? Buffer : /* istanbul ignore next */ null;
     } catch (e) {
@@ -220,7 +220,7 @@ util.longToHash = function longToHash(value) {
  * @returns {Long|number} Original value
  */
 util.longFromHash = function longFromHash(hash, unsigned) {
-    var bits = util.LongBits.fromHash(hash);
+    const bits = util.LongBits.fromHash(hash);
     if (util.Long)
         return util.Long.fromBits(bits.lo, bits.hi, unsigned);
     return bits.toNumber(Boolean(unsigned));
@@ -235,7 +235,7 @@ util.longFromHash = function longFromHash(hash, unsigned) {
  * @returns {Object.<string,*>} Destination object
  */
 function merge(dst, src, ifNotSet) { // used by converters
-    for (var keys = Object.keys(src), i = 0; i < keys.length; ++i)
+    for (let keys = Object.keys(src), i = 0; i < keys.length; ++i)
         if (dst[keys[i]] === undefined || !ifNotSet)
             dst[keys[i]] = src[keys[i]];
     return dst;
@@ -348,8 +348,8 @@ util.ProtocolError = newError("ProtocolError");
  * @returns {OneOfGetter} Unbound getter
  */
 util.oneOfGetter = function getOneOf(fieldNames) {
-    var fieldMap = {};
-    for (var i = 0; i < fieldNames.length; ++i)
+    const fieldMap = {};
+    for (let i = 0; i < fieldNames.length; ++i)
         fieldMap[fieldNames[i]] = 1;
 
     /**
@@ -358,7 +358,7 @@ util.oneOfGetter = function getOneOf(fieldNames) {
      * @ignore
      */
     return function() { // eslint-disable-line consistent-return
-        for (var keys = Object.keys(this), i = keys.length - 1; i > -1; --i)
+        for (let keys = Object.keys(this), i = keys.length - 1; i > -1; --i)
             if (fieldMap[keys[i]] === 1 && this[keys[i]] !== undefined && this[keys[i]] !== null)
                 return keys[i];
     };
@@ -386,7 +386,7 @@ util.oneOfSetter = function setOneOf(fieldNames) {
      * @ignore
      */
     return function(name) {
-        for (var i = 0; i < fieldNames.length; ++i)
+        for (let i = 0; i < fieldNames.length; ++i)
             if (fieldNames[i] !== name)
                 delete this[fieldNames[i]];
     };
@@ -417,7 +417,7 @@ util.toJSONOptions = {
 
 // Sets up buffer utility according to the environment (called in index-minimal)
 util._configure = function() {
-    var Buffer = util.Buffer;
+    const Buffer = util.Buffer;
     /* istanbul ignore if */
     if (!Buffer) {
         util._Buffer_from = util._Buffer_allocUnsafe = null;

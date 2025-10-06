@@ -42,43 +42,43 @@ const chill = winston.createLogger({
 
 const run = bench([
   function benchBunyanDeepObj (cb) {
-    for (var i = 0; i < max; i++) {
+    for (let i = 0; i < max; i++) {
       blog.info(deep)
     }
     setImmediate(cb)
   },
   function benchWinstonDeepObj (cb) {
-    for (var i = 0; i < max; i++) {
+    for (let i = 0; i < max; i++) {
       chill.log(deep)
     }
     setImmediate(cb)
   },
   function benchBoleDeepObj (cb) {
-    for (var i = 0; i < max; i++) {
+    for (let i = 0; i < max; i++) {
       bole.info(deep)
     }
     setImmediate(cb)
   },
   function benchLogLevelDeepObj (cb) {
-    for (var i = 0; i < max; i++) {
+    for (let i = 0; i < max; i++) {
       loglevel.info(deep)
     }
     setImmediate(cb)
   },
   function benchPinoDeepObj (cb) {
-    for (var i = 0; i < max; i++) {
+    for (let i = 0; i < max; i++) {
       plogDest.info(deep)
     }
     setImmediate(cb)
   },
   function benchPinoMinLengthDeepObj (cb) {
-    for (var i = 0; i < max; i++) {
+    for (let i = 0; i < max; i++) {
       plogMinLength.info(deep)
     }
     setImmediate(cb)
   },
   function benchPinoNodeStreamDeepObj (cb) {
-    for (var i = 0; i < max; i++) {
+    for (let i = 0; i < max; i++) {
       plogNodeStream.info(deep)
     }
     setImmediate(cb)

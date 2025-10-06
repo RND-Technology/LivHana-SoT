@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = _toSetter;
 function _toSetter(fn, args, thisArg) {
   if (!args) args = [];
-  var l = args.length++;
+  const l = args.length++;
   return Object.defineProperty({}, "_", {
     set: function (v) {
       args[l] = v;

@@ -1,10 +1,10 @@
 "use strict";
 exports.__esModule = true;
 exports.createCheckoutRequestSchema = void 0;
-var schema_1 = require("../schema");
-var address_1 = require("./address");
-var chargeRequestAdditionalRecipient_1 = require("./chargeRequestAdditionalRecipient");
-var createOrderRequest_1 = require("./createOrderRequest");
+const schema_1 = require("../schema");
+const address_1 = require("./address");
+const chargeRequestAdditionalRecipient_1 = require("./chargeRequestAdditionalRecipient");
+const createOrderRequest_1 = require("./createOrderRequest");
 exports.createCheckoutRequestSchema = (0, schema_1.object)({
     idempotencyKey: ['idempotency_key', (0, schema_1.string)()],
     order: ['order', (0, schema_1.lazy)(function () { return createOrderRequest_1.createOrderRequestSchema; })],

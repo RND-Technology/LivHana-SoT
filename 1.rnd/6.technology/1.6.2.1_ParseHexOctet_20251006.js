@@ -1,12 +1,12 @@
 'use strict';
 
-var $SyntaxError = require('es-errors/syntax');
-var $TypeError = require('es-errors/type');
+const $SyntaxError = require('es-errors/syntax');
+const $TypeError = require('es-errors/type');
 
-var substring = require('./substring');
+const substring = require('./substring');
 
-var isInteger = require('math-intrinsics/isInteger');
-var isNaN = require('math-intrinsics/isNaN');
+const isInteger = require('math-intrinsics/isInteger');
+const isNaN = require('math-intrinsics/isNaN');
 
 // https://262.ecma-international.org/14.0/#sec-parsehexoctet
 
@@ -18,14 +18,14 @@ module.exports = function ParseHexOctet(string, position) {
 		throw new $TypeError('Assertion failed: `position` must be a nonnegative integer');
 	}
 
-	var len = string.length; // step 1
+	const len = string.length; // step 1
 	if ((position + 2) > len) { // step 2
-		var error = new $SyntaxError('requested a position on a string that does not contain 2 characters at that position'); // step 2.a
+		const error = new $SyntaxError('requested a position on a string that does not contain 2 characters at that position'); // step 2.a
 		return [error]; // step 2.b
 	}
-	var hexDigits = substring(string, position, position + 2); // step 3
+	const hexDigits = substring(string, position, position + 2); // step 3
 
-	var n = +('0x' + hexDigits);
+	const n = +('0x' + hexDigits);
 	if (isNaN(n)) {
 		return [new $SyntaxError('Invalid hexadecimal characters')];
 	}

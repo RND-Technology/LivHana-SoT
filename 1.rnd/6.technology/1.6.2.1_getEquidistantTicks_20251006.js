@@ -4,25 +4,25 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.getEquidistantTicks = getEquidistantTicks;
-var _TickUtils = require("../util/TickUtils");
-var _getEveryNthWithCondition = require("../util/getEveryNthWithCondition");
+const _TickUtils = require("../util/TickUtils");
+const _getEveryNthWithCondition = require("../util/getEveryNthWithCondition");
 function getEquidistantTicks(sign, boundaries, getTickSize, ticks, minTickGap) {
   // If the ticks are readonly, then the slice might not be necessary
-  var result = (ticks || []).slice();
-  var {
+  const result = (ticks || []).slice();
+  const {
     start: initialStart,
     end
   } = boundaries;
-  var index = 0;
+  let index = 0;
   // Premature optimisation idea 1: Estimate a lower bound, and start from there.
   // For now, start from every tick
-  var stepsize = 1;
-  var start = initialStart;
-  var _loop = function _loop() {
+  let stepsize = 1;
+  let start = initialStart;
+  let _loop = function _loop() {
       // Given stepsize, evaluate whether every stepsize-th tick can be shown.
       // If it can not, then increase the stepsize by 1, and try again.
 
-      var entry = ticks === null || ticks === void 0 ? void 0 : ticks[index];
+      const entry = ticks === null || ticks === void 0 ? void 0 : ticks[index];
 
       // Break condition - If we have evaluated all the ticks, then we are done.
       if (entry === undefined) {
@@ -32,17 +32,17 @@ function getEquidistantTicks(sign, boundaries, getTickSize, ticks, minTickGap) {
       }
 
       // Check if the element collides with the next element
-      var i = index;
-      var size;
-      var getSize = () => {
+      const i = index;
+      let size;
+      const getSize = () => {
         if (size === undefined) {
           size = getTickSize(entry, i);
         }
         return size;
       };
-      var tickCoord = entry.coordinate;
+      const tickCoord = entry.coordinate;
       // We will always show the first tick.
-      var isShow = index === 0 || (0, _TickUtils.isVisible)(sign, tickCoord, getSize, start, end);
+      const isShow = index === 0 || (0, _TickUtils.isVisible)(sign, tickCoord, getSize, start, end);
       if (!isShow) {
         // Start all over with a larger stepsize
         index = 0;

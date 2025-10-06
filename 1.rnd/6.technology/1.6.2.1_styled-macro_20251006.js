@@ -12,7 +12,7 @@ const getReferencedSpecifier = (path, specifierName) => {
     : specifiers.find(p => p.node.local.name === specifierName)
 }
 
-export let styledTransformer = (
+export const styledTransformer = (
   {
     state,
     babel,
@@ -31,9 +31,9 @@ export let styledTransformer = (
   options: { styledBaseImport?: [string, string], isWeb: boolean }
 } */
 ) => {
-  let t = babel.types
+  const t = babel.types
 
-  let getStyledIdentifier = () => {
+  const getStyledIdentifier = () => {
     if (
       !styledBaseImport ||
       (styledBaseImport[0] === importSource &&
@@ -97,7 +97,7 @@ export let styledTransformer = (
 
   const styledCallLikeWithStylesPath = createStyledComponentPath.parentPath
 
-  let node = transformExpressionWithStyles({
+  const node = transformExpressionWithStyles({
     path: styledCallLikeWithStylesPath,
     state,
     babel,
@@ -120,7 +120,7 @@ export let styledTransformer = (
   }
 }
 
-export let createStyledMacro = (
+export const createStyledMacro = (
   {
     importSource,
     originalImportSource = importSource,

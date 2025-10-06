@@ -95,7 +95,7 @@ function getSubPatternFromSpec(spec, basePath, { singleAsteriskRegexFragment, do
         components.push('**', '*');
     }
     let optionalCount = 0;
-    for (let component of components) {
+    for (const component of components) {
         if (component === '**') {
             subpattern += doubleAsteriskRegexFragment;
         }
@@ -312,7 +312,7 @@ function getUseDefineForClassFields(compilerOptions) {
 exports.getUseDefineForClassFields = getUseDefineForClassFields;
 // https://github.com/microsoft/TypeScript/blob/fc418a2e611c88cf9afa0115ff73490b2397d311/src/compiler/utilities.ts#L8556
 function getEmitScriptTarget(compilerOptions) {
-    var _a;
+    let _a;
     return ((_a = compilerOptions.target) !== null && _a !== void 0 ? _a : ((compilerOptions.module === ts_ModuleKind_Node16 && ts_ScriptTarget_ES2022) ||
         (compilerOptions.module === ts_ModuleKind_NodeNext && ts_ScriptTarget_ESNext) ||
         ts_ScriptTarget_ES5));

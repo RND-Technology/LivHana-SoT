@@ -1,8 +1,8 @@
 'use strict';
 
-var inspect = require('../');
-var test = require('tape');
-var hasToStringTag = require('has-tostringtag/shams')();
+const inspect = require('../');
+const test = require('tape');
+const hasToStringTag = require('has-tostringtag/shams')();
 
 test('bigint', { skip: typeof BigInt === 'undefined' }, function (t) {
     t.test('primitives', function (st) {
@@ -33,7 +33,7 @@ test('bigint', { skip: typeof BigInt === 'undefined' }, function (t) {
     t.test('toStringTag', { skip: !hasToStringTag }, function (st) {
         st.plan(1);
 
-        var faker = {};
+        const faker = {};
         faker[Symbol.toStringTag] = 'BigInt';
         st.equal(
             inspect(faker),

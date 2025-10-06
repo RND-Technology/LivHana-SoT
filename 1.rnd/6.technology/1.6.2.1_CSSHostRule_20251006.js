@@ -1,5 +1,5 @@
 //.CommonJS
-var CSSOM = {
+const CSSOM = {
 	CSSRule: require("./CSSRule").CSSRule
 };
 ///CommonJS
@@ -23,8 +23,8 @@ CSSOM.CSSHostRule.prototype.type = 1001;
 
 Object.defineProperty(CSSOM.CSSHostRule.prototype, "cssText", {
 	get: function() {
-		var cssTexts = [];
-		for (var i=0, length=this.cssRules.length; i < length; i++) {
+		const cssTexts = [];
+		for (let i=0, length=this.cssRules.length; i < length; i++) {
 			cssTexts.push(this.cssRules[i].cssText);
 		}
 		return "@host {" + cssTexts.join("") + "}";

@@ -38,7 +38,7 @@ function WriteReq(chunk, encoding, cb) {
 // It seems a linked list but it is not
 // there will be only 2 of these for each stream
 function CorkedRequest(state) {
-  var _this = this;
+  const _this = this;
   this.next = null;
   this.entry = null;
   this.finish = function () {
@@ -48,33 +48,33 @@ function CorkedRequest(state) {
 /* </replacement> */
 
 /*<replacement>*/
-var Duplex;
+let Duplex;
 /*</replacement>*/
 
 Writable.WritableState = WritableState;
 
 /*<replacement>*/
-var internalUtil = {
+const internalUtil = {
   deprecate: require('util-deprecate')
 };
 /*</replacement>*/
 
 /*<replacement>*/
-var Stream = require('./internal/streams/stream');
+const Stream = require('./internal/streams/stream');
 /*</replacement>*/
 
-var Buffer = require('buffer').Buffer;
-var OurUint8Array = (typeof global !== 'undefined' ? global : typeof window !== 'undefined' ? window : typeof self !== 'undefined' ? self : {}).Uint8Array || function () {};
+const Buffer = require('buffer').Buffer;
+const OurUint8Array = (typeof global !== 'undefined' ? global : typeof window !== 'undefined' ? window : typeof self !== 'undefined' ? self : {}).Uint8Array || function () {};
 function _uint8ArrayToBuffer(chunk) {
   return Buffer.from(chunk);
 }
 function _isUint8Array(obj) {
   return Buffer.isBuffer(obj) || obj instanceof OurUint8Array;
 }
-var destroyImpl = require('./internal/streams/destroy');
-var _require = require('./internal/streams/state'),
+const destroyImpl = require('./internal/streams/destroy');
+const _require = require('./internal/streams/state'),
   getHighWaterMark = _require.getHighWaterMark;
-var _require$codes = require('../errors').codes,
+const _require$codes = require('../errors').codes,
   ERR_INVALID_ARG_TYPE = _require$codes.ERR_INVALID_ARG_TYPE,
   ERR_METHOD_NOT_IMPLEMENTED = _require$codes.ERR_METHOD_NOT_IMPLEMENTED,
   ERR_MULTIPLE_CALLBACK = _require$codes.ERR_MULTIPLE_CALLBACK,
@@ -83,7 +83,7 @@ var _require$codes = require('../errors').codes,
   ERR_STREAM_NULL_VALUES = _require$codes.ERR_STREAM_NULL_VALUES,
   ERR_STREAM_WRITE_AFTER_END = _require$codes.ERR_STREAM_WRITE_AFTER_END,
   ERR_UNKNOWN_ENCODING = _require$codes.ERR_UNKNOWN_ENCODING;
-var errorOrDestroy = destroyImpl.errorOrDestroy;
+const errorOrDestroy = destroyImpl.errorOrDestroy;
 require('inherits')(Writable, Stream);
 function nop() {}
 function WritableState(options, stream, isDuplex) {
@@ -125,7 +125,7 @@ function WritableState(options, stream, isDuplex) {
   // should we decode strings into buffers before passing to _write?
   // this is here so that some node-core streams can optimize string
   // handling at a lower level.
-  var noDecode = options.decodeStrings === false;
+  const noDecode = options.decodeStrings === false;
   this.decodeStrings = !noDecode;
 
   // Crypto is kind of old and crusty.  Historically, its default string
@@ -193,8 +193,8 @@ function WritableState(options, stream, isDuplex) {
   this.corkedRequestsFree = new CorkedRequest(this);
 }
 WritableState.prototype.getBuffer = function getBuffer() {
-  var current = this.bufferedRequest;
-  var out = [];
+  let current = this.bufferedRequest;
+  const out = [];
   while (current) {
     out.push(current);
     current = current.next;
@@ -213,7 +213,7 @@ WritableState.prototype.getBuffer = function getBuffer() {
 
 // Test _writableState for inheritance to account for Duplex streams,
 // whose prototype chain only points to Readable.
-var realHasInstance;
+let realHasInstance;
 if (typeof Symbol === 'function' && Symbol.hasInstance && typeof Function.prototype[Symbol.hasInstance] === 'function') {
   realHasInstance = Function.prototype[Symbol.hasInstance];
   Object.defineProperty(Writable, Symbol.hasInstance, {
@@ -241,7 +241,7 @@ function Writable(options) {
 
   // Checking for a Stream.Duplex instance is faster here instead of inside
   // the WritableState constructor, at least with V8 6.5
-  var isDuplex = this instanceof Duplex;
+  const isDuplex = this instanceof Duplex;
   if (!isDuplex && !realHasInstance.call(Writable, this)) return new Writable(options);
   this._writableState = new WritableState(options, this, isDuplex);
 
@@ -261,7 +261,7 @@ Writable.prototype.pipe = function () {
   errorOrDestroy(this, new ERR_STREAM_CANNOT_PIPE());
 };
 function writeAfterEnd(stream, cb) {
-  var er = new ERR_STREAM_WRITE_AFTER_END();
+  const er = new ERR_STREAM_WRITE_AFTER_END();
   // TODO: defer error events consistently everywhere, not just the cb
   errorOrDestroy(stream, er);
   process.nextTick(cb, er);
@@ -271,7 +271,7 @@ function writeAfterEnd(stream, cb) {
 // mode the stream is in. Currently this means that `null` is never accepted
 // and undefined/non-string values are only allowed in object mode.
 function validChunk(stream, state, chunk, cb) {
-  var er;
+  let er;
   if (chunk === null) {
     er = new ERR_STREAM_NULL_VALUES();
   } else if (typeof chunk !== 'string' && !state.objectMode) {
@@ -285,9 +285,9 @@ function validChunk(stream, state, chunk, cb) {
   return true;
 }
 Writable.prototype.write = function (chunk, encoding, cb) {
-  var state = this._writableState;
-  var ret = false;
-  var isBuf = !state.objectMode && _isUint8Array(chunk);
+  const state = this._writableState;
+  let ret = false;
+  const isBuf = !state.objectMode && _isUint8Array(chunk);
   if (isBuf && !Buffer.isBuffer(chunk)) {
     chunk = _uint8ArrayToBuffer(chunk);
   }
@@ -307,7 +307,7 @@ Writable.prototype.cork = function () {
   this._writableState.corked++;
 };
 Writable.prototype.uncork = function () {
-  var state = this._writableState;
+  const state = this._writableState;
   if (state.corked) {
     state.corked--;
     if (!state.writing && !state.corked && !state.bufferProcessing && state.bufferedRequest) clearBuffer(this, state);
@@ -350,20 +350,20 @@ Object.defineProperty(Writable.prototype, 'writableHighWaterMark', {
 // If we return false, then we need a drain event, so set that flag.
 function writeOrBuffer(stream, state, isBuf, chunk, encoding, cb) {
   if (!isBuf) {
-    var newChunk = decodeChunk(state, chunk, encoding);
+    const newChunk = decodeChunk(state, chunk, encoding);
     if (chunk !== newChunk) {
       isBuf = true;
       encoding = 'buffer';
       chunk = newChunk;
     }
   }
-  var len = state.objectMode ? 1 : chunk.length;
+  const len = state.objectMode ? 1 : chunk.length;
   state.length += len;
-  var ret = state.length < state.highWaterMark;
+  const ret = state.length < state.highWaterMark;
   // we must ensure that previous needDrain will not be reset to false.
   if (!ret) state.needDrain = true;
   if (state.writing || state.corked) {
-    var last = state.lastBufferedRequest;
+    const last = state.lastBufferedRequest;
     state.lastBufferedRequest = {
       chunk: chunk,
       encoding: encoding,
@@ -419,14 +419,14 @@ function onwriteStateUpdate(state) {
   state.writelen = 0;
 }
 function onwrite(stream, er) {
-  var state = stream._writableState;
-  var sync = state.sync;
-  var cb = state.writecb;
+  const state = stream._writableState;
+  const sync = state.sync;
+  const cb = state.writecb;
   if (typeof cb !== 'function') throw new ERR_MULTIPLE_CALLBACK();
   onwriteStateUpdate(state);
   if (er) onwriteError(stream, state, sync, er, cb);else {
     // Check if we're actually ready to finish, but don't emit yet
-    var finished = needFinish(state) || stream.destroyed;
+    const finished = needFinish(state) || stream.destroyed;
     if (!finished && !state.corked && !state.bufferProcessing && state.bufferedRequest) {
       clearBuffer(stream, state);
     }
@@ -457,15 +457,15 @@ function onwriteDrain(stream, state) {
 // if there's something in the buffer waiting, then process it
 function clearBuffer(stream, state) {
   state.bufferProcessing = true;
-  var entry = state.bufferedRequest;
+  let entry = state.bufferedRequest;
   if (stream._writev && entry && entry.next) {
     // Fast case, write everything using _writev()
-    var l = state.bufferedRequestCount;
-    var buffer = new Array(l);
-    var holder = state.corkedRequestsFree;
+    const l = state.bufferedRequestCount;
+    const buffer = new Array(l);
+    const holder = state.corkedRequestsFree;
     holder.entry = entry;
-    var count = 0;
-    var allBuffers = true;
+    let count = 0;
+    let allBuffers = true;
     while (entry) {
       buffer[count] = entry;
       if (!entry.isBuf) allBuffers = false;
@@ -489,10 +489,10 @@ function clearBuffer(stream, state) {
   } else {
     // Slow case, write chunks one-by-one
     while (entry) {
-      var chunk = entry.chunk;
-      var encoding = entry.encoding;
-      var cb = entry.callback;
-      var len = state.objectMode ? 1 : chunk.length;
+      const chunk = entry.chunk;
+      const encoding = entry.encoding;
+      const cb = entry.callback;
+      const len = state.objectMode ? 1 : chunk.length;
       doWrite(stream, state, false, len, chunk, encoding, cb);
       entry = entry.next;
       state.bufferedRequestCount--;
@@ -514,7 +514,7 @@ Writable.prototype._write = function (chunk, encoding, cb) {
 };
 Writable.prototype._writev = null;
 Writable.prototype.end = function (chunk, encoding, cb) {
-  var state = this._writableState;
+  const state = this._writableState;
   if (typeof chunk === 'function') {
     cb = chunk;
     chunk = null;
@@ -571,7 +571,7 @@ function prefinish(stream, state) {
   }
 }
 function finishMaybe(stream, state) {
-  var need = needFinish(state);
+  const need = needFinish(state);
   if (need) {
     prefinish(stream, state);
     if (state.pendingcb === 0) {
@@ -580,7 +580,7 @@ function finishMaybe(stream, state) {
       if (state.autoDestroy) {
         // In case of duplex streams we need a way to detect
         // if the readable side is ready for autoDestroy as well
-        var rState = stream._readableState;
+        const rState = stream._readableState;
         if (!rState || rState.autoDestroy && rState.endEmitted) {
           stream.destroy();
         }
@@ -599,10 +599,10 @@ function endWritable(stream, state, cb) {
   stream.writable = false;
 }
 function onCorkedFinish(corkReq, state, err) {
-  var entry = corkReq.entry;
+  let entry = corkReq.entry;
   corkReq.entry = null;
   while (entry) {
-    var cb = entry.callback;
+    const cb = entry.callback;
     state.pendingcb--;
     cb(err);
     entry = entry.next;

@@ -1,24 +1,24 @@
 'use strict';
 
-var callBound = require('call-bound');
+const callBound = require('call-bound');
 
-var $RangeError = require('es-errors/range');
-var $TypeError = require('es-errors/type');
+const $RangeError = require('es-errors/range');
+const $TypeError = require('es-errors/type');
 
-var $charAt = callBound('String.prototype.charAt');
-var $reverse = callBound('Array.prototype.reverse');
-var $slice = callBound('Array.prototype.slice');
+const $charAt = callBound('String.prototype.charAt');
+const $reverse = callBound('Array.prototype.reverse');
+const $slice = callBound('Array.prototype.slice');
 
-var hasOwnProperty = require('./HasOwnProperty');
-var IsArray = require('./IsArray');
+const hasOwnProperty = require('./HasOwnProperty');
+const IsArray = require('./IsArray');
 
-var bytesAsFloat32 = require('../helpers/bytesAsFloat32');
-var bytesAsFloat64 = require('../helpers/bytesAsFloat64');
-var bytesAsInteger = require('../helpers/bytesAsInteger');
-var every = require('../helpers/every');
-var isByteValue = require('../helpers/isByteValue');
+const bytesAsFloat32 = require('../helpers/bytesAsFloat32');
+const bytesAsFloat64 = require('../helpers/bytesAsFloat64');
+const bytesAsInteger = require('../helpers/bytesAsInteger');
+const every = require('../helpers/every');
+const isByteValue = require('../helpers/isByteValue');
 
-var tableTAO = require('./tables/typed-array-objects');
+const tableTAO = require('./tables/typed-array-objects');
 
 // https://262.ecma-international.org/8.0/#sec-rawbytestonumber
 
@@ -33,7 +33,7 @@ module.exports = function RawBytesToNumber(type, rawBytes, isLittleEndian) {
 		throw new $TypeError('Assertion failed: `isLittleEndian` must be a Boolean');
 	}
 
-	var elementSize = tableTAO.size['$' + type]; // step 1
+	const elementSize = tableTAO.size['$' + type]; // step 1
 
 	if (rawBytes.length !== elementSize) {
 		// this assertion is not in the spec, but it'd be an editorial error if it were ever violated

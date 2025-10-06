@@ -1,11 +1,11 @@
 import {tpmt} from "./math.js";
 
-var tau = 2 * Math.PI,
+const tau = 2 * Math.PI,
     amplitude = 1,
     period = 0.3;
 
 export var elasticIn = (function custom(a, p) {
-  var s = Math.asin(1 / (a = Math.max(1, a))) * (p /= tau);
+  const s = Math.asin(1 / (a = Math.max(1, a))) * (p /= tau);
 
   function elasticIn(t) {
     return a * tpmt(-(--t)) * Math.sin((s - t) / p);
@@ -18,7 +18,7 @@ export var elasticIn = (function custom(a, p) {
 })(amplitude, period);
 
 export var elasticOut = (function custom(a, p) {
-  var s = Math.asin(1 / (a = Math.max(1, a))) * (p /= tau);
+  const s = Math.asin(1 / (a = Math.max(1, a))) * (p /= tau);
 
   function elasticOut(t) {
     return 1 - a * tpmt(t = +t) * Math.sin((t + s) / p);
@@ -31,7 +31,7 @@ export var elasticOut = (function custom(a, p) {
 })(amplitude, period);
 
 export var elasticInOut = (function custom(a, p) {
-  var s = Math.asin(1 / (a = Math.max(1, a))) * (p /= tau);
+  const s = Math.asin(1 / (a = Math.max(1, a))) * (p /= tau);
 
   function elasticInOut(t) {
     return ((t = t * 2 - 1) < 0

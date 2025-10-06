@@ -22,12 +22,12 @@ export function getFeed(doc) {
  * @returns The parsed feed.
  */
 function getAtomFeed(feedRoot) {
-    var _a;
+    let _a;
     const childs = feedRoot.children;
     const feed = {
         type: "atom",
         items: getElementsByTagName("entry", childs).map((item) => {
-            var _a;
+            let _a;
             const { children } = item;
             const entry = { media: getMediaElements(children) };
             addConditionally(entry, "id", "id", children);
@@ -68,7 +68,7 @@ function getAtomFeed(feedRoot) {
  * @returns The parsed feed.
  */
 function getRssFeed(feedRoot) {
-    var _a, _b;
+    let _a, _b;
     const childs = (_b = (_a = getOneElement("channel", feedRoot.children)) === null || _a === void 0 ? void 0 : _a.children) !== null && _b !== void 0 ? _b : [];
     const feed = {
         type: feedRoot.name.substr(0, 3),

@@ -5,8 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = _usingCtx;
 function _usingCtx() {
-  var _disposeSuppressedError = typeof SuppressedError === "function" ? SuppressedError : function (error, suppressed) {
-      var err = new Error();
+  const _disposeSuppressedError = typeof SuppressedError === "function" ? SuppressedError : function (error, suppressed) {
+      const err = new Error();
       err.name = "SuppressedError";
       err.error = error;
       err.suppressed = suppressed;
@@ -58,7 +58,7 @@ function _usingCtx() {
     u: using.bind(null, false),
     a: using.bind(null, true),
     d: function () {
-      var error = this.e,
+      let error = this.e,
         state = 0,
         resource;
       function next() {
@@ -70,7 +70,7 @@ function _usingCtx() {
               return Promise.resolve().then(next);
             }
             if (resource.d) {
-              var disposalResult = resource.d.call(resource.v);
+              const disposalResult = resource.d.call(resource.v);
               if (resource.a) {
                 state |= 2;
                 return Promise.resolve(disposalResult).then(next, err);

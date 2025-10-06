@@ -66,7 +66,7 @@ export function validation(yargs, usage, shim) {
         }
     };
     self.unknownArguments = function unknownArguments(argv, aliases, positionalMap, isDefaultCommand, checkPositionals = true) {
-        var _a;
+        let _a;
         const commandKeys = yargs
             .getInternalMethods()
             .getCommandInstance()

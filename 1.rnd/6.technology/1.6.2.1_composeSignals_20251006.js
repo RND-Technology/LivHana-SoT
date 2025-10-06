@@ -6,7 +6,7 @@ const composeSignals = (signals, timeout) => {
   const {length} = (signals = signals ? signals.filter(Boolean) : []);
 
   if (timeout || length) {
-    let controller = new AbortController();
+    const controller = new AbortController();
 
     let aborted;
 

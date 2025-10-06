@@ -1,12 +1,12 @@
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+const GetIntrinsic = require('get-intrinsic');
 
-var $BigInt = GetIntrinsic('%BigInt%', true);
-var $RangeError = require('es-errors/range');
-var $SyntaxError = require('es-errors/syntax');
-var $TypeError = require('es-errors/type');
-var isInteger = require('math-intrinsics/isInteger');
+const $BigInt = GetIntrinsic('%BigInt%', true);
+const $RangeError = require('es-errors/range');
+const $SyntaxError = require('es-errors/syntax');
+const $TypeError = require('es-errors/type');
+const isInteger = require('math-intrinsics/isInteger');
 
 // https://262.ecma-international.org/11.0/#sec-numbertobigint
 

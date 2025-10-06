@@ -1,4 +1,4 @@
-var arrayMap = require('./_arrayMap');
+const arrayMap = require('./_arrayMap');
 
 /**
  * The base implementation of `_.values` and `_.valuesIn` which creates an

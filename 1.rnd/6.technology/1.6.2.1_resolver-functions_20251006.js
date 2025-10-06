@@ -64,7 +64,7 @@ function createResolverFunctions(kwargs) {
      */
     const resolveModuleNames = (moduleNames, containingFile, reusedNames, redirectedReference, optionsOnlyWithNewerTsVersions, containingSourceFile) => {
         return moduleNames.map((moduleName, i) => {
-            var _a, _b;
+            let _a, _b;
             const mode = containingSourceFile
                 ? (_b = (_a = ts).getModeForResolutionAtIndex) === null || _b === void 0 ? void 0 : _b.call(_a, containingSourceFile, i)
                 : undefined;

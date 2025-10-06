@@ -20,14 +20,14 @@ function _debug() {
   };
   return data;
 }
-var _options = require("./validation/options.js");
-var _patternToRegex = require("./pattern-to-regex.js");
-var _printer = require("./printer.js");
-var _rewriteStackTrace = require("../errors/rewrite-stack-trace.js");
-var _configError = require("../errors/config-error.js");
-var _index = require("./files/index.js");
-var _caching = require("./caching.js");
-var _configDescriptors = require("./config-descriptors.js");
+const _options = require("./validation/options.js");
+const _patternToRegex = require("./pattern-to-regex.js");
+const _printer = require("./printer.js");
+const _rewriteStackTrace = require("../errors/rewrite-stack-trace.js");
+const _configError = require("../errors/config-error.js");
+const _index = require("./files/index.js");
+const _caching = require("./caching.js");
+const _configDescriptors = require("./config-descriptors.js");
 const debug = _debug()("babel:config:config-chain");
 function* buildPresetChain(arg, context) {
   const chain = yield* buildPresetChainWalker(arg, context);
@@ -211,7 +211,7 @@ function buildRootDescriptors({
   return descriptors(dirname, options, alias);
 }
 function buildProgrammaticLogger(_, context, baseLogger) {
-  var _context$caller;
+  let _context$caller;
   if (!baseLogger) {
     return () => {};
   }
@@ -223,7 +223,7 @@ function buildEnvDescriptors({
   dirname,
   options
 }, alias, descriptors, envName) {
-  var _options$env;
+  let _options$env;
   const opts = (_options$env = options.env) == null ? void 0 : _options$env[envName];
   return opts ? descriptors(dirname, opts, `${alias}.env["${envName}"]`) : null;
 }
@@ -231,7 +231,7 @@ function buildOverrideDescriptors({
   dirname,
   options
 }, alias, descriptors, index) {
-  var _options$overrides;
+  let _options$overrides;
   const opts = (_options$overrides = options.overrides) == null ? void 0 : _options$overrides[index];
   if (!opts) throw new Error("Assertion failure - missing override");
   return descriptors(dirname, opts, `${alias}.overrides[${index}]`);
@@ -240,7 +240,7 @@ function buildOverrideEnvDescriptors({
   dirname,
   options
 }, alias, descriptors, index, envName) {
-  var _options$overrides2, _override$env;
+  let _options$overrides2, _override$env;
   const override = (_options$overrides2 = options.overrides) == null ? void 0 : _options$overrides2[index];
   if (!override) throw new Error("Assertion failure - missing override");
   const opts = (_override$env = override.env) == null ? void 0 : _override$env[envName];
@@ -426,7 +426,7 @@ function ignoreListReplacer(_key, value) {
 }
 function shouldIgnore(context, ignore, only, dirname) {
   if (ignore && matchesPatterns(context, ignore, dirname)) {
-    var _context$filename;
+    let _context$filename;
     const message = `No config is applied to "${(_context$filename = context.filename) != null ? _context$filename : "(unknown)"}" because it matches one of \`ignore: ${JSON.stringify(ignore, ignoreListReplacer)}\` from "${dirname}"`;
     debug(message);
     if (context.showConfig) {
@@ -435,7 +435,7 @@ function shouldIgnore(context, ignore, only, dirname) {
     return true;
   }
   if (only && !matchesPatterns(context, only, dirname)) {
-    var _context$filename2;
+    let _context$filename2;
     const message = `No config is applied to "${(_context$filename2 = context.filename) != null ? _context$filename2 : "(unknown)"}" because it fails to match one of \`only: ${JSON.stringify(only, ignoreListReplacer)}\` from "${dirname}"`;
     debug(message);
     if (context.showConfig) {

@@ -4,17 +4,17 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 exports.default = getNoTestsFoundMessage;
-var _getNoTestFound = _interopRequireDefault(require('./getNoTestFound'));
-var _getNoTestFoundFailed = _interopRequireDefault(
+const _getNoTestFound = _interopRequireDefault(require('./getNoTestFound'));
+const _getNoTestFoundFailed = _interopRequireDefault(
   require('./getNoTestFoundFailed')
 );
-var _getNoTestFoundPassWithNoTests = _interopRequireDefault(
+const _getNoTestFoundPassWithNoTests = _interopRequireDefault(
   require('./getNoTestFoundPassWithNoTests')
 );
-var _getNoTestFoundRelatedToChangedFiles = _interopRequireDefault(
+const _getNoTestFoundRelatedToChangedFiles = _interopRequireDefault(
   require('./getNoTestFoundRelatedToChangedFiles')
 );
-var _getNoTestFoundVerbose = _interopRequireDefault(
+const _getNoTestFoundVerbose = _interopRequireDefault(
   require('./getNoTestFoundVerbose')
 );
 function _interopRequireDefault(obj) {

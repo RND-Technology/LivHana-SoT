@@ -1,29 +1,29 @@
 'use strict';
 
 // var Construct = require('es-abstract/2024/Construct');
-var CreateRegExpStringIterator = require('es-abstract/2024/CreateRegExpStringIterator');
-var Get = require('es-abstract/2024/Get');
-var Set = require('es-abstract/2024/Set');
-var SpeciesConstructor = require('es-abstract/2024/SpeciesConstructor');
-var ToLength = require('es-abstract/2024/ToLength');
-var ToString = require('es-abstract/2024/ToString');
-var Type = require('es-abstract/2024/Type');
-var flagsGetter = require('regexp.prototype.flags');
-var setFunctionName = require('set-function-name');
-var callBound = require('call-bound');
-var GetIntrinsic = require('get-intrinsic');
-var $TypeError = require('es-errors/type');
+const CreateRegExpStringIterator = require('es-abstract/2024/CreateRegExpStringIterator');
+const Get = require('es-abstract/2024/Get');
+const Set = require('es-abstract/2024/Set');
+const SpeciesConstructor = require('es-abstract/2024/SpeciesConstructor');
+const ToLength = require('es-abstract/2024/ToLength');
+const ToString = require('es-abstract/2024/ToString');
+const Type = require('es-abstract/2024/Type');
+const flagsGetter = require('regexp.prototype.flags');
+const setFunctionName = require('set-function-name');
+const callBound = require('call-bound');
+const GetIntrinsic = require('get-intrinsic');
+const $TypeError = require('es-errors/type');
 
-var $indexOf = callBound('String.prototype.indexOf');
+const $indexOf = callBound('String.prototype.indexOf');
 
-var OrigRegExp = GetIntrinsic('%RegExp%');
+const OrigRegExp = GetIntrinsic('%RegExp%');
 
-var supportsConstructingWithFlags = 'flags' in OrigRegExp.prototype;
+const supportsConstructingWithFlags = 'flags' in OrigRegExp.prototype;
 
-var constructRegexWithFlags = function constructRegex(C, R) {
-	var matcher;
+const constructRegexWithFlags = function constructRegex(C, R) {
+	let matcher;
 	// workaround for older engines that lack RegExp.prototype.flags
-	var flags = 'flags' in R ? Get(R, 'flags') : ToString(flagsGetter(R));
+	const flags = 'flags' in R ? Get(R, 'flags') : ToString(flagsGetter(R));
 	if (supportsConstructingWithFlags && typeof flags === 'string') {
 		matcher = new C(R, flags);
 	} else if (C === OrigRegExp) {
@@ -35,24 +35,24 @@ var constructRegexWithFlags = function constructRegex(C, R) {
 	return { flags: flags, matcher: matcher };
 };
 
-var regexMatchAll = setFunctionName(function SymbolMatchAll(string) {
-	var R = this;
+const regexMatchAll = setFunctionName(function SymbolMatchAll(string) {
+	const R = this;
 	if (Type(R) !== 'Object') {
 		throw new $TypeError('"this" value must be an Object');
 	}
-	var S = ToString(string);
-	var C = SpeciesConstructor(R, OrigRegExp);
+	const S = ToString(string);
+	const C = SpeciesConstructor(R, OrigRegExp);
 
-	var tmp = constructRegexWithFlags(C, R);
+	const tmp = constructRegexWithFlags(C, R);
 	// var flags = ToString(Get(R, 'flags'));
-	var flags = tmp.flags;
+	const flags = tmp.flags;
 	// var matcher = Construct(C, [R, flags]);
-	var matcher = tmp.matcher;
+	const matcher = tmp.matcher;
 
-	var lastIndex = ToLength(Get(R, 'lastIndex'));
+	const lastIndex = ToLength(Get(R, 'lastIndex'));
 	Set(matcher, 'lastIndex', lastIndex, true);
-	var global = $indexOf(flags, 'g') > -1;
-	var fullUnicode = $indexOf(flags, 'u') > -1;
+	const global = $indexOf(flags, 'g') > -1;
+	const fullUnicode = $indexOf(flags, 'u') > -1;
 	return CreateRegExpStringIterator(matcher, S, global, fullUnicode);
 }, '[Symbol.matchAll]', true);
 

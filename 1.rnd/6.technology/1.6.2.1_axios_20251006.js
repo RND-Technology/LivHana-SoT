@@ -115,7 +115,7 @@ class Axios {
     config.method = (config.method || this.defaults.method || 'get').toLowerCase();
 
     // Flatten headers
-    let contextHeaders = headers && utils.merge(
+    const contextHeaders = headers && utils.merge(
       headers.common,
       headers[config.method]
     );

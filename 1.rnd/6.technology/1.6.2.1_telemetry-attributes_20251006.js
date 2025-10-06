@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SpanKind = exports.TelemetryAttributes = void 0;
-var TelemetryAttributes;
+let TelemetryAttributes;
 (function (TelemetryAttributes) {
     TelemetryAttributes["QueueName"] = "bullmq.queue.name";
     TelemetryAttributes["QueueOperation"] = "bullmq.queue.operation";
@@ -38,7 +38,7 @@ var TelemetryAttributes;
     TelemetryAttributes["FlowName"] = "bullmq.flow.name";
     TelemetryAttributes["JobSchedulerId"] = "bullmq.job.scheduler.id";
 })(TelemetryAttributes || (exports.TelemetryAttributes = TelemetryAttributes = {}));
-var SpanKind;
+let SpanKind;
 (function (SpanKind) {
     SpanKind[SpanKind["INTERNAL"] = 0] = "INTERNAL";
     SpanKind[SpanKind["SERVER"] = 1] = "SERVER";

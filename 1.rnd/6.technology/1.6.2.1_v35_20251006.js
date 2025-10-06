@@ -6,9 +6,9 @@ Object.defineProperty(exports, "__esModule", {
 exports.URL = exports.DNS = void 0;
 exports.default = v35;
 
-var _stringify = require("./stringify.js");
+const _stringify = require("./stringify.js");
 
-var _parse = _interopRequireDefault(require("./parse.js"));
+const _parse = _interopRequireDefault(require("./parse.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31,7 +31,7 @@ exports.URL = URL;
 
 function v35(name, version, hashfunc) {
   function generateUUID(value, namespace, buf, offset) {
-    var _namespace;
+    let _namespace;
 
     if (typeof value === 'string') {
       value = stringToBytes(value);

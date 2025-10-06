@@ -38,5 +38,5 @@ class QuitPlugin extends _jestWatcher().BaseWatchPlugin {
     };
   }
 }
-var _default = QuitPlugin;
+const _default = QuitPlugin;
 exports.default = _default;

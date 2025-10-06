@@ -1,6 +1,6 @@
 'use strict';
 
-var PlainValue = require('./PlainValue-ec8e588e.js');
+const PlainValue = require('./PlainValue-ec8e588e.js');
 
 function addCommentBefore(str, indent, comment) {
   if (!comment) return str;

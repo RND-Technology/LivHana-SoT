@@ -33,10 +33,10 @@ class OldSelector {
    */
   isHack(rule) {
     let index = rule.parent.index(rule) + 1
-    let rules = rule.parent.nodes
+    const rules = rule.parent.nodes
 
     while (index < rules.length) {
-      let before = rules[index].selector
+      const before = rules[index].selector
       if (!before) {
         return true
       }
@@ -46,7 +46,7 @@ class OldSelector {
       }
 
       let some = false
-      for (let [string, regexp] of this.prefixeds) {
+      for (const [string, regexp] of this.prefixeds) {
         if (before.includes(string) && before.match(regexp)) {
           some = true
           break

@@ -16,7 +16,7 @@ function formatDecimal(x) {
 // For example, formatDecimalParts(1.23) returns ["123", 0].
 function formatDecimalParts(x, p) {
   if ((i = (x = p ? x.toExponential(p - 1) : x.toExponential()).indexOf("e")) < 0) return null; // NaN, ±Infinity
-  var i, coefficient = x.slice(0, i);
+  let i, coefficient = x.slice(0, i);
 
   // The string returned by toExponential either has the form \d\.\d+e[-+]\d+
   // (e.g., 1.2e+3) or the form \de[-+]\d+ (e.g., 1e+3).
@@ -32,7 +32,7 @@ function exponent(x) {
 
 function formatGroup(grouping, thousands) {
   return function(value, width) {
-    var i = value.length,
+    let i = value.length,
         t = [],
         j = 0,
         g = grouping[0],
@@ -58,11 +58,11 @@ function formatNumerals(numerals) {
 }
 
 // [[fill]align][sign][symbol][0][width][,][.precision][~][type]
-var re = /^(?:(.)?([<>=^]))?([+\-( ])?([$#])?(0)?(\d+)?(,)?(\.\d+)?(~)?([a-z%])?$/i;
+const re = /^(?:(.)?([<>=^]))?([+\-( ])?([$#])?(0)?(\d+)?(,)?(\.\d+)?(~)?([a-z%])?$/i;
 
 function formatSpecifier(specifier) {
   if (!(match = re.exec(specifier))) throw new Error("invalid format: " + specifier);
-  var match;
+  let match;
   return new FormatSpecifier({
     fill: match[1],
     align: match[2],
@@ -117,12 +117,12 @@ function formatTrim(s) {
   return i0 > 0 ? s.slice(0, i0) + s.slice(i1 + 1) : s;
 }
 
-var prefixExponent;
+let prefixExponent;
 
 function formatPrefixAuto(x, p) {
-  var d = formatDecimalParts(x, p);
+  const d = formatDecimalParts(x, p);
   if (!d) return x + "";
-  var coefficient = d[0],
+  const coefficient = d[0],
       exponent = d[1],
       i = exponent - (prefixExponent = Math.max(-8, Math.min(8, Math.floor(exponent / 3))) * 3) + 1,
       n = coefficient.length;
@@ -133,16 +133,16 @@ function formatPrefixAuto(x, p) {
 }
 
 function formatRounded(x, p) {
-  var d = formatDecimalParts(x, p);
+  const d = formatDecimalParts(x, p);
   if (!d) return x + "";
-  var coefficient = d[0],
+  const coefficient = d[0],
       exponent = d[1];
   return exponent < 0 ? "0." + new Array(-exponent).join("0") + coefficient
       : coefficient.length > exponent + 1 ? coefficient.slice(0, exponent + 1) + "." + coefficient.slice(exponent + 1)
       : coefficient + new Array(exponent - coefficient.length + 2).join("0");
 }
 
-var formatTypes = {
+const formatTypes = {
   "%": (x, p) => (x * 100).toFixed(p),
   "b": (x) => Math.round(x).toString(2),
   "c": (x) => x + "",
@@ -162,11 +162,11 @@ function identity(x) {
   return x;
 }
 
-var map = Array.prototype.map,
+const map = Array.prototype.map,
     prefixes = ["y","z","a","f","p","n","µ","m","","k","M","G","T","P","E","Z","Y"];
 
 function formatLocale(locale) {
-  var group = locale.grouping === undefined || locale.thousands === undefined ? identity : formatGroup(map.call(locale.grouping, Number), locale.thousands + ""),
+  const group = locale.grouping === undefined || locale.thousands === undefined ? identity : formatGroup(map.call(locale.grouping, Number), locale.thousands + ""),
       currencyPrefix = locale.currency === undefined ? "" : locale.currency[0] + "",
       currencySuffix = locale.currency === undefined ? "" : locale.currency[1] + "",
       decimal = locale.decimal === undefined ? "." : locale.decimal + "",
@@ -178,7 +178,7 @@ function formatLocale(locale) {
   function newFormat(specifier) {
     specifier = formatSpecifier(specifier);
 
-    var fill = specifier.fill,
+    let fill = specifier.fill,
         align = specifier.align,
         sign = specifier.sign,
         symbol = specifier.symbol,
@@ -200,13 +200,13 @@ function formatLocale(locale) {
 
     // Compute the prefix and suffix.
     // For SI-prefix, the suffix is lazily computed.
-    var prefix = symbol === "$" ? currencyPrefix : symbol === "#" && /[boxX]/.test(type) ? "0" + type.toLowerCase() : "",
+    const prefix = symbol === "$" ? currencyPrefix : symbol === "#" && /[boxX]/.test(type) ? "0" + type.toLowerCase() : "",
         suffix = symbol === "$" ? currencySuffix : /[%p]/.test(type) ? percent : "";
 
     // What format function should we use?
     // Is this an integer type?
     // Can this type generate exponential notation?
-    var formatType = formatTypes[type],
+    const formatType = formatTypes[type],
         maybeSuffix = /[defgprs%]/.test(type);
 
     // Set the default precision if not specified,
@@ -218,7 +218,7 @@ function formatLocale(locale) {
         : Math.max(0, Math.min(20, precision));
 
     function format(value) {
-      var valuePrefix = prefix,
+      let valuePrefix = prefix,
           valueSuffix = suffix,
           i, n, c;
 
@@ -229,7 +229,7 @@ function formatLocale(locale) {
         value = +value;
 
         // Determine the sign. -0 is not less than 0, but 1 / -0 is!
-        var valueNegative = value < 0 || 1 / value < 0;
+        let valueNegative = value < 0 || 1 / value < 0;
 
         // Perform the initial formatting.
         value = isNaN(value) ? nan : formatType(Math.abs(value), precision);
@@ -262,7 +262,7 @@ function formatLocale(locale) {
       if (comma && !zero) value = group(value, Infinity);
 
       // Compute the padding.
-      var length = valuePrefix.length + value.length + valueSuffix.length,
+      let length = valuePrefix.length + value.length + valueSuffix.length,
           padding = length < width ? new Array(width - length + 1).join(fill) : "";
 
       // If the fill character is "0", grouping is applied after padding.
@@ -287,7 +287,7 @@ function formatLocale(locale) {
   }
 
   function formatPrefix(specifier, value) {
-    var f = newFormat((specifier = formatSpecifier(specifier), specifier.type = "f", specifier)),
+    const f = newFormat((specifier = formatSpecifier(specifier), specifier.type = "f", specifier)),
         e = Math.max(-8, Math.min(8, Math.floor(exponent(value) / 3))) * 3,
         k = Math.pow(10, -e),
         prefix = prefixes[8 + e / 3];
@@ -302,7 +302,7 @@ function formatLocale(locale) {
   };
 }
 
-var locale;
+let locale;
 exports.format = void 0;
 exports.formatPrefix = void 0;
 

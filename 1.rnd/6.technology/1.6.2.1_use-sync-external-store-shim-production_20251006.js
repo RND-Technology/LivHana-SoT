@@ -9,17 +9,17 @@
  */
 
 "use strict";
-var React = require("react");
+const React = require("react");
 function is(x, y) {
   return (x === y && (0 !== x || 1 / x === 1 / y)) || (x !== x && y !== y);
 }
-var objectIs = "function" === typeof Object.is ? Object.is : is,
+const objectIs = "function" === typeof Object.is ? Object.is : is,
   useState = React.useState,
   useEffect = React.useEffect,
   useLayoutEffect = React.useLayoutEffect,
   useDebugValue = React.useDebugValue;
 function useSyncExternalStore$2(subscribe, getSnapshot) {
-  var value = getSnapshot(),
+  const value = getSnapshot(),
     _useState = useState({ inst: { value: value, getSnapshot: getSnapshot } }),
     inst = _useState[0].inst,
     forceUpdate = _useState[1];
@@ -44,10 +44,10 @@ function useSyncExternalStore$2(subscribe, getSnapshot) {
   return value;
 }
 function checkIfSnapshotChanged(inst) {
-  var latestGetSnapshot = inst.getSnapshot;
+  const latestGetSnapshot = inst.getSnapshot;
   inst = inst.value;
   try {
-    var nextValue = latestGetSnapshot();
+    const nextValue = latestGetSnapshot();
     return !objectIs(inst, nextValue);
   } catch (error) {
     return !0;
@@ -56,7 +56,7 @@ function checkIfSnapshotChanged(inst) {
 function useSyncExternalStore$1(subscribe, getSnapshot) {
   return getSnapshot();
 }
-var shim =
+const shim =
   "undefined" === typeof window ||
   "undefined" === typeof window.document ||
   "undefined" === typeof window.document.createElement

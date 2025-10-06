@@ -1,26 +1,26 @@
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
-var hasSymbols = require('has-symbols')();
+const GetIntrinsic = require('get-intrinsic');
+const hasSymbols = require('has-symbols')();
 
-var $TypeError = require('es-errors/type');
-var isObject = require('es-object-atoms/isObject');
-var IteratorPrototype = GetIntrinsic('%IteratorPrototype%', true);
+const $TypeError = require('es-errors/type');
+const isObject = require('es-object-atoms/isObject');
+const IteratorPrototype = GetIntrinsic('%IteratorPrototype%', true);
 
-var AdvanceStringIndex = require('./AdvanceStringIndex');
-var CreateIterResultObject = require('./CreateIterResultObject');
-var CreateMethodProperty = require('./CreateMethodProperty');
-var Get = require('./Get');
-var OrdinaryObjectCreate = require('./OrdinaryObjectCreate');
-var RegExpExec = require('./RegExpExec');
-var Set = require('./Set');
-var ToLength = require('./ToLength');
-var ToString = require('./ToString');
+const AdvanceStringIndex = require('./AdvanceStringIndex');
+const CreateIterResultObject = require('./CreateIterResultObject');
+const CreateMethodProperty = require('./CreateMethodProperty');
+const Get = require('./Get');
+const OrdinaryObjectCreate = require('./OrdinaryObjectCreate');
+const RegExpExec = require('./RegExpExec');
+const Set = require('./Set');
+const ToLength = require('./ToLength');
+const ToString = require('./ToString');
 
-var SLOT = require('internal-slot');
-var setToStringTag = require('es-set-tostringtag');
+const SLOT = require('internal-slot');
+const setToStringTag = require('es-set-tostringtag');
 
-var RegExpStringIterator = function RegExpStringIterator(R, S, global, fullUnicode) {
+const RegExpStringIterator = function RegExpStringIterator(R, S, global, fullUnicode) {
 	if (typeof S !== 'string') {
 		throw new $TypeError('`S` must be a string');
 	}
@@ -41,8 +41,8 @@ if (IteratorPrototype) {
 	RegExpStringIterator.prototype = OrdinaryObjectCreate(IteratorPrototype);
 }
 
-var RegExpStringIteratorNext = function next() {
-	var O = this; // eslint-disable-line no-invalid-this
+const RegExpStringIteratorNext = function next() {
+	const O = this; // eslint-disable-line no-invalid-this
 	if (!isObject(O)) {
 		throw new $TypeError('receiver must be an object');
 	}
@@ -59,20 +59,20 @@ var RegExpStringIteratorNext = function next() {
 	if (SLOT.get(O, '[[Done]]')) {
 		return CreateIterResultObject(undefined, true);
 	}
-	var R = SLOT.get(O, '[[IteratingRegExp]]');
-	var S = SLOT.get(O, '[[IteratedString]]');
-	var global = SLOT.get(O, '[[Global]]');
-	var fullUnicode = SLOT.get(O, '[[Unicode]]');
-	var match = RegExpExec(R, S);
+	const R = SLOT.get(O, '[[IteratingRegExp]]');
+	const S = SLOT.get(O, '[[IteratedString]]');
+	const global = SLOT.get(O, '[[Global]]');
+	const fullUnicode = SLOT.get(O, '[[Unicode]]');
+	const match = RegExpExec(R, S);
 	if (match === null) {
 		SLOT.set(O, '[[Done]]', true);
 		return CreateIterResultObject(undefined, true);
 	}
 	if (global) {
-		var matchStr = ToString(Get(match, '0'));
+		const matchStr = ToString(Get(match, '0'));
 		if (matchStr === '') {
-			var thisIndex = ToLength(Get(R, 'lastIndex'));
-			var nextIndex = AdvanceStringIndex(S, thisIndex, fullUnicode);
+			const thisIndex = ToLength(Get(R, 'lastIndex'));
+			const nextIndex = AdvanceStringIndex(S, thisIndex, fullUnicode);
 			Set(R, 'lastIndex', nextIndex, true);
 		}
 		return CreateIterResultObject(match, false);
@@ -86,7 +86,7 @@ if (hasSymbols) {
 	setToStringTag(RegExpStringIterator.prototype, 'RegExp String Iterator');
 
 	if (Symbol.iterator && typeof RegExpStringIterator.prototype[Symbol.iterator] !== 'function') {
-		var iteratorFn = function SymbolIterator() {
+		const iteratorFn = function SymbolIterator() {
 			return this;
 		};
 		CreateMethodProperty(RegExpStringIterator.prototype, Symbol.iterator, iteratorFn);

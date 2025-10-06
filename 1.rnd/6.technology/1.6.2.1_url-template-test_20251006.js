@@ -1,4 +1,4 @@
-var template, expect;
+let template, expect;
 
 if (typeof require !== 'undefined') {
   template = require('../lib/url-template.js');
@@ -16,7 +16,7 @@ function createTestContext(c) {
 
 describe('uri-template', function () {
   describe('Level 1', function () {
-    var assert = createTestContext({
+    const assert = createTestContext({
           'var': 'value',
           'some.value': 'some',
           'some_value': 'value',
@@ -92,7 +92,7 @@ describe('uri-template', function () {
   });
 
   describe('Level 2', function () {
-    var assert = createTestContext({
+    const assert = createTestContext({
           'var': 'value',
           'hello': 'Hello World!',
           'path': '/foo/bar'
@@ -110,7 +110,7 @@ describe('uri-template', function () {
   });
 
   describe('Level 3', function () {
-    var assert = createTestContext({
+    const assert = createTestContext({
           'var' : 'value',
           'hello' : 'Hello World!',
           'empty' : '',
@@ -161,7 +161,7 @@ describe('uri-template', function () {
   });
 
   describe('Level 4', function () {
-    var assert = createTestContext({
+    const assert = createTestContext({
           'var': 'value',
           'hello': 'Hello World!',
           'path': '/foo/bar',
@@ -285,7 +285,7 @@ describe('uri-template', function () {
   });
 
   describe('Encoding', function () {
-    var assert = createTestContext({
+    const assert = createTestContext({
           restricted: ":/?#[]@!$&()*+,;='",
           percent: '%',
           encoded: '%25',
@@ -318,7 +318,7 @@ describe('uri-template', function () {
     });
   });
   describe('Error handling (or the lack thereof)', function () {
-    var assert = createTestContext({
+    const assert = createTestContext({
           foo: 'test',
           keys: {
             foo: 'bar'
@@ -347,7 +347,7 @@ describe('uri-template', function () {
     });
   });
   describe('Skipping undefined arguments', function () {
-    var assert = createTestContext({
+    const assert = createTestContext({
           'var': 'value',
           'number': 2133,
           'emptystring': '',

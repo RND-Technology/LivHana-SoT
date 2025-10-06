@@ -1,24 +1,24 @@
 "use strict";
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+const _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.createGetCssVar = void 0;
 exports.default = extendTheme;
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
-var _deepmerge = _interopRequireDefault(require("@mui/utils/deepmerge"));
-var _system = require("@mui/system");
-var _styleFunctionSx = _interopRequireWildcard(require("@mui/system/styleFunctionSx"));
-var _colorManipulator = require("@mui/system/colorManipulator");
-var _shouldSkipGeneratingVar = _interopRequireDefault(require("./shouldSkipGeneratingVar"));
-var _createTheme = _interopRequireDefault(require("./createTheme"));
-var _getOverlayAlpha = _interopRequireDefault(require("./getOverlayAlpha"));
+const _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+const _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+const _deepmerge = _interopRequireDefault(require("@mui/utils/deepmerge"));
+const _system = require("@mui/system");
+const _styleFunctionSx = _interopRequireWildcard(require("@mui/system/styleFunctionSx"));
+const _colorManipulator = require("@mui/system/colorManipulator");
+const _shouldSkipGeneratingVar = _interopRequireDefault(require("./shouldSkipGeneratingVar"));
+const _createTheme = _interopRequireDefault(require("./createTheme"));
+const _getOverlayAlpha = _interopRequireDefault(require("./getOverlayAlpha"));
 const _excluded = ["colorSchemes", "cssVarPrefix", "shouldSkipGeneratingVar"],
   _excluded2 = ["palette"];
-function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
-function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; const r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; const t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); const n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (const u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { const i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 const defaultDarkOverlays = [...Array(25)].map((_, index) => {
   if (index === 0) {
     return undefined;
@@ -62,7 +62,7 @@ const silent = fn => {
 const createGetCssVar = (cssVarPrefix = 'mui') => (0, _system.unstable_createGetCssVar)(cssVarPrefix);
 exports.createGetCssVar = createGetCssVar;
 function extendTheme(options = {}, ...args) {
-  var _colorSchemesInput$li, _colorSchemesInput$da, _colorSchemesInput$li2, _colorSchemesInput$li3, _colorSchemesInput$da2, _colorSchemesInput$da3;
+  let _colorSchemesInput$li, _colorSchemesInput$da, _colorSchemesInput$li2, _colorSchemesInput$li3, _colorSchemesInput$da2, _colorSchemesInput$da3;
   const {
       colorSchemes: colorSchemesInput = {},
       cssVarPrefix = 'mui',

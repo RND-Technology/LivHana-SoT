@@ -5,7 +5,7 @@ const SEARCH_1 = require("./SEARCH");
 const _1 = require(".");
 exports.IS_READ_ONLY = true;
 function transformArguments(index, query, options) {
-    let args = ['FT.PROFILE', index, 'SEARCH'];
+    const args = ['FT.PROFILE', index, 'SEARCH'];
     if (options?.LIMITED) {
         args.push('LIMITED');
     }

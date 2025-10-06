@@ -214,7 +214,7 @@ const defaultResponder = {
 };
 class ServerInterceptingCall {
     constructor(nextCall, responder) {
-        var _a, _b, _c, _d;
+        let _a, _b, _c, _d;
         this.nextCall = nextCall;
         this.processingMetadata = false;
         this.sentMetadata = false;
@@ -244,7 +244,7 @@ class ServerInterceptingCall {
     }
     start(listener) {
         this.responder.start(interceptedListener => {
-            var _a, _b, _c, _d;
+            let _a, _b, _c, _d;
             const fullInterceptedListener = {
                 onReceiveMetadata: (_a = interceptedListener === null || interceptedListener === void 0 ? void 0 : interceptedListener.onReceiveMetadata) !== null && _a !== void 0 ? _a : defaultServerListener.onReceiveMetadata,
                 onReceiveMessage: (_b = interceptedListener === null || interceptedListener === void 0 ? void 0 : interceptedListener.onReceiveMessage) !== null && _b !== void 0 ? _b : defaultServerListener.onReceiveMessage,
@@ -343,7 +343,7 @@ const defaultResponseOptions = {
 };
 class BaseServerInterceptingCall {
     constructor(stream, headers, callEventTracker, handler, options) {
-        var _a, _b;
+        let _a, _b;
         this.stream = stream;
         this.callEventTracker = callEventTracker;
         this.handler = handler;
@@ -370,7 +370,7 @@ class BaseServerInterceptingCall {
              * expect to be able to send an error over it. */
         });
         this.stream.once('close', () => {
-            var _a;
+            let _a;
             trace('Request to method ' +
                 ((_a = this.handler) === null || _a === void 0 ? void 0 : _a.path) +
                 ' stream closed with rstCode ' +
@@ -475,7 +475,7 @@ class BaseServerInterceptingCall {
         this.cancelNotified = true;
         this.cancelled = true;
         process.nextTick(() => {
-            var _a;
+            let _a;
             (_a = this.listener) === null || _a === void 0 ? void 0 : _a.onCancel();
         });
         if (this.deadlineTimer) {
@@ -597,7 +597,7 @@ class BaseServerInterceptingCall {
         }
     }
     handleDataFrame(data) {
-        var _a;
+        let _a;
         if (this.checkCancelled()) {
             return;
         }
@@ -685,7 +685,7 @@ class BaseServerInterceptingCall {
             ' sent data frame of size ' +
             response.length);
         this.stream.write(response, error => {
-            var _a;
+            let _a;
             if (error) {
                 this.sendStatus({
                     code: constants_1.Status.INTERNAL,
@@ -699,7 +699,7 @@ class BaseServerInterceptingCall {
         });
     }
     sendStatus(status) {
-        var _a, _b, _c;
+        let _a, _b, _c;
         if (this.checkCancelled()) {
             return;
         }
@@ -760,7 +760,7 @@ class BaseServerInterceptingCall {
         }
     }
     getPeer() {
-        var _a;
+        let _a;
         const socket = (_a = this.stream.session) === null || _a === void 0 ? void 0 : _a.socket;
         if (socket === null || socket === void 0 ? void 0 : socket.remoteAddress) {
             if (socket.remotePort) {
@@ -781,7 +781,7 @@ class BaseServerInterceptingCall {
         return this.host;
     }
     getAuthContext() {
-        var _a;
+        let _a;
         if (((_a = this.stream.session) === null || _a === void 0 ? void 0 : _a.socket) instanceof tls_1.TLSSocket) {
             const peerCertificate = this.stream.session.socket.getPeerCertificate();
             return {

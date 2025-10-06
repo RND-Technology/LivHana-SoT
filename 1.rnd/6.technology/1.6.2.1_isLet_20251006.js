@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = isLet;
-var _index = require("./generated/index.js");
+const _index = require("./generated/index.js");
 {
   var BLOCK_SCOPED_SYMBOL = Symbol.for("var used to be block scoped");
 }

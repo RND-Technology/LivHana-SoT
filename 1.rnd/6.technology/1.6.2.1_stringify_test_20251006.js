@@ -1,24 +1,24 @@
-var Sinon = require("sinon")
-var stringify = require("..")
+const Sinon = require("sinon")
+const stringify = require("..")
 function jsonify(obj) { return JSON.stringify(obj, null, 2) }
 
 describe("Stringify", function() {
   it("must stringify circular objects", function() {
-    var obj = {name: "Alice"}
+    const obj = {name: "Alice"}
     obj.self = obj
-    var json = stringify(obj, null, 2)
+    const json = stringify(obj, null, 2)
     json.must.eql(jsonify({name: "Alice", self: "[Circular ~]"}))
   })
 
   it("must stringify circular objects with intermediaries", function() {
-    var obj = {name: "Alice"}
+    const obj = {name: "Alice"}
     obj.identity = {self: obj}
-    var json = stringify(obj, null, 2)
+    const json = stringify(obj, null, 2)
     json.must.eql(jsonify({name: "Alice", identity: {self: "[Circular ~]"}}))
   })
 
   it("must stringify circular objects deeper", function() {
-    var obj = {name: "Alice", child: {name: "Bob"}}
+    const obj = {name: "Alice", child: {name: "Bob"}}
     obj.child.self = obj.child
 
     stringify(obj, null, 2).must.eql(jsonify({
@@ -28,7 +28,7 @@ describe("Stringify", function() {
   })
 
   it("must stringify circular objects deeper with intermediaries", function() {
-    var obj = {name: "Alice", child: {name: "Bob"}}
+    const obj = {name: "Alice", child: {name: "Bob"}}
     obj.child.identity = {self: obj.child}
 
     stringify(obj, null, 2).must.eql(jsonify({
@@ -38,7 +38,7 @@ describe("Stringify", function() {
   })
 
   it("must stringify circular objects in an array", function() {
-    var obj = {name: "Alice"}
+    const obj = {name: "Alice"}
     obj.self = [obj, obj]
 
     stringify(obj, null, 2).must.eql(jsonify({
@@ -47,7 +47,7 @@ describe("Stringify", function() {
   })
 
   it("must stringify circular objects deeper in an array", function() {
-    var obj = {name: "Alice", children: [{name: "Bob"}, {name: "Eve"}]}
+    const obj = {name: "Alice", children: [{name: "Bob"}, {name: "Eve"}]}
     obj.children[0].self = obj.children[0]
     obj.children[1].self = obj.children[1]
 
@@ -61,15 +61,15 @@ describe("Stringify", function() {
   })
 
   it("must stringify circular arrays", function() {
-    var obj = []
+    const obj = []
     obj.push(obj)
     obj.push(obj)
-    var json = stringify(obj, null, 2)
+    const json = stringify(obj, null, 2)
     json.must.eql(jsonify(["[Circular ~]", "[Circular ~]"]))
   })
 
   it("must stringify circular arrays with intermediaries", function() {
-    var obj = []
+    const obj = []
     obj.push({name: "Alice", self: obj})
     obj.push({name: "Bob", self: obj})
 
@@ -80,8 +80,8 @@ describe("Stringify", function() {
   })
 
   it("must stringify repeated objects in objects", function() {
-    var obj = {}
-    var alice = {name: "Alice"}
+    const obj = {}
+    const alice = {name: "Alice"}
     obj.alice1 = alice
     obj.alice2 = alice
 
@@ -92,19 +92,19 @@ describe("Stringify", function() {
   })
 
   it("must stringify repeated objects in arrays", function() {
-    var alice = {name: "Alice"}
-    var obj = [alice, alice]
-    var json = stringify(obj, null, 2)
+    const alice = {name: "Alice"}
+    const obj = [alice, alice]
+    const json = stringify(obj, null, 2)
     json.must.eql(jsonify([{name: "Alice"}, {name: "Alice"}]))
   })
 
   it("must call given decycler and use its output", function() {
-    var obj = {}
+    const obj = {}
     obj.a = obj
     obj.b = obj
 
     var decycle = Sinon.spy(function() { return decycle.callCount })
-    var json = stringify(obj, null, 2, decycle)
+    const json = stringify(obj, null, 2, decycle)
     json.must.eql(jsonify({a: 1, b: 2}, null, 2))
 
     decycle.callCount.must.equal(2)
@@ -117,10 +117,10 @@ describe("Stringify", function() {
   })
 
   it("must call replacer and use its output", function() {
-    var obj = {name: "Alice", child: {name: "Bob"}}
+    const obj = {name: "Alice", child: {name: "Bob"}}
 
-    var replacer = Sinon.spy(bangString)
-    var json = stringify(obj, replacer, 2)
+    const replacer = Sinon.spy(bangString)
+    const json = stringify(obj, replacer, 2)
     json.must.eql(jsonify({name: "Alice!", child: {name: "Bob!"}}))
 
     replacer.callCount.must.equal(4)
@@ -138,11 +138,11 @@ describe("Stringify", function() {
   })
 
   it("must call replacer after describing circular references", function() {
-    var obj = {name: "Alice"}
+    const obj = {name: "Alice"}
     obj.self = obj
 
-    var replacer = Sinon.spy(bangString)
-    var json = stringify(obj, replacer, 2)
+    const replacer = Sinon.spy(bangString)
+    const json = stringify(obj, replacer, 2)
     json.must.eql(jsonify({name: "Alice!", self: "[Circular ~]!"}))
 
     replacer.callCount.must.equal(3)
@@ -158,12 +158,12 @@ describe("Stringify", function() {
 
   it("must call given decycler and use its output for nested objects",
     function() {
-    var obj = {}
+    const obj = {}
     obj.a = obj
     obj.b = {self: obj}
 
     var decycle = Sinon.spy(function() { return decycle.callCount })
-    var json = stringify(obj, null, 2, decycle)
+    const json = stringify(obj, null, 2, decycle)
     json.must.eql(jsonify({a: 1, b: {self: 2}}))
 
     decycle.callCount.must.equal(2)
@@ -174,7 +174,7 @@ describe("Stringify", function() {
   })
 
   it("must use decycler's output when it returned null", function() {
-    var obj = {a: "b"}
+    const obj = {a: "b"}
     obj.self = obj
     obj.selves = [obj, obj]
 
@@ -187,7 +187,7 @@ describe("Stringify", function() {
   })
 
   it("must use decycler's output when it returned undefined", function() {
-    var obj = {a: "b"}
+    const obj = {a: "b"}
     obj.self = obj
     obj.selves = [obj, obj]
 
@@ -199,9 +199,9 @@ describe("Stringify", function() {
   })
 
   it("must throw given a decycler that returns a cycle", function() {
-    var obj = {}
+    const obj = {}
     obj.self = obj
-    var err
+    let err
     function identity(key, value) { return value }
     try { stringify(obj, null, 2, identity) } catch (ex) { err = ex }
     err.must.be.an.instanceof(TypeError)
@@ -209,11 +209,11 @@ describe("Stringify", function() {
 
   describe(".getSerialize", function() {
     it("must stringify circular objects", function() {
-      var obj = {a: "b"}
+      const obj = {a: "b"}
       obj.circularRef = obj
       obj.list = [obj, obj]
 
-      var json = JSON.stringify(obj, stringify.getSerialize(), 2)
+      const json = JSON.stringify(obj, stringify.getSerialize(), 2)
       json.must.eql(jsonify({
         "a": "b",
         "circularRef": "[Circular ~]",
@@ -226,11 +226,11 @@ describe("Stringify", function() {
     // so far I'm not sure how to not do that. JSON.stringify's replacer is not
     // called _after_ serialization.
     xit("must return a function that could be called twice", function() {
-      var obj = {name: "Alice"}
+      const obj = {name: "Alice"}
       obj.self = obj
 
-      var json
-      var serializer = stringify.getSerialize()
+      let json
+      const serializer = stringify.getSerialize()
 
       json = JSON.stringify(obj, serializer, 2)
       json.must.eql(jsonify({name: "Alice", self: "[Circular ~]"}))

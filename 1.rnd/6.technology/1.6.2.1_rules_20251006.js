@@ -1,10 +1,10 @@
 'use strict';
 
-var ruleModules = require('../dotjs')
+const ruleModules = require('../dotjs')
   , toHash = require('./util').toHash;
 
 module.exports = function rules() {
-  var RULES = [
+  const RULES = [
     { type: 'number',
       rules: [ { 'maximum': ['exclusiveMaximum'] },
                { 'minimum': ['exclusiveMinimum'] }, 'multipleOf', 'format'] },
@@ -18,23 +18,23 @@ module.exports = function rules() {
     { rules: [ '$ref', 'const', 'enum', 'not', 'anyOf', 'oneOf', 'allOf', 'if' ] }
   ];
 
-  var ALL = [ 'type', '$comment' ];
-  var KEYWORDS = [
+  const ALL = [ 'type', '$comment' ];
+  const KEYWORDS = [
     '$schema', '$id', 'id', '$data', '$async', 'title',
     'description', 'default', 'definitions',
     'examples', 'readOnly', 'writeOnly',
     'contentMediaType', 'contentEncoding',
     'additionalItems', 'then', 'else'
   ];
-  var TYPES = [ 'number', 'integer', 'string', 'array', 'object', 'boolean', 'null' ];
+  const TYPES = [ 'number', 'integer', 'string', 'array', 'object', 'boolean', 'null' ];
   RULES.all = toHash(ALL);
   RULES.types = toHash(TYPES);
 
   RULES.forEach(function (group) {
     group.rules = group.rules.map(function (keyword) {
-      var implKeywords;
+      let implKeywords;
       if (typeof keyword == 'object') {
-        var key = Object.keys(keyword)[0];
+        const key = Object.keys(keyword)[0];
         implKeywords = keyword[key];
         keyword = key;
         implKeywords.forEach(function (k) {
@@ -43,7 +43,7 @@ module.exports = function rules() {
         });
       }
       ALL.push(keyword);
-      var rule = RULES.all[keyword] = {
+      const rule = RULES.all[keyword] = {
         keyword: keyword,
         code: ruleModules[keyword],
         implements: implKeywords

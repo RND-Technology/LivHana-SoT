@@ -1,11 +1,11 @@
 "use strict";
 exports.__esModule = true;
 exports.subscriptionSchema = void 0;
-var schema_1 = require("../schema");
-var money_1 = require("./money");
-var phase_1 = require("./phase");
-var subscriptionAction_1 = require("./subscriptionAction");
-var subscriptionSource_1 = require("./subscriptionSource");
+const schema_1 = require("../schema");
+const money_1 = require("./money");
+const phase_1 = require("./phase");
+const subscriptionAction_1 = require("./subscriptionAction");
+const subscriptionSource_1 = require("./subscriptionSource");
 exports.subscriptionSchema = (0, schema_1.object)({
     id: ['id', (0, schema_1.optional)((0, schema_1.string)())],
     locationId: ['location_id', (0, schema_1.optional)((0, schema_1.string)())],

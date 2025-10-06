@@ -1,7 +1,7 @@
 import { passThroughInterceptor } from '@apimatic/core-interfaces';
 
 /** None authentication provider */
-var noneAuthenticationProvider = function () {
+const noneAuthenticationProvider = function () {
   return passThroughInterceptor;
 };
 export { noneAuthenticationProvider };

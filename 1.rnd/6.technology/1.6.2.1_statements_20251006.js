@@ -21,7 +21,7 @@ exports.VariableDeclaration = VariableDeclaration;
 exports.VariableDeclarator = VariableDeclarator;
 exports.WhileStatement = WhileStatement;
 exports.WithStatement = WithStatement;
-var _t = require("@babel/types");
+const _t = require("@babel/types");
 const {
   isFor,
   isForStatement,

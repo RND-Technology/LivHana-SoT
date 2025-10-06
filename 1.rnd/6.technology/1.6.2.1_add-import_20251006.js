@@ -6,7 +6,7 @@ export function addImport(
   importedSpecifier /*: string */,
   nameHint /* ?: string */
 ) {
-  let cacheKey = ['import', importSource, importedSpecifier].join(':')
+  const cacheKey = ['import', importSource, importedSpecifier].join(':')
   if (state[cacheKey] === undefined) {
     let importIdentifier
     if (importedSpecifier === 'default') {

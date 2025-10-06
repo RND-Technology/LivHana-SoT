@@ -1,5 +1,5 @@
 //.CommonJS
-var CSSOM = {};
+const CSSOM = {};
 ///CommonJS
 
 /**

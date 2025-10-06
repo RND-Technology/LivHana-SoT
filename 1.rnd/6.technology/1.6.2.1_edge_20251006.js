@@ -7,9 +7,9 @@ exports.clipEdges = clipEdges;
 exports.createBorderEdge = createBorderEdge;
 exports.createEdge = createEdge;
 exports.setEdgeEnd = setEdgeEnd;
-var _Diagram = require("./Diagram");
+const _Diagram = require("./Diagram");
 function createEdge(left, right, v0, v1) {
-  var edge = [null, null],
+  const edge = [null, null],
     index = _Diagram.edges.push(edge) - 1;
   edge.left = left;
   edge.right = right;
@@ -20,7 +20,7 @@ function createEdge(left, right, v0, v1) {
   return edge;
 }
 function createBorderEdge(left, v0, v1) {
-  var edge = [v0, v1];
+  const edge = [v0, v1];
   edge.left = left;
   return edge;
 }
@@ -38,7 +38,7 @@ function setEdgeEnd(edge, left, right, vertex) {
 
 // Liang–Barsky line clipping.
 function clipEdge(edge, x0, y0, x1, y1) {
-  var a = edge[0],
+  let a = edge[0],
     b = edge[1],
     ax = a[0],
     ay = a[1],
@@ -96,9 +96,9 @@ function clipEdge(edge, x0, y0, x1, y1) {
   return true;
 }
 function connectEdge(edge, x0, y0, x1, y1) {
-  var v1 = edge[1];
+  let v1 = edge[1];
   if (v1) return true;
-  var v0 = edge[0],
+  let v0 = edge[0],
     left = edge.left,
     right = edge.right,
     lx = left[0],
@@ -144,7 +144,7 @@ function connectEdge(edge, x0, y0, x1, y1) {
   return true;
 }
 function clipEdges(x0, y0, x1, y1) {
-  var i = _Diagram.edges.length,
+  let i = _Diagram.edges.length,
     edge;
   while (i--) {
     if (!connectEdge(edge = _Diagram.edges[i], x0, y0, x1, y1) || !clipEdge(edge, x0, y0, x1, y1) || !(Math.abs(edge[0][0] - edge[1][0]) > _Diagram.epsilon || Math.abs(edge[0][1] - edge[1][1]) > _Diagram.epsilon)) {

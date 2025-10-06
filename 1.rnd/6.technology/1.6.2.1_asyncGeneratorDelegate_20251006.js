@@ -4,9 +4,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = _asyncGeneratorDelegate;
-var _OverloadYield = require("./OverloadYield.js");
+const _OverloadYield = require("./OverloadYield.js");
 function _asyncGeneratorDelegate(inner) {
-  var iter = {},
+  let iter = {},
     waiting = false;
   function pump(key, value) {
     waiting = true;

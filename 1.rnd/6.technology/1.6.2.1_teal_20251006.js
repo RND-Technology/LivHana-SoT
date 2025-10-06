@@ -20,4 +20,4 @@ const teal = {
   A400: '#1de9b6',
   A700: '#00bfa5'
 };
-var _default = exports.default = teal;
+const _default = exports.default = teal;

@@ -176,8 +176,8 @@ class SymbolDef {
         if (this.global && cache && cache.has(this.name)) {
             this.mangled_name = cache.get(this.name);
         } else if (!this.mangled_name && !this.unmangleable(options)) {
-            var s = this.scope;
-            var sym = this.orig[0];
+            let s = this.scope;
+            const sym = this.orig[0];
             if (options.ie8 && sym instanceof AST_SymbolLambda)
                 s = s.parent_scope;
             const redefinition = redefined_catch_def(this);
@@ -214,11 +214,11 @@ AST_Scope.DEFMETHOD("figure_out_scope", function(options, { parent_scope = undef
     }
 
     // pass 1: setup scope chaining and handle definitions
-    var scope = this.parent_scope = parent_scope;
-    var labels = new Map();
-    var defun = null;
-    var in_destructuring = null;
-    var for_scopes = [];
+    let scope = this.parent_scope = parent_scope;
+    let labels = new Map();
+    let defun = null;
+    let in_destructuring = null;
+    const for_scopes = [];
     var tw = new TreeWalker((node, descend) => {
         if (node.is_block_scope()) {
             const save_scope = scope;
@@ -262,9 +262,9 @@ AST_Scope.DEFMETHOD("figure_out_scope", function(options, { parent_scope = undef
         }
         if (node instanceof AST_Scope) {
             node.init_scope_vars(scope);
-            var save_scope = scope;
-            var save_defun = defun;
-            var save_labels = labels;
+            const save_scope = scope;
+            const save_defun = defun;
+            const save_labels = labels;
             defun = scope = node;
             labels = new Map();
             descend();
@@ -274,7 +274,7 @@ AST_Scope.DEFMETHOD("figure_out_scope", function(options, { parent_scope = undef
             return true;        // don't descend again in TreeWalker
         }
         if (node instanceof AST_LabeledStatement) {
-            var l = node.label;
+            const l = node.label;
             if (labels.has(l.name)) {
                 throw new Error(string_template("Label {name} defined twice", l));
             }
@@ -284,7 +284,7 @@ AST_Scope.DEFMETHOD("figure_out_scope", function(options, { parent_scope = undef
             return true;        // no descend again
         }
         if (node instanceof AST_With) {
-            for (var s = scope; s; s = s.parent_scope)
+            for (let s = scope; s; s = s.parent_scope)
                 s.uses_with = true;
             return;
         }
@@ -357,7 +357,7 @@ AST_Scope.DEFMETHOD("figure_out_scope", function(options, { parent_scope = undef
                 }
             }
         } else if (node instanceof AST_LabelRef) {
-            var sym = labels.get(node.name);
+            const sym = labels.get(node.name);
             if (!sym) throw new Error(string_template("Undefined label {name} [{line},{col}]", {
                 name: node.name,
                 line: node.start.line,
@@ -384,14 +384,14 @@ AST_Scope.DEFMETHOD("figure_out_scope", function(options, { parent_scope = undef
 
     function mark_export(def, level) {
         if (in_destructuring) {
-            var i = 0;
+            let i = 0;
             do {
                 level++;
             } while (tw.parent(i++) !== in_destructuring);
         }
-        var node = tw.parent(level);
+        const node = tw.parent(level);
         if (def.export = node instanceof AST_Export ? MASK_EXPORT_DONT_MANGLE : 0) {
-            var exported = node.exported_definition;
+            const exported = node.exported_definition;
             if ((exported instanceof AST_Defun || exported instanceof AST_DefClass) && node.is_default) {
                 def.export = MASK_EXPORT_WANT_MANGLE;
             }
@@ -410,13 +410,13 @@ AST_Scope.DEFMETHOD("figure_out_scope", function(options, { parent_scope = undef
             return true;
         }
         if (node instanceof AST_SymbolRef) {
-            var name = node.name;
+            const name = node.name;
             if (name == "eval" && tw.parent() instanceof AST_Call) {
                 for (var s = node.scope; s && !s.uses_eval; s = s.parent_scope) {
                     s.uses_eval = true;
                 }
             }
-            var sym;
+            let sym;
             if (tw.parent() instanceof AST_NameMapping && tw.parent(1).module_name
                 || !(sym = node.scope.find_variable(name))) {
 
@@ -434,7 +434,7 @@ AST_Scope.DEFMETHOD("figure_out_scope", function(options, { parent_scope = undef
             return true;
         }
         // ensure mangling works if catch reuses a scope variable
-        var def;
+        let def;
         if (node instanceof AST_SymbolCatch && (def = redefined_catch_def(node.definition()))) {
             var s = node.scope;
             while (s) {
@@ -450,10 +450,10 @@ AST_Scope.DEFMETHOD("figure_out_scope", function(options, { parent_scope = undef
     if (options.ie8 || options.safari10) {
         walk(this, node => {
             if (node instanceof AST_SymbolCatch) {
-                var name = node.name;
-                var refs = node.thedef.references;
-                var scope = node.scope.get_defun_scope();
-                var def = scope.find_variable(name)
+                const name = node.name;
+                const refs = node.thedef.references;
+                const scope = node.scope.get_defun_scope();
+                const def = scope.find_variable(name)
                     || toplevel.globals.get(name)
                     || scope.def_variable(node);
                 refs.forEach(function(ref) {
@@ -481,11 +481,11 @@ AST_Scope.DEFMETHOD("figure_out_scope", function(options, { parent_scope = undef
 });
 
 AST_Toplevel.DEFMETHOD("def_global", function(node) {
-    var globals = this.globals, name = node.name;
+    const globals = this.globals, name = node.name;
     if (globals.has(name)) {
         return globals.get(name);
     } else {
-        var g = new SymbolDef(this, node);
+        const g = new SymbolDef(this, node);
         g.undeclared = true;
         g.global = true;
         globals.set(name, g);
@@ -652,8 +652,8 @@ AST_Arrow.DEFMETHOD("init_scope_vars", function() {
 });
 
 AST_Symbol.DEFMETHOD("mark_enclosed", function() {
-    var def = this.definition();
-    var s = this.scope;
+    const def = this.definition();
+    let s = this.scope;
     while (s) {
         push_uniq(s.enclosed, def);
         if (s === def.scope) break;
@@ -673,13 +673,13 @@ AST_Scope.DEFMETHOD("find_variable", function(name) {
 });
 
 AST_Scope.DEFMETHOD("def_function", function(symbol, init) {
-    var def = this.def_variable(symbol, init);
+    const def = this.def_variable(symbol, init);
     if (!def.init || def.init instanceof AST_Defun) def.init = init;
     return def;
 });
 
 AST_Scope.DEFMETHOD("def_variable", function(symbol, init) {
-    var def = this.variables.get(symbol.name);
+    let def = this.variables.get(symbol.name);
     if (def) {
         def.orig.push(symbol);
         if (def.init && (def.scope !== symbol.scope || def.init instanceof AST_Function)) {
@@ -703,10 +703,10 @@ function next_mangled(scope, options) {
         scope = defun_scope;
     }
 
-    var ext = scope.enclosed;
-    var nth_identifier = options.nth_identifier;
+    const ext = scope.enclosed;
+    const nth_identifier = options.nth_identifier;
     out: while (true) {
-        var m = nth_identifier.get(++scope.cname);
+        const m = nth_identifier.get(++scope.cname);
         if (ALL_RESERVED_WORDS.has(m)) continue; // skip over "do"
 
         // https://github.com/mishoo/UglifyJS2/issues/242 -- do not
@@ -747,20 +747,20 @@ AST_Function.DEFMETHOD("next_mangled", function(options, def) {
     // in Safari strict mode, something like (function x(x){...}) is a syntax error;
     // a function expression's argument cannot shadow the function expression's name
 
-    var tricky_def = def.orig[0] instanceof AST_SymbolFunarg && this.name && this.name.definition();
+    const tricky_def = def.orig[0] instanceof AST_SymbolFunarg && this.name && this.name.definition();
 
     // the function's mangled_name is null when keep_fnames is true
-    var tricky_name = tricky_def ? tricky_def.mangled_name || tricky_def.name : null;
+    const tricky_name = tricky_def ? tricky_def.mangled_name || tricky_def.name : null;
 
     while (true) {
-        var name = next_mangled(this, options);
+        const name = next_mangled(this, options);
         if (!tricky_name || tricky_name != name)
             return name;
     }
 });
 
 AST_Symbol.DEFMETHOD("unmangleable", function(options) {
-    var def = this.definition();
+    const def = this.definition();
     return !def || def.unmangleable(options);
 });
 
@@ -807,14 +807,14 @@ export function format_mangler_options(options) {
 
 AST_Toplevel.DEFMETHOD("mangle_names", function(options) {
     options = format_mangler_options(options);
-    var nth_identifier = options.nth_identifier;
+    const nth_identifier = options.nth_identifier;
 
     // We only need to mangle declaration nodes.  Special logic wired
     // into the code generator will display the mangled name if it's
     // present (and for AST_SymbolRef-s it'll use the mangled name of
     // the AST_SymbolDeclaration that it points to).
-    var lname = -1;
-    var to_mangle = [];
+    let lname = -1;
+    const to_mangle = [];
 
     if (options.keep_fnames) {
         function_defs = new Set();
@@ -835,7 +835,7 @@ AST_Toplevel.DEFMETHOD("mangle_names", function(options) {
     var tw = new TreeWalker(function(node, descend) {
         if (node instanceof AST_LabeledStatement) {
             // lname is incremented when we get to the AST_Label
-            var save_nesting = lname;
+            const save_nesting = lname;
             descend();
             lname = save_nesting;
             return true;        // don't descend again in TreeWalker
@@ -922,7 +922,7 @@ AST_Toplevel.DEFMETHOD("find_colliding_names", function(options) {
     }
 
     function add_def(def) {
-        var name = def.name;
+        let name = def.name;
         if (def.global && cache && cache.has(name)) name = cache.get(name);
         else if (!def.unmangleable(options)) return;
         to_avoid(name);
@@ -931,13 +931,13 @@ AST_Toplevel.DEFMETHOD("find_colliding_names", function(options) {
 
 AST_Toplevel.DEFMETHOD("expand_names", function(options) {
     options = format_mangler_options(options);
-    var nth_identifier = options.nth_identifier;
+    const nth_identifier = options.nth_identifier;
     if (nth_identifier.reset && nth_identifier.sort) {
         nth_identifier.reset();
         nth_identifier.sort();
     }
-    var avoid = this.find_colliding_names(options);
-    var cname = 0;
+    const avoid = this.find_colliding_names(options);
+    let cname = 0;
     this.globals.forEach(rename);
     this.walk(new TreeWalker(function(node) {
         if (node instanceof AST_Scope) node.variables.forEach(rename);
@@ -945,7 +945,7 @@ AST_Toplevel.DEFMETHOD("expand_names", function(options) {
     }));
 
     function next_name() {
-        var name;
+        let name;
         do {
             name = nth_identifier.get(cname++);
         } while (avoid.has(name) || ALL_RESERVED_WORDS.has(name));
@@ -974,7 +974,7 @@ AST_Sequence.DEFMETHOD("tail_node", function() {
 
 AST_Toplevel.DEFMETHOD("compute_char_frequency", function(options) {
     options = format_mangler_options(options);
-    var nth_identifier = options.nth_identifier;
+    const nth_identifier = options.nth_identifier;
     if (!nth_identifier.reset || !nth_identifier.consider || !nth_identifier.sort) {
         // If the identifier mangler is invariant, skip computing character frequency.
         return;
@@ -1029,7 +1029,7 @@ const base54 = (() => {
         });
     }
     function consider(str, delta) {
-        for (var i = str.length; --i >= 0;) {
+        for (let i = str.length; --i >= 0;) {
             frequency.set(str[i], frequency.get(str[i]) + delta);
         }
     }
@@ -1043,7 +1043,7 @@ const base54 = (() => {
     reset();
     sort();
     function base54(num) {
-        var ret = "", base = 54;
+        let ret = "", base = 54;
         num++;
         do {
             num--;

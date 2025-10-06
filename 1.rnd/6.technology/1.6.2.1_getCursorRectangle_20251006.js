@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.getCursorRectangle = getCursorRectangle;
 function getCursorRectangle(layout, activeCoordinate, offset, tooltipAxisBandSize) {
-  var halfSize = tooltipAxisBandSize / 2;
+  const halfSize = tooltipAxisBandSize / 2;
   return {
     stroke: 'none',
     fill: '#ccc',

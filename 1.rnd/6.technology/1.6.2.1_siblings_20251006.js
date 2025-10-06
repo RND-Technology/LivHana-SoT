@@ -1,11 +1,11 @@
 "use strict";
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+const _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 exports.__esModule = true;
 exports.default = siblings;
 
-var _collectSiblings = _interopRequireDefault(require("./collectSiblings"));
+const _collectSiblings = _interopRequireDefault(require("./collectSiblings"));
 
 /**
  * Collects all previous and next sibling elements of a given element.

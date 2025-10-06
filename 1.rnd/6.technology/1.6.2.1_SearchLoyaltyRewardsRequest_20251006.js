@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
 exports.searchLoyaltyRewardsRequestSchema = void 0;
-var schema_1 = require("../schema");
-var searchLoyaltyRewardsRequestLoyaltyRewardQuery_1 = require("./searchLoyaltyRewardsRequestLoyaltyRewardQuery");
+const schema_1 = require("../schema");
+const searchLoyaltyRewardsRequestLoyaltyRewardQuery_1 = require("./searchLoyaltyRewardsRequestLoyaltyRewardQuery");
 exports.searchLoyaltyRewardsRequestSchema = (0, schema_1.object)({
     query: [
         'query',

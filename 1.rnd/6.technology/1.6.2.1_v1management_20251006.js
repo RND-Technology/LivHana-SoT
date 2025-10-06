@@ -19,7 +19,7 @@ exports.gamesManagement_v1management = void 0;
 /* eslint-disable @typescript-eslint/no-namespace */
 /* eslint-disable no-irregular-whitespace */
 const googleapis_common_1 = require("googleapis-common");
-var gamesManagement_v1management;
+let gamesManagement_v1management;
 (function (gamesManagement_v1management) {
     /**
      * Google Play Game Management

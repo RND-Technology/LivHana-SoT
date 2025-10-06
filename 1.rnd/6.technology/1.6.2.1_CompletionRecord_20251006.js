@@ -1,12 +1,12 @@
 'use strict';
 
-var $SyntaxError = require('es-errors/syntax');
+const $SyntaxError = require('es-errors/syntax');
 
-var SLOT = require('internal-slot');
+const SLOT = require('internal-slot');
 
 // https://262.ecma-international.org/7.0/#sec-completion-record-specification-type
 
-var CompletionRecord = function CompletionRecord(type, value) {
+const CompletionRecord = function CompletionRecord(type, value) {
 	if (!(this instanceof CompletionRecord)) {
 		return new CompletionRecord(type, value);
 	}
@@ -27,8 +27,8 @@ CompletionRecord.prototype.value = function Value() {
 };
 
 CompletionRecord.prototype['?'] = function ReturnIfAbrupt() {
-	var type = SLOT.get(this, '[[Type]]');
-	var value = SLOT.get(this, '[[Value]]');
+	const type = SLOT.get(this, '[[Type]]');
+	const value = SLOT.get(this, '[[Value]]');
 
 	if (type === 'throw') {
 		throw value;
@@ -37,7 +37,7 @@ CompletionRecord.prototype['?'] = function ReturnIfAbrupt() {
 };
 
 CompletionRecord.prototype['!'] = function assert() {
-	var type = SLOT.get(this, '[[Type]]');
+	const type = SLOT.get(this, '[[Type]]');
 
 	if (type !== 'normal') {
 		throw new $SyntaxError('Assertion failed: Completion Record is not of type "normal"');

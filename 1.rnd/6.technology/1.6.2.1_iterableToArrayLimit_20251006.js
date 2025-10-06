@@ -5,12 +5,12 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = _iterableToArrayLimit;
 function _iterableToArrayLimit(arr, i) {
-  var iterator = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
+  let iterator = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
   if (iterator == null) return;
-  var _arr = [];
-  var iteratorNormalCompletion = true;
-  var didIteratorError = false;
-  var step, iteratorError, next, _return;
+  const _arr = [];
+  let iteratorNormalCompletion = true;
+  let didIteratorError = false;
+  let step, iteratorError, next, _return;
   try {
     next = (iterator = iterator.call(arr)).next;
     if (i === 0) {

@@ -1,9 +1,9 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true});var _base = require('../traverser/base');
-var _charcodes = require('../util/charcodes');
-var _identifier = require('../util/identifier');
-var _index = require('./index');
-var _readWordTree = require('./readWordTree');
-var _types = require('./types');
+"use strict";Object.defineProperty(exports, "__esModule", {value: true});const _base = require('../traverser/base');
+const _charcodes = require('../util/charcodes');
+const _identifier = require('../util/identifier');
+const _index = require('./index');
+const _readWordTree = require('./readWordTree');
+const _types = require('./types');
 
 /**
  * Read an identifier, producing either a name token or matching on one of the existing keywords.

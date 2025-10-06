@@ -1,4 +1,4 @@
-var isStrictComparable = require('./_isStrictComparable'),
+const isStrictComparable = require('./_isStrictComparable'),
     keys = require('./keys');
 
 /**
@@ -9,11 +9,11 @@ var isStrictComparable = require('./_isStrictComparable'),
  * @returns {Array} Returns the match data of `object`.
  */
 function getMatchData(object) {
-  var result = keys(object),
+  let result = keys(object),
       length = result.length;
 
   while (length--) {
-    var key = result[length],
+    const key = result[length],
         value = object[key];
 
     result[length] = [key, value, isStrictComparable(value)];

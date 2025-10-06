@@ -1,6 +1,6 @@
 "use strict";
 
-var div = typeof document !== "undefined" && document.createElement("div");
+const div = typeof document !== "undefined" && document.createElement("div");
 
 /**
  * Returns `true` when `object` is a DOM element node.

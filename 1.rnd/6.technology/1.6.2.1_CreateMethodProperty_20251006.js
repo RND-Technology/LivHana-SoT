@@ -1,14 +1,14 @@
 'use strict';
 
-var $TypeError = require('es-errors/type');
-var isObject = require('es-object-atoms/isObject');
+const $TypeError = require('es-errors/type');
+const isObject = require('es-object-atoms/isObject');
 
-var DefineOwnProperty = require('../helpers/DefineOwnProperty');
+const DefineOwnProperty = require('../helpers/DefineOwnProperty');
 
-var FromPropertyDescriptor = require('./FromPropertyDescriptor');
-var IsDataDescriptor = require('./IsDataDescriptor');
-var isPropertyKey = require('../helpers/isPropertyKey');
-var SameValue = require('./SameValue');
+const FromPropertyDescriptor = require('./FromPropertyDescriptor');
+const IsDataDescriptor = require('./IsDataDescriptor');
+const isPropertyKey = require('../helpers/isPropertyKey');
+const SameValue = require('./SameValue');
 
 // https://262.ecma-international.org/6.0/#sec-createmethodproperty
 
@@ -21,7 +21,7 @@ module.exports = function CreateMethodProperty(O, P, V) {
 		throw new $TypeError('Assertion failed: P is not a Property Key');
 	}
 
-	var newDesc = {
+	const newDesc = {
 		'[[Configurable]]': true,
 		'[[Enumerable]]': false,
 		'[[Value]]': V,

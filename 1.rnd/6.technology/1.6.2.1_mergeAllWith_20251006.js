@@ -1,4 +1,4 @@
-var convert = require('./convert'),
+const convert = require('./convert'),
     func = convert('mergeAllWith', require('../mergeWith'));
 
 func.placeholder = require('./placeholder');

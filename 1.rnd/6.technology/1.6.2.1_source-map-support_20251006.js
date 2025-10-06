@@ -1,9 +1,9 @@
 const { TraceMap, originalPositionFor, AnyMap } = require('@jridgewell/trace-mapping');
-var path = require('path');
+const path = require('path');
 const { fileURLToPath, pathToFileURL } = require('url');
-var util = require('util');
+const util = require('util');
 
-var fs;
+let fs;
 try {
   fs = require('fs');
   if (!fs.existsSync || !fs.readFileSync) {
@@ -34,7 +34,7 @@ function dynamicRequire(mod, request) {
  */
 
 // Increment this if the format of sharedData changes in a breaking way.
-var sharedDataVersion = 1;
+const sharedDataVersion = 1;
 
 /**
  * @template T
@@ -42,11 +42,11 @@ var sharedDataVersion = 1;
  * @returns {T}
  */
 function initializeSharedData(defaults) {
-  var sharedDataKey = 'source-map-support/sharedData';
+  let sharedDataKey = 'source-map-support/sharedData';
   if (typeof Symbol !== 'undefined') {
     sharedDataKey = Symbol.for(sharedDataKey);
   }
-  var sharedData = this[sharedDataKey];
+  let sharedData = this[sharedDataKey];
   if (!sharedData) {
     sharedData = { version: sharedDataVersion };
     if (Object.defineProperty) {
@@ -58,7 +58,7 @@ function initializeSharedData(defaults) {
   if (sharedDataVersion !== sharedData.version) {
     throw new Error("Multiple incompatible instances of source-map-support were loaded");
   }
-  for (var key in defaults) {
+  for (const key in defaults) {
     if (!(key in sharedData)) {
       sharedData[key] = defaults[key];
     }
@@ -75,7 +75,7 @@ function initializeSharedData(defaults) {
 // sharedDataVersion. (This version number is not the same as any of the
 // package's version numbers, which should reflect the *external* API of
 // source-map-support.)
-var sharedData = initializeSharedData({
+const sharedData = initializeSharedData({
 
   // Only install once if called multiple times
   // Remember how the environment looked before installation so we can restore if able
@@ -111,10 +111,10 @@ var sharedData = initializeSharedData({
 });
 
 // Supports {browser, node, auto}
-var environment = "auto";
+let environment = "auto";
 
 // Regex for detecting source maps
-var reSourceMap = /^data:application\/json[^,]+base64,/;
+const reSourceMap = /^data:application\/json[^,]+base64,/;
 
 function isInBrowser() {
   if (environment === "browser")
@@ -205,7 +205,7 @@ function handlerExec(list, internalList) {
   };
 }
 
-var retrieveFile = handlerExec(sharedData.retrieveFileHandlers, sharedData.internalRetrieveFileHandlers);
+const retrieveFile = handlerExec(sharedData.retrieveFileHandlers, sharedData.internalRetrieveFileHandlers);
 
 sharedData.internalRetrieveFileHandlers.push(function(path) {
   // Trim the path to make sure there is no extra whitespace.
@@ -223,11 +223,11 @@ sharedData.internalRetrieveFileHandlers.push(function(path) {
     return getFileContentsCacheFromKey(key);
   }
 
-  var contents = '';
+  let contents = '';
   try {
     if (!fs) {
       // Use SJAX if we are in the browser
-      var xhr = new XMLHttpRequest();
+      const xhr = new XMLHttpRequest();
       xhr.open('GET', path, /** async */ false);
       xhr.send(null);
       if (xhr.readyState === 4 && xhr.status === 200) {
@@ -312,17 +312,17 @@ function matchStyleOfPathOrUrl(matchStyleOf, pathOrUrl) {
 }
 
 function retrieveSourceMapURL(source) {
-  var fileData;
+  let fileData;
 
   if (isInBrowser()) {
      try {
-       var xhr = new XMLHttpRequest();
+       const xhr = new XMLHttpRequest();
        xhr.open('GET', source, false);
        xhr.send(null);
        fileData = xhr.readyState === 4 ? xhr.responseText : null;
 
        // Support providing a sourceMappingURL via the SourceMap header
-       var sourceMapHeader = xhr.getResponseHeader("SourceMap") ||
+       const sourceMapHeader = xhr.getResponseHeader("SourceMap") ||
                              xhr.getResponseHeader("X-SourceMap");
        if (sourceMapHeader) {
          return sourceMapHeader;
@@ -333,14 +333,14 @@ function retrieveSourceMapURL(source) {
 
   // Get the URL of the source map
   fileData = retrieveFile(tryFileURLToPath(source));
-  var re = /(?:\/\/[@#][\s]*sourceMappingURL=([^\s'"]+)[\s]*$)|(?:\/\*[@#][\s]*sourceMappingURL=([^\s*'"]+)[\s]*(?:\*\/)[\s]*$)/mg;
+  const re = /(?:\/\/[@#][\s]*sourceMappingURL=([^\s'"]+)[\s]*$)|(?:\/\*[@#][\s]*sourceMappingURL=([^\s*'"]+)[\s]*(?:\*\/)[\s]*$)/mg;
   // Keep executing the search to find the *last* sourceMappingURL to avoid
   // picking up sourceMappingURLs from comments, strings, etc.
-  var lastMatch, match;
+  let lastMatch, match;
   while (match = re.exec(fileData)) lastMatch = match;
   if (!lastMatch) return null;
   return lastMatch[1];
-};
+}
 
 // Can be overridden by the retrieveSourceMap option to install. Takes a
 // generated source filename; returns a {map, optional url} object, or null if
@@ -348,16 +348,16 @@ function retrieveSourceMapURL(source) {
 // JSON object (ie, it must be a valid argument to the SourceMapConsumer
 // constructor).
 /** @type {(source: string) => import('./source-map-support').UrlAndMap | null} */
-var retrieveSourceMap = handlerExec(sharedData.retrieveMapHandlers, sharedData.internalRetrieveMapHandlers);
+const retrieveSourceMap = handlerExec(sharedData.retrieveMapHandlers, sharedData.internalRetrieveMapHandlers);
 sharedData.internalRetrieveMapHandlers.push(function(source) {
-  var sourceMappingURL = retrieveSourceMapURL(source);
+  let sourceMappingURL = retrieveSourceMapURL(source);
   if (!sourceMappingURL) return null;
 
   // Read the contents of the source map
-  var sourceMapData;
+  let sourceMapData;
   if (reSourceMap.test(sourceMappingURL)) {
     // Support source map URL as a data url
-    var rawData = sourceMappingURL.slice(sourceMappingURL.indexOf(',') + 1);
+    const rawData = sourceMappingURL.slice(sourceMappingURL.indexOf(',') + 1);
     sourceMapData = Buffer.from(rawData, "base64").toString();
     sourceMappingURL = source;
   } else {
@@ -377,10 +377,10 @@ sharedData.internalRetrieveMapHandlers.push(function(source) {
 });
 
 function mapSourcePosition(position) {
-  var sourceMap = getSourceMapCache(position.source);
+  let sourceMap = getSourceMapCache(position.source);
   if (!sourceMap) {
     // Call the (overrideable) retrieveSourceMap function to get the source map.
-    var urlAndMap = retrieveSourceMap(position.source);
+    const urlAndMap = retrieveSourceMap(position.source);
     if (urlAndMap) {
       sourceMap = setSourceMapCache(position.source, {
         url: urlAndMap.url,
@@ -396,7 +396,7 @@ function mapSourcePosition(position) {
       // to pretend like they are already loaded. They may not exist on disk.
       if (sourceMap.map.sourcesContent) {
         sourceMap.map.resolvedSources.forEach(function(resolvedSource, i) {
-          var contents = sourceMap.map.sourcesContent[i];
+          const contents = sourceMap.map.sourcesContent[i];
           if (contents) {
             setFileContentsCache(resolvedSource, contents);
           }
@@ -412,7 +412,7 @@ function mapSourcePosition(position) {
 
   // Resolve the source URL relative to the URL of the source map
   if (sourceMap && sourceMap.map) {
-    var originalPosition = originalPositionFor(sourceMap.map, position);
+    const originalPosition = originalPositionFor(sourceMap.map, position);
 
     // Only return the original position if a matching line was found. If no
     // matching line is found then we return position instead, which will cause
@@ -436,9 +436,9 @@ function mapSourcePosition(position) {
 // https://code.google.com/p/v8/source/browse/trunk/src/messages.js
 function mapEvalOrigin(origin) {
   // Most eval() calls are in this format
-  var match = /^eval at ([^(]+) \((.+):(\d+):(\d+)\)$/.exec(origin);
+  let match = /^eval at ([^(]+) \((.+):(\d+):(\d+)\)$/.exec(origin);
   if (match) {
-    var position = mapSourcePosition({
+    const position = mapSourcePosition({
       source: match[2],
       line: +match[3],
       column: match[4] - 1
@@ -468,8 +468,8 @@ function mapEvalOrigin(origin) {
 // did something to the prototype chain and broke the shim. The only fix I
 // could find was copy/paste.
 function CallSiteToString() {
-  var fileName;
-  var fileLocation = "";
+  let fileName;
+  let fileLocation = "";
   if (this.isNative()) {
     fileLocation = "native";
   } else {
@@ -487,39 +487,39 @@ function CallSiteToString() {
       // an eval string.
       fileLocation += "<anonymous>";
     }
-    var lineNumber = this.getLineNumber();
+    const lineNumber = this.getLineNumber();
     if (lineNumber != null) {
       fileLocation += ":" + lineNumber;
-      var columnNumber = this.getColumnNumber();
+      const columnNumber = this.getColumnNumber();
       if (columnNumber) {
         fileLocation += ":" + columnNumber;
       }
     }
   }
 
-  var line = "";
-  var isAsync = this.isAsync ? this.isAsync() : false;
+  let line = "";
+  const isAsync = this.isAsync ? this.isAsync() : false;
   if(isAsync) {
     line += 'async ';
-    var isPromiseAll = this.isPromiseAll ? this.isPromiseAll() : false;
-    var isPromiseAny = this.isPromiseAny ? this.isPromiseAny() : false;
+    const isPromiseAll = this.isPromiseAll ? this.isPromiseAll() : false;
+    const isPromiseAny = this.isPromiseAny ? this.isPromiseAny() : false;
     if(isPromiseAny || isPromiseAll) {
       line += isPromiseAll ? 'Promise.all (index ' : 'Promise.any (index ';
-      var promiseIndex = this.getPromiseIndex();
+      const promiseIndex = this.getPromiseIndex();
       line += promiseIndex + ')';
     }
   }
-  var functionName = this.getFunctionName();
-  var addSuffix = true;
-  var isConstructor = this.isConstructor();
-  var isMethodCall = !(this.isToplevel() || isConstructor);
+  const functionName = this.getFunctionName();
+  let addSuffix = true;
+  const isConstructor = this.isConstructor();
+  const isMethodCall = !(this.isToplevel() || isConstructor);
   if (isMethodCall) {
-    var typeName = this.getTypeName();
+    let typeName = this.getTypeName();
     // Fixes shim to be backward compatable with Node v0 to v4
     if (typeName === "[object Object]") {
       typeName = "null";
     }
-    var methodName = this.getMethodName();
+    const methodName = this.getMethodName();
     if (functionName) {
       if (typeName && functionName.indexOf(typeName) != 0) {
         line += typeName + ".";
@@ -546,7 +546,7 @@ function CallSiteToString() {
 }
 
 function cloneCallSite(frame) {
-  var object = {};
+  const object = {};
   Object.getOwnPropertyNames(Object.getPrototypeOf(frame)).forEach(function(name) {
     object[name] = /^(?:is|get)/.test(name) ? function() { return frame[name].call(frame); } : frame[name];
   });
@@ -567,7 +567,7 @@ function wrapCallSite(frame, state) {
   // Most call sites will return the source file from getFileName(), but code
   // passed to eval() ending in "//# sourceURL=..." will return the source file
   // from getScriptNameOrSourceURL() instead
-  var source = frame.getFileName() || frame.getScriptNameOrSourceURL();
+  const source = frame.getFileName() || frame.getScriptNameOrSourceURL();
   if (source) {
     // v8 does not expose its internal isWasm, etc methods, so we do this instead.
     if(source.startsWith('wasm://')) {
@@ -575,28 +575,28 @@ function wrapCallSite(frame, state) {
       return frame;
     }
 
-    var line = frame.getLineNumber();
-    var column = frame.getColumnNumber() - 1;
+    const line = frame.getLineNumber();
+    let column = frame.getColumnNumber() - 1;
 
     // Fix position in Node where some (internal) code is prepended.
     // See https://github.com/evanw/node-source-map-support/issues/36
     // Header removed in node at ^10.16 || >=11.11.0
     // v11 is not an LTS candidate, we can just test the one version with it.
     // Test node versions for: 10.16-19, 10.20+, 12-19, 20-99, 100+, or 11.11
-    var noHeader = /^v(10\.1[6-9]|10\.[2-9][0-9]|10\.[0-9]{3,}|1[2-9]\d*|[2-9]\d|\d{3,}|11\.11)/;
-    var headerLength = noHeader.test(process.version) ? 0 : 62;
+    const noHeader = /^v(10\.1[6-9]|10\.[2-9][0-9]|10\.[0-9]{3,}|1[2-9]\d*|[2-9]\d|\d{3,}|11\.11)/;
+    const headerLength = noHeader.test(process.version) ? 0 : 62;
     if (line === 1 && column > headerLength && !isInBrowser() && !frame.isEval()) {
       column -= headerLength;
     }
 
-    var position = mapSourcePosition({
+    const position = mapSourcePosition({
       source: source,
       line: line,
       column: column
     });
     state.curPosition = position;
     frame = cloneCallSite(frame);
-    var originalFunctionName = frame.getFunctionName;
+    const originalFunctionName = frame.getFunctionName;
     frame.getFunctionName = function() {
       if (state.nextPosition == null) {
         return originalFunctionName();
@@ -611,7 +611,7 @@ function wrapCallSite(frame, state) {
   }
 
   // Code called using eval() needs special handling
-  var origin = frame.isEval() && frame.getEvalOrigin();
+  let origin = frame.isEval() && frame.getEvalOrigin();
   if (origin) {
     origin = mapEvalOrigin(origin);
     frame = cloneCallSite(frame);
@@ -623,7 +623,7 @@ function wrapCallSite(frame, state) {
   return frame;
 }
 
-var kIsNodeError = undefined;
+let kIsNodeError = undefined;
 try {
   // Get a deliberate ERR_INVALID_ARG_TYPE
   // TODO is there a better way to reliably get an instance of NodeError?
@@ -652,7 +652,7 @@ function createPrepareStackTrace(hookState) {
     // node gives its own errors special treatment.  Mimic that behavior
     // https://github.com/nodejs/node/blob/3cbaabc4622df1b4009b9d026a1a970bdbae6e89/lib/internal/errors.js#L118-L128
     // https://github.com/nodejs/node/pull/39182
-    var errorString;
+    let errorString;
     if (kIsNodeError) {
       if(kIsNodeError in error) {
         errorString = `${error.name} [${error.code}]: ${error.message}`;
@@ -660,14 +660,14 @@ function createPrepareStackTrace(hookState) {
         errorString = ErrorPrototypeToString(error);
       }
     } else {
-      var name = error.name || 'Error';
-      var message = error.message || '';
+      const name = error.name || 'Error';
+      const message = error.message || '';
       errorString = message ? name + ": " + message : name;
     }
 
-    var state = { nextPosition: null, curPosition: null };
-    var processedStack = [];
-    for (var i = stack.length - 1; i >= 0; i--) {
+    const state = { nextPosition: null, curPosition: null };
+    const processedStack = [];
+    for (let i = stack.length - 1; i >= 0; i--) {
       processedStack.push('\n    at ' + wrapCallSite(stack[i], state));
       state.nextPosition = state.curPosition;
     }
@@ -678,14 +678,14 @@ function createPrepareStackTrace(hookState) {
 
 // Generate position and snippet of original source with pointer
 function getErrorSource(error) {
-  var match = /\n    at [^(]+ \((.*):(\d+):(\d+)\)/.exec(error.stack);
+  const match = /\n {4}at [^(]+ \((.*):(\d+):(\d+)\)/.exec(error.stack);
   if (match) {
-    var source = match[1];
-    var line = +match[2];
-    var column = +match[3];
+    const source = match[1];
+    const line = +match[2];
+    const column = +match[3];
 
     // Support the inline sourceContents inside the source map
-    var contents = getFileContentsCache(source);
+    let contents = getFileContentsCache(source);
 
     const sourceAsPath = tryFileURLToPath(source);
 
@@ -700,7 +700,7 @@ function getErrorSource(error) {
 
     // Format the line from the original source code like node does
     if (contents) {
-      var code = contents.split(/(?:\r\n|\r|\n)/)[line - 1];
+      const code = contents.split(/(?:\r\n|\r|\n)/)[line - 1];
       if (code) {
         return source + ':' + line + '\n' + code + '\n' +
           new Array(column).join(' ') + '^';
@@ -711,7 +711,7 @@ function getErrorSource(error) {
 }
 
 function printFatalErrorUponExit (error) {
-  var source = getErrorSource(error);
+  const source = getErrorSource(error);
 
   // Ensure error is printed synchronously and not truncated
   if (process.stderr._handle && process.stderr._handle.setBlocking) {
@@ -733,13 +733,13 @@ function printFatalErrorUponExit (error) {
 
 function shimEmitUncaughtException () {
   const originalValue = process.emit;
-  var hook = sharedData.processEmitHook = {
+  const hook = sharedData.processEmitHook = {
     enabled: true,
     originalValue,
     installedValue: undefined
   };
-  var isTerminatingDueToFatalException = false;
-  var fatalException;
+  let isTerminatingDueToFatalException = false;
+  let fatalException;
 
   process.emit = sharedData.processEmitHook.installedValue = function (type) {
     const hadListeners = originalValue.apply(this, arguments);
@@ -757,8 +757,8 @@ function shimEmitUncaughtException () {
   };
 }
 
-var originalRetrieveFileHandlers = sharedData.retrieveFileHandlers.slice(0);
-var originalRetrieveMapHandlers = sharedData.retrieveMapHandlers.slice(0);
+const originalRetrieveFileHandlers = sharedData.retrieveFileHandlers.slice(0);
+const originalRetrieveMapHandlers = sharedData.retrieveMapHandlers.slice(0);
 
 exports.wrapCallSite = wrapCallSite;
 exports.getErrorSource = getErrorSource;
@@ -776,7 +776,7 @@ exports.install = function(options) {
   }
 
   // Use dynamicRequire to avoid including in browser bundles
-  var Module = dynamicRequire(module, 'module');
+  const Module = dynamicRequire(module, 'module');
 
   // Redirect subsequent imports of "source-map-support"
   // to this package
@@ -838,7 +838,7 @@ exports.install = function(options) {
 
   // Support runtime transpilers that include inline source maps
   if (options.hookRequire && !isInBrowser()) {
-    var $compile = Module.prototype._compile;
+    const $compile = Module.prototype._compile;
 
     if (!$compile.__sourceMapSupport) {
       Module.prototype._compile = function(content, filename) {
@@ -870,7 +870,7 @@ exports.install = function(options) {
   }
 
   if (!sharedData.processEmitHook) {
-    var installHandler = 'handleUncaughtExceptions' in options ?
+    let installHandler = 'handleUncaughtExceptions' in options ?
       options.handleUncaughtExceptions : true;
 
     // Do not override 'uncaughtException' with our own handler in Node.js
@@ -878,7 +878,7 @@ exports.install = function(options) {
     // rather than printing something to stderr and exiting.
     try {
       // We need to use `dynamicRequire` because `require` on it's own will be optimized by WebPack/Browserify.
-      var worker_threads = dynamicRequire(module, 'worker_threads');
+      const worker_threads = dynamicRequire(module, 'worker_threads');
       if (worker_threads.isMainThread === false) {
         installHandler = false;
       }
@@ -923,7 +923,7 @@ exports.uninstall = function() {
     // Disable behavior
     sharedData.moduleResolveFilenameHook.enabled = false;
     // If possible, remove our hook function.  May not be possible if subsequent third-party hooks have wrapped around us.
-    var Module = dynamicRequire(module, 'module');
+    const Module = dynamicRequire(module, 'module');
     if(Module._resolveFilename === sharedData.moduleResolveFilenameHook.installedValue) {
       Module._resolveFilename = sharedData.moduleResolveFilenameHook.originalValue;
     }

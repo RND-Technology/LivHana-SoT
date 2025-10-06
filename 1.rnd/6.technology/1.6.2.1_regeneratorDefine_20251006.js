@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = regeneratorDefine;
 function regeneratorDefine(obj, key, value, noFlags) {
-  var define = Object.defineProperty;
+  let define = Object.defineProperty;
   try {
     define({}, "", {});
   } catch (_) {

@@ -203,7 +203,7 @@ class Buffer {
     position.column += len - last;
   }
   _mark(line, column, identifierName, identifierNamePos, filename) {
-    var _this$_map;
+    let _this$_map;
     (_this$_map = this._map) == null || _this$_map.mark(this._position, line, column, identifierName, identifierNamePos, filename);
   }
   removeTrailingNewline() {

@@ -1,4 +1,4 @@
-var baseGetAllKeys = require('./_baseGetAllKeys'),
+const baseGetAllKeys = require('./_baseGetAllKeys'),
     getSymbols = require('./_getSymbols'),
     keys = require('./keys');
 

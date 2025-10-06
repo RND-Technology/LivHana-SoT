@@ -1,19 +1,19 @@
 "use strict";
-var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (receiver, state, kind, f) {
+const __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (receiver, state, kind, f) {
     if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
     return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 };
-var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
+const __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
     if (kind === "m") throw new TypeError("Private method is not writable");
     if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
     return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 };
-var _PubSub_instances, _a, _PubSub_channelsArray, _PubSub_listenersSet, _PubSub_subscribing, _PubSub_isActive, _PubSub_listeners, _PubSub_extendChannelListeners, _PubSub_unsubscribeCommand, _PubSub_updateIsActive, _PubSub_emitPubSubMessage;
+let _PubSub_instances, _a, _PubSub_channelsArray, _PubSub_listenersSet, _PubSub_subscribing, _PubSub_isActive, _PubSub_listeners, _PubSub_extendChannelListeners, _PubSub_unsubscribeCommand, _PubSub_updateIsActive, _PubSub_emitPubSubMessage;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PubSub = exports.PubSubType = void 0;
-var PubSubType;
+let PubSubType;
 (function (PubSubType) {
     PubSubType["CHANNELS"] = "CHANNELS";
     PubSubType["PATTERNS"] = "PATTERNS";
@@ -61,10 +61,10 @@ class PubSub {
         return __classPrivateFieldGet(this, _PubSub_isActive, "f");
     }
     subscribe(type, channels, listener, returnBuffers) {
-        var _b;
+        let _b;
         const args = [COMMANDS[type].subscribe], channelsArray = __classPrivateFieldGet(_a, _a, "m", _PubSub_channelsArray).call(_a, channels);
         for (const channel of channelsArray) {
-            let channelListeners = __classPrivateFieldGet(this, _PubSub_listeners, "f")[type].get(channel);
+            const channelListeners = __classPrivateFieldGet(this, _PubSub_listeners, "f")[type].get(channel);
             if (!channelListeners || channelListeners.unsubscribing) {
                 args.push(channel);
             }
@@ -82,7 +82,7 @@ class PubSub {
             args,
             channelsCounter: args.length - 1,
             resolve: () => {
-                var _b;
+                let _b;
                 __classPrivateFieldSet(this, _PubSub_subscribing, (_b = __classPrivateFieldGet(this, _PubSub_subscribing, "f"), _b--, _b), "f");
                 for (const channel of channelsArray) {
                     let listeners = __classPrivateFieldGet(this, _PubSub_listeners, "f")[type].get(channel);
@@ -98,14 +98,14 @@ class PubSub {
                 }
             },
             reject: () => {
-                var _b;
+                let _b;
                 __classPrivateFieldSet(this, _PubSub_subscribing, (_b = __classPrivateFieldGet(this, _PubSub_subscribing, "f"), _b--, _b), "f");
                 __classPrivateFieldGet(this, _PubSub_instances, "m", _PubSub_updateIsActive).call(this);
             }
         };
     }
     extendChannelListeners(type, channel, listeners) {
-        var _b;
+        let _b;
         if (!__classPrivateFieldGet(this, _PubSub_instances, "m", _PubSub_extendChannelListeners).call(this, type, channel, listeners))
             return;
         __classPrivateFieldSet(this, _PubSub_isActive, true, "f");
@@ -116,16 +116,16 @@ class PubSub {
                 channel
             ],
             channelsCounter: 1,
-            resolve: () => { var _b, _c; return __classPrivateFieldSet(this, _PubSub_subscribing, (_c = __classPrivateFieldGet(this, _PubSub_subscribing, "f"), _b = _c--, _c), "f"), _b; },
+            resolve: () => { let _b, _c; return __classPrivateFieldSet(this, _PubSub_subscribing, (_c = __classPrivateFieldGet(this, _PubSub_subscribing, "f"), _b = _c--, _c), "f"), _b; },
             reject: () => {
-                var _b;
+                let _b;
                 __classPrivateFieldSet(this, _PubSub_subscribing, (_b = __classPrivateFieldGet(this, _PubSub_subscribing, "f"), _b--, _b), "f");
                 __classPrivateFieldGet(this, _PubSub_instances, "m", _PubSub_updateIsActive).call(this);
             }
         };
     }
     extendTypeListeners(type, listeners) {
-        var _b;
+        let _b;
         const args = [COMMANDS[type].subscribe];
         for (const [channel, channelListeners] of listeners) {
             if (__classPrivateFieldGet(this, _PubSub_instances, "m", _PubSub_extendChannelListeners).call(this, type, channel, channelListeners)) {
@@ -139,9 +139,9 @@ class PubSub {
         return {
             args,
             channelsCounter: args.length - 1,
-            resolve: () => { var _b, _c; return __classPrivateFieldSet(this, _PubSub_subscribing, (_c = __classPrivateFieldGet(this, _PubSub_subscribing, "f"), _b = _c--, _c), "f"), _b; },
+            resolve: () => { let _b, _c; return __classPrivateFieldSet(this, _PubSub_subscribing, (_c = __classPrivateFieldGet(this, _PubSub_subscribing, "f"), _b = _c--, _c), "f"), _b; },
             reject: () => {
-                var _b;
+                let _b;
                 __classPrivateFieldSet(this, _PubSub_subscribing, (_b = __classPrivateFieldGet(this, _PubSub_subscribing, "f"), _b--, _b), "f");
                 __classPrivateFieldGet(this, _PubSub_instances, "m", _PubSub_updateIsActive).call(this);
             }
@@ -208,14 +208,14 @@ class PubSub {
         __classPrivateFieldSet(this, _PubSub_subscribing, 0, "f");
     }
     resubscribe() {
-        var _b;
+        let _b;
         const commands = [];
         for (const [type, listeners] of Object.entries(__classPrivateFieldGet(this, _PubSub_listeners, "f"))) {
             if (!listeners.size)
                 continue;
             __classPrivateFieldSet(this, _PubSub_isActive, true, "f");
             __classPrivateFieldSet(this, _PubSub_subscribing, (_b = __classPrivateFieldGet(this, _PubSub_subscribing, "f"), _b++, _b), "f");
-            const callback = () => { var _b, _c; return __classPrivateFieldSet(this, _PubSub_subscribing, (_c = __classPrivateFieldGet(this, _PubSub_subscribing, "f"), _b = _c--, _c), "f"), _b; };
+            const callback = () => { let _b, _c; return __classPrivateFieldSet(this, _PubSub_subscribing, (_c = __classPrivateFieldGet(this, _PubSub_subscribing, "f"), _b = _c--, _c), "f"), _b; };
             commands.push({
                 args: [
                     COMMANDS[type].subscribe,

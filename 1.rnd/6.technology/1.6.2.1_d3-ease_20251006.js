@@ -31,9 +31,9 @@ function cubicInOut(t) {
   return ((t *= 2) <= 1 ? t * t * t : (t -= 2) * t * t + 2) / 2;
 }
 
-var exponent = 3;
+const exponent = 3;
 
-var polyIn = (function custom(e) {
+const polyIn = (function custom(e) {
   e = +e;
 
   function polyIn(t) {
@@ -45,7 +45,7 @@ var polyIn = (function custom(e) {
   return polyIn;
 })(exponent);
 
-var polyOut = (function custom(e) {
+const polyOut = (function custom(e) {
   e = +e;
 
   function polyOut(t) {
@@ -57,7 +57,7 @@ var polyOut = (function custom(e) {
   return polyOut;
 })(exponent);
 
-var polyInOut = (function custom(e) {
+const polyInOut = (function custom(e) {
   e = +e;
 
   function polyInOut(t) {
@@ -69,7 +69,7 @@ var polyInOut = (function custom(e) {
   return polyInOut;
 })(exponent);
 
-var pi = Math.PI,
+const pi = Math.PI,
     halfPi = pi / 2;
 
 function sinIn(t) {
@@ -113,7 +113,7 @@ function circleInOut(t) {
   return ((t *= 2) <= 1 ? 1 - Math.sqrt(1 - t * t) : Math.sqrt(1 - (t -= 2) * t) + 1) / 2;
 }
 
-var b1 = 4 / 11,
+const b1 = 4 / 11,
     b2 = 6 / 11,
     b3 = 8 / 11,
     b4 = 3 / 4,
@@ -136,9 +136,9 @@ function bounceInOut(t) {
   return ((t *= 2) <= 1 ? 1 - bounceOut(1 - t) : bounceOut(t - 1) + 1) / 2;
 }
 
-var overshoot = 1.70158;
+const overshoot = 1.70158;
 
-var backIn = (function custom(s) {
+const backIn = (function custom(s) {
   s = +s;
 
   function backIn(t) {
@@ -150,7 +150,7 @@ var backIn = (function custom(s) {
   return backIn;
 })(overshoot);
 
-var backOut = (function custom(s) {
+const backOut = (function custom(s) {
   s = +s;
 
   function backOut(t) {
@@ -162,7 +162,7 @@ var backOut = (function custom(s) {
   return backOut;
 })(overshoot);
 
-var backInOut = (function custom(s) {
+const backInOut = (function custom(s) {
   s = +s;
 
   function backInOut(t) {
@@ -174,12 +174,12 @@ var backInOut = (function custom(s) {
   return backInOut;
 })(overshoot);
 
-var tau = 2 * Math.PI,
+const tau = 2 * Math.PI,
     amplitude = 1,
     period = 0.3;
 
-var elasticIn = (function custom(a, p) {
-  var s = Math.asin(1 / (a = Math.max(1, a))) * (p /= tau);
+const elasticIn = (function custom(a, p) {
+  const s = Math.asin(1 / (a = Math.max(1, a))) * (p /= tau);
 
   function elasticIn(t) {
     return a * tpmt(-(--t)) * Math.sin((s - t) / p);
@@ -191,8 +191,8 @@ var elasticIn = (function custom(a, p) {
   return elasticIn;
 })(amplitude, period);
 
-var elasticOut = (function custom(a, p) {
-  var s = Math.asin(1 / (a = Math.max(1, a))) * (p /= tau);
+const elasticOut = (function custom(a, p) {
+  const s = Math.asin(1 / (a = Math.max(1, a))) * (p /= tau);
 
   function elasticOut(t) {
     return 1 - a * tpmt(t = +t) * Math.sin((t + s) / p);
@@ -204,8 +204,8 @@ var elasticOut = (function custom(a, p) {
   return elasticOut;
 })(amplitude, period);
 
-var elasticInOut = (function custom(a, p) {
-  var s = Math.asin(1 / (a = Math.max(1, a))) * (p /= tau);
+const elasticInOut = (function custom(a, p) {
+  const s = Math.asin(1 / (a = Math.max(1, a))) * (p /= tau);
 
   function elasticInOut(t) {
     return ((t = t * 2 - 1) < 0

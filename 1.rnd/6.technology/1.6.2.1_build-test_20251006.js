@@ -2,11 +2,11 @@
 
 process.env.NODE_ENV = 'test'
 
-var path = require('path')
-var test = null
+const path = require('path')
+let test = null
 
 try {
-  var pkg = require(path.join(process.cwd(), 'package.json'))
+  const pkg = require(path.join(process.cwd(), 'package.json'))
   if (pkg.name && process.env[pkg.name.toUpperCase().replace(/-/g, '_')]) {
     process.exit(0)
   }

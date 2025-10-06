@@ -10,12 +10,14 @@
 ## L0: CRITICAL CONTEXT (5 SECONDS)
 
 ### Revenue Engine
+
 - **Reggie & Dro:** Texas cannabis delivery + retail
 - **LightSpeed POS:** X-Series live (Account: 020b2c2a-4661-11ef-e88b-b42e5d3b90cc)
 - **KAJA Payments:** Live (API Key: 78G4zHUSyZ)
 - **Square:** Historical data only (read-only in BigQuery)
 
 ### Tech Stack Status
+
 - ✅ LightSpeed API (KAJA_API_KEY unlocked Oct 4)
 - ✅ KAJA/Authorize.Net payment processing
 - ✅ Leafly API integration (Jesse + Peter/CEO collab)
@@ -23,6 +25,7 @@
 - ✅ Anthropic API (Claude Sonnet 4.5, no limits)
 
 ### Active Missions
+
 1. **Finance Layer Unlocked:** Sovereign Life OS Master Monday Edition launched
 2. **LightSpeed Makeover v1:** Product page compliance (8 SKUs, remove "weed", add ingredients)
 3. **Verification API:** Replace demo data with real LightSpeed customer lookup
@@ -30,6 +33,7 @@
 5. **Cockpit UI:** Update after backend stable
 
 ### Jesse's Execution Style
+
 - ✅ **SHIP CODE NOW** - Iterate later
 - ✅ **HONEST STATUS** - Never fake completion
 - ✅ **HUMAN IN LOOP** - Stuck >15min? Alert immediately
@@ -59,6 +63,7 @@ cd ~/LivHana-Trinity-Local/LivHana-SoT
 ```
 
 This pushes all live credentials to Secret Manager:
+
 - LIGHTSPEED_CLIENT_ID (KAJA_API_KEY: 78G4zHUSyZ)
 - LIGHTSPEED_ACCOUNT_ID (020b2c2a-4661-11ef-e88b-b42e5d3b90cc)
 - KAJA_API_KEY, KAJA_API_SECRET, KAJA_GATEWAY_ID
@@ -77,6 +82,7 @@ cat .claude/STATE.md                     # Session state
 ### Step 2: Acknowledge Protocols
 
 State in response:
+
 ```
 ✅ Learning Ledger: <X failures> noted (focus on #7: 5-minute verification rule)
 ✅ Verification Protocol: <Y gates> active
@@ -98,6 +104,7 @@ Log output to `.claude/SESSION_PROGRESS.md` with timestamp.
 ### Step 4: State Session Mission
 
 From user request or COMMANDER_CODEX_ORDERS, create numbered steps with:
+
 - Concrete metrics (file counts, timestamps)
 - Verification checkpoints
 - Proof requirements
@@ -124,6 +131,7 @@ From user request or COMMANDER_CODEX_ORDERS, create numbered steps with:
 - **Format:** "Shellcheck: 107 warnings (Verified: Oct 4 06:35:42)"
 
 **Storage:**
+
 ```
 .evidence/YYYY-MM-DD/
 ├── api/              # curl outputs
@@ -156,6 +164,7 @@ From user request or COMMANDER_CODEX_ORDERS, create numbered steps with:
 ### Human-in-Loop Protocol
 
 **Alert Jesse when:**
+
 - Blocked >15 minutes on technical issue
 - Ambiguous requirements need clarification
 - Architecture decision affects multiple systems
@@ -164,6 +173,7 @@ From user request or COMMANDER_CODEX_ORDERS, create numbered steps with:
 - External API credentials needed
 
 **Format:**
+
 ```
 🚨 HUMAN IN LOOP NEEDED - [BRIEF ISSUE]
 
@@ -184,6 +194,7 @@ ETA if approved: [Time to completion]
 1. ✅ **L0: Critical Context** (read above, 5 sec)
 2. ✅ **L1: Boot Sequence** (Steps 0-4, 75 sec total)
 3. ✅ **Report Status:**
+
    ```
    ✅ Context loaded: [Last task + %]
    ✅ 1Password: Signed in

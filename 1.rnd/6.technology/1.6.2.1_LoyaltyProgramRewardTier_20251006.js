@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
 exports.loyaltyProgramRewardTierSchema = void 0;
-var schema_1 = require("../schema");
-var catalogObjectReference_1 = require("./catalogObjectReference");
-var loyaltyProgramRewardDefinition_1 = require("./loyaltyProgramRewardDefinition");
+const schema_1 = require("../schema");
+const catalogObjectReference_1 = require("./catalogObjectReference");
+const loyaltyProgramRewardDefinition_1 = require("./loyaltyProgramRewardDefinition");
 exports.loyaltyProgramRewardTierSchema = (0, schema_1.object)({
     id: ['id', (0, schema_1.optional)((0, schema_1.string)())],
     points: ['points', (0, schema_1.number)()],

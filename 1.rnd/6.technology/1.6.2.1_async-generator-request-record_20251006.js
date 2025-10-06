@@ -1,8 +1,8 @@
 'use strict';
 
-var hasOwn = require('hasown');
+const hasOwn = require('hasown');
 
-var isPromiseCapabilityRecord = require('./promise-capability-record');
+const isPromiseCapabilityRecord = require('./promise-capability-record');
 
 module.exports = function isAsyncGeneratorRequestRecord(value) {
 	return !!value

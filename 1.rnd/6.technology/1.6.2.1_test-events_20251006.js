@@ -1,7 +1,7 @@
 'use strict';
 
-var parseCst = require('./parse-cst.js');
-var Document = require('./Document-9b4560a1.js');
+const parseCst = require('./parse-cst.js');
+const Document = require('./Document-9b4560a1.js');
 require('./PlainValue-ec8e588e.js');
 require('./resolveSeq-d03cb037.js');
 require('./Schema-88e323a7.js');

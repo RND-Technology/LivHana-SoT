@@ -34,5 +34,5 @@ const config = {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   unknown: () => {}
 };
-var _default = config;
+const _default = config;
 exports.default = _default;

@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
 exports.shiftFilterSchema = void 0;
-var schema_1 = require("../schema");
-var shiftWorkday_1 = require("./shiftWorkday");
-var timeRange_1 = require("./timeRange");
+const schema_1 = require("../schema");
+const shiftWorkday_1 = require("./shiftWorkday");
+const timeRange_1 = require("./timeRange");
 exports.shiftFilterSchema = (0, schema_1.object)({
     locationIds: ['location_ids', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.array)((0, schema_1.string)())))],
     employeeIds: ['employee_ids', (0, schema_1.optional)((0, schema_1.nullable)((0, schema_1.array)((0, schema_1.string)())))],

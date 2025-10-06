@@ -1,16 +1,16 @@
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+const GetIntrinsic = require('get-intrinsic');
 
-var $Array = GetIntrinsic('%Array%');
-var $species = GetIntrinsic('%Symbol.species%', true);
-var $TypeError = require('es-errors/type');
-var isInteger = require('math-intrinsics/isInteger');
-var isObject = require('es-object-atoms/isObject');
+const $Array = GetIntrinsic('%Array%');
+const $species = GetIntrinsic('%Symbol.species%', true);
+const $TypeError = require('es-errors/type');
+const isInteger = require('math-intrinsics/isInteger');
+const isObject = require('es-object-atoms/isObject');
 
-var Get = require('./Get');
-var IsArray = require('./IsArray');
-var IsConstructor = require('./IsConstructor');
+const Get = require('./Get');
+const IsArray = require('./IsArray');
+const IsConstructor = require('./IsConstructor');
 
 // https://262.ecma-international.org/6.0/#sec-arrayspeciescreate
 
@@ -18,9 +18,9 @@ module.exports = function ArraySpeciesCreate(originalArray, length) {
 	if (!isInteger(length) || length < 0) {
 		throw new $TypeError('Assertion failed: length must be an integer >= 0');
 	}
-	var len = length === 0 ? 0 : length;
-	var C;
-	var isArray = IsArray(originalArray);
+	const len = length === 0 ? 0 : length;
+	let C;
+	const isArray = IsArray(originalArray);
 	if (isArray) {
 		C = Get(originalArray, 'constructor');
 		// TODO: figure out how to make a cross-realm normal Array, a same-realm Array

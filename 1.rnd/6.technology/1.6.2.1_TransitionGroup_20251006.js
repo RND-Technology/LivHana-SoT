@@ -3,31 +3,31 @@
 exports.__esModule = true;
 exports.default = void 0;
 
-var _propTypes = _interopRequireDefault(require("prop-types"));
+const _propTypes = _interopRequireDefault(require("prop-types"));
 
-var _react = _interopRequireDefault(require("react"));
+const _react = _interopRequireDefault(require("react"));
 
-var _TransitionGroupContext = _interopRequireDefault(require("./TransitionGroupContext"));
+const _TransitionGroupContext = _interopRequireDefault(require("./TransitionGroupContext"));
 
-var _ChildMapping = require("./utils/ChildMapping");
+const _ChildMapping = require("./utils/ChildMapping");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; const target = {}; const sourceKeys = Object.keys(source); let key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function _extends() { _extends = Object.assign || function (target) { for (let i = 1; i < arguments.length; i++) { const source = arguments[i]; for (const key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
 
-var values = Object.values || function (obj) {
+const values = Object.values || function (obj) {
   return Object.keys(obj).map(function (k) {
     return obj[k];
   });
 };
 
-var defaultProps = {
+const defaultProps = {
   component: 'div',
   childFactory: function childFactory(child) {
     return child;
@@ -48,15 +48,15 @@ var defaultProps = {
  * items.
  */
 
-var TransitionGroup = /*#__PURE__*/function (_React$Component) {
+const TransitionGroup = /*#__PURE__*/function (_React$Component) {
   _inheritsLoose(TransitionGroup, _React$Component);
 
   function TransitionGroup(props, context) {
-    var _this;
+    let _this;
 
     _this = _React$Component.call(this, props, context) || this;
 
-    var handleExited = _this.handleExited.bind(_assertThisInitialized(_this)); // Initial children should all be entering, dependent on appear
+    const handleExited = _this.handleExited.bind(_assertThisInitialized(_this)); // Initial children should all be entering, dependent on appear
 
 
     _this.state = {
@@ -69,7 +69,7 @@ var TransitionGroup = /*#__PURE__*/function (_React$Component) {
     return _this;
   }
 
-  var _proto = TransitionGroup.prototype;
+  const _proto = TransitionGroup.prototype;
 
   _proto.componentDidMount = function componentDidMount() {
     this.mounted = true;
@@ -85,7 +85,7 @@ var TransitionGroup = /*#__PURE__*/function (_React$Component) {
   };
 
   TransitionGroup.getDerivedStateFromProps = function getDerivedStateFromProps(nextProps, _ref) {
-    var prevChildMapping = _ref.children,
+    const prevChildMapping = _ref.children,
         handleExited = _ref.handleExited,
         firstRender = _ref.firstRender;
     return {
@@ -96,7 +96,7 @@ var TransitionGroup = /*#__PURE__*/function (_React$Component) {
   ;
 
   _proto.handleExited = function handleExited(child, node) {
-    var currentChildMapping = (0, _ChildMapping.getChildMapping)(this.props.children);
+    const currentChildMapping = (0, _ChildMapping.getChildMapping)(this.props.children);
     if (child.key in currentChildMapping) return;
 
     if (child.props.onExited) {
@@ -105,7 +105,7 @@ var TransitionGroup = /*#__PURE__*/function (_React$Component) {
 
     if (this.mounted) {
       this.setState(function (state) {
-        var children = _extends({}, state.children);
+        const children = _extends({}, state.children);
 
         delete children[child.key];
         return {
@@ -116,13 +116,13 @@ var TransitionGroup = /*#__PURE__*/function (_React$Component) {
   };
 
   _proto.render = function render() {
-    var _this$props = this.props,
+    const _this$props = this.props,
         Component = _this$props.component,
         childFactory = _this$props.childFactory,
         props = _objectWithoutPropertiesLoose(_this$props, ["component", "childFactory"]);
 
-    var contextValue = this.state.contextValue;
-    var children = values(this.state.children).map(childFactory);
+    const contextValue = this.state.contextValue;
+    const children = values(this.state.children).map(childFactory);
     delete props.appear;
     delete props.enter;
     delete props.exit;
@@ -200,6 +200,6 @@ TransitionGroup.propTypes = process.env.NODE_ENV !== "production" ? {
   childFactory: _propTypes.default.func
 } : {};
 TransitionGroup.defaultProps = defaultProps;
-var _default = TransitionGroup;
+const _default = TransitionGroup;
 exports.default = _default;
 module.exports = exports.default;

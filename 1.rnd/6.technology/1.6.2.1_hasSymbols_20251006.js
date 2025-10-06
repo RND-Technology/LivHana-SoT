@@ -1,14 +1,14 @@
 'use strict';
 
-var keys = require('object-keys');
+const keys = require('object-keys');
 
 module.exports = function hasSymbols() {
 	if (typeof Symbol !== 'function' || typeof Object.getOwnPropertySymbols !== 'function') { return false; }
 	if (typeof Symbol.iterator === 'symbol') { return true; }
 
-	var obj = {};
-	var sym = Symbol('test');
-	var symObj = Object(sym);
+	const obj = {};
+	let sym = Symbol('test');
+	const symObj = Object(sym);
 	if (typeof sym === 'string') { return false; }
 
 	if (Object.prototype.toString.call(sym) !== '[object Symbol]') { return false; }
@@ -21,7 +21,7 @@ module.exports = function hasSymbols() {
 	 * if (!(symObj instanceof Symbol)) { return false; }
 	 */
 
-	var symVal = 42;
+	const symVal = 42;
 	obj[sym] = symVal;
 	for (sym in obj) { return false; } // eslint-disable-line no-unreachable-loop
 	if (keys(obj).length !== 0) { return false; }
@@ -29,13 +29,13 @@ module.exports = function hasSymbols() {
 
 	if (typeof Object.getOwnPropertyNames === 'function' && Object.getOwnPropertyNames(obj).length !== 0) { return false; }
 
-	var syms = Object.getOwnPropertySymbols(obj);
+	const syms = Object.getOwnPropertySymbols(obj);
 	if (syms.length !== 1 || syms[0] !== sym) { return false; }
 
 	if (!Object.prototype.propertyIsEnumerable.call(obj, sym)) { return false; }
 
 	if (typeof Object.getOwnPropertyDescriptor === 'function') {
-		var descriptor = Object.getOwnPropertyDescriptor(obj, sym);
+		const descriptor = Object.getOwnPropertyDescriptor(obj, sym);
 		if (descriptor.value !== symVal || descriptor.enumerable !== true) { return false; }
 	}
 

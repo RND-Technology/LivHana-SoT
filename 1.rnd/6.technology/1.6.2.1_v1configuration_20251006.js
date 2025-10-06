@@ -19,7 +19,7 @@ exports.gamesConfiguration_v1configuration = void 0;
 /* eslint-disable @typescript-eslint/no-namespace */
 /* eslint-disable no-irregular-whitespace */
 const googleapis_common_1 = require("googleapis-common");
-var gamesConfiguration_v1configuration;
+let gamesConfiguration_v1configuration;
 (function (gamesConfiguration_v1configuration) {
     /**
      * Google Play Game Services Publishing API

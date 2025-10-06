@@ -1,11 +1,11 @@
-var test = require('tape');
-var path = require('path');
-var resolve = require('../');
+const test = require('tape');
+const path = require('path');
+const resolve = require('../');
 
 test('synchronous pathfilter', function (t) {
-    var res;
-    var resolverDir = __dirname + '/pathfilter/deep_ref';
-    var pathFilter = function (pkg, x, remainder) {
+    let res;
+    const resolverDir = __dirname + '/pathfilter/deep_ref';
+    const pathFilter = function (pkg, x, remainder) {
         t.equal(pkg.version, '1.2.3');
         t.equal(x, path.join(resolverDir, 'node_modules', 'deep', 'ref'));
         t.equal(remainder, 'ref');

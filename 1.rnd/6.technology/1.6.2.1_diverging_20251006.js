@@ -8,7 +8,7 @@ import {symlogish} from "./symlog.js";
 import {powish} from "./pow.js";
 
 function transformer() {
-  var x0 = 0,
+  let x0 = 0,
       x1 = 0.5,
       x2 = 1,
       s = 1,
@@ -40,7 +40,7 @@ function transformer() {
 
   function range(interpolate) {
     return function(_) {
-      var r0, r1, r2;
+      let r0, r1, r2;
       return arguments.length ? ([r0, r1, r2] = _, interpolator = piecewise(interpolate, [r0, r1, r2]), scale) : [interpolator(0), interpolator(0.5), interpolator(1)];
     };
   }
@@ -60,7 +60,7 @@ function transformer() {
 }
 
 export default function diverging() {
-  var scale = linearish(transformer()(identity));
+  const scale = linearish(transformer()(identity));
 
   scale.copy = function() {
     return copy(scale, diverging());
@@ -70,7 +70,7 @@ export default function diverging() {
 }
 
 export function divergingLog() {
-  var scale = loggish(transformer()).domain([0.1, 1, 10]);
+  const scale = loggish(transformer()).domain([0.1, 1, 10]);
 
   scale.copy = function() {
     return copy(scale, divergingLog()).base(scale.base());
@@ -80,7 +80,7 @@ export function divergingLog() {
 }
 
 export function divergingSymlog() {
-  var scale = symlogish(transformer());
+  const scale = symlogish(transformer());
 
   scale.copy = function() {
     return copy(scale, divergingSymlog()).constant(scale.constant());
@@ -90,7 +90,7 @@ export function divergingSymlog() {
 }
 
 export function divergingPow() {
-  var scale = powish(transformer());
+  const scale = powish(transformer());
 
   scale.copy = function() {
     return copy(scale, divergingPow()).exponent(scale.exponent());

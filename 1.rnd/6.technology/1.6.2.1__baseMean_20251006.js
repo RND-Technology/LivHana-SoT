@@ -1,7 +1,7 @@
-var baseSum = require('./_baseSum');
+const baseSum = require('./_baseSum');
 
 /** Used as references for various `Number` constants. */
-var NAN = 0 / 0;
+const NAN = 0 / 0;
 
 /**
  * The base implementation of `_.mean` and `_.meanBy` without support for
@@ -13,7 +13,7 @@ var NAN = 0 / 0;
  * @returns {number} Returns the mean.
  */
 function baseMean(array, iteratee) {
-  var length = array == null ? 0 : array.length;
+  const length = array == null ? 0 : array.length;
   return length ? (baseSum(array, iteratee) / length) : NAN;
 }
 
