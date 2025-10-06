@@ -1,0 +1,390 @@
+# SQUARE ACCOUNT DEACTIVATION - INVESTIGATION TOOLS
+
+## 🎯 MISSION
+
+Investigate Square account deactivation. Answer 5 critical questions:
+1. Why was account deactivated?
+2. How to remedy and reactivate?
+3. Square CBD program status?
+4. Can Hempress 3 CBD seeds be sold?
+5. Did VISA shut down hemp sales?
+
+---
+
+## 📁 FILES CREATED
+
+### 1. **SQUARE_DEACTIVATION_INVESTIGATION.md**
+   - Complete investigation framework
+   - Search queries for Gmail
+   - Fact extraction checklist
+   - Email templates
+   - Next steps roadmap
+   - **USE THIS**: Master document for investigation
+
+### 2. **analyze-square-email.js**
+   - Analyzes email text for key facts
+   - Extracts deactivation reasons
+   - Finds remedy instructions
+   - Identifies VISA/payment restrictions
+   - **USAGE**: Paste email content, get instant analysis
+
+### 3. **gmail-search-lindsay.js** (requires Gmail OAuth)
+   - Direct Gmail API search
+   - Finds Lindsay Goldsmith emails
+   - Searches Square deactivation threads
+   - Full email body extraction
+   - **STATUS**: Needs Gmail credentials setup
+
+### 4. **query-square-emails.js** (requires BigQuery)
+   - Queries already-ingested Gmail data
+   - Searches BigQuery for Square emails
+   - **STATUS**: Needs Gmail data in BigQuery first
+
+---
+
+## ⚡ QUICK START (3 OPTIONS)
+
+### OPTION A: Manual Search + Analysis Tool (FASTEST - 5 MIN)
+
+**Step 1**: Search your Gmail manually
+```
+Search queries:
+- from:Lindsay Goldsmith
+- from:@squareup.com subject:deactivat
+- Square CBD
+- VISA hemp
+```
+
+**Step 2**: Copy/paste email into analyzer
+```bash
+# Copy email text from Gmail
+# Run analyzer:
+node automation/analyze-square-email.js
+
+# Paste email content
+# Press Ctrl+D when done
+
+# Get instant analysis!
+```
+
+**Step 3**: Answer investigation questions
+- Use analysis output
+- Reference SQUARE_DEACTIVATION_INVESTIGATION.md
+- Fill in fact sheet
+
+---
+
+### OPTION B: Direct Gmail Search (REQUIRES OAUTH - 30 MIN)
+
+**Step 1**: Set up Gmail OAuth
+```bash
+cd automation/data-pipelines
+node gmail_auth.js
+# Follow prompts to authorize
+```
+
+**Step 2**: Run automated search
+```bash
+node automation/gmail-search-lindsay.js
+```
+
+**Step 3**: Review output
+- All Lindsay Goldsmith emails
+- All Square deactivation emails
+- Full content extraction
+- Automated fact analysis
+
+---
+
+### OPTION C: BigQuery Search (REQUIRES INGESTION - 1 HOUR)
+
+**Step 1**: Ingest Gmail to BigQuery
+```bash
+cd automation/data-pipelines
+node gmail_ingest.js --account=jesseniesen@gmail.com --max=1000
+```
+
+**Step 2**: Query BigQuery
+```bash
+node automation/query-square-emails.js
+```
+
+**Step 3**: Analyze results
+- Structured data
+- Easy filtering
+- Historical tracking
+
+---
+
+## 🚀 RECOMMENDED APPROACH
+
+### For Jesse (RIGHT NOW):
+
+**USE OPTION A** - Manual + Analysis Tool
+
+**Why**:
+- Fastest (5 minutes)
+- No setup needed
+- Works immediately
+- You already found emails
+
+**Steps**:
+1. Open Gmail
+2. Search: `from:Lindsay Goldsmith`
+3. Open each email
+4. Copy full email text (Ctrl+A, Ctrl+C)
+5. Run: `node automation/analyze-square-email.js`
+6. Paste email (Ctrl+V)
+7. Press Ctrl+D
+8. Review analysis
+9. Repeat for each email
+
+**After analyzing all emails**:
+- Open SQUARE_DEACTIVATION_INVESTIGATION.md
+- Fill in facts from analysis
+- Follow next steps checklist
+
+---
+
+## 📋 FACT SHEET (FILL THIS IN)
+
+### 1. DEACTIVATION REASON
+```
+Date of deactivation: _______________________
+Reason stated: _____________________________
+Policy violated: ___________________________
+Product flagged: ___________________________
+Quote from email: __________________________
+```
+
+### 2. REMEDY PROCESS
+```
+Appeal possible? Yes / No
+Steps to reactivate:
+1. _______________________________________
+2. _______________________________________
+3. _______________________________________
+
+Documents needed:
+- [ ] ___________________________________
+- [ ] ___________________________________
+
+Deadline: _________________________________
+Contact: Lindsay Goldsmith, 636-565-0896
+```
+
+### 3. CBD PROGRAM STATUS
+```
+Program active? Yes / No / Unknown
+Texas eligible? Yes / No / Unknown
+Product restrictions:
+- Topical: _______________________________
+- Ingestible: ____________________________
+- Seeds: _________________________________
+
+Last update: _______________________________
+```
+
+### 4. HEMPRESS SEEDS
+```
+Can sell on Square? Yes / No / Maybe
+Restrictions:
+__________________________________________
+__________________________________________
+
+Alternative classification:
+__________________________________________
+```
+
+### 5. VISA RESTRICTIONS
+```
+VISA policy change? Yes / No / Unknown
+Date of change: ___________________________
+Impact on Square:
+__________________________________________
+__________________________________________
+
+Alternative networks:
+- Mastercard: ____________________________
+- Discover: ______________________________
+- Amex: __________________________________
+```
+
+---
+
+## 🎯 DELIVERABLE
+
+### Final Report Format:
+
+```markdown
+# SQUARE ACCOUNT DEACTIVATION REPORT
+
+**Date**: [today's date]
+**Account**: ReggieAndDro.com
+**Contact**: Lindsay Goldsmith, 636-565-0896
+
+## EXECUTIVE SUMMARY
+
+Account deactivated on [date] due to [reason].
+[Can / Cannot] reactivate by [action].
+Alternative solution: [solution].
+
+## FINDINGS
+
+### 1. Deactivation Reason
+[Facts from emails]
+
+### 2. Reactivation Path
+[Steps to take]
+
+### 3. CBD Program Status
+[Current status]
+
+### 4. Hempress Seeds
+[Can sell: yes/no/conditions]
+
+### 5. VISA Restrictions
+[VISA policy impact]
+
+## TIMELINE OF EVENTS
+
+- [Date]: [Event]
+- [Date]: [Event]
+- [Date]: [Event]
+
+## RECOMMENDATIONS
+
+### Immediate (Today):
+1. [Action]
+2. [Action]
+
+### Short-term (This Week):
+3. [Action]
+4. [Action]
+
+### Long-term (This Month):
+5. [Action]
+6. [Action]
+
+## ALTERNATIVE PAYMENT PROCESSORS
+
+1. **[Processor]**: [pros/cons]
+2. **[Processor]**: [pros/cons]
+3. **[Processor]**: [pros/cons]
+
+## APPENDIX
+
+- Email correspondence (attached)
+- Square policies (linked)
+- VISA merchant rules (linked)
+```
+
+---
+
+## 📞 KEY CONTACTS
+
+**Lindsay Goldsmith**
+- Title: Retail Account Manager
+- Phone: 636-565-0896
+- Email: lindsay.goldsmith@squareup.com (likely)
+- Company: Square / Block, Inc.
+
+**Square Support**
+- Phone: 1-855-700-6000
+- Hours: 6 AM - 6 PM PT, Mon-Fri
+- Email: support@squareup.com
+
+**Square Seller Community**
+- URL: https://www.sellercommunity.com/
+
+---
+
+## 🔗 USEFUL LINKS
+
+**Square Policies**:
+- Acceptable Use Policy: https://squareup.com/legal/general/ua
+- CBD Merchant Guide: https://squareup.com/help/us/en/article/6407
+- Restricted Activities: https://squareup.com/legal/general/restricted
+
+**Industry Resources**:
+- VISA Merchant Category Codes: https://usa.visa.com/support/merchant/operations-resources.html
+- Hemp Roundtable (payment processing): https://hempsupporter.com/
+- State hemp laws: https://www.ncsl.org/agriculture-and-rural-development/state-industrial-hemp-statutes
+
+---
+
+## ⏱️ TIME ESTIMATE
+
+**Option A (Manual + Tool)**: 30 minutes
+- Gmail search: 10 min
+- Email analysis: 15 min (5 emails × 3 min each)
+- Report writing: 5 min
+
+**Option B (Automated Gmail)**: 45 minutes
+- OAuth setup: 30 min (first time only)
+- Script execution: 5 min
+- Review results: 10 min
+
+**Option C (BigQuery)**: 2 hours
+- Gmail ingestion: 1 hour
+- Query and analysis: 30 min
+- Report writing: 30 min
+
+---
+
+## 🏆 SUCCESS CRITERIA
+
+Investigation COMPLETE when you can:
+
+✅ State exact reason for deactivation (with email citation)
+✅ List specific steps to reactivate (or explain why impossible)
+✅ Confirm CBD program status (active/terminated/restricted)
+✅ Answer "Can sell Hempress seeds?" with yes/no/conditions
+✅ Explain VISA restrictions and alternatives
+✅ Have documented timeline of all correspondence
+✅ Have action plan for next 30 days
+
+---
+
+## 🚨 PRIORITY LEVEL: **REVENUE-BLOCKING**
+
+This investigation is CRITICAL because:
+- Square deactivation = lost sales NOW
+- Hemp products = major revenue stream
+- Payment processing = business continuity
+- Timeline matters = fees accumulating
+
+**DO TODAY**: Complete investigation, call Lindsay Goldsmith
+**DO THIS WEEK**: Implement alternative payment solution
+**DO THIS MONTH**: Scale new payment infrastructure
+
+---
+
+## 💡 PRO TIPS
+
+1. **When analyzing emails**: Look for euphemisms
+   - "Prohibited products" = Hemp/CBD
+   - "Restricted activities" = Selling controlled substances
+   - "Card network requirements" = VISA said no
+
+2. **When calling Lindsay**: Be prepared
+   - Have account number ready
+   - Reference specific email dates
+   - Ask for written policy documents
+   - Request escalation if needed
+
+3. **Document everything**: Create paper trail
+   - Save all emails as PDF
+   - Screenshot all policies
+   - Record phone calls (if legal in your state)
+   - Keep timeline of events
+
+4. **Have backup plan**: Don't rely on Square reactivation
+   - Research alternatives NOW
+   - Set up backup processor
+   - Test before switching fully
+
+---
+
+**CREATED**: 2025-10-05 by Sonnet 4.5 (Redemption Mode 🐆)
+**CHEETAH APPROVED**: Tier 1, Zero fluff, 100% actionable
