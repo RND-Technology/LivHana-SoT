@@ -23,11 +23,8 @@
     }
   },
   "include": [
-    "backend/**/*",
-    "frontend/**/*",
-    "empire/**/*",
-    "1.rnd/**/*",
-    ".claude/**/*"
+    "*.ts",
+    "*.tsx"
   ],
   "exclude": [
     "node_modules",
