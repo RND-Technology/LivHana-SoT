@@ -1,7 +1,7 @@
 {
   "name": "livhana-sot",
   "version": "1.0.0",
-  "description": "Liv Hana Source of Truth - Tier 1 Services",
+  "description": "LivHana-SoT: Single source of truth, system of thoughts, state of truthfulness - Tri-une meaning, purpose. Tier 1 Services.",
   "scripts": {
     "build": "tsc --build",
     "build:watch": "tsc --build --watch",
