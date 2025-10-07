@@ -1,0 +1,151 @@
+{
+  "sonnet_cli_instructions": [
+    {
+      "task": "NASH Beating Middleware Implementation",
+      "priority": "HIGH",
+      "deadline": "2 weeks",
+      "exact_instructions": [
+        "1. Navigate to LivHana-SoT/empire/content-engine/output/nash-beating-middleware/",
+        "2. Review generated code files:",
+        "   - checkout-enhancement.js",
+        "   - delivery-optimization.js",
+        "   - cart-enhancement.js",
+        "3. Deploy checkout enhancement to reggieanddro.com",
+        "4. Implement delivery optimization features",
+        "5. Deploy cart enhancement functionality",
+        "6. Test all features and functionality",
+        "7. Monitor performance and optimization",
+        "8. Generate implementation report"
+      ],
+      "required_info": [
+        "Target site: reggieanddro.company.site",
+        "Integration: Lightspeed + Square",
+        "Testing: All browsers and devices",
+        "Performance: <3 second load times"
+      ],
+      "environment": "Development environment with reggieanddro.com access"
+    },
+    {
+      "task": "Lightspeed API Integration",
+      "priority": "HIGH",
+      "deadline": "1 week",
+      "exact_instructions": [
+        "1. Navigate to LivHana-SoT/backend/integration-service/",
+        "2. Update .env file with OAuth2 token from Jesse",
+        "3. Set LIGHTSPEED_USE_MOCK=false",
+        "4. Test API connection with real credentials",
+        "5. Verify data synchronization",
+        "6. Update sync scripts for real data",
+        "7. Deploy to production environment",
+        "8. Monitor sync performance",
+        "9. Generate integration report"
+      ],
+      "required_info": [
+        "OAuth2 token: From Jesse CEO",
+        "Account ID: 020b2c2a-4661-11ef-e88b-b42e5d3b90cc",
+        "Sync frequency: Every 15 minutes",
+        "Target: BigQuery analytics"
+      ],
+      "environment": "Backend development environment with Lightspeed API access"
+    }
+  ],
+  "cheetah_cursor_instructions": [
+    {
+      "task": "Frontend Checkout Optimization",
+      "priority": "HIGH",
+      "deadline": "1 week",
+      "exact_instructions": [
+        "1. Review checkout-enhancement.js code",
+        "2. Implement progress bar functionality",
+        "3. Add loyalty points integration",
+        "4. Implement free shipping threshold",
+        "5. Add quick-add product recommendations",
+        "6. Enhance secure checkout branding",
+        "7. Test checkout flow end-to-end",
+        "8. Optimize for mobile devices",
+        "9. Monitor conversion rates",
+        "10. Generate optimization report"
+      ],
+      "required_info": [
+        "Target: reggieanddro.company.site checkout",
+        "Integration: Lightspeed + Square",
+        "Mobile optimization: Required",
+        "Conversion target: +25% improvement"
+      ],
+      "environment": "Frontend development environment with reggieanddro.com access"
+    },
+    {
+      "task": "Cart Enhancement Implementation",
+      "priority": "HIGH",
+      "deadline": "1 week",
+      "exact_instructions": [
+        "1. Review cart-enhancement.js code",
+        "2. Implement dynamic cart updates",
+        "3. Add cart persistence system",
+        "4. Integrate cart analytics",
+        "5. Build abandoned cart recovery",
+        "6. Test cart functionality",
+        "7. Optimize cart performance",
+        "8. Monitor cart abandonment rates",
+        "9. Generate enhancement report"
+      ],
+      "required_info": [
+        "Target: reggieanddro.company.site cart",
+        "Persistence: LocalStorage + server backup",
+        "Analytics: Google Analytics Enhanced Ecommerce",
+        "Recovery: Email sequences for abandoned carts"
+      ],
+      "environment": "Frontend development environment with reggieanddro.com access"
+    }
+  ],
+  "replit_liv_hana_instructions": [
+    {
+      "task": "Production Deployment and Monitoring",
+      "priority": "HIGH",
+      "deadline": "Continuous",
+      "exact_instructions": [
+        "1. Monitor all production services",
+        "2. Ensure 99.9% uptime",
+        "3. Monitor performance metrics",
+        "4. Generate daily reports",
+        "5. Alert on any issues",
+        "6. Optimize server resources",
+        "7. Scale services as needed",
+        "8. Maintain security protocols",
+        "9. Backup data regularly",
+        "10. Generate monitoring reports"
+      ],
+      "required_info": [
+        "Services: All LivHana production services",
+        "Uptime target: 99.9%",
+        "Monitoring: Real-time alerts",
+        "Reporting: Daily performance reports"
+      ],
+      "environment": "Production environment with monitoring tools"
+    },
+    {
+      "task": "Swarm Orchestration",
+      "priority": "MEDIUM",
+      "deadline": "Ongoing",
+      "exact_instructions": [
+        "1. Manage 1000+ agent swarm",
+        "2. Coordinate content production",
+        "3. Optimize agent performance",
+        "4. Monitor swarm health",
+        "5. Scale agents as needed",
+        "6. Generate swarm reports",
+        "7. Maintain agent coordination",
+        "8. Optimize content output",
+        "9. Monitor quality metrics",
+        "10. Generate orchestration reports"
+      ],
+      "required_info": [
+        "Swarm size: 1000+ agents",
+        "Content target: High Noon Cartoon series",
+        "Quality target: 95%+ quality score",
+        "Output target: 84 episodes"
+      ],
+      "environment": "Replit environment with swarm orchestration tools"
+    }
+  ]
+}

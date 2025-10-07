@@ -1,0 +1,47 @@
+{
+  "id": "episode_060",
+  "title": "Customer Testimonial",
+  "week": 9,
+  "day": 4,
+  "format": "60-second shorts",
+  "platforms": [
+    "YouTube Shorts",
+    "TikTok",
+    "IG Reels",
+    "X"
+  ],
+  "scriptBeat": [
+    "Jesse: \"Texas cannabis fam, let's talk about Texas becomes 40th state for medical cannabis!\"",
+    "Liv Hana: \"Reference 40th state milestone\"",
+    "Jesse: \"That's what I'm talking about! Mention veteran advocacy\"",
+    "Liv: \"Stay informed, stay compliant, stay TOONED!\""
+  ],
+  "seoAnchors": [
+    "#TexasTHC",
+    "#StayTOONED",
+    "#ReggieAndDro",
+    "#CustomerStories",
+    "#Community",
+    "#Testimonials",
+    "#MedicalCannabis",
+    "#Texas40thState",
+    "#VeteransCannabis",
+    "#cannabis"
+  ],
+  "cta": "Stay legal, stay TOONED 🎬 ReggieAndDro.com",
+  "sunoMusic": "heartwarming-texas-folk",
+  "dogWhistle": "revolution",
+  "tpop": "❤️",
+  "easterEgg": "Actual Reggie & Dro store footage - References Oct 2025 Texas cannabis policy changes",
+  "schoolHouseRock": false,
+  "status": "enhanced",
+  "productionMetadata": {
+    "template": "HIGH NOON CARTOON",
+    "generatedAt": "2025-10-07T07:59:49.302Z",
+    "engine": "UnicornMakingMachine",
+    "version": "1.0.0",
+    "enhancedAt": "2025-10-07T09:53:34.099Z",
+    "enhancementVersion": "2.0.0",
+    "enhancementCategory": "medical"
+  }
+}

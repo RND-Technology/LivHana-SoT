@@ -10,7 +10,7 @@ RUN npm ci --only=production
 
 # Copy source code
 COPY src/ ./src/
-COPY common/ ../common/
+COPY common/ ./common/
 
 # Expose port
 EXPOSE 8080

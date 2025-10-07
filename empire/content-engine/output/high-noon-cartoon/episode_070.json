@@ -1,0 +1,47 @@
+{
+  "id": "episode_070",
+  "title": "This Week's Highlights",
+  "week": 10,
+  "day": 7,
+  "format": "60-second shorts",
+  "platforms": [
+    "YouTube Shorts",
+    "TikTok",
+    "IG Reels",
+    "X"
+  ],
+  "scriptBeat": [
+    "Jesse: \"Texas cannabis fam, let's talk about Veteran cannabis advocacy success!\"",
+    "Liv Hana: \"Feature real customer perspectives\"",
+    "Jesse: \"That's what I'm talking about! Highlight community impact\"",
+    "Liv: \"Stay informed, stay compliant, stay TOONED!\""
+  ],
+  "seoAnchors": [
+    "#TexasTHC",
+    "#StayTOONED",
+    "#ReggieAndDro",
+    "#WeekRecap",
+    "#Highlights",
+    "#WeeklySummary",
+    "#TexasCannabis",
+    "#Community",
+    "#CustomerStories",
+    "#cannabis"
+  ],
+  "cta": "Stay legal, stay TOONED 🎬 ReggieAndDro.com",
+  "sunoMusic": "dramatic-texas-western",
+  "dogWhistle": "COAs or GTFO",
+  "tpop": "📊",
+  "easterEgg": "Real product wall from store - References Oct 2025 Texas cannabis policy changes",
+  "schoolHouseRock": false,
+  "status": "enhanced",
+  "productionMetadata": {
+    "template": "HIGH NOON CARTOON",
+    "generatedAt": "2025-10-07T07:59:49.302Z",
+    "engine": "UnicornMakingMachine",
+    "version": "1.0.0",
+    "enhancedAt": "2025-10-07T09:53:34.100Z",
+    "enhancementVersion": "2.0.0",
+    "enhancementCategory": "community"
+  }
+}

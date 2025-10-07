@@ -1,0 +1,133 @@
+{
+  "date": "2025-10-07",
+  "generated_at": "2025-10-07T00:00:00.000Z",
+  "texas_news": [
+    {
+      "headline": "Texas DSHS Adopts Emergency Rule: No THC Sales to Anyone Under 21",
+      "source": "Texas Tribune / Community Impact",
+      "summary": "On October 3, 2025, the Texas Department of State Health Services (DSHS) adopted emergency rules requiring all retailers to verify ID for consumable hemp products, banning sales to anyone under 21. This follows Governor Abbott's Executive Order GA-56 from September 10, 2025. The rule affects approximately 8,000 licensed hemp businesses across Texas. TABC began enforcing similar rules on October 1, 2025. Violations may lead to license revocation.",
+      "url": "https://www.texastribune.org/2025/09/23/texas-minors-21-age-limit-thc-hemp/",
+      "news_type": "legislation",
+      "viral_potential": 8,
+      "advocacy_opportunity": "Public safety - advocate for smart regulation over prohibition",
+      "date_found": "2025-10-07"
+    },
+    {
+      "headline": "Texas Bans All Vapes Containing Cannabinoids - Businesses Face Up to 1 Year in Jail",
+      "source": "TexasCannabis.org",
+      "summary": "On September 1, 2025, Senate Bill 2024 (SB 2024) took effect, prohibiting the sale and marketing of any vape product containing cannabinoids - whether THC, CBD, Delta-8, or THCA. Violations carry steep penalties: a Class A misdemeanor punishable by up to one year in jail and a $4,000 fine per offense. This has significantly impacted hemp dispensaries across Texas.",
+      "url": "https://texascannabis.org/news-12sep2025",
+      "news_type": "legislation",
+      "viral_potential": 10,
+      "advocacy_opportunity": "Criminal justice reform - highlight the human cost of prohibition; Economic opportunity - show how regulation can create jobs and tax revenue",
+      "date_found": "2025-10-07"
+    },
+    {
+      "headline": "Court Blocks Austin's Marijuana Decriminalization - Arrests Resume",
+      "source": "TexasCannabis.org",
+      "summary": "In April 2025, a court ruling blocked Austin's marijuana decriminalization policy, allowing police to resume arresting individuals for low-level cannabis possession. This follows Attorney General Ken Paxton's January 2024 lawsuit against Austin, Killeen, Denton, San Marcos, and Elgin to block local ordinances.",
+      "url": "https://texascannabis.org/news-24apr2025",
+      "news_type": "arrest",
+      "viral_potential": 10,
+      "advocacy_opportunity": "Criminal justice reform; State vs. federal rights",
+      "date_found": "2025-10-07"
+    },
+    {
+      "headline": "Texas $5.5 Billion Hemp Industry Survives Another Ban Attempt",
+      "source": "Texas Tribune / MJBizDaily",
+      "summary": "Hemp-derived THC products remain legal after Governor Greg Abbott vetoed a total ban in June 2025. Texas has an estimated $5.5 billion hemp industry with over 7,000 registered hemp dispensaries.",
+      "url": "https://mjbizdaily.com/texas-delivers-potential-major-milestone-for-hemp-and-medical-marijuana/",
+      "news_type": "business",
+      "viral_potential": 8,
+      "advocacy_opportunity": "Economic opportunity",
+      "date_found": "2025-10-07"
+    }
+  ],
+  "federal_news": [
+    {
+      "headline": "Trump Says He'll Decide on Cannabis Rescheduling 'In Coming Weeks'",
+      "source": "CNN / TIME",
+      "summary": "Trump said he hopes to decide in the coming weeks about whether to support changes to marijuana regulation. He supports moving marijuana from Schedule 1 to Schedule 3. However, reclassifying would not make it legal for recreational use nationwide; rather, it would change regulation and taxation.",
+      "url": "https://time.com/7308957/trump-cannabis-marijuana-federal-law/",
+      "news_type": "federal",
+      "viral_potential": 10,
+      "advocacy_opportunity": "State vs. federal rights; Economic opportunity",
+      "date_found": "2025-10-07"
+    },
+    {
+      "headline": "DEA Cancels Marijuana Rescheduling Hearing - Policy in Limbo",
+      "source": "PBS News / NPR",
+      "summary": "A hearing to assess the Biden administration's proposal to reschedule marijuana as Schedule III was cancelled by a DEA administrative law judge only eight days before the January 21, 2025 date. No decision was made before Biden left office.",
+      "url": "https://www.pbs.org/newshour/politics/will-trump-change-federal-marijuana-policy-heres-what-to-know",
+      "news_type": "federal",
+      "viral_potential": 9,
+      "advocacy_opportunity": "State vs. federal rights",
+      "date_found": "2025-10-07"
+    }
+  ],
+  "culture_trends": [
+    {
+      "headline": "CaliSober Movement: 67% of Consumers Prioritize Wellness Over Recreation",
+      "source": "Rolling Stone / Mercury News",
+      "summary": "A 2025 report shows 67% of cannabis consumers now prioritize products aimed at relaxation or health benefits over recreational use. This represents a cultural shift toward viewing cannabis as a wellness tool.",
+      "url": "https://www.mercurynews.com/2025/02/19/2025-cannabis-trends/",
+      "news_type": "culture",
+      "viral_potential": 8,
+      "advocacy_opportunity": "Medical access",
+      "date_found": "2025-10-07"
+    }
+  ],
+  "top_3_episode_ideas": [
+    {
+      "rank": 1,
+      "episode_concept": "The Vape Ban Paradox",
+      "key_story": "Texas bans all cannabinoid vapes with 1 year jail time while hemp shops thrive",
+      "viral_potential": 10,
+      "advocacy_angle": "Criminal justice reform meets economic absurdity",
+      "dialogue_hooks": [
+        "REGGIE: 'So let me get this straight... I can walk into any gas station and buy a Delta-8 gummy, but if I vape it, that's a year in jail?'",
+        "DRO: 'It's the delivery method they scared of, not the plant.'",
+        "TEX: 'Classic Texas. Regulate with a sledgehammer, wonder why the hammer broke.'"
+      ],
+      "target_length": "3-5 minutes",
+      "platforms": ["YouTube Shorts", "TikTok", "Instagram Reels"]
+    },
+    {
+      "rank": 2,
+      "episode_concept": "Trump's Cannabis Countdown",
+      "key_story": "Trump promises decision 'in coming weeks' on rescheduling",
+      "viral_potential": 10,
+      "advocacy_angle": "Federal vs. state rights showdown",
+      "dialogue_hooks": [
+        "REGGIE: 'We been hearing 'coming weeks' for coming YEARS.'",
+        "DRO: 'But what if he actually does it tho? Schedule 3 changes everything.'",
+        "TEX: 'For legal states, yes. For Texas? We still locked out.'"
+      ],
+      "target_length": "3-5 minutes",
+      "platforms": ["YouTube Shorts", "TikTok", "Twitter/X"]
+    },
+    {
+      "rank": 3,
+      "episode_concept": "Austin's Decrim Dream Dies",
+      "key_story": "Court blocks Austin marijuana decriminalization",
+      "viral_potential": 10,
+      "advocacy_angle": "Local control vs. state power",
+      "dialogue_hooks": [
+        "REGGIE: 'Ken Paxton really sued FIVE cities just to keep arresting people for weed.'",
+        "DRO: 'While the state makes billions off hemp sales. Make it make sense.'",
+        "TEX: 'It don't. That's the point. Keep people confused, keep people compliant.'"
+      ],
+      "target_length": "3-5 minutes",
+      "platforms": ["YouTube Shorts", "Instagram Reels", "Twitter/X"]
+    }
+  ],
+  "summary": {
+    "total_items": 7,
+    "texas_items": 4,
+    "federal_items": 2,
+    "culture_items": 1,
+    "high_viral_potential": 4,
+    "medium_viral_potential": 3,
+    "top_advocacy_priority": "Economic opportunity & Criminal justice reform"
+  }
+}

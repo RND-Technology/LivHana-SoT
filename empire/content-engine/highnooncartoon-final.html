@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIGH NOON CARTOON - Real-Time Texas THC Tales</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #ffffff;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .header h1 {
+            font-size: 4em;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .subtitle {
+            font-size: 1.5em;
+            color: #FFD700;
+            margin-bottom: 20px;
+        }
+        .real-time-engine {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 2px solid #FFD700;
+        }
+        .engine-title {
+            color: #FFD700;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .data-feeds {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .feed-item {
+            background: rgba(255,255,255,0.05);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .feed-title {
+            color: #FFD700;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .feed-count {
+            font-size: 1.5em;
+            color: #00ff00;
+        }
+        .episode-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        .episode-card {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .episode-card:hover {
+            border-color: #FFD700;
+            transform: translateY(-5px);
+        }
+        .episode-title {
+            color: #FFD700;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        .episode-script {
+            font-size: 0.9em;
+            line-height: 1.4;
+            margin-bottom: 15px;
+        }
+        .episode-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .episode-day {
+            background: #FFD700;
+            color: #000;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        .episode-status {
+            background: #28a745;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+        }
+        .episode-status.generated {
+            background: #00ff00;
+            color: #000;
+        }
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #000;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            margin: 20px 10px;
+            transition: transform 0.3s ease;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #888;
+        }
+        .tpop {
+            font-size: 1.5em;
+            margin: 0 5px;
+        }
+        .live-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: #00ff00;
+            border-radius: 50%;
+            margin-right: 5px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>HIGH NOON CARTOON</h1>
+            <div class="subtitle">Real-Time Texas THC Tales - 84 Episodes</div>
+            <div class="tpop">🐆🔥⚡🎯💀🚀💎</div>
+        </div>
+        
+        <div class="real-time-engine">
+            <div class="engine-title">
+                <span class="live-indicator"></span>
+                REAL-TIME CONTENT ENGINE ACTIVE
+            </div>
+            <div class="data-feeds">
+                <div class="feed-item">
+                    <div class="feed-title">YouTube Analyzer</div>
+                    <div class="feed-count">3</div>
+                    <div>Trending Videos</div>
+                </div>
+                <div class="feed-item">
+                    <div class="feed-title">WhatsApp Groups</div>
+                    <div class="feed-count">3</div>
+                    <div>Active Groups</div>
+                </div>
+                <div class="feed-item">
+                    <div class="feed-title">News Feeds</div>
+                    <div class="feed-count">3</div>
+                    <div>Latest Articles</div>
+                </div>
+                <div class="feed-item">
+                    <div class="feed-title">Social Media</div>
+                    <div class="feed-count">3</div>
+                    <div>Platforms</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="episode-grid">
+            <div class="episode-card">
+                <div class="episode-meta">
+                    <div class="episode-day">Day 1</div>
+                    <div class="episode-status generated">Generated</div>
+                </div>
+                <div class="episode-title">New Product Drop</div>
+                <div class="episode-script">
+                    <strong>Jesse:</strong> "Behold... the Wall of Weed!"<br>
+                    <strong>Camera pans across massive product display</strong><br>
+                    <strong>Liv Hana:</strong> "Every strain, every terpene profile, every COA."<br>
+                    <strong>Jesse:</strong> "This is what legal hemp looks like in Texas."
+                </div>
+                <div style="color: #FFD700; font-size: 0.8em;">
+                    💎 Dog Whistle: "little hemp empire" | TPOP: Premium quality | Suno: majestic-reveal-theme
+                </div>
+            </div>
+
+            <div class="episode-card">
+                <div class="episode-meta">
+                    <div class="episode-day">Day 2</div>
+                    <div class="episode-status">Pending</div>
+                </div>
+                <div class="episode-title">Jesse Meets Liv Hana</div>
+                <div class="episode-script">
+                    <strong>Jesse:</strong> "Yo, I need some help running this empire..."<br>
+                    <strong>Liv Hana AI EA appears:</strong> "Live and faithful, boss. What's the mission?"<br>
+                    <strong>Jesse:</strong> "Deschedule cannabis, make Texas free, and sell some flower."<br>
+                    <strong>Liv:</strong> "Roger that. Let's grow."
+                </div>
+                <div style="color: #FFD700; font-size: 0.8em;">
+                    🐆 Dog Whistle: "empire" | TPOP: Cheetah speed and agility | Suno: upbeat-texas-country
+                </div>
+            </div>
+
+            <div class="episode-card">
+                <div class="episode-meta">
+                    <div class="episode-day">Day 3</div>
+                    <div class="episode-status">Pending</div>
+                </div>
+                <div class="episode-title">Chief Steve Lie/Dye's Dilemma</div>
+                <div class="episode-script">
+                    <strong>Chief Steve:</strong> "We gotta crack down on this hemp stuff..."<br>
+                    <strong>Jesse:</strong> "Chief, it's legal. 0.3% THC, DSHS licensed."<br>
+                    <strong>Chief:</strong> "But... but... the optics!"<br>
+                    <strong>Liv Hana:</strong> "Facts > optics, Chief. Read the law."
+                </div>
+                <div style="color: #FFD700; font-size: 0.8em;">
+                    🔥 Dog Whistle: "optics" | TPOP: Hot topic or controversy | Suno: dramatic-texas-western
+                </div>
+            </div>
+
+            <div class="episode-card">
+                <div class="episode-meta">
+                    <div class="episode-day">Day 4</div>
+                    <div class="episode-status">Pending</div>
+                </div>
+                <div class="episode-title">Lt. Dan's Compliance Lecture</div>
+                <div class="episode-script">
+                    <strong>Lt. Dan:</strong> "Alright listen up! Here's how we stay legal in Texas..."<br>
+                    <strong>Jesse:</strong> "Lt. Dan, nobody wants a compliance lecture."<br>
+                    <strong>Lt. Dan:</strong> "You WILL when DSHS shows up! ≤0.3% Δ9 THC, 21+ only!"<br>
+                    <strong>Liv Hana:</strong> "He's right. COAs or GTFO."
+                </div>
+                <div style="color: #FFD700; font-size: 0.8em;">
+                    🎯 Dog Whistle: "COAs or GTFO" | TPOP: Precision and targeting | 🎓 School House Rock Style
+                </div>
+            </div>
+
+            <div class="episode-card">
+                <div class="episode-meta">
+                    <div class="episode-day">Day 5</div>
+                    <div class="episode-status">Pending</div>
+                </div>
+                <div class="episode-title">Aubrey Awfuls' First Appearance</div>
+                <div class="episode-script">
+                    <strong>Jesse:</strong> "Who's this new character?"<br>
+                    <strong>Aubrey Awfuls:</strong> "I'm the villain, obviously. Here to shut down your little hemp empire."<br>
+                    <strong>Liv Hana:</strong> "Not on my watch, buddy."<br>
+                    <strong>Aubrey:</strong> "We'll see about that..." (dramatic exit)
+                </div>
+                <div style="color: #FFD700; font-size: 0.8em;">
+                    💀 Dog Whistle: "little hemp empire" | TPOP: Death or danger | Suno: villain-theme-dark
+                </div>
+            </div>
+
+            <div class="episode-card">
+                <div class="episode-meta">
+                    <div class="episode-day">Day 6</div>
+                    <div class="episode-status">Pending</div>
+                </div>
+                <div class="episode-title">Texas THC Tale Begins</div>
+                <div class="episode-script">
+                    <strong>Narrator:</strong> "In the great state of Texas, a revolution is brewing..."<br>
+                    <strong>Jesse:</strong> "They said we couldn't do it. Legal THC in Texas?"<br>
+                    <strong>Liv Hana:</strong> "We're doing it. And we're documenting every step."<br>
+                    <strong>Montage:</strong> Store, products, customers, legislative hearings<br>
+                    <strong>Jesse:</strong> "This is the Texas THC Tale. Stay TOONED."
+                </div>
+                <div style="color: #FFD700; font-size: 0.8em;">
+                    🚀 Dog Whistle: "revolution" | TPOP: Launch and growth | Suno: epic-texas-revolution
+                </div>
+            </div>
+
+            <div class="episode-card">
+                <div class="episode-meta">
+                    <div class="episode-day">Day 7</div>
+                    <div class="episode-status">Pending</div>
+                </div>
+                <div class="episode-title">Wall of Weed Unveiled</div>
+                <div class="episode-script">
+                    <strong>Jesse:</strong> "Behold... the Wall of Weed!"<br>
+                    <strong>Camera pans across massive product display</strong><br>
+                    <strong>Liv Hana:</strong> "Every strain, every terpene profile, every COA."<br>
+                    <strong>Jesse:</strong> "This is what legal hemp looks like in Texas."
+                </div>
+                <div style="color: #FFD700; font-size: 0.8em;">
+                    💎 Dog Whistle: "Wall of Weed" | TPOP: Premium quality | Suno: majestic-reveal-theme
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center;">
+            <a href="https://reggieanddro.com" class="cta-button">Visit Reggie & Dro</a>
+            <a href="https://herbitrage.com" class="cta-button">Herbitrage Marketplace</a>
+            <a href="https://oneplantsolution.com" class="cta-button">One Plant Solution</a>
+            <a href="https://storage.googleapis.com/hnc-episodes-prod/highnooncartoon.html" class="cta-button">Episode 1 (Live)</a>
+        </div>
+        
+        <div class="footer">
+            <p>&copy; 2025 Liv Hana AI. All rights reserved.</p>
+            <p>HIGH NOON CARTOON - Real-Time Texas THC Tales | Stay TOONED! 🐆</p>
+            <p>Real-Time Content Engine | 84 Episodes | 12 Weeks | Weekly Rhythm | Dog Whistles | TPOPs | Easter Eggs</p>
+        </div>
+    </div>
+</body>
+</html>

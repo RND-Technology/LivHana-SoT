@@ -1,5 +1,5 @@
 import express from 'express';
-import { Client } from 'squareup';
+import { Client } from 'square';
 import { createLogger } from '../common/logging/index.js';
 
 const logger = createLogger('integration-service');
@@ -113,9 +113,26 @@ app.get('/health', (req, res) => {
   });
 });
 
-// Main route
+// Main route with domain-specific routing
 app.get('/', (req, res) => {
-  res.json({ 
+  const hostname = req.hostname || req.get('host');
+
+  // High Noon Cartoon domain routing
+  if (hostname === 'highnooncartoon.com' || hostname === 'www.highnooncartoon.com') {
+    return res.redirect(301, 'https://storage.googleapis.com/hnc-episodes-prod/highnooncartoon.html');
+  }
+
+  // tokinyoga domain routing
+  if (hostname === 'tokinyoga.com' || hostname === 'www.tokinyoga.com') {
+    return res.json({
+      message: 'Tokin Yoga - Coming Soon',
+      status: 'operational',
+      timestamp: new Date().toISOString()
+    });
+  }
+
+  // Default response for other domains
+  res.json({
     message: 'Integration Service Active',
     status: 'operational',
     timestamp: new Date().toISOString(),

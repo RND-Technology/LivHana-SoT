@@ -1,0 +1,45 @@
+{
+  "id": "episode_054",
+  "title": "Industry News Roundup",
+  "week": 8,
+  "day": 5,
+  "format": "60-second shorts",
+  "platforms": [
+    "YouTube Shorts",
+    "TikTok",
+    "IG Reels",
+    "X"
+  ],
+  "scriptBeat": [
+    "Jesse: \"Texas cannabis fam, let's talk about Medical cannabis expansion HB 46!\"",
+    "Liv Hana: \"Cover major 2025 policy shifts\"",
+    "Jesse: \"That's what I'm talking about! Reference regulatory timeline\"",
+    "Liv: \"Stay informed, stay compliant, stay TOONED!\""
+  ],
+  "seoAnchors": [
+    "#TexasTHC",
+    "#StayTOONED",
+    "#ReggieAndDro",
+    "#IndustryNews",
+    "#TexasCannabis",
+    "#MarketTrends",
+    "#cannabisculture",
+    "#TexasWeed"
+  ],
+  "cta": "Texas hemp is legal - if you do it right 🎬 ReggieAndDro.com",
+  "sunoMusic": "epic-texas-revolution",
+  "dogWhistle": "empire",
+  "tpop": "🚀",
+  "easterEgg": "Real product wall from store - References Oct 2025 Texas cannabis policy changes",
+  "schoolHouseRock": false,
+  "status": "enhanced",
+  "productionMetadata": {
+    "template": "HIGH NOON CARTOON",
+    "generatedAt": "2025-10-07T07:59:49.302Z",
+    "engine": "UnicornMakingMachine",
+    "version": "1.0.0",
+    "enhancedAt": "2025-10-07T09:53:34.097Z",
+    "enhancementVersion": "2.0.0",
+    "enhancementCategory": "industry"
+  }
+}

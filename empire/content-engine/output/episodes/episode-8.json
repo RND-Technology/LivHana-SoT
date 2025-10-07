@@ -1,0 +1,162 @@
+{
+  "episode_number": 8,
+  "title": "The BEAUTIFUL Truth About Banking Access",
+  "duration": "60-90s",
+  "episode_type": "characterComedy",
+  "scenes": [
+    {
+      "scene_number": 1,
+      "scene_type": "setup",
+      "duration_seconds": 12,
+      "visual_description": "Retail store setting, customers browsing, character interacting naturally",
+      "camera_angle": "3/4 view",
+      "transition": "fade"
+    },
+    {
+      "scene_number": 2,
+      "scene_type": "conflict",
+      "duration_seconds": 18,
+      "visual_description": "Chief Steve appearing nervous, hand gestures defensive, comic sweat drops",
+      "camera_angle": "3/4 view",
+      "transition": "fade"
+    },
+    {
+      "scene_number": 3,
+      "scene_type": "escalation",
+      "duration_seconds": 25,
+      "visual_description": "Split screen confrontation, dramatic music cue, tension building",
+      "camera_angle": "3/4 view",
+      "transition": "fade"
+    },
+    {
+      "scene_number": 4,
+      "scene_type": "resolution",
+      "duration_seconds": 15,
+      "visual_description": "Characters shaking hands or nodding agreement, harmony restored, education moment",
+      "camera_angle": "medium shot",
+      "transition": "fade"
+    },
+    {
+      "scene_number": 5,
+      "scene_type": "moral",
+      "duration_seconds": 10,
+      "visual_description": "Character delivering wisdom, sunset/inspiring background, uplifting conclusion",
+      "camera_angle": "close-up",
+      "transition": "end_card"
+    }
+  ],
+  "characters": [
+    {
+      "name": "Reggie (Regular)",
+      "role": "Co-founder, Product Expert",
+      "personality": "Knowledgeable, friendly, detail-oriented, Texas proud",
+      "voiceStyle": "Warm, authoritative, educational",
+      "catchphrases": [
+        "Let me tell you about...",
+        "This is tremendous quality",
+        "Nobody does it better"
+      ]
+    },
+    {
+      "name": "Chief Steve Lie",
+      "role": "Law Enforcement (Nervous Antagonist)",
+      "personality": "Anxious, optics-focused, well-meaning but misguided",
+      "voiceStyle": "Nervous, stammering, defensive",
+      "catchphrases": [
+        "But the optics!",
+        "What about the children?",
+        "I'm just following orders"
+      ]
+    },
+    {
+      "name": "Dro (Hydro)",
+      "role": "Co-founder, Operations Manager",
+      "personality": "Strategic, business-minded, compliance-focused",
+      "voiceStyle": "Professional, confident, reassuring",
+      "catchphrases": [
+        "By the book, always",
+        "That's what I call winning",
+        "The best in Texas, believe me"
+      ]
+    }
+  ],
+  "dialogue": [
+    {
+      "scene_number": 1,
+      "character": "Reggie (Regular)",
+      "line": "Just another day at Reggie & Dro, serving the finest legal hemp in Texas...",
+      "delivery": "Warm, authoritative, educational",
+      "emphasis_words": []
+    },
+    {
+      "scene_number": 2,
+      "character": "Chief Steve Lie",
+      "line": "But wait - Chief Steve has questions. And it's true, they're the wrong questions.",
+      "delivery": "Nervous, stammering, defensive",
+      "emphasis_words": [
+        "it's true"
+      ]
+    },
+    {
+      "scene_number": 3,
+      "character": "Dro (Hydro)",
+      "line": "Chief Steve, with all due respect, the law is crystal clear. ≤0.3% THC, tested by third parties, 21+ only. It's magnificent.",
+      "delivery": "Professional, confident, reassuring",
+      "emphasis_words": [
+        "magnificent"
+      ]
+    },
+    {
+      "scene_number": 4,
+      "character": "Reggie (Regular)",
+      "line": "See? When you follow the regulations and educate people, everybody wins. That's the Texas way.",
+      "delivery": "Warm, authoritative, educational",
+      "emphasis_words": []
+    },
+    {
+      "scene_number": 5,
+      "character": "Chief Steve Lie",
+      "line": "The moral of the story? Education beats fear every time, folks. Legal hemp is phenomenal for Texas.",
+      "delivery": "Nervous, stammering, defensive",
+      "emphasis_words": [
+        "phenomenal",
+        "folks"
+      ]
+    }
+  ],
+  "advocacy_message": "Legal hemp with ≤0.3% Delta-9 THC is 100% compliant in Texas. Know your rights.",
+  "viral_hooks": {
+    "opening": "Nobody saw this coming...",
+    "closing": "...buckle up, Texas. This ride is just getting started.",
+    "quotable_lines": [
+      "\"Texas hemp is magnificent - leading the pack, believe me.\"",
+      "\"≤0.3% THC, 100% legal, 1000% Texas. That's compliance, folks.\"",
+      "\"They said it couldn't be done. We did it anyway. That's the Texas way.\"",
+      "\"From seed to sale, every step is magnificent. No shortcuts, no compromises.\"",
+      "\"The cannabis revolution is here, and Texas is leading the charge.\""
+    ]
+  },
+  "current_event_tie_in": {
+    "topic": "Banking Access",
+    "hook": "Texas banks finally opening accounts for hemp businesses",
+    "angle": "Legitimization, growth opportunity, financial inclusion"
+  },
+  "metadata": {
+    "generated_at": "2025-10-07T15:48:55.347Z",
+    "target_duration": 80,
+    "compliance_check": "PASSED",
+    "thc_mention": "≤0.3% Delta-9 THC",
+    "age_restriction": "21+",
+    "platform_tags": [
+      "#TexasTHC",
+      "#StayTOONED",
+      "#ReggieAndDro"
+    ]
+  },
+  "quality_score": {
+    "viral_potential": "8.08",
+    "compliance_score": 10,
+    "engagement_prediction": "9.97",
+    "overall_quality": "9.35"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "id": "episode_079",
+  "title": "Premium Flower Showcase",
+  "week": 12,
+  "day": 2,
+  "format": "60-second shorts",
+  "platforms": [
+    "YouTube Shorts",
+    "TikTok",
+    "IG Reels",
+    "X"
+  ],
+  "scriptBeat": [
+    "Jesse: \"Behold... the Wall of Weed!\"",
+    "Camera pans across massive product display",
+    "Liv Hana: \"Every strain, every terpene profile, every COA.\"",
+    "Jesse: \"This is what legal ($5B industry) hemp looks like in Texas.\""
+  ],
+  "seoAnchors": [
+    "#TexasTHC",
+    "#StayTOONED",
+    "#ReggieAndDro",
+    "#WallOfWeed",
+    "#ProductSpotlight",
+    "#PremiumFlower",
+    "#LabTested",
+    "#COACertified",
+    "#cannabisculture",
+    "#LoneStarCannabis"
+  ],
+  "cta": "Get your products at ReggieAndDro.com!",
+  "sunoMusic": "majestic-reveal-theme",
+  "dogWhistle": "empire",
+  "tpop": "💎",
+  "easterEgg": "Chief Steve based on real Texas law enforcement - References Oct 2025 Texas cannabis policy changes",
+  "schoolHouseRock": false,
+  "status": "enhanced",
+  "productionMetadata": {
+    "template": "HIGH NOON CARTOON",
+    "generatedAt": "2025-10-07T07:59:49.302Z",
+    "engine": "UnicornMakingMachine",
+    "version": "1.0.0",
+    "enhancedAt": "2025-10-07T09:53:34.101Z",
+    "enhancementVersion": "2.0.0",
+    "enhancementCategory": "product"
+  }
+}

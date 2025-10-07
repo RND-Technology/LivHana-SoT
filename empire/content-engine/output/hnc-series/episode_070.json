@@ -1,0 +1,52 @@
+{
+  "id": "episode_070",
+  "title": "Week in Review",
+  "season": 10,
+  "day": 7,
+  "theme": "Week Recap",
+  "format": "60-second short",
+  "platforms": [
+    "YouTube Shorts",
+    "TikTok",
+    "IG Reels",
+    "X"
+  ],
+  "scriptBeat": [
+    "Jesse: \"Another week, another step toward cannabis freedom.\"",
+    "Liv Hana: \"Let's recap what we've accomplished.\"",
+    "Montage: Week's highlights, customer interactions, product updates",
+    "Jesse: \"Stay TOONED for next week's adventures!\""
+  ],
+  "seoAnchors": [
+    "#TexasTHC",
+    "#StayTOONED",
+    "#ReggieAndDro",
+    "#WeekRecap",
+    "#Highlights",
+    "#WeeklySummary"
+  ],
+  "cta": "Subscribe for weekly recaps!",
+  "sunoMusic": "dramatic-texas-western",
+  "sunoPrompt": "Create a dramatic-texas-western track for a Texas cannabis cartoon episode titled \"Week in Review\". Include subtle Texas elements and match the mood: Jesse: \"Another week, another step toward cannabis freedom.\"",
+  "dogWhistle": "Wall of Weed",
+  "dogWhistleAnalysis": "Legal and social justice themes",
+  "tpop": "📊",
+  "tpopAnalysis": "Data and analytics",
+  "easterEgg": "Brick weed $40/oz product reference",
+  "schoolHouseRock": false,
+  "schoolHouseRockVersion": null,
+  "characters": [
+    "Jesse",
+    "Liv Hana"
+  ],
+  "productionMetadata": {
+    "generatedAt": "2025-10-07T08:19:27.695Z",
+    "engine": "HNCSeriesExecutor",
+    "version": "1.0.0",
+    "episodeNumber": 70,
+    "season": 10,
+    "day": 7,
+    "theme": "Week Recap"
+  },
+  "status": "generated"
+}

@@ -1,0 +1,848 @@
+{
+  "timestamp": "2025-10-07T09:53:34.102Z",
+  "summary": {
+    "total": 84,
+    "enhanced": 79,
+    "alreadyEnhanced": 5,
+    "errors": 0,
+    "byCategory": {
+      "general": 37,
+      "community": 4,
+      "compliance": 10,
+      "product": 10,
+      "industry": 9,
+      "medical": 7,
+      "thca": 2
+    }
+  },
+  "details": [
+    {
+      "episode": "episode_001",
+      "status": "already_enhanced"
+    },
+    {
+      "episode": "episode_002",
+      "status": "already_enhanced"
+    },
+    {
+      "episode": "episode_003",
+      "status": "already_enhanced"
+    },
+    {
+      "episode": "episode_004",
+      "status": "already_enhanced"
+    },
+    {
+      "episode": "episode_005",
+      "status": "already_enhanced"
+    },
+    {
+      "episode": "episode_006",
+      "status": "enhanced",
+      "category": "general",
+      "changes": {
+        "scriptBeatUpdated": false,
+        "hashtagsAdded": 2,
+        "ctaUpdated": false
+      }
+    },
+    {
+      "episode": "episode_007",
+      "status": "enhanced",
+      "category": "community",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 4,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_008",
+      "status": "enhanced",
+      "category": "compliance",
+      "changes": {
+        "scriptBeatUpdated": false,
+        "hashtagsAdded": 4,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_009",
+      "status": "enhanced",
+      "category": "product",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 4,
+        "ctaUpdated": false
+      }
+    },
+    {
+      "episode": "episode_010",
+      "status": "enhanced",
+      "category": "compliance",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 4,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_011",
+      "status": "enhanced",
+      "category": "product",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 4,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_012",
+      "status": "enhanced",
+      "category": "industry",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 2,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_013",
+      "status": "enhanced",
+      "category": "general",
+      "changes": {
+        "scriptBeatUpdated": false,
+        "hashtagsAdded": 2,
+        "ctaUpdated": false
+      }
+    },
+    {
+      "episode": "episode_014",
+      "status": "enhanced",
+      "category": "general",
+      "changes": {
+        "scriptBeatUpdated": false,
+        "hashtagsAdded": 2,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_015",
+      "status": "enhanced",
+      "category": "general",
+      "changes": {
+        "scriptBeatUpdated": false,
+        "hashtagsAdded": 2,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_016",
+      "status": "enhanced",
+      "category": "general",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 2,
+        "ctaUpdated": false
+      }
+    },
+    {
+      "episode": "episode_017",
+      "status": "enhanced",
+      "category": "compliance",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 4,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_018",
+      "status": "enhanced",
+      "category": "product",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 4,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_019",
+      "status": "enhanced",
+      "category": "industry",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 2,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_020",
+      "status": "enhanced",
+      "category": "general",
+      "changes": {
+        "scriptBeatUpdated": false,
+        "hashtagsAdded": 2,
+        "ctaUpdated": false
+      }
+    },
+    {
+      "episode": "episode_021",
+      "status": "enhanced",
+      "category": "general",
+      "changes": {
+        "scriptBeatUpdated": false,
+        "hashtagsAdded": 2,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_022",
+      "status": "enhanced",
+      "category": "general",
+      "changes": {
+        "scriptBeatUpdated": false,
+        "hashtagsAdded": 2,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_023",
+      "status": "enhanced",
+      "category": "product",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 4,
+        "ctaUpdated": false
+      }
+    },
+    {
+      "episode": "episode_024",
+      "status": "enhanced",
+      "category": "general",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 2,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_025",
+      "status": "enhanced",
+      "category": "medical",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 4,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_026",
+      "status": "enhanced",
+      "category": "thca",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 4,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_027",
+      "status": "enhanced",
+      "category": "general",
+      "changes": {
+        "scriptBeatUpdated": false,
+        "hashtagsAdded": 2,
+        "ctaUpdated": false
+      }
+    },
+    {
+      "episode": "episode_028",
+      "status": "enhanced",
+      "category": "general",
+      "changes": {
+        "scriptBeatUpdated": false,
+        "hashtagsAdded": 2,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_029",
+      "status": "enhanced",
+      "category": "general",
+      "changes": {
+        "scriptBeatUpdated": false,
+        "hashtagsAdded": 2,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_030",
+      "status": "enhanced",
+      "category": "general",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 2,
+        "ctaUpdated": false
+      }
+    },
+    {
+      "episode": "episode_031",
+      "status": "enhanced",
+      "category": "compliance",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 4,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_032",
+      "status": "enhanced",
+      "category": "medical",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 4,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_033",
+      "status": "enhanced",
+      "category": "industry",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 2,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_034",
+      "status": "enhanced",
+      "category": "general",
+      "changes": {
+        "scriptBeatUpdated": false,
+        "hashtagsAdded": 1,
+        "ctaUpdated": false
+      }
+    },
+    {
+      "episode": "episode_035",
+      "status": "enhanced",
+      "category": "general",
+      "changes": {
+        "scriptBeatUpdated": false,
+        "hashtagsAdded": 2,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_036",
+      "status": "enhanced",
+      "category": "compliance",
+      "changes": {
+        "scriptBeatUpdated": false,
+        "hashtagsAdded": 4,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_037",
+      "status": "enhanced",
+      "category": "product",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 4,
+        "ctaUpdated": false
+      }
+    },
+    {
+      "episode": "episode_038",
+      "status": "enhanced",
+      "category": "general",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 2,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_039",
+      "status": "enhanced",
+      "category": "product",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 4,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_040",
+      "status": "enhanced",
+      "category": "industry",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 1,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_041",
+      "status": "enhanced",
+      "category": "general",
+      "changes": {
+        "scriptBeatUpdated": false,
+        "hashtagsAdded": 2,
+        "ctaUpdated": false
+      }
+    },
+    {
+      "episode": "episode_042",
+      "status": "enhanced",
+      "category": "community",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 4,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_043",
+      "status": "enhanced",
+      "category": "general",
+      "changes": {
+        "scriptBeatUpdated": false,
+        "hashtagsAdded": 2,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_044",
+      "status": "enhanced",
+      "category": "general",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 2,
+        "ctaUpdated": false
+      }
+    },
+    {
+      "episode": "episode_045",
+      "status": "enhanced",
+      "category": "general",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 2,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_046",
+      "status": "enhanced",
+      "category": "medical",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 4,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_047",
+      "status": "enhanced",
+      "category": "industry",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 2,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_048",
+      "status": "enhanced",
+      "category": "general",
+      "changes": {
+        "scriptBeatUpdated": false,
+        "hashtagsAdded": 2,
+        "ctaUpdated": false
+      }
+    },
+    {
+      "episode": "episode_049",
+      "status": "enhanced",
+      "category": "general",
+      "changes": {
+        "scriptBeatUpdated": false,
+        "hashtagsAdded": 2,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_050",
+      "status": "enhanced",
+      "category": "general",
+      "changes": {
+        "scriptBeatUpdated": false,
+        "hashtagsAdded": 1,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_051",
+      "status": "enhanced",
+      "category": "general",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 2,
+        "ctaUpdated": false
+      }
+    },
+    {
+      "episode": "episode_052",
+      "status": "enhanced",
+      "category": "compliance",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 4,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_053",
+      "status": "enhanced",
+      "category": "medical",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 4,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_054",
+      "status": "enhanced",
+      "category": "industry",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 2,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_055",
+      "status": "enhanced",
+      "category": "general",
+      "changes": {
+        "scriptBeatUpdated": false,
+        "hashtagsAdded": 2,
+        "ctaUpdated": false
+      }
+    },
+    {
+      "episode": "episode_056",
+      "status": "enhanced",
+      "category": "general",
+      "changes": {
+        "scriptBeatUpdated": false,
+        "hashtagsAdded": 2,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_057",
+      "status": "enhanced",
+      "category": "compliance",
+      "changes": {
+        "scriptBeatUpdated": false,
+        "hashtagsAdded": 4,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_058",
+      "status": "enhanced",
+      "category": "product",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 3,
+        "ctaUpdated": false
+      }
+    },
+    {
+      "episode": "episode_059",
+      "status": "enhanced",
+      "category": "compliance",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 4,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_060",
+      "status": "enhanced",
+      "category": "medical",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 4,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_061",
+      "status": "enhanced",
+      "category": "thca",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 4,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_062",
+      "status": "enhanced",
+      "category": "general",
+      "changes": {
+        "scriptBeatUpdated": false,
+        "hashtagsAdded": 2,
+        "ctaUpdated": false
+      }
+    },
+    {
+      "episode": "episode_063",
+      "status": "enhanced",
+      "category": "general",
+      "changes": {
+        "scriptBeatUpdated": false,
+        "hashtagsAdded": 2,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_064",
+      "status": "enhanced",
+      "category": "general",
+      "changes": {
+        "scriptBeatUpdated": false,
+        "hashtagsAdded": 2,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_065",
+      "status": "enhanced",
+      "category": "general",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 2,
+        "ctaUpdated": false
+      }
+    },
+    {
+      "episode": "episode_066",
+      "status": "enhanced",
+      "category": "general",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 1,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_067",
+      "status": "enhanced",
+      "category": "medical",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 4,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_068",
+      "status": "enhanced",
+      "category": "industry",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 2,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_069",
+      "status": "enhanced",
+      "category": "general",
+      "changes": {
+        "scriptBeatUpdated": false,
+        "hashtagsAdded": 2,
+        "ctaUpdated": false
+      }
+    },
+    {
+      "episode": "episode_070",
+      "status": "enhanced",
+      "category": "community",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 4,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_071",
+      "status": "enhanced",
+      "category": "general",
+      "changes": {
+        "scriptBeatUpdated": false,
+        "hashtagsAdded": 2,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_072",
+      "status": "enhanced",
+      "category": "product",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 4,
+        "ctaUpdated": false
+      }
+    },
+    {
+      "episode": "episode_073",
+      "status": "enhanced",
+      "category": "compliance",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 4,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_074",
+      "status": "enhanced",
+      "category": "medical",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 4,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_075",
+      "status": "enhanced",
+      "category": "industry",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 2,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_076",
+      "status": "enhanced",
+      "category": "general",
+      "changes": {
+        "scriptBeatUpdated": false,
+        "hashtagsAdded": 2,
+        "ctaUpdated": false
+      }
+    },
+    {
+      "episode": "episode_077",
+      "status": "enhanced",
+      "category": "community",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 4,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_078",
+      "status": "enhanced",
+      "category": "general",
+      "changes": {
+        "scriptBeatUpdated": false,
+        "hashtagsAdded": 2,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_079",
+      "status": "enhanced",
+      "category": "product",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 4,
+        "ctaUpdated": false
+      }
+    },
+    {
+      "episode": "episode_080",
+      "status": "enhanced",
+      "category": "compliance",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 4,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_081",
+      "status": "enhanced",
+      "category": "product",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 4,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_082",
+      "status": "enhanced",
+      "category": "industry",
+      "changes": {
+        "scriptBeatUpdated": true,
+        "hashtagsAdded": 1,
+        "ctaUpdated": true
+      }
+    },
+    {
+      "episode": "episode_083",
+      "status": "enhanced",
+      "category": "general",
+      "changes": {
+        "scriptBeatUpdated": false,
+        "hashtagsAdded": 2,
+        "ctaUpdated": false
+      }
+    },
+    {
+      "episode": "episode_084",
+      "status": "enhanced",
+      "category": "general",
+      "changes": {
+        "scriptBeatUpdated": false,
+        "hashtagsAdded": 2,
+        "ctaUpdated": true
+      }
+    }
+  ],
+  "trendingTopicsUsed": {
+    "totalHashtags": 20,
+    "categoriesApplied": [
+      "compliance",
+      "thca",
+      "medical",
+      "product",
+      "industry",
+      "community"
+    ],
+    "currentEventsIncluded": [
+      "October 2025 DSHS emergency rules",
+      "Governor Abbott Executive Order GA-56",
+      "Texas 40th state for medical cannabis",
+      "$5 billion Texas hemp industry",
+      "7,000+ retail locations"
+    ]
+  }
+}

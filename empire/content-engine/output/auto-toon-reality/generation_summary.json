@@ -1,0 +1,145 @@
+{
+  "totalEpisodes": 5,
+  "averageViralScore": 10,
+  "averageEngagement": 8.465,
+  "realTimeData": {
+    "news": {
+      "sources": 0,
+      "articles": [
+        {
+          "title": "Texas House Passes Hemp Expansion Bill",
+          "source": "Texas Tribune",
+          "relevance": 0.95,
+          "sentiment": "positive",
+          "keywords": [
+            "Texas",
+            "hemp",
+            "expansion",
+            "bill"
+          ]
+        },
+        {
+          "title": "Federal Cannabis Rescheduling Update",
+          "source": "Cannabis News",
+          "relevance": 0.88,
+          "sentiment": "neutral",
+          "keywords": [
+            "federal",
+            "cannabis",
+            "rescheduling"
+          ]
+        },
+        {
+          "title": "THC-A Products Legal in Texas",
+          "source": "Hemp News",
+          "relevance": 0.92,
+          "sentiment": "positive",
+          "keywords": [
+            "THC-A",
+            "Texas",
+            "legal"
+          ]
+        }
+      ],
+      "trendingTopics": [
+        "Texas hemp",
+        "THC-A legal",
+        "cannabis rescheduling"
+      ],
+      "sentiment": "positive"
+    },
+    "social": {
+      "accounts": 0,
+      "posts": [
+        {
+          "platform": "twitter",
+          "content": "Texas hemp expansion is huge! #TexasHemp #CannabisLegal",
+          "engagement": 0.85,
+          "sentiment": "positive"
+        },
+        {
+          "platform": "instagram",
+          "content": "New THC-A products at Reggie & Dro! #ReggieAndDro #THCA",
+          "engagement": 0.78,
+          "sentiment": "positive"
+        }
+      ],
+      "hashtags": [
+        "#TexasHemp",
+        "#CannabisLegal",
+        "#ReggieAndDro",
+        "#THCA"
+      ],
+      "engagement": 0.82
+    },
+    "youtube": {
+      "channels": 0,
+      "videos": [
+        {
+          "title": "Texas Hemp Bill Explained",
+          "channel": "Cannabis Legalization News",
+          "views": 125000,
+          "engagement": 0.89,
+          "relevance": 0.91
+        },
+        {
+          "title": "THC-A Legal Status Update",
+          "channel": "Texas Hemp Updates",
+          "views": 89000,
+          "engagement": 0.76,
+          "relevance": 0.88
+        }
+      ],
+      "trending": [
+        "Texas hemp",
+        "THC-A legal",
+        "cannabis education"
+      ],
+      "averageEngagement": 0.83
+    },
+    "trends": {
+      "keywords": [
+        "cannabis",
+        "Texas",
+        "hemp",
+        "THC",
+        "legalization"
+      ],
+      "trending": [
+        {
+          "keyword": "Texas hemp",
+          "score": 0.95,
+          "growth": "+25%"
+        },
+        {
+          "keyword": "THC-A",
+          "score": 0.88,
+          "growth": "+18%"
+        },
+        {
+          "keyword": "cannabis legalization",
+          "score": 0.82,
+          "growth": "+12%"
+        }
+      ],
+      "searchVolume": "high",
+      "competition": "medium"
+    },
+    "timestamp": "2025-10-07T16:06:02.134Z"
+  },
+  "cockpitData": {
+    "keywords": [
+      "cannabis",
+      "Texas",
+      "hemp",
+      "THC",
+      "legalization"
+    ],
+    "channels": [],
+    "socialAccounts": [],
+    "newsSources": [],
+    "apiKeys": {}
+  },
+  "generatedAt": "2025-10-07T16:06:06.146Z",
+  "status": "completed"
+}
