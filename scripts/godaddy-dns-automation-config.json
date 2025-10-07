@@ -35,7 +35,7 @@
   "dns_records": {
     "default_ttl": 300,
     "record_type": "CNAME",
-    "record_name": "@"
+    "record_name": "www"
   },
   "backup": {
     "enabled": true,
