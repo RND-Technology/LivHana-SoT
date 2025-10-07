@@ -10,9 +10,13 @@ RUN npm ci --only=production
 
 # Copy source code
 COPY src/ ./src/
+COPY common/ ../common/
 
 # Expose port
 EXPOSE 8080
 
+# Set environment variable
+ENV PORT=8080
+
 # Start the application
-CMD ["node", "--experimental-modules", "src/index.js"]
+CMD ["node", "src/index.js"]
