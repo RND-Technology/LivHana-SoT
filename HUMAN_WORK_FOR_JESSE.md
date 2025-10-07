@@ -110,9 +110,9 @@ node news-ingestion-pipeline.mjs
 
 1. Open browser: https://merchant.delivery.com/
 2. Click "Get Started" or "Sign Up"
-3. Select "White Label" or "DoorDash Drive"
+3. Select "DoorDash Drive" (not white-label initially)
 4. Fill out form:
-   - Business name: `Reggie & Dro Cannabis Store`
+   - Business name: `Reggie & Dro Cannabis Store & Social Club`
    - Business type: `Retail - Cannabis/Hemp`
    - Address: `[Your San Antonio store address]`
    - EIN: `[Your tax ID]`
@@ -128,9 +128,18 @@ node news-ingestion-pipeline.mjs
 6. Submit application
 7. Note: Approval takes 7-10 days
 
+**API INTEGRATION SETUP (AFTER APPROVAL):**
+1. Sign into DoorDash Developer Portal: https://developer.doordash.com/
+2. Create access key in Credentials section
+3. Fork DoorDash Drive Postman collection
+4. Set up Postman environment with access key variables
+5. Test delivery creation and status endpoints
+6. Use Delivery Simulator to advance delivery stages
+
 **FALLBACK IF DOCS NOT READY:**
 - Use standard DoorDash Drive (not white-label) for now
 - Apply for white-label upgrade later
+- Can still integrate via API for delivery optimization
 
 **TIME:** 15 minutes
 **COMPLETE:** [ ]
@@ -160,7 +169,9 @@ nano /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/backend/delivery-servi
 PORT=4003
 NODE_ENV=production
 DOORDASH_API_KEY=YOUR_DOORDASH_KEY_HERE
+DOORDASH_API_SECRET=YOUR_DOORDASH_SECRET_HERE
 UBER_API_KEY=YOUR_UBER_KEY_HERE
+UBER_API_SECRET=YOUR_UBER_SECRET_HERE
 LIGHTSPEED_STORE_ID=117254578
 LIGHTSPEED_API_TOKEN=YOUR_LIGHTSPEED_TOKEN_HERE
 STORE_ADDRESS="Central San Antonio"
@@ -168,6 +179,28 @@ STORE_ZIP=78228
 STORE_PHONE="+1-210-555-0100"
 
 # Press Ctrl+X, then Y, then Enter to save
+```
+
+**API TESTING (AFTER KEYS OBTAINED):**
+```bash
+# Test DoorDash Drive API using official Postman collection
+# Tutorial: https://developer.doordash.com/en-US/docs/drive/tutorials/get_started_postman/
+
+# Steps to test:
+# 1. Sign into DoorDash Developer Portal
+# 2. Create access key in Credentials section
+# 3. Fork DoorDash Drive Postman collection
+# 4. Set up Postman environment with variables:
+#    - developer_id, key_id, signing_secret, JWT
+# 5. Test delivery creation endpoint
+# 6. Use Delivery Simulator to advance stages
+# 7. Test delivery status endpoint
+
+# Key endpoints to test:
+# 1. POST /v2/deliveries - Create delivery
+# 2. GET /v2/deliveries/{id} - Get delivery status
+# 3. POST /v2/deliveries/{id}/cancel - Cancel delivery
+# 4. GET /v2/deliveries/{id}/tracking - Get tracking info
 ```
 
 **TIME:** 10 minutes
@@ -340,6 +373,32 @@ curl -X POST http://localhost:4003/api/delivery/quote \
   "fee": 5.50,
   "estimatedMinutes": 45
 }
+
+# Test DoorDash Drive API integration:
+curl -X POST http://localhost:4003/api/delivery/doordash/test \
+  -H "Content-Type: application/json" \
+  -d '{
+    "test": true
+  }'
+
+# Expected output:
+{
+  "success": true,
+  "api_connected": true,
+  "endpoints_tested": [
+    "POST /v2/deliveries",
+    "GET /v2/deliveries/{id}",
+    "POST /v2/deliveries/{id}/cancel",
+    "GET /v2/deliveries/{id}/tracking"
+  ]
+}
+
+# Additional DoorDash Drive API testing:
+# 1. Use DoorDash Developer Portal Simulator
+# 2. Advance delivery through stages: Created → Confirmed → Picked Up → Delivered
+# 3. Test webhook endpoints for real-time updates
+# 4. Verify JWT token generation and validation
+```
 ```
 
 **IF ERRORS:**

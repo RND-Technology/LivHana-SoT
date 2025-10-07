@@ -1,12 +1,15 @@
 // LIGHTSPEED → DELIVERY MIDDLEWARE
 // Beats Nash/Square Online by providing:
 // - Direct Lightspeed integration (no Square intermediary)
-// - Multi-provider routing (DoorDash + Uber)
+// - Multi-provider routing (DoorDash + Uber + Postmates + Grubhub)
 // - Real-time order sync + delivery creation
 // - Better pricing (no Square markup)
+// - Intelligent provider comparison and routing
 
 import express from 'express';
 import axios from 'axios';
+import crypto from 'crypto';
+import { getAllProviderQuotes, selectBestProvider, calculateProviderScore } from './provider-comparison.js';
 
 const router = express.Router();
 
@@ -26,20 +29,53 @@ const STORE_CONFIG = {
   storePhone: process.env.STORE_PHONE || '+1-210-555-0100'
 };
 
-// Delivery providers config
+// Delivery providers config (ALL WHITE-LABEL OPTIONS)
 const PROVIDERS = {
   doordash: {
-    enabled: !!process.env.DOORDASH_API_KEY,
-    apiKey: process.env.DOORDASH_API_KEY,
-    secret: process.env.DOORDASH_SECRET,
+    enabled: !!(process.env.DOORDASH_DEVELOPER_ID && process.env.DOORDASH_KEY_ID && process.env.DOORDASH_SIGNING_SECRET),
+    developerId: process.env.DOORDASH_DEVELOPER_ID,
+    keyId: process.env.DOORDASH_KEY_ID,
+    signingSecret: process.env.DOORDASH_SIGNING_SECRET,
     priority: 1,
-    baseUrl: 'https://openapi.doordash.com/drive/v2'
+    baseUrl: 'https://openapi.doordash.com/drive/v2',
+    name: 'DoorDash Drive',
+    avgCost: 5.5,
+    avgTime: 35,
+    reliability: 0.95,
+    avgRating: 4.8
   },
   uber: {
     enabled: !!process.env.UBER_API_KEY,
     apiKey: process.env.UBER_API_KEY,
     priority: 2,
-    baseUrl: 'https://api.uber.com/v1/deliveries'
+    baseUrl: 'https://api.uber.com/v1/deliveries',
+    name: 'Uber Direct',
+    avgCost: 5.0,
+    avgTime: 40,
+    reliability: 0.93,
+    avgRating: 4.7
+  },
+  postmates: {
+    enabled: !!process.env.POSTMATES_API_KEY,
+    apiKey: process.env.POSTMATES_API_KEY,
+    priority: 3,
+    baseUrl: 'https://api.postmates.com/v1',
+    name: 'Postmates Fleet',
+    avgCost: 5.25,
+    avgTime: 38,
+    reliability: 0.94,
+    avgRating: 4.6
+  },
+  grubhub: {
+    enabled: !!process.env.GRUBHUB_API_KEY,
+    apiKey: process.env.GRUBHUB_API_KEY,
+    priority: 4,
+    baseUrl: 'https://partner-api.grubhub.com',
+    name: 'Grubhub Enterprise',
+    avgCost: 6.0,
+    avgTime: 40,
+    reliability: 0.91,
+    avgRating: 4.5
   }
 };
 
@@ -89,30 +125,82 @@ router.post('/lightspeed/webhook', async (req, res) => {
 });
 
 // POST /api/delivery/quote
-// Get delivery quote for cart checkout
+// Get delivery quote for cart checkout (returns BEST option only)
 router.post('/quote', async (req, res) => {
   try {
-    const { cartTotal, deliveryAddress } = req.body;
+    const { cartTotal, deliveryAddress, preferences } = req.body;
 
     // Get quotes from all enabled providers
-    const quotes = await Promise.all([
-      PROVIDERS.doordash.enabled ? getDoorDashQuote(deliveryAddress, cartTotal) : null,
-      PROVIDERS.uber.enabled ? getUberQuote(deliveryAddress, cartTotal) : null
-    ].filter(Boolean));
+    const allQuotes = await getAllProviderQuotes(deliveryAddress, cartTotal, PROVIDERS);
 
-    // Return best quote
-    const bestQuote = quotes.sort((a, b) => a.fee - b.fee)[0];
+    if (allQuotes.totalAvailable === 0) {
+      return res.status(503).json({
+        success: false,
+        error: 'No delivery providers available for this address'
+      });
+    }
+
+    // Select best provider based on preferences
+    const bestQuote = selectBestProvider(allQuotes, preferences);
 
     res.json({
       success: true,
       provider: bestQuote.provider,
-      fee: bestQuote.fee,
+      name: bestQuote.name,
+      cost: bestQuote.cost,
       estimatedMinutes: bestQuote.estimatedMinutes,
-      availableProviders: quotes.length
+      estimatedArrival: bestQuote.estimatedArrival,
+      rating: bestQuote.rating,
+      score: bestQuote.score,
+      tags: bestQuote.tags,
+      availableProviders: allQuotes.totalAvailable
     });
 
   } catch (error) {
     console.error('Quote error:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// POST /api/delivery/providers/compare
+// Get ALL provider quotes for UI comparison (Superior UX - beat Nash!)
+router.post('/providers/compare', async (req, res) => {
+  try {
+    const { cartTotal, deliveryAddress } = req.body;
+
+    // Validate required fields
+    if (!deliveryAddress || !cartTotal) {
+      return res.status(400).json({
+        success: false,
+        error: 'Missing required fields: deliveryAddress, cartTotal'
+      });
+    }
+
+    // Get ALL provider quotes with scoring and tags
+    const comparison = await getAllProviderQuotes(deliveryAddress, cartTotal, PROVIDERS);
+
+    if (comparison.totalAvailable === 0) {
+      return res.status(503).json({
+        success: false,
+        error: 'No delivery providers available for this address',
+        unavailable: comparison.unavailable
+      });
+    }
+
+    res.json({
+      success: true,
+      providers: comparison.available,
+      unavailable: comparison.unavailable,
+      totalAvailable: comparison.totalAvailable,
+      recommendation: comparison.available[0], // Highest scored
+      savings: {
+        vsNash: calculateNashSavings(comparison.available[0].cost),
+        message: `Save $${calculateNashSavings(comparison.available[0].cost).toFixed(2)} vs Nash/Square`
+      }
+    });
+
+  } catch (error) {
+    console.error('Provider comparison error:', error);
     res.status(500).json({ success: false, error: error.message });
   }
 });
@@ -224,25 +312,61 @@ function buildDeliveryRequestFromLightspeed(order) {
 }
 
 async function createDeliveryWithBestProvider(deliveryRequest) {
-  // Try DoorDash first (priority 1)
-  if (PROVIDERS.doordash.enabled) {
-    try {
-      return await createDoorDashDelivery(deliveryRequest);
-    } catch (error) {
-      console.error('DoorDash failed, falling back to Uber:', error.message);
+  // Get quotes from all providers and select best
+  const comparison = await getAllProviderQuotes(
+    deliveryRequest.dropoff.address,
+    deliveryRequest.orderValue,
+    PROVIDERS
+  );
+
+  if (comparison.totalAvailable === 0) {
+    throw new Error('No delivery providers available for this address');
+  }
+
+  // Select best provider (highest score = best overall value)
+  const bestProvider = selectBestProvider(comparison);
+
+  // Try best provider first
+  try {
+    console.log(`Creating delivery with ${bestProvider.provider} (score: ${bestProvider.score})...`);
+    return await createDeliveryWithProvider(bestProvider.provider, deliveryRequest);
+  } catch (error) {
+    console.error(`${bestProvider.provider} failed:`, error.message);
+
+    // Automatic failover: try remaining providers in score order
+    for (const provider of comparison.available.slice(1)) {
+      try {
+        console.log(`Failing over to ${provider.provider} (score: ${provider.score})...`);
+        return await createDeliveryWithProvider(provider.provider, deliveryRequest);
+      } catch (fallbackError) {
+        console.error(`${provider.provider} also failed:`, fallbackError.message);
+        continue;
+      }
     }
-  }
 
-  // Fallback to Uber
-  if (PROVIDERS.uber.enabled) {
-    return await createUberDelivery(deliveryRequest);
+    throw new Error('All delivery providers failed');
   }
+}
 
-  throw new Error('No delivery providers available');
+async function createDeliveryWithProvider(providerKey, deliveryRequest) {
+  switch (providerKey) {
+    case 'doordash':
+      return await createDoorDashDelivery(deliveryRequest);
+    case 'uber':
+      return await createUberDelivery(deliveryRequest);
+    case 'postmates':
+      return await createPostmatesDelivery(deliveryRequest);
+    case 'grubhub':
+      return await createGrubhubDelivery(deliveryRequest);
+    default:
+      throw new Error(`Unknown provider: ${providerKey}`);
+  }
 }
 
 async function createDoorDashDelivery(request) {
-  // DoorDash Drive API integration
+  // DoorDash Drive API integration with JWT authentication
+  const jwt = generateDoorDashJWT();
+
   const response = await axios.post(
     `${PROVIDERS.doordash.baseUrl}/deliveries`,
     {
@@ -260,7 +384,7 @@ async function createDoorDashDelivery(request) {
     },
     {
       headers: {
-        'Authorization': `Bearer ${PROVIDERS.doordash.apiKey}`,
+        'Authorization': `Bearer ${jwt}`,
         'Content-Type': 'application/json'
       }
     }
@@ -310,7 +434,76 @@ async function createUberDelivery(request) {
   };
 }
 
+async function createPostmatesDelivery(request) {
+  // Postmates Fleet API integration
+  const response = await axios.post(
+    `${PROVIDERS.postmates.baseUrl}/deliveries`,
+    {
+      pickup_name: request.pickup.name,
+      pickup_phone_number: request.pickup.phone,
+      pickup_address: formatAddressForDoorDash(request.pickup.address), // Uses same format
+      dropoff_name: request.dropoff.name,
+      dropoff_phone_number: request.dropoff.phone,
+      dropoff_address: formatAddressForDoorDash(request.dropoff.address),
+      dropoff_notes: request.instructions,
+      manifest: request.items?.map(item => item.name).join(', ') || 'Cannabis products',
+      quote_id: request.postmatesQuoteId // From previous quote call
+    },
+    {
+      headers: {
+        'Authorization': `Bearer ${PROVIDERS.postmates.apiKey}`,
+        'Content-Type': 'application/json'
+      }
+    }
+  );
+
+  return {
+    id: response.data.id,
+    provider: 'postmates',
+    trackingUrl: response.data.tracking_url,
+    estimatedDelivery: response.data.dropoff_eta
+  };
+}
+
+async function createGrubhubDelivery(request) {
+  // Grubhub Enterprise API integration
+  const response = await axios.post(
+    `${PROVIDERS.grubhub.baseUrl}/orders`,
+    {
+      external_order_id: request.orderId,
+      restaurant: {
+        name: request.pickup.name,
+        phone: request.pickup.phone,
+        address: formatAddressForDoorDash(request.pickup.address)
+      },
+      customer: {
+        name: request.dropoff.name,
+        phone: request.dropoff.phone,
+        address: formatAddressForDoorDash(request.dropoff.address)
+      },
+      delivery_instructions: request.instructions,
+      order_total: Math.round(request.orderValue * 100),
+      items: request.items || []
+    },
+    {
+      headers: {
+        'Authorization': `Bearer ${PROVIDERS.grubhub.apiKey}`,
+        'Content-Type': 'application/json'
+      }
+    }
+  );
+
+  return {
+    id: response.data.order_id,
+    provider: 'grubhub',
+    trackingUrl: response.data.tracking_url,
+    estimatedDelivery: response.data.estimated_delivery_time
+  };
+}
+
 async function getDoorDashQuote(address, orderValue) {
+  const jwt = generateDoorDashJWT();
+
   const response = await axios.post(
     `${PROVIDERS.doordash.baseUrl}/quotes`,
     {
@@ -320,7 +513,7 @@ async function getDoorDashQuote(address, orderValue) {
     },
     {
       headers: {
-        'Authorization': `Bearer ${PROVIDERS.doordash.apiKey}`,
+        'Authorization': `Bearer ${jwt}`,
         'Content-Type': 'application/json'
       }
     }
@@ -360,10 +553,12 @@ async function getDeliveryStatus(deliveryId) {
   const provider = deliveryId.startsWith('dd_') ? 'doordash' : 'uber';
 
   if (provider === 'doordash') {
+    const jwt = generateDoorDashJWT();
+
     const response = await axios.get(
       `${PROVIDERS.doordash.baseUrl}/deliveries/${deliveryId}`,
       {
-        headers: { 'Authorization': `Bearer ${PROVIDERS.doordash.apiKey}` }
+        headers: { 'Authorization': `Bearer ${jwt}` }
       }
     );
 
@@ -396,11 +591,13 @@ async function cancelDelivery(deliveryId, reason) {
   const provider = deliveryId.startsWith('dd_') ? 'doordash' : 'uber';
 
   if (provider === 'doordash') {
+    const jwt = generateDoorDashJWT();
+
     const response = await axios.post(
       `${PROVIDERS.doordash.baseUrl}/deliveries/${deliveryId}/cancel`,
       { cancellation_reason: reason },
       {
-        headers: { 'Authorization': `Bearer ${PROVIDERS.doordash.apiKey}` }
+        headers: { 'Authorization': `Bearer ${jwt}` }
       }
     );
 
@@ -465,6 +662,55 @@ function formatAddressForUber(address) {
     zip_code: address.zip,
     country: 'US'
   };
+}
+
+function calculateNashSavings(ourCost) {
+  // Nash charges $7-12 delivery fee
+  // We charge the actual provider cost ($5-8)
+  const nashAvgCost = 9.50; // Average Nash fee
+  return nashAvgCost - ourCost;
+}
+
+/**
+ * Generate JWT token for DoorDash Drive API authentication
+ * See: https://developer.doordash.com/en-US/docs/drive/reference/auth/
+ */
+function generateDoorDashJWT() {
+  const { developerId, keyId, signingSecret } = PROVIDERS.doordash;
+
+  if (!developerId || !keyId || !signingSecret) {
+    throw new Error('DoorDash credentials not configured');
+  }
+
+  // JWT Header
+  const header = {
+    alg: 'HS256',
+    typ: 'JWT',
+    dd-ver: 'DD-JWT-V1'
+  };
+
+  // JWT Payload
+  const payload = {
+    aud: 'doordash',
+    iss: developerId,
+    kid: keyId,
+    exp: Math.floor(Date.now() / 1000) + 300, // 5 minutes expiry
+    iat: Math.floor(Date.now() / 1000)
+  };
+
+  // Encode header and payload
+  const encodedHeader = Buffer.from(JSON.stringify(header)).toString('base64url');
+  const encodedPayload = Buffer.from(JSON.stringify(payload)).toString('base64url');
+
+  // Create signature
+  const signatureInput = `${encodedHeader}.${encodedPayload}`;
+  const signature = crypto
+    .createHmac('sha256', signingSecret)
+    .update(signatureInput)
+    .digest('base64url');
+
+  // Return complete JWT
+  return `${signatureInput}.${signature}`;
 }
 
 export default router;

@@ -34,6 +34,19 @@ class RPMWeeklyPlanGenerator {
 
     loadTrinityRoles() {
         return {
+            jesse_ceo: {
+                role: 'Jesse CEO',
+                capabilities: [
+                    'Strategic decision making',
+                    'Business approvals',
+                    'Resource allocation',
+                    'Team coordination',
+                    'Client relations',
+                    'Final validation'
+                ],
+                current_focus: 'Strategic oversight and approvals',
+                availability: 'Business hours and critical decisions'
+            },
             sonnet_cli: {
                 role: 'Sonnet 4.5 CLI',
                 capabilities: [
@@ -72,19 +85,6 @@ class RPMWeeklyPlanGenerator {
                 ],
                 current_focus: 'Production deployment and monitoring',
                 availability: 'Continuous deployment and monitoring'
-            },
-            jesse_ceo: {
-                role: 'Jesse CEO',
-                capabilities: [
-                    'Strategic decision making',
-                    'Business approvals',
-                    'Resource allocation',
-                    'Team coordination',
-                    'Client relations',
-                    'Final validation'
-                ],
-                current_focus: 'Strategic oversight and approvals',
-                availability: 'Business hours and critical decisions'
             }
         };
     }
