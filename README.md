@@ -1,5 +1,7 @@
 # 🔥 LivHana-SoT - TIER-1 CANNABIS AI PLATFORM + FINANCE LAYER UNLOCKED
 
+**SoT**: Single source of truth, system of thoughts, state of truthfulness - LivHana-SoT only. Tri-une meaning, purpose.
+
 ## Sovereign Life OS Master Monday Edition
 
 ![Status](https://img.shields.io/badge/Status-OPERATIONAL-green)
