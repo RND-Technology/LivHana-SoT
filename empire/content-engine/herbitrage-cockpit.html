@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HERBITRAGE COCKPIT - Cannabis Empire Control Center</title>
+    <meta name="description" content="Herbitrage Cockpit - Unified control center for the entire cannabis empire. Real-time monitoring, analytics, and management.">
+    <meta name="keywords" content="cannabis, hemp, THC-A, Texas, empire, cockpit, control center, analytics, monitoring">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #2d2d2d 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #333;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #4CAF50;
+        }
+
+        .cockpit-status {
+            background: #4CAF50;
+            color: #000;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .cockpit-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .cockpit-title h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cockpit-title p {
+            font-size: 1.25rem;
+            color: #cccccc;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .dashboard-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .card-content {
+            color: #cccccc;
+            line-height: 1.6;
+        }
+
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .metric:last-child {
+            border-bottom: none;
+        }
+
+        .metric-label {
+            font-weight: 500;
+        }
+
+        .metric-value {
+            font-weight: 600;
+            color: #4CAF50;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+
+        .status-online {
+            background: #4CAF50;
+            box-shadow: 0 0 10px #4CAF50;
+        }
+
+        .status-warning {
+            background: #FF9800;
+            box-shadow: 0 0 10px #FF9800;
+        }
+
+        .status-offline {
+            background: #F44336;
+            box-shadow: 0 0 10px #F44336;
+        }
+
+        .empire-overview {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .empire-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #4CAF50;
+        }
+
+        .empire-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .empire-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .empire-item:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .empire-item-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .empire-item-status {
+            font-size: 0.875rem;
+            color: #4CAF50;
+        }
+
+        .real-time-data {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .data-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #4CAF50;
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .data-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        .data-label {
+            font-size: 0.875rem;
+            color: #cccccc;
+            margin-bottom: 0.5rem;
+        }
+
+        .data-value {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .footer {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid #333;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-text {
+            color: #cccccc;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-link {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: #ffffff;
+        }
+
+        .copyright {
+            color: #666;
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav {
+                gap: 1rem;
+            }
+
+            .cockpit-title h1 {
+                font-size: 2rem;
+            }
+
+            .main-content {
+                padding: 1rem;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .empire-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <a href="/" class="logo">HERBITRAGE</a>
+            <nav class="nav">
+                <a href="#dashboard" class="nav-link">Dashboard</a>
+                <a href="#analytics" class="nav-link">Analytics</a>
+                <a href="#monitoring" class="nav-link">Monitoring</a>
+                <a href="#empire" class="nav-link">Empire</a>
+                <div class="cockpit-status pulse">LIVE</div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="cockpit-title">
+            <h1>HERBITRAGE COCKPIT</h1>
+            <p>Cannabis Empire Control Center - Real-time monitoring, analytics, and management for the entire cannabis ecosystem</p>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <div class="card-icon">👥</div>
+                    <div class="card-title">Customer Analytics</div>
+                </div>
+                <div class="card-content">
+                    <div class="metric">
+                        <span class="metric-label">Total Customers</span>
+                        <span class="metric-value">1,247</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Active Today</span>
+                        <span class="metric-value">89</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">New Registrations</span>
+                        <span class="metric-value">12</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Retention Rate</span>
+                        <span class="metric-value">94.2%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <div class="card-icon">📦</div>
+                    <div class="card-title">Order Management</div>
+                </div>
+                <div class="card-content">
+                    <div class="metric">
+                        <span class="metric-label">Total Orders</span>
+                        <span class="metric-value">3,456</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Pending</span>
+                        <span class="metric-value">23</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Completed</span>
+                        <span class="metric-value">3,421</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Revenue</span>
+                        <span class="metric-value">$127,890</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <div class="card-icon">🏪</div>
+                    <div class="card-title">Inventory Control</div>
+                </div>
+                <div class="card-content">
+                    <div class="metric">
+                        <span class="metric-label">Total Products</span>
+                        <span class="metric-value">156</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">In Stock</span>
+                        <span class="metric-value">142</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Low Stock</span>
+                        <span class="metric-value">8</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Out of Stock</span>
+                        <span class="metric-value">6</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <div class="card-icon">🚚</div>
+                    <div class="card-title">Delivery Network</div>
+                </div>
+                <div class="card-content">
+                    <div class="metric">
+                        <span class="metric-label">Active Deliveries</span>
+                        <span class="metric-value">15</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Completed Today</span>
+                        <span class="metric-value">67</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Avg Delivery Time</span>
+                        <span class="metric-value">23 min</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Success Rate</span>
+                        <span class="metric-value">98.7%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <div class="card-icon">💳</div>
+                    <div class="card-title">Payment Processing</div>
+                </div>
+                <div class="card-content">
+                    <div class="metric">
+                        <span class="metric-label">Total Processed</span>
+                        <span class="metric-value">$127,890</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Pending</span>
+                        <span class="metric-value">$1,234</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Failed</span>
+                        <span class="metric-value">$89</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Success Rate</span>
+                        <span class="metric-value">99.3%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <div class="card-icon">⚖️</div>
+                    <div class="card-title">Compliance Monitor</div>
+                </div>
+                <div class="card-content">
+                    <div class="metric">
+                        <span class="metric-label">Status</span>
+                        <span class="metric-value">✅ Compliant</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Last Audit</span>
+                        <span class="metric-value">2025-10-01</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Violations</span>
+                        <span class="metric-value">0</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Next Audit</span>
+                        <span class="metric-value">2025-11-01</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="empire-overview">
+            <div class="empire-title">Cannabis Empire Overview</div>
+            <div class="empire-grid">
+                <div class="empire-item">
+                    <div class="empire-item-name">Reggie & Dro</div>
+                    <div class="empire-item-status">
+                        <span class="status-indicator status-online"></span>
+                        Online
+                    </div>
+                </div>
+                <div class="empire-item">
+                    <div class="empire-item-name">Herbitrage</div>
+                    <div class="empire-item-status">
+                        <span class="status-indicator status-online"></span>
+                        Online
+                    </div>
+                </div>
+                <div class="empire-item">
+                    <div class="empire-item-name">High Noon Cartoon</div>
+                    <div class="empire-item-status">
+                        <span class="status-indicator status-online"></span>
+                        Online
+                    </div>
+                </div>
+                <div class="empire-item">
+                    <div class="empire-item-name">Cannabis Cookies Texas</div>
+                    <div class="empire-item-status">
+                        <span class="status-indicator status-online"></span>
+                        Online
+                    </div>
+                </div>
+                <div class="empire-item">
+                    <div class="empire-item-name">THCA Flower TX</div>
+                    <div class="empire-item-status">
+                        <span class="status-indicator status-online"></span>
+                        Online
+                    </div>
+                </div>
+                <div class="empire-item">
+                    <div class="empire-item-name">Free Weed Texas</div>
+                    <div class="empire-item-status">
+                        <span class="status-indicator status-online"></span>
+                        Online
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="real-time-data">
+            <div class="data-title">Real-time Data Feed</div>
+            <div class="data-grid">
+                <div class="data-item">
+                    <div class="data-label">Current Orders</div>
+                    <div class="data-value">23</div>
+                </div>
+                <div class="data-item">
+                    <div class="data-label">Active Users</div>
+                    <div class="data-value">89</div>
+                </div>
+                <div class="data-item">
+                    <div class="data-label">System Load</div>
+                    <div class="data-value">34%</div>
+                </div>
+                <div class="data-item">
+                    <div class="data-label">Response Time</div>
+                    <div class="data-value">127ms</div>
+                </div>
+                <div class="data-item">
+                    <div class="data-label">Database Connections</div>
+                    <div class="data-value">45</div>
+                </div>
+                <div class="data-item">
+                    <div class="data-label">Cache Hit Rate</div>
+                    <div class="data-value">94.2%</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-text">
+                HERBITRAGE COCKPIT - Cannabis Empire Control Center
+            </div>
+            <div class="footer-links">
+                <a href="#privacy" class="footer-link">Privacy Policy</a>
+                <a href="#terms" class="footer-link">Terms of Service</a>
+                <a href="#compliance" class="footer-link">Compliance</a>
+                <a href="#support" class="footer-link">Support</a>
+            </div>
+            <div class="copyright">
+                © 2025 Herbitrage. All rights reserved. Texas DSHS #690
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Real-time data updates
+        function updateRealTimeData() {
+            // Simulate real-time data updates
+            const dataItems = document.querySelectorAll('.data-value');
+            dataItems.forEach(item => {
+                if (item.textContent.includes('Orders')) {
+                    item.textContent = Math.floor(Math.random() * 50) + 10;
+                } else if (item.textContent.includes('Users')) {
+                    item.textContent = Math.floor(Math.random() * 200) + 50;
+                } else if (item.textContent.includes('Load')) {
+                    item.textContent = Math.floor(Math.random() * 100) + '%';
+                } else if (item.textContent.includes('Time')) {
+                    item.textContent = Math.floor(Math.random() * 200) + 50 + 'ms';
+                } else if (item.textContent.includes('Connections')) {
+                    item.textContent = Math.floor(Math.random() * 100) + 20;
+                } else if (item.textContent.includes('Hit Rate')) {
+                    item.textContent = (Math.random() * 10 + 90).toFixed(1) + '%';
+                }
+            });
+        }
+
+        // Update data every 5 seconds
+        setInterval(updateRealTimeData, 5000);
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add loading animation
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
