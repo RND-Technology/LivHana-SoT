@@ -683,13 +683,13 @@ npm run dev
 ### **4. Create first admin user:**
 ```bash
 # Via CLI script
-npm run create-admin -- --email=jesse@reggieanddro.com --password=SecurePass123! --role=admin
+npm run create-admin -- --email=jesseniesen@gmail.com --password=SecurePass123! --role=admin
 ```
 
 ### **5. Access:**
 ```
 URL: https://cockpit.reggieanddro.com
-Login: jesse@reggieanddro.com
+Login: jesseniesen@gmail.com
 ```
 
 ---
