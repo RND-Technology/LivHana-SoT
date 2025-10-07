@@ -171,6 +171,17 @@ curl -X POST http://localhost:4003/api/delivery/lightspeed/webhook \
 - Volume discounts available
 - **Total for $75 order:** **$5-8** (save $5-7 per order)
 
+## IMPORTANT: We Use Nash's Model (Outsource Drivers)
+
+**Nash uses:** DoorDash/Uber drivers (API integration)
+**We use:** DoorDash/Uber drivers (API integration) - **SAME MODEL**
+
+**Difference:** We skip Square intermediary = lower costs
+
+**NO driver hiring needed**
+**NO fleet management needed**
+**Just get API keys and launch**
+
 ## Support
 
 Contact: jesse@reggieanddro.com
