@@ -1,0 +1,77 @@
+{
+  "id": "episode_2",
+  "title": "Texas House Passes Hemp Expansion Bill: The Full Story",
+  "episodeNumber": 2,
+  "characters": [
+    {
+      "name": "Lt. Dan",
+      "personality": "Military Advisor, Strategic, Loyal, Mission-Focused",
+      "catchphrases": [
+        "Mission critical!",
+        "Roger that, sir!",
+        "Tactical analysis complete!",
+        "Orders received!",
+        "Deploying strategy!"
+      ],
+      "style": "Military precision, loyal, strategic",
+      "voice": "Authoritative, military, disciplined"
+    },
+    {
+      "name": "Chief Steve",
+      "personality": "Authority Figure, Nervous, Conflicted, Legislation-Watcher",
+      "catchphrases": [
+        "But the optics!",
+        "We gotta crack down!",
+        "What about compliance?",
+        "This is unprecedented!",
+        "The regulations say..."
+      ],
+      "style": "Anxious, rule-following, cautious",
+      "voice": "Nervous, high-pitched, uncertain"
+    },
+    {
+      "name": "Liv Hana AI",
+      "personality": "AI Assistant, Loyal, Intelligent, Data-Driven",
+      "catchphrases": [
+        "Live and faithful, boss!",
+        "Data analyzed!",
+        "Roger that!",
+        "Mission parameters set!",
+        "Processing..."
+      ],
+      "style": "Precise, analytical, supportive",
+      "voice": "Clear, robotic, helpful"
+    }
+  ],
+  "template": {
+    "name": "Educational",
+    "description": "Fact-based content with clear explanations",
+    "structure": [
+      "Question",
+      "Fact Presentation",
+      "Visual Aid",
+      "Example",
+      "Summary"
+    ],
+    "music": "Professional educational tone",
+    "duration": "75-90 seconds"
+  },
+  "tpop": "🏆",
+  "tpopWeight": 0.9,
+  "dogWhistle": "og_days",
+  "dogWhistleAnalysis": "Nostalgic references to early cannabis culture",
+  "easterEgg": "Lt. Dan (Forrest Gump reference)",
+  "script": "Lt. Dan: \"Today we're discussing Texas House Passes Hemp Expansion Bill.\"\n\nChief Steve: \"The facts are clear: Texas House Passes Hemp Expansion Bill.\"\n\nLt. Dan: \"Here's what you need to know...\"\n\nChief Steve: \"Data analyzed and confirmed!\"",
+  "viralScore": 10,
+  "engagementPrediction": 7.885,
+  "duration": "75-90 seconds",
+  "music": "Professional educational tone",
+  "realTimeData": {
+    "newsRelevance": 0.95,
+    "socialEngagement": 0.82,
+    "youtubeRelevance": 0.91,
+    "trendingScore": 0.95
+  },
+  "generatedAt": "2025-10-07T16:06:03.136Z",
+  "status": "generated"
+}

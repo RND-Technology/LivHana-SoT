@@ -2,6 +2,7 @@ import express from 'express';
 import Anthropic from '@anthropic-ai/sdk';
 import OpenAI from 'openai';
 import { createLogger } from '../common/logging/index.js';
+import swarmIntegrationRoutes from '../routes/swarm-integration.js';
 
 const logger = createLogger('reasoning-gateway');
 const app = express();
@@ -125,24 +126,33 @@ app.post('/api/v1/generate-email', async (req, res) => {
   }
 });
 
+// Mount swarm integration routes
+app.use('/api/swarm', swarmIntegrationRoutes);
+
 // Health check
 app.get('/health', (req, res) => {
-  res.json({ 
-    status: 'healthy', 
+  res.json({
+    status: 'healthy',
     service: 'reasoning-gateway',
     message: 'Real AI reasoning service active',
     timestamp: new Date().toISOString(),
-    features: ['claude_integration', 'openai_integration', 'cost_tracking']
+    features: ['claude_integration', 'openai_integration', 'cost_tracking', 'swarm_coordination']
   });
 });
 
 // Main route
 app.get('/', (req, res) => {
-  res.json({ 
+  res.json({
     message: 'Reasoning Gateway Active',
     status: 'operational',
     timestamp: new Date().toISOString(),
-    endpoints: ['/api/v1/generate', '/api/v1/generate-email']
+    endpoints: [
+      '/api/v1/generate',
+      '/api/v1/generate-email',
+      '/api/swarm/tasks',
+      '/api/swarm/health',
+      '/api/swarm/capabilities'
+    ]
   });
 });
 

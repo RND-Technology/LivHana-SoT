@@ -1,0 +1,31 @@
+{
+  "episode": 2,
+  "title": "The Texas Revolution",
+  "scenes": [
+    {
+      "scene": 1,
+      "narration": "In the heart of Texas, a new chapter begins. From the bustling streets of Austin to the oil fields of Dallas, the cannabis revolution takes root.",
+      "dialogue": [
+        {
+          "speaker": "Farmer",
+          "text": "The revolution starts with a single seed, planted with hope and nurtured with determination."
+        },
+        {
+          "speaker": "Advocate", 
+          "text": "We are the future of cannabis in Texas. No longer will we hide in the shadows."
+        },
+        {
+          "speaker": "Entrepreneur",
+          "text": "The market is ready, the people are ready, and Texas is ready for change."
+        }
+      ]
+    }
+  ],
+  "visuals": [
+    "Texas state capitol building",
+    "Cannabis fields stretching to the horizon", 
+    "People celebrating legalization",
+    "Technology and innovation hubs"
+  ],
+  "endCard": "Join the Texas Revolution. The future is now."
+}

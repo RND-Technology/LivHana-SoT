@@ -1,0 +1,74 @@
+{
+  "timestamp": "2025-10-07T15:51:14.043Z",
+  "systems": {
+    "hncContentEngine": {
+      "status": "Active",
+      "health": "Healthy",
+      "scriptsGenerated": 3,
+      "episodesProduced": 0,
+      "latestEpisode": null,
+      "lastCheck": "2025-10-07T15:51:14.042Z"
+    },
+    "newsPipeline": {
+      "status": "Active",
+      "health": "Healthy",
+      "articlesProcessed": 0,
+      "cannabisNews": 0,
+      "politicalNews": 0,
+      "lastUpdate": "2025-10-07T15:50:49.430Z",
+      "lastCheck": "2025-10-07T15:51:14.043Z"
+    },
+    "swarmCoordinator": {
+      "status": "Idle",
+      "health": "Warning",
+      "message": "No swarm activity detected",
+      "activeAgents": 0,
+      "tasksCompleted": 0,
+      "tasksInProgress": 0,
+      "lastCheck": "2025-10-07T15:51:14.043Z"
+    },
+    "replitServices": {
+      "status": "Not Deployed",
+      "health": "Info",
+      "platform": "Local",
+      "lastCheck": "2025-10-07T15:51:14.043Z"
+    }
+  },
+  "episodes": {
+    "total": 0,
+    "today": 3,
+    "current": "None",
+    "successRate": "100%",
+    "progress": 0
+  },
+  "quality": {
+    "funny": 8.7,
+    "quotable": 9.1,
+    "advocacy": 9.5,
+    "average": 9.1,
+    "trend": "improving"
+  },
+  "revenue": {
+    "total": 0,
+    "costs": 0,
+    "costPerEpisode": 0,
+    "profit": 0,
+    "roi": "N/A"
+  },
+  "activities": [
+    {
+      "timestamp": "2025-10-07T15:51:14.043Z",
+      "message": "System monitoring active",
+      "type": "info"
+    }
+  ],
+  "learnings": [
+    {
+      "pattern": "System Learning",
+      "insight": "Continuous improvement in progress",
+      "action": "Monitoring content quality patterns"
+    }
+  ],
+  "alerts": [],
+  "overallHealth": "Healthy"
+}

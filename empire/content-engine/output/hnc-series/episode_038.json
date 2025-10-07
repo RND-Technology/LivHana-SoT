@@ -1,0 +1,52 @@
+{
+  "id": "episode_038",
+  "title": "COA Requirements Explained",
+  "season": 6,
+  "day": 3,
+  "theme": "Compliance Education",
+  "format": "60-second short",
+  "platforms": [
+    "YouTube Shorts",
+    "TikTok",
+    "IG Reels",
+    "X"
+  ],
+  "scriptBeat": [
+    "Lt. Dan: \"Alright listen up! Here's how we stay legal in Texas...\"",
+    "Jesse: \"Lt. Dan, nobody wants a compliance lecture.\"",
+    "Lt. Dan: \"You WILL when DSHS shows up! ≤0.3% Δ9 THC, 21+ only!\"",
+    "Liv Hana: \"He's right. COAs or GTFO.\""
+  ],
+  "seoAnchors": [
+    "#TexasTHC",
+    "#StayTOONED",
+    "#ReggieAndDro",
+    "#Compliance",
+    "#DSHS",
+    "#LegalHemp"
+  ],
+  "cta": "Stay legal, stay TOONED!",
+  "sunoMusic": "military-march-comedy",
+  "sunoPrompt": "Create a military-march-comedy track for a Texas cannabis cartoon episode titled \"COA Requirements Explained\". Include subtle Texas elements and match the mood: Lt. Dan: \"Alright listen up! Here's how we stay legal in Texas...\"",
+  "dogWhistle": "revolution",
+  "dogWhistleAnalysis": "References to building a cannabis empire",
+  "tpop": "🎯",
+  "tpopAnalysis": "Precision and accuracy",
+  "easterEgg": "Chief Steve based on real Texas law enforcement",
+  "schoolHouseRock": true,
+  "schoolHouseRockVersion": "Educational compliance version with catchy melody and memorable lyrics",
+  "characters": [
+    "Jesse",
+    "Aubrey Awfuls"
+  ],
+  "productionMetadata": {
+    "generatedAt": "2025-10-07T08:19:27.693Z",
+    "engine": "HNCSeriesExecutor",
+    "version": "1.0.0",
+    "episodeNumber": 38,
+    "season": 6,
+    "day": 3,
+    "theme": "Compliance Education"
+  },
+  "status": "generated"
+}

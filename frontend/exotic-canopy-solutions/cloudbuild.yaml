@@ -1,0 +1,46 @@
+steps:
+  # Build the container image
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - 'us-central1-docker.pkg.dev/reggieanddrodispensary/backend/exotic-canopy-solutions:$SHORT_SHA'
+      - '-t'
+      - 'us-central1-docker.pkg.dev/reggieanddrodispensary/backend/exotic-canopy-solutions:latest'
+      - '.'
+
+  # Push the container image
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - 'us-central1-docker.pkg.dev/reggieanddrodispensary/backend/exotic-canopy-solutions:$SHORT_SHA'
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - 'us-central1-docker.pkg.dev/reggieanddrodispensary/backend/exotic-canopy-solutions:latest'
+
+  # Deploy to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'exotic-canopy-solutions'
+      - '--image'
+      - 'us-central1-docker.pkg.dev/reggieanddrodispensary/backend/exotic-canopy-solutions:$SHORT_SHA'
+      - '--region'
+      - 'us-central1'
+      - '--platform'
+      - 'managed'
+      - '--allow-unauthenticated'
+      - '--port'
+      - '8080'
+
+images:
+  - 'us-central1-docker.pkg.dev/reggieanddrodispensary/backend/exotic-canopy-solutions:$SHORT_SHA'
+  - 'us-central1-docker.pkg.dev/reggieanddrodispensary/backend/exotic-canopy-solutions:latest'
+
+options:
+  machineType: 'E2_HIGHCPU_8'
+  logging: CLOUD_LOGGING_ONLY

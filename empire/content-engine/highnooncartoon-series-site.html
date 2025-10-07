@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIGH NOON CARTOON - 84 Episodes | 12 Seasons</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 4em;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .subtitle {
+            font-size: 1.5em;
+            color: #FFD700;
+            margin-bottom: 20px;
+        }
+        
+        .series-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            margin: 10px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .video-player {
+            background: rgba(255,255,255,0.1);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 30px 0;
+            border: 2px solid #FFD700;
+            text-align: center;
+        }
+        
+        .player-title {
+            color: #FFD700;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe,
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        
+        .episode-info {
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 1px solid #FFD700;
+        }
+        
+        .episode-title {
+            color: #FFD700;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .episode-description {
+            color: #ccc;
+            font-size: 1em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .episode-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .meta-item {
+            background: rgba(255,255,255,0.05);
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #FFD700;
+        }
+        
+        .meta-label {
+            color: #FFD700;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+        
+        .meta-value {
+            color: #fff;
+            font-size: 1em;
+        }
+        
+        .seasons-container {
+            background: rgba(255,255,255,0.1);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 30px 0;
+            border: 2px solid #FFD700;
+        }
+        
+        .seasons-title {
+            color: #FFD700;
+            font-size: 2em;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .season-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .season-card {
+            background: rgba(255,255,255,0.05);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #FFD700;
+            transition: transform 0.3s ease;
+        }
+        
+        .season-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .season-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .season-number {
+            color: #FFD700;
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .season-title {
+            color: #fff;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        
+        .episode-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .episode-item {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,215,0,0.2);
+            transition: background-color 0.3s ease;
+        }
+        
+        .episode-item:hover {
+            background-color: rgba(255,215,0,0.1);
+        }
+        
+        .episode-item:last-child {
+            border-bottom: none;
+        }
+        
+        .episode-link {
+            color: #FFD700;
+            text-decoration: none;
+            font-weight: bold;
+            display: block;
+            padding: 5px 0;
+        }
+        
+        .episode-link:hover {
+            color: #FFA500;
+        }
+        
+        .episode-number {
+            color: #ccc;
+            font-size: 0.9em;
+            margin-right: 10px;
+        }
+        
+        .episode-name {
+            color: #FFD700;
+            font-size: 1em;
+        }
+        
+        .episode-theme {
+            color: #ccc;
+            font-size: 0.8em;
+            margin-left: 10px;
+        }
+        
+        .stats-section {
+            background: rgba(255,255,255,0.1);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 30px 0;
+            border: 2px solid #FFD700;
+            text-align: center;
+        }
+        
+        .stats-title {
+            color: #FFD700;
+            font-size: 2em;
+            margin-bottom: 30px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-card {
+            background: rgba(255,255,255,0.05);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #FFD700;
+        }
+        
+        .stat-number {
+            color: #00ff00;
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            color: #FFD700;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #888;
+            padding: 20px;
+            border-top: 1px solid #333;
+        }
+        
+        .tpop {
+            font-size: 1.5em;
+            margin: 0 5px;
+        }
+        
+        .live-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: #00ff00;
+            border-radius: 50%;
+            margin-right: 5px;
+            animation: pulse 2s infinite;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5em;
+            }
+            
+            .subtitle {
+                font-size: 1.2em;
+            }
+            
+            .season-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .episode-meta {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>HIGH NOON CARTOON</h1>
+            <div class="subtitle">84 Episodes | 12 Seasons | Texas THC Tales</div>
+            <div class="series-badge">
+                <span class="live-indicator"></span>
+                SERIES LIVE
+            </div>
+            <div class="tpop">🐆🔥⚡🎯💀🚀💎</div>
+        </div>
+        
+        <!-- VIDEO PLAYER -->
+        <div class="video-player">
+            <div class="player-title">🎬 CURRENT EPISODE</div>
+            
+            <div class="video-container">
+                <video controls poster="https://storage.googleapis.com/hnc-episodes-prod/HNC_EP1_THUMBNAIL.jpg">
+                    <source src="https://storage.googleapis.com/hnc-episodes-prod/HNC_EP1_FINAL.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            
+            <div class="episode-info">
+                <div class="episode-title">Episode 1: Jesse Meets Liv Hana</div>
+                <div class="episode-description">
+                    Welcome to the inaugural episode of HIGH NOON CARTOON! In "Jesse Meets Liv Hana," we delve into the origins of the hemp industry's resurgence and the forces shaping its future. Join Jesse and Liv Hana as they navigate the complex world of hemp and cannabis, uncovering truths and challenging misconceptions.
+                </div>
+                
+                <div class="episode-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Season</div>
+                        <div class="meta-value">1</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Episode</div>
+                        <div class="meta-value">1</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Theme</div>
+                        <div class="meta-value">Character Development</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Duration</div>
+                        <div class="meta-value">60 seconds</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Format</div>
+                        <div class="meta-value">Short</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Status</div>
+                        <div class="meta-value">Live</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SEASONS CONTAINER -->
+        <div class="seasons-container">
+            <div class="seasons-title">📺 ALL 12 SEASONS - 84 EPISODES</div>
+            
+            <div class="season-grid" id="seasonsGrid">
+                <!-- Seasons will be loaded here -->
+            </div>
+        </div>
+        
+        <!-- SERIES STATISTICS -->
+        <div class="stats-section">
+            <div class="stats-title">📊 SERIES STATISTICS</div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">84</div>
+                    <div class="stat-label">Total Episodes</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Seasons</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">Episodes per Season</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Characters</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">Themes</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Platforms</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">Music Styles</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number">10</div>
+                    <div class="stat-label">Dog Whistles</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">TPOP Emojis</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">Easter Eggs</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- FOOTER -->
+        <div class="footer">
+            <p>&copy; 2025 HIGH NOON CARTOON. All rights reserved.</p>
+            <p>84 Episodes | 12 Seasons | 7 Themes | 5 Characters</p>
+            <p>Series Live | Texas THC Tales | Stay TOONED!</p>
+            <p>🚀 EVERYONE STAYING TOON FOR HNC TO DROP! 💎 100% ALWAYS TRUE LIV HANA ABSOLUTE STANDARD!</p>
+        </div>
+    </div>
+    
+    <script>
+        // Episode data for all 84 episodes
+        const episodes = [
+            // Season 1
+            { number: 1, name: "Jesse Meets Liv Hana", theme: "Character Development", season: 1 },
+            { number: 2, name: "Premium Flower Showcase", theme: "Product Spotlight", season: 1 },
+            { number: 3, name: "COA Requirements Explained", theme: "Compliance Education", season: 1 },
+            { number: 4, name: "Happy Customer Story", theme: "Customer Stories", season: 1 },
+            { number: 5, name: "Market Analysis", theme: "Industry News", season: 1 },
+            { number: 6, name: "Cannabis Science", theme: "Fun Facts", season: 1 },
+            { number: 7, name: "Week in Review", theme: "Week Recap", season: 1 },
+            
+            // Season 2
+            { number: 8, name: "Chief Steve's Latest Move", theme: "Character Development", season: 2 },
+            { number: 9, name: "Wall of Weed Update", theme: "Product Spotlight", season: 2 },
+            { number: 10, name: "Lt. Dan's Compliance Lecture", theme: "Compliance Education", season: 2 },
+            { number: 11, name: "Customer Success Story", theme: "Customer Stories", season: 2 },
+            { number: 12, name: "Texas THC Tale Update", theme: "Industry News", season: 2 },
+            { number: 13, name: "Hemp Fun Facts", theme: "Fun Facts", season: 2 },
+            { number: 14, name: "This Week's Highlights", theme: "Week Recap", season: 2 },
+            
+            // Season 3
+            { number: 15, name: "Aubrey Awfuls Strikes Again", theme: "Character Development", season: 3 },
+            { number: 16, name: "New Product Drop", theme: "Product Spotlight", season: 3 },
+            { number: 17, name: "DSHS Regulation Update", theme: "Compliance Education", season: 3 },
+            { number: 18, name: "Real Customer Experience", theme: "Customer Stories", season: 3 },
+            { number: 19, name: "Industry News Roundup", theme: "Industry News", season: 3 },
+            { number: 20, name: "Cannabis Trivia", theme: "Fun Facts", season: 3 },
+            { number: 21, name: "Weekly Summary", theme: "Week Recap", season: 3 },
+            
+            // Season 4
+            { number: 22, name: "Jesse's Empire Vision", theme: "Character Development", season: 4 },
+            { number: 23, name: "Brick Weed Origins", theme: "Product Spotlight", season: 4 },
+            { number: 24, name: "Legal Hemp Guidelines", theme: "Compliance Education", season: 4 },
+            { number: 25, name: "Community Spotlight", theme: "Customer Stories", season: 4 },
+            { number: 26, name: "Market Trends Report", theme: "Industry News", season: 4 },
+            { number: 27, name: "Interesting Hemp Facts", theme: "Fun Facts", season: 4 },
+            { number: 28, name: "Week Recap", theme: "Week Recap", season: 4 },
+            
+            // Season 5
+            { number: 29, name: "Liv Hana's Mission Brief", theme: "Character Development", season: 5 },
+            { number: 30, name: "THC-A Flower Review", theme: "Product Spotlight", season: 5 },
+            { number: 31, name: "Age Verification Process", theme: "Compliance Education", season: 5 },
+            { number: 32, name: "Customer Testimonial", theme: "Customer Stories", season: 5 },
+            { number: 33, name: "Industry Developments", theme: "Industry News", season: 5 },
+            { number: 34, name: "Did You Know?", theme: "Fun Facts", season: 5 },
+            { number: 35, name: "Weekly Update", theme: "Week Recap", season: 5 },
+            
+            // Season 6
+            { number: 36, name: "Chief Steve's Dilemma", theme: "Character Development", season: 6 },
+            { number: 37, name: "CBD Product Spotlight", theme: "Product Spotlight", season: 6 },
+            { number: 38, name: "Texas Hemp Laws", theme: "Compliance Education", season: 6 },
+            { number: 39, name: "Customer Journey", theme: "Customer Stories", season: 6 },
+            { number: 40, name: "Cannabis News Update", theme: "Industry News", season: 6 },
+            { number: 41, name: "Fun Cannabis Facts", theme: "Fun Facts", season: 6 },
+            { number: 42, name: "Week Summary", theme: "Week Recap", season: 6 },
+            
+            // Season 7
+            { number: 43, name: "Lt. Dan's Compliance Update", theme: "Character Development", season: 7 },
+            { number: 44, name: "Edibles Showcase", theme: "Product Spotlight", season: 7 },
+            { number: 45, name: "Compliance Checklist", theme: "Compliance Education", season: 7 },
+            { number: 46, name: "Community Member", theme: "Customer Stories", season: 7 },
+            { number: 47, name: "Market Analysis", theme: "Industry News", season: 7 },
+            { number: 48, name: "Hemp History", theme: "Fun Facts", season: 7 },
+            { number: 49, name: "Weekly Highlights", theme: "Week Recap", season: 7 },
+            
+            // Season 8
+            { number: 50, name: "Jesse's Empire Vision", theme: "Character Development", season: 8 },
+            { number: 51, name: "Premium Flower Showcase", theme: "Product Spotlight", season: 8 },
+            { number: 52, name: "COA Requirements Explained", theme: "Compliance Education", season: 8 },
+            { number: 53, name: "Happy Customer Story", theme: "Customer Stories", season: 8 },
+            { number: 54, name: "Market Analysis", theme: "Industry News", season: 8 },
+            { number: 55, name: "Cannabis Science", theme: "Fun Facts", season: 8 },
+            { number: 56, name: "Week in Review", theme: "Week Recap", season: 8 },
+            
+            // Season 9
+            { number: 57, name: "Chief Steve's Latest Move", theme: "Character Development", season: 9 },
+            { number: 58, name: "Wall of Weed Update", theme: "Product Spotlight", season: 9 },
+            { number: 59, name: "Lt. Dan's Compliance Lecture", theme: "Compliance Education", season: 9 },
+            { number: 60, name: "Customer Success Story", theme: "Customer Stories", season: 9 },
+            { number: 61, name: "Texas THC Tale Update", theme: "Industry News", season: 9 },
+            { number: 62, name: "Hemp Fun Facts", theme: "Fun Facts", season: 9 },
+            { number: 63, name: "This Week's Highlights", theme: "Week Recap", season: 9 },
+            
+            // Season 10
+            { number: 64, name: "Aubrey Awfuls Strikes Again", theme: "Character Development", season: 10 },
+            { number: 65, name: "New Product Drop", theme: "Product Spotlight", season: 10 },
+            { number: 66, name: "DSHS Regulation Update", theme: "Compliance Education", season: 10 },
+            { number: 67, name: "Real Customer Experience", theme: "Customer Stories", season: 10 },
+            { number: 68, name: "Industry News Roundup", theme: "Industry News", season: 10 },
+            { number: 69, name: "Cannabis Trivia", theme: "Fun Facts", season: 10 },
+            { number: 70, name: "Weekly Summary", theme: "Week Recap", season: 10 },
+            
+            // Season 11
+            { number: 71, name: "Jesse's Empire Vision", theme: "Character Development", season: 11 },
+            { number: 72, name: "Brick Weed Origins", theme: "Product Spotlight", season: 11 },
+            { number: 73, name: "Legal Hemp Guidelines", theme: "Compliance Education", season: 11 },
+            { number: 74, name: "Community Spotlight", theme: "Customer Stories", season: 11 },
+            { number: 75, name: "Market Trends Report", theme: "Industry News", season: 11 },
+            { number: 76, name: "Interesting Hemp Facts", theme: "Fun Facts", season: 11 },
+            { number: 77, name: "Week Recap", theme: "Week Recap", season: 11 },
+            
+            // Season 12
+            { number: 78, name: "Liv Hana's Mission Brief", theme: "Character Development", season: 12 },
+            { number: 79, name: "THC-A Flower Review", theme: "Product Spotlight", season: 12 },
+            { number: 80, name: "Age Verification Process", theme: "Compliance Education", season: 12 },
+            { number: 81, name: "Customer Testimonial", theme: "Customer Stories", season: 12 },
+            { number: 82, name: "Industry Developments", theme: "Industry News", season: 12 },
+            { number: 83, name: "Did You Know?", theme: "Fun Facts", season: 12 },
+            { number: 84, name: "Weekly Update", theme: "Week Recap", season: 12 }
+        ];
+        
+        // Load seasons into grid
+        function loadSeasons() {
+            const seasonsGrid = document.getElementById('seasonsGrid');
+            seasonsGrid.innerHTML = '';
+            
+            for (let season = 1; season <= 12; season++) {
+                const seasonEpisodes = episodes.filter(ep => ep.season === season);
+                
+                const seasonCard = document.createElement('div');
+                seasonCard.className = 'season-card';
+                seasonCard.innerHTML = `
+                    <div class="season-header">
+                        <div class="season-number">Season ${season}</div>
+                        <div class="season-title">Texas THC Tales</div>
+                    </div>
+                    <ul class="episode-list">
+                        ${seasonEpisodes.map(episode => `
+                            <li class="episode-item">
+                                <a href="#" class="episode-link" onclick="playEpisode(${episode.number})">
+                                    <span class="episode-number">E${episode.number}</span>
+                                    <span class="episode-name">${episode.name}</span>
+                                    <span class="episode-theme">${episode.theme}</span>
+                                </a>
+                            </li>
+                        `).join('')}
+                    </ul>
+                `;
+                seasonsGrid.appendChild(seasonCard);
+            }
+        }
+        
+        // Play episode function
+        function playEpisode(episodeNumber) {
+            const episode = episodes.find(ep => ep.number === episodeNumber);
+            if (episode) {
+                // Update video player
+                const video = document.querySelector('video');
+                const episodeTitle = document.querySelector('.episode-title');
+                const episodeDescription = document.querySelector('.episode-description');
+                
+                // Update video source (placeholder - would be actual episode video)
+                video.src = `https://storage.googleapis.com/hnc-episodes-prod/HNC_EP${episodeNumber.toString().padStart(3, '0')}_FINAL.mp4`;
+                video.poster = `https://storage.googleapis.com/hnc-episodes-prod/HNC_EP${episodeNumber.toString().padStart(3, '0')}_THUMBNAIL.jpg`;
+                
+                // Update episode info
+                episodeTitle.textContent = `Episode ${episodeNumber}: ${episode.name}`;
+                episodeDescription.textContent = `This episode focuses on ${episode.theme.toLowerCase()}. Join Jesse and Liv Hana as they explore the world of hemp and cannabis, uncovering truths and challenging misconceptions.`;
+                
+                // Update meta information
+                const metaItems = document.querySelectorAll('.meta-value');
+                metaItems[0].textContent = episode.season;
+                metaItems[1].textContent = episode.number;
+                metaItems[2].textContent = episode.theme;
+                
+                // Scroll to video player
+                document.querySelector('.video-player').scrollIntoView({ behavior: 'smooth' });
+                
+                console.log(`Playing Episode ${episodeNumber}: ${episode.name}`);
+            }
+        }
+        
+        // Initialize site
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSeasons();
+            
+            console.log('🚀 HIGH NOON CARTOON SERIES SITE LOADED!');
+            console.log('📺 Episodes: 84 Ready');
+            console.log('🎬 Seasons: 12 Complete');
+            console.log('🎭 Characters: 5 Ready');
+            console.log('🎨 Themes: 7 Active');
+            console.log('🎵 Music Styles: 7');
+            console.log('🐕 Dog Whistles: 10');
+            console.log('🔥 TPOP Emojis: 7');
+            console.log('🥚 Easter Eggs: 7');
+            console.log('');
+            console.log('🚀 EVERYONE STAYING TOON FOR HNC TO DROP!');
+            console.log('💎 100% ALWAYS TRUE LIV HANA ABSOLUTE STANDARD!');
+        });
+    </script>
+</body>
+</html>

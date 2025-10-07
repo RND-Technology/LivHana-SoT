@@ -1,0 +1,73 @@
+{
+  "generation_run": "2025-10-07T15:48:55.347Z",
+  "episodes_generated": [
+    {
+      "number": 1,
+      "title": "Texas House passes hemp expansion bill - This Changes EVERYTHING",
+      "type": "characterComedy",
+      "quality": "9.55"
+    },
+    {
+      "number": 2,
+      "title": "Nobody Expected This: Federal Rescheduling EXPOSED",
+      "type": "customerTestimonial",
+      "quality": "9.61"
+    },
+    {
+      "number": 3,
+      "title": "Federal government considering cannabis rescheduling - This Changes EVERYTHING",
+      "type": "customerTestimonial",
+      "quality": "9.08"
+    },
+    {
+      "number": 4,
+      "title": "Texas Hemp Just Got SPECTACULAR - Here's Why",
+      "type": "customerTestimonial",
+      "quality": "9.58"
+    },
+    {
+      "number": 5,
+      "title": "Texas Hemp Just Got INCREDIBLE - Here's Why",
+      "type": "productShowcase",
+      "quality": "9.82"
+    },
+    {
+      "number": 6,
+      "title": "Why Environmental Impact is the BIGGEST Story in Texas",
+      "type": "customerTestimonial",
+      "quality": "9.66"
+    },
+    {
+      "number": 7,
+      "title": "AI-powered compliance systems revolutionizing hemp industry - This Changes EVERYTHING",
+      "type": "customerTestimonial",
+      "quality": "9.59"
+    },
+    {
+      "number": 8,
+      "title": "The BEAUTIFUL Truth About Banking Access",
+      "type": "characterComedy",
+      "quality": "9.35"
+    },
+    {
+      "number": 9,
+      "title": "BREAKING: Texas House passes hemp expansion bill",
+      "type": "productShowcase",
+      "quality": "9.47"
+    },
+    {
+      "number": 10,
+      "title": "The FANTASTIC Truth About Texas Hemp Expansion",
+      "type": "productShowcase",
+      "quality": "9.07"
+    }
+  ],
+  "quality_report": {
+    "total_episodes": 10,
+    "average_viral_score": "9.00",
+    "average_engagement": "9.43",
+    "compliance_rate": "100%",
+    "recommendation": "SHIP IT 🚀"
+  },
+  "next_episode_number": 11
+}

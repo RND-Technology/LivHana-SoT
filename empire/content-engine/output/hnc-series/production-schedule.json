@@ -1,0 +1,21 @@
+{
+  "daily": {
+    "9:00 AM": "Script Generation (30 min)",
+    "10:00 AM": "Asset Generation (60 min)",
+    "11:00 AM": "Video Assembly (30 min)",
+    "12:00 PM": "Distribution (30 min)"
+  },
+  "weekly": {
+    "Monday": "Character Development Episodes",
+    "Tuesday": "Product Spotlight Episodes",
+    "Wednesday": "Compliance Education Episodes",
+    "Thursday": "Customer Stories Episodes",
+    "Friday": "Industry News Episodes",
+    "Saturday": "Fun Facts Episodes",
+    "Sunday": "Week Recap Episodes"
+  },
+  "totalTime": "2.5 hours/day for daily content",
+  "totalEpisodes": 84,
+  "totalSeasons": 12,
+  "episodesPerSeason": 7
+}

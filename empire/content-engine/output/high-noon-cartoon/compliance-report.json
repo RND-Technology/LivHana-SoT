@@ -1,0 +1,51 @@
+{
+  "ageVerification": {
+    "name": "Age Verification",
+    "requirement": "21+",
+    "implementation": "Form-based verification",
+    "states": [
+      "TX",
+      "CA",
+      "CO",
+      "WA",
+      "OR",
+      "NV",
+      "AZ",
+      "NM",
+      "OK",
+      "AR",
+      "LA"
+    ]
+  },
+  "contentGuidelines": {
+    "name": "Content Guidelines",
+    "focus": "Educational content only",
+    "restrictions": [
+      "No explicit product promotion",
+      "Educational focus",
+      "Compliance disclaimers"
+    ],
+    "platforms": [
+      "YouTube",
+      "TikTok",
+      "Instagram",
+      "X"
+    ]
+  },
+  "platformCompliance": {
+    "name": "Platform Compliance",
+    "requirements": [
+      "Community guidelines",
+      "Age restrictions",
+      "Content policies"
+    ],
+    "automation": "Automated compliance checking"
+  },
+  "recommendations": [
+    "Focus on educational content only",
+    "Implement age verification (21+)",
+    "Add compliance disclaimers",
+    "Follow platform community guidelines",
+    "Monitor content for promotional elements"
+  ]
+}

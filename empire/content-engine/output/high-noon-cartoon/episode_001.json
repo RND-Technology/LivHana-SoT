@@ -1,0 +1,46 @@
+{
+  "id": "episode_001",
+  "title": "Aubrey Awfuls Strikes Again",
+  "week": 1,
+  "day": 1,
+  "format": "60-second shorts",
+  "platforms": [
+    "YouTube Shorts",
+    "TikTok",
+    "IG Reels",
+    "X"
+  ],
+  "scriptBeat": [
+    "Jesse: \"Yo Texas, October 2025 and we're still fighting for freedom...\"",
+    "Liv Hana AI EA appears: \"Live and faithful, boss. DSHS just made 21+ enforcement mandatory!\"",
+    "Jesse: \"21+ with ID checks? That's actually... reasonable. Let's grow this empire right.\"",
+    "Liv: \"Roger that. Legal hemp, proper COAs, Texas done right. Let's GROW.\""
+  ],
+  "seoAnchors": [
+    "#TexasTHC",
+    "#StayTOONED",
+    "#ReggieAndDro",
+    "#JesseNiesen",
+    "#LivHana",
+    "#TexasCannabis",
+    "#DSHS2025",
+    "#21Plus",
+    "#LegalHemp",
+    "#CannabisCompliance"
+  ],
+  "cta": "Stay legal, stay TOONED for more Texas THC Tales!",
+  "sunoMusic": "upbeat-texas-country",
+  "dogWhistle": "justice",
+  "tpop": "🐆",
+  "easterEgg": "Liv Hana AI EA character introduction - references Oct 2025 DSHS emergency rules",
+  "schoolHouseRock": false,
+  "status": "enhanced",
+  "productionMetadata": {
+    "template": "HIGH NOON CARTOON",
+    "generatedAt": "2025-10-07T07:59:49.301Z",
+    "engine": "UnicornMakingMachine",
+    "version": "1.0.0",
+    "enhancedAt": "2025-10-07T08:00:00.000Z",
+    "enhancementVersion": "2.0.0"
+  }
+}
