@@ -5,7 +5,7 @@
 bash .claude/ULTIMATE_BOOT.sh
 
 # Export env vars to calling shell if sourced
-if [[ "${BASH_SOURCE[0]}" != "${0}" ]]; then
+if [[ "${BASH_SOURCE[0]:-}" != "${0}" ]]; then
   export GCP_PROJECT_ID="reggieanddrodispensary"
   BIGQUERY_KEY_PATH="$(pwd)/backend/integration-service/.bigquery-key.json"
 
