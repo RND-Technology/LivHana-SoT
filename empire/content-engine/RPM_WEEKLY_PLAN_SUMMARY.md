@@ -12,8 +12,21 @@
 
 ## 🤝 TRINITY ROLES & CAPABILITIES
 
+### 👤 Jesse CEO
+**Role**: Strategic decisions, business approvals, resource allocation, team coordination  
+**Capabilities**:
+- Strategic decision making
+- Business approvals
+- Resource allocation
+- Team coordination
+- Client relations
+- Final validation
+
+**Current Focus**: Strategic oversight and approvals  
+**Availability**: Business hours and critical decisions
+
 ### 🤖 Sonnet 4.5 CLI
-**Role**: Code generation and system optimization  
+**Role**: Code generation, system optimization, technical implementation  
 **Capabilities**:
 - Code generation and analysis
 - System optimization
@@ -26,7 +39,7 @@
 **Availability**: 24/7 autonomous operation
 
 ### 🐆 Cheetah Cursor
-**Role**: Development and user experience  
+**Role**: Development, debugging, frontend, UI/UX implementation  
 **Capabilities**:
 - Development and editing
 - Debugging and testing
@@ -39,7 +52,7 @@
 **Availability**: Real-time development support
 
 ### 🚀 Replit Liv Hana
-**Role**: Production deployment and monitoring  
+**Role**: Deployment, monitoring, swarm orchestration, production operations  
 **Capabilities**:
 - Deployment and execution
 - Monitoring and analytics
@@ -50,19 +63,6 @@
 
 **Current Focus**: Production deployment and monitoring  
 **Availability**: Continuous deployment and monitoring
-
-### 👤 Jesse CEO
-**Role**: Strategic oversight and approvals  
-**Capabilities**:
-- Strategic decision making
-- Business approvals
-- Resource allocation
-- Team coordination
-- Client relations
-- Final validation
-
-**Current Focus**: Strategic oversight and approvals  
-**Availability**: Business hours and critical decisions
 
 ---
 
