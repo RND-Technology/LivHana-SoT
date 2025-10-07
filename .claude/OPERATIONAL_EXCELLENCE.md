@@ -244,6 +244,111 @@ status: active
 - **Documentation**: Incident tracking
 - **Prevention**: Risk mitigation
 
+## 🔒 DOMAIN VERIFICATION PROTOCOL
+
+### Critical Ownership Rule
+**ONLY work on Jesse Niesen's verified domains. NEVER assume domain ownership.**
+
+### Verification Requirements (2-STEP PROCESS)
+
+**STEP 1: Check Exclusion List**
+1. Read `.claude/EXCLUDED_DOMAINS_DO_NOT_TOUCH.md`
+2. Verify domain NOT in excluded list
+3. Verify domain NOT subdomain of excluded domain
+4. **If EXCLUDED**: STOP immediately - DO NOT PROCEED
+
+**STEP 2: Check Verification List**
+1. Read `.claude/VERIFIED_DOMAINS_JESSE_NIESEN.md`
+2. Cross-reference domain against 69 verified domains
+3. Subdomain check: Verify root domain if working with subdomain
+4. **If NOT verified**: STOP immediately and confirm with Jesse
+5. Document verification in operation reports
+
+### Authoritative Sources
+- **Exclusion List**: `.claude/EXCLUDED_DOMAINS_DO_NOT_TOUCH.md`
+  - 5 root domains excluded: airbnbwaterfall.com, reggieanddro.com, reggieanddroalice.com, reggieanddrodispensary.com, hempress3.com
+  - 3 subdomains excluded: brain.reggieanddro.com, shop.reggieanddro.com, voice.reggieanddro.com
+  - 1 domain to restore: tier1treecare.com
+  - Total exclusions: 9 domains
+- **Verification List**: `.claude/VERIFIED_DOMAINS_JESSE_NIESEN.md`
+  - 69 total in portfolio
+  - 28 Cloud Run domains (6 excluded = 22 for deployment)
+- **Verification Script**: `/tmp/verify-domains.sh`
+
+### Example Verification
+```bash
+# Before any domain operation (2-step check)
+
+# Step 1: Check exclusion
+grep -i "domain_name" .claude/EXCLUDED_DOMAINS_DO_NOT_TOUCH.md
+# If found → STOP
+
+# Step 2: Check verification
+cat .claude/VERIFIED_DOMAINS_JESSE_NIESEN.md
+/tmp/verify-domains.sh
+# Expected: ✅ ALL CLOUD RUN DOMAINS VERIFIED - SAFE TO PROCEED
+```
+
+## 🚨 HANG-UP PREVENTION PROTOCOL
+
+### Critical Operating Rules
+1. **Never Block Main Thread**: All long-running operations MUST run in background
+2. **Always Use Timeouts**: Every operation must have explicit timeout limits
+3. **Background Operations**: Use `run_in_background: true` for tasks >30 seconds
+4. **Process Monitoring**: Check for hanging processes during boot sequence
+
+### Hang-Up Detection
+- **Symptom**: "Previous query still processing" error
+- **Root Cause**: Blocking operation prevents new prompts
+- **Impact**: Session becomes unresponsive, no new commands accepted
+
+### Prevention Measures
+1. **Background Execution**
+   ```bash
+   # WRONG: Blocking operation
+   npm run long-task
+
+   # RIGHT: Background with timeout
+   timeout 300 npm run long-task &
+   ```
+
+2. **Process Health Check**
+   ```bash
+   # Check for hanging processes during boot
+   ps aux | grep -E '(node|npm|claude)' | grep -v grep
+   ```
+
+3. **Explicit Timeouts**
+   - Short operations: 30-60 seconds
+   - Medium operations: 2-5 minutes
+   - Long operations: 5-10 minutes (background only)
+
+4. **Recovery Protocol**
+   - Kill hanging processes immediately
+   - Clear process table before new operations
+   - Use `pkill -9` for stubborn processes
+
+### Boot Sequence Integration
+**Add to ULTIMATE_BOOT.sh:**
+```bash
+# Kill any hanging processes from previous session
+pkill -9 -f "node.*agent"
+pkill -9 -f "npm run.*"
+
+# Verify clean process table
+if ps aux | grep -E '(node|npm).*agent' | grep -v grep > /dev/null; then
+  echo "⚠️  WARNING: Hanging processes detected, force killing..."
+  pkill -9 -f "agent"
+fi
+```
+
+### Session Recovery
+**When hang-up occurs:**
+1. Identify blocking process: `ps aux | grep node`
+2. Kill process: `pkill -9 [process-id]`
+3. Clear temp files: `rm -rf /tmp/agent-*`
+4. Restart session with clean slate
+
 ## 🔄 CONTINUOUS IMPROVEMENT
 
 ### Performance Optimization

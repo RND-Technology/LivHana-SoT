@@ -6,7 +6,25 @@
 
 import express from 'express';
 import { ScriptParser } from './parser.js';
-import { VoiceGenerator } from './tts.js';
+// Try TTS engines in order: macOS (always works) -> OpenAI -> ElevenLabs
+let VoiceGenerator;
+try {
+  const ttsModule = await import('./tts-macos.js');
+  VoiceGenerator = ttsModule.VoiceGenerator;
+  console.log('✅ Using macOS built-in TTS (tts-macos.js) - NO API KEY NEEDED');
+} catch (error) {
+  console.log('⚠️  macOS TTS not available, trying OpenAI...');
+  try {
+    const ttsModule = await import('./tts-openai.js');
+    VoiceGenerator = ttsModule.VoiceGenerator;
+    console.log('✅ Using OpenAI TTS (tts-openai.js)');
+  } catch (error2) {
+    console.log('⚠️  OpenAI TTS not available, trying ElevenLabs...');
+    const ttsModule = await import('./tts.js');
+    VoiceGenerator = ttsModule.VoiceGenerator;
+    console.log('✅ Using ElevenLabs TTS (tts.js)');
+  }
+}
 import { VideoGenerator } from './video.js';
 import { Publisher } from './publisher.js';
 import path from 'path';

@@ -36,6 +36,34 @@ info "Root: $ROOT_DIR"
 echo
 
 # ═══════════════════════════════════════════════════════════════════════
+# HANG-UP PREVENTION: Kill any blocking processes from previous session
+# ═══════════════════════════════════════════════════════════════════════
+info "🧹 Hang-up Prevention: Checking for blocking processes..."
+
+# Kill any hanging agent processes
+if pkill -9 -f "node.*agent" 2>/dev/null; then
+  warning "Killed hanging node agent processes"
+fi
+
+# Kill any hanging npm processes
+if pkill -9 -f "npm run.*" 2>/dev/null; then
+  warning "Killed hanging npm processes"
+fi
+
+# Final verification - if any processes still exist, force kill
+if ps aux | grep -E '(node|npm).*agent' | grep -v grep > /dev/null; then
+  warning "Stubborn processes detected, force killing..."
+  pkill -9 -f "agent" 2>/dev/null || true
+  sleep 1
+fi
+
+# Clear temporary agent files
+rm -rf /tmp/agent-* 2>/dev/null || true
+
+success "Process table clean - no hanging processes detected"
+echo
+
+# ═══════════════════════════════════════════════════════════════════════
 # STEP 0: AUTHENTICATE 1PASSWORD (TOUCH ID)
 # ═══════════════════════════════════════════════════════════════════════
 banner "🔐 STEP 0: AUTHENTICATION"

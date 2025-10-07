@@ -1,72 +1,68 @@
 #!/usr/bin/env node
 /**
- * HNC VOICE GENERATOR
- * Text-to-Speech via ElevenLabs API
+ * HNC VOICE GENERATOR - MACOS SAY COMMAND FALLBACK
+ * Uses built-in macOS text-to-speech (no API key needed)
  */
 
 import fs from 'fs/promises';
 import path from 'path';
-import axios from 'axios';
+import { exec } from 'child_process';
+import { promisify } from 'util';
+
+const execAsync = promisify(exec);
 
 export class VoiceGenerator {
   constructor() {
-    // Use ElevenLabs TTS
-    this.apiKey = process.env.ELEVENLABS_API_KEY;
-    this.baseUrl = 'https://api.elevenlabs.io/v1';
-    
-    if (!this.apiKey) {
-      throw new Error('ELEVENLABS_API_KEY environment variable is required');
-    }
+    console.log('🎤 Using macOS built-in TTS (say command)');
 
-    // Voice mapping for characters (ElevenLabs voice IDs)
+    // macOS voices
     this.voices = {
-      'narrator': 'pNInz6obpgDQGcFmaJgB',      // Adam (male, deep)
-      'deep-authoritative': 'pNInz6obpgDQGcFmaJgB',
-      'jesse': 'EXAVITQu4vr4xnSDxMaL',         // Bella (female, conversational)
-      'conversational': 'EXAVITQu4vr4xnSDxMaL',
-      'system': 'VR6AewLTigWG4xSOukaG',        // Arnold (male, neutral)
-      'neutral': 'VR6AewLTigWG4xSOukaG'        // Default neutral
+      'narrator': 'Alex',           // Male, clear
+      'deep-authoritative': 'Alex',
+      'jesse': 'Samantha',          // Female, warm
+      'conversational': 'Samantha',
+      'system': 'Daniel',           // Male, neutral
+      'neutral': 'Daniel'
     };
   }
 
   /**
-   * Generate speech from text using ElevenLabs
+   * Generate speech using macOS say command
    */
   async generateSpeech(text, voiceType = 'neutral', outputPath) {
-    const voiceId = this.voices[voiceType.toLowerCase()] || this.voices['neutral'];
+    const voice = this.voices[voiceType.toLowerCase()] || 'Alex';
 
     try {
-      const response = await axios.post(
-        `${this.baseUrl}/text-to-speech/${voiceId}`,
-        {
-          text: text,
-          model_id: 'eleven_monolingual_v1',
-          voice_settings: {
-            stability: 0.5,
-            similarity_boost: 0.5
-          }
-        },
-        {
-          headers: {
-            'Accept': 'audio/mpeg',
-            'Content-Type': 'application/json',
-            'xi-api-key': this.apiKey
-          },
-          responseType: 'arraybuffer'
-        }
-      );
+      // Create parent directory
+      await fs.mkdir(path.dirname(outputPath), { recursive: true });
 
-      await fs.writeFile(outputPath, response.data);
+      // Generate to AIFF first (macOS say default format)
+      const aiffPath = outputPath.replace('.mp3', '.aiff');
+      const command = `say -v "${voice}" -o "${aiffPath}" "${text.replace(/"/g, '\\"')}"`;
+
+      await execAsync(command);
+
+      // Convert to mp3 using ffmpeg
+      const convertCmd = `ffmpeg -i "${aiffPath}" -acodec libmp3lame -ab 128k "${outputPath}" -y 2>/dev/null`;
+
+      try {
+        await execAsync(convertCmd);
+        await fs.unlink(aiffPath); // Remove intermediate file
+      } catch (e) {
+        // If ffmpeg not available, just use AIFF
+        console.warn(`⚠️  FFmpeg conversion failed, using AIFF: ${e.message}`);
+        await fs.rename(aiffPath, outputPath);
+      }
 
       return {
         success: true,
         path: outputPath,
-        voice: voiceId,
+        voice: voice,
         text: text
       };
 
     } catch (error) {
-      console.error('❌ TTS error:', error.response?.status, error.response?.data || error.message);
+      console.error('❌ macOS TTS error:', error.message);
       return {
         success: false,
         error: error.message
@@ -75,7 +71,7 @@ export class VoiceGenerator {
   }
 
   /**
-   * Generate all audio for an episode from parsed script
+   * Generate all audio for an episode
    */
   async generateEpisodeAudio(parsedScript, outputDir) {
     const results = {
@@ -102,7 +98,7 @@ export class VoiceGenerator {
 
       if (result.success) {
         results.files.push(outputPath);
-        results.totalDuration += narration.text.length * 0.05; // Estimate duration
+        results.totalDuration += narration.text.length * 0.05;
       } else {
         results.errors.push(`Failed to generate ${filename}: ${result.error}`);
       }
@@ -125,7 +121,7 @@ export class VoiceGenerator {
 
         if (result.success) {
           results.files.push(outputPath);
-          results.totalDuration += dialogue.text.length * 0.05; // Estimate duration
+          results.totalDuration += dialogue.text.length * 0.05;
         } else {
           results.errors.push(`Failed to generate ${filename}: ${result.error}`);
         }
