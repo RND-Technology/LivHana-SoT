@@ -501,7 +501,7 @@ gcloud storage cp -r dist/* gs://vip-cockpit-frontend/
 # Map domain
 gcloud run domain-mappings create \
   --service vip-cockpit \
-  --domain cockpit.reggieanddro.com
+  --domain cockpit.herbitrage.com
 ```
 
 ENVIRONMENT VARIABLES (.env):
@@ -521,11 +521,11 @@ JWT_SECRET=your-super-secret-jwt-key-change-in-production
 JWT_EXPIRATION=30d
 
 # Service URLs
-DELIVERY_SERVICE_URL=https://delivery.reggieanddro.com
-VOICE_SERVICE_URL=https://voice.reggieanddro.com
+DELIVERY_SERVICE_URL=https://delivery.herbitrage.com
+VOICE_SERVICE_URL=https://voice.herbitrage.com
 LIGHTSPEED_API_URL=https://api.lightspeedhq.com
-COA_SERVICE_URL=https://legal.reggieanddro.com
-HNC_SERVICE_URL=https://content.reggieanddro.com
+COA_SERVICE_URL=https://legal.herbitrage.com
+HNC_SERVICE_URL=https://content.herbitrage.com
 
 # Service API Keys
 DELIVERY_API_KEY=your-delivery-api-key
@@ -688,7 +688,7 @@ npm run create-admin -- --email=jesseniesen@gmail.com --password=SecurePass123! 
 
 ### **5. Access:**
 ```
-URL: https://cockpit.reggieanddro.com
+URL: https://cockpit.herbitrage.com
 Login: jesseniesen@gmail.com
 ```
 
