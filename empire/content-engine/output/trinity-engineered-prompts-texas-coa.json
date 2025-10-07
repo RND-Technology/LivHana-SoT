@@ -1,0 +1,82 @@
+{
+  "sonnet_cli": {
+    "role": "Sonnet 4.5 CLI",
+    "focus": "Backend legal compliance and API integration",
+    "prompts": [
+      {
+        "id": "texas_coa_legal_api",
+        "title": "Texas COA Legal Compliance API",
+        "prompt": "Create a comprehensive Texas COA (Certificate of Analysis) legal compliance API that:\n\n1. LEGAL FRAMEWORK COMPLIANCE:\n   - Texas HB 1325 (2019 Farm Bill) compliance\n   - Federal Farm Bill compliance\n   - Texas Department of Agriculture regulations\n   - Hemp-derived product requirements\n   - Delta-9 THC limits (<0.3%)\n\n2. COA VALIDATION SYSTEM:\n   - Third-party lab testing verification\n   - Certificate of Analysis validation\n   - Product authenticity verification\n   - Batch tracking and traceability\n   - Compliance reporting\n\n3. API ENDPOINTS:\n   - POST /api/coa/validate - Validate COA authenticity\n   - GET /api/coa/search - Search COAs by product/batch\n   - POST /api/coa/upload - Upload new COA\n   - GET /api/coa/compliance - Check compliance status\n   - POST /api/coa/report - Generate compliance report\n\n4. INTEGRATION REQUIREMENTS:\n   - LightSpeed POS integration\n   - Real-time compliance checking\n   - Automated reporting\n   - Audit trail maintenance\n   - Legal documentation storage\n\n5. SECURITY & COMPLIANCE:\n   - JWT authentication\n   - Role-based access control\n   - Data encryption\n   - Audit logging\n   - Legal document protection\n\nGenerate production-ready API code with comprehensive error handling, validation, and compliance features.",
+        "priority": "CRITICAL",
+        "timeline": "2-4 hours"
+      },
+      {
+        "id": "legal_site_backend",
+        "title": "Legal Site Backend Infrastructure",
+        "prompt": "Build a robust backend infrastructure for the Texas COA legal site that:\n\n1. DATABASE SCHEMA:\n   - COA records table\n   - Product compliance table\n   - Legal documentation table\n   - Audit trail table\n   - User permissions table\n\n2. COMPLIANCE ENGINE:\n   - Real-time compliance checking\n   - Automated validation workflows\n   - Legal requirement tracking\n   - Compliance status monitoring\n   - Alert system for violations\n\n3. API GATEWAY:\n   - Rate limiting\n   - Authentication\n   - Request validation\n   - Response formatting\n   - Error handling\n\n4. INTEGRATION LAYER:\n   - LightSpeed POS connector\n   - Third-party lab APIs\n   - Legal database connections\n   - Compliance service APIs\n   - Reporting system integration\n\n5. MONITORING & ANALYTICS:\n   - Performance monitoring\n   - Compliance metrics\n   - Usage analytics\n   - Error tracking\n   - Audit reporting\n\nGenerate scalable, production-ready backend code with comprehensive monitoring and compliance features.",
+        "priority": "HIGH",
+        "timeline": "3-5 hours"
+      }
+    ]
+  },
+  "cheetah_cursor": {
+    "role": "Cheetah Cursor",
+    "focus": "Frontend legal site and user experience",
+    "prompts": [
+      {
+        "id": "texas_coa_legal_frontend",
+        "title": "Texas COA Legal Site Frontend",
+        "prompt": "Create a professional, legally compliant frontend for the Texas COA legal site that:\n\n1. LEGAL SITE DESIGN:\n   - Professional legal appearance\n   - Compliance-focused layout\n   - Clear legal disclaimers\n   - Regulatory information display\n   - Professional branding\n\n2. USER INTERFACE COMPONENTS:\n   - COA search and display\n   - Product compliance checker\n   - Legal documentation viewer\n   - Compliance status dashboard\n   - Report generation interface\n\n3. RESPONSIVE DESIGN:\n   - Mobile-first approach\n   - Tablet optimization\n   - Desktop enhancement\n   - Accessibility compliance\n   - Cross-browser compatibility\n\n4. LEGAL COMPLIANCE FEATURES:\n   - Age verification (21+)\n   - Legal disclaimers\n   - Compliance warnings\n   - Regulatory information\n   - Terms of service\n\n5. INTEGRATION REQUIREMENTS:\n   - LightSpeed POS integration\n   - Real-time data updates\n   - API connectivity\n   - Authentication system\n   - Error handling\n\n6. USER EXPERIENCE:\n   - Intuitive navigation\n   - Clear information hierarchy\n   - Professional appearance\n   - Fast loading times\n   - Error recovery\n\nGenerate modern, professional frontend code with comprehensive legal compliance and user experience features.",
+        "priority": "CRITICAL",
+        "timeline": "2-3 hours"
+      },
+      {
+        "id": "legal_site_ui_components",
+        "title": "Legal Site UI Components",
+        "prompt": "Build comprehensive UI components for the Texas COA legal site:\n\n1. COA DISPLAY COMPONENTS:\n   - COA certificate viewer\n   - Product information display\n   - Lab testing results\n   - Compliance status indicators\n   - Batch tracking display\n\n2. SEARCH & FILTER COMPONENTS:\n   - COA search interface\n   - Product filter system\n   - Date range picker\n   - Compliance status filter\n   - Advanced search options\n\n3. DASHBOARD COMPONENTS:\n   - Compliance overview\n   - Status indicators\n   - Quick actions\n   - Recent activity\n   - Alerts and notifications\n\n4. FORM COMPONENTS:\n   - COA upload form\n   - Product registration form\n   - Compliance reporting form\n   - User authentication forms\n   - Contact forms\n\n5. LEGAL COMPONENTS:\n   - Legal disclaimers\n   - Terms of service\n   - Privacy policy\n   - Compliance notices\n   - Regulatory information\n\n6. RESPONSIVE COMPONENTS:\n   - Mobile navigation\n   - Tablet layouts\n   - Desktop enhancements\n   - Touch-friendly interfaces\n   - Accessibility features\n\nGenerate reusable, professional UI components with comprehensive legal compliance and accessibility features.",
+        "priority": "HIGH",
+        "timeline": "2-4 hours"
+      }
+    ]
+  },
+  "replit_liv_hana": {
+    "role": "Replit Liv Hana",
+    "focus": "Deployment, monitoring, and production operations",
+    "prompts": [
+      {
+        "id": "texas_coa_deployment",
+        "title": "Texas COA Legal Site Deployment",
+        "prompt": "Deploy and configure the Texas COA legal site for production with:\n\n1. DEPLOYMENT STRATEGY:\n   - Cloud deployment (AWS/GCP/Azure)\n   - Container orchestration\n   - Load balancing\n   - Auto-scaling\n   - Blue-green deployment\n\n2. INFRASTRUCTURE SETUP:\n   - Production database\n   - CDN configuration\n   - SSL certificates\n   - Domain configuration\n   - DNS setup\n\n3. SECURITY CONFIGURATION:\n   - Firewall rules\n   - Security groups\n   - Encryption at rest\n   - Encryption in transit\n   - Access controls\n\n4. MONITORING & LOGGING:\n   - Application monitoring\n   - Performance metrics\n   - Error tracking\n   - Audit logging\n   - Compliance monitoring\n\n5. BACKUP & RECOVERY:\n   - Database backups\n   - File system backups\n   - Disaster recovery\n   - Data retention policies\n   - Recovery procedures\n\n6. COMPLIANCE MONITORING:\n   - Legal compliance tracking\n   - Audit trail maintenance\n   - Compliance reporting\n   - Alert systems\n   - Regulatory updates\n\nGenerate production-ready deployment configuration with comprehensive monitoring and compliance features.",
+        "priority": "CRITICAL",
+        "timeline": "2-3 hours"
+      },
+      {
+        "id": "legal_site_monitoring",
+        "title": "Legal Site Monitoring & Analytics",
+        "prompt": "Set up comprehensive monitoring and analytics for the Texas COA legal site:\n\n1. PERFORMANCE MONITORING:\n   - Response time tracking\n   - Throughput monitoring\n   - Error rate tracking\n   - Resource utilization\n   - User experience metrics\n\n2. COMPLIANCE MONITORING:\n   - Legal compliance tracking\n   - COA validation monitoring\n   - Compliance status alerts\n   - Audit trail verification\n   - Regulatory compliance\n\n3. BUSINESS ANALYTICS:\n   - User engagement metrics\n   - COA search analytics\n   - Compliance report usage\n   - User behavior tracking\n   - Conversion metrics\n\n4. SECURITY MONITORING:\n   - Authentication monitoring\n   - Access pattern analysis\n   - Security event tracking\n   - Threat detection\n   - Incident response\n\n5. ALERTING SYSTEM:\n   - Performance alerts\n   - Compliance alerts\n   - Security alerts\n   - Error alerts\n   - Maintenance alerts\n\n6. REPORTING DASHBOARD:\n   - Real-time metrics\n   - Compliance reports\n   - Performance reports\n   - Security reports\n   - Business intelligence\n\nGenerate comprehensive monitoring and analytics system with real-time alerting and reporting capabilities.",
+        "priority": "HIGH",
+        "timeline": "2-4 hours"
+      }
+    ]
+  },
+  "trinity_collaboration": {
+    "role": "Trinity Team Collaboration",
+    "focus": "Coordinated development and integration",
+    "prompts": [
+      {
+        "id": "trinity_coordination",
+        "title": "Trinity Team Coordination",
+        "prompt": "Coordinate Trinity team efforts for the Texas COA legal site development:\n\n1. TEAM ROLES & RESPONSIBILITIES:\n   - Sonnet CLI: Backend API and compliance engine\n   - Cheetah Cursor: Frontend UI and user experience\n   - Replit Liv Hana: Deployment and monitoring\n   - Jesse CEO: Legal compliance and business requirements\n\n2. DEVELOPMENT WORKFLOW:\n   - Agile development methodology\n   - Continuous integration\n   - Code review process\n   - Testing procedures\n   - Deployment pipeline\n\n3. COMMUNICATION PROTOCOL:\n   - Daily standup meetings\n   - Progress updates\n   - Issue escalation\n   - Decision making\n   - Status reporting\n\n4. QUALITY ASSURANCE:\n   - Code quality standards\n   - Testing requirements\n   - Compliance verification\n   - Performance benchmarks\n   - Security validation\n\n5. INTEGRATION POINTS:\n   - API integration\n   - Database integration\n   - Frontend-backend integration\n   - Third-party integrations\n   - Compliance system integration\n\n6. SUCCESS METRICS:\n   - Development velocity\n   - Code quality metrics\n   - Compliance achievement\n   - Performance benchmarks\n   - User satisfaction\n\nGenerate comprehensive team coordination framework with clear roles, responsibilities, and success metrics.",
+        "priority": "HIGH",
+        "timeline": "1-2 hours"
+      },
+      {
+        "id": "legal_compliance_framework",
+        "title": "Legal Compliance Framework",
+        "prompt": "Establish comprehensive legal compliance framework for the Texas COA legal site:\n\n1. LEGAL REQUIREMENTS:\n   - Texas HB 1325 compliance\n   - Federal Farm Bill compliance\n   - Texas Department of Agriculture regulations\n   - Hemp-derived product requirements\n   - Delta-9 THC limits\n\n2. COMPLIANCE PROCESSES:\n   - COA validation procedures\n   - Product compliance checking\n   - Legal documentation requirements\n   - Audit trail maintenance\n   - Compliance reporting\n\n3. RISK MANAGEMENT:\n   - Legal risk assessment\n   - Compliance risk mitigation\n   - Regulatory change management\n   - Legal document protection\n   - Incident response procedures\n\n4. QUALITY ASSURANCE:\n   - Compliance testing\n   - Legal review processes\n   - Documentation verification\n   - Audit preparation\n   - Continuous improvement\n\n5. TRAINING & EDUCATION:\n   - Legal compliance training\n   - Regulatory updates\n   - Best practices\n   - Knowledge sharing\n   - Certification requirements\n\n6. MONITORING & REPORTING:\n   - Compliance monitoring\n   - Legal reporting\n   - Audit preparation\n   - Regulatory updates\n   - Performance tracking\n\nGenerate comprehensive legal compliance framework with clear processes, procedures, and monitoring capabilities.",
+        "priority": "CRITICAL",
+        "timeline": "2-3 hours"
+      }
+    ]
+  }
+}
