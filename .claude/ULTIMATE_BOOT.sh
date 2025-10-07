@@ -197,9 +197,9 @@ check_service() {
   fi
 }
 
-check_service "reasoning-gateway" "http://localhost:4002/health" &
-check_service "integration-service" "http://localhost:3005/health" &
-check_service "voice-service" "http://localhost:4001/health" &
+check_service "reasoning-gateway" "https://reasoning-gateway-plad5efvha-uc.a.run.app/health" &
+check_service "integration-service" "https://integration-service-plad5efvha-uc.a.run.app/health" &
+check_service "voice-service" "https://voice-service-plad5efvha-uc.a.run.app/health" &
 wait
 
 echo
