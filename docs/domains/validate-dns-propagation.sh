@@ -6,7 +6,7 @@ echo "🚀 E2E EMPIRE DNS VALIDATION - 100% DEPLOYMENT"
 echo "=============================================="
 echo ""
 
-INTEGRATION_URL="integration-service-plad5efvha-uc.a.run.app"
+TARGET_IP="34.143.72.2"
 DOMAINS_FILE="domains-requiring-dns.txt"
 
 if [ ! -f "$DOMAINS_FILE" ]; then
@@ -26,7 +26,7 @@ while IFS= read -r domain; do
         echo -n "🔍 Testing $domain... "
         
         # Test DNS resolution
-        if nslookup "$domain" 2>/dev/null | grep -q "$INTEGRATION_URL"; then
+        if nslookup "$domain" 2>/dev/null | grep -q "$TARGET_IP"; then
             echo "✅ DNS OK"
             SUCCESS_COUNT=$((SUCCESS_COUNT + 1))
         else
