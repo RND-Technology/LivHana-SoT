@@ -10,7 +10,7 @@ critical: YES - REVENUE OPTIMIZATION DECISIONS
 
 # MACHINE PROPOSALS TRACKING
 
-**Purpose**: Single source of truth (SoT) for all machine (Sonnet, Cheetah, Claude) proposals for revenue optimization and technical work.
+**Purpose**: Single source of truth, system of thoughts, state of truthfulness - LivHana-SoT only. Tri-une meaning, purpose.
 
 **Status**: Jesse evaluating proposals - NO EXECUTION until command given
 
