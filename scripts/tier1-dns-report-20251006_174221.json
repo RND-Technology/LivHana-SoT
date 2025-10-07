@@ -1,0 +1,10 @@
+{
+  "timestamp": "2025-10-07T00:42:21Z",
+  "total_domains":       63,
+  "domains_updated": 60,
+  "successful": 60,
+  "failed": 0,
+  "verified": 54,
+  "target_ip": "34.143.72.2",
+  "ignored_domains": airbnbwaterfall.com reggieanddro.com hempress3.com
+}
