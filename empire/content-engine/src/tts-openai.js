@@ -1,72 +1,63 @@
 #!/usr/bin/env node
 /**
- * HNC VOICE GENERATOR
- * Text-to-Speech via ElevenLabs API
+ * HNC VOICE GENERATOR - OPENAI TTS FALLBACK
+ * Uses OpenAI TTS API (cheaper, faster, more reliable)
  */
 
 import fs from 'fs/promises';
 import path from 'path';
-import axios from 'axios';
+import OpenAI from 'openai';
 
 export class VoiceGenerator {
   constructor() {
-    // Use ElevenLabs TTS
-    this.apiKey = process.env.ELEVENLABS_API_KEY;
-    this.baseUrl = 'https://api.elevenlabs.io/v1';
-    
+    // Try multiple API keys
+    this.apiKey = process.env.OPENAI_API_KEY || process.env.ANTHROPIC_API_KEY;
+
     if (!this.apiKey) {
-      throw new Error('ELEVENLABS_API_KEY environment variable is required');
+      throw new Error('OPENAI_API_KEY or ANTHROPIC_API_KEY required');
     }
 
-    // Voice mapping for characters (ElevenLabs voice IDs)
+    this.client = new OpenAI({
+      apiKey: this.apiKey
+    });
+
+    // OpenAI TTS voices
     this.voices = {
-      'narrator': 'pNInz6obpgDQGcFmaJgB',      // Adam (male, deep)
-      'deep-authoritative': 'pNInz6obpgDQGcFmaJgB',
-      'jesse': 'EXAVITQu4vr4xnSDxMaL',         // Bella (female, conversational)
-      'conversational': 'EXAVITQu4vr4xnSDxMaL',
-      'system': 'VR6AewLTigWG4xSOukaG',        // Arnold (male, neutral)
-      'neutral': 'VR6AewLTigWG4xSOukaG'        // Default neutral
+      'narrator': 'onyx',           // Deep male
+      'deep-authoritative': 'onyx',
+      'jesse': 'echo',              // Male conversational
+      'conversational': 'echo',
+      'system': 'fable',            // Neutral
+      'neutral': 'alloy'            // Default
     };
   }
 
   /**
-   * Generate speech from text using ElevenLabs
+   * Generate speech from text using OpenAI TTS
    */
   async generateSpeech(text, voiceType = 'neutral', outputPath) {
-    const voiceId = this.voices[voiceType.toLowerCase()] || this.voices['neutral'];
+    const voice = this.voices[voiceType.toLowerCase()] || 'alloy';
 
     try {
-      const response = await axios.post(
-        `${this.baseUrl}/text-to-speech/${voiceId}`,
-        {
-          text: text,
-          model_id: 'eleven_monolingual_v1',
-          voice_settings: {
-            stability: 0.5,
-            similarity_boost: 0.5
-          }
-        },
-        {
-          headers: {
-            'Accept': 'audio/mpeg',
-            'Content-Type': 'application/json',
-            'xi-api-key': this.apiKey
-          },
-          responseType: 'arraybuffer'
-        }
-      );
+      const mp3 = await this.client.audio.speech.create({
+        model: 'tts-1-hd',
+        voice: voice,
+        input: text,
+        speed: 1.0
+      });
 
-      await fs.writeFile(outputPath, response.data);
+      const buffer = Buffer.from(await mp3.arrayBuffer());
+      await fs.writeFile(outputPath, buffer);
 
       return {
         success: true,
         path: outputPath,
-        voice: voiceId,
+        voice: voice,
         text: text
       };
 
     } catch (error) {
-      console.error('❌ TTS error:', error.response?.status, error.response?.data || error.message);
+      console.error('❌ OpenAI TTS error:', error.message);
       return {
         success: false,
         error: error.message
@@ -102,7 +93,7 @@ export class VoiceGenerator {
 
       if (result.success) {
         results.files.push(outputPath);
-        results.totalDuration += narration.text.length * 0.05; // Estimate duration
+        results.totalDuration += narration.text.length * 0.05;
       } else {
         results.errors.push(`Failed to generate ${filename}: ${result.error}`);
       }
@@ -125,7 +116,7 @@ export class VoiceGenerator {
 
         if (result.success) {
           results.files.push(outputPath);
-          results.totalDuration += dialogue.text.length * 0.05; // Estimate duration
+          results.totalDuration += dialogue.text.length * 0.05;
         } else {
           results.errors.push(`Failed to generate ${filename}: ${result.error}`);
         }

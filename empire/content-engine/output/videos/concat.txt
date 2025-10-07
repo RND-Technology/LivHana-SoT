@@ -1,0 +1,3 @@
+file '/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/empire/content-engine/output/videos/temp/title.mp4'
+file '/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/empire/content-engine/output/videos/temp/main.mp4'
+file '/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/empire/content-engine/output/videos/temp/endcard.mp4'
