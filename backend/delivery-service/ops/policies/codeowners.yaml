@@ -1,0 +1,70 @@
+# CODEOWNERS for policy enforcement
+# Unfuckwithable Code Protocol: Required reviewers by path
+
+codeowners:
+  - jesse@livhana.com
+  - high@reggieanddro.com
+
+paths:
+  # Critical infrastructure
+  - path: src/adapters/**
+    owners:
+      - jesse@livhana.com
+    required_approvals: 2
+    risk_tier: critical
+
+  - path: src/lib/orchestrator.ts
+    owners:
+      - jesse@livhana.com
+    required_approvals: 2
+    risk_tier: critical
+
+  # Security-sensitive
+  - path: "**/*auth*.ts"
+    owners:
+      - jesse@livhana.com
+    required_approvals: 2
+    risk_tier: high
+
+  - path: "**/*webhook*.ts"
+    owners:
+      - jesse@livhana.com
+      - high@reggieanddro.com
+    required_approvals: 2
+    risk_tier: high
+
+  # API contracts
+  - path: specs/**
+    owners:
+      - jesse@livhana.com
+    required_approvals: 1
+    risk_tier: medium
+
+  # Configuration
+  - path: "*.json"
+    owners:
+      - jesse@livhana.com
+    required_approvals: 1
+    risk_tier: medium
+
+  - path: "*.yaml"
+    owners:
+      - jesse@livhana.com
+    required_approvals: 1
+    risk_tier: medium
+
+  # Tests (lower bar)
+  - path: tests/**
+    owners:
+      - jesse@livhana.com
+      - high@reggieanddro.com
+    required_approvals: 1
+    risk_tier: low
+
+  # Documentation
+  - path: "**/*.md"
+    owners:
+      - jesse@livhana.com
+      - high@reggieanddro.com
+    required_approvals: 1
+    risk_tier: low
