@@ -1,0 +1,171 @@
+{
+  "episode_number": 13,
+  "title": "VA Hospitals Begin Hemp Trials for Veteran PTSD Treatment...",
+  "duration": "60-90s",
+  "episode_type": "newsCommentary",
+  "scenes": [
+    {
+      "scene_number": 1,
+      "scene_type": "intro",
+      "duration_seconds": 10,
+      "visual_description": "Scene 1: VA Hospitals Begin Hemp Trials for Veteran PTSD Treatment",
+      "camera_angle": "front-facing"
+    },
+    {
+      "scene_number": 2,
+      "scene_type": "hook",
+      "duration_seconds": 15,
+      "visual_description": "Scene 2: VA Hospitals Begin Hemp Trials for Veteran PTSD Treatment",
+      "camera_angle": "front-facing"
+    },
+    {
+      "scene_number": 3,
+      "scene_type": "content",
+      "duration_seconds": 30,
+      "visual_description": "Scene 3: VA Hospitals Begin Hemp Trials for Veteran PTSD Treatment",
+      "camera_angle": "front-facing"
+    },
+    {
+      "scene_number": 4,
+      "scene_type": "climax",
+      "duration_seconds": 20,
+      "visual_description": "Scene 4: VA Hospitals Begin Hemp Trials for Veteran PTSD Treatment",
+      "camera_angle": "front-facing"
+    },
+    {
+      "scene_number": 5,
+      "scene_type": "cta",
+      "duration_seconds": 15,
+      "visual_description": "Scene 5: VA Hospitals Begin Hemp Trials for Veteran PTSD Treatment",
+      "camera_angle": "front-facing"
+    }
+  ],
+  "characters": [
+    {
+      "name": "Jesse Niesen",
+      "role": "CEO, Visionary Leader",
+      "personality": "Authoritative, entrepreneurial, Texas-focused",
+      "voiceStyle": "Deep, commanding, inspirational",
+      "catchphrases": [
+        "This is the future",
+        "We're making Texas great",
+        "Tremendous opportunity"
+      ],
+      "tpopsAlignment": "high",
+      "dogWhistles": [
+        "empire",
+        "future",
+        "revolution",
+        "Texas"
+      ]
+    },
+    {
+      "name": "Liv Hana AI",
+      "role": "AI Executive Assistant",
+      "personality": "Intelligent, efficient, data-driven",
+      "voiceStyle": "Precise, professional, slightly ethereal",
+      "catchphrases": [
+        "The data shows...",
+        "Optimal strategy detected",
+        "Mission parameters confirmed"
+      ],
+      "tpopsAlignment": "high",
+      "dogWhistles": [
+        "data",
+        "optimization",
+        "efficiency",
+        "mission"
+      ]
+    },
+    {
+      "name": "Texas Patriot",
+      "role": "Everyday Texan (Voice of the People)",
+      "personality": "Common sense, freedom-loving, skeptical of government",
+      "voiceStyle": "Southern drawl, folksy, direct",
+      "catchphrases": [
+        "Don't tread on me",
+        "Freedom isn't free",
+        "Government's too big already"
+      ],
+      "tpopsAlignment": "high",
+      "dogWhistles": [
+        "freedom",
+        "liberty",
+        "Texas",
+        "rights"
+      ]
+    }
+  ],
+  "dialogue": [
+    {
+      "scene_number": 1,
+      "character": "Jesse Niesen",
+      "line": "This is the future - VA Hospitals Begin Hemp Trials for Veteran PTSD Treatment",
+      "delivery": "Deep, commanding, inspirational",
+      "emphasis_words": []
+    },
+    {
+      "scene_number": 2,
+      "character": "Liv Hana AI",
+      "line": "The data shows... - VA Hospitals Begin Hemp Trials for Veteran PTSD Treatment",
+      "delivery": "Precise, professional, slightly ethereal",
+      "emphasis_words": []
+    },
+    {
+      "scene_number": 3,
+      "character": "Texas Patriot",
+      "line": "Don't tread on me - VA Hospitals Begin Hemp Trials for Veteran PTSD Treatment",
+      "delivery": "Southern drawl, folksy, direct",
+      "emphasis_words": []
+    }
+  ],
+  "advocacy_message": "Legal hemp with ≤0.3% Delta-9 THC is 100% compliant in Texas. Know your rights.",
+  "viral_hooks": {
+    "opening": "You won't believe what's happening in Texas cannabis...",
+    "closing": "Stay TOONED for the full story. This is just the beginning.",
+    "quotable_lines": [
+      "Texas hemp is changing the game.",
+      "≤0.3% THC, 100% legal, 1000% Texas.",
+      "The revolution will be televised, folks."
+    ]
+  },
+  "news_hook": {
+    "category": "medical",
+    "title": "VA Hospitals Begin Hemp Trials for Veteran PTSD Treatment",
+    "angle": "Healing vs Stigma",
+    "engagementScore": 95,
+    "tpopsAlignment": {
+      "aligned": true,
+      "strength": 9
+    }
+  },
+  "tpops_alignment": {
+    "score": 100,
+    "aligned": true,
+    "factors": {
+      "newsHook": 9,
+      "characters": 10,
+      "dogWhistles": 12
+    }
+  },
+  "trump_rhetoric_density": 7,
+  "metadata": {
+    "generated_at": "2025-10-08T06:34:31.732Z",
+    "target_duration": 90,
+    "compliance_check": "PASSED",
+    "thc_mention": "≤0.3% Delta-9 THC",
+    "age_restriction": "21+",
+    "platform_tags": [
+      "#TexasTHC",
+      "#StayTOONED",
+      "#ReggieAndDro",
+      "#HighNoonCartoon"
+    ]
+  },
+  "quality_score": {
+    "viral_potential": "8.01",
+    "compliance_score": 10,
+    "engagement_prediction": "7.70",
+    "overall_quality": "8.89"
+  }
+}

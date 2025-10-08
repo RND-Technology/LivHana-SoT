@@ -1,0 +1,113 @@
+{
+  "generation_run": "2025-10-08T06:34:31.738Z",
+  "engine_version": "2.0-optimized",
+  "episodes_generated": [
+    {
+      "number": 11,
+      "title": "VA Hospitals Begin Hemp Trials for Veteran PTSD Treatment...",
+      "type": "productShowcase",
+      "quality": "9.45",
+      "tpops_alignment": 100,
+      "viral_potential": "8.47"
+    },
+    {
+      "number": 12,
+      "title": "VA Hospitals Begin Hemp Trials for Veteran PTSD Treatment...",
+      "type": "customerTestimonial",
+      "quality": "9.29",
+      "tpops_alignment": 100,
+      "viral_potential": "8.09"
+    },
+    {
+      "number": 13,
+      "title": "VA Hospitals Begin Hemp Trials for Veteran PTSD Treatment...",
+      "type": "newsCommentary",
+      "quality": "8.89",
+      "tpops_alignment": 100,
+      "viral_potential": "8.01"
+    },
+    {
+      "number": 14,
+      "title": "VA Hospitals Begin Hemp Trials for Veteran PTSD Treatment...",
+      "type": "characterComedy",
+      "quality": "9.40",
+      "tpops_alignment": 97,
+      "viral_potential": "9.26"
+    },
+    {
+      "number": 15,
+      "title": "VA Hospitals Begin Hemp Trials for Veteran PTSD Treatment...",
+      "type": "customerTestimonial",
+      "quality": "9.05",
+      "tpops_alignment": 100,
+      "viral_potential": "8.54"
+    },
+    {
+      "number": 16,
+      "title": "VA Hospitals Begin Hemp Trials for Veteran PTSD Treatment...",
+      "type": "productShowcase",
+      "quality": "9.37",
+      "tpops_alignment": 100,
+      "viral_potential": "8.28"
+    },
+    {
+      "number": 17,
+      "title": "VA Hospitals Begin Hemp Trials for Veteran PTSD Treatment...",
+      "type": "customerTestimonial",
+      "quality": "9.32",
+      "tpops_alignment": 100,
+      "viral_potential": "9.06"
+    },
+    {
+      "number": 18,
+      "title": "VA Hospitals Begin Hemp Trials for Veteran PTSD Treatment...",
+      "type": "newsCommentary",
+      "quality": "9.87",
+      "tpops_alignment": 100,
+      "viral_potential": "9.99"
+    },
+    {
+      "number": 19,
+      "title": "VA Hospitals Begin Hemp Trials for Veteran PTSD Treatment...",
+      "type": "characterComedy",
+      "quality": "9.56",
+      "tpops_alignment": 97,
+      "viral_potential": "8.68"
+    },
+    {
+      "number": 20,
+      "title": "VA Hospitals Begin Hemp Trials for Veteran PTSD Treatment...",
+      "type": "customerTestimonial",
+      "quality": "9.67",
+      "tpops_alignment": 100,
+      "viral_potential": "9.77"
+    }
+  ],
+  "performance_report": {
+    "performance": {
+      "averageGenerationTime": "0.00s",
+      "targetGenerationTime": "10s",
+      "performanceMet": true,
+      "fastestGeneration": "0.00s",
+      "slowestGeneration": "0.00s"
+    },
+    "quality": {
+      "averageViralScore": "8.81/10",
+      "averageTPOPSAlignment": "99.40%",
+      "averageEngagement": "7.81/10",
+      "tpopsTargetMet": true
+    },
+    "reliability": {
+      "totalGenerations": 10,
+      "failedGenerations": 0,
+      "successRate": "100.00%",
+      "zeroFailures": true
+    },
+    "caching": {
+      "cacheHits": 5,
+      "cacheMisses": 5,
+      "hitRate": "50.00%"
+    }
+  },
+  "next_episode_number": 21
+}
