@@ -1,0 +1,482 @@
+openapi: 3.1.0
+info:
+  title: SI Recommendations API
+  description: Strategic Intelligence recommendations engine for cannabis retail
+  version: 1.0.0
+  contact:
+    name: Cheetah Autonomous Agent
+    email: cheetah@reggieanddro.com
+
+servers:
+  - url: https://si-recommendations-{hash}-uc.a.run.app
+    description: Cloud Run production server
+
+paths:
+  /recommendations/{customer_id}:
+    get:
+      summary: Get personalized recommendations
+      description: |
+        Generates strategic intelligence recommendations for cannabis retail
+        based on customer profile, market trends, and business objectives.
+        Implements ML-powered suggestions with explainable AI.
+      operationId: getRecommendations
+      parameters:
+        - name: customer_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Customer identifier
+          example: "cust_12345"
+        - name: recommendation_type
+          in: query
+          schema:
+            type: string
+            enum: [products, pricing, marketing, inventory, strategy]
+            default: products
+          description: Type of recommendations to generate
+        - name: max_recommendations
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 20
+            default: 10
+          description: Maximum number of recommendations to return
+        - name: include_explanations
+          in: query
+          schema:
+            type: boolean
+            default: true
+          description: Include AI explanations for recommendations
+      responses:
+        '200':
+          description: Recommendations generated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  customer_id:
+                    type: string
+                    example: "cust_12345"
+                  recommendation_type:
+                    type: string
+                    example: "products"
+                  recommendations:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Recommendation'
+                  confidence_score:
+                    type: number
+                    minimum: 0
+                    maximum: 1
+                    description: Overall confidence in recommendations
+                    example: 0.85
+                  generated_at:
+                    type: string
+                    format: date-time
+                    example: "2025-10-08T12:15:30Z"
+                  model_version:
+                    type: string
+                    example: "v2.1.0"
+              example:
+                success: true
+                customer_id: "cust_12345"
+                recommendation_type: "products"
+                recommendations:
+                  - id: "rec_001"
+                    type: "product_recommendation"
+                    title: "Premium Indica Flower"
+                    description: "Based on your preference for relaxing products"
+                    confidence: 0.92
+                    reasoning:
+                      - "Customer has purchased indica products 80% of the time"
+                      - "High lifetime value indicates premium product preference"
+                      - "Seasonal trend shows increased demand for relaxation products"
+                    action_items:
+                      - "Stock premium indica varieties"
+                      - "Create targeted marketing campaign"
+                      - "Offer bundle deals with complementary products"
+                    expected_impact:
+                      revenue_increase: 15.5
+                      customer_satisfaction: 0.88
+                      inventory_turnover: 1.2
+                  - id: "rec_002"
+                    type: "pricing_recommendation"
+                    title: "Dynamic Pricing Strategy"
+                    description: "Optimize pricing based on demand patterns"
+                    confidence: 0.78
+                    reasoning:
+                      - "Peak demand hours identified: 2-4 PM, 7-9 PM"
+                      - "Competitor analysis shows pricing opportunities"
+                      - "Customer price sensitivity is medium"
+                    action_items:
+                      - "Implement time-based pricing"
+                      - "Monitor competitor prices"
+                      - "A/B test pricing strategies"
+                    expected_impact:
+                      revenue_increase: 8.3
+                      margin_improvement: 12.1
+                      customer_retention: 0.95
+                confidence_score: 0.85
+                generated_at: "2025-10-08T12:15:30Z"
+                model_version: "v2.1.0"
+        '404':
+          description: Customer not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Recommendation generation failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /recommendations/bulk:
+    post:
+      summary: Generate bulk recommendations
+      description: |
+        Generates recommendations for multiple customers or business scenarios.
+        Optimized for batch processing and strategic planning.
+      operationId: generateBulkRecommendations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customer_ids:
+                  type: array
+                  items:
+                    type: string
+                  description: List of customer IDs
+                  example: ["cust_12345", "cust_67890"]
+                recommendation_types:
+                  type: array
+                  items:
+                    type: string
+                    enum: [products, pricing, marketing, inventory, strategy]
+                  description: Types of recommendations to generate
+                  example: ["products", "pricing"]
+                business_context:
+                  type: object
+                  properties:
+                    season:
+                      type: string
+                      example: "summer"
+                    market_conditions:
+                      type: string
+                      example: "competitive"
+                    business_goals:
+                      type: array
+                      items:
+                        type: string
+                      example: ["increase_revenue", "improve_margins"]
+              example:
+                customer_ids: ["cust_12345", "cust_67890"]
+                recommendation_types: ["products", "pricing"]
+                business_context:
+                  season: "summer"
+                  market_conditions: "competitive"
+                  business_goals: ["increase_revenue", "improve_margins"]
+      responses:
+        '200':
+          description: Bulk recommendations generated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  total_recommendations:
+                    type: integer
+                    example: 25
+                  recommendations_by_customer:
+                    type: object
+                    additionalProperties:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/Recommendation'
+                  processing_time_ms:
+                    type: integer
+                    example: 1250
+                  generated_at:
+                    type: string
+                    format: date-time
+                    example: "2025-10-08T12:15:30Z"
+
+  /recommendations/feedback:
+    post:
+      summary: Submit recommendation feedback
+      description: |
+        Submits feedback on recommendation quality to improve the ML model.
+        Implements continuous learning and model improvement.
+      operationId: submitFeedback
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                recommendation_id:
+                  type: string
+                  example: "rec_001"
+                customer_id:
+                  type: string
+                  example: "cust_12345"
+                feedback_type:
+                  type: string
+                  enum: [positive, negative, neutral]
+                  example: "positive"
+                feedback_score:
+                  type: number
+                  minimum: 1
+                  maximum: 5
+                  example: 4
+                feedback_text:
+                  type: string
+                  example: "Great recommendation, customer loved the product"
+                action_taken:
+                  type: string
+                  example: "implemented"
+              example:
+                recommendation_id: "rec_001"
+                customer_id: "cust_12345"
+                feedback_type: "positive"
+                feedback_score: 4
+                feedback_text: "Great recommendation, customer loved the product"
+                action_taken: "implemented"
+      responses:
+        '200':
+          description: Feedback submitted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  feedback_id:
+                    type: string
+                    example: "feedback_789"
+                  model_updated:
+                    type: boolean
+                    example: true
+                  next_retraining:
+                    type: string
+                    format: date-time
+                    example: "2025-10-15T12:00:00Z"
+
+  /analytics/recommendation-performance:
+    get:
+      summary: Get recommendation performance analytics
+      description: |
+        Returns analytics on recommendation performance, accuracy, and business impact.
+        Provides insights for model improvement and business optimization.
+      operationId: getRecommendationAnalytics
+      parameters:
+        - name: time_period
+          in: query
+          schema:
+            type: string
+            enum: [day, week, month, quarter]
+            default: week
+          description: Time period for analytics
+        - name: recommendation_type
+          in: query
+          schema:
+            type: string
+            enum: [products, pricing, marketing, inventory, strategy, all]
+            default: all
+          description: Filter by recommendation type
+      responses:
+        '200':
+          description: Analytics retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  time_period:
+                    type: string
+                    example: "week"
+                  metrics:
+                    type: object
+                    properties:
+                      total_recommendations:
+                        type: integer
+                        example: 1250
+                      acceptance_rate:
+                        type: number
+                        example: 0.78
+                      average_confidence:
+                        type: number
+                        example: 0.82
+                      revenue_impact:
+                        type: number
+                        example: 15.5
+                      customer_satisfaction:
+                        type: number
+                        example: 0.88
+                  top_performing_recommendations:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Recommendation'
+                  improvement_areas:
+                    type: array
+                    items:
+                      type: string
+                    example: ["pricing_accuracy", "inventory_timing"]
+
+  /health:
+    get:
+      summary: Health check endpoint
+      description: Returns service health status
+      operationId: healthCheck
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum: [healthy, degraded, unhealthy]
+                    example: healthy
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: "2025-10-08T12:15:30Z"
+                  version:
+                    type: string
+                    example: "1.0.0"
+                  ml_model_status:
+                    type: string
+                    example: "active"
+                  recommendation_engine:
+                    type: string
+                    example: "operational"
+                  data_sources:
+                    type: object
+                    properties:
+                      customer_profiles:
+                        type: boolean
+                        example: true
+                      market_data:
+                        type: boolean
+                        example: true
+                      inventory_data:
+                        type: boolean
+                        example: true
+
+components:
+  schemas:
+    Recommendation:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "rec_001"
+        type:
+          type: string
+          enum: [product_recommendation, pricing_recommendation, marketing_recommendation, inventory_recommendation, strategy_recommendation]
+          example: "product_recommendation"
+        title:
+          type: string
+          example: "Premium Indica Flower"
+        description:
+          type: string
+          example: "Based on your preference for relaxing products"
+        confidence:
+          type: number
+          minimum: 0
+          maximum: 1
+          example: 0.92
+        reasoning:
+          type: array
+          items:
+            type: string
+          example: ["Customer has purchased indica products 80% of the time"]
+        action_items:
+          type: array
+          items:
+            type: string
+          example: ["Stock premium indica varieties"]
+        expected_impact:
+          type: object
+          properties:
+            revenue_increase:
+              type: number
+              example: 15.5
+            customer_satisfaction:
+              type: number
+              example: 0.88
+            inventory_turnover:
+              type: number
+              example: 1.2
+            margin_improvement:
+              type: number
+              example: 12.1
+            customer_retention:
+              type: number
+              example: 0.95
+
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        error:
+          type: string
+          description: Human-readable error message
+          example: "Customer not found"
+        code:
+          type: string
+          description: Machine-readable error code
+          example: "CUSTOMER_NOT_FOUND"
+        timestamp:
+          type: string
+          format: date-time
+          example: "2025-10-08T12:15:30Z"
+
+# Invariants (business rules enforced by the API):
+# 1. All recommendations must have confidence scores between 0 and 1
+# 2. Recommendations must include explainable reasoning
+# 3. Action items must be actionable and specific
+# 4. Expected impact must be quantifiable
+# 5. Feedback must be processed for model improvement
+# 6. Recommendations must respect business constraints
+# 7. All timestamps must be in ISO format
+
+# Threat Model (security considerations):
+# 1. Recommendation bias and fairness
+# 2. Data privacy and customer information protection
+# 3. Model security and adversarial attacks
+# 4. Input validation and sanitization
+# 5. Rate limiting for API endpoints
+# 6. Audit logging for compliance
+# 7. Model versioning and rollback capabilities
+
+# Performance Requirements:
+# 1. Single recommendation: <500ms
+# 2. Bulk recommendations: <5s for 100 customers
+# 3. Feedback processing: <100ms
+# 4. Analytics generation: <2s
+# 5. Model inference: <200ms per recommendation
+# 6. Memory usage: <1GB per instance
+# 7. Throughput: 1000+ recommendations per minute
