@@ -6,7 +6,7 @@ import OpenAI from 'openai';
 import { createQueue, createQueueEvents } from '../common/queue/index.js';
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 4002;
 
 // Security middleware
 app.use(helmet());
@@ -145,7 +145,7 @@ app.post('/api/v1/generate-email', async (req, res) => {
 });
 
 // Mount swarm integration routes
-app.use('/api/swarm', swarmIntegrationRoutes);
+// app.use('/api/swarm', swarmIntegrationRoutes); // TODO: Implement swarm integration
 
 // Health check
 app.get('/health', (req, res) => {
@@ -179,36 +179,12 @@ const REASONING_QUEUE_NAME = process.env.REASONING_QUEUE_NAME || 'voice-mode-rea
 const reasoningQueue = createQueue(REASONING_QUEUE_NAME);
 const reasoningQueueEvents = createQueueEvents(REASONING_QUEUE_NAME);
 
-// Queue job processor
-reasoningQueue.process('reasoning-task', async (job) => {
-  const { prompt, userId, sessionId, metadata } = job.data;
-  
-  try {
-    // Process reasoning with appropriate model
-    const result = await anthropic.messages.create({
-      model: 'claude-3-sonnet-20240229',
-      max_tokens: 2000,
-      messages: [{ role: 'user', content: prompt }]
-    });
-    
-    const response = result.content[0].text;
-    const tokens = result.usage.input_tokens + result.usage.output_tokens;
-    const cost = tokens * MODEL_COSTS['claude-3-sonnet'];
-    
-    return {
-      success: true,
-      result: response,
-      tokens,
-      cost,
-      model: 'claude-3-sonnet',
-      timestamp: new Date().toISOString()
-    };
-    
-  } catch (error) {
-    console.error('Reasoning job failed:', error);
-    throw error;
-  }
-});
+// Queue job processor - TODO: Implement when BullMQ worker is needed
+// reasoningQueue.process('reasoning-task', async (job) => {
+//   const { prompt, userId, sessionId, metadata } = job.data;
+//   // Process reasoning with appropriate model
+//   // Implementation pending - currently using direct API calls
+// });
 
 app.listen(PORT, () => {
   console.log(`🧠 Reasoning Gateway running on port ${PORT}`);
