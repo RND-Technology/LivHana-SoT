@@ -1,0 +1,222 @@
+openapi: 3.1.0
+info:
+  title: Customer Profile Service API
+  version: 1.0.0
+  description: Unified customer profile enriched from all data sources with predictions
+  contact:
+    name: LivHana Engineering
+    email: engineering@livhana.com
+
+servers:
+  - url: https://customer-profile-{env}.run.app
+    description: Cloud Run deployment
+    variables:
+      env:
+        default: prod
+        enum: [prod, staging, dev]
+
+paths:
+  /health:
+    get:
+      summary: Health check endpoint
+      operationId: getHealth
+      tags: [Health]
+      responses:
+        '200':
+          description: Service health status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+
+  /api/customers/{id}/profile:
+    get:
+      summary: Get enriched customer profile
+      description: Fetches customer data from multiple sources in parallel and returns unified profile with predictions
+      operationId: getCustomerProfile
+      tags: [Customers]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Customer ID from Lightspeed
+          example: '12345'
+      responses:
+        '200':
+          description: Customer profile retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerProfile'
+        '400':
+          description: Invalid customer ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /:
+    get:
+      summary: Service information
+      operationId: getServiceInfo
+      tags: [Info]
+      responses:
+        '200':
+          description: Service information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceInfo'
+
+components:
+  schemas:
+    HealthResponse:
+      type: object
+      required: [status, timestamp, lightspeed_connected, bigquery_connected]
+      properties:
+        status:
+          type: string
+          enum: [healthy, degraded, unhealthy]
+        timestamp:
+          type: string
+          format: date-time
+        lightspeed_connected:
+          type: boolean
+        bigquery_connected:
+          type: boolean
+
+    CustomerProfile:
+      type: object
+      required: [id, basic, purchase_history, preferences, content_engagement, predictions]
+      properties:
+        id:
+          type: string
+          description: Customer ID
+          example: '12345'
+        basic:
+          type: object
+          description: Basic customer info from Lightspeed
+          additionalProperties: true
+        purchase_history:
+          type: array
+          description: Customer's purchase history
+          items:
+            $ref: '#/components/schemas/PurchaseHistoryItem'
+        preferences:
+          type: object
+          description: Extracted customer preferences by category
+          additionalProperties:
+            type: integer
+          example:
+            CBD: 10
+            Sleep: 5
+            Focus: 3
+        content_engagement:
+          type: array
+          description: Content engagement analytics
+          items:
+            $ref: '#/components/schemas/ContentEngagement'
+        predictions:
+          type: object
+          required: [next_purchase_date, likely_products]
+          properties:
+            next_purchase_date:
+              type: string
+              format: date-time
+              nullable: true
+              description: Predicted next purchase date
+            likely_products:
+              type: array
+              description: Predicted likely products
+              items:
+                $ref: '#/components/schemas/ProductPrediction'
+
+    PurchaseHistoryItem:
+      type: object
+      required: [product_id, purchase_count, last_purchase]
+      properties:
+        product_id:
+          type: string
+          example: 'CBD-OIL-1000'
+        purchase_count:
+          type: integer
+          minimum: 1
+          example: 5
+        last_purchase:
+          type: string
+          format: date-time
+          example: '2025-10-01T12:00:00Z'
+
+    ContentEngagement:
+      type: object
+      required: [content_type, views, avg_time]
+      properties:
+        content_type:
+          type: string
+          example: 'video'
+        views:
+          type: integer
+          minimum: 0
+          example: 15
+        avg_time:
+          type: number
+          minimum: 0
+          description: Average engagement time in seconds
+          example: 245.5
+
+    ProductPrediction:
+      type: object
+      required: [product_id, confidence]
+      properties:
+        product_id:
+          type: string
+          example: 'CBD-OIL-1000'
+        confidence:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: Confidence score (0.0 to 1.0)
+          example: 0.85
+
+    ErrorResponse:
+      type: object
+      required: [error, timestamp]
+      properties:
+        error:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+
+    ServiceInfo:
+      type: object
+      properties:
+        service:
+          type: string
+        version:
+          type: string
+        endpoints:
+          type: object
+        documentation:
+          type: string
+
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+
+security:
+  - BearerAuth: []
+
+tags:
+  - name: Health
+  - name: Customers
+  - name: Info
