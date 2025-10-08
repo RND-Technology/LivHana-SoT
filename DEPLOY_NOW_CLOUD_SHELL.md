@@ -20,7 +20,7 @@ gcloud projects add-iam-policy-binding reggieanddrodispensary --member="user:jes
 ```bash
 # Clone repo to Cloud Shell
 cd ~
-git clone https://github.com/yourusername/LivHana-SoT.git
+git clone https://github.com/RND-Technology/LivHana-SoT.git
 cd LivHana-SoT
 
 # Run emergency deployment
