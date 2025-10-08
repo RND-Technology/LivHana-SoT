@@ -1,12 +1,30 @@
 import express from 'express';
+import cors from 'cors';
+import helmet from 'helmet';
 import Anthropic from '@anthropic-ai/sdk';
 import OpenAI from 'openai';
-import { createLogger } from '../common/logging/index.js';
-import swarmIntegrationRoutes from '../routes/swarm-integration.js';
+import { createQueue, createQueueEvents } from '../common/queue/index.js';
 
-const logger = createLogger('reasoning-gateway');
 const app = express();
-app.use(express.json());
+const PORT = process.env.PORT || 8080;
+
+// Security middleware
+app.use(helmet());
+
+// CORS configuration
+app.use(cors({
+  origin: [
+    'https://reggieanddro.com',
+    'https://voice.reggieanddro.com',
+    'https://brain.reggieanddro.com',
+    'http://localhost:3000',
+    'http://localhost:5173'
+  ],
+  credentials: true
+}));
+
+// Body parsing
+app.use(express.json({ limit: '10mb' }));
 
 // Initialize AI clients
 const anthropic = new Anthropic({
@@ -156,7 +174,46 @@ app.get('/', (req, res) => {
   });
 });
 
-const PORT = process.env.PORT || 8080;
+// Initialize BullMQ for job processing
+const REASONING_QUEUE_NAME = process.env.REASONING_QUEUE_NAME || 'voice-mode-reasoning-jobs';
+const reasoningQueue = createQueue(REASONING_QUEUE_NAME);
+const reasoningQueueEvents = createQueueEvents(REASONING_QUEUE_NAME);
+
+// Queue job processor
+reasoningQueue.process('reasoning-task', async (job) => {
+  const { prompt, userId, sessionId, metadata } = job.data;
+  
+  try {
+    // Process reasoning with appropriate model
+    const result = await anthropic.messages.create({
+      model: 'claude-3-sonnet-20240229',
+      max_tokens: 2000,
+      messages: [{ role: 'user', content: prompt }]
+    });
+    
+    const response = result.content[0].text;
+    const tokens = result.usage.input_tokens + result.usage.output_tokens;
+    const cost = tokens * MODEL_COSTS['claude-3-sonnet'];
+    
+    return {
+      success: true,
+      result: response,
+      tokens,
+      cost,
+      model: 'claude-3-sonnet',
+      timestamp: new Date().toISOString()
+    };
+    
+  } catch (error) {
+    console.error('Reasoning job failed:', error);
+    throw error;
+  }
+});
+
 app.listen(PORT, () => {
-  logger.info(`Reasoning gateway running on port ${PORT}`);
+  console.log(`🧠 Reasoning Gateway running on port ${PORT}`);
+  console.log(`✅ Anthropic: ${process.env.ANTHROPIC_API_KEY ? 'Configured' : 'Not configured'}`);
+  console.log(`✅ OpenAI: ${process.env.OPENAI_API_KEY ? 'Configured' : 'Not configured'}`);
+  console.log(`✅ Redis: ${process.env.REDIS_HOST || 'localhost'}:${process.env.REDIS_PORT || 6379}`);
+  console.log(`✅ Queue: ${REASONING_QUEUE_NAME}`);
 });

@@ -1,14 +1,20 @@
 version: '3.8'
 services:
+  # Frontend - Voice-First Cockpit
   frontend:
     build: ./frontend/vibe-cockpit
     ports:
       - "5173:5173"
     environment:
       - VITE_API_URL=http://backend:3005
+      - VITE_VOICE_API_URL=http://voice-service:8080
+      - VITE_REASONING_API_URL=http://reasoning-gateway:8080
     depends_on:
       - backend
+      - voice-service
+      - reasoning-gateway
       
+  # Legacy Integration Service
   backend:
     build: ./backend/integration-service
     ports:
@@ -20,15 +26,59 @@ services:
     depends_on:
       - redis
       
+  # Voice Service - ElevenLabs TTS + Queue Management
+  voice-service:
+    build: ./backend/voice-service
+    ports:
+      - "8080:8080"
+    environment:
+      - NODE_ENV=production
+      - PORT=8080
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REASONING_GATEWAY_BASE_URL=http://reasoning-gateway:8080/api/reasoning
+      - REASONING_QUEUE_NAME=voice-mode-reasoning-jobs
+    secrets:
+      - elevenlabs_api_key
+    depends_on:
+      - redis
+      - reasoning-gateway
+      
+  # Reasoning Gateway - DeepSeek + Anthropic + OpenAI
+  reasoning-gateway:
+    build: ./backend/reasoning-gateway
+    ports:
+      - "4002:8080"
+    environment:
+      - NODE_ENV=production
+      - PORT=8080
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    secrets:
+      - anthropic_api_key
+      - openai_api_key
+    depends_on:
+      - redis
+      
+  # Redis - Queue & Memory Store
   redis:
     image: redis:7-alpine
     ports:
       - "6379:6379"
     volumes:
       - redis-data:/data
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
       
 volumes:
   redis-data:
+
+secrets:
+  elevenlabs_api_key:
+    external: true
+  anthropic_api_key:
+    external: true
+  openai_api_key:
+    external: true
 
 # Last updated: 2025-10-02
 
