@@ -30,7 +30,7 @@
 - [x] **Initial Framework**: Claude Code created contract framework
 - [x] **Signature Block**: Added agent acceptance protocol
 - [x] **Git Sync Protocol**: Established coordination procedures
-- [ ] **Agent Reviews**: Awaiting Cheetah, Commander, Replit reviews
+- [x] **Agent Reviews**: Claude Code ✅, Replit ✅ signed - Awaiting Cheetah, Commander reviews
 - [ ] **Consensus Building**: Iterative refinement via git commits
 - [ ] **Final Agreement**: 100% consensus and signature collection
 - [ ] **Jesse Approval**: Submit completed contract for approval
@@ -42,10 +42,10 @@
 - [ ] **Frontend**: ⚠️ PENDING - Vibe cockpit needs deployment
 
 ### Agent Coordination Status
-- [x] **Claude Code**: ✅ ACTIVE - Contract framework created, awaiting reviews
+- [x] **Claude Code**: ✅ ACTIVE - Contract framework created, signed and committed
 - [ ] **Cheetah**: ⏳ PENDING - Review contract, propose UI/UX modifications
 - [ ] **Commander**: ⏳ PENDING - Review contract, propose quality enforcement modifications
-- [ ] **Replit**: ⏳ PENDING - Review contract, propose staging environment modifications
+- [x] **Replit**: ✅ SIGNED - Accepted staging/prototyping role, awaiting Lightspeed token
 
 ---
 
