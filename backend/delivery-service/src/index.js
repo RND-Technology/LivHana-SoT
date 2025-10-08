@@ -1,12 +1,16 @@
-// DELIVERY SERVICE - MAIN SERVER
-// Beats Nash by providing direct Lightspeed integration
-// No Square intermediary = lower costs, faster delivery creation
+// NASH-BEATING DELIVERY SERVICE - MAIN ENTRY POINT
+// Direct DoorDash Drive + Uber Direct integration
+// Beats Nash/Square by eliminating intermediary costs
 
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
-import lightspeedDeliveryRouter from './lightspeed-delivery-middleware.js';
-import nashBeatingRouter from './nash-beating-middleware.js';
+import rateLimit from 'express-rate-limit';
+
+// Import route handlers
+import nashBeatingMiddleware from './nash-beating-middleware.js';
+import lightspeedWebhookListener from './lightspeed-webhook-listener.js';
+import { runEndToEndTests, healthCheck } from './end-to-end-testing.js';
 
 const app = express();
 const PORT = process.env.PORT || 4003;
@@ -14,77 +18,145 @@ const PORT = process.env.PORT || 4003;
 // Security middleware
 app.use(helmet());
 app.use(cors({
-  origin: [
-    'https://reggieanddro.com',
-    'https://www.reggieanddro.com',
-    'http://localhost:3000',
-    'http://localhost:5173'
-  ]
+  origin: process.env.ALLOWED_ORIGINS?.split(',') || ['http://localhost:3000', 'https://reggieanddro.com'],
+  credentials: true
 }));
 
-// Body parsers
+// Rate limiting
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+  message: 'Too many requests from this IP, please try again later.'
+});
+app.use('/api/', limiter);
+
+// Body parsing
 app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // Request logging
 app.use((req, res, next) => {
-  console.log(`${req.method} ${req.path}`, {
-    ip: req.ip,
-    userAgent: req.get('user-agent')
-  });
+  console.log(`${new Date().toISOString()} ${req.method} ${req.path}`);
   next();
 });
 
-// Health check
-app.get('/health', (req, res) => {
+// Health check endpoint
+app.get('/health', async (req, res) => {
+  try {
+    const isHealthy = await healthCheck();
+    res.status(isHealthy ? 200 : 503).json({
+      status: isHealthy ? 'healthy' : 'unhealthy',
+      timestamp: new Date().toISOString(),
+      service: 'nash-beating-delivery-service',
+      version: '1.0.0'
+    });
+  } catch (error) {
+    res.status(503).json({
+      status: 'unhealthy',
+      error: error.message,
+      timestamp: new Date().toISOString()
+    });
+  }
+});
+
+// API routes
+app.use('/api/delivery', nashBeatingMiddleware);
+app.use('/api/delivery', lightspeedWebhookListener);
+
+// Test endpoints
+app.get('/api/test/end-to-end', async (req, res) => {
+  try {
+    console.log('🧪 Running end-to-end tests...');
+    const success = await runEndToEndTests();
+    
+    res.json({
+      success,
+      message: success ? 'All tests passed' : 'Some tests failed',
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: error.message,
+      timestamp: new Date().toISOString()
+    });
+  }
+});
+
+// Root endpoint
+app.get('/', (req, res) => {
   res.json({
-    service: 'delivery-service',
-    status: 'healthy',
-    timestamp: new Date().toISOString(),
-    providers: {
-      doordash: !!process.env.DOORDASH_API_KEY,
-      uber: !!process.env.UBER_API_KEY
-    }
+    service: 'Nash-Beating Delivery Service',
+    version: '1.0.0',
+    mission: 'Beat Nash/Square with direct integration + intelligent routing',
+    features: [
+      'Direct DoorDash Drive + Uber Direct integration',
+      'Intelligent multi-provider routing',
+      'Automatic failover',
+      'Cost optimization ($50+ savings per order)',
+      'Lightspeed webhook integration',
+      'Real-time tracking',
+      'Provider comparison API'
+    ],
+    endpoints: {
+      health: '/health',
+      quote: 'POST /api/delivery/quote',
+      compare: 'POST /api/delivery/providers/compare',
+      create: 'POST /api/delivery/create',
+      status: 'GET /api/delivery/status/:deliveryId',
+      cancel: 'POST /api/delivery/cancel',
+      webhook: 'POST /api/delivery/lightspeed/webhook',
+      test: 'GET /api/test/end-to-end'
+    },
+    documentation: 'https://github.com/reggieanddro/delivery-service',
+    support: 'jesse@reggieanddro.com'
   });
 });
 
-// Mount delivery routes
-app.use('/api/delivery', lightspeedDeliveryRouter);
-app.use('/api/delivery', nashBeatingRouter);
-
-// Error handler
-app.use((err, req, res, next) => {
-  console.error('Server error:', err);
+// Error handling middleware
+app.use((error, req, res, next) => {
+  console.error('Unhandled error:', error);
   res.status(500).json({
     success: false,
-    error: process.env.NODE_ENV === 'production'
-      ? 'Internal server error'
-      : err.message
+    error: 'Internal server error',
+    timestamp: new Date().toISOString()
   });
 });
 
 // 404 handler
-app.use((req, res) => {
+app.use('*', (req, res) => {
   res.status(404).json({
     success: false,
-    error: 'Endpoint not found'
+    error: 'Endpoint not found',
+    path: req.originalUrl,
+    timestamp: new Date().toISOString()
   });
 });
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`🚚 Delivery Service running on port ${PORT}`);
-  console.log(`📍 Store: San Antonio, TX`);
-  console.log(`✅ Health check: http://localhost:${PORT}/health`);
-  console.log(`🔌 Lightspeed webhook: http://localhost:${PORT}/api/delivery/lightspeed/webhook`);
-  console.log(`💰 Quote API: http://localhost:${PORT}/api/delivery/quote`);
-  console.log(`🏆 Nash-beating comparison: http://localhost:${PORT}/api/delivery/providers/compare`);
-
-  const providers = [];
-  if (process.env.DOORDASH_API_KEY) providers.push('DoorDash');
-  if (process.env.UBER_API_KEY) providers.push('Uber');
-
-  console.log(`📦 Providers: ${providers.join(', ') || 'None configured'}`);
+  console.log('🚀 Nash-Beating Delivery Service started');
+  console.log(`📍 Port: ${PORT}`);
+  console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
+  console.log(`🎯 Mission: Beat Nash/Square with direct integration`);
+  console.log(`💰 Target savings: $50+ per order`);
+  console.log('');
+  console.log('📡 Available endpoints:');
+  console.log('   GET  /health - Health check');
+  console.log('   POST /api/delivery/quote - Get best delivery quote');
+  console.log('   POST /api/delivery/providers/compare - Compare all providers');
+  console.log('   POST /api/delivery/create - Create delivery order');
+  console.log('   GET  /api/delivery/status/:deliveryId - Get delivery status');
+  console.log('   POST /api/delivery/cancel - Cancel delivery');
+  console.log('   POST /api/delivery/lightspeed/webhook - Lightspeed webhook');
+  console.log('   GET  /api/test/end-to-end - Run comprehensive tests');
+  console.log('');
+  console.log('🔧 Configuration:');
+  console.log(`   DoorDash: ${process.env.DOORDASH_DEVELOPER_ID ? '✅ Configured' : '❌ Missing'}`);
+  console.log(`   Uber: ${process.env.UBER_API_KEY ? '✅ Configured' : '❌ Missing'}`);
+  console.log(`   Lightspeed: ${process.env.LIGHTSPEED_API_TOKEN ? '✅ Configured' : '❌ Missing'}`);
+  console.log('');
+  console.log('🚀 Ready to beat Nash!');
 });
 
 export default app;
