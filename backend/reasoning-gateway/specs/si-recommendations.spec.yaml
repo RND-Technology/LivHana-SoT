@@ -1,0 +1,124 @@
+openapi: 3.1.0
+info:
+  title: SI Recommendation Engine API
+  version: 1.0.0
+  description: Personalized product recommendations using collaborative filtering
+
+servers:
+  - url: https://si-recommendations-{env}.run.app
+    variables:
+      env:
+        default: prod
+        enum: [prod, staging, dev]
+
+paths:
+  /health:
+    get:
+      summary: Health check
+      operationId: getHealth
+      tags: [Health]
+      responses:
+        '200':
+          description: Service health
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status, timestamp, bigquery_connected]
+                properties:
+                  status:
+                    type: string
+                    enum: [healthy, degraded, unhealthy]
+                  timestamp:
+                    type: string
+                    format: date-time
+                  bigquery_connected:
+                    type: boolean
+
+  /api/recommendations/{customerId}:
+    get:
+      summary: Get recommendations for customer
+      operationId: getRecommendations
+      tags: [Recommendations]
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 50
+            default: 10
+      responses:
+        '200':
+          description: Recommendations retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [customerId, recommendations, count, timestamp]
+                properties:
+                  customerId:
+                    type: string
+                  recommendations:
+                    type: array
+                    items:
+                      type: object
+                      required: [product_id, reason, confidence]
+                      properties:
+                        product_id:
+                          type: string
+                        reason:
+                          type: string
+                        confidence:
+                          type: number
+                          minimum: 0
+                          maximum: 1
+                  count:
+                    type: integer
+                  timestamp:
+                    type: string
+                    format: date-time
+
+  /api/recommendations/batch:
+    post:
+      summary: Batch recommendations
+      operationId: batchRecommendations
+      tags: [Recommendations]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [customerIds]
+              properties:
+                customerIds:
+                  type: array
+                  items:
+                    type: string
+                limit:
+                  type: integer
+                  minimum: 1
+                  maximum: 50
+                  default: 10
+      responses:
+        '200':
+          description: Batch recommendations
+          content:
+            application/json:
+              schema:
+                type: object
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+
+security:
+  - BearerAuth: []

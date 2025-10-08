@@ -1,0 +1,641 @@
+openapi: 3.1.0
+info:
+  title: Voice-to-Purchase API
+  description: Voice-activated purchasing system for cannabis retail
+  version: 1.0.0
+  contact:
+    name: Cheetah Autonomous Agent
+    email: cheetah@reggieanddro.com
+
+servers:
+  - url: https://voice-purchase-{hash}-uc.a.run.app
+    description: Cloud Run production server
+
+paths:
+  /voice/process:
+    post:
+      summary: Process voice command for purchase
+      description: |
+        Processes voice commands to identify purchase intent and execute orders.
+        Implements NLP-powered intent recognition with fallback handling.
+      operationId: processVoiceCommand
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                audio_data:
+                  type: string
+                  format: base64
+                  description: Base64-encoded audio data
+                  example: "UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqF..."
+                audio_format:
+                  type: string
+                  enum: [wav, mp3, ogg, webm]
+                  default: wav
+                  description: Audio format
+                customer_id:
+                  type: string
+                  description: Customer identifier
+                  example: "cust_12345"
+                session_id:
+                  type: string
+                  description: Session identifier for context
+                  example: "session_67890"
+              required:
+                - audio_data
+                - customer_id
+              example:
+                audio_data: "UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqF..."
+                audio_format: "wav"
+                customer_id: "cust_12345"
+                session_id: "session_67890"
+      responses:
+        '200':
+          description: Voice command processed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  intent:
+                    type: string
+                    enum: [purchase, search, cart, help, cancel]
+                    example: "purchase"
+                  confidence:
+                    type: number
+                    minimum: 0
+                    maximum: 1
+                    description: Confidence score for intent recognition
+                    example: 0.92
+                  extracted_text:
+                    type: string
+                    description: Transcribed text from audio
+                    example: "I want to buy some premium indica flower"
+                  entities:
+                    type: object
+                    properties:
+                      products:
+                        type: array
+                        items:
+                          type: string
+                        example: ["premium indica flower"]
+                      quantities:
+                        type: array
+                        items:
+                          type: string
+                        example: ["some"]
+                      modifiers:
+                        type: array
+                        items:
+                          type: string
+                        example: ["premium"]
+                  action:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        example: "add_to_cart"
+                      products:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Product'
+                      quantity:
+                        type: integer
+                        example: 1
+                      confirmation_required:
+                        type: boolean
+                        example: true
+                  response_text:
+                    type: string
+                    description: Spoken response to customer
+                    example: "I found premium indica flower for $45. Would you like me to add it to your cart?"
+                  response_audio:
+                    type: string
+                    format: base64
+                    description: Base64-encoded audio response
+                    example: "UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqF..."
+                  session_id:
+                    type: string
+                    example: "session_67890"
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: "2025-10-08T12:15:30Z"
+              example:
+                success: true
+                intent: "purchase"
+                confidence: 0.92
+                extracted_text: "I want to buy some premium indica flower"
+                entities:
+                  products: ["premium indica flower"]
+                  quantities: ["some"]
+                  modifiers: ["premium"]
+                action:
+                  type: "add_to_cart"
+                  products:
+                    - id: "prod_123"
+                      name: "Premium Indica Flower"
+                      price: 45.00
+                      category: "flower"
+                  quantity: 1
+                  confirmation_required: true
+                response_text: "I found premium indica flower for $45. Would you like me to add it to your cart?"
+                response_audio: "UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqF..."
+                session_id: "session_67890"
+                timestamp: "2025-10-08T12:15:30Z"
+        '400':
+          description: Invalid audio data or format
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Voice processing failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /voice/confirm:
+    post:
+      summary: Confirm voice purchase
+      description: |
+        Confirms a voice-initiated purchase after intent recognition.
+        Implements secure payment processing and order creation.
+      operationId: confirmVoicePurchase
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                session_id:
+                  type: string
+                  description: Session identifier
+                  example: "session_67890"
+                customer_id:
+                  type: string
+                  description: Customer identifier
+                  example: "cust_12345"
+                confirmation:
+                  type: boolean
+                  description: Whether customer confirmed the purchase
+                  example: true
+                payment_method:
+                  type: string
+                  enum: [voice_payment, saved_card, apple_pay, google_pay]
+                  description: Payment method for the purchase
+                  example: "voice_payment"
+                delivery_address:
+                  type: object
+                  properties:
+                    street:
+                      type: string
+                      example: "123 Main St"
+                    city:
+                      type: string
+                      example: "Austin"
+                    state:
+                      type: string
+                      example: "TX"
+                    zip_code:
+                      type: string
+                      example: "78701"
+              required:
+                - session_id
+                - customer_id
+                - confirmation
+              example:
+                session_id: "session_67890"
+                customer_id: "cust_12345"
+                confirmation: true
+                payment_method: "voice_payment"
+                delivery_address:
+                  street: "123 Main St"
+                  city: "Austin"
+                  state: "TX"
+                  zip_code: "78701"
+      responses:
+        '200':
+          description: Purchase confirmed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  order_id:
+                    type: string
+                    example: "order_789"
+                  status:
+                    type: string
+                    enum: [confirmed, processing, shipped, delivered]
+                    example: "confirmed"
+                  total_amount:
+                    type: number
+                    example: 45.00
+                  estimated_delivery:
+                    type: string
+                    format: date-time
+                    example: "2025-10-09T14:00:00Z"
+                  confirmation_text:
+                    type: string
+                    example: "Your order has been confirmed! Order #789 will be delivered tomorrow by 2 PM."
+                  confirmation_audio:
+                    type: string
+                    format: base64
+                    description: Base64-encoded audio confirmation
+                    example: "UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqF..."
+                  tracking_info:
+                    type: object
+                    properties:
+                      tracking_number:
+                        type: string
+                        example: "TRK123456789"
+                      delivery_partner:
+                        type: string
+                        example: "DoorDash"
+                      real_time_tracking:
+                        type: boolean
+                        example: true
+        '400':
+          description: Invalid confirmation data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Purchase confirmation failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /voice/cancel:
+    post:
+      summary: Cancel voice purchase
+      description: |
+        Cancels a voice-initiated purchase or order.
+        Implements secure cancellation with refund processing.
+      operationId: cancelVoicePurchase
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                session_id:
+                  type: string
+                  description: Session identifier
+                  example: "session_67890"
+                customer_id:
+                  type: string
+                  description: Customer identifier
+                  example: "cust_12345"
+                order_id:
+                  type: string
+                  description: Order identifier to cancel
+                  example: "order_789"
+                reason:
+                  type: string
+                  description: Reason for cancellation
+                  example: "Changed my mind"
+              required:
+                - session_id
+                - customer_id
+              example:
+                session_id: "session_67890"
+                customer_id: "cust_12345"
+                order_id: "order_789"
+                reason: "Changed my mind"
+      responses:
+        '200':
+          description: Purchase cancelled successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  order_id:
+                    type: string
+                    example: "order_789"
+                  status:
+                    type: string
+                    enum: [cancelled, refunded]
+                    example: "cancelled"
+                  refund_amount:
+                    type: number
+                    example: 45.00
+                  refund_method:
+                    type: string
+                    example: "original_payment_method"
+                  confirmation_text:
+                    type: string
+                    example: "Your order has been cancelled and a refund of $45.00 will be processed."
+                  confirmation_audio:
+                    type: string
+                    format: base64
+                    description: Base64-encoded audio confirmation
+                    example: "UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqF..."
+
+  /voice/status:
+    get:
+      summary: Get voice purchase status
+      description: |
+        Retrieves the status of voice-initiated purchases and orders.
+        Provides real-time updates on order progress.
+      operationId: getVoicePurchaseStatus
+      parameters:
+        - name: session_id
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Session identifier
+          example: "session_67890"
+        - name: customer_id
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Customer identifier
+          example: "cust_12345"
+      responses:
+        '200':
+          description: Voice purchase status retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  session_id:
+                    type: string
+                    example: "session_67890"
+                  customer_id:
+                    type: string
+                    example: "cust_12345"
+                  current_order:
+                    type: object
+                    properties:
+                      order_id:
+                        type: string
+                        example: "order_789"
+                      status:
+                        type: string
+                        enum: [pending, confirmed, processing, shipped, delivered, cancelled]
+                        example: "processing"
+                      items:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Product'
+                      total_amount:
+                        type: number
+                        example: 45.00
+                      estimated_delivery:
+                        type: string
+                        format: date-time
+                        example: "2025-10-09T14:00:00Z"
+                      tracking_info:
+                        type: object
+                        properties:
+                          tracking_number:
+                            type: string
+                            example: "TRK123456789"
+                          delivery_partner:
+                            type: string
+                            example: "DoorDash"
+                          current_location:
+                            type: string
+                            example: "Out for delivery"
+                          estimated_arrival:
+                            type: string
+                            format: date-time
+                            example: "2025-10-09T14:00:00Z"
+                  order_history:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        order_id:
+                          type: string
+                        status:
+                          type: string
+                        total_amount:
+                          type: number
+                        created_at:
+                          type: string
+                          format: date-time
+                  voice_context:
+                    type: object
+                    properties:
+                      last_intent:
+                        type: string
+                        example: "purchase"
+                      last_products:
+                        type: array
+                        items:
+                          type: string
+                        example: ["premium indica flower"]
+                      conversation_state:
+                        type: string
+                        enum: [idle, listening, processing, confirming, completed]
+                        example: "idle"
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: "2025-10-08T12:15:30Z"
+
+  /voice/help:
+    post:
+      summary: Get voice assistance
+      description: |
+        Provides voice-based help and guidance for the purchasing process.
+        Implements conversational AI for customer support.
+      operationId: getVoiceHelp
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                audio_data:
+                  type: string
+                  format: base64
+                  description: Base64-encoded audio data
+                  example: "UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqF..."
+                customer_id:
+                  type: string
+                  description: Customer identifier
+                  example: "cust_12345"
+                session_id:
+                  type: string
+                  description: Session identifier
+                  example: "session_67890"
+                help_type:
+                  type: string
+                  enum: [general, product_info, order_status, payment, delivery]
+                  description: Type of help requested
+                  example: "general"
+              required:
+                - audio_data
+                - customer_id
+              example:
+                audio_data: "UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqF..."
+                customer_id: "cust_12345"
+                session_id: "session_67890"
+                help_type: "general"
+      responses:
+        '200':
+          description: Voice help provided
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  help_text:
+                    type: string
+                    example: "I can help you find products, place orders, check order status, and answer questions about our services."
+                  help_audio:
+                    type: string
+                    format: base64
+                    description: Base64-encoded audio help
+                    example: "UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqF..."
+                  suggestions:
+                    type: array
+                    items:
+                      type: string
+                    example: ["What products do you have?", "How do I place an order?", "Check my order status"]
+                  session_id:
+                    type: string
+                    example: "session_67890"
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: "2025-10-08T12:15:30Z"
+
+  /health:
+    get:
+      summary: Health check endpoint
+      description: Returns service health status
+      operationId: healthCheck
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum: [healthy, degraded, unhealthy]
+                    example: healthy
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: "2025-10-08T12:15:30Z"
+                  version:
+                    type: string
+                    example: "1.0.0"
+                  voice_engine:
+                    type: string
+                    example: "operational"
+                  nlp_service:
+                    type: string
+                    example: "active"
+                  payment_processor:
+                    type: string
+                    example: "connected"
+                  audio_quality:
+                    type: string
+                    example: "excellent"
+
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "prod_123"
+        name:
+          type: string
+          example: "Premium Indica Flower"
+        price:
+          type: number
+          example: 45.00
+        category:
+          type: string
+          example: "flower"
+        description:
+          type: string
+          example: "High-quality indica flower with relaxing effects"
+        image:
+          type: string
+          example: "https://example.com/product.jpg"
+        availability:
+          type: string
+          enum: [in_stock, low_stock, out_of_stock]
+          example: "in_stock"
+
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        error:
+          type: string
+          description: Human-readable error message
+          example: "Invalid audio format"
+        code:
+          type: string
+          description: Machine-readable error code
+          example: "INVALID_AUDIO_FORMAT"
+        timestamp:
+          type: string
+          format: date-time
+          example: "2025-10-08T12:15:30Z"
+
+# Invariants (business rules enforced by the API):
+# 1. All voice commands must be processed within 3 seconds
+# 2. Audio quality must meet minimum standards for processing
+# 3. Intent recognition confidence must be above 0.7 for actions
+# 4. All purchases require explicit confirmation
+# 5. Payment processing must be secure and compliant
+# 6. Order status updates must be real-time
+# 7. Voice responses must be natural and conversational
+
+# Threat Model (security considerations):
+# 1. Audio data privacy and encryption
+# 2. Voice spoofing and deepfake detection
+# 3. Payment security and fraud prevention
+# 4. Session hijacking and replay attacks
+# 5. Input validation and sanitization
+# 6. Rate limiting for voice processing
+# 7. Audit logging for compliance
+
+# Performance Requirements:
+# 1. Voice processing: <3 seconds per command
+# 2. Intent recognition: <1 second
+# 3. Audio transcription: <2 seconds
+# 4. Payment processing: <5 seconds
+# 5. Order creation: <2 seconds
+# 6. Response generation: <1 second
+# 7. Memory usage: <1GB per instance

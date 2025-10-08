@@ -1,11 +1,11 @@
 {
-  "name": "lightspeed-bigquery-pipeline",
+  "name": "customer-profile-api",
   "version": "1.0.0",
-  "description": "Real-time sales data streaming from Lightspeed to BigQuery",
-  "main": "src/lightspeed-bigquery.ts",
+  "description": "Customer intelligence and behavior analysis service",
+  "main": "src/customer-profile.ts",
   "scripts": {
-    "start": "ts-node src/lightspeed-bigquery.ts",
-    "dev": "ts-node --watch src/lightspeed-bigquery.ts",
+    "start": "ts-node src/customer-profile.ts",
+    "dev": "ts-node --watch src/customer-profile.ts",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
@@ -13,20 +13,20 @@
     "lint:fix": "eslint src/**/*.ts tests/**/*.ts --fix",
     "type-check": "tsc --noEmit",
     "build": "tsc",
-    "deploy": "gcloud run deploy lightspeed-bigquery --source . --region us-central1"
+    "deploy": "gcloud run deploy customer-profile --source . --region us-central1"
   },
   "keywords": [
-    "lightspeed",
-    "bigquery",
-    "pipeline",
-    "sales",
-    "analytics"
+    "customer",
+    "profile",
+    "analytics",
+    "privacy",
+    "segmentation"
   ],
   "author": "Cheetah Autonomous Agent",
   "license": "UNLICENSED",
   "dependencies": {
     "@google-cloud/bigquery": "^7.0.0",
-    "axios": "^1.6.0",
+    "ioredis": "^5.3.0",
     "express": "^4.18.0"
   },
   "devDependencies": {

@@ -1,0 +1,239 @@
+openapi: 3.1.0
+info:
+  title: Lightspeed BigQuery Pipeline API
+  description: Real-time sales data streaming from Lightspeed to BigQuery
+  version: 1.0.0
+  contact:
+    name: Cheetah Autonomous Agent
+    email: cheetah@reggieanddro.com
+
+servers:
+  - url: https://lightspeed-bigquery-{hash}-uc.a.run.app
+    description: Cloud Run production server
+
+paths:
+  /sync/sales:
+    post:
+      summary: Sync Lightspeed sales to BigQuery
+      description: |
+        Fetches recent sales from Lightspeed API and streams them to BigQuery.
+        Implements idempotent insertion to prevent duplicates.
+        Handles anonymous customers and missing product data gracefully.
+      operationId: syncSalesData
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                since:
+                  type: string
+                  format: date-time
+                  description: ISO timestamp to fetch sales since (defaults to 24h ago)
+                batch_size:
+                  type: integer
+                  minimum: 1
+                  maximum: 1000
+                  default: 100
+                  description: Maximum number of sales to process per batch
+              example:
+                since: "2025-10-07T00:00:00Z"
+                batch_size: 100
+      responses:
+        '200':
+          description: Sales successfully synced to BigQuery
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  inserted:
+                    type: integer
+                    description: Number of sales records inserted
+                    example: 47
+                  skipped:
+                    type: integer
+                    description: Number of duplicate sales skipped
+                    example: 3
+                  lastSync:
+                    type: string
+                    format: date-time
+                    description: Timestamp of most recent sale processed
+                    example: "2025-10-08T12:15:30Z"
+                  latency_ms:
+                    type: integer
+                    description: Total processing time in milliseconds
+                    example: 2340
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        sale_id:
+                          type: string
+                        error:
+                          type: string
+                    description: Any sales that failed to process
+                    example: []
+              example:
+                success: true
+                inserted: 47
+                skipped: 3
+                lastSync: "2025-10-08T12:15:30Z"
+                latency_ms: 2340
+                errors: []
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Invalid or missing Lightspeed token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /health:
+    get:
+      summary: Health check endpoint
+      description: Returns service health status and configuration
+      operationId: healthCheck
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum: [healthy, degraded, unhealthy]
+                    example: healthy
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: "2025-10-08T12:15:30Z"
+                  version:
+                    type: string
+                    example: "1.0.0"
+                  lightspeed_connected:
+                    type: boolean
+                    description: Whether Lightspeed API is reachable
+                    example: true
+                  bigquery_connected:
+                    type: boolean
+                    description: Whether BigQuery is reachable
+                    example: true
+                  last_sync:
+                    type: string
+                    format: date-time
+                    description: Timestamp of last successful sync
+                    example: "2025-10-08T12:15:30Z"
+
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        error:
+          type: string
+          description: Human-readable error message
+          example: "Invalid date format for 'since' parameter"
+        code:
+          type: string
+          description: Machine-readable error code
+          example: "INVALID_DATE_FORMAT"
+        timestamp:
+          type: string
+          format: date-time
+          example: "2025-10-08T12:15:30Z"
+
+    BigQueryRow:
+      type: object
+      description: Sales record schema for BigQuery insertion
+      required:
+        - sale_id
+        - timestamp
+        - customer_id
+        - product_id
+        - product_name
+        - quantity
+        - price
+        - payment_method
+      properties:
+        sale_id:
+          type: string
+          description: Unique Lightspeed sale identifier
+          example: "12345"
+        timestamp:
+          type: string
+          format: date-time
+          description: Sale completion timestamp
+          example: "2025-10-08T12:15:30Z"
+        customer_id:
+          type: string
+          description: Customer identifier (or 'anonymous' for guest sales)
+          example: "67890"
+        product_id:
+          type: string
+          description: Product identifier (or 'unknown' if missing)
+          example: "prod-123"
+        product_name:
+          type: string
+          description: Human-readable product name
+          example: "Premium Cannabis Flower"
+        quantity:
+          type: number
+          minimum: 0
+          description: Quantity purchased
+          example: 2
+        price:
+          type: number
+          minimum: 0
+          description: Total price for this line item
+          example: 75.50
+        payment_method:
+          type: string
+          description: Payment method used
+          example: "Credit Card"
+
+# Invariants (business rules enforced by the API):
+# 1. All sales must have a timestamp (required field)
+# 2. Customer ID can be null (handled as 'anonymous')
+# 3. Product ID must exist (fallback to 'unknown' if missing)
+# 4. Price must be positive (validation enforced)
+# 5. Insert must be idempotent (no duplicates based on sale_id)
+# 6. Batch processing respects memory limits (max 1000 sales per batch)
+# 7. Error handling preserves partial success (some sales may fail)
+
+# Threat Model (security considerations):
+# 1. Duplicate sales (retry logic with idempotent insertion)
+# 2. Missing fields (graceful null handling with defaults)
+# 3. Large batches (memory limits and pagination)
+# 4. BigQuery rate limits (exponential backoff retry)
+# 5. Lightspeed API limits (respect rate limiting)
+# 6. Invalid data (skip invalid rows, log errors)
+# 7. Authentication (secure token handling)
+
+# Performance Requirements:
+# 1. Sync latency: <60 seconds for typical batch (100 sales)
+# 2. Memory usage: <512MB per batch
+# 3. Error rate: <1% of sales should fail processing
+# 4. Availability: 99.9% uptime target
+# 5. Throughput: Handle up to 1000 sales per minute
+
