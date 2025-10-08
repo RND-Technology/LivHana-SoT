@@ -14,14 +14,19 @@ const { BigQuery } = require('@google-cloud/bigquery');
  */
 class YouTubeAnalyzer {
   constructor(apiKey) {
-    if (!apiKey) {
-      throw new Error('YouTube Data API v3 key required. Get from: https://console.cloud.google.com/apis/credentials');
-    }
+    // WORKAROUND: Allow mock mode if no API key
+    this.mockMode = !apiKey || apiKey === 'PENDING';
 
-    this.youtube = google.youtube({
-      version: 'v3',
-      auth: apiKey
-    });
+    if (this.mockMode) {
+      console.warn('⚠️  YouTube API key not found - running in MOCK MODE');
+      console.warn('   Get key from: https://console.cloud.google.com/apis/credentials');
+      this.youtube = null;
+    } else {
+      this.youtube = google.youtube({
+        version: 'v3',
+        auth: apiKey
+      });
+    }
 
     this.bigquery = new BigQuery({
       projectId: process.env.GCP_PROJECT_ID
@@ -38,6 +43,12 @@ class YouTubeAnalyzer {
    * @returns {Promise<Array>} Video data with analytics
    */
   async searchViralContent(query = 'cannabis dispensary', maxResults = 50) {
+    // MOCK MODE: Return sample data if no API key
+    if (this.mockMode) {
+      console.log('🧪 MOCK MODE: Returning sample viral patterns');
+      return this.generateMockData(query, maxResults);
+    }
+
     try {
       const response = await this.youtube.search.list({
         part: 'snippet',
@@ -81,6 +92,29 @@ class YouTubeAnalyzer {
       console.error('❌ YouTube API error:', error.message);
       throw error;
     }
+  }
+
+  /**
+   * Generate mock data for testing without API key
+   */
+  generateMockData(query, maxResults) {
+    const mockVideos = [];
+    for (let i = 0; i < Math.min(maxResults, 10); i++) {
+      mockVideos.push({
+        videoId: `mock-video-${i}`,
+        title: `${query} - Top Video ${i + 1} (MOCK DATA)`,
+        description: 'This is mock data. Get YouTube API key to see real results.',
+        channelTitle: 'Mock Channel',
+        publishedAt: new Date().toISOString(),
+        thumbnailUrl: 'https://via.placeholder.com/1280x720?text=Mock+Thumbnail',
+        viewCount: Math.floor(Math.random() * 1000000),
+        likeCount: Math.floor(Math.random() * 50000),
+        commentCount: Math.floor(Math.random() * 5000),
+        duration: 'PT10M30S',
+        engagementRate: Math.random() * 5
+      });
+    }
+    return mockVideos;
   }
 
   /**

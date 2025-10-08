@@ -14,11 +14,16 @@ const { BigQuery } = require('@google-cloud/bigquery');
  */
 class NewsAPIIntegration {
   constructor(apiKey) {
-    if (!apiKey) {
-      throw new Error('NewsAPI.org key required. Get from: https://newsapi.org/register');
-    }
+    // WORKAROUND: Allow mock mode if no API key
+    this.mockMode = !apiKey || apiKey === 'PENDING';
 
-    this.apiKey = apiKey;
+    if (this.mockMode) {
+      console.warn('⚠️  NewsAPI key not found - running in MOCK MODE');
+      console.warn('   Get key from: https://newsapi.org/register');
+      this.apiKey = null;
+    } else {
+      this.apiKey = apiKey;
+    }
     this.baseUrl = 'https://newsapi.org/v2';
 
     this.bigquery = new BigQuery({
@@ -41,6 +46,12 @@ class NewsAPIIntegration {
       sortBy = 'publishedAt',
       pageSize = 100
     } = options;
+
+    // MOCK MODE: Return sample data if no API key
+    if (this.mockMode) {
+      console.log('🧪 MOCK MODE: Returning sample cannabis news');
+      return this.generateMockNews(query, pageSize);
+    }
 
     try {
       const response = await axios.get(`${this.baseUrl}/everything`, {
@@ -71,6 +82,41 @@ class NewsAPIIntegration {
       console.error('❌ NewsAPI error:', error.message);
       throw error;
     }
+  }
+
+  /**
+   * Generate mock news data for testing without API key
+   */
+  generateMockNews(query, count) {
+    const mockArticles = [];
+    const topics = [
+      'Cannabis Legalization Bill Passes Senate Vote',
+      'New CBD Research Shows Promising Medical Benefits',
+      'Marijuana Dispensary Chain Raises $50M in Funding',
+      'Federal Cannabis Banking Reform Advances',
+      'THC Product Recall Due to Safety Concerns',
+      'Cannabis Industry Growth Exceeds Projections',
+      'Medical Marijuana Program Expands to New States',
+      'Hemp Farming Regulations Updated by USDA',
+      'Cannabis Stocks Rally on Positive Earnings',
+      'Veterans Advocate for Medical Cannabis Access'
+    ];
+
+    for (let i = 0; i < Math.min(count, 20); i++) {
+      const randomTopic = topics[i % topics.length];
+      mockArticles.push({
+        title: `${randomTopic} ${i + 1} (MOCK DATA)`,
+        description: 'This is mock data to allow system to run without NewsAPI key. Get real key for production.',
+        content: 'Mock article content. ' + randomTopic.repeat(10),
+        url: `https://example.com/article-${i}`,
+        urlToImage: 'https://via.placeholder.com/1200x630?text=Cannabis+News',
+        publishedAt: new Date(Date.now() - i * 3600000).toISOString(),
+        source: 'Mock News Source',
+        author: 'Mock Author',
+        fetchedAt: new Date().toISOString()
+      });
+    }
+    return mockArticles;
   }
 
   /**
