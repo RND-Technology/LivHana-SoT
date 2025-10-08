@@ -35,10 +35,19 @@ CLOUD_RUN_IPS=(
     "216.239.38.21"
 )
 
-# Domains to update (all domains currently pointing to 34.143.72.2)
+# Critical guardrails — NEVER touch these domains without Jesse's explicit authorization
+DO_NOT_TOUCH=(
+    "airbnbwaterfall.com"
+    "reggieanddro.com"
+    "reggieanddroalice.com"
+    "reggieanddrodispensary.com"
+    "hempress3.com"
+    "tier1treecare.com"
+)
+
+# Domains to update (all domains currently pointing to 34.143.72.2) — filtered at runtime against DO_NOT_TOUCH
 DOMAINS=(
     "aaacbdhempflower.com"
-    "airbnbwaterfall.com"
     "cannabiscookiestexas.com"
     "exoticcanopysolutions.com"
     "exoticcbdhempflower.com"
@@ -50,7 +59,6 @@ DOMAINS=(
     "loudcbdbuds.com"
     "loudcbdflower.com"
     "oneplantsolution.com"
-    "reggieanddro.com"
     "smokingyoga.com"
     "terpwerk.com"
     "texascannabiscookies.com"
@@ -58,7 +66,6 @@ DOMAINS=(
     "thcaflowerstx.com"
     "thcaflowertx.com"
     "thcasanantonio.com"
-    "tier1treecare.com"
     "tokinyoga.com"
 )
 
@@ -71,9 +78,24 @@ SUBDOMAINS=(
 # GoDaddy API endpoint
 GODADDY_API="https://api.godaddy.com/v1"
 
+is_do_not_touch() {
+    local domain="$1"
+    for blocked in "${DO_NOT_TOUCH[@]}"; do
+        if [[ "$domain" == "$blocked" ]]; then
+            return 0
+        fi
+    done
+    return 1
+}
+
 # Function to update A records for a domain
 update_domain_a_records() {
     local domain="$1"
+
+    if is_do_not_touch "$domain"; then
+        echo "⛔ SKIPPING $domain (DO NOT TOUCH LIST)"
+        return
+    fi
 
     echo "📝 Updating $domain..."
 
@@ -142,6 +164,10 @@ echo ""
 
 # Verify subdomains (already use CNAME)
 for subdomain in "${SUBDOMAINS[@]}"; do
+    if is_do_not_touch "${subdomain#*.}"; then
+        echo "⛔ SKIPPING $subdomain (root domain on DO NOT TOUCH LIST)"
+        continue
+    fi
     verify_subdomain_cname "$subdomain"
     sleep 1  # Rate limiting
 done

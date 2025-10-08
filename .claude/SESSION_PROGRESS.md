@@ -10,15 +10,15 @@
 
 ### 1. Git Sync & CORE4 Contract Coordination
 - [x] Pulled latest commits from team (already up to date)
-- [x] Reviewed CORE4_COMMITMENT.md status: **2/4 agents signed** (Claude Code, Replit)
+- [x] Reviewed CORE4_COMMITMENT.md status: **3/4 agents signed** (Claude Code, Commander, Replit)
 - [x] Merged Replit signature (GitHub API sync active)
 - [x] All commits pushed to remote successfully
 
 **CORE4 Status**:
 - ✅ Claude Code: Signed 2025-10-08T00:45:00Z
+- ✅ Commander: Signed 2025-10-08T06:04:33Z
 - ✅ Replit: Signed 2025-10-08T01:10:00Z
 - ⏳ Cheetah: Pending review
-- ⏳ Commander: Pending review (after Cheetah)
 
 ### 2. Voice Cockpit Deployment (Local)
 - [x] Fixed server.js PathError (Express routing issue)
@@ -84,8 +84,8 @@ $ curl http://localhost:5173/health
    - Preparation: ✅ COMPLETE - Environment wiring and test harness ready
 
 4. **CORE4 Contract Finalization**
-   - Status: 2/4 agents signed
-   - Waiting on: Cheetah review + signature, then Commander
+   - Status: 3/4 agents signed
+   - Waiting on: Cheetah review + signature
    - Impact: Blocks full team coordination
 
 ### Non-Critical Blockers
@@ -114,7 +114,6 @@ $ curl http://localhost:5173/health
 
 ### Waiting on Team
 - [ ] **Cheetah**: Pull latest, review CORE4, add signature
-- [ ] **Commander**: Append [COM] signature after Cheetah signs
 - [ ] **Jesse**: Generate Lightspeed personal token (highest priority)
 - [ ] **Jesse**: Provide YouTube + NewsAPI keys for Cheetah
 

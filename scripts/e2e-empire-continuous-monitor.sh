@@ -8,7 +8,7 @@ set -euo pipefail
 # Configuration
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPORT_DIR="$SCRIPT_DIR/../reports/e2e-empire-monitor"
-INTERVAL_SECONDS=1200  # 20 minutes
+INTERVAL_SECONDS=1800  # 30 minutes
 TARGET_SERVICE="integration-service-plad5efvha-uc.a.run.app"
 TARGET_IP="34.143.72.2"
 
@@ -23,30 +23,124 @@ NC='\033[0m'
 # Create report directory
 mkdir -p "$REPORT_DIR"
 
-# All E2E Empire domains
+# All E2E Empire domains - FULL 69 DOMAIN PORTFOLIO
+# Critical domains marked with priority flags
+
+# CRITICAL P0 DOMAINS (5) - Alert immediately on failure
+CRITICAL_DOMAINS=(
+    "herbitrage.com"           # ONLY authorized production domain
+    "highnooncartoon.com"       # Currently down - 404/SSL issues
+    "livhana.ai"                # Verified (.ai NOT .com!)
+    "reggieanddro.com"          # DO NOT TOUCH per DNS guardrails
+    "airbnbwaterfall.com"       # Recent incident, now protected
+)
+
+# ALL VERIFIED DOMAINS (69 total)
 DOMAINS=(
-    "aaacbdhempflower.com"
-    "cannabiscookiestexas.com"
-    "exoticcanopysolutions.com"
-    "exoticcbdhempflower.com"
-    "freeweedsanantonio.com"
-    "freeweedtexas.com"
-    "getlooseyoga.com"
+    # Critical P0 (already listed above but included for complete scan)
     "herbitrage.com"
-    "highfromhemp.com"
+    "highnooncartoon.com"
+    "livhana.ai"
+    "reggieanddro.com"
+    "airbnbwaterfall.com"
+
+    # Primary Business Layers (3 more)
     "jesseniesen.com"
-    "loudcbdbuds.com"
-    "loudcbdflower.com"
     "oneplantsolution.com"
-    "smokingyoga.com"
+
+    # Key Strategic Domains
+    "highfromhemp.com"
     "terpwerk.com"
-    "texascannabiscookies.com"
+    "texascoa.com"
+    "exoticcanopysolutions.com"
+
+    # B2C Retail: Reggie & Dro (12 domains)
+    "reggieanddroalice.com"
+    "reggieanddrocannabisstore.com"
+    "reggieanddrodispensary.com"
+    "reggieanddrosanantonio.com"
+    "reggieanddrosanantoniotx.com"
+    "reggieanddrosocialclub.com"
+    "reggieanddrostoneoak.com"
+    "reggieanddrotexas.com"
+    "thcasanantonio.com"
+    "freelegalweedsanantonio.com"
+    "freeweedsanantonio.com"
+
+    # B2C Retail: THCa & Promo (5 domains)
+    "freethcaflower.com"
+    "freeweedtexas.com"
     "thcacannabisdispensary.com"
     "thcaflowerstx.com"
     "thcaflowertx.com"
-    "thcasanantonio.com"
-    "tier1treecare.com"
+
+    # B2C Retail: Edibles (2 domains)
+    "cannabiscookiestexas.com"
+    "texascannabiscookies.com"
+
+    # B2B: Hemp Retail Ops (5 domains)
+    "hempretailai.com"
+    "cannabisretailai.com"
+    "cannabisretailsi.com"
+    "hempretailsi.com"
+    "retailopssi.com"
+
+    # B2B: Enablement (4 domains)
+    "bizflowsi.com"
+    "codenexusai.com"
+    "codenexussi.com"
+    "devflowsi.com"
+
+    # Compliance (1 domain)
+    "ageverifysi.com"
+
+    # Advisory (2 domains)
+    "aicrisisconsult.com"
+    "aicrisiscoach.com"
+
+    # Vertical: Energy (2 domains)
+    "californiaenergyai.com"
+    "texasenergyai.com"
+
+    # Vertical: Healthcare (4 domains)
+    "camedicalai.com"
+    "clinicaldataai.com"
+    "clinicaldatasi.com"
+    "txmedicalai.com"
+
+    # Vertical: Supply Chain (1 domain)
+    "txsupplychain.com"
+
+    # Vertical: Finance (1 domain)
+    "wealthtechsi.com"
+
+    # Tools/Tech/Brand (14 domains)
+    "aaacbdhempflower.com"
+    "adcopysi.com"
+    "autocodesi.com"
+    "contentenginesi.com"
+    "exoticcbdhempflower.com"
+    "loudcbdflower.com"
+    "shipcodeai.com"
+    "shipcodesi.com"
+    "siartisan.com"
+    "sinsamillahemp.com"
+    "strategysi.com"
+    "vibecodeliv.com"
+
+    # Hempress 3 Support (3 domains)
+    "firecbdbuds.com"
+    "loudcbdbuds.com"
+    "hempress3.com"
+
+    # Yoga & Wellness (3 domains)
+    "getlooseyoga.com"
+    "smokingyoga.com"
     "tokinyoga.com"
+
+    # Support Domains (2 domains)
+    "tier1treecare.com"
+    "xn--reggieanddr-v9b.com"
 )
 
 TOTAL_DOMAINS=${#DOMAINS[@]}
@@ -57,6 +151,52 @@ log() {
 
 timestamp() {
     date +"%Y-%m-%d %H:%M:%S"
+}
+
+# Check if domain is critical
+is_critical_domain() {
+    local domain="$1"
+    for critical in "${CRITICAL_DOMAINS[@]}"; do
+        if [ "$domain" = "$critical" ]; then
+            return 0
+        fi
+    done
+    return 1
+}
+
+# Send alert for critical domain failure
+send_alert() {
+    local domain="$1"
+    local issue="$2"
+    local timestamp=$(date +"%Y-%m-%d %H:%M:%S")
+
+    log "${RED}🚨 CRITICAL ALERT: $domain - $issue${NC}"
+
+    # Write alert to dedicated file
+    echo "[$timestamp] CRITICAL: $domain - $issue" >> "$REPORT_DIR/critical-alerts.log"
+
+    # Create alert file for easy detection
+    local alert_file="$REPORT_DIR/alert-$(date +%Y%m%d_%H%M%S)-${domain}.txt"
+    cat > "$alert_file" << EOF
+CRITICAL DOMAIN ALERT
+=====================
+Domain: $domain
+Issue: $issue
+Timestamp: $timestamp
+Severity: CRITICAL
+
+This is a P0 critical domain that requires immediate attention.
+
+Recommended Actions:
+1. Investigate DNS resolution: dig $domain +short
+2. Check HTTP/HTTPS access: curl -vI https://$domain
+3. Review Cloud Run service status
+4. Check domain mapping configuration
+5. Escalate to Jesse if needed
+
+EOF
+
+    log "${YELLOW}📝 Alert saved: $alert_file${NC}"
 }
 
 # Check DNS resolution
@@ -161,11 +301,20 @@ run_full_scan() {
             overall="PASS"
         fi
 
-        # Status indicator
+        # Status indicator with critical domain alerting
         if [ "$overall" = "PASS" ]; then
-            log "${GREEN}✅ $domain${NC} - DNS: $dns_result | HTTP: $http_result | Func: $func_status"
+            if is_critical_domain "$domain"; then
+                log "${GREEN}✅ [P0] $domain${NC} - DNS: $dns_result | HTTP: $http_result | Func: $func_status"
+            else
+                log "${GREEN}✅ $domain${NC} - DNS: $dns_result | HTTP: $http_result | Func: $func_status"
+            fi
         else
-            log "${RED}❌ $domain${NC} - DNS: $dns_result | HTTP: $http_result | Func: $func_status"
+            if is_critical_domain "$domain"; then
+                log "${RED}🚨 [P0 CRITICAL] $domain${NC} - DNS: $dns_result | HTTP: $http_result | Func: $func_status"
+                send_alert "$domain" "DNS: $dns_status, HTTP: $http_status, Functionality: $func_status"
+            else
+                log "${RED}❌ $domain${NC} - DNS: $dns_result | HTTP: $http_result | Func: $func_status"
+            fi
         fi
 
         # Build JSON result
@@ -356,9 +505,10 @@ EOF
 # Main monitoring loop
 main() {
     log "${BLUE}🚀 E2E EMPIRE CONTINUOUS MONITOR STARTED${NC}"
-    log "${BLUE}📊 Monitoring ${TOTAL_DOMAINS} domains${NC}"
-    log "${BLUE}⏱️  Scan interval: 20 minutes${NC}"
+    log "${BLUE}📊 Monitoring ${TOTAL_DOMAINS} domains (5 CRITICAL P0)${NC}"
+    log "${BLUE}⏱️  Scan interval: 30 minutes${NC}"
     log "${BLUE}📁 Reports: $REPORT_DIR${NC}"
+    log "${BLUE}🚨 Critical domains: herbitrage.com, highnooncartoon.com, livhana.ai, reggieanddro.com, airbnbwaterfall.com${NC}"
     log ""
 
     local scan_count=0
@@ -370,7 +520,7 @@ main() {
         run_full_scan
 
         log ""
-        log "${BLUE}⏳ Next scan in 20 minutes...${NC}"
+        log "${BLUE}⏳ Next scan in 30 minutes...${NC}"
         log "${BLUE}   Press Ctrl+C to stop monitoring${NC}"
         log ""
 
