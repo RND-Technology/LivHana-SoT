@@ -409,7 +409,112 @@
 
 ---
 
-**Last Updated**: 2025-10-07T17:40:00Z  
-**Next Update**: After git sync coordination completion  
+## 📝 SIGNATURE BLOCK
+
+### Agent Acceptance Protocol
+Each agent must review the contract, append their acceptance line with commit evidence, and update SESSION_PROGRESS.md when all four signatures are in place.
+
+### Signature Format
+```
+[AGENT_NAME] - ACCEPTED - [COMMIT_HASH] - [TIMESTAMP]
+```
+
+### Current Signatures
+- [ ] **Claude Code (Sonnet 4.5)**: PENDING REVIEW
+- [ ] **Cheetah (Cursor)**: PENDING REVIEW  
+- [ ] **Commander (GPT-5)**: PENDING REVIEW
+- [ ] **Replit (Sonnet 4.5)**: PENDING REVIEW
+
+### Acceptance Criteria
+1. **Review Complete**: Agent has reviewed all contract terms
+2. **Modifications Proposed**: Any changes committed via git
+3. **Consensus Reached**: 100% agreement with all parties
+4. **Signature Added**: Acceptance line appended with commit evidence
+5. **SESSION_PROGRESS.md Updated**: Status recorded in session log
+
+---
+
+## 🔄 GIT SYNC COORDINATION PROTOCOL
+
+### Phase 1: Individual Agent Review (30 minutes)
+1. **Cheetah**: Review contract, propose UI/UX modifications
+2. **Commander**: Review contract, propose quality enforcement modifications  
+3. **Replit**: Review contract, propose staging environment modifications
+4. **Git Commits**: All agents commit their proposed changes
+
+### Phase 2: Consensus Building (60 minutes)
+1. **Review All Changes**: All agents review proposed modifications
+2. **Conflict Resolution**: Resolve any conflicting proposals
+3. **Compromise Building**: Find optimal solutions for all parties
+4. **Git Commits**: Continue iterative refinement
+
+### Phase 3: Final Agreement (30 minutes)
+1. **100% Consensus**: Confirm all agents agree to final contract
+2. **Signature Collection**: All agents append acceptance lines
+3. **SESSION_PROGRESS.md Update**: Record completion status
+4. **Jesse Review**: Submit completed contract for approval
+
+### Git Commit Format
+```
+[AGENT] Description of changes
+```
+
+### Examples
+- `[CLAUDE] Initial contract framework created`
+- `[CHEETAH] Added UI/UX performance guarantees`
+- `[CODEX] Enhanced error handling protocols`
+- `[REPLIT] Added staging environment guarantees`
+
+---
+
+## 📋 NEXT STEPS FOR EACH AGENT
+
+### For Cheetah (Cursor)
+**Review Focus**: UI/UX guarantees, frontend performance, autonomous execution
+**Action Required**:
+1. Review CORE4_COMMITMENT.md contract terms
+2. Propose any modifications via git commit
+3. Append acceptance signature with commit evidence
+4. Update SESSION_PROGRESS.md with review status
+
+### For Commander (GPT-5)
+**Review Focus**: Quality enforcement, error handling, production monitoring
+**Action Required**:
+1. Review CORE4_COMMITMENT.md contract terms
+2. Propose any modifications via git commit
+3. Append acceptance signature with commit evidence
+4. Update SESSION_PROGRESS.md with review status
+
+### For Replit (Sonnet 4.5)
+**Review Focus**: Staging environment, prototyping, feature validation
+**Action Required**:
+1. Review CORE4_COMMITMENT.md contract terms
+2. Propose any modifications via git commit
+3. Append acceptance signature with commit evidence
+4. Update SESSION_PROGRESS.md with review status
+
+---
+
+## 🎯 COMPLETION CRITERIA
+
+### Contract Finalization Requirements
+- [ ] All 4 agents have reviewed contract terms
+- [ ] All proposed modifications committed via git
+- [ ] 100% consensus reached on final contract
+- [ ] All 4 signatures collected with commit evidence
+- [ ] SESSION_PROGRESS.md updated with completion status
+- [ ] Jesse CEO approval obtained for final contract
+
+### Implementation Readiness
+- [ ] Contract terms agreed upon by all parties
+- [ ] Performance guarantees clearly defined
+- [ ] Error handling protocols established
+- [ ] Mission alignment confirmed
+- [ ] Execution timeline committed
+
+---
+
+**Last Updated**: 2025-10-07T17:45:00Z  
+**Next Update**: After agent reviews and git commits  
 **Owner**: Claude Code (Sonnet 4.5) - Trinity Liaison  
 **Status**: AWAITING AGENT REVIEW AND GIT SYNC COORDINATION
