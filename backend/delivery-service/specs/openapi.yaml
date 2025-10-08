@@ -1,0 +1,356 @@
+openapi: 3.1.0
+info:
+  title: LivHana Multi-Carrier Delivery API
+  version: 2.0.0
+  description: |
+    Unfuckwithable Code Protocol - Multi-carrier delivery orchestration
+    Supports: Skipcart, Roadie, Favor, Dispatch, Senpex
+
+    Features:
+    - Automatic failover between carriers
+    - Price comparison across all carriers
+    - Normalized status tracking
+    - Webhook delivery events
+  contact:
+    name: Jesse Niesen
+    email: jesse@livhana.com
+
+servers:
+  - url: https://delivery-service-reggieanddrodispensary.run.app
+    description: Production (Cloud Run)
+  - url: http://localhost:3000
+    description: Local development
+
+tags:
+  - name: quotes
+    description: Get delivery quotes from carriers
+  - name: orders
+    description: Create and manage delivery orders
+  - name: webhooks
+    description: Webhook callbacks from carriers
+
+paths:
+  /quotes:
+    post:
+      summary: Get quotes from all carriers
+      description: Returns quotes from all available carriers, sorted by price (cheapest first)
+      operationId: getAllQuotes
+      tags: [quotes]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuoteRequest'
+      responses:
+        '200':
+          description: Quotes successfully retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/QuoteResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalError'
+
+  /orders:
+    post:
+      summary: Create delivery order with failover
+      description: Creates order with specified carrier, automatically fails over to next carrier if unavailable
+      operationId: createOrder
+      tags: [orders]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+      responses:
+        '201':
+          description: Order created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '503':
+          description: All carriers unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          $ref: '#/components/responses/InternalError'
+
+  /webhooks/status:
+    post:
+      summary: Receive status updates from carriers
+      description: Webhook endpoint for carrier status updates (delivery events)
+      operationId: receiveStatusUpdate
+      tags: [webhooks]
+      parameters:
+        - name: X-Carrier-Signature
+          in: header
+          required: true
+          schema:
+            type: string
+          description: HMAC signature from carrier
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/SkipcartWebhook'
+                - $ref: '#/components/schemas/RoadieWebhook'
+                - $ref: '#/components/schemas/FavorWebhook'
+                - $ref: '#/components/schemas/DispatchWebhook'
+                - $ref: '#/components/schemas/SenpexWebhook'
+      responses:
+        '200':
+          description: Webhook processed successfully
+        '401':
+          description: Invalid signature
+        '500':
+          $ref: '#/components/responses/InternalError'
+
+components:
+  schemas:
+    Carrier:
+      type: string
+      enum: [skipcart, roadie, favor, dispatch, senpex]
+      description: Supported delivery carriers
+
+    Status:
+      type: string
+      enum: [created, assigned, picked_up, delivered, failed, cancelled]
+      description: Normalized delivery status
+
+    QuoteRequest:
+      type: object
+      required: [fromZip, toZip, weightGrams, etaMins]
+      properties:
+        fromZip:
+          type: string
+          pattern: '^\d{5}$'
+          example: '78209'
+          description: Pickup zip code (5 digits)
+        toZip:
+          type: string
+          pattern: '^\d{5}$'
+          example: '78258'
+          description: Delivery zip code (5 digits)
+        weightGrams:
+          type: integer
+          minimum: 1
+          maximum: 50000
+          example: 500
+          description: Package weight in grams (max 50kg)
+        etaMins:
+          type: integer
+          minimum: 5
+          maximum: 1440
+          example: 60
+          description: Requested ETA in minutes (5 mins to 24 hours)
+
+    QuoteResponse:
+      type: object
+      required: [carrier, priceCents, etaMins, quoteId]
+      properties:
+        carrier:
+          $ref: '#/components/schemas/Carrier'
+        priceCents:
+          type: integer
+          minimum: 1
+          example: 899
+          description: Price in cents
+        etaMins:
+          type: integer
+          minimum: 5
+          maximum: 1440
+          example: 45
+          description: Estimated delivery time in minutes
+        quoteId:
+          type: string
+          format: uuid
+          example: '550e8400-e29b-41d4-a716-446655440000'
+          description: Quote identifier for order creation
+
+    OrderRequest:
+      type: object
+      required: [carrier, quoteId, pkg, webhooks]
+      properties:
+        carrier:
+          $ref: '#/components/schemas/Carrier'
+        quoteId:
+          type: string
+          format: uuid
+          example: '550e8400-e29b-41d4-a716-446655440000'
+          description: Quote ID from /quotes endpoint
+        pkg:
+          type: object
+          required: [desc, valueCents]
+          properties:
+            desc:
+              type: string
+              maxLength: 200
+              example: 'CBD gummies 30ct'
+              description: Package description
+            valueCents:
+              type: integer
+              minimum: 0
+              example: 2999
+              description: Declared package value in cents
+        webhooks:
+          type: object
+          required: [status]
+          properties:
+            status:
+              type: string
+              format: uri
+              example: 'https://yourdomain.com/webhooks/delivery-status'
+              description: Webhook URL for status updates
+
+    OrderResponse:
+      type: object
+      required: [orderId, externalId, status]
+      properties:
+        orderId:
+          type: string
+          format: uuid
+          example: '7c9e6679-7425-40de-944b-e07fc1f90ae7'
+          description: Internal order ID
+        externalId:
+          type: string
+          example: 'SKC-123456789'
+          description: Carrier tracking number
+        status:
+          $ref: '#/components/schemas/Status'
+
+    StatusEvent:
+      type: object
+      required: [carrier, externalId, status, at]
+      properties:
+        carrier:
+          $ref: '#/components/schemas/Carrier'
+        externalId:
+          type: string
+          example: 'SKC-123456789'
+          description: Carrier tracking number
+        status:
+          $ref: '#/components/schemas/Status'
+        at:
+          type: integer
+          example: 1696694400000
+          description: Unix timestamp (ms) of status update
+        proof:
+          type: object
+          properties:
+            photoUrl:
+              type: string
+              format: uri
+              example: 'https://cdn.carrier.com/proof/photo.jpg'
+            sig:
+              type: string
+              format: byte
+              example: 'iVBORw0KGgoAAAANSUhEUgAAAAUA...'
+              description: Base64-encoded signature image
+
+    # Carrier-specific webhook schemas (simplified)
+    SkipcartWebhook:
+      type: object
+      required: [order_id, status, timestamp]
+      properties:
+        order_id:
+          type: string
+        status:
+          type: string
+        timestamp:
+          type: integer
+
+    RoadieWebhook:
+      type: object
+      required: [shipment_id, state, timestamp]
+      properties:
+        shipment_id:
+          type: string
+        state:
+          type: string
+        timestamp:
+          type: string
+
+    FavorWebhook:
+      type: object
+      required: [favor_id, status, updated_at]
+      properties:
+        favor_id:
+          type: string
+        status:
+          type: string
+        updated_at:
+          type: string
+
+    DispatchWebhook:
+      type: object
+      required: [delivery_id, status, timestamp]
+      properties:
+        delivery_id:
+          type: string
+        status:
+          type: string
+        timestamp:
+          type: integer
+
+    SenpexWebhook:
+      type: object
+      required: [tracking_number, status, event_time]
+      properties:
+        tracking_number:
+          type: string
+        status:
+          type: string
+        event_time:
+          type: string
+
+    Error:
+      type: object
+      required: [error, message]
+      properties:
+        error:
+          type: string
+          example: 'VALIDATION_ERROR'
+        message:
+          type: string
+          example: 'Invalid zip code format'
+        details:
+          type: object
+          additionalProperties: true
+
+  responses:
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for authentication
+
+security:
+  - ApiKey: []
