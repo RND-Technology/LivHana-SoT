@@ -1,0 +1,446 @@
+openapi: 3.1.0
+info:
+  title: Customer Profile API
+  description: Customer intelligence and behavior analysis service
+  version: 1.0.0
+  contact:
+    name: Cheetah Autonomous Agent
+    email: cheetah@reggieanddro.com
+
+servers:
+  - url: https://customer-profile-{hash}-uc.a.run.app
+    description: Cloud Run production server
+
+paths:
+  /profile/{customer_id}:
+    get:
+      summary: Get customer profile
+      description: |
+        Retrieves comprehensive customer profile including purchase history,
+        preferences, lifetime value, and behavioral insights.
+        Implements caching for performance and privacy controls.
+      operationId: getCustomerProfile
+      parameters:
+        - name: customer_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Customer identifier
+          example: "cust_12345"
+        - name: include_history
+          in: query
+          schema:
+            type: boolean
+            default: true
+          description: Include purchase history
+        - name: include_preferences
+          in: query
+          schema:
+            type: boolean
+            default: true
+          description: Include preference analysis
+        - name: privacy_level
+          in: query
+          schema:
+            type: string
+            enum: [basic, standard, detailed]
+            default: standard
+          description: Privacy compliance level
+      responses:
+        '200':
+          description: Customer profile retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  customer_id:
+                    type: string
+                    example: "cust_12345"
+                  profile:
+                    $ref: '#/components/schemas/CustomerProfile'
+                  privacy_compliant:
+                    type: boolean
+                    description: Whether data meets privacy requirements
+                    example: true
+                  last_updated:
+                    type: string
+                    format: date-time
+                    example: "2025-10-08T12:15:30Z"
+                  cache_hit:
+                    type: boolean
+                    description: Whether data was served from cache
+                    example: false
+              example:
+                success: true
+                customer_id: "cust_12345"
+                profile:
+                  basic_info:
+                    first_name: "John"
+                    last_name: "Doe"
+                    email: "john@example.com"
+                    phone: "+1234567890"
+                    created_at: "2025-01-15T10:30:00Z"
+                    last_seen: "2025-10-08T12:15:30Z"
+                  preferences:
+                    favorite_categories: ["flower", "edibles"]
+                    preferred_payment: "credit_card"
+                    delivery_preference: "home"
+                    communication_preference: "email"
+                  analytics:
+                    lifetime_value: 1250.75
+                    total_orders: 47
+                    average_order_value: 26.61
+                    last_order_date: "2025-10-07T14:30:00Z"
+                    purchase_frequency_days: 14
+                    churn_risk_score: 0.15
+                  behavioral_insights:
+                    peak_shopping_hours: ["14:00", "19:00"]
+                    seasonal_patterns: ["summer_peak", "holiday_spikes"]
+                    price_sensitivity: "medium"
+                    brand_loyalty_score: 0.85
+                privacy_compliant: true
+                last_updated: "2025-10-08T12:15:30Z"
+                cache_hit: false
+        '404':
+          description: Customer not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Privacy compliance violation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /profile/{customer_id}/update:
+    post:
+      summary: Update customer profile
+      description: |
+        Updates customer profile with new data from Lightspeed.
+        Implements incremental updates and privacy validation.
+      operationId: updateCustomerProfile
+      parameters:
+        - name: customer_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Customer identifier
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                purchase_data:
+                  type: object
+                  description: New purchase information
+                preference_data:
+                  type: object
+                  description: Updated preferences
+                contact_data:
+                  type: object
+                  description: Contact information updates
+              example:
+                purchase_data:
+                  order_id: "order_67890"
+                  total: 75.50
+                  items: ["product_123", "product_456"]
+                  timestamp: "2025-10-08T12:15:30Z"
+      responses:
+        '200':
+          description: Profile updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  customer_id:
+                    type: string
+                    example: "cust_12345"
+                  updated_fields:
+                    type: array
+                    items:
+                      type: string
+                    example: ["analytics.lifetime_value", "analytics.total_orders"]
+                  privacy_validated:
+                    type: boolean
+                    example: true
+                  cache_invalidated:
+                    type: boolean
+                    example: true
+        '400':
+          description: Invalid update data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /analytics/segments:
+    get:
+      summary: Get customer segments
+      description: |
+        Returns customer segmentation analysis for marketing insights.
+        Implements privacy-compliant aggregation.
+      operationId: getCustomerSegments
+      parameters:
+        - name: segment_type
+          in: query
+          schema:
+            type: string
+            enum: [value, behavior, lifecycle, preference]
+            default: value
+          description: Type of segmentation
+        - name: min_customers
+          in: query
+          schema:
+            type: integer
+            minimum: 5
+            default: 10
+          description: Minimum customers per segment
+      responses:
+        '200':
+          description: Customer segments retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  segments:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CustomerSegment'
+                  total_customers:
+                    type: integer
+                    example: 1250
+                  privacy_compliant:
+                    type: boolean
+                    example: true
+              example:
+                success: true
+                segments:
+                  - name: "High Value Customers"
+                    description: "Customers with LTV > $500"
+                    customer_count: 156
+                    average_lifetime_value: 875.50
+                    characteristics: ["frequent_purchases", "premium_products"]
+                  - name: "At-Risk Customers"
+                    description: "Customers with declining engagement"
+                    customer_count: 89
+                    average_lifetime_value: 245.30
+                    characteristics: ["decreasing_frequency", "low_engagement"]
+                total_customers: 1250
+                privacy_compliant: true
+
+  /health:
+    get:
+      summary: Health check endpoint
+      description: Returns service health status
+      operationId: healthCheck
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum: [healthy, degraded, unhealthy]
+                    example: healthy
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: "2025-10-08T12:15:30Z"
+                  version:
+                    type: string
+                    example: "1.0.0"
+                  database_connected:
+                    type: boolean
+                    example: true
+                  cache_connected:
+                    type: boolean
+                    example: true
+                  privacy_engine_active:
+                    type: boolean
+                    example: true
+
+components:
+  schemas:
+    CustomerProfile:
+      type: object
+      properties:
+        basic_info:
+          type: object
+          properties:
+            first_name:
+              type: string
+              example: "John"
+            last_name:
+              type: string
+              example: "Doe"
+            email:
+              type: string
+              format: email
+              example: "john@example.com"
+            phone:
+              type: string
+              example: "+1234567890"
+            created_at:
+              type: string
+              format: date-time
+              example: "2025-01-15T10:30:00Z"
+            last_seen:
+              type: string
+              format: date-time
+              example: "2025-10-08T12:15:30Z"
+        preferences:
+          type: object
+          properties:
+            favorite_categories:
+              type: array
+              items:
+                type: string
+              example: ["flower", "edibles"]
+            preferred_payment:
+              type: string
+              example: "credit_card"
+            delivery_preference:
+              type: string
+              example: "home"
+            communication_preference:
+              type: string
+              example: "email"
+        analytics:
+          type: object
+          properties:
+            lifetime_value:
+              type: number
+              minimum: 0
+              example: 1250.75
+            total_orders:
+              type: integer
+              minimum: 0
+              example: 47
+            average_order_value:
+              type: number
+              minimum: 0
+              example: 26.61
+            last_order_date:
+              type: string
+              format: date-time
+              example: "2025-10-07T14:30:00Z"
+            purchase_frequency_days:
+              type: number
+              minimum: 0
+              example: 14
+            churn_risk_score:
+              type: number
+              minimum: 0
+              maximum: 1
+              example: 0.15
+        behavioral_insights:
+          type: object
+          properties:
+            peak_shopping_hours:
+              type: array
+              items:
+                type: string
+              example: ["14:00", "19:00"]
+            seasonal_patterns:
+              type: array
+              items:
+                type: string
+              example: ["summer_peak", "holiday_spikes"]
+            price_sensitivity:
+              type: string
+              enum: [low, medium, high]
+              example: "medium"
+            brand_loyalty_score:
+              type: number
+              minimum: 0
+              maximum: 1
+              example: 0.85
+
+    CustomerSegment:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "High Value Customers"
+        description:
+          type: string
+          example: "Customers with LTV > $500"
+        customer_count:
+          type: integer
+          minimum: 0
+          example: 156
+        average_lifetime_value:
+          type: number
+          minimum: 0
+          example: 875.50
+        characteristics:
+          type: array
+          items:
+            type: string
+          example: ["frequent_purchases", "premium_products"]
+
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        error:
+          type: string
+          description: Human-readable error message
+          example: "Customer not found"
+        code:
+          type: string
+          description: Machine-readable error code
+          example: "CUSTOMER_NOT_FOUND"
+        timestamp:
+          type: string
+          format: date-time
+          example: "2025-10-08T12:15:30Z"
+
+# Invariants (business rules enforced by the API):
+# 1. All customer data must comply with privacy regulations
+# 2. Customer profiles must be cached for performance
+# 3. Analytics must be aggregated to protect individual privacy
+# 4. Updates must be incremental and validated
+# 5. Segments must have minimum customer counts for privacy
+# 6. All timestamps must be in ISO format
+# 7. Customer IDs must be validated before processing
+
+# Threat Model (security considerations):
+# 1. Privacy compliance (GDPR, CCPA, state regulations)
+# 2. Data anonymization for analytics
+# 3. Access control and authentication
+# 4. Rate limiting for API endpoints
+# 5. Input validation and sanitization
+# 6. Cache security and invalidation
+# 7. Audit logging for compliance
+
+# Performance Requirements:
+# 1. Profile retrieval: <200ms for cached data
+# 2. Profile updates: <500ms for incremental updates
+# 3. Segment analysis: <2s for 1000+ customers
+# 4. Cache hit ratio: >90% for profile requests
+# 5. Privacy validation: <100ms per request
+# 6. Database queries: <100ms average
+# 7. Memory usage: <512MB per instance
