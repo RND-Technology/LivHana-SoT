@@ -2,7 +2,7 @@
 
 set -e
 
-PROJECT_ID="livhana-trinity"
+PROJECT_ID="reggieanddrodispensary"
 SERVICE_NAME="herbitrage-voice"
 REGION="us-central1"
 IMAGE_NAME="gcr.io/${PROJECT_ID}/${SERVICE_NAME}"
