@@ -4,6 +4,19 @@
 
 set -euo pipefail
 
+# 🚨 DO NOT TOUCH DOMAINS - NEVER MODIFY THESE
+DO_NOT_TOUCH=(
+    "airbnbwaterfall.com"
+    "reggieanddro.com"
+    "brain.reggieanddro.com"
+    "shop.reggieanddro.com"
+    "voice.reggieanddro.com"
+    "tier1treecare.com"
+    "reggieanddroalice.com"
+    "reggieanddrodispensary.com"
+    "hempress3.com"
+)
+
 # Configuration
 TARGET_SERVICE="integration-service-plad5efvha-uc.a.run.app"
 
@@ -22,6 +35,12 @@ printf '   - %s\n' "${IPS[@]}"
 # Update domain with ALL IPs (proper load balancing)
 update_domain_proper() {
     local domain="$1"
+
+    # 🚨 SAFETY CHECK: Verify domain is not protected
+    if [[ " ${DO_NOT_TOUCH[@]} " =~ " ${domain} " ]]; then
+        echo "⛔ SKIPPING $domain (DO NOT TOUCH - PROTECTED)"
+        return 1
+    fi
 
     echo "🔄 Updating $domain with ${#IPS[@]} A records..."
 
@@ -59,6 +78,12 @@ update_domain_proper() {
 # ALTERNATIVE: Use www subdomain with CNAME (valid approach)
 update_domain_www_cname() {
     local domain="$1"
+
+    # 🚨 SAFETY CHECK: Verify domain is not protected
+    if [[ " ${DO_NOT_TOUCH[@]} " =~ " ${domain} " ]]; then
+        echo "⛔ SKIPPING $domain (DO NOT TOUCH - PROTECTED)"
+        return 1
+    fi
 
     echo "🔄 Setting up www.$domain with CNAME (valid)..."
 
