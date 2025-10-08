@@ -1,0 +1,91 @@
+openapi: 3.1.0
+info:
+  title: Voice Commerce Engine API
+  version: 1.0.0
+  description: Voice command to product purchase using Claude AI
+
+servers:
+  - url: https://voice-commerce-{env}.run.app
+    variables:
+      env:
+        default: prod
+        enum: [prod, staging, dev]
+
+paths:
+  /health:
+    get:
+      summary: Health check
+      operationId: getHealth
+      tags: [Health]
+      responses:
+        '200':
+          description: Service health
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status, timestamp, claude_configured, lightspeed_connected, bigquery_connected]
+                properties:
+                  status:
+                    type: string
+                    enum: [healthy, degraded, unhealthy]
+                  timestamp:
+                    type: string
+                    format: date-time
+                  claude_configured:
+                    type: boolean
+                  lightspeed_connected:
+                    type: boolean
+                  bigquery_connected:
+                    type: boolean
+
+  /api/voice-commerce:
+    post:
+      summary: Process voice command
+      operationId: processVoiceCommand
+      tags: [VoiceCommerce]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [transcript, customerId]
+              properties:
+                transcript:
+                  type: string
+                  example: "I need more sleep gummies"
+                customerId:
+                  type: string
+                  example: "12345"
+      responses:
+        '200':
+          description: Voice command processed
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [success, message, intent, confidence]
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  order_id:
+                    type: string
+                  intent:
+                    type: string
+                    enum: [reorder, new_purchase, question, feedback, unknown]
+                  confidence:
+                    type: number
+                    minimum: 0
+                    maximum: 1
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+
+security:
+  - BearerAuth: []
