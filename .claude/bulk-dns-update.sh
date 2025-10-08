@@ -11,7 +11,20 @@ GODADDY_API_SECRET=$(op item get GODADDY_API_SECRET --reveal --fields credential
 # Cloud Run IPs for load balancing
 CLOUD_RUN_IPS=("216.239.32.21" "216.239.34.21" "216.239.36.21" "216.239.38.21")
 
-# Domains to update (excluding DO NOT TOUCH domains)
+# 🚨 DO NOT TOUCH DOMAINS - NEVER UPDATE THESE
+DO_NOT_TOUCH=(
+    "airbnbwaterfall.com"
+    "reggieanddro.com"
+    "brain.reggieanddro.com"
+    "shop.reggieanddro.com"
+    "voice.reggieanddro.com"
+    "tier1treecare.com"
+    "reggieanddroalice.com"
+    "reggieanddrodispensary.com"
+    "hempress3.com"
+)
+
+# Domains to update (VERIFIED - excludes DO NOT TOUCH domains)
 DOMAINS=(
     "cannabiscookiestexas.com"
     "exoticcanopysolutions.com"
@@ -25,7 +38,6 @@ DOMAINS=(
     "loudcbdbuds.com"
     "loudcbdflower.com"
     "oneplantsolution.com"
-    "reggieanddro.com"
     "smokingyoga.com"
     "terpwerk.com"
     "texascannabiscookies.com"
@@ -45,8 +57,14 @@ success_count=0
 error_count=0
 
 for domain in "${DOMAINS[@]}"; do
+    # 🚨 SAFETY CHECK: Verify domain is not in DO_NOT_TOUCH list
+    if [[ " ${DO_NOT_TOUCH[@]} " =~ " ${domain} " ]]; then
+        echo "⛔ SKIPPING $domain (DO NOT TOUCH - PROTECTED)"
+        continue
+    fi
+
     echo "🔧 Updating $domain..."
-    
+
     # Get current DNS records
     current_records=$(curl -s -H "Authorization: sso-key $GODADDY_API_KEY:$GODADDY_API_SECRET" "https://api.godaddy.com/v1/domains/$domain/records")
     
