@@ -6,6 +6,7 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import lightspeedDeliveryRouter from './lightspeed-delivery-middleware.js';
+import nashBeatingRouter from './nash-beating-middleware.js';
 
 const app = express();
 const PORT = process.env.PORT || 4003;
@@ -49,6 +50,7 @@ app.get('/health', (req, res) => {
 
 // Mount delivery routes
 app.use('/api/delivery', lightspeedDeliveryRouter);
+app.use('/api/delivery', nashBeatingRouter);
 
 // Error handler
 app.use((err, req, res, next) => {
@@ -76,6 +78,7 @@ app.listen(PORT, () => {
   console.log(`✅ Health check: http://localhost:${PORT}/health`);
   console.log(`🔌 Lightspeed webhook: http://localhost:${PORT}/api/delivery/lightspeed/webhook`);
   console.log(`💰 Quote API: http://localhost:${PORT}/api/delivery/quote`);
+  console.log(`🏆 Nash-beating comparison: http://localhost:${PORT}/api/delivery/providers/compare`);
 
   const providers = [];
   if (process.env.DOORDASH_API_KEY) providers.push('DoorDash');
