@@ -97,9 +97,10 @@ op item get "Veriff-API-Key-980910443251" --format json ✅
 - ⏰ Episode 3 production: Starting next
 
 **Voice Cockpit** (PRIORITY - 48 hours):
-- 🎯 NOW EXECUTING: Deploying frontend/herbitrage-voice to GCP Cloud Run
-- Infrastructure: Ready (Docker, deploy.sh exist)
-- Target: herbitrage.com (verified domain)
+- 🚨 **BLOCKED**: GCP permissions required (Cloud Build, Cloud Run access)
+- ✅ Local test: Running on http://localhost:8080
+- 📋 Blocker report: `.claude/BLOCKER_GCP_PERMISSIONS.md`
+- ⏰ Awaiting: Jesse grants IAM permissions (5 min) OR Replit deploys from staging
 
 **Coordination**:
 - ✅ Trinity coordination status files created
