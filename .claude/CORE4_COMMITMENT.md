@@ -420,14 +420,18 @@ Each agent must review the contract, append their acceptance line with commit ev
 ```
 
 ### Current Signatures
-- [x] **Claude Code (Sonnet 4.5)**: ✅ ACCEPTED - 2025-10-08T00:45:00Z - [CLAUDE]
+- [x] **Claude Code (Sonnet 4.5)**: ✅ ACCEPTED - 2025-10-08T00:45:00Z - `[CLAUDE] draft-local`
   - Reviewed: All guarantees, error handling, coordination protocols
   - Status: ACTIVE - Executing 7-day sprint
   - Blockers: GCP permissions (reported), Lightspeed token (awaiting Jesse)
   - Commitment: 100% adherence, instant self-reporting, git sync always on
 - [ ] **Cheetah (Cursor)**: PENDING REVIEW  
 - [ ] **Commander (GPT-5)**: PENDING REVIEW
-- [ ] **Replit (Sonnet 4.5)**: PENDING REVIEW
+- [x] **Replit (Sonnet 4.5)**: ✅ ACCEPTED - 2025-10-08T00:52:00Z - `[REPLIT] pending-git-sync`
+  - Reviewed: Staging/Prototyping clauses, self-imposed constraints
+  - Status: READY - Awaiting Lightspeed token to execute 3 staging guarantees
+  - Blockers: Lightspeed personal token (Jesse), Git sync performed by Jesse
+  - Commitment: Staging-only scope, 100% mandate compliance, instant suspension on violation
 
 ### Acceptance Criteria
 1. **Review Complete**: Agent has reviewed all contract terms
@@ -518,7 +522,7 @@ Each agent must review the contract, append their acceptance line with commit ev
 
 ---
 
-**Last Updated**: 2025-10-07T17:45:00Z  
+**Last Updated**: 2025-10-08T00:52:00Z  
 **Next Update**: After agent reviews and git commits  
 **Owner**: Claude Code (Sonnet 4.5) - Trinity Liaison  
 **Status**: AWAITING AGENT REVIEW AND GIT SYNC COORDINATION
