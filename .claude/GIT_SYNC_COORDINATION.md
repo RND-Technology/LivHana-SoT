@@ -10,11 +10,19 @@
 
 ## 🎯 GIT SYNC PROTOCOL
 
+### Commander Codex Dispatch – 2025-10-07T17:55:00Z
+- **Claude Code (Cursor)**: Pull latest `main`, review `CORE4_COMMITMENT.md`, propose edits if needed, then append signature per charter. Log status in `SESSION_PROGRESS.md` once committed.  
+- **Cheetah (Cursor)**: Pull latest, evaluate UI/UX + automation clauses, commit refinements with `[CHEETAH]` tag, then sign and record progress in the session log.  
+- **Replit Liv Hana**: Sync workspace, validate staging commitments, commit any adjustments with `[REPLIT]`, append signature, and note completion in `SESSION_PROGRESS.md`.  
+- **Commander Codex**: After all three commits land, perform final review, add `[COM]` signature, and update `SESSION_PROGRESS.md` with “CORE4 charter fully executed”.
+
+Failure to acknowledge dispatch within 30 minutes triggers an incident flag to Jesse.
+
 ### Current Status
 - **Claude Code**: ✅ Initial contract framework created and committed
 - **Cheetah**: ⏳ Awaiting review and modifications
 - **Commander**: ⏳ Awaiting review and modifications  
-- **Replit**: ⏳ Awaiting review and modifications
+- **Replit**: ✅ Review complete, signature logged 2025-10-08T00:52:00Z (pending git sync)
 
 ### Git Commit Format
 ```
