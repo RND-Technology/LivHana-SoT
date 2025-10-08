@@ -1,6 +1,7 @@
 ---
 purpose: Actions only Jesse can do to unblock team
-status: ACTIVE - 5 CRITICAL ACTIONS
+status: ACTIVE - 1 CRITICAL ACTION (HNC site down)
+completed: Lightspeed token + GitHub PAT + GCP permissions
 ---
 
 # HUMAN WORK FOR JESSE
@@ -12,24 +13,59 @@ status: ACTIVE - 5 CRITICAL ACTIONS
 **Unblocked**: Voice Cockpit Cloud Run deployment.
 **Follow-up**: None. Move to the remaining blockers.
 
-### 🔴 2. Lightspeed Personal Token (4 min)
-**Unblocks**: Revenue Dashboard + Replit VIP Cockpit + Square Integration + Online Sales Strategy.
-**Why now**: Store feedback is live; Lightspeed token is the gate for inventory + label automation.
-**Status**: Pending Jesse — token not yet generated.
-**Steps**:
-1. Go to https://reggieanddro.retail.lightspeed.app
-2. Navigate: Setup → Personal Tokens → Generate new token
-3. Copy token and save in 1Password  
-   `op item create --title="Lightspeed Token" password="<token>"`
+### ✅ 2. Lightspeed Personal Token (completed 2025-10-08T04:35Z)
+**Status**: Retrieved from 1Password — `op://LivHana-Ops-Keys/LIGHTSPEED_PERSONAL_TOKEN/credential`
+**Stored**: `/tmp/lightspeed_token_secure.txt` (chmod 600)
+**Unblocked**: Revenue Dashboard + Replit VIP Cockpit + Square Integration + Online Sales Strategy.
+**Next**: Integrate into backend services, update .env files, test API connection.
 
-### 🔴 3. GitHub PAT for Replit (3 min)
-**Unblocks**: Replit autonomous git access + VIP cockpit sync.
-**Status**: Pending Jesse — PAT not yet issued.
-**Steps**:
-1. https://github.com/settings/tokens → Generate new token (classic)
-2. Name: `Replit LivHana-SoT`, Expiration: 90 days, Scope: `repo`
-3. Save in 1Password  
-   `op item create --title="GitHub PAT Replit" password="<token>"`
+### ✅ 3. GitHub PAT for Replit (completed previously)
+**Status**: Available in 1Password as `GITHUB_REPLIT_PAT`
+**Unblocked**: Replit autonomous git access + VIP cockpit sync.
+
+### 🚨 4. HNC Deployment Permissions (2 min) - CRITICAL SITE DOWN
+**Unblocks**: highnooncartoon.com production deployment (currently 404/SSL error)
+**Status**: BOTH accounts missing permissions
+**Issue**:
+- `jesseniesen@gmail.com`: Missing `artifactregistry.repositories.downloadArtifacts` (can't pull Docker image)
+- `high@reggieanddro.com`: Missing `iam.serviceaccounts.actAs` (can't deploy to Cloud Run)
+
+**Fix Option 1** (jesseniesen account):
+```bash
+gcloud projects add-iam-policy-binding reggieanddrodispensary \
+  --member="user:jesseniesen@gmail.com" \
+  --role="roles/artifactregistry.reader"
+```
+
+**Fix Option 2** (high account):
+```bash
+gcloud projects add-iam-policy-binding reggieanddrodispensary \
+  --member="user:high@reggieanddro.com" \
+  --role="roles/iam.serviceAccountUser"
+```
+
+**Status**: Docker image ready (`gcr.io/reggieanddrodispensary/highnooncartoon:latest`), deployment blocked
+
+---
+
+## 🎯 DAILY INTEL CHECK (NEW)
+
+- **Read** `.claude/EXTERNAL_SIGNAL_INDEX.md` at session start
+- **If stale** (>24h or placeholders): Populate latest AI war intel, add summaries, flag blockers
+- **Owner**: Jesse — keep sources current so Codex, Claude Code, and Cheetah operate with today’s reality
+
+---
+
+## 🛡️ CODEX GUARANTEES (ACTIVE)
+
+1. **Enforce Intel Currency** — Codex verifies every session that `EXTERNAL_SIGNAL_INDEX.md` is touched; if stale, Jesse is paged immediately.
+2. **Track Human Unlocks** — Lightspeed token + Replit PAT remain top blockers until marked complete; Codex keeps them in this file until delivered.
+3. **Zero-Slip Accountability** — Any agent miss (file bloat, missed pushes, permission gaps) is logged in `TEAM_ACCOUNTABILITY_SYSTEM.md` with a replacement guarantee inside 15 minutes.
+4. **Execution First** — Codex default is action: run the change, cite the lines, then escalate only when human authority is required.
+5. **Race Status Reporting** — After each major change, Codex posts a status ping (in repo or handoff note) so Claude Code + Cheetah can continue without pause.
+6. **Capabilities on Record** — Codex keeps `MACHINE_PROPOSALS_INDEX.md` updated with current constraints + guarantees so every agent knows the operating envelope.
+
+**Breach Protocol**: If Codex misses any guarantee, Jesse is alerted in this file plus `TEAM_ACCOUNTABILITY_SYSTEM.md`, and a stronger guarantee replaces it within the same session.
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 status: ACTIVE - Domain Health Monitoring
-timestamp: 2025-10-07T21:35:00Z
-last_check: 2025-10-08T04:27:47 UTC
+timestamp: 2025-10-08T04:45:00Z
+last_check: 2025-10-08T04:45:30 UTC
 ---
 
 # DOMAIN VALIDATION STATUS - ALL LIVHANA PROPERTIES
@@ -71,14 +71,17 @@ last_check: 2025-10-08T04:27:47 UTC
 - **Fix**: See HNC_SITE_DOWN_FIX.md
 - **Blocker**: Jesse needs to grant iam.serviceAccountUser role
 
-### 2. livhana.com ⚠️ WARNING
-- DNS: 162.210.96.122
+### 2. livhana.com 🚨 CRITICAL - SSL MISMATCH
+- DNS: 162.210.96.122 (LiquidNet US LLC shared hosting)
 - HTTP: 200 ✅
-- HTTPS: FAILED ❌
-- SSL: Valid but expires soon (Sep 14 2025 → Dec 13 2025)
+- HTTPS: CERTIFICATE MISMATCH ❌
+- SSL: Serving WRONG certificate (emr.thermalimagingcenter.com instead of livhana.com)
+- Certificate Dates: Sep 16 2025 → Dec 15 2025 (valid but wrong domain)
+- Server: Apache, PHP 5.2.17 (⚠️ 12 years outdated, security risk)
 - Cloud Run: Not mapped
-- **Issue**: HTTPS not working, SSL renewal needed
-- **Fix**: Renew SSL certificate, fix HTTPS configuration
+- **Issue**: Shared hosting serving incorrect SSL certificate (SNI configuration problem)
+- **Fix**: Install Let's Encrypt certificate for livhana.com OR migrate to Google Cloud
+- **Details**: See LIVHANA_COM_SSL_FIX.md for complete diagnosis and fix options
 
 ---
 
