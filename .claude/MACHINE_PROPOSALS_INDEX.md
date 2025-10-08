@@ -2,8 +2,8 @@
 diataxis: reference
 owner: Jesse Niesen (CEO)
 last-reviewed: 2025-10-08
-timestamp: 2025-10-08T02:20:00Z
-version: 2.1
+timestamp: 2025-10-08T06:49:48Z
+version: 2.2
 status: active - navigation index
 critical: YES - FILE ORGANIZATION EFFICIENCY
 ---
@@ -50,7 +50,7 @@ critical: YES - FILE ORGANIZATION EFFICIENCY
 
 ---
 
-### 3. **SESSION_LOG_OCT7.md** (239 lines)
+### 3. **SESSION_LOG_OCT7.md** (287 lines)
 **Purpose**: Oct 7, 2025 session tracking
 **Contains**:
 - Herbitrage Voice password retrieval
@@ -83,28 +83,31 @@ critical: YES - FILE ORGANIZATION EFFICIENCY
 
 ## 📊 STATUS SUMMARY
 
-### Guarantees Completed (as of Oct 7, 2025)
+### Guarantees Completed (as of Oct 8, 2025)
 - **Sonnet**: 9/10 (90%) - Lightspeed token blocked
 - **Cheetah**: 11/11 (100%) - Full autonomous execution
 - **New guarantees**: 5 pending (Sonnet's recovery plan)
 - **DNS Guardrail**: Codex patched `.claude/update-dns-to-cloud-run.sh` to skip DO NOT TOUCH domains after incident
+- **Truth Benchmark**: `TRUTH_RANKING_LOG_20251008.md` records fabricated status calls (Replit Error #6, Claude Error #7) with evidence links
 
 ### Codex Capability Snapshot (Oct 8, 2025)
 - **Access Envelope**: Workspace-write sandbox, no auto web browsing; gains external intel only when Jesse approves commands.
 - **Context Window**: Full repo + current session logs; earlier chats must live in SoT files (e.g., `SESSION_LOG_*`, `TEAM_ACCOUNTABILITY_SYSTEM.md`) for Codex to consume.
 - **Mandated Reads**: `.claude/EXTERNAL_SIGNAL_INDEX.md` and `.claude/TEAM_ACCOUNTABILITY_SYSTEM.md` on every boot to stay current and disciplined.
+- **Truth Benchmark Discipline**: Maintain `TRUTH_RANKING_SYSTEM.md` + dated logs; log receipts for every status claim (including CODEX self-audit).
 - **Standing Guarantees**: Listed in `.claude/HUMAN_WORK_FOR_JESSE.md` (“Codex Guarantees”) and enforced via `TEAM_ACCOUNTABILITY_SYSTEM.md` within 15 minutes of any miss.
 - **Escalation Protocol**: When constraints block execution (permissions, secrets, network), Codex flags Jesse immediately with the required unblocking action.
 
 ### Files Status
 - ✅ **PROPOSALS_CORE.md**: 309 lines (optimized)
 - ✅ **EXECUTION_LOG_OCT6.md**: 496 lines (optimized)
-- ✅ **SESSION_LOG_OCT7.md**: 239 lines (optimized)
+- ✅ **SESSION_LOG_OCT7.md**: 287 lines (optimized, split-ready if >300 additions)
 - ✅ **MACHINE_PROPOSALS_INDEX.md**: This file (navigation)
+- ✅ **TRUTH_RANKING_SYSTEM.md**: 328 lines (spec) + companion files (`TRUTH_RANKING_IMPLEMENTATION.md`, `TRUTH_RANKING_LOG_20251008.md`)
 
 ### Compliance Requirements
 - **All Agents**: Confirm review of this index at session start before touching related proposal/execution files.
-- **CODEX**: Verifies confirmations via `TEAM_ACCOUNTABILITY_SYSTEM.md` and flags misses within same session.
+- **CODEX**: Verifies confirmations via `TEAM_ACCOUNTABILITY_SYSTEM.md`, cross-checks Truth Benchmark logs, and flags misses within same session.
 - **Non-Compliance Consequence**: Immediate entry in error log + new guarantee focused on the highest-priority blocker active at the time of violation.
 
 ### Archive Status
@@ -155,8 +158,8 @@ critical: YES - FILE ORGANIZATION EFFICIENCY
 ---
 
 **Document Status**: Active - Navigation Index
-**Last Updated**: 2025-10-08T02:20:00Z
-**Version**: 2.1
+**Last Updated**: 2025-10-08T06:49:48Z
+**Version**: 2.2
 **Owner**: Jesse Niesen (CEO)
 **Classification**: Internal Use Only - File Organization
 
