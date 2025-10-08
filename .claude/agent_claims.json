@@ -1,0 +1,22 @@
+{
+  "claims": [
+    {
+      "id": "20251008_cheetah_75766fdd",
+      "agent": "cheetah",
+      "type": "capability",
+      "text": "Built Nash-beating delivery middleware with DoorDash Drive + Uber Direct integration",
+      "timestamp": "2025-10-08T07:27:53Z",
+      "status": "pending",
+      "receipt_file": "/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/reports/cheetah/receipts/20251008_cheetah_75766fdd.md",
+      "evidence_files": {
+        "id": "20251008_cheetah_75766fdd",
+        "agent": "cheetah",
+        "type": "capability",
+        "text": "Built Nash-beating delivery middleware with DoorDash Drive + Uber Direct integration",
+        "timestamp": "2025-10-08T07:27:53Z",
+        "receipt": "/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/reports/cheetah/receipts/20251008_cheetah_75766fdd.md"
+      }
+    }
+  ],
+  "last_updated": "2025-10-08T07:27:53Z"
+}
