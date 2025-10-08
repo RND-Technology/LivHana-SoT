@@ -5,6 +5,19 @@
 
 set -e
 
+# 🚨 DO NOT TOUCH DOMAINS - NEVER MODIFY THESE
+DO_NOT_TOUCH=(
+    "airbnbwaterfall.com"
+    "reggieanddro.com"
+    "brain.reggieanddro.com"
+    "shop.reggieanddro.com"
+    "voice.reggieanddro.com"
+    "tier1treecare.com"
+    "reggieanddroalice.com"
+    "reggieanddrodispensary.com"
+    "hempress3.com"
+)
+
 PROJECT_ID=${GCP_PROJECT_ID:-"reggieanddrodispensary"}
 REGION=${GCP_REGION:-"us-central1"}
 
