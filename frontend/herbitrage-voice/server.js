@@ -4,16 +4,16 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-// Serve static files from public directory
-app.use(express.static(path.join(__dirname, 'public')));
-
-// Health check endpoint
+// Health check endpoint (before static files)
 app.get('/health', (req, res) => {
     res.json({ status: 'healthy', service: 'herbitrage-voice' });
 });
 
-// Catch-all route to serve index.html for SPA
-app.get('*', (req, res) => {
+// Serve static files from public directory
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Fallback to index.html for SPA routing (handles 404s)
+app.use((req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
