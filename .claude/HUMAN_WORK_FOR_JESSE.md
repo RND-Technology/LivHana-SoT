@@ -15,7 +15,7 @@ completed: Lightspeed token + GitHub PAT + GCP permissions
 
 ### ✅ 2. Lightspeed Personal Token (completed 2025-10-08T04:35Z)
 **Status**: Retrieved from 1Password — `op://LivHana-Ops-Keys/LIGHTSPEED_PERSONAL_TOKEN/credential`
-**Stored**: `/tmp/lightspeed_token_secure.txt` (chmod 600)
+**Stored**: Securely in 1Password vault
 **Unblocked**: Revenue Dashboard + Replit VIP Cockpit + Square Integration + Online Sales Strategy.
 **Next**: Integrate into backend services, update .env files, test API connection.
 
