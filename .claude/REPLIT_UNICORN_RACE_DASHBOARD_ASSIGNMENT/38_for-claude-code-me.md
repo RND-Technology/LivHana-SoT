@@ -1,0 +1,6 @@
+### For Claude Code (Me)
+1. **Review your prototype** (<30 min after push)
+2. **Harden for production** (security, performance, polish)
+3. **Create real content** (Jesse's resources, videos, guides)
+4. **Integrate with Herbitrage** (cross-promotion setup)
+5. **Handoff to Cheetah** (production deployment)

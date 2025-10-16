@@ -95,7 +95,7 @@ This is THE priority. Everything else serves this exit.
 HemPress3 exit funds:
 
 - Reggie & Dro expansion
-- TerpWorks product development
+- Terpwerk product development
 - HNC content production
 - Personal financial freedom
 

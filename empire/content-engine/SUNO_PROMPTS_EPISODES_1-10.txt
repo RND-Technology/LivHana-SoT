@@ -1,0 +1,142 @@
+# SUNO AI MUSIC GENERATION - HNC EPISODES 1-10
+# Copy-paste these prompts into Suno AI: https://suno.com/create
+
+---
+
+EPISODE 1: Texas THC Origins
+---
+Genre: Upbeat Texas Country
+Tempo: 128 BPM
+Key: G Major
+Mood: Educational, Friendly, Warm
+Instruments: Acoustic guitar, light percussion, harmonica
+Duration: 60 seconds
+Vibe: Modern educational content meets Texas pride
+Tags: country, educational, upbeat, texas, acoustic
+
+---
+
+EPISODE 2: Meet the Wall of Weed
+---
+Genre: Majestic Reveal Theme
+Tempo: 110 BPM
+Key: D Major
+Mood: Grand, Impressive, Professional
+Instruments: Orchestral strings, brass, light synth
+Duration: 60 seconds
+Vibe: Product showcase with cinematic flair
+Tags: cinematic, reveal, grand, professional
+
+---
+
+EPISODE 3: Lt. Dan's Compliance Class
+---
+Genre: Military March Comedy
+Tempo: 140 BPM
+Key: C Major
+Mood: Disciplined, Humorous, Authoritative
+Instruments: Marching drums, brass, military snare
+Duration: 60 seconds
+Vibe: Compliance education with comedic timing
+Tags: military, comedy, march, educational
+
+---
+
+EPISODE 4: Chief Steve's Panic Attack
+---
+Genre: Nervous Comedy
+Tempo: 150 BPM
+Key: A Minor
+Mood: Anxious, Comedic, Frantic
+Instruments: Pizzicato strings, xylophone, nervous percussion
+Duration: 60 seconds
+Vibe: Comedic tension and bureaucratic panic
+Tags: comedy, tension, quirky, anxious
+
+---
+
+EPISODE 5: Liv Hana's Data Dashboard
+---
+Genre: Tech Electronic
+Tempo: 120 BPM
+Key: E Minor
+Mood: Futuristic, Clean, Analytical
+Instruments: Synth, digital beats, ambient pads
+Duration: 60 seconds
+Vibe: AI assistant presenting data
+Tags: electronic, tech, futuristic, data
+
+---
+
+EPISODE 6: Jesse's First Customer
+---
+Genre: Heartwarming Texas Folk
+Tempo: 95 BPM
+Key: F Major
+Mood: Warm, Personal, Authentic
+Instruments: Acoustic guitar, light strings, warm bass
+Duration: 60 seconds
+Vibe: Personal connection, customer stories
+Tags: folk, heartwarming, acoustic, personal
+
+---
+
+EPISODE 7: Aubrey Awfuls Strikes
+---
+Genre: Villain Theme
+Tempo: 100 BPM
+Key: D Minor
+Mood: Dark, Menacing, Corporate
+Instruments: Low strings, ominous synth, tension-building percussion
+Duration: 60 seconds
+Vibe: Corporate villain entrance
+Tags: dark, villain, tension, corporate
+
+---
+
+EPISODE 8: Texas Hemp Farm Tour
+---
+Genre: Agricultural Documentary
+Tempo: 105 BPM
+Key: G Major
+Mood: Natural, Earthy, Educational
+Instruments: Acoustic guitar, nature sounds, light percussion
+Duration: 60 seconds
+Vibe: Farm-to-table documentary style
+Tags: natural, documentary, acoustic, earthy
+
+---
+
+EPISODE 9: Industry News Roundup
+---
+Genre: Epic Texas Revolution
+Tempo: 130 BPM
+Key: C Major
+Mood: Energetic, Informative, Dynamic
+Instruments: Guitar, drums, brass, modern synth
+Duration: 60 seconds
+Vibe: News broadcast with energy
+Tags: news, energetic, broadcast, dynamic
+
+---
+
+EPISODE 10: Fun Facts Friday
+---
+Genre: Playful Educational Melody
+Tempo: 115 BPM
+Key: E Major
+Mood: Fun, Lighthearted, Educational
+Instruments: Ukulele, xylophone, light percussion, whistle
+Duration: 60 seconds
+Vibe: Educational trivia show
+Tags: playful, fun, educational, light
+
+---
+
+DOWNLOAD INSTRUCTIONS:
+1. Generate each track in Suno AI
+2. Download as MP3
+3. Rename: episode-01.mp3, episode-02.mp3, etc.
+4. Save to: /empire/content-engine/output/music/
+
+ESTIMATED TIME: 20 minutes total (2 min per track)

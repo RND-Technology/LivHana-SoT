@@ -1,0 +1,1 @@
+## ✅ WHEN N8N IS WORTHY (USE CASES)

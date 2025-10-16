@@ -1,0 +1,25 @@
+### Legacy
+
+- [pino-applicationinsights](#pino-applicationinsights)
+- [pino-azuretable](#pino-azuretable)
+- [pino-cloudwatch](#pino-cloudwatch)
+- [pino-couch](#pino-couch)
+- [pino-datadog](#pino-datadog)
+- [pino-gelf](#pino-gelf)
+- [pino-http-send](#pino-http-send)
+- [pino-kafka](#pino-kafka)
+- [pino-logdna](#pino-logdna)
+- [pino-loki](#pino-loki)
+- [pino-mq](#pino-mq)
+- [pino-mysql](#pino-mysql)
+- [pino-papertrail](#pino-papertrail)
+- [pino-pg](#pino-pg)
+- [pino-redis](#pino-redis)
+- [pino-sentry](#pino-sentry)
+- [pino-seq](#pino-seq)
+- [pino-socket](#pino-socket)
+- [pino-stackdriver](#pino-stackdriver)
+- [pino-syslog](#pino-syslog)
+- [pino-websocket](#pino-websocket)
+
+<a id="@axiomhq/pino"></a>
