@@ -1,0 +1,5 @@
+### Sonnet 4.5 CLI (2 Hours)
+1. Complete voice-service implementation (1 hour)
+2. Deploy delivery-service once unblocked (15 min)
+3. Deploy voice-service to Cloud Run (15 min)
+4. Update all RPM Weekly Plans (30 min)

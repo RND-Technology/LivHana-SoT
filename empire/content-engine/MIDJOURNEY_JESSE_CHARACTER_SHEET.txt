@@ -1,0 +1,165 @@
+# MIDJOURNEY PROMPTS - JESSE CHARACTER SHEET
+# 20 Variations for Character Consistency Across 84 Episodes
+
+---
+
+BASE PROMPT (Generate First):
+---
+Professional man in early 40s, confident CEO personality, rolled-up sleeves button-down shirt in sage green #8A9A5B, dark blue jeans, leather boots, short brown hair with light beard, warm Caucasian skin tone #F4C7A0, approachable Texas business owner aesthetic, clean modern style, 9:16 vertical format, professional lighting, photorealistic, detailed facial features, 4K quality --ar 9:16 --v 7
+
+SAVE AS: jesse_01_front_neutral.png
+
+---
+
+THEN: Use Omni Reference (--oref) for all subsequent images
+Format: [prompt] --oref [URL of jesse_01_front_neutral.png] --ow 80 --ar 9:16 --v 7
+
+---
+
+IMAGE 2: Front view, confident smile
+---
+Jesse with confident warm smile, same outfit and styling --oref [base_image_url] --ow 80 --ar 9:16 --v 7
+SAVE AS: jesse_02_front_smile.png
+
+---
+
+IMAGE 3: Front view, explaining gesture
+---
+Jesse presenting with open hand gesture, palm up, explaining something, same outfit --oref [base_image_url] --ow 80 --ar 9:16 --v 7
+SAVE AS: jesse_03_front_explaining.png
+
+---
+
+IMAGE 4: Front view, excited expression
+---
+Jesse with excited enthusiastic expression, wide eyes, animated, same outfit --oref [base_image_url] --ow 80 --ar 9:16 --v 7
+SAVE AS: jesse_04_front_excited.png
+
+---
+
+IMAGE 5: Front view, serious/concerned
+---
+Jesse with serious concerned expression, furrowed brow, thoughtful, same outfit --oref [base_image_url] --ow 80 --ar 9:16 --v 7
+SAVE AS: jesse_05_front_serious.png
+
+---
+
+IMAGE 6: 3/4 view, looking at camera
+---
+Jesse in three-quarter profile looking at camera, same outfit --oref [base_image_url] --ow 80 --ar 9:16 --v 7
+SAVE AS: jesse_06_3quarter_neutral.png
+
+---
+
+IMAGE 7: 3/4 view, gesturing to product
+---
+Jesse in three-quarter profile gesturing to the side (presenting product), same outfit --oref [base_image_url] --ow 80 --ar 9:16 --v 7
+SAVE AS: jesse_07_3quarter_presenting.png
+
+---
+
+IMAGE 8: 3/4 view, arms crossed confident
+---
+Jesse in three-quarter profile with arms crossed confidently, same outfit --oref [base_image_url] --ow 80 --ar 9:16 --v 7
+SAVE AS: jesse_08_3quarter_confident.png
+
+---
+
+IMAGE 9: Side profile, professional stance
+---
+Jesse in side profile standing professionally, same outfit --oref [base_image_url] --ow 80 --ar 9:16 --v 7
+SAVE AS: jesse_09_side_profile.png
+
+---
+
+IMAGE 10: Talking head, mouth slightly open
+---
+Jesse close-up face with mouth slightly open mid-speech, natural expression, same outfit --oref [base_image_url] --ow 80 --ar 9:16 --v 7
+SAVE AS: jesse_10_talking_open.png
+
+---
+
+IMAGE 11: Talking head, mid-speech
+---
+Jesse close-up face mid-sentence, animated talking, same outfit --oref [base_image_url] --ow 80 --ar 9:16 --v 7
+SAVE AS: jesse_11_talking_animated.png
+
+---
+
+IMAGE 12: Upper body, pointing gesture
+---
+Jesse upper body shot pointing forward with index finger, same outfit --oref [base_image_url] --ow 80 --ar 9:16 --v 7
+SAVE AS: jesse_12_upper_pointing.png
+
+---
+
+IMAGE 13: Upper body, thumbs up
+---
+Jesse upper body shot giving thumbs up gesture, positive expression, same outfit --oref [base_image_url] --ow 80 --ar 9:16 --v 7
+SAVE AS: jesse_13_upper_thumbsup.png
+
+---
+
+IMAGE 14: Upper body, holding product
+---
+Jesse upper body shot holding small jar (cannabis product), showing to camera, same outfit --oref [base_image_url] --ow 80 --ar 9:16 --v 7
+SAVE AS: jesse_14_upper_product.png
+
+---
+
+IMAGE 15: Full body standing, confident pose
+---
+Jesse full body standing confidently, slight lean, same outfit with leather boots visible --oref [base_image_url] --ow 80 --ar 9:16 --v 7
+SAVE AS: jesse_15_fullbody_standing.png
+
+---
+
+IMAGE 16: Sitting at desk, professional
+---
+Jesse sitting at modern desk in office, professional setting, same outfit --oref [base_image_url] --ow 80 --ar 9:16 --v 7
+SAVE AS: jesse_16_sitting_desk.png
+
+---
+
+IMAGE 17: Walking forward, dynamic
+---
+Jesse walking forward toward camera, dynamic movement, confident stride, same outfit --oref [base_image_url] --ow 80 --ar 9:16 --v 7
+SAVE AS: jesse_17_walking_dynamic.png
+
+---
+
+IMAGE 18: In front of Wall of Weed
+---
+Jesse in front of product shelf display with colorful cannabis products (Wall of Weed), same outfit --oref [base_image_url] --ow 80 --ar 9:16 --v 7
+SAVE AS: jesse_18_wallofweed_bg.png
+
+---
+
+IMAGE 19: Outdoor Texas landscape
+---
+Jesse outdoors with Texas desert landscape background, cacti and horizon visible, same outfit --oref [base_image_url] --ow 80 --ar 9:16 --v 7
+SAVE AS: jesse_19_texas_outdoor.png
+
+---
+
+IMAGE 20: Close-up face, direct eye contact
+---
+Jesse extreme close-up face shot, intense direct eye contact with camera, same outfit visible at shoulders --oref [base_image_url] --ow 80 --ar 9:16 --v 7
+SAVE AS: jesse_20_closeup_eyes.png
+
+---
+
+WORKFLOW:
+1. Generate base image (Image 1) WITHOUT --oref
+2. Upload to Midjourney, get URL
+3. Use that URL as --oref for all subsequent images
+4. Parameter --ow 80 maintains strong consistency
+5. Download all 20 images
+6. Save to: /empire/content-engine/characters/jesse/
+
+ESTIMATED TIME: 40 minutes total (2 min per image)
+
+CRITICAL SUCCESS FACTOR:
+All 20 images must show the EXACT SAME Jesse (face, hair, beard, build)
+Only expressions, poses, angles should change
+This ensures perfect character consistency across all 84 episodes

@@ -1,0 +1,1 @@
+## 📊 TRAINING PROGRESS - COHORT 1

@@ -1,0 +1,913 @@
+// TIER 1 PRODUCTION TESTS - Voice Commerce Engine
+// Unit tests, property-based tests, and integration tests for voice command processing
+
+import { describe, it, expect, beforeEach, jest, afterEach } from '@jest/globals';
+import { VoiceCommerceEngine } from '../src/voice-commerce';
+import Anthropic from '@anthropic-ai/sdk';
+import axios from 'axios';
+import { BigQuery } from '@google-cloud/bigquery';
+
+// Set up test environment variables
+process.env.ANTHROPIC_API_KEY = 'test-anthropic-key-12345';
+process.env.LIGHTSPEED_TOKEN = 'test-lightspeed-token-67890';
+process.env.GCP_PROJECT_ID = 'test-project-id';
+process.env.BIGQUERY_DATASET = 'test_dataset';
+process.env.NODE_ENV = 'test';
+
+// Mock external dependencies
+jest.mock('@anthropic-ai/sdk');
+jest.mock('axios');
+jest.mock('@google-cloud/bigquery');
+
+// Create module-level mocks
+const mockClaudeCreate = jest.fn();
+const mockAxiosGet = jest.fn();
+const mockAxiosPost = jest.fn();
+const mockBigQueryQuery = jest.fn();
+const mockBigQueryGetDatasets = jest.fn();
+
+// Mock module implementations
+jest.mock('@anthropic-ai/sdk', () => {
+  return {
+    __esModule: true,
+    default: jest.fn().mockImplementation(() => ({
+      messages: {
+        create: mockClaudeCreate,
+      },
+    })),
+  };
+});
+
+jest.mock('axios', () => ({
+  __esModule: true,
+  default: {
+    create: jest.fn(() => ({
+      get: mockAxiosGet,
+      post: mockAxiosPost,
+    })),
+  },
+}));
+
+jest.mock('@google-cloud/bigquery', () => ({
+  BigQuery: jest.fn().mockImplementation(() => ({
+    query: mockBigQueryQuery,
+    getDatasets: mockBigQueryGetDatasets,
+  })),
+}));
+
+describe('VoiceCommerceEngine - TIER 1 PRODUCTION TESTS', () => {
+  let engine: VoiceCommerceEngine;
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+
+    // Reset mocks with default behaviors
+    mockClaudeCreate.mockResolvedValue({
+      content: [{ type: 'text', text: JSON.stringify({ intent: 'unknown', confidence: 0.5 }) }],
+    });
+    mockAxiosGet.mockResolvedValue({ status: 200 });
+    mockAxiosPost.mockResolvedValue({ data: { Sale: { saleID: 'test-sale', calcTotal: '0' } } });
+    mockBigQueryQuery.mockResolvedValue([[]]);
+    mockBigQueryGetDatasets.mockResolvedValue([[]]);
+
+    engine = new VoiceCommerceEngine();
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  // ============================================================================
+  // UNIT TESTS - Constructor & Initialization
+  // ============================================================================
+
+  describe('Constructor & Initialization', () => {
+    it('should throw error if ANTHROPIC_API_KEY is missing', () => {
+      const originalKey = process.env.ANTHROPIC_API_KEY;
+      delete process.env.ANTHROPIC_API_KEY;
+
+      expect(() => new VoiceCommerceEngine()).toThrow('ANTHROPIC_API_KEY environment variable required');
+
+      process.env.ANTHROPIC_API_KEY = originalKey;
+    });
+
+    it('should throw error if LIGHTSPEED_TOKEN is missing', () => {
+      const originalToken = process.env.LIGHTSPEED_TOKEN;
+      delete process.env.LIGHTSPEED_TOKEN;
+
+      expect(() => new VoiceCommerceEngine()).toThrow('LIGHTSPEED_TOKEN environment variable required');
+
+      process.env.LIGHTSPEED_TOKEN = originalToken;
+    });
+
+    it('should initialize successfully with all required environment variables', () => {
+      expect(engine).toBeInstanceOf(VoiceCommerceEngine);
+    });
+
+    it('should create Anthropic client with correct API key', () => {
+      // Constructor creates the client successfully
+      expect(engine).toBeInstanceOf(VoiceCommerceEngine);
+    });
+
+    it('should create Lightspeed axios client with correct configuration', () => {
+      // Constructor creates axios client successfully
+      expect(engine).toBeInstanceOf(VoiceCommerceEngine);
+    });
+
+    it('should initialize BigQuery with correct project ID', () => {
+      // Constructor creates BigQuery client successfully
+      expect(engine).toBeInstanceOf(VoiceCommerceEngine);
+    });
+  });
+
+  // ============================================================================
+  // UNIT TESTS - Voice Command Processing
+  // ============================================================================
+
+  describe('processVoiceCommand - Input Validation', () => {
+    it('should reject empty transcript', async () => {
+      const result = await engine.processVoiceCommand('', 'customer-123');
+
+      expect(result.success).toBe(false);
+      expect(result.message).toContain('Empty transcript');
+      expect(result.intent).toBe('unknown');
+      expect(result.confidence).toBe(0);
+    });
+
+    it('should reject whitespace-only transcript', async () => {
+      const result = await engine.processVoiceCommand('   \n\t  ', 'customer-123');
+
+      expect(result.success).toBe(false);
+      expect(result.message).toContain('Empty transcript');
+    });
+
+    it('should reject empty customer ID', async () => {
+      const result = await engine.processVoiceCommand('I want some gummies', '');
+
+      expect(result.success).toBe(false);
+      expect(result.message).toContain('Customer ID required');
+      expect(result.intent).toBe('unknown');
+    });
+
+    it('should reject null/undefined customer ID', async () => {
+      const result = await engine.processVoiceCommand('I want some gummies', null as any);
+
+      expect(result.success).toBe(false);
+      expect(result.message).toContain('Customer ID required');
+    });
+  });
+
+  describe('processVoiceCommand - Intent Extraction', () => {
+    beforeEach(() => {
+      // Mock BigQuery to return customer history
+      mockBigQueryQuery.mockResolvedValue([
+        [
+          { product_id: 'prod-001', product_name: 'Sleep Gummies', purchase_count: 5 },
+          { product_id: 'prod-002', product_name: 'CBD Oil', purchase_count: 3 },
+        ],
+      ]);
+    });
+
+    it('should extract reorder intent from transcript', async () => {
+      mockClaudeCreate.mockResolvedValue({
+        content: [
+          {
+            type: 'text',
+            text: JSON.stringify({
+              intent: 'reorder',
+              product: 'Sleep Gummies',
+              quantity: 2,
+              confidence: 0.95,
+            }),
+          },
+        ],
+      });
+
+      mockAxiosPost.mockResolvedValue({
+        data: {
+          Sale: {
+            saleID: 'sale-12345',
+            calcTotal: '59.98',
+          },
+        },
+      });
+
+      const result = await engine.processVoiceCommand(
+        'I need more of those sleep gummies',
+        'customer-123'
+      );
+
+      expect(result.intent).toBe('reorder');
+      expect(result.confidence).toBe(0.95);
+    });
+
+    it('should extract new_purchase intent from transcript', async () => {
+      mockClaude.messages.create.mockResolvedValue({
+        content: [
+          {
+            type: 'text',
+            text: JSON.stringify({
+              intent: 'new_purchase',
+              product: 'Pain Relief Cream',
+              quantity: 1,
+              confidence: 0.88,
+            }),
+          },
+        ],
+      });
+
+      const result = await engine.processVoiceCommand(
+        'Do you have any pain relief cream?',
+        'customer-123'
+      );
+
+      expect(result.intent).toBe('new_purchase');
+      expect(result.confidence).toBe(0.88);
+      expect(result.message).toContain('Pain Relief Cream');
+    });
+
+    it('should extract question intent from transcript', async () => {
+      mockClaude.messages.create.mockResolvedValue({
+        content: [
+          {
+            type: 'text',
+            text: JSON.stringify({
+              intent: 'question',
+              confidence: 0.92,
+            }),
+          },
+        ],
+      });
+
+      const result = await engine.processVoiceCommand(
+        'Where is my order?',
+        'customer-123'
+      );
+
+      expect(result.intent).toBe('question');
+      expect(result.success).toBe(false);
+      expect(result.message).toContain('help');
+    });
+
+    it('should extract feedback intent from transcript', async () => {
+      mockClaude.messages.create.mockResolvedValue({
+        content: [
+          {
+            type: 'text',
+            text: JSON.stringify({
+              intent: 'feedback',
+              confidence: 0.90,
+            }),
+          },
+        ],
+      });
+
+      const result = await engine.processVoiceCommand(
+        'The product was amazing, thank you!',
+        'customer-123'
+      );
+
+      expect(result.intent).toBe('feedback');
+      expect(result.message).toContain('Thank you');
+    });
+
+    it('should handle unknown intent when transcript is unclear', async () => {
+      mockClaude.messages.create.mockResolvedValue({
+        content: [
+          {
+            type: 'text',
+            text: JSON.stringify({
+              intent: 'unknown',
+              confidence: 0.15,
+            }),
+          },
+        ],
+      });
+
+      const result = await engine.processVoiceCommand(
+        'blah blah something',
+        'customer-123'
+      );
+
+      expect(result.intent).toBe('unknown');
+      expect(result.success).toBe(false);
+    });
+  });
+
+  describe('processVoiceCommand - Reorder Flow', () => {
+    beforeEach(() => {
+      mockBigQuery.query.mockResolvedValue([
+        [
+          { product_id: 'prod-001', product_name: 'Sleep Gummies', purchase_count: 5 },
+          { product_id: 'prod-002', product_name: 'CBD Oil', purchase_count: 3 },
+        ],
+      ]);
+
+      mockClaude.messages.create.mockResolvedValue({
+        content: [
+          {
+            type: 'text',
+            text: JSON.stringify({
+              intent: 'reorder',
+              product: 'Sleep Gummies',
+              quantity: 1,
+              confidence: 0.95,
+            }),
+          },
+        ],
+      });
+    });
+
+    it('should successfully create order for reorder intent', async () => {
+      mockLightspeed.post.mockResolvedValue({
+        data: {
+          Sale: {
+            saleID: 'sale-67890',
+            calcTotal: '29.99',
+          },
+        },
+      });
+
+      const result = await engine.processVoiceCommand(
+        'I want to reorder sleep gummies',
+        'customer-123'
+      );
+
+      expect(result.success).toBe(true);
+      expect(result.order_id).toBe('sale-67890');
+      expect(result.message).toContain('Sleep Gummies');
+      expect(result.message).toContain('sale-67890');
+    });
+
+    it('should create order with correct quantity', async () => {
+      mockClaude.messages.create.mockResolvedValue({
+        content: [
+          {
+            type: 'text',
+            text: JSON.stringify({
+              intent: 'reorder',
+              product: 'Sleep Gummies',
+              quantity: 3,
+              confidence: 0.95,
+            }),
+          },
+        ],
+      });
+
+      mockLightspeed.post.mockResolvedValue({
+        data: {
+          Sale: {
+            saleID: 'sale-99999',
+            calcTotal: '89.97',
+          },
+        },
+      });
+
+      const result = await engine.processVoiceCommand(
+        'I want 3 sleep gummies',
+        'customer-123'
+      );
+
+      expect(result.success).toBe(true);
+      expect(result.message).toContain('3x');
+      expect(mockLightspeed.post).toHaveBeenCalledWith(
+        '/Account/1/Sale.json',
+        expect.objectContaining({
+          SaleLines: expect.arrayContaining([
+            expect.objectContaining({
+              unitQuantity: 3,
+            }),
+          ]),
+        })
+      );
+    });
+
+    it('should handle product not found in history', async () => {
+      mockClaude.messages.create.mockResolvedValue({
+        content: [
+          {
+            type: 'text',
+            text: JSON.stringify({
+              intent: 'reorder',
+              product: 'Nonexistent Product',
+              quantity: 1,
+              confidence: 0.75,
+            }),
+          },
+        ],
+      });
+
+      // Second BigQuery query returns no results
+      mockBigQuery.query.mockResolvedValueOnce([
+        [
+          { product_id: 'prod-001', product_name: 'Sleep Gummies', purchase_count: 5 },
+        ],
+      ]).mockResolvedValueOnce([[]]);
+
+      const result = await engine.processVoiceCommand(
+        'I want to reorder Nonexistent Product',
+        'customer-123'
+      );
+
+      expect(result.success).toBe(false);
+      expect(result.message).toContain("couldn't find");
+      expect(result.message).toContain('Nonexistent Product');
+    });
+
+    it('should handle Lightspeed order creation failure', async () => {
+      mockLightspeed.post.mockRejectedValue(new Error('Lightspeed API error'));
+
+      const result = await engine.processVoiceCommand(
+        'I want to reorder sleep gummies',
+        'customer-123'
+      );
+
+      expect(result.success).toBe(false);
+      expect(result.message).toContain('Failed to create order');
+    });
+  });
+
+  describe('processVoiceCommand - Error Handling', () => {
+    it('should handle Claude API errors gracefully', async () => {
+      mockBigQuery.query.mockResolvedValue([[]]);
+      mockClaude.messages.create.mockRejectedValue(new Error('Claude API timeout'));
+
+      const result = await engine.processVoiceCommand(
+        'test command',
+        'customer-123'
+      );
+
+      expect(result.success).toBe(false);
+      expect(result.message).toContain('Failed to process voice command');
+      expect(result.intent).toBe('unknown');
+    });
+
+    it('should handle BigQuery errors gracefully', async () => {
+      mockBigQuery.query.mockRejectedValue(new Error('BigQuery connection failed'));
+      mockClaude.messages.create.mockResolvedValue({
+        content: [
+          {
+            type: 'text',
+            text: JSON.stringify({
+              intent: 'question',
+              confidence: 0.80,
+            }),
+          },
+        ],
+      });
+
+      const result = await engine.processVoiceCommand(
+        'what is my order status?',
+        'customer-123'
+      );
+
+      // Should still process successfully with empty history
+      expect(result.intent).toBe('question');
+    });
+
+    it('should handle malformed Claude JSON response', async () => {
+      mockBigQuery.query.mockResolvedValue([[]]);
+      mockClaude.messages.create.mockResolvedValue({
+        content: [
+          {
+            type: 'text',
+            text: 'This is not valid JSON!',
+          },
+        ],
+      });
+
+      const result = await engine.processVoiceCommand(
+        'test command',
+        'customer-123'
+      );
+
+      expect(result.success).toBe(false);
+      expect(result.intent).toBe('unknown');
+    });
+
+    it('should handle invalid intent type from Claude', async () => {
+      mockBigQuery.query.mockResolvedValue([[]]);
+      mockClaude.messages.create.mockResolvedValue({
+        content: [
+          {
+            type: 'text',
+            text: JSON.stringify({
+              intent: 'invalid_intent_type',
+              confidence: 0.90,
+            }),
+          },
+        ],
+      });
+
+      const result = await engine.processVoiceCommand(
+        'test command',
+        'customer-123'
+      );
+
+      expect(result.intent).toBe('unknown');
+    });
+  });
+
+  // ============================================================================
+  // PROPERTY-BASED TESTS - Order Validation
+  // ============================================================================
+
+  describe('Property-Based Tests - Order Validation', () => {
+    beforeEach(() => {
+      mockBigQuery.query.mockResolvedValue([
+        [{ product_id: 'prod-001', product_name: 'Test Product', purchase_count: 1 }],
+      ]);
+    });
+
+    it('should handle various quantity values correctly', async () => {
+      const quantities = [1, 2, 5, 10, 50, 100];
+
+      for (const qty of quantities) {
+        mockClaude.messages.create.mockResolvedValue({
+          content: [
+            {
+              type: 'text',
+              text: JSON.stringify({
+                intent: 'reorder',
+                product: 'Test Product',
+                quantity: qty,
+                confidence: 0.95,
+              }),
+            },
+          ],
+        });
+
+        mockLightspeed.post.mockResolvedValue({
+          data: {
+            Sale: {
+              saleID: `sale-${qty}`,
+              calcTotal: String(qty * 29.99),
+            },
+          },
+        });
+
+        const result = await engine.processVoiceCommand(
+          `I want ${qty} test products`,
+          'customer-123'
+        );
+
+        expect(result.success).toBe(true);
+        expect(mockLightspeed.post).toHaveBeenCalledWith(
+          expect.any(String),
+          expect.objectContaining({
+            SaleLines: expect.arrayContaining([
+              expect.objectContaining({
+                unitQuantity: qty,
+              }),
+            ]),
+          })
+        );
+      }
+    });
+
+    it('should handle various customer ID formats', async () => {
+      const customerIds = [
+        '123',
+        'customer-456',
+        'cust_789',
+        'ABCD1234',
+        'user@example.com',
+      ];
+
+      mockClaude.messages.create.mockResolvedValue({
+        content: [
+          {
+            type: 'text',
+            text: JSON.stringify({
+              intent: 'question',
+              confidence: 0.85,
+            }),
+          },
+        ],
+      });
+
+      for (const customerId of customerIds) {
+        const result = await engine.processVoiceCommand(
+          'what is my order status?',
+          customerId
+        );
+
+        expect(result.intent).toBe('question');
+        expect(mockBigQuery.query).toHaveBeenCalledWith(
+          expect.objectContaining({
+            params: expect.objectContaining({
+              customerId,
+            }),
+          })
+        );
+      }
+    });
+
+    it('should handle various product name formats', async () => {
+      const productNames = [
+        'Sleep Gummies',
+        'CBD-Oil',
+        'Pain_Relief_Cream',
+        'THC Vape (Cherry)',
+        '1000mg Tincture',
+      ];
+
+      for (const productName of productNames) {
+        mockBigQuery.query.mockResolvedValue([
+          [{ product_id: 'prod-001', product_name: productName, purchase_count: 1 }],
+        ]);
+
+        mockClaude.messages.create.mockResolvedValue({
+          content: [
+            {
+              type: 'text',
+              text: JSON.stringify({
+                intent: 'reorder',
+                product: productName,
+                quantity: 1,
+                confidence: 0.90,
+              }),
+            },
+          ],
+        });
+
+        mockLightspeed.post.mockResolvedValue({
+          data: {
+            Sale: {
+              saleID: 'sale-123',
+              calcTotal: '29.99',
+            },
+          },
+        });
+
+        const result = await engine.processVoiceCommand(
+          `I want ${productName}`,
+          'customer-123'
+        );
+
+        expect(result.success).toBe(true);
+      }
+    });
+
+    it('should handle confidence scores within valid range [0, 1]', async () => {
+      const confidenceScores = [0.0, 0.25, 0.5, 0.75, 0.95, 1.0];
+
+      mockBigQuery.query.mockResolvedValue([[]]);
+
+      for (const confidence of confidenceScores) {
+        mockClaude.messages.create.mockResolvedValue({
+          content: [
+            {
+              type: 'text',
+              text: JSON.stringify({
+                intent: 'question',
+                confidence,
+              }),
+            },
+          ],
+        });
+
+        const result = await engine.processVoiceCommand(
+          'test command',
+          'customer-123'
+        );
+
+        expect(result.confidence).toBe(confidence);
+        expect(result.confidence).toBeGreaterThanOrEqual(0);
+        expect(result.confidence).toBeLessThanOrEqual(1);
+      }
+    });
+  });
+
+  // ============================================================================
+  // INTEGRATION TESTS - Payment Flow
+  // ============================================================================
+
+  describe('Integration Tests - Payment Flow', () => {
+    it('should complete full reorder flow: history → intent → order → payment', async () => {
+      // Step 1: Mock customer history
+      mockBigQuery.query.mockResolvedValue([
+        [
+          { product_id: 'prod-gummies-001', product_name: 'Sleep Gummies 25mg', purchase_count: 8 },
+          { product_id: 'prod-oil-002', product_name: 'CBD Oil 1000mg', purchase_count: 3 },
+        ],
+      ]);
+
+      // Step 2: Mock Claude intent extraction
+      mockClaude.messages.create.mockResolvedValue({
+        content: [
+          {
+            type: 'text',
+            text: JSON.stringify({
+              intent: 'reorder',
+              product: 'Sleep Gummies',
+              quantity: 2,
+              confidence: 0.96,
+            }),
+          },
+        ],
+      });
+
+      // Step 3: Mock Lightspeed order creation
+      mockLightspeed.post.mockResolvedValue({
+        data: {
+          Sale: {
+            saleID: 'SALE-2024-001',
+            calcTotal: '59.98',
+            customerID: 'customer-vip-123',
+            completed: false,
+          },
+        },
+      });
+
+      // Execute full flow
+      const result = await engine.processVoiceCommand(
+        'Hey, I need more of those sleep gummies. Give me 2 bottles.',
+        'customer-vip-123'
+      );
+
+      // Verify full flow completion
+      expect(result.success).toBe(true);
+      expect(result.order_id).toBe('SALE-2024-001');
+      expect(result.intent).toBe('reorder');
+      expect(result.confidence).toBe(0.96);
+      expect(result.message).toContain('2x');
+      expect(result.message).toContain('Sleep Gummies');
+
+      // Verify BigQuery was queried for history
+      expect(mockBigQuery.query).toHaveBeenCalledWith(
+        expect.objectContaining({
+          params: { customerId: 'customer-vip-123' },
+        })
+      );
+
+      // Verify Claude was called with history context
+      expect(mockClaude.messages.create).toHaveBeenCalledWith(
+        expect.objectContaining({
+          messages: expect.arrayContaining([
+            expect.objectContaining({
+              content: expect.stringContaining('Sleep Gummies 25mg'),
+            }),
+          ]),
+        })
+      );
+
+      // Verify Lightspeed order creation with correct parameters
+      expect(mockLightspeed.post).toHaveBeenCalledWith(
+        '/Account/1/Sale.json',
+        expect.objectContaining({
+          customerID: 'customer-vip-123',
+          completed: false,
+          SaleLines: [
+            {
+              itemID: 'prod-gummies-001',
+              unitQuantity: 2,
+            },
+          ],
+        })
+      );
+    });
+
+    it('should handle payment flow with product search fallback', async () => {
+      // Customer history doesn't contain product
+      mockBigQuery.query.mockResolvedValueOnce([
+        [
+          { product_id: 'prod-oil-002', product_name: 'CBD Oil', purchase_count: 3 },
+        ],
+      ]);
+
+      // Fallback search finds the product
+      mockBigQuery.query.mockResolvedValueOnce([
+        [
+          { product_id: 'prod-gummies-001', product_name: 'Sleep Gummies', purchase_count: 1 },
+        ],
+      ]);
+
+      mockClaude.messages.create.mockResolvedValue({
+        content: [
+          {
+            type: 'text',
+            text: JSON.stringify({
+              intent: 'reorder',
+              product: 'Sleep Gummies',
+              quantity: 1,
+              confidence: 0.88,
+            }),
+          },
+        ],
+      });
+
+      mockLightspeed.post.mockResolvedValue({
+        data: {
+          Sale: {
+            saleID: 'SALE-2024-002',
+            calcTotal: '29.99',
+          },
+        },
+      });
+
+      const result = await engine.processVoiceCommand(
+        'I want sleep gummies',
+        'customer-123'
+      );
+
+      expect(result.success).toBe(true);
+      expect(result.order_id).toBe('SALE-2024-002');
+      expect(mockBigQuery.query).toHaveBeenCalledTimes(2); // History + fallback search
+    });
+
+    it('should handle concurrent order requests from same customer', async () => {
+      mockBigQuery.query.mockResolvedValue([
+        [{ product_id: 'prod-001', product_name: 'Test Product', purchase_count: 5 }],
+      ]);
+
+      mockClaude.messages.create.mockResolvedValue({
+        content: [
+          {
+            type: 'text',
+            text: JSON.stringify({
+              intent: 'reorder',
+              product: 'Test Product',
+              quantity: 1,
+              confidence: 0.95,
+            }),
+          },
+        ],
+      });
+
+      mockLightspeed.post
+        .mockResolvedValueOnce({
+          data: { Sale: { saleID: 'SALE-A', calcTotal: '29.99' } },
+        })
+        .mockResolvedValueOnce({
+          data: { Sale: { saleID: 'SALE-B', calcTotal: '29.99' } },
+        });
+
+      // Concurrent requests
+      const [result1, result2] = await Promise.all([
+        engine.processVoiceCommand('I want test product', 'customer-123'),
+        engine.processVoiceCommand('I want test product', 'customer-123'),
+      ]);
+
+      expect(result1.success).toBe(true);
+      expect(result2.success).toBe(true);
+      expect(result1.order_id).not.toBe(result2.order_id);
+    });
+  });
+
+  // ============================================================================
+  // HEALTH CHECK TESTS
+  // ============================================================================
+
+  describe('healthCheck', () => {
+    it('should return healthy status when all services are operational', async () => {
+      mockLightspeed.get.mockResolvedValue({ status: 200 });
+      mockBigQuery.getDatasets.mockResolvedValue([[]]);
+
+      const health = await engine.healthCheck();
+
+      expect(health.status).toBe('healthy');
+      expect(health.claude_configured).toBe(true);
+      expect(health.lightspeed_connected).toBe(true);
+      expect(health.bigquery_connected).toBe(true);
+      expect(health.timestamp).toBeDefined();
+    });
+
+    it('should return degraded status when some services are down', async () => {
+      mockLightspeed.get.mockRejectedValue(new Error('Connection timeout'));
+      mockBigQuery.getDatasets.mockResolvedValue([[]]);
+
+      const health = await engine.healthCheck();
+
+      expect(health.status).toBe('degraded');
+      expect(health.claude_configured).toBe(true);
+      expect(health.lightspeed_connected).toBe(false);
+      expect(health.bigquery_connected).toBe(true);
+    });
+
+    it('should return unhealthy status when all services are down', async () => {
+      const originalKey = process.env.ANTHROPIC_API_KEY;
+      delete process.env.ANTHROPIC_API_KEY;
+
+      const newEngine = new VoiceCommerceEngine();
+
+      process.env.ANTHROPIC_API_KEY = originalKey;
+
+      mockLightspeed.get.mockRejectedValue(new Error('Connection failed'));
+      mockBigQuery.getDatasets.mockRejectedValue(new Error('BigQuery down'));
+
+      const health = await newEngine.healthCheck();
+
+      expect(health.status).toBe('unhealthy');
+    });
+
+    it('should include ISO timestamp in health check', async () => {
+      mockLightspeed.get.mockResolvedValue({ status: 200 });
+      mockBigQuery.getDatasets.mockResolvedValue([[]]);
+
+      const health = await engine.healthCheck();
+
+      expect(health.timestamp).toMatch(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/);
+    });
+  });
+});

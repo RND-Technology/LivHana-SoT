@@ -903,7 +903,7 @@ Subject: Texas Hemp-Derived Terpenes — Myrcene-Dominant Extract Available
 
 Hi [Name],
 
-I'm Jesse with TerpWorks, and we've got something you might need: hundreds of liters of myrcene-dominant, hemp-derived terpene extract.
+I'm Jesse with Terpwerk, and we've got something you might need: hundreds of liters of myrcene-dominant, hemp-derived terpene extract.
 
 Quick specs:
 - Source: Texas-grown hemp (DSHS licensed)
@@ -922,9 +922,9 @@ Let me know — happy to send COA + pricing sheet.
 
 Best,
 Jesse Niesen
-CEO, TerpWorks
+CEO, Terpwerk
 530-263-8143
-jesse@terpworks.com
+jesse@terpwerk.com
 ```
 
 ---

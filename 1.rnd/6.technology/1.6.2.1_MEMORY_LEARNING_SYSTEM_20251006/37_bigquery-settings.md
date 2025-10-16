@@ -1,0 +1,8 @@
+### BigQuery Settings
+
+```bash
+GCP_PROJECT_ID=livhana-prod
+MEMORY_DATASET_ID=customer_memory
+BIGQUERY_BATCH_SIZE=100
+BIGQUERY_FLUSH_INTERVAL_MS=30000
+```

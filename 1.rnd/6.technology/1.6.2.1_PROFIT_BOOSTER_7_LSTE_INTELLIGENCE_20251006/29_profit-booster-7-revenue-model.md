@@ -1,0 +1,1 @@
+## **💰 PROFIT BOOSTER #7 REVENUE MODEL**
