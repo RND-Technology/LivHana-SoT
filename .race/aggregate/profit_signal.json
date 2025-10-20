@@ -1,0 +1,12 @@
+{
+  "generated_at": "2025-10-20T07:22:25Z",
+  "pass_rate": 50.0,
+  "speed_score": 90.5,
+  "innovation_count": 2,
+  "weights": {
+    "pass_rate": 0.4,
+    "speed_score": 0.253,
+    "innovation": 5
+  },
+  "profit_signal": 52.897
+}

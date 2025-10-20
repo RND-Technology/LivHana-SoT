@@ -1,0 +1,15 @@
+{
+  "lane": "Lane 6",
+  "agent": "Web Agent",
+  "role": "External intelligence",
+  "status": "Monitoring Active",
+  "score": 60,
+  "highlights": [
+    "Dependency watchlist updated",
+    "Surfacing external signals"
+  ],
+  "metrics": {
+    "progress": "Dependency monitoring active"
+  },
+  "updated_at": "2025-10-20T06:55:00Z"
+}

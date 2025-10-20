@@ -1,0 +1,15 @@
+{
+  "lane": "Lane 1",
+  "agent": "Cursor/Claude Code",
+  "role": "Speed runner (local I/O + ripgrep)",
+  "status": "Ready for Tier-2 execution",
+  "score": 0,
+  "highlights": [
+    "Framework prepared for Tier-2 analysis",
+    "Awaiting orchestration signal"
+  ],
+  "metrics": {
+    "progress": "Framework ready, awaiting Tier-2 GO"
+  },
+  "updated_at": "2025-10-20T06:55:00Z"
+}

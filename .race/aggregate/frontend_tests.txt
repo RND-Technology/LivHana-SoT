@@ -1,0 +1,2 @@
+# Lane 2 baseline fallback
+# Populate this file with real test output to override the baseline metrics.

@@ -1,0 +1,581 @@
+{
+  "generated_at": "2025-10-20T06:55:00Z",
+  "root": "/workspace/LivHana-SoT",
+  "entries": [
+    {
+      "type": "directory",
+      "name": "1.1.1.1_rnd_leadership_empire_cockpit_visioneering",
+      "items": 71
+    },
+    {
+      "type": "file",
+      "name": "1.1.1.1_rnd_leadership_empire_cockpit_visioneering.md",
+      "size_bytes": 32041
+    },
+    {
+      "type": "directory",
+      "name": "1.2.1.8.local-delivery-api.20251002",
+      "items": 1
+    },
+    {
+      "type": "directory",
+      "name": "1.3.2.3.leafly-seo-profile.20251002",
+      "items": 1
+    },
+    {
+      "type": "file",
+      "name": "1.5.1.1_finance_layer_sovereign_life_os_master_monday_edition.md",
+      "size_bytes": 11357
+    },
+    {
+      "type": "directory",
+      "name": "1.rnd",
+      "items": 6
+    },
+    {
+      "type": "directory",
+      "name": "2.3.1.1.episode-001-texas-intro.20251002",
+      "items": 1
+    },
+    {
+      "type": "file",
+      "name": "3.1.0.1_ops_leadership_numerical_index_visioneering.md",
+      "size_bytes": 4665
+    },
+    {
+      "type": "file",
+      "name": "3.1.0.5_ops_leadership_file_classification_documentation.md",
+      "size_bytes": 4326
+    },
+    {
+      "type": "file",
+      "name": "3.2.0.5_ops_operations_session_summary_documentation.md",
+      "size_bytes": 11106
+    },
+    {
+      "type": "file",
+      "name": "3.3.1.7_ops_marketing_empire_cockpit_optimization_20251002.md",
+      "size_bytes": 8405
+    },
+    {
+      "type": "file",
+      "name": "3.6.0.5_ops_technology_file_naming_documentation.md",
+      "size_bytes": 2196
+    },
+    {
+      "type": "file",
+      "name": "3.6.0.6_ops_technology_ship_status_monitoring.md",
+      "size_bytes": 4851
+    },
+    {
+      "type": "directory",
+      "name": "3.6.1.1_ops_technology_gcp_4layer_deployment_plan_20251003",
+      "items": 52
+    },
+    {
+      "type": "file",
+      "name": "3.6.1.1_ops_technology_gcp_4layer_deployment_plan_20251003.md",
+      "size_bytes": 19677
+    },
+    {
+      "type": "directory",
+      "name": "3.8.1.3_ops_sop_systems_empire_cockpit_execution_20251002",
+      "items": 53
+    },
+    {
+      "type": "file",
+      "name": "3.8.1.3_ops_sop_systems_empire_cockpit_execution_20251002.md",
+      "size_bytes": 14092
+    },
+    {
+      "type": "file",
+      "name": "3.8.1.4_ops_sop_e2e_rollout_readiness_20251003.md",
+      "size_bytes": 8033
+    },
+    {
+      "type": "file",
+      "name": "3.8.1.5_ops_sop_pci_compliance_alert_20251003.md",
+      "size_bytes": 5740
+    },
+    {
+      "type": "directory",
+      "name": "5.5.1.6.vcs-exit-materials.20251002",
+      "items": 1
+    },
+    {
+      "type": "file",
+      "name": "ACTUAL_RECEIPTS.md",
+      "size_bytes": 3458
+    },
+    {
+      "type": "file",
+      "name": "AGENT_README.md",
+      "size_bytes": 1771
+    },
+    {
+      "type": "file",
+      "name": "CHANGELOG.md",
+      "size_bytes": 2909
+    },
+    {
+      "type": "file",
+      "name": "CHEETAH_FINAL_VICTORY.sh",
+      "size_bytes": 2231
+    },
+    {
+      "type": "file",
+      "name": "CHEETAH_VICTORY_NOW.sh",
+      "size_bytes": 3854
+    },
+    {
+      "type": "file",
+      "name": "DELETE_DUPLICATES.sh",
+      "size_bytes": 7517
+    },
+    {
+      "type": "file",
+      "name": "DEPLOY_ALL_MVPS_PARALLEL.sh",
+      "size_bytes": 5138
+    },
+    {
+      "type": "file",
+      "name": "DEPLOY_EMPIRE_NOW.sh",
+      "size_bytes": 3268
+    },
+    {
+      "type": "file",
+      "name": "DEPLOY_NOW_CLOUD_SHELL.md",
+      "size_bytes": 3580
+    },
+    {
+      "type": "file",
+      "name": "DNS_CHANGE_REGGIEANDDRO_COM.md",
+      "size_bytes": 7655
+    },
+    {
+      "type": "file",
+      "name": "DNS_CLEANUP_EXACT_STEPS.md",
+      "size_bytes": 8895
+    },
+    {
+      "type": "file",
+      "name": "DNS_UPDATES_REQUIRED.md",
+      "size_bytes": 1920
+    },
+    {
+      "type": "file",
+      "name": "DUPLICATE_SUMMARY.txt",
+      "size_bytes": 3821
+    },
+    {
+      "type": "file",
+      "name": "Dockerfile.age-verification-fixed",
+      "size_bytes": 180
+    },
+    {
+      "type": "file",
+      "name": "Dockerfile.quick-fix",
+      "size_bytes": 134
+    },
+    {
+      "type": "file",
+      "name": "EMERGENCY_STATUS_FOR_JESSE.md",
+      "size_bytes": 3288
+    },
+    {
+      "type": "directory",
+      "name": "ENGINEERED_PROMPTS_LIGHTSPEED_LEGAL_COA_SITE",
+      "items": 59
+    },
+    {
+      "type": "file",
+      "name": "ENGINEERED_PROMPTS_LIGHTSPEED_LEGAL_COA_SITE.md",
+      "size_bytes": 24240
+    },
+    {
+      "type": "directory",
+      "name": "ENGINEERED_PROMPT_VIP_COCKPIT_E2E",
+      "items": 13
+    },
+    {
+      "type": "file",
+      "name": "ENGINEERED_PROMPT_VIP_COCKPIT_E2E.md",
+      "size_bytes": 22198
+    },
+    {
+      "type": "file",
+      "name": "FETCH_HEAD",
+      "size_bytes": 0
+    },
+    {
+      "type": "file",
+      "name": "FULL_RECEIPTS_WAKE_UP_REPORT.md",
+      "size_bytes": 12552
+    },
+    {
+      "type": "file",
+      "name": "GCP_DEPLOYMENT_FIX.md",
+      "size_bytes": 6217
+    },
+    {
+      "type": "file",
+      "name": "GET_API_KEYS_NOW.md",
+      "size_bytes": 5967
+    },
+    {
+      "type": "file",
+      "name": "HARD_CODED_REPO_DESCRIPTION.md",
+      "size_bytes": 7168
+    },
+    {
+      "type": "file",
+      "name": "HNC_EPISODE_1_THE_EMPIRE_AWAKENS.md",
+      "size_bytes": 7506
+    },
+    {
+      "type": "directory",
+      "name": "HNC_Production",
+      "items": 1
+    },
+    {
+      "type": "directory",
+      "name": "HUMAN_WORK_FOR_JESSE",
+      "items": 14
+    },
+    {
+      "type": "file",
+      "name": "HUMAN_WORK_FOR_JESSE.md",
+      "size_bytes": 16575
+    },
+    {
+      "type": "file",
+      "name": "LICENSE",
+      "size_bytes": 1397
+    },
+    {
+      "type": "file",
+      "name": "MISSING_LINKS_IDENTIFICATION.md",
+      "size_bytes": 14081
+    },
+    {
+      "type": "file",
+      "name": "PLAN.md",
+      "size_bytes": 283
+    },
+    {
+      "type": "file",
+      "name": "PRODUCTION_READINESS_FIXES.md",
+      "size_bytes": 9106
+    },
+    {
+      "type": "file",
+      "name": "PRODUCTION_SYSTEM_COMPLETE.md",
+      "size_bytes": 10145
+    },
+    {
+      "type": "file",
+      "name": "README.md",
+      "size_bytes": 13409
+    },
+    {
+      "type": "file",
+      "name": "RED_TEAM_CHEETAH_FALLACY_SCAN.md",
+      "size_bytes": 9882
+    },
+    {
+      "type": "file",
+      "name": "REPLIT_DEPLOYMENT_PACKAGE.md",
+      "size_bytes": 11730
+    },
+    {
+      "type": "directory",
+      "name": "RPM_WEEKLY_PLAN_OCT4-12_2025",
+      "items": 137
+    },
+    {
+      "type": "file",
+      "name": "RPM_WEEKLY_PLAN_OCT4-12_2025.md",
+      "size_bytes": 43656
+    },
+    {
+      "type": "file",
+      "name": "RPM_WEEKLY_PLAN_OCT7-14_2025.md",
+      "size_bytes": 5417
+    },
+    {
+      "type": "file",
+      "name": "RPM_WEEKLY_PLAN_OCT8-15_2025_TRAVEL_ADJUSTED.md",
+      "size_bytes": 9361
+    },
+    {
+      "type": "file",
+      "name": "SESSION_COMPLETE_2025-10-07.md",
+      "size_bytes": 9734
+    },
+    {
+      "type": "file",
+      "name": "SHIP_NOW_INSTRUCTIONS.md",
+      "size_bytes": 6205
+    },
+    {
+      "type": "file",
+      "name": "START.sh",
+      "size_bytes": 2516
+    },
+    {
+      "type": "file",
+      "name": "TIER1_ACCOUNT_OPTIMIZATION_ASSESSMENT_20251006.md",
+      "size_bytes": 8259
+    },
+    {
+      "type": "file",
+      "name": "TIER1_FRONTIER_STACK_REQUIREMENTS.md",
+      "size_bytes": 11065
+    },
+    {
+      "type": "directory",
+      "name": "TRINITY_STATUS_UPDATE_OCT7_2025",
+      "items": 52
+    },
+    {
+      "type": "file",
+      "name": "TRINITY_STATUS_UPDATE_OCT7_2025.md",
+      "size_bytes": 13566
+    },
+    {
+      "type": "directory",
+      "name": "ULTIMATE_FUSED_MACHINE_WORK_DOCUMENTATION",
+      "items": 47
+    },
+    {
+      "type": "file",
+      "name": "ULTIMATE_FUSED_MACHINE_WORK_DOCUMENTATION.md",
+      "size_bytes": 15031
+    },
+    {
+      "type": "file",
+      "name": "VICTORY_REPORT.md",
+      "size_bytes": 10344
+    },
+    {
+      "type": "file",
+      "name": "VOICE_COCKPIT_FIX_COMPLETE.md",
+      "size_bytes": 7723
+    },
+    {
+      "type": "file",
+      "name": "WAKE_UP_STATUS_COMPLETE.md",
+      "size_bytes": 13479
+    },
+    {
+      "type": "file",
+      "name": "WEAKNESS_TO_STRENGTH_TRANSFORMATION_PLAN.md",
+      "size_bytes": 10243
+    },
+    {
+      "type": "file",
+      "name": "WEBSITE_STATUS_REPORT.md",
+      "size_bytes": 3638
+    },
+    {
+      "type": "file",
+      "name": "age-verification-smart-gate-fixed.js",
+      "size_bytes": 4210
+    },
+    {
+      "type": "file",
+      "name": "age-verification-smart-gate.js",
+      "size_bytes": 9444
+    },
+    {
+      "type": "directory",
+      "name": "automation",
+      "items": 2
+    },
+    {
+      "type": "directory",
+      "name": "backend",
+      "items": 18
+    },
+    {
+      "type": "directory",
+      "name": "backups",
+      "items": 1
+    },
+    {
+      "type": "file",
+      "name": "boot",
+      "size_bytes": 6599
+    },
+    {
+      "type": "file",
+      "name": "docker-compose.bigquery.yml",
+      "size_bytes": 3816
+    },
+    {
+      "type": "file",
+      "name": "docker-compose.empire.yml",
+      "size_bytes": 5867
+    },
+    {
+      "type": "file",
+      "name": "docker-compose.unified.yml",
+      "size_bytes": 3890
+    },
+    {
+      "type": "file",
+      "name": "docker-compose.yml",
+      "size_bytes": 1953
+    },
+    {
+      "type": "directory",
+      "name": "docs",
+      "items": 49
+    },
+    {
+      "type": "directory",
+      "name": "empire",
+      "items": 6
+    },
+    {
+      "type": "file",
+      "name": "env.example",
+      "size_bytes": 4012
+    },
+    {
+      "type": "directory",
+      "name": "fixes",
+      "items": 10
+    },
+    {
+      "type": "directory",
+      "name": "frontend",
+      "items": 5
+    },
+    {
+      "type": "directory",
+      "name": "infra",
+      "items": 3
+    },
+    {
+      "type": "file",
+      "name": "jest.config.unified.js",
+      "size_bytes": 4324
+    },
+    {
+      "type": "file",
+      "name": "launch_bigquery_tier1.sh",
+      "size_bytes": 4465
+    },
+    {
+      "type": "file",
+      "name": "launch_liv_hana.sh",
+      "size_bytes": 205
+    },
+    {
+      "type": "directory",
+      "name": "legacy",
+      "items": 1
+    },
+    {
+      "type": "file",
+      "name": "liv-hana-voice-agent.py",
+      "size_bytes": 5823
+    },
+    {
+      "type": "file",
+      "name": "markdownlint.config.cjs",
+      "size_bytes": 203
+    },
+    {
+      "type": "directory",
+      "name": "marketing",
+      "items": 3
+    },
+    {
+      "type": "directory",
+      "name": "missions",
+      "items": 1
+    },
+    {
+      "type": "file",
+      "name": "monitor-cheetah.sh",
+      "size_bytes": 2463
+    },
+    {
+      "type": "file",
+      "name": "nginx.conf",
+      "size_bytes": 2810
+    },
+    {
+      "type": "directory",
+      "name": "node_modules",
+      "items": 214
+    },
+    {
+      "type": "directory",
+      "name": "ops",
+      "items": 1
+    },
+    {
+      "type": "file",
+      "name": "package-lock.json",
+      "size_bytes": 111588
+    },
+    {
+      "type": "file",
+      "name": "package.json",
+      "size_bytes": 1835
+    },
+    {
+      "type": "file",
+      "name": "package.workspace.json",
+      "size_bytes": 4426
+    },
+    {
+      "type": "file",
+      "name": "quick-fix-service.js",
+      "size_bytes": 1852
+    },
+    {
+      "type": "directory",
+      "name": "reports",
+      "items": 18
+    },
+    {
+      "type": "directory",
+      "name": "scripts",
+      "items": 27
+    },
+    {
+      "type": "file",
+      "name": "start-cheetah-monitor.sh",
+      "size_bytes": 425
+    },
+    {
+      "type": "directory",
+      "name": "tests",
+      "items": 4
+    },
+    {
+      "type": "directory",
+      "name": "tools",
+      "items": 5
+    },
+    {
+      "type": "file",
+      "name": "tsconfig.json",
+      "size_bytes": 795
+    },
+    {
+      "type": "file",
+      "name": "watch-cheetah.js",
+      "size_bytes": 4436
+    },
+    {
+      "type": "directory",
+      "name": "websites",
+      "items": 1
+    }
+  ]
+}

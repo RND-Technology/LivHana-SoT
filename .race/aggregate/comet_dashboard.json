@@ -1,0 +1,158 @@
+{
+  "generated_at": "2025-10-20T07:22:29Z",
+  "tests": {
+    "total": 6,
+    "passed": 3,
+    "failed": 3,
+    "pass_rate": 50.0
+  },
+  "profit": {
+    "generated_at": "2025-10-20T07:22:25Z",
+    "pass_rate": 50.0,
+    "speed_score": 90.5,
+    "innovation_count": 2,
+    "weights": {
+      "pass_rate": 0.4,
+      "speed_score": 0.253,
+      "innovation": 5
+    },
+    "profit_signal": 52.897
+  },
+  "scoreboard": {
+    "generated_at": "2025-10-20T07:22:27Z",
+    "lanes": [
+      {
+        "lane": "Lane 1",
+        "agent": "Cursor/Claude Code",
+        "role": "Speed runner (local I/O + ripgrep)",
+        "status": "Ready for Tier-2 execution",
+        "score": 0,
+        "highlights": [
+          "Framework prepared for Tier-2 analysis",
+          "Awaiting orchestration signal"
+        ],
+        "metrics": {
+          "progress": "Framework ready, awaiting Tier-2 GO"
+        },
+        "updated_at": "2025-10-20T06:55:00Z"
+      },
+      {
+        "lane": "Lane 2",
+        "agent": "Replit Agent",
+        "role": "CI/CD metrics and automation",
+        "status": "Tier-2 Ready",
+        "score": 64.47,
+        "highlights": [
+          "CI/CD metrics package delivered",
+          "Utilities suite stabilized with automated tests",
+          "Security scan confirmed no hardcoded secrets"
+        ],
+        "metrics": {
+          "speed_seconds": 57,
+          "speed_score": 90.5,
+          "quality_pass_rate": 50,
+          "innovation_count": 2,
+          "revenue_protected_usd": 1173000
+        },
+        "updated_at": "2025-10-20T06:55:00Z"
+      },
+      {
+        "lane": "Lane 3",
+        "agent": "Agent Builder",
+        "role": "Workflow architecture",
+        "status": "Deliverables Completed",
+        "score": 80,
+        "highlights": [
+          "HNC automation nodes documented",
+          "Workflow spec ready for App Store submission"
+        ],
+        "metrics": {
+          "progress": "100% architecture baseline"
+        },
+        "updated_at": "2025-10-20T06:55:00Z"
+      },
+      {
+        "lane": "Lane 4",
+        "agent": "Claude Desktop",
+        "role": "Cross-lane orchestration",
+        "status": "Scoring Engine Active",
+        "score": 72,
+        "highlights": [
+          "Scoreboard automation online",
+          "Awaiting updated metrics from lanes"
+        ],
+        "metrics": {
+          "progress": "Scoreboard operational"
+        },
+        "updated_at": "2025-10-20T06:55:00Z"
+      },
+      {
+        "lane": "Lane 5",
+        "agent": "Liv Hana Meta Loop",
+        "role": "Meta-learning and pulse tracking",
+        "status": "Heartbeat Active",
+        "score": 68,
+        "highlights": [
+          "Five minute pulse updates streaming",
+          "Innovation log maintained"
+        ],
+        "metrics": {
+          "progress": "Innovation tracking active"
+        },
+        "updated_at": "2025-10-20T06:55:00Z"
+      },
+      {
+        "lane": "Lane 6",
+        "agent": "Web Agent",
+        "role": "External intelligence",
+        "status": "Monitoring Active",
+        "score": 60,
+        "highlights": [
+          "Dependency watchlist updated",
+          "Surfacing external signals"
+        ],
+        "metrics": {
+          "progress": "Dependency monitoring active"
+        },
+        "updated_at": "2025-10-20T06:55:00Z"
+      },
+      {
+        "lane": "Lane 7",
+        "agent": "COMET Orchestrator",
+        "role": "Broadcast and fusion logic",
+        "status": "Command Layer Active",
+        "score": 75,
+        "highlights": [
+          "Broadcast channel stabilized",
+          "Fusion gate automation prepared"
+        ],
+        "metrics": {
+          "progress": "Fusion gate operational"
+        },
+        "updated_at": "2025-10-20T06:55:00Z"
+      },
+      {
+        "lane": "Lane 8",
+        "agent": "CoPilot Assistant",
+        "role": "Code assist and review",
+        "status": "Integrated",
+        "score": 58,
+        "highlights": [
+          "Ready to assist with optimization",
+          "Connected to VS Code workflows"
+        ],
+        "metrics": {
+          "progress": "Standing by for Tier-2 execution"
+        },
+        "updated_at": "2025-10-20T06:55:00Z"
+      }
+    ],
+    "summary": {
+      "lane_count": 8,
+      "average_score": 59.68,
+      "pass_rate": 50.0,
+      "profit_signal": 52.897
+    }
+  },
+  "fusion_ready": false
+}
