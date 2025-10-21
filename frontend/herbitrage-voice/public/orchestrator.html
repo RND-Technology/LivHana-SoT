@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liv Hana Tier-1 Orchestrator Dashboard</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.8;
+            font-size: 1.1em;
+        }
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 30px;
+        }
+        .status-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            border-left: 4px solid #28a745;
+        }
+        .status-card.warning {
+            border-left-color: #ffc107;
+        }
+        .status-card.error {
+            border-left-color: #dc3545;
+        }
+        .status-card h3 {
+            margin: 0 0 15px 0;
+            color: #2c3e50;
+            font-size: 1.3em;
+        }
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 8px 0;
+            padding: 5px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .status-item:last-child {
+            border-bottom: none;
+        }
+        .status-label {
+            font-weight: 500;
+            color: #495057;
+        }
+        .status-value {
+            color: #6c757d;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9em;
+        }
+        .status-value.active {
+            color: #28a745;
+            font-weight: 600;
+        }
+        .status-value.inactive {
+            color: #dc3545;
+            font-weight: 600;
+        }
+        .prompt-preview {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 30px;
+            border-left: 4px solid #007bff;
+        }
+        .prompt-preview h3 {
+            margin: 0 0 15px 0;
+            color: #2c3e50;
+        }
+        .prompt-content {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 15px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.85em;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .refresh-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 25px;
+            font-size: 1em;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,123,255,0.3);
+            transition: all 0.3s ease;
+        }
+        .refresh-btn:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,123,255,0.4);
+        }
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #6c757d;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 30px;
+            border-left: 4px solid #dc3545;
+        }
+        .timestamp {
+            text-align: center;
+            padding: 20px;
+            color: #6c757d;
+            font-size: 0.9em;
+            border-top: 1px solid #e9ecef;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎼 Liv Hana Tier-1 Orchestrator</h1>
+            <p>Autonomous Orchestration Master | Claude Sonnet 4.5</p>
+        </div>
+        
+        <div id="content">
+            <div class="loading">
+                <p>Loading orchestrator status...</p>
+            </div>
+        </div>
+        
+        <div class="timestamp" id="timestamp">
+            Last updated: Loading...
+        </div>
+    </div>
+    
+    <button class="refresh-btn" onclick="loadStatus()">🔄 Refresh</button>
+    
+    <script>
+        async function loadStatus() {
+            const content = document.getElementById('content');
+            const timestamp = document.getElementById('timestamp');
+            
+            try {
+                const response = await fetch('/orchestrator');
+                const data = await response.json();
+                
+                if (data.status === 'healthy') {
+                    renderStatus(data);
+                } else {
+                    content.innerHTML = `
+                        <div class="error">
+                            <h3>Error Loading Status</h3>
+                            <p>${data.message || 'Unknown error occurred'}</p>
+                        </div>
+                    `;
+                }
+                
+                timestamp.textContent = `Last updated: ${new Date(data.timestamp).toLocaleString()}`;
+            } catch (error) {
+                content.innerHTML = `
+                    <div class="error">
+                        <h3>Connection Error</h3>
+                        <p>Failed to connect to orchestrator: ${error.message}</p>
+                    </div>
+                `;
+                timestamp.textContent = `Last updated: ${new Date().toLocaleString()}`;
+            }
+        }
+        
+        function renderStatus(data) {
+            const { orchestrator, voice_cockpit } = data;
+            
+            const statusClass = orchestrator.active ? '' : 'warning';
+            
+            document.getElementById('content').innerHTML = `
+                <div class="status-grid">
+                    <div class="status-card ${statusClass}">
+                        <h3>🚀 Orchestrator Status</h3>
+                        <div class="status-item">
+                            <span class="status-label">Active</span>
+                            <span class="status-value ${orchestrator.active ? 'active' : 'inactive'}">
+                                ${orchestrator.active ? '✅ ACTIVE' : '❌ INACTIVE'}
+                            </span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">Session Count</span>
+                            <span class="status-value">${orchestrator.session_count}</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">Stay TOONED</span>
+                            <span class="status-value ${orchestrator.stay_tooned ? 'active' : 'inactive'}">
+                                ${orchestrator.stay_tooned ? '✅ ENABLED' : '❌ DISABLED'}
+                            </span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">Last Boot</span>
+                            <span class="status-value">${orchestrator.last_boot || 'Never'}</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">Heartbeat</span>
+                            <span class="status-value">${orchestrator.heartbeat || 'None'}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="status-card">
+                        <h3>🎤 Voice Cockpit</h3>
+                        <div class="status-item">
+                            <span class="status-label">Service</span>
+                            <span class="status-value">${voice_cockpit.service}</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">Port</span>
+                            <span class="status-value">${voice_cockpit.port}</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">Integration</span>
+                            <span class="status-value active">${voice_cockpit.orchestrator_integration}</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">State File</span>
+                            <span class="status-value">${orchestrator.state_file.split('/').pop()}</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">Prompt File</span>
+                            <span class="status-value">${orchestrator.prompt_file.split('/').pop()}</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="prompt-preview">
+                    <h3>📝 Engineered Prompt Preview</h3>
+                    <div class="prompt-content">${orchestrator.prompt_preview}</div>
+                </div>
+            `;
+        }
+        
+        // Load status on page load
+        loadStatus();
+        
+        // Auto-refresh every 30 seconds
+        setInterval(loadStatus, 30000);
+    </script>
+</body>
+</html>
