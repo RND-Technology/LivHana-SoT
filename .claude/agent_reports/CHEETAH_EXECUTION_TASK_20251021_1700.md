@@ -3,6 +3,8 @@
 ## Mission Brief
 Execute Tier-1 orchestration tasks with focus on GSM secrets verification and TRUTH pipeline validation.
 
+**📋 REFERENCE:** See `.claude/agent_reports/CHEETAH_EXECUTION_PERFECT_PLAN_2025-10-21.md` for complete execution plan with 3 high-ROI flags.
+
 ## Current Scoreboard Status
 - Revenue Target: $125K–$175K (this week)
 - Protected Annual Revenue: $1.148M
