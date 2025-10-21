@@ -138,6 +138,42 @@ if add_secret \
   create_alias "JWT_SECRET_VOICE" "JWT_SECRET1"
 fi
 
+## 5. Add Calendar-Agent-Builder (GSM)
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "5/8: Calendar-Agent-Builder"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+add_secret \
+  "Calendar-Agent-Builder" \
+  "Google Calendar Agent Builder credentials/token (used by node_14)" \
+  "Paste Google Calendar credentials/token (JSON as one line or base64-encoded)"
+
+## 6. Add Gmail-Agent-Builder (GSM)
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "6/8: Gmail-Agent-Builder"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+add_secret \
+  "Gmail-Agent-Builder" \
+  "Gmail Agent Builder credentials/token (used by node_15)" \
+  "Paste Gmail credentials/token (JSON as one line or base64-encoded)"
+
+## 7. Add Drive-Agent-Builder (GSM)
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "7/8: Drive-Agent-Builder"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+add_secret \
+  "Drive-Agent-Builder" \
+  "Google Drive Agent Builder credentials/token (used by node_16)" \
+  "Paste Google Drive credentials/token (JSON as one line or base64-encoded)"
+
+## 8. Add LightSpeed-Agent-Builder (GSM)
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "8/8: LightSpeed-Agent-Builder"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+add_secret \
+  "LightSpeed-Agent-Builder" \
+  "LightSpeed POS API token for business tool integration (node_17)" \
+  "Paste LightSpeed POS API token"
+
 echo "========================================="
 echo "Secret Addition Complete!"
 echo "========================================="
