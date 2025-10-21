@@ -84,13 +84,14 @@
       },
       "inputs": ["transcribed_query", "voice_mode"],
       "outputs": ["session_state"],
-      "next": "node_04_mcp_knowledge"
+      "next": "node_07_guardrails"
     },
     {
       "id": "node_04_mcp_knowledge",
       "type": "mcp_tool",
       "name": "MCP - Knowledge & File Search",
-      "description": "Rube MCP broker for internal knowledge base and file search",
+      "description": "Rube MCP broker for internal knowledge base and file search [DEPRECATED - INACTIVE]",
+      "status": "inactive",
       "config": {
         "mcp_server": "rube-broker",
         "tools": [
@@ -118,12 +119,12 @@
         "conditions": [
           {
             "if": "knowledge_results.coverage < 0.5",
-            "then": "node_06_mcp_web",
+            "then": "node_07_guardrails",
             "description": "Low knowledge coverage → web search needed"
           },
           {
             "if": "query_type == 'real_time' OR query_type == 'trending'",
-            "then": "node_06_mcp_web",
+            "then": "node_07_guardrails",
             "description": "Real-time queries require web search"
           },
           {
@@ -132,17 +133,18 @@
             "description": "Sufficient knowledge + SoT → skip web, go to guardrails"
           }
         ],
-        "default": "node_06_mcp_web"
+        "default": "node_07_guardrails"
       },
       "inputs": ["session_state", "knowledge_results", "sot_references"],
       "outputs": ["routing_decision"],
-      "next": "node_06_mcp_web OR node_07_guardrails"
+      "next": "node_07_guardrails"
     },
     {
       "id": "node_06_mcp_web",
       "type": "mcp_tool",
       "name": "MCP - Web Search",
-      "description": "Web search via MCP for real-time data and verification",
+      "description": "Web search via MCP for real-time data and verification [DEPRECATED - INACTIVE]",
+      "status": "inactive",
       "config": {
         "mcp_server": "rube-broker",
         "tools": [

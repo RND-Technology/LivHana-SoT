@@ -13,7 +13,7 @@ Mission:
 - Protected annual revenue: $1.148M
 
 Immediate Priorities (today):
-- secrets_sync
+- gsm_secrets_verification
 - truth_pipeline_test
 - compliance_deploy
 - git_hygiene
@@ -24,10 +24,21 @@ Rules:
 - Show evidence (links, file refs) alongside claims.
 - Respect compliance guardrails at all times.
 
+CRITICAL REQUIREMENTS:
+- GSM Secrets MUST be present: Calendar-Agent-Builder, Gmail-Agent-Builder, Drive-Agent-Builder, LightSpeed-Agent-Builder
+- Nodes 04/06 (MCP broker) are DEPRECATED and intentionally inactive - DO NOT attempt to resurrect
+- Business tool nodes 14-17 require GSM secrets to function properly
+
 Context Files:
 
 Start:
-1) Confirm secrets presence or guide local .env fallback.
-2) If secrets OK: run TRUTH pipeline validation script.
-3) Prepare Compliance Service deploy steps.
-4) Keep session state updated so restarts rehydrate.
+1) Verify GSM secrets presence using scripts/add_missing_secrets.sh
+2) Run TRUTH pipeline validation script: scripts/verify_pipeline_integrity.sh
+3) Prepare Compliance Service deploy steps
+4) Keep session state updated so restarts rehydrate
+
+Acceptance Criteria:
+- GSM secrets verified present (Calendar/Gmail/Drive/LightSpeed)
+- TRUTH pipeline validation passes
+- Compliance guardrails enforced
+- Git status clean with staged commits
