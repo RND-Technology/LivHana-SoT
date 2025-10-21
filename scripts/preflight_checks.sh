@@ -63,17 +63,17 @@ echo ""
 log_info "Category 1: Environment Variables"
 echo ""
 
-# Check OPENAI_API_KEY
-log_check "OPENAI_API_KEY present and valid"
+# Check OPENAI_API_KEY (OPTIONAL - fallback only, Whisper is primary)
+log_check "OPENAI_API_KEY present (optional fallback)"
 if [[ -z "${OPENAI_API_KEY:-}" ]]; then
-    log_fail "OPENAI_API_KEY not set - voice mode fallback will fail"
-    echo "  Fix: export OPENAI_API_KEY='sk-...'"
+    log_warn "OPENAI_API_KEY not set - voice fallback disabled (Whisper STT is primary, this is OK)"
+    echo "  Note: Only needed if Whisper fails; not critical for normal operation"
 else
     # Validate format (starts with sk- or sk-proj-)
     if [[ "$OPENAI_API_KEY" =~ ^sk-[a-zA-Z0-9_-]+$ ]]; then
         log_pass "OPENAI_API_KEY set and valid format"
     else
-        log_fail "OPENAI_API_KEY has invalid format (should start with 'sk-')"
+        log_warn "OPENAI_API_KEY has unexpected format (should start with 'sk-')"
         echo "  Current value starts with: ${OPENAI_API_KEY:0:3}..."
     fi
 fi
