@@ -1,0 +1,276 @@
+{
+  "workflow_id": "wf_livhana_truth_pipeline_15node",
+  "workflow_name": "Liv Hana TRUTH Pipeline - 15-Node Cannabis Intelligence (MCP PURGED)",
+  "version": "2.0.0",
+  "created": "2025-10-21T21:00:00Z",
+  "description": "Production-ready 15-node Agent Builder workflow - MCP broker REMOVED (hallucinated dependency), GSM secrets PRIORITIZED as TIER-1 CRITICAL",
+  "secrets": {
+    "anthropic_api_key": "${GSM:ANTHROPIC_API_KEY}",
+    "openai_api_key": "${GSM:OPENAI_API_KEY}",
+    "gmail_api_key": "${GSM:Gmail-Agent-Builder}",
+    "drive_api_key": "${GSM:Drive-Agent-Builder}",
+    "calendar_api_key": "${GSM:Calendar-Agent-Builder}",
+    "lightspeed_token": "${GSM:LightSpeed-Agent-Builder}",
+    "gcp_cloudrun_key": "${GSM:GCP-CloudRun-Agent-Builder}"
+  },
+  "nodes": [
+    {
+      "id": "node_01_start",
+      "type": "start",
+      "name": "Start",
+      "description": "Entry point for cannabis intelligence queries",
+      "outputs": ["user_query", "session_id", "timestamp"],
+      "next": "node_02_voice_agent"
+    },
+    {
+      "id": "node_02_voice_agent",
+      "type": "voice_agent",
+      "name": "Voice Agent",
+      "description": "Voice interaction layer with Brevity/Mentor/Silence modes",
+      "config": {
+        "modes": {
+          "brevity": {"trigger": "Liv", "max_tokens": 120, "style": "concise status updates"},
+          "mentor": {"trigger": "default", "max_tokens": 300, "style": "educational explanations"},
+          "silence": {"trigger": "pause", "max_tokens": 0, "style": "JSON output only"}
+        },
+        "stt_endpoint": "http://127.0.0.1:2022/v1",
+        "tts_endpoint": "http://127.0.0.1:8880/v1",
+        "fallback_stt": "https://api.openai.com/v1",
+        "timeout_ms": 10000
+      },
+      "inputs": ["user_query"],
+      "outputs": ["transcribed_query", "voice_mode"],
+      "next": "node_03_session_anchor"
+    },
+    {
+      "id": "node_03_session_anchor",
+      "type": "set_state",
+      "name": "Session Anchor (Set State)",
+      "description": "Machine-readable session state with TRUTH validation checkpoints",
+      "config": {
+        "anchor_version": "1.0.0",
+        "session_persistence": true,
+        "checkpoint_interval_tokens": 1000,
+        "truth_check_enforcement": {
+          "min_citations_sot": 1,
+          "min_citations_web": 2,
+          "block_end_until_met": true
+        }
+      },
+      "inputs": ["transcribed_query", "voice_mode"],
+      "outputs": ["session_state"],
+      "next": "node_04_guardrails"
+    },
+    {
+      "id": "node_04_guardrails",
+      "type": "guardrails",
+      "name": "Guardrails (7 Systems)",
+      "description": "AGE21, PII, Cannabis Compliance, Financial Accuracy, Secrets Handling, Medical Claims, Novel Cannabinoids",
+      "config": {
+        "guardrails": [
+          {"id": "gr_age21", "name": "AGE21 Verification", "rule": "Require 21+ confirmation", "enforcement": "block", "logging": true},
+          {"id": "gr_pii", "name": "PII Redaction", "rule": "Redact email, phone, SSN, address", "enforcement": "sanitize", "logging": true},
+          {"id": "gr_cannabis_compliance", "name": "Cannabis Compliance", "rule": "THC ≤ 0.3%, COA required", "enforcement": "warn_and_verify", "logging": true},
+          {"id": "gr_financial_accuracy", "name": "Financial Accuracy", "rule": "Algorithmic profit only", "enforcement": "validate", "logging": true},
+          {"id": "gr_secrets", "name": "Secrets Handling", "rule": "IAM-only, no plaintext", "enforcement": "block", "logging": true},
+          {"id": "gr_medical_claims", "name": "Medical Claims Blocker", "rule": "Block therapeutic claims", "enforcement": "block_and_map", "logging": true},
+          {"id": "gr_novel_cannabinoids", "name": "Novel Cannabinoid Filter", "rule": "NIST-approved only", "enforcement": "block", "logging": true}
+        ],
+        "false_block_rate_max": 0.01
+      },
+      "inputs": ["session_state"],
+      "outputs": ["guardrails_status", "sanitized_data"],
+      "next": "node_05_profit_function"
+    },
+    {
+      "id": "node_05_profit_function",
+      "type": "function",
+      "name": "Profit Assessment Function",
+      "description": "Algorithmic profit estimation using velocity × margin formula",
+      "config": {
+        "formula": "profit_estimate = (velocity_units_per_month * margin_per_unit * 12) - (fixed_costs_annual + variable_costs_annual)"
+      },
+      "inputs": ["sanitized_data", "guardrails_status"],
+      "outputs": ["profit_estimate", "confidence_level"],
+      "next": "node_06_rpm_result"
+    },
+    {
+      "id": "node_06_rpm_result",
+      "type": "agent",
+      "name": "RPM Agent 1 - Result",
+      "description": "Define the desired outcome/result in RPM framework",
+      "config": {"agent_type": "rpm_result", "max_tokens": 200, "temperature": 0.3},
+      "inputs": ["session_state", "profit_estimate"],
+      "outputs": ["rpm_result"],
+      "next": "node_07_rpm_purpose"
+    },
+    {
+      "id": "node_07_rpm_purpose",
+      "type": "agent",
+      "name": "RPM Agent 2 - Purpose",
+      "description": "Identify the purpose/why behind the desired result",
+      "config": {"agent_type": "rpm_purpose", "max_tokens": 200, "temperature": 0.3},
+      "inputs": ["rpm_result"],
+      "outputs": ["rpm_purpose"],
+      "next": "node_08_rpm_massive_actions"
+    },
+    {
+      "id": "node_08_rpm_massive_actions",
+      "type": "agent",
+      "name": "RPM Agent 3 - Massive Actions",
+      "description": "Generate massive actions to achieve the result",
+      "config": {"agent_type": "rpm_massive_actions", "max_actions": 25, "max_tokens": 1000, "temperature": 0.5},
+      "inputs": ["rpm_result", "rpm_purpose", "profit_estimate"],
+      "outputs": ["rpm_massive_actions"],
+      "next": "node_09_rpm_validation"
+    },
+    {
+      "id": "node_09_rpm_validation",
+      "type": "agent",
+      "name": "RPM Agent 4 - Validation",
+      "description": "Validate RPM actions against feasibility, compliance, and profitability",
+      "config": {"agent_type": "rpm_validation", "max_tokens": 500, "temperature": 0.2},
+      "inputs": ["rpm_massive_actions", "guardrails_status"],
+      "outputs": ["rpm_validated_actions", "validation_flags"],
+      "next": "node_10_rpm_emit"
+    },
+    {
+      "id": "node_10_rpm_emit",
+      "type": "function",
+      "name": "RPM Agent 5 - Emit",
+      "description": "Emit RPM card with DNA tagging + COMPETITION PREDICTION",
+      "config": {
+        "output_format": "rpm_card_json",
+        "output_path": "data/rpm_outputs/rpm_card.json",
+        "post_emit_hooks": [
+          {
+            "action": "record_prediction",
+            "engine": "rpm_competition_engine",
+            "auto_capture": true
+          },
+          {
+            "action": "refresh_scoreboard",
+            "script": "scripts/rpm_scoreboard_update.py"
+          }
+        ]
+      },
+      "inputs": ["rpm_validated_actions", "session_state", "profit_estimate"],
+      "outputs": ["rpm_card", "prediction_id"],
+      "next": "node_11_calendar_tool"
+    },
+    {
+      "id": "node_11_calendar_tool",
+      "type": "business_tool",
+      "name": "Business Tool - Google Calendar",
+      "description": "Schedule tasks from RPM actions into Google Calendar",
+      "priority": "TIER-1 CRITICAL",
+      "config": {
+        "tool": "google_calendar",
+        "api_key": "${GSM:Calendar-Agent-Builder}",
+        "calendar_id": "primary",
+        "auto_schedule": false,
+        "human_approval_required": true
+      },
+      "inputs": ["rpm_card"],
+      "outputs": ["calendar_events_created"],
+      "next": "node_12_gmail_tool"
+    },
+    {
+      "id": "node_12_gmail_tool",
+      "type": "business_tool",
+      "name": "Business Tool - Gmail",
+      "description": "Send RPM summary via Gmail",
+      "priority": "TIER-1 CRITICAL",
+      "config": {
+        "tool": "gmail",
+        "api_key": "${GSM:Gmail-Agent-Builder}",
+        "auto_send": false,
+        "human_approval_required": true
+      },
+      "inputs": ["rpm_card", "calendar_events_created"],
+      "outputs": ["email_sent"],
+      "next": "node_13_drive_tool"
+    },
+    {
+      "id": "node_13_drive_tool",
+      "type": "business_tool",
+      "name": "Business Tool - Google Drive",
+      "description": "Store RPM artifacts in Google Drive",
+      "priority": "TIER-1 CRITICAL",
+      "config": {
+        "tool": "google_drive",
+        "api_key": "${GSM:Drive-Agent-Builder}",
+        "folder_id": "LivHana-RPM-Archive",
+        "auto_upload": true
+      },
+      "inputs": ["rpm_card", "session_state"],
+      "outputs": ["drive_file_id", "drive_url"],
+      "next": "node_14_lightspeed_tool"
+    },
+    {
+      "id": "node_14_lightspeed_tool",
+      "type": "business_tool",
+      "name": "Business Tool - LightSpeed",
+      "description": "Query LightSpeed POS for dispensary data",
+      "priority": "TIER-1 CRITICAL",
+      "config": {
+        "tool": "lightspeed",
+        "api_token": "${GSM:LightSpeed-Agent-Builder}",
+        "account_id": "${GSM:LIGHTSPEED_ACCOUNT_ID}",
+        "base_url": "https://api.lightspeedapp.com"
+      },
+      "inputs": ["rpm_card"],
+      "outputs": ["lightspeed_data"],
+      "next": "node_15_end"
+    },
+    {
+      "id": "node_15_end",
+      "type": "end",
+      "name": "End",
+      "description": "Workflow completion with TRUTH validation and competition scoring",
+      "config": {
+        "truth_validation_enforcement": {
+          "min_citations_sot": 1,
+          "min_citations_web": 2,
+          "block_if_not_met": true
+        },
+        "post_completion_hooks": [
+          {
+            "action": "record_actual",
+            "engine": "rpm_competition_engine",
+            "auto_capture": true
+          }
+        ]
+      },
+      "inputs": ["rpm_card", "lightspeed_data", "session_state"],
+      "outputs": ["workflow_result", "actual_id", "score"],
+      "next": null
+    }
+  ],
+  "slo_targets": {
+    "voice_p95_latency_ms": 1200,
+    "orchestrator_p95_latency_ms": 3000,
+    "guardrail_false_block_rate": 0.01,
+    "citation_completeness_pct": 0.95
+  },
+  "monitoring": {
+    "emit_metrics_to": ".race/aggregate/comet_dashboard.json",
+    "log_level": "INFO",
+    "trace_all_node_transitions": true
+  },
+  "fallacy_corrections": {
+    "removed_nodes": ["node_04_mcp_knowledge", "node_06_mcp_web"],
+    "reason": "MCP broker was hallucinated dependency - purged per Jesse CEO directive 2025-10-21",
+    "replacement": "Direct routing from Session Anchor → Guardrails (simpler, faster, no external broker needed)"
+  },
+  "tier1_priorities": {
+    "critical_blockers": [
+      "GSM:Calendar-Agent-Builder (node 11)",
+      "GSM:Gmail-Agent-Builder (node 12)",
+      "GSM:Drive-Agent-Builder (node 13)",
+      "GSM:LightSpeed-Agent-Builder (node 14)"
+    ],
+    "solution_required": "NOW - not optional"
+  }
+}
+
