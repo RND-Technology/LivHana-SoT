@@ -1,1 +1,0 @@
-## 📈 PROBABILITY OF SUCCESS

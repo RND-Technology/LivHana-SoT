@@ -1,0 +1,7 @@
+{
+  "id": "node-03-set-state",
+  "name": "Session Anchor / Set State",
+  "type": "state",
+  "checkpoints": ["truth", "citations"],
+  "next": "node-04-mcp-knowledge"
+}

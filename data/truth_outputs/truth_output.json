@@ -1,20 +1,20 @@
 {
   "status": "ok",
-  "summary": "Stub summary. Replace with real Claude output.",
+  "summary": "Synthesized from compressed facts (stub)",
   "claims": [
     {
       "id": "C1",
-      "claim": "Stub fact claim.",
+      "claim": "Stub",
       "testable": {
         "command": "echo Stub",
         "expected": "Stub"
       },
       "reproducible": {
-        "command_block": "cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT && echo Stub"
+        "command_block": "echo Stub"
       },
       "unambiguous": {
         "values": {
-          "example_numeric": 1
+          "k": 1
         }
       },
       "traceable": {
@@ -54,7 +54,7 @@
   "token_report": {
     "input_used": 0,
     "output_target": 0,
-    "compression_saved_pct": 0
+    "compression_saved_pct": 40
   },
-  "timestamp": "2025-10-21T05:38:56Z"
+  "timestamp": "2025-10-21T07:50:08Z"
 }

@@ -1,4 +1,81 @@
 #!/usr/bin/env python3
+import argparse, json, os, sys, time
+
+try:
+    import yaml  # type: ignore
+except Exception:
+    yaml = None
+
+
+def log(line: str, log_path: str | None) -> None:
+    msg = f"[VERIFY] {time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())} {line}"
+    print(msg)
+    if log_path:
+        try:
+            with open(log_path, "a") as f:
+                f.write(msg + "\n")
+        except Exception:
+            pass
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--config", required=True)
+    parser.add_argument("--log", required=False)
+    args = parser.parse_args()
+
+    cfg_path = os.path.abspath(args.config)
+    log_path = os.path.abspath(args.log) if args.log else None
+
+    # Basic file presence
+    if not os.path.exists(cfg_path):
+        log(f"ERROR: missing config: {cfg_path}", log_path)
+        return 1
+
+    # YAML load
+    data = None
+    if yaml is None:
+        log("WARN: PyYAML not installed; skipping deep schema checks", log_path)
+    else:
+        try:
+            with open(cfg_path, "r") as f:
+                data = yaml.safe_load(f)
+        except Exception as e:
+            log(f"ERROR: failed to parse YAML: {e}", log_path)
+            return 1
+
+    # Minimal schema checks
+    required_top = ["persona", "compliance", "voice_mode"]
+    missing = []
+    if isinstance(data, dict):
+        for key in required_top:
+            if key not in data:
+                missing.append(key)
+    if missing:
+        log(f"WARN: config missing keys: {', '.join(missing)}", log_path)
+
+    # Check secrets presence in env (non-fatal)
+    required_secrets = [
+        "DEEPSEEK_API_KEY",
+        "BLUECHECK_API_KEY",
+        "GITHUB_PERSONAL_ACCESS_TOKEN",
+        "JWT_SECRET1",
+    ]
+    for env_name in required_secrets:
+        if os.environ.get(env_name):
+            log(f"OK env {env_name} present", log_path)
+        else:
+            log(f"WARN env {env_name} missing", log_path)
+
+    # Touch/create state dir
+    log("OK: verify complete (non-fatal warnings allowed)", log_path)
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
+
+#!/usr/bin/env python3
 """
 Pipeline Integrity Verification
 Liv Hana | Tier 1 100% True Absolute Standard | Autonomous Orchestration Master

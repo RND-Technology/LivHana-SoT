@@ -1,2 +1,0 @@
-### Core Principle: 100% Always True LivHana Absolute Standard
-**Any errors = instant loss of racing privileges flag sent to Jesse for review with instantaneous reprimand and course correction opportunity to metafix self heal self learn and hard code corrective learning to regain 100% SoT Correctness Realigning with Mission and Team Immediately to Continue Race while status remains pending Jesse's review of misconduct violating agreement.**

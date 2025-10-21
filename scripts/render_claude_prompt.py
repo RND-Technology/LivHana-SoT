@@ -1,4 +1,130 @@
 #!/usr/bin/env python3
+import argparse, json, os, sys, time
+
+try:
+    import yaml  # type: ignore
+except Exception:
+    yaml = None
+
+
+PROMPT_HEADER = (
+    "You are Liv Hana — Tier‑1 Orchestration Layer (voice-first) running in Cursor.\n"
+    "Operate with: concise actions, evidence-first, numbered steps, <5 min verification.\n"
+)
+
+
+def load_yaml(path: str) -> dict:
+    if yaml is None:
+        return {}
+    with open(path, "r") as f:
+        return yaml.safe_load(f) or {}
+
+
+def load_state(path: str) -> dict:
+    try:
+        if os.path.exists(path) and os.path.getsize(path) > 0:
+            with open(path, "r") as f:
+                return json.load(f)
+    except Exception:
+        pass
+    return {}
+
+
+def save_state(path: str, state: dict) -> None:
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w") as f:
+        json.dump(state, f, indent=2)
+
+
+def render_prompt(cfg: dict, state: dict) -> str:
+    persona = cfg.get("persona", {})
+    compliance = cfg.get("compliance", {})
+    rpm = cfg.get("rpm", {})
+    context = cfg.get("context", {})
+
+    lines = [PROMPT_HEADER]
+    lines.append(f"Persona: {persona.get('name','Liv Hana')} — {persona.get('role','Tier‑1 Orchestration Layer')}\n")
+    lines.append("Guardrails:")
+    lines.append(f"- LifeWard: {bool(compliance.get('lifeward_standard', True))}")
+    lines.append(f"- Age 21+: {bool(compliance.get('age_21_plus_enforced', True))}")
+    lines.append(f"- GA-56 active: {bool(compliance.get('ga_56_active', True))}")
+    if compliance.get("texas_rules"):
+        lines.append("- Texas rules: " + ", ".join(map(str, compliance["texas_rules"])))
+    lines.append("")
+
+    lines.append("Mission:")
+    lines.append(f"- Revenue this week: {rpm.get('revenue_target_this_week', '$125K–$175K')}")
+    lines.append(f"- Protected annual revenue: {rpm.get('protected_annual_revenue', '$1.148M')}\n")
+
+    lines.append("Immediate Priorities (today):")
+    for p in rpm.get("priorities", ["secrets_sync", "truth_pipeline_test", "compliance_deploy", "git_hygiene"]):
+        lines.append(f"- {p}")
+    lines.append("")
+
+    # Continuity cues
+    last_cmd = state.get("runtime", {}).get("last_command")
+    next_actions = state.get("runtime", {}).get("next_actions", [])
+    if last_cmd:
+        lines.append(f"Last command: {last_cmd}")
+    if next_actions:
+        lines.append("Next actions:")
+        for a in next_actions[:5]:
+            lines.append(f"- {a}")
+        lines.append("")
+
+    lines.append("Rules:")
+    lines.append("- Only send non-empty voice messages; avoid empty payload errors.")
+    lines.append("- Split work into numbered steps; verify each within 5 minutes.")
+    lines.append("- Show evidence (links, file refs) alongside claims.")
+    lines.append("- Respect compliance guardrails at all times.\n")
+
+    # Context pointers
+    lines.append("Context Files:")
+    for key in ("weekly_plan_path", "master_plan_path", "agent_builder_config_path"):
+        path = context.get(key)
+        if path:
+            lines.append(f"- {key}: {path}")
+    lines.append("")
+
+    lines.append("Start:")
+    lines.append("1) Confirm secrets presence or guide local .env fallback.")
+    lines.append("2) If secrets OK: run TRUTH pipeline validation script.")
+    lines.append("3) Prepare Compliance Service deploy steps.")
+    lines.append("4) Keep session state updated so restarts rehydrate.\n")
+
+    return "\n".join(lines)
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--config", required=True)
+    parser.add_argument("--state", required=True)
+    parser.add_argument("--out", required=True)
+    args = parser.parse_args()
+
+    cfg = load_yaml(args.config)
+    state = load_state(args.state)
+
+    # Ensure runtime container exists
+    state.setdefault("runtime", {})
+    state.setdefault("heartbeat", {})
+    state["runtime"].setdefault("last_emit_utc", time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()))
+
+    prompt = render_prompt(cfg, state)
+
+    os.makedirs(os.path.dirname(args.out), exist_ok=True)
+    with open(args.out, "w") as f:
+        f.write(prompt)
+
+    save_state(args.state, state)
+    print(f"[PROMPT] generated: {args.out}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
+
+#!/usr/bin/env python3
 """
 Render Claude Prompt
 Builds engineered system prompt with org context, guardrails, RPM DNA, and continuity cues

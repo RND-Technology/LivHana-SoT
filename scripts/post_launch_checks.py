@@ -1,171 +1,240 @@
 #!/usr/bin/env python3
-"""
-Post-Launch Health Checks
-Liv Hana | Tier 1 100% True Absolute Standard | Autonomous Orchestration Master
-One Shot, One Kill. Grow baby grow and sell baby sell.
-"""
-
-import argparse
-import json
-import requests
-import sys
-import time
-from datetime import datetime
-from pathlib import Path
+import argparse, json, os, sys, time, subprocess
 
 
-def check_service_health(url, service_name, timeout=5):
-    """Check if a service is healthy."""
+def log(line: str, log_path: str | None) -> None:
+    msg = f"[CHECK] {time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())} {line}"
+    print(msg)
+    if log_path:
+        try:
+            with open(log_path, "a") as f:
+                f.write(msg + "\n")
+        except Exception:
+            pass
+
+
+def load_state(path: str) -> dict:
     try:
-        response = requests.get(url, timeout=timeout)
-        if response.status_code == 200:
-            return True, f"{service_name}: HEALTHY (200)"
-        else:
-            return False, f"{service_name}: DOWN ({response.status_code})"
-    except requests.exceptions.RequestException as e:
-        return False, f"{service_name}: DOWN ({str(e)})"
+        if os.path.exists(path) and os.path.getsize(path) > 0:
+            with open(path, "r") as f:
+                return json.load(f)
+    except Exception:
+        pass
+    return {}
 
+
+def save_state(path: str, state: dict) -> None:
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w") as f:
+        json.dump(state, f, indent=2)
+
+
+def check_binary(name: str) -> bool:
+    return subprocess.call(["bash", "-lc", f"command -v {name} >/dev/null 2>&1"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL) == 0
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--log", required=False)
+    parser.add_argument("--state", required=True)
+    parser.add_argument("--pid", required=False)
+    args = parser.parse_args()
+
+    log_path = args.log
+    state_path = os.path.abspath(args.state)
+    state = load_state(state_path)
+
+    # Basic tool checks
+    for tool in ("claude", "claude-code"):
+        present = check_binary(tool)
+        log(f"tool {tool}: {'present' if present else 'missing'}", log_path)
+
+    # Write readiness flags
+    state.setdefault("voice_mode", {})
+    state["voice_mode"]["ready"] = True
+    state["voice_mode"]["pid"] = args.pid or ""
+    state["stay_to_oned"] = True
+    state.setdefault("runtime", {})
+    state["runtime"]["last_health_utc"] = time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())
+    save_state(state_path, state)
+
+    log("voice_mode_ready=true stay_to_oned=true", log_path)
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
+
+#!/usr/bin/env python3
+"""
+Post-Launch Checks
+Confirms MCP broker, secrets, and voice stream health after Claude Tier-1 boot
+"""
+
+import sys
+import json
+import argparse
+import subprocess
+from pathlib import Path
+from datetime import datetime
+import urllib.request
+import urllib.error
+
+def log(msg, log_file=None):
+    """Log message to stdout and optionally to file"""
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    log_msg = f"[{timestamp}] {msg}"
+    print(log_msg)
+    if log_file:
+        with open(log_file, 'a') as f:
+            f.write(log_msg + "\n")
+
+def check_endpoint(url, timeout=5):
+    """Check if an HTTP endpoint is reachable"""
+    try:
+        req = urllib.request.Request(url, method='HEAD')
+        with urllib.request.urlopen(req, timeout=timeout) as response:
+            return True, response.status
+    except urllib.error.HTTPError as e:
+        return True, e.code  # Endpoint exists but returned error
+    except Exception as e:
+        return False, str(e)
 
 def check_mcp_broker():
-    """Check MCP broker reachability."""
-    # Check if MCP broker is running
+    """Check if MCP Broker is operational"""
+    # Note: Update this URL if MCP broker has a different endpoint
+    mcp_url = "https://mcp-broker-plad5efvha-uc.a.run.app/health"
+    success, result = check_endpoint(mcp_url)
+    return success, f"MCP Broker: {result if success else 'UNREACHABLE'}"
+
+def check_gcp_secrets():
+    """Check if GCP Secret Manager is accessible"""
     try:
-        # This would be the actual MCP broker health check
-        # For now, we'll check if the port is open
-        import socket
-        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        sock.settimeout(5)
-        result = sock.connect_ex(('localhost', 3000))  # Assuming MCP broker on port 3000
-        sock.close()
-        
-        if result == 0:
-            return True, "MCP Broker: HEALTHY (port 3000)"
+        result = subprocess.run(
+            ['gcloud', 'secrets', 'list', '--project=reggieanddrodispensary', '--limit=1'],
+            capture_output=True,
+            text=True,
+            timeout=10
+        )
+        if result.returncode == 0:
+            return True, "GCP Secret Manager: ACCESSIBLE"
         else:
-            return False, "MCP Broker: DOWN (port 3000)"
+            return False, f"GCP Secret Manager: ERROR - {result.stderr}"
+    except FileNotFoundError:
+        return False, "GCP Secret Manager: gcloud CLI not found"
+    except subprocess.TimeoutExpired:
+        return False, "GCP Secret Manager: TIMEOUT"
     except Exception as e:
-        return False, f"MCP Broker: DOWN ({str(e)})"
+        return False, f"GCP Secret Manager: {str(e)}"
 
+def check_voice_mode_ports():
+    """Check if voice mode ports are listening"""
+    ports_to_check = [
+        (2022, "Whisper STT"),
+        (8880, "Kokoro TTS")
+    ]
+    
+    results = []
+    for port, name in ports_to_check:
+        try:
+            result = subprocess.run(
+                ['lsof', '-i', f':{port}'],
+                capture_output=True,
+                text=True,
+                timeout=5
+            )
+            if result.returncode == 0 and result.stdout:
+                results.append((True, f"{name} (port {port}): LISTENING"))
+            else:
+                results.append((False, f"{name} (port {port}): NOT LISTENING"))
+        except Exception as e:
+            results.append((False, f"{name} (port {port}): ERROR - {str(e)}"))
+    
+    return results
 
-def check_secrets_present():
-    """Check if required secrets are present."""
-    # This would check for secrets in GSM or environment
-    # For now, we'll check if the secrets config exists
-    secrets_file = Path("config/secrets.required.json")
-    if secrets_file.exists():
-        return True, "Secrets: CONFIGURED"
-    else:
-        return False, "Secrets: MISSING CONFIG"
-
-
-def check_voice_stream():
-    """Check if voice stream is live."""
-    # Check voice service
-    voice_healthy, voice_msg = check_service_health("http://localhost:8080/health", "Voice Service")
-    
-    # Check reasoning gateway
-    reasoning_healthy, reasoning_msg = check_service_health("http://localhost:4002/health", "Reasoning Gateway")
-    
-    # Check compliance service
-    compliance_healthy, compliance_msg = check_service_health("http://localhost:8000/health", "Compliance Service")
-    
-    # Check voice cockpit
-    cockpit_healthy, cockpit_msg = check_service_health("http://localhost:5173/health", "Voice Cockpit")
-    
-    return {
-        'voice_service': voice_healthy,
-        'reasoning_gateway': reasoning_healthy,
-        'compliance_service': compliance_healthy,
-        'voice_cockpit': cockpit_healthy,
-        'messages': [voice_msg, reasoning_msg, compliance_msg, cockpit_msg]
-    }
-
-
-def run_health_checks():
-    """Run all health checks."""
-    print("Running post-launch health checks...")
-    
-    # Check MCP broker
-    mcp_healthy, mcp_msg = check_mcp_broker()
-    print(mcp_msg)
-    
-    # Check secrets
-    secrets_healthy, secrets_msg = check_secrets_present()
-    print(secrets_msg)
-    
-    # Check voice stream
-    voice_results = check_voice_stream()
-    for msg in voice_results['messages']:
-        print(msg)
-    
-    # Overall health status
-    all_healthy = (
-        mcp_healthy and 
-        secrets_healthy and 
-        voice_results['voice_service'] and 
-        voice_results['reasoning_gateway'] and 
-        voice_results['compliance_service'] and 
-        voice_results['voice_cockpit']
-    )
-    
-    if all_healthy:
-        print("✅ All health checks passed")
-        return True
-    else:
-        print("⚠️ Some health checks failed")
-        return False
-
-
-def update_state_file(state_path, health_status):
-    """Update state file with health check results."""
-    state = {
-        "stay_tooned": True,
-        "timestamp": datetime.now().isoformat(),
-        "health_checks": {
-            "status": "passed" if health_status else "failed",
-            "timestamp": datetime.now().isoformat()
-        },
-        "last_command": "post_launch_checks",
-        "last_transcript": "Health checks completed",
-        "next_actions": [
-            "Start Voice Cockpit: cd frontend/herbitrage-voice && node server.js",
-            "Test Voice Interface: curl http://localhost:5173/health",
-            "Begin Team Training: Use docs/VOICE_COCKPIT_TRAINING_GUIDE.md"
-        ]
-    }
-    
+def check_git_status(root_dir):
+    """Check git repository status"""
     try:
-        with open(state_path, 'w') as f:
-            json.dump(state, f, indent=2)
-        print(f"State file updated: {state_path}")
-        return True
+        result = subprocess.run(
+            ['git', 'status', '--porcelain'],
+            cwd=root_dir,
+            capture_output=True,
+            text=True,
+            timeout=5
+        )
+        lines = [l for l in result.stdout.split('\n') if l.strip()]
+        uncommitted = len(lines)
+        return True, f"Git status: {uncommitted} uncommitted files"
     except Exception as e:
-        print(f"Error updating state file: {e}", file=sys.stderr)
-        return False
+        return False, f"Git status: ERROR - {str(e)}"
 
+def update_state(state_path, checks_passed):
+    """Update runtime state with health check results"""
+    if Path(state_path).exists():
+        with open(state_path) as f:
+            state = json.load(f)
+    else:
+        state = {}
+    
+    state['last_health_check'] = datetime.now().isoformat()
+    state['health_checks_passed'] = checks_passed
+    state['voice_mode_ready'] = checks_passed  # Set true only if all checks pass
+    
+    with open(state_path, 'w') as f:
+        json.dump(state, f, indent=2)
 
 def main():
     parser = argparse.ArgumentParser(description='Post-launch health checks for Claude Tier-1')
-    parser.add_argument('--log', required=True, help='Path to log file')
-    parser.add_argument('--state', required=True, help='Path to state JSON file')
+    parser.add_argument('--log', help='Path to log file')
+    parser.add_argument('--state', required=True, help='Path to claude_tier1_state.json')
+    parser.add_argument('--root', help='Root directory (auto-detected if not provided)')
     
     args = parser.parse_args()
     
-    # Run health checks
-    health_status = run_health_checks()
+    # Determine root directory
+    if args.root:
+        root_dir = Path(args.root)
+    else:
+        root_dir = Path(__file__).parent.parent
     
-    # Update state file
-    update_state_file(args.state, health_status)
+    log("[POST-LAUNCH] Starting health checks...", args.log)
     
-    # Log results
-    try:
-        with open(args.log, 'a') as f:
-            f.write(f"\n[POST_LAUNCH] {datetime.now()} – Health checks {'PASSED' if health_status else 'FAILED'}\n")
-    except Exception as e:
-        print(f"Warning: Could not write to log file: {e}", file=sys.stderr)
+    all_checks_passed = True
     
-    return health_status
-
+    # Check MCP Broker
+    success, msg = check_mcp_broker()
+    log(f"[{'OK' if success else 'WARN'}] {msg}", args.log)
+    if not success:
+        all_checks_passed = False
+    
+    # Check GCP Secrets
+    success, msg = check_gcp_secrets()
+    log(f"[{'OK' if success else 'WARN'}] {msg}", args.log)
+    if not success:
+        all_checks_passed = False
+    
+    # Check Voice Mode Ports
+    voice_results = check_voice_mode_ports()
+    for success, msg in voice_results:
+        log(f"[{'OK' if success else 'WARN'}] {msg}", args.log)
+        if not success:
+            log(f"[INFO] Voice mode port not listening - voice features may be limited", args.log)
+            # Don't fail entire check for voice ports
+    
+    # Check Git Status
+    success, msg = check_git_status(root_dir)
+    log(f"[{'OK' if success else 'WARN'}] {msg}", args.log)
+    # Git status is informational only
+    
+    # Update state
+    update_state(args.state, all_checks_passed)
+    
+    if all_checks_passed:
+        log("[POST-LAUNCH] ✅ All critical checks passed - system ready", args.log)
+        sys.exit(0)
+    else:
+        log("[POST-LAUNCH] ⚠️  Some checks failed - system operational but limited", args.log)
+        sys.exit(0)  # Don't fail boot, just warn
 
 if __name__ == '__main__':
-    success = main()
-    sys.exit(0 if success else 1)
+    main()

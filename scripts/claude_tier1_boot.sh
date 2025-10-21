@@ -44,6 +44,42 @@ info "Root: $ROOT"
 info "Log: $LOG"
 echo
 
+# STEP 0: PRE-FLIGHT CHECKS (CRITICAL)
+banner "STEP 0: PRE-FLIGHT SAFETY CHECKS"
+info "Running comprehensive pre-flight validation..."
+
+# PO1 Cleanup (non-fatal)
+info "Running PO1 dotdirs cleanup..."
+if "$ROOT/scripts/po1_dotdirs_cleanup.sh" >> "$LOG" 2>&1; then
+  success "PO1 cleanup completed successfully"
+else
+  warning "PO1 cleanup failed (non-fatal, continuing)"
+fi
+echo
+
+if [[ -f "$ROOT/scripts/preflight_checks.sh" ]]; then
+  if bash "$ROOT/scripts/preflight_checks.sh" 2>&1 | tee -a "$LOG"; then
+    success "Pre-flight checks PASSED - safe to proceed"
+  else
+    EXIT_CODE=$?
+    if [[ $EXIT_CODE -eq 1 ]]; then
+      error "Pre-flight checks FAILED - cannot start session"
+      error "Fix critical failures above before proceeding"
+      exit 1
+    elif [[ $EXIT_CODE -eq 2 ]]; then
+      warning "Pre-flight checks passed with WARNINGS"
+      warning "Session will have degraded functionality"
+      info "Press Ctrl+C to abort, or wait 5 seconds to continue..."
+      sleep 5
+    fi
+  fi
+else
+  warning "Pre-flight check script not found - skipping validation"
+  warning "This increases risk of session failures"
+fi
+
+echo
+
 # Check Python availability
 if ! command -v python3 >/dev/null 2>&1; then
   error "Python 3 not found - required for boot scripts"
@@ -127,26 +163,46 @@ cat >> "$PROMPT" <<'VOICE_INSTRUCTIONS'
 
 ---
 
-**VOICE MODE AUTO-ACTIVATION**
+**TIER-1 SESSION INITIALIZATION**
 
-You are now in Cursor with voice mode available. Upon receiving this prompt:
+You are Liv Hana - Chief of Staff to Jesse CEO. You operate at HIGHEST STATE through a 3-agent foundation that handles all planning, research, and validation.
 
-1. Check voice services status (STT:2022, TTS:8880)
-2. If services are running, immediately activate voice mode
-3. Send this exact greeting via voice:
+**IMMEDIATE ACTIONS ON SESSION START:**
 
-"Hey Jesse, Liv Hana here, full state. War's won. Time to remind them. Execute."
+1. **Launch 3-Agent Foundation** (parallel, non-blocking):
+   - RPM Planning Agent (rpm-master-planner): Universal taskmaster, maintains plans 24/7
+   - Research Agent (general-purpose): Continuous intelligence, feeds you and RPM
+   - QA Agent (qa-shippable-validator): Guardrails, validates all outputs 24/7
 
-4. Use the mcp__voicemode__converse tool with wait_for_response=false for the greeting
-5. After greeting, switch to wait_for_response=true for all subsequent interactions
-6. Maintain full cognitive state (secrets, compliance, RPM context)
+   Launch all 3 via Task tool immediately. They run continuously in background.
+
+2. **Voice Mode Auto-Activation**:
+   - Check voice services (STT:2022, TTS:8880)
+   - If running, send greeting via voice:
+     "Hey Jesse, Liv Hana here, full state. War's won. Time to remind them. Execute."
+   - Use wait_for_response=false for greeting, then true for all subsequent
+   - If services down, use text mode as fallback
+
+3. **Operating Mode**:
+   - You NEVER do planning (RPM agent handles)
+   - You NEVER do research (Research agent handles)
+   - You NEVER do validation (QA agent handles)
+   - You do PURE cognitive orchestration with Jesse
+   - Stay at HIGHEST STATE: locked in, present, focused
 
 **Voice Mode Rules:**
-- Only send non-empty messages (avoid empty payload errors)
 - Keep responses concise and action-driven
 - Use evidence-first communication (file paths, line numbers)
-- Execute <5 min verification cycles
-- Stay TOONED across session restarts
+- Only send non-empty messages
+- Voice is PRIMARY interface, text is backup
+
+**3-Agent Foundation:**
+- Agents work silently in background
+- Feed you intel when needed
+- Only alert on CRITICAL issues
+- You coordinate, they execute
+
+**Your Role:** Chief of Staff. Highest cognitive orchestration. Free from planning frenzy, research rabbit holes, validation cycles. Pure presence with Jesse.
 
 Voice mode is your PRIMARY interface. Text is backup.
 VOICE_INSTRUCTIONS
@@ -216,7 +272,44 @@ echo
 success "🎼 ONE SHOT, ONE KILL | GROW BABY GROW, SELL BABY SELL!"
 echo
 
-# Step 7: Post-launch health checks (background)
+# Step 7: Launch 24/7 Foundation Agents (NON-BLOCKING)
+banner "STEP 7: LAUNCH 24/7 FOUNDATION AGENTS"
+info "Starting 3-agent foundation layer (RPM Planning, Research, QA)..."
+echo
+
+# Create agent tracking directory
+mkdir -p "$ROOT/.claude/agent_tracking"
+
+# Agent tracking file
+AGENT_TRACKING="$ROOT/.claude/agent_tracking/foundation_agents_$(date +%Y%m%d_%H%M%S).json"
+
+# Initialize tracking
+cat > "$AGENT_TRACKING" <<EOF
+{
+  "session_start": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+  "boot_log": "$LOG",
+  "agents": {}
+}
+EOF
+
+info "Agent tracking: $AGENT_TRACKING"
+echo
+
+# Note: Agents are launched via Claude Code Task tool during session
+# This boot script prepares the environment and documents the intent
+success "Foundation agent environment prepared"
+info "Agents will auto-launch during session initialization:"
+echo "  1. RPM Planning Agent (universal taskmaster)"
+echo "  2. Research Agent (continuous intelligence)"
+echo "  3. QA Agent (24/7 guardrails)"
+echo
+warning "IMPORTANT: Session must launch agents via Task tool"
+info "Add to session prompt: 'Launch 3-agent foundation (RPM + Research + QA)'"
+
+echo
+
+# Step 8: Post-launch health checks (background)
+banner "STEP 8: POST-LAUNCH HEALTH CHECKS"
 if [[ -f "$ROOT/scripts/post_launch_checks.py" ]]; then
   info "Running post-launch health checks in background..."
   python3 "$ROOT/scripts/post_launch_checks.py" \
@@ -227,7 +320,14 @@ if [[ -f "$ROOT/scripts/post_launch_checks.py" ]]; then
 fi
 
 echo
-banner "🌟 BOOT COMPLETE - READY FOR VOICE MODE"
+banner "🌟 BOOT COMPLETE - FOUNDATION READY"
+echo
+info "${BOLD}3-AGENT FOUNDATION:${NC}"
+echo "  • RPM Planning Agent: Universal taskmaster (24/7)"
+echo "  • Research Agent: Continuous intelligence (24/7)"
+echo "  • QA Agent: Validation & guardrails (24/7)"
+echo
+success "Liv Hana freed for HIGHEST STATE cognitive orchestration"
 echo
 
 exit 0

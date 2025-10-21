@@ -1,0 +1,9 @@
+{
+  "stage": "perplexity_verify",
+  "status": "ok",
+  "verified": [],
+  "citations": [
+    "S1",
+    "S2"
+  ]
+}

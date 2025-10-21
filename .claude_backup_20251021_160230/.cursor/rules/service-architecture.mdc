@@ -1,0 +1,45 @@
+# 🏗️ SERVICE ARCHITECTURE RULES
+
+## 📦 MICROSERVICES STRUCTURE
+```
+backend/
+├── voice-service/        # ElevenLabs v3 voice I/O
+├── reasoning-gateway/    # DeepSeek 33B reasoning
+├── cannabis-service/     # Compliance & regulations
+├── payment-service/      # Stripe/Square integration
+├── integration-service/  # Lightspeed & external APIs
+├── product-service/      # Product catalog management
+└── common/              # Shared modules
+    ├── auth/            # JWT authentication
+    ├── queue/           # Redis queue management
+    ├── guardrails/      # Safety filters
+    ├── memory/          # Shared memory store
+    ├── logging/         # Unified logging
+    └── validation/      # Input validation
+```
+
+## 🔌 SERVICE COMMUNICATION
+- **Queue-Based**: All inter-service communication via Redis queues
+- **Guardrails**: Every queue message passes through [backend/common/guardrails](mdc:backend/common/guardrails)
+- **Authentication**: JWT tokens via [backend/common/auth](mdc:backend/common/auth)
+- **Logging**: Centralized via [backend/common/logging](mdc:backend/common/logging)
+
+## 🐳 DOCKER REQUIREMENTS
+Each service MUST have:
+- `Dockerfile` for containerization
+- `package.json` with all dependencies
+- Health check endpoint at `/health`
+- Environment variables via `.env` files
+- Integration with [docker-compose.yml](mdc:docker-compose.yml)
+
+## 📊 SERVICE HEALTH MONITORING
+- Run: [automation/scripts/check_service_health.sh](mdc:automation/scripts/check_service_health.sh)
+- Dashboard: [CURRENT_STATUS.md](mdc:CURRENT_STATUS.md)
+- Housekeeping: [automation/scripts/check_housekeeping_queue.sh](mdc:automation/scripts/check_housekeeping_queue.sh)
+alwaysApply: true
+---
+<!-- Last optimized: 2025-10-02 -->
+
+<!-- Last updated: 2025-10-02 -->
+
+# Optimized: 2025-10-02
