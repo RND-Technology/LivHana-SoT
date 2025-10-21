@@ -30,7 +30,12 @@ Execute Tier-1 orchestration tasks with focus on GSM secrets verification and TR
 ```bash
 cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT
 op signin  # if needed
-bash scripts/add_missing_secrets.sh
+
+# BLOCKER FIX: Use the new blocker fix script
+bash scripts/fix_gsm_secrets_blockers.sh
+
+# If GCP permissions fail, contact admin to run:
+# bash scripts/gcp_admin_create_secrets.sh
 ```
 
 ### Step 2: TRUTH Pipeline Validation (5 min)
@@ -65,9 +70,15 @@ bash scripts/verify_pipeline_integrity.sh
 
 ## Context Files
 - Config: `config/agent_builder_17_node_config.json`
-- Secrets Script: `scripts/add_missing_secrets.sh`
+- Blocker Fix Script: `scripts/fix_gsm_secrets_blockers.sh`
+- GCP Admin Script: `scripts/gcp_admin_create_secrets.sh`
 - Pipeline Validation: `scripts/verify_pipeline_integrity.sh`
 - Scoreboard Update: `scripts/rpm_scoreboard_update.py`
+
+## Known Blockers & Solutions
+- **GCP Permission Blocker:** Account needs Secret Manager Admin role
+- **1Password Lookup Fixed:** Correct item names mapped (GOOGLE_APPLICATION_CREDENTIALS, Lightspeed_Token)
+- **Solution:** GCP admin runs `scripts/gcp_admin_create_secrets.sh` or grants permissions
 
 ## Notes
 - Business tool nodes 14-17 require GSM secrets to function
