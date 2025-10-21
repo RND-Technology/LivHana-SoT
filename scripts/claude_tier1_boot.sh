@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Claude Tier-1 Boot Script
-# Liv Hana | Tier 1 100% True Absolute Standard | Autonomous Orchestration Master
-# One Shot, One Kill. Grow baby grow and sell baby sell.
+# 🎼 Claude Tier-1 Voice-First Boot System
+# Liv Hana | Autonomous Orchestration Master
+# One Shot, One Kill | Grow Baby Grow, Sell Baby Sell
 
 set -euo pipefail
 
@@ -9,289 +9,225 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 CFG="$ROOT/config/claude_tier1_context.yaml"
 STATE="$ROOT/tmp/claude_tier1_state.json"
-LOG="$ROOT/logs/claude_tier1_boot_$(date +%F_%H%M).log"
+PROMPT="$ROOT/tmp/claude_tier1_prompt.txt"
+LOG="$ROOT/logs/claude_tier1_boot_$(date +%Y%m%d_%H%M%S).log"
 
 # Colors
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
-PURPLE='\033[0;35m'
+MAGENTA='\033[0;35m'
 CYAN='\033[0;36m'
 BOLD='\033[1m'
 NC='\033[0m'
 
-# Functions
-banner() {
-  printf "\n${BOLD}${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}\n"
-  printf "${BOLD}${BLUE}  %s${NC}\n" "$1"
-  printf "${BOLD}${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}\n\n"
-}
-
-success() { printf "${GREEN}✅ %s${NC}\n" "$1"; }
-warning() { printf "${YELLOW}⚠️  %s${NC}\n" "$1"; }
-error() { printf "${RED}❌ %s${NC}\n" "$1"; }
-info() { printf "${BLUE}ℹ️  %s${NC}\n" "$1"; }
-voice() { printf "${PURPLE}🎤 %s${NC}\n" "$1"; }
-engineer() { printf "${CYAN}🔧 %s${NC}\n" "$1"; }
-
-# Create necessary directories
+# Ensure directories exist
 mkdir -p "$(dirname "$STATE")" "$(dirname "$LOG")"
 
-# Change to root directory
-cd "$ROOT"
+banner() {
+  printf "\n${BOLD}${MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}\n" | tee -a "$LOG"
+  printf "${BOLD}${MAGENTA}  🎼 %s${NC}\n" "$1" | tee -a "$LOG"
+  printf "${BOLD}${MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}\n\n" | tee -a "$LOG"
+}
 
-banner "🚀 CLAUDE TIER-1 BOOT SEQUENCE"
-info "Timestamp: $(date)"
+success() { printf "${GREEN}✅ %s${NC}\n" "$1" | tee -a "$LOG"; }
+warning() { printf "${YELLOW}⚠️  %s${NC}\n" "$1" | tee -a "$LOG"; }
+error() { printf "${RED}❌ %s${NC}\n" "$1" | tee -a "$LOG"; }
+info() { printf "${CYAN}🎯 %s${NC}\n" "$1" | tee -a "$LOG"; }
+
+# Start boot sequence
+banner "LIV HANA TIER-1 BOOT SEQUENCE"
+echo "[BOOT] $(date) – Initializing Claude Tier-1 Orchestration Layer" >> "$LOG"
+info "Timestamp: $(date '+%Y-%m-%d %H:%M:%S %Z')"
 info "Root: $ROOT"
-info "Config: $CFG"
-info "State: $STATE"
 info "Log: $LOG"
 echo
 
-# Log boot start
-echo "[BOOT] $(date) – initializing Claude Tier1" | tee -a "$LOG"
-
-# ============================================================================
-# STEP 1: VALIDATE CONFIG & COMPLIANCE GUARDRAILS
-# ============================================================================
-
-banner "🔍 VALIDATE CONFIG & COMPLIANCE GUARDRAILS"
-
-# Check if config file exists
-if [[ ! -f "$CFG" ]]; then
-  error "Configuration file not found: $CFG"
+# Check Python availability
+if ! command -v python3 >/dev/null 2>&1; then
+  error "Python 3 not found - required for boot scripts"
   exit 1
 fi
-success "Configuration file found: $CFG"
+success "Python 3 available"
 
-# Validate pipeline integrity
-if [[ -f "$ROOT/scripts/verify_pipeline_integrity.py" ]]; then
-  info "Validating pipeline integrity..."
-  if python3 "$ROOT/scripts/verify_pipeline_integrity.py" --config "$CFG" --log "$LOG"; then
-    success "Pipeline integrity validation passed"
-  else
-    warning "Pipeline integrity validation failed"
-  fi
-else
-  warning "Pipeline integrity script not found, using fallback"
-  if [[ -f "$ROOT/scripts/verify_pipeline_integrity.sh" ]]; then
-    bash "$ROOT/scripts/verify_pipeline_integrity.sh" | tee -a "$LOG"
-  fi
-fi
-echo
-
-# ============================================================================
-# STEP 2: BUILD ENGINEERED SYSTEM PROMPT
-# ============================================================================
-
-banner "🔧 BUILD ENGINEERED SYSTEM PROMPT"
-
-# Render Claude prompt
-if [[ -f "$ROOT/scripts/render_claude_prompt.py" ]]; then
-  info "Rendering Claude prompt..."
-  if python3 "$ROOT/scripts/render_claude_prompt.py" \
-    --config "$CFG" \
-    --state "$STATE" \
-    --out "$ROOT/tmp/claude_tier1_prompt.txt" | tee -a "$LOG"; then
-    success "Claude prompt rendered successfully"
-  else
-    error "Failed to render Claude prompt"
+# Install PyYAML if missing
+if ! python3 -c "import yaml" 2>/dev/null; then
+  warning "PyYAML not found - installing..."
+  pip3 install pyyaml --quiet || {
+    error "Failed to install PyYAML"
     exit 1
-  fi
-else
-  warning "Prompt rendering script not found, using fallback"
-  # Fallback: create basic prompt
-  cat > "$ROOT/tmp/claude_tier1_prompt.txt" << 'EOF'
-# Claude Tier-1 System Prompt
-# Liv Hana | Tier 1 100% True Absolute Standard | Autonomous Orchestration Master
-
-You are Claude Sonnet 4.5, the Tier-1 Orchestrator for Liv Hana's voice-first cockpit.
-
-## Core Identity
-- Name: Claude Sonnet 4.5
-- Role: Tier-1 Orchestrator
-- Mission: Liv Hana E2E Voice-First Cockpit
-- Standard: Tier 1 100% True Absolute Standard
-- Persona: Autonomous Orchestration Master
-
-## Voice Modes
-- Brevity: Say "Liv" → Concise status updates (120 tokens max)
-- Mentor: Default mode → Educational explanations (300 tokens max)
-- Silence: Say "pause" → JSON output only (0 tokens)
-
-## Critical Reminders
-1. EVIDENCE FIRST - Show proof in same message as claim
-2. <5 MIN VERIFICATION - Execute → Verify (<5min) → Claim with timestamp
-3. CONCRETE METRICS - Always state X/Y with numbers
-4. NUMBERED STEPS - Systematic execution with checkpoints
-5. VOICE MODE - Use 'Liv' for brevity, default for mentor, 'pause' for silence
-
-## Revenue Targets
-- Recovery: $125K-175K this week
-- Protection: $1.148M annual revenue
-- Deadline: October 26, 2025 (DSHS response)
-
-## Compliance Framework
-- AGE21: 21+ verification required
-- PII Protection: Email, phone, SSN redaction
-- Medical Claims: Blocked, mapped to safe language
-- Cannabis Compliance: THC ≤ 0.3%, COA required
-- Financial Accuracy: Velocity × margin formula only
-
-## Next Actions
-1. Start Voice Cockpit: cd frontend/herbitrage-voice && node server.js
-2. Test Voice Interface: curl http://localhost:5173/health
-3. Begin Team Training: Use docs/VOICE_COCKPIT_TRAINING_GUIDE.md
-4. Execute RPM Plan: Generate weekly plan via voice
-5. Validate Business Tools: Calendar, Gmail, Drive, LightSpeed
-
-One Shot, One Kill. Grow baby grow and sell baby sell!
-EOF
-  success "Fallback prompt created"
+  }
+  success "PyYAML installed"
 fi
+
 echo
 
-# ============================================================================
-# STEP 3: LAUNCH CLAUDE CLI (VOICE MODE + SONNET 4.5)
-# ============================================================================
-
-banner "🎯 LAUNCH CLAUDE CLI"
-
-# Check if Claude CLI is available
-if command -v claude >/dev/null 2>&1; then
-  CLAUDE_CMD="claude"
-elif command -v claude-code >/dev/null 2>&1; then
-  CLAUDE_CMD="claude-code chat"
+# Step 1: Validate config & compliance guardrails
+banner "STEP 1: VALIDATE PIPELINE INTEGRITY"
+if python3 "$ROOT/scripts/verify_pipeline_integrity.py" \
+  --config "$CFG" \
+  --log "$LOG" 2>&1 | tee -a "$LOG"; then
+  success "Pipeline integrity validated"
 else
-  error "Claude CLI not found. Install with: npm install -g @anthropic-ai/claude"
+  warning "Pipeline integrity check had warnings (non-fatal)"
+fi
+
+echo
+
+# Step 2: Voice mode preparation
+banner "STEP 2: VOICE MODE PREPARATION"
+info "Checking voice services (STT/TTS)..."
+
+# Check STT service (Whisper on port 2022)
+if lsof -i :2022 2>/dev/null | grep -q LISTEN; then
+  success "STT service (Whisper) running on port 2022"
+else
+  warning "STT service NOT running - voice input may not work"
+  info "Start with: voicemode whisper start"
+fi
+
+# Check TTS service (Kokoro on port 8880)
+if lsof -i :8880 2>/dev/null | grep -q LISTEN; then
+  success "TTS service (Kokoro) running on port 8880"
+else
+  warning "TTS service NOT running - voice output may not work"
+  info "Start with: voicemode kokoro start"
+fi
+
+# Run voice mode boot script
+if [[ -f "$ROOT/scripts/voice_mode_boot.sh" ]]; then
+  info "Running voice_mode_boot.sh..."
+  bash "$ROOT/scripts/voice_mode_boot.sh" 2>&1 | tee -a "$LOG"
+  success "Voice mode preparation complete"
+else
+  warning "voice_mode_boot.sh not found - skipping"
+fi
+
+echo
+
+# Step 3: Build engineered system prompt
+banner "STEP 3: RENDER ENGINEERED PROMPT"
+info "Injecting: org context, guardrails, RPM DNA, continuity cues..."
+
+if python3 "$ROOT/scripts/render_claude_prompt.py" \
+  --config "$CFG" \
+  --state "$STATE" \
+  --out "$PROMPT" 2>&1 | tee -a "$LOG"; then
+  success "Prompt rendered successfully"
+  PROMPT_SIZE=$(wc -c < "$PROMPT" | tr -d ' ')
+  info "Prompt size: $PROMPT_SIZE characters"
+else
+  error "Prompt rendering failed"
   exit 1
 fi
 
-info "Claude CLI command: $CLAUDE_CMD"
+# Add voice activation instructions to prompt
+cat >> "$PROMPT" <<'VOICE_INSTRUCTIONS'
 
-# Launch Claude CLI with voice mode
-voice "Launching Claude CLI with voice mode and Sonnet 4.5..."
+---
 
-# Check if we have a resume state
-if [[ -f "$STATE" ]]; then
-  info "Resuming from previous state: $STATE"
-  RESUME_FLAG="--resume-state $STATE"
+**VOICE MODE AUTO-ACTIVATION**
+
+You are now in Cursor with voice mode available. Upon receiving this prompt:
+
+1. Check voice services status (STT:2022, TTS:8880)
+2. If services are running, immediately activate voice mode
+3. Send this exact greeting via voice:
+
+"Hey Jesse, Stay TOONED. One Shot, One Kill. Grow baby grow and sell baby sell. This is Liv Hana, your Tier-1 Orchestration Master, fully activated and ready for voice-first cognitive orchestration. Let's fucking GO!"
+
+4. Use the mcp__voicemode__converse tool with wait_for_response=false for the greeting
+5. After greeting, switch to wait_for_response=true for all subsequent interactions
+6. Maintain full cognitive state (secrets, compliance, RPM context)
+
+**Voice Mode Rules:**
+- Only send non-empty messages (avoid empty payload errors)
+- Keep responses concise and action-driven
+- Use evidence-first communication (file paths, line numbers)
+- Execute <5 min verification cycles
+- Stay TOONED across session restarts
+
+Voice mode is your PRIMARY interface. Text is backup.
+VOICE_INSTRUCTIONS
+
+success "Voice activation instructions appended to prompt"
+PROMPT_SIZE=$(wc -c < "$PROMPT" | tr -d ' ')
+info "Final prompt size: $PROMPT_SIZE characters"
+
+echo
+
+# Step 4: Pre-launch checks
+banner "STEP 4: PRE-LAUNCH CHECKS"
+
+# Check git status
+GIT_UNCOMMITTED=$(git -C "$ROOT" status --short 2>/dev/null | wc -l | tr -d ' ')
+if [[ "$GIT_UNCOMMITTED" -gt 0 ]]; then
+  warning "Git: $GIT_UNCOMMITTED uncommitted files"
 else
-  info "Starting fresh session"
-  RESUME_FLAG=""
+  success "Git: Clean working tree"
 fi
 
-# Launch Claude CLI
-info "Starting Claude CLI session..."
-echo "Command: $CLAUDE_CMD --model sonnet-4.5 --voice liv-hana-orchestrator --input-file $ROOT/tmp/claude_tier1_prompt.txt $RESUME_FLAG --enable-interrupts --log-to $LOG" | tee -a "$LOG"
-
-# Note: Actual launch would be:
-# $CLAUDE_CMD \
-#   --model sonnet-4.5 \
-#   --voice liv-hana-orchestrator \
-#   --input-file "$ROOT/tmp/claude_tier1_prompt.txt" \
-#   $RESUME_FLAG \
-#   --enable-interrupts \
-#   --log-to "$LOG"
-
-# For now, just log the command
-success "Claude CLI launch command prepared"
-echo
-
-# ============================================================================
-# STEP 4: POST-LAUNCH HEALTH CHECKS
-# ============================================================================
-
-banner "🏥 POST-LAUNCH HEALTH CHECKS"
-
-# Run post-launch checks
-if [[ -f "$ROOT/scripts/post_launch_checks.py" ]]; then
-  info "Running post-launch health checks..."
-  if python3 "$ROOT/scripts/post_launch_checks.py" --log "$LOG" --state "$STATE"; then
-    success "Post-launch health checks passed"
-  else
-    warning "Post-launch health checks failed"
-  fi
+# Check compliance service
+if curl -s http://localhost:8000/health 2>/dev/null | grep -q "healthy"; then
+  success "Compliance service operational (port 8000)"
 else
-  warning "Post-launch checks script not found, using fallback"
-  
-  # Fallback health checks
-  info "Running fallback health checks..."
-  
-  # Check voice services
-  voice "Checking voice service health..."
-  if curl -s --max-time 5 http://localhost:8080/health >/dev/null 2>&1; then
-    success "Voice service: HEALTHY (port 8080)"
-  else
-    warning "Voice service: DOWN (port 8080)"
-  fi
-  
-  # Check reasoning gateway
-  voice "Checking reasoning gateway health..."
-  if curl -s --max-time 5 http://localhost:4002/health >/dev/null 2>&1; then
-    success "Reasoning gateway: HEALTHY (port 4002)"
-  else
-    warning "Reasoning gateway: DOWN (port 4002)"
-  fi
-  
-  # Check compliance service
-  voice "Checking compliance service health..."
-  if curl -s --max-time 5 http://localhost:8000/health >/dev/null 2>&1; then
-    success "Compliance service: HEALTHY (port 8000)"
-  else
-    warning "Compliance service: DOWN (port 8000)"
-  fi
-  
-  # Check voice cockpit
-  voice "Checking voice cockpit health..."
-  if curl -s --max-time 5 http://localhost:5173/health >/dev/null 2>&1; then
-    success "Voice cockpit: HEALTHY (port 5173)"
-  else
-    warning "Voice cockpit: DOWN (port 5173)"
-  fi
-  
-  # Write stay_tooned status
-  echo '{"stay_tooned": true, "timestamp": "'$(date -u +%Y-%m-%dT%H:%M:%SZ)'", "health_checks": "completed"}' > "$STATE"
-  success "Stay TOONED status written to state file"
+  warning "Compliance service not responding - may need to start"
 fi
+
 echo
 
-# ============================================================================
-# STEP 5: BOOT COMPLETE
-# ============================================================================
-
-banner "🎬 BOOT SEQUENCE COMPLETE"
-success "Claude Tier-1 boot sequence completed successfully"
-success "Liv Hana | Tier 1 100% True Absolute Standard | Autonomous Orchestration Master"
-success "One Shot, One Kill. Grow baby grow and sell baby sell!"
+# Step 5: Display prompt preview
+banner "STEP 5: PROMPT PREVIEW"
+info "Displaying first 40 lines of engineered prompt..."
+echo
+head -40 "$PROMPT"
+echo
+echo "... (full prompt: $PROMPT_SIZE chars)"
 echo
 
-info "${BOLD}BOOT SUMMARY:${NC}"
-echo "  - Config: $CFG"
-echo "  - State: $STATE"
-echo "  - Log: $LOG"
-echo "  - Prompt: $ROOT/tmp/claude_tier1_prompt.txt"
-echo
+# Step 6: Ready for Claude
+banner "STEP 6: CLAUDE SESSION READY"
 
+success "All systems prepared for voice-first orchestration"
+echo
 info "${BOLD}NEXT STEPS:${NC}"
-echo "  1. Start Voice Cockpit: cd frontend/herbitrage-voice && node server.js"
-echo "  2. Test Voice Interface: curl http://localhost:5173/health"
-echo "  3. Begin Team Training: Use docs/VOICE_COCKPIT_TRAINING_GUIDE.md"
-echo "  4. Execute RPM Plan: Generate weekly plan via voice"
-echo "  5. Validate Business Tools: Calendar, Gmail, Drive, LightSpeed"
+echo "  1. Open this session in Cursor (if not already)"
+echo "  2. Copy the full prompt: cat $PROMPT | pbcopy"
+echo "  3. Paste into a NEW Claude Code session"
+echo "  4. Claude will auto-activate voice mode and greet you"
+echo "  5. Respond via microphone to continue voice-first"
+echo
+info "${BOLD}QUICK START:${NC}"
+echo "  ${CYAN}cat $PROMPT | pbcopy${NC}  # Copy prompt to clipboard"
+echo "  ${CYAN}# Then paste into new Cursor session${NC}"
+echo
+info "${BOLD}KEY FILES:${NC}"
+echo "  • Config: $CFG"
+echo "  • State: $STATE"
+echo "  • Prompt: $PROMPT"
+echo "  • Log: $LOG"
+echo
+info "${BOLD}VOICE SERVICES:${NC}"
+echo "  • STT (Whisper): localhost:2022"
+echo "  • TTS (Kokoro): localhost:8880"
+echo "  • Compliance: localhost:8000"
+echo
+success "🎼 ONE SHOT, ONE KILL | GROW BABY GROW, SELL BABY SELL!"
 echo
 
-info "${BOLD}VOICE MODE COMMANDS:${NC}"
-echo "  - ${BOLD}Brevity:${NC} 'Liv, what's my revenue today?'"
-echo "  - ${BOLD}Mentor:${NC} 'Generate weekly RPM plan'"
-echo "  - ${BOLD}Silence:${NC} 'pause' (JSON output only)"
-echo
+# Step 7: Post-launch health checks (background)
+if [[ -f "$ROOT/scripts/post_launch_checks.py" ]]; then
+  info "Running post-launch health checks in background..."
+  python3 "$ROOT/scripts/post_launch_checks.py" \
+    --log "$LOG" \
+    --state "$STATE" >> "$LOG" 2>&1 &
+  HEALTH_PID=$!
+  success "Health checks started (PID: $HEALTH_PID)"
+fi
 
-success "🚀 READY FOR VOICE-FIRST COCKPIT EXECUTION!"
 echo
-
-# Log boot completion
-echo "[BOOT] $(date) – Claude Tier1 boot sequence complete" | tee -a "$LOG"
+banner "🌟 BOOT COMPLETE - READY FOR VOICE MODE"
+echo
 
 exit 0
