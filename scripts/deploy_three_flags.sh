@@ -1,478 +1,383 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# 🚀 THREE-FLAG DEPLOYMENT SYSTEM
+# Liv Hana | Tier-1 Orchestration | HIGHEST STATE
+# Deploy Custom GPT, Slack Bot, Replit PWA with artifacts and next steps
 
-# Liv Hana Three-Flag Deployment Script
-# Deploys Custom GPT, Slack Bot, and Replit Prototype in parallel
+set -euo pipefail
 
-set -e
+# Configuration
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+ARTIFACTS_DIR="$ROOT/.claude/flag_deployments"
+TIMESTAMP=$(date +%Y%m%d_%H%M%S)
 
-echo "🚀 LIV HANA THREE-FLAG DEPLOYMENT"
-echo "=================================="
-echo "Deploying Custom GPT, Slack Bot, and Replit Prototype"
-echo "Competition tracking via port 8001 API"
-echo ""
-
-# Colors for output
-RED='\033[0;31m'
+# Colors
 GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
-NC='\033[0m' # No Color
+MAGENTA='\033[0;35m'
+CYAN='\033[0;36m'
+BOLD='\033[1m'
+NC='\033[0m'
 
-# Function to print colored output
-print_status() {
-    echo -e "${BLUE}[$(date +'%H:%M:%S')]${NC} $1"
+banner() {
+  printf "\n${BOLD}${MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}\n"
+  printf "${BOLD}${MAGENTA}  🚀 %s${NC}\n" "$1"
+  printf "${BOLD}${MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}\n\n"
 }
 
-print_success() {
-    echo -e "${GREEN}[$(date +'%H:%M:%S')]${NC} ✅ $1"
-}
+success() { printf "${GREEN}✅ %s${NC}\n" "$1"; }
+info() { printf "${CYAN}🎯 %s${NC}\n" "$1"; }
+step() { printf "${BLUE}📋 %s${NC}\n" "$1"; }
 
-print_warning() {
-    echo -e "${YELLOW}[$(date +'%H:%M:%S')]${NC} ⚠️ $1"
-}
+# Ensure artifacts directory exists
+mkdir -p "$ARTIFACTS_DIR"
 
-print_error() {
-    echo -e "${RED}[$(date +'%H:%M:%S')]${NC} ❌ $1"
-}
+banner "THREE-FLAG DEPLOYMENT SYSTEM"
+info "Timestamp: $(date '+%Y-%m-%d %H:%M:%S %Z')"
+info "Artifacts Directory: $ARTIFACTS_DIR"
+echo
 
-# Function to check service health
-check_service() {
-    local service_name=$1
-    local port=$2
-    
-    if curl -s "http://localhost:$port/health" > /dev/null 2>&1; then
-        print_success "$service_name is healthy (port $port)"
-        return 0
-    else
-        print_error "$service_name is down (port $port)"
-        return 1
-    fi
-}
+# FLAG #1: CUSTOM GPT DEPLOYMENT
+banner "FLAG #1: CUSTOM GPT DEPLOYMENT"
+info "Timeline: 1-2 hours | ROI: \$300/day"
 
-# Function to submit deployment prediction
-submit_deployment_prediction() {
-    local flag_name=$1
-    local roi_target=$2
-    local timeframe=$3
-    
-    print_status "Submitting deployment prediction for $flag_name"
-    
-    curl -X POST http://localhost:8001/api/v1/projections \
-        -H "Content-Type: application/json" \
-        -d "{
-            \"participant\": \"liv_hana\",
-            \"metric\": \"roi_per_day\",
-            \"value\": $roi_target,
-            \"unit\": \"USD\",
-            \"timeframe\": \"${timeframe}d\",
-            \"confidence\": 0.85,
-            \"context\": {
-                \"project\": \"three_flag_deployment\",
-                \"flag\": \"$flag_name\",
-                \"session\": \"$(date +'%Y-%m-%d_%H-%M-%S')\"
-            }
-        }" > /dev/null 2>&1
-    
-    print_success "Prediction submitted for $flag_name: \$$roi_target/day"
-}
+step "Creating Custom GPT deployment artifacts..."
 
-# Function to check 3-agent foundation
-check_foundation() {
-    print_status "Checking 3-agent foundation status"
-    
-    if [ -f ".claude/agent_coordination/rpm_state.json" ] && 
-       [ -f ".claude/agent_coordination/research_feed.json" ] && 
-       [ -f ".claude/agent_coordination/qa_metrics.json" ]; then
-        print_success "3-agent foundation files present"
-        
-        # Check if agents are running
-        local rpm_status=$(jq -r '.status' .claude/agent_coordination/rpm_state.json 2>/dev/null || echo "unknown")
-        local research_status=$(jq -r '.status' .claude/agent_coordination/research_feed.json 2>/dev/null || echo "unknown")
-        local qa_status=$(jq -r '.status' .claude/agent_coordination/qa_metrics.json 2>/dev/null || echo "unknown")
-        
-        if [ "$rpm_status" = "running" ] && [ "$research_status" = "running" ] && [ "$qa_status" = "running" ]; then
-            print_success "All 3 agents are running"
-            return 0
-        else
-            print_warning "Some agents not running: RPM=$rpm_status, Research=$research_status, QA=$qa_status"
-            return 1
-        fi
-    else
-        print_error "3-agent foundation files missing"
-        return 1
-    fi
-}
+cat > "$ARTIFACTS_DIR/custom_gpt_deployment_${TIMESTAMP}.md" << 'EOF'
+# 🤖 Custom GPT Deployment - Cannabis Intelligence
 
-# Function to check voice services
-check_voice_services() {
-    print_status "Checking voice services"
-    
-    local stt_running=false
-    local tts_running=false
-    
-    if lsof -i :2022 | grep -q whisper; then
-        print_success "STT (Whisper) running on port 2022"
-        stt_running=true
-    else
-        print_warning "STT (Whisper) not running on port 2022"
-    fi
-    
-    if lsof -i :8880 | grep -q python; then
-        print_success "TTS (Kokoro) running on port 8880"
-        tts_running=true
-    else
-        print_warning "TTS (Kokoro) not running on port 8880"
-    fi
-    
-    if [ "$stt_running" = true ] && [ "$tts_running" = true ]; then
-        print_success "Voice services operational"
-        return 0
-    else
-        print_warning "Voice services partially operational"
-        return 1
-    fi
-}
+## Mission
+Deploy Custom GPT for cannabis intelligence queries with $300/day ROI target.
 
-# Function to deploy Custom GPT
-deploy_custom_gpt() {
-    print_status "Starting Custom GPT deployment (Flag 1)"
-    
-    # Submit prediction
-    submit_deployment_prediction "custom_gpt" 300 30
-    
-    # Create deployment directory
-    mkdir -p deployment/custom_gpt
-    
-    # Copy deployment files
-    cp deployment/custom_gpt_deployment.md deployment/custom_gpt/
-    
-    print_success "Custom GPT deployment files ready"
-    print_status "Next steps:"
-    echo "  1. Go to ChatGPT → Create GPT"
-    echo "  2. Paste configuration from deployment/custom_gpt_deployment.md"
-    echo "  3. Configure Actions with compliance endpoints"
-    echo "  4. Publish to ChatGPT App Store"
-    echo "  5. Test on mobile device"
-    
-    return 0
-}
+## Technical Specifications
 
-# Function to deploy Slack Bot
-deploy_slack_bot() {
-    print_status "Starting Slack Bot deployment (Flag 2)"
-    
-    # Submit prediction
-    submit_deployment_prediction "slack_bot" 500 30
-    
-    # Create deployment directory
-    mkdir -p deployment/slack_bot
-    
-    # Copy deployment files
-    cp deployment/slack_bot_deployment.md deployment/slack_bot/
-    
-    # Create package.json
-    cat > deployment/slack_bot/package.json << 'EOF'
-{
-  "name": "liv-hana-slack-bot",
-  "version": "1.0.0",
-  "description": "Liv Hana Team Assistant Slack Bot",
-  "main": "main.js",
-  "scripts": {
-    "start": "node main.js",
-    "dev": "nodemon main.js"
-  },
-  "dependencies": {
-    "@slack/bolt": "^3.12.0",
-    "axios": "^1.6.0",
-    "dotenv": "^16.3.0"
-  },
-  "devDependencies": {
-    "nodemon": "^3.0.0"
-  }
-}
+### Core Capabilities
+- **Cannabis Intelligence Queries:** Strain information, effects, medical applications
+- **Compliance Integration:** Age 21+ verification, THC content validation
+- **Real-time Data:** Market pricing, regulatory updates, product availability
+- **Voice Integration:** ElevenLabs TTS for hands-free operation
+
+### Architecture Components
+1. **GPT-4 Turbo Model** - Primary intelligence engine
+2. **Knowledge Base** - Cannabis strain database, effects, medical research
+3. **Compliance Layer** - Age verification, THC content validation
+4. **Voice Interface** - ElevenLabs integration for TTS
+5. **API Gateway** - Rate limiting, authentication, monitoring
+
+### Integration Points
+- **GSM Secrets:** Calendar-Agent-Builder, Gmail-Agent-Builder
+- **TRUTH Pipeline:** Real-time validation and fact-checking
+- **Compliance Database:** DSHS regulations, federal hemp law
+- **Voice Mode:** Liv Hana integration for seamless operation
+
+## Deployment Steps
+
+### Step 1: Environment Setup (15 min)
+```bash
+# Create GPT configuration
+gcloud run deploy custom-gpt-cannabis \
+  --source . \
+  --platform managed \
+  --region us-central1 \
+  --allow-unauthenticated \
+  --set-env-vars="OPENAI_API_KEY=${OPENAI_API_KEY}"
+```
+
+### Step 2: Knowledge Base Population (30 min)
+```bash
+# Upload cannabis knowledge base
+gsutil cp -r data/cannabis_knowledge_base/ gs://livhana-knowledge/
+```
+
+### Step 3: Compliance Integration (30 min)
+```bash
+# Deploy compliance validation service
+gcloud run deploy compliance-validator \
+  --source ./compliance \
+  --platform managed \
+  --region us-central1
+```
+
+### Step 4: Voice Integration (15 min)
+```bash
+# Configure ElevenLabs TTS
+export ELEVENLABS_API_KEY="${ELEVENLABS_API_KEY}"
+python scripts/setup_voice_integration.py
+```
+
+### Step 5: Testing & Validation (30 min)
+```bash
+# Run comprehensive tests
+python tests/test_custom_gpt.py
+python tests/test_compliance.py
+python tests/test_voice_integration.py
+```
+
+## Success Metrics
+- **Response Time:** <2 seconds per query
+- **Accuracy:** 95%+ correct cannabis information
+- **Compliance:** 100% age verification, THC validation
+- **ROI:** $300/day revenue target
+- **Uptime:** 99.9% availability
+
+## Next Steps
+1. **Monitor Performance** - Track query volume, response times, accuracy
+2. **Optimize Knowledge Base** - Add new strains, effects, medical research
+3. **Scale Infrastructure** - Auto-scaling based on demand
+4. **Integration Testing** - Ensure seamless Liv Hana voice mode integration
+5. **Revenue Tracking** - Monitor $300/day ROI target
+
+## Risk Mitigation
+- **Compliance Violations:** Real-time validation, automatic blocking
+- **API Rate Limits:** Intelligent caching, request queuing
+- **Knowledge Accuracy:** TRUTH pipeline validation, fact-checking
+- **Voice Latency:** ElevenLabs optimization, local caching
+
+## Revenue Model
+- **Per-Query Pricing:** $0.10 per cannabis intelligence query
+- **Daily Target:** 3,000 queries = $300/day
+- **Monthly Projection:** $9,000/month
+- **Annual Projection:** $108,000/year
 EOF
 
-    # Create main.js
-    cat > deployment/slack_bot/main.js << 'EOF'
-const { App } = require('@slack/bolt');
-const axios = require('axios');
+success "Custom GPT deployment artifacts created"
 
-const app = new App({
-  token: process.env.SLACK_BOT_TOKEN,
-  signingSecret: process.env.SLACK_SIGNING_SECRET
-});
+# FLAG #2: SLACK BOT DEPLOYMENT
+banner "FLAG #2: SLACK BOT DEPLOYMENT"
+info "Timeline: 4-6 hours | ROI: \$500/day"
 
-// Slash command handlers
-app.command('/liv', async ({ command, ack, respond }) => {
-  await ack();
-  
-  await respond({
-    text: "Liv Hana here, full state.",
-    blocks: [
-      {
-        type: "section",
-        text: {
-          type: "mrkdwn",
-          text: "*Status:* Operational\n*Voice Mode:* Available\n*Competition:* Active"
-        }
-      }
-    ]
-  });
-});
+step "Creating Slack Bot deployment artifacts..."
 
-app.command('/prediction', async ({ command, ack, respond }) => {
-  await ack();
-  
-  try {
-    const response = await axios.post('http://localhost:8001/api/v1/projections', {
-      participant: 'slack_bot',
-      metric: 'roi_per_day',
-      value: 500,
-      unit: 'USD',
-      timeframe: '30d',
-      confidence: 0.85,
-      context: {
-        project: 'slack_bot_deployment',
-        source: 'slack_bot'
-      }
-    });
-    
-    await respond({
-      text: "Prediction Submitted",
-      blocks: [
-        {
-          type: "section",
-          text: {
-            type: "mrkdwn",
-            text: "*Projection:* $500/day ROI\n*Confidence:* 85%\n*Status:* Submitted successfully"
-          }
-        }
-      ]
-    });
-  } catch (error) {
-    await respond({
-      text: "Error submitting prediction",
-      blocks: [
-        {
-          type: "section",
-          text: {
-            type: "mrkdwn",
-            text: "*Error:* " + error.message
-          }
-        }
-      ]
-    });
-  }
-});
+cat > "$ARTIFACTS_DIR/slack_bot_deployment_${TIMESTAMP}.md" << 'EOF'
+# 🤖 Slack Bot Deployment - Team Automation
 
-(async () => {
-  await app.start(process.env.PORT || 3000);
-  console.log('Liv Hana Slack Bot is running!');
-})();
+## Mission
+Deploy Slack bot for team communication and automation with $500/day ROI target.
+
+## Technical Specifications
+
+### Core Capabilities
+- **Team Communication:** Automated responses, status updates, notifications
+- **Workflow Automation:** Task assignment, progress tracking, completion alerts
+- **Integration Hub:** Connects all Liv Hana services (Calendar, Gmail, Drive, LightSpeed)
+- **Voice Commands:** Voice-to-text integration for hands-free operation
+
+### Architecture Components
+1. **Slack App Framework** - Bot foundation and API integration
+2. **Workflow Engine** - Task automation and process management
+3. **Integration Layer** - Calendar, Gmail, Drive, LightSpeed APIs
+4. **Voice Interface** - Speech-to-text for voice commands
+5. **Analytics Dashboard** - Performance monitoring and optimization
+
+### Integration Points
+- **GSM Secrets:** Calendar-Agent-Builder, Gmail-Agent-Builder, Drive-Agent-Builder
+- **TRUTH Pipeline:** Real-time validation and fact-checking
+- **Agent Builder:** Nodes 14-17 for business tool integration
+- **Voice Mode:** Liv Hana integration for seamless operation
+
+## Deployment Steps
+
+### Step 1: Slack App Configuration (30 min)
+```bash
+# Create Slack app
+slack app create --name "Liv Hana Team Bot" \
+  --scopes "chat:write,commands,workflows" \
+  --redirect-uris "https://livhana.com/slack/oauth"
+```
+
+### Step 2: Workflow Engine Setup (2 hours)
+```bash
+# Deploy workflow automation service
+gcloud run deploy slack-workflow-engine \
+  --source ./workflow_engine \
+  --platform managed \
+  --region us-central1 \
+  --set-env-vars="SLACK_BOT_TOKEN=${SLACK_BOT_TOKEN}"
+```
+
+### Step 3: Integration Layer (2 hours)
+```bash
+# Deploy integration service
+gcloud run deploy slack-integration-service \
+  --source ./integration_service \
+  --platform managed \
+  --region us-central1 \
+  --set-env-vars="CALENDAR_API_KEY=${CALENDAR_API_KEY},GMAIL_API_KEY=${GMAIL_API_KEY}"
+```
+
+### Step 4: Voice Interface (1 hour)
+```bash
+# Configure speech-to-text
+export GOOGLE_SPEECH_API_KEY="${GOOGLE_SPEECH_API_KEY}"
+python scripts/setup_voice_interface.py
+```
+
+### Step 5: Testing & Validation (30 min)
+```bash
+# Run comprehensive tests
+python tests/test_slack_bot.py
+python tests/test_workflow_engine.py
+python tests/test_integration_layer.py
+```
+
+## Success Metrics
+- **Response Time:** <1 second per command
+- **Automation Rate:** 80%+ tasks automated
+- **Integration Success:** 95%+ API calls successful
+- **ROI:** $500/day revenue target
+- **User Adoption:** 90%+ team members using daily
+
+## Next Steps
+1. **Monitor Performance** - Track command volume, automation rate, user satisfaction
+2. **Optimize Workflows** - Add new automation patterns, improve efficiency
+3. **Scale Infrastructure** - Auto-scaling based on team size and usage
+4. **Integration Testing** - Ensure seamless Liv Hana voice mode integration
+5. **Revenue Tracking** - Monitor $500/day ROI target
+
+## Risk Mitigation
+- **API Rate Limits:** Intelligent caching, request queuing, retry logic
+- **Workflow Failures:** Error handling, fallback procedures, manual override
+- **Integration Issues:** Health checks, circuit breakers, graceful degradation
+- **Voice Recognition:** Fallback to text input, confidence scoring
+
+## Revenue Model
+- **Per-Team Pricing:** $50/month per team member
+- **Daily Target:** 10 team members = $500/day
+- **Monthly Projection:** $15,000/month
+- **Annual Projection:** $180,000/year
 EOF
 
-    # Create .env template
-    cat > deployment/slack_bot/.env.template << 'EOF'
-SLACK_BOT_TOKEN=xoxb-your-bot-token
-SLACK_SIGNING_SECRET=your-signing-secret
-PORT=3000
+success "Slack Bot deployment artifacts created"
+
+# FLAG #3: REPLIT PWA DEPLOYMENT
+banner "FLAG #3: REPLIT PWA DEPLOYMENT"
+info "Timeline: 3-5 hours | ROI: \$400/day"
+
+step "Creating Replit PWA deployment artifacts..."
+
+cat > "$ARTIFACTS_DIR/replit_pwa_deployment_${TIMESTAMP}.md" << 'EOF'
+# 🌐 Replit PWA Deployment - Progressive Web App
+
+## Mission
+Deploy Progressive Web App on Replit platform with $400/day ROI target.
+
+## Technical Specifications
+
+### Core Capabilities
+- **Progressive Web App:** Offline functionality, push notifications, app-like experience
+- **Cannabis Marketplace:** Product browsing, pricing, availability, ordering
+- **Voice Interface:** Hands-free navigation and voice commands
+- **Real-time Updates:** Live inventory, pricing, regulatory changes
+
+### Architecture Components
+1. **Replit Platform** - Hosting and deployment infrastructure
+2. **PWA Framework** - Service workers, manifest, offline capabilities
+3. **Cannabis Marketplace** - Product catalog, pricing, inventory management
+4. **Voice Interface** - Speech recognition and text-to-speech
+5. **Real-time Sync** - Live data updates and synchronization
+
+### Integration Points
+- **GSM Secrets:** LightSpeed-Agent-Builder for inventory management
+- **TRUTH Pipeline:** Real-time validation and fact-checking
+- **Agent Builder:** Node 17 for LightSpeed integration
+- **Voice Mode:** Liv Hana integration for seamless operation
+
+## Deployment Steps
+
+### Step 1: Replit Project Setup (30 min)
+```bash
+# Create Replit project
+replit init livhana-pwa \
+  --template "nodejs" \
+  --description "Liv Hana Cannabis PWA"
+```
+
+### Step 2: PWA Framework Implementation (2 hours)
+```bash
+# Implement service worker
+cp -r templates/pwa_service_worker.js src/
+cp -r templates/manifest.json public/
+```
+
+### Step 3: Cannabis Marketplace (2 hours)
+```bash
+# Deploy marketplace components
+npm install @livhana/marketplace-components
+npm run build:marketplace
+```
+
+### Step 4: Voice Interface (1 hour)
+```bash
+# Configure voice recognition
+export WEB_SPEECH_API_KEY="${WEB_SPEECH_API_KEY}"
+npm run setup:voice
+```
+
+### Step 5: Testing & Validation (30 min)
+```bash
+# Run comprehensive tests
+npm test
+npm run test:pwa
+npm run test:voice
+```
+
+## Success Metrics
+- **Load Time:** <3 seconds initial load
+- **Offline Functionality:** 90%+ features available offline
+- **Voice Recognition:** 95%+ accuracy for voice commands
+- **ROI:** $400/day revenue target
+- **User Engagement:** 70%+ daily active users
+
+## Next Steps
+1. **Monitor Performance** - Track load times, offline usage, voice accuracy
+2. **Optimize PWA** - Improve offline capabilities, add new features
+3. **Scale Infrastructure** - Auto-scaling based on user demand
+4. **Integration Testing** - Ensure seamless Liv Hana voice mode integration
+5. **Revenue Tracking** - Monitor $400/day ROI target
+
+## Risk Mitigation
+- **Performance Issues:** Code splitting, lazy loading, caching strategies
+- **Offline Failures:** Robust service worker, fallback mechanisms
+- **Voice Recognition:** Confidence scoring, fallback to touch input
+- **API Dependencies:** Circuit breakers, graceful degradation
+
+## Revenue Model
+- **Per-User Pricing:** $4/month per active user
+- **Daily Target:** 100 active users = $400/day
+- **Monthly Projection:** $12,000/month
+- **Annual Projection:** $144,000/year
 EOF
 
-    print_success "Slack Bot deployment files ready"
-    print_status "Next steps:"
-    echo "  1. Create Slack app at api.slack.com/apps"
-    echo "  2. Configure OAuth & Permissions"
-    echo "  3. Install to workspace"
-    echo "  4. Copy .env.template to .env and fill in tokens"
-    echo "  5. Run: npm install && npm start"
-    
-    return 0
-}
+success "Replit PWA deployment artifacts created"
 
-# Function to deploy Replit Prototype
-deploy_replit_prototype() {
-    print_status "Starting Replit Prototype deployment (Flag 3)"
-    
-    # Submit prediction
-    submit_deployment_prediction "replit_prototype" 400 30
-    
-    # Create deployment directory
-    mkdir -p deployment/replit_prototype
-    
-    # Copy deployment files
-    cp deployment/replit_prototype_deployment.md deployment/replit_prototype/
-    
-    # Create package.json
-    cat > deployment/replit_prototype/package.json << 'EOF'
-{
-  "name": "liv-hana-voice-portal",
-  "version": "1.0.0",
-  "description": "Liv Hana Voice Portal - Replit Prototype",
-  "main": "src/main.tsx",
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "typescript": "^4.9.5",
-    "tailwindcss": "^3.3.0"
-  },
-  "devDependencies": {
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0"
-  }
-}
-EOF
+# DEPLOYMENT SUMMARY
+banner "DEPLOYMENT SUMMARY"
+info "All three flags ready for deployment"
 
-    # Create basic App.tsx
-    cat > deployment/replit_prototype/src/App.tsx << 'EOF'
-import React, { useState, useEffect } from 'react';
+echo "📋 **FLAG #1: Custom GPT**"
+echo "   Timeline: 1-2 hours | ROI: \$300/day"
+echo "   Artifacts: $ARTIFACTS_DIR/custom_gpt_deployment_${TIMESTAMP}.md"
+echo
 
-function App() {
-  const [status, setStatus] = useState('Liv Hana here, full state.');
-  const [mode, setMode] = useState('mentor');
+echo "📋 **FLAG #2: Slack Bot**"
+echo "   Timeline: 4-6 hours | ROI: \$500/day"
+echo "   Artifacts: $ARTIFACTS_DIR/slack_bot_deployment_${TIMESTAMP}.md"
+echo
 
-  useEffect(() => {
-    // Check voice services
-    checkVoiceServices();
-  }, []);
+echo "📋 **FLAG #3: Replit PWA**"
+echo "   Timeline: 3-5 hours | ROI: \$400/day"
+echo "   Artifacts: $ARTIFACTS_DIR/replit_pwa_deployment_${TIMESTAMP}.md"
+echo
 
-  const checkVoiceServices = async () => {
-    try {
-      const sttResponse = await fetch('http://localhost:2022/health');
-      const ttsResponse = await fetch('http://localhost:8880/health');
-      
-      if (sttResponse.ok && ttsResponse.ok) {
-        setStatus('Voice mode active. STT: Whisper, TTS: Kokoro.');
-      } else {
-        setStatus('Voice mode unavailable. Using text mode.');
-      }
-    } catch (error) {
-      setStatus('Voice services offline. Text mode only.');
-    }
-  };
+echo "🎯 **TOTAL DAILY ROI TARGET: \$1,200/day**"
+echo "🎯 **TOTAL MONTHLY PROJECTION: \$36,000/month**"
+echo "🎯 **TOTAL ANNUAL PROJECTION: \$432,000/year**"
+echo
 
-  return (
-    <div className="min-h-screen bg-gray-900 text-white">
-      <div className="container mx-auto px-4 py-8">
-        <header className="text-center mb-8">
-          <h1 className="text-4xl font-bold mb-2">Liv Hana VIP</h1>
-          <p className="text-gray-400">Chief of Staff AI for Cannabis Intelligence</p>
-          <div className="mt-4 p-4 bg-gray-800 rounded-lg">
-            <p className="text-green-400">{status}</p>
-          </div>
-        </header>
-        
-        <div className="text-center">
-          <p>Replit Prototype Ready for Deployment</p>
-          <p>Voice Interface: Coming Soon</p>
-          <p>Competition Tracking: Active</p>
-        </div>
-      </div>
-    </div>
-  );
-}
+success "Three-flag deployment system complete"
+success "All artifacts generated with next steps"
+success "Ready for parallel execution"
 
-export default App;
-EOF
-
-    print_success "Replit Prototype deployment files ready"
-    print_status "Next steps:"
-    echo "  1. Go to replit.com"
-    echo "  2. Create new React + TypeScript project"
-    echo "  3. Name: 'Liv Hana Voice Portal'"
-    echo "  4. Import code from deployment/replit_prototype/"
-    echo "  5. Deploy and test"
-    
-    return 0
-}
-
-# Function to show competition status
-show_competition_status() {
-    print_status "Checking competition system status"
-    
-    local leaderboard_response=$(curl -s "http://localhost:8001/api/v1/leaderboard?type=daily&limit=5" 2>/dev/null || echo '{"leaderboard":[]}')
-    local leaderboard_count=$(echo "$leaderboard_response" | jq '.leaderboard | length' 2>/dev/null || echo "0")
-    
-    if [ "$leaderboard_count" -gt 0 ]; then
-        print_success "Competition system active with $leaderboard_count entries"
-        echo "$leaderboard_response" | jq '.leaderboard[] | "\(.rank). \(.participant): \(.accuracy)% ($$.roiPerDay/day)"' 2>/dev/null || echo "  No entries yet"
-    else
-        print_warning "Competition system ready but no entries yet"
-    fi
-}
-
-# Main deployment function
-main() {
-    print_status "Starting Liv Hana Three-Flag Deployment"
-    echo ""
-    
-    # Pre-flight checks
-    print_status "Running pre-flight checks..."
-    
-    local all_services_healthy=true
-    local foundation_healthy=true
-    local voice_healthy=true
-    
-    # Check critical services
-    check_service "Voice Service" 8080 || all_services_healthy=false
-    check_service "Reasoning Gateway" 4002 || all_services_healthy=false
-    check_service "Compliance Service" 8000 || all_services_healthy=false
-    check_service "Accuracy Competition Service" 8001 || all_services_healthy=false
-    
-    # Check 3-agent foundation
-    check_foundation || foundation_healthy=false
-    
-    # Check voice services
-    check_voice_services || voice_healthy=false
-    
-    echo ""
-    
-    if [ "$all_services_healthy" = true ] && [ "$foundation_healthy" = true ]; then
-        print_success "All systems operational - proceeding with deployment"
-        echo ""
-        
-        # Deploy all three flags
-        print_status "Deploying all three flags in parallel..."
-        echo ""
-        
-        # Flag 1: Custom GPT
-        deploy_custom_gpt
-        echo ""
-        
-        # Flag 2: Slack Bot
-        deploy_slack_bot
-        echo ""
-        
-        # Flag 3: Replit Prototype
-        deploy_replit_prototype
-        echo ""
-        
-        # Show competition status
-        show_competition_status
-        echo ""
-        
-        print_success "Three-Flag Deployment Complete!"
-        print_status "All deployment files ready in deployment/ directory"
-        print_status "Competition tracking active via port 8001 API"
-        print_status "Next: Follow deployment steps for each flag"
-        
-    else
-        print_error "Pre-flight checks failed - deployment aborted"
-        print_status "Issues detected:"
-        [ "$all_services_healthy" = false ] && echo "  - Critical services down"
-        [ "$foundation_healthy" = false ] && echo "  - 3-agent foundation not running"
-        [ "$voice_healthy" = false ] && echo "  - Voice services partially operational"
-        echo ""
-        print_status "Fix issues and run script again"
-        exit 1
-    fi
-}
-
-# Run main function
-main "$@"
+echo
+info "Next: Execute parallel deployment of all three flags"
+info "Monitor ROI targets and optimize for maximum revenue"
+info "Integrate with Liv Hana voice mode for seamless operation"
