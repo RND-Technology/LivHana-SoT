@@ -13,5 +13,33 @@
   "claudeCode.livHanaOptimization": true,
   "claudeCode.maximumPower": true,
   "claudeCode.enterpriseGrade": true,
-  "claudeCode.productionReady": true
+  "claudeCode.productionReady": true,
+  "files.watcherExclude": {
+    "**/racers/**": true,
+    "**/1.rnd/**": true,
+    "**/4.media/**": true,
+    "**/5.outputs/**": true,
+    "**/6.tmp/**": true,
+    "**/node_modules/**": true,
+    "**/.venv/**": true,
+    "**/.archive/**": true,
+    "**/frontend/video-commerce-ui/**": true,
+    "**/frontend/exotic-canopy-solutions/**": true,
+    "**/docs/QA-FALLACY-SCAN-CHEETAH-DNS-WORK/**": true,
+    "**/docs/unicorn-race/**": true
+  },
+  "search.exclude": {
+    "**/racers/**": true,
+    "**/1.rnd/**": true,
+    "**/4.media/**": true,
+    "**/5.outputs/**": true,
+    "**/6.tmp/**": true,
+    "**/node_modules/**": true,
+    "**/.venv/**": true,
+    "**/.archive/**": true,
+    "**/frontend/video-commerce-ui/**": true,
+    "**/frontend/exotic-canopy-solutions/**": true,
+    "**/docs/QA-FALLACY-SCAN-CHEETAH-DNS-WORK/**": true,
+    "**/docs/unicorn-race/**": true
+  }
 }
