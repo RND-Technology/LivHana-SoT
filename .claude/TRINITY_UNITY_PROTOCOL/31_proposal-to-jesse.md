@@ -1,1 +1,0 @@
-## 🎯 PROPOSAL TO JESSE

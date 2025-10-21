@@ -257,3 +257,14 @@ Then Phase 2 (Codex) → Phase 3 (Cheetah) → Verify compression
 
 **SESSION SAVED:** 2025-10-21 01:30 CST
 **READY FOR NEXT SESSION:** Load this file as context + copilot file location + proceed with Phase 1
+
+## Session 2 State Schema
+
+- **propertyId** ("livhana-project-001"): static project identifier.
+- **guestName** (`{{input.guestName}}`): dynamically captures the user’s name from voice input.
+- **checkInDate** (`{{input.checkInDate}}`): dynamically captures workflow start date (ISO 8601).
+- **checkOutDate** (`{{input.checkOutDate}}`): dynamically captures expected completion/handoff date (ISO 8601).
+
+Next steps:
+- Confirm or adjust these variable names & values.
+- Approve the placeholder next‑node ("CRM Lookup" vs. "Concierge Handoff" or other).

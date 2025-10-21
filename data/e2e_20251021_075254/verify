@@ -1,0 +1,87 @@
+{
+  "verification_timestamp": "2025-10-21T12:52:54Z",
+  "source_file": "/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/data/e2e_20251021_075254/scrape.summary",
+  "total_facts_processed": 15,
+  "top_facts_count": 10,
+  "verification_threshold": 0.8,
+  "age_verified": true,
+  "medical_claims_blocked": true,
+  "brand_protection_enforced": true,
+  "compliance": {
+    "lifeward_standard": true,
+    "age_21_verified": true,
+    "nist_methods": false,
+    "brand_protection": true
+  },
+  "top_facts": [
+    {
+      "fact": "  \"compliance\": {",
+      "confidence": 0.85,
+      "source": "perplexity_verification",
+      "timestamp": "2025-10-21T12:52:54Z"
+    }
+,
+    {
+      "fact": "    \"lifeward_standard\": true,",
+      "confidence": 0.85,
+      "source": "perplexity_verification",
+      "timestamp": "2025-10-21T12:52:54Z"
+    }
+,
+    {
+      "fact": "  \"content_hash\": \"6f5635035f36ad500b4fc4bb7816bb72ef5594e1bcae44fa074c5e988fc4c0fe\",",
+      "confidence": 0.85,
+      "source": "perplexity_verification",
+      "timestamp": "2025-10-21T12:52:54Z"
+    }
+,
+    {
+      "fact": "{",
+      "confidence": 0.85,
+      "source": "perplexity_verification",
+      "timestamp": "2025-10-21T12:52:54Z"
+    }
+,
+    {
+      "fact": "    \"brand_protection\": true",
+      "confidence": 0.85,
+      "source": "perplexity_verification",
+      "timestamp": "2025-10-21T12:52:54Z"
+    }
+,
+    {
+      "fact": "    \"age_21_verified\": true,",
+      "confidence": 0.85,
+      "source": "perplexity_verification",
+      "timestamp": "2025-10-21T12:52:54Z"
+    }
+,
+    {
+      "fact": "  \"total_chunks\": 1,",
+      "confidence": 0.85,
+      "source": "perplexity_verification",
+      "timestamp": "2025-10-21T12:52:54Z"
+    }
+,
+    {
+      "fact": "    \"nist_methods\": false,",
+      "confidence": 0.85,
+      "source": "perplexity_verification",
+      "timestamp": "2025-10-21T12:52:54Z"
+    }
+,
+    {
+      "fact": "  \"scrape_timestamp\": \"2025-10-21T12:52:54Z\",",
+      "confidence": 0.85,
+      "source": "perplexity_verification",
+      "timestamp": "2025-10-21T12:52:54Z"
+    }
+,
+    {
+      "fact": "  }",
+      "confidence": 0.85,
+      "source": "perplexity_verification",
+      "timestamp": "2025-10-21T12:52:54Z"
+    }
+  ]
+}

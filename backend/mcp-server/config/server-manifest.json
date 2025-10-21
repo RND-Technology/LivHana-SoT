@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "livhana-truth-mcp": {
+      "command": "python",
+      "args": ["-m", "src.server"],
+      "cwd": "${LIVHANA_MCP_ROOT}",
+      "env": {
+        "LIVHANA_ROOT": "${REPO_ROOT}",
+        "APIFY_API_TOKEN": "${APIFY_API_TOKEN}",
+        "PERPLEXITY_API_KEY": "${PERPLEXITY_API_KEY}",
+        "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+        "ANTHROPIC_API_KEY": "${ANTHROPIC_API_KEY}",
+        "PYTHONPATH": "${LIVHANA_MCP_ROOT}/src"
+      }
+    }
+  },
+  "globalShortcut": "Ctrl+Shift+L"
+}

@@ -1,0 +1,19 @@
+{
+  "heartbeat": {
+    "last_utc": "2025-10-21T19:43:48Z"
+  },
+  "foundation": {
+    "rpm_planning": {
+      "running": true,
+      "since": "2025-10-21T20:24:46Z"
+    },
+    "research": {
+      "running": true,
+      "since": "2025-10-21T20:24:46Z"
+    },
+    "qa_guardrails": {
+      "running": true,
+      "since": "2025-10-21T20:24:46Z"
+    }
+  }
+}

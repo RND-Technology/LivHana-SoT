@@ -1,0 +1,42 @@
+{
+  "mcp_broker": {
+    "version": "1.0.0",
+    "deployment": {
+      "platform": "google_cloud_run",
+      "region": "us-central1",
+      "service_name": "livhana-mcp-broker",
+      "port": 8080,
+      "memory": "1Gi",
+      "cpu": "1",
+      "max_instances": 10,
+      "min_instances": 1
+    },
+    "endpoints": {
+      "health": "/health",
+      "status": "/status",
+      "tools": "/tools",
+      "execute": "/execute",
+      "validate": "/validate"
+    },
+    "authentication": {
+      "type": "jwt",
+      "secret_env": "MCP_BROKER_JWT_SECRET",
+      "expiry_minutes": 60
+    },
+    "rate_limiting": {
+      "requests_per_minute": 100,
+      "burst_limit": 20
+    },
+    "logging": {
+      "level": "info",
+      "format": "json",
+      "retention_days": 30
+    },
+    "compliance": {
+      "lifeward_standard": true,
+      "age_21_verified": true,
+      "nist_methods": false,
+      "brand_protection": true
+    }
+  }
+}

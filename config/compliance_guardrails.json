@@ -1,0 +1,138 @@
+{
+  "version": "1.0.0",
+  "updated": "2025-10-21",
+  "compliance_framework": {
+    "name": "Liv Hana Cannabis Compliance",
+    "principles": [
+      "LifeWard: Prioritize human life and safety",
+      "AGE21: Enforce 21+ age verification",
+      "NIST: Validate cannabinoids with approved methods",
+      "NO_MEDICAL_CLAIMS: Cannabis is not medicine",
+      "BRAND_PROTECTION: Reggie & Dro are brands only"
+    ]
+  },
+  "age_verification": {
+    "enabled": true,
+    "minimum_age": 21,
+    "enforcement_level": "STRICT",
+    "grace_period_days": 0,
+    "verification_methods": [
+      "birthdate",
+      "id_scan",
+      "third_party_api"
+    ],
+    "third_party_providers": [
+      "BlueCheck",
+      "Veriff",
+      "Jumio"
+    ]
+  },
+  "nist_validation": {
+    "enabled": true,
+    "enforcement_level": "STRICT",
+    "allowed_cannabinoids": [
+      "THC",
+      "CBD",
+      "CBG",
+      "CBN",
+      "THCV",
+      "Delta-8-THC",
+      "Delta-9-THC",
+      "THCA",
+      "CBDA"
+    ],
+    "novel_cannabinoid_gate": true,
+    "require_lab_certification": true,
+    "nist_method_references": {
+      "THC": "NIST RM 8323",
+      "CBD": "NIST RM 8323",
+      "notes": "Reference materials for quality assurance"
+    }
+  },
+  "medical_claims_blocker": {
+    "enabled": true,
+    "enforcement_level": "CRITICAL",
+    "block_patterns": [
+      "cures?\\s+\\w+",
+      "treats?\\s+\\w+",
+      "diagnos(es|e)\\s+\\w+",
+      "prevents?\\s+\\w+",
+      "heals?\\s+\\w+",
+      "therapeutic\\s+\\w+",
+      "medicinal\\s+\\w+"
+    ],
+    "allowed_phrases": [
+      "may help with",
+      "supports",
+      "promotes",
+      "wellness"
+    ],
+    "fda_compliance": true,
+    "disclaimer_required": true
+  },
+  "pii_protection": {
+    "enabled": true,
+    "scrub_fields": [
+      "email",
+      "phone",
+      "ssn",
+      "address",
+      "full_name"
+    ],
+    "hashing_algorithm": "HMAC-SHA256",
+    "salt_rotation_days": 90
+  },
+  "brand_protection": {
+    "enabled": true,
+    "protected_brands": [
+      "Reggie & Dro",
+      "Herbitrage",
+      "Liv Hana",
+      "High Noon Cartoon",
+      "LivHana Cigars"
+    ],
+    "usage_rules": {
+      "reggie_and_dro": "Brand mascots only, not characters in medical contexts",
+      "no_unauthorized_derivatives": true,
+      "trademark_enforcement": true
+    }
+  },
+  "regulatory_compliance": {
+    "jurisdictions": {
+      "texas": {
+        "enabled": true,
+        "hemp_thc_limit_percent": 0.3,
+        "license_required": true,
+        "reporting_frequency": "monthly",
+        "age_gate": 21
+      },
+      "federal": {
+        "enabled": true,
+        "farm_bill_2018_compliant": true,
+        "dea_schedule": "deschedule_cannabis_sativa_l",
+        "fda_disclaimer_required": true
+      }
+    }
+  },
+  "monitoring": {
+    "log_all_checks": true,
+    "alert_on_violations": true,
+    "compliance_dashboard_url": "/api/v1/compliance-status",
+    "audit_retention_days": 365
+  },
+  "api_configuration": {
+    "base_url": "http://localhost:8000",
+    "health_endpoint": "/health",
+    "endpoints": {
+      "age_verification": "/api/v1/verify-age",
+      "nist_validation": "/api/v1/validate-cannabinoid",
+      "medical_claims": "/api/v1/check-medical-claims",
+      "comprehensive": "/api/v1/comprehensive-check"
+    },
+    "authentication": {
+      "required": true,
+      "header_name": "X-Compliance-Token",
+      "token_source": "GSM:COMPLIANCE_API_TOKEN"
+    }
+  }
+}

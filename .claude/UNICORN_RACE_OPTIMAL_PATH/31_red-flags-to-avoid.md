@@ -1,1 +1,0 @@
-## 🚨 RED FLAGS TO AVOID

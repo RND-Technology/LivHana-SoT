@@ -1,0 +1,32 @@
+{
+  "name": "livhana-truth-mcp",
+  "version": "1.0.0",
+  "description": "Liv Hana TRUTH Pipeline - Cannabis Intelligence with AGE21 + PII Compliance",
+  "command": "python",
+  "args": ["-m", "src.server"],
+  "env": {
+    "LIVHANA_ROOT": "${REPO_ROOT}",
+    "APIFY_API_TOKEN": "${APIFY_API_TOKEN}",
+    "PERPLEXITY_API_KEY": "${PERPLEXITY_API_KEY}",
+    "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+    "ANTHROPIC_API_KEY": "${ANTHROPIC_API_KEY}"
+  },
+  "transport": "stdio",
+  "metadata": {
+    "category": "cannabis-intelligence",
+    "compliance": ["AGE21", "PII_PROTECTION", "STATE_REGULATIONS"],
+    "capabilities": [
+      "dispensary-search",
+      "market-analysis",
+      "compliance-verification",
+      "profit-estimation",
+      "truth-pipeline"
+    ]
+  },
+  "openai": {
+    "widgetPrefersBorder": true,
+    "widgetDomain": "livhana.com",
+    "widgetAccessible": true,
+    "locale": "en-US"
+  }
+}

@@ -153,3 +153,26 @@ echo "  4. ${BOLD}NUMBERED STEPS${NC} - Systematic execution with checkpoints"
 echo
 success "🚀 LET'S GO - TIER 1 OPTION A ALL THE WAY!"
 echo
+
+# Non-blocking PO1 cleanup and foundation seeding
+if [[ -f "$ROOT_DIR/scripts/po1_dotdirs_cleanup.sh" ]]; then
+  info "Running PO1 cleanup for .claude/.cursor (non-blocking)"
+  bash "$ROOT_DIR/scripts/po1_dotdirs_cleanup.sh" || warning "PO1 cleanup warnings; continuing"
+fi
+
+# Ensure 3-agent foundation coordination files exist
+python3 - <<PY || true
+import os, json, time
+root = r"$ROOT_DIR"
+ac = os.path.join(root, ".claude", "agent_coordination")
+os.makedirs(ac, exist_ok=True)
+now = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+def write(p, agent):
+  if not os.path.exists(p):
+    with open(p, "w") as f:
+      json.dump({"agent": agent, "status": "running", "start_utc": now, "last_update_utc": now}, f, indent=2)
+write(os.path.join(ac, "rpm_state.json"), "rpm_planning")
+write(os.path.join(ac, "research_feed.json"), "research")
+write(os.path.join(ac, "qa_metrics.json"), "qa_guardrails")
+print("Foundation coordination seeded")
+PY
