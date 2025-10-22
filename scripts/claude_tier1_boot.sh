@@ -47,6 +47,25 @@ echo
 # STEP 1: ENVIRONMENT SETUP (before pre-flight)
 banner "🌍 STEP 1: ENVIRONMENT SETUP"
 
+# Check available memory FIRST (warn about crashes)
+if command -v vm_stat >/dev/null 2>&1; then
+  info "Checking system memory..."
+  FREE_PAGES=$(vm_stat | grep "Pages free" | awk '{print $3}' | tr -d '.')
+  FREE_MB=$((FREE_PAGES * 4096 / 1024 / 1024))
+  FREE_GB=$((FREE_PAGES * 4096 / 1024 / 1024 / 1024))
+
+  if [[ $FREE_MB -lt 500 ]]; then
+    warning "CRITICAL: Very low memory (<500MB free)"
+    warning "Cursor may crash - save work frequently"
+    warning "Consider restarting system for best stability"
+  elif [[ $FREE_GB -lt 2 ]]; then
+    warning "Low memory: ~${FREE_GB}GB free (recommend >2GB)"
+    warning "Monitor for stability issues during session"
+  else
+    success "Memory: ~${FREE_GB}GB free (healthy)"
+  fi
+fi
+
 # Check 1Password session (OPTIONAL - not blocking)
 if ! command -v op >/dev/null 2>&1; then
   warning "1Password CLI (op) not found - some features will be limited"

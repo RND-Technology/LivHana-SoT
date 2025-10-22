@@ -78,11 +78,12 @@ else
     fi
 fi
 
-# Check ANTHROPIC_API_KEY
+# Check ANTHROPIC_API_KEY (optional for Claude Code - built-in API access)
 log_check "ANTHROPIC_API_KEY present"
 if [[ -z "${ANTHROPIC_API_KEY:-}" ]]; then
-    log_fail "ANTHROPIC_API_KEY not set - Claude CLI will not work"
-    echo "  Fix: export ANTHROPIC_API_KEY='sk-ant-...'"
+    log_warn "ANTHROPIC_API_KEY not set - Claude CLI will be limited"
+    echo "  Note: Not required for Claude Code sessions (API built-in)"
+    echo "  For standalone CLI: export ANTHROPIC_API_KEY='sk-ant-...'"
 else
     # Check format - either real key or placeholder
     if [[ "$ANTHROPIC_API_KEY" =~ ^sk-ant-[a-zA-Z0-9_-]+$ ]] || [[ "$ANTHROPIC_API_KEY" == "local-claude-mode-active" ]]; then
