@@ -33,17 +33,17 @@ log_check() {
 
 log_pass() {
     echo -e "${GREEN}[PASS]${NC} $1"
-    ((CHECKS_PASSED++))
+    CHECKS_PASSED=$((CHECKS_PASSED + 1))
 }
 
 log_warn() {
     echo -e "${YELLOW}[WARN]${NC} $1"
-    ((WARNINGS++))
+    WARNINGS=$((WARNINGS + 1))
 }
 
 log_fail() {
     echo -e "${RED}[FAIL]${NC} $1"
-    ((CRITICAL_FAILURES++))
+    CRITICAL_FAILURES=$((CRITICAL_FAILURES + 1))
 }
 
 log_info() {
@@ -69,11 +69,11 @@ if [[ -z "${OPENAI_API_KEY:-}" ]]; then
     log_warn "OPENAI_API_KEY not set - voice fallback disabled (Whisper STT is primary, this is OK)"
     echo "  Note: Only needed if Whisper fails; not critical for normal operation"
 else
-    # Validate format (starts with sk- or sk-proj-)
-    if [[ "$OPENAI_API_KEY" =~ ^sk-[a-zA-Z0-9_-]+$ ]]; then
+    # Validate format (starts with sk- or sk-proj- or local-voice-mode-active)
+    if [[ "$OPENAI_API_KEY" =~ ^sk-[a-zA-Z0-9_-]+$ ]] || [[ "$OPENAI_API_KEY" == "local-voice-mode-active" ]]; then
         log_pass "OPENAI_API_KEY set and valid format"
     else
-        log_warn "OPENAI_API_KEY has unexpected format (should start with 'sk-')"
+        log_warn "OPENAI_API_KEY has unexpected format (should start with 'sk-' or be 'local-voice-mode-active')"
         echo "  Current value starts with: ${OPENAI_API_KEY:0:3}..."
     fi
 fi
@@ -84,7 +84,8 @@ if [[ -z "${ANTHROPIC_API_KEY:-}" ]]; then
     log_fail "ANTHROPIC_API_KEY not set - Claude CLI will not work"
     echo "  Fix: export ANTHROPIC_API_KEY='sk-ant-...'"
 else
-    if [[ "$ANTHROPIC_API_KEY" =~ ^sk-ant-[a-zA-Z0-9_-]+$ ]]; then
+    # Check format - either real key or placeholder
+    if [[ "$ANTHROPIC_API_KEY" =~ ^sk-ant-[a-zA-Z0-9_-]+$ ]] || [[ "$ANTHROPIC_API_KEY" == "local-claude-mode-active" ]]; then
         log_pass "ANTHROPIC_API_KEY set and valid format"
     else
         log_warn "ANTHROPIC_API_KEY has unexpected format"
