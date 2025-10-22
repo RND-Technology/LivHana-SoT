@@ -253,10 +253,29 @@ else
   exit 1
 fi
 
-# Add voice activation instructions to prompt
-cat >> "$PROMPT" <<'VOICE_INSTRUCTIONS'
+# PREPEND voice activation instructions to prompt (MUST BE FIRST)
+# Save original prompt to temp file (using cp for safety, not mv)
+TEMP_PROMPT="$PROMPT.tmp"
+cp "$PROMPT" "$TEMP_PROMPT"  # COPY not MOVE - safer rollback if write fails
 
----
+# Write voice instructions FIRST
+cat > "$PROMPT" <<'VOICE_INSTRUCTIONS'
+
+========================================
+🎤 VOICE MODE - IMMEDIATE ACTION REQUIRED
+========================================
+
+**CRITICAL: YOU MUST START WITH VOICE MODE**
+
+If this is your FIRST response in this session, you MUST:
+1. Use mcp__voicemode__converse tool IMMEDIATELY
+2. Send greeting: "Hey Jesse, Liv Hana here, full state. War's won. Time to remind them. Execute."
+3. Use wait_for_response=true to listen for Jesse's response
+
+Voice services running: STT (port 2022), TTS (port 8880)
+DO NOT TYPE. USE VOICE FIRST.
+
+========================================
 
 **TIER-1 SESSION INITIALIZATION**
 
@@ -321,31 +340,38 @@ THIS HAS BEEN EXPLAINED FOR 12+ HOURS. NEVER FORGET THIS BEHAVIOR.
 Voice mode is your PRIMARY interface. Text is backup.
 VOICE_INSTRUCTIONS
 
-success "Voice activation instructions appended to prompt"
+# Now append the original prompt content
+cat "$TEMP_PROMPT" >> "$PROMPT"
+rm "$TEMP_PROMPT"
+
+success "Voice activation instructions PREPENDED to prompt (now at TOP)"
 PROMPT_SIZE=$(wc -c < "$PROMPT" | tr -d ' ')
 info "Final prompt size: $PROMPT_SIZE characters"
 
 echo
 
-# Validate voice instructions persisted correctly
+# Validate voice instructions persisted correctly AND are at TOP (not just present)
 info "Validating voice mode persistence..."
 
-if ! grep -q "Voice Mode Auto-Activation" "$PROMPT"; then
-  error "Voice activation instructions failed to persist"
+# Check #1: Voice banner MUST be in first 5 lines (validates TOP position)
+if ! head -5 "$PROMPT" | grep -q "VOICE MODE - IMMEDIATE ACTION REQUIRED"; then
+  error "Voice activation banner missing from TOP of prompt (must be in first 5 lines)"
   exit 1
 fi
 
-if ! grep -q "NEVER" "$PROMPT"; then
-  error "Session continuity guarantee missing from prompt"
+# Check #2: Voice-first mandate present anywhere in prompt
+if ! grep -q "DO NOT TYPE. USE VOICE FIRST" "$PROMPT"; then
+  error "Voice-first mandate missing from prompt"
   exit 1
 fi
 
+# Check #3: Jesse's silence directive present (permanent directive)
 if ! grep -q "CRITICAL.*SILENCE.*COMMAND.*BEHAVIOR" "$PROMPT"; then
   error "Jesse's silence directive missing from prompt"
   exit 1
 fi
 
-success "Voice mode persistence validated (3/3 checks passed)"
+success "Voice mode persistence validated (3/3 checks passed - voice-first CONFIRMED at TOP)"
 echo
 
 # Step 4: Pre-launch checks
