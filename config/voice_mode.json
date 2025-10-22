@@ -12,12 +12,17 @@
       "max_tokens": 2000,
       "interrupt_enabled": false
     },
-    "silence": {
-      "trigger": "pause",
-      "description": "Pause voice output",
-      "max_tokens": 0,
-      "interrupt_enabled": true
-    }
+  "silence": {
+    "trigger": "pause",
+    "description": "Pause voice output, CONTINUE session with text",
+    "behavior": "pause_voice_only",
+    "terminate_session": false,
+    "max_tokens": 0,
+    "voice_output_enabled": false,
+    "text_output_enabled": true,
+    "interrupt_enabled": true,
+    "notes": "Jesse directive (12-hour emphasis Oct 22): Silence means PAUSE OUTPUT, NOT END SESSION. Session continues with text-only mode."
+  }
   },
   "stt_config": {
     "port": 2022,
