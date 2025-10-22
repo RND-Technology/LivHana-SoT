@@ -47,16 +47,17 @@ echo
 # STEP 1: ENVIRONMENT SETUP (before pre-flight)
 banner "🌍 STEP 1: ENVIRONMENT SETUP"
 
-# Ensure 1Password session is active
+# Check 1Password session (OPTIONAL - not blocking)
 if ! command -v op >/dev/null 2>&1; then
-  warning "1Password CLI (op) not found - install via: brew install 1password-cli"
+  warning "1Password CLI (op) not found - some features will be limited"
+  warning "Install via: brew install 1password-cli"
 else
   if ! op whoami >/dev/null 2>&1; then
-    error "1Password session not active"
-    error "Run: op signin"
-    exit 1
+    warning "1Password session not active - API keys will not auto-load"
+    warning "Run: op signin (optional, for convenience only)"
+  else
+    success "1Password authenticated: $(op whoami)"
   fi
-  success "1Password authenticated: $(op whoami)"
 fi
 
 # GCP project for downstream scripts
