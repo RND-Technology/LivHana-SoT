@@ -6,7 +6,7 @@
 
 ## Result
 
-Deploy TRUTH Pipeline + Agent Builder + Compliance Service; recover $125K-175K revenue (Jumio IDV + win-back); meet DSHS compliance (Oct 26 deadline); enable voice orchestration + music tokenization for VIP members—wired for dashboards, agent workflows, and team adoption.
+Deploy TRUTH Pipeline + Agent Builder + Compliance Service; recover $125K-175K revenue (Veriff ID verification + win-back); meet DSHS compliance (Oct 26 deadline); enable voice orchestration + music tokenization for VIP members—wired for dashboards, agent workflows, and team adoption.
 
 ## Purpose
 
@@ -21,7 +21,7 @@ Every RPM card now tracks **PLANNING** (Result/Purpose/MAP) + **FINANCIALS** (Re
 
 - Canonical Backbone: Oct 21–27 work unified; People → Plant → Profit aligned.
 - TX Compliance: 21+ age gate (DSHS/TABC emergency rules), HSC §443, 25 TAC Ch. 300; audit logs; no medical claims.
-- Revenue Recovery: Jumio biometric IDV + win‑back of 80+ blocked customers; POS/checkout tasks mapped.
+- Revenue Recovery: Veriff biometric ID verification + win‑back of 80+ blocked customers; POS/checkout tasks mapped.
 - Orchestration: Agent Builder + Rube MCP + TRUTH gates; voice stand‑ups; citation enforcement.
 - HNC Sovereignty: Micro‑footer CTA only; daily cadence; omnichannel output.
 - See: `LivHana-SoT/RPM_WEEKLY_PLAN_OCT21-27_2025_TEAM_PILOT_v3.1.md` (PDF export supported).
@@ -133,10 +133,10 @@ All numeric claims require verification steps recorded in `out/fallacy_risk_regi
 
 **Fallacy Corrections Applied:**
 
-1. "Weeks to integrate Jumio" → 6-12 hours (autonomous Cursor + Replit)
+1. "Weeks to integrate Veriff" → 6-12 hours (autonomous Cursor + Replit)
 2. "SB 3 veto = prohibition" → Replaced by GA-56 regulation (not ban)
 3. "Can't start without perfect testing" → Staging + incremental monitoring sufficient
-4. "Veriff vs Jumio confusion" → Jumio replaces Veriff for biometric IDV (clear strategy)
+4. "Veriff vs Veriff confusion" → Veriff replaces Veriff for biometric IDV (clear strategy)
 
 **Compliance Receipts (Texas Oct 2025):**
 

@@ -1,4 +1,5 @@
 ### 6.2 Run Linting
+
 ```bash
 # Check code quality
 npm run lint

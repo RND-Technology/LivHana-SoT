@@ -1,4 +1,5 @@
 ### Hashtag Strategy
+
 - **Core Brand Hashtags:** Always retained (#TexasTHC, #StayTOONED, #ReggieAndDro)
 - **Trending Cannabis Hashtags:** Rotated top 20 performing tags
 - **Texas-Specific:** Added location tags (#AustinCannabis, #DallasCannabis, #HoustonHemp)

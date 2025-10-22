@@ -1,4 +1,5 @@
 ### 12.3 Network Issues
+
 ```bash
 # Check network connectivity
 ping google.com

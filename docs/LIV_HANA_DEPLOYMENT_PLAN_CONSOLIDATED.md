@@ -9,6 +9,7 @@
 ## 🎯 KEY DECISIONS EXTRACTED
 
 ### 1. - [x] Deployed Voice Cockpit successfully on port 5173
+
 ```
 - [x] Fixed server.js PathError (Express routing issue)
 - [x] Deployed Voice Cockpit successfully on port 5173
@@ -16,6 +17,7 @@
 ```
 
 ### 2. ## ✅ COMPLETED TASKS
+
 ```
 
 ## ✅ COMPLETED TASKS
@@ -23,6 +25,7 @@
 ```
 
 ### 3. - [x] Pulled latest commits from team (already up to date)
+
 ```
 ### 1. Git Sync & CORE4 Contract Coordination
 - [x] Pulled latest commits from team (already up to date)
@@ -30,6 +33,7 @@
 ```
 
 ### 4. - [x] Reviewed CORE4_COMMITMENT.md status: **3/4 agents signed** (Claude Code, Commander, Replit)
+
 ```
 - [x] Pulled latest commits from team (already up to date)
 - [x] Reviewed CORE4_COMMITMENT.md status: **3/4 agents signed** (Claude Code, Commander, Replit)
@@ -37,6 +41,7 @@
 ```
 
 ### 5. - [x] Merged Replit signature (GitHub API sync active)
+
 ```
 - [x] Reviewed CORE4_COMMITMENT.md status: **3/4 agents signed** (Claude Code, Commander, Replit)
 - [x] Merged Replit signature (GitHub API sync active)
@@ -44,6 +49,7 @@
 ```
 
 ### 6. - [x] All commits pushed to remote successfully
+
 ```
 - [x] Merged Replit signature (GitHub API sync active)
 - [x] All commits pushed to remote successfully
@@ -51,6 +57,7 @@
 ```
 
 ### 7. - ✅ Claude Code: Signed 2025-10-08T00:45:00Z
+
 ```
 **CORE4 Status**:
 - ✅ Claude Code: Signed 2025-10-08T00:45:00Z
@@ -58,6 +65,7 @@
 ```
 
 ### 8. - ✅ Commander: Signed 2025-10-08T06:04:33Z
+
 ```
 - ✅ Claude Code: Signed 2025-10-08T00:45:00Z
 - ✅ Commander: Signed 2025-10-08T06:04:33Z
@@ -65,6 +73,7 @@
 ```
 
 ### 9. - ✅ Replit: Signed 2025-10-08T01:10:00Z
+
 ```
 - ✅ Commander: Signed 2025-10-08T06:04:33Z
 - ✅ Replit: Signed 2025-10-08T01:10:00Z
@@ -72,6 +81,7 @@
 ```
 
 ### 10. - [x] Fixed server.js PathError (Express routing issue)
+
 ```
 ### 2. Voice Cockpit Deployment (Local)
 - [x] Fixed server.js PathError (Express routing issue)
@@ -79,6 +89,7 @@
 ```
 
 ### 11. - [x] Health endpoint responding: {"status":"healthy","service":"herbitrage-voice"}
+
 ```
 - [x] Deployed Voice Cockpit successfully on port 5173
 - [x] Health endpoint responding: {"status":"healthy","service":"herbitrage-voice"}
@@ -86,6 +97,7 @@
 ```
 
 ### 12. - [x] Committed and pushed fix to remote
+
 ```
 - [x] Health endpoint responding: {"status":"healthy","service":"herbitrage-voice"}
 - [x] Committed and pushed fix to remote
@@ -93,6 +105,7 @@
 ```
 
 ### 13. - [x] **Voice Service** (port 8080): ✅ HEALTHY
+
 ```
 ### 3. Trinity Services Certification
 - [x] **Voice Service** (port 8080): ✅ HEALTHY
@@ -100,6 +113,7 @@
 ```
 
 ### 14. - [x] **Reasoning Gateway** (port 4002): ✅ HEALTHY - RESTARTED & CERTIFIED
+
 ```
 
 - [x] **Reasoning Gateway** (port 4002): ✅ HEALTHY - RESTARTED & CERTIFIED
@@ -107,6 +121,7 @@
 ```
 
 ### 15. - [x] **Voice Cockpit** (port 5173): ✅ HEALTHY
+
 ```
 
 - [x] **Voice Cockpit** (port 5173): ✅ HEALTHY
@@ -114,6 +129,7 @@
 ```
 
 ### 16. - [x] **Redis**: ✅ HEALTHY
+
 ```
 
 - [x] **Redis**: ✅ HEALTHY
@@ -121,34 +137,44 @@
 ```
 
 ### 17. ✅ 4/4 services healthy
+
 ```
 ```
+
 ✅ 4/4 services healthy
 ✅ All health endpoints responding
+
 ```
 
 ### 18. ✅ All health endpoints responding
 ```
+
 ✅ 4/4 services healthy
 ✅ All health endpoints responding
 ✅ Git sync operational
+
 ```
 
 ### 19. ✅ Git sync operational
 ```
+
 ✅ All health endpoints responding
 ✅ Git sync operational
 ✅ Ready for Voice Cockpit 48-hour sprint
+
 ```
 
 ### 20. ✅ Ready for Voice Cockpit 48-hour sprint
 ```
+
 ✅ Git sync operational
 ✅ Ready for Voice Cockpit 48-hour sprint
+
 ```
 ```
 
 ### 21. - Preparation: ✅ COMPLETE - Environment wiring and test harness ready
+
 ```
    - Expected resolution: <30 minutes after Jesse provides token
    - Preparation: ✅ COMPLETE - Environment wiring and test harness ready
@@ -156,6 +182,7 @@
 ```
 
 ### 22. - [x] Configure ANTHROPIC_API_KEY and OPENAI_API_KEY via 1Password CLI
+
 ```
 ### Immediate (Next 30 Minutes)
 - [x] Configure ANTHROPIC_API_KEY and OPENAI_API_KEY via 1Password CLI
@@ -163,6 +190,7 @@
 ```
 
 ### 23. - [x] Prep Lightspeed integration (env wiring, test harness for <30 min token drop-in)
+
 ```
 - [x] Configure ANTHROPIC_API_KEY and OPENAI_API_KEY via 1Password CLI
 - [x] Prep Lightspeed integration (env wiring, test harness for <30 min token drop-in)
@@ -170,6 +198,7 @@
 ```
 
 ### 24. - [x] Update HUMAN_WORK_FOR_JESSE.md with token request
+
 ```
 - [x] Prep Lightspeed integration (env wiring, test harness for <30 min token drop-in)
 - [x] Update HUMAN_WORK_FOR_JESSE.md with token request
@@ -177,12 +206,12 @@
 ```
 
 ### 25. - [x] Commit SESSION_PROGRESS.md and TRINITY_STATUS_UPDATE to git
+
 ```
 - [x] Update HUMAN_WORK_FOR_JESSE.md with token request
 - [x] Commit SESSION_PROGRESS.md and TRINITY_STATUS_UPDATE to git
 
 ```
-
 
 ---
 
@@ -239,6 +268,7 @@
 ## 🚨 CURRENT BLOCKERS
 
 ### 1. - [x] Fixed server.js PathError (Express routing issue)
+
 ```
 ### 2. Voice Cockpit Deployment (Local)
 - [x] Fixed server.js PathError (Express routing issue)
@@ -246,6 +276,7 @@
 ```
 
 ### 2. ## 🚨 BLOCKERS & DEPENDENCIES
+
 ```
 
 ## 🚨 BLOCKERS & DEPENDENCIES
@@ -253,6 +284,7 @@
 ```
 
 ### 3. ### Critical Blockers
+
 ```
 
 ### Critical Blockers
@@ -260,6 +292,7 @@
 ```
 
 ### 4. ### Non-Critical Blockers
+
 ```
 
 ### Non-Critical Blockers
@@ -267,6 +300,7 @@
 ```
 
 ### 5. - ⚠️ **Note**: ANTHROPIC_API_KEY and OPENAI_API_KEY need to be configured via env vars
+
 ```
   - Status: Ready for 48h Voice Cockpit sprint
   - ⚠️ **Note**: ANTHROPIC_API_KEY and OPENAI_API_KEY need to be configured via env vars
@@ -274,6 +308,7 @@
 ```
 
 ### 6. - [ ] **Cheetah**: Pull latest, review CORE4, add signature
+
 ```
 ### Waiting on Team
 - [ ] **Cheetah**: Pull latest, review CORE4, add signature
@@ -281,6 +316,7 @@
 ```
 
 ### 7. - [ ] **Jesse**: Generate Lightspeed personal token (highest priority)
+
 ```
 - [ ] **Cheetah**: Pull latest, review CORE4, add signature
 - [ ] **Jesse**: Generate Lightspeed personal token (highest priority)
@@ -288,6 +324,7 @@
 ```
 
 ### 8. - [ ] **Jesse**: Provide YouTube + NewsAPI keys for Cheetah
+
 ```
 - [ ] **Jesse**: Generate Lightspeed personal token (highest priority)
 - [ ] **Jesse**: Provide YouTube + NewsAPI keys for Cheetah
@@ -295,6 +332,7 @@
 ```
 
 ### 9. - [ ] Begin 48-hour Voice Cockpit sprint
+
 ```
 ### Ready to Execute (After Token)
 - [ ] Begin 48-hour Voice Cockpit sprint
@@ -302,6 +340,7 @@
 ```
 
 ### 10. - [ ] Wire Lightspeed integration in <30 minutes
+
 ```
 - [ ] Begin 48-hour Voice Cockpit sprint
 - [ ] Wire Lightspeed integration in <30 minutes
@@ -309,6 +348,7 @@
 ```
 
 ### 11. - [ ] Start Episodes 2-3 automation (Cheetah)
+
 ```
 - [ ] Wire Lightspeed integration in <30 minutes
 - [ ] Start Episodes 2-3 automation (Cheetah)
@@ -316,6 +356,7 @@
 ```
 
 ### 12. - [ ] Deploy 3 staging prototypes (Replit)
+
 ```
 - [ ] Start Episodes 2-3 automation (Cheetah)
 - [ ] Deploy 3 staging prototypes (Replit)
@@ -323,6 +364,7 @@
 ```
 
 ### 13. - ⚠️ API keys need configuration (ANTHROPIC_API_KEY, OPENAI_API_KEY)
+
 ```
 - ✅ Git sync operational
 - ⚠️ API keys need configuration (ANTHROPIC_API_KEY, OPENAI_API_KEY)
@@ -330,6 +372,7 @@
 ```
 
 ### 14. 3. [CLAUDE] 🔧 Fixed Voice Cockpit server.js - PathError resolved, now running on port 5173
+
 ```
 2. [CLAUDE] 🔄 Merged Replit signature - GitHub API sync active, 2/4 agents signed
 3. [CLAUDE] 🔧 Fixed Voice Cockpit server.js - PathError resolved, now running on port 5173
@@ -337,21 +380,23 @@
 ```
 
 ### 15. 0 failures, 0
+
 ```
 - ✅ Protocols: 0
 0 failures, 0
 0 gates, 0
 ```
 
-
 ---
 
 ## 📅 DEPLOYMENT TIMELINE (SYNTHESIZED)
 
 ### **IMMEDIATE: Orchestration Layer (90 minutes)**
+
 **Goal**: Liv Hana operational in Agent Builder with Voice Mode + RPM planning
 
 **Steps**:
+
 1. **Connect Agent Builder to MCP Server** (15 min)
    - Retrieve MCP auth token from GCP Secret Manager
    - Configure Agent Builder workflow: `wf_68e84c606dfc819086d0b637674cf7e300e1f5f8e508fc36`
@@ -379,6 +424,7 @@
    - Test 4: "Prepare SB3 legislative brief"
 
 **Success Criteria**:
+
 - ✅ Agent Builder connected to MCP (3 tools responding)
 - ✅ Voice Mode working (speech-to-text → Agent Builder → text-to-speech)
 - ✅ RPM planning validated (structured R/P/M output)
@@ -387,24 +433,29 @@
 ---
 
 ### **Phase 2: Layer Agents (Week 1)**
+
 **Goal**: Specialized agents for R&D, HNC, OPS, HERB layers
 
 **R&D Agent** (Retail Operations):
+
 - Inventory sync (Lightspeed POS → BigQuery)
 - Compliance validation (COA → THCa ≤0.3%)
 - Sales funnel automation
 
 **HNC Agent** (Content Production):
+
 - Daily episode generation (84-day Texas THC Tale)
 - SEO optimization (YouTube metadata)
 - Community management (Wall of Weed submissions)
 
 **OPS Agent** (Policy Advocacy):
+
 - Legislative monitoring (SB3, HB46, CAO Act)
 - Policy brief generation (5-minute turnaround)
 - Testimony drafts (Andrea Steel review)
 
 **HERB Agent** (Commerce Intelligence):
+
 - Analytics dashboards (CAC, LTV, churn)
 - Membership automation (Blue Dream Raffle)
 - VIP intelligence reports
@@ -412,9 +463,11 @@
 ---
 
 ### **Phase 3: Domain Routing (Week 2)**
+
 **Goal**: Cloudflare Workers routing for 69 domains
 
 **Implementation**:
+
 - Age-gate enforcement (21+)
 - SEO optimization (EMD redirects with UTM tracking)
 - Compliance automation (satire disclaimers for HNC)
@@ -423,9 +476,11 @@
 ---
 
 ### **Phase 4: Custom MCP Servers (Week 2-3)**
+
 **Goal**: Build custom integrations beyond base MCP tools
 
 **Priority**:
+
 1. **Lightspeed MCP** (CRITICAL): Real-time inventory sync
 2. **YouTube MCP**: Content publishing automation
 3. **Texas Legislature MCP**: Bill tracking + alerts
@@ -435,13 +490,15 @@
 
 ## ⚡ IMMEDIATE NEXT ACTIONS
 
-### **Jesse Provides** (5 minutes):
-1. ✅ Confirm Agent Builder access: https://platform.openai.com/agent-builder
+### **Jesse Provides** (5 minutes)
+
+1. ✅ Confirm Agent Builder access: <https://platform.openai.com/agent-builder>
 2. ⏳ **Lightspeed Personal Token**: Generate from reggieanddro.retail.lightspeed.app
 3. ⏳ **YouTube API Key**: Enable in GCP Console (optional for Phase 1)
 4. ⏳ **NewsAPI Key**: Sign up at newsapi.org (optional for Phase 1)
 
-### **Claude Code Executes** (90 minutes):
+### **Claude Code Executes** (90 minutes)
+
 1. Retrieve MCP auth token: `gcloud secrets versions access latest --secret=op-service-account-token`
 2. Connect Agent Builder to MCP server
 3. Configure Liv Hana system prompt
@@ -450,7 +507,8 @@
 6. Run 4 validation test cases
 7. Document deployment URLs + credentials
 
-### **Validation Gate** (15 minutes):
+### **Validation Gate** (15 minutes)
+
 - Jesse tests RPM planning workflow
 - Voice Mode quality check (speech clarity, latency)
 - MCP tool invocations verified (logs confirm API calls)
@@ -460,7 +518,8 @@
 
 ## ✅ SUCCESS CRITERIA
 
-### **Technical**:
+### **Technical**
+
 - ✅ Agent Builder workflow connected to MCP server
 - ✅ 3 MCP tools responding: `get_compliance_status`, `query_inventory`, `legislative_monitor`
 - ✅ Voice Mode operational (ElevenLabs TTS)
@@ -468,13 +527,15 @@
 - ✅ Response latency <5s (p95)
 - ✅ Cost <$500/month initial (OpenAI API usage)
 
-### **Business**:
+### **Business**
+
 - ✅ Jesse using Liv Hana for weekly RPM planning
 - ✅ Cross-layer intelligence queries working (R&D inventory, OPS legislation)
 - ✅ Voice interface usable for hands-free planning
 - ✅ RPM output structured and actionable
 
-### **Quality**:
+### **Quality**
+
 - ✅ Zero hallucinations (MCP tools provide facts)
 - ✅ Hemp compliance verified (≤0.3% THC)
 - ✅ Entity separation maintained (R&D/HERB ↔️ HNC ↔️ OPS)
@@ -485,30 +546,35 @@
 ## 🛡️ RISK MITIGATION
 
 ### **Risk 1: MCP Server Downtime**
+
 - **Probability**: Low (10%)
 - **Impact**: High (blocks Agent Builder functionality)
 - **Mitigation**: Server already deployed and tested, Cloud Run auto-scales
 - **Fallback**: Mock mode for development/testing
 
 ### **Risk 2: Agent Builder API Changes**
+
 - **Probability**: Medium (30%)
 - **Impact**: Medium (may require config updates)
 - **Mitigation**: Use stable endpoints only, monitor changelog
 - **Fallback**: Export to Agents SDK if Builder deprecated
 
 ### **Risk 3: Voice Quality Issues**
+
 - **Probability**: Low (15%)
 - **Impact**: Medium (degrades user experience)
 - **Mitigation**: ElevenLabs proven reliable, test multiple voices
 - **Fallback**: Text-only mode still functional
 
 ### **Risk 4: Cost Overrun**
+
 - **Probability**: Medium (40%)
 - **Impact**: Low (budget flexibility exists)
 - **Mitigation**: Monitor OpenAI API usage, set alerts at $500/month
 - **Optimization**: Batch MCP queries, cache responses
 
 ### **Risk 5: Lightspeed Token Delay**
+
 - **Probability**: High (60%)
 - **Impact**: Medium (blocks inventory sync)
 - **Mitigation**: Mock inventory data for Phase 1 testing
@@ -518,19 +584,22 @@
 
 ## 📊 VALIDATION METRICS
 
-### **Performance**:
+### **Performance**
+
 - Agent Builder response time: <5s (p95)
 - MCP tool latency: <2s per tool call
 - Voice transcription: <1s
 - Voice synthesis: <2s
 
-### **Accuracy**:
+### **Accuracy**
+
 - MCP tool success rate: >95%
 - RPM plan quality: Jesse approval rate >80%
 - Voice transcription accuracy: >90%
 - Compliance checks: 100% (no false negatives)
 
-### **Adoption**:
+### **Adoption**
+
 - Jesse weekly RPM planning: 100% via Liv Hana (vs manual)
 - Cross-layer queries: >10/week
 - Voice Mode usage: >50% of interactions
@@ -553,18 +622,21 @@
 
 ## 🔗 KEY RESOURCES
 
-### **Deployed Infrastructure**:
+### **Deployed Infrastructure**
+
 - MCP Server: `https://mcp-broker-prod-plad5efvha-uc.a.run.app/mcp/invoke`
 - Agent Builder Workflow: `wf_68e84c606dfc819086d0b637674cf7e300e1f5f8e508fc36`
 - GCP Project: `reggieanddrodispensary`
 
-### **Documentation**:
+### **Documentation**
+
 - Agent Builder Handoff: `docs/AGENT_BUILDER_HANDOFF.md`
 - MCP Tools Spec: `~/broker/main.py`
 - Trinity Services Status: `.claude/SESSION_PROGRESS.md`
 - Domain Portfolio: `Updated_Domain___Silo_Role_Priority__reggieanddro_com_canonical_.csv`
 
-### **API Keys** (1Password Vault: `LivHana-Ops-Keys`):
+### **API Keys** (1Password Vault: `LivHana-Ops-Keys`)
+
 - OPENAI_API_KEY
 - ANTHROPIC_API_KEY
 - ELEVENLABS_API_KEY

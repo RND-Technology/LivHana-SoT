@@ -1,7 +1,9 @@
 ### Uber White Label Setup
-**Website**: https://business.uber.com/
+
+**Website**: <https://business.uber.com/>
 
 **Steps**:
+
 1. Visit Uber for Business website
 2. Click "Get Started" or "Sign Up"
 3. Select "White Label" or "Enterprise" option
@@ -14,6 +16,7 @@
 10. Launch white-label delivery service
 
 **Required Documents**:
+
 - Business license
 - Tax identification number
 - Bank account information

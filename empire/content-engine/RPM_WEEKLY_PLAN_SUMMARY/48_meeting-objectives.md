@@ -1,4 +1,5 @@
 ### Meeting Objectives
+
 1. Review RPM Weekly Plan and priorities
 2. Assign tasks to Trinity team members
 3. Approve budget allocations

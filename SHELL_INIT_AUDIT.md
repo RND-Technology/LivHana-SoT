@@ -1,4 +1,5 @@
 # 🔍 SHELL INITIALIZATION AUDIT REPORT
+
 **Timestamp**: 2025-10-22T02:03:30Z  
 **Marine Corps Precision**: TIER-1 Critical Analysis
 
@@ -18,11 +19,13 @@
 ## 🚨 CRITICAL ISSUE: ~/.zshrc LINE 43-45
 
 ### **BLOCKING OPERATION 1: 1Password API Call (Line 43)**
+
 ```bash
 export OPENAI_API_KEY=$(op item get "OpenAI API Key" --fields password --reveal)
 ```
 
 **Problems:**
+
 - ❌ Calls 1Password CLI on EVERY shell initialization
 - ❌ Network latency (1Password API roundtrip)
 - ❌ Item "OpenAI API Key" **DOES NOT EXIST** in vault
@@ -30,6 +33,7 @@ export OPENAI_API_KEY=$(op item get "OpenAI API Key" --fields password --reveal)
 - ⏱️ Estimated delay: 0.5-2.0 seconds + error handling
 
 **Impact:**
+
 - Cursor shell environment resolver times out
 - Every new terminal takes 1-2s extra
 - Error message spam on every shell
@@ -37,11 +41,13 @@ export OPENAI_API_KEY=$(op item get "OpenAI API Key" --fields password --reveal)
 ---
 
 ### **BLOCKING OPERATION 2: Full Boot Script (Line 45)**
+
 ```bash
 bash /Users/jesseniesen/LivHana-Trinity-Local/TIER1_BOOT_LOCK_3_AGENTS_24_7.sh
 ```
 
 **What This Script Does:**
+
 1. ✅ Navigates to LivHana-SoT directory
 2. 🔴 Calls `scripts/claude_tier1_boot.sh` which:
    - Checks 1Password authentication
@@ -57,6 +63,7 @@ bash /Users/jesseniesen/LivHana-Trinity-Local/TIER1_BOOT_LOCK_3_AGENTS_24_7.sh
    - Launches health checks in background
 
 **Problems:**
+
 - ❌ Runs on **EVERY** shell initialization
 - ❌ Multiple network calls (GCP, 1Password)
 - ❌ File I/O operations (logs, state files)
@@ -65,6 +72,7 @@ bash /Users/jesseniesen/LivHana-Trinity-Local/TIER1_BOOT_LOCK_3_AGENTS_24_7.sh
 - ⏱️ **Total time: 10-30 seconds per shell**
 
 **Impact:**
+
 - **ROOT CAUSE of Cursor timeout**
 - Opening new terminal = 10-30s wait
 - Cursor cannot resolve shell environment (timeout < 10s)
@@ -76,12 +84,15 @@ bash /Users/jesseniesen/LivHana-Trinity-Local/TIER1_BOOT_LOCK_3_AGENTS_24_7.sh
 ## ✅ CLEAN SECTIONS IN ~/.zshrc
 
 ### **PATH Configuration (Line 2)**
+
 ```bash
 export PATH="/opt/homebrew/opt/python@3.12/libexec/bin:$PATH"
 ```
+
 ✅ **FAST**: Simple string assignment, no external calls
 
 ### **Google Cloud SDK (Lines 5-12)**
+
 ```bash
 if [ -f '/Users/jesseniesen/google-cloud-sdk/path.zsh.inc' ]; then
   . '/Users/jesseniesen/google-cloud-sdk/path.zsh.inc'
@@ -90,18 +101,22 @@ if [ -f '/Users/jesseniesen/google-cloud-sdk/completion.zsh.inc' ]; then
   . '/Users/jesseniesen/google-cloud-sdk/completion.zsh.inc'
 fi
 ```
+
 ⚠️ **MODERATE**: File sourcing adds ~0.1-0.3s
 💡 **OPTIMIZATION**: Completion can be disabled for faster startup (already suggested in fix script)
 
 ### **1Password Config (Lines 15-17)**
+
 ```bash
 export OP_ACCOUNT="reggiedro"
 export OP_VAULT="LivHana-Ops-Keys"
 op-get() { op read "op://$OP_VAULT/$1"; }
 ```
+
 ✅ **FAST**: Just exports and function definition, no execution
 
 ### **Claude Tier-1 Function (Lines 20-34)**
+
 ```bash
 claude-tier1() {
   cd ~/LivHana-Trinity-Local/LivHana-SoT || return 1
@@ -120,18 +135,23 @@ claude-tier1() {
   fi
 }
 ```
+
 ✅ **FAST**: Function definition only, runs when manually invoked
 
 ### **Local Env (Line 37)**
+
 ```bash
 . "$HOME/.local/bin/env"
 ```
+
 ⚠️ **DEPENDS**: Speed depends on what's in that file (not audited yet)
 
 ### **Fallback Export (Line 46)**
+
 ```bash
 export OPENAI_API_KEY="local-voice-mode-active"
 ```
+
 ✅ **FAST**: Simple export (but redundant after line 43)
 
 ---
@@ -139,17 +159,21 @@ export OPENAI_API_KEY="local-voice-mode-active"
 ## 🎯 ROOT CAUSE ANALYSIS
 
 ### **Primary Blocker**
+
 ```
 Line 45: bash /Users/jesseniesen/LivHana-Trinity-Local/TIER1_BOOT_LOCK_3_AGENTS_24_7.sh
 ```
+
 - **Effect**: 10-30s boot on EVERY shell initialization
 - **Cursor Impact**: Timeout waiting for shell environment
 - **Solution**: Move to manual alias
 
 ### **Secondary Blocker**
+
 ```
 Line 43: export OPENAI_API_KEY=$(op item get "OpenAI API Key" --fields password --reveal)
 ```
+
 - **Effect**: 0.5-2s network call + error on EVERY shell
 - **Cursor Impact**: Additional delay + error messages
 - **Solution**: Remove (item doesn't exist) OR use fallback
@@ -171,6 +195,7 @@ Line 43: export OPENAI_API_KEY=$(op item get "OpenAI API Key" --fields password 
 ## ✅ RECOMMENDATIONS
 
 ### **1. Guard Heavy Operations with Interactive Check**
+
 ```bash
 # Only run boot for interactive shells that explicitly request it
 if [[ $- == *i* ]] && [[ "${LIV_HANA_AUTO_BOOT:-false}" == "true" ]]; then
@@ -179,18 +204,21 @@ fi
 ```
 
 ### **2. Better: Convert to Manual Alias (RECOMMENDED)**
+
 ```bash
 # Manual boot (non-blocking)
 alias tier1-boot='bash /Users/jesseniesen/LivHana-Trinity-Local/TIER1_BOOT_LOCK_3_AGENTS_24_7.sh'
 ```
 
 ### **3. Fix Missing 1Password Item**
+
 ```bash
 # Remove line 43 OR replace with fallback
 export OPENAI_API_KEY="${OPENAI_API_KEY:-local-voice-mode-active}"
 ```
 
 ### **4. Optimize GCloud SDK (Optional)**
+
 ```bash
 # Disable completion for faster startup
 # Comment out: . '/Users/jesseniesen/google-cloud-sdk/completion.zsh.inc'
@@ -201,24 +229,30 @@ export OPENAI_API_KEY="${OPENAI_API_KEY:-local-voice-mode-active}"
 ## 🎯 VALIDATION TESTS
 
 ### **Test 1: Shell Startup Time**
+
 ```bash
 TIMEFMT=$'\nreal\t%E' time zsh -i -c exit
 ```
+
 - **Current**: 0.88s (but doesn't include boot script in test)
 - **Current with boot**: 10-30s
 - **Target**: < 2s
 
 ### **Test 2: No Blocking Calls**
+
 ```bash
 zsh -i -c 'echo "Success"' 2>&1 | grep -E "ERROR|isn't an item"
 ```
+
 - **Current**: Shows 1Password error
 - **Target**: No errors
 
 ### **Test 3: Cursor Environment Resolution**
+
 ```bash
 # Restart Cursor, check for warning
 ```
+
 - **Current**: "Unable to resolve shell environment in reasonable time"
 - **Target**: No warning
 
@@ -234,5 +268,3 @@ zsh -i -c 'echo "Success"' 2>&1 | grep -E "ERROR|isn't an item"
 **ONE SHOT, ONE KILL**: Remove auto-boot from shell init, use manual aliases.
 
 **SEMPER FI** 🇺🇸
-
-

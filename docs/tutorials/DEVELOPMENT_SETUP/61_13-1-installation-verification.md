@@ -1,4 +1,5 @@
 ### 13.1 Installation Verification
+
 - [ ] Node.js 18+ installed and working
 - [ ] npm 8+ installed and working
 - [ ] Git configured with user information

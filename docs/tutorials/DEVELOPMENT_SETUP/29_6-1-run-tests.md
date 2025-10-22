@@ -1,4 +1,5 @@
 ### 6.1 Run Tests
+
 ```bash
 # Run all tests
 npm test

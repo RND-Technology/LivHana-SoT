@@ -1,4 +1,5 @@
 #### ✅ Environment Configuration
+
 - **File:** `.env.example`
 - Complete configuration template
 - All API key placeholders

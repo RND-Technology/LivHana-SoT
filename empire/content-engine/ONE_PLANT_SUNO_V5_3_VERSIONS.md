@@ -10,7 +10,8 @@ status: READY FOR PRODUCTION
 
 ## RESEARCH SUMMARY: Suno v5 Best Practices (2025)
 
-### Key Optimizations for v5:
+### Key Optimizations for v5
+
 1. **Vocal Direction**: Specific timbre/tone (smoky, airy, raspy, warm, bright)
 2. **Production Details**: Analog glue compression, tape saturation, stereo width
 3. **Emotional Progression**: Map emotional arc through song structure
@@ -19,7 +20,8 @@ status: READY FOR PRODUCTION
 6. **Genre Blending**: Combine influences for unique sound
 7. **A/B Testing**: Generate multiple variations, test for virality
 
-### Viral Song Formula:
+### Viral Song Formula
+
 - Hook in first 15 seconds (Chorus or catchy instrumental)
 - Emotional escalation (build from verse → chorus)
 - Memorable repetitive elements (chant-able chorus)
@@ -338,17 +340,20 @@ Texas. (final bass hit, cut to silence)
 ### YouTube Upload Plan
 
 **Week 1:** Release all 3 versions simultaneously
+
 - **Version 1 (Hip-Hop):** Upload Monday 2 PM
 - **Version 2 (Neo-Soul):** Upload Wednesday 2 PM
 - **Version 3 (Trap):** Upload Friday 2 PM
 
 **Titles:**
+
 - Version 1: "One Plant One Law One Texas - Political Hip-Hop Anthem (AI Music)"
 - Version 2: "One Plant One Law One Texas - Soulful Version (AI Music)"
 - Version 3: "One Plant One Law One Texas - TRAP BANGER (AI Music)"
 
 **Descriptions:**
 Include:
+
 - Story behind song (Texas cannabis policy advocacy)
 - Why this matters (ACFA, descheduling movement)
 - Credits (Suno AI v5, lyrics by [you], produced by [your band name])
@@ -360,23 +365,28 @@ Include:
 **15-Second Clips for Each Version:**
 
 **Version 1 (Hip-Hop):**
+
 - Clip 1: Verse 2 opening ("Subsection B...")
 - Clip 2: Final chorus + bridge start
 
 **Version 2 (Neo-Soul):**
+
 - Clip 1: Chorus with melismatic "Texas"
 - Clip 2: Key change final chorus
 
 **Version 3 (Trap):**
+
 - Clip 1: Pre-drop build → drop hit
 - Clip 2: Final drop with vocal chops
 
 **Hashtags for TikTok:**
-#OnePlantOneLaw #TexasCannabis #AIMusic #SunoAI #CannabisPolicy #TexasPolitics #MusicForChange #Viral #FYP
+
+# OnePlantOneLaw #TexasCannabis #AIMusic #SunoAI #CannabisPolicy #TexasPolitics #MusicForChange #Viral #FYP
 
 ### Performance Tracking
 
 **Metrics to Monitor (First 7 Days):**
+
 - Views per version
 - Average View Duration (AVD)
 - Likes/Comments/Shares ratio
@@ -385,6 +395,7 @@ Include:
 - Revenue per 1,000 views (RPM)
 
 **Success Threshold:**
+
 - **Version goes viral:** 100K+ views in 7 days
 - **Version wins A/B test:** 2x more views than other versions
 - **Movement impact:** Shares from cannabis advocates, policy influencers
@@ -392,16 +403,19 @@ Include:
 ### Iterate Based on Data
 
 **If Hip-Hop Version Wins:**
+
 - Create more political hip-hop tracks
 - Focus on policy-heavy lyrics
 - Target cannabis advocacy community
 
 **If Neo-Soul Version Wins:**
+
 - Create more melodic emotional tracks
 - Focus on storytelling and community
 - Target broader mainstream audience
 
 **If Trap Version Wins:**
+
 - Create more high-energy bangers
 - Focus on viral TikTok potential
 - Target Gen Z audience, electronic music fans
@@ -417,6 +431,7 @@ Include:
 **Step 3:** Paste lyrics into "Lyrics" field (with structure tags)
 **Step 4:** Generate 2-3 versions per prompt (Suno randomness = unique variations)
 **Step 5:** Select best version based on:
+
 - Vocal quality (clear, on-pitch, emotion)
 - Production quality (mix, balance, energy)
 - Hook catchiness (is chorus memorable?)
@@ -425,6 +440,7 @@ Include:
 ### Post-Production Tips
 
 **Optional Enhancements:**
+
 - Light mastering (iZotope Ozone, LANDR)
 - Vocal polish (de-esser, subtle EQ boost)
 - Stereo widening (on synths/strings, not vocals)
@@ -439,18 +455,21 @@ Include:
 ### Visual Content Per Version
 
 **Version 1 (Hip-Hop):**
+
 - Lyric video with bold text animations
 - B-roll: Texas Capitol, policy documents, cannabis plants
 - Color grading: Warm orange/brown (Texas aesthetic)
 - Pacing: Text synced to beat
 
 **Version 2 (Neo-Soul):**
+
 - Cinematic visuals: Texas landscapes, sunsets, community
 - B-roll: People, hands passing flower, families
 - Color grading: Soft warm tones, golden hour
 - Pacing: Slow elegant cuts, emotional resonance
 
 **Version 3 (Trap):**
+
 - High-energy edit: fast cuts, glitch effects
 - B-roll: Urban Texas (Austin/Houston/Dallas), nightlife
 - Color grading: High contrast, vibrant colors
@@ -461,16 +480,19 @@ Include:
 **Test 3 Thumbnail Styles:**
 
 **Style A: Text-Heavy**
+
 - Bold text: "ONE PLANT ONE LAW"
 - Texas flag background
 - Artist name small in corner
 
 **Style B: Visual-Heavy**
+
 - Cannabis plant silhouette
 - Texas state outline
 - Minimal text
 
 **Style C: Face/Character**
+
 - Person/character (representative of movement)
 - Emotional expression
 - "ONE TEXAS" overlay
@@ -484,6 +506,7 @@ Include:
 ### Before Release
 
 **Music Production:**
+
 - [ ] Generate Version 1 (Hip-Hop) in Suno v5
 - [ ] Generate Version 2 (Neo-Soul) in Suno v5
 - [ ] Generate Version 3 (Trap) in Suno v5
@@ -492,12 +515,14 @@ Include:
 - [ ] Export final audio files (WAV + MP3)
 
 **Video Production:**
+
 - [ ] Create lyric video for Version 1
 - [ ] Create cinematic video for Version 2
 - [ ] Create high-energy video for Version 3
 - [ ] Export videos (1080p or 4K, 9:16 for shorts, 16:9 for main videos)
 
 **YouTube Setup:**
+
 - [ ] Optimize titles (SEO keywords)
 - [ ] Write descriptions (story + CTA + hashtags)
 - [ ] Create 3 thumbnail variants per version
@@ -505,11 +530,13 @@ Include:
 - [ ] Add to playlist: "One Plant One Law - All Versions"
 
 **TikTok/Social:**
+
 - [ ] Cut 15-sec clips (2 per version = 6 total)
 - [ ] Create TikTok captions with hashtags
 - [ ] Schedule posts (stagger releases)
 
 **Analytics:**
+
 - [ ] Set up tracking spreadsheet
 - [ ] Monitor daily (first week critical)
 - [ ] Document which version performs best
@@ -525,12 +552,14 @@ Include:
 3. **Trap Electronic** - Maximum viral potential, TikTok-ready, drop energy
 
 **Each version:**
+
 - Uses Suno v5 best practices (vocal direction, production details, emotional arc)
 - Targets different audience segments
 - Has unique viral potential
 - Ready for A/B testing
 
 **Next Actions:**
+
 1. Generate all 3 versions in Suno v5
 2. Create videos for each
 3. Launch A/B test (release all 3 simultaneously)

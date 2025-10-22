@@ -1,4 +1,4 @@
-#### What Actually Happened:
+#### What Actually Happened
 
 ```bash
 $ host -t CNAME aaacbdhempflower.com

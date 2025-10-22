@@ -1,0 +1,52 @@
+5 Claude Code Skills Every Vibe Coder Needs  
+	Intro  
+		Claude skills have greater practical impact than MCPs (multi-click processes) because they enable more efficient and context-aware AI assistance.  
+			Claude skills are progressively context-disclosed and automatically invoked, allowing seamless integration in workflows.  
+			The speaker, Sean, brings real-world experience from startups and marketing companies to demonstrate grounded AI tool use.  
+		The video will explain why skills are superior to MCPs or agents for certain tasks and showcase five transformative Claude skills.  
+	Why use Skills?  
+		Skills are highly token-efficient as they expose only needed context progressively, unlike MCPs that access external tools more broadly.  
+		Skills operate directly inside the main conversation context, invoking resources only as necessary, ideal for repeatable, step-by-step procedural workflows.  
+		MCPs and sub agents work in isolated sub-contexts, but skills embed consistent application of standards within the main interaction.  
+		Skills teach the AI system to use its available tools in a systematic, repeatable manner, ensuring specific knowledge is applied in a defined order every time.  
+		Skills excel where a systematized process or knowledge base must be reliably enforced, such as coding standards or UI guidelines.  
+	How to enable Skills in Claude  
+		To access Claude skills, users must first enable "skills" in Claude Desktop settings under capabilities.  
+		After enabling, inside Claude Code, typing "/plugin" allows users to add skill marketplaces, which are repositories of skills.  
+		For example, adding the "anthropic skills" repository from GitHub provides access to curated skills collections.  
+		Installed skills require restarting Claude Code to become active.  
+		The speaker plans to provide marketplace URLs in the video description for ease of access.  
+	Skill Creator  
+		The Skill Creator skill enables users to build new skills with proper abstraction levels, balancing general principles and concrete instructions.  
+		Activated by toggling on in capabilities, it interactively asks targeted questions to gather all necessary details for skill construction.  
+			Example questions include the type of component to build (e.g., React component), UI guidelines to enforce, documentation paths, and invocation examples.  
+		The skill continues refining the input until it has complete information to generate a functional skill.  
+		Upon completion, it outputs a zip file containing the skill folder that can be added to the Claude skills directory for immediate use.  
+		For instance, a skill enforcing UI guidelines can create a searchable dropdown conforming to brand standards triggered by user commands like Command+K.  
+	Brainstorming  
+		The Brainstorming skill helps flesh out rough ideas into detailed plans by following a procedural, Socratic questioning method.  
+		It guides users through phases: understanding, exploration, design, presentation, design documentation, and possible work tree setup or plan handoff.  
+		Example use: defining what actions a command pallet should support, such as searching and opening prompts or querying version history.  
+		It recursively asks questions to refine the plan, making it invaluable for vibe coders who are not professional software engineers by trade.  
+		The output can be a comprehensive system design or implementation plan including requirements (functional/non-functional), architecture, component hierarchy, data flow, state management, file structure, and dependencies.  
+		This detailed plan can then be handed off to other tools like Spec Kit for automated build-out.  
+	Changelog Generator  
+		This skill automatically generates user-friendly changelogs whenever features are committed, making it easier to track changes and communicate them to customers.  
+		The changelog includes which commits were involved and the specific changes made.  
+		It can be customized to produce developer-oriented changelogs with commit hashes, updated files, and technical details for internal debugging.  
+		This addresses a common pain point for vibe coders who struggle to identify the origin of bugs in production due to unclear commit history.  
+		The speaker demonstrates using the command pallet to search prompts and open the editor seamlessly, illustrating smooth integration.  
+	Systematic Debugging  
+		This debugging skill applies a four-phase framework to diagnose and fix bugs systematically: root cause investigation, pattern analysis, hypothesis testing, and implementation.  
+		It aims to understand the problem fully before applying fixes, reducing trial-and-error and improving fix accuracy.  
+		Particularly useful for complex bugs that are difficult to identify or reproduce.  
+		The speaker shows the skill resolving an error that appeared when opening the command pallet, eliminating the bug after running the skill.  
+		This skill helps vibe coders improve debugging discipline and reduce downtime.  
+	Outro  
+		The final skill demonstrated is the Simplification Cascade, which helps identify and reduce unnecessary complexity in code and design.  
+		The skill analyzes gradients from abstract concepts to concrete applications, looking for repeated patterns and special cases that could be unified.  
+		Example given: Instead of separate version history components for different contexts (prompts, agent libraries), this skill helps abstract one reusable version history manager.  
+		It detects multiple independent ownership checks and caching inefficiencies in the app, proposing abstractions and optimizations for better performance and maintainability.  
+		This encourages building simpler, faster, and more scalable applications by recognizing and eliminating redundant complexity.  
+		The speaker invites viewers to comment if they want videos combining skills with MCP servers or additional AI workflows.  
+		Thanks and encouragement to subscribe for more AI and vibe coding content.

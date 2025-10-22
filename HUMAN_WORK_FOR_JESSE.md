@@ -13,15 +13,15 @@
 
 **EXECUTE:**
 
-1. Open browser: https://console.cloud.google.com/
+1. Open browser: <https://console.cloud.google.com/>
 2. Click "Select a project" → "New Project"
 3. Name: `LivHana Content Engine`
 4. Click "CREATE"
 5. Wait 30 seconds for project creation
-6. Go to: https://console.cloud.google.com/apis/library/youtube.googleapis.com
+6. Go to: <https://console.cloud.google.com/apis/library/youtube.googleapis.com>
 7. Click "ENABLE"
 8. Wait 30 seconds
-9. Go to: https://console.cloud.google.com/apis/credentials
+9. Go to: <https://console.cloud.google.com/apis/credentials>
 10. Click "+ CREATE CREDENTIALS" → "API key"
 11. Copy the key (starts with `AIza...`)
 12. Click "RESTRICT KEY"
@@ -29,6 +29,7 @@
 14. Click "SAVE"
 
 **PASTE KEY HERE:**
+
 ```bash
 # Open this file in terminal:
 nano /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/empire/content-engine/cockpit-data/api-keys.json
@@ -47,6 +48,7 @@ nano /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/empire/content-engine/
 ```
 
 **VERIFY:**
+
 ```bash
 cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/empire/content-engine
 node youtube-analyzer.mjs
@@ -65,8 +67,8 @@ node youtube-analyzer.mjs
 
 **EXECUTE:**
 
-1. Open browser: https://newsapi.org/register
-2. Enter email: jesseniesen@gmail.com
+1. Open browser: <https://newsapi.org/register>
+2. Enter email: <jesseniesen@gmail.com>
 3. Enter password: (your choice)
 4. Click "Submit"
 5. Check email for verification link
@@ -74,6 +76,7 @@ node youtube-analyzer.mjs
 7. Copy API key from dashboard
 
 **PASTE KEY HERE:**
+
 ```bash
 # Open this file:
 nano /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/empire/content-engine/cockpit-data/api-keys.json
@@ -90,6 +93,7 @@ nano /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/empire/content-engine/
 ```
 
 **VERIFY:**
+
 ```bash
 cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/empire/content-engine
 node news-ingestion-pipeline.mjs
@@ -108,7 +112,7 @@ node news-ingestion-pipeline.mjs
 
 **EXECUTE:**
 
-1. Open browser: https://developer.doordash.com/en-US/
+1. Open browser: <https://developer.doordash.com/en-US/>
 2. Click "Get Started" or "Sign Up"
 3. Select "DoorDash Drive" (not white-label initially)
 4. Fill out form:
@@ -116,7 +120,7 @@ node news-ingestion-pipeline.mjs
    - Business type: `Retail - Cannabis/Hemp`
    - Address: `[Your San Antonio store address]`
    - EIN: `[Your tax ID]`
-   - Contact: jesseniesen@gmail.com
+   - Contact: <jesseniesen@gmail.com>
    - Phone: `[Your store phone]`
 
 5. Upload documents:
@@ -129,7 +133,8 @@ node news-ingestion-pipeline.mjs
 7. Note: Approval takes 7-10 days
 
 **API INTEGRATION SETUP (AFTER APPROVAL):**
-1. Sign into DoorDash Developer Portal: https://developer.doordash.com/en-US/
+
+1. Sign into DoorDash Developer Portal: <https://developer.doordash.com/en-US/>
 2. Navigate to API Documentation section
 3. Create access key in Credentials section
 4. Join Postman team for collaboration (if needed)
@@ -140,6 +145,7 @@ node news-ingestion-pipeline.mjs
 9. Share collection with Trinity team for testing
 
 **PRODUCTION ACCESS REQUEST SUBMITTED:**
+
 - $1M+ annual revenue via NASH/Square since November 2023
 - Moving from Square/NASH to LightSpeed for Texas scaling
 - Need API credentials for white-label delivery middleware
@@ -147,6 +153,7 @@ node news-ingestion-pipeline.mjs
 - LightSpeed/Authorize.net webstore integration
 
 **TECHNICAL REQUIREMENTS:**
+
 - DoorDash Drive API v2 testing environment
 - JWT authentication setup
 - Postman collection integration
@@ -154,6 +161,7 @@ node news-ingestion-pipeline.mjs
 - Custom middleware superior to NASH
 
 **FALLBACK ALTERNATIVES:**
+
 - Uber Direct API (production available)
 - Grubhub for Business API
 - Postmates API (if available)
@@ -173,7 +181,7 @@ node news-ingestion-pipeline.mjs
 
 **EXECUTE:**
 
-1. Open browser: https://business.uber.com/
+1. Open browser: <https://business.uber.com/>
 2. Click "Get Started" or "Sign Up"
 3. Select "Uber Direct" delivery
 4. Fill out business info (same as DoorDash)
@@ -183,6 +191,7 @@ node news-ingestion-pipeline.mjs
 **CANNIBIS-COMPLIANT APPROVAL STRATEGY:**
 
 **Proactive Communication Message:**
+
 ```
 Subject: Business Account Verification - Compliant Cannabis Delivery Service
 
@@ -229,6 +238,7 @@ Phone: [Your phone number]
 ```
 
 **Key Compliance Points:**
+
 - Emphasize legal compliance and professional operations
 - Highlight Texas state regulations compliance
 - Provide comprehensive documentation proactively
@@ -236,6 +246,7 @@ Phone: [Your phone number]
 - Show business track record and revenue potential
 
 **PASTE KEY HERE:**
+
 ```bash
 # Open this file:
 nano /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/backend/delivery-service/.env
@@ -257,6 +268,7 @@ STORE_PHONE="+1-210-555-0100"
 ```
 
 **DOORDASH DRIVE API V2 SETUP (PRODUCTION REQUEST SUBMITTED):**
+
 ```bash
 # Set up DoorDash Drive API v2 testing environment with JWT authentication
 # Collection: https://www.postman.com/doordash/doordash/collection/p3d90qw/doordash-drive
@@ -314,7 +326,7 @@ STORE_PHONE="+1-210-555-0100"
 
 **EXECUTE (AFTER TRINITY DEPLOYS):**
 
-1. Log in to Lightspeed: https://retail.lightspeed.app/
+1. Log in to Lightspeed: <https://retail.lightspeed.app/>
 2. Go to: Settings → Integrations → Webhooks
 3. Click "Add Webhook"
 4. URL: `https://[DEPLOYMENT-URL]/api/delivery/lightspeed/webhook`
@@ -336,6 +348,7 @@ STORE_PHONE="+1-210-555-0100"
 **EXECUTE:**
 
 1. Read this file:
+
 ```bash
 open /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/empire/content-engine/cockpit-data/satx-tpop-data.json
 ```
@@ -351,6 +364,7 @@ open /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/empire/content-engine/
    - [ ] DEFER - Wait for more data
 
 **YOUR DECISION:**
+
 ```
 [APPROVE / MODIFY / DEFER]
 
@@ -372,11 +386,13 @@ _________________________________
 **EXECUTE:**
 
 Review services for deployment:
+
 1. Delivery Service (backend/delivery-service) - Port 4003
 2. HNC Content Engine (empire/content-engine) - Autonomous
 3. Monitoring Dashboard (empire/content-engine/monitoring-dashboard.html) - Static
 
 **APPROVE DEPLOYMENT:**
+
 ```bash
 # If approved, run this command:
 echo "APPROVED" > /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/DEPLOYMENT_APPROVED.txt
@@ -385,6 +401,7 @@ echo "APPROVED" > /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/DEPLOYMEN
 ```
 
 **YOUR DECISION:**
+
 - [ ] APPROVE - Deploy all services
 - [ ] PARTIAL - Deploy only: _________________
 - [ ] DEFER - Wait for testing
@@ -402,6 +419,7 @@ echo "APPROVED" > /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/DEPLOYMEN
 **EXECUTE:**
 
 Read these 3 files (10 min total):
+
 ```bash
 # 1. Full session recap (5 min)
 open /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/WAKE_UP_STATUS_COMPLETE.md
@@ -414,6 +432,7 @@ open /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/RPM_WEEKLY_PLAN_OCT7-1
 ```
 
 **TALKING POINTS FOR MEETING:**
+
 1. Trinity delivered 8,000+ lines of code (95% complete)
 2. Need 4 API keys to unlock tier-1 stack (40 min of work)
 3. Delivery service beats Nash (direct integration, no middleman)
@@ -497,6 +516,7 @@ curl -X POST http://localhost:4003/api/delivery/doordash/test \
 # 3. Test webhook endpoints for real-time updates
 # 4. Verify JWT token generation and validation
 ```
+
 ```
 
 **IF ERRORS:**

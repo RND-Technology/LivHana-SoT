@@ -1,4 +1,5 @@
-#### Trinity (Budtender) - Energetic, Friendly:
+#### Trinity (Budtender) - Energetic, Friendly
+
 ```
 Voice Style: Female, late-20s, upbeat, approachable, clear educator tone, engaging
 

@@ -4,6 +4,7 @@
 **Wait for:** SSL certificates ready
 
 **Actions:**
+
 ```bash
 # Test each domain once HTTPS works
 for domain in [18 domains]; do
@@ -13,6 +14,7 @@ done
 ```
 
 **Expected outcome:**
+
 - 16/18+ APIs functional (90%+) ✅
 - Health checks passing ✅
 - Database connectivity verified ✅

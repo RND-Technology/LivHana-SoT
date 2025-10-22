@@ -1,5 +1,6 @@
-### Compliance Resources:
-- California Department of Cannabis Control: https://cannabis.ca.gov
+### Compliance Resources
+
+- California Department of Cannabis Control: <https://cannabis.ca.gov>
 - Cannabis Advertising Guidelines by State
 - YouTube Cannabis Content Policy
 - TikTok Cannabis Advertising Rules

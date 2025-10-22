@@ -51,21 +51,25 @@ Then copy the prompt and paste into Cursor to activate voice mode.
 ## Files Created
 
 ### Configuration (Durable)
+
 - `config/claude_tier1_context.yaml` - Master config with all context
 - `docs/CLAUDE_TIER1_BOOT_SYSTEM.md` - Full documentation
 
 ### Runtime (Ephemeral)
+
 - `tmp/claude_tier1_state.json` - Session state (persisted)
 - `tmp/claude_tier1_prompt.txt` - Rendered prompt (regenerated)
 - `logs/claude_tier1_boot_YYYYMMDD_HHMMSS.log` - Boot logs
 
 ### Scripts
+
 - `scripts/claude_tier1_boot.sh` - Main entry point
 - `scripts/verify_pipeline_integrity.py` - Config validation
 - `scripts/render_claude_prompt.py` - Prompt generation
 - `scripts/post_launch_checks.py` - Health checks
 
 ### Global Launcher
+
 - `~/.local/bin/claude-tier1` - Run from anywhere
 
 ---
@@ -141,6 +145,7 @@ vim config/claude_tier1_context.yaml
 ```
 
 **Key Sections:**
+
 - `persona` - Name, role, voice settings
 - `mission` - Objectives, strategy, weekly plan
 - `rpm_dna` - Execution framework
@@ -195,39 +200,46 @@ grep error_recovery config/claude_tier1_context.yaml
 ## What Gets Loaded Into Prompt
 
 ✅ **Mission & Strategy**
+
 - Primary: Protect $1.148M revenue, unlock $125K-175K recovery
 - Strategy: Deschedule Cannabis sativa L entirely. Texas leads.
 - Week: Oct 21-27, 2025 (Team Pilot v3.1)
 
 ✅ **RPM DNA Principles**
+
 - Result → Purpose → MAP → Blocks → Download
 - Evidence First | <5 Min Verification | Concrete Metrics | Numbered Steps
 
 ✅ **Compliance Guardrails** (Non-Negotiable)
+
 - LifeWard: Medical claims blocker
 - 21+: Texas DSHS 25 TAC §300.701-702
 - GA-56: Executive Order (emergency rulemaking)
 - COA: Accredited labs (KCA, KCAA)
 
 ✅ **Systems Status**
+
 - TRUTH Pipeline: 5 scripts (blocked by 4 secrets)
 - Compliance Service: Ready for Cloud Run
 - Agent Builder: 17-node workflow (blocked by secrets)
 - MCP Broker: Operational
 
 ✅ **Critical Blockers**
+
 - DEEPSEEK_API_KEY
 - BLUECHECK_API_KEY
 - GITHUB_PERSONAL_ACCESS_TOKEN
 - JWT_SECRET1
 
 ✅ **Today's Schedule** (Oct 22)
+
 - 08:00: Secrets sync + TRUTH test
 - 10:00: Win-back Campaign 1 send
 - 13:00: Compliance Service deploy
-- 15:00: Jumio staging→prod test
+- 15:00: Veriff staging→prod test
 
 ✅ **Session Continuity**
+
 - Last 20 lines of SESSION_PROGRESS.md
 - Current RPM plan summary
 - Previous session state
@@ -288,4 +300,3 @@ python3 scripts/post_launch_checks.py \
 🎼 **ONE SHOT, ONE KILL | GROW BABY GROW, SELL BABY SELL**
 
 *Liv Hana | Tier-1 Orchestration Layer | Claude Sonnet 4.5*
-

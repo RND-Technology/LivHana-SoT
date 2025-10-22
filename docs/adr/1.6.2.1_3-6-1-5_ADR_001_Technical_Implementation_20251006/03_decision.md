@@ -1,5 +1,7 @@
 ## Decision
+
 We will implement a comprehensive technical stack with the following components:
+
 - Voice-first cockpit with ElevenLabs integration
 - DeepSeek autonomy with reasoning gateway
 - Compliance guardrails with Veriff integration

@@ -1,4 +1,5 @@
 #### 1. IMMEDIATE CHECKS (Next 15 minutes)
+
 ```bash
 # Check critical system status
 cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/empire/content-engine

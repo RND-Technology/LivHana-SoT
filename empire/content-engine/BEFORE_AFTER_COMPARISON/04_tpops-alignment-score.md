@@ -8,12 +8,14 @@
 | Target | 95.0%+ | 95.0%+ | Both met |
 
 **BEFORE:**
+
 - Simple keyword matching
 - No multi-factor scoring
 - No character alignment weighting
 - Fixed 95% alignment
 
 **AFTER:**
+
 - Multi-factor TPOPS algorithm
 - Character alignment weighting
 - Dog whistle density analysis

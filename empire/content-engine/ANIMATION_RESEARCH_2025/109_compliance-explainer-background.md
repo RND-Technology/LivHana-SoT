@@ -1,4 +1,5 @@
-#### Compliance Explainer Background:
+#### Compliance Explainer Background
+
 ```
 Genre: Minimal electronic, ambient
 Mood: Professional, focused, clean

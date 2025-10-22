@@ -1,8 +1,10 @@
 ### Episode 004 - Customer Success Story (Medical)
+
 **Before:**
 Generic montage with revolution rhetoric
 
 **After:**
+
 ```
 Customer: "Y'all, I've been waiting for THIS my whole life!"
 Jesse: "Tell us your story!"
@@ -14,6 +16,7 @@ Jesse: "From brick weed to premium flower. This is OUR revolution!"
 ```
 
 **Improvements:**
+
 - Real veteran perspective
 - 40th state milestone referenced
 - Chronic pain (newly qualified condition)

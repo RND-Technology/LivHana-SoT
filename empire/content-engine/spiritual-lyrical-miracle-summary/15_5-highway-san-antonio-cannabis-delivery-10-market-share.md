@@ -1,6 +1,8 @@
 ### 5. HighWay San Antonio Cannabis Delivery (10% Market Share)
+
 **Position:** Same-day delivery of high-quality THCA flower  
 **Strengths:**
+
 - Same-day delivery
 - High-quality THCA flower
 - Farm Bill-compliant
@@ -9,6 +11,7 @@
 - Not your average smoke shop
 
 **Weaknesses:**
+
 - Delivery-focused only
 - No physical location
 - Limited product variety

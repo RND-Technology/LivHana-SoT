@@ -29,6 +29,7 @@ chmod +x scripts/deploy-without-keys.sh
 ```
 
 **What it does:**
+
 1. ✅ Deploys Webhook Listener (no APIs needed)
 2. ⚠️  Deploys YouTube Analyzer (MOCK MODE)
 3. ⚠️  Deploys NewsAPI Pipeline (MOCK MODE)
@@ -40,25 +41,29 @@ chmod +x scripts/deploy-without-keys.sh
 
 ## MOCK MODE BEHAVIOR
 
-### YouTube Analyzer (MOCK MODE):
+### YouTube Analyzer (MOCK MODE)
+
 - Returns 10 sample viral videos
 - Random engagement metrics
 - Works for testing/development
 - **Upgrade:** Add real API key later
 
-### NewsAPI Pipeline (MOCK MODE):
+### NewsAPI Pipeline (MOCK MODE)
+
 - Returns 20 sample cannabis news articles
 - Realistic topics (legalization, CBD, etc.)
 - Works for content generation
 - **Upgrade:** Add real API key later
 
-### Content Engine:
+### Content Engine
+
 - Can generate episodes with mock data
 - 8-character cast ready
 - TPOPS optimization active
 - **Functional immediately**
 
-### Webhook Listener:
+### Webhook Listener
+
 - 100% functional (no external APIs)
 - HMAC validation working
 - Ready for Lightspeed orders
@@ -111,18 +116,21 @@ curl https://hnc-content-engine-XXXXX-uc.a.run.app/health
 
 ## SUCCESS METRICS
 
-### Immediate (15 minutes):
+### Immediate (15 minutes)
+
 - ✅ 4 services deployed to Cloud Run
 - ✅ All health checks passing
 - ✅ Webhook listener accepting requests
 - ✅ Content engine generating episodes
 
-### Short-term (1 hour):
+### Short-term (1 hour)
+
 - ⚠️  Mock data being used for development
 - ✅ System operational and testable
 - ✅ Ready for Lightspeed integration
 
-### Long-term (when keys added):
+### Long-term (when keys added)
+
 - ✅ Real viral pattern analysis
 - ✅ Real-time cannabis news
 - ✅ Optimized content generation

@@ -1,4 +1,4 @@
-### Professional Tier ($100-200/month):
+### Professional Tier ($100-200/month)
 
 ```
 - Kling AI Pro: $25.99

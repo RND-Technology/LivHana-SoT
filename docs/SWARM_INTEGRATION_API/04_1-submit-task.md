@@ -5,6 +5,7 @@ Create and submit a new task to the swarm.
 **Endpoint:** `POST /api/swarm/tasks`
 
 **Headers:**
+
 ```
 X-API-Key: test
 X-Agent-Id: orchestrator
@@ -12,6 +13,7 @@ Content-Type: application/json
 ```
 
 **Request Body:**
+
 ```json
 {
   "type": "deployment",
@@ -26,6 +28,7 @@ Content-Type: application/json
 ```
 
 **Parameters:**
+
 - `type` (required): Task type identifier
 - `description` (required): Human-readable task description
 - `requiredCapabilities` (optional): Array of required agent capabilities
@@ -33,6 +36,7 @@ Content-Type: application/json
 - `metadata` (optional): Additional task context
 
 **Response:** `201 Created`
+
 ```json
 {
   "success": true,
@@ -48,6 +52,7 @@ Content-Type: application/json
 ```
 
 **Example:**
+
 ```bash
 curl -X POST http://localhost:8080/api/swarm/tasks \
   -H "X-API-Key: test" \

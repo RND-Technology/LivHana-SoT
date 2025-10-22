@@ -12,6 +12,7 @@
 8. Deploy to production (staging first if possible)
 
 **Best Practices:**
+
 - Review all generated code before deployment
 - Test in staging environment first
 - Monitor error logs after deployment

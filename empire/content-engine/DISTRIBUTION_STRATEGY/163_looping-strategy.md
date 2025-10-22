@@ -1,6 +1,7 @@
 ### Looping Strategy
 
 **Why Loops Matter**:
+
 - Increases watch time metric
 - Viewers re-watch to catch details
 - Algorithm interprets as high engagement
@@ -30,6 +31,7 @@
    - No awkward silence
 
 **HNC Loop Strategy**:
+
 - Standard episodes: Circular narrative back to hook
 - Series episodes: Cliffhanger to next episode
 - Standalone episodes: Satisfying visual/musical loop

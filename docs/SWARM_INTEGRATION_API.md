@@ -9,6 +9,7 @@ http://localhost:8080/api/swarm
 ```
 
 Production:
+
 ```
 https://reasoning-gateway-<hash>.a.run.app/api/swarm
 ```
@@ -23,6 +24,7 @@ X-Agent-Id: <agent-identifier>
 ```
 
 **Agent IDs:**
+
 - `claude-code-cli` - Claude Code CLI terminal agent
 - `cursor-ide` - Cursor IDE coding agent
 - `replit-agent` - Replit cloud execution agent
@@ -37,6 +39,7 @@ Create and submit a new task to the swarm.
 **Endpoint:** `POST /api/swarm/tasks`
 
 **Headers:**
+
 ```
 X-API-Key: test
 X-Agent-Id: orchestrator
@@ -44,6 +47,7 @@ Content-Type: application/json
 ```
 
 **Request Body:**
+
 ```json
 {
   "type": "deployment",
@@ -58,6 +62,7 @@ Content-Type: application/json
 ```
 
 **Parameters:**
+
 - `type` (required): Task type identifier
 - `description` (required): Human-readable task description
 - `requiredCapabilities` (optional): Array of required agent capabilities
@@ -65,6 +70,7 @@ Content-Type: application/json
 - `metadata` (optional): Additional task context
 
 **Response:** `201 Created`
+
 ```json
 {
   "success": true,
@@ -80,6 +86,7 @@ Content-Type: application/json
 ```
 
 **Example:**
+
 ```bash
 curl -X POST http://localhost:8080/api/swarm/tasks \
   -H "X-API-Key: test" \
@@ -102,14 +109,17 @@ Retrieve the current status and progress of a task.
 **Endpoint:** `GET /api/swarm/status/:taskId`
 
 **Headers:**
+
 ```
 X-API-Key: test
 ```
 
 **URL Parameters:**
+
 - `taskId` (required): Task identifier from task submission
 
 **Response:** `200 OK`
+
 ```json
 {
   "success": true,
@@ -129,6 +139,7 @@ X-API-Key: test
 ```
 
 **Status Values:**
+
 - `queued` - Waiting for agent assignment
 - `assigned` - Agent selected, about to start
 - `in_progress` - Currently executing
@@ -136,6 +147,7 @@ X-API-Key: test
 - `failed` - Execution failed
 
 **Example:**
+
 ```bash
 curl -H "X-API-Key: test" \
   http://localhost:8080/api/swarm/status/task-1728292800000-abc123
@@ -150,6 +162,7 @@ Submit execution results for a completed task (used by agents).
 **Endpoint:** `POST /api/swarm/results`
 
 **Headers:**
+
 ```
 X-API-Key: test
 X-Agent-Id: claude-code-cli
@@ -157,6 +170,7 @@ Content-Type: application/json
 ```
 
 **Request Body:**
+
 ```json
 {
   "taskId": "task-1728292800000-abc123",
@@ -175,6 +189,7 @@ Content-Type: application/json
 ```
 
 **Parameters:**
+
 - `taskId` (required): Task identifier
 - `success` (required): Boolean indicating success/failure
 - `result` (optional): Object containing task results
@@ -182,6 +197,7 @@ Content-Type: application/json
 - `metadata` (optional): Additional execution metadata
 
 **Response:** `200 OK`
+
 ```json
 {
   "success": true,
@@ -195,6 +211,7 @@ Content-Type: application/json
 ```
 
 **Example:**
+
 ```bash
 curl -X POST http://localhost:8080/api/swarm/results \
   -H "X-API-Key: test" \
@@ -219,11 +236,13 @@ List all available agent capabilities in the swarm.
 **Endpoint:** `GET /api/swarm/capabilities`
 
 **Headers:**
+
 ```
 X-API-Key: test
 ```
 
 **Response:** `200 OK`
+
 ```json
 {
   "success": true,
@@ -278,6 +297,7 @@ X-API-Key: test
 ```
 
 **Example:**
+
 ```bash
 curl -H "X-API-Key: test" \
   http://localhost:8080/api/swarm/capabilities
@@ -294,6 +314,7 @@ Get swarm health status and performance metrics.
 **Headers:** None required (public endpoint)
 
 **Response:** `200 OK`
+
 ```json
 {
   "status": "healthy",
@@ -311,6 +332,7 @@ Get swarm health status and performance metrics.
 ```
 
 **Example:**
+
 ```bash
 curl http://localhost:8080/api/swarm/health
 ```
@@ -324,12 +346,14 @@ Launch the High Noon Cartoon production pipeline.
 **Endpoint:** `POST /api/swarm/quick-start/hnc`
 
 **Headers:**
+
 ```
 X-API-Key: test
 X-Agent-Id: orchestrator
 ```
 
 **Response:** `201 Created`
+
 ```json
 {
   "success": true,
@@ -355,12 +379,14 @@ X-Agent-Id: orchestrator
 ```
 
 **Pipeline Tasks:**
+
 1. Script validation
 2. Animation setup (Remotion)
 3. Content generation
 4. Deployment to HighNoonCartoon.com
 
 **Example:**
+
 ```bash
 curl -X POST http://localhost:8080/api/swarm/quick-start/hnc \
   -H "X-API-Key: test" \
@@ -376,15 +402,18 @@ Mark a task as started (used by agents when beginning execution).
 **Endpoint:** `POST /api/swarm/tasks/:taskId/start`
 
 **Headers:**
+
 ```
 X-API-Key: test
 X-Agent-Id: claude-code-cli
 ```
 
 **URL Parameters:**
+
 - `taskId` (required): Task identifier
 
 **Response:** `200 OK`
+
 ```json
 {
   "success": true,
@@ -397,6 +426,7 @@ X-Agent-Id: claude-code-cli
 ```
 
 **Example:**
+
 ```bash
 curl -X POST http://localhost:8080/api/swarm/tasks/task-1728292800000-abc123/start \
   -H "X-API-Key: test" \
@@ -412,16 +442,19 @@ Get a filtered list of all tasks.
 **Endpoint:** `GET /api/swarm/tasks`
 
 **Headers:**
+
 ```
 X-API-Key: test
 ```
 
 **Query Parameters:**
+
 - `status` (optional): Filter by status (`queued`, `assigned`, `in_progress`, `completed`, `failed`)
 - `agent` (optional): Filter by assigned agent ID
 - `limit` (optional): Maximum number of tasks to return (default: 100)
 
 **Response:** `200 OK`
+
 ```json
 {
   "success": true,
@@ -452,6 +485,7 @@ X-API-Key: test
 ```
 
 **Examples:**
+
 ```bash
 # All tasks
 curl -H "X-API-Key: test" \
@@ -479,11 +513,13 @@ Get all agents and their current status.
 **Endpoint:** `GET /api/swarm/agents`
 
 **Headers:**
+
 ```
 X-API-Key: test
 ```
 
 **Response:** `200 OK`
+
 ```json
 {
   "success": true,
@@ -530,6 +566,7 @@ X-API-Key: test
 ```
 
 **Example:**
+
 ```bash
 curl -H "X-API-Key: test" \
   http://localhost:8080/api/swarm/agents
@@ -542,6 +579,7 @@ curl -H "X-API-Key: test" \
 All endpoints return consistent error responses:
 
 ### 400 Bad Request
+
 ```json
 {
   "success": false,
@@ -550,6 +588,7 @@ All endpoints return consistent error responses:
 ```
 
 ### 401 Unauthorized
+
 ```json
 {
   "success": false,
@@ -558,6 +597,7 @@ All endpoints return consistent error responses:
 ```
 
 ### 404 Not Found
+
 ```json
 {
   "success": false,
@@ -566,6 +606,7 @@ All endpoints return consistent error responses:
 ```
 
 ### 500 Internal Server Error
+
 ```json
 {
   "success": false,
@@ -722,6 +763,7 @@ print(f"Task status: {status['status']['status']}")
 ## Rate Limits
 
 Currently no rate limits enforced. For production use, consider:
+
 - 100 requests per minute per API key
 - 1000 tasks per hour per agent
 - 10 concurrent tasks per agent type
@@ -731,6 +773,7 @@ Currently no rate limits enforced. For production use, consider:
 ## Changelog
 
 ### v1.0.0 (2025-10-07)
+
 - Initial release
 - Core endpoints implemented
 - HNC quick-start pipeline
@@ -742,8 +785,9 @@ Currently no rate limits enforced. For production use, consider:
 ## Support
 
 For issues or questions:
+
 - GitHub Issues: [LivHana-Trinity-Local/LivHana-SoT](https://github.com/jesseniesen/LivHana-Trinity-Local)
-- Email: support@herbitrage.com
+- Email: <support@herbitrage.com>
 - Logs: `docker logs reasoning-gateway`
 
 ---

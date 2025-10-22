@@ -1,6 +1,7 @@
 ### Metrics Output
 
 Metrics are saved to:
+
 ```
 output/metrics/episode_001_metrics.json
 output/metrics/episode_002_metrics.json
@@ -8,6 +9,7 @@ output/metrics/episode_002_metrics.json
 ```
 
 Sample metrics file:
+
 ```json
 {
   "episodeNumber": 1,

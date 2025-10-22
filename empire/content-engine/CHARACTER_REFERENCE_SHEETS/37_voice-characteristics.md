@@ -4,6 +4,7 @@
 **Voice Description:** Gravelly, veteran, authoritative
 
 **Vocal Qualities:**
+
 - **Pitch:** Low to medium-low (commanding)
 - **Pace:** Measured, deliberate, slower
 - **Volume:** Strong, projects authority
@@ -11,6 +12,7 @@
 - **Tone:** Gruff, serious, no-nonsense
 
 **Speech Patterns:**
+
 - Direct, concise statements
 - Military terminology occasionally
 - "Listen up" commands
@@ -19,6 +21,7 @@
 - Skeptical questions
 
 **Emotional Range:**
+
 - **Neutral/Professional:** Authoritative, controlled, stern
 - **Skeptical:** Raised eyebrow in voice, questioning
 - **Angry/Disciplinary:** Sharper, louder, commanding

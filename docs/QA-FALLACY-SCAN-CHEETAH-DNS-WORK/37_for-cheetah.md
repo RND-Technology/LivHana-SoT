@@ -1,4 +1,5 @@
-### For Cheetah:
+### For Cheetah
+
 1. **Validate fundamentals BEFORE implementing**
    - "Can CNAME exist at @?" → 30 seconds of research
    - Would have prevented 27 minutes of trial-and-error

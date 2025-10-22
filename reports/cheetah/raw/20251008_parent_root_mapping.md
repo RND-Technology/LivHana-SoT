@@ -1,6 +1,7 @@
 # Parent Root Cleanup Mapping - Phase 1
 
 ## Inventory Summary
+
 **Total items**: 116 files/directories  
 **Date**: 2025-10-08T18:50:00Z  
 **Agent**: Cheetah 🐆
@@ -8,6 +9,7 @@
 ## Target Directory Mapping
 
 ### 0.archive/ (Cold storage, zipped drops, old exports)
+
 - `cloudflare_lists_per_zone_v2.zip`
 - `files (5).zip`
 - `next-landers.zip`
@@ -17,7 +19,9 @@
 - `replit-swarm/` (legacy repo)
 
 ### 1.rnd/ (Active R&D assets)
+
 #### 1.rnd/video/ (Video automation code)
+
 - `auto-toon-engine.js`
 - `cartoon-production/`
 - `create-animated-cartoon.mjs`
@@ -53,6 +57,7 @@
 - `suno-music/`
 
 #### 1.rnd/data-labs/ (Data experiments, CSVs)
+
 - `content_calendar_tx_first.csv`
 - `Domain___Silo_Role_Priority_plan.csv`
 - `Updated_Domain___Silo_Role_Priority__reggieanddro_com_canonical_.csv`
@@ -64,6 +69,7 @@
 - `texas_coa_checker_frontend.html`
 
 #### 1.rnd/automation/ (Automation scripts)
+
 - `continuous-improvement-loop.mjs`
 - `continuous-improvements/`
 - `final-deployment-engine.mjs`
@@ -79,7 +85,9 @@
 - `replit-6-hour-output/`
 
 ### 2.biz/ (External-facing docs, decks, PDFs)
+
 #### 2.biz/strategy/ (Strategy documents)
+
 - `TEXAS_TAKEOVER_MASTER_PLAN.md`
 - `THE REAL $1B PLAY (Fallacy-Free Analysis).pdf`
 - `TIER1_Federal_Cannabis_Constitutional_Analysis_2025.md`
@@ -92,6 +100,7 @@
 - `ULTIMATE_SYSTEM_PROMPT_Constitutional_Charter.md`
 
 #### 2.biz/landing/ (Landing pages)
+
 - `landing_ageverifysi_com.md`
 - `landing_aicrisisconsult_com.md`
 - `landing_bizflowsi_com.md`
@@ -109,6 +118,7 @@
 - `highnooncartoon-real.html`
 
 #### 2.biz/docs/ (Documentation)
+
 - `CLAUDE_CODE_CLI_IMPLEMENTATION_GUIDE.md`
 - `CURSOR_REPLIT_LIV_HANA_CONNECTION.md`
 - `CURSOR_REPLIT_SWARM_CONNECTION.md`
@@ -120,25 +130,30 @@
 - `docs/`
 
 ### 3.ops/ (Deployment + DNS tooling)
+
 #### 3.ops/dns/ (DNS configuration)
+
 - `cloudflare_bulk_redirects.csv`
 - `cloudflare_workers_redirects.js`
 - `dns-configuration-guide.txt`
 - `nginx_redirects.conf`
 
 #### 3.ops/deploy/ (Deployment scripts)
+
 - `deploy_texas_coa_checker.sh`
 - `highnooncartoon-domain-setup.sh`
 - `action_plan_dns_fix.md`
 - `cloud_run_1.md`
 
 ### 4.media/ (Final renders, images, thumbnails)
+
 - `HNC_EP1_ANIMATED_FINAL.jpg`
 - `HNC_EP1_ANIMATED_FINAL.mp4`
 - `HNC_EP1_THUMBNAIL.jpg`
 - `image.png`
 
 ### 5.outputs/ (Machine-generated artifacts)
+
 - `final-deployment/`
 - `final-deployment-summary.txt`
 - `evolution-output/`
@@ -146,9 +161,11 @@
 - `output/`
 
 ### 6.tmp/ (Short-lived scratchpad)
+
 - `Explorer: Toggle Render Whitespace` (DELETE)
 
 ## Repo-Worthy Assets (Move to LivHana-SoT/)
+
 - `action_plan_dns_fix.md` → `LivHana-SoT/docs/ops/`
 - `CLAUDE_CODE_CLI_IMPLEMENTATION_GUIDE.md` → `LivHana-SoT/docs/guides/`
 - `cloud_run_1.md` → `LivHana-SoT/docs/ops/`
@@ -171,6 +188,7 @@
 - `ULTIMATE_SYSTEM_PROMPT_Constitutional_Charter.md` → `LivHana-SoT/docs/system/`
 
 ## Special Handling Notes
+
 - **Macintosh HD**: System directory, leave untouched
 - **docs/**: Contains subdirectories, move entire structure
 - **Landing pages**: Group under 2.biz/landing/ with RPM DNA naming
@@ -179,6 +197,7 @@
 - **DNS/Deploy**: Group under 3.ops/ with appropriate subdirectories
 
 ## Next Steps
+
 1. Create directory skeleton
 2. Execute controlled moves
 3. Apply RPM DNA naming conventions

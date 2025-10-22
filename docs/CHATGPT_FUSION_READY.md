@@ -9,9 +9,11 @@
 ## 🎯 What Was Built
 
 ### 1. ChatGPT Team Ingestion Script
+
 **File**: `scripts/fuse-chatgpt-team.js`
 
 **Features**:
+
 - ✅ Parses ChatGPT Team export ZIP files
 - ✅ Processes ALL conversations (no keyword filtering)
 - ✅ Extracts decisions, recommendations, technical choices
@@ -22,9 +24,11 @@
 **Output**: `data/chatgpt-analysis.json`
 
 ### 2. Cross-Platform Decision Matrix Generator
+
 **File**: `scripts/generate-decision-matrix.js`
 
 **Features**:
+
 - ✅ Compares ChatGPT vs Claude guidance by topic
 - ✅ Identifies consensus decisions (both platforms agreed)
 - ✅ Highlights conflicts (different advice requiring resolution)
@@ -35,9 +39,11 @@
 **Output**: `docs/CROSS_PLATFORM_DECISION_MATRIX.md`
 
 ### 3. Comprehensive Documentation
+
 **File**: `docs/CHAT_EXPORT_INSTRUCTIONS.md`
 
 **Includes**:
+
 - ✅ Step-by-step ChatGPT Team export instructions
 - ✅ Cross-platform workflow guide
 - ✅ Expected timeline (60 minutes total)
@@ -60,6 +66,7 @@ npm install openai @anthropic-ai/sdk adm-zip
 ## 📋 EXECUTION CHECKLIST
 
 ### Step 1: Export ChatGPT Team Data (You do this)
+
 - [ ] Log into ChatGPT Team workspace as admin
 - [ ] Navigate to Settings → Team settings → Data Controls
 - [ ] Click "Export data" → Select "All time" → Confirm
@@ -68,16 +75,19 @@ npm install openai @anthropic-ai/sdk adm-zip
 - [ ] Save to: `./data/chatgpt-team-export.zip`
 
 **Alternative paths accepted**:
+
 - `./data/conversations.json` (extracted from ZIP)
 - `./data/chatgpt-team-export.zip` (full ZIP)
 
 ### Step 2: Run ChatGPT Team Ingestion (Automated)
+
 ```bash
 cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT
 node scripts/fuse-chatgpt-team.js
 ```
 
 **Expected output**:
+
 ```
 🔍 ChatGPT Team Workspace Ingestion
 ════════════════════════════════════════════════════════════════
@@ -115,11 +125,13 @@ node scripts/fuse-chatgpt-team.js
 ```
 
 ### Step 3: Generate Decision Matrix (Automated)
+
 ```bash
 node scripts/generate-decision-matrix.js
 ```
 
 **Expected output**:
+
 ```
 ═══════════════════════════════════════════════════════════════
   CROSS-PLATFORM DECISION MATRIX GENERATOR
@@ -156,18 +168,22 @@ node scripts/generate-decision-matrix.js
 ```
 
 ### Step 4: Review Decision Matrix (Manual)
+
 ```bash
 code docs/CROSS_PLATFORM_DECISION_MATRIX.md
 ```
 
 **Look for**:
+
 - **⚠️ CONFLICTS**: Strategic contradictions requiring your decision
 - **✅ CONSENSUS**: Aligned guidance (high confidence - deploy these first)
 - **🔵 CLAUDE-ONLY**: Insights not discussed in ChatGPT
 - **🟡 CHATGPT-ONLY**: Insights not discussed in Claude
 
 ### Step 5: Resolve Conflicts (Manual)
+
 For each conflict found:
+
 1. Read both ChatGPT and Claude positions
 2. Consider context, confidence levels, mention frequency
 3. Make strategic decision on which approach to use
@@ -175,6 +191,7 @@ For each conflict found:
 5. Update `docs/LIV_HANA_DEPLOYMENT_PLAN_CONSOLIDATED.md` if needed
 
 ### Step 6: Execute Deployment
+
 - Deploy consensus strategies first (validated by both platforms)
 - Handle conflict areas with extra caution
 - Monitor results against both platforms' predictions
@@ -184,6 +201,7 @@ For each conflict found:
 ## 📊 Expected Analysis Output
 
 ### ChatGPT Analysis JSON Structure
+
 ```json
 {
   "source": "chatgpt_team",
@@ -224,6 +242,7 @@ For each conflict found:
 ```
 
 ### Decision Matrix Sections
+
 1. **Executive Summary**
    - Overall statistics
    - Conflict count
@@ -267,6 +286,7 @@ For each conflict found:
 ## ⚠️ Current Blockers
 
 **BLOCKER 1**: ChatGPT Team export data not yet available
+
 - **Status**: Waiting on Jesse
 - **Action**: Follow Step 1 above to export from ChatGPT Team workspace
 - **ETA**: 30 minutes (5 min to request + 5-30 min processing)
@@ -276,6 +296,7 @@ For each conflict found:
 ## ✅ Success Criteria
 
 **Script Creation**:
+
 - ✅ ChatGPT Team ingestion script implemented
 - ✅ Cross-platform decision matrix generator implemented
 - ✅ Comprehensive documentation created
@@ -283,6 +304,7 @@ For each conflict found:
 - ✅ Scripts validated (syntax check passed)
 
 **Data Processing** (Once export available):
+
 - ⏳ ChatGPT Team export data imported
 - ⏳ All conversations analyzed
 - ⏳ Decision matrix generated
@@ -290,6 +312,7 @@ For each conflict found:
 - ⏳ Consensus validated
 
 **Deployment Readiness**:
+
 - ⏳ Strategic conflicts resolved
 - ⏳ Consensus decisions validated
 - ⏳ Platform-specific insights reviewed
@@ -300,16 +323,19 @@ For each conflict found:
 ## 🎯 Value Delivered
 
 ### Intelligence Extraction
+
 - **Claude**: 86 conversations already analyzed (from previous run)
 - **ChatGPT**: Ready to analyze ALL Team conversations
 - **Cross-Platform**: Automatic conflict detection and consensus validation
 
 ### Decision Confidence
+
 - **High Confidence**: Consensus strategies (both platforms agreed)
 - **Medium Confidence**: Platform-specific strategies (validate if critical)
 - **Requires Resolution**: Conflicting strategies (Jesse must decide)
 
 ### Time Savings
+
 - **Manual Analysis**: Would take days to compare conversations by hand
 - **Automated Analysis**: 5 minutes to process + 15 minutes to review
 - **ROI**: ~95% time savings on strategic analysis
@@ -319,6 +345,7 @@ For each conflict found:
 ## 📞 Next Communication
 
 **When you have the ChatGPT Team export**:
+
 1. Save ZIP to `./data/chatgpt-team-export.zip`
 2. Run: `node scripts/fuse-chatgpt-team.js`
 3. Run: `node scripts/generate-decision-matrix.js`
@@ -326,6 +353,7 @@ For each conflict found:
 5. Report back: Number of conflicts found
 
 **If you need help**:
+
 - Check: `docs/CHAT_EXPORT_INSTRUCTIONS.md`
 - Review: Script source code (both heavily commented)
 - Contact: Claude Code for troubleshooting

@@ -1,5 +1,7 @@
 ### **Jesse CEO Updates Replit:**
+
 When API keys are ready:
+
 ```bash
 # Create file with keys
 cat > /tmp/delivery-keys.env << EOF

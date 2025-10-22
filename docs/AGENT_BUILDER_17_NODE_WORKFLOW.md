@@ -36,32 +36,39 @@ graph TD
 ## Node Descriptions
 
 ### 01: Start
+
 **Type**: Entry Point
 **Purpose**: Initiate cannabis intelligence query workflow
 **Outputs**: `user_query`, `session_id`, `timestamp`
 
 ### 02: Voice Agent
+
 **Type**: Voice Interaction
 **Modes**:
+
 - **Brevity** (trigger: "Liv"): <120 tokens, concise status
 - **Mentor** (default): <300 tokens, educational
 - **Silence** (trigger: "pause"): JSON output only
 
 **Services**:
+
 - STT Primary: Whisper (localhost:2022)
 - STT Fallback: OpenAI API
 - TTS: Kokoro (localhost:8880)
 - Timeout: 10s (reduced from 30s)
 
 ### 03: Session Anchor (Set State)
+
 **Type**: State Management
 **Features**:
+
 - Machine-readable session state
 - TRUTH checkpoint triggers: 1000 tokens OR topic change
 - Citation enforcement: ≥1 SoT OR ≥2 web sources
 - Block End node until citation requirements met
 
 **State Schema**:
+
 ```json
 {
   "session_id": "UUID",
@@ -77,9 +84,11 @@ graph TD
 ```
 
 ### 04: MCP - Knowledge & File Search
+
 **Type**: MCP Tool (Rube Broker)
 **Tools**: `search_knowledge_base`, `search_files`, `get_document`, `get_sot_reference`
 **Features**:
+
 - Max 20 results
 - Relevance threshold: 0.7
 - Deduplication: enabled
@@ -87,26 +96,32 @@ graph TD
 - Stale source decay: >90 days (unless SoT)
 
 ### 05: If/Else Routing
+
 **Type**: Conditional Logic
 **Conditions**:
+
 1. `knowledge_results.coverage < 0.5` → Web Search
 2. `query_type IN ['real_time', 'trending']` → Web Search
 3. `knowledge_results.coverage >= 0.5 AND sot_references.count > 0` → Skip to Guardrails
 4. Default → Web Search
 
 ### 06: MCP - Web Search
+
 **Type**: MCP Tool (Rube Broker)
 **Engine**: Perplexity
 **Tools**: `web_search`, `fetch_url`, `verify_claim`
 **Features**:
+
 - Max 10 results
 - Recency bias: 168 hours (7 days)
 - Domain diversity: required
 
 ### 07: Guardrails (7 Systems)
+
 **Type**: Compliance & Safety
 
 **Guardrails**:
+
 1. **AGE21**: Require 21+ confirmation → block
 2. **PII Redaction**: Email/phone/SSN regex → sanitize
 3. **Cannabis Compliance**: THC ≤0.3%, COA required → warn_and_verify
@@ -118,19 +133,23 @@ graph TD
 **SLO**: False block rate <1%
 
 ### 08: Profit Function
+
 **Type**: Algorithmic Calculation
 **Formula**:
+
 ```
 profit_estimate = (velocity_units/month * margin/unit * 12)
                 - (fixed_costs_annual + variable_costs_annual)
 ```
 
 **Confidence Bands**:
+
 - High: >80% data completeness
 - Medium: 50-80% data completeness
 - Low: <50% data completeness
 
 ### 09-13: RPM Chain (5 Agents)
+
 **Type**: Sequential Agent Pipeline
 
 **09 - RPM Result**: Define desired outcome (precise, measurable)
@@ -140,6 +159,7 @@ profit_estimate = (velocity_units/month * margin/unit * 12)
 **13 - RPM Emit**: Output RPM card with DNA tagging
 
 **Action Schema**:
+
 ```json
 {
   "action": "description",
@@ -152,6 +172,7 @@ profit_estimate = (velocity_units/month * margin/unit * 12)
 ```
 
 ### 14-17: Business Tools (4 Integrations)
+
 **Type**: External API Integrations
 
 **14 - Google Calendar**: Schedule RPM tasks
@@ -163,12 +184,15 @@ profit_estimate = (velocity_units/month * margin/unit * 12)
 **Approval**: Human approval required for Calendar, Gmail, LightSpeed
 
 ### 18: End
+
 **Type**: Workflow Termination
 **TRUTH Validation Enforcement**:
+
 - Min 1 SoT citation OR 2 web citations
 - Block workflow completion if not met
 
 **Output Schema**:
+
 ```json
 {
   "session_id": "string",
@@ -230,6 +254,7 @@ All secrets wired via Google Secret Manager (GSM):
 ## Deployment Instructions
 
 ### Option 1: Agent Builder UI (DoBrowser Automation)
+
 ```bash
 # Use DoBrowser to build canvas node-by-node
 # Paste Orchestrator prompt from node 02
@@ -241,6 +266,7 @@ All secrets wired via Google Secret Manager (GSM):
 ```
 
 ### Option 2: JSON Import (if supported)
+
 ```bash
 # Import config/agent_builder_17_node_config.json
 # Verify all nodes connected
@@ -249,6 +275,7 @@ All secrets wired via Google Secret Manager (GSM):
 ```
 
 ### Option 3: Manual Build (Codex → Cheetah)
+
 1. **Codex**: Generate execution artifacts (scripts, configs, tests)
 2. **Cheetah**: Implement nodes in Agent Builder UI
 3. **Sonnet**: Validate, document, commit
@@ -273,12 +300,14 @@ All secrets wired via Google Secret Manager (GSM):
 ## Next Steps
 
 ### Immediate (Codex Execution Artifacts)
+
 1. Generate execution scripts for each node
 2. Create test harness for node validation
 3. Build secrets smoke test (GSM + MCP hello calls)
 4. Generate monitoring/alerting configuration
 
 ### Implementation (Cheetah Speed Layer)
+
 1. Build 17-node canvas in Agent Builder UI
 2. Paste Orchestrator + State prompts
 3. Attach Rube MCP broker
@@ -287,6 +316,7 @@ All secrets wired via Google Secret Manager (GSM):
 6. Test end-to-end with sample query
 
 ### Validation (Sonnet Orchestration)
+
 1. Run integrity checks on all nodes
 2. Validate SLO metrics collection
 3. Verify TRUTH citation enforcement

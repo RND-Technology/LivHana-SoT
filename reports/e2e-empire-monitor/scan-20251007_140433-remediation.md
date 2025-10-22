@@ -7,6 +7,7 @@
 **Problem:** Domains not responding to HTTP/HTTPS requests
 
 **Solutions:**
+
 1. Verify SSL certificates: `curl -vI https://[domain]`
 2. Check Cloud Run service health: `gcloud run services describe integration-service`
 3. Verify domain mapping in Cloud Run
@@ -14,6 +15,7 @@
 5. Verify age verification gate is allowing traffic
 
 **Command:**
+
 ```bash
 curl -vI https://[domain] 2>&1 | grep -i "http\|ssl\|cert"
 ```
@@ -23,6 +25,7 @@ curl -vI https://[domain] 2>&1 | grep -i "http\|ssl\|cert"
 **Problem:** Service endpoints not responding correctly
 
 **Solutions:**
+
 1. Check integration-service logs: `gcloud run services logs read integration-service`
 2. Verify API endpoints: `curl https://[domain]/api/age-verification/status`
 3. Check database connectivity
@@ -30,11 +33,11 @@ curl -vI https://[domain] 2>&1 | grep -i "http\|ssl\|cert"
 5. Test age verification flow manually
 
 **Command:**
+
 ```bash
 curl -v https://[domain]/api/age-verification/status
 gcloud run services logs read integration-service --limit 50
 ```
-
 
 ## Critical Verification Checklist
 
@@ -62,4 +65,3 @@ gcloud run services logs read integration-service --limit 50
 3. Monitor Cloud Run logs during remediation
 4. Re-test after each fix
 5. Document any persistent issues
-

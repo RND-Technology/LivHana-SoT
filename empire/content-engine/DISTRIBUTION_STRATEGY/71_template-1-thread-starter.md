@@ -1,4 +1,5 @@
 #### Template 1: Thread Starter
+
 ```
 Tweet 1 (With Video):
 🚨 TEXAS HEMP ALERT 🚨

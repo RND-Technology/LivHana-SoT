@@ -9,12 +9,14 @@
 ## URLs
 
 ### Primary Access
-- **Cloud Run Service**: https://herbitrage-voice-980910443251.us-central1.run.app
-- **Custom Domain**: https://herbitrage.com (DNS propagation in progress)
+
+- **Cloud Run Service**: <https://herbitrage-voice-980910443251.us-central1.run.app>
+- **Custom Domain**: <https://herbitrage.com> (DNS propagation in progress)
 
 ### Service Dependencies
-- **Voice Service**: https://voice-service-plad5efvha-uc.a.run.app
-- **Integration Service**: https://integration-service-plad5efvha-uc.a.run.app
+
+- **Voice Service**: <https://voice-service-plad5efvha-uc.a.run.app>
+- **Integration Service**: <https://integration-service-plad5efvha-uc.a.run.app>
 
 ## Login Credentials
 
@@ -104,7 +106,7 @@ AAAA Records:
 ## Post-Deployment Steps
 
 1. **Immediate Access**: Use Cloud Run URL
-   - https://herbitrage-voice-980910443251.us-central1.run.app
+   - <https://herbitrage-voice-980910443251.us-central1.run.app>
 
 2. **Configure DNS** (if not already done):
    - Update herbitrage.com DNS records with provided A/AAAA records
@@ -119,6 +121,7 @@ AAAA Records:
    - Test text-to-speech playback
 
 4. **Monitor Service**:
+
    ```bash
    # View logs
    gcloud run services logs read herbitrage-voice \
@@ -135,17 +138,20 @@ AAAA Records:
 ## Troubleshooting
 
 ### Voice not working
+
 - Check browser compatibility (Chrome/Edge recommended)
 - Ensure HTTPS is being used
 - Check microphone permissions in browser
 - Verify voice-service is accessible
 
 ### Authentication issues
+
 - Clear browser cache and session storage
 - Verify credentials are correct
 - Check browser console for errors
 
 ### AI responses not coming through
+
 - Check voice-service availability
 - Monitor Cloud Run logs for errors
 - Verify network connectivity
@@ -170,5 +176,6 @@ frontend/herbitrage-voice/
 ## Support
 
 For issues or questions:
-- Email: jesseniesen@gmail.com
+
+- Email: <jesseniesen@gmail.com>
 - Check logs: `gcloud run services logs read herbitrage-voice --region us-central1 --project reggieanddrodispensary`

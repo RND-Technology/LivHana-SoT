@@ -1,4 +1,5 @@
 ### Further Reading
+
 - D-ID Best Practices Documentation
 - DALL-E 3 Character Consistency Guides
 - LoRA Training Tutorials (Shakker AI, Replicate)
@@ -14,6 +15,7 @@
 ---
 
 *This document is part of the HIGH NOON CARTOON production engine. For related documentation, see:*
+
 - *CHARACTER_REFERENCE_SHEETS.md (character personality and voice direction)*
 - *VISUAL_STYLE_GUIDE.md (overall HNC aesthetic and design principles)*
 - *unicorn-making-machine.mjs (production automation system)*

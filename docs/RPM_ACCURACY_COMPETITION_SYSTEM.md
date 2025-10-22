@@ -1,4 +1,5 @@
 # RPM Accuracy Competition System
+
 **Classification:** Tier-1 Absolute Standard  
 **Owner:** Liv Hana (Chief of Staff)  
 **Version:** 1.0  
@@ -12,6 +13,7 @@
 **ROI/$/Day is KING. Cash flow (passive profits) RULES business decisions.**
 
 This system creates competitive accuracy measurement across:
+
 - **Models vs Humans vs Selves**
 - **Projected vs Actual:** Timeframe, Cost, ROI
 - **Primary KPI:** ROI/$/Day accuracy
@@ -38,12 +40,14 @@ This system creates competitive accuracy measurement across:
 ### 2. COMPETITION PARTICIPANTS
 
 **Tier 1: Models**
+
 - Claude Sonnet 4.5 (Liv Hana)
 - GPT-5 (Commander)
 - DeepSeek 33B (Reasoning Gateway)
 - Custom Models (Specialized)
 
 **Tier 2: Humans**
+
 - Jesse Niesen (CEO)
 - Andrew (Director Ops)
 - Christopher (CSO/Paymaster)
@@ -51,6 +55,7 @@ This system creates competitive accuracy measurement across:
 - Andrea (Legal)
 
 **Tier 3: Selves**
+
 - Historical Performance Tracking
 - Self-Improvement Loops
 - Meta-Learning Systems
@@ -60,6 +65,7 @@ This system creates competitive accuracy measurement across:
 ## ACCURACY SCORING ALGORITHM
 
 ### Primary Formula: ROI/$/Day Accuracy
+
 ```python
 def calculate_roi_accuracy(projected_roi, actual_roi):
     if projected_roi == 0 and actual_roi == 0:
@@ -73,6 +79,7 @@ def calculate_roi_accuracy(projected_roi, actual_roi):
 ```
 
 ### Composite Accuracy Score
+
 ```python
 def calculate_composite_accuracy(projections, actuals):
     weights = {
@@ -98,6 +105,7 @@ def calculate_composite_accuracy(projections, actuals):
 ## COMPETITION STRUCTURE
 
 ### Daily Accuracy Leaderboard
+
 ```
 ┌─────────────────┬──────────────┬──────────────┬──────────────┐
 │ Participant     │ ROI Accuracy │ Composite    │ Rank         │
@@ -110,6 +118,7 @@ def calculate_composite_accuracy(projections, actuals):
 ```
 
 ### Weekly Improvement Tracking
+
 ```
 ┌─────────────────┬──────────────┬──────────────┬──────────────┐
 │ Participant     │ Week 1      │ Week 2      │ Improvement  │
@@ -125,21 +134,25 @@ def calculate_composite_accuracy(projections, actuals):
 ## RPM DNA INTEGRATION
 
 ### 1. Real-Time Projection Capture
+
 - Every decision must include projections
 - Automatic timestamping and versioning
 - Immutable audit trail
 
 ### 2. Actual Results Tracking
+
 - Automated data collection
 - Real-time ROI calculation
 - Cash flow monitoring
 
 ### 3. Accuracy Feedback Loops
+
 - Immediate accuracy scoring
 - Pattern recognition
 - Improvement recommendations
 
 ### 4. Competitive Intelligence
+
 - Cross-participant learning
 - Best practice identification
 - Meta-strategy development
@@ -149,24 +162,28 @@ def calculate_composite_accuracy(projections, actuals):
 ## IMPLEMENTATION PHASES
 
 ### Phase 1: Foundation (Week 1)
+
 - [ ] Accuracy measurement framework
 - [ ] Projection capture system
 - [ ] Basic leaderboard
 - [ ] Initial participant onboarding
 
 ### Phase 2: Competition (Week 2)
+
 - [ ] Full competition structure
 - [ ] Real-time scoring
 - [ ] Weekly tournaments
 - [ ] Improvement tracking
 
 ### Phase 3: Intelligence (Week 3)
+
 - [ ] Pattern recognition
 - [ ] Predictive accuracy
 - [ ] Meta-learning systems
 - [ ] Strategic recommendations
 
 ### Phase 4: Mastery (Week 4)
+
 - [ ] Advanced analytics
 - [ ] Cross-domain learning
 - [ ] Optimization algorithms
@@ -177,12 +194,14 @@ def calculate_composite_accuracy(projections, actuals):
 ## SUCCESS METRICS
 
 ### Primary KPIs
+
 - **ROI/$/Day Accuracy:** Target 95%+
 - **Cash Flow Accuracy:** Target 90%+
 - **Timeframe Accuracy:** Target 85%+
 - **Cost Accuracy:** Target 90%+
 
 ### Secondary KPIs
+
 - **Improvement Rate:** Target 2%+ weekly
 - **Competition Engagement:** Target 80%+ participation
 - **Learning Velocity:** Target 5+ insights/week
@@ -193,16 +212,19 @@ def calculate_composite_accuracy(projections, actuals):
 ## GUARDRAILS & COMPLIANCE
 
 ### Values Alignment
+
 - Every projection must align with core values
 - Accuracy cannot compromise ethics
 - Transparency in all measurements
 
 ### Results Focus
+
 - Accuracy must drive business results
 - ROI/$/Day is the ultimate measure
 - Cash flow optimization is priority
 
 ### Purpose Driven
+
 - All competition serves the mission
 - Accuracy improves decision quality
 - Learning accelerates growth
@@ -212,24 +234,28 @@ def calculate_composite_accuracy(projections, actuals):
 ## TECHNICAL ARCHITECTURE
 
 ### Data Layer
+
 - Projection storage (immutable)
 - Actual results tracking
 - Accuracy calculations
 - Historical analysis
 
 ### Competition Layer
+
 - Leaderboard management
 - Scoring algorithms
 - Tournament systems
 - Improvement tracking
 
 ### Intelligence Layer
+
 - Pattern recognition
 - Predictive modeling
 - Meta-learning
 - Strategic recommendations
 
 ### Interface Layer
+
 - Real-time dashboards
 - Mobile notifications
 - Voice integration

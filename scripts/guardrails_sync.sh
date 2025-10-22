@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "🔒 Syncing Guardrails..."
 echo "Blocked Fallacies:"
-echo "- Jumio superior to Veriff → ❌ FALSE"
+echo "- Veriff superior to Veriff → ❌ FALSE"
 echo "- Custom MCP broker → ❌ BLOCKED"
 echo "- Veriff operational without UX fix → ❌ FALSE"
 echo "- LightSpeed/Kaja excuse → ❌ BLOCKED"

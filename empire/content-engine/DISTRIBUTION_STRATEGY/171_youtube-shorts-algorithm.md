@@ -1,6 +1,7 @@
 #### YouTube Shorts Algorithm
 
 **Favor**:
+
 - High view duration (% of video watched)
 - Watched vs. swiped away ratio
 - Loop/replay behavior
@@ -8,6 +9,7 @@
 - Subscriber conversion
 
 **Optimize**:
+
 - Front-load value (don't bury lead)
 - Strong hook (prevent swipes)
 - Design for replaying
@@ -15,6 +17,7 @@
 - Share to other platforms yourself
 
 **Avoid**:
+
 - Click-bait that disappoints
 - Slow pacing
 - Unclear value proposition

@@ -1,4 +1,5 @@
 ### 1.2 Install Node.js and npm
+
 ```bash
 # Install Node.js 18 LTS
 brew install node@18

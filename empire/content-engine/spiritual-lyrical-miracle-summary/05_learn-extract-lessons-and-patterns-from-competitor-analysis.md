@@ -1,5 +1,7 @@
 ### LEARN - Extract lessons and patterns from competitor analysis
+
 **Process:**
+
 - Identify successful strategies
 - Recognize common weaknesses
 - Understand market trends

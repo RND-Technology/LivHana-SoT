@@ -1,4 +1,5 @@
 ### Lightspeed Integration Service
+
 ```python
 # backend/lightspeed-integration-service/main.py
 from fastapi import FastAPI, HTTPException

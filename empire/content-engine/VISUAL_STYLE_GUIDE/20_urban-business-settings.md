@@ -1,4 +1,5 @@
 #### Urban/Business Settings
+
 ```
 - Walls: Off-White (#F5F5F5) to Sandy Beige (#D4B896)
 - Floors: Gray (#9E9E9E) to Wood Tones (#A0826D)

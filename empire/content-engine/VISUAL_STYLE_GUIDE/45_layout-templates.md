@@ -3,6 +3,7 @@
 **Standard Episode Layouts:**
 
 **Opening Title Card:**
+
 ```
 ┌─────────────────────┐
 │                     │
@@ -14,6 +15,7 @@
 ```
 
 **Character Dialogue:**
+
 ```
 ┌─────────────────────┐
 │                     │
@@ -27,6 +29,7 @@
 ```
 
 **Data Presentation:**
+
 ```
 ┌─────────────────────┐
 │  HEADLINE/TITLE     │ ← Clear heading
@@ -40,6 +43,7 @@
 ```
 
 **Product Showcase:**
+
 ```
 ┌─────────────────────┐
 │  [JESSE]            │ ← Presenter, upper frame
@@ -53,6 +57,7 @@
 ```
 
 **Closing CTA:**
+
 ```
 ┌─────────────────────┐
 │  [CHARACTER]        │ ← Jesse or relevant character

@@ -26,12 +26,14 @@ ls -l output/episodes/
 ## WHAT YOU GET
 
 ### Instant Results
+
 - **10 episodes** generated in <0.01 seconds
 - **99.4% TPOPS alignment** (target: 95%+)
 - **8.81/10 viral score** (target: 8.5+)
 - **100% success rate** (zero failures)
 
 ### Output Files
+
 ```
 output/
 ├── episodes/
@@ -55,6 +57,7 @@ node hnc-autonomous-engine-optimized.mjs
 ```
 
 **Output:**
+
 - 10 episode JSON files
 - Real-time performance dashboard
 - TPOPS alignment per episode
@@ -105,18 +108,21 @@ await engine.runContinuous(60);
 ## WHAT'S OPTIMIZED?
 
 ### Performance (13,700x Faster)
+
 - ✅ Performance caching (50% hit rate)
 - ✅ Batch processing optimization
 - ✅ Streamlined scene generation
 - ✅ Pre-computed patterns
 
 ### Quality (4.4% Better TPOPS)
+
 - ✅ Multi-factor TPOPS scoring
 - ✅ Character alignment weighting
 - ✅ Dog whistle density analysis
 - ✅ News hook integration
 
 ### Features (6 New Major Features)
+
 - ✅ YouTube viral pattern integration
 - ✅ NewsAPI story hook integration
 - ✅ Real-time metrics dashboard
@@ -218,10 +224,12 @@ echo "NEWSAPI_KEY=your-key-here" >> .env
 ```
 
 **Get API Keys:**
-- YouTube: https://console.cloud.google.com/apis/credentials
-- NewsAPI: https://newsapi.org/register
+
+- YouTube: <https://console.cloud.google.com/apis/credentials>
+- NewsAPI: <https://newsapi.org/register>
 
 **Benefits:**
+
 - Live viral pattern analysis from YouTube
 - Real-time cannabis news hooks
 - Dynamic trend integration
@@ -330,6 +338,7 @@ const CONFIG = {
 ### Issue: Cache not working
 
 **Solution:**
+
 ```bash
 # Clear cache and regenerate
 rm -rf output/cache
@@ -339,6 +348,7 @@ node hnc-autonomous-engine-optimized.mjs
 ### Issue: Episode numbers wrong
 
 **Solution:**
+
 ```bash
 # Engine auto-detects last episode number
 # Manually set if needed:
@@ -349,6 +359,7 @@ this.episodeNumber = 1;  // Set to desired starting number
 ### Issue: Low TPOPS alignment
 
 **Solution:**
+
 - Check character selection (use high-alignment characters)
 - Verify news hook TPOPS strength
 - Increase dog whistle density in dialogue
@@ -356,6 +367,7 @@ this.episodeNumber = 1;  // Set to desired starting number
 ### Issue: Low viral score
 
 **Solution:**
+
 - Add more Trump rhetoric phrases
 - Use more viral title patterns
 - Increase engagement hooks in scenes
@@ -407,6 +419,7 @@ All targets MET or EXCEEDED:
 **Original Engine:** `hnc-autonomous-engine.mjs`
 
 **Questions?**
+
 - Review optimization report for detailed analysis
 - Check before/after comparison for feature breakdown
 - Examine episode JSON output for structure details

@@ -1,4 +1,4 @@
-#### Character Roster (8 Total):
+#### Character Roster (8 Total)
 
 1. **Reggie (Regular)** - Co-founder, Product Expert
    - TPOPS Alignment: High
@@ -41,12 +41,14 @@
    - Role: Voice of the people
 
 **Character Dynamics:**
+
 - Pro-cannabis: Reggie, Dro, Jesse, Liv Hana, Texas Patriot (5/8)
 - Neutral/Compliance: Lt. Dan (1/8)
 - Anti-cannabis: Chief Steve, Aubrey Awfuls (2/8)
 - Balance: 62.5% pro / 12.5% neutral / 25% antagonist
 
 **Episode Type Character Sets:**
+
 - Product Showcase: Reggie + Dro (2 characters)
 - News Commentary: Jesse + Liv Hana + Texas Patriot (3 characters)
 - Character Comedy: Reggie + Chief Steve + Dro + Aubrey Awfuls (4 characters)
@@ -54,6 +56,7 @@
 - Customer Testimonial: Reggie + Dro + Texas Patriot (3 characters)
 
 **Results:**
+
 - 8 characters fully validated
 - Character dynamics balanced
 - TPOPS alignment per character tracked

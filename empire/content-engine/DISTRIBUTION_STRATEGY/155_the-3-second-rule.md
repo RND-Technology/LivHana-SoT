@@ -1,6 +1,7 @@
 #### The 3-Second Rule
 
 **Why It Matters**:
+
 - Average user decides to scroll in under 3 seconds
 - Algorithms track "Viewed vs. Swiped Away"
 - First frame is your only guaranteed impression
@@ -38,6 +39,7 @@
    - Engages curiosity response
 
 **HNC Hook Formula**:
+
 ```
 [Visual: Character in action]
 + [Text overlay: Question or statement]
@@ -47,6 +49,7 @@
 ```
 
 **Example Hooks for HNC**:
+
 1. "Wait... THIS is illegal in Texas?!" [Character shocked face]
 2. "This compliance mistake cost $50,000" [Money flying away animation]
 3. "Texas hemp owners: Stop doing this NOW" [Warning visual]

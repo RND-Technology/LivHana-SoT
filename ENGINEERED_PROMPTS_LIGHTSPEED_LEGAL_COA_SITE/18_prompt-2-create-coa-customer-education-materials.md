@@ -1,4 +1,5 @@
 #### **Prompt 2: Create COA Customer Education Materials**
+
 ```
 Create customer education materials explaining Certificates of Analysis (COAs) and Texas hemp compliance for reggieanddro.com.
 

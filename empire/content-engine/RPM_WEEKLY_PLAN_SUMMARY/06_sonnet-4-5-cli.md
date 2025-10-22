@@ -1,6 +1,8 @@
 ### 🤖 Sonnet 4.5 CLI
+
 **Role**: Code generation, system optimization, technical implementation  
 **Capabilities**:
+
 - Code generation and analysis
 - System optimization
 - Technical implementation

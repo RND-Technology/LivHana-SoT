@@ -1,4 +1,5 @@
 ### Enhancement by Category
+
 | Category | Episodes | Focus Areas |
 |----------|----------|-------------|
 | **General** | 37 | Varied content, trending topics |

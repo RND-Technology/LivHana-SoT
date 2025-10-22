@@ -1,4 +1,5 @@
 #### ✅ Final Encoding
+
 - H.264 codec (libx264)
 - 1920x1080 resolution
 - High profile, level 4.2

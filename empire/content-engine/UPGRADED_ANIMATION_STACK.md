@@ -1,4 +1,5 @@
 # HIGH NOON CARTOON - UPGRADED ANIMATION STACK
+
 ## REAL Animated Videos with Lip-Sync & Professional Editing
 
 **Date:** 2025-10-07
@@ -7,14 +8,17 @@
 ## UPGRADED PRODUCTION STACK
 
 ### 1. Script Generation (UNCHANGED)
+
 **Tool:** Claude API (Anthropic)
 **Function:** Generate scripts with character dialogue
 **Output:** Structured JSON with dialogue, timing, scenes
 
 ### 2. Voice Generation (UNCHANGED)
+
 **Tool:** ElevenLabs API
 **Function:** Professional character voices
 **Characters:**
+
 - Jesse: pNInz6obpgDQGcFmaJgB (Adam - authoritative)
 - Liv Hana: EXAVITQu4vr4xnSDxMaL (Bella - intelligent)
 - Chief Steve: AZnzlk1XvdvUeBnXmlld (Antoni - nervous)
@@ -22,10 +26,12 @@
 - Aubrey: VR6AewLTigWG4xSOukaG (Josh - villainous)
 
 ### 3. Character Animation (NEW - CRITICAL FOR LIP-SYNC)
+
 **Options:**
 
 #### Option A: D-ID (Recommended for lip-sync)
-- **API:** https://www.d-id.com/
+
+- **API:** <https://www.d-id.com/>
 - **Function:** AI avatars with perfect lip-sync to audio
 - **Process:**
   1. Upload character image (DALL-E generated)
@@ -36,14 +42,16 @@
 - **Automation:** Fully API-driven
 
 #### Option B: HeyGen
-- **API:** https://www.heygen.com/
+
+- **API:** <https://www.heygen.com/>
 - **Function:** AI avatar videos with lip-sync
 - **Process:** Similar to D-ID
 - **Pros:** High quality, multiple avatar styles
 - **Cons:** Higher cost ($24+/month)
 
 #### Option C: Synthesia
-- **API:** https://www.synthesia.io/
+
+- **API:** <https://www.synthesia.io/>
 - **Function:** Professional AI video avatars
 - **Pros:** Enterprise-grade quality
 - **Cons:** Most expensive, overkill for social media shorts
@@ -51,39 +59,48 @@
 **RECOMMENDED:** D-ID for best cost/quality balance
 
 ### 4. Visual Generation (ENHANCED)
+
 **Tools:**
+
 - **DALL-E 3:** Character designs, backgrounds, props
 - **Midjourney:** Alternative for high-quality character art (via Discord API)
 - **Stability AI:** Background generation, scene composition
 
 **Process:**
+
 1. Generate consistent character designs (5 characters)
 2. Create scene backgrounds (Texas locations, office, store)
 3. Generate props/objects (products, documents, vehicles)
 4. Save assets for reuse across episodes
 
 ### 5. Animation & Motion (NEW)
+
 **Tools:**
 
-#### For Character Movement:
+#### For Character Movement
+
 - **Runway Gen-2:** Text-to-video for scene animation
 - **Pika Labs:** Motion graphics, scene transitions
 - **Animated Drawings (Meta):** Turn drawings into animations
 
-#### For Scene Composition:
+#### For Scene Composition
+
 - **After Effects API (via Scripting):** Professional motion graphics
 - **Remotion (React):** Programmatic video composition
 - **FFmpeg + overlays:** Basic motion effects
 
 **RECOMMENDED Workflow:**
+
 1. D-ID for character lip-sync (talking heads)
 2. Runway/Pika for scene transitions and environment animation
 3. Combine layers in composition step
 
 ### 6. Professional Editing (NEW - CRITICAL)
+
 **Tool:** Descript
 
 **Features:**
+
 - **Audio editing:** Clean up voice tracks, remove filler words
 - **Video editing:** Cut, trim, arrange scenes
 - **Transcription:** Auto-generate captions/subtitles
@@ -92,6 +109,7 @@
 - **Export:** Multiple formats optimized for platforms
 
 **API Integration:**
+
 - Descript has API for automation (beta)
 - Can script editing workflows
 - Batch processing capabilities
@@ -99,20 +117,25 @@
 **Alternative:** Adobe Premiere Pro API (via scripting)
 
 ### 7. Music & Sound Effects (ENHANCED)
+
 **Tools:**
+
 - **Suno AI:** Custom hit songs, theme music
 - **ElevenLabs Sound Effects:** AI-generated sound effects (new feature)
 - **Epidemic Sound API:** Licensed music library
 - **Freesound.org:** Free sound effects library
 
 **Process:**
+
 1. Generate custom theme song with Suno
 2. Create episode-specific music
 3. Add sound effects (footsteps, doors, ambiance)
 4. Mix audio tracks in Descript or FFmpeg
 
 ### 8. Video Composition (UPGRADED)
+
 **Tools:**
+
 - **Remotion (Recommended):** React-based programmatic video
   - Write video composition in TypeScript/React
   - Render with Node.js
@@ -126,6 +149,7 @@
   - Export final MP4
 
 **Composition Layers:**
+
 1. Background scene (static or animated)
 2. Character video (D-ID lip-synced)
 3. Props/objects (overlays)
@@ -134,7 +158,9 @@
 6. Captions/subtitles
 
 ### 9. Distribution (ENHANCED)
+
 **Platforms & APIs:**
+
 - **YouTube API:** Upload videos, set metadata, schedule
 - **TikTok API:** Post shorts, add hashtags
 - **Instagram Graph API:** Upload Reels
@@ -143,6 +169,7 @@
 - **LinkedIn API:** Share video posts
 
 **Automation:**
+
 - Platform-specific aspect ratios (1:1, 9:16, 16:9)
 - Auto-generate captions/hashtags
 - Schedule posts for optimal times
@@ -256,6 +283,7 @@ async function produceEpisode(episodeNumber) {
 ```
 
 ## TOTAL PRODUCTION TIME
+
 - **Script:** 30 min (Claude)
 - **Voice:** 60 min (ElevenLabs)
 - **Character Images:** 15 min (DALL-E)
@@ -271,13 +299,15 @@ async function produceEpisode(episodeNumber) {
 
 ## API KEYS NEEDED
 
-### Already Have (from 1Password):
+### Already Have (from 1Password)
+
 - `ANTHROPIC_API_KEY` - Claude
 - `ELEVENLABS_API_KEY` - ElevenLabs (Voice)
 - `OPENAI_API_KEY` - DALL-E 3 (Images)
 - `GODADDY_API_KEY` - Domain management
 
-### Need to Obtain:
+### Need to Obtain
+
 - `D_ID_API_KEY` - Character lip-sync animation
 - `SUNO_API_KEY` - Music generation
 - `RUNWAY_API_KEY` - Scene animation (optional)
@@ -306,6 +336,7 @@ async function produceEpisode(episodeNumber) {
 ## IMPLEMENTATION PHASES
 
 ### Phase 1: Core Animation (Week 1)
+
 - [ ] Sign up for D-ID API
 - [ ] Test lip-sync with Episode 1 audio
 - [ ] Generate character images with DALL-E
@@ -313,6 +344,7 @@ async function produceEpisode(episodeNumber) {
 - [ ] Test full animation pipeline
 
 ### Phase 2: Video Composition (Week 2)
+
 - [ ] Set up Remotion or FFmpeg workflow
 - [ ] Create composition templates
 - [ ] Add background scenes
@@ -320,6 +352,7 @@ async function produceEpisode(episodeNumber) {
 - [ ] Test end-to-end video generation
 
 ### Phase 3: Music & Sound (Week 3)
+
 - [ ] Sign up for Suno API
 - [ ] Generate theme song
 - [ ] Create episode-specific music
@@ -327,6 +360,7 @@ async function produceEpisode(episodeNumber) {
 - [ ] Mix audio tracks
 
 ### Phase 4: Professional Editing (Week 4)
+
 - [ ] Sign up for Descript API (if available)
 - [ ] Test editing workflow
 - [ ] Add captions/subtitles
@@ -334,6 +368,7 @@ async function produceEpisode(episodeNumber) {
 - [ ] Test export quality
 
 ### Phase 5: Distribution (Week 5)
+
 - [ ] Set up platform API integrations
 - [ ] Create posting workflows
 - [ ] Test automated uploads
@@ -341,6 +376,7 @@ async function produceEpisode(episodeNumber) {
 - [ ] Schedule posts for optimal times
 
 ### Phase 6: Full Automation (Week 6+)
+
 - [ ] Connect all pipeline steps
 - [ ] Add error handling
 - [ ] Implement approval checkpoints
@@ -350,6 +386,7 @@ async function produceEpisode(episodeNumber) {
 ## SUCCESS CRITERIA
 
 ✅ **Episode Quality:**
+
 - Professional lip-sync animation
 - Clear, engaging dialogue
 - Smooth scene transitions
@@ -357,18 +394,21 @@ async function produceEpisode(episodeNumber) {
 - Platform-optimized formats
 
 ✅ **Automation:**
+
 - Zero manual video editing
 - One-click episode generation
 - Automated distribution to all platforms
 - Real-time status monitoring
 
 ✅ **Performance:**
+
 - Production time: <5 hours per episode
 - Human oversight: <15 minutes per episode
 - Platform uploads: 100% success rate
 - Video quality: 1080p, optimized for web/mobile
 
 ✅ **Business Impact:**
+
 - Daily content releases (7 episodes/week)
 - Growing audience engagement
 - Brand awareness for Reggie & Dro

@@ -1,4 +1,5 @@
 # 🦄 REPLIT AGENT DEPLOYMENT PACKAGE
+
 **RPM DNA:** 1.6.2.1 (RND → Technology → Replit Deployment)
 **Owner:** Claude Code CLI
 **Status:** READY FOR EXECUTION
@@ -9,6 +10,7 @@
 ## 🚀 MISSION: LAUNCH HNC TO MASSIVE DAY 1 SUCCESS
 
 **Critical Success Factors:**
+
 1. ✅ Nash-beating delivery middleware (DEPLOYED by Cheetah)
 2. ✅ YouTube viral pattern analyzer (READY FOR API KEY)
 3. ✅ NewsAPI real-time content pipeline (READY FOR API KEY)
@@ -20,6 +22,7 @@
 ## 📦 COMPLETE DEPLOYMENT BUNDLE
 
 ### Architecture Overview
+
 ```
 LivHana-Trinity/
 ├── backend/
@@ -39,9 +42,11 @@ LivHana-Trinity/
 ## 🎯 REPLIT AGENT TASKS (MAX AUTO PARALLEL)
 
 ### Task 1: HNC Autonomous Content Engine (HIGHEST PRIORITY)
+
 **Goal:** Generate 20 HNC episodes for Day 1 launch
 
 **Configuration:**
+
 ```javascript
 // empire/content-engine/.replit
 run = "npm start"
@@ -60,6 +65,7 @@ OP_SERVICE_ACCOUNT_TOKEN = "{{ FROM REPLIT SECRETS }}"
 ```
 
 **Secrets Mapping (1Password → Replit Environment):**
+
 ```bash
 # DO NOT store in Replit Secrets - use 1Password CLI
 export NEWSAPI_KEY=$(op read "op://LivHana-Ops-Keys/NEWSAPI_KEY/credential")
@@ -70,6 +76,7 @@ export GCP_PROJECT_ID=$(op read "op://LivHana-Ops-Keys/GCP_PROJECT_ID/credential
 ```
 
 **Deployment Command:**
+
 ```bash
 #!/bin/bash
 # Run in Replit Shell
@@ -88,6 +95,7 @@ curl http://localhost:8000/health
 ```
 
 **Expected Output:**
+
 ```json
 {
   "status": "autonomous_generation_active",
@@ -101,9 +109,11 @@ curl http://localhost:8000/health
 ---
 
 ### Task 2: YouTube Viral Pattern Analyzer
+
 **Goal:** Analyze cannabis viral patterns for content optimization
 
 **Configuration:**
+
 ```javascript
 // backend/analytics-service/.replit
 run = "node 1.6.3.1_youtube-analyzer-integration_20251008.js"
@@ -119,6 +129,7 @@ OP_SERVICE_ACCOUNT_TOKEN = "{{ FROM REPLIT SECRETS }}"
 ```
 
 **Deployment Command:**
+
 ```bash
 #!/bin/bash
 # Run in Replit Shell
@@ -136,9 +147,11 @@ op run --env-file=.env -- node 1.6.3.1_youtube-analyzer-integration_20251008.js
 ---
 
 ### Task 3: NewsAPI Real-Time Pipeline
+
 **Goal:** Ingest real-time cannabis news for HNC content
 
 **Configuration:**
+
 ```javascript
 // backend/analytics-service/.replit
 run = "node 1.6.3.2_newsapi-integration_20251008.js"
@@ -154,6 +167,7 @@ OP_SERVICE_ACCOUNT_TOKEN = "{{ FROM REPLIT SECRETS }}"
 ```
 
 **Deployment Command:**
+
 ```bash
 #!/bin/bash
 # Run in Replit Shell
@@ -171,9 +185,11 @@ op run --env-file=.env -- node 1.6.3.2_newsapi-integration_20251008.js
 ---
 
 ### Task 4: Lightspeed Webhook Listener
+
 **Goal:** Automatic delivery creation on order events
 
 **Configuration:**
+
 ```javascript
 // backend/integration-service/.replit
 run = "node 1.6.2.1_lightspeed-webhook-listener_20251008.js"
@@ -190,6 +206,7 @@ OP_SERVICE_ACCOUNT_TOKEN = "{{ FROM REPLIT SECRETS }}"
 ```
 
 **Deployment Command:**
+
 ```bash
 #!/bin/bash
 # Run in Replit Shell
@@ -212,6 +229,7 @@ op run --env-file=.env -- node 1.6.2.1_lightspeed-webhook-listener_20251008.js
 **CRITICAL RULE:** Use 1Password ONLY (except OP_SERVICE_ACCOUNT_TOKEN)
 
 ### Setup 1Password CLI in Replit
+
 ```bash
 # Install 1Password CLI
 curl -sSfo op.zip https://cache.agilebits.com/dist/1P/op2/pkg/v2.20.0/op_linux_amd64_v2.20.0.zip
@@ -226,6 +244,7 @@ echo $OP_SERVICE_ACCOUNT_TOKEN | op account add --address my.1password.com --ema
 ```
 
 ### Secrets Retrieval Pattern
+
 ```bash
 # All secrets from 1Password
 export NEWSAPI_KEY=$(op read "op://LivHana-Ops-Keys/NEWSAPI_KEY/credential")
@@ -243,6 +262,7 @@ export GCP_PROJECT_ID=$(op read "op://LivHana-Ops-Keys/GCP_PROJECT_ID/credential
 ## 📊 MONITORING & SUCCESS METRICS
 
 ### HNC Content Engine Metrics
+
 ```bash
 # Check episode generation progress
 curl https://[replit-url].repl.co/api/status
@@ -258,6 +278,7 @@ curl https://[replit-url].repl.co/api/status
 ```
 
 ### YouTube Analyzer Metrics
+
 ```bash
 # Check viral pattern analysis
 curl https://[replit-url].repl.co/api/patterns/latest
@@ -273,6 +294,7 @@ curl https://[replit-url].repl.co/api/patterns/latest
 ```
 
 ### NewsAPI Pipeline Metrics
+
 ```bash
 # Check news ingestion
 curl https://[replit-url].repl.co/api/news/latest
@@ -291,6 +313,7 @@ curl https://[replit-url].repl.co/api/news/latest
 ## 🚨 TROUBLESHOOTING
 
 ### Issue: API Key Not Found
+
 ```bash
 # Verify 1Password CLI setup
 op whoami
@@ -302,6 +325,7 @@ op read "op://LivHana-Ops-Keys/NEWSAPI_KEY/credential"
 ```
 
 ### Issue: Port Already in Use
+
 ```bash
 # Kill existing process
 pkill -f "node.*autonomous-engine"
@@ -311,6 +335,7 @@ npm start
 ```
 
 ### Issue: BigQuery Connection Failed
+
 ```bash
 # Verify GCP credentials
 gcloud auth list
@@ -326,21 +351,24 @@ bq ls
 
 ## 🎯 SUCCESS CRITERIA (DAY 1)
 
-### Must Complete:
+### Must Complete
+
 - [x] 20 HNC episodes generated
 - [x] YouTube viral patterns analyzed
 - [x] Real-time news pipeline active
 - [x] Lightspeed webhook configured
 - [x] Nash-beating delivery deployed
 
-### Performance Targets:
+### Performance Targets
+
 - Episode generation: <15s per episode
 - YouTube analysis: 200+ videos per run
 - News pipeline: 100+ articles per hour
 - Webhook latency: <2s response time
 - Delivery cost savings: $50+ per order
 
-### Day 1 Revenue Impact:
+### Day 1 Revenue Impact
+
 - $80K/month baseline (confirmed)
 - +$50/order delivery savings
 - +20% conversion from viral content
@@ -423,19 +451,22 @@ wait
 
 ## 🏆 VICTORY CONDITIONS
 
-### Immediate (T+4 hours):
+### Immediate (T+4 hours)
+
 - ✅ 20 HNC episodes generated and published
 - ✅ Viral pattern analysis complete
 - ✅ Real-time news pipeline operational
 - ✅ Delivery automation active
 
-### Week 1 (T+7 days):
+### Week 1 (T+7 days)
+
 - ✅ 140 episodes (20/day)
 - ✅ First 100 deliveries with $50+ savings
 - ✅ Content engagement metrics tracked
 - ✅ Path to $100K/month validated
 
-### Month 1 (T+30 days):
+### Month 1 (T+30 days)
+
 - ✅ 600 episodes
 - ✅ $15,000+ delivery cost savings
 - ✅ Viral content formula optimized

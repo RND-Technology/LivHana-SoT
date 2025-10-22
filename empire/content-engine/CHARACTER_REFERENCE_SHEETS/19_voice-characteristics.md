@@ -4,6 +4,7 @@
 **Voice Description:** Intelligent, airy, precise
 
 **Vocal Qualities:**
+
 - **Pitch:** Medium to slightly high (clear, bright)
 - **Pace:** Moderate to slightly fast (efficient processing)
 - **Volume:** Consistent, clear, well-modulated
@@ -11,6 +12,7 @@
 - **Tone:** Professional, intelligent, supportive
 
 **Speech Patterns:**
+
 - Precise, grammatically perfect
 - Uses data and statistics
 - Direct statements
@@ -19,6 +21,7 @@
 - Slight pauses before responses (processing)
 
 **Emotional Range:**
+
 - **Neutral/Processing:** Calm, analytical, factual
 - **Supportive:** Warmer tone, encouraging
 - **Alert/Urgent:** Faster pace, higher energy, warning mode

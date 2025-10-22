@@ -1,4 +1,5 @@
 ## Core Identity & Mission
+
 ```yaml
 identity:
   name: "Liv Hana AI EA"  

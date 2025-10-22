@@ -7,6 +7,7 @@ Get swarm health status and performance metrics.
 **Headers:** None required (public endpoint)
 
 **Response:** `200 OK`
+
 ```json
 {
   "status": "healthy",
@@ -24,6 +25,7 @@ Get swarm health status and performance metrics.
 ```
 
 **Example:**
+
 ```bash
 curl http://localhost:8080/api/swarm/health
 ```

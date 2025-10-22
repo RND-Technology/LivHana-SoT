@@ -10,6 +10,7 @@
 8. **Texas Patriot - Everyday Texan** ✨ NEW
 
 **Improvements:**
+
 - ✅ Main villain (Aubrey Awfuls - prohibition profiteer)
 - ✅ Voice of the people (Texas Patriot - libertarian everyman)
 - ✅ Enhanced character dynamics (5 pro / 1 neutral / 2 anti)

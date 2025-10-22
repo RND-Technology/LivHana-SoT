@@ -1,4 +1,5 @@
 # QUICK START CHECKLIST - Docker & MCP Activation
+
 **Time Required**: 1 hour
 **Status**: Ready to Execute
 
@@ -7,6 +8,7 @@
 ## PHASE 1: MCP ACTIVATION (15 minutes)
 
 ### Step 1: Restart Claude Code (2 min)
+
 ```bash
 # Exit current session: Ctrl+C
 
@@ -21,12 +23,14 @@ claude
 ---
 
 ### Step 2: Authenticate MCP Servers (5 min)
+
 ```bash
 # In Claude Code, run:
 /mcp
 ```
 
 **Linear Authentication**:
+
 1. Click OAuth link (opens in browser)
 2. Sign in to Linear workspace
 3. Authorize Claude Code
@@ -34,6 +38,7 @@ claude
 5. Verify: "Linear authenticated successfully"
 
 **Success Check**:
+
 - Linear: ✅ Authenticated
 - Playwright: ✅ Auto-loaded
 - Semgrep: ✅ Auto-loaded
@@ -41,6 +46,7 @@ claude
 ---
 
 ### Step 3: Install Playwright Dependencies (5 min)
+
 ```bash
 cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/tests/e2e
 
@@ -61,6 +67,7 @@ npx playwright --version
 ---
 
 ### Step 4: Install Semgrep CLI (2 min)
+
 ```bash
 # Option 1: pip (recommended)
 pip3 install semgrep
@@ -79,6 +86,7 @@ semgrep --version
 ---
 
 ### Step 5: Test MCP Integration (1 min)
+
 ```bash
 # In Claude Code conversation:
 "Create a test Linear issue with title 'MCP Activation Test' and priority P3"
@@ -93,6 +101,7 @@ semgrep --version
 ## PHASE 2: FIRST SCANS (20 minutes)
 
 ### Step 6: Run Secrets Scan (2 min) - CRITICAL
+
 ```bash
 cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT
 
@@ -113,6 +122,7 @@ cat reports/semgrep-secrets-*.json | jq '.results | length'
 **Expected**: `0` (no secrets found)
 
 **IF > 0**:
+
 - Review findings immediately
 - Rotate exposed credentials
 - Remove from code
@@ -123,6 +133,7 @@ cat reports/semgrep-secrets-*.json | jq '.results | length'
 ---
 
 ### Step 7: Run First E2E Test (3 min)
+
 ```bash
 cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/tests/e2e
 
@@ -134,6 +145,7 @@ npm run report
 ```
 
 **Expected Output**:
+
 ```
 Running 1 test using 5 workers
 ✓ P0: Complete checkout flow [passed in 15s]
@@ -141,6 +153,7 @@ Running 1 test using 5 workers
 ```
 
 **IF FAILS**:
+
 - Review failure screenshot in `reports/screenshots/`
 - Create P0 Linear issue
 - Fix checkout calendar
@@ -150,6 +163,7 @@ Running 1 test using 5 workers
 ---
 
 ### Step 8: Run Backend Security Scan (5 min)
+
 ```bash
 cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT
 
@@ -168,6 +182,7 @@ cat reports/semgrep-backend-*.json | jq '.results | length'
 **Expected**: 8-15 findings (mostly P1)
 
 **Known Issues to Expect**:
+
 - Insecure CORS in `backend/voice-service/src/index.js:13-22`
 - Missing auth checks on some endpoints
 
@@ -176,6 +191,7 @@ cat reports/semgrep-backend-*.json | jq '.results | length'
 ---
 
 ### Step 9: Run Frontend Security Scan (5 min)
+
 ```bash
 # Run XSS scan
 semgrep scan frontend/ \
@@ -196,6 +212,7 @@ cat reports/semgrep-frontend-*.json | jq '.results | length'
 ---
 
 ### Step 10: Run Docker Security Scan (2 min)
+
 ```bash
 # Run Docker scan
 semgrep scan . \
@@ -210,6 +227,7 @@ cat reports/semgrep-docker-*.json | jq '.results | length'
 **Expected**: 2-5 findings
 
 **Known Issues**:
+
 - `delivery-service/Dockerfile` - No non-root user
 - `analytics-service/Dockerfile` - No non-root user
 
@@ -218,6 +236,7 @@ cat reports/semgrep-docker-*.json | jq '.results | length'
 ---
 
 ### Step 11: Create Scan Summary (3 min)
+
 ```bash
 # Count all findings
 echo "=== SECURITY SCAN SUMMARY ==="
@@ -234,6 +253,7 @@ echo "Docker: $(cat reports/semgrep-docker-*.json | jq '.results | length')"
 ## PHASE 3: DOCKER VALIDATION (15 minutes)
 
 ### Step 12: Create Docker Secrets (3 min)
+
 ```bash
 # Verify API keys are set
 echo "ELEVENLABS_API_KEY: ${ELEVENLABS_API_KEY:0:10}..."
@@ -256,6 +276,7 @@ docker secret ls
 ---
 
 ### Step 13: Build Core Services (5 min)
+
 ```bash
 cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT
 
@@ -277,6 +298,7 @@ docker images | grep -E "(reasoning-gateway|voice-service|integration-service|de
 ---
 
 ### Step 14: Deploy Stack (3 min)
+
 ```bash
 # Deploy with docker-compose
 docker-compose up -d
@@ -295,6 +317,7 @@ docker-compose ps
 ---
 
 ### Step 15: Verify Health Checks (2 min)
+
 ```bash
 # Test all health endpoints
 echo "Integration Service:"
@@ -317,6 +340,7 @@ docker exec -it livhana-sot-redis-1 redis-cli ping
 ---
 
 ### Step 16: Check Logs (2 min)
+
 ```bash
 # Check for errors in logs
 docker-compose logs --tail=20 voice-service
@@ -336,6 +360,7 @@ docker-compose logs --tail=20 reasoning-gateway
 Using Linear MCP in Claude Code, create 5 issues:
 
 #### Issue #1: Checkout Calendar Broken (P0)
+
 ```
 Title: CRITICAL: Checkout calendar broken - blocks all orders
 Priority: 0 (Critical)
@@ -360,6 +385,7 @@ Reference: .claude/URGENT_REGGIEDRO_FIXES.md section #2
 ```
 
 #### Issue #2: Category Buttons Ugly (P1)
+
 ```
 Title: Category buttons too big, ugly, no contrast (WCAG fail)
 Priority: 1 (High)
@@ -382,6 +408,7 @@ Reference: .claude/URGENT_REGGIEDRO_FIXES.md section #1
 ```
 
 #### Issue #3: Local Delivery Integration (P1)
+
 ```
 Title: No white label delivery service integration - lost sales
 Priority: 1 (High)
@@ -404,6 +431,7 @@ Reference: .claude/URGENT_REGGIEDRO_FIXES.md section #3
 ```
 
 #### Issue #4: Authorize.net Automated Invoicing (P1)
+
 ```
 Title: No automated invoicing system - manual work slows fulfillment
 Priority: 1 (High)
@@ -424,6 +452,7 @@ Reference: .claude/URGENT_REGGIEDRO_FIXES.md section #4
 ```
 
 #### Issue #5: AfterPay & Klarna Missing (P1)
+
 ```
 Title: Missing BNPL (AfterPay, Klarna) - losing 25%+ conversions
 Priority: 1 (High)
@@ -454,6 +483,7 @@ Reference: .claude/URGENT_REGGIEDRO_FIXES.md section #5
 ### Summary Checklist
 
 **MCP Activation**:
+
 - [ ] Claude Code restarted
 - [ ] Linear authenticated
 - [ ] Playwright installed
@@ -461,6 +491,7 @@ Reference: .claude/URGENT_REGGIEDRO_FIXES.md section #5
 - [ ] Test issue created
 
 **First Scans**:
+
 - [ ] Secrets scan: 0 findings
 - [ ] E2E test: Passes or documented
 - [ ] Backend security: Findings documented
@@ -468,6 +499,7 @@ Reference: .claude/URGENT_REGGIEDRO_FIXES.md section #5
 - [ ] Docker security: Findings documented
 
 **Docker Validation**:
+
 - [ ] Docker secrets created
 - [ ] 5 services built
 - [ ] Stack deployed
@@ -475,6 +507,7 @@ Reference: .claude/URGENT_REGGIEDRO_FIXES.md section #5
 - [ ] No errors in logs
 
 **Issue Migration**:
+
 - [ ] P0 Issue #1: Checkout calendar
 - [ ] P1 Issue #2: Category buttons
 - [ ] P1 Issue #3: Local delivery
@@ -486,12 +519,14 @@ Reference: .claude/URGENT_REGGIEDRO_FIXES.md section #5
 ## NEXT STEPS
 
 ### TODAY (< 4 hours)
+
 1. Fix P0 checkout calendar issue
 2. Create Linear issues for all Semgrep P0/P1 findings
 3. Add GitHub Actions workflows (CI/CD)
 4. Deploy to Cloud Run (production)
 
 ### THIS WEEK
+
 1. Fix all P0/P1 issues
 2. Expand E2E test coverage
 3. Run weekly security scans
@@ -502,6 +537,7 @@ Reference: .claude/URGENT_REGGIEDRO_FIXES.md section #5
 ## TROUBLESHOOTING
 
 ### MCP Authentication Fails
+
 ```bash
 # Restore backup
 cp ~/.claude.json.backup-TIMESTAMP ~/.claude.json
@@ -510,12 +546,14 @@ cp ~/.claude.json.backup-TIMESTAMP ~/.claude.json
 ```
 
 ### Playwright Installation Fails
+
 ```bash
 # Use npx (no install needed)
 npx playwright test
 ```
 
 ### Docker Build Fails
+
 ```bash
 # Check logs
 docker-compose logs <service-name>
@@ -525,6 +563,7 @@ docker-compose up -d --build <service-name>
 ```
 
 ### Health Check Fails
+
 ```bash
 # Check service logs
 docker logs <service-name>
@@ -538,12 +577,14 @@ docker exec <service-name> env | grep -E "(API_KEY|PORT)"
 ## SUCCESS CRITERIA
 
 **Hour 1 Complete When**:
+
 - ✅ MCP servers activated
 - ✅ First scans complete
 - ✅ Docker stack running
 - ✅ 5 issues in Linear
 
 **Ready for Production When**:
+
 - ✅ P0 issues fixed
 - ✅ CI/CD pipelines active
 - ✅ All health checks green
@@ -552,6 +593,7 @@ docker exec <service-name> env | grep -E "(API_KEY|PORT)"
 ---
 
 **Time Elapsed**: Track your progress
+
 - [ ] Phase 1: MCP Activation (15 min)
 - [ ] Phase 2: First Scans (20 min)
 - [ ] Phase 3: Docker Validation (15 min)

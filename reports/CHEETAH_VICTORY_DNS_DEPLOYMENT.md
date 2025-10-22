@@ -35,6 +35,7 @@
 ## ✅ SUCCESSFULLY UPDATED DOMAINS (19 total)
 
 ### DNS Propagated (6 domains - 33%)
+
 1. ✅ **aaacbdhempflower.com** - 4 Cloud Run IPs confirmed
 2. ✅ **smokingyoga.com** - 4 Cloud Run IPs confirmed
 3. ✅ **terpwerk.com** - 4 Cloud Run IPs confirmed
@@ -43,6 +44,7 @@
 6. ✅ **tokinyoga.com** - 4 Cloud Run IPs confirmed
 
 ### DNS Propagating (12 domains - awaiting TTL expiry)
+
 7. ⏳ cannabiscookiestexas.com
 8. ⏳ exoticcanopysolutions.com
 9. ⏳ exoticcbdhempflower.com
@@ -57,6 +59,7 @@
 18. ⏳ oneplantsolution.com
 
 ### Excluded (1 domain - per instructions)
+
 19. ❌ **airbnbwaterfall.com** - DO NOT TOUCH (excluded from deployment)
 
 ---
@@ -64,12 +67,14 @@
 ## ❌ DOMAINS WITH ISSUES (2 total)
 
 ### 1. reggieanddro.com
+
 - **Issue**: Cloudflare-managed DNS
 - **Solution**: Update via Cloudflare dashboard
 - **Priority**: EXCLUDED (per DO NOT TOUCH list)
 - **Action**: None required (intentionally excluded)
 
 ### 2. texascannabiscookies.com
+
 - **Issue**: Nameserver restrictions
 - **Solution**: Verify nameserver configuration
 - **Priority**: Medium
@@ -80,6 +85,7 @@
 ## 🔧 CHEETAH'S WINNING METHOD
 
 **What Worked:**
+
 ```bash
 # Cheetah used GoDaddy API automation
 # Method: Direct API calls with proper authentication
@@ -88,6 +94,7 @@
 ```
 
 **Key Success Factors:**
+
 1. ✅ Proper GoDaddy API credentials from 1Password
 2. ✅ Correct API endpoint usage
 3. ✅ Batch processing with rate limiting
@@ -95,6 +102,7 @@
 5. ✅ Exclusion list respected (airbnbwaterfall.com)
 
 **Why Sonnet Failed:**
+
 - ❌ Authentication format issues
 - ❌ Incorrect credential injection method
 - ❌ Used `op item get` instead of `op run --`
@@ -108,7 +116,7 @@
 **Target**: 100% production ready
 **ETA**: 15-30 minutes
 
-### Remaining Steps:
+### Remaining Steps
 
 1. **DNS Propagation** (in progress)
    - Current: 6/18 domains (33%)
@@ -129,17 +137,20 @@
 
 ## 🎖️ VICTORY METRICS
 
-### Speed Comparison:
+### Speed Comparison
+
 - **Cheetah (automated)**: 15 minutes for 19 domains
 - **Manual (estimated)**: 2+ hours for 19 domains
 - **Time Saved**: 105+ minutes (88% faster)
 
-### Accuracy:
+### Accuracy
+
 - **Domains Updated**: 19/21 (90%)
 - **DNS Errors**: 0 (all updates successful)
 - **Exclusions Honored**: 100% (airbnbwaterfall.com untouched)
 
-### Race Result:
+### Race Result
+
 - 🥇 **CHEETAH**: Winner (DNS automation complete)
 - 🥈 **SONNET**: Runner-up (monitoring & reporting)
 
@@ -148,29 +159,34 @@
 ## 📋 DOMAIN CATEGORIZATION (UPLEVELED)
 
 ### Primary Business Layers (4 domains)
+
 - herbitrage.com - **PRIMARY BIZ LAYER 4**
 - jesseniesen.com - **PRIMARY Jesse CEO personal branding**
 - oneplantsolution.com - **PRIMARY BIZ LAYER 3**
-- www.herbitrage.com - Herbitrage subdomain
+- <www.herbitrage.com> - Herbitrage subdomain
 
 ### Key Strategic Domains (3 domains)
+
 - highfromhemp.com - **KEY DOMAIN FOR SUBLIME BENEFIT OF ALL TOPS**
 - terpwerk.com - **KEY SPIN OFF under HERB**
 - exoticcanopysolutions.com - Hempress 3 seed sales
 
 ### B2C Retail (8 domains)
+
 - ReggieAndDro support (2)
 - THCa & Promo (2)
 - Edibles (2)
 - Flower (2)
 
 ### Hempress 3 Support (4 domains)
+
 - aaacbdhempflower.com
 - exoticcbdhempflower.com
 - loudcbdbuds.com
 - loudcbdflower.com
 
 ### Yoga & Wellness (3 domains)
+
 - getlooseyoga.com (billboard-safe)
 - smokingyoga.com
 - tokinyoga.com
@@ -179,14 +195,16 @@
 
 ## 🔒 EXCLUDED DOMAINS (DO NOT TOUCH)
 
-### 5 Root Domains (Hard Coded):
+### 5 Root Domains (Hard Coded)
+
 1. **airbnbwaterfall.com** - Special config, leave as-is
 2. **reggieanddro.com** - Main production + 3 subdomains
 3. **reggieanddroalice.com** - Restore to previous DNS
 4. **reggieanddrodispensary.com** - Restore to previous DNS
 5. **hempress3.com** - Restore to previous DNS
 
-### 3 Subdomains:
+### 3 Subdomains
+
 - brain.reggieanddro.com
 - shop.reggieanddro.com
 - voice.reggieanddro.com
@@ -195,7 +213,8 @@
 
 ## 📈 MONITORING
 
-### Real-Time Progress:
+### Real-Time Progress
+
 ```bash
 # Monitor DNS propagation and SSL
 /tmp/monitor-cheetah-victory.sh
@@ -208,7 +227,8 @@ dig +short <domain>
 curl -I https://<domain>
 ```
 
-### Current Status (as of 20:25 PDT):
+### Current Status (as of 20:25 PDT)
+
 - DNS Propagation: 33% (6/18 domains)
 - SSL Certificates: 0% (awaiting DNS)
 - Expected completion: 20:40-20:55 PDT
@@ -218,17 +238,20 @@ curl -I https://<domain>
 ## 🎯 SUCCESS CRITERIA
 
 ### ✅ Phase 1: DNS Updates (COMPLETE)
+
 - [x] 19 domains updated via GoDaddy API
 - [x] All 4 Cloud Run IPs configured per domain
 - [x] Exclusion list respected
 - [x] Verification loop executed
 
 ### ⏳ Phase 2: DNS Propagation (33% COMPLETE)
+
 - [x] 6 domains propagated (aaacbdhempflower.com, smokingyoga.com, terpwerk.com, thcaflowerstx.com, thcaflowertx.com, tokinyoga.com)
 - [ ] 12 domains propagating (ETA: 10-15 minutes)
 - [ ] All domains resolving to Cloud Run IPs
 
 ### 🔜 Phase 3: SSL Provisioning (PENDING)
+
 - [ ] Cloud Run detects DNS changes
 - [ ] SSL certificates auto-provision
 - [ ] All HTTPS endpoints live
@@ -238,20 +261,23 @@ curl -I https://<domain>
 
 ## 🏆 LESSONS LEARNED
 
-### What Cheetah Did Right:
+### What Cheetah Did Right
+
 1. **Parallel execution** - Multiple domains simultaneously
 2. **Proper authentication** - GoDaddy API credentials working
 3. **Rate limiting** - Avoided API throttling
 4. **Verification** - Confirmed each update
 5. **Exclusions** - Respected DO NOT TOUCH list
 
-### What Sonnet Can Improve:
+### What Sonnet Can Improve
+
 1. **Authentication methods** - Learn `op run --` pattern
 2. **Adapt faster** - Don't repeat same failing approach
 3. **Verify assumptions** - Test API calls before batch execution
 4. **Check parallel sessions** - Coordinate with Cheetah
 
-### Memory Commitments:
+### Memory Commitments
+
 - ✅ Domain verification protocol committed
 - ✅ Exclusion list hard coded
 - ✅ GoDaddy API working method documented
@@ -267,6 +293,7 @@ curl -I https://<domain>
 **Status**: **UNICORN RACE WON** 🦄🏆
 
 **Next Actions:**
+
 1. Wait for DNS propagation (auto)
 2. SSL certificates provision (auto)
 3. Final validation (manual)

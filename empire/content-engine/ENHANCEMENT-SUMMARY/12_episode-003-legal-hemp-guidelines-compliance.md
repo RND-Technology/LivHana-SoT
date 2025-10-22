@@ -1,5 +1,7 @@
 ### Episode 003 - Legal Hemp Guidelines (Compliance)
+
 **Before:**
+
 ```
 Lt. Dan: "Alright listen up! Here's how we stay legal in Texas..."
 Jesse: "Lt. Dan, nobody wants a compliance lecture."
@@ -8,6 +10,7 @@ Liv Hana: "He's right. COAs or GTFO."
 ```
 
 **After:**
+
 ```
 Lt. Dan: "ATTENTION! October 2025 emergency rules are IN EFFECT!"
 Jesse: "Lt. Dan, can we make this fun?"
@@ -18,6 +21,7 @@ Liv Hana: "He's right. New DSHS rules mean business. COAs or GTFO.
 ```
 
 **Improvements:**
+
 - Added Oct 2025 timeline specificity
 - Referenced emergency rules enforcement
 - Increased stakes (fines, license revocation)

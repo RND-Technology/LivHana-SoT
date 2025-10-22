@@ -1,4 +1,5 @@
 ### 10.1 Local CI Simulation
+
 ```bash
 # Run full CI pipeline locally
 npm run ci:local

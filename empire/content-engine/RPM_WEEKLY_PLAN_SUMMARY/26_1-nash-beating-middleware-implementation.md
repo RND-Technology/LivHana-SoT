@@ -1,7 +1,9 @@
 #### 1. NASH Beating Middleware Implementation
+
 **Priority**: HIGH  
 **Deadline**: 2 weeks  
 **Instructions**:
+
 1. Navigate to LivHana-SoT/empire/content-engine/output/nash-beating-middleware/
 2. Review generated code files:
    - checkout-enhancement.js
@@ -15,6 +17,7 @@
 8. Generate implementation report
 
 **Required Info**:
+
 - Target site: reggieanddro.company.site
 - Integration: Lightspeed + Square
 - Testing: All browsers and devices

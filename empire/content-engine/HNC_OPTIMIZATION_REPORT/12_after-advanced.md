@@ -1,4 +1,5 @@
-#### After (Advanced):
+#### After (Advanced)
+
 ```javascript
 const TPOPS_DOG_WHISTLES = {
   high: ['freedom', 'liberty', 'rights', 'sovereignty', ...],
@@ -17,6 +18,7 @@ calculateTPOPSAlignment(newsHook, characters) {
 ```
 
 **TPOPS Alignment Algorithm:**
+
 1. Base score: 50/100
 2. News hook alignment: +27 (if aligned with TPOPS values)
 3. Character alignment: +10 per high-alignment character
@@ -24,6 +26,7 @@ calculateTPOPSAlignment(newsHook, characters) {
 5. **Maximum score: 100/100**
 
 **Results:**
+
 - Average TPOPS alignment: **99.4%** (target: 95%+)
 - All episodes exceeded target
 - 8/10 episodes at 100% alignment

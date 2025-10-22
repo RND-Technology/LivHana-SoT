@@ -1,4 +1,5 @@
 ### Feature 1: Free Delivery Threshold
+
 ```
 Current cart: $75
 Free delivery at: $100

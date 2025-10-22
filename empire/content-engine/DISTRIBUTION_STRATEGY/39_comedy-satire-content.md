@@ -1,4 +1,5 @@
 #### Comedy/Satire Content
+
 ```
 Primary: #Comedy #Satire #Funny
 Secondary: #CannabisComedy #CannabisCommunity #CannabisIndustry

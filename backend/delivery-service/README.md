@@ -4,7 +4,8 @@
 
 ## 🚀 Why This Beats Nash
 
-### Nash/Square Limitations:
+### Nash/Square Limitations
+
 - ❌ Requires Square intermediary (extra $4-5 per order)
 - ❌ Limited to Square's delivery partners
 - ❌ No multi-provider failover
@@ -13,7 +14,8 @@
 - ❌ No provider comparison (customer can't choose)
 - ❌ Higher costs for both customer and merchant
 
-### Our Competitive Advantages:
+### Our Competitive Advantages
+
 - ✅ **Direct Lightspeed integration** (no Square intermediary)
 - ✅ **4 delivery providers** (DoorDash, Uber, Postmates, Grubhub) with intelligent routing
 - ✅ **Automatic failover** (if DoorDash fails, try Uber, then Postmates, then Grubhub)
@@ -39,20 +41,27 @@
 ## 📡 API Endpoints
 
 ### POST `/api/delivery/lightspeed/webhook`
+
 Receives order webhooks from Lightspeed (automatic delivery creation)
+
 - **Auth:** None (validate via Lightspeed signature)
 - **Body:** Lightspeed order payload
 - **Response:** `{ success, orderId, deliveryId, provider, trackingUrl, estimatedDelivery }`
 
 ### POST `/api/delivery/quote`
+
 Get single BEST delivery quote for checkout (simple UI)
+
 - **Body:** `{ cartTotal, deliveryAddress, preferences? }`
 - **Response:** `{ success, provider, name, cost, estimatedMinutes, estimatedArrival, rating, score, tags, availableProviders }`
 
 ### POST `/api/delivery/providers/compare` 🆕
+
 Get ALL provider quotes for comparison UI (superior UX - THIS BEATS NASH!)
+
 - **Body:** `{ cartTotal, deliveryAddress }`
 - **Response:**
+
 ```json
 {
   "success": true,
@@ -87,45 +96,55 @@ Get ALL provider quotes for comparison UI (superior UX - THIS BEATS NASH!)
 ```
 
 ### POST `/api/delivery/create`
+
 Create delivery from checkout (uses intelligent routing)
+
 - **Body:** Delivery request object
 - **Response:** `{ success, deliveryId, provider, trackingUrl, estimatedDelivery }`
 
 ### GET `/api/delivery/status/:deliveryId`
+
 Get real-time delivery status
+
 - **Response:** `{ success, deliveryId, status, driverName, driverPhone, estimatedDelivery, trackingUrl }`
 
 ### POST `/api/delivery/cancel`
+
 Cancel delivery with automatic refund
+
 - **Body:** `{ deliveryId, reason }`
 - **Response:** `{ success, deliveryId, cancelled, refundAmount }`
 
 ## 🛠️ Setup
 
 ### 1. Install Dependencies
+
 ```bash
 cd backend/delivery-service
 npm install
 ```
 
 ### 2. Configure Environment
+
 Copy `.env.example` to `.env` and fill in the required API keys:
 
 **MINIMUM TO LAUNCH (30 minutes total):**
-1. `LIGHTSPEED_API_TOKEN` (10 min) - Get from https://reggieanddro.retail.lightspeed.app
-2. DoorDash credentials (15 min) - Get from https://developer.doordash.com/portal/
+
+1. `LIGHTSPEED_API_TOKEN` (10 min) - Get from <https://reggieanddro.retail.lightspeed.app>
+2. DoorDash credentials (15 min) - Get from <https://developer.doordash.com/portal/>
    - `DOORDASH_DEVELOPER_ID`
    - `DOORDASH_KEY_ID`
    - `DOORDASH_SIGNING_SECRET`
-3. `UBER_API_KEY` (15 min) - Get from https://merchants.ubereats.com/
+3. `UBER_API_KEY` (15 min) - Get from <https://merchants.ubereats.com/>
 
 **OPTIONAL (expand later):**
-4. `POSTMATES_API_KEY` - Get from https://postmates.com/partner/welcome
-5. `GRUBHUB_API_KEY` - Get from https://get.grubhub.com/
+4. `POSTMATES_API_KEY` - Get from <https://postmates.com/partner/welcome>
+5. `GRUBHUB_API_KEY` - Get from <https://get.grubhub.com/>
 
 See `.env.example` for detailed setup instructions.
 
 ### 3. Run Service
+
 ```bash
 npm start
 ```
@@ -133,7 +152,9 @@ npm start
 Service runs on port 8080 by default.
 
 ### 4. Configure Lightspeed Webhook
+
 In Lightspeed dashboard:
+
 1. Go to Settings → Integrations → Webhooks
 2. Add webhook URL: `https://your-domain.com/api/delivery/lightspeed/webhook`
 3. Subscribe to events: `order.completed`
@@ -142,12 +163,14 @@ In Lightspeed dashboard:
 ## Deployment
 
 ### Docker
+
 ```bash
 docker build -t delivery-service .
 docker run -p 4003:4003 --env-file .env delivery-service
 ```
 
 ### Cloud Run
+
 ```bash
 gcloud run deploy delivery-service \
   --source . \
@@ -166,6 +189,7 @@ Score = (Cost × 40%) + (Reliability × 30%) + (Speed × 20%) + (Rating × 10%)
 ```
 
 **Example:**
+
 - DoorDash: $5.50, 35 min, 95% reliability, 4.8 rating → **Score: 88** ✅ Recommended
 - Uber: $5.00, 40 min, 93% reliability, 4.7 rating → **Score: 85** 💸 Cheapest
 - Postmates: $5.25, 38 min, 94% reliability, 4.6 rating → **Score: 86**
@@ -177,7 +201,8 @@ If DoorDash (score 88) fails → tries Postmates (score 86) → tries Uber (scor
 ## 📦 Provider Setup
 
 ### DoorDash Drive (Priority 1 - 15 minutes)
-1. Go to https://developer.doordash.com/portal/
+
+1. Go to <https://developer.doordash.com/portal/>
 2. Sign in or create a DoorDash Developer account
 3. Navigate to "Credentials" section in the portal
 4. Click the "+" icon to create a new access key
@@ -188,26 +213,30 @@ If DoorDash (score 88) fails → tries Postmates (score 86) → tries Uber (scor
    - `DOORDASH_SIGNING_SECRET`
 
 **Note:** You'll start in Sandbox environment. For Production access:
-- Contact DoorDash Sales: https://get.doordash.com/
+
+- Contact DoorDash Sales: <https://get.doordash.com/>
 - Request "Drive API Production access"
 
 **Authentication:** Uses JWT (JSON Web Token) with Signing Secret
 
 ### Uber Direct (Priority 2 - 15 minutes)
-1. Go to https://merchants.ubereats.com/
+
+1. Go to <https://merchants.ubereats.com/>
 2. Log in to your Uber merchant account
 3. Navigate to Account → API Access
 4. Click "Generate API Key"
 5. Copy `UBER_API_KEY` to `.env`
 
 ### Postmates Fleet (Optional)
-1. Go to https://postmates.com/partner/welcome
+
+1. Go to <https://postmates.com/partner/welcome>
 2. Sign up for Postmates Fleet API
 3. Get API credentials from developer portal
 4. Copy `POSTMATES_API_KEY` to `.env`
 
 ### Grubhub Enterprise (Optional)
-1. Go to https://get.grubhub.com/
+
+1. Go to <https://get.grubhub.com/>
 2. Sign up for Grubhub Enterprise
 3. Get API credentials from developer portal
 4. Copy `GRUBHUB_API_KEY` to `.env`
@@ -215,6 +244,7 @@ If DoorDash (score 88) fails → tries Postmates (score 86) → tries Uber (scor
 ## 🔌 Integration with Lightspeed Website
 
 ### Option 1: Simple Quote (Single Best Provider)
+
 ```javascript
 // Get best delivery quote
 const response = await fetch('https://delivery.reggieanddro.com/api/delivery/quote', {
@@ -237,6 +267,7 @@ const { provider, name, cost, estimatedMinutes, tags } = await response.json();
 ```
 
 ### Option 2: Provider Comparison (Superior UX - BEATS NASH!)
+
 ```javascript
 // Get ALL provider quotes for comparison
 const response = await fetch('https://delivery.reggieanddro.com/api/delivery/providers/compare', {
@@ -293,21 +324,24 @@ curl -X POST http://localhost:4003/api/delivery/lightspeed/webhook \
 
 ## 💰 Cost Comparison (Per $75 Order)
 
-### Nash/Square Model:
+### Nash/Square Model
+
 - **Customer pays:** $84-88 total ($75 order + $9-13 delivery)
 - **Merchant pays:** $9-12.48 in fees (Square 2.9% + $0.30 + delivery markup)
 - **Square takes:** $2.18 transaction + markup on delivery
 - **Provider gets:** ~$7-10
 - **Total costs:** Customer overpays $9-13, Merchant loses $9-12.48
 
-### Our Direct Model:
+### Our Direct Model
+
 - **Customer pays:** $80-83 total ($75 order + $5-8 delivery)
 - **Merchant pays:** $5-8 in provider fees (no intermediary)
 - **Square takes:** $0 (direct integration)
 - **Provider gets:** $5-8 (same drivers, better pricing)
 - **Total costs:** Customer saves $4-5, Merchant saves $4-5
 
-### Savings:
+### Savings
+
 - **Customer saves:** $4-5 per order
 - **Merchant saves:** $4-5 per order
 - **Total savings:** $8-10 per order
@@ -328,7 +362,7 @@ curl -X POST http://localhost:4003/api/delivery/lightspeed/webhook \
 
 ## Support
 
-Contact: jesse@reggieanddro.com
+Contact: <jesse@reggieanddro.com>
 
 ## License
 

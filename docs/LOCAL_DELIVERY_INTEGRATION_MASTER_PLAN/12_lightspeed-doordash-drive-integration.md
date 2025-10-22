@@ -1,6 +1,7 @@
 ### Lightspeed → DoorDash Drive Integration
 
 **Prerequisites:**
+
 - Lightspeed Retail POS (you have this)
 - DoorDash Drive account (apply above)
 - API access enabled on Lightspeed
@@ -8,6 +9,7 @@
 **Integration Steps:**
 
 1. **Enable Lightspeed API Access**
+
    ```
    Log in to: https://retail.lightspeed.app/
    Navigate to: Settings → Advanced → API Access
@@ -36,6 +38,7 @@
    - Confirm: proper tax/compliance handling
 
 **Middleware Option:** Build custom Node.js middleware if direct integration has issues
+
 - Location: `backend/integration-service/lightspeed-delivery-middleware.js`
 - Function: Sync Lightspeed orders → DoorDash Drive API
 - Benefit: More control, custom logic for cannabis compliance

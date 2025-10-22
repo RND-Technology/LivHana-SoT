@@ -1,4 +1,5 @@
 ### Human Approval Interface
+
 ```typescript
 // frontend/approval-dashboard/src/components/ApprovalDashboard.tsx
 import React, { useState, useEffect } from 'react';

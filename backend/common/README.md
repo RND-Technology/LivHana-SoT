@@ -15,12 +15,15 @@ Unified customer profile enriched from all data sources with AI-powered predicti
 ## API Endpoints
 
 ### `GET /health`
+
 Health check endpoint.
 
 ### `GET /api/customers/:id/profile`
+
 Get enriched customer profile.
 
 **Response:**
+
 ```json
 {
   "id": "12345",

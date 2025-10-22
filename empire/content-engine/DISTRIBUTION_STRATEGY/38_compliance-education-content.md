@@ -1,4 +1,5 @@
 #### Compliance Education Content
+
 ```
 Primary: #CannabisCompliance #ComplianceEducation #CannabisLaw
 Secondary: #TexasCannabis #TexasHempLaw #CannabisRegulations

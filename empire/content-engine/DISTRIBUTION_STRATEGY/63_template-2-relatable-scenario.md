@@ -1,4 +1,5 @@
 #### Template 2: Relatable Scenario
+
 ```
 POV: You're a hemp business owner and HHSC walks in 😅
 

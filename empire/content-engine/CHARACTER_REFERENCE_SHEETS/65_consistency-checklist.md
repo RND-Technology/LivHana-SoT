@@ -1,6 +1,7 @@
 ### Consistency Checklist
 
 Before finalizing any episode, verify:
+
 - [ ] Character personalities consistent with profiles
 - [ ] Voice matches character vocal qualities
 - [ ] Dialogue uses appropriate catchphrases
@@ -20,6 +21,7 @@ Before finalizing any episode, verify:
 ---
 
 *This document is part of the HIGH NOON CARTOON production engine. For related documentation, see:*
+
 - *CHARACTER_DESIGN_PROMPTS.md (DALL-E 3 prompts for character images)*
 - *VISUAL_STYLE_GUIDE.md (overall HNC aesthetic and design principles)*
 - *unicorn-making-machine.mjs (production automation system)*

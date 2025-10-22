@@ -1,4 +1,4 @@
-### Video Generation:
+### Video Generation
 
 | Tool | Free Tier | Entry Plan | Mid Tier | High Tier |
 |------|-----------|------------|----------|-----------|

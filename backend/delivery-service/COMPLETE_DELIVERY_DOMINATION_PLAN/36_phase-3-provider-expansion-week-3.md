@@ -1,5 +1,7 @@
 ### Phase 3: Provider Expansion (Week 3)
+
 **Machine Work (Sonnet + Cheetah):**
+
 - Add Postmates integration
 - Add Grubhub integration
 - Evaluate KitchenHub unified API

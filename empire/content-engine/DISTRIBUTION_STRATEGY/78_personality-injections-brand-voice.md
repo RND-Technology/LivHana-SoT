@@ -1,4 +1,5 @@
 #### Personality Injections (Brand Voice)
+
 - 🤠 Texas-themed emojis
 - "Howdy from Texas"
 - "Y'all need to know..."

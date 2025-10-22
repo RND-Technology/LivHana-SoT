@@ -9,6 +9,7 @@
 ## 🚨 CURRENT STATE
 
 ### What Works ✅
+
 ```bash
 # tools/list - Returns 3 tools
 curl -X POST -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
@@ -51,6 +52,7 @@ curl -X POST -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/jso
 ```
 
 ### What Fails ❌
+
 ```bash
 # initialize - Method not found
 curl -X POST -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
@@ -139,7 +141,8 @@ When Agent Builder calls `initialize`, broker must respond:
 
 ## 📊 MCP Protocol Flow
 
-### Current (Broken):
+### Current (Broken)
+
 ```
 Agent Builder:
   1. POST initialize → ❌ Error -32601 "Method not found"
@@ -148,7 +151,8 @@ Agent Builder:
 Result: "Unable to load tools" error in Agent Builder
 ```
 
-### After Fix (Working):
+### After Fix (Working)
+
 ```
 Agent Builder:
   1. POST initialize → ✅ Success (capabilities exchanged)
@@ -167,6 +171,7 @@ Result: Agent Builder shows 3 available tools, ready for use
 1. Find broker source code (likely in Cloud Run service config)
 2. Add initialize handler (code above)
 3. Redeploy:
+
    ```bash
    gcloud run deploy mcp-broker-prod \
      --source . \
@@ -177,6 +182,7 @@ Result: Agent Builder shows 3 available tools, ready for use
 ### Option 2: Environment Variable Toggle (If broker has dynamic routing)
 
 Some MCP brokers support enabling methods via env vars:
+
 ```bash
 gcloud run services update mcp-broker-prod \
   --set-env-vars="ENABLE_INITIALIZE=true" \
@@ -220,6 +226,7 @@ curl -sS -X POST \
 ```
 
 Then in Agent Builder:
+
 1. Click "Update" on MCP config modal
 2. Should see "3 tools loaded" (not "Unable to load tools")
 3. Tools should appear in Agent Builder UI:
@@ -234,6 +241,7 @@ Then in Agent Builder:
 **Options to locate**:
 
 1. **Check Cloud Run service description**:
+
    ```bash
    gcloud run services describe mcp-broker-prod \
      --region=us-central1 \
@@ -242,12 +250,14 @@ Then in Agent Builder:
    ```
 
 2. **Look for source repository**:
+
    ```bash
    # Check if deployed from Cloud Source Repositories
    gcloud source repos list --project=reggieanddrodispensary
    ```
 
 3. **Check Cloud Build history**:
+
    ```bash
    gcloud builds list \
      --project=reggieanddrodispensary \
@@ -275,10 +285,12 @@ Then in Agent Builder:
 ## 🎯 SUCCESS CRITERIA
 
 **Before Fix**:
+
 - ❌ Agent Builder: "Unable to load tools"
 - ❌ initialize returns error -32601
 
 **After Fix**:
+
 - ✅ Agent Builder: "3 tools loaded"
 - ✅ initialize returns success with capabilities
 - ✅ Tools visible and invokable in Agent Builder UI

@@ -1,4 +1,5 @@
 #### **Prompt 1: Deploy COA System to Cloud Run**
+
 ```
 Deploy the Certificate of Analysis (COA) management system to Google Cloud Run for reggieanddro.com.
 
@@ -60,14 +61,17 @@ gcloud run domain-mappings create \
 ```
 
 MONITORING:
+
 - Uptime checks every 5 minutes
 - Alert if response time >2 seconds
 - Alert if error rate >1%
 - Log aggregation in Cloud Logging
 
 OUTPUT:
+
 - Deployed services with URLs
 - Health check endpoints
 - Monitoring dashboard
 - Deployment documentation
+
 ```

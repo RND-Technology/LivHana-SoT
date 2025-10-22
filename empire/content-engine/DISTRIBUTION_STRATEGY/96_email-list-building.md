@@ -3,6 +3,7 @@
 **Purpose**: Own your audience outside platform control
 
 **Tactics**:
+
 1. **Landing Page**
    - "Get Episode [#] delivered to your inbox"
    - Exclusive bonus content for subscribers
@@ -22,6 +23,7 @@
    - Community spotlights
 
 **Cross-Promotion in Emails**:
+
 - "Watch Episode [#] on your preferred platform:"
 - Platform buttons with links
 - "Join the conversation on X"

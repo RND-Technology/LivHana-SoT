@@ -37,6 +37,7 @@ status: active
 Age gate link is live but buttons are non-functional (error on click). Blocking customer access and compliance verification.
 
 **Acceptance Criteria**:
+
 - [ ] Age gate buttons functional
 - [ ] Successful verification flow test
 - [ ] Error logging implemented
@@ -47,6 +48,7 @@ Age gate link is live but buttons are non-functional (error on click). Blocking 
 **Effort**: 4 hours
 
 **Technical Notes**:
+
 - Location: reggieanddro.company.site
 - Error: Button click returns error
 - Impact: Customer acquisition blocked
@@ -65,6 +67,7 @@ Age gate link is live but buttons are non-functional (error on click). Blocking 
 Integrate Kaja payment processing with Square website to enable payment processing for cannabis sales.
 
 **Acceptance Criteria**:
+
 - [ ] Kaja API credentials obtained from 1Password
 - [ ] Square API integration configured
 - [ ] Payment flow tested (sandbox)
@@ -73,6 +76,7 @@ Integrate Kaja payment processing with Square website to enable payment processi
 - [ ] Transaction logging to BigQuery
 
 **Dependencies**:
+
 - Romeo Trevino (Square access)
 - 1Password (Kaja credentials)
 
@@ -80,12 +84,14 @@ Integrate Kaja payment processing with Square website to enable payment processi
 **Effort**: 8-12 hours
 
 **Technical Notes**:
+
 - Provider: KAJA/Authorize.Net
 - Integration: Square website
 - Compliance: PCI DSS required
 - Testing: Sandbox → Production migration
 
 **Contact**:
+
 - Romeo Trevino: Square website access (birthday 10/5)
 
 ---
@@ -102,6 +108,7 @@ Integrate Kaja payment processing with Square website to enable payment processi
 Acquire dedicated Twilio phone number for business operations (customer support, order notifications, verification).
 
 **Acceptance Criteria**:
+
 - [ ] Twilio account verified
 - [ ] Dedicated number purchased
 - [ ] Number configured in integration-service
@@ -110,6 +117,7 @@ Acquire dedicated Twilio phone number for business operations (customer support,
 - [ ] Number documented in 1Password
 
 **Dependencies**:
+
 - Twilio account access
 - Budget approval (~$1-2/month)
 
@@ -117,6 +125,7 @@ Acquire dedicated Twilio phone number for business operations (customer support,
 **Effort**: 2 hours
 
 **Technical Notes**:
+
 - Provider: Twilio
 - Use Case: Customer notifications, support
 - Integration: backend/integration-service
@@ -138,6 +147,7 @@ Acquire dedicated Twilio phone number for business operations (customer support,
 AI-generated output from "invisible code base" requires human refinement and brand alignment. Establish editing workflow.
 
 **Acceptance Criteria**:
+
 - [ ] AI output review process defined
 - [ ] Brand voice guidelines created
 - [ ] Editing checklist established
@@ -149,6 +159,7 @@ AI-generated output from "invisible code base" requires human refinement and bra
 **Effort**: 4 hours (setup) + ongoing
 
 **Technical Notes**:
+
 - Source: Cheetah AI + Claude + ChatGPT5
 - Focus: Brand alignment, accuracy
 - Process: AI → Human review → Publish
@@ -168,6 +179,7 @@ AI-generated output from "invisible code base" requires human refinement and bra
 Implement A/B split testing for conversion language optimization on website.
 
 **Acceptance Criteria**:
+
 - [ ] A/B testing framework selected (e.g., Google Optimize)
 - [ ] Test variations created:
   - [ ] "Cannabis dispensary" vs "Premium THCA private social club"
@@ -177,6 +189,7 @@ Implement A/B split testing for conversion language optimization on website.
 - [ ] First test launched
 
 **Dependencies**:
+
 - Google Analytics 4 setup
 - Website access
 
@@ -184,12 +197,14 @@ Implement A/B split testing for conversion language optimization on website.
 **Effort**: 12 hours
 
 **Technical Notes**:
+
 - Tool: Google Optimize or custom
 - Metrics: Conversion rate, bounce rate
 - Sample size: Calculate for significance
 - Duration: 2-4 weeks per test
 
 **Test Variants**:
+
 1. Language: "Cannabis dispensary" → "Premium THCA private social club"
 2. Tiers: Value, Premium, Ultra Premium
 3. Compliance: Bank-approved language
@@ -208,6 +223,7 @@ Implement A/B split testing for conversion language optimization on website.
 Review and potentially separate legal entities for different business functions (retail, delivery, SaaS platform).
 
 **Acceptance Criteria**:
+
 - [ ] Current structure documented
 - [ ] Separation benefits analyzed
 - [ ] Legal counsel consulted (Andrea Steel)
@@ -216,6 +232,7 @@ Review and potentially separate legal entities for different business functions 
 - [ ] Implementation plan created
 
 **Dependencies**:
+
 - Legal counsel availability
 - Financial advisor input
 
@@ -223,6 +240,7 @@ Review and potentially separate legal entities for different business functions 
 **Effort**: 8 hours (research) + legal fees
 
 **Technical Notes**:
+
 - Current: Single entity structure
 - Proposed: Separate entities for:
   - Retail operations (R&D)
@@ -247,6 +265,7 @@ Review and potentially separate legal entities for different business functions 
 Maintain automated daily verification of 69 domain names for compliance and availability.
 
 **Acceptance Criteria**:
+
 - [x] Automation script implemented
 - [x] Daily verification running
 - [ ] Alert system for failures
@@ -258,6 +277,7 @@ Maintain automated daily verification of 69 domain names for compliance and avai
 **Effort**: 2 hours (alerts) + ongoing
 
 **Technical Notes**:
+
 - Domains: 69 total
 - Frequency: Daily real-time
 - Automation: backend/integration-service
@@ -278,6 +298,7 @@ Maintain automated daily verification of 69 domain names for compliance and avai
 Refine voice mode audio clarity for team interaction and meeting notes capture.
 
 **Acceptance Criteria**:
+
 - [ ] Audio quality assessment completed
 - [ ] Noise reduction configured
 - [ ] Transcription accuracy tested (>95%)
@@ -285,6 +306,7 @@ Refine voice mode audio clarity for team interaction and meeting notes capture.
 - [ ] Team feedback collected
 
 **Dependencies**:
+
 - Voice integration system
 - Team availability for testing
 
@@ -292,6 +314,7 @@ Refine voice mode audio clarity for team interaction and meeting notes capture.
 **Effort**: 6 hours
 
 **Technical Notes**:
+
 - System: Liv Hana voice integration
 - Processing: ChatGPT5 for notes
 - Storage: Local + cloud repositories
@@ -314,6 +337,7 @@ Refine voice mode audio clarity for team interaction and meeting notes capture.
 Implement multi-domain linking strategy to connect website domains for operational efficiency.
 
 **Acceptance Criteria**:
+
 - [ ] Domain linking strategy documented
 - [ ] Primary domain identified
 - [ ] DNS configuration planned
@@ -322,6 +346,7 @@ Implement multi-domain linking strategy to connect website domains for operation
 - [ ] Implementation roadmap created
 
 **Dependencies**:
+
 - Domain registrar access
 - DNS management (Cloud DNS)
 
@@ -329,6 +354,7 @@ Implement multi-domain linking strategy to connect website domains for operation
 **Effort**: 8 hours (planning) + 4 hours (implementation)
 
 **Technical Notes**:
+
 - Domains: Multiple websites
 - Strategy: Link domains together
 - DNS: Cloud DNS management
@@ -349,6 +375,7 @@ Implement multi-domain linking strategy to connect website domains for operation
 Continue Claude-assisted task review and management from Notion tasks.csv file.
 
 **Acceptance Criteria**:
+
 - [x] Claude accessing tasks.csv
 - [x] Task review process established
 - [ ] Weekly task prioritization
@@ -356,6 +383,7 @@ Continue Claude-assisted task review and management from Notion tasks.csv file.
 - [ ] Integration with this ticket system
 
 **Dependencies**:
+
 - Notion API access
 - tasks.csv file location
 
@@ -363,6 +391,7 @@ Continue Claude-assisted task review and management from Notion tasks.csv file.
 **Effort**: 1 hour/week
 
 **Technical Notes**:
+
 - Source: Notion tasks.csv
 - Review: Claude-assisted
 - Frequency: Weekly or on-demand
@@ -401,16 +430,19 @@ graph TD
 ## Daily Standup Checklist
 
 ### Morning (9 AM)
+
 - [ ] Review P0 tasks status
 - [ ] Check automated systems (domains, voice)
 - [ ] Prioritize day's work
 
 ### Afternoon (3 PM)
+
 - [ ] Update task progress
 - [ ] Address blockers
 - [ ] Plan next day
 
 ### Evening (6 PM)
+
 - [ ] Complete P0 items or escalate
 - [ ] Document progress
 - [ ] Set next-day priorities

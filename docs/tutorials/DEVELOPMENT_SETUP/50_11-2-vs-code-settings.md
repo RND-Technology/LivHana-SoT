@@ -1,5 +1,7 @@
 ### 11.2 VS Code Settings
+
 Create `.vscode/settings.json`:
+
 ```json
 {
   "editor.formatOnSave": true,

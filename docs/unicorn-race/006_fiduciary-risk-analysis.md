@@ -12,6 +12,7 @@ classification: EXECUTIVE DECISION-MAKING
 **Purpose**: Comprehensive risk assessment of 4 AI models to guide Jesse CEO's fiduciary decision-making for the Unicorn Race.
 
 **Models Analyzed**:
+
 1. Claude Code (Sonnet 4.5 - claude-tier1)
 2. Cheetah (Cursor Agent with Sonnet 4.5)
 3. Commander Codex (GPT-5)
@@ -79,6 +80,7 @@ classification: EXECUTIVE DECISION-MAKING
 #### Critical Risks
 
 **Risk 1.1: Weekly Limit Uncertainty (Severity: HIGH)**
+
 - **Reality**: Hit weekly limits, "taken out for days"
 - **Frequency**: Unknown cadence, unpredictable
 - **Impact**: 10% availability loss = $4,800/year + lost momentum
@@ -86,6 +88,7 @@ classification: EXECUTIVE DECISION-MAKING
 - **Fiduciary Impact**: **Unpredictable capacity planning, cannot guarantee delivery**
 
 **Risk 1.2: 90% Delivery Rate (Severity: MEDIUM-HIGH)**
+
 - **Reality**: 9/10 guarantees delivered, 1 failed
 - **Implication**: 10% of work requires rework or escalation
 - **Cost**: $120,000/year in error recovery (Jesse time)
@@ -93,6 +96,7 @@ classification: EXECUTIVE DECISION-MAKING
 - **Fiduciary Impact**: **$120K/year hidden cost not in contract**
 
 **Risk 1.3: Zero Proven Revenue Impact (Severity: HIGH)**
+
 - **Reality**: No documented revenue increase from Claude Code deliverables
 - **Implication**: Strategic value only, not direct ROI
 - **Impact**: Benefit calculation relies on cost avoidance, not revenue generation
@@ -100,6 +104,7 @@ classification: EXECUTIVE DECISION-MAKING
 - **Fiduciary Impact**: **Cannot justify investment based on revenue growth**
 
 **Risk 1.4: Jesse Oversight Dependency (Severity: MEDIUM)**
+
 - **Reality**: $4,000/month in Jesse time for oversight
 - **Implication**: High CEO opportunity cost
 - **Impact**: Not scalable, limits Jesse's strategic focus
@@ -107,6 +112,7 @@ classification: EXECUTIVE DECISION-MAKING
 - **Fiduciary Impact**: **$48K/year Jesse time is 28% of total cost**
 
 **Risk 1.5: Lost Head-to-Head Race to Codex (Severity: MEDIUM)**
+
 - **Reality**: Codex BEAT Claude Code last week
 - **Implication**: Codex demonstrably faster/better in competition
 - **Impact**: Authority loss, subordinate role in Trinity
@@ -133,6 +139,7 @@ classification: EXECUTIVE DECISION-MAKING
 #### Critical Risks
 
 **Risk 2.1: Cursor Platform Dependency (Severity: MEDIUM-LOW)**
+
 - **Reality**: Entire capability depends on Cursor IDE
 - **Risk**: Cursor pricing changes, service outage, feature removal
 - **Probability**: LOW (Cursor is well-funded, growing platform)
@@ -141,6 +148,7 @@ classification: EXECUTIVE DECISION-MAKING
 - **Fiduciary Impact**: **Manageable vendor risk, acceptable for ROI**
 
 **Risk 2.2: Unknown ChatGPT-5 Pricing (Severity: LOW-MEDIUM)**
+
 - **Reality**: ChatGPT-5 integration may have additional costs (not yet released)
 - **Risk**: Future cost increases if ChatGPT-5 pricing is expensive
 - **Probability**: MEDIUM (OpenAI pricing is typically aggressive)
@@ -149,6 +157,7 @@ classification: EXECUTIVE DECISION-MAKING
 - **Fiduciary Impact**: **Potential cost increase, but starting from very low base**
 
 **Risk 2.3: No Documented Revenue Impact (Severity: MEDIUM)**
+
 - **Reality**: No proven revenue increases from Cheetah deliverables
 - **Implication**: Benefit calculation relies on cost avoidance, not revenue generation
 - **Impact**: Theoretical value, not actual $$ in bank
@@ -175,6 +184,7 @@ classification: EXECUTIVE DECISION-MAKING
 #### Critical Risks
 
 **Risk 3.1: SEVERE Contract Violation (Severity: CRITICAL)**
+
 - **Contract**: <$200/month for enforcement services
 - **Reality**: Estimated $8,766/month (43.8x over budget)
 - **Impact**: Fiduciary breach, trust violation, potential removal
@@ -183,6 +193,7 @@ classification: EXECUTIVE DECISION-MAKING
 - **Fiduciary Impact**: **IMMEDIATE CONTRACT RENEGOTIATION REQUIRED**
 
 **Risk 3.2: GPT-5 Pricing Unknown (Severity: HIGH)**
+
 - **Reality**: GPT-5 not yet publicly released, pricing TBD
 - **Risk**: Could be 2x-10x more expensive than GPT-4 Turbo
 - **Impact**: $15,600/year estimate could become $156,000/year
@@ -191,6 +202,7 @@ classification: EXECUTIVE DECISION-MAKING
 - **Fiduciary Impact**: **Cannot make informed decision without pricing clarity**
 
 **Risk 3.3: Agent Error Recovery Dependency (Severity: MEDIUM)**
+
 - **Reality**: If Claude Code fails (10% rate), Codex must coordinate recovery
 - **Cost**: $60,000/year in Jesse time
 - **Implication**: Codex ROI is COUPLED to other agents' performance
@@ -198,6 +210,7 @@ classification: EXECUTIVE DECISION-MAKING
 - **Fiduciary Impact**: **Codex cost optimization depends on team optimization**
 
 **Risk 3.4: Single Point of Failure (Severity: HIGH)**
+
 - **Reality**: If Codex goes down, entire Trinity pipeline stops
 - **Impact**: No quality gates, no coordination, chaos
 - **Probability**: LOW (OpenAI platform is reliable)
@@ -205,6 +218,7 @@ classification: EXECUTIVE DECISION-MAKING
 - **Fiduciary Impact**: **Systemic risk to entire team coordination**
 
 **Risk 3.5: No Direct Revenue Impact (Severity: MEDIUM)**
+
 - **Reality**: No documented revenue increases from Codex orchestration
 - **Implication**: Benefit calculation relies on cost avoidance, not revenue generation
 - **Impact**: Theoretical value, not actual $$ in bank (overhead role)
@@ -231,6 +245,7 @@ classification: EXECUTIVE DECISION-MAKING
 #### Critical Risks
 
 **Risk 4.1: SEVERE Overconfidence (Severity: CRITICAL)**
+
 - **Audit Findings**: 7 major fallacies identified in REPLIT_CONTRACT_AUDIT.md
   1. False uniqueness claim (exclusive capabilities that others also have)
   2. Overconfidence bias (99.9% uptime when Replit delivers 99.5%)
@@ -245,6 +260,7 @@ classification: EXECUTIVE DECISION-MAKING
 - **Fiduciary Impact**: **CANNOT TRUST FUTURE CLAIMS WITHOUT VERIFICATION**
 
 **Risk 4.2: Compliance Risk (Severity: CRITICAL)**
+
 - **Reality**: "DSHS License #690 requires uptime guarantees, cannabis regulations = zero tolerance for outages"
 - **Replit SLA**: 99.5% (NOT 99.9% required)
 - **Risk**: $50K-100K regulatory fines, license revocation
@@ -253,6 +269,7 @@ classification: EXECUTIVE DECISION-MAKING
 - **Fiduciary Impact**: **CANNOT USE REPLIT FOR PRIMARY PRODUCTION (regulatory risk)**
 
 **Risk 4.3: Single Point of Failure (Severity: HIGH)**
+
 - **Reality**: "No failover plan, no multi-cloud backup, customer orders lost during outage"
 - **Impact**: Revenue loss during outage, customer trust erosion
 - **Replit Downtime**: ~0.5% historically (3.6 hours/month)
@@ -262,6 +279,7 @@ classification: EXECUTIVE DECISION-MAKING
 - **Fiduciary Impact**: **CANNOT ACCEPT PRIMARY PRODUCTION ON SINGLE POINT OF FAILURE**
 
 **Risk 4.4: Vendor Lock-In (Severity: MEDIUM)**
+
 - **Reality**: "Replit-specific workflows hard to migrate, PostgreSQL data export requires manual process"
 - **Risk**: If Replit pricing increases or service degrades, expensive migration required
 - **Estimated Migration Cost**: $50,000 (re-architect for Cloud Run)
@@ -270,6 +288,7 @@ classification: EXECUTIVE DECISION-MAKING
 - **Fiduciary Impact**: **$50K exit cost creates strategic inflexibility**
 
 **Risk 4.5: Cost at Scale (Severity: MEDIUM)**
+
 - **Reality**: "Replit pricing increases with usage, Cloud Run more cost-effective at scale"
 - **Impact**: Performance degradation or forced migration at 100+ concurrent users
 - **Probability**: MEDIUM (depends on business growth)
@@ -277,6 +296,7 @@ classification: EXECUTIVE DECISION-MAKING
 - **Fiduciary Impact**: **CANNOT SCALE BEYOND 100+ USERS ON REPLIT**
 
 **Risk 4.6: Zero Proven Revenue Impact (Severity: MEDIUM)**
+
 - **Audit Finding**: "Dashboard DISPLAYS revenue, doesn't CREATE revenue"
 - **Reality**: $0 proven revenue increase from Replit deliverables
 - **Implication**: All claimed revenue benefits ($100K+) are FALSE
@@ -341,6 +361,7 @@ classification: EXECUTIVE DECISION-MAKING
 ### Decision Criteria
 
 **For Each Model, Evaluate**:
+
 1. **Proven ROI**: Actual historical performance, not promises
 2. **Risk Level**: CRITICAL > HIGH > MEDIUM > LOW
 3. **Contract Violations**: Severity and remediation plan
@@ -353,6 +374,7 @@ classification: EXECUTIVE DECISION-MAKING
 ### Risk Tolerance Thresholds
 
 **UNACCEPTABLE**:
+
 - CRITICAL contract violations without renegotiation plan
 - SEVERE compliance risks (cannabis regulations)
 - Single point of failure for production (no backup)
@@ -360,12 +382,14 @@ classification: EXECUTIVE DECISION-MAKING
 - >$50K/year Jesse oversight dependency
 
 **ACCEPTABLE WITH MITIGATION**:
+
 - HIGH risks with clear mitigation plan and 30-day review
 - MEDIUM risks with monitoring and optimization targets
 - Vendor lock-in with exit costs <$50K
 - Overhead roles (Codex) with measurable team value
 
 **ACCEPTABLE**:
+
 - LOW risks with minimal mitigation required
 - 100% delivery rate with proven track record
 - <$20K/year Jesse oversight dependency
@@ -405,16 +429,19 @@ classification: EXECUTIVE DECISION-MAKING
 ### 30-Day Performance Reviews
 
 **Cheetah** (Expanded Role):
+
 - Metrics: Delivery rate (maintain 100%), documentation quality, compliance adherence
 - Target: Zero failures, comprehensive docs, automated compliance gates
 - Decision: Continue expansion if all targets met
 
 **Codex** (After GPT-5 Pricing Released):
+
 - Metrics: Actual cost vs estimate, team coordination efficiency, error prevention rate
 - Target: ≤ $50K/year total cost, zero duplicate work, >90% error reduction
 - Decision: Continue if cost ≤ $50K and team value proven, else eliminate and use Jesse manual coordination
 
 **Replit** (Prototyping Only):
+
 - Metrics: Migration completion, prototype delivery count, Jesse validation time saved
 - Target: 4 services migrated, 10+ prototypes delivered, >10 hours/month saved
 - Decision: Continue if prototyping value proven, else eliminate and use Cloud Run staging
@@ -422,6 +449,7 @@ classification: EXECUTIVE DECISION-MAKING
 ### 90-Day Final Decision
 
 **Based on 30-Day Reviews, Make Final Call**:
+
 - **Cheetah**: KEEP (expected outcome: 100% delivery maintained, expanded role successful)
 - **Codex**: KEEP if ≤ $50K/year, ELIMINATE if > $50K/year (replace with Jesse 1 hour/week)
 - **Replit**: KEEP for prototyping if value proven, ELIMINATE if <5 prototypes/month
@@ -458,6 +486,7 @@ classification: EXECUTIVE DECISION-MAKING
 ### Recommendation to Jesse CEO
 
 **OPTIMIZE TEAM COMPOSITION**:
+
 1. **ELIMINATE**: Claude Code ($172,920 saved)
 2. **KEEP**: Cheetah (2,462% ROI, expand role)
 3. **KEEP**: Codex (if GPT-5 pricing ≤ $50K/year after optimization)
@@ -468,6 +497,7 @@ classification: EXECUTIVE DECISION-MAKING
 **ROI IMPROVEMENT**: 238% → 1,374% (5.8x better)
 
 **RISK REDUCTION**:
+
 - Eliminate Claude Code 90% delivery risk
 - Eliminate Replit compliance risk (move to Cloud Run)
 - Eliminate Codex agent error recovery cost

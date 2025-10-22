@@ -1,4 +1,5 @@
 ### 13.2 Repository Verification
+
 - [ ] Repository cloned successfully
 - [ ] Dependencies installed (`npm install`)
 - [ ] Environment variables configured

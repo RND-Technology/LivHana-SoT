@@ -6,6 +6,7 @@
 **Goal**: Streamlined product onboarding with human approval
 
 **Key Features**:
+
 - Automated invoice capture via email
 - COA integration and validation
 - Intelligent SKU generation

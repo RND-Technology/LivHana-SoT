@@ -1,18 +1,21 @@
 #### Algorithm Optimization (2025)
 
 **Key Algorithm Mechanics**:
+
 - **Explore Phase**: New Shorts are shown to a small, random audience first
 - **Exploit Phase**: If performance is strong, the algorithm pushes to larger audiences
 - **Long-tail Virality**: Shorts can go viral weeks or months after posting
 - **View Duration > Watch Time**: A 30-second Short with 85% retention ranks higher than 60-second with 50%
 
 **Critical Success Metrics**:
+
 1. **Viewed vs. Swiped Away**: The #1 ranking signal
 2. **Loop Rate**: Viewers rewatching the video
 3. **Completion Rate**: Percentage watching to the end
 4. **Share Rate**: Videos shared externally
 
 **2025 Updates**:
+
 - YouTube Shorts now support up to 3 minutes (but 60 seconds optimal for HNC)
 - Algorithm favors multi-platform sharing
 - Search optimization more important than ever
@@ -51,12 +54,14 @@
    - Let content speak for itself
 
 **HNC-Specific Strategy**:
+
 - **Series Approach**: Number episodes (Episode 1-84) to encourage binge-watching
 - **Character Recognition**: Consistent animated characters build loyalty
 - **Educational Hook**: "Today you'll learn..." creates value proposition
 - **Cliffhangers**: End with teaser for next episode
 
 **Content Calendar Approach**:
+
 - Monday: Compliance basics
 - Wednesday: Common mistakes series
 - Friday: Industry satire/comedy

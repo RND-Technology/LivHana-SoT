@@ -1,4 +1,5 @@
 # Agent Hardening Study: Crash Lessons & Scaling Protocols
+
 **Date**: 2025-10-21
 **Agent**: Claude Sonnet 4.5
 **Mission**: Learn from TWO crashes with identical root cause, establish hardening protocols for multi-agent scale-up
@@ -9,12 +10,14 @@
 ## EXECUTIVE SUMMARY
 
 We crashed TWICE on October 21, 2025 with the EXACT SAME ROOT CAUSE:
+
 - **Crash #1**: 04:01 AM CDT - Whisper STT timeout → OpenAI fallback 401 (no API key)
 - **Crash #2**: 12:15 PM CDT - EXACT SAME ISSUE (assumed based on user report)
 
 **Critical Finding**: We failed to learn from Crash #1. The forensic analysis was written, but the lessons were NOT applied before spawning more agents. This is the meta-failure that must never repeat.
 
 **This Document's Purpose**:
+
 1. Capture ALL lessons from both crashes
 2. Identify WHY lessons weren't applied after Crash #1
 3. Establish hardening protocols for scaling Claude Sonnet 4.5 agents
@@ -31,45 +34,54 @@ We crashed TWICE on October 21, 2025 with the EXACT SAME ROOT CAUSE:
 **Impact**: Loss of active context, incomplete task handoff, need for recovery session
 
 **03:54:01** - Normal Operation
+
 - TTS successfully streamed response
 - User voice input requested
 - System waiting for STT conversion
 
 **03:54:21** - STT Service Initiated
+
 ```
 voicemode - INFO - STT: Starting speech-to-text conversion
 voicemode - INFO -   Available endpoints: ['http://127.0.0.1:2022/v1', 'https://api.openai.com/v1']
 ```
 
 **03:54:51** - Primary STT Timeout (30s)
+
 ```
 voicemode - WARNING - STT failed for http://127.0.0.1:2022/v1 (whisper): Request timed out.
 ```
+
 **Root Cause Analysis**: Local Whisper service on port 2022 did not respond within 30-second timeout.
 
 **Probable Causes**:
+
 - Service overloaded from concurrent requests (parallel agents hitting same STT endpoint)
 - GPU contention from parallel processing
 - Service hung or crashed silently
 - Network stack issue on localhost
 
 **03:54:51** - Fallback Attempt to OpenAI
+
 ```
 voicemode - WARNING - STT: Primary failed, attempting fallback #1: https://api.openai.com/v1 (openai)
 ```
 
 **03:54:53** - Fallback Authentication Failure
+
 ```
 voicemode - ERROR -   🔐 OpenAI Authentication Failed: The OpenAI API key is invalid or missing.
 Error code: 401 - {'error': {'message': "You didn't provide an API key..."}}
 ```
 
 **Root Cause**: OPENAI_API_KEY environment variable either:
+
 - Not set in voicemode MCP server environment
 - Set but invalid/expired
 - Not properly passed through MCP server configuration
 
 **03:54:53** - Total STT Failure → Session Crash
+
 ```
 voicemode - ERROR - ✗ All STT endpoints failed after 2 attempts
 voice-mode - ERROR - STT service connection failed
@@ -88,6 +100,7 @@ voice-mode - ERROR - STT service connection failed
 
 **CRITICAL OBSERVATION**:
 Between Crash #1 (04:01 AM) and Crash #2 (12:15 PM), approximately **8 hours and 14 minutes** elapsed. During this time:
+
 - ✅ Forensic analysis was written (AGENT_DEPLOYMENT_FORENSIC_ANALYSIS_2025-10-21.md)
 - ✅ Recovery session completed (SESSION_HANDOFF_2025-10-21_RECOVERY_COMPLETE.md)
 - ❌ **NO FIXES WERE APPLIED** to prevent the same crash
@@ -115,6 +128,7 @@ The forensic analysis identified the problem perfectly, but the recommendations 
 **Root Cause**: Lack of systematic learning loop
 
 **What Happened**:
+
 1. Crash #1 occurred at 04:01 AM
 2. Recovery session started at 04:30 AM
 3. Forensic analysis written (15,000+ words)
@@ -127,6 +141,7 @@ The forensic analysis identified the problem perfectly, but the recommendations 
 7. Crash #2 occurred at 12:15 PM with EXACT SAME root cause
 
 **Why This Happened**:
+
 - **No enforcement mechanism** - Recommendations are advisory, not mandatory
 - **No pre-flight checklist** - Sessions start without validation
 - **No automated checks** - Manual verification required (and skipped)
@@ -136,6 +151,7 @@ The forensic analysis identified the problem perfectly, but the recommendations 
 
 **The Meta-Lesson**:
 Writing forensic analysis is NOT learning. Learning happens when:
+
 1. Error detected
 2. Root cause identified
 3. Fix designed
@@ -152,6 +168,7 @@ We stopped at step 3. Steps 4-6 were skipped.
 ### Context Injection: How to Properly Load State
 
 **Anti-Pattern (Current)**:
+
 ```bash
 # Session starts with no context validation
 claude_code_cli --session-id new-session
@@ -159,6 +176,7 @@ claude_code_cli --session-id new-session
 ```
 
 **Best Practice**:
+
 ```bash
 # Boot sequence with validation
 ./scripts/claude_tier1_boot.sh
@@ -173,6 +191,7 @@ claude_code_cli --session-id new-session
 ```
 
 **Context Injection Checklist**:
+
 - [ ] Load previous session state from checkpoint
 - [ ] Validate all required secrets are set
 - [ ] Verify all service dependencies are running
@@ -181,6 +200,7 @@ claude_code_cli --session-id new-session
 - [ ] Report readiness status before accepting work
 
 **Implementation**:
+
 ```python
 def inject_context(session_id: str) -> SessionContext:
     """Load context with validation, fail fast if incomplete"""
@@ -214,12 +234,14 @@ def inject_context(session_id: str) -> SessionContext:
 **Principle**: Every token spent must deliver value. Context window is a scarce resource.
 
 **Anti-Pattern**:
+
 - Loading entire files when only specific sections are needed
 - Repeating same information across multiple messages
 - Verbose explanations when user requested brevity
 - Expanding todo lists with duplicate or low-value tasks
 
 **Best Practice**:
+
 ```python
 # Token budget allocation
 MAX_TOKENS = 200000
@@ -243,6 +265,7 @@ if current_usage + task.estimated_tokens > allocated_budget:
 ```
 
 **Token Stewardship Rules**:
+
 1. **Read selectively** - Use Grep/Glob to find, then Read specific sections
 2. **Summarize aggressively** - Compress findings into key points
 3. **Avoid duplication** - Reference existing docs instead of repeating
@@ -256,6 +279,7 @@ if current_usage + task.estimated_tokens > allocated_budget:
 **Pattern**: Every deliverable file must include metadata in filename
 
 **Format**:
+
 ```
 {type}_{description}_{YYYY-MM-DD}_{session_id}_{agent_id}.{ext}
 
@@ -266,6 +290,7 @@ Examples:
 ```
 
 **Required Metadata**:
+
 - **Date**: ISO 8601 format (YYYY-MM-DD)
 - **Session ID**: First 8 chars of UUID
 - **Agent ID**: Which agent produced this (sonnet45, cheetah, codex)
@@ -273,6 +298,7 @@ Examples:
 - **Description**: Brief purpose (forensic_analysis, agent_builder, truth_pipeline)
 
 **RPM DNA Code Format**:
+
 ```
 {INITIATIVE}.{CATEGORY}.{TYPE}-{SEQUENCE}
 
@@ -282,6 +308,7 @@ Examples:
 ```
 
 **Why This Matters**:
+
 - Enables automatic cross-referencing
 - Supports session recovery (find all artifacts from crashed session)
 - Facilitates team handoffs (know which agent produced what)
@@ -297,8 +324,10 @@ Examples:
 **Application Layers**:
 
 **1. File Level**
+
 - ❌ One file with multiple purposes
 - ✅ One file, one responsibility
+
 ```
 # Anti-pattern
 scripts/utilities.sh  # Contains 20 unrelated functions
@@ -310,8 +339,10 @@ scripts/boot_services.sh     # One purpose: service startup
 ```
 
 **2. Function Level**
+
 - ❌ Function that does multiple things
 - ✅ Function that does one thing well
+
 ```python
 # Anti-pattern
 def process_data(data):
@@ -329,8 +360,10 @@ def save_data(data): return save_result
 ```
 
 **3. Agent Level**
+
 - ❌ One agent, multiple concurrent tasks
 - ✅ One agent, one task at a time
+
 ```
 # Anti-pattern (from Crash #1)
 Agent 1: 5 tasks "in_progress" simultaneously
@@ -347,8 +380,10 @@ Queue: 4 tasks "pending"
 ```
 
 **4. Session Level**
+
 - ❌ One session, multiple competing objectives
 - ✅ One session, one primary objective
+
 ```
 # Anti-pattern
 Session objective: "Implement TRUTH pipeline + Agent Builder + video automation + fix LightSpeed"
@@ -367,6 +402,7 @@ Next session: "Deploy Agent Builder (17 nodes, secrets, testing)"
 **Pre-Scale Checklist**:
 
 **Before Spawning ANY Parallel Agents**:
+
 - [ ] Single agent completes test task successfully
 - [ ] Resource usage measured (CPU, memory, tokens, time)
 - [ ] Error paths tested and handled gracefully
@@ -376,6 +412,7 @@ Next session: "Deploy Agent Builder (17 nodes, secrets, testing)"
 - [ ] Monitoring/alerting configured
 
 **Before Increasing Load**:
+
 - [ ] Baseline performance established (P50, P95, P99)
 - [ ] Capacity limits identified (max concurrent requests)
 - [ ] Degradation behavior tested (what happens at 110% capacity?)
@@ -384,6 +421,7 @@ Next session: "Deploy Agent Builder (17 nodes, secrets, testing)"
 - [ ] Health checks passing
 
 **Before Production Deployment**:
+
 - [ ] Staging environment matches production
 - [ ] All tests passing (unit, integration, E2E)
 - [ ] Secrets validated in target environment
@@ -393,6 +431,7 @@ Next session: "Deploy Agent Builder (17 nodes, secrets, testing)"
 - [ ] Team trained on new system
 
 **The Rule**:
+
 ```
 Scale readiness = (Single-instance success rate × Error handling coverage × Monitoring completeness)
 
@@ -406,6 +445,7 @@ If scale_readiness < 0.95, DO NOT SCALE.
 ### Environment Variables That MUST Be Set
 
 **Critical (Blocks Boot)**:
+
 ```bash
 # AI Service API Keys
 ANTHROPIC_API_KEY          # Claude API access
@@ -425,6 +465,7 @@ DATABASE_URL               # PostgreSQL connection string
 ```
 
 **Important (Degrades Gracefully)**:
+
 ```bash
 # Business Tools
 LIGHTSPEED_TOKEN           # LightSpeed POS API
@@ -438,6 +479,7 @@ BLUECHECK_API_KEY          # Age verification (optional)
 ```
 
 **Validation Script**:
+
 ```bash
 #!/bin/bash
 # scripts/validate_environment.sh
@@ -487,6 +529,7 @@ echo "Environment validation complete."
 ### Service Dependencies That MUST Be Running
 
 **Critical Services** (Boot Fails Without):
+
 ```yaml
 services:
   whisper-stt:
@@ -512,6 +555,7 @@ services:
 ```
 
 **Validation Script**:
+
 ```bash
 #!/bin/bash
 # scripts/validate_services.sh
@@ -545,6 +589,7 @@ echo "All services are healthy."
 ### Fallback Strategies When Services Fail
 
 **Voice Mode Fallback Cascade**:
+
 ```python
 # Fallback priority order
 STT_FALLBACK_ORDER = [
@@ -578,6 +623,7 @@ def get_user_input() -> str:
 ```
 
 **Service Degradation Matrix**:
+
 | Service Failed | Primary Impact | Fallback Strategy | Degraded Capability |
 |---|---|---|---|
 | Whisper STT | Voice input broken | OpenAI Whisper API | Same functionality, higher cost |
@@ -593,6 +639,7 @@ def get_user_input() -> str:
 **Principle**: System should degrade gracefully, not crash catastrophically
 
 **Degradation Levels**:
+
 1. **Full Functionality** - All services operational
 2. **Minor Degradation** - Non-critical services down, workarounds available
 3. **Major Degradation** - Critical services down, fallbacks active
@@ -600,6 +647,7 @@ def get_user_input() -> str:
 5. **Safe Mode** - Read-only, no writes, diagnostics only
 
 **Implementation**:
+
 ```python
 class ServiceLevel(Enum):
     FULL = 5
@@ -650,6 +698,7 @@ def execute_with_degradation(task: Task) -> Result:
 ### Pre-Flight Checks Before Session Starts
 
 **Boot Sequence** (scripts/claude_tier1_boot.sh):
+
 ```bash
 #!/bin/bash
 # Claude Tier-1 Boot System
@@ -721,6 +770,7 @@ fi
 **The Law**: No agent shall ever have more than ONE task marked "in_progress" at any time.
 
 **Rationale**:
+
 - Prevents context thrashing (switching between multiple tasks)
 - Enables accurate progress tracking
 - Clarifies accountability (this agent owns this task)
@@ -728,6 +778,7 @@ fi
 - Improves handoff quality (clear completion state)
 
 **Enforcement**:
+
 ```python
 class TodoList:
     def mark_in_progress(self, task_id: str):
@@ -748,6 +799,7 @@ class TodoList:
 ```
 
 **Violation Detection**:
+
 ```python
 def validate_todo_list(todos: List[Task]):
     """Validate todo list integrity"""
@@ -776,6 +828,7 @@ def validate_todo_list(todos: List[Task]):
 ### Maximum One Task "In Progress" at a Time
 
 **Implementation in TodoWrite Tool**:
+
 ```typescript
 // Pseudocode for TodoWrite tool validation
 function validateTodoList(todos: Todo[]): ValidationResult {
@@ -807,6 +860,7 @@ if (!validation.valid) {
 ```
 
 **User-Facing Error**:
+
 ```
 ❌ TodoWrite Failed: Multiple tasks in progress
 
@@ -829,6 +883,7 @@ Remember: ONE task in_progress at a time. This is the law.
 **Pattern**: Before spawning parallel agents, create explicit dependency graph
 
 **Example: Agent Builder Deployment**:
+
 ```yaml
 # agent_deployment_dependency_graph.yaml
 tasks:
@@ -876,6 +931,7 @@ critical_path:
 ```
 
 **Execution Strategy**:
+
 ```python
 def execute_parallel_tasks(dependency_graph: dict):
     """Execute tasks respecting dependency graph"""
@@ -917,6 +973,7 @@ def execute_parallel_tasks(dependency_graph: dict):
 ### Resource Budgets (CPU, Memory, Tokens)
 
 **Resource Budget Allocation**:
+
 ```yaml
 # agent_resource_budgets.yaml
 agents:
@@ -950,6 +1007,7 @@ allocation_strategy: "priority_based"  # high priority agents get resources firs
 ```
 
 **Enforcement**:
+
 ```python
 class ResourceManager:
     def __init__(self, budgets: dict):
@@ -981,6 +1039,7 @@ class ResourceManager:
 ### Checkpointing Strategy (Every 5 Min)
 
 **Checkpoint Format**:
+
 ```json
 {
   "session_id": "c4f74656-68ad-4973-8f53-0b862ed16d5d",
@@ -1010,6 +1069,7 @@ class ResourceManager:
 ```
 
 **Checkpoint Creation**:
+
 ```python
 import asyncio
 
@@ -1036,6 +1096,7 @@ async def checkpoint_loop(session: Session):
 ```
 
 **Recovery from Checkpoint**:
+
 ```python
 def recover_from_checkpoint(checkpoint_path: str) -> Session:
     """Recover session from checkpoint"""
@@ -1070,6 +1131,7 @@ def recover_from_checkpoint(checkpoint_path: str) -> Session:
 ### How to Detect Failures Early
 
 **Health Check Pattern**:
+
 ```python
 async def monitor_health():
     """Continuous health monitoring"""
@@ -1099,6 +1161,7 @@ async def monitor_health():
 ```
 
 **Early Warning Signals**:
+
 ```python
 class EarlyWarningSystem:
     def __init__(self):
@@ -1140,6 +1203,7 @@ class EarlyWarningSystem:
 ### Automatic Recovery Procedures
 
 **Service Restart Pattern**:
+
 ```python
 class ServiceMonitor:
     def __init__(self, service_name: str, health_endpoint: str):
@@ -1190,6 +1254,7 @@ class ServiceMonitor:
 ### State Preservation During Crashes
 
 **Crash Handler**:
+
 ```python
 import signal
 import sys
@@ -1228,6 +1293,7 @@ signal.signal(signal.SIGINT, crash_handler)
 ### Resume-from-Checkpoint Logic
 
 **Recovery Script**:
+
 ```bash
 #!/bin/bash
 # scripts/recover_from_crash.sh
@@ -1284,6 +1350,7 @@ fi
 ### Pattern: Detect → Document → Apply → Verify → Lock
 
 **The Learning Loop**:
+
 ```
 ┌─────────────┐
 │   Detect    │  Error occurs during operation
@@ -1316,6 +1383,7 @@ fi
 ```
 
 **Implementation**:
+
 ```python
 class LearningLoop:
     def __init__(self):
@@ -1382,6 +1450,7 @@ class LearningLoop:
 ```
 
 **Example: Applying the Learning Loop to Crash #1**:
+
 ```python
 # Step 1: Detect
 try:
@@ -1452,6 +1521,7 @@ if verified:
 ### Error Taxonomy
 
 **Error Categories**:
+
 ```yaml
 error_taxonomy:
   configuration:
@@ -1501,6 +1571,7 @@ error_taxonomy:
 ```
 
 **Classification Function**:
+
 ```python
 def classify_error(error: Exception) -> str:
     """Classify error into taxonomy category"""
@@ -1527,6 +1598,7 @@ def classify_error(error: Exception) -> str:
 ### Learning Loop: Experience → Lesson → Protocol → Prevention
 
 **Experience Capture**:
+
 ```python
 class Experience:
     def __init__(self, event: str, context: dict, outcome: str):
@@ -1546,6 +1618,7 @@ class Experience:
 ```
 
 **Protocol Generation**:
+
 ```python
 def generate_protocol(lessons: List[str]) -> dict:
     """Generate protocol from lessons"""
@@ -1577,6 +1650,7 @@ def generate_protocol(lessons: List[str]) -> dict:
 ```
 
 **Prevention Lock-In**:
+
 ```python
 def lock_prevention_into_boot(protocol: dict):
     """Add protocol checks to boot sequence"""
@@ -1600,6 +1674,7 @@ def lock_prevention_into_boot(protocol: dict):
 ### File Naming Conventions with Metadata
 
 **Standard Format**:
+
 ```
 {type}_{description}_{YYYY-MM-DD}_{session_id}_{agent}.{ext}
 
@@ -1613,6 +1688,7 @@ Components:
 ```
 
 **Examples**:
+
 ```
 # Good
 report_forensic_analysis_2025-10-21_c4f74656_sonnet45.md
@@ -1632,6 +1708,7 @@ data.json
 ```
 
 **Automation**:
+
 ```python
 def generate_rpm_filename(
     type: str,
@@ -1667,6 +1744,7 @@ filename = generate_rpm_filename(
 ### Timestamps, Session IDs, Agent IDs
 
 **Metadata Embedding**:
+
 ```yaml
 # Every file should start with YAML frontmatter
 ---
@@ -1690,6 +1768,7 @@ rpm_dna:
 ```
 
 **Metadata Extraction**:
+
 ```python
 import yaml
 import re
@@ -1726,6 +1805,7 @@ def extract_metadata(filepath: str) -> dict:
 ### Cross-Reference Tracking
 
 **Relationship Graph**:
+
 ```python
 class ArtifactGraph:
     def __init__(self):
@@ -1780,6 +1860,7 @@ class ArtifactGraph:
 ```
 
 **Usage**:
+
 ```python
 # Build artifact graph
 graph = ArtifactGraph()
@@ -1800,6 +1881,7 @@ print(f"Related artifacts: {related}")
 ### Version Control Integration
 
 **Git Commit Message Format**:
+
 ```
 {type}({scope}): {description}
 
@@ -1830,6 +1912,7 @@ Files: 5
 ```
 
 **Git Hooks**:
+
 ```bash
 #!/bin/bash
 # .git/hooks/commit-msg
@@ -1865,6 +1948,7 @@ echo "✅ Commit message valid"
 ### Principle of One at Every Level
 
 **Layer 1: Repository Structure**
+
 ```
 # One concern per directory
 backend/
@@ -1884,6 +1968,7 @@ backend/
 ```
 
 **Layer 2: File Structure**
+
 ```python
 # One class per file
 # file: backend/compliance-service/age_verifier.py
@@ -1906,6 +1991,7 @@ class CannabisTester: ...  # Too many concerns
 ```
 
 **Layer 3: Function Structure**
+
 ```python
 # One responsibility per function
 def validate_openai_api_key() -> bool:
@@ -1933,6 +2019,7 @@ def validate_all_keys():
 ### Single Responsibility Per File/Function
 
 **File Responsibility**:
+
 ```
 # Good: Single responsibility per file
 scripts/validate_environment.sh      # Validates environment variables
@@ -1944,6 +2031,7 @@ scripts/validate.sh                  # Validates everything (too broad)
 ```
 
 **Function Responsibility**:
+
 ```python
 # Good: Single responsibility
 def check_whisper_health() -> bool:
@@ -1967,6 +2055,7 @@ def check_all_services() -> dict:
 ### Zero Duplication
 
 **Pattern: Extract Common Logic**
+
 ```python
 # Before: Duplication
 def check_whisper_health() -> bool:
@@ -1998,6 +2087,7 @@ kokoro_healthy = check_service_health("http://127.0.0.1:8880")
 ```
 
 **Pattern: Configuration Over Code**
+
 ```yaml
 # services.yaml
 services:
@@ -2035,6 +2125,7 @@ def check_all_services(config: dict) -> dict:
 ### Clean Once, Never Clean Again
 
 **Pattern: Automation Over Manual**
+
 ```bash
 # Manual cleaning (BAD)
 # Every session: "Clean up temp files"
@@ -2054,6 +2145,7 @@ scripts/cleanup_temp.sh
 ```
 
 **Pattern: Proper Resource Management**
+
 ```python
 # Manual resource cleanup (BAD)
 client = httpx.AsyncClient()
@@ -2073,6 +2165,7 @@ async with httpx.AsyncClient() as client:
 ### Automated Quality Checks
 
 **Pre-Commit Hooks**:
+
 ```bash
 #!/bin/bash
 # .git/hooks/pre-commit
@@ -2127,6 +2220,7 @@ echo "✅ Quality checks passed"
 ### Before Spawning Multiple Agents or Scaling Up
 
 **Checklist**:
+
 ```yaml
 pre_scale_checklist:
   secrets:
@@ -2173,6 +2267,7 @@ pre_scale_checklist:
 ```
 
 **Validation Script**:
+
 ```bash
 #!/bin/bash
 # scripts/validate_pre_scale.sh
@@ -2365,6 +2460,7 @@ We crashed twice on October 21, 2025 with the exact same root cause: Whisper STT
 Forensic analysis alone is not learning. Learning requires implementation, verification, and lock-in to prevent recurrence.
 
 **Critical Failures Identified**:
+
 1. **No learning loop enforcement** - Lessons documented but not applied
 2. **No pre-flight validation** - Sessions start without checking readiness
 3. **No graceful degradation** - Voice mode crashes instead of falling back to text
@@ -2373,6 +2469,7 @@ Forensic analysis alone is not learning. Learning requires implementation, verif
 6. **No automated recovery** - Manual intervention required after crashes
 
 **Hardening Protocols Established**:
+
 1. **Tier-1 Boot System** - Validate secrets, services, fallbacks before starting
 2. **Agent Coordination Protocol** - One agent, one task, explicit dependencies
 3. **Self-Healing Patterns** - Detect early, recover automatically, preserve state
@@ -2383,6 +2480,7 @@ Forensic analysis alone is not learning. Learning requires implementation, verif
 ### Action Items for Agent B
 
 **Immediate (Next Session)**:
+
 - [ ] Implement `scripts/claude_tier1_boot.sh` with all validation checks
 - [ ] Add OPENAI_API_KEY to voicemode MCP server environment
 - [ ] Implement text input fallback in voice mode STT
@@ -2390,6 +2488,7 @@ Forensic analysis alone is not learning. Learning requires implementation, verif
 - [ ] Create checkpoint system (auto-save every 5 minutes)
 
 **Short-term (This Week)**:
+
 - [ ] Implement circuit breaker for Whisper service
 - [ ] Add health check monitoring for all services
 - [ ] Create agent resource budget system
@@ -2397,6 +2496,7 @@ Forensic analysis alone is not learning. Learning requires implementation, verif
 - [ ] Add pre-commit quality checks
 
 **Medium-term (Next Sprint)**:
+
 - [ ] Build agent dependency graph system
 - [ ] Implement automated crash recovery
 - [ ] Create monitoring dashboard
@@ -2406,6 +2506,7 @@ Forensic analysis alone is not learning. Learning requires implementation, verif
 ### Success Criteria
 
 This hardening study succeeds when:
+
 - ✅ No Crash #3 from the same root cause
 - ✅ All 10 rules documented and enforced
 - ✅ Boot system validates readiness before starting

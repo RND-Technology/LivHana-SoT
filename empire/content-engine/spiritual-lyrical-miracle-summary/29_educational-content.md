@@ -1,4 +1,5 @@
 ### Educational Content
+
 - THCA benefits and usage guides
 - Legal compliance information
 - Product comparison guides

@@ -1,4 +1,5 @@
 ### 13.4 Development Verification
+
 - [ ] Debugging configuration working
 - [ ] Logging visible and useful
 - [ ] Hot reload working

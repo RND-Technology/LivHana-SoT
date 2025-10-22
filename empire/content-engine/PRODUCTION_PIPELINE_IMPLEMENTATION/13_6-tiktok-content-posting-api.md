@@ -5,6 +5,7 @@
 **Implementation:**
 
 **Step 1: Initialize Upload**
+
 ```javascript
 POST https://open.tiktokapis.com/v2/post/publish/video/init/
 Headers:
@@ -23,6 +24,7 @@ Body:
 ```
 
 **Step 2: Upload Video**
+
 ```javascript
 PUT {upload_url_from_init}
 Body: Video file (binary)

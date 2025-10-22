@@ -11,27 +11,33 @@ last-reviewed: 2025-10-06
 ## Framework Categories
 
 ### 📚 Tutorial (Learning-oriented)
+
 **Purpose**: Teach someone how to accomplish a goal
 **Characteristics**: Step-by-step, hands-on, goal-oriented
 
 ### 🔧 How-to (Problem-oriented)  
+
 **Purpose**: Show how to solve a specific problem
 **Characteristics**: Problem-focused, solution-oriented, practical
 
 ### 📖 Reference (Information-oriented)
+
 **Purpose**: Describe the machinery
 **Characteristics**: Technical details, API docs, specifications
 
 ### 💡 Explanation (Understanding-oriented)
+
 **Purpose**: Explain and clarify
 **Characteristics**: Context-rich, background information, reasoning
 
 ## Document Mappings
 
 ### Tutorial (0 files)
+
 *No tutorial documents currently - consider adding onboarding guides*
 
 ### How-to (8 files)
+
 - `ECWID_FIX_TIER1_PLAN.md` - How to fix ECWID checkout issues
 - `DEPLOYMENT_STATUS.md` - How to deploy services
 - `INCOMPLETE_WORK_STATUS.md` - How to track incomplete work
@@ -42,6 +48,7 @@ last-reviewed: 2025-10-06
 - `archived/CONSOLIDATION_PLAN.md` - How to consolidate systems
 
 ### Reference (18 files)
+
 - `README.md` - Documentation hub reference
 - `RPM_WEEKLY_PLAN_OCT4-12_2025.md` - Weekly plan reference
 - `TIER1_ACCOUNT_OPTIMIZATION_ASSESSMENT_20251006.md` - Account optimization reference
@@ -62,6 +69,7 @@ last-reviewed: 2025-10-06
 - `archived/LOCAL_STATUS_REPORT_20251002_0445AM.md` - Local status reference
 
 ### Explanation (13 files)
+
 - `adr/ADR_001_Technical_Implementation_20251006.md` - Technical implementation explanation
 - `adr/ADR_002_Voice_Queue_Architecture_20251006.md` - Voice queue architecture explanation
 - `adr/ADR_003_Playwright_CI_Pipeline_20251006.md` - CI pipeline explanation

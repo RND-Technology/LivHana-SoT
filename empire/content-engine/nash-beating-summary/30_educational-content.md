@@ -1,4 +1,5 @@
 ### Educational Content
+
 - NASH beating strategies
 - Lightspeed integration guides
 - White-label setup tutorials

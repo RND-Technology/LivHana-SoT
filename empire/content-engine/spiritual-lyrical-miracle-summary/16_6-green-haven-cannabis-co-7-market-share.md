@@ -1,6 +1,8 @@
 ### 6. Green Haven Cannabis Co. (7% Market Share)
+
 **Position:** Premium hemp shop with handpicked THCA products  
 **Strengths:**
+
 - Handpicked THCA products
 - Tested for purity
 - Emphasizes wellness and natural benefits
@@ -9,6 +11,7 @@
 - Premium positioning
 
 **Weaknesses:**
+
 - No specific pricing mentioned
 - Limited location information
 - No delivery options mentioned

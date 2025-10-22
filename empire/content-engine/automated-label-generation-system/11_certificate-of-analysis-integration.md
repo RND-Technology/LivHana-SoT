@@ -1,4 +1,5 @@
 ### Certificate of Analysis Integration
+
 ```python
 # backend/coa-integration-service/main.py
 from fastapi import FastAPI, HTTPException

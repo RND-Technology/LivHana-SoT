@@ -5,6 +5,7 @@
 **Implementation:**
 
 **Step 1: Create Container**
+
 ```javascript
 POST https://graph.facebook.com/v19.0/{ig_user_id}/media
 Body:
@@ -15,6 +16,7 @@ Body:
 ```
 
 **Step 2: Publish**
+
 ```javascript
 POST https://graph.facebook.com/v19.0/{ig_user_id}/media_publish
 Body:
@@ -25,6 +27,7 @@ Body:
 **Cost:** Free
 
 **Requirements:**
+
 - Video must be publicly accessible
 - Business/Creator account required
 - Up to 90 seconds for most accounts

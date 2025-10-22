@@ -24,12 +24,14 @@
 **Problem:** Domains resolve to Cloud Run IP (34.143.72.2) but SSL certificates don't match domain names.
 
 **Evidence:**
+
 ```bash
 $ curl -I https://jesseniesen.com
 curl: (60) SSL: no alternative certificate subject name matches target host name 'jesseniesen.com'
 ```
 
 **Why This Happened:**
+
 1. ✅ DNS records updated successfully (all domains → 34.143.72.2)
 2. ❌ Cloud Run domain mappings NOT created
 3. ❌ SSL certificates NOT provisioned for each domain
@@ -120,6 +122,7 @@ done
 **Expected Time:** 15-60 minutes per domain (can run in parallel)
 
 **Success Criteria:**
+
 - Domain mapping created ✓
 - SSL certificate provisioned ✓
 - HTTPS requests return 200/301 ✓
@@ -140,6 +143,7 @@ done
 ```
 
 **Success Criteria:**
+
 - Certificate status: "Ready" ✓
 - Certificate matches domain name ✓
 
@@ -148,6 +152,7 @@ done
 ### Phase 3: DNS Verification (Already Complete)
 
 ✅ DNS propagation: 100% (22/22 domains)
+
 - All domains resolving correctly
 - No action needed
 
@@ -176,12 +181,14 @@ done
 ## 📊 CRITICAL VERIFICATION CHECKLIST
 
 ### DNS Layer (100% ✅)
+
 - [x] All 22 domains resolve
 - [x] Correct IPs returned
 - [x] TTL set to 600 seconds
 - [x] No CNAME @ violations
 
 ### Cloud Run Layer (0% 🔴)
+
 - [ ] Domain mappings created for 18 domains
 - [ ] SSL certificates provisioned
 - [ ] Certificate status: Ready
@@ -189,12 +196,14 @@ done
 - [ ] Health endpoint responding
 
 ### Application Layer (4% 🔴)
+
 - [ ] Age verification API working
 - [ ] Database connectivity
 - [ ] Redis cache operational
 - [ ] API endpoints returning 200
 
 ### Security Layer (0% 🔴)
+
 - [ ] Valid SSL on all domains
 - [ ] Certificate expiry > 30 days
 - [ ] HTTPS enforced
@@ -217,17 +226,20 @@ done
 
 ## 🚀 IMMEDIATE ACTIONS
 
-### Priority 1 (NOW - Blocking):
+### Priority 1 (NOW - Blocking)
+
 1. Create Cloud Run domain mappings for 18 domains
 2. Monitor SSL certificate provisioning
 3. Verify HTTPS responses
 
-### Priority 2 (Within 1 hour):
+### Priority 2 (Within 1 hour)
+
 4. Test age verification API on all domains
 5. Verify database connectivity
 6. Check Cloud Run logs for errors
 
-### Priority 3 (Within 2 hours):
+### Priority 3 (Within 2 hours)
+
 7. Add load balancing (all 8 IPs)
 8. Set up monitoring/alerts
 9. Document final configuration
@@ -241,6 +253,7 @@ done
 **Report Location:** `/reports/e2e-empire-monitor/`
 
 **Command to check status:**
+
 ```bash
 # Latest scan results
 cat reports/e2e-empire-monitor/scan-*.json | tail -1 | jq .
@@ -273,6 +286,7 @@ tail -f reports/e2e-empire-monitor/monitor.log
 ## 📞 ESCALATION
 
 **If domains are not working within 2 hours:**
+
 1. Check Cloud Run service health
 2. Verify GCP project permissions
 3. Review Cloud Run logs for SSL errors

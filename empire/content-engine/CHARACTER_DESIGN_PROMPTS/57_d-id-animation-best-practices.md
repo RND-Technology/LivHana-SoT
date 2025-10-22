@@ -1,4 +1,5 @@
 ### D-ID Animation Best Practices
+
 - **Face Size:** Face should be at least 200x200 pixels
 - **Face Position:** Centered in frame, not cropped at edges
 - **Expression:** Start with neutral for most versatile animation

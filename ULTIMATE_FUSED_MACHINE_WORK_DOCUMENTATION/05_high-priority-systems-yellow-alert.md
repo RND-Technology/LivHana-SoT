@@ -1,4 +1,5 @@
 ### HIGH PRIORITY SYSTEMS (YELLOW ALERT)
+
 | System | Status | Owner | Priority | ETA |
 |--------|--------|-------|----------|-----|
 | ReggieAndDro Optimization | 🟡 OPTIMIZING | Cheetah Cursor | HIGH | Tomorrow |

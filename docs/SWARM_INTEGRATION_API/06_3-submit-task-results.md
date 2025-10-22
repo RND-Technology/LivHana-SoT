@@ -5,6 +5,7 @@ Submit execution results for a completed task (used by agents).
 **Endpoint:** `POST /api/swarm/results`
 
 **Headers:**
+
 ```
 X-API-Key: test
 X-Agent-Id: claude-code-cli
@@ -12,6 +13,7 @@ Content-Type: application/json
 ```
 
 **Request Body:**
+
 ```json
 {
   "taskId": "task-1728292800000-abc123",
@@ -30,6 +32,7 @@ Content-Type: application/json
 ```
 
 **Parameters:**
+
 - `taskId` (required): Task identifier
 - `success` (required): Boolean indicating success/failure
 - `result` (optional): Object containing task results
@@ -37,6 +40,7 @@ Content-Type: application/json
 - `metadata` (optional): Additional execution metadata
 
 **Response:** `200 OK`
+
 ```json
 {
   "success": true,
@@ -50,6 +54,7 @@ Content-Type: application/json
 ```
 
 **Example:**
+
 ```bash
 curl -X POST http://localhost:8080/api/swarm/results \
   -H "X-API-Key: test" \

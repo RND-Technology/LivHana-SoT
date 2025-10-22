@@ -1,18 +1,21 @@
 #### Algorithm Optimization (2025)
 
 **Key Algorithm Mechanics**:
+
 - Algorithm categorizes content via captions, hashtags, and sounds
 - Prioritizes watch time, engagement, and completion rate
 - "For You Page" (FYP) is the holy grail of discovery
 - Trending participation multiplies reach
 
 **Critical Success Metrics**:
+
 1. **Completion Rate**: Users watching entire video
 2. **Engagement Rate**: Likes, comments, shares, saves
 3. **Sound Usage**: Original vs. trending sounds
 4. **Watch-Through**: Multiple watches increase weight
 
 **Hashtag Strategy** (TikTok-Specific):
+
 - **Optimal Number**: 3-6 hashtags per video
 - **Mix Required**:
   - 1-2 broad hashtags (#fyp, #viral, #trending)
@@ -21,6 +24,7 @@
 - **Placement**: MUST be in caption (not comments)
 
 **Finding Trending Content**:
+
 - Use TikTok Creative Center (free tool)
 - Monitor hashtag analytics for popularity curves
 - Track trending sounds by region (Texas focus)
@@ -56,12 +60,14 @@
    - Sunday 8pm is peak engagement time
 
 **TikTok Series Strategy**:
+
 - Use TikTok Series feature for premium content
 - Create chapter markers for 84 episodes
 - Offer "exclusive" episodes for followers
 - Build anticipation with countdown content
 
 **HNC-Specific Tactics**:
+
 - **Character POV**: Film from character perspective
 - **Text Overlay Heavy**: Assume audio off initially
 - **Quick Pacing**: Cut every 2-3 seconds

@@ -1,4 +1,5 @@
 ### Character Overview
+
 - **Name:** Chief Steve Lie/Dye
 - **Role:** Texas Law Enforcement (Comedic Antagonist)
 - **Voice ID:** AZnzlk1XvdvUeBnXmlld (Antoni - nervous, anxious)

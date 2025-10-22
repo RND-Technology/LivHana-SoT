@@ -117,17 +117,20 @@ TECHNICAL IMPLEMENTATION:
 **Backend API Endpoints:**
 
 ```
+
 GET /api/v1/dashboard/revenue-today
 GET /api/v1/dashboard/conversion-funnel
 GET /api/v1/dashboard/top-products?timeframe=7d
 GET /api/v1/dashboard/customer-insights
 GET /api/v1/dashboard/campaign-performance
 GET /api/v1/dashboard/live-orders?limit=20
+
 ```
 
 **Frontend Components:**
 
 ```
+
 src/
   components/
     Dashboard.jsx (main container)
@@ -143,6 +146,7 @@ src/
     dateHelpers.js
   App.jsx
   index.js
+
 ```
 
 **Caching Strategy:**

@@ -1,4 +1,5 @@
 ### Maintenance
+
 - **Update dependencies** regularly (`npm update`)
 - **Keep tools updated** (`brew update && brew upgrade`)
 - **Monitor system resources** (RAM, disk space)

@@ -1,6 +1,7 @@
 ## 💪 TRINITY UNITY: BUILD TOGETHER
 
 **Each role is critical:**
+
 - **Cheetah:** Beautiful, functional UI that customers love
 - **Sonnet:** Robust, secure backend that never fails
 - **Replit:** Reliable, scalable infrastructure that just works

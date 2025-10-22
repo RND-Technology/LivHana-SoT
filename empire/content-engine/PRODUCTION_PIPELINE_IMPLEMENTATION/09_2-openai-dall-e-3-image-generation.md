@@ -3,6 +3,7 @@
 **Purpose:** Generate character images and backgrounds
 
 **Implementation:**
+
 ```javascript
 POST https://api.openai.com/v1/images/generations
 Headers:
@@ -20,6 +21,7 @@ Body:
 ```
 
 **Response:**
+
 ```json
 {
   "data": [{
@@ -29,6 +31,7 @@ Body:
 ```
 
 **Cost:**
+
 - Standard: $0.040 per image
 - HD: $0.080 per image
 

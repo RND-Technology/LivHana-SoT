@@ -8,7 +8,7 @@
 
 ## STEP 1: Login to Ecwid (1 minute)
 
-1. Go to: https://my.ecwid.com/cp/CP.html
+1. Go to: <https://my.ecwid.com/cp/CP.html>
 2. Login with ReggieAndDro credentials
 3. Navigate to: **Settings → Design → Custom CSS**
 
@@ -447,7 +447,7 @@
 
 1. Click **"Save"** in Ecwid
 2. Clear your browser cache (Cmd+Shift+R on Mac, Ctrl+Shift+R on PC)
-3. Visit https://reggieanddro.com
+3. Visit <https://reggieanddro.com>
 4. Test:
    - Category buttons look professional ✅
    - Checkout calendar is smooth ✅
@@ -467,6 +467,7 @@
 ## Rollback (if needed)
 
 If anything breaks:
+
 1. Go back to Ecwid Custom CSS
 2. Delete the new CSS (all 411 lines)
 3. Save

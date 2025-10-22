@@ -16,6 +16,7 @@ Delivery Providers (external)
 ```
 
 **Data Flow:**
+
 1. Customer places order → Lightspeed
 2. Order triggers webhook → Our middleware
 3. Middleware selects provider → Creates delivery

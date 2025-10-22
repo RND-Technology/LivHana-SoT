@@ -17,6 +17,5 @@ Example output for the "hello world" log:
 
 [pino-syslog]: https://www.npmjs.com/package/pino-syslog
 [rfc3164]: https://tools.ietf.org/html/rfc3164
-[logstash]: https://www.elastic.co/products/logstash
 
 <a id="pino-telegram-webhook"></a>

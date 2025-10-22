@@ -1,4 +1,5 @@
 #### Template 3: News Integration
+
 ```
 [News headline/event happened today]
 

@@ -1,4 +1,5 @@
 #### Template 4: Educational Series
+
 ```
 Texas Hemp Law: Chapter [#] 📚
 

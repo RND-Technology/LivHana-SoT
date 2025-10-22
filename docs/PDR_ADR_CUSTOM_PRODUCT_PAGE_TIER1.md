@@ -11,7 +11,9 @@
 ## Product Detail Request (PDR)
 
 ### **Vision**
+
 Build custom front-end (C) to replace/enhance LightSpeed eCom with:
+
 - **Tokenized gamified review system** (reward members for reviews)
 - **Custom product pages** with rich media, compliance info, COAs
 - **Seamless integration** with LightSpeed backend (inventory, POS)
@@ -20,6 +22,7 @@ Build custom front-end (C) to replace/enhance LightSpeed eCom with:
 - **Growth engine** for prospects → members → VIPs
 
 ### **Business Goals**
+
 1. **Unload flower inventory** (immediate: Afterpay/delivery)
 2. **Increase conversion** with better product pages
 3. **Build community** through gamified reviews
@@ -28,6 +31,7 @@ Build custom front-end (C) to replace/enhance LightSpeed eCom with:
 6. **Enable voice-first commerce** for staff operations
 
 ### **User Personas**
+
 - **Prospects**: First-time visitors (age-gate, education)
 - **Customers**: Verified 21+, making purchases
 - **Members**: Repeat buyers with rewards/tokens
@@ -97,6 +101,7 @@ Build custom front-end (C) to replace/enhance LightSpeed eCom with:
 ## **Technical Specifications**
 
 ### **Stack**
+
 ```typescript
 Frontend:
 - Next.js 14 (App Router)
@@ -165,6 +170,7 @@ CREATE TABLE users (
 ### **1. Custom Product Pages**
 
 **Components:**
+
 ```typescript
 <ProductPage>
   <ProductHero>          // Image gallery, 3D view
@@ -178,6 +184,7 @@ CREATE TABLE users (
 ```
 
 **Key Features:**
+
 - ✅ Realtime inventory from LightSpeed
 - ✅ COA display with testing data (compliance)
 - ✅ Strain genetics, terpene profiles
@@ -188,6 +195,7 @@ CREATE TABLE users (
 ### **2. Tokenized Review System**
 
 **Gamification Rules:**
+
 ```typescript
 const REWARD_RULES = {
   first_review: 50,          // tokens
@@ -206,6 +214,7 @@ const REDEMPTION_RULES = {
 ```
 
 **Review Flow:**
+
 1. Customer completes purchase (verified via LS)
 2. Email sent 3 days later: "Review & earn 100 tokens!"
 3. Customer writes review on custom product page
@@ -216,6 +225,7 @@ const REDEMPTION_RULES = {
 ### **3. Cart & Checkout Bridge**
 
 **LightSpeed Backend (Primary):**
+
 ```typescript
 // Reserve inventory in LS
 await lightspeedAPI.reserveItem({
@@ -234,6 +244,7 @@ const lsOrder = await lightspeedAPI.createOrder({
 ```
 
 **Square Invoicing (If Afterpay Needed):**
+
 ```typescript
 // Only if LS doesn't support payment method
 if (paymentMethod === 'afterpay') {
@@ -250,6 +261,7 @@ if (paymentMethod === 'afterpay') {
 ```
 
 **Delivery Integration:**
+
 ```typescript
 // Use existing delivery service
 const delivery = await deliveryService.createDelivery({
@@ -267,6 +279,7 @@ const delivery = await deliveryService.createDelivery({
 ## **Compliance Integration**
 
 **Age Verification (Veriff):**
+
 ```typescript
 // On first visit
 if (!user.verified_age) {
@@ -293,6 +306,7 @@ app.post('/webhooks/veriff', async (req, res) => {
 ```
 
 **Medical Claims Blocker:**
+
 ```typescript
 // Use existing compliance service
 const complianceCheck = await fetch('http://localhost:8000/api/v1/check-medical-claims', {
@@ -315,6 +329,7 @@ if (!complianceCheck.allowed) {
 ## **Voice Cockpit Integration**
 
 **Staff Operations:**
+
 ```typescript
 // Voice commands for staff
 "Liv, show me inventory for Cheetah Piss"
@@ -369,6 +384,7 @@ ROI Timeline:
 ## **Implementation Phases**
 
 ### **PHASE 1: TODAY (4 hours)**
+
 ```bash
 11:30-15:30 | Fix LightSpeed ReggieAndDro.com
 ├─ Populate product catalog (import from LS POS)
@@ -381,6 +397,7 @@ Evidence: ReggieAndDro.com functional with full catalog
 ```
 
 ### **PHASE 2: IF NEEDED (2 hours)**
+
 ```bash
 15:30-17:30 | Payment Bridge (LS→Square)
 ├─ Create Square auto-invoicing endpoint
@@ -392,6 +409,7 @@ Evidence: Afterpay working via Square while C is built
 ```
 
 ### **PHASE 3: Day 1 (Tomorrow - 8 hours)**
+
 ```bash
 08:00-12:00 | Architecture & Setup
 ├─ Next.js project scaffold
@@ -409,6 +427,7 @@ Evidence: Product pages rendering from LS data
 ```
 
 ### **PHASE 4: Day 2 (8 hours)**
+
 ```bash
 08:00-12:00 | Review System
 ├─ Review submission form
@@ -426,6 +445,7 @@ Evidence: Full checkout working with tokenized reviews
 ```
 
 ### **PHASE 5: Day 3 (8 hours)**
+
 ```bash
 08:00-12:00 | Member Features
 ├─ User dashboard (tokens, orders)
@@ -460,18 +480,21 @@ Evidence: Live custom front-end accepting orders
 ## **Success Metrics**
 
 **Week 1 (Launch):**
+
 - ✅ 100+ products migrated to custom pages
 - ✅ 50+ orders through new system
 - ✅ 20+ reviews submitted
 - ✅ Zero compliance violations
 
 **Month 1 (Optimization):**
+
 - ✅ 3%+ conversion rate (vs 2.3% baseline)
 - ✅ $30K+ revenue (vs $13.8K baseline)
 - ✅ 10%+ review rate
 - ✅ 4.5+ avg product rating
 
 **Quarter 1 (Scale):**
+
 - ✅ 5%+ conversion rate
 - ✅ $50K+ monthly revenue
 - ✅ 1,000+ active members
@@ -482,21 +505,25 @@ Evidence: Live custom front-end accepting orders
 ## **Team Assignments**
 
 **Jesse (CEO):**
+
 - Strategic oversight
 - Compliance review
 - Voice cockpit testing
 
 **Christopher (CSO/Paymaster):**
+
 - Inventory management
 - Pricing strategy
 - Payment testing
 
 **Andrew (Director Ops):**
+
 - LightSpeed data migration
 - Order fulfillment testing
 - Staff training
 
 **Liv Hana (Tier-1 Orchestration):**
+
 - Full-stack development
 - API integrations
 - Deployment automation
@@ -527,6 +554,7 @@ ROI: $43,200/month gain vs $115/month cost = 37,565% ROI
 Type **"EXECUTE"** and I'll start building immediately.
 
 Timeline:
+
 - **TODAY**: Fix LS, build payment bridge
 - **TOMORROW**: Custom product pages
 - **DAY 3**: Review system, launch

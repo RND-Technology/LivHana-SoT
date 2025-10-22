@@ -1,9 +1,11 @@
 # ENGINEERED PROMPTS: Lightspeed Legal/COA Site
+
 ## Trinity Team - Texas Cannabis Compliance Website
 
 ---
 
 ## 🎯 MISSION
+
 Create/improve legal compliance page on reggieanddro.com (Lightspeed) with Texas COA (Certificate of Analysis) integration to replace current "cheater link" to Texas COA resources.
 
 ---
@@ -11,12 +13,14 @@ Create/improve legal compliance page on reggieanddro.com (Lightspeed) with Texas
 ## 📋 CONTEXT
 
 **Current State:**
+
 - "Cheater link" to Texas COA.com (external redirect)
 - Not integrated with Lightspeed site
 - Missing professional compliance presentation
 - No product-specific COA display
 
 **Target State:**
+
 - Professional legal compliance page on reggieanddro.com
 - Direct Texas COA integration
 - Product-specific lab results
@@ -32,6 +36,7 @@ Create/improve legal compliance page on reggieanddro.com (Lightspeed) with Texas
 ### 1️⃣ **CHEETAH CURSOR - Frontend/UI Implementation**
 
 #### **Prompt 1: Create Legal Compliance Landing Page**
+
 ```
 Create a professional legal compliance landing page for reggieanddro.com (Lightspeed e-commerce site) that establishes trust and transparency for Texas hemp cannabis products.
 
@@ -75,6 +80,7 @@ OUTPUT:
 ```
 
 #### **Prompt 2: Build COA Search & Display Widget**
+
 ```
 Build an interactive Certificate of Analysis (COA) search and display widget for cannabis/hemp products on reggieanddro.com.
 
@@ -121,6 +127,7 @@ OUTPUT:
 ```
 
 #### **Prompt 3: Product Page COA Integration**
+
 ```
 Add Certificate of Analysis (COA) section to every product page on reggieanddro.com Lightspeed store.
 
@@ -158,6 +165,7 @@ OUTPUT:
 ### 2️⃣ **SONNET 4.5 CLI - Backend/API Implementation**
 
 #### **Prompt 1: Build COA Database & API**
+
 ```
 Build a Certificate of Analysis (COA) management system with REST API for reggieanddro.com Lightspeed integration.
 
@@ -198,23 +206,28 @@ function isTexasCompliant(coa) {
 ```
 
 VALIDATION:
+
 - All products must have valid COA
 - COAs must be <1 year old
 - Lab must be 3rd-party certified
 - All contaminant tests must pass
 
 OUTPUT:
+
 - Complete API implementation
 - Database schema with migrations
 - API documentation
 - Admin dashboard for COA management
+
 ```
 
 #### **Prompt 2: COA Automation System**
 ```
+
 Build an automated COA (Certificate of Analysis) ingestion and validation system for reggieanddro.com.
 
 WORKFLOW:
+
 1. Lab Email Integration:
    - Monitor email inbox for lab reports
    - Parse PDF attachments
@@ -245,6 +258,7 @@ WORKFLOW:
    - Alert if product missing COA
 
 TECHNICAL STACK:
+
 - Email monitoring: IMAP/Gmail API
 - PDF parsing: pdf-parse or Tesseract OCR
 - Cloud storage: Google Cloud Storage
@@ -252,22 +266,27 @@ TECHNICAL STACK:
 - Notifications: SendGrid or Twilio
 
 AI ENHANCEMENT (Optional):
+
 - Use GPT-4 Vision to parse complex COA formats
 - Automatic batch number recognition
 - Intelligent product matching
 
 OUTPUT:
+
 - Complete automation pipeline
 - Admin dashboard for manual review
 - Error handling and retry logic
 - Monitoring and alerting
+
 ```
 
 #### **Prompt 3: Lightspeed API Integration**
 ```
+
 Integrate COA (Certificate of Analysis) data with Lightspeed POS API to display lab results on reggieanddro.com product pages.
 
 INTEGRATION STEPS:
+
 1. Lightspeed API Authentication:
    - OAuth 2.0 flow
    - Store refresh tokens securely
@@ -295,12 +314,14 @@ INTEGRATION STEPS:
    - Add "View Lab Report" button
 
 TECHNICAL:
-- Lightspeed API: https://developers.lightspeedhq.com/retail/
+
+- Lightspeed API: <https://developers.lightspeedhq.com/retail/>
 - OAuth 2.0 implementation
 - Webhook handling
 - Error handling and retry logic
 
 LIGHTSPEED CUSTOM THEME:
+
 ```javascript
 // Inject COA data into product page
 const coaData = fetch(`/api/coa/product/${productSKU}`);
@@ -311,10 +332,12 @@ if (coaData.texas_compliant) {
 ```
 
 OUTPUT:
+
 - Lightspeed API integration module
 - Webhook handlers
 - Custom theme modifications
 - Sync scheduling (cron jobs)
+
 ```
 
 ---
@@ -323,9 +346,11 @@ OUTPUT:
 
 #### **Prompt 1: Deploy COA System to Cloud Run**
 ```
+
 Deploy the Certificate of Analysis (COA) management system to Google Cloud Run for reggieanddro.com.
 
 SERVICES TO DEPLOY:
+
 1. COA API Service:
    - Backend API (Node.js/Express)
    - Port 8080
@@ -345,6 +370,7 @@ SERVICES TO DEPLOY:
    - Environment: production
 
 INFRASTRUCTURE:
+
 - Cloud Run services in us-central1
 - Cloud SQL PostgreSQL (or Firestore)
 - Cloud Storage bucket for PDFs
@@ -352,6 +378,7 @@ INFRASTRUCTURE:
 - Cloud CDN for PDF delivery
 
 CONFIGURATION:
+
 - Domain: coa.reggieanddro.com or legal.reggieanddro.com
 - SSL certificate (Let's Encrypt or Google-managed)
 - Environment variables from Secret Manager
@@ -361,6 +388,7 @@ CONFIGURATION:
 - CPU: 2 per service
 
 DEPLOYMENT SCRIPT:
+
 ```bash
 #!/bin/bash
 # Deploy COA services to Cloud Run
@@ -383,23 +411,28 @@ gcloud run domain-mappings create \
 ```
 
 MONITORING:
+
 - Uptime checks every 5 minutes
 - Alert if response time >2 seconds
 - Alert if error rate >1%
 - Log aggregation in Cloud Logging
 
 OUTPUT:
+
 - Deployed services with URLs
 - Health check endpoints
 - Monitoring dashboard
 - Deployment documentation
+
 ```
 
 #### **Prompt 2: Set Up COA Data Pipeline**
 ```
+
 Set up a data pipeline for automatic COA (Certificate of Analysis) ingestion and validation for reggieanddro.com.
 
 PIPELINE STAGES:
+
 1. Ingestion:
    - Cloud Function triggered by email (Gmail API)
    - Extract PDF attachments
@@ -424,6 +457,7 @@ PIPELINE STAGES:
    - Update Lightspeed product via API
 
 INFRASTRUCTURE:
+
 - Cloud Functions (Node.js 20)
 - Cloud Storage bucket (gs://reggieanddro-coa-pdfs)
 - Cloud SQL PostgreSQL or Firestore
@@ -431,22 +465,26 @@ INFRASTRUCTURE:
 - Cloud Scheduler (for periodic checks)
 
 ERROR HANDLING:
+
 - Retry failed PDF parsing (3 attempts)
 - Dead letter queue for failures
 - Alert admin on parsing errors
 - Manual review queue for uncertain results
 
 MONITORING:
+
 - Cloud Monitoring dashboards
 - Alert on pipeline failures
 - Track processing time metrics
 - Log all COA uploads
 
 OUTPUT:
+
 - Complete data pipeline deployed
 - Monitoring dashboards
 - Error handling and alerting
 - Pipeline documentation
+
 ```
 
 ---
@@ -455,6 +493,7 @@ OUTPUT:
 
 #### **Prompt 1: Write Legal Compliance Content**
 ```
+
 Write comprehensive legal compliance content for reggieanddro.com legal/COA page that establishes trust, educates customers, and demonstrates Texas HB 1325 compliance.
 
 CONTENT SECTIONS:
@@ -505,6 +544,7 @@ CONTENT SECTIONS:
    - "100% Lab Tested" guarantee
 
 TONE:
+
 - Professional but approachable
 - Educational without being condescending
 - Transparent and confidence-inspiring
@@ -512,6 +552,7 @@ TONE:
 - Address concerns proactively
 
 SEO KEYWORDS:
+
 - Texas hemp laws
 - HB 1325 compliance
 - Certificate of Analysis
@@ -521,14 +562,17 @@ SEO KEYWORDS:
 - Cannabis compliance
 
 OUTPUT:
+
 - Complete web copy for legal/COA page
 - Meta description and title tags
 - Header hierarchy (H1, H2, H3)
 - Internal linking strategy
+
 ```
 
 #### **Prompt 2: Create COA Customer Education Materials**
 ```
+
 Create customer education materials explaining Certificates of Analysis (COAs) and Texas hemp compliance for reggieanddro.com.
 
 DELIVERABLES:
@@ -574,6 +618,7 @@ DELIVERABLES:
    - Twitter thread: "Texas hemp law basics"
 
 MESSAGING PRINCIPLES:
+
 - Transparency builds trust
 - Education empowers customers
 - Compliance is not optional, it's our standard
@@ -581,10 +626,12 @@ MESSAGING PRINCIPLES:
 - Your safety is our priority
 
 OUTPUT:
+
 - All education materials (PDF, JPG, web copy)
 - Social media calendar (30 days)
 - Email campaign in Mailchimp format
 - Print-ready signage files
+
 ```
 
 ---
@@ -666,6 +713,7 @@ npm install
 ```
 
 ### **For Sonnet 4.5:**
+
 ```bash
 # Create COA API service
 cd backend/coa-service
@@ -675,6 +723,7 @@ touch index.js coa-routes.js pdf-parser.js compliance-validator.js
 ```
 
 ### **For Replit Liv Hana:**
+
 ```bash
 # Deploy COA services
 cd backend/coa-service
@@ -687,6 +736,7 @@ cd backend/coa-service
 ## 📝 TECHNICAL SPECIFICATIONS
 
 ### **API Endpoints:**
+
 ```
 GET  /api/coa/:batch_number          - Get COA by batch
 GET  /api/coa/product/:sku           - Get all COAs for product
@@ -697,6 +747,7 @@ GET  /api/compliance/texas           - Get Texas compliance summary
 ```
 
 ### **Database Schema:**
+
 ```sql
 CREATE TABLE products (
   id SERIAL PRIMARY KEY,
@@ -735,6 +786,7 @@ CREATE TABLE compliance_status (
 ```
 
 ### **Lightspeed Custom Fields:**
+
 ```javascript
 {
   "custom_fields": {
@@ -752,6 +804,7 @@ CREATE TABLE compliance_status (
 ## 🎯 DELIVERABLES CHECKLIST
 
 ### **Cheetah Cursor:**
+
 - [ ] Legal compliance landing page (HTML/CSS/JS)
 - [ ] COA search widget (React component)
 - [ ] Product page COA integration (Lightspeed theme mod)
@@ -759,6 +812,7 @@ CREATE TABLE compliance_status (
 - [ ] Compliance badges and icons
 
 ### **Sonnet 4.5:**
+
 - [ ] COA database schema + migrations
 - [ ] REST API implementation
 - [ ] PDF parsing automation
@@ -766,6 +820,7 @@ CREATE TABLE compliance_status (
 - [ ] Admin dashboard
 
 ### **Replit Liv Hana:**
+
 - [ ] Cloud Run deployments (3 services)
 - [ ] Data pipeline (Cloud Functions)
 - [ ] Domain mapping (legal.reggieanddro.com)
@@ -773,6 +828,7 @@ CREATE TABLE compliance_status (
 - [ ] Backup and disaster recovery
 
 ### **Jesse CEO:**
+
 - [ ] Legal compliance web copy (1,500+ words)
 - [ ] Customer education materials (6 items)
 - [ ] Email campaign (3 emails)
@@ -784,21 +840,25 @@ CREATE TABLE compliance_status (
 ## 💰 BUSINESS IMPACT
 
 ### **Customer Trust:**
+
 - **50% increase** in customer confidence
 - **25% increase** in average order value
 - **10% increase** in repeat purchase rate
 
 ### **Competitive Advantage:**
+
 - **Only cannabis store** in San Antonio with public COA database
 - **Transparent compliance** differentiates from competitors
 - **Professional presentation** attracts premium customers
 
 ### **Legal Protection:**
+
 - **Zero compliance violations** (reduced legal risk)
 - **Documented due diligence** (defensible if audited)
 - **Proactive transparency** (reduces regulatory scrutiny)
 
 ### **Operational Efficiency:**
+
 - **Automated COA management** (saves 10+ hours/week)
 - **Instant compliance verification** (no manual checks)
 - **Customer self-service** (reduces support inquiries)
@@ -818,23 +878,27 @@ CREATE TABLE compliance_status (
 ## 📞 SUPPORT & RESOURCES
 
 ### **Texas Hemp Laws:**
-- Texas HB 1325: https://capitol.texas.gov/tlodocs/86R/billtext/html/HB01325F.HTM
-- USDA Hemp Regulations: https://www.ams.usda.gov/rules-regulations/hemp
-- Texas Department of Agriculture: https://www.texasagriculture.gov/RegulatoryPrograms/IndustrialHemp
+
+- Texas HB 1325: <https://capitol.texas.gov/tlodocs/86R/billtext/html/HB01325F.HTM>
+- USDA Hemp Regulations: <https://www.ams.usda.gov/rules-regulations/hemp>
+- Texas Department of Agriculture: <https://www.texasagriculture.gov/RegulatoryPrograms/IndustrialHemp>
 
 ### **Lab Testing Resources:**
-- ISO 17025 Accredited Labs: https://www.a2la.org/
-- Cannabis Testing Standards: https://www.astm.org/cannabis
+
+- ISO 17025 Accredited Labs: <https://www.a2la.org/>
+- Cannabis Testing Standards: <https://www.astm.org/cannabis>
 
 ### **Lightspeed API:**
-- Developer Portal: https://developers.lightspeedhq.com/retail/
-- API Reference: https://developers.lightspeedhq.com/retail/api/reference/
+
+- Developer Portal: <https://developers.lightspeedhq.com/retail/>
+- API Reference: <https://developers.lightspeedhq.com/retail/api/reference/>
 
 ---
 
 ## 🎉 LAUNCH CHECKLIST
 
 ### **Pre-Launch:**
+
 - [ ] All COAs uploaded and validated
 - [ ] Legal copy reviewed by attorney
 - [ ] Website tested on all devices
@@ -842,6 +906,7 @@ CREATE TABLE compliance_status (
 - [ ] Backup and recovery tested
 
 ### **Launch Day:**
+
 - [ ] Deploy to production
 - [ ] Announce via email blast
 - [ ] Social media announcement
@@ -849,6 +914,7 @@ CREATE TABLE compliance_status (
 - [ ] Monitor for issues
 
 ### **Post-Launch:**
+
 - [ ] Collect customer feedback
 - [ ] Track usage metrics
 - [ ] Iterate on design/UX
@@ -860,6 +926,7 @@ CREATE TABLE compliance_status (
 ## 💪 TRINITY UNITY: BUILD TOGETHER
 
 **Each role is critical:**
+
 - **Cheetah:** Beautiful, functional UI that customers love
 - **Sonnet:** Robust, secure backend that never fails
 - **Replit:** Reliable, scalable infrastructure that just works

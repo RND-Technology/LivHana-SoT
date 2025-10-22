@@ -10,12 +10,15 @@
 ## 🎯 REPOSITORY DESCRIPTION
 
 ### Primary Description
+
 **LivHana-SoT**: Single source of truth, system of thoughts, state of truthfulness - LivHana-SoT only. Tri-une meaning, purpose.
 
 ### Expanded Description
+
 **LivHana-SoT** represents the unified repository that serves as the single source of truth for the entire Liv Hana ecosystem. It embodies a system of thoughts that governs all decision-making, development, and operational processes. This repository maintains the state of truthfulness through rigorous documentation, comprehensive testing, and continuous validation.
 
 The tri-une meaning encompasses:
+
 1. **Single Source of Truth**: All authoritative information, code, and documentation
 2. **System of Thoughts**: Structured approach to problem-solving and innovation
 3. **State of Truthfulness**: Commitment to accuracy, transparency, and integrity
@@ -25,18 +28,21 @@ The tri-une meaning encompasses:
 ## 🏗️ TRI-UNE MEANING & PURPOSE
 
 ### 1. Single Source of Truth (SSoT)
+
 - **Definition**: Centralized repository for all authoritative information
 - **Purpose**: Eliminate information silos and ensure consistency
 - **Scope**: Code, documentation, configurations, and operational procedures
 - **Benefits**: Reduced confusion, improved collaboration, enhanced reliability
 
 ### 2. System of Thoughts (SoT)
+
 - **Definition**: Structured framework for thinking, decision-making, and problem-solving
 - **Purpose**: Ensure consistent approach to challenges and opportunities
 - **Scope**: Strategic planning, technical architecture, and operational excellence
 - **Benefits**: Improved decision quality, faster problem resolution, enhanced innovation
 
 ### 3. State of Truthfulness (SoT)
+
 - **Definition**: Commitment to accuracy, transparency, and integrity in all endeavors
 - **Purpose**: Maintain trust, credibility, and operational excellence
 - **Scope**: Documentation, testing, validation, and continuous improvement
@@ -47,18 +53,21 @@ The tri-une meaning encompasses:
 ## 🔒 HARD CODED RULES
 
 ### Rule 1: Single Source of Truth
+
 - **LivHana-SoT** is the ONLY authoritative repository
 - All other repositories are archives or references
 - No duplicate information across repositories
 - All updates must flow through LivHana-SoT
 
 ### Rule 2: System of Thoughts
+
 - All decisions must follow established thought frameworks
 - Documentation must reflect systematic thinking
 - Code must embody structured problem-solving
 - Operations must follow defined thought processes
 
 ### Rule 3: State of Truthfulness
+
 - All information must be accurate and verifiable
 - Documentation must be complete and current
 - Testing must be comprehensive and reliable
@@ -69,6 +78,7 @@ The tri-une meaning encompasses:
 ## 📋 REPOSITORY STRUCTURE
 
 ### Core Directories
+
 ```
 LivHana-SoT/
 ├── backend/                    # Backend services and APIs
@@ -83,6 +93,7 @@ LivHana-SoT/
 ```
 
 ### Documentation Standards
+
 - **README.md**: Repository overview and getting started
 - **ARCHITECTURE.md**: System architecture and design principles
 - **DEPLOYMENT.md**: Deployment procedures and configurations
@@ -94,12 +105,15 @@ LivHana-SoT/
 ## 🎯 PURPOSE STATEMENT
 
 ### Mission
+
 To serve as the single source of truth for the Liv Hana ecosystem, providing a system of thoughts that guides all development and operational activities while maintaining a state of truthfulness in all endeavors.
 
 ### Vision
+
 A unified repository that embodies excellence, innovation, and integrity, serving as the foundation for all Liv Hana operations and ensuring consistent, reliable, and truthful outcomes.
 
 ### Values
+
 - **Truth**: Accuracy and transparency in all information
 - **Excellence**: High standards in all work and deliverables
 - **Innovation**: Continuous improvement and creative problem-solving
@@ -111,18 +125,21 @@ A unified repository that embodies excellence, innovation, and integrity, servin
 ## 🔄 CONTINUOUS IMPROVEMENT
 
 ### Regular Reviews
+
 - Monthly architecture reviews
 - Quarterly documentation audits
 - Annual system assessments
 - Continuous feedback integration
 
 ### Quality Assurance
+
 - Automated testing and validation
 - Code review and quality checks
 - Documentation accuracy verification
 - Performance monitoring and optimization
 
 ### Knowledge Management
+
 - Regular training and education
 - Best practices documentation
 - Lessons learned capture
@@ -133,6 +150,7 @@ A unified repository that embodies excellence, innovation, and integrity, servin
 ## 📊 SUCCESS METRICS
 
 ### Technical Metrics
+
 - **Code Quality**: 95%+ test coverage
 - **Documentation**: 100% API documentation
 - **Performance**: <3 second response times
@@ -140,6 +158,7 @@ A unified repository that embodies excellence, innovation, and integrity, servin
 - **Security**: Zero security vulnerabilities
 
 ### Operational Metrics
+
 - **Deployment**: 100% successful deployments
 - **Monitoring**: Real-time system visibility
 - **Alerting**: <5 minute response times
@@ -147,6 +166,7 @@ A unified repository that embodies excellence, innovation, and integrity, servin
 - **Compliance**: 100% regulatory adherence
 
 ### Business Metrics
+
 - **User Satisfaction**: 95%+ satisfaction scores
 - **System Adoption**: 100% team adoption
 - **Knowledge Transfer**: 100% documentation coverage
@@ -158,6 +178,7 @@ A unified repository that embodies excellence, innovation, and integrity, servin
 ## 🚀 IMPLEMENTATION GUIDELINES
 
 ### Development Standards
+
 - Follow established coding conventions
 - Implement comprehensive testing
 - Maintain detailed documentation
@@ -165,6 +186,7 @@ A unified repository that embodies excellence, innovation, and integrity, servin
 - Optimize for performance
 
 ### Documentation Requirements
+
 - Clear and concise language
 - Comprehensive coverage
 - Regular updates and maintenance
@@ -172,6 +194,7 @@ A unified repository that embodies excellence, innovation, and integrity, servin
 - Version control and history
 
 ### Quality Assurance
+
 - Automated testing pipelines
 - Code review processes
 - Performance monitoring

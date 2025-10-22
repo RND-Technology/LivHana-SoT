@@ -48,7 +48,7 @@ extract_1password_value() {
     
     # Get the item and extract the specific field
     local value
-    value=$(op item get "$item_name" --format json | jq -r ".fields[] | select(.label == \"$field_label\") | .value")
+    value=$(op item get "$item_name" --vault LivHana-Ops-Keys --format json | jq -r ".fields[] | select(.label == \"$field_label\") | .value")
     
     if [[ "$value" == "null" || -z "$value" ]]; then
         echo "❌ No value found for $field_label in $item_name"

@@ -13,7 +13,8 @@
 
 **Use instead**: `docs/OPENAI_AGENT_BUILDER_MCP_SETUP.md`
 
-### Key Corrections:
+### Key Corrections
+
 1. ❌ Token prefix `op_` → ✅ Token prefix `ops_` (OpenAI Platform Service)
 2. ❌ Direct curl testing → ✅ Test through OpenAI Agent Builder only
 3. ❌ `/health` endpoint → ✅ Use `/mcp/invoke` via Agent Builder
@@ -66,12 +67,14 @@ op item list | grep -i mcp
 ### Current Setup (from your screenshot)
 
 **MCP Broker Details:**
+
 - **URL**: `https://mcp-broker-prod-9809f04432sl.us-central1.run.app`
 - **Endpoint**: `/mcp/invoke` (Cloud Run service)
 - **Authentication**: Bearer token (prefix: `op_`)
 - **Service Account**: `op_sa_mcp`
 
 **OpenAI Agent Builder:**
+
 - **Agent Name**: `LivHana.Ingest`
 - **Model**: `gpt-5-pro-2025-10-06`
 - **Mode**: Planning-only (correct for orchestration layer)
@@ -82,6 +85,7 @@ op item list | grep -i mcp
 ## 🧪 Test Scenarios
 
 ### Test 1: Health Check
+
 **Purpose**: Verify MCP broker is running and accessible
 **Expected**: HTTP 200 response with health status
 
@@ -91,11 +95,13 @@ curl -H "Authorization: Bearer $MCP_BROKER_TOKEN" \
 ```
 
 **Success Criteria**:
+
 - HTTP 200 status
 - JSON response with service health
 - Response time < 2 seconds
 
 ### Test 2: List Available Tools
+
 **Purpose**: Verify MCP tools are configured
 **Expected**: List of available tools (sot_read, sot_write, etc.)
 
@@ -106,6 +112,7 @@ curl -H "Authorization: Bearer $MCP_BROKER_TOKEN" \
 ```
 
 **Expected Tools** (from your architecture):
+
 - `sot_read` - Read files from LivHana-SoT
 - `sot_write` - Create/update files in LivHana-SoT
 - `sot_pr_create` - Submit changes via pull request
@@ -124,6 +131,7 @@ curl -H "Authorization: Bearer $MCP_BROKER_TOKEN" \
 - `leafly_sync` - Trigger Lightspeed → Leafly sync
 
 ### Test 3: Invoke MCP Tool
+
 **Purpose**: Test actual tool execution
 **Expected**: Successful tool invocation with response
 
@@ -136,6 +144,7 @@ curl -X POST \
 ```
 
 **Success Criteria**:
+
 - HTTP 200 status
 - Returns content of docs/INDEX.md
 - No authentication errors
@@ -147,6 +156,7 @@ curl -X POST \
 ### Verified Components
 
 **Repository Structure** ✅
+
 ```
 LivHana-SoT/
 ├── backend/              # API layer, AlloyDB integration
@@ -172,6 +182,7 @@ LivHana-SoT/
 ```
 
 **Git Remote** ✅
+
 ```
 origin  git@github.com:RND-Technology/LivHana-SoT.git (fetch)
 origin  git@github.com:RND-Technology/LivHana-SoT.git (push)
@@ -180,6 +191,7 @@ origin  git@github.com:RND-Technology/LivHana-SoT.git (push)
 ### Missing (Need Creation)
 
 **Meta Source of Truth Files** ⏳
+
 - `docs/gpt_master_canvas_updated.md` - Meta SoT (you mentioned this)
 - `docs/glue_index.md` - Cross-layer references (INDEX.md serves similar purpose)
 - `docs/ops_policy_glossary.md` - OPS policy definitions
@@ -192,12 +204,14 @@ origin  git@github.com:RND-Technology/LivHana-SoT.git (push)
 ## 🔐 Security Considerations
 
 ### Bearer Token Management ✅
+
 - **Storage**: 1Password vault (correct)
 - **Format**: `op_` prefix (service account pattern)
 - **Scope**: MCP broker access only
 - **Rotation**: Should be rotated periodically
 
 ### Best Practices
+
 1. **Never commit tokens** to git
 2. **Use environment variables** for local testing
 3. **Use 1Password CLI** for production
@@ -209,6 +223,7 @@ origin  git@github.com:RND-Technology/LivHana-SoT.git (push)
 ## 🚦 Validation Checklist
 
 ### Pre-Flight Checks
+
 - [ ] 1Password CLI installed (`brew install --cask 1password-cli`)
 - [ ] Signed into 1Password (`op signin`)
 - [ ] MCP broker token accessible
@@ -216,18 +231,21 @@ origin  git@github.com:RND-Technology/LivHana-SoT.git (push)
 - [ ] LivHana-SoT repository cloned and up-to-date
 
 ### Connection Tests
+
 - [ ] Health check passes (HTTP 200)
 - [ ] Tools list retrieves successfully
 - [ ] Tool invocation works (`sot_read`)
 - [ ] Authentication validated (no 401/403 errors)
 
 ### Repository Access
+
 - [ ] Git remote points to RND-Technology/LivHana-SoT
 - [ ] All canonical directories exist
 - [ ] Critical files accessible (docs/INDEX.md, etc.)
 - [ ] Evidence logging directory present
 
 ### OpenAI Agent Builder Config
+
 - [ ] MCP broker URL configured
 - [ ] Bearer token added
 - [ ] Tool approval gates enabled
@@ -243,9 +261,11 @@ origin  git@github.com:RND-Technology/LivHana-SoT.git (push)
 **Objective**: Validate full OpenAI Agent Builder → MCP Broker → LivHana-SoT flow
 
 **Steps**:
+
 1. Open OpenAI Agent Builder
 2. Select `LivHana.Ingest` agent
 3. Enter test query:
+
    ```
    Read docs/INDEX.md and summarize the documentation structure.
    Then check docs/RPM_WEEKLY_PLAN_OCT4-12_2025.md and extract
@@ -253,6 +273,7 @@ origin  git@github.com:RND-Technology/LivHana-SoT.git (push)
    ```
 
 **Expected Behavior**:
+
 1. Agent Builder sends MCP request to broker
 2. MCP broker authenticates with bearer token
 3. Broker invokes `sot_read` tool for docs/INDEX.md
@@ -261,6 +282,7 @@ origin  git@github.com:RND-Technology/LivHana-SoT.git (push)
 6. Agent processes and responds with summary + top 3 priorities
 
 **Success Criteria**:
+
 - ✅ No authentication errors
 - ✅ Files retrieved successfully
 - ✅ Response includes accurate document summary
@@ -275,6 +297,7 @@ origin  git@github.com:RND-Technology/LivHana-SoT.git (push)
 ### GCP Cloud Run Logs
 
 View MCP broker logs:
+
 ```bash
 gcloud logging read \
   "resource.type=cloud_run_revision AND resource.labels.service_name=mcp-broker-prod" \
@@ -286,18 +309,22 @@ gcloud logging read \
 ### Common Issues
 
 **Issue 1: 401 Unauthorized**
+
 - **Cause**: Invalid or expired bearer token
 - **Fix**: Regenerate token in 1Password, update environment variable
 
 **Issue 2: 404 Not Found (tools endpoint)**
+
 - **Cause**: MCP broker may use different endpoint structure
 - **Fix**: Try `/mcp/invoke` with `{"method": "tools/list"}` payload
 
 **Issue 3: 500 Internal Server Error**
+
 - **Cause**: MCP broker crashed or misconfigured
 - **Fix**: Check GCP Cloud Run logs, restart service if needed
 
 **Issue 4: Tool invocation fails**
+
 - **Cause**: LivHana-SoT repository access issue
 - **Fix**: Verify GitHub credentials in MCP broker environment variables
 
@@ -306,15 +333,18 @@ gcloud logging read \
 ## 📁 Related Files
 
 **Test Scripts**:
+
 - `scripts/test-mcp-broker.sh` - Full automated test (requires 1Password CLI)
 - `scripts/test-mcp-broker-quick.sh` - Quick test (uses env variable)
 
 **Documentation**:
+
 - `docs/AGENT_BUILDER_HANDOFF.md` - OpenAI Agent Builder setup guide
 - `docs/INDEX.md` - Documentation hub (43 files indexed)
 - `docs/RPM_WEEKLY_PLAN_OCT4-12_2025.md` - Current RPM plan
 
 **Integration**:
+
 - `docs/CHATGPT_FUSION_READY.md` - ChatGPT Team fusion system (parallel effort)
 - `docs/CHAT_EXPORT_INSTRUCTIONS.md` - Chat history export guide
 
@@ -323,17 +353,20 @@ gcloud logging read \
 ## 🚀 Next Steps
 
 ### Immediate (Priority 1)
+
 1. Run quick connection test: `./scripts/test-mcp-broker-quick.sh`
 2. Verify health check passes
 3. Confirm bearer token authentication works
 
 ### Short-term (Priority 2)
+
 1. Configure 1Password CLI for secure token access
 2. Run full test suite: `./scripts/test-mcp-broker.sh`
 3. Test end-to-end RPM query in OpenAI Agent Builder
 4. Monitor GCP Cloud Run logs for successful invocations
 
 ### Medium-term (Priority 3)
+
 1. Create missing Meta SoT files (gpt_master_canvas_updated.md, etc.)
 2. Document actual MCP tool manifest (what tools are really available)
 3. Set up automated monitoring/alerts for MCP broker health

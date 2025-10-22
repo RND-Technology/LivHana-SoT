@@ -4,6 +4,7 @@
 **Can run:** While waiting for SSL provisioning
 
 **Actions:**
+
 ```bash
 # Execute the correct solution script
 cd scripts
@@ -17,12 +18,14 @@ cd scripts
 ```
 
 **Expected outcome:**
+
 - DNS propagation: 10-30 minutes
 - Each domain returns 8 IPs (not 1)
 - Proper load distribution ✅
 - Improved redundancy ✅
 
 **Verification:**
+
 ```bash
 $ dig +short aaacbdhempflower.com A
 34.143.72.2

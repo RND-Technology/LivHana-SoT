@@ -1,6 +1,7 @@
 ### B. Video Specifications
 
 **Final Video Output:**
+
 - **Resolution:** 1920x1080 (1080p)
 - **Frame Rate:** 30 fps
 - **Codec:** H.264 (libx264)
@@ -9,6 +10,7 @@
 - **Optimization:** Fast start enabled
 
 **FFmpeg Settings:**
+
 - **Preset:** slow (high quality)
 - **CRF:** 20 (high quality)
 - **Profile:** high

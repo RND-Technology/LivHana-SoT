@@ -1,6 +1,8 @@
 ### 4. Reggie & Dro Cannabis Store & Social Club (8% Market Share)
+
 **Position:** Members-only dispensary with onsite consumption lounge  
 **Strengths:**
+
 - Unique onsite consumption lounge
 - Community-focused approach
 - Free legal weed pioneer in Texas
@@ -9,6 +11,7 @@
 - Central San Antonio location
 
 **Weaknesses:**
+
 - Members-only barrier to entry
 - Limited accessibility
 - No specific pricing mentioned

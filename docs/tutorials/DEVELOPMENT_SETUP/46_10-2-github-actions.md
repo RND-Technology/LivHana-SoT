@@ -1,4 +1,5 @@
 ### 10.2 GitHub Actions
+
 ```bash
 # Check GitHub Actions status
 gh run list

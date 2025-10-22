@@ -6,11 +6,13 @@
 **Resolved**: [Timestamp]
 
 **Impact**:
+
 - Services affected:
 - Users affected:
 - Business impact:
 
 **Timeline**:
+
 - [Time] - Incident detected
 - [Time] - Investigation started
 - [Time] - Root cause identified
@@ -25,10 +27,12 @@
 [What was done to fix]
 
 **Action Items**:
+
 - [ ] Post-mortem scheduled
 - [ ] Monitoring improved
 - [ ] Documentation updated
 - [ ] Preventive measures implemented
+
 ```
 
 ---

@@ -1,4 +1,5 @@
 #### **Prompt 1: Build COA Database & API**
+
 ```
 Build a Certificate of Analysis (COA) management system with REST API for reggieanddro.com Lightspeed integration.
 
@@ -39,14 +40,17 @@ function isTexasCompliant(coa) {
 ```
 
 VALIDATION:
+
 - All products must have valid COA
 - COAs must be <1 year old
 - Lab must be 3rd-party certified
 - All contaminant tests must pass
 
 OUTPUT:
+
 - Complete API implementation
 - Database schema with migrations
 - API documentation
 - Admin dashboard for COA management
+
 ```

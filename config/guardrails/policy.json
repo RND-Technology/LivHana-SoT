@@ -7,14 +7,14 @@
     "Kaja pending",
     "LightSpeed setup needed",
     "Veriff operational without UX issues",
-    "Jumio superior to Veriff",
+    "Veriff superior to Veriff",
     "Custom MCP broker"
   ],
   "providers": {
     "age_verification": {
       "primary": "Veriff",
       "fallback": "BlueCheck",
-      "deprecated": ["Jumio"]
+      "deprecated": ["Veriff"]
     }
   }
 }

@@ -4,6 +4,7 @@
 **Modern Educational Cartoon** - Bold, clean, mobile-optimized animation inspired by Kurzgesagt and TED-Ed, infused with Texas personality and western aesthetic.
 
 **Key Characteristics:**
+
 1. **Bold Outlines:** Thick black outlines (3-5px at 1080p) for clarity on small screens
 2. **Simplified Shapes:** Geometric, streamlined forms for fast visual recognition
 3. **Flat Colors:** Minimal gradients, mostly solid colors with selective shading

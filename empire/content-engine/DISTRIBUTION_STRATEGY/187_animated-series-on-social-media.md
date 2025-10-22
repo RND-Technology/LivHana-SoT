@@ -15,12 +15,14 @@
    - Cross-platform distribution
 
 **Key Metrics**:
+
 - Short-form videos earn 2.5x more engagement than long-form
 - YouTube Shorts: 90 billion daily views (2025)
 - Engagement rate: 5.91% (highest among platforms)
 - Subscriber conversion: ~16.9 per 10K views
 
 **Lessons for HNC**:
+
 - Animation is competitive advantage
 - Series format builds anticipation
 - Character development drives loyalty

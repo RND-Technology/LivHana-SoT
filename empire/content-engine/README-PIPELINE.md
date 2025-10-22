@@ -16,6 +16,7 @@ cd empire/content-engine
 ```
 
 This will:
+
 - Check prerequisites (Node.js 18+, FFmpeg, Google Cloud SDK)
 - Create directory structure
 - Setup environment variables template
@@ -199,6 +200,7 @@ node video-production-pipeline.test.mjs
 ```
 
 Tests include:
+
 - Unit tests for all components
 - Integration tests for full pipeline
 - Performance benchmarks
@@ -231,6 +233,7 @@ output/metrics/episode_001_metrics.json
 ```
 
 Contains:
+
 - API call counts per service
 - Cost breakdown
 - Processing duration per step
@@ -246,6 +249,7 @@ output/production-log.json
 ```
 
 Track:
+
 - Success/failure rates
 - Total costs
 - Processing times
@@ -258,6 +262,7 @@ Track:
 ### Common Issues
 
 **API Key Not Configured**
+
 ```bash
 # Check environment
 echo $ELEVENLABS_API_KEY
@@ -267,6 +272,7 @@ export ELEVENLABS_API_KEY=your-key
 ```
 
 **FFmpeg Not Found**
+
 ```bash
 # macOS
 brew install ffmpeg
@@ -276,16 +282,19 @@ sudo apt install ffmpeg
 ```
 
 **Rate Limit Hit**
+
 - Pipeline automatically waits and retries
 - Avoid `--parallel` flag for large batches
 - Check rate limits in `.env`
 
 **D-ID Timeout**
+
 - Videos take 30-60 seconds to process
 - Pipeline polls automatically
 - Check D-ID dashboard for status
 
 **GCS Upload Failed**
+
 ```bash
 # Authenticate
 gcloud auth login
@@ -374,6 +383,7 @@ For issues or questions:
 ## Version History
 
 ### v2.0.0 (2025-10-07)
+
 - Production-ready API integrations
 - Full retry logic and rate limiting
 - Cost tracking and metrics
@@ -382,6 +392,7 @@ For issues or questions:
 - Complete documentation
 
 ### v1.0.0
+
 - Initial placeholder implementation
 
 ---

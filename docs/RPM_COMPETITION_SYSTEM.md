@@ -9,6 +9,7 @@
 ## 🎯 **MISSION**
 
 Systematically measure, score, and track ALL predictions (human + AI) with:
+
 - **ROI/$/Day as KING** metric
 - **Passive Cash Flow RULING** business decisions
 - **Within values/results/purpose guardrails**
@@ -19,11 +20,13 @@ Systematically measure, score, and track ALL predictions (human + AI) with:
 ## 👑 **THE KING METRIC**
 
 ### **ROI Per Day**
+
 ```
 ROI/$/Day = (Actual Profit - Actual Cost) / Actual Days Elapsed
 ```
 
 **Why This is King:**
+
 - Measures SPEED of value delivery
 - Normalizes projects of different sizes
 - Prioritizes high-velocity wins
@@ -36,11 +39,13 @@ ROI/$/Day = (Actual Profit - Actual Cost) / Actual Days Elapsed
 ## 👑 **THE RULER METRIC**
 
 ### **Passive Cash Flow**
+
 ```
 Passive Cash Flow = Monthly Recurring Revenue - Monthly Fixed Costs
 ```
 
 **Why This Rules Business Decisions:**
+
 - Sustainability > one-time gains
 - Compound effect over time
 - Protects the $1.148M annual revenue base
@@ -61,6 +66,7 @@ Every prediction tracks 3 dimensions:
 | **ROI Accuracy** | `1 - abs(projected_roi - actual_roi) / projected_roi` | 40% | 65% |
 
 **Composite Score:**
+
 ```
 Composite = (Timeframe × 0.30) + (Cost × 0.30) + (ROI × 0.40)
 ```
@@ -83,11 +89,13 @@ Composite = (Timeframe × 0.30) + (Cost × 0.30) + (ROI × 0.40)
 ## 🤝 **COMPETITORS**
 
 ### **Humans**
+
 1. **Jesse Niesen** (CEO) - Strategic vision, market timing
 2. **Andrew** (Director Ops) - Operations, execution timeframes
 3. **Christopher** (CSO) - Financial accuracy, cost control
 
 ### **AI Models**
+
 1. **Liv Hana (Cursor/Claude Sonnet 4.5)** - Technical execution, architecture
 2. **ChatGPT (GPT-4/o1)** - Strategic planning, reasoning
 3. **Replit Agent** - Rapid prototyping, deployment
@@ -99,16 +107,19 @@ Composite = (Timeframe × 0.30) + (Cost × 0.30) + (ROI × 0.40)
 ## 🎮 **COMPETITION TYPES**
 
 ### **1. Self Competition**
+
 - Compete against your own historical baseline
 - **Cadence:** Continuous
 - **Bonuses:** +5% improvement, +3% consistency
 
 ### **2. Peer Competition**
+
 - Humans vs Humans, AI vs AI
 - **Cadence:** Daily
 - **Leaderboards:** Category-specific
 
 ### **3. Cross Competition**
+
 - All competitors (human + AI) together
 - **Cadence:** Weekly
 - **Leaderboards:** Global
@@ -129,18 +140,21 @@ Composite = (Timeframe × 0.30) + (Cost × 0.30) + (ROI × 0.40)
 ### **Decision Matrix**
 
 **GO ✅**
+
 - Passive Cash Flow ≥ $0
 - ROI Per Day ≥ $100
 - Guardrails = True
 - Accuracy ≥ 70%
 
 **GO WITH CAUTION ⚠️**
+
 - Passive Cash Flow ≥ -$10K
 - ROI Per Day ≥ $50
 - Guardrails = True
 - Accuracy ≥ 60%
 
 **NO GO 🔴**
+
 - Passive Cash Flow < -$10K OR
 - ROI Per Day < $50 OR
 - Guardrails = False OR
@@ -162,15 +176,18 @@ Composite = (Timeframe × 0.30) + (Cost × 0.30) + (ROI × 0.40)
 ## 🛡️ **GUARDRAILS (Values/Results/Purpose)**
 
 ### **Values**
+
 - **LifeWard Standard:** All predictions must protect people
 - **TRUTH Framework:** All actuals must be TRUTH-verified
 
 ### **Results**
+
 - Minimum ROI/$/Day: $50
 - Minimum Passive Cash Flow: -$10K
 - Minimum Prediction Accuracy: 60%
 
 ### **Purpose**
+
 - Every decision serves: **Grow, Sell & Heal**
 - Mission tags: revenue_recovery, compliance_protection, team_efficiency, customer_satisfaction, operational_excellence
 
@@ -179,16 +196,19 @@ Composite = (Timeframe × 0.30) + (Cost × 0.30) + (ROI × 0.40)
 ## 🔄 **AUTOMATION (Baked into 3-Agent Foundation)**
 
 ### **RPM Planning Agent**
+
 - **Captures predictions** when RPM card emitted
 - **Tracks actuals** when tasks completed
 - **Updates hourly progress** automatically
 
 ### **QA Agent**
+
 - **Calculates scores** when actuals recorded
 - **Generates leaderboards** daily/weekly
 - **Validates guardrails** continuously
 
 ### **Research Agent**
+
 - **Runs business decision engine** after scoring
 - **Emits recommendations** (GO/CAUTION/NO_GO)
 - **Updates baselines** monthly
@@ -198,16 +218,19 @@ Composite = (Timeframe × 0.30) + (Cost × 0.30) + (ROI × 0.40)
 ## 📈 **LEADERBOARDS**
 
 ### **Daily Dashboard** (`/rpm/leaderboard/daily`)
+
 - **Metrics:** ROI/$/Day, Composite Score, Accuracy Trend
 - **Categories:** All, Humans, AI Models
 - **Updates:** Every 24 hours
 
 ### **Weekly Dashboard** (`/rpm/leaderboard/weekly`)
+
 - **Metrics:** Total ROI Delivered, Avg Composite Score, Consistency
 - **Awards:** 🏆 Best ROI/$/Day, Most Accurate, Most Improved, Highest Passive Cash Flow
 - **Updates:** Every 7 days
 
 ### **Self-Improvement Dashboard** (`/rpm/leaderboard/self-improvement`)
+
 - **Metrics:** Improvement Rate, Consistency, Learning Velocity
 - **Shows:** Historical trend graphs
 - **Updates:** Continuous
@@ -217,6 +240,7 @@ Composite = (Timeframe × 0.30) + (Cost × 0.30) + (ROI × 0.40)
 ## 🎯 **USAGE**
 
 ### **Record Prediction**
+
 ```python
 from scripts.rpm_competition_engine import RPMCompetitionEngine
 
@@ -237,6 +261,7 @@ prediction_id = engine.record_prediction(
 ```
 
 ### **Record Actual**
+
 ```python
 actual_id, score = engine.record_actual(
     prediction_id=prediction_id,
@@ -255,6 +280,7 @@ print(f"Business Decision: {score['business_decision']}")
 ```
 
 ### **Generate Leaderboard**
+
 ```bash
 python3 scripts/rpm_competition_engine.py generate_leaderboard weekly all
 ```
@@ -276,6 +302,7 @@ Every Sunday, awards announced:
 ## 📊 **DATA SCHEMA**
 
 ### **Prediction**
+
 ```json
 {
   "prediction_id": "uuid",
@@ -291,6 +318,7 @@ Every Sunday, awards announced:
 ```
 
 ### **Actual**
+
 ```json
 {
   "actual_id": "uuid",
@@ -304,6 +332,7 @@ Every Sunday, awards announced:
 ```
 
 ### **Score**
+
 ```json
 {
   "score_id": "uuid",
@@ -324,18 +353,22 @@ Every Sunday, awards announced:
 ## 🎼 **RPM DNA INTEGRATION**
 
 ### **Result**
+
 - **Measurement:** `projected_result vs actual_result`
 - **Scoring:** `result_achievement_pct = (actual / projected)`
 
 ### **Purpose**
+
 - **Measurement:** `purpose_alignment_score`
 - **Scoring:** Qualitative assessment (0-1) by team + guardrails
 
 ### **Massive Actions**
+
 - **Measurement:** `actions_completed / actions_planned`
 - **Scoring:** `completion_rate + velocity_bonus`
 
 ### **Validation**
+
 - **Measurement:** `validation_checks_passed / validation_checks_total`
 - **Scoring:** `validation_pass_rate`
 
@@ -344,6 +377,7 @@ Every Sunday, awards announced:
 ## ✅ **SUCCESS CRITERIA**
 
 This system succeeds when:
+
 1. ✅ Every prediction is tracked
 2. ✅ Every completion updates actuals
 3. ✅ Scores calculated automatically
@@ -356,9 +390,9 @@ This system succeeds when:
 ---
 
 **Files:**
+
 - Config: `config/rpm_competition_framework.json`
 - Engine: `scripts/rpm_competition_engine.py`
 - Docs: `docs/RPM_COMPETITION_SYSTEM.md` (this file)
 
 🎯 **SYSTEMATICALLY RPM DNA BAKED IN** ✅
-

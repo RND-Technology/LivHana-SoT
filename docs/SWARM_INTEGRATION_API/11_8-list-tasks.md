@@ -5,16 +5,19 @@ Get a filtered list of all tasks.
 **Endpoint:** `GET /api/swarm/tasks`
 
 **Headers:**
+
 ```
 X-API-Key: test
 ```
 
 **Query Parameters:**
+
 - `status` (optional): Filter by status (`queued`, `assigned`, `in_progress`, `completed`, `failed`)
 - `agent` (optional): Filter by assigned agent ID
 - `limit` (optional): Maximum number of tasks to return (default: 100)
 
 **Response:** `200 OK`
+
 ```json
 {
   "success": true,
@@ -45,6 +48,7 @@ X-API-Key: test
 ```
 
 **Examples:**
+
 ```bash
 # All tasks
 curl -H "X-API-Key: test" \

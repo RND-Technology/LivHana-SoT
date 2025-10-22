@@ -11,6 +11,7 @@ purpose: Complete brand asset production playbook for #1 AI music YouTube channe
 ## 🎯 MISSION
 
 Build the #1 faceless AI music YouTube channel dropping **hit songs daily** with:
+
 - **AI Jesse** on vocals
 - **Liv Hana** (co-vocalist)
 - **"My Dogs"** (TPOP avatar band members)
@@ -25,6 +26,7 @@ Build the #1 faceless AI music YouTube channel dropping **hit songs daily** with
 ### Brand Voice (Jesse CEO Authentic)
 
 **Signature Catchphrases:**
+
 - "Yo, I'm faking it til I make it..."
 - "Stay TOONED for more bangers!"
 - "COAs or GTFO" (quality standards)
@@ -34,6 +36,7 @@ Build the #1 faceless AI music YouTube channel dropping **hit songs daily** with
 - "Facts over optics"
 
 **Communication Style:**
+
 - Direct Texas swagger ("Yo, let me tell you something...")
 - Confident entrepreneur hustle
 - Educational but never preachy
@@ -44,12 +47,14 @@ Build the #1 faceless AI music YouTube channel dropping **hit songs daily** with
 ### Visual Brand DNA
 
 **Color Palette:**
+
 - **Primary**: Sage Green (#8A9A5B), Burnt Orange (#BF5700)
 - **Supporting**: Dark denim blue, Leather brown
 - **Accents**: Clean white, Gold (success/empire)
 - **Mood**: Texas authentic meets AI future
 
 **Aesthetic:**
+
 - Professional but approachable
 - Modern clean style (not cartoonish)
 - Texas iconography (desert, hemp fields, urban Austin)
@@ -64,6 +69,7 @@ Build the #1 faceless AI music YouTube channel dropping **hit songs daily** with
 **Format:** 60-second hooks (TikTok/Shorts), 3-minute full songs
 
 **Core Themes:**
+
 1. **Fake It Til Ya Make It** - Entrepreneur hustle, building from scratch
 2. **Cannabis Liberation** - Deschedule, hemp revolution, compliance wins
 3. **AI Automation** - Future of work, tech democratization
@@ -75,12 +81,14 @@ Build the #1 faceless AI music YouTube channel dropping **hit songs daily** with
 ## 🎭 CHARACTER LINEUP
 
 ### 1. AI Jesse (Lead Vocals)
+
 **Role:** Front man, CEO energy, main storyteller
 **Personality:** Confident Texas entrepreneur, 27 years cannabis experience, AI obsessed
 **Voice:** Warm, direct, educational but entertaining
 **Visual:** Early 40s, rolled-up sleeves, sage green or burnt orange shirt, dark jeans, leather boots
 
 ### 2. Liv Hana (Co-Vocalist/Harmony)
+
 **Role:** AI companion, female perspective, reasoning engine
 **Personality:** Intelligent, supportive, sharp wit
 **Voice:** Professional but warm, analytical meets creative
@@ -91,21 +99,25 @@ Build the #1 faceless AI music YouTube channel dropping **hit songs daily** with
 **Band Member Archetypes:**
 
 **A. "Data Dog" - Lead Guitar**
+
 - Personality: Analytical, precision-focused, optimization obsessed
 - TPOP Category: Data/Mission
 - Visual: Tech gear, graphs on clothing, futuristic
 
 **B. "Empire Dog" - Drums**
+
 - Personality: Ambitious, driving force, rhythm keeper
 - TPOP Category: Future/Empire
 - Visual: Crown elements, regal but streetwise
 
 **C. "Strategy Dog" - Bass**
+
 - Personality: Calculated, business-minded, foundation builder
 - TPOP Category: Business/Strategy
 - Visual: Professional casual, blueprint patterns
 
 **D. "Quality Dog" - Keyboards/Synth**
+
 - Personality: Perfectionist, testing obsessed, standards enforcer
 - TPOP Category: Quality indicators
 - Visual: Lab coat elements, COA certificates motif
@@ -115,34 +127,41 @@ Build the #1 faceless AI music YouTube channel dropping **hit songs daily** with
 ## 🛠️ PRODUCTION TOOL STACK
 
 ### Image Generation: **Midjourney v6**
+
 **Why:** Industry-leading photorealistic quality, consistent character generation
 **Use Cases:** Character sheets, album art, thumbnails, promotional stills
 **Cost:** $30/month Standard plan (unlimited relaxed gen)
 
 ### Video Generation: **Runway Gen-3 Alpha**
+
 **Why:** Best animation quality, camera controls, physics simulation for music videos
 **Use Cases:** Animated music videos, lyric videos, promotional clips
 **Cost:** $12-95/month (usage-based)
 
 ### Music Generation: **Suno AI v4**
+
 **Why:** Best AI music quality, custom lyrics, genre flexibility
 **Use Cases:** All song production, instrumentals, voice synthesis
 **Cost:** $10-30/month
 
 ### Video Editing: **Adobe Premiere Pro + AI Plugins**
+
 **Why:** Professional standard, AI auto-edit features
 **Backup:** DaVinci Resolve (free tier)
 **Cost:** $23/month
 
 ### Thumbnail Design: **Canva Pro + Photoshop**
+
 **Why:** Fast templates + professional polish
 **Cost:** $13/month (Canva)
 
 ### YouTube Optimization: **TubeBuddy + VidIQ**
+
 **Why:** SEO analysis, A/B testing, keyword research
 **Cost:** $9-39/month combined
 
 ### Workflow Automation: **Make.com (Integromat)**
+
 **Why:** Connect all tools, auto-publish workflow
 **Cost:** $9/month starter
 
@@ -161,6 +180,7 @@ Professional male vocalist in early 40s, confident CEO personality, short brown 
 ```
 
 **Variations for Different Expressions:**
+
 - **Performing:** "singing passionately into vintage microphone, eyes closed, emotional delivery"
 - **Confident:** "arms crossed, slight smile, direct eye contact with camera"
 - **Explaining:** "gesturing with hands, animated expression, teacher energy"
@@ -181,21 +201,25 @@ Professional female AI assistant avatar, late 20s-early 30s, intelligent and con
 **Specific Band Members:**
 
 **Data Dog (Lead Guitar):**
+
 ```
 Lead guitarist band member avatar, anthropomorphic Border Collie with intelligent expression, wearing tech vest with data visualization patterns, holding electric guitar with LED fretboard, analytical and focused personality, futuristic music studio with floating screens showing analytics, sage green and burnt orange accents, photorealistic, cinematic lighting, 8k quality --ar 16:9 --style raw --v 6.1
 ```
 
 **Empire Dog (Drums):**
+
 ```
 Drummer band member avatar, anthropomorphic German Shepherd with regal commanding presence, wearing leather jacket with crown emblem patches, sitting at premium drum kit, ambitious and powerful energy, luxury recording studio with skyline view, sage green and burnt orange accents, photorealistic, dramatic lighting, 8k quality --ar 16:9 --style raw --v 6.1
 ```
 
 **Strategy Dog (Bass):**
+
 ```
 Bass guitarist band member avatar, anthropomorphic Labrador with business-savvy expression, wearing professional button-down with blueprint patterns, holding custom bass guitar, calculated and steady demeanor, modern studio with architectural elements, sage green and burnt orange accents, photorealistic, cinematic lighting, 8k quality --ar 16:9 --style raw --v 6.1
 ```
 
 **Quality Dog (Keyboards/Synth):**
+
 ```
 Keyboardist band member avatar, anthropomorphic Golden Retriever with perfectionist focused expression, wearing stylish vest with COA certificate badges, at modular synthesizer setup with vintage and modern elements, meticulous attention to detail energy, high-tech studio with testing equipment displays, sage green and burnt orange accents, photorealistic, cinematic lighting, 8k quality --ar 16:9 --style raw --v 6.1
 ```
@@ -203,21 +227,25 @@ Keyboardist band member avatar, anthropomorphic Golden Retriever with perfection
 ### Album Art / Thumbnail Templates
 
 #### Template 1: Band Lineup Shot
+
 ```
 "FAKE IT Til Ya MAKE IT" band full lineup, AI Jesse lead vocalist center front with microphone, Liv Hana beside him, four anthropomorphic dog band members with instruments (guitar, drums, bass, keyboards) arranged behind, Texas desert landscape background with hemp plants, sunset golden hour lighting, sage green and burnt orange color grading, cinematic composition, movie poster style, bold typography overlay "FAKE IT TIL YA MAKE IT", photorealistic, 8k quality --ar 16:9 --style raw --v 6.1
 ```
 
 #### Template 2: Performance Energy
+
 ```
 Dynamic concert performance scene, AI Jesse singing passionately at center stage, Liv Hana harmonizing, dog band members playing instruments with energy, stage lights in sage green and burnt orange, smoke effects, crowd silhouettes, electric atmosphere, motion blur on instruments, sharp focus on vocalists, cinematic lighting, high energy composition, 8k quality --ar 16:9 --style raw --v 6.1
 ```
 
 #### Template 3: Texas Pride Aesthetic
+
 ```
 Band posing in front of Texas State Capitol building, golden sunset, hemp field in foreground, AI Jesse and Liv Hana center with dog band members flanking, American flag waving, confident entrepreneurial energy, inspirational composition, sage green and burnt orange color palette, epic cinematic lighting, wide angle shot, photorealistic, 8k quality --ar 16:9 --style raw --v 6.1
 ```
 
 #### Template 4: Studio Session Vibe
+
 ```
 Behind-the-scenes recording studio session, band members in relaxed creative mode, AI Jesse at microphone reviewing lyrics, Liv Hana at mixing board, dog band members jamming, warm intimate lighting, hemp plants as studio decoration, professional audio equipment, authentic creative process energy, photorealistic, natural lighting, 8k quality --ar 16:9 --style raw --v 6.1
 ```
@@ -225,16 +253,19 @@ Behind-the-scenes recording studio session, band members in relaxed creative mod
 ### YouTube Thumbnail Formulas
 
 **Formula 1: Face + Text + Contrast**
+
 ```
 Close-up AI Jesse face expressing [EMOTION], bold text overlay "[SONG TITLE]" in yellow/white with black outline, sage green background with burnt orange accents, high contrast, eye-catching composition, 1920x1080 resolution --ar 16:9 --v 6.1
 ```
 
 **Formula 2: Split Screen Drama**
+
 ```
 Split screen composition, left side: AI Jesse performing, right side: relevant visual metaphor [hemp plant/money/AI brain], bold text "[HOOK LYRIC]" across center, sage green and burnt orange split, high energy, 1920x1080 resolution --ar 16:9 --v 6.1
 ```
 
 **Formula 3: Before/After Transformation**
+
 ```
 Left side: "FAKE IT" (struggling entrepreneur), right side: "MAKE IT" (successful with empire), AI Jesse transformation, bold arrow in center, text "THE JOURNEY" in dynamic typography, inspiring composition, 1920x1080 resolution --ar 16:9 --v 6.1
 ```
@@ -242,6 +273,7 @@ Left side: "FAKE IT" (struggling entrepreneur), right side: "MAKE IT" (successfu
 ### Dog Whistle Visual Elements (Easter Eggs)
 
 **Subtle Brand Elements to Include:**
+
 - COA certificates in background (quality signal)
 - "0.3% THC" labels on props (legal compliance)
 - Texas DSHS #690 license visible (authority)
@@ -259,11 +291,13 @@ Left side: "FAKE IT" (struggling entrepreneur), right side: "MAKE IT" (successfu
 #### Scene Type 1: Performance Close-Up
 
 **Prompt:**
+
 ```
 Close-up shot of male vocalist singing emotionally into vintage microphone, warm lighting, slight camera push-in, professional recording studio background with soft bokeh, sage green and burnt orange color grading, cinematic 24fps feel, smooth motion
 ```
 
 **Camera Controls:**
+
 - Movement: Slow push-in (dolly forward)
 - Speed: 0.7x (slightly slowed for drama)
 - Focus: Rack focus from mic to face
@@ -271,11 +305,13 @@ Close-up shot of male vocalist singing emotionally into vintage microphone, warm
 #### Scene Type 2: Band Playing Together
 
 **Prompt:**
+
 ```
 Wide shot of full band playing instruments in synchronization, drummer in back, guitarists and bassist on sides, keyboardist front left, dynamic stage lighting with moving beams, energetic performance, camera slow pan right to left, concert atmosphere
 ```
 
 **Camera Controls:**
+
 - Movement: Slow pan (right to left)
 - Speed: 1.0x (real-time)
 - Lighting: Dynamic (color cycling)
@@ -283,11 +319,13 @@ Wide shot of full band playing instruments in synchronization, drummer in back, 
 #### Scene Type 3: Texas Landscape Montage
 
 **Prompt:**
+
 ```
 Aerial drone shot flying over Texas hemp field at golden hour, rows of plants creating geometric patterns, distant horizon with sunset, smooth forward flight, cinematic wide angle, warm color temperature, peaceful yet powerful mood
 ```
 
 **Camera Controls:**
+
 - Movement: Drone forward flight
 - Speed: 0.8x (slightly slowed)
 - Altitude: Low to high transition
@@ -295,11 +333,13 @@ Aerial drone shot flying over Texas hemp field at golden hour, rows of plants cr
 #### Scene Type 4: Lyric Visualization
 
 **Prompt:**
+
 ```
 Abstract visualization of sound waves and music notes transforming into [RELEVANT IMAGERY: money/hemp plants/data streams], flowing motion, particle effects, sage green and burnt orange color scheme, mesmerizing loop, psychedelic but professional
 ```
 
 **Effects:**
+
 - Motion: Continuous flow
 - Particles: High density
 - Transitions: Smooth morph
@@ -307,11 +347,13 @@ Abstract visualization of sound waves and music notes transforming into [RELEVAN
 #### Scene Type 5: Success Montage
 
 **Prompt:**
+
 ```
 Time-lapse sequence showing business growth from small startup to empire, papers stacking, plants growing, money counting, employees joining, office expanding, fast-paced motivational energy, warm lighting progression from dawn to success
 ```
 
 **Camera Controls:**
+
 - Movement: Static with time-lapse
 - Speed: 5x-10x fast-forward
 - Lighting: Progressive brightening
@@ -319,17 +361,20 @@ Time-lapse sequence showing business growth from small startup to empire, papers
 ### Lip-Sync Animation Workflow
 
 **Step 1: Generate Base Character Video**
+
 ```
 [Character name] standing in music studio, slight natural movements, breathing, blinking, ready to perform, neutral expression transitioning to slight smile, professional lighting, 5-second loop
 ```
 
 **Step 2: Use Runway Lip-Sync Tool**
+
 - Upload Step 1 video
 - Upload audio track from Suno
 - Apply lip-sync (automatic phoneme matching)
 - Adjust timing if needed
 
 **Step 3: Extend and Loop**
+
 - Extend video to full song length
 - Apply motion consistency
 - Add camera movements as needed
@@ -337,16 +382,19 @@ Time-lapse sequence showing business growth from small startup to empire, papers
 ### Transition Effects Library
 
 **Cross-Fade Between Scenes:**
+
 ```
 Smooth dissolve transition from [Scene A description] to [Scene B description], 1-second overlap, color-matched grading, seamless flow
 ```
 
 **Beat-Synced Cuts:**
+
 ```
 Quick cut on beat from [angle 1] to [angle 2], same subject, energetic editing pace, music-video style
 ```
 
 **Zoom Transition:**
+
 ```
 Zoom into detail [object/face] from Scene A, zoom out revealing Scene B, smooth camera movement, creative transition
 ```
@@ -358,6 +406,7 @@ Zoom into detail [object/face] from Scene A, zoom out revealing Scene B, smooth 
 ### Master Song Formula
 
 **Structure for All Songs:**
+
 ```
 [Intro - 0:00-0:10]
 [Verse 1 - 0:10-0:30]
@@ -370,6 +419,7 @@ Zoom into detail [object/face] from Scene A, zoom out revealing Scene B, smooth 
 ```
 
 **Suno Prompt Template:**
+
 ```
 Genre: [Texas Country / Electronic / Hip-Hop / Comedy]
 BPM: [95-150]
@@ -393,6 +443,7 @@ Style Notes: Schoolhouse Rock catchiness, modern production, sticky memorable ho
 ### Song #1: "Fake It (Til Ya Make It)"
 
 **Suno Prompt:**
+
 ```
 Genre: Upbeat Texas Country with Electronic elements
 BPM: 128
@@ -466,6 +517,7 @@ Style Notes: Think if Schoolhouse Rock met Macklemore met Texas Country - catchy
 ### Song #2: "My Dogs" (Band Anthem)
 
 **Suno Prompt:**
+
 ```
 Genre: Hip-Hop / Electronic with Texas Country influences
 BPM: 115
@@ -544,6 +596,7 @@ Style Notes: High-energy anthem celebrating the crew, loyalty theme, strong grou
 ### Song #3: "COAs or GTFO" (Quality Anthem)
 
 **Suno Prompt:**
+
 ```
 Genre: Rock / Electronic Hybrid
 BPM: 140
@@ -631,36 +684,43 @@ Style Notes: Aggressive rock energy meets electronic production, mosh-pit worthy
 ### Additional Song Themes (Prompt Templates)
 
 **4. "Deschedule" - Political Cannabis Anthem**
+
 - Genre: Hip-Hop / Protest Song
 - Theme: Cannabis rescheduling advocacy
 - Vibe: Revolutionary, empowering, factual
 
 **5. "Race Discipline" - Hustle Anthem**
+
 - Genre: Fast-paced Electronic / Trap
 - Theme: Speed of execution in business
 - Vibe: Urgent, competitive, motivational
 
 **6. "Stay TOONED" - Channel Theme Song**
+
 - Genre: Upbeat Pop / Electronic
 - Theme: Subscribe/follow call-to-action
 - Vibe: Catchy, fun, brand identity
 
 **7. "Little Hemp Empire" - Origin Story**
+
 - Genre: Storytelling Country / Folk
 - Theme: Business journey from startup to success
 - Vibe: Inspirational, authentic, emotional
 
 **8. "AI Automation" - Future of Work**
+
 - Genre: Electronic / Synthwave
 - Theme: Technology democratization
 - Vibe: Futuristic, optimistic, innovative
 
 **9. "Texas THC Tales" - Comedy Series Theme**
+
 - Genre: Comedy Country
 - Theme: Funny cannabis compliance stories
 - Vibe: Humorous, relatable, educational
 
 **10. "Best Selling Work Wins" - Philosophy Anthem**
+
 - Genre: Motivational Rock
 - Theme: Merit-based success mindset
 - Vibe: Powerful, confident, actionable
@@ -675,6 +735,7 @@ Style Notes: Aggressive rock energy meets electronic production, mosh-pit worthy
 **Handle:** @FakeItTilYaMakeIt
 
 **Channel Description (SEO-Optimized):**
+
 ```
 🎵 Daily AI-generated bangers about cannabis business, entrepreneurship, and Texas hustle!
 
@@ -696,6 +757,7 @@ From hemp compliance to empire building, we're documenting the journey through m
 ```
 
 **Channel Keywords:**
+
 ```
 AI music, Suno AI, faceless YouTube channel, cannabis business, Texas entrepreneur, hemp industry, AI generated music, daily music releases, motivational songs, business anthems, country hip hop fusion, electronic music, entrepreneurship music, startup journey, fake it til you make it
 ```
@@ -703,30 +765,35 @@ AI music, Suno AI, faceless YouTube channel, cannabis business, Texas entreprene
 ### Video Title Formulas (SEO + CTR Optimized)
 
 **Formula 1: Direct Hook**
+
 ```
 "[SONG TITLE]" - [GENRE] Anthem About [TOPIC] | AI Music
 Example: "Fake It Til Ya Make It" - Country Hip-Hop Anthem About Entrepreneurship | AI Music
 ```
 
 **Formula 2: Question/Problem**
+
 ```
 [RELATABLE QUESTION]? | "[SONG TITLE]" [GENRE] Song
 Example: Building a Business with No Money? | "Fake It" Country Rap Song
 ```
 
 **Formula 3: Listicle Style**
+
 ```
 [NUMBER] Reasons to [ACTION] | "[SONG TITLE]" Music Video
 Example: 5 Reasons to Start Your Empire Today | "Little Hemp Empire" Music Video
 ```
 
 **Formula 4: Emotional Hook**
+
 ```
 From [NEGATIVE] to [POSITIVE]: "[SONG TITLE]" | [GENRE] AI Music
 Example: From Broke to Empire: "Fake It Til Ya Make It" | Country AI Music
 ```
 
 **Formula 5: Trending Topic Tie-In**
+
 ```
 [TRENDING TOPIC] Explained Through Music: "[SONG TITLE]"
 Example: Cannabis Rescheduling Explained Through Music: "Deschedule"
@@ -779,6 +846,7 @@ We're an AI-powered band dropping daily bangers about [topics]. Featuring AI Jes
 ### Hashtag Strategy
 
 **Primary Tags (Always Include):**
+
 - #AIMusic
 - #SunoAI
 - #FakeItTilYouMakeIt
@@ -786,6 +854,7 @@ We're an AI-powered band dropping daily bangers about [topics]. Featuring AI Jes
 - #[GenreOfSong]
 
 **Secondary Tags (Rotate Based on Song):**
+
 - #Entrepreneurship #StartupLife #BusinessMotivation (business songs)
 - #CannabisIndustry #HempBusiness #Cannabis (cannabis songs)
 - #TexasPride #TexasMusic #CountryMusic (Texas-themed)
@@ -793,17 +862,20 @@ We're an AI-powered band dropping daily bangers about [topics]. Featuring AI Jes
 - #MotivationalMusic #HustleHarder #SuccessMindset (motivation songs)
 
 **Trending Tags (Check Weekly):**
+
 - Monitor YouTube trends and add 1-2 trending tags per video if relevant
 
 ### Thumbnail A/B Testing Strategy
 
 **Test Variables:**
+
 1. **Face Emotion:** Happy vs Serious vs Surprised
 2. **Text Amount:** Minimal (3 words) vs Medium (5-7 words) vs Heavy (full sentence)
 3. **Color Scheme:** Brand colors vs High contrast vs Trending colors
 4. **Composition:** Close-up face vs Wide shot vs Split screen
 
 **Testing Schedule:**
+
 - Create 3 thumbnail versions for each video
 - Use YouTube's Test & Compare feature
 - Run test for 7 days or until 95% confidence
@@ -811,6 +883,7 @@ We're an AI-powered band dropping daily bangers about [topics]. Featuring AI Jes
 - Apply winning patterns to future videos
 
 **Winning Pattern Documentation:**
+
 ```
 Date: [Date]
 Song: [Title]
@@ -823,39 +896,47 @@ Action: Apply this pattern to next 5 videos in [Genre]
 ### Playlist Strategy
 
 **Playlist 1: "The Hits" (Best Performing)**
+
 - Sorted by views
 - Updated weekly
 - Pin to channel homepage
 
 **Playlist 2: "Cannabis Business Anthems"**
+
 - All cannabis-related songs
 - SEO description targeting cannabis entrepreneurs
 
 **Playlist 3: "AI & Automation Songs"**
+
 - Tech and future-themed tracks
 - Target AI enthusiasts
 
 **Playlist 4: "Texas Pride Collection"**
+
 - Texas-themed songs
 - Target local/regional audience
 
 **Playlist 5: "Daily Motivation"**
+
 - Hustle and entrepreneurship songs
 - Morning listening playlist
 
 **Playlist 6: "Genre Collections"**
+
 - Separate playlists for Country, Hip-Hop, Electronic, Comedy
 - Targets genre-specific audiences
 
 ### End Screen & Cards Strategy
 
 **End Screen Template:**
+
 - **Element 1 (Left):** Best performing video (auto-recommend)
 - **Element 2 (Right):** Latest video
 - **Element 3 (Bottom Left):** Playlist most relevant to current video
 - **Element 4 (Bottom Right):** Subscribe button
 
 **Mid-Roll Cards:**
+
 - Insert card at 25%, 50%, 75% of video
 - Link to related songs with similar themes
 - Use when mentioning specific topics ("...like I said in my song [TITLE]" → insert card)
@@ -863,6 +944,7 @@ Action: Apply this pattern to next 5 videos in [Genre]
 ### Community Engagement Strategy
 
 **Pinned Comment Template:**
+
 ```
 🎵 What's your favorite lyric from this song? Drop it below! 👇
 
@@ -877,6 +959,7 @@ Most liked comment wins! LET'S GO! 🔥
 ```
 
 **Response Strategy:**
+
 - Respond to first 10 comments within 1 hour (boosts engagement signals)
 - Heart all comments in first 24 hours
 - Ask follow-up questions to encourage replies
@@ -885,16 +968,19 @@ Most liked comment wins! LET'S GO! 🔥
 ### Upload Schedule
 
 **Optimal Times (Based on 2025 Data):**
+
 - **Primary:** 2-3 PM CST (when Texas + East Coast audiences overlap)
 - **Secondary:** 6-8 AM CST (morning motivation crowd)
 - **Tertiary:** 9-10 PM CST (evening relaxation)
 
 **Daily Posting Strategy:**
+
 - Monday-Friday: 2 PM CST (business/motivation songs)
 - Saturday: 6 AM CST (weekend hustle)
 - Sunday: 9 PM CST (reflective/storytelling songs)
 
 **Special Events:**
+
 - New song premiere: Use YouTube Premiere feature
 - Behind-the-scenes: Community tab posts
 - Lyric explanations: YouTube Shorts
@@ -907,6 +993,7 @@ Most liked comment wins! LET'S GO! 🔥
 ### Daily Production Pipeline (Under 30 Minutes)
 
 **Phase 1: Music Creation (10 minutes)**
+
 1. Open Suno AI
 2. Input prompt from library (or create new)
 3. Generate 2-3 versions
@@ -915,6 +1002,7 @@ Most liked comment wins! LET'S GO! 🔥
 6. **Output:** `[YYYYMMDD]_[SongTitle]_final.mp3`
 
 **Phase 2: Visual Assets (15 minutes)**
+
 1. Open Midjourney
 2. Generate 3 thumbnail options using formulas
 3. Generate 5-10 scene stills for video
@@ -923,6 +1011,7 @@ Most liked comment wins! LET'S GO! 🔥
 6. **Output:** Thumbnail images + Scene stills
 
 **Phase 3: Video Assembly (15 minutes)**
+
 1. Option A: Simple lyric video (fast)
    - Import audio to editor
    - Add static/animated background
@@ -941,6 +1030,7 @@ Most liked comment wins! LET'S GO! 🔥
 5. **Output:** `[YYYYMMDD]_[SongTitle]_final.mp4`
 
 **Phase 4: Upload & Optimize (10 minutes)**
+
 1. Upload to YouTube
 2. Fill title (using formula)
 3. Paste description (template)
@@ -956,12 +1046,14 @@ Most liked comment wins! LET'S GO! 🔥
 ### Batch Production Option (Weekly)
 
 **Sunday Batch Session (3-4 hours):**
+
 1. Create 7 songs in Suno (1 hour)
 2. Generate all thumbnails and scene stills (1 hour)
 3. Produce 7 videos (1.5 hours)
 4. Schedule uploads for week (30 minutes)
 
 **Daily Maintenance (5 minutes):**
+
 - Check comments and respond
 - Monitor performance
 - Adjust next day's content based on data
@@ -973,17 +1065,20 @@ Most liked comment wins! LET'S GO! 🔥
 ### YouTube Channel Goals (6 Months)
 
 **Subscribers:**
+
 - Month 1: 1,000 (monetization threshold)
 - Month 3: 10,000
 - Month 6: 50,000
 - Year 1: 100,000+
 
 **Views:**
+
 - Daily average: 5,000 views
 - Monthly: 150,000 views
 - Yearly: 1.8M+ views
 
 **Engagement:**
+
 - CTR: 8-12% (above average)
 - AVD (Average View Duration): 60%+ (2+ minutes)
 - Like ratio: 5-10% of views
@@ -991,6 +1086,7 @@ Most liked comment wins! LET'S GO! 🔥
 - Share ratio: 2-5% of views
 
 **Revenue Targets:**
+
 - YouTube Ad Revenue: $500-2,000/month (after monetization)
 - Sponsorships: $1,000-5,000/month (after 10K subs)
 - Merchandise: $500-2,000/month
@@ -999,6 +1095,7 @@ Most liked comment wins! LET'S GO! 🔥
 ### Viral Success Indicators
 
 **Song Goes Viral When:**
+>
 - >100K views in first week
 - >10% share rate
 - Featured in YouTube recommendations
@@ -1007,6 +1104,7 @@ Most liked comment wins! LET'S GO! 🔥
 - Spawns user-generated content (covers, reactions, TikToks)
 
 **Channel Goes Viral When:**
+
 - Multiple songs hit >500K views
 - Subscribers growing 1,000+/day
 - Media coverage (blogs, podcasts, news)
@@ -1016,6 +1114,7 @@ Most liked comment wins! LET'S GO! 🔥
 ### Content Performance Tracking
 
 **Weekly Review (Every Monday):**
+
 - Top 3 performing videos (views, CTR, AVD)
 - Worst 3 performing videos (learn why)
 - Thumbnail A/B test results
@@ -1024,6 +1123,7 @@ Most liked comment wins! LET'S GO! 🔥
 - Revenue per 1,000 views (RPM)
 
 **Monthly Deep Dive:**
+
 - Genre performance analysis (which genres get most views)
 - Topic performance (which themes resonate)
 - Audience demographics (age, location, interests)
@@ -1032,6 +1132,7 @@ Most liked comment wins! LET'S GO! 🔥
 - Competitor analysis
 
 **Quarterly Strategy Revision:**
+
 - Double down on what's working
 - Cut or revise what's not working
 - New song themes based on data
@@ -1047,21 +1148,25 @@ Most liked comment wins! LET'S GO! 🔥
 **4 TPOP Categories for Song Content:**
 
 **1. Quality Indicators** (Data Dog energy)
+
 - Keywords: "tested," "compliant," "quality," "legal," "COAs," "standards"
 - Visual: Lab coats, certificates, testing equipment
 - When to use: Cannabis product songs, business credibility anthems
 
 **2. Business/Strategy** (Strategy Dog energy)
+
 - Keywords: "compliance," "business," "winning," "strategy," "planning," "execution"
 - Visual: Blueprint patterns, charts, professional settings
 - When to use: Entrepreneurship songs, hustle anthems
 
 **3. Future/Empire** (Empire Dog energy)
+
 - Keywords: "empire," "future," "revolution," "Texas," "growth," "domination"
 - Visual: Crown elements, skylines, expanding visuals
 - When to use: Vision songs, motivation tracks, origin stories
 
 **4. Data/Mission** (Data Dog energy)
+
 - Keywords: "data," "optimization," "efficiency," "mission," "analytics," "AI"
 - Visual: Screens, data viz, tech elements, futuristic
 - When to use: AI/tech songs, optimization anthems
@@ -1069,11 +1174,13 @@ Most liked comment wins! LET'S GO! 🔥
 ### Easter Egg Placement
 
 **Lyric Easter Eggs:**
+
 - Character catchphrases hidden in verses
 - Reference previous songs in new tracks
 - Reward loyal listeners with callbacks
 
 **Visual Easter Eggs:**
+
 - "690" (Texas DSHS license) in background
 - "0.3%" on labels and signs
 - "COAs or GTFO" graffiti
@@ -1081,6 +1188,7 @@ Most liked comment wins! LET'S GO! 🔥
 - QR codes linking to secret content
 
 **Audio Easter Eggs:**
+
 - Hidden messages in intro/outro
 - Reversed audio with bonus content
 - Phone number in lyrics that actually works (voice message from AI Jesse)
@@ -1088,12 +1196,14 @@ Most liked comment wins! LET'S GO! 🔥
 ### Community Dog Whistle Building
 
 **Encourage Fans to Create:**
+
 - "Spot the Easter egg" contest
 - Fan remixes with hidden messages
 - Lyric interpretation threads
 - TPOP category identification game
 
 **Reward System:**
+
 - Pin comments that find Easter eggs
 - Feature fan art with most dog whistles
 - Exclusive content for eagle-eyed viewers
@@ -1104,9 +1214,11 @@ Most liked comment wins! LET'S GO! 🔥
 ## 🚀 LAUNCH STRATEGY (First 30 Days)
 
 ### Week 1: Foundation
+
 **Goals:** Establish channel, release 7 songs, build initial content library
 
 **Daily Tasks:**
+
 - Day 1: Release "Fake It Til Ya Make It" (flagship anthem)
 - Day 2: Release "My Dogs" (band introduction)
 - Day 3: Release "COAs or GTFO" (viral potential)
@@ -1116,35 +1228,42 @@ Most liked comment wins! LET'S GO! 🔥
 - Day 7: Release "Stay TOONED" (channel theme)
 
 **Promotion:**
+
 - Share on personal channels (LinkedIn, Facebook, Instagram)
 - Email list announcement (ReggieAndDro.com 11K+ customers)
 - Cross-promote on other content platforms
 
 ### Week 2-3: Growth Acceleration
+
 **Goals:** 100+ subscribers, first viral video, establish posting rhythm
 
 **Content Strategy:**
+
 - Continue daily uploads (7 songs/week)
 - Create YouTube Shorts from song snippets
 - Post behind-the-scenes in Community tab
 - Engage heavily with every comment
 
 **Promotion:**
+
 - Paid ads ($100-500 budget) targeting cannabis entrepreneurs + AI enthusiasts
 - Reach out to micro-influencers for reactions
 - Submit to Spotify/Apple Music playlists
 - TikTok cross-posting (15-60 sec clips)
 
 ### Week 4: Momentum Building
+
 **Goals:** 500+ subscribers, consistent views, first revenue
 
 **Content Strategy:**
+
 - Release "Best of Week 1-3" compilation
 - Fan-requested song (based on poll)
 - Collaboration invitation video
 - Announce upcoming releases
 
 **Monetization:**
+
 - Apply for YouTube Partner Program (if 1K subs reached)
 - Set up merch store (basic designs)
 - Open sponsorship inquiries
@@ -1155,14 +1274,17 @@ Most liked comment wins! LET'S GO! 🔥
 ## 💰 MONETIZATION STRATEGY
 
 ### Revenue Stream 1: YouTube Ad Revenue
+
 **Timeline:** Month 2+ (after 1K subs + 4K watch hours)
 **Potential:** $500-2,000/month at 150K monthly views
 **Optimization:** Longer videos (8+ min) for mid-roll ads, family-friendly content
 
 ### Revenue Stream 2: Sponsorships
+
 **Timeline:** Month 3+ (after 5K subs)
 **Potential:** $1,000-10,000/month
 **Partners:**
+
 - Cannabis brands (non-competitive)
 - AI/tech companies (Suno AI, Runway, etc.)
 - Music equipment brands
@@ -1172,9 +1294,11 @@ Most liked comment wins! LET'S GO! 🔥
 "We reach [X] cannabis entrepreneurs and AI enthusiasts daily. Our viewers are [demographics]. We can feature your product in our videos through [song integration/visual placement/dedicated video]. Investment: $[amount]."
 
 ### Revenue Stream 3: Merchandise
+
 **Timeline:** Month 2+ (once brand identity established)
 **Potential:** $500-5,000/month
 **Products:**
+
 - T-shirts with lyrics/catchphrases
 - Hoodies with band logo
 - Stickers (COAs or GTFO, My Dogs, etc.)
@@ -1184,24 +1308,29 @@ Most liked comment wins! LET'S GO! 🔥
 **Platform:** Printful + Shopify (print-on-demand, no inventory)
 
 ### Revenue Stream 4: Music Streaming
+
 **Timeline:** Immediate (upload to distributors)
 **Potential:** $100-500/month supplemental
 **Platforms:** Spotify, Apple Music, Amazon Music via DistroKid
 **Strategy:** Drive YouTube viewers to streaming for full albums
 
 ### Revenue Stream 5: Patreon/Membership
+
 **Timeline:** Month 4+ (after loyal fanbase)
 **Potential:** $500-3,000/month
 **Tiers:**
+
 - $5/month: Early access to songs, behind-the-scenes
 - $15/month: Vote on song topics, exclusive tracks
 - $50/month: Personal shoutout in song, video calls
 - $200/month: Custom song written for you
 
 ### Revenue Stream 6: Licensing
+
 **Timeline:** Month 6+ (after catalog built)
 **Potential:** $1,000-10,000 per license
 **Use Cases:**
+
 - Cannabis brands using songs in ads
 - Podcasts using as intro/outro music
 - YouTube creators using in videos
@@ -1216,6 +1345,7 @@ Most liked comment wins! LET'S GO! 🔥
 ### Data-Driven Improvement
 
 **Every Video Analysis:**
+
 - What worked? (high CTR, good AVD, lots of shares)
 - What didn't? (low views, poor retention, no engagement)
 - Why? (hypothesis about cause)
@@ -1224,18 +1354,21 @@ Most liked comment wins! LET'S GO! 🔥
 **A/B Testing Schedule:**
 
 **Month 1-2: Thumbnail Testing**
+
 - Test face vs no face
 - Test text amount
 - Test color schemes
 - Find winning formula
 
 **Month 3-4: Title Testing**
+
 - Test question vs statement
 - Test length (short vs long)
 - Test keyword placement
 - Optimize for CTR
 
 **Month 5-6: Content Testing**
+
 - Test video length (1 min vs 3 min vs 5 min)
 - Test genres (Country vs Hip-Hop vs Electronic)
 - Test topics (Cannabis vs Business vs AI)
@@ -1244,6 +1377,7 @@ Most liked comment wins! LET'S GO! 🔥
 ### Competitor Analysis
 
 **Monthly Review of Top Channels:**
+
 - What are their most viewed videos?
 - What thumbnails get clicks?
 - What titles rank high?
@@ -1252,6 +1386,7 @@ Most liked comment wins! LET'S GO! 🔥
 - What sponsors do they have?
 
 **Adapt and Improve:**
+
 - Take inspiration (don't copy)
 - Find gaps in their content (your opportunity)
 - Learn from their mistakes
@@ -1260,12 +1395,14 @@ Most liked comment wins! LET'S GO! 🔥
 ### Audience Feedback Integration
 
 **Weekly Feedback Collection:**
+
 - Poll in Community tab ("What song topic next?")
 - Comment analysis (what do people ask for?)
 - Social media listening (what do they share?)
 - Email subscribers (direct requests)
 
 **Monthly Fan Input:**
+
 - Top 3 requested song topics → create songs
 - Top feedback issue → address in video
 - Fan-created content → feature/share
@@ -1278,6 +1415,7 @@ Most liked comment wins! LET'S GO! 🔥
 ### Pre-Production (Planning Phase)
 
 **Song Planning:**
+
 - [ ] Choose song topic from calendar/requests
 - [ ] Write/refine lyrics (use Suno template)
 - [ ] Select genre and BPM
@@ -1285,6 +1423,7 @@ Most liked comment wins! LET'S GO! 🔥
 - [ ] Prepare Suno prompt
 
 **Visual Planning:**
+
 - [ ] Choose thumbnail formula
 - [ ] List key scenes needed
 - [ ] Prepare Midjourney prompts
@@ -1294,6 +1433,7 @@ Most liked comment wins! LET'S GO! 🔥
 ### Production Phase
 
 **Music Creation:**
+
 - [ ] Generate song in Suno (3-5 versions)
 - [ ] Select best version
 - [ ] Download high-quality audio
@@ -1301,12 +1441,14 @@ Most liked comment wins! LET'S GO! 🔥
 - [ ] Export final audio file
 
 **Visual Creation:**
+
 - [ ] Generate thumbnails (3 variants) in Midjourney
 - [ ] Generate scene images/stills
 - [ ] Upscale best images (if using Runway)
 - [ ] Organize files in folder by date
 
 **Video Production:**
+
 - [ ] Import audio to editor
 - [ ] Add visuals (stills or animated clips)
 - [ ] Sync visuals to beat/lyrics
@@ -1319,6 +1461,7 @@ Most liked comment wins! LET'S GO! 🔥
 ### Post-Production (Upload & Optimize)
 
 **YouTube Upload:**
+
 - [ ] Upload video file
 - [ ] Write optimized title
 - [ ] Write complete description (template)
@@ -1331,6 +1474,7 @@ Most liked comment wins! LET'S GO! 🔥
 - [ ] Schedule or publish
 
 **Promotion:**
+
 - [ ] Post to Community tab
 - [ ] Share on social media
 - [ ] Email list announcement (if major release)
@@ -1339,6 +1483,7 @@ Most liked comment wins! LET'S GO! 🔥
 - [ ] Monitor analytics
 
 **Documentation:**
+
 - [ ] Log video data (title, tags, description)
 - [ ] Note production time
 - [ ] Record costs (if any)
@@ -1352,6 +1497,7 @@ Most liked comment wins! LET'S GO! 🔥
 You now have a complete production system for "FAKE IT Til Ya MAKE IT!" - the #1 AI music YouTube channel.
 
 **Key Success Factors:**
+
 1. **Consistency** - Daily uploads build momentum
 2. **Authenticity** - Jesse's real voice shines through
 3. **Quality** - Hollywood standards, not amateur hour
@@ -1361,6 +1507,7 @@ You now have a complete production system for "FAKE IT Til Ya MAKE IT!" - the #1
 7. **Monetization** - Multiple revenue streams from day one
 
 **Your Competitive Advantages:**
+
 - Authentic entrepreneur story (not fake persona)
 - 27 years cannabis expertise (credibility)
 - Unique niche (cannabis + AI + music)
@@ -1369,6 +1516,7 @@ You now have a complete production system for "FAKE IT Til Ya MAKE IT!" - the #1
 - Brand consistency (Jesse CEO voice established)
 
 **Next Actions:**
+
 1. Generate first 3 songs in Suno using prompts above
 2. Create character images in Midjourney
 3. Produce first 3 videos
@@ -1377,6 +1525,7 @@ You now have a complete production system for "FAKE IT Til Ya MAKE IT!" - the #1
 6. Monitor, analyze, iterate
 
 **Remember:**
+
 - Fake it til you make it (that's the whole brand!)
 - Best selling work wins (focus on results)
 - This is a RACE (speed matters)

@@ -1,5 +1,7 @@
 ### 11.3 Cursor Configuration
+
 If using Cursor, configure AI settings:
+
 ```json
 {
   "claudeCode.defaultApprovalMode": "trusted",

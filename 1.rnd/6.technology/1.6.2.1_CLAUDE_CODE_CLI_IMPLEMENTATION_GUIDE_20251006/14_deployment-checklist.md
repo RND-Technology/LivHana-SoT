@@ -1,6 +1,7 @@
 ## DEPLOYMENT CHECKLIST
 
 **Pre-Deployment:**
+
 - ✓ All environment variables configured
 - ✓ Database migrations tested
 - ✓ API keys rotated (production keys, not dev keys)
@@ -11,6 +12,7 @@
 - ✓ Backup strategy in place (daily automated backups)
 
 **Testing:**
+
 - ✓ Unit tests pass (>80% coverage)
 - ✓ Integration tests pass
 - ✓ Load testing (simulate 1000 concurrent users)
@@ -20,6 +22,7 @@
 - ✓ Mobile testing (iOS, Android)
 
 **Monitoring:**
+
 - ✓ Uptime monitoring (Pingdom or UptimeRobot)
 - ✓ Error tracking (Sentry alerts to Slack)
 - ✓ Performance monitoring (New Relic or Datadog)
@@ -27,6 +30,7 @@
 - ✓ Analytics tracking (Google Analytics 4, Facebook Pixel)
 
 **Documentation:**
+
 - ✓ API documentation (Swagger/OpenAPI)
 - ✓ Setup guide for new developers
 - ✓ Deployment runbook

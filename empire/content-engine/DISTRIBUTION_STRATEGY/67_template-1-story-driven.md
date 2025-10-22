@@ -1,4 +1,5 @@
 #### Template 1: Story-Driven
+
 ```
 Real talk: Last week, a Texas hemp business got shut down for THIS. 😔
 

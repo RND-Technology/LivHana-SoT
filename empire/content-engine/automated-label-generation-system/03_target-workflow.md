@@ -1,4 +1,5 @@
 ### Target Workflow
+
 1. Invoice received via email → Automated parsing and extraction
 2. Product data extracted → COA lookup and validation
 3. SKU generated → Human approval required

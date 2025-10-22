@@ -1,6 +1,7 @@
 #### Visual Variety
 
 **Camera Angles**:
+
 - Wide shot: Establish scene
 - Medium shot: Normal dialogue
 - Close-up: Emotional emphasis
@@ -8,6 +9,7 @@
 - POV: Immersion
 
 **Composition Rules**:
+
 - Rule of thirds
 - Leading lines
 - Negative space for text

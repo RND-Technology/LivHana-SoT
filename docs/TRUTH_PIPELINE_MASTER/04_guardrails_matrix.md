@@ -9,6 +9,7 @@ The TRUTH Pipeline implements comprehensive guardrails across AGE21 verification
 ## Guardrails Overview
 
 ### Pre-Flight Guardrails
+
 | Guardrail | Purpose | Enforcement | Test Command |
 |-----------|---------|-------------|--------------|
 | **AGE21** | Age verification | Hard block | `curl -H "Age: 18" /age-gate` |
@@ -18,6 +19,7 @@ The TRUTH Pipeline implements comprehensive guardrails across AGE21 verification
 | **Secret Scan** | Credential leakage | Block + alert | `grep -E "sk-\|api_key\|password" output.json` |
 
 ### Post-Flight Guardrails
+
 | Guardrail | Purpose | Enforcement | Test Command |
 |-----------|---------|-------------|--------------|
 | **Schema Validation** | TRUTH compliance | Reject output | `jsonschema --instance output.json schema.json` |
@@ -29,6 +31,7 @@ The TRUTH Pipeline implements comprehensive guardrails across AGE21 verification
 ## AGE21 Verification System
 
 ### Age Gate Implementation
+
 ```bash
 #!/bin/bash
 # age_gate_guardrail.sh
@@ -83,6 +86,7 @@ test_age_gate() {
 ```
 
 ### Age Gate Response Codes
+
 | HTTP Code | Meaning | Action |
 |-----------|---------|--------|
 | **200** | Age verified | Proceed |
@@ -93,6 +97,7 @@ test_age_gate() {
 ## PII Detection & Redaction
 
 ### PII Detection Patterns
+
 ```bash
 #!/bin/bash
 # pii_detection_guardrail.sh
@@ -175,6 +180,7 @@ redact_pii() {
 ## Cannabis Compliance Guardrails
 
 ### THC Content Verification
+
 ```bash
 #!/bin/bash
 # cannabis_compliance_guardrail.sh
@@ -231,6 +237,7 @@ validate_medical_claims() {
 ## Financial Accuracy Guardrails
 
 ### Profit Calculation Validation
+
 ```bash
 #!/bin/bash
 # financial_accuracy_guardrail.sh
@@ -301,6 +308,7 @@ validate_profit_calculations() {
 ## Secret Hygiene Guardrails
 
 ### Credential Leakage Detection
+
 ```bash
 #!/bin/bash
 # secret_hygiene_guardrail.sh
@@ -375,6 +383,7 @@ EOF
 ## Guardrail Enforcement Matrix
 
 ### Enforcement Levels
+
 | Level | Action | Description |
 |-------|--------|-------------|
 | **BLOCK** | Stop execution | Hard failure, no retry |
@@ -384,6 +393,7 @@ EOF
 | **ALERT** | Notify operators | Real-time monitoring |
 
 ### Guardrail Failure Handling
+
 ```bash
 #!/bin/bash
 # guardrail_failure_handler.sh
@@ -425,6 +435,7 @@ handle_guardrail_failure() {
 ## Guardrail Testing Suite
 
 ### Automated Testing
+
 ```bash
 #!/bin/bash
 # guardrail_test_suite.sh

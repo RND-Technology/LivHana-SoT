@@ -47,6 +47,7 @@
 ```
 
 **New Fields:**
+
 - ✅ `news_hook` - NewsAPI integration data
 - ✅ `tpops_alignment` - Multi-factor scoring
 - ✅ `trump_rhetoric_density` - Phrase count tracking

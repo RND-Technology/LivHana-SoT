@@ -21,6 +21,7 @@
    - Gen Z: Off-beat humor, inside jokes
 
 **Lessons for HNC**:
+
 - Satire makes compliance entertaining
 - Strong character voice essential
 - Shareability key to virality

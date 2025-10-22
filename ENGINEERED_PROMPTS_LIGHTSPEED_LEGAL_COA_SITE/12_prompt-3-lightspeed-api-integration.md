@@ -1,4 +1,5 @@
 #### **Prompt 3: Lightspeed API Integration**
+
 ```
 Integrate COA (Certificate of Analysis) data with Lightspeed POS API to display lab results on reggieanddro.com product pages.
 
@@ -46,10 +47,12 @@ if (coaData.texas_compliant) {
 ```
 
 OUTPUT:
+
 - Lightspeed API integration module
 - Webhook handlers
 - Custom theme modifications
 - Sync scheduling (cron jobs)
+
 ```
 
 ---

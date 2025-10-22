@@ -1,6 +1,7 @@
 ### Asset Management
 
 **File Organization:**
+
 ```
 /HIGH-NOON-CARTOON/
 ├── /characters/
@@ -40,6 +41,7 @@
 ```
 
 **Naming Conventions:**
+
 - Characters: `charactername_angle_expression.png`
 - Backgrounds: `type_description_v01.png`
 - Episodes: `episode-XXX_platform.mp4`

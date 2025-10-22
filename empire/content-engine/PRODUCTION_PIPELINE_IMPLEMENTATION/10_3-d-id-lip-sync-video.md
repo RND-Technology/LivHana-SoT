@@ -5,6 +5,7 @@
 **Implementation:**
 
 **Step 1: Create Talk**
+
 ```javascript
 POST https://api.d-id.com/talks
 Headers:
@@ -26,6 +27,7 @@ Body:
 ```
 
 **Response:**
+
 ```json
 {
   "id": "talk-12345",
@@ -34,11 +36,13 @@ Body:
 ```
 
 **Step 2: Poll Status**
+
 ```javascript
 GET https://api.d-id.com/talks/{talk_id}
 ```
 
 **Response (when done):**
+
 ```json
 {
   "id": "talk-12345",

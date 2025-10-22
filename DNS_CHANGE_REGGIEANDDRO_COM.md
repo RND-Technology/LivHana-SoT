@@ -1,7 +1,7 @@
 # DNS CHANGE: Point reggieanddro.com → Lightspeed Store
 
 **Date:** October 2, 2025
-**Task:** Point reggieanddro.com to https://reggieanddro.company.site/
+**Task:** Point reggieanddro.com to <https://reggieanddro.company.site/>
 **Registrar:** GoDaddy.com
 **Status:** 🟡 READY TO EXECUTE
 
@@ -12,6 +12,7 @@
 **COMMAND:** `whois reggieanddro.com`
 **TIMESTAMP:** October 2, 2025 11:23 AM PDT
 **OUTPUT:**
+
 ```
 Registrar: GoDaddy.com, LLC
 Name Servers: NS71.DOMAINCONTROL.COM, NS72.DOMAINCONTROL.COM
@@ -19,33 +20,39 @@ Name Servers: NS71.DOMAINCONTROL.COM, NS72.DOMAINCONTROL.COM
 
 **COMMAND:** `dig reggieanddro.com +short`
 **OUTPUT:**
+
 ```
 199.34.228.172
 ```
+
 **INTERPRETATION:** reggieanddro.com currently points to 199.34.228.172 (old server)
 
 **COMMAND:** `curl -s https://reggieanddro.company.site/ -I`
 **OUTPUT:**
+
 ```
 HTTP/2 200
 date: Thu, 02 Oct 2025 18:23:20 GMT
 content-type: text/html; charset=utf-8
 ```
+
 **INTERPRETATION:** ✅ Lightspeed store is LIVE and operational
 
 ---
 
 ## DNS CHANGE REQUIRED
 
-### Current DNS Setup:
+### Current DNS Setup
+
 - **Domain:** reggieanddro.com
 - **Current A Record:** 199.34.228.172
 - **Registrar:** GoDaddy.com
 - **Name Servers:** NS71.DOMAINCONTROL.COM, NS72.DOMAINCONTROL.COM
 
-### Target DNS Setup:
+### Target DNS Setup
+
 - **Domain:** reggieanddro.com
-- **Target URL:** https://reggieanddro.company.site/
+- **Target URL:** <https://reggieanddro.company.site/>
 - **Method:** CNAME or Domain Forwarding
 
 ---
@@ -53,18 +60,21 @@ content-type: text/html; charset=utf-8
 ## OPTION 1: CNAME Record (RECOMMENDED)
 
 **Pros:**
+
 - ✅ Maintains SSL automatically (Lightspeed handles it)
 - ✅ Updates if Lightspeed changes IPs
 - ✅ Professional setup
 
 **Cons:**
+
 - ⚠️ Cannot use CNAME on root domain (@) at GoDaddy
-- ⚠️ Must use www.reggieanddro.com OR use forwarding for root
+- ⚠️ Must use <www.reggieanddro.com> OR use forwarding for root
 
 **GoDaddy DNS Configuration:**
 
 ### Step 1: Add CNAME for www subdomain
-1. Go to https://dcc.godaddy.com/control/portfolio/
+
+1. Go to <https://dcc.godaddy.com/control/portfolio/>
 2. Click on reggieanddro.com → DNS
 3. Find existing DNS records
 4. **ADD NEW RECORD:**
@@ -74,6 +84,7 @@ content-type: text/html; charset=utf-8
    - TTL: `1 Hour` (3600 seconds)
 
 ### Step 2: Set up domain forwarding for root
+
 1. In GoDaddy DNS settings for reggieanddro.com
 2. Go to "Forwarding" tab
 3. **ADD FORWARDING:**
@@ -83,8 +94,9 @@ content-type: text/html; charset=utf-8
    - Settings: `Forward only` (NOT with masking)
 
 **Result:**
-- ✅ www.reggieanddro.com → Points to Lightspeed store (CNAME)
-- ✅ reggieanddro.com → Redirects to www.reggieanddro.com (301)
+
+- ✅ <www.reggieanddro.com> → Points to Lightspeed store (CNAME)
+- ✅ reggieanddro.com → Redirects to <www.reggieanddro.com> (301)
 - ✅ SSL works automatically
 
 ---
@@ -94,12 +106,14 @@ content-type: text/html; charset=utf-8
 **Use if CNAME doesn't work or you prefer direct A record**
 
 ### Step 1: Get Lightspeed IP Address
+
 **COMMAND:** `dig reggieanddro.company.site +short`
 
 Need to run this to get the actual IP, then:
 
 ### Step 2: Update A Record
-1. Go to https://dcc.godaddy.com/control/portfolio/
+
+1. Go to <https://dcc.godaddy.com/control/portfolio/>
 2. Click on reggieanddro.com → DNS
 3. Find existing A record for @ (root)
 4. **EDIT A RECORD:**
@@ -109,6 +123,7 @@ Need to run this to get the actual IP, then:
    - TTL: `1 Hour`
 
 **Cons of this approach:**
+
 - ❌ SSL certificate needs to be configured separately
 - ❌ If Lightspeed changes IPs, site breaks
 - ❌ More manual maintenance
@@ -119,8 +134,9 @@ Need to run this to get the actual IP, then:
 
 **Best for quick setup, but loses SEO value**
 
-### Configuration:
-1. Go to https://dcc.godaddy.com/control/portfolio/
+### Configuration
+
+1. Go to <https://dcc.godaddy.com/control/portfolio/>
 2. Click on reggieanddro.com → Forwarding
 3. **ADD FORWARDING:**
    - Domain: `reggieanddro.com`
@@ -129,6 +145,7 @@ Need to run this to get the actual IP, then:
    - Settings: `Forward only` (NOT with masking)
 
 **Result:**
+
 - ✅ Visitors to reggieanddro.com get redirected to reggieanddro.company.site
 - ⚠️ URL changes in browser bar
 - ⚠️ Loses custom domain branding
@@ -142,14 +159,17 @@ Need to run this to get the actual IP, then:
 **Exact Steps:**
 
 ### 1. Login to GoDaddy
-- URL: https://dcc.godaddy.com/
+
+- URL: <https://dcc.godaddy.com/>
 - Login with account credentials
 
 ### 2. Navigate to DNS Settings
+
 - Click "My Products" → Find reggieanddro.com
 - Click "DNS" button next to the domain
 
 ### 3. Add CNAME Record
+
 - Click "Add" button
 - Select "CNAME" from dropdown
 - **Name:** `www`
@@ -158,6 +178,7 @@ Need to run this to get the actual IP, then:
 - Click "Save"
 
 ### 4. Set up Root Domain Forwarding
+
 - Click "Forwarding" tab (top of DNS page)
 - Click "Add Forwarding"
 - **Forward FROM:** `reggieanddro.com` (http)
@@ -167,6 +188,7 @@ Need to run this to get the actual IP, then:
 - Click "Save"
 
 ### 5. Verify Setup (Wait 10-15 minutes for DNS propagation)
+
 ```bash
 # Check CNAME
 dig www.reggieanddro.com CNAME +short
@@ -190,18 +212,21 @@ curl -I https://www.reggieanddro.com
 - **Typical experience:** 30 minutes to 2 hours
 
 **Check propagation status:**
-- https://www.whatsmydns.net/#CNAME/www.reggieanddro.com
-- https://dnschecker.org/
+
+- <https://www.whatsmydns.net/#CNAME/www.reggieanddro.com>
+- <https://dnschecker.org/>
 
 ---
 
 ## ROLLBACK PLAN (If Something Goes Wrong)
 
 **Current DNS (BACKUP):**
+
 - A Record: @ → 199.34.228.172
 - TTL: [Current value - check GoDaddy before changing]
 
 **To Rollback:**
+
 1. Login to GoDaddy DNS settings
 2. Delete CNAME record for www
 3. Change A record @ back to 199.34.228.172
@@ -217,8 +242,8 @@ After making DNS changes, verify:
 - [ ] `dig www.reggieanddro.com CNAME +short` returns `reggieanddro.company.site`
 - [ ] `curl -I http://reggieanddro.com` returns 301 to www
 - [ ] `curl -I https://www.reggieanddro.com` returns 200 OK
-- [ ] Visit https://www.reggieanddro.com in browser - loads Lightspeed store
-- [ ] Visit http://reggieanddro.com - redirects to https://www.reggieanddro.com
+- [ ] Visit <https://www.reggieanddro.com> in browser - loads Lightspeed store
+- [ ] Visit <http://reggieanddro.com> - redirects to <https://www.reggieanddro.com>
 - [ ] SSL certificate is valid (green padlock)
 - [ ] All product pages load correctly
 - [ ] Checkout flow works
@@ -229,6 +254,7 @@ After making DNS changes, verify:
 ## BUSINESS CONTEXT
 
 **From Andrew's Message:**
+
 - ✅ Online sales ACTIVATED
 - ✅ Lightspeed POS live
 - ✅ Membership form ready
@@ -236,6 +262,7 @@ After making DNS changes, verify:
 - 🎯 DNS change: Final step to go live
 
 **Impact:**
+
 - **Revenue:** Unlock online sales at reggieanddro.com
 - **Customer Experience:** Professional branded domain
 - **SEO:** Maintain domain authority
@@ -246,11 +273,13 @@ After making DNS changes, verify:
 ## SUPPORT CONTACTS
 
 **GoDaddy Support:**
+
 - Phone: (480) 505-8877
 - Live Chat: Available in GoDaddy dashboard
 - Hours: 24/7
 
 **Lightspeed Support:**
+
 - If custom domain doesn't work after DNS change
 - May need to configure custom domain in Lightspeed dashboard
 
@@ -261,6 +290,7 @@ After making DNS changes, verify:
 **Execute OPTION 1 (CNAME + Forwarding) NOW**
 
 **Reason:**
+
 - ✅ Lightspeed store verified live (200 OK)
 - ✅ Professional setup with SSL
 - ✅ Minimal risk (easy rollback)
@@ -281,6 +311,7 @@ After making DNS changes, verify:
 ## QUESTIONS?
 
 If you need help:
+
 1. Screenshot the GoDaddy DNS page (before changes)
 2. Follow exact steps above
 3. Verify with the checklist

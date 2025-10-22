@@ -1,4 +1,5 @@
 ### 500 Internal Server Error
+
 ```json
 {
   "success": false,

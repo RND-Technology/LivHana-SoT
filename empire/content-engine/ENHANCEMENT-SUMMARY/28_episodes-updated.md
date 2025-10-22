@@ -1,4 +1,5 @@
-### Episodes Updated:
+### Episodes Updated
+
 - All 84 episodes from episode_001.json through episode_084.json
 - Status changed from "generated" to "enhanced"
 - Production metadata updated with enhancement timestamp

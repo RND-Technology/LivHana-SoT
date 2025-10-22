@@ -1,5 +1,7 @@
 ### 8.1 VS Code Debug Configuration
+
 Create `.vscode/launch.json`:
+
 ```json
 {
   "version": "0.2.0",

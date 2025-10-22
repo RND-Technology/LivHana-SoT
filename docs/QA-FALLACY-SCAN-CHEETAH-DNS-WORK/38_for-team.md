@@ -1,4 +1,5 @@
-### For Team:
+### For Team
+
 1. **DNS apex records require special handling**
    - Cannot use CNAME
    - Must use A, AAAA, ALIAS, or ANAME

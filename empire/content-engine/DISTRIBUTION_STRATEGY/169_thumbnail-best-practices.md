@@ -1,6 +1,7 @@
 #### Thumbnail Best Practices
 
 **Visual Elements**:
+
 - Character in action (mid-expression)
 - High contrast colors
 - Clear focal point
@@ -8,6 +9,7 @@
 - Emotional expression visible
 
 **Text Overlay** (YouTube primarily):
+
 - 3-5 words maximum
 - Readable at small sizes
 - Contrasts with background
@@ -15,6 +17,7 @@
 - Creates curiosity
 
 **Branding**:
+
 - Consistent template
 - Logo placement (corner)
 - Color scheme
@@ -22,6 +25,7 @@
 - Series branding
 
 **A/B Testing**:
+
 - Test different character expressions
 - Test with/without text
 - Test different color schemes

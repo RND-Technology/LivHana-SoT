@@ -1,4 +1,5 @@
 ### 8.2 Logging Configuration
+
 ```bash
 # Enable debug logging
 export DEBUG=livhana:*

@@ -1,4 +1,4 @@
-### Enterprise Tier ($300-500/month):
+### Enterprise Tier ($300-500/month)
 
 ```
 - Kling AI Premier: $64.99

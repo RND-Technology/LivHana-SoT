@@ -1,18 +1,21 @@
 #### Algorithm Optimization (2025)
 
 **Key Algorithm Mechanics**:
+
 - Two reach types: Connected (followers) vs. Unconnected (non-followers)
 - Top 3 signals: Watch time, Likes, DM Shares
 - Original, high-quality content prioritized
 - Watermarked/repurposed videos get penalized
 
 **Critical Success Metrics**:
+
 1. **Watch Time**: Complete video views
 2. **DM Shares**: The highest-weighted engagement
 3. **Saves**: Indicates high-value content
 4. **Replays**: Auto-loop or manual replay
 
 **Optimal Video Length**:
+
 - 7-15 seconds performs best
 - Under 30 seconds recommended for HNC
 - Design for smooth looping
@@ -58,12 +61,14 @@
    - Collaborate with micro-influencers
 
 **Instagram-Specific Features**:
+
 - Use Remix feature to engage with other creators
 - Create carousel posts with video first slide
 - Stories teasers with "Full video in Reels" CTA
 - Guides for organizing HNC series by topic
 
 **HNC Strategy**:
+
 - **Visual Branding**: Consistent color palette and logo placement
 - **Caption Storytelling**: Use full caption space for context
 - **Community Building**: Feature user-generated content

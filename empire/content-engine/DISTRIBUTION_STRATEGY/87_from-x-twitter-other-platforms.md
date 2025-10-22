@@ -1,6 +1,7 @@
 #### From X (Twitter) → Other Platforms
 
 **Tactics**:
+
 1. **Thread Strategy**
    - Tweet 1: Video
    - Tweet 2-4: Context/breakdown
@@ -13,6 +14,7 @@
    - "New to HNC? Start here 👇"
 
 3. **Bio Optimization**
+
    ```
    🤠 High Noon Cartoon
    📺 Texas Cannabis Compliance

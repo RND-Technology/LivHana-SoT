@@ -1,4 +1,5 @@
 #### ✅ Monitoring Dashboard
+
 - **File:** `monitor-production.mjs`
 - Comprehensive summary reports
 - Latest episode details
@@ -8,6 +9,7 @@
 - JSON export capability
 
 **Monitoring Features:**
+
 - Overall statistics (completion rate, failure rate)
 - Cost analysis (total, average, min, max)
 - Cost breakdown by service with bar charts

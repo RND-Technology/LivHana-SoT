@@ -9,6 +9,7 @@ The TRUTH Pipeline secrets integration manages 43 canonical secrets across Googl
 ## Secrets Architecture
 
 ### Secret Management Flow
+
 ```mermaid
 graph TD
     A[GSM Secret Manager] --> B[Cloud Run Gateway]
@@ -24,6 +25,7 @@ graph TD
 ```
 
 ### Secret Categories
+
 | Category | Count | Services | Purpose |
 |----------|-------|----------|---------|
 | **Google Workspace** | 12 | Gmail, Drive, Calendar | Business automation |
@@ -35,6 +37,7 @@ graph TD
 ## GSM Workflow Implementation
 
 ### Step 1: Secret Listing
+
 ```bash
 #!/bin/bash
 # gsm_list_secrets.sh
@@ -114,6 +117,7 @@ main "$@"
 ```
 
 ### Step 2: Secret Mapping
+
 ```bash
 #!/bin/bash
 # gsm_secret_mapping.sh
@@ -252,6 +256,7 @@ main "$@"
 ```
 
 ### Step 3: Secret Configuration
+
 ```bash
 #!/bin/bash
 # gsm_secret_configuration.sh
@@ -335,6 +340,7 @@ main "$@"
 ```
 
 ### Step 4: Secret Verification
+
 ```bash
 #!/bin/bash
 # gsm_secret_verification.sh
@@ -612,6 +618,7 @@ main "$@"
 ## Agent Builder Secret Integration
 
 ### Secret Injection for Nodes
+
 ```bash
 #!/bin/bash
 # agent_builder_secret_injection.sh
@@ -682,6 +689,7 @@ main "$@"
 ## Secret Hygiene & Compliance
 
 ### Secret Hygiene Checklist
+
 ```bash
 #!/bin/bash
 # secret_hygiene_checklist.sh

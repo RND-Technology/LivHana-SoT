@@ -15,12 +15,14 @@ Voice Service (Port 8080)
 ## Features
 
 ### ElevenLabs Integration
+
 - **Text-to-Speech Synthesis** - Convert text to natural-sounding audio
 - **Voice Management** - Get available voices and models
 - **Streaming Support** - Stream audio directly to client
 - **Voice Settings** - Customize stability and similarity boost
 
 ### Reasoning Queue Integration
+
 - **Job Enqueue** - Submit prompts to DeepSeek reasoning gateway
 - **SSE Streaming** - Real-time progress updates via Server-Sent Events
 - **Job Management** - Check status, cancel jobs, get results
@@ -31,9 +33,11 @@ Voice Service (Port 8080)
 ### ElevenLabs Endpoints
 
 #### POST `/api/elevenlabs/synthesize`
+
 Synthesize speech from text
 
 **Request:**
+
 ```json
 {
   "text": "Hello, this is a test",
@@ -49,9 +53,11 @@ Synthesize speech from text
 **Response:** Audio stream (audio/mpeg)
 
 #### GET `/api/elevenlabs/voices`
+
 Get list of available voices
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -60,9 +66,11 @@ Get list of available voices
 ```
 
 #### GET `/api/elevenlabs/models`
+
 Get list of available models
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -73,9 +81,11 @@ Get list of available models
 ### Reasoning Endpoints
 
 #### POST `/api/reasoning/enqueue`
+
 Enqueue a reasoning job
 
 **Request:**
+
 ```json
 {
   "prompt": "Explain quantum computing in simple terms",
@@ -88,6 +98,7 @@ Enqueue a reasoning job
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -98,9 +109,11 @@ Enqueue a reasoning job
 ```
 
 #### GET `/api/reasoning/result/:jobId`
+
 Get result of a reasoning job
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -112,9 +125,11 @@ Get result of a reasoning job
 ```
 
 #### GET `/api/reasoning/stream/:jobId`
+
 Stream job progress via SSE
 
 **Response:** Server-Sent Events stream
+
 ```
 data: {"type":"connected","jobId":"job-789"}
 
@@ -124,9 +139,11 @@ data: {"type":"completed","result":"..."}
 ```
 
 #### POST `/api/reasoning/cancel`
+
 Cancel a reasoning job
 
 **Request:**
+
 ```json
 {
   "jobId": "job-789"
@@ -134,9 +151,11 @@ Cancel a reasoning job
 ```
 
 #### GET `/api/reasoning/queue/stats`
+
 Get queue statistics
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -166,9 +185,10 @@ nano .env
 ```
 
 Required variables:
-- `ELEVENLABS_API_KEY` - Get from https://elevenlabs.io/
+
+- `ELEVENLABS_API_KEY` - Get from <https://elevenlabs.io/>
 - `REDIS_HOST` - Redis server for BullMQ (default: localhost)
-- `REASONING_GATEWAY_BASE_URL` - Reasoning gateway URL (default: http://localhost:4002)
+- `REASONING_GATEWAY_BASE_URL` - Reasoning gateway URL (default: <http://localhost:4002>)
 
 ### 3. Start Redis
 
@@ -210,6 +230,7 @@ docker run -p 8080:8080 --env-file .env voice-service
 ## ADR Reference
 
 See `docs/adr/1.6.2.1_3-6-1-5_ADR_002_Voice_Queue_Architecture_20251006.md` for:
+
 - BullMQ + Redis isolation
 - JWT & guardrails
 - Memory & feedback hooks
@@ -297,7 +318,7 @@ function useReasoningJob(prompt) {
 
 ## Support
 
-Contact: jesse@reggieanddro.com
+Contact: <jesse@reggieanddro.com>
 
 ## License
 

@@ -20,6 +20,7 @@ calculateTPOPSAlignment(newsHook, characters) {
 ```
 
 **Improvements:**
+
 - ✅ 4-tier dog whistle categorization
 - ✅ Character alignment weighting
 - ✅ News hook integration scoring

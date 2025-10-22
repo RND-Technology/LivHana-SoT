@@ -1,5 +1,7 @@
 #### 2. **Prompt Consistency Formula**
+
 Always include these elements in EVERY prompt for the same character:
+
 - Character name and role
 - Age range and ethnicity
 - Hair style and color (specific)

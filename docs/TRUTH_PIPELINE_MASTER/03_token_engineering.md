@@ -9,6 +9,7 @@ Token engineering for the TRUTH Pipeline enforces strict budgets per stage, targ
 ## Token Budget Allocation
 
 ### Per-Stage Budgets
+
 | Stage | Avg Tokens | Hard Limit | Soft Limit | Optimization Target |
 |-------|------------|------------|------------|-------------------|
 | **L1 Apify** | 8-12k | 16k | 14k | Hash + manifest |
@@ -19,6 +20,7 @@ Token engineering for the TRUTH Pipeline enforces strict budgets per stage, targ
 | **Total Pipeline** | 14-22k | 31k | 26k | ≥40% compression |
 
 ### Budget Enforcement Logic
+
 ```bash
 #!/bin/bash
 # token_budget_enforcer.sh
@@ -72,6 +74,7 @@ check_total_budget() {
 ## Token Accounting System
 
 ### Real-Time Tracking
+
 ```bash
 #!/bin/bash
 # token_accounting.sh
@@ -147,6 +150,7 @@ calculate_compression() {
 ## Compression Strategy
 
 ### GPT-5 Mini Compression Logic
+
 ```bash
 #!/bin/bash
 # compression_optimizer.sh
@@ -194,6 +198,7 @@ optimize_compression() {
 ```
 
 ### Token Reduction Techniques
+
 | Technique | Target Reduction | Implementation |
 |-----------|------------------|----------------|
 | **Deduplication** | 15-20% | Remove duplicate facts |
@@ -205,6 +210,7 @@ optimize_compression() {
 ## Adaptive Budgeting
 
 ### Dynamic Budget Adjustment
+
 ```bash
 #!/bin/bash
 # adaptive_budgeting.sh
@@ -255,6 +261,7 @@ adjust_budgets() {
 ## Cost Control Mechanisms
 
 ### Automatic Abort Conditions
+
 ```bash
 #!/bin/bash
 # cost_control.sh
@@ -301,6 +308,7 @@ check_cost_limits() {
 ## Token Efficiency Metrics
 
 ### Performance Monitoring
+
 ```bash
 #!/bin/bash
 # token_efficiency_monitor.sh
@@ -361,6 +369,7 @@ EOF
 ## Token Budget Validation
 
 ### Pre-Flight Validation
+
 ```bash
 #!/bin/bash
 # token_budget_validator.sh

@@ -1,6 +1,7 @@
 #### From YouTube Shorts → Other Platforms
 
 **Tactics**:
+
 1. **End Screen CTAs**
    - Last 3 seconds: "Find us on TikTok @HighNoonCartoon"
    - Verbal: "More daily content on Instagram Reels"

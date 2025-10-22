@@ -24,7 +24,7 @@
     "third_party_providers": [
       "BlueCheck",
       "Veriff",
-      "Jumio"
+      "Veriff"
     ]
   },
   "nist_validation": {

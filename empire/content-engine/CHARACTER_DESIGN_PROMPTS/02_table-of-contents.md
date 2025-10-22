@@ -1,4 +1,5 @@
 ## TABLE OF CONTENTS
+
 1. [Visual Style Overview](#visual-style-overview)
 2. [Character Design Principles](#character-design-principles)
 3. [Jesse Niesen - CEO Character Prompts](#jesse-niesen---ceo-character-prompts)

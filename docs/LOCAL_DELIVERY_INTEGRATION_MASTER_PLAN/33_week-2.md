@@ -1,4 +1,5 @@
 ### Week 2
+
 7. **Soft Launch**
    - Announce to existing customers
    - Limit to 10-20 orders/day

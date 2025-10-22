@@ -3,6 +3,7 @@
 **Scene Transitions:**
 
 **1. Standard Fade**
+
 ```
 - Duration: 0.5 seconds
 - Fade to: White (positive scenes) or Black (dramatic)
@@ -11,6 +12,7 @@
 ```
 
 **2. Slide Wipe**
+
 ```
 - Duration: 0.6 seconds
 - Direction: Left→Right (time forward), Right→Left (flashback)
@@ -19,6 +21,7 @@
 ```
 
 **3. Zoom Transition**
+
 ```
 - Duration: 0.7 seconds
 - Type: Zoom in (focus detail) or out (reveal context)
@@ -27,6 +30,7 @@
 ```
 
 **4. Digital Transition (Liv Hana specific)**
+
 ```
 - Duration: 0.4 seconds
 - Effect: Brief digital glitch/pixelation
@@ -35,6 +39,7 @@
 ```
 
 **5. Quick Cut**
+
 ```
 - Duration: Instant (0 seconds)
 - Usage: Dialogue exchanges, fast pacing, dramatic moments
@@ -44,14 +49,17 @@
 **Element Transitions:**
 
 **Text Entry/Exit:**
+
 - Fade In: 0.3 seconds, ease-out
 - Fade Out: 0.3 seconds, ease-in
 - Alternative: Slide from bottom (0.4 seconds) for important text
 
 **Graphics/Icons:**
+
 - Pop In: Scale from 0% to 100% (0.3 seconds) with slight bounce
 - Pop Out: Scale to 0% (0.2 seconds) with ease-in
 
 **Data/Numbers:**
+
 - Count Up: Number incrementing from 0 to final value (1-2 seconds)
 - Appear: Fade in with slight scale (0.4 seconds)

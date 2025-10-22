@@ -3,6 +3,7 @@
 **Error:** `API key not configured`
 
 **Solution:**
+
 ```bash
 # Check environment variables
 echo $ELEVENLABS_API_KEY

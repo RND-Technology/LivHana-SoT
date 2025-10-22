@@ -1,4 +1,5 @@
 ### Opportunities Identified
+
 - Superior customization
 - Advanced analytics
 - Enhanced experience

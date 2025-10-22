@@ -1,4 +1,4 @@
-### Critical Path Blockers:
+### Critical Path Blockers
 
 1. **Cloud Run Domain Mappings** (BLOCKS EVERYTHING)
    - **Impact:** 18 domains return 404

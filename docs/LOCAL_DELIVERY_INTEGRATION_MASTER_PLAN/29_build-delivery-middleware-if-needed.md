@@ -3,6 +3,7 @@
 **File:** `backend/integration-service/lightspeed-delivery-middleware.js`
 
 **Function:**
+
 ```javascript
 // Sync Lightspeed orders → DoorDash Drive API
 
@@ -54,6 +55,7 @@ module.exports = deliveryRouter;
 ```
 
 **Deployment:**
+
 ```bash
 cd backend/integration-service
 npm install axios express

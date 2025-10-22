@@ -1,5 +1,7 @@
 ### IMPROVISE - Create innovative solutions and approaches
+
 **Process:**
+
 - Develop unique value propositions
 - Create innovative product offerings
 - Design superior customer experiences

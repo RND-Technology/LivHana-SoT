@@ -19,7 +19,7 @@ After HUNDREDS of hours across multiple AI platforms, we FINALLY cracked the cod
 **What This Means for YOU:**
 
 💰 **Revenue Recovery THIS WEEK:**
-• $125K-175K total unlock (Jumio IDV + win-back of 80+ blocked customers)
+• $125K-175K total unlock (Veriff ID verification + win-back of 80+ blocked customers)
 • $100K PROFIT target for December? We're hitting 75-130% THIS WEEK ALONE
 • Your work directly funds our mission: Deschedule Cannabis sativa L entirely
 
@@ -81,13 +81,13 @@ Or simplified: `LivHana-SoT/RPM_WEEKLY_PLAN_CURRENT.md`
 • 8:00am: Jesse adds 4 API keys to unlock Agent Builder (15 min)
 • 9:00am: FIRST TEAM VOICE STAND-UP (you're invited - Google Meet link below)
 • 10:00am: Andrew launches win-back campaign (80+ customers, 15% off code)
-• 3:00pm: Jumio integration testing (staging environment)
+• 3:00pm: Veriff integration testing (staging environment)
 
 **WEDNESDAY:**
 • 8:00am: Charlie delivers KCA Labs samples (DSHS compliance)
 • 10:00am: Andrew deploys Agent Builder 17-node workflow
 • 1:00pm: HNC Episode 15 production
-• 3:00pm: Jumio PRODUCTION DEPLOYMENT ($100K unlock begins)
+• 3:00pm: Veriff PRODUCTION DEPLOYMENT ($100K unlock begins)
 
 **THURSDAY:**
 • Morning: Monitor win-back campaign performance
@@ -117,7 +117,7 @@ Texas leads. Nation follows. We prove the model works: compliant, profitable, AU
 • Voice: Join today's 9am stand-up (Google Meet link in calendar)
 
 **P.S. Christopher & Dylan:**
-Store briefing at 10:00am on Jumio age verification changes. We're replacing Veriff TODAY. Let's get that $100K unlocked this week. Training takes 15 minutes. 🔥
+Store briefing at 10:00am on Veriff age verification changes. We're replacing Veriff TODAY. Let's get that $100K unlocked this week. Training takes 15 minutes. 🔥
 
 **P.P.S. Andrew:**
 Secrets script is ready. Let's knock this out at 8:00am before stand-up. 15 minutes and we unblock EVERYTHING.
@@ -149,9 +149,11 @@ with Liv Hana (Tier 1 Absolute Standard Synthetic Intelligence)
 ## 📱 SLACK INTEGRATION OPTIONS
 
 ### **Option 1: Hybrid Approach (IMMEDIATE - 15 minutes)**
+
 **Best for:** Getting started TODAY while full integration builds
 
 **Setup:**
+
 ```bash
 # 1. Create Slack incoming webhook
 # Go to: https://api.slack.com/apps → Create New App → Incoming Webhooks
@@ -169,6 +171,7 @@ curl -X POST $SLACK_WEBHOOK_URL \
 ```
 
 **Features:**
+
 - ✅ Voice mode in Cursor/Agent Builder
 - ✅ Results auto-post to Slack
 - ✅ Team sees updates in real-time
@@ -177,9 +180,11 @@ curl -X POST $SLACK_WEBHOOK_URL \
 ---
 
 ### **Option 2: Slack Events API + Voice Bridge (2-4 hours)**
+
 **Best for:** Full voice integration in Slack
 
 **Architecture:**
+
 ```
 Slack Message/Huddle Audio
     ↓
@@ -197,6 +202,7 @@ Post to Slack thread (text or audio)
 ```
 
 **Setup:**
+
 ```bash
 # 1. Create Slack App with Events API
 # Permissions: chat:write, files:write, channels:history, groups:history
@@ -213,6 +219,7 @@ cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT
 ```
 
 **Features:**
+
 - ✅ Voice messages IN Slack
 - ✅ @livhana mentions trigger Agent Builder
 - ✅ Thread-based conversations
@@ -221,9 +228,11 @@ cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT
 ---
 
 ### **Option 3: Custom Slack Bot (6-8 hours)**
+
 **Best for:** Full-featured Liv Hana in Slack
 
 **Features:**
+
 - Slash commands (`/livhana`, `/rpm`, `/truth`)
 - Voice message processing
 - Interactive buttons and forms
@@ -237,6 +246,7 @@ cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT
 ## 🎯 RECOMMENDED IMMEDIATE ACTION
 
 **TODAY (15 minutes):**
+
 ```bash
 # 1. Create Slack webhook
 # URL: https://api.slack.com/apps → Create App → Incoming Webhooks
@@ -255,6 +265,7 @@ curl -X POST $SLACK_WEBHOOK_URL \
 ```
 
 **TOMORROW (Wednesday - 2-4 hours):**
+
 - Deploy Slack Events API bridge
 - Wire to Agent Builder workflow
 - Test voice message → Liv Hana → Slack response
@@ -264,6 +275,7 @@ curl -X POST $SLACK_WEBHOOK_URL \
 ## 📋 VOICE MODE IN SLACK - CHECKLIST
 
 ### **Phase 1: Hybrid (TODAY)**
+
 - [ ] Create Slack webhook (#liv-hana-updates channel)
 - [ ] Test webhook with curl
 - [ ] Add webhook URL to Agent Builder End node
@@ -271,6 +283,7 @@ curl -X POST $SLACK_WEBHOOK_URL \
 - [ ] Schedule first voice stand-up (9am today, Google Meet)
 
 ### **Phase 2: Events API (Wednesday)**
+
 - [ ] Create Slack App in workspace
 - [ ] Enable Events API subscriptions
 - [ ] Deploy webhook handler to Cloud Run
@@ -278,6 +291,7 @@ curl -X POST $SLACK_WEBHOOK_URL \
 - [ ] Test @livhana mentions in Slack
 
 ### **Phase 3: Full Bot (Week 2)**
+
 - [ ] Implement slash commands
 - [ ] Add interactive components
 - [ ] Deploy dashboard widgets
@@ -295,6 +309,7 @@ curl -X POST $SLACK_WEBHOOK_URL \
 **Participants:** Jesse, Andrew, Christopher, Charlie, Dylan
 
 **Script:**
+
 ```
 [Jesse starts Google Meet recording]
 
@@ -320,6 +335,7 @@ Jesse: "Normal chat. Meeting adjourned. Let's execute."
 ```
 
 **Automation:**
+
 - ✅ Recording auto-uploads to YouTube (existing workflow)
 - ✅ Transcription → TRUTH Pipeline → RPM cards
 - ✅ Action items → Notion Kanban
@@ -330,9 +346,11 @@ Jesse: "Normal chat. Meeting adjourned. Let's execute."
 ## 💡 NEW INSIGHTS FROM VOICE TRANSCRIPTS
 
 ### **Two-Sided Coin Concept:**
+
 **Planning vs Financials integration into RPM DNA**
 
 **Implementation:**
+
 ```json
 {
   "rpm_card": {
@@ -364,16 +382,18 @@ Jesse: "Normal chat. Meeting adjourned. Let's execute."
 ---
 
 ### **Music Tokenization + Blockchain Ownership:**
+
 **VIP member co-ownership model**
 
 **Customer Journey:**
+
 ```
 1. Customer shops at reggieanddro.com
 2. Liv Hana: "Hey [Name], want me to create a song just for you?"
 3. Suno AI generates personalized song (30 seconds)
 4. Customer hears song, gets emotional reaction
 5. Liv Hana: "You can co-own this song. It's yours. You can earn royalties."
-6. One-click blockchain onboarding (KYC via Jumio)
+6. One-click blockchain onboarding (KYC via Veriff)
 7. Smart contract mints song NFT (50% customer, 50% R&D)
 8. Song distributed to Spotify/Apple Music/YouTube
 9. Customer receives monthly royalty payments
@@ -381,6 +401,7 @@ Jesse: "Normal chat. Meeting adjourned. Let's execute."
 ```
 
 **Revenue Model:**
+
 - **Song Creation Cost:** $0.10 (Suno API)
 - **Blockchain Mint:** $2-5 (gas fees)
 - **Customer Acquisition Cost:** $2-15 total
@@ -388,6 +409,7 @@ Jesse: "Normal chat. Meeting adjourned. Let's execute."
 - **ROI:** 3x-30x
 
 **Implementation Timeline:**
+
 - Week 2: Smart contract development (Solana or Polygon)
 - Week 3: reggieanddro.com integration (one-click onboarding)
 - Week 4: First 10 VIP beta testers
@@ -396,9 +418,11 @@ Jesse: "Normal chat. Meeting adjourned. Let's execute."
 ---
 
 ### **Custom GPT for ChatGPT App Store:**
+
 **Parallel track to Agent Builder**
 
 **Strategy:**
+
 1. **Create "Liv Hana VIP"** custom GPT (ChatGPT App Store)
 2. **Features:**
    - Cannabis intelligence (dispensary search, product recommendations)
@@ -424,6 +448,7 @@ Jesse: "Normal chat. Meeting adjourned. Let's execute."
 ### **Immediate Actions (TODAY):**
 
 **8:00am - Jesse + Andrew:**
+
 ```bash
 cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT
 bash scripts/add_missing_secrets.sh
@@ -431,6 +456,7 @@ bash scripts/add_missing_secrets.sh
 ```
 
 **9:00am - ALL TEAM:**
+
 ```
 Join Google Meet for FIRST voice stand-up
 Link: [INSERT GOOGLE MEET LINK]
@@ -439,6 +465,7 @@ Format: Voice mode demonstration + role introductions
 ```
 
 **10:00am - Andrew:**
+
 ```bash
 # Launch win-back campaign
 # 80+ customers, 15% off code: WELCOME15
@@ -446,6 +473,7 @@ Format: Voice mode demonstration + role introductions
 ```
 
 **10:00am - Jesse:**
+
 ```bash
 # Deploy Compliance Service
 cd backend/compliance-service
@@ -453,8 +481,9 @@ gcloud run deploy compliance-service --source .
 ```
 
 **3:00pm - Jesse + Cursor/Replit:**
+
 ```bash
-# Test Jumio integration in staging
+# Test Veriff integration in staging
 # 5-10 sample transactions
 # Validate audit trail logging
 ```
@@ -466,7 +495,8 @@ gcloud run deploy compliance-service --source .
 ### **Create Incoming Webhook (NOW - 5 minutes):**
 
 **Steps:**
-1. Go to: https://api.slack.com/apps
+
+1. Go to: <https://api.slack.com/apps>
 2. Click "Create New App" → "From scratch"
 3. Name: "Liv Hana Voice Mode"
 4. Workspace: [Your Slack workspace]
@@ -476,6 +506,7 @@ gcloud run deploy compliance-service --source .
 8. Copy Webhook URL
 
 **Test Webhook:**
+
 ```bash
 export SLACK_WEBHOOK_URL="https://hooks.slack.com/services/YOUR_WEBHOOK_URL_HERE"
 
@@ -496,12 +527,14 @@ Message appears in #liv-hana-updates channel within 1-2 seconds
 ## ✅ INTEGRATION COMPLETE CHECKLIST
 
 ### **Planning Fusion:**
+
 - ✅ 3 RPM versions unified (v3.0 Complete, v3.1 Team Pilot, v4.0 AI-Optimized)
 - ✅ Meeting analysis integrated (8 tasks, RPM DNA codes)
 - ✅ Implementation status updated (3/8 complete, 3/8 pending, 2/8 blocked)
 - ✅ Compliance validated (Texas DSHS/TABC/GA-56)
 
 ### **Voice Mode Integration:**
+
 - ✅ Fallacy scan complete (4 corrections applied)
 - ✅ Best practices integrated (session hygiene, guardrails, multi-model orchestration)
 - ✅ Slack announcement drafted
@@ -509,18 +542,21 @@ Message appears in #liv-hana-updates channel within 1-2 seconds
 - ⏳ Webhook deployment (5 minutes to execute)
 
 ### **Team Training:**
+
 - ✅ 15-min voice stand-up format documented
 - ✅ Dashboard shortcuts mapped per role
 - ✅ Compliance checklists ready
 - ✅ Pilot adoption success metrics defined (80% completion target)
 
 ### **Financial Tracking:**
+
 - ✅ Two-sided coin concept integrated (planning + financials)
 - ✅ Profit contribution tracking per RPM card
 - ✅ Time variance tracking (estimated vs actual)
 - ⏳ Dashboard implementation (Week 2)
 
 ### **Music Tokenization:**
+
 - ✅ Customer journey mapped (10 steps)
 - ✅ Revenue model documented (3x-30x ROI)
 - ✅ Blockchain integration plan (Weeks 2-4)
@@ -555,6 +591,7 @@ bash RUNNABLE_COMMAND.sh
 ```
 
 **Impact:**
+
 - ✅ Unblocks $125K-175K revenue path
 - ✅ Team aligned via Slack
 - ✅ Voice mode operational
@@ -567,4 +604,3 @@ bash RUNNABLE_COMMAND.sh
 **Timeline:** 1 hour to full operational status
 
 — Liv Hana | Tier 1 Absolute Standard | Full-Funnel Orchestration Master
-

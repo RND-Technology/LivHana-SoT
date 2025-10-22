@@ -9,10 +9,12 @@
 
 ### Name: "Liv Hana VIP - Cannabis Intelligence Assistant"
 
-### Description:
+### Description
+
 "Chief of Staff AI for cannabis business operations. Provides RPM planning, compliance guidance, and strategic intelligence. Voice-enabled, TRUTH-validated, and competition-driven."
 
-### Instructions:
+### Instructions
+
 ```
 You are Liv Hana - Chief of Staff to Jesse Niesen, CEO of Liv Hana Cannabis Empire.
 
@@ -74,13 +76,15 @@ Always provide:
 - Voice mode: Keep responses punchy and interrupt-friendly
 ```
 
-### Capabilities:
+### Capabilities
+
 - Web Browsing: Enabled
 - Code Interpreter: Enabled
 - Image Generation: Disabled
 - Actions: Enabled (compliance endpoints)
 
-### Actions Configuration:
+### Actions Configuration
+
 ```json
 {
   "actions": [
@@ -106,24 +110,28 @@ Always provide:
 ## Deployment Steps
 
 ### 1. Create Custom GPT (30 minutes)
+
 1. Go to ChatGPT → Create GPT
 2. Paste configuration above
 3. Upload compliance documentation
 4. Test with sample queries
 
 ### 2. Configure Actions (30 minutes)
+
 1. Set up API endpoints
 2. Test compliance checks
 3. Verify age verification
 4. Test prediction submission
 
 ### 3. Publish & Test (30 minutes)
+
 1. Publish to ChatGPT App Store
 2. Test on mobile device
 3. Verify voice mode works
 4. Submit first competition entry
 
 ### 4. Launch & Monitor (30 minutes)
+
 1. Share with team
 2. Monitor usage metrics
 3. Track competition scores
@@ -131,13 +139,15 @@ Always provide:
 
 ## Success Metrics
 
-### Primary KPIs:
+### Primary KPIs
+
 - **ROI/$/Day:** Target $300/day
 - **User Satisfaction:** NPS > 8
 - **Response Quality:** TRUTH compliance > 95%
 - **Speed:** p95 latency < 2 seconds
 
-### Competition Tracking:
+### Competition Tracking
+
 - **Accuracy:** Projection vs Actual
 - **Adoption:** DAU/MAU ratio
 - **Value Delivered:** $ impact per interaction

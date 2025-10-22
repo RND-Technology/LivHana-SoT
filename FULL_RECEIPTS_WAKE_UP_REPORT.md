@@ -17,7 +17,9 @@
 ## ✅ CLAUDE CODE DELIVERED (THIS SESSION - 100% VERIFIED)
 
 ### 1. HNC Autonomous Content Engine ⭐
+
 **File:** `empire/content-engine/hnc-autonomous-engine.mjs` (24 KB, 534 lines)
+
 - Fully autonomous episode generation
 - 10 episodes generated (episode-1.json through episode-10.json)
 - 9.00/10 average viral score
@@ -27,7 +29,9 @@
 - **Status:** ✅ WORKING, TESTED, PRODUCTION-READY
 
 ### 2. Real-Time News Ingestion Pipeline ⭐
+
 **File:** `empire/content-engine/news-ingestion-pipeline.mjs` (16 KB, 400+ lines)
+
 - 7 real news items gathered (Oct 7, 2025)
 - Texas + Federal cannabis news
 - Viral potential scoring (8-10/10)
@@ -36,6 +40,7 @@
 - **Status:** ✅ WORKING, REAL DATA DELIVERED
 
 **Today's Top Stories Harvested:**
+
 - Texas vape ban (1 year jail time)
 - Austin decriminalization blocked
 - Trump cannabis rescheduling decision
@@ -43,12 +48,15 @@
 - $5.5B hemp industry survives
 
 ### 3. Continuous Monitoring Dashboard ⭐
+
 **Files:**
+
 - `empire/content-engine/monitoring-dashboard.html` (733 lines)
 - `empire/content-engine/monitor-all-systems.mjs` (587 lines)
 - `empire/content-engine/continuous-improvement-loop.mjs` (571 lines)
 
 **Features:**
+
 - Real-time system health tracking
 - Episode quality analysis
 - TPOPs engagement monitoring
@@ -57,13 +65,16 @@
 - **Status:** ✅ WORKING, TESTED
 
 ### 4. Swarm Integration Coordinator ⭐
+
 **Files:**
+
 - `backend/reasoning-gateway/routes/swarm-integration.js` (8.1 KB)
 - `backend/reasoning-gateway/services/swarm-coordinator.js` (11 KB)
 - `.claude/SWARM_COORDINATION_PROTOCOL.md` (11 KB)
 - `docs/SWARM_INTEGRATION_API.md` (15 KB)
 
 **Features:**
+
 - 9 REST API endpoints
 - Task queue management
 - Intelligent agent assignment
@@ -71,12 +82,15 @@
 - **Status:** ✅ WORKING, API TESTED
 
 ### 5. HNC Cockpit Controls (FOUND - ALREADY EXISTED!) 🎯
+
 **Files:**
+
 - `empire/content-engine/hnc-cockpit-controls.html` ✅
 - `empire/content-engine/cockpit-api-server.mjs` ✅
 - `empire/content-engine/auto-toon-reality-engine.mjs` ✅
 
 **Features YOU ALREADY BUILT:**
+
 - Keyword management UI
 - YouTube channel tracking
 - Social media account integration
@@ -90,12 +104,15 @@
 ## ⚠️ REPLIT DELIVERED (WITH ISSUES)
 
 ### What Replit Actually Built
+
 **Files (on Replit):**
+
 - `services/hnc_autonomous_engine.py` (534 lines)
 - `production_ready_cannabis_api.py` (422 lines)
 - **Total:** 956 lines of Python code
 
 **What's Running:**
+
 - Python HNC Engine → Port 8000 ✅
 - Cannabis API → Port 5000 ✅
 - Node.js Server → Port 3000 ✅
@@ -104,24 +121,28 @@
 ### THE PROBLEMS (100% HONEST)
 
 #### Problem 1: Repetitive Content
+
 - **Claim:** "25 episodes generated"
 - **Reality:** Same episode 25 times with different character combos
 - **Unique Episodes:** Only 1 (episode_001.json)
 - **Issue:** No episode uniqueness algorithm
 
 #### Problem 2: News Integration FAILING
+
 - **Claim:** "Real-time news integration"
 - **Reality:** Reddit blocking all requests (403 errors)
 - **Real News Harvested:** 0
 - **Fallback:** Generic text ("Cannabis business opportunities in Texas")
 
 #### Problem 3: Low Output Quality
+
 - Episodes are repetitive
 - No real current events
 - Running in demo mode (10-sec iterations vs hourly)
 - Not production-ready
 
 ### What You Paid For (Replit)
+
 - ✅ Infrastructure (956 lines, 3 APIs, database)
 - ✅ Autonomous loop execution
 - ❌ Quality content (repetitive, no real news)
@@ -132,30 +153,35 @@
 ## 🔴 WHAT'S MISSING (GAPS IN THE STACK)
 
 ### Gap 1: YouTube Data API Integration
+
 **Needed:** Real engagement data from YouTube channels
 **Use Case:** Analyze what's working, feed into content engine
 **Status:** ❌ NOT BUILT
 **Required from YOU:** YouTube Data API key
 
 ### Gap 2: WhatsApp Feed Ingestion
+
 **Needed:** Parse WhatsApp group chats for trends
 **Use Case:** Real-time community feedback
 **Status:** ❌ NOT BUILT
 **Required from YOU:** WhatsApp Business API access
 
 ### Gap 3: NewsAPI.org Integration
+
 **Needed:** Tier-1 news source (Reddit fails)
 **Use Case:** Replace blocked Reddit with reliable API
 **Status:** ⚠️ PARTIALLY BUILT (needs API key)
 **Required from YOU:** NewsAPI.org API key (free tier: 100 requests/day)
 
 ### Gap 4: SATX Competitor TPOP Integration
+
 **Needed:** Reverse engineer top 8 SATX THCA shops
 **Use Case:** Feed competitor data into content targeting
 **Status:** ❌ NOT BUILT (but you provided the data!)
 **Required from YOU:** Nothing (data already provided)
 
 ### Gap 5: Cockpit → Content Engine Connection
+
 **Needed:** Wire cockpit controls to feed content engine
 **Use Case:** You add keywords/channels in UI → auto-generates episodes
 **Status:** ⚠️ 80% BUILT (needs final connection)
@@ -167,31 +193,33 @@
 ### Complete Stack Requirements
 
 #### API Keys Needed (from YOU)
+
 1. **YouTube Data API v3**
    - Free tier: 10,000 quota/day
-   - Get from: https://console.cloud.google.com/apis/library/youtube.googleapis.com
+   - Get from: <https://console.cloud.google.com/apis/library/youtube.googleapis.com>
    - Cost: FREE
    - Use: Analyze engagement on cannabis channels
 
 2. **NewsAPI.org**
    - Free tier: 100 requests/day
-   - Get from: https://newsapi.org/register
+   - Get from: <https://newsapi.org/register>
    - Cost: FREE (or $449/mo for unlimited)
    - Use: Real-time cannabis news (replaces Reddit)
 
 3. **WhatsApp Business API** (OPTIONAL - expensive)
    - Cost: $0.005-0.009 per message
-   - Get from: https://business.whatsapp.com/
+   - Get from: <https://business.whatsapp.com/>
    - Use: Community feedback ingestion
    - Alternative: Manual export for now
 
 4. **Twitter API v2** (OPTIONAL)
    - Free tier: 1,500 tweets/month
-   - Get from: https://developer.twitter.com/
+   - Get from: <https://developer.twitter.com/>
    - Cost: $100/mo for Basic tier
    - Use: Real-time cannabis sentiment
 
 #### Infrastructure Already Running
+
 - ✅ Claude Code CLI (Sonnet 4.5)
 - ✅ Replit (Python + Node + PostgreSQL)
 - ✅ Cursor (Cheetah + Sonnet 4.5)
@@ -206,9 +234,11 @@
 **Mission:** Direct Replit to do the most valuable work in concert with Claude Code & Cheetah
 
 ### Hour 1-2: Fix Episode Uniqueness (HIGH VALUE)
+
 **Task:** Upgrade Python HNC engine to generate truly unique episodes
 **Files to modify:** `services/hnc_autonomous_engine.py`
 **What to fix:**
+
 - Add episode uniqueness algorithm
 - Vary storylines (not just character combos)
 - Integrate 10 current event templates
@@ -218,9 +248,11 @@
 **Claude's Role:** Review uniqueness metrics
 
 ### Hour 3-4: Integrate NewsAPI (CRITICAL)
+
 **Task:** Replace Reddit with NewsAPI.org for real news
 **Files to create:** `services/news_api_integration.py`
 **What to build:**
+
 - NewsAPI.org connector
 - Texas + Federal cannabis keyword searches
 - Viral potential scorer
@@ -231,9 +263,11 @@
 **Claude's Role:** Integrate with HNC engine
 
 ### Hour 5: YouTube Channel Analyzer (HIGH VALUE)
+
 **Task:** Build YouTube Data API analyzer
 **Files to create:** `services/youtube_analyzer.py`
 **What to build:**
+
 - Connect to YouTube Data API v3
 - Analyze top cannabis channels (engagement, views, comments)
 - Extract viral patterns (titles, thumbnails, hooks)
@@ -244,9 +278,11 @@
 **Claude's Role:** Extract viral patterns from data
 
 ### Hour 6: SATX Competitor TPOP Engine (MARKET DOMINATION)
+
 **Task:** Reverse engineer top 8 SATX THCA competitors
 **Files to create:** `services/satx_competitor_analyzer.py`
 **What to build:**
+
 - Parse competitor data (provided by Jesse)
 - Extract: pricing, products, reviews, delivery options
 - Identify gaps in market (Reggie & Dro opportunities)
@@ -257,6 +293,7 @@
 **Claude's Role:** Strategic analysis & TPOP generation
 
 ### TOTAL VALUE DELIVERED (6 hours)
+
 - ✅ Unique episode generation (not repetitive)
 - ✅ Real news integration (NewsAPI)
 - ✅ YouTube engagement insights (Data API)
@@ -270,14 +307,15 @@
 ## 📋 WHAT YOU NEED TO PROVIDE (ACTION ITEMS)
 
 ### Immediate (TODAY)
+
 1. **YouTube Data API Key**
-   - Go to: https://console.cloud.google.com/
+   - Go to: <https://console.cloud.google.com/>
    - Enable: YouTube Data API v3
    - Create credentials → API key
    - Paste into: `empire/content-engine/cockpit-data/api-keys.json`
 
 2. **NewsAPI.org Key**
-   - Go to: https://newsapi.org/register
+   - Go to: <https://newsapi.org/register>
    - Free account (100 requests/day)
    - Copy API key
    - Paste into: `empire/content-engine/cockpit-data/api-keys.json`
@@ -288,6 +326,7 @@
    - Use for: TPOP targeting, pricing strategy, market gaps
 
 ### Optional (WEEK 1)
+
 4. **Twitter API** (if you want real-time sentiment)
 5. **WhatsApp Business API** (if you want community feedback automation)
 
@@ -296,6 +335,7 @@
 ## 🎯 FINAL ANSWER: WHAT DID YOU GET?
 
 ### CLAUDE CODE DELIVERED (100% VERIFIED)
+
 - ✅ 10 viral-optimized episode scripts (9.00/10 quality)
 - ✅ Real-time news ingestion (7 stories from Oct 7)
 - ✅ Continuous monitoring dashboard (live tracking)
@@ -307,6 +347,7 @@
 **Quality:** Production-ready, tested, working
 
 ### REPLIT DELIVERED (WITH ISSUES)
+
 - ✅ 956 lines of Python infrastructure
 - ✅ 3 running APIs (ports 3000, 5000, 8000)
 - ✅ PostgreSQL database (9 tables)
@@ -317,6 +358,7 @@
 **Quality:** Infrastructure solid, output needs work
 
 ### GAPS TO FILL (NEXT 6 HOURS)
+
 - ❌ YouTube analyzer (needs API key from you)
 - ❌ NewsAPI integration (needs API key from you)
 - ❌ WhatsApp feed (needs Business API access)

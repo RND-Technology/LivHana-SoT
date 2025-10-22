@@ -1,5 +1,7 @@
 ### 11.1 VS Code Extensions
+
 Install recommended extensions:
+
 ```bash
 # Install extensions
 code --install-extension ms-vscode.vscode-typescript-next

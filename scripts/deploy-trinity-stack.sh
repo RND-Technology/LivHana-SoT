@@ -58,7 +58,8 @@ fi
 
 # OpenAI API Key
 echo "Retrieving OpenAI API key..."
-OPENAI_KEY=$(op item get OPENAI_API_KEY --vault Employee --reveal --fields credential 2>/dev/null || echo "")
+# Use the correct vault to avoid 'isn't an item' errors
+OPENAI_KEY=$(op item get OPENAI_API_KEY --vault LivHana-Ops-Keys --reveal --fields credential 2>/dev/null || echo "")
 if [ -n "$OPENAI_KEY" ]; then
     echo "$OPENAI_KEY" | docker secret create openai_api_key - 2>/dev/null || echo "Secret already exists"
     echo "✅ OpenAI API key configured"

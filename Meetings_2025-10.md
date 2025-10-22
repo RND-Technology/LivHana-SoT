@@ -1,17 +1,21 @@
 # Meetings — October 2025
+
 **Compliance:** LifeWard, 21+ age-gate, NIST methods, brands-not-characters
 
 ## Sessions Identified
+
 - Session 1: Oct 21, 2025 - Voice Mode Launch & TRUTH Pipeline
 - Session 2: Oct 16, 2025 - RPM DNA Structure & Compliance
 - Session 3: Oct 16, 2025 - Technology Stack & Operations
 
 ## Solved vs Unsolved Summary
+
 - Solved: 4 items (Voice Mode Launch; RPM DNA structure; Agent Builder architecture mapped; Compliance framework documented)
 - Unsolved: 8 items
 - Blocked: 1 item (LightSpeed Integration Fix)
 
 ## Debrief — Unsolved by Role
+
 | ID | Title | Owners | Due | Priority | DependsOn | RPM DNA | Compliance Tags |
 |---|---|---|---|---|---|---|---|
 | STR-2025-10-21-001 | TRUTH Pipeline Implementation | Jesse, Andrew | 2025-10-28 | Critical | MCP broker deployment; Agent Builder secrets | AOM.COIRPM.Action-0001 | 21+ / GA-56, COA/NIST |
@@ -24,7 +28,6 @@
 | STR-2025-10-21-008 | Political Engagement Coordination | Jesse | 2025-11-15 | Low | Campaign materials; Podcast integration | AOM.COIRPM.Action-0008 | 21+ / GA-56 |
 
 ### Notes
+
 - RPM DNA codes assigned for tracking; refine during sprint grooming.
 - Compliance tags reflect GA-56 (21+), and COA/NIST where applicable.
-
-

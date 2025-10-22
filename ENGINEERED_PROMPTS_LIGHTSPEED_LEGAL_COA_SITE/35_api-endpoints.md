@@ -1,4 +1,5 @@
 ### **API Endpoints:**
+
 ```
 GET  /api/coa/:batch_number          - Get COA by batch
 GET  /api/coa/product/:sku           - Get all COAs for product

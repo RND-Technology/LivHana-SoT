@@ -1,4 +1,5 @@
 ### 13.3 Service Verification
+
 - [ ] Backend services start (`npm run dev:backend`)
 - [ ] Frontend services start (`npm run dev:frontend`)
 - [ ] Health checks pass

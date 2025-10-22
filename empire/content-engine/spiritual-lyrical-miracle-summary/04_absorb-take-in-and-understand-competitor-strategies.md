@@ -1,5 +1,7 @@
 ### ABSORB - Take in and understand competitor strategies
+
 **Process:**
+
 - Analyze competitor strengths and weaknesses
 - Identify market gaps and opportunities
 - Understand customer preferences and behaviors

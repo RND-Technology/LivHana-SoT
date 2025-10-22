@@ -1,4 +1,5 @@
 #### **Prompt 2: Set Up COA Data Pipeline**
+
 ```
 Set up a data pipeline for automatic COA (Certificate of Analysis) ingestion and validation for reggieanddro.com.
 

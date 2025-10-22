@@ -11,12 +11,14 @@ last-reviewed: 2025-10-06
 ## 🎯 Quick Start
 
 ### Prerequisites
+
 - Node.js 18+ and npm 8+
 - Git with conventional commit configuration
 - Access to Liv Hana development environment
 - Understanding of Diátaxis documentation framework
 
 ### Getting Started
+
 1. Fork the repository
 2. Clone your fork: `git clone https://github.com/YOUR_USERNAME/LivHana-SoT.git`
 3. Install dependencies: `npm install`
@@ -26,6 +28,7 @@ last-reviewed: 2025-10-06
 ## 📝 Commit Standards
 
 ### Conventional Commits Required
+
 All commits must follow the [Conventional Commits](https://www.conventionalcommits.org/) specification:
 
 ```
@@ -37,6 +40,7 @@ All commits must follow the [Conventional Commits](https://www.conventionalcommi
 ```
 
 ### Supported Types
+
 - `feat`: New feature
 - `fix`: Bug fix
 - `docs`: Documentation changes
@@ -50,6 +54,7 @@ All commits must follow the [Conventional Commits](https://www.conventionalcommi
 - `revert`: Reverting previous commits
 
 ### Examples
+
 ```bash
 # Good
 feat(voice): add ElevenLabs v3 integration
@@ -66,6 +71,7 @@ Changes
 ## 🏗️ Architectural Decision Records (ADRs)
 
 ### When ADRs Are Required
+
 - **New architectural patterns**
 - **Technology stack changes**
 - **System-wide configuration changes**
@@ -73,6 +79,7 @@ Changes
 - **Performance-critical decisions**
 
 ### ADR Format (Nygard Schema)
+
 ```markdown
 ---
 diataxis: explanation
@@ -102,7 +109,9 @@ status: proposed|accepted|deprecated
 ```
 
 ### ADR Linking in Commits
+
 For architectural changes, include ADR reference:
+
 ```bash
 feat(architecture): implement voice queue system
 
@@ -117,6 +126,7 @@ Closes #123
 ## 📚 Documentation Standards
 
 ### Diátaxis Framework
+
 All documentation must be categorized using the [Diátaxis framework](https://diataxis.fr/):
 
 - **Tutorial**: Learning-oriented (step-by-step guides)
@@ -125,6 +135,7 @@ All documentation must be categorized using the [Diátaxis framework](https://di
 - **Explanation**: Understanding-oriented (background and context)
 
 ### Front-matter Required
+
 ```markdown
 ---
 diataxis: [tutorial|how-to|reference|explanation]
@@ -135,6 +146,7 @@ last-reviewed: YYYY-MM-DD
 ```
 
 ### Documentation Updates
+
 - Update `docs/INDEX.md` when adding new documentation
 - Cross-reference related documents
 - Maintain consistent naming conventions
@@ -143,12 +155,14 @@ last-reviewed: YYYY-MM-DD
 ## 🧪 Testing Requirements
 
 ### Test Coverage
+
 - **Unit tests**: Minimum 80% coverage for new code
 - **Integration tests**: For API endpoints and service interactions
 - **Playwright tests**: For UI changes and user workflows
 - **Manual testing**: For complex user scenarios
 
 ### Running Tests
+
 ```bash
 # All tests
 npm test
@@ -167,6 +181,7 @@ npm run test:coverage
 ```
 
 ### Test Naming
+
 ```javascript
 // Good
 describe('VoiceService', () => {
@@ -188,18 +203,21 @@ describe('test', () => {
 ## 🔒 Security & Compliance
 
 ### No Secrets in Code
+
 - Never commit API keys, passwords, or sensitive data
 - Use environment variables or secret management
 - Use `op run` for 1Password secrets
 - Add `.env.example` files for required variables
 
 ### Cannabis Compliance
+
 - Follow Texas cannabis regulations
 - Implement age verification where required
 - Use compliant language (avoid "weed" terminology)
 - Maintain audit trails for transactions
 
 ### AI Guardrails
+
 - Implement content filtering for AI responses
 - Add compliance checks before AI processing
 - Log all AI interactions for audit purposes
@@ -208,6 +226,7 @@ describe('test', () => {
 ## 🚀 Pull Request Process
 
 ### Pre-submission Checklist
+
 - [ ] Conventional commit message
 - [ ] ADR link (if architectural)
 - [ ] Tests pass
@@ -218,7 +237,9 @@ describe('test', () => {
 - [ ] Security review completed
 
 ### PR Template
+
 Use the provided PR template (`.github/PULL_REQUEST_TEMPLATE.md`) which includes:
+
 - Pre-submission requirements
 - Architectural change checklist
 - Documentation change checklist
@@ -226,6 +247,7 @@ Use the provided PR template (`.github/PULL_REQUEST_TEMPLATE.md`) which includes
 - Security & compliance checklist
 
 ### Review Process
+
 1. **Automated checks**: CI/CD pipeline runs tests and linting
 2. **Code review**: At least one team member reviews
 3. **Security review**: For changes affecting security or compliance
@@ -235,6 +257,7 @@ Use the provided PR template (`.github/PULL_REQUEST_TEMPLATE.md`) which includes
 ## 📊 Code Quality Standards
 
 ### Linting
+
 ```bash
 # Run linting
 npm run lint
@@ -247,6 +270,7 @@ npx eslint src/file.js
 ```
 
 ### Code Style
+
 - Follow ESLint configuration
 - Use Prettier for formatting
 - Consistent naming conventions
@@ -254,6 +278,7 @@ npx eslint src/file.js
 - Proper error handling
 
 ### Performance
+
 - Optimize database queries
 - Implement caching where appropriate
 - Monitor memory usage
@@ -262,18 +287,22 @@ npx eslint src/file.js
 ## 🔄 Release Process
 
 ### Semantic Versioning
+
 We follow [Semantic Versioning](https://semver.org/):
+
 - **MAJOR**: Breaking changes
 - **MINOR**: New features (backward compatible)
 - **PATCH**: Bug fixes (backward compatible)
 
 ### Changelog
+
 - Update `CHANGELOG.md` for all releases
 - Use [Keep a Changelog](https://keepachangelog.com/) format
 - Categorize changes (Added, Changed, Fixed, Removed)
 - Include links to relevant issues and PRs
 
 ### Release Notes
+
 - Summarize changes for users
 - Highlight breaking changes
 - Include migration instructions
@@ -282,18 +311,21 @@ We follow [Semantic Versioning](https://semver.org/):
 ## 🆘 Getting Help
 
 ### Resources
+
 - [Documentation Hub](./docs/README.md)
 - [ADR Index](./docs/adr/)
 - [Architecture Guide](./docs/architecture/)
 - [API Reference](./docs/specs/)
 
 ### Communication
+
 - **Issues**: Use GitHub Issues for bugs and feature requests
 - **Discussions**: Use GitHub Discussions for questions and ideas
 - **Slack**: #liv-hana-dev channel for real-time communication
-- **Email**: dev@livhana.com for sensitive matters
+- **Email**: <dev@livhana.com> for sensitive matters
 
 ### Mentorship
+
 - New contributors are paired with experienced team members
 - Code review sessions for learning
 - Documentation contributions welcome
@@ -302,6 +334,7 @@ We follow [Semantic Versioning](https://semver.org/):
 ## 🎯 Tier 1 Option A Standards
 
 ### Quality Metrics
+
 - **Code coverage**: Minimum 80%
 - **Performance**: Sub-100ms API response times
 - **Reliability**: 99.9% uptime target
@@ -309,6 +342,7 @@ We follow [Semantic Versioning](https://semver.org/):
 - **Documentation**: 100% API coverage
 
 ### Continuous Improvement
+
 - Regular code quality reviews
 - Performance monitoring and optimization
 - Security audits and updates
@@ -320,6 +354,7 @@ We follow [Semantic Versioning](https://semver.org/):
 ## 📋 Quick Reference
 
 ### Common Commands
+
 ```bash
 # Development
 npm run dev          # Start development server
@@ -337,6 +372,7 @@ npm run docs:serve   # Serve documentation locally
 ```
 
 ### File Structure
+
 ```
 LivHana-SoT/
 ├── docs/           # Documentation

@@ -5,7 +5,7 @@
 
 **EXECUTE:**
 
-1. Open browser: https://developer.doordash.com/en-US/
+1. Open browser: <https://developer.doordash.com/en-US/>
 2. Click "Get Started" or "Sign Up"
 3. Select "DoorDash Drive" (not white-label initially)
 4. Fill out form:
@@ -13,7 +13,7 @@
    - Business type: `Retail - Cannabis/Hemp`
    - Address: `[Your San Antonio store address]`
    - EIN: `[Your tax ID]`
-   - Contact: jesseniesen@gmail.com
+   - Contact: <jesseniesen@gmail.com>
    - Phone: `[Your store phone]`
 
 5. Upload documents:
@@ -26,7 +26,8 @@
 7. Note: Approval takes 7-10 days
 
 **API INTEGRATION SETUP (AFTER APPROVAL):**
-1. Sign into DoorDash Developer Portal: https://developer.doordash.com/en-US/
+
+1. Sign into DoorDash Developer Portal: <https://developer.doordash.com/en-US/>
 2. Navigate to API Documentation section
 3. Create access key in Credentials section
 4. Join Postman team for collaboration (if needed)
@@ -37,6 +38,7 @@
 9. Share collection with Trinity team for testing
 
 **PRODUCTION ACCESS REQUEST SUBMITTED:**
+
 - $1M+ annual revenue via NASH/Square since November 2023
 - Moving from Square/NASH to LightSpeed for Texas scaling
 - Need API credentials for white-label delivery middleware
@@ -44,6 +46,7 @@
 - LightSpeed/Authorize.net webstore integration
 
 **TECHNICAL REQUIREMENTS:**
+
 - DoorDash Drive API v2 testing environment
 - JWT authentication setup
 - Postman collection integration
@@ -51,6 +54,7 @@
 - Custom middleware superior to NASH
 
 **FALLBACK ALTERNATIVES:**
+
 - Uber Direct API (production available)
 - Grubhub for Business API
 - Postmates API (if available)

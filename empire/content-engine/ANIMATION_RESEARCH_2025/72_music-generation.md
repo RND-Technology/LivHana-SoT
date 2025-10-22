@@ -1,4 +1,4 @@
-### Music Generation:
+### Music Generation
 
 | Tool | Free Tier | Entry Plan | Notes |
 |------|-----------|------------|-------|

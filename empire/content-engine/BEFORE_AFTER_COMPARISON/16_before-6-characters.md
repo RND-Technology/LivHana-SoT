@@ -8,6 +8,7 @@
 6. Lt. Dan - Compliance Officer
 
 **Limitations:**
+
 - No main villain character
 - No "everyman" voice of the people
 - Limited character dynamics

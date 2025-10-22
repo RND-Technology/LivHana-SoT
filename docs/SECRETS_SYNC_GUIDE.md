@@ -28,6 +28,7 @@ bash scripts/add_missing_secrets.sh
 ```
 
 This script will:
+
 - Prompt for each missing secret
 - Add secrets to GSM with proper labels
 - Create JWT aliases automatically
@@ -82,19 +83,22 @@ echo "$JWT_VALUE" | gcloud secrets create JWT_SECRET_VOICE \
 ## Where to Get API Keys
 
 ### 1. DEEPSEEK_API_KEY
-- **URL:** https://platform.deepseek.com/api_keys
+
+- **URL:** <https://platform.deepseek.com/api_keys>
 - **Purpose:** Powers reasoning gateway with DeepSeek 33B model
-- **Cost:** Check current pricing at https://platform.deepseek.com/pricing
+- **Cost:** Check current pricing at <https://platform.deepseek.com/pricing>
 - **Required Scopes:** Full API access
 
 ### 2. BLUECHECK_API_KEY
-- **URL:** https://www.bluecheck.me/for-developers
+
+- **URL:** <https://www.bluecheck.me/for-developers>
 - **Purpose:** Age verification (21+ compliance enforcement)
 - **Integration:** Used by compliance-service
-- **Alternative:** If BlueCheck unavailable, consider Jumio or Veriff
+- **Alternative:** If BlueCheck unavailable, consider Veriff or Veriff
 
 ### 3. GITHUB_PERSONAL_ACCESS_TOKEN
-- **URL:** https://github.com/settings/tokens/new
+
+- **URL:** <https://github.com/settings/tokens/new>
 - **Required Scopes:**
   - `repo` (Full control of private repositories)
   - `workflow` (Update GitHub Action workflows)
@@ -103,6 +107,7 @@ echo "$JWT_VALUE" | gcloud secrets create JWT_SECRET_VOICE \
 - **Note:** Store securely in 1Password vault as well
 
 ### 4. JWT_SECRET1
+
 - **Generation:** `openssl rand -hex 64`
 - **Purpose:** Primary JWT secret for voice-service and reasoning-gateway
 - **Requirements:**
@@ -123,6 +128,7 @@ bash scripts/secrets_smoke_test.sh
 ```
 
 Expected output:
+
 ```
 ✅ ANTHROPIC_API_KEY
 ✅ OPENAI_API_KEY
@@ -232,4 +238,3 @@ After secrets are added:
 ---
 
 **Compliance:** ✅ LifeWard standard | ✅ 21+ age-gate | ✅ PII protection
-

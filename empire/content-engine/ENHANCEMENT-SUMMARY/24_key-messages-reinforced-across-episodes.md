@@ -1,4 +1,5 @@
-### Key Messages Reinforced Across Episodes:
+### Key Messages Reinforced Across Episodes
+
 1. **21+ Age Verification** - Mandatory, enforced, serious consequences
 2. **COA Requirements** - QR code access, ISO-certified labs, transparency
 3. **THC Limits** - ≤0.3% Delta-9 THC by dry weight

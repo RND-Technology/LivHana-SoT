@@ -1,4 +1,4 @@
-### Current Scan History:
+### Current Scan History
 
 | Time | Readiness | DNS | HTTP | API | Status |
 |------|-----------|-----|------|-----|--------|

@@ -4,6 +4,7 @@
 **Timeline:** Complete today
 
 **Machine Work (Sonnet 4.5):**
+
 - ✅ Basic structure created (src/index.js)
 - ✅ Dockerfile created
 - ✅ BullMQ queue module created (backend/common/queue/index.js)
@@ -15,6 +16,7 @@
 - ⏳ Create deploy.sh
 
 **Architecture:**
+
 ```
 Frontend (vibe-cockpit)
     ↓

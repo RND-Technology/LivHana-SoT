@@ -1,6 +1,7 @@
 #### Week 1-12 Distribution Plan
 
 **Daily Multi-Platform Posting** (Recommended):
+
 - Post same episode across all platforms daily
 - Stagger timing throughout day for maximum reach
 - 7 episodes per week = 12 weeks for full 84-episode series

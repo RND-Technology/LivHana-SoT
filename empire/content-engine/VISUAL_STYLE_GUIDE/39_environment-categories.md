@@ -3,6 +3,7 @@
 **1. TEXAS LANDSCAPES**
 
 **Desert/Rural Scenes:**
+
 - Color Palette: Sandy beige, terracotta, sage green, dusty blue sky
 - Elements: Cacti (prickly pear), mesquite, distant mesas, horizon line
 - Mood: Warm, expansive, free
@@ -10,6 +11,7 @@
 - Usage: Establishing shots, freedom/vision moments, outdoor scenes
 
 **Urban Austin Scenes:**
+
 - Color Palette: Modern neutrals, burnt orange accents, tech blues
 - Elements: Simplified building silhouettes, street scenes, tech elements
 - Mood: Professional, urban, progressive
@@ -17,6 +19,7 @@
 - Usage: Business scenes, city context, modern Texas
 
 **Hemp Fields:**
+
 - Color Palette: Vibrant sage greens, earth browns, bright sky blue
 - Elements: Stylized hemp plants (simplified, geometric), rows, horizon
 - Mood: Natural, agricultural, business
@@ -26,6 +29,7 @@
 **2. INTERIOR ENVIRONMENTS**
 
 **Reggie & Dro Store:**
+
 - Color Palette: White walls, wood tones, product greens, brand colors
 - Elements: Product shelves ("Wall of Weed"), counter, branding
 - Mood: Professional retail, welcoming, organized
@@ -33,6 +37,7 @@
 - Usage: Product spotlights, business scenes, customer interactions
 
 **Office/Corporate (Aubrey Scenes):**
+
 - Color Palette: Cold grays, blacks, minimal color, stark whites
 - Elements: Desk, chair, minimal decor, dark windows
 - Mood: Cold, corporate, intimidating
@@ -40,6 +45,7 @@
 - Usage: Villain scenes, opposition moments, corporate conflict
 
 **Compliance Office (Lt. Dan):**
+
 - Color Palette: Military greens, khaki, metal grays, organized neutrals
 - Elements: Filing cabinets, checklists, regulations, organized desk
 - Mood: Disciplined, official, organized
@@ -47,6 +53,7 @@
 - Usage: Compliance education, regulatory scenes, training moments
 
 **Police Station (Chief Steve):**
+
 - Color Palette: Official beiges, flat blues, fluorescent whites
 - Elements: Desk, filing, official posters, bland decor
 - Mood: Bureaucratic, nervous, official
@@ -54,6 +61,7 @@
 - Usage: Chief Steve scenes, official opposition, bureaucracy
 
 **Tech Space (Liv Hana):**
+
 - Color Palette: Cool blues, whites, grays, cyan accents
 - Elements: Holographic displays, clean surfaces, tech equipment, data
 - Mood: Futuristic, clean, efficient
@@ -63,6 +71,7 @@
 **3. ABSTRACT/CONCEPT SPACES**
 
 **Data Visualization Space:**
+
 - Color Palette: Tech blues, whites, data greens
 - Elements: Floating graphs, statistics, info displays
 - Mood: Analytical, informative
@@ -70,6 +79,7 @@
 - Usage: Statistics, data presentations, analysis moments
 
 **Educational Space:**
+
 - Color Palette: Warm neutrals, chalkboard greens, bright accents
 - Elements: Diagrams, arrows, labels, educational graphics
 - Mood: Learning, clarity, approachable

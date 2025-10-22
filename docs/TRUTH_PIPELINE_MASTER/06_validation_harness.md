@@ -9,6 +9,7 @@ The TRUTH Pipeline validation harness provides comprehensive testing and verific
 ## Core Validation Commands
 
 ### TRUTH Schema Validation
+
 ```bash
 #!/bin/bash
 # truth_schema_validator.sh
@@ -249,6 +250,7 @@ main "$@"
 ## Pipeline Integrity Validation
 
 ### End-to-End Pipeline Validation
+
 ```bash
 #!/bin/bash
 # pipeline_integrity_validator.sh
@@ -468,6 +470,7 @@ main "$@"
 ## Session Validation Suite
 
 ### Session Output Validation
+
 ```bash
 #!/bin/bash
 # session_validator.sh
@@ -579,6 +582,7 @@ main "$@"
 ## Validation Test Suite
 
 ### Comprehensive Validation Testing
+
 ```bash
 #!/bin/bash
 # validation_test_suite.sh
@@ -681,6 +685,7 @@ main "$@"
 ## Validation Commands Reference
 
 ### Quick Validation Commands
+
 ```bash
 # TRUTH alignment commands
 jq '.claims | length' data/truth_outputs/truth_output.json

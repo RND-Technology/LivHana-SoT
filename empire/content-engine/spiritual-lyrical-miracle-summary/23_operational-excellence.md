@@ -1,5 +1,7 @@
 ### Operational Excellence
+
 **Objectives:**
+
 - Optimize supply chain for consistency
 - Implement real-time inventory tracking
 - Develop dynamic pricing strategies
@@ -7,6 +9,7 @@
 - Maintain compliance automation
 
 **Implementation:**
+
 - Establish reliable supplier partnerships
 - Deploy inventory management system
 - Implement pricing optimization tools

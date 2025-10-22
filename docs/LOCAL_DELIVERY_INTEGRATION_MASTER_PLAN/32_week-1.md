@@ -1,4 +1,5 @@
 ### Week 1
+
 4. **Integrate DoorDash + Lightspeed**
    - Follow integration steps above
    - Test order flow

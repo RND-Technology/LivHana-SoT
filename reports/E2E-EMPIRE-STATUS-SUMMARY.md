@@ -20,6 +20,7 @@
 ## 🚨 CRITICAL ISSUE IDENTIFIED
 
 **Problem:** SSL Certificate Mismatch
+
 - DNS works ✅ (domains resolve to 34.143.72.2)
 - Cloud Run receives requests ✅
 - SSL certificates missing ❌ (domains not mapped in Cloud Run)
@@ -28,6 +29,7 @@
 **Root Cause:** Cheetah updated DNS but didn't create Cloud Run domain mappings
 
 **Evidence:**
+
 ```bash
 $ curl -I https://jesseniesen.com
 curl: (60) SSL: no alternative certificate subject name matches target host name
@@ -38,12 +40,14 @@ curl: (60) SSL: no alternative certificate subject name matches target host name
 ## 🎯 SOLUTION: 5-AGENT DEPLOYMENT STRATEGY
 
 ### 🤖 Agent 1: Domain Mapping + SSL (CRITICAL PATH - Priority 1)
+
 **Task:** Create Cloud Run domain mappings for 18 domains
 **Blocker:** This blocks everything else
 **Time:** 60-90 minutes (SSL provisioning)
 **Impact:** 0% → 82% HTTP liveness
 
 **Commands:**
+
 ```bash
 for domain in [18 domains]; do
     gcloud run domain-mappings create \
@@ -54,6 +58,7 @@ done
 ```
 
 **Success Criteria:**
+
 - 18/18 domain mappings created ✅
 - 18/18 SSL certificates provisioned ✅
 - 18/18 HTTPS responses working ✅
@@ -61,12 +66,14 @@ done
 ---
 
 ### 🤖 Agent 2: DNS Load Balancing (Priority 2 - Parallel)
+
 **Task:** Add all 8 Cloud Run IPs (not just 1)
 **Current:** Single IP (34.143.72.2) = single point of failure
 **Target:** 8 IPs = proper load distribution
 **Time:** 30 minutes
 
 **Impact:**
+
 - 8x load distribution
 - Improved redundancy
 - Better failover
@@ -74,11 +81,13 @@ done
 ---
 
 ### 🤖 Agent 3: API Verification (Priority 3 - After Agent 1)
+
 **Task:** Test all API endpoints after SSL ready
 **Depends on:** Agent 1 completion
 **Time:** 20 minutes
 
 **Tests:**
+
 - Age verification API
 - Health endpoints
 - Database connectivity
@@ -87,6 +96,7 @@ done
 ---
 
 ### 🤖 Agent 4: Monitoring & Alerts (Priority 4 - Parallel)
+
 **Task:** Production monitoring setup
 **Status:** ✅ Continuous monitor deployed (running in background)
 **Additional:** Cloud Monitoring dashboards + alerts
@@ -95,6 +105,7 @@ done
 ---
 
 ### 🤖 Agent 5: Documentation (Priority 5 - Final)
+
 **Task:** Production guide + runbook
 **Depends on:** All agents complete
 **Time:** 30 minutes
@@ -103,7 +114,8 @@ done
 
 ## 🚀 DEPLOYMENT STATUS
 
-### ✅ Already Deployed:
+### ✅ Already Deployed
+
 1. Continuous monitoring (PID: 97566)
    - Scanning every 20 minutes
    - Reports every 20% progress
@@ -115,7 +127,8 @@ done
    - All Cheetah issues documented
    - Correct solutions provided
 
-### 🟡 Ready to Deploy:
+### 🟡 Ready to Deploy
+
 1. **Agent deployment script:** `.claude/deploy-agents-now.sh`
 2. **Agent strategy:** `.claude/AGENT-STRATEGY-E2E-EMPIRE.md`
 3. **Correct DNS solution:** `scripts/godaddy-dns-CORRECT-SOLUTION.sh`
@@ -125,6 +138,7 @@ done
 ## 📋 EXECUTE NOW - COMMAND SEQUENCE
 
 ### Step 1: Deploy Agents (Critical)
+
 ```bash
 # Deploy all agents at once
 ./.claude/deploy-agents-now.sh
@@ -136,6 +150,7 @@ done
 ```
 
 ### Step 2: Monitor Progress
+
 ```bash
 # Watch continuous monitoring
 tail -f reports/e2e-empire-monitor/background.log
@@ -149,6 +164,7 @@ curl -s http://localhost:4002/api/autonomous/status/[AGENT_ID] \
 ```
 
 ### Step 3: Verify Completion
+
 ```bash
 # Should show 100% when done
 cat reports/e2e-empire-monitor/scan-*.json | tail -1 | jq '.summary.readiness_score'
@@ -180,11 +196,13 @@ Time    | Agent 1          | Agent 2         | Agent 4         | Status
 **Next scan:** 18:44 (20 minutes from now)
 
 **What to expect:**
+
 - **20% checkpoints:** After every 3-4 domains completed
 - **Report format:** JSON + Markdown remediation plan
 - **Alerts:** Critical issues flagged immediately
 
 **Check status:**
+
 ```bash
 # Latest readiness score
 cat reports/e2e-empire-monitor/scan-*.json | tail -1 | jq '.summary.readiness_score'
@@ -200,7 +218,8 @@ cat reports/e2e-empire-monitor/scan-*-remediation.md | tail -1
 
 ## 🎯 SUCCESS CRITERIA
 
-### Production Ready Checklist:
+### Production Ready Checklist
+
 - [ ] DNS: 100% propagation (DONE ✅)
 - [ ] SSL: 18/18 certificates provisioned
 - [ ] HTTP: 22/22 domains returning 200/301
@@ -209,7 +228,8 @@ cat reports/e2e-empire-monitor/scan-*-remediation.md | tail -1
 - [ ] Monitoring: Dashboard live with alerts
 - [ ] Documentation: Runbook published
 
-### When to Ship:
+### When to Ship
+
 - **Readiness Score:** 100%
 - **Critical Path:** All SSL certificates ready
 - **Minimum:** 95% (with documented known issues)
@@ -219,6 +239,7 @@ cat reports/e2e-empire-monitor/scan-*-remediation.md | tail -1
 ## 🚨 IF THINGS GO WRONG
 
 ### Fallback: Cloud Load Balancer
+
 If domain mapping fails, use Cloud Load Balancer with static IP:
 
 ```bash
@@ -257,6 +278,7 @@ gcloud compute ssl-certificates create e2e-empire-cert \
 **Command:** `./.claude/deploy-agents-now.sh`
 
 **Status:**
+
 - ✅ Monitoring deployed (scanning every 20 min)
 - ✅ Fallacy scan complete (Cheetah work verified)
 - ✅ Correct solutions documented

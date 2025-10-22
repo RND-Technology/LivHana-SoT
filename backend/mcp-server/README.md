@@ -5,6 +5,7 @@ Production-ready MCP (Model Context Protocol) server integrating the Liv Hana TR
 ## Overview
 
 This MCP server provides ChatGPT with real-time access to:
+
 - **Cannabis dispensary data** with TRUTH verification
 - **Market trend analysis** with compliance checking
 - **Regulatory compliance verification**
@@ -14,6 +15,7 @@ This MCP server provides ChatGPT with real-time access to:
 ### Compliance Framework
 
 **AGE21 + PII Safeguards Enforced:**
+
 - Age verification (21+ years) required for all cannabis queries
 - Personal identifiable information (PII) automatically scrubbed
 - State-specific jurisdiction compliance validation
@@ -83,22 +85,26 @@ The server provides these callable tools:
 ### Quick Start
 
 1. **Clone repository:**
+
 ```bash
 cd /path/to/LivHana-SoT/backend/mcp-server
 ```
 
 2. **Install dependencies:**
+
 ```bash
 pip install -e .
 ```
 
 3. **Configure environment:**
+
 ```bash
 cp .env.example .env
 # Edit .env with your API keys
 ```
 
 4. **Test server locally:**
+
 ```bash
 python -m src.server
 ```
@@ -125,6 +131,7 @@ docker-compose logs -f livhana-truth-mcp
 2. **Navigate to Settings** → **Integrations** → **MCP Servers**
 
 3. **Add new server:**
+
 ```json
 {
   "name": "Liv Hana TRUTH Pipeline",
@@ -142,6 +149,7 @@ docker-compose logs -f livhana-truth-mcp
 ```
 
 4. **Test connection:**
+
 ```
 Ask ChatGPT: "List available TRUTH pipeline resources"
 ```
@@ -153,6 +161,7 @@ For production deployment with HTTPS endpoint:
 1. **Deploy to cloud server** (AWS, GCP, Azure)
 
 2. **Expose HTTPS endpoint** (use ngrok for testing):
+
 ```bash
 ngrok http 3000
 ```
@@ -166,12 +175,14 @@ ngrok http 3000
 ### Example 1: Search Dispensaries
 
 **ChatGPT Prompt:**
+
 ```
 Search for cannabis dispensaries in Denver, CO within 10 miles.
 I confirm I am 21+ years old.
 ```
 
 **MCP Tool Call:**
+
 ```json
 {
   "tool": "search_dispensaries",
@@ -186,6 +197,7 @@ I confirm I am 21+ years old.
 ```
 
 **Response:**
+
 ```json
 {
   "status": "ok",
@@ -201,12 +213,14 @@ I confirm I am 21+ years old.
 ### Example 2: Analyze Market Trends
 
 **ChatGPT Prompt:**
+
 ```
 Analyze cannabis market trends in California for the last 90 days.
 Focus on edibles and concentrates. I am 21+.
 ```
 
 **MCP Tool Call:**
+
 ```json
 {
   "tool": "analyze_market_trends",
@@ -222,11 +236,13 @@ Focus on edibles and concentrates. I am 21+.
 ### Example 3: Verify Compliance
 
 **ChatGPT Prompt:**
+
 ```
 Check the full compliance status for dispensary ID: DISP-12345
 ```
 
 **MCP Tool Call:**
+
 ```json
 {
   "tool": "verify_compliance",
@@ -240,12 +256,14 @@ Check the full compliance status for dispensary ID: DISP-12345
 ### Example 4: Calculate Profit Estimates
 
 **ChatGPT Prompt:**
+
 ```
 Estimate profit for investing $50,000 in the Colorado edibles market
 over 12 months. I am 21+.
 ```
 
 **MCP Tool Call:**
+
 ```json
 {
   "tool": "calculate_profit_estimates",
@@ -259,6 +277,7 @@ over 12 months. I am 21+.
 ```
 
 **Response includes RPM massive actions:**
+
 ```json
 {
   "status": "ok",
@@ -282,11 +301,13 @@ over 12 months. I am 21+.
 ### Example 5: Run Full TRUTH Pipeline
 
 **ChatGPT Prompt:**
+
 ```
 Run the complete TRUTH pipeline for cannabis dispensaries in Seattle.
 ```
 
 **MCP Tool Call:**
+
 ```json
 {
   "tool": "run_truth_pipeline",
@@ -298,6 +319,7 @@ Run the complete TRUTH pipeline for cannabis dispensaries in Seattle.
 ```
 
 **Pipeline execution:**
+
 1. Scrape dispensary data (Apify)
 2. Verify facts (Perplexity)
 3. Compress data (GPT-5)
@@ -364,32 +386,41 @@ mcp-inspector python -m src.server
 ### Common Issues
 
 **1. API Key Errors**
+
 ```
 ERROR: APIFY_API_TOKEN environment variable is required
 ```
+
 **Solution:** Verify `.env` file has all required API keys
 
 **2. Pipeline Stage Timeout**
+
 ```
 ERROR: Stage apify_scrape timed out
 ```
+
 **Solution:** Increase `PIPELINE_STAGE_TIMEOUT` or check network connectivity
 
 **3. AGE21 Verification Failure**
+
 ```
 ERROR: AGE21_VERIFICATION_REQUIRED
 ```
+
 **Solution:** Ensure `age_verified: true` in tool arguments
 
 **4. Schema Validation Error**
+
 ```
 ERROR: TRUTH output failed schema validation
 ```
+
 **Solution:** Check TRUTH output against `schemas/truth_output.schema.json`
 
 ### Debug Mode
 
 Enable detailed logging:
+
 ```bash
 export LOG_LEVEL=DEBUG
 python -m src.server
@@ -406,6 +437,7 @@ python -m src.server
 ### Compliance Enforcement
 
 All cannabis-related queries enforce:
+
 - **AGE21 verification** - User must confirm 21+ years old
 - **PII scrubbing** - Personal data automatically removed
 - **Jurisdiction validation** - State-specific law compliance
@@ -467,24 +499,27 @@ Proprietary - Liv Hana © 2025
 
 - **Documentation:** [Liv Hana Developer Portal](https://dev.livhana.com)
 - **Issues:** GitHub Issues
-- **Email:** dev@livhana.com
+- **Email:** <dev@livhana.com>
 - **Slack:** #truth-pipeline channel
 
 ## Roadmap
 
 ### Phase 1 (Current)
+
 - [x] MCP server implementation
 - [x] TRUTH pipeline integration
 - [x] AGE21 + PII compliance
 - [x] ChatGPT Apps SDK compatibility
 
 ### Phase 2 (Q4 2025)
+
 - [ ] Real-time data streaming
 - [ ] WebSocket transport support
 - [ ] Advanced caching layer
 - [ ] Multi-region deployment
 
 ### Phase 3 (Q1 2026)
+
 - [ ] Mobile SDK integration
 - [ ] Voice interface support
 - [ ] Blockchain verification layer

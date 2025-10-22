@@ -4,6 +4,7 @@
 **Blocker:** Everything else depends on this
 
 **Actions:**
+
 ```bash
 # Deploy Agent 1 or run manually:
 for domain in aaacbdhempflower.com cannabiscookiestexas.com \
@@ -29,12 +30,14 @@ done
 ```
 
 **Expected outcome:**
+
 - 18/18 domain mappings created ✅
 - SSL certificates provisioning started ✅
 - Wait 15-60 minutes for SSL ready ⏳
 - HTTPS returns 200/301 instead of 404 ✅
 
 **Progress tracking:**
+
 - Report every 20% (every 3-4 domains)
 - Monitor with continuous scan every 20 minutes
 

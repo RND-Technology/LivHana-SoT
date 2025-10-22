@@ -1,4 +1,5 @@
 # SESSION HANDOFF: Voice Mode + Copilot TRUTH Pipeline (UPDATED)
+
 **Date:** 2025-10-21 01:30 CST
 **Session Type:** Claude Code CLI with Local Voice Mode
 **Token Efficiency Goal:** Max context, min tokens for next session
@@ -9,6 +10,7 @@
 ## ACCOMPLISHED THIS SESSION ✅
 
 ### 1. Voice Mode Operational Excellence
+
 - **Status:** 100% functional, local-only (no cloud dependencies)
 - **Whisper STT:** Port 2022, GPU-enabled, ~0.3s latency
 - **Kokoro TTS:** Port 8880, af_sky voice
@@ -16,19 +18,23 @@
 - **User Preference:** Short, punchy responses; interrupt-friendly
 
 ### 2. Copilot Export Analysis (PRIMARY MISSION)
+
 **File:** `/Users/jesseniesen/LivHana-Trinity-Local/copilot-liv-hana-10-21.txt`
+
 - **Size:** 356.5KB, 7,886 lines
 - **Progress:** 4,000 lines analyzed (50% complete)
 - **Content:** Codex→Claude mega-conversation on TRUTH pipeline architecture
 
-#### Key Findings (Lines 1-4000):
+#### Key Findings (Lines 1-4000)
 
 **TRUTH Pipeline Architecture (5 Stages)**
+
 ```
 Apify (scrape) → Perplexity (verify) → ChatGPT-5 (compress) → Claude (TRUTH synthesis) → RPM DNA (task emit)
 ```
 
 **Token Budget Allocation:**
+
 - Apify Raw: 8,000 tokens (chunk + hash, never full feed)
 - Perplexity: 2,000 tokens (top 10 fact clusters)
 - Compression: 1,000 tokens (semantic dedup)
@@ -37,6 +43,7 @@ Apify (scrape) → Perplexity (verify) → ChatGPT-5 (compress) → Claude (TRUT
 - **Target Savings:** 40%+ compression
 
 **Guardrails Matrix:**
+
 1. **AGE21** - 21+ enforcement via header check
 2. **PII Redaction** - Email/phone regex → [REDACTED]
 3. **Cannabis Compliance** - THC ≤0.3% verification, lab COA linkage
@@ -44,6 +51,7 @@ Apify (scrape) → Perplexity (verify) → ChatGPT-5 (compress) → Claude (TRUT
 5. **Secrets Handling** - IAM-only, no plaintext
 
 **Script Specifications (DOCUMENTED, NOT IMPLEMENTED):**
+
 ```
 scripts/step_apify_scrape.sh - Raw data collection
 scripts/step_perplexity_verify.sh - Cross-verification
@@ -56,12 +64,14 @@ scripts/verify_pipeline_integrity.sh - End-to-end validation
 **Status:** NONE EXIST IN REPO - All stubs documented with full specs
 
 **Agent Builder Workflow (17 Nodes):**
+
 - **Workflow ID:** `wf_68f621c22e448190ba284ff01cedaa8e048452511d2bd820`
 - **Status:** Planned but NOT BUILT
 - **Node Architecture:** Start → Voice Agent → Set State → MCP(Knowledge) → If/Else → MCP(Web) → Guardrails → Profit Function → RPM Chain (5 agents) → Business Tools (Calendar/Gmail/Drive/LightSpeed) → End
 - **Voice Modes:** Brevity (trigger: "Liv"), Mentor (default), Silence (pause)
 
 **Secrets Integration Gap:**
+
 - GSM has all secrets stored
 - Agent Builder secret store wiring INCOMPLETE
 - Missing: UUID map generation + secret name references
@@ -74,13 +84,16 @@ scripts/verify_pipeline_integrity.sh - End-to-end validation
 Instead of one monolithic prompt, we built a multi-agent coordination strategy:
 
 ### Phase 1: ChatGPT-5 High (Reconciliation)
+
 **Input:** copilot-liv-hana-10-21.txt
 **Task:** Extract and reconcile 10 structured sections (TRUTH pipeline, token budgets, guardrails, Agent Builder nodes, scripts, secrets, validation, voice modes, RPM tagging, gaps)
 **Output:** JSON structure mapping sections→line ranges + key findings + priority order
 
 ### Phase 2: Codex (Scripting Layer)
+
 **Input:** ChatGPT-5 reconciliation JSON
 **Task:** Generate 8 extraction scripts:
+
 1. `extract_pipeline_specs.sh`
 2. `extract_token_budgets.json`
 3. `extract_guardrails_config.json`
@@ -94,8 +107,10 @@ Plus master runner + validation harness
 **Output:** Executable scripts that parse copilot file into structured artifacts
 
 ### Phase 3: Cheetah (Markdown Refactoring)
+
 **Input:** Original file + Phase 2 artifacts
 **Task:** Transform into 10 optimized markdown files (max 2000 lines each):
+
 ```
 docs/TRUTH_PIPELINE_MASTER/
 ├── 01_architecture_overview.md
@@ -117,6 +132,7 @@ docs/TRUTH_PIPELINE_MASTER/
 ## IMPLEMENTATION GAPS IDENTIFIED
 
 ### Critical (Blocking)
+
 1. **Pipeline Scripts:** None exist - all 5 stage scripts need implementation
 2. **Secrets Wiring:** GSM→Agent Builder mapping incomplete
 3. **Agent Builder Nodes:** 17-node workflow designed but not added to canvas
@@ -124,6 +140,7 @@ docs/TRUTH_PIPELINE_MASTER/
 5. **Validation Harness:** jq tests specified, no executable script
 
 ### High Priority
+
 6. **Voice Mode Implementation:** Brevity/Mentor/Silence logic not coded
 7. **Profit Assessment Function:** Formula exists, no compute script
 8. **Evidence Hierarchy:** Ranking algorithm documented, not implemented
@@ -131,6 +148,7 @@ docs/TRUTH_PIPELINE_MASTER/
 10. **Token Telemetry:** Logging structure defined, not instrumented
 
 ### Medium Priority
+
 11. **RPM DNA Tagging:** Template specified, injection logic missing
 12. **Fallacy Detection:** Patterns listed, classifier not built
 13. **Medical Claims Blocker:** Keyword list exists, NLP model needed
@@ -145,6 +163,7 @@ docs/TRUTH_PIPELINE_MASTER/
 **Latest Commit:** `47aa1a5` - "feat: structured frontend tests and TRUTH pipeline stubs" (19h ago)
 
 **Key Systems:**
+
 - `backend/delivery-service/` - DoorDash/Uber integration
 - `backend/voice-service/` - ElevenLabs + DeepSeek reasoning
 - `backend/reasoning-gateway/` - BullMQ + Redis
@@ -152,6 +171,7 @@ docs/TRUTH_PIPELINE_MASTER/
 - `empire/content-engine/` - High Noon Cannabis production
 
 **Trinity Roles:**
+
 - Jesse (CEO): Strategic decisions, API keys, human tasks
 - Sonnet 4.5 (CLI): Code generation lead (THIS SESSION)
 - Cheetah (Cursor): Speed coding lead
@@ -162,18 +182,21 @@ docs/TRUTH_PIPELINE_MASTER/
 ## NEXT SESSION OBJECTIVES
 
 ### Immediate (Next 30 min)
+
 1. **Execute Phase 1:** Run ChatGPT-5 reconciliation on copilot file
 2. **Execute Phase 2:** Run Codex script generation
 3. **Execute Phase 3:** Run Cheetah markdown refactoring
 4. **Verify Compression:** Measure before/after token efficiency
 
 ### Short-term (Next Session)
+
 5. **Analyze Remaining Lines:** Complete copilot file analysis (lines 4001-7886)
 6. **Generate Secrets UUID Map:** `gcloud secrets list` → JSON mapping
 7. **Wire Agent Builder Secrets:** Add references to secret store
 8. **Implement Priority Scripts:** Start with `step_apify_scrape.sh`, `step_perplexity_verify.sh`
 
 ### Medium-term (This Week)
+
 9. **Build Agent Builder Nodes:** Execute 17 micro-sessions (DoBrowser)
 10. **Implement Guardrails:** Age gate + medical claims + PII + fallacy detection
 11. **Deploy Voice Modes:** Brevity/Mentor/Silence with state management
@@ -204,6 +227,7 @@ Then Phase 2 (Codex) → Phase 3 (Cheetah) → Verify compression
 ## METACOGNITIVE NOTES
 
 ### What Worked This Session
+
 ✅ Voice mode dramatically improved engagement
 ✅ Strategic reading approach (chunk by 2000 lines vs full load)
 ✅ Grep-first pattern to map file structure before deep reading
@@ -212,6 +236,7 @@ Then Phase 2 (Codex) → Phase 3 (Cheetah) → Verify compression
 ✅ User preference detection (brevity over verbose explanations)
 
 ### What to Improve Next Session
+
 🔄 Start with Phase 1 execution immediately (don't wait for user)
 🔄 Build intermediate artifacts progressively (save JSON outputs)
 🔄 Use voice for strategic updates, text for code/data delivery
@@ -219,6 +244,7 @@ Then Phase 2 (Codex) → Phase 3 (Cheetah) → Verify compression
 🔄 Front-load validation (test scripts as we generate them)
 
 ### Critical Success Factors
+
 🎯 **Token Efficiency:** The 3-phase workflow enables parallel processing while maintaining context isolation
 🎯 **Verification over Generation:** ADR principle - no phantom script references, implement OR refactor
 🎯 **Crystallized Context:** Each phase produces reusable artifacts (JSON, scripts, markdown) for future sessions
@@ -231,6 +257,7 @@ Then Phase 2 (Codex) → Phase 3 (Cheetah) → Verify compression
 1. This handoff document (you're reading it)
 
 **Files READY TO CREATE (Next Session):**
+
 - `docs/TRUTH_PIPELINE_MASTER/` (10 markdown files)
 - `scripts/extract_*.sh` (8 extraction scripts)
 - `agent_builder/secrets/secrets_uuid_map.json`
@@ -266,5 +293,6 @@ Then Phase 2 (Codex) → Phase 3 (Cheetah) → Verify compression
 - **checkOutDate** (`{{input.checkOutDate}}`): dynamically captures expected completion/handoff date (ISO 8601).
 
 Next steps:
+
 - Confirm or adjust these variable names & values.
 - Approve the placeholder next‑node ("CRM Lookup" vs. "Concierge Handoff" or other).

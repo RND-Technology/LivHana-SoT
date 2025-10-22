@@ -1,1 +1,1 @@
-### Comparative Analysis:
+### Comparative Analysis

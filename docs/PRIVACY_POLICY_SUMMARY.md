@@ -6,7 +6,7 @@
 
 ## Quick Summary (1 Paragraph)
 
-Liv Hana ChatGPT App provides cannabis market intelligence and dispensary recommendations for users aged 21+. We collect your cannabis-related queries and general location data to deliver personalized recommendations while immediately redacting any personally identifiable information (PII). Query logs are retained for 30 days and then deleted or anonymized. We use third-party services (Apify, Perplexity, OpenAI GPT-5, Anthropic Claude, Google Cloud Platform) for processing, but we never sell your data to third parties. All data is encrypted in transit (TLS 1.3) and at rest (AES-256), and you have the right to access, delete, or opt-out of analytics at any time by contacting privacy@livhana.com.
+Liv Hana ChatGPT App provides cannabis market intelligence and dispensary recommendations for users aged 21+. We collect your cannabis-related queries and general location data to deliver personalized recommendations while immediately redacting any personally identifiable information (PII). Query logs are retained for 30 days and then deleted or anonymized. We use third-party services (Apify, Perplexity, OpenAI GPT-5, Anthropic Claude, Google Cloud Platform) for processing, but we never sell your data to third parties. All data is encrypted in transit (TLS 1.3) and at rest (AES-256), and you have the right to access, delete, or opt-out of analytics at any time by contacting <privacy@livhana.com>.
 
 ---
 
@@ -32,9 +32,11 @@ Liv Hana ChatGPT App provides cannabis market intelligence and dispensary recomm
 ## Who We Share Data With
 
 **Third-Party Services (Necessary for Functionality):**
+
 - Apify (web scraping), Perplexity (verification), OpenAI (GPT-5), Anthropic (Claude), Google Cloud Platform (infrastructure)
 
 **We DO NOT:**
+
 - Sell data to third parties
 - Share individual user data with advertisers
 - Provide your information to dispensaries without anonymization
@@ -48,7 +50,7 @@ Liv Hana ChatGPT App provides cannabis market intelligence and dispensary recomm
 - **Opt-Out**: Opt out of anonymized analytics collection
 - **Portability**: Request data in machine-readable format (JSON)
 
-**Contact**: privacy@livhana.com
+**Contact**: <privacy@livhana.com>
 
 ---
 
@@ -81,6 +83,7 @@ Liv Hana ChatGPT App provides cannabis market intelligence and dispensary recomm
 ## OpenAI Apps SDK Compliance
 
 This privacy policy meets all OpenAI Apps SDK requirements:
+
 - Clear, published policy accessible before installation
 - Explicit data collection and usage disclosure
 - User rights and controls (access, delete, opt-out)

@@ -30,18 +30,21 @@ This comprehensive distribution strategy is designed to launch High Noon Cartoon
 #### Algorithm Optimization (2025)
 
 **Key Algorithm Mechanics**:
+
 - **Explore Phase**: New Shorts are shown to a small, random audience first
 - **Exploit Phase**: If performance is strong, the algorithm pushes to larger audiences
 - **Long-tail Virality**: Shorts can go viral weeks or months after posting
 - **View Duration > Watch Time**: A 30-second Short with 85% retention ranks higher than 60-second with 50%
 
 **Critical Success Metrics**:
+
 1. **Viewed vs. Swiped Away**: The #1 ranking signal
 2. **Loop Rate**: Viewers rewatching the video
 3. **Completion Rate**: Percentage watching to the end
 4. **Share Rate**: Videos shared externally
 
 **2025 Updates**:
+
 - YouTube Shorts now support up to 3 minutes (but 60 seconds optimal for HNC)
 - Algorithm favors multi-platform sharing
 - Search optimization more important than ever
@@ -80,12 +83,14 @@ This comprehensive distribution strategy is designed to launch High Noon Cartoon
    - Let content speak for itself
 
 **HNC-Specific Strategy**:
+
 - **Series Approach**: Number episodes (Episode 1-84) to encourage binge-watching
 - **Character Recognition**: Consistent animated characters build loyalty
 - **Educational Hook**: "Today you'll learn..." creates value proposition
 - **Cliffhangers**: End with teaser for next episode
 
 **Content Calendar Approach**:
+
 - Monday: Compliance basics
 - Wednesday: Common mistakes series
 - Friday: Industry satire/comedy
@@ -98,18 +103,21 @@ This comprehensive distribution strategy is designed to launch High Noon Cartoon
 #### Algorithm Optimization (2025)
 
 **Key Algorithm Mechanics**:
+
 - Algorithm categorizes content via captions, hashtags, and sounds
 - Prioritizes watch time, engagement, and completion rate
 - "For You Page" (FYP) is the holy grail of discovery
 - Trending participation multiplies reach
 
 **Critical Success Metrics**:
+
 1. **Completion Rate**: Users watching entire video
 2. **Engagement Rate**: Likes, comments, shares, saves
 3. **Sound Usage**: Original vs. trending sounds
 4. **Watch-Through**: Multiple watches increase weight
 
 **Hashtag Strategy** (TikTok-Specific):
+
 - **Optimal Number**: 3-6 hashtags per video
 - **Mix Required**:
   - 1-2 broad hashtags (#fyp, #viral, #trending)
@@ -118,6 +126,7 @@ This comprehensive distribution strategy is designed to launch High Noon Cartoon
 - **Placement**: MUST be in caption (not comments)
 
 **Finding Trending Content**:
+
 - Use TikTok Creative Center (free tool)
 - Monitor hashtag analytics for popularity curves
 - Track trending sounds by region (Texas focus)
@@ -153,12 +162,14 @@ This comprehensive distribution strategy is designed to launch High Noon Cartoon
    - Sunday 8pm is peak engagement time
 
 **TikTok Series Strategy**:
+
 - Use TikTok Series feature for premium content
 - Create chapter markers for 84 episodes
 - Offer "exclusive" episodes for followers
 - Build anticipation with countdown content
 
 **HNC-Specific Tactics**:
+
 - **Character POV**: Film from character perspective
 - **Text Overlay Heavy**: Assume audio off initially
 - **Quick Pacing**: Cut every 2-3 seconds
@@ -171,18 +182,21 @@ This comprehensive distribution strategy is designed to launch High Noon Cartoon
 #### Algorithm Optimization (2025)
 
 **Key Algorithm Mechanics**:
+
 - Two reach types: Connected (followers) vs. Unconnected (non-followers)
 - Top 3 signals: Watch time, Likes, DM Shares
 - Original, high-quality content prioritized
 - Watermarked/repurposed videos get penalized
 
 **Critical Success Metrics**:
+
 1. **Watch Time**: Complete video views
 2. **DM Shares**: The highest-weighted engagement
 3. **Saves**: Indicates high-value content
 4. **Replays**: Auto-loop or manual replay
 
 **Optimal Video Length**:
+
 - 7-15 seconds performs best
 - Under 30 seconds recommended for HNC
 - Design for smooth looping
@@ -228,12 +242,14 @@ This comprehensive distribution strategy is designed to launch High Noon Cartoon
    - Collaborate with micro-influencers
 
 **Instagram-Specific Features**:
+
 - Use Remix feature to engage with other creators
 - Create carousel posts with video first slide
 - Stories teasers with "Full video in Reels" CTA
 - Guides for organizing HNC series by topic
 
 **HNC Strategy**:
+
 - **Visual Branding**: Consistent color palette and logo placement
 - **Caption Storytelling**: Use full caption space for context
 - **Community Building**: Feature user-generated content
@@ -246,18 +262,21 @@ This comprehensive distribution strategy is designed to launch High Noon Cartoon
 #### Algorithm Optimization (2025)
 
 **Key Platform Changes**:
+
 - Video-first platform with TikTok-style Video Tab
 - 9:16 vertical video favored
 - Native uploads prioritized over links
 - Discovery favors on-platform content
 
 **Optimal Video Specs**:
+
 - **Length**: 20-45 seconds ideal, under 60 seconds maximum
 - **Aspect Ratio**: 9:16 (vertical), 1:1 (square), or 16:9 (landscape)
 - **Format**: MP4 recommended
 - **Resolution**: 1080p minimum
 
 **Critical Success Factors**:
+
 - Capture attention within 3 seconds
 - Always include captions (accessibility + no-sound viewing)
 - Consistent visual branding (logo, colors)
@@ -289,6 +308,7 @@ This comprehensive distribution strategy is designed to launch High Noon Cartoon
    - Bookmarks to save top content
 
 **HNC Strategy for X**:
+
 - **Thread Storytelling**: Each episode gets 3-5 tweet thread
 - **Educational Threads**: Break down complex compliance topics
 - **Community Focus**: Engage with Texas cannabis community
@@ -296,6 +316,7 @@ This comprehensive distribution strategy is designed to launch High Noon Cartoon
 - **Influencer Engagement**: Tag relevant accounts for visibility
 
 **X vs Other Platforms**:
+
 - More text-heavy content possible
 - Political/news angle works well
 - Professional tone acceptable
@@ -317,6 +338,7 @@ This comprehensive distribution strategy is designed to launch High Noon Cartoon
 #### Week 1-12 Distribution Plan
 
 **Daily Multi-Platform Posting** (Recommended):
+
 - Post same episode across all platforms daily
 - Stagger timing throughout day for maximum reach
 - 7 episodes per week = 12 weeks for full 84-episode series
@@ -334,67 +356,83 @@ This comprehensive distribution strategy is designed to launch High Noon Cartoon
 ### Platform-Specific Optimal Times
 
 #### YouTube Shorts
+
 **Primary Posting Times**:
+
 - **Best**: Wednesday at 4:00 PM CT
 - **Second Best**: Thursday at 4:00 PM CT
 - **Third Best**: Monday at 4:00 PM CT
 
 **General Guidelines**:
+
 - Weekdays: Monday-Thursday
 - Time Windows: 12:00 PM - 3:00 PM CT or 7:00 PM - 10:00 PM CT
 - Avoid weekends for primary posts
 
 **HNC Schedule**: Post 3-5 Shorts per week
+
 - Monday 4:00 PM: Compliance Basics
 - Wednesday 4:00 PM: Common Mistakes
 - Friday 4:00 PM: Industry Satire
 
 #### TikTok
+
 **Primary Posting Times**:
+
 - **Best**: Sunday at 8:00 PM CT
 - **Second Best**: Tuesday at 4:00 PM CT
 - **Also Good**: Wednesday/Thursday 10:00 AM - 6:00 PM CT
 
 **General Guidelines**:
+
 - Best days: Wednesday, Thursday, Friday
 - Time window: 10:00 AM - 6:00 PM CT
 - Sunday evening for maximum weekend engagement
 
 **HNC Schedule**: Post daily for maximum TikTok algorithm favor
+
 - 12:00 PM CT: Primary daily post
 - 8:00 PM CT: Sunday bonus post
 
 #### Instagram Reels
+
 **Primary Posting Times**:
+
 - **Best Day**: Friday
 - **Best Time**: Evenings (5:00 PM - 9:00 PM CT)
 - **Also Good**: Mornings (9:00 AM - 11:00 AM CT)
 
 **General Guidelines**:
+
 - High engagement on Fridays
 - Morning posts for connected reach
 - Evening posts for entertainment/discovery
 - Avoid Monday mornings
 
 **HNC Schedule**: Post 4-7 Reels per week
+
 - Tuesday 5:00 PM: Week starter
 - Thursday 5:00 PM: Mid-week content
 - Saturday 5:00 PM: Weekend engagement
 - Optional: Sunday 7:00 PM
 
 #### X (Twitter)
+
 **Primary Posting Times**:
+
 - **Best Day**: Tuesday
 - **Best Times**: 9:00 AM - 11:00 AM CT, 1:00 PM CT
 - **Also Good**: Morning time blocks weekdays
 
 **General Guidelines**:
+
 - Tuesday highest engagement
 - Morning commute times
 - Lunch hour
 - Avoid late evenings
 
 **HNC Schedule**: Post daily with thread format
+
 - 9:00 AM CT: Primary video post
 - 9:15 AM CT: Thread with context (3-5 tweets)
 - Throughout day: Engage with comments
@@ -404,6 +442,7 @@ This comprehensive distribution strategy is designed to launch High Noon Cartoon
 #### Weekly Theme Structure
 
 **Week 1: Introduction Series**
+
 - Mon: "Meet the Characters"
 - Tue: "Texas Cannabis 101"
 - Wed: "Why Compliance Matters"
@@ -413,6 +452,7 @@ This comprehensive distribution strategy is designed to launch High Noon Cartoon
 - Sun: "Week Recap & Preview"
 
 **Week 2-11: Rotating Themes**
+
 - Compliance Deep-Dives (2-3 episodes/week)
 - Common Mistakes Series (1-2 episodes/week)
 - Industry Satire & Comedy (1-2 episodes/week)
@@ -420,6 +460,7 @@ This comprehensive distribution strategy is designed to launch High Noon Cartoon
 - News & Updates (as relevant)
 
 **Week 12: Finale Series**
+
 - Build to season finale
 - Recap top moments
 - Tease next season
@@ -435,16 +476,19 @@ This comprehensive distribution strategy is designed to launch High Noon Cartoon
 ### Testing & Optimization Protocol
 
 **Week 1-2: Testing Phase**
+
 - Post at multiple times
 - Track engagement by time slot
 - Analyze audience active times in platform analytics
 
 **Week 3-4: Optimization Phase**
+
 - Focus on top 3 performing time slots per platform
 - A/B test different days of week
 - Monitor completion rates by posting time
 
 **Week 5+: Refined Schedule**
+
 - Lock in optimal times based on data
 - Maintain consistency
 - Quarterly review and adjustment
@@ -456,6 +500,7 @@ This comprehensive distribution strategy is designed to launch High Noon Cartoon
 ### Philosophy & Research Insights
 
 **Key Principles**:
+
 1. Hashtags help algorithms categorize content
 2. Less is more - quality over quantity
 3. Mix broad reach with niche targeting
@@ -474,11 +519,13 @@ This comprehensive distribution strategy is designed to launch High Noon Cartoon
 ### Hashtag Tiers System
 
 #### Tier 1: Mega Hashtags (1M+ posts)
+
 **Purpose**: Broad visibility, algorithm signaling
 **Risk**: High competition, quick burial
 **Usage**: 1-2 per post maximum
 
 **HNC Mega Hashtags**:
+
 - #FYP / #ForYou / #ForYouPage (TikTok)
 - #Shorts (YouTube)
 - #Reels (Instagram)
@@ -489,11 +536,13 @@ This comprehensive distribution strategy is designed to launch High Noon Cartoon
 - #Animation
 
 #### Tier 2: Power Hashtags (100K-1M posts)
+
 **Purpose**: Niche audience, better targeting
 **Risk**: Moderate competition
 **Usage**: 2-3 per post
 
 **HNC Power Hashtags**:
+
 - #CannabisEducation
 - #CannabisCompliance
 - #HempEducation
@@ -506,11 +555,13 @@ This comprehensive distribution strategy is designed to launch High Noon Cartoon
 - #CannabisBusiness
 
 #### Tier 3: Niche Hashtags (10K-100K posts)
+
 **Purpose**: Targeted audience, higher engagement
 **Risk**: Lower reach, higher quality
 **Usage**: 2-4 per post
 
 **HNC Niche Hashtags**:
+
 - #TexasHempLaw
 - #ComplianceEducation
 - #CannabisPodcast
@@ -523,11 +574,13 @@ This comprehensive distribution strategy is designed to launch High Noon Cartoon
 - #DispensaryOwner
 
 #### Tier 4: Micro Hashtags (Under 10K posts)
+
 **Purpose**: Ultra-targeted, community building
 **Risk**: Very limited reach
 **Usage**: 1-2 per post
 
 **HNC Micro Hashtags**:
+
 - #HighNoonCartoon
 - #HNCseries
 - #TexasCannabisCompliance
@@ -540,8 +593,10 @@ This comprehensive distribution strategy is designed to launch High Noon Cartoon
 ### Hashtag Combination Formulas
 
 #### Formula 1: Viral Push
+
 **Best for**: New account, maximum reach
 **Combination**:
+
 - 2 Mega (reach)
 - 2 Power (targeting)
 - 2 Niche (community)
@@ -551,8 +606,10 @@ This comprehensive distribution strategy is designed to launch High Noon Cartoon
 `#Shorts #Comedy #CannabisEducation #TexasCannabis #TexasHempLaw #ComplianceEducation #HighNoonCartoon`
 
 #### Formula 2: Community Building
+
 **Best for**: Established account, engagement focus
 **Combination**:
+
 - 1 Mega (visibility)
 - 3 Power (niche)
 - 3 Niche (targeting)
@@ -562,8 +619,10 @@ This comprehensive distribution strategy is designed to launch High Noon Cartoon
 `#Reels #CannabisCompliance #CannabisBusiness #TexasCannabis #TexasHempLaw #ComplianceEducation #DispensaryOwner #HighNoonCartoon #HNCseries`
 
 #### Formula 3: Algorithm Training
+
 **Best for**: TikTok, teaching algorithm your niche
 **Combination**:
+
 - 0-1 Mega (minimal broad)
 - 3-4 Power (niche identity)
 - 2-3 Niche (precise targeting)
@@ -574,6 +633,7 @@ This comprehensive distribution strategy is designed to launch High Noon Cartoon
 ### Content-Type Specific Hashtag Sets
 
 #### Compliance Education Content
+
 ```
 Primary: #CannabisCompliance #ComplianceEducation #CannabisLaw
 Secondary: #TexasCannabis #TexasHempLaw #CannabisRegulations
@@ -582,6 +642,7 @@ Platform: #Shorts / #Reels / #FYP
 ```
 
 #### Comedy/Satire Content
+
 ```
 Primary: #Comedy #Satire #Funny
 Secondary: #CannabisComedy #CannabisCommunity #CannabisIndustry
@@ -590,6 +651,7 @@ Platform: #Shorts / #Reels / #FYP
 ```
 
 #### Industry News/Updates
+
 ```
 Primary: #CannabisNews #CannabisIndustry #HempNews
 Secondary: #TexasCannabis #CannabisRegulations #CannabisLaw
@@ -598,6 +660,7 @@ Platform: #Shorts / #Reels / #FYP
 ```
 
 #### Behind-the-Scenes Content
+
 ```
 Primary: #BehindTheScenes #Animation #ContentCreator
 Secondary: #AnimatedSeries #CannabisContent #CreativeProcess
@@ -608,6 +671,7 @@ Platform: #Shorts / #Reels / #FYP
 ### Trending Hashtag Integration
 
 #### Daily Monitoring Protocol
+
 1. Check TikTok Creative Center (trending hashtags by region)
 2. Monitor Instagram Explore for trending topics
 3. Review YouTube trending tab for relevant trends
@@ -615,6 +679,7 @@ Platform: #Shorts / #Reels / #FYP
 5. Use tools: Hashtagify, RiteTag, Display Purposes
 
 #### Trending Integration Rules
+
 - Maximum 1-2 trending hashtags per post
 - Must be contextually relevant to content
 - Jump on trends within 24-48 hours
@@ -635,24 +700,28 @@ Platform: #Shorts / #Reels / #FYP
 ### Hashtag Testing & Optimization
 
 #### Week 1-2: Broad Testing
+
 - Test all four formulas
 - Track which hashtag sets get best reach
 - Monitor which bring highest engagement
 - Identify which drive follows
 
 #### Week 3-4: Niche Testing
+
 - Focus on top-performing formula
 - Swap individual hashtags within tiers
 - Test industry-specific vs. broad
 - A/B test branded hashtags
 
 #### Week 5-8: Optimization
+
 - Lock in top 20 performing hashtags
 - Create content-type specific sets
 - Rotate to avoid staleness
 - Refresh monthly
 
 #### Week 9+: Advanced Tactics
+
 - Seasonal hashtag integration
 - Campaign-specific hashtags
 - Collaborative hashtags with influencers
@@ -661,12 +730,14 @@ Platform: #Shorts / #Reels / #FYP
 ### Hashtag Research Tools
 
 **Free Tools**:
+
 - TikTok Creative Center (best for TikTok trends)
 - Instagram search (see post counts)
 - YouTube search (see related searches)
 - Display Purposes (hashtag generator)
 
 **Paid Tools**:
+
 - Hashtagify ($29/mo) - hashtag analytics
 - RiteTag ($49/mo) - real-time suggestions
 - Keyhole ($49/mo) - hashtag tracking
@@ -686,6 +757,7 @@ Platform: #Shorts / #Reels / #FYP
 ### Caption Writing Principles
 
 **The Golden Rules**:
+
 1. Front-load value (first line determines scroll)
 2. Create curiosity gaps
 3. Include clear call-to-action
@@ -720,6 +792,7 @@ Platform: #Shorts / #Reels / #FYP
 ### YouTube Shorts Caption Templates
 
 #### Template 1: Educational Hook
+
 ```
 Did you know Texas requires THIS for hemp compliance? 👀
 
@@ -739,6 +812,7 @@ Episode [#] of our 84-part series on Texas cannabis law!
 ```
 
 #### Template 2: Storytelling
+
 ```
 "We thought we were compliant... we were wrong." 😬
 
@@ -758,6 +832,7 @@ Your 60-second guide to staying compliant in Texas 🤠
 ```
 
 #### Template 3: List Format
+
 ```
 5 Things Every Texas Hemp Business Owner Needs to Know:
 
@@ -778,6 +853,7 @@ Making compliance entertaining since 2025
 ### TikTok Caption Templates
 
 #### Template 1: Hook + Question
+
 ```
 Wait... THIS is illegal in Texas?! 🤯
 
@@ -790,6 +866,7 @@ Follow @HighNoonCartoon for daily compliance tea ☕
 ```
 
 #### Template 2: Relatable Scenario
+
 ```
 POV: You're a hemp business owner and HHSC walks in 😅
 
@@ -799,6 +876,7 @@ Tag someone who needs to see this 👀
 ```
 
 #### Template 3: Challenge/Trend Integration
+
 ```
 Showing my friends what "cannabis compliance" really means 💀
 
@@ -811,6 +889,7 @@ New episode every day!
 ```
 
 #### Template 4: Educational Series
+
 ```
 Texas Hemp Law: Chapter [#] 📚
 
@@ -829,6 +908,7 @@ Follow for the full 84-episode series
 ### Instagram Reels Caption Templates
 
 #### Template 1: Story-Driven
+
 ```
 Real talk: Last week, a Texas hemp business got shut down for THIS. 😔
 
@@ -851,6 +931,7 @@ Drop a 🔥 if this was helpful!
 ```
 
 #### Template 2: Behind-the-Scenes
+
 ```
 Behind every High Noon Cartoon episode is hours of legal research. 📖
 
@@ -873,6 +954,7 @@ Follow @HighNoonCartoon for:
 ```
 
 #### Template 3: Engagement-Focused
+
 ```
 Quick quiz: Which of these is NOT required for Texas hemp compliance? 🤔
 
@@ -894,6 +976,7 @@ Episode [#] of 84
 ### X (Twitter) Caption Templates
 
 #### Template 1: Thread Starter
+
 ```
 Tweet 1 (With Video):
 🚨 TEXAS HEMP ALERT 🚨
@@ -938,6 +1021,7 @@ Follow @HighNoonCartoon for daily doses of compliance education 🤠
 ```
 
 #### Template 2: Single Tweet + Video
+
 ```
 "I didn't know that was required in Texas" is not a defense. 😬
 
@@ -949,6 +1033,7 @@ Episode [#] | High Noon Cartoon
 ```
 
 #### Template 3: News Integration
+
 ```
 [News headline/event happened today]
 
@@ -966,6 +1051,7 @@ More context in thread below 🧵
 ### Caption Variable Library
 
 #### Hook Starters
+
 - "Did you know..."
 - "Nobody talks about..."
 - "This is the [number] mistake..."
@@ -978,6 +1064,7 @@ More context in thread below 🧵
 - "Here's the tea:"
 
 #### Educational Phrases
+
 - "Here's what you need to know:"
 - "The breakdown:"
 - "Let's unpack this:"
@@ -987,6 +1074,7 @@ More context in thread below 🧵
 - "The compliance checklist:"
 
 #### Call-to-Action Options
+
 - "Save this for later ⬇️"
 - "Tag someone who needs this 👀"
 - "Comment [something] if you learned something"
@@ -997,6 +1085,7 @@ More context in thread below 🧵
 - "Share this with your team"
 
 #### Personality Injections (Brand Voice)
+
 - 🤠 Texas-themed emojis
 - "Howdy from Texas"
 - "Y'all need to know..."
@@ -1009,6 +1098,7 @@ More context in thread below 🧵
 ### Accessibility Considerations
 
 **Always Include**:
+
 - Emoji descriptions for screen readers
 - Clear language (avoid jargon when possible)
 - Define acronyms on first use
@@ -1017,6 +1107,7 @@ More context in thread below 🧵
 - Use high-contrast text overlays
 
 **Example**:
+
 ```
 Instead of: "HHSC DPS regs for THC content"
 Use: "Texas HHSC (Health & Human Services Commission) regulations for THC content"
@@ -1025,6 +1116,7 @@ Use: "Texas HHSC (Health & Human Services Commission) regulations for THC conten
 ### A/B Testing Caption Protocol
 
 **Test Variables**:
+
 1. Hook style (question vs. statement)
 2. Length (short vs. detailed)
 3. CTA placement (beginning vs. end)
@@ -1032,12 +1124,14 @@ Use: "Texas HHSC (Health & Human Services Commission) regulations for THC conten
 5. Hashtag placement (inline vs. separate)
 
 **Testing Schedule**:
+
 - Week 1-2: Test 3 different hooks per content type
 - Week 3-4: Test caption lengths
 - Week 5-6: Test CTA variations
 - Week 7-8: Optimize based on data
 
 **Metrics to Track**:
+
 - Click-through rate
 - Comment rate
 - Save/share rate
@@ -1053,6 +1147,7 @@ Use: "Texas HHSC (Health & Human Services Commission) regulations for THC conten
 **Core Principle**: Each platform feeds the others, creating a self-sustaining content ecosystem where engaged audiences discover you across multiple touchpoints.
 
 **Goals**:
+
 1. Convert followers from one platform to another
 2. Build multi-platform super-fans
 3. Increase overall brand recognition
@@ -1064,6 +1159,7 @@ Use: "Texas HHSC (Health & Human Services Commission) regulations for THC conten
 #### From YouTube Shorts → Other Platforms
 
 **Tactics**:
+
 1. **End Screen CTAs**
    - Last 3 seconds: "Find us on TikTok @HighNoonCartoon"
    - Verbal: "More daily content on Instagram Reels"
@@ -1088,7 +1184,9 @@ Use: "Texas HHSC (Health & Human Services Commission) regulations for THC conten
 #### From TikTok → Other Platforms
 
 **Tactics**:
+
 1. **Bio Optimization**
+
    ```
    🤠 Texas Cannabis Compliance | 60-sec Shorts
    🎬 84 Episodes • New Daily
@@ -1117,7 +1215,9 @@ Use: "Texas HHSC (Health & Human Services Commission) regulations for THC conten
 #### From Instagram Reels → Other Platforms
 
 **Tactics**:
+
 1. **Bio Link Strategy**
+
    ```
    🎬 High Noon Cartoon
    📚 Texas Cannabis Compliance Education
@@ -1147,6 +1247,7 @@ Use: "Texas HHSC (Health & Human Services Commission) regulations for THC conten
 #### From X (Twitter) → Other Platforms
 
 **Tactics**:
+
 1. **Thread Strategy**
    - Tweet 1: Video
    - Tweet 2-4: Context/breakdown
@@ -1159,6 +1260,7 @@ Use: "Texas HHSC (Health & Human Services Commission) regulations for THC conten
    - "New to HNC? Start here 👇"
 
 3. **Bio Optimization**
+
    ```
    🤠 High Noon Cartoon
    📺 Texas Cannabis Compliance
@@ -1181,24 +1283,28 @@ Use: "Texas HHSC (Health & Human Services Commission) regulations for THC conten
 **Source Video**: Single 60-second HNC episode
 
 **YouTube Shorts Version**:
+
 - Full 60 seconds
 - Optimized thumbnail
 - Detailed description with timestamps
 - Educational focus
 
 **TikTok Version**:
+
 - Cut to 45 seconds (higher engagement)
 - Add trending sound overlay
 - Heavy text overlay
 - Trend integration
 
 **Instagram Reels Version**:
+
 - Full 60 seconds or loop to 30 seconds
 - Square (1:1) alternative version
 - Caption-heavy for no-sound viewing
 - Aesthetic color grading
 
 **X (Twitter) Version**:
+
 - Cut to 30 seconds (attention span)
 - Captions mandatory
 - Thread for full context
@@ -1213,18 +1319,21 @@ Use: "Texas HHSC (Health & Human Services Commission) regulations for THC conten
 **Strategy**: Build anticipation across all platforms
 
 **Week Before Launch**:
+
 - Countdown on all platforms
 - Behind-the-scenes of production
 - Character introductions
 - Tease episode topics
 
 **During Campaign**:
+
 - Same episode posts daily on all platforms
 - Platform-specific bonus content
 - Weekly recap videos
 - Community challenges
 
 **Cross-Promotion**:
+
 - "Day 1 on YouTube, Day 2 on TikTok" strategy
 - Create FOMO by staggering platform releases
 - Exclusive content for each platform's "super fans"
@@ -1234,18 +1343,21 @@ Use: "Texas HHSC (Health & Human Services Commission) regulations for THC conten
 **Strategy**: User-generated question series
 
 **Mechanic**:
+
 - Instagram: Submit questions via DM or story
 - TikTok: Comment questions
 - X: Reply to tweet
 - YouTube: Comment on community post
 
 **Content Creation**:
+
 - Select top questions
 - Create episode answering question
 - Credit user across all platforms
 - "Featured on HNC" moment
 
 **Cross-Promotion Value**:
+
 - Featured users share to their audiences
 - Tag friends with similar questions
 - "My question was answered on YouTube" posts
@@ -1255,12 +1367,14 @@ Use: "Texas HHSC (Health & Human Services Commission) regulations for THC conten
 **Strategy**: Gamify multi-platform following
 
 **Mechanic**:
+
 - "Which platform can get Episode [#] to 10K views first?"
 - Track in real-time
 - Update daily on all platforms
 - Winner platform gets exclusive bonus episode
 
 **Community Engagement**:
+
 - Encourages sharing
 - Creates competitive fun
 - Drives cross-platform viewing
@@ -1273,6 +1387,7 @@ Use: "Texas HHSC (Health & Human Services Commission) regulations for THC conten
 **Target**: Cannabis educators, Texas business accounts, compliance experts
 
 **Collaboration Types**:
+
 1. **Duet/Stitch** (TikTok)
    - Influencer reacts to HNC episode
    - Both accounts benefit from algorithm boost
@@ -1294,6 +1409,7 @@ Use: "Texas HHSC (Health & Human Services Commission) regulations for THC conten
    - Combined expertise + audiences
 
 **Outreach Script**:
+
 ```
 Hi [Name]!
 
@@ -1317,6 +1433,7 @@ High Noon Cartoon Team
 **Purpose**: Own your audience outside platform control
 
 **Tactics**:
+
 1. **Landing Page**
    - "Get Episode [#] delivered to your inbox"
    - Exclusive bonus content for subscribers
@@ -1336,6 +1453,7 @@ High Noon Cartoon Team
    - Community spotlights
 
 **Cross-Promotion in Emails**:
+
 - "Watch Episode [#] on your preferred platform:"
 - Platform buttons with links
 - "Join the conversation on X"
@@ -1344,6 +1462,7 @@ High Noon Cartoon Team
 ### Platform Analytics for Cross-Promotion
 
 **Track**:
+
 1. **Traffic Sources** (YouTube Analytics)
    - Which platforms drive most YouTube traffic
    - Double-down on successful sources
@@ -1363,6 +1482,7 @@ High Noon Cartoon Team
 ### Monthly Cross-Promotion Report
 
 **Create Monthly**:
+
 ```
 Platform Growth Report
 
@@ -1400,6 +1520,7 @@ Top Cross-Promo Tactic: [Strategy]
 **Core Belief**: The HNC community isn't just viewers—they're participants in the cannabis compliance education movement.
 
 **Engagement Pillars**:
+
 1. **Respond**: Reply to every comment (first 48 hours)
 2. **Recognize**: Feature community members
 3. **Reward**: Create opportunities for participation
@@ -1411,18 +1532,21 @@ Top Cross-Promo Tactic: [Strategy]
 #### The Golden Hour Protocol
 
 **First 60 Minutes After Posting**:
+
 - Respond to every comment (builds algorithm favor)
 - Ask follow-up questions
 - Create conversation threads
 - Pin best comment
 
 **Hours 2-24**:
+
 - Continue responding to new comments
 - Like all comments
 - Answer questions thoroughly
 - Address concerns
 
 **Days 2-7**:
+
 - Monitor for new engagement
 - Update pinned comment if better one arrives
 - Create response templates for common questions
@@ -1430,6 +1554,7 @@ Top Cross-Promo Tactic: [Strategy]
 #### Response Templates
 
 **For Positive Comments**:
+
 ```
 "Appreciate you! 🤠 Which episode should we tackle next?"
 "Thanks for being part of the HNC community! [relevant question]"
@@ -1437,6 +1562,7 @@ Top Cross-Promo Tactic: [Strategy]
 ```
 
 **For Questions**:
+
 ```
 "Great question! [Detailed answer]. Want us to make a full episode on this?"
 "This is actually covered in Episode [#]! Link in bio. But short answer: [quick response]"
@@ -1444,6 +1570,7 @@ Top Cross-Promo Tactic: [Strategy]
 ```
 
 **For Criticism/Concerns**:
+
 ```
 "Thanks for the feedback! We're always improving. Can you elaborate on [specific point]?"
 "Appreciate you keeping us accurate! You're right—[acknowledgment]. We'll address this in an update."
@@ -1451,6 +1578,7 @@ Top Cross-Promo Tactic: [Strategy]
 ```
 
 **For Compliance Questions (Legal Disclaimer)**:
+
 ```
 "Great question! Note: This is educational content, not legal advice. For your specific situation, consult with a cannabis attorney. That said, generally speaking [educational response]."
 ```
@@ -1460,18 +1588,21 @@ Top Cross-Promo Tactic: [Strategy]
 #### Weekly Spotlights
 
 **"Fan of the Week"**
+
 - Feature user who engages most
 - Create custom episode addressing their question
 - Shoutout across all platforms
 - Build loyalty and encourage engagement
 
 **How to Implement**:
+
 - Monday: Announce previous week's winner
 - Throughout week: Track engagement
 - Friday: Tease next week's winner
 - Weekend: Create custom content
 
 **Selection Criteria**:
+
 - Most thoughtful comments
 - Most shares
 - Best questions
@@ -1480,12 +1611,14 @@ Top Cross-Promo Tactic: [Strategy]
 #### User-Generated Content
 
 **"Your Compliance Story"**
+
 - Invite followers to share compliance experiences
 - Animate best stories into episodes
 - Credit original storyteller
 - Create emotional connection
 
 **Submission Methods**:
+
 - Instagram: DM or story mention
 - TikTok: Duet with prompt video
 - X: Reply to thread
@@ -1493,6 +1626,7 @@ Top Cross-Promo Tactic: [Strategy]
 - Email: Dedicated submission form
 
 **Content Ideas**:
+
 - "My compliance mistake"
 - "How I learned [topic]"
 - "Questions I had as a beginner"
@@ -1501,16 +1635,19 @@ Top Cross-Promo Tactic: [Strategy]
 #### Interactive Content Series
 
 **Weekly Polls**:
+
 - "Which topic should we cover next?"
 - "What's the biggest compliance challenge in your business?"
 - "Which episode was most helpful?"
 
 **Quizzes**:
+
 - Post-episode knowledge checks
 - "How compliant are you?" assessments
 - Myth vs. Fact series
 
 **Challenges**:
+
 - "Tag 3 people who need compliance education"
 - "Share your favorite episode to your story"
 - "Explain [topic] in your own words"
@@ -1520,12 +1657,14 @@ Top Cross-Promo Tactic: [Strategy]
 #### YouTube Shorts Community Building
 
 **Community Tab Strategy**:
+
 - Daily: Behind-the-scenes image + question
 - 3x/week: Poll about next episode topic
 - Weekly: "Episode Recap" post with discussion prompt
 - Monthly: "Thank you" post celebrating growth
 
 **Live Stream Integration**:
+
 - Monthly: "Ask HNC Anything" live stream
 - Discuss recent episodes
 - Preview upcoming topics
@@ -1533,6 +1672,7 @@ Top Cross-Promo Tactic: [Strategy]
 - Feature comments from all platforms
 
 **Playlist Strategy**:
+
 - Organize 84 episodes by topic
 - Create "Start Here" playlist for newcomers
 - "Most Popular" episodes playlist
@@ -1541,18 +1681,21 @@ Top Cross-Promo Tactic: [Strategy]
 #### TikTok Community Building
 
 **Comment Section Culture**:
+
 - Use humor in responses
 - Create inside jokes
 - Encourage comment debates (respectful)
 - Feature comments in follow-up videos
 
 **Series Features**:
+
 - "Comment Roast" (friendly, on-brand)
 - "Top Comment Gets Episode" series
 - "Comment of the Day" in stories
 - Reply-video feature for best comments
 
 **TikTok-Specific Tactics**:
+
 - Duet with fans' reactions
 - Stitch with related content creators
 - Join relevant TikTok communities
@@ -1561,6 +1704,7 @@ Top Cross-Promo Tactic: [Strategy]
 #### Instagram Community Building
 
 **Story Engagement**:
+
 - Daily: "This or That" polls
 - Question stickers: "Ask HNC"
 - Quiz stickers: Test knowledge
@@ -1568,12 +1712,14 @@ Top Cross-Promo Tactic: [Strategy]
 - Behind-the-scenes of animation process
 
 **DM Strategy**:
+
 - Auto-reply with welcome message
 - Organize DMs with labels
 - Response time goal: Under 1 hour
 - Use quick replies for common questions
 
 **Collaboration Posts**:
+
 - Feature other cannabis educators
 - Tag mentioned businesses (compliance wins)
 - Collaborate with Texas business accounts
@@ -1582,18 +1728,21 @@ Top Cross-Promo Tactic: [Strategy]
 #### X (Twitter) Community Building
 
 **Thread Discussions**:
+
 - Post episode + start discussion thread
 - Ask: "What's your take on [topic]?"
 - Encourage quote tweets with opinions
 - Retweet best community responses
 
 **Twitter Spaces**:
+
 - Weekly: "Compliance Corner" live audio
 - Bring on guests (business owners, lawyers)
 - Q&A format
 - Record and share clips
 
 **List Building**:
+
 - Create "HNC Community" Twitter list
 - Add engaged followers
 - Feature list members
@@ -1605,25 +1754,30 @@ Top Cross-Promo Tactic: [Strategy]
 
 **1. Constructive Criticism**
 Response approach: Thank, acknowledge, improve
+
 ```
 "This is super helpful feedback! You're absolutely right about [issue]. We'll make sure Episode [#] addresses this more clearly. Thanks for keeping us accountable! 🙏"
 ```
 
 **2. Misinformation/Disagreement**
 Response approach: Educate, provide sources, stay professional
+
 ```
 "I can see why that might seem confusing! According to [official source]: [quote]. Here's the link: [URL]. Let us know if you have other sources we should review!"
 ```
 
 **3. Trolling/Bad Faith**
 Response approach: Brief, professional, move on
+
 ```
 "Appreciate you watching! If you have specific feedback, we're all ears 🤠"
 ```
+
 Then don't engage further. Don't feed trolls.
 
 **4. Legal Concerns**
 Response approach: Clarify, disclaimer, redirect
+
 ```
 "Important note: This is educational content, not legal advice. For your specific situation, please consult a licensed attorney. We're here to inform, not advise on individual cases!"
 ```
@@ -1631,6 +1785,7 @@ Response approach: Clarify, disclaimer, redirect
 #### When to Delete/Block
 
 **Delete if**:
+
 - Spam
 - Hate speech
 - Harassment of other community members
@@ -1638,11 +1793,13 @@ Response approach: Clarify, disclaimer, redirect
 - Dangerous misinformation
 
 **Block if**:
+
 - Repeated violations
 - Coordinated trolling
 - Impersonation
 
 **Never delete**:
+
 - Constructive criticism
 - Disagreement (if respectful)
 - Questions (even if repeated)
@@ -1674,17 +1831,20 @@ Questions? DM us!
 ### Engagement Metrics to Track
 
 **Daily**:
+
 - Comment response rate
 - Response time (goal: under 1 hour)
 - Comment sentiment (positive/neutral/negative %)
 
 **Weekly**:
+
 - Engagement rate per platform
 - Most engaged posts
 - Community growth rate
 - User-generated content submissions
 
 **Monthly**:
+
 - Superfan identification (most engaged users)
 - Community sentiment trends
 - Feature request themes
@@ -1693,7 +1853,9 @@ Questions? DM us!
 ### Building Superfans
 
 #### Superfan Definition
+
 Users who:
+
 - Follow on 3+ platforms
 - Comment regularly (1+ per week)
 - Share content
@@ -1703,17 +1865,20 @@ Users who:
 #### Superfan Rewards
 
 **Recognition**:
+
 - Feature in episode credits
 - "Founding Community Member" badge
 - Annual "Top Fan" awards
 
 **Access**:
+
 - Early episode previews
 - Private Discord/community
 - Monthly video call Q&A
 - Input on episode topics
 
 **Exclusive Content**:
+
 - Extended episodes
 - Blooper reels
 - Script drafts
@@ -1722,6 +1887,7 @@ Users who:
 #### Superfan Outreach
 
 **Monthly DM**:
+
 ```
 Hey [Name]!
 
@@ -1737,6 +1903,7 @@ You're the reason we do this! 🤠
 ### Community Events
 
 #### Monthly: "Compliance Corner Live"
+
 - Live stream on YouTube
 - Simulcast to other platforms
 - Q&A format
@@ -1744,6 +1911,7 @@ You're the reason we do this! 🤠
 - Discuss recent episodes
 
 #### Quarterly: "HNC Community Call"
+
 - Zoom call for superfans
 - 50-100 participants max
 - Behind-the-scenes tour
@@ -1751,6 +1919,7 @@ You're the reason we do this! 🤠
 - Direct feedback session
 
 #### Annual: "HNC Summit"
+
 - In-person event (Texas)
 - Meet the team
 - Cannabis industry networking
@@ -1768,12 +1937,14 @@ You're the reason we do this! 🤠
 ### Federal vs. State Law
 
 **Federal Status (2025)**:
+
 - Cannabis remains Schedule I controlled substance
 - Hemp (under 0.3% THC) legal via 2018 Farm Bill
 - Interstate commerce restrictions apply
 - Banking limitations (SAFE Banking Act status pending)
 
 **Texas Specific**:
+
 - Hemp legal (under 0.3% THC)
 - Medical cannabis program (low-THC only)
 - Recreational cannabis illegal
@@ -1787,12 +1958,14 @@ You're the reason we do this! 🤠
 #### YouTube/Google Policy
 
 **What's Allowed**:
+
 - Educational content about cannabis
 - News coverage of cannabis industry
 - Documentary content
 - Hemp business content
 
 **What's Prohibited**:
+
 - Direct product sales
 - Links to online cannabis retailers
 - Promoting cannabis consumption
@@ -1800,6 +1973,7 @@ You're the reason we do this! 🤠
 - Tutorial videos on growing/extraction
 
 **HNC Compliance Strategy**:
+
 - Clearly educational framing
 - No product promotion
 - Focus on compliance/legal aspects
@@ -1809,12 +1983,14 @@ You're the reason we do this! 🤠
 #### TikTok Policy
 
 **What's Allowed**:
+
 - Educational discussions
 - Medical cannabis information
 - News about cannabis legalization
 - Hemp industry content
 
 **What's Prohibited**:
+
 - Promotion of cannabis products
 - Direct sales or links to sales
 - Instructions on use/growing
@@ -1822,6 +1998,7 @@ You're the reason we do this! 🤠
 - Underage-targeted content
 
 **HNC Compliance Strategy**:
+
 - "This is educational content only" disclaimer
 - No product imagery
 - Focus on business/legal aspects
@@ -1833,11 +2010,13 @@ You're the reason we do this! 🤠
 **Most Restrictive Platform**
 
 **What's Allowed**:
+
 - Educational cannabis content (limited)
 - Cannabis news reporting
 - Business education (no direct promotion)
 
 **What's Prohibited**:
+
 - Promoting cannabis products
 - Direct sales or links to e-commerce
 - Cannabis product imagery (even legal hemp)
@@ -1845,11 +2024,13 @@ You're the reason we do this! 🤠
 - Before/after content
 
 **Shadow Ban Risks**:
+
 - Certain hashtags trigger restrictions
 - Product images can trigger account review
 - Repeated violations = account suspension
 
 **HNC Compliance Strategy**:
+
 - Most conservative approach
 - No plant imagery
 - Focus on business/compliance only
@@ -1861,18 +2042,21 @@ You're the reason we do this! 🤠
 **Most Lenient Platform (2025)**
 
 **What's Allowed**:
+
 - Cannabis advertising (with restrictions)
 - Product photos (age-gated)
 - Direct links to licensed businesses
 - Cannabis brand accounts
 
 **What's Required**:
+
 - Age verification for ads
 - Compliance with regional laws
 - Not targeting minors
 - Proper licensing documentation
 
 **HNC Opportunity**:
+
 - Most freedom for cannabis content
 - Direct linking to licensed businesses
 - Industry networking hub
@@ -1883,6 +2067,7 @@ You're the reason we do this! 🤠
 #### What We CAN Do
 
 **Educational Content** ✅:
+
 - Explain compliance requirements
 - Break down regulations
 - Interview industry experts
@@ -1890,6 +2075,7 @@ You're the reason we do this! 🤠
 - Business best practices
 
 **Industry News** ✅:
+
 - Legislative updates
 - Policy changes
 - Industry trends
@@ -1897,6 +2083,7 @@ You're the reason we do this! 🤠
 - Court decisions
 
 **Business Education** ✅:
+
 - Licensing processes
 - Compliance checklists
 - Operational best practices
@@ -1904,6 +2091,7 @@ You're the reason we do this! 🤠
 - Risk mitigation
 
 **Satire/Comedy** ✅:
+
 - Industry humor (respectful)
 - Compliance mishap stories (anonymized)
 - Character-based storytelling
@@ -1912,24 +2100,28 @@ You're the reason we do this! 🤠
 #### What We CANNOT Do
 
 **Direct Sales** ❌:
+
 - Selling cannabis products
 - Affiliate links to dispensaries
 - Promo codes for cannabis
 - Sponsored product content
 
 **Consumption Promotion** ❌:
+
 - Encouraging cannabis use
 - Tutorial videos
 - Product reviews
 - Consumption methods
 
 **Medical Claims** ❌:
+
 - Cannabis cures diseases
 - Medical advice
 - Treatment recommendations
 - Health benefit claims
 
 **Minor-Targeted Content** ❌:
+
 - Cartoon characters using cannabis
 - Youth-appealing imagery
 - Candy-like product depictions
@@ -1937,9 +2129,10 @@ You're the reason we do this! 🤠
 
 ### HNC-Specific Safety Measures
 
-#### Every Video Must Include:
+#### Every Video Must Include
 
 **Visual Disclaimer** (first 3 seconds):
+
 ```
 "Educational Content Only
 18+ Audience
@@ -1947,11 +2140,13 @@ Not Legal Advice"
 ```
 
 **Verbal Disclaimer** (narration):
+
 ```
 "This is educational content about Texas hemp compliance. This is not legal advice. Consult with a licensed attorney for your specific situation."
 ```
 
 **Description Disclaimer**:
+
 ```
 DISCLAIMER: This content is for educational and informational purposes only. Nothing in this video constitutes legal advice. Cannabis and hemp laws vary by jurisdiction. Consult with a licensed attorney and relevant regulatory agencies for compliance guidance specific to your situation.
 
@@ -1977,6 +2172,7 @@ Before posting any episode, verify:
 #### Restricted Hashtags to Avoid
 
 **Instagram**:
+
 - #weed
 - #stoner
 - #marijuana
@@ -1985,6 +2181,7 @@ Before posting any episode, verify:
 - #weedstagram
 
 **Safe Alternatives**:
+
 - #cannabiseducation
 - #hempindustry
 - #cannabiscompliance
@@ -1997,24 +2194,28 @@ Before posting any episode, verify:
 #### Texas Hemp Regulations
 
 **Key Agencies**:
+
 - HHSC (Health & Human Services Commission)
 - DSHS (Department of State Health Services)
 - DPS (Department of Public Safety)
 - TCUP (Texas Compassionate Use Program)
 
 **Licensing Requirements**:
+
 - Hemp producer license
 - Hemp processor/manufacturer license
 - Consumable hemp product manufacturer license
 - Retail hemp product seller permit
 
 **Testing Requirements**:
+
 - Third-party lab testing
 - THC content verification (under 0.3%)
 - Contaminant screening
 - Certificate of Analysis (COA)
 
 **Labeling Requirements**:
+
 - THC content disclosure
 - Batch/lot numbers
 - Manufacturer information
@@ -2029,6 +2230,7 @@ Each requirement = potential episode content
 **The Formula**: 80% educational/entertaining, 20% brand
 
 **80% Content**:
+
 - Compliance education
 - Industry news
 - Business tips
@@ -2036,6 +2238,7 @@ Each requirement = potential episode content
 - Community stories
 
 **20% Content**:
+
 - About HNC
 - Follow CTAs
 - Merchandise (if any)
@@ -2047,18 +2250,21 @@ Each requirement = potential episode content
 ### Monitoring & Adaptation
 
 **Weekly Platform Policy Review**:
+
 - Monday: Check for policy updates
 - Review recent account suspensions in niche
 - Monitor cannabis content creator news
 - Adjust strategy if needed
 
 **Monthly Compliance Audit**:
+
 - Review past 30 days of content
 - Verify all disclaimers present
 - Check for community guideline violations
 - Update internal guidelines
 
 **Quarterly Legal Review**:
+
 - Consult with cannabis attorney
 - Review content for legal risk
 - Update disclaimers as needed
@@ -2067,6 +2273,7 @@ Each requirement = potential episode content
 ### Crisis Management
 
 **If Content Gets Flagged**:
+
 1. Don't delete immediately (may confirm guilt)
 2. Appeal through platform process
 3. Document everything
@@ -2075,6 +2282,7 @@ Each requirement = potential episode content
 6. Communicate transparently with community
 
 **If Account Gets Suspended**:
+
 1. Submit appeal immediately
 2. Activate backup accounts
 3. Notify community on other platforms
@@ -2083,6 +2291,7 @@ Each requirement = potential episode content
 6. Build on other platforms during suspension
 
 **Backup Account Strategy**:
+
 - Maintain verified backup accounts on all platforms
 - Don't actively post (risk looking like spam)
 - Build enough presence to activate if needed
@@ -2091,6 +2300,7 @@ Each requirement = potential episode content
 ### Cannabis Industry Best Practices (from Research)
 
 **From Industry Leaders**:
+
 1. **Transparency**: Be open about being cannabis content
 2. **Education First**: Lead with value, not sales
 3. **Community Values**: Show brand mission beyond profit
@@ -2098,6 +2308,7 @@ Each requirement = potential episode content
 5. **Compliance Focus**: Make it a competitive advantage
 
 **Platform Preference (2025)**:
+
 - **X (Twitter)**: Best for cannabis ads and direct linking
 - **YouTube**: Best for long-form education
 - **TikTok**: Best for community building (with caution)
@@ -2106,12 +2317,14 @@ Each requirement = potential episode content
 ### Age Verification Strategy
 
 **Platform Tools**:
+
 - YouTube: Mark content as "18+"
 - Instagram: Restrict account to 18+ (in settings)
 - TikTok: Age gate in bio warning
 - X: Enable age verification for followers
 
 **Content-Level Verification**:
+
 - First frame: "18+ Content"
 - Description: "Age Restricted"
 - Community guidelines: "18+ Community"
@@ -2119,6 +2332,7 @@ Each requirement = potential episode content
 ### Working with Influencers/Partners
 
 **Vetting Process**:
+
 1. Verify they follow platform policies
 2. Check past content for violations
 3. Ensure no history of suspensions
@@ -2126,6 +2340,7 @@ Each requirement = potential episode content
 5. Confirm they understand compliance
 
 **Contract Requirements**:
+
 - Compliance clause
 - Platform policy adherence
 - Content review/approval process
@@ -2141,6 +2356,7 @@ Each requirement = potential episode content
 #### Technical Specifications
 
 **YouTube Shorts**:
+
 - **Resolution**: 1920x1080 (9:16) minimum
 - **Frame Rate**: 30fps minimum, 60fps preferred
 - **File Format**: MP4 (H.264 codec)
@@ -2149,6 +2365,7 @@ Each requirement = potential episode content
 - **Audio**: AAC codec, 44.1kHz, stereo
 
 **TikTok**:
+
 - **Resolution**: 1080x1920 (9:16)
 - **Frame Rate**: 30fps minimum
 - **File Format**: MP4 or MOV
@@ -2157,6 +2374,7 @@ Each requirement = potential episode content
 - **Audio**: 44.1kHz-48kHz
 
 **Instagram Reels**:
+
 - **Resolution**: 1080x1920 (9:16)
 - **Frame Rate**: 30fps
 - **File Format**: MP4
@@ -2165,6 +2383,7 @@ Each requirement = potential episode content
 - **Audio**: AAC, 48kHz
 
 **X (Twitter)**:
+
 - **Resolution**: 1920x1080 (9:16), 1080x1080 (1:1), or 1920x1080 (16:9)
 - **Frame Rate**: 30fps-60fps
 - **File Format**: MP4
@@ -2177,6 +2396,7 @@ Each requirement = potential episode content
 #### Animation Quality Standards
 
 **Visual Quality**:
+
 - Clean vector graphics
 - Consistent character design
 - High contrast for mobile viewing
@@ -2184,6 +2404,7 @@ Each requirement = potential episode content
 - Color-blind friendly palette
 
 **Motion Graphics**:
+
 - Smooth 30fps animation minimum
 - Clear character movements
 - Purposeful camera moves
@@ -2191,6 +2412,7 @@ Each requirement = potential episode content
 - Strategic use of text animation
 
 **Audio Quality**:
+
 - Clear narration (no background noise)
 - Balanced music/voice levels
 - Sound effects enhance, don't distract
@@ -2200,6 +2422,7 @@ Each requirement = potential episode content
 #### Captions & Subtitles
 
 **Required for All Platforms**:
+
 - Hardcoded captions (burned into video)
 - High contrast (white text, black outline)
 - Readable font (sans-serif, bold)
@@ -2207,6 +2430,7 @@ Each requirement = potential episode content
 - 2-3 seconds per caption minimum
 
 **Caption Best Practices**:
+
 - Short phrases (max 3-4 words per caption)
 - Emoji for emphasis (not overused)
 - Color-coded for different speakers
@@ -2214,6 +2438,7 @@ Each requirement = potential episode content
 - Grammar/spelling perfect
 
 **Accessibility**:
+
 - Upload SRT file (YouTube, X)
 - Use platform auto-captions as backup
 - Edit auto-captions for accuracy
@@ -2224,6 +2449,7 @@ Each requirement = potential episode content
 #### The 3-Second Rule
 
 **Why It Matters**:
+
 - Average user decides to scroll in under 3 seconds
 - Algorithms track "Viewed vs. Swiped Away"
 - First frame is your only guaranteed impression
@@ -2261,6 +2487,7 @@ Each requirement = potential episode content
    - Engages curiosity response
 
 **HNC Hook Formula**:
+
 ```
 [Visual: Character in action]
 + [Text overlay: Question or statement]
@@ -2270,6 +2497,7 @@ Each requirement = potential episode content
 ```
 
 **Example Hooks for HNC**:
+
 1. "Wait... THIS is illegal in Texas?!" [Character shocked face]
 2. "This compliance mistake cost $50,000" [Money flying away animation]
 3. "Texas hemp owners: Stop doing this NOW" [Warning visual]
@@ -2281,12 +2509,14 @@ Each requirement = potential episode content
 #### Cut Frequency
 
 **Research-Based Optimal**:
+
 - Cut every 2-3 seconds
 - Matches TikTok/Reels expectation
 - Maintains attention
 - Creates sense of momentum
 
 **HNC Pacing Strategy**:
+
 - Scene 1 (0-3 sec): Hook
 - Scene 2 (3-8 sec): Setup/problem
 - Scene 3 (8-15 sec): Explanation point 1
@@ -2297,6 +2527,7 @@ Each requirement = potential episode content
 - Scene 8 (40-45 sec): End screen (optional)
 
 **Transition Types**:
+
 - Jump cuts (most common)
 - Swipe transitions (directional)
 - Zoom transitions (emphasis)
@@ -2305,6 +2536,7 @@ Each requirement = potential episode content
 #### Visual Variety
 
 **Camera Angles**:
+
 - Wide shot: Establish scene
 - Medium shot: Normal dialogue
 - Close-up: Emotional emphasis
@@ -2312,6 +2544,7 @@ Each requirement = potential episode content
 - POV: Immersion
 
 **Composition Rules**:
+
 - Rule of thirds
 - Leading lines
 - Negative space for text
@@ -2325,18 +2558,21 @@ Each requirement = potential episode content
 **Trending vs. Original**:
 
 **Use Trending When**:
+
 - New account building reach
 - Participating in viral trend
 - TikTok/Reels priority
 - Targeting discovery algorithm
 
 **Use Original When**:
+
 - Building brand recognition
 - YouTube priority (monetization)
 - Professional content
 - Long-term library building
 
 **HNC Audio Strategy**:
+
 - Original theme music (brand recognition)
 - Trending overlay for TikTok versions
 - Music-free version for repurposing
@@ -2345,6 +2581,7 @@ Each requirement = potential episode content
 #### Narration Best Practices
 
 **Voice**:
+
 - Clear articulation
 - Energetic but not manic
 - Conversational tone
@@ -2352,6 +2589,7 @@ Each requirement = potential episode content
 - Consistent voice actor across series
 
 **Script Writing**:
+
 - Short sentences (max 12 words)
 - Active voice
 - Conversational language
@@ -2359,6 +2597,7 @@ Each requirement = potential episode content
 - Rhythm and cadence variation
 
 **Recording**:
+
 - Studio-quality microphone
 - Noise-free environment
 - Consistent volume levels
@@ -2368,6 +2607,7 @@ Each requirement = potential episode content
 #### Sound Effects
 
 **Strategic Use**:
+
 - Emphasize key points
 - Punctuate visual gags
 - Transition between scenes
@@ -2375,6 +2615,7 @@ Each requirement = potential episode content
 - Maintain engagement
 
 **Avoid**:
+
 - Constant sound effects (exhausting)
 - Stock sounds that sound cheap
 - Volume too loud
@@ -2383,6 +2624,7 @@ Each requirement = potential episode content
 ### Looping Strategy
 
 **Why Loops Matter**:
+
 - Increases watch time metric
 - Viewers re-watch to catch details
 - Algorithm interprets as high engagement
@@ -2412,6 +2654,7 @@ Each requirement = potential episode content
    - No awkward silence
 
 **HNC Loop Strategy**:
+
 - Standard episodes: Circular narrative back to hook
 - Series episodes: Cliffhanger to next episode
 - Standalone episodes: Satisfying visual/musical loop
@@ -2422,18 +2665,21 @@ Each requirement = potential episode content
 #### Hierarchy
 
 **Primary Text** (Most Important):
+
 - Hook statement (first 3 seconds)
 - Key takeaway
 - Statistics/numbers
 - Call-to-action
 
 **Secondary Text** (Supporting):
+
 - Captions for dialogue
 - Context information
 - Definitions
 - Sources
 
 **Tertiary Text** (Branding):
+
 - Episode numbers
 - Logo/series name
 - Social handles
@@ -2442,6 +2688,7 @@ Each requirement = potential episode content
 #### Design Principles
 
 **Readability**:
+
 - Sans-serif fonts (Arial, Helvetica, Montserrat)
 - Bold weight
 - High contrast (white text, black outline or background)
@@ -2449,18 +2696,21 @@ Each requirement = potential episode content
 - Avoid decorative fonts
 
 **Placement**:
+
 - Safe zone (center 80% of frame)
 - Avoid top 20% (profile pics cover)
 - Avoid bottom 15% (captions cover)
 - Center-weighted for vertical video
 
 **Animation**:
+
 - Fade in (200ms)
 - Display (2-4 seconds minimum)
 - Fade out (200ms)
 - Avoid distracting animation styles
 
 **Branding**:
+
 - Consistent color scheme (HNC brand colors)
 - Consistent font choice
 - Consistent animation style
@@ -2471,6 +2721,7 @@ Each requirement = potential episode content
 #### Platform Differences
 
 **YouTube Shorts**:
+
 - Thumbnail auto-generated from video (choose best frame)
 - Custom thumbnail option (use it!)
 - 1280x720 resolution minimum
@@ -2478,18 +2729,21 @@ Each requirement = potential episode content
 - Appears in search and suggested videos
 
 **TikTok**:
+
 - Auto-thumbnail from video
 - Choose cover frame in app
 - Can add text overlay
 - Shows in profile grid
 
 **Instagram Reels**:
+
 - Auto-thumbnail from video
 - Choose cover frame
 - Custom cover option (separate image)
 - Shows in profile grid and Explore
 
 **X (Twitter)**:
+
 - Auto-thumbnail from video
 - First frame is critical
 - Shows in timeline and Video Tab
@@ -2497,6 +2751,7 @@ Each requirement = potential episode content
 #### Thumbnail Best Practices
 
 **Visual Elements**:
+
 - Character in action (mid-expression)
 - High contrast colors
 - Clear focal point
@@ -2504,6 +2759,7 @@ Each requirement = potential episode content
 - Emotional expression visible
 
 **Text Overlay** (YouTube primarily):
+
 - 3-5 words maximum
 - Readable at small sizes
 - Contrasts with background
@@ -2511,6 +2767,7 @@ Each requirement = potential episode content
 - Creates curiosity
 
 **Branding**:
+
 - Consistent template
 - Logo placement (corner)
 - Color scheme
@@ -2518,6 +2775,7 @@ Each requirement = potential episode content
 - Series branding
 
 **A/B Testing**:
+
 - Test different character expressions
 - Test with/without text
 - Test different color schemes
@@ -2529,6 +2787,7 @@ Each requirement = potential episode content
 #### YouTube Shorts Algorithm
 
 **Favor**:
+
 - High view duration (% of video watched)
 - Watched vs. swiped away ratio
 - Loop/replay behavior
@@ -2536,6 +2795,7 @@ Each requirement = potential episode content
 - Subscriber conversion
 
 **Optimize**:
+
 - Front-load value (don't bury lead)
 - Strong hook (prevent swipes)
 - Design for replaying
@@ -2543,6 +2803,7 @@ Each requirement = potential episode content
 - Share to other platforms yourself
 
 **Avoid**:
+
 - Click-bait that disappoints
 - Slow pacing
 - Unclear value proposition
@@ -2551,6 +2812,7 @@ Each requirement = potential episode content
 #### TikTok Algorithm
 
 **Favor**:
+
 - Completion rate (full video watch)
 - Engagement rate (likes, comments, shares)
 - Re-watches
@@ -2558,6 +2820,7 @@ Each requirement = potential episode content
 - Shares to other platforms
 
 **Optimize**:
+
 - Keep under 45 seconds (higher completion)
 - Ask questions (drive comments)
 - Use trending sounds (discovery)
@@ -2565,6 +2828,7 @@ Each requirement = potential episode content
 - Post consistently (daily if possible)
 
 **Avoid**:
+
 - External links (keeps users on platform)
 - Watermarks from other platforms
 - Recycled viral content
@@ -2573,6 +2837,7 @@ Each requirement = potential episode content
 #### Instagram Reels Algorithm
 
 **Favor**:
+
 - Watch time (full video watch)
 - DM shares (highest weight)
 - Saves (indicates value)
@@ -2580,6 +2845,7 @@ Each requirement = potential episode content
 - High-quality production
 
 **Optimize**:
+
 - Keep under 30 seconds (higher completion)
 - Create share-worthy moments
 - "Save this" CTA for education content
@@ -2587,6 +2853,7 @@ Each requirement = potential episode content
 - High-resolution, no watermarks
 
 **Avoid**:
+
 - TikTok watermarks (big penalty)
 - Low-resolution video
 - Recycled content
@@ -2595,6 +2862,7 @@ Each requirement = potential episode content
 #### X (Twitter) Algorithm
 
 **Favor**:
+
 - Native video uploads (not links)
 - High 3-second retention
 - Vertical video (9:16)
@@ -2602,6 +2870,7 @@ Each requirement = potential episode content
 - Engagement in first hour
 
 **Optimize**:
+
 - Upload native, don't link
 - Hook in first 3 seconds
 - Always include captions
@@ -2609,6 +2878,7 @@ Each requirement = potential episode content
 - Engage with replies immediately
 
 **Avoid**:
+
 - YouTube links (penalized)
 - Horizontal video (less engaging)
 - No captions (accessibility)
@@ -2619,6 +2889,7 @@ Each requirement = potential episode content
 #### Testing Variables
 
 **Video Elements to Test**:
+
 1. Hook style (question vs. statement)
 2. Video length (30s vs. 45s vs. 60s)
 3. Text overlay amount (heavy vs. minimal)
@@ -2630,21 +2901,25 @@ Each requirement = potential episode content
 **Testing Methodology**:
 
 **Week 1-2**: Establish baseline
+
 - Post normally
 - Track metrics
 - Identify patterns
 
 **Week 3-4**: Test one variable
+
 - Change only one element
 - Post multiple versions
 - Compare performance
 
 **Week 5-6**: Implement winners
+
 - Use best-performing elements
 - Refine further
 - Test next variable
 
 **Week 7-8**: Optimize combination
+
 - Combine winning elements
 - Fine-tune
 - Establish new baseline
@@ -2652,6 +2927,7 @@ Each requirement = potential episode content
 #### Metrics to Track
 
 **Engagement Metrics**:
+
 - View count
 - Completion rate
 - Like rate
@@ -2660,6 +2936,7 @@ Each requirement = potential episode content
 - Save rate
 
 **Discovery Metrics**:
+
 - Impressions
 - Reach
 - Profile visits
@@ -2667,6 +2944,7 @@ Each requirement = potential episode content
 - Click-through rate (links)
 
 **Quality Metrics**:
+
 - Average watch time
 - Re-watch rate
 - Audience retention graph
@@ -2676,24 +2954,28 @@ Each requirement = potential episode content
 #### Platform Analytics Tools
 
 **YouTube Studio**:
+
 - Reach tab (impressions, CTR)
 - Engagement tab (likes, shares)
 - Audience tab (demographics)
 - Content tab (video comparison)
 
 **TikTok Analytics**:
+
 - Overview (views, followers)
 - Content (video performance)
 - Followers (demographics, activity)
 - Live (if applicable)
 
 **Instagram Insights**:
+
 - Overview (reach, engagement)
 - Content (Reels performance)
 - Audience (demographics, active times)
 - Interactions (profile visits, website clicks)
 
 **X Analytics**:
+
 - Tweets (engagement rate)
 - Video activity (views, completion)
 - Audience insights (demographics)
@@ -2702,28 +2984,36 @@ Each requirement = potential episode content
 ### Seasonal Optimization
 
 #### Q1 (January-March)
+
 **Texas Legislative Session**
+
 - Content focus: New laws, policy changes
 - Episode topics: Regulatory updates
 - Engagement: Policy discussions
 - Trending: Cannabis legislation
 
 #### Q2 (April-June)
+
 **4/20 Season**
+
 - Content focus: Industry celebration, education
 - Episode topics: Compliance refreshers before busy season
 - Engagement: Community events
 - Trending: Cannabis awareness
 
 #### Q3 (July-September)
+
 **Back-to-Business**
+
 - Content focus: Operational excellence
 - Episode topics: Financial management, scaling
 - Engagement: Business tips
 - Trending: Entrepreneurship
 
 #### Q4 (October-December)
+
 **Year-End & Holiday**
+
 - Content focus: Year-end compliance, reflections
 - Episode topics: 2025 recap, 2026 prep
 - Engagement: Community celebration
@@ -2754,6 +3044,7 @@ Each requirement = potential episode content
    - Key tactic: Relatable scenarios, humor, short format
 
 **Lessons for HNC**:
+
 - Education + entertainment is powerful combination
 - Animation makes complex topics accessible
 - Personality and humor drive engagement
@@ -2764,24 +3055,28 @@ Each requirement = potential episode content
 **Platform Landscape (2025)**:
 
 **X (Twitter)**: Most cannabis-friendly
+
 - Direct product linking allowed
 - Cannabis ads possible (with verification)
 - Community building thrives
 - News and policy discussions
 
 **YouTube**: Education focus
+
 - Long-form content performs well
 - Compliance-focused channels growing
 - Monetization possible
 - Search traffic significant
 
 **TikTok**: Community over commerce
+
 - Educational content favored
 - Community building strong
 - Sales/promotion restricted
 - High engagement potential
 
 **Instagram**: Most restrictive
+
 - Product imagery risky
 - Shadow-banning common
 - Educational content only safe approach
@@ -2802,6 +3097,7 @@ Each requirement = potential episode content
    - LinkedIn strong presence
 
 **Lessons for HNC**:
+
 - Prioritize X and YouTube over Instagram
 - Lead with education, not product
 - B2B angle safer than B2C
@@ -2824,12 +3120,14 @@ Each requirement = potential episode content
    - Cross-platform distribution
 
 **Key Metrics**:
+
 - Short-form videos earn 2.5x more engagement than long-form
 - YouTube Shorts: 90 billion daily views (2025)
 - Engagement rate: 5.91% (highest among platforms)
 - Subscriber conversion: ~16.9 per 10K views
 
 **Lessons for HNC**:
+
 - Animation is competitive advantage
 - Series format builds anticipation
 - Character development drives loyalty
@@ -2858,6 +3156,7 @@ Each requirement = potential episode content
    - Gen Z: Off-beat humor, inside jokes
 
 **Lessons for HNC**:
+
 - Satire makes compliance entertaining
 - Strong character voice essential
 - Shareability key to virality
@@ -2874,18 +3173,21 @@ Each requirement = potential episode content
 5. **Multi-Platform**: Distributed everywhere (maximum reach)
 
 **Competitive Advantages**:
+
 - No direct competitor with same format
 - Animation stands out in compliance space
 - Entertainment value in "boring" topic
 - Comprehensive coverage (not one-off videos)
 
 **Competitive Risks**:
+
 - Cannabis content restrictions
 - Platform policy changes
 - Algorithm changes
 - Larger competitors entering space
 
 **Mitigation Strategies**:
+
 - Diversify across platforms
 - Build email list (owned audience)
 - Focus on quality over quantity
@@ -2900,18 +3202,21 @@ Each requirement = potential episode content
 **Mark Rober - NASA Engineer to YouTube Star**
 
 **Strategy**:
+
 - Complex topics simplified
 - Big visual hooks
 - Entertainment value
 - Consistent posting (monthly)
 
 **Results**:
+
 - 40M+ subscribers
 - 3B+ total views
 - Mainstream media coverage
 - Brand partnerships
 
 **HNC Application**:
+
 - Simplify complex compliance topics
 - Strong visual hooks in first 3 seconds
 - Balance education with entertainment
@@ -2922,18 +3227,21 @@ Each requirement = potential episode content
 **AsapSCIENCE - Science Communication**
 
 **Strategy**:
+
 - Whiteboard animation style
 - Catchy musical intros
 - 2-5 minute explainers
 - Multi-platform distribution
 
 **Results**:
+
 - 10M+ YouTube subscribers
 - 1B+ video views
 - Book deals
 - Speaking engagements
 
 **HNC Application**:
+
 - Animation makes compliance accessible
 - Musical branding (recognizable intro)
 - Short format (60 seconds optimal)
@@ -2944,18 +3252,21 @@ Each requirement = potential episode content
 **Claudine James - English Teacher**
 
 **Strategy**:
+
 - Relatable scenarios
 - Humor + education
 - Consistent posting (daily)
 - Community engagement
 
 **Results**:
+
 - 5.7M TikTok followers
 - High engagement rate
 - Spinoff content (courses)
 - Brand partnerships
 
 **HNC Application**:
+
 - Make compliance relatable
 - Humor crucial for engagement
 - Post daily on TikTok
@@ -2966,18 +3277,21 @@ Each requirement = potential episode content
 **Leafly - Multi-Platform Education**
 
 **Strategy**:
+
 - Education-first approach
 - News and policy coverage
 - Community building
 - Professional credibility
 
 **Results**:
+
 - Industry leader status
 - Multi-platform presence
 - Avoided platform restrictions
 - Monetization success
 
 **HNC Application**:
+
 - Lead with education, not promotion
 - Cover cannabis news/policy
 - Build professional credibility
@@ -2988,18 +3302,21 @@ Each requirement = potential episode content
 **Various TikTok Animation Success Stories**
 
 **Common Elements**:
+
 - Episodic storytelling
 - Character-driven content
 - Consistent upload schedule
 - Cross-promotion to YouTube
 
 **Results**:
+
 - Millions of followers
 - High engagement rates
 - Merchandise opportunities
 - Network/streaming deals
 
 **HNC Application**:
+
 - 84-episode series (episodic)
 - Character development (recurring cast)
 - Daily posting schedule
@@ -3012,18 +3329,21 @@ Each requirement = potential episode content
 ### Success Metrics
 
 **Month 1: Establish Baseline**
+
 - 1,000 total followers across all platforms
 - 10,000 total views
 - 2% engagement rate
 - 100 subscribers/followers per platform
 
 **Month 3: Growth Phase**
+
 - 5,000 total followers
 - 100,000 total views
 - 3.5% engagement rate
 - 500 email subscribers
 
 **Month 6: Momentum**
+
 - 15,000 total followers
 - 500,000 total views
 - 4.5% engagement rate
@@ -3031,6 +3351,7 @@ Each requirement = potential episode content
 - First viral video (100K+ views)
 
 **Month 12: Established**
+
 - 50,000+ total followers
 - 2M+ total views
 - 5%+ engagement rate
@@ -3041,6 +3362,7 @@ Each requirement = potential episode content
 ### Continuous Improvement
 
 **Weekly Review**:
+
 - Which videos performed best?
 - What hooks worked?
 - What time slots got best engagement?
@@ -3048,6 +3370,7 @@ Each requirement = potential episode content
 - What comments/questions appeared?
 
 **Monthly Strategy Session**:
+
 - Review analytics across all platforms
 - Identify top 10 performing videos
 - Extract common elements
@@ -3055,6 +3378,7 @@ Each requirement = potential episode content
 - Plan next month's content calendar
 
 **Quarterly Business Review**:
+
 - Overall growth trajectory
 - Platform-specific performance
 - Competitive landscape changes
@@ -3077,6 +3401,7 @@ This distribution strategy provides a comprehensive roadmap for launching High N
 With 84 episodes of compelling content, a clear brand identity, and strategic multi-platform distribution, High Noon Cartoon is positioned to become the leading animated series for Texas cannabis compliance education.
 
 **Next Steps**:
+
 1. Review and approve this strategy
 2. Begin implementation of API integrations (see PLATFORM_API_INTEGRATION.md)
 3. Set up analytics tracking (see ANALYTICS_FRAMEWORK.md)

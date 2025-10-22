@@ -1,4 +1,5 @@
-#### Immediate Action Required:
+#### Immediate Action Required
+
 ```bash
 # 1. Rotate GoDaddy API credentials NOW
 # 2. Delete hardcoded files

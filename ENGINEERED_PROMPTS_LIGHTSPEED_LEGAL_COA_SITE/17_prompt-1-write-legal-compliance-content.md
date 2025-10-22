@@ -1,4 +1,5 @@
 #### **Prompt 1: Write Legal Compliance Content**
+
 ```
 Write comprehensive legal compliance content for reggieanddro.com legal/COA page that establishes trust, educates customers, and demonstrates Texas HB 1325 compliance.
 

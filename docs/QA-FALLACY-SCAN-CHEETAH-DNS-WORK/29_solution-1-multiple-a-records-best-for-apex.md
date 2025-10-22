@@ -16,12 +16,14 @@ done
 ```
 
 **Pros:**
+
 - ✅ Valid DNS configuration
 - ✅ Load distribution across all IPs
 - ✅ Failover resilience
 - ✅ No additional GCP cost
 
 **Cons:**
+
 - ⚠️ IPs may change (Cloud Run updates)
 - ⚠️ Need periodic verification
 
