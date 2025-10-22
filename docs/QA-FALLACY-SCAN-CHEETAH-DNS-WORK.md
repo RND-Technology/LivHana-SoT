@@ -27,7 +27,8 @@
 **Impact:** Complete misunderstanding of DNS fundamentals
 **Found in:** ALL 6 scripts + README documentation
 
-#### Evidence:
+#### Evidence
+
 ```python
 # godaddy-dns-bulk-automation.py:181-209 (29 domains configured)
 E2E_EMPIRE_DNS_CONFIG = {
@@ -56,19 +57,20 @@ updated_records=$(echo "$existing_records" | jq --arg target "$target" '
 ')
 ```
 
-#### Why This is Invalid:
+#### Why This is Invalid
 
 **DNS RFC 1034 Section 3.6.2:**
 > "If a CNAME RR is present at a node, no other data should be present; this ensures that the data for a canonical name and its aliases cannot be different."
 
 **Problem:** Root domains (@) MUST have:
+
 - NS records (nameserver delegation)
 - SOA records (zone authority)
 - Often: MX, TXT, etc.
 
 **CNAME cannot coexist with these required records.**
 
-#### What Actually Happened:
+#### What Actually Happened
 
 ```bash
 $ host -t CNAME aaacbdhempflower.com
@@ -80,9 +82,10 @@ aaacbdhempflower.com has address 34.143.72.2
 
 **GoDaddy's API silently converted the invalid CNAME → A record.**
 
-#### Proof of Misunderstanding:
+#### Proof of Misunderstanding
 
 From README:104-112:
+
 ```json
 ### DNS Record Configuration
 {
@@ -102,7 +105,8 @@ From README:104-112:
 **Severity:** 🟡 HIGH
 **Impact:** Lost Cloud Run load distribution, reduced resilience
 
-#### Cloud Run Service IPs:
+#### Cloud Run Service IPs
+
 ```bash
 $ dig +short integration-service-plad5efvha-uc.a.run.app
 34.143.76.2
@@ -115,14 +119,16 @@ $ dig +short integration-service-plad5efvha-uc.a.run.app
 34.143.79.2
 ```
 
-#### Current Configuration:
+#### Current Configuration
+
 - **60 domains** → **1 IP** (34.143.72.2)
 - Load distribution: 0% (all traffic to one IP)
 - Failover capability: 0% (SPOF)
 
-#### Correct Configuration Options:
+#### Correct Configuration Options
 
 **Option A: Multiple A Records (DNS Round Robin)**
+
 ```json
 [
   {"type": "A", "name": "@", "data": "34.143.72.2", "ttl": 600},
@@ -137,6 +143,7 @@ $ dig +short integration-service-plad5efvha-uc.a.run.app
 ```
 
 **Option B: www CNAME + @ Redirect**
+
 ```json
 // Valid: CNAME for subdomain
 {"type": "CNAME", "name": "www", "data": "integration-service-plad5efvha-uc.a.run.app", "ttl": 600}
@@ -145,6 +152,7 @@ $ dig +short integration-service-plad5efvha-uc.a.run.app
 ```
 
 **Option C: Cloud Load Balancer with Static IP**
+
 ```bash
 gcloud compute addresses create e2e-empire-ip --global
 gcloud compute forwarding-rules create e2e-empire-rule \
@@ -162,27 +170,31 @@ gcloud compute forwarding-rules create e2e-empire-rule \
 **Impact:** Immediate credential compromise
 **Found in:** 2 scripts
 
-#### Exposed Credentials:
+#### Exposed Credentials
 
 **File:** `scripts/godaddy-dns-final.sh:22-23`
+
 ```bash
 API_KEY="Uyxkk5nm_VtRR4u7QEPqZTKF19LnyXM"
 API_SECRET="2poM2iXi7d3a6emX637VqP"
 ```
 
 **File:** `scripts/godaddy-dns-mission-accomplish.sh:22-23`
+
 ```bash
 API_KEY="Uyxkk5nm_VtRR4u7QEPqZTKF19LnyXM"
 API_SECRET="2poM2iXi7d3a6emX637VqP"
 ```
 
-#### Risk Assessment:
+#### Risk Assessment
+
 - ✅ Files are untracked (git status shows `??`)
 - ❌ But they exist in working directory (visible in terminal history, logs)
 - ❌ Shared in commit messages/reports
 - 🚨 **Assume compromised - rotate immediately**
 
-#### Immediate Action Required:
+#### Immediate Action Required
+
 ```bash
 # 1. Rotate GoDaddy API credentials NOW
 # 2. Delete hardcoded files
@@ -203,7 +215,8 @@ op run -- ./scripts/godaddy-dns-CORRECT-SOLUTION.sh
 **Severity:** 🟡 MEDIUM
 **Impact:** Code maintenance nightmare, unclear "source of truth"
 
-#### Created Files:
+#### Created Files
+
 1. `godaddy-dns-automation.sh` (10KB, Oct 6 17:27)
 2. `godaddy-dns-automation-working.sh` (9.6KB, Oct 6 17:27)
 3. `godaddy-dns-bulk-automation.py` (12KB, Oct 6 17:18)
@@ -212,13 +225,15 @@ op run -- ./scripts/godaddy-dns-CORRECT-SOLUTION.sh
 6. `godaddy-dns-final.sh` (3.9KB, Oct 6 17:45)
 7. `godaddy-dns-mission-accomplish.sh` (6.4KB, Oct 6 17:31)
 
-#### Problem Pattern:
+#### Problem Pattern
+
 - **ALL scripts use the same invalid CNAME @ approach**
 - Timestamps show rapid iteration (17:18 → 17:45 = 27 minutes)
 - Filename progression: `automation` → `working` → `direct` → `execute` → `final` → `mission-accomplish`
 - **None address the root cause (CNAME @ is invalid)**
 
-#### Correct Approach Would Have Been:
+#### Correct Approach Would Have Been
+
 1. ✅ Research DNS apex constraints (5 min)
 2. ✅ Test with ONE domain first (2 min)
 3. ✅ Verify actual DNS records created (1 min)
@@ -234,7 +249,7 @@ op run -- ./scripts/godaddy-dns-CORRECT-SOLUTION.sh
 **Severity:** 🟡 MEDIUM
 **Impact:** False confidence in solution quality
 
-#### User's Claims vs Reality:
+#### User's Claims vs Reality
 
 | Claim | Reality | Evidence |
 |-------|---------|----------|
@@ -244,8 +259,10 @@ op run -- ./scripts/godaddy-dns-CORRECT-SOLUTION.sh
 | "100% complete" | ⚠️ 54/60 live = 90% | tier1-dns-report.json:7 |
 | "Target IP: 34.143.72.2" | ✅ Correct | DNS verification |
 
-#### Most Concerning:
+#### Most Concerning
+
 **README-godaddy-dns-automation.md:104-112** documents CNAME @ as the intended configuration:
+
 ```json
 ### DNS Record Configuration
 {
@@ -262,7 +279,7 @@ op run -- ./scripts/godaddy-dns-CORRECT-SOLUTION.sh
 
 ## ✅ WHAT ACTUALLY WORKED (Despite Flaws)
 
-### GoDaddy API's Silent Auto-Correction:
+### GoDaddy API's Silent Auto-Correction
 
 1. **Received:** Invalid CNAME @ requests
 2. **Detected:** DNS RFC violation
@@ -272,7 +289,8 @@ op run -- ./scripts/godaddy-dns-CORRECT-SOLUTION.sh
 6. **Created:** Valid A record
 7. **Result:** Domains functional
 
-### Verification:
+### Verification
+
 ```bash
 $ dig +short jesseniesen.com
 34.143.72.2
@@ -307,12 +325,14 @@ done
 ```
 
 **Pros:**
+
 - ✅ Valid DNS configuration
 - ✅ Load distribution across all IPs
 - ✅ Failover resilience
 - ✅ No additional GCP cost
 
 **Cons:**
+
 - ⚠️ IPs may change (Cloud Run updates)
 - ⚠️ Need periodic verification
 
@@ -333,12 +353,14 @@ curl -X PUT \
 ```
 
 **Pros:**
+
 - ✅ 100% valid DNS
 - ✅ Auto-updates with Cloud Run IPs
 - ✅ Industry standard pattern
 - ✅ No maintenance needed
 
 **Cons:**
+
 - ⚠️ Extra redirect hop (minimal impact)
 - ⚠️ Requires GoDaddy forwarding setup
 
@@ -362,12 +384,14 @@ curl -X PUT \
 ```
 
 **Pros:**
+
 - ✅ Single stable IP
 - ✅ Advanced load balancing
 - ✅ SSL termination at LB
 - ✅ DDoS protection
 
 **Cons:**
+
 - 💰 Cost: ~$18/month per IP
 - 🔧 Additional GCP infrastructure
 
@@ -375,9 +399,10 @@ curl -X PUT \
 
 ## 📋 IMMEDIATE ACTION ITEMS
 
-### 🚨 CRITICAL (Do NOW):
+### 🚨 CRITICAL (Do NOW)
 
 1. **Rotate GoDaddy API Credentials**
+
    ```bash
    # Generate new key at: https://developer.godaddy.com/keys
    op item edit "GoDaddy API Key" --vault "LivHana-Ops-Keys" \
@@ -386,6 +411,7 @@ curl -X PUT \
    ```
 
 2. **Delete Hardcoded Files**
+
    ```bash
    rm scripts/godaddy-dns-final.sh
    rm scripts/godaddy-dns-mission-accomplish.sh
@@ -393,13 +419,14 @@ curl -X PUT \
    ```
 
 3. **Verify Current Domains Still Work**
+
    ```bash
    for domain in $(cat docs/domains/domains-requiring-dns.txt); do
        dig +short "$domain" | grep -q "34.143" && echo "✅ $domain" || echo "❌ $domain"
    done
    ```
 
-### 🟡 HIGH PRIORITY (Next 24 hours):
+### 🟡 HIGH PRIORITY (Next 24 hours)
 
 4. **Fix Load Balancing**
    - Option A: Deploy all 8 IPs (5 min)
@@ -407,6 +434,7 @@ curl -X PUT \
    - Option C: Set up Cloud LB (2 hours)
 
 5. **Update Documentation**
+
    ```bash
    # Fix README to show CORRECT approach
    vim scripts/README-godaddy-dns-automation.md
@@ -414,6 +442,7 @@ curl -X PUT \
    ```
 
 6. **Consolidate Scripts**
+
    ```bash
    # Keep only the CORRECT solution
    mv scripts/godaddy-dns-CORRECT-SOLUTION.sh scripts/godaddy-dns-deploy.sh
@@ -422,9 +451,10 @@ curl -X PUT \
    mv scripts/godaddy-dns-*.sh scripts/archive-flawed-attempts/
    ```
 
-### 🟢 MEDIUM PRIORITY (This week):
+### 🟢 MEDIUM PRIORITY (This week)
 
 7. **Set Up Monitoring**
+
    ```bash
    # Create health check for all domains
    # Alert if any domain stops resolving
@@ -441,7 +471,8 @@ curl -X PUT \
 
 ## 🎓 LESSONS LEARNED
 
-### For Cheetah:
+### For Cheetah
+
 1. **Validate fundamentals BEFORE implementing**
    - "Can CNAME exist at @?" → 30 seconds of research
    - Would have prevented 27 minutes of trial-and-error
@@ -455,7 +486,8 @@ curl -X PUT \
    - Quality over iteration speed
    - Understand WHY something works
 
-### For Team:
+### For Team
+
 1. **DNS apex records require special handling**
    - Cannot use CNAME
    - Must use A, AAAA, ALIAS, or ANAME
@@ -492,25 +524,29 @@ curl -X PUT \
 
 ## 🏁 CONCLUSION
 
-### What Cheetah Got Right:
+### What Cheetah Got Right
+
 - ✅ Automated bulk updates (saved manual work)
 - ✅ Rate limiting (respected API limits)
 - ✅ Multiple domains updated quickly
 - ✅ End result: Domains operational
 
-### Critical Failures:
+### Critical Failures
+
 - ❌ CNAME @ is invalid (DNS RFC violation)
 - ❌ Hardcoded API credentials (security breach)
 - ❌ Lost load balancing (1 IP vs 8)
 - ❌ No validation of created records
 - ❌ Misleading documentation
 
-### Verdict:
+### Verdict
+
 **"Mission accomplished by accident, not by design."**
 
 The domains work because GoDaddy's API is defensive and auto-corrects invalid configurations. This masked the fundamental DNS misunderstanding. In a different environment (different DNS provider, stricter API), this approach would have failed completely.
 
 **Recommendation:** Implement Solution 2 (www CNAME + @ forwarding) within 24 hours to ensure:
+
 1. Proper load distribution
 2. Valid DNS configuration
 3. Future-proof architecture

@@ -1,4 +1,5 @@
 ### 9.2 Run with Docker
+
 ```bash
 # Start all services
 docker-compose up

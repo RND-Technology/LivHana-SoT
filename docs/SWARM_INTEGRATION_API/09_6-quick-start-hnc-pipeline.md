@@ -5,12 +5,14 @@ Launch the High Noon Cartoon production pipeline.
 **Endpoint:** `POST /api/swarm/quick-start/hnc`
 
 **Headers:**
+
 ```
 X-API-Key: test
 X-Agent-Id: orchestrator
 ```
 
 **Response:** `201 Created`
+
 ```json
 {
   "success": true,
@@ -36,12 +38,14 @@ X-Agent-Id: orchestrator
 ```
 
 **Pipeline Tasks:**
+
 1. Script validation
 2. Animation setup (Remotion)
 3. Content generation
 4. Deployment to HighNoonCartoon.com
 
 **Example:**
+
 ```bash
 curl -X POST http://localhost:8080/api/swarm/quick-start/hnc \
   -H "X-API-Key: test" \

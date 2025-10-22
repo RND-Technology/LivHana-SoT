@@ -1,4 +1,4 @@
-## 🎯 COPY THIS PROMPT INTO CLAUDE CODE CLI:
+## 🎯 COPY THIS PROMPT INTO CLAUDE CODE CLI
 
 ```
 Build a production-ready VIP Cockpit system for Reggie & Dro / LivHana empire with secure login, role-based access, and E2E dashboards for all services using live production data.
@@ -129,6 +129,7 @@ TECHNICAL STACK:
 
 FILE STRUCTURE:
 ```
+
 backend/vip-cockpit/
 ├── src/
 │   ├── index.js                 # Main Express app
@@ -206,6 +207,7 @@ frontend/vip-cockpit/
 ├── tailwind.config.js
 ├── package.json
 └── Dockerfile
+
 ```
 
 DATABASE SCHEMA:
@@ -266,6 +268,7 @@ CREATE INDEX idx_audit_logs_created_at ON audit_logs(created_at);
 ```
 
 API ENDPOINTS:
+
 ```
 # Authentication
 POST   /api/auth/login              - Login with email/password
@@ -334,6 +337,7 @@ WS     /ws/realtime                 - Real-time updates stream
 ```
 
 SECURITY IMPLEMENTATION:
+
 ```javascript
 // JWT middleware
 const authenticateJWT = (req, res, next) => {
@@ -373,6 +377,7 @@ const auditLog = async (userId, action, resource, details) => {
 ```
 
 REAL-TIME DATA STREAMING:
+
 ```javascript
 // WebSocket server
 const WebSocket = require('ws');
@@ -402,6 +407,7 @@ wss.on('connection', (ws, req) => {
 ```
 
 DASHBOARD UI (React):
+
 ```jsx
 // Dashboard.jsx
 import { useState, useEffect } from 'react';
@@ -474,6 +480,7 @@ function Dashboard() {
 ```
 
 DEPLOYMENT:
+
 ```bash
 # Backend deployment
 cd backend/vip-cockpit
@@ -500,6 +507,7 @@ gcloud run domain-mappings create \
 ```
 
 ENVIRONMENT VARIABLES (.env):
+
 ```bash
 # Server
 NODE_ENV=production
@@ -543,6 +551,7 @@ RATE_LIMIT_MAX_REQUESTS=5
 ```
 
 ROLES & PERMISSIONS:
+
 ```javascript
 const ROLES = {
   ADMIN: {
@@ -577,6 +586,7 @@ SUCCESS CRITERIA:
 ✅ 99.9% uptime
 
 DELIVERABLES:
+
 1. Complete backend API (Node.js + Express)
 2. Complete frontend dashboard (React + Vite)
 3. Authentication system with 2FA
@@ -589,6 +599,7 @@ DELIVERABLES:
 10. Audit logging system
 
 OUTPUT:
+
 - Provide complete file structure with all code
 - Include deployment instructions
 - Document all API endpoints
@@ -597,6 +608,7 @@ OUTPUT:
 - Ensure production-ready security
 - Implement error handling throughout
 - Add comprehensive logging
+
 ```
 
 ---

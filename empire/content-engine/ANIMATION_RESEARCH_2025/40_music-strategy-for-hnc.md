@@ -1,4 +1,4 @@
-### Music Strategy for HNC:
+### Music Strategy for HNC
 
 **Recommended Workflow:**
 

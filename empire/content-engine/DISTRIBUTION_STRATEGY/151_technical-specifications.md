@@ -1,6 +1,7 @@
 #### Technical Specifications
 
 **YouTube Shorts**:
+
 - **Resolution**: 1920x1080 (9:16) minimum
 - **Frame Rate**: 30fps minimum, 60fps preferred
 - **File Format**: MP4 (H.264 codec)
@@ -9,6 +10,7 @@
 - **Audio**: AAC codec, 44.1kHz, stereo
 
 **TikTok**:
+
 - **Resolution**: 1080x1920 (9:16)
 - **Frame Rate**: 30fps minimum
 - **File Format**: MP4 or MOV
@@ -17,6 +19,7 @@
 - **Audio**: 44.1kHz-48kHz
 
 **Instagram Reels**:
+
 - **Resolution**: 1080x1920 (9:16)
 - **Frame Rate**: 30fps
 - **File Format**: MP4
@@ -25,6 +28,7 @@
 - **Audio**: AAC, 48kHz
 
 **X (Twitter)**:
+
 - **Resolution**: 1920x1080 (9:16), 1080x1080 (1:1), or 1920x1080 (16:9)
 - **Frame Rate**: 30fps-60fps
 - **File Format**: MP4

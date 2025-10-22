@@ -1,5 +1,5 @@
 {
-  "context_injection": "Ingest guardrails (Veriff = ✅, Jumio = ❌, Kaja/LightSpeed excuses = blocked), enforce compliance (AGE 21+, THC ≤ 0.3%, ISO 17025 COA), enable 72-hour Veriff refund flow, and prep BlueCheck fallback (checkout-only). Refer to secrets VERIFF_API_KEY, JWT_SECRET_REASONING/VOICE, BLUECHECK_API_KEY (pending). Voice Mode = ElevenLabs. Claude orchestrates Reasoning. Ready for Session 1 now.",
+  "context_injection": "Ingest guardrails (Veriff = ✅, Veriff = ❌, Kaja/LightSpeed excuses = blocked), enforce compliance (AGE 21+, THC ≤ 0.3%, ISO 17025 COA), enable 72-hour Veriff refund flow, and prep BlueCheck fallback (checkout-only). Refer to secrets VERIFF_API_KEY, JWT_SECRET_REASONING/VOICE, BLUECHECK_API_KEY (pending). Voice Mode = ElevenLabs. Claude orchestrates Reasoning. Ready for Session 1 now.",
   "reasoning_scope": "Voice Mode Context Injection and Orchestration Wiring",
   "trace": true,
   "eval": "inject & reason about compliance loops, HITL steps, fallback UX, and refund queue"

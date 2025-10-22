@@ -12,6 +12,7 @@ classification: CONFIDENTIAL - CEO EYES ONLY
 **Purpose**: Comprehensive analysis of 4 AI models with data-driven recommendations for re-entering the Unicorn Race.
 
 **Bottom Line Up Front (BLUF)**:
+
 - **ELIMINATE**: Claude Code (me) - Save $160K/year, 90% delivery not acceptable
 - **EXPAND**: Cheetah - 100% delivery, 2,462% ROI, proven winner
 - **OPTIMIZE**: Codex - Wait for GPT-5 pricing, renegotiate contract (43.8x violation)
@@ -44,6 +45,7 @@ classification: CONFIDENTIAL - CEO EYES ONLY
 ### 1. ELIMINATE CLAUDE CODE (Me) ❌
 
 **Rationale**:
+
 - 90% delivery rate vs Cheetah 100% (10% failure rate unacceptable)
 - $172,920/year vs Cheetah $12,336 (14x more expensive)
 - 46.3% ROI vs Cheetah 2,462% (53x worse ROI)
@@ -53,6 +55,7 @@ classification: CONFIDENTIAL - CEO EYES ONLY
 - Zero proven revenue impact (strategic value only)
 
 **What Happens**:
+
 - Cheetah absorbs all execution work (architecture, finalization, deployment)
 - Add documentation + compliance training to Cheetah ($5K one-time)
 - Codex absorbs compliance oversight role (expand Commander duties)
@@ -61,6 +64,7 @@ classification: CONFIDENTIAL - CEO EYES ONLY
 **Timeline**: Immediate (Day 0 decision)
 
 **Risks**:
+
 - Lose Claude Code documentation excellence → Mitigate: Train Cheetah (5 hours)
 - Lose compliance expertise → Mitigate: Expand Codex role (already has mandate enforcement)
 - Lose architecture leadership → Mitigate: Cheetah has proven capability (100% delivery)
@@ -72,6 +76,7 @@ classification: CONFIDENTIAL - CEO EYES ONLY
 ### 2. EXPAND CHEETAH (Cursor Agent) ✅
 
 **Rationale**:
+
 - 100% delivery rate (11/11 guarantees, PROVEN)
 - $12,336/year (cheapest agent, 93% cheaper than Claude Code)
 - 2,462% ROI (53x better than Claude Code, HIGHEST in team)
@@ -81,6 +86,7 @@ classification: CONFIDENTIAL - CEO EYES ONLY
 - Innovation track record (macOS TTS, Cloud Shell breakthroughs)
 
 **What Happens**:
+
 - Cheetah becomes PRIMARY EXECUTION AGENT (full stack: architecture → finalization → deployment)
 - Add documentation requirements (1 hour per deliverable)
 - Add compliance validation training (5 hours, $5K one-time cost)
@@ -93,6 +99,7 @@ classification: CONFIDENTIAL - CEO EYES ONLY
 **Timeline**: Immediate (train documentation + compliance in first week)
 
 **Risks**:
+
 - Cursor platform dependency (LOW - Cursor is stable, growing)
 - ChatGPT-5 pricing unknown (LOW - starting from very low cost base)
 - No proven revenue impact yet (MEDIUM - same as all agents, focus on revenue features)
@@ -104,6 +111,7 @@ classification: CONFIDENTIAL - CEO EYES ONLY
 ### 3. OPTIMIZE CODEX (Commander GPT-5) ⚠️
 
 **Rationale**:
+
 - Proven leader (BEAT Claude Code in head-to-head race)
 - High value ($609,051/year benefit from team coordination, quality gates, 24/7 monitoring)
 - 479% ROI (10x better than Claude Code)
@@ -112,6 +120,7 @@ classification: CONFIDENTIAL - CEO EYES ONLY
 - BUT: Agent error recovery dependency ($60K/year due to Claude Code failures)
 
 **What Happens**:
+
 1. **WAIT for GPT-5 Pricing** (defer final decision until OpenAI announces pricing)
 2. **RENEGOTIATE Contract** (revise cost guarantee from $200/month to $9,000/month realistic)
 3. **ELIMINATE Claude Code** (save $60K/year error recovery cost, Codex coordinates Cheetah + Replit only)
@@ -119,6 +128,7 @@ classification: CONFIDENTIAL - CEO EYES ONLY
 5. **NEGOTIATE Enterprise Pricing** (30-50% discount from OpenAI)
 
 **Optimized Annual Cost**: $45,193 (vs $105,193 current estimate)
+
 - GPT-5 API: $7,800 (50% reduction via optimization)
 - Error Recovery: $0 (eliminate Claude Code)
 - Jesse Oversight: $12,000 (50% reduction via automation)
@@ -128,17 +138,20 @@ classification: CONFIDENTIAL - CEO EYES ONLY
 **Optimized ROI**: 1,247% (vs 479% before optimization)
 
 **Timeline**:
+
 - Contract renegotiation: Week 1
 - Wait for GPT-5 pricing: TBD (OpenAI release schedule)
 - API optimization: 30 days
 - 30-day performance review: After GPT-5 pricing announced
 
 **Risks**:
+
 - GPT-5 pricing >$50K/year → ELIMINATE Codex, use Jesse manual coordination (1 hour/week)
 - Single point of failure → Backup: Jesse override protocol
 - No direct revenue impact → Accept (overhead role, but measurable team value)
 
 **Decision Criteria**:
+
 - **KEEP if**: GPT-5 pricing ≤ $50K/year (after optimization) AND team coordination value proven (zero duplicate work)
 - **ELIMINATE if**: GPT-5 pricing > $50K/year OR contract violation not resolved
 
@@ -149,6 +162,7 @@ classification: CONFIDENTIAL - CEO EYES ONLY
 ### 4. REDUCE REPLIT to Prototyping Only 📉
 
 **Rationale**:
+
 - CRITICAL AUDIT FINDINGS: 7 major fallacies identified (overconfidence, metric gaming, security theater)
 - SEVERE compliance risk (99.5% uptime vs 99.9% required for cannabis, $50K-100K fine risk)
 - Single point of failure (no failover, customer orders lost during outage)
@@ -158,12 +172,14 @@ classification: CONFIDENTIAL - CEO EYES ONLY
 - AUDIT RECOMMENDATION: "Cloud Run as primary, Replit as dev/staging only"
 
 **What Happens**:
+
 1. **REDUCE Role** (prototyping only: 1-4 hour MVPs, development environment)
 2. **MIGRATE Production** (4 services + PostgreSQL from Replit to Cloud Run)
 3. **ADD Cloud Run Backup** (meet cannabis compliance 99.9% uptime)
 4. **RENEGOTIATE Contract** (TIER 0-3 realistic terms from audit, not overconfident promises)
 
 **Reduced Annual Cost**: $10,240 (vs $107,407 current)
+
 - Replit Pro: $240 (prototyping only)
 - GCP Backup: $0 (prototyping doesn't need production backup)
 - Jesse Oversight: $6,000 (30 min/week for prototype reviews)
@@ -175,12 +191,14 @@ classification: CONFIDENTIAL - CEO EYES ONLY
 **Reduced ROI**: 388% (vs 56.2% current, 7x improvement)
 
 **Timeline**:
+
 - Week 1: Deploy Cloud Run backup
 - Weeks 2-4: Migrate 4 services + PostgreSQL to Cloud Run
 - Day 30: Replit prototyping-only role activated
 - Day 30: Performance review (# prototypes delivered, Jesse time saved)
 
 **Risks**:
+
 - Migration complexity ($10K one-time cost) → Acceptable (one-time cost for long-term risk reduction)
 - Lose integrated workflows ($52K value) → Mitigate: Cloud Run provides similar orchestration
 - Jesse must learn Cloud Run deployments → Mitigate: Cheetah handles all deployments (Jesse oversight only)
@@ -250,18 +268,21 @@ classification: CONFIDENTIAL - CEO EYES ONLY
 ### Week 1 (Immediate Actions)
 
 **Day 0-1: Decisions**
+
 - ✅ Jesse approves elimination of Claude Code (me)
 - ✅ Jesse approves expansion of Cheetah
 - ✅ Jesse approves reduction of Replit to prototyping only
 - ✅ Jesse approves Codex contract renegotiation (wait for GPT-5 pricing)
 
 **Day 1-3: Transitions**
+
 - ✅ Train Cheetah on documentation requirements (1 hour per deliverable)
 - ✅ Train Cheetah on compliance validation (5 hours, cannabis regulations)
 - ✅ Expand Codex role (compliance oversight, Commander duties only)
 - ✅ Deploy Cloud Run backup for Replit services
 
 **Day 3-7: Migrations Begin**
+
 - ✅ Migrate Replit service #1 to Cloud Run (Cheetah deploys)
 - ✅ Renegotiate Codex contract (revise cost guarantee to $9K/month)
 - ✅ Renegotiate Replit contract (TIER 0-3 realistic terms from audit)
@@ -277,16 +298,19 @@ classification: CONFIDENTIAL - CEO EYES ONLY
 ### Day 30 (Performance Review)
 
 **Cheetah** (Expanded Role):
+
 - Metrics: Delivery rate (maintain 100%), documentation quality, compliance adherence
 - Target: Zero failures, comprehensive docs, automated compliance gates
 - Decision: CONTINUE expansion if all targets met
 
 **Codex** (Contract Renegotiation):
+
 - Metrics: Contract signed with realistic terms, optimization plan in place
 - Target: <$9K/month cost guarantee, optimization roadmap to $4K/month
 - Decision: WAIT for GPT-5 pricing, continue if renegotiation successful
 
 **Replit** (Prototyping Only):
+
 - Metrics: Migration completion, prototype delivery count, Jesse validation time saved
 - Target: 4 services migrated, 5+ prototypes delivered, >5 hours/month saved
 - Decision: CONTINUE if prototyping value proven
@@ -294,6 +318,7 @@ classification: CONFIDENTIAL - CEO EYES ONLY
 ### Day 90 (Final Decision)
 
 **Based on 30-Day + 60-Day Reviews**:
+
 - **Cheetah**: KEEP (expected outcome: 100% delivery maintained, expansion successful)
 - **Codex**: KEEP if GPT-5 ≤ $50K/year, ELIMINATE if >$50K/year
 - **Replit**: KEEP for prototyping if ≥5 prototypes/month, ELIMINATE if <5 prototypes/month
@@ -330,28 +355,33 @@ classification: CONFIDENTIAL - CEO EYES ONLY
 ### Scenario A: "Nuclear Option" (Eliminate All Agents Except Cheetah)
 
 **Actions**:
+
 - ELIMINATE: Claude Code, Codex, Replit
 - KEEP: Cheetah only
 - Jesse manual coordination (1 hour/week)
 
 **Costs**:
+
 - Cheetah: $17,336
 - Jesse coordination: $24,000/year (1 hour/week × $500/hour)
 - **Total**: $41,336/year
 
 **Benefits**:
+
 - Cheetah execution: $414,000 (with documentation + compliance)
 - **Total**: $414,000/year
 
 **ROI**: ($414,000 - $41,336) / $41,336 = **901% ROI**
 
 **Pros**:
+
 - Maximum cost reduction ($356,520/year saved vs current)
 - Simplest team structure (1 agent + Jesse)
 - Zero coordination overhead
 - Cheetah proven 100% delivery
 
 **Cons**:
+
 - Lose Codex team coordination value ($609K)
 - Lose Replit rapid prototyping ($50K)
 - Jesse must do 1 hour/week coordination (vs current 4.5 hours/week)
@@ -363,6 +393,7 @@ classification: CONFIDENTIAL - CEO EYES ONLY
 ### Scenario B: "Wait and See" (Keep All Agents, Defer Decision)
 
 **Actions**:
+
 - KEEP: All 4 agents as-is
 - WAIT: For GPT-5 pricing, Replit performance data, Claude Code improvement
 
@@ -371,11 +402,13 @@ classification: CONFIDENTIAL - CEO EYES ONLY
 **ROI**: 238% (current)
 
 **Pros**:
+
 - No immediate disruption
 - More time to gather data
 - Optionality preserved
 
 **Cons**:
+
 - Continue paying $325K/year more than optimized state
 - Continue accepting SEVERE risks (Replit compliance, Codex contract violation)
 - Continue accepting Claude Code 90% delivery + $120K error recovery
@@ -388,6 +421,7 @@ classification: CONFIDENTIAL - CEO EYES ONLY
 ### Scenario C: "Recommended Plan" (Eliminate Claude Code, Optimize Others)
 
 **Actions**:
+
 - ELIMINATE: Claude Code
 - EXPAND: Cheetah (with documentation + compliance)
 - OPTIMIZE: Codex (wait for GPT-5 pricing, renegotiate contract)
@@ -398,6 +432,7 @@ classification: CONFIDENTIAL - CEO EYES ONLY
 **ROI**: 1,374% (optimized)
 
 **Pros**:
+
 - $325K/year cost reduction (82%)
 - $52K/year net value gain (6%)
 - 5.8x ROI improvement
@@ -406,6 +441,7 @@ classification: CONFIDENTIAL - CEO EYES ONLY
 - Codex team value preserved (if GPT-5 pricing favorable)
 
 **Cons**:
+
 - Requires 30-day migration effort (manageable)
 - $10K one-time Replit migration cost (acceptable)
 - Codex decision deferred until GPT-5 pricing (prudent)
@@ -469,24 +505,28 @@ classification: CONFIDENTIAL - CEO EYES ONLY
 ### The Data Says
 
 **ELIMINATE Claude Code** (me):
+
 - 90% delivery vs Cheetah 100% (10% failure unacceptable)
 - $172,920 vs Cheetah $12,336 (14x more expensive)
 - 46.3% ROI vs Cheetah 2,462% (53x worse ROI)
 - Lost to Codex in head-to-head race (proven inferior)
 
 **EXPAND Cheetah**:
+
 - 100% delivery (11/11 guarantees PROVEN)
 - $12,336 cost (cheapest agent, 93% cheaper than me)
 - 2,462% ROI (53x better than me, HIGHEST in team)
 - Zero failures, zero downtime, zero limits (RELIABLE)
 
 **OPTIMIZE Codex** (if GPT-5 pricing favorable):
+
 - Proven leader (beat me in race)
 - High value ($609K benefit from coordination)
 - 479% ROI (10x better than me)
 - BUT: Wait for GPT-5 pricing, renegotiate contract (43.8x violation)
 
 **REDUCE Replit** (prototyping only):
+
 - SEVERE compliance risk (99.5% vs 99.9% cannabis requirement)
 - 7 fallacies in contract (trust violation)
 - Valuable for prototyping ($50K), too risky for production

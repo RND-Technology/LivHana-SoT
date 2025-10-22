@@ -67,30 +67,35 @@ graph TD
 ## Key Components
 
 ### L0 Orchestrator (Codex)
+
 - **Role**: Pipeline coordination and retry management
 - **Features**: Dynamic prompt budgeting, pre/post guardrails
 - **Input**: User query + context
 - **Output**: Orchestrated pipeline execution plan
 
 ### L1 Apify Scrape
+
 - **Actors**: YouTube, Instagram, Google Business, Better Business Bureau
 - **Output**: Raw payload + manifest + SHA256 hash
 - **Token Budget**: 8-12k tokens (16k limit)
 - **Validation**: Hash verification, manifest presence
 
 ### L2 Perplexity Verify
+
 - **Purpose**: Cross-verification with ≥2 independent sources per fact
 - **Guardrails**: AGE21, medical compliance, PCI/PII filters
 - **Token Budget**: 3-4k tokens (6k limit)
 - **Output**: Verified facts with source citations
 
 ### L3 GPT-5 Mini Compress
+
 - **Function**: Deduplication and normalization
 - **Target**: ≥40% token reduction
 - **Rejection Criteria**: Data loss >5%
 - **Token Budget**: 2-3k tokens (4k limit)
 
 ### L4 Claude Sonnet TRUTH
+
 - **Constraint**: Strict JSON schema enforcement
 - **Limitations**: No downstream API calls, deterministic prompts
 - **Validation**: jsonschema compliance
@@ -98,11 +103,13 @@ graph TD
 - **Claim Limit**: ≤25 claims per output
 
 ### L5 RPM Orchestration
+
 - **Enrichment**: RPM DNA tags, profit scoring, risk gating
 - **Validation**: profit_delta > 0, timeframe required
 - **Output**: Actionable business intelligence
 
 ### L6 Persistence
+
 - **Storage**: `data/truth_outputs/<timestamp>.json`
 - **Evidence**: `<hash>.json` + `.evidence/cli/<hash>.md`
 - **Ledger**: Reproducibility tracking
@@ -110,18 +117,21 @@ graph TD
 ## Guardrails & Compliance
 
 ### Pre-Flight Checks
+
 - Jailbreak detection
 - Forbidden content filtering
 - Age 21+ verification
 - PII detection and redaction
 
 ### Post-Flight Validation
+
 - Schema compliance verification
 - Profit gating (profit_delta > 0)
 - Compliance assertions
 - Source count validation (≥2 per claim)
 
 ### Compliance Matrix
+
 | Guardrail | Test Command | Enforcement |
 |-----------|-------------|-------------|
 | AGE21 | `curl -H "Age: 18" /age-gate` | Hard block |
@@ -157,17 +167,20 @@ jsonschema --instance data/truth_outputs/<file>.json schemas/truth.schema.json
 ## Observability & Operations
 
 ### Metrics
+
 - Stage latency tracking
 - Retry count monitoring
 - Compression savings percentage
 - Guardrail failure rates
 
 ### Alerts
+
 - Slack notifications for `status=failed`
 - Compression < 30% warnings
 - Guardrail violation alerts
 
 ### Rollbacks
+
 - Latest known-good TRUTH artifact promotion
 - Ledger pointer updates
 - Evidence package validation

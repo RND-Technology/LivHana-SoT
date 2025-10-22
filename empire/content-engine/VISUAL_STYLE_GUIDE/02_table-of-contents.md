@@ -1,4 +1,5 @@
 ## TABLE OF CONTENTS
+
 1. [Brand Overview](#brand-overview)
 2. [Core Visual Identity](#core-visual-identity)
 3. [Color Palette System](#color-palette-system)

@@ -1,4 +1,5 @@
 #### Template 3: Challenge/Trend Integration
+
 ```
 Showing my friends what "cannabis compliance" really means 💀
 

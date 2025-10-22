@@ -51,10 +51,12 @@
 **Example**: `ops_eyJzaW...` (your token is CORRECT)
 
 **NOT to be confused with**:
+
 - ❌ `op_` (1Password item reference prefix)
 - ❌ OPS Layer (One Plant Solution - advocacy business layer)
 
 **Naming Convention**:
+
 - `ops_*` = OpenAI Platform Service authentication token
 - OPS = One Plant Solution (R&D, HNC, **OPS**, HERB business layers)
 
@@ -64,7 +66,7 @@
 
 ### Step 1: Access Agent Builder
 
-1. Navigate to: https://platform.openai.com/agent-builder
+1. Navigate to: <https://platform.openai.com/agent-builder>
 2. Select or create agent: **LivHana.Ingest**
 3. Ensure model is set to: **gpt-5-pro-2025-10-06**
 
@@ -73,6 +75,7 @@
 **In Agent Builder settings**, add MCP server:
 
 **Field Values**:
+
 ```
 MCP Server Name:  LivHana-SoT Broker
 MCP Server URL:   https://mcp-broker-prod-9809f04432sl.us-central1.run.app/mcp/invoke
@@ -81,6 +84,7 @@ Bearer Token:     ops_eyJzaW... (your full token from 1Password)
 ```
 
 **Important Settings**:
+
 - ✅ Enable tool approval gates (safety first)
 - ✅ Set mode to "Planning only" (correct for orchestration)
 - ✅ Enable streaming for real-time responses
@@ -95,6 +99,7 @@ List available MCP tools and their descriptions.
 
 **Expected Response**:
 The agent should invoke the MCP broker and return a list of available tools:
+
 - sot_read
 - sot_write
 - sot_pr_create
@@ -109,18 +114,21 @@ The agent should invoke the MCP broker and return a list of available tools:
 ### Test 1: Read Repository File
 
 **Query**:
+
 ```
 Read the file docs/INDEX.md from LivHana-SoT and summarize
 the documentation structure.
 ```
 
 **Expected Behavior**:
+
 1. Agent Builder sends MCP request to broker
 2. Broker invokes `sot_read` tool with path: `docs/INDEX.md`
 3. Broker returns file contents (43 documented files, Diátaxis structure)
 4. Agent summarizes the documentation organization
 
 **Success Criteria**:
+
 - ✅ No authentication errors
 - ✅ File contents retrieved
 - ✅ Accurate summary provided
@@ -128,6 +136,7 @@ the documentation structure.
 ### Test 2: RPM Planning Query
 
 **Query**:
+
 ```
 Read docs/RPM_WEEKLY_PLAN_OCT4-12_2025.md and extract the
 top 3 priorities for this week. Then check if there are any
@@ -135,12 +144,14 @@ related tasks in the backend/ directory that support these priorities.
 ```
 
 **Expected Behavior**:
+
 1. Broker reads RPM plan file
 2. Agent extracts top 3 priorities
 3. Broker scans backend/ for related files
 4. Agent correlates priorities with implementation status
 
 **Success Criteria**:
+
 - ✅ RPM priorities extracted accurately
 - ✅ Backend files identified correctly
 - ✅ Correlation makes business sense
@@ -148,6 +159,7 @@ related tasks in the backend/ directory that support these priorities.
 ### Test 3: Cross-Layer Validation (Advanced)
 
 **Query**:
+
 ```
 I want to create a new HNC episode about Texas THC legislation.
 Check if this violates any layer boundaries (R&D/HNC/OPS separation),
@@ -156,12 +168,14 @@ with our advocacy goals without making medical claims.
 ```
 
 **Expected Behavior**:
+
 1. Broker invokes `layer_boundary_check` tool
 2. Broker invokes `age_gate_verify` tool
 3. Broker reads OPS policy documents
 4. Agent synthesizes compliant topic suggestions
 
 **Success Criteria**:
+
 - ✅ Layer boundary validation passes
 - ✅ Age gate compliance confirmed
 - ✅ 3 compliant topics suggested
@@ -174,11 +188,13 @@ with our advocacy goals without making medical claims.
 ### The 404 Error Explained
 
 When you ran:
+
 ```bash
 curl https://mcp-broker-prod-9809f04432sl.us-central1.run.app/health
 ```
 
 You got HTTP 404 because:
+
 1. **The `/health` endpoint doesn't exist** (or isn't exposed publicly)
 2. **MCP broker is designed to be called BY OpenAI**, not by curl
 3. **The actual endpoint is `/mcp/invoke`** and expects specific MCP protocol payloads
@@ -186,6 +202,7 @@ You got HTTP 404 because:
 ### Why You Can't Easily Test Locally
 
 **Architecture Reality**:
+
 - MCP broker expects requests from OpenAI's infrastructure
 - OpenAI handles authentication, rate limiting, error handling
 - Direct curl requests bypass OpenAI's request formatting
@@ -218,6 +235,7 @@ Trying to curl the MCP broker directly is like trying to call a private internal
 ### Check Agent Builder Activity
 
 **In Agent Builder interface**:
+
 - Look for "Tool calls" in conversation
 - Verify MCP tool invocations appear
 - Check for authentication errors
@@ -260,6 +278,7 @@ ls -lt .evidence/2025-10-17/
 ### Layer Boundary Enforcement ✅
 
 **The MCP broker MUST enforce**:
+
 - R&D/HERB content stays separate from OPS advocacy
 - HNC satire content has clear disclaimers
 - No medical claims in any layer
@@ -272,12 +291,14 @@ ls -lt .evidence/2025-10-17/
 ## 📋 Configuration Checklist
 
 ### Pre-Configuration
+
 - [x] MCP broker deployed to Cloud Run ✅
 - [x] Bearer token generated (ops_* format) ✅
 - [x] Token stored in 1Password ✅
 - [x] LivHana-SoT repository accessible ✅
 
 ### Agent Builder Setup
+
 - [ ] Navigate to OpenAI Agent Builder
 - [ ] Create/select LivHana.Ingest agent
 - [ ] Set model to gpt-5-pro-2025-10-06
@@ -288,6 +309,7 @@ ls -lt .evidence/2025-10-17/
 - [ ] Save configuration
 
 ### Initial Testing
+
 - [ ] Test 1: List available tools
 - [ ] Test 2: Read docs/INDEX.md
 - [ ] Test 3: Read RPM weekly plan
@@ -302,12 +324,14 @@ ls -lt .evidence/2025-10-17/
 **From Jesse's architecture notes**, the MCP broker should provide these tools:
 
 ### Repository Operations
+
 - `sot_read` - Read files from LivHana-SoT
 - `sot_write` - Create/update files in LivHana-SoT
 - `sot_pr_create` - Submit changes via pull request
 - `sot_changelog_append` - Enforce changelog discipline
 
 ### Governance & Compliance
+
 - `glue_index_validate` - Check cross-layer references
 - `layer_boundary_check` - Prevent R&D/HNC/OPS pollution
 - `canonical_verify` - Ensure single SoT per claim
@@ -316,11 +340,13 @@ ls -lt .evidence/2025-10-17/
 - `age_gate_verify` - Ensure 21+ compliance in outputs
 
 ### Content & Planning
+
 - `hnc_episode_generate` - Trigger episode production in empire/content-engine
 - `rpm_decompose` - Break RPM into actionable tasks
 - `calendar_block` - Schedule massive action items
 
 ### Backend Integration
+
 - `alloydb_query` - Read from backend databases
 - `alloydb_write` - Persist state changes
 - `leafly_sync` - Trigger Lightspeed → Leafly sync
@@ -340,13 +366,15 @@ ls -lt .evidence/2025-10-17/
 
 ## 🚨 FALLACY CORRECTIONS SUMMARY
 
-### Corrected Fallacies:
+### Corrected Fallacies
+
 1. ❌ Token prefix `op_` → ✅ Token prefix `ops_` (OpenAI Platform Service)
 2. ❌ Direct MCP broker testing → ✅ Test through Agent Builder only
 3. ❌ `/health` endpoint exists → ✅ Use `/mcp/invoke` via OpenAI
 4. ❌ "ops" confused with OPS Layer → ✅ Clear distinction maintained
 
-### Key Learnings:
+### Key Learnings
+
 - MCP broker is not a standalone REST API
 - It's designed to be called by OpenAI Agent Builder
 - Your `ops_*` token is correct format

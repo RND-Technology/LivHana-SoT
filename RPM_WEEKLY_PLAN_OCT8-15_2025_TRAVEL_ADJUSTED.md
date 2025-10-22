@@ -1,4 +1,5 @@
 # RPM WEEKLY PLAN: OCT 8-15, 2025
+
 **CRITICAL CONSTRAINT**: Travel to Texas by Oct 10, 7:30 PM CST
 **R&D Team Meeting**: Oct 10, 7:30-9:30 PM (In-Person Operational Strategy)
 
@@ -7,6 +8,7 @@
 ## WEEK OVERVIEW
 
 **Key Events**:
+
 - **Oct 8 (TODAY)**: Deploy ReggieAndDro fixes, Ecwid API setup, HNC production prep
 - **Oct 9**: Generate HNC Episode 9, finalize meeting prep, travel prep
 - **Oct 10**: Travel to Texas, R&D Team Meeting (7:30-9:30 PM)
@@ -21,8 +23,9 @@
 ### **TODAY (Oct 8): Deploy & Prepare**
 
 #### **Priority 1: ReggieAndDro 911 Resolution** ⏱️ 10 minutes
+
 - [ ] Deploy category button CSS fix (5 min)
-  - Login: https://my.ecwid.com/cp/CP.html
+  - Login: <https://my.ecwid.com/cp/CP.html>
   - Settings → Design → Custom CSS
   - Paste: `/fixes/reggieanddro-category-buttons-FIX.css`
   - Save + Preview
@@ -35,10 +38,11 @@
 ---
 
 #### **Priority 2: Ecwid API Max Setup** ⏱️ 25 minutes
+
 - [ ] Backup current Ecwid tokens (2 min)
   - Document current LIGHTSPEED_TOKEN, ECWID credentials
 - [ ] Reinstall app: custom-app-117254578-1 (5 min)
-  - URL: https://my.business.shop/cp/#develop-apps
+  - URL: <https://my.business.shop/cp/#develop-apps>
   - Uninstall → Reinstall
   - Activate `update_store_profile` scope
 - [ ] Get new OAuth tokens (8 min)
@@ -58,6 +62,7 @@
 ---
 
 #### **Priority 3: R&D Meeting Preparation** ⏱️ 2 hours
+
 - [ ] Review meeting prep document (30 min)
   - File: `/empire/content-engine/RD_TEAM_MEETING_OCT10_PREP.md`
   - Prepare talking points for each agenda item
@@ -82,6 +87,7 @@
 ### **TOMORROW (Oct 9): Content & Travel Prep**
 
 #### **Priority 4: HNC Episode 9 Production** ⏱️ 30 minutes
+
 - [ ] Review Episode 9 script (5 min)
   - File: `/empire/content-engine/scripts/episode-09-industry-news-UPDATED.md`
   - DSHS permanent rules breaking news
@@ -104,6 +110,7 @@
 ---
 
 #### **Priority 5: Travel Logistics** ⏱️ 1 hour
+
 - [ ] Book flight/drive to Texas (30 min)
   - Must arrive by 7:30 PM CST on Oct 10
   - Allow buffer time
@@ -122,16 +129,19 @@
 ### **OCT 10 (THURSDAY): Travel & Meeting Day**
 
 #### **Morning**: Final Prep
+
 - [ ] Review meeting agenda (30 min)
 - [ ] Test presentation tech (if needed)
 - [ ] Confirm travel logistics
 
 #### **Afternoon**: Travel to Texas
+
 - [ ] Arrive at Reggie & Dro by 7:00 PM CST (30 min buffer)
 
 #### **Evening**: R&D Team Meeting (7:30-9:30 PM)
 
 **Meeting Flow**:
+
 1. **Opening** (7:30-7:40): DSHS compliance update
 2. **Operations** (7:40-8:20): Try Before You Buy, Free Gram, ID Checks
 3. **Events** (8:20-8:50): Puff & Paint, marketing, lounge access
@@ -140,6 +150,7 @@
 6. **Event Details** (9:20-9:30): Pumpkin Night & Halloween Party logistics
 
 **Capture**:
+
 - Detailed notes for HNC content
 - Action items with owners
 - Team feedback on compliance procedures
@@ -152,27 +163,32 @@
 ## POST-MEETING EXECUTION (OCT 11-15)
 
 ### **Friday, Oct 11: Meeting Follow-Up**
+
 - [ ] Distribute meeting notes to all attendees
 - [ ] Create action item tracker (with deadlines)
 - [ ] Schedule compliance training session
 - [ ] Begin HNC Episode 10 script (ID Checks topic from meeting)
 
 ### **Saturday, Oct 12: Content Production**
+
 - [ ] Produce HNC Episode 10 (ID Check Best Practices)
 - [ ] Finalize Pumpkin Night logistics (Oct 18 deadline)
 - [ ] Create event marketing materials
 
 ### **Sunday, Oct 13: Staff Training Prep**
+
 - [ ] Prepare compliance training materials
 - [ ] Update SOPs based on meeting decisions
 - [ ] Create training schedule
 
 ### **Monday, Oct 14: Team Execution**
+
 - [ ] Staff compliance training session
 - [ ] Launch Pumpkin Night marketing campaign
 - [ ] Produce HNC Episode 11 (Free Sample Compliance)
 
 ### **Tuesday, Oct 15: Event Prep**
+
 - [ ] Order Pumpkin Night supplies
 - [ ] Finalize event schedule
 - [ ] Produce HNC Episode 12 (Service Animals)
@@ -182,18 +198,21 @@
 ## HNC CONTENT PIPELINE (OCT 8-15)
 
 **Week 1 Episodes** (Tied to R&D Meeting Topics):
+
 1. **Episode 9**: DSHS Permanent Rules (Oct 9 production)
 2. **Episode 10**: ID Check Best Practices (Oct 11-12)
 3. **Episode 11**: Free Sample Compliance (Oct 14)
 4. **Episode 12**: Service Animals in Dispensaries (Oct 15)
 
 **Publishing Schedule**:
+
 - Oct 9: Episode 9 (YouTube, TikTok, Instagram, X)
 - Oct 12: Episode 10
 - Oct 14: Episode 11
 - Oct 15: Episode 12
 
 **Content Strategy**:
+
 - Every R&D meeting topic = HNC episode
 - Real store operations = authentic education
 - Position HNC as THE Texas cannabis authority
@@ -203,6 +222,7 @@
 ## SUCCESS METRICS
 
 **Oct 8-10 (Pre-Meeting)**:
+
 - ✅ ReggieAndDro CSS fixes deployed
 - ✅ Ecwid API fully activated
 - ✅ HNC Episode 9 produced
@@ -210,18 +230,21 @@
 - ✅ Travel completed, arrive by 7:30 PM
 
 **Oct 10 (Meeting)**:
+
 - ✅ Team aligned on compliance procedures
 - ✅ Event logistics finalized
 - ✅ 6+ HNC episode ideas captured
 - ✅ Action items assigned with owners
 
 **Oct 11-15 (Post-Meeting)**:
+
 - ✅ 4 HNC episodes produced (9-12)
 - ✅ Staff compliance training completed
 - ✅ Pumpkin Night prep 100% complete
 - ✅ All action items from meeting in progress
 
 **Oct 18 (Event)**:
+
 - ✅ Pumpkin Night executed flawlessly
 - ✅ Content captured for HNC Episode 14
 - ✅ Customer engagement + marketing ROI measured
@@ -247,17 +270,20 @@
 ## ULTIMATE SUCCESS = K+ VALUE DELIVERY
 
 **ReggieAndDro**:
+
 - ✅ CSS fixes deployed → improved UX → higher conversion
 - ✅ Ecwid API activated → full store automation → operational efficiency
 - ✅ Team meeting → compliance alignment → reduced risk
 - ✅ Events executed → customer engagement → revenue growth
 
 **HNC**:
+
 - ✅ Episode 9 (DSHS news) → viral timing → authority positioning
 - ✅ Episodes 10-12 (meeting topics) → authentic content → audience trust
 - ✅ Real operations footage → differentiated content → competitive advantage
 
 **Trinity Ecosystem**:
+
 - ✅ Operational insights → HNC content → brand authority → customer acquisition → revenue
 - ✅ Automated systems → efficiency → scale → K+ value delivery
 

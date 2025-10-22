@@ -1,7 +1,9 @@
 #### 1. Frontend Checkout Optimization
+
 **Priority**: HIGH  
 **Deadline**: 1 week  
 **Instructions**:
+
 1. Review checkout-enhancement.js code
 2. Implement progress bar functionality
 3. Add loyalty points integration
@@ -14,6 +16,7 @@
 10. Generate optimization report
 
 **Required Info**:
+
 - Target: reggieanddro.company.site checkout
 - Integration: Lightspeed + Square
 - Mobile optimization: Required

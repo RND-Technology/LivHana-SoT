@@ -5,9 +5,11 @@ SI Recommendation Engine + Voice Commerce Engine
 ## Services
 
 ### SI Recommendations (Port 8082)
+
 Collaborative filtering recommendations
 
 ### Voice Commerce (Port 8083)
+
 Voice command to purchase using Claude AI
 
 ## Deploy

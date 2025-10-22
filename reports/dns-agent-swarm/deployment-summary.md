@@ -5,25 +5,28 @@
 
 ## Domains
 
-
 ## Target Configuration
+
 - **IPs**: 216.239.32.21, 216.239.34.21, 216.239.36.21, 216.239.38.21
 - **TTL**: 600 seconds (10 minutes)
 - **Service**: integration-service (Cloud Run)
 
 ## Deployment Strategy
+
 - **Agents**: 8 parallel agents
 - **Method**: GoDaddy API automation
 - **Fallback**: Manual web interface instructions
 - **Timeline**: 2-3 minutes for API updates, 15 minutes for DNS propagation
 
 ## Success Criteria
+
 - All 8 domains pointing to 4 Cloud Run IPs
 - DNS propagation verified
 - SSL certificates auto-provisioned
 - 100% production readiness achieved
 
 ## Monitoring
+
 ```bash
 # Check DNS propagation
 ./claude/monitor-dns-ssl.sh

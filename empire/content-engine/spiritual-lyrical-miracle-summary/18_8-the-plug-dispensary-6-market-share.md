@@ -1,6 +1,8 @@
 ### 8. The Plug Dispensary (6% Market Share)
+
 **Position:** Reddit-recommended for classic strains  
 **Strengths:**
+
 - Classic strains (ATF, Sour Diesel, Gary Payton)
 - Good rosin disposables
 - Affordable quads
@@ -9,6 +11,7 @@
 - Physical location in Universal City
 
 **Weaknesses:**
+
 - No main website
 - Limited online presence
 - Basic marketing

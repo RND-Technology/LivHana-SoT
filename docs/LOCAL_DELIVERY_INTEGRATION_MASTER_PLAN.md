@@ -10,6 +10,7 @@
 ## 🎯 THE OPPORTUNITY
 
 ### Current SATX Delivery Market
+
 | Competitor | Delivery Model | Pricing | Speed | Our Advantage |
 |------------|----------------|---------|-------|---------------|
 | **Farmacy Botanical** | Delivery-only | ~$10/g | Same-day | ✅ We have storefront + social club |
@@ -26,11 +27,13 @@
 ## 🏗️ INTEGRATION OPTIONS (3 PATHS)
 
 ### Option 1: DoorDash Drive (White Label) - FASTEST
+
 **Timeline:** 7-10 days
 **Cost:** $2-8 per delivery (distance-based)
 **Best For:** Quick launch, reliable infrastructure
 
 **Pros:**
+
 - Fast setup (under 2 weeks)
 - DoorDash handles driver network
 - White label (your branding, not "DoorDash")
@@ -38,55 +41,65 @@
 - Same-day delivery capable
 
 **Cons:**
+
 - Per-delivery fees (eat into margins)
 - Less control over driver experience
 - Requires DoorDash Business account
 
 **Setup Steps:**
-1. Apply for DoorDash Drive: https://get.doordash.com/en-us/products/drive
+
+1. Apply for DoorDash Drive: <https://get.doordash.com/en-us/products/drive>
 2. Business verification (EIN, business license, cannabis compliance docs)
 3. API integration with Lightspeed POS
 4. Set delivery zones & pricing
 5. Launch
 
 ### Option 2: Uber Direct (White Label) - ALTERNATIVE
+
 **Timeline:** 7-10 days
 **Cost:** $3-9 per delivery (distance-based)
 **Best For:** Alternative to DoorDash, similar features
 
 **Pros:**
+
 - Similar to DoorDash Drive
 - Uber's massive driver network
 - White label
 - Good API documentation
 
 **Cons:**
+
 - Similar per-delivery fees
 - May have lower driver availability in SATX vs DoorDash
 
 **Setup Steps:**
-1. Apply for Uber Direct: https://www.uber.com/us/en/business/uber-direct/
+
+1. Apply for Uber Direct: <https://www.uber.com/us/en/business/uber-direct/>
 2. Business verification
 3. API integration
 4. Launch
 
 ### Option 3: In-House Delivery Team - LONG TERM
+
 **Timeline:** 30-60 days
 **Cost:** $15-20/hour per driver + vehicle costs
 **Best For:** Full control, long-term cost savings
 
 **Pros:**
+
 - No per-delivery fees
 - Complete control over experience
 - Drivers are Reggie & Dro brand ambassadors
 - Better margins long-term
 
 **Cons:**
+
 - Slower to launch
 - Higher upfront investment
 - Must handle HR, insurance, vehicle management
 
 **Setup Steps:**
+
 1. Hire 2-3 delivery drivers
 2. Vehicle acquisition/leasing
 3. Commercial auto insurance
@@ -99,6 +112,7 @@
 ## ⚡ RECOMMENDED STRATEGY: HYBRID APPROACH
 
 ### Phase 1 (Week 1-2): DoorDash Drive Launch
+
 - Apply for DoorDash Drive white label
 - Integrate with Lightspeed POS
 - Set delivery zones (5-10 mile radius)
@@ -106,12 +120,14 @@
 - Test with existing customers
 
 ### Phase 2 (Week 3-4): Optimize & Scale
+
 - Add Uber Direct as backup/overflow
 - Expand delivery zones
 - Add evening hours (8pm-10pm)
 - Collect feedback, optimize
 
 ### Phase 3 (Month 2-3): In-House Hybrid
+
 - Hire 1-2 in-house drivers for peak hours
 - Use DoorDash/Uber for overflow/late night
 - Branded delivery vehicles (Reggie & Dro logo)
@@ -128,6 +144,7 @@ Your Lightspeed POS already supports delivery integrations. Here's how to connec
 ### Lightspeed → DoorDash Drive Integration
 
 **Prerequisites:**
+
 - Lightspeed Retail POS (you have this)
 - DoorDash Drive account (apply above)
 - API access enabled on Lightspeed
@@ -135,6 +152,7 @@ Your Lightspeed POS already supports delivery integrations. Here's how to connec
 **Integration Steps:**
 
 1. **Enable Lightspeed API Access**
+
    ```
    Log in to: https://retail.lightspeed.app/
    Navigate to: Settings → Advanced → API Access
@@ -163,6 +181,7 @@ Your Lightspeed POS already supports delivery integrations. Here's how to connec
    - Confirm: proper tax/compliance handling
 
 **Middleware Option:** Build custom Node.js middleware if direct integration has issues
+
 - Location: `backend/integration-service/lightspeed-delivery-middleware.js`
 - Function: Sync Lightspeed orders → DoorDash Drive API
 - Benefit: More control, custom logic for cannabis compliance
@@ -205,6 +224,7 @@ Your Lightspeed POS already supports delivery integrations. Here's how to connec
 ### Documentation Required
 
 For DoorDash/Uber approval:
+
 - ✅ Texas Sales Tax Permit
 - ✅ EIN (Employer Identification Number)
 - ✅ Business license (City of San Antonio)
@@ -213,15 +233,17 @@ For DoorDash/Uber approval:
 - ✅ Product liability insurance
 
 **Where to Get These:**
-- Sales Tax Permit: https://comptroller.texas.gov/taxes/permit/
-- EIN: https://www.irs.gov/businesses/small-businesses-self-employed/apply-for-an-employer-identification-number-ein-online
-- Business License: https://www.sanantonio.gov/Development-Services/Business-Registration
+
+- Sales Tax Permit: <https://comptroller.texas.gov/taxes/permit/>
+- EIN: <https://www.irs.gov/businesses/small-businesses-self-employed/apply-for-an-employer-identification-number-ein-online>
+- Business License: <https://www.sanantonio.gov/Development-Services/Business-Registration>
 
 ---
 
 ## 💰 PRICING STRATEGY (COMPETE & WIN)
 
 ### Competitor Delivery Pricing (SATX)
+
 - **Farmacy:** ~$10/g + delivery fee (if any)
 - **HighWay:** Mid-range + delivery
 - **SACC:** Mid-range + delivery
@@ -230,20 +252,24 @@ For DoorDash/Uber approval:
 ### Recommended Reggie & Dro Pricing
 
 **Base Pricing:**
+
 - Flower: $12/g (bulk $10/g for 7g+)
 - Pre-rolls: $8-12 each
 - Edibles: $15-30
 - Concentrates: $25-50/g
 
 **Delivery Pricing:**
+
 - **Free delivery over $75** (competitive advantage)
 - **$5 delivery fee** for orders under $75
 - **$0 delivery fee** for members (social club membership perk)
 
 **Minimum Order:**
+
 - $30 minimum (covers delivery cost + driver tip)
 
 **Member Perks:**
+
 - Free delivery (always)
 - 10% off all delivery orders
 - Priority delivery (30-60 min vs 60-90 min)
@@ -257,17 +283,20 @@ For DoorDash/Uber approval:
 ### Week 1: Setup & Integration
 
 **Day 1-2: Applications**
+
 - Apply for DoorDash Drive
 - Apply for Uber Direct (backup)
 - Gather compliance docs
 
 **Day 3-5: Technical Integration**
+
 - Enable Lightspeed API
 - Configure DoorDash integration
 - Test order flow
 - Build custom middleware if needed
 
 **Day 6-7: Operations Setup**
+
 - Define delivery zones (5-mile radius)
 - Set delivery hours (12pm-8pm)
 - Train staff on delivery orders
@@ -276,17 +305,20 @@ For DoorDash/Uber approval:
 ### Week 2: Soft Launch & Optimization
 
 **Day 8-10: Soft Launch**
+
 - Announce to existing customers (email, social, in-store)
 - Offer launch promo: "Free delivery on first order"
 - Limit orders to 10-20 per day initially
 
 **Day 11-12: Feedback & Optimization**
+
 - Collect customer feedback
 - Optimize delivery zones (expand or shrink)
 - Adjust pricing if needed
 - Refine driver instructions
 
 **Day 13-14: Full Launch**
+
 - Public announcement (HNC episode!)
 - Increase order capacity
 - Expand hours if demand is high
@@ -297,18 +329,21 @@ For DoorDash/Uber approval:
 ## 📊 SUCCESS METRICS (TRACK THESE)
 
 ### Week 1-2 (Soft Launch)
+
 - **Target:** 10-20 delivery orders/day
 - **Delivery Time:** 60-90 minutes average
 - **Customer Satisfaction:** 4.5+ stars
 - **Repeat Orders:** 30%+ within 7 days
 
 ### Month 1
+
 - **Target:** 50-100 delivery orders/day
 - **Revenue Impact:** +20-30% total revenue
 - **New Customers:** 40%+ from delivery-only
 - **Member Conversions:** 20% of delivery customers join social club
 
 ### Month 3
+
 - **Target:** 150-200 delivery orders/day
 - **Revenue Impact:** +40-50% total revenue
 - **Market Share:** Top 3 delivery service in SATX
@@ -353,6 +388,7 @@ For DoorDash/Uber approval:
 **File:** `backend/integration-service/lightspeed-delivery-middleware.js`
 
 **Function:**
+
 ```javascript
 // Sync Lightspeed orders → DoorDash Drive API
 
@@ -404,6 +440,7 @@ module.exports = deliveryRouter;
 ```
 
 **Deployment:**
+
 ```bash
 cd backend/integration-service
 npm install axios express
@@ -415,8 +452,9 @@ npm install axios express
 ## 🏁 NEXT STEPS (ACTION ITEMS FOR YOU)
 
 ### Immediate (TODAY)
+
 1. **Apply for DoorDash Drive**
-   - Go to: https://get.doordash.com/en-us/products/drive
+   - Go to: <https://get.doordash.com/en-us/products/drive>
    - Fill out business application
    - Upload compliance docs
 
@@ -430,6 +468,7 @@ npm install axios express
    - Identify any restricted zones (schools, etc)
 
 ### Week 1
+
 4. **Integrate DoorDash + Lightspeed**
    - Follow integration steps above
    - Test order flow
@@ -446,6 +485,7 @@ npm install axios express
    - ID verification requirements
 
 ### Week 2
+
 7. **Soft Launch**
    - Announce to existing customers
    - Limit to 10-20 orders/day
@@ -464,6 +504,7 @@ npm install axios express
 ## 💡 PRO TIPS (LEARN FROM COMPETITORS)
 
 ### What Farmacy Does Right
+
 - ✅ Affordable pricing (~$10/g)
 - ✅ USA-grown emphasis
 - ✅ 5-star reviews (focus on quality)
@@ -471,6 +512,7 @@ npm install axios express
 **Steal This:** Match their pricing, emphasize your in-store quality control
 
 ### What HighWay Does Right
+
 - ✅ "Not your average smoke shop" branding
 - ✅ Farm Bill-compliant messaging
 - ✅ Multi-state shipping (if allowed)
@@ -478,6 +520,7 @@ npm install axios express
 **Steal This:** Use compliance as a selling point, professional branding
 
 ### What Canniversal Does Right
+
 - ✅ Variety (flower, rosin, vapes, edibles)
 - ✅ In-store + delivery hybrid
 - ✅ Premium positioning
@@ -485,6 +528,7 @@ npm install axios express
 **Steal This:** Offer variety, position as "premium experience at mid-range prices"
 
 ### What YOU Do Better
+
 - ✅ Social club (UNIQUE in SATX)
 - ✅ High Noon Cartoon (MASSIVE brand differentiator)
 - ✅ Community focus (not just transactions)
@@ -496,24 +540,29 @@ npm install axios express
 ## 🎯 FINAL ANSWER: YOUR DELIVERY INTEGRATION PATH
 
 ### Step 1: Apply for DoorDash Drive (TODAY)
-- Link: https://get.doordash.com/en-us/products/drive
+
+- Link: <https://get.doordash.com/en-us/products/drive>
 - ETA: 7-10 days approval
 
 ### Step 2: Integrate Lightspeed → DoorDash (WEEK 1)
+
 - Enable Lightspeed API
 - Configure DoorDash integration
 - Test order flow
 
 ### Step 3: Soft Launch Delivery (WEEK 2)
+
 - Limited orders, collect feedback
 - Optimize zones, pricing, hours
 
 ### Step 4: Full Launch with HNC Announcement (WEEK 2-3)
+
 - HNC episode about delivery
 - Social media blitz
 - Scale up to 50-100 orders/day
 
 ### Step 5: Hybrid Model (MONTH 2-3)
+
 - Hire in-house driver for peak hours
 - Use DoorDash/Uber for overflow
 - Branded delivery van (Reggie & Dro logo)

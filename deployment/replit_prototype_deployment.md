@@ -9,10 +9,12 @@
 
 ### Project Name: "Liv Hana Voice Portal"
 
-### Description:
+### Description
+
 "Voice-enabled cannabis intelligence portal. Provides RPM planning, compliance guidance, and strategic intelligence. TRUTH-validated and competition-driven."
 
-### Tech Stack:
+### Tech Stack
+
 - **Frontend:** React + TypeScript
 - **Backend:** Node.js + Express
 - **Voice:** Web Audio API + WebSocket
@@ -22,6 +24,7 @@
 ## Implementation
 
 ### 1. Frontend (2 hours)
+
 ```typescript
 // src/App.tsx
 import React, { useState, useEffect } from 'react';
@@ -161,6 +164,7 @@ export default App;
 ```
 
 ### 2. Voice Interface Component (1 hour)
+
 ```typescript
 // src/components/VoiceInterface.tsx
 import React, { useState, useRef, useEffect } from 'react';
@@ -332,6 +336,7 @@ export const VoiceInterface: React.FC<VoiceInterfaceProps> = ({
 ```
 
 ### 3. RPM Generator Component (30 minutes)
+
 ```typescript
 // src/components/RPMGenerator.tsx
 import React, { useState } from 'react';
@@ -436,6 +441,7 @@ export const RPMGenerator: React.FC<{
 ```
 
 ### 4. Competition Leaderboard Component (30 minutes)
+
 ```typescript
 // src/components/CompetitionLeaderboard.tsx
 import React, { useState, useEffect } from 'react';
@@ -529,6 +535,7 @@ export const CompetitionLeaderboard: React.FC = () => {
 ```
 
 ### 5. Package Configuration (30 minutes)
+
 ```json
 {
   "name": "liv-hana-voice-portal",
@@ -558,24 +565,28 @@ export const CompetitionLeaderboard: React.FC = () => {
 ## Deployment Steps
 
 ### 1. Create Replit Project (30 minutes)
+
 1. Go to replit.com
 2. Create new React + TypeScript project
 3. Name: "Liv Hana Voice Portal"
 4. Import code from above
 
 ### 2. Configure Dependencies (30 minutes)
+
 1. Install React dependencies
 2. Add TypeScript support
 3. Configure Tailwind CSS
 4. Set up build process
 
 ### 3. Deploy & Test (2 hours)
+
 1. Deploy to Replit
 2. Test voice interface
 3. Test RPM generation
 4. Test competition features
 
 ### 4. Launch & Monitor (1 hour)
+
 1. Share prototype link
 2. Monitor usage metrics
 3. Track competition scores
@@ -583,13 +594,15 @@ export const CompetitionLeaderboard: React.FC = () => {
 
 ## Success Metrics
 
-### Primary KPIs:
+### Primary KPIs
+
 - **ROI/$/Day:** Target $400/day
 - **User Engagement:** 100+ interactions/day
 - **Voice Usage:** 50+ voice commands/day
 - **Response Quality:** TRUTH compliance > 95%
 
-### Competition Tracking:
+### Competition Tracking
+
 - **Accuracy:** Projection vs Actual
 - **Speed:** Response time
 - **Value Delivered:** $ impact per interaction

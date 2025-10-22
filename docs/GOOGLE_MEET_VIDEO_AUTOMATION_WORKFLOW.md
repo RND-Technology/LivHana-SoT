@@ -10,6 +10,7 @@
 ## Problem Statement
 
 Large Google Meet recording videos are automatically placed into Google Drive but require manual processing. Need automated workflow for:
+
 - Video ingestion from Drive
 - Automated processing/transcription/analysis
 - Output generation
@@ -20,6 +21,7 @@ Large Google Meet recording videos are automatically placed into Google Drive bu
 ## Recovered Requirements (from crashed agent session)
 
 **From Agent 1 Task**: "Deep dive Discord/GitHub/Reddit for ChatGPT App Store SDK intel"
+
 - Agents were researching cutting-edge frontier tools for video processing
 - Looking for automated video processing solutions in developer communities
 - Focus on handling large video files efficiently
@@ -29,6 +31,7 @@ Large Google Meet recording videos are automatically placed into Google Drive bu
 ## Proposed Workflow Architecture
 
 ### Option A: Agent Builder Cloud Deployment
+
 ```mermaid
 graph LR
     A[Google Drive<br/>Auto-Upload] --> B[Trigger Event<br/>New Video]
@@ -40,18 +43,21 @@ graph LR
 ```
 
 **Benefits**:
+
 - Cloud-native, scalable
 - Integrates with existing 17-node canvas
 - Can leverage MCP tools for Drive access
 - Automatic triggering via Drive webhooks
 
 **Requirements**:
+
 - GCP Cloud Functions for Drive event triggers
 - Agent Builder deployed to Cloud Run
 - Video processing node (custom or via MCP)
 - Sufficient compute for large video files
 
 ### Option B: Local Automation (N8N or Custom)
+
 ```mermaid
 graph LR
     A[Google Drive<br/>Auto-Upload] --> B[Polling Script<br/>Check for New Videos]
@@ -64,12 +70,14 @@ graph LR
 ```
 
 **Benefits**:
+
 - Full control over processing
 - Can leverage local Whisper (already running on port 2022)
 - No cloud processing costs
 - Can handle very large files without upload limits
 
 **Requirements**:
+
 - Drive API polling script (Python/Node)
 - FFmpeg for video/audio extraction
 - Sufficient local disk space for temp files
@@ -80,6 +88,7 @@ graph LR
 ## Cutting-Edge Tools (Research Findings from Communities)
 
 ### Video Processing
+
 1. **FFmpeg** (industry standard)
    - Audio extraction: `ffmpeg -i input.mp4 -vn -acodec libmp3lame output.mp3`
    - Video compression: `ffmpeg -i input.mp4 -vcodec h264 -acodec aac output.mp4`
@@ -96,6 +105,7 @@ graph LR
    - API-driven workflows
 
 ### Transcription
+
 1. **Whisper (Local)** ✅ Already running port 2022
    - High quality, free
    - GPU acceleration available (Core ML)
@@ -112,6 +122,7 @@ graph LR
    - Real-time transcription
 
 ### Analysis & Summarization
+
 1. **Claude (Sonnet 4.5)** ✅ Already integrated
    - Long context (200K tokens)
    - Excellent summarization
@@ -132,6 +143,7 @@ graph LR
 ## Recommended Implementation: Hybrid Approach
 
 ### Phase 1: Local Processing (Fast Track)
+
 **Timeline**: 1-2 hours
 **Tools**: Python + FFmpeg + Whisper (local) + Claude
 
@@ -161,6 +173,7 @@ def process_meet_video(drive_file_id):
 ```
 
 ### Phase 2: Agent Builder Integration (Production)
+
 **Timeline**: After 17-node canvas deployed
 **Tools**: Agent Builder + Cloud Functions + MCP
 
@@ -173,6 +186,7 @@ Drive Webhook → Cloud Function → Agent Builder (Video Processing Node) → M
 ## Secrets Required
 
 From GSM (already in `gsm_secrets_uuid_map.json`):
+
 - `GOOGLE_APPLICATION_CREDENTIALS` (Drive API)
 - `OPENAI_API_KEY` (Whisper API fallback)
 - `ANTHROPIC_API_KEY` (Claude analysis)
@@ -186,24 +200,27 @@ From GSM (already in `gsm_secrets_uuid_map.json`):
 **Script Name**: `scripts/process_meet_videos.py`
 
 **Requirements**:
+
 1. Poll Google Drive folder for new `.mp4` files
 2. Download video to temp directory
 3. Extract audio using FFmpeg
-4. Transcribe audio using local Whisper (http://127.0.0.1:2022/v1)
+4. Transcribe audio using local Whisper (<http://127.0.0.1:2022/v1>)
 5. Summarize transcript using Claude (http API)
 6. Extract action items from transcript
 7. Upload summary to Drive folder "Meeting Summaries"
-8. Send email to jesseniesen@gmail.com with summary + action items
+8. Send email to <jesseniesen@gmail.com> with summary + action items
 9. Delete temp files
 10. Log all operations with timestamps
 
 **Error Handling**:
+
 - Whisper timeout → fallback to OpenAI Whisper API
 - Claude API error → retry 3x with exponential backoff
 - Drive upload failure → log error, keep local copy
 - Email send failure → log error, continue
 
 **Configuration**: `config/meet_video_processing.json`
+
 ```json
 {
   "drive_folder_id": "...",
@@ -222,6 +239,7 @@ From GSM (already in `gsm_secrets_uuid_map.json`):
 ## Testing Plan
 
 ### Unit Tests
+
 - [ ] FFmpeg audio extraction (test with 100MB video)
 - [ ] Whisper transcription (test with 10-min audio)
 - [ ] Claude summarization (test with 5K-token transcript)
@@ -229,12 +247,14 @@ From GSM (already in `gsm_secrets_uuid_map.json`):
 - [ ] Email send (test with sample summary)
 
 ### Integration Tests
+
 - [ ] Full workflow (download → process → analyze → store → email)
 - [ ] Error handling (Whisper timeout → fallback)
 - [ ] Large file handling (>1GB video)
 - [ ] Concurrent processing (multiple videos)
 
 ### Performance Benchmarks
+
 - Target: Process 1-hour video in <10 minutes
 - Audio extraction: <2 minutes
 - Transcription: <5 minutes

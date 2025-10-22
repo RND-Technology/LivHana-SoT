@@ -9,6 +9,7 @@ The TRUTH Pipeline Agent Builder implements a 17-node workflow that orchestrates
 ## 17-Node Workflow Architecture
 
 ### Node Overview
+
 ```mermaid
 graph TD
     A[Node 1: Start] --> B[Node 2: Input Validation]
@@ -43,6 +44,7 @@ graph TD
 ## Node Specifications
 
 ### Node 1: Start
+
 ```json
 {
   "node_id": "start",
@@ -69,6 +71,7 @@ graph TD
 ```
 
 ### Node 2: Input Validation
+
 ```json
 {
   "node_id": "input_validation",
@@ -97,6 +100,7 @@ graph TD
 ```
 
 ### Node 3: Age Gate
+
 ```json
 {
   "node_id": "age_gate",
@@ -126,6 +130,7 @@ graph TD
 ```
 
 ### Node 4: PII Detection
+
 ```json
 {
   "node_id": "pii_detection",
@@ -155,6 +160,7 @@ graph TD
 ```
 
 ### Node 5: Apify Scrape
+
 ```json
 {
   "node_id": "apify_scrape",
@@ -184,6 +190,7 @@ graph TD
 ```
 
 ### Node 6: Perplexity Verify
+
 ```json
 {
   "node_id": "perplexity_verify",
@@ -213,6 +220,7 @@ graph TD
 ```
 
 ### Node 7: Compression
+
 ```json
 {
   "node_id": "compression",
@@ -242,6 +250,7 @@ graph TD
 ```
 
 ### Node 8: TRUTH Synthesis
+
 ```json
 {
   "node_id": "truth_synthesis",
@@ -271,6 +280,7 @@ graph TD
 ```
 
 ### Node 9: Schema Validation
+
 ```json
 {
   "node_id": "schema_validation",
@@ -300,6 +310,7 @@ graph TD
 ```
 
 ### Node 10: RPM Orchestration
+
 ```json
 {
   "node_id": "rpm_orchestration",
@@ -329,6 +340,7 @@ graph TD
 ```
 
 ### Node 11: Profit Gating
+
 ```json
 {
   "node_id": "profit_gating",
@@ -358,6 +370,7 @@ graph TD
 ```
 
 ### Node 12: Voice Mode Transform
+
 ```json
 {
   "node_id": "voice_mode_transform",
@@ -387,6 +400,7 @@ graph TD
 ```
 
 ### Node 13: MCP Tool Execution
+
 ```json
 {
   "node_id": "mcp_tool_execution",
@@ -416,6 +430,7 @@ graph TD
 ```
 
 ### Node 14: Evidence Generation
+
 ```json
 {
   "node_id": "evidence_generation",
@@ -445,6 +460,7 @@ graph TD
 ```
 
 ### Node 15: Session Validation
+
 ```json
 {
   "node_id": "session_validation",
@@ -474,6 +490,7 @@ graph TD
 ```
 
 ### Node 16: Output Packaging
+
 ```json
 {
   "node_id": "output_packaging",
@@ -503,6 +520,7 @@ graph TD
 ```
 
 ### Node 17: End
+
 ```json
 {
   "node_id": "end",
@@ -534,6 +552,7 @@ graph TD
 ## Node Execution Flow
 
 ### Execution Sequence
+
 ```bash
 #!/bin/bash
 # agent_builder_executor.sh
@@ -665,6 +684,7 @@ main "$@"
 ## Node Dependencies & Validation
 
 ### Dependency Matrix
+
 | Node | Dependencies | Validation Requirements | Error Handling |
 |------|-------------|------------------------|----------------|
 | **Start** | None | Query format, session ID | Block on failure |

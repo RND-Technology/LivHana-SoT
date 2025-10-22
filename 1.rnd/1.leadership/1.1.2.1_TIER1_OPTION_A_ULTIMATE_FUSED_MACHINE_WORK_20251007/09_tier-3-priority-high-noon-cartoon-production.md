@@ -4,6 +4,7 @@
 **Timeline:** Launch after D-ID API key obtained
 
 **Current State:**
+
 - ✅ 84 episode scripts generated (complete 12-week series)
 - ✅ Production pipeline built (520+ lines - `video-production-pipeline.mjs`)
 - ✅ 100% domain readiness (highnooncartoon.com LIVE)
@@ -11,6 +12,7 @@
 - ⏳ **BLOCKED:** Need D-ID API key for lip-sync animation
 
 **Production Stack:**
+
 - Script: Claude API ✅
 - Voice: ElevenLabs API ✅
 - Animation: D-ID API ⏳ (CRITICAL BLOCKER)

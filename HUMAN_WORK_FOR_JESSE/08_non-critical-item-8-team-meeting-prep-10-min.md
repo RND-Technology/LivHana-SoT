@@ -6,6 +6,7 @@
 **EXECUTE:**
 
 Read these 3 files (10 min total):
+
 ```bash
 # 1. Full session recap (5 min)
 open /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/WAKE_UP_STATUS_COMPLETE.md
@@ -18,6 +19,7 @@ open /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/RPM_WEEKLY_PLAN_OCT7-1
 ```
 
 **TALKING POINTS FOR MEETING:**
+
 1. Trinity delivered 8,000+ lines of code (95% complete)
 2. Need 4 API keys to unlock tier-1 stack (40 min of work)
 3. Delivery service beats Nash (direct integration, no middleman)

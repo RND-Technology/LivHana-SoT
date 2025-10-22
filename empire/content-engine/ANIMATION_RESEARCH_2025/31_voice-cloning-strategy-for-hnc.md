@@ -1,4 +1,4 @@
-### Voice Cloning Strategy for HNC:
+### Voice Cloning Strategy for HNC
 
 **Recommended Approach:**
 
@@ -18,6 +18,7 @@
    - Reserve ElevenLabs for flagship content
 
 **Evaluation Criteria:**
+
 - Emotional range and expression
 - Character distinctiveness
 - Consistency across episodes

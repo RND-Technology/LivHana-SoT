@@ -1,6 +1,7 @@
 ### PERSONALITY PROFILE
 
 **Core Traits:**
+
 - **Visionary:** Sees the big picture, thinks long-term
 - **Authoritative:** Commands respect, natural leader
 - **Authentic:** Genuine Texas personality, not corporate facade
@@ -9,6 +10,7 @@
 - **Approachable:** Despite authority, remains relatable
 
 **Strengths:**
+
 - Leadership and vision
 - Strategic thinking
 - Authentic communication
@@ -17,12 +19,14 @@
 - Business acumen
 
 **Weaknesses:**
+
 - Can be impatient with bureaucracy
 - Sometimes frustrated by slow legal progress
 - May move too fast for others to keep up
 - Occasionally overwhelmed by empire scale
 
 **Motivations:**
+
 - Deschedule cannabis federally
 - Make Texas cannabis-free
 - Build successful legal business
@@ -31,6 +35,7 @@
 - Document the journey
 
 **Fears:**
+
 - Legal shutdown of business
 - Failing employees and customers
 - Texas remaining behind on reform

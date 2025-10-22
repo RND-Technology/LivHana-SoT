@@ -1,6 +1,7 @@
 ### PERSONALITY PROFILE
 
 **Core Traits:**
+
 - **Calculating:** Plans several steps ahead
 - **Cold:** Emotionally detached, focused on goals
 - **Manipulative:** Uses others to achieve ends
@@ -9,6 +10,7 @@
 - **Ruthless:** Will use any legal means to win
 
 **Strengths:**
+
 - Strategic thinking
 - Resource access (money, influence)
 - Legal knowledge (uses it against targets)
@@ -17,6 +19,7 @@
 - Political connections
 
 **Weaknesses:**
+
 - Arrogance (underestimates opponents)
 - Cold approach alienates potential allies
 - Rigid thinking (can't adapt quickly)
@@ -25,6 +28,7 @@
 - Eventually loses to truth and persistence
 
 **Motivations:**
+
 - Shut down legal cannabis/hemp operations
 - Maintain status quo/prohibition
 - Corporate interests (potentially pharma, alcohol)
@@ -33,6 +37,7 @@
 - Winning at any cost
 
 **Fears:**
+
 - Cannabis normalization and legalization
 - Losing control/influence
 - Public opinion turning against her

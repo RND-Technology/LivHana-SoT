@@ -1,6 +1,7 @@
-### 🟢 MEDIUM PRIORITY (This week):
+### 🟢 MEDIUM PRIORITY (This week)
 
 7. **Set Up Monitoring**
+
    ```bash
    # Create health check for all domains
    # Alert if any domain stops resolving

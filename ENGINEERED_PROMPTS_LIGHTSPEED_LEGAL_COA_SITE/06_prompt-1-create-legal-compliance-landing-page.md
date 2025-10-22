@@ -1,4 +1,5 @@
 #### **Prompt 1: Create Legal Compliance Landing Page**
+
 ```
 Create a professional legal compliance landing page for reggieanddro.com (Lightspeed e-commerce site) that establishes trust and transparency for Texas hemp cannabis products.
 

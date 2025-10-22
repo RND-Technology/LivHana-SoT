@@ -63,6 +63,7 @@ GET /health
 ```
 
 **Response:**
+
 ```json
 {
   "status": "healthy",
@@ -85,6 +86,7 @@ Content-Type: application/json
 ```
 
 **Response:**
+
 ```json
 {
   "allowed": true,
@@ -111,6 +113,7 @@ Content-Type: application/json
 ```
 
 **Response:**
+
 ```json
 {
   "valid": true,
@@ -137,6 +140,7 @@ Content-Type: application/json
 ```
 
 **Response:**
+
 ```json
 {
   "allowed": true,
@@ -165,6 +169,7 @@ Content-Type: application/json
 ```
 
 **Response:**
+
 ```json
 {
   "overall_compliant": true,
@@ -368,25 +373,30 @@ gcloud run services logs read compliance-service \
 ## Compliance Principles
 
 ### LifeWard Standard
+
 - Prioritize human life and safety in all decisions
 - No shortcuts on compliance or safety
 
 ### AGE21 Enforcement
+
 - Strict 21+ age verification
 - No exceptions or grace periods
 - Multiple verification methods supported
 
 ### NIST Methods
+
 - Only NIST-approved cannabinoids allowed
 - Lab certification required
 - Novel cannabinoid gate active
 
 ### No Medical Claims
+
 - Cannabis is NOT medicine
 - Block therapeutic language
 - FDA disclaimer required
 
 ### Brand Protection
+
 - Reggie & Dro are brands only
 - No character usage in medical contexts
 - Trademark enforcement active
@@ -404,4 +414,3 @@ gcloud run services logs read compliance-service \
 **Status:** ✅ Production Ready  
 **Compliance:** ✅ AGE21 | ✅ NIST | ✅ Medical Claims | ✅ LifeWard  
 **Deployment:** ✅ Local | ✅ Docker | ✅ Cloud Run
-

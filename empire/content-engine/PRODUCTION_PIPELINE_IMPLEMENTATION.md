@@ -139,6 +139,7 @@ VideoProductionPipeline
 **Purpose:** Generate character voice audio from text
 
 **Implementation:**
+
 ```javascript
 POST https://api.elevenlabs.io/v1/text-to-speech/{voice_id}
 Headers:
@@ -170,6 +171,7 @@ Body:
 **Purpose:** Generate character images and backgrounds
 
 **Implementation:**
+
 ```javascript
 POST https://api.openai.com/v1/images/generations
 Headers:
@@ -187,6 +189,7 @@ Body:
 ```
 
 **Response:**
+
 ```json
 {
   "data": [{
@@ -196,6 +199,7 @@ Body:
 ```
 
 **Cost:**
+
 - Standard: $0.040 per image
 - HD: $0.080 per image
 
@@ -210,6 +214,7 @@ Body:
 **Implementation:**
 
 **Step 1: Create Talk**
+
 ```javascript
 POST https://api.d-id.com/talks
 Headers:
@@ -231,6 +236,7 @@ Body:
 ```
 
 **Response:**
+
 ```json
 {
   "id": "talk-12345",
@@ -239,11 +245,13 @@ Body:
 ```
 
 **Step 2: Poll Status**
+
 ```javascript
 GET https://api.d-id.com/talks/{talk_id}
 ```
 
 **Response (when done):**
+
 ```json
 {
   "id": "talk-12345",
@@ -263,6 +271,7 @@ GET https://api.d-id.com/talks/{talk_id}
 **Purpose:** Generate background music
 
 **Implementation:**
+
 ```javascript
 POST https://api.sunoapi.com/api/v1/generate
 Headers:
@@ -277,6 +286,7 @@ Body:
 ```
 
 **Response:**
+
 ```json
 {
   "audio_url": "https://cdn.sunoapi.com/..."
@@ -296,6 +306,7 @@ Body:
 **Implementation:**
 
 **Step 1: Get Access Token**
+
 ```javascript
 POST https://oauth2.googleapis.com/token
 Body:
@@ -306,6 +317,7 @@ Body:
 ```
 
 **Step 2: Upload Video**
+
 ```javascript
 POST https://www.googleapis.com/upload/youtube/v3/videos?uploadType=multipart&part=snippet,status
 Headers:
@@ -329,6 +341,7 @@ Body: (multipart)
 **Implementation:**
 
 **Step 1: Initialize Upload**
+
 ```javascript
 POST https://open.tiktokapis.com/v2/post/publish/video/init/
 Headers:
@@ -347,6 +360,7 @@ Body:
 ```
 
 **Step 2: Upload Video**
+
 ```javascript
 PUT {upload_url_from_init}
 Body: Video file (binary)
@@ -365,6 +379,7 @@ Body: Video file (binary)
 **Implementation:**
 
 **Step 1: Create Container**
+
 ```javascript
 POST https://graph.facebook.com/v19.0/{ig_user_id}/media
 Body:
@@ -375,6 +390,7 @@ Body:
 ```
 
 **Step 2: Publish**
+
 ```javascript
 POST https://graph.facebook.com/v19.0/{ig_user_id}/media_publish
 Body:
@@ -385,6 +401,7 @@ Body:
 **Cost:** Free
 
 **Requirements:**
+
 - Video must be publicly accessible
 - Business/Creator account required
 - Up to 90 seconds for most accounts
@@ -549,6 +566,7 @@ Based on a typical 60-second episode:
 ### Monthly Budget Estimate
 
 For 20 episodes/month:
+
 - **Without Optimization:** $37.00
 - **With Optimization:** $30.70
 - **Annual Cost:** $368.40
@@ -589,6 +607,7 @@ The pipeline automatically tracks:
 ### Metrics Output
 
 Metrics are saved to:
+
 ```
 output/metrics/episode_001_metrics.json
 output/metrics/episode_002_metrics.json
@@ -596,6 +615,7 @@ output/metrics/episode_002_metrics.json
 ```
 
 Sample metrics file:
+
 ```json
 {
   "episodeNumber": 1,
@@ -631,11 +651,13 @@ Sample metrics file:
 ### Production Log
 
 All production events are logged to:
+
 ```
 output/production-log.json
 ```
 
 Sample log entry:
+
 ```json
 {
   "episodeNumber": 1,
@@ -659,6 +681,7 @@ Sample log entry:
 **Error:** `API key not configured`
 
 **Solution:**
+
 ```bash
 # Check environment variables
 echo $ELEVENLABS_API_KEY
@@ -673,6 +696,7 @@ export ELEVENLABS_API_KEY=your-key-here
 **Error:** `ffmpeg: command not found`
 
 **Solution:**
+
 ```bash
 # macOS
 brew install ffmpeg
@@ -689,6 +713,7 @@ ffmpeg -version
 **Error:** `Rate limit reached, waiting...`
 
 **Solution:**
+
 - Wait for the rate limiter to clear (automatic)
 - Reduce concurrent operations
 - Avoid using `--parallel` flag
@@ -698,6 +723,7 @@ ffmpeg -version
 **Error:** `D-ID processing timeout`
 
 **Solution:**
+
 - D-ID videos can take 30-60 seconds to process
 - Check D-ID dashboard for status
 - Increase timeout in `pollDIdStatus()` function
@@ -707,6 +733,7 @@ ffmpeg -version
 **Error:** `Upload failed: permission denied`
 
 **Solution:**
+
 ```bash
 # Authenticate with Google Cloud
 gcloud auth login
@@ -723,6 +750,7 @@ gcloud storage ls gs://hnc-episodes-prod/
 **Issue:** Videos upload but remain private
 
 **Solution:**
+
 - YouTube requires API audit for public uploads
 - Apply for audit at: console.cloud.google.com
 - Submit compliance documentation
@@ -733,6 +761,7 @@ gcloud storage ls gs://hnc-episodes-prod/
 **Error:** `JavaScript heap out of memory`
 
 **Solution:**
+
 ```bash
 # Increase Node.js memory limit
 NODE_OPTIONS="--max-old-space-size=4096" ./video-production-pipeline.mjs produce 1
@@ -804,9 +833,11 @@ node --trace-warnings video-production-pipeline.mjs produce 1
 Produces a complete episode from script to distribution.
 
 **Parameters:**
+
 - `episodeNumber` (Number): Episode number to produce
 
 **Returns:**
+
 ```javascript
 {
   episodeNumber: 1,
@@ -835,6 +866,7 @@ Produces a complete episode from script to distribution.
 Produces multiple episodes sequentially or in parallel.
 
 **Parameters:**
+
 - `startEpisode` (Number): First episode number
 - `endEpisode` (Number): Last episode number
 - `parallel` (Boolean): Process in parallel (default: false)
@@ -848,6 +880,7 @@ Produces multiple episodes sequentially or in parallel.
 Loads episode script from disk.
 
 **Parameters:**
+
 - `episodeNumber` (Number): Episode number
 
 **Returns:** Script object
@@ -859,6 +892,7 @@ Loads episode script from disk.
 Generates character voice audio using ElevenLabs.
 
 **Parameters:**
+
 - `script` (Object): Episode script
 
 **Returns:** Array of audio file objects
@@ -870,6 +904,7 @@ Generates character voice audio using ElevenLabs.
 Generates character headshots using DALL-E 3.
 
 **Parameters:**
+
 - `script` (Object): Episode script
 
 **Returns:** Array of image file objects
@@ -881,6 +916,7 @@ Generates character headshots using DALL-E 3.
 Creates lip-synced videos using D-ID.
 
 **Parameters:**
+
 - `audioFiles` (Array): Audio file objects
 - `characterImages` (Array): Character image objects
 
@@ -893,6 +929,7 @@ Creates lip-synced videos using D-ID.
 Composes final video using FFmpeg.
 
 **Parameters:**
+
 ```javascript
 {
   script: Object,
@@ -965,6 +1002,7 @@ const report = metrics.finalize();
 ### B. Video Specifications
 
 **Final Video Output:**
+
 - **Resolution:** 1920x1080 (1080p)
 - **Frame Rate:** 30 fps
 - **Codec:** H.264 (libx264)
@@ -973,6 +1011,7 @@ const report = metrics.finalize();
 - **Optimization:** Fast start enabled
 
 **FFmpeg Settings:**
+
 - **Preset:** slow (high quality)
 - **CRF:** 20 (high quality)
 - **Profile:** high
@@ -1027,13 +1066,13 @@ empire/content-engine/
 
 ### E. Support & Resources
 
-- **ElevenLabs Docs:** https://elevenlabs.io/docs
-- **OpenAI API Reference:** https://platform.openai.com/docs
-- **D-ID Documentation:** https://docs.d-id.com
-- **YouTube API:** https://developers.google.com/youtube/v3
-- **TikTok API:** https://developers.tiktok.com
-- **Instagram API:** https://developers.facebook.com/docs/instagram-platform
-- **FFmpeg Documentation:** https://ffmpeg.org/documentation.html
+- **ElevenLabs Docs:** <https://elevenlabs.io/docs>
+- **OpenAI API Reference:** <https://platform.openai.com/docs>
+- **D-ID Documentation:** <https://docs.d-id.com>
+- **YouTube API:** <https://developers.google.com/youtube/v3>
+- **TikTok API:** <https://developers.tiktok.com>
+- **Instagram API:** <https://developers.facebook.com/docs/instagram-platform>
+- **FFmpeg Documentation:** <https://ffmpeg.org/documentation.html>
 
 ---
 

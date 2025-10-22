@@ -1,1 +1,1 @@
-## 🚀 USAGE:
+## 🚀 USAGE

@@ -13,9 +13,10 @@
 After hundreds of hours of development, we FINALLY cracked the code on autonomous voice orchestration. Liv Hana is now LIVE in production—and she's a game-changer.
 
 **What This Means for You:**
+
 - **RPM Planning:** What took 2-4 hours now takes <5 minutes (via voice mode)
 - **Compliance Automation:** Age verification, COA validation, DSHS reporting—all autonomous
-- **Revenue Recovery:** $125K-175K unlock THIS WEEK (Jumio IDV + win-back campaign)
+- **Revenue Recovery:** $125K-175K unlock THIS WEEK (Veriff ID verification + win-back campaign)
 - **Team Leverage:** AI co-pilot for every role—Andrew (ops), Christopher (culture/payroll), Charlie (procurement)
 
 **See It In Action:**
@@ -30,6 +31,7 @@ After hundreds of hours of development, we FINALLY cracked the code on autonomou
 
 **What's Different This Time:**
 Previous attempts (ChatGPT voice, Claude phone app) hit API limits and crashed. This breakthrough uses:
+
 - **Cloud Run** deployment (no usage caps)
 - **Tier-1 orchestration** (9-model swarm: GPT-5, Claude Sonnet, Codex, Cheetah, Perplexity, etc.)
 - **Voice Mode** via ElevenLabs + Claude (sub-150ms response, hands-free)
@@ -37,17 +39,20 @@ Previous attempts (ChatGPT voice, Claude phone app) hit API limits and crashed. 
 
 **Team Training:**
 📅 **Daily 15-Min Voice Stand-Ups** start TODAY at 9:00am CST
+
 - Format: "Liv" → Yesterday's wins → Today's priorities → Blockers → "Normal chat"
 - Dashboard access for all roles (custom views per person)
 - Location: Google Meet (link in calendar invite)
 
 **Critical Path This Week:**
+
 1. **Tuesday (TODAY):** Secrets sync (15 min) → TRUTH Pipeline test → Win-back campaign launch
 2. **Wednesday:** Compliance Service deployment → Agent Builder 17-node deployment
-3. **Thursday:** Jumio production deployment → First revenue flowing
+3. **Thursday:** Veriff production deployment → First revenue flowing
 4. **Friday:** DSHS compliance submission (deadline Oct 26)
 
 **What You Need to Do:**
+
 1. **Read the new RPM Plan** (`RPM_MASTER_PLAN_OCT21-27_2025_AI_OPTIMIZED.md`) - 10 minutes
 2. **Join today's 9am voice stand-up** (15 minutes) - [Google Meet Link]
 3. **Complete pilot training** - learn "Liv" trigger and dashboard shortcuts
@@ -69,7 +74,7 @@ Let's make history. Voice mode is the future, and the future is NOW.
 — Jesse Niesen, CEO
 with Liv Hana (Tier 1 Absolute Standard SI)
 
-P.S. Christopher, Dylan—store briefing at 10am on Jumio age verification changes. Let's get that $100K unlocked this week. 🔥
+P.S. Christopher, Dylan—store briefing at 10am on Veriff age verification changes. Let's get that $100K unlocked this week. 🔥
 
 ---
 
@@ -95,6 +100,7 @@ P.S. Christopher, Dylan—store briefing at 10am on Jumio age verification chang
 **Recommendation:** Start with Option 1 (hybrid), graduate to Option 2 after Agent Builder stabilizes
 
 **Setup Commands (Option 1 - Immediate):**
+
 ```bash
 # Add Slack webhook to environment
 export SLACK_WEBHOOK_URL="https://hooks.slack.com/services/YOUR_WEBHOOK"
@@ -110,6 +116,7 @@ curl -X POST $SLACK_WEBHOOK_URL \
 ---
 
 **Next Steps:**
+
 1. Copy announcement text to Slack #general
 2. Pin announcement in #liv-hana-pilot
 3. Send calendar invite for 9am voice stand-up (recurring daily)

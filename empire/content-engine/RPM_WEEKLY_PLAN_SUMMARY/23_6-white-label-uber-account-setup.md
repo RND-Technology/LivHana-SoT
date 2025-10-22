@@ -1,8 +1,10 @@
 #### 6. White Label Uber Account Setup
+
 **Deadline**: Tomorrow 5pm CST  
 **Priority**: HIGH  
 **Instructions**:
-1. Navigate to https://business.uber.com/
+
+1. Navigate to <https://business.uber.com/>
 2. Click "Get Started" or "Sign Up"
 3. Select "White Label" or "Enterprise" option
 4. Complete business information form
@@ -19,6 +21,7 @@
 10. Launch white-label delivery service
 
 **Required Info**:
+
 - Business name: Reggie & Dro Cannabis Store & Social Club
 - Business type: Cannabis/Hemp retail
 - Location: San Antonio, TX

@@ -1,0 +1,65 @@
+Build AI Employees for Business with Claude Code: Real-Time Creation and Use Cases
+	Introduction to AI Employees and Claude Code
+		The concept of creating AI employees using Claude Code enables running a business with fewer human full-time hires by automating tasks.
+			The speaker, Craig Hwitt, highlights that AI can consistently and methodically handle implementation work while allowing strategic control over business ethos.
+			This approach transforms AI into digital employees performing marketing, operations, and grunt work.
+		Claude Code, a coding-centric product by Anthropic, is leveraged for diverse business tasks beyond coding, including marketing and SEO.
+			Developers design Claude code to be developer tools, but here it is applied as AI agents for research, content creation, and operations.
+		The 10-80-10 principle is used: 10% strategy, 80% AI doing the work, 10% final human finishing.
+			The speaker built a content marketing SEO AI employee in Claude Code that handles research, optimization, and content writing with minimal human intervention.
+		Demonstrates creating a new AI employee for email marketing in real-time during this video, illustrating how to build AI agents and commands to automate key operations.
+	Anatomy of an AI Employee for Content Marketing
+		The AI employee, called "Claude Writer," is designed to write long-form SEO content specifically for castos.com, a podcast hosting platform.
+			It must create high-quality, valuable content that exceeds superficial AI-generated posts, aiming to replace expensive professional creators swiftly.
+		The system includes multiple specialized agents such as an editor agent with system prompts, internal linking, keyword mapping, metadata creation, and an SEO optimizer.
+			These agents pull real-time data from Google Analytics, Google Search Console, and a third-party SEO API (Data for SEO) to guide content priorities and improvements.
+		Slash commands allow invoking specific functions like analyzing content, optimizing, reviewing performance, researching new topics, rewriting, or writing from scratch.
+		Context is crucial; the AI is seeded with extensive brand knowledge including brand voice, product features, SEO guidelines, and exemplary blog posts to ensure alignment with company ethos.
+			Five representative blog posts were added as examples to guide the AI's writing style, demonstrating that AI quality depends heavily on rich contextual input.
+	Utilizing Real-Time Data for Content Prioritization and Research
+		The AI employee autonomously aggregates data from key analytics sources to produce actionable content priorities that reflect actual user behavior and search trends.
+			For example, it identifies keywords where Castos ranks on Google's second page, suggesting improvement areas to achieve first-page rankings.
+		The speaker refined the AI’s opportunity scoring by instructing it to consider commercial intent, showcasing AI’s ability to self-correct upon feedback.
+		The AI can perform detailed research on given topics like podcast advertising and generate comprehensive content outlines incorporating Google’s EAT (Expertise, Authoritativeness, Trustworthiness) principles.
+		The output includes fully researched, SEO-optimized articles (e.g., a 4,000-word blog post ready for publication), demonstrating AI’s capacity to handle end-to-end content creation.
+	Building a New AI Employee for Email Marketing: Setup and Context Creation
+		The video transitions to creating a new AI employee specialized in email marketing using Claude Code within the Cursor IDE.
+			The project folder “Castos email marketer” starts empty to illustrate building from scratch.
+		The AI is instructed via a detailed natural language prompt to become the best email marketing expert, focusing on writing compelling copy that drives conversions and clicks.
+			It must integrate deep company context, email best practices, and personalized examples of past emails.
+			Expected functionalities include creating single emails, email series, and autoresponder sequences tailored for SaaS companies.
+		The AI begins by generating company context and brand guideline files but initially treats context as a single file, which is inadequate.
+			The speaker plans to expand this to a folder of multiple context files for richer input, since effective AI requires extensive context to perform well.
+		Slash commands in Claude Code are described as triggers for specific AI functions, linking to system prompts that define tasks like content creation or optimization.
+	Real-Time AI Development: Building Email Templates and Best Practices
+		The AI rapidly produces foundational files such as brand voice guides, email best practices documents, and onboarding email sequences covering welcome, feature education, social proof, and monetization.
+			It suggests re-engagement campaigns triggered by inactivity (e.g., if a user hasn’t logged in for 30 days), demonstrating strategic email marketing planning.
+		The AI creates folders for email templates and begins populating them with various types including newsletters, product announcements, and promotional emails.
+			These templates contain subject lines, email bodies, and structural patterns aligned with the brand’s style and goals.
+		The speaker notes that this system is a powerful tool to replace expensive freelancers or agencies with an AI that maintains brand consistency and operates 24/7 without human limitations.
+		The use of Claude Code Pro Plan at $20/month is justified as a cost-effective alternative compared to hiring full-time employees.
+	AI Agent Commands, Examples, and Autonomy
+		Claude Code generates system prompts defining the AI email employee’s role, capabilities, and context access.
+			Commands such as /create autoresponder, /create single email, and /create series enable flexible AI-driven email generation on demand.
+		An examples folder stores company-specific emails to train the AI on brand voice and style, with the speaker planning to enhance this further with more personalized examples.
+		A README file explains the employee’s purpose: writing emails tailored to Castos SaaS company standards, applying best practices, and personalizing at scale.
+	Live Demo: Creating a Webinar Announcement Email with AI
+		The speaker performs a live command to generate a webinar promotion email scheduled for October 29th titled “How to Win on YouTube.”
+			Context includes the webinar purpose: teaching podcasters to succeed on YouTube by growing audience and brand reach.
+			The speaker provides personal credentials and video publishing experience as part of the context.
+		Initial bugs appear with slash commands not registering, resolved by restarting Claude Code, demonstrating real-world challenges in AI tool usage.
+		After restart, the AI successfully processes the command, reads all context files, and generates a webinar announcement email.
+			The email includes effective subject lines, preheaders, and multiple body options with clear calls to action for registration.
+			The AI also generates a strategic email sequence for follow-ups: reminder, last chance, thank you, and replay emails.
+	Enhancing AI Email Employees with Custom Commands and Templates
+		The speaker instructs the AI to create a new slash command and email series template specifically for webinar campaigns.
+			This allows quick generation of complete email sequences for future webinars by simply providing event details.
+		The AI builds the command and template autonomously, showcasing the extensibility and adaptability of the AI employee framework.
+		The speaker reflects on the power of Claude Code to build and deploy such AI employees in about 20-30 minutes, enabling repeated use for scaling business operations.
+	Future Vision and Final Reflections on AI Employees
+		The idea of a "conductor agent" is proposed: an AI overseer that coordinates multiple AI employees (SEO writer, email marketer, website optimizer) to fulfill complex marketing roles like a virtual Chief Marketing Officer.
+			This vision anticipates a future where knowledge work is largely automated by interconnected AI agents working 24/7 without human limitations.
+		The speaker commits to creating dozens of AI employees over coming weeks to automate various business functions.
+		Emphasizes that such AI employees are only as effective as the context and instructions provided, highlighting the importance of careful setup.
+		Concludes by encouraging viewers to embrace AI tools like Claude Code to build personalized AI employees, reduce reliance on costly freelancers or agencies, and maintain control over brand and strategy.
+		The video ends with a call to action to like, subscribe, and share the content for those interested in AI-driven business automation.

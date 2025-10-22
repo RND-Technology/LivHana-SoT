@@ -1,4 +1,5 @@
 ### Total Investment: $390K
+
 - **NASH Beating Middleware**: $75K over 10 weeks
 - **SATX THCA Takeover**: $225K over 12 months
 - **Lightspeed Integration**: $15K over 1 month

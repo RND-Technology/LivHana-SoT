@@ -3,8 +3,8 @@
 ## Quick Test
 
 1. **Access the Application**
-   - Open: https://herbitrage-voice-980910443251.us-central1.run.app
-   - Or once DNS propagates: https://herbitrage.com
+   - Open: <https://herbitrage-voice-980910443251.us-central1.run.app>
+   - Or once DNS propagates: <https://herbitrage.com>
 
 2. **Login**
    - Email: `jesseniesen@gmail.com`
@@ -23,6 +23,7 @@
 ## Test Scenarios
 
 ### Scenario 1: Basic Voice Interaction
+
 1. Click "Talk to Liv" button
 2. Button should turn gold and show "Listening..."
 3. Speak: "Hello, who are you?"
@@ -33,6 +34,7 @@
 8. Audio plays with Liv's voice response
 
 ### Scenario 2: Multiple Conversations
+
 1. Ask: "What's the weather like?"
 2. Wait for response
 3. Ask: "Tell me a joke"
@@ -40,11 +42,13 @@
 5. Each message labeled as "You" or "Liv Hana"
 
 ### Scenario 3: Error Handling
+
 1. Click "Talk to Liv" but don't speak
 2. Speech recognition should timeout gracefully
 3. Status returns to "Ready to assist"
 
 ### Scenario 4: Logout/Login
+
 1. Click "Logout" button
 2. Should return to login screen
 3. Login again
@@ -53,21 +57,25 @@
 ## API Testing (For Developers)
 
 ### Test Health Endpoint
+
 ```bash
 curl https://herbitrage-voice-980910443251.us-central1.run.app/health
 ```
 
 Expected:
+
 ```json
 {"status":"healthy","service":"herbitrage-voice"}
 ```
 
 ### Test Voice Service Connection
+
 ```bash
 curl https://voice-service-plad5efvha-uc.a.run.app/health
 ```
 
 Expected:
+
 ```json
 {"status":"healthy","service":"voice-service","version":"1.0.0","timestamp":"..."}
 ```
@@ -97,10 +105,12 @@ Expected:
 ## Troubleshooting
 
 ### "Speech recognition not supported"
+
 - **Cause**: Using Firefox or Safari
 - **Solution**: Use Chrome or Edge
 
 ### Microphone permission denied
+
 - **Cause**: Browser blocked microphone access
 - **Solution**:
   1. Click padlock/info icon in address bar
@@ -108,6 +118,7 @@ Expected:
   3. Refresh page
 
 ### "Sorry, something went wrong"
+
 - **Cause**: Voice service unreachable or API error
 - **Solution**:
   1. Check browser console (F12)
@@ -115,6 +126,7 @@ Expected:
   3. Check for CORS errors
 
 ### No audio playback
+
 - **Cause**: Browser audio blocked or ElevenLabs issue
 - **Solution**:
   1. Check browser audio settings
@@ -122,6 +134,7 @@ Expected:
   3. Check browser console for errors
 
 ### Login not working
+
 - **Cause**: Incorrect credentials
 - **Solution**: Use exact credentials:
   - Email: `jesseniesen@gmail.com`
@@ -139,6 +152,7 @@ Expected:
 ## Browser Console Debug
 
 Open browser console (F12) to see:
+
 - Speech recognition events
 - API requests/responses
 - SSE streaming events
@@ -161,7 +175,9 @@ Open browser console (F12) to see:
 ## Support
 
 If issues persist:
+
 1. Check Cloud Run logs:
+
    ```bash
    gcloud run services logs read herbitrage-voice \
      --region us-central1 \
@@ -172,8 +188,9 @@ If issues persist:
 2. Check browser console (F12 → Console tab)
 
 3. Verify voice-service status:
+
    ```bash
    curl https://voice-service-plad5efvha-uc.a.run.app/health
    ```
 
-4. Contact: jesseniesen@gmail.com
+4. Contact: <jesseniesen@gmail.com>

@@ -1,6 +1,7 @@
 #### Sound Effects
 
 **Strategic Use**:
+
 - Emphasize key points
 - Punctuate visual gags
 - Transition between scenes
@@ -8,6 +9,7 @@
 - Maintain engagement
 
 **Avoid**:
+
 - Constant sound effects (exhausting)
 - Stock sounds that sound cheap
 - Volume too loud

@@ -1,4 +1,5 @@
 ### CRITICAL SYSTEMS (RED ALERT)
+
 | System | Status | Owner | Priority | ETA |
 |--------|--------|-------|----------|-----|
 | NASH Beating Middleware | 🔴 DEPLOYING | Sonnet CLI | CRITICAL | Today 2pm |

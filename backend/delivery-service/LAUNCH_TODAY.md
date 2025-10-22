@@ -20,7 +20,7 @@
 
 ### ☐ Step 1: Get DoorDash API Key (15 min)
 
-1. Go to: https://merchant.doordash.com/
+1. Go to: <https://merchant.doordash.com/>
 2. Log in to your DoorDash merchant account
    - (You likely already have this account)
 3. Navigate to: **API** or **Developer** section
@@ -29,7 +29,7 @@
 
 ### ☐ Step 2: Get Uber Eats API Key (15 min)
 
-1. Go to: https://merchants.ubereats.com/
+1. Go to: <https://merchants.ubereats.com/>
 2. Log in to your Uber Eats merchant account
    - (You likely already have this account)
 3. Navigate to: **API** or **Developer** section
@@ -45,6 +45,7 @@ nano .env
 ```
 
 Paste your keys:
+
 ```
 DOORDASH_API_KEY=your-actual-key-here
 UBER_API_KEY=your-actual-key-here
@@ -76,12 +77,14 @@ Save and exit (Ctrl+X, Y, Enter)
 ## Cost Comparison (Per $75 Order)
 
 **Nash/Square:**
+
 - Square fee: $2.18
 - Delivery: $5-8
 - Square markup: 15-20%
 - **Total: $10-15**
 
 **Your Solution:**
+
 - Square fee: $0 (direct integration)
 - Delivery: $5-8
 - Markup: $0
@@ -99,6 +102,7 @@ Save and exit (Ctrl+X, Y, Enter)
 **Difference:** You skip Square intermediary
 
 **You do NOT need to:**
+
 - ❌ Hire drivers
 - ❌ Manage fleet
 - ❌ Buy vehicles
@@ -106,6 +110,7 @@ Save and exit (Ctrl+X, Y, Enter)
 - ❌ Pay for $80K "white-label setup"
 
 **You just need:**
+
 - ✅ 2 API keys (free)
 - ✅ 30 minutes of time
 
@@ -114,6 +119,7 @@ Save and exit (Ctrl+X, Y, Enter)
 ## After Launch: Agent-Driven Optimization
 
 Once live, SI Liv Hana agents will autonomously:
+
 - Optimize delivery routes
 - Adjust pricing based on demand
 - Learn customer preferences
@@ -127,6 +133,7 @@ Once live, SI Liv Hana agents will autonomously:
 ## Support
 
 Questions? Contact Trinity:
+
 - **Sonnet 4.5 CLI** (technical implementation)
 - **Cheetah Cursor** (debugging, frontend)
 - **Replit Liv Hana** (deployment, monitoring)

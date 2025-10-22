@@ -1,4 +1,4 @@
-### Voice Generation:
+### Voice Generation
 
 | Tool | Free Tier | Entry Plan | Cost Structure |
 |------|-----------|------------|----------------|

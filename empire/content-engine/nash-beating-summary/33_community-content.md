@@ -1,4 +1,5 @@
 ### Community Content
+
 - Customer success stories
 - Feature improvement highlights
 - Community feedback content

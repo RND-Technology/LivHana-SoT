@@ -1,8 +1,9 @@
 ## Support
 
 For issues or questions:
+
 - GitHub Issues: [LivHana-Trinity-Local/LivHana-SoT](https://github.com/jesseniesen/LivHana-Trinity-Local)
-- Email: support@herbitrage.com
+- Email: <support@herbitrage.com>
 - Logs: `docker logs reasoning-gateway`
 
 ---

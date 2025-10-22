@@ -1,7 +1,9 @@
 #### From Instagram Reels → Other Platforms
 
 **Tactics**:
+
 1. **Bio Link Strategy**
+
    ```
    🎬 High Noon Cartoon
    📚 Texas Cannabis Compliance Education

@@ -1,4 +1,5 @@
 ### This Week's Focus
+
 1. **NASH Beating Middleware Implementation** - Deploy superior checkout/cart features
 2. **SATX THCA Takeover Strategy Execution** - Begin market penetration
 3. **Lightspeed API Integration** - Connect real data sources

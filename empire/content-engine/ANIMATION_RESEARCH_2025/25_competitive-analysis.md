@@ -1,1 +1,1 @@
-### Competitive Analysis:
+### Competitive Analysis

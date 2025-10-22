@@ -1,4 +1,5 @@
-### Content Strategy:
+### Content Strategy
+
 1. **Monitor Regulatory Changes**
    - Update episodes when new rules emerge
    - Create "Breaking News" episodes for major changes

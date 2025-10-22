@@ -1,6 +1,8 @@
 ### 👤 Jesse CEO
+
 **Role**: Strategic decisions, business approvals, resource allocation, team coordination  
 **Capabilities**:
+
 - Strategic decision making
 - Business approvals
 - Resource allocation

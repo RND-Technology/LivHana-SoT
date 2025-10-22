@@ -1,4 +1,4 @@
-#### User's Claims vs Reality:
+#### User's Claims vs Reality
 
 | Claim | Reality | Evidence |
 |-------|---------|----------|

@@ -9,6 +9,7 @@ The TRUTH Pipeline implements three voice modes: Brevity (<120 tokens), Mentor (
 ## Voice Mode Architecture
 
 ### Voice Mode Flow
+
 ```mermaid
 graph TD
     A[TRUTH Output] --> B[Voice Mode Detection]
@@ -24,6 +25,7 @@ graph TD
 ```
 
 ### Voice Mode Specifications
+
 | Mode | Token Target | Purpose | Transform | Validation |
 |------|-------------|---------|-----------|------------|
 | **Brevity** | <120 tokens | Quick responses | Summarization | Token count |
@@ -33,6 +35,7 @@ graph TD
 ## Brevity Mode Implementation
 
 ### Brevity Mode Configuration
+
 ```json
 {
   "voice_mode": "brevity",
@@ -52,6 +55,7 @@ graph TD
 ```
 
 ### Brevity Transform Logic
+
 ```bash
 #!/bin/bash
 # brevity_mode_transform.sh
@@ -144,6 +148,7 @@ main "$@"
 ## Mentor Mode Implementation
 
 ### Mentor Mode Configuration
+
 ```json
 {
   "voice_mode": "mentor",
@@ -163,6 +168,7 @@ main "$@"
 ```
 
 ### Mentor Transform Logic
+
 ```bash
 #!/bin/bash
 # mentor_mode_transform.sh
@@ -284,6 +290,7 @@ main "$@"
 ## Silence Mode Implementation
 
 ### Silence Mode Configuration
+
 ```json
 {
   "voice_mode": "silence",
@@ -303,6 +310,7 @@ main "$@"
 ```
 
 ### Silence Transform Logic
+
 ```bash
 #!/bin/bash
 # silence_mode_transform.sh
@@ -393,6 +401,7 @@ main "$@"
 ## Voice Mode Detection & Routing
 
 ### Voice Mode Detection Logic
+
 ```bash
 #!/bin/bash
 # voice_mode_detector.sh
@@ -474,6 +483,7 @@ main "$@"
 ## Voice Mode Validation
 
 ### Voice Mode Test Suite
+
 ```bash
 #!/bin/bash
 # voice_mode_test_suite.sh
@@ -596,6 +606,7 @@ main "$@"
 ## ElevenLabs Integration
 
 ### Voice Synthesis
+
 ```bash
 #!/bin/bash
 # elevenlabs_voice_synthesis.sh

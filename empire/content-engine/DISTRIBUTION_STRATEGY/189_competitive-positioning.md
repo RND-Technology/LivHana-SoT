@@ -9,18 +9,21 @@
 5. **Multi-Platform**: Distributed everywhere (maximum reach)
 
 **Competitive Advantages**:
+
 - No direct competitor with same format
 - Animation stands out in compliance space
 - Entertainment value in "boring" topic
 - Comprehensive coverage (not one-off videos)
 
 **Competitive Risks**:
+
 - Cannabis content restrictions
 - Platform policy changes
 - Algorithm changes
 - Larger competitors entering space
 
 **Mitigation Strategies**:
+
 - Diversify across platforms
 - Build email list (owned audience)
 - Focus on quality over quantity

@@ -1,5 +1,7 @@
 ### ADAPT - Adjust strategies based on market conditions
+
 **Process:**
+
 - Monitor competitor responses
 - Adapt to market changes
 - Adjust pricing strategies

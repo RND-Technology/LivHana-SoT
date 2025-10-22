@@ -1,7 +1,9 @@
 #### 4. Lightspeed OAuth2 Token Generation
+
 **Deadline**: Today 2pm CST  
 **Priority**: HIGH  
 **Instructions**:
+
 1. Navigate to reggieanddro.retail.lightspeed.app
 2. Login with admin credentials
 3. Go to Setup → Personal Tokens
@@ -14,6 +16,7 @@
 10. Test API connection
 
 **Required Info**:
+
 - Account ID: 020b2c2a-4661-11ef-e88b-b42e5d3b90cc
 - Current status: Mock mode
 - Required permissions: Read/Write all resources

@@ -1,4 +1,5 @@
 ### **Competitive Advantages:**
+
 1. ✅ Direct Lightspeed integration (no Square)
 2. ✅ 2-4 providers vs Nash's 1-2
 3. ✅ Intelligent routing vs simple priority

@@ -1,4 +1,5 @@
 #### Lt. Dan (Military Discipline)
+
 ```
 - Shirt: Olive Green (#556B2F) or Military Khaki (#C3B091)
 - Vest: Tactical Brown (#5D4E37)

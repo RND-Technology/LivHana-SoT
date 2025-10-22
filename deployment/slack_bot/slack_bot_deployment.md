@@ -9,10 +9,12 @@
 
 ### App Name: "Liv Hana Team Assistant"
 
-### Description:
+### Description
+
 "Voice-enabled cannabis intelligence bot for team collaboration. Provides RPM planning, compliance guidance, and strategic intelligence. TRUTH-validated and competition-driven."
 
-### Bot Token Scopes:
+### Bot Token Scopes
+
 ```
 app_mentions:read
 channels:read
@@ -25,7 +27,8 @@ mpim:read
 users:read
 ```
 
-### Slash Commands:
+### Slash Commands
+
 ```
 /liv - Get Liv Hana status and recent wins
 /rpm - Generate RPM plan for current project
@@ -38,6 +41,7 @@ users:read
 ## Implementation
 
 ### 1. Slack App Setup (1 hour)
+
 ```bash
 # Create Slack app
 # Configure OAuth & Permissions
@@ -46,6 +50,7 @@ users:read
 ```
 
 ### 2. Bot Logic (2 hours)
+
 ```javascript
 // main.js
 const { App } = require('@slack/bolt');
@@ -177,6 +182,7 @@ app.command('/voice', async ({ command, ack, respond }) => {
 ```
 
 ### 3. Backend Integration (1 hour)
+
 ```javascript
 // services/livHanaService.js
 const axios = require('axios');
@@ -262,6 +268,7 @@ module.exports = LivHanaService;
 ```
 
 ### 4. Package Configuration (30 minutes)
+
 ```json
 {
   "name": "liv-hana-slack-bot",
@@ -284,6 +291,7 @@ module.exports = LivHanaService;
 ```
 
 ### 5. Environment Configuration (30 minutes)
+
 ```bash
 # .env
 SLACK_BOT_TOKEN=xoxb-your-bot-token
@@ -297,6 +305,7 @@ PORT=3000
 ## Deployment Steps
 
 ### 1. Create Slack App (1 hour)
+
 1. Go to api.slack.com/apps
 2. Create new app
 3. Configure OAuth & Permissions
@@ -304,18 +313,21 @@ PORT=3000
 5. Get bot token
 
 ### 2. Deploy Bot Code (2 hours)
+
 1. Set up Node.js environment
 2. Install dependencies
 3. Configure environment variables
 4. Deploy to hosting service
 
 ### 3. Configure Slash Commands (1 hour)
+
 1. Add slash command endpoints
 2. Test each command
 3. Verify backend integration
 4. Test voice mode
 
 ### 4. Launch & Monitor (1 hour)
+
 1. Share with team
 2. Monitor usage metrics
 3. Track competition scores
@@ -323,13 +335,15 @@ PORT=3000
 
 ## Success Metrics
 
-### Primary KPIs:
+### Primary KPIs
+
 - **ROI/$/Day:** Target $500/day
 - **Team Adoption:** 80%+ of team members
 - **Command Usage:** 50+ commands/day
 - **Response Quality:** TRUTH compliance > 95%
 
-### Competition Tracking:
+### Competition Tracking
+
 - **Accuracy:** Projection vs Actual
 - **Speed:** Command response time
 - **Value Delivered:** $ impact per command

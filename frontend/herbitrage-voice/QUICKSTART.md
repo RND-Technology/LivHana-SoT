@@ -2,7 +2,7 @@
 
 ## Access the Cockpit
 
-**URL**: https://herbitrage-voice-980910443251.us-central1.run.app
+**URL**: <https://herbitrage-voice-980910443251.us-central1.run.app>
 
 ## Login
 
@@ -30,7 +30,7 @@ Password: TXTOLivHanaHerbitrage
 - "Tell me about Herbitrage"
 - "Explain quantum computing"
 
-## That's It!
+## That's It
 
 The interface is designed to be simple and intuitive. Just talk naturally and Liv will understand and respond.
 

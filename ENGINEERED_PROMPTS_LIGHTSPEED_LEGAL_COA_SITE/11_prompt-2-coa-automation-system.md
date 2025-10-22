@@ -1,4 +1,5 @@
 #### **Prompt 2: COA Automation System**
+
 ```
 Build an automated COA (Certificate of Analysis) ingestion and validation system for reggieanddro.com.
 

@@ -1,4 +1,4 @@
-## 🎉 Success!
+## 🎉 Success
 
 You now have a complete development environment for the Liv Hana E2E Mission! You can:
 

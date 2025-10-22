@@ -1,4 +1,5 @@
 #### Template 3: List Format
+
 ```
 5 Things Every Texas Hemp Business Owner Needs to Know:
 

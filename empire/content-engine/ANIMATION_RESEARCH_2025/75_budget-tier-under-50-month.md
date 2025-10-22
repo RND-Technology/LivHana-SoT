@@ -1,4 +1,4 @@
-### Budget Tier (Under $50/month):
+### Budget Tier (Under $50/month)
 
 ```
 - Kling AI Standard: $6.99

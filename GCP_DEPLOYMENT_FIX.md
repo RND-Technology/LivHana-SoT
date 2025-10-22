@@ -1,4 +1,4 @@
-# GCP DEPLOYMENT FIX - high@reggieanddro.com Permissions Issue
+# GCP DEPLOYMENT FIX - <high@reggieanddro.com> Permissions Issue
 
 ## PROBLEM IDENTIFIED ✅
 
@@ -36,7 +36,7 @@ gcloud run deploy reasoning-gateway \
 
 ---
 
-### Option 2: Add Specific Roles to high@reggieanddro.com
+### Option 2: Add Specific Roles to <high@reggieanddro.com>
 
 If you must use `high@reggieanddro.com` for deployments, remove Owner and add these specific roles:
 
@@ -127,6 +127,7 @@ gcloud run deploy reasoning-gateway \
 ## WHY "EXCESS PERMISSIONS" WARNING
 
 The "11409/11764 excess permissions" means:
+
 - Owner role grants 11,764 permissions total
 - For Cloud Run deployment, you only need ~350 permissions
 - Google is warning that you have 11,409 unnecessary permissions
@@ -137,17 +138,20 @@ The "11409/11764 excess permissions" means:
 
 ## RECOMMENDED SETUP (Production Best Practice)
 
-**Human Accounts** (high@reggieanddro.com, jesseniesen@gmail.com):
+**Human Accounts** (<high@reggieanddro.com>, <jesseniesen@gmail.com>):
+
 - `roles/owner` - For project admin tasks ONLY
 - Use for: IAM management, billing, project settings
 - DO NOT use for: Deployments, CI/CD, automated tasks
 
 **Service Accounts** (cloud-run-deployer@...):
+
 - `roles/run.admin` + `roles/cloudbuild.builds.editor` + `roles/storage.admin`
 - Use for: All automated deployments
 - Benefit: Limited blast radius if compromised
 
 **Result**:
+
 - ✅ Deployments work
 - ✅ Security improved (least privilege)
 - ✅ No "excess permissions" warning
@@ -177,7 +181,7 @@ gcloud run deploy herbitrage-voice \
 
 ## CURRENT STATUS
 
-- **Account in use**: high@reggieanddro.com (Owner role)
+- **Account in use**: <high@reggieanddro.com> (Owner role)
 - **Problem**: Too many permissions causing deployment issues
 - **Solution**: Use service account impersonation (Option 1) OR add specific roles (Option 2)
 - **Time to fix**: 2 minutes

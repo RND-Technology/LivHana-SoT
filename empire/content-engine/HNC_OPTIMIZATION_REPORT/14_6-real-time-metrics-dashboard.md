@@ -15,6 +15,7 @@ class MetricsTracker {
 ```
 
 **Metrics Tracked:**
+
 1. **Performance Metrics**
    - Generation time per episode
    - Fastest/slowest generation
@@ -34,6 +35,7 @@ class MetricsTracker {
    - Error tracking
 
 **Dashboard Output:**
+
 ```
 📊 PERFORMANCE REPORT
 ═══════════════════════════════════════════════════════════════
@@ -64,6 +66,7 @@ class MetricsTracker {
 ```
 
 **Results:**
+
 - Real-time performance monitoring: ✅ Active
 - Metrics persistence: ✅ JSON export
 - Dashboard visualization: ✅ Console output

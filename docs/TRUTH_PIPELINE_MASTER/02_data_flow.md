@@ -37,6 +37,7 @@ sequenceDiagram
 ## Stage 1: L1 Apify Scrape
 
 ### Input Format
+
 ```json
 {
   "query": "string",
@@ -47,6 +48,7 @@ sequenceDiagram
 ```
 
 ### Processing Logic
+
 ```bash
 #!/bin/bash
 # step_apify_v2.sh
@@ -71,6 +73,7 @@ done
 ```
 
 ### Output Format
+
 ```json
 {
   "raw_data": "object",
@@ -90,6 +93,7 @@ done
 ## Stage 2: L2 Perplexity Verify
 
 ### Input Format
+
 ```json
 {
   "facts": [
@@ -104,6 +108,7 @@ done
 ```
 
 ### Processing Logic
+
 ```bash
 #!/bin/bash
 # step_perplexity_verify_v2.sh
@@ -139,6 +144,7 @@ done
 ```
 
 ### Output Format
+
 ```json
 {
   "verified_facts": [
@@ -161,6 +167,7 @@ done
 ## Stage 3: L3 GPT-5 Mini Compress
 
 ### Input Format
+
 ```json
 {
   "verified_facts": "array",
@@ -170,6 +177,7 @@ done
 ```
 
 ### Processing Logic
+
 ```bash
 #!/bin/bash
 # step_gpt5_compress_v2.sh
@@ -201,6 +209,7 @@ fi
 ```
 
 ### Output Format
+
 ```json
 {
   "compressed_facts": "array",
@@ -221,6 +230,7 @@ fi
 ## Stage 4: L4 Claude Sonnet TRUTH
 
 ### Input Format
+
 ```json
 {
   "compressed_facts": "array",
@@ -233,6 +243,7 @@ fi
 ```
 
 ### Processing Logic
+
 ```bash
 #!/bin/bash
 # step_claude_truth_v2.sh
@@ -268,6 +279,7 @@ fi
 ```
 
 ### Output Format
+
 ```json
 {
   "status": "ok" | "failed",
@@ -305,6 +317,7 @@ fi
 ## Stage 5: L5 RPM Orchestration
 
 ### Input Format
+
 ```json
 {
   "truth_output": "object",
@@ -314,6 +327,7 @@ fi
 ```
 
 ### Processing Logic
+
 ```bash
 #!/bin/bash
 # step_rpm_emit_v2.sh
@@ -343,6 +357,7 @@ echo "$RPM_ACTIONS" | jq '.[] | {
 ```
 
 ### Output Format
+
 ```json
 {
   "rpm_actions": "array",
@@ -362,6 +377,7 @@ echo "$RPM_ACTIONS" | jq '.[] | {
 ## Stage 6: L6 Persistence & Evidence
 
 ### Input Format
+
 ```json
 {
   "final_artifact": "object",
@@ -374,6 +390,7 @@ echo "$RPM_ACTIONS" | jq '.[] | {
 ```
 
 ### Processing Logic
+
 ```bash
 #!/bin/bash
 # step_persistence_v2.sh
@@ -434,6 +451,7 @@ EOF
 ```
 
 ### Output Format
+
 ```json
 {
   "persistence_status": "success",
@@ -451,6 +469,7 @@ EOF
 ## Error Handling & Retry Logic
 
 ### Retry Matrix
+
 | Stage | Retry Count | Backoff | Failure Action |
 |-------|-------------|---------|----------------|
 | Apify | 3 | 2s, 5s, 10s | Fallback actor |
@@ -460,6 +479,7 @@ EOF
 | RPM | 1 | 5s | Skip profit gating |
 
 ### Failure Recovery
+
 ```bash
 #!/bin/bash
 # failure_recovery.sh

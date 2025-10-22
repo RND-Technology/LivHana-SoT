@@ -3,6 +3,7 @@
 Creates lip-synced videos using D-ID.
 
 **Parameters:**
+
 - `audioFiles` (Array): Audio file objects
 - `characterImages` (Array): Character image objects
 

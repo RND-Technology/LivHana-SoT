@@ -7,6 +7,7 @@ To complete the tier-1 stack, we need 2 free API keys from you.
 ## 1. YouTube Data API v3 (FREE - 10K requests/day)
 
 ### Why We Need It
+
 - Analyze cannabis YouTube channels for viral patterns
 - Extract what's working (titles, hooks, engagement)
 - Feed insights to HNC content engine
@@ -14,24 +15,29 @@ To complete the tier-1 stack, we need 2 free API keys from you.
 ### How to Get It (5 minutes)
 
 **Step 1:** Go to Google Cloud Console
+
 ```
 https://console.cloud.google.com/
 ```
 
 **Step 2:** Create a new project (or use existing)
+
 - Click "Select a project" → "New Project"
 - Name: "LivHana Content Engine"
 - Click "Create"
 
 **Step 3:** Enable YouTube Data API v3
+
 ```
 https://console.cloud.google.com/apis/library/youtube.googleapis.com
 ```
+
 - Click "ENABLE"
 - Wait 30 seconds for activation
 
 **Step 4:** Create API Key
-- Go to: https://console.cloud.google.com/apis/credentials
+
+- Go to: <https://console.cloud.google.com/apis/credentials>
 - Click "+ CREATE CREDENTIALS" → "API key"
 - Copy the key (starts with "AIza...")
 - Click "Restrict Key"
@@ -39,6 +45,7 @@ https://console.cloud.google.com/apis/library/youtube.googleapis.com
   - Save
 
 **Step 5:** Paste into cockpit config
+
 ```bash
 # Edit this file:
 empire/content-engine/cockpit-data/api-keys.json
@@ -61,6 +68,7 @@ empire/content-engine/cockpit-data/api-keys.json
 ## 2. NewsAPI.org (FREE - 100 requests/day)
 
 ### Why We Need It
+
 - Real-time cannabis news from 80,000+ sources
 - Replaces blocked Reddit with reliable API
 - Texas + Federal cannabis news ingestion
@@ -68,21 +76,25 @@ empire/content-engine/cockpit-data/api-keys.json
 ### How to Get It (2 minutes)
 
 **Step 1:** Go to NewsAPI.org
+
 ```
 https://newsapi.org/register
 ```
 
 **Step 2:** Sign up (free account)
+
 - Enter email
 - Enter password
 - Click "Submit"
 
 **Step 3:** Verify email & get API key
+
 - Check your email for verification link
 - Click verify
 - Copy API key from dashboard
 
 **Step 4:** Paste into cockpit config
+
 ```bash
 # Edit this file:
 empire/content-engine/cockpit-data/api-keys.json
@@ -106,6 +118,7 @@ empire/content-engine/cockpit-data/api-keys.json
 ## 3. BONUS: DoorDash Drive (OPTIONAL - For Delivery)
 
 ### Why You Need It
+
 - Launch same-day delivery (compete with Farmacy, HighWay, SACC)
 - Expected impact: +30-50% revenue
 - Timeline: 7-10 days approval
@@ -113,11 +126,13 @@ empire/content-engine/cockpit-data/api-keys.json
 ### How to Apply (5 minutes)
 
 **Step 1:** Go to DoorDash Drive
+
 ```
 https://get.doordash.com/en-us/products/drive
 ```
 
 **Step 2:** Fill out business application
+
 - Business name: Reggie & Dro Cannabis Store
 - Business type: Retail (Cannabis/Hemp)
 - Address: Your San Antonio store address
@@ -125,6 +140,7 @@ https://get.doordash.com/en-us/products/drive
 - Contact info
 
 **Step 3:** Upload docs
+
 - Sales Tax Permit
 - Business License
 - Certificate of Insurance
@@ -224,16 +240,19 @@ node news-ingestion-pipeline.mjs
 ## SECURITY NOTES
 
 ### Keep API Keys Secret
+
 - ✅ DO: Store in `cockpit-data/api-keys.json` (gitignored)
 - ✅ DO: Use environment variables in production
 - ❌ DON'T: Commit to GitHub
 - ❌ DON'T: Share publicly
 
 ### Rate Limits
+
 - YouTube: 10,000 requests/day (plenty for your use case)
 - NewsAPI: 100 requests/day (run once per hour = 24/day)
 
 ### Cost
+
 - YouTube Data API v3: **FREE** forever
 - NewsAPI.org: **FREE** up to 100 req/day (upgrade later if needed)
 - DoorDash Drive: **PAY PER DELIVERY** ($2-8 each)

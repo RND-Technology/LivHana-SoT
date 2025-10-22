@@ -1,4 +1,5 @@
 ### Character Overview
+
 - **Name:** Jesse Niesen
 - **Role:** CEO, Liv Hana Empire
 - **Voice ID:** pNInz6obpgDQGcFmaJgB (Adam - deep, authoritative)

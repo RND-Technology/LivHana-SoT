@@ -1,4 +1,5 @@
 ### **Lightspeed Custom Fields:**
+
 ```javascript
 {
   "custom_fields": {

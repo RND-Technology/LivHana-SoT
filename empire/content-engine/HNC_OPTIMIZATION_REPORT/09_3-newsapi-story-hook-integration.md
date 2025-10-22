@@ -13,6 +13,7 @@ class NewsHookIntegrator {
 ```
 
 **Story Hooks Integrated:**
+
 1. **VA Hospitals Begin Hemp Trials for Veteran PTSD Treatment**
    - Category: Medical
    - Angle: Healing vs Stigma
@@ -32,6 +33,7 @@ class NewsHookIntegrator {
    - TPOPS Alignment: 8/10
 
 **Results:**
+
 - 100% episodes use high-engagement news hooks
 - Average engagement score: 91.7/100
 - News hook integration: Automatic

@@ -1,4 +1,5 @@
 ### OPERATIONAL METRICS
+
 | Metric | Target | Current | Status |
 |--------|--------|---------|--------|
 | Team Productivity | 50% increase | 48% increase | 🟡 ON TRACK |

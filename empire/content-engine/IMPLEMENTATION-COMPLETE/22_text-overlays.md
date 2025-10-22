@@ -1,4 +1,5 @@
 #### ✅ Text Overlays
+
 - Title cards with episode info
 - Timed display (first 3 seconds)
 - Custom font support

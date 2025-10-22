@@ -1,4 +1,5 @@
 #### ✅ Automated Setup Script
+
 - **File:** `setup-pipeline.sh`
 - Prerequisites checking (Node.js, FFmpeg, gcloud)
 - Automatic installation (where possible)

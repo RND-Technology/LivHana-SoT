@@ -1,4 +1,4 @@
-### GoDaddy API's Silent Auto-Correction:
+### GoDaddy API's Silent Auto-Correction
 
 1. **Received:** Invalid CNAME @ requests
 2. **Detected:** DNS RFC violation

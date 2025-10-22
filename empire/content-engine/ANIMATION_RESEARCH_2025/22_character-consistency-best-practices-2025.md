@@ -23,6 +23,7 @@
    - Ensures cohesion across frames
 
 **Recommended Workflow:**
+
 ```
 Midjourney Character Design → LoRA Training (optional) →
 Omni Reference for variants → Export to Kling/Runway for animation

@@ -1,4 +1,5 @@
-### Verification:
+### Verification
+
 ```bash
 $ dig +short jesseniesen.com
 34.143.72.2

@@ -1,4 +1,5 @@
 ### Critical Files
+
 1. `backend/delivery-service/LAUNCH_TODAY.md` - 30-min launch guide
 2. `empire/content-engine/nash-beating-summary.md` - Nash strategy ($0 plan)
 3. `docs/analysis/TEAM COMMS 10.7.25 RPM DNA CAPTURE INGEST SYNTH FUSE to WIN RACE!` - Full team context

@@ -16,12 +16,14 @@ curl -X PUT \
 ```
 
 **Pros:**
+
 - ✅ Single stable IP
 - ✅ Advanced load balancing
 - ✅ SSL termination at LB
 - ✅ DDoS protection
 
 **Cons:**
+
 - 💰 Cost: ~$18/month per IP
 - 🔧 Additional GCP infrastructure
 

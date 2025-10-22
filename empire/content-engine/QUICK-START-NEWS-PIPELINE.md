@@ -3,17 +3,20 @@
 ## INSTANT USE
 
 ### View Today's News
+
 ```bash
 cat empire/content-engine/output/news/latest.json | python3 -m json.tool
 ```
 
 ### Run Pipeline Manually
+
 ```bash
 cd empire/content-engine
 node news-ingestion-pipeline.mjs
 ```
 
 ### Set Up Daily Automation
+
 ```bash
 # Edit crontab
 crontab -e
@@ -27,16 +30,19 @@ crontab -e
 ## TODAY'S EPISODE IDEAS (OCT 7, 2025)
 
 ### 1. The Vape Ban Paradox (10/10)
+
 **Story**: Texas bans cannabinoid vapes with 1 year jail time
 **Dialogue**: "I can buy Delta-8 gummies, but vape it and that's a year in jail?"
 **Platforms**: YouTube Shorts, TikTok, Instagram Reels
 
 ### 2. Trump's Cannabis Countdown (10/10)
+
 **Story**: Trump promises decision "in coming weeks" on rescheduling
 **Dialogue**: "We been hearing 'coming weeks' for coming YEARS."
 **Platforms**: YouTube Shorts, TikTok, Twitter/X
 
 ### 3. Austin's Decrim Dream Dies (10/10)
+
 **Story**: Court blocks Austin marijuana decriminalization
 **Dialogue**: "Ken Paxton sued FIVE cities just to keep arresting people for weed."
 **Platforms**: YouTube Shorts, Instagram Reels, Twitter/X
@@ -86,6 +92,7 @@ tail -50 output/news/logs/pipeline-*.log | tail -50
 ## INTEGRATION
 
 ### Pull Latest News in Your Script
+
 ```javascript
 import latestNews from './output/news/latest.json' assert { type: 'json' };
 
@@ -95,6 +102,7 @@ console.log(topStory.dialogue_hooks);
 ```
 
 ### Use in Episode Generator
+
 ```javascript
 // Get today's top cannabis stories
 const brief = latestNews;
@@ -142,6 +150,7 @@ episodes.forEach(episode => {
 ## TROUBLESHOOTING
 
 **Pipeline not running?**
+
 ```bash
 # Check Node.js
 node --version
@@ -151,6 +160,7 @@ node news-ingestion-pipeline.mjs
 ```
 
 **Cron not working?**
+
 ```bash
 # Check crontab
 crontab -l
@@ -163,6 +173,7 @@ tail -f output/news/logs/cron.log
 ```
 
 **Empty data?**
+
 - Pipeline needs API integration for automatic data collection
 - Currently uses manually gathered news from WebSearch
 - See NEWS-PIPELINE-README.md for API integration instructions

@@ -1,4 +1,5 @@
 ### Technical Metrics
+
 - Invoice processing time: <5 minutes
 - Label generation time: <30 seconds
 - COA lookup success rate: >90%

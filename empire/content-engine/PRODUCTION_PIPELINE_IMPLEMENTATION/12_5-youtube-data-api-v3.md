@@ -5,6 +5,7 @@
 **Implementation:**
 
 **Step 1: Get Access Token**
+
 ```javascript
 POST https://oauth2.googleapis.com/token
 Body:
@@ -15,6 +16,7 @@ Body:
 ```
 
 **Step 2: Upload Video**
+
 ```javascript
 POST https://www.googleapis.com/upload/youtube/v3/videos?uploadType=multipart&part=snippet,status
 Headers:

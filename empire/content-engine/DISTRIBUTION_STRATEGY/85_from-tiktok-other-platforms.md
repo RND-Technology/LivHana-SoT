@@ -1,7 +1,9 @@
 #### From TikTok → Other Platforms
 
 **Tactics**:
+
 1. **Bio Optimization**
+
    ```
    🤠 Texas Cannabis Compliance | 60-sec Shorts
    🎬 84 Episodes • New Daily

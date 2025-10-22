@@ -1,4 +1,5 @@
 # 🎯 SHELL ENVIRONMENT FIX PLAN
+
 **Timestamp**: 2025-10-22T01:54:00Z  
 **Status**: READY TO EXECUTE  
 **Priority**: TIER-1 CRITICAL
@@ -8,21 +9,27 @@
 ## 🔥 CRITICAL ISSUES IDENTIFIED
 
 ### 1. Shell Blocking on Every Init
+
 **File**: `~/.zshrc` line 45  
 **Problem**: Blocking boot script runs on EVERY shell, causing Cursor timeout  
+
 ```bash
 bash /Users/jesseniesen/LivHana-Trinity-Local/TIER1_BOOT_LOCK_3_AGENTS_24_7.sh
 ```
 
 ### 2. Missing 1Password Item
+
 **File**: `~/.zshrc` line 43  
 **Problem**: Tries to fetch non-existent "OpenAI API Key" item  
+
 ```bash
 export OPENAI_API_KEY=$(op item get "OpenAI API Key" --fields password --reveal)
 ```
+
 **Result**: `[ERROR] "OpenAI API Key" isn't an item`
 
 ### 3. Wrong Directory Context
+
 **Expected**: `/Users/jesseniesen/LivHana-Trinity-Local` (parent)  
 **Actual**: `/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT` (root only)
 
@@ -31,13 +38,16 @@ export OPENAI_API_KEY=$(op item get "OpenAI API Key" --fields password --reveal)
 ## ✅ FIX SEQUENCE (5 STEPS)
 
 ### **STEP 1: Backup Current Shell Config**
+
 ```bash
 cp ~/.zshrc ~/.zshrc.backup.$(date +%Y%m%d_%H%M%S)
 cp ~/.zshenv ~/.zshenv.backup.$(date +%Y%m%d_%H%M%S)
 ```
 
 ### **STEP 2: Fix .zshrc - Remove Blocking Lines**
+
 Edit `~/.zshrc` and COMMENT OUT or REMOVE these lines:
+
 ```bash
 # LINE 43 - Comment out missing 1Password item
 # export OPENAI_API_KEY=$(op item get "OpenAI API Key" --fields password --reveal)
@@ -50,6 +60,7 @@ export OPENAI_API_KEY="local-voice-mode-active"  # Keep this as fallback
 ```
 
 **CLEANER APPROACH**: Replace lines 43-46 with:
+
 ```bash
 # OpenAI fallback for local voice mode
 export OPENAI_API_KEY="${OPENAI_API_KEY:-local-voice-mode-active}"
@@ -59,6 +70,7 @@ alias tier1-boot='bash /Users/jesseniesen/LivHana-Trinity-Local/TIER1_BOOT_LOCK_
 ```
 
 ### **STEP 3: Verify Shell Loads Fast**
+
 ```bash
 # Test shell initialization time (should be < 2 seconds)
 time zsh -i -c exit
@@ -68,12 +80,15 @@ time zsh -i -c exit
 ```
 
 ### **STEP 4: Fix Boot Script 1Password Calls**
+
 The boot script at `scripts/claude_tier1_boot.sh` tries to fetch these items:
+
 - `ANTHROPIC_API_KEY` (line 101)
 - `DEEPSEEK_API_KEY` (line 109)
 - `PERPLEXITY_API_KEY` (line 109)
 
 **Check which actually exist**:
+
 ```bash
 op item list --vault LivHana-Ops-Keys --format json | jq -r '.[].title' | grep -i "anthropic\|deepseek\|perplexity\|openai"
 ```
@@ -81,6 +96,7 @@ op item list --vault LivHana-Ops-Keys --format json | jq -r '.[].title' | grep -
 **If none exist**, create fallbacks in boot script OR create 1Password items.
 
 ### **STEP 5: Restart Shell & Cursor**
+
 ```bash
 # Option A: Restart current terminal
 exec zsh
@@ -94,6 +110,7 @@ exec zsh
 ## 🎯 POST-FIX VALIDATION
 
 ### Validate Shell Environment
+
 ```bash
 # 1. Shell loads quickly (< 2s)
 time zsh -i -c exit
@@ -106,6 +123,7 @@ zsh -i -c 'echo "Shell loaded: $SHELL"'
 ```
 
 ### Validate Boot Script
+
 ```bash
 cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT
 ./scripts/claude_tier1_boot.sh
@@ -165,5 +183,3 @@ alias claude-tier1='tier1-boot && claude'
 **ONE SHOT, ONE KILL**: Fix shell environment blocking, remove missing 1Password calls, restore fast shell initialization.
 
 **SEMPER FI** 🇺🇸
-
-

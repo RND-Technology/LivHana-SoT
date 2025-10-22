@@ -1,4 +1,5 @@
-#### Hana (Grower) - Earthy, Passionate:
+#### Hana (Grower) - Earthy, Passionate
+
 ```
 Voice Style: Female, mid-20s, warm, gentle, enthusiastic about plants, slight organic/earthy quality
 

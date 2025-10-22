@@ -13,6 +13,7 @@ predictEngagement(episode) {
 ```
 
 **Prediction Factors:**
+
 - Title contains numbers: +0.5
 - Title contains questions: +0.5
 - Title contains excitement (!): +0.5
@@ -20,6 +21,7 @@ predictEngagement(episode) {
 - Trump rhetoric density: Up to +1.5
 
 **Results:**
+
 - Average engagement prediction: **7.81/10**
 - Range: 7.0 - 9.5
 - Correlation with viral score: 88% (high)

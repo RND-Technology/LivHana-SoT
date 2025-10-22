@@ -131,6 +131,7 @@ last-reviewed: 2025-10-06
 **Capacity**: 40 hours (Jesse) + 40 hours (Dev Team) = 80 hours total
 
 **Allocated**:
+
 - 🔴 P0 Critical: 18 hours (22.5%)
 - 🟠 P1 High: 24 hours (30%)
 - 🟡 P2 Medium: 8 hours (10%)
@@ -138,6 +139,7 @@ last-reviewed: 2025-10-06
 - **Buffer**: 29 hours (36.25%)
 
 **Status**:
+
 - ✅ Completed: 0 tasks (0%)
 - 🟡 In Progress: 2 tasks (20%)
 - 🟢 Active: 4 tasks (40%)
@@ -146,6 +148,7 @@ last-reviewed: 2025-10-06
 - 🔴 Not Started: 1 task (10%)
 
 **Health**: 🟡 Moderate
+
 - **Blocker Count**: 1 (needs immediate attention)
 - **Critical Tasks**: 3 (all P0 - high focus)
 - **Team Load**: Within capacity
@@ -156,7 +159,9 @@ last-reviewed: 2025-10-06
 ## 🎯 Daily Focus
 
 ### Monday 10/7
+
 **Priority**: 🔴 UNBLOCK TASK-001
+
 ```
 Morning:
   └─ Debug age gate link
@@ -170,7 +175,9 @@ Afternoon:
 ```
 
 ### Tuesday 10/8
+
 **Priority**: 🔴 COMPLETE TASK-002 & TASK-003
+
 ```
 Morning:
   └─ Complete Twilio setup
@@ -184,7 +191,9 @@ Afternoon:
 ```
 
 ### Wednesday 10/9
+
 **Priority**: 🟠 TASK-006 Legal Review
+
 ```
 Morning:
   └─ Legal counsel meeting
@@ -196,7 +205,9 @@ Afternoon:
 ```
 
 ### Thursday-Friday 10/10-11
+
 **Priority**: 🟠 TASK-005 A/B Testing
+
 ```
 Day 1:
   └─ Framework selection
@@ -238,6 +249,7 @@ Status: On track (pending TASK-001 unblock)
 ## ⚡ Quick Actions
 
 ### Unblock TASK-001
+
 ```bash
 # Navigate to age gate code
 cd frontend/cockpit
@@ -255,6 +267,7 @@ git push origin main
 ```
 
 ### Start TASK-003
+
 ```bash
 # Purchase Twilio number
 # 1. Login: https://console.twilio.com
@@ -264,6 +277,7 @@ git push origin main
 ```
 
 ### Continue TASK-002
+
 ```bash
 # Get Kaja credentials from 1Password
 op item get "KAJA_API_KEY" --reveal
@@ -280,6 +294,7 @@ npm run test:payment
 ## 🎯 Success Criteria
 
 ### End of Week (Friday 10/11)
+
 - [ ] All P0 tasks completed (3/3) ✅
 - [ ] 2+ P1 tasks completed (2/3) ✅
 - [ ] 0 blockers remaining ✅

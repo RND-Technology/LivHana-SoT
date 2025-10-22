@@ -1,6 +1,8 @@
 ### 3. Kiefs Dispensary (12% Market Share)
+
 **Position:** Welcoming head shop specializing in premium THCA  
 **Strengths:**
+
 - Amazing vibes and atmosphere
 - Premium THCA, CBD, Delta-9 products
 - Local pickup/delivery
@@ -9,6 +11,7 @@
 - Physical location at 442 Bandera Rd
 
 **Weaknesses:**
+
 - Limited online presence
 - No specific pricing mentioned
 - Basic product information

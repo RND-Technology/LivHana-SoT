@@ -22,7 +22,7 @@
 
 - [ ] **Admin access confirmed**
   - [ ] Ecwid admin credentials available
-  - [ ] Can login to https://my.ecwid.com/cp/CP.html
+  - [ ] Can login to <https://my.ecwid.com/cp/CP.html>
   - [ ] Have permissions to edit Custom CSS
 
 ---
@@ -65,7 +65,7 @@
 
 ### Category Buttons - Quick Check
 
-- [ ] **Visit store page**: https://reggieanddro.com
+- [ ] **Visit store page**: <https://reggieanddro.com>
 - [ ] Buttons are smaller (not oversized)
 - [ ] Background is green (#2D5F3F)
 - [ ] Text is white and readable
@@ -78,7 +78,7 @@
 ### Checkout Calendar - Quick Check
 
 - [ ] **Add item to cart**
-- [ ] **Go to checkout**: https://reggieanddro.com/cart
+- [ ] **Go to checkout**: <https://reggieanddro.com/cart>
 - [ ] Navigate to delivery/pickup section
 - [ ] Calendar appears modern (not "dog shit")
 - [ ] Header is green gradient
@@ -131,16 +131,19 @@
 ### Category Buttons
 
 **Visual States**:
+
 - [ ] Normal: Green background, white text
 - [ ] Hover: Darker green, gold border, lifts slightly
 - [ ] Active: Gold background, dark text
 - [ ] Focus (Tab key): Gold outline visible
 
 **Mobile Responsive**:
+
 - [ ] Tablet (768px): 2 columns
 - [ ] Phone (480px): Full width
 
 **Accessibility**:
+
 - [ ] Tab key navigates through buttons
 - [ ] Text contrast is clear
 - [ ] Focus indicators visible
@@ -148,6 +151,7 @@
 ### Checkout Calendar
 
 **Date Picker**:
+
 - [ ] Header shows current month/year
 - [ ] Navigation arrows work (prev/next)
 - [ ] Weekday labels visible
@@ -158,6 +162,7 @@
 - [ ] Today marked with green border
 
 **Time Slots**:
+
 - [ ] Display in grid layout
 - [ ] Hover on slot: border turns green, lifts
 - [ ] Selected slot: gold background
@@ -165,6 +170,7 @@
 - [ ] Only one slot selectable at a time
 
 **Mobile**:
+
 - [ ] Calendar fits screen width
 - [ ] Time slots show 2-3 columns on phone
 - [ ] Touch targets adequate size
@@ -191,6 +197,7 @@
 - [ ] Positive feedback received
 
 **Metrics**:
+
 - Conversion rate: _______________ (baseline) → _______________ (after)
 - Cart abandonment: _______________ (baseline) → _______________ (after)
 
@@ -199,16 +206,19 @@
 ## ISSUES & RESOLUTIONS
 
 ### Issue 1
+
 **Description**: _______________________________________________
 **Resolution**: _______________________________________________
 **Time to Fix**: _______________
 
 ### Issue 2
+
 **Description**: _______________________________________________
 **Resolution**: _______________________________________________
 **Time to Fix**: _______________
 
 ### Issue 3
+
 **Description**: _______________________________________________
 **Resolution**: _______________________________________________
 **Time to Fix**: _______________

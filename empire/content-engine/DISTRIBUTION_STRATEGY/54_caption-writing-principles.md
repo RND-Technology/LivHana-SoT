@@ -1,6 +1,7 @@
 ### Caption Writing Principles
 
 **The Golden Rules**:
+
 1. Front-load value (first line determines scroll)
 2. Create curiosity gaps
 3. Include clear call-to-action

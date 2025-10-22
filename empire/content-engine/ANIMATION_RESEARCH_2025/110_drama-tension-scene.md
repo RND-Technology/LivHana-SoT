@@ -1,4 +1,5 @@
-#### Drama/Tension Scene:
+#### Drama/Tension Scene
+
 ```
 Genre: Cinematic orchestral
 Mood: Dramatic, urgent, high stakes

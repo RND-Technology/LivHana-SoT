@@ -1,4 +1,5 @@
 ### Current SATX Delivery Market
+
 | Competitor | Delivery Model | Pricing | Speed | Our Advantage |
 |------------|----------------|---------|-------|---------------|
 | **Farmacy Botanical** | Delivery-only | ~$10/g | Same-day | ✅ We have storefront + social club |

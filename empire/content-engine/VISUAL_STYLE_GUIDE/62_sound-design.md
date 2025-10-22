@@ -1,6 +1,7 @@
 ### Sound Design
 
 **Music Styles (From Suno generation):**
+
 - **Upbeat Texas Country:** Monday (Character Development)
 - **Dramatic Texas Western:** Sunday (Week Recap)
 - **Majestic Reveal Theme:** Tuesday (Product Spotlight)
@@ -10,6 +11,7 @@
 - **Playful Educational Melody:** Saturday (Fun Facts)
 
 **Sound Effect Library:**
+
 - Swoosh (transitions)
 - Pop (text appearances, data reveals)
 - Ding (successful actions, approvals)
@@ -19,6 +21,7 @@
 - Gavel/authoritative (compliance, legal moments)
 
 **Voice (ElevenLabs):**
+
 - Jesse: pNInz6obpgDQGcFmaJgB (Adam - deep, authoritative)
 - Liv Hana: EXAVITQu4vr4xnSDxMaL (Bella - intelligent, airy)
 - Chief Steve: AZnzlk1XvdvUeBnXmlld (Antoni - nervous, anxious)

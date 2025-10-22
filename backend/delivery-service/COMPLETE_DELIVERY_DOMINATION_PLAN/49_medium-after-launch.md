@@ -1,4 +1,5 @@
 ### MEDIUM (After Launch)
+
 1. Add 3rd/4th delivery providers
 2. Implement membership program
 3. Build referral engine

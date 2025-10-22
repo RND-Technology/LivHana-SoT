@@ -5,11 +5,13 @@ List all available agent capabilities in the swarm.
 **Endpoint:** `GET /api/swarm/capabilities`
 
 **Headers:**
+
 ```
 X-API-Key: test
 ```
 
 **Response:** `200 OK`
+
 ```json
 {
   "success": true,
@@ -64,6 +66,7 @@ X-API-Key: test
 ```
 
 **Example:**
+
 ```bash
 curl -H "X-API-Key: test" \
   http://localhost:8080/api/swarm/capabilities

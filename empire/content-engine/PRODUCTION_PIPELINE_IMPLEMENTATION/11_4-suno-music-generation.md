@@ -3,6 +3,7 @@
 **Purpose:** Generate background music
 
 **Implementation:**
+
 ```javascript
 POST https://api.sunoapi.com/api/v1/generate
 Headers:
@@ -17,6 +18,7 @@ Body:
 ```
 
 **Response:**
+
 ```json
 {
   "audio_url": "https://cdn.sunoapi.com/..."

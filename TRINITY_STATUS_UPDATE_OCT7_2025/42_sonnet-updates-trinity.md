@@ -1,5 +1,7 @@
 ### **Sonnet Updates Trinity:**
+
 When code changes needed:
+
 ```
 🔧 CODE UPDATE REQUIRED:
 - Service: [service_name]

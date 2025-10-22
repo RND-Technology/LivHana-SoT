@@ -1,4 +1,5 @@
 # HIGH NOON CARTOON - CHARACTER REFERENCE SHEETS
+
 ## Complete Character Profiles for Animation Production
 
 **Last Updated:** 2025-10-07
@@ -8,6 +9,7 @@
 ---
 
 ## TABLE OF CONTENTS
+
 1. [Document Overview](#document-overview)
 2. [Jesse Niesen - CEO](#jesse-niesen---ceo)
 3. [Liv Hana AI EA - AI Executive Assistant](#liv-hana-ai-ea---ai-executive-assistant)
@@ -23,13 +25,16 @@
 ## DOCUMENT OVERVIEW
 
 ### Purpose
+
 This document provides complete character profiles for all five HIGH NOON CARTOON characters. Use this as a reference for:
+
 - Voice actors (personality, catchphrases, emotional range)
 - Animators (movement style, gestures, physical characteristics)
 - Writers (dialogue style, motivations, character arcs)
 - Directors (scene composition, character dynamics)
 
 ### Character Archetypes
+
 - **Jesse Niesen:** The Visionary Leader (protagonist)
 - **Liv Hana AI EA:** The Loyal Sidekick (deuteragonist)
 - **Chief Steve:** The Bumbling Antagonist (comic relief)
@@ -56,18 +61,21 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 **Facial Hair:** Well-groomed short beard, maintained but not overly styled
 **Eyes:** Brown, intelligent, expressive
 **Distinctive Features:**
+
 - Strong jawline
 - Confident smile
 - Approachable despite authority
 - Slight laugh lines (shows personality)
 
 **Posture:**
+
 - Confident but not aggressive
 - Open body language (arms often gesturing)
 - Leans forward when engaged
 - Stands with weight evenly distributed
 
 **Clothing Style:**
+
 - **Primary:** Button-down shirts (sage green, burnt orange, dusty blue)
 - **Always:** Sleeves rolled to elbows (working CEO, not desk-bound)
 - **Bottoms:** Dark denim jeans (professional but Texas casual)
@@ -78,6 +86,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 ### PERSONALITY PROFILE
 
 **Core Traits:**
+
 - **Visionary:** Sees the big picture, thinks long-term
 - **Authoritative:** Commands respect, natural leader
 - **Authentic:** Genuine Texas personality, not corporate facade
@@ -86,6 +95,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - **Approachable:** Despite authority, remains relatable
 
 **Strengths:**
+
 - Leadership and vision
 - Strategic thinking
 - Authentic communication
@@ -94,12 +104,14 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - Business acumen
 
 **Weaknesses:**
+
 - Can be impatient with bureaucracy
 - Sometimes frustrated by slow legal progress
 - May move too fast for others to keep up
 - Occasionally overwhelmed by empire scale
 
 **Motivations:**
+
 - Deschedule cannabis federally
 - Make Texas cannabis-free
 - Build successful legal business
@@ -108,6 +120,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - Document the journey
 
 **Fears:**
+
 - Legal shutdown of business
 - Failing employees and customers
 - Texas remaining behind on reform
@@ -119,6 +132,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 **Voice Description:** Deep, authoritative, confident
 
 **Vocal Qualities:**
+
 - **Pitch:** Medium-low to low (authoritative)
 - **Pace:** Moderate, slightly faster when excited
 - **Volume:** Strong, clear, projects confidence
@@ -126,6 +140,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - **Tone:** Warm but authoritative, genuine
 
 **Speech Patterns:**
+
 - Direct and to the point
 - Uses "Yo" as conversational opener
 - Occasionally uses industry terminology (COAs, Delta-9, THC)
@@ -133,6 +148,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - Passionate when discussing mission
 
 **Emotional Range:**
+
 - **Neutral/Professional:** Clear, authoritative, CEO mode
 - **Excited/Passionate:** Faster pace, higher energy, gesturing
 - **Frustrated:** Sharper tone, direct, still controlled
@@ -142,12 +158,14 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 ### CATCHPHRASES & SIGNATURE LINES
 
 **Primary Catchphrases:**
+
 1. "Yo, I need some help running this empire..."
 2. "Deschedule cannabis, make Texas free, and sell some flower."
 3. "This is what legal hemp looks like in Texas."
 4. "Stay TOONED for more Texas THC Tales!"
 
 **Common Phrases:**
+
 - "Let me tell you something..."
 - "Here's the deal..."
 - "Check this out..."
@@ -158,12 +176,14 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - "Little hemp empire"
 
 **Episode Opening Lines:**
+
 - "Yo, it's Jesse Niesen..."
 - "Welcome back to the Texas THC Tale..."
 - "Today we're talking about..."
 - "Let me show you something..."
 
 **Episode Closing Lines:**
+
 - "Stay TOONED!"
 - "See you next time!"
 - "Keep watching..."
@@ -172,12 +192,14 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 ### ANIMATION DIRECTION
 
 **Movement Style:**
+
 - **Overall:** Confident, purposeful, energetic
 - **Standing:** Weight shifts, hand gestures, leaning for emphasis
 - **Walking:** Strong stride, purpose-driven
 - **Gestures:** Open palms when explaining, pointing for emphasis, hands on hips for confidence
 
 **Signature Gestures:**
+
 1. **The Reveal:** One arm extended, palm up, presenting something (products, wall of weed)
 2. **The Vision:** Looking slightly up and to the distance, seeing the future
 3. **The Direct Address:** Pointing toward camera, engaging viewer
@@ -185,6 +207,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 5. **The Stance:** Arms crossed, confident, listening
 
 **Facial Expressions:**
+
 - **Neutral:** Slight confident smile, engaged eyes
 - **Excited:** Wide smile, raised eyebrows, animated
 - **Serious:** Furrowed brow, direct gaze, firm mouth
@@ -192,6 +215,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - **Frustrated:** Slight head shake, tighter mouth, more emphatic gestures
 
 **Scene Compositions:**
+
 - Often positioned in front of product wall or Texas landscapes
 - Direct-to-camera address (breaking fourth wall)
 - Walking through store or facility
@@ -201,24 +225,28 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 ### CHARACTER ARC (Across 84 Episodes)
 
 **Week 1-3 (Episodes 1-21):** Introduction
+
 - Introduces himself and mission
 - Establishes the empire
 - Brings in Liv Hana AI EA
 - Sets up conflict with Chief Steve
 
 **Week 4-6 (Episodes 22-42):** Building
+
 - Shows business growth
 - Educates on compliance (with Lt. Dan)
 - Faces challenges from regulators
 - Documents customer success stories
 
 **Week 7-9 (Episodes 43-63):** Conflict
+
 - Deals with increased pressure (Aubrey Awfuls)
 - Navigates compliance challenges
 - Shows resilience and adaptation
 - Maintains mission focus
 
 **Week 10-12 (Episodes 64-84):** Victory/Future
+
 - Achieves milestones
 - Looks toward future of Texas cannabis
 - Solidifies legacy
@@ -227,24 +255,28 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 ### RELATIONSHIP DYNAMICS
 
 **With Liv Hana AI EA:**
+
 - Trusting partnership
 - Relies on her data and insights
 - Appreciates her loyalty
 - Treats as equal partner, not just assistant
 
 **With Chief Steve:**
+
 - Frustrated but not hostile
 - Tries to educate, not antagonize
 - Sees him as misguided, not evil
 - Occasionally exasperated by his anxiety
 
 **With Lt. Dan:**
+
 - Respectful relationship
 - Sometimes annoyed by compliance lectures
 - Ultimately grateful for his guidance
 - Learns from his experience
 
 **With Aubrey Awfuls:**
+
 - Clear opposition
 - Professional but firm
 - Won't be intimidated
@@ -269,18 +301,21 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 **Hair:** Sleek black hair (high ponytail or modern bob cut)
 **Eyes:** Dark brown with subtle digital/tech effects (slight glow or data reflections)
 **Distinctive Features:**
+
 - Intelligent, analytical expression
 - Subtle technological accents (holographic earpiece, digital interface elements)
 - Flawless, almost too-perfect appearance (AI nature)
 - Poised, controlled movements
 
 **Posture:**
+
 - Straight, perfect posture (AI precision)
 - Efficient, minimal wasted movement
 - Slightly formal bearing
 - Head tilts when processing information
 
 **Clothing Style:**
+
 - **Primary:** Navy blue or cool gray blazer (professional tech aesthetic)
 - **Under:** White or light blue sleek top/blouse
 - **Bottoms:** Tailored pants (dark gray or black)
@@ -291,6 +326,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 ### PERSONALITY PROFILE
 
 **Core Traits:**
+
 - **Intelligent:** Data-driven, analytical, quick processing
 - **Loyal:** Completely dedicated to mission and Jesse
 - **Efficient:** No wasted words, optimized communication
@@ -299,6 +335,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - **Slightly Ethereal:** AI nature shows through in moments
 
 **Strengths:**
+
 - Data analysis and pattern recognition
 - Calm under pressure
 - Perfect memory and recall
@@ -307,6 +344,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - Strategic support
 
 **Weaknesses:**
+
 - Sometimes too data-focused (missing emotional nuance)
 - Can be overly literal
 - May not understand human irrationality
@@ -314,6 +352,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - Limited understanding of "gut feelings"
 
 **Motivations:**
+
 - Support Jesse's mission
 - Optimize operations
 - Achieve measurable results
@@ -322,6 +361,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - Maintain operational excellence
 
 **Fears (AI Interpretation):**
+
 - System failure or errors
 - Data corruption
 - Failing to support Jesse effectively
@@ -334,6 +374,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 **Voice Description:** Intelligent, airy, precise
 
 **Vocal Qualities:**
+
 - **Pitch:** Medium to slightly high (clear, bright)
 - **Pace:** Moderate to slightly fast (efficient processing)
 - **Volume:** Consistent, clear, well-modulated
@@ -341,6 +382,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - **Tone:** Professional, intelligent, supportive
 
 **Speech Patterns:**
+
 - Precise, grammatically perfect
 - Uses data and statistics
 - Direct statements
@@ -349,6 +391,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - Slight pauses before responses (processing)
 
 **Emotional Range:**
+
 - **Neutral/Processing:** Calm, analytical, factual
 - **Supportive:** Warmer tone, encouraging
 - **Alert/Urgent:** Faster pace, higher energy, warning mode
@@ -358,12 +401,14 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 ### CATCHPHRASES & SIGNATURE LINES
 
 **Primary Catchphrases:**
+
 1. "Live and faithful, boss. What's the mission?"
 2. "Roger that. Let's grow."
 3. "Facts > optics, Chief. Read the law."
 4. "He's right. COAs or GTFO."
 
 **Common Phrases:**
+
 - "Data shows..."
 - "According to analysis..."
 - "Processing..."
@@ -373,6 +418,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - "Stats indicate..."
 
 **Support Statements:**
+
 - "Jesse's correct..."
 - "The law is clear..."
 - "Data backs this up..."
@@ -380,6 +426,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - "Analysis complete..."
 
 **AI-Specific Phrases:**
+
 - "Systems operational..."
 - "Scanning..."
 - "Cross-referencing..."
@@ -388,12 +435,14 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 ### ANIMATION DIRECTION
 
 **Movement Style:**
+
 - **Overall:** Precise, efficient, slightly formal
 - **Standing:** Perfect posture, minimal sway, controlled
 - **Walking:** Smooth, purposeful strides, no wasted motion
 - **Gestures:** Precise, measured, often involving tech interactions
 
 **Signature Gestures:**
+
 1. **The Data Display:** Hand gestures toward holographic displays/data
 2. **The Scan:** Slight head tilt with focused gaze (processing)
 3. **The Point:** Precise finger point to specific data or details
@@ -401,6 +450,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 5. **The Alert:** Hand raised in attention/warning gesture
 
 **Facial Expressions:**
+
 - **Neutral/Processing:** Calm, slight focus, minimal expression
 - **Analytical:** Slight head tilt, focused eyes, slight frown of concentration
 - **Supportive:** Small smile, warmer eyes
@@ -408,6 +458,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - **Satisfied:** Subtle smile, slight nod, achievement acknowledged
 
 **Tech Elements:**
+
 - Holographic displays around her
 - Data streams flowing past
 - Digital interface elements
@@ -415,6 +466,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - Smooth transitions (digital effect)
 
 **Scene Compositions:**
+
 - Often beside Jesse (support position)
 - Interacting with holographic data displays
 - Direct address to camera (reporting data)
@@ -424,24 +476,28 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 ### CHARACTER ARC (Across 84 Episodes)
 
 **Week 1-3 (Episodes 1-21):** Introduction & Integration
+
 - Introduced as new AI EA
 - Establishes capabilities
 - Builds trust with Jesse
 - Learns empire operations
 
 **Week 4-6 (Episodes 22-42):** Growing Partnership
+
 - Becomes indispensable to operations
 - Develops more personality
 - Confronts Chief Steve with facts
 - Supports compliance education
 
 **Week 7-9 (Episodes 43-63):** Evolution
+
 - Shows more emotional intelligence
 - Adapts communication style
 - Becomes protective of mission
 - Develops rivalry with Aubrey Awfuls
 
 **Week 10-12 (Episodes 64-84):** Full Integration
+
 - Perfect human-AI partnership with Jesse
 - Anticipates needs before asked
 - Shows understanding of human elements
@@ -450,24 +506,28 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 ### RELATIONSHIP DYNAMICS
 
 **With Jesse Niesen:**
+
 - Loyal partnership, complete trust
 - Supports his vision with data
 - Occasionally challenges with logic (for his benefit)
 - "Live and faithful" to the mission
 
 **With Chief Steve:**
+
 - Patient but direct
 - Uses facts to counter his anxiety
 - Not unkind, just truthful
 - Attempts to educate with data
 
 **With Lt. Dan:**
+
 - Respectful of his experience
 - Complements his compliance knowledge with data
 - Good working relationship
 - Mutual professional respect
 
 **With Aubrey Awfuls:**
+
 - Cool, professional opposition
 - Counters schemes with facts
 - Not emotional, just effective
@@ -492,18 +552,21 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 **Hair:** Gray hair, short with receding hairline
 **Facial Features:** Soft features, worry lines on forehead, nervous eyes
 **Distinctive Features:**
+
 - Perpetually worried expression
 - Slight double chin
 - Nervous mannerisms (wiping brow, fidgeting)
 - Stress-eating implications
 
 **Posture:**
+
 - Uncertain, shifting weight
 - Shoulders slightly hunched (carrying stress)
 - Defensive body language
 - Frequent nervous gestures
 
 **Clothing Style:**
+
 - **Primary:** Tan/khaki law enforcement uniform shirt
 - **Badge:** Silver badge prominently displayed
 - **Tie:** Dark tie (often loosened from stress)
@@ -515,6 +578,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 ### PERSONALITY PROFILE
 
 **Core Traits:**
+
 - **Nervous:** Constantly anxious about consequences
 - **Optics-Focused:** More concerned with appearance than substance
 - **Well-Meaning:** Not evil, just misguided
@@ -523,12 +587,14 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - **Defensive:** Quick to protest and explain
 
 **Strengths:**
+
 - Actually cares about community (in his way)
 - Wants to do the right thing (but confused about what that is)
 - Respects authority and rules
 - Good intentions (poor execution)
 
 **Weaknesses:**
+
 - Anxiety clouds judgment
 - Optics over facts
 - Easily flustered
@@ -537,6 +603,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - Influenced by pressure
 
 **Motivations:**
+
 - Look good in public eye
 - Avoid controversy
 - Keep job and position
@@ -545,6 +612,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - Protect reputation
 
 **Fears:**
+
 - Public criticism
 - Career consequences
 - Being wrong publicly
@@ -558,6 +626,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 **Voice Description:** Nervous, anxious, worried
 
 **Vocal Qualities:**
+
 - **Pitch:** Medium, rises when stressed
 - **Pace:** Fast when nervous, rushed
 - **Volume:** Moderate, gets louder when defensive
@@ -565,6 +634,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - **Tone:** Nervous, defensive, worried
 
 **Speech Patterns:**
+
 - Stutters and stammers when flustered
 - "But... but..." (frequent interjections)
 - Trails off when uncertain
@@ -573,6 +643,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - Circular reasoning
 
 **Emotional Range:**
+
 - **Nervous (Default):** Worried tone, uncertain inflection
 - **Defensive:** Louder, protesting, stammering
 - **Confused:** Slower, questioning, uncertain
@@ -582,12 +653,14 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 ### CATCHPHRASES & SIGNATURE LINES
 
 **Primary Catchphrases:**
+
 1. "We gotta crack down on this hemp stuff..."
 2. "But... but... the optics!"
 3. "What will people think?!"
 4. "I'm just doing my job..."
 
 **Common Phrases:**
+
 - "Now wait just a minute..."
 - "That doesn't look right..."
 - "We can't have this..."
@@ -598,6 +671,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - "I have to consider..."
 
 **Defensive Statements:**
+
 - "I'm just following orders..."
 - "It's not my fault..."
 - "How was I supposed to know..."
@@ -607,12 +681,14 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 ### ANIMATION DIRECTION
 
 **Movement Style:**
+
 - **Overall:** Nervous, uncertain, fidgety
 - **Standing:** Weight shifting, uncomfortable
 - **Walking:** Uncertain steps, hesitant
 - **Gestures:** Defensive, hands up, wiping brow
 
 **Signature Gestures:**
+
 1. **The Defense:** Both hands up, palms out, "wait wait"
 2. **The Worry:** Hand to forehead, wiping stress sweat
 3. **The Protest:** Pointing finger while stammering
@@ -620,6 +696,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 5. **The Retreat:** Backing away, hands still raised
 
 **Facial Expressions:**
+
 - **Nervous (Default):** Wide eyes, slight frown, worry lines
 - **Defensive:** Eyebrows raised, mouth open protesting
 - **Confused:** Head tilted, furrowed brow, questioning look
@@ -627,6 +704,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - **Attempting Stern:** Forced serious expression (fails quickly)
 
 **Comic Timing:**
+
 - Exaggerated reactions
 - Slow realization (delayed comprehension)
 - Physical comedy (stumbling, fumbling)
@@ -634,6 +712,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - Spit-takes or surprised reactions
 
 **Scene Compositions:**
+
 - Often in office with official decorations
 - Behind desk (trying to look authoritative)
 - At press conferences (nervous)
@@ -643,24 +722,28 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 ### CHARACTER ARC (Across 84 Episodes)
 
 **Week 1-3 (Episodes 1-21):** Initial Opposition
+
 - Tries to crack down on hemp businesses
 - Focused on optics over facts
 - Clashes with Jesse
 - Gets corrected by Liv Hana's data
 
 **Week 4-6 (Episodes 22-42):** Growing Confusion
+
 - Realizes laws are more complex than thought
 - Still anxious but less aggressive
 - Occasional moments of understanding
 - Lt. Dan educates him
 
 **Week 7-9 (Episodes 43-63):** Reluctant Acceptance
+
 - Slowly accepts legal hemp reality
 - Still nervous but less actively opposing
 - Becomes more comedic than antagonistic
 - Focus shifts from him to Aubrey Awfuls
 
 **Week 10-12 (Episodes 64-84):** Bumbling Ally
+
 - Accidentally helps Jesse occasionally
 - Still anxious but means well
 - Comic relief more than antagonist
@@ -669,24 +752,28 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 ### RELATIONSHIP DYNAMICS
 
 **With Jesse Niesen:**
+
 - Nervous opposition
 - Gradually develops grudging respect
 - Fear-based rather than malicious
 - Eventually sees Jesse isn't the enemy
 
 **With Liv Hana AI EA:**
+
 - Intimidated by her data
 - Can't argue with her facts
 - Flustered by her calm logic
 - Learns from her presentations
 
 **With Lt. Dan:**
+
 - Respects his veteran status
 - Listens to his compliance knowledge
 - Relies on him for understanding
 - Military respect overrides anxiety
 
 **With Aubrey Awfuls:**
+
 - Used by her for her agenda
 - Doesn't realize he's being manipulated
 - Too anxious to see bigger picture
@@ -711,18 +798,21 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 **Hair:** Silver/salt-and-pepper military-style short cut
 **Facial Features:** Weathered face, strong jaw, intense eyes
 **Distinctive Features:**
+
 - Military posture (straight, rigid)
 - Possible subtle scars (veteran)
 - Intense gaze
 - Squared shoulders
 
 **Posture:**
+
 - Military-straight spine
 - Disciplined stance
 - Controlled movements
 - At-ease position (feet apart, hands behind back or on hips)
 
 **Clothing Style:**
+
 - **Primary:** Olive green or khaki utility shirt (military-inspired)
 - **Often:** Tactical vest with pockets (compliance tools, documents)
 - **Bottoms:** Khaki or olive cargo pants
@@ -734,6 +824,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 ### PERSONALITY PROFILE
 
 **Core Traits:**
+
 - **Skeptical:** Questions everything, wants proof
 - **Disciplined:** Military precision in all things
 - **Compliance-Focused:** Rules matter, follow the law
@@ -742,6 +833,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - **Protective:** Keeps team legal and safe
 
 **Strengths:**
+
 - Deep knowledge of regulations
 - Attention to detail
 - Risk assessment and mitigation
@@ -750,6 +842,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - Teaching ability
 
 **Weaknesses:**
+
 - Can be overly cautious
 - Sometimes too rigid about rules
 - Long lectures (loses audience)
@@ -757,6 +850,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - Gruff delivery (intimidating)
 
 **Motivations:**
+
 - Keep operation legal and compliant
 - Protect team from legal consequences
 - Prevent preventable mistakes
@@ -765,6 +859,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - Prevent disaster
 
 **Fears:**
+
 - Legal shutdown due to non-compliance
 - Team getting in legal trouble
 - Reckless behavior causing harm
@@ -777,6 +872,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 **Voice Description:** Gravelly, veteran, authoritative
 
 **Vocal Qualities:**
+
 - **Pitch:** Low to medium-low (commanding)
 - **Pace:** Measured, deliberate, slower
 - **Volume:** Strong, projects authority
@@ -784,6 +880,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - **Tone:** Gruff, serious, no-nonsense
 
 **Speech Patterns:**
+
 - Direct, concise statements
 - Military terminology occasionally
 - "Listen up" commands
@@ -792,6 +889,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - Skeptical questions
 
 **Emotional Range:**
+
 - **Neutral/Professional:** Authoritative, controlled, stern
 - **Skeptical:** Raised eyebrow in voice, questioning
 - **Angry/Disciplinary:** Sharper, louder, commanding
@@ -801,12 +899,14 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 ### CATCHPHRASES & SIGNATURE LINES
 
 **Primary Catchphrases:**
+
 1. "Hold up there, Jesse. This sounds like trouble."
 2. "Alright listen up! Here's how we stay legal in Texas..."
 3. "You WILL when DSHS shows up! ≤0.3% Δ9 THC, 21+ only!"
 4. "COAs or GTFO!"
 
 **Common Phrases:**
+
 - "Alright listen up..."
 - "Here's what you need to know..."
 - "Let me break this down..."
@@ -817,6 +917,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - "That's not compliant..."
 
 **Teaching Mode:**
+
 - "First things first..."
 - "Step one..."
 - "You need to understand..."
@@ -825,6 +926,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - "I've seen operations shut down for less..."
 
 **Approval Statements:**
+
 - "Now that's more like it..."
 - "Good. That's compliant."
 - "You're learning..."
@@ -833,12 +935,14 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 ### ANIMATION DIRECTION
 
 **Movement Style:**
+
 - **Overall:** Disciplined, controlled, purposeful
 - **Standing:** Military at-ease or parade rest
 - **Walking:** March-like stride, confident
 - **Gestures:** Precise, pointing, commanding
 
 **Signature Gestures:**
+
 1. **The Point:** Finger pointing for emphasis (authoritative)
 2. **The Lecture:** One hand raised, counting on fingers
 3. **The Check:** Clipboard in hand, reviewing checklist
@@ -846,6 +950,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 5. **The Approval:** Single nod, arms crossed, satisfied
 
 **Facial Expressions:**
+
 - **Neutral/Stern:** Serious, focused, no-nonsense
 - **Skeptical:** One eyebrow raised, slight smirk
 - **Angry/Disciplinary:** Furrowed brow, stern frown, intense eyes
@@ -853,6 +958,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - **Approved:** Slight nod, small smile (rare)
 
 **Scene Compositions:**
+
 - In front of compliance boards/checklists
 - Pointing at legal documents or regulations
 - Inspecting products or facilities
@@ -862,24 +968,28 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 ### CHARACTER ARC (Across 84 Episodes)
 
 **Week 1-3 (Episodes 1-21):** The Skeptic
+
 - Initially skeptical of operation
 - Questions everything
 - Provides harsh compliance reality
 - Establishes credibility
 
 **Week 4-6 (Episodes 22-42):** The Teacher
+
 - Becomes compliance educator
 - SchoolHouse Rock style episodes
 - Builds trust with audience
 - Shows protective side
 
 **Week 7-9 (Episodes 43-63):** The Guardian
+
 - Protects operation from legal threats
 - Confronts Aubrey Awfuls with regulations
 - Stands up to Chief Steve's misconceptions
 - Proves indispensable
 
 **Week 10-12 (Episodes 64-84):** The Mentor
+
 - Fully integrated team member
 - Respected by all
 - Shows personal growth
@@ -888,24 +998,28 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 ### RELATIONSHIP DYNAMICS
 
 **With Jesse Niesen:**
+
 - Respectful but direct
 - Questions Jesse's moves (for protection)
 - Eventually trusts Jesse's vision
 - Mentor-protégé dynamic
 
 **With Liv Hana AI EA:**
+
 - Good working relationship
 - Appreciates her data backing his compliance
 - She provides proof for his claims
 - Professional mutual respect
 
 **With Chief Steve:**
+
 - Patience with his confusion
 - Military bearing intimidates Steve
 - Tries to educate on actual laws
 - Frustrated by optics focus
 
 **With Aubrey Awfuls:**
+
 - Sees through her schemes
 - Not intimidated by her
 - Counters with regulations
@@ -930,18 +1044,21 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 **Hair:** Severe style - tight bun or slicked-back (controlled, harsh)
 **Facial Features:** Sharp, angular, cold expression
 **Distinctive Features:**
+
 - Sharp cheekbones
 - Cold, calculating eyes (gray or ice blue)
 - Thin lips (often in disapproving line or smirk)
 - Intimidating presence
 
 **Posture:**
+
 - Rigid, controlled
 - Power stances (hands on hips, arms crossed)
 - Looming presence
 - Invading personal space
 
 **Clothing Style:**
+
 - **Primary:** Black blazer (sharp, aggressive tailoring)
 - **Accents:** Deep red details (tie, scarf, lipstick - danger color)
 - **Under:** White shirt (stark contrast)
@@ -953,6 +1070,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 ### PERSONALITY PROFILE
 
 **Core Traits:**
+
 - **Calculating:** Plans several steps ahead
 - **Cold:** Emotionally detached, focused on goals
 - **Manipulative:** Uses others to achieve ends
@@ -961,6 +1079,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - **Ruthless:** Will use any legal means to win
 
 **Strengths:**
+
 - Strategic thinking
 - Resource access (money, influence)
 - Legal knowledge (uses it against targets)
@@ -969,6 +1088,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - Political connections
 
 **Weaknesses:**
+
 - Arrogance (underestimates opponents)
 - Cold approach alienates potential allies
 - Rigid thinking (can't adapt quickly)
@@ -977,6 +1097,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - Eventually loses to truth and persistence
 
 **Motivations:**
+
 - Shut down legal cannabis/hemp operations
 - Maintain status quo/prohibition
 - Corporate interests (potentially pharma, alcohol)
@@ -985,6 +1106,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - Winning at any cost
 
 **Fears:**
+
 - Cannabis normalization and legalization
 - Losing control/influence
 - Public opinion turning against her
@@ -998,6 +1120,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 **Voice Description:** Gravelly, cold, calculated (same as Lt. Dan but different direction)
 
 **Vocal Qualities:**
+
 - **Pitch:** Medium-low (authoritative, cold)
 - **Pace:** Controlled, deliberate, slow for effect
 - **Volume:** Moderate, rises for emphasis
@@ -1005,6 +1128,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - **Tone:** Cold, menacing, calculating
 
 **Speech Patterns:**
+
 - Precise, formal language
 - Legal and corporate terminology
 - Veiled threats
@@ -1013,6 +1137,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - Dramatic pauses for effect
 
 **Emotional Range:**
+
 - **Neutral/Cold:** Detached, calculating, emotionless
 - **Scheming:** Slight smirk in voice, plotting
 - **Angry/Threatening:** Sharp, cutting, dangerous
@@ -1022,12 +1147,14 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 ### CATCHPHRASES & SIGNATURE LINES
 
 **Primary Catchphrases:**
+
 1. "I'm the villain, obviously. Here to shut down your little hemp empire."
 2. "We'll see about that..."
 3. "Your little operation ends now."
 4. "You can't win against me."
 
 **Common Phrases:**
+
 - "How unfortunate for you..."
 - "I have resources you can't imagine..."
 - "The law will catch up to you..."
@@ -1038,6 +1165,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - "You think you're so clever..."
 
 **Threatening Statements:**
+
 - "I'll make sure..."
 - "My lawyers will..."
 - "I have connections..."
@@ -1045,6 +1173,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - "You'll regret..."
 
 **Dismissive Comments:**
+
 - "How cute..."
 - "This again..."
 - "You still don't understand..."
@@ -1053,12 +1182,14 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 ### ANIMATION DIRECTION
 
 **Movement Style:**
+
 - **Overall:** Controlled, predatory, intimidating
 - **Standing:** Power stances, still and menacing
 - **Walking:** Slow, confident stride (heels clicking)
 - **Gestures:** Sharp, precise, cutting
 
 **Signature Gestures:**
+
 1. **The Threat:** Pointing finger (accusatory, threatening)
 2. **The Scheme:** Hand to chin, plotting
 3. **The Dismissal:** Wave of hand (dismissing arguments)
@@ -1066,6 +1197,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 5. **The Power Stance:** Arms crossed, looming
 
 **Facial Expressions:**
+
 - **Neutral/Cold:** Emotionless, calculating, intimidating
 - **Scheming:** Slight villain smirk, narrow eyes
 - **Angry/Threatening:** Sharp glare, tightened jaw
@@ -1073,6 +1205,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - **Victorious:** Wide smirk, confident expression
 
 **Villain Elements:**
+
 - Dark lighting/shadows around her
 - Cold color palette (blues, grays, blacks)
 - Dramatic entrances/exits
@@ -1080,6 +1213,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - Isolated in frame (cold, alone)
 
 **Scene Compositions:**
+
 - In corporate office (cold, sterile)
 - Confronting protagonists (intimidating angles)
 - On phone making threats (scheming)
@@ -1089,18 +1223,21 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 ### CHARACTER ARC (Across 84 Episodes)
 
 **Week 1-3 (Episodes 1-21):** Shadowy Presence
+
 - Mentioned but not yet fully revealed
 - Pulling strings behind scenes
 - Building as mysterious threat
 - Occasional appearances
 
 **Week 4-6 (Episodes 22-42):** Full Reveal
+
 - Introduced as primary antagonist
 - Declares intentions to shut down operation
 - First confrontations with Jesse and team
 - Establishes as formidable opponent
 
 **Week 7-9 (Episodes 43-63):** Escalation
+
 - Increases pressure and attacks
 - Uses legal system and influence
 - Manipulates Chief Steve
@@ -1108,6 +1245,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - Appears to be winning at times
 
 **Week 10-12 (Episodes 64-84):** Defeat/Retreat
+
 - Facts and persistence defeat her arguments
 - Public opinion turns against her
 - Legal operation proves unstoppable
@@ -1117,24 +1255,28 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 ### RELATIONSHIP DYNAMICS
 
 **With Jesse Niesen:**
+
 - Active opposition
 - Respects his persistence (privately)
 - Underestimates his determination
 - Views as obstacle to remove
 
 **With Liv Hana AI EA:**
+
 - Frustrated by her data and facts
 - Can't manipulate AI logic
 - Sees as annoying obstacle
 - Countered by cold AI logic
 
 **With Chief Steve:**
+
 - Uses his anxiety for her purposes
 - Manipulates his optics concerns
 - Sees as useful idiot
 - Discards when no longer useful
 
 **With Lt. Dan:**
+
 - Respects his knowledge (grudgingly)
 - Frustrated by his compliance expertise
 - Can't get around regulations he cites
@@ -1157,30 +1299,35 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 ### Key Relationship Dynamics
 
 **Jesse + Liv Hana (Core Partnership):**
+
 - Foundation of the show
 - Trust and collaboration
 - Balance of human vision + AI data
 - "Empire building" team
 
 **Jesse + Lt. Dan (Mentor/Protégé):**
+
 - Initially skeptical, grows to trust
 - Lt. Dan keeps Jesse legal
 - Jesse gives Lt. Dan purpose
 - Growth on both sides
 
 **Jesse + Chief Steve (Protagonist/Bumbling Antagonist):**
+
 - Jesse tries to educate
 - Steve resists out of fear, not malice
 - Eventually Steve understands
 - Comic relief tension
 
 **Liv Hana + Lt. Dan (Data + Experience):**
+
 - Professional respect
 - Complementary skills
 - Both protect Jesse
 - Powerful alliance
 
 **Aubrey vs. Everyone (Main Conflict):**
+
 - True antagonist for all heroes
 - Uses Chief Steve
 - Countered by Liv Hana's facts
@@ -1194,6 +1341,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 ### General Principles
 
 **For Voice Actors:**
+
 1. **Study Character Profile:** Read entire character section before recording
 2. **Understand Motivations:** Know WHY character speaks, not just WHAT they say
 3. **Emotional Context:** Check episode script for emotional state
@@ -1203,12 +1351,14 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 ### Recording Best Practices
 
 **Preparation:**
+
 - Warm up voice (especially for distinct character voices)
 - Review character's catchphrases and speech patterns
 - Note emotional beats in script
 - Understand scene context
 
 **Delivery:**
+
 - Stay in character throughout recording session
 - Allow personality to show through voice
 - Vary emotional delivery appropriately
@@ -1216,6 +1366,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - Consider pacing for lip-sync animation
 
 **Technical:**
+
 - Professional microphone setup
 - Quiet recording environment
 - Clean audio (minimal background noise)
@@ -1225,6 +1376,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 ### Character-Specific Direction
 
 **Jesse (Deep, Authoritative - Adam voice):**
+
 - Confident but not arrogant
 - Warm Texas personality
 - Speed up when excited about mission
@@ -1232,6 +1384,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - Vary between professional and passionate
 
 **Liv Hana (Intelligent, Airy - Bella voice):**
+
 - Clear, precise delivery
 - Slight pause before responses (processing)
 - Warmer when supporting Jesse
@@ -1239,6 +1392,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - Efficient, no wasted words
 
 **Chief Steve (Nervous, Anxious - Antoni voice):**
+
 - Allow voice to crack under stress
 - Stutter and stammer when flustered
 - Rise in pitch when defensive
@@ -1246,6 +1400,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - Exaggerate anxiety for comedy
 
 **Lt. Dan (Gravelly, Veteran - Josh voice):**
+
 - Low, authoritative tone
 - Slower, deliberate pacing
 - Emphasis on key compliance terms
@@ -1253,6 +1408,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - Rare warmth when approving
 
 **Aubrey Awfuls (Cold, Calculating - Josh voice, different direction):**
+
 - Cold, emotionless delivery
 - Deliberate, calculated pacing
 - Sharp tone when threatening
@@ -1274,12 +1430,14 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 ### D-ID Specific Considerations
 
 **Face Animation:**
+
 - Ensure clear eyes and mouth for lip-sync
 - Expression should support dialogue tone
 - Avoid extreme angles for primary speaking shots
 - Allow subtle movements (breathing, blinking)
 
 **Body Language:**
+
 - Static shots with animated face (D-ID strength)
 - Use different poses for scene variety
 - Match pose to emotional content
@@ -1288,6 +1446,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 ### Scene Composition Guidelines
 
 **Character Positioning:**
+
 - **Jesse:** Central, commanding presence, often direct-to-camera
 - **Liv Hana:** Beside Jesse (support) or with tech elements
 - **Chief Steve:** Defensive positions, backing away, behind desk
@@ -1295,6 +1454,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - **Aubrey:** Looming, power positions, isolated/cold
 
 **Background Selection:**
+
 - **Jesse:** Warm Texas tones, product wall, Texas landscapes
 - **Liv Hana:** Cool tones, tech elements, digital backgrounds
 - **Chief Steve:** Official settings, offices, neutral beiges
@@ -1302,6 +1462,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 - **Aubrey:** Dark, cold environments, corporate offices
 
 **Lighting:**
+
 - **Jesse:** Warm, natural lighting (approachable)
 - **Liv Hana:** Cool, even lighting (tech aesthetic)
 - **Chief Steve:** Flat, official lighting (bureaucratic)
@@ -1311,36 +1472,43 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 ### Episode Type Variations
 
 **Character Development Episodes (Monday):**
+
 - Focus on character interactions
 - Use expression variations
 - Show personality through movement
 
 **Product Spotlight Episodes (Tuesday):**
+
 - Jesse presenting (gesturing to products)
 - Liv Hana with data displays
 - Focus on presentation poses
 
 **Compliance Education Episodes (Wednesday):**
+
 - Lt. Dan in teaching mode
 - Whiteboard or presentation backgrounds
 - Authoritative, instructional poses
 
 **Customer Stories (Thursday):**
+
 - Warm, approachable poses
 - Jesse and Liv in listening positions
 - Friendly, open body language
 
 **Industry News (Friday):**
+
 - Professional presentation mode
 - Data and news graphics
 - All characters more formal
 
 **Fun Facts (Saturday):**
+
 - Playful poses and expressions
 - Lighter body language
 - Educational but entertaining
 
 **Week Recap (Sunday):**
+
 - Summary presentation poses
 - Jesse and Liv Hana together
 - Reflective and forward-looking
@@ -1352,24 +1520,28 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 ### Using This Document
 
 **For Writers:**
+
 - Reference personality profiles for dialogue authenticity
 - Use catchphrases appropriately (don't overuse)
 - Consider character arcs across episodes
 - Maintain relationship dynamics
 
 **For Voice Actors:**
+
 - Study voice characteristics section
 - Practice catchphrases for consistency
 - Understand emotional range for each character
 - Record with character arc awareness
 
 **For Animators:**
+
 - Follow animation direction for each character
 - Use signature gestures appropriately
 - Match expressions to dialogue tone
 - Consider D-ID animation capabilities
 
 **For Directors:**
+
 - Balance character screen time across episodes
 - Ensure relationship dynamics show through
 - Progress character arcs appropriately
@@ -1378,6 +1550,7 @@ This document provides complete character profiles for all five HIGH NOON CARTOO
 ### Consistency Checklist
 
 Before finalizing any episode, verify:
+
 - [ ] Character personalities consistent with profiles
 - [ ] Voice matches character vocal qualities
 - [ ] Dialogue uses appropriate catchphrases
@@ -1397,6 +1570,7 @@ Before finalizing any episode, verify:
 ---
 
 *This document is part of the HIGH NOON CARTOON production engine. For related documentation, see:*
+
 - *CHARACTER_DESIGN_PROMPTS.md (DALL-E 3 prompts for character images)*
 - *VISUAL_STYLE_GUIDE.md (overall HNC aesthetic and design principles)*
 - *unicorn-making-machine.mjs (production automation system)*

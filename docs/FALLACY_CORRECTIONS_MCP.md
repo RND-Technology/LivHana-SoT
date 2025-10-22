@@ -10,10 +10,12 @@
 ### Fallacy 1: Token Prefix Format
 
 **INCORRECT ASSUMPTION**:
+
 - Token should start with `op_` (1Password item reference style)
 - Warning triggered when token started with `ops_`
 
 **CORRECT REALITY**:
+
 - Token format: `ops_*` (OpenAI Platform Service authentication token)
 - Example: `ops_eyJzaW...` ✅ CORRECT FORMAT
 - `op_*` would be a 1Password CLI reference, not the actual token
@@ -21,6 +23,7 @@
 **Root Cause**: Confused 1Password reference syntax (`op://vault/item/field`) with actual OpenAI service token prefix.
 
 **Naming Confusion to Avoid**:
+
 - `ops_*` = OpenAI Platform Service token prefix
 - `op://` = 1Password CLI reference syntax
 - OPS Layer = One Plant Solution (advocacy business layer in R&D/HNC/OPS/HERB model)
@@ -28,11 +31,13 @@
 ### Fallacy 2: Direct MCP Broker HTTP Testing
 
 **INCORRECT ASSUMPTION**:
+
 - MCP broker should have standard REST endpoints (`/health`, `/tools`, etc.)
 - Should be testable via direct curl commands from local machine
 - HTTP 404 means broker is misconfigured
 
 **CORRECT REALITY**:
+
 - MCP broker is NOT a standalone REST API
 - Designed to be called BY OpenAI Agent Builder, not by us directly
 - Uses MCP protocol (JSON-RPC-like), not standard REST
@@ -40,6 +45,7 @@
 - HTTP 404 is expected when trying to curl endpoints directly
 
 **Architecture Correction**:
+
 ```
 WRONG:
 Your M4 Max → [curl] → MCP Broker → LivHana-SoT
@@ -53,11 +59,13 @@ Your M4 Max → [chat] → OpenAI Agent Builder → [MCP protocol] → MCP Broke
 ### Fallacy 3: Testing Strategy
 
 **INCORRECT APPROACH**:
+
 - Create shell scripts to curl the MCP broker directly
 - Validate health endpoints
 - Test authentication with bearer token via curl
 
 **CORRECT APPROACH**:
+
 - Configure MCP broker URL + token IN OpenAI Agent Builder
 - Send test queries through Agent Builder chat interface
 - Monitor Agent Builder tool invocations
@@ -69,11 +77,13 @@ Your M4 Max → [chat] → OpenAI Agent Builder → [MCP protocol] → MCP Broke
 ### Fallacy 4: Endpoint Structure
 
 **INCORRECT ASSUMPTION**:
+
 - Primary endpoint: `/health`
 - Tool listing: `/tools`
 - General structure: Standard REST API paths
 
 **CORRECT REALITY**:
+
 - Primary endpoint: `/mcp/invoke`
 - Tool listing: Via MCP protocol `{"method": "tools/list"}` payload
 - Structure: MCP-specific JSON-RPC-like protocol
@@ -100,6 +110,7 @@ Your M4 Max → [chat] → OpenAI Agent Builder → [MCP protocol] → MCP Broke
 
 **Method**: Test through OpenAI Agent Builder
 **Steps**:
+
 1. Configure MCP server in Agent Builder
 2. Add URL: `https://mcp-broker-prod-9809f04432sl.us-central1.run.app/mcp/invoke`
 3. Add bearer token: `ops_*` from 1Password
@@ -183,9 +194,10 @@ Your M4 Max → [chat] → OpenAI Agent Builder → [MCP protocol] → MCP Broke
 
 **Mistake**: Confused "ops" token prefix with "OPS" business layer
 **Reality**: Three different meanings:
-  - `ops_*` = OpenAI Platform Service token
-  - `op://` = 1Password CLI reference
-  - OPS = One Plant Solution layer
+
+- `ops_*` = OpenAI Platform Service token
+- `op://` = 1Password CLI reference
+- OPS = One Plant Solution layer
 **Takeaway**: Maintain clear distinction between similar-sounding terms
 
 ---
@@ -193,18 +205,21 @@ Your M4 Max → [chat] → OpenAI Agent Builder → [MCP protocol] → MCP Broke
 ## 🚀 Next Steps (CORRECTED)
 
 ### Immediate (Priority 1)
+
 1. ✅ Fallacy corrections documented
 2. ✅ Correct configuration guide created
 3. ⏳ Configure MCP in OpenAI Agent Builder (Jesse action)
 4. ⏳ Test via Agent Builder with "List tools" query
 
 ### Short-term (Priority 2)
+
 1. Run Test 1: Read docs/INDEX.md via Agent Builder
 2. Run Test 2: Read RPM weekly plan via Agent Builder
 3. Verify MCP tool invocations appear in Agent Builder UI
 4. Check GCP Cloud Run logs for successful broker calls
 
 ### Medium-term (Priority 3)
+
 1. Test cross-layer validation queries
 2. Test RPM decomposition tool
 3. Test evidence logging to .evidence/ directory
@@ -227,18 +242,21 @@ Your M4 Max → [chat] → OpenAI Agent Builder → [MCP protocol] → MCP Broke
 ## 🔍 Verification Checklist
 
 ### Fallacy Corrections Applied ✅
+
 - [x] Token prefix validation accepts `ops_*`
 - [x] Documentation explains correct testing approach
 - [x] Architecture diagrams show OpenAI as intermediary
 - [x] Clear distinction between "ops" token and "OPS" layer
 
 ### Correct Understanding Documented ✅
+
 - [x] MCP broker is called BY OpenAI, not by us
 - [x] `/mcp/invoke` is the actual endpoint
 - [x] MCP protocol is not REST
 - [x] Validation happens through Agent Builder
 
 ### Next Actions Clear ✅
+
 - [x] Configure MCP in Agent Builder (step-by-step guide provided)
 - [x] Test scenarios defined with expected behavior
 - [x] Monitoring approach documented (Agent Builder UI + GCP logs)

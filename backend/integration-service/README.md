@@ -17,9 +17,11 @@ Real-time sales data streaming from Lightspeed to BigQuery with idempotent inser
 ## API Endpoints
 
 ### `GET /health`
+
 Health check endpoint. Returns service status and connectivity to external services.
 
 **Response:**
+
 ```json
 {
   "status": "healthy",
@@ -31,9 +33,11 @@ Health check endpoint. Returns service status and connectivity to external servi
 ```
 
 ### `POST /sync/sales`
+
 Sync sales data from Lightspeed to BigQuery.
 
 **Request Body (optional):**
+
 ```json
 {
   "since": "2025-10-07T00:00:00Z",
@@ -42,6 +46,7 @@ Sync sales data from Lightspeed to BigQuery.
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -54,11 +59,13 @@ Sync sales data from Lightspeed to BigQuery.
 ```
 
 ### `GET /`
+
 Service information and documentation.
 
 ## Setup
 
 ### Prerequisites
+
 - Node.js 20+
 - npm or yarn
 - Google Cloud Project with BigQuery enabled
@@ -207,6 +214,7 @@ This ensures that retrying a sync will not create duplicate rows.
 ## Monitoring
 
 Health check endpoint at `/health` provides:
+
 - Overall service status (healthy/degraded/unhealthy)
 - Lightspeed API connectivity
 - BigQuery connectivity
@@ -231,19 +239,25 @@ Health check endpoint at `/health` provides:
 ## Troubleshooting
 
 ### "LIGHTSPEED_TOKEN environment variable required"
+
 Set the environment variable:
+
 ```bash
 export LIGHTSPEED_TOKEN=your_token
 ```
 
 ### "Failed to fetch sales from Lightspeed"
+
 Check:
+
 1. Lightspeed token is valid
 2. Network connectivity to api.lightspeedapp.com
 3. Timeout settings (default: 30s)
 
 ### "BigQuery insertion failed"
+
 Check:
+
 1. GCP credentials are configured
 2. BigQuery table exists
 3. Service account has BigQuery Data Editor role
@@ -266,4 +280,4 @@ UNLICENSED - Proprietary to LivHana
 
 ## Contact
 
-engineering@livhana.com
+<engineering@livhana.com>

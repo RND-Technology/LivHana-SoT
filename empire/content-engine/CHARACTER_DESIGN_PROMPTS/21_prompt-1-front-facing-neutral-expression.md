@@ -1,4 +1,5 @@
 ### PROMPT 1: Front-Facing Neutral Expression
+
 ```
 A professional cartoon illustration of Liv Hana, a sophisticated AI executive assistant character appearing as an Asian-American female in her late 20s, facing directly forward with an intelligent, calm expression. Sleek black hair in a high ponytail, almond-shaped eyes (dark brown or subtle digital blue tint), slight confident smile. She wears a modern blazer (navy blue or cool gray) over a white sleek top. Subtle tech elements: small holographic earpiece or digital interface elements floating near her. Clean bold cartoon style with thick black outlines, simplified geometric shapes, flat colors with minimal shading. Head and shoulders composition. Solid background (cool blue or white with subtle digital pattern). Professional educational animation style, mobile-optimized. 4K quality.
 ```

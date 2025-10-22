@@ -105,6 +105,7 @@ Runtime state (persisted across sessions):
 **Purpose:** Pre-flight validation of config and systems
 
 **Usage:**
+
 ```bash
 python3 scripts/verify_pipeline_integrity.py \
   --config config/claude_tier1_context.yaml \
@@ -113,6 +114,7 @@ python3 scripts/verify_pipeline_integrity.py \
 ```
 
 **Checks:**
+
 - Config file exists and is valid YAML
 - All required sections present
 - Compliance guardrails active
@@ -124,6 +126,7 @@ python3 scripts/verify_pipeline_integrity.py \
 **Purpose:** Generate engineered system prompt with full context
 
 **Usage:**
+
 ```bash
 python3 scripts/render_claude_prompt.py \
   --config config/claude_tier1_context.yaml \
@@ -133,6 +136,7 @@ python3 scripts/render_claude_prompt.py \
 ```
 
 **Includes:**
+
 - Mission & RPM DNA
 - Compliance guardrails
 - System status
@@ -146,6 +150,7 @@ python3 scripts/render_claude_prompt.py \
 **Purpose:** Post-boot health validation
 
 **Usage:**
+
 ```bash
 python3 scripts/post_launch_checks.py \
   --log logs/boot.log \
@@ -154,6 +159,7 @@ python3 scripts/post_launch_checks.py \
 ```
 
 **Checks:**
+
 - MCP Broker endpoint reachable
 - GCP Secret Manager accessible
 - Voice mode ports listening (Whisper 2022, Kokoro 8880)
@@ -195,6 +201,7 @@ voice_mode_config:
 If voice mode errors occur:
 
 1. **Check MCP servers:**
+
    ```bash
    lsof -i :2022  # Whisper
    lsof -i :8880  # Kokoro
@@ -206,6 +213,7 @@ If voice mode errors occur:
    - Reopen Cursor
 
 3. **Check logs:**
+
    ```bash
    tail -f logs/claude_tier1_boot_*.log
    ```
@@ -224,6 +232,7 @@ The boot system maintains continuity across sessions:
 4. **Git status** - Uncommitted files, current branch
 
 This allows Claude to:
+
 - Resume work seamlessly
 - Recall recent decisions
 - Continue multi-session tasks
@@ -238,6 +247,7 @@ logs/claude_tier1_boot_YYYYMMDD_HHMMSS.log
 ```
 
 Logs include:
+
 - Timestamp for each step
 - Validation results
 - Health check outcomes
@@ -246,7 +256,7 @@ Logs include:
 
 ## Integration with Existing Systems
 
-### Compatible with:
+### Compatible with
 
 - ✅ **TRUTH Pipeline** - Scripts checked, status loaded
 - ✅ **Compliance Service** - API validated, guardrails enforced
@@ -255,7 +265,7 @@ Logs include:
 - ✅ **RPM Weekly Plan** - Current plan injected into prompt
 - ✅ **Session Progress** - Recent activity loaded for continuity
 
-### Replaces:
+### Replaces
 
 - `~/.local/bin/claude-tier1` (simple launcher)
 - `.claude/boot_codex_tier1.sh` (legacy boot)
@@ -362,17 +372,20 @@ For issues or questions:
 ## Quick Reference
 
 **Boot Command:**
+
 ```bash
 bash scripts/claude_tier1_boot.sh
 ```
 
 **Key Files:**
+
 - Config: `config/claude_tier1_context.yaml`
 - State: `tmp/claude_tier1_state.json`
 - Prompt: `tmp/claude_tier1_prompt.txt`
 - Logs: `logs/claude_tier1_boot_*.log`
 
 **Status Check:**
+
 ```bash
 cat tmp/claude_tier1_state.json | jq .
 ```
@@ -382,4 +395,3 @@ cat tmp/claude_tier1_state.json | jq .
 🎼 **ONE SHOT, ONE KILL | GROW BABY GROW, SELL BABY SELL**
 
 *Liv Hana | Tier-1 Orchestration Layer | Claude Sonnet 4.5*
-

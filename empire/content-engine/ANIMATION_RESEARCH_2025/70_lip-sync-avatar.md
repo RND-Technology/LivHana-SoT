@@ -1,4 +1,4 @@
-### Lip-Sync/Avatar:
+### Lip-Sync/Avatar
 
 | Tool | Free Tier | Entry Plan | Mid Tier | High Tier |
 |------|-----------|------------|----------|-----------|

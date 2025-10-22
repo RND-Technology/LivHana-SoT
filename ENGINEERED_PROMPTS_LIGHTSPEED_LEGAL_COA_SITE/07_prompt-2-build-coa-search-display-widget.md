@@ -1,4 +1,5 @@
 #### **Prompt 2: Build COA Search & Display Widget**
+
 ```
 Build an interactive Certificate of Analysis (COA) search and display widget for cannabis/hemp products on reggieanddro.com.
 

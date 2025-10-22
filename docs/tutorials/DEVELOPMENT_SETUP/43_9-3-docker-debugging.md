@@ -1,4 +1,5 @@
 ### 9.3 Docker Debugging
+
 ```bash
 # Access running container
 docker-compose exec integration-service bash

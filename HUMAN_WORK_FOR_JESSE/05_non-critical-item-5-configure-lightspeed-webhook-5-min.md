@@ -6,7 +6,7 @@
 
 **EXECUTE (AFTER TRINITY DEPLOYS):**
 
-1. Log in to Lightspeed: https://retail.lightspeed.app/
+1. Log in to Lightspeed: <https://retail.lightspeed.app/>
 2. Go to: Settings → Integrations → Webhooks
 3. Click "Add Webhook"
 4. URL: `https://[DEPLOYMENT-URL]/api/delivery/lightspeed/webhook`

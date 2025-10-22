@@ -1,4 +1,5 @@
-### Expected Outcomes:
+### Expected Outcomes
+
 1. **Increased Engagement**
    - Current events = higher relevance
    - Trending hashtags = better discovery

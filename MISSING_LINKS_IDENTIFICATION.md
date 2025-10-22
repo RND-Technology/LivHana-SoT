@@ -1,4 +1,5 @@
 # 🔗 MISSING LINKS IDENTIFICATION
+
 ## Cockpit Controls → Content Engine Connection Analysis
 
 **Mission**: Identify and fix missing links between cockpit controls and content engine
@@ -9,7 +10,7 @@
 
 ## 🔍 CURRENT STATE ANALYSIS
 
-### ✅ What's Already Built:
+### ✅ What's Already Built
 
 1. **Cockpit Controls UI** (`hnc-cockpit-controls.html`)
    - Keyword management
@@ -35,7 +36,7 @@
    - Channel analysis
    - Insights extraction
 
-### ❌ What's Missing (Missing Links):
+### ❌ What's Missing (Missing Links)
 
 ---
 
@@ -46,6 +47,7 @@
 **Impact**: Engines run with mock data instead of real data
 
 **Required Action**:
+
 ```bash
 # Jesse needs to add these API keys to:
 empire/content-engine/cockpit-data/api-keys.json
@@ -81,6 +83,7 @@ empire/content-engine/cockpit-data/api-keys.json
 **Impact**: Content engine generates episodes without cockpit input
 
 **Required Implementation**:
+
 ```javascript
 // In real-time-content-engine.mjs
 async loadCockpitData() {
@@ -122,6 +125,7 @@ async loadCockpitData() {
 **Impact**: Episodes have no current events, repetitive content
 
 **Required Implementation**:
+
 ```javascript
 // In real-time-content-engine.mjs
 async fetchNewsData() {
@@ -159,6 +163,7 @@ async fetchNewsData() {
 **Impact**: Content engine blind to what works on YouTube
 
 **Required Implementation**:
+
 ```javascript
 // In real-time-content-engine.mjs
 async analyzeYouTubeTrends() {
@@ -185,6 +190,7 @@ async analyzeYouTubeTrends() {
 **Impact**: Content engine has no customer insights
 
 **Required Implementation**:
+
 ```javascript
 // In real-time-content-engine.mjs
 async connectToDatabase() {
@@ -218,6 +224,7 @@ async connectToDatabase() {
 **Impact**: No real-time community insights
 
 **Required Implementation**:
+
 ```javascript
 // In real-time-content-engine.mjs
 async analyzeWhatsAppGroups() {
@@ -244,6 +251,7 @@ async analyzeWhatsAppGroups() {
 **Impact**: Stale data, no live updates
 
 **Required Implementation**:
+
 ```javascript
 // In real-time-content-engine.mjs
 async setupRealTimePipeline() {
@@ -286,6 +294,7 @@ async setupRealTimePipeline() {
 **Impact**: Same content over and over
 
 **Required Implementation**:
+
 ```javascript
 // In real-time-content-engine.mjs
 generateUniqueContent(baseEpisode, newsData, youtubeInsights) {
@@ -346,6 +355,7 @@ generateUniqueContent(baseEpisode, newsData, youtubeInsights) {
 **Impact**: Poor quality content generation
 
 **Required Implementation**:
+
 ```javascript
 // In real-time-content-engine.mjs
 validateContentQuality(episode) {
@@ -381,6 +391,7 @@ validateContentQuality(episode) {
 **Impact**: No live system, no monitoring
 
 **Required Implementation**:
+
 ```javascript
 // In real-time-content-engine.mjs
 async deployToProduction() {
@@ -419,18 +430,21 @@ async deployToProduction() {
 
 ## 🎯 IMPLEMENTATION PRIORITY
 
-### Priority 1 (Critical - 30 minutes):
+### Priority 1 (Critical - 30 minutes)
+
 1. **API Key Configuration** - Jesse adds API keys
 2. **Cockpit → Content Engine Data Flow** - Wire systems together
 3. **News API Integration** - Real news data
 4. **Database Connection** - Live customer data
 
-### Priority 2 (High - 45 minutes):
+### Priority 2 (High - 45 minutes)
+
 5. **YouTube Analyzer Integration** - YouTube insights
 6. **Content Uniqueness Algorithm** - Dynamic variation
 7. **Quality Assurance System** - Content validation
 
-### Priority 3 (Medium - 30 minutes):
+### Priority 3 (Medium - 30 minutes)
+
 8. **WhatsApp Integration** - Community feedback
 9. **Real-time Data Pipeline** - Live updates
 10. **Production Deployment** - Live system
@@ -440,24 +454,30 @@ async deployToProduction() {
 ## 🚀 EXECUTION PLAN
 
 ### Phase 1: Critical Links (30 minutes)
+
 **Your Action**: Add API keys to cockpit
 **Machine Work**: Wire cockpit to content engine
 
 ### Phase 2: High Priority Links (45 minutes)
+
 **Machine Work**: Implement news integration, YouTube analyzer, content uniqueness
 
 ### Phase 3: Medium Priority Links (30 minutes)
+
 **Machine Work**: Implement WhatsApp, real-time pipeline, production deployment
 
 ### Total Time: 105 minutes
+
 ### Your Time: 15 minutes (API keys)
+
 ### Machine Time: 90 minutes (implementation)
 
 ---
 
 ## 🏆 SUCCESS CRITERIA
 
-### When All Links Are Connected:
+### When All Links Are Connected
+
 - ✅ Cockpit controls feed content engine
 - ✅ Real news data drives episode generation
 - ✅ YouTube insights optimize content

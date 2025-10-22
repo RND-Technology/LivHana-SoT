@@ -19,6 +19,7 @@
    - Key tactic: Relatable scenarios, humor, short format
 
 **Lessons for HNC**:
+
 - Education + entertainment is powerful combination
 - Animation makes complex topics accessible
 - Personality and humor drive engagement

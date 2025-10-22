@@ -1,5 +1,7 @@
-### Data Files:
+### Data Files
+
 **trending-topics.json Structure:**
+
 ```json
 {
   "categories": {
@@ -17,6 +19,7 @@
 ```
 
 **enhancement-log.json Structure:**
+
 ```json
 {
   "summary": { /* Statistics */ },

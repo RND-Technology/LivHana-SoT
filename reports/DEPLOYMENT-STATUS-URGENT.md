@@ -21,17 +21,20 @@
 
 **Problem:** Domains that were working stopped working
 
-### Previously Working (18:28):
+### Previously Working (18:28)
+
 1. ✅ getlooseyoga.com (13.248.243.5) - HTTP 200
 2. ✅ oneplantsolution.com (148.72.126.250) - HTTP 200
 3. ✅ tier1treecare.com (3.33.130.190) - HTTP 200
 4. ✅ tokinyoga.com (15.197.148.33) - HTTP 200
 
-### Currently Working (18:48):
+### Currently Working (18:48)
+
 1. ✅ tier1treecare.com (15.197.148.33) - HTTP 200
 2. ✅ tokinyoga.com (15.197.148.33) - HTTP 200
 
-### NOW FAILING (18:48):
+### NOW FAILING (18:48)
+
 1. ❌ getlooseyoga.com - Changed DNS from 13.248.243.5 → 34.143.72.2
 2. ❌ oneplantsolution.com - Changed DNS from 148.72.126.250 → 34.143.72.2
 
@@ -41,16 +44,19 @@
 
 ## 🔍 INVESTIGATION REQUIRED
 
-### Hypothesis:
+### Hypothesis
+
 Someone or something updated DNS for ALL domains including the 4 that were already working on different services.
 
-### Evidence:
+### Evidence
+
 - getlooseyoga.com now resolves to 34.143.72.2 (was 13.248.243.5)
 - oneplantsolution.com now resolves to 34.143.72.2 (was 148.72.126.250)
 - These domains were NOT part of the 18 domains needing fixes
 - They were pointing to different services and working correctly
 
-### Questions:
+### Questions
+
 1. Did someone run the DNS update script on ALL 22 domains?
 2. Should those 4 domains have been excluded?
 3. Were those domains supposed to stay on their original services?
@@ -59,10 +65,12 @@ Someone or something updated DNS for ALL domains including the 4 that were alrea
 
 ## 🎯 AGENT DEPLOYMENT STATUS
 
-### Phase 1 Deployment:
+### Phase 1 Deployment
+
 **Script executed:** `/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/.claude/deploy-12-agents-e2e-empire.sh`
 
 **Attempted deployments:**
+
 - Agent 1: Domain Mapping & SSL Specialist (CRITICAL)
 - Agent 2: DNS Load Balancing Optimizer
 - Agent 6: QA Shippable Validator
@@ -76,7 +84,9 @@ Someone or something updated DNS for ALL domains including the 4 that were alrea
 ## ⚠️ IMMEDIATE ACTIONS REQUIRED
 
 ### Priority 1: Stop the bleeding
+
 1. **Verify what changed:**
+
    ```bash
    # Check which domains were updated recently
    dig +short getlooseyoga.com A
@@ -88,28 +98,33 @@ Someone or something updated DNS for ALL domains including the 4 that were alrea
    - oneplantsolution.com → 148.72.126.250
 
 ### Priority 2: Verify agent deployment
+
 1. Check if reasoning-gateway is accessible
 2. Get agent execution IDs
 3. Monitor agent progress
 4. Ensure agents are running
 
 ### Priority 3: Clarify domain scope
+
 **Question for user:** Should ALL 22 domains point to integration-service, or should the 4 working domains (getlooseyoga, oneplantsolution, tier1treecare, tokinyoga) remain on their current services?
 
 ---
 
 ## 📋 CURRENT DOMAIN STATUS
 
-### Working Domains (2/22 = 9%):
+### Working Domains (2/22 = 9%)
+
 1. tier1treecare.com → 15.197.148.33 (HTTP 200)
 2. tokinyoga.com → 15.197.148.33 (HTTP 200)
 
-### Failing Domains (20/22 = 91%):
+### Failing Domains (20/22 = 91%)
+
 - All domains pointing to 34.143.72.2 return HTTP 404/000
 - Root cause: No Cloud Run domain mappings
 - Solution: Deploy Agent 1 to create domain mappings
 
-### Recently Broken (2 domains):
+### Recently Broken (2 domains)
+
 - getlooseyoga.com (DNS changed)
 - oneplantsolution.com (DNS changed)
 
@@ -118,9 +133,11 @@ Someone or something updated DNS for ALL domains including the 4 that were alrea
 ## 🚀 CORRECTIVE ACTION PLAN
 
 ### Option A: Full Deployment (All 22 domains)
+
 **Assumption:** ALL domains should use integration-service
 
 **Actions:**
+
 1. Accept that getlooseyoga.com and oneplantsolution.com moved to integration-service
 2. Create domain mappings for ALL 22 domains (not just 18)
 3. Wait for SSL provisioning
@@ -131,9 +148,11 @@ Someone or something updated DNS for ALL domains including the 4 that were alrea
 ---
 
 ### Option B: Selective Deployment (18 domains only)
+
 **Assumption:** 4 domains should stay on original services
 
 **Actions:**
+
 1. **IMMEDIATELY** revert DNS for:
    - getlooseyoga.com → 13.248.243.5
    - oneplantsolution.com → 148.72.126.250

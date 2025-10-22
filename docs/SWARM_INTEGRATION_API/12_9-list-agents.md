@@ -5,11 +5,13 @@ Get all agents and their current status.
 **Endpoint:** `GET /api/swarm/agents`
 
 **Headers:**
+
 ```
 X-API-Key: test
 ```
 
 **Response:** `200 OK`
+
 ```json
 {
   "success": true,
@@ -56,6 +58,7 @@ X-API-Key: test
 ```
 
 **Example:**
+
 ```bash
 curl -H "X-API-Key: test" \
   http://localhost:8080/api/swarm/agents

@@ -5,7 +5,7 @@ Voice-enabled AI cockpit for Herbitrage.com with secure login and real-time voic
 ## Features
 
 - **Secure Login**: Simple authentication system
-  - Username: jesseniesen@gmail.com
+  - Username: <jesseniesen@gmail.com>
   - Password: TXTOLivHanaHerbitrage
 
 - **Voice Interface**:
@@ -22,7 +22,7 @@ Voice-enabled AI cockpit for Herbitrage.com with secure login and real-time voic
 
 - **Frontend**: Vanilla HTML/CSS/JavaScript
 - **Backend**: Node.js + Express
-- **Voice Service**: https://voice-service-980910443251.us-central1.run.app
+- **Voice Service**: <https://voice-service-980910443251.us-central1.run.app>
 - **Deployment**: Docker + Google Cloud Run
 
 ## Architecture
@@ -79,12 +79,12 @@ gcloud run deploy herbitrage-voice \
 
 ## URLs
 
-- **Cloud Run Service**: https://herbitrage-voice-980910443251.us-central1.run.app
-- **Custom Domain**: https://herbitrage.com (DNS propagation may take time)
+- **Cloud Run Service**: <https://herbitrage-voice-980910443251.us-central1.run.app>
+- **Custom Domain**: <https://herbitrage.com> (DNS propagation may take time)
 
 ## Usage
 
-1. Navigate to https://herbitrage-voice-980910443251.us-central1.run.app (or herbitrage.com once DNS propagates)
+1. Navigate to <https://herbitrage-voice-980910443251.us-central1.run.app> (or herbitrage.com once DNS propagates)
 2. Login with the provided credentials
 3. Click "Talk to Liv" button
 4. Speak your question or request
@@ -99,7 +99,8 @@ gcloud run deploy herbitrage-voice \
 ## Voice Service Integration
 
 The cockpit integrates with the voice-service API at:
-- **Base URL**: https://voice-service-980910443251.us-central1.run.app
+
+- **Base URL**: <https://voice-service-980910443251.us-central1.run.app>
 - **Reasoning**: POST /api/reasoning/enqueue
 - **Streaming**: GET /api/reasoning/stream/:jobId
 - **Text-to-Speech**: POST /api/elevenlabs/synthesize
@@ -111,7 +112,7 @@ See `backend/voice-service/README.md` for full API documentation.
 - Simple hardcoded authentication (suitable for single-user prototype)
 - Session storage for login state
 - HTTPS enforced by Cloud Run
-- Service account: cloudrun-service-account@reggieanddrodispensary.iam.gserviceaccount.com
+- Service account: <cloudrun-service-account@reggieanddrodispensary.iam.gserviceaccount.com>
 
 ## Future Enhancements
 
@@ -123,7 +124,7 @@ See `backend/voice-service/README.md` for full API documentation.
 
 ## Support
 
-Contact: jesseniesen@gmail.com
+Contact: <jesseniesen@gmail.com>
 
 ## License
 

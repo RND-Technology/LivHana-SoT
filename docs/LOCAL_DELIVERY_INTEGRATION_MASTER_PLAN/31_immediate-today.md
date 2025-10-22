@@ -1,6 +1,7 @@
 ### Immediate (TODAY)
+
 1. **Apply for DoorDash Drive**
-   - Go to: https://get.doordash.com/en-us/products/drive
+   - Go to: <https://get.doordash.com/en-us/products/drive>
    - Fill out business application
    - Upload compliance docs
 

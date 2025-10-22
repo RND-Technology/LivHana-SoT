@@ -23,10 +23,12 @@ empire/content-engine/
 ```
 
 **New Directories:**
+
 - ✅ `output/cache/` - Performance cache storage
 - ✅ `output/metrics/` - Timestamped metric reports
 
 **New Files:**
+
 - ✅ `hnc-autonomous-engine-optimized.mjs` - Main optimized engine
 - ✅ `HNC_OPTIMIZATION_REPORT.md` - Comprehensive report
 - ✅ `BEFORE_AFTER_COMPARISON.md` - This document

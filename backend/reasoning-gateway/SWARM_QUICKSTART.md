@@ -3,6 +3,7 @@
 ## What is This?
 
 The Swarm Integration Coordinator is a coordination layer that connects:
+
 - **Claude Code CLI** (terminal operations)
 - **Cursor IDE** (code editing)
 - **Replit Agents** (cloud execution)
@@ -93,6 +94,7 @@ curl http://localhost:8080/api/swarm/status/$TASK_ID \
 ## Integration in Your Code
 
 ### JavaScript
+
 ```javascript
 const response = await fetch('http://localhost:8080/api/swarm/tasks', {
   method: 'POST',
@@ -114,6 +116,7 @@ console.log('Task ID:', data.task.id);
 ```
 
 ### Python
+
 ```python
 import requests
 

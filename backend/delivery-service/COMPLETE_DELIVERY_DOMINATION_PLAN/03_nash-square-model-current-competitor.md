@@ -1,4 +1,5 @@
 ### Nash/Square Model (Current Competitor)
+
 ```
 Customer Order ($75)
   ↓

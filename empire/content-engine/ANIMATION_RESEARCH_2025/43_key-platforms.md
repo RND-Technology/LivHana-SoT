@@ -1,1 +1,1 @@
-### Key Platforms:
+### Key Platforms

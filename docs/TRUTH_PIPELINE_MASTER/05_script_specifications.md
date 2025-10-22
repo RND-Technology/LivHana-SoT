@@ -9,6 +9,7 @@ The TRUTH Pipeline includes comprehensive shell scripts for each stage: Apify sc
 ## Core Pipeline Scripts
 
 ### L1: Apify Scraping Script
+
 ```bash
 #!/bin/bash
 # step_apify_v2.sh
@@ -136,6 +137,7 @@ main "$@"
 ```
 
 ### L2: Perplexity Verification Script
+
 ```bash
 #!/bin/bash
 # step_perplexity_verify_v2.sh
@@ -292,6 +294,7 @@ main "$@"
 ```
 
 ### L3: GPT-5 Mini Compression Script
+
 ```bash
 #!/bin/bash
 # step_gpt5_compress_v2.sh
@@ -426,6 +429,7 @@ main "$@"
 ```
 
 ### L4: Claude Sonnet TRUTH Script
+
 ```bash
 #!/bin/bash
 # step_claude_truth_v2.sh
@@ -548,6 +552,7 @@ main "$@"
 ```
 
 ### L5: RPM Orchestration Script
+
 ```bash
 #!/bin/bash
 # step_rpm_emit_v2.sh
@@ -662,6 +667,7 @@ main "$@"
 ## Validation Scripts
 
 ### Pipeline Integrity Script
+
 ```bash
 #!/bin/bash
 # verify_pipeline_integrity.sh
@@ -741,6 +747,7 @@ main "$@"
 ## Utility Scripts
 
 ### Session Output Validator
+
 ```bash
 #!/bin/bash
 # session_output_validator.sh

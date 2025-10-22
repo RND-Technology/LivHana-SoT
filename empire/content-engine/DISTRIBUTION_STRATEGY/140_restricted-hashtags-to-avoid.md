@@ -1,6 +1,7 @@
 #### Restricted Hashtags to Avoid
 
 **Instagram**:
+
 - #weed
 - #stoner
 - #marijuana
@@ -9,6 +10,7 @@
 - #weedstagram
 
 **Safe Alternatives**:
+
 - #cannabiseducation
 - #hempindustry
 - #cannabiscompliance

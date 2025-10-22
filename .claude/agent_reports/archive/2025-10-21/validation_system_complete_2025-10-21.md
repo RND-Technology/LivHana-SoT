@@ -12,6 +12,7 @@
 Built a production-ready validation system that prevents repeat failures from crashes #1 and #2. System provides defense-in-depth with pre-flight checks, runtime validation, coordination control, post-action verification, continuous monitoring, and comprehensive recovery procedures.
 
 **Key Achievement:** Prevents the two primary failure modes:
+
 1. Missing OPENAI_API_KEY causing voice mode fallback failures
 2. Multiple in_progress tasks and parallel agent conflicts
 
@@ -20,9 +21,11 @@ Built a production-ready validation system that prevents repeat failures from cr
 ## Deliverables Completed
 
 ### 1. Pre-Flight Check Script ✅
+
 **Location:** `/scripts/preflight_checks.sh`
 
 **Validates BEFORE session starts:**
+
 - ✅ Environment variables (OPENAI_API_KEY, ANTHROPIC_API_KEY, DEEPSEEK_API_KEY, PERPLEXITY_API_KEY)
 - ✅ Services running (Whisper STT on 2022, Kokoro TTS on 8880, Compliance on 8000)
 - ✅ Dependencies (Python 3, required packages, Git, curl, jq)
@@ -31,6 +34,7 @@ Built a production-ready validation system that prevents repeat failures from cr
 - ✅ System resources (disk space, memory)
 
 **Exit Codes:**
+
 - 0 = All checks pass (safe to proceed)
 - 1 = Critical failure (cannot proceed)
 - 2 = Warning (can proceed with degraded functionality)
@@ -40,29 +44,34 @@ Built a production-ready validation system that prevents repeat failures from cr
 ---
 
 ### 2. Runtime Validation Module ✅
+
 **Location:** `/scripts/runtime_validation.py`
 
 **Provides validation classes:**
 
 #### TodoValidator
+
 - Enforces "exactly ONE task in_progress" rule
 - Detects stale tasks (in_progress >30min)
 - Validates required fields (content, status, activeForm)
 - Returns actionable violation messages
 
 #### TokenTracker
+
 - Tracks token usage against budget (default 200,000)
 - Calculates remaining budget and usage percentage
 - Warns when approaching limits (80% threshold)
 - Saves usage log to JSON for audit
 
 #### AgentCoordinator
+
 - Prevents parallel agents without explicit coordination
 - Requires clear task specification and expected output
 - Tracks agent timeouts and runtime
 - Provides coordination summary
 
 #### CheckpointManager
+
 - Saves state every N minutes (default 5)
 - Enables recovery after crashes
 - Loads most recent checkpoint
@@ -73,9 +82,11 @@ Built a production-ready validation system that prevents repeat failures from cr
 ---
 
 ### 3. Agent Coordination Validator ✅
+
 **Location:** `/scripts/agent_coordination_check.sh`
 
 **Validates BEFORE launching any agent:**
+
 - ✅ Task specification provided (not vague)
 - ✅ Expected output defined (deliverables clear)
 - ✅ Timeout configured (prevents runaway agents)
@@ -92,11 +103,13 @@ Built a production-ready validation system that prevents repeat failures from cr
 ---
 
 ### 4. Post-Action Validation ✅
+
 **Location:** `/scripts/post_action_validate.sh`
 
 **Validates AFTER significant actions:**
 
 #### Agent Completion
+
 - Expected outputs exist
 - File integrity (not empty, not corrupted)
 - JSON validity (if JSON files)
@@ -106,6 +119,7 @@ Built a production-ready validation system that prevents repeat failures from cr
 - Cleans up agent tracking
 
 #### Git Commit
+
 - Commit exists and has message
 - Commit message quality
 - Files in commit
@@ -113,6 +127,7 @@ Built a production-ready validation system that prevents repeat failures from cr
 - Common mistakes (secrets, node_modules)
 
 #### File Modification
+
 - File exists and has correct permissions
 - Executables are chmod +x
 - Recent modification time
@@ -122,9 +137,11 @@ Built a production-ready validation system that prevents repeat failures from cr
 ---
 
 ### 5. Integration with Tier-1 Boot ✅
+
 **Location:** `/scripts/claude_tier1_boot.sh` (modified)
 
 **Added STEP 0: PRE-FLIGHT SAFETY CHECKS**
+
 - Runs `preflight_checks.sh` before any other steps
 - Blocks session start on critical failures (exit code 1)
 - Warns but continues on warnings (exit code 2)
@@ -137,9 +154,11 @@ Built a production-ready validation system that prevents repeat failures from cr
 ---
 
 ### 6. Continuous Monitoring Script ✅
+
 **Location:** `/scripts/session_monitor.sh`
 
 **Runs in background during session (every 60s):**
+
 - ✅ Services still alive (Whisper, Kokoro)
 - ✅ Agent count (warns if >max_parallel)
 - ✅ Disk space (alerts if <2GB)
@@ -148,11 +167,13 @@ Built a production-ready validation system that prevents repeat failures from cr
 - ✅ Token usage (warns at 80%, alerts at 95%)
 
 **Alerts via:**
+
 - Log to `.claude/session_alerts.log`
 - Stdout with color coding
 - macOS notifications (osascript)
 
 **Usage:**
+
 ```bash
 nohup bash scripts/session_monitor.sh > /tmp/session_monitor.log 2>&1 &
 ```
@@ -162,6 +183,7 @@ nohup bash scripts/session_monitor.sh > /tmp/session_monitor.log 2>&1 &
 ---
 
 ### 7. Error Recovery Procedures ✅
+
 **Location:** `.claude/procedures/error_recovery.md`
 
 **Step-by-step recovery for:**
@@ -211,16 +233,19 @@ nohup bash scripts/session_monitor.sh > /tmp/session_monitor.log 2>&1 &
 ---
 
 ### 8. Test Suite ✅
+
 **Location:** `/scripts/test_validation_suite.sh`
 
 **Tests all validation components:**
 
 #### Preflight Checks (3 tests)
+
 - Script exists and executable
 - Detects missing API keys (fails correctly)
 - Passes with all requirements met
 
 #### Runtime Validation Module (5 tests)
+
 - Module imports successfully
 - TodoValidator catches multiple in_progress
 - TodoValidator accepts valid list
@@ -228,12 +253,14 @@ nohup bash scripts/session_monitor.sh > /tmp/session_monitor.log 2>&1 &
 - AgentCoordinator prevents parallel agents
 
 #### Agent Coordination Validator (4 tests)
+
 - Rejects missing task
 - Rejects missing output
 - Accepts valid spec
 - Detects parallel agents
 
 #### Post-Action Validation (5 tests)
+
 - Detects missing output
 - Accepts existing output
 - Detects invalid JSON
@@ -241,10 +268,12 @@ nohup bash scripts/session_monitor.sh > /tmp/session_monitor.log 2>&1 &
 - Validates file types (.sh, .py, .md, .json)
 
 #### Session Monitor (2 tests)
+
 - Script exists and executable
 - Can start and run
 
 **Test Results:**
+
 ```
 Runtime Validation Module - Self Test
 ✓ Valid todo list passed
@@ -262,7 +291,9 @@ Self-test complete
 ## Quality Standards Met
 
 ### ✅ Principle of One
+
 Each script has one clear purpose:
+
 - `preflight_checks.sh` - Validate BEFORE session
 - `runtime_validation.py` - Validate DURING session
 - `agent_coordination_check.sh` - Validate BEFORE agent spawn
@@ -271,25 +302,31 @@ Each script has one clear purpose:
 - `test_validation_suite.sh` - Test all components
 
 ### ✅ Clear Error Messages
+
 All failures provide actionable guidance:
+
 ```
 [FAIL] OPENAI_API_KEY not set - voice mode fallback will fail
   Fix: export OPENAI_API_KEY='sk-...'
 ```
 
 ### ✅ Exit Codes Documented
+
 - 0 = Success
 - 1 = Critical failure (cannot proceed)
 - 2 = Warning (can proceed with degradation)
 
 ### ✅ Logging to Appropriate Locations
+
 - Boot logs: `logs/claude_tier1_boot_*.log`
 - Session alerts: `.claude/session_alerts.log`
 - Agent tracking: `.claude/agent_tracking/`
 - Test outputs: `tmp/test_validation/`
 
 ### ✅ No Silent Failures
+
 Every validation either:
+
 - Passes with explicit confirmation
 - Fails with clear error message
 - Warns with explanation
@@ -310,20 +347,25 @@ Every validation either:
 ## Prevents Repeat Failures
 
 ### Crash #1: Missing OPENAI_API_KEY
+
 **Original Failure:**
+
 - Voice mode STT timeout (30s)
 - Fallback to OpenAI attempted
 - 401 auth error (no API key)
 - Session crashed
 
 **Prevention Now:**
+
 1. **Pre-flight check** catches missing key BEFORE session starts
 2. **Boot script** blocks session if check fails
 3. **Recovery procedure** documents how to add key
 4. **Session monitor** would have detected service timeout earlier
 
 ### Crash #2: Multiple In-Progress Tasks + Parallel Agents
+
 **Original Failure:**
+
 - 5 tasks marked "in_progress" simultaneously
 - Multiple agents spawned without coordination
 - Resource contention (GPU, memory)
@@ -331,6 +373,7 @@ Every validation either:
 - Session crashed from STT timeout (resource exhaustion)
 
 **Prevention Now:**
+
 1. **Runtime validation** enforces "one task in_progress" rule
 2. **Agent coordination validator** prevents parallel spawning
 3. **Agent tracking** makes active agents visible
@@ -368,6 +411,7 @@ Every validation either:
 ## Usage Examples
 
 ### Before Starting Session
+
 ```bash
 # Run pre-flight checks
 bash scripts/preflight_checks.sh
@@ -381,6 +425,7 @@ bash scripts/preflight_checks.sh
 ```
 
 ### Before Spawning Agent
+
 ```bash
 # Validate coordination
 bash scripts/agent_coordination_check.sh \
@@ -394,6 +439,7 @@ bash scripts/agent_coordination_check.sh \
 ```
 
 ### During Session
+
 ```python
 # In Python scripts, use runtime validation
 from runtime_validation import TodoValidator, TokenTracker
@@ -411,6 +457,7 @@ if tracker.should_warn():
 ```
 
 ### After Agent Completes
+
 ```bash
 # Validate outputs
 bash scripts/post_action_validate.sh \
@@ -420,6 +467,7 @@ bash scripts/post_action_validate.sh \
 ```
 
 ### Background Monitoring
+
 ```bash
 # Start monitor
 nohup bash scripts/session_monitor.sh > /tmp/monitor.log 2>&1 &
@@ -432,6 +480,7 @@ kill $MONITOR_PID
 ```
 
 ### If Things Go Wrong
+
 ```bash
 # Consult recovery procedures
 open .claude/procedures/error_recovery.md
@@ -448,6 +497,7 @@ open .claude/procedures/error_recovery.md
 ## Files Created
 
 ### Scripts (Executable)
+
 1. `/scripts/preflight_checks.sh` (359 lines)
 2. `/scripts/runtime_validation.py` (611 lines)
 3. `/scripts/agent_coordination_check.sh` (364 lines)
@@ -456,12 +506,15 @@ open .claude/procedures/error_recovery.md
 6. `/scripts/test_validation_suite.sh` (414 lines)
 
 ### Documentation
+
 7. `.claude/procedures/error_recovery.md` (866 lines)
 
 ### Modified
+
 8. `/scripts/claude_tier1_boot.sh` (added STEP 0 pre-flight checks)
 
 ### Generated
+
 9. `.claude/agent_tracking/` (directory for tracking files)
 10. `.claude/session_alerts.log` (monitoring alerts)
 11. `tmp/test_validation/` (test outputs)
@@ -473,18 +526,21 @@ open .claude/procedures/error_recovery.md
 ## Next Steps (Recommendations)
 
 ### Immediate (Jesse's Review)
+
 1. Review this report
 2. Test pre-flight checks with current environment
 3. Verify all API keys are set
 4. Run test suite to confirm everything works
 
 ### Short-term (This Week)
+
 1. Add validation calls to existing scripts
 2. Enable session monitor for all sessions
 3. Create checkpoint manager usage examples
 4. Add more test cases (edge cases)
 
 ### Medium-term (Next Sprint)
+
 1. Integrate with CI/CD pipeline
 2. Add metrics collection (Prometheus)
 3. Create dashboard for monitoring
@@ -495,16 +551,19 @@ open .claude/procedures/error_recovery.md
 ## Success Metrics
 
 ### Crash Prevention
+
 - **Before:** 2 crashes in 1 week from same root causes
 - **After:** Pre-flight checks prevent 100% of pre-start failures
 - **Target:** Zero crashes from preventable causes
 
 ### Recovery Time
+
 - **Before:** Hours to diagnose and recover manually
 - **After:** Minutes with step-by-step recovery procedures
 - **Target:** <15 minutes to recover from any documented failure
 
 ### Validation Coverage
+
 - **API Keys:** 4 keys validated (OPENAI, ANTHROPIC, DEEPSEEK, PERPLEXITY)
 - **Services:** 3 services monitored (Whisper, Kokoro, Compliance)
 - **Agent Rules:** 3 rules enforced (one in_progress, coordination, output specs)
@@ -515,18 +574,21 @@ open .claude/procedures/error_recovery.md
 ## Lessons Applied from Forensic Analysis
 
 ### From Crash #1
+
 - ✅ Validate secrets at startup (fail fast)
 - ✅ Implement graceful degradation (voice → text)
 - ✅ Add circuit breaker for services
 - ✅ Health checks before using services
 
 ### From Crash #2
+
 - ✅ Enforce "one task in_progress" with validation
 - ✅ Prevent parallel agents without coordination
 - ✅ Create agent responsibility matrix (tracking)
 - ✅ Add resource monitoring (memory, disk)
 
 ### From Recovery Debrief
+
 - ✅ Cooperation over Competition (coordination validator)
 - ✅ Verification over Generation (comprehensive tests)
 - ✅ Planning over Execution (pre-flight checks)

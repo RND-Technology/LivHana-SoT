@@ -1,6 +1,7 @@
 ### PERSONALITY PROFILE
 
 **Core Traits:**
+
 - **Nervous:** Constantly anxious about consequences
 - **Optics-Focused:** More concerned with appearance than substance
 - **Well-Meaning:** Not evil, just misguided
@@ -9,12 +10,14 @@
 - **Defensive:** Quick to protest and explain
 
 **Strengths:**
+
 - Actually cares about community (in his way)
 - Wants to do the right thing (but confused about what that is)
 - Respects authority and rules
 - Good intentions (poor execution)
 
 **Weaknesses:**
+
 - Anxiety clouds judgment
 - Optics over facts
 - Easily flustered
@@ -23,6 +26,7 @@
 - Influenced by pressure
 
 **Motivations:**
+
 - Look good in public eye
 - Avoid controversy
 - Keep job and position
@@ -31,6 +35,7 @@
 - Protect reputation
 
 **Fears:**
+
 - Public criticism
 - Career consequences
 - Being wrong publicly

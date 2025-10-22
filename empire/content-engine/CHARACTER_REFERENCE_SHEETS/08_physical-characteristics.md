@@ -6,18 +6,21 @@
 **Facial Hair:** Well-groomed short beard, maintained but not overly styled
 **Eyes:** Brown, intelligent, expressive
 **Distinctive Features:**
+
 - Strong jawline
 - Confident smile
 - Approachable despite authority
 - Slight laugh lines (shows personality)
 
 **Posture:**
+
 - Confident but not aggressive
 - Open body language (arms often gesturing)
 - Leans forward when engaged
 - Stands with weight evenly distributed
 
 **Clothing Style:**
+
 - **Primary:** Button-down shirts (sage green, burnt orange, dusty blue)
 - **Always:** Sleeves rolled to elbows (working CEO, not desk-bound)
 - **Bottoms:** Dark denim jeans (professional but Texas casual)

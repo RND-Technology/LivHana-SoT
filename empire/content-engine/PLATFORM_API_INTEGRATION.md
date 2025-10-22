@@ -5,6 +5,7 @@
 This document provides comprehensive technical guidance for integrating High Noon Cartoon (HNC) with YouTube, TikTok, Instagram, and X (Twitter) APIs for automated video upload, metadata management, scheduling, and analytics tracking.
 
 **Integration Goals**:
+
 1. Automate video uploads across all platforms
 2. Schedule posts for optimal timing
 3. Manage metadata (titles, descriptions, hashtags)
@@ -38,12 +39,14 @@ The YouTube Data API v3 allows programmatic video uploads, metadata management, 
 ### Prerequisites
 
 **Required**:
+
 - Google Cloud Platform account
 - YouTube channel
 - OAuth 2.0 credentials
 - API quota allocation
 
 **Important Restriction**:
+
 - Videos uploaded via unverified API projects default to private
 - Public uploads require Google audit/verification
 - Personal accounts exempt from verification for self-use
@@ -410,15 +413,18 @@ ${hashtags.map(tag => `#${tag}`).join(' ')}
 **Default Quota**: 10,000 units per day
 
 **Operation Costs**:
+
 - Video upload: 1,600 units
 - Video update: 50 units
 - Video list: 1 unit
 
 **Daily Capacity**:
+
 - ~6 video uploads per day (basic quota)
 - Request quota increase if needed
 
 **Quota Management**:
+
 ```javascript
 // youtube-quota.mjs
 
@@ -469,6 +475,7 @@ export class YouTubeQuotaManager {
 ### Overview
 
 TikTok offers two APIs for video posting:
+
 1. **Content Posting API**: For general developers (direct post or draft)
 2. **Marketing API**: For business accounts and ads
 
@@ -477,12 +484,14 @@ For HNC, we'll use the Content Posting API with Direct Post mode.
 ### Prerequisites
 
 **Required**:
+
 - TikTok Business Account
 - TikTok Developer Account
 - App registration and approval
 - OAuth 2.0 credentials
 
 **Important Restrictions**:
+
 - Unaudited clients: Videos restricted to private
 - Requires audit for public posting
 - video.publish scope required
@@ -862,6 +871,7 @@ Follow @HighNoonCartoon for daily Texas cannabis compliance education 📚
 ### Rate Limits
 
 **TikTok API Rate Limits**:
+
 - 1,000 requests per day per user
 - Video upload: No specific daily limit documented
 - Best practice: Space out uploads (1-2 per hour)
@@ -877,12 +887,14 @@ Instagram Graph API (via Facebook Graph API) allows Reels upload, metadata manag
 ### Prerequisites
 
 **Required**:
+
 - Instagram Business or Creator account
 - Facebook Page linked to Instagram account
 - Facebook Developer account
 - App with Instagram Content Publishing permissions
 
 **2025 Updates**:
+
 - Most accounts: 90-second Reels
 - Some accounts: 60-second limit (account-dependent)
 - Strict URL requirements (direct, public, no redirects)
@@ -1206,6 +1218,7 @@ export async function prepareVideoForInstagram(localVideoPath) {
 ### Rate Limits
 
 **Instagram Content Publishing Limits**:
+
 - 25 API calls per user per hour
 - 200 API calls per app per hour
 - 25 media container creates per 24 hours
@@ -1222,6 +1235,7 @@ As of June 2025, X deprecated v1.1 media upload endpoints. X API v2 requires chu
 ### Prerequisites
 
 **Required**:
+
 - X Developer Account
 - App with write permissions
 - API keys and tokens
@@ -1602,11 +1616,13 @@ Follow @HighNoonCartoon for daily doses 🤠
 ### Rate Limits
 
 **X API v2 Rate Limits** (per 15-minute window):
+
 - Tweet creation: 300 requests (user context)
 - Media upload: No specific limit (but use reasonable spacing)
 - Timeline: 180 requests
 
 **Best Practices**:
+
 - Space out uploads (max 10-15 per hour)
 - Monitor rate limit headers
 - Implement exponential backoff
@@ -2511,6 +2527,7 @@ This API integration guide provides a complete system for automating High Noon C
 5. **Security**: Encrypted credentials and secure token management
 
 **Next Steps**:
+
 1. Set up all platform API credentials
 2. Test each platform integration individually
 3. Run full multi-platform test
@@ -2518,10 +2535,11 @@ This API integration guide provides a complete system for automating High Noon C
 5. Monitor and iterate based on performance
 
 **Support Resources**:
-- YouTube API Documentation: https://developers.google.com/youtube/v3
-- TikTok API Documentation: https://developers.tiktok.com/
-- Instagram API Documentation: https://developers.facebook.com/docs/instagram-api
-- X API Documentation: https://developer.x.com/en/docs/twitter-api
+
+- YouTube API Documentation: <https://developers.google.com/youtube/v3>
+- TikTok API Documentation: <https://developers.tiktok.com/>
+- Instagram API Documentation: <https://developers.facebook.com/docs/instagram-api>
+- X API Documentation: <https://developer.x.com/en/docs/twitter-api>
 
 ---
 

@@ -37,13 +37,15 @@ Successfully deployed Exotic Canopy Solutions MVP landing page to Google Cloud R
 ## Deployment Details
 
 ### Cloud Run Service
+
 - **Service Name**: `exotic-canopy-solutions`
 - **Region**: `us-central1`
 - **Project**: `reggieanddrodispensary`
-- **Direct URL**: https://exotic-canopy-solutions-plad5efvha-uc.a.run.app
+- **Direct URL**: <https://exotic-canopy-solutions-plad5efvha-uc.a.run.app>
 - **Status**: ✅ ACTIVE and serving traffic
 
 ### Docker Image
+
 - **Repository**: `us-central1-docker.pkg.dev/reggieanddrodispensary/backend/exotic-canopy-solutions`
 - **Tag**: `latest`
 - **Base Image**: `nginx:alpine`
@@ -51,6 +53,7 @@ Successfully deployed Exotic Canopy Solutions MVP landing page to Google Cloud R
 - **Build Status**: ✅ SUCCESS
 
 ### Domain Mapping
+
 - **Domain**: exoticcanopysolutions.com
 - **Target Service**: exotic-canopy-solutions
 - **DNS Records**: ✅ CORRECTLY CONFIGURED
@@ -58,6 +61,7 @@ Successfully deployed Exotic Canopy Solutions MVP landing page to Google Cloud R
   - AAAA Records: 2001:4860:4802:32::15, 2001:4860:4802:34::15, 2001:4860:4802:36::15, 2001:4860:4802:38::15
 
 ### HTTPS/SSL Status
+
 - **Protocol**: HTTPS (HTTP redirects to HTTPS)
 - **Certificate**: Google-managed SSL certificate
 - **Status**: ⏳ PROVISIONING (15-30 minute wait time)
@@ -68,16 +72,21 @@ Successfully deployed Exotic Canopy Solutions MVP landing page to Google Cloud R
 ## Verification Results
 
 ### Direct Service URL Test
+
 ```bash
 curl https://exotic-canopy-solutions-plad5efvha-uc.a.run.app
 ```
+
 **Result**: ✅ SUCCESS - Serving Exotic Canopy Solutions landing page
 
 ### DNS Verification
+
 ```bash
 dig +short exoticcanopysolutions.com A
 ```
+
 **Result**: ✅ SUCCESS
+
 ```
 216.239.32.21
 216.239.34.21
@@ -86,10 +95,13 @@ dig +short exoticcanopysolutions.com A
 ```
 
 ### Domain Access Test
+
 ```bash
 curl https://exoticcanopysolutions.com
 ```
+
 **Current Result**: ⏳ PROPAGATING
+
 - Currently serving: integration-service (previous mapping)
 - Expected: exotic-canopy-solutions landing page
 - ETA: 15-30 minutes for full propagation
@@ -99,6 +111,7 @@ curl https://exoticcanopysolutions.com
 ## Current Status
 
 ### What's Working
+
 ✅ Cloud Run service deployed and active
 ✅ Docker image built and pushed successfully
 ✅ DNS records correctly configured
@@ -109,10 +122,12 @@ curl https://exoticcanopysolutions.com
 ✅ Security headers configured
 
 ### What's Propagating
+
 ⏳ Domain routing (exoticcanopysolutions.com → exotic-canopy-solutions)
 ⏳ SSL certificate provisioning for custom domain
 
 ### Why There's a Delay
+
 The domain `exoticcanopysolutions.com` was previously mapped to `integration-service`. When we updated the mapping to `exotic-canopy-solutions`, Cloud Run's global load balancer needs time to propagate the new routing configuration across all edge locations worldwide. This is normal and expected.
 
 ---
@@ -132,11 +147,13 @@ The domain `exoticcanopysolutions.com` was previously mapped to `integration-ser
 ## Testing Instructions
 
 ### Test Direct Service URL (Works Now)
+
 ```bash
 curl https://exotic-canopy-solutions-plad5efvha-uc.a.run.app
 ```
 
 ### Test Custom Domain (Will work after propagation)
+
 ```bash
 # Check HTTP redirect
 curl -I http://exoticcanopysolutions.com
@@ -149,6 +166,7 @@ curl https://exoticcanopysolutions.com
 ```
 
 ### Monitor Domain Mapping Status
+
 ```bash
 gcloud beta run domain-mappings describe \
   --domain=exoticcanopysolutions.com \
@@ -213,11 +231,13 @@ frontend/exotic-canopy-solutions/
 ## Next Steps
 
 ### Immediate (0-1 hour)
+
 - ⏳ Wait for domain routing propagation (15-30 min)
 - ⏳ Wait for SSL certificate full provisioning (30-60 min)
 - ✅ Monitor domain mapping status
 
 ### Short-term Enhancements
+
 - [ ] Integrate contact form with backend API
 - [ ] Add product catalog database
 - [ ] Implement Hempress 3 ordering system
@@ -225,6 +245,7 @@ frontend/exotic-canopy-solutions/
 - [ ] Create admin panel for content management
 
 ### Medium-term Features
+
 - [ ] Customer account system
 - [ ] Order tracking
 - [ ] Inventory management integration
@@ -237,12 +258,14 @@ frontend/exotic-canopy-solutions/
 ## Technical Specifications
 
 ### Performance
+
 - **Server**: Nginx on Alpine Linux (minimal footprint)
 - **Response Time**: <100ms (static content)
 - **Compression**: Gzip enabled
 - **Cache Control**: Optimized for static assets
 
 ### Security
+
 - **HTTPS**: Enforced (HTTP redirects to HTTPS)
 - **Headers Configured**:
   - X-Frame-Options: SAMEORIGIN
@@ -251,6 +274,7 @@ frontend/exotic-canopy-solutions/
 - **Container Security**: Non-root user, minimal attack surface
 
 ### Scalability
+
 - **Platform**: Google Cloud Run (serverless)
 - **Auto-scaling**: 0 to N instances
 - **Cold Start**: <1 second (static nginx)
@@ -261,12 +285,15 @@ frontend/exotic-canopy-solutions/
 ## Monitoring
 
 ### Health Check
+
 The service includes a health endpoint:
+
 ```bash
 curl https://exotic-canopy-solutions-plad5efvha-uc.a.run.app/health
 ```
 
 ### Cloud Run Logs
+
 ```bash
 gcloud run services logs read exotic-canopy-solutions \
   --region=us-central1 \
@@ -274,6 +301,7 @@ gcloud run services logs read exotic-canopy-solutions \
 ```
 
 ### Service Status
+
 ```bash
 gcloud run services describe exotic-canopy-solutions \
   --region=us-central1 \
@@ -285,16 +313,19 @@ gcloud run services describe exotic-canopy-solutions \
 ## Troubleshooting
 
 ### Domain Still Shows Old Content
+
 **Status**: This is expected during propagation (15-30 min)
 **Solution**: Wait for Cloud Run load balancer to update
 **Verification**: Direct service URL works correctly
 
 ### SSL Certificate Pending
+
 **Status**: Normal for new domain mappings
 **Solution**: Certificate will auto-provision within 60 minutes
 **Note**: Using shared certificate in the meantime (HTTPS works)
 
 ### Contact Form Not Submitting
+
 **Status**: MVP implementation (client-side only)
 **Solution**: Shows alert confirmation
 **Next Step**: Integrate with backend API
@@ -304,9 +335,9 @@ gcloud run services describe exotic-canopy-solutions \
 ## Support Contacts
 
 - **GCP Project**: reggieanddrodispensary
-- **Service Account**: cloudrun-service-account@reggieanddrodispensary.iam.gserviceaccount.com
+- **Service Account**: <cloudrun-service-account@reggieanddrodispensary.iam.gserviceaccount.com>
 - **Region**: us-central1
-- **Deployment User**: high@reggieanddro.com
+- **Deployment User**: <high@reggieanddro.com>
 
 ---
 

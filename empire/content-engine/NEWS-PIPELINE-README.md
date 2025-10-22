@@ -157,24 +157,28 @@ crontab -l
 The pipeline searches for:
 
 ### Texas Cannabis News
+
 - "Texas cannabis hemp THC DSHS legislation"
 - "Texas marijuana arrest law enforcement"
 - "Texas hemp business dispensary"
 - "Greg Abbott cannabis executive order Texas"
 
 ### Federal Cannabis News
+
 - "federal cannabis legalization DEA"
 - "Biden Trump marijuana rescheduling"
 - "DEA Schedule III cannabis"
 - "Congressional cannabis bill"
 
 ### Culture & Trends
+
 - "cannabis culture trends viral"
 - "marijuana social media Reddit"
 - "cannabis wellness movement 2025"
 - "weed infused pre-rolls trending"
 
 ### Advocacy
+
 - "cannabis social justice reform"
 - "marijuana legalization advocacy"
 - "cannabis arrest racial disparity"
@@ -204,16 +208,19 @@ The pipeline automatically identifies:
 The pipeline generates character-specific angles:
 
 ### Reggie
+
 - Cynical take on political dysfunction
 - Rage against injustice of prohibition
 - Sees opportunity in chaos
 
 ### Dro
+
 - Optimistic spin on incremental progress
 - Personal stories about system impact
 - Vision for community-owned solutions
 
 ### Tex
+
 - Business and legal analysis
 - Rights education ("Know your rights")
 - Political chess game breakdown
@@ -227,6 +234,7 @@ News Pipeline → Daily Brief → Episode Ideas → Script Generation → Video 
 ```
 
 Writers can pull from:
+
 - `latest.json` for today's top stories
 - Historical briefs for trend analysis
 - Advocacy opportunities for thematic episodes
@@ -384,6 +392,7 @@ chmod -R 755 output/news/
 ## Roadmap
 
 ### Phase 1 (Current)
+
 - [x] Basic news ingestion structure
 - [x] Character angle generation
 - [x] Viral potential scoring
@@ -391,6 +400,7 @@ chmod -R 755 output/news/
 - [x] Episode idea generation
 
 ### Phase 2 (Next)
+
 - [ ] Live API integration (NewsAPI, Google News)
 - [ ] Reddit sentiment analysis
 - [ ] Twitter/X trend monitoring
@@ -398,6 +408,7 @@ chmod -R 755 output/news/
 - [ ] Web dashboard for viewing briefs
 
 ### Phase 3 (Future)
+
 - [ ] AI-powered article summarization
 - [ ] Automatic script generation from briefs
 - [ ] Video storyboard generation
@@ -420,6 +431,7 @@ Internal use for LivHana Trinity / High Noon Cartoon content creation.
 ## Contact
 
 For issues or questions about the news pipeline:
+
 - Check logs first: `output/news/logs/`
 - Review this README
 - Test manually: `node news-ingestion-pipeline.mjs`

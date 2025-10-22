@@ -9,6 +9,7 @@ The TRUTH Pipeline RPM DNA tagging system implements profit-driven action templa
 ## RPM DNA Architecture
 
 ### RPM DNA Flow
+
 ```mermaid
 graph TD
     A[TRUTH Output] --> B[RPM Action Extraction]
@@ -25,6 +26,7 @@ graph TD
 ```
 
 ### RPM DNA Schema
+
 | Tag | Purpose | Format | Example |
 |-----|---------|--------|---------|
 | **TAG::RPM_RESULT** | Action outcome | String | "market_expansion" |
@@ -37,6 +39,7 @@ graph TD
 ## RPM Action Templates
 
 ### Action Template Schema
+
 ```json
 {
   "action_templates": {
@@ -69,6 +72,7 @@ graph TD
 ```
 
 ### Action Template Implementation
+
 ```bash
 #!/bin/bash
 # rpm_action_templates.sh
@@ -295,6 +299,7 @@ main "$@"
 ## RPM DNA Tag Generation
 
 ### DNA Tag Implementation
+
 ```bash
 #!/bin/bash
 # rpm_dna_tag_generator.sh
@@ -362,6 +367,7 @@ main "$@"
 ## RPM Action Enrichment
 
 ### Action Enrichment Logic
+
 ```bash
 #!/bin/bash
 # rpm_action_enrichment.sh
@@ -474,6 +480,7 @@ main "$@"
 ## RPM Validation & Gating
 
 ### RPM Validation Logic
+
 ```bash
 #!/bin/bash
 # rpm_validation.sh
@@ -566,6 +573,7 @@ main "$@"
 ## RPM Profit Assessment
 
 ### Profit Assessment Logic
+
 ```bash
 #!/bin/bash
 # rpm_profit_assessment.sh

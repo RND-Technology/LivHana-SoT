@@ -1,1 +1,1 @@
-### Animation Style Variations:
+### Animation Style Variations

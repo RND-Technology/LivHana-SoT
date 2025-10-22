@@ -7,6 +7,7 @@
 | Target | 8.5+ | 8.5+ | Both met |
 
 **Note:** Slight decrease in viral score is acceptable given:
+
 - 13,700x speed improvement
 - 4.4% TPOPS alignment improvement
 - More realistic scoring distribution

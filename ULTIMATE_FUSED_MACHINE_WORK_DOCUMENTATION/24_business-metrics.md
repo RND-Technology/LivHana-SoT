@@ -1,4 +1,5 @@
 ### BUSINESS METRICS
+
 | Metric | Target | Current | Status |
 |--------|--------|---------|--------|
 | Revenue Growth | 300% | 285% | 🟡 ON TRACK |

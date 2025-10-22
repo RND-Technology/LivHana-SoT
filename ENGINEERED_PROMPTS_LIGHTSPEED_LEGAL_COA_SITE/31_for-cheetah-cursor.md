@@ -1,4 +1,5 @@
 ### **For Cheetah Cursor:**
+
 ```bash
 # Create legal compliance page
 cd frontend/legal-compliance

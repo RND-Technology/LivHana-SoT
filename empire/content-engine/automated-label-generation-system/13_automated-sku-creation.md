@@ -1,4 +1,5 @@
 ### Automated SKU Creation
+
 ```python
 # backend/sku-generation-service/main.py
 from fastapi import FastAPI, HTTPException

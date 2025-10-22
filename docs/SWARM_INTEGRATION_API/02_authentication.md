@@ -8,6 +8,7 @@ X-Agent-Id: <agent-identifier>
 ```
 
 **Agent IDs:**
+
 - `claude-code-cli` - Claude Code CLI terminal agent
 - `cursor-ide` - Cursor IDE coding agent
 - `replit-agent` - Replit cloud execution agent

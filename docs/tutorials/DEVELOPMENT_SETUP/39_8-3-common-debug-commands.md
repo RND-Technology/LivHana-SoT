@@ -1,4 +1,5 @@
 ### 8.3 Common Debug Commands
+
 ```bash
 # Check running processes
 ps aux | grep node

@@ -1,4 +1,5 @@
 ### ROI Analysis
+
 - Cost per episode: $5.08
 - Generation time: <0.01s
 - Quality score: 8.81/10

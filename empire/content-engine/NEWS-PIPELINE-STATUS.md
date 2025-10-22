@@ -88,9 +88,11 @@ The Real-Time Cannabis News Ingestion Pipeline is now LIVE and operational. All 
 ## TOP 3 EPISODE IDEAS (READY FOR PRODUCTION)
 
 ### Episode 1: "The Vape Ban Paradox" (VIRAL: 10/10)
+
 **Hook**: You can buy Delta-8 gummies at a gas station, but vape it and you're going to jail for a year.
 
 **Character Angles**:
+
 - REGGIE: "So let me get this straight... I can walk into any gas station and buy a Delta-8 gummy, but if I vape it, that's a year in jail?"
 - DRO: "It's the delivery method they scared of, not the plant."
 - TEX: "Classic Texas. Regulate with a sledgehammer, wonder why the hammer broke."
@@ -102,9 +104,11 @@ The Real-Time Cannabis News Ingestion Pipeline is now LIVE and operational. All 
 ---
 
 ### Episode 2: "Trump's Cannabis Countdown" (VIRAL: 10/10)
+
 **Hook**: Trump says he'll decide on rescheduling "in coming weeks" - but we've heard that before.
 
 **Character Angles**:
+
 - REGGIE: "We been hearing 'coming weeks' for coming YEARS."
 - DRO: "But what if he actually does it tho? Schedule 3 changes everything."
 - TEX: "For legal states, yes. For Texas? We still locked out."
@@ -116,9 +120,11 @@ The Real-Time Cannabis News Ingestion Pipeline is now LIVE and operational. All 
 ---
 
 ### Episode 3: "Austin's Decrim Dream Dies" (VIRAL: 10/10)
+
 **Hook**: Ken Paxton sued FIVE cities just to keep arresting people for weed while the state makes billions off hemp.
 
 **Character Angles**:
+
 - REGGIE: "Ken Paxton really sued FIVE cities just to keep arresting people for weed."
 - DRO: "While the state makes billions off hemp sales. Make it make sense."
 - TEX: "It don't. That's the point. Keep people confused, keep people compliant."
@@ -141,6 +147,7 @@ The Real-Time Cannabis News Ingestion Pipeline is now LIVE and operational. All 
 ## AUTOMATION STATUS
 
 ### Cron Setup Ready
+
 ```bash
 # Run daily at 9 AM
 0 9 * * * /path/to/run-daily-news.sh >> /path/to/logs/cron.log 2>&1
@@ -150,10 +157,12 @@ The Real-Time Cannabis News Ingestion Pipeline is now LIVE and operational. All 
 ```
 
 ### Files Generated
+
 - `/empire/content-engine/output/news/daily-cannabis-brief-2025-10-07.json`
 - `/empire/content-engine/output/news/latest.json` (always current)
 
 ### Logs Location
+
 - `/empire/content-engine/output/news/logs/`
 
 ---
@@ -170,6 +179,7 @@ The Real-Time Cannabis News Ingestion Pipeline is now LIVE and operational. All 
 ## INTEGRATION POINTS
 
 ### Content Engine
+
 ```javascript
 import { ingestCannabisNews, saveDailyBrief } from './news-ingestion-pipeline.mjs';
 
@@ -182,6 +192,7 @@ generateEpisodeScript(topStory);
 ```
 
 ### Episode Scripts
+
 ```javascript
 import latestNews from './output/news/latest.json' assert { type: 'json' };
 
@@ -194,18 +205,21 @@ const dialogue = latestNews.top_3_episode_ideas[0].dialogue_hooks;
 ## SEARCH QUERIES IN USE
 
 ### Texas
+
 - "Texas cannabis hemp THC DSHS legislation"
 - "Texas marijuana arrest law enforcement"
 - "Texas hemp business dispensary"
 - "Greg Abbott cannabis executive order Texas"
 
 ### Federal
+
 - "federal cannabis legalization DEA"
 - "Biden Trump marijuana rescheduling"
 - "DEA Schedule III cannabis"
 - "Congressional cannabis bill"
 
 ### Culture
+
 - "cannabis culture trends viral"
 - "marijuana social media Reddit"
 - "cannabis wellness movement 2025"

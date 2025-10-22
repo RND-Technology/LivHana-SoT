@@ -11,11 +11,13 @@ urgency: CRITICAL - Production broken, local works
 ## 🚨 CURRENT SITUATION
 
 **Production Status**: ❌ BROKEN
+
 - herbitrage.com voice mode returns: "I apologize, but I encountered an error processing your request"
 - Tested at: 11:11 PM California time (2025-10-08)
-- Tested in: Incognito window, logged in as jesseniesen@gmail.com
+- Tested in: Incognito window, logged in as <jesseniesen@gmail.com>
 
 **Local Status**: ✅ WORKING
+
 - Voice service (port 8080): All endpoints functional
 - Frontend (port 5173): Continuous mode implemented
 - Reasoning integration: Operational
@@ -27,6 +29,7 @@ urgency: CRITICAL - Production broken, local works
 ### Production Services Have OLD Code
 
 **Test Results**:
+
 ```bash
 # Production voice-service (BOTH URLs tested)
 $ curl https://voice-service-plad5efvha-uc.a.run.app/api/elevenlabs/voices
@@ -44,6 +47,7 @@ Response: Cannot POST /api/reasoning/enqueue
 ```
 
 **Local Service (WORKS)**:
+
 ```bash
 $ curl http://localhost:8080/api/elevenlabs/voices
 Response: {"success":false,"error":"ElevenLabs API key not configured"}
@@ -57,22 +61,26 @@ Response: {"success":true,"jobId":"3","message":"Reasoning job enqueued successf
 ### Why Production is Broken
 
 **Cheetah's Local Code** (in `/backend/voice-service/src/`):
+
 - ✅ Has `routers/elevenlabs-router.js` with `/api/elevenlabs/*` routes
 - ✅ Has `routers/reasoning-router.js` with `/api/reasoning/*` routes
 - ✅ Has `src/index.js` that properly mounts these routers (lines 58-59)
 - ✅ Works perfectly locally on port 8080
 
 **Production Deployment** (Cloud Run):
+
 - ❌ OLD code without these routers
 - ❌ Only has `/health` endpoint
 - ❌ Missing all `/api/elevenlabs/*` routes
 - ❌ Missing all `/api/reasoning/*` routes
 
 **Frontend** (`app.js` lines 2-3):
+
 ```javascript
 const VOICE_SERVICE_URL = 'https://voice-service-plad5efvha-uc.a.run.app';
 const REASONING_GATEWAY_URL = 'https://reasoning-gateway-plad5efvha-uc.a.run.app';
 ```
+
 ✅ Frontend code is correct - it's trying to call the right endpoints
 ❌ But backend doesn't have those endpoints deployed
 
@@ -83,6 +91,7 @@ const REASONING_GATEWAY_URL = 'https://reasoning-gateway-plad5efvha-uc.a.run.app
 ### Permission Denied
 
 **Attempted Deployment**:
+
 ```bash
 $ cd backend/voice-service
 $ gcloud run deploy voice-service --source . --region us-central1
@@ -90,6 +99,7 @@ ERROR: jesseniesen@gmail.com does not have storage.buckets.get access
 ```
 
 **Missing Permissions**:
+
 - `storage.buckets.get` - Cannot upload source to Cloud Storage
 - `run.services.update` - Cannot update Cloud Run services
 - `cloudbuild.builds.create` - Cannot trigger Cloud Build
@@ -106,6 +116,7 @@ ERROR: jesseniesen@gmail.com does not have storage.buckets.get access
 **Step 1: Get GCP Permissions**
 
 Someone with admin access needs to run:
+
 ```bash
 # Grant Cloud Run deployment permissions
 gcloud projects add-iam-policy-binding reggieanddrodispensary \
@@ -124,6 +135,7 @@ gcloud projects add-iam-policy-binding reggieanddrodispensary \
 ```
 
 **Alternative**: Use service account with proper permissions:
+
 ```bash
 # Switch to service account with deployment permissions
 gcloud auth activate-service-account --key-file=/path/to/service-account-key.json
@@ -165,18 +177,21 @@ curl -X POST https://voice-service-980910443251.us-central1.run.app/api/reasonin
 **Step 4: Update Frontend URLs (if needed)**
 
 Check current deployed URLs:
+
 ```bash
 gcloud run services describe voice-service --region us-central1 --format="value(status.url)"
 gcloud run services describe reasoning-gateway --region us-central1 --format="value(status.url)"
 ```
 
 If URLs changed, update `frontend/herbitrage-voice/public/app.js` lines 2-3:
+
 ```javascript
 const VOICE_SERVICE_URL = 'https://voice-service-980910443251.us-central1.run.app';
 const REASONING_GATEWAY_URL = 'https://reasoning-gateway-980910443251.us-central1.run.app';
 ```
 
 Then redeploy frontend:
+
 ```bash
 cd frontend/herbitrage-voice
 npm run build
@@ -185,8 +200,8 @@ npm run build
 
 **Step 5: Test Production**
 
-1. Navigate to https://herbitrage.com
-2. Click "Login" (jesseniesen@gmail.com)
+1. Navigate to <https://herbitrage.com>
+2. Click "Login" (<jesseniesen@gmail.com>)
 3. Click "Talk to Liv"
 4. Speak: "Hello Liv, are you there?"
 5. Verify: Liv responds with voice (NOT error message)
@@ -198,6 +213,7 @@ npm run build
 ## 📊 COMPARISON: WHAT WORKS vs WHAT DOESN'T
 
 ### Local Environment (Port 8080) - ✅ WORKS
+
 ```javascript
 // src/index.js lines 58-59
 app.use('/api/elevenlabs', elevenlabsRouter);  // ✅ Mounted
@@ -210,6 +226,7 @@ app.use('/api/reasoning', reasoningRouter);    // ✅ Mounted
 ```
 
 ### Production Environment (Cloud Run) - ❌ BROKEN
+
 ```
 Only has /health endpoint
 ❌ GET /health → {"status":"healthy"}
@@ -224,6 +241,7 @@ Only has /health endpoint
 ## 🎯 WHAT CHEETAH DID RIGHT
 
 ### Code Quality: A+
+
 Cheetah built excellent, production-ready code locally:
 
 1. **Proper Router Architecture**:
@@ -253,18 +271,21 @@ Cheetah built excellent, production-ready code locally:
 ### The ONLY Issue: Deployment Not Completed
 
 **What Cheetah Did**:
+
 - ✅ Built working code locally
 - ✅ Verified all endpoints functional
 - ✅ Implemented continuous voice mode
 - ✅ Created comprehensive receipt
 
 **What Cheetah Didn't Do**:
+
 - ❌ Deploy the code to Cloud Run production
 - ❌ Verify production endpoints working
 - ❌ Test end-to-end at herbitrage.com
 
 **Why It Wasn't Done**:
-- 🚫 GCP permissions denied for jesseniesen@gmail.com
+
+- 🚫 GCP permissions denied for <jesseniesen@gmail.com>
 - 🚫 No service account with deployment access
 - 🚫 No admin available to grant permissions
 
@@ -277,6 +298,7 @@ Cheetah built excellent, production-ready code locally:
 **Cheetah's code is perfect. The deployment is blocked by GCP permissions.**
 
 Cheetah must:
+
 1. **Get proper GCP permissions** (run.developer, storage.admin, cloudbuild.builds.editor)
 2. **Deploy voice-service** with the working routers to Cloud Run
 3. **Verify production endpoints** respond correctly (not "Cannot GET/POST")
@@ -288,19 +310,22 @@ Cheetah must:
 
 ## 📋 ACTION ITEMS
 
-### For Cheetah (with permissions):
+### For Cheetah (with permissions)
+
 - [ ] Run `gcloud run deploy voice-service --source . --region us-central1`
 - [ ] Verify production endpoints: `/api/elevenlabs/voices`, `/api/reasoning/enqueue`
 - [ ] Test at herbitrage.com with real voice conversation
 - [ ] Generate completion receipt showing production working
 
-### For Admin (to unblock):
-- [ ] Grant `roles/run.developer` to jesseniesen@gmail.com
-- [ ] Grant `roles/storage.admin` to jesseniesen@gmail.com
-- [ ] Grant `roles/cloudbuild.builds.editor` to jesseniesen@gmail.com
+### For Admin (to unblock)
+
+- [ ] Grant `roles/run.developer` to <jesseniesen@gmail.com>
+- [ ] Grant `roles/storage.admin` to <jesseniesen@gmail.com>
+- [ ] Grant `roles/cloudbuild.builds.editor` to <jesseniesen@gmail.com>
 - [ ] OR: Provide service account key with deployment permissions
 
-### For Jesse:
+### For Jesse
+
 - [ ] Request admin to grant permissions OR
 - [ ] Provide service account credentials with proper roles OR
 - [ ] Deploy manually using admin account

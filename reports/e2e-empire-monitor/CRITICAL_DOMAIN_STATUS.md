@@ -36,6 +36,7 @@ These domains have instant alerting and require immediate attention on failure:
 ## 🚨 ISSUE #1: highnooncartoon.com - SITE DOWN
 
 ### Problem
+
 - **Domain**: highnooncartoon.com
 - **Status**: 🔴 DOWN
 - **Issue**: Service not deployed to Cloud Run, domain not mapped
@@ -45,6 +46,7 @@ These domains have instant alerting and require immediate attention on failure:
 - **Duration**: ~2 hours
 
 ### Diagnosis
+
 - **DNS**: ✅ Pointing to Google (216.239.32.21, 216.239.34.21, 216.239.36.21, 216.239.38.21)
 - **HTTP**: ❌ Returns 404 (domain points to Google but no service mapped)
 - **HTTPS**: ❌ SSL connection error (no certificate provisioned)
@@ -52,6 +54,7 @@ These domains have instant alerting and require immediate attention on failure:
 - **Domain Mapping**: ❌ NOT configured
 
 ### Root Cause
+
 1. Docker image built successfully: `gcr.io/reggieanddrodispensary/highnooncartoon:latest`
 2. Service code exists: `empire/content-engine/highnooncartoon-service/`
 3. **BLOCKER**: GCP permissions issue preventing deployment
@@ -61,6 +64,7 @@ These domains have instant alerting and require immediate attention on failure:
 ### Remediation Plan
 
 #### Immediate Actions (Jesse Required)
+
 ```bash
 # Grant deployment permissions (2 minutes)
 gcloud projects add-iam-policy-binding reggieanddrodispensary \
@@ -69,6 +73,7 @@ gcloud projects add-iam-policy-binding reggieanddrodispensary \
 ```
 
 #### Deploy Service (After Permissions Fixed)
+
 ```bash
 # 1. Deploy to Cloud Run
 gcloud run deploy highnooncartoon \
@@ -93,6 +98,7 @@ curl -I https://highnooncartoon.com/
 ```
 
 ### Timeline
+
 - **21:20 UTC**: Issue detected by monitoring
 - **21:30 UTC**: Diagnosis complete, blocker identified
 - **21:35 UTC**: Docker image built
@@ -100,16 +106,18 @@ curl -I https://highnooncartoon.com/
 - **ETA**: 15 minutes after permissions fixed
 
 ### Assigned To
+
 - **Jesse**: Fix GCP permissions (2 min)
 - **Cheetah**: Deploy service after unblocked (10 min)
 - **Codex**: Monitor deployment and verify
 
 ### Success Criteria
+
 - [ ] GCP permissions granted
 - [ ] Service deployed to Cloud Run
 - [ ] Domain mapping configured
 - [ ] SSL certificate provisioned
-- [ ] https://highnooncartoon.com/ returns 200 or 302
+- [ ] <https://highnooncartoon.com/> returns 200 or 302
 - [ ] Site redirects to episode correctly
 - [ ] Monitoring shows PASS status
 
@@ -118,6 +126,7 @@ curl -I https://highnooncartoon.com/
 ## ✅ OPERATIONAL CRITICAL DOMAINS (4/5)
 
 ### 1. herbitrage.com - 🟢 OPERATIONAL
+
 - **Status**: Fully operational
 - **DNS**: 216.239.32.21 (Cloud Run)
 - **HTTP**: 200 OK
@@ -125,12 +134,14 @@ curl -I https://highnooncartoon.com/
 - **Notes**: PRIMARY production domain, only authorized for revenue
 
 ### 2. livhana.ai - 🟢 OPERATIONAL
+
 - **Status**: Fully operational
 - **DNS**: 34.143.72.2 (Cloud Run)
 - **HTTP**: 200 OK
 - **Notes**: Verified domain (.ai NOT .com), no issues detected
 
 ### 3. reggieanddro.com - 🟢 OPERATIONAL (PROTECTED)
+
 - **Status**: Fully operational
 - **DNS**: 52.20.90.245 (AWS)
 - **HTTP**: 200 OK
@@ -139,6 +150,7 @@ curl -I https://highnooncartoon.com/
 - **Guardrails**: Hard-coded in EXCLUDED_DOMAINS_DO_NOT_TOUCH.md
 
 ### 4. airbnbwaterfall.com - 🟢 OPERATIONAL (PROTECTED)
+
 - **Status**: Fully operational
 - **DNS**: 15.197.225.128, 3.33.251.168 (AWS)
 - **HTTP**: 200 OK
@@ -153,6 +165,7 @@ curl -I https://highnooncartoon.com/
 ## 🔒 PROTECTION GUARDRAILS
 
 ### DO NOT TOUCH Domains
+
 The following critical domains are PROTECTED and must not be modified without explicit Jesse approval:
 
 1. **reggieanddro.com** + all subdomains
@@ -168,6 +181,7 @@ The following critical domains are PROTECTED and must not be modified without ex
    - DO NOT modify DNS
 
 ### Safety Protocols
+
 - All DNS scripts check EXCLUDED_DOMAINS_DO_NOT_TOUCH.md
 - Monitoring alerts immediately on critical domain failure
 - Manual verification required before any critical domain change
@@ -178,12 +192,14 @@ The following critical domains are PROTECTED and must not be modified without ex
 ## 📈 MONITORING CONFIGURATION
 
 ### Scan Frequency
+
 - **Interval**: 30 minutes
 - **Coverage**: All 69 verified domains
 - **Critical Domain Checks**: DNS, HTTP, Functionality, SSL
 - **Alerts**: Instant notification on P0 failure
 
 ### Alert Thresholds
+
 - **Critical Domains**: Any failure triggers immediate alert
 - **Regular Domains**: 3 consecutive failures trigger alert
 - **DNS Issues**: Alert if resolution fails
@@ -191,6 +207,7 @@ The following critical domains are PROTECTED and must not be modified without ex
 - **Functionality Issues**: Warning only (not blocking)
 
 ### Escalation Path
+
 1. **Automatic**: Alert logged to critical-alerts.log
 2. **Immediate**: Alert file created in reports directory
 3. **15 minutes**: Notification to monitoring dashboard
@@ -201,13 +218,16 @@ The following critical domains are PROTECTED and must not be modified without ex
 ## 🔧 REMEDIATION STATUS
 
 ### Active Issues
+
 - ❌ **highnooncartoon.com**: DOWN - Awaiting GCP permissions fix
 
 ### Resolved Issues
+
 - ✅ **airbnbwaterfall.com**: DNS incident resolved (2025-10-08)
 - ✅ **All other critical domains**: Operational
 
 ### Pending Actions
+
 - [ ] Jesse: Grant GCP permissions for highnooncartoon deployment
 - [ ] Cheetah: Deploy highnooncartoon service to Cloud Run
 - [ ] Codex: Verify deployment and update monitoring
@@ -217,6 +237,7 @@ The following critical domains are PROTECTED and must not be modified without ex
 ## 📊 HISTORICAL TRACKING
 
 ### Recent Incidents
+
 1. **2025-10-08**: airbnbwaterfall.com DNS incident
    - **Issue**: Accidentally updated to Cloud Run IPs during bulk operation
    - **Resolution**: Reverted to AWS IPs within 15 minutes
@@ -228,6 +249,7 @@ The following critical domains are PROTECTED and must not be modified without ex
    - **ETA**: 15 minutes after Jesse grants permissions
 
 ### Uptime Stats (Last 30 Days)
+
 - **herbitrage.com**: 99.99%
 - **highnooncartoon.com**: 95.00% (current downtime)
 - **livhana.ai**: 99.99%
@@ -239,12 +261,14 @@ The following critical domains are PROTECTED and must not be modified without ex
 ## 🎯 SUCCESS METRICS
 
 ### Targets
+
 - **Critical Domain Uptime**: >99.9%
 - **Mean Time to Detection**: <5 minutes
 - **Mean Time to Resolution**: <30 minutes
 - **False Alert Rate**: <1%
 
 ### Current Performance
+
 - **Critical Domain Uptime**: 99.5% (impacted by HNC downtime)
 - **Mean Time to Detection**: 10 minutes ✅
 - **Mean Time to Resolution**: Pending (HNC blocker)
@@ -255,16 +279,19 @@ The following critical domains are PROTECTED and must not be modified without ex
 ## 📞 CONTACTS & ESCALATION
 
 ### Primary Contact
+
 - **Jesse Niesen** (CEO)
 - **Role**: Final authority on all domain changes
 - **Escalate**: Any critical domain down >30 minutes
 
 ### Technical Teams
+
 - **Codex**: Monitoring, diagnosis, documentation
 - **Cheetah**: Deployment, infrastructure, hardening
 - **Replit**: Service development, feature implementation
 
 ### Emergency Procedures
+
 1. Check monitoring dashboard
 2. Review latest scan report
 3. Check critical-alerts.log

@@ -1,4 +1,5 @@
 #### Chief Steve (Official Nervous)
+
 ```
 - Uniform: Tan/Khaki (#C19A6B)
 - Badge: Silver (#C0C0C0)

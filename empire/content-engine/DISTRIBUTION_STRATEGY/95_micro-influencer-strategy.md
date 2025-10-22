@@ -3,6 +3,7 @@
 **Target**: Cannabis educators, Texas business accounts, compliance experts
 
 **Collaboration Types**:
+
 1. **Duet/Stitch** (TikTok)
    - Influencer reacts to HNC episode
    - Both accounts benefit from algorithm boost
@@ -24,6 +25,7 @@
    - Combined expertise + audiences
 
 **Outreach Script**:
+
 ```
 Hi [Name]!
 

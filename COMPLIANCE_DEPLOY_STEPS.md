@@ -1,4 +1,5 @@
 # Compliance Service Deployment Steps
+
 **Generated:** 2025-10-21
 **Status:** Ready for deployment
 **Compliance:** AGE21 + NIST + Medical Claims + LifeWard
@@ -27,6 +28,7 @@ python api.py
 ```
 
 **Verify:**
+
 ```bash
 curl http://localhost:8000/health
 ```
@@ -40,6 +42,7 @@ docker-compose up -d
 ```
 
 **Verify:**
+
 ```bash
 docker ps | grep compliance
 curl http://localhost:8000/health
@@ -58,18 +61,20 @@ gcloud run deploy compliance-service \
   --max-instances 10
 ```
 
-**Note:** Requires `secretmanager.secrets.list` permission (currently blocked for jesseniesen@gmail.com)
+**Note:** Requires `secretmanager.secrets.list` permission (currently blocked for <jesseniesen@gmail.com>)
 
 ---
 
 ## Post-Deployment Verification
 
 1. **Health Check**
+
    ```bash
    curl http://localhost:8000/health
    ```
 
 2. **Age Verification Test**
+
    ```bash
    curl -X POST http://localhost:8000/api/v1/verify-age \
      -H "Content-Type: application/json" \
@@ -77,6 +82,7 @@ gcloud run deploy compliance-service \
    ```
 
 3. **Medical Claims Test**
+
    ```bash
    curl -X POST http://localhost:8000/api/v1/check-medical-claims \
      -H "Content-Type: application/json" \
@@ -99,12 +105,14 @@ gcloud run deploy compliance-service \
 ## Troubleshooting
 
 **Port 8000 already in use:**
+
 ```bash
 lsof -i :8000
 kill -9 <PID>
 ```
 
 **Docker build fails:**
+
 ```bash
 docker-compose down
 docker-compose build --no-cache
@@ -112,6 +120,7 @@ docker-compose up -d
 ```
 
 **GCP permission denied:**
+
 - Contact project admin to grant secretmanager.secrets.list permission
 - Or use local/Docker deployment instead
 

@@ -1,4 +1,5 @@
 ### 5.1 Authenticate with GCP
+
 ```bash
 # Login to Google Cloud
 gcloud auth login

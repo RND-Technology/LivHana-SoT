@@ -9,12 +9,15 @@
 ## ✅ COMPLETED (Steps 1-3)
 
 ### Step 1: Find Broker Source Code ✅
+
 - Created complete MCP broker from scratch
 - Includes proper MCP protocol implementation
 - Location: `~/mcp-broker-fixed/`
 
 ### Step 2: Add Initialize Handler ✅
+
 **What Was Added**:
+
 ```python
 if method == 'initialize':
     return {
@@ -32,12 +35,15 @@ if method == 'initialize':
 ```
 
 **What This Fixes**:
+
 - Agent Builder no longer gets "Method not found: initialize" error
 - Proper MCP handshake completes
 - Agent Builder proceeds to load tools
 
 ### Step 3: Prepare for Deployment ✅
+
 **Files Created**:
+
 - `main.py` - Complete MCP broker with initialize handler
 - `requirements.txt` - Python dependencies (Flask, flask-cors, gunicorn)
 - `Dockerfile` - Container configuration
@@ -50,6 +56,7 @@ if method == 'initialize':
 ## ⏳ PENDING (Steps 4-5 - Cloud Shell Required)
 
 ### Step 4: Deploy & Test Initialize Method
+
 **What You Need to Do**:
 
 ```bash
@@ -65,12 +72,14 @@ chmod +x deploy.sh
 ```
 
 **What deploy.sh Does**:
+
 1. Builds Docker image with Cloud Build ✅
 2. Retrieves bearer token from Secret Manager ✅
 3. Deploys to Cloud Run ✅
 4. Tests initialize method automatically ✅
 
 **Expected Output**:
+
 ```
 ✅ DEPLOYMENT COMPLETE
 Service URL: https://mcp-broker-prod-XXXXX-uc.a.run.app
@@ -79,9 +88,11 @@ Testing initialize method...
 ```
 
 ### Step 5: Configure Agent Builder
+
 **After Deployment Succeeds**:
 
 1. **Get Configuration Values**:
+
    ```bash
    # Service URL
    gcloud run services describe mcp-broker-prod \
@@ -95,7 +106,7 @@ Testing initialize method...
      --project=reggieanddrodispensary
    ```
 
-2. **In Agent Builder** (https://platform.openai.com/agent-builder):
+2. **In Agent Builder** (<https://platform.openai.com/agent-builder>):
    - Select "Liv Hana RPM Workflow"
    - Click "MCP" in sidebar
    - Fill in:
@@ -117,12 +128,14 @@ Testing initialize method...
 ## 🎯 SUCCESS CRITERIA CHECKLIST
 
 ### Deployment (Step 4)
+
 - [ ] Archive uploaded to Cloud Shell
 - [ ] deploy.sh runs without errors
 - [ ] Cloud Run service shows "Ready"
 - [ ] Test command returns "2025-03-26"
 
 ### Agent Builder (Step 5)
+
 - [ ] Configuration saves without errors
 - [ ] Shows "3 tools loaded" message
 - [ ] All 3 tools visible in UI
@@ -133,6 +146,7 @@ Testing initialize method...
 ## 📦 FILE LOCATIONS
 
 ### Local Machine
+
 ```
 ~/mcp-broker-fixed/              # Source directory
 ├── main.py                      # MCP broker with initialize
@@ -145,6 +159,7 @@ Testing initialize method...
 ```
 
 ### Documentation
+
 ```
 ~/LivHana-Trinity-Local/LivHana-SoT/docs/
 ├── MCP_BROKER_FIX_COMPLETE.md           # This file
@@ -158,19 +173,24 @@ Testing initialize method...
 ## 🔧 WHAT WAS FIXED
 
 ### Root Cause
+
 **Problem**: Broker missing MCP `initialize` method
+
 - Agent Builder calls `initialize` first (required by MCP spec)
 - Broker returned error -32601 "Method not found"
 - Agent Builder stopped and showed "Unable to load tools"
 
 ### Solution
+
 **Added initialize handler** (19 lines of code):
+
 - Returns MCP protocol version
 - Declares tool capabilities
 - Provides server info
 - Agent Builder proceeds to `tools/list`
 
 ### Why It Works Now
+
 ```
 BEFORE:
 Agent Builder → initialize → ❌ Error -32601
@@ -188,6 +208,7 @@ Agent Builder → tools/call → ✅ Executes tools
 ## ⏱️ TIME ESTIMATE
 
 ### Remaining Steps
+
 - Upload to Cloud Shell: 2 minutes
 - Run deploy.sh: 5 minutes (Cloud Build + deploy)
 - Configure Agent Builder: 3 minutes
@@ -199,18 +220,24 @@ Agent Builder → tools/call → ✅ Executes tools
 ## 🚨 IMPORTANT NOTES
 
 ### Why Cloud Shell?
+
 **Local deployment failed** due to deleted Compute Engine service account:
+
 - ❌ `gcloud run deploy --source` fails locally
 - ❌ Cloud Build blocked on local machine
 - ✅ Cloud Build works in Cloud Shell (different auth context)
 
 ### Bearer Token Format
+
 **Confirmed correct**: Your token starts with `ops_` (OpenAI Platform Service)
+
 - NOT `op_` (1Password reference prefix)
 - NOT confused with OPS Layer (One Plant Solution)
 
 ### MCP Protocol
+
 **This is NOT a REST API**:
+
 - Uses JSON-RPC 2.0 format
 - Requires specific method names (initialize, tools/list, tools/call)
 - Designed to be called BY Agent Builder, not directly
@@ -230,20 +257,23 @@ Agent Builder → tools/call → ✅ Executes tools
 ## 📞 NEXT ACTIONS
 
 ### Immediate (You Do)
-1. Open Google Cloud Shell: https://shell.cloud.google.com
+
+1. Open Google Cloud Shell: <https://shell.cloud.google.com>
 2. Upload `~/mcp-broker-fixed.tar.gz`
 3. Extract: `tar -xzf mcp-broker-fixed.tar.gz`
 4. Deploy: `cd mcp-broker-fixed && ./deploy.sh`
 5. Wait for "✅ DEPLOYMENT COMPLETE"
 
 ### Then (Configure)
+
 1. Copy service URL from deploy.sh output
 2. Copy bearer token from deploy.sh output
-3. Open Agent Builder: https://platform.openai.com/agent-builder
+3. Open Agent Builder: <https://platform.openai.com/agent-builder>
 4. Configure MCP server with URL + token
 5. Verify "3 tools loaded" appears
 
 ### Validate (Test)
+
 1. Send test query: "List available compliance tools"
 2. Agent should invoke `tools/list`
 3. Should see 3 tools in response
@@ -256,6 +286,7 @@ Agent Builder → tools/call → ✅ Executes tools
 ## ✅ STEPS 1-3 COMPLETE
 
 **What's Done**:
+
 - ✅ Broker code written (with initialize handler)
 - ✅ Dockerfile created
 - ✅ Deploy script created
@@ -263,6 +294,7 @@ Agent Builder → tools/call → ✅ Executes tools
 - ✅ Archive ready for upload
 
 **What's Pending**:
+
 - ⏳ Upload to Cloud Shell (2 min)
 - ⏳ Run deploy.sh (5 min)
 - ⏳ Configure Agent Builder (3 min)

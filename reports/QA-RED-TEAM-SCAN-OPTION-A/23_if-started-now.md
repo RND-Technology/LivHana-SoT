@@ -1,4 +1,4 @@
-### If Started Now:
+### If Started Now
 
 ```
 Time    Progress  Action                           Readiness

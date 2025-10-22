@@ -1,4 +1,5 @@
 ### Our Model (Direct Integration)
+
 ```
 Customer Order ($75)
   ↓
@@ -12,6 +13,7 @@ TOTAL FEES TO MERCHANT: $5-8
 ```
 
 **SAVINGS:**
+
 - Customer saves: $4-5 per order (5-6%)
 - Merchant saves: $4-5 per order
 - **Competitive Advantage: CLEAR**

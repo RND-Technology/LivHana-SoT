@@ -9,12 +9,14 @@ NASH uses DoorDash/Uber API integration. We use the SAME MODEL but with:
 ✅ **Agent-driven optimization** (SI Liv Hana scales intelligently)
 
 **NASH'S MODEL:**
+
 - Square Online (intermediary)
 - DoorDash/Uber drivers (outsourced)
 - Square takes cut
 - Limited control
 
 **OUR MODEL:**
+
 - Direct Lightspeed (no intermediary)
 - DoorDash/Uber drivers (outsourced - SAME AS NASH)
 - No Square markup

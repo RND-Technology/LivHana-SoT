@@ -3,6 +3,7 @@
 **Status:** Only 4 domains working, 18 failing
 
 **Working domains (4):**
+
 1. getlooseyoga.com (13.248.243.5) - Different service
 2. oneplantsolution.com (148.72.126.250) - Different service
 3. tier1treecare.com (3.33.130.190) - Different service

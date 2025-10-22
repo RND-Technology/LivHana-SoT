@@ -5,14 +5,17 @@ Retrieve the current status and progress of a task.
 **Endpoint:** `GET /api/swarm/status/:taskId`
 
 **Headers:**
+
 ```
 X-API-Key: test
 ```
 
 **URL Parameters:**
+
 - `taskId` (required): Task identifier from task submission
 
 **Response:** `200 OK`
+
 ```json
 {
   "success": true,
@@ -32,6 +35,7 @@ X-API-Key: test
 ```
 
 **Status Values:**
+
 - `queued` - Waiting for agent assignment
 - `assigned` - Agent selected, about to start
 - `in_progress` - Currently executing
@@ -39,6 +43,7 @@ X-API-Key: test
 - `failed` - Execution failed
 
 **Example:**
+
 ```bash
 curl -H "X-API-Key: test" \
   http://localhost:8080/api/swarm/status/task-1728292800000-abc123

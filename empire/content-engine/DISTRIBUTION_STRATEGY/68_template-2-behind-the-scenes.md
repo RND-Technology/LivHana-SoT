@@ -1,4 +1,5 @@
 #### Template 2: Behind-the-Scenes
+
 ```
 Behind every High Noon Cartoon episode is hours of legal research. 📖
 

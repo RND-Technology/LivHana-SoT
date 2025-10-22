@@ -1,6 +1,8 @@
 ### 1. Canniversal CBD & THC (18% Market Share)
+
 **Position:** #1 dispensary in San Antonio  
 **Strengths:**
+
 - Premium THCA flower, live rosin, hash rosin
 - Vapes, concentrates, edibles
 - Lab-tested products emphasis
@@ -9,6 +11,7 @@
 - Widely regarded as #1
 
 **Weaknesses:**
+
 - No specific pricing mentioned
 - Generic location info
 - No unique selling proposition beyond quality

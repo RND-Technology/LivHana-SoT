@@ -1,11 +1,13 @@
 # High Noon Cartoon Monitoring - Quick Start Card
 
 ## ONE-LINE LAUNCH
+
 ```bash
 cd empire/content-engine && ./launch-monitoring.sh
 ```
 
 ## WHAT IT DOES
+
 - Monitors all autonomous operations in real-time
 - Analyzes episode quality (funny, quotable, advocacy)
 - Tracks target persona engagement
@@ -13,6 +15,7 @@ cd empire/content-engine && ./launch-monitoring.sh
 - Alerts on system issues
 
 ## KEY FILES
+
 | File | Purpose | Run |
 |------|---------|-----|
 | `monitoring-dashboard.html` | Real-time web dashboard | `open monitoring-dashboard.html` |
@@ -22,6 +25,7 @@ cd empire/content-engine && ./launch-monitoring.sh
 | `stop-monitoring.sh` | Stop everything | `./stop-monitoring.sh` |
 
 ## COMMON COMMANDS
+
 ```bash
 # Start monitoring (everything)
 ./launch-monitoring.sh
@@ -50,23 +54,27 @@ cat LEARNINGS.md
 ```
 
 ## MONITORING INTERVALS
+
 - System Monitor: Every 5 minutes
 - Improvement Loop: Every 30 minutes
 - Dashboard Refresh: Every 30 seconds
 
 ## QUALITY TARGETS
+
 - **Funny**: 8.5+/10
 - **Quotable**: 9.0+/10
 - **Advocacy**: 9.5+/10
 - **Overall**: 9.0+/10
 
 ## TARGET PERSONAS (TPOPs)
+
 1. **Texas Cannabis Users** (25%) - Target: 85%+
 2. **Federal Legalization Advocates** (25%) - Target: 90%+
 3. **Trump Supporters (Cannabis)** (20%) - Target: 75%+
 4. **Gen Z Short-Form Consumers** (30%) - Target: 95%+
 
 ## FILE LOCATIONS
+
 - **Status Reports**: `reports/autonomous-status/`
 - **Latest Status**: `reports/autonomous-status/latest-status.json`
 - **Alerts**: `reports/autonomous-status/ALERTS.log`
@@ -75,12 +83,14 @@ cat LEARNINGS.md
 - **Auto-Adjustments**: `empire/content-engine/output/auto-adjustment-params.json`
 
 ## ALERT LEVELS
+
 - **INFO**: Normal operations
 - **WARNING**: Attention needed (non-critical)
 - **ERROR**: Action required
 - **CRITICAL**: Immediate action needed
 
 ## TROUBLESHOOTING
+
 ```bash
 # Services not running?
 ps aux | grep monitor
@@ -98,6 +108,7 @@ cat MONITORING-README.md
 ```
 
 ## NEXT STEPS
+
 1. Launch: `./launch-monitoring.sh`
 2. Open dashboard in browser
 3. Generate episodes with content engine
@@ -106,6 +117,7 @@ cat MONITORING-README.md
 6. Scale up production
 
 ## FULL DOCUMENTATION
+
 See: `MONITORING-README.md`
 
 ---

@@ -1,4 +1,5 @@
-### Production Recommendations:
+### Production Recommendations
+
 1. **Visual Enhancements**
    - Animated COA QR code scans
    - ID verification demonstration clips

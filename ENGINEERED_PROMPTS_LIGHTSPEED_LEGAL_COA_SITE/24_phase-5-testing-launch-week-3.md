@@ -1,5 +1,7 @@
 ### **Phase 5: Testing & Launch (Week 3)**
+
 **Owner: Trinity Team**
+
 1. Upload all historical COAs
 2. Test search functionality
 3. Verify Lightspeed integration

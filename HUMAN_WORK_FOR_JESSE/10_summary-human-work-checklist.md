@@ -1,12 +1,14 @@
 ## SUMMARY - HUMAN WORK CHECKLIST
 
 **CRITICAL (MUST DO - 40 MIN):**
+
 - [ ] Item 1: Get YouTube API key (10 min)
 - [ ] Item 2: Get NewsAPI key (5 min)
 - [ ] Item 3: Apply for DoorDash Drive (15 min)
 - [ ] Item 4: Get Uber API key (10 min)
 
 **NON-CRITICAL (SHOULD DO - 85 MIN):**
+
 - [ ] Item 5: Configure Lightspeed webhook (5 min) *wait for Trinity*
 - [ ] Item 6: Review SATX strategy (30 min)
 - [ ] Item 7: Approve production deployment (5 min)

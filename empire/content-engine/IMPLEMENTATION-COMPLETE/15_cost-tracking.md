@@ -1,4 +1,5 @@
 #### ✅ Cost Tracking
+
 - **CostTracker Class**
 - Real-time cost accumulation
 - Per-service breakdown

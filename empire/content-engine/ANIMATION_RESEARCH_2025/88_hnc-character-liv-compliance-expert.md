@@ -5,6 +5,7 @@ Professional woman in her early 30s, short auburn hair in a sleek bob, wearing a
 ```
 
 **With Omni Reference for Consistency:**
+
 ```
 Liv turning to the camera with a surprised expression --oref [previous_image_url] --ow 80 --ar 9:16 --v 7
 ```

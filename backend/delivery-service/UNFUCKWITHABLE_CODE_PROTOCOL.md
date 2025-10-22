@@ -10,6 +10,7 @@
 ## Mission
 
 Minimal surface, maximal reliability. Every line of code is:
+
 - Spec-locked before written
 - Property-tested with random data
 - Attack-tested by adversarial model
@@ -24,16 +25,19 @@ Minimal surface, maximal reliability. Every line of code is:
 ### A. Guardrails-First
 
 ✅ **Mono-repo + typed core**
+
 - TypeScript with `strict: true`
 - No `any`, no escape hatches
 - Warnings = errors
 
 ✅ **Spec → code**
+
 - OpenAPI/JSON Schema first
 - Generate clients/servers from spec
 - Lock with contract tests
 
 ✅ **Determinism**
+
 - Containerize builds (Dockerfile + pinned toolchain)
 - Reproducible via as-if-clean builds
 - No global state
@@ -41,27 +45,32 @@ Minimal surface, maximal reliability. Every line of code is:
 ### B. Generate → Verify → Mutate
 
 ✅ **Dual-model codegen**
+
 - Model A writes (Prompt 2: Codegen)
 - Model B attacks (Prompt 3: Red Team)
 - Threat-model + mutation diffs
 
 ✅ **Property-based tests**
+
 - fast-check generates random inputs
 - Tests run on each PR
 - Invariants must hold for all inputs
 
 ✅ **Golden tests**
+
 - Lock user-visible IO/API transcripts
 - Any drift = fail
 - No silent regressions
 
 ✅ **Mutation testing**
+
 - Score must rise over time
 - < threshold blocks merge
 
 ### C. CI/CD That Refuses BS
 
 ✅ **Pipeline stages**
+
 1. Format check (Prettier)
 2. Lint (ESLint strict)
 3. Typecheck (tsc --noEmit)
@@ -73,11 +82,13 @@ Minimal surface, maximal reliability. Every line of code is:
 9. OPA policy gate
 
 ✅ **Secrets**
+
 - 1Password/Vault only
 - Runtime via OIDC
 - Never in env files
 
 ✅ **Policy-as-code**
+
 - Open Policy Agent (OPA) gates
 - PR labels checked
 - Codeowners enforced
@@ -86,34 +97,41 @@ Minimal surface, maximal reliability. Every line of code is:
 ### D. Reliability Math Baked-In
 
 ✅ **SLIs/SLOs per service**
+
 - Budget alerts feed back to tests
 - Auto-create regress cases
 
 ✅ **Chaos lite on staging**
+
 - Latency/jitter/fault injection
 - Before prod cut
 
 ✅ **Backpressure & timeouts**
+
 - Standardized across services
 - Retries are idempotent or banned
 
 ### E. Thin Surface, Thick Tests
 
 ✅ **Public API only**
+
 - Internal modules `@internal/*`
 - Ban cross-boundary imports
 
 ✅ **No cleverness**
+
 - Prefer 3 small functions over 1 "smart" one
 - Cyclomatic threshold enforced (max 10)
 
 ✅ **Docs = assertions**
+
 - Executable examples in Markdown
 - Doctest/runme style
 
 ### F. Human Loop That Scales
 
 ✅ **PR template**
+
 - Threat model
 - Invariants
 - Failure modes
@@ -121,10 +139,12 @@ Minimal surface, maximal reliability. Every line of code is:
 - Blast radius
 
 ✅ **Red-team bot**
+
 - Greps for footguns (regex & AST)
 - Prompts Model B to craft exploits
 
 ✅ **Post-merge audit**
+
 - Auto-generate "why safe" report
 - Deviations create chores
 
@@ -168,6 +188,7 @@ Minimal surface, maximal reliability. Every line of code is:
 ## The 3-Prompt System
 
 ### Prompt 1: Spec Lock (Spec Arbiter)
+
 **Use before ANY code**
 
 File: `.claude/PROMPT_1_SPEC_LOCK.md`
@@ -179,6 +200,7 @@ File: `.claude/PROMPT_1_SPEC_LOCK.md`
 - **REFUSE TO GENERATE CODE**
 
 ### Prompt 2: Codegen (Code Builder)
+
 **Use ONLY after Spec Lock complete**
 
 File: `.claude/PROMPT_2_CODEGEN.md`
@@ -189,6 +211,7 @@ File: `.claude/PROMPT_2_CODEGEN.md`
 - Emit unit + property tests
 
 ### Prompt 3: Red Team (Breaker)
+
 **Auto-runs on every PR**
 
 File: `.claude/PROMPT_3_RED_TEAM.md`
@@ -205,6 +228,7 @@ File: `.claude/PROMPT_3_RED_TEAM.md`
 ## CI/CD Gates
 
 ### Pre-commit Hooks
+
 ```bash
 #!/bin/bash
 # .git/hooks/pre-commit
@@ -261,26 +285,27 @@ jobs:
 ### Supported Carriers
 
 1. **Skipcart** (TX-heavy white-label)
-   - API: https://skipcartapi.readme.io/
-   - Signup: https://express.skipcart.com/auth-signup
+   - API: <https://skipcartapi.readme.io/>
+   - Signup: <https://express.skipcart.com/auth-signup>
 
 2. **Roadie** (Coast-to-coast same-day)
-   - API: https://docs.roadie.com/
-   - Catalog: https://apitracker.io/a/roadie-io
+   - API: <https://docs.roadie.com/>
+   - Catalog: <https://apitracker.io/a/roadie-io>
 
 3. **Favor** (Texas-only, H-E-B owned)
-   - Merchant: https://www.favordelivery.com/for-merchants
-   - Integration: https://central.toasttab.com/s/article/Get-Started-with-the-Favor-Integration
+   - Merchant: <https://www.favordelivery.com/for-merchants>
+   - Integration: <https://central.toasttab.com/s/article/Get-Started-with-the-Favor-Integration>
 
 4. **Dispatch** (B2B courier network)
-   - API: https://info.dispatchit.com/the-dispatch-api
+   - API: <https://info.dispatchit.com/the-dispatch-api>
 
 5. **Senpex** (API-first last-mile)
-   - Dev Portal: https://dev.senpex.com/
+   - Dev Portal: <https://dev.senpex.com/>
 
 ### Adapter Interface
 
 All adapters implement:
+
 ```typescript
 interface CarrierAdapter {
   readonly name: Carrier;
@@ -303,21 +328,25 @@ interface CarrierAdapter {
 ## Test Coverage Requirements
 
 ### Unit Tests
+
 - ✅ All public functions tested
 - ✅ Happy path + edge cases
 - ✅ Error handling
 
 ### Property Tests
+
 - ✅ Invariants hold for random inputs
 - ✅ 1000+ test cases per property
 - ✅ Shrinking on failure
 
 ### Fuzz Tests
+
 - ✅ Adversarial seed inputs
 - ✅ Boundary values (max int, empty, null)
 - ✅ Unicode edge cases
 
 ### Coverage Thresholds
+
 ```
 Branches:   ≥80%
 Functions:  ≥80%
@@ -332,24 +361,28 @@ Statements: ≥80%
 ## Deployment
 
 ### Local Development
+
 ```bash
 npm install
 npm run dev
 ```
 
 ### Test Suite
+
 ```bash
 npm run test:all
 # Runs: unit + properties + fuzz
 ```
 
 ### Production Build
+
 ```bash
 npm run build
 # Output: dist/index.js
 ```
 
 ### Cloud Run Deployment
+
 ```bash
 gcloud run deploy delivery-service \
   --source . \
@@ -372,6 +405,7 @@ gcloud run deploy delivery-service \
 ## Success Metrics
 
 ### Code Quality
+
 - ✅ Zero `any` types
 - ✅ Zero ESLint warnings
 - ✅ 100% spec coverage
@@ -379,11 +413,13 @@ gcloud run deploy delivery-service \
 - ✅ Complexity ≤10 per function
 
 ### Security
+
 - ✅ Zero critical vulnerabilities
 - ✅ Zero high-severity findings
 - ✅ All red team tests passing
 
 ### Reliability
+
 - ✅ Failover works (tested)
 - ✅ Timeouts enforced
 - ✅ Retries are idempotent
@@ -393,25 +429,29 @@ gcloud run deploy delivery-service \
 
 ## Violations & Enforcement
 
-### If code written without spec:
+### If code written without spec
+
 1. PR blocked
 2. Violation logged in `TEAM_ACCOUNTABILITY_SYSTEM.md`
 3. Code reverted
 4. Spec written first
 5. Then re-submit
 
-### If tests below threshold:
+### If tests below threshold
+
 1. Merge blocked
 2. Coverage report attached
 3. Add tests before retry
 
-### If red team finds critical:
+### If red team finds critical
+
 1. Immediate merge block
 2. Fix exploits
 3. Add regression tests
 4. Re-run red team
 
-### If OPA policy fails:
+### If OPA policy fails
+
 1. PR cannot merge
 2. Fix policy violation
 3. Request re-review
@@ -423,6 +463,7 @@ gcloud run deploy delivery-service \
 All agents (Claude Code, Replit, Cheetah, Codex) follow this protocol.
 
 Violations logged in:
+
 - `.claude/TEAM_ACCOUNTABILITY_SYSTEM.md`
 - `.claude/TRUTH_RANKING_LOG_[DATE].md`
 

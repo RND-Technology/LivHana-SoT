@@ -1,4 +1,5 @@
 #### Texas Landscapes
+
 ```
 - Sky: Clear Blue (#87CEEB) to Sunset Orange (#FF8C42)
 - Desert: Sandy Tan (#E8C8A0) to Terracotta (#C76A4A)

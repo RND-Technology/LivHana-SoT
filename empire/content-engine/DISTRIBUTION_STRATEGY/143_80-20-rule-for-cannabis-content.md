@@ -3,6 +3,7 @@
 **The Formula**: 80% educational/entertaining, 20% brand
 
 **80% Content**:
+
 - Compliance education
 - Industry news
 - Business tips
@@ -10,6 +11,7 @@
 - Community stories
 
 **20% Content**:
+
 - About HNC
 - Follow CTAs
 - Merchandise (if any)

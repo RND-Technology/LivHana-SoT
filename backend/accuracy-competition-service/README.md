@@ -13,6 +13,7 @@
 **ROI/$/Day is KING. Cash flow (passive profits) RULES business decisions.**
 
 This service creates competitive accuracy measurement across:
+
 - **Models vs Humans vs Selves**
 - **Projected vs Actual:** Timeframe, Cost, ROI
 - **Primary KPI:** ROI/$/Day accuracy
@@ -24,17 +25,20 @@ This service creates competitive accuracy measurement across:
 ## QUICK START
 
 ### 1. Deploy Service
+
 ```bash
 cd backend/accuracy-competition-service
 ./deploy.sh
 ```
 
 ### 2. Health Check
+
 ```bash
 curl http://localhost:8001/health
 ```
 
 ### 3. Submit Projection
+
 ```bash
 curl -X POST http://localhost:8001/api/v1/projections \
   -H "Content-Type: application/json" \
@@ -50,6 +54,7 @@ curl -X POST http://localhost:8001/api/v1/projections \
 ```
 
 ### 4. Submit Actual Result
+
 ```bash
 curl -X POST http://localhost:8001/api/v1/actuals \
   -H "Content-Type: application/json" \
@@ -64,6 +69,7 @@ curl -X POST http://localhost:8001/api/v1/actuals \
 ```
 
 ### 5. View Leaderboard
+
 ```bash
 curl http://localhost:8001/api/v1/leaderboard?type=daily&limit=10
 ```
@@ -73,12 +79,14 @@ curl http://localhost:8001/api/v1/leaderboard?type=daily&limit=10
 ## ACCURACY MEASUREMENT FRAMEWORK
 
 ### Primary Metrics (Weighted)
+
 - **ROI/$/Day:** 40% (KING metric)
 - **Timeframe:** 25% (Time accuracy)
 - **Cost:** 20% (Cost accuracy)
 - **Cash Flow:** 15% (Cash flow accuracy)
 
 ### Accuracy Calculation
+
 ```javascript
 // ROI/$/Day accuracy (KING metric)
 function calculateROIAccuracy(projectedROI, actualROI) {
@@ -114,20 +122,24 @@ function calculateCompositeAccuracy(scores) {
 ## API ENDPOINTS
 
 ### Core Accuracy
+
 - `POST /api/v1/projections` - Submit projection
 - `POST /api/v1/actuals` - Submit actual result
 - `POST /api/v1/accuracy/calculate` - Calculate accuracy score
 
 ### Competition Management
+
 - `POST /api/v1/competitions` - Create competition
 - `POST /api/v1/competitions/:id/join` - Join competition
 - `GET /api/v1/competitions` - List competitions
 
 ### Leaderboards
+
 - `GET /api/v1/leaderboard` - Get current leaderboard
 - `GET /api/v1/participants/:id/stats` - Get participant stats
 
 ### Analytics
+
 - `GET /api/v1/analytics/trends` - Get accuracy trends
 - `GET /api/v1/analytics/recommendations/:id` - Get improvement recommendations
 
@@ -136,6 +148,7 @@ function calculateCompositeAccuracy(scores) {
 ## COMPETITION STRUCTURE
 
 ### Daily Leaderboard
+
 ```
 ┌─────────────────┬──────────────┬──────────────┬──────────────┐
 │ Participant     │ ROI Accuracy │ Composite    │ Rank         │
@@ -148,6 +161,7 @@ function calculateCompositeAccuracy(scores) {
 ```
 
 ### Weekly Tournaments
+
 - Automatic tournament creation
 - All participants auto-joined
 - Real-time standings
@@ -158,6 +172,7 @@ function calculateCompositeAccuracy(scores) {
 ## DATABASE SCHEMA
 
 ### Core Tables
+
 - `projections` - Projection submissions
 - `actuals` - Actual result submissions
 - `accuracy_scores` - Calculated accuracy scores
@@ -166,6 +181,7 @@ function calculateCompositeAccuracy(scores) {
 - `competition_participants` - Competition participation
 
 ### Key Fields
+
 - `participant` - Participant identifier
 - `metric` - Metric type (roi_per_day, timeframe, cost, cash_flow)
 - `value` - Numeric value
@@ -177,11 +193,13 @@ function calculateCompositeAccuracy(scores) {
 ## SCHEDULED TASKS
 
 ### Daily Tasks (Midnight)
+
 - Calculate daily accuracy scores
 - Update daily leaderboard
 - Generate improvement recommendations
 
 ### Weekly Tasks (Sunday 6 AM)
+
 - Calculate weekly competition results
 - Update weekly leaderboard
 - Create new tournaments
@@ -191,6 +209,7 @@ function calculateCompositeAccuracy(scores) {
 ## INTEGRATION POINTS
 
 ### Voice Service Integration
+
 ```javascript
 // Submit voice mode projection
 const projection = {
@@ -208,6 +227,7 @@ await fetch('http://localhost:8001/api/v1/projections', {
 ```
 
 ### Compliance Service Integration
+
 ```javascript
 // Submit compliance accuracy
 const actual = {
@@ -229,12 +249,14 @@ await fetch('http://localhost:8001/api/v1/actuals', {
 ## MONITORING & METRICS
 
 ### Service Health
+
 - Health check endpoint: `/health`
 - Service status: Running on port 8001
 - Database: SQLite with automatic initialization
 - Logs: Structured JSON logging
 
 ### Key Metrics
+
 - **Accuracy Scores:** Real-time accuracy tracking
 - **Competition Participation:** Active participant count
 - **Improvement Rates:** Weekly improvement tracking
@@ -245,6 +267,7 @@ await fetch('http://localhost:8001/api/v1/actuals', {
 ## DEVELOPMENT
 
 ### Local Development
+
 ```bash
 # Install dependencies
 npm install
@@ -260,6 +283,7 @@ npm run build
 ```
 
 ### Environment Variables
+
 ```bash
 NODE_ENV=production
 PORT=8001
@@ -273,12 +297,14 @@ ALLOWED_ORIGINS=http://localhost:3000,http://localhost:8080
 ## SUCCESS METRICS
 
 ### Primary KPIs
+
 - **ROI/$/Day Accuracy:** Target 95%+
 - **Cash Flow Accuracy:** Target 90%+
 - **Timeframe Accuracy:** Target 85%+
 - **Cost Accuracy:** Target 90%+
 
 ### Secondary KPIs
+
 - **Improvement Rate:** Target 2%+ weekly
 - **Competition Engagement:** Target 80%+ participation
 - **Learning Velocity:** Target 5+ insights/week
@@ -289,16 +315,19 @@ ALLOWED_ORIGINS=http://localhost:3000,http://localhost:8080
 ## GUARDRAILS & COMPLIANCE
 
 ### Values Alignment
+
 - Every projection must align with core values
 - Accuracy cannot compromise ethics
 - Transparency in all measurements
 
 ### Results Focus
+
 - Accuracy must drive business results
 - ROI/$/Day is the ultimate measure
 - Cash flow optimization is priority
 
 ### Purpose Driven
+
 - All competition serves the mission
 - Accuracy improves decision quality
 - Learning accelerates growth
@@ -318,11 +347,13 @@ This system transforms accuracy from a passive metric into an active competitive
 ## SUPPORT
 
 ### Documentation
+
 - API Documentation: Available via `/health` endpoint
 - Database Schema: SQLite with automatic initialization
 - Competition Rules: Embedded in service logic
 
 ### Troubleshooting
+
 - Check service logs: `tail -f logs/service.log`
 - Verify database: SQLite file at `data/accuracy_competition.db`
 - Health check: `curl http://localhost:8001/health`

@@ -1,4 +1,5 @@
 #### Template 1: Educational Hook
+
 ```
 Did you know Texas requires THIS for hemp compliance? 👀
 

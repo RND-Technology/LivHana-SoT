@@ -3,6 +3,7 @@
 **Error:** `Upload failed: permission denied`
 
 **Solution:**
+
 ```bash
 # Authenticate with Google Cloud
 gcloud auth login

@@ -27,6 +27,7 @@ bash scripts/add_missing_secrets.sh
 ```
 
 This will interactively prompt for 4 missing API keys:
+
 - DEEPSEEK_API_KEY
 - BLUECHECK_API_KEY  
 - GITHUB_PERSONAL_ACCESS_TOKEN
@@ -39,6 +40,7 @@ This will interactively prompt for 4 missing API keys:
 ## 📋 FOLLOW-UP ACTIONS
 
 ### 1. Test Compliance Service (10 minutes)
+
 ```bash
 cd backend/compliance-service
 pip install -r requirements.txt
@@ -47,6 +49,7 @@ python api.py
 ```
 
 ### 2. Deploy Compliance Service (5 minutes)
+
 ```bash
 cd backend/compliance-service
 gcloud run deploy compliance-service \
@@ -56,7 +59,9 @@ gcloud run deploy compliance-service \
 ```
 
 ### 3. Test TRUTH Pipeline (30 minutes)
+
 After secrets are added, test the pipeline:
+
 ```bash
 export TRUTH_QUERY="dispensaries near Austin Texas"
 bash scripts/step_apify_scrape.sh
@@ -75,6 +80,7 @@ bash scripts/step_rpm_emit.sh
 **Blocked:** 1 item (Secrets Sync - requires manual action)  
 
 **Critical Path:**
+
 1. ⏳ Secrets Sync (15 min) → Unblocks everything
 2. ⏳ Compliance Deploy (5 min)
 3. ⏳ TRUTH Pipeline Test (30 min)
@@ -95,10 +101,10 @@ bash scripts/step_rpm_emit.sh
 ---
 
 **Runnable Command:**
+
 ```bash
 bash scripts/add_missing_secrets.sh
 ```
 
 **Expected Duration:** 15 minutes  
 **Impact:** Unblocks Agent Builder, TRUTH Pipeline, and all downstream work  
-

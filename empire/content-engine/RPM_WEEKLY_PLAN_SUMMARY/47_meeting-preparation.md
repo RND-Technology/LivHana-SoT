@@ -1,4 +1,5 @@
 ### Meeting Preparation
+
 - **Time**: Today 1pm CST
 - **Duration**: 60 minutes
 - **Participants**: Trinity team + Jesse CEO

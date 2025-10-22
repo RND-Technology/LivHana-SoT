@@ -1,4 +1,5 @@
 ### Community Content
+
 - Customer spotlights
 - Community event promotions
 - Educational workshop content

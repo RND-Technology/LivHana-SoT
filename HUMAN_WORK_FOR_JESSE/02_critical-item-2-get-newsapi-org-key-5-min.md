@@ -5,8 +5,8 @@
 
 **EXECUTE:**
 
-1. Open browser: https://newsapi.org/register
-2. Enter email: jesseniesen@gmail.com
+1. Open browser: <https://newsapi.org/register>
+2. Enter email: <jesseniesen@gmail.com>
 3. Enter password: (your choice)
 4. Click "Submit"
 5. Check email for verification link
@@ -14,6 +14,7 @@
 7. Copy API key from dashboard
 
 **PASTE KEY HERE:**
+
 ```bash
 # Open this file:
 nano /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/empire/content-engine/cockpit-data/api-keys.json
@@ -30,6 +31,7 @@ nano /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/empire/content-engine/
 ```
 
 **VERIFY:**
+
 ```bash
 cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/empire/content-engine
 node news-ingestion-pipeline.mjs

@@ -1,4 +1,5 @@
 # 🎯 SHELL FIX QUICK REFERENCE
+
 **ONE SHOT, ONE KILL** | Tier-1 Shell Environment Recovery
 
 ---
@@ -18,6 +19,7 @@ bash /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/FIX_SHELL_NOW.sh
 ```
 
 **What it does:**
+
 1. ✅ Backs up current `.zshrc` and `.zshenv`
 2. ✅ Removes blocking boot script from shell init
 3. ✅ Removes missing 1Password API key calls
@@ -29,6 +31,7 @@ bash /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/FIX_SHELL_NOW.sh
 ## 🎯 POST-FIX STEPS
 
 ### 1. Restart Cursor
+
 ```bash
 # Cmd+Q to quit Cursor
 # Reopen Cursor
@@ -36,6 +39,7 @@ bash /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/FIX_SHELL_NOW.sh
 ```
 
 ### 2. Test New Shell
+
 ```bash
 # Open new terminal - should load instantly
 time zsh -i -c exit
@@ -43,6 +47,7 @@ time zsh -i -c exit
 ```
 
 ### 3. Manual Tier-1 Boot (When Ready)
+
 ```bash
 # New alias for manual boot (non-blocking)
 tier1-boot
@@ -71,6 +76,7 @@ boot-3-agents
 ## 🔄 ROLLBACK (IF NEEDED)
 
 If something breaks:
+
 ```bash
 # Restore from backup (timestamp from fix output)
 cp ~/.zshrc.backup.YYYYMMDD_HHMMSS ~/.zshrc
@@ -83,17 +89,21 @@ exec zsh
 ## 🎯 WHY THIS FIX WORKS
 
 **Before:**
+
 ```bash
 ~/.zshrc line 45: bash /path/to/TIER1_BOOT_LOCK_3_AGENTS_24_7.sh
 ```
+
 ↑ This BLOCKS every shell initialization (30+ seconds)  
 ↑ Causes Cursor timeout  
 ↑ Runs even when not needed  
 
 **After:**
+
 ```bash
 alias boot-3-agents='bash /path/to/TIER1_BOOT_LOCK_3_AGENTS_24_7.sh'
 ```
+
 ↑ MANUAL alias (only runs when you call it)  
 ↑ Shell loads in < 2 seconds  
 ↑ Cursor loads instantly  
@@ -113,6 +123,7 @@ alias boot-3-agents='bash /path/to/TIER1_BOOT_LOCK_3_AGENTS_24_7.sh'
 ## 📞 TROUBLESHOOTING
 
 ### Still seeing "OpenAI API Key" error?
+
 ```bash
 # Check for additional references
 grep -r "OpenAI API Key" ~/.zshrc ~/.zshenv ~/.zprofile 2>/dev/null
@@ -121,6 +132,7 @@ grep -r "OpenAI API Key" ~/.zshrc ~/.zshenv ~/.zprofile 2>/dev/null
 ```
 
 ### Shell still slow?
+
 ```bash
 # Check what's taking time
 time zsh -i -c 'exit'
@@ -133,6 +145,7 @@ zsh -i -c 'zprof' 2>/dev/null
 ```
 
 ### Cursor still showing warning?
+
 ```bash
 # Hard restart Cursor
 pkill -9 Cursor
@@ -145,5 +158,3 @@ pkill -9 Cursor
 ---
 
 **READY TO EXECUTE**: `bash /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/FIX_SHELL_NOW.sh`
-
-

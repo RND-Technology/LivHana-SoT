@@ -3,6 +3,7 @@
 Composes final video using FFmpeg.
 
 **Parameters:**
+
 ```javascript
 {
   script: Object,

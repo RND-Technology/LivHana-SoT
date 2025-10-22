@@ -1,4 +1,4 @@
-### Automation:
+### Automation
 
 | Tool | Free Tier | Entry Plan | Notes |
 |------|-----------|------------|-------|

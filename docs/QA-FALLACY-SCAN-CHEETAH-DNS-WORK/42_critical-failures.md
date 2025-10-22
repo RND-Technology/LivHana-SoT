@@ -1,4 +1,5 @@
-### Critical Failures:
+### Critical Failures
+
 - ❌ CNAME @ is invalid (DNS RFC violation)
 - ❌ Hardcoded API credentials (security breach)
 - ❌ Lost load balancing (1 IP vs 8)

@@ -1,6 +1,7 @@
-### ROI Calculation:
+### ROI Calculation
 
 **Traditional Animation (1 episode):**
+
 - Script: $500
 - Storyboard: $800
 - Character Design: $1,500
@@ -11,6 +12,7 @@
 - **Total per episode:** $9,800-$14,300
 
 **AI Animation (1 episode with Pro Tier):**
+
 - Monthly subscription: $159
 - Episodes per month: 50
 - **Cost per episode:** $3.18

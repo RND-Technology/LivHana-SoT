@@ -1,6 +1,7 @@
 ## 🤝 TRINITY UNITY PLEDGE
 
 **We commit to:**
+
 - ✅ Clear, frequent communication
 - ✅ Parallel work (no blocking)
 - ✅ Shared context (this document)

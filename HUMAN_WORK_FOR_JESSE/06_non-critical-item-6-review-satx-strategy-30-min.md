@@ -6,6 +6,7 @@
 **EXECUTE:**
 
 1. Read this file:
+
 ```bash
 open /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/empire/content-engine/cockpit-data/satx-tpop-data.json
 ```
@@ -21,6 +22,7 @@ open /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/empire/content-engine/
    - [ ] DEFER - Wait for more data
 
 **YOUR DECISION:**
+
 ```
 [APPROVE / MODIFY / DEFER]
 

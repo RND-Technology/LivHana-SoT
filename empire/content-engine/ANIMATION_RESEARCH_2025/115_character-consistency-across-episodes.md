@@ -9,6 +9,7 @@
    - Various poses: standing, sitting, gesturing
 
 2. **Train Custom LoRA (Stable Diffusion):**
+
    ```
    Training tool: Kohya_ss or EveryDream2
    Training images: 50 images of Liv
@@ -18,9 +19,11 @@
    ```
 
 3. **Use LoRA in Production:**
+
    ```
    Prompt: "livhnc, speaking to camera, office background" <lora:liv_character:0.8>
    ```
+
    - LoRA ensures Liv looks identical across all scenes/episodes
    - No need for Omni Reference every time
 

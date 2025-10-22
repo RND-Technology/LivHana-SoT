@@ -1,4 +1,5 @@
 #### Hook Starters
+
 - "Did you know..."
 - "Nobody talks about..."
 - "This is the [number] mistake..."

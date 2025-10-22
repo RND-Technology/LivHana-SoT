@@ -11,6 +11,7 @@ node scripts/fuse-chat-history.js
 ```
 
 The script will automatically:
+
 - ✅ Scan `.claude/` directory for local Claude Code sessions
 - ✅ Check `data/openai-export.json` for ChatGPT conversations
 - ✅ Check `data/claude-exports/` for manual Claude exports
@@ -23,16 +24,16 @@ The script will automatically:
 
 **⚠️ IMPORTANT**: For Team/Enterprise workspaces, you need admin access to export data.
 
-#### Step-by-Step Instructions:
+#### Step-by-Step Instructions
 
 1. **Log into ChatGPT Team workspace as admin**
-   - Visit: https://chatgpt.com/
+   - Visit: <https://chatgpt.com/>
    - Select your Team workspace from the dropdown
 
 2. **Navigate to Settings**
    - Click your profile icon (top-right)
    - Select "Settings" → "Team settings"
-   - Or go directly to: https://chatgpt.com/admin/settings
+   - Or go directly to: <https://chatgpt.com/admin/settings>
 
 3. **Request Data Export**
    - Scroll to "Data Controls" section
@@ -51,19 +52,24 @@ The script will automatically:
    - Or extract `conversations.json` and save to: `./data/conversations.json`
 
 #### Alternative: Personal Account Export
+
 If using personal ChatGPT account instead:
-1. Visit: https://platform.openai.com/account/data-export
+
+1. Visit: <https://platform.openai.com/account/data-export>
 2. Click "Export data"
 3. Wait for email with download link (can take 24-48 hours)
 4. Download `conversations.json`
 5. Save to: `./data/openai-export.json`
 
 #### Option C: Manual Copy-Paste (Quick but incomplete)
+
 If you need data immediately for testing:
-1. Open ChatGPT: https://chat.openai.com
+
+1. Open ChatGPT: <https://chat.openai.com>
 2. Find conversations about "Agent Builder", "MCP", "Liv Hana"
 3. Copy conversation text
 4. Save to: `./data/openai-export.json` as:
+
 ```json
 [
   {
@@ -79,7 +85,8 @@ If you need data immediately for testing:
 ### 2. Claude (Web) Export
 
 #### Option A: Project Export
-1. Visit: https://claude.ai/projects
+
+1. Visit: <https://claude.ai/projects>
 2. For each relevant project:
    - Click "..." menu
    - Select "Export conversation"
@@ -87,6 +94,7 @@ If you need data immediately for testing:
 3. Name files descriptively: `liv-hana-planning-2025-10-15.json`
 
 #### Option B: Manual Copy
+
 1. Open Claude conversation
 2. Copy full conversation text
 3. Save to: `./data/claude-exports/liv-hana-[date].txt`
@@ -96,6 +104,7 @@ If you need data immediately for testing:
 ### 3. Claude Code (Local) - Automatic
 
 **No action needed!** The script automatically scans:
+
 - `.claude/*.md` files (session progress, handoffs, etc.)
 
 These local files contain the most recent and detailed planning.
@@ -105,6 +114,7 @@ These local files contain the most recent and detailed planning.
 ## What Gets Extracted
 
 The fusion script looks for conversations containing these keywords:
+
 - `agent builder`, `mcp`, `model context protocol`
 - `liv hana`, `rpm`, `weekly plan`, `deployment`
 - `69 domains`, `reggie`, `high noon cartoon`
@@ -113,6 +123,7 @@ The fusion script looks for conversations containing these keywords:
 - `compliance`, `inventory`, `legislative`
 
 **It extracts**:
+
 - ✅ Key decisions (what was chosen/approved)
 - ✅ Architecture components (MCP server, Agent Builder, etc.)
 - ✅ Technologies used (OpenAI, GCP, TypeScript, etc.)
@@ -130,6 +141,7 @@ After running the script, you'll get:
 ```
 
 This consolidated plan contains:
+
 1. **Key Decisions Extracted** - What you've already decided
 2. **Architecture Components** - What infrastructure exists
 3. **Technologies Identified** - What stack you're using
@@ -142,15 +154,18 @@ This consolidated plan contains:
 ## Troubleshooting
 
 ### "No relevant conversations found"
+
 - Check that your export files contain the keywords above
 - Try adding manual exports to `data/claude-exports/`
 - Verify `.claude/` directory has recent session files
 
 ### "Cannot find openai-export.json"
+
 - This is optional - script will use Claude sources only
 - Or manually create the file with your ChatGPT conversations
 
 ### "Script fails to run"
+
 - Install dependencies: `npm install openai @anthropic-ai/sdk`
 - Check Node.js version: `node --version` (need 18+)
 
@@ -159,6 +174,7 @@ This consolidated plan contains:
 ## Privacy Note
 
 All exports stay LOCAL on your machine:
+
 - No data sent to external services
 - Processed entirely in `scripts/fuse-chat-history.js`
 - Output written to `docs/` directory only
@@ -167,13 +183,15 @@ All exports stay LOCAL on your machine:
 
 ## Next Steps After Export
 
-### For Standard Claude + ChatGPT Fusion:
+### For Standard Claude + ChatGPT Fusion
+
 1. **Review consolidated plan**: `docs/LIV_HANA_DEPLOYMENT_PLAN_CONSOLIDATED.md`
 2. **Validate accuracy**: Check that key decisions match your memory
 3. **Execute deployment**: Follow the "Immediate Next Actions" section
 4. **Update as needed**: Re-run script anytime to refresh with new conversations
 
-### For ChatGPT Team + Cross-Platform Analysis:
+### For ChatGPT Team + Cross-Platform Analysis
+
 1. **Ingest ChatGPT Team data**: `node scripts/fuse-chatgpt-team.js`
 2. **Generate decision matrix**: `node scripts/generate-decision-matrix.js`
 3. **Review conflicts**: `docs/CROSS_PLATFORM_DECISION_MATRIX.md`
@@ -187,10 +205,12 @@ All exports stay LOCAL on your machine:
 If you want to compare ChatGPT vs Claude strategic guidance:
 
 ### 1. Export ChatGPT Team Data
+
 Follow instructions in "ChatGPT Team/Enterprise Workspace Export" above.
 **Expected file**: `./data/chatgpt-team-export.zip`
 
 ### 2. Run ChatGPT Team Ingestion
+
 ```bash
 node scripts/fuse-chatgpt-team.js
 ```
@@ -198,12 +218,14 @@ node scripts/fuse-chatgpt-team.js
 **Output**: `./data/chatgpt-analysis.json`
 
 This will:
+
 - ✅ Parse ALL conversations (no keyword filtering)
 - ✅ Extract decisions, recommendations, technical choices
 - ✅ Categorize by topic (architecture, deployment, integrations, etc.)
 - ✅ Track timestamps for decision evolution
 
 ### 3. Generate Cross-Platform Decision Matrix
+
 ```bash
 node scripts/generate-decision-matrix.js
 ```
@@ -211,6 +233,7 @@ node scripts/generate-decision-matrix.js
 **Output**: `./docs/CROSS_PLATFORM_DECISION_MATRIX.md`
 
 This will:
+
 - ✅ Compare ChatGPT vs Claude guidance by topic
 - ✅ Identify consensus decisions (both agreed)
 - ✅ Highlight conflicts (different advice)
@@ -218,14 +241,18 @@ This will:
 - ✅ Generate confidence scores
 
 ### 4. Review Decision Matrix
+
 Open the matrix and look for:
+
 - **⚠️ CONFLICTS**: Strategic contradictions that need your resolution
 - **✅ CONSENSUS**: Aligned guidance from both platforms (high confidence)
 - **🔵 CLAUDE-ONLY**: Insights only from Claude conversations
 - **🟡 CHATGPT-ONLY**: Insights only from ChatGPT conversations
 
 ### 5. Resolve Conflicts Before Deployment
+
 For each conflict:
+
 1. Read both platforms' positions
 2. Consider context and confidence levels
 3. Make strategic decision
@@ -275,6 +302,7 @@ LivHana-SoT/
 ---
 
 **Questions?** Check script sources:
+
 - `scripts/fuse-chat-history.js` - Claude-focused fusion
 - `scripts/fuse-chatgpt-team.js` - ChatGPT Team ingestion
 - `scripts/generate-decision-matrix.js` - Cross-platform comparison

@@ -7,14 +7,16 @@
 ## 🎯 SYSTEM OVERVIEW
 
 ### Core Requirements
+
 - **Automated Label Generation**: Generate scanable labels for new products
-- **Invoice Capture**: Automatically capture invoices via high@reggieanddro.com
+- **Invoice Capture**: Automatically capture invoices via <high@reggieanddro.com>
 - **COA Integration**: Capture Certificates of Analysis in item listings
 - **SKU Generation**: Automated SKU creation with intelligent naming
 - **Human Approval**: Human-in-the-loop approval workflow
 - **Lightspeed POS**: Direct integration for scanable labels
 
 ### Target Workflow
+
 1. Invoice received via email → Automated parsing and extraction
 2. Product data extracted → COA lookup and validation
 3. SKU generated → Human approval required
@@ -26,6 +28,7 @@
 ## 🏗️ SYSTEM ARCHITECTURE
 
 ### Components
+
 ```
 LivHana-SoT/
 ├── backend/
@@ -49,6 +52,7 @@ LivHana-SoT/
 ## 📧 INVOICE CAPTURE SYSTEM
 
 ### Email Processing Service
+
 ```python
 # backend/invoice-capture-service/main.py
 from fastapi import FastAPI, BackgroundTasks
@@ -315,6 +319,7 @@ if __name__ == "__main__":
 ## 🏷️ LABEL GENERATION SERVICE
 
 ### Label Creation System
+
 ```python
 # backend/label-generation-service/main.py
 from fastapi import FastAPI, HTTPException
@@ -513,6 +518,7 @@ if __name__ == "__main__":
 ## 🧪 COA INTEGRATION SERVICE
 
 ### Certificate of Analysis Integration
+
 ```python
 # backend/coa-integration-service/main.py
 from fastapi import FastAPI, HTTPException
@@ -717,6 +723,7 @@ if __name__ == "__main__":
 ## 🏷️ SKU GENERATION SERVICE
 
 ### Automated SKU Creation
+
 ```python
 # backend/sku-generation-service/main.py
 from fastapi import FastAPI, HTTPException
@@ -919,6 +926,7 @@ if __name__ == "__main__":
 ## 👥 HUMAN APPROVAL WORKFLOW
 
 ### Approval System
+
 ```python
 # backend/approval-workflow-service/main.py
 from fastapi import FastAPI, HTTPException
@@ -1114,6 +1122,7 @@ if __name__ == "__main__":
 ## 🏪 LIGHTSPEED POS INTEGRATION
 
 ### Lightspeed Integration Service
+
 ```python
 # backend/lightspeed-integration-service/main.py
 from fastapi import FastAPI, HTTPException
@@ -1316,6 +1325,7 @@ if __name__ == "__main__":
 ## 🎛️ FRONTEND APPROVAL DASHBOARD
 
 ### Human Approval Interface
+
 ```typescript
 // frontend/approval-dashboard/src/components/ApprovalDashboard.tsx
 import React, { useState, useEffect } from 'react';
@@ -1670,6 +1680,7 @@ export default ApprovalDashboard;
 ## 🚀 DEPLOYMENT CONFIGURATION
 
 ### Docker Compose
+
 ```yaml
 # docker-compose.yml
 version: '3.8'
@@ -1761,6 +1772,7 @@ volumes:
 ## 📊 SUCCESS METRICS
 
 ### Technical Metrics
+
 - Invoice processing time: <5 minutes
 - Label generation time: <30 seconds
 - COA lookup success rate: >90%
@@ -1768,6 +1780,7 @@ volumes:
 - Approval workflow completion: <24 hours
 
 ### Business Metrics
+
 - Product onboarding efficiency: 80% reduction
 - Human approval time: <2 hours average
 - Lightspeed POS integration: 100% success
@@ -1784,6 +1797,7 @@ volumes:
 **Goal**: Streamlined product onboarding with human approval
 
 **Key Features**:
+
 - Automated invoice capture via email
 - COA integration and validation
 - Intelligent SKU generation

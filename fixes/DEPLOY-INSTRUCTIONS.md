@@ -8,6 +8,7 @@
 ---
 
 ## TABLE OF CONTENTS
+
 1. [What These Fixes Do](#what-these-fixes-do)
 2. [Quick Deploy Steps](#quick-deploy-steps)
 3. [Detailed Testing Checklist](#detailed-testing-checklist)
@@ -21,12 +22,14 @@
 ### Fix 1: Category Buttons (`reggieanddro-category-buttons-FIX.css`)
 
 **Problems Solved**:
+
 - ❌ Oversized, ugly buttons that dominate the page
 - ❌ Poor contrast ratios (accessibility fail)
 - ❌ No clear visual feedback on hover/active states
 - ❌ Unprofessional appearance
 
 **Solutions Implemented**:
+
 - ✅ **Proper Sizing**: Reduced to 14px font, 10px/20px padding (not overwhelming)
 - ✅ **WCAG AA Compliance**: White on brand green (4.96:1 contrast ratio)
 - ✅ **Clear States**:
@@ -38,6 +41,7 @@
 - ✅ **Professional Polish**: Smooth transitions, balanced spacing, clean design
 
 **Technical Highlights**:
+
 - Uses `!important` to override Ecwid defaults
 - CSS Grid for balanced layout
 - Modern cubic-bezier easing for smooth animations
@@ -48,12 +52,14 @@
 ### Fix 2: Checkout Calendar (`reggieanddro-checkout-calendar-FIX.css`)
 
 **Problems Solved**:
+
 - ❌ "Dog shit" appearance (quote from stakeholder)
 - ❌ Broken date picker UI
 - ❌ Confusing time slot selection
 - ❌ Poor mobile experience
 
 **Solutions Implemented**:
+
 - ✅ **Modern Date Picker**:
   - Clean white background with subtle shadows
   - Brand gradient header (green to darker green)
@@ -77,6 +83,7 @@
   - Screen reader friendly structure
 
 **Technical Highlights**:
+
 - Comprehensive selector coverage for Ecwid date/time classes
 - Responsive grid system (auto-fill with minmax)
 - Smooth micro-interactions (transform, shadows)
@@ -88,11 +95,13 @@
 ## QUICK DEPLOY STEPS
 
 ### Step 1: Access Ecwid Admin
-1. Navigate to: **https://my.ecwid.com/cp/CP.html**
+
+1. Navigate to: **<https://my.ecwid.com/cp/CP.html>**
 2. Login with ReggieAndDro.com credentials
 3. Go to: **Settings** → **Design** → **Custom CSS**
 
 ### Step 2: Deploy Category Button Fix
+
 1. Open file: **`fixes/reggieanddro-category-buttons-FIX.css`**
 2. Select ALL contents (Cmd+A / Ctrl+A)
 3. Copy to clipboard (Cmd+C / Ctrl+C)
@@ -103,17 +112,19 @@
 **Expected Result**: Category buttons should be smaller, green, with clear contrast
 
 ### Step 3: Deploy Checkout Calendar Fix
+
 1. Open file: **`fixes/reggieanddro-checkout-calendar-FIX.css`**
 2. Select ALL contents (Cmd+A / Ctrl+A)
 3. Copy to clipboard (Cmd+C / Ctrl+C)
 4. In Ecwid Custom CSS editor, scroll to bottom (below category fix)
 5. Paste the checkout calendar CSS
 6. Click **Save**
-7. Navigate to checkout to verify: **https://reggieanddro.com/cart**
+7. Navigate to checkout to verify: **<https://reggieanddro.com/cart>**
 
 **Expected Result**: Date picker and time slots should look modern and professional
 
 ### Step 4: Clear Cache & Verify
+
 1. Clear browser cache (Cmd+Shift+R / Ctrl+Shift+F5)
 2. Test on multiple browsers:
    - Chrome/Edge
@@ -129,6 +140,7 @@
 ### Category Buttons Testing
 
 **Visual Checks**:
+
 - [ ] Buttons are smaller (not oversized/dominant)
 - [ ] Background color is brand green (#2D5F3F)
 - [ ] Text is white with clear contrast
@@ -137,6 +149,7 @@
 - [ ] Container has light gray background (#f8f9fa)
 
 **Interaction Testing**:
+
 - [ ] **Hover State**:
   - Background darkens to #1f4229
   - Border turns gold (#D4AF37)
@@ -157,6 +170,7 @@
   - Cubic-bezier easing feels natural
 
 **Mobile Testing** (iPhone/Android):
+
 - [ ] **Tablet (768px)**:
   - Buttons display in 2 columns
   - Touch targets are large enough
@@ -171,6 +185,7 @@
   - Hover states work (where applicable)
 
 **Accessibility Testing**:
+
 - [ ] Contrast ratio meets WCAG AA (4.5:1+)
 - [ ] Keyboard navigation works completely
 - [ ] Screen reader announces button states
@@ -182,6 +197,7 @@
 ### Checkout Calendar Testing
 
 **Date Picker Visual Checks**:
+
 - [ ] Calendar container has white background
 - [ ] Header has green gradient (#2D5F3F to #1f4229)
 - [ ] Header text is white and centered
@@ -191,6 +207,7 @@
 - [ ] Calendar has subtle shadow depth
 
 **Date Picker Interactions**:
+
 - [ ] **Hover on Available Date**:
   - Background turns light green (#f0f7f4)
   - Date scales up slightly (1.08)
@@ -216,6 +233,7 @@
   - Month/year updates correctly
 
 **Time Slot Visual Checks**:
+
 - [ ] Time slots display in clean grid
 - [ ] Grid uses available space well
 - [ ] Each slot has white background initially
@@ -224,6 +242,7 @@
 - [ ] Slots have rounded corners (8px)
 
 **Time Slot Interactions**:
+
 - [ ] **Hover on Available Slot**:
   - Border turns green
   - Background lightens to #f0f7f4
@@ -242,6 +261,7 @@
   - No hover effects
 
 **Mobile Calendar Testing**:
+
 - [ ] **Tablet (768px)**:
   - Calendar scales appropriately
   - Time slots show 3-4 columns
@@ -259,6 +279,7 @@
   - Scrolling doesn't trigger selections
 
 **Checkout Flow Integration**:
+
 - [ ] Section has clear title
 - [ ] Form fields are properly styled
 - [ ] Success messages are green
@@ -269,6 +290,7 @@
 - [ ] Selection persists if user goes back
 
 **Overall Professional Appearance**:
+
 - [ ] No "dog shit" appearance ✅
 - [ ] Looks modern and trustworthy
 - [ ] Matches brand colors (green/gold)
@@ -282,6 +304,7 @@
 ### Category Buttons
 
 **BEFORE**:
+
 ```
 Problems:
 - Oversized buttons (18-20px font, excessive padding)
@@ -298,6 +321,7 @@ User Experience:
 ```
 
 **AFTER**:
+
 ```
 Improvements:
 - Right-sized buttons (14px font, balanced padding)
@@ -315,6 +339,7 @@ User Experience:
 ```
 
 **Visual Comparison**:
+
 ```
 BEFORE:                          AFTER:
 ┌────────────────────────┐      ┌──────────────────┐
@@ -332,6 +357,7 @@ BEFORE:                          AFTER:
 ### Checkout Calendar
 
 **BEFORE**:
+
 ```
 Problems:
 - "Dog shit" appearance (stakeholder feedback)
@@ -349,6 +375,7 @@ User Experience:
 ```
 
 **AFTER**:
+
 ```
 Improvements:
 - Modern, clean design
@@ -368,6 +395,7 @@ User Experience:
 ```
 
 **Visual Comparison**:
+
 ```
 BEFORE:                          AFTER:
 ┌────────────────────────┐      ┌─────────────────────────┐
@@ -393,12 +421,14 @@ BEFORE:                          AFTER:
 ### Issue: Changes Don't Appear
 
 **Possible Causes**:
+
 1. Browser cache not cleared
 2. CSS not saved properly
 3. Ecwid cache delay
 4. CSS specificity conflict
 
 **Solutions**:
+
 1. Hard refresh: Cmd+Shift+R (Mac) / Ctrl+Shift+F5 (Windows)
 2. Clear browser cache completely
 3. Try incognito/private browsing mode
@@ -411,12 +441,14 @@ BEFORE:                          AFTER:
 ### Issue: Buttons Look Different Than Expected
 
 **Check**:
+
 1. All CSS was copied (122 lines for category buttons)
 2. No syntax errors in CSS editor
 3. Ecwid isn't showing error messages
 4. Browser supports modern CSS (should be fine for all modern browsers)
 
 **Solution**:
+
 - Re-copy and re-paste the entire CSS file
 - Use browser DevTools to inspect elements
 - Check console for CSS errors
@@ -426,12 +458,14 @@ BEFORE:                          AFTER:
 ### Issue: Calendar Still Looks Bad
 
 **Check**:
+
 1. All calendar CSS was copied (289 lines)
 2. Testing in checkout flow (not on cart page)
 3. Store has delivery/pickup enabled
 4. Calendar widgets are actually rendering
 
 **Solution**:
+
 - Verify delivery settings: Settings → General → Fulfillment
 - Ensure local pickup/delivery is enabled
 - Check that delivery dates are configured
@@ -442,11 +476,13 @@ BEFORE:                          AFTER:
 ### Issue: Mobile Layout Breaks
 
 **Check**:
+
 1. Responsive CSS was included (@media queries)
 2. Testing on actual mobile device (not just browser resize)
 3. Viewport meta tag is present in Ecwid theme
 
 **Solution**:
+
 - Verify all CSS was copied (includes mobile sections)
 - Test on real iOS and Android devices
 - Clear mobile browser cache
@@ -457,6 +493,7 @@ BEFORE:                          AFTER:
 ### Issue: Colors Don't Match Brand
 
 **Current Colors Used**:
+
 - Brand Green: #2D5F3F
 - Dark Green (hover): #1f4229
 - Gold (active): #D4AF37
@@ -464,6 +501,7 @@ BEFORE:                          AFTER:
 - White: #FFFFFF
 
 **To Customize**:
+
 1. Open CSS files in text editor
 2. Find and replace color codes
 3. Maintain contrast ratios (use WebAIM contrast checker)
@@ -474,11 +512,13 @@ BEFORE:                          AFTER:
 ### Issue: CSS Conflicts With Other Custom Code
 
 **Symptoms**:
+
 - Some styles work, others don't
 - Inconsistent appearance
 - Layout breaks in specific sections
 
 **Solutions**:
+
 1. Our CSS uses `!important` to override defaults
 2. If still conflicts, increase specificity:
    - Add more parent selectors
@@ -491,16 +531,18 @@ BEFORE:                          AFTER:
 ### Issue: Accessibility Concerns
 
 **Our CSS is WCAG Compliant**:
+
 - Normal buttons: 4.96:1 contrast (AA compliant)
 - Active buttons: 9.53:1 contrast (AAA compliant)
 - Focus indicators present
 - Keyboard navigation supported
 
 **To Verify**:
+
 1. Use browser accessibility tools
 2. Test keyboard navigation (Tab key)
 3. Test with screen reader
-4. Use WebAIM WAVE tool: https://wave.webaim.org
+4. Use WebAIM WAVE tool: <https://wave.webaim.org>
 
 ---
 
@@ -528,20 +570,23 @@ If anything goes wrong:
 
 ## SUCCESS CRITERIA
 
-### Immediate (5 minutes after deploy):
+### Immediate (5 minutes after deploy)
+
 - [x] CSS appears in Ecwid Custom CSS editor
 - [x] Changes visible on frontend
 - [x] No console errors
 - [x] Basic functionality works
 
-### Short-term (1 hour):
+### Short-term (1 hour)
+
 - [ ] Tested on Chrome, Safari, Firefox
 - [ ] Tested on iOS and Android mobile
 - [ ] All interaction states work
 - [ ] No user complaints
 - [ ] Team approval obtained
 
-### Medium-term (24 hours):
+### Medium-term (24 hours)
+
 - [ ] Conversion rate stable or improved
 - [ ] No increase in cart abandonment
 - [ ] Positive user feedback
@@ -553,16 +598,19 @@ If anything goes wrong:
 ## SUPPORT & ESCALATION
 
 **Internal Team**:
+
 - Technical Lead: Review code
 - UX Designer: Verify design standards
 - QA Team: Complete testing checklist
 
 **External Resources**:
-- Ecwid Support: https://support.ecwid.com
-- Ecwid Forums: https://www.ecwid.com/forums
-- Ecwid CSS Documentation: https://developers.ecwid.com/css-customization
+
+- Ecwid Support: <https://support.ecwid.com>
+- Ecwid Forums: <https://www.ecwid.com/forums>
+- Ecwid CSS Documentation: <https://developers.ecwid.com/css-customization>
 
 **Emergency Rollback Authority**:
+
 - Any team member can rollback if critical issues found
 - Document reason for rollback
 - Schedule post-mortem to fix issues
@@ -574,12 +622,14 @@ If anything goes wrong:
 ### Authorize.net Setup
 
 **Step 1: Get API Credentials**
+
 1. Login to Authorize.net merchant dashboard
 2. Go to: **Account** → **Settings** → **API Credentials & Keys**
 3. Generate new API Login ID and Transaction Key
 4. Save credentials securely
 
 **Step 2: Configure in Ecwid**
+
 1. Ecwid Admin: **Settings** → **Payment**
 2. Click **Add Payment Method**
 3. Select **Authorize.net**
@@ -592,6 +642,7 @@ If anything goes wrong:
 7. **Save & Test**
 
 **Step 3: Test Transaction**
+
 1. Use Authorize.net test card: `4007000000027`
 2. Complete test purchase
 3. Verify invoice emails arrive
@@ -602,12 +653,14 @@ If anything goes wrong:
 ### AfterPay Setup
 
 **Step 1: Merchant Account**
-1. Go to: https://www.afterpay.com/en-US/for-merchants
+
+1. Go to: <https://www.afterpay.com/en-US/for-merchants>
 2. Sign up for merchant account
 3. Complete verification (1-2 business days)
 4. Get API credentials from dashboard
 
 **Step 2: Configure in Ecwid**
+
 1. Ecwid Admin: **Settings** → **Payment**
 2. Click **Add Payment Method**
 3. Select **AfterPay / Clearpay**
@@ -620,6 +673,7 @@ If anything goes wrong:
 
 **Step 3: Add AfterPay Messaging**
 Add to Ecwid Custom HTML (Settings → Design → Custom HTML):
+
 ```html
 <script>
   // AfterPay messaging on product pages
@@ -650,6 +704,7 @@ Add to Ecwid Custom HTML (Settings → Design → Custom HTML):
 ```
 
 **Step 4: Test**
+
 1. Add product to cart ($35-$1,000 range)
 2. Proceed to checkout
 3. Select AfterPay payment option
@@ -660,12 +715,14 @@ Add to Ecwid Custom HTML (Settings → Design → Custom HTML):
 ### Klarna Setup
 
 **Step 1: Merchant Account**
-1. Go to: https://www.klarna.com/us/business/
+
+1. Go to: <https://www.klarna.com/us/business/>
 2. Sign up for merchant account
 3. Complete verification
 4. Get API credentials
 
 **Step 2: Configure in Ecwid**
+
 1. Ecwid Admin: **Settings** → **Payment**
 2. Click **Add Payment Method**
 3. Select **Klarna**
@@ -676,6 +733,7 @@ Add to Ecwid Custom HTML (Settings → Design → Custom HTML):
 6. **Save**
 
 **Step 3: Test**
+
 1. Use Klarna test cards from documentation
 2. Test all payment options
 3. Verify checkout flow
@@ -687,9 +745,11 @@ Add to Ecwid Custom HTML (Settings → Design → Custom HTML):
 ### Local Delivery Setup
 
 **Step 1: Configure Delivery Zones**
+
 1. Ecwid Admin: **Settings** → **Shipping**
 2. Click **Add Shipping Zone**
 3. Configure San Antonio zone:
+
    ```
    Zone Name: San Antonio Local Delivery
    Zip Codes: 78201-78299
@@ -698,9 +758,11 @@ Add to Ecwid Custom HTML (Settings → Design → Custom HTML):
    ```
 
 **Step 2: Set Delivery Time Slots**
+
 1. Go to: **Settings** → **General** → **Fulfillment**
 2. Enable "Local Pickup/Delivery"
 3. Configure delivery windows:
+
    ```
    Monday-Friday: 10am-2pm, 4pm-8pm
    Saturday: 10am-6pm
@@ -709,7 +771,8 @@ Add to Ecwid Custom HTML (Settings → Design → Custom HTML):
 
 **Step 3: HEB Integration (Custom)**
 Contact details for HEB white label delivery:
-- HEB Partner Services: partner@heb.com
+
+- HEB Partner Services: <partner@heb.com>
 - Need: API access, delivery zone data, rate cards
 - Integration: Create Ecwid app or webhook
 
@@ -718,6 +781,7 @@ Contact details for HEB white label delivery:
 ## TESTING CHECKLIST
 
 ### CSS Fixes
+
 - [ ] Category buttons look professional
 - [ ] Checkout calendar is clean and intuitive
 - [ ] Mobile responsive on iOS
@@ -726,6 +790,7 @@ Contact details for HEB white label delivery:
 - [ ] Christopher would approve ✅
 
 ### Payments
+
 - [ ] Authorize.net test transaction
 - [ ] Authorize.net invoice email received
 - [ ] AfterPay test transaction
@@ -734,6 +799,7 @@ Contact details for HEB white label delivery:
 - [ ] All payment methods in checkout
 
 ### Delivery
+
 - [ ] Delivery zones display correctly
 - [ ] Time slots selectable
 - [ ] Delivery fee calculates
@@ -756,16 +822,19 @@ Contact details for HEB white label delivery:
 ## SUCCESS METRICS
 
 **Immediate** (First 24 hours):
+
 - CSS fixes visible on site ✅
 - No broken UI elements ✅
 - Mobile experience smooth ✅
 
 **Week 1**:
+
 - Payment conversions +15-25%
 - AfterPay adoption 10-15% of transactions
 - Delivery orders 20-30% of total
 
 **Month 1**:
+
 - Average order value +20% (BNPL effect)
 - Cart abandonment -30%
 - Customer satisfaction scores improve
@@ -774,10 +843,10 @@ Contact details for HEB white label delivery:
 
 ## SUPPORT CONTACTS
 
-- **Ecwid Support**: https://support.ecwid.com
+- **Ecwid Support**: <https://support.ecwid.com>
 - **Authorize.net**: 1-877-447-3938
-- **AfterPay**: merchant-support@afterpay.com
-- **Klarna**: merchants@klarna.com
+- **AfterPay**: <merchant-support@afterpay.com>
+- **Klarna**: <merchants@klarna.com>
 
 ---
 

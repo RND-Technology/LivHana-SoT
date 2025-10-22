@@ -1,4 +1,5 @@
 ### Label Creation System
+
 ```python
 # backend/label-generation-service/main.py
 from fastapi import FastAPI, HTTPException

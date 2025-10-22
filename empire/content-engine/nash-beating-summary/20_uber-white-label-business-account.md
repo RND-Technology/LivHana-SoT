@@ -1,7 +1,9 @@
 ### Uber White Label Business Account
+
 **Platform**: Uber  
 **Account Type**: White Label Business Account  
 **Features**:
+
 - Custom branding
 - Advanced analytics
 - Priority support
@@ -9,6 +11,7 @@
 - Advanced integration
 
 **Benefits**:
+
 - Brand consistency
 - Enhanced customer experience
 - Advanced features
@@ -16,6 +19,7 @@
 - Competitive advantage
 
 **Setup Requirements**:
+
 - Business verification
 - Tax documentation
 - Bank account setup
@@ -23,6 +27,7 @@
 - Compliance documentation
 
 **Integration**:
+
 - API integration
 - Custom branding
 - Advanced analytics

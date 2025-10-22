@@ -1,4 +1,5 @@
 #### ✅ Test Suite Created
+
 - **File:** `video-production-pipeline.test.mjs`
 - Unit tests for all components
 - Integration tests for full pipeline
@@ -9,6 +10,7 @@
 - 50+ test cases
 
 **Test Categories:**
+
 - Script loading and parsing
 - Dialogue extraction
 - Character prompt generation

@@ -4,6 +4,7 @@
 **Voice Description:** Nervous, anxious, worried
 
 **Vocal Qualities:**
+
 - **Pitch:** Medium, rises when stressed
 - **Pace:** Fast when nervous, rushed
 - **Volume:** Moderate, gets louder when defensive
@@ -11,6 +12,7 @@
 - **Tone:** Nervous, defensive, worried
 
 **Speech Patterns:**
+
 - Stutters and stammers when flustered
 - "But... but..." (frequent interjections)
 - Trails off when uncertain
@@ -19,6 +21,7 @@
 - Circular reasoning
 
 **Emotional Range:**
+
 - **Nervous (Default):** Worried tone, uncertain inflection
 - **Defensive:** Louder, protesting, stammering
 - **Confused:** Slower, questioning, uncertain

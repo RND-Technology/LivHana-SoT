@@ -1,4 +1,5 @@
 ### 12.2 Environment Issues
+
 ```bash
 # Check environment variables
 env | grep NODE

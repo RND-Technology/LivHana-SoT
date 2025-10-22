@@ -3,6 +3,7 @@
 **Purpose:** Generate character voice audio from text
 
 **Implementation:**
+
 ```javascript
 POST https://api.elevenlabs.io/v1/text-to-speech/{voice_id}
 Headers:

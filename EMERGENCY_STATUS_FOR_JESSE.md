@@ -11,25 +11,30 @@
 ### 1. HNC PRODUCTION BLOCKED - NO VALID TTS API KEY
 
 **Problem**: BOTH API keys invalid
+
 - ✅ ElevenLabs key: Retrieved from 1Password → 401 Invalid
 - ✅ OpenAI key: Retrieved from 1Password → 401 Invalid
 
 **What I Tried**:
+
 1. Retrieved ELEVENLABS_API_KEY from 1Password
 2. Retrieved OPEN_AI_API_KEY from 1Password (with reveal)
 3. Started API with both keys
 4. Both returned 401 Unauthorized
 
 **Keys Retrieved**:
+
 - ElevenLabs: Starts with "a9d8a07c88ac..."  (65 chars)
 - OpenAI: Starts with "sk-proj-XG8D..." (147 chars)
 
 **Current Status**:
+
 - Episode 1 production started but FAILING on TTS generation
 - All 24 audio files failing with 401 errors
 - Video generation also failed (FFmpeg lavfi issue)
 
 **What's Needed**:
+
 - NEW valid OpenAI API key OR
 - NEW valid ElevenLabs API key OR
 - Alternative TTS solution
@@ -39,16 +44,19 @@
 ### 2. WEBSITES DOWN - 404 ERRORS
 
 **Affected Sites**:
+
 - herbitrage.com → ERR_CONNECTION_CLOSED
 - reggieanddroalice.com → 404 errors
 
 **DNS Status**:
+
 - ✅ Both pointing to 34.143.72.2 (correct Cloud Run IP)
 - ❌ No Cloud Run services mapped to these domains
 
 **Root Cause**: Domains need Cloud Run domain mappings
 
 **Cloud Run Services Available**:
+
 - age-verification-gate
 - cockpit
 - integration-service
@@ -58,6 +66,7 @@
 - voice-service
 
 **What's Needed**:
+
 - Create Cloud Run domain mappings for herbitrage.com
 - Create Cloud Run domain mappings for reggieanddroalice.com
 - OR provide Cloud Shell IP/service to point to
@@ -85,18 +94,21 @@
 ## 🎯 NEXT STEPS (NEED JESSE'S HELP)
 
 ### Option 1: Fix TTS (Fastest)
+
 - Provide valid OpenAI API key
 - OR provide valid ElevenLabs API key
 - → Episode 1 completes in 20 minutes
 - → Deploy to highnooncartoon.com
 
 ### Option 2: Fix Websites (Parallel)
+
 - Provide Cloud Shell IP for herbitrage.com
 - Provide Cloud Shell IP for reggieanddroalice.com
 - OR create Cloud Run domain mappings
 - → Sites restored
 
 ### Option 3: Alternative TTS
+
 - Use local TTS (festival, espeak)
 - Lower quality but unblocked
 - → Episode 1 completes with degraded audio
@@ -108,6 +120,7 @@
 **Status**: Both Sonnet and Cheetah hit same TTS API key blocks
 
 **Shared Solutions**:
+
 1. ✅ Fixed dialogue iteration bug
 2. ✅ Created OpenAI TTS fallback
 3. ✅ Started Episode 1 production

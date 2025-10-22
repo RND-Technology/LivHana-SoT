@@ -7,6 +7,7 @@
 **Problem:** Service endpoints not responding correctly
 
 **Solutions:**
+
 1. Check integration-service logs: `gcloud run services logs read integration-service`
 2. Verify API endpoints: `curl https://[domain]/api/age-verification/status`
 3. Check database connectivity
@@ -14,11 +15,11 @@
 5. Test age verification flow manually
 
 **Command:**
+
 ```bash
 curl -v https://[domain]/api/age-verification/status
 gcloud run services logs read integration-service --limit 50
 ```
-
 
 ## Critical Verification Checklist
 
@@ -46,4 +47,3 @@ gcloud run services logs read integration-service --limit 50
 3. Monitor Cloud Run logs during remediation
 4. Re-test after each fix
 5. Document any persistent issues
-

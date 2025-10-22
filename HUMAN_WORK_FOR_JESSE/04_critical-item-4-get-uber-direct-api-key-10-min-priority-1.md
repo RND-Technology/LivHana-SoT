@@ -6,7 +6,7 @@
 
 **EXECUTE:**
 
-1. Open browser: https://business.uber.com/
+1. Open browser: <https://business.uber.com/>
 2. Click "Get Started" or "Sign Up"
 3. Select "Uber Direct" delivery
 4. Fill out business info (same as DoorDash)
@@ -16,6 +16,7 @@
 **CANNIBIS-COMPLIANT APPROVAL STRATEGY:**
 
 **Proactive Communication Message:**
+
 ```
 Subject: Business Account Verification - Compliant Cannabis Delivery Service
 
@@ -62,6 +63,7 @@ Phone: [Your phone number]
 ```
 
 **Key Compliance Points:**
+
 - Emphasize legal compliance and professional operations
 - Highlight Texas state regulations compliance
 - Provide comprehensive documentation proactively
@@ -69,6 +71,7 @@ Phone: [Your phone number]
 - Show business track record and revenue potential
 
 **PASTE KEY HERE:**
+
 ```bash
 # Open this file:
 nano /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/backend/delivery-service/.env
@@ -90,6 +93,7 @@ STORE_PHONE="+1-210-555-0100"
 ```
 
 **DOORDASH DRIVE API V2 SETUP (PRODUCTION REQUEST SUBMITTED):**
+
 ```bash
 # Set up DoorDash Drive API v2 testing environment with JWT authentication
 # Collection: https://www.postman.com/doordash/doordash/collection/p3d90qw/doordash-drive

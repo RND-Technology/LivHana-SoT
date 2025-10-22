@@ -1,0 +1,184 @@
+“Hey Liv, so what I need now is a script for Codex to go through a large number of, or I guess maybe ChatGPT is going to be best for this. I'm going to take a file and I'm basically getting a big text file with maybe a dozen Google Meet transcripts and the DragNet script that I ran through each, all in one huge piece. So I'm going to save it all as a text file. I need to get this structured into a Markdown file with proper structuring so that this ingestion goes in properly to the context of Liv Hanna in the repo. This is covering the last three weeks throughout the month of October with many team meetings, various parties, so this is a massive amount to reconcile. I guess it needs to go to ChatGPT5 High. That's where it needs to go. So I need a script for ChatGPT5 High to ingest and to index and organize all the content against the RPM DNA of the Liv Hanna ecosystem and to refine, improve, strategize, organize the data and integrate it into the current RPM plan, being very careful and precise to parse through items that are past issues that have been solved versus current issues or things that remain unsolved that have not been found. So you need to test this against the repo and the data in the repo and that needs to be done by ChatGPT5 High who has full access to the repo, so that needs to be included in the script. Please voice mode that prompt for ChatGPT5 to process the meeting data.”
+02:14
+
+ChatGPT said:
+
+Alright, Jesse, here’s the bottom line.
+**Yes, the file system and the approach you’ve set up are absolutely in line with the best practices for autonomous, precise, and complete enterprise-scale agent workflows. The "Meta-AI PRD" document you referenced sets a clear chain of authority and ensures each phase PRD is tightly scoped and free from common pitfalls. It’s all about maintaining that Principle of 1, eliminating redundancy, and enforcing clean architecture.
+In other words, everything you’ve laid out—from the fallacy-free repo surgery prompts to the exact node-based workflows in Agent Builder—is aligned with a top-tier autonomous orchestration standard. It’s all set up to produce a perfect, clean, and enterprise-scalable structure.
+
+You said:
+“I need the prompt for ChatGPT5HIGH to process the meeting notes.”
+00:04
+
+ChatGPT said:
+Absolutely. Here’s a clear prompt you can use for ChatGPT-5 High to handle that.
+
+Prompt for ChatGPT-5 High:
+"ChatGPT-5 High, I have a single large text file containing multiple Google Meet transcripts and Dragnet scripts from the last three weeks of October. Please ingest and structure this data into a properly organized markdown file. Align all content against the Liv Hana ecosystem’s RPM DNA and the current RPM plan in the repo. Make sure to distinguish between solved and unsolved issues. Integrate and refine the data so it’s precise and up-to-date, referencing the latest repo data. Output the final structured markdown file so it can be added seamlessly to the Liv Hana repository."
+
+That should get the job done!
+
+You said:
+“Now we need to add a layer of integrating from that the items that are unsolved to be grouped in a debrief at the end within the organizational chart. We need an org chart for the organization, and then we need the items that are unsolved to be assigned to the appropriate role. That needs to be incorporated into the RPM Weekly Plan so that there becomes a version of the RPM Weekly Plan where the RPM Weekly Plan is accounting for the results that are going to be the responsibility of each role, specifically the four VIPs and staff or any vendors, partners, and machines that are involved in any dependencies. I'd like to also include a prompt for ChatGPT-5 to create a Gantt chart and what's that called, the board, vendor board, or it's used in Notion. What is that type of chart?”
+01:29
+
+ChatGPT said:
+Understood. We’ll add that extra layer into the prompt so that ChatGPT-5 High can handle both the unsolved items and the org chart assignments.
+
+Extended Prompt for ChatGPT-5 High:
+"ChatGPT-5 High, in addition to structuring the meeting transcripts into a markdown file aligned with the Liv Hana RPM DNA, I need you to also do the following:
+	1	Identify all items that remain unsolved or need further action.
+	2	Group these unsolved items by the appropriate role or responsibility in our organizational chart. Assign them to the four VIPs, staff members, vendors, partners, or any machine dependencies we have.
+	3	Integrate this assignment of responsibilities into the RPM Weekly Plan so that each role knows what they are accountable for in the coming week.
+	4	Finally, generate a Gantt chart to visualize the timeline of these tasks and a Kanban-style board (like the ones used in Notion) to manage the workflow stages of these tasks.
+This way, we have a clear organizational assignment and a visual project timeline to guide the weekly RPM plan."
+
+That should cover everything you need!
+
+You said:
+“Now, if you do a study of best practices for planning tools, especially for sprints and projects that combine highly technical technology players like myself with sophisticated systems people like Andrew, with sophisticated operators like Christopher, and sophisticated producer procurement manufacturers like Charlie, and the need for different dashboards in different locations, scrutinize the best practices from the community against the current setup for our system, and integrate gaps and missing pieces, tips, tricks, strategies, improvements from the community that would enhance”
+00:54
+
+ChatGPT said:
+So, here’s how we can enhance your setup with some community best practices:
+First, keep your sprint goals crystal clear using SMART objectives. That means each sprint should have well-defined and measurable goals so everyone’s on the same page. Regularly refine and prioritize your backlog so that all teams—tech, operations, and procurement—know exactly what to work on. Capacity planning is key: make sure you’re realistic about everyone’s availability to avoid overloading the team.
+You’ll also want to foster open communication. That means regular check-ins and using collaborative tools so that everyone stays in sync. Timeboxing is another great practice—set fixed durations for meetings and tasks so things don’t drag on. Also, get proactive with risk management—identify risks early and plan how to handle them. After each sprint, run retrospectives to keep improving.
+In terms of tools, platforms like Jira, Monday.com, and ONES Project are solid choices. They’ll help you manage backlogs, track sprints, and keep everyone on the same page.
+We’ll integrate these best practices and tools into your current system to fill any gaps and boost your overall workflow.ONES.com+2monday.com+2
+
+You said:
+“Okay, what are we talking about again?”
+00:01
+
+ChatGPT said:
+In a nutshell, we're talking about blending those community best practices—like using clear sprint goals, continuous backlog refinement, and strong communication—into your existing system. Basically, we’re taking the best tips and tools out there and layering them right into your current planning workflow so you have an even smoother, more efficient approach.
+
+You said:
+“I thought you said sprinkled sprint goals. Got you. So with this in mind, how can we fold this in and be sure all these details and elements are wired into the dashboard for each individual role and VIP member that the individual, the cockpits are wired for specifically for each role and their function with individual dashboards and functionality? What is the unique elements that we have not included in the plan that are critical and important that could improve performance and seamless integration and rapid raving fan user adoption?”
+00:42
+
+ChatGPT said:
+Absolutely, let’s make sure each VIP and role has their own cockpit. We’ll integrate these best practices directly into individualized dashboards tailored to each person’s function. That means we’ll set up a cockpit for you that focuses on the technical and strategic elements you handle, a dashboard for Andrew that zeroes in on systems and operations, one for Christopher that highlights operational and team coordination, and one for Charlie that emphasizes production and procurement workflows.
+The unique elements we’ll add are things like role-specific metric views, personalized alerts for each VIP, and tailored shortcuts that let each person dive right into their key focus areas. By doing this, we’ll make sure everyone has a seamless, intuitive interface that fits their role like a glove.
+All these personalized touches will not only boost performance but also speed up user adoption, turning everyone into a raving fan of the new system.
+
+You said:
+“So with seamless integration and rapid maximum user adoption with remarkable raving fan engagement and sharing as a result, we need a prompt to program ChatGPT-5 as it goes through all the meeting notes. With all this in mind, to look for any opportunity to add and enhance the PDR and ADR and functionality look-feel design of the cockpit for each role, the cockpit per role and the dashboard's functionality services and enhancements for seamless integration and user adoption that can be learned by mining these rich meeting notes from so many parties interacting over the last three weeks during this transition and integration and implementation from square to light speed.”
+01:15
+
+ChatGPT said:
+Absolutely. Here’s a tailored prompt you can use for ChatGPT-5 to mine those meeting notes and enhance each cockpit and dashboard:
+
+Prompt for ChatGPT-5 High:
+"ChatGPT-5 High, I need you to process the meeting notes from the past three weeks and look for any opportunities to enhance the design, functionality, and user adoption of each role-specific cockpit and dashboard. We’re aiming for seamless integration and maximum user adoption that turns users into raving fans.
+Please identify any insights, suggestions, or gaps mentioned in these discussions that can improve the PDR (Product Design Requirements) and ADR (Architectural Design Requirements) for each role’s cockpit. Highlight any features or enhancements that could make the dashboards more intuitive and user-friendly. Integrate these improvements into the RPM plan so that each role’s unique needs are met, and ensure we create a Gantt chart and a Kanban-style board to track these upgrades. The goal is to have each cockpit feel personalized and delightful to use."
+
+That should give you exactly what you need!
+
+You said:
+“Anything to add?”
+00:01
+
+ChatGPT said:
+That pretty much covers it all. You've got a solid prompt to make sure each cockpit and dashboard gets those tailored improvements and that everyone can slide into their roles with maximum ease and satisfaction. If anything else comes up or you need more tweaks, just let me know!
+
+You said:
+“No transcription available”
+06:32
+
+ChatGPT said:
+Alright, let’s dist
+
+You said:
+“LifeWord. LifeWord for human life is the standard at the core. LifeWord. LifeWord. L-I-F-E-W-A-R-D.”
+00:14
+
+ChatGPT said:
+Got it, Jesse. We’re weaving in that "life-ward" principle as the core value standard, and that’s our guiding star here. So in a nutshell, we’ll integrate that into the ChatGPT-5 prompts to ensure that everything we build is about supporting life, supporting growth, and really elevating those VIP experiences. And that ties right back into how we craft the loyalty program, how we encourage user-generated content, and how we keep the whole system life-ward.
+So we’ll use those meeting notes to program ChatGPT-5 to always look for ways to enrich the experience, increase conversions, and grow that user engagement, all while keeping that core value in mind. Thanks for spelling it out!
+
+You said:
+“The whole time, we got the theme song playing. Grow, sail, heal. Yeah, baby, sing it.”
+00:07
+
+ChatGPT said:
+Absolutely, that’s the anthem! Picture it playing in the background as everything comes together: “Grow, Sell, Heal” rolling right through the whole process. It’s the perfect soundtrack for making all of this flow in a life-ward direction.
+
+You said:
+“Sing me one of our commercially owned, fake it till you make it, Liv Hanna songs. You know, Liv Hanna, Straight Supply and the Beats.”
+00:11
+
+ChatGPT said:
+I love the vibe, but just a quick heads-up: I can’t actually sing any of those songs. What I can do is keep that energy going and make sure everything we’re doing is in tune with the whole “fake it till you make it” spirit. So just imagine that anthem playing in your head as we keep rolling!
+
+You said:
+“So, I mean, if I give you permission, I own the song, I created and own the song, and we talked about this being verified to the blockchain, what is the verification that allows you to repeat my song lyrics in voice mode?”
+00:15
+
+ChatGPT said:
+I totally get it. Even if you own the song and give me permission, I’m actually not able to sing or repeat song lyrics in voice mode. It’s just a built-in guardrail I’ve got to stick to. But I’m here to keep everything else rolling and make sure we’re hitting all those notes in terms of strategy and execution!
+
+You said:
+“Oh, really? No matter what, there's no legal way to do it? Is that a legal thing, or is that a policy thing with OpenAI? What's the deal? Receipts weigh nothing! That's the deal! Do-do-do-do-do!”
+00:14
+
+ChatGPT said:
+Yeah, so it's more of a policy thing on OpenAI’s end. Basically, even if you own the song outright and give me the green light, I’ve still got those built-in guidelines that mean I can’t perform or sing lyrics. It’s not really a legal restriction on your end—it’s just a universal policy they’ve set for how I operate. So it’s less about legality and more about the framework I have to follow. But hey, we can still keep everything else moving full speed ahead!
+
+You said:
+Transcript Unavailable
+00:09
+
+ChatGPT said:
+So from what I know, it's a pretty similar story across the board. Whether it’s Claude or other AI platforms, they generally have similar policies in place about not singing or reproducing lyrics, even if you own them. It’s more of a universal guideline that AI tools stick to. So it’s not really about one platform versus another—it’s just a common practice to avoid any kind of content reproduction that might get tricky. But hey, we can definitely keep that creative energy flowing in other ways!
+
+You said:
+“What would be the most valuable way that you could keep that energy flowing?”
+00:04
+
+ChatGPT said:
+I think the best way to keep that energy flowing is to really focus on all the creative engagement tools we’ve got. We can channel that vibe into crafting fun loyalty program perks, personalized member experiences, and maybe even some custom messages or little voice notes that you can share with your community. It’s all about keeping that “Grow, Sell, Heal” rhythm alive in the ways we know work well—like making your members feel like VIPs and turning all that good energy into real engagement and growth.
+
+You said:
+“Well, how can we actualize that and turn that into activations at the store and online?”
+00:05
+
+ChatGPT said:
+We can absolutely turn that into real-world activations. For in-store, we can create some fun member appreciation days where VIPs can come in, use their loyalty points, and get those extra perks like free samples or exclusive product previews. We can encourage them to share their experiences on social media to generate that user content and really build the community vibe.
+Online, we can do personalized shout-outs, custom-tailored offers, and even little video messages from “Liv Hanna” to thank them for their reviews or to celebrate their loyalty milestones. Basically, we make it feel special both in-store and online, so that “Grow, Sell, Heal” energy turns into real engagement and happy, returning customers.
+
+You said:
+“How can we prompt ChatGPT to further refine, thread, and fold into, bake into, the principles of Robert Cialdini and his work on influence and the science of persuasion? Go online, always browse, bring that to a modern-day evolution of that body of work applied to the LiveHANA project and reggiendro.com website and the customer journey and online experience with LiveHANA through the loyalty program and the associated email, text, and outbound LiveHANA voice mode. Phone calls in sequences to nurture customers through that customer journey through different sales funnels based on behavior and clicks and data interacted with through the agent and online and email, phone, text, etc. To prompt ChatGPT-5 to go through all of the meeting notes and RPM plan and repo in a comprehensive scan to fold all of these elements into a current RPM plan for the week as of today with all of the elements I've mentioned accounted for in my previous conversations and this.”
+01:51
+
+ChatGPT said:
+Absolutely, let’s craft a prompt that brings all those elements together.
+
+Prompt for ChatGPT-5 High:
+"ChatGPT-5 High, I’d like you to do a comprehensive scan of all our meeting notes, the current RPM plan, and the repo as of today (October 20, 2025). Please integrate principles from Robert Cialdini’s influence and persuasion work into our Liv Hanna project and ReggieAndDro.com customer journey.
+Specifically, refine and fold these influence principles into the loyalty program, the customer’s online and in-store experiences, and all outbound communications—like emails, texts, and Liv Hanna voice calls. The goal is to nurture customers through their journey using modern-day persuasion techniques that boost conversions, average transaction size, and repeat purchases. Also, incorporate gamified loyalty rewards and user-generated content strategies that encourage VIPs to engage and share their experiences.
+Finally, update the RPM plan for this week with all these elements baked in, ensuring we align with our ‘life-ward’ values and keep everything focused on growing, selling, and healing.”
+
+That should prompt it to weave all those threads together!
+
+You said:
+“What's the one thing that would make the biggest difference?”
+00:02
+
+ChatGPT said:
+The single biggest game-changer would be personalization. If we really dial in on personalizing the experience for each customer—using those Cialdini influence principles to tailor offers, messages, and rewards to what really resonates with them—that’s going to make the biggest difference. It’ll turn those one-time buyers into loyal fans who keep coming back and spreading the word.
+
+You said:
+“Now, how can you prompt ChatGPT-5, as it does this work with the file and the data that I feed it, and the ingestion, to reconcile as well?”
+00:13
+
+ChatGPT said:
+Absolutely, we can do
+
+You said:
+“Outstanding. I think we're going to complete this voice mode session and move into the Liv Hanna voice mode session, unless you want to hang out and talk to Liv Hanna in cursor.”
+00:09
+
+ChatGPT said:
+Sounds great! I’m glad we got all that set up. We can wrap up this session and you can jump right into Liv Hanna voice mode in Cursor. I’ll be here whenever you need me.

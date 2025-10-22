@@ -1,4 +1,5 @@
 #### Template 1: Hook + Question
+
 ```
 Wait... THIS is illegal in Texas?! 🤯
 

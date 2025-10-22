@@ -1,4 +1,4 @@
-### Recommended Automation Workflow for HNC:
+### Recommended Automation Workflow for HNC
 
 ```
 Script Generation (Claude/GPT-4) →
@@ -12,6 +12,7 @@ Auto-Publish (n8n) to TikTok/YouTube/Instagram
 ```
 
 **Automation Benefits for HNC:**
+
 - Produce multiple episodes per week
 - A/B test different versions automatically
 - Scale to daily content without manual intervention

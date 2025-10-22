@@ -7,6 +7,7 @@
 | **100 Episodes** | 1,370 seconds (22.8 min) | 0.1 seconds | **13,700x faster** |
 
 **Visual Representation:**
+
 ```
 BEFORE: ████████████████████████████████████████████████████ 13.7s
 AFTER:  ▌ <0.01s

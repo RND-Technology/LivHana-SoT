@@ -19,16 +19,19 @@ Welcome to Liv Hana, your trusted cannabis market intelligence and dispensary re
 ### 1.1 Information You Provide
 
 **Age Verification Status**
+
 - We verify that you are 21 years or older before allowing access to the App
 - Verification status is stored as a boolean flag (AGE21 compliance)
 - No birthdates or identification documents are stored
 
 **Query Information**
+
 - Your questions about cannabis dispensaries, products, and market information
 - Location data (city, state, or zip code) when you search for nearby dispensaries
 - Product preferences and search criteria
 
 **Usage Analytics**
+
 - Interaction patterns with the App
 - Feature usage statistics
 - Performance metrics (response times, error rates)
@@ -36,11 +39,13 @@ Welcome to Liv Hana, your trusted cannabis market intelligence and dispensary re
 ### 1.2 Information We Do NOT Collect or Store
 
 **Personal Identifiable Information (PII)**
+
 - We do NOT store names, email addresses, phone numbers, or physical addresses
 - Any PII incidentally included in queries is immediately redacted and never stored
 - No account creation or login is required
 
 **Sensitive Data**
+
 - No payment information (the App is informational only)
 - No medical information or health records
 - No government-issued ID numbers
@@ -53,16 +58,19 @@ Welcome to Liv Hana, your trusted cannabis market intelligence and dispensary re
 ### 2.1 Primary Uses
 
 **Cannabis Market Intelligence**
+
 - Provide recommendations for cannabis dispensaries based on your location
 - Analyze product availability, pricing trends, and market data
 - Compare cannabis products across different dispensaries
 
 **Compliance Checking**
+
 - Verify THC levels in products (federal compliance: ≤0.3% for hemp)
 - Check for Certificate of Analysis (COA) availability
 - Ensure dispensary licensing and regulatory compliance
 
 **Service Improvement**
+
 - Improve recommendation algorithms
 - Enhance user experience and interface design
 - Identify and fix technical issues
@@ -70,6 +78,7 @@ Welcome to Liv Hana, your trusted cannabis market intelligence and dispensary re
 ### 2.2 Business Intelligence
 
 **For Dispensary Operators**
+
 - Aggregated market trends and competitive analysis
 - Product performance insights (anonymized)
 - Industry benchmarking data
@@ -83,29 +92,34 @@ Welcome to Liv Hana, your trusted cannabis market intelligence and dispensary re
 We use the following third-party services to deliver our functionality:
 
 **Apify** (Web Scraping Service)
+
 - Purpose: Collect publicly available dispensary and product information
 - Data Shared: None of your personal data; only technical requests
-- Privacy Policy: https://apify.com/privacy-policy
+- Privacy Policy: <https://apify.com/privacy-policy>
 
 **Perplexity AI** (Verification Service)
+
 - Purpose: Verify accuracy of cannabis product information and compliance data
 - Data Shared: Product information queries (no personal data)
-- Privacy Policy: https://www.perplexity.ai/privacy
+- Privacy Policy: <https://www.perplexity.ai/privacy>
 
 **OpenAI** (GPT-5 Processing)
+
 - Purpose: Power conversational AI and natural language understanding
 - Data Shared: Your queries (with PII redacted), conversation context
-- Privacy Policy: https://openai.com/privacy
+- Privacy Policy: <https://openai.com/privacy>
 
 **Anthropic** (Claude AI)
+
 - Purpose: Advanced reasoning and compliance checking
 - Data Shared: Anonymized queries for analysis
-- Privacy Policy: https://www.anthropic.com/privacy
+- Privacy Policy: <https://www.anthropic.com/privacy>
 
 **Google Cloud Platform** (Infrastructure)
+
 - Purpose: Secure data processing, storage, and computing
 - Data Shared: Technical data for service operation
-- Privacy Policy: https://policies.google.com/privacy
+- Privacy Policy: <https://policies.google.com/privacy>
 
 ### 3.2 Data We Do NOT Share
 
@@ -120,21 +134,25 @@ We use the following third-party services to deliver our functionality:
 ### 4.1 Retention Periods
 
 **Query Logs**: 30 days
+
 - Your individual queries are retained for 30 days to improve service quality
 - After 30 days, queries are either deleted or anonymized for analytics
 
 **Aggregated Analytics**: Indefinite (Anonymized)
+
 - Market trends and usage statistics are retained indefinitely
 - All data is fully anonymized and cannot be linked to individual users
 
 **PII**: Immediately Redacted
+
 - Any personally identifiable information is redacted immediately upon receipt
 - Never stored in any system or backup
 
 ### 4.2 Data Deletion Requests
 
 You have the right to request deletion of your data:
-- Contact us at privacy@livhana.com
+
+- Contact us at <privacy@livhana.com>
 - We will delete all associated query logs within 7 business days
 - Anonymized analytics data cannot be deleted as it is not linked to you
 
@@ -145,29 +163,33 @@ You have the right to request deletion of your data:
 ### 5.1 Access Your Data
 
 You may request access to:
+
 - Query history from the past 30 days
 - Aggregated usage statistics
 - Data shared with third-party services
 
-Contact privacy@livhana.com with your request.
+Contact <privacy@livhana.com> with your request.
 
 ### 5.2 Opt-Out of Analytics
 
 You may opt out of anonymized analytics collection:
-- Send an email to privacy@livhana.com with "Opt-Out Analytics" in the subject
+
+- Send an email to <privacy@livhana.com> with "Opt-Out Analytics" in the subject
 - You will continue to receive full App functionality
 - Opt-out status is permanent unless you request to opt back in
 
 ### 5.3 Data Portability
 
 You may request a copy of your data in machine-readable format (JSON):
+
 - Includes query history from the past 30 days
 - Delivered via secure email within 14 business days
 
 ### 5.4 Correction Requests
 
 If you believe we have inaccurate information about your queries or preferences:
-- Contact privacy@livhana.com
+
+- Contact <privacy@livhana.com>
 - We will review and correct any inaccuracies within 7 business days
 
 ---
@@ -177,11 +199,13 @@ If you believe we have inaccurate information about your queries or preferences:
 ### 6.1 Age Verification (AGE21)
 
 **Federal and State Requirements**
+
 - All users must be 21 years or older
 - Age verification occurs before any cannabis-related information is provided
 - Age verification status is checked with every session
 
 **Enforcement**
+
 - Users who fail age verification are immediately blocked from accessing cannabis information
 - We log age verification attempts for compliance auditing
 - No age verification data is shared with third parties
@@ -189,6 +213,7 @@ If you believe we have inaccurate information about your queries or preferences:
 ### 6.2 State-Specific Regulations
 
 **Geographic Compliance**
+
 - Dispensary recommendations are filtered based on your location and local regulations
 - We respect state-specific cannabis laws (recreational vs. medical, purchase limits)
 - Cannabis information is only provided in jurisdictions where it is legal
@@ -196,6 +221,7 @@ If you believe we have inaccurate information about your queries or preferences:
 ### 6.3 Federal Compliance
 
 **THC Limits**
+
 - We verify products meet federal hemp standards (≤0.3% Delta-9 THC)
 - High-THC products are clearly labeled and only recommended in legal jurisdictions
 - Certificate of Analysis (COA) verification is performed when available
@@ -203,6 +229,7 @@ If you believe we have inaccurate information about your queries or preferences:
 ### 6.4 Prohibited Activities
 
 We do NOT:
+
 - Facilitate illegal cannabis sales or distribution
 - Provide cannabis to minors
 - Operate in jurisdictions where cannabis is prohibited
@@ -215,10 +242,12 @@ We do NOT:
 ### 7.1 Encryption
 
 **In Transit**
+
 - All data transmitted to and from the App uses TLS 1.3 encryption
 - API communications with third parties use industry-standard encryption
 
 **At Rest**
+
 - All stored data is encrypted using AES-256 encryption
 - Encryption keys are managed via Google Secret Manager
 - Key rotation occurs every 90 days
@@ -226,11 +255,13 @@ We do NOT:
 ### 7.2 Access Controls
 
 **Internal Security**
+
 - Role-based access control (RBAC) for all team members
 - Multi-factor authentication (MFA) required for administrative access
 - Access logs are monitored and audited regularly
 
 **Infrastructure Security**
+
 - Google Cloud Platform security best practices
 - Regular security patches and updates
 - Automated vulnerability scanning
@@ -248,6 +279,7 @@ We do NOT:
 ### 8.1 Session Management
 
 We use minimal cookies and session tokens:
+
 - **Session Token**: Required for maintaining your conversation context (expires after 24 hours)
 - **Age Verification Token**: Stores your age verification status for the current session
 
@@ -270,12 +302,14 @@ The Liv Hana ChatGPT App is **not intended for users under 21 years of age**. We
 ### 10.1 Geographic Restrictions
 
 The App is currently available only in:
+
 - United States (states with legal cannabis markets)
 - Canada (provinces with legal cannabis markets)
 
 ### 10.2 Data Transfers
 
 If you access the App from outside the United States:
+
 - Your data may be transferred to and processed in the United States
 - We comply with applicable international data protection laws (GDPR, PIPEDA)
 - You consent to this transfer by using the App
@@ -287,6 +321,7 @@ If you access the App from outside the United States:
 ### 11.1 Notification of Changes
 
 We may update this Privacy Policy from time to time. When we make changes:
+
 - We will update the "Last Updated" date at the top of this document
 - Material changes will be announced in the App
 - Continued use of the App after changes constitutes acceptance
@@ -301,7 +336,7 @@ Version 1.0 (October 21, 2025): Initial privacy policy for ChatGPT App launch
 
 If you have questions, concerns, or requests regarding this Privacy Policy or your data:
 
-**Email**: privacy@livhana.com
+**Email**: <privacy@livhana.com>
 **Subject Line**: "Privacy Policy Inquiry - ChatGPT App"
 
 **Response Time**: We aim to respond to all inquiries within 5 business days.
@@ -317,14 +352,17 @@ Cannabis Technology & Compliance Division
 For users in jurisdictions requiring explicit legal basis:
 
 **Legitimate Interest**
+
 - Providing cannabis market intelligence and recommendations
 - Improving App functionality and user experience
 
 **Consent**
+
 - Age verification for cannabis-related content
 - Optional analytics and data collection
 
 **Legal Obligation**
+
 - Compliance with cannabis regulations
 - Age verification requirements
 - Audit and record-keeping requirements
@@ -346,7 +384,7 @@ If you are a California resident, you have additional rights under the Californi
 **Right to Opt-Out**: Opt out of the "sale" of personal data (note: we do not sell data)
 **Right to Non-Discrimination**: We will not discriminate against you for exercising your rights
 
-To exercise these rights, contact privacy@livhana.com with "CCPA Request" in the subject line.
+To exercise these rights, contact <privacy@livhana.com> with "CCPA Request" in the subject line.
 
 ---
 

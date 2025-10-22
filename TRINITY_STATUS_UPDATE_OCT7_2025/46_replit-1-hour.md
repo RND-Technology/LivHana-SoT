@@ -1,4 +1,5 @@
 ### **Replit (1 hour):**
+
 1. Configure secrets in GCP
 2. Deploy delivery-service
 3. Deploy voice-service

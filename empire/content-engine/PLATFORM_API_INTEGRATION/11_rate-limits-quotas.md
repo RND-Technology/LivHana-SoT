@@ -3,15 +3,18 @@
 **Default Quota**: 10,000 units per day
 
 **Operation Costs**:
+
 - Video upload: 1,600 units
 - Video update: 50 units
 - Video list: 1 unit
 
 **Daily Capacity**:
+
 - ~6 video uploads per day (basic quota)
 - Request quota increase if needed
 
 **Quota Management**:
+
 ```javascript
 // youtube-quota.mjs
 

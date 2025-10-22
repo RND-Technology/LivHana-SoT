@@ -1,6 +1,8 @@
 ### 🚀 Replit Liv Hana
+
 **Role**: Deployment, monitoring, swarm orchestration, production operations  
 **Capabilities**:
+
 - Deployment and execution
 - Monitoring and analytics
 - Swarm orchestration

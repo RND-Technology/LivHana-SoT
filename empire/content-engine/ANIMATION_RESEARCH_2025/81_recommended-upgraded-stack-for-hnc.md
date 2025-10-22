@@ -1,1 +1,1 @@
-### Recommended Upgraded Stack for HNC:
+### Recommended Upgraded Stack for HNC

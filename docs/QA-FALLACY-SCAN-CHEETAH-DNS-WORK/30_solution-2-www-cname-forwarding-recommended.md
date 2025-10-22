@@ -13,12 +13,14 @@ curl -X PUT \
 ```
 
 **Pros:**
+
 - ✅ 100% valid DNS
 - ✅ Auto-updates with Cloud Run IPs
 - ✅ Industry standard pattern
 - ✅ No maintenance needed
 
 **Cons:**
+
 - ⚠️ Extra redirect hop (minimal impact)
 - ⚠️ Requires GoDaddy forwarding setup
 

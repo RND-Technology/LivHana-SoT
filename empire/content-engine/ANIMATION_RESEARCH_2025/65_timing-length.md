@@ -1,6 +1,7 @@
-### Timing & Length:
+### Timing & Length
 
 **2025 Optimal Lengths:**
+
 - **6-10 seconds:** Ultra-short attention grabbers
 - **15-30 seconds:** Standard viral length
 - **60 seconds:** Maximum for sustained engagement

@@ -11,6 +11,7 @@ last-reviewed: 2025-10-06
 ## 🎯 Learning Objectives
 
 By the end of this tutorial, you will:
+
 - Understand the Liv Hana E2E Mission and its goals
 - Navigate the codebase and documentation effectively
 - Set up your development environment
@@ -21,12 +22,14 @@ By the end of this tutorial, you will:
 ## 📋 Prerequisites
 
 ### Required Knowledge
+
 - Basic understanding of Node.js and JavaScript
 - Familiarity with Git and GitHub
 - Understanding of REST APIs
 - Basic knowledge of cannabis industry regulations (we'll cover this)
 
 ### Required Tools
+
 - Node.js 18+ and npm 8+
 - Git
 - VS Code or Cursor IDE
@@ -36,13 +39,16 @@ By the end of this tutorial, you will:
 ## 🏗️ Step 1: Understanding the Mission
 
 ### What is Liv Hana E2E Mission?
+
 Liv Hana is a comprehensive cannabis business platform that combines:
+
 - **Voice-first cockpit**: AI-powered voice interactions
 - **DeepSeek autonomy**: Advanced reasoning and decision-making
 - **Compliance guardrails**: Built-in regulatory compliance
 - **Swarm orchestration**: Coordinated multi-service operations
 
 ### Key Principles
+
 1. **Tier 1 Option A**: Highest quality standards
 2. **RPM DNA**: Systematic approach to prioritization
 3. **Compliance First**: Regulatory compliance built-in
@@ -50,6 +56,7 @@ Liv Hana is a comprehensive cannabis business platform that combines:
 5. **Agentic Patterns**: AI-driven automation
 
 ### Business Context
+
 - **Primary Domain**: reggieanddro.com
 - **Industry**: Cannabis dispensary operations
 - **Compliance**: Texas cannabis regulations
@@ -58,23 +65,27 @@ Liv Hana is a comprehensive cannabis business platform that combines:
 ## 🛠️ Step 2: Environment Setup
 
 ### 1. Clone the Repository
+
 ```bash
 git clone https://github.com/RND-Technology/LivHana-SoT.git
 cd LivHana-SoT
 ```
 
 ### 2. Install Dependencies
+
 ```bash
 npm install
 ```
 
 ### 3. Set Up Environment Variables
+
 ```bash
 cp .env.example .env
 # Edit .env with your configuration
 ```
 
 ### 4. Install Additional Tools
+
 ```bash
 # 1Password CLI
 brew install 1password-cli
@@ -87,6 +98,7 @@ npx playwright install
 ```
 
 ### 5. Verify Installation
+
 ```bash
 npm test
 npm run lint
@@ -95,6 +107,7 @@ npm run lint
 ## 📚 Step 3: Documentation Navigation
 
 ### Understanding Diátaxis Framework
+
 Our documentation follows the [Diátaxis framework](https://diataxis.fr/):
 
 - **Tutorial** (this guide): Learning-oriented
@@ -103,12 +116,14 @@ Our documentation follows the [Diátaxis framework](https://diataxis.fr/):
 - **Explanation**: Background and context
 
 ### Key Documentation Files
+
 1. **[README.md](../README.md)**: Overview and quick start
 2. **[INDEX.md](../INDEX.md)**: Complete documentation index
 3. **[CHANGELOG.md](../../CHANGELOG.md)**: Release history
 4. **[CONTRIBUTING.md](../../.github/CONTRIBUTING.md)**: Contribution guidelines
 
 ### Navigation Tips
+
 - Use the [INDEX.md](../INDEX.md) for finding specific documentation
 - Filter by Diátaxis category or owner
 - Look for front-matter metadata for document purpose
@@ -117,6 +132,7 @@ Our documentation follows the [Diátaxis framework](https://diataxis.fr/):
 ## 🏗️ Step 4: Architecture Overview
 
 ### System Architecture
+
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
 │   Frontend      │    │   Backend       │    │   Infrastructure │
@@ -133,22 +149,26 @@ Our documentation follows the [Diátaxis framework](https://diataxis.fr/):
 ### Key Components
 
 #### Backend Services
+
 - **Voice Service**: ElevenLabs integration for voice processing
 - **Reasoning Gateway**: DeepSeek 33B for AI reasoning
 - **Integration Service**: Third-party integrations (Kaja, Veriff, etc.)
 
 #### Frontend Cockpits
+
 - **Vibe Cockpit**: Customer-facing interface
 - **Empire Cockpit**: Internal operations dashboard
 - **Admin Panel**: System administration
 
 #### Infrastructure
+
 - **Cloud Run**: Serverless deployment
 - **Redis**: Queue management and caching
 - **Secret Manager**: Secure credential storage
 - **CI/CD**: Automated testing and deployment
 
 ### Data Flow
+
 1. **Voice Input** → Voice Service → Reasoning Gateway
 2. **API Requests** → Integration Service → External APIs
 3. **User Actions** → Frontend → Backend → Database
@@ -157,18 +177,21 @@ Our documentation follows the [Diátaxis framework](https://diataxis.fr/):
 ## 🔒 Step 5: Compliance & Security
 
 ### Cannabis Compliance
+
 - **Age Verification**: Required for all customer interactions
 - **Language Compliance**: Avoid "weed" terminology, use "cannabis"
 - **Transaction Tracking**: All sales must be auditable
 - **State Regulations**: Follow Texas cannabis laws
 
 ### Security Requirements
+
 - **No Secrets in Code**: Use environment variables or secret management
 - **JWT Authentication**: For all API endpoints
 - **Guardrails**: Content filtering for AI responses
 - **Audit Logging**: Track all system interactions
 
 ### Compliance Checklist
+
 - [ ] Age verification implemented
 - [ ] Compliant language used
 - [ ] Transaction logging enabled
@@ -179,16 +202,19 @@ Our documentation follows the [Diátaxis framework](https://diataxis.fr/):
 ## 🧪 Step 6: Development Workflow
 
 ### 1. Create a Feature Branch
+
 ```bash
 git checkout -b feat/your-feature-name
 ```
 
 ### 2. Make Changes
+
 - Follow coding standards
 - Write tests for new functionality
 - Update documentation if needed
 
 ### 3. Test Your Changes
+
 ```bash
 npm test
 npm run lint
@@ -196,16 +222,19 @@ npm run test:e2e
 ```
 
 ### 4. Commit with Conventional Commits
+
 ```bash
 git commit -m "feat(voice): add new voice processing feature"
 ```
 
 ### 5. Create Pull Request
+
 - Use the PR template
 - Include ADR reference if architectural
 - Ensure all checks pass
 
 ### 6. Code Review
+
 - Address feedback
 - Update documentation
 - Merge when approved
@@ -213,6 +242,7 @@ git commit -m "feat(voice): add new voice processing feature"
 ## 📊 Step 7: Understanding RPM DNA
 
 ### RPM DNA System
+
 RPM DNA is our prioritization and organization system:
 
 - **R**: Risk assessment
@@ -221,6 +251,7 @@ RPM DNA is our prioritization and organization system:
 - **DNA**: Document, Navigate, Act
 
 ### File Naming Convention
+
 ```
 [AOM#].[COI#].[RPM#].[ACTION#]_[DESCRIPTION]_[DATE].md
 ```
@@ -228,6 +259,7 @@ RPM DNA is our prioritization and organization system:
 Example: `1.6.2.1_empire-visual-spec_20251006.md`
 
 ### Priority Levels
+
 - **Tier 1**: Critical, mission-critical
 - **Tier 2**: Important, high priority
 - **Tier 3**: Nice to have, lower priority
@@ -235,18 +267,21 @@ Example: `1.6.2.1_empire-visual-spec_20251006.md`
 ## 🎯 Step 8: Key Workflows
 
 ### Daily Workflow
+
 1. Check [RPM Weekly Plan](../RPM_WEEKLY_PLAN_OCT4-12_2025.md)
 2. Review [Incomplete Work Status](../INCOMPLETE_WORK_STATUS.md)
 3. Check [Deployment Status](../DEPLOYMENT_STATUS.md)
 4. Update progress in relevant tracking documents
 
 ### Weekly Workflow
+
 1. Review weekly plan updates
 2. Assess priority changes
 3. Update incomplete work status
 4. Plan next week's priorities
 
 ### Release Workflow
+
 1. Update CHANGELOG.md
 2. Create release notes
 3. Deploy to staging
@@ -257,19 +292,23 @@ Example: `1.6.2.1_empire-visual-spec_20251006.md`
 ## 🚀 Step 9: First Contribution
 
 ### Choose a Good First Issue
+
 Look for issues labeled:
+
 - `good-first-issue`
 - `documentation`
 - `tutorial`
 - `help-wanted`
 
 ### Example First Contribution
+
 1. **Fix a typo** in documentation
 2. **Add a test** for existing functionality
 3. **Update documentation** for clarity
 4. **Add a tutorial** for a specific workflow
 
 ### Contribution Checklist
+
 - [ ] Issue exists or created
 - [ ] Branch created from main
 - [ ] Changes implemented
@@ -282,12 +321,14 @@ Look for issues labeled:
 ## 📞 Step 10: Getting Help
 
 ### Resources
+
 - **Documentation**: [INDEX.md](../INDEX.md)
 - **Issues**: GitHub Issues
 - **Discussions**: GitHub Discussions
 - **Slack**: #liv-hana-dev channel
 
 ### When to Ask for Help
+
 - Stuck on a problem for more than 30 minutes
 - Unclear requirements
 - Need clarification on architecture
@@ -295,6 +336,7 @@ Look for issues labeled:
 - Performance issues
 
 ### How to Ask for Help
+
 1. **Search first**: Check documentation and issues
 2. **Provide context**: What you're trying to do
 3. **Include details**: Error messages, code snippets
@@ -303,6 +345,7 @@ Look for issues labeled:
 ## ✅ Step 11: Verification
 
 ### Knowledge Check
+
 Answer these questions to verify your understanding:
 
 1. What is the Liv Hana E2E Mission?
@@ -314,13 +357,14 @@ Answer these questions to verify your understanding:
 7. How do you use the RPM DNA system?
 
 ### Practical Exercise
+
 1. **Set up your environment** following Step 2
 2. **Navigate to a specific document** using the INDEX
 3. **Make a small change** (fix a typo)
 4. **Create a PR** following the workflow
 5. **Get it merged** through code review
 
-## 🎉 Congratulations!
+## 🎉 Congratulations
 
 You've completed the Liv Hana E2E Mission onboarding tutorial! You now have:
 
@@ -332,6 +376,7 @@ You've completed the Liv Hana E2E Mission onboarding tutorial! You now have:
 - ✅ Understanding of workflows and processes
 
 ### Next Steps
+
 1. **Explore the codebase** more deeply
 2. **Pick up your first issue** from the backlog
 3. **Join team meetings** to understand current priorities
@@ -339,6 +384,7 @@ You've completed the Liv Hana E2E Mission onboarding tutorial! You now have:
 5. **Start contributing** to the mission
 
 ### Continuous Learning
+
 - **Stay updated** with weekly plans
 - **Read ADRs** to understand architectural decisions
 - **Participate in code reviews** to learn from others

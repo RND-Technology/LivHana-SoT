@@ -9,6 +9,7 @@ This API integration guide provides a complete system for automating High Noon C
 5. **Security**: Encrypted credentials and secure token management
 
 **Next Steps**:
+
 1. Set up all platform API credentials
 2. Test each platform integration individually
 3. Run full multi-platform test
@@ -16,10 +17,11 @@ This API integration guide provides a complete system for automating High Noon C
 5. Monitor and iterate based on performance
 
 **Support Resources**:
-- YouTube API Documentation: https://developers.google.com/youtube/v3
-- TikTok API Documentation: https://developers.tiktok.com/
-- Instagram API Documentation: https://developers.facebook.com/docs/instagram-api
-- X API Documentation: https://developer.x.com/en/docs/twitter-api
+
+- YouTube API Documentation: <https://developers.google.com/youtube/v3>
+- TikTok API Documentation: <https://developers.tiktok.com/>
+- Instagram API Documentation: <https://developers.facebook.com/docs/instagram-api>
+- X API Documentation: <https://developer.x.com/en/docs/twitter-api>
 
 ---
 

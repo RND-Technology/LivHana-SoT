@@ -20,8 +20,6 @@ pino(transport)
 [pino-slack-webhook]: https://github.com/youngkiu/pino-slack-webhook
 [Slack]: https://slack.com/
 
-[pino-pretty]: https://github.com/pinojs/pino-pretty
-
 For full documentation of command line switches read the [README](https://github.com/abeai/pino-websocket#readme).
 
 <a id="pino-socket"></a>

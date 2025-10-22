@@ -1,4 +1,5 @@
 #### **Prompt 3: Product Page COA Integration**
+
 ```
 Add Certificate of Analysis (COA) section to every product page on reggieanddro.com Lightspeed store.
 

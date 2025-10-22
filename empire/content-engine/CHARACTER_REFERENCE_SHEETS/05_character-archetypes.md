@@ -1,4 +1,5 @@
 ### Character Archetypes
+
 - **Jesse Niesen:** The Visionary Leader (protagonist)
 - **Liv Hana AI EA:** The Loyal Sidekick (deuteragonist)
 - **Chief Steve:** The Bumbling Antagonist (comic relief)

@@ -1,4 +1,5 @@
 ### **Infrastructure (Replit Liv Hana):**
+
 - ⏳ Deploy delivery-service
 - ⏳ Deploy voice-service
 - ⏳ Configure secrets in GCP

@@ -1,1 +1,1 @@
-### Recommended Alternatives:
+### Recommended Alternatives

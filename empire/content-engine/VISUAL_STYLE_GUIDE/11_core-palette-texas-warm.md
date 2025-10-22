@@ -1,4 +1,5 @@
 #### Core Palette (Texas Warm)
+
 ```
 BURNT ORANGE (Texas Pride)
 - HEX: #BF5700

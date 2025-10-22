@@ -1,4 +1,5 @@
-### Success Criteria:
+### Success Criteria
+
 - Domain mappings: 18/18 ✅
 - SSL certificates: 18/18 ✅
 - HTTPS working: 18/18 ✅

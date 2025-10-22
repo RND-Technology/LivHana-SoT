@@ -1,4 +1,5 @@
 ### STABLE SYSTEMS (GREEN STATUS)
+
 | System | Status | Owner | Priority | ETA |
 |--------|--------|-------|----------|-----|
 | Empire Portfolio Sites | 🟢 LIVE | Cheetah Cursor | MEDIUM | Complete |

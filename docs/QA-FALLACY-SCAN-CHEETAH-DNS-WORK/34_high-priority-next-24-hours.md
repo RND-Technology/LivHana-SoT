@@ -1,4 +1,4 @@
-### 🟡 HIGH PRIORITY (Next 24 hours):
+### 🟡 HIGH PRIORITY (Next 24 hours)
 
 4. **Fix Load Balancing**
    - Option A: Deploy all 8 IPs (5 min)
@@ -6,6 +6,7 @@
    - Option C: Set up Cloud LB (2 hours)
 
 5. **Update Documentation**
+
    ```bash
    # Fix README to show CORRECT approach
    vim scripts/README-godaddy-dns-automation.md
@@ -13,6 +14,7 @@
    ```
 
 6. **Consolidate Scripts**
+
    ```bash
    # Keep only the CORRECT solution
    mv scripts/godaddy-dns-CORRECT-SOLUTION.sh scripts/godaddy-dns-deploy.sh

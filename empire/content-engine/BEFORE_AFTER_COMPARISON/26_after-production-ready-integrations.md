@@ -8,6 +8,7 @@
 | **Real-time Metrics** | ✅ LIVE | Performance dashboard active |
 
 **Ready for Connection (Pending API Keys):**
+
 - YouTube Data API v3 (YOUTUBE_API_KEY)
 - NewsAPI.org (NEWSAPI_KEY)
 - OpenAI TTS (OPENAI_API_KEY - optional)
