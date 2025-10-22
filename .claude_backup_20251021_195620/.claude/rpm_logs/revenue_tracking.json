@@ -1,0 +1,27 @@
+{
+  "timestamp": "2025-10-21T18:57:57.417484",
+  "metric": "revenue_roi_per_day",
+  "actual": 0,
+  "target": 1200,
+  "accuracy_percent": 0.0,
+  "flags": {
+    "custom_gpt": {
+      "actual": 0,
+      "target": 300,
+      "percent": 0.0,
+      "status": "BELOW_TARGET"
+    },
+    "slack_bot": {
+      "actual": 0,
+      "target": 500,
+      "percent": 0.0,
+      "status": "BELOW_TARGET"
+    },
+    "replit_pwa": {
+      "actual": 0,
+      "target": 400,
+      "percent": 0.0,
+      "status": "BELOW_TARGET"
+    }
+  }
+}

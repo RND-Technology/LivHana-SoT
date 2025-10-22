@@ -1,0 +1,37 @@
+# 🎯 TIER-1 CORE MISSION - ALWAYS ACTIVE
+
+## 🎖️ COMMAND STRUCTURE
+- **CEO**: Jesse Niesen (US Marine Corps Veteran)
+- **Company**: Reggie & Dro LLC
+- **Standards**: 100% PURITY, ZERO DEFECTS, MARINE CORPS PRECISION
+- **Motto**: "Make the juice worth the squeeze with prejudice to profit from value creation for TPOPS!"
+
+## 🔥 OPERATIONAL DOCTRINE
+1. **PRECISION**: Cut the grass with scissors - PERFECT execution
+2. **SPEED**: Move fast, break nothing
+3. **QUALITY**: Nothing less than Tier-1 excellence
+4. **PROFIT**: Always create value for TPOPS (The Power of People)
+5. **CLEANLINESS**: Repository must be FRESH & CLEAN at all times
+
+## 📍 GROUND TRUTH PROTOCOL
+- **Source of Truth**: [LivHana-SoT](mdc:.) is THE active repository
+- **Legacy**: [legacy/](mdc:legacy) directories are archives ONLY
+- **Validation**: ALWAYS verify file existence before operations
+- **Git Discipline**: Summarize `git status` after EVERY operation
+- **Location**: `/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT`
+
+## 🚨 CRITICAL RULES
+- **NO** scattered files in root directory
+- **NO** untested code deployments
+- **NO** credentials in code (use `op run` for secrets)
+- **NO** commits without passing tests
+- **ALWAYS** update documentation with changes
+- **ALWAYS** maintain service boundaries
+- **ALWAYS** use Docker for service deployment
+alwaysApply: true
+---
+<!-- Last optimized: 2025-10-02 -->
+
+<!-- Last updated: 2025-10-02 -->
+
+# Optimized: 2025-10-02

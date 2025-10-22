@@ -1,0 +1,19 @@
+{
+  "timestamp": "20251021_203911",
+  "lead": {
+    "review": {
+      "rating": 2,
+      "text": "Terrible experience with poor selection. herb-haven-seattle needs to improve their service.",
+      "date": "2025-10-16",
+      "competitor": "herb-haven-seattle",
+      "pain_point": "poor selection",
+      "severity": 7
+    },
+    "pain_point": "poor selection",
+    "estimated_value": 167,
+    "competitor": "herb-haven-seattle",
+    "priority": "high"
+  },
+  "message": "Hi! Looking for more variety than herb-haven-seattle?\nLiv Hana stocks 200+ strains, including rare/exclusive products.\nBrowse our full menu + get 20% off first order: https://livhana.com/?ref=acquisition&discount=FIRST20",
+  "status": "pending_approval"
+}
