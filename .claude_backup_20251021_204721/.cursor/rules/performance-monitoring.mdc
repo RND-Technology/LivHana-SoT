@@ -1,0 +1,89 @@
+# ⚡ PERFORMANCE & MONITORING
+
+## 🎯 PERFORMANCE TARGETS (SLA)
+- **API Response Time**: < 200ms (p95)
+- **Voice Latency**: < 500ms end-to-end
+- **Page Load Time**: < 2s (LCP)
+- **Database Queries**: < 50ms
+- **Cache Hit Rate**: > 90%
+- **Uptime**: 99.9% minimum
+
+## 📊 MONITORING STACK
+```yaml
+Metrics:
+  - Prometheus (time-series data)
+  - Grafana (visualization)
+  - AlertManager (alerting)
+
+Logging:
+  - ELK Stack (Elasticsearch, Logstash, Kibana)
+  - Structured JSON logging
+  - Centralized log aggregation
+
+Tracing:
+  - OpenTelemetry (distributed tracing)
+  - Jaeger (trace visualization)
+  - Correlation IDs for request tracking
+
+Health Checks:
+  - /health endpoint for each service
+  - Docker health checks
+  - Kubernetes liveness/readiness probes
+```
+
+## 🚀 OPTIMIZATION STRATEGIES
+### Backend:
+- **Connection Pooling**: Database and Redis
+- **Caching**: Multi-layer (Redis, CDN, browser)
+- **Query Optimization**: Indexes, explain plans
+- **Async Processing**: Queue-based workflows
+- **Load Balancing**: Round-robin, least connections
+
+### Frontend:
+- **Code Splitting**: Dynamic imports
+- **Lazy Loading**: Images and components
+- **Bundle Optimization**: Tree shaking, minification
+- **CDN**: Static assets delivery
+- **Service Workers**: Offline capability
+
+## 🔔 ALERTING RULES
+```yaml
+Critical (Page immediately):
+  - Service down > 1 minute
+  - Error rate > 10%
+  - Response time > 1s (p95)
+  - Database connection failure
+  - Payment processing failure
+
+Warning (Notify team):
+  - Error rate > 5%
+  - Response time > 500ms (p95)
+  - Memory usage > 80%
+  - Disk usage > 80%
+  - Cache miss rate > 30%
+```
+
+## 📈 PERFORMANCE TESTING
+- **Load Testing**: 1000 concurrent users minimum
+- **Stress Testing**: Find breaking points
+- **Spike Testing**: Handle 10x traffic spikes
+- **Endurance Testing**: 24-hour sustained load
+- **Benchmark**: Compare against baselines
+
+## 🏃 OPTIMIZATION CHECKLIST
+- [ ] Database queries optimized (< 50ms)
+- [ ] N+1 queries eliminated
+- [ ] Caching strategy implemented
+- [ ] CDN configured
+- [ ] Images optimized (WebP format)
+- [ ] JavaScript bundles < 200KB
+- [ ] Critical CSS inlined
+- [ ] HTTP/2 enabled
+- [ ] Gzip/Brotli compression active
+alwaysApply: true
+---
+<!-- Last optimized: 2025-10-02 -->
+
+<!-- Last updated: 2025-10-02 -->
+
+# Optimized: 2025-10-02

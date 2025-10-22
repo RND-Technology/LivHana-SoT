@@ -38,7 +38,7 @@ echo "🔐 Creating Docker secrets from 1Password..."
 
 # ElevenLabs API Key
 echo "Retrieving ElevenLabs API key..."
-ELEVENLABS_KEY=$(op read "op://LivHana-Ops-Keys/ELEVENLABS_API_KEY/credential" 2>/dev/null || echo "")
+ELEVENLABS_KEY=$(op item get ELEVENLABS_API_KEY --vault LivHana-Ops-Keys --reveal --fields credential 2>/dev/null || echo "")
 if [ -n "$ELEVENLABS_KEY" ]; then
     echo "$ELEVENLABS_KEY" | docker secret create elevenlabs_api_key - 2>/dev/null || echo "Secret already exists"
     echo "✅ ElevenLabs API key configured"
@@ -48,7 +48,7 @@ fi
 
 # Anthropic API Key
 echo "Retrieving Anthropic API key..."
-ANTHROPIC_KEY=$(op read "op://LivHana-Ops-Keys/ANTHROPIC_API_KEY/credential" 2>/dev/null || echo "")
+ANTHROPIC_KEY=$(op item get ANTHROPIC_API_KEY --vault LivHana-Ops-Keys --reveal --fields credential 2>/dev/null || echo "")
 if [ -n "$ANTHROPIC_KEY" ]; then
     echo "$ANTHROPIC_KEY" | docker secret create anthropic_api_key - 2>/dev/null || echo "Secret already exists"
     echo "✅ Anthropic API key configured"
@@ -58,7 +58,7 @@ fi
 
 # OpenAI API Key
 echo "Retrieving OpenAI API key..."
-OPENAI_KEY=$(op read "op://LivHana-Ops-Keys/OPEN_AI_API_KEY/credential" 2>/dev/null || echo "")
+OPENAI_KEY=$(op item get OPENAI_API_KEY --vault Employee --reveal --fields credential 2>/dev/null || echo "")
 if [ -n "$OPENAI_KEY" ]; then
     echo "$OPENAI_KEY" | docker secret create openai_api_key - 2>/dev/null || echo "Secret already exists"
     echo "✅ OpenAI API key configured"

@@ -1,0 +1,58 @@
+# 🎯 LivHana-SoT TIER-1 ARCHITECTURE RULES
+
+## 🚀 MISSION CRITICAL
+This is a TIER-1 repository maintained with Marine Corps precision. CEO Jesse Niesen (USMC Veteran) demands 100% excellence. NO COMPROMISES.
+
+## 📁 REPOSITORY STRUCTURE (NEVER VIOLATE)
+The repository follows a strict microservices architecture:
+
+### Backend Services
+- [backend/voice-service](mdc:backend/voice-service) - ElevenLabs v3 voice engine (RUNNING IN DOCKER)
+- [backend/reasoning-gateway](mdc:backend/reasoning-gateway) - DeepSeek 33B reasoning (RUNNING IN DOCKER)
+- [backend/cannabis-service](mdc:backend/cannabis-service) - Cannabis compliance & regulations
+- [backend/payment-service](mdc:backend/payment-service) - Payment processing (Stripe/Square)
+- [backend/integration-service](mdc:backend/integration-service) - External API integrations
+- [backend/product-service](mdc:backend/product-service) - Product management
+- [backend/common](mdc:backend/common) - Shared modules (auth, guardrails, logging, memory, queue)
+
+### Frontend
+- [frontend/vibe-cockpit](mdc:frontend/vibe-cockpit) - React 18 + Vite + Tailwind voice-first UI
+
+### Infrastructure
+- [docker-compose.yml](mdc:docker-compose.yml) - Unified service orchestration
+- [infra/docker](mdc:infra/docker) - Docker configurations
+- [infra/scripts](mdc:infra/scripts) - Infrastructure scripts
+
+## ⚠️ ABSOLUTE RULES
+1. **NO FILES IN ROOT** - All code must be in proper service directories
+2. **NO LEGACY CODE** - Legacy files stay in `legacy/` directory ONLY
+3. **SERVICE BOUNDARIES** - Each service has its own package.json and Dockerfile
+4. **CLEAN GIT STATUS** - Always commit with descriptive messages
+5. **100% DOCKER** - All services run in containers
+
+## 🔧 DEVELOPMENT STANDARDS
+- Use `backend/common/` for shared code
+- Every service needs tests in its `tests/` directory
+- Documentation in `docs/` with proper hierarchy
+- All secrets via 1Password (`op run`)
+- Redis for queue management
+- JWT for authentication
+
+## 📊 STATUS TRACKING
+- Check status: [CURRENT_STATUS.md](mdc:CURRENT_STATUS.md)
+- Architecture: [CLEAN_REPO_STRUCTURE.md](mdc:CLEAN_REPO_STRUCTURE.md)
+- Mission: [E2E_MISSION.md](mdc:E2E_MISSION.md)
+- Value Creation: [TPOP_VALUE_CREATION_ENGINE.md](mdc:TPOP_VALUE_CREATION_ENGINE.md)
+
+## 🚨 BEFORE ANY CHANGE
+Run: `./automation/scripts/check_housekeeping_queue.sh`
+This validates the entire repo structure and health.
+
+**REMEMBER: WE LEAVE NO SERVICE BEHIND. MARINE CORPS PRECISION. ALWAYS.**
+alwaysApply: true
+---
+<!-- Last optimized: 2025-10-02 -->
+
+<!-- Last updated: 2025-10-02 -->
+
+# Optimized: 2025-10-02

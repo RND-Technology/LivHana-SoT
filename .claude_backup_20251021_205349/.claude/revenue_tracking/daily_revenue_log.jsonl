@@ -1,0 +1,6 @@
+{"timestamp": "2025-10-21T19:25:27.221012", "flag": "custom_gpt", "event_type": "query", "amount": 0.1, "metadata": {}}
+{"timestamp": "2025-10-21T19:25:27.894316", "flag": "slack_bot", "event_type": "team_member", "amount": 50.0, "metadata": {}}
+{"timestamp": "2025-10-21T19:25:28.111363", "flag": "replit_pwa", "event_type": "active_user", "amount": 4.0, "metadata": {}}
+{"timestamp": "2025-10-21T19:42:15.296016", "flag": "replit_pwa", "event_type": "user_active", "amount": 4.0, "metadata": {}}
+{"timestamp": "2025-10-21T19:42:15.511654", "flag": "slack_bot", "event_type": "team_member", "amount": 50.0, "metadata": {}}
+{"timestamp": "2025-10-21T19:42:16.388821", "flag": "custom_gpt", "event_type": "query", "amount": 0.1, "metadata": {}}

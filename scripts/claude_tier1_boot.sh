@@ -44,6 +44,81 @@ info "Root: $ROOT"
 info "Log: $LOG"
 echo
 
+# STEP 1: ENVIRONMENT SETUP (before pre-flight)
+banner "🌍 STEP 1: ENVIRONMENT SETUP"
+
+# Ensure 1Password session is active
+if ! command -v op >/dev/null 2>&1; then
+  warning "1Password CLI (op) not found - install via: brew install 1password-cli"
+else
+  if ! op whoami >/dev/null 2>&1; then
+    error "1Password session not active"
+    error "Run: op signin"
+    exit 1
+  fi
+  success "1Password authenticated: $(op whoami)"
+fi
+
+# GCP project for downstream scripts
+export GCP_PROJECT_ID="reggieanddrodispensary"
+success "GCP_PROJECT_ID=$GCP_PROJECT_ID"
+
+# Optional: BigQuery key for integration-service
+BIGQUERY_KEY_PATH="$ROOT/backend/integration-service/.bigquery-key.json"
+if [[ -f "$BIGQUERY_KEY_PATH" ]]; then
+  export GOOGLE_APPLICATION_CREDENTIALS="$BIGQUERY_KEY_PATH"
+  success "GOOGLE_APPLICATION_CREDENTIALS=$BIGQUERY_KEY_PATH"
+else
+  warning "BigQuery key not found"
+fi
+
+# Optional: load Square creds from GSM if gcloud available
+if command -v gcloud >/dev/null 2>&1; then
+  export SQUARE_ACCESS_TOKEN=$(gcloud secrets versions access latest --secret=SQUARE_ACCESS_TOKEN --project="$GCP_PROJECT_ID" 2>/dev/null || echo "")
+  export SQUARE_LOCATION_ID=$(gcloud secrets versions access latest --secret=SQUARE_LOCATION_ID --project="$GCP_PROJECT_ID" 2>/dev/null || echo "")
+  [[ -n "$SQUARE_ACCESS_TOKEN" ]] && success "SQUARE_ACCESS_TOKEN loaded from Secret Manager"
+  [[ -n "$SQUARE_LOCATION_ID" ]] && success "SQUARE_LOCATION_ID loaded from Secret Manager"
+fi
+
+# OPENAI fallback for local voice mode
+if [[ -z "${OPENAI_API_KEY:-}" ]]; then
+  warning "OPENAI_API_KEY not detected – defaulting to local voice placeholder"
+  export OPENAI_API_KEY="local-voice-mode-active"
+  OPENAI_KEY_STATUS="placeholder (local voice only)"
+else
+  success "OPENAI_API_KEY detected"
+  if [[ "${OPENAI_API_KEY}" == "local-voice-mode-active" ]]; then
+    OPENAI_KEY_STATUS="placeholder (local voice only)"
+  else
+    OPENAI_KEY_STATUS="configured"
+  fi
+fi
+
+# Load API keys from 1Password if available
+if command -v op >/dev/null 2>&1 && op whoami >/dev/null 2>&1; then
+  # Load ANTHROPIC_API_KEY from 1Password
+  if [[ -z "${ANTHROPIC_API_KEY:-}" ]]; then
+    ANTHROPIC_KEY=$(op item get ANTHROPIC_API_KEY --vault LivHana-Ops-Keys --reveal --fields credential 2>/dev/null || echo "")
+    if [[ -n "$ANTHROPIC_KEY" ]]; then
+      export ANTHROPIC_API_KEY="$ANTHROPIC_KEY"
+      success "ANTHROPIC_API_KEY loaded from 1Password"
+    fi
+  fi
+  
+  # Load other API keys if they exist
+  for key_name in DEEPSEEK_API_KEY PERPLEXITY_API_KEY; do
+    if [[ -z "${!key_name:-}" ]]; then
+      KEY_VALUE=$(op item get "$key_name" --vault LivHana-Ops-Keys --reveal --fields credential 2>/dev/null || echo "")
+      if [[ -n "$KEY_VALUE" ]]; then
+        export "$key_name"="$KEY_VALUE"
+        success "$key_name loaded from 1Password"
+      fi
+    fi
+  done
+fi
+
+echo
+
 # STEP 0: PRE-FLIGHT CHECKS (CRITICAL)
 banner "STEP 0: PRE-FLIGHT SAFETY CHECKS"
 info "Running comprehensive pre-flight validation..."
@@ -240,6 +315,45 @@ echo
 head -40 "$PROMPT"
 echo
 echo "... (full prompt: $PROMPT_SIZE chars)"
+echo
+
+# STEP 6: SESSION WATCHDOG (non-blocking)
+banner "⏱️  STEP 6: SESSION WATCHDOG"
+CLAUDE_DIR="$ROOT/.claude"
+pkill -f "watch-session-progress.sh" 2>/dev/null || true
+sleep 1
+if [[ -f "$CLAUDE_DIR/watch-session-progress.sh" ]]; then
+  nohup bash "$CLAUDE_DIR/watch-session-progress.sh" 300 60 >> "$CLAUDE_DIR/session_watch.log" 2>&1 &
+  WATCHDOG_PID=$!
+  success "Session watchdog started (PID $WATCHDOG_PID, threshold 300s)"
+else
+  warning "watch-session-progress.sh not found - skipping watchdog"
+fi
+echo
+
+# STEP 7: SESSION LOG UPDATE
+banner "📝 STEP 7: SESSION LOG UPDATE"
+SESSION_LOG="$CLAUDE_DIR/SESSION_PROGRESS.md"
+TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S %Z')
+{
+  echo ""
+  echo "## $TIMESTAMP — Boot Sequence Complete"
+  echo ""
+  echo "**System State:**"
+  if command -v op >/dev/null 2>&1; then
+    echo "- ✅ Authentication: $(op whoami 2>/dev/null | grep Email | cut -d: -f2 | xargs)"
+  else
+    echo "- ✅ Authentication: 1Password CLI not installed"
+  fi
+  echo "- ✅ Environment: GCP_PROJECT_ID=$GCP_PROJECT_ID"
+  echo "- ✅ OpenAI Key: ${OPENAI_KEY_STATUS:-placeholder (local voice only)}"
+  echo "- ✅ Protocols: (see .claude)"
+  echo "- ✅ Git: $(git status --short 2>/dev/null | wc -l | tr -d ' ') uncommitted files"
+  echo "- ✅ Watchdog: PID ${WATCHDOG_PID:-N/A}"
+  echo ""
+  echo "**Next Action:** Execute mission with numbered steps, concrete metrics, <5min verification."
+} >> "$SESSION_LOG"
+success "SESSION_PROGRESS.md updated with boot timestamp"
 echo
 
 # Step 6: Ready for Claude
