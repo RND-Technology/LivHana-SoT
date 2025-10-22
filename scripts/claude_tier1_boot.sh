@@ -308,6 +308,27 @@ info "Final prompt size: $PROMPT_SIZE characters"
 
 echo
 
+# Validate voice instructions persisted correctly
+info "Validating voice mode persistence..."
+
+if ! grep -q "Voice Mode Auto-Activation" "$PROMPT"; then
+  error "Voice activation instructions failed to persist"
+  exit 1
+fi
+
+if ! grep -q "NEVER" "$PROMPT"; then
+  error "Session continuity guarantee missing from prompt"
+  exit 1
+fi
+
+if ! grep -q "CRITICAL.*SILENCE.*COMMAND.*BEHAVIOR" "$PROMPT"; then
+  error "Jesse's silence directive missing from prompt"
+  exit 1
+fi
+
+success "Voice mode persistence validated (3/3 checks passed)"
+echo
+
 # Step 4: Pre-launch checks
 banner "STEP 4: PRE-LAUNCH CHECKS"
 
