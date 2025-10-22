@@ -1,0 +1,19 @@
+{
+  "timestamp": "20251021_203908",
+  "lead": {
+    "review": {
+      "rating": 1,
+      "text": "Terrible experience with rude staff. herb-haven-seattle needs to improve their service.",
+      "date": "2025-10-16",
+      "competitor": "herb-haven-seattle",
+      "pain_point": "rude staff",
+      "severity": 10
+    },
+    "pain_point": "rude staff",
+    "estimated_value": 175,
+    "competitor": "herb-haven-seattle",
+    "priority": "high"
+  },
+  "message": "Hi! We saw your review about herb-haven-seattle.\nAt Liv Hana, we're committed to excellent service and fair pricing.\nTry us with 20% off your first order: https://livhana.com/?ref=acquisition&discount=FIRST20",
+  "status": "pending_approval"
+}

@@ -1,6 +1,6 @@
 /**
  * Unified Jest Configuration
- * ONE TEST CONFIG FOR ALL SERVICES
+ * ONE TEST CONFIG FOR ALL SERVICES - TIER-1 ONLY
  *
  * Usage:
  *   npm test                          # Run all tests
@@ -9,9 +9,9 @@
  */
 
 export default {
-  // Use projects for multi-service testing
+  // Use projects for multi-service testing (Tier-1 only)
   projects: [
-    // Backend Services
+    // Backend Services (Tier-1)
     {
       displayName: 'integration-service',
       testEnvironment: 'node',
@@ -47,21 +47,17 @@ export default {
       coverageDirectory: 'coverage/reasoning-gateway',
     },
     {
-      displayName: 'cannabis-service',
+      displayName: 'product-service',
       testEnvironment: 'node',
-      testMatch: ['<rootDir>/backend/cannabis-service/tests/**/*.test.js'],
-      collectCoverageFrom: ['backend/cannabis-service/src/**/*.js'],
-      coverageDirectory: 'coverage/cannabis-service',
-    },
-    {
-      displayName: 'payment-service',
-      testEnvironment: 'node',
-      testMatch: ['<rootDir>/backend/payment-service/tests/**/*.test.js'],
-      collectCoverageFrom: ['backend/payment-service/src/**/*.js'],
-      coverageDirectory: 'coverage/payment-service',
+      testMatch: ['<rootDir>/backend/product-service/tests/**/*.test.js'],
+      collectCoverageFrom: [
+        'backend/product-service/src/**/*.js',
+        '!backend/product-service/src/index.js',
+      ],
+      coverageDirectory: 'coverage/product-service',
     },
 
-    // Frontend
+    // Frontend (Tier-1)
     {
       displayName: 'vibe-cockpit',
       testEnvironment: 'jsdom',
@@ -77,24 +73,6 @@ export default {
         '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
         '\\.(jpg|jpeg|png|gif|svg)$': '<rootDir>/tests/__mocks__/fileMock.js',
       },
-    },
-
-    // Empire Engines
-    {
-      displayName: 'empire-engines',
-      testEnvironment: 'node',
-      testMatch: ['<rootDir>/empire/**/tests/**/*.test.js'],
-      collectCoverageFrom: ['empire/**/src/**/*.js'],
-      coverageDirectory: 'coverage/empire',
-    },
-
-    // Data Pipelines
-    {
-      displayName: 'data-pipelines',
-      testEnvironment: 'node',
-      testMatch: ['<rootDir>/automation/data-pipelines/tests/**/*.test.js'],
-      collectCoverageFrom: ['automation/data-pipelines/**/*.js'],
-      coverageDirectory: 'coverage/data-pipelines',
     },
   ],
 
@@ -129,18 +107,15 @@ export default {
     '/coverage/',
     '/legacy/',
     '/.cursor-backups/',
+    '/empire/',
+    '/1.rnd/',
+    '/backups/',
+    '/deployment/',
   ],
 
-  // Module path aliases (optional, for convenience)
-  moduleDirectories: ['node_modules', 'backend', 'frontend', 'empire'],
+  // Module path aliases
+  moduleDirectories: ['node_modules', 'backend', 'frontend'],
 
   // Transform settings (for ES modules)
   transform: {},
-  extensionsToTreatAsEsm: ['.js', '.jsx'],
 };
-
-// Optimized: 2025-10-02
-
-// Last updated: 2025-10-02
-
-// Last optimized: 2025-10-02

@@ -11,16 +11,55 @@ set -euo pipefail
 # Modes: dev (default), full, voice, test
 # ============================================
 
-set -e
-
 MODE="${1:-dev}"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 echo "🚀 Starting LivHana Empire - Mode: $MODE"
 
-# Check prerequisites
-command -v docker >/dev/null 2>&1 || { echo "❌ Docker required"; exit 1; }
-command -v redis-cli >/dev/null 2>&1 || { echo "❌ Redis CLI required"; exit 1; }
+# Preflight checks
+echo "🔍 Running preflight checks..."
+
+# Check Claude CLI
+if ! command -v claude >/dev/null 2>&1; then
+  echo "❌ Claude CLI not found. Install via: brew install claude"
+  exit 1
+fi
+
+# Check Homebrew path
+if [[ ":$PATH:" != *":/opt/homebrew/bin:"* ]]; then
+  echo "⚠️  Homebrew path not in PATH. Add to ~/.zshrc:"
+  echo "   export PATH=\"/opt/homebrew/bin:\$PATH\""
+fi
+
+# Check Node version
+NODE_VERSION=$(node -v 2>/dev/null || echo "not installed")
+if [[ "$NODE_VERSION" =~ v20 ]]; then
+  echo "✅ Node 20.x detected"
+else
+  echo "❌ Node 20.x required. Current: $NODE_VERSION"
+  echo "   Install via: nvm install 20"
+  exit 1
+fi
+
+# Check Redis
+if ! command -v redis-cli >/dev/null 2>&1; then
+  echo "❌ Redis CLI required. Install via: brew install redis"
+  exit 1
+fi
+
+# Check Redis connectivity
+if ! redis-cli ping >/dev/null 2>&1; then
+  echo "⚠️  Redis not running. Starting Redis..."
+  redis-server --daemonize yes
+fi
+
+# Check JWT secret
+if [ -z "${JWT_SECRET:-}" ]; then
+  echo "⚠️  JWT_SECRET not set. Loading from 1Password..."
+  export JWT_SECRET=$(op run --env-file=.env op item get jwt-secret --fields password 2>/dev/null || echo "")
+fi
+
+echo "✅ Preflight checks passed"
 
 # Start Redis if not running
 if ! redis-cli ping >/dev/null 2>&1; then
