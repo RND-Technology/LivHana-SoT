@@ -1,0 +1,54 @@
+# 🎨 FRONTEND DEVELOPMENT RULES
+
+## 🚀 VIBE COCKPIT ARCHITECTURE
+- **Framework**: React 18+ with Vite
+- **Styling**: Tailwind CSS (utility-first)
+- **State**: Zustand for global state
+- **Routing**: React Router v6
+- **Components**: [frontend/vibe-cockpit/src/components](mdc:frontend/vibe-cockpit/src/components)
+
+## 🎤 VOICE-FIRST UI PRINCIPLES
+1. **Voice Panel**: Always visible, always accessible
+2. **Visual Feedback**: Real-time waveforms during speech
+3. **Status Indicators**: Clear service health banners
+4. **Accessibility**: WCAG 2.1 AA compliance
+5. **Mobile First**: Responsive design priority
+
+## 🧩 COMPONENT STANDARDS
+```jsx
+// Every component must have:
+- PropTypes or TypeScript interfaces
+- Error boundaries for fault tolerance
+- Loading states for async operations
+- Accessibility attributes (aria-labels)
+- Memoization for performance
+- Unit tests with Vitest
+```
+
+## 🎯 KEY COMPONENTS
+- [VoicePanel.jsx](mdc:frontend/vibe-cockpit/src/components/VoicePanel.jsx) - Voice interaction UI
+- [ServiceHealth.jsx](mdc:frontend/vibe-cockpit/src/components/ServiceHealth.jsx) - Health monitoring
+- [CommandCenter.jsx](mdc:frontend/vibe-cockpit/src/components/CommandCenter.jsx) - Main dashboard
+
+## 🔌 API INTEGRATION
+- **Base URL**: Environment-based configuration
+- **Authentication**: JWT tokens in headers
+- **Error Handling**: Centralized error boundary
+- **Retry Logic**: Exponential backoff
+- **Caching**: React Query for data fetching
+
+## 📱 RESPONSIVE BREAKPOINTS
+```css
+sm: 640px   /* Mobile landscape */
+md: 768px   /* Tablet */
+lg: 1024px  /* Desktop */
+xl: 1280px  /* Large desktop */
+2xl: 1536px /* Ultra-wide */
+```
+alwaysApply: true
+---
+<!-- Last optimized: 2025-10-02 -->
+
+<!-- Last updated: 2025-10-02 -->
+
+# Optimized: 2025-10-02

@@ -1,0 +1,12 @@
+{
+  "agent": "research",
+  "status": "running",
+  "start_utc": "2025-10-21T20:24:46Z",
+  "last_update_utc": "2025-10-21T20:24:46Z",
+  "sources": [
+    "docs",
+    "web",
+    "repos"
+  ],
+  "notes": "Initialized by Tier-1 boot execution"
+}

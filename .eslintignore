@@ -1,13 +1,16 @@
-node_modules/**
-**/node_modules/**
-.venv/**
-**/.venv/**
-dist/**
-**/dist/**
-build/**
-**/build/**
-.evidence/**
-coverage/**
+# Tier-1 Scope: Exclude frozen directories
+1.rnd/**
+empire/**
+deployment/**
+backups/**
+legacy/**
 logs/**
+**/venv/**
+**/node_modules/**
+coverage/**
+dist/**
+out/**
+out_mirror/**
+.claude_backup_*/
+.cursor/**
 **/.git/**
-frontend/vibe-cockpit/node_modules/**

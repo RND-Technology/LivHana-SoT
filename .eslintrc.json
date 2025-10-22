@@ -29,5 +29,22 @@
   "parserOptions": {
     "ecmaVersion": 2022,
     "sourceType": "module"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.ts", "**/*.tsx"],
+      "rules": {
+        "no-unused-vars": "off",
+        "no-undef": "off"
+      }
+    },
+    {
+      "files": ["**/*.test.*", "tests/**"],
+      "rules": {
+        "max-lines-per-function": "off",
+        "complexity": "off",
+        "no-console": "off"
+      }
+    }
+  ]
 }
