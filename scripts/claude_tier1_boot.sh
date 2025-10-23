@@ -36,6 +36,59 @@ warning() { printf "${YELLOW}⚠️  %s${NC}\n" "$1" | tee -a "$LOG"; }
 error() { printf "${RED}❌ %s${NC}\n" "$1" | tee -a "$LOG"; }
 info() { printf "${CYAN}🎯 %s${NC}\n" "$1" | tee -a "$LOG"; }
 
+ensure_op_session() {
+  local account="${OP_ACCOUNT_SLUG:-reggiedro.1password.com}"
+  local verbosity="${1:-show}"
+
+  if ! command -v op >/dev/null 2>&1; then
+    error "1Password CLI (op) not found. Install via: brew install 1password-cli"
+    exit 1
+  fi
+
+  if op whoami >/dev/null 2>&1; then
+    local whoami="$(op whoami | tr -d '\n')"
+    if [[ "$verbosity" == "show" ]]; then
+      success "1Password authenticated: ${whoami}"
+    else
+      info "1Password session already active for ${whoami}"
+    fi
+    return 0
+  fi
+
+  warning "1Password session not detected. Triggering automatic sign-in for ${account}..."
+
+  if [[ -n "${OP_SIGNIN_COMMAND:-}" ]]; then
+    if ! eval "${OP_SIGNIN_COMMAND}"; then
+      error "Automatic 1Password sign-in failed (OP_SIGNIN_COMMAND). Run: eval \"\$(op signin ${account})\""
+      exit 1
+    fi
+  else
+    local op_version op_major
+    op_version="$(op --version 2>/dev/null | head -n1 || echo "")"
+    op_major="${op_version%%.*}"
+
+    if [[ "$op_major" == "1" ]]; then
+      if ! eval "$(op signin "${account}")"; then
+        error "Automatic 1Password sign-in failed. Run: eval \"\$(op signin ${account})\""
+        exit 1
+      fi
+    else
+      if ! op signin --account "${account}"; then
+        error "Automatic 1Password sign-in failed. Run: op signin --account ${account}"
+        exit 1
+      fi
+    fi
+  fi
+
+  if op whoami >/dev/null 2>&1; then
+    success "1Password authenticated: $(op whoami | tr -d '\n')"
+    return 0
+  fi
+
+  error "1Password sign-in did not produce an active session. Run: eval \"\$(op signin ${account})\""
+  exit 1
+}
+
 # Start boot sequence
 banner "LIV HANA TIER-1 BOOT SEQUENCE"
 echo "[BOOT] $(date) – Initializing Claude Tier-1 Orchestration Layer" >> "$LOG"
@@ -114,28 +167,7 @@ if [[ -z "${MEM_FREE_PCT:-}" ]] && command -v vm_stat >/dev/null 2>&1; then
 fi
 
 # Check 1Password session (required for downstream op run calls)
-if ! command -v op >/dev/null 2>&1; then
-  error "1Password CLI (op) not found. Install via: brew install 1password-cli"
-  exit 1
-fi
-
-if ! op whoami >/dev/null 2>&1; then
-  warning "1Password not signed in. Attempting auto sign-in..."
-
-  # Try biometric sign-in first (Touch ID on macOS)
-  if op signin --raw >/dev/null 2>&1; then
-    success "1Password signed in via biometric"
-  else
-    # Fall back to interactive sign-in
-    info "Biometric auth failed. Please sign in manually:"
-    if ! eval "$(op signin)"; then
-      error "1Password sign-in failed. Cannot continue."
-      error "Please run: eval \"\$(op signin)\" and re-run Tier-1 boot."
-      exit 1
-    fi
-  fi
-fi
-success "1Password authenticated: $(op whoami | tr -d '\n')"
+ensure_op_session
 
 # GCP project for downstream scripts
 export GCP_PROJECT_ID="reggieanddrodispensary"
@@ -734,6 +766,7 @@ if [[ "${MAX_AUTO:-1}" == "1" ]]; then
 
   # Start integration-service with secrets (critical for operations)
   info "Starting integration-service with 1Password secrets..."
+  ensure_op_session quiet
   if [[ -f "$ROOT/backend/integration-service/package.json" ]]; then
     cd "$ROOT/backend/integration-service"
 
@@ -742,17 +775,25 @@ if [[ "${MAX_AUTO:-1}" == "1" ]]; then
       warning "integration-service already running on port 3005"
     else
       # Start with op run to inject secrets
-      nohup op run --env-file=../../.env -- npm start >> "$ROOT/logs/integration-service.log" 2>&1 &
+      integration_log="$ROOT/logs/integration-service.log"
+      mkdir -p "$ROOT/logs"
+      nohup op run --env-file="$ROOT/.env" -- npm start >> "$integration_log" 2>&1 &
       INTEGRATION_PID=$!
       echo "$INTEGRATION_PID" > "$ROOT/tmp/integration-service.pid"
 
       # Wait for startup
-      sleep 3
+      sleep 5
 
-      if lsof -i :3005 >/dev/null 2>&1; then
+      if ! lsof -i :3005 >/dev/null 2>&1; then
+        error "integration-service failed to bind to port 3005. Check ${integration_log}"
+        exit 1
+      fi
+
+      if curl -sf http://localhost:3005/health >/dev/null 2>&1; then
         success "integration-service started (PID: $INTEGRATION_PID, port 3005)"
       else
-        warning "integration-service may have failed to start - check logs/integration-service.log"
+        error "integration-service started but health check failed. Inspect ${integration_log}"
+        exit 1
       fi
     fi
 
