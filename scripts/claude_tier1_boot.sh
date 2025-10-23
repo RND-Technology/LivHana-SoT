@@ -303,23 +303,18 @@ ensure_op_session() {
     exit 1
   fi
 
-  # Check if already signed in (with timeout)
-  if timeout 5 op whoami >/dev/null 2>&1; then
-    local whoami_output="$(op whoami 2>/dev/null || echo '')"
-    local account_domain="$(echo "$whoami_output" | grep -o '[a-zA-Z0-9._%+-]*@[a-zA-Z0-9.-]*\.[a-zA-Z]\{2,\}' | head -1 | sed 's/@.*//' || echo '')"
-    if [[ -n "$account_domain" ]]; then
-      if [[ "$verbosity" == "show" ]]; then
-        success "1Password authenticated: ${account_domain}@***"
-      else
-        info "1Password session already active"
-      fi
-      return 0
+  # Check if already signed in (FIXED: Simplified, robust check)
+  local whoami_output="$(op whoami 2>/dev/null || echo '')"
+  
+  # If op whoami returns ANY output with Email or URL, we're authenticated
+  if [[ -n "$whoami_output" ]] && echo "$whoami_output" | grep -qi "Email:\|URL:"; then
+    if [[ "$verbosity" == "show" ]]; then
+      local email=$(echo "$whoami_output" | grep "Email:" | awk '{print $2}' || echo "authenticated")
+      success "1Password authenticated: $email"
     else
-      # CLI v2 Desktop integration returns empty whoami - that's NORMAL
-      # Trust the Desktop app integration and continue
-      info "1Password using Desktop app integration (empty whoami OK)"
-      return 0
+      info "1Password session already active"
     fi
+    return 0
   fi
 
   info "Attempting 1Password sign-in for ${account}..."
@@ -367,21 +362,19 @@ ensure_op_session() {
     fi
   fi
 
-  # VERIFY: Hard-fail if whoami is empty after signin
-  local whoami_output="$(op whoami 2>/dev/null || echo '')"
-  local account_domain="$(echo "$whoami_output" | grep -o '[a-zA-Z0-9._%+-]*@[a-zA-Z0-9.-]*\.[a-zA-Z]\{2,\}' | head -1 | sed 's/@.*//' || echo '')"
-
-  if [[ -z "$account_domain" ]]; then
-    error "1Password CLI integration not enabled in Desktop app."
-    error "FIX (30 seconds):"
-    error "  1. Open 1Password Desktop app"
-    error "  2. Settings → Developer → CHECK ✓ 'Connect with 1Password CLI'"
-    error "  3. Restart app and retry"
-    exit 1
+  # VERIFY: Check authentication after signin (FIXED: Simplified)
+  whoami_output="$(op whoami 2>/dev/null || echo '')"
+  
+  if [[ -n "$whoami_output" ]] && echo "$whoami_output" | grep -qi "Email:\|URL:"; then
+    local email=$(echo "$whoami_output" | grep "Email:" | awk '{print $2}' || echo "authenticated")
+    success "1Password authenticated: $email"
+    return 0
   fi
 
-  success "1Password authenticated: ${account_domain}@***"
-  return 0
+  # Only fail if truly broken
+  error "1Password CLI integration not enabled in Desktop app."
+  error "FIX: Open 1Password → Settings → Developer → Enable CLI integration"
+  exit 1
 }
 
 # Start boot sequence
@@ -554,7 +547,8 @@ ensure_op_session
 success "1Password session ready"
 
 # GCP project for downstream scripts
-export GCP_PROJECT_ID="reggieanddrodispensary"
+GCP_PROJECT_ID="${GCP_PROJECT_ID:-reggieanddrodispensary}"
+export GCP_PROJECT_ID
 success "GCP_PROJECT_ID=$GCP_PROJECT_ID"
 
 # Optional: BigQuery key for integration-service
