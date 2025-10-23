@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Atomic write helper: reads stdin and writes to target file safely.
-# Usage: atomic_write.sh <target_path>
+# Atomic write helper: reads stdin and writes to target file safely
+# Usage: echo "content" | atomic_write.sh <target_path>
 
 set -euo pipefail
 
@@ -10,26 +10,13 @@ if [[ $# -ne 1 ]]; then
 fi
 
 TARGET="$1"
-TMP="$(mktemp "${TARGET}.XXXXXX")"
-LOCKDIR="$(dirname "$TARGET")"
-LOCKFILE="$LOCKDIR/.$(basename "$TARGET").lock"
+TMP="${TARGET}.tmp.$$"
+DIR="$(dirname "$TARGET")"
 
-mkdir -p "$LOCKDIR"
+mkdir -p "$DIR"
 
-python3 - "$TARGET" "$TMP" "$LOCKFILE" <<'PY'
-import fcntl, os, shutil, sys
+# Read from stdin and write to temp file
+cat > "$TMP"
 
-target, tmp, lockfile = sys.argv[1:4]
-
-fd = os.open(lockfile, os.O_CREAT | os.O_RDWR)
-try:
-    fcntl.flock(fd, fcntl.LOCK_EX)
-    data = sys.stdin.buffer.read()
-    with open(tmp, "wb") as tmp_fp:
-        tmp_fp.write(data)
-    os.makedirs(os.path.dirname(target), exist_ok=True)
-    shutil.move(tmp, target)
-finally:
-    fcntl.flock(fd, fcntl.LOCK_UN)
-    os.close(fd)
-PY
+# Atomic rename
+mv -f "$TMP" "$TARGET"

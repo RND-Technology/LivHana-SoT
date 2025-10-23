@@ -303,8 +303,8 @@ ensure_op_session() {
     exit 1
   fi
 
-  # Check if already signed in (FIXED: Simplified, robust check)
-  local whoami_output="$(op whoami 2>/dev/null || echo '')"
+  # Check if already signed in (FIXED: Always use --account flag)
+  local whoami_output="$(op --account "$account" whoami 2>/dev/null || echo '')"
   
   # If op whoami returns ANY output with Email or URL, we're authenticated
   if [[ -n "$whoami_output" ]] && echo "$whoami_output" | grep -qi "Email:\|URL:"; then
@@ -362,8 +362,8 @@ ensure_op_session() {
     fi
   fi
 
-  # VERIFY: Check authentication after signin (FIXED: Simplified)
-  whoami_output="$(op whoami 2>/dev/null || echo '')"
+  # VERIFY: Check authentication after signin (FIXED: Use --account flag)
+  whoami_output="$(op --account "$account" whoami 2>/dev/null || echo '')"
   
   if [[ -n "$whoami_output" ]] && echo "$whoami_output" | grep -qi "Email:\|URL:"; then
     local email=$(echo "$whoami_output" | grep "Email:" | awk '{print $2}' || echo "authenticated")
