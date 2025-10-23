@@ -54,7 +54,8 @@ ensure_op_session() {
 
   # Check if already signed in (with timeout)
   if timeout 5 op whoami >/dev/null 2>&1; then
-    local account_domain="$(op whoami 2>/dev/null | sed 's/@.*//' | tr -d '\n' || echo '')"
+    local whoami_output="$(op whoami 2>/dev/null || echo '')"
+    local account_domain="$(echo "$whoami_output" | grep -o '[a-zA-Z0-9._%+-]*@[a-zA-Z0-9.-]*\.[a-zA-Z]\{2,\}' | head -1 | sed 's/@.*//' || echo '')"
     if [[ -n "$account_domain" ]]; then
       if [[ "$verbosity" == "show" ]]; then
         success "1Password authenticated: ${account_domain}@***"
@@ -77,10 +78,17 @@ ensure_op_session() {
   # CLI v2: use --raw to get session token directly (no eval)
   if [[ "$op_major" != "1" ]]; then
     local session_token
-    if ! session_token="$(op signin --account "${account}" --raw 2>/dev/null)"; then
+    if ! session_token="$(op signin --account "${account}" --raw 2>/dev/null || echo '')"; then
       error "Automatic 1Password sign-in failed (timeout or denied)."
       error "Ensure Desktop app is running and CLI integration is enabled."
       error "Manual: op signin --account ${account}"
+      exit 1
+    fi
+
+    # FAIL FAST: If session token is empty, abort immediately
+    if [[ -z "$session_token" ]]; then
+      error "1Password sign-in returned empty session token."
+      error "Authentication failed - cannot proceed."
       exit 1
     fi
 
@@ -97,17 +105,18 @@ ensure_op_session() {
     fi
   fi
 
-  if op whoami >/dev/null 2>&1; then
-    local account_domain="$(op whoami 2>/dev/null | sed 's/@.*//' | tr -d '\n' || echo '')"
-    if [[ -n "$account_domain" ]]; then
-      success "1Password authenticated: ${account_domain}@***"
-      return 0
-    fi
+  # VERIFY: Hard-fail if whoami is empty after signin
+  local whoami_output="$(op whoami 2>/dev/null || echo '')"
+  local account_domain="$(echo "$whoami_output" | grep -o '[a-zA-Z0-9._%+-]*@[a-zA-Z0-9.-]*\.[a-zA-Z]\{2,\}' | head -1 | sed 's/@.*//' || echo '')"
+  
+  if [[ -z "$account_domain" ]]; then
+    error "1Password sign-in did not produce an active session (whoami empty)."
+    error "Manual: op signin --account ${account}"
+    exit 1
   fi
 
-  error "1Password sign-in did not produce an active session."
-  error "Manual: op signin --account ${account}"
-  exit 1
+  success "1Password authenticated: ${account_domain}@***"
+  return 0
 }
 
 # Start boot sequence
@@ -863,15 +872,17 @@ if [[ "${MAX_AUTO:-1}" == "1" ]]; then
       source "$ROOT/scripts/guards/wait_for_service.sh"
       source "$ROOT/scripts/guards/scrub_secrets.sh"
       
-      # Use retry helper for service startup with secret scrubbing
+      # Start integration-service with secret scrubbing
       info "Starting integration-service with secret scrubbing..."
-      if retry_with_backoff 3 2 "nohup op run --env-file='$ROOT/.env' -- npm start 2>&1 | scrub_secrets >> '$integration_log' &" ; then
-        INTEGRATION_PID=$!
-        echo "$INTEGRATION_PID" > "$ROOT/tmp/integration-service.pid"
-        success "integration-service process started (PID: $INTEGRATION_PID)"
-      else
-        error "integration-service failed to start after retries"
-        exit 1; fi
+      cd "$ROOT/backend/integration-service"
+      
+      # Start service in background with secret scrubbing
+      nohup op run --env-file="$ROOT/.env" -- npm start 2>&1 | scrub_secrets >> "$integration_log" &
+      INTEGRATION_PID=$!
+      echo "$INTEGRATION_PID" > "$ROOT/tmp/integration-service.pid"
+      success "integration-service process started (PID: $INTEGRATION_PID)"
+      
+      cd "$ROOT"
 
       # Wait for service to become available (replaces hardcoded sleep)
       info "Waiting for integration-service to become available..."

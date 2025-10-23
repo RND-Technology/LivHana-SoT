@@ -32,6 +32,24 @@ services:
       retries: 6
       start_period: 10s
       
+  # Integration Service (alias for backend)
+  integration-service:
+    build: ./backend/integration-service
+    ports:
+      - "3005:3005"
+    environment:
+      - NODE_ENV=production
+      - LOG_LEVEL=info
+      - REDIS_HOST=redis
+    depends_on:
+      - redis
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:3005/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 10s
+      
   # Voice Service - ElevenLabs TTS + Queue Management
   voice-service:
     build: ./backend/voice-service
