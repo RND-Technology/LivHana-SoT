@@ -1,37 +1,33 @@
-# Test files
-**/*.test.js
-**/*.test.ts
-**/*.spec.js
-**/*.spec.ts
-**/tests/**
-**/test/**
-**/__tests__/**
-automation/tests/**
+# ESLint ignore file
+# Exclude build artifacts, node_modules, and legacy code
 
-# Build output
-dist/
+# Build artifacts
 build/
-*.min.js
+dist/
+out/
+frontend/video-commerce-ui/build/
 
 # Dependencies
 node_modules/
 
-# Scripts and tools
-scripts/**
-tools/**
+# Legacy/archived code
+legacy/
+backups/
+1.rnd/
+empire/
+deployment/
 
-# Documentation files
-docs/**
-*.md
+# Temporary files
+tmp/
+test-results/
+coverage/
 
-# Mock files
-**/*.mock.js
-**/mocks/**
+# Lock files
+*.lock
 
-# Root level experimental/utility files
-age-verification-smart-gate.js
-age-verification-smart-gate-fixed.js
-watch-cheetah.js
+# Config files that don't need linting
+*.config.cjs
+*.config.js
 
-# Archived files
-archived/**
+# Service-specific ignores
+quick-fix-service.js
