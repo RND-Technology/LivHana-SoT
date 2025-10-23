@@ -14,7 +14,7 @@ LOG_FILE="$LOG_DIR/${AGENT}_monitor_$(date +%Y%m%d_%H%M%S).log"
 write_status() {
   local status="$1"; shift || true
   local notes="$*"
-  cat <<JSON | bash "$ROOT/scripts/guards/atomic_write.sh" "$STATUS_FILE"
+  cat > "$STATUS_FILE" <<JSON
 {
   "agent": "${AGENT}",
   "phase": "monitor",
