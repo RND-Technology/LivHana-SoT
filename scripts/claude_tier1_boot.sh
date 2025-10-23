@@ -189,6 +189,18 @@ info "Validating PO1 structure..."
 bash "$ROOT/scripts/guards/validate_po1_structure.sh" | tee -a "$LOG"
 bash "$ROOT/scripts/guards/validate_status.sh" | tee -a "$LOG" || true
 
+info "Launching voice orchestrator watcher..."
+bash "$ROOT/scripts/agents/voice_orchestrator_watch.sh" >> "$LOG" 2>&1 &
+echo $! > "$ROOT/tmp/agent_status/voice_watcher.pid"
+
+info "Launching research agent..."
+if command -v claude-tier1 >/dev/null 2>&1; then
+  bash "$ROOT/scripts/start_research_agent.sh" >> "$LOG" 2>&1 &
+  echo $! > "$ROOT/tmp/agent_status/research.pid"
+else
+  warning "claude-tier1 CLI not found – research agent skipped; see CODEX_CLI_SETUP_BLOCKERS.md"
+fi
+
 echo
 
 # STEP 0: PRE-FLIGHT SAFETY CHECKS
