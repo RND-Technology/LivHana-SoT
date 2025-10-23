@@ -48,21 +48,68 @@ echo
 banner "🌍 STEP 1: ENVIRONMENT SETUP"
 
 # Check available memory FIRST (warn about crashes)
-if command -v vm_stat >/dev/null 2>&1; then
-  info "Checking system memory..."
-  FREE_PAGES=$(vm_stat | grep "Pages free" | awk '{print $3}' | tr -d '.')
-  FREE_MB=$((FREE_PAGES * 4096 / 1024 / 1024))
-  FREE_GB=$((FREE_PAGES * 4096 / 1024 / 1024 / 1024))
+# macOS-aware detection: memory_pressure primary, vm_stat fallback
+UNAME=$(uname -s)
+WARN_PCT=${LOW_MEM_WARN_PCT:-10}
+CRIT_PCT=${LOW_MEM_CRIT_PCT:-5}
+STRICT=${STRICT_LOW_MEM:-0}
 
-  if [[ $FREE_MB -lt 500 ]]; then
-    warning "CRITICAL: Very low memory (<500MB free)"
-    warning "Cursor may crash - save work frequently"
-    warning "Consider restarting system for best stability"
-  elif [[ $FREE_GB -lt 2 ]]; then
-    warning "Low memory: ~${FREE_GB}GB free (recommend >2GB)"
-    warning "Monitor for stability issues during session"
+if [[ "$UNAME" == "Darwin" ]] && command -v memory_pressure >/dev/null 2>&1; then
+  info "Checking system memory..."
+  info "Memory detector: memory_pressure (macOS)"
+  
+  # Extract System-wide memory free percentage
+  MEM_FREE_PCT=$(memory_pressure 2>/dev/null | grep -i "System-wide memory free percentage" | awk '{print $NF}' | tr -d '%' || echo "")
+  
+  if [[ -n "$MEM_FREE_PCT" ]]; then
+    if [[ $MEM_FREE_PCT -lt $CRIT_PCT ]]; then
+      warning "CRITICAL: Very low memory ($MEM_FREE_PCT% free < $CRIT_PCT% threshold)"
+      warning "Cursor may crash - save work frequently"
+      warning "Consider restarting system for best stability"
+      if [[ "$STRICT" == "1" ]]; then
+        error "STRICT_LOW_MEM=1 enforced - exiting boot sequence"
+        exit 1
+      fi
+    elif [[ $MEM_FREE_PCT -lt $WARN_PCT ]]; then
+      warning "Low memory: $MEM_FREE_PCT% free (recommend >$WARN_PCT%)"
+      warning "Monitor for stability issues during session"
+    else
+      success "Memory pressure healthy: $MEM_FREE_PCT% free"
+    fi
   else
-    success "Memory: ~${FREE_GB}GB free (healthy)"
+    warning "Could not parse memory_pressure output - falling back to vm_stat"
+    # Fall through to vm_stat logic below
+  fi
+fi
+
+# Fallback to vm_stat (non-macOS or if memory_pressure parsing failed)
+if [[ -z "${MEM_FREE_PCT:-}" ]] && command -v vm_stat >/dev/null 2>&1; then
+  info "Memory detector: vm_stat fallback"
+  
+  # Extract page size from vm_stat header
+  PAGE_SIZE=$(vm_stat | grep "page size" | awk '{print $8}' | tr -d '.')
+  
+  # Sum Pages free + speculative + purgeable (when present)
+  FREE_PAGES=$(vm_stat | grep -E "(Pages free|Pages speculative|Pages purgeable)" | awk '{sum += $3} END {print sum}' | tr -d '.')
+  
+  if [[ -n "$FREE_PAGES" ]] && [[ -n "$PAGE_SIZE" ]]; then
+    FREE_MB=$((FREE_PAGES * PAGE_SIZE / 1024 / 1024))
+    FREE_GB=$((FREE_MB / 1024))
+    
+    if [[ $FREE_MB -lt 500 ]]; then
+      warning "CRITICAL: Very low memory (<500MB free)"
+      warning "Cursor may crash - save work frequently"
+      warning "Consider restarting system for best stability"
+      if [[ "$STRICT" == "1" ]]; then
+        error "STRICT_LOW_MEM=1 enforced - exiting boot sequence"
+        exit 1
+      fi
+    elif [[ $FREE_GB -lt 1 ]]; then
+      warning "Low memory: ~${FREE_GB}GB free (recommend >1GB)"
+      warning "Monitor for stability issues during session"
+    else
+      success "Memory: ~${FREE_GB}GB free (healthy)"
+    fi
   fi
 fi
 
@@ -171,8 +218,26 @@ echo "NODE_VERSION=$NODE_VERSION" >> "$LOG"
 # Ensure Claude Sonnet 4.5 OCT 2025 model is available
 if ! claude models list 2>/dev/null | grep -q "sonnet-4.5-oct-2025"; then
   error "Claude Sonnet 4.5 OCT 2025 model unavailable."
-  error "Run: claude models list   # ensure the model name matches 'sonnet-4.5-oct-2025'"
-  exit 1
+  
+  # Collect CLI info for diagnostics
+  CLAUDE_BIN=$(command -v claude)
+  CLAUDE_VER=$(claude --version | head -n1 2>/dev/null || echo "unknown")
+  
+  warning "CLI path: ${CLAUDE_BIN:-unknown}"
+  warning "CLI version: ${CLAUDE_VER}"
+  
+  info "Remediation steps:"
+  info "  1. brew reinstall --cask claude"
+  info "  2. claude self update"
+  info "  3. claude models list | grep -i sonnet"
+  info "  4. See MANUAL_FIX_CLAUDE_CLI.md#model-alias-missing – reinstall cask"
+  
+  # Check for ALLOW_TEXT_ONLY override
+  if [[ "${ALLOW_TEXT_ONLY:-0}" == "1" ]]; then
+    warning "${YELLOW}ALLOW_TEXT_ONLY=1 – continuing without voice mode (NOT recommended).${NC}"
+  else
+    exit 1
+  fi
 fi
 success "Claude model sonnet-4.5-oct-2025 available"
 

@@ -86,6 +86,7 @@ last-reviewed: 2025-10-06
 
 ### System
 
+- [`../.claude/decisions/MEMORY_THRESHOLD_MACOS.md`](../.claude/decisions/MEMORY_THRESHOLD_MACOS.md) - macOS memory detection thresholds (boot system)
 - [`specs/ProductPage_SPEC_20251006.md`](./specs/ProductPage_SPEC_20251006.md) - Product page specification
 - [`specs/FUNNEL_TPOP_SPEC_20251006.md`](./specs/FUNNEL_TPOP_SPEC_20251006.md) - Funnel specification
 - [`specs/SNAPSHOT_SPEC_20251006.md`](./specs/SNAPSHOT_SPEC_20251006.md) - Snapshot specification
