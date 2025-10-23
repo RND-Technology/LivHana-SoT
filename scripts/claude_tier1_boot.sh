@@ -6,7 +6,7 @@
 set -euo pipefail
 
 # Configuration
-ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")/.." && pwd)"
 CFG="$ROOT/config/claude_tier1_context.yaml"
 STATE="$ROOT/tmp/claude_tier1_state.json"
 PROMPT="$ROOT/tmp/claude_tier1_prompt.txt"
@@ -909,19 +909,24 @@ if [[ "${MAX_AUTO:-1}" == "1" ]]; then
         fi
       fi
 
-      # Use process substitution so $! captures the actual npm start PID, not the scrubber
-      op run --env-file="$ENV_FILE" -- npm start 2>&1 > >(exec "$ROOT/scripts/guards/scrub_secrets.sh" >> "$integration_log") &
+      # Start service with secret scrubbing via process substitution
+      # Capture Node PID by starting separately from stdout redirect
+      log="$integration_log"
+      mkdir -p "$(dirname "$log")"
+      op run --env-file "$ENV_FILE" -- npm start \
+        > >("$ROOT/scripts/guards/scrub_secrets.sh" >> "$log") \
+        2> >("$ROOT/scripts/guards/scrub_secrets.sh" >> "$log") &
       INTEGRATION_PID=$!
-
       echo "$INTEGRATION_PID" > "$ROOT/tmp/integration-service.pid"
-      success "integration-service process started (PID: $INTEGRATION_PID)"
+
+      success "integration-service starting (PID: $INTEGRATION_PID, managed via port 3005)"
       
       cd "$ROOT"
 
       # Wait for service to become available (replaces hardcoded sleep)
       info "Waiting for integration-service to become available..."
       if wait_for_service 3005 30 2; then
-        success "integration-service started (PID: $INTEGRATION_PID, port 3005)"
+        success "integration-service started on port 3005"
       else
         error "integration-service failed to become available within 30s. Check ${integration_log}"
         exit 1
