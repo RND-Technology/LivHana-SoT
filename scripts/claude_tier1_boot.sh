@@ -555,14 +555,17 @@ fi
 echo "NODE_VERSION=$NODE_VERSION" >> "$LOG"
 
 # Check Claude Sonnet 4.5 OCT 2025 model (informational only, non-fatal)
-if ! claude models list 2>/dev/null | grep -q "sonnet-4.5-oct-2025"; then
+# Use timeout to prevent hanging on missing CLI or permissions
+if timeout 5 claude models list 2>/dev/null | grep -q "sonnet-4.5-oct-2025"; then
+  success "Claude model sonnet-4.5-oct-2025 available"
+elif [[ "${ALLOW_TEXT_ONLY:-0}" == "1" ]]; then
+  info "Text-only mode: Skipping Claude model check"
+else
   info "Claude Sonnet 4.5 OCT 2025 model not found - boot continuing in degraded mode"
   info "Voice-first features may be limited. To enable full functionality:"
   info "  1. brew reinstall --cask claude"
   info "  2. claude self update"
   info "  3. Verify: claude models list | grep -i sonnet"
-else
-  success "Claude model sonnet-4.5-oct-2025 available"
 fi
 
 # Ensure Homebrew path prominence
