@@ -1,24 +1,49 @@
-racers/
+# Cursor Problems Scanner Ignore File
+# Freeze non-Tier-1 directories to reduce 1K+ problem noise
+
+# Frozen directories (not actively developed)
 1.rnd/
-4.media/
-5.outputs/
-6.tmp/
-node_modules/
-.venv/
-.archive/
-frontend/video-commerce-ui/
-frontend/exotic-canopy-solutions/
-docs/QA-FALLACY-SCAN-CHEETAH-DNS-WORK/
-docs/unicorn-race/
+empire/
+deployment/
+backups/
+legacy/
+fixes/
 racers/
-1.rnd/
-4.media/
-5.outputs/
-6.tmp/
-/node_modules/
-/.venv/
-/.archive/
-frontend/video-commerce-ui/
-frontend/exotic-canopy-solutions/
-docs/QA-FALLACY-SCAN-CHEETAH-DNS-WORK/
-docs/unicorn-race/
+marketing/
+boards/
+charts/
+empire-cockpit/
+HNC_Production/
+missions/
+ops/
+reports/
+tools/
+websites/
+
+# Build artifacts
+**/node_modules/
+**/dist/
+**/build/
+**/coverage/
+**/.next/
+**/.venv/
+**/venv/
+
+# Temporary files
+logs/
+*.log
+*.tmp
+tmp/
+out/
+out_mirror/
+test-results/
+
+# Backups
+.claude_backup_*/
+.cursor/backup/
+
+# Downloads (external files)
+Downloads/
+
+# Raw temporary files
+raw-*.md

@@ -45,7 +45,8 @@ ensure_op_session() {
     exit 1
   fi
 
-  if op whoami >/dev/null 2>&1; then
+  # Check if already signed in (with timeout)
+  if timeout 5 op whoami >/dev/null 2>&1; then
     local account_domain="$(op whoami | sed 's/@.*//' | tr -d '\n')"
     if [[ "$verbosity" == "show" ]]; then
       success "1Password authenticated: ${account_domain}@***"

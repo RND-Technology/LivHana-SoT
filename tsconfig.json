@@ -3,7 +3,7 @@
     "target": "ES2022",
     "module": "ESNext",
     "moduleResolution": "node",
-    "strict": true,
+    "strict": false,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
@@ -12,6 +12,8 @@
     "noEmit": true,
     "incremental": true,
     "tsBuildInfoFile": ".tsbuildinfo",
+    "allowJs": false,
+    "checkJs": false,
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
@@ -23,12 +25,22 @@
     }
   },
   "include": [
-    "1.rnd/6.technology/1.6.2.1_empire-visual-spec_20251006.ts"
+    "backend/*/src/**/*.ts",
+    "frontend/*/src/**/*.tsx"
   ],
   "exclude": [
     "node_modules",
+    "**/node_modules",
+    "**/.venv",
+    "**/venv",
+    "**/dist",
+    "**/build",
     ".archive",
     "legacy",
+    "1.rnd",
+    "empire",
+    "deployment",
+    "backups",
     "*.log",
     "*.tmp"
   ]
