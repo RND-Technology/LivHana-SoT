@@ -123,15 +123,15 @@ check_1password_desktop() {
     return 1
   fi
 
-  # Check if CLI integration is enabled (try a quick whoami)
-  local account_info="$(op whoami 2>/dev/null | tr -d '\n')"
-  if [[ -z "$account_info" ]] && [[ -z "${OP_SERVICE_ACCOUNT_TOKEN:-}" ]]; then
-    error "1Password sign-in required (empty whoami)"
-    error "Enable Desktop → Developer → Integrate with 1Password CLI"
-    error "Then run: op signin --account ${OP_ACCOUNT_SLUG:-reggiedro.1password.com}"
+  # DON'T CHECK WHOAMI HERE - that will be handled by ensure_op_session later
+  # Just verify the CLI is installed
+  if ! command -v op >/dev/null 2>&1; then
+    error "1Password CLI not found"
+    error "Install: brew install 1password-cli"
     return 1
   fi
 
+  success "1Password Desktop app running"
   return 0
 }
 
@@ -410,7 +410,7 @@ echo
 
 # Check 2: 1Password Desktop app
 info "Checking 1Password Desktop status..."
-check_1password_desktop || true  # Non-fatal, will be checked again later
+check_1password_desktop || true  # Non-fatal, just verify app is running
 echo
 
 # Check 3: Disk space
