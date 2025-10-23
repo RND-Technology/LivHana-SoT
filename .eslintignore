@@ -39,3 +39,7 @@ jest.config.*
 # Root-level files
 quick-fix-service.js
 boot.bak
+
+# Config files with parsing issues
+jest.config.*
+**/tsconfig.*.json
