@@ -3,6 +3,7 @@
 // Implements RESTful endpoints with error handling
 
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
+import { logger } from '../utils/logger';
 
 // TypeScript strict mode - no 'any' types allowed
 interface Product {
@@ -94,7 +95,7 @@ class VideoCommerceAPI {
       const response: AxiosResponse<ApiResponse<Product[]>> = await this.client.get('/products');
       return response.data.data;
     } catch (error) {
-      console.error('Failed to fetch products:', error);
+      logger.error('Failed to fetch products:', error);
       throw new Error('Failed to fetch products');
     }
   }
@@ -104,7 +105,7 @@ class VideoCommerceAPI {
       const response: AxiosResponse<ApiResponse<Product>> = await this.client.get(`/products/${id}`);
       return response.data.data;
     } catch (error) {
-      console.error('Failed to fetch product:', error);
+      logger.error('Failed to fetch product:', error);
       throw new Error('Failed to fetch product');
     }
   }
@@ -130,7 +131,7 @@ class VideoCommerceAPI {
       );
       return response.data.data;
     } catch (error) {
-      console.error('Failed to search products:', error);
+      logger.error('Failed to search products:', error);
       throw new Error('Failed to search products');
     }
   }
@@ -143,7 +144,7 @@ class VideoCommerceAPI {
       );
       return response.data.data;
     } catch (error) {
-      console.error('Failed to fetch video timestamps:', error);
+      logger.error('Failed to fetch video timestamps:', error);
       throw new Error('Failed to fetch video timestamps');
     }
   }
@@ -156,7 +157,7 @@ class VideoCommerceAPI {
       );
       return response.data.data;
     } catch (error) {
-      console.error('Failed to create video timestamp:', error);
+      logger.error('Failed to create video timestamp:', error);
       throw new Error('Failed to create video timestamp');
     }
   }
@@ -167,7 +168,7 @@ class VideoCommerceAPI {
       const response: AxiosResponse<ApiResponse<CartItem[]>> = await this.client.get('/cart');
       return response.data.data;
     } catch (error) {
-      console.error('Failed to fetch cart:', error);
+      logger.error('Failed to fetch cart:', error);
       throw new Error('Failed to fetch cart');
     }
   }
@@ -180,7 +181,7 @@ class VideoCommerceAPI {
       });
       return response.data.data;
     } catch (error) {
-      console.error('Failed to add to cart:', error);
+      logger.error('Failed to add to cart:', error);
       throw new Error('Failed to add to cart');
     }
   }
@@ -193,7 +194,7 @@ class VideoCommerceAPI {
       );
       return response.data.data;
     } catch (error) {
-      console.error('Failed to update cart item:', error);
+      logger.error('Failed to update cart item:', error);
       throw new Error('Failed to update cart item');
     }
   }
@@ -202,7 +203,7 @@ class VideoCommerceAPI {
     try {
       await this.client.delete(`/cart/items/${productId}`);
     } catch (error) {
-      console.error('Failed to remove from cart:', error);
+      logger.error('Failed to remove from cart:', error);
       throw new Error('Failed to remove from cart');
     }
   }
@@ -211,7 +212,7 @@ class VideoCommerceAPI {
     try {
       await this.client.delete('/cart');
     } catch (error) {
-      console.error('Failed to clear cart:', error);
+      logger.error('Failed to clear cart:', error);
       throw new Error('Failed to clear cart');
     }
   }
@@ -227,7 +228,7 @@ class VideoCommerceAPI {
       });
       return response.data.data;
     } catch (error) {
-      console.error('Failed to create order:', error);
+      logger.error('Failed to create order:', error);
       throw new Error('Failed to create order');
     }
   }
@@ -237,7 +238,7 @@ class VideoCommerceAPI {
       const response: AxiosResponse<ApiResponse<Order[]>> = await this.client.get('/orders');
       return response.data.data;
     } catch (error) {
-      console.error('Failed to fetch orders:', error);
+      logger.error('Failed to fetch orders:', error);
       throw new Error('Failed to fetch orders');
     }
   }
@@ -247,7 +248,7 @@ class VideoCommerceAPI {
       const response: AxiosResponse<ApiResponse<Order>> = await this.client.get(`/orders/${id}`);
       return response.data.data;
     } catch (error) {
-      console.error('Failed to fetch order:', error);
+      logger.error('Failed to fetch order:', error);
       throw new Error('Failed to fetch order');
     }
   }
@@ -260,7 +261,7 @@ class VideoCommerceAPI {
       );
       return response.data.data;
     } catch (error) {
-      console.error('Failed to fetch recommendations:', error);
+      logger.error('Failed to fetch recommendations:', error);
       throw new Error('Failed to fetch recommendations');
     }
   }
@@ -272,7 +273,7 @@ class VideoCommerceAPI {
       );
       return response.data.data;
     } catch (error) {
-      console.error('Failed to fetch personalized recommendations:', error);
+      logger.error('Failed to fetch personalized recommendations:', error);
       throw new Error('Failed to fetch personalized recommendations');
     }
   }
@@ -286,7 +287,7 @@ class VideoCommerceAPI {
         timestamp: new Date().toISOString(),
       });
     } catch (error) {
-      console.error('Failed to track event:', error);
+      logger.error('Failed to track event:', error);
       // Don't throw error for analytics failures
     }
   }
@@ -304,7 +305,7 @@ class VideoCommerceAPI {
       );
       return response.data.data;
     } catch (error) {
-      console.error('Failed to fetch analytics:', error);
+      logger.error('Failed to fetch analytics:', error);
       throw new Error('Failed to fetch analytics');
     }
   }
@@ -315,7 +316,7 @@ class VideoCommerceAPI {
       const response: AxiosResponse<ApiResponse<string[]>> = await this.client.get('/favorites');
       return response.data.data;
     } catch (error) {
-      console.error('Failed to fetch favorites:', error);
+      logger.error('Failed to fetch favorites:', error);
       throw new Error('Failed to fetch favorites');
     }
   }
@@ -324,7 +325,7 @@ class VideoCommerceAPI {
     try {
       await this.client.post('/favorites', { product_id: productId });
     } catch (error) {
-      console.error('Failed to add to favorites:', error);
+      logger.error('Failed to add to favorites:', error);
       throw new Error('Failed to add to favorites');
     }
   }
@@ -333,7 +334,7 @@ class VideoCommerceAPI {
     try {
       await this.client.delete(`/favorites/${productId}`);
     } catch (error) {
-      console.error('Failed to remove from favorites:', error);
+      logger.error('Failed to remove from favorites:', error);
       throw new Error('Failed to remove from favorites');
     }
   }
@@ -348,7 +349,7 @@ class VideoCommerceAPI {
       const response: AxiosResponse<ApiResponse<any>> = await this.client.get('/health');
       return response.data.data;
     } catch (error) {
-      console.error('Health check failed:', error);
+      logger.error('Health check failed:', error);
       return {
         status: 'unhealthy',
         timestamp: new Date().toISOString(),
