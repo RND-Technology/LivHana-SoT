@@ -30,7 +30,7 @@ app.get('/api/v1/dashboard', async (req, res) => {
       lastUpdated: new Date().toISOString()
     });
     
-  } catch (error) {
+  } catch {
     res.json({
       success: true,
       data: [
@@ -68,7 +68,7 @@ app.get('/api/v1/customer-analytics', async (req, res) => {
       segments: rows
     });
     
-  } catch (error) {
+  } catch {
     res.json({
       success: true,
       segments: [

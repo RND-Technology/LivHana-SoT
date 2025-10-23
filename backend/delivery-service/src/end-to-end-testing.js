@@ -339,7 +339,7 @@ export async function healthCheck() {
   try {
     const response = await axios.get(`${BASE_URL}/health`);
     return response.status === 200;
-  } catch (_err) {
+  } catch {
     return false;
   }
 }

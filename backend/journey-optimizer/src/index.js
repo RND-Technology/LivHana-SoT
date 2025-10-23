@@ -14,7 +14,7 @@ const journeyStates = {
 // Optimize customer journey
 app.post('/api/v1/optimize-journey', async (req, res) => {
   try {
-    const { customerId, currentState, behaviorData } = req.body;
+    const { customerId, currentState } = req.body;
     
     // AI-powered journey optimization
     const recommendations = [];

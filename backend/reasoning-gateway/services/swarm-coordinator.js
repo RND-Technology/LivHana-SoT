@@ -132,7 +132,8 @@ class SwarmCoordinator {
     let bestAgent = null;
     let bestScore = -1;
 
-    for (const [agentId, agent] of this.agents) {
+    // eslint-disable-next-line no-unused-vars
+    for (const [_agentId, agent] of this.agents) {
       // Check if agent has required capabilities
       const hasCapabilities = task.requiredCapabilities?.every(cap =>
         agent.capabilities.includes(cap)
@@ -307,7 +308,8 @@ class SwarmCoordinator {
   getCapabilities() {
     const capabilities = new Set();
 
-    for (const [agentId, agent] of this.agents) {
+    // eslint-disable-next-line no-unused-vars
+    for (const [_agentId, agent] of this.agents) {
       agent.capabilities.forEach(cap => capabilities.add(cap));
     }
 

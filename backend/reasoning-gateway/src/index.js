@@ -178,8 +178,11 @@ app.get('/', (req, res) => {
 
 // Initialize BullMQ for job processing
 const REASONING_QUEUE_NAME = process.env.REASONING_QUEUE_NAME || 'voice-mode-reasoning-jobs';
-const reasoningQueue = createQueue(REASONING_QUEUE_NAME);
-const reasoningQueueEvents = createQueueEvents(REASONING_QUEUE_NAME);
+// Queue and queue events are used implicitly by Worker constructor
+// eslint-disable-next-line no-unused-vars
+const _reasoningQueue = createQueue(REASONING_QUEUE_NAME);
+// eslint-disable-next-line no-unused-vars
+const _reasoningQueueEvents = createQueueEvents(REASONING_QUEUE_NAME);
 
 // BullMQ Worker implementation
 const worker = new Worker(REASONING_QUEUE_NAME, async (job) => {
