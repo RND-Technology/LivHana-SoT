@@ -227,8 +227,8 @@ check_agent_health() {
   if [[ -f "$status_file" ]]; then
     local file_age=$(($(date +%s) - $(stat -f %m "$status_file" 2>/dev/null || echo 0)))
     if [[ $file_age -lt 300 ]]; then
-      # Check if agent reports active status
-      if grep -q '"status".*"active"' "$status_file" 2>/dev/null; then
+      # Check if agent reports active or running status
+      if grep -qE '"status"[[:space:]]*:[[:space:]]*"(active|running)"' "$status_file" 2>/dev/null; then
         return 0
       fi
     fi
@@ -1154,7 +1154,8 @@ if [[ "${MAX_AUTO:-1}" == "1" ]]; then
       info "Starting planning agent (PID: $PLANNING_PID)"
       # Seed status file so health check can pass while agent warms up
       if [[ -f "$ROOT/scripts/guards/atomic_write.sh" ]]; then
-        echo "{ \"agent\": \"planning\", \"status\": \"active\", \"phase\": \"running\", \"updated_at\": \"$(date -u +%FT%TZ)\" }" | "$ROOT/scripts/guards/atomic_write.sh" "$ROOT/tmp/agent_status/planning.status.json"
+        printf '{ "agent": "planning", "status": "active", "phase": "running", "updated_at": "%s" }\n' "$(date -u +%FT%TZ)" | \
+          bash "$ROOT/scripts/guards/atomic_write.sh" "$ROOT/tmp/agent_status/planning.status.json"
       else
         printf '{ "agent": "planning", "status": "active", "phase": "running", "updated_at": "%s" }\n' "$(date -u +%FT%TZ)" > "$ROOT/tmp/agent_status/planning.status.json"
       fi
@@ -1165,7 +1166,8 @@ if [[ "${MAX_AUTO:-1}" == "1" ]]; then
       RESEARCH_PID=$!
       info "Starting research agent (PID: $RESEARCH_PID)"
       if [[ -f "$ROOT/scripts/guards/atomic_write.sh" ]]; then
-        echo "{ \"agent\": \"research\", \"status\": \"active\", \"phase\": \"running\", \"updated_at\": \"$(date -u +%FT%TZ)\" }" | bash "$ROOT/scripts/guards/atomic_write.sh" "$ROOT/tmp/agent_status/research.status.json"
+        printf '{ "agent": "research", "status": "active", "phase": "running", "updated_at": "%s" }\n' "$(date -u +%FT%TZ)" | \
+          bash "$ROOT/scripts/guards/atomic_write.sh" "$ROOT/tmp/agent_status/research.status.json"
       else
         printf '{ "agent": "research", "status": "active", "phase": "running", "updated_at": "%s" }\n' "$(date -u +%FT%TZ)" > "$ROOT/tmp/agent_status/research.status.json"
       fi
@@ -1176,7 +1178,8 @@ if [[ "${MAX_AUTO:-1}" == "1" ]]; then
       ARTIFACT_PID=$!
       info "Starting artifact agent (PID: $ARTIFACT_PID)"
       if [[ -f "$ROOT/scripts/guards/atomic_write.sh" ]]; then
-        echo "{ \"agent\": \"artifact\", \"status\": \"active\", \"phase\": \"running\", \"updated_at\": \"$(date -u +%FT%TZ)\" }" | bash "$ROOT/scripts/guards/atomic_write.sh" "$ROOT/tmp/agent_status/artifact.status.json"
+        printf '{ "agent": "artifact", "status": "active", "phase": "running", "updated_at": "%s" }\n' "$(date -u +%FT%TZ)" | \
+          bash "$ROOT/scripts/guards/atomic_write.sh" "$ROOT/tmp/agent_status/artifact.status.json"
       else
         printf '{ "agent": "artifact", "status": "active", "phase": "running", "updated_at": "%s" }\n' "$(date -u +%FT%TZ)" > "$ROOT/tmp/agent_status/artifact.status.json"
       fi
@@ -1187,7 +1190,8 @@ if [[ "${MAX_AUTO:-1}" == "1" ]]; then
       EXEC_PID=$!
       info "Starting execution monitor (PID: $EXEC_PID)"
       if [[ -f "$ROOT/scripts/guards/atomic_write.sh" ]]; then
-        echo "{ \"agent\": \"execmon\", \"status\": \"active\", \"phase\": \"running\", \"updated_at\": \"$(date -u +%FT%TZ)\" }" | bash "$ROOT/scripts/guards/atomic_write.sh" "$ROOT/tmp/agent_status/execmon.status.json"
+        printf '{ "agent": "execmon", "status": "active", "phase": "running", "updated_at": "%s" }\n' "$(date -u +%FT%TZ)" | \
+          bash "$ROOT/scripts/guards/atomic_write.sh" "$ROOT/tmp/agent_status/execmon.status.json"
       else
         printf '{ "agent": "execmon", "status": "active", "phase": "running", "updated_at": "%s" }\n' "$(date -u +%FT%TZ)" > "$ROOT/tmp/agent_status/execmon.status.json"
       fi
@@ -1198,7 +1202,8 @@ if [[ "${MAX_AUTO:-1}" == "1" ]]; then
       QA_PID=$!
       info "Starting qa agent (PID: $QA_PID)"
       if [[ -f "$ROOT/scripts/guards/atomic_write.sh" ]]; then
-        echo "{ \"agent\": \"qa\", \"status\": \"active\", \"phase\": \"running\", \"updated_at\": \"$(date -u +%FT%TZ)\" }" | bash "$ROOT/scripts/guards/atomic_write.sh" "$ROOT/tmp/agent_status/qa.status.json"
+        printf '{ "agent": "qa", "status": "active", "phase": "running", "updated_at": "%s" }\n' "$(date -u +%FT%TZ)" | \
+          bash "$ROOT/scripts/guards/atomic_write.sh" "$ROOT/tmp/agent_status/qa.status.json"
       else
         printf '{ "agent": "qa", "status": "active", "phase": "running", "updated_at": "%s" }\n' "$(date -u +%FT%TZ)" > "$ROOT/tmp/agent_status/qa.status.json"
       fi
