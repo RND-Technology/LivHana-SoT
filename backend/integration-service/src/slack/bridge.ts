@@ -3,7 +3,7 @@
  * Handles Slack slash commands for voice mode control
  */
 
-/* eslint-disable max-lines-per-function, complexity, @typescript-eslint/no-unused-vars, no-case-declarations */
+/* eslint-disable @typescript-eslint/no-unused-vars, no-case-declarations */
 
 import express from 'express';
 import crypto from 'crypto';

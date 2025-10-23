@@ -346,7 +346,7 @@ router.post('/quote', async (req, res) => {
 
     // Try providers in priority order until one succeeds
     let bestQuote = null;
-    let errors = [];
+    const errors = [];
 
     // Try DoorDash first
     if (PROVIDERS.doordash.enabled) {
@@ -444,7 +444,7 @@ router.post('/lightspeed/webhook', async (req, res) => {
 
     // Get best quote and create delivery
     let delivery = null;
-    let errors = [];
+    const errors = [];
 
     // Try DoorDash first
     if (PROVIDERS.doordash.enabled) {
