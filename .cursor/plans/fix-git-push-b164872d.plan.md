@@ -1,20 +1,34 @@
-<!-- b164872d-ebdf-4e8c-a20a-00f516f923f4 9fb61724-5cb0-4373-a0d7-32fb4d21f14c -->
+<!-- b164872d-ebdf-4e8c-a20a-00f516f923f4 9d2bbf5a-c938-445a-89d8-542dcf504a9a -->
 # ESLint Cleanup - Zero Warnings Strategy
 
 ## Current State
-- Push completed: 20 commits on `fix/mobile-control-po1`
-- ESLint warnings present (count unknown)
-- Need zero-warning state for production
+- ESLint v9 flat config implemented (`eslint.config.js`)
+- Toolchain updated with globals dependency
+- Config migrated from `.eslintrc.json` to flat config
+- ESLint now runs without config errors
+- Large number of existing violations remain
 
 ## Execution Strategy
 
-### 1. Triage and Prioritize (5 min)
+### 1. Install Updated Dependencies (2 min)
+```bash
+npm install
+```
+
+Expected: ESLint v9+ and globals package installed
+
+### 2. Triage and Prioritize (5 min)
 Identify hottest files by unused variable count:
 ```bash
 npx eslint --format json . | jq '.[].messages[] | select(.ruleId=="@typescript-eslint/no-unused-vars")' | jq -s 'group_by(.filePath) | map({file: .[0].filePath, count: length}) | sort_by(.count) | reverse'
 ```
 
 Output: JSON array of files sorted by issue count
+
+Scope to Tier-1 only:
+```bash
+npx eslint --format json backend/integration-service backend/reasoning-gateway backend/voice-service scripts/
+```
 
 ### 2. Fix Shared Utilities First (30-45 min)
 Target: `backend/common/`, shared modules
