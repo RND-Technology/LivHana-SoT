@@ -2,7 +2,8 @@
 set -euo pipefail
 
 scrub_secrets() {
-  sed -E 's/(API[_-]?KEY[_-]?[A-Z0-9]*)[=:][^ ]*/\1=***REDACTED***/gi' \
+  sed -E \
+    -e 's/(API[_-]?KEY[_-]?[A-Z0-9]*)[=:][^ ]*/\1=***REDACTED***/gi' \
     -e 's/(TOKEN)[=:][^ ]*/\1=***REDACTED***/gi' \
     -e 's/(SECRET)[=:][^ ]*/\1=***REDACTED***/gi' \
     -e 's/(PASSWORD)[=:][^ ]*/\1=***REDACTED***/gi'
