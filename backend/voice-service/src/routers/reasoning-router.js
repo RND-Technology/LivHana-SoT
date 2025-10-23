@@ -5,7 +5,6 @@ const router = express.Router();
 
 // Queue configuration
 const REASONING_QUEUE_NAME = process.env.REASONING_QUEUE_NAME || 'voice-mode-reasoning-jobs';
-const REASONING_GATEWAY_BASE_URL = process.env.REASONING_GATEWAY_BASE_URL || 'http://localhost:4002/api/reasoning';
 
 // Initialize queue and queue events
 const reasoningQueue = createQueue(REASONING_QUEUE_NAME);

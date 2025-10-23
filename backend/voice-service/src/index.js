@@ -59,7 +59,7 @@ app.use('/api/elevenlabs', elevenlabsRouter);
 app.use('/api/reasoning', reasoningRouter);
 
 // Error handling middleware
-app.use((err, req, res, next) => {
+app.use((err, req, res, _next) => {
   console.error('Server error:', err);
   res.status(500).json({
     success: false,
