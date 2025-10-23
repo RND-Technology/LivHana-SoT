@@ -7,7 +7,10 @@ set -euo pipefail
 validate_agent_started() {
   local agent="$1"
   local timeout="${2:-10}"
-  local status_file="tmp/agent_status/${agent}.status.json"
+
+  # Use absolute path (get ROOT from script location)
+  local root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+  local status_file="$root/tmp/agent_status/${agent}.status.json"
   local elapsed=0
   
   while [[ $elapsed -lt $timeout ]]; do

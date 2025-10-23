@@ -1,104 +1,132 @@
-<!-- b164872d-ebdf-4e8c-a20a-00f516f923f4 9d2bbf5a-c938-445a-89d8-542dcf504a9a -->
-# ESLint Cleanup - Zero Warnings Strategy
+<!-- b164872d-ebdf-4e8c-a20a-00f516f923f4 d80ef04b-0651-4a25-985e-3bdec7e188a7 -->
+# PO1 Perfect Code - 5 Critical Fixes
 
-## Current State
-- ESLint v9 flat config implemented (`eslint.config.js`)
-- Toolchain updated with globals dependency
-- Config migrated from `.eslintrc.json` to flat config
-- ESLint now runs without config errors
-- Large number of existing violations remain
+## Fixes Required
 
-## Execution Strategy
-
-### 1. Install Updated Dependencies (2 min)
+### 1. Shell/Alias - Bash Invocation
+**Issue**: `claude-tier1` runs via zsh causing `BASH_SOURCE[0]: parameter not set`
+**Fix**: Update alias to explicitly use bash
 ```bash
-npm install
+# In ~/.zshrc, change to:
+alias claude-tier1='bash /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/scripts/claude_tier1_boot.sh'
+```
+**File**: User's `~/.zshrc` (manual or scripted update)
+
+### 2. 1Password Hard-Fail Validation
+**Issue**: Empty `op whoami` response shows "authenticated: " with no account
+**Fix**: `scripts/claude_tier1_boot.sh` - ensure_op_session function
+
+Changes needed:
+- Set `OP_BIOMETRIC_UNLOCK_ENABLED=1` before signin
+- After signin, validate `op whoami` is non-empty
+- Exit 1 if empty response
+- Allow `OP_ACCOUNT_SLUG` env override
+
+```bash
+# In ensure_op_session():
+export OP_BIOMETRIC_UNLOCK_ENABLED=1
+
+# After signin:
+account_info=$(op whoami 2>/dev/null)
+if [[ -z "$account_info" ]]; then
+  error "1Password signin succeeded but whoami returned empty"
+  error "Check 1Password Desktop integration is enabled"
+  exit 1
+fi
 ```
 
-Expected: ESLint v9+ and globals package installed
+### 3. Docker Compose Port Conflict
+**Issue**: Duplicate service on port 3005 or conflicting port mapping
+**Fix**: Check `docker-compose.yml` and related compose files
+- Remove duplicate service definitions
+- Or change conflicting service to different port
+- Keep only one service mapped to `3005:3005`
 
-### 2. Triage and Prioritize (5 min)
-Identify hottest files by unused variable count:
+### 4. PID Capture with Scrubber
+**Issue**: `$!` captures scrubber PID, not Node process
+**Fix**: `scripts/claude_tier1_boot.sh` - service startup section
+
+Option A - Capture before pipe:
 ```bash
-npx eslint --format json . | jq '.[].messages[] | select(.ruleId=="@typescript-eslint/no-unused-vars")' | jq -s 'group_by(.filePath) | map({file: .[0].filePath, count: length}) | sort_by(.count) | reverse'
+npm start 2>&1 &
+INTEGRATION_PID=$!
+# Then pipe logs separately
+tail -f logs/integration-service.log | scrub_secrets.sh &
 ```
 
-Output: JSON array of files sorted by issue count
-
-Scope to Tier-1 only:
+Option B - Remove PID usage entirely:
 ```bash
-npx eslint --format json backend/integration-service backend/reasoning-gateway backend/voice-service scripts/
+# Manage via port check only, delete PID file logic
+rm -f tmp/integration-service.pid
 ```
 
-### 2. Fix Shared Utilities First (30-45 min)
-Target: `backend/common/`, shared modules
+### 5. Env File - Use .env.op
+**Issue**: Using root `.env` instead of service-specific `.env.op`
+**Fix**: `scripts/claude_tier1_boot.sh` - integration-service startup
 
-**Strategy**:
-- Prefix unused params with `_`: `function(_req, res)` 
-- Remove dead imports: Delete unused import statements
-- Collapse unused helpers: Delete unreferenced functions
-- Gate console logs: Wrap in `if (process.env.NODE_ENV !== 'production')`
-
-**Validation after each file**:
 ```bash
-npx eslint backend/common --max-warnings 0
+# Change from:
+op run --env-file="$ROOT/.env" -- npm start
+
+# To:
+op run --env-file="$ROOT/backend/integration-service/.env.op" -- npm start
 ```
 
-### 3. Fix Leaf Modules (45-60 min)
-Target: Individual services in priority order from triage
+Create `.env.op` if missing with only required secrets
 
-For each service:
-1. Fix unused variables (prefix with `_`)
-2. Remove stale imports
-3. Add `// eslint-disable-next-line` only for justified cases
-4. Validate: `npx eslint backend/<service> --max-warnings 0`
+### 6. Git Cleanup
+**File**: `.claude/RAW_FILE_AUDIT_COMPLETE.md` (modified)
+**Action**: Either commit or delete
 
-**Priority order** (from triage):
-- Highest count → lowest count
-- Shared utilities done, so dependencies clean
-
-### 4. Final Validation (5 min)
 ```bash
-npx eslint . --max-warnings 0
+git add .claude/RAW_FILE_AUDIT_COMPLETE.md && git commit -m "docs: raw file audit complete"
+# OR
+git restore .claude/RAW_FILE_AUDIT_COMPLETE.md
 ```
 
-Expected: Exit code 0, no warnings
+## Implementation Order
 
-### 5. Commit and Push (5 min)
+1. Fix bash alias (manual - user's shell config)
+2. Harden 1Password validation (edit boot script)
+3. Fix env file path (edit boot script)  
+4. Fix PID capture (edit boot script)
+5. Check/fix docker-compose port conflict (if present)
+6. Commit git changes
+7. Test verification
+
+## Verification Commands
+
 ```bash
-git add -A
-git commit -m "fix(lint): eliminate all ESLint warnings
+# Test boot
+bash scripts/claude_tier1_boot.sh
 
-- Prefixed unused params with underscore
-- Removed dead imports and unused functions
-- Gated console logs behind NODE_ENV check
-- Applied eslint-disable-next-line only where justified
+# Expected:
+# - No BASH_SOURCE errors
+# - Non-empty "authenticated: user@domain"
+# - Services start successfully
 
-Result: Zero warnings across codebase"
+# Verify health
+curl -sf http://localhost:3005/health
 
-git push origin fix/mobile-control-po1
+# Check for secrets in logs
+grep -Ei '(key=|token=|authorization:|Bearer )' -n logs/integration-service.log
+# Expected: Empty output or only "Bearer ***REDACTED***"
+
+# Git status
+git status -s
+# Expected: Clean working tree
 ```
-
-## Implementation Notes
-
-**Refactor over patch**: If a file has >10 issues, consider rewriting the problematic function rather than line-by-line fixes
-
-**Incremental validation**: Run `eslint <path> --max-warnings 0` after each directory to catch regressions early
-
-**Justification required**: Only use `eslint-disable-next-line` when:
-- Intentional side-effect function
-- Third-party API requires unused param
-- Clear comment explaining why
 
 ## Acceptance Criteria
-- `npx eslint . --max-warnings 0` exits 0
-- No `// eslint-disable` without justification comment
-- Console statements gated or removed
-- All commits pushed to remote
+
+- `bash scripts/claude_tier1_boot.sh` completes without BASH_SOURCE errors
+- `op whoami` validation fails-fast on empty response
+- Service starts on port 3005 without conflicts
+- Logs contain no plaintext secrets
+- Git working tree clean
+- All changes committed and pushed
 
 ## Time Estimate
-- Triage: 5 min
-- Shared utilities: 30-45 min  
-- Leaf modules: 45-60 min
-- Validation: 5 min
-- Total: ~90-120 min
+- Fixes: 30-45 min
+- Testing: 10 min
+- Total: ~45-60 min
