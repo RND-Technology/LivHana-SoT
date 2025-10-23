@@ -632,6 +632,7 @@ fi
 NODE_VERSION=$(node -v 2>/dev/null || echo "unknown")
 NODE_MAJOR=$(echo "$NODE_VERSION" | sed 's/v\([0-9]*\).*/\1/')
 
+# PHASE 2: HARDEN - Node 20 guard
 if [[ "${STRICT_NODE_20:-}" == "true" ]]; then
   if [[ "$NODE_VERSION" =~ ^v20\. ]]; then
     success "Node 20.x detected (STRICT_NODE_20 mode)"
