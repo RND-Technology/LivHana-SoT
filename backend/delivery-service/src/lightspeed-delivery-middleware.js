@@ -9,7 +9,8 @@
 import express from 'express';
 import axios from 'axios';
 import crypto from 'crypto';
-import { getAllProviderQuotes, selectBestProvider, calculateProviderScore } from './provider-comparison.js';
+import { getAllProviderQuotes, selectBestProvider } from './provider-comparison.js';
+// calculateProviderScore reserved for future use
 
 const router = express.Router();
 
@@ -501,6 +502,7 @@ async function createGrubhubDelivery(request) {
   };
 }
 
+// eslint-disable-next-line no-unused-vars
 async function getDoorDashQuote(address, orderValue) {
   const jwt = generateDoorDashJWT();
 
@@ -526,6 +528,7 @@ async function getDoorDashQuote(address, orderValue) {
   };
 }
 
+// eslint-disable-next-line no-unused-vars
 async function getUberQuote(address, orderValue) {
   const response = await axios.post(
     `${PROVIDERS.uber.baseUrl}/quote`,
@@ -606,7 +609,7 @@ async function cancelDelivery(deliveryId, reason) {
       refundAmount: response.data.refund_amount / 100
     };
   } else {
-    const response = await axios.post(
+    await axios.post(
       `${PROVIDERS.uber.baseUrl}/${deliveryId}/cancel`,
       { reason },
       {
@@ -686,7 +689,7 @@ function generateDoorDashJWT() {
   const header = {
     alg: 'HS256',
     typ: 'JWT',
-    dd-ver: 'DD-JWT-V1'
+    'dd-ver': 'DD-JWT-V1'
   };
 
   // JWT Payload

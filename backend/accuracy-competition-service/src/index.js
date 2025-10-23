@@ -360,6 +360,7 @@ cron.schedule('0 6 * * 0', async () => {
 // ERROR HANDLING
 // ============================================================================
 
+// eslint-disable-next-line no-unused-vars
 app.use((err, req, res, _next) => {
   logger.error('Unhandled error', {
     error: err.message,
