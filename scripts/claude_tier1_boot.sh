@@ -883,15 +883,23 @@ if [[ "${MAX_AUTO:-1}" == "1" ]]; then
         fi
       fi
 
-      # Start service with secret scrubbing via process substitution
-      # Capture Node PID by starting separately from stdout redirect
+      # Start service with secret scrubbing
       log="$integration_log"
       mkdir -p "$(dirname "$log")"
-      op run --env-file "$ENV_FILE" -- npm start \
-        > >("$ROOT/scripts/guards/scrub_secrets.sh" >> "$log") \
-        2> >("$ROOT/scripts/guards/scrub_secrets.sh" >> "$log") &
+      
+      # Start the service in background, pipe through scrubber
+      cd "$ROOT/backend/integration-service"
+      (op run --env-file "$ENV_FILE" -- npm start 2>&1 | "$ROOT/scripts/guards/scrub_secrets.sh" > "$log") &
       INTEGRATION_PID=$!
       echo "$INTEGRATION_PID" > "$ROOT/tmp/integration-service.pid"
+      
+      # Find the actual Node process PID
+      sleep 1
+      NODE_PID=$(pgrep -P "$INTEGRATION_PID" | head -1 || echo "$INTEGRATION_PID")
+      if [[ "$NODE_PID" != "$INTEGRATION_PID" ]]; then
+        echo "$NODE_PID" > "$ROOT/tmp/integration-service.pid"
+        INTEGRATION_PID="$NODE_PID"
+      fi
 
       success "integration-service starting (PID: $INTEGRATION_PID, managed via port 3005)"
       
