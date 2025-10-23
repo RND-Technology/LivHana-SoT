@@ -18,7 +18,6 @@ const compression = require('compression');
 const winston = require('winston');
 const cron = require('node-cron');
 const { v4: uuidv4 } = require('uuid');
-const moment = require('moment');
 
 // Import services
 const AccuracyService = require('./services/accuracy-service');
@@ -361,7 +360,7 @@ cron.schedule('0 6 * * 0', async () => {
 // ERROR HANDLING
 // ============================================================================
 
-app.use((err, req, res, next) => {
+app.use((err, req, res, _next) => {
   logger.error('Unhandled error', {
     error: err.message,
     stack: err.stack,
