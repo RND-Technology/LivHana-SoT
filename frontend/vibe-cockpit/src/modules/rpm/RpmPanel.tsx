@@ -126,7 +126,7 @@ export default function RpmPanel() {
         </thead>
         <tbody>
           {filtered.length === 0 ? (
-            <tr><td colSpan={4} style={{textAlign: 'center', padding: '20px'}}>No items found</td></tr>
+            <tr><td colSpan={4} className={styles.emptyState}>No items found</td></tr>
           ) : (
             filtered.map(it => (
               <tr key={it.id}>
