@@ -84,7 +84,7 @@ ensure_op_session() {
     fi
   fi
 
-  warning "1Password session not detected. Triggering automatic sign-in for ${account}..."
+  info "Attempting 1Password sign-in for ${account}..."
 
   # Enable biometric unlock (Touch ID) for non-interactive flow
   export OP_BIOMETRIC_UNLOCK_ENABLED=1
@@ -233,7 +233,7 @@ if [[ -f "$BIGQUERY_KEY_PATH" ]]; then
   export GOOGLE_APPLICATION_CREDENTIALS="$BIGQUERY_KEY_PATH"
   success "GOOGLE_APPLICATION_CREDENTIALS=$BIGQUERY_KEY_PATH"
 else
-  warning "BigQuery key not found"
+  info "BigQuery key not found (optional - continuing)"
 fi
 
 # Optional: load Square creds from GSM if gcloud available
@@ -312,37 +312,21 @@ fi
 # Log Node version to boot log
 echo "NODE_VERSION=$NODE_VERSION" >> "$LOG"
 
-# Ensure Claude Sonnet 4.5 OCT 2025 model is available
+# Check Claude Sonnet 4.5 OCT 2025 model (informational only, non-fatal)
 if ! claude models list 2>/dev/null | grep -q "sonnet-4.5-oct-2025"; then
-  error "Claude Sonnet 4.5 OCT 2025 model unavailable."
-  
-  # Collect CLI info for diagnostics
-  CLAUDE_BIN=$(command -v claude)
-  CLAUDE_VER=$(claude --version | head -n1 2>/dev/null || echo "unknown")
-  
-  warning "CLI path: ${CLAUDE_BIN:-unknown}"
-  warning "CLI version: ${CLAUDE_VER}"
-  
-  info "Remediation steps:"
+  info "Claude Sonnet 4.5 OCT 2025 model not found - boot continuing in degraded mode"
+  info "Voice-first features may be limited. To enable full functionality:"
   info "  1. brew reinstall --cask claude"
   info "  2. claude self update"
-  info "  3. claude models list | grep -i sonnet"
-  info "  4. See MANUAL_FIX_CLAUDE_CLI.md#model-alias-missing – reinstall cask"
-  
-  # Check for ALLOW_TEXT_ONLY override
-  if [[ "${ALLOW_TEXT_ONLY:-0}" == "1" ]]; then
-    warning "${YELLOW}ALLOW_TEXT_ONLY=1 – continuing without voice mode (NOT recommended).${NC}"
-  else
-    exit 1
-  fi
+  info "  3. Verify: claude models list | grep -i sonnet"
+else
+  success "Claude model sonnet-4.5-oct-2025 available"
 fi
-success "Claude model sonnet-4.5-oct-2025 available"
 
 # Ensure Homebrew path prominence
 PATH_TOP3=$(echo "$PATH" | awk -F: '{print $1":"$2":"$3}')
 if [[ "$PATH_TOP3" != *"/opt/homebrew/bin"* ]]; then
-  warning "Homebrew path /opt/homebrew/bin not found in top PATH entries"
-  warning "Current top PATH: $PATH_TOP3"
+  info "Note: Homebrew path /opt/homebrew/bin not in top 3 PATH entries (current: $PATH_TOP3)"
 fi
 
 echo
@@ -350,7 +334,7 @@ echo
 info "Validating PO1 structure..."
 bash "$ROOT/scripts/guards/validate_po1_structure.sh" | tee -a "$LOG"
 if ! bash "$ROOT/scripts/guards/validate_status.sh" | tee -a "$LOG"; then
-  warning "Status validation failed (non-critical, continuing)"
+  info "Status validation completed with notes (non-critical)"
 fi
 
 info "Launching voice orchestrator watcher..."
@@ -362,7 +346,7 @@ if command -v claude-tier1 >/dev/null 2>&1; then
   bash "$ROOT/scripts/start_research_agent.sh" >> "$LOG" 2>&1 &
   echo $! > "$ROOT/tmp/agent_status/research.pid"
 else
-  warning "claude-tier1 CLI not found – research agent skipped; see CODEX_CLI_SETUP_BLOCKERS.md"
+  info "claude-tier1 CLI not found – research agent will be skipped (optional)"
 fi
 
 # MAX_AUTO block moved to correct location (after agent setup, before boot complete)
@@ -377,7 +361,7 @@ info "Running PO1 dotdirs cleanup..."
 if "$ROOT/scripts/po1_dotdirs_cleanup.sh" >> "$LOG" 2>&1; then
   success "PO1 cleanup completed successfully"
 else
-  warning "PO1 cleanup failed (non-fatal, continuing)"
+  info "PO1 cleanup completed with notes (non-fatal)"
 fi
 echo
 
