@@ -2,8 +2,8 @@
   "agent": "exec",
   "phase": "monitor",
   "status": "running",
-  "started_at": "2025-10-23T15:12:01Z",
+  "started_at": "2025-10-23T15:18:32Z",
   "finished_at": "",
-  "artifacts": ["/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/logs/agents/exec_monitor_20251023_101201.log"],
+  "artifacts": ["/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/logs/agents/exec_monitor_20251023_101832.log"],
   "notes": "existing tmux session"
 }
