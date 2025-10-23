@@ -35,7 +35,10 @@ export default [
       '.claude_backup_*',
       '.cursor/**',
       'tmp/**',
-      'logs/**'
+      'logs/**',
+      '1.rnd/**',
+      'deployment/**',
+      'empire/**'
     ]
   },
   {
