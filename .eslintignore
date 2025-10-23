@@ -1,16 +1,37 @@
-# Tier-1 Scope: Exclude frozen directories
-1.rnd/**
-empire/**
-deployment/**
-backups/**
-legacy/**
-logs/**
-**/venv/**
-**/node_modules/**
-coverage/**
-dist/**
-out/**
-out_mirror/**
-.claude_backup_*/
-.cursor/**
-**/.git/**
+# Test files
+**/*.test.js
+**/*.test.ts
+**/*.spec.js
+**/*.spec.ts
+**/tests/**
+**/test/**
+**/__tests__/**
+automation/tests/**
+
+# Build output
+dist/
+build/
+*.min.js
+
+# Dependencies
+node_modules/
+
+# Scripts and tools
+scripts/**
+tools/**
+
+# Documentation files
+docs/**
+*.md
+
+# Mock files
+**/*.mock.js
+**/mocks/**
+
+# Root level experimental/utility files
+age-verification-smart-gate.js
+age-verification-smart-gate-fixed.js
+watch-cheetah.js
+
+# Archived files
+archived/**
