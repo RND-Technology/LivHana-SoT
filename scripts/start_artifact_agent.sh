@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")/.." && pwd)"
 STATUS_DIR="$ROOT/tmp/agent_status"
 LOG_DIR="$ROOT/logs/agents"
 mkdir -p "$STATUS_DIR" "$LOG_DIR"

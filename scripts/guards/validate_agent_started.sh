@@ -31,7 +31,7 @@ validate_agent_started() {
   return 1
 }
 
-if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+if [[ "${BASH_SOURCE[0]:-$0}" == "${0}" ]]; then
   validate_agent_started "$@"
 fi
 
