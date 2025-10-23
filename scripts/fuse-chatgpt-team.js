@@ -63,7 +63,7 @@ async function parseChatGPTExport(zipPath) {
     const zip = new AdmZip(zipPath);
     const zipEntries = zip.getEntries();
 
-    let conversations = [];
+    const conversations = [];
 
     // Find and parse conversations.json
     for (const entry of zipEntries) {

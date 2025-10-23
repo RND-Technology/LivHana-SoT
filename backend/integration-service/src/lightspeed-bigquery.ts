@@ -222,7 +222,7 @@ export class LightspeedBigQueryPipeline {
 
     const errors: Array<{ sale_id: string; error: string }> = [];
     let inserted = 0;
-    let skipped = 0;
+    const skipped = 0;
 
     try {
       // Use MERGE statement for idempotent insertion
