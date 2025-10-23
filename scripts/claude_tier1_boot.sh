@@ -132,10 +132,13 @@ ensure_op_session() {
   # VERIFY: Hard-fail if whoami is empty after signin
   local whoami_output="$(op whoami 2>/dev/null || echo '')"
   local account_domain="$(echo "$whoami_output" | grep -o '[a-zA-Z0-9._%+-]*@[a-zA-Z0-9.-]*\.[a-zA-Z]\{2,\}' | head -1 | sed 's/@.*//' || echo '')"
-  
+
   if [[ -z "$account_domain" ]]; then
-    error "1Password sign-in did not produce an active session (whoami empty)."
-    error "Manual: op signin --account ${account}"
+    error "1Password CLI integration not enabled in Desktop app."
+    error "FIX (30 seconds):"
+    error "  1. Open 1Password Desktop app"
+    error "  2. Settings → Developer → CHECK ✓ 'Connect with 1Password CLI'"
+    error "  3. Restart app and retry"
     exit 1
   fi
 
