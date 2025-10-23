@@ -33,9 +33,13 @@
   "overrides": [
     {
       "files": ["**/*.ts", "**/*.tsx"],
+      "parser": "@typescript-eslint/parser",
+      "plugins": ["@typescript-eslint"],
       "rules": {
         "no-unused-vars": "off",
-        "no-undef": "off"
+        "no-undef": "off",
+        "@typescript-eslint/no-unused-vars": "warn",
+        "@typescript-eslint/no-explicit-any": "off"
       }
     },
     {
@@ -44,6 +48,13 @@
         "max-lines-per-function": "off",
         "complexity": "off",
         "no-console": "off"
+      }
+    },
+    {
+      "files": ["jest.config.js", "jest.config.unified.js"],
+      "parserOptions": {
+        "ecmaVersion": 2022,
+        "sourceType": "script"
       }
     }
   ]
