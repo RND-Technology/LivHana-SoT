@@ -16,7 +16,15 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 echo "🚀 Starting LivHana Empire - Mode: $MODE"
 
-# Preflight checks
+# Run Tier-1 boot first (handles preflight, agents, voice orchestrator)
+echo "🎼 Running Tier-1 boot sequence..."
+if [ -f "$SCRIPT_DIR/scripts/claude_tier1_boot.sh" ]; then
+  bash "$SCRIPT_DIR/scripts/claude_tier1_boot.sh"
+else
+  echo "⚠️  Tier-1 boot script not found, proceeding with basic preflight..."
+fi
+
+# Preflight checks (legacy - most now handled by tier1 boot)
 echo "🔍 Running preflight checks..."
 
 # Check Claude CLI

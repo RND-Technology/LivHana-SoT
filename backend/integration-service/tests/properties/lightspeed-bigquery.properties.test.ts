@@ -1,6 +1,8 @@
 // PROPERTY-BASED TESTS FOR LIGHTSPEED BIGQUERY PIPELINE
 // Tests invariants and edge cases using fast-check
 
+/* eslint-disable max-lines-per-function, @typescript-eslint/no-explicit-any */
+
 import fc from 'fast-check';
 import { LightspeedBigQueryPipeline } from '../../src/lightspeed-bigquery';
 

@@ -3,7 +3,9 @@
  * Core pipeline logic for syncing sales data
  */
 
-import { BigQuery } from '@google-cloud/bigquery';
+/* eslint-disable @typescript-eslint/no-unused-vars, no-console */
+
+// import { BigQuery } from '@google-cloud/bigquery'; // TODO: Wire when BigQuery sync active
 import { LightspeedClient } from './clients/lightspeed-client';
 import { BigQueryClient } from './clients/bigquery-client';
 import { DataTransformer } from './transform/transformer';

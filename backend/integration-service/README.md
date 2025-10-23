@@ -1,6 +1,6 @@
-# Lightspeed BigQuery Pipeline
+# Integration Service (Lightspeed + RPM API)
 
-Real-time sales data streaming from Lightspeed to BigQuery with idempotent insertion.
+Real-time Lightspeed → BigQuery pipeline and RPM API (Option A) for weekly planning exports.
 
 ## Features
 
@@ -61,6 +61,33 @@ Sync sales data from Lightspeed to BigQuery.
 ### `GET /`
 
 Service information and documentation.
+
+## RPM API (Option A)
+
+Env:
+
+```
+DATABASE_URL=postgresql://...
+JWT_SECRET=change-me
+REDIS_HOST=localhost
+REDIS_PORT=6379
+```
+
+Routes:
+
+- `GET /api/rpm/weeks/current`
+- `GET /api/rpm/weeks/:id/items`
+- `POST /api/rpm/weeks/:id/items` (Bearer JWT)
+- `GET /api/rpm/weeks/:id/export?format=md|csv|pdf`
+
+Worker:
+
+- Start: `ts-node src/worker.export.ts`
+- Outputs artifacts to `/out` (md/csv; pdf currently HTML stub)
+
+Schema:
+
+- See `sql/001_rpm_schema.sql`
 
 ## Setup
 
