@@ -41,7 +41,9 @@ export default [
       'deployment/**',
       'empire/**',
       'raw-*',
-      '**/raw-*'
+      '**/raw-*',
+      'backups/**',
+      '**/tsconfig.*.json'
     ]
   },
   {
@@ -104,7 +106,7 @@ export default [
     files: ['jest.config.js', 'jest.config.unified.js'],
     languageOptions: {
       ecmaVersion: 2022,
-      sourceType: 'script'
+      sourceType: 'module'
     }
   }
 ];
