@@ -899,24 +899,20 @@ if [[ "${MAX_AUTO:-1}" == "1" ]]; then
       # Start integration-service with secret scrubbing
       info "Starting integration-service with secret scrubbing..."
       cd "$ROOT/backend/integration-service"
-      
-      # Create a wrapper script to scrub logs and capture a stable PID
-      SCRUB_WRAPPER="$ROOT/tmp/integration-service-scrub.sh"
-      # Prefer .env.op; fallback to .env if not present
-      ENV_FILE="$ROOT/.env.op"
-      if [[ ! -f "$ENV_FILE" ]]; then
-        ENV_FILE="$ROOT/.env"
-      fi
-      cat > "$SCRUB_WRAPPER" <<SCRUB_EOF
-#!/usr/bin/env bash
-exec op run --env-file="\$1" -- npm start 2>&1 | "$ROOT/scripts/guards/scrub_secrets.sh"
-SCRUB_EOF
-      chmod +x "$SCRUB_WRAPPER"
 
-      # Start the wrapper in background and capture the wrapper PID (controls the pipeline)
-      nohup bash "$SCRUB_WRAPPER" "$ENV_FILE" >> "$integration_log" &
+      # Prefer .env.op in backend/integration-service; fallback to root .env
+      ENV_FILE="$ROOT/backend/integration-service/.env.op"
+      if [[ ! -f "$ENV_FILE" ]]; then
+        ENV_FILE="$ROOT/.env.op"
+        if [[ ! -f "$ENV_FILE" ]]; then
+          ENV_FILE="$ROOT/.env"
+        fi
+      fi
+
+      # Use process substitution so $! captures the actual npm start PID, not the scrubber
+      op run --env-file="$ENV_FILE" -- npm start 2>&1 > >(exec "$ROOT/scripts/guards/scrub_secrets.sh" >> "$integration_log") &
       INTEGRATION_PID=$!
-      
+
       echo "$INTEGRATION_PID" > "$ROOT/tmp/integration-service.pid"
       success "integration-service process started (PID: $INTEGRATION_PID)"
       
