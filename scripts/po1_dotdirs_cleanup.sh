@@ -295,9 +295,15 @@ main() {
     print_status "Starting PO1 dotdirs cleanup"
     echo ""
     
-    # Create backup
-    local backup_dir=$(backup_dotdirs)
-    echo ""
+    # Create backup (opt-in only)
+    local backup_dir=""
+    if [ "${PO1_ENABLE_BACKUP:-0}" = "1" ]; then
+        backup_dir=$(backup_dotdirs)
+        echo ""
+    else
+        print_status "Skipping backup (set PO1_ENABLE_BACKUP=1 to enable)"
+        echo ""
+    fi
     
     # Clean directories
     clean_claude_dir
@@ -314,11 +320,15 @@ main() {
         echo ""
         show_cleanup_summary
         echo ""
-        print_status "Backup created at: $backup_dir"
+        if [ -n "$backup_dir" ]; then
+            print_status "Backup created at: $backup_dir"
+        fi
         print_status "Ready for HIGHER LEVEL PERFORMANCE"
     else
         print_error "PO1 cleanup failed validation"
-        print_status "Restore from backup: $backup_dir"
+        if [ -n "$backup_dir" ]; then
+            print_status "Restore from backup: $backup_dir"
+        fi
         exit 1
     fi
 }
