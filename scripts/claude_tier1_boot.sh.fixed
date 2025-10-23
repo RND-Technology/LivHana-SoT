@@ -1,0 +1,57 @@
+ensure_op_session() {
+  local account="${OP_ACCOUNT_SLUG:-reggiedro.1password.com}"
+  local verbosity="${1:-show}"
+
+  if ! command -v op >/dev/null 2>&1; then
+    error "1Password CLI (op) not found. Install via: brew install 1password-cli"
+    exit 1
+  fi
+
+  # FIXED: Simple, robust check - if op whoami returns ANYTHING, we're authenticated
+  local whoami_output
+  whoami_output="$(op whoami 2>/dev/null || echo '')"
+  
+  # Check 1: Using service account token
+  if [[ -n "${OP_SERVICE_ACCOUNT_TOKEN:-}" ]]; then
+    if [[ -n "$whoami_output" ]]; then
+      [[ "$verbosity" == "show" ]] && success "1Password authenticated via service account"
+      return 0
+    fi
+    error "OP_SERVICE_ACCOUNT_TOKEN set but authentication failed"
+    exit 1
+  fi
+
+  # Check 2: Already authenticated (SIMPLIFIED - no fragile regex)
+  if [[ -n "$whoami_output" ]]; then
+    # If we got ANY output from whoami, we're authenticated
+    if echo "$whoami_output" | grep -qi "Email:\|URL:"; then
+      if [[ "$verbosity" == "show" ]]; then
+        local email=$(echo "$whoami_output" | grep "Email:" | awk '{print $2}' || echo "authenticated")
+        success "1Password authenticated: $email"
+      fi
+      return 0
+    fi
+  fi
+
+  # Check 3: Need to sign in
+  info "Attempting 1Password sign-in for ${account}..."
+  export OP_BIOMETRIC_UNLOCK_ENABLED=1
+
+  if ! op signin --account "${account}" >/dev/null 2>&1; then
+    error "1Password sign-in failed"
+    error "Manual: op signin --account ${account}"
+    exit 1
+  fi
+
+  # VERIFY: Check again after signin (SIMPLIFIED)
+  whoami_output="$(op whoami 2>/dev/null || echo '')"
+  if [[ -n "$whoami_output" ]] && echo "$whoami_output" | grep -qi "Email:\|URL:"; then
+    success "1Password authenticated successfully"
+    return 0
+  fi
+
+  # Only fail if we truly can't authenticate
+  error "1Password authentication failed - CLI integration may not be enabled"
+  error "Fix: Open 1Password → Settings → Developer → Enable CLI integration"
+  exit 1
+}
