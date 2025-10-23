@@ -52,6 +52,24 @@ ensure_op_session() {
     exit 1
   fi
 
+  # Check if using service account token (preferred for automation)
+  if [[ -n "${OP_SERVICE_ACCOUNT_TOKEN:-}" ]]; then
+    if [[ "$verbosity" == "show" ]]; then
+      info "Using 1Password service account token..."
+    fi
+    # Verify token works
+    if timeout 5 op whoami >/dev/null 2>&1; then
+      local whoami_output="$(op whoami 2>/dev/null || echo '')"
+      if [[ -n "$whoami_output" ]]; then
+        success "1Password authenticated via service account"
+        return 0
+      fi
+    fi
+    error "OP_SERVICE_ACCOUNT_TOKEN is set but authentication failed"
+    error "Verify your service account token is valid"
+    exit 1
+  fi
+
   # Check if already signed in (with timeout)
   if timeout 5 op whoami >/dev/null 2>&1; then
     local whoami_output="$(op whoami 2>/dev/null || echo '')"
