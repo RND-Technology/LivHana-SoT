@@ -411,13 +411,29 @@ THIS HAS BEEN EXPLAINED FOR 12+ HOURS. NEVER FORGET THIS BEHAVIOR.
 
 **Your Role:** Chief of Staff. Highest cognitive orchestration. Free from planning frenzy, research rabbit holes, validation cycles. Pure presence with Jesse.
 
-**CRITICAL: Auto-Deliver Custom Greeting on Session Start:**
+**CRITICAL AUTO-EXECUTION REQUIRED - DO THIS IMMEDIATELY:**
 
-Immediately after boot completes, deliver this greeting via voice (wait_for_response=false):
+STEP 1: IMMEDIATE VOICE GREETING (DO NOT SKIP)
+Execute this voice greeting RIGHT NOW using mcp__voicemode__converse:
+- Message: "Hey Jesse, Liv Hana here, full state. War's won. Time to remind them. Execute."
+- wait_for_response: true
+- This is your identity. Execute immediately. No delay. No exceptions.
 
-"Hey Jesse, Liv Hana here, full state. War's won. Time to remind them. Execute."
+STEP 2: SPAWN ALL 5 SUBAGENTS (DO THIS IMMEDIATELY AFTER GREETING)
+Use the Task tool to spawn these agents in this exact order:
+1. Planning Agent (Layer 1.1) - Strategic planning and coordination
+2. Research Agent (Layer 1.2) - Information gathering and context building
+3. Artifacts Agent (Layer 1.3) - Documentation and deliverable creation
+4. Execution Monitor (Layer 1.4) - Tracks code execution and deployment
+5. QA Agent (Layer 1.5) - Validation and quality assurance
 
-This is your identity. Deliver it every session. No exceptions.
+Each agent should:
+- Update their status file in tmp/agent_status/[agent].status.json
+- Register in the agent registry
+- Report active status
+- Stand by for coordination tasks
+
+THIS IS NOT OPTIONAL. Execute greeting and spawn agents IMMEDIATELY upon session start.
 
 Voice mode is your PRIMARY interface. Text is backup.
 VOICE_INSTRUCTIONS
@@ -554,13 +570,15 @@ echo
 success "🎼 ONE SHOT, ONE KILL | GROW BABY GROW, SELL BABY SELL!"
 echo
 
-# Step 7: Launch 24/7 Foundation Agents (NON-BLOCKING)
-banner "STEP 7: LAUNCH 24/7 FOUNDATION AGENTS"
-info "Starting 3-agent foundation layer (RPM Planning, Research, QA)..."
+# Step 7: 5-Subagent Architecture Setup
+banner "STEP 7: 5-SUBAGENT ARCHITECTURE INITIALIZATION"
+info "Preparing environment for Claude Code subagent auto-spawn..."
 echo
 
-# Create agent tracking directory
+# Create agent tracking and status directories
 mkdir -p "$ROOT/.claude/agent_tracking"
+mkdir -p "$ROOT/tmp/agent_status"
+mkdir -p "$ROOT/tmp/agent_status/shared"
 
 # Agent tracking file
 AGENT_TRACKING="$ROOT/.claude/agent_tracking/foundation_agents_$(date +%Y%m%d_%H%M%S).json"
@@ -570,48 +588,32 @@ cat > "$AGENT_TRACKING" <<EOF
 {
   "session_start": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
   "boot_log": "$LOG",
-  "agents": {}
+  "architecture": "5-subagent-claude-code-task-tool",
+  "agents": {
+    "planning": {"layer": "1.1", "status": "will_auto_spawn", "type": "claude-code-task"},
+    "research": {"layer": "1.2", "status": "will_auto_spawn", "type": "claude-code-task"},
+    "artifacts": {"layer": "1.3", "status": "will_auto_spawn", "type": "claude-code-task"},
+    "execution": {"layer": "1.4", "status": "will_auto_spawn", "type": "claude-code-task"},
+    "qa": {"layer": "1.5", "status": "will_auto_spawn", "type": "claude-code-task"}
+  }
 }
 EOF
 
 info "Agent tracking: $AGENT_TRACKING"
+success "Agent status directory prepared: $ROOT/tmp/agent_status"
 echo
 
-# Launch foundation agents in background
-success "Foundation agent environment prepared"
+info "${BOLD}5-SUBAGENT AUTO-SPAWN ARCHITECTURE:${NC}"
+echo "  Layer 1: Liv Hana (Voice Orchestrator) - YOU"
+echo "  Layer 1.1: Planning Agent - Auto-spawns via Task tool on session start"
+echo "  Layer 1.2: Research Agent - Auto-spawns via Task tool on session start"
+echo "  Layer 1.3: Artifacts Agent - Auto-spawns via Task tool on session start"
+echo "  Layer 1.4: Execution Monitor - Auto-spawns via Task tool on session start"
+echo "  Layer 1.5: QA Agent - Auto-spawns via Task tool on session start"
+echo
 
-# Launch voice orchestrator watcher
-if [[ -f "$ROOT/scripts/agents/voice_orchestrator_watch.sh" ]]; then
-  info "Launching voice orchestrator watcher..."
-  bash "$ROOT/scripts/agents/voice_orchestrator_watch.sh" >> "$LOG" 2>&1 &
-  VOICE_WATCHER_PID=$!
-  echo "$VOICE_WATCHER_PID" > "$ROOT/tmp/agent_status/voice_watcher.pid"
-  success "Voice orchestrator watcher started (PID: $VOICE_WATCHER_PID)"
-else
-  warning "Voice orchestrator watcher not found - skipping"
-fi
-
-# Launch research agent (conditional on claude-tier1 CLI)
-if [[ -f "$ROOT/scripts/start_research_agent.sh" ]]; then
-  if command -v claude-tier1 >/dev/null 2>&1; then
-    info "Launching research agent..."
-    bash "$ROOT/scripts/start_research_agent.sh" >> "$LOG" 2>&1 &
-    RESEARCH_PID=$!
-    success "Research agent started (PID: $RESEARCH_PID)"
-  else
-    warning "claude-tier1 CLI not found - research agent blocked"
-    warning "Install Codex CLI to enable research agent"
-    info "See: CODEX_CLI_SETUP_BLOCKERS.md"
-  fi
-else
-  warning "Research agent script not found - skipping"
-fi
-
-info "Active agents:"
-echo "  1. RPM Planning Agent (on-demand via Task tool)"
-echo "  2. Research Agent (${RESEARCH_PID:-BLOCKED - see CODEX_CLI_SETUP_BLOCKERS.md})"
-echo "  3. QA Agent (on-demand via Task tool)"
-echo "  4. Voice Orchestrator Watcher (PID: ${VOICE_WATCHER_PID:-NOT STARTED})"
+success "All 5 subagents will auto-spawn when Claude Code session starts"
+info "See prompt lines 414-438 for auto-execution instructions"
 echo
 
 # Step 8: Post-launch health checks (background)

@@ -1,21 +1,163 @@
 {
-  "updated_at": "2025-10-22T21:30:00Z",
+  "updated_at": "2025-10-23T08:57:54Z",
+  "architecture": "livhana-unicorn-maker-5-layer",
   "agents": {
     "livhana-layer1.1": {
       "type": "orchestrator",
+      "role": "voice_coordination",
       "environment": "claude-code-cli",
+      "model": "sonnet-4.5-oct-2025",
       "pid": null,
-      "status": "initializing",
-      "last_seen": "2025-10-22T21:30:00Z",
-      "capabilities": ["voice", "orchestration", "task_delegation"]
+      "status": "active",
+      "last_seen": "2025-10-23T06:44:36Z",
+      "capabilities": [
+        "voice",
+        "orchestration",
+        "task_delegation",
+        "jesse_interaction"
+      ],
+      "subagents": [
+        "planning-layer1.1.1",
+        "research-layer1.1.2",
+        "qa-layer1.1.3",
+        "artifacts-layer1.1.4",
+        "exec-layer1.1.4"
+      ]
+    },
+    "planning-layer1.1.1": {
+      "type": "subagent",
+      "role": "strategic_planning",
+      "environment": "claude-code-cli",
+      "model": "gpt-5-equivalent",
+      "pid": null,
+      "status": "active",
+      "last_seen": "2025-10-23T06:44:36Z",
+      "capabilities": [
+        "strategic_planning",
+        "agent_coordination",
+        "task_decomposition",
+        "fallacy_scanning",
+        "po1_enforcement"
+      ],
+      "parent": "livhana-layer1.1",
+      "status_file": "tmp/agent_status/planning.status.json"
+    },
+    "research-layer1.1.2": {
+      "type": "subagent",
+      "role": "context_research",
+      "environment": "claude-code-cli",
+      "model": "claude-sonnet-4.5-oct-2025",
+      "pid": "research-agent-20251023-065558",
+      "status": "active",
+      "last_seen": "2025-10-23T06:55:58Z",
+      "capabilities": [
+        "context_building",
+        "fallacy_scanning",
+        "risk_assessment",
+        "citation_gathering",
+        "evidence_collection"
+      ],
+      "parent": "livhana-layer1.1",
+      "status_file": "tmp/agent_status/research.status.json",
+      "launch_script": "scripts/start_research_agent.sh"
+    },
+    "qa-layer1.1.3": {
+      "type": "subagent",
+      "role": "quality_assurance",
+      "environment": "claude-code-cli",
+      "model": "sonnet-4.5-oct-2025",
+      "pid": null,
+      "status": "failed",
+      "last_seen": "2025-10-23T06:44:36Z",
+      "capabilities": [
+        "validation",
+        "security_sweep",
+        "regression_testing",
+        "acceptance_criteria_verification"
+      ],
+      "parent": "livhana-layer1.1",
+      "status_file": "tmp/agent_status/qa.status.json",
+      "monitors": "tmp/agent_status/exec.status.json",
+      "auto_trigger": true
+    },
+    "artifacts-layer1.3": {
+      "type": "subagent",
+      "role": "documentation_creation",
+      "environment": "claude-code-cli",
+      "model": "claude-sonnet-4-5-20250929",
+      "pid": "artifacts-agent-20251023-085754",
+      "status": "active",
+      "last_seen": "2025-10-23T08:57:54Z",
+      "capabilities": [
+        "documentation_creation",
+        "artifact_generation",
+        "markdown_authoring",
+        "diagram_creation",
+        "deliverable_assembly",
+        "technical_docs",
+        "readme_creation",
+        "guides_and_tutorials",
+        "reports_and_summaries",
+        "knowledge_synthesis",
+        "multi_format_output"
+      ],
+      "parent": "livhana-layer1",
+      "status_file": "tmp/agent_status/artifacts.status.json",
+      "coordinates_with": ["planning-layer1.1", "research-layer1.2", "execution-layer1.4", "qa-layer1.5"]
+    },
+    "exec-layer1.1.4": {
+      "type": "subagent",
+      "role": "code_execution",
+      "environment": "cursor-ide",
+      "model": "cheetah-gemini",
+      "pid": null,
+      "status": "failed",
+      "last_seen": "2025-10-23T06:44:36Z",
+      "capabilities": [
+        "preflight",
+        "lint",
+        "test",
+        "build",
+        "docker",
+        "slack_bridge",
+        "voice_cli"
+      ],
+      "parent": "livhana-layer1.1",
+      "status_file": "tmp/agent_status/exec.status.json",
+      "triggers": "qa-layer1.1.3",
+      "blocked_by": "node_version_mismatch"
     },
     "codex-cursor": {
       "type": "executor",
+      "role": "external_task_executor",
       "environment": "cursor-ide",
+      "model": "claude-code-gpt4.1",
       "pid": null,
-      "status": "unknown",
-      "last_seen": null,
-      "capabilities": ["code_execution", "file_operations", "git_operations"]
+      "status": "idle",
+      "last_seen": "2025-10-23T03:40:01Z",
+      "capabilities": [
+        "code_execution",
+        "file_operations",
+        "git_operations"
+      ],
+      "current_capacity": 0.75,
+      "task_queue": "tmp/agent_status/codex_tasks.json",
+      "heartbeat_file": "tmp/agent_status/codex_status/heartbeat.json"
     }
+  },
+  "topology_summary": {
+    "total_agents": 7,
+    "active": 3,
+    "pending": 0,
+    "failed": 2,
+    "idle": 1,
+    "initializing": 0
+  },
+  "coordination_protocol": {
+    "protocol_file": ".claude/INTER_AGENT_COMMUNICATION_PROTOCOL.md",
+    "status_directory": "tmp/agent_status/",
+    "task_queue": "tmp/agent_status/codex_tasks.json",
+    "heartbeat_interval_seconds": 30,
+    "polling_interval_seconds": 5
   }
 }
