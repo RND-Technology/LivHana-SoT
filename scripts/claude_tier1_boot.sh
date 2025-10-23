@@ -5,6 +5,9 @@
 
 set -euo pipefail
 
+# PHASE 1: STABILIZE - Model gate bypass
+export ALLOW_TEXT_ONLY="${ALLOW_TEXT_ONLY:-0}"
+
 # Configuration
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")/.." && pwd)"
 CFG="$ROOT/config/claude_tier1_context.yaml"
@@ -535,8 +538,31 @@ if [[ -z "${MEM_FREE_PCT:-}" ]] && command -v vm_stat >/dev/null 2>&1; then
   fi
 fi
 
+# PHASE 1: STABILIZE - Port pre-clear
+info "Pre-clearing port 3005..."
+lsof -ti :3005 | xargs -r kill -TERM 2>/dev/null || true
+sleep 1
+lsof -ti :3005 | xargs -r kill -KILL 2>/dev/null || true
+success "Port 3005 cleared"
+
+# PHASE 1: STABILIZE - Log prep
+mkdir -p "$ROOT/logs"
+touch "$ROOT/logs/integration-service.log"
+
 # Check 1Password session (required for downstream op run calls)
+# PHASE 1: STABILIZE - Hard-fail validation
 ensure_op_session
+if ! op whoami >/dev/null 2>&1; then
+  error "1Password authentication failed"
+  error "Run: op signin --account ${OP_ACCOUNT_SLUG:-reggiedro.1password.com}"
+  exit 1
+fi
+whoami_output="$(op whoami 2>/dev/null || echo '')"
+if [[ -z "$whoami_output" ]]; then
+  error "1Password whoami returned empty"
+  exit 1
+fi
+success "1Password validated"
 
 # GCP project for downstream scripts
 export GCP_PROJECT_ID="reggieanddrodispensary"
