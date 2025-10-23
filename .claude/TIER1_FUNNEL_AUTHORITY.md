@@ -1,359 +1,314 @@
----
-diataxis: reference
-owner: Jesse Niesen (CEO)
-enforced-by: PO1 Cleanup + Boot Scripts
-canonical: true
-last-reviewed: 2025-10-22
----
+# 🌪️🦄 Liv Hana Tier-1 Unicorn Racing Funnel — AUTHORITY BLUEPRINT
 
-# 🦄 Tier-1 Unicorn Racing Funnel — Authority Copy
-
-**Status**: CANONICAL - Loaded at every session startup
-**Purpose**: Eight-layer orchestration funnel with bootstrap invariants, model specifications, and acceptance criteria
-**Enforcement**: Embedded in `scripts/claude_tier1_boot.sh`, protected from PO1 cleanup
-
-Embed at startup for every Cursor agent. Principle of One enforced; status flows machine-readable; Claude Sonnet 4.5 OCT gates every phase.
+**Load at startup for EVERY Cursor agent. Principle of One enforced. Voice = Sonnet 4.5 OCT 2025 ONLY.**
 
 ---
 
-## Layer 0 — 🧩 Bootstrap & Invariants
+## 🧩 Layer 0: Bootstrap & Invariants (Unicorn Gate)
 
-**Entry Point**: `./START.sh` → `scripts/claude_tier1_boot.sh`
+**Entry**: `./START.sh` → `scripts/claude_tier1_boot.sh`
 
-### Critical Pre-Flight Checks (abort with remediation on failure)
+**Must verify** (abort with remediation on failure):
+1. ✅ `node -v` → major >= 20 (`STRICT_NODE_20=true` forces exact v20)
+2. ✅ `/opt/homebrew/bin` in PATH top-3; `which claude` → `/opt/homebrew/bin/claude`
+3. ✅ `redis-cli PING/SET/GET`
+4. ✅ `JWT_SECRET` present OR fetchable via `op run`
+5. ✅ Sacred banner at TOP of `tmp/claude_tier1_prompt.txt` (grep verified)
+6. ✅ Voice model flag: `--model sonnet-4.5-oct-2025` (abort if missing)
 
-- **Node Version**: Major ≥ 20 (`STRICT_NODE_20=true` forces exact v20)
-- **Homebrew Path**: `/opt/homebrew/bin` in PATH top-3; `which claude` ⇒ `/opt/homebrew/bin/claude`
-- **Redis**: `redis-cli` PING/SET/GET operations validated
-- **JWT Secret**: `JWT_SECRET` present or accessible via `op run`
-- **Voice Banner**: Sacred voice banner at top of `tmp/claude_tier1_prompt.txt` (grep verified)
-- **Model Enforcement**: Sonnet 4.5 OCT enforced — CLI with `--model sonnet-4.5`; abort if missing
+**Outputs**:
+- `logs/claude_tier1_boot_YYYYMMDD_HHMMSS.log`
+- Append to `.claude/SESSION_PROGRESS.md`
 
-### Outputs
-
-- Boot logs: `logs/claude_tier1_boot_*.log`
-- Session tracking: `.claude/SESSION_PROGRESS.md` (append-only)
-- Auto-spawn scripts:
-  - `scripts/start_research_agent.sh`
-  - `scripts/agents/voice_orchestrator_watch.sh`
+**Auto-Spawn**:
+- `scripts/start_research_agent.sh`
+- `scripts/agents/voice_orchestrator_watch.sh`
 
 ---
 
-## Layer 1.1 — 🎙️🦄 Voice Cognition (Liv Hana / Sonnet 4.5 OCT ONLY)
+## 🎙️🦄 Layer 1.1: Voice Orchestration Core (Sonnet 4.5 OCT 2025 ONLY)
 
-**Actor**: Terminal Claude Code CLI `claude-tier1` running Sonnet 4.5 OCT voice mode
+**Model**: 🎙️🤖 Claude Sonnet 4.5 OCT 2025 (voice MCP in `claude-tier1 /voicemode:converse`)
+
+**Role**: Voice ONLY with Jesse. Delegates ALL work to subagents.
+
+**Responsibilities**:
+1. Auto-activate voice; greet per banner
+2. Capture Jesse directive; confirm; log to `.claude/SESSION_PROGRESS.md`
+3. Write `tmp/agent_status/voice.status.json` (`status: listening`)
+4. Enforce "silence" protocol: pause TTS, keep mic + session alive
+5. Poll `tmp/agent_status/{research,artifact,exec,qa,ops}.status.json` + Redis `agent.events`
+6. **FUNNEL GATE**: Only when Research & QA both = `passed` → summarize → request Jesse approval
+7. Approval → `voice.status.json = approved`; Rejection → `blocked` (loop to Planning)
 
 ### Subagents Living Inside Layer 1.1
 
-1. **Planning Subagent**: GPT-5 High Fast → GPT-5 High
-2. **Research Subagent**: Perplexity/Apify fed
-3. **QA Subagent** 🛡️: Sonnet 4.5 text / GPT-4.1 - auto-triggers after ANY execution
-
-### Direct Loop
-
-Two-way communication with Jesse, CEO
-
-### Responsibilities
-
-- **Auto-activate voice**: Greet per banner instructions
-- **Capture directives**: Log Jesse's commands to `.claude/SESSION_PROGRESS.md`
-- **Status emission**: Emit `tmp/agent_status/voice.status.json` (status: listening)
-- **Silence protocol**: "silence" → pause TTS, keep mic + context live (NOT session end)
-- **Status polling**: Monitor `tmp/agent_status/{research,exec,qa,ops}.status.json` + Redis `agent.events`
-- **Gatekeeper role**: Only when Research & QA report `status=passed` does voice summarize and request Jesse's approval
-  - Approval → `voice.status.json=approved`
-  - Rejection → `blocked` (loop back to Planning)
+| ID | Role | Model & Emoji | Responsibilities |
+|-----|------|---------------|------------------|
+| **1.1.1** | Planning Subagent | 🧠🤖 ChatGPT-5 High Fast → GPT-5 High | INGEST→FALLACY SCAN→STRATEGIZE→IMPROVE→REFINE→FUSE→HAND OFF<br>Maintains `docs/tier1_recon_plan.md`, `tmp/agent_status/planning.status.json`<br>Read-only codebase; each task = ONE canonical file |
+| **1.1.2** | Research Subagent | 🔬🤖 Networked GPT + Perplexity/Apify | Auto-launch: `scripts/start_research_agent.sh`<br>Command: `claude-tier1 research --tools perplexity,apify`<br>Outputs: `docs/fallacy-scan.md`, risk updates, `research.status.json`, `logs/research/*.log` |
+| **1.1.3** | QA Subagent | 🛡️🤖 Sonnet 4.5 OCT 2025 text / GPT-4.1 | **Monitors `exec.status.json` - auto-triggers when file changes**<br>Validates ACs, security sweeps, regression tests<br>Writes `logs/qa/*.log`, `qa.status.json`, reports to Planning (1.1.1) |
+| **1.1.4** | Artifact+Exec Self-Creation | 🛠️⚡🐆 Claude Code/GPT-4.1 + Cheetah | **CODEX**: applies repo updates, writes `artifact.status.json`<br>**Cheetah**: 8-step runbook (preflight→lint→test→build→docker→slack→voice→exec.status.json)<br>**Immediately signals QA (1.1.3) after writing exec.status** |
 
 ---
 
-## Layer 1.2 — 🧠 Cursor Agent (Sonnet 4.5 planning mode)
+## 🧠🎙️ Layer 1.2: Cursor Planning Loop
 
-**Direct Loop**: Two-way with Jesse, CEO
+**Model**: 🧠🎙️ Claude Sonnet 4.5 OCT 2025 (planning mode in Cursor)
 
-**Coordination**: Works with Layer 1.1 for planning tasks
+**Role**: Mirrors PO1 plan work from Layer 1.1.1
+
+**Outputs**:
+- `docs/tier1_recon_plan.md` (improved/hardened plans)
+- `tmp/agent_status/planning.status.json`
+
+**Coordination**: Two-way loop with Jesse, CEO ↔
 
 ---
 
-## Layer 2 — 🔬 Research Layer
+## 🔬 Layer 2: Research Coordination Loop
 
-**Actor**: Research Subagent (networked model + Perplexity/Apify tools)
+**Model**: 🔬🤖 Networked GPT (Perplexity/Apify)
 
-### Launch
+**Role**: Keeps research synchronized (fallacy scan, risk register, evidence ledger)
 
-Auto-start via `scripts/start_research_agent.sh` (runs under `op run`)
+**Coordination**: Loop with Jesse ↔
 
-**Command**:
+---
+
+## 🛠️ Layer 3: CODEX Artifact Pit (External)
+
+**Model**: 🛠️🤖 Claude Code / GPT-4.1
+
+**Role**: Reads `tmp/agent_status/codex_tasks.json`, applies diffs, writes `artifact.status.json`
+
+**Coordination**: Loop with Jesse ↔
+
+---
+
+## ⚡🐆 Layer 4: Execution Lightning (External Cheetah Run)
+
+**Model**: ⚡🐆 Cheetah (Cursor's fastest - likely Gemini-based)
+
+**Role**: Full 8-step runbook when triggered outside Layer 1.1.4
+
+**Critical**: Writes `exec.status.json` → **QA (1.1.3) monitors this file and auto-triggers**
+
+**Coordination**: Loop with Jesse ↔
+
+---
+
+## 🔁 Layer 5: Voice-Orchestrator Watcher
+
+**Script**: `scripts/agents/voice_orchestrator_watch.sh`
+
+**Role**: Waits for `research.status=passed`, `exec.status=passed`, `qa.status=passed`
+
+**Action**: Writes `funnel.ready` → signals Layer 1.1 voice
+
+**Voice Response**: "Research complete, Execution validated, QA passed - proceed?"
+
+**Coordination**: Loop with Jesse ↔
+
+---
+
+## 🔔🚀 Layer 6: Ops/Deployment (HUMAN IN THE LOOP)
+
+**Agent**: 🔔👤 Grasshopper Master CODEX (human)
+
+**Trigger**: `scripts/agents/alert_ops.sh` runs after QA passes
+
+**Alert**: 🔔 **"Ops Ready: Sonnet 4.5 QA passed. Deploy now."**
+
+**Action**: `op run` + deployment script (tunnel, restart, CHANGELOG)
+
+**Status**: `tmp/agent_status/ops.status.json` (`deployed`, `prod`, commit)
+
+**Voice Announces**: "Deployment complete" to Jesse
+
+---
+
+## 🗂️ PO1 FILE SYSTEM (Multi-Agent + Human Coordination)
+
+### Atomic Status Files (Machine-Only)
+```
+tmp/agent_status/
+├── voice.status.json          # Layer 1.1 writes
+├── planning.status.json       # Layer 1.1.1 + 1.2 write
+├── research.status.json       # Layer 1.1.2 writes
+├── artifact.status.json       # Layer 1.1.4 + Layer 3 write
+├── exec.status.json           # Layer 1.1.4 + Layer 4 write (QA monitors this!)
+├── qa.status.json             # Layer 1.1.3 writes
+├── funnel.ready               # Layer 5 watcher writes
+├── ops.status.json            # Layer 6 human writes
+└── codex_tasks.json           # COORDINATION: Liv Hana → CODEX queue
+```
+
+### Append-Only Streams (Rotate at 10MB)
+```
+.claude/SESSION_PROGRESS.md           # All agents append
+logs/claude_tier1_boot_*.log          # One per boot (timestamp)
+logs/research/research_agent_*.log    # One per run
+logs/qa/qa_agent_*.log                # One per run
+logs/ci/*.log                         # Cheetah execution (overwrite)
+```
+
+**Rotation Strategy**:
 ```bash
-claude-tier1 research --project LivHana-SoT --plan docs/tier1_recon_plan.md --tools perplexity,apify
+# When file > 10MB:
+mv .claude/SESSION_PROGRESS.md .claude/archive/SESSION_PROGRESS_001.md
+touch .claude/SESSION_PROGRESS.md  # New empty
 ```
 
-### Helpers
-
-- `backend/research-service/src/perplexity.ts`
-- `backend/research-service/src/apify.ts`
-
-### Optional MCP
-
-- `tools/perplexity-mcp/`
-- `tools/apify-mcp/`
-
-### Outputs
-
-- Research artifacts: `docs/fallacy-scan.md`
-- Risk updates: Per research findings
-- Status: `tmp/agent_status/research.status.json`
-- Logs: `logs/research/*`
-- Optional Redis events
-
-### Direct Loop
-
-With Jesse, CEO via Layer 1.1
-
----
-
-## Layer 3 — 🛠️ Artifact Engineering (CODEX)
-
-**Model**: Claude Code / GPT-4.1 (apply_patch only)
-
-### Maintains
-
-**Documentation**:
-- `_index`
-- Evidence ledger
-- Fallacy scan
-- Risk register
-- Research tools
-- Mobile control
-- Agent orchestration
-- ADRs
-
-**Scripts**:
-- `check_recent.sh`
-- `guards/check_po1_files.sh`
-- `claude_voice_session.sh`
-- `mobile/*.sh`
-- `start_{research,qa}_agent.sh`
-- `agents/{emit_event,voice_orchestrator_watch,validate_status}.sh`
-- `slack_smoke_test.sh`
-- `docker_env_wrapper.sh`
-
-**Code**:
-- Slack bridge
-- Redis consumer
-- MCP scaffolds
-
-### Outputs
-
-- Clean diffs
-- Verification notes
-- Status: `tmp/agent_status/artifact.status.json`
-
-### Direct Loop
-
-With Jesse, CEO via Layer 1.1
-
----
-
-## Layer 4 — ⚡🐆 Execution (Cheetah)
-
-**Model**: Cheetah (Cursor's fastest executor)
-
-**Principle**: Stop instantly on failure; log every step
-
-### Execution Sequence (in order)
-
-1. **Preflight**: `./START.sh` + `bash scripts/claude_tier1_boot.sh --dry-run`
-   - Output: `logs/ci/preflight.log`
-
-2. **Lint**: `npm run lint --workspaces`
-   - Output: `logs/ci/lint.log`
-
-3. **Test**: `npm run test --workspaces -- --runInBand`
-   - Output: `logs/ci/test.log`
-
-4. **Build**: `npm run build --workspaces`
-   - Output: `logs/ci/build.log`
-
-5. **Docker**: `docker-compose up -d` + health checks
-   - Output: `logs/ci/docker.log`
-
-6. **Slack Smoke Test**: `bash scripts/slack_smoke_test.sh`
-   - Output: `logs/ci/slack_bridge.log`
-
-7. **Voice CLI Status**: `bash scripts/claude_voice_session.sh status`
-   - Output: `logs/ci/voice_cli.log`
-
-8. **Status Emission**: Write `tmp/agent_status/exec.status.json`
-
-9. **MANDATORY QA Trigger**: Auto-trigger QA via `scripts/start_qa_agent.sh` (never skip)
-
-### Direct Loop
-
-With Jesse, CEO via Layer 1.1
-
-**Auto-triggers**: QA loop back to Layer 1.1
-
----
-
-## Layer 5 — 🔔🚀 Ops/Deployment (HUMAN-IN-THE-LOOP)
-
-**Actor**: Grasshopper Master CODEX (Ops human) or CI operator
-
-### Path
-
-`op run` with prod secrets → deployment script
-- Cloudflare/Tailscale configuration
-- Service restart procedures
-- `CHANGELOG.md` updates
-
-### Status
-
-- Status file: `tmp/agent_status/ops.status.json`
-- Logs: `logs/ops/*`
-
-### Alerts
-
-- 🔔 Notify Grasshopper when ready
-- Voice announces to Jesse
-
----
-
-## Cross-Layer Telemetry & Guardrails
-
-### Status Schema
-
-- **Contract**: `docs/agent-contracts.md`
-- **Validator**: `scripts/agents/validate_status.sh`
-
-### PO1 Guard
-
-- **Script**: `scripts/guards/check_po1_files.sh`
-- **Purpose**: Ensures only registered docs change
-- **Enforcement**: Fails on secret patterns
-
-### Evidence Ledger
-
-- **Location**: `docs/evidence-ledger.md`
-- **Helper**: `scripts/check_recent.sh`
-
-### Fallacy Scan
-
-- **Location**: `docs/fallacy-scan.md`
-- **Sources**: Cites `docs/source-guide.md`
-
-### Model Strategy
-
-- **ADR**: `.claude/decisions/MODEL_STRATEGY_CLOSED_SI_vs_OPEN_AI.md`
-
----
-
-## 🦄 Flow Map
-
+### Canonical Docs (CODEX updates, humans read)
 ```
-🎙️ Layer 1.1 (Voice + 3 Subagents) ↔ Jesse
-      ↓↑
-🧠 Layer 1.2 (Cursor Planning) ↔ Jesse
-      ↓↑
-🔬 Layer 2 (Research) ↔ Jesse via 1.1
-      ↓↑
-🛠️ Layer 3 (CODEX Artifacts) ↔ Jesse via 1.1
-      ↓↑
-⚡🐆 Layer 4 (Cheetah Execution) ↔ Jesse via 1.1
-      ↓ (auto-trigger QA)
-🛡️ QA Subagent (inside Layer 1.1) validates, reports to voice
-      ↓ (on pass)
-🔔🚀 Layer 5 (Ops/Deploy) alerts Grasshopper ↔ Jesse via 1.1
+docs/_index.md                        # MASTER REGISTRY
+docs/tier1_recon_plan.md             # PO1 plan (Layer 1.2 improves)
+docs/evidence-ledger.md              # File catalog
+docs/fallacy-scan.md                 # Research fills
+.claude/TIER1_FUNNEL_AUTHORITY.md    # THIS FILE
+.claude/decisions/                   # ADRs (never rotate)
+```
+
+### Human Editable (Safe)
+```
+COMMANDER_CODEX_ORDERS.md            # Jesse → CODEX directives
+.env.local                           # Local overrides (gitignored)
 ```
 
 ---
 
-## Acceptance Criteria
+## 🛡️ GUARDRAILS (Atomic Operations)
 
-### ✅ Boot Invariants
+### Atomic Write Pattern
+**Script**: `scripts/guards/atomic_write.sh <target> <content>`
+```bash
+TEMP="$1.tmp.$$"
+echo "$2" > "$TEMP"
+mv "$TEMP" "$1"  # Atomic rename
+```
 
-- [ ] All bootstrap checks pass (Node, Redis, JWT, paths)
-- [ ] Sonnet 4.5 OCT enforced across all agents
-- [ ] Voice banner present at top of prompt
+### File Locking
+**Script**: `scripts/guards/with_file_lock.sh <lockfile> <command>`
+```bash
+exec 200>"$1"
+flock -x 200
+shift; "$@"
+flock -u 200
+```
 
-### ✅ Documentation
+### PO1 Structure Validation (Every Boot)
+**Script**: `scripts/guards/validate_po1_structure.sh`
+- Check all status files exist
+- Create missing from `templates/agent_status/default.json`
+- Rotate files > 10MB
+- Validate JSON schema
+- Abort if corrupted (restore from backup)
 
-- [ ] Evidence ledger updated with session artifacts
-- [ ] Fallacy scan includes source citations
-- [ ] Research + QA status files valid
-
-### ✅ Execution Pipeline
-
-- [ ] Preflight passes with zero errors
-- [ ] Lint/test/build produce clean logs
-- [ ] Docker services healthy
-- [ ] Slack smoke test succeeds
-- [ ] Voice CLI operational
-
-### ✅ Guardrails
-
-- [ ] Guard script passes (no secrets, only registered docs)
-- [ ] Voice gating enforced (Research + QA approval required)
-- [ ] Status files conform to schema
-
-### ✅ Deployment
-
-- [ ] Ops deployment recorded in status file
-- [ ] CHANGELOG.md updated with release notes
-- [ ] Grasshopper notified via alert
-
----
-
-## Model Assignments (Strict Enforcement)
-
-| Layer | Primary Model | Fallback | Notes |
-|-------|--------------|----------|-------|
-| **0 - Bootstrap** | Bash/Python | N/A | System scripts only |
-| **1.1 - Voice (Liv Hana)** | Sonnet 4.5 OCT | None | Voice mode required |
-| **1.1 - Planning Sub** | GPT-5 High | GPT-5 High Fast | Universal taskmaster |
-| **1.1 - Research Sub** | Perplexity/Apify | Sonnet 4.5 text | Networked intelligence |
-| **1.1 - QA Sub** | Sonnet 4.5 text | GPT-4.1 | Validation only |
-| **1.2 - Cursor** | Sonnet 4.5 | None | Planning mode |
-| **3 - Artifacts** | Claude Code | GPT-4.1 | Docs/scripts only |
-| **4 - Execution** | Cheetah | None | Fastest executor |
-| **5 - Ops** | Human | N/A | HITL required |
+### Secret Detection
+**Script**: `scripts/guards/check_po1_files.sh`
+- Scans for `PERPLEXITY_API_KEY`, `APIFY_TOKEN`, `SLACK_SIGNING_SECRET`, `JWT_SECRET`
+- Fails commit if found
+- Verifies only `docs/_index.md` files modified
 
 ---
 
-## Emojis Legend
+## 📊 STATUS SCHEMA
 
-- 🧩 **Bootstrap**: Foundation layer
-- 🎙️ **Voice**: Liv Hana voice orchestration
-- 🦄 **Unicorn**: Racing funnel metaphor
-- 🧠 **Cursor**: Planning agent
-- 🔬 **Research**: Investigation layer
-- 🛠️ **Artifacts**: CODEX engineering
-- ⚡ **Execution**: Fast delivery
-- 🐆 **Cheetah**: Speed emphasis
-- 🛡️ **QA**: Quality guardrails
-- 🔔 **Alert**: Human notification
-- 🚀 **Deploy**: Production release
-- 🦁 **Grasshopper**: Ops master
+**File**: `docs/agent-contracts.md`
 
----
+**All status JSON files must have**:
+```json
+{
+  "agent": "voice|planning|research|artifact|exec|qa|ops",
+  "phase": "string",
+  "status": "listening|running|passed|failed|blocked|approved|deployed",
+  "started_at": "ISO8601",
+  "finished_at": "ISO8601",
+  "artifacts": ["path/to/file"],
+  "notes": "string"
+}
+```
 
-## Related Documentation
-
-- Boot system: `docs/CLAUDE_TIER1_BOOT_SYSTEM.md`
-- Voice protocol: `.claude/VOICE_MODE_SILENCE_PROTOCOL.md`
-- Agent foundation: `.claude/TIER1_AGENT_FOUNDATION.md`
-- Session tracking: `.claude/SESSION_PROGRESS.md`
-- Model strategy: `.claude/decisions/MODEL_STRATEGY_CLOSED_SI_vs_OPEN_AI.md`
+**Validator**: `scripts/agents/validate_status.sh` (CI enforces)
 
 ---
 
-## Revision History
+## 🦄 ACCEPTANCE CRITERIA (QA Validates)
 
-| Date | Change | Author |
-|------|--------|--------|
-| 2025-10-22 | Initial canonical version | Jesse Niesen (CEO) via Liv Hana |
+- [ ] Boot invariants pass; Sonnet 4.5 OCT 2025 enforced
+- [ ] Voice banner at TOP of prompt
+- [ ] Silence protocol preserved (sacred commits untouched)
+- [ ] All status JSON valid schema
+- [ ] Research + QA auto-trigger works
+- [ ] Voice funnel gating enforced (Jesse approval required)
+- [ ] Exec writes status → QA auto-monitors → reports to Planning
+- [ ] Preflight/lint/test/build/docker/slack/voice all produce logs
+- [ ] PO1 guard blocks secrets, duplicates, unauthorized files
+- [ ] Evidence ledger updated (48h sweep)
+- [ ] Human ops alert (🔔) triggers on QA pass
+- [ ] Voice announces deployment complete
 
 ---
 
-**END OF CANONICAL FUNNEL AUTHORITY**
+## 🔁 THE LOOP (Continuous Unicorn Racing)
 
-This document is protected from PO1 cleanup and loads at every session startup via `scripts/claude_tier1_boot.sh`.
+```
+Jesse Directive (voice) 
+  ↓
+Layer 1.1: Liv Hana voice captures → dispatches to subagents
+  ├→ 1.1.1 Planning → PO1 tasks
+  ├→ 1.1.2 Research → citations
+  ├→ 1.1.3 QA → monitors exec.status.json
+  └→ 1.1.4 Artifact+Exec → creates/runs → writes exec.status
+       ↓
+QA (1.1.3) AUTO-TRIGGERS (monitors exec.status.json)
+  ↓
+Planning (1.1.1) receives QA report
+  ↓
+Voice (1.1) receives Research+QA status
+  ↓
+Voice announces to Jesse: "Ready to proceed?"
+  ↓
+Jesse approves via voice
+  ↓
+Layer 6: Human Ops (🔔 alerted) deploys
+  ↓
+Voice announces: "Deployment complete"
+  ↓
+LOOP RESTARTS
+```
+
+---
+
+## 📋 MODEL STRATEGY
+
+**File**: `.claude/decisions/MODEL_STRATEGY_CLOSED_SI_vs_OPEN_AI.md`
+
+- **Voice**: 🎙️🤖 Sonnet 4.5 OCT 2025 (Closed SI - Anthropic) - **ENFORCED**
+- **Planning**: 🧠🤖 GPT-5 High Fast → GPT-5 High
+- **Research**: 🔬🤖 Tool-agnostic (Perplexity, Apify, open fallbacks)
+- **Artifact**: 🛠️🤖 Claude Code / GPT-4.1
+- **Execution**: ⚡🐆 Cheetah (proprietary - fastest)
+- **QA**: 🛡️🤖 Sonnet 4.5 OCT 2025 text / GPT-4.1
+- **Ops**: 🔔👤 Human (Grasshopper Master CODEX)
+
+**Substitution**: Forbidden without ADR update + voice gate
+
+---
+
+## 🚨 CRITICAL RULES
+
+1. **Voice stays voice** - Layer 1.1 NEVER types, NEVER clicks - delegates ALL work
+2. **QA auto-triggers** - monitors `exec.status.json` - NO SKIPS
+3. **Jesse gates ALL** - voice approval required before Ops
+4. **One file per purpose** - no duplicates, rotate at 10MB
+5. **Atomic writes** - use `atomic_write.sh` + `with_file_lock.sh`
+6. **Boot validates** - `validate_po1_structure.sh` runs every startup
+7. **Sonnet 4.5 OCT 2025** - ONLY voice model allowed
+
+---
+
+**This is the startup gospel. Load for every agent, every session, no deviations.**
+
+**Unicorn Race Team 🦄 - MOUNT UP!**
