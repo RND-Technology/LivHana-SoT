@@ -6,7 +6,7 @@ STATUS_DIR="$ROOT/tmp/agent_status"
 LOG_DIR="$ROOT/logs/agents"
 mkdir -p "$STATUS_DIR" "$LOG_DIR"
 
-AGENT="exec"
+AGENT="execmon"
 SESSION="execmon"
 STATUS_FILE="$STATUS_DIR/${AGENT}.status.json"
 LOG_FILE="$LOG_DIR/${AGENT}_monitor_$(date +%Y%m%d_%H%M%S).log"
@@ -14,7 +14,8 @@ LOG_FILE="$LOG_DIR/${AGENT}_monitor_$(date +%Y%m%d_%H%M%S).log"
 write_status() {
   local status="$1"; shift || true
   local notes="$*"
-  cat > "$STATUS_FILE" <<JSON
+  local json_content
+  json_content=$(cat <<JSON
 {
   "agent": "${AGENT}",
   "phase": "monitor",
@@ -25,6 +26,12 @@ write_status() {
   "notes": "${notes}"
 }
 JSON
+)
+  if [[ -f "$ROOT/scripts/guards/atomic_write.sh" ]]; then
+    echo "$json_content" | "$ROOT/scripts/guards/atomic_write.sh" "$STATUS_FILE"
+  else
+    echo "$json_content" > "$STATUS_FILE"
+  fi
 }
 
 write_status "starting" "initializing ${AGENT} monitor"

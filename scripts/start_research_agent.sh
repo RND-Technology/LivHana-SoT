@@ -17,7 +17,8 @@ LOG_FILE="$LOG_DIR/${AGENT}_$(date +%Y%m%d_%H%M%S).log"
 write_status() {
   local status="$1"; shift || true
   local notes="$*"
-  cat > "$STATUS_FILE" <<JSON
+  local json_content
+  json_content=$(cat <<JSON
 {
   "agent": "${AGENT}",
   "phase": "startup",
@@ -28,6 +29,12 @@ write_status() {
   "notes": "${notes}"
 }
 JSON
+)
+  if [[ -f "$ROOT/scripts/guards/atomic_write.sh" ]]; then
+    echo "$json_content" | "$ROOT/scripts/guards/atomic_write.sh" "$STATUS_FILE"
+  else
+    echo "$json_content" > "$STATUS_FILE"
+  fi
 }
 
 write_status "starting" "initializing ${AGENT}"
