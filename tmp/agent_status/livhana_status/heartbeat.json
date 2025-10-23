@@ -1,0 +1,16 @@
+{
+  "agent_name": "livhana-layer1.1",
+  "status": "active",
+  "last_heartbeat": "2025-10-23T03:40:01.104812Z",
+  "uptime_seconds": 0,
+  "current_capacity": 0.9,
+  "active_tasks": [
+    "task-123"
+  ],
+  "health": {
+    "cpu_ok": true,
+    "memory_ok": true,
+    "disk_ok": true,
+    "last_error": null
+  }
+}

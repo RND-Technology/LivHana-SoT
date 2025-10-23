@@ -1,0 +1,26 @@
+{
+  "agent": "exec",
+  "phase": "tier1",
+  "status": "failed",
+  "started_at": "2025-10-23T02:13:35Z",
+  "finished_at": "2025-10-23T02:13:42Z",
+  "artifacts": [
+    "/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/logs/ci/preflight.log",
+    "/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/logs/ci/lint.log",
+    "/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/logs/ci/test.log",
+    "/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/logs/ci/build.log",
+    "/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/logs/ci/docker.log",
+    "/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/logs/ci/slack_bridge.log",
+    "/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/logs/ci/voice_cli.log"
+  ],
+  "failures": [
+    {
+      "step": 1,
+      "reason": "HARD FAILURE: Node version mismatch. Current: v24.7.0, Required: v20.x. START.sh preflight check failed.",
+      "log": "/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/logs/ci/preflight.log"
+    }
+  ],
+  "notes": "Execution stopped at Step 1 (Preflight) due to Node version hard failure. All subsequent steps (2-8) skipped per PO1 guardrails. Remedy: Install Node 20.x via nvm or update environment.",
+  "qa_started": false,
+  "qa_pid": null
+}
