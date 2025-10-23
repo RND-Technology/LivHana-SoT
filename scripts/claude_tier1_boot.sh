@@ -408,9 +408,8 @@ else
 fi
 echo
 
-# Check 2: 1Password Desktop app
-info "Checking 1Password Desktop status..."
-check_1password_desktop || true  # Non-fatal, just verify app is running
+# Check 2: 1Password Desktop app (SKIP - integration verified via actual signin)
+# Removed false-positive warning that confused users
 echo
 
 # Check 3: Disk space
