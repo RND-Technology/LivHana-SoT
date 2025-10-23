@@ -39,6 +39,12 @@ if [[ ":$PATH:" != *":/opt/homebrew/bin:"* ]]; then
   echo "   export PATH=\"/opt/homebrew/bin:\$PATH\""
 fi
 
+# Load nvm if available and use Node 20
+if [ -s "$HOME/.nvm/nvm.sh" ]; then
+  source "$HOME/.nvm/nvm.sh"
+  nvm use 20 >/dev/null 2>&1 || nvm install 20
+fi
+
 # Check Node version
 NODE_VERSION=$(node -v 2>/dev/null || echo "not installed")
 if [[ "$NODE_VERSION" == "not installed" ]]; then
@@ -49,24 +55,13 @@ fi
 # Extract major version (e.g., v20.1.0 -> 20)
 NODE_MAJOR=$(echo "$NODE_VERSION" | sed 's/v\([0-9]*\).*/\1/')
 
-# Check if STRICT_NODE_20 override is set
-if [[ "${STRICT_NODE_20:-}" == "true" ]]; then
-  if [[ "$NODE_VERSION" =~ v20 ]]; then
-    echo "✅ Node 20.x detected (STRICT_NODE_20 mode)"
-  else
-    echo "❌ Node 20.x required (STRICT_NODE_20=true). Current: $NODE_VERSION"
-    echo "   Install via: nvm install 20"
-    exit 1
-  fi
+# STRICT: Require Node 20.x for Tier-1
+if [[ "$NODE_VERSION" =~ v20 ]]; then
+  echo "✅ Node 20.x detected ($NODE_VERSION)"
 else
-  # Accept Node >= 20
-  if [[ "$NODE_MAJOR" -ge 20 ]]; then
-    echo "✅ Node ${NODE_MAJOR}.x detected (>= 20 required)"
-  else
-    echo "❌ Node >= 20 required. Current: $NODE_VERSION"
-    echo "   Install via: nvm install 20"
-    exit 1
-  fi
+  echo "❌ Node 20.x REQUIRED for Tier-1. Current: $NODE_VERSION"
+  echo "   Install via: nvm install 20 && nvm use 20"
+  exit 1
 fi
 
 # Check Redis
