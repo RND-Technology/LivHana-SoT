@@ -116,6 +116,48 @@ Update `tmp/agent_status/codex_tasks.json`:
 
 ---
 
+## Model Alias Missing – Reinstall Cask
+
+**Issue**: Claude Sonnet 4.5 OCT 2025 model unavailable during boot  
+**Error**: "Claude Sonnet 4.5 OCT 2025 model unavailable"  
+**Root Cause**: Cask installation incomplete or corrupted
+
+### Remediation Steps
+
+1. **Reinstall Claude Cask**:
+   ```bash
+   brew reinstall --cask claude
+   ```
+
+2. **Update Claude CLI** (optional):
+   ```bash
+   claude self update
+   ```
+
+3. **Verify Model Availability**:
+   ```bash
+   claude models list | grep -i sonnet
+   ```
+   Expected output: `sonnet-4.5-oct-2025`
+
+4. **Re-run Tier-1 Boot**:
+   ```bash
+   MAX_AUTO=0 ./START.sh
+   ```
+
+### Temporary Override
+
+If model unavailable and boot blocked:
+```bash
+ALLOW_TEXT_ONLY=1 MAX_AUTO=0 ./START.sh
+```
+
+**Warning**: This bypasses voice mode requirement (NOT recommended for production sessions).
+
+**Note**: Override is temporary. Full remediation requires model availability.
+
+---
+
 **Status**: Manual intervention required  
 **Priority**: Critical (but non-blocking)  
 **Recommendation**: Fix during maintenance window, not during active voice sessions
