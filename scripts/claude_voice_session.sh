@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+export NO_UPDATE_NOTIFIER=1
+export CI=1
 # 🎤 Claude Voice Session Manager
 # Liv Hana | Voice-First Orchestration
 # Manages voice mode state and session continuity
