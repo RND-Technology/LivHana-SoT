@@ -201,7 +201,8 @@ else
   warning "claude-tier1 CLI not found – research agent skipped; see CODEX_CLI_SETUP_BLOCKERS.md"
 fi
 
-echo
+# MAX_AUTO block moved to correct location (after agent setup, before boot complete)
+
 
 # STEP 0: PRE-FLIGHT SAFETY CHECKS
 banner "STEP 0: PRE-FLIGHT SAFETY CHECKS"
@@ -625,6 +626,32 @@ if [[ -f "$ROOT/scripts/post_launch_checks.py" ]]; then
     --state "$STATE" >> "$LOG" 2>&1 &
   HEALTH_PID=$!
   success "Health checks started (PID: $HEALTH_PID)"
+fi
+
+echo
+# MAX_AUTO autostart for voice + 5 subagents (idempotent)
+if [[ "${MAX_AUTO:-1}" == "1" ]]; then
+  banner "MAX_AUTO: VOICE + SUBAGENTS AUTOSTART"
+  
+  # Start voice session in tmux (idempotent)
+  info "Starting voice orchestrator session..."
+  if bash "$ROOT/scripts/claude_voice_session.sh" >> "$LOG" 2>&1; then
+    success "Voice session started"
+  else
+    warning "Voice session start reported non-zero exit"
+  fi
+  
+  # Start 5 subagents in parallel (Planning already running via Step 7)
+  info "Starting artifact/execmon agents..."
+  bash "$ROOT/scripts/start_artifact_agent.sh" >> "$LOG" 2>&1 || true &
+  bash "$ROOT/scripts/start_execution_monitor.sh" >> "$LOG" 2>&1 || true &
+  
+  # Wait for parallel starts
+  wait || true
+  
+  success "MAX_AUTO autostart sequence completed"
+  info "Tmux sessions: $(tmux ls 2>/dev/null | wc -l) active"
+  echo
 fi
 
 echo

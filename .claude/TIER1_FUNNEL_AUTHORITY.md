@@ -20,9 +20,13 @@
 - `logs/claude_tier1_boot_YYYYMMDD_HHMMSS.log`
 - Append to `.claude/SESSION_PROGRESS.md`
 
-**Auto-Spawn**:
-- `scripts/start_research_agent.sh`
-- `scripts/agents/voice_orchestrator_watch.sh`
+**Auto-Spawn** (when `MAX_AUTO=1`, default):
+- Voice orchestrator: `scripts/claude_voice_session.sh` (tmux session `liv-voice`)
+- 5 subagents: `scripts/start_{planning,research,artifact,execution_monitor,qa}_agent.sh` (tmux sessions)
+- Voice orchestrator watcher: `scripts/agents/voice_orchestrator_watch.sh`
+- Health probe: `scripts/agents/health_probe.sh` (on-demand check)
+
+**Toggle**: Set `MAX_AUTO=0` in environment to disable autostart
 
 ---
 

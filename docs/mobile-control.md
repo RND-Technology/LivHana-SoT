@@ -23,7 +23,15 @@
 ### 3. Replit Doc Fallback (optional)
 - Private Replit mirror branch with text-only CLI mocks; PR back to SoT; never store secrets.
 
-## C. Immediate Next Steps (Voice-aware)
+## C. MAX_AUTO: Automatic Voice + 5-Agent Startup
+- **Default**: `MAX_AUTO=1` in `START.sh` and `scripts/claude_tier1_boot.sh`
+- **What it does**: Auto-launches voice orchestrator + 5 subagents (Planning, Research, Artifact, Execution Monitor, QA) in tmux sessions at boot
+- **Toggle**: Set `MAX_AUTO=0` to disable autostart (manual launch required)
+- **Health check**: Run `bash scripts/agents/health_probe.sh` to verify all agents + watcher status
+- **Tmux sessions**: `liv-voice`, `planning`, `research`, `artifact`, `execmon`, `qa`
+- **Status files**: `tmp/agent_status/{voice,planning,research,artifact,exec,qa}.status.json`
+
+## D. Immediate Next Steps (Voice-aware)
 - Run `scripts/claude_tier1_boot.sh`; ensure banner/silence checks pass, watchdog/compliance services active.
 - Keep Slack/Tailscale work on a dedicated branch.
 
