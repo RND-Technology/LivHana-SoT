@@ -4,4 +4,5 @@
 .table { width: 100%; border-collapse: collapse; }
 .tl { text-align: left; }
 .pre { white-space: pre-wrap; }
+.emptyState { text-align: center; padding: 20px; }
 
