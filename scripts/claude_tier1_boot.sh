@@ -1129,7 +1129,7 @@ if [[ "${MAX_AUTO:-1}" == "1" ]]; then
     info "Starting integration-service with 1Password secrets..."
     ensure_op_session quiet
     if [[ -f "$ROOT/backend/integration-service/package.json" ]]; then
-    cd "$ROOT/backend/integration-service"
+      cd "$ROOT/backend/integration-service"
 
     # PORT 3005 GUARD: Clean up stale processes
     if lsof -ti :3005 >/dev/null 2>&1; then
@@ -1207,7 +1207,6 @@ if [[ "${MAX_AUTO:-1}" == "1" ]]; then
       success "integration-service starting (PID: $INTEGRATION_PID, managed via port 3005)"
       
       cd "$ROOT"
-
       # Wait for service to become available (replaces hardcoded sleep)
       info "Waiting for integration-service to become available..."
       if wait_for_service 3005 30 2; then
@@ -1219,7 +1218,6 @@ if [[ "${MAX_AUTO:-1}" == "1" ]]; then
     else
       warning "integration-service package.json not found - skipping"
     fi
-
     cd "$ROOT"
   fi
 
