@@ -54,13 +54,15 @@ ensure_op_session() {
 
   # Check if already signed in (with timeout)
   if timeout 5 op whoami >/dev/null 2>&1; then
-    local account_domain="$(op whoami | sed 's/@.*//' | tr -d '\n')"
-    if [[ "$verbosity" == "show" ]]; then
-      success "1Password authenticated: ${account_domain}@***"
-    else
-      info "1Password session already active"
+    local account_domain="$(op whoami 2>/dev/null | sed 's/@.*//' | tr -d '\n' || echo '')"
+    if [[ -n "$account_domain" ]]; then
+      if [[ "$verbosity" == "show" ]]; then
+        success "1Password authenticated: ${account_domain}@***"
+      else
+        info "1Password session already active"
+      fi
+      return 0
     fi
-    return 0
   fi
 
   warning "1Password session not detected. Triggering automatic sign-in for ${account}..."
@@ -95,9 +97,11 @@ ensure_op_session() {
   fi
 
   if op whoami >/dev/null 2>&1; then
-    local account_domain="$(op whoami | sed 's/@.*//' | tr -d '\n')"
-    success "1Password authenticated: ${account_domain}@***"
-    return 0
+    local account_domain="$(op whoami 2>/dev/null | sed 's/@.*//' | tr -d '\n' || echo '')"
+    if [[ -n "$account_domain" ]]; then
+      success "1Password authenticated: ${account_domain}@***"
+      return 0
+    fi
   fi
 
   error "1Password sign-in did not produce an active session."
