@@ -1,42 +1,52 @@
 #!/usr/bin/env bash
-# Auto-starts the Tier-1 research agent with Perplexity/Apify tooling.
-# Uses `op run` when available so secrets resolve without leaking into logs.
+# Auto-starts the Tier-1 research agent anchor process.
+# Task-based research happens via voice orchestrator delegation.
 
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-LOG_DIR="$ROOT/logs/research"
 STATUS_DIR="$ROOT/tmp/agent_status"
+LOG_DIR="$ROOT/logs/agents"
+mkdir -p "$STATUS_DIR" "$LOG_DIR"
 
-mkdir -p "$LOG_DIR" "$STATUS_DIR"
+AGENT="research"
+SESSION="research"
+STATUS_FILE="$STATUS_DIR/${AGENT}.status.json"
+LOG_FILE="$LOG_DIR/${AGENT}_$(date +%Y%m%d_%H%M%S).log"
 
-TIMESTAMP="$(date +%Y%m%d_%H%M%S)"
-LOG_FILE="$LOG_DIR/research_agent_${TIMESTAMP}.log"
-PID_FILE="$STATUS_DIR/research.pid"
-
+write_status() {
+  local status="$1"; shift || true
+  local notes="$*"
+  cat <<JSON | bash "$ROOT/scripts/guards/atomic_write.sh" "$STATUS_FILE"
 {
-  echo "[$(date '+%Y-%m-%d %H:%M:%S %Z')] Starting research agent..."
+  "agent": "${AGENT}",
+  "phase": "startup",
+  "status": "${status}",
+  "started_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+  "finished_at": "",
+  "artifacts": ["${LOG_FILE}"],
+  "notes": "${notes}"
+}
+JSON
+}
 
-  if ! command -v claude-tier1 >/dev/null 2>&1; then
-    echo "ERROR: claude-tier1 CLI not found in PATH. Install or expose before running."
-    exit 1
-  fi
+write_status "starting" "initializing ${AGENT}"
 
-  CMD=(claude-tier1 research --project LivHana-SoT --plan docs/tier1_recon_plan.md --tools perplexity,apify)
+if ! command -v tmux >/dev/null 2>&1; then
+  write_status "blocked" "tmux missing; brew install tmux"
+  exit 0
+fi
 
-  if command -v op >/dev/null 2>&1; then
-    echo "INFO: Launching research agent via op run to load secrets."
-    op run -- "${CMD[@]}" &
-  else
-    echo "WARN: 1Password CLI not available; launching research agent without op run."
-    "${CMD[@]}" &
-  fi
+if tmux has-session -t "$SESSION" 2>/dev/null; then
+  write_status "running" "existing tmux session"
+  exit 0
+fi
 
-  PID=$!
-  echo "INFO: Research agent PID: $PID"
-  echo "$PID" > "$PID_FILE"
-} >>"$LOG_FILE" 2>&1
+tmux new-session -d -s "$SESSION" -n console "bash -lc 'echo [$(date -u +%FT%TZ)] ${AGENT} agent started >> \"$LOG_FILE\"; tail -f \"$LOG_FILE\"'" >/dev/null 2>&1 || {
+  write_status "blocked" "failed to start tmux session"
+  exit 0
+}
 
-disown "$PID" >/dev/null 2>&1 || true
-
-echo "Research agent started (PID: ${PID}). Logs: $LOG_FILE"
+write_status "running" "tmux session created"
+echo "Research agent started (tmux session: ${SESSION}). Logs: $LOG_FILE"
+exit 0

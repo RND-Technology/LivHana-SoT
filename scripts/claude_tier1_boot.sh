@@ -706,11 +706,14 @@ if [[ "${MAX_AUTO:-1}" == "1" ]]; then
     warning "Voice session start reported non-zero exit"
   fi
   
-  # Start 5 subagents in parallel (Planning already running via Step 7)
-  info "Starting artifact/execmon agents..."
+  # Start 5 subagents in parallel
+  info "Starting all 5 subagents..."
+  bash "$ROOT/scripts/start_planning_agent.sh" >> "$LOG" 2>&1 || true &
+  bash "$ROOT/scripts/start_research_agent.sh" >> "$LOG" 2>&1 || true &
   bash "$ROOT/scripts/start_artifact_agent.sh" >> "$LOG" 2>&1 || true &
   bash "$ROOT/scripts/start_execution_monitor.sh" >> "$LOG" 2>&1 || true &
-  
+  bash "$ROOT/scripts/start_qa_agent.sh" >> "$LOG" 2>&1 || true &
+
   # Wait for parallel starts
   wait || true
   
