@@ -95,6 +95,13 @@ check_critical_dependencies() {
     info "Install: brew install --cask claude"
   fi
 
+  # Node 20 Guard (hard-fail in non-interactive shells)
+  if [[ ! -t 0 ]] && [[ "${NODE_MAJOR:-0}" -lt 20 ]]; then
+    error "Node >= 20 required in non-interactive mode. Current: ${NODE_VERSION:-unknown}"
+    error "Run: nvm install 20 && nvm use 20"
+    missing=$((missing + 1))
+  fi
+
   return $missing
 }
 
