@@ -8,7 +8,8 @@ create table if not exists rpm_weeks (
   version int not null default 1,
   status text not null default 'active' check (status in ('draft','active','archived')),
   created_at timestamptz not null default now(),
-  updated_at timestamptz not null default now()
+  updated_at timestamptz not null default now(),
+  unique (week_start, week_end)
 );
 
 create table if not exists rpm_items (
