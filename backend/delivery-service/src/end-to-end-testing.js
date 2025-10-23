@@ -161,8 +161,8 @@ async function testProviderComparison() {
       console.error('❌ Provider comparison test failed:', response.data.error);
       return false;
     }
-  } catch (error) {
-    console.error('❌ Provider comparison test error:', error.message);
+  } catch (err) {
+    console.error('❌ Provider comparison test error:', err.message);
     return false;
   }
 }
@@ -339,7 +339,7 @@ export async function healthCheck() {
   try {
     const response = await axios.get(`${BASE_URL}/health`);
     return response.status === 200;
-  } catch (error) {
+  } catch (_err) {
     return false;
   }
 }
