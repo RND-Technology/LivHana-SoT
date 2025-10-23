@@ -1106,7 +1106,7 @@ if [[ "${MAX_AUTO:-1}" == "1" ]]; then
     warning "Artifact agent validation failed (may still be starting)"
   fi
 
-  if bash "$ROOT/scripts/guards/validate_agent_started.sh" exec 10; then
+  if bash "$ROOT/scripts/guards/validate_agent_started.sh" execmon 10; then
     success "Execution monitor validated"
   else
     warning "Execution monitor validation failed (may still be starting)"
@@ -1195,7 +1195,8 @@ if [[ "${MAX_AUTO:-1}" == "1" ]]; then
       
       # Start the service in background, pipe through scrubber
       cd "$ROOT/backend/integration-service"
-      (op run --env-file "$ENV_FILE" -- npm start 2>&1 | "$ROOT/scripts/guards/scrub_secrets.sh" > "$log") &
+      # Pipe through in-shell scrub_secrets function (sourced above) to avoid sed portability issues
+      (op run --env-file "$ENV_FILE" -- npm start 2>&1 | scrub_secrets > "$log") &
       INTEGRATION_PID=$!
       echo "$INTEGRATION_PID" > "$ROOT/tmp/integration-service.pid"
       
