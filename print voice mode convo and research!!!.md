@@ -1,6 +1,6 @@
 <img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" style="height:64px;margin-right:32px"/>
 
-# print voice mode convo and research!!!
+# print voice mode convo and research
 
 **Voice Mode Convo and Research – Print-Ready Strategic Blueprint for Liv Hana**
 
@@ -14,7 +14,6 @@
 - **Texas Compliance Guardrails:** All sales require 21+ photo-ID (DSHS \& TABC Oct 2025 emergency rules). Law anchors: TX HSC §443, 25 TAC Ch. 300. POS logs mandatory. Actions and language block medical claims and protect sovereignty.
 
 **Strategic Skills Revenue Roadmap:**
-
 
 | Skill | Revenue Impact | Deploy Time | What It Does | Status / Priority |
 | :-- | :-- | :-- | :-- | :-- |
@@ -70,12 +69,11 @@
 
 <div align="center">⁂</div>
 
-[^1_1]: https://www.perplexity.ai/search/ingest-fallacy-scan-scrutinize-vpKlYK6xQpSmqz6buQ1HwA
-
+[^1_1]: <https://www.perplexity.ai/search/ingest-fallacy-scan-scrutinize-vpKlYK6xQpSmqz6buQ1HwA>
 
 ---
 
-# No MY ENTORE VOICE MODE CONVO WOTH COMET!!! Where is it!!! Waited on Comet promised research nothing here!!!
+# No MY ENTORE VOICE MODE CONVO WOTH COMET!!! Where is it!!! Waited on Comet promised research nothing here
 
 Here’s the clear answer: your **entire voice mode conversation with Comet, plus the strategic research, revenue roadmap, compliance protocols, files, action steps, and training guides** are all contained in the session summary, project memory, and downloadable RPM Weekly Plan that’s populated and linked from your current session on Comet. The full print-ready plan, agent orchestration, compliance guardrails, strategic skill scripts, cockpit training, and evidence citations are available as markdown and PDF attachments in the library sidebar and referenced directly in this Comet session for Liv Hana pilot deployment.
 
@@ -109,8 +107,7 @@ If you need export, print, or session memory for any specific part, **directly a
 
 <div align="center">⁂</div>
 
-[^2_1]: https://www.perplexity.ai/search/ingest-fallacy-scan-scrutinize-vpKlYK6xQpSmqz6buQ1HwA
-
+[^2_1]: <https://www.perplexity.ai/search/ingest-fallacy-scan-scrutinize-vpKlYK6xQpSmqz6buQ1HwA>
 
 ---
 
@@ -120,33 +117,32 @@ Here are all the direct file and report download links from your chat history in
 
 - **Superior Voice Mode Cognitive Orchestration Layer - Liv Hana Agent Builder (TXT)**
 Link:
-https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/50061799/17c7ad26-474c-4677-beb7-68f6fea87fa2/superior-voice-mode-cognitive-orchestration-layer-Liv-Hana-Agent-Builder-with-sub-agent-layers-frontier-streaming.txt?AWSAccessKeyId=ASIA2F3EMEYE4HVDR46Z\&Signature=6xTZjADLRAgsXA8K6%2BG73De6n9M%3D\&x-amz-security-token=IQoJb3JpZ2luX2VjEFQaCXVzLWVhc3QtMSJHMEUCIFqVYTlFGpMAaJWTqHGyMtoV%2B0qcgawJnJ4mYJhpfR0hAiEA7BTyWgGZ8IrtWWNSlB1A6nPtKhJFJePcjCULtYltQC0q%2BgQI%2Ff%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARABGgw2OTk3NTMzMDk3MDUiDGk12F%2BW6bZzMRp11irOBGGlb9u352jXtcBNJ1%2BNtlt8bOc4qae%2F8NK22UY%2B35R9DER1bR%2BA5XeBt4GMFUreyhlUjgBdC0TlL3iHmJO0gOECecgPlH4FElUbj2wWx%2FETcrMBYrmyqWwjNQHKPodSRwkKAXzDR9OrBi09Z1iowAt7bIcZ%2BnHtp370ojO40nEfSVb2DBdSVwYz%2FyLM%2F1ZWu9F7VK2iQilc70DnhrRQz4qyT99cgAPvPMpe2skXjjt1dcOGXChzNm7CYWwPoBgSPtmjlM4nRG1fIaohQ907QYyfFDJcYRcoiRcT4gQJKDlp%2B2TWsH4lRtoUTdyxegHPumcEH1R8LXsXpOnZKPbyiP8dAgTujsUsYYy66xAtoI6iUYfWbeX8jliNtEaxR1D9hynRLChjkIdHtbIYGp74Odkltbesfi7wL7oR2QQDQSDvRdn8H1GKV6e7wJMS7UQl56uHRIoBRZNyMF2zJd7Jv65oI9em0aNkOXZWsqs%2FjhtX7y7EwNbocCQzF77m%2FHUxrH%2F0t6sr724%2FIgNkyeP0yJ4O9mZPFllMlNgwX55uI%2BCiuqqyFEpvuplrW3tWvMXhPyzk3z7Lj8VxX6V3Fv1Pq4k4tZOKzqRQCUJeNWFKya0%2F4sbRo0Hv9AUdIQleSz%2Bz8VGbheOfhYcuu9PlM%2FSt%2BItnN7JcTvLkIrkCSOk29%2BCE%2BNwf0crH4YbQUgVkDARm%2BhmsY%2BKAlTZ0x7eb%2Biavvj5oBq3eV%2FRuEAzltVIiu5Rj%2Bly0MxKyoo1ff7V6eVSWhkJWhJJ5D3wlHkCn9OlOMJ%2F%2F28cGOpoBaGpTTwLBHl6gsUBQ2crW1pYBlcLVMCzbuBvmTCcoRMKJ1j59CZFi8Taj%2FX33J721DCdHEM6qe20GRY7618gQ5PbULFGeL17BTJCogPHUGUm%2B6%2FN6hSxmEPLhNd2%2FeXpTMzoomxXXzON3gXmnYHvETrv%2FKoSLRXcc3qCbkY2RsvWCM2yHpG3G%2BmGnwVi7X16rZLqQFXVmnuWN5g%3D%3D\&Expires=1761018471
+<https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/50061799/17c7ad26-474c-4677-beb7-68f6fea87fa2/superior-voice-mode-cognitive-orchestration-layer-Liv-Hana-Agent-Builder-with-sub-agent-layers-frontier-streaming.txt?AWSAccessKeyId=ASIA2F3EMEYE4HVDR46Z\&Signature=6xTZjADLRAgsXA8K6%2BG73De6n9M%3D\&x-amz-security-token=IQoJb3JpZ2luX2VjEFQaCXVzLWVhc3QtMSJHMEUCIFqVYTlFGpMAaJWTqHGyMtoV%2B0qcgawJnJ4mYJhpfR0hAiEA7BTyWgGZ8IrtWWNSlB1A6nPtKhJFJePcjCULtYltQC0q%2BgQI%2Ff%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARABGgw2OTk3NTMzMDk3MDUiDGk12F%2BW6bZzMRp11irOBGGlb9u352jXtcBNJ1%2BNtlt8bOc4qae%2F8NK22UY%2B35R9DER1bR%2BA5XeBt4GMFUreyhlUjgBdC0TlL3iHmJO0gOECecgPlH4FElUbj2wWx%2FETcrMBYrmyqWwjNQHKPodSRwkKAXzDR9OrBi09Z1iowAt7bIcZ%2BnHtp370ojO40nEfSVb2DBdSVwYz%2FyLM%2F1ZWu9F7VK2iQilc70DnhrRQz4qyT99cgAPvPMpe2skXjjt1dcOGXChzNm7CYWwPoBgSPtmjlM4nRG1fIaohQ907QYyfFDJcYRcoiRcT4gQJKDlp%2B2TWsH4lRtoUTdyxegHPumcEH1R8LXsXpOnZKPbyiP8dAgTujsUsYYy66xAtoI6iUYfWbeX8jliNtEaxR1D9hynRLChjkIdHtbIYGp74Odkltbesfi7wL7oR2QQDQSDvRdn8H1GKV6e7wJMS7UQl56uHRIoBRZNyMF2zJd7Jv65oI9em0aNkOXZWsqs%2FjhtX7y7EwNbocCQzF77m%2FHUxrH%2F0t6sr724%2FIgNkyeP0yJ4O9mZPFllMlNgwX55uI%2BCiuqqyFEpvuplrW3tWvMXhPyzk3z7Lj8VxX6V3Fv1Pq4k4tZOKzqRQCUJeNWFKya0%2F4sbRo0Hv9AUdIQleSz%2Bz8VGbheOfhYcuu9PlM%2FSt%2BItnN7JcTvLkIrkCSOk29%2BCE%2BNwf0crH4YbQUgVkDARm%2BhmsY%2BKAlTZ0x7eb%2Biavvj5oBq3eV%2FRuEAzltVIiu5Rj%2Bly0MxKyoo1ff7V6eVSWhkJWhJJ5D3wlHkCn9OlOMJ%2F%2F28cGOpoBaGpTTwLBHl6gsUBQ2crW1pYBlcLVMCzbuBvmTCcoRMKJ1j59CZFi8Taj%2FX33J721DCdHEM6qe20GRY7618gQ5PbULFGeL17BTJCogPHUGUm%2B6%2FN6hSxmEPLhNd2%2FeXpTMzoomxXXzON3gXmnYHvETrv%2FKoSLRXcc3qCbkY2RsvWCM2yHpG3G%2BmGnwVi7X16rZLqQFXVmnuWN5g%3D%3D\&Expires=1761018471>
 
 This is the primary downloadable file/report for your past three days’ chat activity, specifically related to the **voice mode orchestration, agent builder, strategy pilot, and evidence stream** for Liv Hana and Comet. If you are missing a specific export or report, let me know the name or function and I will locate or generate the direct link ASAP.
 <span style="display:none">[^3_1][^3_2][^3_3][^3_4][^3_5][^3_6][^3_7][^3_8]</span>
 
 <div align="center">⁂</div>
 
-[^3_1]: https://www.perplexity.ai/search/wake-up-wnebA8XTRyOWf4FORonSOA
+[^3_1]: <https://www.perplexity.ai/search/wake-up-wnebA8XTRyOWf4FORonSOA>
 
-[^3_2]: https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/50061799/17c7ad26-474c-4677-beb7-68f6fea87fa2/superior-voice-mode-cognitive-orchestration-layer-Liv-Hana-Agent-Builder-with-sub-agent-layers-frontier-streaming.txt?AWSAccessKeyId=ASIA2F3EMEYE4HVDR46Z\&Signature=6xTZjADLRAgsXA8K6%2BG73De6n9M%3D\&x-amz-security-token=IQoJb3JpZ2luX2VjEFQaCXVzLWVhc3QtMSJHMEUCIFqVYTlFGpMAaJWTqHGyMtoV%2B0qcgawJnJ4mYJhpfR0hAiEA7BTyWgGZ8IrtWWNSlB1A6nPtKhJFJePcjCULtYltQC0q%2BgQI%2Ff%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARABGgw2OTk3NTMzMDk3MDUiDGk12F%2BW6bZzMRp11irOBGGlb9u352jXtcBNJ1%2BNtlt8bOc4qae%2F8NK22UY%2B35R9DER1bR%2BA5XeBt4GMFUreyhlUjgBdC0TlL3iHmJO0gOECecgPlH4FElUbj2wWx%2FETcrMBYrmyqWwjNQHKPodSRwkKAXzDR9OrBi09Z1iowAt7bIcZ%2BnHtp370ojO40nEfSVb2DBdSVwYz%2FyLM%2F1ZWu9F7VK2iQilc70DnhrRQz4qyT99cgAPvPMpe2skXjjt1dcOGXChzNm7CYWwPoBgSPtmjlM4nRG1fIaohQ907QYyfFDJcYRcoiRcT4gQJKDlp%2B2TWsH4lRtoUTdyxegHPumcEH1R8LXsXpOnZKPbyiP8dAgTujsUsYYy66xAtoI6iUYfWbeX8jliNtEaxR1D9hynRLChjkIdHtbIYGp74Odkltbesfi7wL7oR2QQDQSDvRdn8H1GKV6e7wJMS7UQl56uHRIoBRZNyMF2zJd7Jv65oI9em0aNkOXZWsqs%2FjhtX7y7EwNbocCQzF77m%2FHUxrH%2F0t6sr724%2FIgNkyeP0yJ4O9mZPFllMlNgwX55uI%2BCiuqqyFEpvuplrW3tWvMXhPyzk3z7Lj8VxX6V3Fv1Pq4k4tZOKzqRQCUJeNWFKya0%2F4sbRo0Hv9AUdIQleSz%2Bz8VGbheOfhYcuu9PlM%2FSt%2BItnN7JcTvLkIrkCSOk29%2BCE%2BNwf0crH4YbQUgVkDARm%2BhmsY%2BKAlTZ0x7eb%2Biavvj5oBq3eV%2FRuEAzltVIiu5Rj%2Bly0MxKyoo1ff7V6eVSWhkJWhJJ5D3wlHkCn9OlOMJ%2F%2F28cGOpoBaGpTTwLBHl6gsUBQ2crW1pYBlcLVMCzbuBvmTCcoRMKJ1j59CZFi8Taj%2FX33J721DCdHEM6qe20GRY7618gQ5PbULFGeL17BTJCogPHUGUm%2B6%2FN6hSxmEPLhNd2%2FeXpTMzoomxXXzON3gXmnYHvETrv%2FKoSLRXcc3qCbkY2RsvWCM2yHpG3G%2BmGnwVi7X16rZLqQFXVmnuWN5g%3D%3D\&Expires=1761018471
+[^3_2]: <https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/50061799/17c7ad26-474c-4677-beb7-68f6fea87fa2/superior-voice-mode-cognitive-orchestration-layer-Liv-Hana-Agent-Builder-with-sub-agent-layers-frontier-streaming.txt?AWSAccessKeyId=ASIA2F3EMEYE4HVDR46Z\&Signature=6xTZjADLRAgsXA8K6%2BG73De6n9M%3D\&x-amz-security-token=IQoJb3JpZ2luX2VjEFQaCXVzLWVhc3QtMSJHMEUCIFqVYTlFGpMAaJWTqHGyMtoV%2B0qcgawJnJ4mYJhpfR0hAiEA7BTyWgGZ8IrtWWNSlB1A6nPtKhJFJePcjCULtYltQC0q%2BgQI%2Ff%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARABGgw2OTk3NTMzMDk3MDUiDGk12F%2BW6bZzMRp11irOBGGlb9u352jXtcBNJ1%2BNtlt8bOc4qae%2F8NK22UY%2B35R9DER1bR%2BA5XeBt4GMFUreyhlUjgBdC0TlL3iHmJO0gOECecgPlH4FElUbj2wWx%2FETcrMBYrmyqWwjNQHKPodSRwkKAXzDR9OrBi09Z1iowAt7bIcZ%2BnHtp370ojO40nEfSVb2DBdSVwYz%2FyLM%2F1ZWu9F7VK2iQilc70DnhrRQz4qyT99cgAPvPMpe2skXjjt1dcOGXChzNm7CYWwPoBgSPtmjlM4nRG1fIaohQ907QYyfFDJcYRcoiRcT4gQJKDlp%2B2TWsH4lRtoUTdyxegHPumcEH1R8LXsXpOnZKPbyiP8dAgTujsUsYYy66xAtoI6iUYfWbeX8jliNtEaxR1D9hynRLChjkIdHtbIYGp74Odkltbesfi7wL7oR2QQDQSDvRdn8H1GKV6e7wJMS7UQl56uHRIoBRZNyMF2zJd7Jv65oI9em0aNkOXZWsqs%2FjhtX7y7EwNbocCQzF77m%2FHUxrH%2F0t6sr724%2FIgNkyeP0yJ4O9mZPFllMlNgwX55uI%2BCiuqqyFEpvuplrW3tWvMXhPyzk3z7Lj8VxX6V3Fv1Pq4k4tZOKzqRQCUJeNWFKya0%2F4sbRo0Hv9AUdIQleSz%2Bz8VGbheOfhYcuu9PlM%2FSt%2BItnN7JcTvLkIrkCSOk29%2BCE%2BNwf0crH4YbQUgVkDARm%2BhmsY%2BKAlTZ0x7eb%2Biavvj5oBq3eV%2FRuEAzltVIiu5Rj%2Bly0MxKyoo1ff7V6eVSWhkJWhJJ5D3wlHkCn9OlOMJ%2F%2F28cGOpoBaGpTTwLBHl6gsUBQ2crW1pYBlcLVMCzbuBvmTCcoRMKJ1j59CZFi8Taj%2FX33J721DCdHEM6qe20GRY7618gQ5PbULFGeL17BTJCogPHUGUm%2B6%2FN6hSxmEPLhNd2%2FeXpTMzoomxXXzON3gXmnYHvETrv%2FKoSLRXcc3qCbkY2RsvWCM2yHpG3G%2BmGnwVi7X16rZLqQFXVmnuWN5g%3D%3D\&Expires=1761018471>
 
-[^3_3]: https://support.claude.com/en/articles/9267400-can-individuals-with-pro-or-max-plan-accounts-migrate-them-to-claude-for-work-team-or-enterprise-plan-organizations
+[^3_3]: <https://support.claude.com/en/articles/9267400-can-individuals-with-pro-or-max-plan-accounts-migrate-them-to-claude-for-work-team-or-enterprise-plan-organizations>
 
-[^3_4]: https://support.claude.com/en/articles/11049762-choosing-a-claude-plan
+[^3_4]: <https://support.claude.com/en/articles/11049762-choosing-a-claude-plan>
 
-[^3_5]: https://support.claude.com/en/articles/11049752-how-do-i-sign-up-for-the-max-plan
+[^3_5]: <https://support.claude.com/en/articles/11049752-how-do-i-sign-up-for-the-max-plan>
 
-[^3_6]: https://support.claude.com/en/collections/5953830-paid-claude-plans
+[^3_6]: <https://support.claude.com/en/collections/5953830-paid-claude-plans>
 
-[^3_7]: https://support.claude.com/en/articles/11014257-about-claude-s-max-plan-usage
+[^3_7]: <https://support.claude.com/en/articles/11014257-about-claude-s-max-plan-usage>
 
-[^3_8]: https://www.perplexity.ai/?error=threadAccessNotAllowed\&id=comet-research-prompt-liv-hana-_Zo2LydVQdKvPCBaO9VPBQ
-
+[^3_8]: <https://www.perplexity.ai/?error=threadAccessNotAllowed\&id=comet-research-prompt-liv-hana-_Zo2LydVQdKvPCBaO9VPBQ>
 
 ---
 
-# all files and reports past 72 hrs!!
+# all files and reports past 72 hrs
 
 Here are **all files and reports** available from your chat history in the past 72 hours for direct download:
 
@@ -172,12 +168,11 @@ Choose your next file, report, or training action to keep profitable progress mo
 
 <div align="center">⁂</div>
 
-[^4_1]: https://www.perplexity.ai/search/wake-up-wnebA8XTRyOWf4FORonSOA
-
+[^4_1]: <https://www.perplexity.ai/search/wake-up-wnebA8XTRyOWf4FORonSOA>
 
 ---
 
-# WTF!  This XML file does not appear to have any style information associated with it. The document tree is shown below.
+# WTF!  This XML file does not appear to have any style information associated with it. The document tree is shown below
 
 <Error>
 <Code>AccessDenied</Code>
@@ -205,17 +200,16 @@ Let’s keep your workflow moving—tell me which files to re-deliver and I’ll
 
 <div align="center">⁂</div>
 
-[^5_1]: https://www.perplexity.ai/search/wake-up-wnebA8XTRyOWf4FORonSOA
-
+[^5_1]: <https://www.perplexity.ai/search/wake-up-wnebA8XTRyOWf4FORonSOA>
 
 ---
 
-# ALL PAST 72 HRS!!!!!!!!!!!!!!
+# ALL PAST 72 HRS
 
 Here is a **complete list of all sessions, files, and reports** from the last 72 hours, based on your workspace and session chat history.
 **Note:** Some direct download links have expired (which triggered the XML AccessDenied error). To get current access, request new download links or visit the Comet library for active files.
 
-### Past 72 Hours File \& Report Locations:
+### Past 72 Hours File \& Report Locations
 
 **Comet Library / Perplexity Session (Print, Download, Research)**
 
@@ -231,8 +225,8 @@ Here is a **complete list of all sessions, files, and reports** from the last 72
 **Direct TXT File (Expired Download Link—Regenerate Needed):**
 
 - **Superior Voice Mode Cognitive Orchestration Layer – Liv Hana Agent Builder**
-    - *Original Link Expired*:
-        - If you need this or any file re-delivered: reply with "regenerate all download links for past 72 hours" or specify the file!
+  - *Original Link Expired*:
+    - If you need this or any file re-delivered: reply with "regenerate all download links for past 72 hours" or specify the file!
 
 ***
 
@@ -254,5 +248,4 @@ Here is a **complete list of all sessions, files, and reports** from the last 72
 
 <div align="center">⁂</div>
 
-[^6_1]: https://www.perplexity.ai/search/wake-up-wnebA8XTRyOWf4FORonSOA
-
+[^6_1]: <https://www.perplexity.ai/search/wake-up-wnebA8XTRyOWf4FORonSOA>

@@ -66,18 +66,18 @@ if command -v vm_stat >/dev/null 2>&1; then
   fi
 fi
 
-# Check 1Password session (OPTIONAL - not blocking)
+# Check 1Password session (required for downstream op run calls)
 if ! command -v op >/dev/null 2>&1; then
-  warning "1Password CLI (op) not found - some features will be limited"
-  warning "Install via: brew install 1password-cli"
-else
-  if ! op whoami >/dev/null 2>&1; then
-    warning "1Password session not active - API keys will not auto-load"
-    warning "Run: op signin (optional, for convenience only)"
-  else
-    success "1Password authenticated: $(op whoami)"
-  fi
+  error "1Password CLI (op) not found. Install via: brew install 1password-cli"
+  exit 1
 fi
+
+if ! op whoami >/dev/null 2>&1; then
+  error "1Password CLI is installed but not signed in."
+  error "Run: eval \"\$(op signin <your-account>)\" and re-run Tier-1 boot."
+  exit 1
+fi
+success "1Password authenticated: $(op whoami | tr -d '\n')"
 
 # GCP project for downstream scripts
 export GCP_PROJECT_ID="reggieanddrodispensary"
@@ -137,9 +137,61 @@ if command -v op >/dev/null 2>&1 && op whoami >/dev/null 2>&1; then
   done
 fi
 
+# Verify Node.js version (must be >= 20 unless STRICT_NODE_20=true)
+if ! command -v node >/dev/null 2>&1; then
+  error "Node.js not found - required for Tier-1 boot"
+  error "Install via: nvm install 20"
+  exit 1
+fi
+
+NODE_VERSION=$(node -v 2>/dev/null || echo "unknown")
+NODE_MAJOR=$(echo "$NODE_VERSION" | sed 's/v\([0-9]*\).*/\1/')
+
+if [[ "${STRICT_NODE_20:-}" == "true" ]]; then
+  if [[ "$NODE_VERSION" =~ ^v20\. ]]; then
+    success "Node 20.x detected (STRICT_NODE_20 mode)"
+  else
+    error "Node 20.x required when STRICT_NODE_20=true. Current: $NODE_VERSION"
+    error "Install via: nvm install 20"
+    exit 1
+  fi
+else
+  if [[ "${NODE_MAJOR:-0}" -ge 20 ]]; then
+    success "Node ${NODE_MAJOR}.x detected (>= 20 required)"
+  else
+    error "Node >= 20 required. Current: $NODE_VERSION"
+    error "Install via: nvm install 20"
+    exit 1
+  fi
+fi
+
+# Log Node version to boot log
+echo "NODE_VERSION=$NODE_VERSION" >> "$LOG"
+
+# Ensure Claude Sonnet 4.5 OCT 2025 model is available
+if ! claude models list 2>/dev/null | grep -q "sonnet-4.5-oct-2025"; then
+  error "Claude Sonnet 4.5 OCT 2025 model unavailable."
+  error "Run: claude models list   # ensure the model name matches 'sonnet-4.5-oct-2025'"
+  exit 1
+fi
+success "Claude model sonnet-4.5-oct-2025 available"
+
+# Ensure Homebrew path prominence
+PATH_TOP3=$(echo "$PATH" | awk -F: '{print $1":"$2":"$3}')
+if [[ "$PATH_TOP3" != *"/opt/homebrew/bin"* ]]; then
+  warning "Homebrew path /opt/homebrew/bin not found in top PATH entries"
+  warning "Current top PATH: $PATH_TOP3"
+fi
+
 echo
 
-# STEP 0: PRE-FLIGHT CHECKS (CRITICAL)
+info "Validating PO1 structure..."
+bash "$ROOT/scripts/guards/validate_po1_structure.sh" | tee -a "$LOG"
+bash "$ROOT/scripts/guards/validate_status.sh" | tee -a "$LOG" || true
+
+echo
+
+# STEP 0: PRE-FLIGHT SAFETY CHECKS
 banner "STEP 0: PRE-FLIGHT SAFETY CHECKS"
 info "Running comprehensive pre-flight validation..."
 
@@ -251,6 +303,16 @@ if python3 "$ROOT/scripts/render_claude_prompt.py" \
 else
   error "Prompt rendering failed"
   exit 1
+fi
+
+# Verify Tier-1 Funnel Authority is accessible
+FUNNEL_AUTHORITY="$ROOT/.claude/TIER1_FUNNEL_AUTHORITY.md"
+if [[ -f "$FUNNEL_AUTHORITY" ]]; then
+  success "Tier-1 Funnel Authority blueprint loaded: $FUNNEL_AUTHORITY"
+  info "8-layer funnel: Bootstrap → Voice → Cursor → Research → Artifacts → Execution → QA → Ops"
+else
+  warning "Tier-1 Funnel Authority blueprint not found at $FUNNEL_AUTHORITY"
+  warning "Sessions may not have full funnel context"
 fi
 
 # PREPEND voice activation instructions to prompt (MUST BE FIRST)
@@ -495,17 +557,41 @@ EOF
 info "Agent tracking: $AGENT_TRACKING"
 echo
 
-# Note: Agents are launched via Claude Code Task tool during session
-# This boot script prepares the environment and documents the intent
+# Launch foundation agents in background
 success "Foundation agent environment prepared"
-info "Agents will auto-launch during session initialization:"
-echo "  1. RPM Planning Agent (universal taskmaster)"
-echo "  2. Research Agent (continuous intelligence)"
-echo "  3. QA Agent (24/7 guardrails)"
-echo
-warning "IMPORTANT: Session must launch agents via Task tool"
-info "Add to session prompt: 'Launch 3-agent foundation (RPM + Research + QA)'"
 
+# Launch voice orchestrator watcher
+if [[ -f "$ROOT/scripts/agents/voice_orchestrator_watch.sh" ]]; then
+  info "Launching voice orchestrator watcher..."
+  bash "$ROOT/scripts/agents/voice_orchestrator_watch.sh" >> "$LOG" 2>&1 &
+  VOICE_WATCHER_PID=$!
+  echo "$VOICE_WATCHER_PID" > "$ROOT/tmp/agent_status/voice_watcher.pid"
+  success "Voice orchestrator watcher started (PID: $VOICE_WATCHER_PID)"
+else
+  warning "Voice orchestrator watcher not found - skipping"
+fi
+
+# Launch research agent (conditional on claude-tier1 CLI)
+if [[ -f "$ROOT/scripts/start_research_agent.sh" ]]; then
+  if command -v claude-tier1 >/dev/null 2>&1; then
+    info "Launching research agent..."
+    bash "$ROOT/scripts/start_research_agent.sh" >> "$LOG" 2>&1 &
+    RESEARCH_PID=$!
+    success "Research agent started (PID: $RESEARCH_PID)"
+  else
+    warning "claude-tier1 CLI not found - research agent blocked"
+    warning "Install Codex CLI to enable research agent"
+    info "See: CODEX_CLI_SETUP_BLOCKERS.md"
+  fi
+else
+  warning "Research agent script not found - skipping"
+fi
+
+info "Active agents:"
+echo "  1. RPM Planning Agent (on-demand via Task tool)"
+echo "  2. Research Agent (${RESEARCH_PID:-BLOCKED - see CODEX_CLI_SETUP_BLOCKERS.md})"
+echo "  3. QA Agent (on-demand via Task tool)"
+echo "  4. Voice Orchestrator Watcher (PID: ${VOICE_WATCHER_PID:-NOT STARTED})"
 echo
 
 # Step 8: Post-launch health checks (background)
