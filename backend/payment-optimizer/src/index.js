@@ -14,7 +14,7 @@ const paymentMethods = {
 // Optimize payment processing
 app.post('/api/v1/optimize-payment', async (req, res) => {
   try {
-    const { amount, customerId, riskScore } = req.body;
+    const { amount, riskScore } = req.body;
     
     // Fraud detection
     const fraudRisk = riskScore || Math.random() * 0.1;
@@ -58,6 +58,7 @@ app.post('/api/v1/optimize-payment', async (req, res) => {
 // Fraud detection
 app.post('/api/v1/fraud-detection', async (req, res) => {
   try {
+    // eslint-disable-next-line no-unused-vars
     const { transactionData } = req.body;
     
     // Mock fraud detection

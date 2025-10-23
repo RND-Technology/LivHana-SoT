@@ -6,7 +6,7 @@ app.use(express.json());
 // Multi-LLM orchestration endpoint
 app.post('/api/v1/generate', async (req, res) => {
   try {
-    const { prompt, taskType = 'general', complexity = 'medium', model } = req.body;
+    const { prompt, model } = req.body;
     
     const startTime = Date.now();
     const selectedModel = model || 'claude-3-sonnet';

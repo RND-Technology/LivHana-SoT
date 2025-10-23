@@ -13,7 +13,7 @@ const inventorySources = {
 // Sync inventory across all platforms
 app.post('/api/v1/sync-inventory', async (req, res) => {
   try {
-    const { source, force = false } = req.body;
+    const { source } = req.body;
     
     const syncResults = [];
     
@@ -23,7 +23,7 @@ app.post('/api/v1/sync-inventory', async (req, res) => {
       syncResults.push(result);
     } else {
       // Sync all sources
-      for (const [sourceName, config] of Object.entries(inventorySources)) {
+      for (const [sourceName] of Object.entries(inventorySources)) {
         const result = await syncInventorySource(sourceName);
         syncResults.push(result);
       }

@@ -114,6 +114,7 @@ app.get('/', (req, res) => {
 });
 
 // Error handling middleware
+// eslint-disable-next-line no-unused-vars
 app.use((error, req, res, next) => {
   console.error('Unhandled error:', error);
   res.status(500).json({

@@ -53,7 +53,7 @@ app.get('/api/v1/customer-insights', async (req, res) => {
 // Generate recommendations
 app.post('/api/v1/recommendations', async (req, res) => {
   try {
-    const { customerId, context } = req.body;
+    const { customerId } = req.body;
     
     const recommendations = [
       {

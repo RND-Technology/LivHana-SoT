@@ -14,10 +14,10 @@ const contentTypes = {
 // Generate content
 app.post('/api/v1/generate-content', async (req, res) => {
   try {
-    const { contentType, topic, targetAudience } = req.body;
+    const { contentType, topic } = req.body;
     
     // Mock content generation
-    const content = {
+    const generatedContent = {
       title: `Amazing ${topic} - Premium Quality Guaranteed`,
       body: `Discover the finest ${topic} with our premium selection. Quality tested, customer approved.`,
       hashtags: ['#premium', '#quality', '#cannabis'],
@@ -28,7 +28,7 @@ app.post('/api/v1/generate-content', async (req, res) => {
     res.json({
       success: true,
       contentType,
-      content,
+      content: generatedContent,
       generatedAt: new Date().toISOString()
     });
     
@@ -43,7 +43,7 @@ app.post('/api/v1/generate-content', async (req, res) => {
 // Distribute content
 app.post('/api/v1/distribute-content', async (req, res) => {
   try {
-    const { content, platforms } = req.body;
+    const { platforms } = req.body;
     
     const distributionResults = [];
     
