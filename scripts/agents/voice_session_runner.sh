@@ -9,7 +9,7 @@ STATUS_FILE="${VOICE_STATUS_FILE:-$ROOT/tmp/agent_status/voice.status.json}"
 LOG_FILE="${VOICE_LOG_FILE:-$ROOT/logs/voice/liv_voice_$(date +%Y%m%d_%H%M%S).log}"
 PROMPT_FILE="${VOICE_PROMPT_FILE:-$ROOT/tmp/claude_tier1_prompt.txt}"
 SESSION_NAME="${VOICE_SESSION_NAME:-liv-voice}"
-MODEL="${VOICE_MODEL:-sonnet-4.5-oct-2025}"
+MODEL="${VOICE_MODEL:-sonnet}"
 
 mkdir -p "$(dirname "$STATUS_FILE")" "$(dirname "$LOG_FILE")"
 
@@ -75,7 +75,7 @@ attempt_voice() {
   CLAUDE_SESSION_LOG="$LOG_FILE" \
   NO_UPDATE_NOTIFIER=1 \
   CI=1 \
-  bash -lc "cd \"$ROOT\" && claude chat --model $MODEL --prompt-file \"$PROMPT_FILE\"" >>"$LOG_FILE" 2>&1
+  bash -lc "cd \"$ROOT\" && claude chat --model $MODEL --system-prompt \"\$(cat \"$PROMPT_FILE\")\"" >>"$LOG_FILE" 2>&1
   exit_code=$?
 
   if [[ $exit_code -eq 0 ]]; then
