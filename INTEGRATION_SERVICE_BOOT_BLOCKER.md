@@ -65,11 +65,17 @@ Once fixed, verify:
 
 ✅ Boot script improvements:
 - Fixed PID capture with subshell + pgrep
-- Fixed scrub_secrets.sh sed syntax
+- Fixed scrub_secrets.sh sed syntax (BSD-compatible chained `-e` flags)
 - Added proper error handling
+- Added `SKIP_INTEGRATION_SERVICE=1` bypass flag
+
+✅ Workaround Available:
+```bash
+SKIP_INTEGRATION_SERVICE=1 ALLOW_TEXT_ONLY=1 claude-tier1
+```
 
 ❌ Blocked on:
 - 1Password vault resolution for integration-service
 
-**Next Steps:** Investigate vault permissions or make service optional.
+**Next Steps:** Investigate vault permissions or keep service skipped until vault item is fixed.
 
