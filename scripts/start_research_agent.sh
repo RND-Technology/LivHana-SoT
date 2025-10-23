@@ -48,5 +48,3 @@ tmux new-session -d -s "$SESSION" -n console "bash -lc 'echo [$(date -u +%FT%TZ)
 }
 
 write_status "running" "tmux session created"
-echo "Research agent started (tmux session: ${SESSION}). Logs: $LOG_FILE"
-exit 0
