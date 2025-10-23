@@ -876,9 +876,19 @@ if [[ "${MAX_AUTO:-1}" == "1" ]]; then
       info "Starting integration-service with secret scrubbing..."
       cd "$ROOT/backend/integration-service"
       
-      # Start service in background with secret scrubbing
-      nohup op run --env-file="$ROOT/.env" -- npm start 2>&1 | scrub_secrets >> "$integration_log" &
+      # Create a wrapper script to scrub logs and capture real PID
+      SCRUB_WRAPPER="$ROOT/tmp/integration-service-scrub.sh"
+      cat > "$SCRUB_WRAPPER" << 'SCRUB_EOF'
+#!/bin/bash
+exec op run --env-file="$1" -- npm start 2>&1 | scrub_secrets
+SCRUB_EOF
+      chmod +x "$SCRUB_WRAPPER"
+      
+      # Start the wrapper in background and capture the actual wrapper PID
+      # Note: We track the wrapper which runs Node, not the scrubber subprocess
+      nohup bash "$SCRUB_WRAPPER" "$ROOT/.env.op" >> "$integration_log" &
       INTEGRATION_PID=$!
+      
       echo "$INTEGRATION_PID" > "$ROOT/tmp/integration-service.pid"
       success "integration-service process started (PID: $INTEGRATION_PID)"
       
