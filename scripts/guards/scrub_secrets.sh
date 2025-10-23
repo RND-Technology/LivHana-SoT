@@ -11,7 +11,7 @@ scrub_secrets() {
       -E 's/(PASSWORD)[=:][^ ]*/\1=***REDACTED***/gi'
 }
 
-if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+if [[ "${BASH_SOURCE[0]:-$0}" == "${0}" ]]; then
   scrub_secrets "$@"
 fi
 
