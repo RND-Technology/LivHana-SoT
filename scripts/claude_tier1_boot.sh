@@ -75,26 +75,32 @@ ensure_op_session() {
   op_version="$(op --version 2>/dev/null | head -n1 || echo "")"
   op_major="${op_version%%.*}"
 
-  # CLI v2: use --raw to get session token directly (no eval)
+  # CLI v2: use app integration (session managed by desktop app)
   if [[ "$op_major" != "1" ]]; then
-    local session_token
-    if ! session_token="$(op signin --account "${account}" --raw 2>/dev/null || echo '')"; then
+    # CLI v2 uses app integration - signin command triggers biometric/Touch ID
+    # The --raw flag returns empty if using app integration, which is fine
+    local signin_output
+    if ! signin_output="$(op signin --account "${account}" --raw 2>&1)"; then
       error "Automatic 1Password sign-in failed (timeout or denied)."
       error "Ensure Desktop app is running and CLI integration is enabled."
       error "Manual: op signin --account ${account}"
       exit 1
     fi
-
-    # FAIL FAST: If session token is empty, abort immediately
-    if [[ -z "$session_token" ]]; then
-      error "1Password sign-in returned empty session token."
-      error "Authentication failed - cannot proceed."
+    
+    # Even if --raw returns empty (app integration), verify whoami works
+    local whoami_check
+    whoami_check="$(op whoami 2>/dev/null || echo '')"
+    if [[ -z "$whoami_check" ]]; then
+      error "1Password sign-in did not produce an active session."
+      error "Try manual signin: op signin --account ${account}"
       exit 1
     fi
-
-    # Export session token for this shell
-    local account_shorthand="${account%%.*}"
-    export "OP_SESSION_${account_shorthand}=${session_token}"
+    
+    # Extract session token if --raw provided one (for compatibility)
+    if [[ -n "$signin_output" ]]; then
+      local account_shorthand="${account%%.*}"
+      export "OP_SESSION_${account_shorthand}=${signin_output}"
+    fi
   else
     # CLI v1: Legacy eval-based signin (less secure, but required for v1)
     warning "1Password CLI v1 detected. Upgrade recommended: brew upgrade 1password-cli"
