@@ -1154,7 +1154,7 @@ if [[ "${MAX_AUTO:-1}" == "1" ]]; then
       info "Starting planning agent (PID: $PLANNING_PID)"
       # Seed status file so health check can pass while agent warms up
       if [[ -f "$ROOT/scripts/guards/atomic_write.sh" ]]; then
-        echo "{ \"agent\": \"planning\", \"status\": \"active\", \"phase\": \"running\", \"updated_at\": \"$(date -u +%FT%TZ)\" }" | bash "$ROOT/scripts/guards/atomic_write.sh" "$ROOT/tmp/agent_status/planning.status.json"
+        echo "{ \"agent\": \"planning\", \"status\": \"active\", \"phase\": \"running\", \"updated_at\": \"$(date -u +%FT%TZ)\" }" | "$ROOT/scripts/guards/atomic_write.sh" "$ROOT/tmp/agent_status/planning.status.json"
       else
         printf '{ "agent": "planning", "status": "active", "phase": "running", "updated_at": "%s" }\n' "$(date -u +%FT%TZ)" > "$ROOT/tmp/agent_status/planning.status.json"
       fi
