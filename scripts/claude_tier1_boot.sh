@@ -1131,35 +1131,61 @@ if [[ "${MAX_AUTO:-1}" == "1" ]]; then
       PLANNING_PID=$!
       info "Starting planning agent (PID: $PLANNING_PID)"
       # Seed status file so health check can pass while agent warms up
-      printf '{ "agent": "planning", "status": "active", "phase": "running", "updated_at": "%s" }\n' "$(date -u +%FT%TZ)" > "$ROOT/tmp/agent_status/planning.status.json"
+      # Atomic seed of status file so health check passes while agent warms up
+      if [[ -f "$ROOT/scripts/guards/atomic_write.sh" ]]; then
+        source "$ROOT/scripts/guards/atomic_write.sh"
+        atomic_write "$ROOT/tmp/agent_status/planning.status.json" "{ \"agent\": \"planning\", \"status\": \"active\", \"phase\": \"running\", \"updated_at\": \"$(date -u +%FT%TZ)\" }\n"
+      else
+        printf '{ "agent": "planning", "status": "active", "phase": "running", "updated_at": "%s" }\n' "$(date -u +%FT%TZ)" > "$ROOT/tmp/agent_status/planning.status.json"
+      fi
     fi
 
     if ! check_agent_health "research"; then
       bash "$ROOT/scripts/start_research_agent.sh" >> "$LOG" 2>&1 &
       RESEARCH_PID=$!
       info "Starting research agent (PID: $RESEARCH_PID)"
-      printf '{ "agent": "research", "status": "active", "phase": "running", "updated_at": "%s" }\n' "$(date -u +%FT%TZ)" > "$ROOT/tmp/agent_status/research.status.json"
+      if [[ -f "$ROOT/scripts/guards/atomic_write.sh" ]]; then
+        source "$ROOT/scripts/guards/atomic_write.sh"
+        atomic_write "$ROOT/tmp/agent_status/research.status.json" "{ \"agent\": \"research\", \"status\": \"active\", \"phase\": \"running\", \"updated_at\": \"$(date -u +%FT%TZ)\" }\n"
+      else
+        printf '{ "agent": "research", "status": "active", "phase": "running", "updated_at": "%s" }\n' "$(date -u +%FT%TZ)" > "$ROOT/tmp/agent_status/research.status.json"
+      fi
     fi
 
     if ! check_agent_health "artifact"; then
       bash "$ROOT/scripts/start_artifact_agent.sh" >> "$LOG" 2>&1 &
       ARTIFACT_PID=$!
       info "Starting artifact agent (PID: $ARTIFACT_PID)"
-      printf '{ "agent": "artifact", "status": "active", "phase": "running", "updated_at": "%s" }\n' "$(date -u +%FT%TZ)" > "$ROOT/tmp/agent_status/artifact.status.json"
+      if [[ -f "$ROOT/scripts/guards/atomic_write.sh" ]]; then
+        source "$ROOT/scripts/guards/atomic_write.sh"
+        atomic_write "$ROOT/tmp/agent_status/artifact.status.json" "{ \"agent\": \"artifact\", \"status\": \"active\", \"phase\": \"running\", \"updated_at\": \"$(date -u +%FT%TZ)\" }\n"
+      else
+        printf '{ "agent": "artifact", "status": "active", "phase": "running", "updated_at": "%s" }\n' "$(date -u +%FT%TZ)" > "$ROOT/tmp/agent_status/artifact.status.json"
+      fi
     fi
 
     if ! check_agent_health "execmon"; then
       bash "$ROOT/scripts/start_execution_monitor.sh" >> "$LOG" 2>&1 &
       EXEC_PID=$!
       info "Starting execution monitor (PID: $EXEC_PID)"
-      printf '{ "agent": "execmon", "status": "active", "phase": "running", "updated_at": "%s" }\n' "$(date -u +%FT%TZ)" > "$ROOT/tmp/agent_status/execmon.status.json"
+      if [[ -f "$ROOT/scripts/guards/atomic_write.sh" ]]; then
+        source "$ROOT/scripts/guards/atomic_write.sh"
+        atomic_write "$ROOT/tmp/agent_status/execmon.status.json" "{ \"agent\": \"execmon\", \"status\": \"active\", \"phase\": \"running\", \"updated_at\": \"$(date -u +%FT%TZ)\" }\n"
+      else
+        printf '{ "agent": "execmon", "status": "active", "phase": "running", "updated_at": "%s" }\n' "$(date -u +%FT%TZ)" > "$ROOT/tmp/agent_status/execmon.status.json"
+      fi
     fi
 
     if ! check_agent_health "qa"; then
       bash "$ROOT/scripts/start_qa_agent.sh" >> "$LOG" 2>&1 &
       QA_PID=$!
       info "Starting qa agent (PID: $QA_PID)"
-      printf '{ "agent": "qa", "status": "active", "phase": "running", "updated_at": "%s" }\n' "$(date -u +%FT%TZ)" > "$ROOT/tmp/agent_status/qa.status.json"
+      if [[ -f "$ROOT/scripts/guards/atomic_write.sh" ]]; then
+        source "$ROOT/scripts/guards/atomic_write.sh"
+        atomic_write "$ROOT/tmp/agent_status/qa.status.json" "{ \"agent\": \"qa\", \"status\": \"active\", \"phase\": \"running\", \"updated_at\": \"$(date -u +%FT%TZ)\" }\n"
+      else
+        printf '{ "agent": "qa", "status": "active", "phase": "running", "updated_at": "%s" }\n' "$(date -u +%FT%TZ)" > "$ROOT/tmp/agent_status/qa.status.json"
+      fi
     fi
   fi
 
@@ -1272,10 +1298,11 @@ if [[ "${MAX_AUTO:-1}" == "1" ]]; then
       log="$integration_log"
       mkdir -p "$(dirname "$log")"
       
-      # Start the service in background, pipe through scrubber
+      # Start the service in background with process substitution for secret scrubbing
       cd "$ROOT/backend/integration-service"
-      # Pipe through in-shell scrub_secrets function (sourced above) to avoid sed portability issues
-      (op run --env-file "$ENV_FILE" -- npm start 2>&1 | scrub_secrets > "$log") &
+      op run --env-file "$ENV_FILE" -- npm start \
+        > >("$ROOT/scripts/guards/scrub_secrets.sh" >> "$log") \
+        2> >("$ROOT/scripts/guards/scrub_secrets.sh" >> "$log") &
       INTEGRATION_PID=$!
       echo "$INTEGRATION_PID" > "$ROOT/tmp/integration-service.pid"
       
