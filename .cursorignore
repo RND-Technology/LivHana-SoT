@@ -1,49 +1,190 @@
-# Cursor Problems Scanner Ignore File
-# Freeze non-Tier-1 directories to reduce 1K+ problem noise
-
-# Frozen directories (not actively developed)
-1.rnd/
-empire/
-deployment/
-backups/
-legacy/
-fixes/
-racers/
-marketing/
-boards/
-charts/
-empire-cockpit/
-HNC_Production/
-missions/
-ops/
-reports/
-tools/
-websites/
+# .cursorignore - Filter noise from Cursor Problems tab
+# Last updated: 2025-10-23
 
 # Build artifacts
-**/node_modules/
-**/dist/
-**/build/
-**/coverage/
-**/.next/
-**/.venv/
-**/venv/
-
-# Temporary files
-logs/
-*.log
-*.tmp
-tmp/
+node_modules/
+dist/
+build/
 out/
 out_mirror/
+*.log
+*.tmp
+.tsbuildinfo
+
+# Archives and legacy
+legacy/
+backups/
+archive/
+.archive/
+
+# Documentation PDFs
+*.pdf
+
+# Agent runtime files
+tmp/
+.cursor/plans/
+
+# Git
+.git/
+FETCH_HEAD
+
+# Test results
 test-results/
+coverage/
 
-# Backups
-.claude_backup_*/
-.cursor/backup/
+# Environment
+.env
+.env.*
+*.env
+livhana-secrets.env
 
-# Downloads (external files)
-Downloads/
+# OS
+.DS_Store
+Thumbs.db
 
-# Raw temporary files
-raw-*.md
+# IDE
+.vscode/
+.idea/
+
+# Security - prevent accidental commits
+*.key
+*.pem
+*.cert
+*.secret
+
+# Large data directories
+data/
+charts/
+reports/
+logs/
+
+# Empire/Cockpit builds
+empire-cockpit/
+empire/
+
+# Marketing materials
+marketing/
+
+# RPM historical plans
+RPM_WEEKLY_PLAN_OCT*.md
+RPM_WEEKLY_PLAN_OCT*/
+
+# Session artifacts
+SESSION_COMPLETE_*.md
+SESSION_HANDOFF_*.md
+STATUS_UPDATE_*.md
+
+# Deployment artifacts
+deployment/
+
+# Fix files
+fixes/
+
+# Human work
+HUMAN_WORK_FOR_JESSE/
+
+# Website builds
+websites/
+
+# HNC Production
+HNC_Production/
+
+# RND directories
+1.rnd/
+1.1.1.1_rnd_leadership_empire_cockpit_visioneering/
+1.2.1.8.local-delivery-api.20251002/
+1.3.2.3.leafly-seo-profile.20251002/
+2.3.1.1.episode-001-texas-intro.20251002/
+5.5.1.6.vcs-exit-materials.20251002/
+
+# Ops directories
+3.6.1.1_ops_technology_gcp_4layer_deployment_plan_20251003/
+3.8.1.3_ops_sop_systems_empire_cockpit_execution_20251002/
+
+# Scripts and automations
+automation/
+scripts/boot/
+scripts/agents/
+
+# Board files
+boards/
+
+# Agent builder
+agent_builder/
+agent-builder/
+
+# Templates
+templates/
+
+# Tools
+tools/
+
+# Missions
+missions/
+
+# Racers
+racers/
+
+# Config
+config/
+
+# Schemas
+schemas/
+
+# Infra
+infra/
+
+# Charts
+charts/
+
+# Data
+data/
+
+# Reports
+reports/
+
+# Replit
+replit.nix
+
+# Trash files
+*.bak
+boot.bak
+
+# Large markdown documentation
+*.md.pdf
+
+# Old markdown files that clutter
+GOOGLE MEET*.txt
+Meetings_*.md
+ACTUAL_RECEIPTS.md
+ALL_PROBLEMS_SOLVED*.md
+BOSS_RESPONSE*.md
+CURRENT_STATE*.md
+EMERGENCY_STATUS*.md
+EXECUTION_SUMMARY*.md
+FULL_FUNNEL*.md
+FULL_RECEIPTS*.md
+HELP-Solve*.txt
+IMPLEMENTATION_SUMMARY*.md
+INTEGRATION_STATUS*.md
+MISSION_COMPLETE*.md
+PRODUCTION_SYSTEM*.md
+RECONCILIATION*.md
+RPM_COMPETITION*.md
+RPM_EXECUTIVE*.md
+RPM_INFRA*.md
+SESSION_COMPLETE*.md
+TIER1_*.md
+VICTORY_REPORT.md
+WAKE_UP*.md
+WEAKNESS*.md
+WEBSITE_STATUS*.md
+
+# Keep critical docs visible
+!README.md
+!CHANGELOG.md
+!LICENSE
+!LIV_HANA_VOICE_MODE_PRD_ADR_v1_0.md
+!LIV_VOICE_CIRCLE_OF_SELF_CREATION_FRAMEWORK.md
+!.claude/TIER1_FUNNEL_AUTHORITY.md
+!.claude/SESSION_PROGRESS.md

@@ -3,7 +3,7 @@
     "target": "ES2022",
     "module": "ESNext",
     "moduleResolution": "node",
-    "strict": false,
+    "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
@@ -18,15 +18,12 @@
     "paths": {
       "@/*": ["./*"],
       "@backend/*": ["./backend/*"],
-      "@frontend/*": ["./frontend/*"],
-      "@empire/*": ["./empire/*"],
-      "@rnd/*": ["./1.rnd/*"],
-      "@claude/*": ["./.claude/*"]
+      "@frontend/*": ["./frontend/*"]
     }
   },
   "include": [
-    "backend/*/src/**/*.ts",
-    "frontend/*/src/**/*.tsx"
+    "backend/**/*.ts",
+    "frontend/**/*.tsx"
   ],
   "exclude": [
     "node_modules",
@@ -35,13 +32,38 @@
     "**/venv",
     "**/dist",
     "**/build",
-    ".archive",
+    "**/out",
     "legacy",
     "1.rnd",
     "empire",
     "deployment",
     "backups",
     "*.log",
-    "*.tmp"
+    "*.tmp",
+    "tmp",
+    "test-results",
+    "coverage",
+    ".archive",
+    "empire-cockpit",
+    "websites",
+    "charts",
+    "reports",
+    "data",
+    "missions",
+    "racers",
+    "boards",
+    "agent_builder",
+    "agent-builder",
+    "templates",
+    "tools",
+    "config",
+    "schemas",
+    "infra",
+    "marketing",
+    "HNC_Production",
+    "fixes",
+    "HUMAN_WORK_FOR_JESSE",
+    "automation",
+    "**.md"
   ]
 }

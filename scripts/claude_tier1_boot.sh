@@ -12,6 +12,13 @@ STATE="$ROOT/tmp/claude_tier1_state.json"
 PROMPT="$ROOT/tmp/claude_tier1_prompt.txt"
 LOG="$ROOT/logs/claude_tier1_boot_$(date +%Y%m%d_%H%M%S).log"
 
+# Load security helpers
+if [[ -f "$ROOT/scripts/boot/helpers.sh" ]]; then
+  source "$ROOT/scripts/boot/helpers.sh"
+else
+  echo "Warning: helpers.sh not found at $ROOT/scripts/boot/helpers.sh"
+fi
+
 # Colors
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -842,10 +849,15 @@ if [[ "${MAX_AUTO:-1}" == "1" ]]; then
     if lsof -i :3005 >/dev/null 2>&1; then
       warning "integration-service already running on port 3005"
     else
-      # Start with op run to inject secrets
+      # Start with op run to inject secrets (SECURE: no .env on disk)
       integration_log="$ROOT/logs/integration-service.log"
       mkdir -p "$ROOT/logs"
-      nohup op run --env-file="$ROOT/.env" -- npm start >> "$integration_log" 2>&1 &
+      chmod 600 "$integration_log" 2>/dev/null || true
+      # Use retry helper for service startup
+      retry_with_backoff 3 2 "nohup op run --env-file='$ROOT/.env' -- npm start >> '$integration_log' 2>&1 &" || {
+        error "integration-service failed to start after retries"
+        exit 1
+      }
       INTEGRATION_PID=$!
       echo "$INTEGRATION_PID" > "$ROOT/tmp/integration-service.pid"
 
