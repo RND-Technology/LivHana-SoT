@@ -6,16 +6,16 @@ services:
     ports:
       - "5173:5173"
     environment:
-      - VITE_API_URL=http://backend:3005
+      - VITE_API_URL=http://integration-service:3005
       - VITE_VOICE_API_URL=http://voice-service:8080
       - VITE_REASONING_API_URL=http://reasoning-gateway:8080
     depends_on:
-      - backend
+      - integration-service
       - voice-service
       - reasoning-gateway
       
-  # Legacy Integration Service
-  backend:
+  # Integration Service - Legacy Backend Compatibility
+  integration-service:
     build: ./backend/integration-service
     ports:
       - "3005:3005"
