@@ -1,0 +1,19 @@
+{
+  "timestamp": "20251021_203909",
+  "lead": {
+    "review": {
+      "rating": 2,
+      "text": "Terrible experience with rude staff. bud-buddies-seattle needs to improve their service.",
+      "date": "2025-10-20",
+      "competitor": "bud-buddies-seattle",
+      "pain_point": "rude staff",
+      "severity": 9
+    },
+    "pain_point": "rude staff",
+    "estimated_value": 171,
+    "competitor": "bud-buddies-seattle",
+    "priority": "high"
+  },
+  "message": "Hi! We saw your review about bud-buddies-seattle.\nAt Liv Hana, we're committed to excellent service and fair pricing.\nTry us with 20% off your first order: https://livhana.com/?ref=acquisition&discount=FIRST20",
+  "status": "pending_approval"
+}

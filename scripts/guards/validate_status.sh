@@ -29,6 +29,9 @@ allowed_status_files = [
     "codex_tasks.json",
 ]
 
+# Files that don't follow agent status schema
+skip_validation = {"codex_tasks.json", "funnel.ready"}
+
 problems = []
 
 for entry in sorted(os.listdir(status_dir)):
@@ -37,8 +40,8 @@ for entry in sorted(os.listdir(status_dir)):
     if entry not in allowed_status_files:
         continue  # skip auxiliary files
 
-    if entry == "funnel.ready":
-        continue  # simple signal file
+    if entry in skip_validation:
+        continue  # skip non-agent files
 
     with open(path, "r", encoding="utf-8") as fh:
         try:
