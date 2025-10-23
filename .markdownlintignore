@@ -1,11 +1,11 @@
-node_modules
-**/node_modules/**
-.cursor-backups/**/*.md
-data/imports/downloads/**/*.md
-.venv
-**/.venv/**
-1.rnd/6.technology/1.6.2.1_*.md
-1.rnd/3.marketing/1.3.2.1_*.md
-.claude/archive/**/*.md
-
-# Last updated: 2025-10-06
+# Exclude build artifacts, logs, and non-source directories
+tmp/**
+out/**
+out_mirror/**
+backups/**
+logs/**
+legacy/**
+HNC_Production/**
+node_modules/**
+.claude_backup_*/**
+.git/**
