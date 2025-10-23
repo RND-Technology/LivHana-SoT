@@ -46,46 +46,54 @@ ensure_op_session() {
   fi
 
   if op whoami >/dev/null 2>&1; then
-    local whoami="$(op whoami | tr -d '\n')"
+    local account_domain="$(op whoami | sed 's/@.*//' | tr -d '\n')"
     if [[ "$verbosity" == "show" ]]; then
-      success "1Password authenticated: ${whoami}"
+      success "1Password authenticated: ${account_domain}@***"
     else
-      info "1Password session already active for ${whoami}"
+      info "1Password session already active"
     fi
     return 0
   fi
 
   warning "1Password session not detected. Triggering automatic sign-in for ${account}..."
 
-  if [[ -n "${OP_SIGNIN_COMMAND:-}" ]]; then
-    if ! eval "${OP_SIGNIN_COMMAND}"; then
-      error "Automatic 1Password sign-in failed (OP_SIGNIN_COMMAND). Run: eval \"\$(op signin ${account})\""
+  # Enable biometric unlock (Touch ID) for non-interactive flow
+  export OP_BIOMETRIC_UNLOCK_ENABLED=1
+
+  local op_version op_major
+  op_version="$(op --version 2>/dev/null | head -n1 || echo "")"
+  op_major="${op_version%%.*}"
+
+  # CLI v2: use --raw to get session token directly (no eval)
+  if [[ "$op_major" != "1" ]]; then
+    local session_token
+    if ! session_token="$(timeout 30s op signin --account "${account}" --raw 2>/dev/null)"; then
+      error "Automatic 1Password sign-in failed (timeout or denied)."
+      error "Ensure Desktop app is running and CLI integration is enabled."
+      error "Manual: op signin --account ${account}"
       exit 1
     fi
-  else
-    local op_version op_major
-    op_version="$(op --version 2>/dev/null | head -n1 || echo "")"
-    op_major="${op_version%%.*}"
 
-    if [[ "$op_major" == "1" ]]; then
-      if ! eval "$(op signin "${account}")"; then
-        error "Automatic 1Password sign-in failed. Run: eval \"\$(op signin ${account})\""
-        exit 1
-      fi
-    else
-      if ! op signin --account "${account}"; then
-        error "Automatic 1Password sign-in failed. Run: op signin --account ${account}"
-        exit 1
-      fi
+    # Export session token for this shell
+    export "OP_SESSION_${account%%.*}=${session_token}"
+  else
+    # CLI v1: Legacy eval-based signin (less secure, but required for v1)
+    warning "1Password CLI v1 detected. Upgrade recommended: brew upgrade 1password-cli"
+    if ! timeout 30s op signin --account "${account}" >/dev/null 2>&1; then
+      error "Automatic 1Password sign-in failed."
+      error "Manual: eval \"\$(op signin ${account})\""
+      exit 1
     fi
   fi
 
   if op whoami >/dev/null 2>&1; then
-    success "1Password authenticated: $(op whoami | tr -d '\n')"
+    local account_domain="$(op whoami | sed 's/@.*//' | tr -d '\n')"
+    success "1Password authenticated: ${account_domain}@***"
     return 0
   fi
 
-  error "1Password sign-in did not produce an active session. Run: eval \"\$(op signin ${account})\""
+  error "1Password sign-in did not produce an active session."
+  error "Manual: op signin --account ${account}"
   exit 1
 }
 
