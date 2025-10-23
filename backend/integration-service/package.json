@@ -72,21 +72,6 @@
       }
     }
   },
-  "eslintConfig": {
-    "parser": "@typescript-eslint/parser",
-    "plugins": ["@typescript-eslint"],
-    "extends": [
-      "eslint:recommended",
-      "plugin:@typescript-eslint/recommended"
-    ],
-    "rules": {
-      "@typescript-eslint/no-explicit-any": "error",
-      "@typescript-eslint/no-unused-vars": "error",
-      "complexity": ["error", 10],
-      "max-lines-per-function": ["error", 50],
-      "max-depth": ["error", 4]
-    }
-  },
   "tsconfig": {
     "compilerOptions": {
       "target": "ES2020",
