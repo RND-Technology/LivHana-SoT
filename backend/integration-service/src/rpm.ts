@@ -90,7 +90,7 @@ router.post('/weeks/upsert', requireJWT, async (req, res) => {
 router.post('/weeks/:id/export', requireJWT, async (req, res) => {
   try {
     const format = (req.query.format as string) || 'md';
-    const { weekId } = req.params;
+    const weekId = req.params.id as string;
     
     // Verify week exists
     const { rows: weekRows } = await pool.query('select id from rpm_weeks where id = $1', [weekId]);

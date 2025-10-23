@@ -5,6 +5,7 @@ Env: `DATABASE_URL`, `JWT_SECRET`, `REDIS_HOST`, `REDIS_PORT`, `GCS_BUCKET`, `GC
 Schema: see `backend/integration-service/sql/rpm/001_init.sql`, `002_indexes.sql`.
 
 API:
+
 - GET `/api/rpm/weeks/current`
 - POST `/api/rpm/weeks/upsert` (JWT)
 - GET `/api/rpm/weeks/:id/items`
@@ -15,4 +16,8 @@ API:
 
 Worker: `ts-node src/worker.export.ts` — writes artifacts to `/out` and (next) uploads to `gs://$GCS_BUCKET` with signed URLs.
 
+Lifecycle:
 
+- Exports start as `queued` → `processing` → `completed` or `failed`.
+- `rpm_exports` columns: `status`, `job_id`, `gcs_path`, `url`, `sha256`, `completed_at`, `failed_at`.
+- POST `/api/rpm/weeks/:id/export?format=md|csv|pdf` returns `{ export_id, job }`. Poll `GET /api/rpm/exports/:exportId` (JWT) until `status==='completed'` and use `url`.

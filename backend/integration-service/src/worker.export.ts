@@ -21,6 +21,15 @@ const bucketName = process.env.GCS_BUCKET || 'livhana-rpm-exports';
 
 export const worker = new Worker('rpm.export', async job => {
   const { weekId, format } = job.data as { weekId: string, format: string };
+  // Mark export as processing at job start
+  try {
+    const expId = job.opts?.exportId as string | undefined;
+    if (expId) {
+      await pool.query(`update rpm_exports set status = 'processing' where id = $1`, [expId]);
+    }
+  } catch (e) {
+    console.error('Failed to mark export processing:', e);
+  }
   const items = await fetchItems(weekId);
   const ts = new Date().toISOString().replace(/[:.]/g, '-');
 
