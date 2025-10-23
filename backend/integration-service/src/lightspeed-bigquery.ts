@@ -243,7 +243,7 @@ export class LightspeedBigQueryPipeline {
         location: 'US',
       });
 
-      const [rows_] = await job.getQueryResults();
+      await job.getQueryResults();
       inserted = rows.length; // All rows were processed
       
     } catch (error) {
@@ -329,14 +329,15 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 // Health check endpoint
-app.get('/health', async (req, res) => {
+app.get('/health', async (_req, res): Promise<void> => {
   try {
     if (!pipeline) {
-      return res.status(503).json({
+      res.status(503).json({
         status: 'unhealthy',
         timestamp: new Date().toISOString(),
         error: 'Pipeline not initialized',
       });
+      return;
     }
     const health = await pipeline.healthCheck();
     res.json(health);
@@ -350,14 +351,15 @@ app.get('/health', async (req, res) => {
 });
 
 // Sync sales endpoint
-app.post('/sync/sales', async (req, res) => {
+app.post('/sync/sales', async (req, res): Promise<void> => {
   try {
     if (!pipeline) {
-      return res.status(503).json({
+      res.status(503).json({
         success: false,
         error: 'Pipeline not initialized',
         timestamp: new Date().toISOString(),
       });
+      return;
     }
     const result = await pipeline.syncSalesData(req.body);
     res.json(result);
@@ -371,7 +373,7 @@ app.post('/sync/sales', async (req, res) => {
 });
 
 // Root endpoint
-app.get('/', (req, res) => {
+app.get('/', (_req, res) => {
   res.json({
     service: 'Lightspeed BigQuery Pipeline',
     version: '1.0.0',
