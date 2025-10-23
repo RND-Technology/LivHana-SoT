@@ -853,26 +853,27 @@ if [[ "${MAX_AUTO:-1}" == "1" ]]; then
       integration_log="$ROOT/logs/integration-service.log"
       mkdir -p "$ROOT/logs"
       chmod 600 "$integration_log" 2>/dev/null || true
-      # Use retry helper for service startup
-      retry_with_backoff 3 2 "nohup op run --env-file='$ROOT/.env' -- npm start >> '$integration_log' 2>&1 &" || {
+      
+      # Load security helpers
+      source "$ROOT/scripts/guards/wait_for_service.sh"
+      source "$ROOT/scripts/guards/scrub_secrets.sh"
+      
+      # Use retry helper for service startup with secret scrubbing
+      info "Starting integration-service with secret scrubbing..."
+      if retry_with_backoff 3 2 "nohup op run --env-file='$ROOT/.env' -- npm start 2>&1 | scrub_secrets >> '$integration_log' &" ; then
+        INTEGRATION_PID=$!
+        echo "$INTEGRATION_PID" > "$ROOT/tmp/integration-service.pid"
+        success "integration-service process started (PID: $INTEGRATION_PID)"
+      else
         error "integration-service failed to start after retries"
-        exit 1
-      }
-      INTEGRATION_PID=$!
-      echo "$INTEGRATION_PID" > "$ROOT/tmp/integration-service.pid"
+        exit 1; fi
 
-      # Wait for startup
-      sleep 5
-
-      if ! lsof -i :3005 >/dev/null 2>&1; then
-        error "integration-service failed to bind to port 3005. Check ${integration_log}"
-        exit 1
-      fi
-
-      if curl -sf http://localhost:3005/health >/dev/null 2>&1; then
+      # Wait for service to become available (replaces hardcoded sleep)
+      info "Waiting for integration-service to become available..."
+      if wait_for_service 3005 30 2; then
         success "integration-service started (PID: $INTEGRATION_PID, port 3005)"
       else
-        error "integration-service started but health check failed. Inspect ${integration_log}"
+        error "integration-service failed to become available within 30s. Check ${integration_log}"
         exit 1
       fi
     fi
