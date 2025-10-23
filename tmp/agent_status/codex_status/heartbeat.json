@@ -1,0 +1,14 @@
+{
+  "agent_name": "codex-cursor",
+  "status": "idle",
+  "last_heartbeat": "2025-10-23T03:40:01.104914Z",
+  "uptime_seconds": 0,
+  "current_capacity": 0.75,
+  "active_tasks": [],
+  "health": {
+    "cpu_ok": true,
+    "memory_ok": true,
+    "disk_ok": true,
+    "last_error": null
+  }
+}

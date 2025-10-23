@@ -1,0 +1,21 @@
+{
+  "updated_at": "2025-10-22T21:30:00Z",
+  "agents": {
+    "livhana-layer1.1": {
+      "type": "orchestrator",
+      "environment": "claude-code-cli",
+      "pid": null,
+      "status": "initializing",
+      "last_seen": "2025-10-22T21:30:00Z",
+      "capabilities": ["voice", "orchestration", "task_delegation"]
+    },
+    "codex-cursor": {
+      "type": "executor",
+      "environment": "cursor-ide",
+      "pid": null,
+      "status": "unknown",
+      "last_seen": null,
+      "capabilities": ["code_execution", "file_operations", "git_operations"]
+    }
+  }
+}
