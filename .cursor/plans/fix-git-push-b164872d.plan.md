@@ -1,50 +1,90 @@
-<!-- b164872d-ebdf-4e8c-a20a-00f516f923f4 f6094c9d-5304-479a-b90e-a25930459be0 -->
-# Fix Git SSH and Push Commits
+<!-- b164872d-ebdf-4e8c-a20a-00f516f923f4 9fb61724-5cb0-4373-a0d7-32fb4d21f14c -->
+# ESLint Cleanup - Zero Warnings Strategy
 
 ## Current State
+- Push completed: 20 commits on `fix/mobile-control-po1`
+- ESLint warnings present (count unknown)
+- Need zero-warning state for production
 
-- 18 commits ready on branch `fix/mobile-control-po1`
-- All hardening work complete (V1, V10, V12, V Silent integrated)
-- Push failed: "Permission denied (publickey)"
+## Execution Strategy
 
-## Execution Steps
-
-### 1. Fix Git SSH Authentication
-
-Check SSH key status and add to agent:
-
+### 1. Triage and Prioritize (5 min)
+Identify hottest files by unused variable count:
 ```bash
-ssh-add -l  # List current keys
-ssh-add ~/.ssh/id_ed25519  # Add GitHub key
-ssh -T git@github.com  # Test connection
+npx eslint --format json . | jq '.[].messages[] | select(.ruleId=="@typescript-eslint/no-unused-vars")' | jq -s 'group_by(.filePath) | map({file: .[0].filePath, count: length}) | sort_by(.count) | reverse'
 ```
 
-If no SSH key exists, use HTTPS instead:
+Output: JSON array of files sorted by issue count
 
+### 2. Fix Shared Utilities First (30-45 min)
+Target: `backend/common/`, shared modules
+
+**Strategy**:
+- Prefix unused params with `_`: `function(_req, res)` 
+- Remove dead imports: Delete unused import statements
+- Collapse unused helpers: Delete unreferenced functions
+- Gate console logs: Wrap in `if (process.env.NODE_ENV !== 'production')`
+
+**Validation after each file**:
 ```bash
-git remote set-url origin https://github.com/<user>/<repo>.git
+npx eslint backend/common --max-warnings 0
 ```
 
-### 2. Push Commits
+### 3. Fix Leaf Modules (45-60 min)
+Target: Individual services in priority order from triage
 
+For each service:
+1. Fix unused variables (prefix with `_`)
+2. Remove stale imports
+3. Add `// eslint-disable-next-line` only for justified cases
+4. Validate: `npx eslint backend/<service> --max-warnings 0`
+
+**Priority order** (from triage):
+- Highest count → lowest count
+- Shared utilities done, so dependencies clean
+
+### 4. Final Validation (5 min)
 ```bash
+npx eslint . --max-warnings 0
+```
+
+Expected: Exit code 0, no warnings
+
+### 5. Commit and Push (5 min)
+```bash
+git add -A
+git commit -m "fix(lint): eliminate all ESLint warnings
+
+- Prefixed unused params with underscore
+- Removed dead imports and unused functions
+- Gated console logs behind NODE_ENV check
+- Applied eslint-disable-next-line only where justified
+
+Result: Zero warnings across codebase"
+
 git push origin fix/mobile-control-po1
 ```
 
-Expected: 18 commits pushed successfully
+## Implementation Notes
 
-### 3. Verify Remote State
+**Refactor over patch**: If a file has >10 issues, consider rewriting the problematic function rather than line-by-line fixes
 
-```bash
-git log origin/fix/mobile-control-po1 --oneline -5
-```
+**Incremental validation**: Run `eslint <path> --max-warnings 0` after each directory to catch regressions early
 
-## Verification
+**Justification required**: Only use `eslint-disable-next-line` when:
+- Intentional side-effect function
+- Third-party API requires unused param
+- Clear comment explaining why
 
-- Remote branch shows commit `f0d44cc64` at HEAD
-- All hardening commits visible on GitHub
-- Branch ready for PR or merge
+## Acceptance Criteria
+- `npx eslint . --max-warnings 0` exits 0
+- No `// eslint-disable` without justification comment
+- Console statements gated or removed
+- All commits pushed to remote
 
-## Notes
-
-All implementation work is complete. This plan only resolves the push authentication issue.
+## Time Estimate
+- Triage: 5 min
+- Shared utilities: 30-45 min  
+- Leaf modules: 45-60 min
+- Validation: 5 min
+- Total: ~90-120 min
