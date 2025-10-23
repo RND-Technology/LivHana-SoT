@@ -1,0 +1,122 @@
+source_url,target_url,status_code,preserve_path,preserve_query_string,include_subdomains,subpath_matching,comment
+# CLOUDFLARE BULK REDIRECTS - 69 DOMAINS TO 4 CANONICAL TARGETS
+# Generated: 2025-10-23
+# Total Rules: 70 (69 domains + 1 www redirect)
+# Target Domains: reggieanddro.com, highnoontooned.com, oneplantsolution.com, herbitrage.com
+
+# ==========================================
+# SILO 1: REGGIEANDDRO.COM (18 DOMAINS)
+# R&D Retail, Manufacturing, THCa, Edibles
+# ==========================================
+
+# R&D Retail Core (10 domains)
+https://reggieanddroalice.com,https://reggieanddro.com,301,true,true,false,true,R&D Alice location redirect
+https://reggieanddrocannabisstore.com,https://reggieanddro.com,301,true,true,false,true,R&D cannabis store redirect
+https://reggieanddrodispensary.com,https://reggieanddro.com,301,true,true,false,true,R&D dispensary redirect
+https://reggieanddrosanantonio.com,https://reggieanddro.com,301,true,true,false,true,R&D San Antonio redirect
+https://reggieanddrosanantoniotx.com,https://reggieanddro.com,301,true,true,false,true,R&D San Antonio TX redirect
+https://reggieanddrosocialclub.com,https://reggieanddro.com,301,true,true,false,true,R&D social club redirect
+https://reggieanddrostoneoak.com,https://reggieanddro.com,301,true,true,false,true,R&D Stone Oak redirect
+https://reggieanddrotexas.com,https://reggieanddro.com,301,true,true,false,true,R&D Texas redirect
+https://freelegalweedsanantonio.com,https://reggieanddro.com,301,true,true,false,true,Free legal weed SA redirect
+https://freeweedsanantonio.com,https://reggieanddro.com,301,true,true,false,true,Free weed SA redirect
+
+# THCa Retail (5 domains)
+https://freethcaflower.com,https://reggieanddro.com,301,true,true,false,true,Free THCa flower redirect
+https://freeweedtexas.com,https://reggieanddro.com,301,true,true,false,true,Free weed Texas redirect
+https://thcacannabisdispensary.com,https://reggieanddro.com,301,true,true,false,true,THCa dispensary redirect
+https://thcaflowerstx.com,https://reggieanddro.com,301,true,true,false,true,THCa flowers TX redirect
+https://thcaflowertx.com,https://reggieanddro.com,301,true,true,false,true,THCa flower TX redirect
+https://thcasanantonio.com,https://reggieanddro.com,301,true,true,false,true,THCa San Antonio redirect
+
+# Edibles (2 domains)
+https://cannabiscookiestexas.com,https://reggieanddro.com,301,true,true,false,true,Cannabis cookies TX redirect
+https://texascannabiscookies.com,https://reggieanddro.com,301,true,true,false,true,Texas cannabis cookies redirect
+
+# ==========================================
+# SILO 2: HIGHNOONTOONED.COM (12 DOMAINS)
+# Content, Media, Entertainment
+# ==========================================
+
+# Content & Media (12 domains)
+https://highnooncartoon.com,https://highnoontooned.com,301,true,true,false,true,High Noon Cartoon redirect
+https://getlooseyoga.com,https://highnoontooned.com,301,true,true,false,true,Get Loose Yoga redirect
+https://smokingyoga.com,https://highnoontooned.com,301,true,true,false,true,Smokin Yoga redirect
+https://tokinyoga.com,https://highnoontooned.com,301,true,true,false,true,Tokin Yoga redirect
+https://aaacbdhempflower.com,https://highnoontooned.com,301,true,true,false,true,AAA CBD hemp flower redirect
+https://exoticcbdhempflower.com,https://highnoontooned.com,301,true,true,false,true,Exotic CBD hemp flower redirect
+https://loudcbdflower.com,https://highnoontooned.com,301,true,true,false,true,Loud CBD flower redirect
+https://loudcbdbuds.com,https://highnoontooned.com,301,true,true,false,true,Loud CBD buds redirect
+https://firecbdbuds.com,https://highnoontooned.com,301,true,true,false,true,Fire CBD buds redirect
+https://sinsamillahemp.com,https://highnoontooned.com,301,true,true,false,true,Sinsemilla hemp redirect
+https://highfromhemp.com,https://highnoontooned.com,301,true,true,false,true,High from hemp redirect
+https://exoticcanopysolutions.com,https://highnoontooned.com,301,true,true,false,true,Exotic canopy solutions redirect
+
+# ==========================================
+# SILO 3: ONEPLANTSOLUTION.COM (15 DOMAINS)
+# Policy, Advocacy, Compliance, Advisory
+# ==========================================
+
+# Compliance & Advisory (3 domains)
+https://ageverifysi.com,https://oneplantsolution.com,301,true,true,false,true,Age verify SI redirect
+https://aicrisisconsult.com,https://oneplantsolution.com,301,true,true,false,true,AI crisis consult redirect
+https://aicrisiscoach.com,https://oneplantsolution.com,301,true,true,false,true,AI crisis coach redirect
+
+# Energy Vertical (2 domains)
+https://californiaenergyai.com,https://oneplantsolution.com,301,true,true,false,true,California energy AI redirect
+https://texasenergyai.com,https://oneplantsolution.com,301,true,true,false,true,Texas energy AI redirect
+
+# Healthcare Vertical (4 domains)
+https://camedicalai.com,https://oneplantsolution.com,301,true,true,false,true,CA medical AI redirect
+https://clinicaldataai.com,https://oneplantsolution.com,301,true,true,false,true,Clinical data AI redirect
+https://clinicaldatasi.com,https://oneplantsolution.com,301,true,true,false,true,Clinical data SI redirect
+https://txmedicalai.com,https://oneplantsolution.com,301,true,true,false,true,TX medical AI redirect
+
+# Supply Chain & Finance (2 domains)
+https://txsupplychain.com,https://oneplantsolution.com,301,true,true,false,true,TX supply chain redirect
+https://wealthtechsi.com,https://oneplantsolution.com,301,true,true,false,true,Wealth tech SI redirect
+
+# Strategic Domains (4 domains)
+https://texascoa.com,https://oneplantsolution.com,301,true,true,false,true,Texas COA redirect
+https://jesseniesen.com,https://oneplantsolution.com,301,true,true,false,true,Jesse Niesen personal redirect
+https://livhana.ai,https://oneplantsolution.com,301,true,true,false,true,Liv Hana AI redirect
+https://vibecodeliv.com,https://oneplantsolution.com,301,true,true,false,true,Vibe Code Liv redirect
+
+# ==========================================
+# SILO 4: HERBITRAGE.COM (24 DOMAINS)
+# Commerce, B2B Tools, SI, Tech
+# ==========================================
+
+# B2B Hemp Retail Ops (4 domains)
+https://hempretailai.com,https://herbitrage.com,301,true,true,false,true,Hemp retail AI redirect
+https://cannabisretailai.com,https://herbitrage.com,301,true,true,false,true,Cannabis retail AI redirect
+https://cannabisretailsi.com,https://herbitrage.com,301,true,true,false,true,Cannabis retail SI redirect
+https://hempretailsi.com,https://herbitrage.com,301,true,true,false,true,Hemp retail SI redirect
+https://retailopssi.com,https://herbitrage.com,301,true,true,false,true,Retail ops SI redirect
+
+# B2B Enablement (3 domains)
+https://bizflowsi.com,https://herbitrage.com,301,true,true,false,true,Biz flow SI redirect
+https://codenexusai.com,https://herbitrage.com,301,true,true,false,true,Code nexus AI redirect
+https://codenexussi.com,https://herbitrage.com,301,true,true,false,true,Code nexus SI redirect
+https://devflowsi.com,https://herbitrage.com,301,true,true,false,true,Dev flow SI redirect
+
+# Tools & Tech (11 domains)
+https://adcopysi.com,https://herbitrage.com,301,true,true,false,true,Ad copy SI redirect
+https://airbnbwaterfall.com,https://herbitrage.com,301,true,true,false,true,Airbnb waterfall redirect
+https://autocodesi.com,https://herbitrage.com,301,true,true,false,true,Auto code SI redirect
+https://contentenginesi.com,https://herbitrage.com,301,true,true,false,true,Content engine SI redirect
+https://shipcodeai.com,https://herbitrage.com,301,true,true,false,true,Ship code AI redirect
+https://shipcodesi.com,https://herbitrage.com,301,true,true,false,true,Ship code SI redirect
+https://siartisan.com,https://herbitrage.com,301,true,true,false,true,SI artisan redirect
+https://strategysi.com,https://herbitrage.com,301,true,true,false,true,Strategy SI redirect
+https://terpwerk.com,https://herbitrage.com,301,true,true,false,true,Terpwerk redirect
+https://tier1treecare.com,https://herbitrage.com,301,true,true,false,true,Tier 1 tree care redirect
+https://xn--reggieanddr-v9b.com,https://herbitrage.com,301,true,true,false,true,Punycode support redirect
+
+# Legacy Domain (1 domain)
+https://hempress3.com,https://herbitrage.com,301,true,true,false,true,Hempress 3 redirect
+
+# ==========================================
+# WWW REDIRECT (1 RULE)
+# ==========================================
+https://www.herbitrage.com,https://herbitrage.com,301,true,true,false,true,WWW redirect to root domain
