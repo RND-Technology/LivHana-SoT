@@ -1,10 +1,10 @@
 {
   "agent": "liv-voice",
   "phase": "voice-orchestration",
-  "status": "listening",
-  "started_at": "2025-10-23T15:51:08Z",
+  "status": "ended",
+  "started_at": "2025-10-23T15:55:16Z",
   "finished_at": "",
   "tmux_session": "liv-voice",
   "log_file": "/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/logs/voice/liv_voice_20251023_105107.log",
-  "notes": "Voice session active; greetings should trigger immediately"
+  "notes": "Voice session ended cleanly"
 }
