@@ -16,8 +16,11 @@ export default [
       'automation/tests/**',
       'dist/',
       'build/',
+      '**/dist/**',
+      '**/build/**',
       '*.min.js',
       'node_modules/',
+      '**/.venv/**',
       'scripts/**',
       'tools/**',
       'docs/**',
@@ -27,7 +30,12 @@ export default [
       'age-verification-smart-gate.js',
       'age-verification-smart-gate-fixed.js',
       'watch-cheetah.js',
-      'archived/**'
+      'archived/**',
+      '.archive/**',
+      '.claude_backup_*',
+      '.cursor/**',
+      'tmp/**',
+      'logs/**'
     ]
   },
   {
