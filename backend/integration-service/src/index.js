@@ -1,5 +1,6 @@
 import express from 'express';
 import { Client } from 'square';
+import rpmRouter from './rpm.ts';
 import { createLogger } from '../common/logging/index.js';
 
 const logger = createLogger('integration-service');
@@ -107,9 +108,9 @@ app.get('/health', (req, res) => {
   res.json({ 
     status: 'healthy', 
     service: 'integration-service',
-    message: 'Real Square integration service active',
+    message: 'Integration service active',
     timestamp: new Date().toISOString(),
-    features: ['inventory_sync', 'order_processing', 'square_api']
+    features: ['inventory_sync', 'order_processing', 'square_api', 'rpm_api']
   });
 });
 
@@ -136,9 +137,12 @@ app.get('/', (req, res) => {
     message: 'Integration Service Active',
     status: 'operational',
     timestamp: new Date().toISOString(),
-    endpoints: ['/api/v1/sync-inventory', '/api/v1/process-order']
+    endpoints: ['/api/v1/sync-inventory', '/api/v1/process-order', '/api/rpm/*']
   });
 });
+
+// RPM API
+app.use('/api/rpm', rpmRouter);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
