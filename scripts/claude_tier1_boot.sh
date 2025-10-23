@@ -304,7 +304,9 @@ echo
 
 info "Validating PO1 structure..."
 bash "$ROOT/scripts/guards/validate_po1_structure.sh" | tee -a "$LOG"
-bash "$ROOT/scripts/guards/validate_status.sh" | tee -a "$LOG" || true
+if ! bash "$ROOT/scripts/guards/validate_status.sh" | tee -a "$LOG"; then
+  warning "Status validation failed (non-critical, continuing)"
+fi
 
 info "Launching voice orchestrator watcher..."
 bash "$ROOT/scripts/agents/voice_orchestrator_watch.sh" >> "$LOG" 2>&1 &
@@ -622,7 +624,9 @@ echo
 # STEP 6: SESSION WATCHDOG (non-blocking)
 banner "⏱️  STEP 6: SESSION WATCHDOG"
 CLAUDE_DIR="$ROOT/.claude"
-pkill -f "watch-session-progress.sh" 2>/dev/null || true
+if pkill -f "watch-session-progress.sh" 2>/dev/null; then
+  info "Killed existing session watchdog"
+fi
 sleep 1
 if [[ -f "$CLAUDE_DIR/watch-session-progress.sh" ]]; then
   nohup bash "$CLAUDE_DIR/watch-session-progress.sh" 300 60 >> "$CLAUDE_DIR/session_watch.log" 2>&1 &
@@ -758,16 +762,71 @@ if [[ "${MAX_AUTO:-1}" == "1" ]]; then
     warning "Voice session start reported non-zero exit"
   fi
   
-  # Start 5 subagents in parallel
+  # Start 5 subagents in parallel with validation
   info "Starting all 5 subagents..."
-  bash "$ROOT/scripts/start_planning_agent.sh" >> "$LOG" 2>&1 || true &
-  bash "$ROOT/scripts/start_research_agent.sh" >> "$LOG" 2>&1 || true &
-  bash "$ROOT/scripts/start_artifact_agent.sh" >> "$LOG" 2>&1 || true &
-  bash "$ROOT/scripts/start_execution_monitor.sh" >> "$LOG" 2>&1 || true &
-  bash "$ROOT/scripts/start_qa_agent.sh" >> "$LOG" 2>&1 || true &
+  
+  if bash "$ROOT/scripts/start_planning_agent.sh" >> "$LOG" 2>&1 & then
+    PLANNING_PID=$!
+    if bash "$ROOT/scripts/guards/validate_agent_started.sh" planning 10; then
+      success "Planning agent validated"
+    else
+      error "Planning agent failed to write status JSON"
+      kill "$PLANNING_PID" 2>/dev/null || true
+    fi
+  else
+    error "Failed to start planning agent"
+  fi
+  
+  if bash "$ROOT/scripts/start_research_agent.sh" >> "$LOG" 2>&1 & then
+    RESEARCH_PID=$!
+    if bash "$ROOT/scripts/guards/validate_agent_started.sh" research 10; then
+      success "Research agent validated"
+    else
+      error "Research agent failed to write status JSON"
+      kill "$RESEARCH_PID" 2>/dev/null || true
+    fi
+  else
+    error "Failed to start research agent"
+  fi
+  
+  if bash "$ROOT/scripts/start_artifact_agent.sh" >> "$LOG" 2>&1 & then
+    ARTIFACT_PID=$!
+    if bash "$ROOT/scripts/guards/validate_agent_started.sh" artifact 10; then
+      success "Artifact agent validated"
+    else
+      error "Artifact agent failed to write status JSON"
+      kill "$ARTIFACT_PID" 2>/dev/null || true
+    fi
+  else
+    error "Failed to start artifact agent"
+  fi
+  
+  if bash "$ROOT/scripts/start_execution_monitor.sh" >> "$LOG" 2>&1 & then
+    EXEC_PID=$!
+    if bash "$ROOT/scripts/guards/validate_agent_started.sh" exec 10; then
+      success "Execution monitor validated"
+    else
+      error "Execution monitor failed to write status JSON"
+      kill "$EXEC_PID" 2>/dev/null || true
+    fi
+  else
+    error "Failed to start execution monitor"
+  fi
+  
+  if bash "$ROOT/scripts/start_qa_agent.sh" >> "$LOG" 2>&1 & then
+    QA_PID=$!
+    if bash "$ROOT/scripts/guards/validate_agent_started.sh" qa 10; then
+      success "QA agent validated"
+    else
+      error "QA agent failed to write status JSON"
+      kill "$QA_PID" 2>/dev/null || true
+    fi
+  else
+    error "Failed to start QA agent"
+  fi
 
   # Wait for parallel starts
-  wait || true
+  wait
 
   success "MAX_AUTO autostart sequence completed"
   info "Tmux sessions: $(tmux ls 2>/dev/null | wc -l) active"
