@@ -61,7 +61,7 @@ function generateProviderTags(provider, quote, allQuotes) {
  */
 export async function selectBestProvider(deliveryRequest) {
   const availableProviders = Object.entries(PROVIDERS)
-    .filter(([key, provider]) => provider.enabled)
+    .filter(([, provider]) => provider.enabled)
     .map(([key, provider]) => ({ key, ...provider }));
 
   if (availableProviders.length === 0) {
@@ -94,7 +94,7 @@ export async function selectBestProvider(deliveryRequest) {
       }
     } catch (error) {
       errors.push({ provider: provider.key, error: error.message });
-      console.warn(`Provider ${provider.key} failed:`, error.message);
+      // Provider error logged for fallback handling
     }
   }
 
@@ -142,6 +142,7 @@ export async function selectBestProvider(deliveryRequest) {
 /**
  * Get DoorDash quote (placeholder - implement actual API call)
  */
+// eslint-disable-next-line no-unused-vars
 async function getDoorDashQuote(deliveryRequest) {
   // Placeholder implementation
   // In production, this would call DoorDash Drive API
@@ -155,6 +156,7 @@ async function getDoorDashQuote(deliveryRequest) {
 /**
  * Get Uber quote (placeholder - implement actual API call)
  */
+// eslint-disable-next-line no-unused-vars
 async function getUberQuote(deliveryRequest) {
   // Placeholder implementation
   // In production, this would call Uber Direct API
