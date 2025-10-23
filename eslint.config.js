@@ -33,12 +33,15 @@ export default [
       'archived/**',
       '.archive/**',
       '.claude_backup_*',
+      '.claude/**',
       '.cursor/**',
       'tmp/**',
       'logs/**',
       '1.rnd/**',
       'deployment/**',
-      'empire/**'
+      'empire/**',
+      'raw-*',
+      '**/raw-*'
     ]
   },
   {
