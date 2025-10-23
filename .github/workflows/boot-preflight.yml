@@ -1,67 +1,16 @@
 name: Boot Preflight
-
-on:
-  pull_request:
-    branches: [main, develop, fix/mobile-control-po1]
-  workflow_dispatch:
-
+on: [pull_request]
 jobs:
   preflight:
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-      
-      - name: Install dependencies
-        run: npm ci
-      
-      - name: Check 1Password CLI available
-        run: |
-          if ! command -v op >/dev/null 2>&1; then
-            echo "⚠️  1Password CLI not available in CI - skipping secret checks"
-            echo "SKIP_SECRET_CHECKS=true" >> $GITHUB_ENV
-          fi
-      
-      - name: Validate 1Password Authentication
-        if: env.SKIP_SECRET_CHECKS != 'true'
-        run: |
-          if ! op whoami >/dev/null 2>&1; then
-            echo "ERROR: 1Password not authenticated"
-            echo "CI environment must have 1Password credentials configured"
-            exit 1
-          fi
-          echo "✅ 1Password authenticated"
-      
-      - name: Expand secrets validation
-        if: env.SKIP_SECRET_CHECKS != 'true'
-        run: |
-          op run --env-file backend/integration-service/.env.op -- \
-            sh -c 'test -n "${DATABASE_URL:-}" && test -n "${JWT_SECRET:-}" && test -n "${LIGHTSPEED_TOKEN:-}"' || {
-            echo "ERROR: Required secrets not accessible"
-            exit 1
-          }
-          echo "✅ All secrets accessible"
-      
-      - name: Lint Tier-1 paths
-        run: |
-          npm run lint -- backend/voice-service backend/reasoning-gateway backend/integration-service frontend/vibe-cockpit || {
-            echo "ERROR: Lint failures in Tier-1 paths"
-            exit 1
-          }
-          echo "✅ Lint passed"
-      
-      - name: Verify preflight script
-        run: |
-          bash scripts/ci/preflight.sh || {
-            echo "ERROR: Preflight validation failed"
-            exit 1
-          }
-          echo "✅ Preflight passed"
-
+      - name: Check 1Password
+        run: op whoami | grep -q '@'
+      - name: Expand secrets
+        run: op run --env-file .env.op -- sh -c 'printenv DATABASE_URL JWT_SECRET LIGHTSPEED_TOKEN' >/dev/null
+      - name: Service health
+        run: timeout 60 bash -c 'until curl -sf localhost:3005/health; do sleep 2; done'
+      - name: Log security scan
+        run: '! grep -Ei "(key|token|secret)=" logs/integration-service.log'
+      - name: Lint Tier-1
+        run: npm run lint -- backend/{voice,reasoning,integration}-service frontend/vibe-cockpit
