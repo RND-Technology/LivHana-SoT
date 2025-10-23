@@ -77,7 +77,7 @@ ensure_op_session() {
   # CLI v2: use --raw to get session token directly (no eval)
   if [[ "$op_major" != "1" ]]; then
     local session_token
-    if ! session_token="$(timeout 30s op signin --account "${account}" --raw 2>/dev/null)"; then
+    if ! session_token="$(op signin --account "${account}" --raw 2>/dev/null)"; then
       error "Automatic 1Password sign-in failed (timeout or denied)."
       error "Ensure Desktop app is running and CLI integration is enabled."
       error "Manual: op signin --account ${account}"
@@ -85,11 +85,12 @@ ensure_op_session() {
     fi
 
     # Export session token for this shell
-    export "OP_SESSION_${account%%.*}=${session_token}"
+    local account_shorthand="${account%%.*}"
+    export "OP_SESSION_${account_shorthand}=${session_token}"
   else
     # CLI v1: Legacy eval-based signin (less secure, but required for v1)
     warning "1Password CLI v1 detected. Upgrade recommended: brew upgrade 1password-cli"
-    if ! timeout 30s op signin --account "${account}" >/dev/null 2>&1; then
+    if ! op signin --account "${account}" >/dev/null 2>&1; then
       error "Automatic 1Password sign-in failed."
       error "Manual: eval \"\$(op signin ${account})\""
       exit 1
