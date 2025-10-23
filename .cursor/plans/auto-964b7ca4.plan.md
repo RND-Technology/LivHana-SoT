@@ -1,5 +1,5 @@
 <!-- 964b7ca4-84f9-46d4-902c-492a196e447f 15f154a3-a322-47e8-befa-651755c8f70a -->
-# Execute: finalize ESLint flat config, integrate boot helpers, commit, push, verify
+### Execute: finalize ESLint flat config, integrate boot helpers, commit, push, verify
 
 #### Tasks
 1) Finalize ESLint v9 flat config

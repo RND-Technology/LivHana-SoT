@@ -1,9 +1,0 @@
-# Liv Hana Tier‑1 Startup Reminder
-
-**Load this at session start.**
-
-- Read `docs/authority_startup_blueprint.md` immediately.  
-- Enforce Sonnet 4.5 **OCT 2025** as the only voice model.  
-- Follow PO1 status/write guards (`scripts/guards/*`).  
-- Execution must write to `tmp/agent_status/exec.status.json`; QA auto-triggers; voice gates before Jesse approves.  
-- Ops is human-in-loop with 🔔 alerts.
