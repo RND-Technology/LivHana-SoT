@@ -107,10 +107,10 @@ ensure_op_session() {
     
     # Even if --raw returns empty (app integration), verify whoami works
     local whoami_check
-    whoami_check="$(op whoami 2>/dev/null || echo '')"
+    whoami_check="$(op whoami 2>/dev/null | tr -d '\n' || echo '')"
     if [[ -z "$whoami_check" ]]; then
-      error "1Password sign-in did not produce an active session."
-      error "Try manual signin: op signin --account ${account}"
+      error "1Password sign-in produced empty whoami."
+      error "Enable Desktop → Developer → Integrate with 1Password CLI."
       exit 1
     fi
     
