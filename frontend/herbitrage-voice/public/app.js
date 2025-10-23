@@ -11,7 +11,7 @@ let isListening = false;
 let isProcessing = false;
 let recognition = null;
 let currentAudio = null;
-let sessionId = `session-${Date.now()}`;
+const sessionId = `session-${Date.now()}`;
 
 // DOM Elements
 const landingPage = document.getElementById('landingPage');
