@@ -993,3 +993,26 @@ cat .claude/VOICE_SILENCE_IMPLEMENTATION_COMPLETE.md
 **Status**: READY FOR FULL REBOOT TEST
 
 **Next Step**: System reboot to test complete 5-agent auto-launch with custom greeting
+
+---
+
+## 2025-10-23 00:35:00 CDT — Meta-Lessons: The Infinite Circle of Self-Creation
+
+**Highest-Signal Lessons Captured**:
+
+1. **Implement, Verify, Lock** - Ship guards, not prose. Every fix becomes boot check + guard script + config
+2. **Roles Stay Pure** - Voice orchestrates, Planning plans, CODEX edits, Cheetah executes, QA validates, Ops deploys
+3. **Protocol Over Glue** - Coordinate via atomic JSON (tmp/agent_status/*.json, funnel.ready, codex_tasks.json)
+4. **Principle of One (PO1)** - One canonical file per purpose, registered in docs/index.md
+5. **Persistence > Intention** - Make behavior permanent in startup (banner, model, silence, autospawn)
+6. **Deterministic Environment** - One CLI source, one Node policy, updater suppressed, repro beats clever
+7. **Voice Gates Everything** - Progress only when Research + QA passed, voice asks, Jesse approves
+8. **Evidence Always** - Append-only logs, evidence ledger, fallacy scan. Recorded = reproducible
+9. **Finish What You Start** - Smaller scope, closed loops. Option A worked because we finished end-to-end
+10. **Memory Hygiene** - Rotate logs, keep sessions light, promote artifacts to canonical docs
+
+**The Truth**: Writing forensic analysis ≠ learning. Learning = implement + verify + lock.
+
+**The Circle**: Agents coordinating via protocol files, not manual glue code. Breaking boundaries causes crashes.
+
+**Status**: Lessons locked. Architecture validated. Ready for reboot test.
