@@ -1165,8 +1165,7 @@ if [[ "${MAX_AUTO:-1}" == "1" ]]; then
       RESEARCH_PID=$!
       info "Starting research agent (PID: $RESEARCH_PID)"
       if [[ -f "$ROOT/scripts/guards/atomic_write.sh" ]]; then
-        source "$ROOT/scripts/guards/atomic_write.sh"
-        atomic_write "$ROOT/tmp/agent_status/research.status.json" "{ \"agent\": \"research\", \"status\": \"active\", \"phase\": \"running\", \"updated_at\": \"$(date -u +%FT%TZ)\" }\n"
+        echo "{ \"agent\": \"research\", \"status\": \"active\", \"phase\": \"running\", \"updated_at\": \"$(date -u +%FT%TZ)\" }" | "$ROOT/scripts/guards/atomic_write.sh" "$ROOT/tmp/agent_status/research.status.json"
       else
         printf '{ "agent": "research", "status": "active", "phase": "running", "updated_at": "%s" }\n' "$(date -u +%FT%TZ)" > "$ROOT/tmp/agent_status/research.status.json"
       fi
@@ -1177,8 +1176,7 @@ if [[ "${MAX_AUTO:-1}" == "1" ]]; then
       ARTIFACT_PID=$!
       info "Starting artifact agent (PID: $ARTIFACT_PID)"
       if [[ -f "$ROOT/scripts/guards/atomic_write.sh" ]]; then
-        source "$ROOT/scripts/guards/atomic_write.sh"
-        atomic_write "$ROOT/tmp/agent_status/artifact.status.json" "{ \"agent\": \"artifact\", \"status\": \"active\", \"phase\": \"running\", \"updated_at\": \"$(date -u +%FT%TZ)\" }\n"
+        echo "{ \"agent\": \"artifact\", \"status\": \"active\", \"phase\": \"running\", \"updated_at\": \"$(date -u +%FT%TZ)\" }" | "$ROOT/scripts/guards/atomic_write.sh" "$ROOT/tmp/agent_status/artifact.status.json"
       else
         printf '{ "agent": "artifact", "status": "active", "phase": "running", "updated_at": "%s" }\n' "$(date -u +%FT%TZ)" > "$ROOT/tmp/agent_status/artifact.status.json"
       fi
@@ -1189,8 +1187,7 @@ if [[ "${MAX_AUTO:-1}" == "1" ]]; then
       EXEC_PID=$!
       info "Starting execution monitor (PID: $EXEC_PID)"
       if [[ -f "$ROOT/scripts/guards/atomic_write.sh" ]]; then
-        source "$ROOT/scripts/guards/atomic_write.sh"
-        atomic_write "$ROOT/tmp/agent_status/execmon.status.json" "{ \"agent\": \"execmon\", \"status\": \"active\", \"phase\": \"running\", \"updated_at\": \"$(date -u +%FT%TZ)\" }\n"
+        echo "{ \"agent\": \"execmon\", \"status\": \"active\", \"phase\": \"running\", \"updated_at\": \"$(date -u +%FT%TZ)\" }" | "$ROOT/scripts/guards/atomic_write.sh" "$ROOT/tmp/agent_status/execmon.status.json"
       else
         printf '{ "agent": "execmon", "status": "active", "phase": "running", "updated_at": "%s" }\n' "$(date -u +%FT%TZ)" > "$ROOT/tmp/agent_status/execmon.status.json"
       fi
@@ -1201,8 +1198,7 @@ if [[ "${MAX_AUTO:-1}" == "1" ]]; then
       QA_PID=$!
       info "Starting qa agent (PID: $QA_PID)"
       if [[ -f "$ROOT/scripts/guards/atomic_write.sh" ]]; then
-        source "$ROOT/scripts/guards/atomic_write.sh"
-        atomic_write "$ROOT/tmp/agent_status/qa.status.json" "{ \"agent\": \"qa\", \"status\": \"active\", \"phase\": \"running\", \"updated_at\": \"$(date -u +%FT%TZ)\" }\n"
+        echo "{ \"agent\": \"qa\", \"status\": \"active\", \"phase\": \"running\", \"updated_at\": \"$(date -u +%FT%TZ)\" }" | "$ROOT/scripts/guards/atomic_write.sh" "$ROOT/tmp/agent_status/qa.status.json"
       else
         printf '{ "agent": "qa", "status": "active", "phase": "running", "updated_at": "%s" }\n' "$(date -u +%FT%TZ)" > "$ROOT/tmp/agent_status/qa.status.json"
       fi
