@@ -1216,12 +1216,11 @@ if [[ "${MAX_AUTO:-1}" == "1" ]]; then
         error "integration-service failed to become available within 30s. Check ${integration_log}"
         exit 1
       fi
-    fi
-
-    cd "$ROOT"
     else
       warning "integration-service package.json not found - skipping"
     fi
+
+    cd "$ROOT"
   fi
 
   echo
