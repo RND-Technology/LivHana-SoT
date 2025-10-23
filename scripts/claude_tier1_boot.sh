@@ -852,9 +852,12 @@ if [[ "${MAX_AUTO:-1}" == "1" ]]; then
   echo
 
   # Start integration-service with secrets (critical for operations)
-  info "Starting integration-service with 1Password secrets..."
-  ensure_op_session quiet
-  if [[ -f "$ROOT/backend/integration-service/package.json" ]]; then
+  if [[ "${SKIP_INTEGRATION_SERVICE:-0}" == "1" ]]; then
+    warning "Skipping integration-service (SKIP_INTEGRATION_SERVICE=1)"
+  else
+    info "Starting integration-service with 1Password secrets..."
+    ensure_op_session quiet
+    if [[ -f "$ROOT/backend/integration-service/package.json" ]]; then
     cd "$ROOT/backend/integration-service"
 
     # Check if already running
@@ -916,8 +919,9 @@ if [[ "${MAX_AUTO:-1}" == "1" ]]; then
     fi
 
     cd "$ROOT"
-  else
-    warning "integration-service package.json not found - skipping"
+    else
+      warning "integration-service package.json not found - skipping"
+    fi
   fi
 
   echo
