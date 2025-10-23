@@ -72,6 +72,8 @@ last-reviewed: 2025-10-06
 
 ### Jesse Niesen (CEO)
 
+- [`../.claude/TIER1_FUNNEL_AUTHORITY.md`](../.claude/TIER1_FUNNEL_AUTHORITY.md) - **CANONICAL** Tier-1 8-layer funnel blueprint (PO1 protected)
+- [`authority_startup_blueprint.md`](./authority_startup_blueprint.md) - Authority startup blueprint (load at agent startup)
 - [`README.md`](./README.md) - Documentation hub reference
 - [`RPM_WEEKLY_PLAN_OCT4-12_2025.md`](./RPM_WEEKLY_PLAN_OCT4-12_2025.md) - Weekly plan reference
 - [`TIER1_ACCOUNT_OPTIMIZATION_ASSESSMENT_20251006.md`](./TIER1_ACCOUNT_OPTIMIZATION_ASSESSMENT_20251006.md) - Account optimization reference

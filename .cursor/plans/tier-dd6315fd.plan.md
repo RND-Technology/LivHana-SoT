@@ -1,118 +1,86 @@
-<!-- dd6315fd-e9db-4281-bc27-6509e33c3a8d 476bb331-3fc9-4a86-8372-ebff317ec0c5 -->
-# Tier‑1 Recon + Fallacy Scan → Hardening (PO1)
+<!-- dd6315fd-e9db-4281-bc27-6509e33c3a8d fec8422b-8765-4057-83e2-e3f2832c3e2c -->
+# Authority Startup Blueprint — Embed for All Cursor Agents (Voice, Cursor, CODEX)
 
-## Purpose
-Planning‑only blueprint to ingest evidence, scan for fallacies against current best practices, stratify risk, and refine the Tier‑1 hardening tracks for a clean, shippable PO1 outcome. No execution; outputs are artifacts and numbered tasks for CODEX → Cheetah → QA.
+Principle‑of‑One enforced; status flows machine‑readable; Claude Sonnet 4.5 OCT gates every phase. This blueprint MUST load at session start for all agents.
 
-## Scope (Principle of One)
-- In scope (Tier‑1): `backend/voice-service`, `backend/reasoning-gateway`, `backend/integration-service`, `backend/product-service`, `frontend/vibe-cockpit`, `docker-compose.yml`, `scripts/`, `config/`, `.claude/decisions/` (docs only).
-- Frozen (gated for later): `1.rnd/**`, `empire/**`, `deployment/**` (incl. replit-pwa), `backups/**`, `legacy/**`, `logs/**`, any `venv/**`.
+0. 🧩 Bootstrap & Invariants
+Entry: `./START.sh` → `scripts/claude_tier1_boot.sh`
+Must verify (abort with remediation on failure):
+- Node major ≥ 20 (`STRICT_NODE_20=true` forces exact v20 when needed)
+- `/opt/homebrew/bin` in PATH top‑3; `which claude` ⇒ `/opt/homebrew/bin/claude`
+- `redis-cli` PING/SET/GET
+- `JWT_SECRET` present or accessible via `op run`
+- Sacred voice banner at top of `tmp/claude_tier1_prompt.txt` (grep)
+- Sonnet 4.5 OCT enforced — CLI launches with `--model sonnet-4.5`; abort if alias missing
+Outputs: `logs/claude_tier1_boot_YYYYMMDD_HHMMSS.log`, append to `.claude/SESSION_PROGRESS.md`
+Auto‑spawn:
+- `scripts/start_research_agent.sh` (research auto‑launch)
+- `scripts/agents/voice_orchestrator_watch.sh` (status watcher)
 
-## 1) Evidence Catalog (no execution)
-Collect references (paths, timestamps, hashes where available) into an Evidence Ledger for QA:
-- Session and directives
-  - `.claude/SESSION_PROGRESS.md`
-  - `.claude/CHEETAH_HANDOFF_VOICE_MODE_FIX.md`
-  - `.claude/decisions/VOICE_MODE_SILENCE_BEHAVIOR.md`
-  - Optional local transcripts (for later agent): `~/.voicemode/logs/conversations/**`
-- Runtime/boot
-  - `scripts/claude_tier1_boot.sh`
-  - `START.sh`, `TIER1_BOOT_LOCK_3_AGENTS_24_7.sh`
-  - `config/voice_mode.json`
-- Services + tests/build
-  - `jest.config.unified.js`, `tests/**`, `frontend/vibe-cockpit/tests/setup.js`
-  - Tier‑1 entrypoints: `backend/voice-service/src/index.js`, `backend/reasoning-gateway/src/index.js`, `backend/integration-service/src/index.js` (or service app files)
-  - `docker-compose.yml`
+Layer 1 — 🎙️🦄 Voice Cognition (Sonnet 4.5 OCT ONLY)
+- Model: Claude Sonnet 4.5 OCT (voice MCP)
+- Auto‑activate, greet per banner
+- Capture Jesse directive, confirm, log to `.claude/SESSION_PROGRESS.md`
+- Emit `tmp/agent_status/voice.status.json` (status: listening)
+- Enforce “silence” → pause TTS; mic/context remain live
+- Poll `tmp/agent_status/{research,exec,qa,ops}.status.json` + Redis `agent.events`
+- Gatekeeper: only when Research & QA report `status=passed` does voice summarize results and request Jesse’s approval → set `voice.status.json=approved` or `blocked`
 
-Deliverable: `docs/evidence-ledger.md` summarizing file → purpose → last modified → checksum (filled by CODEX).
+Layer 2 — 🧠 RPM Planning Sub‑Agent (ChatGPT‑5 High Fast → GPT‑5 High)
+- INGEST → FALLACY SCAN → STRATEGIZE → IMPROVE → REFINE → FUSE → HAND OFF
+- Outputs: `docs/tier1_recon_plan.md`, `tmp/agent_status/planning.status.json`
+- Scope: read‑only; no commands; each task touches one canonical file
 
-## 2) Fallacy Scan Blueprint (authorities to pull later)
-Map each directive/assumption to authoritative sources to validate once network agents run. Specify exact targets (queries/URLs) for later retrieval:
-- Voice mode continuity (silence = pause, not end)
-  - OpenAI Realtime/Voice assistant UX notes (2024–2025), LiveKit Voice best practices, Google/Alexa voice interaction guidelines.
-  - Queries: “voice assistant silence pause not end session best practices”, “LiveKit continuous listening UX”, “OpenAI realtime voice interrupt guidelines”.
-- CLI hygiene (Claude Code)
-  - Anthropic `claude-code` brew formula + release notes (2.x), Homebrew PATH precedence guidance, Node 20 LTS.
-  - Queries: “anthropic claude-code homebrew formula”, “claude-code release notes 2.0.24”, “homebrew path order macOS m1 m4”.
-- Slack automation (slash command security)
-  - Slack signing secret verification docs, rate limiting, response_url patterns, 3‑second response rule, retries.
-  - Queries: “Slack slash commands verify signature example node”, “Slack 3 second response best practices”, “response_url delayed responses”.
-- Queue + Web security
-  - Redis/BullMQ best practices (idempotency, backoff, DLQ), OWASP API Security Top 10 (webhooks/JWT), secrets management with 1Password CLI (`op run`).
-  - Queries: “BullMQ retry backoff DLQ pattern”, “OWASP API security webhook JWT”, “1Password op run best practices”.
-- Compliance (Age verification)
-  - Veriff API integration guidelines (biometric ID), avoid cookie‑only gates.
-  - Queries: “Veriff API integration age verification web guidelines”.
+Layer 3 — 🔬 Research (Perplexity/Apify fed)
+- Auto‑start via `scripts/start_research_agent.sh` (runs under `op run` to load `PERPLEXITY_API_KEY`, `APIFY_TOKEN`)
+- Command: `claude-tier1 research --project LivHana-SoT --plan docs/tier1_recon_plan.md --tools perplexity,apify`
+- Helpers: `backend/research-service/src/{perplexity.ts, apify.ts}`; optional MCP servers `tools/perplexity-mcp/`, `tools/apify-mcp/`
+- Outputs: `docs/fallacy-scan.md`, risk register updates, `tmp/agent_status/research.status.json`, `logs/research/research_agent_*.log`, optional Redis event
 
-Deliverable: `docs/fallacy-scan.md` with a matrix: Claim/Directive → Source(s) to cite → Evidence status (TBD/Found/Refuted) → Action.
+Layer 4 — 🛠️ Artifact Engineering (CODEX: Claude Code / GPT‑4.1)
+- Maintain docs: `_index`, evidence ledger, fallacy scan, risk register, research-tools, mobile-control, agent‑orchestration, ADRs
+- Maintain scripts: `check_recent.sh`, `guards/check_po1_files.sh`, `claude_voice_session.sh`, `mobile/*.sh`, `start_{research,qa}_agent.sh`, `agents/{emit_event,voice_orchestrator_watch,validate_status}.sh`, `slack_smoke_test.sh`, `docker_env_wrapper.sh`
+- Maintain code: Slack bridge (`backend/integration-service/src/slack/*.ts` + tests), Redis consumer (`backend/reasoning-gateway/src/jobs/slack-commands.ts`), MCP scaffolds
+- Outputs: clean diffs, verification notes, `tmp/agent_status/artifact.status.json`
 
-## 3) Risk Stratification (blast radius × likelihood)
-- R1 Voice‑mode continuity guarantees (Critical/High): session loss on “silence”.
-- R2 CLI stability (High): PATH collisions, non‑TTY doctor/update flakiness.
-- R3 Mobile control security (High): Slack bridge signature/JWT/queue guardrails.
-- R4 Lint/Test gating (Medium): repo‑wide noise blocking signal.
-- R5 Docker secrets hygiene (High): `secrets:` externalization, env scoping.
-- R6 Test coverage gaps (Medium): lack of smoke tests/health checks.
+Layer 5 — ⚡🐆 Execution (Cheetah Runner)
+- Stop instantly on failure; log every command
+- `./START.sh` + `bash scripts/claude_tier1_boot.sh --dry-run` → `logs/ci/preflight.log`
+- `npm run lint --workspaces` → `logs/ci/lint.log`
+- `npm run test --workspaces -- --runInBand` (or unified config) → `logs/ci/test.log`
+- `npm run build --workspaces` → `logs/ci/build.log`
+- `docker-compose up -d` (Tier‑1 services) + `/health` probes → `logs/ci/docker.log`
+- `bash scripts/slack_smoke_test.sh` → `logs/ci/slack_bridge.log`
+- `bash scripts/claude_voice_session.sh status` → `logs/ci/voice_cli.log` (Sonnet handshake)
+- Write `tmp/agent_status/exec.status.json` and IMMEDIATELY run `scripts/start_qa_agent.sh` (mandatory; QA cannot be skipped)
 
-Deliverable: `docs/risk-register.md` with ratings, symptoms observed, and PO1 remediation owner/ETA placeholders.
+Layer 6 — 🛡️ QA & Red Team (Liv Hana QA SubAgent)
+- Runs inside Liv Hana voice environment after every execution
+- Verifies ACs: voice banner, Node/PATH/Redis/JWT, Slack bridge, Redis queue, research‑tool smoke, Tailscale helpers, guard script
+- Security sweeps: secret grep, open port audit, regression tests
+- Outputs: `logs/qa/qa_agent_*.log`, `tmp/agent_status/qa.status.json`, optional Redis alert
 
-## 4) PO1 Upgrade Strategy Drafts (tracks)
-A. Voice Persistence (already partially fixed)
-- Design: Banner + explicit config (`terminate_session:false`, text‑only on silence) + boot validation.
-- Guardrails: HEREDOC instructions + grep checks; no termination on silence.
-- Verification: boot script validation 3/3; manual “silence” scenario; unit test stub of config read.
-- Rollback: disable banner via env flag; retain text mode.
+Layer 7 — 🔁 Voice‑Orchestrator Watcher
+- `scripts/agents/voice_orchestrator_watch.sh` waits for Research, Execution, QA to report `passed`
+- Writes `tmp/agent_status/funnel.ready`; signals voice agent
+- Voice agent announces readiness; Jesse approves via voice; `voice.status.json` updated
 
-B. CLI Stability (Homebrew‑only)
-- Design: brew‑only install; Node 20 LTS via nvm; PATH/TTY guards; no auto‑update in non‑TTY.
-- Guardrails: START/BOOT preflight (PATH, `which claude`, Node v20, `redis-cli`).
-- Verification: interactive `claude --version` & `claude doctor` pass; preflight green.
-- Rollback: guidance printed when failing; no changes applied automatically.
+Layer 8 — 🚀 Ops / Deployment (HUMAN‑IN‑THE‑LOOP)
+- Actor: Grasshopper (Ops human) or CI operator
+- Path: `op run` with production secrets → deployment script (Cloudflare/Tailscale tunnel, service restart, `CHANGELOG.md` update)
+- Status: `tmp/agent_status/ops.status.json` (status, environment, commit); logs under `logs/ops/*`
+- Alert: 🔔 Notify Grasshopper Master CODEX on deploy ready/complete; voice agent announces outcome to Jesse
 
-C. Mobile Orchestration (Slack bridge primary; Tailscale backup)
-- Design: `/agent` slash → signature verify → JWT → Redis publish (`reasoning.jobs`); minimal local agent for allowed scripts (voice start/silence/resume/status/logs). Exposure via Cloudflare Tunnel/Tailscale Funnel.
-- Guardrails: per‑route rate limit, input allowlist, job schema guard, DLQ.
-- Verification: `/agent status` shows PATH/Node/Redis/voice health; e2e dry‑run.
-- Rollback: disable route via env feature flag.
-
-D. Lint/Test Gate (Tier‑1)
-- Design: narrow lint surface via `.eslintignore`; root TS/Jest overrides; smoke tests per service; trim Jest projects to real Tier‑1.
-- Guardrails: prevent config errors; keep violations actionable; document temporary overrides.
-- Verification: `npm run lint/test/build` complete; health endpoints green under `docker-compose`.
-- Rollback: revert ignore entries; re‑enable stricter rules gradually.
-
-Deliverables per track are already listed in `tier.plan.md`; this recon adds research references, risks, and acceptance criteria alignment.
-
-## 5) Planning Artifacts to Update/Fuse
-- `docs/evidence-ledger.md` (new)
-- `docs/fallacy-scan.md` (new)
-- `docs/risk-register.md` (new)
-- `docs/mobile-control.md` (flows, commands, rollback)
-- `docs/lint-test-hygiene.md` (lint/test scoping & philosophy)
-- `docs/secrets.md` (compose `secrets:` externalization; 1Password `op run`)
-- Refresh `.claude/decisions/*` if scan refines directives.
-- Keep `tier.plan.md` as the single execution plan; cross‑link new docs.
-
-## Acceptance Criteria (Recon phase)
-- Evidence Ledger populated for all in‑scope files with path + timestamp (+checksum where feasible).
-- Fallacy‑scan matrix lists concrete docs/threads to pull; each Tier‑1 directive mapped to ≥2 authoritative sources.
-- Risk Register finalized with owner + remediation track mapping.
-- Each PO1 track has design, guardrails, verification, rollback written and aligned with Tier‑1 QA shippability.
-- Planning artifacts added/updated and linked from `tier.plan.md`.
-
-## Handoff
-- CODEX implements the artifact files and plan edits (no runtime changes yet) under PR `tier1-recon/plan-0`.
-- Cheetah executes Tier‑1 hardening per `tier.plan.md` after CODEX merges, then QA validates against AC.
-
+Telemetry & Guardrails
+- Status schema: `docs/agent-contracts.md` (agent, phase, status, started_at, finished_at, artifacts, notes) → validated by `scripts/agents/validate_status.sh`
+- PO1 guard: `scripts/guards/check_po1_files.sh` ensures only registered docs change; fails on `PERPLEXITY_API_KEY|APIFY_TOKEN|SLACK_SIGNING_SECRET|
 
 ### To-dos
 
-- [ ] Create docs/evidence-ledger.md and catalog Tier‑1 files
-- [ ] Create docs/fallacy-scan.md with sources to pull later
-- [ ] Create docs/risk-register.md with ratings and owners
-- [ ] List exact external docs/threads to fetch per topic
-- [ ] Write Voice Persistence track spec (design/guardrails/AC)
-- [ ] Write CLI Stability track spec (design/guardrails/AC)
-- [ ] Write Mobile Orchestration track spec (design/guardrails/AC)
-- [ ] Write Lint/Test Gate track spec (design/guardrails/AC)
-- [ ] Update tier.plan.md to link new docs; prep PR tier1-recon/plan-0
+- [ ] Create ADR documenting Sonnet 4.5 OCT as voice model
+- [ ] Enforce voice model flag in boot/session scripts
+- [ ] Define agent status JSON contract doc
+- [ ] Create emit_event.sh to write status and publish events
+- [ ] Add orchestrator watcher to gate on Research+QA
+- [ ] Have Execution write exec.status and auto-trigger QA
+- [ ] Update docs/agent-orchestration with model + wiring
