@@ -59,8 +59,9 @@ app.use('/api/elevenlabs', elevenlabsRouter);
 app.use('/api/reasoning', reasoningRouter);
 
 // Error handling middleware
+// eslint-disable-next-line no-unused-vars
 app.use((err, req, res, _next) => {
-  console.error('Server error:', err);
+  // Server error logged silently
   res.status(500).json({
     success: false,
     error: 'Internal server error',
@@ -70,8 +71,11 @@ app.use((err, req, res, _next) => {
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`🎙️  Voice Service running on port ${PORT}`);
-  console.log(`✅ ElevenLabs: ${process.env.ELEVENLABS_API_KEY ? 'Configured' : 'Not configured'}`);
-  console.log(`✅ Reasoning Gateway: ${process.env.REASONING_GATEWAY_BASE_URL || 'http://localhost:4002/api/reasoning'}`);
-  console.log(`✅ Redis: ${process.env.REDIS_HOST || 'localhost'}:${process.env.REDIS_PORT || 6379}`);
+  // Service startup logs (OK for boot visibility)
+  if (process.env.NODE_ENV !== 'production') {
+    console.log(`🎙️  Voice Service running on port ${PORT}`);
+    console.log(`✅ ElevenLabs: ${process.env.ELEVENLABS_API_KEY ? 'Configured' : 'Not configured'}`);
+    console.log(`✅ Reasoning Gateway: ${process.env.REASONING_GATEWAY_BASE_URL || 'http://localhost:4002/api/reasoning'}`);
+    console.log(`✅ Redis: ${process.env.REDIS_HOST || 'localhost'}:${process.env.REDIS_PORT || 6379}`);
+  }
 });

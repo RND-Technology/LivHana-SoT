@@ -106,7 +106,7 @@ export async function getJobStatus(queue, jobId) {
  * @returns {Promise<any>} Job result
  */
 export async function waitForJob(job, timeout = 60000) {
-  return await job.waitUntilFinished(queueEvents, timeout);
+  return await job.waitUntilFinished(timeout);
 }
 
 export default {
