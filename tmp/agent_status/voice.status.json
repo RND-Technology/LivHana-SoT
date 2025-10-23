@@ -1,0 +1,10 @@
+{
+  "agent": "liv-voice",
+  "phase": "voice-orchestration",
+  "status": "blocked",
+  "started_at": "2025-10-23T15:12:02Z",
+  "finished_at": "",
+  "tmux_session": "liv-voice",
+  "log_file": "/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/logs/voice/liv_voice_20251023_101201.log",
+  "notes": "Voice session exited unexpectedly (code 1)"
+}
