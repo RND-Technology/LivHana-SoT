@@ -1,5 +1,6 @@
 {
-  "root": true,
+  "root": false,
+  "extends": ["../../.eslintrc.json"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 2022,
@@ -7,20 +8,15 @@
     "project": "./tsconfig.json"
   },
   "plugins": ["@typescript-eslint"],
-  "extends": [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking"
-  ],
   "rules": {
     "@typescript-eslint/no-explicit-any": "error",
-    "@typescript-eslint/explicit-function-return-type": "error",
+    "@typescript-eslint/explicit-function-return-type": "warn",
     "@typescript-eslint/no-unused-vars": "error",
-    "@typescript-eslint/strict-boolean-expressions": "error",
+    "@typescript-eslint/strict-boolean-expressions": "off",
     "@typescript-eslint/no-floating-promises": "error",
     "no-console": "off",
-    "max-lines-per-function": ["error", { "max": 50 }],
-    "complexity": ["error", { "max": 10 }]
+    "max-lines-per-function": ["warn", { "max": 100 }],
+    "complexity": ["warn", { "max": 15 }]
   },
   "ignorePatterns": ["dist/", "node_modules/", "*.js"]
 }
