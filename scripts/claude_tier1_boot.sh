@@ -120,9 +120,20 @@ if ! command -v op >/dev/null 2>&1; then
 fi
 
 if ! op whoami >/dev/null 2>&1; then
-  error "1Password CLI is installed but not signed in."
-  error "Run: eval \"\$(op signin <your-account>)\" and re-run Tier-1 boot."
-  exit 1
+  warning "1Password not signed in. Attempting auto sign-in..."
+
+  # Try biometric sign-in first (Touch ID on macOS)
+  if op signin --raw >/dev/null 2>&1; then
+    success "1Password signed in via biometric"
+  else
+    # Fall back to interactive sign-in
+    info "Biometric auth failed. Please sign in manually:"
+    if ! eval "$(op signin)"; then
+      error "1Password sign-in failed. Cannot continue."
+      error "Please run: eval \"\$(op signin)\" and re-run Tier-1 boot."
+      exit 1
+    fi
+  fi
 fi
 success "1Password authenticated: $(op whoami | tr -d '\n')"
 
@@ -716,9 +727,40 @@ if [[ "${MAX_AUTO:-1}" == "1" ]]; then
 
   # Wait for parallel starts
   wait || true
-  
+
   success "MAX_AUTO autostart sequence completed"
   info "Tmux sessions: $(tmux ls 2>/dev/null | wc -l) active"
+  echo
+
+  # Start integration-service with secrets (critical for operations)
+  info "Starting integration-service with 1Password secrets..."
+  if [[ -f "$ROOT/backend/integration-service/package.json" ]]; then
+    cd "$ROOT/backend/integration-service"
+
+    # Check if already running
+    if lsof -i :3005 >/dev/null 2>&1; then
+      warning "integration-service already running on port 3005"
+    else
+      # Start with op run to inject secrets
+      nohup op run --env-file=../../.env -- npm start >> "$ROOT/logs/integration-service.log" 2>&1 &
+      INTEGRATION_PID=$!
+      echo "$INTEGRATION_PID" > "$ROOT/tmp/integration-service.pid"
+
+      # Wait for startup
+      sleep 3
+
+      if lsof -i :3005 >/dev/null 2>&1; then
+        success "integration-service started (PID: $INTEGRATION_PID, port 3005)"
+      else
+        warning "integration-service may have failed to start - check logs/integration-service.log"
+      fi
+    fi
+
+    cd "$ROOT"
+  else
+    warning "integration-service package.json not found - skipping"
+  fi
+
   echo
 fi
 
