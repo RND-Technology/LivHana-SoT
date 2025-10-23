@@ -101,6 +101,11 @@ check_critical_dependencies() {
     error "Run: nvm install 20 && nvm use 20"
     missing=$((missing + 1))
   fi
+  
+  # PATH prepend to Homebrew for non-interactive shells
+  if [[ ! -t 0 ]] && [[ "$PATH" != *"/opt/homebrew/bin"* ]]; then
+    export PATH="/opt/homebrew/bin:$PATH"
+  fi
 
   return $missing
 }
@@ -1282,6 +1287,13 @@ if [[ "${MAX_AUTO:-1}" == "1" ]]; then
       # Start with op run to inject secrets (SECURE: no .env on disk)
       integration_log="$ROOT/logs/integration-service.log"
       mkdir -p "$ROOT/logs"
+      
+      # Load log rotation helper
+      if [[ -f "$ROOT/scripts/guards/log_rotation.sh" ]]; then
+        source "$ROOT/scripts/guards/log_rotation.sh"
+        rotate_log "$integration_log" 10
+      fi
+      
       chmod 600 "$integration_log" 2>/dev/null || true
       
       # Load security helpers
