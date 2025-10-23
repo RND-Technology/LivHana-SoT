@@ -882,17 +882,21 @@ if [[ "${MAX_AUTO:-1}" == "1" ]]; then
       info "Starting integration-service with secret scrubbing..."
       cd "$ROOT/backend/integration-service"
       
-      # Create a wrapper script to scrub logs and capture real PID
+      # Create a wrapper script to scrub logs and capture a stable PID
       SCRUB_WRAPPER="$ROOT/tmp/integration-service-scrub.sh"
-      cat > "$SCRUB_WRAPPER" << 'SCRUB_EOF'
-#!/bin/bash
-exec op run --env-file="$1" -- npm start 2>&1 | scrub_secrets
+      # Prefer .env.op; fallback to .env if not present
+      ENV_FILE="$ROOT/.env.op"
+      if [[ ! -f "$ENV_FILE" ]]; then
+        ENV_FILE="$ROOT/.env"
+      fi
+      cat > "$SCRUB_WRAPPER" <<SCRUB_EOF
+#!/usr/bin/env bash
+exec op run --env-file="\$1" -- npm start 2>&1 | "$ROOT/scripts/guards/scrub_secrets.sh"
 SCRUB_EOF
       chmod +x "$SCRUB_WRAPPER"
-      
-      # Start the wrapper in background and capture the actual wrapper PID
-      # Note: We track the wrapper which runs Node, not the scrubber subprocess
-      nohup bash "$SCRUB_WRAPPER" "$ROOT/.env.op" >> "$integration_log" &
+
+      # Start the wrapper in background and capture the wrapper PID (controls the pipeline)
+      nohup bash "$SCRUB_WRAPPER" "$ENV_FILE" >> "$integration_log" &
       INTEGRATION_PID=$!
       
       echo "$INTEGRATION_PID" > "$ROOT/tmp/integration-service.pid"
