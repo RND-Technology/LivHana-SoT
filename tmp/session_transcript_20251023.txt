@@ -1,0 +1,123 @@
+=== SESSION: 2025-10-23 02:00 CST ===
+
+User requested: "A & C bc..." (Option A: Close low memory plan, Option C: Start RPM Dashboard build)
+
+DECISION: Use Option A architecture for RPM Evergreen System
+- AlloyDB (Postgres) for database persistence
+- GCS (gs://livhana-rpm-exports) for export artifacts
+- JWT authentication for API security
+- Redis/BullMQ for async export job queue
+- Native JS libraries (jsPDF, papaparse) for PDF/CSV generation
+
+ACTION: Define RPM database schema (@cto)
+- rpm_weeks table (id, week_start, week_end, version, status, timestamps)
+- rpm_items table (id, week_id, title, result, purpose, map_json, owner_role, owner_user, status, due_date, cialdini[], compliance_flags[], tags[])
+- rpm_exports table (id, week_id, format, gcs_path, url, sha256, created_at)
+
+ACTION: Implement RPM API routes (@cto)
+- GET /api/rpm/weeks/current → {week, items}
+- POST /api/rpm/weeks/upsert → {week}
+- GET /api/rpm/weeks/:id/items → {items}
+- POST /api/rpm/weeks/:id/items → {item}
+- PATCH /api/rpm/items/:id → {item}
+- POST /api/rpm/weeks/:id/export?format=md|csv|pdf → {exportId, url}
+- GET /api/rpm/exports/:exportId → {format, url, created_at}
+
+ACTION: Wire RPM integration service (@cto)
+- Connect to AlloyDB via DATABASE_URL secret
+- Implement GCS signed URL generation (v4, 7-day expiry)
+- Add BullMQ worker for export jobs
+- Add compliance guardrail checks (21+ age-gate, medical claims, sovereignty leaks)
+
+ACTION: Create fallacy-scan CLI (@cto)
+- Parse meeting transcripts with session delimiters
+- Scan for guardrail violations (medical claims, age-gate missing, sovereignty leaks)
+- Detect fallacies (contradictions, outdated references, unclear ownership)
+- Extract action items with RACI assignments
+- Generate 8 output artifacts: ingestion.md, RPM_THIS_WEEK.md, gantt.md, kanban.json, index.json, pdr_additions.md, adr_additions.md, cockpit_deltas.md
+
+DECISION: Memory check parameters
+- WARN threshold: 20% free memory remaining
+- CRIT threshold: 10% free memory remaining
+- Use memory_pressure command (macOS native)
+- Default to safe values if detection fails
+
+DECISION: Model gate requirement
+- Require Sonnet 4.5 OCT 2025 model for voice mode
+- Allow text-only mode with ALLOW_TEXT_ONLY=1 if model unavailable
+- Block boot if neither condition met
+
+ACTION: QA acceptance testing (@ceo, @cto)
+- Test RPM export generation (MD, CSV, PDF formats)
+- Validate JWT authentication on API routes
+- Verify Redis guardrails (rate limiting, job queue health)
+- Test compliance flag detection (21+, medical claims, sovereignty)
+- Verify GCS signed URL generation and 7-day expiry
+
+BLOCKER: Sonnet 4.5 OCT 2025 model unavailable in Claude CLI
+- Impacts voice mode functionality
+- Workaround: Text-only mode with ALLOW_TEXT_ONLY=1 flag
+- Resolution: Wait for model availability or request early access
+
+=== SESSION: 2025-10-23 03:00 CST ===
+
+User instructed: "Continue until I see no more todos"
+
+ACTION: Complete all remaining RPM implementation tasks
+- [x] Define RPM database schema (DONE)
+- [x] Implement RPM API routes (DONE)
+- [x] Wire RPM integration service (DONE)
+- [x] Create fallacy-scan CLI (DONE)
+- [ ] Run fallacy scan on session transcripts
+- [ ] Tag action items as solved/unsolved/blocked with RACI owners
+- [ ] Recommend best-practice cockpit upgrades by role
+- [ ] Map Cialdini + Lifeward ethical influence tactics
+- [ ] Execute QA acceptance pass
+
+DECISION: Use native JS libraries for exports (NOT Puppeteer)
+- jsPDF + jspdf-autotable for PDF generation
+- papaparse for CSV generation
+- remark for Markdown round-trip
+- Rationale: < 1 second generation time, $0 cost, no external dependencies
+- Backup: Puppeteer if formatting becomes too complex
+
+DECISION: Fallacy-scan CLI implementation complete
+- 430+ line Python script with full guardrail checking
+- Outputs 8 structured artifacts for RPM dashboard ingestion
+- RACI-based owner assignment using domain keyword inference
+- Priority detection from urgency keywords
+- Status tracking (pending/done/blocked)
+
+ACTION: Run fallacy scan on this transcript (@cto)
+- Input: tmp/session_transcript_20251023.txt
+- Output: out/ directory with 8 artifacts
+- Expected violations: None (this is a planning session, not public-facing content)
+- Expected action items: ~10-15 from this session
+
+ACTION: Tag action items by status (@ceo)
+- Solved: Database schema, API routes, integration service, fallacy-scan CLI
+- Unsolved: Fallacy scan execution, action item tagging, cockpit recommendations, Cialdini mapping, QA acceptance
+- Blocked: None currently (Sonnet 4.5 OCT model is a known limitation, not a blocker)
+
+ACTION: Recommend cockpit upgrades (@cto, @coo)
+- CEO cockpit: Strategic KPIs, cash flow forecast, board report generator, crisis alerts
+- CTO cockpit: Deployment status, tech debt tracker, API health dashboard, security audit log
+- CMO cockpit: Campaign performance, loyalty cohorts, brand sentiment, content calendar
+- CFO cockpit: Burn rate, revenue forecast, vendor payment queue, tax deadline tracker
+- COO cockpit: Process adherence, vendor SLA monitor, compliance checklist, ops runbooks
+
+ACTION: Map Cialdini ethical influence tactics (@cmo, @ceo)
+- Reciprocity: Free educational content, sample packs, loyalty rewards
+- Commitment & Consistency: Subscription models, progressive onboarding, milestone tracking
+- Social Proof: Testimonials, case studies, community forums, user-generated content
+- Authority: Compliance certifications (ISO, SOC2), expert endorsements, research citations
+- Liking: Brand personality (Liv Hana Trinity), personalized comms, community building
+- Scarcity: Limited-time offers, exclusive drops, early access programs (NOT manipulative urgency)
+- Unity: Shared identity (cannabis wellness community), values alignment (sovereignty, healing)
+
+Lifeward compliance overlay:
+- All tactics must be truthful (no false scarcity, no fake testimonials)
+- Medical claims prohibited (wellness, not treatment)
+- Age-gate enforcement (21+ THC products)
+- Sovereignty respect (no tracking without consent, DID opt-in)
+

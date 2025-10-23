@@ -18,12 +18,13 @@ write_status() {
   local notes="$2"
   local now
   now="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
-  cat <<EOF | bash "$ROOT/scripts/guards/atomic_write.sh" "$STATUS_FILE"
+  cat > "$STATUS_FILE" <<EOF
 {
   "agent": "liv-voice",
   "phase": "voice-orchestration",
   "status": "$status",
-  "updated_at": "$now",
+  "started_at": "$now",
+  "finished_at": "",
   "tmux_session": "$SESSION_NAME",
   "log_file": "$LOG_FILE",
   "notes": "$notes"

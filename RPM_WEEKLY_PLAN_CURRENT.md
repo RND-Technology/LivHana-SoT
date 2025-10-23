@@ -1,8 +1,28 @@
 # RPM WEEKLY PLAN — CURRENT (Oct 21–27, 2025)
 
-**Compliance:** LifeWard | 21+ (GA-56) | COA/NIST | Brands-not-characters  
-**Version:** 4.0 (FUSED: Revenue + Tech + Team + Voice + Blockchain)  
-**Updated:** 2025-10-21 09:00 CDT
+**Compliance:** LifeWard | 21+ (GA-56) | COA/NIST | Brands-not-characters
+**Version:** 4.1 (FUSED: Revenue + Tech + Team + Voice + Blockchain + Infrastructure)
+**Updated:** 2025-10-23 06:45 CDT
+
+## 🔴 CRITICAL INFRASTRUCTURE ALERT
+
+**STATUS**: Claude Tier-1 boot system failure investigation IN PROGRESS
+
+**IMPACT**: All 5 foundation agents (Planning, Research, Artifacts, Execution, QA) blocked from spawning. This is a SHOW-STOPPER blocking all autonomous operations and $439K-$729K strategic value delivery.
+
+**PRIORITY**: HIGHEST - Infrastructure blocker affecting entire ecosystem
+
+**INVESTIGATION**: Active root cause analysis underway
+- Analyzing START.sh → claude_tier1_boot.sh execution flow
+- Checking agent spawn logic and tmux session management
+- Validating environment (Node 20, Redis, GCP auth)
+- Testing coordination protocol and status file system
+
+**EXPECTED RESOLUTION**: Within 2-3 hours (systematic investigation + fix + validation)
+
+**DETAILED TRACKING**: See `/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/RPM_INFRA_CLAUDE_TIER1_BOOTFIX_20251023.md`
+
+---
 
 ## Result
 
@@ -41,8 +61,9 @@ Every RPM card now tracks **PLANNING** (Result/Purpose/MAP) + **FINANCIALS** (Re
 
 | ID | Title | Owners | Status | Due | Priority | DependsOn | Cialdini | Compliance |
 |---|---|---|---|---|---|---|---|---|
+| INFRA-2025-10-23-001 | Claude Tier-1 Boot System Fix | RPM Admin, Jesse | 🔴 **IN PROGRESS** | 2025-10-23 | **CRITICAL** | Node 20, tmux, Redis | authority, consistency | - |
 | STR-2025-10-21-001 | TRUTH Pipeline Implementation | Jesse, Andrew | ✅ **COMPLETE** | 2025-10-28 | Critical | ⏳ secrets (4 missing) | authority, consistency | 21+, COA/NIST |
-| STR-2025-10-21-002 | Agent Builder 17-Node Workflow | Jesse, Andrew | ⏳ **BLOCKED** | 2025-10-30 | Critical | ⏳ secrets (4 missing) | authority, social_proof | 21+, COA/NIST |
+| STR-2025-10-21-002 | Agent Builder 17-Node Workflow | Jesse, Andrew | ⏳ **BLOCKED** | 2025-10-30 | Critical | ⏳ Tier-1 Boot + secrets | authority, social_proof | 21+, COA/NIST |
 | STR-2025-10-21-003 | LightSpeed Integration Fix | Andrew, Christopher | ⏳ **PENDING** | 2025-10-25 | High | cash-flow visibility | consistency, authority | 21+ |
 | STR-2025-10-21-004 | VIP Dashboard Customization | Christopher, Charlie | ⏳ **PENDING** | 2025-11-05 | Medium | role UIs; beta env | reciprocity, liking | 21+ |
 | STR-2025-10-21-005 | Compliance Verification App | Jesse, Andrew | ✅ **COMPLETE** | 2025-11-10 | High | ⏳ Deploy to Cloud Run | authority, consistency | 21+, COA/NIST |
