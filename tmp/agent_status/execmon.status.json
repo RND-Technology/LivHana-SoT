@@ -1,1 +1,9 @@
-{ "agent": "execmon", "status": "active", "phase": "running", "updated_at": "2025-10-23T16:40:52Z" }
+{
+  "agent": "execmon",
+  "phase": "monitor",
+  "status": "running",
+  "started_at": "2025-10-25T05:42:58Z",
+  "finished_at": "",
+  "artifacts": ["/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/logs/agents/execmon_monitor_20251025_004258.log"],
+  "notes": "tmux session created"
+}

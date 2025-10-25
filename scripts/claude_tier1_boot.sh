@@ -207,7 +207,7 @@ clean_stale_agent_locks() {
        "$ROOT/tmp/agent_status/.research.status.json.lock" \
        "$ROOT/tmp/agent_status/.artifact.status.json.lock" \
        "$ROOT/tmp/agent_status/.qa.status.json.lock" \
-       "$ROOT/tmp/agent_status/.exec.status.json.lock" \
+       "$ROOT/tmp/agent_status/.execmon.status.json.lock" \
        "$ROOT/tmp/agent_status/.voice.status.json.lock" 2>/dev/null || true
   success "Stale agent locks removed"
 }

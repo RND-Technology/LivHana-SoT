@@ -1,0 +1,9 @@
+{
+  "agent": "planning",
+  "phase": "startup",
+  "status": "running",
+  "started_at": "2025-10-25T05:42:58Z",
+  "finished_at": "",
+  "artifacts": ["/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/logs/agents/planning_20251025_004258.log"],
+  "notes": "tmux session created"
+}

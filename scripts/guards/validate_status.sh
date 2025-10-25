@@ -22,7 +22,7 @@ allowed_status_files = [
     "planning.status.json",
     "research.status.json",
     "artifact.status.json",
-    "exec.status.json",
+    "execmon.status.json",
     "qa.status.json",
     "ops.status.json",
     "funnel.ready",

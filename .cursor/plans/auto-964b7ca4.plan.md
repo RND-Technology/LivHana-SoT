@@ -1,5 +1,5 @@
 <!-- 964b7ca4-84f9-46d4-902c-492a196e447f c005843a-a5b5-4429-9dfc-4db6cb479728 -->
-# Why this is happening
+### Why this is happening
 - 1Password “empty whoami”: CLI session isn’t scoped with `--account` each call; different shells clear the session. When `whoami` prints empty, your boot now hard‑fails by design.
 - Agent startup “Usage: scripts/claude_tier1_boot.sh <target_path>”: one of the agent scripts (or a health helper) is invoking `scripts/claude_tier1_boot.sh` as if it requires an argument. That prints the usage banner and aborts the spawn path.
 - planning.status.json invalid JSON: partial file writes during warmup (race). A zero‑byte or truncated write is being read before completion.
