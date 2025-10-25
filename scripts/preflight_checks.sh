@@ -143,13 +143,36 @@ fi
 
 # Check Kokoro TTS on port 8880
 log_check "Kokoro TTS service on port 8880"
+VOICE_TTS_UP=false
 if curl -sf http://127.0.0.1:8880/health >/dev/null 2>&1; then
     log_pass "Kokoro TTS responding on port 8880"
+    VOICE_TTS_UP=true
 elif nc -z 127.0.0.1 8880 2>/dev/null; then
     log_warn "Port 8880 open but not responding to HTTP - service may be starting"
+    VOICE_TTS_UP=true
 else
     log_warn "Kokoro TTS not available on port 8880 - voice output may fail"
     echo "  Fix: mcp__voicemode__service kokoro start"
+    
+    # Auto-start if STRICT_VOICE=1
+    if [[ "${STRICT_VOICE:-0}" == "1" ]]; then
+        if command -v voicemode >/dev/null 2>&1; then
+            voicemode kokoro start || log_warn "Failed to start Kokoro TTS"
+            sleep 3
+            if curl -sf http://127.0.0.1:8880/health >/dev/null 2>&1; then
+                log_pass "Kokoro TTS started successfully"
+                VOICE_TTS_UP=true
+            fi
+        fi
+    fi
+fi
+
+# Hard gate check for STRICT_VOICE=1
+if [[ "${STRICT_VOICE:-0}" == "1" ]]; then
+    if [[ "$VOICE_STT_UP" == "false" ]] || [[ "$VOICE_TTS_UP" == "false" ]]; then
+        log_fail "STRICT_VOICE=1: Voice services NOT healthy. Failing fast."
+        exit 1
+    fi
 fi
 
 # Check compliance service on port 8000 (if configured)
