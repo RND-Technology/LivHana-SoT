@@ -1,11 +1,36 @@
 import express from 'express';
 import { Client } from 'square';
+import { randomUUID } from 'crypto';
 import rpmRouter from './rpm.ts';
 import { createLogger } from '../common/logging/index.js';
 
 const logger = createLogger('integration-service');
 const app = express();
 app.use(express.json());
+
+// Request ID middleware for tracing
+app.use((req, res, next) => {
+  req.id = randomUUID();
+  res.setHeader('X-Request-ID', req.id);
+  next();
+});
+
+// Structured logging middleware
+app.use((req, res, next) => {
+  const start = Date.now();
+  res.on('finish', () => {
+    const duration = Date.now() - start;
+    logger.info(`${req.method} ${req.path}`, {
+      requestId: req.id,
+      method: req.method,
+      path: req.path,
+      statusCode: res.statusCode,
+      duration: `${duration}ms`,
+      userAgent: req.get('user-agent')
+    });
+  });
+  next();
+});
 
 // Initialize Square client
 const squareClient = new Client({
@@ -147,43 +172,25 @@ const PORT = process.env.PORT || 8080;
 const HOST = process.env.HOST || '0.0.0.0';
 
 const server = app.listen(PORT, HOST, () => {
-  console.log(JSON.stringify({ 
-    severity: 'INFO', 
-    message: 'Integration service listening', 
-    host: HOST, 
-    port: PORT 
-  }));
+  logger.info('Integration service listening', { host: HOST, port: PORT });
 });
 
 // Graceful shutdown handler
 const shutdown = (signal) => {
-  console.log(JSON.stringify({ 
-    severity: 'INFO', 
-    message: `Received ${signal}, shutting down gracefully` 
-  }));
+  logger.info(`Received ${signal}, shutting down gracefully`);
   
   server.close((err) => {
     if (err) {
-      console.error(JSON.stringify({ 
-        severity: 'ERROR', 
-        message: 'Close failed', 
-        error: err.message 
-      }));
+      logger.error('Close failed', { error: err.message });
       process.exit(1);
     }
-    console.log(JSON.stringify({ 
-      severity: 'INFO', 
-      message: 'Shutdown complete' 
-    }));
+    logger.info('Shutdown complete');
     process.exit(0);
   });
 
   // Force shutdown after 10s
   setTimeout(() => {
-    console.error(JSON.stringify({ 
-      severity: 'ERROR', 
-      message: 'Forced shutdown after timeout' 
-    }));
+    logger.error('Forced shutdown after timeout');
     process.exit(1);
   }, 10000).unref();
 };

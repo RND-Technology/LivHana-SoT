@@ -13,6 +13,26 @@ Real-time Lightspeed → BigQuery pipeline and RPM API (Option A) for weekly pla
 - ✅ Comprehensive error handling
 - ✅ Docker support for Cloud Run
 - ✅ Production-ready logging
+- ✅ **Tier-1 Hardened** (2025-10-25): Multi-stage Dockerfile, structured JSON logging, Cloud Run GSM secrets, request ID tracking
+
+## Tier-1 Hardening Summary
+
+**Date**: 2025-10-25  
+**Status**: Complete
+
+### Changes
+
+1. **Dockerfile**: Multi-stage Node 20 Alpine build, non-root user (UID 1001), healthcheck
+2. **Cloud Run**: GSM secrets (LIGHTSPEED_TOKEN, DATABASE_URL), startup/liveness probes, min/max instances
+3. **Logging**: Structured JSON format `{severity, timestamp, message, service, requestId?, ...meta}`
+4. **Server**: Request ID middleware, request duration tracking, enhanced graceful shutdown
+5. **CI**: `.github/workflows/tier1-post-merge.yml` with lint/typecheck/tests
+
+### Notes
+
+- Pre-existing TypeScript errors in `src/pipeline/*` need separate fix
+- Docker build blocked by missing type declarations and client modules
+- All hardening changes are additive with zero breaking changes
 
 ## API Endpoints
 

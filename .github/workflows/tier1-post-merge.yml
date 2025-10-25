@@ -14,9 +14,22 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'npm'
       
       - name: Install dependencies
         run: npm ci
+      
+      - name: Lint integration-service
+        working-directory: backend/integration-service
+        run: npm run lint
+      
+      - name: Type check integration-service
+        working-directory: backend/integration-service
+        run: npm run type-check
+      
+      - name: Run unit tests
+        working-directory: backend/integration-service
+        run: npm test
       
       - name: Tier-1 zero-warning boot
         env:
