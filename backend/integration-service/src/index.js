@@ -103,14 +103,13 @@ app.post('/api/v1/process-order', async (req, res) => {
   }
 });
 
-// Health check
+// Health check (fast path, <150ms)
 app.get('/health', (req, res) => {
   res.json({ 
-    status: 'healthy', 
-    service: 'integration-service',
-    message: 'Integration service active',
-    timestamp: new Date().toISOString(),
-    features: ['inventory_sync', 'order_processing', 'square_api', 'rpm_api']
+    status: 'healthy',
+    lightspeed_connected: !!process.env.LIGHTSPEED_TOKEN,
+    bigquery_connected: !!process.env.GOOGLE_APPLICATION_CREDENTIALS,
+    timestamp: new Date().toISOString()
   });
 });
 
