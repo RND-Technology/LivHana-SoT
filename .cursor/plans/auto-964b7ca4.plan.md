@@ -1,80 +1,63 @@
-<!-- 964b7ca4-84f9-46d4-902c-492a196e447f c005843a-a5b5-4429-9dfc-4db6cb479728 -->
-### Why this is happening
-- 1Password “empty whoami”: CLI session isn’t scoped with `--account` each call; different shells clear the session. When `whoami` prints empty, your boot now hard‑fails by design.
-- Agent startup “Usage: scripts/claude_tier1_boot.sh <target_path>”: one of the agent scripts (or a health helper) is invoking `scripts/claude_tier1_boot.sh` as if it requires an argument. That prints the usage banner and aborts the spawn path.
-- planning.status.json invalid JSON: partial file writes during warmup (race). A zero‑byte or truncated write is being read before completion.
-- `ash -lc ...`: a mistyped shell command; `ash` doesn’t exist on macOS, so that one‑shot failed mid‑sequence.
-- Degraded model warnings (DeepSeek/Perplexity/Claude Sonnet): expected; not boot blockers when `ALLOW_TEXT_ONLY=1` is set.
+<!-- 964b7ca4-84f9-46d4-902c-492a196e447f b64246f5-46f5-4b84-b90e-d9a1274c46f2 -->
+# Tier-1 Zero-Warning Boot: Action Plan
 
-### Targeted fixes (edits)
-1) Scope 1Password in every call
-- In `scripts/claude_tier1_boot.sh` ensure all checks use the account flag:
+#### 1) Voice session: always-on, attachable
+- Fix `scripts/claude_voice_session.sh` to create tmux session `liv-voice` and keep it alive by tailing a log (prevents auto-exit). Ensure idempotency (no duplicate sessions).
+- Add auto-respawn helper: if `liv-voice` missing at boot end, spawn and log the attach hint.
+- Update boot to print the exact attach command only once.
+
+#### 2) Agent health: remove validator warnings
+- Add seeded keys `started_at` and `finished_at` to status JSON in `scripts/start_*agent.sh` and in boot-time seeds within `scripts/claude_tier1_boot.sh` so `[PO1][STATUS] ... missing keys` disappears.
+- Keep atomic writes via `scripts/guards/atomic_write.sh`.
+
+#### 3) Integration-service: start + health without perl errors
+- Replace perl-based redactor with portable sed in `scripts/guards/scrub_secrets.sh` (BSD/macOS-safe) and in the boot’s process-substitution pipeline. Tested patterns:
 ```bash
-op --account "$OP_ACCOUNT_SLUG" whoami >/dev/null 2>&1 || \
-  OP_BIOMETRIC_UNLOCK_ENABLED=1 op signin --account "$OP_ACCOUNT_SLUG" --force
+sed -E \
+  -e 's/(Authorization[[:space:]]*:[[:space:]]*Bearer[[:space:]]*)[^[:space:]]+/\1***REDACTED***/Ig' \
+  -e 's/([?&](api[_-]?key|access_token|token|refresh_token|secret|password|pass)=)[^&#[:space:]]+/\1***REDACTED***/Ig' \
+  -e 's/((^|[[:space:]])(API[_-]?KEY|KEY|TOKEN|ACCESS_TOKEN|REFRESH_TOKEN|SECRET|CLIENT_SECRET|PASSWORD|PASS)[[:space:]]*[=:][[:space:]]*)"[^"]*"/\1"***REDACTED***"/Ig' \
+  -e 's/((^|[[:space:]])(API[_-]?KEY|KEY|TOKEN|ACCESS_TOKEN|REFRESH_TOKEN|SECRET|CLIENT_SECRET|PASSWORD|PASS)[[:space:]]*[=:][[:space:]]*)[^[:space:]"\']+/\1***REDACTED***/Ig'
 ```
-- Use the same `--account` in all `op run` and preflights.
+- In `scripts/claude_tier1_boot.sh` integration block, keep `wait_for_service 3005 30 2`; on failure, print a single actionable error with the log path.
 
-2) Remove accidental recursion/usage from agent path
-- Search for any call to `scripts/claude_tier1_boot.sh` inside:
-  - `scripts/start_planning_agent.sh`
-  - `scripts/start_research_agent.sh`
-  - `scripts/start_artifact_agent.sh`
-  - `scripts/start_execution_monitor.sh`
-  - `scripts/start_qa_agent.sh`
-  - `scripts/agents/health_probe.sh`, `scripts/guards/validate_agent_started.sh`
-- Delete any line that shells back into `claude_tier1_boot.sh` or expects `<target_path>`.
-- Ensure each agent script only:
-```bash
-SESSION="<name>"; tmux has-session -t "$SESSION" || tmux new -d -s "$SESSION" -n console "bash -lc 'tail -f $LOG_FILE'"
-```
+#### 4) Degraded-mode warnings → silent greens
+- Add env gates in boot to silence optional checks:
+  - `ALLOW_TEXT_ONLY=1` → skip Claude model check silently.
+  - `SUPPRESS_OPTIONAL_WARNINGS=1` → convert non-critical env/service notices (DEEPSEEK, PERPLEXITY, compliance svc) to INFO.
+  - Memory notice: lower threshold or hide with `SUPPRESS_OPTIONAL_WARNINGS=1`.
+- Ensure pre-boot port scan prints only when action is needed; remove duplicate "port cleared" logs.
 
-3) Make agent status writes atomic and valid JSON
-- Create `scripts/guards/atomic_write.sh`:
-```bash
-#!/usr/bin/env bash
-set -euo pipefail
-atomic_write(){ local f="$1"; shift; local d; d="$(dirname "$f")"; mkdir -p "$d"; local t; t="${f}.tmp.$$"; printf "%s" "$*" > "$t" && mv -f "$t" "$f"; }
-if [[ "${BASH_SOURCE[0]:-$0}" == "$0" ]]; then atomic_write "$@"; fi
-```
-- In all `start_*.sh` and in `claude_tier1_boot.sh` seeding blocks, replace `printf > file` with:
-```bash
-source "$ROOT/scripts/guards/atomic_write.sh"; atomic_write "$STATUS_FILE" "{\"agent\":\"$AGENT\",\"status\":\"running\",\"phase\":\"startup\",\"updated_at\":\"$(date -u +%FT%TZ)\"}\n"
-```
+#### 5) Port 3005: conflict-free logic
+- Collapse duplicate pre-scan and pre-clear messages; do one scan and one cleanup path. If a node is already healthy on 3005, skip start; otherwise, terminate, then start and health-check.
 
-4) Exec monitor name consistency
-- In `scripts/claude_tier1_boot.sh` and `scripts/guards/validate_agent_started.sh` use `execmon` consistently.
+#### 6) CI preflight (keeps it green)
+- Add a GitHub Action job to run: `claude-tier1` in text-only mode, verify 5/5 agents, `curl :3005/health`, and run the secret-log scanner. Fail PR on any red/yellow.
 
-5) Secret scrubbing portability
-- Keep process substitution but call the absolute scrubber path to avoid subshell env differences:
-```bash
-op run --env-file "$ENV_FILE" -- npm start \
-  > >( "$ROOT/scripts/guards/scrub_secrets.sh" >> "$log" ) \
-  2> >( "$ROOT/scripts/guards/scrub_secrets.sh" >> "$log" ) &
-```
-- Ensure `scrub_secrets.sh` uses perl (portable on macOS):
-```bash
-perl -pe 's/((?:key|token|secret)\s*[:=]\s*)\S+/${1}***REDACTED***/ig'
-```
+#### 7) Operator ergonomics
+- Add `bin/liv-attach` helper that checks existence of `liv-voice` and re-spawns if missing, then attaches.
+- Update `README` quick-start: `ALLOW_TEXT_ONLY=1 claude-tier1 && bin/liv-attach`.
 
-6) Harden preflight and boot one‑shot
-- Ensure alias is bash, set `setopt interactivecomments` once in ~/.zshrc, gate models via `ALLOW_TEXT_ONLY=1`, and pre‑clear 3005 before boot. Keep the working one‑shot you already ran.
+### Targeted Edits
+- `scripts/claude_voice_session.sh`: ensure tmux session `liv-voice`, keep-alive tail, idempotent spawn.
+- `scripts/start_planning_agent.sh`, `start_research_agent.sh`, `start_artifact_agent.sh`, `start_execution_monitor.sh`, `start_qa_agent.sh`: include `started_at`/`finished_at` in JSON.
+- `scripts/claude_tier1_boot.sh`: seed full-schema JSON; swap perl redactor usage for sed; de-duplicate port logs; add suppression gates; ensure single attach hint.
+- `scripts/guards/scrub_secrets.sh`: replace perl with sed-only implementation.
+- `.github/workflows/boot-preflight.yml`: add zero-warning gates and health checks.
 
-### Validation
-- Boot: `claude-tier1` → green, no empty whoami, port 3005 healthy, no secrets in logs.
-- Agents: `tmux ls` shows 6 sessions (voice + 5 agents). `scripts/agents/health_probe.sh` returns all PASS.
-- Retry: run the one‑shot twice in a row; idempotent and still green.
+### Acceptance Criteria
+- `ALLOW_TEXT_ONLY=1 claude-tier1` yields no warnings; all greens; 5/5 agents healthy; integration-service 200/health; logs clean (scanner returns CLEAN); tmux `liv-voice` attachable.
+- CI preflight passes on PRs; failures block merges.
 
-### Follow‑ups (optional)
-- Add `docker-compose.override.yml` healthcheck for `integration-service`.
-- Add CI preflight workflow as previously drafted to block regressions.
-
+### Rollback
+- Revert the sed redactor and boot edits; keep atomic writes intact.
 
 ### To-dos
 
-- [ ] Scope 1Password in all op calls with --account
-- [ ] Remove any agent script lines invoking claude_tier1_boot.sh
-- [ ] Add atomic_write.sh and switch all status writes to atomic
-- [ ] Validate exec monitor name is execmon everywhere
-- [ ] Switch scrub_secrets.sh to perl-based scrubbing
-- [ ] Enforce alias/bash, set interactivecomments, pre-clear 3005 and verify health
+- [ ] Make liv-voice tmux session idempotent and keep-alive in claude_voice_session.sh
+- [ ] Add started_at/finished_at to all agent status writes and seeds
+- [ ] Replace perl redactor with BSD sed in scrub_secrets.sh and boot pipeline
+- [ ] Add ALLOW_TEXT_ONLY and SUPPRESS_OPTIONAL_WARNINGS handling; silence optional checks
+- [ ] Unify 3005 pre-scan/cleanup; only log once; strict health flow
+- [ ] Add GitHub Action to enforce zero-warning boot, health, and log-scan
+- [ ] Add bin/liv-attach helper to respawn/attach voice session

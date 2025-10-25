@@ -566,6 +566,10 @@ if command -v gcloud >/dev/null 2>&1; then
   export SQUARE_LOCATION_ID=$(gcloud secrets versions access latest --secret=SQUARE_LOCATION_ID --project="$GCP_PROJECT_ID" 2>/dev/null || echo "")
   [[ -n "$SQUARE_ACCESS_TOKEN" ]] && success "SQUARE_ACCESS_TOKEN loaded from Secret Manager"
   [[ -n "$SQUARE_LOCATION_ID" ]] && success "SQUARE_LOCATION_ID loaded from Secret Manager"
+  
+  # Load LightSpeed token for integration-service
+  export LIGHTSPEED_TOKEN=$(gcloud secrets versions access latest --secret=LightSpeed-Agent-Builder --project="$GCP_PROJECT_ID" 2>/dev/null || echo "")
+  [[ -n "$LIGHTSPEED_TOKEN" ]] && success "LIGHTSPEED_TOKEN loaded from Secret Manager"
 fi
 
 # OPENAI fallback for local voice mode

@@ -2,9 +2,9 @@
   "agent": "liv-voice",
   "phase": "voice-orchestration",
   "status": "ended",
-  "started_at": "2025-10-25T05:46:47Z",
+  "started_at": "2025-10-25T08:42:10Z",
   "finished_at": "",
   "tmux_session": "liv-voice",
-  "log_file": "/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/logs/voice/liv_voice_20251025_004258.log",
+  "log_file": "/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/logs/voice/liv_voice_20251025_033836.log",
   "notes": "Voice session ended cleanly"
 }

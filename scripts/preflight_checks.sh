@@ -26,6 +26,9 @@ CRITICAL_FAILURES=0
 WARNINGS=0
 CHECKS_PASSED=0
 
+# Suppression mode (converts optional warnings to info)
+SUPPRESS_OPTIONAL_WARNINGS="${SUPPRESS_OPTIONAL_WARNINGS:-0}"
+
 # Logging
 log_check() {
     echo -e "${BLUE}[CHECK]${NC} $1"
@@ -37,8 +40,12 @@ log_pass() {
 }
 
 log_warn() {
-    echo -e "${YELLOW}[WARN]${NC} $1"
-    WARNINGS=$((WARNINGS + 1))
+    if [[ "$SUPPRESS_OPTIONAL_WARNINGS" == "1" ]]; then
+        echo -e "${BLUE}[INFO]${NC} $1"
+    else
+        echo -e "${YELLOW}[WARN]${NC} $1"
+        WARNINGS=$((WARNINGS + 1))
+    fi
 }
 
 log_fail() {
