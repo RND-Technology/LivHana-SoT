@@ -1,0 +1,62 @@
+name: Voice Services Health Check
+
+on:
+  push:
+    branches: [main, fix/mobile-control-po1]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '*/30 * * * *'  # Every 30 minutes
+  workflow_dispatch:
+
+jobs:
+  voice-health-check:
+    runs-on: macos-latest
+    timeout-minutes: 5
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Check Whisper STT (port 2022)
+        run: |
+          if curl -sf http://localhost:2022/health >/dev/null 2>&1; then
+            echo "✅ Whisper STT healthy"
+            exit 0
+          else
+            echo "❌ Whisper STT not responding"
+            exit 1
+          fi
+      
+      - name: Check Kokoro TTS (port 8880)
+        run: |
+          if curl -sf http://localhost:8880/health >/dev/null 2>&1; then
+            echo "✅ Kokoro TTS healthy"
+            exit 0
+          else
+            echo "❌ Kokoro TTS not responding"
+            exit 1
+          fi
+      
+      - name: Start voice services (if down)
+        if: failure()
+        run: |
+          bash scripts/ensure_voice_services.sh
+      
+      - name: Verify services after start
+        if: always()
+        run: |
+          sleep 5
+          curl -sf http://localhost:2022/health || exit 1
+          curl -sf http://localhost:8880/health || exit 1
+          echo "✅ All voice services healthy"
+      
+      - name: Archive logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: voice-health-logs
+          path: |
+            ~/Library/Logs/LivHana/*
+            logs/voice_watchdog.*.log
+
