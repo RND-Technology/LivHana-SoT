@@ -129,16 +129,32 @@ echo ""
 
 # Check Whisper STT on port 2022
 log_check "Whisper STT service on port 2022"
+VOICE_STT_UP=false
 if curl -sf http://127.0.0.1:2022/health >/dev/null 2>&1; then
     log_pass "Whisper STT responding on port 2022"
+    VOICE_STT_UP=true
 elif curl -sf http://127.0.0.1:2022/v1/models >/dev/null 2>&1; then
     log_pass "Whisper STT responding on port 2022 (fallback check)"
+    VOICE_STT_UP=true
 elif nc -z 127.0.0.1 2022 2>/dev/null; then
     log_warn "Port 2022 open but not responding to HTTP - service may be starting"
+    VOICE_STT_UP=true
 else
     log_fail "Whisper STT not available on port 2022"
     echo "  Fix: Start Whisper service or check service status"
     echo "  Command: mcp__voicemode__service whisper status"
+    
+    # Auto-start if STRICT_VOICE=1
+    if [[ "${STRICT_VOICE:-0}" == "1" ]]; then
+        if command -v voicemode >/dev/null 2>&1; then
+            voicemode whisper start || log_warn "Failed to start Whisper STT"
+            sleep 3
+            if curl -sf http://127.0.0.1:2022/health >/dev/null 2>&1; then
+                log_pass "Whisper STT started successfully"
+                VOICE_STT_UP=true
+            fi
+        fi
+    fi
 fi
 
 # Check Kokoro TTS on port 8880
