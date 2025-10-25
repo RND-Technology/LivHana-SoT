@@ -145,6 +145,49 @@ app.get('/', (req, res) => {
 app.use('/api/rpm', rpmRouter);
 
 const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
-  logger.info(`Integration service running on port ${PORT}`);
+const HOST = process.env.HOST || '0.0.0.0';
+
+const server = app.listen(PORT, HOST, () => {
+  console.log(JSON.stringify({ 
+    severity: 'INFO', 
+    message: 'Integration service listening', 
+    host: HOST, 
+    port: PORT 
+  }));
 });
+
+// Graceful shutdown handler
+const shutdown = (signal) => {
+  console.log(JSON.stringify({ 
+    severity: 'INFO', 
+    message: `Received ${signal}, shutting down gracefully` 
+  }));
+  
+  server.close((err) => {
+    if (err) {
+      console.error(JSON.stringify({ 
+        severity: 'ERROR', 
+        message: 'Close failed', 
+        error: err.message 
+      }));
+      process.exit(1);
+    }
+    console.log(JSON.stringify({ 
+      severity: 'INFO', 
+      message: 'Shutdown complete' 
+    }));
+    process.exit(0);
+  });
+
+  // Force shutdown after 10s
+  setTimeout(() => {
+    console.error(JSON.stringify({ 
+      severity: 'ERROR', 
+      message: 'Forced shutdown after timeout' 
+    }));
+    process.exit(1);
+  }, 10000).unref();
+};
+
+process.on('SIGTERM', () => shutdown('SIGTERM'));
+process.on('SIGINT', () => shutdown('SIGINT'));

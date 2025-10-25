@@ -2,57 +2,31 @@ name: Tier1 Post-Merge Verification
 
 on:
   push:
-    branches: [main, master]
+    branches: [main]
 
 jobs:
   verify-tier1:
     runs-on: macos-latest
-    
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
       
-      - name: Set up Node.js
+      - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
       
       - name: Install dependencies
         run: npm ci
       
-      - name: Install tmux and jq
-        run: brew install tmux jq ripgrep
-      
-      - name: Setup 1Password CLI
-        run: |
-          brew install 1password-cli
-          # Note: In actual CI, use 1Password Connect or service account
-      
-      - name: Run Tier-1 verification
+      - name: Tier-1 zero-warning boot
         env:
           ALLOW_TEXT_ONLY: '1'
           SUPPRESS_OPTIONAL_WARNINGS: '1'
-        run: |
-          chmod +x bin/claude-tier1-verify.sh
-          bin/claude-tier1-verify.sh --skip-tests
+        run: bash bin/claude-tier1-verify.sh
       
-      - name: Run test suite
-        run: npm test
-      
-      - name: Archive boot logs
+      - name: Archive logs
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: tier1-boot-logs
+          name: tier1-logs
           path: logs/
-          retention-days: 7
-      
-      - name: Archive agent status
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: agent-status
-          path: tmp/agent_status/
-          retention-days: 7
-
