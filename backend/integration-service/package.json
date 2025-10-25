@@ -1,11 +1,13 @@
 {
   "name": "lightspeed-bigquery-pipeline",
   "version": "1.0.0",
+  "type": "module",
   "description": "Real-time sales data streaming from Lightspeed to BigQuery",
-  "main": "src/lightspeed-bigquery.ts",
+  "main": "src/index.js",
   "scripts": {
-    "start": "ts-node src/lightspeed-bigquery.ts",
-    "dev": "ts-node --watch src/lightspeed-bigquery.ts",
+    "start": "node dist/index.js",
+    "dev": "ts-node --watch src/index.js",
+    "pipeline": "ts-node src/lightspeed-bigquery.ts",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
@@ -26,15 +28,16 @@
   "license": "UNLICENSED",
   "dependencies": {
     "@google-cloud/bigquery": "^7.0.0",
+    "@google-cloud/storage": "^7.11.0",
     "axios": "^1.6.0",
-    "express": "^4.18.0",
-    "pg": "^8.11.5",
     "bullmq": "^5.7.12",
-    "jsonwebtoken": "^9.0.2",
     "csv-stringify": "^6.5.0",
-    "puppeteer": "^22.10.0",
     "date-fns": "^3.6.0",
-    "@google-cloud/storage": "^7.11.0"
+    "express": "^4.18.0",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.11.5",
+    "puppeteer": "^22.10.0",
+    "square": "^43.2.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.0",
@@ -76,7 +79,9 @@
     "compilerOptions": {
       "target": "ES2020",
       "module": "commonjs",
-      "lib": ["ES2020"],
+      "lib": [
+        "ES2020"
+      ],
       "outDir": "./dist",
       "rootDir": "./",
       "strict": true,

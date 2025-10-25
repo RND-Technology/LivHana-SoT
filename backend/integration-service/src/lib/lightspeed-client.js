@@ -4,11 +4,11 @@ const logger = createLogger('lightspeed-client');
 
 export class LightSpeedClient {
   constructor() {
-    this.apiKey = process.env.LIGHTSPEED_API_KEY || null;
+    this.apiKey = process.env.LIGHTSPEED_TOKEN || null;
     this.baseUrl = process.env.LIGHTSPEED_BASE_URL || 'https://api.lightspeedhq.com';
     
     if (!this.apiKey) {
-      logger.warn('LIGHTSPEED_API_KEY not set - using mock mode');
+      logger.warn('LIGHTSPEED_TOKEN not set - using mock mode');
     }
   }
 

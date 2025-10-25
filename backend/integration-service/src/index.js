@@ -1,7 +1,7 @@
 import express from 'express';
 import { Client } from 'square';
 import { randomUUID } from 'crypto';
-import rpmRouter from './rpm.ts';
+import rpmRouter from './rpm.js';
 import { createLogger } from '../common/logging/index.js';
 
 const logger = createLogger('integration-service');
