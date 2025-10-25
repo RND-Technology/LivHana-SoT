@@ -387,7 +387,7 @@ app.get('/', (_req, res) => {
 
 // Only start server if not in test environment
 if (process.env.NODE_ENV !== 'test') {
-  const PORT = process.env.PORT || 8080;
+  const PORT = Number(process.env.PORT) || 8080;
   const HOST = process.env.HOST || '0.0.0.0';
   
   const server = app.listen(PORT, HOST, () => {
