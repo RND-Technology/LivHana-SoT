@@ -1,17 +1,14 @@
 name: Voice Services Health Check
 
 on:
-  push:
-    branches: [main, fix/mobile-control-po1]
-  pull_request:
-    branches: [main]
-  schedule:
-    - cron: '*/30 * * * *'  # Every 30 minutes
-  workflow_dispatch:
+  workflow_dispatch:  # Manual trigger only
+  # push/PR/schedule disabled - voice services only run locally, not in CI
+  # schedule:
+  #   - cron: '*/30 * * * *'  # Re-enable for self-hosted runner
 
 jobs:
   voice-health-check:
-    runs-on: macos-latest
+    runs-on: self-hosted  # Changed from macos-latest - requires local runner
     timeout-minutes: 5
     
     steps:
@@ -59,4 +56,5 @@ jobs:
           path: |
             ~/Library/Logs/LivHana/*
             logs/voice_watchdog.*.log
+
 
