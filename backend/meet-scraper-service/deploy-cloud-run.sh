@@ -4,6 +4,10 @@
 
 set -e
 
+## Always run from the script's own directory so Docker build context is correct
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+cd "$SCRIPT_DIR"
+
 PROJECT_ID="reggieanddrodispensary"
 JOB_NAME="meet-scraper-job"
 REGION="us-central1"
