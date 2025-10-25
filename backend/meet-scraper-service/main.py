@@ -290,6 +290,12 @@ def process_meet_folder():
             traceback.print_exc()
             continue
     
+    # If no files parsed, exit gracefully
+    if not parsed_files:
+        print("ℹ️  No files to process; skipping database operations.")
+        print("🎉 Google Meet scraper complete (no-op).")
+        return
+
     # Step 5: Connect to AlloyDB
     print("🗄️  Connecting to AlloyDB...")
     engine = get_alloydb_connection()
