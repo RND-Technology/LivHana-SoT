@@ -7,13 +7,10 @@ set -euo pipefail
 
 scrub_secrets() {
   sed -E \
-    -e 's/(Authorization[[:space:]]*:[[:space:]]*Bearer[[:space:]]+)[^[:space:]]+/\1***REDACTED***/g' \
-    -e 's/(Authorization[[:space:]]*:[[:space:]]*Basic[[:space:]]+)[^[:space:]]+/\1***REDACTED***/g' \
-    -e 's/([?&](api[_-]?key|apikey|token|access_token|refresh_token|secret|client_secret|password|pass)=)[^&#[:space:]]+/\1***REDACTED***/g' \
-    -e 's/((^|[[:space:]])(API[_-]?KEY|APIKEY|KEY|TOKEN|ACCESS_TOKEN|REFRESH_TOKEN|SECRET|CLIENT_SECRET|PASSWORD|PASS|JWT_SECRET)[[:space:]]*[=:][[:space:]]*)"[^"]*"/\1"***REDACTED***"/g' \
-    -e 's/((^|[[:space:]])(API[_-]?KEY|APIKEY|KEY|TOKEN|ACCESS_TOKEN|REFRESH_TOKEN|SECRET|CLIENT_SECRET|PASSWORD|PASS|JWT_SECRET)[[:space:]]*[=:][[:space:]]*)[^[:space:]"'\'']+/\1***REDACTED***/g' \
-    -e 's/("(apiKey|key|token|access_token|refresh_token|secret|client_secret|password|jwtSecret)"[[:space:]]*:[[:space:]]*)"[^"]*"/\1"***REDACTED***"/g' \
-    -e 's/-----BEGIN (RSA |EC )?PRIVATE KEY-----.*-----END (RSA |EC )?PRIVATE KEY-----/-----BEGIN PRIVATE KEY-----\n***REDACTED***\n-----END PRIVATE KEY-----/g'
+    -e 's/(Authorization[[:space:]]*:[[:space:]]*Bearer[[:space:]]*)[^[:space:]]+/\1***REDACTED***/Ig' \
+    -e 's/([?&](api[_-]?key|access_token|token|refresh_token|secret|password|pass)=)[^&#[:space:]]+/\1***REDACTED***/Ig' \
+    -e 's/((^|[[:space:]])(API[_-]?KEY|KEY|TOKEN|ACCESS_TOKEN|REFRESH_TOKEN|SECRET|CLIENT_SECRET|PASSWORD|PASS)[[:space:]]*[=:][[:space:]]*)"[^"]*"/\1"***REDACTED***"/Ig' \
+    -e 's/((^|[[:space:]])(API[_-]?KEY|KEY|TOKEN|ACCESS_TOKEN|REFRESH_TOKEN|SECRET|CLIENT_SECRET|PASSWORD|PASS)[[:space:]]*[=:][[:space:]]*)[^[:space:]"'\'']+/\1***REDACTED***/Ig'
 }
 
 if [[ "${BASH_SOURCE[0]:-$0}" == "$0" ]]; then

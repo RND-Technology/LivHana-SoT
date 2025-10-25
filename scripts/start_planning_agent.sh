@@ -28,7 +28,7 @@ write_status() {
 JSON
 )
   if [[ -f "$ROOT/scripts/guards/atomic_write.sh" ]]; then
-    echo "$json_content" | "$ROOT/scripts/guards/atomic_write.sh" "$STATUS_FILE"
+    echo "$json_content" | bash "$ROOT/scripts/guards/atomic_write.sh" "$STATUS_FILE"
   else
     echo "$json_content" > "$STATUS_FILE"
   fi

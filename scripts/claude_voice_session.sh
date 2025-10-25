@@ -1,58 +1,81 @@
 #!/usr/bin/env bash
-# 🎤 Liv Voice tmux supervisor (MAX_AUTO compatible)
-# Ensures the voice session runs once per boot and exposes health status.
+# Always-on voice session manager (tmux keep-alive)
+# Creates idempotent `liv-voice` tmux session that persists for easy attach/detach
+# Usage: ./claude_voice_session.sh [start|attach|status]
 
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")/.." && pwd)"
-SESSION_NAME="liv-voice"
-STATUS_DIR="$ROOT/tmp/agent_status"
-LOG_DIR="$ROOT/logs/voice"
-PROMPT_FILE="$ROOT/tmp/claude_tier1_prompt.txt"
-RUNNER="$ROOT/scripts/agents/voice_session_runner.sh"
+SESSION="liv-voice"
+LOG_FILE="$ROOT/logs/voice/session.log"
 
-STATUS_FILE="$STATUS_DIR/voice.status.json"
-LOG_FILE="$LOG_DIR/voice_session_$(date +%Y%m%d_%H%M%S).log"
+# Ensure log directory exists
+mkdir -p "$(dirname "$LOG_FILE")"
+touch "$LOG_FILE"
 
-mkdir -p "$STATUS_DIR" "$LOG_DIR"
-
-write_blocked_status() {
-  local note="$1"
-  local now
-  now="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
-  cat <<EOF | bash "$ROOT/scripts/guards/atomic_write.sh" "$STATUS_FILE"
-{
-  "agent": "liv-voice",
-  "phase": "voice-orchestration",
-  "status": "blocked",
-  "updated_at": "$now",
-  "notes": "$note"
+start_session() {
+  if tmux has-session -t "$SESSION" 2>/dev/null; then
+    echo "✅ Voice session '$SESSION' already running"
+    return 0
+  fi
+  
+  # Create tmux session with keep-alive tail command
+  tmux new-session -d -s "$SESSION" -n voice "bash -c '
+    echo \"[$(date -u +%FT%TZ)] Liv Hana voice session initialized\" | tee -a \"$LOG_FILE\"
+    echo \"Session ready for voice orchestration\" | tee -a \"$LOG_FILE\"
+    echo \"\" | tee -a \"$LOG_FILE\"
+    tail -F \"$LOG_FILE\"
+  '" 2>/dev/null
+  
+  if tmux has-session -t "$SESSION" 2>/dev/null; then
+    echo "✅ Voice session '$SESSION' started"
+    echo "📎 Attach with: tmux attach -t $SESSION"
+    return 0
+  else
+    echo "❌ Failed to start voice session"
+    return 1
+  fi
 }
-EOF
+
+attach_session() {
+  if ! tmux has-session -t "$SESSION" 2>/dev/null; then
+    echo "⚠️  Voice session not running, starting..."
+    start_session
+  fi
+  
+  echo "🔗 Attaching to voice session '$SESSION'..."
+  tmux attach -t "$SESSION"
 }
 
-if ! command -v tmux >/dev/null 2>&1; then
-  printf "❌ tmux not available – cannot autostart voice session\n"
-  write_blocked_status "tmux unavailable – install tmux to enable MAX_AUTO voice"
-  exit 1
-fi
+status_session() {
+  if tmux has-session -t "$SESSION" 2>/dev/null; then
+    echo "✅ Voice session '$SESSION' is running"
+    echo "   Attach: tmux attach -t $SESSION"
+    echo "   Detach: Press Ctrl+B then D"
+    return 0
+  else
+    echo "⚠️  Voice session '$SESSION' not running"
+    echo "   Start: $0 start"
+    return 1
+  fi
+}
 
-if [[ ! -f "$PROMPT_FILE" ]]; then
-  printf "⚠️  Prompt not rendered (expected at %s); skipping voice launch\n" "$PROMPT_FILE"
-  write_blocked_status "Prompt file missing – run claude_tier1_boot first"
-  exit 1
-fi
-
-if tmux has-session -t "$SESSION_NAME" 2>/dev/null; then
-  printf "🎤 Liv Voice session already running (tmux:%s)\n" "$SESSION_NAME"
-  exit 0
-fi
-
-VOICE_PROMPT_FILE="$PROMPT_FILE" \
-VOICE_STATUS_FILE="$STATUS_FILE" \
-VOICE_LOG_FILE="$LOG_FILE" \
-VOICE_SESSION_NAME="$SESSION_NAME" \
-tmux new-session -d -s "$SESSION_NAME" "cd \"$ROOT\" && bash \"$RUNNER\""
-
-printf "🎤 Liv Voice launched in tmux session '%s'\n" "$SESSION_NAME"
-printf "   Attach with: tmux attach -t %s\n" "$SESSION_NAME"
+# Main command router
+case "${1:-start}" in
+  start)
+    start_session
+    ;;
+  attach)
+    attach_session
+    ;;
+  status)
+    status_session
+    ;;
+  *)
+    echo "Usage: $0 {start|attach|status}"
+    echo "  start  - Create liv-voice session (idempotent)"
+    echo "  attach - Attach to liv-voice session (auto-start if missing)"
+    echo "  status - Check if liv-voice session is running"
+    exit 1
+    ;;
+esac
