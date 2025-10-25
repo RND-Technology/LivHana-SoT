@@ -202,3 +202,7 @@ screenshots/
 venv/
 .env.ecwid
 logs/
+*.raw*
+**/raw*
+tmp/
+.cursor/

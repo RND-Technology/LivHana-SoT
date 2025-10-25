@@ -1,0 +1,291 @@
+
+ChatGPT said:
+Request for GPT-5 Pro
+Reasoned for 6m 20s
+Quick answer to your question: the “vendor board” you’re thinking of in Notion is a Kanban board (Notion’s “Board” view).
+
+Below is a ready‑to‑use prompt + script pack to (1) ingest your giant meeting text file(s), (2) structure everything into Markdown aligned to RPM DNA, (3) auto‑separate solved vs. unsolved, (4) assign all unsolved to roles in an org chart, and (5) emit both a Mermaid Gantt and a Notion‑ready Kanban CSV, then (6) inject the results into the RPM Weekly Plan. This follows your request to “voice mode that prompt for ChatGPT‑5 to process the meeting data” and the follow‑on requirement to group unsolved items by role and integrate them into the RPM plan.  
+
+A) VOICE‑MODE STARTER (read this verbatim to GPT‑5 High)
+GPT‑5 High, Voice Mode. Mission: Ingest one large .txt containing multiple Google Meet transcripts + DragNet outputs for October (last 3 weeks). Produce:
+
+Meetings_2025‑10.md (structured),
+
+/charts/hnc_rpm_gantt.mmd (Mermaid Gantt),
+
+/boards/notion_kanban.csv (Kanban for Notion), and
+
+RPM_Weekly_Update_Block.md (drop‑in block for our live plan, Oct 21–27).
+
+Standards & Canon: Use RPM DNA 4‑digit index (AOM/COI/RPM/Action) for file tags and headings; keep Glue Index cross‑layer links strict; keep HNC’s compliance CTA microcopy; 21+ only, no medical claims. Enforce TRUTH (Testable, Reproducible, Unambiguous, Traceable, High‑fidelity) on all outputs. Map tasks to the org chart below. Integrate with our Rube MCP + Agent Builder stack notes. Output must be copy‑paste ready.      
+
+Org Chart (roles for assignment):
+• CEO – Jesse Niesen (overall RPM owner)
+• Director of Ops – Andrew Aparicio (retail/e‑com ops, payments, dashboards)
+• Systems Dev/Test – Christopher Rocha (tool testing + systems)
+• QA/Test – Charlie Day (initial tool testing)
+• Legal/Policy – Andrea Steel (counsel; policy receipts)
+• Vendors/Partners – Kaja Payments, Lightspeed, KCA Labs
+• Machines/Agents – GPT‑5, Claude Code CLI, Cheetah, Rube MCP (Agent Builder node)
+(Use these when auto‑assigning unsolved.) 
+
+Compliance gates (must appear in outputs): 21+ ID check; TX GA‑56 emergency enforcement context; THCa SOP full‑panel COAs. Provide short reminder where relevant tasks appear.  
+
+Deliverables (acceptance tests):
+• Meetings_2025‑10.md: For each meeting: Date/time (CDT), attendees, key decisions, Solved vs Unsolved, risks/deps, and an RPM DNA tag (AOM.COIRPM.Action) on each task.
+• /charts/hnc_rpm_gantt.mmd: Valid Mermaid gantt diagram (week of Oct 21–27) with swimlanes by role; milestones for payments, COA/DSHS remediation, and HNC pack.
+• /boards/notion_kanban.csv: Columns: Title,Owner,Role,Status,Priority,Due,Tags,DependsOn,SourceMeeting. Status buckets: Backlog / Next / Doing / Blocked / Done.
+• RPM_Weekly_Update_Block.md: Drop‑in “Result / Purpose / Massive Action Plan” for the current week; include role‑accountabilities (VIPs, vendors, machines). 
+
+Constraints:
+• RPM DNA indexing for fast search; AOM (Empire layer) → COI (Wheel of Life) → RPM (priority rank) → Action (lifecycle). 
+• Glue Index rules for cross‑layer linking (HNC ↔ R&D via OPS only; sovereignty as microcopy). 
+• HNC pack format (logline/script/shot list/thumbnail/captions/CTA) respected where content tasks appear. 
+• TRUTH verification notes appended at end (commands or checks to verify critical counts/claims). 
+• Rube MCP + Agent Builder context: reference node‑based integration (no “custom actions” fallacy).  
+
+Return all four artifacts now.
+
+B) TEXT‑MODE MASTER PROMPT (paste into GPT‑5 High for non‑voice runs)
+Purpose. Turn a giant October meeting transcript + DragNet output into one coherent RPM‑aligned archive, with role‑assigned unsolved tasks and ready‑to‑ship planning assets (Gantt + Kanban + RPM weekly block). Align to RPM DNA and our canonical canvases; enforce compliance and TRUTH.   
+
+Inputs.
+
+One .txt file: GOOGLE MEET Meetings Oct thru 10-21 AM.txt + any merged DragNet text. 
+
+Canon references: RPM Weekly Plan (Oct 21–27), Liv Hana Master Quick‑Start, HNC Master, THCa SOP, GA‑56 report, Rube/Agent Builder integration.      
+
+Canon & Rules (enforce):
+
+RPM DNA 4‑digit (AOM.COIRPM.Action) for headings, filenames, and tags. 
+
+Glue Index cross‑link constraints (HNC sovereignty = microcopy CTA; R&D ↔ OPS only). 
+
+HNC pack structure for content tasks. 
+
+OPS Compliance: GA‑56 21+ ID enforcement; THCa SOP full‑panel COAs.  
+
+Rube MCP + Agent Builder: node‑based MCP server integration (no deprecated “custom actions”). 
+
+TRUTH framework five‑point checks. 
+
+Processing steps.
+
+Parse the .txt into meetings (detect date/time lines, “Recording/Transcript” markers, or DragNet dividers).
+
+For each meeting: summarize Decisions, list Solved vs Unsolved (heuristic: verbs in past tense = solved; requests/owners/dates missing = unsolved; keep quotes for ambiguous items).
+
+Tag each item with RPM DNA and Owner/Role (from org chart). For compliance‑flagged items, append [21+ ID / GA‑56 / COA] tag. 
+
+Emit four artifacts described under Deliverables below.
+
+Org chart (authoritative mapping).
+
+CEO: Jesse (RPM owner)
+
+Director Ops: Andrew → payments, retail/ecom, dashboards, age‑gate ops.
+
+Systems Dev/Test: Christopher → tool setup, MCP, integrations.
+
+QA/Test: Charlie → test plans, checklists.
+
+Legal/Policy: Andrea Steel → filings, policy receipts, rulemaking comments.
+
+Vendors/Partners: Kaja, Lightspeed, KCA Labs (COAs).
+
+Machines/Agents: GPT‑5, Claude Code CLI, Cheetah, Rube MCP. 
+
+Deliverables (produce all):
+
+Meetings_2025-10.md — Structured archive (per‑meeting sections) + consolidated Debrief at end that lists Unsolved by Role.
+
+/charts/hnc_rpm_gantt.mmd — Mermaid Gantt (Oct 21–27), lanes by Role, milestones: Kaja payments checks / GA‑56 compliance / COA remediation / HNC week pack / Agent Builder wiring.  
+
+/boards/notion_kanban.csv — Notion‑ready Kanban (Title,Owner,Role,Status,Priority,Due,Tags,DependsOn,SourceMeeting).
+
+RPM_Weekly_Update_Block.md — Fill R/P/MAP with role accountability; append to our RPM WEEKLY PLAN – SURGICAL DEPLOYMENT WEEK. 
+
+Acceptance tests.
+
+Every unsolved item has Role, Due, Priority, Dependency, and RPM DNA.
+
+No cross‑layer leakage (obey Glue Index). 
+
+Compliance tags present where relevant (GA‑56, COA) with 21+ reminder.  
+
+TRUTH footer includes the verification step(s) for any numeric claims or counts referenced. 
+
+C) CODEX/CURSOR SCRIPT (turns one big .txt into the 4 artifacts)
+Paste the PROMPT below into Cursor → Codex (or GPT‑5 code runner). It will guide the LLM to write the Python needed.
+(If you prefer, swap Python for Node; structure is the same.)
+
+PROMPT FOR CODEX
+
+You are writing a single Python CLI script `digest_meetings.py`.
+
+INPUT
+- One large .txt file that contains multiple Google Meet transcripts + DragNet blocks.
+
+OUTPUTS
+1) ./Meetings_2025-10.md
+2) ./charts/hnc_rpm_gantt.mmd
+3) ./boards/notion_kanban.csv
+4) ./RPM_Weekly_Update_Block.md
+
+RULES
+- Use RPM DNA tags (AOM.COIRPM.Action) on each task.
+- Map owners via the org chart dictionary inside the script.
+- Apply compliance tags [GA-56_21+, COA_FULL_PANEL] where keywords match.
+- Keep Glue Index constraints: no deep sovereignty prose in HNC; use OPS CTA microcopy only.
+- Enforce TRUTH: deterministic parsing; write unit tests for the parser.
+
+ALGORITHM (high-level)
+1) Split file into meetings using regex on date/time lines (YYYY/MM/DD, "Meeting", "Transcript").
+2) For each meeting, extract:
+   - date/time (local), attendees (names after “with” or in header),
+   - bullets (use '-' or numbered lines).
+3) Classify bullets:
+   - “Solved” if contains past-tense verbs or explicit completion markers (done, shipped, merged).
+   - “Unsolved” if contains 'need', 'todo', 'blocker', question marks, or lacks owner/date.
+4) Tag each bullet with: Owner/Role (keyword map), RPM DNA (AOM.COIRPM.Action), and compliance tags.
+5) Accumulate UNSOLVED by Role for the end-of-doc Debrief.
+6) Emit Mermaid Gantt for current week (Oct 21–27) with lanes per Role and durations/due dates from parsed content or defaults.
+7) Emit Notion Kanban CSV with columns: Title,Owner,Role,Status,Priority,Due,Tags,DependsOn,SourceMeeting.
+8) Emit RPM Weekly Update Block (Result/Purpose/MAP) including per-role accountability rows.
+
+SCHEMAS (examples)
+- Org chart map (edit as needed):
+  ORG = {
+    "jesse": {"role":"CEO"},
+    "andrew": {"role":"Director Ops"},
+    "christopher": {"role":"Systems Dev/Test"},
+    "charlie": {"role":"QA/Test"},
+    "andrea": {"role":"Legal/Policy"},
+    "kaja": {"role":"Vendor"},
+    "lightspeed": {"role":"Vendor"},
+    "kca": {"role":"Lab"},
+    "gpt-5": {"role":"Machine"},
+    "claude": {"role":"Machine"},
+    "cheetah": {"role":"Machine"},
+    "rube": {"role":"Machine"}
+  }
+
+- Compliance keyword hints:
+  GA56 = ["age gate","21+","id check","abbott","ga-56","tabc","dshs"]
+  COA = ["coa","full panel","heavy metals","pesticides","kca labs","n-i-s-t","validated"]
+
+- Mermaid Gantt skeleton:
+  gantt
+    title HNC/RPM Week (Oct 21–27)
+    dateFormat  YYYY-MM-DD
+    section Payments & Ops
+      Kaja settlement checks :andrew, 2025-10-21, 2d
+      Lightspeed reporting   :andrew, 2025-10-23, 1d
+    section Compliance
+      GA-56 age-gate audits  :charlie, 2025-10-21, 3d
+      COA full-panel remediation :andrea, 2025-10-22, 3d
+    section Content (HNC)
+      Week pack W1 (scripts/thumbs) :gpt-5, 2025-10-22, 3d
+    section Orchestration
+      Rube MCP node wiring (Agent Builder) :christopher, 2025-10-21, 2d
+
+TESTS
+- Provide unit tests for splitter/classifier functions using pytest.
+- Validate CSV header and Mermaid syntax (basic check for "gantt" and "dateFormat").
+Why these constraints: RPM DNA indexing enables “instant search” and clean file naming; Glue Index prevents cross‑layer leakage; compliance gates reflect GA‑56 and THCa SOP; and TRUTH ensures verifiable, reproducible outputs.     
+
+D) DROP‑IN ORG CHART (Mermaid + YAML)
+Mermaid (quick visual):
+
+flowchart TD
+  CEO[Jesse — CEO]
+  DO[Andrew — Director Ops]
+  SD[Christopher — Systems Dev/Test]
+  QA[Charlie — QA/Test]
+  LEG[Andrea Steel — Legal/Policy]
+  V1[Kaja — Vendor]
+  V2[Lightspeed — Vendor]
+  LAB[KCA Labs — Lab]
+  M1[GPT‑5 — Machine]
+  M2[Claude Code CLI — Machine]
+  M3[Cheetah — Machine]
+  M4[Rube MCP — MCP Server]
+  CEO-->DO & SD & QA & LEG
+  DO-->V1 & V2
+  LEG-->LAB
+  SD-->M4 & M1 & M2 & M3
+YAML (for assignment logic):
+
+roles:
+  CEO: ["jesse"]
+  DirectorOps: ["andrew"]
+  SystemsDevTest: ["christopher"]
+  QA: ["charlie"]
+  LegalPolicy: ["andrea"]
+  Vendors: ["kaja","lightspeed"]
+  Labs: ["kca"]
+  Machines: ["gpt-5","claude","cheetah","rube"]
+(Names/roles taken from your October meetings summary and org needs for voice‑driven orchestration. )
+
+E) RPM WEEKLY BLOCK (paste into the current plan)
+Add this to RPM WEEKLY PLAN — Oct 21–27 under a new “Role Accountabilities” sub‑section:
+
+CEO (Jesse): Approve Meetings_2025‑10.md; green‑light Gantt + Kanban; sign‑off compliance messaging (21+, GA‑56).
+
+Andrew (Ops): Payments (Kaja), Lightspeed reporting, in‑store age‑gate SOP checks.
+
+Christopher (Systems): Rube MCP node in Agent Builder; data pipelines for Kanban/Gantt sync.
+
+Charlie (QA): GA‑56 audit checklist run; smoke tests on Kanban items.
+
+Andrea (Legal): COA full‑panel remediation plan; draft public comments + receipts.
+
+Machines: GPT‑5 (meeting structuring + HNC week pack scaffolds), Claude (parser tests), Cheetah (deploy small services).  
+
+F) SAFETY & COMPLIANCE CLIP
+Always 21+ ID verification at POS and e‑com (GA‑56 emergency rules; zero‑tolerance revocation risk). Tag related tasks accordingly. 
+
+THCa SOP: require full‑panel COAs (metals, pesticides, microbials) and validated methods before sale or promotion. 
+
+G) NOTES & CANON LINKS (for the agent)
+RPM DNA numeric indexing and “remembering the future” cascade. 
+
+Glue Index cross‑layer rules to avoid sovereignty content leakage into HNC. 
+
+HNC Master episode pack format for any content tasks surfaced. 
+
+Rube MCP + Agent Builder: use node‑based MCP server integration; no deprecated “custom actions” flow. 
+
+TRUTH framework enforcement for verification notes at the end of each artifact. 
+
+This “One Thing / RPM DNA voice‑mode” note is the lens: keep outputs terse, decisive, and automatable. 
+
+What you’ll say if someone asks “what’s that board style called in Notion?”
+“Kanban board — Notion calls it the ‘Board’ view.”
+
+MASTER REINTEGRATION — (Session Close)
+Delivered:
+
+Voice‑mode starter, full text‑mode master prompt, Codex/Cursor script brief, org chart (Mermaid + YAML), drop‑in RPM Weekly role block, compliance clip, and canon links.
+
+Key decisions/assumptions:
+
+Mapped VIPs (Jesse/Andrew/Christopher/Charlie) and Legal (Andrea) per recent meeting notes; vendors & machines included for dependency assignment. 
+
+Enforced RPM DNA, Glue Index, GA‑56 and THCa SOP in outputs.    
+
+Updates to working memory:
+
+“Board” = Kanban; use Notion CSV schema provided.
+
+Always add TRUTH verification footer to artifacts. 
+
+Next best step:
+
+Run the voice‑mode prompt with your combined October transcript .txt; then paste the RPM_Weekly_Update_Block.md into the live plan for Oct 21–27. 
+
+Risks/blockers:
+
+Non‑compliance on GA‑56 age‑gate or missing full‑panel COAs will block sales; ensure those tasks are top‑priority in Kanban/Gantt.  
+
+Memory usage: ~18% (prompts + schemas cached; canon paths linked).
