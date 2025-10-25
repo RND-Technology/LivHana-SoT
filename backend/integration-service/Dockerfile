@@ -1,32 +1,26 @@
-# LIGHTSPEED BIGQUERY PIPELINE - PRODUCTION DOCKERFILE
-FROM node:18-alpine
+# Stage 1 - Build (TypeScript compilation)
+FROM node:20-slim AS builder
+WORKDIR /app
+COPY package*.json tsconfig.json ./
+RUN npm ci
+COPY src ./src
+RUN npm run build
 
+# Stage 2 - Runtime (minimal, non-root)
+FROM node:20-slim
+ENV NODE_ENV=production
 WORKDIR /app
 
-# Copy package files
-COPY package*.json ./
-
-# Install dependencies
-RUN npm ci --only=production
-
-# Copy source code
-COPY src/ ./src/
-COPY specs/ ./specs/
-
 # Create non-root user
-RUN addgroup -g 1001 -S nodejs
-RUN adduser -S nextjs -u 1001
+RUN groupadd -r app && useradd -r -g app app \
+    && mkdir -p /app && chown -R app:app /app
 
-# Change ownership
-RUN chown -R nextjs:nodejs /app
-USER nextjs
+COPY package*.json ./
+RUN npm ci --omit=dev
+COPY --from=builder /app/dist ./dist
 
-# Expose port
+USER app
+ENV PORT=8080 HOST=0.0.0.0
 EXPOSE 8080
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD curl -f http://localhost:8080/health || exit 1
-
-# Start the application
-CMD ["npm", "start"]
+CMD ["node", "dist/index.js"]
