@@ -99,10 +99,14 @@ check_critical_dependencies() {
   fi
 
   # Node 20 Guard (hard-fail in non-interactive shells)
-  if [[ ! -t 0 ]] && [[ "${NODE_MAJOR:-0}" -lt 20 ]]; then
-    error "Node >= 20 required in non-interactive mode. Current: ${NODE_VERSION:-unknown}"
-    error "Run: nvm install 20 && nvm use 20"
-    missing=$((missing + 1))
+  if [[ ! -t 0 ]]; then
+    local node_version=$(node -v 2>/dev/null || echo "unknown")
+    local node_major=$(echo "$node_version" | sed 's/v\([0-9]*\).*/\1/')
+    if [[ "${node_major:-0}" -lt 20 ]]; then
+      error "Node >= 20 required in non-interactive mode. Current: ${node_version}"
+      error "Run: nvm install 20 && nvm use 20"
+      missing=$((missing + 1))
+    fi
   fi
   
   # PATH prepend to Homebrew for non-interactive shells
@@ -210,6 +214,22 @@ clean_stale_agent_locks() {
        "$ROOT/tmp/agent_status/.execmon.status.json.lock" \
        "$ROOT/tmp/agent_status/.voice.status.json.lock" 2>/dev/null || true
   success "Stale agent locks removed"
+}
+
+# Clean zombie boot script processes from previous runs
+clean_zombie_boot_processes() {
+  info "Cleaning zombie boot script processes..."
+  # Find all claude_tier1_boot.sh processes except the current one
+  local current_pid=$$
+  local zombie_pids=$(ps aux | grep "bash.*claude_tier1_boot.sh" | grep -v grep | awk '{print $2}' | grep -v "^${current_pid}$" || true)
+
+  if [[ -n "$zombie_pids" ]]; then
+    echo "$zombie_pids" | xargs kill 2>/dev/null || true
+    sleep 0.5
+    success "Cleaned up $(echo "$zombie_pids" | wc -l | tr -d ' ') zombie boot processes"
+  else
+    success "No zombie boot processes found"
+  fi
 }
 
 # Agent status file health check
@@ -567,9 +587,23 @@ if command -v gcloud >/dev/null 2>&1; then
   [[ -n "$SQUARE_ACCESS_TOKEN" ]] && success "SQUARE_ACCESS_TOKEN loaded from Secret Manager"
   [[ -n "$SQUARE_LOCATION_ID" ]] && success "SQUARE_LOCATION_ID loaded from Secret Manager"
   
-  # Load LightSpeed token for integration-service
-  export LIGHTSPEED_TOKEN=$(gcloud secrets versions access latest --secret=LightSpeed-Agent-Builder --project="$GCP_PROJECT_ID" 2>/dev/null || echo "")
-  [[ -n "$LIGHTSPEED_TOKEN" ]] && success "LIGHTSPEED_TOKEN loaded from Secret Manager"
+  # Load LightSpeed OAuth credentials (TIER-1) or fallback to legacy token
+  export LIGHTSPEED_CLIENT_ID=$(gcloud secrets versions access latest --secret=LIGHTSPEED_CLIENT_ID --project="$GCP_PROJECT_ID" 2>/dev/null || echo "")
+  export LIGHTSPEED_CLIENT_SECRET=$(gcloud secrets versions access latest --secret=LIGHTSPEED_CLIENT_SECRET --project="$GCP_PROJECT_ID" 2>/dev/null || echo "")
+  export LIGHTSPEED_ACCOUNT_ID=$(gcloud secrets versions access latest --secret=LIGHTSPEED_ACCOUNT_ID --project="$GCP_PROJECT_ID" 2>/dev/null || echo "")
+
+  if [[ -n "$LIGHTSPEED_CLIENT_ID" ]] && [[ -n "$LIGHTSPEED_CLIENT_SECRET" ]] && [[ -n "$LIGHTSPEED_ACCOUNT_ID" ]]; then
+    success "LIGHTSPEED OAuth credentials loaded (TIER-1)"
+    info "Account ID: $LIGHTSPEED_ACCOUNT_ID"
+  else
+    # Fallback to legacy personal access token
+    export LIGHTSPEED_TOKEN=$(gcloud secrets versions access latest --secret=LightSpeed-Agent-Builder --project="$GCP_PROJECT_ID" 2>/dev/null || echo "")
+    if [[ -n "$LIGHTSPEED_TOKEN" ]]; then
+      warning "LIGHTSPEED_TOKEN loaded (LEGACY - migrate to OAuth2)"
+    else
+      warning "No LightSpeed credentials found - integration service may fail"
+    fi
+  fi
 fi
 
 # OPENAI fallback for local voice mode
@@ -753,22 +787,40 @@ echo
 
 # Step 2: Voice mode preparation
 banner "STEP 2: VOICE MODE PREPARATION"
-info "Checking voice services (STT/TTS)..."
+info "Ensuring voice services are running (STT/TTS)..."
 
-# Check STT service (Whisper on port 2022)
+# Auto-start STT service (Whisper on port 2022)
 if lsof -i :2022 2>/dev/null | grep -q LISTEN; then
-  success "STT service (Whisper) running on port 2022"
+  success "STT service (Whisper) already running on port 2022"
 else
-  warning "STT service NOT running - voice input may not work"
-  info "Start with: voicemode whisper start"
+  info "Starting STT service (Whisper)..."
+  # Use launchctl if available, otherwise direct start
+  if launchctl list | grep -q com.livhana.whisper 2>/dev/null; then
+    launchctl kickstart -k "gui/$(id -u)/com.livhana.whisper" 2>/dev/null || true
+  fi
+  sleep 2
+  if lsof -i :2022 2>/dev/null | grep -q LISTEN; then
+    success "STT service started successfully"
+  else
+    warning "STT service failed to start - voice input may not work"
+  fi
 fi
 
-# Check TTS service (Kokoro on port 8880)
+# Auto-start TTS service (Kokoro on port 8880)
 if lsof -i :8880 2>/dev/null | grep -q LISTEN; then
-  success "TTS service (Kokoro) running on port 8880"
+  success "TTS service (Kokoro) already running on port 8880"
 else
-  warning "TTS service NOT running - voice output may not work"
-  info "Start with: voicemode kokoro start"
+  info "Starting TTS service (Kokoro)..."
+  # Use launchctl if available, otherwise direct start
+  if launchctl list | grep -q com.livhana.kokoro 2>/dev/null; then
+    launchctl kickstart -k "gui/$(id -u)/com.livhana.kokoro" 2>/dev/null || true
+  fi
+  sleep 2
+  if lsof -i :8880 2>/dev/null | grep -q LISTEN; then
+    success "TTS service started successfully"
+  else
+    warning "TTS service failed to start - voice output may not work"
+  fi
 fi
 
 # Run voice mode boot script
@@ -1112,6 +1164,9 @@ echo
 # Step 8: Post-launch health checks (background)
 banner "STEP 8: POST-LAUNCH HEALTH CHECKS"
 
+# Clean zombie boot processes from previous runs
+clean_zombie_boot_processes
+
 # FAILURE #5: Clean stale agent locks BEFORE starting new agents
 clean_stale_agent_locks
 
@@ -1264,16 +1319,18 @@ if [[ "${MAX_AUTO:-1}" == "1" ]]; then
     if [[ -f "$ROOT/backend/integration-service/package.json" ]]; then
       cd "$ROOT/backend/integration-service"
 
-    # PORT 3005 GUARD: Clean up stale processes
+    # PORT 3005 GUARD: Clean up stale processes (NON-BLOCKING)
     if lsof -ti :3005 >/dev/null 2>&1; then
       warning "Port 3005 busy – terminating stale process"
       lsof -ti :3005 | xargs -r kill -TERM 2>/dev/null || true
       sleep 2
       if lsof -ti :3005 >/dev/null 2>&1; then
-        error "Port 3005 still in use after cleanup; aborting boot."
-        exit 1
+        warning "Port 3005 still in use after cleanup"
+        warning "Integration service will NOT start, but voice mode CONTINUES"
+        SKIP_INTEGRATION_SERVICE=1
+      else
+        info "Stale process terminated, proceeding with startup"
       fi
-      info "Stale process terminated, proceeding with startup"
     fi
     
     # Load dependency wait helpers
@@ -1528,4 +1585,11 @@ echo
 success "🎼 ONE SHOT, ONE KILL | GROW BABY GROW, SELL BABY SELL!"
 echo
 
-exit 0
+# Skip auto-launch to avoid Ink raw-mode error in non-TTY shells
+info "Boot sequence complete!"
+info "To start Claude Code session manually:"
+echo ""
+echo "  cat $PROMPT | pbcopy"
+echo "  # Then paste into new Claude Code session in Cursor"
+echo ""
+success "Tier-1 boot complete - voice mode active"
