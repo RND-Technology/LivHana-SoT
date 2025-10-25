@@ -1,56 +1,62 @@
-<!-- 964b7ca4-84f9-46d4-902c-492a196e447f b64246f5-46f5-4b84-b90e-d9a1274c46f2 -->
-# Tier-1 Zero-Warning Boot: Action Plan
+<!-- 964b7ca4-84f9-46d4-902c-492a196e447f 9071c874-7008-40bb-ab1d-d63cc7020598 -->
+# Tier-1 Zero-Warning Boot — Community‑Verified Method (Updated)
 
-#### 1) Voice session: always-on, attachable
-- Fix `scripts/claude_voice_session.sh` to create tmux session `liv-voice` and keep it alive by tailing a log (prevents auto-exit). Ensure idempotency (no duplicate sessions).
-- Add auto-respawn helper: if `liv-voice` missing at boot end, spawn and log the attach hint.
-- Update boot to print the exact attach command only once.
+#### Status (confirmed)
+- 5/5 agents healthy; voice operational; integration-service health OK in latest runs; logs CLEAN by strict scanner
+- Text-only gate active (no model warning): `ALLOW_TEXT_ONLY=1`
+- Optional checks demoted via `SUPPRESS_OPTIONAL_WARNINGS=1`
 
-#### 2) Agent health: remove validator warnings
-- Add seeded keys `started_at` and `finished_at` to status JSON in `scripts/start_*agent.sh` and in boot-time seeds within `scripts/claude_tier1_boot.sh` so `[PO1][STATUS] ... missing keys` disappears.
-- Keep atomic writes via `scripts/guards/atomic_write.sh`.
+#### What’s already done (accepted)
+- Agent scripts: atomic_write via bash; full schema JSON present
+- Scrubber: perl → BSD sed chain (community-safe)
+- Preflight: env gates added; log scan integrated
+- Voice: tmux keep-alive session + `bin/liv-attach` helper
+- Boot: GSM secret load includes `LIGHTSPEED_TOKEN`
 
-#### 3) Integration-service: start + health without perl errors
-- Replace perl-based redactor with portable sed in `scripts/guards/scrub_secrets.sh` (BSD/macOS-safe) and in the boot’s process-substitution pipeline. Tested patterns:
-```bash
-sed -E \
-  -e 's/(Authorization[[:space:]]*:[[:space:]]*Bearer[[:space:]]*)[^[:space:]]+/\1***REDACTED***/Ig' \
-  -e 's/([?&](api[_-]?key|access_token|token|refresh_token|secret|password|pass)=)[^&#[:space:]]+/\1***REDACTED***/Ig' \
-  -e 's/((^|[[:space:]])(API[_-]?KEY|KEY|TOKEN|ACCESS_TOKEN|REFRESH_TOKEN|SECRET|CLIENT_SECRET|PASSWORD|PASS)[[:space:]]*[=:][[:space:]]*)"[^"]*"/\1"***REDACTED***"/Ig' \
-  -e 's/((^|[[:space:]])(API[_-]?KEY|KEY|TOKEN|ACCESS_TOKEN|REFRESH_TOKEN|SECRET|CLIENT_SECRET|PASSWORD|PASS)[[:space:]]*[=:][[:space:]]*)[^[:space:]"\']+/\1***REDACTED***/Ig'
-```
-- In `scripts/claude_tier1_boot.sh` integration block, keep `wait_for_service 3005 30 2`; on failure, print a single actionable error with the log path.
+#### Remaining (community‑verified)
+1) Clean backups
+- Remove `scripts/claude_tier1_boot.sh.backup_*`
 
-#### 4) Degraded-mode warnings → silent greens
-- Add env gates in boot to silence optional checks:
-  - `ALLOW_TEXT_ONLY=1` → skip Claude model check silently.
-  - `SUPPRESS_OPTIONAL_WARNINGS=1` → convert non-critical env/service notices (DEEPSEEK, PERPLEXITY, compliance svc) to INFO.
-  - Memory notice: lower threshold or hide with `SUPPRESS_OPTIONAL_WARNINGS=1`.
-- Ensure pre-boot port scan prints only when action is needed; remove duplicate "port cleared" logs.
+2) One-shot validation (zero-warning run)
+- Kill stray services: `pkill -f lightspeed-bigquery; tmux kill-server`
+- Run: `ALLOW_TEXT_ONLY=1 SUPPRESS_OPTIONAL_WARNINGS=1 claude-tier1`
+- Verify: 5/5 agents, integration `/health`, `liv-voice` exists
 
-#### 5) Port 3005: conflict-free logic
-- Collapse duplicate pre-scan and pre-clear messages; do one scan and one cleanup path. If a node is already healthy on 3005, skip start; otherwise, terminate, then start and health-check.
+3) Health verification (portable)
+- Agents: tmux sessions + JSON status (`jq -e '.status=="running" or .status=="active"'`)
+- Integration: portable wait loop (no `timeout`): `for s in 1 2 3 5 8; do curl -sf localhost:3005/health && break || sleep $s; done`
+- Log scan: `rg` if present, else grep patterns; treat `***REDACTED***|<concealed by 1Password>` as safe
 
-#### 6) CI preflight (keeps it green)
-- Add a GitHub Action job to run: `claude-tier1` in text-only mode, verify 5/5 agents, `curl :3005/health`, and run the secret-log scanner. Fail PR on any red/yellow.
+4) Tests
+- `npm test` (headless; CI-safe)
 
-#### 7) Operator ergonomics
-- Add `bin/liv-attach` helper that checks existence of `liv-voice` and re-spawns if missing, then attaches.
-- Update `README` quick-start: `ALLOW_TEXT_ONLY=1 claude-tier1 && bin/liv-attach`.
+5) Commit & tag
+- Commit stabilization, tag `tier1-zero-warning-YYYYMMDD`, push branch + tags
 
-### Targeted Edits
-- `scripts/claude_voice_session.sh`: ensure tmux session `liv-voice`, keep-alive tail, idempotent spawn.
-- `scripts/start_planning_agent.sh`, `start_research_agent.sh`, `start_artifact_agent.sh`, `start_execution_monitor.sh`, `start_qa_agent.sh`: include `started_at`/`finished_at` in JSON.
-- `scripts/claude_tier1_boot.sh`: seed full-schema JSON; swap perl redactor usage for sed; de-duplicate port logs; add suppression gates; ensure single attach hint.
-- `scripts/guards/scrub_secrets.sh`: replace perl with sed-only implementation.
-- `.github/workflows/boot-preflight.yml`: add zero-warning gates and health checks.
+#### Community patterns to bake in
 
-### Acceptance Criteria
-- `ALLOW_TEXT_ONLY=1 claude-tier1` yields no warnings; all greens; 5/5 agents healthy; integration-service 200/health; logs clean (scanner returns CLEAN); tmux `liv-voice` attachable.
-- CI preflight passes on PRs; failures block merges.
+- Cloud Run hardening (for services we deploy there)
+  - Health checks: configure startup and liveness probes to hit `/health` (200 JSON) and `/live` (lightweight)
+  - Secrets: use Secret Manager with `--set-secrets KEY=secret:version` or mounted volumes; avoid 1Password in Cloud Run
+  - Runtime: set `--min-instances=1` (avoid cold starts), right-size `--concurrency` per handler, and enable graceful `SIGTERM` shutdown
+  - Identity/IAM: use dedicated service account with least-privilege (Secret Manager Accessor, Logs Writer)
+  - Logging: emit structured JSON (severity/message), add Logs Router exclusion for Authorization header if any reverse-proxy logs include it
+  - Rollouts: traffic-split new revisions, canary 5–10%, auto-roll back on health failures
+  - Networking: if AlloyDB/private services needed, use Serverless VPC Connector; prefer AlloyDB connector lib for IAM auth
 
-### Rollback
-- Revert the sed redactor and boot edits; keep atomic writes intact.
+- Voice always-on: tmux remain-on-exit + tail -F; optional LaunchAgent `com.livhana.liv-voice.plist`
+- Integration PID mgmt: prefer health/port over PID files; if needed, capture child PID via `pgrep -P`
+- Dependency waits: Postgres (`pg_isready` or TCP), Redis (`redis-cli ping`/`nc -z`), gated by `STRICT_DEPS=1`
+- Single-pass 3005 logic: one scan → healthy? skip; else terminate & start → backoff wait → single error with log path
+- CI job: run boot in text-only; assert 5/5 agents; curl health; log-scan; upload logs on failure
+
+#### Portability notes (macOS)
+- `timeout` may be missing; use backoff loops or `gtimeout` (coreutils) when available
+- Ensure `jq` and `rg` installed; otherwise fall back to `grep` + awk/jsonlite
+
+#### Acceptance criteria
+- `ALLOW_TEXT_ONLY=1 SUPPRESS_OPTIONAL_WARNINGS=1 claude-tier1` → no warnings; 5/5 agents OK; `/health` 200; logs CLEAN; `bin/liv-attach` always works
+- CI preflight passes; warnings/errors block merges
 
 ### To-dos
 

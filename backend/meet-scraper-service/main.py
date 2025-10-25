@@ -9,6 +9,7 @@ import os
 import json
 import re
 import io
+import traceback
 from datetime import datetime
 from typing import List, Dict, Optional
 from pathlib import Path
@@ -27,8 +28,11 @@ import uuid
 PROJECT_ID = os.getenv("GCP_PROJECT_ID", "reggieanddrodispensary")
 GOOGLE_APPLICATION_CREDENTIALS = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
 GOOGLE_APPLICATION_CREDENTIALS_JSON = os.getenv("GOOGLE_APPLICATION_CREDENTIALS_JSON")  # optional JSON string
+GOOGLE_SUBJECT = os.getenv("GOOGLE_SUBJECT")  # optional delegated user email for domain-wide delegation
 DATABASE_URL = os.getenv("DATABASE_URL")
 MEET_FOLDER_NAME = os.getenv("MEET_FOLDER_NAME", "Meet")
+MEET_FOLDER_ID = os.getenv("MEET_FOLDER_ID")  # prefer explicit folder id if set
+SHARED_DRIVE_ID = os.getenv("SHARED_DRIVE_ID")  # optional drive id if using shared drives
 
 # OAuth scopes required for reading Drive files
 DRIVE_SCOPES = ['https://www.googleapis.com/auth/drive.readonly']
@@ -43,13 +47,16 @@ def get_alloydb_connection():
     return engine
 
 def _load_drive_credentials():
-    """Load Google credentials from multiple sources: file path, JSON env, or ADC."""
+    """Load Google credentials from multiple sources: file path, JSON env, domain-wide delegation, or ADC."""
     # 1) File path provided
     if GOOGLE_APPLICATION_CREDENTIALS and os.path.exists(GOOGLE_APPLICATION_CREDENTIALS):
-        return service_account.Credentials.from_service_account_file(
+        creds = service_account.Credentials.from_service_account_file(
             GOOGLE_APPLICATION_CREDENTIALS,
             scopes=DRIVE_SCOPES,
         )
+        if GOOGLE_SUBJECT:
+            return creds.with_subject(GOOGLE_SUBJECT)
+        return creds
 
     # 2) JSON content provided in GOOGLE_APPLICATION_CREDENTIALS (sometimes set via secret env)
     if GOOGLE_APPLICATION_CREDENTIALS:
@@ -57,7 +64,10 @@ def _load_drive_credentials():
         if cred_val.startswith('{') and cred_val.endswith('}'):
             try:
                 info = json.loads(cred_val)
-                return service_account.Credentials.from_service_account_info(info, scopes=DRIVE_SCOPES)
+                creds = service_account.Credentials.from_service_account_info(info, scopes=DRIVE_SCOPES)
+                if GOOGLE_SUBJECT:
+                    return creds.with_subject(GOOGLE_SUBJECT)
+                return creds
             except Exception:
                 pass
 
@@ -65,7 +75,10 @@ def _load_drive_credentials():
     if GOOGLE_APPLICATION_CREDENTIALS_JSON:
         try:
             info = json.loads(GOOGLE_APPLICATION_CREDENTIALS_JSON)
-            return service_account.Credentials.from_service_account_info(info, scopes=DRIVE_SCOPES)
+            creds = service_account.Credentials.from_service_account_info(info, scopes=DRIVE_SCOPES)
+            if GOOGLE_SUBJECT:
+                return creds.with_subject(GOOGLE_SUBJECT)
+            return creds
         except Exception:
             pass
 
@@ -155,11 +168,20 @@ def _list_all_files_recursive(drive_service, folder_id: str) -> List[Dict]:
     query = f"'{folder_id}' in parents and trashed=false"
 
     while True:
-        results = drive_service.files().list(
-            q=query,
-            fields="nextPageToken, files(id, name, mimeType, modifiedTime)",
-            pageToken=page_token
-        ).execute()
+        list_kwargs = {
+            'q': query,
+            'fields': "nextPageToken, files(id, name, mimeType, modifiedTime, parents)",
+            'pageToken': page_token,
+            'pageSize': 1000,
+            'supportsAllDrives': True,
+            'includeItemsFromAllDrives': True,
+        }
+        if SHARED_DRIVE_ID:
+            list_kwargs['corpora'] = 'drive'
+            list_kwargs['driveId'] = SHARED_DRIVE_ID
+        else:
+            list_kwargs['corpora'] = 'allDrives'
+        results = drive_service.files().list(**list_kwargs).execute()
 
         current_files = results.get('files', [])
         for f in current_files:
@@ -192,17 +214,30 @@ def process_meet_folder():
     print("📁 Connecting to Google Drive...")
     drive_service = get_drive_service()
     
-    # Step 2: Find "Meet" folder
-    print(f"🔍 Searching for folder: {MEET_FOLDER_NAME}")
-    query = f"name='{MEET_FOLDER_NAME}' and mimeType='application/vnd.google-apps.folder'"
-    results = drive_service.files().list(q=query, fields="files(id, name)").execute()
-    
-    if not results.get('files'):
-        print(f"❌ Folder '{MEET_FOLDER_NAME}' not found")
-        return
-    
-    folder_id = results['files'][0]['id']
-    print(f"✅ Found folder: {results['files'][0]['name']} (ID: {folder_id})")
+    # Step 2: Resolve folder id (prefer explicit, else search by name across all drives)
+    if MEET_FOLDER_ID:
+        folder_id = MEET_FOLDER_ID
+        print(f"🔎 Using provided MEET_FOLDER_ID: {folder_id}")
+    else:
+        print(f"🔍 Searching for folder by name: {MEET_FOLDER_NAME}")
+        search_kwargs = {
+            'q': f"name='{MEET_FOLDER_NAME}' and mimeType='application/vnd.google-apps.folder' and trashed=false",
+            'fields': 'files(id, name)',
+            'supportsAllDrives': True,
+            'includeItemsFromAllDrives': True,
+            'pageSize': 10,
+        }
+        if SHARED_DRIVE_ID:
+            search_kwargs['corpora'] = 'drive'
+            search_kwargs['driveId'] = SHARED_DRIVE_ID
+        else:
+            search_kwargs['corpora'] = 'allDrives'
+        results = drive_service.files().list(**search_kwargs).execute()
+        if not results.get('files'):
+            print(f"❌ Folder '{MEET_FOLDER_NAME}' not found (check sharing or set MEET_FOLDER_ID)")
+            return
+        folder_id = results['files'][0]['id']
+        print(f"✅ Found folder: {results['files'][0]['name']} (ID: {folder_id})")
     
     # Step 3: List all files recursively
     print("📋 Listing all files in folder (recursive)...")
@@ -252,6 +287,7 @@ def process_meet_folder():
 
         except Exception as e:
             print(f"❌ Error processing {file_name}: {e}")
+            traceback.print_exc()
             continue
     
     # Step 5: Connect to AlloyDB
@@ -282,7 +318,7 @@ def process_meet_folder():
     print("💾 Inserting data into AlloyDB...")
     inserted_count = 0
     
-    with engine.connect() as conn:
+    with engine.begin() as conn:
         for parsed_data in parsed_files:
             try:
                 # Use ON CONFLICT for idempotent inserts
@@ -299,7 +335,6 @@ def process_meet_folder():
                         transcript = EXCLUDED.transcript,
                         updated_at = NOW()
                 """)
-                
                 conn.execute(insert_stmt, {
                     'id': parsed_data['id'],
                     'filename': parsed_data['filename'],
@@ -310,14 +345,11 @@ def process_meet_folder():
                     'attendees': json.dumps(parsed_data['attendees']),
                     'transcript': parsed_data['transcript']
                 })
-                
                 inserted_count += 1
-                
             except Exception as e:
                 print(f"❌ Error inserting {parsed_data['filename']}: {e}")
+                traceback.print_exc()
                 continue
-        
-        conn.commit()
     
     print(f"✅ Successfully processed {inserted_count} files")
     print("🎉 Google Meet scraper complete!")

@@ -36,6 +36,9 @@
 ```bash
 export GCP_PROJECT_ID=reggieanddrodispensary
 export MEET_FOLDER_NAME=Meet
+export MEET_FOLDER_ID=your_meet_folder_id         # optional, preferred
+export SHARED_DRIVE_ID=your_shared_drive_id       # optional if using shared drives
+# export GOOGLE_SUBJECT=user@yourdomain.com        # optional domain-wide delegation
 export GOOGLE_APPLICATION_CREDENTIALS=/path/to/service-account.json
 export DATABASE_URL=postgresql://user:pass@alloydb-host:5432/dbname
 ```
@@ -44,7 +47,7 @@ export DATABASE_URL=postgresql://user:pass@alloydb-host:5432/dbname
 
 ```bash
 cd backend/meet-scraper-service
-./deploy-cloud-run.sh   # builds, deploys Job, and runs it once
+SVPC_CONNECTOR="hn-svpc" ./deploy-cloud-run.sh   # builds, deploys Job, and runs it once
 ```
 
 ### Step 3: Verify Job Execution
@@ -78,6 +81,7 @@ gcloud run jobs executions describe "$EXEC" --region us-central1
 - Uses existing Cloud Run service account
 - Follows existing deployment patterns
 - Integrates with existing monitoring/logging
+- For private AlloyDB, set `SVPC_CONNECTOR` and grant secret accessor to the run SA
 
 ### Credentials
 
