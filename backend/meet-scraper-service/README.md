@@ -37,7 +37,14 @@ Scrape all transcripts from Google Drive "Meet" folder, parse structured data, a
 ```bash
 GCP_PROJECT_ID=reggieanddrodispensary
 MEET_FOLDER_NAME=Meet
-GOOGLE_APPLICATION_CREDENTIALS=/path/to/service-account.json
+# Prefer explicit folder if known (faster, more reliable)
+MEET_FOLDER_ID=your_meet_folder_id
+# If using Shared Drives
+SHARED_DRIVE_ID=your_shared_drive_id
+# Optional domain-wide delegation (impersonate user)
+# GOOGLE_SUBJECT=user@yourdomain.com
+# Service account key if not using ADC
+# GOOGLE_APPLICATION_CREDENTIALS=/path/to/service-account.json
 DATABASE_URL=postgresql://user:pass@host:port/dbname
 ```
 
@@ -47,8 +54,8 @@ DATABASE_URL=postgresql://user:pass@host:port/dbname
 # Set permissions
 chmod +x deploy-cloud-run.sh
 
-# Deploy and execute the Cloud Run Job
-./deploy-cloud-run.sh
+# Deploy and execute the Cloud Run Job (optional SVPC_CONNECTOR & GOOGLE_SUBJECT)
+SVPC_CONNECTOR="hn-svpc" GOOGLE_SUBJECT="user@yourdomain.com" ./deploy-cloud-run.sh
 ```
 
 ## Database Schema

@@ -1,0 +1,92 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: integration-service
+  namespace: default
+  annotations:
+    run.googleapis.com/launch-stage: BETA
+spec:
+  template:
+    metadata:
+      annotations:
+        # Gen2 execution environment (faster cold starts, better networking)
+        run.googleapis.com/execution-environment: gen2
+        # CPU boost during startup (reduces cold start time)
+        run.googleapis.com/startup-cpu-boost: "true"
+        # Max concurrent requests per container instance
+        autoscaling.knative.dev/maxScale: "10"
+        autoscaling.knative.dev/minScale: "1"
+    spec:
+      # Dedicated service account with least-privilege IAM
+      serviceAccountName: integration-service@reggieanddrodispensary.iam.gserviceaccount.com
+      
+      containers:
+        - image: gcr.io/reggieanddrodispensary/integration-service:latest
+          ports:
+            - name: http1
+              containerPort: 8080
+          
+          env:
+            - name: NODE_ENV
+              value: production
+            - name: HOST
+              value: 0.0.0.0
+            - name: PORT
+              value: "8080"
+            - name: GCP_PROJECT_ID
+              value: reggieanddrodispensary
+            - name: LOG_FORMAT
+              value: json
+          
+          # Load secrets from Secret Manager
+          # Pattern: secretKeyRef → environment variable
+          envFrom:
+            - secretRef:
+                name: lightspeed-token
+                optional: false
+          
+          # Alternative: individual secret mapping
+          # env:
+          #   - name: LIGHTSPEED_TOKEN
+          #     valueFrom:
+          #       secretKeyRef:
+          #         name: lightspeed-token
+          #         key: latest
+          
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: "1"
+            requests:
+              memory: 256Mi
+              cpu: "0.5"
+          
+          # Health probes (Cloud Run native)
+          startupProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 3
+            timeoutSeconds: 2
+            failureThreshold: 10
+          
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 30
+            timeoutSeconds: 5
+            failureThreshold: 3
+      
+      # Request timeout (max duration for a single request)
+      timeoutSeconds: 60
+      
+      # Container concurrency (requests per instance)
+      containerConcurrency: 40
+  
+  traffic:
+    - percent: 100
+      latestRevision: true
+

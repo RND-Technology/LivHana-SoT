@@ -47,8 +47,12 @@ gcloud run jobs deploy ${JOB_NAME} \
   --max-retries 1 \
   --set-env-vars "GCP_PROJECT_ID=${PROJECT_ID}" \
   --set-env-vars "MEET_FOLDER_NAME=Meet" \
+  ${MEET_FOLDER_ID:+--set-env-vars "MEET_FOLDER_ID=${MEET_FOLDER_ID}"} \
+  ${SHARED_DRIVE_ID:+--set-env-vars "SHARED_DRIVE_ID=${SHARED_DRIVE_ID}"} \
   --set-secrets "DATABASE_URL=alloydb-connection-string:latest" \
-  --service-account "${RUN_SA}"
+  --service-account "${RUN_SA}" \
+  ${SVPC_CONNECTOR:+--vpc-connector=${SVPC_CONNECTOR}} ${SVPC_CONNECTOR:+--vpc-egress=all-traffic} \
+  ${GOOGLE_SUBJECT:+--set-env-vars "GOOGLE_SUBJECT=${GOOGLE_SUBJECT}"}
 
 echo "✅ Job deployment complete!"
 

@@ -388,9 +388,39 @@ app.get('/', (_req, res) => {
 // Only start server if not in test environment
 if (process.env.NODE_ENV !== 'test') {
   const PORT = process.env.PORT || 8080;
-  app.listen(PORT, () => {
-    console.log(`Lightspeed BigQuery Pipeline running on port ${PORT}`);
+  const HOST = process.env.HOST || '0.0.0.0';
+  
+  const server = app.listen(PORT, HOST, () => {
+    console.log(JSON.stringify({ 
+      severity: 'INFO', 
+      message: 'Integration service listening', 
+      host: HOST, 
+      port: PORT 
+    }));
   });
+  
+  // Graceful shutdown handler (Cloud Run sends SIGTERM before killing container)
+  const shutdown = (signal: NodeJS.Signals) => {
+    console.log(JSON.stringify({ severity: 'INFO', message: `Received ${signal}, shutting down gracefully` }));
+    
+    server.close((err) => {
+      if (err) {
+        console.error(JSON.stringify({ severity: 'ERROR', message: 'Shutdown error', error: err.message }));
+        process.exit(1);
+      }
+      console.log(JSON.stringify({ severity: 'INFO', message: 'Shutdown complete' }));
+      process.exit(0);
+    });
+    
+    // Force exit after 10s grace period (Cloud Run allows ~10s before SIGKILL)
+    setTimeout(() => {
+      console.error(JSON.stringify({ severity: 'ERROR', message: 'Forced shutdown after timeout' }));
+      process.exit(1);
+    }, 10000).unref();
+  };
+  
+  process.on('SIGTERM', shutdown);
+  process.on('SIGINT', shutdown);
 }
 
 export default app;
