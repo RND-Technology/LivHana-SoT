@@ -219,3 +219,18 @@ __pycache__/
 dist/
 **/.next/
 
+
+# Context bloat elimination
+node_modules/
+logs/
+.venv/
+*.log
+__pycache__/
+*.pyc
+.next/
+dist/
+coverage/
+.cache/
+.DS_Store
+out/
+out_mirror/

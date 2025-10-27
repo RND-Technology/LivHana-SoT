@@ -1,27 +1,56 @@
-# Exclude from AI agent context (5.8M → <100K tokens)
+# Agent Context Exclusions (Target: <100K tokens for agent efficiency)
+
+# Dependencies & Build Artifacts
 node_modules/
+**/node_modules/
 venv/
-env/
+**/venv/
 .venv/
+env/
 __pycache__/
 *.pyc
 .git/
 .cache/
-*.log
-logs/
-data/
-datasets/
-*.sqlite
-*.db
-build/
 dist/
+build/
+coverage/
+.next/
 *.egg-info/
 .pytest_cache/
 .mypy_cache/
-coverage/
-htmlcov/
-*.min.js
-*.min.css
+
+# Logs & Data
+logs/
+*.log
+data/
+datasets/
+backups/
+
+# Lock Files & Binaries
 package-lock.json
+**/package-lock.json
 yarn.lock
 poetry.lock
+*.min.js
+*.min.css
+*.sqlite
+*.db
+
+# Archives & Mirrors
+.archive/
+.emergency-archive/
+out/
+out_mirror/
+
+# Large Documentation (keep essentials only)
+.claude/PO1_BACKUPS_CONSOLIDATED.md
+.claude/agent_reports/archive/
+.claude/_archive_2025-10-21/
+docs/COMET*
+empire/content-engine/*.md
+1.rnd/2.operations/*.ts
+1.rnd/2.operations/*.js
+
+# macOS/IDE
+.DS_Store
+*.swp
