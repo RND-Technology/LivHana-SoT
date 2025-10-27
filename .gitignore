@@ -207,3 +207,15 @@ logs/
 tmp/
 .cursor/
 logs/voice/
+
+# Context bloat elimination
+node_modules/
+logs/
+*.log
+.venv/
+__pycache__/
+*.pyc
+.evidence/
+dist/
+**/.next/
+
