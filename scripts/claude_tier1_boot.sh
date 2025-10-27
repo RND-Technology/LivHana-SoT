@@ -526,6 +526,18 @@ else
   warning "Permission configuration script not found (non-fatal)"
 fi
 
+# Check for RAW file accumulation (memory/boot impact)
+info "Checking for RAW file accumulation..."
+RAW_COUNT=$(find "$ROOT" -name "raw-*" -o -name "*.raw" 2>/dev/null | grep -v node_modules | grep -v .emergency-archive | wc -l | tr -d ' ')
+if [[ "$RAW_COUNT" -gt 10 ]]; then
+  warning "Detected $RAW_COUNT RAW files - may impact voice mode performance"
+  warning "Run: find . -name 'raw-*' -o -name '*.raw' | grep -v node_modules"
+  warning "Cause: Cursor's files.hotExit accumulating unsaved buffers"
+  warning "Fix: Check ~/Library/Application Support/Cursor/User/settings.json"
+else
+  success "RAW file count healthy: $RAW_COUNT files"
+fi
+
 # Check available memory FIRST (warn about crashes)
 # macOS-aware detection: memory_pressure primary, vm_stat fallback
 UNAME=$(uname -s)
