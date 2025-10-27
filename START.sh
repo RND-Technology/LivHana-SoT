@@ -85,6 +85,4 @@ curl -sf http://localhost:4002/health >/dev/null && echo "✅ Reasoning Gateway:
 
 # Keep the session running interactively
 exec "$SHELL"
-
-# Keep the session running interactively
-exec "$SHELL"
+# eep the session running interactively
