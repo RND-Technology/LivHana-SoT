@@ -1,7 +1,7 @@
 import { Worker } from 'bullmq';
 import { Pool } from 'pg';
 import { stringify } from 'csv-stringify/sync';
-import { writeFileSync, mkdirSync, createReadStream, readFileSync } from 'fs';
+import { writeFileSync, mkdirSync, readFileSync } from 'fs';
 import path from 'path';
 import crypto from 'crypto';
 import { Storage } from '@google-cloud/storage';
@@ -16,14 +16,18 @@ async function fetchItems(weekId: string) {
 
 const outDir = path.resolve(process.cwd(), 'out');
 mkdirSync(outDir, { recursive: true });
-const storage = new Storage({ projectId: process.env.GCP_PROJECT_ID });
+const storageOptions: { projectId?: string } = {};
+if (process.env.GCP_PROJECT_ID) {
+  storageOptions.projectId = process.env.GCP_PROJECT_ID;
+}
+const storage = new Storage(storageOptions);
 const bucketName = process.env.GCS_BUCKET || 'livhana-rpm-exports';
 
 export const worker = new Worker('rpm.export', async job => {
   const { weekId, format } = job.data as { weekId: string, format: string };
   // Mark export as processing at job start
   try {
-    const expId = job.opts?.exportId as string | undefined;
+    const expId = (job.opts as any)?.exportId as string | undefined;
     if (expId) {
       await pool.query(`update rpm_exports set status = 'processing' where id = $1`, [expId]);
     }
@@ -111,8 +115,7 @@ worker.on('completed', async (job, result) => {
   
   // Update export record with metadata
   try {
-    const { weekId, format } = job.data as { weekId: string, format: string };
-    const expId = job.opts?.exportId;
+    const expId = (job.opts as any)?.exportId;
     
     if (expId && result) {
       await pool.query(
@@ -126,7 +129,7 @@ worker.on('completed', async (job, result) => {
   
   // Optionally dump to local /out if env flag set
   if (process.env.RPM_EXPORT_LOCAL_DUMP === '1') {
-    const { weekId, format } = job.data as { weekId: string, format: string };
+    const { format } = job.data as { weekId: string, format: string };
     const localPath = path.join(outDir, `plan.${format}`);
     console.log(`Local dump enabled: ${localPath}`);
   }
@@ -137,7 +140,7 @@ worker.on('failed', async (job, err) => {
   
   // Update export record with error
   try {
-    const expId = job?.opts?.exportId;
+    const expId = (job?.opts as any)?.exportId;
     if (expId) {
       await pool.query(
         `update rpm_exports set status = 'failed', error = $1, failed_at = now() where id = $2`,

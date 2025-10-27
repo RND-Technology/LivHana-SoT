@@ -4,7 +4,10 @@ const logger = createLogger('cloud-tasks');
 
 export class CloudTasksClient {
   constructor() {
-    this.projectId = process.env.GOOGLE_CLOUD_PROJECT || 'reggieanddrodispensary';
+    if (!process.env.GOOGLE_CLOUD_PROJECT) {
+      throw new Error('GOOGLE_CLOUD_PROJECT environment variable is required');
+    }
+    this.projectId = process.env.GOOGLE_CLOUD_PROJECT;
     this.location = process.env.CLOUD_TASKS_LOCATION || 'us-central1';
   }
 

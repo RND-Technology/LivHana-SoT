@@ -15,7 +15,14 @@ function requireJWT(req: express.Request, res: express.Response, next: express.N
     const hdr = req.headers.authorization || '';
     const token = hdr.startsWith('Bearer ') ? hdr.slice(7) : undefined;
     if (!token) return res.status(401).json({ error: 'missing token' });
-    jwt.verify(token, process.env.JWT_SECRET || 'dev-secret');
+
+    // Security: Require JWT_SECRET environment variable - no insecure defaults
+    if (!process.env.JWT_SECRET) {
+      console.error('[RPM] CRITICAL: JWT_SECRET environment variable not set');
+      return res.status(500).json({ error: 'server misconfiguration' });
+    }
+
+    jwt.verify(token, process.env.JWT_SECRET);
     next();
   } catch (e: any) {
     return res.status(401).json({ error: 'invalid token' });

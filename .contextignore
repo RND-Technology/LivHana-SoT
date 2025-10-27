@@ -1,0 +1,27 @@
+# Exclude from AI agent context (5.8M → <100K tokens)
+node_modules/
+venv/
+env/
+.venv/
+__pycache__/
+*.pyc
+.git/
+.cache/
+*.log
+logs/
+data/
+datasets/
+*.sqlite
+*.db
+build/
+dist/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+coverage/
+htmlcov/
+*.min.js
+*.min.css
+package-lock.json
+yarn.lock
+poetry.lock

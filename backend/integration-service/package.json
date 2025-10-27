@@ -5,7 +5,8 @@
   "description": "Real-time sales data streaming from Lightspeed to BigQuery",
   "main": "src/index.js",
   "scripts": {
-    "start": "node dist/index.js",
+    "build": "tsc",
+    "start": "node dist/src/lightspeed-bigquery.js",
     "dev": "ts-node --watch src/index.js",
     "pipeline": "ts-node src/lightspeed-bigquery.ts",
     "test": "jest",
@@ -14,7 +15,6 @@
     "lint": "eslint src/**/*.ts tests/**/*.ts",
     "lint:fix": "eslint src/**/*.ts tests/**/*.ts --fix",
     "type-check": "tsc --noEmit",
-    "build": "tsc",
     "deploy": "gcloud run deploy lightspeed-bigquery --source . --region us-central1"
   },
   "keywords": [
@@ -28,6 +28,7 @@
   "license": "UNLICENSED",
   "dependencies": {
     "@google-cloud/bigquery": "^7.0.0",
+    "@google-cloud/secret-manager": "^6.1.1",
     "@google-cloud/storage": "^7.11.0",
     "axios": "^1.6.0",
     "bullmq": "^5.7.12",
@@ -42,7 +43,9 @@
   "devDependencies": {
     "@types/express": "^4.17.0",
     "@types/jest": "^29.5.0",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^20.0.0",
+    "@types/pg": "^8.15.5",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "eslint": "^8.0.0",

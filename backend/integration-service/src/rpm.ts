@@ -1,7 +1,6 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import { Pool } from 'pg';
-import { stringify } from 'csv-stringify/sync';
 import { createQueue, enqueueJob } from '../../common/queue/index.js';
 
 const router = express.Router();
@@ -10,15 +9,26 @@ const router = express.Router();
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 
 // Simple JWT middleware
-function requireJWT(req: express.Request, res: express.Response, next: express.NextFunction) {
+function requireJWT(req: express.Request, res: express.Response, next: express.NextFunction): void {
   try {
     const hdr = req.headers.authorization || '';
     const token = hdr.startsWith('Bearer ') ? hdr.slice(7) : undefined;
-    if (!token) return res.status(401).json({ error: 'missing token' });
-    jwt.verify(token, process.env.JWT_SECRET || 'dev-secret');
+    if (!token) {
+      res.status(401).json({ error: 'missing token' });
+      return;
+    }
+
+    // Security: Require JWT_SECRET environment variable - no insecure defaults
+    if (!process.env.JWT_SECRET) {
+      console.error('[RPM] CRITICAL: JWT_SECRET environment variable not set');
+      res.status(500).json({ error: 'server misconfiguration' });
+      return;
+    }
+
+    jwt.verify(token, process.env.JWT_SECRET);
     next();
   } catch (e: any) {
-    return res.status(401).json({ error: 'invalid token' });
+    res.status(401).json({ error: 'invalid token' });
   }
 }
 
@@ -107,20 +117,20 @@ router.post('/weeks/:id/export', requireJWT, async (req, res) => {
     const exportId = exportRows[0].id;
     
     // Enqueue job with exportId in opts
-    const job = await enqueueJob(exportQueue, 'export', { weekId, format }, { 
+    const job = await enqueueJob(exportQueue, 'export', { weekId, format }, {
       removeOnComplete: true,
-      exportId 
-    });
+      exportId
+    } as any);
     
     // Update export record with job_id
     await pool.query(
       `update rpm_exports set job_id = $1 where id = $2`,
       [job.id, exportId]
     );
-    
-    res.json({ export_id: exportId, job: { id: job.id, queue: 'rpm.export' } });
+
+    return res.json({ export_id: exportId, job: { id: job.id, queue: 'rpm.export' } });
   } catch (e: any) {
-    res.status(500).json({ error: e.message });
+    return res.status(500).json({ error: e.message });
   }
 });
 
@@ -134,9 +144,9 @@ router.get('/exports/:exportId', requireJWT, async (req, res) => {
     if (rows.length === 0) {
       return res.status(404).json({ error: 'Export not found' });
     }
-    res.json(rows[0]);
+    return res.json(rows[0]);
   } catch (e: any) {
-    res.status(500).json({ error: e.message });
+    return res.status(500).json({ error: e.message });
   }
 });
 
@@ -175,10 +185,10 @@ router.patch('/items/:id', requireJWT, async (req, res) => {
     if (rows.length === 0) {
       return res.status(404).json({ error: 'Item not found' });
     }
-    
-    res.json(rows[0]);
+
+    return res.json(rows[0]);
   } catch (e: any) {
-    res.status(500).json({ error: e.message });
+    return res.status(500).json({ error: e.message });
   }
 });
 

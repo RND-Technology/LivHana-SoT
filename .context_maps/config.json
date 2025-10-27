@@ -1,0 +1,29 @@
+{
+  "agents": [
+    {
+      "name": "planning",
+      "context_map": ".context_maps/planning_agent.txt",
+      "max_tokens": 20000
+    },
+    {
+      "name": "research",
+      "context_map": ".context_maps/research_agent.txt",
+      "max_tokens": 25000
+    },
+    {
+      "name": "execution",
+      "context_map": ".context_maps/execution_agent.txt",
+      "max_tokens": 30000
+    },
+    {
+      "name": "artifacts",
+      "context_map": ".context_maps/artifacts_agent.txt",
+      "max_tokens": 15000
+    },
+    {
+      "name": "qa",
+      "context_map": ".context_maps/qa_agent.txt",
+      "max_tokens": 50000
+    }
+  ]
+}

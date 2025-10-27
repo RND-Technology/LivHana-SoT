@@ -5,10 +5,7 @@
  */
 
 import axios, { AxiosInstance } from 'axios';
-import { exec } from 'child_process';
-import { promisify } from 'util';
-
-const execAsync = promisify(exec);
+import { SecretManagerServiceClient } from '@google-cloud/secret-manager';
 
 interface TokenResponse {
   access_token: string;
@@ -31,19 +28,24 @@ export class LightspeedOAuthClient {
   private gcpProject: string;
   private tokenStore: TokenStore;
   private refreshPromise: Promise<void> | null = null;
+  private secretClient: SecretManagerServiceClient;
 
   constructor(
     clientId: string,
     clientSecret: string,
     accountId: string,
     redirectUri: string,
-    gcpProject: string = 'reggieanddrodispensary'
+    gcpProject: string
   ) {
+    if (!gcpProject) {
+      throw new Error('GCP_PROJECT_ID is required - cannot initialize OAuth client');
+    }
     this.clientId = clientId;
     this.clientSecret = clientSecret;
     this.accountId = accountId;
     this.redirectUri = redirectUri;
     this.gcpProject = gcpProject;
+    this.secretClient = new SecretManagerServiceClient();
     this.tokenStore = {
       accessToken: null,
       refreshToken: null,
@@ -234,24 +236,46 @@ export class LightspeedOAuthClient {
   }
 
   /**
-   * Store secret in GCP Secret Manager
+   * Store secret in GCP Secret Manager (using SDK - secure, no shell injection risk)
    */
   private async storeSecret(secretName: string, value: string): Promise<void> {
     try {
-      // Check if secret exists
-      const checkCmd = `gcloud secrets describe ${secretName} --project=${this.gcpProject} 2>&1`;
-      const { stdout: checkOutput } = await execAsync(checkCmd);
+      const parent = `projects/${this.gcpProject}`;
+      const secretPath = `${parent}/secrets/${secretName}`;
 
-      let cmd: string;
-      if (checkOutput.includes('NOT_FOUND') || checkOutput.includes('does not exist')) {
-        // Create new secret
-        cmd = `echo -n "${value}" | gcloud secrets create ${secretName} --data-file=- --project=${this.gcpProject}`;
-      } else {
-        // Add new version to existing secret
-        cmd = `echo -n "${value}" | gcloud secrets versions add ${secretName} --data-file=- --project=${this.gcpProject}`;
+      // Try to add new version (assumes secret exists)
+      try {
+        await this.secretClient.addSecretVersion({
+          parent: secretPath,
+          payload: {
+            data: Buffer.from(value, 'utf8'),
+          },
+        });
+        console.log(`[OAuth] Updated secret ${secretName}`);
+      } catch (error: any) {
+        // If secret doesn't exist (NOT_FOUND), create it
+        if (error.code === 5) {
+          await this.secretClient.createSecret({
+            parent,
+            secretId: secretName,
+            secret: {
+              replication: {
+                automatic: {},
+              },
+            },
+          });
+          // Add the initial version
+          await this.secretClient.addSecretVersion({
+            parent: secretPath,
+            payload: {
+              data: Buffer.from(value, 'utf8'),
+            },
+          });
+          console.log(`[OAuth] Created secret ${secretName}`);
+        } else {
+          throw error;
+        }
       }
-
-      await execAsync(cmd);
     } catch (error: any) {
       console.error(`[OAuth] Failed to store secret ${secretName}:`, error.message);
       throw error;
@@ -259,15 +283,24 @@ export class LightspeedOAuthClient {
   }
 
   /**
-   * Load secret from GCP Secret Manager
+   * Load secret from GCP Secret Manager (using SDK - secure, no shell injection risk)
    */
   private async loadSecret(secretName: string): Promise<string | null> {
     try {
-      const cmd = `gcloud secrets versions access latest --secret=${secretName} --project=${this.gcpProject}`;
-      const { stdout } = await execAsync(cmd);
-      return stdout.trim();
+      const secretPath = `projects/${this.gcpProject}/secrets/${secretName}/versions/latest`;
+      const [version] = await this.secretClient.accessSecretVersion({
+        name: secretPath,
+      });
+
+      const payload = version.payload?.data;
+      if (!payload) {
+        return null;
+      }
+
+      return payload.toString('utf8');
     } catch (error: any) {
-      if (error.message.includes('NOT_FOUND')) {
+      // Code 5 = NOT_FOUND
+      if (error.code === 5) {
         return null;
       }
       console.error(`[OAuth] Failed to load secret ${secretName}:`, error.message);

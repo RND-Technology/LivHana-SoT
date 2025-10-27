@@ -1,22 +1,23 @@
-// LIGHTSPEED BIGQUERY PIPELINE - PROTOTYPE 1
+// LIGHTSPEED BIGQUERY PIPELINE - TIER-1 OAUTH FUSION
 // Real-time sales data streaming from Lightspeed to BigQuery
-// Implements idempotent insertion and graceful error handling
+// Implements OAuth2 auto-refresh and idempotent insertion
 
 import { BigQuery } from '@google-cloud/bigquery';
 import axios, { AxiosInstance } from 'axios';
+import { LightspeedOAuthClient } from './auth/lightspeed-oauth.js';
 
 // TypeScript strict mode - no 'any' types allowed
 interface LightspeedSale {
   saleID: string;
   completed_at: string;
-  customer?: { id: string };
+  customer?: { id: string } | null | undefined;
   Sale_Lines: Array<{
-    Item?: { itemID: string; description: string };
+    Item?: { itemID: string; description: string } | null | undefined;
     unitQuantity: number;
     calcTotal: string;
   }>;
   SalePayments: Array<{
-    PaymentType?: { name: string };
+    PaymentType?: { name: string } | null | undefined;
   }>;
 }
 
@@ -50,28 +51,132 @@ export class LightspeedBigQueryPipeline {
   private bigquery: BigQuery;
   private dataset: string;
   private table: string;
+  private oauthClient: LightspeedOAuthClient | null = null;
+  private useOAuth: boolean;
 
   constructor() {
-    const token = process.env.LIGHTSPEED_TOKEN;
-    if (!token) {
-      throw new Error('LIGHTSPEED_TOKEN environment variable required');
+    // Check if OAuth credentials are available
+    const clientId = process.env.LIGHTSPEED_CLIENT_ID;
+    const clientSecret = process.env.LIGHTSPEED_CLIENT_SECRET;
+    const accountId = process.env.LIGHTSPEED_ACCOUNT_ID;
+    const legacyToken = process.env.LIGHTSPEED_TOKEN;
+
+    this.useOAuth = !!(clientId && clientSecret && accountId);
+
+    if (this.useOAuth) {
+      // TIER-1 PATH: OAuth2 with auto-refresh
+      console.log('[Lightspeed] Initializing with OAuth2 authentication');
+      console.log(`[Lightspeed] Account ID: ${accountId}`);
+      if (!process.env.GCP_PROJECT_ID) {
+        throw new Error('GCP_PROJECT_ID environment variable is required for OAuth2 authentication');
+      }
+
+      this.oauthClient = new LightspeedOAuthClient(
+        clientId!,
+        clientSecret!,
+        accountId!,
+        process.env.OAUTH_REDIRECT_URI || 'http://localhost:3005/auth/lightspeed/callback',
+        process.env.GCP_PROJECT_ID
+      );
+
+      // OAuth client will inject tokens via interceptor
+      // Lightspeed API V3 uses account-specific URLs
+      this.lightspeed = this.oauthClient.createAuthenticatedClient(
+        `https://api.lightspeedapp.com/API/Account/${accountId}`
+      );
+    } else if (legacyToken) {
+      // FALLBACK PATH: Legacy personal access token
+      console.log('[Lightspeed] Falling back to legacy token authentication');
+      console.warn('[Lightspeed] ⚠️  Personal tokens are deprecated - migrate to OAuth2');
+
+      this.lightspeed = axios.create({
+        baseURL: 'https://api.lightspeedapp.com/API/V3',
+        headers: {
+          'Authorization': `Bearer ${legacyToken}`,
+          'Content-Type': 'application/json',
+        },
+        timeout: 30000,
+      });
+    } else {
+      throw new Error(
+        'No Lightspeed authentication configured. ' +
+        'Provide either LIGHTSPEED_CLIENT_ID + LIGHTSPEED_CLIENT_SECRET + LIGHTSPEED_ACCOUNT_ID (OAuth2) ' +
+        'or LIGHTSPEED_TOKEN (legacy)'
+      );
     }
 
-    this.lightspeed = axios.create({
-      baseURL: 'https://api.lightspeedapp.com/API',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-      timeout: 30000, // 30 second timeout
-    });
+    if (!process.env.GCP_PROJECT_ID) {
+      throw new Error('GCP_PROJECT_ID environment variable is required for BigQuery operations');
+    }
 
     this.bigquery = new BigQuery({
-      projectId: process.env.GCP_PROJECT_ID || 'reggieanddrodispensary',
+      projectId: process.env.GCP_PROJECT_ID,
     });
 
     this.dataset = process.env.BIGQUERY_DATASET || 'livhana_prod';
     this.table = 'sales';
+  }
+
+  /**
+   * Initialize OAuth client (load existing tokens from Secret Manager)
+   */
+  async initialize(): Promise<boolean> {
+    if (!this.oauthClient) {
+      return true; // Legacy mode, no initialization needed
+    }
+
+    try {
+      const initialized = await this.oauthClient.initialize();
+      if (initialized) {
+        console.log('[Lightspeed] OAuth client initialized with existing tokens');
+        return true;
+      } else {
+        console.warn('[Lightspeed] No OAuth tokens found - authorization flow required');
+        return false;
+      }
+    } catch (error) {
+      console.error('[Lightspeed] Failed to initialize OAuth client:', error);
+      return false;
+    }
+  }
+
+  /**
+   * Get OAuth client for authorization flow
+   */
+  getOAuthClient(): LightspeedOAuthClient | null {
+    return this.oauthClient;
+  }
+
+  /**
+   * Check if using OAuth authentication
+   */
+  isUsingOAuth(): boolean {
+    return this.useOAuth;
+  }
+
+  /**
+   * Get authentication status for health checks
+   */
+  getAuthStatus(): { method: string; ready: boolean; details?: any } {
+    if (this.useOAuth && this.oauthClient) {
+      const status = this.oauthClient.getStatus();
+      return {
+        method: 'OAuth2',
+        ready: status.hasTokens && !status.isExpired,
+        details: {
+          hasTokens: status.hasTokens,
+          expiresAt: new Date(status.expiresAt).toISOString(),
+          expiresIn: `${Math.round(status.expiresIn / 1000)}s`,
+          isExpired: status.isExpired,
+        },
+      };
+    } else {
+      return {
+        method: 'LegacyToken',
+        ready: !!process.env.LIGHTSPEED_TOKEN,
+        details: { deprecated: true },
+      };
+    }
   }
 
   /**
@@ -280,6 +385,7 @@ export class LightspeedBigQueryPipeline {
     timestamp: string;
     version: string;
     lightspeed_connected: boolean;
+    lightspeed_auth: any;
     bigquery_connected: boolean;
     last_sync?: string;
   }> {
@@ -287,12 +393,16 @@ export class LightspeedBigQueryPipeline {
     let lightspeedConnected = false;
     let bigqueryConnected = false;
 
-    // Test Lightspeed connection
+    // Get authentication status
+    const authStatus = this.getAuthStatus();
+
+    // Test Lightspeed Retail API connection
     try {
-      await this.lightspeed.get('/Account/1.json', { timeout: 5000 });
+      // Retail API health check: /Account.json returns account info
+      await this.lightspeed.get('/Account.json', { timeout: 5000 });
       lightspeedConnected = true;
     } catch (error) {
-      console.warn('Lightspeed health check failed:', error);
+      console.warn('Lightspeed Retail API health check failed:', error);
     }
 
     // Test BigQuery connection
@@ -309,8 +419,9 @@ export class LightspeedBigQueryPipeline {
     return {
       status,
       timestamp,
-      version: '1.0.0',
+      version: '1.0.0-oauth',
       lightspeed_connected: lightspeedConnected,
+      lightspeed_auth: authStatus,
       bigquery_connected: bigqueryConnected,
     };
   }
@@ -326,6 +437,17 @@ app.use(express.json());
 let pipeline: LightspeedBigQueryPipeline | null = null;
 if (process.env.NODE_ENV !== 'test') {
   pipeline = new LightspeedBigQueryPipeline();
+
+  // Initialize OAuth client asynchronously (non-blocking)
+  pipeline.initialize().then((initialized) => {
+    if (initialized) {
+      console.log('[Integration] OAuth client ready');
+    } else {
+      console.warn('[Integration] OAuth authorization required - visit /auth/lightspeed/start');
+    }
+  }).catch((error) => {
+    console.error('[Integration] Failed to initialize OAuth:', error);
+  });
 }
 
 // Health check endpoint
@@ -372,14 +494,83 @@ app.post('/sync/sales', async (req, res): Promise<void> => {
   }
 });
 
+// OAuth authorization start
+app.get('/auth/lightspeed/start', (_req, res) => {
+  if (!pipeline) {
+    res.status(503).send('Pipeline not initialized');
+    return;
+  }
+
+  const oauthClient = pipeline.getOAuthClient();
+  if (!oauthClient) {
+    res.status(400).send('OAuth not configured - using legacy token authentication');
+    return;
+  }
+
+  const authUrl = oauthClient.getAuthorizationUrl();
+  console.log('[OAuth] Redirecting to authorization URL:', authUrl);
+  res.redirect(authUrl);
+});
+
+// OAuth callback handler
+app.get('/auth/lightspeed/callback', async (req, res) => {
+  const code = req.query.code as string;
+  const error = req.query.error as string;
+
+  if (error) {
+    console.error('[OAuth] Authorization failed:', error);
+    res.status(400).send(`Authorization failed: ${error}`);
+    return;
+  }
+
+  if (!code) {
+    res.status(400).send('Missing authorization code');
+    return;
+  }
+
+  if (!pipeline) {
+    res.status(503).send('Pipeline not initialized');
+    return;
+  }
+
+  const oauthClient = pipeline.getOAuthClient();
+  if (!oauthClient) {
+    res.status(400).send('OAuth not configured');
+    return;
+  }
+
+  try {
+    await oauthClient.exchangeCode(code);
+    console.log('[OAuth] Authorization successful - tokens stored');
+    res.send(`
+      <html>
+        <head><title>Authorization Successful</title></head>
+        <body style="font-family: Arial; padding: 40px; text-align: center;">
+          <h1>✅ Authorization Successful</h1>
+          <p>Lightspeed OAuth2 tokens have been stored securely.</p>
+          <p>You can close this window and return to the integration service.</p>
+          <p><a href="/health">Check Service Health</a></p>
+        </body>
+      </html>
+    `);
+  } catch (error) {
+    console.error('[OAuth] Failed to exchange authorization code:', error);
+    res.status(500).send(`Authorization failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+  }
+});
+
 // Root endpoint
 app.get('/', (_req, res) => {
+  const usingOAuth = pipeline?.isUsingOAuth() || false;
   res.json({
     service: 'Lightspeed BigQuery Pipeline',
-    version: '1.0.0',
+    version: '1.0.0-oauth',
+    authentication: usingOAuth ? 'OAuth2' : 'LegacyToken',
     endpoints: {
       health: 'GET /health',
       sync: 'POST /sync/sales',
+      oauthStart: usingOAuth ? 'GET /auth/lightspeed/start' : undefined,
+      oauthCallback: usingOAuth ? 'GET /auth/lightspeed/callback' : undefined,
     },
     documentation: 'See specs/lightspeed-bigquery.spec.yaml',
   });

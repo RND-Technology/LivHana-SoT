@@ -38,11 +38,14 @@ interface SlackResponse {
 
 export function createSlackBridgeRoutes(): express.Router {
   const router = express.Router();
-  const redis = new Redis({
+  const redisOptions: { host: string; port: number; password?: string } = {
     host: process.env.REDIS_HOST || 'localhost',
     port: parseInt(process.env.REDIS_PORT || '6379'),
-    password: process.env.REDIS_PASSWORD,
-  });
+  };
+  if (process.env.REDIS_PASSWORD) {
+    redisOptions.password = process.env.REDIS_PASSWORD;
+  }
+  const redis = new Redis(redisOptions);
 
   // Verify Slack signature
   function verifySlackSignature(req: express.Request): boolean {
@@ -86,7 +89,7 @@ export function createSlackBridgeRoutes(): express.Router {
       }
 
       const body = req.body as SlackRequest;
-      const { user_id, command, text } = body;
+      const { user_id, text } = body;
 
       // Rate limiting
       if (!(await checkRateLimit(user_id))) {
@@ -97,7 +100,7 @@ export function createSlackBridgeRoutes(): express.Router {
       }
 
       // Parse command
-      const [action, ...args] = text.trim().split(' ');
+      const [action] = text.trim().split(' ');
 
       let response: SlackResponse;
 
@@ -178,10 +181,10 @@ export function createSlackBridgeRoutes(): express.Router {
           };
       }
 
-      res.json(response);
+      return res.json(response);
     } catch (error) {
       console.error('Slack bridge error:', error);
-      res.status(500).json({
+      return res.status(500).json({
         response_type: 'ephemeral',
         text: '❌ Internal error. Please try again.',
       });
