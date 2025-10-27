@@ -1,0 +1,15 @@
+{
+  "name": "LivHana-SoT Codespace",
+  "image": "mcr.microsoft.com/devcontainers/base:bullseye",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {},
+    "ghcr.io/devcontainers/features/python:1": {}
+  },
+  "postCreateCommand": "npm install -g @anthropic/claude-code-cli @openai/codex-cli && pip install openai",
+  "customizations": {
+    "vscode": {
+      "extensions": ["github.copilot", "ms-python.python"]
+    }
+  },
+  "openFiles": ["one-thing.md"]
+}
