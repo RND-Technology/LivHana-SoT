@@ -1,6 +1,17 @@
 #!/bin/bash
 set -e
-echo "🌿 Starting LivHana System of Truth..."
+
+echo ""
+echo "╔═══════════════════════════════════════════════════════════════════════════════╗"
+echo "║                                                                               ║"
+echo "║                      LIV HANA SYSTEM OF TRUTH v2.0                            ║"
+echo "║                                                                               ║"
+echo "║                    Tier-1 Orchestration · 5-Agent Foundation                 ║"
+echo "║                    Voice-First · Always On · 100% Truth                       ║"
+echo "║                                                                               ║"
+echo "╚═══════════════════════════════════════════════════════════════════════════════╝"
+echo ""
+echo "🌿 Initializing..."
 echo ""
 mkdir -p tmp/agent_status/shared
 cat > tmp/agent_status/shared/agent_registry.json << 'EOF'

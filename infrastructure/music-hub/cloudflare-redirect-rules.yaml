@@ -1,0 +1,560 @@
+# ============================================================
+# CLOUDFLARE REDIRECT RULES - MUSIC HUB IGNITION
+# ============================================================
+#
+# MISSION: Redirect 63 domains → music.livhana.ai
+# PURPOSE: "Grow Sell Heal" SEO flywheel consolidation
+# ARCHITECTURE: 301 permanent redirects @ Cloudflare Edge
+# DEPLOYMENT: Cloudflare Bulk Redirects (FREE tier)
+#
+# ============================================================
+# EXCEPTION LIST (NO REDIRECT - 6 CORE DOMAINS)
+# ============================================================
+# 1. reggieanddro.com
+# 2. oneplantsolution.com
+# 3. highnooncartoon.com
+# 4. herbitrage.com
+# 5. exoticcanopysolutions.com
+# 6. reggieandrosocialclub.com
+# ============================================================
+
+metadata:
+  name: music-hub-ignition-redirects
+  version: 1.0.0
+  created: 2025-10-27
+  target: music.livhana.ai
+  total_rules: 63
+  seo_strategy: grow-sell-heal-flywheel
+  compliance: 21+ age-gate, 0.3% THC hemp
+  execution: cloudflare-edge-301
+
+config:
+  redirect_type: 301  # Permanent redirect (SEO link equity preservation)
+  preserve_path: true  # Maintain URL paths for deep linking
+  preserve_query: true  # Preserve UTM parameters for analytics
+  include_subdomains: false  # Apex domains only
+  edge_cache_ttl: 31536000  # 1 year (permanent)
+
+# ============================================================
+# REDIRECT RULES (63 DOMAINS)
+# ============================================================
+
+redirects:
+  # ----------------------------------------------------------
+  # SILO 1: R&D RETAIL & MANUFACTURING (16 domains)
+  # Business Context: Redirect cannabis retail to music hub
+  # ----------------------------------------------------------
+
+  - source: https://reggieanddroalice.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "R&D Alice location → Music Hub"
+
+  - source: https://reggieanddrocannabisstore.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "R&D Cannabis Store → Music Hub"
+
+  - source: https://reggieanddrodispensary.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "R&D Dispensary → Music Hub"
+
+  - source: https://reggieanddrosanantonio.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "R&D San Antonio → Music Hub"
+
+  - source: https://reggieanddrosanantoniotx.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "R&D San Antonio TX → Music Hub"
+
+  - source: https://reggieanddrostoneoak.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "R&D Stone Oak → Music Hub"
+
+  - source: https://reggieanddrotexas.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "R&D Texas → Music Hub"
+
+  - source: https://freelegalweedsanantonio.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Free Legal Weed SA → Music Hub"
+
+  - source: https://freeweedsanantonio.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Free Weed SA → Music Hub"
+
+  - source: https://freethcaflower.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Free THCa Flower → Music Hub"
+
+  - source: https://freeweedtexas.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Free Weed Texas → Music Hub"
+
+  - source: https://thcacannabisdispensary.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "THCa Dispensary → Music Hub"
+
+  - source: https://thcaflowerstx.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "THCa Flowers TX → Music Hub"
+
+  - source: https://thcaflowertx.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "THCa Flower TX → Music Hub"
+
+  - source: https://thcasanantonio.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "THCa San Antonio → Music Hub"
+
+  - source: https://cannabiscookiestexas.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Cannabis Cookies TX → Music Hub"
+
+  - source: https://texascannabiscookies.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Texas Cannabis Cookies → Music Hub"
+
+  # ----------------------------------------------------------
+  # SILO 2: CONTENT & MEDIA (10 domains)
+  # Business Context: Entertainment brands → music experience
+  # ----------------------------------------------------------
+
+  - source: https://getlooseyoga.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Get Loose Yoga → Music Hub"
+
+  - source: https://smokingyoga.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Smokin Yoga → Music Hub"
+
+  - source: https://tokinyoga.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Tokin Yoga → Music Hub"
+
+  - source: https://aaacbdhempflower.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "AAA CBD Hemp Flower → Music Hub"
+
+  - source: https://exoticcbdhempflower.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Exotic CBD Hemp Flower → Music Hub"
+
+  - source: https://loudcbdflower.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Loud CBD Flower → Music Hub"
+
+  - source: https://loudcbdbuds.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Loud CBD Buds → Music Hub"
+
+  - source: https://firecbdbuds.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Fire CBD Buds → Music Hub"
+
+  - source: https://sinsamillahemp.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Sinsemilla Hemp → Music Hub"
+
+  - source: https://highfromhemp.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "High From Hemp → Music Hub"
+
+  # ----------------------------------------------------------
+  # SILO 3: POLICY & ADVOCACY (14 domains)
+  # Business Context: Compliance/advisory → brand experience
+  # ----------------------------------------------------------
+
+  - source: https://ageverifysi.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Age Verify SI → Music Hub"
+
+  - source: https://aicrisisconsult.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "AI Crisis Consult → Music Hub"
+
+  - source: https://aicrisiscoach.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "AI Crisis Coach → Music Hub"
+
+  - source: https://californiaenergyai.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "California Energy AI → Music Hub"
+
+  - source: https://texasenergyai.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Texas Energy AI → Music Hub"
+
+  - source: https://camedicalai.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "CA Medical AI → Music Hub"
+
+  - source: https://clinicaldataai.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Clinical Data AI → Music Hub"
+
+  - source: https://clinicaldatasi.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Clinical Data SI → Music Hub"
+
+  - source: https://txmedicalai.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "TX Medical AI → Music Hub"
+
+  - source: https://txsupplychain.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "TX Supply Chain → Music Hub"
+
+  - source: https://wealthtechsi.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Wealth Tech SI → Music Hub"
+
+  - source: https://texascoa.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Texas COA → Music Hub"
+
+  - source: https://jesseniesen.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Jesse Niesen Personal → Music Hub"
+
+  - source: https://vibecodeliv.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Vibe Code Liv → Music Hub"
+
+  # ----------------------------------------------------------
+  # SILO 4: COMMERCE & B2B TOOLS (23 domains)
+  # Business Context: Business tools → brand engagement
+  # ----------------------------------------------------------
+
+  - source: https://hempretailai.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Hemp Retail AI → Music Hub"
+
+  - source: https://cannabisretailai.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Cannabis Retail AI → Music Hub"
+
+  - source: https://cannabisretailsi.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Cannabis Retail SI → Music Hub"
+
+  - source: https://hempretailsi.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Hemp Retail SI → Music Hub"
+
+  - source: https://retailopssi.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Retail Ops SI → Music Hub"
+
+  - source: https://bizflowsi.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Biz Flow SI → Music Hub"
+
+  - source: https://codenexusai.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Code Nexus AI → Music Hub"
+
+  - source: https://codenexussi.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Code Nexus SI → Music Hub"
+
+  - source: https://devflowsi.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Dev Flow SI → Music Hub"
+
+  - source: https://adcopysi.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Ad Copy SI → Music Hub"
+
+  - source: https://airbnbwaterfall.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Airbnb Waterfall → Music Hub"
+
+  - source: https://autocodesi.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Auto Code SI → Music Hub"
+
+  - source: https://contentenginesi.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Content Engine SI → Music Hub"
+
+  - source: https://shipcodeai.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Ship Code AI → Music Hub"
+
+  - source: https://shipcodesi.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Ship Code SI → Music Hub"
+
+  - source: https://siartisan.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "SI Artisan → Music Hub"
+
+  - source: https://strategysi.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Strategy SI → Music Hub"
+
+  - source: https://terpwerk.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Terpwerk → Music Hub"
+
+  - source: https://tier1treecare.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Tier 1 Tree Care → Music Hub"
+
+  - source: https://xn--reggieanddr-v9b.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Punycode Domain → Music Hub"
+
+  - source: https://hempress3.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Hempress 3 Legacy → Music Hub"
+
+  - source: https://www.herbitrage.com
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "WWW Herbitrage → Music Hub"
+
+  - source: https://livhana.ai
+    target: https://music.livhana.ai
+    status: 301
+    preserve_path: true
+    preserve_query: true
+    comment: "Liv Hana AI → Music Hub"
+
+# ============================================================
+# CLOUDFLARE BULK REDIRECTS IMPORT FORMAT
+# ============================================================
+# To use: Convert this YAML to CSV for Cloudflare upload
+# Run: ./deploy-music-hub.sh --generate-csv
+#
+# CSV Headers:
+# source_url,target_url,status_code,preserve_path,preserve_query_string,include_subdomains,subpath_matching,comment
+# ============================================================
+
+deployment:
+  method: cloudflare-bulk-redirects
+  list_name: music-hub-ignition-63-domains
+  rule_name: music-hub-301-redirects
+  priority: 1
+  enabled: true
+
+analytics:
+  ga4_tracking: true
+  utm_preservation: true
+  cross_domain: true
+  referrer_tracking: true
+
+compliance:
+  age_gate: 21+
+  thc_content: 0.3% delta-9 THC (hemp-derived)
+  nist_compliant: true
+  medical_claims: false
+
+performance:
+  target_load_time: 2s
+  edge_cache: true
+  mobile_first: true
+  core_web_vitals: optimized
+
+seo:
+  canonical_url: https://music.livhana.ai
+  schema_markup: MusicPlaylist, Organization
+  open_graph: true
+  twitter_cards: true
+  sitemap: auto-generated
+
+brand_integration:
+  tagline: "TRUTH FREEDOM HEALING"
+  cta: "Grow baby grow and Sell baby Sell — Stay TOONED!"
+  brands:
+    - Reggie & Dro
+    - Liv Hana
+    - High Noon Cartoon
+    - One Plant Solution

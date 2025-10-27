@@ -208,6 +208,12 @@ tmp/
 .cursor/
 logs/voice/
 
+# Agent Status - Runtime state (ephemeral, regenerated on boot)
+tmp/agent_status/*.json
+tmp/agent_status/shared/*.json
+tmp/claude_tier1_state.json
+!tmp/.gitkeep
+
 # Context bloat elimination
 node_modules/
 logs/
