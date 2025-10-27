@@ -82,3 +82,6 @@ curl -sf http://localhost:4002/health >/dev/null && echo "✅ Reasoning Gateway:
 # Last updated: 2025-10-02
 
 # Last optimized: 2025-10-02
+
+# Keep the session running interactively
+exec "$SHELL"
