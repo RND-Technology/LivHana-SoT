@@ -234,3 +234,6 @@ coverage/
 .DS_Store
 out/
 out_mirror/
+
+# Agent tracking (session-specific, never commit)
+.claude/agent_tracking/*.json

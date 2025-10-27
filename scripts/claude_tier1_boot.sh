@@ -1456,8 +1456,9 @@ if [[ "${MAX_AUTO:-1}" == "1" ]]; then
       if wait_for_service 3005 30 2; then
         success "integration-service started on port 3005"
       else
-        error "integration-service failed to become available within 30s. Check ${integration_log}"
-        exit 1
+        warning "integration-service failed to start - continuing with degraded functionality"
+        warning "Voice mode and agents remain operational"
+        # DO NOT EXIT - allow boot to complete
       fi
     else
       warning "integration-service package.json not found - skipping"

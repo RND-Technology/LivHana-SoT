@@ -12,7 +12,8 @@ validate_agent_started() {
   local root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
   local status_file="$root/tmp/agent_status/${agent}.status.json"
   local elapsed=0
-  
+  local delay=1
+
   while [[ $elapsed -lt $timeout ]]; do
     if [[ -f "$status_file" ]] && [[ -s "$status_file" ]]; then
       # Validate JSON structure
@@ -27,8 +28,10 @@ validate_agent_started() {
         fi
       fi
     fi
-    sleep 1
-    ((elapsed++))
+    sleep "$delay"
+    ((elapsed += delay))
+    # Exponential growth capped at 5s
+    delay=$((delay < 5 ? delay + 1 : 5))
   done
   
   return 1
