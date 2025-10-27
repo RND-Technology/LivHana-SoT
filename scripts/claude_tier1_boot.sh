@@ -162,6 +162,35 @@ check_disk_space() {
   return 0
 }
 
+# Memory pressure checker (SESSION STABILITY SAFEGUARD)
+check_memory_pressure() {
+  # macOS memory_pressure tool
+  if command -v memory_pressure >/dev/null 2>&1; then
+    local mem_info=$(memory_pressure 2>&1 | grep -i "System-wide memory free percentage" || echo "Status: Normal")
+    info "Memory status: $mem_info"
+
+    # Parse memory percentage if available
+    if echo "$mem_info" | grep -q "System-wide memory free percentage"; then
+      local free_pct=$(echo "$mem_info" | grep -oE '[0-9]+' | head -1)
+      if [[ -n "$free_pct" ]]; then
+        if [[ $free_pct -lt 20 ]]; then
+          warning "MEMORY PRESSURE HIGH: Only ${free_pct}% free"
+          warning "Consider closing applications to prevent Cursor crashes"
+        elif [[ $free_pct -lt 40 ]]; then
+          warning "Memory getting low: ${free_pct}% free"
+        else
+          success "Memory pressure healthy: ${free_pct}% free"
+        fi
+      fi
+    fi
+  elif command -v vm_stat >/dev/null 2>&1; then
+    # Fallback: vm_stat (less accurate but available)
+    info "Memory check: Using vm_stat (memory_pressure not available)"
+  fi
+
+  return 0
+}
+
 # Port cleanup - kill stale processes (FAILURE #4 mitigation)
 cleanup_port() {
   local port="$1"
@@ -431,6 +460,10 @@ if ! check_disk_space 5; then
   error "Insufficient disk space - aborting to prevent session crashes"
   exit 1
 fi
+
+# Check 3.5: Memory pressure (SESSION STABILITY)
+info "Checking system memory..."
+check_memory_pressure
 echo
 
 # Check 4: Port conflicts (check before starting services)
@@ -1380,6 +1413,18 @@ if [[ "${MAX_AUTO:-1}" == "1" ]]; then
         ENV_FILE="$ROOT/.env.op"
         if [[ ! -f "$ENV_FILE" ]]; then
           ENV_FILE="$ROOT/.env"
+        fi
+      fi
+
+      # Ensure dependencies are installed
+      if [[ ! -d "$ROOT/backend/integration-service/node_modules" ]]; then
+        info "Installing integration-service dependencies (node_modules missing)..."
+        cd "$ROOT/backend/integration-service"
+        if npm install >> "$ROOT/logs/npm-install.log" 2>&1; then
+          success "Dependencies installed successfully"
+        else
+          warning "npm install failed - service may not start properly"
+          info "Check logs at: $ROOT/logs/npm-install.log"
         fi
       fi
 
