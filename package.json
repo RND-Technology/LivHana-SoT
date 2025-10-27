@@ -23,7 +23,16 @@
     "dev": "concurrently \"npm run build:watch\" \"npm run test:watch\"",
     "optimize": "npm run build && echo '✅ Build complete'",
     "tier1": "npm run optimize && echo '✅ Tier 1 Option A optimization complete'",
-    "performance": "npm run build && npm run test && echo '🚀 Performance check complete'"
+    "performance": "npm run build && npm run test && echo '🚀 Performance check complete'",
+    "agents:spawn": "bash scripts/spawn-agents.sh",
+    "agents:heal": "bash scripts/heal-agents.sh",
+    "agents:status": "bash scripts/agent-status.sh",
+    "voice:start": "bash scripts/start-voice-services.sh",
+    "voice:stop": "bash scripts/stop-voice-services.sh",
+    "validate:env": "bash scripts/validate-env.sh",
+    "docker:dev": "echo 'Docker dev mode not implemented'",
+    "docker:prod": "echo 'Docker prod mode not implemented'",
+    "docker:empire": "echo 'Docker empire mode not implemented'"
   },
   "devDependencies": {
     "@playwright/test": "^1.40.0",

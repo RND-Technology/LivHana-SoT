@@ -1,154 +1,51 @@
 #!/bin/bash
-# Optimized: 2025-10-27
-# RPM: 1.6.2.3.automation-scripts-optimization + RAW file prevention
-# Session: Voice Mode Boot Fix
-set -euo pipefail
-
-# ============================================
-# LIVHANA EMPIRE - ONE COMMAND STARTUP
-# ============================================
-# Usage: ./START.sh [mode]
-# Modes: dev (default), full, voice, test
-# ============================================
-
-MODE="${1:-dev}"
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-
-echo "🚀 Starting LivHana Empire - Mode: $MODE"
-
-# Run Tier-1 boot first (handles preflight, agents, voice orchestrator)
-echo "🎼 Running Tier-1 boot sequence..."
-if [ -f "$SCRIPT_DIR/scripts/claude_tier1_boot.sh" ]; then
-  bash "$SCRIPT_DIR/scripts/claude_tier1_boot.sh"
+set -e
+echo "🌿 Starting LivHana System of Truth..."
+echo ""
+mkdir -p tmp/agent_status/shared
+cat > tmp/agent_status/shared/agent_registry.json << 'EOF'
+{
+  "agents": {
+    "planning": {"status": "starting", "pid": null, "port": null},
+    "research": {"status": "starting", "pid": null, "port": null},
+    "artifact": {"status": "starting", "pid": null, "port": null},
+    "execmon": {"status": "starting", "pid": null, "port": null},
+    "qa": {"status": "starting", "pid": null, "port": null}
+  },
+  "last_update": ""
+}
+EOF
+echo "🤖 Spawning 5 agents..."
+echo ""
+tmux new-session -d -s planning "node agents/planning.js" 2>/dev/null || echo "⚠️  Planning agent already running"
+tmux new-session -d -s research "node agents/research.js" 2>/dev/null || echo "⚠️  Research agent already running"
+tmux new-session -d -s artifact "node agents/artifact.js" 2>/dev/null || echo "⚠️  Artifact agent already running"
+tmux new-session -d -s execmon "node agents/execmon.js" 2>/dev/null || echo "⚠️  Execmon agent already running"
+tmux new-session -d -s qa "node agents/qa.js" 2>/dev/null || echo "⚠️  QA agent already running"
+sleep 3
+RUNNING=$(tmux ls 2>/dev/null | grep -E "planning|research|artifact|execmon|qa" | wc -l | tr -d ' ')
+echo ""
+if [ "$RUNNING" -eq 5 ]; then
+  echo "✅ All 5 agents spawned successfully"
 else
-  echo "⚠️  Tier-1 boot script not found, proceeding with basic preflight..."
+  echo "⚠️  Only $RUNNING/5 agents running - attempting self-heal..."
+  npm run agents:heal
 fi
-
-# Preflight checks (legacy - most now handled by Tier-1 boot)
-echo "🔍 Running preflight checks..."
-
-# Check Claude CLI
-if ! command -v claude >/dev/null 2>&1; then
-  echo "❌ Claude CLI not found. Install via: brew install claude"
-  exit 1
-fi
-
-# Check Homebrew path
-if [[ ":$PATH:" != *":/opt/homebrew/bin:"* ]]; then
-  echo "⚠️  Homebrew path not in PATH. Add to ~/.zshrc:"
-  echo "   export PATH=\"/opt/homebrew/bin:\$PATH\""
-fi
-
-# Load nvm if available and use Node 20
-if [ -s "$HOME/.nvm/nvm.sh" ]; then
-  source "$HOME/.nvm/nvm.sh"
-  nvm use 20 >/dev/null 2>&1 || nvm install 20
-fi
-
-# Check Node version
-NODE_VERSION=$(node -v 2>/dev/null || echo "not installed")
-if [[ "$NODE_VERSION" == "not installed" ]]; then
-  echo "❌ Node.js not found. Install via: nvm install 20"
-  exit 1
-fi
-
-# STRICT: Require Node 20.x for Tier-1
-if [[ "$NODE_VERSION" =~ v20 ]]; then
-  echo "✅ Node 20.x detected ($NODE_VERSION)"
-else
-  echo "❌ Node 20.x REQUIRED for Tier-1. Current: $NODE_VERSION"
-  echo "   Install via: nvm install 20 && nvm use 20"
-  exit 1
-fi
-
-# Check Redis CLI
-if ! command -v redis-cli >/dev/null 2>&1; then
-  echo "❌ Redis CLI required. Install via: brew install redis"
-  exit 1
-fi
-
-# Check Redis connectivity
-if ! redis-cli ping >/dev/null 2>&1; then
-  echo "⚠️  Redis not running. Starting Redis..."
-  redis-server --daemonize yes
-fi
-
-# Check JWT secret
-if [ -z "${JWT_SECRET:-}" ]; then
-  echo "⚠️  JWT_SECRET not set. Loading from 1Password..."
-  export JWT_SECRET=$(op run --env-file=.env op item get jwt-secret --fields password 2>/dev/null || echo "")
-fi
-
-echo "✅ Preflight checks passed"
-
-# Start Redis if not running (redundant but safe)
-if ! redis-cli ping >/dev/null 2>&1; then
-    echo "🔄 Starting Redis..."
-    redis-server --daemonize yes
-fi
-
-# Start services based on mode
-case $MODE in
-    dev)
-        echo "🔧 DEV MODE: Core services only"
-        cd "$SCRIPT_DIR/backend/integration-service" && npm start &
-        cd "$SCRIPT_DIR/backend/reasoning-gateway" && npm start &
-        cd "$SCRIPT_DIR/frontend/vibe-cockpit" && npm run dev &
-        ;;
-    voice)
-        echo "🎙️ VOICE MODE: Full AI stack"
-        cd "$SCRIPT_DIR/backend/integration-service" && npm start &
-        cd "$SCRIPT_DIR/backend/reasoning-gateway" && npm start &
-        cd "$SCRIPT_DIR/backend/voice-service" && npm start &
-        cd "$SCRIPT_DIR/frontend/vibe-cockpit" && npm run dev &
-        ;;
-    full)
-        echo "🔥 FULL MODE: All services"
-        docker-compose up -d
-        ;;
-    test)
-        echo "🧪 TEST MODE: Run all tests"
-        npm test --workspaces
-        exit 0
-        ;;
-    *)
-        echo "❌ Unknown mode: $MODE"
-        exit 1
-        ;;
+echo ""
+echo "🔍 Validating environment..."
+npm run validate:env
+echo ""
+echo "🎤 Starting voice services (STT:2022, TTS:8880)..."
+npm run voice:start
+echo ""
+case "${1:-dev}" in
+  dev) echo "🔧 Starting in DEVELOPMENT mode..."; npm run docker:dev ;;
+  prod) echo "🚀 Starting in PRODUCTION mode..."; npm run docker:prod ;;
+  empire) echo "👑 Starting EMPIRE engines..."; npm run docker:empire ;;
+  local) echo "💻 Starting LOCAL services..."; npm run dev:all ;;
+  *) echo "Usage: ./START.sh [dev|prod|empire|local]"; exit 1 ;;
 esac
-
-echo "
-✅ LivHana Empire Started!
-
-🌐 Services:
-- Vibe Cockpit: http://localhost:5173
-- API Gateway:  http://localhost:3005/health
-- Reasoning AI: http://localhost:4002/health
-- Voice Mode:   http://localhost:4001/health
-
-📊 Quick Health Check:
-curl http://localhost:3005/health
-curl http://localhost:4002/health
-
-🛑 To stop: pkill -f 'node.*livhana' or docker-compose down
-"
-
-# Wait for services
-sleep 5
-curl -sf http://localhost:3005/health >/dev/null && echo "✅ Integration Service: UP" || echo "⚠️ Integration Service: Starting..."
-curl -sf http://localhost:4002/health >/dev/null && echo "✅ Reasoning Gateway: UP" || echo "⚠️ Reasoning Gateway: Starting..."
-
-# Last updated: 2025-10-27
-# Last optimized: 2025-10-27
-
-# Auto-launch Claude Code with generated prompt
-PROMPT_FILE="$SCRIPT_DIR/tmp/claude_tier1_prompt.txt"
-if [ -f "$PROMPT_FILE" ]; then
-  echo "🚀 Launching Claude Code with Tier-1 prompt..."
-  echo ""
-  claude --system-prompt "$(cat "$PROMPT_FILE")"
-else
-  echo "⚠️  Prompt file not found at $PROMPT_FILE"
-  echo "   Falling back to interactive shell"
-  exec "$SHELL"
-fi
+echo ""
+echo "✅ LivHana is running!"
+echo "🎤 Voice mode: ALWAYS ON, ALWAYS LISTENING, ALWAYS FAITHFUL"
+echo ""

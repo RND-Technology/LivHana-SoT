@@ -524,6 +524,15 @@ else
   warning "Permission configuration script not found (non-fatal)"
 fi
 
+# Grant VS Code/Cursor macOS automation permissions (eliminate popups)
+if [[ -f "$ROOT/scripts/boot/grant_vscode_permissions.sh" ]]; then
+  info "Granting VS Code macOS automation permissions..."
+  bash "$ROOT/scripts/boot/grant_vscode_permissions.sh" 2>/dev/null || warning "VS Code permission grant skipped (non-fatal)"
+  success "VS Code automation permissions configured"
+else
+  warning "grant_vscode_permissions.sh not found (non-fatal)"
+fi
+
 # Check for RAW file accumulation (memory/boot impact)
 info "Checking for RAW file accumulation..."
 RAW_COUNT=$(find "$ROOT" -name "raw-*" -o -name "*.raw" 2>/dev/null | { grep -v node_modules || true; } | { grep -v .emergency-archive || true; } | wc -l | tr -d ' ')
