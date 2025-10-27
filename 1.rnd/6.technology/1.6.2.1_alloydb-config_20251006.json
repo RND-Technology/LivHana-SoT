@@ -1,7 +1,0 @@
-{
-  "instance": "liv-hana-sovereign-db",
-  "database": "sovereign_data",
-  "compliance_level": "21+",
-  "retention_policy": "30_days",
-  "encryption": "enabled"
-}

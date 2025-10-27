@@ -1,5 +1,0 @@
-SQUARE_ACCESS_TOKEN=op://LivHana-Ops-Keys/SQUARE_ACCESS_TOKEN/credential
-SQUARE_LOCATION_ID=op://LivHana-Ops-Keys/SQUARE_LOCATION_ID/credential
-BQ_DATASET=commerce
-BQ_TABLE=square_transactions
-GCP_PROJECT_ID=op://LivHana-Ops-Keys/GCP_PROJECT_ID/credential

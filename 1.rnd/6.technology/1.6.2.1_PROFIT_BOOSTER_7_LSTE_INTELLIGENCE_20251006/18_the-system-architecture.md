@@ -1,1 +1,0 @@
-## **🛠 THE SYSTEM ARCHITECTURE**

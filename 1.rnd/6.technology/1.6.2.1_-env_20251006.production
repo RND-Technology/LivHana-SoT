@@ -1,7 +1,0 @@
-VITE_VOICE_API_BASE=https://voice-service-980910443251.us-central1.run.app/api
-VITE_REASONING_API_BASE=https://reasoning-gateway-980910443251.us-central1.run.app/api/reasoning
-VITE_AUTONOMOUS_API_BASE=https://reasoning-gateway-980910443251.us-central1.run.app/api/autonomous
-VITE_API_URL=https://reasoning-gateway-980910443251.us-central1.run.app
-VITE_ELEVENLABS_API_KEY=a9d8a07c88ac733063857300fec256c85b6d9f98ff7294e2dbc99e5d42c6d499
-VITE_BIGQUERY_ENABLED=true
-VITE_SQUARE_ENABLED=true

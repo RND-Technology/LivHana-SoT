@@ -1,1 +1,0 @@
-## PHASE 6: PATH TO $100K PROFIT (October 2025)

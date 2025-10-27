@@ -1,1 +1,0 @@
-## 🔒 ZERO LOSS GUARANTEE

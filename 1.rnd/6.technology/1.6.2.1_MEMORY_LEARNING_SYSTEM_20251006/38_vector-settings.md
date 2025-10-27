@@ -1,9 +1,0 @@
-### Vector Settings
-
-```bash
-OPENAI_API_KEY=sk-...
-EMBEDDING_MODEL=text-embedding-3-small
-EMBEDDING_DIMENSION=1536
-VECTOR_TTL_DAYS=365
-CONVERSATION_VECTOR_TTL_DAYS=90
-```

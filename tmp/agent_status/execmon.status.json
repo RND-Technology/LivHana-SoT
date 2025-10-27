@@ -1,9 +1,1 @@
-{
-  "agent": "execmon",
-  "phase": "monitor",
-  "status": "running",
-  "started_at": "2025-10-27T00:03:27Z",
-  "finished_at": "",
-  "artifacts": ["/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/logs/agents/execmon_monitor_20251026_190327.log"],
-  "notes": "tmux session created"
-}
+{"agent":"execmon","phase":"monitor","status":"running","started_at":"2025-10-27T00:32:19Z","updated_at":"2025-10-27T00:34:19Z","finished_at":"","artifacts":["/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/logs/agents/execmon_monitor_20251026_193219.log"],"notes":"heartbeat active"}

@@ -1,1 +1,0 @@
-### Phase 2: STRUCTURE OPTIMIZATION (P1 - 1 hour)

@@ -1,1 +1,0 @@
-## 💎 REVENUE PER DOMAIN PER DAY

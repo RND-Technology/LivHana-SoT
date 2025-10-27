@@ -1,1 +1,0 @@
-## 📈 BUSINESS IMPACT

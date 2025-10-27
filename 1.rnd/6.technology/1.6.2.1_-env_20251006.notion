@@ -1,8 +1,0 @@
-# Notion API Configuration
-NOTION_API_KEY=secret_yourNotionIntegrationKey
-
-# Google Cloud Platform Configuration
-GCP_PROJECT_ID=your-gcp-project-id
-
-# BigQuery Configuration
-BQ_DATASET=knowledge

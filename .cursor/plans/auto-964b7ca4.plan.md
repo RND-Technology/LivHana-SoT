@@ -1,56 +1,120 @@
-<!-- 964b7ca4-84f9-46d4-902c-492a196e447f a0a7003c-6e1b-48a2-8d49-feb5a10332a9 -->
-# Tier‑1 Replan (120/120 baseline, fallacies purged)
+<!-- 964b7ca4-84f9-46d4-902c-492a196e447f c026ba32-40d9-4a06-8555-dc0b992c06f7 -->
+# Context Crisis Quick‑Fix (bloat prune + venv + token verify)
 
-### Current truth (from logs)
-- 120/120 health; 5/5 agents healthy (planning, research, artifact, execmon, qa)
-- Voice mode UP (STT:2022, TTS:8880); Tier‑1 prompt pinned at top
-- Integration‑service running with OAuth (R‑Series); secrets via GSM/1Password
+### Scope
+- Do not change application logic. Only remove ignored artifacts, add ignores, and add a small utility script.
+- Target result: <100,000 tokens included; file count <10,000; clean git status.
 
-### Purge (do NOT do)
-- No token counters/context-map stubs, no fake agent boot scripts, no CCR proxy, no deep local LLM routing now. These solved the wrong problems and waste limits.
+### Pre‑flight (read‑only)
+- Confirm branch: `fix/mobile-control-po1`
+- Show status: `git status -sb` (should be clean except tmp files)
 
-### Minimal hardening only
-1) Claude CLI raw‑mode guard (prevent Ink error)
-- In boot: skip auto‑launch unless interactive (test -t 0/1) or CLAUDE_AUTO_LAUNCH=1
-- Default to CLAUDE_AUTO_LAUNCH=0; print pbcopy instructions only in non‑TTY
+### Steps
+1) Snapshot (safety)
+- Create a lightweight snapshot commit (no node_modules). Do NOT force‑add anything.
+- Optional: tag `pre-context-cleanup-<date>`
 
-2) ExecMon is current; add heartbeat + rotation
-- ExecMon writes updated_at every 60s via atomic_write; rotate/scrub logs/agents/execmon.log; respawn if tmux session missing
+2) Canonical ignores
+- Ensure `.gitignore` contains at least:
+```gitignore
+node_modules/
+logs/
+.venv/
+*.log
+__pycache__/
+*.pyc
+.next/
+dist/
+coverage/
+.cache/
+.DS_Store
+out/
+out_mirror/
+```
+- Ensure `.contextignore` exists and mirrors the above (plus large media, datasets) to keep agents under 100K tokens.
 
-3) Integration‑service build/run alignment (R‑Series, ESM)
-- tsconfig: target ≥ ES2017, module node16/esnext, moduleResolution node16, esModuleInterop & allowSyntheticDefaultImports true; outDir dist, rootDir src
-- package.json: "type":"module"; start → node dist/src/server.js (or the actual compiled entry)
-- Health: fast 200; SIGTERM graceful; bind 0.0.0.0:${PORT:-3005}
-- OAuth: use R‑Series endpoints (api.lightspeedapp.com/API/Account/{ACCOUNT_ID}/...); refresh on 401; item‑ID secrets in .env.op; GSM for cloud
-- BigQuery: validate JSON presence; fail with actionable hint if missing
+3) Physical cleanup (ignored files only)
+- Use git‑native removal so only ignored/untracked cruft is deleted:
+  - Preview: `git clean -ffdX -e .venv -n`
+  - Execute: `git clean -ffdX -e .venv`
+- This removes ignored files (e.g., node_modules, logs) but preserves tracked files and your venv.
 
-4) Voice always‑on (optional)
-- LaunchAgents for Whisper/Kokoro with absolute paths; KeepAlive true; safe bootout/bootstrap cycle; add simple voice watchdog
+4) Python venv for token counter
+- Create venv: `python3 -m venv .venv`
+- Install deps: `.venv/bin/pip install -U pip tiktoken pathspec`
 
-5) Secrets hygiene
-- .env.op uses 1Password item IDs (no name ambiguity); de‑dupe LIGHTSPEED_* items; confirm GSM secret versions enabled
+5) Add deterministic token counter
+- Create `tools/token_counter.py`:
+```python
+#!/usr/bin/env python3
+import json
+from pathlib import Path
+from pathspec import PathSpec
+import tiktoken
 
-6) CI zero‑warning gate
-- Workflow sets ALLOW_TEXT_ONLY=1; skips auto‑launch; verifies 5/5 agents via tmux + fresh status JSON; scrubs logs; secret scan
+ROOT = Path('.')
+enc = tiktoken.get_encoding('cl100k_base')
+patterns = []
+for f in ['.contextignore', '.gitignore']:
+    if Path(f).exists():
+        patterns += Path(f).read_text().splitlines()
+spec = PathSpec.from_lines('gitwildmatch', patterns)
 
-### Acceptance criteria
-- No Ink raw‑mode error; manual launch instructions printed in non‑TTY
-- ExecMon status JSON updated <60s; log file rotates; auto‑respawns on loss
-- Integration‑service starts with node dist/src/server.js; /health 200; OAuth refreshes on 401; R‑Series endpoint passes a smoke request
-- CI workflow green with text‑only voice gate; no secrets in logs
+total = 0
+files = []
+for p in ROOT.rglob('*'):
+    if not p.is_file():
+        continue
+    sp = str(p)
+    # exclude hidden VCS regardless
+    if sp.startswith('./.git') or '/.git/' in sp:
+        continue
+    if spec.match_file(sp):
+        continue
+    try:
+        text = p.read_text(encoding='utf-8', errors='ignore')
+    except Exception:
+        continue
+    tokens = len(enc.encode(text))
+    total += tokens
+    files.append({'path': sp, 'tokens': tokens})
 
-### Do‑now checks (no edits)
-- Confirm R‑Series Account ID and OAuth scopes in GSM/1P
-- Confirm current start entry (dist/src/server.js vs lightspeed‑bigquery.js)
-- Confirm execmon.status.json updating every minute
+files.sort(key=lambda x: x['tokens'], reverse=True)
+report = {
+    'total_tokens': total,
+    'file_count': len(files),
+    'top_20': files[:20],
+}
+print(json.dumps(report, indent=2))
+```
+- Run: `.venv/bin/python tools/token_counter.py > reports/context_token_report.json`
+- Quick view: `jq '.total_tokens, .file_count' reports/context_token_report.json`
+
+6) Verify acceptance
+- Pass if:
+  - `total_tokens < 100000`
+  - `file_count < 10000`
+  - `git status -s` is clean
+
+7) Commit and push
+- Commit `.gitignore`, `.contextignore`, `tools/token_counter.py`, `reports/context_token_report.json`
+- Push to `fix/mobile-control-po1`
+
+### Rollback
+- `git reset --hard HEAD~1 && git clean -ffdX -e .venv -n` (preview)
+- Or restore via the snapshot commit/tag
+
+### Notes
+- Using `git clean -X` prunes ignored files only; safer than `find ... -exec rm -rf` and avoids traversal race conditions.
+- Use direct venv executables (`.venv/bin/python`) to avoid PATH confusion on macOS.
+- This does not affect voice agents or services; purely hygiene and tooling.
 
 
 ### To-dos
 
-- [ ] Guard Claude auto‑launch; skip when non‑interactive
-- [ ] Add periodic heartbeat updated_at write and log rotation for ExecMon
-- [ ] Align tsconfig ESM + start to node dist/src/server.js; health + SIGTERM
-- [ ] Verify R‑Series endpoints + refresh‑on‑401; item‑ID secrets; GSM enabled
-- [ ] Sanity check BigQuery JSON presence and fail‑fast hint
-- [ ] Set ALLOW_TEXT_ONLY=1; validate 5/5 agents; scrub logs; secret scan
-- [ ] (Optional) Add Whisper/Kokoro LaunchAgents + watchdog
+- [ ] Create snapshot commit and optional tag before cleanup
+- [ ] Update .gitignore and .contextignore with canonical bloat rules
+- [ ] Prune ignored artifacts with git clean -ffdX preserving .venv
+- [ ] Create .venv and install tiktoken and pathspec
+- [ ] Add tools/token_counter.py and generate JSON report
+- [ ] Verify thresholds then commit and push changes

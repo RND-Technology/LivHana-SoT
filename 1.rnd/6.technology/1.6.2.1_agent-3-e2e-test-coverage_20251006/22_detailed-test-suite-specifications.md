@@ -1,3 +1,0 @@
-### Detailed Test Suite Specifications
-
----

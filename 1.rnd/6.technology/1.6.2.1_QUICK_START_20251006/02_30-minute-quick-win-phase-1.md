@@ -1,1 +1,0 @@
-## 30-MINUTE QUICK WIN (Phase 1)

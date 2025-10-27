@@ -1,1 +1,0 @@
-## 🎯 HOW TO USE THIS PROMPT

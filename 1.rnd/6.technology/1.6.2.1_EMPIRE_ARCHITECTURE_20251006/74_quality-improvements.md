@@ -1,1 +1,0 @@
-## 💎 QUALITY IMPROVEMENTS

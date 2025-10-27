@@ -1,1 +1,0 @@
-## 🔄 CONTINUOUS SYNC SETUP

@@ -1,1 +1,0 @@
-## PHASE 1: CRITICAL PATH (Days 1-3)

@@ -1,1 +1,0 @@
-## 🔥 THE BRUTAL TRUTH
