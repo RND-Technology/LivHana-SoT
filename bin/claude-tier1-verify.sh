@@ -141,6 +141,19 @@ if ! tmux has-session -t "$VOICE_SESSION" 2>/dev/null; then
 fi
 log_ok "Voice session '${VOICE_SESSION}' is running"
 
+# Check for RAW/out artifacts that cause memory pressure and voice instability
+log_info "Checking for RAW/out artifacts in workspace"
+RAW_COUNT=$(find "$REPO_ROOT" -maxdepth 3 \( -name "*.raw*" -o -path "*/raw*" -o -path "*/out/*" -o -path "*/out_mirror/*" \) 2>/dev/null | wc -l | tr -d ' ')
+if [[ ${RAW_COUNT:-0} -gt 0 ]]; then
+  if [[ -n "${CI:-}" ]]; then
+    log_fail "Found ${RAW_COUNT} RAW/out artifacts - these cause voice mode instability"
+  else
+    log_warn "Found ${RAW_COUNT} RAW/out artifacts - clean with: rm -rf out out_mirror && find . -name '*.raw*' -delete"
+  fi
+else
+  log_ok "No RAW/out artifacts found"
+fi
+
 health_check() {
   log_info "Checking integration-service health (${HEALTH_URL})"
   for delay in 1 2 3 5 8 13; do

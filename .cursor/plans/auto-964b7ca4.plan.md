@@ -1,69 +1,75 @@
-<!-- 964b7ca4-84f9-46d4-902c-492a196e447f 2a12fe4f-daf2-4ab4-b3e8-742779abd4ef -->
-# Full Funnel RPM Weekly Plan (Oct 26–Nov 2, 2025)
+<!-- 964b7ca4-84f9-46d4-902c-492a196e447f ee545d60-5905-4cd0-8468-ad8c20fc75de -->
+# Session Synthesis & Comprehensive Problem-Solving Report
 
-### Truth alignment (fallacy purge)
-- Veriff: operational; priority is automation, not replacement
-- Delivery: use white‑label middleware (Favor/HEB, Uber Direct, DoorDash Drive), not Onfleet
-- Alice TX: this week’s priority; DNS fix in progress
+### Scope
+- Review full chat history to consolidate all solved problems
+- Summarize RAW file forensics, boot fixes, RPM changes, and fallacy purges
+- Generate recommendations for sustaining voice-first Tier‑1 boot
+- Prepare handoff notes for next session (enable zero-configuration restart)
 
-### Current repo/state highlights
-- Context cleanup completed: 85K → 11.6K files; disk 950M → 386M
-- Tier‑1 boot hardening queued: voice‑first, sequential, crash‑safe (separate infra track)
-- Linear: REG‑5 opened for Alice DNS (In Progress)
+### Sections
+1) **Accomplishments (this session)**
+   - RPM ingestion + Evergreen stack + frontend RpmPanel JWT wiring
+   - Backend fixes (param mismatch, exports lifecycle migration, docs)
+   - Atomic writes for agents; ExecMon alignment
+   - Secret scrubbing (perl → BSD sed); 1Password scoped to --account
+   - Context cleanup (85K → 11.6K files); .contextignore added
+   - Fallacy purges (Veriff status, PACT Act, OAuth endpoints, Lightspeed R-Series)
+   - REG‑5 Linear issue opened for Alice DNS
+   - Boot fixes (voice-first, sequential agents, integration-service decoupled, crash-recovery polling, memory/context guards, raw-mode guard, timeout portability)
 
-### Weekly priorities (revenue first)
-1) Local delivery middleware live (Favor → Uber → DoorDash routing)
-2) Leafly inventory sync + delivery badge (unlocked tomorrow)
-3) Alice TX go‑live: DNS → website → checkout test
-4) Auto‑Veriff approval pipeline to LightSpeed (webhook + audit)
-5) 72‑hour nurture/refund campaign (LightSpeed Marketing)
-6) Membership agreement layer (legal acceptance + audit)
-7) Loyalty DB foundation (AlloyDB) + points credit on order complete
-8) Member dashboard (login, points, quick reorder)
+2) **RAW Files Forensics**
+   - Inventory: where they appear (1.rnd, .emergency-archive, out/out_mirror, tmp)
+   - Causes: automatic backups, copy loops, snapshot scripts
+   - Impacts: context bloat (agent crashes), Cursor indexing overhead (CPU/RAM), disk/IO pressure (delays voice-mode spawn)
+   - Prevention: ignore rules, boot preflight guard, optional Spotlight exclusions
+   - Consolidation: extract/dedupe valuable content → docs/raw/RAW_CONSOLIDATED.md
 
-### Owners & deadlines
-- Andrew: DNS fix (REG‑5), LightSpeed/Leafly, delivery providers (Mon–Wed)
-- Christopher: staff training (POS, service, delivery ops) (Mon–Tue)
-- Jesse: approve plan, legal review, final launches (daily)
-- Agents: planning/research/execution/QA support across items
+3) **Voice-First Boot Stability**
+   - Current behavior: STT/TTS must be healthy for voice; degrades to text-only otherwise
+   - Fixes implemented: voice-first init, sequential agent start, wait_for_service, STRICT_VOICE gate, crash-recovery loop, atomic status writes, memory/context guards, raw-mode guard, LaunchAgents + watchdog plan (optional)
+   - Health checks: tmux sessions, STT/TTS ports, integration /health
+   - Next steps: install LaunchAgents for STT/TTS to guarantee availability
 
-### Architecture (AlloyDB/BigQuery RPM)
-- Tables: aoi_areas, coi_categories, rpm_blocks, rpm_actions, planning_agent_logs
-- Mapping: each priority = rpm_block; steps = rpm_actions; agents write logs for continuous learning
+4) **RPM & Alice Expansion**
+   - Full Funnel RPM plan (Oct 26–Nov 2): local delivery (Favor/Uber/DD), Leafly sync, Auto-Veriff, nurture, membership, loyalty, dashboard
+   - Alice DNS fix (REG‑5): Andrew's checklist
+   - Leafly unlock tomorrow
+   - Fallacy corrections: Veriff operational; OAuth R-Series endpoints
 
-### KPIs (Week targets)
-- Delivery revenue: $50K+ combined (Stone Oak + Alice ramp)
-- Auto‑Veriff conversion: 60%+ (2x prior manual)
-- Cart recovery: $15K–$25K
-- Alice online revenue (week 1): $10K–$15K
-- On‑time delivery: 90%+, CSAT ≥4.5/5
+5) **Recommendations**
+   - Enable LaunchAgents for voice services (always-on)
+   - Add SUPPRESS_OPTIONAL_WARNINGS=1 to boot for zero warnings
+   - Enforce .contextignore for Cursor indexing limits
+   - Archive/remove old RAW cruft regularly
+   - Update SESSION_PROGRESS.md after each major milestone
 
-### Risks & mitigations
-- Driver supply → 3‑provider redundancy; recruit 5–7 backups
-- DNS propagation delays → LightSpeed escalation path; verify via DNS checker
-- Auto‑Veriff edge cases → first 100 manual audit; human‑in‑loop flag
+6) **Next Session Handoff**
+   - Repo state (branch, outstanding commits, known blockers)
+   - Command to run: single-line boot command with gates
+   - Voice attach: `bin/liv-attach` (respawn if missing)
+   - Verification: run health snapshot, confirm 5/5 agents + voice
 
-### Links
-- Alice DNS issue (Linear): [REG‑5](https://linear.app/reggieanddro/issue/REG-5/critical-fix-reggieanddroalicecom-dns-→-lightspeed-alice-store-2)
-- Leafly profile: [Reggie & Dro](https://www.leafly.com/dispensary-info/reggie-dr-)
+### Format
+- A clean markdown document saved to `docs/SESSION_SYNTHESIS_YYYYMMDD.md`
+- Includes section links, inline code references, concise bullets
 
-### Execution cadence
-- Mon: DNS fix, staff training S1–S2, provider configs
-- Tue: Auto‑Veriff deploy, delivery ops training S3, E2E test
-- Wed: Leafly live + nurture automation
-- Thu–Fri: Membership + Loyalty DB
-- Weekend: Member dashboard + debrief
+### Acceptance
+- All accomplishments listed with evidence (commit SHAs, file paths)
+- RAW forensics findings clear
+- Recommendations actionable
+- Handoff concise and reproducible
+
+### Notes
+- No new edits; purely synthesis and documentation
+- Final check: validate state is consistent and ready for clean restart
 
 
 ### To-dos
 
-- [ ] Activate Favor/Uber/DD middleware with smart routing
-- [ ] Enable Leafly inventory sync and delivery badge
-- [ ] Resolve reggieanddroalice.com DNS to LightSpeed
-- [ ] Deploy Veriff webhook → auto-approve → LightSpeed update
-- [ ] Launch 72-hour nurture/refund SMS+email sequence
-- [ ] Integrate membership agreement acceptance + audit trail
-- [ ] Create AlloyDB loyalty schema and points crediting
-- [ ] Build member dashboard (login, points, reorder)
-- [ ] Publish daily KPI dashboard (delivery, revenue, CSAT)
-- [ ] Update runbooks and SESSION_PROGRESS with changes
+- [ ] Enumerate all completed work with evidence (commits, files, test results)
+- [ ] Summarize RAW file forensics (causes, impacts, preventive measures)
+- [ ] Detail voice-first boot stability fixes and verification notes
+- [ ] Recap RPM plan and Alice expansion work (REG‑5, Leafly)
+- [ ] List top recommendations for sustaining stability
+- [ ] Prepare next-session startup commands and verification checklist

@@ -42,6 +42,10 @@ poetry.lock
 out/
 out_mirror/
 
+# RAW Files (Cursor unsaved buffers - cause memory pressure)
+*.raw*
+**/raw*
+
 # Large Documentation (keep essentials only)
 .claude/PO1_BACKUPS_CONSOLIDATED.md
 .claude/agent_reports/archive/
