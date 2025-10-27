@@ -112,8 +112,10 @@ fi
 # Check PERPLEXITY_API_KEY
 log_check "PERPLEXITY_API_KEY present"
 if [[ -z "${PERPLEXITY_API_KEY:-}" ]]; then
-    log_warn "PERPLEXITY_API_KEY not set - TRUTH verification step will fail"
-    echo "  Fix: export PERPLEXITY_API_KEY='pplx-...'"
+    if [[ "${SUPPRESS_OPTIONAL_WARNINGS:-0}" != "1" ]]; then
+        log_warn "PERPLEXITY_API_KEY not set - TRUTH verification step will fail"
+        echo "  Fix: export PERPLEXITY_API_KEY='pplx-...'"
+    fi
 else
     log_pass "PERPLEXITY_API_KEY set"
 fi
@@ -346,10 +348,12 @@ if git rev-parse --git-dir >/dev/null 2>&1; then
     if git diff-index --quiet HEAD -- 2>/dev/null; then
         log_pass "No uncommitted changes (clean state)"
     else
-        log_warn "Uncommitted changes detected"
-        MODIFIED_COUNT=$(git status --porcelain | wc -l | xargs)
-        echo "  Modified files: $MODIFIED_COUNT"
-        echo "  Note: Session will work but changes may cause confusion"
+        if [[ "${SUPPRESS_OPTIONAL_WARNINGS:-0}" != "1" ]]; then
+            log_warn "Uncommitted changes detected"
+            MODIFIED_COUNT=$(git status --porcelain | wc -l | xargs)
+            echo "  Modified files: $MODIFIED_COUNT"
+            echo "  Note: Session will work but changes may cause confusion"
+        fi
     fi
 
     # Check current branch

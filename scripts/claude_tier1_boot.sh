@@ -201,12 +201,12 @@ cleanup_port() {
   # Try graceful TERM first
   if lsof -ti:$port >/dev/null 2>&1; then
     local pids=$(lsof -ti:$port)
-    echo "$pids" | xargs -r kill -TERM 2>/dev/null || true
+    (echo "$pids" | xargs kill -TERM 2>/dev/null) || true
     sleep 2
-    
+
     # Force kill if still running
     if lsof -ti:$port >/dev/null 2>&1; then
-      echo "$pids" | xargs -r kill -KILL 2>/dev/null || true
+      (echo "$pids" | xargs kill -KILL 2>/dev/null) || true
       sleep 1
       warning "Force-killed stale processes on port $port"
     else
@@ -294,8 +294,8 @@ check_voice_connectivity() {
 
   # Check STT (Whisper)
   if lsof -i :$stt_port 2>/dev/null | grep -q LISTEN; then
-    # Try to connect
-    if timeout 2 curl -sf "http://localhost:$stt_port/health" >/dev/null 2>&1 || nc -z localhost $stt_port 2>/dev/null; then
+    # Try to connect (use curl --max-time instead of GNU timeout)
+    if curl --max-time 2 -sf "http://localhost:$stt_port/health" >/dev/null 2>&1 || nc -z localhost $stt_port 2>/dev/null; then
       success "STT service (Whisper) responsive on port $stt_port"
     else
       warning "STT service running but not responding on port $stt_port"
@@ -309,8 +309,8 @@ check_voice_connectivity() {
 
   # Check TTS (Kokoro)
   if lsof -i :$tts_port 2>/dev/null | grep -q LISTEN; then
-    # Try to connect
-    if timeout 2 curl -sf "http://localhost:$tts_port/health" >/dev/null 2>&1 || nc -z localhost $tts_port 2>/dev/null; then
+    # Try to connect (use curl --max-time instead of GNU timeout)
+    if curl --max-time 2 -sf "http://localhost:$tts_port/health" >/dev/null 2>&1 || nc -z localhost $tts_port 2>/dev/null; then
       success "TTS service (Kokoro) responsive on port $tts_port"
     else
       warning "TTS service running but not responding on port $tts_port"
@@ -331,7 +331,7 @@ ensure_op_session() {
 
   if ! command -v op >/dev/null 2>&1; then
     error "1Password CLI (op) not found. Install via: brew install 1password-cli"
-    exit 1
+    return 1
   fi
 
   # Check if using service account token (preferred for automation)
@@ -339,17 +339,15 @@ ensure_op_session() {
     if [[ "$verbosity" == "show" ]]; then
       info "Using 1Password service account token..."
     fi
-    # Verify token works
-    if timeout 5 op whoami >/dev/null 2>&1; then
-      local whoami_output="$(op whoami 2>/dev/null || echo '')"
-      if [[ -n "$whoami_output" ]]; then
-        success "1Password authenticated via service account"
-        return 0
-      fi
+    # Verify token works (op whoami is fast, no timeout needed)
+    local whoami_output="$(op whoami 2>/dev/null || echo '')"
+    if [[ -n "$whoami_output" ]]; then
+      success "1Password authenticated via service account"
+      return 0
     fi
     error "OP_SERVICE_ACCOUNT_TOKEN is set but authentication failed"
     error "Verify your service account token is valid"
-    exit 1
+    return 1
   fi
 
   # Check if already signed in (FIXED: Always use --account flag)
@@ -384,7 +382,7 @@ ensure_op_session() {
       error "Automatic 1Password sign-in failed (timeout or denied)."
       error "Ensure Desktop app is running and CLI integration is enabled."
       error "Manual: op signin --account ${account}"
-      exit 1
+      return 1
     fi
     
     # Even if --raw returns empty (app integration), verify whoami works
@@ -393,7 +391,7 @@ ensure_op_session() {
     if [[ -z "$whoami_check" ]]; then
       error "1Password sign-in produced empty whoami."
       error "Enable Desktop → Developer → Integrate with 1Password CLI."
-      exit 1
+      return 1
     fi
     
     # Extract session token if --raw provided one (for compatibility)
@@ -407,7 +405,7 @@ ensure_op_session() {
     if ! op signin --account "${account}" >/dev/null 2>&1; then
       error "Automatic 1Password sign-in failed."
       error "Manual: eval \"\$(op signin ${account})\""
-      exit 1
+      return 1
     fi
   fi
 
@@ -423,7 +421,7 @@ ensure_op_session() {
   # Only fail if truly broken
   error "1Password CLI integration not enabled in Desktop app."
   error "FIX: Open 1Password → Settings → Developer → Enable CLI integration"
-  exit 1
+  return 1
 }
 
 # Start boot sequence
@@ -528,7 +526,7 @@ fi
 
 # Check for RAW file accumulation (memory/boot impact)
 info "Checking for RAW file accumulation..."
-RAW_COUNT=$(find "$ROOT" -name "raw-*" -o -name "*.raw" 2>/dev/null | grep -v node_modules | grep -v .emergency-archive | wc -l | tr -d ' ')
+RAW_COUNT=$(find "$ROOT" -name "raw-*" -o -name "*.raw" 2>/dev/null | { grep -v node_modules || true; } | { grep -v .emergency-archive || true; } | wc -l | tr -d ' ')
 if [[ "$RAW_COUNT" -gt 10 ]]; then
   warning "Detected $RAW_COUNT RAW files - may impact voice mode performance"
   warning "Run: find . -name 'raw-*' -o -name '*.raw' | grep -v node_modules"
@@ -586,7 +584,7 @@ if [[ -z "${MEM_FREE_PCT:-}" ]] && command -v vm_stat >/dev/null 2>&1; then
   if [[ -n "$FREE_PAGES" ]] && [[ -n "$PAGE_SIZE" ]]; then
     FREE_MB=$((FREE_PAGES * PAGE_SIZE / 1024 / 1024))
     FREE_GB=$((FREE_MB / 1024))
-    
+
     if [[ $FREE_MB -lt 500 ]]; then
       warning "CRITICAL: Very low memory (<500MB free)"
       warning "Cursor may crash - save work frequently"
@@ -595,20 +593,25 @@ if [[ -z "${MEM_FREE_PCT:-}" ]] && command -v vm_stat >/dev/null 2>&1; then
         error "STRICT_LOW_MEM=1 enforced - exiting boot sequence"
         exit 1
       fi
-    elif [[ $FREE_GB -lt 1 ]]; then
-      warning "Low memory: ~${FREE_GB}GB free (recommend >1GB)"
+    elif [[ $FREE_MB -lt 1024 ]]; then
+      warning "Low memory: ${FREE_MB}MB free (recommend >1GB)"
       warning "Monitor for stability issues during session"
     else
-      success "Memory: ~${FREE_GB}GB free (healthy)"
+      # Use MB if under 10GB for better precision
+      if [[ $FREE_GB -lt 10 ]]; then
+        success "Memory: ${FREE_MB}MB free (healthy)"
+      else
+        success "Memory: ~${FREE_GB}GB free (healthy)"
+      fi
     fi
   fi
 fi
 
 # PHASE 1: STABILIZE - Port pre-clear
 info "Pre-clearing port 3005..."
-lsof -ti :3005 | xargs -r kill -TERM 2>/dev/null || true
+(lsof -ti :3005 2>/dev/null | xargs kill -TERM 2>/dev/null) || true
 sleep 1
-lsof -ti :3005 | xargs -r kill -KILL 2>/dev/null || true
+(lsof -ti :3005 2>/dev/null | xargs kill -KILL 2>/dev/null) || true
 success "Port 3005 cleared"
 
 # PHASE 1: STABILIZE - Log prep
@@ -617,8 +620,19 @@ touch "$ROOT/logs/integration-service.log"
 
 # Check 1Password session (required for downstream op run calls)
 # NOTE: CLI v2 Desktop integration returns empty whoami - that's OK
-ensure_op_session
-success "1Password session ready"
+# SKIP_1PASSWORD=1 to bypass for voice-first boot (integration-service will warn if needed)
+if [[ "${SKIP_1PASSWORD:-0}" == "1" ]]; then
+  warning "Skipping 1Password authentication (SKIP_1PASSWORD=1)"
+  warning "Integration service features requiring secrets will be limited"
+else
+  if ensure_op_session; then
+    success "1Password session ready"
+  else
+    warning "1Password authentication failed or timed out"
+    warning "Voice mode will start, but integration features may be limited"
+    warning "To retry: run 'op signin' manually"
+  fi
+fi
 
 # GCP project for downstream scripts
 GCP_PROJECT_ID="${GCP_PROJECT_ID:-reggieanddrodispensary}"
@@ -730,17 +744,24 @@ fi
 echo "NODE_VERSION=$NODE_VERSION" >> "$LOG"
 
 # Check Claude Sonnet 4.5 OCT 2025 model (informational only, non-fatal)
-# Use timeout to prevent hanging on missing CLI or permissions
-if timeout 5 claude models list 2>/dev/null | grep -q "sonnet-4.5-oct-2025"; then
-  success "Claude model sonnet-4.5-oct-2025 available"
+# FIXED: claude models list can hang - skip for voice-first boot
+if [[ "${SKIP_MODEL_CHECK:-0}" == "1" ]] || [[ "${SKIP_1PASSWORD:-0}" == "1" ]]; then
+  info "Skipping Claude model check (voice-first boot)"
 elif [[ "${ALLOW_TEXT_ONLY:-0}" == "1" ]]; then
   info "Text-only mode: Skipping Claude model check"
+elif command -v claude >/dev/null 2>&1; then
+  # Run with manual timeout since macOS lacks GNU timeout
+  ( claude models list 2>/dev/null | grep -q "sonnet-4.5-oct-2025" ) &
+  model_check_pid=$!
+  sleep 3
+  if kill -0 $model_check_pid 2>/dev/null; then
+    kill $model_check_pid 2>/dev/null
+    info "Claude model check timed out (>3s) - skipping"
+  else
+    wait $model_check_pid && success "Claude model sonnet-4.5-oct-2025 available" || info "Claude model check failed"
+  fi
 else
-  info "Claude Sonnet 4.5 OCT 2025 model not found - boot continuing in degraded mode"
-  info "Voice-first features may be limited. To enable full functionality:"
-  info "  1. brew reinstall --cask claude"
-  info "  2. claude self update"
-  info "  3. Verify: claude models list | grep -i sonnet"
+  info "Claude CLI not found - skipping model check"
 fi
 
 # Ensure Homebrew path prominence
@@ -1376,7 +1397,7 @@ if [[ "${MAX_AUTO:-1}" == "1" ]]; then
     # PORT 3005 GUARD: Clean up stale processes (NON-BLOCKING)
     if lsof -ti :3005 >/dev/null 2>&1; then
       warning "Port 3005 busy – terminating stale process"
-      lsof -ti :3005 | xargs -r kill -TERM 2>/dev/null || true
+      (lsof -ti :3005 2>/dev/null | xargs kill -TERM 2>/dev/null) || true
       sleep 2
       if lsof -ti :3005 >/dev/null 2>&1; then
         warning "Port 3005 still in use after cleanup"
@@ -1537,7 +1558,7 @@ echo
 # Check 3: Integration service health
 info "Checking integration-service health..."
 if lsof -i :3005 2>/dev/null | grep -q LISTEN; then
-  if timeout 3 curl -sf "http://localhost:3005/health" >/dev/null 2>&1; then
+  if curl --max-time 3 -sf "http://localhost:3005/health" >/dev/null 2>&1; then
     success "integration-service: HEALTHY on port 3005"
   else
     warning "integration-service: Port open but not responding"
@@ -1597,6 +1618,50 @@ else
 fi
 echo
 
+# Check 6: Disk bloat prevention (RAW files mitigation)
+info "Checking for disk bloat artifacts..."
+CURSOR_BACKUP_SIZE=0
+LOGS_SIZE=0
+TMP_SIZE=0
+
+if [[ -d "$ROOT/.cursor-backups" ]]; then
+  CURSOR_BACKUP_SIZE=$(du -sm "$ROOT/.cursor-backups" 2>/dev/null | awk '{print $1}')
+fi
+
+if [[ -d "$ROOT/logs" ]]; then
+  LOGS_SIZE=$(du -sm "$ROOT/logs" 2>/dev/null | awk '{print $1}')
+fi
+
+if [[ -d "$ROOT/tmp" ]]; then
+  TMP_SIZE=$(du -sm "$ROOT/tmp" 2>/dev/null | awk '{print $1}')
+fi
+
+# Warn if any directory exceeds threshold
+if [[ ${CURSOR_BACKUP_SIZE:-0} -gt 500 ]]; then
+  warning ".cursor-backups: ${CURSOR_BACKUP_SIZE}MB (threshold: 500MB)"
+  info "Clean with: rm -rf $ROOT/.cursor-backups/*"
+fi
+
+if [[ ${LOGS_SIZE:-0} -gt 1000 ]]; then
+  warning "logs/: ${LOGS_SIZE}MB (threshold: 1000MB)"
+  info "Clean with: find $ROOT/logs -type f -mtime +7 -delete"
+fi
+
+if [[ ${TMP_SIZE:-0} -gt 500 ]]; then
+  warning "tmp/: ${TMP_SIZE}MB (threshold: 500MB)"
+  info "Clean with: find $ROOT/tmp -type f -mtime +1 -delete"
+fi
+
+# Check for raw/out artifacts
+RAW_ARTIFACTS=$(find "$ROOT" -maxdepth 3 \( -name "*.raw*" -o -path "*/raw*" -o -path "*/out/*" -o -path "*/out_mirror/*" \) 2>/dev/null | wc -l | tr -d ' ')
+if [[ ${RAW_ARTIFACTS:-0} -gt 0 ]]; then
+  warning "Found ${RAW_ARTIFACTS} raw/out artifacts in workspace"
+  info "These can cause memory pressure and voice instability"
+  info "Clean with: rm -rf $ROOT/out $ROOT/out_mirror && find $ROOT -name '*.raw*' -delete"
+fi
+
+echo
+
 banner "🌟 BOOT COMPLETE - FOUNDATION READY"
 echo
 
@@ -1610,7 +1675,7 @@ if [[ $HEALTH_SCORE -ge 95 ]] && lsof -i :8880 2>/dev/null | grep -q LISTEN; the
   # Attempt to play via TTS (non-blocking, fail gracefully)
   if command -v curl >/dev/null 2>&1; then
     # Send to Kokoro TTS service
-    echo "$GREETING" | timeout 5 curl -sf -X POST "http://localhost:8880/tts" \
+    echo "$GREETING" | curl --max-time 5 -sf -X POST "http://localhost:8880/tts" \
       -H "Content-Type: text/plain" \
       --data-binary @- \
       -o /dev/null 2>/dev/null &

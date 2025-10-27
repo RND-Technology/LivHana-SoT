@@ -55,6 +55,9 @@ def main() -> int:
         log(f"WARN: config missing keys: {', '.join(missing)}", log_path)
 
     # Check secrets presence in env (non-fatal)
+    # Only warn if SUPPRESS_OPTIONAL_WARNINGS is not set
+    suppress_warnings = os.environ.get("SUPPRESS_OPTIONAL_WARNINGS", "0") == "1"
+
     required_secrets = [
         "DEEPSEEK_API_KEY",
         "BLUECHECK_API_KEY",
@@ -64,7 +67,7 @@ def main() -> int:
     for env_name in required_secrets:
         if os.environ.get(env_name):
             log(f"OK env {env_name} present", log_path)
-        else:
+        elif not suppress_warnings:
             log(f"WARN env {env_name} missing", log_path)
 
     # Touch/create state dir

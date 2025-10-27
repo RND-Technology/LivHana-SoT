@@ -1,7 +1,7 @@
 #!/bin/bash
-# Optimized: 2025-10-02
-# RPM: 1.6.2.3.automation-scripts-optimization
-# Session: Elephant Strategy Batch 1
+# Optimized: 2025-10-27
+# RPM: 1.6.2.3.automation-scripts-optimization + RAW file prevention
+# Session: Voice Mode Boot Fix
 set -euo pipefail
 
 # ============================================
@@ -24,7 +24,7 @@ else
   echo "⚠️  Tier-1 boot script not found, proceeding with basic preflight..."
 fi
 
-# Preflight checks (legacy - most now handled by tier1 boot)
+# Preflight checks (legacy - most now handled by Tier-1 boot)
 echo "🔍 Running preflight checks..."
 
 # Check Claude CLI
@@ -52,9 +52,6 @@ if [[ "$NODE_VERSION" == "not installed" ]]; then
   exit 1
 fi
 
-# Extract major version (e.g., v20.1.0 -> 20)
-NODE_MAJOR=$(echo "$NODE_VERSION" | sed 's/v\([0-9]*\).*/\1/')
-
 # STRICT: Require Node 20.x for Tier-1
 if [[ "$NODE_VERSION" =~ v20 ]]; then
   echo "✅ Node 20.x detected ($NODE_VERSION)"
@@ -64,7 +61,7 @@ else
   exit 1
 fi
 
-# Check Redis
+# Check Redis CLI
 if ! command -v redis-cli >/dev/null 2>&1; then
   echo "❌ Redis CLI required. Install via: brew install redis"
   exit 1
@@ -84,7 +81,7 @@ fi
 
 echo "✅ Preflight checks passed"
 
-# Start Redis if not running
+# Start Redis if not running (redundant but safe)
 if ! redis-cli ping >/dev/null 2>&1; then
     echo "🔄 Starting Redis..."
     redis-server --daemonize yes
@@ -141,6 +138,17 @@ sleep 5
 curl -sf http://localhost:3005/health >/dev/null && echo "✅ Integration Service: UP" || echo "⚠️ Integration Service: Starting..."
 curl -sf http://localhost:4002/health >/dev/null && echo "✅ Reasoning Gateway: UP" || echo "⚠️ Reasoning Gateway: Starting..."
 
-# Last updated: 2025-10-02
+# Last updated: 2025-10-27
+# Last optimized: 2025-10-27
 
-# Last optimized: 2025-10-02
+# Auto-launch Claude Code with generated prompt
+PROMPT_FILE="$SCRIPT_DIR/tmp/claude_tier1_prompt.txt"
+if [ -f "$PROMPT_FILE" ]; then
+  echo "🚀 Launching Claude Code with Tier-1 prompt..."
+  echo ""
+  claude --system-prompt "$(cat "$PROMPT_FILE")"
+else
+  echo "⚠️  Prompt file not found at $PROMPT_FILE"
+  echo "   Falling back to interactive shell"
+  exec "$SHELL"
+fi
