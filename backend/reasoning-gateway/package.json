@@ -20,7 +20,7 @@
   "author": "Jesse Niesen",
   "license": "UNLICENSED",
   "dependencies": {
-    "express": "^4.18.2",
+    "express": "^4.21.2",
     "@anthropic-ai/sdk": "^0.24.3",
     "openai": "^4.52.1",
     "bullmq": "^5.1.0",

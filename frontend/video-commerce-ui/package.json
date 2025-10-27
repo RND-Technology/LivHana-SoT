@@ -24,20 +24,20 @@
   "author": "Cheetah Autonomous Agent",
   "license": "UNLICENSED",
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "typescript": "^4.9.5",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
+    "autoprefixer": "^10.4.0",
     "axios": "^1.6.0",
-    "react-router-dom": "^6.8.0",
-    "react-player": "^2.13.0",
     "framer-motion": "^10.16.0",
     "lucide-react": "^0.294.0",
+    "postcss": "^8.4.49",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-player": "^2.13.0",
+    "react-router-dom": "^6.8.0",
+    "react-scripts": "^0.0.0",
     "tailwindcss": "^3.3.0",
-    "autoprefixer": "^10.4.0",
-    "postcss": "^8.4.0"
+    "typescript": "^4.9.5"
   },
   "devDependencies": {
     "@types/node": "^16.18.0",
@@ -67,15 +67,28 @@
     "rules": {
       "@typescript-eslint/no-explicit-any": "error",
       "@typescript-eslint/no-unused-vars": "error",
-      "complexity": ["error", 10],
-      "max-lines-per-function": ["error", 50],
-      "max-depth": ["error", 4]
+      "complexity": [
+        "error",
+        10
+      ],
+      "max-lines-per-function": [
+        "error",
+        50
+      ],
+      "max-depth": [
+        "error",
+        4
+      ]
     }
   },
   "tsconfig": {
     "compilerOptions": {
       "target": "ES2020",
-      "lib": ["DOM", "DOM.Iterable", "ES6"],
+      "lib": [
+        "DOM",
+        "DOM.Iterable",
+        "ES6"
+      ],
       "allowJs": true,
       "skipLibCheck": true,
       "esModuleInterop": true,
