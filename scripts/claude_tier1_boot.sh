@@ -517,6 +517,15 @@ echo
 # STEP 1: ENVIRONMENT SETUP (before pre-flight)
 banner "🌍 STEP 1: ENVIRONMENT SETUP"
 
+# Configure Claude Code permissions (eliminate popups)
+if [[ -f "$ROOT/scripts/boot/configure_claude_permissions.sh" ]]; then
+  info "Configuring Claude Code permissions..."
+  bash "$ROOT/scripts/boot/configure_claude_permissions.sh" "$ROOT" 2>/dev/null || warning "Permission configuration failed (non-fatal)"
+  success "Permission configuration complete"
+else
+  warning "Permission configuration script not found (non-fatal)"
+fi
+
 # Check available memory FIRST (warn about crashes)
 # macOS-aware detection: memory_pressure primary, vm_stat fallback
 UNAME=$(uname -s)
