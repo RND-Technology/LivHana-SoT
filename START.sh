@@ -355,29 +355,16 @@ else
 fi
 echo ""
 
-# Start auto-commit watchdog
-echo "🐕 Starting auto-commit watchdog (30s intervals)..."
-if ! tmux has-session -t auto-timestamp 2>/dev/null; then
+# Start Tier-1 Supervisor (consolidated master watchdog)
+echo "🔄 Starting Tier-1 Supervisor (60s intervals, all boot dependencies)..."
+if ! tmux has-session -t tier1-supervisor 2>/dev/null; then
   cd "$(dirname "$0")"
   ROOT="$(pwd)"
-  tmux new-session -d -s auto-timestamp "cd '$ROOT' && bash scripts/watchdogs/boot_script_auto_commit.sh"
+  tmux new-session -d -s tier1-supervisor "cd '$ROOT' && bash scripts/watchdogs/tier1_supervisor.sh"
   sleep 2
-  echo "✅ Auto-commit watchdog active"
+  echo "✅ Tier-1 Supervisor active (replaces 4 redundant watchdogs)"
 else
-  echo "✅ Auto-commit watchdog already running"
-fi
-echo ""
-
-# Start dependency auto-save watchdog
-echo "📦 Starting dependency auto-save watchdog (30s updates)..."
-if ! tmux has-session -t dependency-watch 2>/dev/null; then
-  cd "$(dirname "$0")"
-  ROOT="$(pwd)"
-  tmux new-session -d -s dependency-watch "cd '$ROOT' && bash scripts/watchdogs/dependency_auto_save.sh"
-  sleep 2
-  echo "✅ Dependency watchdog active (updates ALL package-lock.json files)"
-else
-  echo "✅ Dependency watchdog already running"
+  echo "✅ Tier-1 Supervisor already running"
 fi
 echo ""
 
