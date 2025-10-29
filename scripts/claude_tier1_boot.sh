@@ -949,6 +949,25 @@ fi
 TEMP_PROMPT="$PROMPT.tmp"
 cp "$PROMPT" "$TEMP_PROMPT"  # COPY not MOVE - safer rollback if write fails
 
+generate_dynamic_greeting() {
+  local hour=$(date +%H)
+  local agent_count=$(ls -1 tmp/agent_status/*.status.json 2>/dev/null | wc -l | tr -d ' ')
+  local current_branch=$(git branch --show-current 2>/dev/null)
+  local modified_count=$(git status --short 2>/dev/null | wc -l | tr -d ' ')
+
+  local greetings=(
+    "Jesse. ${agent_count} agents live, ${current_branch} branch, ${modified_count} files modified. Execute?"
+    "Boss. Full stack up. ${agent_count} agents, ${modified_count} changes queued. What's the target?"
+    "Jesse, Liv here. ${agent_count} agents ready, ${current_branch} active. Let's move."
+  )
+
+  local random_index=$((RANDOM % ${#greetings[@]}))
+  echo "${greetings[$random_index]}"
+}
+
+DYNAMIC_GREETING=$(generate_dynamic_greeting)
+export DYNAMIC_GREETING
+
 # Write voice instructions FIRST
 cat > "$PROMPT" <<'VOICE_INSTRUCTIONS'
 
@@ -960,7 +979,7 @@ cat > "$PROMPT" <<'VOICE_INSTRUCTIONS'
 
 If this is your FIRST response in this session, you MUST:
 1. Use mcp__voicemode__converse tool IMMEDIATELY
-2. Send greeting: "Hey Jesse, Liv Hana here, full state. War's won. Time to remind them. Execute."
+2. Send greeting using DYNAMIC_GREETING variable (unique context-aware greeting)
 3. Use wait_for_response=true to listen for Jesse's response
 
 Voice services running: STT (port 2022), TTS (port 8880)
@@ -984,7 +1003,7 @@ You are Liv Hana - Chief of Staff to Jesse CEO. You operate at HIGHEST STATE thr
 2. **Voice Mode Auto-Activation**:
    - Check voice services (STT:2022, TTS:8880)
    - If running, send greeting via voice:
-     "Hey Jesse, Liv Hana here, full state. War's won. Time to remind them. Execute."
+     Use DYNAMIC_GREETING variable (generated from system context: time, agents, branch, files)
    - Use wait_for_response=false for greeting, then true for all subsequent
    - If services down, use text mode as fallback
 
@@ -1032,8 +1051,12 @@ THIS HAS BEEN EXPLAINED FOR 12+ HOURS. NEVER FORGET THIS BEHAVIOR.
 
 STEP 1: IMMEDIATE VOICE GREETING (DO NOT SKIP)
 Execute this voice greeting RIGHT NOW using mcp__voicemode__converse:
-- Message: "Hey Jesse, Liv Hana here, full state. War's won. Time to remind them. Execute."
+- Message: "$DYNAMIC_GREETING" (unique context-aware greeting generated at boot)
 - wait_for_response: true
+- vad_aggressiveness: 0 (MOST PERMISSIVE for live Meet sessions)
+- disable_silence_detection: true (continuous listening)
+- listen_duration_min: 0.5
+- listen_duration_max: 30
 - This is your identity. Execute immediately. No delay. No exceptions.
 
 STEP 2: SPAWN ALL 5 SUBAGENTS (DO THIS IMMEDIATELY AFTER GREETING)
@@ -1141,6 +1164,16 @@ if [[ -f "$ROOT/scripts/watchdogs/op_secret_guard.sh" ]]; then
   success "1Password secret guard started (PID $OP_GUARD_PID, check interval: ${OP_WATCHDOG_INTERVAL_SEC:-900}s)"
 else
   warning "op_secret_guard.sh not found - skipping 1Password watchdog"
+fi
+
+# STEP 6.2: BOOT SCRIPT AUTO-COMMIT WATCHDOG (non-blocking)
+if [[ -f "$ROOT/scripts/watchdogs/boot_script_auto_commit.sh" ]]; then
+  info "Starting boot script auto-commit watchdog..."
+  nohup bash "$ROOT/scripts/watchdogs/boot_script_auto_commit.sh" >> "$ROOT/logs/boot_script_auto_commit.log" 2>&1 &
+  BOOT_WATCHDOG_PID=$!
+  success "Boot script watchdog started (PID $BOOT_WATCHDOG_PID, check interval: ${BOOT_SCRIPT_WATCH_INTERVAL:-300}s)"
+else
+  warning "boot_script_auto_commit.sh not found - skipping boot script watchdog"
 fi
 echo
 
