@@ -32,18 +32,27 @@ main() {
     log "⚠️  Missing start_tier1_services.sh - skipping service launch"
   fi
 
-  if [[ -x "$ROOT/scripts/start-crash-monitor.sh" ]]; then
-    "$ROOT/scripts/start-crash-monitor.sh" || true
-  fi
-  if [[ -x "$ROOT/scripts/start-voice-visualizer.sh" ]]; then
-    "$ROOT/scripts/start-voice-visualizer.sh" || true
-  fi
-  if [[ -x "$ROOT/scripts/voice-health-monitor.sh" ]]; then
-    tmux has-session -t voice-health >/dev/null 2>&1 || \
-      tmux new-session -d -s voice-health "cd \"$ROOT\" && bash scripts/voice-health-monitor.sh --daemon"
+  if command -v tmux >/dev/null 2>&1; then
+    if [[ -x "$ROOT/scripts/start-crash-monitor.sh" ]]; then
+      "$ROOT/scripts/start-crash-monitor.sh" || true
+    fi
+    if [[ -x "$ROOT/scripts/start-voice-visualizer.sh" ]]; then
+      "$ROOT/scripts/start-voice-visualizer.sh" || true
+    fi
+    if [[ -x "$ROOT/scripts/voice-health-monitor.sh" ]]; then
+      tmux has-session -t voice-health >/dev/null 2>&1 || \
+        tmux new-session -d -s voice-health "cd \"$ROOT\" && bash scripts/voice-health-monitor.sh --daemon"
+      log "✅ voice-health monitor session ensured"
+    fi
+  else
+    log "⚠️  tmux not available; skipping monitoring sessions"
   fi
 
   run_step "Post-boot validation" "$ROOT/scripts/post-boot-validation.sh"
+
+  if [[ -x "$ROOT/scripts/master-verification.sh" ]]; then
+    run_step "Master verification suite" "$ROOT/scripts/master-verification.sh"
+  fi
 
   log "🎉 Tier-1 boot sequence completed successfully"
   log "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"

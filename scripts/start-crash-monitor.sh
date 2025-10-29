@@ -8,6 +8,9 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SESSION_NAME="${SESSION_NAME:-crash-monitor}"
 MONITOR_SCRIPT="${MONITOR_SCRIPT:-$ROOT/scripts/system-health-monitor.sh}"
 RESTART="${RESTART:-false}"
+VOICE_MONITOR="${VOICE_MONITOR:-true}"
+VOICE_SESSION="${VOICE_SESSION:-voice-health}"
+VOICE_SCRIPT="${VOICE_SCRIPT:-$ROOT/scripts/voice-health-monitor.sh}"
 
 if ! command -v tmux >/dev/null 2>&1; then
   echo "tmux is required to run the crash monitor" >&2
@@ -31,3 +34,12 @@ fi
 tmux new-session -d -s "$SESSION_NAME" "cd \"$ROOT\" && bash \"$MONITOR_SCRIPT\" --daemon"
 echo "✅ Crash monitor session '$SESSION_NAME' started"
 echo "   Attach with: tmux attach -t $SESSION_NAME"
+
+if [[ "$VOICE_MONITOR" == "true" && -x "$VOICE_SCRIPT" ]]; then
+  if tmux has-session -t "$VOICE_SESSION" 2>/dev/null; then
+    echo "ℹ️  Voice monitor session '$VOICE_SESSION' already running"
+  else
+    tmux new-session -d -s "$VOICE_SESSION" "cd \"$ROOT\" && bash \"$VOICE_SCRIPT\" --daemon"
+    echo "✅ Voice monitor session '$VOICE_SESSION' started"
+  fi
+fi
