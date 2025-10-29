@@ -1175,6 +1175,28 @@ if [[ -f "$ROOT/scripts/watchdogs/boot_script_auto_commit.sh" ]]; then
 else
   warning "boot_script_auto_commit.sh not found - skipping boot script watchdog"
 fi
+
+# STEP 6.3: REAL-TIME AGENT STATUS LOGGER (non-blocking)
+if [[ -f "$ROOT/scripts/watchdogs/agent_status_realtime_logger.sh" ]]; then
+  info "Starting real-time agent status logger..."
+  nohup bash "$ROOT/scripts/watchdogs/agent_status_realtime_logger.sh" >> "$ROOT/logs/agent_status_realtime.log" 2>&1 &
+  AGENT_LOGGER_PID=$!
+  echo "$AGENT_LOGGER_PID" > "$ROOT/tmp/agent_logger.pid"
+  success "Agent logger started (PID $AGENT_LOGGER_PID, interval: ${AGENT_LOG_INTERVAL:-10}s)"
+else
+  warning "agent_status_realtime_logger.sh not found - skipping real-time logging"
+fi
+
+# STEP 6.4: DYNAMIC RESOURCE ALLOCATOR (non-blocking)
+if [[ -f "$ROOT/scripts/dynamic_resource_allocator.sh" ]]; then
+  info "Starting dynamic resource allocator..."
+  nohup bash "$ROOT/scripts/dynamic_resource_allocator.sh" >> "$ROOT/logs/dynamic_resource_allocator.log" 2>&1 &
+  RESOURCE_ALLOCATOR_PID=$!
+  echo "$RESOURCE_ALLOCATOR_PID" > "$ROOT/tmp/resource_allocator.pid"
+  success "Resource allocator started (PID $RESOURCE_ALLOCATOR_PID, interval: ${RESOURCE_CHECK_INTERVAL:-60}s)"
+else
+  warning "dynamic_resource_allocator.sh not found - skipping dynamic allocation"
+fi
 echo
 
 # STEP 7: SESSION LOG UPDATE
