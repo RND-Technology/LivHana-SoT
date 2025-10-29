@@ -23,7 +23,7 @@ warning() { echo -e "${YELLOW}[$(date '+%H:%M:%S')]${NC} ⚠️  $1" | tee -a "$
 error() { echo -e "${RED}[$(date '+%H:%M:%S')]${NC} ❌ $1" | tee -a "$LOG"; }
 
 # Initialize
-mkdir -p "$(dirname "$LOG")" "$(dirname "$STATE_FILE")"
+mkdir -p "$(dirname "$LOG")" "$(dirname "$STATE_FILE")" "$ROOT/tmp"
 
 info "=== BOOT SCRIPT AUTO-COMMIT WATCHDOG STARTED (PID $$) ==="
 info "Repository root: $ROOT"
