@@ -118,17 +118,22 @@ auto_commit_and_push() {
 
   cd "$ROOT"
 
-  # Stage changed files
-  for file in "${changed_files[@]}"; do
-    # Use -f to force add if file is in .gitignore
-    if git add -f "$file" 2>&1 | grep -q "ignored"; then
-      git add -f "$file"
-      warning "Forced add for ignored file: $(basename "$file")"
-    else
+  # Check if there are already staged changes
+  if git diff --cached --quiet; then
+    # No staged changes - stage our files
+    for file in "${changed_files[@]}"; do
       git add "$file"
-    fi
-    success "Staged: $(basename "$file")"
-  done
+      success "Staged: $(basename "$file")"
+    done
+  else
+    info "Using existing staged changes"
+  fi
+
+  # Check if there's anything to commit
+  if git diff --cached --quiet; then
+    warning "No changes to commit after staging"
+    return 0
+  fi
 
   # Generate commit message
   local commit_msg=$(generate_commit_message "${changed_files[@]}")
