@@ -687,9 +687,8 @@ if command -v gcloud >/dev/null 2>&1; then
   if [[ -n "$LIGHTSPEED_CLIENT_ID" ]] && [[ -n "$LIGHTSPEED_CLIENT_SECRET" ]] && [[ -n "$LIGHTSPEED_ACCOUNT_ID" ]]; then
     success "LIGHTSPEED OAuth credentials loaded (TIER-1)"
     info "Account ID: $LIGHTSPEED_ACCOUNT_ID"
-  else
-    warning "No LightSpeed OAuth credentials found - integration service may fail"
   fi
+  # Note: Lightspeed credentials optional - integration service runs in degraded mode without them
 fi
 
 # OPENAI fallback for local voice mode
