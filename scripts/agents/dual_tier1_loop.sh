@@ -44,9 +44,9 @@ heartbeat() {
     done < <(find "$TASK_DIR" -name "task_*.request.json" -print0 2>/dev/null || true)
   fi
   
-  local active_tasks_json=$(printf '%s\n' "${active_tasks[@]}" | paste -sd ',' -)
-  if [[ -z "$active_tasks_json" ]]; then
-    active_tasks_json=""
+  local active_tasks_json=""
+  if [[ ${#active_tasks[@]} -gt 0 ]]; then
+    active_tasks_json=$(printf '%s\n' "${active_tasks[@]}" | paste -sd ',' -)
   fi
   
   cat > "$HEARTBEAT_FILE" <<EOF
