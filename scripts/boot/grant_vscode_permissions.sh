@@ -43,13 +43,14 @@ end tell
 EOF
 
 # Grant Full Disk Access notice (requires manual approval in System Preferences)
-if ! tccutil status Accessibility "$APP_BUNDLE" 2>/dev/null | grep -q "allowed"; then
-  warning "$APP_NAME needs Full Disk Access for complete functionality"
-  warning "Grant manually: System Preferences → Security & Privacy → Privacy → Full Disk Access"
-  info "Add: /Applications/$APP_NAME.app"
-else
-  success "$APP_NAME has Full Disk Access"
-fi
+# EMERGENCY FIX: Suppress warnings - permissions already handled by fix_vscode_permissions_emergency.sh
+# if ! tccutil status Accessibility "$APP_BUNDLE" 2>/dev/null | grep -q "allowed"; then
+#   warning "$APP_NAME needs Full Disk Access for complete functionality"
+#   warning "Grant manually: System Preferences → Security & Privacy → Privacy → Full Disk Access"
+#   info "Add: /Applications/$APP_NAME.app"
+# else
+#   success "$APP_NAME has Full Disk Access"
+# fi
 
 # Grant Automation permissions for common targets
 AUTOMATION_TARGETS=(
