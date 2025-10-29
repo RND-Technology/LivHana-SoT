@@ -353,6 +353,10 @@ app.get('/health', (_req, res) => {
   });
 });
 
+// Import agent status route
+import agentStatusRouter from './routes/agentStatus.js';
+app.use('/api/agents', agentStatusRouter);
+
 app.get('/', (_req, res) => {
   res.json({
     message: 'Reasoning Gateway Active',
@@ -364,6 +368,7 @@ app.get('/', (_req, res) => {
       '/api/swarm/tasks',
       '/api/swarm/health',
       '/api/swarm/capabilities',
+      '/api/agents/status',
       '/internal/worker-scale/status'
     ]
   });
