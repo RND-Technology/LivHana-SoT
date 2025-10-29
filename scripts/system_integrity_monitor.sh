@@ -71,7 +71,7 @@ gather_snapshot() {
   fi
 
   process_hot_file="$OUT_DIR/process_hot.txt"
-  ps -Ao pid,pcpu,pmem,comm | sort -k2 -nr | head -n 25 > "$process_hot_file" 2>/dev/null || true
+  ps -Ao pid,pcpu,pmem,comm 2>/dev/null | sort -k2 -nr | head -n 25 > "$process_hot_file" || true
 
   local cpu_hot_json="[]"
   if [[ -s "$process_hot_file" ]]; then
@@ -102,7 +102,7 @@ PY
     [[ -z "$cpu_hot_json" ]] && cpu_hot_json="[]"
   fi
 
-  load_avg="$(sysctl -n vm.loadavg 2>/dev/null | tr -d '{}' | xargs || true)"
+  load_avg="$(sysctl -n vm.loadavg 2>/dev/null | tr -d '{}' | sed 's/^ *//' || true)"
 
   queue_depth=-1
   if command -v redis-cli >/dev/null 2>&1; then
