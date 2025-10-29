@@ -192,7 +192,7 @@ SCHEMA_EOF
 
 ```bash
 # Set password as environment variable
-export PGPASSWORD='x77BXLIf3dGhUwd9SWL1xOOzS'
+export PGPASSWORD='$(op read "op://LivHana-Ops-Keys/ALLOYDB_POSTGRES_PASSWORD/credential")'
 
 # Connect directly to AlloyDB (NO AUTH PROXY NEEDED IN CLOUD SHELL!)
 psql -h 172.18.113.2 -p 5432 -U postgres -d postgres
@@ -324,7 +324,7 @@ gcloud compute ssh alloydb-bastion \
   --ssh-flag="-L 5432:172.18.113.2:5432"
 
 # In another terminal, connect via tunnel
-PGPASSWORD='x77BXLIf3dGhUwd9SWL1xOOzS' psql -h localhost -p 5432 -U postgres -d postgres
+PGPASSWORD='$(op read "op://LivHana-Ops-Keys/ALLOYDB_POSTGRES_PASSWORD/credential")' psql -h localhost -p 5432 -U postgres -d postgres
 ```
 
 ---
@@ -337,7 +337,7 @@ PGPASSWORD='x77BXLIf3dGhUwd9SWL1xOOzS' psql -h localhost -p 5432 -U postgres -d 
 
 ### Error: "password authentication failed"
 **Cause:** Wrong password
-**Fix:** Use password set during cluster creation: `x77BXLIf3dGhUwd9SWL1xOOzS`
+**Fix:** Use password set during cluster creation: `$(op read "op://LivHana-Ops-Keys/ALLOYDB_POSTGRES_PASSWORD/credential")`
 
 ### Error: "peer authentication failed"
 **Cause:** User doesn't exist
@@ -356,14 +356,14 @@ INSTANCE: rpm-primary
 PRIVATE_IP: 172.18.113.2
 PORT: 5432
 USER: postgres
-PASSWORD: x77BXLIf3dGhUwd9SWL1xOOzS
+PASSWORD: $(op read "op://LivHana-Ops-Keys/ALLOYDB_POSTGRES_PASSWORD/credential")
 
 # Cloud Shell Connection (Direct - NO PROXY)
-PGPASSWORD='x77BXLIf3dGhUwd9SWL1xOOzS' psql -h 172.18.113.2 -p 5432 -U postgres -d postgres
+PGPASSWORD='$(op read "op://LivHana-Ops-Keys/ALLOYDB_POSTGRES_PASSWORD/credential")' psql -h 172.18.113.2 -p 5432 -U postgres -d postgres
 
 # Bastion VM Tunnel Connection (From Mac)
 # Terminal 1: gcloud compute ssh alloydb-bastion --tunnel-through-iap --ssh-flag="-L 5432:172.18.113.2:5432"
-# Terminal 2: PGPASSWORD='x77BXLIf3dGhUwd9SWL1xOOzS' psql -h localhost -p 5432 -U postgres -d postgres
+# Terminal 2: PGPASSWORD='$(op read "op://LivHana-Ops-Keys/ALLOYDB_POSTGRES_PASSWORD/credential")' psql -h localhost -p 5432 -U postgres -d postgres
 ```
 
 ---

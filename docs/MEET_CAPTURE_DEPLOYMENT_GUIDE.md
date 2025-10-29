@@ -25,7 +25,7 @@
 # https://console.cloud.google.com → Click >_ icon
 
 # Set password
-export PGPASSWORD='x77BXLIf3dGhUwd9SWL1xOOzS'
+export PGPASSWORD='$(op read "op://LivHana-Ops-Keys/ALLOYDB_POSTGRES_PASSWORD/credential")'
 
 # Connect to AlloyDB
 psql -h 172.18.113.2 -p 5432 -U postgres -d postgres
@@ -106,7 +106,7 @@ curl -X POST $SERVICE_URL/api/v1/capture/start \
 
 ```bash
 # Back to Cloud Shell or local with tunnel
-export PGPASSWORD='x77BXLIf3dGhUwd9SWL1xOOzS'
+export PGPASSWORD='$(op read "op://LivHana-Ops-Keys/ALLOYDB_POSTGRES_PASSWORD/credential")'
 psql -h 172.18.113.2 -p 5432 -U postgres -d postgres
 
 # Check sessions

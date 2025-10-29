@@ -27,7 +27,7 @@ curl http://localhost:3005/health
 # 3. Upload file: backend/integration-service/sql/meet/002_meet_data_schema.sql
 
 # 4. Connect to AlloyDB:
-export PGPASSWORD='x77BXLIf3dGhUwd9SWL1xOOzS'
+export PGPASSWORD='$(op read "op://LivHana-Ops-Keys/ALLOYDB_POSTGRES_PASSWORD/credential")'
 psql -h 172.18.113.2 -p 5432 -U postgres -d postgres
 
 # 5. Deploy:
@@ -126,7 +126,7 @@ tail -f /tmp/integration-service.log
 ```
 AlloyDB:        172.18.113.2:5432
 User:           postgres
-Password:       x77BXLIf3dGhUwd9SWL1xOOzS
+Password:       $(op read "op://LivHana-Ops-Keys/ALLOYDB_POSTGRES_PASSWORD/credential")
 Database:       postgres
 
 Service:        http://localhost:3005

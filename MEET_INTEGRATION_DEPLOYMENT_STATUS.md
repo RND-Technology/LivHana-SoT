@@ -76,7 +76,7 @@ AlloyDB is on a **private network** (172.18.113.2) - not accessible from your Ma
 #    - Upload: backend/integration-service/sql/meet/002_meet_data_schema.sql
 
 # 3. Connect to AlloyDB
-export PGPASSWORD='x77BXLIf3dGhUwd9SWL1xOOzS'
+export PGPASSWORD='$(op read "op://LivHana-Ops-Keys/ALLOYDB_POSTGRES_PASSWORD/credential")'
 psql -h 172.18.113.2 -p 5432 -U postgres -d postgres
 
 # 4. Deploy schema
@@ -101,10 +101,10 @@ gcloud compute ssh alloydb-bastion \
 
 # Terminal 2: Deploy schema
 cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/backend/integration-service
-PGPASSWORD='x77BXLIf3dGhUwd9SWL1xOOzS' psql -h localhost -p 5432 -U postgres -d postgres -f sql/meet/002_meet_data_schema.sql
+PGPASSWORD='$(op read "op://LivHana-Ops-Keys/ALLOYDB_POSTGRES_PASSWORD/credential")' psql -h localhost -p 5432 -U postgres -d postgres -f sql/meet/002_meet_data_schema.sql
 
 # Verify
-PGPASSWORD='x77BXLIf3dGhUwd9SWL1xOOzS' psql -h localhost -p 5432 -U postgres -d postgres -c "\dt meet_*"
+PGPASSWORD='$(op read "op://LivHana-Ops-Keys/ALLOYDB_POSTGRES_PASSWORD/credential")' psql -h localhost -p 5432 -U postgres -d postgres -c "\dt meet_*"
 ```
 
 ---
@@ -251,7 +251,7 @@ backend/integration-service/
 │  Host: 172.18.113.2:5432 (Private IP)                           │
 │  Database: postgres                                             │
 │  User: postgres                                                 │
-│  Password: x77BXLIf3dGhUwd9SWL1xOOzS                            │
+│  Password: $(op read "op://LivHana-Ops-Keys/ALLOYDB_POSTGRES_PASSWORD/credential")                            │
 │                                                                  │
 │  Tables: meet_sessions, meet_transcripts, meet_participants,    │
 │          meet_chat_messages, meet_screen_captures,              │
@@ -288,7 +288,7 @@ INSTANCE: rpm-primary
 PRIVATE_IP: 172.18.113.2
 PORT: 5432
 USER: postgres
-PASSWORD: x77BXLIf3dGhUwd9SWL1xOOzS
+PASSWORD: $(op read "op://LivHana-Ops-Keys/ALLOYDB_POSTGRES_PASSWORD/credential")
 DATABASE: postgres
 ```
 

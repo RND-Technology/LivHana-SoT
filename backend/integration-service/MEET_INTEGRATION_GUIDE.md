@@ -68,7 +68,7 @@ kill $(lsof -t -i :3005)
 - **Port:** 5432
 - **Database:** postgres
 - **User:** postgres
-- **Password:** x77BXLIf3dGhUwd9SWL1xOOzS
+- **Password:** $(op read "op://LivHana-Ops-Keys/ALLOYDB_POSTGRES_PASSWORD/credential")
 
 ### Schema File
 **Location:** `/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/backend/integration-service/sql/meet/002_meet_data_schema.sql`
@@ -90,7 +90,7 @@ kill $(lsof -t -i :3005)
 # 1. Open Cloud Shell at console.cloud.google.com
 # 2. Upload schema file or paste SQL
 # 3. Connect to AlloyDB
-export PGPASSWORD='x77BXLIf3dGhUwd9SWL1xOOzS'
+export PGPASSWORD='$(op read "op://LivHana-Ops-Keys/ALLOYDB_POSTGRES_PASSWORD/credential")'
 psql -h 172.18.113.2 -p 5432 -U postgres -d postgres
 
 # 4. Run schema
@@ -108,7 +108,7 @@ gcloud compute ssh alloydb-bastion --tunnel-through-iap \
   --ssh-flag="-L 5432:172.18.113.2:5432"
 
 # In another terminal
-PGPASSWORD='x77BXLIf3dGhUwd9SWL1xOOzS' psql -h localhost -p 5432 -U postgres -d postgres -f 002_meet_data_schema.sql
+PGPASSWORD='$(op read "op://LivHana-Ops-Keys/ALLOYDB_POSTGRES_PASSWORD/credential")' psql -h localhost -p 5432 -U postgres -d postgres -f 002_meet_data_schema.sql
 ```
 
 ---
@@ -267,7 +267,7 @@ await saveToAlloyDB(actionItems);
 const { Pool } = require('pg');
 
 const pool = new Pool({
-  connectionString: 'postgresql://postgres:x77BXLIf3dGhUwd9SWL1xOOzS@172.18.113.2:5432/postgres'
+  connectionString: 'postgresql://postgres:$(op read "op://LivHana-Ops-Keys/ALLOYDB_POSTGRES_PASSWORD/credential")@172.18.113.2:5432/postgres'
 });
 
 // Get transcripts from last 5 minutes

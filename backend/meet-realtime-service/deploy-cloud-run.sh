@@ -10,7 +10,7 @@ echo "🚀 Deploying Google Meet Real-Time Capture Service to Cloud Run..."
 PROJECT_ID="reggieanddrodispensary"
 SERVICE_NAME="meet-realtime-service"
 REGION="us-central1"
-DATABASE_URL="postgresql://postgres:x77BXLIf3dGhUwd9SWL1xOOzS@172.18.113.2:5432/postgres"
+DATABASE_URL="postgresql://postgres:$(op read "op://LivHana-Ops-Keys/ALLOYDB_POSTGRES_PASSWORD/credential")@172.18.113.2:5432/postgres"
 
 # Build and deploy using gcloud
 gcloud run deploy ${SERVICE_NAME} \

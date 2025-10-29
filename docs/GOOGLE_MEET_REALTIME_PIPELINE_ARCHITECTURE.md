@@ -575,7 +575,7 @@ module.exports = { getActiveMeetingContext };
 
 ```bash
 # From Cloud Shell
-export PGPASSWORD='x77BXLIf3dGhUwd9SWL1xOOzS'
+export PGPASSWORD='$(op read "op://LivHana-Ops-Keys/ALLOYDB_POSTGRES_PASSWORD/credential")'
 psql -h 172.18.113.2 -p 5432 -U postgres -d postgres
 
 # Copy meeting schema from above

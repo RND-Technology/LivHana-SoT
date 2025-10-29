@@ -124,7 +124,7 @@ All 5 agents automatically have access to meeting context:
 ```bash
 # 1. Deploy schema (5 min)
 # Cloud Shell: https://console.cloud.google.com
-export PGPASSWORD='x77BXLIf3dGhUwd9SWL1xOOzS'
+export PGPASSWORD='$(op read "op://LivHana-Ops-Keys/ALLOYDB_POSTGRES_PASSWORD/credential")'
 psql -h 172.18.113.2 -p 5432 -U postgres -d postgres
 \i backend/integration-service/sql/rpm/002_meeting_capture_schema.sql
 

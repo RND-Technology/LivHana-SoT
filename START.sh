@@ -1,8 +1,9 @@
 #!/bin/bash
 set -e
 
-# VERIFIED AND UPDATED: 2025-10-28 22:54 (Liv Hana Tier-1 Session)
+# VERIFIED AND UPDATED: 2025-10-28 23:17 (Liv Hana Tier-1 Session + RPM DNA Integration)
 # All improvements confirmed and locked in
+# RPM DNA Applied: 5-Agent Foundation as Critical Success Factors for constant improvement
 # VS Code Crash Prevention - Set Electron flags before any GUI operations
 export NODE_OPTIONS="--max-old-space-size=8192"
 export ELECTRON_NO_ATTACH_CONSOLE=1
@@ -45,13 +46,16 @@ mkdir -p tmp/agent_status/shared
 cat > tmp/agent_status/shared/agent_registry.json << 'EOF'
 {
   "agents": {
-    "planning": {"status": "starting", "pid": null, "port": null},
-    "research": {"status": "starting", "pid": null, "port": null},
-    "artifact": {"status": "starting", "pid": null, "port": null},
-    "execmon": {"status": "starting", "pid": null, "port": null},
-    "qa": {"status": "starting", "pid": null, "port": null}
+    "planning": {"status": "starting", "pid": null, "port": null, "rpm_csf": "Strategic Planning & Coordination"},
+    "research": {"status": "starting", "pid": null, "port": null, "rpm_csf": "Intelligence & Context Building"},
+    "artifact": {"status": "starting", "pid": null, "port": null, "rpm_csf": "Documentation & Deliverable Creation"},
+    "execmon": {"status": "starting", "pid": null, "port": null, "rpm_csf": "Execution Tracking & Deployment"},
+    "qa": {"status": "starting", "pid": null, "port": null, "rpm_csf": "Validation & Quality Assurance"}
   },
-  "last_update": ""
+  "last_update": "",
+  "rpm_dna_version": "v3.1",
+  "orchestration_layer": "tier-1",
+  "security_posture": "airtight"
 }
 EOF
 echo "🤖 Spawning 5 agents..."
