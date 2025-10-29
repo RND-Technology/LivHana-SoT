@@ -9,7 +9,7 @@ import path from 'path';
 
 const router = Router();
 
-const ROOT = process.cwd();
+const ROOT = process.env.LIVHANA_ROOT || process.cwd().replace('/backend/reasoning-gateway', '');
 const TASK_DIR = path.join(ROOT, 'tmp/agent_status/codex_tasks');
 const HEARTBEAT_LIVHANA = path.join(ROOT, 'tmp/agent_status/livhana_status/heartbeat.json');
 const HEARTBEAT_CODEX = path.join(ROOT, 'tmp/agent_status/codex_status/heartbeat.json');
