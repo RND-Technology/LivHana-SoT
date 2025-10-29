@@ -8,6 +8,7 @@ import { WebSocketServer, WebSocket } from 'ws';
 import type { RawData } from 'ws';
 import { Queue } from 'bullmq';
 import { readFile } from 'fs/promises';
+import { createHardenedQueue } from '../../common/queue/hardenedQueue.js';
 
 interface AgentRegistryEntry {
   status?: string;
@@ -173,7 +174,8 @@ const state: OrchestrationState = {
 let queue: Queue | undefined;
 
 try {
-  queue = new Queue(QUEUE_NAME, { connection: REDIS_CONFIG });
+  queue = createHardenedQueue(QUEUE_NAME, { connection: REDIS_CONFIG });
+  log('Hardened queue initialized', { queueName: QUEUE_NAME, redis: `${REDIS_CONFIG.host}:${REDIS_CONFIG.port}` });
 } catch (error) {
   log('Queue initialization failed', { error: error instanceof Error ? error.message : String(error) });
 }
