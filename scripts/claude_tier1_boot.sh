@@ -243,6 +243,25 @@ clean_stale_agent_locks() {
   success "Stale agent locks removed"
 }
 
+# Check for Cursor AppTranslocation issue (causes crashes)
+check_cursor_apptranslocation() {
+  info "Checking for Cursor AppTranslocation issue..."
+
+  # Check if Cursor is running from AppTranslocation
+  local cursor_procs=$(ps aux | grep -i "AppTranslocation.*Cursor\|AppTranslocation.*Electron" | grep -v grep | wc -l)
+
+  if [[ $cursor_procs -gt 0 ]]; then
+    warning "Cursor is running from AppTranslocation (quarantine sandbox)"
+    warning "This causes random crashes and memory leaks"
+    warning "Run: bash $ROOT/scripts/fix_cursor_quarantine.sh"
+    info "Then restart Cursor from /Applications/Cursor.app"
+    return 1
+  else
+    success "Cursor not in AppTranslocation (good)"
+    return 0
+  fi
+}
+
 # Clean zombie boot script processes from previous runs
 clean_zombie_boot_processes() {
   info "Cleaning zombie boot script processes..."
@@ -704,10 +723,18 @@ if command -v op >/dev/null 2>&1 && op whoami >/dev/null 2>&1; then
     fi
   fi
   
-  # Load other API keys if they exist
+  # Load other API keys if they exist (check both vaults)
   for key_name in DEEPSEEK_API_KEY PERPLEXITY_API_KEY; do
     if [[ -z "${!key_name:-}" ]]; then
+      # Try LivHana-Ops-Keys vault first
       KEY_VALUE=$(op item get "$key_name" --vault LivHana-Ops-Keys --reveal --fields credential 2>/dev/null || echo "")
+
+      # If not found, try Jesse Niesen, CEO vault
+      if [[ -z "$KEY_VALUE" ]]; then
+        # Note: Vault name with comma requires item ID approach
+        KEY_VALUE=$(op item list --vault "Jesse Niesen, CEO" --format json 2>/dev/null | jq -r ".[] | select(.title == \"$key_name\") | .id" | xargs -I {} op item get {} --reveal --fields credential 2>/dev/null || echo "")
+      fi
+
       if [[ -n "$KEY_VALUE" ]]; then
         export "$key_name"="$KEY_VALUE"
         success "$key_name loaded from 1Password"
@@ -1301,6 +1328,9 @@ banner "STEP 8: POST-LAUNCH HEALTH CHECKS"
 
 # Clean zombie boot processes from previous runs
 clean_zombie_boot_processes
+
+# Check for Cursor AppTranslocation issue (causes crashes)
+check_cursor_apptranslocation || true  # Non-blocking warning
 
 # FAILURE #5: Clean stale agent locks BEFORE starting new agents
 clean_stale_agent_locks
