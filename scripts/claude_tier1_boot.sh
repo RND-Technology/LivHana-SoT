@@ -723,18 +723,10 @@ if command -v op >/dev/null 2>&1 && op whoami >/dev/null 2>&1; then
     fi
   fi
   
-  # Load other API keys if they exist (check both vaults)
+  # Load other API keys if they exist (LivHana-Ops-Keys vault only)
   for key_name in DEEPSEEK_API_KEY PERPLEXITY_API_KEY; do
     if [[ -z "${!key_name:-}" ]]; then
-      # Try LivHana-Ops-Keys vault first
       KEY_VALUE=$(op item get "$key_name" --vault LivHana-Ops-Keys --reveal --fields credential 2>/dev/null || echo "")
-
-      # If not found, try Jesse Niesen, CEO vault
-      if [[ -z "$KEY_VALUE" ]]; then
-        # Note: Vault name with comma requires item ID approach
-        KEY_VALUE=$(op item list --vault "Jesse Niesen, CEO" --format json 2>/dev/null | jq -r ".[] | select(.title == \"$key_name\") | .id" | xargs -I {} op item get {} --reveal --fields credential 2>/dev/null || echo "")
-      fi
-
       if [[ -n "$KEY_VALUE" ]]; then
         export "$key_name"="$KEY_VALUE"
         success "$key_name loaded from 1Password"
