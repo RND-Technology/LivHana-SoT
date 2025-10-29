@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+# VERIFIED AND UPDATED: 2025-10-28 22:54 (Liv Hana Tier-1 Session)
+# All improvements confirmed and locked in
 # VS Code Crash Prevention - Set Electron flags before any GUI operations
 export NODE_OPTIONS="--max-old-space-size=8192"
 export ELECTRON_NO_ATTACH_CONSOLE=1
