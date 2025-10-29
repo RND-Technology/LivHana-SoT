@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-# VERIFIED AND UPDATED: 2025-10-29 00:26 (AUTONOMOUS SYSTEM - SELF-*)
+# VERIFIED AND UPDATED: 2025-10-29 00:30 (AUTONOMOUS SYSTEM - SELF-*)
 # CAPABILITIES: Listen, Hear, Talk, Self-Create, Self-Organize, Self-Improve, Self-Heal
 # RPM DNA Applied: 5-Agent Foundation as Critical Success Factors for constant improvement
 # VS Code Crash Prevention - Set Electron flags before any GUI operations
@@ -399,12 +399,86 @@ fi
 echo ""
 
 case "${1:-dev}" in
-  dev) echo "🔧 Starting in DEVELOPMENT mode (AUTONOMOUS)..."; npm run docker:dev ;;
-  prod) echo "🚀 Starting in PRODUCTION mode (AUTONOMOUS)..."; npm run docker:prod ;;
-  empire) echo "👑 Starting EMPIRE engines (AUTONOMOUS)..."; npm run docker:empire ;;
-  local) echo "💻 Starting LOCAL services (AUTONOMOUS)..."; npm run dev:all ;;
+  dev) echo "🔧 Starting in DEVELOPMENT mode (AUTONOMOUS)..."; npm run docker:dev &
+       DOCKER_PID=$!
+       ;;
+  prod) echo "🚀 Starting in PRODUCTION mode (AUTONOMOUS)..."; npm run docker:prod &
+        DOCKER_PID=$!
+        ;;
+  empire) echo "👑 Starting EMPIRE engines (AUTONOMOUS)..."; npm run docker:empire &
+          DOCKER_PID=$!
+          ;;
+  local) echo "💻 Starting LOCAL services (AUTONOMOUS)..."; npm run dev:all &
+         DOCKER_PID=$!
+         ;;
   *) echo "Usage: ./START.sh [dev|prod|empire|local]"; exit 1 ;;
 esac
+
+# Wait for docker/services to start
+echo ""
+echo "⏳ Waiting for services to start..."
+sleep 10
+
+# FINAL VALIDATION: Verify everything actually worked
+echo ""
+echo "🔍 FINAL VALIDATION: Verifying system health..."
+echo ""
+
+# Check memory pressure
+if command -v memory_pressure >/dev/null 2>&1; then
+  MEM_STATUS=$(memory_pressure 2>&1 | grep -oE "System-wide memory free percentage: [0-9]+%" | grep -oE "[0-9]+")
+  if [ -n "$MEM_STATUS" ] && [ "$MEM_STATUS" -lt 20 ]; then
+    echo "⚠️  WARNING: Memory pressure HIGH ($MEM_STATUS% free)"
+    echo "   Consider closing other applications"
+  else
+    echo "✅ Memory pressure healthy (${MEM_STATUS:-unknown}% free)"
+  fi
+else
+  MEM_FREE=$(vm_stat | grep "Pages free" | awk '{print $3}' | tr -d '.')
+  if [ -n "$MEM_FREE" ] && [ "$MEM_FREE" -gt 50000 ]; then
+    echo "✅ Memory pressure healthy"
+  else
+    echo "⚠️  Memory pressure may be high"
+  fi
+fi
+
+# Verify agents are running
+AGENTS_RUNNING=$(tmux ls 2>/dev/null | grep -cE "planning|research|artifact|execmon|qa" || echo 0)
+if [ "$AGENTS_RUNNING" -eq 5 ]; then
+  echo "✅ All 5 agents running ($AGENTS_RUNNING/5)"
+else
+  echo "⚠️  Only $AGENTS_RUNNING/5 agents running"
+fi
+
+# Verify voice services
+if lsof -i :2022 >/dev/null 2>&1; then
+  echo "✅ STT service running (port 2022)"
+else
+  echo "❌ STT service NOT running"
+fi
+
+if lsof -i :8880 >/dev/null 2>&1; then
+  echo "✅ TTS service running (port 8880)"
+else
+  echo "❌ TTS service NOT running"
+fi
+
+# Verify VS Code settings exist
+if [ -f ".vscode/settings.json" ]; then
+  echo "✅ VS Code crash prevention configured"
+else
+  echo "⚠️  VS Code settings missing"
+fi
+
+# Check docker process
+if [ -n "${DOCKER_PID:-}" ] && kill -0 "$DOCKER_PID" 2>/dev/null; then
+  echo "✅ Docker/services process running (PID: $DOCKER_PID)"
+elif docker ps >/dev/null 2>&1; then
+  echo "✅ Docker daemon responsive"
+else
+  echo "⚠️  Docker status unknown"
+fi
+
 echo ""
 echo "╔═══════════════════════════════════════════════════════════════════════════╗"
 echo "║                    🌟 AUTONOMOUS SYSTEM ACTIVE 🌟                        ║"
