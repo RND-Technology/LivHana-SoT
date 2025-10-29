@@ -49,6 +49,12 @@ export class AutoScaler {
   private timer?: NodeJS.Timeout;
   private lastSnapshot?: AutoScalerSnapshot;
   private targetWorkers: number;
+  private scalingHistory: Array<{
+    action: string;
+    timestamp: string;
+    targetWorkers: number;
+    reason?: string;
+  }> = [];
 
   constructor(options: AutoScalerOptions) {
     this.queue = options.queue;
@@ -259,5 +265,147 @@ export class AutoScaler {
         error: error instanceof Error ? error.message : String(error)
       });
     }
+  }
+
+  /**
+   * Evaluate scaling decision based on queue metrics (PO1 Day 2)
+   * Factors: queue depth + average latency
+   */
+  public async evaluateScaling(): Promise<{
+    action: 'scale_up' | 'scale_down' | 'no_change' | 'error';
+    targetWorkers: number;
+    reason: string;
+    metrics: {
+      queueDepth: number;
+      avgLatency: number;
+      currentWorkers: number;
+    };
+    scalingFactor: number;
+    error?: string;
+  }> {
+    try {
+      const counts = await this.queue.getJobCounts('waiting', 'active');
+      const queueDepth = (counts.waiting ?? 0) + (counts.active ?? 0);
+      const currentWorkers = this.workers.size;
+
+      // Get queue metrics (latency)
+      const queueMetrics = (this.queue as any).getMetrics?.() || { latency: 0, p95Latency: 0 };
+      const avgLatency = queueMetrics.latency || 0;
+
+      // Calculate scaling factor based on depth + latency
+      // High depth or high latency = higher scaling factor
+      const depthFactor = queueDepth / this.scaleUpThreshold;
+      const latencyFactor = avgLatency > 500 ? avgLatency / 500 : 1;
+      const scalingFactor = Math.max(depthFactor, latencyFactor);
+
+      let action: 'scale_up' | 'scale_down' | 'no_change' = 'no_change';
+      let targetWorkers = currentWorkers;
+      let reason = 'Queue stable';
+
+      // Scale up logic
+      if (queueDepth > this.scaleUpThreshold && currentWorkers < this.maxWorkers) {
+        action = 'scale_up';
+        targetWorkers = Math.min(
+          this.maxWorkers,
+          Math.ceil(currentWorkers * scalingFactor)
+        );
+        reason = `Queue depth ${queueDepth} > threshold ${this.scaleUpThreshold}, avg latency ${avgLatency}ms`;
+
+        // Record scaling history
+        this.scalingHistory.push({
+          action,
+          timestamp: new Date().toISOString(),
+          targetWorkers,
+          reason
+        });
+      }
+      // Scale down logic
+      else if (queueDepth <= this.scaleDownThreshold && currentWorkers > this.minWorkers) {
+        action = 'scale_down';
+        targetWorkers = Math.max(this.minWorkers, currentWorkers - 1);
+        reason = `Queue depth low (${queueDepth}), can reduce workers`;
+
+        // Record scaling history
+        this.scalingHistory.push({
+          action,
+          timestamp: new Date().toISOString(),
+          targetWorkers,
+          reason
+        });
+      }
+
+      return {
+        action,
+        targetWorkers,
+        reason,
+        metrics: {
+          queueDepth,
+          avgLatency,
+          currentWorkers
+        },
+        scalingFactor
+      };
+    } catch (error) {
+      return {
+        action: 'error',
+        targetWorkers: this.workers.size,
+        reason: 'Failed to evaluate scaling',
+        metrics: {
+          queueDepth: 0,
+          avgLatency: 0,
+          currentWorkers: this.workers.size
+        },
+        scalingFactor: 1,
+        error: error instanceof Error ? error.message : String(error)
+      };
+    }
+  }
+
+  /**
+   * Set worker count directly (for testing)
+   */
+  public async setWorkerCount(count: number): Promise<void> {
+    if (count < this.minWorkers || count > this.maxWorkers || isNaN(count)) {
+      throw new Error(`Invalid worker count: ${count}. Must be between ${this.minWorkers} and ${this.maxWorkers}`);
+    }
+
+    await this.ensureWorkerCount(count);
+  }
+
+  /**
+   * Get current autoscaler metrics
+   */
+  public async getMetrics(): Promise<{
+    currentWorkers: number;
+    minWorkers: number;
+    maxWorkers: number;
+    targetWorkers: number;
+    queueDepth: number;
+    avgLatency: number;
+  }> {
+    const counts = await this.queue.getJobCounts('waiting', 'active');
+    const queueDepth = (counts.waiting ?? 0) + (counts.active ?? 0);
+    const queueMetrics = (this.queue as any).getMetrics?.() || { latency: 0 };
+
+    return {
+      currentWorkers: this.workers.size,
+      minWorkers: this.minWorkers,
+      maxWorkers: this.maxWorkers,
+      targetWorkers: this.targetWorkers,
+      queueDepth,
+      avgLatency: queueMetrics.latency || 0
+    };
+  }
+
+  /**
+   * Get scaling history
+   */
+  public async getScalingHistory(): Promise<Array<{
+    action: string;
+    timestamp: string;
+    targetWorkers: number;
+    reason?: string;
+  }>> {
+    return [...this.scalingHistory];
   }
 }

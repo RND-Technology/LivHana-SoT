@@ -5,20 +5,19 @@
  */
 
 import { describe, it, expect, beforeAll, afterAll, beforeEach } from '@jest/globals';
-import { createHardenedQueue } from '../../../common/queue/hardenedQueue.js';
+import { createHardenedQueue, createSecureRedisClient } from '../../../common/queue/hardenedQueue.js';
 import { AutoScaler } from './autoScaler';
-import { createClient } from 'redis';
 
 describe('AutoScaler', () => {
   let redis: any;
   let testQueue: any;
   let autoScaler: AutoScaler;
 
-  // Ephemeral Redis for testing
+  // Ephemeral Redis for testing - using secure client factory
   beforeAll(async () => {
-    redis = createClient({
+    redis = createSecureRedisClient({
       host: process.env.TEST_REDIS_HOST || 'localhost',
-      port: parseInt(process.env.TEST_REDIS_PORT || '6380'), // Different port for test Redis
+      port: parseInt(process.env.TEST_REDIS_PORT || '6380', 10), // Different port for test Redis
       db: 15 // Use a separate DB for tests
     });
 
