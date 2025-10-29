@@ -11,6 +11,11 @@ set -euo pipefail
 # Modes: dev (default), full, voice, test
 # ============================================
 
+# Innovations:
+# - self-secure: automatic threat detection and patching
+# - self-report: proactive system summaries
+# - self-integrate: seamless connection to external APIs or tools
+
 set -e
 
 MODE="${1:-dev}"
@@ -80,8 +85,6 @@ curl -sf http://localhost:3005/health >/dev/null && echo "✅ Integration Servic
 curl -sf http://localhost:4002/health >/dev/null && echo "✅ Reasoning Gateway: UP" || echo "⚠️ Reasoning Gateway: Starting..."
 
 # Last updated: 2025-10-02
-
 # Last optimized: 2025-10-02
-
 # Keep the session running interactively
 exec "$SHELL"
