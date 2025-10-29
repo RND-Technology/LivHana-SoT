@@ -9,6 +9,8 @@ services:
       - VITE_API_URL=http://integration-service:3005
       - VITE_VOICE_API_URL=http://voice-service:8080
       - VITE_REASONING_API_URL=http://reasoning-gateway:8080
+      - VITE_ORCHESTRATION_HTTP_URL=http://localhost:4010
+      - VITE_ORCHESTRATION_WS_URL=ws://localhost:4010/ws
     depends_on:
       - integration-service
       - voice-service
@@ -44,6 +46,8 @@ services:
       - REASONING_GATEWAY_BASE_URL=http://reasoning-gateway:8080/api/reasoning
       - REASONING_QUEUE_NAME=voice-mode-reasoning-jobs
       - ELEVENLABS_API_KEY=${ELEVENLABS_API_KEY}
+      - ORCHESTRATION_SERVICE_URL=http://localhost:4010
+      - ORCHESTRATION_CONTROL_SECRET=${ORCHESTRATION_CONTROL_SECRET}
     env_file:
       - .env
     network_mode: "host"
@@ -63,9 +67,37 @@ services:
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY}
+      - ORCHESTRATION_SERVICE_URL=http://localhost:4010
+      - ORCHESTRATION_CONTROL_SECRET=${ORCHESTRATION_CONTROL_SECRET}
+      - REASONING_MIN_WORKERS=1
+      - REASONING_MAX_WORKERS=6
+      - REASONING_SCALE_UP_THRESHOLD=5
+      - REASONING_SCALE_DOWN_THRESHOLD=1
+      - REASONING_AUTOSCALER_INTERVAL_MS=5000
     env_file:
       - .env
     network_mode: "host"
+
+  # Orchestration Service - Real-time dashboard & autoscaler coordination
+  orchestration-service:
+    build: ./backend/orchestration-service
+    ports:
+      - "4010:4010"
+    environment:
+      - NODE_ENV=production
+      - ORCHESTRATION_PORT=4010
+      - REDIS_HOST=host.docker.internal
+      - REDIS_PORT=6379
+      - REASONING_QUEUE_NAME=voice-mode-reasoning-jobs
+      - REASONING_GATEWAY_BASE_URL=http://localhost:8080
+      - REASONING_GATEWAY_CONTROL_URL=http://localhost:8080/internal/worker-scale
+      - ORCHESTRATION_CONTROL_SECRET=${ORCHESTRATION_CONTROL_SECRET}
+    env_file:
+      - .env
+    network_mode: "host"
+    depends_on:
+      - reasoning-gateway
+      - voice-service
       
 # Redis already running on host - using existing instance
 

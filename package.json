@@ -19,7 +19,10 @@
     "test:watch": "playwright test --watch",
     "start:voice-service:test": "NODE_ENV=test node backend/voice-service/src/index.js",
     "start:reasoning-gateway:test": "NODE_ENV=test node backend/reasoning-gateway/src/index.js",
+    "start:orchestration:test": "NODE_ENV=test npm run dev --prefix backend/orchestration-service",
     "start:frontend:test": "NODE_ENV=test npm run dev --prefix frontend/vibe-cockpit",
+    "orchestration:start": "npm run dev --prefix backend/orchestration-service",
+    "orchestration:build": "npm run build --prefix backend/orchestration-service",
     "dev": "concurrently \"npm run build:watch\" \"npm run test:watch\"",
     "optimize": "npm run build && echo '✅ Build complete'",
     "tier1": "npm run optimize && echo '✅ Tier 1 Option A optimization complete'",
@@ -33,7 +36,7 @@
     "docker:dev": "docker-compose -f docker-compose.yml up -d",
     "docker:prod": "docker-compose -f docker-compose.unified.yml up -d",
     "docker:empire": "docker-compose -f docker-compose.empire.yml up -d",
-    "dev:all": "concurrently \"npm run start:voice-service:test\" \"npm run start:reasoning-gateway:test\" \"npm run start:frontend:test\""
+    "dev:all": "concurrently \"npm run start:voice-service:test\" \"npm run start:reasoning-gateway:test\" \"npm run start:orchestration:test\" \"npm run start:frontend:test\""
   },
   "devDependencies": {
     "@playwright/test": "^1.40.0",

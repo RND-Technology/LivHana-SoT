@@ -1,11 +1,33 @@
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
+import { createRequire } from 'module';
 import elevenlabsRouter from './routers/elevenlabs-router.js';
 import reasoningRouter from './routers/reasoning-router.js';
 
 const app = express();
 const PORT = process.env.PORT || 8080;
+
+const require = createRequire(import.meta.url);
+let handleOrchestrationCommand;
+
+try {
+  const { register } = require('ts-node');
+  register({
+    transpileOnly: true,
+    compilerOptions: {
+      module: 'es2020',
+      moduleResolution: 'node',
+      target: 'es2020'
+    }
+  });
+  ({ handleOrchestrationCommand } = await import('./commands/orchestrationCommands.ts'));
+  if (process.env.NODE_ENV !== 'production') {
+    console.log('🧭 Orchestration voice commands enabled');
+  }
+} catch (error) {
+  console.warn('⚠️  Orchestration voice commands unavailable', error instanceof Error ? error.message : error);
+}
 
 // Security middleware
 app.use(helmet());
@@ -49,7 +71,8 @@ app.get('/', (req, res) => {
     endpoints: {
       health: '/health',
       elevenlabs: '/api/elevenlabs/*',
-      reasoning: '/api/reasoning/*'
+      reasoning: '/api/reasoning/*',
+      orchestrationCommands: '/api/commands/orchestration'
     }
   });
 });
@@ -57,6 +80,43 @@ app.get('/', (req, res) => {
 // Mount routers
 app.use('/api/elevenlabs', elevenlabsRouter);
 app.use('/api/reasoning', reasoningRouter);
+
+app.post('/api/commands/orchestration', async (req, res) => {
+  if (!handleOrchestrationCommand) {
+    return res.status(503).json({
+      success: false,
+      error: 'orchestration_commands_unavailable'
+    });
+  }
+
+  const { command } = req.body ?? {};
+  if (!command || typeof command !== 'string') {
+    return res.status(400).json({
+      success: false,
+      error: 'command text is required'
+    });
+  }
+
+  try {
+    const result = await handleOrchestrationCommand(command, {
+      baseUrl: process.env.ORCHESTRATION_SERVICE_URL,
+      logger: (message, context) => {
+        if (process.env.NODE_ENV !== 'production') {
+          console.log(`[voice->orchestration] ${message}`, context);
+        }
+      },
+      requestedBy: 'voice-service'
+    });
+    res.json(result);
+  } catch (error) {
+    console.error('Failed to execute orchestration command', error);
+    res.status(500).json({
+      success: false,
+      error: error instanceof Error ? error.message : String(error),
+      message: 'Voice interface failed to execute orchestration command'
+    });
+  }
+});
 
 // Error handling middleware
 // eslint-disable-next-line no-unused-vars

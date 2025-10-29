@@ -1,9 +1,20 @@
 #!/bin/bash
 set -e
 
-# VERIFIED AND UPDATED: 2025-10-29 00:37 (AUTONOMOUS SYSTEM - SELF-*)
+# VERIFIED AND UPDATED: 2025-10-29 06:07 (AUTONOMOUS SYSTEM - SELF-*)
+# MOBILE CONTROL BRANCH STABILIZED - AutoScaler + OrchestrationCommands integrated
 # CAPABILITIES: Listen, Hear, Talk, Self-Create, Self-Organize, Self-Improve, Self-Heal
 # RPM DNA Applied: 5-Agent Foundation as Critical Success Factors for constant improvement
+
+# VOICE MODE - INDEPENDENT STARTUP (PRIORITY 1)
+export VOICE_MODE_INDEPENDENT="TRUE"
+export VOICE_STARTUP_PRIORITY=1
+export VOICE_FALLBACK_ENABLED="TRUE"
+export VOICE_VAD_AGGRESSIVENESS=0
+export VOICE_LISTEN_MIN=2.0
+export VOICE_LISTEN_MAX=120
+export VOICE_RESPONSE_TARGET_MS=500
+
 # VS Code Crash Prevention - Set Electron flags before any GUI operations
 export NODE_OPTIONS="--max-old-space-size=8192"
 export ELECTRON_NO_ATTACH_CONSOLE=1
@@ -23,6 +34,10 @@ export LIV_SELF_EVOLVE="TRUE"       # Agents rewrite their own code from success
 export LIV_SELF_SECURE="TRUE"       # Automatic threat detection and patching
 export LIV_SELF_REPORT="TRUE"       # Proactive summaries sent to Jesse
 export LIV_SELF_INTEGRATE="TRUE"    # Smooth connection with external APIs/tools
+
+# OAUTH CONFIGURATION (Non-blocking)
+export LIGHTSPEED_AUTH_ENDPOINT="https://api.lightspeedapp.com/oauth/authorize"
+export LIGHTSPEED_TOKEN_ENDPOINT="https://api.lightspeedapp.com/oauth/access_token"
 
 echo ""
 echo "╔═══════════════════════════════════════════════════════════════════════════════╗"
@@ -61,15 +76,56 @@ mkdir -p tmp/agent_status/shared
 mkdir -p logs/autonomous
 mkdir -p tmp/self_improve
 
-# Initialize autonomous agent registry with self-* capabilities
+# Initialize autonomous agent registry with priority-based startup
 cat > tmp/agent_status/shared/agent_registry.json << 'EOF'
 {
   "agents": {
-    "planning": {"status": "starting", "pid": null, "port": null, "rpm_csf": "Strategic Planning & Coordination", "self_heal": true},
-    "research": {"status": "starting", "pid": null, "port": null, "rpm_csf": "Intelligence & Context Building", "self_heal": true},
-    "artifact": {"status": "starting", "pid": null, "port": null, "rpm_csf": "Documentation & Deliverable Creation", "self_heal": true},
-    "execmon": {"status": "starting", "pid": null, "port": null, "rpm_csf": "Execution Tracking & Deployment", "self_heal": true, "self_improve": true},
-    "qa": {"status": "starting", "pid": null, "port": null, "rpm_csf": "Validation & Quality Assurance", "self_heal": true}
+    "planning": {
+      "status": "starting",
+      "pid": null,
+      "port": null,
+      "rpm_csf": "Strategic Planning & Coordination",
+      "self_heal": true,
+      "priority": 2,
+      "dependencies": []
+    },
+    "research": {
+      "status": "starting",
+      "pid": null,
+      "port": null,
+      "rpm_csf": "Intelligence & Context Building",
+      "self_heal": true,
+      "priority": 2,
+      "dependencies": []
+    },
+    "artifact": {
+      "status": "starting",
+      "pid": null,
+      "port": null,
+      "rpm_csf": "Documentation & Deliverable Creation",
+      "self_heal": true,
+      "priority": 2,
+      "dependencies": []
+    },
+    "execmon": {
+      "status": "starting",
+      "pid": null,
+      "port": null,
+      "rpm_csf": "Execution Tracking & Deployment",
+      "self_heal": true,
+      "self_improve": true,
+      "priority": 3,
+      "dependencies": ["planning", "research"]
+    },
+    "qa": {
+      "status": "starting",
+      "pid": null,
+      "port": null,
+      "rpm_csf": "Validation & Quality Assurance",
+      "self_heal": true,
+      "priority": 2,
+      "dependencies": []
+    }
   },
   "last_update": "",
   "rpm_dna_version": "v3.1",
@@ -83,68 +139,168 @@ cat > tmp/agent_status/shared/agent_registry.json << 'EOF'
     "self_organize": true,
     "self_improve": true,
     "self_heal": true
+  },
+  "services": {
+    "voice": {
+      "priority": 1,
+      "required": true,
+      "ports": {
+        "stt": 2022,
+        "tts": 8880
+      },
+      "healthCheck": true
+    },
+    "integration": {
+      "priority": 2,
+      "required": false,
+      "port": 3005,
+      "dependencies": ["lightspeed", "bigquery"],
+      "healthCheck": true,
+      "retryStrategy": {
+        "maxAttempts": 3,
+        "interval": "10s"
+      }
+    }
   }
 }
 EOF
 echo "🤖 Spawning 5 agents (SELF-ORGANIZING, SELF-HEALING)..."
 echo ""
 
-# Self-Create: Spawn agents with health monitoring
-spawn_agent() {
-  local agent=$1
-  local script=$2
-  if tmux has-session -t "$agent" 2>/dev/null; then
-    echo "✓ $agent already running"
+# Start voice services first (independent of other services)
+echo "🎤 Starting voice services (INDEPENDENT MODE)..."
+start_voice_services() {
+  npm run voice:start
+  sleep 2
+  if lsof -i :2022 >/dev/null 2>&1 && lsof -i :8880 >/dev/null 2>&1; then
+    echo "✅ Voice services started successfully"
+    return 0
   else
-    tmux new-session -d -s "$agent" "$script" 2>/dev/null && echo "✓ $agent spawned" || echo "⚠️  $agent spawn failed"
+    echo "⚠️  Voice services startup issue - retrying..."
+    npm run voice:start
+    sleep 2
+    if lsof -i :2022 >/dev/null 2>&1 && lsof -i :8880 >/dev/null 2>&1; then
+      echo "✅ Voice services started on retry"
+      return 0
+    else
+      echo "❌ Voice services failed to start"
+      return 1
+    fi
   fi
 }
 
-spawn_agent "planning" "node agents/planning.js"
-spawn_agent "research" "node agents/research.js"
-spawn_agent "artifact" "node agents/artifact.js"
-spawn_agent "execmon" "node agents/execmon.js"
-spawn_agent "qa" "node agents/qa.js"
+start_voice_services
 
+# Start orchestration dashboard service
+echo ""
+echo "🛰️ Starting orchestration service (real-time dashboard + autoscaler telemetry)..."
+start_orchestration_service() {
+  local session="orchestration"
+  if tmux has-session -t "$session" 2>/dev/null; then
+    echo "✓ Orchestration service already active (tmux session: $session)"
+  else
+    mkdir -p logs/autonomous
+    tmux new-session -d -s "$session" "npm run orchestration:start | tee -a logs/autonomous/orchestration.log"
+    sleep 3
+    if curl -sf http://localhost:4010/health >/dev/null 2>&1; then
+      echo "✅ Orchestration service online at http://localhost:4010 (WebSocket: /ws)"
+    else
+      echo "⚠️  Orchestration service did not respond to health check (see logs/autonomous/orchestration.log)"
+    fi
+  fi
+}
+
+start_orchestration_service
+
+# Self-Create: Spawn agents with priority-based health monitoring
+spawn_agent() {
+  local agent=$1
+  local script=$2
+  local priority=$3
+  
+  if tmux has-session -t "$agent" 2>/dev/null; then
+    echo "✓ $agent already running (priority $priority)"
+  else
+    tmux new-session -d -s "$agent" "$script" 2>/dev/null && \
+    echo "✓ $agent spawned (priority $priority)" || \
+    echo "⚠️  $agent spawn failed (priority $priority)"
+  fi
+}
+
+# Priority 2 agents (core functionality)
+spawn_agent "planning" "node agents/planning.js" 2
+spawn_agent "research" "node agents/research.js" 2
+spawn_agent "artifact" "node agents/artifact.js" 2
+spawn_agent "qa" "node agents/qa.js" 2
+
+# Priority 3 agents (dependent on core)
+spawn_agent "execmon" "node agents/execmon.js" 3
+
+# Allow agents to initialize
 sleep 3
 
-# Self-Heal: Validate and auto-recover
-RUNNING=$(tmux ls 2>/dev/null | grep -E "planning|research|artifact|execmon|qa" | wc -l | tr -d ' ')
-echo ""
-if [ "$RUNNING" -eq 5 ]; then
-  echo "✅ All 5 agents spawned successfully (AUTONOMOUS MODE ACTIVE)"
-else
-  echo "🔧 SELF-HEAL ACTIVATED: Only $RUNNING/5 agents running"
-
-  # Self-Heal Logic: Restart failed agents
-  for agent in planning research artifact execmon qa; do
-    if ! tmux has-session -t "$agent" 2>/dev/null; then
-      echo "   → Restarting $agent..."
-      case $agent in
-        planning) tmux new-session -d -s planning "node agents/planning.js" ;;
-        research) tmux new-session -d -s research "node agents/research.js" ;;
-        artifact) tmux new-session -d -s artifact "node agents/artifact.js" ;;
-        execmon) tmux new-session -d -s execmon "node agents/execmon.js" ;;
-        qa) tmux new-session -d -s qa "node agents/qa.js" ;;
-      esac
-      sleep 1
-    fi
-  done
-
-  # Re-validate
-  RUNNING_AFTER=$(tmux ls 2>/dev/null | grep -E "planning|research|artifact|execmon|qa" | wc -l | tr -d ' ')
-  if [ "$RUNNING_AFTER" -eq 5 ]; then
-    echo "✅ SELF-HEAL SUCCESSFUL: All agents recovered"
+# Self-Heal: Validate and auto-recover with priority awareness
+validate_and_recover() {
+  local priority=$1
+  local expected_count=$2
+  local agents=$3
+  
+  RUNNING=$(tmux ls 2>/dev/null | grep -E "$agents" | wc -l | tr -d ' ')
+  echo ""
+  if [ "$RUNNING" -eq "$expected_count" ]; then
+    echo "✅ All priority $priority agents spawned successfully"
   else
-    echo "⚠️  SELF-HEAL PARTIAL: $RUNNING_AFTER/5 agents running (manual check required)"
+    echo "🔧 SELF-HEAL ACTIVATED: Only $RUNNING/$expected_count priority $priority agents running"
+
+    # Self-Heal Logic: Restart failed agents
+    IFS='|' read -ra AGENT_LIST <<< "$agents"
+    for agent in "${AGENT_LIST[@]}"; do
+      if ! tmux has-session -t "$agent" 2>/dev/null; then
+        echo "   → Restarting $agent (priority $priority)..."
+        spawn_agent "$agent" "node agents/$agent.js" "$priority"
+        sleep 1
+      fi
+    done
+
+    # Re-validate
+    RUNNING_AFTER=$(tmux ls 2>/dev/null | grep -E "$agents" | wc -l | tr -d ' ')
+    if [ "$RUNNING_AFTER" -eq "$expected_count" ]; then
+      echo "✅ SELF-HEAL SUCCESSFUL: All priority $priority agents recovered"
+    else
+      echo "⚠️  SELF-HEAL PARTIAL: $RUNNING_AFTER/$expected_count priority $priority agents running"
+    fi
   fi
-fi
+}
+
+# Validate priority 2 agents first
+validate_and_recover 2 4 "planning|research|artifact|qa"
+
+# Then validate priority 3 agents
+validate_and_recover 3 1 "execmon"
 echo ""
 echo "🔍 Validating environment..."
 npm run validate:env
 echo ""
-echo "🎤 Starting voice services (STT:2022, TTS:8880) - LISTEN, HEAR, TALK..."
-npm run voice:start
+# Start integration services (non-blocking)
+echo "🔌 Starting integration services (NON-BLOCKING)..."
+start_integration_services() {
+  npm run integration:start &
+  INTEGRATION_PID=$!
+  echo "$INTEGRATION_PID" > tmp/integration.pid
+  
+  # Non-blocking OAuth flow
+  (
+    echo "🔑 Initializing OAuth flow..."
+    if [ -n "${LIGHTSPEED_CLIENT_ID:-}" ] && [ -n "${LIGHTSPEED_CLIENT_SECRET:-}" ]; then
+      node scripts/oauth-init.js &
+      echo "✓ OAuth initialization started (background)"
+    else
+      echo "⚠️  OAuth credentials not found - integration will run in limited mode"
+    fi
+  ) &
+}
+
+start_integration_services
 echo ""
 
 # SELF-LISTEN: Background monitoring of all agents
