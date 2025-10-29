@@ -25,12 +25,8 @@ class VoiceVisualizer:
         self.output_dir = self.project_root / "tmp" / "visualizations"
         self.output_dir.mkdir(parents=True, exist_ok=True)
         
-        # Dependency tracking
-        self.dep_files = [
-            "package.json",
-            "backend/integration-service/package.json",
-            "frontend/package.json"
-        ]
+        # Dependency tracking - MINIMAL PO1 MODE
+        self.dep_files = []  # NO AUTO-UPDATES - Manual control only
         
     def get_system_metrics(self) -> Dict[str, Any]:
         """Fetch current system metrics from monitoring script"""
@@ -144,32 +140,10 @@ graph TD
         return dashboard
     
     def update_dependencies(self) -> List[str]:
-        """Auto-update dependency files with latest versions"""
-        updated = []
-        
-        for dep_file in self.dep_files:
-            file_path = self.project_root / dep_file
-            if not file_path.exists():
-                continue
-            
-            try:
-                # Run npm outdated to check for updates
-                result = subprocess.run(
-                    ["npm", "outdated", "--json"],
-                    cwd=file_path.parent,
-                    capture_output=True,
-                    text=True,
-                    timeout=10
-                )
-                
-                if result.stdout:
-                    outdated = json.loads(result.stdout)
-                    if outdated:
-                        updated.append(f"{dep_file}: {len(outdated)} packages outdated")
-            except Exception as e:
-                print(f"⚠️  Error checking {dep_file}: {e}")
-        
-        return updated
+        """DISABLED - PO1 Rule: No auto-updates, manual control only"""
+        # AUTO-UPDATES DISABLED - preventing crashes and instability
+        # All dependency updates must be explicitly approved and tested
+        return []
     
     def run_continuous(self, interval: int = 60):
         """Run continuous monitoring and visualization"""
