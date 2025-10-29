@@ -247,3 +247,4 @@ out_mirror/
 # Service account keys (GCP credentials - NEVER commit)
 high-sa-key.json
 *-sa-key.json
+backend/voice-service-ultimate/.env

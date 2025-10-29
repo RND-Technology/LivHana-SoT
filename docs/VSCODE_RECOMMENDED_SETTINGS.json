@@ -1,0 +1,52 @@
+{
+  "// STABILITY SETTINGS": "Prevents VS Code crashes and memory issues",
+
+  "files.hotExit": "onExit",
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/**": true,
+    "**/tmp/**": true,
+    "**/out/**": true,
+    "**/out_mirror/**": true,
+    "**/.cursor-backups/**": true,
+    "**/logs/**": true,
+    "**/*.raw": true
+  },
+
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/*.code-search": true,
+    "**/tmp": true,
+    "**/out": true,
+    "**/out_mirror": true,
+    "**/.cursor-backups": true,
+    "**/logs": true
+  },
+
+  "// PERFORMANCE SETTINGS": "Reduces CPU and memory usage",
+
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": {},
+
+  "typescript.tsserver.maxTsServerMemory": 4096,
+  "typescript.disableAutomaticTypeAcquisition": false,
+
+  "// CLAUDE CODE INTEGRATION": "Optimal settings for voice-first workflow",
+
+  "claudecode.voiceMode.enabled": true,
+  "claudecode.voiceMode.autoActivate": true,
+  "claudecode.voiceMode.sttPort": 2022,
+  "claudecode.voiceMode.ttsPort": 8880,
+
+  "// TERMINAL SETTINGS": "Stability for long-running processes",
+
+  "terminal.integrated.persistentSessionReviveProcess": "never",
+  "terminal.integrated.enablePersistentSessions": false
+}
