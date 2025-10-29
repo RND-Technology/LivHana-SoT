@@ -3,6 +3,7 @@
 # Manages inter-agent communication between Liv Hana (Claude Code CLI) and CODEX (Cursor)
 
 set -euo pipefail
+shopt -s nullglob  # Handle empty glob patterns gracefully
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 TASK_DIR="$ROOT/tmp/agent_status/codex_tasks"
