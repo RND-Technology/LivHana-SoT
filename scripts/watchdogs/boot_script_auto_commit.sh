@@ -2,28 +2,13 @@
 
 set -euo pipefail
 
-# Configuration
+# Paths & configuration
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")/../.." && pwd)"
-WATCH_FILES=(
-  "$ROOT/START.sh"
-  "$ROOT/scripts/claude_tier1_boot.sh"
-  "$ROOT/.vscode/launch.json"
-  "$ROOT/.vscode/tasks.json"
-  "$ROOT/.vscode/settings.json"
-  "$ROOT/.claude/RUNBOOK_VSCODE_STABILITY_PROTOCOL.md"
-  "$ROOT/scripts/agents/dual_tier1_loop.sh"
-  "$ROOT/backend/reasoning-gateway/src/routes/agentStatus.ts"
-  "$ROOT/backend/reasoning-gateway/src/routes/agentStatus.js"
-  "$ROOT/backend/reasoning-gateway/src/index.js"
-  "$ROOT/.claude/INTER_AGENT_COMMUNICATION_PROTOCOL.md"
-  "$ROOT/.claude/SESSION_PROGRESS.md"
-  "$ROOT/package.json"
-  "$ROOT/tmp/agent_status"/**/*.json
-  "$ROOT/docs"/**/*.md
-)
-CHECK_INTERVAL="${BOOT_SCRIPT_WATCH_INTERVAL:-30}"  # 30 seconds TURBO MODE
 LOG="$ROOT/logs/boot_script_auto_commit.log"
 STATE_FILE="$ROOT/tmp/boot_script_watch.state"
+CACHE_FILE="$ROOT/tmp/watch_files_cache.txt"
+CHECK_INTERVAL="${BOOT_SCRIPT_WATCH_INTERVAL:-30}"  # 30 seconds TURBO MODE
+WATCH_FILES=()
 
 # Colors
 GREEN='\033[0;32m'
