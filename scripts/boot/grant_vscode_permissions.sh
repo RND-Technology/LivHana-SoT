@@ -76,6 +76,7 @@ done
 # fi
 
 success "VS Code automation permissions configured"
-info "Note: Some permissions may require manual approval in System Preferences"
-info "If popups persist: System Preferences → Security & Privacy → Privacy → Automation"
+# EMERGENCY FIX: Suppress permission warnings (manual steps already documented)
+# info "Note: Some permissions may require manual approval in System Preferences"
+# info "If popups persist: System Preferences → Security & Privacy → Privacy → Automation"
 echo ""
