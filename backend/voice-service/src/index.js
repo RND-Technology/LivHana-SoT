@@ -81,6 +81,7 @@ app.get('/', (req, res) => {
 // Mount routers
 app.use('/api/elevenlabs', elevenlabsRouter);
 app.use('/api/reasoning', reasoningRouter);
+app.use('/api/interrupt', interruptController);  // 🚨 VOICE INTERRUPT DISCIPLINE
 
 app.post('/api/commands/orchestration', async (req, res) => {
   if (!handleOrchestrationCommand) {
