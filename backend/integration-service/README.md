@@ -1,5 +1,13 @@
 # Integration Service (Lightspeed + RPM API)
 
+---
+**Last Audited:** 2025-10-29
+**Audited By:** Liv Hana (Tier-1)
+**Marine Corps Standard:** Upheld ✅
+**Next Audit:** 2025-11-28 (30 days)
+---
+
+
 Real-time Lightspeed → BigQuery pipeline and RPM API (Option A) for weekly planning exports.
 
 ## Features

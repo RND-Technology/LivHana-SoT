@@ -1,5 +1,13 @@
 # Voice Service - ElevenLabs + DeepSeek Reasoning Integration
 
+---
+**Last Audited:** 2025-10-29
+**Audited By:** Liv Hana (Tier-1)
+**Marine Corps Standard:** Upheld ✅
+**Next Audit:** 2025-11-28 (30 days)
+---
+
+
 **Mission:** Proxy ElevenLabs text-to-speech + DeepSeek reasoning queue for voice mode interactions
 
 ## Architecture

@@ -1,5 +1,13 @@
 # RPM Accuracy Competition Service
 
+---
+**Last Audited:** 2025-10-29
+**Audited By:** Liv Hana (Tier-1)
+**Marine Corps Standard:** Upheld ✅
+**Next Audit:** 2025-11-28 (30 days)
+---
+
+
 **Classification:** Tier-1 Absolute Standard  
 **Owner:** Liv Hana (Chief of Staff)  
 **Version:** 1.0  

@@ -1,5 +1,13 @@
 # Liv Hana TRUTH Pipeline MCP Server
 
+---
+**Last Audited:** 2025-10-29
+**Audited By:** Liv Hana (Tier-1)
+**Marine Corps Standard:** Upheld ✅
+**Next Audit:** 2025-11-28 (30 days)
+---
+
+
 Production-ready MCP (Model Context Protocol) server integrating the Liv Hana TRUTH pipeline with ChatGPT Apps SDK for cannabis dispensary intelligence.
 
 ## Overview

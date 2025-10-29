@@ -1,5 +1,13 @@
 # Google Meet Scraper Service
 
+---
+**Last Audited:** 2025-10-29
+**Audited By:** Liv Hana (Tier-1)
+**Marine Corps Standard:** Upheld ✅
+**Next Audit:** 2025-11-28 (30 days)
+---
+
+
 Autonomous service to scrape Google Drive "Meet" folder and ingest transcripts into AlloyDB.
 
 ## Mission
