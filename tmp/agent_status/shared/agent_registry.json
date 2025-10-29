@@ -1,87 +1,22 @@
 {
   "agents": {
-    "planning": {
-      "status": "operational",
-      "pid": null,
-      "port": null,
-      "layer": "1.1",
-      "role": "RPM Master Planning Administrator",
-      "initialized_at": "2025-10-28T18:45:30Z",
-      "last_report": "2025-10-29T03:02:48Z",
-      "capabilities": ["rpm_planning", "monitoring", "executive_intelligence", "full_funnel", "rpm_dna_filesystem"],
-      "current_focus": "OCT21-27 week execution + $125K-$175K revenue target tracking"
-    },
-    "research": {
-      "status": "active",
-      "pid": null,
-      "port": null,
-      "layer": "1.2",
-      "role": "Continuous Intelligence Gathering & Context Building",
-      "mission": "intelligence_gathering",
-      "initialized_at": "2025-10-28T21:52:15Z",
-      "last_activation": "2025-10-28T21:52:15Z",
-      "ready": true,
-      "feeds_to": ["tier1_liv_hana", "rpm_planning_agent"],
-      "capabilities": [
-        "codebase_search",
-        "pattern_analysis",
-        "multi_file_investigation",
-        "architectural_analysis",
-        "dependency_tracing",
-        "context_gathering",
-        "historical_commit_analysis",
-        "documentation_synthesis"
-      ],
-      "current_context": {
-        "branch": "fix/mobile-control-po1",
-        "focus": "Voice mode stability + RPM infrastructure",
-        "recent_work": "Boot system hardening, agent coordination protocols"
-      }
-    },
-    "artifact": {
-      "status": "active",
-      "pid": null,
-      "port": null,
-      "layer": "1.3",
-      "role": "Code & Artifact Generation",
-      "activated_at": "2025-10-28T18:45:00Z"
-    },
-    "execmon": {
-      "status": "active",
-      "pid": null,
-      "port": null,
-      "layer": "1.4",
-      "role": "Execution Monitoring",
-      "activated_at": "2025-10-28T00:00:00Z"
-    },
-    "qa": {
-      "status": "active",
-      "pid": null,
-      "port": null,
-      "layer": "1.5",
-      "role": "Quality Assurance & Validation Architect",
-      "initialized_at": "2025-10-28T07:15:00Z",
-      "last_activity": "2025-10-28T07:15:00Z",
-      "mode": "24/7_guardrails",
-      "compliance_enabled": true,
-      "frameworks": ["LifeWard", "GA-56", "DSHS_25_TAC_300", "TABC_16_TAC_51", "Texas_HSC_443"],
-      "last_validation": "2025-10-28T18:30:00Z",
-      "verdict": "CONDITIONALLY_SHIPPABLE",
-      "capabilities": [
-        "functional_completeness_validation",
-        "code_quality_assessment",
-        "testing_coverage_analysis",
-        "error_handling_verification",
-        "performance_scalability_review",
-        "security_vulnerability_scanning",
-        "documentation_completeness",
-        "operational_readiness_check",
-        "dependency_integration_validation",
-        "regulatory_compliance_verification"
-      ]
-    }
+    "planning": {"status": "starting", "pid": null, "port": null, "rpm_csf": "Strategic Planning & Coordination", "self_heal": true},
+    "research": {"status": "starting", "pid": null, "port": null, "rpm_csf": "Intelligence & Context Building", "self_heal": true},
+    "artifact": {"status": "starting", "pid": null, "port": null, "rpm_csf": "Documentation & Deliverable Creation", "self_heal": true},
+    "execmon": {"status": "starting", "pid": null, "port": null, "rpm_csf": "Execution Tracking & Deployment", "self_heal": true, "self_improve": true},
+    "qa": {"status": "starting", "pid": null, "port": null, "rpm_csf": "Validation & Quality Assurance", "self_heal": true}
   },
-  "last_update": "2025-10-28T21:52:15Z",
-  "ecosystem_status": "operational",
-  "watchdog_pid": 59657
+  "last_update": "",
+  "rpm_dna_version": "v3.1",
+  "orchestration_layer": "tier-1",
+  "security_posture": "airtight",
+  "autonomous": {
+    "listen": true,
+    "hear": true,
+    "talk": true,
+    "self_create": true,
+    "self_organize": true,
+    "self_improve": true,
+    "self_heal": true
+  }
 }

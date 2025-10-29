@@ -22,9 +22,8 @@ services:
     environment:
       - NODE_ENV=production
       - LOG_LEVEL=info
-      - REDIS_HOST=redis
-    depends_on:
-      - redis
+      - REDIS_HOST=host.docker.internal
+    network_mode: "host"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3005/health"]
       interval: 10s
@@ -40,14 +39,15 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=8080
-      - REDIS_HOST=redis
+      - REDIS_HOST=host.docker.internal
       - REDIS_PORT=6379
       - REASONING_GATEWAY_BASE_URL=http://reasoning-gateway:8080/api/reasoning
       - REASONING_QUEUE_NAME=voice-mode-reasoning-jobs
-    secrets:
-      - elevenlabs_api_key
+      - ELEVENLABS_API_KEY=${ELEVENLABS_API_KEY}
+    env_file:
+      - .env
+    network_mode: "host"
     depends_on:
-      - redis
       - reasoning-gateway
       
   # Reasoning Gateway - DeepSeek + Anthropic + OpenAI
@@ -58,36 +58,15 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=8080
-      - REDIS_HOST=redis
+      - REDIS_HOST=host.docker.internal
       - REDIS_PORT=6379
-    secrets:
-      - anthropic_api_key
-      - openai_api_key
-    depends_on:
-      - redis
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY}
+    env_file:
+      - .env
+    network_mode: "host"
       
-  # Redis - Queue & Memory Store
-  redis:
-    image: redis:7-alpine
-    ports:
-      - "6379:6379"
-    volumes:
-      - redis-data:/data
-    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
-      
-volumes:
-  redis-data:
+# Redis already running on host - using existing instance
 
-secrets:
-  elevenlabs_api_key:
-    external: true
-  anthropic_api_key:
-    external: true
-  openai_api_key:
-    external: true
-
-# Last updated: 2025-10-02
-
-# Last optimized: 2025-10-02
-
-# Optimized: 2025-10-02
+# Last updated: 2025-10-29

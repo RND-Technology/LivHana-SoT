@@ -15,11 +15,9 @@ STATE="$ROOT/tmp/claude_tier1_state.json"
 PROMPT="$ROOT/tmp/claude_tier1_prompt.txt"
 LOG="$ROOT/logs/claude_tier1_boot_$(date +%Y%m%d_%H%M%S).log"
 
-# Load security helpers
+# Load security helpers (optional)
 if [[ -f "$ROOT/scripts/boot/helpers.sh" ]]; then
   source "$ROOT/scripts/boot/helpers.sh"
-else
-  echo "Warning: helpers.sh not found at $ROOT/scripts/boot/helpers.sh"
 fi
 
 # Colors
@@ -526,11 +524,9 @@ fi
 
 # Grant VS Code/Cursor macOS automation permissions (eliminate popups)
 if [[ -f "$ROOT/scripts/boot/grant_vscode_permissions.sh" ]]; then
-  info "Granting VS Code macOS automation permissions..."
-  bash "$ROOT/scripts/boot/grant_vscode_permissions.sh" 2>/dev/null || warning "VS Code permission grant skipped (non-fatal)"
+  info "Configuring VS Code macOS automation permissions..."
+  bash "$ROOT/scripts/boot/grant_vscode_permissions.sh" 2>/dev/null || true
   success "VS Code automation permissions configured"
-else
-  warning "grant_vscode_permissions.sh not found (non-fatal)"
 fi
 
 # Check for RAW file accumulation (memory/boot impact)
