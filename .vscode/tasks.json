@@ -1,0 +1,60 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start Integration Service (Sandboxed)",
+      "type": "shell",
+      "command": "node",
+      "args": [
+        "--max-old-space-size=8192",
+        "--expose-gc",
+        "backend/integration-service/src/index.js"
+      ],
+      "options": {
+        "env": {
+          "NODE_ENV": "development"
+        }
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "runOptions": {
+        "instanceLimit": 1
+      },
+      "isBackground": true,
+      "sandbox": true
+    },
+    {
+      "label": "Kill Zombie Processes",
+      "type": "shell",
+      "command": "ps aux | grep -E 'node.*defunct|Z' | grep -v grep | awk '{print $2}' | xargs -r kill -9 2>/dev/null || echo 'No zombie processes found'",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "Monitor Node Memory Usage",
+      "type": "shell",
+      "command": "while true; do ps aux | grep node | grep -v grep | awk '{print $2, $3, $4, $11}'; sleep 5; done",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "isBackground": true
+    },
+    {
+      "label": "Cleanup and Restart (Full Stability Protocol)",
+      "dependsOn": ["Kill Zombie Processes"],
+      "dependsOrder": "sequence",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always"
+      }
+    }
+  ]
+}

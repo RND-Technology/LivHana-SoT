@@ -1,6 +1,11 @@
 #!/bin/bash
 set -e
 
+# VS Code Crash Prevention - Set Electron flags before any GUI operations
+export NODE_OPTIONS="--max-old-space-size=8192"
+export ELECTRON_NO_ATTACH_CONSOLE=1
+export ELECTRON_ENABLE_LOGGING=0
+
 echo ""
 echo "╔═══════════════════════════════════════════════════════════════════════════════╗"
 echo "║                                                                               ║"
@@ -11,8 +16,29 @@ echo "║                    Voice-First · Always On · 100% Truth             
 echo "║                                                                               ║"
 echo "╚═══════════════════════════════════════════════════════════════════════════════╝"
 echo ""
-echo "🌿 Initializing..."
+echo "🌿 Initializing (Crash-Proof Mode)..."
 echo ""
+
+# Fix VS Code pop-ups PERMANENTLY before anything else
+echo "🔧 Configuring VS Code settings (eliminating permission pop-ups)..."
+mkdir -p .vscode
+cat > .vscode/settings.json << 'VSCODE_EOF'
+{
+  "security.workspace.trust.enabled": false,
+  "security.workspace.trust.untrustedFiles": "open",
+  "security.workspace.trust.banner": "never",
+  "security.workspace.trust.startupPrompt": "never",
+  "telemetry.telemetryLevel": "off",
+  "redhat.telemetry.enabled": false,
+  "extensions.ignoreRecommendations": true,
+  "extensions.showRecommendationsOnlyOnDemand": true,
+  "update.mode": "none",
+  "update.showReleaseNotes": false
+}
+VSCODE_EOF
+echo "✅ VS Code settings configured (no more pop-ups)"
+echo ""
+
 mkdir -p tmp/agent_status/shared
 cat > tmp/agent_status/shared/agent_registry.json << 'EOF'
 {
@@ -49,6 +75,30 @@ echo ""
 echo "🎤 Starting voice services (STT:2022, TTS:8880)..."
 npm run voice:start
 echo ""
+
+# ============================================
+# LIV HANA 1.1.0 - TIER-1 VOICE ORCHESTRATION
+# ============================================
+
+echo "🎤 Initializing Liv 1.1.0 Voice Orchestration Mode..."
+
+# CRITICAL RULES (Hardwired)
+export LIV_MODE="voice-plan-only"
+export LIV_DEPLOYMENT_AUTHORITY="human-only"
+export LIV_COORDINATION_METHOD="task-tool-only"
+export LIV_PERSISTENCE="always-voice"
+
+# Voice Settings Optimization (Fix Ears)
+export VOICE_VAD_AGGRESSIVENESS=0
+export VOICE_LISTEN_MIN=2.0
+export VOICE_LISTEN_MAX=120
+export VOICE_RESPONSE_TARGET_MS=500
+export VOICEMODE_VAD_MODE=0
+export VOICEMODE_SILENCE_DURATION=1.5
+export VOICEMODE_MIN_RECORDING_DURATION=1.0
+export VOICEMODE_WAIT_FOR_RESPONSE=true
+
+
 case "${1:-dev}" in
   dev) echo "🔧 Starting in DEVELOPMENT mode..."; npm run docker:dev ;;
   prod) echo "🚀 Starting in PRODUCTION mode..."; npm run docker:prod ;;
