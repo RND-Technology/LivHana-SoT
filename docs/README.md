@@ -94,6 +94,10 @@ Central documentation hub for Liv Hana E2E Mission with organized access to all 
 2. [Tier 1 Architecture Audit](./architecture/TIER1_ARCHITECTURE_AUDIT.md) - Architecture status
 3. [Victory Report](./VICTORY_REPORT.md) - Project achievements
 
+### 🚑 Emergency Guides
+
+1. [Emergency VS Code Fix](./EMERGENCY_VSCODE_FIX.md) - Remove AppTranslocation quarantine and verify system health
+
 ### 🏗️ Technical Documentation
 
 1. [Empire Architecture](./architecture/1.6.2.1_EMPIRE_ARCHITECTURE_20251006.md) - Core architecture
