@@ -169,6 +169,13 @@ Monitor via Jest output and coverage reports
 ### Service Health
 Check via `/health` endpoints
 
+## Metrics & Reporting
+
+- **Dashboards**: Grafana board `QA / Tier-1 Quality` tracks lint count, test duration, failure rate, and coverage.
+- **Alerts**: PagerDuty `QA Gatekeeper` policy pages SRE if CI fails twice consecutively or coverage < 50%.
+- **Trends**: Weekly quality report published to `docs/qa/quality-report-<week>.md` comparing failure categories.
+- **Coverage Badges**: GitHub checks update README badges for each Tier-1 service; unacceptable regressions block merges.
+
 ## Troubleshooting
 
 ### ESLint Config Errors
@@ -219,6 +226,14 @@ npm run lint && npm test
 - Tests must pass
 - Coverage must meet threshold
 - Build must succeed
+
+## Continuous Improvement
+
+- Run a bi-weekly quality roundtable to review flaky tests and backlog triage.
+- Rotate a `QA Champion` each sprint to shepherd new test cases and enforce standards.
+- Automate ticket creation for missing smoke tests via `npm run qa:scan` cron job.
+- Track actionable insights in `docs/qa/backlog.md` and groom during sprint planning.
+- Celebrate zero-flake weeks publicly to reinforce the culture of precision.
 
 ## Resources
 
