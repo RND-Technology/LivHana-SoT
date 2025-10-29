@@ -8,7 +8,7 @@
       "skipFiles": ["<node_internals>/**"],
       "program": "${workspaceFolder}/index.js",
       "runtimeArgs": [
-        "--max-old-space-size=8192",
+        "--max-old-space-size=512",
         "--expose-gc"
       ],
       "env": {
@@ -24,7 +24,7 @@
       "skipFiles": ["<node_internals>/**"],
       "program": "${workspaceFolder}/backend/integration-service/src/index.js",
       "runtimeArgs": [
-        "--max-old-space-size=8192",
+        "--max-old-space-size=512",
         "--expose-gc"
       ],
       "env": {
