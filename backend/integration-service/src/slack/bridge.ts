@@ -7,7 +7,7 @@
 
 import express from 'express';
 import crypto from 'crypto';
-import Redis from 'ioredis';
+import { createSecureRedisClient } from '../../../common/queue/hardenedQueue.js';
 
 interface SlackRequest {
   token: string;
@@ -38,14 +38,8 @@ interface SlackResponse {
 
 export function createSlackBridgeRoutes(): express.Router {
   const router = express.Router();
-  const redisOptions: { host: string; port: number; password?: string } = {
-    host: process.env.REDIS_HOST || 'localhost',
-    port: parseInt(process.env.REDIS_PORT || '6379'),
-  };
-  if (process.env.REDIS_PASSWORD) {
-    redisOptions.password = process.env.REDIS_PASSWORD;
-  }
-  const redis = new Redis(redisOptions);
+  // Use secure Redis client with TLS and ACL support
+  const redis = createSecureRedisClient();
 
   // Verify Slack signature
   function verifySlackSignature(req: express.Request): boolean {

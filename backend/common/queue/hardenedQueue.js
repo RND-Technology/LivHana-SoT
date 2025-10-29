@@ -222,10 +222,12 @@ export function createHardenedQueue(queueName, options = {}) {
   };
 }
 
-// Export monitor for external use
+// Export monitor and secure client for external use
 export const queueMonitor = monitor;
+export { createSecureRedisClient };
 
 export default {
   createHardenedQueue,
+  createSecureRedisClient,
   queueMonitor
 };
