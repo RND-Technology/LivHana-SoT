@@ -768,25 +768,8 @@ fi
 echo "NODE_VERSION=$NODE_VERSION" >> "$LOG"
 
 # Check Claude Sonnet 4.5 OCT 2025 model (informational only, non-fatal)
-# FIXED: claude models list can hang - skip for voice-first boot
-if [[ "${SKIP_MODEL_CHECK:-0}" == "1" ]] || [[ "${SKIP_1PASSWORD:-0}" == "1" ]]; then
-  info "Skipping Claude model check (voice-first boot)"
-elif [[ "${ALLOW_TEXT_ONLY:-0}" == "1" ]]; then
-  info "Text-only mode: Skipping Claude model check"
-elif command -v claude >/dev/null 2>&1; then
-  # Run with manual timeout since macOS lacks GNU timeout
-  ( claude models list 2>/dev/null | grep -q "sonnet-4.5-oct-2025" ) &
-  model_check_pid=$!
-  sleep 3
-  if kill -0 $model_check_pid 2>/dev/null; then
-    kill $model_check_pid 2>/dev/null
-    info "Claude model check timed out (>3s) - skipping"
-  else
-    wait $model_check_pid && success "Claude model sonnet-4.5-oct-2025 available" || info "Claude model check failed"
-  fi
-else
-  info "Claude CLI not found - skipping model check"
-fi
+# EMERGENCY FIX: claude models list hangs indefinitely - disabled
+info "Skipping Claude model check (causes boot timeout - EMERGENCY FIX)"
 
 # Ensure Homebrew path prominence
 PATH_TOP3=$(echo "$PATH" | awk -F: '{print $1":"$2":"$3}')
