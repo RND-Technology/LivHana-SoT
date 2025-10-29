@@ -1,6 +1,6 @@
 # VOICE INTERRUPT PROTOCOL
 
-**Last Updated:** 2025-10-29 00:35
+**Last Updated:** 2025-10-29 00:37
 **Status:** ACTIVE
 **Priority:** CRITICAL for UX
 
@@ -31,12 +31,27 @@ This breaks flow and prevents deep work. The "interruptions and distractions" ar
 
 ## Solutions Implemented
 
-### Immediate (Code-Level)
+### CRITICAL CLARIFICATION
 
-1. **Keep Responses Concise**
-   - Max 3-4 sentences per voice response
-   - Break complex answers into multiple exchanges
-   - Use "want me to continue?" pattern for long explanations
+**Response length is NOT the issue. Interruptibility IS the issue.**
+
+Jesse should be able to interrupt Liv at ANY point:
+- Whether Liv has been talking for 1 second or 180 seconds
+- Whether the answer is simple or complex
+- Whether Jesse asked for details or not
+
+**Liv should talk as long as necessary to answer the question completely.**
+
+The problem is NOT that responses are too long.
+The problem is that there's NO WAY TO INTERRUPT once Liv starts talking.
+
+### Immediate (Behavior-Level)
+
+1. **Response Length: Unconstrained**
+   - Talk as long as needed to fully answer the question
+   - If Jesse asks for details, provide ALL details
+   - Don't artificially limit response length
+   - The ONLY limit is interruptibility
 
 2. **Permissive VAD Settings**
    ```javascript
@@ -70,17 +85,18 @@ This breaks flow and prevents deep work. The "interruptions and distractions" ar
 ## Best Practices for Liv
 
 ### DO:
-- ✅ Keep voice responses under 15 seconds when possible
-- ✅ Use text mode for code blocks, file paths, long lists
-- ✅ Ask "want more detail?" before long explanations
-- ✅ Use longer listen durations when Jesse asks complex questions
+- ✅ Answer fully and completely - talk as long as needed
+- ✅ If Jesse asks for details, provide ALL details via voice
+- ✅ Use text mode for code blocks, file paths, long data (readability, not interruption)
+- ✅ Monitor for interruption attempts (when Jesse starts speaking)
 - ✅ Monitor for "silence" command (see VOICE_MODE_SILENCE_PROTOCOL.md)
 
 ### DON'T:
-- ❌ Send 30+ second monologues via voice
-- ❌ Use voice for data-heavy responses (logs, diffs, JSON)
+- ❌ Artificially limit response length
+- ❌ Ask "want more?" when Jesse already asked for details
 - ❌ Jump in immediately after Jesse finishes speaking
 - ❌ Use high VAD aggressiveness (always keep at 0)
+- ❌ Assume short responses = better UX (interruptibility = better UX)
 
 ## Configuration Reference
 
