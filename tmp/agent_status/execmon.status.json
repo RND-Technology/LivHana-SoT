@@ -1,1 +1,1 @@
-{"agent":"execmon","phase":"monitor","status":"running","started_at":"2025-10-28T15:10:28Z","updated_at":"2025-10-29T15:30:02Z","finished_at":"","artifacts":["/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/logs/agents/execmon_monitor_20251028_101028.log"],"notes":"heartbeat active"}
+{"agent":"execmon","phase":"monitor","status":"running","started_at":"2025-10-28T15:10:28Z","updated_at":"2025-10-29T15:31:02Z","finished_at":"","artifacts":["/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/logs/agents/execmon_monitor_20251028_101028.log"],"notes":"heartbeat active"}
