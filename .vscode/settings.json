@@ -5,8 +5,7 @@
   "security.workspace.trust.startupPrompt": "never",
   "telemetry.telemetryLevel": "off",
   "redhat.telemetry.enabled": false,
-  "files.autoSave": "afterDelay",
-  "files.autoSaveDelay": 5000,
+  "files.autoSave": "onFocusChange",
   "files.watcherExclude": {
     "**/.git/objects/**": true,
     "**/.git/subtree-cache/**": true,
@@ -15,6 +14,7 @@
     "**/out_mirror/**": true,
     "**/tmp/**": true,
     "**/logs/**": true,
+    "**/raw/**": true,
     "**/.venv/**": true,
     "**/venv/**": true,
     "**/__pycache__/**": true,
