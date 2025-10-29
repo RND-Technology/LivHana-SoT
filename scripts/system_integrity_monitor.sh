@@ -44,7 +44,7 @@ log_msg() {
 }
 
 json_array_from_lines() {
-  python3 <<'PY'
+  python3 <<'PY' 2>/dev/null
 import json, sys
 lines = [line.strip() for line in sys.stdin if line.strip()]
 print(json.dumps(lines))
@@ -129,10 +129,23 @@ PY
     fi
   fi
 
-  crash_latest=$(ls -t "$HOME/Library/Logs/DiagnosticReports/"*.crash 2>/dev/null | head -n1 || true)
+  local crash_dir="$HOME/Library/Logs/DiagnosticReports"
+  local crash_latest_mtime=0
+  crash_latest=""
   crash_name="none"
-  if [[ -n "$crash_latest" ]]; then
-    crash_name="$(basename "$crash_latest")"
+  if [[ -d "$crash_dir" ]]; then
+    local file mtime
+    for file in "$crash_dir"/*.crash; do
+      [[ -e "$file" ]] || continue
+      mtime=$(stat -f %m "$file" 2>/dev/null || echo 0)
+      if (( mtime > crash_latest_mtime )); then
+        crash_latest_mtime=$mtime
+        crash_latest="$file"
+      fi
+    done
+    if [[ -n "$crash_latest" ]]; then
+      crash_name="$(basename "$crash_latest")"
+    fi
   fi
 
   last_crash_file="$OUT_DIR/.last_crash"
@@ -165,6 +178,7 @@ PY
   local alerts_json="[]"
   if (( ${#alerts[@]} > 0 )); then
     alerts_json=$(printf '%s\n' "${alerts[@]}" | json_array_from_lines)
+    [[ -z "$alerts_json" ]] && alerts_json="[]"
   fi
 
   export TIMESTAMP="$timestamp"

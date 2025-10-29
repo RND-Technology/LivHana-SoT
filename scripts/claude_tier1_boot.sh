@@ -1195,6 +1195,17 @@ if [[ -f "$ROOT/scripts/dynamic_resource_allocator.sh" ]]; then
 else
   warning "dynamic_resource_allocator.sh not found - skipping dynamic allocation"
 fi
+
+# STEP 6.5: SYSTEM INTEGRITY MONITOR (non-blocking)
+if [[ -f "$ROOT/scripts/system_integrity_monitor.sh" ]]; then
+  info "Starting system integrity monitor..."
+  nohup bash "$ROOT/scripts/system_integrity_monitor.sh" --daemon >> "$ROOT/logs/system_integrity_monitor.nohup.log" 2>&1 &
+  SYSTEM_MONITOR_PID=$!
+  echo "$SYSTEM_MONITOR_PID" > "$ROOT/tmp/system_integrity_monitor.pid"
+  success "System integrity monitor started (PID $SYSTEM_MONITOR_PID, interval: ${SYSTEM_MONITOR_INTERVAL:-60}s)"
+else
+  warning "system_integrity_monitor.sh not found - skipping system telemetry"
+fi
 echo
 
 # STEP 7: SESSION LOG UPDATE
