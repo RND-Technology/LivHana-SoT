@@ -114,28 +114,44 @@ fi
 (( score < 0 )) && score=0
 
 if [[ "$OUTPUT_FORMAT" == "json" ]]; then
-  python3 - <<PY
-import json
+  HEALTH_SCORE="$score" \
+  MEMORY_PCT="${memory_pct:-}" \
+  MEMORY_STATE="$memory_state" \
+  MEMORY_PENALTY="$memory_penalty" \
+  QUEUE_DEPTH="${queue_depth:-}" \
+  QUEUE_STATE="$queue_state" \
+  QUEUE_PENALTY="$queue_penalty" \
+  QUARANTINE_STATE="$quarantine_state" \
+  QUARANTINE_PENALTY="$quarantine_penalty" \
+  WEIGHT_MEMORY_VAL="$WEIGHT_MEMORY" \
+  WEIGHT_QUEUE_VAL="$WEIGHT_QUEUE" \
+  WEIGHT_QUARANTINE_VAL="$WEIGHT_QUARANTINE" \
+  python3 - <<'PY'
+import json, os
+
+def to_int(value):
+    return int(value) if value not in ("", None) else None
+
 payload = {
-    "score": $score,
+    "score": int(os.environ["HEALTH_SCORE"]),
     "memory": {
-        "freePercent": ${memory_pct or "None"},
-        "state": "$memory_state",
-        "penalty": $memory_penalty
+        "freePercent": to_int(os.environ.get("MEMORY_PCT")),
+        "state": os.environ["MEMORY_STATE"],
+        "penalty": int(os.environ["MEMORY_PENALTY"])
     },
     "queue": {
-        "depth": ${queue_depth or "None"},
-        "state": "$queue_state",
-        "penalty": $queue_penalty
+        "depth": to_int(os.environ.get("QUEUE_DEPTH")),
+        "state": os.environ["QUEUE_STATE"],
+        "penalty": int(os.environ["QUEUE_PENALTY"])
     },
     "quarantine": {
-        "state": "$quarantine_state",
-        "penalty": $quarantine_penalty
+        "state": os.environ["QUARANTINE_STATE"],
+        "penalty": int(os.environ["QUARANTINE_PENALTY"])
     },
     "weights": {
-        "memory": $WEIGHT_MEMORY,
-        "queue": $WEIGHT_QUEUE,
-        "quarantine": $WEIGHT_QUARANTINE
+        "memory": int(os.environ["WEIGHT_MEMORY_VAL"]),
+        "queue": int(os.environ["WEIGHT_QUEUE_VAL"]),
+        "quarantine": int(os.environ["WEIGHT_QUARANTINE_VAL"])
     }
 }
 print(json.dumps(payload, ensure_ascii=True))

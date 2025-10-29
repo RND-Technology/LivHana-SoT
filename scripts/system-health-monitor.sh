@@ -84,13 +84,17 @@ sample_crashes() {
 }
 
 capture_snapshot() {
-  local ts cpu mem_pct disk_io disk_free crashes
+  local ts cpu mem_pct disk_io disk_free crashes health_json
   ts="$(timestamp)"
   cpu="$(sample_cpu)"
   mem_pct="$(sample_memory_free_pct)"
   disk_io="$(sample_disk_io)"
   disk_free="$(sample_disk_free_mb)"
   crashes="$(sample_crashes)"
+  health_json=""
+  if [[ -x "$ROOT/scripts/calculate-health-score.sh" ]]; then
+    health_json=$("$ROOT/scripts/calculate-health-score.sh" --json 2>/dev/null || echo "")
+  fi
 
   CPU_SUMMARY="$cpu" \
   MEM_FREE_PCT="${mem_pct:-}" \
@@ -98,17 +102,26 @@ capture_snapshot() {
   DISK_FREE_MB="${disk_free:-}" \
   CRASH_COUNT="${crashes:-}" \
   TIMESTAMP="$ts" \
+  HEALTH_SCORE_JSON="$health_json" \
   python3 - "$LOG_PATH" <<'PY'
 import json, os, sys
 
 log_path = sys.argv[1]
+health = os.environ.get("HEALTH_SCORE_JSON")
+health_data = None
+if health:
+    try:
+        health_data = json.loads(health)
+    except json.JSONDecodeError:
+        health_data = None
 payload = {
     "timestamp": os.environ.get("TIMESTAMP"),
     "cpuSummary": os.environ.get("CPU_SUMMARY") or None,
     "memoryFreePercent": int(os.environ["MEM_FREE_PCT"]) if os.environ.get("MEM_FREE_PCT") else None,
     "workspaceFreeMB": int(os.environ["DISK_FREE_MB"]) if os.environ.get("DISK_FREE_MB") else None,
     "diskIo": json.loads(os.environ["DISK_IO_JSON"]) if os.environ.get("DISK_IO_JSON") else None,
-    "crashEventsLastMinute": int(os.environ["CRASH_COUNT"]) if os.environ.get("CRASH_COUNT") else None
+    "crashEventsLastMinute": int(os.environ["CRASH_COUNT"]) if os.environ.get("CRASH_COUNT") else None,
+    "healthScore": health_data
 }
 with open(log_path, "a", encoding="utf-8") as stream:
     stream.write(json.dumps(payload, separators=(",", ":"), ensure_ascii=True) + "\n")
