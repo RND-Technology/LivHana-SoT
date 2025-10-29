@@ -173,7 +173,7 @@ check_memory_pressure() {
       if [[ -n "$free_pct" ]]; then
         if [[ $free_pct -lt 20 ]]; then
           warning "MEMORY PRESSURE HIGH: Only ${free_pct}% free"
-          warning "Consider closing applications to prevent Cursor crashes"
+          warning "Consider closing applications to prevent Visual Studio Code crashes"
         elif [[ $free_pct -lt 40 ]]; then
           warning "Memory getting low: ${free_pct}% free"
         else
@@ -243,21 +243,21 @@ clean_stale_agent_locks() {
   success "Stale agent locks removed"
 }
 
-# Check for Cursor AppTranslocation issue (causes crashes)
+# Check for Visual Studio Code AppTranslocation issue (causes crashes)
 check_cursor_apptranslocation() {
-  info "Checking for Cursor AppTranslocation issue..."
+  info "Checking for Visual Studio Code AppTranslocation issue..."
 
-  # Check if Cursor is running from AppTranslocation
-  local cursor_procs=$(ps aux | grep -i "AppTranslocation.*Cursor\|AppTranslocation.*Electron" | grep -v grep | wc -l)
+  # Check if Visual Studio Code is running from AppTranslocation
+  local cursor_procs=$(ps aux | grep -i "AppTranslocation.*Visual Studio Code\|AppTranslocation.*Electron" | grep -v grep | wc -l)
 
   if [[ $cursor_procs -gt 0 ]]; then
-    warning "Cursor is running from AppTranslocation (quarantine sandbox)"
+    warning "Visual Studio Code is running from AppTranslocation (quarantine sandbox)"
     warning "This causes random crashes and memory leaks"
     warning "Run: bash $ROOT/scripts/fix_cursor_quarantine.sh"
-    info "Then restart Cursor from /Applications/Cursor.app"
+    info "Then restart Visual Studio Code from /Applications/Visual Studio Code.app"
     return 1
   else
-    success "Cursor not in AppTranslocation (good)"
+    success "Visual Studio Code not in AppTranslocation (good)"
     return 0
   fi
 }
@@ -541,7 +541,7 @@ else
   warning "Permission configuration script not found (non-fatal)"
 fi
 
-# Grant VS Code/Cursor macOS automation permissions (eliminate popups)
+# Grant VS Code/Visual Studio Code macOS automation permissions (eliminate popups)
 if [[ -f "$ROOT/scripts/boot/grant_vscode_permissions.sh" ]]; then
   info "Configuring VS Code macOS automation permissions..."
   bash "$ROOT/scripts/boot/grant_vscode_permissions.sh" 2>/dev/null || true
@@ -554,8 +554,8 @@ RAW_COUNT=$(find "$ROOT" -name "raw-*" -o -name "*.raw" 2>/dev/null | { grep -v 
 if [[ "$RAW_COUNT" -gt 10 ]]; then
   warning "Detected $RAW_COUNT RAW files - may impact voice mode performance"
   warning "Run: find . -name 'raw-*' -o -name '*.raw' | grep -v node_modules"
-  warning "Cause: Cursor's files.hotExit accumulating unsaved buffers"
-  warning "Fix: Check ~/Library/Application Support/Cursor/User/settings.json"
+  warning "Cause: Visual Studio Code's files.hotExit accumulating unsaved buffers"
+  warning "Fix: Check ~/Library/Application Support/Visual Studio Code/User/settings.json"
 else
   success "RAW file count healthy: $RAW_COUNT files"
 fi
@@ -577,7 +577,7 @@ if [[ "$UNAME" == "Darwin" ]] && command -v memory_pressure >/dev/null 2>&1; the
   if [[ -n "$MEM_FREE_PCT" ]]; then
     if [[ $MEM_FREE_PCT -lt $CRIT_PCT ]]; then
       warning "CRITICAL: Very low memory ($MEM_FREE_PCT% free < $CRIT_PCT% threshold)"
-      warning "Cursor may crash - save work frequently"
+      warning "Visual Studio Code may crash - save work frequently"
       warning "Consider restarting system for best stability"
       if [[ "$STRICT" == "1" ]]; then
         error "STRICT_LOW_MEM=1 enforced - exiting boot sequence"
@@ -611,7 +611,7 @@ if [[ -z "${MEM_FREE_PCT:-}" ]] && command -v vm_stat >/dev/null 2>&1; then
 
     if [[ $FREE_MB -lt 500 ]]; then
       warning "CRITICAL: Very low memory (<500MB free)"
-      warning "Cursor may crash - save work frequently"
+      warning "Visual Studio Code may crash - save work frequently"
       warning "Consider restarting system for best stability"
       if [[ "$STRICT" == "1" ]]; then
         error "STRICT_LOW_MEM=1 enforced - exiting boot sequence"
@@ -936,7 +936,7 @@ fi
 FUNNEL_AUTHORITY="$ROOT/.claude/TIER1_FUNNEL_AUTHORITY.md"
 if [[ -f "$FUNNEL_AUTHORITY" ]]; then
   success "Tier-1 Funnel Authority blueprint loaded: $FUNNEL_AUTHORITY"
-  info "8-layer funnel: Bootstrap → Voice → Cursor → Research → Artifacts → Execution → QA → Ops"
+  info "8-layer funnel: Bootstrap → Voice → Visual Studio Code → Research → Artifacts → Execution → QA → Ops"
 else
   warning "Tier-1 Funnel Authority blueprint not found at $FUNNEL_AUTHORITY"
   warning "Sessions may not have full funnel context"
@@ -1228,7 +1228,7 @@ banner "STEP 6: CLAUDE SESSION READY"
 success "All systems prepared for voice-first orchestration"
 echo
 info "${BOLD}NEXT STEPS:${NC}"
-echo "  1. Open this session in Cursor (if not already)"
+echo "  1. Open this session in Visual Studio Code (if not already)"
 echo "  2. Copy the full prompt: cat $PROMPT | pbcopy"
 echo "  3. Paste into a NEW Claude Code session"
 echo "  4. Claude will auto-activate voice mode and greet you"
@@ -1236,7 +1236,7 @@ echo "  5. Respond via microphone to continue voice-first"
 echo
 info "${BOLD}QUICK START:${NC}"
 echo "  ${CYAN}cat $PROMPT | pbcopy${NC}  # Copy prompt to clipboard"
-echo "  ${CYAN}# Then paste into new Cursor session${NC}"
+echo "  ${CYAN}# Then paste into new Visual Studio Code session${NC}"
 echo
 info "${BOLD}KEY FILES:${NC}"
 echo "  • Config: $CFG"
@@ -1304,7 +1304,7 @@ banner "STEP 8: POST-LAUNCH HEALTH CHECKS"
 # Clean zombie boot processes from previous runs
 clean_zombie_boot_processes
 
-# Check for Cursor AppTranslocation issue (causes crashes)
+# Check for Visual Studio Code AppTranslocation issue (causes crashes)
 check_cursor_apptranslocation || true  # Non-blocking warning
 
 # FAILURE #5: Clean stale agent locks BEFORE starting new agents
@@ -1787,6 +1787,6 @@ info "Boot sequence complete!"
 info "To start Claude Code session manually:"
 echo ""
 echo "  cat $PROMPT | pbcopy"
-echo "  # Then paste into new Claude Code session in Cursor"
+echo "  # Then paste into new Claude Code session in Visual Studio Code"
 echo ""
 success "Tier-1 boot complete - voice mode active"
