@@ -307,26 +307,61 @@ echo ""
 echo "🔍 Validating environment..."
 npm run validate:env
 echo ""
-# Start integration services (non-blocking)
-echo "🔌 Starting integration services (NON-BLOCKING)..."
-start_integration_services() {
-  npm run integration:start &
-  INTEGRATION_PID=$!
-  echo "$INTEGRATION_PID" > tmp/integration.pid
-  
-  # Non-blocking OAuth flow
-  (
-    echo "🔑 Initializing OAuth flow..."
-    if [ -n "${LIGHTSPEED_CLIENT_ID:-}" ] && [ -n "${LIGHTSPEED_CLIENT_SECRET:-}" ]; then
-      node scripts/oauth-init.js &
-      echo "✓ OAuth initialization started (background)"
-    else
-      echo "⚠️  OAuth credentials not found - integration will run in limited mode"
-    fi
-  ) &
-}
 
-start_integration_services
+# CRITICAL: Start Redis first (all services depend on it)
+echo "� Starting Redis (port 6379)..."
+if ! lsof -i :6379 >/dev/null 2>&1; then
+  if command -v redis-server >/dev/null 2>&1; then
+    redis-server --daemonize yes --port 6379 --maxmemory 256mb --maxmemory-policy lru
+    sleep 2
+    if lsof -i :6379 >/dev/null 2>&1; then
+      echo "✅ Redis started successfully"
+    else
+      echo "❌ Redis failed to start - services will fail!"
+    fi
+  else
+    echo "⚠️  Redis not installed - using Docker fallback"
+  fi
+else
+  echo "✅ Redis already running"
+fi
+echo ""
+
+# Start reasoning-gateway (voice-service dependency)
+echo "🧠 Starting reasoning-gateway (port 4002)..."
+if ! lsof -i :4002 >/dev/null 2>&1; then
+  tmux new-session -d -s reasoning-gateway "cd backend/reasoning-gateway && node src/index.js | tee -a ../../logs/autonomous/reasoning-gateway.log"
+  sleep 3
+  if lsof -i :4002 >/dev/null 2>&1; then
+    echo "✅ Reasoning-gateway started"
+  else
+    echo "❌ Reasoning-gateway failed to start"
+  fi
+else
+  echo "✅ Reasoning-gateway already running"
+fi
+echo ""
+
+# Start dual tier-1 coordination loop
+echo "🤝 Starting dual tier-1 coordination loop..."
+if ! tmux has-session -t dual-tier1 2>/dev/null; then
+  tmux new-session -d -s dual-tier1 "cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT && bash scripts/agents/dual_tier1_loop.sh"
+  sleep 2
+  echo "✅ Dual tier-1 coordination active"
+else
+  echo "✅ Dual tier-1 coordination already running"
+fi
+echo ""
+
+# Start auto-commit watchdog
+echo "🐕 Starting auto-commit watchdog (30s intervals)..."
+if ! tmux has-session -t auto-timestamp 2>/dev/null; then
+  tmux new-session -d -s auto-timestamp "bash scripts/watchdogs/boot_script_auto_commit.sh"
+  sleep 2
+  echo "✅ Auto-commit watchdog active"
+else
+  echo "✅ Auto-commit watchdog already running"
+fi
 echo ""
 
 # SELF-LISTEN: Background monitoring of all agents
@@ -581,25 +616,33 @@ fi
 echo ""
 
 case "${1:-dev}" in
-  dev) echo "🔧 Starting in DEVELOPMENT mode (AUTONOMOUS)..."; npm run docker:dev &
+  dev) echo "🔧 Starting in DEVELOPMENT mode (AUTONOMOUS)..."; 
+       # Use docker-compose with health check polling
+       npm run docker:dev 2>&1 | tee -a logs/docker-dev.log &
        DOCKER_PID=$!
+       echo "Waiting for Docker services..." 
+       for i in {1..30}; do
+         if docker ps 2>/dev/null | grep -q "voice-service\|reasoning-gateway"; then
+           echo "✅ Docker services ready"
+           break
+         fi
+         sleep 2
+       done
        ;;
-  prod) echo "🚀 Starting in PRODUCTION mode (AUTONOMOUS)..."; npm run docker:prod &
+  prod) echo "🚀 Starting in PRODUCTION mode (AUTONOMOUS)..."; 
+        npm run docker:prod 2>&1 | tee -a logs/docker-prod.log &
         DOCKER_PID=$!
         ;;
-  empire) echo "👑 Starting EMPIRE engines (AUTONOMOUS)..."; npm run docker:empire &
+  empire) echo "👑 Starting EMPIRE engines (AUTONOMOUS)..."; 
+          npm run docker:empire 2>&1 | tee -a logs/docker-empire.log &
           DOCKER_PID=$!
           ;;
-  local) echo "💻 Starting LOCAL services (AUTONOMOUS)..."; npm run dev:all &
+  local) echo "💻 Starting LOCAL services (AUTONOMOUS)..."; 
+         npm run dev:all 2>&1 | tee -a logs/dev-all.log &
          DOCKER_PID=$!
          ;;
   *) echo "Usage: ./START.sh [dev|prod|empire|local]"; exit 1 ;;
 esac
-
-# Wait for docker/services to start
-echo ""
-echo "⏳ Waiting for services to start..."
-sleep 10
 
 # FINAL VALIDATION: Verify everything actually worked
 echo ""
@@ -645,11 +688,39 @@ else
   echo "❌ TTS service NOT running"
 fi
 
+# Verify reasoning-gateway
+if lsof -i :4002 >/dev/null 2>&1; then
+  echo "✅ Reasoning-gateway running (port 4002)"
+else
+  echo "❌ Reasoning-gateway NOT running"
+fi
+
 # Verify orchestration service
 if curl -sf http://localhost:4010/health >/dev/null 2>&1; then
   echo "✅ Orchestration service running (port 4010)"
 else
   echo "❌ Orchestration service NOT running"
+fi
+
+# Verify Redis
+if lsof -i :6379 >/dev/null 2>&1; then
+  echo "✅ Redis running (port 6379)"
+else
+  echo "❌ Redis NOT running - CRITICAL FAILURE"
+fi
+
+# Verify dual tier-1 coordination
+if tmux has-session -t dual-tier1 2>/dev/null; then
+  echo "✅ Dual tier-1 coordination active"
+else
+  echo "❌ Dual tier-1 coordination NOT running"
+fi
+
+# Verify auto-commit watchdog
+if tmux has-session -t auto-timestamp 2>/dev/null; then
+  echo "✅ Auto-commit watchdog active (30s intervals)"
+else
+  echo "❌ Auto-commit watchdog NOT running"
 fi
 
 # Verify VS Code settings exist
