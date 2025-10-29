@@ -30,6 +30,7 @@
     "agents:spawn": "bash scripts/spawn-agents.sh",
     "agents:heal": "bash scripts/heal-agents.sh",
     "agents:status": "bash scripts/agent-status.sh",
+    "agents:dual-loop": "bash scripts/agents/dual_tier1_loop.sh",
     "voice:start": "bash scripts/start-voice-services.sh",
     "voice:stop": "bash scripts/stop-voice-services.sh",
     "validate:env": "bash scripts/validate-env.sh",
