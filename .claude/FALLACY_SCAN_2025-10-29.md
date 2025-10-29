@@ -57,18 +57,135 @@
 
 ---
 
-## Recent Session Fallacies (To Be Scanned)
+## Recent Session Fallacies (SCANNED)
 
-### Files to Check:
-- `.claude/SESSION_SUMMARY_2025-10-29_VOICE_INTEGRATION.md` (REMOVED from history due to secret)
-- `.claude/PO1_COMPLETION_REPORT.md`
-- `.claude/EMERGENCY_FIX_REPORT.md`
+### SSSI_DEEP_BRIEF_2025-10-29.md
 
-### Common Fallacy Patterns to Scan For:
-1. **Over-optimistic metrics** - Claims without measurement
-2. **Completion claims** - Marking items complete that aren't fully tested
-3. **Security claims** - "100% secure" without audit
-4. **Performance claims** - Speed improvements without benchmarks
+#### Fallacy #4: Extreme Speedup Claims (SEVERITY: HIGH)
+**Statements:**
+- "100-1000x faster development cycles"
+- "Speedup: 100-1000x faster iteration cycles"
+- "10x productivity gain through specialization + coordination"
+
+**Reality:**
+- No benchmarks provided
+- "100-1000x" is marketing hyperbole, not engineering measurement
+- Real speedup likely 2-5x for well-coordinated tooling
+
+**Correction:** Replace with measured claims or remove multipliers entirely
+
+---
+
+#### Fallacy #5: Production-Ready Time Claim (SEVERITY: MEDIUM)
+**Statement:**
+"Total Time: 14 seconds from voice command to production-ready code"
+
+**Reality:**
+- "Production-ready" requires testing, code review, security scan, deployment
+- 14 seconds is code generation time, not production deployment time
+- Conflates "code written" with "production-ready"
+
+**Correction:** "14 seconds to generate code scaffold, requires testing before production"
+
+---
+
+#### Fallacy #6: Memory Utilization Claims (SEVERITY: MEDIUM)
+**Statements:**
+- "Zero swap, all in unified memory"
+- "100% utilization" (48GB chart)
+
+**Reality:**
+- No actual memory profiling shown
+- macOS will swap even with available RAM
+- "Zero swap" is unverifiable claim
+
+**Correction:** "Optimized for 48GB with minimal swap" (requires vm_stat validation)
+
+---
+
+#### Fallacy #7: Percentage Claims Without Measurement (SEVERITY: MEDIUM)
+**Statements:**
+- "Copilot: Fast inline completions (80% of code)"
+- "80% of work happens without human intervention"
+
+**Reality:**
+- No code coverage tool used
+- No measurement of human vs automated work
+- Estimates presented as facts
+
+**Correction:** "Copilot handles majority of routine completions (estimated 50-80%)"
+
+---
+
+### PO1_COMPLETION_REPORT.md
+
+#### Fallacy #8: Metrics Marked Complete Without Testing (SEVERITY: HIGH)
+**Statements:**
+- "Redis unauthorized errors: 0" ✅
+- "TTS cache hit latency: <100ms" ✅
+- "TTS repeated phrase reduction: Expected 60%" ✅
+
+**Reality:**
+- No load test executed
+- No latency measurements taken
+- No before/after comparison for TTS
+
+**Correction:** These should be marked 🟡 PENDING until actual measurements taken
+
+**Honest Version (Already in Report):**
+- Queue latency: "TBD (awaits load test)" 🟡 Pending ✅ GOOD
+
+---
+
+### EMERGENCY_FIX_REPORT.md
+
+#### Fallacy #9: Boot Time Improvement Claim (SEVERITY: LOW)
+**Statement:**
+"Boot Time Impact: Before ~15s, After ~8s, Improvement: 47% faster boot"
+
+**Reality:**
+- Not measured with actual timer
+- Estimate based on timeout removal
+- May vary by system state
+
+**Correction:** "Estimated 47% faster (removed 3s timeout + reduced warnings)"
+
+---
+
+#### Fallacy #10: Absolute Popup Elimination Claim (SEVERITY: LOW)
+**Statement:**
+"Popups Eliminated: All VS Code automation dialogs"
+
+**Reality:**
+- Script attempts suppression but can't guarantee 100%
+- macOS security prompts may still appear on first run
+- User may need manual System Settings approval
+
+**Correction:** "Popups suppressed (most automation dialogs eliminated, manual approval may be needed)"
+
+---
+
+### Common Fallacy Patterns Identified:
+
+1. **Magnitude Inflation**
+   - 100x → 1000x speedup claims
+   - "Zero" absolutes (zero swap, zero errors)
+   - "All" or "100%" without verification
+
+2. **Aspirational Metrics as Facts**
+   - "Production-ready in 14 seconds"
+   - "80% of code via Copilot"
+   - TTS latency claims without measurement
+
+3. **Completion Claims Before Testing**
+   - Marking metrics ✅ before load testing
+   - Security "enforced" without audit
+   - Performance "achieved" without benchmarks
+
+4. **Imprecise Language**
+   - "Expected" → "Achieved"
+   - "Estimated" → "Measured"
+   - "Should be" → "Is"
 
 ---
 
