@@ -61,6 +61,32 @@ initialize_state() {
   success "State file initialized: $STATE_FILE"
 }
 
+# Auto-update timestamps in watched files
+auto_update_timestamps() {
+  local timestamp=$(date '+%Y-%m-%d %H:%M')
+  local updated=()
+
+  # Update START.sh timestamp
+  if [[ -f "$ROOT/START.sh" ]]; then
+    if grep -q "^# VERIFIED AND UPDATED:" "$ROOT/START.sh"; then
+      sed -i.bak "s/^# VERIFIED AND UPDATED:.*/# VERIFIED AND UPDATED: $timestamp (AUTO-SAVE ACTIVE)/" "$ROOT/START.sh"
+      updated+=("START.sh")
+    fi
+  fi
+
+  # Update claude_tier1_boot.sh timestamp if it exists
+  if [[ -f "$ROOT/scripts/claude_tier1_boot.sh" ]]; then
+    if grep -q "^# VERIFIED AND UPDATED:" "$ROOT/scripts/claude_tier1_boot.sh"; then
+      sed -i.bak "s/^# VERIFIED AND UPDATED:.*/# VERIFIED AND UPDATED: $timestamp (AUTO-SAVE ACTIVE)/" "$ROOT/scripts/claude_tier1_boot.sh"
+      updated+=("claude_tier1_boot.sh")
+    fi
+  fi
+
+  if [[ ${#updated[@]} -gt 0 ]]; then
+    info "Auto-updated timestamps in: ${updated[*]}"
+  fi
+}
+
 # Check if any watched files have changed
 check_for_changes() {
   local changes=()
