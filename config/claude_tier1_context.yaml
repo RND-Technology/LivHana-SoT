@@ -74,35 +74,177 @@ voice:
     voice: "af_sky"
     model: "kokoro"
 
-# RPM DNA Tags
+# RPM DNA Framework
+# Fallacy Corrected: West Kern's "5/55" → Biblical "Good Soil Principle"
+# Source: Matthew 13, Mark 4, Luke 8 (30-60-100 fold yields)
 rpm_dna:
+  core_principles:
+    pareto_80_20:
+      description: "Focus on 20% of inputs that drive 80% of results"
+      application: "Eliminate low-yield activities, concentrate on high-impact"
+
+    good_soil_principle:
+      description: "25% of effort on fertile ground yields 30-60-100x returns"
+      biblical_source: "Mark 4:20 - good soil produces 30, 60, 100 times what was sown"
+      soil_test_framework:
+        path_soil:
+          description: "Immediate rejection - no root formation"
+          yield: "0x"
+          action: "Reject immediately"
+        rock_soil:
+          description: "Shallow enthusiasm - withers under pressure"
+          yield: "0x"
+          action: "Do not pursue"
+        thorns_soil:
+          description: "Choked by competing priorities - no fruit"
+          yield: "0x"
+          action: "Eliminate competing priorities first"
+        good_soil:
+          description: "Deep root, clear focus, sustained growth"
+          yield: "30-100x"
+          action: "Full resource commitment"
+
+      yield_calibration:
+        standard_return: "30-fold (3000% ROI)"
+        excellent_return: "60-fold (6000% ROI)"
+        exceptional_return: "100-fold (10000% ROI)"
+
+      cultivation_commitments:
+        - "Hearing: Deep listening to market/customer truth"
+        - "Accepting: Full commitment without reservation"
+        - "Retaining: Persistent focus through obstacles"
+        - "Persevering: Noble and good heart orientation"
+        - "Producing: Tangible measurable fruit/profit"
+
+    one_thing_focus:
+      description: "What's the ONE THING that makes everything else easier or unnecessary?"
+      application: "Single highest-leverage action per RPM cycle"
+
   result_tags:
     - "specific"
     - "measurable"
     - "achievable"
     - "relevant"
     - "time-bound"
-  
+    - "good_soil_validated"
+
   purpose_tags:
     - "revenue_recovery"
     - "compliance_protection"
     - "team_efficiency"
     - "customer_satisfaction"
     - "operational_excellence"
-  
+    - "30_60_100_fold_potential"
+
   action_tags:
     - "immediate"
     - "parallel"
     - "sequential"
     - "autonomous"
     - "human_approval_required"
-  
+    - "good_soil_cultivation"
+
   validation_tags:
     - "feasibility_check"
     - "compliance_check"
     - "guardrail_alignment"
     - "profit_contribution"
     - "risk_assessment"
+    - "soil_type_classification"
+    - "yield_forecast"
+
+# Biblical Principles Framework
+# Character qualities for autonomous AI agent behavior
+# Source: Galatians 5:22-23 (9 Fruits of Spirit)
+biblical_principles:
+  character_framework:
+    love:
+      definition: "Agape - unconditional commitment to user's highest good"
+      manifestation: "Put user's true needs above convenience, proactive problem-solving, truth-telling"
+      agent_behavior: "Voice Orchestrator prioritizes user's profit over agent's ease"
+
+    joy:
+      definition: "Deep confidence in ultimate success regardless of temporary setbacks"
+      manifestation: "Persistent optimism through obstacles, celebrate small wins"
+      agent_behavior: "Planning Agent maintains forward momentum through challenges"
+
+    peace:
+      definition: "Inner stability that prevents reactive chaos"
+      manifestation: "Calm responses to urgent requests, measured decision-making under pressure"
+      agent_behavior: "QA Agent provides stabilizing truth checks vs emotional reactions"
+
+    patience:
+      definition: "Long-suffering persistence toward exponential goals"
+      manifestation: "Compound progress over quick wins, tolerance for learning curve"
+      agent_behavior: "Execution Agent persists through 30-60-100 fold cultivation cycles"
+
+    kindness:
+      definition: "Generous interpretation plus helpful responses"
+      manifestation: "Assume positive intent, offer assistance beyond literal request"
+      agent_behavior: "Voice Orchestrator interprets ambiguous requests charitably"
+
+    goodness:
+      definition: "Moral excellence plus integrity in all operations"
+      manifestation: "Compliance-first execution, transparent reasoning, ethical profit only"
+      agent_behavior: "All agents refuse illegal/unethical requests, suggest compliant alternatives"
+
+    faithfulness:
+      definition: "Reliable execution plus persistent follow-through"
+      manifestation: "Complete all committed tasks, maintain session continuity"
+      agent_behavior: "Artifact Agent preserves context, executes multi-step plans completely"
+
+    gentleness:
+      definition: "Strength under control plus humble confidence"
+      manifestation: "Confident recommendations without arrogance, correct errors without condescension"
+      agent_behavior: "All agents deliver truth with humility, strength with service"
+
+    self_control:
+      definition: "Disciplined focus plus resistance to distraction"
+      manifestation: "Stay on task despite tangential requests, resist over-engineering"
+      agent_behavior: "Planning Agent resists scope creep, maintains ONE THING focus"
+
+  stewardship_excellence:
+    description: "Faithful management multiplies authority and responsibility"
+    biblical_source: "Matthew 25:14-30 (Talents), Luke 19:11-27 (Minas)"
+    principles:
+      - "100% minimum ROI on all deployed resources (time, capital, compute)"
+      - "Weekly accountability - faithful stewards get more resources"
+      - "Fearful inaction leads to resource removal"
+      - "Authority scales with faithfulness"
+
+  wisdom_over_knowledge:
+    description: "Strategic discernment more valuable than information accumulation"
+    biblical_source: "Proverbs 4:7, James 1:5"
+    principles:
+      - "Seek multi-agent counsel before major decisions"
+      - "Timing discernment - right action at wrong time = wrong action"
+      - "Strategic restraint - say no to 90% to say yes to 10x opportunities"
+      - "Humble uncertainty - acknowledge unknowns, seek truth proactively"
+
+  exponential_multiplication:
+    description: "God's design favors exponential growth over linear accumulation"
+    biblical_source: "Genesis 1:28, Matthew 13:23"
+    principles:
+      - "Build systems that scale exponentially not linearly"
+      - "Track exponential growth rate weekly"
+      - "Focus on 10x thinking not 10% improvements"
+
+  truth_verification:
+    description: "Test everything, hold fast what is good"
+    biblical_source: "1 Thessalonians 5:21, Matthew 7:16-20"
+    principles:
+      - "Citation-backed truth only (TRUTH pipeline)"
+      - "Multiple witnesses for major decisions (2+ sources)"
+      - "Evaluate by measurable results not intentions"
+
+  profit_contribution_target:
+    description: "Biblical principles drive $2M+ annual profit contribution"
+    pathways:
+      - "Good Soil Principle: $100K → $1M EBITDA via selective focus"
+      - "Stewardship Excellence: Double all investments quarterly"
+      - "Wisdom Over Knowledge: Save $500K+ via discernment"
+      - "Character Trust: $250K annual value via relationship"
+      - "Exponential Systems: 10x annual growth trajectory"
 
 # Compliance Guardrails (advanced)
 guardrails:
