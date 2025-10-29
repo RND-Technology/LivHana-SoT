@@ -345,7 +345,9 @@ echo ""
 # Start dual tier-1 coordination loop
 echo "🤝 Starting dual tier-1 coordination loop..."
 if ! tmux has-session -t dual-tier1 2>/dev/null; then
-  tmux new-session -d -s dual-tier1 "cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT && bash scripts/agents/dual_tier1_loop.sh"
+  cd "$(dirname "$0")"
+  ROOT="$(pwd)"
+  tmux new-session -d -s dual-tier1 "cd '$ROOT' && bash scripts/agents/dual_tier1_loop.sh"
   sleep 2
   echo "✅ Dual tier-1 coordination active"
 else
@@ -356,7 +358,9 @@ echo ""
 # Start auto-commit watchdog
 echo "🐕 Starting auto-commit watchdog (30s intervals)..."
 if ! tmux has-session -t auto-timestamp 2>/dev/null; then
-  tmux new-session -d -s auto-timestamp "bash scripts/watchdogs/boot_script_auto_commit.sh"
+  cd "$(dirname "$0")"
+  ROOT="$(pwd)"
+  tmux new-session -d -s auto-timestamp "cd '$ROOT' && bash scripts/watchdogs/boot_script_auto_commit.sh"
   sleep 2
   echo "✅ Auto-commit watchdog active"
 else
@@ -367,7 +371,9 @@ echo ""
 # Start dependency auto-save watchdog
 echo "📦 Starting dependency auto-save watchdog (30s updates)..."
 if ! tmux has-session -t dependency-watch 2>/dev/null; then
-  tmux new-session -d -s dependency-watch "bash scripts/watchdogs/dependency_auto_save.sh"
+  cd "$(dirname "$0")"
+  ROOT="$(pwd)"
+  tmux new-session -d -s dependency-watch "cd '$ROOT' && bash scripts/watchdogs/dependency_auto_save.sh"
   sleep 2
   echo "✅ Dependency watchdog active (updates ALL package-lock.json files)"
 else
