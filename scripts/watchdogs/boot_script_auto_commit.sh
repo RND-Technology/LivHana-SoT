@@ -1,41 +1,4 @@
-#!/usr/b# Configuration
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")/../.." && pwd)"
-
-# ULTRA-COMPREHENSIVE: Monitor ALL critical files dynamically
-generate_watch_files() {
-  # Core boot scripts
-  find "$ROOT" -maxdepth 1 -name "*.sh" 2>/dev/null
-  find "$ROOT/scripts" -name "*.sh" 2>/dev/null
-  
-  # All TypeScript and JavaScript source
-  find "$ROOT/backend" -name "*.ts" -o -name "*.js" ! -path "*/node_modules/*" ! -path "*/dist/*" 2>/dev/null
-  find "$ROOT/frontend" -name "*.ts" -o -name "*.js" ! -path "*/node_modules/*" ! -path "*/dist/*" 2>/dev/null
-  
-  # All configuration files
-  find "$ROOT" -maxdepth 3 -name "*.json" ! -path "*/node_modules/*" ! -path "*/tmp/*" 2>/dev/null
-  
-  # All documentation
-  find "$ROOT/.claude" -name "*.md" 2>/dev/null
-  find "$ROOT/docs" -name "*.md" 2>/dev/null
-  
-  # VS Code settings
-  find "$ROOT/.vscode" -type f 2>/dev/null
-  
-  # Agent status files
-  find "$ROOT/tmp/agent_status" -name "*.json" 2>/dev/null
-}
-
-# Generate dynamic file list (cached for 60s to avoid excessive scanning)
-WATCH_FILES=()
-if [[ ! -f "$ROOT/tmp/watch_files_cache.txt" ]] || [[ $(find "$ROOT/tmp/watch_files_cache.txt" -mmin +1 2>/dev/null) ]]; then
-  generate_watch_files > "$ROOT/tmp/watch_files_cache.txt" 2>/dev/null
-fi
-mapfile -t WATCH_FILES < "$ROOT/tmp/watch_files_cache.txt"
-
-CHECK_INTERVAL="${BOOT_SCRIPT_WATCH_INTERVAL:-30}"  # 30 seconds TURBO MODEcript Auto-Commit Watchdog
-# Automatically commits and pushes boot script improvements during sessions
-# Created: 2025-10-28 by Liv Hana (Tier-1)
-# Owner: Jesse CEO
+#!/usr/bin/env bash
 
 set -euo pipefail
 
