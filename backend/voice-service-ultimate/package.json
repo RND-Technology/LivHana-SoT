@@ -1,0 +1,55 @@
+{
+  "name": "@livhana/voice-service-ultimate",
+  "version": "2.0.0",
+  "description": "Ultimate Voice Mode - ElevenLabs + Deepgram + Real-time Video Generation",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "ts-node src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "jest",
+    "lint": "eslint src/**/*.ts"
+  },
+  "keywords": [
+    "voice",
+    "tts",
+    "stt",
+    "elevenlabs",
+    "deepgram",
+    "video-generation",
+    "ltx-video",
+    "runway",
+    "liv-hana",
+    "tier-1"
+  ],
+  "author": "Jesse Niesen <jesseniesen@gmail.com>",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "ws": "^8.14.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/express": "^4.17.21",
+    "@types/cors": "^2.8.17",
+    "@types/ws": "^8.5.9",
+    "typescript": "^5.3.2",
+    "ts-node": "^10.9.1",
+    "eslint": "^8.55.0",
+    "@typescript-eslint/parser": "^6.13.2",
+    "@typescript-eslint/eslint-plugin": "^6.13.2",
+    "jest": "^29.7.0"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jesseniesen/LivHana-SoT.git",
+    "directory": "backend/voice-service-ultimate"
+  }
+}
