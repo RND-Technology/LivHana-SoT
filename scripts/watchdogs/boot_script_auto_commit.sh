@@ -9,8 +9,8 @@ set -euo pipefail
 # Configuration
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")/../.." && pwd)"
 WATCH_FILES=(
-  "$ROOT/scripts/claude_tier1_boot.sh"
   "$ROOT/START.sh"
+  "$ROOT/scripts/claude_tier1_boot.sh"
   "$ROOT/.vscode/launch.json"
   "$ROOT/.vscode/tasks.json"
   "$ROOT/.vscode/settings.json"
@@ -20,7 +20,10 @@ WATCH_FILES=(
   "$ROOT/backend/reasoning-gateway/src/routes/agentStatus.js"
   "$ROOT/backend/reasoning-gateway/src/index.js"
   "$ROOT/.claude/INTER_AGENT_COMMUNICATION_PROTOCOL.md"
+  "$ROOT/.claude/SESSION_PROGRESS.md"
   "$ROOT/package.json"
+  "$ROOT/tmp/agent_status"/**/*.json
+  "$ROOT/docs"/**/*.md
 )
 CHECK_INTERVAL="${BOOT_SCRIPT_WATCH_INTERVAL:-30}"  # 30 seconds TURBO MODE
 LOG="$ROOT/logs/boot_script_auto_commit.log"
@@ -118,20 +121,13 @@ auto_commit_and_push() {
 
   cd "$ROOT"
 
-  # Check if there are already staged changes
-  if git diff --cached --quiet; then
-    # No staged changes - stage our files
-    for file in "${changed_files[@]}"; do
-      git add "$file"
-      success "Staged: $(basename "$file")"
-    done
-  else
-    info "Using existing staged changes"
-  fi
+  # AGGRESSIVE: Stage ALL changes, not just watched files
+  git add -A 2>&1 | tee -a "$LOG" || true
+  info "Staged ALL repository changes"
 
   # Check if there's anything to commit
   if git diff --cached --quiet; then
-    warning "No changes to commit after staging"
+    info "No changes to commit after staging"
     return 0
   fi
 
@@ -140,10 +136,10 @@ auto_commit_and_push() {
 
   # Commit
   if git commit -m "$commit_msg" 2>&1 | tee -a "$LOG"; then
-    success "Committed boot script improvements"
+    success "Committed all changes"
   else
-    error "Commit failed - check logs"
-    return 1
+    warning "Commit skipped (no changes or error)"
+    return 0
   fi
 
   # Push to current branch
@@ -156,9 +152,9 @@ auto_commit_and_push() {
     # Log to session progress
     {
       echo ""
-      echo "## $(date '+%Y-%m-%d %H:%M:%S %Z') — Auto-Committed Boot Improvements"
+      echo "## $(date '+%Y-%m-%d %H:%M:%S %Z') — Auto-Committed All Changes"
       echo ""
-      echo "**Files Updated:**"
+      echo "**Trigger Files:**"
       for file in "${changed_files[@]}"; do
         echo "- $(basename "$file")"
       done
