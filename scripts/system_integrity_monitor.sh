@@ -44,7 +44,7 @@ log_msg() {
 }
 
 json_array_from_lines() {
-  python3 <<'PY' 2>/dev/null
+  python3 2>/dev/null <<'PY'
 import json, sys
 lines = [line.strip() for line in sys.stdin if line.strip()]
 print(json.dumps(lines))
@@ -75,7 +75,8 @@ gather_snapshot() {
 
   local cpu_hot_json="[]"
   if [[ -s "$process_hot_file" ]]; then
-    cpu_hot_json=$(PROCESS_HOT_FILE="$process_hot_file" python3 <<'PY' 2>/dev/null || echo "[]")
+    cpu_hot_json=$(
+      PROCESS_HOT_FILE="$process_hot_file" python3 2>/dev/null <<'PY' || echo "[]"
 import json, os, pathlib
 path = pathlib.Path(os.environ["PROCESS_HOT_FILE"])
 rows = []
@@ -197,7 +198,7 @@ PY
   export HISTORY_DEST="$HISTORY_FILE"
   export HISTORY_RETENTION
 
-  python3 <<'PY' 2>/dev/null || log_msg error "Failed to serialize system metrics JSON"
+  python3 2>/dev/null <<'PY' || log_msg error "Failed to serialize system metrics JSON"
 import json, os, pathlib
 
 def parse_load(raw):
