@@ -77,9 +77,10 @@ error() { echo -e "${RED}[$(date '+%H:%M:%S')]${NC} ❌ $1" | tee -a "$LOG"; }
 # Initialize
 mkdir -p "$(dirname "$LOG")" "$(dirname "$STATE_FILE")"
 
-info "Boot script auto-commit watchdog started (PID $$)"
-info "Monitoring files: ${#WATCH_FILES[@]} boot-related files"
-info "Check interval: ${CHECK_INTERVAL}s"
+info "=== BOOT SCRIPT AUTO-COMMIT WATCHDOG STARTED (PID $$) ==="
+info "Repository root: $ROOT"
+info "Monitoring files: ${#WATCH_FILES[@]} critical files (ALL .sh/.ts/.js/.json/.md)"
+info "Check interval: ${CHECK_INTERVAL}s ULTRA-AGGRESSIVE MODE"
 
 # Initialize state file with current file hashes
 initialize_state() {
