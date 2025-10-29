@@ -679,7 +679,7 @@ if command -v gcloud >/dev/null 2>&1; then
   [[ -n "$SQUARE_ACCESS_TOKEN" ]] && success "SQUARE_ACCESS_TOKEN loaded from Secret Manager"
   [[ -n "$SQUARE_LOCATION_ID" ]] && success "SQUARE_LOCATION_ID loaded from Secret Manager"
   
-  # Load LightSpeed OAuth credentials (TIER-1) or fallback to legacy token
+  # Load LightSpeed OAuth credentials (TIER-1)
   export LIGHTSPEED_CLIENT_ID=$(gcloud secrets versions access latest --secret=LIGHTSPEED_CLIENT_ID --project="$GCP_PROJECT_ID" 2>/dev/null || echo "")
   export LIGHTSPEED_CLIENT_SECRET=$(gcloud secrets versions access latest --secret=LIGHTSPEED_CLIENT_SECRET --project="$GCP_PROJECT_ID" 2>/dev/null || echo "")
   export LIGHTSPEED_ACCOUNT_ID=$(gcloud secrets versions access latest --secret=LIGHTSPEED_ACCOUNT_ID --project="$GCP_PROJECT_ID" 2>/dev/null || echo "")
@@ -688,13 +688,7 @@ if command -v gcloud >/dev/null 2>&1; then
     success "LIGHTSPEED OAuth credentials loaded (TIER-1)"
     info "Account ID: $LIGHTSPEED_ACCOUNT_ID"
   else
-    # Fallback to legacy personal access token
-    export LIGHTSPEED_TOKEN=$(gcloud secrets versions access latest --secret=LightSpeed-Agent-Builder --project="$GCP_PROJECT_ID" 2>/dev/null || echo "")
-    if [[ -n "$LIGHTSPEED_TOKEN" ]]; then
-      warning "LIGHTSPEED_TOKEN loaded (LEGACY - migrate to OAuth2)"
-    else
-      warning "No LightSpeed credentials found - integration service may fail"
-    fi
+    warning "No LightSpeed OAuth credentials found - integration service may fail"
   fi
 fi
 
