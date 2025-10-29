@@ -72,7 +72,10 @@ check_for_changes() {
     fi
   done
 
-  echo "${changes[@]}"
+  # Handle empty array safely with set -u
+  if [[ ${#changes[@]} -gt 0 ]]; then
+    echo "${changes[@]}"
+  fi
 }
 
 # Generate commit message based on changed files
