@@ -1068,7 +1068,7 @@ Compliance tripwire check → drop a fake “age-gate risk” note; verify it’
 Guardrails you must keep on
 TRUTH protocol: state explicit counts; cite canon; avoid ambiguity. 
 
-Operations first (Veriff/Jumio, COAs, label language) before content work.  
+Operations first ([PURGED_FALLACY]/[PURGED_FALLACY], COAs, label language) before content work.  
 
 Repo noise down (Principle of 1) to keep the agent cheap & fast. 
 

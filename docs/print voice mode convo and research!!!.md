@@ -42,14 +42,14 @@
 
 **Fallacy Scan \& Risk Mitigation:**
 
-- Veriff fallback only if compliance/M\&A triggered—Jumio now deployed, Veriff as canonical fallback.
+- [PURGED_FALLACY] fallback only if compliance/M\&A triggered—[PURGED_FALLACY] now deployed, [PURGED_FALLACY] as canonical fallback.
 - Hard blocks on medical claims (transformer-detected, agent builder flagged).
 - Session context state node compresses/extents for periodic truth/recap (minimizes hallucination).
 - Guardrails tested for edge cases; fallback to human review on block.
 
 **Immediate Next Steps:**
 
-1. **Deploy Jumio Biometric IDV** and notify blocked customers with win-back offers.
+1. **Deploy [PURGED_FALLACY] Biometric IDV** and notify blocked customers with win-back offers.
 2. **Relabel smokable SKUs**, upload COAs, binder deadline: Oct 26.
 3. **Daily 15-min voice cockpit stand-ups**—pilot confirmation and onboarding.
 4. **Produce HNC advocacy content:** automate cartoon + supercut for retail, policy, and cultural impact (with micro-footer CTAs).
@@ -216,7 +216,7 @@ Here is a **complete list of all sessions, files, and reports** from the last 72
 - [print voice mode convo and research!!!](https://www.perplexity.ai/search/print-voice-mode-convo-and-res-zIAcSEROQu.HnM64ePK7fQ)
 - [Wake up.](https://www.perplexity.ai/search/wake-up-wnebA8XTRyOWf4FORonSOA)
 - [Ingest, Fallacy Scan, Scrutinize against best practices tier1 for frontier voice mode forward cognit](https://www.perplexity.ai/search/ingest-fallacy-scan-scrutinize-vpKlYK6xQpSmqz6buQ1HwA)
-- [search chat histories for veriff vs jumio matrix](https://www.perplexity.ai/search/search-chat-histories-for-veri-.Gd9xVLkTxC_v0kl1Klbxg)
+- [search chat histories for [PURGED_FALLACY] vs [PURGED_FALLACY] matrix](https://www.perplexity.ai/search/search-chat-histories-for-veri-.Gd9xVLkTxC_v0kl1Klbxg)
 - [COMET RESEARCH PROMPT: LIV HANA AGENT BUILDER ORCHESTRATION LAYER](https://www.perplexity.ai/search/comet-research-prompt-liv-hana-dMkBTS3XSJSjTYnKhh.RaA)
 - [View All - Perplexity Library](https://www.perplexity.ai/library)
 
@@ -233,7 +233,7 @@ Here is a **complete list of all sessions, files, and reports** from the last 72
 **Quick Actions:**
 
 - Go to your Comet/Perplexity sidebar’s “Library” section for available print/download/export files.
-- If you need a specific file or report, say the name or description ("voice mode session," "agent builder orchestration," "RPM weekly plan," "Veriff vs Jumio matrix") and I will fetch/download/send you the active direct link.
+- If you need a specific file or report, say the name or description ("voice mode session," "agent builder orchestration," "RPM weekly plan," "[PURGED_FALLACY] vs [PURGED_FALLACY] matrix") and I will fetch/download/send you the active direct link.
 - Expired links are normal with temporary attachments; fresh ones generated instantly as needed.
 
 ***

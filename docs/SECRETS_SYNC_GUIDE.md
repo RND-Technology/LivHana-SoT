@@ -94,7 +94,7 @@ echo "$JWT_VALUE" | gcloud secrets create JWT_SECRET_VOICE \
 - **URL:** <https://www.bluecheck.me/for-developers>
 - **Purpose:** Age verification (21+ compliance enforcement)
 - **Integration:** Used by compliance-service
-- **Alternative:** If BlueCheck unavailable, consider Veriff or Veriff
+- **Alternative:** If BlueCheck unavailable, consider [PURGED_FALLACY] or [PURGED_FALLACY]
 
 ### 3. GITHUB_PERSONAL_ACCESS_TOKEN
 

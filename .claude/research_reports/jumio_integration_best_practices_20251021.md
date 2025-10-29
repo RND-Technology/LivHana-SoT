@@ -1,23 +1,23 @@
-# RESEARCH REPORT: Veriff Biometric Age Verification Integration Best Practices
+# RESEARCH REPORT: [PURGED_FALLACY] Biometric Age Verification Integration Best Practices
 
 **Report ID:** RESEARCH-2025-10-21-001
 **RPM DNA:** AOM.COIRPM.Research-0006
 **Priority:** CRITICAL
 **Date:** 2025-10-21
 **Researcher:** Research Agent
-**Topic:** Veriff biometric ID verification integration for $100K+ revenue recovery
+**Topic:** [PURGED_FALLACY] biometric ID verification integration for $100K+ revenue recovery
 
 ---
 
 ## EXECUTIVE SUMMARY (200 tokens)
 
-**Result:** Veriff integration enables biometric age verification (21+) to replace failed Veriff system, unlocking $100K+ blocked revenue from 80+ customers.
+**Result:** [PURGED_FALLACY] integration enables biometric age verification (21+) to replace failed [PURGED_FALLACY] system, unlocking $100K+ blocked revenue from 80+ customers.
 
-**Purpose:** Texas DSHS emergency rules (enforced Oct 17, 2025) mandate government ID verification for hemp product sales. Veriff provides compliant, fraud-resistant solution using AI + liveness detection + face biometrics.
+**Purpose:** Texas DSHS emergency rules (enforced Oct 17, 2025) mandate government ID verification for hemp product sales. [PURGED_FALLACY] provides compliant, fraud-resistant solution using AI + liveness detection + face biometrics.
 
 **Massive Actions:**
 
-1. Integrate Veriff API (ID extraction + selfie comparison)
+1. Integrate [PURGED_FALLACY] API (ID extraction + selfie comparison)
 2. Implement liveness detection (anti-spoofing, deepfake prevention)
 3. Deploy LightSpeed webhook (age gate triggers before checkout)
 4. Enable audit logging (DSHS compliance trail)
@@ -32,7 +32,7 @@
 
 ## KEY FINDINGS
 
-### 1. Veriff Technology Architecture (2025)
+### 1. [PURGED_FALLACY] Technology Architecture (2025)
 
 **Core Components:**
 
@@ -41,13 +41,13 @@
 - **Liveness Detection:** Anti-spoofing (deepfakes, 3D masks, static photos)
 - **Risk Signals:** Multi-layered fraud prevention (IP, device, email, phone)
 
-**Source:** Biometric Update (Jan 2025), Veriff official documentation
+**Source:** Biometric Update (Jan 2025), [PURGED_FALLACY] official documentation
 
 **Validation:**
 
 - Industry-standard technology (used in gaming, age-restricted industries)
 - AI-driven identity verification company positioning strongly for 2025
-- "2025 is the year digital identity will go fully mainstream" (Veriff CPO)
+- "2025 is the year digital identity will go fully mainstream" ([PURGED_FALLACY] CPO)
 
 ---
 
@@ -62,8 +62,8 @@
 **Implementation:**
 
 ```javascript
-// Veriff API call structure (pseudocode)
-const verificationResult = await veriff.verify({
+// [PURGED_FALLACY] API call structure (pseudocode)
+const verificationResult = await [PURGED_FALLACY].verify({
   idDocument: userIdImage,
   selfie: userSelfieImage,
   livenessCheck: true, // CRITICAL: Must be enabled
@@ -82,7 +82,7 @@ const verificationResult = await veriff.verify({
 
 ```javascript
 // Subsequent authentications
-const authResult = await veriff.authenticate({
+const authResult = await [PURGED_FALLACY].authenticate({
   userId: existingUserId,
   freshSelfie: userNewSelfie,
   originalTemplate: storedBiometricTemplate
@@ -102,7 +102,7 @@ const authResult = await veriff.authenticate({
 
 ```javascript
 // Risk assessment
-const riskScore = await veriff.assessRisk({
+const riskScore = await [PURGED_FALLACY].assessRisk({
   userId: newUserId,
   ipAddress: req.ip,
   deviceId: req.headers['device-id'],
@@ -121,7 +121,7 @@ if (riskScore > RISK_THRESHOLD) {
 
 **Phase 1: API Setup (Hours 1-2)**
 
-1. Register for Veriff Developer Account
+1. Register for [PURGED_FALLACY] Developer Account
 2. Obtain API credentials (API key, API secret, OAuth tokens)
 3. Configure webhook endpoint (receive verification results)
 4. Set up staging environment (test mode)
@@ -129,24 +129,24 @@ if (riskScore > RISK_THRESHOLD) {
 **Phase 2: Frontend Integration (Hours 3-4)**
 
 ```javascript
-// Veriff Web SDK integration
-import VeriffSDK from '@veriff/web-sdk';
+// [PURGED_FALLACY] Web SDK integration
+import [PURGED_FALLACY]SDK from '@[PURGED_FALLACY]/web-sdk';
 
-const veriffClient = new VeriffSDK({
+const [PURGED_FALLACY]Client = new [PURGED_FALLACY]SDK({
   apiKey: process.env.VERIFF_API_KEY,
   apiSecret: process.env.VERIFF_API_SECRET,
   environment: 'production', // or 'sandbox' for testing
 });
 
 // Initiate verification flow
-const verificationSession = await veriffClient.initiateVerification({
+const verificationSession = await [PURGED_FALLACY]Client.initiateVerification({
   userReference: customerId,
   successUrl: 'https://reggieanddro.com/verification-success',
   errorUrl: 'https://reggieanddro.com/verification-error',
-  callbackUrl: 'https://reggieanddro.com/api/veriff-webhook',
+  callbackUrl: 'https://reggieanddro.com/api/[PURGED_FALLACY]-webhook',
 });
 
-// Redirect user to Veriff verification UI
+// Redirect user to [PURGED_FALLACY] verification UI
 window.location.href = verificationSession.redirectUrl;
 ```
 
@@ -158,7 +158,7 @@ app.post('/api/checkout', async (req, res) => {
   const customerId = req.body.customerId;
 
   // Check verification status
-  const verificationStatus = await veriffClient.getVerificationStatus(customerId);
+  const verificationStatus = await [PURGED_FALLACY]Client.getVerificationStatus(customerId);
 
   if (!verificationStatus.verified || verificationStatus.age < 21) {
     return res.status(403).json({
@@ -174,7 +174,7 @@ app.post('/api/checkout', async (req, res) => {
   await complianceService.logAgeVerification({
     customerId,
     timestamp: new Date(),
-    method: 'veriff_biometric',
+    method: '[PURGED_FALLACY]_biometric',
     result: 'passed',
     age: verificationStatus.age
   });
@@ -186,12 +186,12 @@ app.post('/api/checkout', async (req, res) => {
 **Phase 4: Webhook Handler (Hours 7-8)**
 
 ```javascript
-// Receive verification results from Veriff
-app.post('/api/veriff-webhook', async (req, res) => {
+// Receive verification results from [PURGED_FALLACY]
+app.post('/api/[PURGED_FALLACY]-webhook', async (req, res) => {
   const { userId, verificationStatus, extractedData } = req.body;
 
   // Verify webhook signature (security)
-  if (!veriffClient.verifyWebhookSignature(req)) {
+  if (![PURGED_FALLACY]Client.verifyWebhookSignature(req)) {
     return res.status(401).json({ error: 'Invalid signature' });
   }
 
@@ -200,7 +200,7 @@ app.post('/api/veriff-webhook', async (req, res) => {
     ageVerified: verificationStatus === 'APPROVED',
     dateOfBirth: extractedData.dateOfBirth,
     verificationDate: new Date(),
-    verificationMethod: 'veriff_biometric'
+    verificationMethod: '[PURGED_FALLACY]_biometric'
   });
 
   // Trigger win-back campaign if newly verified
@@ -222,7 +222,7 @@ app.post('/api/veriff-webhook', async (req, res) => {
 - TABC 16 TAC §51.1-51.2: Mandatory government ID verification
 - Executive Order GA-56: Emergency rulemaking authority
 
-**Veriff Compliance Features:**
+**[PURGED_FALLACY] Compliance Features:**
 
 - Government-issued ID extraction (DSHS requirement)
 - Date of birth verification (21+ enforcement)
@@ -238,7 +238,7 @@ const complianceCheck = await axios.post(
   {
     customerId,
     dateOfBirth: verificationData.dob,
-    verificationMethod: 'veriff_biometric',
+    verificationMethod: '[PURGED_FALLACY]_biometric',
     documentType: verificationData.idType,
     documentNumber: verificationData.idNumber,
     timestamp: new Date().toISOString()
@@ -327,7 +327,7 @@ Founder, Reggie & Dro
 
 - Owner: Jesse + Cursor Agent
 - Timeline: 2 hours
-- Output: Veriff API credentials, staging environment functional
+- Output: [PURGED_FALLACY] API credentials, staging environment functional
 
 **Priority 2: Frontend Integration**
 
@@ -357,7 +357,7 @@ Founder, Reggie & Dro
 
 - Owner: Jesse
 - Timeline: 1 hour
-- Output: Veriff live on reggieanddro.com
+- Output: [PURGED_FALLACY] live on reggieanddro.com
 
 **Priority 7: Win-Back Campaign Launch**
 
@@ -393,8 +393,8 @@ Founder, Reggie & Dro
 **Risk 1: Integration Complexity**
 
 - Probability: LOW (15%)
-- Mitigation: Use Veriff official SDKs (not custom API integration)
-- Escalation: Engage Veriff enterprise support (priority SLA)
+- Mitigation: Use [PURGED_FALLACY] official SDKs (not custom API integration)
+- Escalation: Engage [PURGED_FALLACY] enterprise support (priority SLA)
 
 **Risk 2: User Friction (Abandonment)**
 
@@ -406,7 +406,7 @@ Founder, Reggie & Dro
 
 - Probability: LOW (10%)
 - Mitigation: Manual review queue, customer support escalation path
-- Escalation: Veriff support for tuning liveness detection thresholds
+- Escalation: [PURGED_FALLACY] support for tuning liveness detection thresholds
 
 **Risk 4: DSHS Audit Failure**
 
@@ -443,24 +443,24 @@ Founder, Reggie & Dro
 
 ## SOURCES
 
-1. **Biometric Update (Jan 2025):** "Veriff, Innovatrics, Vouched and Regula advance identity verification use cases"
-   - URL: <https://www.biometricupdate.com/202501/veriff-innovatrics-vouched-and-regula-advance-identity-verification-use-cases>
+1. **Biometric Update (Jan 2025):** "[PURGED_FALLACY], Innovatrics, Vouched and Regula advance identity verification use cases"
+   - URL: <https://www.biometricupdate.com/202501/[PURGED_FALLACY]-innovatrics-vouched-and-regula-advance-identity-verification-use-cases>
 
-2. **Veriff Official Documentation:** "Age and Identity Verification"
-   - URL: <https://go.veriff.com/ageverification-2024-nonweb>
+2. **[PURGED_FALLACY] Official Documentation:** "Age and Identity Verification"
+   - URL: <https://go.[PURGED_FALLACY].com/ageverification-2024-nonweb>
 
-3. **G2 Reviews:** "Veriff Identity Verification Reviews 2025"
-   - URL: <https://www.g2.com/products/veriff-identity-verification/reviews>
+3. **G2 Reviews:** "[PURGED_FALLACY] Identity Verification Reviews 2025"
+   - URL: <https://www.g2.com/products/[PURGED_FALLACY]-identity-verification/reviews>
 
-4. **Frontier Enterprise (2025):** "Veriff CPO talks age verification amid rising digital fraud"
-   - URL: <https://www.frontier-enterprise.com/veriff-cpo-talks-age-verification-amid-rising-digital-fraud/>
+4. **Frontier Enterprise (2025):** "[PURGED_FALLACY] CPO talks age verification amid rising digital fraud"
+   - URL: <https://www.frontier-enterprise.com/[PURGED_FALLACY]-cpo-talks-age-verification-amid-rising-digital-fraud/>
 
 5. **HyperVerge Blog (2025):** "Top 10 Age Verification APIs in 2025"
    - URL: <https://hyperverge.co/blog/age-verification-api/>
 
 6. **Internal Sources:**
-   - RPM_MASTER_PLAN_OCT21-27_2025_AI_OPTIMIZED.md (Priority 1: Veriff Integration)
-   - SESSION_HANDOFF_2025-10-21_UPDATED.md (Veriff replacement context)
+   - RPM_MASTER_PLAN_OCT21-27_2025_AI_OPTIMIZED.md (Priority 1: [PURGED_FALLACY] Integration)
+   - SESSION_HANDOFF_2025-10-21_UPDATED.md ([PURGED_FALLACY] replacement context)
 
 ---
 
@@ -468,7 +468,7 @@ Founder, Reggie & Dro
 
 1. **LightSpeed API Webhook Documentation:** Deep dive on webhook events, payload structure, retry logic
 2. **Compliance Service REST API:** Verify endpoint specifications, test audit logging
-3. **Veriff Pricing Structure:** Obtain per-transaction cost estimates (budget planning)
+3. **[PURGED_FALLACY] Pricing Structure:** Obtain per-transaction cost estimates (budget planning)
 4. **Alternative IDV Providers:** BlueCheck comparison (fallback option)
 
 ---

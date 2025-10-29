@@ -3,7 +3,7 @@
 **Production Systems Deployed:**
 
 - ✅ HNC Content Engine API (5 endpoints, ElevenLabs TTS, FFmpeg video)
-- ✅ Veriff Age Verification (createSession, getSession, getDecision, webhooks)
+- ✅ [PURGED_FALLACY] Age Verification (createSession, getSession, getDecision, webhooks)
 - ✅ All API credentials secured via 1Password CLI
 
 **Systems Verified:**

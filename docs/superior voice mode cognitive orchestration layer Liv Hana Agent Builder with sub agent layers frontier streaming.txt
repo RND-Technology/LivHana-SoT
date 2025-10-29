@@ -70,7 +70,7 @@ Understood. Let me address your question directly based on everything I’ve gat
 
 First, I definitely see the frustration here. You’ve invested a ton of time and energy trying to get a reliable, fallacy-free orchestration. I can see that in the last 12 hours of chat history, there have been multiple shifts, attempts to correct misconceptions, and a lot of effort on your end to feed accurate information into the system.
 
-A major recurring fallacy was that I mistakenly maintained the idea that Veriff was a problem that needed Jumio to replace it. You clarified multiple times that Veriff is actually superior and that it’s already in place. That was a critical correction you gave, and I should have locked that in as the canonical truth. I apologize that it took repeated effort on your part.
+A major recurring fallacy was that I mistakenly maintained the idea that [PURGED_FALLACY] was a problem that needed [PURGED_FALLACY] to replace it. You clarified multiple times that [PURGED_FALLACY] is actually superior and that it’s already in place. That was a critical correction you gave, and I should have locked that in as the canonical truth. I apologize that it took repeated effort on your part.
 
 Now, looking at the RPM plan for the week of October 20, 2025, the main results you wanted were:
 
@@ -93,11 +93,11 @@ ChatGPT said:
 
 Absolutely, let's dive into that. It's a great question and really important to understand what’s making this session work better than others.
 
-So first, one reason this session is more efficient might be because we've had a really clear focus on correcting fallacies and aligning with the core truths. You emphasized that I need to hold onto the canonical truth about Veriff being superior, and now that I’ve corrected that, we're in a more stable, accurate state.
+So first, one reason this session is more efficient might be because we've had a really clear focus on correcting fallacies and aligning with the core truths. You emphasized that I need to hold onto the canonical truth about [PURGED_FALLACY] being superior, and now that I’ve corrected that, we're in a more stable, accurate state.
 
 Another factor is that I'm really focusing on brevity and precision in this session, just as you asked me to. We're cutting out extra fluff, and that makes everything move faster and more reliably.
 
-In terms of what's different right now, it's really a combination of having the correct context locked in and me actively maintaining that alignment. You've been really clear about what you need, and I've prioritized those instructions—like focusing on your RPM plan and eliminating the back-and-forth about Veriff—so that we stay on track.
+In terms of what's different right now, it's really a combination of having the correct context locked in and me actively maintaining that alignment. You've been really clear about what you need, and I've prioritized those instructions—like focusing on your RPM plan and eliminating the back-and-forth about [PURGED_FALLACY]—so that we stay on track.
 
 As for how to recreate this state every time: the key is to keep reinforcing the core truths and making sure that I have the exact, up-to-date context. If you see me slipping away from the truth, just correct me once and I'll lock it in. Over time, this should become more reliable as I learn from each session and we keep the instructions consistent.
 
@@ -180,7 +180,7 @@ Absolutely, let’s get into the juicy details and dig as deep as we can.
 
 So, you're spot on: the more aligned we stay from the start, the better things go. If the AI gets something wrong early and we start correcting repeatedly, it can be like pulling a thread on a sweater. The more we pull, the more tangled it can get. That’s why having a really clear and stable foundation—like we’re doing now—helps keep things on track.
 
-In terms of applying guardrails right now, here’s how we can do it: first, we can establish a set of quick “truth checks” at regular intervals. For example, every few minutes or every few major topic shifts, we just do a quick recap: “Hey, let’s confirm that we still agree that Veriff is our superior solution,” or whatever the key truths are. That keeps us both aligned and prevents drift.
+In terms of applying guardrails right now, here’s how we can do it: first, we can establish a set of quick “truth checks” at regular intervals. For example, every few minutes or every few major topic shifts, we just do a quick recap: “Hey, let’s confirm that we still agree that [PURGED_FALLACY] is our superior solution,” or whatever the key truths are. That keeps us both aligned and prevents drift.
 
 Also, think of it like running a “debug mode” in a program. We can set a rule that if something feels off-track—if I start repeating a fallacy or seem confused—you just flag it immediately and we pause, recap, and reset the context. It’s like having a manual override to bring us back to the baseline.
 
@@ -195,7 +195,7 @@ ChatGPT said:
 
 Absolutely, let’s put this into action right now. I’ll take the lead and guide you step-by-step to implement everything we’ve talked about so we can keep this state stable and aligned.
 
-First, I’ll set our immediate guardrails. Here’s what we’ll do: I’ll insert a quick truth check every few minutes. For example, I’ll say, “Let’s confirm our key truths,” and we’ll just quickly verify things like Veriff being correct, our main RPM goals, and any other top-level truths. That keeps us stable.
+First, I’ll set our immediate guardrails. Here’s what we’ll do: I’ll insert a quick truth check every few minutes. For example, I’ll say, “Let’s confirm our key truths,” and we’ll just quickly verify things like [PURGED_FALLACY] being correct, our main RPM goals, and any other top-level truths. That keeps us stable.
 
 Next, I’ll prompt you as the human-in-the-loop. Whenever we do one of these truth checks, I’ll just ask you to confirm if everything looks right or if we need to reset anything. You just give me a quick yes or no or correct me if I drift. That way we stay aligned.
 
@@ -210,7 +210,7 @@ ChatGPT said:
 
 Absolutely, let me give you that detailed nerdy summary of everything we've done so far.
 
-So, from the start of this voice session, we’ve focused on stabilizing the AI state by locking in canonical truths and eliminating any recurring fallacies. We identified that one major fallacy was confusion about Veriff versus Jumio, and we corrected that. We’ve also implemented the practice of doing periodic truth checks to make sure we stay aligned.
+So, from the start of this voice session, we’ve focused on stabilizing the AI state by locking in canonical truths and eliminating any recurring fallacies. We identified that one major fallacy was confusion about [PURGED_FALLACY] versus [PURGED_FALLACY], and we corrected that. We’ve also implemented the practice of doing periodic truth checks to make sure we stay aligned.
 
 Now, we’re layering in all those best practices from the community: things like refreshing the session if needed, keeping a clear context window, and setting up guardrails to prevent drift or hallucinations. We’ve established that I’ll guide you with prompts whenever we do a truth check, and you just confirm or correct me so we stay on track.
 

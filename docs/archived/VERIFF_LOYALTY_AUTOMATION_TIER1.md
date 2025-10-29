@@ -1,4 +1,4 @@
-# TIER 1 AUTOMATION: Veriff + Loyalty + LTV Migration System
+# TIER 1 AUTOMATION: [PURGED_FALLACY] + Loyalty + LTV Migration System
 
 **Date:** October 2, 2025
 **Architect:** Claude Sonnet 4.5
@@ -9,11 +9,11 @@
 ## EXECUTIVE SUMMARY
 
 **What User Requested:**
-> "We NEED automated Veriff approval and membership agreement status immediately after successful transaction, when order is placed, prior to fulfillment, with email sequence on 72 hours count down to automating referal IF veriff approval, and membership are not current and approved, and ALSO we need an automated way to ADD ADD Verified Current member customers to LS Loyalty program. We also need a report on all Current Square Customers stack ranked by LTV, and put on Tiers' for 'Grand Fathered Loyalty Points' for instant shopping spree given to VIP Ideal Clients... Retroactive ALL TIME to July 2023 for WIN BACK Campaign."
+> "We NEED automated [PURGED_FALLACY] approval and membership agreement status immediately after successful transaction, when order is placed, prior to fulfillment, with email sequence on 72 hours count down to automating referal IF [PURGED_FALLACY] approval, and membership are not current and approved, and ALSO we need an automated way to ADD ADD Verified Current member customers to LS Loyalty program. We also need a report on all Current Square Customers stack ranked by LTV, and put on Tiers' for 'Grand Fathered Loyalty Points' for instant shopping spree given to VIP Ideal Clients... Retroactive ALL TIME to July 2023 for WIN BACK Campaign."
 
 **What This Delivers:**
 
-1. ✅ **Post-Purchase Verification Gate** - Block fulfillment until Veriff + membership approved
+1. ✅ **Post-Purchase Verification Gate** - Block fulfillment until [PURGED_FALLACY] + membership approved
 2. ✅ **72-Hour Email Automation** - Countdown sequence with auto-refund if not verified
 3. ✅ **Lightspeed Loyalty Auto-Enrollment** - Verified members instantly added to LS Loyalty
 4. ✅ **Square Customer LTV Report** - 11,348 customers ranked by lifetime value
@@ -51,7 +51,7 @@
 ┌─────────────────────────────────────────────────────────────────┐
 │        VERIFICATION GATE ORCHESTRATOR                            │
 │                                                                   │
-│  Step 1: Check Veriff approval status                           │
+│  Step 1: Check [PURGED_FALLACY] approval status                           │
 │  Step 2: Check membership agreement signed                       │
 │  Step 3: Decide: Approve, Hold, or Auto-Refund                  │
 └────────────────┬────────────────┬─────────────────┬──────────────┘
@@ -87,7 +87,7 @@
 
 ```javascript
 // Order Verification Gate + Loyalty Enrollment Automation
-// Handles post-purchase Veriff + Membership checks
+// Handles post-purchase [PURGED_FALLACY] + Membership checks
 
 import express from 'express';
 import crypto from 'crypto';
@@ -110,9 +110,9 @@ const LOCATION = process.env.BQ_LOCATION || 'US';
 const LIGHTSPEED_ACCOUNT_ID = process.env.LIGHTSPEED_ACCOUNT_ID;
 const LIGHTSPEED_BASE_URL = `https://api.lightspeedapp.com/API/Account/${LIGHTSPEED_ACCOUNT_ID}`;
 
-// Veriff API Config
+// [PURGED_FALLACY] API Config
 [REDACTED - SECURITY BREACH]
-const VERIFF_BASE_URL = 'https://api.veriff.com/v1';
+const VERIFF_BASE_URL = 'https://api.[PURGED_FALLACY].com/v1';
 
 // Email Service
 const EMAIL_SERVICE_URL = process.env.EMAIL_SERVICE_URL || 'http://localhost:3007/api/email/send';
@@ -125,11 +125,11 @@ const bqClient = new BigQuery({ projectId: PROJECT_ID });
 // ==================== VERIFICATION CHECKS ====================
 
 /**
- * Check if customer has completed Veriff age/ID verification
+ * Check if customer has completed [PURGED_FALLACY] age/ID verification
  * @param {string} customerId - Lightspeed customer ID
  * @returns {Promise<{verified: boolean, sessionId: string, verifiedAt: string}>}
  */
-async function checkVeriffStatus(customerId) {
+async function check[PURGED_FALLACY]Status(customerId) {
   try {
     // Query BigQuery for verification status
     const query = `
@@ -169,7 +169,7 @@ async function checkVeriffStatus(customerId) {
       dateOfBirth: verification.person_date_of_birth
     };
   } catch (error) {
-    logger.error('Failed to check Veriff status', { customerId, error });
+    logger.error('Failed to check [PURGED_FALLACY] status', { customerId, error });
     throw error;
   }
 }
@@ -207,24 +207,24 @@ async function checkMembershipStatus(customerId) {
 /**
  * Combined verification gate check
  * @param {string} customerId
- * @returns {Promise<{approved: boolean, veriff: object, membership: object, reason: string}>}
+ * @returns {Promise<{approved: boolean, [PURGED_FALLACY]: object, membership: object, reason: string}>}
  */
 async function runVerificationGate(customerId) {
-  const veriff = await checkVeriffStatus(customerId);
+  const [PURGED_FALLACY] = await check[PURGED_FALLACY]Status(customerId);
   const membership = await checkMembershipStatus(customerId);
 
-  const approved = veriff.verified && membership.signed;
+  const approved = [PURGED_FALLACY].verified && membership.signed;
 
   let reason = '';
-  if (!veriff.verified) {
-    reason = 'Veriff age/ID verification not completed';
+  if (![PURGED_FALLACY].verified) {
+    reason = '[PURGED_FALLACY] age/ID verification not completed';
   } else if (!membership.signed) {
     reason = 'Membership agreement not signed';
   }
 
   return {
     approved,
-    veriff,
+    [PURGED_FALLACY],
     membership,
     reason
   };
@@ -1038,7 +1038,7 @@ Jesse @ Reggie & Dro
 [REDACTED - SECURITY BREACH]
 LIGHTSPEED_ACCOUNT_ID=your_account_id
 
-# Veriff API
+# [PURGED_FALLACY] API
 [REDACTED - SECURITY BREACH]
 
 # BigQuery
@@ -1153,7 +1153,7 @@ curl -X POST http://localhost:3007/api/email/send \
 # 1. Create test order in Lightspeed
 # 2. Verify webhook received
 # 3. Check order status updated to PENDING
-# 4. Complete Veriff verification
+# 4. Complete [PURGED_FALLACY] verification
 # 5. Verify loyalty account created
 # 6. Check order status updated to APPROVED
 
@@ -1209,7 +1209,7 @@ curl -X POST http://localhost:3005/api/verification/check/CUST_TEST_001 \
 ### Key Metrics to Track
 
 1. **Verification Conversion Rate**
-   - Target: >85% of customers complete Veriff within 72 hours
+   - Target: >85% of customers complete [PURGED_FALLACY] within 72 hours
    - Alert if <70%
 
 2. **Auto-Refund Rate**

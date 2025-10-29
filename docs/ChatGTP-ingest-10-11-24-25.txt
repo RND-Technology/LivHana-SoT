@@ -95,7 +95,7 @@ Compliance frame: All retail/marketing operations must enforce 21+ ID, CR packag
 Policy reality in Texas: GA‑56 emergency rules active; zero‑tolerance ID checks; permanent rulemaking likely by early 2026 → treat THCa risk (total‑THC future).
 
 Actions (in flight / open) — {Unsolved}
-Replace Veriff with biometric age‑gate (e.g., Jumio); unblock 80+ customers; run win‑back campaign. (Oct‑21, Oct‑16)
+Replace [PURGED_FALLACY] with biometric age‑gate (e.g., [PURGED_FALLACY]); unblock 80+ customers; run win‑back campaign. (Oct‑21, Oct‑16)
 
 DSHS remediation: Relabel smokable products; obtain accredited COAs; complete full‑panel testing; submit packet. (Oct‑16; see also THCASOP/R&D Master) 
 
@@ -153,7 +153,7 @@ CEO — Jesse (A: mission, policy, profit)
 │  ├─ KCA Labs (accredited COAs; “Texas Full Panel COA”)
 │  ├─ Kaja Payments / Authorize.net (payments)
 │  ├─ Leafly (menus/inventory), LightSpeed X‑Series (POS)
-│  ├─ Jumio (biometric age verification)
+│  ├─ [PURGED_FALLACY] (biometric age verification)
 │  └─ Media: Russell (podcast), Timothy (speaker)
 └─ Machines / Platforms
    ├─ Rube MCP (Composio) • OpenAI Agent Builder • AlloyDB/Cloud Run
@@ -164,14 +164,14 @@ Cross‑layer rules: HNC↔OPS only via CTA microcopy; R&D and HNC do not cross�
 4) {Unsolved} → RPM Weekly Integration (Oct‑23 → Oct‑27, 2025)
 Stamping: Layer (OPS/HNC/R&D/HERB), Compliance notes (if applicable), HNC micro‑CTA where relevant. Canon: RPM fused plan (Oct‑21–27). 
 
-U‑1) Biometric age‑gate + win‑back (Veriff → Jumio)
+U‑1) Biometric age‑gate + win‑back ([PURGED_FALLACY] → [PURGED_FALLACY])
 RESULT: Biometric age‑gate live; 80+ blocked customers converted.
 
 PURPOSE: Immediate cash‑flow + GA‑56 compliance (zero‑tolerance ID). 
 
 MAP:
 
-Connect Jumio webhook to checkout (Execution Agent, 2025‑10‑23).
+Connect [PURGED_FALLACY] webhook to checkout (Execution Agent, 2025‑10‑23).
 
 Stage→prod deploy; verify 10 live tx (Christopher, 2025‑10‑24).
 
@@ -289,7 +289,7 @@ gantt
   dateFormat  YYYY-MM-DD
   title Liv Hana — Week Plan
   section Workstream
-  Biometric age-gate live (Jumio)  :owner Execution Agent, 2025-10-23, 2d
+  Biometric age-gate live ([PURGED_FALLACY])  :owner Execution Agent, 2025-10-23, 2d
   Win-back 80+ blocked customers   :owner Planning Agent, 2025-10-25, 2d
   DSHS relabel smokables           :owner Andrew, 2025-10-23, 1d
   Accredited COAs (KCA)            :owner Charlie/KCA, 2025-10-23, 5d
@@ -305,7 +305,7 @@ gantt
 Kanban (CSV)
 Status,Task,Layer,Owner,Due,Depends,Notes
 
-Ready,Biometric age-gate live (Jumio),HERB/R&D,Execution Agent,2025-10-24,,21+ ID verify; CR pack; NIST
+Ready,Biometric age-gate live ([PURGED_FALLACY]),HERB/R&D,Execution Agent,2025-10-24,,21+ ID verify; CR pack; NIST
 Ready,Win-back 80+ blocked customers,HERB,Planning Agent,2025-10-27,Biometric age-gate,Email/SMS
 Doing,DSHS relabel smokables,R&D,Andrew,2025-10-23,,Label copy scrub
 Ready,Accredited COAs (KCA),R&D,Charlie/KCA,2025-10-27,,Full-panel pass req.
@@ -386,9 +386,9 @@ Delivered: One structured Markdown ingest (title/date range/meeting list); conso
 
 Key decisions/assumptions: Prioritized cashflow + compliance before HNC automation; mapped MCP→Agent Builder as the orchestration unlock; used canon cross‑layer rules (CTA‑only).
 
-Memory updates: Live HANA voice is default for RPM; DSHS remediation is week‑critical; Jumio→win‑back path set; COA Checker slated post‑MCP.
+Memory updates: Live HANA voice is default for RPM; DSHS remediation is week‑critical; [PURGED_FALLACY]→win‑back path set; COA Checker slated post‑MCP.
 
-Next best step: Execute U‑1/U‑2/U‑3 in order (Jumio→DSHS packet→MCP+secrets), then ship COA Checker.
+Next best step: Execute U‑1/U‑2/U‑3 in order ([PURGED_FALLACY]→DSHS packet→MCP+secrets), then ship COA Checker.
 
 Risks/blockers: GA‑56 zero‑tolerance; Kaja status inconsistency; secrets/UUID slippage; HNC sovereignty leakage risk. 
 

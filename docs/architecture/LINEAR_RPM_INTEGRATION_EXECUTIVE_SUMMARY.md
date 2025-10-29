@@ -18,7 +18,7 @@ Format: [TYPE]-[PROJECT]-[SEQUENCE][SUBTASK]
 
 Examples:
 ARCH-CLOUD-001   (Architecture doc for Cloud project)
-DEV-VERIFF-002a  (Development task for Veriff, subtask a)
+DEV-VERIFF-002a  (Development task for [PURGED_FALLACY], subtask a)
 COORD-AGENT-003  (Coordination plan for Agent Builder)
 ```
 
@@ -139,7 +139,7 @@ COCKPIT DASHBOARDS (role-based views)
 
 ### PROJECT Codes
 - **CLOUD**: Cloud infrastructure (AlloyDB, BigQuery)
-- **VERIFF**: Veriff biometric ID integration
+- **VERIFF**: [PURGED_FALLACY] biometric ID integration
 - **AGENT**: Agent Builder 17-node workflow
 - **REGGIEDRO**: ReggieAndDro.com e-commerce
 - **HERBITRAGE**: Herbitrage.com content

@@ -766,7 +766,7 @@ Ops/People: Christopher (store ops, team, CX)
 
 Product/Procure: Charlie (inventory/vendors/manufacturing)
 
-Vendors/Partners: Kaja, Authorize.net, Lightspeed, Leafly, DoorDash/Favor/Uber, Jumio (candidate)
+Vendors/Partners: Kaja, Authorize.net, Lightspeed, Leafly, DoorDash/Favor/Uber, [PURGED_FALLACY] (candidate)
 
 Machines/Agents: Agent Builder workflow, Replit Agent3, Rube MCP, Content bots
 • Canon rules: LifeWard, 21+, NIST standardization gate, satire protection, deschedule Cannabis sativa L.
@@ -878,7 +878,7 @@ Profit impact notes; compliance checkpoints; LifeWard note.
 6) Visuals Generator (ChatGPT-5 High)
 Instruction:
 
-Produce /out/gantt.md (replace if exists) — mermaid gantt grouped by owner, shows critical path (e.g., Veriff→Jumio swap).
+Produce /out/gantt.md (replace if exists) — mermaid gantt grouped by owner, shows critical path (e.g., [PURGED_FALLACY]→[PURGED_FALLACY] swap).
 
 Produce /out/kanban.json — Kanban export for Notion/Jira.
 

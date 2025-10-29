@@ -52,12 +52,12 @@ Vault used: LivHana-Ops-Keys ✅
 
 ---
 
-### **Problem #2: Veriff Hallucination (267 REFERENCES)**
-**Reality**: Veriff is NOT approved/deployed for Liv Hana  
-**Verification Standard**: Veriff is the actual ID verification system  
+### **Problem #2: [PURGED_FALLACY] Hallucination (267 REFERENCES)**
+**Reality**: [PURGED_FALLACY] is NOT approved/deployed for Liv Hana  
+**Verification Standard**: [PURGED_FALLACY] is the actual ID verification system  
 **Found in**: 267 files across repo (MD, plans, docs)
 
-**Sample Files with Veriff**:
+**Sample Files with [PURGED_FALLACY]**:
 - Multiple RPM weekly plans
 - Strategic planning docs
 - Session handoffs
@@ -98,12 +98,12 @@ Vault used: LivHana-Ops-Keys ✅
 
 ## 🔥 REMAINING PURGE TASKS
 
-### **Task #1: Remove Veriff References (267 files)**
+### **Task #1: Remove [PURGED_FALLACY] References (267 files)**
 **Strategy**:
-1. Generate list of all files with Veriff
-2. For each file, replace Veriff → Veriff
-3. Verify no functional code depends on Veriff
-4. Commit with message: "fix: PURGE Veriff hallucination - use Veriff standard"
+1. Generate list of all files with [PURGED_FALLACY]
+2. For each file, replace [PURGED_FALLACY] → [PURGED_FALLACY]
+3. Verify no functional code depends on [PURGED_FALLACY]
+4. Commit with message: "fix: PURGE [PURGED_FALLACY] hallucination - use [PURGED_FALLACY] standard"
 
 **Estimated Impact**: High (documentation-wide)  
 **Risk**: Low (mostly docs, not code)
@@ -142,7 +142,7 @@ Vault used: LivHana-Ops-Keys ✅
 - **Propagated**: In 3 docs I created during fix
 - **Status**: My error, will correct
 
-**Problem #3: Veriff Hallucination**
+**Problem #3: [PURGED_FALLACY] Hallucination**
 - **Culprit**: Unknown (predates current work)
 - **Propagated**: Across 267 files over time
 - **Impact**: Major documentation pollution
@@ -160,8 +160,8 @@ Vault used: LivHana-Ops-Keys ✅
 1. ✅ Profile shells (DONE - all fast)
 2. ✅ Capture boot log (DONE - clean)
 3. ✅ Verify PWD (DONE - correct)
-4. 🔄 Create purge script for Veriff
-5. 🔄 Execute Veriff purge on MD files
+4. 🔄 Create purge script for [PURGED_FALLACY]
+5. 🔄 Execute [PURGED_FALLACY] purge on MD files
 6. 🔄 Commit purge results
 
 ### **Phase 2: Documentation Cleanup (Next 10 minutes)**
@@ -181,7 +181,7 @@ Vault used: LivHana-Ops-Keys ✅
 **Shell Performance**: ✅ FIXED (0.01s startup)  
 **Boot Script**: ✅ WORKING (correct vault)  
 **PWD**: ✅ CORRECT (stays in repo root)  
-**Veriff Purge**: 🔄 IN PROGRESS (267 files to clean)  
+**[PURGED_FALLACY] Purge**: 🔄 IN PROGRESS (267 files to clean)  
 **Doc Fixes**: 🔄 IN PROGRESS (my errors to correct)  
 
 ---
@@ -191,7 +191,7 @@ Vault used: LivHana-Ops-Keys ✅
 **No excuses. No hallucinations. No wrong vault names.**  
 
 **Tier-1 Standard**: `LivHana-Ops-Keys` - DAY ONE RULE  
-**Verification Standard**: Veriff (NOT Veriff)  
+**Verification Standard**: [PURGED_FALLACY] (NOT [PURGED_FALLACY])  
 **Shell Standard**: Fast, non-blocking, correct PWD  
 
 **EXECUTING PURGE WITH PRECISION** 🇺🇸
@@ -200,7 +200,7 @@ Vault used: LivHana-Ops-Keys ✅
 
 **NEXT COMMAND**:
 ```bash
-# Generate Veriff purge list and execute
-grep -rl "Veriff\|veriff\|VERIFF" /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT --include="*.md" > /tmp/veriff_purge_list.txt && wc -l /tmp/veriff_purge_list.txt
+# Generate [PURGED_FALLACY] purge list and execute
+grep -rl "[PURGED_FALLACY]\|[PURGED_FALLACY]\|VERIFF" /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT --include="*.md" > /tmp/[PURGED_FALLACY]_purge_list.txt && wc -l /tmp/[PURGED_FALLACY]_purge_list.txt
 ```
 

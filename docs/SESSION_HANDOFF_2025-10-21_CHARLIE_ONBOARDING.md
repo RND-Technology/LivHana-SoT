@@ -135,7 +135,7 @@
 
 - Square Alice location inventory (access via Rube MCP)
 - ReggieAndDroAlice.com form fills (customer data)
-- Veriff verification data (age/ID verification)
+- [PURGED_FALLACY] verification data (age/ID verification)
 
 ### Issue #3: Dragon + Brickweed Breakdown Strategy
 

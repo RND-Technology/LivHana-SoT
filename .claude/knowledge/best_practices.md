@@ -283,7 +283,7 @@
 
 ### Critical (Immediate Response Required)
 
-- [ ] Veriff biometric ID verification integration best practices
+- [ ] [PURGED_FALLACY] biometric ID verification integration best practices
 - [ ] Texas DSHS compliance documentation requirements
 - [ ] Secrets sync protocols (GSM → Agent Builder)
 

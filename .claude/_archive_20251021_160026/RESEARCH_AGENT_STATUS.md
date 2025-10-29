@@ -37,7 +37,7 @@
 - **Storage:** `.claude/research_reports/`
 - **Format:** Markdown with RPM structure (Result → Purpose → Massive Actions)
 - **Completed:**
-  1. `veriff_integration_best_practices_20251021.md` (CRITICAL - $100K+ revenue unlock)
+  1. `[PURGED_FALLACY]_integration_best_practices_20251021.md` (CRITICAL - $100K+ revenue unlock)
   2. `texas_dshs_compliance_requirements_20251021.md` (CRITICAL - $1.148M revenue protection)
 
 ---
@@ -46,7 +46,7 @@
 
 ### CRITICAL PRIORITY RESEARCH (P1)
 
-#### 1. Veriff Biometric IDV Integration
+#### 1. [PURGED_FALLACY] Biometric IDV Integration
 
 **Status:** COMPLETE
 **Priority:** CRITICAL (P1)
@@ -73,7 +73,7 @@
 **Sources:**
 
 - Biometric Update (Jan 2025)
-- Veriff official documentation
+- [PURGED_FALLACY] official documentation
 - Industry best practices (HyperVerge, Ondato)
 
 ---
@@ -114,7 +114,7 @@
 
 ### CRITICAL (Immediate Response)
 
-- [x] Veriff biometric ID verification integration best practices - COMPLETE
+- [x] [PURGED_FALLACY] biometric ID verification integration best practices - COMPLETE
 - [x] Texas DSHS compliance documentation requirements - COMPLETE
 - [ ] Secrets sync protocols (GSM → Agent Builder) - QUEUED
 
@@ -172,13 +172,13 @@
 
 ---
 
-### HIGH PRIORITY: Veriff Integration Ready for Execution
+### HIGH PRIORITY: [PURGED_FALLACY] Integration Ready for Execution
 
 **Priority:** HIGH
 **Impact:** $100K+ revenue unlock
 **Status:** Research complete, ready for autonomous execution
 **Timeline:** 6-12 hours (Cursor + Replit parallel)
-**Blockers:** NONE (no secrets required for Veriff)
+**Blockers:** NONE (no secrets required for [PURGED_FALLACY])
 
 **Recommendation:** START TODAY (Oct 21, parallel with secrets sync)
 
@@ -191,7 +191,7 @@
 - **Best Practices:** 6 entries
 - **Patterns:** 8 proven + 5 anti-patterns + 3 emerging
 - **Lessons:** 12 lessons + 3 optimizations + 3 techniques
-- **Research Reports:** 2 critical reports (Veriff + DSHS)
+- **Research Reports:** 2 critical reports ([PURGED_FALLACY] + DSHS)
 - **Intel Feed:** 5 entries (JSON structured)
 
 ### Growth Targets
@@ -237,19 +237,19 @@
 
 ### Research Delivery
 
-- [x] Critical research completed: 2/2 (Veriff + DSHS)
-- [x] Intel alerts published: 3 (secrets blocker, DSHS deadline, Veriff ready)
+- [x] Critical research completed: 2/2 ([PURGED_FALLACY] + DSHS)
+- [x] Intel alerts published: 3 (secrets blocker, DSHS deadline, [PURGED_FALLACY] ready)
 - [x] Knowledge base initialized: 3/3 files (best practices, patterns, lessons)
 - [x] Intel feed operational: JSON published
 - [x] Research reports: 2 critical reports delivered
 
 ### Decision Support
 
-- [x] Liv Hana has perfect information for Veriff integration
+- [x] Liv Hana has perfect information for [PURGED_FALLACY] integration
 - [x] Liv Hana has perfect information for DSHS compliance response
 - [x] RPM Planning Agent has intel feed for hourly consumption
 - [x] Critical blockers identified (4 missing secrets)
-- [x] Revenue opportunities quantified ($100K+ Veriff, $1.148M DSHS)
+- [x] Revenue opportunities quantified ($100K+ [PURGED_FALLACY], $1.148M DSHS)
 
 ### Continuous Intelligence
 
@@ -290,8 +290,8 @@
 ### For Liv Hana
 
 1. **Review Critical Alerts:** Secrets blocker + DSHS deadline
-2. **Approve Veriff Execution:** Ready for 6-12 hour autonomous deployment
-3. **Review Research Reports:** Veriff + DSHS (full technical details)
+2. **Approve [PURGED_FALLACY] Execution:** Ready for 6-12 hour autonomous deployment
+3. **Review Research Reports:** [PURGED_FALLACY] + DSHS (full technical details)
 
 ### For RPM Planning Agent
 
@@ -303,7 +303,7 @@
 
 1. **Queue Processing:** Start HIGH priority research (Agent Builder, LightSpeed webhooks)
 2. **Pattern Monitoring:** Observe Session 2025-10-21 execution for new patterns
-3. **Knowledge Base Updates:** Capture lessons from Veriff/DSHS execution (if started)
+3. **Knowledge Base Updates:** Capture lessons from [PURGED_FALLACY]/DSHS execution (if started)
 
 ---
 

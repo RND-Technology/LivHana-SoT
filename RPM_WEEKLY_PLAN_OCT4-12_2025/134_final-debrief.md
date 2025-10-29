@@ -39,7 +39,7 @@
 - Online payments on 100% hold until bank review complete (expected 24-48 hours post-Saturday trigger)
 - reggieanddro.company.site operational, awaiting DNS flip to reggieanddro.com post-approval
 - Lightspeed POS shipping setup required for fulfillment (payment method + label printing)
-- 80+ failed Veriff customers = $100K+ recovery opportunity via email win-back campaigns
+- 80+ failed [PURGED_FALLACY] customers = $100K+ recovery opportunity via email win-back campaigns
 - Local delivery operational zones: 5-mile free, 10-mile $5, 15-mile $10 (San Antonio metro)
 - TerpWork.com pipeline: myrcene-dominant extract, $80-120/kg B2B, $0.59-0.99/ml D2C samples
 - Meeting notes ingestion + PDF sharing protocol for context continuity

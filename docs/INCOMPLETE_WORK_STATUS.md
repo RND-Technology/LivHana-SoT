@@ -123,7 +123,7 @@ node automation/analyze-square-email.js < emails.txt
 **Requirements**:
 
 - 30-day cookie
-- "Shop Premium Flower" → /products (bypass Veriff)
+- "Shop Premium Flower" → /products (bypass [PURGED_FALLACY])
 - Option C from Task 4
 
 **Execution**:

@@ -130,7 +130,7 @@ Instead of building complex integration layers between Linear, RPM plans, and co
 Examples:
 ARCH-CLOUD-001       (Architecture doc #1 for Cloud project)
 ARCH-CLOUD-001a      (Subtask 'a' of ARCH-CLOUD-001)
-DEV-VERIFF-002       (Development task #2 for Veriff project)
+DEV-VERIFF-002       (Development task #2 for [PURGED_FALLACY] project)
 COORD-AGENT-003      (Coordination task #3 for Agent Builder)
 QA-REGGIEDRO-004     (QA task #4 for ReggieAndDro)
 DOC-TRAINING-005     (Documentation task #5 for training)
@@ -149,7 +149,7 @@ DELIVER-SONG-386     (Deliverable: Song #386)
 
 **PROJECT Codes:**
 - **CLOUD**: Cloud infrastructure (AlloyDB, BigQuery, Cloud Storage)
-- **VERIFF**: Veriff biometric ID integration
+- **VERIFF**: [PURGED_FALLACY] biometric ID integration
 - **AGENT**: Agent Builder 17-node workflow
 - **REGGIEDRO**: ReggieAndDro.com e-commerce
 - **HERBITRAGE**: Herbitrage.com content platform
@@ -352,7 +352,7 @@ async function handleLinearIssueCreated(issue) {
 | `team-christopher` | Operations view | Christopher only |
 | `team-charlie` | Product view | Charlie only |
 | `project-cloud` | Cloud infrastructure | All |
-| `project-veriff` | Veriff integration | Jesse, Andrew |
+| `project-[PURGED_FALLACY]` | [PURGED_FALLACY] integration | Jesse, Andrew |
 | `project-reggiedro` | ReggieAndDro tasks | Christopher, Charlie |
 | `type-arch` | Architecture | Jesse, Andrew |
 | `type-dev` | Development | Andrew, Artifacts Agent |
@@ -1145,7 +1145,7 @@ gcloud functions deploy linear-webhook-handler \
 - DEV-CLOUD-005: Linear Webhook Handler
 - DEV-CLOUD-006: File Auto-Creation Service
 - DEV-CLOUD-007: RPM API Service (Cloud Run)
-- DEV-VERIFF-001: Veriff Biometric ID Integration
+- DEV-VERIFF-001: [PURGED_FALLACY] Biometric ID Integration
 - DEV-VERIFF-002: LightSpeed Checkout Integration
 
 **COORD (Coordination & Planning):**

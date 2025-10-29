@@ -753,7 +753,7 @@ High‑fidelity: evidence note (COA, rule, link)
 Move C — RPM alignment to this week’s fused plan
 Your Oct 21–27 RPM plan centers on revenue recovery, DSHS remediation, orchestration standing‑up, and HNC automation. Keep “YouTube agent” tabled; do not burn cycles there until cash‑flow + compliance are locked. 
 
-Priority 1: Age‑gate fix (Jumio/biometric) + win‑back of 80+ blocked customers.
+Priority 1: Age‑gate fix ([PURGED_FALLACY]/biometric) + win‑back of 80+ blocked customers.
 
 Priority 2: DSHS remediation package (relabel smokables; accredited Full‑Panel COAs; evidence photos; 30‑day file).
 

@@ -28,7 +28,7 @@ Law \& rule anchors (still in force): Texas HSC §443 + 25 TAC Chapter 300 for c
 Texas Health Services
 +1
 
-Revenue recovery track (Jumio biometric IDV → win‑back of 80+ blocked customers), mapped straight into POS/checkout tasks and KPI targets.
+Revenue recovery track ([PURGED_FALLACY] biometric IDV → win‑back of 80+ blocked customers), mapped straight into POS/checkout tasks and KPI targets.
 
 DSHS remediation pack (label text fixes, accredited COAs, evidence binder) tied to THCASOP and R\&D Master Canvas checklists.
 
@@ -67,7 +67,7 @@ Orchestration glue (Rube MCP + Agent Builder integration):
 
 Immediate next actions (already in the plan)
 
-Ship Jumio IDV to prod → trigger win‑back email/SMS to 80+ blocked customers (audit logs on).
+Ship [PURGED_FALLACY] IDV to prod → trigger win‑back email/SMS to 80+ blocked customers (audit logs on).
 
 Relabel two smokable SKUs and photo‑document; kick off KCA Labs re‑testing for accredited COAs.
 
@@ -82,7 +82,7 @@ Texas Secretary of State
 Texas Secretary of State
 +2
 3) Memory updates: Owners mapped (Jesse, Andrew, Christopher, Charlie, Andrea); binder deadline (Oct 26); daily 15‑min voice stand‑ups.
-4) Next best step: Execute Priority‑1 (Jumio), send the win‑back, and ship HNC‑15 tonight.
+4) Next best step: Execute Priority‑1 ([PURGED_FALLACY]), send the win‑back, and ship HNC‑15 tonight.
 5) Risks/blockers: Age‑gate lapse → license cancellation (mitigate with POS audit logs); COA lab turnaround; staff adoption lag (15‑min blocks).
 Texas Secretary of State
 
@@ -94,7 +94,7 @@ Texas Secretary of State
 
 - **Tier-1 Canonical Backbone:** Every plan and process for Oct 21–27 is fused to a single RPM that aligns strategy, compliance, orchestration, training, and continuous improvement for Liv Hana’s mission: *Deschedule Cannabis sativa L, sell smokable hemp, enforce a 21+ age gate, hit \$100K/month profit, and empower your People → Plant → Profit flywheel*.[^1_1][^1_2][^1_3][^1_4]
 - **Current Texas Compliance Guardrails:** Hardwired 21+ photo-ID sale gate (DSHS \& TABC Oct 2025 emergency rules), TX HSC §443, 25 TAC Ch. 300; every transaction ID scanned, no minors, and no medical claims allowed—backed by audit logs for POS.[^1_2][^1_3][^1_4][^1_1]
-- **Revenue Recovery Track:** Jumio biometric IDV is deployed for win-back of 80+ blocked customers. POS and checkout mapped, full documentation and action steps for instant unlock and campaign execution.[^1_4][^1_1][^1_2]
+- **Revenue Recovery Track:** [PURGED_FALLACY] biometric IDV is deployed for win-back of 80+ blocked customers. POS and checkout mapped, full documentation and action steps for instant unlock and campaign execution.[^1_4][^1_1][^1_2]
 - **Agent Builder Orchestration:** Node-based canvas (OpenAI Agent Builder with Rube MCP, 9 models) achieves cognitive orchestration, live streaming, TRUTH framework gatekeeping (Testable, Reproducible, Unambiguous, Traceable, High-fidelity), parallelized for team voice stand-ups and pilot adoption.[^1_5][^1_3][^1_4]
 - **HNC Production Blocks:** Satirical, policy-driven cartoon production mapped into content, commerce, and advocacy CTAs with micro-footer rules for sovereignty, daily cadence, and multi-channel output.[^1_1][^1_2][^1_4]
 - **Training \& Adoption:** RPM team pilot cockpit, cheat sheets, compliance checklists, voice stand-ups, user adoption bar, in-app and print formats deployed for fast onboarding.[^1_3][^1_2][^1_4][^1_1]
@@ -103,7 +103,7 @@ Texas Secretary of State
 
 ### Fallacy Scan: Errors Avoided \& Guardrails Applied
 
-- **Veriff vs Jumio:** Previous crisis (Veriff failure) clarified and now task is Jumio replacement ONLY if SLA/mandate triggers, with adaptive flows in place. RPM plan locks Veriff as canonical, with fallback logic and explicit comms protocols for refunds, resubmissions, or platform outages (see pdr/adr bundles and copilot notes).[^1_3][^1_4]
+- **[PURGED_FALLACY] vs [PURGED_FALLACY]:** Previous crisis ([PURGED_FALLACY] failure) clarified and now task is [PURGED_FALLACY] replacement ONLY if SLA/mandate triggers, with adaptive flows in place. RPM plan locks [PURGED_FALLACY] as canonical, with fallback logic and explicit comms protocols for refunds, resubmissions, or platform outages (see pdr/adr bundles and copilot notes).[^1_3][^1_4]
 - **Medical Claims:** All language referencing therapeutic claims is auto-classified; blocklist, transformer-based detection, and COAs ensure no violations. Only product facts, not health claims, allowed; flagged by the Agent Builder guardrails node.
 - **Session Drift \& Hallucination:** State node compresses session context, enforcing periodic truth checks, nearly every 1,000 tokens or topic shift. Session anchors periodically recapped—if facts get dropped, or hallucination detected, session resets and short summary bridges context.[^1_5][^1_4][^1_3]
 - **Guardrail Over-Blocking:** Guardrails tuned to avoid rejecting valid actions—testing across edge cases, feedback mechanism for false positives, and fallback human-in-the-loop review to keep business agile, not stalled.[^1_3]
@@ -135,7 +135,7 @@ Texas Secretary of State
 
 **Immediate Actions:**
 
-1. **Jumio Biometric IDV Production:** Integrate, test transaction flow, monitor, notify blocked customers with win-back code; audit logs and compliance trail required.[^1_2][^1_1][^1_4]
+1. **[PURGED_FALLACY] Biometric IDV Production:** Integrate, test transaction flow, monitor, notify blocked customers with win-back code; audit logs and compliance trail required.[^1_2][^1_1][^1_4]
 2. **Compliance Remediation:** Relabel smokable SKUs, upload accredited COAs, submit full binder before Oct 26 deadline; tie updates to POS, maintain documentation for field inspections.[^1_1][^1_2][^1_3][^1_4]
 3. **Voice Training \& Adoption:** 15-min cockpit stand-ups daily, pilot shortcut confirmation, checklist review, zero-latency live use.[^1_2][^1_1][^1_3][^1_4]
 4. **HNC Content Pipeline:** Autonomously produce week’s cartoon episodes and supercut; embed micro-footer CTAs, omnichannel media, drive advocacy and retail funnel.[^1_1][^1_2][^1_4]

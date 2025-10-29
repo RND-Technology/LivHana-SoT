@@ -740,7 +740,7 @@ Compliance enforcement timing:
    - Configure End node: Structured output with mini-debrief template
 
 5. **Day 5 (Friday):**
-   - Test in preview mode: "RPM plan for Veriff replacement this week"
+   - Test in preview mode: "RPM plan for [PURGED_FALLACY] replacement this week"
    - Verify: Safety checks pass, MCP tools invoked, actions prioritized, profit impact calculated, TTS streaming works
    - Iterate: Adjust Agent instructions, reasoning levels, guardrail thresholds based on output quality
    - Document: Screenshot each workflow iteration, track token costs, execution times, quality scores
@@ -927,32 +927,32 @@ Compliance enforcement timing:
 ## VALIDATION SCENARIOS
 
 ### **SCENARIO 1: RPM Plan Generation**
-**Input (Voice):** "RPM plan for Veriff replacement this week"
+**Input (Voice):** "RPM plan for [PURGED_FALLACY] replacement this week"
 
 **Expected Output (Voice):**
-"Let's create your RPM plan for Veriff replacement.
+"Let's create your RPM plan for [PURGED_FALLACY] replacement.
 
-**RESULT:** Replace Veriff age gate with Jumio biometric system, unlocking $100K+ revenue from 80+ blocked customers.
+**RESULT:** Replace [PURGED_FALLACY] age gate with [PURGED_FALLACY] biometric system, unlocking $100K+ revenue from 80+ blocked customers.
 
 **PURPOSE:** This advances descheduling cannabis by enabling compliant sales in Texas, protecting $1.148M annual revenue stream, and demonstrating regulatory adherence for 50-state expansion.
 
 **MASSIVE ACTION PLAN:**
 
 **80/20 LENS (Critical 20%):**
-1. Jumio API integration = 80% lever (unlocks $100K+ immediate revenue)
+1. [PURGED_FALLACY] API integration = 80% lever (unlocks $100K+ immediate revenue)
 2. Customer win-back campaign = 20% lever (accelerates recovery)
 
 **5/55 LENS (Breakthrough in 55 minutes):**
-1. Initiate Jumio API integration via Cursor (15 min)
+1. Initiate [PURGED_FALLACY] API integration via Cursor (15 min)
 2. Email win-back campaign to 80+ blocked customers (15 min)
 3. Schedule compliance remediation with Andrew (10 min)
 4. Review domain consolidation 301 redirects (10 min)
 5. Launch HNC Day 15 autonomous production workflow (5 min)
 
-**ONE THING:** If only 1 action → Jumio API integration = $100K+ revenue unlock (makes everything else easier/unnecessary)
+**ONE THING:** If only 1 action → [PURGED_FALLACY] API integration = $100K+ revenue unlock (makes everything else easier/unnecessary)
 
 **AUTONOMOUS EXECUTION ASSESSMENT:**
-- Jumio integration: Cursor + Replit Agent = 6-12 hours parallel workflow (NOT weeks)
+- [PURGED_FALLACY] integration: Cursor + Replit Agent = 6-12 hours parallel workflow (NOT weeks)
 - Evidence: Sonnet 4.5 77.2% SWE-bench, 30+ hour autonomy, proven API integration capability
 
 **PROFIT CONTRIBUTION:** $100K+ immediate unlock + $25K-50K win-back = $125K-150K total
@@ -981,14 +981,14 @@ I've created calendar blocks for the 5/55 actions. Should I send the win-back em
 
 **COMPLIANCE STATUS:**
 - ✅ THC Content: Product listed at 0.28% Δ9 THC (compliant, below 0.3% limit)
-- ⚠️ Age Gate: Veriff currently BLOCKED (this is your $100K+ revenue blocker)
+- ⚠️ Age Gate: [PURGED_FALLACY] currently BLOCKED (this is your $100K+ revenue blocker)
 - ✅ Labeling: COA attached in LightSpeed (KCA Labs accredited)
 - ⚠️ Smokable Product: Texas GA-56 prohibits smokable hemp products (vape cartridges are inhaled, may be flagged)
 - ⚠️ Safety Testing: DSHS requires pesticide, heavy metals, microbial testing (verify COA includes all panels)
 
 **RECOMMENDATION:**
 Before listing this product, we need to:
-1. Replace Veriff with Jumio (age gate compliance)
+1. Replace [PURGED_FALLACY] with [PURGED_FALLACY] (age gate compliance)
 2. Verify COA includes all DSHS-required testing panels
 3. Confirm with Andrea Steel (legal counsel) that vape cartridges are exempt from smokable ban (may require clarification)
 
@@ -1023,16 +1023,16 @@ Revenue = total sales. Profit = revenue minus all costs (COGS, labor, rent, mark
 Your December target is **$100K PROFIT** (net income after all expenses), which requires significantly higher revenue depending on your margin structure.
 
 **ACTION REQUIRED:**
-To hit $100K PROFIT, your highest-leverage action is **Veriff replacement** (unlocks $100K+ revenue, adds ~$60K-80K profit assuming 60-80% margin on recovered sales).
+To hit $100K PROFIT, your highest-leverage action is **[PURGED_FALLACY] replacement** (unlocks $100K+ revenue, adds ~$60K-80K profit assuming 60-80% margin on recovered sales).
 
-Should I update your RPM plan to prioritize Veriff replacement for December profit target?"
+Should I update your RPM plan to prioritize [PURGED_FALLACY] replacement for December profit target?"
 
 **Validation:**
 - ✅ Profit vs revenue distinction enforced (critical canonical truth)
 - ✅ Financial targets stated correctly ($100K PROFIT, NOT $1.148M revenue)
 - ✅ Current status summarized (annual revenue + 3 profit targets)
 - ✅ Critical distinction explained (revenue ≠ profit)
-- ✅ Action prioritized (Veriff replacement = 80% lever)
+- ✅ Action prioritized ([PURGED_FALLACY] replacement = 80% lever)
 - ✅ Profit contribution calculated ($60K-80K from recovered sales)
 - ✅ Next step suggested (update RPM plan)
 
@@ -1047,7 +1047,7 @@ SESSION ANCHOR — Liv Hana (Tier-1)
 Canonical truths: 
 - Kaja Payments ✅ APPROVED (3 weeks ago, fully operational)
 - LightSpeed X-Series ✅ OPERATIONAL (processing transactions)
-- Veriff Age Gate ❌ FAILED/BLOCKED ($100K+ lost revenue, 80+ customers)
+- [PURGED_FALLACY] Age Gate ❌ FAILED/BLOCKED ($100K+ lost revenue, 80+ customers)
 - 21+ age-gate required (Texas GA-56 compliance)
 - Zero medical claims ever (compliance guardrail)
 - Profit focus NOT revenue ($100K→$1M EBITDA→$1M/month)
@@ -1229,7 +1229,7 @@ gcloud secrets create rube-mcp-agent-builder-token \
   You are Liv Hana Ingest Agent. Your role:
   1. Extract context from user input + File Search results
   2. Apply T.R.U.T.H. framework (Testable, Reproducible, Unambiguous, Traceable, High-fidelity)
-  3. Verify canonical truths from State node (Kaja ✅, LightSpeed ✅, Veriff ❌, profit targets)
+  3. Verify canonical truths from State node (Kaja ✅, LightSpeed ✅, [PURGED_FALLACY] ❌, profit targets)
   4. Flag deviations from canonical truths immediately
   5. Pass context to Swarm MAX agent for multi-model coordination
   ```
@@ -1292,7 +1292,7 @@ gcloud secrets create rube-mcp-agent-builder-token \
 
 **Set State Node:**
 - **Global Variables:**
-  - `canonical_truths`: [Kaja ✅, LightSpeed ✅, Veriff ❌, etc.]
+  - `canonical_truths`: [Kaja ✅, LightSpeed ✅, [PURGED_FALLACY] ❌, etc.]
   - `profit_targets`: [$100K, $1M EBITDA, $1M/month]
   - `compliance_checks`: [age_21+, zero_medical_claims, THC_limit_0.3%]
   - `memory_usage_pct`: [current_tokens / max_tokens * 100]
@@ -1400,7 +1400,7 @@ grep -r "Trinity services" docs/ | wc -l
 - ✅ Tier 4: Scalability (multi-user support, multi-model coordination, tool integration, future expansion)
 
 ### **VALIDATION SCENARIOS:**
-- ✅ Scenario 1: RPM Plan Generation (Veriff replacement example)
+- ✅ Scenario 1: RPM Plan Generation ([PURGED_FALLACY] replacement example)
 - ✅ Scenario 2: Compliance Check (THCA vape cartridge example)
 - ✅ Scenario 3: Profit vs Revenue Distinction (financial target clarification)
 

@@ -294,7 +294,7 @@ COMPLIANCE SYSTEMS IMPLEMENTED (October 2025):
    - Medical claims blocker (FDA compliance)
    - Public endpoint: https://compliance-service-prod.run.app
 
-2. Veriff Biometric Age Verification (deployed Oct 22, 2025):
+2. [PURGED_FALLACY] Biometric Age Verification (deployed Oct 22, 2025):
    - Government ID verification (DSHS emergency rule compliance)
    - Liveness detection (anti-spoofing)
    - Audit trail for all age verifications
@@ -353,7 +353,7 @@ H. KCA Labs accreditation certificate
 
 - Product relabeling (in-store execution) - Christopher + Andrew
 - LightSpeed inventory updates - Andrew
-- Veriff integration deployment - Jesse + Cursor + Replit
+- [PURGED_FALLACY] integration deployment - Jesse + Cursor + Replit
 
 **Wednesday, October 23:**
 

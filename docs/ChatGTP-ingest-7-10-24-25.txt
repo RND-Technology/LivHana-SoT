@@ -560,7 +560,7 @@ ChatGPT said:
 
 🟢 OPERATIONAL STATUS:
 
-Jumio integration and Veriff bypass → deployed and profitable
+[PURGED_FALLACY] integration and [PURGED_FALLACY] bypass → deployed and profitable
 
 Voice orchestration → zero-latency Liv Hana live
 
@@ -1612,7 +1612,7 @@ ChatGPT said:
 
 🟢 OPERATIONAL STATUS:
 
-Jumio integration and Veriff bypass → deployed and profitable
+[PURGED_FALLACY] integration and [PURGED_FALLACY] bypass → deployed and profitable
 
 Voice orchestration → zero-latency Liv Hana live
 

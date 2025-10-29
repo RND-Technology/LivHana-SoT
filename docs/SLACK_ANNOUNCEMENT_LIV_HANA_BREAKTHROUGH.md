@@ -16,7 +16,7 @@ After hundreds of hours of development, we FINALLY cracked the code on autonomou
 
 - **RPM Planning:** What took 2-4 hours now takes <5 minutes (via voice mode)
 - **Compliance Automation:** Age verification, COA validation, DSHS reporting—all autonomous
-- **Revenue Recovery:** $125K-175K unlock THIS WEEK (Veriff ID verification + win-back campaign)
+- **Revenue Recovery:** $125K-175K unlock THIS WEEK ([PURGED_FALLACY] ID verification + win-back campaign)
 - **Team Leverage:** AI co-pilot for every role—Andrew (ops), Christopher (culture/payroll), Charlie (procurement)
 
 **See It In Action:**
@@ -48,7 +48,7 @@ Previous attempts (ChatGPT voice, Claude phone app) hit API limits and crashed. 
 
 1. **Tuesday (TODAY):** Secrets sync (15 min) → TRUTH Pipeline test → Win-back campaign launch
 2. **Wednesday:** Compliance Service deployment → Agent Builder 17-node deployment
-3. **Thursday:** Veriff production deployment → First revenue flowing
+3. **Thursday:** [PURGED_FALLACY] production deployment → First revenue flowing
 4. **Friday:** DSHS compliance submission (deadline Oct 26)
 
 **What You Need to Do:**
@@ -74,7 +74,7 @@ Let's make history. Voice mode is the future, and the future is NOW.
 — Jesse Niesen, CEO
 with Liv Hana (Tier 1 Absolute Standard SI)
 
-P.S. Christopher, Dylan—store briefing at 10am on Veriff age verification changes. Let's get that $100K unlocked this week. 🔥
+P.S. Christopher, Dylan—store briefing at 10am on [PURGED_FALLACY] age verification changes. Let's get that $100K unlocked this week. 🔥
 
 ---
 

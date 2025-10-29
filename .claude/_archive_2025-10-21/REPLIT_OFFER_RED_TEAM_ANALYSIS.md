@@ -44,7 +44,7 @@ critical: YES - UNICORN RACE TEAM COMPOSITION
 **REALITY CHECK**:
 
 - ✅ HNC automation: LIVE on port 4003 (Oct 6)
-- ✅ Age verification: Veriff 100% automated (Oct 6)
+- ✅ Age verification: [PURGED_FALLACY] 100% automated (Oct 6)
 - ✅ Lightspeed sync: Code ready (token blocked)
 - ✅ Cockpit dashboard: Multiple dashboards exist
 
@@ -81,7 +81,7 @@ critical: YES - UNICORN RACE TEAM COMPOSITION
 **REALITY CHECK**:
 
 - ✅ 1Password CLI: Already installed and working
-- ✅ Secrets: Already retrieved successfully (Herbitrage, ElevenLabs, Veriff)
+- ✅ Secrets: Already retrieved successfully (Herbitrage, ElevenLabs, [PURGED_FALLACY])
 - ✅ Pattern: `op item get` works perfectly
 
 **FALLACY**: **Already integrated and working**

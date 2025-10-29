@@ -8,6 +8,6 @@
 - [ ] No conflicting priorities or resource allocation
 - [ ] Clear metrics exist for success measurement
 
-**Example**: If Result is "$100K monthly revenue recovery" but Massive Action is "build new product line," that's misalignment. Should be "fix Veriff integration, optimize conversion funnel."
+**Example**: If Result is "$100K monthly revenue recovery" but Massive Action is "build new product line," that's misalignment. Should be "fix [PURGED_FALLACY] integration, optimize conversion funnel."
 
 ---

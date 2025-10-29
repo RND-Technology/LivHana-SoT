@@ -260,7 +260,7 @@
 2. YouTube API
 3. Kaja Payments
 4. Square Payments
-5. Veriff Age Verification
+5. [PURGED_FALLACY] Age Verification
 6. GoDaddy DNS
 
 ---

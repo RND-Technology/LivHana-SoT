@@ -10,7 +10,7 @@
 **PHASE 1 EXECUTION (Parallel)**:
 
 1. Run Ecwid category fix (30 min)
-2. Deploy Veriff client to production (1 hour)
+2. Deploy [PURGED_FALLACY] client to production (1 hour)
 3. Implement real Lightspeed API (6 hours)
 4. Start HNC automation API + test (1 hour)
 5. Validate checkout flow (2 hours)

@@ -152,7 +152,7 @@ Our documentation follows the [Diátaxis framework](https://diataxis.fr/):
 
 - **Voice Service**: ElevenLabs integration for voice processing
 - **Reasoning Gateway**: DeepSeek 33B for AI reasoning
-- **Integration Service**: Third-party integrations (Kaja, Veriff, etc.)
+- **Integration Service**: Third-party integrations (Kaja, [PURGED_FALLACY], etc.)
 
 #### Frontend Cockpits
 

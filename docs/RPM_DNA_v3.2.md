@@ -27,7 +27,7 @@ Components:
 
 ### Examples
 - `ARCH-CLOUD-001` - Cloud infrastructure architecture (1st doc)
-- `DEV-VERIFF-002a` - Veriff development task (2nd task, variant a)
+- `DEV-VERIFF-002a` - [PURGED_FALLACY] development task (2nd task, variant a)
 - `COORD-AGENT-003` - Agent coordination plan (3rd coordination doc)
 - `DOC-COMPLIANCE-001` - DSHS compliance documentation
 
@@ -56,7 +56,7 @@ Components:
 ### Projects (Current Initiatives)
 - `CLOUD` - RPM Cloud Infrastructure (AlloyDB, BigQuery, Cloud Storage)
 - `LINEAR` - Linear integration for cockpit dashboards
-- `VERIFF` - Identity verification (Jumio migration)
+- `VERIFF` - Identity verification ([PURGED_FALLACY] migration)
 - `REGGIEDRO` - ReggieAndDro.com e-commerce platform
 - `AGENT` - Agent Builder 17-node workflow
 - `MUSIC` - Music Hub (63-domain consolidation)
@@ -94,7 +94,7 @@ JavaScript/TypeScript files include JSDoc:
  * @rpm_dna DEV-VERIFF-002a
  * @rpm_classification TIER_2
  * @rpm_owner Andrew
- * @rpm_project Jumio biometric IDV integration
+ * @rpm_project [PURGED_FALLACY] biometric IDV integration
  * @rpm_status in_progress
  * @rpm_revenue_impact $60K-$80K win-back campaign
  */
@@ -146,9 +146,9 @@ Co-authored-by: <name> <email>
 
 Example:
 ```
-feat(DEV-VERIFF-002a): Add Jumio biometric ID verification
+feat(DEV-VERIFF-002a): Add [PURGED_FALLACY] biometric ID verification
 
-Replaces Veriff with Jumio for identity verification.
+Replaces [PURGED_FALLACY] with [PURGED_FALLACY] for identity verification.
 Targets 80+ blocked customers for win-back campaign.
 
 RPM DNA: DEV-VERIFF-002a

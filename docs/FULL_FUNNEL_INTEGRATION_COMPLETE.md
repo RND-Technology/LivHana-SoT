@@ -13,7 +13,7 @@
 
 **Source:** `/Users/jesseniesen/RPM_WEEKLY_PLAN_OCT21-27_2025_COMPLETE.md`  
 **Size:** 40KB (1,029 lines)  
-**Focus:** Veriff ID verification, DSHS compliance, HNC content, $125K-175K target
+**Focus:** [PURGED_FALLACY] ID verification, DSHS compliance, HNC content, $125K-175K target
 
 ### **2. Team Pilot Training (v3.1 - External)**
 
@@ -267,7 +267,7 @@ Jesse: "Normal chat. Great work, team. Execute. Meeting adjourned."
 ```
 1. Customer shops at reggieanddro.com
    ↓
-2. Age verification (Veriff 21+ biometric IDV)
+2. Age verification ([PURGED_FALLACY] 21+ biometric IDV)
    ↓
 3. First purchase complete (becomes VIP member)
    ↓
@@ -279,7 +279,7 @@ Jesse: "Normal chat. Great work, team. Execute. Meeting adjourned."
    ↓
 7. Liv Hana: "You can co-own this song. 50% yours, 50% Reggie & Dro. You can earn royalties when others listen."
    ↓
-8. One-click blockchain onboarding (KYC via Veriff - already verified)
+8. One-click blockchain onboarding (KYC via [PURGED_FALLACY] - already verified)
    ↓
 9. Smart contract mints song NFT (Solana/Polygon)
    → Customer owns 50%
@@ -415,7 +415,7 @@ cd backend/compliance-service && gcloud run deploy compliance-service --source .
 | Requirement | Regulation | Implementation | Match |
 |------------|-----------|----------------|-------|
 | 21+ Age Verification | DSHS §300.701-702 | Compliance Service API | ✅ 100% |
-| Mandatory ID Check | TABC §51.1-51.2 | Veriff biometric ID verification | ✅ 100% |
+| Mandatory ID Check | TABC §51.1-51.2 | [PURGED_FALLACY] biometric ID verification | ✅ 100% |
 | Emergency Authority | GA-56 | Audit trail logging | ✅ 100% |
 | Consumable Hemp | TX HSC §443 | NIST cannabinoid validation | ✅ 100% |
 | Full-Panel COAs | 25 TAC Ch. 300 | KCA Labs integration | ✅ 100% |
@@ -445,7 +445,7 @@ cd backend/compliance-service && gcloud run deploy compliance-service --source .
 
 - 🎯 DSHS response submitted (Oct 26 deadline)
 - 🎯 100% age-gate pass rate (zero violations)
-- 🎯 Audit trail complete (Veriff + Compliance Service logs)
+- 🎯 Audit trail complete ([PURGED_FALLACY] + Compliance Service logs)
 - 🎯 Accredited COAs uploaded (KCA Labs)
 
 ### **Team (by Friday, Oct 25):**
@@ -479,7 +479,7 @@ After HUNDREDS of hours across 5+ AI platforms, voice mode crashes, API limits, 
 **What Changes for YOU:**
 
 💰 **This Week's Revenue:**
-• $125K-175K unlock (Veriff ID verification fixes checkout, 80+ blocked customers recovered)
+• $125K-175K unlock ([PURGED_FALLACY] ID verification fixes checkout, 80+ blocked customers recovered)
 • December $100K profit target? We're hitting 75-130% THIS WEEK
 • Every dollar funds our North Star: **Deschedule Cannabis sativa L entirely**
 
@@ -536,12 +536,12 @@ Pilot training (30 min total):
 • 8:00am: Secrets sync (Jesse + Andrew - 15 min)
 • 9:00am: **VOICE STAND-UP** ← YOU'RE INVITED
 • 10:00am: Win-back campaign launch (Andrew)
-• 3:00pm: Veriff staging tests (Jesse)
+• 3:00pm: [PURGED_FALLACY] staging tests (Jesse)
 
 **WEDNESDAY:**
 • 8:00am: KCA Labs delivery (Charlie)
 • 10:00am: Agent Builder deployment (Andrew + Christopher)
-• 3:00pm: Veriff PRODUCTION ($100K unlock begins!)
+• 3:00pm: [PURGED_FALLACY] PRODUCTION ($100K unlock begins!)
 
 **FRIDAY:**
 • 10:00am: DSHS submission (Jesse + Andrea)
@@ -566,7 +566,7 @@ Texas leads. Nation follows. We prove the model: compliant, profitable, AUTONOMO
 • Text: (210) 555-HEMP
 • Email: jesse@reggieanddro.com
 
-**P.S. Christopher & Dylan:** Store briefing 10:00am on Veriff changes. 15-min training. Let's unlock that $100K! 🔥
+**P.S. Christopher & Dylan:** Store briefing 10:00am on [PURGED_FALLACY] changes. 15-min training. Let's unlock that $100K! 🔥
 
 **P.P.S. Andrew:** 8:00am secrets sync. 15 minutes, unblocks everything.
 
@@ -601,7 +601,7 @@ with Liv Hana (Tier 1 Absolute Standard Synthetic Intelligence)
 **Next Action:** Post Slack announcement → Execute `RUNNABLE_COMMAND.sh` → Launch voice stand-up
 
 **Timeline to Full Deployment:** 55 minutes  
-**Timeline to Revenue Flowing:** 6-12 hours (Veriff deployment)  
+**Timeline to Revenue Flowing:** 6-12 hours ([PURGED_FALLACY] deployment)  
 **Timeline to $100K+ Unlocked:** 7 days (win-back campaign conversion)
 
 ---

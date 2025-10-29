@@ -32,7 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - RPM Weekly Plan for Oct 4-12, 2025
 - Production system complete documentation
-- Veriff integration complete status
+- [PURGED_FALLACY] integration complete status
 - Delivery service complete documentation
 - ECWID fix Tier 1 plan
 - Deployment status tracking
@@ -90,7 +90,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - DNS cleanup and migration documentation
 - Lightspeed conversion optimization
-- Veriff loyalty automation
+- [PURGED_FALLACY] loyalty automation
 - Local status reporting system
 - Consolidation planning documentation
 

@@ -158,7 +158,7 @@ CREATE TABLE users (
   token_balance INT DEFAULT 0,
   total_spent DECIMAL(10,2) DEFAULT 0,
   verified_age BOOLEAN DEFAULT false,
-  veriff_session_id VARCHAR(255),
+  [PURGED_FALLACY]_session_id VARCHAR(255),
   created_at TIMESTAMP DEFAULT NOW()
 );
 ```
@@ -278,28 +278,28 @@ const delivery = await deliveryService.createDelivery({
 
 ## **Compliance Integration**
 
-**Age Verification (Veriff):**
+**Age Verification ([PURGED_FALLACY]):**
 
 ```typescript
 // On first visit
 if (!user.verified_age) {
-  const veriffSession = await veriffAPI.createSession({
+  const [PURGED_FALLACY]Session = await [PURGED_FALLACY]API.createSession({
     userId: user.id,
     returnUrl: '/products'
   });
 
-  // Redirect to Veriff
-  window.location.href = veriffSession.url;
+  // Redirect to [PURGED_FALLACY]
+  window.location.href = [PURGED_FALLACY]Session.url;
 }
 
 // Webhook handler for verification completion
-app.post('/webhooks/veriff', async (req, res) => {
+app.post('/webhooks/[PURGED_FALLACY]', async (req, res) => {
   const { sessionId, status, age } = req.body;
 
   if (status === 'approved' && age >= 21) {
     await db.users.update(userId, {
       verified_age: true,
-      veriff_session_id: sessionId
+      [PURGED_FALLACY]_session_id: sessionId
     });
   }
 });

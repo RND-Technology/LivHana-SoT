@@ -278,7 +278,7 @@ node automation/ecwid-category-fix.js
 **Task 4**: Age Verification Smart Gate (Option C)
 
 - 30-day cookie
-- "Shop Premium Flower" → /products (bypass Veriff)
+- "Shop Premium Flower" → /products (bypass [PURGED_FALLACY])
 - Can implement in same middleware if using PATH 2
 
 **TIER 1 - ZERO WAITING - ALWAYS A WAY**

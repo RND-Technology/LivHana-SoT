@@ -98,7 +98,7 @@ status: CRITICAL ANALYSIS - RED TEAM AUDIT
 
 - ❌ DeepSeek reasoning jobs take 10-30+ SECONDS
 - ❌ Database queries can take 500ms+ under load
-- ❌ External API calls (Lightspeed, Square, Veriff) are 1-5 seconds
+- ❌ External API calls (Lightspeed, Square, [PURGED_FALLACY]) are 1-5 seconds
 - ❌ 200ms p95 is impossible for this architecture
 
 **Fix**: Promise realistic latencies based on actual workload
@@ -281,7 +281,7 @@ status: CRITICAL ANALYSIS - RED TEAM AUDIT
 ### 4. **Compliance Enforcement** (Cannabis-Specific)
 
 - **COA verification**: 24/7 automation with <1 sec flagging
-- **Age verification**: 21+ enforced (Veriff integration)
+- **Age verification**: 21+ enforced ([PURGED_FALLACY] integration)
 - **THC limits**: >0.3% auto-flagged
 - **License reference**: DSHS #690 correct everywhere
 - **Audit trail**: All transactions logged to BigQuery
@@ -388,7 +388,7 @@ status: CRITICAL ANALYSIS - RED TEAM AUDIT
    - Quick troubleshooting
 
 4. **Integration Testing** (CRITICAL)
-   - Test with real external APIs (Lightspeed, Square, Veriff)
+   - Test with real external APIs (Lightspeed, Square, [PURGED_FALLACY])
    - End-to-end flow validation
    - Multi-service coordination
 

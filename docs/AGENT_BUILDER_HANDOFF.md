@@ -147,7 +147,7 @@ Configure agent to handle:
 
 ```
 TEST 1: "Create RPM for Q4 revenue recovery (target: $100K monthly passive income)"
-TEST 2: "What's blocking our Veriff integration? Check compliance requirements."
+TEST 2: "What's blocking our [PURGED_FALLACY] integration? Check compliance requirements."
 TEST 3: "Prepare brief on SB3 for Andrea Steel (legal counsel)"
 TEST 4: "Which products are low stock at San Antonio? Recommend reorder priorities."
 ```

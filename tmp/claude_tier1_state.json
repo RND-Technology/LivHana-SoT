@@ -18,11 +18,26 @@
   },
   "runtime": {
     "last_emit_utc": "2025-10-22T00:16:51Z",
-    "last_health_utc": "2025-10-27T11:15:33Z"
+    "last_health_utc": "2025-10-29T02:52:16Z"
   },
   "voice_mode": {
     "ready": true,
-    "pid": ""
+    "pid": "",
+    "whisper_pid": "2362",
+    "kokoro_pid": "18482",
+    "services": {
+      "whisper": {
+        "healthy": true,
+        "port": 2022,
+        "uptime_hours": 6.5
+      },
+      "kokoro": {
+        "healthy": true,
+        "port": 8880,
+        "uptime_minutes": 30
+      }
+    },
+    "blocking_issue": "microphone_configuration"
   },
   "stay_to_oned": true
 }

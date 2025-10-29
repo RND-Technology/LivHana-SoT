@@ -118,7 +118,7 @@ The claude-tier1 boot system is experiencing a failure preventing the 5 foundati
 
 **This Week (Oct 21-27 Remaining):**
 1. Complete VIP Dashboard beta (Christopher + Charlie)
-2. Launch Veriff win-back campaign (80+ customers)
+2. Launch [PURGED_FALLACY] win-back campaign (80+ customers)
 3. Property maintenance resolution (Christopher)
 4. Weekly RPM review and next week planning (Friday)
 
@@ -127,7 +127,7 @@ The claude-tier1 boot system is experiencing a failure preventing the 5 foundati
 **HIGH RISKS:**
 1. **Tier-1 Boot Failure** - Actively mitigating through investigation
 2. **DSHS Compliance Deadline** - Oct 26, on track pending boot fix
-3. **Revenue Recovery Delay** - Veriff win-back waiting on stable infrastructure
+3. **Revenue Recovery Delay** - [PURGED_FALLACY] win-back waiting on stable infrastructure
 
 **MEDIUM RISKS:**
 1. **GCS Permissions** - Workaround available, low priority
@@ -149,7 +149,7 @@ The claude-tier1 boot system is experiencing a failure preventing the 5 foundati
 **Strategic Priorities (This Week):**
 1. Lock down Tier-1 boot reliability permanently
 2. Deploy Compliance Service (10 min after boot fixed)
-3. Execute Veriff win-back campaign (revenue recovery)
+3. Execute [PURGED_FALLACY] win-back campaign (revenue recovery)
 4. Complete VIP Dashboard beta (customer-facing value)
 
 **Next Week Planning:**

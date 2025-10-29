@@ -12,7 +12,7 @@
 **Current State:**
 
 - ✅ Lightspeed store is LIVE at reggieanddro.company.site
-- ✅ Age verification (Veriff) integrated
+- ✅ Age verification ([PURGED_FALLACY]) integrated
 - ✅ Membership signup flow active
 - ⚠️ Basic store layout (needs optimization)
 - ⚠️ Missing 7 critical revenue drivers ($50K+/month opportunity)
@@ -245,7 +245,7 @@ After adding to cart:
 ✅ Verified by Visa/Mastercard
 ✅ BBB Accredited (if applicable)
 ✅ Texas Licensed Retailer
-✅ 21+ Age Verified (Veriff logo)
+✅ 21+ Age Verified ([PURGED_FALLACY] logo)
 ✅ Money-Back Guarantee
 ```
 
@@ -711,7 +711,7 @@ Each product page: Add 500-word description including:
 
 - ✅ Lightspeed store live
 - ✅ Custom domain configured (reggieanddro.com)
-- ✅ Age verification (Veriff) integrated
+- ✅ Age verification ([PURGED_FALLACY]) integrated
 - ✅ Membership signup working
 - ✅ Agent #1 identified $50K+/month opportunity
 

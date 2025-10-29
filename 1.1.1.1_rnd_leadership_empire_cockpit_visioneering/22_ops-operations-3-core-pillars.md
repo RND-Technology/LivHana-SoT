@@ -9,7 +9,7 @@
 
 **OPS.2: BUSINESS AUTOMATION**
 
-- Customer onboarding (Veriff resolution)
+- Customer onboarding ([PURGED_FALLACY] resolution)
 - Revenue optimization ($100K recovery)
 - Compliance management (DSHS #690)
 - Multi-division coordination (R&D, HNC, OPS, HERB)

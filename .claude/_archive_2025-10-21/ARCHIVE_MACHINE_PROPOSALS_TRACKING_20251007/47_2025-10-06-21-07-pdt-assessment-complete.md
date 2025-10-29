@@ -12,7 +12,7 @@
 
 **2. VERIFF CLIENT (Age Verification)**:
 
-- 📍 Location: backend/integration-service/src/lib/veriff-client.js
+- 📍 Location: backend/integration-service/src/lib/[PURGED_FALLACY]-client.js
 - ✅ Status: PRODUCTION READY (created 2025-10-04)
 - ✅ Complete Implementation:
   - createSession() - Start verification

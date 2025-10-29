@@ -17,7 +17,7 @@
 
 - `backend/integration-service/src/lib/durable-state.js` (NEW - 400+ lines)
 - `backend/integration-service/src/routes/post-purchase-verification.js` (UPDATED)
-- `backend/integration-service/src/routes/veriff-webhook.js` (UPDATED)
+- `backend/integration-service/src/routes/[PURGED_FALLACY]-webhook.js` (UPDATED)
 
 **Key Features:**
 
@@ -86,7 +86,7 @@
 
 **Files Modified:**
 
-- `backend/integration-service/src/routes/veriff-webhook.js`
+- `backend/integration-service/src/routes/[PURGED_FALLACY]-webhook.js`
 - `backend/integration-service/src/routes/post-purchase-verification.js`
 
 **Key Features:**
@@ -214,17 +214,17 @@ curl -sS -D- "https://integration-service-980910443251.us-central1.run.app/healt
 
 ```bash
 curl -sS "https://integration-service-980910443251.us-central1.run.app/__selftest" | jq
-# Expect: { veriff:"ok|safe_mode", sendgrid:"ok|safe_mode", kaja:"ok|safe_mode", datastore:"ok", cloud_tasks:"ok" }
+# Expect: { [PURGED_FALLACY]:"ok|safe_mode", sendgrid:"ok|safe_mode", kaja:"ok|safe_mode", datastore:"ok", cloud_tasks:"ok" }
 ```
 
 ### **Webhook Idempotency Test**
 
 ```bash
-# Test Veriff webhook idempotency
+# Test [PURGED_FALLACY] webhook idempotency
 sig=$(printf 'payload-body' | openssl dgst -sha256 -hmac "$VERIFF_SECRET" -binary | xxd -p -c256)
 curl -sS -H "X-Signature:$sig" -H "Content-Type: application/json" \
   -d '{"event":"verification.updated","id":"evt_test_123","status":"approved"}' \
-  "https://integration-service-980910443251.us-central1.run.app/api/v1/veriff/webhook" | jq
+  "https://integration-service-980910443251.us-central1.run.app/api/v1/[PURGED_FALLACY]/webhook" | jq
 
 # Repeat the same call; expect 200 + {"idempotent":true}
 ```

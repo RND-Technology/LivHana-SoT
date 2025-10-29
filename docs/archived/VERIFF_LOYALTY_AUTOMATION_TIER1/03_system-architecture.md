@@ -19,7 +19,7 @@
 ┌─────────────────────────────────────────────────────────────────┐
 │        VERIFICATION GATE ORCHESTRATOR                            │
 │                                                                   │
-│  Step 1: Check Veriff approval status                           │
+│  Step 1: Check [PURGED_FALLACY] approval status                           │
 │  Step 2: Check membership agreement signed                       │
 │  Step 3: Decide: Approve, Hold, or Auto-Refund                  │
 └────────────────┬────────────────┬─────────────────┬──────────────┘

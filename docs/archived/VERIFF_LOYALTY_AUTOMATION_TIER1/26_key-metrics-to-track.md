@@ -1,7 +1,7 @@
 ### Key Metrics to Track
 
 1. **Verification Conversion Rate**
-   - Target: >85% of customers complete Veriff within 72 hours
+   - Target: >85% of customers complete [PURGED_FALLACY] within 72 hours
    - Alert if <70%
 
 2. **Auto-Refund Rate**

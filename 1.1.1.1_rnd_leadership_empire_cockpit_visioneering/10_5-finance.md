@@ -2,7 +2,7 @@
 
 **Wheel of Life Progression:**
 
-- **Level 0**: $100K+ monthly losses from Veriff, manual tracking, cash crisis
+- **Level 0**: $100K+ monthly losses from [PURGED_FALLACY], manual tracking, cash crisis
 - **Level NOW**: Square POS operational, financial systems documented
 - **Level NEXT**: $100K monthly revenue recovered, automated reporting, profitability
 - **Level 10**: $1M+ monthly EBITDA, passive income streams, optimal tax structure

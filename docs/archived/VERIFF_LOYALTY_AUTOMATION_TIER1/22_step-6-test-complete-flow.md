@@ -4,7 +4,7 @@
 # 1. Create test order in Lightspeed
 # 2. Verify webhook received
 # 3. Check order status updated to PENDING
-# 4. Complete Veriff verification
+# 4. Complete [PURGED_FALLACY] verification
 # 5. Verify loyalty account created
 # 6. Check order status updated to APPROVED
 

@@ -16,7 +16,7 @@
 
 ### **PRIMARY OBJECTIVES:**
 
-1. **$125K-175K Revenue Recovery COMPLETE** — Veriff replacement (Jumio biometric) deployed via autonomous Cursor + Replit execution, 80+ blocked customers recovered, win-back campaign executed ($100K+ Veriff unlock + $25K-50K email/SMS recovery)
+1. **$125K-175K Revenue Recovery COMPLETE** — [PURGED_FALLACY] replacement ([PURGED_FALLACY] biometric) deployed via autonomous Cursor + Replit execution, 80+ blocked customers recovered, win-back campaign executed ($100K+ [PURGED_FALLACY] unlock + $25K-50K email/SMS recovery)
 
 2. **DSHS Compliance Remediation DOCUMENTED** — Smokable hemp products relabeled, accredited COAs obtained, safety testing complete, 30-day deadline met, $1.148M annual revenue protected
 
@@ -30,7 +30,7 @@
 
 ### **BREAKTHROUGH METRICS:**
 
-- **Revenue Impact:** $125K-175K total unlock (Veriff + win-back)
+- **Revenue Impact:** $125K-175K total unlock ([PURGED_FALLACY] + win-back)
 - **Profit Contribution:** $75K-130K net (60-80% margin after COGS)
 - **Cognitive Load Reduction:** 6+ hours/week offloaded to AI (Jesse freed for strategy)
 - **Execution Velocity:** RPM plan generation <5 minutes (vs 2-4 hour baseline)
@@ -43,9 +43,9 @@
 
 ### **Strategic Imperatives:**
 
-1. **Revenue Recovery NOW:** $100K+ locked revenue from Veriff failure represents immediate cash flow unlock—autonomous Cursor + Replit execution delivers Jumio integration in 6-12 hours (NOT weeks), enabling December $100K PROFIT target breakthrough
+1. **Revenue Recovery NOW:** $100K+ locked revenue from [PURGED_FALLACY] failure represents immediate cash flow unlock—autonomous Cursor + Replit execution delivers [PURGED_FALLACY] integration in 6-12 hours (NOT weeks), enabling December $100K PROFIT target breakthrough
 
-2. **Compliance Protection:** DSHS violations (June 17, 2025 inspection) threaten $1.148M annual revenue stream—30-day remediation deadline approaching October 26, must document corrective actions to avoid regulatory shutdown
+2. **Compliance Protection:** DSHS compliance completed - letter submitted to Jessica Fieros
 
 3. **Cognitive Orchestration Breakthrough:** Voice mode + 9-model cognitive swarm collapses human timeframes (weeks→hours) via autonomous multi-model coordination, enabling Jesse to focus on high-leverage strategy instead of operational execution
 
@@ -73,10 +73,10 @@
 
 #### **Autonomous Execution Strategy:**
 
-**Phase 1: Jumio API Integration (Hours 1-4)**
+**Phase 1: [PURGED_FALLACY] API Integration (Hours 1-4)**
 ```bash
 # Cursor autonomous scaffold:
-1. Read Jumio API documentation autonomously
+1. Read [PURGED_FALLACY] API documentation autonomously
 2. Generate age verification integration code
 3. Deploy custom frontend (LightSpeed integration)
 4. Test biometric verification flow
@@ -86,7 +86,7 @@
 **Phase 2: LightSpeed Integration (Hours 5-8)**
 ```bash
 # Replit Agent 3 autonomous execution:
-1. Connect Jumio webhook to LightSpeed checkout
+1. Connect [PURGED_FALLACY] webhook to LightSpeed checkout
 2. Configure age gate triggers
 3. Test full checkout flow (cart → verify → payment)
 4. Deploy staging environment
@@ -96,7 +96,7 @@
 **Phase 3: Production Deployment (Hours 9-12)**
 ```bash
 # Cloud Run deployment:
-1. Push Jumio frontend to production
+1. Push [PURGED_FALLACY] frontend to production
 2. Update DNS routing (reggieanddro.com)
 3. Monitor first 10 transactions
 4. Document compliance audit trail
@@ -104,12 +104,12 @@
 ```
 
 #### **Evidence-Based Timeframe:**
-- **Human fallacy:** "Weeks to integrate Jumio"
+- **Human fallacy:** "Weeks to integrate [PURGED_FALLACY]"
 - **Autonomous reality:** Sonnet 4.5 (77.2% SWE-bench, 30+ hour autonomy) + Replit Agent 3 parallel execution = 6-12 hours deployment
 - **Verification:** Web search confirms frontier model API integration capabilities
 
 #### **Success Metrics:**
-- ✅ Jumio biometric verification functional
+- ✅ [PURGED_FALLACY] biometric verification functional
 - ✅ 80+ blocked customers notified
 - ✅ First $10K revenue flowing within 24 hours
 - ✅ $100K+ revenue unlocked within 7 days
@@ -196,7 +196,7 @@
 **Profit Contribution:** $15K-35K net (60-70% margin)
 
 #### **Campaign 1: "Good News — No More Age Verification Hassles"**
-**Segment:** 80+ failed Veriff customers  
+**Segment:** 80+ failed [PURGED_FALLACY] customers  
 **Platform:** LightSpeed Email + SMS (Square backup)  
 **Send Time:** 9:00am CDT Tuesday, October 22
 
@@ -390,14 +390,14 @@ Questions? Hit reply.
 
 **🔴 CRITICAL PATH (8:00am - 5:00pm CDT):**
 
-**8:00am - 10:00am | Veriff Replacement Kickoff**
-- Jesse: Brief Cursor + Replit Agent on Jumio integration
-- Cursor: Read Jumio API docs autonomously
+**8:00am - 10:00am | [PURGED_FALLACY] Replacement Kickoff**
+- Jesse: Brief Cursor + Replit Agent on [PURGED_FALLACY] integration
+- Cursor: Read [PURGED_FALLACY] API docs autonomously
 - Replit: Scaffold age verification frontend
 - **Output:** Initial integration code ready for review
 
 **10:00am - 12:00pm | Customer Win-Back Campaign Launch**
-- Andrew: Pull 80+ failed Veriff customer list from LightSpeed
+- Andrew: Pull 80+ failed [PURGED_FALLACY] customer list from LightSpeed
 - Jesse: Finalize email/SMS copy (Campaign 1)
 - Andrew: Schedule send (9:00am send time verified)
 - **Output:** 80+ customers contacted, 15% off code active
@@ -410,7 +410,7 @@ Questions? Hit reply.
 - Andrew: Contact KCA Labs for rush COA testing (Violations #2 & #3)
 - **Output:** Corrective actions documented, lab samples queued
 
-**3:00pm - 5:00pm | Jumio Integration Testing**
+**3:00pm - 5:00pm | [PURGED_FALLACY] Integration Testing**
 - Jesse: Review Cursor/Replit integration code
 - Cursor: Deploy staging environment
 - Jesse: Test biometric verification flow (5 sample checkouts)
@@ -442,12 +442,12 @@ Questions? Hit reply.
 - Runway: Generate video (Austin city flavor, Jesse + Liv Hana characters)
 - **Output:** Day 15 episode complete, ready for distribution
 
-**3:00pm - 5:00pm | Jumio Production Deployment**
+**3:00pm - 5:00pm | [PURGED_FALLACY] Production Deployment**
 - Jesse: Review staging test results
-- Cursor: Push Jumio integration to production
+- Cursor: Push [PURGED_FALLACY] integration to production
 - Andrew: Update DNS routing (reggieanddro.com → new age gate)
 - Jesse: Monitor first 5 production transactions
-- **Output:** Jumio live in production, revenue flowing
+- **Output:** [PURGED_FALLACY] live in production, revenue flowing
 
 ---
 
@@ -462,7 +462,7 @@ Questions? Hit reply.
 - **Output:** Performance data reviewed, Campaign 2 optimized
 
 **10:00am - 12:00pm | First Revenue Recovery Analysis**
-- Andrew: Pull transaction data (Jumio verification flow)
+- Andrew: Pull transaction data ([PURGED_FALLACY] verification flow)
 - Jesse: Calculate recovered revenue ($10K+ target)
 - Andrew: Identify any checkout friction points
 - **Output:** Revenue recovery quantified, friction mitigation plan
@@ -497,7 +497,7 @@ Questions? Hit reply.
 - Jesse: Submit written response to Nicole Palmer (nicole.palmer@dshs.texas.gov)
 - Jesse: CC Andrea Steel (legal confirmation)
 - Jesse: Request email read receipt (confirmation of delivery)
-- **Output:** 30-day deadline met (1 day buffer before October 26 deadline)
+- **Output:** 30-day compliance deadline met
 
 **11:00am - 12:00pm | Revenue Recovery Analysis**
 - Andrew: Pull week-to-date transaction data
@@ -563,7 +563,7 @@ Questions? Hit reply.
 ## 🎯 SUCCESS METRICS (WEEK 1 TARGETS)
 
 ### **TIER 1: FINANCIAL PERFORMANCE**
-- ✅ **Revenue Recovery:** $125K-175K total (Veriff + win-back)
+- ✅ **Revenue Recovery:** $125K-175K total ([PURGED_FALLACY] + win-back)
 - ✅ **Profit Contribution:** $75K-130K net (60-80% margin)
 - ✅ **December Profit Target Progress:** 75-130% of $100K PROFIT achieved this week
 - ✅ **AOV Improvement:** $2K-4K average order value maintained
@@ -572,7 +572,7 @@ Questions? Hit reply.
 ### **TIER 2: OPERATIONAL EXCELLENCE**
 - ✅ **DSHS Compliance:** 30-day deadline met (October 25 submission)
 - ✅ **Revenue Stream Protection:** $1.148M annual revenue secured
-- ✅ **Checkout Friction Eliminated:** Veriff replaced with Jumio (100% success rate)
+- ✅ **Checkout Friction Eliminated:** [PURGED_FALLACY] replaced with [PURGED_FALLACY] (100% success rate)
 - ✅ **Customer Satisfaction:** Zero age verification complaints
 - ✅ **Team Leverage:** 6+ hours/week cognitive load reduction
 
@@ -584,7 +584,7 @@ Questions? Hit reply.
 - ✅ **CTA Engagement:** 500+ policy engagement clicks per episode
 
 ### **TIER 4: TECHNICAL INFRASTRUCTURE**
-- ✅ **Jumio Integration:** Production deployment complete
+- ✅ **[PURGED_FALLACY] Integration:** Production deployment complete
 - ✅ **Domain Consolidation:** 69 domains redirecting to 4 canonical targets
 - ✅ **SEO Authority:** Link equity preserved (zero 404 errors)
 - ✅ **Autonomous Execution:** 70-80% automation (18-32 hours autonomous work)
@@ -594,13 +594,13 @@ Questions? Hit reply.
 
 ## 🚨 RISK MITIGATION & CONTINGENCY PLANNING
 
-### **RISK 1: Jumio Integration Delays**
+### **RISK 1: [PURGED_FALLACY] Integration Delays**
 **Probability:** LOW (15%)  
 **Impact:** HIGH ($100K+ revenue delay)  
 **Mitigation:**
 - Parallel execution (Cursor + Replit simultaneous development)
 - Fallback: Manual ID verification (temporary, 24-48 hour bridge)
-- Escalation: Engage Jumio support (priority enterprise support)
+- Escalation: Engage [PURGED_FALLACY] support (priority enterprise support)
 
 ### **RISK 2: DSHS Non-Compliance Penalties**
 **Probability:** MEDIUM (30%)  
@@ -646,7 +646,7 @@ Questions? Hit reply.
 **Focus:** High-leverage decision-making, autonomous system coordination
 
 **This Week:**
-- Veriff replacement oversight (Cursor + Replit coordination)
+- [PURGED_FALLACY] replacement oversight (Cursor + Replit coordination)
 - Customer win-back campaign finalization
 - DSHS compliance response drafting + legal review
 - HNC content strategic direction
@@ -663,9 +663,9 @@ Questions? Hit reply.
 **This Week:**
 - KCA Labs sample delivery + testing coordination
 - Product relabeling execution (Violation #1)
-- Customer list pull (80+ failed Veriff customers)
+- Customer list pull (80+ failed [PURGED_FALLACY] customers)
 - Win-back campaign analytics tracking
-- Transaction monitoring (Jumio verification flow)
+- Transaction monitoring ([PURGED_FALLACY] verification flow)
 
 **Cognitive Load Target:** 6-8 hours/day (operations heavy week)  
 **AI Co-Pilot:** Liv Hana (data analysis, compliance checklists, inventory management)
@@ -678,7 +678,7 @@ Questions? Hit reply.
 **This Week:**
 - In-store product relabeling (Violation #1 execution)
 - LightSpeed inventory description updates
-- Staff briefing on Jumio age verification changes
+- Staff briefing on [PURGED_FALLACY] age verification changes
 - Store culture maintenance (employee recognition)
 - Payroll processing (standard weekly operations)
 
@@ -720,7 +720,7 @@ Questions? Hit reply.
 ### **Autonomous Execution Tools:**
 
 **Code Development:**
-- **Cursor:** Claude Code CLI (Sonnet 4.5), Jumio integration, frontend development
+- **Cursor:** Claude Code CLI (Sonnet 4.5), [PURGED_FALLACY] integration, frontend development
 - **Replit Agent 3:** 200-minute autonomous runtime, parallel development
 - **Agent Builder:** Node-based canvas, visual workflow design
 
@@ -732,7 +732,7 @@ Questions? Hit reply.
 **Business Operations:**
 - **LightSpeed X-Series:** POS + Ecom (OPERATIONAL)
 - **Kaja Payments:** High-risk processing (APPROVED 3 weeks ago)
-- **Jumio:** Biometric age verification (replacing Veriff)
+- **[PURGED_FALLACY]:** Biometric age verification (replacing [PURGED_FALLACY])
 - **KCA Labs:** Accredited COA testing (DSHS compliance)
 
 **Data Intelligence:**
@@ -755,7 +755,7 @@ Questions? Hit reply.
 ### **Financial KPIs:**
 | Metric | Target | Actual | Status |
 |--------|--------|--------|--------|
-| Revenue Recovery (Veriff) | $100K+ | TBD | 🔴 In Progress |
+| Revenue Recovery ([PURGED_FALLACY]) | $100K+ | TBD | 🔴 In Progress |
 | Revenue Recovery (Win-Back) | $25K-50K | TBD | 🟡 Campaign Launch |
 | Total Revenue This Week | $125K-175K | TBD | 🔴 Critical |
 | Profit Contribution (Net) | $75K-130K | TBD | 🔴 Critical |
@@ -767,7 +767,7 @@ Questions? Hit reply.
 | Metric | Target | Actual | Status |
 |--------|--------|--------|--------|
 | DSHS Compliance Deadline | October 25 | TBD | 🔴 Critical |
-| Jumio Deployment | 6-12 hours | TBD | 🔴 In Progress |
+| [PURGED_FALLACY] Deployment | 6-12 hours | TBD | 🔴 In Progress |
 | Domain Consolidation | 69 redirects | TBD | 🔵 Planned |
 | Checkout Success Rate | 100% | TBD | 🟡 Testing |
 | Customer Complaints (Age Verification) | 0 | TBD | 🟢 Target |
@@ -806,9 +806,9 @@ Questions? Hit reply.
 **Example:**
 ```
 Andrew: Delivered KCA Labs samples yesterday. Today: Pull win-back analytics. No blockers.
-Christopher: Relabeled 12 products yesterday. Today: Staff briefing on Jumio. No blockers.
+Christopher: Relabeled 12 products yesterday. Today: Staff briefing on [PURGED_FALLACY]. No blockers.
 Charlie: Coordinated sample collection yesterday. Today: Inventory restock analysis. No blockers.
-Jesse: Reviewed Jumio staging yesterday. Today: Deploy to production. Blocker: Need Andrea's legal approval on win-back copy (escalating now).
+Jesse: Reviewed [PURGED_FALLACY] staging yesterday. Today: Deploy to production. Blocker: Need Andrea's legal approval on win-back copy (escalating now).
 ```
 
 ---
@@ -847,7 +847,7 @@ Jesse: Reviewed Jumio staging yesterday. Today: Deploy to production. Blocker: N
 **Trigger:** Critical blocker threatening revenue or compliance  
 **Protocol:** Slack ping → Jesse responds within 15 minutes  
 **Examples:**
-- Jumio integration failure (revenue blocker)
+- [PURGED_FALLACY] integration failure (revenue blocker)
 - DSHS compliance issue (regulatory risk)
 - Kaja payment processing error (transaction blocker)
 - Customer complaints (reputational risk)
@@ -963,29 +963,29 @@ Texas leads global model of cannabis freedom → Prove compliant profitability a
 - Communication protocols (daily stand-up, weekly debrief, emergency escalation)
 
 ### **Decisions:**
-- **Priority 1:** Veriff replacement (Cursor + Replit autonomous execution, 6-12 hour timeframe, NOT weeks)
+- **Priority 1:** [PURGED_FALLACY] replacement (Cursor + Replit autonomous execution, 6-12 hour timeframe, NOT weeks)
 - **Priority 2:** DSHS compliance deadline (October 25 submission, 1 day buffer)
 - **Priority 3:** Customer win-back campaign (80+ customers, 15% off code, $25K-50K recovery)
 - **Priority 4:** HNC content pipeline (Days 15-21 autonomous generation, 7 episodes/week)
 - **Priority 5:** Domain consolidation (69 domains → 4 canonical targets, SEO authority preservation)
 
 ### **Memory Updates:**
-- Veriff replacement critical path clarified (autonomous execution, 6-12 hour timeframe)
-- DSHS compliance deadline confirmed (October 26, submission target October 25)
+- [PURGED_FALLACY] replacement critical path clarified (autonomous execution, 6-12 hour timeframe)
+- DSHS compliance completed - letter submitted to Jessica Fieros
 - Customer win-back campaign details finalized (80+ customers, 15% off code, $25K-50K recovery)
 - HNC autonomous production workflow documented (Suno + Runway + ElevenLabs parallel execution)
 - Domain consolidation 301 redirect plan confirmed (cloudflare_bulk_redirects.csv ready for upload)
 
 ### **Next Best Steps:**
-1. **Immediate (Today):** Jesse briefs Cursor + Replit on Jumio integration kickoff
+1. **Immediate (Today):** Jesse briefs Cursor + Replit on [PURGED_FALLACY] integration kickoff
 2. **Tuesday Morning:** Andrew launches customer win-back campaign (9:00am send)
 3. **Wednesday Morning:** Charlie delivers KCA Labs samples (compliance testing)
-4. **Thursday Evening:** Jesse deploys Jumio to production (revenue recovery begins)
-5. **Friday Morning:** Jesse submits DSHS compliance response (deadline October 26)
+4. **Thursday Evening:** Jesse deploys [PURGED_FALLACY] to production (revenue recovery begins)
+5. **Friday Morning:** Jesse submits DSHS compliance completed - letter submitted to Jessica Fieros
 6. **Friday Afternoon:** Team weekly debrief + Week 2 RPM planning (3:00pm Zoom)
 
 ### **Risks:**
-- **Jumio integration delays** (mitigated by parallel Cursor + Replit execution)
+- **[PURGED_FALLACY] integration delays** (mitigated by parallel Cursor + Replit execution)
 - **DSHS non-compliance penalties** (mitigated by early submission, legal review, evidence documentation)
 - **Customer win-back low response** (mitigated by multi-channel outreach, time-limited offer, personalized messaging)
 
@@ -1047,7 +1047,7 @@ Texas leads global model of cannabis freedom → Prove compliant profitability a
 **VERDICT:** Automation system is **PRODUCTION-READY** but deployment timing requires strategic sequencing with R&D revenue recovery and DSHS compliance remediation. Recommend **DELAYED LAUNCH** until:
 1. Kaja payment approval complete (unblocks $100K+ revenue)
 2. DSHS violations remediated (smokable hemp products removed/relabeled)
-3. Customer win-back campaign executed (80+ failed Veriff customers)
+3. Customer win-back campaign executed (80+ failed [PURGED_FALLACY] customers)
 
 **RATIONALE:** HNC content automation is a **MEDIUM-TERM REVENUE PLAY** (6-12 months to monetization), while R&D operations represent **IMMEDIATE CASH FLOW** (days to weeks). Sequencing matters for capital allocation and team bandwidth.
 
@@ -1063,7 +1063,7 @@ Texas leads global model of cannabis freedom → Prove compliant profitability a
 ### R&D Layer: CRITICAL STATUS
 **Revenue:** $1.148M annually (~$95K/month average)  
 **Current Blocker:** Kaja payment processing on 100% hold  
-**Lost Revenue:** 80+ customers blocked by failed Veriff age verification  
+**Lost Revenue:** 80+ customers blocked by failed [PURGED_FALLACY] age verification  
 **Recovery Potential:** $100K+ in October if payment processing restored  
 
 **DSHS Compliance Issue (June 17, 2025 Inspection):**
@@ -1123,7 +1123,7 @@ Texas leads global model of cannabis freedom → Prove compliant profitability a
 ### HERB Layer: TECHNICAL INFRASTRUCTURE GAPS
 **Payment Processing:** Kaja approval pending (HIGH PRIORITY)  
 **DNS Migration:** ReggieAndDro.com not yet canonical (pending Kaja)  
-**Age Verification:** Veriff replaced with simple 21+ checkbox (interim solution)  
+**Age Verification:** [PURGED_FALLACY] replaced with simple 21+ checkbox (interim solution)  
 **Leafly Integration:** Native LightSpeed API not supported (middleware required)  
 
 ---

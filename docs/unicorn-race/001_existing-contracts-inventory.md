@@ -583,7 +583,7 @@ classification: FIDUCIARY ANALYSIS
 **4. Compliance Enforcement**
 
 - COA verification: 24/7 automation with <1 sec flagging
-- Age verification: 21+ enforced (Veriff integration)
+- Age verification: 21+ enforced ([PURGED_FALLACY] integration)
 - THC limits: >0.3% auto-flagged
 - License reference: DSHS #690 correct everywhere
 - Audit trail: All transactions logged to BigQuery

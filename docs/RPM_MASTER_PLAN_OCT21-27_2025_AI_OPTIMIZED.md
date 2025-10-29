@@ -22,7 +22,7 @@
   "rpm_dna_prefix": "AOM.COIRPM.Action",
   "financial_targets": {
     "revenue_recovery_total": {"min": 125000, "max": 175000, "currency": "USD"},
-    "veriff_unlock": {"target": 100000, "blocked_customers": 80},
+    "[PURGED_FALLACY]_unlock": {"target": 100000, "blocked_customers": 80},
     "winback_campaign": {"min": 25000, "max": 50000},
     "profit_contribution": {"min": 75000, "max": 130000, "margin": "60-80%"},
     "december_profit_progress": {"target": 100000, "progress_pct": "75-130%"}
@@ -49,7 +49,7 @@
     "charlie": {"role": "Procurement", "focus": "Supply_Chain + QA"}
   },
   "priorities": [
-    {"id": "P1", "name": "Veriff_IDV", "timeline_hours": "6-12", "revenue_unlock": 100000},
+    {"id": "P1", "name": "[PURGED_FALLACY]_IDV", "timeline_hours": "6-12", "revenue_unlock": 100000},
     {"id": "P2", "name": "DSHS_Compliance", "timeline_days": "7-10", "revenue_protection": 1148000},
     {"id": "P3", "name": "TRUTH_Pipeline", "status": "COMPLETE", "blockers": ["secrets"]},
     {"id": "P4", "name": "Agent_Builder", "status": "BLOCKED", "blockers": ["4_secrets"]},
@@ -65,13 +65,13 @@
 ### **TIER 1: REVENUE RECOVERY**
 
 1. **$125K-175K Total Revenue Unlock**
-   - $100K+ Veriff replacement (Veriff biometric ID verification) → 80+ blocked customers recovered
+   - $100K+ [PURGED_FALLACY] replacement ([PURGED_FALLACY] biometric ID verification) → 80+ blocked customers recovered
    - $25K-50K win-back campaign (email + SMS, 15% off code)
    - **INTEGRATION:** TRUTH Pipeline validates customer data, Compliance Service enforces age verification
 
 2. **$1.148M Revenue Protection**
    - DSHS compliance remediation (smokable hemp relabeling, accredited COAs, safety testing)
-   - 30-day deadline: October 26, 2025
+   - 30-day compliance deadline met
    - **INTEGRATION:** Compliance Service REST API provides verification audit trail
 
 ### **TIER 2: TECHNICAL IMPLEMENTATION** (This Session's Deliverables)
@@ -115,9 +115,9 @@
 
 ### **Strategic Imperatives:**
 
-1. **Revenue Recovery NOW:** $100K+ locked revenue from Veriff failure represents immediate cash flow unlock—autonomous Cursor + Replit execution delivers Veriff integration in 6-12 hours (NOT weeks), enabling December $100K PROFIT target breakthrough
+1. **Revenue Recovery NOW:** $100K+ locked revenue from [PURGED_FALLACY] failure represents immediate cash flow unlock—autonomous Cursor + Replit execution delivers [PURGED_FALLACY] integration in 6-12 hours (NOT weeks), enabling December $100K PROFIT target breakthrough
 
-2. **Compliance Protection:** DSHS violations (June 17, 2025 inspection) threaten $1.148M annual revenue stream—30-day remediation deadline approaching October 26, must document corrective actions to avoid regulatory shutdown
+2. **Compliance Protection:** DSHS compliance completed - letter submitted to Jessica Fieros
    - **Texas Emergency Rules (Active Oct 2025):**
      - DSHS 25 TAC §300.701-702: Prohibit sales to under-21 (adopted emergency basis)
      - TABC 16 TAC §51.1-51.2: Mandatory age verification (adopted Sept 23, enforced Oct 1)
@@ -153,11 +153,11 @@
 
 #### **Autonomous Execution Strategy:**
 
-**Phase 1: Veriff API Integration (Hours 1-4)**
+**Phase 1: [PURGED_FALLACY] API Integration (Hours 1-4)**
 
 ```bash
 # Cursor autonomous scaffold:
-1. Read Veriff API documentation autonomously
+1. Read [PURGED_FALLACY] API documentation autonomously
 2. Generate age verification integration code
 3. Deploy custom frontend (LightSpeed integration)
 4. Test biometric verification flow
@@ -168,7 +168,7 @@
 
 ```bash
 # Replit Agent 3 autonomous execution:
-1. Connect Veriff webhook to LightSpeed checkout
+1. Connect [PURGED_FALLACY] webhook to LightSpeed checkout
 2. Configure age gate triggers (DSHS 25 TAC §300.701 compliance)
 3. Test full checkout flow (cart → verify → payment)
 4. Deploy staging environment
@@ -179,7 +179,7 @@
 
 ```bash
 # Cloud Run deployment:
-1. Push Veriff frontend to production
+1. Push [PURGED_FALLACY] frontend to production
 2. Update DNS routing (reggieanddro.com)
 3. Monitor first 10 transactions
 4. Document compliance audit trail (DSHS + TABC requirements)
@@ -194,7 +194,7 @@
 
 #### **Success Metrics:**
 
-- ✅ Veriff biometric verification functional
+- ✅ [PURGED_FALLACY] biometric verification functional
 - ✅ 80+ blocked customers notified
 - ✅ First $10K revenue flowing within 24 hours
 - ✅ $100K+ revenue unlocked within 7 days
@@ -278,7 +278,7 @@ gcloud run deploy compliance-service \
 
 #### **Integration Points:**
 
-- **Veriff Frontend:** Call `/api/v1/verify-age` for audit logging
+- **[PURGED_FALLACY] Frontend:** Call `/api/v1/verify-age` for audit logging
 - **LightSpeed:** Pre-checkout compliance validation
 - **DSHS Response:** Audit trail evidence (Oct 25 submission)
 
@@ -286,7 +286,7 @@ gcloud run deploy compliance-service \
 
 - ✅ Service deployed to Cloud Run
 - ✅ All 5 endpoints responding
-- ✅ Integrated with Veriff workflow
+- ✅ Integrated with [PURGED_FALLACY] workflow
 - ✅ Audit logs flowing to DSHS compliance binder
 
 ---
@@ -296,7 +296,7 @@ gcloud run deploy compliance-service \
 **Owner:** Andrew Aparicio (Director Operations)  
 **Timeline:** 7-10 days (supplier + lab dependencies)  
 **Status:** 🟠 URGENT — Protect $1.148M annual revenue  
-**Deadline:** October 26, 2025 (DSHS response due)  
+**Deadline:** DSHS compliance completed
 **Submission Target:** October 25, 2025 (1 day buffer)
 
 #### **Violation #1: Smokable Hemp Products (Marketing Language)**
@@ -421,7 +421,7 @@ gcloud run deploy compliance-service \
 
 #### **Campaign 1: "Good News — No More Age Verification Hassles"**
 
-**Segment:** 80+ failed Veriff customers  
+**Segment:** 80+ failed [PURGED_FALLACY] customers  
 **Platform:** LightSpeed Email + SMS (Square backup)  
 **Send Time:** 9:00am CDT Tuesday, October 22
 
@@ -513,7 +513,7 @@ Founder, Reggie & Dro
 | 10:00am - 12:00pm | **Customer Win-Back Campaign Launch** | Andrew + Jesse | 80+ customers contacted, 15% off code active |
 | 12:00pm - 1:00pm | **LUNCH BREAK** | All | — |
 | 1:00pm - 3:00pm | **Compliance Service Deployment** | Andrew | REST API live on Cloud Run |
-| 3:00pm - 5:00pm | **Veriff Integration Testing** | Jesse + Cursor | Staging environment functional |
+| 3:00pm - 5:00pm | **[PURGED_FALLACY] Integration Testing** | Jesse + Cursor | Staging environment functional |
 
 ---
 
@@ -527,7 +527,7 @@ Founder, Reggie & Dro
 | 10:00am - 12:00pm | **Agent Builder 17-Node Deployment** | Andrew + Christopher | MCP Broker wired, voice mode functional |
 | 12:00pm - 1:00pm | **LUNCH BREAK** | All | — |
 | 1:00pm - 3:00pm | **HNC Day 15 Production** | Jesse + Autonomous | Episode complete, multi-platform distribution |
-| 3:00pm - 5:00pm | **Veriff Production Deployment** | Jesse + Andrew | Veriff live, revenue flowing |
+| 3:00pm - 5:00pm | **[PURGED_FALLACY] Production Deployment** | Jesse + Andrew | [PURGED_FALLACY] live, revenue flowing |
 
 ---
 
@@ -566,7 +566,7 @@ Founder, Reggie & Dro
 
 | Metric | Target | Actual | Status |
 |--------|--------|--------|--------|
-| Revenue Recovery (Veriff) | $100K+ | TBD | 🔴 In Progress |
+| Revenue Recovery ([PURGED_FALLACY]) | $100K+ | TBD | 🔴 In Progress |
 | Revenue Recovery (Win-Back) | $25K-50K | TBD | 🟡 Campaign Launch |
 | Total Revenue This Week | $125K-175K | TBD | 🔴 Critical |
 | Profit Contribution (Net) | $75K-130K | TBD | 🔴 Critical |
@@ -587,7 +587,7 @@ Founder, Reggie & Dro
 | Metric | Target | Actual | Status |
 |--------|--------|--------|--------|
 | DSHS Compliance Deadline | October 25 | TBD | 🔴 Critical |
-| Veriff Deployment | 6-12 hours | TBD | 🔴 In Progress |
+| [PURGED_FALLACY] Deployment | 6-12 hours | TBD | 🔴 In Progress |
 | Checkout Success Rate | 100% | TBD | 🟡 Testing |
 | Customer Complaints (Age Verification) | 0 | TBD | 🟢 Target |
 
@@ -613,7 +613,7 @@ Founder, Reggie & Dro
 - Fallback: Manual GSM secret creation
 - Escalation: Use existing API keys for partial TRUTH Pipeline testing
 
-### **RISK 2: Veriff Integration Delays**
+### **RISK 2: [PURGED_FALLACY] Integration Delays**
 
 **Probability:** LOW (15%)  
 **Impact:** HIGH ($100K+ revenue delay)  
@@ -621,7 +621,7 @@ Founder, Reggie & Dro
 
 - Parallel execution (Cursor + Replit simultaneous development)
 - Fallback: Manual ID verification (temporary, 24-48 hour bridge)
-- Escalation: Engage Veriff support (priority enterprise support)
+- Escalation: Engage [PURGED_FALLACY] support (priority enterprise support)
 
 ### **RISK 3: DSHS Non-Compliance Penalties**
 
@@ -656,7 +656,7 @@ Founder, Reggie & Dro
 **This Week:**
 
 - Secrets sync execution (Tuesday 8am, 15 minutes)
-- Veriff integration oversight (Cursor + Replit coordination)
+- [PURGED_FALLACY] integration oversight (Cursor + Replit coordination)
 - DSHS compliance response drafting + legal review
 - HNC content strategic direction
 - Week 2 RPM planning
@@ -676,7 +676,7 @@ Founder, Reggie & Dro
 - Compliance Service deployment (Cloud Run)
 - Agent Builder 17-node deployment
 - KCA Labs sample delivery + testing coordination
-- Customer list pull (80+ failed Veriff customers)
+- Customer list pull (80+ failed [PURGED_FALLACY] customers)
 - Win-back campaign analytics tracking
 
 **Cognitive Load Target:** 6-8 hours/day (operations heavy week)  
@@ -692,7 +692,7 @@ Founder, Reggie & Dro
 
 - In-store product relabeling (Violation #1 execution)
 - LightSpeed inventory description updates
-- Staff briefing on Veriff age verification changes
+- Staff briefing on [PURGED_FALLACY] age verification changes
 - Agent Builder workflow testing (voice mode adoption)
 - Payroll processing (standard weekly operations)
 
@@ -723,7 +723,7 @@ Founder, Reggie & Dro
 
 **Code Development:**
 
-- **Cursor:** Claude Code CLI (Sonnet 4.5), Veriff integration, frontend development
+- **Cursor:** Claude Code CLI (Sonnet 4.5), [PURGED_FALLACY] integration, frontend development
 - **Replit Agent 3:** 200-minute autonomous runtime, parallel development
 - **Agent Builder:** Node-based canvas, visual workflow design, MCP integration
 
@@ -738,7 +738,7 @@ Founder, Reggie & Dro
 **Compliance & Verification:**
 
 - **Compliance Service:** REST API (AGE21 + NIST + Medical Claims)
-- **BlueCheck / Veriff:** Biometric age verification (replacing Veriff)
+- **BlueCheck / [PURGED_FALLACY]:** Biometric age verification (replacing [PURGED_FALLACY])
 - **KCA Labs:** Accredited COA testing (DSHS compliance)
 
 **Content Production:**
@@ -795,7 +795,7 @@ Founder, Reggie & Dro
 
 **AGE21 Enforcement:**
 
-- Veriff biometric ID verification (primary)
+- [PURGED_FALLACY] biometric ID verification (primary)
 - BlueCheck API (backup)
 - Compliance Service audit logging
 - DSHS + TABC requirement satisfaction
@@ -837,9 +837,9 @@ Enable full team adoption of Liv Hana voice mode + RPM facilitation for autonomo
 
 ```
 Andrew: Deployed Compliance Service yesterday. Today: Agent Builder 17-node deployment. Blocker: Need JWT_SECRET1 from secrets sync.
-Christopher: Relabeled 12 products yesterday. Today: Staff briefing on Veriff. No blockers.
+Christopher: Relabeled 12 products yesterday. Today: Staff briefing on [PURGED_FALLACY]. No blockers.
 Charlie: Delivered KCA Labs samples yesterday. Today: Inventory restock analysis. No blockers.
-Jesse: Completed secrets sync yesterday. Today: Veriff production deployment. No blockers.
+Jesse: Completed secrets sync yesterday. Today: [PURGED_FALLACY] production deployment. No blockers.
 ```
 
 ### **Dashboard Integration:**
@@ -880,7 +880,7 @@ Texas leads global model of cannabis freedom → Prove compliant profitability a
 
 ## 📝 FALLACY SCAN & CORRECTIONS
 
-### **Fallacy 1: "Weeks to integrate Veriff"**
+### **Fallacy 1: "Weeks to integrate [PURGED_FALLACY]"**
 
 **Correction:** Frontier models (Claude Sonnet 4.5: 77.2% SWE-bench, 30+ hour autonomy) + parallel execution (Cursor + Replit) = 6-12 hours deployment, NOT weeks  
 **Evidence:** SWE-bench benchmarks, autonomous code generation capabilities
@@ -892,7 +892,7 @@ Texas leads global model of cannabis freedom → Prove compliant profitability a
 
 ### **Fallacy 3: "Need all secrets before starting"**
 
-**Correction:** Parallel execution allows Veriff deployment (no secrets required) while TRUTH Pipeline awaits secrets sync  
+**Correction:** Parallel execution allows [PURGED_FALLACY] deployment (no secrets required) while TRUTH Pipeline awaits secrets sync  
 **Evidence:** Modular architecture, independent service deployment
 
 ### **Fallacy 4: "SB 3 veto = prohibition"**
@@ -931,7 +931,7 @@ Texas leads global model of cannabis freedom → Prove compliant profitability a
 
 6. **TOMORROW (Wednesday 10:00am):** Deploy Agent Builder 17-node workflow (Andrew + Christopher)
 
-7. **THURSDAY (3:00pm):** Veriff production deployment (Jesse)
+7. **THURSDAY (3:00pm):** [PURGED_FALLACY] production deployment (Jesse)
 
 8. **FRIDAY (10:00am):** DSHS compliance response submission (Jesse + Andrea)
 
@@ -942,14 +942,14 @@ Texas leads global model of cannabis freedom → Prove compliant profitability a
 ```json
 {
   "revenue_recovery": {
-    "veriff_idv": {
+    "[PURGED_FALLACY]_idv": {
       "integration": "Compliance Service /api/v1/verify-age",
       "audit_trail": "Required for DSHS response",
       "timeline": "6-12 hours autonomous deployment"
     },
     "winback_campaign": {
       "integration": "LightSpeed Email + SMS",
-      "segment": "80+ failed Veriff customers",
+      "segment": "80+ failed [PURGED_FALLACY] customers",
       "revenue_target": {"min": 25000, "max": 50000}
     }
   },
@@ -967,7 +967,7 @@ Texas leads global model of cannabis freedom → Prove compliant profitability a
     "compliance_service": {
       "status": "READY_FOR_DEPLOYMENT",
       "endpoints": ["/api/v1/verify-age", "/api/v1/validate-cannabinoid", "/api/v1/check-medical-claims"],
-      "integration": "Veriff ID verification + DSHS audit trail"
+      "integration": "[PURGED_FALLACY] ID verification + DSHS audit trail"
     }
   },
   "compliance": {

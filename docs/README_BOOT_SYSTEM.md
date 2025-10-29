@@ -236,7 +236,7 @@ grep error_recovery config/claude_tier1_context.yaml
 - 08:00: Secrets sync + TRUTH test
 - 10:00: Win-back Campaign 1 send
 - 13:00: Compliance Service deploy
-- 15:00: Veriff staging→prod test
+- 15:00: [PURGED_FALLACY] staging→prod test
 
 ✅ **Session Continuity**
 

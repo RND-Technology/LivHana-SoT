@@ -130,7 +130,7 @@
 ### 1Password CLI Integration
 
 **Pattern**: `op item get "[name]" --format json` for secure credential retrieval
-**Success Rate**: 100% (retrieved ElevenLabs, Veriff, Ecwid, Herbitrage credentials)
+**Success Rate**: 100% (retrieved ElevenLabs, [PURGED_FALLACY], Ecwid, Herbitrage credentials)
 **Time Savings**: < 30 seconds per credential vs manual vault browsing
 
 ### macOS TTS Integration
@@ -202,7 +202,7 @@
 ### Sonnet (Claude Code) - 9/10 Complete (90%)
 
 1. ✅ HNC Automation (40 hrs → 13 seconds)
-2. ✅ Age Verification (Veriff 100% automated)
+2. ✅ Age Verification ([PURGED_FALLACY] 100% automated)
 3. ✅ Ecwid Categories (verified working)
 4. ✅ Checkout Flow (validated end-to-end)
 5. ✅ AI Crisis Landing Page (deployed)

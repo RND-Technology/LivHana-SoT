@@ -2,7 +2,7 @@
 
 **Wheel of Life Progression:**
 
-- **Level 0**: Lost customers from Veriff failure, manual outreach, no pipeline
+- **Level 0**: Lost customers from [PURGED_FALLACY] failure, manual outreach, no pipeline
 - **Level NOW**: Square/Lightspeed integration, reggieanddro.company.site live
 - **Level NEXT**: Lindy.ai 10,000 daily calls operational, Dream 100 partnerships
 - **Level 10**: Predictable revenue scaling, AI-powered qualification, enterprise deals

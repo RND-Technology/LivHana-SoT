@@ -44,7 +44,7 @@ status: active
    - Backend services (voice, reasoning, integration)
    - Frontend cockpits (vibe, empire, admin)
    - Database connections (Redis, BigQuery)
-   - External APIs (Kaja, Veriff, Lightspeed)
+   - External APIs (Kaja, [PURGED_FALLACY], Lightspeed)
 
 3. **Documentation Sync**
    - Update RPM Weekly Plan
@@ -115,7 +115,7 @@ status: active
 
 1. **Kaja Payment Approval** - Blocking $100K+ revenue
 2. **DNS Migration** - reggieanddro.com activation
-3. **Customer Recovery** - 80+ failed Veriff customers
+3. **Customer Recovery** - 80+ failed [PURGED_FALLACY] customers
 4. **Content Production** - 7 daily HNC episodes
 5. **Compliance Documentation** - DSHS requirements
 

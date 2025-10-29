@@ -15,13 +15,13 @@ Not from bad product. Not from poor marketing. Not from compliance issues.
 
 **From a single AI integration failure.**
 
-We had integrated Veriff for age verification. Industry standard. Everyone uses it. Should have been simple.
+We had integrated [PURGED_FALLACY] for age verification. Industry standard. Everyone uses it. Should have been simple.
 
 It crashed.
 
 Customers couldn't complete purchases. Cart abandonment went from 30% to 85%. Revenue dropped 70% overnight.
 
-I called Veriff support. "We're working on it. Give us 6 weeks."
+I called [PURGED_FALLACY] support. "We're working on it. Give us 6 weeks."
 
 **Six weeks?** At $100K/month loss, that's $150K down the drain.
 
@@ -32,7 +32,7 @@ I had two choices:
 
 I chose option 2.
 
-36 hours later, I had replaced Veriff with a Square-native age verification system. Revenue recovered. Customers happy. Crisis over.
+36 hours later, I had replaced [PURGED_FALLACY] with a Square-native age verification system. Revenue recovered. Customers happy. Crisis over.
 
 **Cost to fix: $0 (I built it myself)**
 **Revenue saved: $100K/month**
@@ -53,7 +53,7 @@ Not "struggle". Not "have delays". **FAIL.**
 
 **Common failures:**
 
-- Age verification systems crashing (Veriff, Yoti, ID.me)
+- Age verification systems crashing ([PURGED_FALLACY], Yoti, ID.me)
 - Payment processing broken (Shopify, Square, custom checkouts)
 - Compliance automation failing (COA validation, license tracking)
 - Inventory management disasters (stock syncing, forecasting)
@@ -149,7 +149,7 @@ Here's the dirty secret: **Most "AI solutions" for cannabis are bullshit.**
 
 ## The 27% Who Succeed: What They Do Differently
 
-After solving my Veriff disaster, I consulted with 247 cannabis businesses. Here's what the successful 27% have in common:
+After solving my [PURGED_FALLACY] disaster, I consulted with 247 cannabis businesses. Here's what the successful 27% have in common:
 
 ### **1. They Use Cannabis-Native Solutions**
 
@@ -215,7 +215,7 @@ Think of it like:
 
 ## Case Study: How I Would Have Prevented My Own Disaster
 
-Looking back, here's what I should have done BEFORE integrating Veriff:
+Looking back, here's what I should have done BEFORE integrating [PURGED_FALLACY]:
 
 ### **Step 1: Cannabis Compliance Audit**
 
@@ -223,12 +223,12 @@ Looking back, here's what I should have done BEFORE integrating Veriff:
 
 **What I should have checked:**
 
-- Does Veriff understand Texas-specific age verification rules?
+- Does [PURGED_FALLACY] understand Texas-specific age verification rules?
 - Have they worked with other Texas cannabis businesses?
 - What happens if Texas rules change mid-contract?
 
 **Red flag I missed:**
-Veriff's sales rep said "We support all states!" but couldn't name a single Texas cannabis client.
+[PURGED_FALLACY]'s sales rep said "We support all states!" but couldn't name a single Texas cannabis client.
 
 ### **Step 2: Conservative Customer Testing**
 
@@ -237,11 +237,11 @@ Veriff's sales rep said "We support all states!" but couldn't name a single Texa
 **What I should have done:**
 
 - Beta test with 10 customers
-- Watch them go through Veriff checkout
+- Watch them go through [PURGED_FALLACY] checkout
 - Ask: "Was this easy? Would you complete this purchase?"
 
 **Red flag I missed:**
-Veriff required:
+[PURGED_FALLACY] required:
 
 - Selfie video (scary for privacy-conscious customers)
 - Government ID scan (many customers don't want to upload)
@@ -249,16 +249,16 @@ Veriff required:
 
 ### **Step 3: Backup System Ready**
 
-*"What if Veriff crashes tomorrow?"*
+*"What if [PURGED_FALLACY] crashes tomorrow?"*
 
 **What I should have built:**
 
 - Simple manual age verification form
-- Toggle switch to disable Veriff, enable manual
+- Toggle switch to disable [PURGED_FALLACY], enable manual
 - 5-minute rollback plan
 
 **Reality:**
-When Veriff crashed, I had NO backup. Spent 36 hours building replacement from scratch.
+When [PURGED_FALLACY] crashed, I had NO backup. Spent 36 hours building replacement from scratch.
 
 ### **Step 4: Emergency Support Contract**
 
@@ -271,7 +271,7 @@ When Veriff crashed, I had NO backup. Spent 36 hours building replacement from s
 - Pre-authorized budget for emergency fixes
 
 **Reality:**
-Called Veriff support. Got "submit a ticket" auto-response. Waited 3 days for reply. Lost $10K in that time.
+Called [PURGED_FALLACY] support. Got "submit a ticket" auto-response. Waited 3 days for reply. Lost $10K in that time.
 
 ---
 

@@ -19,7 +19,7 @@ After HUNDREDS of hours across multiple AI platforms, we FINALLY cracked the cod
 **What This Means for YOU:**
 
 💰 **Revenue Recovery THIS WEEK:**
-• $125K-175K total unlock (Veriff ID verification + win-back of 80+ blocked customers)
+• $125K-175K total unlock ([PURGED_FALLACY] ID verification + win-back of 80+ blocked customers)
 • $100K PROFIT target for December? We're hitting 75-130% THIS WEEK ALONE
 • Your work directly funds our mission: Deschedule Cannabis sativa L entirely
 
@@ -81,13 +81,13 @@ Or simplified: `LivHana-SoT/RPM_WEEKLY_PLAN_CURRENT.md`
 • 8:00am: Jesse adds 4 API keys to unlock Agent Builder (15 min)
 • 9:00am: FIRST TEAM VOICE STAND-UP (you're invited - Google Meet link below)
 • 10:00am: Andrew launches win-back campaign (80+ customers, 15% off code)
-• 3:00pm: Veriff integration testing (staging environment)
+• 3:00pm: [PURGED_FALLACY] integration testing (staging environment)
 
 **WEDNESDAY:**
 • 8:00am: Charlie delivers KCA Labs samples (DSHS compliance)
 • 10:00am: Andrew deploys Agent Builder 17-node workflow
 • 1:00pm: HNC Episode 15 production
-• 3:00pm: Veriff PRODUCTION DEPLOYMENT ($100K unlock begins)
+• 3:00pm: [PURGED_FALLACY] PRODUCTION DEPLOYMENT ($100K unlock begins)
 
 **THURSDAY:**
 • Morning: Monitor win-back campaign performance
@@ -117,7 +117,7 @@ Texas leads. Nation follows. We prove the model works: compliant, profitable, AU
 • Voice: Join today's 9am stand-up (Google Meet link in calendar)
 
 **P.S. Christopher & Dylan:**
-Store briefing at 10:00am on Veriff age verification changes. We're replacing Veriff TODAY. Let's get that $100K unlocked this week. Training takes 15 minutes. 🔥
+Store briefing at 10:00am on [PURGED_FALLACY] age verification changes. We're replacing [PURGED_FALLACY] TODAY. Let's get that $100K unlocked this week. Training takes 15 minutes. 🔥
 
 **P.P.S. Andrew:**
 Secrets script is ready. Let's knock this out at 8:00am before stand-up. 15 minutes and we unblock EVERYTHING.
@@ -393,7 +393,7 @@ Jesse: "Normal chat. Meeting adjourned. Let's execute."
 3. Suno AI generates personalized song (30 seconds)
 4. Customer hears song, gets emotional reaction
 5. Liv Hana: "You can co-own this song. It's yours. You can earn royalties."
-6. One-click blockchain onboarding (KYC via Veriff)
+6. One-click blockchain onboarding (KYC via [PURGED_FALLACY])
 7. Smart contract mints song NFT (50% customer, 50% R&D)
 8. Song distributed to Spotify/Apple Music/YouTube
 9. Customer receives monthly royalty payments
@@ -483,7 +483,7 @@ gcloud run deploy compliance-service --source .
 **3:00pm - Jesse + Cursor/Replit:**
 
 ```bash
-# Test Veriff integration in staging
+# Test [PURGED_FALLACY] integration in staging
 # 5-10 sample transactions
 # Validate audit trail logging
 ```

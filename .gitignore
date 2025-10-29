@@ -243,3 +243,7 @@ out_mirror/
 
 # Agent tracking (session-specific, never commit)
 .claude/agent_tracking/*.json
+
+# Service account keys (GCP credentials - NEVER commit)
+high-sa-key.json
+*-sa-key.json

@@ -427,7 +427,7 @@ Ready for git commit after team review.
 
 - [ ] Checkpointing system implemented
 - [ ] Agent coordination protocol documented
-- [ ] Veriff-first docs updated
+- [ ] [PURGED_FALLACY]-first docs updated
 - [ ] Day-one App Store submission package designed
 
 ---

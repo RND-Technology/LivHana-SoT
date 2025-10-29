@@ -30,7 +30,7 @@ Central documentation hub for Liv Hana E2E Mission with organized access to all 
 - [`ULTIMATE_FUSION_STARTUP_v2.md`](./ULTIMATE_FUSION_STARTUP_v2.md) - Startup guide
 - [`NEXT_SESSION_CRITICAL_MISSION.md`](./NEXT_SESSION_CRITICAL_MISSION.md) - Critical mission
 - [`DELIVERY_SERVICE_COMPLETE.md`](./DELIVERY_SERVICE_COMPLETE.md) - Delivery service
-- [`VERIFF_INTEGRATION_COMPLETE.md`](./VERIFF_INTEGRATION_COMPLETE.md) - Veriff integration
+- [`VERIFF_INTEGRATION_COMPLETE.md`](./VERIFF_INTEGRATION_COMPLETE.md) - [PURGED_FALLACY] integration
 - [`ECWID_FIX_TIER1_PLAN.md`](./ECWID_FIX_TIER1_PLAN.md) - ECWID fix plan
 - [`DEPLOYMENT_STATUS.md`](./DEPLOYMENT_STATUS.md) - Deployment status
 - [`INCOMPLETE_WORK_STATUS.md`](./INCOMPLETE_WORK_STATUS.md) - Work status
@@ -84,7 +84,7 @@ Central documentation hub for Liv Hana E2E Mission with organized access to all 
 - [`archived/FINAL_SUMMARY.md`](./archived/FINAL_SUMMARY.md) - Final summary
 - [`archived/LIGHTSPEED_MAX_CONVERSION_MAKEOVER.md`](./archived/LIGHTSPEED_MAX_CONVERSION_MAKEOVER.md) - Lightspeed conversion
 - [`archived/LOCAL_STATUS_REPORT_20251002_0445AM.md`](./archived/LOCAL_STATUS_REPORT_20251002_0445AM.md) - Local status report
-- [`archived/VERIFF_LOYALTY_AUTOMATION_TIER1.md`](./archived/VERIFF_LOYALTY_AUTOMATION_TIER1.md) - Veriff loyalty automation
+- [`archived/VERIFF_LOYALTY_AUTOMATION_TIER1.md`](./archived/VERIFF_LOYALTY_AUTOMATION_TIER1.md) - [PURGED_FALLACY] loyalty automation
 
 ## 🚀 Quick Access Links
 

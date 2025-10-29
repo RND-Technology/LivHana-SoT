@@ -64,7 +64,7 @@
 **Tmux Session**: `research`  
 **Status**: ✅ RUNNING  
 **Proven Capability**: Scans canon (PO1 files), web research, fallacy detection  
-**Evidence**: Corrected Veriff vs Jumio (Veriff SUPERIOR, 95% first-attempt)  
+**Evidence**: Corrected [PURGED_FALLACY] vs [PURGED_FALLACY] ([PURGED_FALLACY] SUPERIOR, 95% first-attempt)  
 **Output**: `tmp/agent_status/research.status.json`
 
 ### Layer 1.1.3: ✍️ Artifacts Agent
@@ -164,16 +164,16 @@
 
 ## ✅ CRITICAL CORRECTIONS (Evidence-Based)
 
-### Veriff vs Jumio Reality
-**❌ OLD FALLACY**: "Veriff FAILED → Replace with Jumio"  
-**✅ TRUTH**: Veriff SUPERIOR (95% first-attempt, <1% fraud, device-agnostic)  
+### [PURGED_FALLACY] vs [PURGED_FALLACY] Reality
+**❌ OLD FALLACY**: "[PURGED_FALLACY] FAILED → Replace with [PURGED_FALLACY]"  
+**✅ TRUTH**: [PURGED_FALLACY] SUPERIOR (95% first-attempt, <1% fraud, device-agnostic)  
 **Real Problem**: UX friction (entry-gate vs checkout-gate)  
-**Real Solution**: Optimize Veriff placement, not replace platform
+**Real Solution**: Optimize [PURGED_FALLACY] placement, not replace platform
 
 ### BlueCheck Alternative
 **Evidence**: U.S. Hemp Roundtable official partner  
 **Advantage**: Checkout-triggered, repeat customer storage, $0.25-0.75 per check  
-**Status**: Evaluate after Veriff UX optimization
+**Status**: Evaluate after [PURGED_FALLACY] UX optimization
 
 ### Agent Builder Current State
 **❌ OLD**: "Settings → Custom Actions" (deprecated)  
@@ -193,7 +193,7 @@
 
 | Task | Human Fallacy | Autonomous Reality | Evidence |
 |------|---------------|-------------------|----------|
-| Veriff UX Optimization | 2-3 weeks | 4-8 hours | Cursor/Cheetah parallel |
+| [PURGED_FALLACY] UX Optimization | 2-3 weeks | 4-8 hours | Cursor/Cheetah parallel |
 | Agent Builder Workflow | 4-6 weeks | 2-4 hours | Node-based canvas + DoBrowser |
 | HNC Episode (Days 15-21) | 2-3 days each | 2-4 hours each | Suno + Runway + ElevenLabs |
 | RPM Dashboard | 3-4 weeks | 6-12 hours | AlloyDB + Next.js scaffold |

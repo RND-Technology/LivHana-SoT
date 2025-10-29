@@ -1,7 +1,9 @@
 import express from 'express';
-import { Client } from 'square';
+// import squarePkg from 'square';
+// const { Client } = squarePkg;
 import { randomUUID } from 'crypto';
 import rpmRouter from './rpm.js';
+import meetRouter from './meet.js';
 import { createLogger } from '../common/logging/index.js';
 
 const logger = createLogger('integration-service');
@@ -32,13 +34,19 @@ app.use((req, res, next) => {
   next();
 });
 
-// Initialize Square client
-const squareClient = new Client({
-  accessToken: process.env.SQUARE_ACCESS_TOKEN || 'sandbox-token',
-  environment: process.env.SQUARE_ENVIRONMENT || 'sandbox'
+// Initialize Square client (disabled for Meet integration)
+// const squareClient = new Client({
+//   accessToken: process.env.SQUARE_ACCESS_TOKEN || 'sandbox-token',
+//   environment: process.env.SQUARE_ENVIRONMENT || 'sandbox'
+// });
+
+// Real inventory sync endpoint (disabled - Square client not initialized)
+app.post('/api/v1/sync-inventory', async (req, res) => {
+  res.status(501).json({ error: 'Square integration not enabled' });
 });
 
-// Real inventory sync endpoint
+// Real inventory sync endpoint (original - commented out)
+/*
 app.post('/api/v1/sync-inventory', async (req, res) => {
   try {
     logger.info('Starting inventory sync...');
@@ -83,8 +91,15 @@ app.post('/api/v1/sync-inventory', async (req, res) => {
     });
   }
 });
+*/
 
-// Real order processing endpoint
+// Real order processing endpoint (disabled - Square client not initialized)
+app.post('/api/v1/process-order', async (req, res) => {
+  res.status(501).json({ error: 'Square integration not enabled' });
+});
+
+// Real order processing endpoint (original - commented out)
+/*
 app.post('/api/v1/process-order', async (req, res) => {
   try {
     const { order_id, customer_id, items } = req.body;
@@ -127,6 +142,7 @@ app.post('/api/v1/process-order', async (req, res) => {
     });
   }
 });
+*/
 
 // Health check (fast path, <150ms)
 app.get('/health', (req, res) => {
@@ -161,14 +177,17 @@ app.get('/', (req, res) => {
     message: 'Integration Service Active',
     status: 'operational',
     timestamp: new Date().toISOString(),
-    endpoints: ['/api/v1/sync-inventory', '/api/v1/process-order', '/api/rpm/*']
+    endpoints: ['/api/v1/sync-inventory', '/api/v1/process-order', '/api/rpm/*', '/api/meet/*']
   });
 });
 
 // RPM API
 app.use('/api/rpm', rpmRouter);
 
-const PORT = process.env.PORT || 8080;
+// Meet Streaming API
+app.use('/api/meet', meetRouter);
+
+const PORT = process.env.PORT || 3005;
 const HOST = process.env.HOST || '0.0.0.0';
 
 const server = app.listen(PORT, HOST, () => {

@@ -1,23 +1,23 @@
 <img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" style="height:64px;margin-right:32px"/>
 
-# search chat histories for veriff vs jumio matrix where veriff proven superior for reggieanddro.com
+# search chat histories for [PURGED_FALLACY] vs [PURGED_FALLACY] matrix where [PURGED_FALLACY] proven superior for reggieanddro.com
 
-Here’s a **direct comparison matrix** from the latest Veriff vs. Jumio analysis, demonstrating why **Veriff is more robust for compliance, onboarding, user experience, and long-term cost savings**—especially for regulatory and age-gating use cases like Reggie \& Dro:
+Here’s a **direct comparison matrix** from the latest [PURGED_FALLACY] vs. [PURGED_FALLACY] analysis, demonstrating why **[PURGED_FALLACY] is more robust for compliance, onboarding, user experience, and long-term cost savings**—especially for regulatory and age-gating use cases like Reggie \& Dro:
 
 
-| **Feature** | **Veriff** | **Jumio** | **Why Veriff Wins** |
+| **Feature** | **[PURGED_FALLACY]** | **[PURGED_FALLACY]** | **Why [PURGED_FALLACY] Wins** |
 | :-- | :-- | :-- | :-- |
-| Resubmission Fees | NO | YES | Veriff only charges once, even for multiple verification attempts |
+| Resubmission Fees | NO | YES | [PURGED_FALLACY] only charges once, even for multiple verification attempts |
 | Onboarding Costs | NO (included) | YES (extra fees) | No surprise fees for launch or training |
 | Supported Documents | 12,000+ | 5,000 | Far greater global ID/document support, critical for maximizing legal conversions |
 | Supported Languages/Dialects | 48 | 40 | Stronger multilingual support boosts accessibility and UX across the U.S. |
 | Average Response Time | 6 seconds | 30–60 seconds | Drastically lower drop-off and user abandonment rates |
 | Post-sales Support | YES | NO | True partnership: Dedicated account management and ongoing optimization |
 
-**Other key wins for Veriff:**
+**Other key wins for [PURGED_FALLACY]:**
 
-- 30% higher conversion rates for legitimate users versus competitors (including Jumio).
-- No onboarding or ongoing support fees—Veriff’s “total cost of ownership” is far more predictable and transparent.
+- 30% higher conversion rates for legitimate users versus competitors (including [PURGED_FALLACY]).
+- No onboarding or ongoing support fees—[PURGED_FALLACY]’s “total cost of ownership” is far more predictable and transparent.
 - AI-powered, automated fraud protection with dedicated, evolving controls and industry leadership in new regulatory landscapes.
 - **Proven expertise in biometric/liveness and age verification**, with customizable flows to meet state-by-state cannabis and hemp sales laws, including CR/NIST recommendations.
 
@@ -25,46 +25,46 @@ Here’s a **direct comparison matrix** from the latest Veriff vs. Jumio analysi
 Compliance, age gating, global expansion, high-volume onboarding, and direct retail or delivery—all critical needs for Reggie \& Dro.
 
 **Take Action:**
-Liv Hana and the Reggie \& Dro team can confidently recommend **Veriff over Jumio** to regulators, partners, and customers, aligning with People → Plant → Profit. To catalyze sales and compliance in Texas and beyond, emphasize the conversion, regulatory, and partnership advantages in B2B and B2C messaging. **Book a demo with Veriff or bring this matrix to policy, investor, and strategy meetings to support: descheduling, smarter age gating, and e-commerce scalability for your \$1M EBITDA growth strategy**.[^1_1]
+Liv Hana and the Reggie \& Dro team can confidently recommend **[PURGED_FALLACY] over [PURGED_FALLACY]** to regulators, partners, and customers, aligning with People → Plant → Profit. To catalyze sales and compliance in Texas and beyond, emphasize the conversion, regulatory, and partnership advantages in B2B and B2C messaging. **Book a demo with [PURGED_FALLACY] or bring this matrix to policy, investor, and strategy meetings to support: descheduling, smarter age gating, and e-commerce scalability for your \$1M EBITDA growth strategy**.[^1_1]
 <span style="display:none">[^1_10][^1_11][^1_12][^1_13][^1_14][^1_15][^1_16][^1_17][^1_18][^1_19][^1_2][^1_20][^1_21][^1_3][^1_4][^1_5][^1_6][^1_7][^1_8][^1_9]</span>
 
 <div align="center">⁂</div>
 
-[^1_1]: https://www.veriff.com/brand-comparison/veriff-vs-jumio
+[^1_1]: https://www.[PURGED_FALLACY].com/brand-comparison/[PURGED_FALLACY]-vs-[PURGED_FALLACY]
 
 [^1_2]: https://platform.openai.com/agent-builder/edit?version=draft\&workflow=wf_68e84c606dfc819086d0b637674cf7e300e1f5f8e508fc36
 
-[^1_3]: https://www.veriff.com
+[^1_3]: https://www.[PURGED_FALLACY].com
 
-[^1_4]: https://sourceforge.net/software/compare/Jumio-vs-Veriff/
+[^1_4]: https://sourceforge.net/software/compare/[PURGED_FALLACY]-vs-[PURGED_FALLACY]/
 
-[^1_5]: https://www.veriff.com/brand-comparison
+[^1_5]: https://www.[PURGED_FALLACY].com/brand-comparison
 
-[^1_6]: https://www.spotsaas.com/compare/jumio-identity-verification-vs-veriff
+[^1_6]: https://www.spotsaas.com/compare/[PURGED_FALLACY]-identity-verification-vs-[PURGED_FALLACY]
 
-[^1_7]: https://www.veriff.com/blog/12-common-identity-verification-fraud-scams-to-avoid
+[^1_7]: https://www.[PURGED_FALLACY].com/blog/12-common-identity-verification-fraud-scams-to-avoid
 
 [^1_8]: https://www.analyticsinsight.net/photo/top-rated-age-verification-software-providers-in-2025
 
-[^1_9]: https://www.getapp.com.au/compare/2062596/2062597/veriff/vs/netverify
+[^1_9]: https://www.getapp.com.au/compare/2062596/2062597/[PURGED_FALLACY]/vs/netverify
 
-[^1_10]: https://www.veriff.com/product/identity-verification
+[^1_10]: https://www.[PURGED_FALLACY].com/product/identity-verification
 
 [^1_11]: https://hyperverge.co/blog/age-verification-api/
 
-[^1_12]: https://slashdot.org/software/comparison/Jumio-vs-Veriff/
+[^1_12]: https://slashdot.org/software/comparison/[PURGED_FALLACY]-vs-[PURGED_FALLACY]/
 
-[^1_13]: https://www.veriff.com/get-verified
+[^1_13]: https://www.[PURGED_FALLACY].com/get-verified
 
 [^1_14]: https://didit.me/blog/best-age-verification-software/
 
-[^1_15]: https://www.g2.com/products/veriff/competitors/alternatives
+[^1_15]: https://www.g2.com/products/[PURGED_FALLACY]/competitors/alternatives
 
-[^1_16]: https://www.veriff.com/case-studies/veriff-and-legitify
+[^1_16]: https://www.[PURGED_FALLACY].com/case-studies/[PURGED_FALLACY]-and-legitify
 
-[^1_17]: https://www.exafol.com/comparison/jumio-vs-veriff
+[^1_17]: https://www.exafol.com/comparison/[PURGED_FALLACY]-vs-[PURGED_FALLACY]
 
-[^1_18]: https://www.g2.com/compare/jumio-identity-verification-vs-veriff
+[^1_18]: https://www.g2.com/compare/[PURGED_FALLACY]-identity-verification-vs-[PURGED_FALLACY]
 
 [^1_19]: https://guptadeepak.com/top-10-age-verification-solutions/
 
@@ -84,7 +84,7 @@ Here are the **core research details and tier 1 prompt recommendations** for bui
 **1. Tier 1 Topics Discussed \& Architecture Blueprint**
 
 - **Separation into 17 microsessions**: Architect all build work into focused sprint stages for agent-specific tasks (DoBrowser, Comet, desktop), strictly limiting token/context overload and maximizing precision.
-- **1500-character custom instruction block**: Set a core guiding block for all agent sessions—this should include North Star goals, guardrails, descheduling priorities, and canonical truths (Veriff wins!).
+- **1500-character custom instruction block**: Set a core guiding block for all agent sessions—this should include North Star goals, guardrails, descheduling priorities, and canonical truths ([PURGED_FALLACY] wins!).
 - **Secrets management**: Instead of passing secret values, use named references, leveraging Google Secret Manager for all critical keys (Calendar, Gmail, Drive, LightSpeed, Rube MCP).
 - **Guardrails and profit function implementation**: Implement logic blocks patterned to block four major documented fallacies, plus upload medical-claims blocklist early (Session 6) and ensure a stubbed profit formula is used (revenue_gain - cost_estimate) until real data is available.
 - **Multi-agent state persistence**: Set and scope “Set State” nodes so multi-agent flows maintain context reliably.
@@ -95,7 +95,7 @@ Here are the **core research details and tier 1 prompt recommendations** for bui
 **2. Best Practices \& Prompts (Voice Mode, Agent Builder, Sub-Agent Layers)**
 
 - **Session freshness and context window management**:
-    - Prompt: “Run a truth check. Confirm key truths (Veriff, RPM targets, canonical goals).”
+    - Prompt: “Run a truth check. Confirm key truths ([PURGED_FALLACY], RPM targets, canonical goals).”
     - Prompt: “Summarize and restart session if token use nears context limits or instability detected.”
     - Human-in-the-loop: “Confirm/deny AI state drift after each recap.”
 - **Guardrails against hallucinations**:
@@ -193,7 +193,7 @@ Here’s a **deep-dive, layer-by-layer architecture (PRD \& ADR) for Liv Hana Ag
 - **Prompts:**
     - “Research recent regulatory changes for hemp, age-gating, CR/NIST. Cite and cross-verify sources.”
     - “If research result ambiguous, loop to planning for human confirmation. Output strict JSON format.”
-    - “Trigger web and repo search: scan for keywords [Veriff, age verification, deschedule].”
+    - “Trigger web and repo search: scan for keywords [[PURGED_FALLACY], age verification, deschedule].”
 
 
 ### **4. Scraping Layer**

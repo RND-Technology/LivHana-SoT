@@ -246,7 +246,7 @@ Edit the `claude-tier1` function in `~/.zshrc` to customize:
 ### **Problems Solved**
 - Original shell blocking: ✅ FIXED (V1)
 - Vault violations: ✅ FIXED (V1)
-- Jumio hallucination: ✅ PURGED (V1)
+- [PURGED_FALLACY] hallucination: ✅ PURGED (V1)
 - Smart function lost: ✅ RESTORED (V2)
 - Interactive guards missing: ✅ RESTORED (V2)
 - GCloud completion disabled: ✅ RESTORED (V2)
@@ -254,7 +254,7 @@ Edit the `claude-tier1` function in `~/.zshrc` to customize:
 
 ### **Total Score**
 ```
-Problems Inherited: 3 (shell, vault, Jumio)
+Problems Inherited: 3 (shell, vault, [PURGED_FALLACY])
 Problems Created: 4 (V1 oversimplification)
 Problems Fixed: 7 (all of above)
 Net Score: 100/88 (114%)

@@ -45,7 +45,7 @@ critical: YES - FILE ORGANIZATION EFFICIENCY
 - Complete execution log with timestamps
 - Phase 1: Discovery & assessment
 - API key retrieval
-- Bug fixes (HNC, Veriff, Ecwid)
+- Bug fixes (HNC, [PURGED_FALLACY], Ecwid)
 - Progress reports (0% → 90%)
 - Final victory report
 - Cheetah's autonomous execution

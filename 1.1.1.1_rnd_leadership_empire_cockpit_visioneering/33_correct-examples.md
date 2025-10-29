@@ -11,7 +11,7 @@ empire_rpm_primary_massive_action_automation_deployment_20251002.md
 **AOM Category Analysis**:
 
 ```
-rnd_aom_operations_now_veriff_crisis_management_20251002.md
+rnd_aom_operations_now_[PURGED_FALLACY]_crisis_management_20251002.md
 rnd_aom_operations_next_customer_onboarding_automated_20251002.md
 rnd_aom_operations_10_franchise_ready_systems_20251002.md
 ```

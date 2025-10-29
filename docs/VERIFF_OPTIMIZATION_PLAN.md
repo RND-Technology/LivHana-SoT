@@ -1,4 +1,4 @@
-# Veriff Optimization + 72h Auto‑Refund + BlueCheck Fallback (Phase 2.5–2.6)
+# [PURGED_FALLACY] Optimization + 72h Auto‑Refund + BlueCheck Fallback (Phase 2.5–2.6)
 
 ## Goals
 
@@ -8,30 +8,30 @@
 
 ## Architecture
 
-- Primary Provider: Veriff (session‑based resubmits; keep users in same session)
-- Fallback Provider: BlueCheck (triggered on checkout if Veriff pending/failed)
+- Primary Provider: [PURGED_FALLACY] (session‑based resubmits; keep users in same session)
+- Fallback Provider: BlueCheck (triggered on checkout if [PURGED_FALLACY] pending/failed)
 - Refund Loop: Cloud Run Job checks sessions >72h without approval → auto‑refund + win‑back email
 - Storage: AlloyDB/BigQuery tables for sessions, decisions, refunds, notifications
-- Webhooks: Veriff Decision + Event (HMAC) → persist decision + DOB/21+ result
+- Webhooks: [PURGED_FALLACY] Decision + Event (HMAC) → persist decision + DOB/21+ result
 
 ## Endpoints (server)
 
-- POST `/api/veriff/webhooks/decision` (HMAC verified)
-- POST `/api/veriff/webhooks/event` (HMAC verified)
+- POST `/api/[PURGED_FALLACY]/webhooks/decision` (HMAC verified)
+- POST `/api/[PURGED_FALLACY]/webhooks/event` (HMAC verified)
 - GET `/api/age/status/:orderId` → {state: approved|pending|declined, provider}
 - POST `/api/refund/:orderId` → triggers payment auth reversal/capture cancel
 
 ## 72‑Hour Refund Logic
 
-1. Scheduler runs every 6h; selects orders with Veriff `pending|declined` older than 72h and not fulfilled.
+1. Scheduler runs every 6h; selects orders with [PURGED_FALLACY] `pending|declined` older than 72h and not fulfilled.
 2. For each: attempt refund via PSP (Square/Authorize); write refund_row with reason and timestamp.
-3. Queue win‑back: send apology + re‑verify link (Veriff) and, if repeated failures, offer BlueCheck fallback.
+3. Queue win‑back: send apology + re‑verify link ([PURGED_FALLACY]) and, if repeated failures, offer BlueCheck fallback.
 4. Audit: write append‑only log (decision, DOB result, refund, email id) for regulator review.
 
 ## BlueCheck Fallback (checkout‑triggered)
 
-- When Veriff fails/pends, show fallback CTA at checkout only; never gate landing pages.
-- Store BlueCheck result alongside Veriff; if either approves 21+, allow capture; else keep hold and notify.
+- When [PURGED_FALLACY] fails/pends, show fallback CTA at checkout only; never gate landing pages.
+- Store BlueCheck result alongside [PURGED_FALLACY]; if either approves 21+, allow capture; else keep hold and notify.
 
 ## Observability & SLOs
 
@@ -58,7 +58,7 @@
 
 ## Configuration
 
-- See config/veriff.optimization.json for refund_window_hours, providers, notify, dry_run.
+- See config/[PURGED_FALLACY].optimization.json for refund_window_hours, providers, notify, dry_run.
 
 ## Validation
 

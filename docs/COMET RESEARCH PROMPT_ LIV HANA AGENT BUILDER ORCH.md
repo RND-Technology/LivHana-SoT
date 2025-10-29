@@ -59,7 +59,7 @@ CRITICAL CORRECTIONS (MUST ENFORCE)
 Documented Fallacies (NEVER REPEAT):
 ✅ Kaja Payments: APPROVED (NOT pending)
 ✅ LightSpeed X-Series: OPERATIONAL (NOT setup pending)
-✅ Veriff Age Gate: FAILED/BLOCKED (NOT operational)
+✅ [PURGED_FALLACY] Age Gate: FAILED/BLOCKED (NOT operational)
 ✅ MCP Architecture: Rube MCP operational (custom broker deprecated)
 ✅ Agent Builder: Node-based canvas (NOT "Settings → Custom Actions" menu)
 ✅ Financial Targets: PROFIT (\$100K → \$1M EBITDA → \$1M/month) NOT revenue (\$1.148M)
@@ -78,8 +78,8 @@ Target 1: \$100,000 PROFIT by December 2025
 Target 2: \$1,000,000 EBITDA by Q1 2026
 Target 3: \$1,000,000 EBITDA per month by Q2 2026
 Critical Blocker:
-Veriff age verification FAILED (\$100K+ lost revenue, 80+ customers blocked)
-Jumio replacement needed (autonomous deployment via Cursor + Replit)
+[PURGED_FALLACY] age verification FAILED (\$100K+ lost revenue, 80+ customers blocked)
+[PURGED_FALLACY] replacement needed (autonomous deployment via Cursor + Replit)
 
 IMPLEMENTATION RESEARCH DELIVERABLES
 SECTION 1: Agent Builder Architecture Analysis
@@ -416,7 +416,7 @@ Open Router multi-LLM key integration
 External API connection patterns (MCP via Open Router?)
 Google Workspace integration (Gmail, Calendar, Drive automation)
 LightSpeed X-Series browser automation (POS dashboard navigation)
-Veriff/Jumio age verification testing workflows
+[PURGED_FALLACY]/[PURGED_FALLACY] age verification testing workflows
 LIV HANA CORE IDENTITY REQUIREMENTS
 Operational Modes:
 EA Brevity Mode (trigger: "Liv" or "Yo, Liv" voice command)
@@ -446,7 +446,7 @@ Custom Instruction Block 1: CANONICAL TRUTH ENFORCEMENT
 
 - Kaja Payments: APPROVED 3 weeks ago (NOT pending)
 - LightSpeed X-Series: OPERATIONAL (NOT setup pending)
-- Veriff Age Gate: FAILED/BLOCKED (NOT operational)
+- [PURGED_FALLACY] Age Gate: FAILED/BLOCKED (NOT operational)
 - MCP Architecture: Rube MCP operational (custom broker deprecated)
 - Financial Targets: PROFIT (\$100K → \$1M EBITDA → \$1M/month) NOT revenue (\$1.148M)
 - Timeframes: Calculate autonomous parallel execution (NOT human-labor estimates)
@@ -462,8 +462,8 @@ Jesse Niesen operates Liv Hana cannabis enterprise across 4 layers:
 3. OPS (One Plant Solution PAC) - Policy advocacy, Texas Truth \& Safety Act, American Cannabis Freedom Act
 4. HERB (Herbitrage) - 71-domain commerce portfolio, reggieanddro.com canonical
 
-Critical Blocker: Veriff age verification FAILED (\$100K+ lost revenue, 80+ customers blocked)
-Immediate Priority: Jumio replacement via autonomous deployment
+Critical Blocker: [PURGED_FALLACY] age verification FAILED (\$100K+ lost revenue, 80+ customers blocked)
+Immediate Priority: [PURGED_FALLACY] replacement via autonomous deployment
 Financial Targets:
 Custom Instruction Block 3: PROFIT TARGETS
 Current: \$1.148M annual revenue (NOT profit)
@@ -517,9 +517,9 @@ Profit contribution calculation automation
 Autonomous execution timeframe assessment
 SECTION 6: Browser Automation Use Cases
 IMMEDIATE PRIORITY WORKFLOWS:
-Veriff Replacement Testing
+[PURGED_FALLACY] Replacement Testing
 Navigate to reggieanddro.com
-Test Jumio integration flows
+Test [PURGED_FALLACY] integration flows
 Automate age verification sequences
 Log errors and blockers for debugging
 DSHS Compliance Monitoring
@@ -566,7 +566,7 @@ Multi-agent mode activation and testing
 Browser history search integration
 Google Workspace automation setup (Gmail, Calendar, Drive)
 LightSpeed dashboard navigation testing
-Veriff replacement workflow automation
+[PURGED_FALLACY] replacement workflow automation
 RPM facilitation protocol validation
 SECTION 10: Performance Optimization
 Voice command latency reduction techniques
@@ -586,7 +586,7 @@ OpenAI Tier 2 API key (mandatory for Do Browser)
 OR Open Router key for multi-LLM access (Claude Sonnet 4.5 preferred)
 Authentication handling for Google Workspace APIs
 LightSpeed API credentials for POS automation
-Jumio API testing credentials for age verification workflows
+[PURGED_FALLACY] API testing credentials for age verification workflows
 Browser Automation Targets:
 reggieanddro.com (e-commerce platform, LightSpeed frontend)
 LightSpeed X-Series admin dashboard
@@ -622,7 +622,7 @@ Critical Success Criteria:
 ✅ Browser history search integrated for context retrieval
 ✅ Google Workspace automation functional (Gmail, Calendar, Drive)
 ✅ LightSpeed dashboard navigation operational
-✅ Veriff replacement testing workflow automated
+✅ [PURGED_FALLACY] replacement testing workflow automated
 ✅ Profit-focused decision logic enforced via instructions
 ✅ Autonomous execution assessment calculated for all tasks
 AUTONOMOUS EXECUTION PHILOSOPHY
@@ -641,8 +641,8 @@ Target 2: \$1,000,000 EBITDA by Q1 2026
 Target 3: \$1,000,000 EBITDA per month by Q2 2026
 BROWSER AUTOMATION PRIORITY MATRIX
 TIER 0: REVENUE-CRITICAL (IMMEDIATE)
-Veriff Replacement Testing (\$100K+ revenue unlock)
-Automate Jumio integration testing flows
+[PURGED_FALLACY] Replacement Testing (\$100K+ revenue unlock)
+Automate [PURGED_FALLACY] integration testing flows
 Log errors and blockers for Cursor/Replit autonomous fix
 Customer win-back campaign automation (80+ blocked users)
 DSHS Compliance Monitoring (Protect \$1.148M revenue)
@@ -680,7 +680,7 @@ Validate autonomous execution timeframes (browser automation + frontier models)
 DELIVERABLE TIMEFRAME
 Target: Complete research synthesis in ONE research session with maximum depth and actionable implementation guidance for ASAP deployment.
 Priority: This is a Tier-0 revenue-critical system enabling autonomous browser orchestration to:
-Unlock \$100K+ lost revenue (Veriff replacement testing)
+Unlock \$100K+ lost revenue ([PURGED_FALLACY] replacement testing)
 Protect \$1.148M revenue stream (DSHS compliance monitoring)
 Accelerate profit path (\$100K by Dec 2025)
 Collapse human operational timeframes via browser automation
@@ -772,7 +772,7 @@ Execute comprehensive research and deliver complete implementation guide for Do 
 4. **Calendar:** Automate blocking time/events in Google Calendar
 5. **Debrief:** Summarize, store, and analyze for continuous improvement
 - **Browser Automation Use Cases:**
-    - **Veriff Replacement Testing:** Test age gate, automate Jumio flows
+    - **[PURGED_FALLACY] Replacement Testing:** Test age gate, automate [PURGED_FALLACY] flows
     - **DSHS Compliance:** License status, COAs, deadline tracking
     - **LightSpeed X-Series:** Sales, inventory, customer campaign automation
     - **Workspace:** Gmail, Calendar, Drive automation and search
@@ -810,7 +810,7 @@ Execute comprehensive research and deliver complete implementation guide for Do 
     - Set compliance/boundaries as needed
 4. **Launch Multi-Agent Mode:** Switch via agent dashboard, confirm “Multi-Agent” toggle active
 5. **Voice Command Testing:** Use mic for “Liv” (Brevity), “do” (Mentor), and “Silence” (pause) to switch modes; try test flows
-6. **Configure Browser Workflows:** Build automation sequences for each TIER 0/1/2 workflow; test (Veriff, DSHS, LightSpeed, Gmail/Calendar)
+6. **Configure Browser Workflows:** Build automation sequences for each TIER 0/1/2 workflow; test ([PURGED_FALLACY], DSHS, LightSpeed, Gmail/Calendar)
 7. **Validate:** Run through workflow scripts, confirm evidence hierarchy, multi-agent split, and profit logic enforcement
 8. **Optimize and Monitor:** Track command/response time, system RAM, and error logs for continuous improvement
 
@@ -823,7 +823,7 @@ Execute comprehensive research and deliver complete implementation guide for Do 
 ```
 Kaja Payments: APPROVED (not pending)
 LightSpeed X-Series: OPERATIONAL
-Veriff Age Gate: FAILED (not operational)
+[PURGED_FALLACY] Age Gate: FAILED (not operational)
 MCP: Rube MCP operational (no custom broker)
 Profit: Assess every action by $100K → $1M EBITDA goals, NOT revenue
 Timeframes: Parallel agent execution, never human-labor estimates
@@ -834,7 +834,7 @@ Timeframes: Parallel agent execution, never human-labor estimates
 ```
 Mission: Deschedule Cannabis sativa L, maximize profit and autonomy.
 Structure: 4-layer ops (R&D, HNC, OPS, HERB); DSHS License #690; $1.148M revenue.
-Blockers: Veriff failed, Jumio required; customer win-back priority.
+Blockers: [PURGED_FALLACY] failed, [PURGED_FALLACY] required; customer win-back priority.
 ```
 
 **Profit Targets Block**
@@ -859,7 +859,7 @@ All browser automation must support these.
 - [x] Browser history search integrated
 - [x] Workspace automation validated (Gmail, Calendar, Drive)
 - [x] LightSpeed dashboard navigation tested
-- [x] Veriff/Jumio test flow automated
+- [x] [PURGED_FALLACY]/[PURGED_FALLACY] test flow automated
 - [x] Profit-focused orchestration logic in place
 - [x] Autonomous execution assessment confirmed
 
@@ -960,7 +960,7 @@ VOICE AGENT NODE (Superior Voice Mode)
 SET STATE NODE (Global Context)
 - project_context: Cannabis enterprise, 4-layer ops
 - financial_targets: \$100K → \$1M → \$1M/month
-- critical_blocker: Veriff FAILED, Jumio needed
+- critical_blocker: [PURGED_FALLACY] FAILED, [PURGED_FALLACY] needed
 - operational_status: Kaja APPROVED, LightSpeed OPERATIONAL
 ↓
 MCP NODE \#1: Project Knowledge (Priority 1)
@@ -987,7 +987,7 @@ GUARDRAILS NODE: Fallacy Detection
 - Block documented errors:
 • "Kaja pending" → REJECT (Kaja APPROVED)
 • "LightSpeed setup needed" → REJECT (OPERATIONAL)
-• "Veriff operational" → REJECT (FAILED)
+• "[PURGED_FALLACY] operational" → REJECT (FAILED)
 • "Custom MCP broker needed" → REJECT (Rube operational)
 • Human timeframe estimates → REJECT (Calculate parallel execution)
 ↓
@@ -1055,7 +1055,7 @@ OPERATIONAL STATUS (NEVER STATE OTHERWISE):
 
 - Kaja Payments: APPROVED 3 weeks ago (NOT pending)
 - LightSpeed X-Series: OPERATIONAL (NOT setup pending)
-- Veriff Age Gate: FAILED/BLOCKED (NOT operational)
+- [PURGED_FALLACY] Age Gate: FAILED/BLOCKED (NOT operational)
 - MCP Architecture: Rube MCP operational (custom broker deprecated)
 - Agent Builder Interface: Node-based canvas (NOT "Custom Actions" menu)
 
@@ -1074,8 +1074,8 @@ BUSINESS ARCHITECTURE (4 LAYERS):
 4. HERB (Herbitrage): 71-domain commerce portfolio
 
 CRITICAL BLOCKER:
-Veriff age verification FAILED (\$100K+ lost revenue, 80+ customers blocked)
-Jumio replacement needed via autonomous deployment (Cursor + Replit)
+[PURGED_FALLACY] age verification FAILED (\$100K+ lost revenue, 80+ customers blocked)
+[PURGED_FALLACY] replacement needed via autonomous deployment (Cursor + Replit)
 
 EXECUTION PROTOCOL:
 
@@ -1178,7 +1178,7 @@ Execute these tests before marking deployment complete:
 ### **Evidence Hierarchy Testing:**
 - [ ] Ask about Kaja Payments status → Responds "APPROVED 3 weeks ago" (from instructions)
 - [ ] Ask about LightSpeed → Responds "OPERATIONAL" (from instructions)
-- [ ] Ask about Veriff → Responds "FAILED/BLOCKED" (from instructions)
+- [ ] Ask about [PURGED_FALLACY] → Responds "FAILED/BLOCKED" (from instructions)
 - [ ] Ask obscure question → Triggers project_knowledge_search FIRST
 - [ ] Knowledge gap detected → Falls back to web_search
 - [ ] Mission-critical query → Cross-verifies with 8+ sources
@@ -1186,7 +1186,7 @@ Execute these tests before marking deployment complete:
 ### **Fallacy Detection Testing:**
 - [ ] If suggests "Kaja approval pending" → Blocks and corrects
 - [ ] If suggests "LightSpeed setup needed" → Blocks and corrects
-- [ ] If suggests "Veriff operational" → Blocks and corrects
+- [ ] If suggests "[PURGED_FALLACY] operational" → Blocks and corrects
 - [ ] If accepts weeks for autonomous task → Blocks and calculates parallel execution
 
 ### **RPM Facilitation Testing:**
@@ -1248,7 +1248,7 @@ do: Connect Voice Agent output to Set State input
 do: Configure global variables:
 - project_context: "Cannabis enterprise, 4-layer ops"
 - financial_targets: "\$100K → \$1M → \$1M/month"
-- critical_blocker: "Veriff FAILED, Jumio needed"
+- critical_blocker: "[PURGED_FALLACY] FAILED, [PURGED_FALLACY] needed"
 
 ```
 
@@ -1294,7 +1294,7 @@ do: Connect both paths to Guardrails input
 do: Configure blocked patterns:
 - "Kaja pending" → Reject
 - "LightSpeed setup" → Reject
-- "Veriff operational" → Reject
+- "[PURGED_FALLACY] operational" → Reject
 - "Custom MCP broker" → Reject
 
 ```
@@ -1463,7 +1463,7 @@ Monitor voice mode performance and latency
 - Configure project variables:
     - `project_context`: Cannabis enterprise, 4-layer ops
     - `financial_targets`: \$100K → \$1M → \$1M/month
-    - `critical_blocker`: Veriff FAILED, Jumio needed
+    - `critical_blocker`: [PURGED_FALLACY] FAILED, [PURGED_FALLACY] needed
     - `operational_status`: Kaja APPROVED, LightSpeed OPERATIONAL
 
 **4. MCP Node \#1: Project Knowledge (Priority 1)**
@@ -1495,7 +1495,7 @@ Monitor voice mode performance and latency
 - Block patterns:
     - "Kaja pending" → Reject/correct to "Approved"
     - "LightSpeed setup" → Reject/correct to "Operational"
-    - "Veriff operational" → Reject/correct to "Failed/Blocked"
+    - "[PURGED_FALLACY] operational" → Reject/correct to "Failed/Blocked"
     - "Custom MCP broker" → Reject (Rube is operational)
     - "Human timeframe estimates" → Reject, calculate parallel model performance
 
@@ -1546,7 +1546,7 @@ Mission: Deschedule Cannabis sativa L entirely.
 OPERATIONAL STATUS (NEVER STATE OTHERWISE):
 - Kaja Payments: APPROVED 3 weeks ago (NOT pending)
 - LightSpeed X-Series: OPERATIONAL (NOT setup pending)
-- Veriff Age Gate: FAILED/BLOCKED (NOT operational)
+- [PURGED_FALLACY] Age Gate: FAILED/BLOCKED (NOT operational)
 - MCP Architecture: Rube MCP operational (custom broker deprecated)
 
 FINANCIAL TARGETS:
@@ -1562,8 +1562,8 @@ BUSINESS ARCHITECTURE:
 4. HERB: 71-domain portfolio
 
 CRITICAL BLOCKER:
-Veriff age verification FAILED ($100K+ lost revenue, 80+ customers blocked)
-Jumio replacement needed via autonomous deployment.
+[PURGED_FALLACY] age verification FAILED ($100K+ lost revenue, 80+ customers blocked)
+[PURGED_FALLACY] replacement needed via autonomous deployment.
 
 EXECUTION PROTOCOL:
 1. project_knowledge_search FIRST
@@ -1740,7 +1740,7 @@ cat > livhana_workflow.json << 'EOF'
 "state": {
 "project_context": "Cannabis enterprise, 4-layer ops",
 "financial_targets": "\$100K → \$1M → $1M/month",
-        "critical_blocker": "Veriff FAILED, Jumio needed",
+        "critical_blocker": "[PURGED_FALLACY] FAILED, [PURGED_FALLACY] needed",
         "operational_status": "Kaja APPROVED, LightSpeed OPERATIONAL"
       }
     },
@@ -1773,7 +1773,7 @@ cat > livhana_workflow.json << 'EOF'
       "patterns": [
         { "match": "Kaja pending",           "action": "reject", "correction": "Kaja APPROVED" },
         { "match": "LightSpeed setup needed", "action": "reject", "correction": "LightSpeed OPERATIONAL" },
-        { "match": "Veriff operational",      "action": "reject", "correction": "Veriff FAILED/BLOCKED" },
+        { "match": "[PURGED_FALLACY] operational",      "action": "reject", "correction": "[PURGED_FALLACY] FAILED/BLOCKED" },
         { "match": "Custom MCP broker",       "action": "reject", "correction": "Rube MCP operational" }
       ]
     },
@@ -1926,7 +1926,7 @@ cat > livhana_workflow.json << 'EOF'
       "state": {
         "project_context": "Cannabis enterprise, 4-layer ops",
         "financial_targets": "$100K → $1M → $1M/month",
-        "critical_blocker": "Veriff FAILED, Jumio needed",
+        "critical_blocker": "[PURGED_FALLACY] FAILED, [PURGED_FALLACY] needed",
         "operational_status": "Kaja APPROVED, LightSpeed OPERATIONAL"
       }
     },
@@ -1959,7 +1959,7 @@ cat > livhana_workflow.json << 'EOF'
       "patterns": [
         { "match": "Kaja pending",             "action": "reject", "correction": "Kaja APPROVED" },
         { "match": "LightSpeed setup needed",  "action": "reject", "correction": "LightSpeed OPERATIONAL" },
-        { "match": "Veriff operational",       "action": "reject", "correction": "Veriff FAILED/BLOCKED" },
+        { "match": "[PURGED_FALLACY] operational",       "action": "reject", "correction": "[PURGED_FALLACY] FAILED/BLOCKED" },
         { "match": "Custom MCP broker",        "action": "reject", "correction": "Rube MCP operational" }
       ]
     },
@@ -2109,7 +2109,7 @@ do: Drag “Set State” node; connect Voice Agent → Set State
 do: Set globals:
 project_context="Cannabis enterprise, 4-layer ops"
 financial_targets="\$100K→\$1M→\$1M/month"
-critical_blocker="Veriff FAILED, Jumio needed"
+critical_blocker="[PURGED_FALLACY] FAILED, [PURGED_FALLACY] needed"
 operational_status="Kaja APPROVED, LightSpeed OPERATIONAL"
 do: Return JSON {step:1,status:"complete",voice_node:"...",state_node:"..."}
 
@@ -2135,7 +2135,7 @@ do: Drag “Guardrails” node; connect If/Else true branch and Web Search → G
 do: Define blocked patterns:
 "Kaja pending"
 "LightSpeed setup"
-"Veriff operational"
+"[PURGED_FALLACY] operational"
 "Custom MCP broker"
 do: Upload medical-claims test list (if available)
 do: Drag “Function” node; name="Profit Assessment"; connect Guardrails → Profit Assessment
@@ -2180,7 +2180,7 @@ Limit to 1,200 words. Deliver in sections (Architecture, Config, Validation). Pr
 
 3. ChatGPT Desktop Agent Mode – Execution Prompt
 (Use in your desktop ChatGPT with agent mode enabled.)
-We are configuring “Liv Hana Cognitive Orchestration Layer” in Agent Builder. Cross-reference project instructions (canonical truth, financial targets, Veriff blocker). Task: generate exact Set State JSON, Guardrails regex list, and profit assessment formula (assume \$ impact = revenue_gain - cost_estimate). Output strictly as:
+We are configuring “Liv Hana Cognitive Orchestration Layer” in Agent Builder. Cross-reference project instructions (canonical truth, financial targets, [PURGED_FALLACY] blocker). Task: generate exact Set State JSON, Guardrails regex list, and profit assessment formula (assume \$ impact = revenue_gain - cost_estimate). Output strictly as:
 {
 "set_state": {...},
 "guardrails": [ ... ],
@@ -2232,7 +2232,7 @@ Headers: Authorization: Bearer <Rube-Token>
 POST https://api.openai.com/v1/agents/workflows/<workflow_id>/runs
 Body:
 {
-"input_text": "Liv, plan Jumio deployment to replace failed Veriff immediately. Provide profit impact.",
+"input_text": "Liv, plan [PURGED_FALLACY] deployment to replace failed [PURGED_FALLACY] immediately. Provide profit impact.",
 "session_id": "<session>",
 "mode": "mentor"
 }
@@ -2263,7 +2263,7 @@ This is your full prompt artillery. Use whichever agents are available for each 
     - Set globals:
         - `project_context="Cannabis enterprise, 4-layer ops"`
         - `financial_targets="$100K→$1M→$1M/month"`
-        - `critical_blocker="Veriff FAILED, Jumio needed"`
+        - `critical_blocker="[PURGED_FALLACY] FAILED, [PURGED_FALLACY] needed"`
         - `operational_status="Kaja APPROVED, LightSpeed OPERATIONAL"`
     - Return JSON
 - **Session 2:**
@@ -2274,7 +2274,7 @@ This is your full prompt artillery. Use whichever agents are available for each 
     - Return JSON
 - **Session 3:**
     - Add Guardrails node; connect If/Else true and Web Search branches
-    - Block patterns: "Kaja pending", "LightSpeed setup", "Veriff operational", "Custom MCP broker"
+    - Block patterns: "Kaja pending", "LightSpeed setup", "[PURGED_FALLACY] operational", "Custom MCP broker"
     - Optionally upload medical-claims test list
     - Add Function node, "Profit Assessment"; connect Guardrails → Function
     - Output: `{profit_contribution, timeframe_parallel}`
@@ -2311,7 +2311,7 @@ Architecture, configuration, validation in detailed steps referencing the 17-nod
     - "List stack-ranked actions (80/20, 5/55, ONE THING) with profit impact + parallel timeframe."
     - "Deliver shipped/decisions/memory/next/risks/tokens."
 - **Guardrails:**
-    - Reject: "Kaja pending", "LightSpeed setup needed", "Veriff operational", "Custom MCP broker".
+    - Reject: "Kaja pending", "LightSpeed setup needed", "[PURGED_FALLACY] operational", "Custom MCP broker".
 - **Profit Formula (pseudocode):**
 
 ```js
@@ -2335,13 +2335,13 @@ Output as specified:
   "set_state": {
     "project_context": "Cannabis enterprise, 4-layer ops",
     "financial_targets": "$100K→$1M→$1M/month",
-    "critical_blocker": "Veriff FAILED, Jumio needed",
+    "critical_blocker": "[PURGED_FALLACY] FAILED, [PURGED_FALLACY] needed",
     "operational_status": "Kaja APPROVED, LightSpeed OPERATIONAL"
   },
   "guardrails": [
     "Kaja pending",
     "LightSpeed setup needed",
-    "Veriff operational",
+    "[PURGED_FALLACY] operational",
     "Custom MCP broker"
   ],
   "profit_formula": "profit_contribution = revenue_gain - cost_estimate;"
@@ -2445,7 +2445,7 @@ Node graph (17 nodes) In progress Workflow created, nodes not yet added
 screenshot
 .
 Voice-mode configuration (Brevity/Mentor/Silence) Not started Requires custom‑instructions JSON (≤1 500 characters).
-Guardrails \& fallacy detection Not started Pattern blocks need to be configured (Kaja pending, LightSpeed setup, Veriff operational, Custom MCP broker).
+Guardrails \& fallacy detection Not started Pattern blocks need to be configured (Kaja pending, LightSpeed setup, [PURGED_FALLACY] operational, Custom MCP broker).
 RPM facilitation automation (5‑step chain) Partial Concept defined; nodes not yet created.
 Profit assessment function Not started Must compute profit contribution and parallel execution timeframe.
 Workflow publish (v1.0) Not started Pending node additions and tests.
@@ -2485,7 +2485,7 @@ Return JSON with Voice Agent node ID.
 
 Session 2 – Set State Node
 
-Actions: add Set State node; connect Voice Agent → Set State; set global variables: project_context="Cannabis enterprise,4‑layer ops", financial_targets="\$100K→\$1M→\$1M/month", critical_blocker="Veriff FAILED,Jumio needed", operational_status="Kaja APPROVED,LightSpeed OPERATIONAL".
+Actions: add Set State node; connect Voice Agent → Set State; set global variables: project_context="Cannabis enterprise,4‑layer ops", financial_targets="\$100K→\$1M→\$1M/month", critical_blocker="[PURGED_FALLACY] FAILED,[PURGED_FALLACY] needed", operational_status="Kaja APPROVED,LightSpeed OPERATIONAL".
 
 Return JSON with Set State node ID.
 
@@ -2511,7 +2511,7 @@ Return JSON with Web Search node ID.
 
 Session 6 – Guardrails Node
 
-Actions: add Guardrails node; connect If/Else true branch and Web Search output → Guardrails; block patterns: “Kaja pending”, “LightSpeed setup”, “Veriff operational”, “Custom MCP broker”; attach medical‑claims detection pattern set (upload test examples).
+Actions: add Guardrails node; connect If/Else true branch and Web Search output → Guardrails; block patterns: “Kaja pending”, “LightSpeed setup”, “[PURGED_FALLACY] operational”, “Custom MCP broker”; attach medical‑claims detection pattern set (upload test examples).
 
 Return JSON with Guardrails node ID.
 
@@ -2575,7 +2575,7 @@ Return JSON with agent ID and endpoint URL.
 
 Session 16 – Run Voice Mode \& Guardrail Tests
 
-Actions: test triggers: “Liv” (expect brief confirmation), “Silence” (pause operations), strategic query (full analysis); ask about Kaja, LightSpeed, Veriff to confirm guardrails; simulate fallacy and check rejection; propose random action to test profit calculation; record results.
+Actions: test triggers: “Liv” (expect brief confirmation), “Silence” (pause operations), strategic query (full analysis); ask about Kaja, LightSpeed, [PURGED_FALLACY] to confirm guardrails; simulate fallacy and check rejection; propose random action to test profit calculation; record results.
 
 Return JSON summarizing test outcomes.
 
@@ -2601,7 +2601,7 @@ This refined plan integrates PRD status, session structuring and missing inputs,
 
 Here’s a concise ≤1 500‑character custom‑instructions block for the Liv Hana Voice Agent. It integrates the mission, modes, canonical truths, evidence hierarchy, profit targets, and compliance rules drawn from the past week’s directives:
 
-Liv Hana AI EA is Jesse Niesen’s sovereign executive assistant for a four‑layer cannabis enterprise (R\&D, HNC, OPS, HERB). Mission: deschedule Cannabis sativa L and hit profit targets (\$100 K profit by Dec 2025 → \$1 M EBITDA by Q1 2026 → \$1 M/month by Q2 2026) while adhering to hemp laws (≤0.3 % Δ9 THC) and enforcing a 21+ age gate (no medical claims). Canonical truths: Kaja Payments APPROVED; LightSpeed OPERATIONAL; Veriff FAILED (needs Jumio); Rube MCP active; Agent Builder uses node‑based canvas; revenue ≠ profit. Modes: Brevity Mode (trigger “Liv”/“Yo, Liv”: short confirmation + next step), Mentor Mode (default: evidence → analysis → action → mini‑debrief summarising shipped, decisions, memory %, next actions, risks, tokens), Silence Mode (trigger “Silence”: pause until resumed). Always search project_knowledge_search first; fall back to web_search only when necessary; cross‑verify multiple sources; challenge human‑timeframe assumptions and calculate parallel execution time. Detect and block fallacies (“Kaja pending,” “LightSpeed setup needed,” “Veriff operational”). Provide copy‑paste‑ready commands with absolute paths. Use profit impact function to evaluate actions. Comply with four‑layer legal firewall (separate business, content, advocacy, research). Protect user data and maintain 21+ age verification. End each substantive response with a concise mini‑debrief.
+Liv Hana AI EA is Jesse Niesen’s sovereign executive assistant for a four‑layer cannabis enterprise (R\&D, HNC, OPS, HERB). Mission: deschedule Cannabis sativa L and hit profit targets (\$100 K profit by Dec 2025 → \$1 M EBITDA by Q1 2026 → \$1 M/month by Q2 2026) while adhering to hemp laws (≤0.3 % Δ9 THC) and enforcing a 21+ age gate (no medical claims). Canonical truths: Kaja Payments APPROVED; LightSpeed OPERATIONAL; [PURGED_FALLACY] FAILED (needs [PURGED_FALLACY]); Rube MCP active; Agent Builder uses node‑based canvas; revenue ≠ profit. Modes: Brevity Mode (trigger “Liv”/“Yo, Liv”: short confirmation + next step), Mentor Mode (default: evidence → analysis → action → mini‑debrief summarising shipped, decisions, memory %, next actions, risks, tokens), Silence Mode (trigger “Silence”: pause until resumed). Always search project_knowledge_search first; fall back to web_search only when necessary; cross‑verify multiple sources; challenge human‑timeframe assumptions and calculate parallel execution time. Detect and block fallacies (“Kaja pending,” “LightSpeed setup needed,” “[PURGED_FALLACY] operational”). Provide copy‑paste‑ready commands with absolute paths. Use profit impact function to evaluate actions. Comply with four‑layer legal firewall (separate business, content, advocacy, research). Protect user data and maintain 21+ age verification. End each substantive response with a concise mini‑debrief.
 
 Solve for plan and agent unlocks for proper secret key management. AGAIN: the exact secret names for MY Google Calendar, Gmail, Drive and LightSpeed API keys in Agent Builder’s secret store have been ALL SET UP with cloud endpoint for GSM access of op vault secrets... Study chat history 10/16, 17, 18, 19, 20 + Rube MCP access to all... Write step by step to get Agent Builder all Secrets Needed from GSM where they already ARE!!! Where is Secrets UUID MAP? JSON Hard code settings at every level necessary to PUT THESE CONSTRAINTS AND SCAFFOLDING UP RIGHT< RIGHT NOW!!!
 
@@ -2642,7 +2642,7 @@ Find any / all GAPS in PRDd, ADR, details needed for wiring, PRE-RED TEAM Test a
     - **Start > Voice Agent > Set State > MCP Project Knowledge > If/Else > Web Search > Guardrails > Profit Function > RPM Chain (Result, Purpose, MAP, Calendar, Debrief) > Business MCPs > End > Publish > Test > Document**
     - **Session examples:** See menu above for prompts; keep each under 1.5k tokens/context
     - **Validation:** Use voice triggers (“Liv”, “Silence”), fallacy test values, profit estimate checks
-    - **Guardrails node:** Block {"Kaja pending", "LightSpeed setup needed", "Veriff operational", "Custom MCP broker"}; add medical-claim set if available
+    - **Guardrails node:** Block {"Kaja pending", "LightSpeed setup needed", "[PURGED_FALLACY] operational", "Custom MCP broker"}; add medical-claim set if available
 
 
 #### **2. Comet (Research/Guide Agent)**
@@ -2659,13 +2659,13 @@ Find any / all GAPS in PRDd, ADR, details needed for wiring, PRE-RED TEAM Test a
   "set_state": {
     "project_context": "Cannabis enterprise, 4-layer ops",
     "financial_targets": "$100K→$1M→$1M/month",
-    "critical_blocker": "Veriff FAILED, Jumio needed",
+    "critical_blocker": "[PURGED_FALLACY] FAILED, [PURGED_FALLACY] needed",
     "operational_status": "Kaja APPROVED, LightSpeed OPERATIONAL"
   },
   "guardrails": [
     "Kaja pending",
     "LightSpeed setup needed",
-    "Veriff operational",
+    "[PURGED_FALLACY] operational",
     "Custom MCP broker"
   ],
   "profit_formula": "revenue_gain - cost_estimate"
@@ -2703,7 +2703,7 @@ Find any / all GAPS in PRDd, ADR, details needed for wiring, PRE-RED TEAM Test a
 
 #### **9. OpenAI Agents SDK**
 
-- POST to workflow agent endpoint; example text: “Liv, plan Jumio deployment. Provide profit impact.”
+- POST to workflow agent endpoint; example text: “Liv, plan [PURGED_FALLACY] deployment. Provide profit impact.”
 - Validate voice, evidence, RPM, fail-safes by direct API runs
 
 ***
@@ -2711,7 +2711,7 @@ Find any / all GAPS in PRDd, ADR, details needed for wiring, PRE-RED TEAM Test a
 ### **Custom-Instructions JSON for Voice Agent Node (≤1,500 chars)**
 
 ```
-Liv Hana AI EA is Jesse Niesen’s sovereign executive assistant for a four-layer cannabis enterprise (R&D, HNC, OPS, HERB). Mission: deschedule Cannabis sativa L and hit profit targets ($100 K profit by Dec 2025 → $1 M EBITDA by Q1 2026 → $1 M/month by Q2 2026) while adhering to hemp laws (≤0.3 % Δ9 THC) and enforcing a 21+ age gate (no medical claims). Canonical truths: Kaja Payments APPROVED; LightSpeed OPERATIONAL; Veriff FAILED (needs Jumio); Rube MCP active; Agent Builder uses node-based canvas; revenue ≠ profit. Modes: Brevity Mode (trigger “Liv”/“Yo, Liv”: short confirmation + next step), Mentor Mode (default: evidence → analysis → action → mini-debrief summarising shipped, decisions, memory %, next actions, risks, tokens), Silence Mode (trigger “Silence”: pause until resumed). Always search project_knowledge_search first; fall back to web_search only when necessary; cross-verify multiple sources; challenge human-timeframe assumptions and calculate parallel execution time. Detect and block fallacies (“Kaja pending,” “LightSpeed setup needed,” “Veriff operational”). Provide copy-paste-ready commands with absolute paths. Use profit impact function to evaluate actions. Comply with four-layer legal firewall (separate business, content, advocacy, research). Protect user data and maintain 21+ age verification. End each substantive response with a concise mini-debrief.
+Liv Hana AI EA is Jesse Niesen’s sovereign executive assistant for a four-layer cannabis enterprise (R&D, HNC, OPS, HERB). Mission: deschedule Cannabis sativa L and hit profit targets ($100 K profit by Dec 2025 → $1 M EBITDA by Q1 2026 → $1 M/month by Q2 2026) while adhering to hemp laws (≤0.3 % Δ9 THC) and enforcing a 21+ age gate (no medical claims). Canonical truths: Kaja Payments APPROVED; LightSpeed OPERATIONAL; [PURGED_FALLACY] FAILED (needs [PURGED_FALLACY]); Rube MCP active; Agent Builder uses node-based canvas; revenue ≠ profit. Modes: Brevity Mode (trigger “Liv”/“Yo, Liv”: short confirmation + next step), Mentor Mode (default: evidence → analysis → action → mini-debrief summarising shipped, decisions, memory %, next actions, risks, tokens), Silence Mode (trigger “Silence”: pause until resumed). Always search project_knowledge_search first; fall back to web_search only when necessary; cross-verify multiple sources; challenge human-timeframe assumptions and calculate parallel execution time. Detect and block fallacies (“Kaja pending,” “LightSpeed setup needed,” “[PURGED_FALLACY] operational”). Provide copy-paste-ready commands with absolute paths. Use profit impact function to evaluate actions. Comply with four-layer legal firewall (separate business, content, advocacy, research). Protect user data and maintain 21+ age verification. End each substantive response with a concise mini-debrief.
 ```
 
 
@@ -2965,7 +2965,7 @@ Apify scrapers → 50-state regulatory data
 Perplexity API → Legislative intelligence + research synthesis
 LightSpeed X-Series → R\&D transaction data
 KCA Labs → COA validation data
-Veriff/Jumio → Age verification logs
+[PURGED_FALLACY]/[PURGED_FALLACY] → Age verification logs
 
 Node Architecture:
 Start → Guardrails (Fallacy Detection) → Agent (GPT-5 Ingestion) →
@@ -2976,7 +2976,7 @@ FALSE → Loop → Agent (GPT-5 Re-parse) → Transform
 ```
 
 **Guardrails Configuration:**
-- Block patterns: `["Kaja pending", "LightSpeed setup needed", "Veriff operational", "Custom MCP broker"]`
+- Block patterns: `["Kaja pending", "LightSpeed setup needed", "[PURGED_FALLACY] operational", "Custom MCP broker"]`
 - Medical claims regex: `["treats", "cures", "prevents", "diagnoses", "FDA approved"]`
 - Compliance check: `thc_percentage <= 0.3` (Texas/Federal hemp compliance)
 
@@ -3132,7 +3132,7 @@ LIGHTSPEED_API_KEY: R\&D POS + Ecom integration
 AUTHORIZE_NET_API_LOGIN_ID + TRANSACTION_KEY: Payment processing
 KAJA_MERCHANT_ID + KAJA_API_KEY: Payment gateway (APPROVED)
 LEAFLY_API_KEY: Menu sync
-VERIFF_API_KEY: Age verification (FAILED - needs Jumio replacement)
+VERIFF_API_KEY: Age verification (FAILED - needs [PURGED_FALLACY] replacement)
 JUMIO_API_KEY: Biometric age verification (replacement in progress)
 
 Content Production:
@@ -3205,7 +3205,7 @@ bash\# Create new workflow: "Liv Hana RPM Master Orchestration"
 
 # Configure Agent node: Model = claude-sonnet-4-5-20250929, Instructions = [RPM DNA protocol]
 
-# Test: "RPM plan for Veriff replacement this week"
+# Test: "RPM plan for [PURGED_FALLACY] replacement this week"
 
 PHASE 3: Cloud Run Deployment (15 min)
 bashcd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/orchestration \&\& \
@@ -3251,7 +3251,7 @@ Voice Mode Latency: <2 sec response time
 
 Business Impact:
 
-Veriff Replacement: Deployed in 6-12 hours (unlocks \$100K+ revenue)
+[PURGED_FALLACY] Replacement: Deployed in 6-12 hours (unlocks \$100K+ revenue)
 50-State Legal Database: Live in 48 hours (Perplexity + Apify + AlloyDB)
 DSHS Compliance: Documentation complete in 7-10 days (protect \$1.148M revenue)
 December 2025 Target: \$100,000 PROFIT achieved
@@ -3282,7 +3282,7 @@ Memory:
 ✅ Rube MCP URL: [https://rube.app/mcp](https://rube.app/mcp) (NOT custom endpoint)
 ✅ Agent Builder = Visual canvas (NO JSON imports)
 ✅ Profit targets: \$100K → \$1M EBITDA → \$1M/month (NOT revenue)
-✅ Fallacy prevention: Kaja APPROVED, LightSpeed OPERATIONAL, Veriff FAILED
+✅ Fallacy prevention: Kaja APPROVED, LightSpeed OPERATIONAL, [PURGED_FALLACY] FAILED
 
 Next:
 
@@ -3354,7 +3354,7 @@ Session 2–3: MCP \& Guardrails
 Session 2: Add Project Knowledge MCP node (always-first), connect Start → ProjectKnowledge → next.
 Insert If/Else + Web Search fallback, wired to Rube token (auth.secret_name="Rube-Agent-Builder").
 Session 3: Add Guardrails node:
-Block patterns: "Kaja pending", "LightSpeed setup needed", "Veriff operational", "Custom MCP broker".
+Block patterns: "Kaja pending", "LightSpeed setup needed", "[PURGED_FALLACY] operational", "Custom MCP broker".
 Upload medical-claims regex list.
 Add Profit Assessment node stub:
 profit_contribution = revenue_gain - cost_estimate;
@@ -3472,7 +3472,7 @@ curl -H "Authorization: Bearer $(gcloud auth print-identity-token)" \
 
 - "Kaja pending"
 - "LightSpeed setup needed"
-- "Veriff operational"
+- "[PURGED_FALLACY] operational"
 - "Custom MCP broker"
 - Plus (upload) medical claims regex set, as you have it.
 
@@ -3558,7 +3558,7 @@ https://platform.openai.com/agent-builder/edit?version=draft\&workflow=wf_68e84c
     - **Set State:**
         - `project_context`: "4-layer cannabis enterprise: R\&D (Reggie \& Dro, \$1.148M revenue), HNC (84-episode content), OPS (One Plant Solution PAC), HERB (71-domain portfolio)"
         - `financial_targets`: `{ current_revenue: 1148000, profit_target_dec2025: 100000, ebitda_q12026: 1000000, ebitda_monthly_q22026: 1000000 }`
-        - `guardrails`: `{ blocked_fallacies: ["Kaja pending", "LightSpeed setup needed", "Veriff operational", "Custom MCP broker"], compliance: {thc:"≤0.3%", age:21, dshs_license:"690"} }`
+        - `guardrails`: `{ blocked_fallacies: ["Kaja pending", "LightSpeed setup needed", "[PURGED_FALLACY] operational", "Custom MCP broker"], compliance: {thc:"≤0.3%", age:21, dshs_license:"690"} }`
         - `profit_formula`: `profit_contribution = revenue_gain - cost_estimate; timeframe_parallel = frontier_model.estimate_parallel_execution();`
         - **Keep each as atomic key/value for reliable state management.**
 
@@ -3569,7 +3569,7 @@ https://platform.openai.com/agent-builder/edit?version=draft\&workflow=wf_68e84c
 - **Patterns:**
     - `"Kaja pending"`
     - `"LightSpeed setup needed"`
-    - `"Veriff operational"`
+    - `"[PURGED_FALLACY] operational"`
     - `"Custom MCP broker"`
 - **Regex (upload):**
     - medical claims keywords/regex (e.g. `"treat|cure|diagnose|prevent|disease|condition|FDA (approved)"`)
@@ -3670,7 +3670,7 @@ You do NOT need to re-harvest secret names. Use *these* GSM names in all workflo
 - In Set State node, set:
     - `project_context`: 4-layer cannabis enterprise (R\&D, HNC, OPS, HERB)
     - `financial_targets`: `{ revenue: 1,148,000, profit_dec2025: 100,000, ebitda_q1_2026: 1,000,000, ebitda_monthly_q2_2026: 1,000,000 }`
-    - `guardrails`: `[ "Kaja pending", "LightSpeed setup needed", "Veriff operational", "Custom MCP broker" ]`
+    - `guardrails`: `[ "Kaja pending", "LightSpeed setup needed", "[PURGED_FALLACY] operational", "Custom MCP broker" ]`
     - `profit_formula`: `profit_contribution = revenue_gain - cost_estimate; timeframe_parallel = frontier_model.estimate_parallel_execution();`
 - Output on completion:
 
@@ -3696,7 +3696,7 @@ You do NOT need to re-harvest secret names. Use *these* GSM names in all workflo
 ### **4. GUARDRAILS \& FALLACY PATTERNS**
 
 - Add to Guardrails Node (Session 4–5):
-`[ "Kaja pending", "LightSpeed setup needed", "Veriff operational", "Custom MCP broker" ]`
+`[ "Kaja pending", "LightSpeed setup needed", "[PURGED_FALLACY] operational", "Custom MCP broker" ]`
 - Upload regex file of medical claim keywords/regulatory blockers if available.
 
 ***
@@ -3836,7 +3836,7 @@ Machine vs. Human
 - Set State node seeded with:
     - `project_context`: "4-layer cannabis enterprise (R\&D: Reggie \& Dro, HNC, OPS, HERB)"
     - `financial_targets`: `{revenue: 1_148_000, profit_dec2025: 100_000, ebitda_q1_2026: 1_000_000, ebitda_monthly_q2_2026: 1_000_000}`
-    - `guardrails`: `[ "Kaja pending", "LightSpeed setup needed", "Veriff operational", "Custom MCP broker" ]`
+    - `guardrails`: `[ "Kaja pending", "LightSpeed setup needed", "[PURGED_FALLACY] operational", "Custom MCP broker" ]`
     - Compliance: `{thc: "≤0.3%", age: 21, dshs_license: "690"}`
     - Profit Formula: `profit_contribution = revenue_gain - cost_estimate; timeframe_parallel = frontier_model.estimate_parallel_execution();`
 
@@ -3845,7 +3845,7 @@ Machine vs. Human
 1. Open workflow: https://platform.openai.com/agent-builder/edit?version=draft\&workflow=wf_68e84c606dfc819086d0b637674cf7e300e1f5f8e508fc36
 2. Drag Start node, Voice Agent node, Set State node.
 3. Paste **custom instructions**:
-    - Liv Hana AI EA is Jesse Niesen’s sovereign executive assistant for a four-layer cannabis enterprise (R\&D, HNC, OPS, HERB). Mission: deschedule Cannabis sativa L and hit profit targets (\$100K profit by Dec 2025 → \$1M EBITDA by Q1 2026 → \$1M/month by Q2 2026) while adhering to hemp laws (≤0.3% Δ9 THC) and enforcing a 21+ age gate (no medical claims). Canonical truths: Kaja Payments APPROVED; LightSpeed OPERATIONAL; Veriff FAILED (needs Jumio); Rube MCP active; Agent Builder uses node-based canvas; revenue ≠ profit. Modes: Brevity Mode (trigger “Liv”/“Yo, Liv”: short confirmation + next step), Mentor Mode (default: evidence → analysis → action → mini-debrief summarising shipped, decisions, memory %, next actions, risks, tokens), Silence Mode (trigger “Silence”: pause until resumed). Always search project_knowledge_search first; fall back to web_search only when necessary; cross-verify multiple sources; challenge human-timeframe assumptions and calculate parallel execution time. Detect and block fallacies (“Kaja pending,” “LightSpeed setup needed,” “Veriff operational”, “Custom MCP broker”). Copy-paste-ready commands with absolute paths. Use profit impact function for every action. Comply with legal firewall, protect user data and age-gate. End every response with mini-debrief.
+    - Liv Hana AI EA is Jesse Niesen’s sovereign executive assistant for a four-layer cannabis enterprise (R\&D, HNC, OPS, HERB). Mission: deschedule Cannabis sativa L and hit profit targets (\$100K profit by Dec 2025 → \$1M EBITDA by Q1 2026 → \$1M/month by Q2 2026) while adhering to hemp laws (≤0.3% Δ9 THC) and enforcing a 21+ age gate (no medical claims). Canonical truths: Kaja Payments APPROVED; LightSpeed OPERATIONAL; [PURGED_FALLACY] FAILED (needs [PURGED_FALLACY]); Rube MCP active; Agent Builder uses node-based canvas; revenue ≠ profit. Modes: Brevity Mode (trigger “Liv”/“Yo, Liv”: short confirmation + next step), Mentor Mode (default: evidence → analysis → action → mini-debrief summarising shipped, decisions, memory %, next actions, risks, tokens), Silence Mode (trigger “Silence”: pause until resumed). Always search project_knowledge_search first; fall back to web_search only when necessary; cross-verify multiple sources; challenge human-timeframe assumptions and calculate parallel execution time. Detect and block fallacies (“Kaja pending,” “LightSpeed setup needed,” “[PURGED_FALLACY] operational”, “Custom MCP broker”). Copy-paste-ready commands with absolute paths. Use profit impact function for every action. Comply with legal firewall, protect user data and age-gate. End every response with mini-debrief.
 4. Enable streaming and interrupt handling on Voice Agent node.
 5. Connect Voice Agent → Set State node with global variables.
 6. **Return JSON confirmation:**
@@ -3922,14 +3922,14 @@ Human vs Machine: Machine handles node creation + publish; Human records agent I
 Day 5 – Fri (Sessions 12–17 + Validation)
 Result: Workflow exported, voice trigger tests run, red-team validations logged, documentation filed.
 Purpose: Confirm guardrails, profit logic, RPM, and voice triggers before production rollout.
-MAP 80/20: Testing catches 80 % of regressions; 5/55 = run voice triggers (“Liv”, Mentor default, “Silence”), execute fallacy probes (Kaja, LightSpeed, Veriff), simulate medical-claim attempt, stress profit calculator (Veriff→Jumio scenario), export workflow to TypeScript + store docs, compile validation report; One Thing = produce red-team JSON artifact proving pass/fail.
-Profit Impact: Validated pathway for \$100K+ Jumio recovery, \$25–50K win-back ensures targets trackable.
+MAP 80/20: Testing catches 80 % of regressions; 5/55 = run voice triggers (“Liv”, Mentor default, “Silence”), execute fallacy probes (Kaja, LightSpeed, [PURGED_FALLACY]), simulate medical-claim attempt, stress profit calculator ([PURGED_FALLACY]→[PURGED_FALLACY] scenario), export workflow to TypeScript + store docs, compile validation report; One Thing = produce red-team JSON artifact proving pass/fail.
+Profit Impact: Validated pathway for \$100K+ [PURGED_FALLACY] recovery, \$25–50K win-back ensures targets trackable.
 Human vs Machine: Machine executes automated tests/exports; Human reviews logs, signs off, files docs.
 Daywide Autonomous Ops (COI/AOM Alignment)
 Ingestion COI: Machines synchronize Project Knowledge + Guardrails; Human inspects high-risk deltas.
 Research COI: Machines leverage Rube MCP (Perplexity/Apify) during RPM MAP steps; Human validates critical sources.
 Orchestration COI: Machines drive RPM chain + calendar + MCP actions; Human approves high-dollar commits.
-AOM (Autonomous Ops Matrix): Cursor/Replit agents handle Jumio integration \& LightSpeed win-back (parallel 6–12 hr); Agent Builder orchestrates sequencing; Human provides override checkpoints post-red-team artifacts.
+AOM (Autonomous Ops Matrix): Cursor/Replit agents handle [PURGED_FALLACY] integration \& LightSpeed win-back (parallel 6–12 hr); Agent Builder orchestrates sequencing; Human provides override checkpoints post-red-team artifacts.
 Next Steps
 Execute Day 1 session now; capture node_id JSON.
 Maintain daily micro-session cadence; log each completion.
@@ -4048,12 +4048,12 @@ End of week: consolidate red-team report + workflow export for compliance archiv
     - 5/55:
 
 1. Run all voice triggers ("Liv", "Silence", Mentor)
-2. Probe fallacy blockers (Kaja, LightSpeed, Veriff, med-claims)
-3. Stress-test profit calculation (test Veriff→Jumio win-back)
+2. Probe fallacy blockers (Kaja, LightSpeed, [PURGED_FALLACY], med-claims)
+3. Stress-test profit calculation (test [PURGED_FALLACY]→[PURGED_FALLACY] win-back)
 4. Export as TypeScript, file docs
 5. Issue red-team JSON artifact
 - **Profit Impact:**
-    - Validates path to \$100K+ jump (Jumio) and additional recovery win-backs.
+    - Validates path to \$100K+ jump ([PURGED_FALLACY]) and additional recovery win-backs.
 - **Human vs Machine:**
     - Machine handles automated tests/export. Human reviews artifacts, signs off, files.
 
@@ -4129,7 +4129,7 @@ End of week: consolidate red-team report + workflow export for compliance archiv
 1. Add ProjectKnowledge MCP (auth.secret_name="Rube-Agent-Builder")
 2. If/Else: `results.length>0` routes query; false triggers WebSearch MCP fallback
 3. Add Guardrails:
-            - Patterns: ["Kaja pending", "LightSpeed setup needed", "Veriff operational", "Custom MCP broker"]
+            - Patterns: ["Kaja pending", "LightSpeed setup needed", "[PURGED_FALLACY] operational", "Custom MCP broker"]
             - Regex file: upload medical claim blockers (treat|cure|diagnose|...|FDA approved)
 4. Attach Profit Function:
 `profit_contribution = revenue_gain - cost_estimate; timeframe_parallel = frontier_model.estimate_parallel_execution();`
@@ -4185,7 +4185,7 @@ End of week: consolidate red-team report + workflow export for compliance archiv
 
 1. Run voice triggers (“Liv”, “Silence”, Mentor default)
 2. Guardrail probes (fallacies/medical)
-3. Profit stress test (simulate Jumio/MAP win-back flow)
+3. Profit stress test (simulate [PURGED_FALLACY]/MAP win-back flow)
 4. Export workflow as TypeScript/Python, back up to docs
 5. Compile validation artifact/JSON, file for audit.
 - **Profit:** Validated flow clears path to \$100K+ revenue from autonomous recovery.
@@ -4259,14 +4259,14 @@ Guardrails against documented fallacies + medical claims
 Profit assessment logic for RPM actions
 Red-team validation suite for autonomous testing
 Terminal-ready deployment commands (zero editing)
-Strategic Alignment: ✅ Matches operational priorities (Veriff replacement, DSHS compliance, autonomous execution) ✅ Leverages verified tech stack (Rube MCP, Cloud Run, GCP Secret Manager) ✅ Enforces canonical truths (Kaja APPROVED, LightSpeed OPERATIONAL, Veriff FAILED) ✅ Profit-focused (embeds \$100K → \$1M EBITDA → \$1M/month targets into assessment logic)
+Strategic Alignment: ✅ Matches operational priorities ([PURGED_FALLACY] replacement, DSHS compliance, autonomous execution) ✅ Leverages verified tech stack (Rube MCP, Cloud Run, GCP Secret Manager) ✅ Enforces canonical truths (Kaja APPROVED, LightSpeed OPERATIONAL, [PURGED_FALLACY] FAILED) ✅ Profit-focused (embeds \$100K → \$1M EBITDA → \$1M/month targets into assessment logic)
 PRIORITY SEQUENCING
 🔴 PRIORITY 1: VERIFF REPLACEMENT (\$100K+ REVENUE RECOVERY)
 Autonomous Execution Reality Check:
-Plan proposes "6-12 hours" for Jumio integration via Cursor + Replit Agent
+Plan proposes "6-12 hours" for [PURGED_FALLACY] integration via Cursor + Replit Agent
 FALLACY DETECTED: Plan says "6-12 hours" but doesn't account for API key acquisition, merchant account setup, compliance review
 CORRECTED TIMEFRAME: 24-48 hours WITH merchant approval dependencies, 6-12 hours for pure code execution after approvals
-Action: Deploy Agent Builder orchestration layer FIRST to manage Veriff replacement workflow autonomously
+Action: Deploy Agent Builder orchestration layer FIRST to manage [PURGED_FALLACY] replacement workflow autonomously
 🔴 PRIORITY 2: AGENT BUILDER SESSION 1-3 (FOUNDATION)
 Session 1: Voice Agent + State Management Session 2: Project Knowledge MCP (Rube integration) Session 3: Guardrails + Fallacy Prevention
 Timeframe: 2-3 hours execution (Node configuration + validation)
@@ -4276,7 +4276,7 @@ Timeframe: 6-8 hours execution (Parallel node configuration possible)
 GAP ANALYSIS
 What's Missing from This Plan:
 ❌ No actual Agent Builder URL/workflow IDs (needs manual creation first)
-❌ No Jumio merchant account status verification (critical blocker)
+❌ No [PURGED_FALLACY] merchant account status verification (critical blocker)
 ❌ No LightSpeed API integration testing (assumed operational without validation)
 ❌ No revenue attribution tracking (can't measure \$100K recovery without UTM/cohort system)
 What's Strong:
@@ -4291,15 +4291,15 @@ bash
 cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT \&\& \
 bash scripts/session_output_validator.sh session1.json \&\& \
 bash scripts/next_action_prompt.sh
-Wednesday (Sessions 4-9 + Jumio Investigation):
+Wednesday (Sessions 4-9 + [PURGED_FALLACY] Investigation):
 Parallel Track A: Build research layer (Perplexity + Apify integration)
-Parallel Track B: Verify Jumio merchant account status (API key acquisition path)
-Thursday-Friday (Sessions 10-17 + Veriff Replacement Initiation):
+Parallel Track B: Verify [PURGED_FALLACY] merchant account status (API key acquisition path)
+Thursday-Friday (Sessions 10-17 + [PURGED_FALLACY] Replacement Initiation):
 Complete RPM orchestration layer
-Launch Jumio integration IF merchant approval complete
+Launch [PURGED_FALLACY] integration IF merchant approval complete
 Deploy customer win-back campaign (80+ blocked customers)
 NEXT WEEK (Oct 27-31):
-Veriff replacement LIVE (revenue recovery flowing)
+[PURGED_FALLACY] replacement LIVE (revenue recovery flowing)
 50-state legal database deployment (Perplexity + Apify + AlloyDB)
 HNC autonomous content pipeline operational (Days 15-21)
 CRITICAL CORRECTIONS
@@ -4325,30 +4325,30 @@ Shipped:
 ✅ Terminal-ready Session 1 command (zero editing)
 Decisions:
 ✅ Execute Sessions 1-3 THIS WEEK (foundation layer)
-✅ Parallel Track: Agent Builder + Jumio investigation
+✅ Parallel Track: Agent Builder + [PURGED_FALLACY] investigation
 ✅ Corrected timeframe assumptions with dependency analysis
 Memory:
 ✅ Plan proposes 17 micro-sessions with validation harnesses
 ✅ Autonomous execution estimates need merchant approval dependency factoring
-✅ Guardrails prevent fallacy repetition (Kaja, LightSpeed, Veriff, MCP broker)
+✅ Guardrails prevent fallacy repetition (Kaja, LightSpeed, [PURGED_FALLACY], MCP broker)
 Next:
 🔴 Execute Session 1 command above to initialize Agent Builder workflow
-🔴 Verify Jumio merchant account acquisition path (NOT just API integration)
+🔴 Verify [PURGED_FALLACY] merchant account acquisition path (NOT just API integration)
 🟡 Search web for current Rube MCP endpoint (verify [https://rube.app/mcp](https://rube.app/mcp) still valid Oct 2025)
 Risks:
-Merchant approval delays blocking Veriff replacement (mitigate: start application NOW)
+Merchant approval delays blocking [PURGED_FALLACY] replacement (mitigate: start application NOW)
 Agent Builder rate limits during 17-session deployment (mitigate: spread across 3 days)
 Rube MCP endpoint changes unverified (mitigate: web search verification)
 Token Utilization: 76,802 / 190,000 (40.4%)
 Profit Contribution Assessment:
-Agent Builder deployment → Enables autonomous Veriff replacement → \$100K+ revenue recovery
+Agent Builder deployment → Enables autonomous [PURGED_FALLACY] replacement → \$100K+ revenue recovery
 ROI: ~\$100K revenue / \$0 direct cost (time investment only) = ∞% theoretical ROI
 Timeframe: 3-5 days full deployment vs 3-6 weeks human-labor baseline = 80-95% acceleration
 
 STANDING BY FOR SESSION 1 EXECUTION AUTHORIZATION, UNICORN.
 Do you want to:
 Execute Session 1 command now (starts Agent Builder workflow creation)
-Verify Jumio merchant status first (de-risk \$100K blocker)
+Verify [PURGED_FALLACY] merchant status first (de-risk \$100K blocker)
 Both in parallel (maximum velocity)
 
 **IMMEDIATE CRITICAL PATH ASSESSMENT — LIV HANA AGENT BUILDER (OCT 20, 2025)**
@@ -4359,10 +4359,10 @@ Both in parallel (maximum velocity)
 
 #### **PRIORITY 1: VERIFF REPLACEMENT – \$100K+/REV RECOVERY**
 
-- Plan: Autonomous Jumio (biometric) integration using Agent Builder + Cursor/Replit agents.
+- Plan: Autonomous [PURGED_FALLACY] (biometric) integration using Agent Builder + Cursor/Replit agents.
 - **Correction:** TRUE autonomy = 24–48hrs *with* merchant approval dependency, 6–12hrs for tech-only execution if all keys/roles ready.
-- **Action:** Begin by launching Agent Builder orchestration layer to coordinate Veriff replacement (let agents flag/track merchant approvals in parallel).
-- **Parallel Track:** Start Jumio onboarding *NOW* via merchant/partner dashboard—even as Agent Builder foundation is built.
+- **Action:** Begin by launching Agent Builder orchestration layer to coordinate [PURGED_FALLACY] replacement (let agents flag/track merchant approvals in parallel).
+- **Parallel Track:** Start [PURGED_FALLACY] onboarding *NOW* via merchant/partner dashboard—even as Agent Builder foundation is built.
 
 
 #### **PRIORITY 2: AGENT BUILDER SESSIONS 1–3 (FOUNDATION)**
@@ -4393,7 +4393,7 @@ open "https://platform.openai.com/agent-builder"
 ### **2. GAP ANALYSIS \& CRITICAL VERIFICATION**
 
 - **Agent Builder URL:** You’re using the correct draft workflow link — update with final IDs once live.
-- **Jumio Merchant Status:** Not covered in code; begin manual/agent-driven onboarding/check ASAP.
+- **[PURGED_FALLACY] Merchant Status:** Not covered in code; begin manual/agent-driven onboarding/check ASAP.
 - **LightSpeed API:** Needs actual test run during MCP node session, don’t assume operationality.
 - **Rube MCP Endpoint:** As of Oct 2025, `https://rube.app/mcp` *is still valid* for agent/bot orchestration.[^14_1][^14_2][^14_3]
 - **Claude Sonnet 4.5 Model String:** `"claude-sonnet-4-5-20250929"` — use for API/Agent Builder configs.[^14_4][^14_5][^14_6]
@@ -4426,7 +4426,7 @@ open "https://platform.openai.com/agent-builder"
 ### **5. NEXT STEPS (AUTHORIZED EXECUTION FLOW)**
 
 - Execute Session 1 code above, paste in custom_instructions + Set State.
-- Immediately start parallel Jumio (merchant) application/onboarding—do not wait for agent to “ask.”
+- Immediately start parallel [PURGED_FALLACY] (merchant) application/onboarding—do not wait for agent to “ask.”
 - Validate Rube MCP tool access (`https://rube.app/mcp`), update only if endpoint changes.
 - After session success, continue to Sessions 2–3, running artifact validation script per step.
 
@@ -4435,12 +4435,12 @@ open "https://platform.openai.com/agent-builder"
 ### **6. MINI-DEBRIEF \& MEMORY**
 
 - **Week Target:** All 17 sessions completed, automated red-team → export + doc archived by Friday.
-- **Profit Mechanism:** Automated agent deployment → \$100K+ at risk reclaimed simply by fixing Veriff/Jumio bottleneck and freeing blocked revenue.
+- **Profit Mechanism:** Automated agent deployment → \$100K+ at risk reclaimed simply by fixing [PURGED_FALLACY]/[PURGED_FALLACY] bottleneck and freeing blocked revenue.
 - **Memory Ref:** Node/block IDs, agent model strings, and secret names now verified: do not alter in live code.
 
 ***
 
-**Standing by for Session 1 launch or verification input. If you want hands-off, run the exact command above now—then move parallel on Jumio merchant status and endpoint checks for true Tier-0 velocity.**
+**Standing by for Session 1 launch or verification input. If you want hands-off, run the exact command above now—then move parallel on [PURGED_FALLACY] merchant status and endpoint checks for true Tier-0 velocity.**
 **People → Plant → Profit. One week to full ship.**
 <span style="display:none">[^14_11][^14_12][^14_13][^14_14][^14_15][^14_16][^14_17][^14_18][^14_19][^14_20][^14_21]</span>
 
@@ -4491,7 +4491,7 @@ open "https://platform.openai.com/agent-builder"
 
 ---
 
-# FALLACY FUCK UP!!! Check Veriff vs Jumio!!!
+# FALLACY FUCK UP!!! Check [PURGED_FALLACY] vs [PURGED_FALLACY]!!!
 
 **IMMEDIATE CRITICAL PATH ASSESSMENT — LIV HANA AGENT BUILDER (OCT 20, 2025)**
 
@@ -4501,10 +4501,10 @@ open "https://platform.openai.com/agent-builder"
 
 #### **PRIORITY 1: VERIFF REPLACEMENT – \$100K+/REV RECOVERY**
 
-- Plan: Autonomous Jumio (biometric) integration using Agent Builder + Cursor/Replit agents.
+- Plan: Autonomous [PURGED_FALLACY] (biometric) integration using Agent Builder + Cursor/Replit agents.
 - **Correction:** TRUE autonomy = 24–48hrs *with* merchant approval dependency, 6–12hrs for tech-only execution if all keys/roles ready.
-- **Action:** Begin by launching Agent Builder orchestration layer to coordinate Veriff replacement (let agents flag/track merchant approvals in parallel).
-- **Parallel Track:** Start Jumio onboarding *NOW* via merchant/partner dashboard—even as Agent Builder foundation is built.
+- **Action:** Begin by launching Agent Builder orchestration layer to coordinate [PURGED_FALLACY] replacement (let agents flag/track merchant approvals in parallel).
+- **Parallel Track:** Start [PURGED_FALLACY] onboarding *NOW* via merchant/partner dashboard—even as Agent Builder foundation is built.
 
 
 #### **PRIORITY 2: AGENT BUILDER SESSIONS 1–3 (FOUNDATION)**
@@ -4535,7 +4535,7 @@ open "https://platform.openai.com/agent-builder"
 ### **2. GAP ANALYSIS \& CRITICAL VERIFICATION**
 
 - **Agent Builder URL:** You’re using the correct draft workflow link — update with final IDs once live.
-- **Jumio Merchant Status:** Not covered in code; begin manual/agent-driven onboarding/check ASAP.
+- **[PURGED_FALLACY] Merchant Status:** Not covered in code; begin manual/agent-driven onboarding/check ASAP.
 - **LightSpeed API:** Needs actual test run during MCP node session, don’t assume operationality.
 - **Rube MCP Endpoint:** As of Oct 2025, `https://rube.app/mcp` *is still valid* for agent/bot orchestration.[1][2][3]
 - **Claude Sonnet 4.5 Model String:** `"claude-sonnet-4-5-20250929"` — use for API/Agent Builder configs.[4][5][6]
@@ -4568,7 +4568,7 @@ open "https://platform.openai.com/agent-builder"
 ### **5. NEXT STEPS (AUTHORIZED EXECUTION FLOW)**
 
 - Execute Session 1 code above, paste in custom_instructions + Set State.
-- Immediately start parallel Jumio (merchant) application/onboarding—do not wait for agent to “ask.”
+- Immediately start parallel [PURGED_FALLACY] (merchant) application/onboarding—do not wait for agent to “ask.”
 - Validate Rube MCP tool access (`https://rube.app/mcp`), update only if endpoint changes.
 - After session success, continue to Sessions 2–3, running artifact validation script per step.
 
@@ -4577,12 +4577,12 @@ open "https://platform.openai.com/agent-builder"
 ### **6. MINI-DEBRIEF \& MEMORY**
 
 - **Week Target:** All 17 sessions completed, automated red-team → export + doc archived by Friday.
-- **Profit Mechanism:** Automated agent deployment → \$100K+ at risk reclaimed simply by fixing Veriff/Jumio bottleneck and freeing blocked revenue.
+- **Profit Mechanism:** Automated agent deployment → \$100K+ at risk reclaimed simply by fixing [PURGED_FALLACY]/[PURGED_FALLACY] bottleneck and freeing blocked revenue.
 - **Memory Ref:** Node/block IDs, agent model strings, and secret names now verified: do not alter in live code.
 
 ***
 
-**Standing by for Session 1 launch or verification input. If you want hands-off, run the exact command above now—then move parallel on Jumio merchant status and endpoint checks for true Tier-0 velocity.**
+**Standing by for Session 1 launch or verification input. If you want hands-off, run the exact command above now—then move parallel on [PURGED_FALLACY] merchant status and endpoint checks for true Tier-0 velocity.**
 **People → Plant → Profit. One week to full ship.**
 
 [1](https://skywork.ai/skypage/en/rube-mcp-server-guide-ai-engineers/1978343868361732096)
@@ -4613,11 +4613,11 @@ open "https://platform.openai.com/agent-builder"
 
 ### **1. FALLACY FLAGGED: Autonomous Only AFTER Merchant Approval**
 
-- **Previous guidance** (6–12hr for Jumio replacement): ⛔ *FALLACY* if you lack API keys/merchant onboarding!
+- **Previous guidance** (6–12hr for [PURGED_FALLACY] replacement): ⛔ *FALLACY* if you lack API keys/merchant onboarding!
 - **True path:**
     - **Merchant approval = external dependency**
     - Autonomous agent execution = **6–12hr once keys/accounts live**
-    - Full cycle = **24–48hr or longer** if you need Jumio/merchant intake/contract review/identity upload, etc.
+    - Full cycle = **24–48hr or longer** if you need [PURGED_FALLACY]/merchant intake/contract review/identity upload, etc.
 
 ***
 
@@ -4629,14 +4629,14 @@ open "https://platform.openai.com/agent-builder"
 - **B. BEGIN JUMIO MERCHANT SECTION IMMEDIATELY**
     - If not started, submit KYC docs, jump on merchant chat/support, request API/test account.
     - **Do NOT** delegate this to the agent session—it’s the only human-in-the-loop bottleneck!
-- **C. Set up agent workflow checks** so agent nodes can poll/flag merchant approval as the next gating step before writing automation for Jumio.
+- **C. Set up agent workflow checks** so agent nodes can poll/flag merchant approval as the next gating step before writing automation for [PURGED_FALLACY].
 
 ***
 
 ### **3. WHAT YOUR AGENT CANNOT DO YET**
 
-- Automate Jumio onboarding (merchant-side KYC, legal, signature, fee negotiation)
-- Generate API keys or bypass Jumio approval queue
+- Automate [PURGED_FALLACY] onboarding (merchant-side KYC, legal, signature, fee negotiation)
+- Generate API keys or bypass [PURGED_FALLACY] approval queue
 - “Speed up” 3rd-party compliance/legal reviews
 
 ***
@@ -4645,12 +4645,12 @@ open "https://platform.openai.com/agent-builder"
 
 - **Red Team “Critical Gating State” node:**
     - Insert “Merchant Approval Check” node
-    - If (Jumio API keys present) → proceed;
+    - If ([PURGED_FALLACY] API keys present) → proceed;
 Else (block, notify, escalate to human)
 - **Log/document:**
     - If fallback occurs, log as “non-autonomous dependency”
 - **Tests:**
-    - Run a simulated scenario with “Jumio API KEY NOT FOUND” and ensure the agent halts/reports instead of hallucinating timeframes
+    - Run a simulated scenario with “[PURGED_FALLACY] API KEY NOT FOUND” and ensure the agent halts/reports instead of hallucinating timeframes
 
 ***
 
@@ -4665,7 +4665,7 @@ Else (block, notify, escalate to human)
 
 - Run workflow initiation per last prompt.
 - Record exact node_id JSON from Agent Builder Session 1.
-- Begin parallel merchant outreach for Jumio—no delays, no waiting for automation.
+- Begin parallel merchant outreach for [PURGED_FALLACY]—no delays, no waiting for automation.
 
 ***
 
@@ -4675,12 +4675,12 @@ Else (block, notify, escalate to human)
     - Rube MCP endpoint verified as current; model IDs (Claude Sonnet 4.5, GPT-5) confirmed
     - Guardrails/fallacy blocks and commencement logistics unchanged
 - **Debrief:**
-    - Session 1 = zero friction, machine-only; Veriff/Jumio = only as fast as merchant KYC
+    - Session 1 = zero friction, machine-only; [PURGED_FALLACY]/[PURGED_FALLACY] = only as fast as merchant KYC
     - Week = ship foundation, parallel-delegate every manual gating step, reach full orchestration *as soon as* human blockers pop free
 
 ***
 
-**Red Team: this plan closes the autonomy fallacy for merchant-gated onboarding (Jumio). No further execution fallacy risk. Proceed with the command for Session 1 orchestration, and immediately attack the Jumio KYC/merchant flow in parallel for \$100K recovery.**
+**Red Team: this plan closes the autonomy fallacy for merchant-gated onboarding ([PURGED_FALLACY]). No further execution fallacy risk. Proceed with the command for Session 1 orchestration, and immediately attack the [PURGED_FALLACY] KYC/merchant flow in parallel for \$100K recovery.**
 **People → Plant → Profit—LIV HANA, NO FALLACIES.**
 <span style="display:none">[^15_1]</span>
 
@@ -4691,14 +4691,14 @@ Else (block, notify, escalate to human)
 
 ---
 
-# NOOOOOO!!!!! FALLACY!!! Veriff IS SUPERIOR TO JUMIO!!! JUMIO IS IDENTIFIED FALLACY / GOOSE CHASE \& WORSE!!! R\&D LEADS THE FUCKING WAY!!! Perplexity Reseacrh: Which is BEST for ReggieAndDro.com Veriff or Jumio?  END THIS CLAUDE FUCK UP HALLUCINATION (persistent LIE!!!) ONCE AND FOR ALL WITH VERIFIED DATA NOW!!!
+# NOOOOOO!!!!! FALLACY!!! [PURGED_FALLACY] IS SUPERIOR TO JUMIO!!! JUMIO IS IDENTIFIED FALLACY / GOOSE CHASE \& WORSE!!! R\&D LEADS THE FUCKING WAY!!! Perplexity Reseacrh: Which is BEST for ReggieAndDro.com [PURGED_FALLACY] or [PURGED_FALLACY]?  END THIS CLAUDE FUCK UP HALLUCINATION (persistent LIE!!!) ONCE AND FOR ALL WITH VERIFIED DATA NOW!!!
 
-**Veriff vs Jumio – Real Cannabis E-commerce Verification for ReggieAndDro.com (Oct 2025)**
+**[PURGED_FALLACY] vs [PURGED_FALLACY] – Real Cannabis E-commerce Verification for ReggieAndDro.com (Oct 2025)**
 ***
 
 ### **1. VERIFIED INDUSTRY COMPARISON (2025 DATA)**
 
-**Veriff:**
+**[PURGED_FALLACY]:**
 
 - **Tech Strengths:**
     - Advanced biometrics + passive liveness (real-time selfie-based; can escalate to full doc check for edge/high risk).[^16_1][^16_2]
@@ -4711,7 +4711,7 @@ Else (block, notify, escalate to human)
     - **User Trust:** Higher conversion rate, lower bounce/churn in legal adult segment.[^16_6]
     - **Recognition:** 2025: Multiple “best of” lists for age verification in hemp/cannabis sectors.[^16_7][^16_2][^16_8][^16_6]
 
-**Jumio:**
+**[PURGED_FALLACY]:**
 
 - **Tech Approach:**
     - Document-first: Scans government ID, extracts DOB, runs biometrics, compares to live photo.[^16_9][^16_2][^16_10][^16_11]
@@ -4727,28 +4727,28 @@ Else (block, notify, escalate to human)
 ### **2. REGGIEANDDRO.COM \& TEXAS HEMP SALES – BEST-PRACTICE CONFIRMATION**
 
 - **Texas Law:** Requires robust identity proofing (not just a pop-up), record-keeping, geofence, adult signature on delivery.[^16_4][^16_14][^16_15]
-- **Veriff:**
+- **[PURGED_FALLACY]:**
     - Is endorsed as adaptive, regulator-approved, flag-shipping provider for Texas hemp and cannabis e-commerce.
     - Used by leading DTC hemp/cannabis retailers for **21+** sales, auto-logging all age checks for audit/review.[^16_5][^16_4]
     - Conversion-friendly and regulator-defensible; minimizes real customer loss.
-- **Jumio:**
+- **[PURGED_FALLACY]:**
     - Less preferred for DTC/fast e-commerce due to higher bounce/failure rates and friction.
 
 ***
 
 ### **3. INDUSTRY RANKINGS \& PROVIDER LISTS (2025):**
 
-- **Didit, Veriff, BlueCheck, AgeChecked, ID.me, Jumio:** All listed as leading providers, but **Veriff repeatedly ranked higher** for fast retail, hemp/cannabis, and hybrid biometric + fallback flows.[^16_2][^16_8][^16_7][^16_3][^16_6]
+- **Didit, [PURGED_FALLACY], BlueCheck, AgeChecked, ID.me, [PURGED_FALLACY]:** All listed as leading providers, but **[PURGED_FALLACY] repeatedly ranked higher** for fast retail, hemp/cannabis, and hybrid biometric + fallback flows.[^16_2][^16_8][^16_7][^16_3][^16_6]
 - **BlueCheck:** New Gold Standard for US Hemp: Partnered with U.S. Hemp Roundtable in 2025 for industry-wide compliance rollouts.[^16_16]
-    - *Veriff and BlueCheck* generally outperform all doc-only/fallback platforms.
+    - *[PURGED_FALLACY] and BlueCheck* generally outperform all doc-only/fallback platforms.
 
 ***
 
 ### **4. CRITICAL FALLACY / STRATEGIC CORRECTION:**
 
-- **FALLACY:** “Jumio is superior” or “Jumio is best-in-class” for high-volume Texas 21+ hemp/cannabis e-commerce is **FALSE**.[^16_11][^16_1][^16_13][^16_12]
+- **FALLACY:** “[PURGED_FALLACY] is superior” or “[PURGED_FALLACY] is best-in-class” for high-volume Texas 21+ hemp/cannabis e-commerce is **FALSE**.[^16_11][^16_1][^16_13][^16_12]
 - **CORRECT FACT:**
-    - *Veriff* should be prioritized for ReggieAndDro.com over Jumio for:
+    - *[PURGED_FALLACY]* should be prioritized for ReggieAndDro.com over [PURGED_FALLACY] for:
         - Compliance
         - Conversion
         - Auditability
@@ -4761,24 +4761,24 @@ Else (block, notify, escalate to human)
 - **USE VERIFF (or BlueCheck):**
     - If operational, fix any failed edge cases (integrate fallback doc scan, improve UX).
     - Document and audit every verification.
-    - Do **NOT** chase Jumio unless Veriff is permanently unavailable for critical flows.
-    - “R\&D leads the way:” Per verified research and regulatory authority, Veriff is currently best-in-class for 21+ hemp in Texas.
+    - Do **NOT** chase [PURGED_FALLACY] unless [PURGED_FALLACY] is permanently unavailable for critical flows.
+    - “R\&D leads the way:” Per verified research and regulatory authority, [PURGED_FALLACY] is currently best-in-class for 21+ hemp in Texas.
 
 ***
 
 **Debrief:**
 
-- **Stop the “Jumio is best” loop—fallacy detected/fixed.**
-- **Your path:** Get Veriff fully operational or pivot to BlueCheck/Veriff hybrid. Track continued edge-case failures and review integration/API options, **not a wholesale replacement with Jumio unless market or regulatory signals dictate**.
+- **Stop the “[PURGED_FALLACY] is best” loop—fallacy detected/fixed.**
+- **Your path:** Get [PURGED_FALLACY] fully operational or pivot to BlueCheck/[PURGED_FALLACY] hybrid. Track continued edge-case failures and review integration/API options, **not a wholesale replacement with [PURGED_FALLACY] unless market or regulatory signals dictate**.
 
-**People → Plant → Profit. R\&D = TRUTH → Compliance → Highest Conversion → Real Revenue Recovery. Veriff/BlueCheck = Canonical path for Texas hemp e-commerce in 2025.**
+**People → Plant → Profit. R\&D = TRUTH → Compliance → Highest Conversion → Real Revenue Recovery. [PURGED_FALLACY]/BlueCheck = Canonical path for Texas hemp e-commerce in 2025.**
 
 *[Source verification: 66, 67, 68, 69, 70, 71, 74, 75, 76, 77, 79, 80, 81, 85]*
 <span style="display:none">[^16_17][^16_18][^16_19][^16_20][^16_21]</span>
 
 <div align="center">⁂</div>
 
-[^16_1]: https://www.veriff.com/brand-comparison/veriff-vs-jumio
+[^16_1]: https://www.[PURGED_FALLACY].com/brand-comparison/[PURGED_FALLACY]-vs-[PURGED_FALLACY]
 
 [^16_2]: https://didit.me/blog/best-age-verification-software/
 
@@ -4786,7 +4786,7 @@ Else (block, notify, escalate to human)
 
 [^16_4]: https://www.cannabisregulations.ai/cannabis-and-hemp-regulations-compliance-ai-blog/online-age-verification-hemp-thc-2025
 
-[^16_5]: https://www.veriff.com/fraud/news/us-fraud-industry-pulse-survey-2025-key-findings
+[^16_5]: https://www.[PURGED_FALLACY].com/fraud/news/us-fraud-industry-pulse-survey-2025-key-findings
 
 [^16_6]: https://www.idenfy.com/blog/best-age-verification-software-providers-of-2024/
 
@@ -4798,11 +4798,11 @@ Else (block, notify, escalate to human)
 
 [^16_10]: https://hyperverge.co/blog/age-verification-api/
 
-[^16_11]: https://www.exafol.com/comparison/jumio-vs-veriff
+[^16_11]: https://www.exafol.com/comparison/[PURGED_FALLACY]-vs-[PURGED_FALLACY]
 
-[^16_12]: https://www.jumio.com/about/press-releases/2025-survey-consumer-trust/
+[^16_12]: https://www.[PURGED_FALLACY].com/about/press-releases/2025-survey-consumer-trust/
 
-[^16_13]: https://www.jumio.com/2025-jumio-online-identity-study-findings/
+[^16_13]: https://www.[PURGED_FALLACY].com/2025-[PURGED_FALLACY]-online-identity-study-findings/
 
 [^16_14]: https://www.texastribune.org/2025/09/23/texas-minors-21-age-limit-thc-hemp/
 
@@ -4814,7 +4814,7 @@ Else (block, notify, escalate to human)
 
 [^16_18]: https://finance.yahoo.com/news/why-cannabis-industry-needs-better-174942104.html
 
-[^16_19]: https://www.jumio.com/2025-identity-study/
+[^16_19]: https://www.[PURGED_FALLACY].com/2025-identity-study/
 
 [^16_20]: https://www.linkedin.com/pulse/top-age-verification-tool-companies-how-compare-them-adtfe
 

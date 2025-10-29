@@ -17,13 +17,13 @@
 
 **What's Included:**
 
-1. ✅ Veriff age verification API client (280 lines)
-   - Real API calls to Veriff
+1. ✅ [PURGED_FALLACY] age verification API client (280 lines)
+   - Real API calls to [PURGED_FALLACY]
    - JWT authentication
    - HMAC webhook verification
    - Session creation with order tracking
 
-2. ✅ Veriff webhook handler (350 lines)
+2. ✅ [PURGED_FALLACY] webhook handler (350 lines)
    - Handles all verification events
    - Signature verification
    - Auto-enrollment trigger
@@ -43,7 +43,7 @@
 
 5. ✅ Post-purchase verification - COMPLETE (650 lines)
    - 72-hour countdown timer
-   - **Real Veriff session creation** (not mocked)
+   - **Real [PURGED_FALLACY] session creation** (not mocked)
    - **Real SendGrid emails** (not mocked)
    - **Real KAJA refunds** (with fallback)
    - **Real LightSpeed loyalty enrollment** (with fallback)
@@ -59,9 +59,9 @@
 ✅ POST /api/v1/post-purchase/check-expired   # Background job
 ✅ GET  /api/v1/post-purchase/stats           # Admin dashboard
 
-✅ POST /api/v1/veriff/webhook                # Veriff callbacks
-✅ GET  /api/v1/veriff/session/:id            # Debug endpoint
-✅ GET  /api/v1/veriff/decision/:id           # Debug endpoint
+✅ POST /api/v1/[PURGED_FALLACY]/webhook                # [PURGED_FALLACY] callbacks
+✅ GET  /api/v1/[PURGED_FALLACY]/session/:id            # Debug endpoint
+✅ GET  /api/v1/[PURGED_FALLACY]/decision/:id           # Debug endpoint
 
 ✅ GET  /health                                # Health check
 ```
@@ -140,11 +140,11 @@ cd ~/LivHana-Trinity-Local/LivHana-SoT
 
 ## 📋 CONFIGURATION REQUIRED
 
-### 1. Veriff Webhook (REQUIRED)
+### 1. [PURGED_FALLACY] Webhook (REQUIRED)
 
-**Action:** Configure in Veriff dashboard
-**URL:** <https://integration-service-980910443251.us-central1.run.app/api/v1/veriff/webhook>
-**Login:** <https://station.veriff.com/login>
+**Action:** Configure in [PURGED_FALLACY] dashboard
+**URL:** <https://integration-service-980910443251.us-central1.run.app/api/v1/[PURGED_FALLACY]/webhook>
+**Login:** <https://station.[PURGED_FALLACY].com/login>
 **Events:** All verification events
 **Secret:** Already in GCP (VERIFF_SECRET_KEY)
 
@@ -185,7 +185,7 @@ cd ~/LivHana-Trinity-Local/LivHana-SoT
 
 ## 🧪 TESTING
 
-### Test Veriff Integration
+### Test [PURGED_FALLACY] Integration
 
 ```bash
 SERVICE_URL="https://integration-service-980910443251.us-central1.run.app"
@@ -193,7 +193,7 @@ SERVICE_URL="https://integration-service-980910443251.us-central1.run.app"
 # Test health
 curl $SERVICE_URL/health
 
-# Create test order (triggers Veriff session)
+# Create test order (triggers [PURGED_FALLACY] session)
 curl -X POST $SERVICE_URL/api/v1/post-purchase/webhook \
   -H "Content-Type: application/json" \
   -d '{
@@ -205,7 +205,7 @@ curl -X POST $SERVICE_URL/api/v1/post-purchase/webhook \
   }'
 
 # Expected response includes:
-# - Veriff session created
+# - [PURGED_FALLACY] session created
 # - Email sent (if SendGrid configured)
 # - 72-hour deadline set
 ```
@@ -228,7 +228,7 @@ curl $SERVICE_URL/api/v1/post-purchase/stats
 
 ### ✅ REAL (Production Ready)
 
-1. **Veriff API Integration**
+1. **[PURGED_FALLACY] API Integration**
    - Creates real verification sessions
    - Verifies webhook signatures
    - Tracks verification status
@@ -290,7 +290,7 @@ curl $SERVICE_URL/api/v1/post-purchase/stats
 
 ### P0 (DO NOW)
 
-1. ✅ Configure Veriff webhook in dashboard
+1. ✅ Configure [PURGED_FALLACY] webhook in dashboard
 2. ⏳ Add JWT_SECRET to GCP Secret Manager
 3. ⏳ Configure LightSpeed webhook
 4. ⏳ Test end-to-end flow with test order
@@ -317,14 +317,14 @@ curl $SERVICE_URL/api/v1/post-purchase/stats
 
 - Files created/modified: 18
 - Total lines of code: 4,973
-- Real API integrations: 6 (Veriff, SendGrid, KAJA, LightSpeed, DoorDash, Uber)
+- Real API integrations: 6 ([PURGED_FALLACY], SendGrid, KAJA, LightSpeed, DoorDash, Uber)
 - Placeholder functions removed: 2 (loyalty, refund)
 - Services deployed: 1 (integration-service)
 - Services ready to deploy: 1 (delivery-service)
 
 **Time Investment:**
 
-- Veriff integration: 2 hours
+- [PURGED_FALLACY] integration: 2 hours
 - SendGrid integration: 1 hour
 - KAJA integration: 1 hour
 - Delivery service: 4 hours
@@ -346,7 +346,7 @@ curl $SERVICE_URL/api/v1/post-purchase/stats
 
 **What Works Right Now:**
 
-- ✅ Veriff sessions created for new orders
+- ✅ [PURGED_FALLACY] sessions created for new orders
 - ✅ Emails sent via SendGrid (if configured)
 - ✅ 72-hour countdown tracking
 - ✅ Auto-refund processing (KAJA if configured, mock fallback)
@@ -364,7 +364,7 @@ curl $SERVICE_URL/api/v1/post-purchase/stats
 
 **Can You Test It?**
 
-- ✅ YES - Create Veriff sessions
+- ✅ YES - Create [PURGED_FALLACY] sessions
 - ✅ YES - Track verification status
 - ✅ YES - Process refunds (mock or real)
 - ✅ YES - Send emails (if SendGrid configured)

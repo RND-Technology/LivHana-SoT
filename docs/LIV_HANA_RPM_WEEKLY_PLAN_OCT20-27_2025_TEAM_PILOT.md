@@ -25,7 +25,7 @@
 - **Target 2:** $1,000,000 EBITDA by Q1 2026
 - **Target 3:** $1,000,000 EBITDA per month by Q2 2026
 
-**This Week's North Star:** Unlock $100K+ blocked revenue through Veriff UX optimization + launch multi-agent AI orchestration system
+**This Week's North Star:** Unlock $100K+ blocked revenue through [PURGED_FALLACY] UX optimization + launch multi-agent AI orchestration system
 
 ---
 
@@ -34,7 +34,7 @@
 ### **R&D (Reggie & Dro)**
 - Texas Retail: Stone Oak location, DSHS License #690
 - Current Revenue: $1.148M annual
-- **Critical Blocker:** Veriff age verification UX friction ($100K+ lost revenue, 80+ blocked customers)
+- **Critical Blocker:** [PURGED_FALLACY] age verification UX friction ($100K+ lost revenue, 80+ blocked customers)
 - **This Week's Focus:** Optimize checkout flow for revenue recovery
 
 ### **HNC (High Noon Cartoon)**
@@ -58,30 +58,30 @@
 ## 📊 RPM BLOCK #1: REVENUE RECOVERY (PRIORITY 1)
 
 ### 🎯 **RESULT**
-**"Veriff Age Verification UX Optimized for $100K+ Revenue Recovery by Friday Oct 25"**
+**"[PURGED_FALLACY] Age Verification UX Optimized for $100K+ Revenue Recovery by Friday Oct 25"**
 
 ### 💪 **PURPOSE**
 **Why This Matters:**
 - Unlock $100K+ blocked revenue from 80+ customers currently unable to complete checkout
 - Remove friction for conservative Texas demographic (age 30-60, rule-following, trust-focused)
 - Maintain compliance (Age 21+, Texas/Federal hemp regulations) while maximizing conversion
-- Avoid wasteful platform migration (Veriff 95% first-attempt success vs Jumio's document-first friction)
+- Avoid wasteful platform migration ([PURGED_FALLACY] 95% first-attempt success vs [PURGED_FALLACY]'s document-first friction)
 - **Mission Alignment:** Revenue fuels policy advocacy → Texas leadership → Cannabis descheduling
 
 ### 🚀 **MASSIVE ACTION PLAN**
 
 #### **80/20 LENS:** Which 20% of actions drive 80% of profit impact?
-**Veriff UX optimization = 80% lever** (unlocks immediate revenue without $10K+ platform migration risk)
+**[PURGED_FALLACY] UX optimization = 80% lever** (unlocks immediate revenue without $10K+ platform migration risk)
 
 #### **5/55 LENS:** Which 5 actions in 55 minutes maximum yield highest impact?
-1. Move Veriff from site-entry → checkout-triggered (2 hours)
+1. Move [PURGED_FALLACY] from site-entry → checkout-triggered (2 hours)
 2. Enable auto-verification for repeat customers (2 hours)
 3. Implement 72-hour refund automation (2 hours)
 4. Conservative Texas messaging updates (1 hour)
 5. Customer win-back email campaign (1 hour)
 
 #### **ONE THING LENS:** If you could only do ONE action?
-**Checkout-triggered Veriff** = removes friction while maintaining compliance (makes everything else easier)
+**Checkout-triggered [PURGED_FALLACY]** = removes friction while maintaining compliance (makes everything else easier)
 
 ---
 
@@ -89,10 +89,10 @@
 
 #### **MONDAY, OCTOBER 21**
 
-##### **Action 1.1: Move Veriff Trigger (2 hours | 2-4pm)**
+##### **Action 1.1: Move [PURGED_FALLACY] Trigger (2 hours | 2-4pm)**
 **Owner:** Cursor (Sonnet 4.5) + Jesse oversight  
 **Profit Contribution:** $50K+ (reduces abandonment)  
-**Autonomous Execution:** Cursor reads Veriff API docs → generates checkout integration code
+**Autonomous Execution:** Cursor reads [PURGED_FALLACY] API docs → generates checkout integration code
 
 **Technical Requirements:**
 - Move age gate from site-entry → checkout phase only
@@ -102,11 +102,11 @@
 **Terminal Command (Jesse):**
 ```bash
 cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT && cursor
-# Prompt in Cursor: "Optimize Veriff age verification for ReggieDro.com checkout. Move trigger from site-entry to checkout phase. Read Veriff API docs autonomously. Conservative Texas messaging required."
+# Prompt in Cursor: "Optimize [PURGED_FALLACY] age verification for ReggieDro.com checkout. Move trigger from site-entry to checkout phase. Read [PURGED_FALLACY] API docs autonomously. Conservative Texas messaging required."
 ```
 
 **Success Criteria:**
-- ✅ Veriff only triggers at checkout (not site-entry)
+- ✅ [PURGED_FALLACY] only triggers at checkout (not site-entry)
 - ✅ SEO preserved (search engines can crawl product pages)
 - ✅ Conservative messaging displayed ("Following Texas State Law")
 
@@ -117,7 +117,7 @@ cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT && cursor
 **Profit Contribution:** $30K+ (repeat customer conversion)
 
 **Technical Requirements:**
-- Integrate Veriff session API for repeat customer storage
+- Integrate [PURGED_FALLACY] session API for repeat customer storage
 - Customer verified once → never prompted again (session persistence)
 - Store verification status in LightSpeed customer profile
 
@@ -146,7 +146,7 @@ cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT && cursor
 
 **Automation Flow:**
 ```
-Customer checkout → Veriff verification → Declined
+Customer checkout → [PURGED_FALLACY] verification → Declined
   ↓
 Webhook: verification.declined
   ↓
@@ -234,12 +234,12 @@ DSHS License #690
 **Key Dependencies:**
 - ✅ Kaja Payments: APPROVED (3 weeks ago)
 - ✅ LightSpeed X-Series: OPERATIONAL
-- ✅ Veriff API: Active (no replacement needed)
+- ✅ [PURGED_FALLACY] API: Active (no replacement needed)
 
 **Debrief Friday Oct 25:**
 - Revenue recovery metrics (actual vs $100K target)
 - Customer win-back campaign performance
-- Veriff conversion rate improvements
+- [PURGED_FALLACY] conversion rate improvements
 - Next week optimization opportunities
 
 ---
@@ -400,7 +400,7 @@ VALIDATE patterns (compliance):
 CORRECT patterns (documented fallacies):
 - "Kaja pending" → "Kaja APPROVED 3 weeks ago"
 - "LightSpeed setup needed" → "LightSpeed OPERATIONAL"
-- "Veriff failed" → "Veriff SUPERIOR, needs UX optimization"
+- "[PURGED_FALLACY] failed" → "[PURGED_FALLACY] SUPERIOR, needs UX optimization"
 ```
 
 **Success Criteria:**
@@ -432,10 +432,10 @@ CORRECT patterns (documented fallacies):
 **Voice Mode Testing:**
 ```
 Test prompts:
-1. "Hey Liv, RPM plan for Veriff replacement this week"
+1. "Hey Liv, RPM plan for [PURGED_FALLACY] replacement this week"
    Expected: Full RPM output (Result → Purpose → MAP with 3 lenses)
 
-2. "Yo Liv, Veriff status?"
+2. "Yo Liv, [PURGED_FALLACY] status?"
    Expected: EA Brevity Mode ("Needs UX optimization for $100K+ recovery")
 
 3. "What's our profit target for December?"
@@ -478,11 +478,11 @@ Expected Output:
 
 **Scenario 3: Technical Implementation**
 ```
-Prompt: "How do we integrate Jumio for age verification?"
+Prompt: "How do we integrate [PURGED_FALLACY] for age verification?"
 Expected Output:
-- Correction: "Veriff is SUPERIOR to Jumio for cannabis e-commerce conversion"
+- Correction: "[PURGED_FALLACY] is SUPERIOR to [PURGED_FALLACY] for cannabis e-commerce conversion"
 - Evidence: 95% first-attempt success, <1% fraud, no conversion degradation
-- Recommendation: Optimize Veriff UX instead of platform replacement
+- Recommendation: Optimize [PURGED_FALLACY] UX instead of platform replacement
 ```
 
 **Scenario 4: Multi-Agent Coordination**
@@ -691,31 +691,31 @@ Runway prompt:
 ## 📊 WEEKLY DEBRIEF TEMPLATE (FRIDAY, OCT 25, 4PM)
 
 ### **SHIPPED:**
-- [ ] Veriff UX optimization complete ($100K+ revenue recovery pathway)
+- [ ] [PURGED_FALLACY] UX optimization complete ($100K+ revenue recovery pathway)
 - [ ] Customer win-back campaign sent (80+ emails)
 - [ ] Agent Builder workflow operational (voice mode + 500+ app integrations)
 - [ ] HNC Day 15 episode published (YouTube + social media)
 
 ### **DECISIONS:**
-- [ ] Veriff retained (NOT replaced with Jumio) - evidence-based correction
+- [ ] [PURGED_FALLACY] retained (NOT replaced with [PURGED_FALLACY]) - evidence-based correction
 - [ ] Agent Builder prioritized for autonomous RPM planning
 - [ ] HNC content automation proven at 1 episode/week → scaling to 7/week
 
 ### **MEMORY UPDATES:**
-- [ ] Veriff SUPERIOR to Jumio (conversion rate evidence)
+- [ ] [PURGED_FALLACY] SUPERIOR to [PURGED_FALLACY] (conversion rate evidence)
 - [ ] Agent Builder node-based canvas confirmed (Oct 2025 current state)
 - [ ] Rube MCP operational (500+ tools, single endpoint)
 - [ ] Profit targets reinforced ($100K → $1M EBITDA → $1M/month)
 
 ### **NEXT ACTIONS (WEEK OF OCT 28):**
-1. Monitor Veriff revenue recovery metrics (actual vs $100K target)
+1. Monitor [PURGED_FALLACY] revenue recovery metrics (actual vs $100K target)
 2. Export Agent Builder code → Deploy to Cloud Run
 3. Submit Liv Hana to ChatGPT App Store (Day 1 launch prep)
 4. Scale HNC to 7 episodes/week (Days 16-21 automated)
 5. Launch domain consolidation Phase 2 (301 redirects)
 
 ### **RISKS:**
-- [ ] Veriff optimization may not hit $100K target → Have BlueCheck evaluation ready as fallback
+- [ ] [PURGED_FALLACY] optimization may not hit $100K target → Have BlueCheck evaluation ready as fallback
 - [ ] Agent Builder voice mode latency → Test with multiple users, optimize if >2 seconds
 - [ ] HNC content quality at scale → Implement QA rubric for autonomous outputs
 - [ ] Token costs exceeding budget → Monitor daily, implement caching strategies
@@ -731,7 +731,7 @@ Runway prompt:
 ### **FOR ANDREW (DIRECTOR OPERATIONS)**
 
 **Your Role This Week:**
-- Monitor Veriff implementation (customer experience impact)
+- Monitor [PURGED_FALLACY] implementation (customer experience impact)
 - Track customer win-back campaign results (open rates, conversion)
 - Test voice mode with Liv Hana (RPM planning for operational tasks)
 
@@ -741,7 +741,7 @@ Runway prompt:
 - Voice: "What's our DSHS compliance status?"
 
 **Success Metrics:**
-- Customer satisfaction maintained during Veriff changes
+- Customer satisfaction maintained during [PURGED_FALLACY] changes
 - Win-back campaign conversion rate >10%
 - Voice mode used 3+ times for operational planning
 
@@ -769,7 +769,7 @@ Runway prompt:
 ### **FOR CHARLIE (PRODUCT PROCUREMENT)**
 
 **Your Role This Week:**
-- Monitor inventory levels during Veriff optimization (demand may spike)
+- Monitor inventory levels during [PURGED_FALLACY] optimization (demand may spike)
 - Test voice mode for supplier coordination
 - Validate COA requirements for DSHS compliance
 
@@ -793,7 +793,7 @@ Runway prompt:
 - [ ] Zero revenue disruption during implementation
 
 ### **OPERATIONAL:**
-- [ ] Veriff UX optimized (checkout-triggered, auto-verification, 72-hour refunds)
+- [ ] [PURGED_FALLACY] UX optimized (checkout-triggered, auto-verification, 72-hour refunds)
 - [ ] Agent Builder operational (12-node workflow, voice mode, 500+ app integrations)
 - [ ] HNC Day 15 published (proof of autonomous content capability)
 
@@ -803,7 +803,7 @@ Runway prompt:
 - [ ] Team trained on voice mode (Andrew, Christopher, Charlie using Liv Hana)
 
 ### **COMPLIANCE:**
-- [ ] Age 21+ enforcement maintained (Veriff + messaging)
+- [ ] Age 21+ enforcement maintained ([PURGED_FALLACY] + messaging)
 - [ ] Zero medical claims language (guardrails validated)
 - [ ] DSHS License #690 compliance preserved (COAs current)
 
@@ -829,7 +829,7 @@ Runway prompt:
 
 ### **TERMINAL COMMANDS (COPY-PASTE READY)**
 
-**Start Cursor for Veriff optimization:**
+**Start Cursor for [PURGED_FALLACY] optimization:**
 ```bash
 cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT && cursor
 ```

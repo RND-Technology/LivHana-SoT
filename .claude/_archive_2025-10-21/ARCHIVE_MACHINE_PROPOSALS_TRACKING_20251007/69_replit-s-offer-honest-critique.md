@@ -15,7 +15,7 @@
 
 1. ✅ HNC automation DEPLOYED - LIVE on port 4003
 2. ✅ Episode 1 COMPLETE - 13.7 seconds production time
-3. ✅ Age verification DEPLOYED - Veriff 100% automated
+3. ✅ Age verification DEPLOYED - [PURGED_FALLACY] 100% automated
 4. ✅ Ecwid checkout VALIDATED - End-to-end functional
 5. ✅ AI Crisis Consulting DEPLOYED - Landing page LIVE
 6. ✅ Cloud Run services DEPLOYED - reasoning-gateway, voice-service

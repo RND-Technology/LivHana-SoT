@@ -30,7 +30,7 @@ reggie-dro-main/
 
 **Core Implementation Files:**
 
-**1. Age Verification Microservice (Veriff Replacement)**
+**1. Age Verification Microservice ([PURGED_FALLACY] Replacement)**
 
 ```javascript
 // backend/routes/verification.js

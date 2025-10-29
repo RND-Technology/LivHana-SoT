@@ -8,9 +8,9 @@
 
 2. ✅ **Age Verification Automated** (Guarantee #2)
    - Time: 5 minutes to deploy and test
-   - Status: Production-ready Veriff integration
+   - Status: Production-ready [PURGED_FALLACY] integration
    - Result: 20+ hours/week manual work eliminated
 
 3. ✅ **API Keys Retrieved** (Supporting Task)
    - All keys retrieved from 1Password
-   - ElevenLabs, Veriff, Lightspeed, Ecwid credentials secured
+   - ElevenLabs, [PURGED_FALLACY], Lightspeed, Ecwid credentials secured

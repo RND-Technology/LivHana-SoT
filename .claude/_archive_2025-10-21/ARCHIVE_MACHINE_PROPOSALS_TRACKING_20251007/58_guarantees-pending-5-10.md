@@ -14,7 +14,7 @@
 
 9. ⏰ **Zero Manual Intervention** (Guarantee #8)
    - Cross-cutting guarantee
-   - Partially achieved (HNC, Veriff are fully automated)
+   - Partially achieved (HNC, [PURGED_FALLACY] are fully automated)
 
 10. ⏰ **Documentation** (Guarantee #9)
 

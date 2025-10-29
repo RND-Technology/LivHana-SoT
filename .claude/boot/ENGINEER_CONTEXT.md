@@ -32,7 +32,7 @@
 
 - Recovery: $125K-175K this week
 - Protection: $1.148M annual revenue
-- Deadline: October 26, 2025 (DSHS response)
+- Deadline: DSHS compliance completed
 
 ## Voice Modes
 

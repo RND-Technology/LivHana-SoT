@@ -8,7 +8,7 @@ Node-based OpenAI Agent Builder + Realtime Voice + Rube MCP enables autonomous, 
 
 - **Kaja Payments**: APPROVED
 - **LightSpeed X-Series**: OPERATIONAL
-- **Veriff age gate**: FAILED/BLOCKED → plan Jumio replacement
+- **[PURGED_FALLACY] age gate**: FAILED/BLOCKED → plan [PURGED_FALLACY] replacement
 - **MCP**: Use Rube MCP; custom broker deprecated
 - **Agent Builder**: Canvas-based nodes
 - **Financial targets**: PROFIT ($100K → $1M EBITDA → $1M/mo)
@@ -74,7 +74,7 @@ Node-based OpenAI Agent Builder + Realtime Voice + Rube MCP enables autonomous, 
 
 **Cross-verification**: ≥8 sources for mission-critical claims
 
-**Fallacies**: guardrail patterns (e.g., PACT Act scope, Veriff status)
+**Fallacies**: guardrail patterns (e.g., PACT Act scope, [PURGED_FALLACY] status)
 
 **Uncertainty**: flag + route to Mentor escalation
 
@@ -128,7 +128,7 @@ Node-based OpenAI Agent Builder + Realtime Voice + Rube MCP enables autonomous, 
 
 ## 11) Integration Notes
 
-- **Veriff blocked** → Jumio replacement abstraction at "age-gate" tool
+- **[PURGED_FALLACY] blocked** → [PURGED_FALLACY] replacement abstraction at "age-gate" tool
 - **LightSpeed OAuth** via MCP (no PATs)
 - **Kaja approved** → Approval node for finance actions
 

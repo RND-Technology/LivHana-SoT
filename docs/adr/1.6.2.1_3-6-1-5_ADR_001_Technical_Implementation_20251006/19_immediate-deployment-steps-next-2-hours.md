@@ -3,7 +3,7 @@
 **1. R&D Emergency Fix (Priority P0)**
 
 ```bash
-# Create new Replit project for Veriff replacement
+# Create new Replit project for [PURGED_FALLACY] replacement
 1. Go to replit.com
 2. Create new Node.js project: "reggie-dro-verification"
 3. Install dependencies:

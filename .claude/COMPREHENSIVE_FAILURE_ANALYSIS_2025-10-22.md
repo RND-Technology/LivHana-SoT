@@ -205,12 +205,12 @@ Revenue Tracking Results:
 **Root Cause:** Speed prioritized over documentation
 **Status:** ⚠️ UNKNOWN - 88 fixes applied, problems not documented
 
-### FAILURE 6.2: Jumio Integration Hallucinated (SEVERITY: HIGH)
-**Problem:** System claimed Jumio integration, actually should be Veriff
+### FAILURE 6.2: [PURGED_FALLACY] Integration Hallucinated (SEVERITY: HIGH)
+**Problem:** System claimed [PURGED_FALLACY] integration, actually should be [PURGED_FALLACY]
 **When:** Oct 21 (discovered during fallacy scan)
 **Impact:** Wasted planning, wrong vendor, technical debt
 **Root Cause:** Agent hallucination, insufficient verification
-**Status:** ✅ FIXED (commit 4d52b7ac9) - Purged Jumio references, standardized on Veriff
+**Status:** ✅ FIXED (commit 4d52b7ac9) - Purged [PURGED_FALLACY] references, standardized on [PURGED_FALLACY]
 **File:** Multiple references purged across codebase
 
 ### FAILURE 6.3: Secrets Integration Incomplete Despite "Complete" Claims (SEVERITY: MEDIUM)
@@ -444,7 +444,7 @@ Revenue Tracking Results:
 3. "Silence" command behavior (hardwired permanently)
 4. Voice mode config ambiguity (terminate_session: false)
 5. QA critical issues (mv → cp, validation improved)
-6. Jumio hallucination (purged, Veriff standardized)
+6. [PURGED_FALLACY] hallucination (purged, [PURGED_FALLACY] standardized)
 7. Backup directory accumulation (cleaned up)
 8. OPENAI_API_KEY blocking (made optional)
 9. 88 auto-fixed problems (committed)

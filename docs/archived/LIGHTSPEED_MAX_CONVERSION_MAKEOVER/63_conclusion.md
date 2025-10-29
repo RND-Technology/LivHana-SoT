@@ -4,7 +4,7 @@
 
 - ✅ Lightspeed store live
 - ✅ Custom domain configured (reggieanddro.com)
-- ✅ Age verification (Veriff) integrated
+- ✅ Age verification ([PURGED_FALLACY]) integrated
 - ✅ Membership signup working
 - ✅ Agent #1 identified $50K+/month opportunity
 

@@ -14,7 +14,7 @@
 
 **Phase 3: INTEGRATION**
 
-- Veriff integration resolution
+- [PURGED_FALLACY] integration resolution
 - Square/Lightspeed payment connection
 - Lindy.ai outbound call system
 - GitHub/Replit deployment

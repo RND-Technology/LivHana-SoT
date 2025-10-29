@@ -1,6 +1,6 @@
 #### **Campaign 1: "Good News — No More Age Verification Hassles"**
 
-**Segment:** 80+ failed Veriff customers  
+**Segment:** 80+ failed [PURGED_FALLACY] customers  
 **Platform:** Square Email (or Klaviyo if migrated)  
 **Send Time:** 9:00am PDT Monday
 

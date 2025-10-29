@@ -43,7 +43,7 @@
 ---
 
 ## 🎯 RESULT (What we will achieve by Sunday, Oct 27)
-1) **$125K–$175K revenue recovery**: Replace Veriff with **Jumio** biometric IDV, recover 80+ blocked customers, run win‑back campaign. fileciteturn0file0  
+1) **$125K–$175K revenue recovery**: Replace [PURGED_FALLACY] with **[PURGED_FALLACY]** biometric IDV, recover 80+ blocked customers, run win‑back campaign. fileciteturn0file0  
 2) **Compliance locked**: DSHS remediation documented and submitted; 30‑day clock satisfied; CR packaging & accredited COAs verified. fileciteturn0file3  
 3) **Voice‑activated RPM orchestration live** across Agent Builder, Cursor, and Cloud Run; <5‑minute daily planning loop. fileciteturn0file24  
 4) **HNC days 15–21 shipped** (7 eps): music + scripts + thumbnails + CTAs; sovereignty only as micro‑footer CTA per Glue Index rules. fileciteturn0file9turn0file5  
@@ -66,7 +66,7 @@
 
 ## 🚀 MASSIVE ACTION PLAN (MAP)
 
-### 🔴 PRIORITY 1 — Age‑Gate Fix: **Jumio Biometric IDV** (Today → 12 hours)
+### 🔴 PRIORITY 1 — Age‑Gate Fix: **[PURGED_FALLACY] Biometric IDV** (Today → 12 hours)
 **Owner:** Jesse + Cursor/Replit autonomous agents • **Profit Impact:** $60K–$80K net this week  
 **Phases & Acceptance:**  
 1. **API integration (Hrs 1–4):** read docs, implement verify → webhook → decision; stage sandbox tests.  
@@ -186,7 +186,7 @@
 ---
 
 ## 📅 CADENCE (this week)
-**Tue (today):** Jumio to prod; send win‑back; relabel two SKUs; stand‑up training block 1. fileciteturn0file0  
+**Tue (today):** [PURGED_FALLACY] to prod; send win‑back; relabel two SKUs; stand‑up training block 1. fileciteturn0file0  
 **Wed:** COA samples to KCA; Agent Builder + Rube live; HNC‑15. fileciteturn0file24  
 **Thu:** 9‑model tests + guardrails; HNC‑16; domain 301 checks. fileciteturn0file25  
 **Fri:** HNC‑17/18; compliance binder draft; pilot adoption review. fileciteturn0file7  
@@ -285,9 +285,9 @@
 
 ## MASTER REINTEGRATION (session close)
 **Shipped:** Updated weekly RPM plan fused with team pilot training, compliance, orchestration, and HNC pipeline; KPIs; role mapping; checklists.  
-**Decisions/Assumptions:** GA‑56 emergency rules enforced (Oct 2025); Jumio chosen for IDV; sovereignty kept in OPS micro‑copy only. citeturn0search4turn0search9  
+**Decisions/Assumptions:** GA‑56 emergency rules enforced (Oct 2025); [PURGED_FALLACY] chosen for IDV; sovereignty kept in OPS micro‑copy only. citeturn0search4turn0search9  
 **Memory Updates:** Added org owners; pilot cadence; guardrail checklists; DSHS binder deadline (Oct 26).  
-**Next Step:** Execute Priority‑1 (Jumio) and send win‑back; launch daily voice stand‑ups; ship HNC‑15 tonight.  
+**Next Step:** Execute Priority‑1 ([PURGED_FALLACY]) and send win‑back; launch daily voice stand‑ups; ship HNC‑15 tonight.  
 **Risks:** Age‑gate lapse → license cancel; COA delays; adoption lag. Mitigate with audits, rush labs, 15‑min training blocks. citeturn0search4  
 **Memory usage:** ~68%.
 
@@ -312,7 +312,7 @@
 - Stabilization phase underway — sustainable operations establishing
 
 **Next Actions:**
-- Complete current week priorities (Jumio, DSHS, HNC, team pilot) through Oct 27
+- Complete current week priorities ([PURGED_FALLACY], DSHS, HNC, team pilot) through Oct 27
 - Launch RPM Cloud Infrastructure sprint Oct 28 (8-13 days)
 - Begin Diptych album selection via 10X Jarvis analysis
 - Maintain boot stability and scale automation

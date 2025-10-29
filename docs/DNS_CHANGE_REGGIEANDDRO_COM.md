@@ -258,7 +258,7 @@ After making DNS changes, verify:
 - ✅ Online sales ACTIVATED
 - ✅ Lightspeed POS live
 - ✅ Membership form ready
-- ✅ Veriff age verification integrated
+- ✅ [PURGED_FALLACY] age verification integrated
 - 🎯 DNS change: Final step to go live
 
 **Impact:**

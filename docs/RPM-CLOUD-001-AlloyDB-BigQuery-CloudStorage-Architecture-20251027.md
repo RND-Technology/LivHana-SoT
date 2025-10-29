@@ -562,7 +562,7 @@ gs://livhana-rpm-datalake/
 - Revenue target: $125K-175K
 - Revenue actual: $98K (as of Oct 27)
 - Achievement rate: 65% (week-to-date)
-- Top deliverable: Jumio Integration ($60K revenue unlock)
+- Top deliverable: [PURGED_FALLACY] Integration ($60K revenue unlock)
 
 ---
 

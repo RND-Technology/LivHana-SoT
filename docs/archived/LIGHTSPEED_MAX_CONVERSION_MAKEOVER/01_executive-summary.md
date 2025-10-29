@@ -3,7 +3,7 @@
 **Current State:**
 
 - ✅ Lightspeed store is LIVE at reggieanddro.company.site
-- ✅ Age verification (Veriff) integrated
+- ✅ Age verification ([PURGED_FALLACY]) integrated
 - ✅ Membership signup flow active
 - ⚠️ Basic store layout (needs optimization)
 - ⚠️ Missing 7 critical revenue drivers ($50K+/month opportunity)

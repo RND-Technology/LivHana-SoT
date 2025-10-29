@@ -44,7 +44,7 @@ last-reviewed: 2025-10-06
 - `archived/DNS_CLEANUP_EXACT_STEPS.md` - How to clean up DNS
 - `archived/DNS_CHANGE_REGGIEANDDRO_COM.md` - How to change DNS
 - `archived/LIGHTSPEED_MAX_CONVERSION_MAKEOVER.md` - How to optimize conversions
-- `archived/VERIFF_LOYALTY_AUTOMATION_TIER1.md` - How to automate Veriff loyalty
+- `archived/VERIFF_LOYALTY_AUTOMATION_TIER1.md` - How to automate [PURGED_FALLACY] loyalty
 - `archived/CONSOLIDATION_PLAN.md` - How to consolidate systems
 
 ### Reference (18 files)
@@ -57,7 +57,7 @@ last-reviewed: 2025-10-06
 - `ULTIMATE_FUSION_STARTUP_v2.md` - Startup guide reference
 - `NEXT_SESSION_CRITICAL_MISSION.md` - Mission reference
 - `DELIVERY_SERVICE_COMPLETE.md` - Delivery service reference
-- `VERIFF_INTEGRATION_COMPLETE.md` - Veriff integration reference
+- `VERIFF_INTEGRATION_COMPLETE.md` - [PURGED_FALLACY] integration reference
 - `specs/ProductPage_SPEC_20251006.md` - Product page specification
 - `specs/FUNNEL_TPOP_SPEC_20251006.md` - Funnel specification
 - `specs/SNAPSHOT_SPEC_20251006.md` - Snapshot specification

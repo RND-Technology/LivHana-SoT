@@ -14,7 +14,7 @@
    - Atomic writes for agents; ExecMon alignment
    - Secret scrubbing (perl → BSD sed); 1Password scoped to --account
    - Context cleanup (85K → 11.6K files); .contextignore added
-   - Fallacy purges (Veriff status, PACT Act, OAuth endpoints, Lightspeed R-Series)
+   - Fallacy purges ([PURGED_FALLACY] status, PACT Act, OAuth endpoints, Lightspeed R-Series)
    - REG‑5 Linear issue opened for Alice DNS
    - Boot fixes (voice-first, sequential agents, integration-service decoupled, crash-recovery polling, memory/context guards, raw-mode guard, timeout portability)
 
@@ -32,10 +32,10 @@
    - Next steps: install LaunchAgents for STT/TTS to guarantee availability
 
 4) **RPM & Alice Expansion**
-   - Full Funnel RPM plan (Oct 26–Nov 2): local delivery (Favor/Uber/DD), Leafly sync, Auto-Veriff, nurture, membership, loyalty, dashboard
+   - Full Funnel RPM plan (Oct 26–Nov 2): local delivery (Favor/Uber/DD), Leafly sync, Auto-[PURGED_FALLACY], nurture, membership, loyalty, dashboard
    - Alice DNS fix (REG‑5): Andrew's checklist
    - Leafly unlock tomorrow
-   - Fallacy corrections: Veriff operational; OAuth R-Series endpoints
+   - Fallacy corrections: [PURGED_FALLACY] operational; OAuth R-Series endpoints
 
 5) **Recommendations**
    - Enable LaunchAgents for voice services (always-on)

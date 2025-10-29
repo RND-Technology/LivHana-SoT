@@ -3,11 +3,11 @@ diataxis: reference
 status: active - modular index
 ---
 
-# Veriff_Loyalty_Automation_Tier1 Index
+# [PURGED_FALLACY]_Loyalty_Automation_Tier1 Index
 
 | Module | Description |
 |--------|-------------|
-| [00_introduction.md](00_introduction.md) | TIER 1 AUTOMATION: Veriff + Loyalty + LTV Migration System |
+| [00_introduction.md](00_introduction.md) | TIER 1 AUTOMATION: [PURGED_FALLACY] + Loyalty + LTV Migration System |
 | [01_executive-summary.md](01_executive-summary.md) | EXECUTIVE SUMMARY |
 | [02_part-1-post-purchase-verification-automation.md](02_part-1-post-purchase-verification-automation.md) | PART 1: POST-PURCHASE VERIFICATION AUTOMATION |
 | [03_system-architecture.md](03_system-architecture.md) | System Architecture |

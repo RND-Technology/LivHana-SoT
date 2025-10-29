@@ -49,7 +49,7 @@ Format: [TYPE]-[PROJECT]-[SEQUENCE][SUBTASK]
 
 Examples:
 ARCH-CLOUD-001   → Architecture doc for Cloud project
-DEV-VERIFF-002a  → Development task for Veriff integration
+DEV-VERIFF-002a  → Development task for [PURGED_FALLACY] integration
 COORD-AGENT-003  → Coordination plan for Agent Builder
 ```
 

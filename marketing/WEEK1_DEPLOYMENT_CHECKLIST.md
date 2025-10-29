@@ -20,7 +20,7 @@
 ### **Afternoon (3 hours)**
 
 - [ ] Update LinkedIn profile:
-  - [ ] Headline: "Cannabis AI Integration Specialist | Solved $100K Veriff Disaster in 36 Hours"
+  - [ ] Headline: "Cannabis AI Integration Specialist | Solved $100K [PURGED_FALLACY] Disaster in 36 Hours"
   - [ ] About section: Add crisis consulting service description
   - [ ] Experience: Add "AI Crisis Consult" as current role
   - [ ] Featured: Link to article and landing page
@@ -70,7 +70,7 @@
 
 - [ ] LinkedIn outreach: 40 more messages (total 100)
 - [ ] Follow up on Day 1-2 responses
-- [ ] Post case study: "How I Solved $100K Veriff Disaster"
+- [ ] Post case study: "How I Solved $100K [PURGED_FALLACY] Disaster"
 - [ ] Cannabis industry publication pitch (MJBizDaily, Leafly Business)
 
 ### **Day 4:**
@@ -132,7 +132,7 @@ Hi [First Name],
 
 Quick question: Have you experienced any AI integration failures in your cannabis business?
 
-I'm Jesse Niesen - 27-year cannabis industry expert (TX DSHS License #690). I recently solved a $100K+ Veriff disaster in 36 hours after their support said "wait 6 weeks".
+I'm Jesse Niesen - 27-year cannabis industry expert (TX DSHS License #690). I recently solved a $100K+ [PURGED_FALLACY] disaster in 36 hours after their support said "wait 6 weeks".
 
 I've now helped 247 cannabis businesses with AI crises:
 • Age verification crashes
@@ -153,7 +153,7 @@ high@reggieanddro.com
 
 ### **Facebook Group Post**
 
-**Title:** [CASE STUDY] How I Recovered $100K/Month After Veriff Crashed
+**Title:** [CASE STUDY] How I Recovered $100K/Month After [PURGED_FALLACY] Crashed
 
 **Post:**
 
@@ -164,7 +164,7 @@ Not from bad product. Not from poor marketing.
 
 From a SINGLE AI integration failure.
 
-Veriff (our age verification system) crashed. Customers couldn't complete purchases. Revenue dropped 70% overnight.
+[PURGED_FALLACY] (our age verification system) crashed. Customers couldn't complete purchases. Revenue dropped 70% overnight.
 
 I called support. They said "wait 6 weeks for a fix".
 
@@ -197,7 +197,7 @@ TX DSHS License #690 | California CDFA Testimony (April 2025)
 
 ---
 
-### **Video Script: "The $100K Veriff Disaster"**
+### **Video Script: "The $100K [PURGED_FALLACY] Disaster"**
 
 **Duration:** 5 minutes
 **Style:** Talking head + screen recording of problem/solution
@@ -215,7 +215,7 @@ TX DSHS License #690 | California CDFA Testimony (April 2025)
 
 My name is Jesse Niesen. I've been in the cannabis industry for 27 years. Texas DSHS License #690. I testified to California CDFA on cannabis policy.
 
-And I almost lost my business because of Veriff.
+And I almost lost my business because of [PURGED_FALLACY].
 
 Let me tell you what happened - and how I fixed it in 36 hours."
 
@@ -223,9 +223,9 @@ Let me tell you what happened - and how I fixed it in 36 hours."
 
 **[PROBLEM - 0:30-2:00]**
 
-[Screen recording of broken Veriff checkout]
+[Screen recording of broken [PURGED_FALLACY] checkout]
 
-"We integrated Veriff for age verification. Industry standard. Everyone uses it. Should have been simple.
+"We integrated [PURGED_FALLACY] for age verification. Industry standard. Everyone uses it. Should have been simple.
 
 It crashed.
 
@@ -235,7 +235,7 @@ Cart abandonment went from 30% to 85%. Revenue dropped 70% overnight. That's $10
 
 [Show support ticket screenshot]
 
-I called Veriff support. Quote: 'We're working on it. Give us 6-8 weeks.'
+I called [PURGED_FALLACY] support. Quote: 'We're working on it. Give us 6-8 weeks.'
 
 SIX WEEKS?! At $100K/month loss, that's $150K-$200K down the drain while I wait.
 
@@ -258,7 +258,7 @@ I chose option 2."
 
 [Show before/after metrics]
 
-BEFORE (Veriff):
+BEFORE ([PURGED_FALLACY]):
 ❌ 85% cart abandonment
 ❌ $100K/month lost
 ❌ 3-minute verification process

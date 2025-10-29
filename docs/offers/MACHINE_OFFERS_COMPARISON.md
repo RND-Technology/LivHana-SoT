@@ -36,7 +36,7 @@
 ### Manual Bottlenecks Identified
 
 1. **HNC Episode Production**: 40+ hours manual → 15 minutes automated
-2. **Age Verification**: Manual process → Automated Veriff
+2. **Age Verification**: Manual process → Automated [PURGED_FALLACY]
 3. **Order Fulfillment**: Manual coordination → Automated delivery
 4. **Inventory Sync**: Manual updates → Real-time sync
 
@@ -61,7 +61,7 @@
 ### Phase 2: Age Verification Automation (2 days)
 
 - **Current**: Manual verification process
-- **Target**: Automated Veriff integration
+- **Target**: Automated [PURGED_FALLACY] integration
 - **Impact**: Save 20+ hours/week
 - **Revenue**: Enable more online sales
 

@@ -27,7 +27,7 @@ Law & rule anchors (still in force): Texas HSC §443 + 25 TAC Chapter 300 for co
 Texas Health Services
 +1
 
-Revenue recovery track (Jumio biometric IDV → win‑back of 80+ blocked customers), mapped straight into POS/checkout tasks and KPI targets. 
+Revenue recovery track ([PURGED_FALLACY] biometric IDV → win‑back of 80+ blocked customers), mapped straight into POS/checkout tasks and KPI targets. 
 
 DSHS remediation pack (label text fixes, accredited COAs, evidence binder) tied to THCASOP and R&D Master Canvas checklists.
 
@@ -63,7 +63,7 @@ TRUTH framework enforcement (Testable, Reproducible, Unambiguous, Traceable, Hig
 Orchestration glue (Rube MCP + Agent Builder integration): 
 
 Immediate next actions (already in the plan)
-Ship Jumio IDV to prod → trigger win‑back email/SMS to 80+ blocked customers (audit logs on). 
+Ship [PURGED_FALLACY] IDV to prod → trigger win‑back email/SMS to 80+ blocked customers (audit logs on). 
 
 Relabel two smokable SKUs and photo‑document; kick off KCA Labs re‑testing for accredited COAs. 
 
@@ -78,7 +78,7 @@ Texas Secretary of State
 +2
 
 3) Memory updates: Owners mapped (Jesse, Andrew, Christopher, Charlie, Andrea); binder deadline (Oct 26); daily 15‑min voice stand‑ups. 
-4) Next best step: Execute Priority‑1 (Jumio), send the win‑back, and ship HNC‑15 tonight. 
+4) Next best step: Execute Priority‑1 ([PURGED_FALLACY]), send the win‑back, and ship HNC‑15 tonight. 
 5) Risks/blockers: Age‑gate lapse → license cancellation (mitigate with POS audit logs); COA lab turnaround; staff adoption lag (15‑min blocks). 
 Texas Secretary of State
 
@@ -1019,8 +1019,8 @@ Decisions/assumptions: Execute the three ROI flags today; Savanna handles CD08 l
 
 Working memory updated: Secrets verified → ready; Agent‑Builders (Calendar/Gmail/Drive/LightSpeed) exist; TRUTH pipeline 8/8 passing.
 
-Next best step: After EOD QA, queue win‑back batch #1; schedule Jumio/IDV integration sprint tomorrow (ties to 21+ rule). 
-Jumio
+Next best step: After EOD QA, queue win‑back batch #1; schedule [PURGED_FALLACY]/IDV integration sprint tomorrow (ties to 21+ rule). 
+[PURGED_FALLACY]
 
 Risks/blockers: Missing signage/receipt proof; mis‑scoped secrets; scope creep into non‑critical features; COA not from accredited lab.
 
@@ -2087,7 +2087,7 @@ ChatGPT said:
 
 🟢 OPERATIONAL STATUS:
 
-Jumio integration and Veriff bypass → deployed and profitable
+[PURGED_FALLACY] integration and [PURGED_FALLACY] bypass → deployed and profitable
 
 Voice orchestration → zero-latency Liv Hana live
 
@@ -2596,8 +2596,8 @@ Age‑gate live everywhere (retail + e‑com). Choose provider and pilot:
 POS: Hyperspace on Lightspeed X‑Series (driver’s license scan at register). 
 Lightspeed X-Series Support
 
-E‑com: BlueCheck for Lightspeed eCom or biometric (Jumio) for robust online 21+ verification. 
-Jumio
+E‑com: BlueCheck for Lightspeed eCom or biometric ([PURGED_FALLACY]) for robust online 21+ verification. 
+[PURGED_FALLACY]
 +3
 Lightspeed
 +3
@@ -2698,8 +2698,8 @@ TABC
 For deeper TX context, see our internal regulatory report and deck. 
 
 Tooling note (for next 48 hours)
-Age‑gate: Hyperspace (POS) + BlueCheck (e‑com) are turnkey for Lightspeed; Jumio adds biometric strength online. 
-Jumio
+Age‑gate: Hyperspace (POS) + BlueCheck (e‑com) are turnkey for Lightspeed; [PURGED_FALLACY] adds biometric strength online. 
+[PURGED_FALLACY]
 +3
 Lightspeed X-Series Support
 +3

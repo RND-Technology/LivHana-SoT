@@ -227,7 +227,7 @@ Generated: Thu Oct 23 09:20:07 CDT 2025
 - .claude_backup_20251023_022914/.claude/skills/flag-deployer.md
 - .claude_backup_20251023_022914/.claude/SESSION_STATUS_2025-10-21_EVENING.md
 - .claude_backup_20251023_022914/.claude/research_reports/texas_dshs_compliance_requirements_20251021.md
-- .claude_backup_20251023_022914/.claude/research_reports/jumio_integration_best_practices_20251021.md
+- .claude_backup_20251023_022914/.claude/research_reports/[PURGED_FALLACY]_integration_best_practices_20251021.md
 - .claude_backup_20251023_022914/.claude/_archive_2025-10-21/HNC_SITE_DOWN_FIX.md
 - .claude_backup_20251023_022914/.claude/_archive_2025-10-21/DNS_UPDATE_CHECKLIST.md
 - .claude_backup_20251023_022914/.claude/_archive_2025-10-21/EXTERNAL_SIGNAL_INDEX.md
@@ -285,7 +285,7 @@ Generated: Thu Oct 23 09:20:07 CDT 2025
 - .claude_backup_20251023_022914/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/02_revenue-reality-as-of-oct-6-2025.md
 - .claude_backup_20251023_022914/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/66_final-scorecard.md
 - .claude_backup_20251023_022914/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/84_cheetah-autonomous-execution-complete.md
-- .claude_backup_20251023_022914/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/53_2025-10-06-21-18-pdt-veriff-deployed-guarantee-2-complete.md
+- .claude_backup_20251023_022914/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/53_2025-10-06-21-18-pdt-[PURGED_FALLACY]-deployed-guarantee-2-complete.md
 - .claude_backup_20251023_022914/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/38_approval-log.md
 - .claude_backup_20251023_022914/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/79_race-result.md
 - .claude_backup_20251023_022914/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/59_key-learnings-so-far.md
@@ -610,7 +610,7 @@ Generated: Thu Oct 23 09:20:07 CDT 2025
 - .claude_backup_20251023_060644/.claude/skills/flag-deployer.md
 - .claude_backup_20251023_060644/.claude/SESSION_STATUS_2025-10-21_EVENING.md
 - .claude_backup_20251023_060644/.claude/research_reports/texas_dshs_compliance_requirements_20251021.md
-- .claude_backup_20251023_060644/.claude/research_reports/jumio_integration_best_practices_20251021.md
+- .claude_backup_20251023_060644/.claude/research_reports/[PURGED_FALLACY]_integration_best_practices_20251021.md
 - .claude_backup_20251023_060644/.claude/_archive_2025-10-21/HNC_SITE_DOWN_FIX.md
 - .claude_backup_20251023_060644/.claude/_archive_2025-10-21/DNS_UPDATE_CHECKLIST.md
 - .claude_backup_20251023_060644/.claude/_archive_2025-10-21/EXTERNAL_SIGNAL_INDEX.md
@@ -668,7 +668,7 @@ Generated: Thu Oct 23 09:20:07 CDT 2025
 - .claude_backup_20251023_060644/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/02_revenue-reality-as-of-oct-6-2025.md
 - .claude_backup_20251023_060644/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/66_final-scorecard.md
 - .claude_backup_20251023_060644/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/84_cheetah-autonomous-execution-complete.md
-- .claude_backup_20251023_060644/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/53_2025-10-06-21-18-pdt-veriff-deployed-guarantee-2-complete.md
+- .claude_backup_20251023_060644/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/53_2025-10-06-21-18-pdt-[PURGED_FALLACY]-deployed-guarantee-2-complete.md
 - .claude_backup_20251023_060644/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/38_approval-log.md
 - .claude_backup_20251023_060644/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/79_race-result.md
 - .claude_backup_20251023_060644/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/59_key-learnings-so-far.md
@@ -995,7 +995,7 @@ Generated: Thu Oct 23 09:20:07 CDT 2025
 - .claude_backup_20251023_062425/.claude/skills/flag-deployer.md
 - .claude_backup_20251023_062425/.claude/SESSION_STATUS_2025-10-21_EVENING.md
 - .claude_backup_20251023_062425/.claude/research_reports/texas_dshs_compliance_requirements_20251021.md
-- .claude_backup_20251023_062425/.claude/research_reports/jumio_integration_best_practices_20251021.md
+- .claude_backup_20251023_062425/.claude/research_reports/[PURGED_FALLACY]_integration_best_practices_20251021.md
 - .claude_backup_20251023_062425/.claude/_archive_2025-10-21/HNC_SITE_DOWN_FIX.md
 - .claude_backup_20251023_062425/.claude/_archive_2025-10-21/DNS_UPDATE_CHECKLIST.md
 - .claude_backup_20251023_062425/.claude/_archive_2025-10-21/EXTERNAL_SIGNAL_INDEX.md
@@ -1053,7 +1053,7 @@ Generated: Thu Oct 23 09:20:07 CDT 2025
 - .claude_backup_20251023_062425/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/02_revenue-reality-as-of-oct-6-2025.md
 - .claude_backup_20251023_062425/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/66_final-scorecard.md
 - .claude_backup_20251023_062425/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/84_cheetah-autonomous-execution-complete.md
-- .claude_backup_20251023_062425/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/53_2025-10-06-21-18-pdt-veriff-deployed-guarantee-2-complete.md
+- .claude_backup_20251023_062425/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/53_2025-10-06-21-18-pdt-[PURGED_FALLACY]-deployed-guarantee-2-complete.md
 - .claude_backup_20251023_062425/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/38_approval-log.md
 - .claude_backup_20251023_062425/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/79_race-result.md
 - .claude_backup_20251023_062425/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/59_key-learnings-so-far.md
@@ -1380,7 +1380,7 @@ Generated: Thu Oct 23 09:20:07 CDT 2025
 - .claude_backup_20251023_064116/.claude/skills/flag-deployer.md
 - .claude_backup_20251023_064116/.claude/SESSION_STATUS_2025-10-21_EVENING.md
 - .claude_backup_20251023_064116/.claude/research_reports/texas_dshs_compliance_requirements_20251021.md
-- .claude_backup_20251023_064116/.claude/research_reports/jumio_integration_best_practices_20251021.md
+- .claude_backup_20251023_064116/.claude/research_reports/[PURGED_FALLACY]_integration_best_practices_20251021.md
 - .claude_backup_20251023_064116/.claude/_archive_2025-10-21/HNC_SITE_DOWN_FIX.md
 - .claude_backup_20251023_064116/.claude/_archive_2025-10-21/DNS_UPDATE_CHECKLIST.md
 - .claude_backup_20251023_064116/.claude/_archive_2025-10-21/EXTERNAL_SIGNAL_INDEX.md
@@ -1438,7 +1438,7 @@ Generated: Thu Oct 23 09:20:07 CDT 2025
 - .claude_backup_20251023_064116/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/02_revenue-reality-as-of-oct-6-2025.md
 - .claude_backup_20251023_064116/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/66_final-scorecard.md
 - .claude_backup_20251023_064116/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/84_cheetah-autonomous-execution-complete.md
-- .claude_backup_20251023_064116/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/53_2025-10-06-21-18-pdt-veriff-deployed-guarantee-2-complete.md
+- .claude_backup_20251023_064116/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/53_2025-10-06-21-18-pdt-[PURGED_FALLACY]-deployed-guarantee-2-complete.md
 - .claude_backup_20251023_064116/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/38_approval-log.md
 - .claude_backup_20251023_064116/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/79_race-result.md
 - .claude_backup_20251023_064116/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/59_key-learnings-so-far.md
@@ -1770,7 +1770,7 @@ Generated: Thu Oct 23 09:20:07 CDT 2025
 - .claude_backup_20251023_081336/.claude/skills/flag-deployer.md
 - .claude_backup_20251023_081336/.claude/SESSION_STATUS_2025-10-21_EVENING.md
 - .claude_backup_20251023_081336/.claude/research_reports/texas_dshs_compliance_requirements_20251021.md
-- .claude_backup_20251023_081336/.claude/research_reports/jumio_integration_best_practices_20251021.md
+- .claude_backup_20251023_081336/.claude/research_reports/[PURGED_FALLACY]_integration_best_practices_20251021.md
 - .claude_backup_20251023_081336/.claude/_archive_2025-10-21/HNC_SITE_DOWN_FIX.md
 - .claude_backup_20251023_081336/.claude/_archive_2025-10-21/DNS_UPDATE_CHECKLIST.md
 - .claude_backup_20251023_081336/.claude/_archive_2025-10-21/EXTERNAL_SIGNAL_INDEX.md
@@ -1828,7 +1828,7 @@ Generated: Thu Oct 23 09:20:07 CDT 2025
 - .claude_backup_20251023_081336/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/02_revenue-reality-as-of-oct-6-2025.md
 - .claude_backup_20251023_081336/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/66_final-scorecard.md
 - .claude_backup_20251023_081336/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/84_cheetah-autonomous-execution-complete.md
-- .claude_backup_20251023_081336/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/53_2025-10-06-21-18-pdt-veriff-deployed-guarantee-2-complete.md
+- .claude_backup_20251023_081336/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/53_2025-10-06-21-18-pdt-[PURGED_FALLACY]-deployed-guarantee-2-complete.md
 - .claude_backup_20251023_081336/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/38_approval-log.md
 - .claude_backup_20251023_081336/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/79_race-result.md
 - .claude_backup_20251023_081336/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/59_key-learnings-so-far.md
@@ -2162,7 +2162,7 @@ Generated: Thu Oct 23 09:20:07 CDT 2025
 - .claude_backup_20251023_081814/.claude/skills/flag-deployer.md
 - .claude_backup_20251023_081814/.claude/SESSION_STATUS_2025-10-21_EVENING.md
 - .claude_backup_20251023_081814/.claude/research_reports/texas_dshs_compliance_requirements_20251021.md
-- .claude_backup_20251023_081814/.claude/research_reports/jumio_integration_best_practices_20251021.md
+- .claude_backup_20251023_081814/.claude/research_reports/[PURGED_FALLACY]_integration_best_practices_20251021.md
 - .claude_backup_20251023_081814/.claude/_archive_2025-10-21/HNC_SITE_DOWN_FIX.md
 - .claude_backup_20251023_081814/.claude/_archive_2025-10-21/DNS_UPDATE_CHECKLIST.md
 - .claude_backup_20251023_081814/.claude/_archive_2025-10-21/EXTERNAL_SIGNAL_INDEX.md
@@ -2220,7 +2220,7 @@ Generated: Thu Oct 23 09:20:07 CDT 2025
 - .claude_backup_20251023_081814/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/02_revenue-reality-as-of-oct-6-2025.md
 - .claude_backup_20251023_081814/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/66_final-scorecard.md
 - .claude_backup_20251023_081814/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/84_cheetah-autonomous-execution-complete.md
-- .claude_backup_20251023_081814/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/53_2025-10-06-21-18-pdt-veriff-deployed-guarantee-2-complete.md
+- .claude_backup_20251023_081814/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/53_2025-10-06-21-18-pdt-[PURGED_FALLACY]-deployed-guarantee-2-complete.md
 - .claude_backup_20251023_081814/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/38_approval-log.md
 - .claude_backup_20251023_081814/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/79_race-result.md
 - .claude_backup_20251023_081814/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/59_key-learnings-so-far.md
@@ -2555,7 +2555,7 @@ Generated: Thu Oct 23 09:20:07 CDT 2025
 - .claude_backup_20251023_083209/.claude/skills/flag-deployer.md
 - .claude_backup_20251023_083209/.claude/SESSION_STATUS_2025-10-21_EVENING.md
 - .claude_backup_20251023_083209/.claude/research_reports/texas_dshs_compliance_requirements_20251021.md
-- .claude_backup_20251023_083209/.claude/research_reports/jumio_integration_best_practices_20251021.md
+- .claude_backup_20251023_083209/.claude/research_reports/[PURGED_FALLACY]_integration_best_practices_20251021.md
 - .claude_backup_20251023_083209/.claude/_archive_2025-10-21/HNC_SITE_DOWN_FIX.md
 - .claude_backup_20251023_083209/.claude/_archive_2025-10-21/DNS_UPDATE_CHECKLIST.md
 - .claude_backup_20251023_083209/.claude/_archive_2025-10-21/EXTERNAL_SIGNAL_INDEX.md
@@ -2613,7 +2613,7 @@ Generated: Thu Oct 23 09:20:07 CDT 2025
 - .claude_backup_20251023_083209/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/02_revenue-reality-as-of-oct-6-2025.md
 - .claude_backup_20251023_083209/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/66_final-scorecard.md
 - .claude_backup_20251023_083209/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/84_cheetah-autonomous-execution-complete.md
-- .claude_backup_20251023_083209/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/53_2025-10-06-21-18-pdt-veriff-deployed-guarantee-2-complete.md
+- .claude_backup_20251023_083209/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/53_2025-10-06-21-18-pdt-[PURGED_FALLACY]-deployed-guarantee-2-complete.md
 - .claude_backup_20251023_083209/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/38_approval-log.md
 - .claude_backup_20251023_083209/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/79_race-result.md
 - .claude_backup_20251023_083209/.claude/_archive_2025-10-21/ARCHIVE_MACHINE_PROPOSALS_TRACKING_20251007/59_key-learnings-so-far.md

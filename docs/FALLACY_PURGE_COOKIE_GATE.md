@@ -13,7 +13,7 @@
 "Actual System (from code inspection):
 // age-verification-smart-gate.js
 // Simple cookie-based "I am 21 or older" button
-// NO external API (not Jumio, not Veriff, not BlueCheck)
+// NO external API (not [PURGED_FALLACY], not [PURGED_FALLACY], not BlueCheck)
 // Just: Cookie check → Show gate → User confirms → Set cookie"
 ```
 
@@ -25,7 +25,7 @@
 
 ## ✅ THE TRUTH
 
-**ACTUAL AGE VERIFICATION SYSTEM**: **Veriff**
+**ACTUAL AGE VERIFICATION SYSTEM**: **[PURGED_FALLACY]**
 - **Type**: Biometric ID verification API
 - **Method**: Government-issued photo ID verification
 - **Compliance**: 21+ enforcement (Texas DSHS 25 TAC §300.701-702, TABC 16 TAC §51.1-51.2)
@@ -49,18 +49,18 @@
 
 ### **Reality**:
 1. Those `.js` files are legacy/prototype/placeholder
-2. Actual system is Veriff API integration
+2. Actual system is [PURGED_FALLACY] API integration
 3. Cookie files should be marked as deprecated/replaced
-4. Veriff IS the production system
+4. [PURGED_FALLACY] IS the production system
 
 ---
 
 ## 🎯 CORRECT UNDERSTANDING
 
-### **Veriff Integration**
+### **[PURGED_FALLACY] Integration**
 ```javascript
-// CORRECT (Veriff API)
-const veriffSession = await createVeriffSession({
+// CORRECT ([PURGED_FALLACY] API)
+const [PURGED_FALLACY]Session = await create[PURGED_FALLACY]Session({
   person: {
     firstName: customer.firstName,
     lastName: customer.lastName,
@@ -68,7 +68,7 @@ const veriffSession = await createVeriffSession({
   }
 });
 
-// Veriff checks:
+// [PURGED_FALLACY] checks:
 // 1. Government-issued photo ID
 // 2. Biometric face match
 // 3. Age verification (21+)
@@ -97,7 +97,7 @@ mv age-verification-smart-gate-fixed.js age-verification-smart-gate-fixed.DEPREC
 ```
 
 ### **3. Document Truth**
-Create proper Veriff documentation showing:
+Create proper [PURGED_FALLACY] documentation showing:
 - API integration
 - Biometric verification flow
 - Compliance requirements
@@ -127,7 +127,7 @@ Almost spread fallacy that age verification is just a cookie button
 
 ## ✅ CORRECTED TRUTH
 
-**Age Verification System**: Veriff API
+**Age Verification System**: [PURGED_FALLACY] API
 **Method**: Biometric ID verification with government-issued photo ID
 **NOT**: Cookie-based self-attestation
 **Status**: Production system

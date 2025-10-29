@@ -67,7 +67,7 @@
 ### **4. YOUR PRIORITIES (EXTRACTED FROM 72-HOUR AUDIT):**
 
 **Immediate Revenue Recovery:**
-- 🔴 **Veriff replacement** → Jumio biometric ($100K+ revenue unlock, 80+ customers)
+- 🔴 **[PURGED_FALLACY] replacement** → [PURGED_FALLACY] biometric ($100K+ revenue unlock, 80+ customers)
 - 🔴 **DSHS compliance** (30-day deadline, protect $1.148M revenue stream)
 - 🟡 **Customer win-back** ($25K-50K recovery via email/SMS campaigns)
 
@@ -143,16 +143,16 @@ cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT && \
 
 **PHASE 3: TESTING (1 hour)**
 
-**Test Input:** "RPM plan for Veriff replacement this week"
+**Test Input:** "RPM plan for [PURGED_FALLACY] replacement this week"
 
 **Expected Output:**
 ```json
 {
-  "result": "Jumio age verification live, $100K+ revenue flowing",
+  "result": "[PURGED_FALLACY] age verification live, $100K+ revenue flowing",
   "purpose": "Unblock 80+ customers, recover lost revenue, hit $100K Dec profit target",
   "actions": [
     {
-      "action": "Cursor + Replit Agent scaffold Jumio API integration",
+      "action": "Cursor + Replit Agent scaffold [PURGED_FALLACY] API integration",
       "owner": "Jesse + Autonomous agents",
       "timeframe": "6-12 hours parallel workflow",
       "profit_contribution": "$100,000+ immediate unlock"
@@ -165,8 +165,8 @@ cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT && \
     }
   ],
   "profit_impact": "$125,000-150,000 total recovery",
-  "autonomous_execution": "Cursor + Replit Agent can complete Jumio integration in 6-12 hours (NOT weeks)",
-  "next_step": "Initiate Cursor autonomous coding session with Jumio API docs"
+  "autonomous_execution": "Cursor + Replit Agent can complete [PURGED_FALLACY] integration in 6-12 hours (NOT weeks)",
+  "next_step": "Initiate Cursor autonomous coding session with [PURGED_FALLACY] API docs"
 }
 ```
 
@@ -216,7 +216,7 @@ cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT && \
 # Test Cloud Run endpoint
 curl -X POST https://liv-hana-master-agent-[PROJECT_ID].us-central1.run.app/invoke \
   -H "Content-Type: application/json" \
-  -d '{"input": "RPM plan for Veriff replacement this week"}' \
+  -d '{"input": "RPM plan for [PURGED_FALLACY] replacement this week"}' \
   | jq .
 
 # Verify mobile access via ChatKit
@@ -234,13 +234,13 @@ curl -X POST https://liv-hana-master-agent-[PROJECT_ID].us-central1.run.app/invo
 - ✅ Live monitoring: Track progress from phone (Replit mobile app)
 - ✅ No voice mode dependency: Pure agent-mode execution
 
-**Execution Command (Jumio Replacement):**
+**Execution Command ([PURGED_FALLACY] Replacement):**
 
 ```bash
 # LANE 1: Cursor autonomous coding session
 cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT && \
-  cursor --agent --task "Integrate Jumio Web SDK v4 for age verification replacement: 
-  1. Read Jumio API docs at https://docs.jumio.com/
+  cursor --agent --task "Integrate [PURGED_FALLACY] Web SDK v4 for age verification replacement: 
+  1. Read [PURGED_FALLACY] API docs at https://docs.[PURGED_FALLACY].com/
   2. Scaffold custom frontend (React + Tailwind) matching reggieanddro.com design
   3. Implement biometric verification flow (ID capture + selfie + liveness check)
   4. Integrate with existing LightSpeed X-Series backend
@@ -265,7 +265,7 @@ cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT && \
 ```
 
 **Expected Output (6-12 hours):**
-- [ ] Jumio Web SDK v4 integrated (ID capture + selfie + liveness)
+- [ ] [PURGED_FALLACY] Web SDK v4 integrated (ID capture + selfie + liveness)
 - [ ] Custom React frontend deployed to Cloud Run staging
 - [ ] LightSpeed X-Series backend integration verified
 - [ ] E2E tests passing (10 customer verification flows simulated)
@@ -283,7 +283,7 @@ cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT && \
 
 ```bash
 # Generate email template via Agent Builder
-# Input: "Draft win-back email for 80+ customers blocked by Veriff failure"
+# Input: "Draft win-back email for 80+ customers blocked by [PURGED_FALLACY] failure"
 
 # Expected output from Agent Builder:
 # Subject: We've Fixed It — Your Order is Ready to Complete
@@ -319,10 +319,10 @@ cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT && \
 - **Total:** 4-hour power session → Agent mode OPERATIONAL
 
 ### **Autonomous Revenue Recovery:**
-- [ ] Cursor + Replit Agent initiated (Jumio integration)
+- [ ] Cursor + Replit Agent initiated ([PURGED_FALLACY] integration)
 - [ ] 6-12 hour autonomous runtime → Production-ready code
 - [ ] Customer win-back campaign executed (80+ emails sent)
-- [ ] Revenue flowing: $100K+ (Jumio) + $25K-50K (win-back) = $125K-150K total recovery
+- [ ] Revenue flowing: $100K+ ([PURGED_FALLACY]) + $25K-50K (win-back) = $125K-150K total recovery
 
 ### **Strategic Infrastructure:**
 - [ ] Voice mode dependency ELIMINATED (Agent Builder replaces failed voice interfaces)
@@ -337,14 +337,14 @@ cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT && \
 - ✅ 72-hour intelligence audit complete (20 chats + 12 project knowledge results + web verification)
 - ✅ Voice mode failure documented (Claude + ChatGPT + COMET all FIRED)
 - ✅ Agent Builder deployment roadmap (4-hour power session, terminal-ready commands)
-- ✅ Cursor + Replit autonomous execution plan (6-12 hour Jumio integration)
+- ✅ Cursor + Replit autonomous execution plan (6-12 hour [PURGED_FALLACY] integration)
 - ✅ Customer win-back campaign template (LightSpeed email marketing)
 
 **DECISIONS:**
 - ✅ FIRE: Voice mode (Claude + ChatGPT + COMET = unreliable)
 - ✅ PROMOTE: Agent Builder + Rube MCP (200-min autonomous runtime, visual canvas)
 - ✅ PARALLEL: Cursor + Replit Agent 3 (fusion PR approach, best of both)
-- ✅ IMMEDIATE: Jumio replacement ($100K+ revenue recovery)
+- ✅ IMMEDIATE: [PURGED_FALLACY] replacement ($100K+ revenue recovery)
 
 **MEMORY:**
 - ✅ Voice mode = TOTAL FAILURE (documented Monday collapse)
@@ -355,8 +355,8 @@ cd /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT && \
 
 **NEXT:**
 - 🔴 Execute 4-hour Agent Builder deployment (IMMEDIATE)
-- 🔴 Initiate Cursor + Replit Jumio integration (PARALLEL)
-- 🟡 Launch customer win-back campaign (2-4 hours post-Jumio)
+- 🔴 Initiate Cursor + Replit [PURGED_FALLACY] integration (PARALLEL)
+- 🟡 Launch customer win-back campaign (2-4 hours post-[PURGED_FALLACY])
 
 **RISKS:**
 - Agent Builder learning curve (mitigated: visual canvas simplifies vs JSON)

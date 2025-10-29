@@ -15,7 +15,7 @@
 
 **Fused Components:**
 
-- ✅ Revenue Recovery Plan (Veriff, DSHS, $125K-175K target)
+- ✅ Revenue Recovery Plan ([PURGED_FALLACY], DSHS, $125K-175K target)
 - ✅ Technical Implementation (TRUTH Pipeline, Compliance Service, MCP Broker)
 - ✅ Meeting Analysis (8 unsolved tasks, RPM DNA codes)
 - ✅ Compliance Validation (Texas DSHS/TABC emergency rules)
@@ -235,7 +235,7 @@
 - [ ] Deploy Compliance Service to Cloud Run (10 min)
 - [ ] After secrets: Deploy Agent Builder 17-node workflow (2-4 hours)
 - [ ] Test TRUTH Pipeline end-to-end (30 min)
-- [ ] Pull 80+ failed Veriff customers for win-back campaign
+- [ ] Pull 80+ failed [PURGED_FALLACY] customers for win-back campaign
 
 ### **For Christopher (Systems/Store Ops):**
 
@@ -255,10 +255,10 @@
 
 | Original Statement | Correction | Evidence Source |
 |-------------------|------------|-----------------|
-| "Weeks to integrate Veriff" | 6-12 hours (autonomous execution) | SWE-bench: 77.2% (Sonnet 4.5) |
+| "Weeks to integrate [PURGED_FALLACY]" | 6-12 hours (autonomous execution) | SWE-bench: 77.2% (Sonnet 4.5) |
 | "SB 3 veto = prohibition" | Replaced by GA-56 regulation | Texas Secretary of State |
 | "Need perfect testing" | Staging + incremental monitoring sufficient | Agile methodology |
-| "Can't start without secrets" | Parallel execution (Veriff independent) | Modular architecture |
+| "Can't start without secrets" | Parallel execution ([PURGED_FALLACY] independent) | Modular architecture |
 
 ---
 
@@ -394,8 +394,8 @@ cd backend/compliance-service
 gcloud run deploy compliance-service --source .
 ```
 
-**Unblocks:** Veriff integration audit trail, DSHS compliance response  
-**Impact:** Required for October 26 DSHS deadline
+**Unblocks:** [PURGED_FALLACY] integration audit trail, DSHS compliance response  
+**Impact:** Required for DSHS compliance completed
 
 ---
 
@@ -435,7 +435,7 @@ See `INTEGRATION_STATUS_2025-10-21.md` for 6-commit sequence
 
 ### **Revenue Impact:**
 
-- ⏳ **Veriff Unlock:** $100K+ (autonomous Veriff deployment)
+- ⏳ **[PURGED_FALLACY] Unlock:** $100K+ (autonomous [PURGED_FALLACY] deployment)
 - ⏳ **Win-Back Campaign:** $25K-50K (80+ customers)
 - ⏳ **Total Target:** $125K-175K (this week)
 - ✅ **Protected Revenue:** $1.148M (DSHS compliance framework ready)

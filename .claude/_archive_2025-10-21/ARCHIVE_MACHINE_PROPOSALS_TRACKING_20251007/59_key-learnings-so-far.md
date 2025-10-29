@@ -4,7 +4,7 @@
 
 - ✅ 1Password CLI integration (`op item get`) for secure credential retrieval
 - ✅ Rapid bug identification and fixes (tts.js dialogue iteration)
-- ✅ Production-ready code already existed for Veriff
+- ✅ Production-ready code already existed for [PURGED_FALLACY]
 - ✅ HNC automation system was 95% complete, just needed deployment
 - ✅ Parallel execution strategy (assess → plan → execute fastest wins first)
 
@@ -18,7 +18,7 @@
 
 - 100% automation is HARD when APIs require OAuth/manual token generation
 - Browser automation (Playwright) is powerful but needs manual triggers for security-sensitive operations
-- Existing R&D work is extremely valuable - integration-service had production-ready Veriff code
+- Existing R&D work is extremely valuable - integration-service had production-ready [PURGED_FALLACY] code
 - Speed comes from identifying what CAN be done immediately vs what's blocked
 
 **Time Spent**: ~30 minutes from commitment to 3 guarantees complete

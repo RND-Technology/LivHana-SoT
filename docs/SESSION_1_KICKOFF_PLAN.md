@@ -22,7 +22,7 @@ op run -- gcloud secrets create GITHUB_PERSONAL_ACCESS_TOKEN --data-file=<(echo 
 
 ```bash
 bash scripts/secrets_smoke_test.sh
-bash scripts/veriff_refund_job.sh
+bash scripts/[PURGED_FALLACY]_refund_job.sh
 ```
 
 ## SESSION 1 IMPLEMENTATION PLAN

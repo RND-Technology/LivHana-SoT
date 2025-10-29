@@ -15,7 +15,7 @@ All compliance items from Friday's call are complete:
 ✅ Accessories temporarily hidden
 ✅ COAs visible on all product pages
 ✅ PCI scan complete (IPv4: 136.44.96.23)
-✅ Age gate active (21+ checkbox + Veriff backup)
+✅ Age gate active (21+ checkbox + [PURGED_FALLACY] backup)
 
 Site: https://reggieanddro.company.site/products
 Status: Ready for bank review

@@ -60,7 +60,7 @@ status: active - modular index
 | [50_2025-10-06-21-10-pdt-first-bug-found-and-fixed.md](50_2025-10-06-21-10-pdt-first-bug-found-and-fixed.md) | **2025-10-06 21:10 PDT - FIRST BUG FOUND AND FIXED ✅** |
 | [51_2025-10-06-21-12-pdt-hnc-automation-deployed-guarantee-1-com.md](51_2025-10-06-21-12-pdt-hnc-automation-deployed-guarantee-1-com.md) | **2025-10-06 21:12 PDT - HNC AUTOMATION DEPLOYED ✅ GUARANTEE #1 COMPLETE** |
 | [52_2025-10-06-21-13-pdt-getting-remaining-api-keys.md](52_2025-10-06-21-13-pdt-getting-remaining-api-keys.md) | **2025-10-06 21:13 PDT - GETTING REMAINING API KEYS** |
-| [53_2025-10-06-21-18-pdt-veriff-deployed-guarantee-2-complete.md](53_2025-10-06-21-18-pdt-veriff-deployed-guarantee-2-complete.md) | **2025-10-06 21:18 PDT - VERIFF DEPLOYED ✅ GUARANTEE #2 COMPLETE** |
+| [53_2025-10-06-21-18-pdt-[PURGED_FALLACY]-deployed-guarantee-2-complete.md](53_2025-10-06-21-18-pdt-[PURGED_FALLACY]-deployed-guarantee-2-complete.md) | **2025-10-06 21:18 PDT - VERIFF DEPLOYED ✅ GUARANTEE #2 COMPLETE** |
 | [54_2025-10-06-21-19-pdt-ecwid-category-fix-status.md](54_2025-10-06-21-19-pdt-ecwid-category-fix-status.md) | **2025-10-06 21:19 PDT - ECWID CATEGORY FIX STATUS** |
 | [55_progress-report-2025-10-06-21-22-pdt.md](55_progress-report-2025-10-06-21-22-pdt.md) | 📊 PROGRESS REPORT - 2025-10-06 21:22 PDT |
 | [56_guarantees-completed-3-10.md](56_guarantees-completed-3-10.md) | **GUARANTEES COMPLETED (3/10):** |

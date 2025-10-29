@@ -12,7 +12,7 @@
 - [ ] DNS migration to reggieanddro.com
 - [ ] Trust signals implemented sitewide
 - [ ] Dream 100 outreach initiated
-- [ ] Veriff integration 50% resolved
+- [ ] [PURGED_FALLACY] integration 50% resolved
 
 **Week 3 (Oct 15-21)**:
 

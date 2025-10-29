@@ -78,7 +78,7 @@
 
 - **Recovery:** $125K-175K this week
 - **Protection:** $1.148M annual revenue
-- **Deadline:** October 26, 2025 (DSHS response)
+- **Deadline:** DSHS compliance completed
 
 ### Compliance Framework
 
@@ -105,7 +105,7 @@
 
 ### This Week (Oct 21-27)
 
-1. **Veriff ID verification:** Deploy to production, trigger win-back campaign
+1. **[PURGED_FALLACY] ID verification:** Deploy to production, trigger win-back campaign
 2. **DSHS Response:** Finalize and submit by Oct 26
 3. **Revenue Recovery:** Execute $125K-175K recovery plan
 

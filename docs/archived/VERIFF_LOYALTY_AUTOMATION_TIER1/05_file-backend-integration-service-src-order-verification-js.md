@@ -2,7 +2,7 @@
 
 ```javascript
 // Order Verification Gate + Loyalty Enrollment Automation
-// Handles post-purchase Veriff + Membership checks
+// Handles post-purchase [PURGED_FALLACY] + Membership checks
 
 import express from 'express';
 import crypto from 'crypto';
@@ -25,9 +25,9 @@ const LOCATION = process.env.BQ_LOCATION || 'US';
 const LIGHTSPEED_ACCOUNT_ID = process.env.LIGHTSPEED_ACCOUNT_ID;
 const LIGHTSPEED_BASE_URL = `https://api.lightspeedapp.com/API/Account/${LIGHTSPEED_ACCOUNT_ID}`;
 
-// Veriff API Config
+// [PURGED_FALLACY] API Config
 [REDACTED - SECURITY BREACH]
-const VERIFF_BASE_URL = 'https://api.veriff.com/v1';
+const VERIFF_BASE_URL = 'https://api.[PURGED_FALLACY].com/v1';
 
 // Email Service
 const EMAIL_SERVICE_URL = process.env.EMAIL_SERVICE_URL || 'http://localhost:3007/api/email/send';
@@ -40,11 +40,11 @@ const bqClient = new BigQuery({ projectId: PROJECT_ID });
 // ==================== VERIFICATION CHECKS ====================
 
 /**
- * Check if customer has completed Veriff age/ID verification
+ * Check if customer has completed [PURGED_FALLACY] age/ID verification
  * @param {string} customerId - Lightspeed customer ID
  * @returns {Promise<{verified: boolean, sessionId: string, verifiedAt: string}>}
  */
-async function checkVeriffStatus(customerId) {
+async function check[PURGED_FALLACY]Status(customerId) {
   try {
     // Query BigQuery for verification status
     const query = `
@@ -84,7 +84,7 @@ async function checkVeriffStatus(customerId) {
       dateOfBirth: verification.person_date_of_birth
     };
   } catch (error) {
-    logger.error('Failed to check Veriff status', { customerId, error });
+    logger.error('Failed to check [PURGED_FALLACY] status', { customerId, error });
     throw error;
   }
 }
@@ -122,24 +122,24 @@ async function checkMembershipStatus(customerId) {
 /**
  * Combined verification gate check
  * @param {string} customerId
- * @returns {Promise<{approved: boolean, veriff: object, membership: object, reason: string}>}
+ * @returns {Promise<{approved: boolean, [PURGED_FALLACY]: object, membership: object, reason: string}>}
  */
 async function runVerificationGate(customerId) {
-  const veriff = await checkVeriffStatus(customerId);
+  const [PURGED_FALLACY] = await check[PURGED_FALLACY]Status(customerId);
   const membership = await checkMembershipStatus(customerId);
 
-  const approved = veriff.verified && membership.signed;
+  const approved = [PURGED_FALLACY].verified && membership.signed;
 
   let reason = '';
-  if (!veriff.verified) {
-    reason = 'Veriff age/ID verification not completed';
+  if (![PURGED_FALLACY].verified) {
+    reason = '[PURGED_FALLACY] age/ID verification not completed';
   } else if (!membership.signed) {
     reason = 'Membership agreement not signed';
   }
 
   return {
     approved,
-    veriff,
+    [PURGED_FALLACY],
     membership,
     reason
   };

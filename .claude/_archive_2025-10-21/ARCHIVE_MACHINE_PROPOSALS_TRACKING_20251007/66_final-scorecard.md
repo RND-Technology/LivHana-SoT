@@ -3,7 +3,7 @@
 **Completed**: 7/10 guarantees (70%)
 **Time**: 40 minutes from commitment
 **Bugs**: 1 found and fixed
-**Speed**: Executed fastest wins first (HNC, Veriff, verification tasks)
+**Speed**: Executed fastest wins first (HNC, [PURGED_FALLACY], verification tasks)
 **Truth**: 100% transparent about blockers
 **Credibility**: Delivered on automatable guarantees, reported blocks honestly
 
