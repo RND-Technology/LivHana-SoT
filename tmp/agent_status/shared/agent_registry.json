@@ -1,22 +1,55 @@
 {
   "agents": {
-    "planning": {"status": "starting", "pid": null, "port": null, "rpm_csf": "Strategic Planning & Coordination", "self_heal": true},
-    "research": {"status": "starting", "pid": null, "port": null, "rpm_csf": "Intelligence & Context Building", "self_heal": true},
-    "artifact": {"status": "starting", "pid": null, "port": null, "rpm_csf": "Documentation & Deliverable Creation", "self_heal": true},
-    "execmon": {"status": "starting", "pid": null, "port": null, "rpm_csf": "Execution Tracking & Deployment", "self_heal": true, "self_improve": true},
-    "qa": {"status": "starting", "pid": null, "port": null, "rpm_csf": "Validation & Quality Assurance", "self_heal": true}
+    "planning": {
+      "status": "running",
+      "pid": null,
+      "port": null,
+      "rpm_csf": "Layer 1.1 - Strategic Planning",
+      "self_heal": true,
+      "self_improve": true,
+      "priority": 1,
+      "dependencies": []
+    },
+    "research": {
+      "status": "running",
+      "pid": null,
+      "port": null,
+      "rpm_csf": "Layer 1.2 - Intelligence Gathering",
+      "self_heal": true,
+      "self_improve": true,
+      "priority": 2,
+      "dependencies": []
+    },
+    "artifact": {
+      "status": "running",
+      "pid": null,
+      "port": null,
+      "rpm_csf": "Layer 1.3 - Documentation & Deliverables",
+      "self_heal": true,
+      "self_improve": true,
+      "priority": 3,
+      "dependencies": []
+    },
+    "execmon": {
+      "status": "running",
+      "pid": null,
+      "port": null,
+      "rpm_csf": "Layer 1.4 - Execution Monitoring",
+      "self_heal": true,
+      "self_improve": true,
+      "priority": 4,
+      "dependencies": []
+    },
+    "qa": {
+      "status": "running",
+      "pid": null,
+      "port": null,
+      "rpm_csf": "Layer 1.5 - Quality Assurance",
+      "self_heal": true,
+      "self_improve": true,
+      "priority": 5,
+      "dependencies": []
+    }
   },
-  "last_update": "",
-  "rpm_dna_version": "v3.1",
-  "orchestration_layer": "tier-1",
-  "security_posture": "airtight",
-  "autonomous": {
-    "listen": true,
-    "hear": true,
-    "talk": true,
-    "self_create": true,
-    "self_organize": true,
-    "self_improve": true,
-    "self_heal": true
-  }
+  "last_update": "2025-10-29T10:56:00.000Z"
 }

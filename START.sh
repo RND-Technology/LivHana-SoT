@@ -125,6 +125,15 @@ cat > tmp/agent_status/shared/agent_registry.json << 'EOF'
       "self_heal": true,
       "priority": 2,
       "dependencies": []
+    },
+    "klein": {
+      "status": "pending_integration",
+      "pid": null,
+      "port": 5001,
+      "rpm_csf": "Parallel Reasoning Engine (ChatGPT replacement candidate)",
+      "self_heal": true,
+      "priority": 2,
+      "dependencies": ["orchestration"]
     }
   },
   "last_update": "",
@@ -160,6 +169,14 @@ cat > tmp/agent_status/shared/agent_registry.json << 'EOF'
         "maxAttempts": 3,
         "interval": "10s"
       }
+    },
+    "orchestration": {
+      "priority": 1,
+      "required": true,
+      "port": 4010,
+      "websocket": true,
+      "healthCheck": true,
+      "dependencies": ["voice", "reasoning-gateway"]
     }
   }
 }
@@ -192,6 +209,13 @@ start_voice_services() {
 start_voice_services
 
 # Start orchestration dashboard service
+# Dependencies: backend/orchestration-service/node_modules (172 packages)
+# - bullmq@^5.1.0 (queue management)
+# - express@^4.21.2 + cors@^2.8.5 + helmet@^8.0.0 (HTTP server)
+# - ws@^8.18.0 (WebSocket real-time dashboard)
+# - typescript@^5.6.3 (compiled to dist/index.js)
+# AutoScaler: backend/reasoning-gateway/src/worker/autoScaler.ts (dynamic 1-6 worker scaling)
+# Voice Commands: backend/voice-service/src/commands/orchestrationCommands.ts (status/scale/restart)
 echo ""
 echo "🛰️ Starting orchestration service (real-time dashboard + autoscaler telemetry)..."
 start_orchestration_service() {
@@ -617,6 +641,13 @@ if lsof -i :8880 >/dev/null 2>&1; then
   echo "✅ TTS service running (port 8880)"
 else
   echo "❌ TTS service NOT running"
+fi
+
+# Verify orchestration service
+if curl -sf http://localhost:4010/health >/dev/null 2>&1; then
+  echo "✅ Orchestration service running (port 4010)"
+else
+  echo "❌ Orchestration service NOT running"
 fi
 
 # Verify VS Code settings exist
