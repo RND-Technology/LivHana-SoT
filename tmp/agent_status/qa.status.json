@@ -2,8 +2,8 @@
   "agent": "qa",
   "phase": "startup",
   "status": "running",
-  "started_at": "2025-10-29T15:38:49Z",
+  "started_at": "2025-10-29T16:36:39Z",
   "finished_at": "",
-  "artifacts": ["/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/logs/agents/qa_20251029_103849.log"],
+  "artifacts": ["/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/logs/agents/qa_20251029_113639.log"],
   "notes": "existing tmux session"
 }
