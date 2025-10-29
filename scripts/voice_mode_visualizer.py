@@ -163,16 +163,8 @@ graph TD
             dashboard = self.generate_ascii_dashboard()
             print(dashboard)
             
-            # Update dependencies every minute
-            if cycle % 1 == 0:  # Every cycle (60s)
-                print("🔄 Checking dependency updates...")
-                updates = self.update_dependencies()
-                if updates:
-                    print("📦 Dependency updates available:")
-                    for update in updates:
-                        print(f"   • {update}")
-                else:
-                    print("✅ All dependencies current")
+            # Dependency updates DISABLED per PO1 rule
+            # Manual updates only to prevent instability
             
             # Save dashboard to file
             dashboard_file = self.output_dir / "dashboard.txt"
