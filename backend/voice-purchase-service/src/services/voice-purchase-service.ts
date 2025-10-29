@@ -4,7 +4,7 @@
  */
 
 import { BigQuery } from '@google-cloud/bigquery';
-import Redis from 'ioredis';
+import { createSecureRedisClient } from '../../../common/queue/hardenedQueue.js';
 import { NLPService } from './nlp-service';
 import { AudioService } from './audio-service';
 import { PaymentService } from './payment-service';
@@ -100,7 +100,7 @@ interface Order {
 
 export class VoicePurchaseService {
   private bigquery: BigQuery;
-  private redis: Redis;
+  private redis: any;
   private dataset: string;
   private nlpService: NLPService;
   private audioService: AudioService;
@@ -111,13 +111,8 @@ export class VoicePurchaseService {
       projectId: process.env.GCP_PROJECT_ID || 'reggieanddrodispensary',
     });
 
-    this.redis = new Redis({
-      host: process.env.REDIS_HOST || 'localhost',
-      port: parseInt(process.env.REDIS_PORT || '6379'),
-      password: process.env.REDIS_PASSWORD,
-      retryDelayOnFailover: 100,
-      maxRetriesPerRequest: 3,
-    });
+    // Use secure Redis client with TLS and ACL support
+    this.redis = createSecureRedisClient();
 
     this.dataset = process.env.BIGQUERY_DATASET || 'livhana_prod';
     this.nlpService = new NLPService();

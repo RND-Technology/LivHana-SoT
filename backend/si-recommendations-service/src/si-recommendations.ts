@@ -3,7 +3,7 @@
 // Implements ML-powered suggestions with explainable AI
 
 import { BigQuery } from '@google-cloud/bigquery';
-import Redis from 'ioredis';
+import { createSecureRedisClient } from '../../common/queue/hardenedQueue.js';
 import express from 'express';
 
 // TypeScript strict mode - no 'any' types allowed
@@ -91,7 +91,7 @@ interface AnalyticsResponse {
 
 export class SIRecommendationsService {
   private bigquery: BigQuery;
-  private redis: Redis;
+  private redis: any;
   private dataset: string;
   private modelVersion: string;
 
@@ -100,13 +100,8 @@ export class SIRecommendationsService {
       projectId: process.env.GCP_PROJECT_ID || 'reggieanddrodispensary',
     });
 
-    this.redis = new Redis({
-      host: process.env.REDIS_HOST || 'localhost',
-      port: parseInt(process.env.REDIS_PORT || '6379'),
-      password: process.env.REDIS_PASSWORD,
-      retryDelayOnFailover: 100,
-      maxRetriesPerRequest: 3,
-    });
+    // Use secure Redis client with TLS and ACL support
+    this.redis = createSecureRedisClient();
 
     this.dataset = process.env.BIGQUERY_DATASET || 'livhana_prod';
     this.modelVersion = 'v2.1.0';
