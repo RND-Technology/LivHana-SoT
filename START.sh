@@ -1,10 +1,11 @@
 #!/bin/bash
 set -e
 
-# VERIFIED AND UPDATED: 2025-10-29 08:52 (FALLACY SCAN COMPLETE - ALL FIXED)
+# VERIFIED AND UPDATED: 2025-10-29 09:03 (DEPENDENCY AUTO-SAVE ADDED)
 # CRITICAL FIXES: Redis startup, reasoning-gateway, dual-tier1 coordination, watchdog integration
 # REMOVED: Non-existent integration service zombie process
 # ADDED: Docker health polling (no more blind 10s sleep)
+# ADDED: Dependency auto-save watchdog (30s updates to ALL package-lock.json files)
 # CAPABILITIES: Listen, Hear, Talk, Self-Create, Self-Organize, Self-Improve, Self-Heal
 
 # VOICE MODE - INDEPENDENT STARTUP (PRIORITY 1)
@@ -360,6 +361,17 @@ if ! tmux has-session -t auto-timestamp 2>/dev/null; then
   echo "✅ Auto-commit watchdog active"
 else
   echo "✅ Auto-commit watchdog already running"
+fi
+echo ""
+
+# Start dependency auto-save watchdog
+echo "📦 Starting dependency auto-save watchdog (30s updates)..."
+if ! tmux has-session -t dependency-watch 2>/dev/null; then
+  tmux new-session -d -s dependency-watch "bash scripts/watchdogs/dependency_auto_save.sh"
+  sleep 2
+  echo "✅ Dependency watchdog active (updates ALL package-lock.json files)"
+else
+  echo "✅ Dependency watchdog already running"
 fi
 echo ""
 
@@ -720,6 +732,13 @@ if tmux has-session -t auto-timestamp 2>/dev/null; then
   echo "✅ Auto-commit watchdog active (30s intervals)"
 else
   echo "❌ Auto-commit watchdog NOT running"
+fi
+
+# Verify dependency watchdog
+if tmux has-session -t dependency-watch 2>/dev/null; then
+  echo "✅ Dependency auto-save active (30s updates)"
+else
+  echo "❌ Dependency auto-save NOT running"
 fi
 
 # Verify VS Code settings exist
