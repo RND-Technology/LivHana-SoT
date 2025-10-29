@@ -47,12 +47,13 @@ interface SyncRequest {
 }
 
 export class LightspeedBigQueryPipeline {
-  private lightspeed: AxiosInstance;
+  private lightspeed: AxiosInstance | null = null;
   private bigquery: BigQuery;
   private dataset: string;
   private table: string;
   private oauthClient: LightspeedOAuthClient | null = null;
   private useOAuth: boolean;
+  private lightspeedEnabled: boolean = false;
 
   constructor() {
     // Check if OAuth credentials are available
@@ -98,12 +99,15 @@ export class LightspeedBigQueryPipeline {
         timeout: 30000,
       });
     } else {
-      throw new Error(
-        'No Lightspeed authentication configured. ' +
-        'Provide either LIGHTSPEED_CLIENT_ID + LIGHTSPEED_CLIENT_SECRET + LIGHTSPEED_ACCOUNT_ID (OAuth2) ' +
-        'or LIGHTSPEED_TOKEN (legacy)'
-      );
+      // LIGHTSPEED DISABLED: Service can still run for other integrations
+      console.warn('[Lightspeed] ⚠️  No Lightspeed authentication configured - Lightspeed integration DISABLED');
+      console.warn('[Lightspeed] Service will run but Lightspeed sync operations will be skipped');
+      console.warn('[Lightspeed] To enable: provide LIGHTSPEED_CLIENT_ID + LIGHTSPEED_CLIENT_SECRET + LIGHTSPEED_ACCOUNT_ID (OAuth2)');
+      this.lightspeedEnabled = false;
+      this.lightspeed = null;
     }
+
+    this.lightspeedEnabled = !!this.lightspeed;
 
     if (!process.env.GCP_PROJECT_ID) {
       throw new Error('GCP_PROJECT_ID environment variable is required for BigQuery operations');
@@ -240,6 +244,12 @@ export class LightspeedBigQueryPipeline {
    * Fetch sales from Lightspeed API with pagination
    */
   private async fetchSalesFromLightspeed(since: string, limit: number): Promise<LightspeedSale[]> {
+    // Guard: Skip if Lightspeed is disabled
+    if (!this.lightspeedEnabled || !this.lightspeed) {
+      console.warn('[Lightspeed] Skipping fetchSalesFromLightspeed - Lightspeed integration disabled');
+      return [];
+    }
+
     const allSales: LightspeedSale[] = [];
     let offset = 0;
     const pageSize = Math.min(limit, 100); // Lightspeed max page size
@@ -397,12 +407,16 @@ export class LightspeedBigQueryPipeline {
     const authStatus = this.getAuthStatus();
 
     // Test Lightspeed Retail API connection
-    try {
-      // Retail API health check: /Account.json returns account info
-      await this.lightspeed.get('/Account.json', { timeout: 5000 });
-      lightspeedConnected = true;
-    } catch (error) {
-      console.warn('Lightspeed Retail API health check failed:', error);
+    if (this.lightspeedEnabled && this.lightspeed) {
+      try {
+        // Retail API health check: /Account.json returns account info
+        await this.lightspeed.get('/Account.json', { timeout: 5000 });
+        lightspeedConnected = true;
+      } catch (error) {
+        console.warn('Lightspeed Retail API health check failed:', error);
+      }
+    } else {
+      console.warn('[Lightspeed] Skipping health check - Lightspeed integration disabled');
     }
 
     // Test BigQuery connection
