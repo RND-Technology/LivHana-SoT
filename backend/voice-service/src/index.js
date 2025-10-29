@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import { createRequire } from 'module';
 import elevenlabsRouter from './routers/elevenlabs-router.js';
 import reasoningRouter from './routers/reasoning-router.js';
+import interruptController from './routers/interrupt-controller.js';
 
 const app = express();
 const PORT = process.env.PORT || 8080;
