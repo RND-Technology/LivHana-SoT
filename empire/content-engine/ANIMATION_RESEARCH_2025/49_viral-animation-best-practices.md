@@ -1,1 +1,0 @@
-## Viral Animation Best Practices

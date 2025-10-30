@@ -1,1 +1,0 @@
-### State-Specific Compliance (Texas)

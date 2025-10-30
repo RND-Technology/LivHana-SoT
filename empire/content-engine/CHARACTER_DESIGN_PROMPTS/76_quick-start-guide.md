@@ -1,1 +1,0 @@
-## QUICK START GUIDE

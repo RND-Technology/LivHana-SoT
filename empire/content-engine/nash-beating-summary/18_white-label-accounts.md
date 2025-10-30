@@ -1,1 +1,0 @@
-## 🎨 WHITE LABEL ACCOUNTS

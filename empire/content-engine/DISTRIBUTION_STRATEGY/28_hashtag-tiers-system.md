@@ -1,1 +1,0 @@
-### Hashtag Tiers System

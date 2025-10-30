@@ -1,1 +1,0 @@
-## 🚀 RPM DNA SYSTEM CRITIQUE

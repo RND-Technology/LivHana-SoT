@@ -1,1 +1,0 @@
-## ENVIRONMENT VARIABLES (Cloud Run)

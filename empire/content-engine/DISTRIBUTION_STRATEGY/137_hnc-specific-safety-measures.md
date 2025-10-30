@@ -1,1 +1,0 @@
-### HNC-Specific Safety Measures

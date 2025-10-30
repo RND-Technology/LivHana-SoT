@@ -1,1 +1,0 @@
-## Content Optimization Best Practices

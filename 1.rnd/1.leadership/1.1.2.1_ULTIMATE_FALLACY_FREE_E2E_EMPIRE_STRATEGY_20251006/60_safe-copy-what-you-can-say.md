@@ -1,1 +1,0 @@
-## 💎 SAFE COPY (WHAT YOU CAN SAY)

@@ -1,1 +1,0 @@
-## SEO & Discoverability Improvements

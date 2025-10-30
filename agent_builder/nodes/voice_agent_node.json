@@ -1,7 +1,0 @@
-{
-  "id": "node-02-voice-agent",
-  "name": "Voice Agent",
-  "type": "voice",
-  "modes": ["brevity", "mentor", "silence"],
-  "next": "node-03-set-state"
-}

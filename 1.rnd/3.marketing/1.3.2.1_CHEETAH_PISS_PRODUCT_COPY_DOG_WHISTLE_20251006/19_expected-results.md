@@ -1,1 +1,0 @@
-## 📈 EXPECTED RESULTS

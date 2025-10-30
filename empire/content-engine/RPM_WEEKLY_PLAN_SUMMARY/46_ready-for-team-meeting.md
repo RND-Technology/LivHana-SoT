@@ -1,1 +1,0 @@
-## 🚀 READY FOR TEAM MEETING
