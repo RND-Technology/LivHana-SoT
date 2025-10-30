@@ -14,7 +14,8 @@ jlog() {
 
 probe() {
   local port="$1"
-  timeout 5 curl -sf "http://127.0.0.1:${port}/health" >/dev/null 2>&1
+  # Use curl's built-in --max-time instead of timeout (macOS compatible)
+  curl --max-time 5 -sf "http://127.0.0.1:${port}/health" >/dev/null 2>&1
 }
 
 restart() {

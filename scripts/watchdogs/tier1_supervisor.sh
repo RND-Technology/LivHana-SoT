@@ -147,14 +147,15 @@ dependency_guard() {
   echo "$updated"
 }
 
-# Status guard: update consolidated metrics JSON
+# Status guard: update consolidated metrics JSON (atomic write to prevent corruption)
 status_guard() {
   local changed_count=$1
   local timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
   local commit_hash=$(git -C "$ROOT" rev-parse --short HEAD 2>/dev/null || echo "null")
   local tracked=$(wc -l < "$STATE_FILE" 2>/dev/null || echo 0)
 
-  cat > "$STATUS_FILE" <<EOF
+  # Write to temp file first, then atomic move
+  cat > "$STATUS_FILE.tmp" <<EOF
 {
   "supervisor": "tier1",
   "last_check": "$timestamp",
@@ -166,6 +167,7 @@ status_guard() {
   "uptime_seconds": $SECONDS
 }
 EOF
+  mv "$STATUS_FILE.tmp" "$STATUS_FILE"
 }
 
 # Main loop
