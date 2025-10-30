@@ -53,6 +53,25 @@ banner() {
   echo ""
 }
 
+# Cross-platform memory percentage helper
+get_memory_free_pct() {
+  # macOS: use memory_pressure
+  if command -v memory_pressure >/dev/null 2>&1; then
+    memory_pressure 2>/dev/null | grep -i "System-wide memory free percentage" | awk '{print $NF}' | tr -d '%' || echo "0"
+  # Linux: use /proc/meminfo
+  elif [[ -f /proc/meminfo ]]; then
+    local mem_total=$(grep MemTotal /proc/meminfo | awk '{print $2}')
+    local mem_available=$(grep MemAvailable /proc/meminfo | awk '{print $2}')
+    if [[ -n "$mem_total" && -n "$mem_available" && $mem_total -gt 0 ]]; then
+      echo $((mem_available * 100 / mem_total))
+    else
+      echo "0"
+    fi
+  else
+    echo "0"
+  fi
+}
+
 # Test 1: Critical Dependencies
 validate_dependencies() {
   banner "TEST 1: CRITICAL DEPENDENCIES"
@@ -83,21 +102,9 @@ validate_dependencies() {
 validate_memory() {
   banner "TEST 2: MEMORY PRESSURE"
 
-  local free_pct=""
+  local free_pct=$(get_memory_free_pct)
 
-  # macOS: use memory_pressure
-  if command -v memory_pressure >/dev/null 2>&1; then
-    free_pct=$(memory_pressure 2>/dev/null | grep -i "System-wide memory free percentage" | awk '{print $NF}' | tr -d '%' || echo "")
-  # Linux: use /proc/meminfo
-  elif [[ -f /proc/meminfo ]]; then
-    local mem_total=$(grep MemTotal /proc/meminfo | awk '{print $2}')
-    local mem_available=$(grep MemAvailable /proc/meminfo | awk '{print $2}')
-    if [[ -n "$mem_total" && -n "$mem_available" && $mem_total -gt 0 ]]; then
-      free_pct=$((mem_available * 100 / mem_total))
-    fi
-  fi
-
-  if [[ -z "$free_pct" ]]; then
+  if [[ -z "$free_pct" || "$free_pct" == "0" ]]; then
     warning "Could not determine memory pressure - no supported method available"
     return 0
   fi
@@ -401,7 +408,7 @@ generate_metrics() {
     "status": "$(if [[ $VALIDATION_ERRORS -eq 0 ]]; then echo "PASS"; else echo "FAIL"; fi)"
   },
   "system": {
-    "memory_pct_free": $(memory_pressure 2>/dev/null | grep -i "System-wide memory free percentage" | awk '{print $NF}' | tr -d '%' || echo "0"),
+    "memory_pct_free": $(get_memory_free_pct),
     "disk_gb_free": $(df -h / | tail -1 | awk '{print $4}' | sed 's/Gi//' || echo "0")
   }
 }
