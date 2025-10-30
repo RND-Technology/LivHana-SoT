@@ -5,7 +5,7 @@ setup_environment() {
   echo "⚙️  Setting up environment..."
 
   # M4 Max Optimization (2025)
-  export NODE_OPTIONS="--max-old-space-size=4096 --max-semi-space-size=128 --expose-gc --predictable-gc-schedule"
+  export NODE_OPTIONS="--max-old-space-size=4096 --max-semi-space-size=128 --expose-gc"
   export UV_THREADPOOL_SIZE=8
 
   # LivHana Protocol
