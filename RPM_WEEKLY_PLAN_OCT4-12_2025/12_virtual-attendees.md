@@ -1,3 +1,0 @@
-#### **Virtual Attendees:**
-
-- Savanna Miller

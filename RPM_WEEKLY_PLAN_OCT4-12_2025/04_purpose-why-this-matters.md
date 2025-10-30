@@ -1,1 +1,0 @@
-## 💪 PURPOSE (Why This Matters)

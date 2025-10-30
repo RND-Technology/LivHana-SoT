@@ -1,3 +1,0 @@
-## 🚀 MASSIVE ACTION PLAN
-
----

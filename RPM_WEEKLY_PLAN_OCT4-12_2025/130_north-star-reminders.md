@@ -1,1 +1,0 @@
-## 🎯 NORTH STAR REMINDERS

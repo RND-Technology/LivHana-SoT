@@ -1,1 +1,0 @@
-## 📊 SUCCESS METRICS — OCT 4-12 SUMMARY
