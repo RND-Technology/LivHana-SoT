@@ -10,7 +10,7 @@ start_services() {
 }
 
 start_redis() {
-  lsof -i :${REDIS_PORT} >/dev/null 2>&1 && { echo "  ℹ️  Redis running"; return; }
+  lsof -i :"${REDIS_PORT}" >/dev/null 2>&1 && { echo "  ℹ️  Redis running"; return; }
 
   redis-server --port "${REDIS_PORT}" --maxmemory "${REDIS_MAX_MEMORY}" \
     --maxmemory-policy "${REDIS_MAXMEMORY_POLICY}" --save "" --appendonly no --daemonize yes

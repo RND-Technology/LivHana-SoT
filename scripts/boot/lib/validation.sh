@@ -12,16 +12,33 @@ validate_system() {
 }
 
 validate_redis() {
-  lsof -i :${REDIS_PORT} >/dev/null 2>&1 && redis-cli -p "${REDIS_PORT}" ping >/dev/null 2>&1 && \
-    { echo "  ✅ Redis healthy"; return 0; } || { echo "  ❌ Redis down"; return 1; }
+  if lsof -i :"${REDIS_PORT}" >/dev/null 2>&1 && redis-cli -p "${REDIS_PORT}" ping >/dev/null 2>&1; then
+    echo "  ✅ Redis healthy"
+    return 0
+  else
+    echo "  ❌ Redis down"
+    return 1
+  fi
 }
 
 validate_services() {
-  curl -sf "http://localhost:${REASONING_GATEWAY_PORT}/health" >/dev/null 2>&1 && \
-    { echo "  ✅ Reasoning gateway healthy"; return 0; } || { echo "  ❌ Reasoning gateway down"; return 1; }
+  if curl -sf "http://localhost:${REASONING_GATEWAY_PORT}/health" >/dev/null 2>&1; then
+    echo "  ✅ Reasoning gateway healthy"
+    return 0
+  else
+    echo "  ❌ Reasoning gateway down"
+    return 1
+  fi
 }
 
 validate_agents() {
-  local count=$(tmux ls 2>/dev/null | grep -cE "^(planning|research|artifact|execmon|qa):" || echo 0)
-  [[ $count -eq 5 ]] && { echo "  ✅ 5/5 agents"; return 0; } || { echo "  ❌ $count/5 agents"; return 1; }
+  local count
+  count=$(tmux ls 2>/dev/null | grep -cE "^(planning|research|artifact|execmon|qa):" || echo 0)
+  if [[ $count -eq 5 ]]; then
+    echo "  ✅ 5/5 agents"
+    return 0
+  else
+    echo "  ❌ $count/5 agents"
+    return 1
+  fi
 }

@@ -249,3 +249,6 @@ high-sa-key.json
 *-sa-key.json
 backend/voice-service-ultimate/.env
 tmp/agent_status/*.json
+
+# Backups - prevent backup pollution in repo
+backups/
