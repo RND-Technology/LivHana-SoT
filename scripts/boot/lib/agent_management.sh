@@ -37,17 +37,17 @@ create_agent_shim() {
 
   mkdir -p agents
 
-  cat > "agents/${name}.js" << EOF
+  cat > "agents/${name}.js" << 'EOF_OUTER'
 #!/usr/bin/env node
 const { spawn } = require('child_process');
 const path = require('path');
 
-let port = ${port};
+let port = PORT_PLACEHOLDER;
 const portIndex = process.argv.indexOf('--port');
 if (portIndex !== -1) port = parseInt(process.argv[portIndex + 1], 10);
 
-const pythonScript = path.join(__dirname, '..', 'scripts', 'agents', 'implementations', '${name}_agent.py');
-console.log(\\\`🚀 ${name} agent (port \\\${port})\\\`);
+const pythonScript = path.join(__dirname, '..', 'scripts', 'agents', 'implementations', 'NAME_PLACEHOLDER_agent.py');
+console.log(`🚀 NAME_PLACEHOLDER agent (port ${port})`);
 
 const proc = spawn('python3', [pythonScript, '--port', port.toString()], {
   cwd: path.join(__dirname, '..'),
@@ -57,7 +57,12 @@ const proc = spawn('python3', [pythonScript, '--port', port.toString()], {
 process.on('SIGTERM', () => proc.kill('SIGTERM'));
 process.on('SIGINT', () => proc.kill('SIGINT'));
 proc.on('exit', (code) => process.exit(code || 0));
-EOF
+EOF_OUTER
+
+  # Replace placeholders
+  sed -i.bak "s/PORT_PLACEHOLDER/${port}/g" "agents/${name}.js"
+  sed -i.bak "s/NAME_PLACEHOLDER/${name}/g" "agents/${name}.js"
+  rm -f "agents/${name}.js.bak"
 
   chmod +x "agents/${name}.js"
 }
