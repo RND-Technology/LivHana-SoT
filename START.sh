@@ -14,6 +14,14 @@ echo "🎖️  LivHana System of Truth - Marine Corps Precision"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
 main() {
+  # Pre-flight validation (BEFORE starting anything)
+  if ! preflight_checks; then
+    echo ""
+    echo "❌ Pre-flight checks failed - aborting startup"
+    exit 1
+  fi
+
+  echo ""
   setup_environment "$ROOT_DIR"
   start_services "$ROOT_DIR"
   spawn_agents "$ROOT_DIR"
