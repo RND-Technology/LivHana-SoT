@@ -8,7 +8,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 MANIFEST="$ROOT/config/claude_tier1_auto_save_manifest.json"
 STATE_FILE="$ROOT/tmp/claude_tier1_auto_save.state"
-STATUS_FILE="$ROOT/tmp/watchdog_status.json"
+STATUS_FILE="$ROOT/tmp/claude_tier1_auto_save_status.json"
 LOCK_FILE="$ROOT/tmp/claude_tier1_auto_save.lock"
 LOG_FILE="$ROOT/logs/claude_tier1_auto_save.log"
 
@@ -23,8 +23,18 @@ if ! flock -n 200; then
 fi
 echo $$ > "$LOCK_FILE"
 
-# Cleanup on exit
-trap 'rm -f "$LOCK_FILE"; log "Auto-save stopped (PID $$)"; exit 0' SIGTERM SIGINT EXIT
+# Cleanup on exit - preserve actual exit code
+cleanup() {
+  local exit_code=$?
+  rm -f "$LOCK_FILE"
+  if [[ $exit_code -eq 0 ]]; then
+    log "Auto-save stopped cleanly (PID $$)"
+  else
+    log_error "Auto-save stopped with error code $exit_code (PID $$)"
+  fi
+  exit $exit_code
+}
+trap cleanup SIGTERM SIGINT EXIT
 
 # Logging
 log() {

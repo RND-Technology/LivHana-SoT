@@ -21,8 +21,13 @@ fi
 
 echo $$ > "$LOCK_FILE"
 
-# Cleanup on exit
-trap 'rm -f "$LOCK_FILE"; exit' INT TERM EXIT
+# Cleanup on exit - preserve actual exit code
+cleanup() {
+  local exit_code=$?
+  rm -f "$LOCK_FILE"
+  exit $exit_code
+}
+trap cleanup INT TERM EXIT
 
 log() {
   echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] $*" | tee -a "$LOG_FILE"
@@ -35,9 +40,9 @@ while true; do
   if [[ -n $(git status --porcelain) ]]; then
     TIMESTAMP=$(date +%Y-%m-%d_%H:%M:%S)
 
-    # Stage only tracked files + new critical files
+    # Stage only tracked files + new critical files (EXCLUDE config/ to prevent credential leaks)
     git add -u  # Update tracked files
-    git add START.sh package*.json config/ scripts/watchdogs/ 2>/dev/null || true  # Critical new files
+    git add START.sh package*.json scripts/watchdogs/ scripts/boot/ scripts/guards/ 2>/dev/null || true  # Critical new files
 
     # Create clean commit
     CHANGES=$(git diff --cached --name-only | wc -l | tr -d ' ')

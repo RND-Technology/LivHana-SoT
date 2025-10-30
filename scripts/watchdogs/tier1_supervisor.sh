@@ -10,7 +10,7 @@ shopt -s nullglob
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 MANIFEST="$ROOT/config/tier1_watchdog.json"
 STATE_FILE="$ROOT/tmp/tier1_supervisor.state"
-STATUS_FILE="$ROOT/tmp/watchdog_status.json"
+STATUS_FILE="$ROOT/tmp/tier1_supervisor_status.json"
 LOCK_FILE="$ROOT/tmp/tier1_supervisor.lock"
 CHECK_INTERVAL=60
 JITTER=3
@@ -93,7 +93,10 @@ git_guard() {
     if [[ "$current" != "$stored" ]]; then
       changes+=("$file")
       if grep -q "^${file}:" "$STATE_FILE" 2>/dev/null; then
-        sed -i.bak "s|^${file}:.*|${file}:${current}|" "$STATE_FILE" 2>/dev/null
+        # Use temp file instead of .bak to avoid accumulation
+        grep -v "^${file}:" "$STATE_FILE" > "$STATE_FILE.tmp"
+        echo "${file}:${current}" >> "$STATE_FILE.tmp"
+        mv "$STATE_FILE.tmp" "$STATE_FILE"
       else
         echo "${file}:${current}" >> "$STATE_FILE"
       fi
@@ -133,7 +136,11 @@ dependency_guard() {
 
     if [[ "$current" != "$stored" && -f "$dir/package.json" ]]; then
       cd "$dir"
-      npm install --package-lock-only --no-audit --no-fund >/dev/null 2>&1 && ((updated++)) || true
+      if npm install --package-lock-only --no-audit --no-fund 2>&1 | tee -a "$ROOT/logs/tier1_supervisor.log"; then
+        ((updated++))
+      else
+        echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] ERROR: npm install failed for $dir" >> "$ROOT/logs/tier1_supervisor.log"
+      fi
       cd "$ROOT"
     fi
   done < <(expand_manifest | grep "package.json$")
@@ -182,5 +189,12 @@ main() {
   done
 }
 
-trap 'rm -f "$LOCK_FILE"; echo "Supervisor stopping"; exit 0' SIGTERM SIGINT
+# Cleanup on any exit - preserve exit code
+cleanup() {
+  local exit_code=$?
+  rm -f "$LOCK_FILE"
+  echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] Supervisor stopping (exit code: $exit_code)"
+  exit $exit_code
+}
+trap cleanup SIGTERM SIGINT EXIT
 main
