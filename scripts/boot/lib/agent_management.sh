@@ -22,11 +22,11 @@ spawn_agent() {
   tmux has-session -t "$name" 2>/dev/null && { echo "  ℹ️  $name running"; return; }
 
   # Check if shim exists
-  if [[ ! -f "agents/${name}.js" ]]; then
+  if [[ ! -f "agents/${name}.cjs" ]]; then
     create_agent_shim "$name" "$port"
   fi
 
-  tmux new-session -d -s "$name" "node agents/${name}.js --port $port"
+  tmux new-session -d -s "$name" "node agents/${name}.cjs --port $port"
   sleep 2
   echo "  ✅ $name spawned"
 }
@@ -37,7 +37,7 @@ create_agent_shim() {
 
   mkdir -p agents
 
-  cat > "agents/${name}.js" << 'EOF_OUTER'
+  cat > "agents/${name}.cjs" << 'EOF_OUTER'
 #!/usr/bin/env node
 const { spawn } = require('child_process');
 const path = require('path');
@@ -60,9 +60,9 @@ proc.on('exit', (code) => process.exit(code || 0));
 EOF_OUTER
 
   # Replace placeholders
-  sed -i.bak "s/PORT_PLACEHOLDER/${port}/g" "agents/${name}.js"
-  sed -i.bak "s/NAME_PLACEHOLDER/${name}/g" "agents/${name}.js"
-  rm -f "agents/${name}.js.bak"
+  sed -i.bak "s/PORT_PLACEHOLDER/${port}/g" "agents/${name}.cjs"
+  sed -i.bak "s/NAME_PLACEHOLDER/${name}/g" "agents/${name}.cjs"
+  rm -f "agents/${name}.cjs.bak"
 
-  chmod +x "agents/${name}.js"
+  chmod +x "agents/${name}.cjs"
 }

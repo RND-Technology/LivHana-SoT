@@ -1,12 +1,13 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Claude Tier-1 Auto-Save Manifest - Tracks critical boot dependencies",
   "tracked_patterns": {
     "boot_scripts": [
       "START.sh",
       "TIER1_BOOT_LOCK_3_AGENTS_24_7.sh",
       "scripts/claude_tier1_boot.sh",
-      "scripts/voice_mode_boot.sh"
+      "scripts/voice_mode_boot.sh",
+      "scripts/boot/*.sh"
     ],
     "watchdogs": [
       "scripts/watchdogs/*.sh"
@@ -15,6 +16,17 @@
       "scripts/guards/*.sh",
       "scripts/guards/*.py"
     ],
+    "agents": [
+      "scripts/agents/*.py",
+      "scripts/agents/*.sh"
+    ],
+    "helpers": [
+      "scripts/helpers/*.sh"
+    ],
+    "integrations": [
+      "scripts/integrations/*.py",
+      "scripts/integrations/*.sh"
+    ],
     "voice_orchestrators": [
       "scripts/agents/voice_orchestrator_watch.sh",
       "scripts/claude_voice_session.sh"
@@ -22,7 +34,14 @@
     "configs": [
       "config/claude_tier1_context.yaml",
       "config/tier1_watchdog.json",
+      "config/claude_tier1_auto_save_manifest.json",
       ".claude/*.md"
+    ],
+    "documentation": [
+      "docs/*.md",
+      "docs/adr/*.md",
+      "reports/*.md",
+      "EXPERT_VALIDATION_2025.md"
     ],
     "package_files": [
       "package.json",
