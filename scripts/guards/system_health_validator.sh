@@ -79,17 +79,26 @@ validate_dependencies() {
   fi
 }
 
-# Test 2: Memory Pressure
+# Test 2: Memory Pressure (cross-platform: macOS and Linux)
 validate_memory() {
   banner "TEST 2: MEMORY PRESSURE"
 
   local free_pct=""
+
+  # macOS: use memory_pressure
   if command -v memory_pressure >/dev/null 2>&1; then
     free_pct=$(memory_pressure 2>/dev/null | grep -i "System-wide memory free percentage" | awk '{print $NF}' | tr -d '%' || echo "")
+  # Linux: use /proc/meminfo
+  elif [[ -f /proc/meminfo ]]; then
+    local mem_total=$(grep MemTotal /proc/meminfo | awk '{print $2}')
+    local mem_available=$(grep MemAvailable /proc/meminfo | awk '{print $2}')
+    if [[ -n "$mem_total" && -n "$mem_available" && $mem_total -gt 0 ]]; then
+      free_pct=$((mem_available * 100 / mem_total))
+    fi
   fi
 
   if [[ -z "$free_pct" ]]; then
-    warning "Could not determine memory pressure - using vm_stat fallback"
+    warning "Could not determine memory pressure - no supported method available"
     return 0
   fi
 
@@ -149,7 +158,14 @@ validate_agents() {
       continue
     fi
 
-    local file_age=$(($(date +%s) - $(stat -f %m "$status_file" 2>/dev/null || echo 0)))
+    # Cross-platform stat: -f %m on macOS, -c %Y on Linux
+    local mtime
+    if stat -f %m "$status_file" >/dev/null 2>&1; then
+      mtime=$(stat -f %m "$status_file" 2>/dev/null || echo 0)
+    else
+      mtime=$(stat -c %Y "$status_file" 2>/dev/null || echo 0)
+    fi
+    local file_age=$(($(date +%s) - mtime))
     if [[ $file_age -gt 300 ]]; then
       warning "Agent '$agent': STALE (${file_age}s old)"
       unhealthy=$((unhealthy + 1))
