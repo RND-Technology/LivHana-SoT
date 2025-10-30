@@ -1,0 +1,80 @@
+---
+type: dna_seed
+id: DNA-20251029-2149-fc6
+timestamp: 2025-10-30T02:49:58Z
+status: in_progress
+---
+
+## WHAT
+Analyzed Copilot conversation anti-patterns
+
+## WHY
+Learned critical anti-patterns from Copilot failures - zero placeholders, execute don't ask, check files first
+
+## WHO
+Agent: claude-code
+Human: Jesse
+
+## WHEN
+Started: 2025-10-30T02:49:58Z
+Completed: 2025-10-30T02:50:07Z
+Duration: 0m 9s
+
+## WHERE
+Files:
+  - scripts/watchdogs/claude_tier1_auto_save.sh (created)
+  - scripts/validate_auto_save_deployment.sh (created)
+  - scripts/tests/ (deleted)
+  - scripts/rpm/sync_to_planning.sh (created)
+  - scripts/rpm/chunk_seeds.sh (created)
+  - scripts/rpm/capture_seed.sh (created)
+  - scripts/integrations/ (deleted)
+  - scripts/helpers/ (deleted)
+  - scripts/guards/validate_pid_file.sh (created)
+  - scripts/guards/validate_op_login.sh (created)
+  - scripts/guards/validate_linear_token.sh (created)
+  - scripts/guards/check_port_collision.sh (created)
+  - scripts/guards/check_disk_space.sh (created)
+  - scripts/fix_vscode_translocation_CORRECTED.sh (created)
+  - scripts/boot/start_services.sh (created)
+  - scripts/archive/ (deleted)
+  - scripts/agents/tests/ (deleted)
+  - scripts/agents/artifact_agent.py (created)
+  - rpm/ (deleted)
+  - reports/QA-RED-TEAM-FALLACY-SCAN-EXECUTION-PLAN.md (created)
+  - docs/integrations/ (deleted)
+  - docs/TIER1_SUPERVISOR_MIGRATION.md (created)
+  - docs/RPM_DNA_SEED_SYSTEM.md (created)
+  - docs/EXPERT_VALIDATION_2025.md (created)
+  - docs/BOOT_SYSTEM_ANALYSIS.md (created)
+  - config/claude_tier1_auto_save_manifest.json (created)
+  - backups/snapshots/ (deleted)
+  - backups/local_20251029_184935/ (deleted)
+  - KILL_LIST_AND_PERFECT_ARCHITECTURE.md (created)
+  - EXECUTION_ARTIFACT_FINAL.md (created)
+  - CODEX_WORK_VALIDATED_COMPLETE.md (created)
+  [To be captured on completion]
+
+## HOW
+Method: [To be filled]
+Tools: [To be captured]
+Commands:
+  ```bash
+  # Commands will be captured
+  ```
+
+## RESULT
+Status: ✅ Complete
+Output: [Working...]
+
+## NEXT
+Enables:
+  [To be determined]
+
+Blocks:
+  [To be determined]
+
+## LINKS
+Parent Chunk: [Auto-detected]
+Related Seeds: [Auto-linked]
+RPM Tree: [Current week]

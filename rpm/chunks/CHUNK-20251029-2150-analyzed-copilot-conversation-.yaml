@@ -1,0 +1,38 @@
+---
+type: rpm_chunk
+id: CHUNK-20251029-2150-analyzed-copilot-conversation-
+timestamp: 2025-10-30T02:50:11Z
+status: complete
+---
+
+## CHUNK IDENTITY
+Title: Today's Work - 2025-10-29
+Context: Automated chunking of completed DNA seeds
+Owner: claude-code (Sheriff)
+Priority: P1
+
+## SCOPE
+Goal: Complete all planned work for today
+Duration: Full session
+Complexity: Medium
+
+## DNA SEEDS (Work Units)
+- [x] DNA-20251029-2149-fc6: Analyzed Copilot conversation anti-patterns
+
+## DEPENDENCIES
+Requires:
+  - Previous day's work
+
+Enables:
+  - Tomorrow's planning
+  - Weekly review aggregation
+
+## SUCCESS CRITERIA
+- [x] All seeds captured with full context
+- [x] Files documented
+- [x] Timing recorded
+- [x] Business value stated
+
+## LINKS
+RPM Tree: TREE-2025-W43-current-week
+Related Chunks: [Auto-linked by planning agent]
