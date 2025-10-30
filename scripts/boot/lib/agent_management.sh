@@ -12,6 +12,10 @@ spawn_agents() {
   spawn_agent "execmon" 5017
   spawn_agent "qa" 5016
 
+  # Create voice auto-launch flag
+  touch "$ROOT_DIR/tmp/voice_auto_launch.flag"
+  echo "🎤 Voice auto-launch flag created"
+
   echo "✅ Agents spawned"
 }
 
