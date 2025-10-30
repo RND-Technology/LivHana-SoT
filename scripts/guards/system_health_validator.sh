@@ -249,37 +249,37 @@ validate_ports() {
   return 0
 }
 
-# Test 7: Watchdog Health
+# Test 7: Watchdog Health (updated to current watchdog architecture)
 validate_watchdogs() {
   banner "TEST 7: WATCHDOG HEALTH"
 
   local watchdogs=0
   local running=0
 
-  # Session watchdog
-  if pgrep -f "watch-session-progress.sh" >/dev/null 2>&1; then
-    success "Session watchdog: RUNNING"
+  # Claude Tier-1 Auto-Save (PRIMARY)
+  if pgrep -f "claude_tier1_auto_save.sh" >/dev/null 2>&1; then
+    success "Claude Tier-1 auto-save: RUNNING"
     running=$((running + 1))
   else
-    warning "Session watchdog: NOT RUNNING"
+    warning "Claude Tier-1 auto-save: NOT RUNNING"
   fi
   watchdogs=$((watchdogs + 1))
 
-  # 1Password guard
-  if pgrep -f "op_secret_guard.sh" >/dev/null 2>&1; then
-    success "1Password guard: RUNNING"
+  # Tier-1 Supervisor
+  if pgrep -f "tier1_supervisor.sh" >/dev/null 2>&1; then
+    success "Tier-1 supervisor: RUNNING"
     running=$((running + 1))
   else
-    warning "1Password guard: NOT RUNNING"
+    warning "Tier-1 supervisor: NOT RUNNING"
   fi
   watchdogs=$((watchdogs + 1))
 
-  # Boot script watchdog
-  if pgrep -f "boot_script_auto_commit.sh" >/dev/null 2>&1; then
-    success "Boot script watchdog: RUNNING"
+  # Auto-Save Local
+  if pgrep -f "auto_save_local.sh" >/dev/null 2>&1; then
+    success "Auto-save local: RUNNING"
     running=$((running + 1))
   else
-    warning "Boot script watchdog: NOT RUNNING"
+    warning "Auto-save local: NOT RUNNING"
   fi
   watchdogs=$((watchdogs + 1))
 
@@ -292,12 +292,21 @@ validate_watchdogs() {
   fi
   watchdogs=$((watchdogs + 1))
 
-  # Resource allocator
-  if pgrep -f "dynamic_resource_allocator.sh" >/dev/null 2>&1; then
-    success "Resource allocator: RUNNING"
+  # 1Password guard
+  if pgrep -f "op_secret_guard.sh" >/dev/null 2>&1; then
+    success "1Password guard: RUNNING"
     running=$((running + 1))
   else
-    warning "Resource allocator: NOT RUNNING"
+    warning "1Password guard: NOT RUNNING"
+  fi
+  watchdogs=$((watchdogs + 1))
+
+  # Voice services watchdog
+  if pgrep -f "voice_services_watch.sh" >/dev/null 2>&1; then
+    success "Voice services watchdog: RUNNING"
+    running=$((running + 1))
+  else
+    warning "Voice services watchdog: NOT RUNNING"
   fi
   watchdogs=$((watchdogs + 1))
 
@@ -319,32 +328,48 @@ validate_watchdogs() {
 validate_filesystem() {
   banner "TEST 8: FILE SYSTEM INTEGRITY"
 
+  # Critical directories (errors if missing/non-writable)
   local critical_dirs=(
     "$ROOT/tmp/agent_status"
     "$ROOT/logs"
-    "$ROOT/.claude"
     "$ROOT/tmp"
-    "$ROOT/.vscode"
     "$ROOT/scripts/watchdogs"
   )
 
-  local issues=0
+  # Optional directories (warnings if missing/non-writable)
+  local optional_dirs=(
+    "$ROOT/.claude"
+    "$ROOT/.vscode"
+  )
+
+  local errors=0
+  local warnings=0
 
   for dir in "${critical_dirs[@]}"; do
     if [[ -d "$dir" ]] && [[ -w "$dir" ]]; then
       success "Directory '$dir': OK"
     else
-      error "Directory '$dir': MISSING or NOT WRITABLE"
-      issues=$((issues + 1))
+      error "Directory '$dir': MISSING or NOT WRITABLE (CRITICAL)"
+      errors=$((errors + 1))
     fi
   done
 
-  if [[ $issues -eq 0 ]]; then
-    success "File system integrity verified"
+  for dir in "${optional_dirs[@]}"; do
+    if [[ -d "$dir" ]] && [[ -w "$dir" ]]; then
+      success "Directory '$dir': OK"
+    else
+      warning "Directory '$dir': MISSING or NOT WRITABLE (optional, will auto-create if needed)"
+      warnings=$((warnings + 1))
+    fi
+  done
+
+  if [[ $errors -eq 0 ]]; then
+    success "File system integrity verified (${warnings} optional warnings)"
+    [[ $warnings -gt 0 ]] && VALIDATION_WARNINGS=$((VALIDATION_WARNINGS + warnings))
     return 0
   else
-    critical "$issues file system issues detected"
-    VALIDATION_ERRORS=$((VALIDATION_ERRORS + issues))
+    critical "$errors critical file system issues detected"
+    VALIDATION_ERRORS=$((VALIDATION_ERRORS + errors))
     return 1
   fi
 }
