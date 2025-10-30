@@ -24,8 +24,9 @@ fi
 echo $$ > "$LOCK_FILE"
 
 # Cleanup on exit - preserve actual exit code
+# Capture exit code at trap invocation, not inside handler
 cleanup() {
-  local exit_code=$?
+  local exit_code=${1:-0}
   rm -f "$LOCK_FILE"
   if [[ $exit_code -eq 0 ]]; then
     log "Auto-save stopped cleanly (PID $$)"
@@ -34,7 +35,9 @@ cleanup() {
   fi
   exit $exit_code
 }
-trap cleanup SIGTERM SIGINT EXIT
+trap 'cleanup $?' EXIT
+trap 'cleanup 143' SIGTERM
+trap 'cleanup 130' SIGINT
 
 # Logging
 log() {
@@ -260,15 +263,16 @@ Co-Authored-By: Claude Tier-1 Auto-Save <noreply@anthropic.com>"
   return 0
 }
 
-# Update watchdog status JSON
+# Update watchdog status JSON (atomic write to prevent corruption)
 update_status() {
   local changed_count=$1
   local timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
   local commit_hash=$(git -C "$ROOT" rev-parse --short HEAD 2>/dev/null || echo "null")
   local tracked=$(wc -l < "$STATE_FILE" 2>/dev/null || echo 0)
   local commits_last_hour=$(git -C "$ROOT" log --since="1 hour ago" --oneline 2>/dev/null | wc -l | tr -d ' ')
-  
-  cat > "$STATUS_FILE" <<EOF
+
+  # Write to temp file first, then atomic move
+  cat > "$STATUS_FILE.tmp" <<EOF
 {
   "watchdog": "claude_tier1_auto_save",
   "status": "active",
@@ -285,6 +289,7 @@ update_status() {
   "uptime_seconds": $SECONDS
 }
 EOF
+  mv "$STATUS_FILE.tmp" "$STATUS_FILE"
 }
 
 # Main execution
