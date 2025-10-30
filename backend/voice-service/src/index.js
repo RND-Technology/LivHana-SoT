@@ -5,6 +5,7 @@ import { createRequire } from 'module';
 import elevenlabsRouter from './routers/elevenlabs-router.js';
 import reasoningRouter from './routers/reasoning-router.js';
 import interruptController from './routers/interrupt-controller.js';
+import openaiVoiceRouter from './routers/openai-voice-router.js';
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -73,6 +74,8 @@ app.get('/', (req, res) => {
       health: '/health',
       elevenlabs: '/api/elevenlabs/*',
       reasoning: '/api/reasoning/*',
+      interrupt: '/api/interrupt/*',
+      openaiVoice: '/api/openai-voice/*',
       orchestrationCommands: '/api/commands/orchestration'
     }
   });
@@ -82,6 +85,7 @@ app.get('/', (req, res) => {
 app.use('/api/elevenlabs', elevenlabsRouter);
 app.use('/api/reasoning', reasoningRouter);
 app.use('/api/interrupt', interruptController);  // 🚨 VOICE INTERRUPT DISCIPLINE
+app.use('/api/openai-voice', openaiVoiceRouter);  // 🚀 OPENAI ADVANCED VOICE (< 300ms latency)
 
 app.post('/api/commands/orchestration', async (req, res) => {
   if (!handleOrchestrationCommand) {
