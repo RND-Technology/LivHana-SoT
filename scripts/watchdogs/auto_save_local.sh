@@ -22,12 +22,15 @@ fi
 echo $$ > "$LOCK_FILE"
 
 # Cleanup on exit - preserve actual exit code
+# Capture exit code at trap invocation, not inside handler
 cleanup() {
-  local exit_code=$?
+  local exit_code=${1:-0}
   rm -f "$LOCK_FILE"
   exit $exit_code
 }
-trap cleanup INT TERM EXIT
+trap 'cleanup $?' EXIT
+trap 'cleanup 130' INT
+trap 'cleanup 143' TERM
 
 log() {
   echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] $*" | tee -a "$LOG_FILE"
@@ -50,10 +53,14 @@ while true; do
 
     # Create clean commit
     CHANGES=$(git diff --cached --name-only | wc -l | tr -d ' ')
-    
+
     if [[ $CHANGES -gt 0 ]]; then
-      git commit -m "auto-save: $CHANGES files updated at $TIMESTAMP" || true
-      log "Saved $CHANGES files locally"
+      if git commit -m "auto-save: $CHANGES files updated at $TIMESTAMP"; then
+        log "Saved $CHANGES files locally"
+      else
+        log "ERROR: Commit failed (check git identity, permissions, or repo health)"
+        git reset --quiet 2>/dev/null || true  # Unstage on failure
+      fi
     fi
   fi
 

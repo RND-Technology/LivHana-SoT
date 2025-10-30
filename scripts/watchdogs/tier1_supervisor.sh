@@ -192,11 +192,14 @@ main() {
 }
 
 # Cleanup on any exit - preserve exit code
+# Capture exit code at trap invocation, not inside handler
 cleanup() {
-  local exit_code=$?
+  local exit_code=${1:-0}
   rm -f "$LOCK_FILE"
   echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] Supervisor stopping (exit code: $exit_code)"
   exit $exit_code
 }
-trap cleanup SIGTERM SIGINT EXIT
+trap 'cleanup $?' EXIT
+trap 'cleanup 143' SIGTERM
+trap 'cleanup 130' SIGINT
 main
