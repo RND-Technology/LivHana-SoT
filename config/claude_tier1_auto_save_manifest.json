@@ -1,0 +1,54 @@
+{
+  "version": "1.0.0",
+  "description": "Claude Tier-1 Auto-Save Manifest - Tracks critical boot dependencies",
+  "tracked_patterns": {
+    "boot_scripts": [
+      "START.sh",
+      "TIER1_BOOT_LOCK_3_AGENTS_24_7.sh",
+      "scripts/claude_tier1_boot.sh",
+      "scripts/voice_mode_boot.sh"
+    ],
+    "watchdogs": [
+      "scripts/watchdogs/*.sh"
+    ],
+    "guards": [
+      "scripts/guards/*.sh",
+      "scripts/guards/*.py"
+    ],
+    "voice_orchestrators": [
+      "scripts/agents/voice_orchestrator_watch.sh",
+      "scripts/claude_voice_session.sh"
+    ],
+    "configs": [
+      "config/claude_tier1_context.yaml",
+      "config/tier1_watchdog.json",
+      ".claude/*.md"
+    ],
+    "package_files": [
+      "package.json",
+      "package-lock.json",
+      "backend/*/package.json",
+      "backend/*/package-lock.json"
+    ]
+  },
+  "exclude_patterns": [
+    "**/node_modules/**",
+    "**/backups/**",
+    "**/.git/**",
+    "**/tmp/**",
+    "**/logs/**",
+    "**/*.log",
+    "**/.env*",
+    "**/secrets/**",
+    "**/*secret*",
+    "**/*.key",
+    "**/*.pem"
+  ],
+  "settings": {
+    "interval_seconds": 300,
+    "max_commits_per_hour": 12,
+    "min_disk_space_gb": 5,
+    "auto_push": false,
+    "dry_run": false
+  }
+}
