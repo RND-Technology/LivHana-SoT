@@ -138,8 +138,17 @@ dependency_guard() {
       cd "$dir"
       if npm install --package-lock-only --no-audit --no-fund 2>&1 | tee -a "$ROOT/logs/tier1_supervisor.log"; then
         ((updated++))
+        # Update STATE_FILE after successful npm install to prevent re-runs
+        if grep -q "^${pkg}:" "$STATE_FILE" 2>/dev/null; then
+          grep -v "^${pkg}:" "$STATE_FILE" > "$STATE_FILE.tmp"
+          echo "${pkg}:${current}" >> "$STATE_FILE.tmp"
+          mv "$STATE_FILE.tmp" "$STATE_FILE"
+        else
+          echo "${pkg}:${current}" >> "$STATE_FILE"
+        fi
       else
-        echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] ERROR: npm install failed for $dir" >> "$ROOT/logs/tier1_supervisor.log"
+        echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] ERROR: npm install failed for $dir (will retry next cycle)" >> "$ROOT/logs/tier1_supervisor.log"
+        # Don't update STATE_FILE on failure so we retry next cycle
       fi
       cd "$ROOT"
     fi
