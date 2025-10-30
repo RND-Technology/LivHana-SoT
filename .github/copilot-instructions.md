@@ -1,4 +1,4 @@
-# LivHana-SoT AI Agent Instructions
+c# LivHana-SoT AI Agent Instructions
 
 **Project**: LivHana Source of Truth - Voice-First Cannabis Commerce Platform  
 **Company**: Reggie & Dro LLC (US Marine Corps Veteran-Owned)  
