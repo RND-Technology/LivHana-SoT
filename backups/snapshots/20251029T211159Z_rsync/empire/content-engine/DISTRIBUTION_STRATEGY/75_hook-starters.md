@@ -1,0 +1,12 @@
+#### Hook Starters
+
+- "Did you know..."
+- "Nobody talks about..."
+- "This is the [number] mistake..."
+- "Wait... this is illegal?"
+- "Real talk:"
+- "Hot take:"
+- "Unpopular opinion:"
+- "Story time:"
+- "Plot twist:"
+- "Here's the tea:"

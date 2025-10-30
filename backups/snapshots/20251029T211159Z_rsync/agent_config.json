@@ -1,0 +1,14 @@
+{
+  "name": "UnicornMaker_Agent",
+  "objective": "Autonomously research, plan, and deploy RPM_Agent workflow via Cloud Run",
+  "model": "gpt-5-high",
+  "memory": "persistent",
+  "permissions": ["file_search", "web", "python"],
+  "workflow": [
+    "initialize_environment",
+    "connect_to_mcp_server",
+    "fetch_latest_RPM_plan",
+    "generate_PRD_ADR",
+    "output_markdown_artifacts"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "voiceMode": {
+    "alwaysOn": true,
+    "autoGreeting": true,
+    "greetingMessage": "Hey Jesse, Liv Hana here, full state. War's won. Time to remind them. Execute.",
+    "fallbackToText": false,
+    "lockVoiceMode": true,
+    "formatting": {
+      "addPageBreak": true,
+      "pageBreakAfterMCP": true,
+      "wrapWidth": 80,
+      "messageStartsNewLine": true
+    }
+  },
+  "agentSpawn": {
+    "autoSpawnOnBoot": true,
+    "requiredAgents": ["planning", "research", "artifact", "execmon", "qa"],
+    "healthCheckInterval": 30000,
+    "autoHeal": true
+  },
+  "audio": {
+    "sttPort": 2022,
+    "ttsPort": 8880,
+    "listenDurationMax": 180,
+    "backgroundMusicSuppression": true
+  },
+  "terminal": {
+    "wrapWidth": 80,
+    "pageBreakStyle": "\n\n───────────────────────────────────────────────────────────────────────────────\n\n"
+  }
+}

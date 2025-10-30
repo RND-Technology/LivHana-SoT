@@ -1,0 +1,52 @@
+{
+  "id": "episode_079",
+  "title": "Premium Flower Showcase",
+  "season": 12,
+  "day": 2,
+  "theme": "Product Spotlight",
+  "format": "60-second short",
+  "platforms": [
+    "YouTube Shorts",
+    "TikTok",
+    "IG Reels",
+    "X"
+  ],
+  "scriptBeat": [
+    "Jesse: \"Behold... the Wall of Weed!\"",
+    "Camera pans across massive product display",
+    "Liv Hana: \"Every strain, every terpene profile, every COA.\"",
+    "Jesse: \"This is what legal hemp looks like in Texas.\""
+  ],
+  "seoAnchors": [
+    "#TexasTHC",
+    "#StayTOONED",
+    "#ReggieAndDro",
+    "#WallOfWeed",
+    "#ProductSpotlight",
+    "#PremiumFlower"
+  ],
+  "cta": "Get your products at ReggieAndDro.com!",
+  "sunoMusic": "majestic-reveal-theme",
+  "sunoPrompt": "Create a majestic-reveal-theme track for a Texas cannabis cartoon episode titled \"Premium Flower Showcase\". Include subtle Texas elements and match the mood: Jesse: \"Behold... the Wall of Weed!\"",
+  "dogWhistle": "rights",
+  "dogWhistleAnalysis": "Fair treatment and equality",
+  "tpop": "💎",
+  "tpopAnalysis": "Diamond quality and value",
+  "easterEgg": "Liv Hana AI EA character introduction",
+  "schoolHouseRock": false,
+  "schoolHouseRockVersion": null,
+  "characters": [
+    "Jesse",
+    "Lt. Dan"
+  ],
+  "productionMetadata": {
+    "generatedAt": "2025-10-07T08:19:27.696Z",
+    "engine": "HNCSeriesExecutor",
+    "version": "1.0.0",
+    "episodeNumber": 79,
+    "season": 12,
+    "day": 2,
+    "theme": "Product Spotlight"
+  },
+  "status": "generated"
+}

@@ -1,0 +1,45 @@
+name: Tier1 Post-Merge Verification
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  verify-tier1:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Lint integration-service
+        working-directory: backend/integration-service
+        run: npm run lint
+      
+      - name: Type check integration-service
+        working-directory: backend/integration-service
+        run: npm run type-check
+      
+      - name: Run unit tests
+        working-directory: backend/integration-service
+        run: npm test
+      
+      - name: Tier-1 zero-warning boot
+        env:
+          ALLOW_TEXT_ONLY: '1'
+          SUPPRESS_OPTIONAL_WARNINGS: '1'
+        run: bash bin/claude-tier1-verify.sh
+      
+      - name: Archive logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tier1-logs
+          path: logs/

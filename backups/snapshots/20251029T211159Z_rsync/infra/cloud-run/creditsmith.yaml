@@ -1,0 +1,58 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: creditsmith
+  namespace: default
+  annotations:
+    autoscaling.knative.dev/minScale: "0"
+    autoscaling.knative.dev/maxScale: "10"
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: "0"
+        autoscaling.knative.dev/maxScale: "10"
+    spec:
+      containers:
+      - image: us-central1-docker.pkg.dev/liv-hana-sovereign/liv-hana-sovereign/creditsmith:latest
+        ports:
+        - containerPort: 8080
+        resources:
+          limits:
+            memory: "1Gi"
+            cpu: "1"
+        env:
+        - name: NODE_ENV
+          value: "production"
+        - name: COMPLIANCE_LEVEL
+          value: "21+"
+        - name: SOVEREIGN_TRINITY
+          value: "LivHana-SoT,LivHana-Kinetic,LivHana-Potential"
+        - name: ATTRIBUTION_ENABLED
+          value: "true"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 30
+          timeoutSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8080
+          initialDelaySeconds: 5
+          timeoutSeconds: 3
+        startupProbe:
+          httpGet:
+            path: /startup
+            port: 8080
+          failureThreshold: 30
+          periodSeconds: 10
+      timeoutSeconds: 300
+  traffic:
+  - percent: 100
+    latestRevision: true
+
+# Last optimized: 2025-10-02
+
+# Optimized: 2025-10-02

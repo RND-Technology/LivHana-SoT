@@ -1,0 +1,16 @@
+{
+  "episode": 1,
+  "title": "The Empire Awakens",
+  "scenes": [
+    {
+      "scene": 1,
+      "narration": "In the heart of Texas, a new chapter begins.",
+      "dialogue": [
+        {
+          "speaker": "Farmer",
+          "text": "The revolution starts with a single seed."
+        }
+      ]
+    }
+  ]
+}

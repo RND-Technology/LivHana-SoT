@@ -1,0 +1,56 @@
+# INTEGRATION SERVICE - PRODUCTION DOCKERFILE
+# Multi-stage, non-root, Node 20, structured JSON logging
+# Community-verified pattern for Cloud Run deployment
+
+# Stage 1: Build TypeScript → JavaScript
+FROM node:20-slim AS builder
+WORKDIR /app
+
+# Copy dependency files
+COPY package*.json tsconfig.json ./
+
+# Install ALL dependencies (including devDependencies for build)
+RUN npm ci
+
+# Copy source code
+COPY src ./src
+COPY specs ./specs
+
+# Build TypeScript to JavaScript
+RUN npm run build
+
+# Stage 2: Runtime (minimal, non-root)
+FROM node:20-slim
+ENV NODE_ENV=production
+
+WORKDIR /app
+
+# Create non-root user
+RUN groupadd -r app && useradd -r -g app app \
+    && mkdir -p /app /tmp && chown -R app:app /app /tmp
+
+# Copy package files and install ONLY production dependencies
+COPY package*.json ./
+RUN npm ci --omit=dev
+
+# Copy built JavaScript from builder
+COPY --from=builder /app/dist ./dist
+
+# Copy specs if needed at runtime
+COPY specs ./specs
+
+# Switch to non-root user
+USER app
+
+# Cloud Run expects PORT env var and 0.0.0.0 binding
+ENV PORT=8080
+ENV HOST=0.0.0.0
+EXPOSE 8080
+
+# Structured JSON logging to stdout (no file logs)
+ENV LOG_FORMAT=json
+ENV LOG_LEVEL=info
+
+# Start the service (assumes dist/lightspeed-bigquery.js or dist/index.js)
+CMD ["node", "dist/lightspeed-bigquery.js"]
+

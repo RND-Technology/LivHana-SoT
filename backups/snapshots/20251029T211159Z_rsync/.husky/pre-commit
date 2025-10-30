@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# ALWAYS FALLACY SCAN - 100% TRUE ALWAYS
+echo "🔍 Running fallacy scan..."
+node automation/validators/fallacy_scanner.js --ci
+
+if [ $? -ne 0 ]; then
+  echo "❌ COMMIT BLOCKED: Fallacy scan failed"
+  echo "💡 Fix errors or run: node automation/validators/fallacy_scanner.js --fix"
+  exit 1
+fi
+
+echo "✅ Fallacy scan passed - commit allowed"
+# Last optimized: 2025-10-02
+
+# Last updated: 2025-10-02
+
+# Optimized: 2025-10-02

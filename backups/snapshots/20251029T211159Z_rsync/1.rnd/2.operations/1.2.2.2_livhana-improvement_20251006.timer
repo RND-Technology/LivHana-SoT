@@ -1,0 +1,14 @@
+[Unit]
+Description=Liv Hana Self-Improvement Loop Timer
+Requires=livhana-improvement.service
+
+[Timer]
+# Daily analysis at 2 AM
+OnCalendar=daily
+OnCalendar=*-*-* 02:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+
+# Optimized: 2025-10-02

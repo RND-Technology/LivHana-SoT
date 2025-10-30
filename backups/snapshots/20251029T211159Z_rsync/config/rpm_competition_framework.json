@@ -1,0 +1,391 @@
+{
+  "framework_id": "rpm_competition_v1",
+  "framework_name": "RPM DNA Competition & Measurement System",
+  "version": "1.0.0",
+  "created": "2025-10-21T20:30:00Z",
+  "description": "Systematic framework for measuring and scoring all predictions (human + AI) with ROI/$/Day as king metric and cash flow ruling business decisions within guardrails",
+  
+  "king_metrics": {
+    "primary": {
+      "name": "ROI_PER_DAY",
+      "formula": "(actual_profit - actual_cost) / actual_days_elapsed",
+      "unit": "$/day",
+      "weight": 0.50,
+      "description": "King metric - daily return on investment"
+    },
+    "ruler": {
+      "name": "PASSIVE_CASH_FLOW",
+      "formula": "monthly_recurring_revenue - monthly_fixed_costs",
+      "unit": "$/month",
+      "weight": 0.30,
+      "description": "Ruler of business decisions - passive profit sustainability"
+    },
+    "accuracy": {
+      "name": "PREDICTION_ACCURACY",
+      "formula": "1 - (abs(projected - actual) / projected)",
+      "unit": "%",
+      "weight": 0.20,
+      "description": "How accurate were the predictions across all dimensions"
+    }
+  },
+
+  "prediction_dimensions": {
+    "timeframe": {
+      "metric_name": "timeframe_accuracy",
+      "formula": "1 - (abs(projected_hours - actual_hours) / projected_hours)",
+      "unit": "%",
+      "weight": 0.30,
+      "guardrails": {
+        "min_acceptable": 0.70,
+        "warn_below": 0.80,
+        "excellent_above": 0.95
+      }
+    },
+    "cost": {
+      "metric_name": "cost_accuracy",
+      "formula": "1 - (abs(projected_cost - actual_cost) / projected_cost)",
+      "unit": "%",
+      "weight": 0.30,
+      "guardrails": {
+        "min_acceptable": 0.75,
+        "warn_below": 0.85,
+        "excellent_above": 0.95
+      }
+    },
+    "roi": {
+      "metric_name": "roi_accuracy",
+      "formula": "1 - (abs(projected_roi - actual_roi) / projected_roi)",
+      "unit": "%",
+      "weight": 0.40,
+      "guardrails": {
+        "min_acceptable": 0.65,
+        "warn_below": 0.80,
+        "excellent_above": 0.90
+      },
+      "description": "Most important accuracy metric - getting ROI right matters most"
+    }
+  },
+
+  "composite_score": {
+    "formula": "(timeframe_accuracy * 0.30) + (cost_accuracy * 0.30) + (roi_accuracy * 0.40)",
+    "unit": "score (0-1)",
+    "grade_bands": {
+      "S_TIER": {"min": 0.95, "label": "Exceptional", "emoji": "🏆"},
+      "A_TIER": {"min": 0.90, "label": "Excellent", "emoji": "🥇"},
+      "B_TIER": {"min": 0.80, "label": "Good", "emoji": "🥈"},
+      "C_TIER": {"min": 0.70, "label": "Acceptable", "emoji": "🥉"},
+      "D_TIER": {"min": 0.60, "label": "Warning", "emoji": "⚠️"},
+      "F_TIER": {"min": 0.00, "label": "Failing", "emoji": "🔴"}
+    }
+  },
+
+  "competitors": {
+    "humans": [
+      {
+        "id": "human_jesse",
+        "name": "Jesse Niesen",
+        "role": "CEO",
+        "type": "human",
+        "specialty": "Strategic vision, market timing",
+        "historical_accuracy_baseline": 0.85
+      },
+      {
+        "id": "human_andrew",
+        "name": "Andrew",
+        "role": "Director Ops",
+        "type": "human",
+        "specialty": "Operations, execution timeframes",
+        "historical_accuracy_baseline": 0.82
+      },
+      {
+        "id": "human_christopher",
+        "name": "Christopher",
+        "role": "CSO/Paymaster",
+        "type": "human",
+        "specialty": "Financial accuracy, cost control",
+        "historical_accuracy_baseline": 0.88
+      }
+    ],
+    "ai_models": [
+      {
+        "id": "ai_liv_hana_cursor",
+        "name": "Liv Hana (Cursor/Claude Sonnet 4.5)",
+        "type": "ai",
+        "specialty": "Technical execution, architecture",
+        "historical_accuracy_baseline": null
+      },
+      {
+        "id": "ai_chatgpt",
+        "name": "ChatGPT (GPT-4/o1)",
+        "type": "ai",
+        "specialty": "Strategic planning, reasoning",
+        "historical_accuracy_baseline": null
+      },
+      {
+        "id": "ai_replit",
+        "name": "Replit Agent",
+        "type": "ai",
+        "specialty": "Rapid prototyping, deployment",
+        "historical_accuracy_baseline": null
+      },
+      {
+        "id": "ai_custom_gpt",
+        "name": "Custom GPT (Liv Hana)",
+        "type": "ai",
+        "specialty": "User interaction, accessibility",
+        "historical_accuracy_baseline": null
+      },
+      {
+        "id": "ai_slack_bot",
+        "name": "Slack Bot (Liv Hana)",
+        "type": "ai",
+        "specialty": "Team coordination, quick answers",
+        "historical_accuracy_baseline": null
+      }
+    ]
+  },
+
+  "competition_types": {
+    "self_competition": {
+      "description": "Each competitor competes against their own historical baseline",
+      "cadence": "continuous",
+      "scoring": {
+        "improvement_bonus": 0.05,
+        "consistency_bonus": 0.03
+      }
+    },
+    "peer_competition": {
+      "description": "Competitors in same category (human vs human, AI vs AI)",
+      "cadence": "daily",
+      "leaderboard": "category_specific"
+    },
+    "cross_competition": {
+      "description": "All competitors (human + AI) compete together",
+      "cadence": "weekly",
+      "leaderboard": "global"
+    }
+  },
+
+  "business_decision_engine": {
+    "decision_priority": [
+      {
+        "rank": 1,
+        "criterion": "passive_cash_flow",
+        "description": "RULER: Passive profits rule all decisions",
+        "formula": "monthly_recurring_revenue - monthly_fixed_costs > threshold",
+        "threshold_min": 0,
+        "ideal_target": 125000
+      },
+      {
+        "rank": 2,
+        "criterion": "roi_per_day",
+        "description": "KING: Daily return on investment",
+        "formula": "roi_per_day > threshold",
+        "threshold_min": 100,
+        "ideal_target": 5000
+      },
+      {
+        "rank": 3,
+        "criterion": "guardrails_compliance",
+        "description": "Values/Results/Purpose must be satisfied",
+        "guardrails": ["lifeward", "age21", "cannabis_compliance", "financial_accuracy"],
+        "enforcement": "all_must_pass"
+      },
+      {
+        "rank": 4,
+        "criterion": "prediction_accuracy",
+        "description": "How confident are we in the projections",
+        "threshold_min": 0.70,
+        "ideal_target": 0.90
+      }
+    ],
+    "decision_matrix": {
+      "GO": {
+        "conditions": [
+          "passive_cash_flow >= 0",
+          "roi_per_day >= 100",
+          "guardrails_compliance == true",
+          "prediction_accuracy >= 0.70"
+        ]
+      },
+      "GO_WITH_CAUTION": {
+        "conditions": [
+          "passive_cash_flow >= -10000",
+          "roi_per_day >= 50",
+          "guardrails_compliance == true",
+          "prediction_accuracy >= 0.60"
+        ]
+      },
+      "NO_GO": {
+        "conditions": [
+          "passive_cash_flow < -10000 OR",
+          "roi_per_day < 50 OR",
+          "guardrails_compliance == false OR",
+          "prediction_accuracy < 0.60"
+        ]
+      }
+    }
+  },
+
+  "rpm_dna_integration": {
+    "result": {
+      "measurement": "projected_result vs actual_result",
+      "scoring": "result_achievement_pct = (actual / projected)",
+      "tags": ["specific", "measurable", "achievable", "relevant", "time-bound"]
+    },
+    "purpose": {
+      "measurement": "purpose_alignment_score",
+      "scoring": "qualitative assessment (0-1) by team + guardrails",
+      "tags": ["revenue_recovery", "compliance_protection", "team_efficiency", "customer_satisfaction", "operational_excellence"]
+    },
+    "massive_actions": {
+      "measurement": "actions_completed / actions_planned",
+      "scoring": "completion_rate + velocity_bonus",
+      "tags": ["immediate", "parallel", "sequential", "autonomous", "human_approval_required"]
+    },
+    "validation": {
+      "measurement": "validation_checks_passed / validation_checks_total",
+      "scoring": "validation_pass_rate",
+      "tags": ["feasibility_check", "compliance_check", "guardrail_alignment", "profit_contribution", "risk_assessment"]
+    }
+  },
+
+  "cadence": {
+    "hourly": {
+      "action": "update_progress_metrics",
+      "emit_to": ".claude/rpm_reports/hourly_progress.json"
+    },
+    "daily": {
+      "action": "score_predictions_vs_actuals",
+      "emit_to": ".claude/rpm_reports/daily_scores.json",
+      "generate_leaderboard": true,
+      "category": "daily_competition"
+    },
+    "weekly": {
+      "action": "comprehensive_scoring_all_competitors",
+      "emit_to": ".claude/rpm_reports/weekly_leaderboard.json",
+      "generate_leaderboard": true,
+      "category": "weekly_competition",
+      "awards": ["best_roi_per_day", "most_accurate_predictions", "highest_passive_cashflow", "most_improved"]
+    },
+    "monthly": {
+      "action": "update_baselines_and_trends",
+      "emit_to": ".claude/rpm_reports/monthly_trends.json",
+      "recalibrate_models": true
+    }
+  },
+
+  "data_schema": {
+    "prediction": {
+      "prediction_id": "string (UUID)",
+      "created_at": "ISO8601",
+      "created_by": "string (competitor_id)",
+      "rpm_card_id": "string (UUID)",
+      "project_name": "string",
+      "projected_timeframe_hours": "float",
+      "projected_cost_usd": "float",
+      "projected_roi_usd": "float",
+      "projected_roi_per_day": "float",
+      "projected_passive_cashflow_monthly": "float",
+      "confidence_level": "float (0-1)",
+      "assumptions": "array of strings",
+      "guardrails_passed": "boolean"
+    },
+    "actual": {
+      "actual_id": "string (UUID)",
+      "prediction_id": "string (UUID - FK)",
+      "completed_at": "ISO8601",
+      "recorded_by": "string (competitor_id)",
+      "actual_timeframe_hours": "float",
+      "actual_cost_usd": "float",
+      "actual_roi_usd": "float",
+      "actual_roi_per_day": "float",
+      "actual_passive_cashflow_monthly": "float",
+      "variance_notes": "string",
+      "learnings": "array of strings"
+    },
+    "score": {
+      "score_id": "string (UUID)",
+      "prediction_id": "string (UUID - FK)",
+      "actual_id": "string (UUID - FK)",
+      "competitor_id": "string",
+      "scored_at": "ISO8601",
+      "timeframe_accuracy": "float (0-1)",
+      "cost_accuracy": "float (0-1)",
+      "roi_accuracy": "float (0-1)",
+      "composite_score": "float (0-1)",
+      "grade_tier": "string (S/A/B/C/D/F)",
+      "roi_per_day": "float",
+      "passive_cashflow": "float",
+      "business_decision": "string (GO/GO_WITH_CAUTION/NO_GO)"
+    }
+  },
+
+  "automation": {
+    "prediction_capture": {
+      "trigger": "rpm_card_emission",
+      "action": "extract_predictions_and_store",
+      "agent": "rpm_planning_agent"
+    },
+    "actual_tracking": {
+      "trigger": "task_completion OR milestone_reached",
+      "action": "record_actuals_and_calculate_variance",
+      "agent": "rpm_planning_agent"
+    },
+    "scoring": {
+      "trigger": "actual_recorded",
+      "action": "calculate_all_scores_and_update_leaderboard",
+      "agent": "qa_agent"
+    },
+    "decision_engine": {
+      "trigger": "score_calculated",
+      "action": "run_business_decision_matrix_and_emit_recommendation",
+      "agent": "research_agent"
+    }
+  },
+
+  "leaderboard_display": {
+    "daily_dashboard": {
+      "url": "/rpm/leaderboard/daily",
+      "metrics": ["roi_per_day", "composite_score", "accuracy_trend"],
+      "categories": ["all", "humans", "ai_models"]
+    },
+    "weekly_dashboard": {
+      "url": "/rpm/leaderboard/weekly",
+      "metrics": ["total_roi_delivered", "avg_composite_score", "consistency_score"],
+      "awards": true,
+      "categories": ["all", "humans", "ai_models"]
+    },
+    "self_improvement_dashboard": {
+      "url": "/rpm/leaderboard/self-improvement",
+      "metrics": ["improvement_rate", "consistency", "learning_velocity"],
+      "show_historical_trend": true
+    }
+  },
+
+  "guardrails": {
+    "values": {
+      "lifeward_standard": "All predictions must align with LifeWard (protect people)",
+      "truth_framework": "All actuals must be TRUTH-verified (testable, reproducible, unambiguous, traceable, high-fidelity)"
+    },
+    "results": {
+      "minimum_roi_per_day": 50,
+      "minimum_passive_cashflow": -10000,
+      "minimum_prediction_accuracy": 0.60
+    },
+    "purpose": {
+      "alignment_check": "Every business decision must serve: Grow, Sell & Heal",
+      "mission_tags": ["revenue_recovery", "compliance_protection", "team_efficiency", "customer_satisfaction", "operational_excellence"]
+    }
+  },
+
+  "output_locations": {
+    "predictions_db": "data/rpm_outputs/predictions.json",
+    "actuals_db": "data/rpm_outputs/actuals.json",
+    "scores_db": "data/rpm_outputs/scores.json",
+    "leaderboard_daily": ".claude/rpm_reports/leaderboard_daily.json",
+    "leaderboard_weekly": ".claude/rpm_reports/leaderboard_weekly.json",
+    "business_decisions_log": "data/rpm_outputs/business_decisions.json"
+  }
+}
+

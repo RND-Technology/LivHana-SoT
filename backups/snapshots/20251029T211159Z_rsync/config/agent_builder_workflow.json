@@ -1,0 +1,8 @@
+{
+  "name": "Liv Hana Agent Builder Workflow (Pointer)",
+  "version": "1.0.0",
+  "description": "Pointer to the canonical 17-node Agent Builder configuration.",
+  "reference": "config/agent_builder_17_node_config.json",
+  "status": "stub",
+  "notes": "Import the referenced JSON in Agent Builder if supported; otherwise build via UI per docs/AGENT_BUILDER_17_NODE_WORKFLOW.md."
+}

@@ -1,0 +1,51 @@
+{
+  "id": "episode_027",
+  "title": "Cannabis Science",
+  "season": 4,
+  "day": 6,
+  "theme": "Fun Facts",
+  "format": "60-second short",
+  "platforms": [
+    "YouTube Shorts",
+    "TikTok",
+    "IG Reels",
+    "X"
+  ],
+  "scriptBeat": [
+    "Liv Hana: \"Did you know hemp has been used for thousands of years?\"",
+    "Jesse: \"Tell us more, Liv.\"",
+    "Liv Hana: \"Ancient civilizations used hemp for rope, paper, and medicine.\"",
+    "Jesse: \"And now we're using it to build an empire!\""
+  ],
+  "seoAnchors": [
+    "#TexasTHC",
+    "#StayTOONED",
+    "#ReggieAndDro",
+    "#FunFacts",
+    "#CannabisTrivia",
+    "#DidYouKnow"
+  ],
+  "cta": "Learn more at ReggieAndDro.com!",
+  "sunoMusic": "playful-educational-melody",
+  "sunoPrompt": "Create a playful-educational-melody track for a Texas cannabis cartoon episode titled \"Cannabis Science\". Include subtle Texas elements and match the mood: Liv Hana: \"Did you know hemp has been used for thousands of years?\"",
+  "dogWhistle": "empire",
+  "dogWhistleAnalysis": "References to building a cannabis empire",
+  "tpop": "🎉",
+  "tpopAnalysis": "Celebration and joy",
+  "easterEgg": "Lt. Dan (Forrest Gump reference)",
+  "schoolHouseRock": false,
+  "schoolHouseRockVersion": null,
+  "characters": [
+    "All Characters"
+  ],
+  "productionMetadata": {
+    "generatedAt": "2025-10-07T08:19:27.692Z",
+    "engine": "HNCSeriesExecutor",
+    "version": "1.0.0",
+    "episodeNumber": 27,
+    "season": 4,
+    "day": 6,
+    "theme": "Fun Facts"
+  },
+  "status": "generated"
+}

@@ -1,0 +1,901 @@
+-------------------------------------
+Translated Report (Full Report Below)
+-------------------------------------
+
+Process:               Electron [54442]
+Path:                  /Volumes/VOLUME/*/Visual Studio Code.app/Contents/MacOS/Electron
+Identifier:            com.microsoft.VSCode
+Version:               1.104.0 (1.104.0)
+Code Type:             ARM-64 (Native)
+Parent Process:        launchd [1]
+User ID:               501
+
+Date/Time:             2025-10-28 19:21:06.3251 -0500
+OS Version:            macOS 15.6.1 (24G90)
+Report Version:        12
+Anonymous UUID:        AD046F38-8ACA-9F18-4502-2A7B43372938
+
+Sleep/Wake UUID:       CDEB06D3-76C3-42C6-9614-B1C2527F8F19
+
+Time Awake Since Boot: 24000 seconds
+Time Since Wake:       14409 seconds
+
+System Integrity Protection: enabled
+
+Crashed Thread:        0  CrBrowserMain  Dispatch queue: com.apple.main-thread
+
+Exception Type:        EXC_BREAKPOINT (SIGTRAP)
+Exception Codes:       0x0000000000000001, 0x000000011e920bc0
+
+Termination Reason:    Namespace SIGNAL, Code 5 Trace/BPT trap: 5
+Terminating Process:   exc handler [54442]
+
+Thread 0 Crashed:: CrBrowserMain Dispatch queue: com.apple.main-thread
+0   Electron Framework            	       0x11e920bc0 ares_llist_node_first + 3530952
+1   Electron Framework            	       0x11e920bc0 ares_llist_node_first + 3530952
+2   Electron Framework            	       0x11e920bd8 ares_llist_node_first + 3530976
+3   Electron Framework            	       0x11e920bf4 ares_llist_node_first + 3531004
+4   Electron Framework            	       0x11c3edd3c node::sqlite::UserDefinedFunction::xDestroy(void*) + 27532
+5   Electron Framework            	       0x11d1db5b8 v8::PropertyDescriptor::set() const + 4289488
+6   Electron Framework            	       0x11d1db54c v8::PropertyDescriptor::set() const + 4289380
+7   Electron Framework            	       0x119ef2710 v8::Object::IsConstructor() const + 55584
+8   Electron Framework            	       0x119aec228 v8::TryCatch::SetCaptureMessage(bool) + 8020
+9   Electron Framework            	       0x11a1f6ca4 v8::BackingStore::Data() const + 58216
+10  Electron Framework            	       0x11a0c955c v8::DictionaryTemplate::New(v8::Isolate*, v8::MemorySpan<std::__Cr::basic_string_view<char, std::__Cr::char_traits<char>> const>) + 20448
+11  Electron Framework            	       0x11a0c92b0 v8::DictionaryTemplate::New(v8::Isolate*, v8::MemorySpan<std::__Cr::basic_string_view<char, std::__Cr::char_traits<char>> const>) + 19764
+12  ???                           	       0x317ead734 ???
+13  ???                           	       0x31020985c ???
+14  ???                           	       0x3102ddf2c ???
+15  ???                           	       0x3102d29b8 ???
+16  ???                           	       0x3102d33e8 ???
+17  ???                           	       0x310028900 ???
+18  ???                           	       0x31023c3c0 ???
+19  ???                           	       0x317e0b228 ???
+20  ???                           	       0x317e0ae74 ???
+21  Electron Framework            	       0x119c48310 v8::Function::Call(v8::Isolate*, v8::Local<v8::Context>, v8::Local<v8::Value>, int, v8::Local<v8::Value>*) + 2968
+22  Electron Framework            	       0x119c4790c v8::Function::Call(v8::Isolate*, v8::Local<v8::Context>, v8::Local<v8::Value>, int, v8::Local<v8::Value>*) + 404
+23  Electron Framework            	       0x11c48d8ec node::InternalMakeCallback(node::Environment*, v8::Local<v8::Object>, v8::Local<v8::Object>, v8::Local<v8::Function>, int, v8::Local<v8::Value>*, node::async_context, v8::Local<v8::Value>) + 512
+24  Electron Framework            	       0x11c48dcc4 node::InternalMakeCallback(v8::Isolate*, v8::Local<v8::Object>, v8::Local<v8::Function>, int, v8::Local<v8::Value>*, node::async_context, v8::Local<v8::Value>) + 304
+25  Electron Framework            	       0x11c3e8738 node::sqlite::UserDefinedFunction::xDestroy(void*) + 5512
+26  Electron Framework            	       0x11c340cb4 node::AsyncWrap::~AsyncWrap() + 541576
+27  Electron Framework            	       0x11c340bd8 node::AsyncWrap::~AsyncWrap() + 541356
+28  Electron Framework            	       0x11a6ca0b0 v8::TypecheckWitness::Update(v8::Local<v8::Value>) + 35528
+29  Electron Framework            	       0x119b7d394 temporal_rs_PlainTime_second + 1244
+30  Electron Framework            	       0x119b7c9b4 v8impl::Finalizer::ResetEnv() + 6564
+31  Electron Framework            	       0x11c111ddc v8::internal::compiler::CompilationDependencies::DependOnInitialMap(v8::internal::compiler::JSFunctionRef) + 464424
+32  Electron Framework            	       0x119d9f190 temporal_rs_Duration_weeks + 20840
+33  Electron Framework            	       0x11c111b20 v8::internal::compiler::CompilationDependencies::DependOnInitialMap(v8::internal::compiler::JSFunctionRef) + 463724
+34  CoreFoundation                	       0x1877aeb14 __CFRUNLOOP_IS_CALLING_OUT_TO_A_SOURCE0_PERFORM_FUNCTION__ + 28
+35  CoreFoundation                	       0x1877aeaa8 __CFRunLoopDoSource0 + 172
+36  CoreFoundation                	       0x1877ae814 __CFRunLoopDoSources0 + 232
+37  CoreFoundation                	       0x1877ad468 __CFRunLoopRun + 840
+38  CoreFoundation                	       0x1877aca98 CFRunLoopRunSpecific + 572
+39  HIToolbox                     	       0x19324f27c RunCurrentEventLoopInMode + 324
+40  HIToolbox                     	       0x1932524e8 ReceiveNextEventCommon + 676
+41  HIToolbox                     	       0x1933dd484 _BlockUntilNextEventMatchingListInModeWithFilter + 76
+42  AppKit                        	       0x18b6d1a34 _DPSNextEvent + 684
+43  AppKit                        	       0x18c070940 -[NSApplication(NSEventRouting) _nextEventMatchingEventMask:untilDate:inMode:dequeue:] + 688
+44  AppKit                        	       0x18b6c4be4 -[NSApplication run] + 480
+45  Electron Framework            	       0x11b6a4c68 v8::Isolate::LowMemoryNotification() + 65944
+46  Electron Framework            	       0x11b6a4a80 v8::Isolate::LowMemoryNotification() + 65456
+47  Electron Framework            	       0x11b09e0cc node::PrincipalRealm::http2session_on_altsvc_function() const + 52296
+48  Electron Framework            	       0x11b1d31bc node::PrincipalRealm::internal_binding_loader() const + 224164
+49  Electron Framework            	       0x11b8a6244 node::PrincipalRealm::inspector_enable_async_hooks() const + 105628
+50  Electron Framework            	       0x11b8a6194 node::PrincipalRealm::inspector_enable_async_hooks() const + 105452
+51  Electron Framework            	       0x11b8e2f88 node::PrincipalRealm::builtin_module_require() const + 98672
+52  Electron Framework            	       0x11b8e2e90 node::PrincipalRealm::builtin_module_require() const + 98424
+53  Electron Framework            	       0x11b47de80 v8::internal::ThreadIsolation::JitPageReference::Shrink(v8::internal::ThreadIsolation::JitPage*) + 184268
+54  Electron Framework            	       0x11b47aa9c v8::internal::ThreadIsolation::JitPageReference::Shrink(v8::internal::ThreadIsolation::JitPage*) + 170984
+55  Electron Framework            	       0x11b7bcb90 rust_png$cxxbridge1$Reader$get_trns_chunk + 51456
+56  Electron Framework            	       0x11b7bc4b4 rust_png$cxxbridge1$Reader$get_trns_chunk + 49700
+57  Electron Framework            	       0x11c2702c0 ElectronMain + 124
+58  dyld                          	       0x187322b98 start + 6076
+
+Thread 1:: ThreadPoolServiceThread
+0   libsystem_kernel.dylib        	       0x18768d95c kevent64 + 8
+1   Electron Framework            	       0x11ae04e40 v8::Isolate::SetIsLoading(bool) + 6752
+2   Electron Framework            	       0x11ae043ec v8::Isolate::SetIsLoading(bool) + 4108
+3   Electron Framework            	       0x11b09e0cc node::PrincipalRealm::http2session_on_altsvc_function() const + 52296
+4   Electron Framework            	       0x11b1d31bc node::PrincipalRealm::internal_binding_loader() const + 224164
+5   Electron Framework            	       0x11b1d2f30 node::PrincipalRealm::internal_binding_loader() const + 223512
+6   Electron Framework            	       0x11c10e064 v8::internal::compiler::CompilationDependencies::DependOnInitialMap(v8::internal::compiler::JSFunctionRef) + 448688
+7   Electron Framework            	       0x11b1d2df4 node::PrincipalRealm::internal_binding_loader() const + 223196
+8   Electron Framework            	       0x11a9e0fa8 node::PrincipalRealm::maybe_cache_generated_source_map() const + 171352
+9   libsystem_pthread.dylib       	       0x1876c3c0c _pthread_start + 136
+10  libsystem_pthread.dylib       	       0x1876beb80 thread_start + 8
+
+Thread 2:: ThreadPoolForegroundWorker
+0   libsystem_kernel.dylib        	       0x187681c34 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x1876943a0 mach_msg2_internal + 76
+2   libsystem_kernel.dylib        	       0x18768a764 mach_msg_overwrite + 484
+3   libsystem_kernel.dylib        	       0x187681fa8 mach_msg + 24
+4   Electron Framework            	       0x119cfce4c cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 119512
+5   Electron Framework            	       0x119cfcc3c cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 118984
+6   Electron Framework            	       0x119cfcbe4 cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 118896
+7   Electron Framework            	       0x119cfa6dc cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 109416
+8   Electron Framework            	       0x119cf9fcc cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 107608
+9   Electron Framework            	       0x119cf9ef0 cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 107388
+10  Electron Framework            	       0x11a9e0fa8 node::PrincipalRealm::maybe_cache_generated_source_map() const + 171352
+11  libsystem_pthread.dylib       	       0x1876c3c0c _pthread_start + 136
+12  libsystem_pthread.dylib       	       0x1876beb80 thread_start + 8
+
+Thread 3:: ThreadPoolBackgroundWorker
+0   libsystem_kernel.dylib        	       0x187681c34 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x1876943a0 mach_msg2_internal + 76
+2   libsystem_kernel.dylib        	       0x18768a764 mach_msg_overwrite + 484
+3   libsystem_kernel.dylib        	       0x187681fa8 mach_msg + 24
+4   Electron Framework            	       0x119cfce4c cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 119512
+5   Electron Framework            	       0x119cfcc3c cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 118984
+6   Electron Framework            	       0x119cfcbe4 cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 118896
+7   Electron Framework            	       0x119cfa6dc cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 109416
+8   Electron Framework            	       0x119cfa04c cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 107736
+9   Electron Framework            	       0x119cf9f24 cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 107440
+10  Electron Framework            	       0x11a9e0fa8 node::PrincipalRealm::maybe_cache_generated_source_map() const + 171352
+11  libsystem_pthread.dylib       	       0x1876c3c0c _pthread_start + 136
+12  libsystem_pthread.dylib       	       0x1876beb80 thread_start + 8
+
+Thread 4:: ThreadPoolForegroundWorker
+0   libsystem_kernel.dylib        	       0x187681c34 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x1876943a0 mach_msg2_internal + 76
+2   libsystem_kernel.dylib        	       0x18768a764 mach_msg_overwrite + 484
+3   libsystem_kernel.dylib        	       0x187681fa8 mach_msg + 24
+4   Electron Framework            	       0x119cfce4c cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 119512
+5   Electron Framework            	       0x119cfcc3c cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 118984
+6   Electron Framework            	       0x119cfcbe4 cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 118896
+7   Electron Framework            	       0x119cfa6dc cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 109416
+8   Electron Framework            	       0x119cf9fcc cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 107608
+9   Electron Framework            	       0x119cf9ef0 cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 107388
+10  Electron Framework            	       0x11a9e0fa8 node::PrincipalRealm::maybe_cache_generated_source_map() const + 171352
+11  libsystem_pthread.dylib       	       0x1876c3c0c _pthread_start + 136
+12  libsystem_pthread.dylib       	       0x1876beb80 thread_start + 8
+
+Thread 5:: Chrome_IOThread
+0   libsystem_kernel.dylib        	       0x18768d95c kevent64 + 8
+1   Electron Framework            	       0x11ae04e40 v8::Isolate::SetIsLoading(bool) + 6752
+2   Electron Framework            	       0x11ae043ec v8::Isolate::SetIsLoading(bool) + 4108
+3   Electron Framework            	       0x11b09e0cc node::PrincipalRealm::http2session_on_altsvc_function() const + 52296
+4   Electron Framework            	       0x11b1d31bc node::PrincipalRealm::internal_binding_loader() const + 224164
+5   Electron Framework            	       0x11b1d2f30 node::PrincipalRealm::internal_binding_loader() const + 223512
+6   Electron Framework            	       0x11b860ab8 v8::Message::Get() const + 21216
+7   Electron Framework            	       0x11b1d2df4 node::PrincipalRealm::internal_binding_loader() const + 223196
+8   Electron Framework            	       0x11a9e0fa8 node::PrincipalRealm::maybe_cache_generated_source_map() const + 171352
+9   libsystem_pthread.dylib       	       0x1876c3c0c _pthread_start + 136
+10  libsystem_pthread.dylib       	       0x1876beb80 thread_start + 8
+
+Thread 6:: MemoryInfra
+0   libsystem_kernel.dylib        	       0x187681c34 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x1876943a0 mach_msg2_internal + 76
+2   libsystem_kernel.dylib        	       0x18768a764 mach_msg_overwrite + 484
+3   libsystem_kernel.dylib        	       0x187681fa8 mach_msg + 24
+4   Electron Framework            	       0x119cfce4c cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 119512
+5   Electron Framework            	       0x119cfcc3c cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 118984
+6   Electron Framework            	       0x11a6cb7c8 v8::TypecheckWitness::Update(v8::Local<v8::Value>) + 41440
+7   Electron Framework            	       0x11c107de4 v8::internal::compiler::CompilationDependencies::DependOnInitialMap(v8::internal::compiler::JSFunctionRef) + 423472
+8   Electron Framework            	       0x11b09e0cc node::PrincipalRealm::http2session_on_altsvc_function() const + 52296
+9   Electron Framework            	       0x11b1d31bc node::PrincipalRealm::internal_binding_loader() const + 224164
+10  Electron Framework            	       0x11b1d2f30 node::PrincipalRealm::internal_binding_loader() const + 223512
+11  Electron Framework            	       0x11b1d2df4 node::PrincipalRealm::internal_binding_loader() const + 223196
+12  Electron Framework            	       0x11a9e0fa8 node::PrincipalRealm::maybe_cache_generated_source_map() const + 171352
+13  libsystem_pthread.dylib       	       0x1876c3c0c _pthread_start + 136
+14  libsystem_pthread.dylib       	       0x1876beb80 thread_start + 8
+
+Thread 7:
+0   libsystem_kernel.dylib        	       0x187687d04 kevent + 8
+1   Electron Framework            	       0x11c26fd74 uv__io_poll + 1840
+2   Electron Framework            	       0x11c25dd8c uv_run + 376
+3   Electron Framework            	       0x11c5eb984 node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start()::'lambda'(void*)::__invoke(void*) + 112
+4   libsystem_pthread.dylib       	       0x1876c3c0c _pthread_start + 136
+5   libsystem_pthread.dylib       	       0x1876beb80 thread_start + 8
+
+Thread 8:
+0   libsystem_kernel.dylib        	       0x1876853cc __psynch_cvwait + 8
+1   libsystem_pthread.dylib       	       0x1876c40e0 _pthread_cond_wait + 984
+2   Electron Framework            	       0x11c26ac8c uv_cond_wait + 40
+3   Electron Framework            	       0x11c5e9658 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int, node::PlatformDebugLogLevel) + 1480
+4   libsystem_pthread.dylib       	       0x1876c3c0c _pthread_start + 136
+5   libsystem_pthread.dylib       	       0x1876beb80 thread_start + 8
+
+Thread 9:
+0   libsystem_kernel.dylib        	       0x1876853cc __psynch_cvwait + 8
+1   libsystem_pthread.dylib       	       0x1876c40e0 _pthread_cond_wait + 984
+2   Electron Framework            	       0x11c26ac8c uv_cond_wait + 40
+3   Electron Framework            	       0x11c5e9658 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int, node::PlatformDebugLogLevel) + 1480
+4   libsystem_pthread.dylib       	       0x1876c3c0c _pthread_start + 136
+5   libsystem_pthread.dylib       	       0x1876beb80 thread_start + 8
+
+Thread 10:
+0   libsystem_kernel.dylib        	       0x1876853cc __psynch_cvwait + 8
+1   libsystem_pthread.dylib       	       0x1876c40e0 _pthread_cond_wait + 984
+2   Electron Framework            	       0x11c26ac8c uv_cond_wait + 40
+3   Electron Framework            	       0x11c5e9658 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int, node::PlatformDebugLogLevel) + 1480
+4   libsystem_pthread.dylib       	       0x1876c3c0c _pthread_start + 136
+5   libsystem_pthread.dylib       	       0x1876beb80 thread_start + 8
+
+Thread 11:
+0   libsystem_kernel.dylib        	       0x187681bb0 semaphore_wait_trap + 8
+1   Electron Framework            	       0x11c26aaf4 uv_sem_wait + 24
+2   Electron Framework            	       0x11c747820 node::inspector::Agent::GetWsUrl() const + 52
+3   libsystem_pthread.dylib       	       0x1876c3c0c _pthread_start + 136
+4   libsystem_pthread.dylib       	       0x1876beb80 thread_start + 8
+
+Thread 12:
+0   libsystem_kernel.dylib        	       0x187687d04 kevent + 8
+1   Electron Framework            	       0x11c26fd74 uv__io_poll + 1840
+2   Electron Framework            	       0x11c25dd8c uv_run + 376
+3   Electron Framework            	       0x11c48e2fc node::SpinEventLoopInternal(node::Environment*) + 360
+4   Electron Framework            	       0x11c68360c node::worker::Worker::Run() + 2008
+5   Electron Framework            	       0x11c687c38 _register_external_reference_worker(node::ExternalReferenceRegistry*) + 4504
+6   libsystem_pthread.dylib       	       0x1876c3c0c _pthread_start + 136
+7   libsystem_pthread.dylib       	       0x1876beb80 thread_start + 8
+
+Thread 13:
+0   libsystem_kernel.dylib        	       0x187681c34 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x1876943a0 mach_msg2_internal + 76
+2   libsystem_kernel.dylib        	       0x18768a764 mach_msg_overwrite + 484
+3   libsystem_kernel.dylib        	       0x187681fa8 mach_msg + 24
+4   Electron Framework            	       0x11b8f7460 node::PrincipalRealm::wasm_streaming_object_constructor() const + 23800
+5   Electron Framework            	       0x11b8f70d8 node::PrincipalRealm::wasm_streaming_object_constructor() const + 22896
+6   Electron Framework            	       0x121409668 temporal_rs_PlainTime_microsecond + 7049400
+7   libsystem_pthread.dylib       	       0x1876c3c0c _pthread_start + 136
+8   libsystem_pthread.dylib       	       0x1876beb80 thread_start + 8
+
+Thread 14:: NetworkConfigWatcher
+0   libsystem_kernel.dylib        	       0x187681c34 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x1876943a0 mach_msg2_internal + 76
+2   libsystem_kernel.dylib        	       0x18768a764 mach_msg_overwrite + 484
+3   libsystem_kernel.dylib        	       0x187681fa8 mach_msg + 24
+4   CoreFoundation                	       0x1877aecbc __CFRunLoopServiceMachPort + 160
+5   CoreFoundation                	       0x1877ad5d8 __CFRunLoopRun + 1208
+6   CoreFoundation                	       0x1877aca98 CFRunLoopRunSpecific + 572
+7   Foundation                    	       0x188d7cc78 -[NSRunLoop(NSRunLoop) runMode:beforeDate:] + 212
+8   Electron Framework            	       0x11b6a4bd8 v8::Isolate::LowMemoryNotification() + 65800
+9   Electron Framework            	       0x11b6a4a80 v8::Isolate::LowMemoryNotification() + 65456
+10  Electron Framework            	       0x11b09e0cc node::PrincipalRealm::http2session_on_altsvc_function() const + 52296
+11  Electron Framework            	       0x11b1d31bc node::PrincipalRealm::internal_binding_loader() const + 224164
+12  Electron Framework            	       0x11b1d2f30 node::PrincipalRealm::internal_binding_loader() const + 223512
+13  Electron Framework            	       0x11b1d2df4 node::PrincipalRealm::internal_binding_loader() const + 223196
+14  Electron Framework            	       0x11a9e0fa8 node::PrincipalRealm::maybe_cache_generated_source_map() const + 171352
+15  libsystem_pthread.dylib       	       0x1876c3c0c _pthread_start + 136
+16  libsystem_pthread.dylib       	       0x1876beb80 thread_start + 8
+
+Thread 15:: CrShutdownDetector
+0   libsystem_kernel.dylib        	       0x1876827dc read + 8
+1   Electron Framework            	       0x11c456228 node::sqlite::UserDefinedFunction::xDestroy(void*) + 454776
+2   Electron Framework            	       0x11a9e0fa8 node::PrincipalRealm::maybe_cache_generated_source_map() const + 171352
+3   libsystem_pthread.dylib       	       0x1876c3c0c _pthread_start + 136
+4   libsystem_pthread.dylib       	       0x1876beb80 thread_start + 8
+
+Thread 16:: NetworkConfigWatcher
+0   libsystem_kernel.dylib        	       0x187681c34 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x1876943a0 mach_msg2_internal + 76
+2   libsystem_kernel.dylib        	       0x18768a764 mach_msg_overwrite + 484
+3   libsystem_kernel.dylib        	       0x187681fa8 mach_msg + 24
+4   CoreFoundation                	       0x1877aecbc __CFRunLoopServiceMachPort + 160
+5   CoreFoundation                	       0x1877ad5d8 __CFRunLoopRun + 1208
+6   CoreFoundation                	       0x1877aca98 CFRunLoopRunSpecific + 572
+7   Foundation                    	       0x188d7cc78 -[NSRunLoop(NSRunLoop) runMode:beforeDate:] + 212
+8   Electron Framework            	       0x11b6a4bd8 v8::Isolate::LowMemoryNotification() + 65800
+9   Electron Framework            	       0x11b6a4a80 v8::Isolate::LowMemoryNotification() + 65456
+10  Electron Framework            	       0x11b09e0cc node::PrincipalRealm::http2session_on_altsvc_function() const + 52296
+11  Electron Framework            	       0x11b1d31bc node::PrincipalRealm::internal_binding_loader() const + 224164
+12  Electron Framework            	       0x11b1d2f30 node::PrincipalRealm::internal_binding_loader() const + 223512
+13  Electron Framework            	       0x11b1d2df4 node::PrincipalRealm::internal_binding_loader() const + 223196
+14  Electron Framework            	       0x11a9e0fa8 node::PrincipalRealm::maybe_cache_generated_source_map() const + 171352
+15  libsystem_pthread.dylib       	       0x1876c3c0c _pthread_start + 136
+16  libsystem_pthread.dylib       	       0x1876beb80 thread_start + 8
+
+Thread 17:: ThreadPoolForegroundWorker
+0   libsystem_kernel.dylib        	       0x187681c34 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x1876943a0 mach_msg2_internal + 76
+2   libsystem_kernel.dylib        	       0x18768a764 mach_msg_overwrite + 484
+3   libsystem_kernel.dylib        	       0x187681fa8 mach_msg + 24
+4   Electron Framework            	       0x119cfce4c cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 119512
+5   Electron Framework            	       0x119cfcc3c cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 118984
+6   Electron Framework            	       0x119cfcbe4 cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 118896
+7   Electron Framework            	       0x119cfa6dc cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 109416
+8   Electron Framework            	       0x119cf9fcc cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 107608
+9   Electron Framework            	       0x119cf9ef0 cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 107388
+10  Electron Framework            	       0x11a9e0fa8 node::PrincipalRealm::maybe_cache_generated_source_map() const + 171352
+11  libsystem_pthread.dylib       	       0x1876c3c0c _pthread_start + 136
+12  libsystem_pthread.dylib       	       0x1876beb80 thread_start + 8
+
+Thread 18:: ThreadPoolForegroundWorker
+0   libsystem_kernel.dylib        	       0x187681c34 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x1876943a0 mach_msg2_internal + 76
+2   libsystem_kernel.dylib        	       0x18768a764 mach_msg_overwrite + 484
+3   libsystem_kernel.dylib        	       0x187681fa8 mach_msg + 24
+4   Electron Framework            	       0x119cfce4c cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 119512
+5   Electron Framework            	       0x119cfcc3c cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 118984
+6   Electron Framework            	       0x119cfcbe4 cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 118896
+7   Electron Framework            	       0x119cfa6dc cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 109416
+8   Electron Framework            	       0x119cf9fcc cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 107608
+9   Electron Framework            	       0x119cf9ef0 cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 107388
+10  Electron Framework            	       0x11a9e0fa8 node::PrincipalRealm::maybe_cache_generated_source_map() const + 171352
+11  libsystem_pthread.dylib       	       0x1876c3c0c _pthread_start + 136
+12  libsystem_pthread.dylib       	       0x1876beb80 thread_start + 8
+
+Thread 19:: ThreadPoolSingleThreadForegroundBlocking0
+0   libsystem_kernel.dylib        	       0x187681c34 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x1876943a0 mach_msg2_internal + 76
+2   libsystem_kernel.dylib        	       0x18768a764 mach_msg_overwrite + 484
+3   libsystem_kernel.dylib        	       0x187681fa8 mach_msg + 24
+4   Electron Framework            	       0x119cfce4c cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 119512
+5   Electron Framework            	       0x119cfcc3c cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 118984
+6   Electron Framework            	       0x119cfcbe4 cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 118896
+7   Electron Framework            	       0x119cfa6dc cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 109416
+8   Electron Framework            	       0x119cfd7cc cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 121944
+9   Electron Framework            	       0x119cf9f4c cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 107480
+10  Electron Framework            	       0x11a9e0fa8 node::PrincipalRealm::maybe_cache_generated_source_map() const + 171352
+11  libsystem_pthread.dylib       	       0x1876c3c0c _pthread_start + 136
+12  libsystem_pthread.dylib       	       0x1876beb80 thread_start + 8
+
+Thread 20:: CompositorTileWorker1
+0   libsystem_kernel.dylib        	       0x1876853cc __psynch_cvwait + 8
+1   libsystem_pthread.dylib       	       0x1876c40e0 _pthread_cond_wait + 984
+2   Electron Framework            	       0x11a8a732c v8::internal::OptimizingCompileTaskExecutor::RunCompilationJob(v8::internal::OptimizingCompileTaskState&, v8::internal::Isolate*, v8::internal::LocalIsolate&, v8::internal::TurbofanCompilationJob*) + 40076
+3   Electron Framework            	       0x11aabcab4 v8::RegExp::New(v8::Local<v8::Context>, v8::Local<v8::String>, v8::RegExp::Flags) + 20316
+4   Electron Framework            	       0x11a9e0fa8 node::PrincipalRealm::maybe_cache_generated_source_map() const + 171352
+5   libsystem_pthread.dylib       	       0x1876c3c0c _pthread_start + 136
+6   libsystem_pthread.dylib       	       0x1876beb80 thread_start + 8
+
+Thread 21:
+0   libsystem_kernel.dylib        	       0x187681bb0 semaphore_wait_trap + 8
+1   Electron Framework            	       0x11c26aaf4 uv_sem_wait + 24
+2   Electron Framework            	       0x11c3eeb98 node::sqlite::UserDefinedFunction::xDestroy(void*) + 31208
+3   libsystem_pthread.dylib       	       0x1876c3c0c _pthread_start + 136
+4   libsystem_pthread.dylib       	       0x1876beb80 thread_start + 8
+
+Thread 22:: NetworkNotificationThreadMac
+0   libsystem_kernel.dylib        	       0x187681c34 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x1876943a0 mach_msg2_internal + 76
+2   libsystem_kernel.dylib        	       0x18768a764 mach_msg_overwrite + 484
+3   libsystem_kernel.dylib        	       0x187681fa8 mach_msg + 24
+4   CoreFoundation                	       0x1877aecbc __CFRunLoopServiceMachPort + 160
+5   CoreFoundation                	       0x1877ad5d8 __CFRunLoopRun + 1208
+6   CoreFoundation                	       0x1877aca98 CFRunLoopRunSpecific + 572
+7   Foundation                    	       0x188d7cc78 -[NSRunLoop(NSRunLoop) runMode:beforeDate:] + 212
+8   Electron Framework            	       0x11b6a4bd8 v8::Isolate::LowMemoryNotification() + 65800
+9   Electron Framework            	       0x11b6a4a80 v8::Isolate::LowMemoryNotification() + 65456
+10  Electron Framework            	       0x11b09e0cc node::PrincipalRealm::http2session_on_altsvc_function() const + 52296
+11  Electron Framework            	       0x11b1d31bc node::PrincipalRealm::internal_binding_loader() const + 224164
+12  Electron Framework            	       0x11b1d2f30 node::PrincipalRealm::internal_binding_loader() const + 223512
+13  Electron Framework            	       0x11b1d2df4 node::PrincipalRealm::internal_binding_loader() const + 223196
+14  Electron Framework            	       0x11a9e0fa8 node::PrincipalRealm::maybe_cache_generated_source_map() const + 171352
+15  libsystem_pthread.dylib       	       0x1876c3c0c _pthread_start + 136
+16  libsystem_pthread.dylib       	       0x1876beb80 thread_start + 8
+
+Thread 23:: libuv-worker
+0   libsystem_kernel.dylib        	       0x1876853cc __psynch_cvwait + 8
+1   libsystem_pthread.dylib       	       0x1876c40e0 _pthread_cond_wait + 984
+2   Electron Framework            	       0x11c26ac8c uv_cond_wait + 40
+3   Electron Framework            	       0x11c25a2d8 uv_cancel + 700
+4   libsystem_pthread.dylib       	       0x1876c3c0c _pthread_start + 136
+5   libsystem_pthread.dylib       	       0x1876beb80 thread_start + 8
+
+Thread 24:: libuv-worker
+0   libsystem_kernel.dylib        	       0x1876853cc __psynch_cvwait + 8
+1   libsystem_pthread.dylib       	       0x1876c40e0 _pthread_cond_wait + 984
+2   Electron Framework            	       0x11c26ac8c uv_cond_wait + 40
+3   Electron Framework            	       0x11c25a2d8 uv_cancel + 700
+4   libsystem_pthread.dylib       	       0x1876c3c0c _pthread_start + 136
+5   libsystem_pthread.dylib       	       0x1876beb80 thread_start + 8
+
+Thread 25:: libuv-worker
+0   libsystem_kernel.dylib        	       0x187681bb0 semaphore_wait_trap + 8
+1   libdispatch.dylib             	       0x18750d960 _dispatch_sema4_wait + 28
+2   libdispatch.dylib             	       0x18750df10 _dispatch_semaphore_wait_slow + 132
+3   vscode-policy-watcher.node    	       0x1178a72bc PolicyWatcher::Execute(Napi::AsyncProgressQueueWorker<Policy const*>::ExecutionProgress const&) + 272
+4   vscode-policy-watcher.node    	       0x1178a7b44 Napi::AsyncProgressQueueWorker<Policy const*>::Execute() + 32
+5   vscode-policy-watcher.node    	       0x1178a7114 Napi::AsyncWorker::OnExecute(Napi::Env) + 32
+6   Electron Framework            	       0x11c52aa1c node::ThreadPoolWork::ScheduleWork()::'lambda'(uv_work_s*)::__invoke(uv_work_s*) + 52
+7   Electron Framework            	       0x11c25a240 uv_cancel + 548
+8   libsystem_pthread.dylib       	       0x1876c3c0c _pthread_start + 136
+9   libsystem_pthread.dylib       	       0x1876beb80 thread_start + 8
+
+Thread 26:: libuv-worker
+0   libsystem_kernel.dylib        	       0x1876853cc __psynch_cvwait + 8
+1   libsystem_pthread.dylib       	       0x1876c40e0 _pthread_cond_wait + 984
+2   Electron Framework            	       0x11c26ac8c uv_cond_wait + 40
+3   Electron Framework            	       0x11c25a2d8 uv_cancel + 700
+4   libsystem_pthread.dylib       	       0x1876c3c0c _pthread_start + 136
+5   libsystem_pthread.dylib       	       0x1876beb80 thread_start + 8
+
+Thread 27:: com.apple.NSEventThread
+0   libsystem_kernel.dylib        	       0x187681c34 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x1876943a0 mach_msg2_internal + 76
+2   libsystem_kernel.dylib        	       0x18768a764 mach_msg_overwrite + 484
+3   libsystem_kernel.dylib        	       0x187681fa8 mach_msg + 24
+4   CoreFoundation                	       0x1877aecbc __CFRunLoopServiceMachPort + 160
+5   CoreFoundation                	       0x1877ad5d8 __CFRunLoopRun + 1208
+6   CoreFoundation                	       0x1877aca98 CFRunLoopRunSpecific + 572
+7   AppKit                        	       0x18b7f578c _NSEventThread + 140
+8   libsystem_pthread.dylib       	       0x1876c3c0c _pthread_start + 136
+9   libsystem_pthread.dylib       	       0x1876beb80 thread_start + 8
+
+Thread 28:: ThreadPoolSingleThreadSharedBackgroundBlocking1
+0   libsystem_kernel.dylib        	       0x187681c34 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x1876943a0 mach_msg2_internal + 76
+2   libsystem_kernel.dylib        	       0x18768a764 mach_msg_overwrite + 484
+3   libsystem_kernel.dylib        	       0x187681fa8 mach_msg + 24
+4   Electron Framework            	       0x119cfce4c cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 119512
+5   Electron Framework            	       0x119cfcc3c cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 118984
+6   Electron Framework            	       0x119cfcbe4 cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 118896
+7   Electron Framework            	       0x119cfa6dc cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 109416
+8   Electron Framework            	       0x119cfd7a0 cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 121900
+9   Electron Framework            	       0x119cf9f60 cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 107500
+10  Electron Framework            	       0x11a9e0fa8 node::PrincipalRealm::maybe_cache_generated_source_map() const + 171352
+11  libsystem_pthread.dylib       	       0x1876c3c0c _pthread_start + 136
+12  libsystem_pthread.dylib       	       0x1876beb80 thread_start + 8
+
+Thread 29:: ThreadPoolForegroundWorker
+0   libsystem_kernel.dylib        	       0x187681c34 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x1876943a0 mach_msg2_internal + 76
+2   libsystem_kernel.dylib        	       0x18768a764 mach_msg_overwrite + 484
+3   libsystem_kernel.dylib        	       0x187681fa8 mach_msg + 24
+4   Electron Framework            	       0x119cfce4c cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 119512
+5   Electron Framework            	       0x119cfcc3c cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 118984
+6   Electron Framework            	       0x119cfcbe4 cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 118896
+7   Electron Framework            	       0x119cfa6dc cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 109416
+8   Electron Framework            	       0x119cf9fcc cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 107608
+9   Electron Framework            	       0x119cf9ef0 cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 107388
+10  Electron Framework            	       0x11a9e0fa8 node::PrincipalRealm::maybe_cache_generated_source_map() const + 171352
+11  libsystem_pthread.dylib       	       0x1876c3c0c _pthread_start + 136
+12  libsystem_pthread.dylib       	       0x1876beb80 thread_start + 8
+
+Thread 30:: NetworkConfigWatcher
+0   libsystem_kernel.dylib        	       0x187681c34 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x1876943a0 mach_msg2_internal + 76
+2   libsystem_kernel.dylib        	       0x18768a764 mach_msg_overwrite + 484
+3   libsystem_kernel.dylib        	       0x187681fa8 mach_msg + 24
+4   CoreFoundation                	       0x1877aecbc __CFRunLoopServiceMachPort + 160
+5   CoreFoundation                	       0x1877ad5d8 __CFRunLoopRun + 1208
+6   CoreFoundation                	       0x1877aca98 CFRunLoopRunSpecific + 572
+7   Foundation                    	       0x188d7cc78 -[NSRunLoop(NSRunLoop) runMode:beforeDate:] + 212
+8   Electron Framework            	       0x11b6a4bd8 v8::Isolate::LowMemoryNotification() + 65800
+9   Electron Framework            	       0x11b6a4a80 v8::Isolate::LowMemoryNotification() + 65456
+10  Electron Framework            	       0x11b09e0cc node::PrincipalRealm::http2session_on_altsvc_function() const + 52296
+11  Electron Framework            	       0x11b1d31bc node::PrincipalRealm::internal_binding_loader() const + 224164
+12  Electron Framework            	       0x11b1d2f30 node::PrincipalRealm::internal_binding_loader() const + 223512
+13  Electron Framework            	       0x11b1d2df4 node::PrincipalRealm::internal_binding_loader() const + 223196
+14  Electron Framework            	       0x11a9e0fa8 node::PrincipalRealm::maybe_cache_generated_source_map() const + 171352
+15  libsystem_pthread.dylib       	       0x1876c3c0c _pthread_start + 136
+16  libsystem_pthread.dylib       	       0x1876beb80 thread_start + 8
+
+Thread 31:: ThreadPoolBackgroundWorker
+0   libsystem_kernel.dylib        	       0x187681c34 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x1876943a0 mach_msg2_internal + 76
+2   libsystem_kernel.dylib        	       0x18768a764 mach_msg_overwrite + 484
+3   libsystem_kernel.dylib        	       0x187681fa8 mach_msg + 24
+4   Electron Framework            	       0x119cfce4c cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 119512
+5   Electron Framework            	       0x119cfcc3c cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 118984
+6   Electron Framework            	       0x119cfcbe4 cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 118896
+7   Electron Framework            	       0x119cfa6dc cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 109416
+8   Electron Framework            	       0x119cfa04c cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 107736
+9   Electron Framework            	       0x119cf9f24 cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 107440
+10  Electron Framework            	       0x11a9e0fa8 node::PrincipalRealm::maybe_cache_generated_source_map() const + 171352
+11  libsystem_pthread.dylib       	       0x1876c3c0c _pthread_start + 136
+12  libsystem_pthread.dylib       	       0x1876beb80 thread_start + 8
+
+Thread 32:: ThreadPoolSingleThreadSharedForeground2
+0   libsystem_kernel.dylib        	       0x187681c34 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x1876943a0 mach_msg2_internal + 76
+2   libsystem_kernel.dylib        	       0x18768a764 mach_msg_overwrite + 484
+3   libsystem_kernel.dylib        	       0x187681fa8 mach_msg + 24
+4   Electron Framework            	       0x119cfce4c cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 119512
+5   Electron Framework            	       0x119cfcc3c cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 118984
+6   Electron Framework            	       0x119cfcbe4 cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 118896
+7   Electron Framework            	       0x119cfa6dc cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 109416
+8   Electron Framework            	       0x119cfa078 cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 107780
+9   Electron Framework            	       0x119cf9f38 cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*) + 107460
+10  Electron Framework            	       0x11a9e0fa8 node::PrincipalRealm::maybe_cache_generated_source_map() const + 171352
+11  libsystem_pthread.dylib       	       0x1876c3c0c _pthread_start + 136
+12  libsystem_pthread.dylib       	       0x1876beb80 thread_start + 8
+
+Thread 33:: CacheThread_BlockFile
+0   libsystem_kernel.dylib        	       0x18768d95c kevent64 + 8
+1   Electron Framework            	       0x11ae04e40 v8::Isolate::SetIsLoading(bool) + 6752
+2   Electron Framework            	       0x11ae043ec v8::Isolate::SetIsLoading(bool) + 4108
+3   Electron Framework            	       0x11b09e0cc node::PrincipalRealm::http2session_on_altsvc_function() const + 52296
+4   Electron Framework            	       0x11b1d31bc node::PrincipalRealm::internal_binding_loader() const + 224164
+5   Electron Framework            	       0x11b1d2f30 node::PrincipalRealm::internal_binding_loader() const + 223512
+6   Electron Framework            	       0x11b1d2df4 node::PrincipalRealm::internal_binding_loader() const + 223196
+7   Electron Framework            	       0x11a9e0fa8 node::PrincipalRealm::maybe_cache_generated_source_map() const + 171352
+8   libsystem_pthread.dylib       	       0x1876c3c0c _pthread_start + 136
+9   libsystem_pthread.dylib       	       0x1876beb80 thread_start + 8
+
+Thread 34:
+0   libsystem_kernel.dylib        	       0x187681c34 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x1876943a0 mach_msg2_internal + 76
+2   libsystem_kernel.dylib        	       0x18768a764 mach_msg_overwrite + 484
+3   libsystem_kernel.dylib        	       0x187681fa8 mach_msg + 24
+4   CoreFoundation                	       0x1877aecbc __CFRunLoopServiceMachPort + 160
+5   CoreFoundation                	       0x1877ad5d8 __CFRunLoopRun + 1208
+6   CoreFoundation                	       0x1877aca98 CFRunLoopRunSpecific + 572
+7   CoreFoundation                	       0x187826554 CFRunLoopRun + 64
+8   Electron Framework            	       0x11c26ee40 uv__fsevents_close + 1408
+9   libsystem_pthread.dylib       	       0x1876c3c0c _pthread_start + 136
+10  libsystem_pthread.dylib       	       0x1876beb80 thread_start + 8
+
+Thread 35:
+0   libsystem_pthread.dylib       	       0x1876beb6c start_wqthread + 0
+
+
+Thread 0 crashed with ARM Thread State (64-bit):
+    x0: 0x000000016b2a3948   x1: 0x0000000000000000   x2: 0x000000011e92e5bc   x3: 0x0000011c02c14fb3
+    x4: 0x0000011c02c15000   x5: 0x0000000123524598   x6: 0x0000000000000054   x7: 0xffffffff00005f00
+    x8: 0x0000000123629000   x9: 0x0000000000000001  x10: 0x0000000123574bd8  x11: 0x0000000000000013
+   x12: 0x0000000000000000  x13: 0x0000000000000000  x14: 0x0000000000005f80  x15: 0x8f5c28f5c28f5c29
+   x16: 0x00000001876bebf0  x17: 0x00000001f56560c0  x18: 0x0000000000000000  x19: 0x0000000000000000
+   x20: 0x000000012231c003  x21: 0x0000000000000013  x22: 0x000000016b2a39ab  x23: 0x0000000000000001
+   x24: 0x0000000000000014  x25: 0x0000000000000000  x26: 0x0000011c005d00a8  x27: 0x0000000000000000
+   x28: 0x0000000000000014   fp: 0x000000016b2a3950   lr: 0x000000011e920bc0
+    sp: 0x000000016b2a3940   pc: 0x000000011e920bc0 cpsr: 0x80000000
+   far: 0x0000000000000000  esr: 0xf2000000 (Breakpoint) brk 0
+
+Binary Images:
+       0x104b58000 -        0x104b5bfff com.microsoft.VSCode (1.104.0) <4c4c4455-5555-3144-a1ab-f1e8c6efdf58> /Volumes/VOLUME/*/Visual Studio Code.app/Contents/MacOS/Electron
+       0x119a5c000 -        0x122e9ffff com.github.Electron.framework (*) <4c4c4433-5555-3144-a10e-42e14817a74e> /Volumes/VOLUME/*/Visual Studio Code.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Electron Framework
+       0x104bcc000 -        0x104be3fff com.github.Squirrel (1.0) <4c4c442c-5555-3144-a15b-0ea21239e89f> /Volumes/VOLUME/*/Visual Studio Code.app/Contents/Frameworks/Squirrel.framework/Versions/A/Squirrel
+       0x104cc4000 -        0x104d07fff com.electron.reactive (3.1.0) <4c4c4449-5555-3144-a148-57bdc4f6ac4e> /Volumes/VOLUME/*/Visual Studio Code.app/Contents/Frameworks/ReactiveObjC.framework/Versions/A/ReactiveObjC
+       0x104bf8000 -        0x104c03fff org.mantle.Mantle (1.0) <4c4c44ae-5555-3144-a165-0e97c87cbed2> /Volumes/VOLUME/*/Visual Studio Code.app/Contents/Frameworks/Mantle.framework/Versions/A/Mantle
+       0x1051d8000 -        0x105373fff libffmpeg.dylib (*) <4c4c447c-5555-3144-a19f-af27dbe87087> /Volumes/VOLUME/*/Visual Studio Code.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Libraries/libffmpeg.dylib
+       0x1050f0000 -        0x1050fbfff libobjc-trampolines.dylib (*) <a3faee04-0f8b-3428-9497-560c97eca6fb> /usr/lib/libobjc-trampolines.dylib
+       0x117c40000 -        0x118373fff com.apple.AGXMetalG16X (329.2) <8e5557ce-84f2-3aa0-a631-94d3809e5bf0> /System/Library/Extensions/AGXMetalG16X.bundle/Contents/MacOS/AGXMetalG16X
+       0x1057b4000 -        0x1057d3fff com.apple.security.csparser (3.0) <3a905673-ada9-3c57-992e-b83f555baa61> /System/Library/Frameworks/Security.framework/Versions/A/PlugIns/csparser.bundle/Contents/MacOS/csparser
+       0x1178a4000 -        0x1178affff vscode-policy-watcher.node (*) <c8094137-8782-3f61-a472-a6a219295f02> /Volumes/VOLUME/*/Visual Studio Code.app/Contents/Resources/app/node_modules/@vscode/policy-watcher/build/Release/vscode-policy-watcher.node
+       0x1179cc000 -        0x117a07fff spdlog.node (*) <d6df8d6d-55fc-3df0-be1c-c5279b57ffa5> /Volumes/VOLUME/*/Visual Studio Code.app/Contents/Resources/app/node_modules/@vscode/spdlog/build/Release/spdlog.node
+       0x119458000 -        0x1195f3fff vscode-sqlite3.node (*) <200a8d95-9f94-3463-95bd-64b04cd883b8> /Volumes/VOLUME/*/Visual Studio Code.app/Contents/Resources/app/node_modules/@vscode/sqlite3/build/Release/vscode-sqlite3.node
+       0x1190cc000 -        0x1190cffff keymapping.node (*) <a569933e-26ca-3e28-a9b2-303ecde2bb58> /Volumes/VOLUME/*/Visual Studio Code.app/Contents/Resources/app/node_modules/native-keymap/build/Release/keymapping.node
+               0x0 - 0xffffffffffffffff ??? (*) <00000000-0000-0000-0000-000000000000> ???
+       0x187732000 -        0x187c70fff com.apple.CoreFoundation (6.9) <8d45baee-6cc0-3b89-93fd-ea1c8e15c6d7> /System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation
+       0x19318c000 -        0x193492fdf com.apple.HIToolbox (2.1.1) <1a037942-11e0-3fc8-aad2-20b11e7ae1a4> /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/HIToolbox.framework/Versions/A/HIToolbox
+       0x18b697000 -        0x18cb27e3f com.apple.AppKit (6.9) <860c164c-d04c-30ff-8c6f-e672b74caf11> /System/Library/Frameworks/AppKit.framework/Versions/C/AppKit
+       0x18731c000 -        0x1873b7577 dyld (*) <3247e185-ced2-36ff-9e29-47a77c23e004> /usr/lib/dyld
+       0x1876bd000 -        0x1876c9a47 libsystem_pthread.dylib (*) <d6494ba9-171e-39fc-b1aa-28ecf87975d1> /usr/lib/system/libsystem_pthread.dylib
+       0x187681000 -        0x1876bc653 libsystem_kernel.dylib (*) <6e4a96ad-04b8-3e8a-b91d-087e62306246> /usr/lib/system/libsystem_kernel.dylib
+       0x188d23000 -        0x189b0c59f com.apple.Foundation (6.9) <b9a92060-f21e-3ecf-9ded-94a65c68a6f4> /System/Library/Frameworks/Foundation.framework/Versions/C/Foundation
+       0x1876ca000 -        0x1876f9ba3 libdyld.dylib (*) <01bcb3f7-ab89-30bd-87ee-91b291eadae8> /usr/lib/system/libdyld.dylib
+       0x18750a000 -        0x18755075f libdispatch.dylib (*) <24ce0d89-4114-30c2-a81a-3db1f5931cff> /usr/lib/system/libdispatch.dylib
+
+External Modification Summary:
+  Calls made by other processes targeting this process:
+    task_for_pid: 0
+    thread_create: 0
+    thread_set_state: 0
+  Calls made by this process:
+    task_for_pid: 0
+    thread_create: 0
+    thread_set_state: 0
+  Calls made by all processes on this machine:
+    task_for_pid: 0
+    thread_create: 0
+    thread_set_state: 0
+
+
+-----------
+Full Report
+-----------
+
+{"app_name":"Electron","timestamp":"2025-10-28 19:21:09.00 -0500","app_version":"1.104.0","slice_uuid":"4c4c4455-5555-3144-a1ab-f1e8c6efdf58","build_version":"1.104.0","platform":1,"bundleID":"com.microsoft.VSCode","share_with_app_devs":0,"is_first_party":0,"bug_type":"309","os_version":"macOS 15.6.1 (24G90)","roots_installed":0,"name":"Electron","incident_id":"7401FAC1-2794-4D89-A275-5D32575CC003"}
+{
+  "uptime" : 24000,
+  "procRole" : "Background",
+  "version" : 2,
+  "userID" : 501,
+  "deployVersion" : 210,
+  "modelCode" : "Mac16,5",
+  "coalitionID" : 640,
+  "osVersion" : {
+    "train" : "macOS 15.6.1",
+    "build" : "24G90",
+    "releaseType" : "User"
+  },
+  "captureTime" : "2025-10-28 19:21:06.3251 -0500",
+  "codeSigningMonitor" : 2,
+  "incident" : "7401FAC1-2794-4D89-A275-5D32575CC003",
+  "pid" : 54442,
+  "translated" : false,
+  "cpuType" : "ARM-64",
+  "roots_installed" : 0,
+  "bug_type" : "309",
+  "procLaunch" : "2025-10-28 11:36:02.9715 -0500",
+  "procStartAbsTime" : 126867267814,
+  "procExitAbsTime" : 583851236032,
+  "procName" : "Electron",
+  "procPath" : "\/Volumes\/VOLUME\/*\/Visual Studio Code.app\/Contents\/MacOS\/Electron",
+  "bundleInfo" : {"CFBundleShortVersionString":"1.104.0","CFBundleVersion":"1.104.0","CFBundleIdentifier":"com.microsoft.VSCode"},
+  "storeInfo" : {"deviceIdentifierForVendor":"29C214DB-A344-5137-94DD-C0A736E7A8FC","thirdParty":true},
+  "parentProc" : "launchd",
+  "parentPid" : 1,
+  "coalitionName" : "com.microsoft.VSCode",
+  "crashReporterKey" : "AD046F38-8ACA-9F18-4502-2A7B43372938",
+  "appleIntelligenceStatus" : {"state":"available"},
+  "codeSigningID" : "com.microsoft.VSCode",
+  "codeSigningTeamID" : "UBF8T346G9",
+  "codeSigningFlags" : 570503953,
+  "codeSigningValidationCategory" : 6,
+  "codeSigningTrustLevel" : 4294967295,
+  "codeSigningAuxiliaryInfo" : 0,
+  "instructionByteStream" : {"beforePC":"gf\/\/VO\/\/\/xf\/gwDR\/XsBqf1DAJFIaAKwALkC+eAHAPngIwCRZWLFlg==","atPC":"AAAg1AAAQNQgACDU\/Xu\/qf0DAJHz\/\/+X9E++qf17Aan9QwCR8wMAqg=="},
+  "bootSessionUUID" : "C1A21AFB-DCE2-44FC-8B27-5FE91DE98806",
+  "wakeTime" : 14409,
+  "sleepWakeUUID" : "CDEB06D3-76C3-42C6-9614-B1C2527F8F19",
+  "sip" : "enabled",
+  "exception" : {"codes":"0x0000000000000001, 0x000000011e920bc0","rawCodes":[1,4807855040],"type":"EXC_BREAKPOINT","signal":"SIGTRAP"},
+  "termination" : {"flags":0,"code":5,"namespace":"SIGNAL","indicator":"Trace\/BPT trap: 5","byProc":"exc handler","byPid":54442},
+  "os_fault" : {"process":"Electron"},
+  "extMods" : {"caller":{"thread_create":0,"thread_set_state":0,"task_for_pid":0},"system":{"thread_create":0,"thread_set_state":0,"task_for_pid":0},"targeted":{"thread_create":0,"thread_set_state":0,"task_for_pid":0},"warnings":0},
+  "faultingThread" : 0,
+  "threads" : [{"threadState":{"x":[{"value":6092896584},{"value":0},{"value":4807910844,"symbolLocation":3586756,"symbol":"ares_llist_node_first"},{"value":1219816935347},{"value":1219816935424},{"value":4887561624},{"value":84},{"value":18446744069414608640},{"value":4888629248,"symbolLocation":4456,"symbol":"cppgc::internal::CagedHeapBase::g_age_table_size_"},{"value":1},{"value":4887890904},{"value":19},{"value":0},{"value":0},{"value":24448},{"value":10330176681277348905},{"value":6566964208,"symbolLocation":0,"symbol":"pthread_getspecific"},{"value":8412029120,"symbolLocation":0,"symbol":"_main_thread"},{"value":0},{"value":0},{"value":4868653059},{"value":19},{"value":6092896683},{"value":1},{"value":20},{"value":0},{"value":1219776807080},{"value":0},{"value":20}],"flavor":"ARM_THREAD_STATE64","lr":{"value":4807855040},"cpsr":{"value":2147483648},"fp":{"value":6092896592},"sp":{"value":6092896576},"esr":{"value":4060086272,"description":"(Breakpoint) brk 0"},"pc":{"value":4807855040,"matchesCrashFrame":1},"far":{"value":0}},"id":245389,"triggered":true,"name":"CrBrowserMain","queue":"com.apple.main-thread","frames":[{"imageOffset":82594752,"symbol":"ares_llist_node_first","symbolLocation":3530952,"imageIndex":1},{"imageOffset":82594752,"symbol":"ares_llist_node_first","symbolLocation":3530952,"imageIndex":1},{"imageOffset":82594776,"symbol":"ares_llist_node_first","symbolLocation":3530976,"imageIndex":1},{"imageOffset":82594804,"symbol":"ares_llist_node_first","symbolLocation":3531004,"imageIndex":1},{"imageOffset":43588924,"symbol":"node::sqlite::UserDefinedFunction::xDestroy(void*)","symbolLocation":27532,"imageIndex":1},{"imageOffset":58193336,"symbol":"v8::PropertyDescriptor::set() const","symbolLocation":4289488,"imageIndex":1},{"imageOffset":58193228,"symbol":"v8::PropertyDescriptor::set() const","symbolLocation":4289380,"imageIndex":1},{"imageOffset":4810512,"symbol":"v8::Object::IsConstructor() const","symbolLocation":55584,"imageIndex":1},{"imageOffset":590376,"symbol":"v8::TryCatch::SetCaptureMessage(bool)","symbolLocation":8020,"imageIndex":1},{"imageOffset":7974052,"symbol":"v8::BackingStore::Data() const","symbolLocation":58216,"imageIndex":1},{"imageOffset":6739292,"symbol":"v8::DictionaryTemplate::New(v8::Isolate*, v8::MemorySpan<std::__Cr::basic_string_view<char, std::__Cr::char_traits<char>> const>)","symbolLocation":20448,"imageIndex":1},{"imageOffset":6738608,"symbol":"v8::DictionaryTemplate::New(v8::Isolate*, v8::MemorySpan<std::__Cr::basic_string_view<char, std::__Cr::char_traits<char>> const>)","symbolLocation":19764,"imageIndex":1},{"imageOffset":13286168372,"imageIndex":13},{"imageOffset":13155473500,"imageIndex":13},{"imageOffset":13156343596,"imageIndex":13},{"imageOffset":13156297144,"imageIndex":13},{"imageOffset":13156299752,"imageIndex":13},{"imageOffset":13153503488,"imageIndex":13},{"imageOffset":13155681216,"imageIndex":13},{"imageOffset":13285503528,"imageIndex":13},{"imageOffset":13285502580,"imageIndex":13},{"imageOffset":2016016,"symbol":"v8::Function::Call(v8::Isolate*, v8::Local<v8::Context>, v8::Local<v8::Value>, int, v8::Local<v8::Value>*)","symbolLocation":2968,"imageIndex":1},{"imageOffset":2013452,"symbol":"v8::Function::Call(v8::Isolate*, v8::Local<v8::Context>, v8::Local<v8::Value>, int, v8::Local<v8::Value>*)","symbolLocation":404,"imageIndex":1},{"imageOffset":44243180,"symbol":"node::InternalMakeCallback(node::Environment*, v8::Local<v8::Object>, v8::Local<v8::Object>, v8::Local<v8::Function>, int, v8::Local<v8::Value>*, node::async_context, v8::Local<v8::Value>)","symbolLocation":512,"imageIndex":1},{"imageOffset":44244164,"symbol":"node::InternalMakeCallback(v8::Isolate*, v8::Local<v8::Object>, v8::Local<v8::Function>, int, v8::Local<v8::Value>*, node::async_context, v8::Local<v8::Value>)","symbolLocation":304,"imageIndex":1},{"imageOffset":43566904,"symbol":"node::sqlite::UserDefinedFunction::xDestroy(void*)","symbolLocation":5512,"imageIndex":1},{"imageOffset":42880180,"symbol":"node::AsyncWrap::~AsyncWrap()","symbolLocation":541576,"imageIndex":1},{"imageOffset":42879960,"symbol":"node::AsyncWrap::~AsyncWrap()","symbolLocation":541356,"imageIndex":1},{"imageOffset":13033648,"symbol":"v8::TypecheckWitness::Update(v8::Local<v8::Value>)","symbolLocation":35528,"imageIndex":1},{"imageOffset":1184660,"symbol":"temporal_rs_PlainTime_second","symbolLocation":1244,"imageIndex":1},{"imageOffset":1182132,"symbol":"v8impl::Finalizer::ResetEnv()","symbolLocation":6564,"imageIndex":1},{"imageOffset":40590812,"symbol":"v8::internal::compiler::CompilationDependencies::DependOnInitialMap(v8::internal::compiler::JSFunctionRef)","symbolLocation":464424,"imageIndex":1},{"imageOffset":3420560,"symbol":"temporal_rs_Duration_weeks","symbolLocation":20840,"imageIndex":1},{"imageOffset":40590112,"symbol":"v8::internal::compiler::CompilationDependencies::DependOnInitialMap(v8::internal::compiler::JSFunctionRef)","symbolLocation":463724,"imageIndex":1},{"imageOffset":510740,"symbol":"__CFRUNLOOP_IS_CALLING_OUT_TO_A_SOURCE0_PERFORM_FUNCTION__","symbolLocation":28,"imageIndex":14},{"imageOffset":510632,"symbol":"__CFRunLoopDoSource0","symbolLocation":172,"imageIndex":14},{"imageOffset":509972,"symbol":"__CFRunLoopDoSources0","symbolLocation":232,"imageIndex":14},{"imageOffset":504936,"symbol":"__CFRunLoopRun","symbolLocation":840,"imageIndex":14},{"imageOffset":502424,"symbol":"CFRunLoopRunSpecific","symbolLocation":572,"imageIndex":14},{"imageOffset":799356,"symbol":"RunCurrentEventLoopInMode","symbolLocation":324,"imageIndex":15},{"imageOffset":812264,"symbol":"ReceiveNextEventCommon","symbolLocation":676,"imageIndex":15},{"imageOffset":2430084,"symbol":"_BlockUntilNextEventMatchingListInModeWithFilter","symbolLocation":76,"imageIndex":15},{"imageOffset":240180,"symbol":"_DPSNextEvent","symbolLocation":684,"imageIndex":16},{"imageOffset":10328384,"symbol":"-[NSApplication(NSEventRouting) _nextEventMatchingEventMask:untilDate:inMode:dequeue:]","symbolLocation":688,"imageIndex":16},{"imageOffset":187364,"symbol":"-[NSApplication run]","symbolLocation":480,"imageIndex":16},{"imageOffset":29658216,"symbol":"v8::Isolate::LowMemoryNotification()","symbolLocation":65944,"imageIndex":1},{"imageOffset":29657728,"symbol":"v8::Isolate::LowMemoryNotification()","symbolLocation":65456,"imageIndex":1},{"imageOffset":23339212,"symbol":"node::PrincipalRealm::http2session_on_altsvc_function() const","symbolLocation":52296,"imageIndex":1},{"imageOffset":24605116,"symbol":"node::PrincipalRealm::internal_binding_loader() const","symbolLocation":224164,"imageIndex":1},{"imageOffset":31760964,"symbol":"node::PrincipalRealm::inspector_enable_async_hooks() const","symbolLocation":105628,"imageIndex":1},{"imageOffset":31760788,"symbol":"node::PrincipalRealm::inspector_enable_async_hooks() const","symbolLocation":105452,"imageIndex":1},{"imageOffset":32010120,"symbol":"node::PrincipalRealm::builtin_module_require() const","symbolLocation":98672,"imageIndex":1},{"imageOffset":32009872,"symbol":"node::PrincipalRealm::builtin_module_require() const","symbolLocation":98424,"imageIndex":1},{"imageOffset":27401856,"symbol":"v8::internal::ThreadIsolation::JitPageReference::Shrink(v8::internal::ThreadIsolation::JitPage*)","symbolLocation":184268,"imageIndex":1},{"imageOffset":27388572,"symbol":"v8::internal::ThreadIsolation::JitPageReference::Shrink(v8::internal::ThreadIsolation::JitPage*)","symbolLocation":170984,"imageIndex":1},{"imageOffset":30804880,"symbol":"rust_png$cxxbridge1$Reader$get_trns_chunk","symbolLocation":51456,"imageIndex":1},{"imageOffset":30803124,"symbol":"rust_png$cxxbridge1$Reader$get_trns_chunk","symbolLocation":49700,"imageIndex":1},{"imageOffset":42025664,"symbol":"ElectronMain","symbolLocation":124,"imageIndex":1},{"imageOffset":27544,"symbol":"start","symbolLocation":6076,"imageIndex":17}]},{"id":245449,"name":"ThreadPoolServiceThread","threadState":{"x":[{"value":4},{"value":0},{"value":0},{"value":1219771068656},{"value":4},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":3},{"value":27487790700802},{"value":2800},{"value":245449},{"value":1219789619200},{"value":77},{"value":369},{"value":1202592162560},{"value":0},{"value":1202593102064},{"value":1202591893760},{"value":0},{"value":12297829382473034411},{"value":1},{"value":12297829382473034410},{"value":0},{"value":0},{"value":0},{"value":0}],"flavor":"ARM_THREAD_STATE64","lr":{"value":4745875008},"cpsr":{"value":2684354560},"fp":{"value":6103608720},"sp":{"value":6103608576},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6566762844},"far":{"value":0}},"frames":[{"imageOffset":51548,"symbol":"kevent64","symbolLocation":8,"imageIndex":19},{"imageOffset":20614720,"symbol":"v8::Isolate::SetIsLoading(bool)","symbolLocation":6752,"imageIndex":1},{"imageOffset":20612076,"symbol":"v8::Isolate::SetIsLoading(bool)","symbolLocation":4108,"imageIndex":1},{"imageOffset":23339212,"symbol":"node::PrincipalRealm::http2session_on_altsvc_function() const","symbolLocation":52296,"imageIndex":1},{"imageOffset":24605116,"symbol":"node::PrincipalRealm::internal_binding_loader() const","symbolLocation":224164,"imageIndex":1},{"imageOffset":24604464,"symbol":"node::PrincipalRealm::internal_binding_loader() const","symbolLocation":223512,"imageIndex":1},{"imageOffset":40575076,"symbol":"v8::internal::compiler::CompilationDependencies::DependOnInitialMap(v8::internal::compiler::JSFunctionRef)","symbolLocation":448688,"imageIndex":1},{"imageOffset":24604148,"symbol":"node::PrincipalRealm::internal_binding_loader() const","symbolLocation":223196,"imageIndex":1},{"imageOffset":16273320,"symbol":"node::PrincipalRealm::maybe_cache_generated_source_map() const","symbolLocation":171352,"imageIndex":1},{"imageOffset":27660,"symbol":"_pthread_start","symbolLocation":136,"imageIndex":18},{"imageOffset":7040,"symbol":"thread_start","symbolLocation":8,"imageIndex":18}]},{"id":245450,"name":"ThreadPoolForegroundWorker","threadState":{"x":[{"value":268451845},{"value":17179869186},{"value":0},{"value":114379274059776},{"value":0},{"value":114379274059776},{"value":32},{"value":0},{"value":0},{"value":17179869184},{"value":32},{"value":0},{"value":0},{"value":0},{"value":26631},{"value":535936},{"value":18446744073709551569},{"value":4807930844,"symbolLocation":3606756,"symbol":"ares_llist_node_first"},{"value":0},{"value":0},{"value":32},{"value":114379274059776},{"value":0},{"value":114379274059776},{"value":6112029968},{"value":0},{"value":17179869186},{"value":18446744073709550527},{"value":2}],"flavor":"ARM_THREAD_STATE64","lr":{"value":6566790048},"cpsr":{"value":0},"fp":{"value":6112029328},"sp":{"value":6112029248},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6566714420},"far":{"value":0}},"frames":[{"imageOffset":3124,"symbol":"mach_msg2_trap","symbolLocation":8,"imageIndex":19},{"imageOffset":78752,"symbol":"mach_msg2_internal","symbolLocation":76,"imageIndex":19},{"imageOffset":38756,"symbol":"mach_msg_overwrite","symbolLocation":484,"imageIndex":19},{"imageOffset":4008,"symbol":"mach_msg","symbolLocation":24,"imageIndex":19},{"imageOffset":2756172,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":119512,"imageIndex":1},{"imageOffset":2755644,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":118984,"imageIndex":1},{"imageOffset":2755556,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":118896,"imageIndex":1},{"imageOffset":2746076,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":109416,"imageIndex":1},{"imageOffset":2744268,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":107608,"imageIndex":1},{"imageOffset":2744048,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":107388,"imageIndex":1},{"imageOffset":16273320,"symbol":"node::PrincipalRealm::maybe_cache_generated_source_map() const","symbolLocation":171352,"imageIndex":1},{"imageOffset":27660,"symbol":"_pthread_start","symbolLocation":136,"imageIndex":18},{"imageOffset":7040,"symbol":"thread_start","symbolLocation":8,"imageIndex":18}]},{"id":245451,"name":"ThreadPoolBackgroundWorker","threadState":{"x":[{"value":268451845},{"value":17179869186},{"value":0},{"value":112180250804224},{"value":0},{"value":112180250804224},{"value":32},{"value":0},{"value":0},{"value":17179869184},{"value":32},{"value":0},{"value":0},{"value":0},{"value":26119},{"value":1573888},{"value":18446744073709551569},{"value":1202592166144},{"value":0},{"value":0},{"value":32},{"value":112180250804224},{"value":0},{"value":112180250804224},{"value":6120451344},{"value":0},{"value":17179869186},{"value":18446744073709550527},{"value":2}],"flavor":"ARM_THREAD_STATE64","lr":{"value":6566790048},"cpsr":{"value":0},"fp":{"value":6120450704},"sp":{"value":6120450624},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6566714420},"far":{"value":0}},"frames":[{"imageOffset":3124,"symbol":"mach_msg2_trap","symbolLocation":8,"imageIndex":19},{"imageOffset":78752,"symbol":"mach_msg2_internal","symbolLocation":76,"imageIndex":19},{"imageOffset":38756,"symbol":"mach_msg_overwrite","symbolLocation":484,"imageIndex":19},{"imageOffset":4008,"symbol":"mach_msg","symbolLocation":24,"imageIndex":19},{"imageOffset":2756172,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":119512,"imageIndex":1},{"imageOffset":2755644,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":118984,"imageIndex":1},{"imageOffset":2755556,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":118896,"imageIndex":1},{"imageOffset":2746076,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":109416,"imageIndex":1},{"imageOffset":2744396,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":107736,"imageIndex":1},{"imageOffset":2744100,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":107440,"imageIndex":1},{"imageOffset":16273320,"symbol":"node::PrincipalRealm::maybe_cache_generated_source_map() const","symbolLocation":171352,"imageIndex":1},{"imageOffset":27660,"symbol":"_pthread_start","symbolLocation":136,"imageIndex":18},{"imageOffset":7040,"symbol":"thread_start","symbolLocation":8,"imageIndex":18}]},{"id":245452,"name":"ThreadPoolForegroundWorker","threadState":{"x":[{"value":268451845},{"value":17179869186},{"value":0},{"value":120959163957248},{"value":0},{"value":120959163957248},{"value":32},{"value":0},{"value":0},{"value":17179869184},{"value":32},{"value":0},{"value":0},{"value":0},{"value":28163},{"value":1720160},{"value":18446744073709551569},{"value":1202592167936},{"value":0},{"value":0},{"value":32},{"value":120959163957248},{"value":0},{"value":120959163957248},{"value":6128872720},{"value":0},{"value":17179869186},{"value":18446744073709550527},{"value":2}],"flavor":"ARM_THREAD_STATE64","lr":{"value":6566790048},"cpsr":{"value":0},"fp":{"value":6128872080},"sp":{"value":6128872000},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6566714420},"far":{"value":0}},"frames":[{"imageOffset":3124,"symbol":"mach_msg2_trap","symbolLocation":8,"imageIndex":19},{"imageOffset":78752,"symbol":"mach_msg2_internal","symbolLocation":76,"imageIndex":19},{"imageOffset":38756,"symbol":"mach_msg_overwrite","symbolLocation":484,"imageIndex":19},{"imageOffset":4008,"symbol":"mach_msg","symbolLocation":24,"imageIndex":19},{"imageOffset":2756172,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":119512,"imageIndex":1},{"imageOffset":2755644,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":118984,"imageIndex":1},{"imageOffset":2755556,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":118896,"imageIndex":1},{"imageOffset":2746076,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":109416,"imageIndex":1},{"imageOffset":2744268,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":107608,"imageIndex":1},{"imageOffset":2744048,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":107388,"imageIndex":1},{"imageOffset":16273320,"symbol":"node::PrincipalRealm::maybe_cache_generated_source_map() const","symbolLocation":171352,"imageIndex":1},{"imageOffset":27660,"symbol":"_pthread_start","symbolLocation":136,"imageIndex":18},{"imageOffset":7040,"symbol":"thread_start","symbolLocation":8,"imageIndex":18}]},{"id":245453,"name":"Chrome_IOThread","threadState":{"x":[{"value":1},{"value":0},{"value":0},{"value":1219792453760},{"value":9},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":9223372036854775809},{"value":24326931375},{"value":2688},{"value":245453},{"value":1},{"value":0},{"value":369},{"value":1202592171520},{"value":0},{"value":1202593094384},{"value":1202591916032},{"value":0},{"value":12297829382473034411},{"value":1},{"value":12297829382473034410},{"value":0},{"value":0},{"value":0},{"value":0}],"flavor":"ARM_THREAD_STATE64","lr":{"value":4745875008},"cpsr":{"value":2147483648},"fp":{"value":6137294208},"sp":{"value":6137294064},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6566762844},"far":{"value":0}},"frames":[{"imageOffset":51548,"symbol":"kevent64","symbolLocation":8,"imageIndex":19},{"imageOffset":20614720,"symbol":"v8::Isolate::SetIsLoading(bool)","symbolLocation":6752,"imageIndex":1},{"imageOffset":20612076,"symbol":"v8::Isolate::SetIsLoading(bool)","symbolLocation":4108,"imageIndex":1},{"imageOffset":23339212,"symbol":"node::PrincipalRealm::http2session_on_altsvc_function() const","symbolLocation":52296,"imageIndex":1},{"imageOffset":24605116,"symbol":"node::PrincipalRealm::internal_binding_loader() const","symbolLocation":224164,"imageIndex":1},{"imageOffset":24604464,"symbol":"node::PrincipalRealm::internal_binding_loader() const","symbolLocation":223512,"imageIndex":1},{"imageOffset":31476408,"symbol":"v8::Message::Get() const","symbolLocation":21216,"imageIndex":1},{"imageOffset":24604148,"symbol":"node::PrincipalRealm::internal_binding_loader() const","symbolLocation":223196,"imageIndex":1},{"imageOffset":16273320,"symbol":"node::PrincipalRealm::maybe_cache_generated_source_map() const","symbolLocation":171352,"imageIndex":1},{"imageOffset":27660,"symbol":"_pthread_start","symbolLocation":136,"imageIndex":18},{"imageOffset":7040,"symbol":"thread_start","symbolLocation":8,"imageIndex":18}]},{"id":245454,"name":"MemoryInfra","threadState":{"x":[{"value":268451845},{"value":17179869186},{"value":0},{"value":148446954651648},{"value":0},{"value":148446954651648},{"value":32},{"value":0},{"value":0},{"value":17179869184},{"value":32},{"value":0},{"value":0},{"value":0},{"value":34563},{"value":0},{"value":18446744073709551569},{"value":1202592173312},{"value":0},{"value":0},{"value":32},{"value":148446954651648},{"value":0},{"value":148446954651648},{"value":6145715264},{"value":0},{"value":17179869186},{"value":18446744073709550527},{"value":2}],"flavor":"ARM_THREAD_STATE64","lr":{"value":6566790048},"cpsr":{"value":0},"fp":{"value":6145714624},"sp":{"value":6145714544},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6566714420},"far":{"value":0}},"frames":[{"imageOffset":3124,"symbol":"mach_msg2_trap","symbolLocation":8,"imageIndex":19},{"imageOffset":78752,"symbol":"mach_msg2_internal","symbolLocation":76,"imageIndex":19},{"imageOffset":38756,"symbol":"mach_msg_overwrite","symbolLocation":484,"imageIndex":19},{"imageOffset":4008,"symbol":"mach_msg","symbolLocation":24,"imageIndex":19},{"imageOffset":2756172,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":119512,"imageIndex":1},{"imageOffset":2755644,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":118984,"imageIndex":1},{"imageOffset":13039560,"symbol":"v8::TypecheckWitness::Update(v8::Local<v8::Value>)","symbolLocation":41440,"imageIndex":1},{"imageOffset":40549860,"symbol":"v8::internal::compiler::CompilationDependencies::DependOnInitialMap(v8::internal::compiler::JSFunctionRef)","symbolLocation":423472,"imageIndex":1},{"imageOffset":23339212,"symbol":"node::PrincipalRealm::http2session_on_altsvc_function() const","symbolLocation":52296,"imageIndex":1},{"imageOffset":24605116,"symbol":"node::PrincipalRealm::internal_binding_loader() const","symbolLocation":224164,"imageIndex":1},{"imageOffset":24604464,"symbol":"node::PrincipalRealm::internal_binding_loader() const","symbolLocation":223512,"imageIndex":1},{"imageOffset":24604148,"symbol":"node::PrincipalRealm::internal_binding_loader() const","symbolLocation":223196,"imageIndex":1},{"imageOffset":16273320,"symbol":"node::PrincipalRealm::maybe_cache_generated_source_map() const","symbolLocation":171352,"imageIndex":1},{"imageOffset":27660,"symbol":"_pthread_start","symbolLocation":136,"imageIndex":18},{"imageOffset":7040,"symbol":"thread_start","symbolLocation":8,"imageIndex":18}]},{"id":245456,"frames":[{"imageOffset":27908,"symbol":"kevent","symbolLocation":8,"imageIndex":19},{"imageOffset":42024308,"symbol":"uv__io_poll","symbolLocation":1840,"imageIndex":1},{"imageOffset":41950604,"symbol":"uv_run","symbolLocation":376,"imageIndex":1},{"imageOffset":45676932,"symbol":"node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start()::'lambda'(void*)::__invoke(void*)","symbolLocation":112,"imageIndex":1},{"imageOffset":27660,"symbol":"_pthread_start","symbolLocation":136,"imageIndex":18},{"imageOffset":7040,"symbol":"thread_start","symbolLocation":8,"imageIndex":18}],"threadState":{"x":[{"value":4},{"value":0},{"value":0},{"value":6154104528},{"value":1024},{"value":0},{"value":0},{"value":0},{"value":6154104480},{"value":4294967295},{"value":0},{"value":65536},{"value":1},{"value":0},{"value":0},{"value":0},{"value":363},{"value":8429172296},{"value":0},{"value":1219775825640},{"value":1},{"value":4294967295},{"value":0},{"value":65531},{"value":1219775825728},{"value":0},{"value":6154104528},{"value":111},{"value":1219775826176}],"flavor":"ARM_THREAD_STATE64","lr":{"value":4767284596},"cpsr":{"value":1610612736},"fp":{"value":6154137392},"sp":{"value":6154104400},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6566739204},"far":{"value":0}}},{"id":245457,"frames":[{"imageOffset":17356,"symbol":"__psynch_cvwait","symbolLocation":8,"imageIndex":19},{"imageOffset":28896,"symbol":"_pthread_cond_wait","symbolLocation":984,"imageIndex":18},{"imageOffset":42003596,"symbol":"uv_cond_wait","symbolLocation":40,"imageIndex":1},{"imageOffset":45667928,"symbol":"node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int, node::PlatformDebugLogLevel)","symbolLocation":1480,"imageIndex":1},{"imageOffset":27660,"symbol":"_pthread_start","symbolLocation":136,"imageIndex":18},{"imageOffset":7040,"symbol":"thread_start","symbolLocation":8,"imageIndex":18}],"threadState":{"x":[{"value":4},{"value":0},{"value":1651968},{"value":0},{"value":0},{"value":160},{"value":0},{"value":0},{"value":6162558648},{"value":0},{"value":121600},{"value":522268023315202},{"value":522268023315202},{"value":121600},{"value":0},{"value":522268023315200},{"value":305},{"value":8429163792},{"value":0},{"value":1219772876792},{"value":1219772876856},{"value":6162559200},{"value":0},{"value":0},{"value":1651968},{"value":1651968},{"value":1652480},{"value":0},{"value":0}],"flavor":"ARM_THREAD_STATE64","lr":{"value":6566985952},"cpsr":{"value":1610612736},"fp":{"value":6162558768},"sp":{"value":6162558624},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6566728652},"far":{"value":0}}},{"id":245458,"frames":[{"imageOffset":17356,"symbol":"__psynch_cvwait","symbolLocation":8,"imageIndex":19},{"imageOffset":28896,"symbol":"_pthread_cond_wait","symbolLocation":984,"imageIndex":18},{"imageOffset":42003596,"symbol":"uv_cond_wait","symbolLocation":40,"imageIndex":1},{"imageOffset":45667928,"symbol":"node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int, node::PlatformDebugLogLevel)","symbolLocation":1480,"imageIndex":1},{"imageOffset":27660,"symbol":"_pthread_start","symbolLocation":136,"imageIndex":18},{"imageOffset":7040,"symbol":"thread_start","symbolLocation":8,"imageIndex":18}],"threadState":{"x":[{"value":4},{"value":0},{"value":1651968},{"value":0},{"value":0},{"value":160},{"value":0},{"value":0},{"value":6170980024},{"value":0},{"value":121600},{"value":522268023315202},{"value":522268023315202},{"value":121600},{"value":0},{"value":522268023315200},{"value":305},{"value":8429163792},{"value":0},{"value":1219772876792},{"value":1219772876856},{"value":6170980576},{"value":0},{"value":0},{"value":1651968},{"value":1651968},{"value":1652736},{"value":0},{"value":0}],"flavor":"ARM_THREAD_STATE64","lr":{"value":6566985952},"cpsr":{"value":1610612736},"fp":{"value":6170980144},"sp":{"value":6170980000},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6566728652},"far":{"value":0}}},{"id":245459,"frames":[{"imageOffset":17356,"symbol":"__psynch_cvwait","symbolLocation":8,"imageIndex":19},{"imageOffset":28896,"symbol":"_pthread_cond_wait","symbolLocation":984,"imageIndex":18},{"imageOffset":42003596,"symbol":"uv_cond_wait","symbolLocation":40,"imageIndex":1},{"imageOffset":45667928,"symbol":"node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int, node::PlatformDebugLogLevel)","symbolLocation":1480,"imageIndex":1},{"imageOffset":27660,"symbol":"_pthread_start","symbolLocation":136,"imageIndex":18},{"imageOffset":7040,"symbol":"thread_start","symbolLocation":8,"imageIndex":18}],"threadState":{"x":[{"value":260},{"value":0},{"value":1651968},{"value":0},{"value":0},{"value":160},{"value":0},{"value":0},{"value":6179401400},{"value":0},{"value":121600},{"value":522268023315202},{"value":522268023315202},{"value":121600},{"value":0},{"value":522268023315200},{"value":305},{"value":8429163792},{"value":0},{"value":1219772876792},{"value":1219772876856},{"value":6179401952},{"value":0},{"value":0},{"value":1651968},{"value":1651969},{"value":1652224},{"value":0},{"value":0}],"flavor":"ARM_THREAD_STATE64","lr":{"value":6566985952},"cpsr":{"value":1610612736},"fp":{"value":6179401520},"sp":{"value":6179401376},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6566728652},"far":{"value":0}}},{"id":245460,"frames":[{"imageOffset":2992,"symbol":"semaphore_wait_trap","symbolLocation":8,"imageIndex":19},{"imageOffset":42003188,"symbol":"uv_sem_wait","symbolLocation":24,"imageIndex":1},{"imageOffset":47101984,"symbol":"node::inspector::Agent::GetWsUrl() const","symbolLocation":52,"imageIndex":1},{"imageOffset":27660,"symbol":"_pthread_start","symbolLocation":136,"imageIndex":18},{"imageOffset":7040,"symbol":"thread_start","symbolLocation":8,"imageIndex":18}],"threadState":{"x":[{"value":14},{"value":0},{"value":4772362244,"symbolLocation":24,"symbol":"node::inspector::Agent::GetWsUrl() const"},{"value":0},{"value":6094696448},{"value":419432703},{"value":0},{"value":0},{"value":4772362244,"symbolLocation":24,"symbol":"node::inspector::Agent::GetWsUrl() const"},{"value":35332},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":18446744073709551580},{"value":8429164008},{"value":0},{"value":4887589540},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0}],"flavor":"ARM_THREAD_STATE64","lr":{"value":4767263476},"cpsr":{"value":536870912},"fp":{"value":6094696336},"sp":{"value":6094696320},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6566714288},"far":{"value":0}}},{"id":245464,"frames":[{"imageOffset":27908,"symbol":"kevent","symbolLocation":8,"imageIndex":19},{"imageOffset":42024308,"symbol":"uv__io_poll","symbolLocation":1840,"imageIndex":1},{"imageOffset":41950604,"symbol":"uv_run","symbolLocation":376,"imageIndex":1},{"imageOffset":44245756,"symbol":"node::SpinEventLoopInternal(node::Environment*)","symbolLocation":360,"imageIndex":1},{"imageOffset":46298636,"symbol":"node::worker::Worker::Run()","symbolLocation":2008,"imageIndex":1},{"imageOffset":46316600,"symbol":"_register_external_reference_worker(node::ExternalReferenceRegistry*)","symbolLocation":4504,"imageIndex":1},{"imageOffset":27660,"symbol":"_pthread_start","symbolLocation":136,"imageIndex":18},{"imageOffset":7040,"symbol":"thread_start","symbolLocation":8,"imageIndex":18}],"threadState":{"x":[{"value":4},{"value":0},{"value":0},{"value":6183610464},{"value":1024},{"value":6183610416},{"value":6183642247},{"value":0},{"value":6183610416},{"value":8},{"value":1000000},{"value":2},{"value":0},{"value":0},{"value":6183644544},{"value":6183644544},{"value":363},{"value":1219775185152},{"value":0},{"value":6183643848},{"value":1},{"value":8100},{"value":0},{"value":65531},{"value":6183643936},{"value":0},{"value":6183610464},{"value":6183643344},{"value":6183644384}],"flavor":"ARM_THREAD_STATE64","lr":{"value":4767284596},"cpsr":{"value":536870912},"fp":{"value":6183643328},"sp":{"value":6183610336},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6566739204},"far":{"value":0}}},{"id":245470,"frames":[{"imageOffset":3124,"symbol":"mach_msg2_trap","symbolLocation":8,"imageIndex":19},{"imageOffset":78752,"symbol":"mach_msg2_internal","symbolLocation":76,"imageIndex":19},{"imageOffset":38756,"symbol":"mach_msg_overwrite","symbolLocation":484,"imageIndex":19},{"imageOffset":4008,"symbol":"mach_msg","symbolLocation":24,"imageIndex":19},{"imageOffset":32093280,"symbol":"node::PrincipalRealm::wasm_streaming_object_constructor() const","symbolLocation":23800,"imageIndex":1},{"imageOffset":32092376,"symbol":"node::PrincipalRealm::wasm_streaming_object_constructor() const","symbolLocation":22896,"imageIndex":1},{"imageOffset":127587944,"symbol":"temporal_rs_PlainTime_microsecond","symbolLocation":7049400,"imageIndex":1},{"imageOffset":27660,"symbol":"_pthread_start","symbolLocation":136,"imageIndex":18},{"imageOffset":7040,"symbol":"thread_start","symbolLocation":8,"imageIndex":18}],"threadState":{"x":[{"value":268451845},{"value":17179869186},{"value":0},{"value":0},{"value":0},{"value":174852413587456},{"value":48},{"value":0},{"value":0},{"value":17179869184},{"value":48},{"value":0},{"value":0},{"value":0},{"value":40711},{"value":0},{"value":18446744073709551569},{"value":8429164008},{"value":0},{"value":0},{"value":48},{"value":174852413587456},{"value":0},{"value":0},{"value":4379525120},{"value":0},{"value":17179870210},{"value":18446744073709550527},{"value":1026}],"flavor":"ARM_THREAD_STATE64","lr":{"value":6566790048},"cpsr":{"value":0},"fp":{"value":6184217296},"sp":{"value":6184217216},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6566714420},"far":{"value":0}}},{"id":245473,"name":"NetworkConfigWatcher","threadState":{"x":[{"value":268451845},{"value":21592279046},{"value":8589934592},{"value":163840117440512},{"value":0},{"value":163840117440512},{"value":2},{"value":4294967295},{"value":0},{"value":17179869184},{"value":0},{"value":2},{"value":0},{"value":0},{"value":38147},{"value":0},{"value":18446744073709551569},{"value":8429165672},{"value":0},{"value":4294967295},{"value":2},{"value":163840117440512},{"value":0},{"value":163840117440512},{"value":6192635416},{"value":8589934592},{"value":21592279046},{"value":18446744073709550527},{"value":4412409862}],"flavor":"ARM_THREAD_STATE64","lr":{"value":6566790048},"cpsr":{"value":0},"fp":{"value":6192635264},"sp":{"value":6192635184},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6566714420},"far":{"value":0}},"frames":[{"imageOffset":3124,"symbol":"mach_msg2_trap","symbolLocation":8,"imageIndex":19},{"imageOffset":78752,"symbol":"mach_msg2_internal","symbolLocation":76,"imageIndex":19},{"imageOffset":38756,"symbol":"mach_msg_overwrite","symbolLocation":484,"imageIndex":19},{"imageOffset":4008,"symbol":"mach_msg","symbolLocation":24,"imageIndex":19},{"imageOffset":511164,"symbol":"__CFRunLoopServiceMachPort","symbolLocation":160,"imageIndex":14},{"imageOffset":505304,"symbol":"__CFRunLoopRun","symbolLocation":1208,"imageIndex":14},{"imageOffset":502424,"symbol":"CFRunLoopRunSpecific","symbolLocation":572,"imageIndex":14},{"imageOffset":367736,"symbol":"-[NSRunLoop(NSRunLoop) runMode:beforeDate:]","symbolLocation":212,"imageIndex":20},{"imageOffset":29658072,"symbol":"v8::Isolate::LowMemoryNotification()","symbolLocation":65800,"imageIndex":1},{"imageOffset":29657728,"symbol":"v8::Isolate::LowMemoryNotification()","symbolLocation":65456,"imageIndex":1},{"imageOffset":23339212,"symbol":"node::PrincipalRealm::http2session_on_altsvc_function() const","symbolLocation":52296,"imageIndex":1},{"imageOffset":24605116,"symbol":"node::PrincipalRealm::internal_binding_loader() const","symbolLocation":224164,"imageIndex":1},{"imageOffset":24604464,"symbol":"node::PrincipalRealm::internal_binding_loader() const","symbolLocation":223512,"imageIndex":1},{"imageOffset":24604148,"symbol":"node::PrincipalRealm::internal_binding_loader() const","symbolLocation":223196,"imageIndex":1},{"imageOffset":16273320,"symbol":"node::PrincipalRealm::maybe_cache_generated_source_map() const","symbolLocation":171352,"imageIndex":1},{"imageOffset":27660,"symbol":"_pthread_start","symbolLocation":136,"imageIndex":18},{"imageOffset":7040,"symbol":"thread_start","symbolLocation":8,"imageIndex":18}]},{"id":245474,"name":"CrShutdownDetector","threadState":{"x":[{"value":4},{"value":0},{"value":4},{"value":6094778467},{"value":6094777800},{"value":18},{"value":0},{"value":0},{"value":18},{"value":8412071640,"symbolLocation":0,"symbol":"_current_pid"},{"value":8026668483491361347},{"value":2},{"value":0},{"value":0},{"value":4867525191},{"value":0},{"value":3},{"value":8429172392},{"value":0},{"value":1219789341088},{"value":20},{"value":6094777872},{"value":4},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0}],"flavor":"ARM_THREAD_STATE64","lr":{"value":4769276456},"cpsr":{"value":1610612736},"fp":{"value":6094778240},"sp":{"value":6094777872},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6566717404},"far":{"value":0}},"frames":[{"imageOffset":6108,"symbol":"read","symbolLocation":8,"imageIndex":19},{"imageOffset":44016168,"symbol":"node::sqlite::UserDefinedFunction::xDestroy(void*)","symbolLocation":454776,"imageIndex":1},{"imageOffset":16273320,"symbol":"node::PrincipalRealm::maybe_cache_generated_source_map() const","symbolLocation":171352,"imageIndex":1},{"imageOffset":27660,"symbol":"_pthread_start","symbolLocation":136,"imageIndex":18},{"imageOffset":7040,"symbol":"thread_start","symbolLocation":8,"imageIndex":18}]},{"id":245475,"name":"NetworkConfigWatcher","threadState":{"x":[{"value":268451845},{"value":21592279046},{"value":8589934592},{"value":192427419762688},{"value":0},{"value":192427419762688},{"value":2},{"value":4294967295},{"value":0},{"value":17179869184},{"value":0},{"value":2},{"value":0},{"value":0},{"value":44803},{"value":0},{"value":18446744073709551569},{"value":8429165672},{"value":0},{"value":4294967295},{"value":2},{"value":192427419762688},{"value":0},{"value":192427419762688},{"value":6201056792},{"value":8589934592},{"value":21592279046},{"value":18446744073709550527},{"value":4412409862}],"flavor":"ARM_THREAD_STATE64","lr":{"value":6566790048},"cpsr":{"value":0},"fp":{"value":6201056640},"sp":{"value":6201056560},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6566714420},"far":{"value":0}},"frames":[{"imageOffset":3124,"symbol":"mach_msg2_trap","symbolLocation":8,"imageIndex":19},{"imageOffset":78752,"symbol":"mach_msg2_internal","symbolLocation":76,"imageIndex":19},{"imageOffset":38756,"symbol":"mach_msg_overwrite","symbolLocation":484,"imageIndex":19},{"imageOffset":4008,"symbol":"mach_msg","symbolLocation":24,"imageIndex":19},{"imageOffset":511164,"symbol":"__CFRunLoopServiceMachPort","symbolLocation":160,"imageIndex":14},{"imageOffset":505304,"symbol":"__CFRunLoopRun","symbolLocation":1208,"imageIndex":14},{"imageOffset":502424,"symbol":"CFRunLoopRunSpecific","symbolLocation":572,"imageIndex":14},{"imageOffset":367736,"symbol":"-[NSRunLoop(NSRunLoop) runMode:beforeDate:]","symbolLocation":212,"imageIndex":20},{"imageOffset":29658072,"symbol":"v8::Isolate::LowMemoryNotification()","symbolLocation":65800,"imageIndex":1},{"imageOffset":29657728,"symbol":"v8::Isolate::LowMemoryNotification()","symbolLocation":65456,"imageIndex":1},{"imageOffset":23339212,"symbol":"node::PrincipalRealm::http2session_on_altsvc_function() const","symbolLocation":52296,"imageIndex":1},{"imageOffset":24605116,"symbol":"node::PrincipalRealm::internal_binding_loader() const","symbolLocation":224164,"imageIndex":1},{"imageOffset":24604464,"symbol":"node::PrincipalRealm::internal_binding_loader() const","symbolLocation":223512,"imageIndex":1},{"imageOffset":24604148,"symbol":"node::PrincipalRealm::internal_binding_loader() const","symbolLocation":223196,"imageIndex":1},{"imageOffset":16273320,"symbol":"node::PrincipalRealm::maybe_cache_generated_source_map() const","symbolLocation":171352,"imageIndex":1},{"imageOffset":27660,"symbol":"_pthread_start","symbolLocation":136,"imageIndex":18},{"imageOffset":7040,"symbol":"thread_start","symbolLocation":8,"imageIndex":18}]},{"id":245476,"name":"ThreadPoolForegroundWorker","threadState":{"x":[{"value":268451845},{"value":17179869186},{"value":0},{"value":278189326729216},{"value":0},{"value":278189326729216},{"value":32},{"value":0},{"value":0},{"value":17179869184},{"value":32},{"value":0},{"value":0},{"value":0},{"value":64771},{"value":1539520},{"value":18446744073709551569},{"value":2578920405},{"value":0},{"value":0},{"value":32},{"value":278189326729216},{"value":0},{"value":278189326729216},{"value":6209482000},{"value":0},{"value":17179869186},{"value":18446744073709550527},{"value":2}],"flavor":"ARM_THREAD_STATE64","lr":{"value":6566790048},"cpsr":{"value":0},"fp":{"value":6209481360},"sp":{"value":6209481280},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6566714420},"far":{"value":0}},"frames":[{"imageOffset":3124,"symbol":"mach_msg2_trap","symbolLocation":8,"imageIndex":19},{"imageOffset":78752,"symbol":"mach_msg2_internal","symbolLocation":76,"imageIndex":19},{"imageOffset":38756,"symbol":"mach_msg_overwrite","symbolLocation":484,"imageIndex":19},{"imageOffset":4008,"symbol":"mach_msg","symbolLocation":24,"imageIndex":19},{"imageOffset":2756172,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":119512,"imageIndex":1},{"imageOffset":2755644,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":118984,"imageIndex":1},{"imageOffset":2755556,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":118896,"imageIndex":1},{"imageOffset":2746076,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":109416,"imageIndex":1},{"imageOffset":2744268,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":107608,"imageIndex":1},{"imageOffset":2744048,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":107388,"imageIndex":1},{"imageOffset":16273320,"symbol":"node::PrincipalRealm::maybe_cache_generated_source_map() const","symbolLocation":171352,"imageIndex":1},{"imageOffset":27660,"symbol":"_pthread_start","symbolLocation":136,"imageIndex":18},{"imageOffset":7040,"symbol":"thread_start","symbolLocation":8,"imageIndex":18}]},{"id":245477,"name":"ThreadPoolForegroundWorker","threadState":{"x":[{"value":268451845},{"value":17179869186},{"value":0},{"value":274890791845888},{"value":0},{"value":274890791845888},{"value":32},{"value":0},{"value":0},{"value":17179869184},{"value":32},{"value":0},{"value":0},{"value":0},{"value":64003},{"value":1364928},{"value":18446744073709551569},{"value":1219775203456},{"value":0},{"value":0},{"value":32},{"value":274890791845888},{"value":0},{"value":274890791845888},{"value":6217903376},{"value":0},{"value":17179869186},{"value":18446744073709550527},{"value":2}],"flavor":"ARM_THREAD_STATE64","lr":{"value":6566790048},"cpsr":{"value":0},"fp":{"value":6217902736},"sp":{"value":6217902656},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6566714420},"far":{"value":0}},"frames":[{"imageOffset":3124,"symbol":"mach_msg2_trap","symbolLocation":8,"imageIndex":19},{"imageOffset":78752,"symbol":"mach_msg2_internal","symbolLocation":76,"imageIndex":19},{"imageOffset":38756,"symbol":"mach_msg_overwrite","symbolLocation":484,"imageIndex":19},{"imageOffset":4008,"symbol":"mach_msg","symbolLocation":24,"imageIndex":19},{"imageOffset":2756172,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":119512,"imageIndex":1},{"imageOffset":2755644,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":118984,"imageIndex":1},{"imageOffset":2755556,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":118896,"imageIndex":1},{"imageOffset":2746076,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":109416,"imageIndex":1},{"imageOffset":2744268,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":107608,"imageIndex":1},{"imageOffset":2744048,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":107388,"imageIndex":1},{"imageOffset":16273320,"symbol":"node::PrincipalRealm::maybe_cache_generated_source_map() const","symbolLocation":171352,"imageIndex":1},{"imageOffset":27660,"symbol":"_pthread_start","symbolLocation":136,"imageIndex":18},{"imageOffset":7040,"symbol":"thread_start","symbolLocation":8,"imageIndex":18}]},{"id":245478,"name":"ThreadPoolSingleThreadForegroundBlocking0","threadState":{"x":[{"value":268451845},{"value":17179869186},{"value":0},{"value":199058849267712},{"value":0},{"value":199058849267712},{"value":32},{"value":0},{"value":0},{"value":17179869184},{"value":32},{"value":0},{"value":0},{"value":0},{"value":46347},{"value":1190688},{"value":18446744073709551569},{"value":1219775205120},{"value":0},{"value":0},{"value":32},{"value":199058849267712},{"value":0},{"value":199058849267712},{"value":6226324752},{"value":0},{"value":17179869186},{"value":18446744073709550527},{"value":2}],"flavor":"ARM_THREAD_STATE64","lr":{"value":6566790048},"cpsr":{"value":0},"fp":{"value":6226324112},"sp":{"value":6226324032},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6566714420},"far":{"value":0}},"frames":[{"imageOffset":3124,"symbol":"mach_msg2_trap","symbolLocation":8,"imageIndex":19},{"imageOffset":78752,"symbol":"mach_msg2_internal","symbolLocation":76,"imageIndex":19},{"imageOffset":38756,"symbol":"mach_msg_overwrite","symbolLocation":484,"imageIndex":19},{"imageOffset":4008,"symbol":"mach_msg","symbolLocation":24,"imageIndex":19},{"imageOffset":2756172,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":119512,"imageIndex":1},{"imageOffset":2755644,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":118984,"imageIndex":1},{"imageOffset":2755556,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":118896,"imageIndex":1},{"imageOffset":2746076,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":109416,"imageIndex":1},{"imageOffset":2758604,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":121944,"imageIndex":1},{"imageOffset":2744140,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":107480,"imageIndex":1},{"imageOffset":16273320,"symbol":"node::PrincipalRealm::maybe_cache_generated_source_map() const","symbolLocation":171352,"imageIndex":1},{"imageOffset":27660,"symbol":"_pthread_start","symbolLocation":136,"imageIndex":18},{"imageOffset":7040,"symbol":"thread_start","symbolLocation":8,"imageIndex":18}]},{"id":245479,"name":"CompositorTileWorker1","threadState":{"x":[{"value":260},{"value":0},{"value":317696},{"value":0},{"value":0},{"value":161},{"value":0},{"value":0},{"value":6234746456},{"value":0},{"value":6912},{"value":29686813956866},{"value":29686813956866},{"value":6912},{"value":0},{"value":29686813956864},{"value":305},{"value":8429163792},{"value":0},{"value":1219773288344},{"value":1219773288472},{"value":6234747104},{"value":0},{"value":0},{"value":317696},{"value":317697},{"value":317952},{"value":0},{"value":0}],"flavor":"ARM_THREAD_STATE64","lr":{"value":6566985952},"cpsr":{"value":1610612736},"fp":{"value":6234746576},"sp":{"value":6234746432},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6566728652},"far":{"value":0}},"frames":[{"imageOffset":17356,"symbol":"__psynch_cvwait","symbolLocation":8,"imageIndex":19},{"imageOffset":28896,"symbol":"_pthread_cond_wait","symbolLocation":984,"imageIndex":18},{"imageOffset":14988076,"symbol":"v8::internal::OptimizingCompileTaskExecutor::RunCompilationJob(v8::internal::OptimizingCompileTaskState&, v8::internal::Isolate*, v8::internal::LocalIsolate&, v8::internal::TurbofanCompilationJob*)","symbolLocation":40076,"imageIndex":1},{"imageOffset":17173172,"symbol":"v8::RegExp::New(v8::Local<v8::Context>, v8::Local<v8::String>, v8::RegExp::Flags)","symbolLocation":20316,"imageIndex":1},{"imageOffset":16273320,"symbol":"node::PrincipalRealm::maybe_cache_generated_source_map() const","symbolLocation":171352,"imageIndex":1},{"imageOffset":27660,"symbol":"_pthread_start","symbolLocation":136,"imageIndex":18},{"imageOffset":7040,"symbol":"thread_start","symbolLocation":8,"imageIndex":18}]},{"id":245481,"frames":[{"imageOffset":2992,"symbol":"semaphore_wait_trap","symbolLocation":8,"imageIndex":19},{"imageOffset":42003188,"symbol":"uv_sem_wait","symbolLocation":24,"imageIndex":1},{"imageOffset":43592600,"symbol":"node::sqlite::UserDefinedFunction::xDestroy(void*)","symbolLocation":31208,"imageIndex":1},{"imageOffset":27660,"symbol":"_pthread_start","symbolLocation":136,"imageIndex":18},{"imageOffset":7040,"symbol":"thread_start","symbolLocation":8,"imageIndex":18}],"threadState":{"x":[{"value":14},{"value":1},{"value":1219841870968},{"value":24326835972},{"value":0},{"value":0},{"value":0},{"value":0},{"value":6243167472},{"value":0},{"value":6567022840,"symbolLocation":0,"symbol":"_tlv_get_addr"},{"value":81363860474370},{"value":81363860474370},{"value":81363860474368},{"value":4664832},{"value":0},{"value":18446744073709551580},{"value":1219775198464},{"value":0},{"value":1219772351592},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0}],"flavor":"ARM_THREAD_STATE64","lr":{"value":4767263476},"cpsr":{"value":1610612736},"fp":{"value":6243168160},"sp":{"value":6243168144},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6566714288},"far":{"value":0}}},{"id":245482,"name":"NetworkNotificationThreadMac","threadState":{"x":[{"value":268451845},{"value":21592279046},{"value":8589934592},{"value":260597140684800},{"value":0},{"value":260597140684800},{"value":2},{"value":4294967295},{"value":0},{"value":17179869184},{"value":0},{"value":2},{"value":0},{"value":0},{"value":60675},{"value":0},{"value":18446744073709551569},{"value":8429165672},{"value":0},{"value":4294967295},{"value":2},{"value":260597140684800},{"value":0},{"value":260597140684800},{"value":6251585048},{"value":8589934592},{"value":21592279046},{"value":18446744073709550527},{"value":4412409862}],"flavor":"ARM_THREAD_STATE64","lr":{"value":6566790048},"cpsr":{"value":0},"fp":{"value":6251584896},"sp":{"value":6251584816},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6566714420},"far":{"value":0}},"frames":[{"imageOffset":3124,"symbol":"mach_msg2_trap","symbolLocation":8,"imageIndex":19},{"imageOffset":78752,"symbol":"mach_msg2_internal","symbolLocation":76,"imageIndex":19},{"imageOffset":38756,"symbol":"mach_msg_overwrite","symbolLocation":484,"imageIndex":19},{"imageOffset":4008,"symbol":"mach_msg","symbolLocation":24,"imageIndex":19},{"imageOffset":511164,"symbol":"__CFRunLoopServiceMachPort","symbolLocation":160,"imageIndex":14},{"imageOffset":505304,"symbol":"__CFRunLoopRun","symbolLocation":1208,"imageIndex":14},{"imageOffset":502424,"symbol":"CFRunLoopRunSpecific","symbolLocation":572,"imageIndex":14},{"imageOffset":367736,"symbol":"-[NSRunLoop(NSRunLoop) runMode:beforeDate:]","symbolLocation":212,"imageIndex":20},{"imageOffset":29658072,"symbol":"v8::Isolate::LowMemoryNotification()","symbolLocation":65800,"imageIndex":1},{"imageOffset":29657728,"symbol":"v8::Isolate::LowMemoryNotification()","symbolLocation":65456,"imageIndex":1},{"imageOffset":23339212,"symbol":"node::PrincipalRealm::http2session_on_altsvc_function() const","symbolLocation":52296,"imageIndex":1},{"imageOffset":24605116,"symbol":"node::PrincipalRealm::internal_binding_loader() const","symbolLocation":224164,"imageIndex":1},{"imageOffset":24604464,"symbol":"node::PrincipalRealm::internal_binding_loader() const","symbolLocation":223512,"imageIndex":1},{"imageOffset":24604148,"symbol":"node::PrincipalRealm::internal_binding_loader() const","symbolLocation":223196,"imageIndex":1},{"imageOffset":16273320,"symbol":"node::PrincipalRealm::maybe_cache_generated_source_map() const","symbolLocation":171352,"imageIndex":1},{"imageOffset":27660,"symbol":"_pthread_start","symbolLocation":136,"imageIndex":18},{"imageOffset":7040,"symbol":"thread_start","symbolLocation":8,"imageIndex":18}]},{"id":245502,"name":"libuv-worker","threadState":{"x":[{"value":4},{"value":0},{"value":4851200},{"value":0},{"value":0},{"value":160},{"value":0},{"value":0},{"value":6260027080},{"value":0},{"value":327168},{"value":1405175860624898},{"value":1405175860624898},{"value":327168},{"value":0},{"value":1405175860624896},{"value":305},{"value":8429163792},{"value":0},{"value":4887557152},{"value":4887557216},{"value":6260027616},{"value":0},{"value":0},{"value":4851200},{"value":4851200},{"value":4851968},{"value":4887556096},{"value":1219775772304}],"flavor":"ARM_THREAD_STATE64","lr":{"value":6566985952},"cpsr":{"value":1610612736},"fp":{"value":6260027200},"sp":{"value":6260027056},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6566728652},"far":{"value":0}},"frames":[{"imageOffset":17356,"symbol":"__psynch_cvwait","symbolLocation":8,"imageIndex":19},{"imageOffset":28896,"symbol":"_pthread_cond_wait","symbolLocation":984,"imageIndex":18},{"imageOffset":42003596,"symbol":"uv_cond_wait","symbolLocation":40,"imageIndex":1},{"imageOffset":41935576,"symbol":"uv_cancel","symbolLocation":700,"imageIndex":1},{"imageOffset":27660,"symbol":"_pthread_start","symbolLocation":136,"imageIndex":18},{"imageOffset":7040,"symbol":"thread_start","symbolLocation":8,"imageIndex":18}]},{"id":245503,"name":"libuv-worker","threadState":{"x":[{"value":4},{"value":0},{"value":4850944},{"value":0},{"value":0},{"value":160},{"value":0},{"value":0},{"value":6268464840},{"value":0},{"value":327168},{"value":1405175860624898},{"value":1405175860624898},{"value":327168},{"value":0},{"value":1405175860624896},{"value":305},{"value":8429163792},{"value":0},{"value":4887557152},{"value":4887557216},{"value":6268465376},{"value":0},{"value":0},{"value":4850944},{"value":4850944},{"value":4851712},{"value":4887556096},{"value":1219775772304}],"flavor":"ARM_THREAD_STATE64","lr":{"value":6566985952},"cpsr":{"value":1610612736},"fp":{"value":6268464960},"sp":{"value":6268464816},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6566728652},"far":{"value":0}},"frames":[{"imageOffset":17356,"symbol":"__psynch_cvwait","symbolLocation":8,"imageIndex":19},{"imageOffset":28896,"symbol":"_pthread_cond_wait","symbolLocation":984,"imageIndex":18},{"imageOffset":42003596,"symbol":"uv_cond_wait","symbolLocation":40,"imageIndex":1},{"imageOffset":41935576,"symbol":"uv_cancel","symbolLocation":700,"imageIndex":1},{"imageOffset":27660,"symbol":"_pthread_start","symbolLocation":136,"imageIndex":18},{"imageOffset":7040,"symbol":"thread_start","symbolLocation":8,"imageIndex":18}]},{"id":245504,"name":"libuv-worker","threadState":{"x":[{"value":14},{"value":8589934595},{"value":171798697235},{"value":549803058528771},{"value":14680198217728},{"value":549803058528256},{"value":48},{"value":0},{"value":0},{"value":1},{"value":0},{"value":2},{"value":0},{"value":0},{"value":6570387100,"symbolLocation":0,"symbol":"__CFMacRomanCharToUnicharTable"},{"value":1721063979},{"value":18446744073709551580},{"value":8429168104},{"value":0},{"value":1219798752736},{"value":1219798752672},{"value":18446744073709551615},{"value":4887557296},{"value":4887556096},{"value":4887557280},{"value":9223372036854775800},{"value":1},{"value":1219792093480},{"value":1219792093480}],"flavor":"ARM_THREAD_STATE64","lr":{"value":6565189984},"cpsr":{"value":1610612736},"fp":{"value":6276902400},"sp":{"value":6276902384},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6566714288},"far":{"value":0}},"frames":[{"imageOffset":2992,"symbol":"semaphore_wait_trap","symbolLocation":8,"imageIndex":19},{"imageOffset":14688,"symbol":"_dispatch_sema4_wait","symbolLocation":28,"imageIndex":22},{"imageOffset":16144,"symbol":"_dispatch_semaphore_wait_slow","symbolLocation":132,"imageIndex":22},{"imageOffset":12988,"symbol":"PolicyWatcher::Execute(Napi::AsyncProgressQueueWorker<Policy const*>::ExecutionProgress const&)","symbolLocation":272,"imageIndex":9},{"imageOffset":15172,"symbol":"Napi::AsyncProgressQueueWorker<Policy const*>::Execute()","symbolLocation":32,"imageIndex":9},{"imageOffset":12564,"symbol":"Napi::AsyncWorker::OnExecute(Napi::Env)","symbolLocation":32,"imageIndex":9},{"imageOffset":44886556,"symbol":"node::ThreadPoolWork::ScheduleWork()::'lambda'(uv_work_s*)::__invoke(uv_work_s*)","symbolLocation":52,"imageIndex":1},{"imageOffset":41935424,"symbol":"uv_cancel","symbolLocation":548,"imageIndex":1},{"imageOffset":27660,"symbol":"_pthread_start","symbolLocation":136,"imageIndex":18},{"imageOffset":7040,"symbol":"thread_start","symbolLocation":8,"imageIndex":18}]},{"id":245505,"name":"libuv-worker","threadState":{"x":[{"value":260},{"value":0},{"value":4850688},{"value":0},{"value":0},{"value":160},{"value":0},{"value":0},{"value":6285340360},{"value":0},{"value":327168},{"value":1405175860624898},{"value":1405175860624898},{"value":327168},{"value":0},{"value":1405175860624896},{"value":305},{"value":8429163792},{"value":0},{"value":4887557152},{"value":4887557216},{"value":6285340896},{"value":0},{"value":0},{"value":4850688},{"value":4850688},{"value":4851456},{"value":4887556096},{"value":1219805310512}],"flavor":"ARM_THREAD_STATE64","lr":{"value":6566985952},"cpsr":{"value":1610612736},"fp":{"value":6285340480},"sp":{"value":6285340336},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6566728652},"far":{"value":0}},"frames":[{"imageOffset":17356,"symbol":"__psynch_cvwait","symbolLocation":8,"imageIndex":19},{"imageOffset":28896,"symbol":"_pthread_cond_wait","symbolLocation":984,"imageIndex":18},{"imageOffset":42003596,"symbol":"uv_cond_wait","symbolLocation":40,"imageIndex":1},{"imageOffset":41935576,"symbol":"uv_cancel","symbolLocation":700,"imageIndex":1},{"imageOffset":27660,"symbol":"_pthread_start","symbolLocation":136,"imageIndex":18},{"imageOffset":7040,"symbol":"thread_start","symbolLocation":8,"imageIndex":18}]},{"id":245510,"name":"com.apple.NSEventThread","threadState":{"x":[{"value":268451845},{"value":21592279046},{"value":8589934592},{"value":346376227520512},{"value":0},{"value":346376227520512},{"value":2},{"value":4294967295},{"value":0},{"value":17179869184},{"value":0},{"value":2},{"value":0},{"value":0},{"value":80647},{"value":0},{"value":18446744073709551569},{"value":8429165672},{"value":0},{"value":4294967295},{"value":2},{"value":346376227520512},{"value":0},{"value":346376227520512},{"value":6287057032},{"value":8589934592},{"value":21592279046},{"value":18446744073709550527},{"value":4412409862}],"flavor":"ARM_THREAD_STATE64","lr":{"value":6566790048},"cpsr":{"value":0},"fp":{"value":6287056880},"sp":{"value":6287056800},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6566714420},"far":{"value":0}},"frames":[{"imageOffset":3124,"symbol":"mach_msg2_trap","symbolLocation":8,"imageIndex":19},{"imageOffset":78752,"symbol":"mach_msg2_internal","symbolLocation":76,"imageIndex":19},{"imageOffset":38756,"symbol":"mach_msg_overwrite","symbolLocation":484,"imageIndex":19},{"imageOffset":4008,"symbol":"mach_msg","symbolLocation":24,"imageIndex":19},{"imageOffset":511164,"symbol":"__CFRunLoopServiceMachPort","symbolLocation":160,"imageIndex":14},{"imageOffset":505304,"symbol":"__CFRunLoopRun","symbolLocation":1208,"imageIndex":14},{"imageOffset":502424,"symbol":"CFRunLoopRunSpecific","symbolLocation":572,"imageIndex":14},{"imageOffset":1435532,"symbol":"_NSEventThread","symbolLocation":140,"imageIndex":16},{"imageOffset":27660,"symbol":"_pthread_start","symbolLocation":136,"imageIndex":18},{"imageOffset":7040,"symbol":"thread_start","symbolLocation":8,"imageIndex":18}]},{"id":245513,"name":"ThreadPoolSingleThreadSharedBackgroundBlocking1","threadState":{"x":[{"value":268451845},{"value":17179869186},{"value":0},{"value":328818401214464},{"value":0},{"value":328818401214464},{"value":32},{"value":0},{"value":0},{"value":17179869184},{"value":32},{"value":0},{"value":0},{"value":0},{"value":76559},{"value":700096},{"value":18446744073709551569},{"value":8429172392},{"value":0},{"value":0},{"value":32},{"value":328818401214464},{"value":0},{"value":328818401214464},{"value":6296628496},{"value":0},{"value":17179869186},{"value":18446744073709550527},{"value":2}],"flavor":"ARM_THREAD_STATE64","lr":{"value":6566790048},"cpsr":{"value":0},"fp":{"value":6296627856},"sp":{"value":6296627776},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6566714420},"far":{"value":0}},"frames":[{"imageOffset":3124,"symbol":"mach_msg2_trap","symbolLocation":8,"imageIndex":19},{"imageOffset":78752,"symbol":"mach_msg2_internal","symbolLocation":76,"imageIndex":19},{"imageOffset":38756,"symbol":"mach_msg_overwrite","symbolLocation":484,"imageIndex":19},{"imageOffset":4008,"symbol":"mach_msg","symbolLocation":24,"imageIndex":19},{"imageOffset":2756172,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":119512,"imageIndex":1},{"imageOffset":2755644,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":118984,"imageIndex":1},{"imageOffset":2755556,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":118896,"imageIndex":1},{"imageOffset":2746076,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":109416,"imageIndex":1},{"imageOffset":2758560,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":121900,"imageIndex":1},{"imageOffset":2744160,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":107500,"imageIndex":1},{"imageOffset":16273320,"symbol":"node::PrincipalRealm::maybe_cache_generated_source_map() const","symbolLocation":171352,"imageIndex":1},{"imageOffset":27660,"symbol":"_pthread_start","symbolLocation":136,"imageIndex":18},{"imageOffset":7040,"symbol":"thread_start","symbolLocation":8,"imageIndex":18}]},{"id":245520,"name":"ThreadPoolForegroundWorker","threadState":{"x":[{"value":268451845},{"value":17179869186},{"value":0},{"value":298083615244288},{"value":0},{"value":298083615244288},{"value":32},{"value":0},{"value":0},{"value":17179869184},{"value":32},{"value":0},{"value":0},{"value":0},{"value":69403},{"value":36},{"value":18446744073709551569},{"value":4807930844,"symbolLocation":3606756,"symbol":"ares_llist_node_first"},{"value":0},{"value":0},{"value":32},{"value":298083615244288},{"value":0},{"value":298083615244288},{"value":6305049872},{"value":0},{"value":17179869186},{"value":18446744073709550527},{"value":2}],"flavor":"ARM_THREAD_STATE64","lr":{"value":6566790048},"cpsr":{"value":0},"fp":{"value":6305049232},"sp":{"value":6305049152},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6566714420},"far":{"value":0}},"frames":[{"imageOffset":3124,"symbol":"mach_msg2_trap","symbolLocation":8,"imageIndex":19},{"imageOffset":78752,"symbol":"mach_msg2_internal","symbolLocation":76,"imageIndex":19},{"imageOffset":38756,"symbol":"mach_msg_overwrite","symbolLocation":484,"imageIndex":19},{"imageOffset":4008,"symbol":"mach_msg","symbolLocation":24,"imageIndex":19},{"imageOffset":2756172,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":119512,"imageIndex":1},{"imageOffset":2755644,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":118984,"imageIndex":1},{"imageOffset":2755556,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":118896,"imageIndex":1},{"imageOffset":2746076,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":109416,"imageIndex":1},{"imageOffset":2744268,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":107608,"imageIndex":1},{"imageOffset":2744048,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":107388,"imageIndex":1},{"imageOffset":16273320,"symbol":"node::PrincipalRealm::maybe_cache_generated_source_map() const","symbolLocation":171352,"imageIndex":1},{"imageOffset":27660,"symbol":"_pthread_start","symbolLocation":136,"imageIndex":18},{"imageOffset":7040,"symbol":"thread_start","symbolLocation":8,"imageIndex":18}]},{"id":245521,"name":"NetworkConfigWatcher","threadState":{"x":[{"value":268451845},{"value":21592279046},{"value":8589934592},{"value":384859134492672},{"value":0},{"value":384859134492672},{"value":2},{"value":4294967295},{"value":0},{"value":17179869184},{"value":0},{"value":2},{"value":0},{"value":0},{"value":89607},{"value":0},{"value":18446744073709551569},{"value":8429165672},{"value":0},{"value":4294967295},{"value":2},{"value":384859134492672},{"value":0},{"value":384859134492672},{"value":6313467416},{"value":8589934592},{"value":21592279046},{"value":18446744073709550527},{"value":4412409862}],"flavor":"ARM_THREAD_STATE64","lr":{"value":6566790048},"cpsr":{"value":0},"fp":{"value":6313467264},"sp":{"value":6313467184},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6566714420},"far":{"value":0}},"frames":[{"imageOffset":3124,"symbol":"mach_msg2_trap","symbolLocation":8,"imageIndex":19},{"imageOffset":78752,"symbol":"mach_msg2_internal","symbolLocation":76,"imageIndex":19},{"imageOffset":38756,"symbol":"mach_msg_overwrite","symbolLocation":484,"imageIndex":19},{"imageOffset":4008,"symbol":"mach_msg","symbolLocation":24,"imageIndex":19},{"imageOffset":511164,"symbol":"__CFRunLoopServiceMachPort","symbolLocation":160,"imageIndex":14},{"imageOffset":505304,"symbol":"__CFRunLoopRun","symbolLocation":1208,"imageIndex":14},{"imageOffset":502424,"symbol":"CFRunLoopRunSpecific","symbolLocation":572,"imageIndex":14},{"imageOffset":367736,"symbol":"-[NSRunLoop(NSRunLoop) runMode:beforeDate:]","symbolLocation":212,"imageIndex":20},{"imageOffset":29658072,"symbol":"v8::Isolate::LowMemoryNotification()","symbolLocation":65800,"imageIndex":1},{"imageOffset":29657728,"symbol":"v8::Isolate::LowMemoryNotification()","symbolLocation":65456,"imageIndex":1},{"imageOffset":23339212,"symbol":"node::PrincipalRealm::http2session_on_altsvc_function() const","symbolLocation":52296,"imageIndex":1},{"imageOffset":24605116,"symbol":"node::PrincipalRealm::internal_binding_loader() const","symbolLocation":224164,"imageIndex":1},{"imageOffset":24604464,"symbol":"node::PrincipalRealm::internal_binding_loader() const","symbolLocation":223512,"imageIndex":1},{"imageOffset":24604148,"symbol":"node::PrincipalRealm::internal_binding_loader() const","symbolLocation":223196,"imageIndex":1},{"imageOffset":16273320,"symbol":"node::PrincipalRealm::maybe_cache_generated_source_map() const","symbolLocation":171352,"imageIndex":1},{"imageOffset":27660,"symbol":"_pthread_start","symbolLocation":136,"imageIndex":18},{"imageOffset":7040,"symbol":"thread_start","symbolLocation":8,"imageIndex":18}]},{"id":245522,"name":"ThreadPoolBackgroundWorker","threadState":{"x":[{"value":268451845},{"value":17179869186},{"value":0},{"value":387040977879040},{"value":0},{"value":387040977879040},{"value":32},{"value":0},{"value":0},{"value":17179869184},{"value":32},{"value":0},{"value":0},{"value":0},{"value":90115},{"value":1614336},{"value":18446744073709551569},{"value":1219775226752},{"value":0},{"value":0},{"value":32},{"value":387040977879040},{"value":0},{"value":387040977879040},{"value":6321892624},{"value":0},{"value":17179869186},{"value":18446744073709550527},{"value":2}],"flavor":"ARM_THREAD_STATE64","lr":{"value":6566790048},"cpsr":{"value":0},"fp":{"value":6321891984},"sp":{"value":6321891904},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6566714420},"far":{"value":0}},"frames":[{"imageOffset":3124,"symbol":"mach_msg2_trap","symbolLocation":8,"imageIndex":19},{"imageOffset":78752,"symbol":"mach_msg2_internal","symbolLocation":76,"imageIndex":19},{"imageOffset":38756,"symbol":"mach_msg_overwrite","symbolLocation":484,"imageIndex":19},{"imageOffset":4008,"symbol":"mach_msg","symbolLocation":24,"imageIndex":19},{"imageOffset":2756172,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":119512,"imageIndex":1},{"imageOffset":2755644,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":118984,"imageIndex":1},{"imageOffset":2755556,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":118896,"imageIndex":1},{"imageOffset":2746076,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":109416,"imageIndex":1},{"imageOffset":2744396,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":107736,"imageIndex":1},{"imageOffset":2744100,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":107440,"imageIndex":1},{"imageOffset":16273320,"symbol":"node::PrincipalRealm::maybe_cache_generated_source_map() const","symbolLocation":171352,"imageIndex":1},{"imageOffset":27660,"symbol":"_pthread_start","symbolLocation":136,"imageIndex":18},{"imageOffset":7040,"symbol":"thread_start","symbolLocation":8,"imageIndex":18}]},{"id":245523,"name":"ThreadPoolSingleThreadSharedForeground2","threadState":{"x":[{"value":268451845},{"value":17179869186},{"value":0},{"value":553067233673216},{"value":0},{"value":553067233673216},{"value":32},{"value":0},{"value":0},{"value":17179869184},{"value":32},{"value":0},{"value":0},{"value":0},{"value":128771},{"value":1902304},{"value":18446744073709551569},{"value":1219775225088},{"value":0},{"value":0},{"value":32},{"value":553067233673216},{"value":0},{"value":553067233673216},{"value":6330314000},{"value":0},{"value":17179869186},{"value":18446744073709550527},{"value":2}],"flavor":"ARM_THREAD_STATE64","lr":{"value":6566790048},"cpsr":{"value":0},"fp":{"value":6330313360},"sp":{"value":6330313280},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6566714420},"far":{"value":0}},"frames":[{"imageOffset":3124,"symbol":"mach_msg2_trap","symbolLocation":8,"imageIndex":19},{"imageOffset":78752,"symbol":"mach_msg2_internal","symbolLocation":76,"imageIndex":19},{"imageOffset":38756,"symbol":"mach_msg_overwrite","symbolLocation":484,"imageIndex":19},{"imageOffset":4008,"symbol":"mach_msg","symbolLocation":24,"imageIndex":19},{"imageOffset":2756172,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":119512,"imageIndex":1},{"imageOffset":2755644,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":118984,"imageIndex":1},{"imageOffset":2755556,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":118896,"imageIndex":1},{"imageOffset":2746076,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":109416,"imageIndex":1},{"imageOffset":2744440,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":107780,"imageIndex":1},{"imageOffset":2744120,"symbol":"cppgc::internal::TraceTraitFromInnerAddressImpl::GetTraceDescriptor(void const*)","symbolLocation":107460,"imageIndex":1},{"imageOffset":16273320,"symbol":"node::PrincipalRealm::maybe_cache_generated_source_map() const","symbolLocation":171352,"imageIndex":1},{"imageOffset":27660,"symbol":"_pthread_start","symbolLocation":136,"imageIndex":18},{"imageOffset":7040,"symbol":"thread_start","symbolLocation":8,"imageIndex":18}]},{"id":245533,"name":"CacheThread_BlockFile","threadState":{"x":[{"value":4},{"value":0},{"value":0},{"value":1219797479088},{"value":2},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":506},{"value":24308816625},{"value":2352},{"value":245533},{"value":1219993412480},{"value":0},{"value":369},{"value":1219775241728},{"value":0},{"value":1219772246512},{"value":1219797325312},{"value":0},{"value":12297829382473034411},{"value":8000},{"value":12297829382473034410},{"value":0},{"value":0},{"value":0},{"value":0}],"flavor":"ARM_THREAD_STATE64","lr":{"value":4745875008},"cpsr":{"value":2684354560},"fp":{"value":6338735536},"sp":{"value":6338735392},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6566762844},"far":{"value":0}},"frames":[{"imageOffset":51548,"symbol":"kevent64","symbolLocation":8,"imageIndex":19},{"imageOffset":20614720,"symbol":"v8::Isolate::SetIsLoading(bool)","symbolLocation":6752,"imageIndex":1},{"imageOffset":20612076,"symbol":"v8::Isolate::SetIsLoading(bool)","symbolLocation":4108,"imageIndex":1},{"imageOffset":23339212,"symbol":"node::PrincipalRealm::http2session_on_altsvc_function() const","symbolLocation":52296,"imageIndex":1},{"imageOffset":24605116,"symbol":"node::PrincipalRealm::internal_binding_loader() const","symbolLocation":224164,"imageIndex":1},{"imageOffset":24604464,"symbol":"node::PrincipalRealm::internal_binding_loader() const","symbolLocation":223512,"imageIndex":1},{"imageOffset":24604148,"symbol":"node::PrincipalRealm::internal_binding_loader() const","symbolLocation":223196,"imageIndex":1},{"imageOffset":16273320,"symbol":"node::PrincipalRealm::maybe_cache_generated_source_map() const","symbolLocation":171352,"imageIndex":1},{"imageOffset":27660,"symbol":"_pthread_start","symbolLocation":136,"imageIndex":18},{"imageOffset":7040,"symbol":"thread_start","symbolLocation":8,"imageIndex":18}]},{"id":245545,"frames":[{"imageOffset":3124,"symbol":"mach_msg2_trap","symbolLocation":8,"imageIndex":19},{"imageOffset":78752,"symbol":"mach_msg2_internal","symbolLocation":76,"imageIndex":19},{"imageOffset":38756,"symbol":"mach_msg_overwrite","symbolLocation":484,"imageIndex":19},{"imageOffset":4008,"symbol":"mach_msg","symbolLocation":24,"imageIndex":19},{"imageOffset":511164,"symbol":"__CFRunLoopServiceMachPort","symbolLocation":160,"imageIndex":14},{"imageOffset":505304,"symbol":"__CFRunLoopRun","symbolLocation":1208,"imageIndex":14},{"imageOffset":502424,"symbol":"CFRunLoopRunSpecific","symbolLocation":572,"imageIndex":14},{"imageOffset":1000788,"symbol":"CFRunLoopRun","symbolLocation":64,"imageIndex":14},{"imageOffset":42020416,"symbol":"uv__fsevents_close","symbolLocation":1408,"imageIndex":1},{"imageOffset":27660,"symbol":"_pthread_start","symbolLocation":136,"imageIndex":18},{"imageOffset":7040,"symbol":"thread_start","symbolLocation":8,"imageIndex":18}],"threadState":{"x":[{"value":268451845},{"value":21592279046},{"value":8589934592},{"value":420026326712320},{"value":0},{"value":420026326712320},{"value":2},{"value":4294967295},{"value":0},{"value":17179869184},{"value":0},{"value":2},{"value":0},{"value":0},{"value":97795},{"value":0},{"value":18446744073709551569},{"value":8429165672},{"value":0},{"value":4294967295},{"value":2},{"value":420026326712320},{"value":0},{"value":420026326712320},{"value":6347153480},{"value":8589934592},{"value":21592279046},{"value":18446744073709550527},{"value":4412409862}],"flavor":"ARM_THREAD_STATE64","lr":{"value":6566790048},"cpsr":{"value":0},"fp":{"value":6347153328},"sp":{"value":6347153248},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6566714420},"far":{"value":0}}},{"id":1107465,"frames":[{"imageOffset":7020,"symbol":"start_wqthread","symbolLocation":0,"imageIndex":18}],"threadState":{"x":[{"value":6286487552},{"value":162115},{"value":6285950976},{"value":0},{"value":409604},{"value":18446744073709551615},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0}],"flavor":"ARM_THREAD_STATE64","lr":{"value":0},"cpsr":{"value":0},"fp":{"value":0},"sp":{"value":6286487552},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6566964076},"far":{"value":0}}}],
+  "usedImages" : [
+  {
+    "source" : "P",
+    "arch" : "arm64",
+    "base" : 4373970944,
+    "CFBundleShortVersionString" : "1.104.0",
+    "CFBundleIdentifier" : "com.microsoft.VSCode",
+    "size" : 16384,
+    "uuid" : "4c4c4455-5555-3144-a1ab-f1e8c6efdf58",
+    "path" : "\/Volumes\/VOLUME\/*\/Visual Studio Code.app\/Contents\/MacOS\/Electron",
+    "name" : "Electron",
+    "CFBundleVersion" : "1.104.0"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64",
+    "base" : 4725260288,
+    "CFBundleIdentifier" : "com.github.Electron.framework",
+    "size" : 155467776,
+    "uuid" : "4c4c4433-5555-3144-a10e-42e14817a74e",
+    "path" : "\/Volumes\/VOLUME\/*\/Visual Studio Code.app\/Contents\/Frameworks\/Electron Framework.framework\/Versions\/A\/Electron Framework",
+    "name" : "Electron Framework",
+    "CFBundleVersion" : "37.3.1"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64",
+    "base" : 4374446080,
+    "CFBundleShortVersionString" : "1.0",
+    "CFBundleIdentifier" : "com.github.Squirrel",
+    "size" : 98304,
+    "uuid" : "4c4c442c-5555-3144-a15b-0ea21239e89f",
+    "path" : "\/Volumes\/VOLUME\/*\/Visual Studio Code.app\/Contents\/Frameworks\/Squirrel.framework\/Versions\/A\/Squirrel",
+    "name" : "Squirrel",
+    "CFBundleVersion" : "1"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64",
+    "base" : 4375461888,
+    "CFBundleShortVersionString" : "3.1.0",
+    "CFBundleIdentifier" : "com.electron.reactive",
+    "size" : 278528,
+    "uuid" : "4c4c4449-5555-3144-a148-57bdc4f6ac4e",
+    "path" : "\/Volumes\/VOLUME\/*\/Visual Studio Code.app\/Contents\/Frameworks\/ReactiveObjC.framework\/Versions\/A\/ReactiveObjC",
+    "name" : "ReactiveObjC",
+    "CFBundleVersion" : "0.0.0"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64",
+    "base" : 4374626304,
+    "CFBundleShortVersionString" : "1.0",
+    "CFBundleIdentifier" : "org.mantle.Mantle",
+    "size" : 49152,
+    "uuid" : "4c4c44ae-5555-3144-a165-0e97c87cbed2",
+    "path" : "\/Volumes\/VOLUME\/*\/Visual Studio Code.app\/Contents\/Frameworks\/Mantle.framework\/Versions\/A\/Mantle",
+    "name" : "Mantle",
+    "CFBundleVersion" : "0.0.0"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64",
+    "base" : 4380786688,
+    "size" : 1687552,
+    "uuid" : "4c4c447c-5555-3144-a19f-af27dbe87087",
+    "path" : "\/Volumes\/VOLUME\/*\/Visual Studio Code.app\/Contents\/Frameworks\/Electron Framework.framework\/Versions\/A\/Libraries\/libffmpeg.dylib",
+    "name" : "libffmpeg.dylib"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64e",
+    "base" : 4379836416,
+    "size" : 49152,
+    "uuid" : "a3faee04-0f8b-3428-9497-560c97eca6fb",
+    "path" : "\/usr\/lib\/libobjc-trampolines.dylib",
+    "name" : "libobjc-trampolines.dylib"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64e",
+    "base" : 4693688320,
+    "CFBundleShortVersionString" : "329.2",
+    "CFBundleIdentifier" : "com.apple.AGXMetalG16X",
+    "size" : 7553024,
+    "uuid" : "8e5557ce-84f2-3aa0-a631-94d3809e5bf0",
+    "path" : "\/System\/Library\/Extensions\/AGXMetalG16X.bundle\/Contents\/MacOS\/AGXMetalG16X",
+    "name" : "AGXMetalG16X",
+    "CFBundleVersion" : "329.2"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64e",
+    "base" : 4386930688,
+    "CFBundleShortVersionString" : "3.0",
+    "CFBundleIdentifier" : "com.apple.security.csparser",
+    "size" : 131072,
+    "uuid" : "3a905673-ada9-3c57-992e-b83f555baa61",
+    "path" : "\/System\/Library\/Frameworks\/Security.framework\/Versions\/A\/PlugIns\/csparser.bundle\/Contents\/MacOS\/csparser",
+    "name" : "csparser",
+    "CFBundleVersion" : "61439.140.12"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64",
+    "base" : 4689903616,
+    "size" : 49152,
+    "uuid" : "c8094137-8782-3f61-a472-a6a219295f02",
+    "path" : "\/Volumes\/VOLUME\/*\/Visual Studio Code.app\/Contents\/Resources\/app\/node_modules\/@vscode\/policy-watcher\/build\/Release\/vscode-policy-watcher.node",
+    "name" : "vscode-policy-watcher.node"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64",
+    "base" : 4691116032,
+    "size" : 245760,
+    "uuid" : "d6df8d6d-55fc-3df0-be1c-c5279b57ffa5",
+    "path" : "\/Volumes\/VOLUME\/*\/Visual Studio Code.app\/Contents\/Resources\/app\/node_modules\/@vscode\/spdlog\/build\/Release\/spdlog.node",
+    "name" : "spdlog.node"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64",
+    "base" : 4718952448,
+    "size" : 1687552,
+    "uuid" : "200a8d95-9f94-3463-95bd-64b04cd883b8",
+    "path" : "\/Volumes\/VOLUME\/*\/Visual Studio Code.app\/Contents\/Resources\/app\/node_modules\/@vscode\/sqlite3\/build\/Release\/vscode-sqlite3.node",
+    "name" : "vscode-sqlite3.node"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64",
+    "base" : 4715233280,
+    "size" : 16384,
+    "uuid" : "a569933e-26ca-3e28-a9b2-303ecde2bb58",
+    "path" : "\/Volumes\/VOLUME\/*\/Visual Studio Code.app\/Contents\/Resources\/app\/node_modules\/native-keymap\/build\/Release\/keymapping.node",
+    "name" : "keymapping.node"
+  },
+  {
+    "size" : 0,
+    "source" : "A",
+    "base" : 0,
+    "uuid" : "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64e",
+    "base" : 6567436288,
+    "CFBundleShortVersionString" : "6.9",
+    "CFBundleIdentifier" : "com.apple.CoreFoundation",
+    "size" : 5500928,
+    "uuid" : "8d45baee-6cc0-3b89-93fd-ea1c8e15c6d7",
+    "path" : "\/System\/Library\/Frameworks\/CoreFoundation.framework\/Versions\/A\/CoreFoundation",
+    "name" : "CoreFoundation",
+    "CFBundleVersion" : "3603"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64e",
+    "base" : 6762840064,
+    "CFBundleShortVersionString" : "2.1.1",
+    "CFBundleIdentifier" : "com.apple.HIToolbox",
+    "size" : 3174368,
+    "uuid" : "1a037942-11e0-3fc8-aad2-20b11e7ae1a4",
+    "path" : "\/System\/Library\/Frameworks\/Carbon.framework\/Versions\/A\/Frameworks\/HIToolbox.framework\/Versions\/A\/HIToolbox",
+    "name" : "HIToolbox"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64e",
+    "base" : 6633910272,
+    "CFBundleShortVersionString" : "6.9",
+    "CFBundleIdentifier" : "com.apple.AppKit",
+    "size" : 21564992,
+    "uuid" : "860c164c-d04c-30ff-8c6f-e672b74caf11",
+    "path" : "\/System\/Library\/Frameworks\/AppKit.framework\/Versions\/C\/AppKit",
+    "name" : "AppKit",
+    "CFBundleVersion" : "2575.70.52"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64e",
+    "base" : 6563151872,
+    "size" : 636280,
+    "uuid" : "3247e185-ced2-36ff-9e29-47a77c23e004",
+    "path" : "\/usr\/lib\/dyld",
+    "name" : "dyld"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64e",
+    "base" : 6566957056,
+    "size" : 51784,
+    "uuid" : "d6494ba9-171e-39fc-b1aa-28ecf87975d1",
+    "path" : "\/usr\/lib\/system\/libsystem_pthread.dylib",
+    "name" : "libsystem_pthread.dylib"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64e",
+    "base" : 6566711296,
+    "size" : 243284,
+    "uuid" : "6e4a96ad-04b8-3e8a-b91d-087e62306246",
+    "path" : "\/usr\/lib\/system\/libsystem_kernel.dylib",
+    "name" : "libsystem_kernel.dylib"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64e",
+    "base" : 6590443520,
+    "CFBundleShortVersionString" : "6.9",
+    "CFBundleIdentifier" : "com.apple.Foundation",
+    "size" : 14587296,
+    "uuid" : "b9a92060-f21e-3ecf-9ded-94a65c68a6f4",
+    "path" : "\/System\/Library\/Frameworks\/Foundation.framework\/Versions\/C\/Foundation",
+    "name" : "Foundation",
+    "CFBundleVersion" : "3603"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64e",
+    "base" : 6567010304,
+    "size" : 195492,
+    "uuid" : "01bcb3f7-ab89-30bd-87ee-91b291eadae8",
+    "path" : "\/usr\/lib\/system\/libdyld.dylib",
+    "name" : "libdyld.dylib"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64e",
+    "base" : 6565175296,
+    "size" : 288608,
+    "uuid" : "24ce0d89-4114-30c2-a81a-3db1f5931cff",
+    "path" : "\/usr\/lib\/system\/libdispatch.dylib",
+    "name" : "libdispatch.dylib"
+  }
+],
+  "sharedCache" : {
+  "base" : 6562316288,
+  "size" : 5040898048,
+  "uuid" : "4c1223e5-cace-3982-a003-6110a7a8a25c"
+},
+  "legacyInfo" : {
+  "threadTriggered" : {
+    "name" : "CrBrowserMain",
+    "queue" : "com.apple.main-thread"
+  }
+},
+  "logWritingSignature" : "be0e4e118a1483d257cd2ade86fd07564f97be16",
+  "trialInfo" : {
+  "rollouts" : [
+    {
+      "rolloutId" : "67fd77fe1f9da9148f70d6ed",
+      "factorPackIds" : {
+
+      },
+      "deploymentId" : 240000011
+    },
+    {
+      "rolloutId" : "5ffde50ce2aacd000d47a95f",
+      "factorPackIds" : {
+
+      },
+      "deploymentId" : 240000500
+    }
+  ],
+  "experiments" : [
+
+  ]
+}
+}
+

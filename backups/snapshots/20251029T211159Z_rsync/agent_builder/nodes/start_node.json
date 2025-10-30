@@ -1,0 +1,6 @@
+{
+  "id": "node-01-start",
+  "name": "Start",
+  "type": "entry",
+  "next": "node-02-voice-agent"
+}

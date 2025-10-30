@@ -1,0 +1,64 @@
+{
+  "id": "episode_4",
+  "title": "Breaking: Texas House Passes Hemp Expansion Bill",
+  "episodeNumber": 4,
+  "characters": [
+    {
+      "name": "Aubrey Awfuls",
+      "personality": "Comic Relief, Quirky, Funny, Current Events Enthusiast",
+      "catchphrases": [
+        "That's awful!",
+        "Wait, what?",
+        "This is wild!",
+        "No way!",
+        "Are you serious?"
+      ],
+      "style": "Comic relief, quirky, entertaining",
+      "voice": "High-pitched, comedic, expressive"
+    },
+    {
+      "name": "Lt. Dan",
+      "personality": "Military Advisor, Strategic, Loyal, Mission-Focused",
+      "catchphrases": [
+        "Mission critical!",
+        "Roger that, sir!",
+        "Tactical analysis complete!",
+        "Orders received!",
+        "Deploying strategy!"
+      ],
+      "style": "Military precision, loyal, strategic",
+      "voice": "Authoritative, military, disciplined"
+    }
+  ],
+  "template": {
+    "name": "Viral Optimization",
+    "description": "Maximum engagement potential",
+    "structure": [
+      "Hook",
+      "Quick Beat",
+      "Surprise",
+      "Engagement",
+      "Share Prompt"
+    ],
+    "music": "Trending viral sound",
+    "duration": "60-75 seconds"
+  },
+  "tpop": "💀",
+  "tpopWeight": 0.7,
+  "dogWhistle": "wall_of_weed",
+  "dogWhistleAnalysis": "Product display wall",
+  "easterEgg": "Texas flag in background",
+  "script": "Aubrey Awfuls: \"Plot twist: Texas House Passes Hemp Expansion Bill!\"\n\nLt. Dan: \"No way!\"\n\nAubrey Awfuls: \"Way!\"\n\nLt. Dan: \"This changes everything!\"",
+  "viralScore": 10,
+  "engagementPrediction": 9.185,
+  "duration": "60-75 seconds",
+  "music": "Trending viral sound",
+  "realTimeData": {
+    "newsRelevance": 0.95,
+    "socialEngagement": 0.82,
+    "youtubeRelevance": 0.91,
+    "trendingScore": 0.95
+  },
+  "generatedAt": "2025-10-07T16:06:05.141Z",
+  "status": "generated"
+}

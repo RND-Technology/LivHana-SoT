@@ -1,0 +1,11 @@
+# Exclude build artifacts, logs, and non-source directories
+tmp/**
+out/**
+out_mirror/**
+backups/**
+logs/**
+legacy/**
+HNC_Production/**
+node_modules/**
+.claude_backup_*/**
+.git/**

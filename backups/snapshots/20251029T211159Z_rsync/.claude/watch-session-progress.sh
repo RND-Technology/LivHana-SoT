@@ -1,0 +1,1 @@
+/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/scripts/ops/watch-session-progress.sh

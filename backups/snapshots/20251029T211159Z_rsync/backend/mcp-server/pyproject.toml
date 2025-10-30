@@ -1,0 +1,45 @@
+[project]
+name = "livhana-truth-mcp"
+version = "1.0.0"
+description = "Liv Hana TRUTH Pipeline MCP Server for ChatGPT Apps SDK"
+authors = [
+    {name = "Liv Hana", email = "dev@livhana.com"}
+]
+requires-python = ">=3.11"
+dependencies = [
+    "mcp>=0.9.0",
+    "anthropic>=0.40.0",
+    "openai>=1.54.0",
+    "httpx>=0.27.0",
+    "pydantic>=2.9.0",
+    "python-dotenv>=1.0.0",
+    "jsonschema>=4.23.0",
+    "aiofiles>=24.1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3.0",
+    "pytest-asyncio>=0.24.0",
+    "black>=24.8.0",
+    "ruff>=0.6.0",
+    "mypy>=1.11.0",
+]
+
+[build-system]
+requires = ["setuptools>=75.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.black]
+line-length = 100
+target-version = ['py311']
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_return_any = true
+warn_unused_configs = true

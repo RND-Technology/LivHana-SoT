@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.livhana.watchdog.voice</string>
+  
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/bin/env</string>
+    <string>bash</string>
+    <string>-lc</string>
+    <string>/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/scripts/watchdogs/voice_services_watch.sh</string>
+  </array>
+  
+  <key>WorkingDirectory</key>
+  <string>/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT</string>
+  
+  <key>StartInterval</key>
+  <integer>30</integer>
+  
+  <key>RunAtLoad</key>
+  <true/>
+  
+  <key>StandardOutPath</key>
+  <string>/Users/jesseniesen/Library/Logs/LivHana/voice-watch.out.log</string>
+  
+  <key>StandardErrorPath</key>
+  <string>/Users/jesseniesen/Library/Logs/LivHana/voice-watch.err.log</string>
+</dict>
+</plist>
+

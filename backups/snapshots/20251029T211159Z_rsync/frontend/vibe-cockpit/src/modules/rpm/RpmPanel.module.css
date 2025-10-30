@@ -1,0 +1,8 @@
+.root { padding: 16px; }
+.toolbar { display: flex; gap: 8px; margin-bottom: 8px; }
+.spacer { margin-left: auto; display: flex; gap: 8px; }
+.table { width: 100%; border-collapse: collapse; }
+.tl { text-align: left; }
+.pre { white-space: pre-wrap; }
+.emptyState { text-align: center; padding: 20px; }
+

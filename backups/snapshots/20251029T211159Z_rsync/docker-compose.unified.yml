@@ -1,0 +1,156 @@
+version: '3.8'
+
+# TRINITY UNIFIED STACK - Voice Mode + Reasoning + Legacy Support
+# Mission: Deploy complete LivHana E2E with voice-first cockpit, DeepSeek autonomy, compliance guardrails
+
+services:
+  # Frontend - Voice-First Cockpit with Health Banners
+  vibe-cockpit:
+    build: ./frontend/vibe-cockpit
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_URL=http://integration-service:3005
+      - VITE_VOICE_API_URL=http://voice-service:8080
+      - VITE_REASONING_API_URL=http://reasoning-gateway:8080
+      - NODE_ENV=production
+    depends_on:
+      - integration-service
+      - voice-service
+      - reasoning-gateway
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5173/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+      
+  # Legacy Integration Service - Backward Compatibility
+  integration-service:
+    build: ./backend/integration-service
+    ports:
+      - "3005:3005"
+    environment:
+      - NODE_ENV=production
+      - LOG_LEVEL=info
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    depends_on:
+      - redis
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3005/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      
+  # Voice Service - ElevenLabs TTS + Queue Management
+  voice-service:
+    build: ./backend/voice-service
+    ports:
+      - "8080:8080"
+    environment:
+      - NODE_ENV=production
+      - PORT=8080
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REASONING_GATEWAY_BASE_URL=http://reasoning-gateway:8080/api/reasoning
+      - REASONING_QUEUE_NAME=voice-mode-reasoning-jobs
+    secrets:
+      - elevenlabs_api_key
+    depends_on:
+      - redis
+      - reasoning-gateway
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      
+  # Reasoning Gateway - DeepSeek + Anthropic + OpenAI with Swarm Coordination
+  reasoning-gateway:
+    build: ./backend/reasoning-gateway
+    ports:
+      - "4002:8080"
+    environment:
+      - NODE_ENV=production
+      - PORT=8080
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REASONING_QUEUE_NAME=voice-mode-reasoning-jobs
+    secrets:
+      - anthropic_api_key
+      - openai_api_key
+    depends_on:
+      - redis
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      
+  # Redis - Queue & Memory Store with Persistence
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: >
+      redis-server 
+      --appendonly yes 
+      --maxmemory 512mb 
+      --maxmemory-policy allkeys-lru
+      --save 900 1
+      --save 300 10
+      --save 60 10000
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      
+  # Nginx - Reverse Proxy & Load Balancer
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - vibe-cockpit
+      - voice-service
+      - reasoning-gateway
+      - integration-service
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  redis-data:
+    driver: local
+
+secrets:
+  elevenlabs_api_key:
+    external: true
+  anthropic_api_key:
+    external: true
+  openai_api_key:
+    external: true
+
+networks:
+  default:
+    name: trinity-network
+    driver: bridge
+
+# Deployment Commands:
+# docker-compose -f docker-compose.unified.yml up -d
+# docker-compose -f docker-compose.unified.yml logs -f
+# docker-compose -f docker-compose.unified.yml down
+
+# Health Monitoring:
+# curl http://localhost/health
+# docker-compose -f docker-compose.unified.yml ps

@@ -1,0 +1,8 @@
+{
+  "apify_raw": 8000,
+  "perplexity_verify": 2000,
+  "compression": 1000,
+  "claude_truth": 6000,
+  "output": 2000,
+  "target_compression_pct": 40
+}

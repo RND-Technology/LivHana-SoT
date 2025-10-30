@@ -1,0 +1,97 @@
+# DNS UPDATE AGENT - hempnewscompany.com
+
+## Mission Objective
+Update DNS A records for **hempnewscompany.com** to point to Cloud Run Load Balancer IPs.
+
+## Current Status
+Domain: hempnewscompany.com
+Current DNS: 
+Target: Cloud Run Load Balancer
+
+## Required Actions
+
+### Step 1: Retrieve GoDaddy API Credentials
+```bash
+# Get API credentials from 1Password
+GODADDY_API_KEY=$(op item get "GoDaddy API Key" --fields label=api_key 2>/dev/null || echo "")
+GODADDY_API_SECRET=$(op item get "GoDaddy API Key" --fields label=api_secret 2>/dev/null || echo "")
+
+if [[ -z "$GODADDY_API_KEY" ]]; then
+  echo "❌ GoDaddy API credentials not found in 1Password"
+  echo "⚠️  Manual DNS update required via GoDaddy web interface"
+  exit 1
+fi
+```
+
+### Step 2: Check Current DNS Records
+```bash
+# Check current A records via GoDaddy API
+curl -s -X GET "https://api.godaddy.com/v1/domains/hempnewscompany.com/records/A/@" \
+  -H "Authorization: sso-key $GODADDY_API_KEY:$GODADDY_API_SECRET" \
+  -H "Content-Type: application/json"
+```
+
+### Step 3: Update DNS A Records
+```bash
+# Update to Cloud Run IPs
+curl -X PUT "https://api.godaddy.com/v1/domains/hempnewscompany.com/records/A/@" \
+  -H "Authorization: sso-key $GODADDY_API_KEY:$GODADDY_API_SECRET" \
+  -H "Content-Type: application/json" \
+  -d '[
+    {"data": "216.239.32.21", "ttl": 600},
+    {"data": "216.239.34.21", "ttl": 600},
+    {"data": "216.239.36.21", "ttl": 600},
+    {"data": "216.239.38.21", "ttl": 600}
+  ]'
+```
+
+### Step 4: Verify Update
+```bash
+# Wait 5 seconds for API propagation
+sleep 5
+
+# Verify via GoDaddy API
+curl -s -X GET "https://api.godaddy.com/v1/domains/hempnewscompany.com/records/A/@" \
+  -H "Authorization: sso-key $GODADDY_API_KEY:$GODADDY_API_SECRET" \
+  -H "Content-Type: application/json"
+
+# Verify via DNS lookup (may take up to 15 minutes for propagation)
+dig +short hempnewscompany.com
+```
+
+### Step 5: Report Results
+Create report at: /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/reports/dns-agent-swarm/agent-1-hempnewscompany.com-result.json
+
+```json
+{
+  "agent": 1,
+  "domain": "hempnewscompany.com",
+  "timestamp": "2025-10-07T02:38:41Z",
+  "status": "success|failed|manual_required",
+  "old_ips": ["list", "of", "old", "ips"],
+  "new_ips": ["216.239.32.21", "216.239.34.21", "216.239.36.21", "216.239.38.21"],
+  "verification": "pending|complete",
+  "notes": "Any relevant notes or errors"
+}
+```
+
+## Success Criteria
+- ✅ DNS A records updated via GoDaddy API
+- ✅ 4 A records pointing to Cloud Run IPs
+- ✅ TTL set to 600 seconds
+- ✅ Verification complete via API and DNS lookup
+- ✅ Report generated
+
+## Fallback Strategy
+If GoDaddy API credentials not available:
+1. Document manual update required
+2. Provide GoDaddy web interface instructions
+3. Report manual_required status
+
+## Timeline
+- API credential retrieval: 30 seconds
+- DNS update via API: 30 seconds
+- Verification: 30 seconds
+- Total: ~2 minutes per domain
+
+Execute now. Report results.

@@ -1,0 +1,115 @@
+name: LivHana Verification Suite
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  workflow_dispatch: {}
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node (frontend tooling)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          # skip if no frontend; conditional install below
+
+      - name: Install Frontend Deps (if present)
+        if: hashFiles('frontend/**/package.json') != ''
+        run: |
+          find frontend -maxdepth 2 -name package.json -print -execdir npm install --no-audit --no-fund \;
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python Deps (if requirements.txt present)
+        if: hashFiles('**/requirements.txt') != ''
+        run: |
+          pip install --upgrade pip
+          grep -rl "requirements.txt" -n . || true
+          # Customize per service: placeholder
+          echo "No global requirements file handled yet."
+
+      - name: Ensure jq & terraform
+        run: |
+          sudo apt-get update -y
+            sudo apt-get install -y jq
+          echo "Installing terraform..."
+          sudo apt-get install -y wget unzip
+          TF_VERSION=1.9.5
+          wget -q https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip
+          unzip terraform_${TF_VERSION}_linux_amd64.zip
+          sudo mv terraform /usr/local/bin/
+
+      - name: Verification Scripts
+        run: |
+          chmod +x automation/scripts/*.sh || true
+          set -e
+          automation/scripts/check_workflow_inventory.sh || exit $?
+          automation/scripts/check_age_gate.sh || exit $?
+          automation/scripts/check_memory_snapshot.sh || exit $?
+          automation/scripts/check_router_health.sh || exit $?
+          automation/scripts/check_infra_plan.sh || exit $?
+
+      - name: Generate Snapshot (non-blocking on PR)
+        if: github.event_name != 'pull_request'
+        run: |
+          pip install --quiet .
+          python automation/scripts/generate_snapshot.py
+          echo "Snapshot generated."
+
+      - name: Upload Snapshot Artifact
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: latest-snapshot
+          path: docs/snapshots/**/snapshot_*.json
+          if-no-files-found: ignore
+
+  lint-frontend:
+    if: hashFiles('frontend/**/package.json') != ''
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Install
+        run: |
+          find frontend -maxdepth 2 -name package.json -print -execdir npm install --no-audit --no-fund \;
+      - name: Build (ensure compiles)
+        run: |
+          set -e
+          if [ -d frontend/vibe-cockpit ]; then
+            cd frontend/vibe-cockpit
+            npm run build
+          fi
+
+  summary:
+    needs: [verify, lint-frontend]
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Job Result Summary
+        run: |
+          echo "Verification: ${{ needs.verify.result }}"
+          echo "Frontend Lint/Build: ${{ needs.lint-frontend.result }}"
+          if [ "${{ needs.verify.result }}" != "success" ]; then
+            echo "::warning::Verification job did not fully succeed."
+
+# Last updated: 2025-10-02
+
+# Last optimized: 2025-10-02
+
+# Optimized: 2025-10-02

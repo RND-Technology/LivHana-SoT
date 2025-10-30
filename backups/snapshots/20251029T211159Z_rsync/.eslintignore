@@ -1,0 +1,45 @@
+# ESLint ignore file
+# Exclude build artifacts, node_modules, and legacy code
+
+# Build artifacts
+**/build/
+**/dist/
+**/out/
+**/*.chunk.js
+**/*.map
+
+# Dependencies
+node_modules/
+
+# Legacy/archived code
+legacy/
+backups/
+1.rnd/
+empire/
+deployment/
+empire-cockpit/
+websites/
+marketing/
+HNC_Production/
+
+# Temporary files
+tmp/
+test-results/
+coverage/
+.claude_backup_*/
+
+# Lock files
+*.lock
+
+# Config files
+*.config.cjs
+*.config.js
+jest.config.*
+
+# Root-level files
+quick-fix-service.js
+boot.bak
+
+# Config files with parsing issues
+jest.config.*
+**/tsconfig.*.json

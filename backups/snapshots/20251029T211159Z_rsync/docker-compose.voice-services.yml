@@ -1,0 +1,66 @@
+version: '3.8'
+
+# Voice Services Docker Compose - Tier-1 Production Fallback
+# Auto-starts whisper STT and kokoro TTS with health checks and restart policies
+# Usage: docker-compose -f docker-compose.voice-services.yml up -d
+
+services:
+  # Whisper STT Service (port 2022)
+  whisper-stt:
+    image: whisperai/whisper-server:latest
+    container_name: livhana-whisper-stt
+    ports:
+      - "2022:2022"
+    environment:
+      - WHISPER_MODEL=base
+      - WHISPER_DEVICE=cpu
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:2022/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - voice-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Kokoro TTS Service (port 8880)
+  kokoro-tts:
+    image: kokoroai/kokoro-server:latest
+    container_name: livhana-kokoro-tts
+    ports:
+      - "8880:8880"
+    environment:
+      - KOKORO_MODEL=kokoro-v2
+      - KOKORO_DEVICE=cpu
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8880/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - voice-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  voice-network:
+    driver: bridge
+
+volumes:
+  whisper-models:
+    driver: local
+  kokoro-models:
+    driver: local
+
+

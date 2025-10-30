@@ -1,0 +1,7 @@
+{
+  "refund_window_hours": 72,
+  "dry_run": true,
+  "providers": { "primary": "Veriff", "fallback": "BlueCheck" },
+  "notify": { "winback_template": "veriff_winback_v1" }
+}
+

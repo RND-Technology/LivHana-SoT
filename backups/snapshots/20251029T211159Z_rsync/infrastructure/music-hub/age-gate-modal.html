@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Verification Required</title>
+    <style>
+        /* ============================================ */
+        /* AGE GATE MODAL - 21+ COMPLIANCE */
+        /* NIST-Compliant Hemp Language (0.3% Δ9-THC) */
+        /* ============================================ */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --modal-bg: rgba(0, 0, 0, 0.95);
+            --modal-content-bg: #1a1a2e;
+            --modal-border: #e94560;
+            --text-primary: #ffffff;
+            --text-secondary: #a8b2d1;
+            --button-yes: #4ecca3;
+            --button-no: #e94560;
+            --warning-color: #f5a623;
+        }
+
+        /* Modal Overlay */
+        .age-gate-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--modal-bg);
+            backdrop-filter: blur(10px);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        /* Modal Container */
+        .age-gate-modal {
+            background: var(--modal-content-bg);
+            border: 3px solid var(--modal-border);
+            border-radius: 16px;
+            max-width: 600px;
+            width: 90%;
+            padding: 2.5rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            animation: scaleIn 0.4s ease-out;
+            text-align: center;
+        }
+
+        /* Logo/Icon */
+        .age-gate-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: pulse 2s infinite;
+        }
+
+        /* Heading */
+        .age-gate-heading {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        /* Subheading */
+        .age-gate-subheading {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        /* Compliance Notice */
+        .compliance-notice {
+            background: rgba(245, 166, 35, 0.1);
+            border: 2px solid var(--warning-color);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .compliance-notice h3 {
+            color: var(--warning-color);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .compliance-notice p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        .compliance-notice ul {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .compliance-notice li {
+            margin-bottom: 0.25rem;
+        }
+
+        /* Button Container */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* Buttons */
+        .age-gate-button {
+            font-size: 1.125rem;
+            font-weight: 700;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            min-width: 150px;
+        }
+
+        .age-gate-button:active {
+            transform: scale(0.95);
+        }
+
+        .button-yes {
+            background: linear-gradient(90deg, var(--button-yes), #3fb590);
+            color: #1a1a2e;
+            box-shadow: 0 4px 15px rgba(78, 204, 163, 0.4);
+        }
+
+        .button-yes:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(78, 204, 163, 0.6);
+        }
+
+        .button-no {
+            background: linear-gradient(90deg, var(--button-no), #d63447);
+            color: var(--text-primary);
+            box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4);
+        }
+
+        .button-no:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(233, 69, 96, 0.6);
+        }
+
+        /* Footer Text */
+        .age-gate-footer {
+            margin-top: 2rem;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .age-gate-footer a {
+            color: var(--button-yes);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .age-gate-footer a:hover {
+            color: var(--modal-border);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .age-gate-modal {
+                padding: 1.5rem;
+            }
+
+            .button-container {
+                flex-direction: column;
+            }
+
+            .age-gate-button {
+                width: 100%;
+            }
+        }
+
+        /* Exit Animation */
+        .fade-out {
+            animation: fadeOut 0.3s ease-out forwards;
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Age Gate Overlay -->
+    <div class="age-gate-overlay" id="ageGateOverlay">
+        <div class="age-gate-modal" id="ageGateModal">
+
+            <!-- Icon -->
+            <div class="age-gate-icon">🌿</div>
+
+            <!-- Heading -->
+            <h1 class="age-gate-heading">Age Verification Required</h1>
+
+            <!-- Subheading -->
+            <p class="age-gate-subheading">
+                You must be 21 years or older to access this site.
+            </p>
+
+            <!-- Compliance Notice -->
+            <div class="compliance-notice">
+                <h3>⚠️ Important Product Information</h3>
+                <p>
+                    This site features content related to <strong>hemp-derived products</strong> containing <strong>0.3% or less delta-9 tetrahydrocannabinol (Δ9-THC)</strong> on a dry weight basis, in compliance with the 2018 Farm Bill (7 U.S.C. § 1639o) and applicable state laws.
+                </p>
+                <ul>
+                    <li><strong>Federal Compliance:</strong> Products comply with NIST standards for hemp testing</li>
+                    <li><strong>No Medical Claims:</strong> Products are not intended to diagnose, treat, cure, or prevent any disease</li>
+                    <li><strong>Age Restriction:</strong> Must be 21+ to purchase or use</li>
+                    <li><strong>State Laws Vary:</strong> Availability subject to local regulations</li>
+                    <li><strong>Not FDA Approved:</strong> These statements have not been evaluated by the FDA</li>
+                </ul>
+                <p style="margin-top: 0.75rem;">
+                    <strong>By entering, you confirm:</strong> (1) You are 21+ years old, (2) You understand these products contain hemp-derived cannabinoids, (3) Use is legal in your jurisdiction.
+                </p>
+            </div>
+
+            <!-- Buttons -->
+            <div class="button-container">
+                <button class="age-gate-button button-yes" id="buttonYes" onclick="verifyAge()">
+                    I'm 21 or Older
+                </button>
+                <button class="age-gate-button button-no" id="buttonNo" onclick="exitSite()">
+                    I'm Under 21
+                </button>
+            </div>
+
+            <!-- Footer -->
+            <div class="age-gate-footer">
+                By clicking "I'm 21 or Older", you agree to our <a href="/terms">Terms of Service</a> and <a href="/privacy">Privacy Policy</a>.<br>
+                Your age verification will be stored for 24 hours.
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        /**
+         * Age Gate Verification Logic
+         * NIST-Compliant Hemp Language
+         * 21+ Age Restriction with 24hr Cookie
+         */
+
+        const AGE_GATE_CONFIG = {
+            COOKIE_NAME: 'livhana_age_verified',
+            COOKIE_DURATION: 1, // 1 day
+            MINIMUM_AGE: 21,
+            EXIT_URL: 'https://www.usa.gov/', // Redirect if under age
+            GA4_EVENT_VERIFY: 'age_gate_verified',
+            GA4_EVENT_DENY: 'age_gate_denied'
+        };
+
+        /**
+         * Verify Age (User clicks "I'm 21 or Older")
+         */
+        function verifyAge() {
+            // Set cookie for 24 hours
+            setCookie(AGE_GATE_CONFIG.COOKIE_NAME, 'true', AGE_GATE_CONFIG.COOKIE_DURATION);
+
+            // Track verification
+            trackAgeGateEvent(AGE_GATE_CONFIG.GA4_EVENT_VERIFY);
+
+            // Animate out and remove modal
+            const overlay = document.getElementById('ageGateOverlay');
+            overlay.classList.add('fade-out');
+
+            setTimeout(() => {
+                overlay.remove();
+
+                // Notify parent window (if embedded)
+                if (window.parent && window.parent.verifyAge) {
+                    window.parent.verifyAge();
+                }
+            }, 300);
+        }
+
+        /**
+         * Exit Site (User clicks "I'm Under 21")
+         */
+        function exitSite() {
+            // Track denial
+            trackAgeGateEvent(AGE_GATE_CONFIG.GA4_EVENT_DENY);
+
+            // Show warning and redirect
+            alert('You must be 21 or older to access this content. Redirecting...');
+            window.location.href = AGE_GATE_CONFIG.EXIT_URL;
+        }
+
+        /**
+         * Set Cookie
+         */
+        function setCookie(name, value, days) {
+            const expires = new Date(Date.now() + days * 24 * 60 * 60 * 1000).toUTCString();
+            document.cookie = `${name}=${value}; expires=${expires}; path=/; SameSite=Lax; Secure`;
+        }
+
+        /**
+         * Track Age Gate Event (GA4)
+         */
+        function trackAgeGateEvent(eventName) {
+            if (typeof gtag === 'function') {
+                gtag('event', eventName, {
+                    timestamp: new Date().toISOString(),
+                    page_location: window.location.href
+                });
+            }
+
+            // Also send to parent if available
+            if (window.parent && window.parent.gtag) {
+                window.parent.gtag('event', eventName, {
+                    timestamp: new Date().toISOString(),
+                    page_location: window.location.href
+                });
+            }
+        }
+
+        /**
+         * Keyboard Navigation (Accessibility)
+         */
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                document.getElementById('buttonYes').click();
+            } else if (e.key === 'Escape') {
+                document.getElementById('buttonNo').click();
+            }
+        });
+
+        /**
+         * Prevent Accidental Exit (Tab Trap for Accessibility)
+         */
+        const modal = document.getElementById('ageGateModal');
+        const focusableElements = modal.querySelectorAll('button, a');
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                if (e.shiftKey && document.activeElement === firstElement) {
+                    e.preventDefault();
+                    lastElement.focus();
+                } else if (!e.shiftKey && document.activeElement === lastElement) {
+                    e.preventDefault();
+                    firstElement.focus();
+                }
+            }
+        });
+
+        // Auto-focus "Yes" button on load
+        window.addEventListener('load', () => {
+            document.getElementById('buttonYes').focus();
+        });
+
+        /**
+         * Anti-Bypass Security (Prevent Inspection)
+         * Note: This is NOT foolproof but adds a layer of deterrence
+         */
+        document.addEventListener('contextmenu', (e) => e.preventDefault());
+
+        // Log attempt to bypass
+        const observer = new MutationObserver(() => {
+            if (!document.getElementById('ageGateOverlay')) {
+                console.warn('Age gate bypass attempt detected');
+                trackAgeGateEvent('age_gate_bypass_attempt');
+            }
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+
+        /**
+         * Mobile Device Detection (Optional: Show Warning)
+         */
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        if (isMobile) {
+            // Optionally adjust UI for mobile
+            console.log('Mobile device detected');
+        }
+
+        /**
+         * Compliance Logging
+         */
+        console.log('Age Gate Initialized - 21+ Required');
+        console.log('Hemp Products: 0.3% or less Δ9-THC (NIST Compliant)');
+        console.log('No Medical Claims - Not FDA Evaluated');
+    </script>
+</body>
+</html>

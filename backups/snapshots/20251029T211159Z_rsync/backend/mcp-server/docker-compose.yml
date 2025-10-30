@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  livhana-truth-mcp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: livhana-truth-mcp-server
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - LIVHANA_ROOT=/app
+      - PYTHONPATH=/app/src
+    volumes:
+      - ../../data:/app/data:rw
+      - ../../scripts:/app/scripts:ro
+      - ../../schemas:/app/schemas:ro
+    ports:
+      - "3000:3000"
+    networks:
+      - livhana-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  livhana-network:
+    driver: bridge

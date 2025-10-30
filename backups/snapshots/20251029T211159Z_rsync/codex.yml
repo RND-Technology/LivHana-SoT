@@ -1,0 +1,34 @@
+# codex.yml
+# Codex CLI Configuration for LivHana-SoT
+
+version: 1
+
+project:
+  name: LivHana-SoT
+  path: .
+  
+  cloud:
+    provider: gcp
+    project_id: livhana-codex
+    region: us-central1
+    
+  services:
+    - voice-service
+    - reasoning-gateway
+    - integration-service
+    - product-service
+    
+  git:
+    enabled: true
+    auto_commit: false
+    branch: feature/full-truth-refactor
+    
+  agents:
+    local:
+      enabled: true
+      workspace: backend/
+    cloud:
+      enabled: true
+      workspace: backend/
+      sync: true
+

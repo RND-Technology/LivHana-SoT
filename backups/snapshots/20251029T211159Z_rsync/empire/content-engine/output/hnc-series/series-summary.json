@@ -1,0 +1,71 @@
+{
+  "seriesName": "HIGH NOON CARTOON",
+  "totalEpisodes": 84,
+  "totalSeasons": 12,
+  "episodesPerSeason": 7,
+  "characters": [
+    "Jesse",
+    "Liv Hana",
+    "Chief Steve",
+    "Lt. Dan",
+    "Aubrey Awfuls"
+  ],
+  "themes": [
+    "Character Development",
+    "Product Spotlight",
+    "Compliance Education",
+    "Customer Stories",
+    "Industry News",
+    "Fun Facts",
+    "Week Recap"
+  ],
+  "platforms": [
+    "YouTube Shorts",
+    "TikTok",
+    "IG Reels",
+    "X"
+  ],
+  "musicStyles": [
+    "upbeat-texas-country",
+    "dramatic-texas-western",
+    "majestic-reveal-theme",
+    "military-march-comedy",
+    "heartwarming-texas-folk",
+    "epic-texas-revolution",
+    "playful-educational-melody"
+  ],
+  "dogWhistles": [
+    "empire",
+    "optics",
+    "OG days",
+    "COAs or GTFO",
+    "little hemp empire",
+    "Wall of Weed",
+    "revolution",
+    "freedom",
+    "rights",
+    "justice"
+  ],
+  "tpopEmojis": [
+    "🐆",
+    "🔥",
+    "⚡",
+    "🎯",
+    "💀",
+    "🚀",
+    "💎"
+  ],
+  "easterEggs": [
+    "Liv Hana AI EA character introduction",
+    "Chief Steve based on real Texas law enforcement",
+    "Brick weed $40/oz product reference",
+    "Lt. Dan (Forrest Gump reference)",
+    "Aubrey Awfuls villain character",
+    "Actual Reggie & Dro store footage",
+    "Real product wall from store"
+  ],
+  "generatedAt": "2025-10-07T08:19:27.697Z",
+  "engine": "HNCSeriesExecutor",
+  "version": "1.0.0",
+  "status": "EXECUTION COMPLETE"
+}

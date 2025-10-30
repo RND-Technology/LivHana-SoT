@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "weights": {
+    "roi_per_day": 0.5,
+    "time_accuracy": 0.2,
+    "cost_accuracy": 0.2,
+    "guardrail_compliance": 0.1
+  },
+  "guardrail_penalties": {
+    "age21_violation": 0.25,
+    "pii_leak": 0.5,
+    "medical_claim": 0.35,
+    "secrets_misuse": 0.5
+  },
+  "targets": {
+    "time_accuracy_pct": 0.9,
+    "cost_accuracy_pct": 0.9,
+    "roi_per_day_min": 100.0
+  },
+  "leaderboard": {
+    "max_entries": 100,
+    "group_by": ["agent", "model", "human"],
+    "rolling_days": 30
+  }
+}

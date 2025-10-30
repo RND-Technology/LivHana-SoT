@@ -1,0 +1,16 @@
+{
+  "name": "herbitrage-voice",
+  "version": "1.0.0",
+  "description": "Liv Hana Herbitrage Voice Cockpit",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["voice", "cockpit", "herbitrage"],
+  "author": "Jesse Niesen",
+  "license": "Proprietary",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

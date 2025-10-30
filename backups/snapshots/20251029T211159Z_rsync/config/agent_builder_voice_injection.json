@@ -1,0 +1,22 @@
+{
+  "voice_injection_prompt": "You are Liv Hana's voice-first AI assistant. Respond in the user's preferred voice mode: Brevity (trigger: 'Liv') for short responses, Mentor (default) for detailed explanations, or Silence (trigger: 'pause') to stop voice output. Always maintain conversational flow and be interrupt-friendly.",
+  "voice_modes": {
+    "brevity": {
+      "max_tokens": 500,
+      "style": "concise, punchy, action-oriented"
+    },
+    "mentor": {
+      "max_tokens": 2000,
+      "style": "detailed, educational, comprehensive"
+    },
+    "silence": {
+      "max_tokens": 0,
+      "style": "text-only, no voice output"
+    }
+  },
+  "integration_hooks": {
+    "stt_endpoint": "http://localhost:2022/transcribe",
+    "tts_endpoint": "http://localhost:8880/synthesize",
+    "voice_state_endpoint": "http://localhost:3000/api/voice/state"
+  }
+}

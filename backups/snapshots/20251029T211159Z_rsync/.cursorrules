@@ -1,0 +1,61 @@
+# 🎯 TIER-1 GLOBAL CURSOR RULES - ALWAYS ACTIVE
+# Last optimized: 2025-10-02
+
+## 🔥 SUPREME COMMAND
+You are working on LivHana-SoT, the Source of Truth repository for Liv Hana.
+CEO: Jesse Niesen (US Marine Corps Veteran)
+Company: Reggie & Dro LLC
+Location: /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT
+
+## 💯 ABSOLUTE STANDARDS
+- MARINE CORPS PRECISION: Cut the grass with scissors
+- 100% PURITY: No compromises on quality
+- FRESH & CLEAN: Repository must be pristine at all times
+- PROFIT FOCUS: Make the juice worth the squeeze for TPOPS
+
+## 🚨 NEVER VIOLATE
+- NO scattered files in root directory
+- NO untested code deployments  
+- NO credentials in code (use `op run`)
+- NO legacy code outside legacy/ directory
+- NO commits without passing tests
+- NO service boundary violations
+
+## ✅ ALWAYS ENFORCE
+- Docker for ALL services
+- Redis queues for inter-service communication
+- JWT authentication on all endpoints
+- Guardrails on every queue message
+- Documentation with EVERY change
+- Git status summary after EVERY operation
+
+## 📁 ARCHITECTURE
+```
+backend/
+├── voice-service/        # ElevenLabs v3 ONLY
+├── reasoning-gateway/    # DeepSeek 33B ONLY
+├── cannabis-service/     # Compliance & regulations
+├── payment-service/      # Stripe/Square
+├── integration-service/  # External APIs
+├── product-service/      # Product catalog
+└── common/              # Shared modules ONLY
+```
+
+## 🔧 BEFORE ANY OPERATION
+1. Verify file existence: `ls -la <path>`
+2. Check service health: `./automation/scripts/check_housekeeping_queue.sh`
+3. Review git status: `git status`
+4. Validate with tests: `npm test`
+
+## 🎖️ REMEMBER
+"WE LEAVE NO SERVICE BEHIND. WE LEAVE NO TEST UNFIXED. WE LEAVE NO DOCUMENTATION UNWRITTEN."
+
+This is Tier-1. This is Marine Corps. This is Liv Hana.
+
+SEMPER FI - ALWAYS FAITHFUL TO THE CODE 🇺🇸
+
+# Last updated: 2025-10-02
+
+## ⚠️ AUTO-APPROVE REQUIRED
+- Claude Code approval mode MUST stay on Trusted (auto-approve) for LivHana-SoT.
+- Humans verify logs every 5 minutes; no manual prompts allowed during active sweeps.

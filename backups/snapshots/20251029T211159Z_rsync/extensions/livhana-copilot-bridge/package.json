@@ -1,0 +1,93 @@
+{
+  "name": "livhana-copilot-bridge",
+  "displayName": "LivHana Copilot Bridge",
+  "description": "Communication bridge between Claude Code CLI and GitHub Copilot Chat",
+  "version": "1.0.0",
+  "publisher": "livhana",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "livhana-copilot-bridge.start",
+        "title": "LivHana: Start Copilot Bridge"
+      },
+      {
+        "command": "livhana-copilot-bridge.stop",
+        "title": "LivHana: Stop Copilot Bridge"
+      },
+      {
+        "command": "livhana-copilot-bridge.status",
+        "title": "LivHana: Show Bridge Status"
+      },
+      {
+        "command": "livhana-copilot-bridge.sendToCopilot",
+        "title": "LivHana: Send to Copilot"
+      }
+    ],
+    "configuration": {
+      "title": "LivHana Copilot Bridge",
+      "properties": {
+        "livhanaCopilotBridge.claudeOutputDir": {
+          "type": "string",
+          "default": "/tmp/claude-code-bridge",
+          "description": "Directory where Claude CLI writes outputs"
+        },
+        "livhanaCopilotBridge.copilotSessionDir": {
+          "type": "string",
+          "default": "/Users/jesseniesen/Library/Application Support/Code/User/workspaceStorage/74671f46b2a812d26898a66338bbe743/chatSessions",
+          "description": "Directory where Copilot stores chat sessions"
+        },
+        "livhanaCopilotBridge.bridgeOutputDir": {
+          "type": "string",
+          "default": "/tmp/copilot-responses",
+          "description": "Directory where bridge writes Copilot responses for Claude"
+        },
+        "livhanaCopilotBridge.autoStart": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically start bridge on VS Code startup"
+        },
+        "livhanaCopilotBridge.logLevel": {
+          "type": "string",
+          "default": "info",
+          "enum": ["debug", "info", "warn", "error"],
+          "description": "Logging level for bridge operations"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "lint": "eslint src --ext ts",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^18.19.0",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3",
+    "@vscode/vsce": "^2.22.0"
+  },
+  "dependencies": {
+    "chokidar": "^3.5.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/livhana/livhana-sot"
+  },
+  "license": "MIT"
+}

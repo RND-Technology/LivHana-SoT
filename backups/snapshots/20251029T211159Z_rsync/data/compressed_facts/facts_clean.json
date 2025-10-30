@@ -1,0 +1,7 @@
+[
+  {
+    "fact": "Stub fact for testing",
+    "sources": ["S1","S2"],
+    "confidence": 0.88
+  }
+]

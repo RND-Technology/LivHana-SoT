@@ -1,0 +1,20 @@
+{
+  "age21": { "enabled": true, "header": "x-age-verified", "value": "true" },
+  "pii": { "enabled": true, "patterns": ["email", "phone"] },
+  "cannabis": { "enabled": true, "delta9_thc_max_pct": 0.3, "require_coa": true, "coa_lab_standard": "ISO_17025" },
+  "financial": { "enabled": true, "profit_formula": "revenue_gain - cost_estimate" },
+  "blocked_fallacies": [
+    "Kaja pending",
+    "LightSpeed setup needed",
+    "Veriff operational without UX issues",
+    "Veriff superior to Veriff",
+    "Custom MCP broker"
+  ],
+  "providers": {
+    "age_verification": {
+      "primary": "Veriff",
+      "fallback": "BlueCheck",
+      "deprecated": ["Veriff"]
+    }
+  }
+}

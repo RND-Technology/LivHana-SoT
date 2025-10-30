@@ -1,0 +1,47 @@
+Category,Current_Monthly_Budget,Current_Daily_Budget,Performance_Metric,Action,New_Monthly_Budget,New_Daily_Budget,Increase_Amount,Expected_Impact
+
+CURRENT STATE ANALYSIS,,,,,,,,
+Total Ad Spend,$4500.00,$150.00,,Baseline,$4500.00,$150.00,$0.00,
+Waste (Bottom 50%),$2295.00,$76.50,Efficiency < 1.0,PAUSE,$0.00,$0.00,-$2295.00,Save $2295/month
+Effective Spend,$2205.00,$73.50,Efficiency > 1.0,MAINTAIN,$2205.00,$73.50,$0.00,
+Current Revenue (1.5x ROAS),$6750.00,,,,$6750.00,,,
+,,,,,,,,
+WINNER SCALING,,,,,,,,
+Purple Theme,ENTER_CURRENT,ENTER_CURRENT,10.54 visits/$,SCALE,$1200.00,$40.00,CALCULATE,+12648 visits/mo = +379 conversions @ 3%
+Orange Character (HNC),ENTER_CURRENT,ENTER_CURRENT,6.22% conversion,SCALE,$1500.00,$50.00,CALCULATE,+93 conversions/mo estimated
+Red/Orange Theme,ENTER_CURRENT,ENTER_CURRENT,Performance TBD,SCALE,$1000.00,$33.33,CALCULATE,Based on export data
+,,,,,,,,
+SUBTOTAL WINNERS,,$0.00,,,$3700.00,$123.33,,$3700/month allocated
+,,,,,,,,
+NEW TESTING BUDGET,,,,,,,,
+Saved from paused ads,$2295.00,,,,,,Save this amount
+Allocated to winners,$3700.00,,,,-$3700.00,,-$3700.00,Spent on winners
+Available for New Tests,$1405.00,$46.83,,TEST NEW,$1405.00,$46.83,$0.00,Test Purple+Orange hybrid
+,,,,,,,,
+OPTIMIZED STATE TOTALS,,,,,,,,
+Total New Monthly Budget,$5905.00,$196.83,,,,,+$1405.00 vs current,
+Projected Revenue (2.0x ROAS),$11810.00,,Conservative,,,,+$5060.00,+75% revenue increase
+Projected Revenue (3.0x ROAS),$17715.00,,Aggressive,,,,+$10965.00,+162% revenue increase
+,,,,,,,,
+EFFICIENCY COMPARISON,,,,,,,,
+Current Efficiency (Effective/Total),49.00%,,Bad: Half wasted,,,,Improve this,
+Optimized Efficiency (Effective/Total),100.00%,,Excellent: Zero waste,,,,Target achieved,
+,,,,,,,,
+BREAKEVEN ANALYSIS,,,,,,,,
+New Daily Spend,$196.83,,,,,,Need this revenue daily,
+Breakeven ROAS (Daily),1.00,,Min to not lose money,$196.83/day,,,Must hit $196.83/day revenue
+Target ROAS (Daily),3.00,,Strong performance,$590.49/day,,,Target $590/day revenue
+,,,,,,,,
+INSTRUCTIONS:,,,,,,,,
+1. Export current ad performance from Meta Ads Manager,,,,,,,,
+2. Find current monthly spend for Purple Theme ads - Enter in row 7,,,,,,,,
+3. Find current monthly spend for Orange Character ads - Enter in row 8,,,,,,,,
+4. Find current monthly spend for Red/Orange ads - Enter in row 9,,,,,,,,
+5. Calculate increases: New Budget minus Current Budget,,,,,,,,
+6. Use these numbers to set new budgets in Meta Ads Manager,,,,,,,,
+,,,,,,,,
+QUICK FORMULAS:,,,,,,,,
+Daily Budget = Monthly Budget ÷ 30 days,,,,,,,,
+Monthly Budget = Daily Budget × 30 days,,,,,,,,
+Efficiency Score = (Clicks ÷ Spend) × Conversion Rate,,,,,,,,
+ROAS = Revenue ÷ Ad Spend,,,,,,,,

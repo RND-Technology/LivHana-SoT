@@ -1,0 +1,47 @@
+{
+  "id": "episode_005",
+  "title": "Texas THC Tale Update",
+  "week": 1,
+  "day": 5,
+  "format": "60-second shorts",
+  "platforms": [
+    "YouTube Shorts",
+    "TikTok",
+    "IG Reels",
+    "X"
+  ],
+  "scriptBeat": [
+    "Narrator: \"October 2025. Texas became the 40th state for medical cannabis...\"",
+    "Jesse: \"They FINALLY did it! But wait - there's more drama...\"",
+    "Liv Hana: \"Governor Abbott issued Executive Order GA-56. Emergency rules. Age verification NOW mandatory.\"",
+    "Montage: ID checks, QR code scans, lab testing, store compliance",
+    "Jesse: \"From prohibition to $5 billion industry... This is the Texas THC Tale. Stay TOONED!\""
+  ],
+  "seoAnchors": [
+    "#TexasTHC",
+    "#StayTOONED",
+    "#ReggieAndDro",
+    "#IndustryNews",
+    "#TexasCannabis",
+    "#MarketTrends",
+    "#GovernorAbbott",
+    "#ExecutiveOrder",
+    "#EmergencyRules",
+    "#Texas40th"
+  ],
+  "cta": "Subscribe for the REAL story behind Texas cannabis!",
+  "sunoMusic": "epic-texas-revolution",
+  "dogWhistle": "freedom",
+  "tpop": "🚀",
+  "easterEgg": "References May and Oct 2025 major Texas cannabis policy shifts",
+  "schoolHouseRock": false,
+  "status": "enhanced",
+  "productionMetadata": {
+    "template": "HIGH NOON CARTOON",
+    "generatedAt": "2025-10-07T07:59:49.302Z",
+    "engine": "UnicornMakingMachine",
+    "version": "1.0.0",
+    "enhancedAt": "2025-10-07T08:00:00.000Z",
+    "enhancementVersion": "2.0.0"
+  }
+}

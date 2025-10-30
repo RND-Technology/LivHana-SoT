@@ -1,0 +1,19 @@
+name: Boot Preflight
+on: [pull_request]
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    env:
+      ALLOW_TEXT_ONLY: 1
+      SUPPRESS_OPTIONAL_WARNINGS: 1
+    steps:
+      - name: Check 1Password
+        run: op whoami | grep -q '@'
+      - name: Expand secrets
+        run: op run --env-file .env.op -- sh -c 'printenv DATABASE_URL JWT_SECRET LIGHTSPEED_TOKEN' >/dev/null
+      - name: Service health
+        run: timeout 60 bash -c 'until curl -sf localhost:3005/health; do sleep 2; done'
+      - name: Log security scan
+        run: '! grep -Ei "(key|token|secret)=" logs/integration-service.log'
+      - name: Lint Tier-1
+        run: npm run lint -- backend/{voice,reasoning,integration}-service frontend/vibe-cockpit

@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VibeClient - Dual-Panel Conversational AI Interface</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        #app {
+            width: 100%;
+            max-width: 1400px;
+            height: 90vh;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+
+        .panel {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            border-right: 1px solid #e0e0e0;
+        }
+
+        .panel:last-child {
+            border-right: none;
+        }
+
+        .panel-header {
+            padding: 20px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .panel-subtitle {
+            font-size: 12px;
+            opacity: 0.9;
+            margin-top: 4px;
+        }
+
+        .messages-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px 30px;
+            background: #f8f9fa;
+        }
+
+        .message {
+            margin-bottom: 20px;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .message-role {
+            font-weight: 600;
+            font-size: 14px;
+            color: #667eea;
+        }
+
+        .message-role.assistant {
+            color: #764ba2;
+        }
+
+        .message-timestamp {
+            font-size: 11px;
+            color: #888;
+        }
+
+        .message-content {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 12px;
+            line-height: 1.6;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .message.user .message-content {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border-left: 3px solid #667eea;
+        }
+
+        .message.assistant .message-content {
+            border-left: 3px solid #764ba2;
+        }
+
+        .input-container {
+            padding: 20px 30px;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            gap: 12px;
+        }
+
+        .input-box {
+            flex: 1;
+            padding: 12px 18px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .input-box:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .send-button {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .send-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .send-button:active {
+            transform: translateY(0);
+        }
+
+        .send-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .analysis-section {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .analysis-title {
+            font-weight: 600;
+            font-size: 14px;
+            color: #764ba2;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .analysis-content {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .prompt-output {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 12px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            border-left: 3px solid #764ba2;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #aaa;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+
+        .empty-state-text {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        /* Responsive design */
+        @media (max-width: 968px) {
+            #app {
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr 1fr;
+            }
+
+            .panel {
+                border-right: none;
+                border-bottom: 1px solid #e0e0e0;
+            }
+
+            .panel:last-child {
+                border-bottom: none;
+            }
+        }
+
+        /* Scrollbar styling */
+        .messages-container::-webkit-scrollbar,
+        .prompt-output::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .messages-container::-webkit-scrollbar-track,
+        .prompt-output::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .messages-container::-webkit-scrollbar-thumb,
+        .prompt-output::-webkit-scrollbar-thumb {
+            background: #667eea;
+            border-radius: 4px;
+        }
+
+        .messages-container::-webkit-scrollbar-thumb:hover,
+        .prompt-output::-webkit-scrollbar-thumb:hover {
+            background: #764ba2;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- Left Panel: Conversation Refinery -->
+        <div class="panel">
+            <div class="panel-header">
+                💬 Conversation Refinery
+                <div class="panel-subtitle">Interactive chat workspace</div>
+            </div>
+            <div class="messages-container" ref="chatMessages">
+                <div v-if="chatMessages.length === 0" class="empty-state">
+                    <div class="empty-state-icon">💭</div>
+                    <div class="empty-state-text">Start a conversation to refine your prompts</div>
+                </div>
+                <div v-for="(msg, index) in chatMessages" :key="index" :class="['message', msg.role]">
+                    <div class="message-header">
+                        <span class="message-role" :class="msg.role">{{ msg.role === 'user' ? 'You' : 'Assistant' }}</span>
+                        <span class="message-timestamp">{{ msg.timestamp }}</span>
+                    </div>
+                    <div class="message-content">{{ msg.content }}</div>
+                </div>
+            </div>
+            <div class="input-container">
+                <input
+                    type="text"
+                    v-model="userInput"
+                    @keyup.enter="sendMessage"
+                    placeholder="Type your message..."
+                    class="input-box"
+                    :disabled="isProcessing"
+                />
+                <button @click="sendMessage" class="send-button" :disabled="!userInput.trim() || isProcessing">
+                    {{ isProcessing ? 'Processing...' : 'Send' }}
+                </button>
+            </div>
+        </div>
+
+        <!-- Right Panel: Master Prompt Generator -->
+        <div class="panel">
+            <div class="panel-header">
+                🎯 Master Prompt Generator
+                <div class="panel-subtitle">AI-powered prompt analysis & optimization</div>
+            </div>
+            <div class="messages-container">
+                <div v-if="!analysis.intent && !analysis.context && !analysis.masterPrompt" class="empty-state">
+                    <div class="empty-state-icon">🔮</div>
+                    <div class="empty-state-text">Analysis will appear here as you chat</div>
+                </div>
+
+                <div v-if="analysis.intent" class="analysis-section">
+                    <div class="analysis-title">🎯 Intent Analysis</div>
+                    <div class="analysis-content">{{ analysis.intent }}</div>
+                </div>
+
+                <div v-if="analysis.context" class="analysis-section">
+                    <div class="analysis-title">📋 Context Summary</div>
+                    <div class="analysis-content">{{ analysis.context }}</div>
+                </div>
+
+                <div v-if="analysis.suggestions.length > 0" class="analysis-section">
+                    <div class="analysis-title">💡 Suggestions</div>
+                    <div class="analysis-content">
+                        <ul style="padding-left: 20px; margin: 0;">
+                            <li v-for="(suggestion, index) in analysis.suggestions" :key="index" style="margin-bottom: 8px;">
+                                {{ suggestion }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div v-if="analysis.masterPrompt" class="analysis-section">
+                    <div class="analysis-title">✨ Master Prompt</div>
+                    <div class="prompt-output">{{ analysis.masterPrompt }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+
+        createApp({
+            data() {
+                return {
+                    chatMessages: [],
+                    userInput: '',
+                    isProcessing: false,
+                    analysis: {
+                        intent: '',
+                        context: '',
+                        suggestions: [],
+                        masterPrompt: ''
+                    }
+                }
+            },
+            methods: {
+                async sendMessage() {
+                    if (!this.userInput.trim() || this.isProcessing) return;
+
+                    const userMessage = {
+                        role: 'user',
+                        content: this.userInput.trim(),
+                        timestamp: new Date().toLocaleTimeString()
+                    };
+
+                    this.chatMessages.push(userMessage);
+                    const userContent = this.userInput;
+                    this.userInput = '';
+                    this.isProcessing = true;
+
+                    // Scroll to bottom
+                    this.$nextTick(() => {
+                        const container = this.$refs.chatMessages;
+                        container.scrollTop = container.scrollHeight;
+                    });
+
+                    // Simulate AI response (in production, this would call an actual AI API)
+                    await this.simulateAIResponse(userContent);
+                },
+
+                async simulateAIResponse(userContent) {
+                    // Simulate processing delay
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+
+                    // Generate contextual response
+                    const response = this.generateResponse(userContent);
+
+                    const assistantMessage = {
+                        role: 'assistant',
+                        content: response,
+                        timestamp: new Date().toLocaleTimeString()
+                    };
+
+                    this.chatMessages.push(assistantMessage);
+                    this.isProcessing = false;
+
+                    // Update analysis panel
+                    this.updateAnalysis();
+
+                    // Scroll to bottom
+                    this.$nextTick(() => {
+                        const container = this.$refs.chatMessages;
+                        container.scrollTop = container.scrollHeight;
+                    });
+                },
+
+                generateResponse(userContent) {
+                    const lowerContent = userContent.toLowerCase();
+
+                    if (lowerContent.includes('help') || lowerContent.includes('how')) {
+                        return "I can help you refine your prompts and generate optimized master prompts. Share what you're trying to achieve, and I'll analyze your intent and suggest improvements.";
+                    } else if (lowerContent.includes('write') || lowerContent.includes('create')) {
+                        return "I'll help you craft that. Could you provide more details about the tone, style, and specific requirements? This will help me generate a more precise master prompt.";
+                    } else if (lowerContent.includes('analyze') || lowerContent.includes('review')) {
+                        return "I'll analyze that for you. The key aspects I'm looking at include clarity, specificity, and actionability. Let me know if you'd like me to focus on any particular dimension.";
+                    } else {
+                        return "I understand. Let me refine that request and generate an optimized prompt for you. The analysis panel on the right shows the breakdown.";
+                    }
+                },
+
+                updateAnalysis() {
+                    if (this.chatMessages.length === 0) return;
+
+                    // Extract conversation context
+                    const conversationText = this.chatMessages
+                        .map(msg => `${msg.role}: ${msg.content}`)
+                        .join('\n');
+
+                    // Generate intent analysis
+                    this.analysis.intent = this.extractIntent();
+
+                    // Generate context summary
+                    this.analysis.context = `${this.chatMessages.length} message(s) exchanged. Conversation focuses on prompt refinement and optimization.`;
+
+                    // Generate suggestions
+                    this.analysis.suggestions = this.generateSuggestions();
+
+                    // Generate master prompt
+                    this.analysis.masterPrompt = this.generateMasterPrompt();
+                },
+
+                extractIntent() {
+                    const lastUserMessage = [...this.chatMessages]
+                        .reverse()
+                        .find(msg => msg.role === 'user');
+
+                    if (!lastUserMessage) return '';
+
+                    const content = lastUserMessage.content.toLowerCase();
+
+                    if (content.includes('write') || content.includes('create')) {
+                        return 'User wants to create or write something';
+                    } else if (content.includes('analyze') || content.includes('review')) {
+                        return 'User wants analysis or review';
+                    } else if (content.includes('help')) {
+                        return 'User is seeking assistance';
+                    } else {
+                        return 'User is refining their request';
+                    }
+                },
+
+                generateSuggestions() {
+                    return [
+                        'Be more specific about the desired outcome',
+                        'Include context about the target audience',
+                        'Specify any constraints or requirements',
+                        'Clarify the tone and style preferences'
+                    ];
+                },
+
+                generateMasterPrompt() {
+                    const userMessages = this.chatMessages
+                        .filter(msg => msg.role === 'user')
+                        .map(msg => msg.content);
+
+                    if (userMessages.length === 0) return '';
+
+                    return `# Optimized Master Prompt
+
+Context: Based on conversation with ${this.chatMessages.length} exchanges
+
+User Intent: ${this.analysis.intent}
+
+Refined Request:
+${userMessages[userMessages.length - 1]}
+
+Suggested Enhancements:
+${this.analysis.suggestions.map((s, i) => `${i + 1}. ${s}`).join('\n')}
+
+Action Items:
+- Review and refine the specific requirements
+- Incorporate suggested enhancements
+- Execute with clear success criteria`;
+                }
+            },
+            mounted() {
+                // Add welcome messages
+                setTimeout(() => {
+                    this.chatMessages.push({
+                        role: 'assistant',
+                        content: 'Welcome to VibeClient! I\'m here to help you refine your prompts and generate optimized master prompts. How can I assist you today?',
+                        timestamp: new Date().toLocaleTimeString()
+                    });
+                }, 500);
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>
