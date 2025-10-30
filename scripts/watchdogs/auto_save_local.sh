@@ -42,7 +42,11 @@ while true; do
 
     # Stage only tracked files + new critical files (EXCLUDE config/ to prevent credential leaks)
     git add -u  # Update tracked files
-    git add START.sh package*.json scripts/watchdogs/ scripts/boot/ scripts/guards/ 2>/dev/null || true  # Critical new files
+    git add START.sh package*.json scripts/watchdogs/ scripts/boot/ scripts/guards/ 2>/dev/null || true
+
+    # CRITICAL: git add -u re-stages previously tracked files in config/
+    # Explicitly unstage config/ to prevent credential leaks
+    git reset config/ 2>/dev/null || true
 
     # Create clean commit
     CHANGES=$(git diff --cached --name-only | wc -l | tr -d ' ')
