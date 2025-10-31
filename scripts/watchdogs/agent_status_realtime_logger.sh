@@ -48,7 +48,14 @@ check_agent_health() {
   fi
 
   # Check file age (within last 5 minutes = active)
-  local file_age=$(($(date +%s) - $(stat -f %m "$status_file" 2>/dev/null || echo 0)))
+  # Cross-platform stat: -f %m on macOS, -c %Y on Linux
+  local mtime
+  if stat -f %m "$status_file" >/dev/null 2>&1; then
+    mtime=$(stat -f %m "$status_file" 2>/dev/null || echo 0)
+  else
+    mtime=$(stat -c %Y "$status_file" 2>/dev/null || echo 0)
+  fi
+  local file_age=$(($(date +%s) - mtime))
   if [[ $file_age -gt 300 ]]; then
     echo "stale"
     return
