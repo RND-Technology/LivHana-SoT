@@ -215,23 +215,53 @@ jobs:
         run: |
           # Start voice-service with mocked dependencies
           npm run start:voice-service:test &
+          VOICE_PID=$!
           # Start reasoning-gateway with mocked dependencies
           npm run start:reasoning-gateway:test &
+          GATEWAY_PID=$!
           # Start frontend
           npm run start:frontend:test &
-          # Wait for services to be ready
-          sleep 30
+          FRONTEND_PID=$!
+
+          # Wait for services to be ready (health checks)
+          echo "Waiting for services to start..."
+          for i in {1..30}; do
+            if curl -sf http://localhost:8080/health >/dev/null 2>&1 && \
+               curl -sf http://localhost:4002/health >/dev/null 2>&1; then
+              echo "All services ready!"
+              break
+            fi
+            echo "Attempt $i/30: Services not ready yet..."
+            sleep 2
+          done
+
+          # Verify services are running
+          if ! curl -sf http://localhost:8080/health >/dev/null 2>&1; then
+            echo "ERROR: Voice service failed to start"
+            exit 1
+          fi
+          if ! curl -sf http://localhost:4002/health >/dev/null 2>&1; then
+            echo "ERROR: Reasoning gateway failed to start"
+            exit 1
+          fi
+
+          echo "Services started successfully"
         env:
           NODE_ENV: test
           REDIS_HOST: localhost
           REDIS_PORT: 6379
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          REASONING_FAST_MODEL: gpt-4o-mini
 
-      - name: Run Playwright tests with MCP
+      - name: Run Playwright E2E tests (UI + API)
         run: |
-          op run --env-file=".env.test" -- npx playwright test
+          # Run all E2E tests (UI and API)
+          npx playwright test
         env:
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
           PLAYWRIGHT_BASE_URL: http://localhost:5173
+          VOICE_SERVICE_URL: http://localhost:8080
+          REASONING_GATEWAY_URL: http://localhost:4002
           CI: true
 
       - name: Upload Playwright report
@@ -249,6 +279,14 @@ jobs:
           name: test-results
           path: test-results/
           retention-days: 30
+
+      - name: Upload E2E coverage to Codecov
+        uses: codecov/codecov-action@v3
+        if: always()
+        with:
+          files: ./coverage/e2e-coverage.json
+          flags: e2e
+          name: e2e-coverage
 
   # Deploy to Production
   deploy-production:
