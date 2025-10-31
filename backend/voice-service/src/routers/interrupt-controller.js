@@ -37,6 +37,11 @@ class InterruptController extends EventEmitter {
   startSpeaking(sessionId, audioStream) {
     const session = this.activeSessions.get(sessionId);
     if (session) {
+      // Don't start speaking if session was interrupted (requires explicit reset)
+      if (session.interrupted) {
+        console.warn(`[InterruptController] Cannot start speaking - session ${sessionId} is interrupted`);
+        return;
+      }
       session.speaking = true;
       session.interrupted = false;
       session.audioStream = audioStream;
@@ -46,27 +51,83 @@ class InterruptController extends EventEmitter {
 
   /**
    * INTERRUPT - User spoke, STOP AI IMMEDIATELY
+   * Hardened to handle both .destroy() (AudioStream) and .abort() (AbortController/shim)
    */
   interrupt(sessionId, reason = 'user_speech') {
     const session = this.activeSessions.get(sessionId);
-    if (session && session.speaking) {
-      session.interrupted = true;
-      session.speaking = false;
 
-      // CRITICAL: Kill audio stream immediately
-      if (session.audioStream) {
-        session.audioStream.destroy();
-        session.audioStream = null;
+    // ✅ FIXED: Relax speaking check - allow interrupt even if recently stopped
+    if (!session) {
+      console.warn(`[InterruptController] No active session: ${sessionId}`);
+      return false;
+    }
+
+    // ✅ FIXED: Prevent race condition - check if already interrupting
+    if (session.interrupting) {
+      console.log(`[InterruptController] Interrupt already in progress for ${sessionId}`);
+      return false;
+    }
+
+    session.interrupting = true; // ✅ ADDED: Set flag to prevent concurrent interrupts
+    session.interrupted = true;
+    session.speaking = false;
+
+    // CRITICAL: Kill audio stream immediately with defensive programming
+    if (session.audioStream) {
+      const handle = session.audioStream;
+      let interrupted = false;
+
+      // Try .destroy() first (AudioStream interface)
+      if (typeof handle.destroy === 'function') {
+        try {
+          console.log(`[InterruptController] Calling .destroy() on ${sessionId}`);
+          handle.destroy();
+          interrupted = true;
+        } catch (err) {
+          console.error(`[InterruptController] Error calling .destroy() on ${sessionId}:`, err);
+        }
+      }
+      
+      // Fallback to .abort() (AbortController interface)
+      if (!interrupted && typeof handle.abort === 'function') {
+        try {
+          console.log(`[InterruptController] Calling .abort() on ${sessionId}`);
+          handle.abort();
+          interrupted = true;
+        } catch (err) {
+          console.error(`[InterruptController] Error calling .abort() on ${sessionId}:`, err);
+        }
       }
 
-      console.log(`[InterruptController] 🚨 INTERRUPTED: ${sessionId} (${reason})`);
-      
-      // Emit interrupt event for other components
-      this.emit('interrupted', { sessionId, reason, timestamp: Date.now() });
-      
-      return true;
+      // Emergency: check for wrapped controller (shim wrapper)
+      if (!interrupted && handle._controller && typeof handle._controller.abort === 'function') {
+        try {
+          console.log(`[InterruptController] Calling ._controller.abort() on ${sessionId}`);
+          handle._controller.abort();
+          interrupted = true;
+        } catch (err) {
+          console.error(`[InterruptController] Error calling ._controller.abort() on ${sessionId}:`, err);
+        }
+      }
+
+      // No valid interface found
+      if (!interrupted) {
+        console.error(`[InterruptController] ❌ Handle for ${sessionId} has no .destroy(), .abort(), or ._controller`);
+        console.error(`[InterruptController] Handle type: ${typeof handle}, keys:`, Object.keys(handle || {}));
+      }
+
+      session.audioStream = null;
     }
-    return false;
+
+    console.log(`[InterruptController] 🚨 INTERRUPTED: ${sessionId} (${reason})`);
+
+    // Emit interrupt event for other components (even if handle lacked interfaces)
+    // This allows upstream shims to react
+    this.emit('interrupted', { sessionId, reason, timestamp: Date.now() });
+
+    session.interrupting = false; // ✅ ADDED: Clear interrupting flag
+
+    return true;
   }
 
   /**
@@ -78,12 +139,50 @@ class InterruptController extends EventEmitter {
   }
 
   /**
-   * End session
+   * End session - uses hardened interrupt logic for cleanup
    */
   endSession(sessionId) {
     const session = this.activeSessions.get(sessionId);
-    if (session && session.audioStream) {
-      session.audioStream.destroy();
+    if (session) {
+      // Use same hardened logic as interrupt() to handle any stream type
+      if (session.audioStream) {
+        const handle = session.audioStream;
+        let cleaned = false;
+
+        // Try .destroy() first (AudioStream interface)
+        if (typeof handle.destroy === 'function') {
+          try {
+            handle.destroy();
+            cleaned = true;
+          } catch (err) {
+            console.error(`[InterruptController] Error destroying stream in endSession for ${sessionId}:`, err);
+          }
+        }
+
+        // Fallback to .abort() (AbortController/shim interface)
+        if (!cleaned && typeof handle.abort === 'function') {
+          try {
+            handle.abort();
+            cleaned = true;
+          } catch (err) {
+            console.error(`[InterruptController] Error aborting in endSession for ${sessionId}:`, err);
+          }
+        }
+
+        // Emergency: check for wrapped controller (shim wrapper)
+        if (!cleaned && handle._controller && typeof handle._controller.abort === 'function') {
+          try {
+            handle._controller.abort();
+            cleaned = true;
+          } catch (err) {
+            console.error(`[InterruptController] Error aborting _controller in endSession for ${sessionId}:`, err);
+          }
+        }
+
+        if (!cleaned) {
+          console.warn(`[InterruptController] Could not clean up stream for ${sessionId} - handle type: ${typeof handle}`);
+        }
+      }
     }
     this.activeSessions.delete(sessionId);
     console.log(`[InterruptController] Session ended: ${sessionId}`);
@@ -131,18 +230,27 @@ router.post('/session/start', (req, res) => {
 /**
  * POST /api/interrupt/trigger
  * EMERGENCY INTERRUPT - User is speaking, STOP AI NOW
+ * Rate limited via /api/ limiter (100 req/15min per IP)
  */
 router.post('/trigger', (req, res) => {
   const { sessionId, reason } = req.body;
   
-  if (!sessionId) {
+  if (!sessionId || typeof sessionId !== 'string') {
     return res.status(400).json({
       success: false,
-      error: 'sessionId required'
+      error: 'sessionId required (must be string)'
     });
   }
 
-  const interrupted = interruptController.interrupt(sessionId, reason);
+  // Validate sessionId format (prevent injection/DoS)
+  if (sessionId.length > 256) {
+    return res.status(400).json({
+      success: false,
+      error: 'sessionId too long (max 256 characters)'
+    });
+  }
+
+  const interrupted = interruptController.interrupt(sessionId, reason || 'user_speech');
   
   res.json({
     success: true,

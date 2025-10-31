@@ -2,12 +2,15 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
 import { createRequire } from 'module';
 import { createServer } from 'http';
 import elevenlabsRouter from './routers/elevenlabs-router.js';
 import reasoningRouter from './routers/reasoning-router.js';
 import interruptController from './routers/interrupt-controller.js';
 import unifiedVoiceRouter, { initWebSocket } from './routers/unified-voice-router.js';
+import mcpBridgeRouter, { mcpVoicemodeBridge as mcpBridge } from './mcp-voicemode-bridge.js';
+import { requireJWT } from './middleware/auth.js';
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -36,17 +39,28 @@ try {
 // Security middleware
 app.use(helmet());
 
-// CORS configuration
+// CORS configuration - Production domains only
 app.use(cors({
   origin: [
-    'https://reggieanddro.com',
-    'https://voice.reggieanddro.com',
-    'https://brain.reggieanddro.com',
+    'https://herbitrage.com',
+    'https://voice.herbitrage.com',
     'http://localhost:3000',
     'http://localhost:5173'
   ],
-  credentials: true
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
 }));
+
+// Rate limiting - 100 requests per 15 minutes per IP
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+  message: 'Too many requests from this IP, please try again later.',
+  standardHeaders: true,
+  legacyHeaders: false
+});
+app.use('/api/', limiter);
 
 // Body parsing
 app.use(express.json({ limit: '10mb' }));
@@ -70,7 +84,9 @@ app.get('/health', (req, res) => {
       unifiedVoice: true,
       multiModel: true,
       claude: !!process.env.ANTHROPIC_API_KEY,
-      openai: !!process.env.OPENAI_API_KEY
+      openai: !!process.env.OPENAI_API_KEY,
+      mcpBridge: true,
+      interruptable: true
     }
   });
 });
@@ -86,6 +102,7 @@ app.get('/', (req, res) => {
       elevenlabs: '/api/elevenlabs/*',
       reasoning: '/api/reasoning/*',
       interrupt: '/api/interrupt/*',
+      mcpBridge: '/api/mcp-bridge/*',
       unifiedVoice: '/api/voice/*',
       voiceWebSocket: 'ws://localhost:PORT/api/voice/ws',
       voiceStats: '/api/voice/stats',
@@ -95,10 +112,25 @@ app.get('/', (req, res) => {
 });
 
 // Mount routers
-app.use('/api/elevenlabs', elevenlabsRouter);
-app.use('/api/reasoning', reasoningRouter);
-app.use('/api/interrupt', interruptController);  // 🚨 VOICE INTERRUPT DISCIPLINE
-app.use('/api/voice', unifiedVoiceRouter);  // 🚀 UNIFIED VOICE ROUTER - Multi-model, <200ms target, full interruption
+// Health endpoint is excluded from JWT auth (public access needed)
+// Rate limiting applies to all /api/ routes (configured at line 62)
+app.use('/api/elevenlabs', requireJWT, elevenlabsRouter);
+app.use('/api/reasoning', requireJWT, reasoningRouter);
+app.use('/api/interrupt', requireJWT, interruptController);  // 🚨 VOICE INTERRUPT DISCIPLINE - Rate limited via /api/ limiter
+app.use('/api/mcp-bridge', requireJWT, mcpBridgeRouter);  // 🎙️ MCP VOICEMODE BRIDGE - Makes MCP voice interruptable
+app.use('/api/voice', requireJWT, unifiedVoiceRouter);  // 🚀 UNIFIED VOICE ROUTER - Multi-model, <200ms target, full interruption
+
+// MCP Bridge endpoints
+app.get('/api/mcp-bridge/status', (req, res) => {
+  res.json(mcpBridge.getStatus());
+});
+
+app.post('/api/mcp-bridge/interrupt/:sessionId', async (req, res) => {
+  const { sessionId } = req.params;
+  const { reason } = req.body || {};
+  const interrupted = mcpBridge.interrupt(sessionId, reason || 'api_request');
+  res.json({ ok: interrupted, sessionId });
+});
 
 app.post('/api/commands/orchestration', async (req, res) => {
   if (!handleOrchestrationCommand) {
