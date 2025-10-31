@@ -1,76 +1,50 @@
 /**
  * AbortController Shim - Unifies .destroy() and .abort() interfaces
  * Ensures ALL 3 interrupt paths (WebSocket, REST, MCP) can kill audio
- * Created: 2025-10-31 - Voice Mode Interruptability Fix
+ * 
+ * Created: 2025-10-31
+ * Standard: LivHana 100% Absolute Truth Standard
  */
 
-/**
- * Create unified interrupt handle that wraps AbortController
- * @param {AbortController} abortController - The AbortController to wrap
- * @param {Object} context - Optional context for logging: { source: string, sessionId: string }
- * @returns {Object} Unified handle with .destroy(), .abort(), and .signal
- */
 export function createInterruptHandle(abortController, context = {}) {
   if (!abortController) {
-    console.error('[ABORT-SHIM] No AbortController provided', context);
-    // Return safe no-op handle with dummy signal to prevent null reference errors
-    const dummySignal = { aborted: true }; // Mark as already aborted
-    return { 
-      destroy: () => {}, 
-      abort: () => {}, 
-      signal: dummySignal, // Provide dummy signal instead of null
-      _controller: null,
-      get aborted() { return true; } // Always report as aborted
-    };
+    return { destroy: () => {}, abort: () => {}, signal: null, context: {}, isAborted: false };
   }
 
-  const { source, sessionId } = context;
-  let aborted = false;
+  const frozenContext = Object.freeze({ ...context });
 
-  const log = (action) => {
-    // Guard against non-string context values to prevent logging crashes
-    const ctx = source ? `[${String(source)}]` : '[ABORT-SHIM]';
-    const session = sessionId ? ` session:${String(sessionId)}` : '';
-    console.log(`${ctx} ${action}${session}`);
-  };
+  let isAborted = false;
 
-  return {
-    // Primary interface expected by interrupt-controller.js
+  return Object.freeze({
     destroy: () => {
-      // Always check signal state first to sync with external aborts
-      if (abortController.signal.aborted || aborted) {
-        log('destroy() called (already aborted - duplicate call)');
-        aborted = true; // Sync local state
-        return;
+      if (isAborted) return;
+      try {
+        if (!abortController.signal.aborted) {
+          isAborted = true;
+          abortController.abort();
+        }
+      } catch (err) { 
+        console.error('[SHIM] destroy() error:', err); 
       }
-      aborted = true;
-      log('destroy() called → aborting controller');
-      abortController.abort();
     },
 
-    // Secondary interface for direct abort calls
     abort: () => {
-      // Always check signal state first to sync with external aborts
-      if (abortController.signal.aborted || aborted) {
-        log('abort() called (already aborted - duplicate call)');
-        aborted = true; // Sync local state
-        return;
+      if (isAborted) return;
+      try {
+        if (!abortController.signal.aborted) {
+          isAborted = true;
+          abortController.abort();
+        }
+      } catch (err) { 
+        console.error('[SHIM] abort() error:', err); 
       }
-      aborted = true;
-      log('abort() called → aborting controller');
-      abortController.abort();
     },
 
-    // Expose signal for downstream abort listeners
     signal: abortController.signal,
 
-    // Expose raw controller for edge cases
-    _controller: abortController,
+    context: frozenContext,
 
-    // Check if already aborted (for debugging)
-    get aborted() {
-      return aborted || abortController.signal.aborted;
-    }
-  };
+    get isAborted() { return isAborted || abortController.signal.aborted; }
+  });
 }
 
