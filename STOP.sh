@@ -112,9 +112,49 @@ stop_docker_services() {
   fi
 }
 
+# Drain Redis queues before shutdown
+drain_redis_queues() {
+  log "Draining Redis queues..."
+
+  # Check if Redis is running
+  if ! redis-cli -p "${REDIS_PORT:-6379}" ping >/dev/null 2>&1; then
+    log "  Redis not running, skipping queue drain"
+    return 0
+  fi
+
+  # Get queue depths
+  local queue_name="voice-mode-reasoning-jobs"
+  local queue_depth=$(redis-cli -p "${REDIS_PORT:-6379}" llen "bull:${queue_name}:wait" 2>/dev/null || echo "0")
+
+  if [[ $queue_depth -gt 0 ]]; then
+    log "  Found $queue_depth jobs in $queue_name queue"
+    log "  Waiting for jobs to complete (max 30s)..."
+
+    local wait_time=0
+    local max_wait=30
+
+    while [[ $queue_depth -gt 0 ]] && [[ $wait_time -lt $max_wait ]]; do
+      sleep 2
+      wait_time=$((wait_time + 2))
+      queue_depth=$(redis-cli -p "${REDIS_PORT:-6379}" llen "bull:${queue_name}:wait" 2>/dev/null || echo "0")
+    done
+
+    if [[ $queue_depth -gt 0 ]]; then
+      log_warning "  $queue_depth jobs remain after ${max_wait}s (continuing anyway)"
+    else
+      log_success "  All jobs processed"
+    fi
+  else
+    log "  No pending jobs in queues"
+  fi
+}
+
 # Stop Redis server
 stop_redis() {
   log "Stopping Redis..."
+
+  # Drain queues first
+  drain_redis_queues
 
   # Get ALL Redis PIDs on port 6379
   local redis_pids=$(lsof -ti :"${REDIS_PORT:-6379}" 2>/dev/null)
