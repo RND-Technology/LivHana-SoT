@@ -38,6 +38,8 @@ cleanup() {
 trap 'cleanup $?' EXIT
 trap 'cleanup 143' SIGTERM
 trap 'cleanup 130' SIGINT
+trap 'cleanup 131' SIGQUIT  # Ctrl+\ or kill -QUIT (core dump signal)
+trap 'cleanup 129' SIGHUP   # Terminal hangup (SSH disconnects)
 
 # Logging
 log() {
@@ -271,8 +273,8 @@ update_status() {
   local tracked=$(wc -l < "$STATE_FILE" 2>/dev/null || echo 0)
   local commits_last_hour=$(git -C "$ROOT" log --since="1 hour ago" --oneline 2>/dev/null | wc -l | tr -d ' ')
 
-  # Write to temp file first, then atomic move
-  cat > "$STATUS_FILE.tmp" <<EOF
+  # Write to temp file first, then atomic move (with error handling for disk-full)
+  if ! cat > "$STATUS_FILE.tmp" <<EOF
 {
   "watchdog": "claude_tier1_auto_save",
   "status": "active",
@@ -289,7 +291,17 @@ update_status() {
   "uptime_seconds": $SECONDS
 }
 EOF
-  mv "$STATUS_FILE.tmp" "$STATUS_FILE"
+  then
+    log_error "Failed to write status file (disk full or permissions issue)"
+    rm -f "$STATUS_FILE.tmp"
+    return 1
+  fi
+  
+  if ! mv "$STATUS_FILE.tmp" "$STATUS_FILE" 2>/dev/null; then
+    log_error "Failed to move status file into place (permissions issue?)"
+    rm -f "$STATUS_FILE.tmp"
+    return 1
+  fi
 }
 
 # Main execution
