@@ -64,7 +64,6 @@
 - No new edits; purely synthesis and documentation
 - Final check: validate state is consistent and ready for clean restart
 
-
 ### To-dos
 
 - [ ] Enumerate all completed work with evidence (commits, files, test results)

@@ -68,9 +68,11 @@ get_agent_memory() {
 
   # Find process by tmux session name
   if tmux has-session -t "$agent" 2>/dev/null; then
-    local pids=$(tmux list-panes -t "$agent" -F "#{pane_pid}" 2>/dev/null)
+    local pids
+    pids=$(tmux list-panes -t "$agent" -F "#{pane_pid}" 2>/dev/null)
     if [[ -n "$pids" ]]; then
-      local mem_kb=$(ps -o rss= -p $pids 2>/dev/null | awk '{sum+=$1} END {print sum}')
+      local mem_kb
+      mem_kb=$(ps -o rss= -p "$pids" 2>/dev/null | awk '{sum+=$1} END {print sum}')
       if [[ -n "$mem_kb" ]]; then
         echo "$((mem_kb / 1024))"  # Convert to MB
         return
@@ -83,7 +85,8 @@ get_agent_memory() {
 
 # Generate metrics JSON (atomic write to prevent corruption)
 generate_metrics() {
-  local timestamp=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+  local timestamp
+  timestamp=$(date -u +%Y-%m-%dT%H:%M:%SZ)
   local active_count=0
   local total_memory=0
 
@@ -102,8 +105,10 @@ EOF
 
   local first=true
   for agent in "${AGENTS[@]}"; do
-    local health=$(check_agent_health "$agent")
-    local memory=$(get_agent_memory "$agent")
+    local health
+    health=$(check_agent_health "$agent")
+    local memory
+    memory=$(get_agent_memory "$agent")
 
     [[ "$health" == "active" ]] && active_count=$((active_count + 1))
     total_memory=$((total_memory + memory))
@@ -154,9 +159,12 @@ monitor_loop() {
     iteration=$((iteration + 1))
 
     # Generate metrics
-    local metrics=$(generate_metrics)
-    local active_count=$(echo "$metrics" | cut -d: -f1)
-    local total_memory=$(echo "$metrics" | cut -d: -f2)
+    local metrics
+    metrics=$(generate_metrics)
+    local active_count
+    active_count=$(echo "$metrics" | cut -d: -f1)
+    local total_memory
+    total_memory=$(echo "$metrics" | cut -d: -f2)
 
     # Log status
     if [[ $active_count -eq 5 ]]; then
@@ -171,8 +179,10 @@ monitor_loop() {
     if [[ $((iteration % 6)) -eq 0 ]]; then
       info "━━━ Agent Status Detail ━━━"
       for agent in "${AGENTS[@]}"; do
-        local health=$(check_agent_health "$agent")
-        local memory=$(get_agent_memory "$agent")
+        local health
+        health=$(check_agent_health "$agent")
+        local memory
+        memory=$(get_agent_memory "$agent")
 
         case "$health" in
           active)
@@ -207,7 +217,7 @@ cleanup() {
   local exit_code=${1:-0}
   info "Real-time agent logger shutting down (PID $$)"
   # No lock file to remove for this watchdog
-  exit $exit_code
+  exit "$exit_code"
 }
 
 # Trap signals for graceful shutdown with proper exit code preservation
