@@ -67,6 +67,34 @@ const commandHandlers: CommandHandlerDefinition[] = [
     }
   },
   {
+    name: 'set-voice-mode',
+    matcher: (input) => input.match(/(set|switch|change|enable|use)\s+(?:voice\s+)?mode\s+(?:to\s+)?(atlas|comt|default|standard)/i),
+    execute: async (input, { baseUrl, fetchImpl, logger, requestedBy }) => {
+      const match = input.match(/(atlas|comt|default|standard)/i);
+      const mode = match ? match[1].toLowerCase() : 'default';
+
+      const { response, data } = await postJson(fetchImpl, `${baseUrl}${VOICE_ENDPOINT}`, {
+        command: 'set_voice_mode',
+        payload: { mode },
+        requestedBy,
+      });
+
+      const message = response.ok
+        ? `Voice mode set to ${mode}.`
+        : `Failed to set voice mode.`;
+
+      logger('Voice command executed: set voice mode', { status: response.status, mode });
+
+      return {
+        success: response.ok,
+        message,
+        canonicalCommand: 'set_voice_mode',
+        details: data,
+        telemetry: { status: response.status, mode },
+      };
+    },
+  },
+  {
     name: 'scale-up',
     matcher: (input) => /(scale|add|increase).*(workers?|capacity|power|throughput)/.test(input) && /up|more|increase/.test(input),
     execute: async (_input, { baseUrl, fetchImpl, logger, requestedBy }) => {
