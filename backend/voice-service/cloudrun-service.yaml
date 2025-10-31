@@ -1,0 +1,91 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: voice-service
+  namespace: default
+  labels:
+    app: voice-service
+    tier: unified-router
+    version: "1.0.0"
+spec:
+  template:
+    metadata:
+      annotations:
+        run.googleapis.com/execution-environment: gen2
+        run.googleapis.com/startup-cpu-boost: "true"
+        run.googleapis.com/concurrency: "80"
+    spec:
+      serviceAccountName: voice-service@reggieanddrodispensary.iam.gserviceaccount.com
+      containers:
+        - image: gcr.io/reggieanddrodispensary/voice-service:latest
+          ports:
+            - name: http1
+              containerPort: 8080
+          env:
+            - name: NODE_ENV
+              value: production
+            - name: GCP_PROJECT_ID
+              value: reggieanddrodispensary
+            - name: HOST
+              value: 0.0.0.0
+            - name: PORT
+              value: "8080"
+            - name: REDIS_HOST
+              value: localhost
+            - name: REDIS_PORT
+              value: "6379"
+            - name: REASONING_GATEWAY_BASE_URL
+              value: http://reasoning-gateway:4002/api/reasoning
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: openai-api-key-secret
+                  key: credential
+            - name: ANTHROPIC_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: anthropic-api-key-secret
+                  key: credential
+            - name: WHISPER_SERVICE_URL
+              value: http://whisper-service:9000
+            - name: VOCODE_TTS_URL
+              value: http://vocode-tts:9001
+          resources:
+            limits:
+              memory: 1Gi
+              cpu: 2
+            requests:
+              memory: 512Mi
+              cpu: 1
+          startupProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 5
+            periodSeconds: 10
+            failureThreshold: 5
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 20
+            timeoutSeconds: 5
+            periodSeconds: 30
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 5
+            timeoutSeconds: 3
+            periodSeconds: 10
+            failureThreshold: 2
+      timeoutSeconds: 300
+      containerConcurrency: 80
+      minScale: 1
+      maxScale: 20
+      ingress: all
+  traffic:
+    - percent: 100
+      latestRevision: true
