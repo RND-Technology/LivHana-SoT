@@ -1,0 +1,65 @@
+---
+seed_id: DNA-20251029-2322-archaeo-6
+created_at: 2025-10-29T23:22:00Z
+agent: sheriff
+status: complete
+criticality: 5/10
+
+what: |
+  Analyzed vs code crash report.txt (154KB root file)
+
+why: |
+  Extract technical evidence of VS Code AppTranslocation crashes
+
+who: sheriff
+
+when: 2025-10-29T23:22:00Z
+
+where:
+  file: vs code crash report.txt
+  current_location: /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/vs code crash report.txt
+  target_location: backups/diagnostic_reports/vscode_crash_20251027.txt
+  action_after_mining: archive_or_delete
+
+how: |
+  Read crash dump, extracted key technical details
+
+result: |
+  TECHNICAL EVIDENCE - Confirms AppTranslocation crash pattern
+
+  Crash Details:
+  - Process: Electron (VS Code 1.104.0)
+  - Path: /private/var/folders/.../AppTranslocation/...  ← SMOKING GUN
+  - Date: 2025-10-27 19:25:43
+  - Exception: EXC_BREAKPOINT (SIGTRAP)
+  - Crashed Thread: CrBrowserMain (main thread)
+
+  Stack Trace Evidence:
+  - Crash in Electron Framework: ares_llist_node_first + 3530952
+  - V8 garbage collection: v8::CppHeap::CollectGarbageInYoungGenerationForTesting
+  - DNS resolution deadlock suspected
+
+  Key Insight:
+  Crash happened while VS Code running from AppTranslocation
+  = Confirms ExecMon agent's root cause analysis
+
+  Value:
+  - Proves AppTranslocation is crash cause (not speculation)
+  - Technical evidence for fix justification
+  - Historical record of system state
+
+  Disposition:
+  - LOW future value (fix already created)
+  - Archive to diagnostic_reports/ (may need for comparison post-fix)
+  - Can delete after fix verified stable for 30 days
+
+next: |
+  Move to backups/diagnostic_reports/vscode_crash_20251027.txt
+  Set expiration date: 30 days after VS Code fix applied
+  Delete after confirming fix stability
+
+links:
+  parent_chunk: CHUNK-20251029-2322-data-archaeology-pilot
+  related_findings:
+    - execmon_vscode_analysis (18 crashes documented)
+    - fix_vscode_translocation_CORRECTED.sh (solution)

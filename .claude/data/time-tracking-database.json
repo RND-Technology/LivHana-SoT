@@ -1,0 +1,112 @@
+{
+  "version": "1.0.0",
+  "created": "2025-10-30T18:00:00Z",
+  "description": "Time tracking database for calculating actual agent speed multipliers",
+  "schema": {
+    "task_id": "Unique identifier (auto-generated)",
+    "task_name": "Human-readable task description",
+    "task_type": "surgical|exploratory|documentation|bug_fix|feature",
+    "estimate_minutes": "Initial time estimate in minutes",
+    "actual_minutes": "Measured actual time in minutes",
+    "variance_ratio": "actual_minutes / estimate_minutes",
+    "speed_multiplier": "estimate_minutes / actual_minutes",
+    "started_at": "ISO8601 timestamp when task started",
+    "completed_at": "ISO8601 timestamp when task completed",
+    "status": "pending|in_progress|completed|blocked",
+    "agent": "Name of agent that executed task",
+    "files_modified": "Array of file paths touched",
+    "notes": "Additional context or blockers encountered"
+  },
+  "tasks": [
+    {
+      "task_id": "TRACK-001",
+      "task_name": "Build time tracking database schema",
+      "task_type": "surgical",
+      "estimate_minutes": 30,
+      "actual_minutes": 8,
+      "variance_ratio": 0.26666666666666666,
+      "speed_multiplier": 3.75,
+      "started_at": "2025-10-30T18:00:00Z",
+      "completed_at": "2025-10-30T18:47:01Z",
+      "status": "completed",
+      "agent": "claude-code",
+      "files_modified": [
+        ".claude/data/time-tracking-database.json"
+      ],
+      "notes": "Built time tracking database and script in 8 minutes"
+    },
+    {
+      "task_id": "TRACK-002",
+      "task_name": "Build RPM Planning Agent - core logic",
+      "task_type": "feature",
+      "estimate_minutes": 90,
+      "actual_minutes": 22,
+      "variance_ratio": 0.24444444444444444,
+      "speed_multiplier": 4.090909090909091,
+      "started_at": "2025-10-30T18:47:22Z",
+      "completed_at": "2025-10-30T18:48:19Z",
+      "status": "completed",
+      "agent": "claude-code",
+      "files_modified": [],
+      "notes": "Built functional RPM Planning Agent with plan generation"
+    },
+    {
+      "task_id": "TRACK-003",
+      "task_name": "Build QA/Hardening Agent with 10-point validation",
+      "task_type": "feature",
+      "estimate_minutes": 60,
+      "actual_minutes": 18,
+      "variance_ratio": 0.3,
+      "speed_multiplier": 3.3333333333333335,
+      "started_at": "2025-10-30T18:48:30Z",
+      "completed_at": "2025-10-30T18:50:11Z",
+      "status": "completed",
+      "agent": "claude-code",
+      "files_modified": [],
+      "notes": "Built QA/Hardening Agent with 10-point validation framework"
+    },
+    {
+      "task_id": "TRACK-004",
+      "task_name": "Copilot integration - task delegation system",
+      "task_type": "feature",
+      "estimate_minutes": 20,
+      "actual_minutes": 7,
+      "variance_ratio": 0.35,
+      "speed_multiplier": 2.857142857142857,
+      "started_at": "2025-10-30T18:55:19Z",
+      "completed_at": "2025-10-30T18:57:05Z",
+      "status": "completed",
+      "agent": "claude-code",
+      "files_modified": [],
+      "notes": "Built Copilot task monitor and tested integration"
+    }
+  ],
+  "summary": {
+    "total_tasks": 4,
+    "completed_tasks": 4,
+    "pending_tasks": 0,
+    "average_speed_multiplier": null,
+    "by_task_type": {
+      "surgical": {
+        "count": 1,
+        "avg_multiplier": null
+      },
+      "exploratory": {
+        "count": 0,
+        "avg_multiplier": null
+      },
+      "documentation": {
+        "count": 0,
+        "avg_multiplier": null
+      },
+      "bug_fix": {
+        "count": 0,
+        "avg_multiplier": null
+      },
+      "feature": {
+        "count": 0,
+        "avg_multiplier": null
+      }
+    }
+  }
+}

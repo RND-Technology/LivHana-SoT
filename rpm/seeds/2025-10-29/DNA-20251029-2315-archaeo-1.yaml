@@ -1,0 +1,56 @@
+---
+seed_id: DNA-20251029-2315-archaeo-1
+created_at: 2025-10-29T23:15:00Z
+agent: sheriff
+status: complete
+criticality: 9/10
+
+what: |
+  Analyzed KILL_LIST_AND_PERFECT_ARCHITECTURE.md (62KB root file)
+
+why: |
+  Data archaeology pilot - mine valuable knowledge before cleanup
+
+who: sheriff
+
+when: 2025-10-29T23:15:00Z
+
+where:
+  file: KILL_LIST_AND_PERFECT_ARCHITECTURE.md
+  current_location: /Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/KILL_LIST_AND_PERFECT_ARCHITECTURE.md
+  target_location: docs/planning/KILL_LIST_AND_PERFECT_ARCHITECTURE.md
+
+how: |
+  Read file, extracted architecture decisions and categorization methodology
+
+result: |
+  HIGH VALUE CONTENT - Must preserve
+
+  Key Insights:
+  - 70% file reduction plan (653 scripts → ~200)
+  - Systematic categorization: Tier 1 (delete), Archive (preserve), Consolidate (refactor)
+  - 4 redundant watchdogs identified for deletion (already removed)
+  - 14 root directory garbage files listed
+  - 11 dated deployment scripts marked obsolete
+  - 9 duplicate agent launchers to consolidate
+  - 14 duplicate validation scripts to merge
+
+  Architecture Decisions:
+  - Principle of One: Consolidate duplicates into single best implementation
+  - Archive emergency fixes (may contain useful logic)
+  - Delete victory lap/one-time scripts (zero production value)
+
+  Jesse's Principles Extracted:
+  - "Slaughter dead weight, extract the good, fuse into perfection"
+  - "Marine Corps Precision - No mercy for redundancy"
+  - Surgical extraction > blind deletion
+
+next: |
+  Move to docs/planning/ directory
+  Use as roadmap for Phase 2 cleanup (after mining complete)
+
+links:
+  parent_chunk: CHUNK-20251029-2315-data-archaeology-pilot
+  related_seeds:
+    - DNA-20251029-2315-archaeo-2 (EXECUTION_ARTIFACT)
+    - DNA-20251029-2315-archaeo-3 (CODEX_VALIDATION)

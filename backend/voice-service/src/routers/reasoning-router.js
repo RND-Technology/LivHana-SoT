@@ -20,10 +20,11 @@ const reasoningQueueEvents = createQueueEvents(REASONING_QUEUE_NAME);
  * POST /api/reasoning/chat
  * Direct synchronous chat endpoint (BYPASSES QUEUE)
  *
- * This endpoint provides <2s latency by:
+ * This endpoint provides <3s latency by:
  * 1. Bypassing BullMQ queue (eliminates 5-6s polling delay)
- * 2. Using GPT-4o-mini (1-2s vs 3-8s for Claude/DeepSeek)
- * 3. Direct HTTP call (no async overhead)
+ * 2. Using GPT-4o-mini (fastest OpenAI model, 1-2s avg)
+ * 3. Max 150 tokens (concise voice responses = faster)
+ * 4. Direct HTTP call (no async overhead)
  *
  * Use this for voice mode where latency is critical.
  * Use /enqueue for background tasks where accuracy > speed.
@@ -37,75 +38,138 @@ const reasoningQueueEvents = createQueueEvents(REASONING_QUEUE_NAME);
  */
 router.post('/chat', async (req, res) => {
   try {
-    const { message, conversationHistory = [], systemPrompt } = req.body;
+    const {
+      message,
+      conversationHistory = [],
+      systemPrompt,
+      model: requestedModel,
+      maxTokens,
+      temperature
+    } = req.body;
     const startTime = Date.now();
-
     console.log(`[reasoning-router][${new Date(startTime).toISOString()}] Direct /chat request: "${message?.substring(0, 50)}..."`);
 
-    if (!message) {
-      return res.status(400).json({
-        success: false,
-        error: 'Message is required'
-      });
+    if (!message || typeof message !== 'string') {
+      return res.status(400).json({ success: false, error: 'Message (string) is required' });
     }
 
-    // Build messages array
+    // Guard rails: latency-optimized defaults
+  const model = requestedModel || process.env.REASONING_FAST_MODEL || 'gpt-4o';
+    // Clamp tokens (voice responses should be short)
+    const max_completion_tokens = Math.min(parseInt(maxTokens || '150', 10), 300);
+    const temp = typeof temperature === 'number' ? Math.max(0, Math.min(temperature, 1)) : 0.7;
+
     const messages = [];
-
-    // Add system prompt if provided
-    if (systemPrompt) {
-      messages.push({
-        role: 'system',
-        content: systemPrompt
-      });
-    } else {
-      // Default system prompt for Liv Hana
-      messages.push({
-        role: 'system',
-        content: 'You are Liv Hana, a sovereign intelligence assistant. Be concise, direct, and helpful. Prioritize speed and clarity in voice interactions.'
-      });
-    }
-
-    // Add conversation history
-    if (conversationHistory.length > 0) {
-      messages.push(...conversationHistory);
-    }
-
-    // Add current message
     messages.push({
-      role: 'user',
-      content: message
+      role: 'system',
+      content: systemPrompt || 'You are Liv Hana. Respond with concise, spoken-ready answers. Avoid long lists unless explicitly requested.'
     });
+    if (conversationHistory.length > 0) {
+      // Limit history depth for latency (< 6 messages)
+      const trimmedHistory = conversationHistory.slice(-6);
+      messages.push(...trimmedHistory);
+    }
+    messages.push({ role: 'user', content: message });
 
-    // Call GPT-5 directly (NO QUEUE) - CUTTING EDGE
-    const completion = await openai.chat.completions.create({
-      model: 'gpt-5', // GPT-5 (Oct 2024 release)
-      messages: messages,
-      max_completion_tokens: 500 // GPT-5 uses max_completion_tokens not max_tokens
-      // Note: GPT-5 only supports temperature=1 (default), no custom values
-    });
+    const requestPayload = {
+      model,
+      messages,
+      max_completion_tokens
+    };
+    // Only include temperature if model supports deviation from default
+    // GPT-5 and GPT-4o only support temperature=1 (default)
+    if (!/^gpt-(4o|5)/.test(model) && typeof temp === 'number') {
+      requestPayload.temperature = temp;
+    }
+    const completion = await openai.chat.completions.create(requestPayload);
 
-    const responseText = completion.choices[0].message.content;
+    let responseText = completion.choices[0]?.message?.content || '';
+    // Hard trim excessively long outputs (> 800 chars) for voice playback speed
+    if (responseText.length > 800) {
+      responseText = responseText.slice(0, 800) + '…';
+    }
     const latency = Date.now() - startTime;
-
-    console.log(`[reasoning-router][${new Date().toISOString()}] Response generated in ${latency}ms`);
+    console.log(`[reasoning-router][${new Date().toISOString()}] Response generated in ${latency}ms (model=${model}, tokens=${completion.usage?.total_tokens})`);
 
     res.json({
       success: true,
       response: responseText,
       latency_ms: latency,
-      model: 'gpt-5',
-      tokens: completion.usage.total_tokens,
+      model,
+      tokens: completion.usage?.total_tokens,
       timestamp: new Date().toISOString()
     });
-
   } catch (error) {
     console.error('[reasoning-router] Direct chat error:', error);
-    res.status(500).json({
-      success: false,
-      error: error.message,
-      timestamp: new Date().toISOString()
+    res.status(500).json({ success: false, error: error.message, timestamp: new Date().toISOString() });
+  }
+});
+
+/**
+ * POST /api/reasoning/stream
+ * Latency-perception optimized streaming endpoint.
+ * Returns chunks as soon as they are available.
+ */
+router.post('/stream', async (req, res) => {
+  try {
+    const { message, systemPrompt, conversationHistory = [], model: requestedModel } = req.body || {};
+    if (!message) {
+      return res.status(400).json({ success: false, error: 'Message is required' });
+    }
+  const model = requestedModel || process.env.REASONING_FAST_MODEL || 'gpt-4o';
+    const messages = [];
+    messages.push({
+      role: 'system',
+      content: systemPrompt || 'You are Liv Hana. Stream concise voice-ready output.'
     });
+    if (conversationHistory.length) {
+      messages.push(...conversationHistory.slice(-4));
+    }
+    messages.push({ role: 'user', content: message });
+
+    // Set headers for chunked transfer
+    res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+    res.setHeader('Transfer-Encoding', 'chunked');
+
+    const start = Date.now();
+    let firstChunkSent = false;
+    let buffer = '';
+
+    const stream = await openai.chat.completions.create({
+      model,
+      messages,
+      max_completion_tokens: 150,
+      stream: true
+    });
+
+    for await (const part of stream) {
+      const delta = part.choices?.[0]?.delta?.content || '';
+      if (!delta) continue;
+      buffer += delta;
+      // Flush every ~60 chars to reduce overhead
+      if (buffer.length >= 60) {
+        res.write(buffer);
+        buffer = '';
+        if (!firstChunkSent) {
+          firstChunkSent = true;
+          const ttfb = Date.now() - start;
+          console.log(`[reasoning-router][stream] First chunk in ${ttfb}ms (model=${model})`);
+        }
+      }
+    }
+    if (buffer.length) {
+      res.write(buffer);
+    }
+    const total = Date.now() - start;
+    res.end();
+    console.log(`[reasoning-router][stream] Completed in ${total}ms (model=${model})`);
+  } catch (error) {
+    console.error('[reasoning-router] Stream error:', error);
+    if (!res.headersSent) {
+      res.status(500).json({ success: false, error: error.message });
+    } else {
+      res.end();
+    }
   }
 });
 

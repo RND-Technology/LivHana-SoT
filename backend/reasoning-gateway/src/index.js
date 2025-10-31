@@ -89,6 +89,9 @@ function verifyControlSecret(req) {
 
 async function processReasoningJob(job) {
   const { prompt, userId, sessionId, metadata } = job.data;
+  const jobStartTime = Date.now();
+  console.log(`[reasoning-gateway][${new Date(jobStartTime).toISOString()}] Picked up job ${job.id}. Prompt: "${prompt.substring(0, 50)}..."`);
+
 
   logger.info('Processing reasoning job', {
     jobId: job.id,
@@ -102,23 +105,34 @@ async function processReasoningJob(job) {
     let result;
     if (model.includes('claude') && process.env.ANTHROPIC_API_KEY) {
       const anthropicClient = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+      const aiStartTime = Date.now();
+      console.log(`[reasoning-gateway][${new Date(aiStartTime).toISOString()}] Job ${job.id}: Starting Anthropic API call.`);
       const response = await anthropicClient.messages.create({
         model: 'claude-3-5-sonnet-20241022',
         max_tokens: 1000,
         messages: [{ role: 'user', content: prompt }]
       });
+      const aiEndTime = Date.now();
+      console.log(`[reasoning-gateway][${new Date(aiEndTime).toISOString()}] Job ${job.id}: Anthropic API call finished. Duration: ${aiEndTime - aiStartTime}ms.`);
       result = response.content[0].text;
     } else if (process.env.OPENAI_API_KEY) {
       const openaiClient = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+      const aiStartTime = Date.now();
+      console.log(`[reasoning-gateway][${new Date(aiStartTime).toISOString()}] Job ${job.id}: Starting OpenAI API call.`);
       const response = await openaiClient.chat.completions.create({
         model: 'gpt-4o-mini',
         max_tokens: 1000,
         messages: [{ role: 'user', content: prompt }]
       });
+      const aiEndTime = Date.now();
+      console.log(`[reasoning-gateway][${new Date(aiEndTime).toISOString()}] Job ${job.id}: OpenAI API call finished. Duration: ${aiEndTime - aiStartTime}ms.`);
       result = response.choices[0].message.content;
     } else {
       result = `Hello! I received your prompt: "${prompt}". I would compute 2+2 = 4, but I need API keys configured to provide real AI responses.`;
     }
+
+    const jobEndTime = Date.now();
+    console.log(`[reasoning-gateway][${new Date(jobEndTime).toISOString()}] Job ${job.id} finished processing. Total job duration: ${jobEndTime - jobStartTime}ms.`);
 
     logger.info('Reasoning job completed', {
       jobId: job.id,

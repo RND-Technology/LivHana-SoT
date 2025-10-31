@@ -1,9 +1,19 @@
 {
   "agent": "artifact",
-  "phase": "startup",
+  "phase": "steady",
   "status": "running",
-  "started_at": "2025-10-29T16:44:58Z",
+  "started_at": "2025-10-30T21:07:13Z",
+  "updated_at": "2025-10-30T23:11:30Z",
   "finished_at": "",
-  "artifacts": ["/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/logs/agents/artifact_20251029_114458.log"],
-  "notes": "existing tmux session"
+  "artifacts": [
+    "/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/logs/artifact_agent.log",
+    "/Users/jesseniesen/LivHana-Trinity-Local/LivHana-SoT/logs/artifact_audit.log"
+  ],
+  "notes": "heartbeat ok; pending 1",
+  "http_port": 5013,
+  "metrics": {
+    "pending_tasks": 1,
+    "processed_total": 0,
+    "recent_tasks": []
+  }
 }

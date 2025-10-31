@@ -1,7 +1,7 @@
-import { jest } from '@jest/globals';
-import { Queue } from 'bullmq';
-import { createHardenedQueue, queueMonitor } from '../queue/hardenedQueue.js';
-import queueHealthMonitor from '../health/QueueHealthMonitor.js';
+const { jest } = require('@jest/globals');
+const { Queue } = require('bullmq');
+const { createHardenedQueue, queueMonitor } = require('../queue/hardenedQueue.js');
+const queueHealthMonitor = require('../health/QueueHealthMonitor.js');
 
 // Mock Redis for testing
 jest.mock('redis', () => ({

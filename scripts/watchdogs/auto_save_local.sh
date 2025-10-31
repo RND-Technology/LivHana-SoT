@@ -31,6 +31,8 @@ cleanup() {
 trap 'cleanup $?' EXIT
 trap 'cleanup 130' INT
 trap 'cleanup 143' TERM
+trap 'cleanup 131' QUIT  # Ctrl+\ or kill -QUIT
+trap 'cleanup 129' HUP   # Terminal hangup (SSH disconnects)
 
 log() {
   echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] $*" | tee -a "$LOG_FILE"

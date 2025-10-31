@@ -191,5 +191,68 @@ Just fixed 11 critical watchdog bugs in 5 files:
 
 ---
 
-**Last Updated**: 2025-10-30 (Test Active)
+---
+
+## 🔄 COPILOT ROUND-ROBIN ARCHITECTURE (ACTIVE)
+
+**Status**: LIVE at `scripts/integrations/copilot_roundrobin.cjs`
+**Purpose**: Async task delegation between Copilot (thinking) and Liv Hana agents (execution)
+
+### How It Works
+
+1. **Copilot writes task** to `.vscode/copilot_chat.json`:
+```json
+{
+  "request": "Your task description here",
+  "type": "execute",
+  "timestamp": "2025-10-30T16:10:00Z"
+}
+```
+
+2. **Round-robin service** detects change, delegates to appropriate agent:
+   - `plan` / `strategy` → planning agent
+   - `research` / `search` / `find` → research agent
+   - `test` / `qa` / `validate` → qa agent
+   - `execute` / `run` / `build` → execmon agent
+   - `artifact` / `document` → artifact agent
+
+3. **Agent executes** task and writes result to task queue
+
+4. **Round-robin service** reads result and writes to `.vscode/copilot_results.json`:
+```json
+{
+  "task_id": "copilot-1730326800000",
+  "status": "completed",
+  "result": "Task output here",
+  "agent": "planning",
+  "timestamp": "2025-10-30T16:10:30Z"
+}
+```
+
+5. **Copilot reads result** and continues conversation
+
+### Usage Example
+
+**Copilot writes**:
+```json
+{ "request": "Search the codebase for all watchdog scripts", "timestamp": "..." }
+```
+
+**Liv executes** (research agent searches)
+
+**Copilot reads**:
+```json
+{ "status": "completed", "result": "Found 6 watchdog scripts: ...", "agent": "research" }
+```
+
+### Benefits
+- ✅ Async execution - no blocking
+- ✅ Clean separation - Copilot thinks, Liv executes
+- ✅ File-based - no HTTP/WebSocket complexity
+- ✅ Agent delegation - task routed to specialist
+- ✅ Result tracking - full audit trail
+
+---
+
+**Last Updated**: 2025-10-30 (Round-Robin Active)
 **Maintained By**: AI Agent Collective + Jesse Niesen (CEO)

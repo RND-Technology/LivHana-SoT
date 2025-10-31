@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Andrew BD Cockpit | Liv Hana</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Monaco', 'Courier New', monospace;
+      background: #0a0a0a;
+      color: #00ff00;
+      padding: 20px;
+    }
+    .container { max-width: 1800px; margin: 0 auto; }
+
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #00ff00;
+    }
+    h1 {
+      font-size: 32px;
+      color: #00ff00;
+      text-shadow: 0 0 20px #00ff00;
+      margin-bottom: 10px;
+    }
+    .role { font-size: 14px; color: #888; }
+    .timestamp {
+      font-size: 12px;
+      color: #666;
+      margin-top: 10px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .panel {
+      background: #1a1a1a;
+      border: 2px solid #00ff00;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+    }
+
+    .panel-header {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: #00ff00;
+      text-transform: uppercase;
+    }
+
+    .shop-map {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .shop {
+      background: #2a2a2a;
+      border: 2px solid #444;
+      border-radius: 8px;
+      padding: 15px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .shop:hover {
+      transform: scale(1.05);
+      border-color: #00ff00;
+    }
+    .shop.active {
+      border-color: #00ff00;
+      background: #1a4a1a;
+      box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+    }
+    .shop.pending {
+      border-color: #ff9900;
+      background: #3a2a1a;
+    }
+
+    .shop-name {
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .shop-status {
+      font-size: 10px;
+      color: #888;
+    }
+    .shop.active .shop-status { color: #00ff00; }
+    .shop.pending .shop-status { color: #ff9900; }
+
+    .sample-tracker {
+      background: #2a2a2a;
+      padding: 12px;
+      margin-bottom: 10px;
+      border-left: 3px solid #00ff00;
+      border-radius: 4px;
+    }
+    .sample-tracker.pending {
+      border-left-color: #ff9900;
+    }
+    .sample-tracker.completed {
+      border-left-color: #00ff00;
+    }
+
+    .deal {
+      background: #2a2a2a;
+      padding: 15px;
+      margin-bottom: 12px;
+      border-radius: 4px;
+      border-left: 4px solid #ffd700;
+    }
+    .deal-title {
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    .deal-details {
+      font-size: 12px;
+      color: #888;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 5px;
+    }
+    .deal-value {
+      color: #ffd700;
+      font-weight: bold;
+    }
+
+    .quick-action {
+      background: #1a4a1a;
+      border: 2px solid #00ff00;
+      border-radius: 4px;
+      padding: 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-bottom: 10px;
+    }
+    .quick-action:hover {
+      background: #2a5a2a;
+      transform: translateY(-2px);
+      box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+    }
+
+    .metric {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #333;
+    }
+    .metric:last-child { border-bottom: none; }
+    .metric-label { font-size: 14px; color: #aaa; }
+    .metric-value {
+      font-size: 18px;
+      font-weight: bold;
+      color: #00ff00;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🏪 BUSINESS DEVELOPMENT COMMAND</h1>
+      <div class="role">Andrew Aparicio | 20 Shop Network Coordinator</div>
+      <div class="timestamp" id="timestamp">Last update: --</div>
+    </header>
+
+    <!-- 20 Shop Status Map -->
+    <div class="panel" style="grid-column: 1 / -1;">
+      <div class="panel-header">🗺️ 20 Shop Network Status</div>
+      <div class="shop-map" id="shop-map">
+        <!-- Shops 1-5: Active -->
+        <div class="shop active" onclick="shopDetails(1)">
+          <div class="shop-name">Shop 01</div>
+          <div class="shop-status">✅ ACTIVE</div>
+        </div>
+        <div class="shop active" onclick="shopDetails(2)">
+          <div class="shop-name">Shop 02</div>
+          <div class="shop-status">✅ ACTIVE</div>
+        </div>
+        <div class="shop active" onclick="shopDetails(3)">
+          <div class="shop-name">Shop 03</div>
+          <div class="shop-status">✅ ACTIVE</div>
+        </div>
+        <div class="shop active" onclick="shopDetails(4)">
+          <div class="shop-name">Shop 04</div>
+          <div class="shop-status">✅ ACTIVE</div>
+        </div>
+        <div class="shop active" onclick="shopDetails(5)">
+          <div class="shop-name">Shop 05</div>
+          <div class="shop-status">✅ ACTIVE</div>
+        </div>
+        <!-- Shops 6-20: Pending -->
+        <div class="shop pending" onclick="shopDetails(6)">
+          <div class="shop-name">Shop 06</div>
+          <div class="shop-status">⏳ PENDING</div>
+        </div>
+        <div class="shop pending" onclick="shopDetails(7)">
+          <div class="shop-name">Shop 07</div>
+          <div class="shop-status">⏳ PENDING</div>
+        </div>
+        <div class="shop pending" onclick="shopDetails(8)">
+          <div class="shop-name">Shop 08</div>
+          <div class="shop-status">⏳ PENDING</div>
+        </div>
+        <div class="shop pending" onclick="shopDetails(9)">
+          <div class="shop-name">Shop 09</div>
+          <div class="shop-status">⏳ PENDING</div>
+        </div>
+        <div class="shop pending" onclick="shopDetails(10)">
+          <div class="shop-name">Shop 10</div>
+          <div class="shop-status">⏳ PENDING</div>
+        </div>
+        <div class="shop pending" onclick="shopDetails(11)">
+          <div class="shop-name">Shop 11</div>
+          <div class="shop-status">⏳ PENDING</div>
+        </div>
+        <div class="shop pending" onclick="shopDetails(12)">
+          <div class="shop-name">Shop 12</div>
+          <div class="shop-status">⏳ PENDING</div>
+        </div>
+        <div class="shop pending" onclick="shopDetails(13)">
+          <div class="shop-name">Shop 13</div>
+          <div class="shop-status">⏳ PENDING</div>
+        </div>
+        <div class="shop pending" onclick="shopDetails(14)">
+          <div class="shop-name">Shop 14</div>
+          <div class="shop-status">⏳ PENDING</div>
+        </div>
+        <div class="shop pending" onclick="shopDetails(15)">
+          <div class="shop-name">Shop 15</div>
+          <div class="shop-status">⏳ PENDING</div>
+        </div>
+        <div class="shop pending" onclick="shopDetails(16)">
+          <div class="shop-name">Shop 16</div>
+          <div class="shop-status">⏳ PENDING</div>
+        </div>
+        <div class="shop pending" onclick="shopDetails(17)">
+          <div class="shop-name">Shop 17</div>
+          <div class="shop-status">⏳ PENDING</div>
+        </div>
+        <div class="shop pending" onclick="shopDetails(18)">
+          <div class="shop-name">Shop 18</div>
+          <div class="shop-status">⏳ PENDING</div>
+        </div>
+        <div class="shop pending" onclick="shopDetails(19)">
+          <div class="shop-name">Shop 19</div>
+          <div class="shop-status">⏳ PENDING</div>
+        </div>
+        <div class="shop pending" onclick="shopDetails(20)">
+          <div class="shop-name">Shop 20</div>
+          <div class="shop-status">⏳ PENDING</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <!-- Sample Tracking -->
+      <div class="panel">
+        <div class="panel-header">📦 Sample Tracking</div>
+        <div class="sample-tracker completed">
+          <strong>Permanent Marker</strong>
+          <div style="font-size: 12px; color: #888; margin-top: 5px;">
+            Sent: 50 units | COA: ✅ Ready | Shops: 1-5
+          </div>
+        </div>
+        <div class="sample-tracker completed">
+          <strong>Pink Suits</strong>
+          <div style="font-size: 12px; color: #888; margin-top: 5px;">
+            Sent: 50 units | COA: ✅ Ready | Shops: 1-5
+          </div>
+        </div>
+        <div class="sample-tracker pending">
+          <strong>Delta Drink</strong>
+          <div style="font-size: 12px; color: #ff9900; margin-top: 5px;">
+            Sent: 30 units | COA: ⏳ Pending | Shops: 6-10
+          </div>
+        </div>
+        <div class="metric" style="margin-top: 15px;">
+          <span class="metric-label">Total Samples Sent</span>
+          <span class="metric-value">130 units</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">COAs Ready</span>
+          <span class="metric-value">2/3</span>
+        </div>
+      </div>
+
+      <!-- Deal Pipeline -->
+      <div class="panel">
+        <div class="panel-header">💼 Deal Pipeline</div>
+        <div class="deal">
+          <div class="deal-title">Jordan Dispensary Owner</div>
+          <div class="deal-details">
+            <span>Status: Warm (relationship building)</span>
+            <span class="deal-value">~5 lbs</span>
+          </div>
+        </div>
+        <div class="deal">
+          <div class="deal-title">Bulk Buyer Prospect #1</div>
+          <div class="deal-details">
+            <span>Status: Negotiation</span>
+            <span class="deal-value">~10 lbs</span>
+          </div>
+        </div>
+        <div class="deal">
+          <div class="deal-title">Bulk Buyer Prospect #2</div>
+          <div class="deal-details">
+            <span>Status: Sample review</span>
+            <span class="deal-value">~20 lbs</span>
+          </div>
+        </div>
+        <div class="metric" style="margin-top: 15px;">
+          <span class="metric-label">Total Pipeline Value</span>
+          <span class="metric-value">$175K+</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="panel">
+      <div class="panel-header">⚡ Quick Actions</div>
+      <div class="grid">
+        <div class="quick-action" onclick="logShopVisit()">
+          📝 Log Shop Visit
+        </div>
+        <div class="quick-action" onclick="requestSample()">
+          📦 Request Sample Shipment
+        </div>
+        <div class="quick-action" onclick="downloadCOA()">
+          📄 Download COA
+        </div>
+        <div class="quick-action" onclick="contactRyan()">
+          📞 Contact Ryan Bologna (KCA)
+        </div>
+      </div>
+    </div>
+
+    <!-- Revenue Attribution -->
+    <div class="panel">
+      <div class="panel-header">💰 Revenue Attribution</div>
+      <div class="metric">
+        <span class="metric-label">Shop 01-05 (Active)</span>
+        <span class="metric-value">$12,500/mo</span>
+      </div>
+      <div class="metric">
+        <span class="metric-label">Projected (All 20)</span>
+        <span class="metric-value">$50,000/mo</span>
+      </div>
+      <div class="metric">
+        <span class="metric-label">Bulk Deals (Pipeline)</span>
+        <span class="metric-value">$175,000</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function shopDetails(shopNum) {
+      alert(`Shop ${shopNum} Details:\n\nClick would open detailed shop view with:\n- Contact info\n- Sample history\n- Sales data\n- Visit notes`);
+    }
+
+    function logShopVisit() {
+      alert('Log Shop Visit:\n\nForm would open to log:\n- Shop number\n- Visit date/time\n- Notes\n- Follow-up actions');
+    }
+
+    function requestSample() {
+      alert('Request Sample Shipment:\n\nForm would open to request:\n- Product type\n- Quantity\n- Destination shop(s)\n- Priority level');
+    }
+
+    function downloadCOA() {
+      alert('Download COA:\n\nList of available COAs:\n- Permanent Marker (Ready)\n- Pink Suits (Ready)\n- Delta Drink (Pending)');
+    }
+
+    function contactRyan() {
+      alert('Contact Ryan Bologna:\n\nKCA Labs Commercial Director\nEmail: ryan@kcalabs.com (example)\nPhone: (555) 123-4567');
+    }
+
+    setInterval(() => {
+      document.getElementById('timestamp').textContent =
+        'Last update: ' + new Date().toLocaleTimeString();
+    }, 5000);
+  </script>
+</body>
+</html>

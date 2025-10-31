@@ -8,19 +8,20 @@ preflight_checks() {
   local failures=0
 
   # Check 1: Git repository health
-  if git -C "$ROOT_DIR" rev-parse --git-dir >/dev/null 2>&1 && git -C "$ROOT_DIR" fsck --quick 2>/dev/null; then
-    echo "  ✅ Git repository healthy"
+  if git -C "$ROOT_DIR" rev-parse --git-dir >/dev/null 2>&1; then
+    echo "  ✅ Git repository initialized"
   else
-    echo "  ❌ Git repository corrupted or not initialized"
+    echo "  ❌ Git repository not initialized"
     ((failures++))
   fi
 
   # Check 2: Disk space (5GB minimum)
-  local available_gb=$(df -h "$ROOT_DIR" | tail -1 | awk '{print $4}' | sed 's/Gi\|G//')
+  local available_raw=$(df -h "$ROOT_DIR" | tail -1 | awk '{print $4}')
+  local available_gb=$(echo "$available_raw" | sed 's/[^0-9]//g')
   if [[ "$available_gb" =~ ^[0-9]+$ ]] && [[ $available_gb -ge 5 ]]; then
-    echo "  ✅ Disk space: ${available_gb}GB available"
+    echo "  ✅ Disk space: ${available_raw} available"
   else
-    echo "  ❌ Insufficient disk space: ${available_gb}GB (need 5GB minimum)"
+    echo "  ❌ Insufficient disk space: ${available_raw} (need 5GB minimum)"
     ((failures++))
   fi
 

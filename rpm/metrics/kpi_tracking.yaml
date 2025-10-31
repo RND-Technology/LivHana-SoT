@@ -1,0 +1,194 @@
+---
+# RPM KPI TRACKING SYSTEM
+# Version: 1.0
+# Created: 2025-10-29
+# Purpose: Track operational metrics for RPM Planning System and agent coordination
+
+## OPERATIONAL METRICS
+
+### Task Queue Performance
+task_queue:
+  # Success rate: percentage of tasks completed successfully
+  success_rate_target: 95
+  success_rate_current: null
+
+  # Average latency: time from task creation to completion (seconds)
+  avg_latency_target: 30
+  avg_latency_current: null
+
+  # Queue depth: number of pending tasks
+  queue_depth_target: 5
+  queue_depth_current: null
+
+  # Task throughput: tasks processed per hour
+  throughput_target: 20
+  throughput_current: null
+
+### Agent Health Metrics
+agent_health:
+  # Heartbeat uptime: percentage of time agents are responsive
+  heartbeat_uptime_target: 99.9
+  heartbeat_uptime_current: null
+
+  # Average response time: agent response latency (seconds)
+  avg_response_time_target: 5
+  avg_response_time_current: null
+
+  # Capacity utilization: percentage of agent capacity used
+  capacity_utilization_target: 80
+  capacity_utilization_current: null
+
+  # Error rate: percentage of agent operations that fail
+  error_rate_target: 1
+  error_rate_current: null
+
+### Inter-Agent Coordination
+coordination:
+  # Handoff success rate: percentage of successful agent handoffs
+  handoff_success_rate_target: 98
+  handoff_success_rate_current: null
+
+  # Cross-agent task completion: tasks requiring multiple agents
+  multi_agent_completion_target: 90
+  multi_agent_completion_current: null
+
+  # Coordination latency: time between agent handoffs (seconds)
+  coordination_latency_target: 10
+  coordination_latency_current: null
+
+### RPM DNA System Metrics
+rpm_dna:
+  # Seed capture rate: DNA seeds created per day
+  seed_capture_rate_target: 10
+  seed_capture_rate_current: null
+
+  # Chunk completion rate: percentage of chunks completed on time
+  chunk_completion_rate_target: 85
+  chunk_completion_rate_current: null
+
+  # Tree progress: percentage of weekly tree goals achieved
+  tree_progress_target: 80
+  tree_progress_current: null
+
+  # Planning accuracy: percentage of estimates within 20% of actual
+  planning_accuracy_target: 75
+  planning_accuracy_current: null
+
+### User Experience Metrics
+user_experience:
+  # Jesse copy/paste events: manual intervention count per day
+  copy_paste_events_target: 0
+  copy_paste_events_current: null
+
+  # Voice interruptions: percentage of voice sessions requiring manual fix
+  voice_interruptions_target: 5
+  voice_interruptions_current: null
+
+  # Task transparency: percentage of tasks with clear status updates
+  task_transparency_target: 100
+  task_transparency_current: null
+
+  # Session efficiency: ratio of automated vs manual operations
+  session_efficiency_target: 90
+  session_efficiency_current: null
+
+### System Reliability
+reliability:
+  # Boot success rate: percentage of successful system boots
+  boot_success_rate_target: 99
+  boot_success_rate_current: null
+
+  # Auto-save stability: percentage of clean auto-commits
+  auto_save_stability_target: 100
+  auto_save_stability_current: null
+
+  # Service uptime: percentage of time critical services are running
+  service_uptime_target: 99.5
+  service_uptime_current: null
+
+  # Recovery time: average time to recover from failures (minutes)
+  recovery_time_target: 5
+  recovery_time_current: null
+
+## TRACKING SCHEDULE
+
+update_frequency:
+  realtime: ["task_queue.queue_depth_current", "agent_health.capacity_utilization_current"]
+  hourly: ["task_queue.throughput_current", "coordination.coordination_latency_current"]
+  daily: ["rpm_dna.seed_capture_rate_current", "user_experience.copy_paste_events_current"]
+  weekly: ["rpm_dna.chunk_completion_rate_current", "rpm_dna.tree_progress_current"]
+
+## DATA SOURCES
+
+sources:
+  task_queue_metrics: "tmp/agent_status/codex_tasks/"
+  agent_status: "tmp/agent_status/*/heartbeat.json"
+  coordination_log: "tmp/agent_status/shared/coordination_log.jsonl"
+  rpm_seeds: "rpm/seeds/"
+  rpm_chunks: "rpm/chunks/"
+  rpm_trees: "rpm/trees/"
+  git_history: ".git/logs/"
+
+## ALERTING THRESHOLDS
+
+alerts:
+  critical:
+    - metric: "agent_health.heartbeat_uptime_current"
+      condition: "< 95"
+      action: "Alert Jesse + Auto-restart agent"
+
+    - metric: "task_queue.success_rate_current"
+      condition: "< 85"
+      action: "Alert Jesse + Review failed tasks"
+
+    - metric: "reliability.service_uptime_current"
+      condition: "< 95"
+      action: "Alert Jesse + Run health checks"
+
+  warning:
+    - metric: "task_queue.queue_depth_current"
+      condition: "> 10"
+      action: "Log warning + Monitor capacity"
+
+    - metric: "agent_health.capacity_utilization_current"
+      condition: "> 90"
+      action: "Log warning + Consider throttling"
+
+    - metric: "user_experience.voice_interruptions_target"
+      condition: "> 10"
+      action: "Log warning + Review voice reliability"
+
+## REPORTING
+
+daily_summary:
+  - "Task completion rate (last 24h)"
+  - "Agent uptime (last 24h)"
+  - "DNA seeds captured (today)"
+  - "Manual interventions (today)"
+
+weekly_summary:
+  - "Chunk completion rate (this week)"
+  - "Tree progress (this week)"
+  - "Average task latency (7-day trend)"
+  - "Top 3 failure patterns"
+
+monthly_summary:
+  - "Overall system reliability"
+  - "Planning accuracy trends"
+  - "Automation efficiency gains"
+  - "Recommendations for improvement"
+
+## DASHBOARD INTEGRATION
+
+dashboard_endpoints:
+  metrics_api: "http://localhost:4010/api/metrics"
+  grafana_url: "http://localhost:3000/d/rpm-metrics"
+  prometheus_export: "/metrics"
+
+## NOTES
+
+- All metrics are tracked in this file and updated by monitoring scripts
+- Historical data stored in `rpm/metrics/history/`
+- Anomaly detection runs every hour via `scripts/rpm/analyze_metrics.sh`
+- Jesse receives daily digest at 8am with top metrics and alerts
+- Weekly review includes trend analysis and improvement recommendations

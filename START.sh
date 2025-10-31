@@ -4,10 +4,15 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+source "$ROOT_DIR/scripts/boot/lib/instance_lock.sh"
 source "$ROOT_DIR/scripts/boot/lib/environment_setup.sh"
 source "$ROOT_DIR/scripts/boot/lib/service_management.sh"
 source "$ROOT_DIR/scripts/boot/lib/agent_management.sh"
 source "$ROOT_DIR/scripts/boot/lib/validation.sh"
+
+# Acquire instance lock FIRST (before anything else)
+acquire_instance_lock
+trap_instance_cleanup
 
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "🎖️  LivHana System of Truth - Marine Corps Precision"

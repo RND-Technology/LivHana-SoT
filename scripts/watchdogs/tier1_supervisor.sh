@@ -17,6 +17,51 @@ JITTER=3
 
 mkdir -p "$ROOT/tmp" "$ROOT/logs" "$ROOT/config"
 
+# Stale lock detection and cleanup (handles SIGKILL orphans)
+check_stale_lock() {
+  local lock_file=$1
+  local max_age_seconds=$((CHECK_INTERVAL * 2))  # 2x interval = stale
+  
+  if [[ ! -f "$lock_file" ]]; then
+    return 0  # No lock file = not stale
+  fi
+  
+  # Check if lock file has a PID
+  local lock_pid=$(cat "$lock_file" 2>/dev/null)
+  if [[ -z "$lock_pid" ]]; then
+    echo "WARNING: Lock file $lock_file has no PID, removing stale lock"
+    rm -f "$lock_file"
+    return 0
+  fi
+  
+  # Check if process is still running
+  if ! ps -p "$lock_pid" > /dev/null 2>&1; then
+    echo "WARNING: Lock PID $lock_pid is dead, removing stale lock: $lock_file"
+    rm -f "$lock_file"
+    return 0
+  fi
+  
+  # Check lock file age
+  if [[ $(uname) == "Darwin" ]]; then
+    # macOS stat
+    local lock_age=$(( $(date +%s) - $(stat -f %m "$lock_file" 2>/dev/null || echo 0) ))
+  else
+    # Linux stat
+    local lock_age=$(( $(date +%s) - $(stat -c %Y "$lock_file" 2>/dev/null || echo 0) ))
+  fi
+  
+  if [[ $lock_age -gt $max_age_seconds ]]; then
+    echo "WARNING: Lock file $lock_file is stale (${lock_age}s old, PID $lock_pid still running but unresponsive)"
+    # Don't auto-remove if process is running - might be legitimately slow
+    return 1
+  fi
+  
+  return 0
+}
+
+# Clean stale locks before attempting lock acquisition
+check_stale_lock "$LOCK_FILE"
+
 # Lockfile enforcement (single instance only)
 exec 200>"$LOCK_FILE"
 flock -n 200 || { echo "ERROR: Another supervisor instance running (PID $(cat "$LOCK_FILE" 2>/dev/null || echo unknown))"; exit 1; }
@@ -163,8 +208,8 @@ status_guard() {
   local commit_hash=$(git -C "$ROOT" rev-parse --short HEAD 2>/dev/null || echo "null")
   local tracked=$(wc -l < "$STATE_FILE" 2>/dev/null || echo 0)
 
-  # Write to temp file first, then atomic move
-  cat > "$STATUS_FILE.tmp" <<EOF
+  # Write to temp file first, then atomic move (with error handling for disk-full)
+  if ! cat > "$STATUS_FILE.tmp" <<EOF
 {
   "supervisor": "tier1",
   "last_check": "$timestamp",
@@ -176,7 +221,17 @@ status_guard() {
   "uptime_seconds": $SECONDS
 }
 EOF
-  mv "$STATUS_FILE.tmp" "$STATUS_FILE"
+  then
+    echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] ERROR: Failed to write status file (disk full or permissions issue)" >> "$ROOT/logs/tier1_supervisor.log"
+    rm -f "$STATUS_FILE.tmp"
+    return 1
+  fi
+  
+  if ! mv "$STATUS_FILE.tmp" "$STATUS_FILE" 2>/dev/null; then
+    echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] ERROR: Failed to move status file into place (permissions issue?)" >> "$ROOT/logs/tier1_supervisor.log"
+    rm -f "$STATUS_FILE.tmp"
+    return 1
+  fi
 }
 
 # Main loop
@@ -211,4 +266,6 @@ cleanup() {
 trap 'cleanup $?' EXIT
 trap 'cleanup 143' SIGTERM
 trap 'cleanup 130' SIGINT
+trap 'cleanup 131' SIGQUIT  # Core dump signal
+trap 'cleanup 129' SIGHUP   # Terminal hangup
 main
