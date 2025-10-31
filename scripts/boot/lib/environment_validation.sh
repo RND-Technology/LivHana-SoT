@@ -8,7 +8,15 @@
 # ============================================================================
 
 setup_environment() {
+  local root_dir="${1:-$(pwd)}"
   echo "⚙️  Setting up environment..."
+
+  # Load .env file if it exists
+  if [[ -f "$root_dir/.env" ]]; then
+    set -a  # Automatically export all variables
+    source "$root_dir/.env"
+    set +a
+  fi
 
   # M4 Max Optimization (2025)
   export NODE_OPTIONS="--max-old-space-size=4096 --max-semi-space-size=128 --expose-gc"

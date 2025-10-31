@@ -10,6 +10,21 @@ VOCODE_PROVIDER="${VOCODE_PROVIDER:-elevenlabs}"
 VOCODE_VOICE_ID="${VOCODE_VOICE_ID:-default}"
 ELEVENLABS_API_KEY="${ELEVENLABS_API_KEY:-}"
 
+# Load ELEVENLABS_API_KEY from 1Password if not set
+if [[ -z "$ELEVENLABS_API_KEY" ]] && command -v op >/dev/null 2>&1; then
+  if op whoami >/dev/null 2>&1; then
+    ELEVENLABS_API_KEY=$(op item get ELEVENLABS_API_KEY --vault LivHana-Ops-Keys --reveal --fields credential 2>/dev/null || echo "")
+    if [[ -n "$ELEVENLABS_API_KEY" ]]; then
+      export ELEVENLABS_API_KEY
+      echo "  ✅ ELEVENLABS_API_KEY loaded from 1Password"
+    else
+      echo "  ⚠️  ELEVENLABS_API_KEY not found in 1Password vault 'LivHana-Ops-Keys'"
+    fi
+  else
+    echo "  ⚠️  1Password not signed in (run: op signin)"
+  fi
+fi
+
 # Check if already running
 if lsof -i :"$VOCODE_PORT" >/dev/null 2>&1; then
   echo "  ℹ️  Vocode service already running on port $VOCODE_PORT"
