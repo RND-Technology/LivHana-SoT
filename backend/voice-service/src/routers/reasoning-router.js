@@ -322,33 +322,46 @@ router.get('/stream/:jobId', async (req, res) => {
     // Send initial connection event
     res.write(`data: ${JSON.stringify({ type: 'connected', jobId })}\n\n`);
 
-    // Listen to job progress events
-    reasoningQueueEvents.on('progress', ({ jobId: eventJobId, data }) => {
-      if (eventJobId === jobId) {
-        res.write(`data: ${JSON.stringify({ type: 'progress', progress: data })}\n\n`);
+    // Store event handlers for cleanup (prevents memory leaks)
+    const eventHandlers = {
+      progress: ({ jobId: eventJobId, data }) => {
+        if (eventJobId === jobId) {
+          res.write(`data: ${JSON.stringify({ type: 'progress', progress: data })}\n\n`);
+        }
+      },
+      completed: ({ jobId: eventJobId, returnvalue }) => {
+        if (eventJobId === jobId) {
+          res.write(`data: ${JSON.stringify({ type: 'completed', result: returnvalue })}\n\n`);
+          res.end();
+        }
+      },
+      failed: ({ jobId: eventJobId, failedReason }) => {
+        if (eventJobId === jobId) {
+          res.write(`data: ${JSON.stringify({ type: 'failed', error: failedReason })}\n\n`);
+          res.end();
+        }
       }
-    });
+    };
 
-    // Listen to job completed events
-    reasoningQueueEvents.on('completed', ({ jobId: eventJobId, returnvalue }) => {
-      if (eventJobId === jobId) {
-        res.write(`data: ${JSON.stringify({ type: 'completed', result: returnvalue })}\n\n`);
+    // Attach event listeners
+    reasoningQueueEvents.on('progress', eventHandlers.progress);
+    reasoningQueueEvents.on('completed', eventHandlers.completed);
+    reasoningQueueEvents.on('failed', eventHandlers.failed);
+
+    // Cleanup function to remove event listeners
+    const cleanup = () => {
+      reasoningQueueEvents.off('progress', eventHandlers.progress);
+      reasoningQueueEvents.off('completed', eventHandlers.completed);
+      reasoningQueueEvents.off('failed', eventHandlers.failed);
+      if (!res.writableEnded) {
         res.end();
       }
-    });
+    };
 
-    // Listen to job failed events
-    reasoningQueueEvents.on('failed', ({ jobId: eventJobId, failedReason }) => {
-      if (eventJobId === jobId) {
-        res.write(`data: ${JSON.stringify({ type: 'failed', error: failedReason })}\n\n`);
-        res.end();
-      }
-    });
-
-    // Handle client disconnect
-    req.on('close', () => {
-      res.end();
-    });
+    // Handle client disconnect - remove event listeners to prevent memory leaks
+    req.on('close', cleanup);
+    req.on('error', cleanup);
+    res.on('close', cleanup);
 
   } catch (error) {
     console.error('Reasoning stream error:', error);
