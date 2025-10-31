@@ -81,17 +81,24 @@ get_agent_memory() {
   echo "0"
 }
 
-# Generate metrics JSON
+# Generate metrics JSON (atomic write to prevent corruption)
 generate_metrics() {
   local timestamp=$(date -u +%Y-%m-%dT%H:%M:%SZ)
   local active_count=0
   local total_memory=0
 
-  cat > "$METRICS_FILE" <<EOF
+  # Write to temp file first for atomic update
+  if ! cat > "$METRICS_FILE.tmp" <<EOF
 {
   "timestamp": "$timestamp",
   "agents": {
 EOF
+  then
+    warning "Failed to write metrics file (disk full or permissions issue)"
+    rm -f "$METRICS_FILE.tmp"
+    echo "0:0"
+    return 1
+  fi
 
   local first=true
   for agent in "${AGENTS[@]}"; do
@@ -104,10 +111,10 @@ EOF
     if [[ "$first" == true ]]; then
       first=false
     else
-      echo "," >> "$METRICS_FILE"
+      echo "," >> "$METRICS_FILE.tmp"
     fi
 
-    cat >> "$METRICS_FILE" <<EOF
+    cat >> "$METRICS_FILE.tmp" <<EOF
     "$agent": {
       "health": "$health",
       "memory_mb": $memory,
@@ -116,7 +123,7 @@ EOF
 EOF
   done
 
-  cat >> "$METRICS_FILE" <<EOF
+  cat >> "$METRICS_FILE.tmp" <<EOF
 
   },
   "summary": {
@@ -127,6 +134,14 @@ EOF
   }
 }
 EOF
+
+  # Atomic move into place
+  if ! mv "$METRICS_FILE.tmp" "$METRICS_FILE" 2>/dev/null; then
+    warning "Failed to move metrics file into place (permissions issue?)"
+    rm -f "$METRICS_FILE.tmp"
+    echo "0:0"
+    return 1
+  fi
 
   echo "$active_count:$total_memory"
 }
@@ -187,8 +202,20 @@ monitor_loop() {
   done
 }
 
-# Trap signals for graceful shutdown
-trap 'info "Real-time agent logger shutting down (PID $$)"; exit 0' SIGTERM SIGINT
+# Cleanup on exit - preserve actual exit code
+cleanup() {
+  local exit_code=${1:-0}
+  info "Real-time agent logger shutting down (PID $$)"
+  # No lock file to remove for this watchdog
+  exit $exit_code
+}
+
+# Trap signals for graceful shutdown with proper exit code preservation
+trap 'cleanup $?' EXIT
+trap 'cleanup 130' SIGINT   # Ctrl+C
+trap 'cleanup 143' SIGTERM  # kill command
+trap 'cleanup 131' SIGQUIT  # Ctrl+\ or kill -QUIT
+trap 'cleanup 129' SIGHUP   # Terminal hangup (SSH disconnects)
 
 success "Agent status monitoring ready"
 info "Will log status every ${LOG_INTERVAL}s"

@@ -10,6 +10,51 @@ LOG_FILE="logs/auto_save_local.log"
 
 mkdir -p "$(dirname "$LOCK_FILE")" "$(dirname "$LOG_FILE")"
 
+# Stale lock detection and cleanup (handles SIGKILL orphans)
+check_stale_lock() {
+  local lock_file=$1
+  local max_age_seconds=$((INTERVAL * 2))  # 2x interval = stale
+
+  if [[ ! -f "$lock_file" ]]; then
+    return 0  # No lock file = not stale
+  fi
+
+  # Check if lock file has a PID
+  local lock_pid=$(cat "$lock_file" 2>/dev/null)
+  if [[ -z "$lock_pid" ]]; then
+    echo "WARNING: Lock file $lock_file has no PID, removing stale lock"
+    rm -f "$lock_file"
+    return 0
+  fi
+
+  # Check if process is still running
+  if ! ps -p "$lock_pid" > /dev/null 2>&1; then
+    echo "WARNING: Lock PID $lock_pid is dead, removing stale lock: $lock_file"
+    rm -f "$lock_file"
+    return 0
+  fi
+
+  # Check lock file age
+  if [[ $(uname) == "Darwin" ]]; then
+    # macOS stat
+    local lock_age=$(( $(date +%s) - $(stat -f %m "$lock_file" 2>/dev/null || echo 0) ))
+  else
+    # Linux stat
+    local lock_age=$(( $(date +%s) - $(stat -c %Y "$lock_file" 2>/dev/null || echo 0) ))
+  fi
+
+  if [[ $lock_age -gt $max_age_seconds ]]; then
+    echo "WARNING: Lock file $lock_file is stale (${lock_age}s old, PID $lock_pid still running but unresponsive)"
+    # Don't auto-remove if process is running - might be legitimately slow
+    return 1
+  fi
+
+  return 0
+}
+
+# Clean stale locks before attempting lock acquisition
+check_stale_lock "$LOCK_FILE"
+
 # Single instance check
 if [[ -f "$LOCK_FILE" ]]; then
   OLD_PID=$(cat "$LOCK_FILE")

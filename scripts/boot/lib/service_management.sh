@@ -6,6 +6,8 @@ start_services() {
   start_redis
   start_reasoning_gateway
   start_orchestration
+  start_whisper
+  start_vocode
   echo "✅ Services started"
 }
 
@@ -38,4 +40,20 @@ start_orchestration() {
 
   sleep 3
   echo "  ✅ Orchestration started"
+}
+
+start_whisper() {
+  tmux has-session -t whisper-service 2>/dev/null && { echo "  ℹ️  Whisper service running"; return; }
+
+  bash "$ROOT_DIR/scripts/voice/start_whisper_service.sh" || {
+    echo "  ⚠️  Whisper service failed to start (optional)"
+  }
+}
+
+start_vocode() {
+  tmux has-session -t vocode-service 2>/dev/null && { echo "  ℹ️  Vocode service running"; return; }
+
+  bash "$ROOT_DIR/scripts/voice/start_vocode_service.sh" || {
+    echo "  ⚠️  Vocode service failed to start (optional)"
+  }
 }

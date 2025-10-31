@@ -61,7 +61,11 @@
     "**/secrets/**",
     "**/*secret*",
     "**/*.key",
-    "**/*.pem"
+    "**/*.pem",
+    "**/config/**/*.env*",
+    "**/config/**/*secret*",
+    "**/config/**/credentials*",
+    "**/private/**"
   ],
   "settings": {
     "interval_seconds": 300,

@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # Environment Setup Module (Principle of One)
+# Includes Custom Voice System Configuration
 
 setup_environment() {
   echo "⚙️  Setting up environment..."

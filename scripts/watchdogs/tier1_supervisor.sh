@@ -76,7 +76,23 @@ if [[ ! -f "$MANIFEST" ]]; then
   "package_files": ["**/package.json", "**/package-lock.json"],
   "script_dirs": ["scripts/**/*.sh", "scripts/**/*.py", "scripts/**/*.js", "scripts/**/*.ts"],
   "agent_registry": ["tmp/agent_status/shared/agent_registry.json"],
-  "exclude_patterns": ["**/node_modules/**", "**/backups/**", "**/.git/**", "**/tmp/**", "**/logs/**"]
+  "exclude_patterns": [
+    "**/node_modules/**",
+    "**/backups/**",
+    "**/.git/**",
+    "**/tmp/**",
+    "**/logs/**",
+    "**/config/**",
+    "**/.env",
+    "**/.env.*",
+    "**/secrets/**",
+    "**/*.key",
+    "**/*.pem",
+    "**/credentials.json",
+    "**/private/**",
+    "**/*_credentials*",
+    "**/*secret*"
+  ]
 }
 EOF
 fi

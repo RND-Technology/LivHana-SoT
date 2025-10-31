@@ -1,8 +1,15 @@
 import express from 'express';
 import { createQueue, createQueueEvents, enqueueJob, getJobStatus } from '../../../common/queue/index.js';
 import OpenAI from 'openai';
+import { safePromptFilter, safePromptResponse } from '../middleware/safe-prompt.js';
+import { logInteraction } from '../utils/feedback-loop.js';
+import { syncMemory } from '../../../common/memory-sync/index.js';
 
 const router = express.Router();
+
+// Apply SSP v1.0 middleware
+router.use(safePromptFilter);
+router.use(safePromptResponse);
 
 // Initialize OpenAI client for direct calls (bypass queue)
 const openai = new OpenAI({
@@ -55,8 +62,8 @@ router.post('/chat', async (req, res) => {
 
     // Guard rails: latency-optimized defaults
   const model = requestedModel || process.env.REASONING_FAST_MODEL || 'gpt-4o';
-    // Clamp tokens (voice responses should be short)
-    const max_completion_tokens = Math.min(parseInt(maxTokens || '150', 10), 300);
+    // Clamp tokens (voice responses should be short but complete)
+    const max_completion_tokens = Math.min(parseInt(maxTokens || '200', 10), 300);
     const temp = typeof temperature === 'number' ? Math.max(0, Math.min(temperature, 1)) : 0.7;
 
     const messages = [];
@@ -90,6 +97,19 @@ router.post('/chat', async (req, res) => {
     }
     const latency = Date.now() - startTime;
     console.log(`[reasoning-router][${new Date().toISOString()}] Response generated in ${latency}ms (model=${model}, tokens=${completion.usage?.total_tokens})`);
+
+    // SSP v1.0: Log interaction for continuous learning
+    await logInteraction({
+      latency,
+      model,
+      prompt_hash: req.safeprompt_hash,
+      response: responseText,
+      safeprompt_warnings: req.safeprompt_warnings,
+      outcome: 'success'
+    });
+
+    // SSP v1.0: Sync memory for cross-agent context
+    await syncMemory('voice-service', { last_latency: latency, last_model: model });
 
     res.json({
       success: true,

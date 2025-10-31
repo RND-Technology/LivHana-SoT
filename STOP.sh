@@ -116,20 +116,28 @@ stop_docker_services() {
 stop_redis() {
   log "Stopping Redis..."
 
-  if lsof -i :"${REDIS_PORT:-6379}" >/dev/null 2>&1; then
-    local redis_pid=$(lsof -ti :"${REDIS_PORT:-6379}" 2>/dev/null | head -1)
-    if [[ -n "$redis_pid" ]]; then
+  # Get ALL Redis PIDs on port 6379
+  local redis_pids=$(lsof -ti :"${REDIS_PORT:-6379}" 2>/dev/null)
+
+  if [[ -n "$redis_pids" ]]; then
+    local count=0
+    for redis_pid in $redis_pids; do
       log "  Stopping Redis (PID $redis_pid)..."
       kill -TERM "$redis_pid" 2>/dev/null || true
-      sleep 2
+      ((count++))
+    done
 
+    sleep 2
+
+    # Force kill any survivors
+    for redis_pid in $redis_pids; do
       if kill -0 "$redis_pid" 2>/dev/null; then
         kill -9 "$redis_pid" 2>/dev/null || true
-        log_warning "  Force killed Redis"
-      else
-        log_success "  Redis stopped gracefully"
+        log_warning "  Force killed Redis (PID $redis_pid)"
       fi
-    fi
+    done
+
+    log_success "  Redis stopped ($count instances)"
   else
     log "  Redis not running"
   fi

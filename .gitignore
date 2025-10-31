@@ -250,5 +250,14 @@ high-sa-key.json
 backend/voice-service-ultimate/.env
 tmp/agent_status/*.json
 
+# Config directory secrets - CRITICAL (Block credential leakage)
+config/*-key.json
+config/*-secrets.env
+config/*.pem
+config/*secret*.json
+config/gsm_secrets_uuid_map.json
+config/secrets_uuid_map.json
+config/livhana-secrets.env
+
 # Backups - prevent backup pollution in repo
 backups/
