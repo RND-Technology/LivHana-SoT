@@ -1,4 +1,4 @@
-import { Queue, QueueEvents, QueueScheduler } from 'bullmq';
+import { Queue, QueueEvents } from 'bullmq';
 import { createClient } from 'redis';
 import { EventEmitter } from 'events';
 
@@ -87,7 +87,7 @@ function createSecureRedisClient(config = {}) {
     username: process.env.REDIS_USERNAME,
     db: parseInt(process.env.REDIS_DB || '0', 10),
     tls: process.env.REDIS_TLS === 'true' ? {} : undefined,
-    maxRetriesPerRequest: 3,
+    maxRetriesPerRequest: null, // Required by BullMQ for blocking operations
     enableReadyCheck: true,
     retryStrategy: (times) => Math.min(times * 200, 2000)
   };
@@ -142,8 +142,8 @@ export function createHardenedQueue(queueName, options = {}) {
     }
   });
 
-  // Set up queue scheduler for delayed jobs
-  const scheduler = new QueueScheduler(queueName, { connection: secureConnection });
+  // NOTE: QueueScheduler is deprecated in bullmq v3+, handled internally now
+  // const scheduler = new QueueScheduler(queueName, { connection: secureConnection });
 
   // Set up events
   const events = new QueueEvents(queueName, { connection: secureConnection });

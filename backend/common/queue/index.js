@@ -1,4 +1,5 @@
 import { createHardenedQueue, queueMonitor } from './hardenedQueue.js';
+import { QueueEvents } from 'bullmq';
 
 /**
  * Queue Management Module
@@ -7,6 +8,16 @@ import { createHardenedQueue, queueMonitor } from './hardenedQueue.js';
 
 // Re-export the hardened queue factory and monitor
 export { createHardenedQueue, queueMonitor };
+
+/**
+ * Create QueueEvents instance for monitoring queue events
+ * @param {string} queueName - Name of the queue
+ * @param {object} connection - Redis connection config (optional)
+ * @returns {QueueEvents} QueueEvents instance
+ */
+export function createQueueEvents(queueName, connection) {
+  return new QueueEvents(queueName, { connection });
+}
 
 // Backwards compatibility layer
 export function createQueue(queueName, connection) {
