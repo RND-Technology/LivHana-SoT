@@ -17,6 +17,12 @@ These instructions guide GitHub Copilot (standard suggestions, Chat, Coding Agen
 
 If instructions conflict, repository-level guidance herein supersedes generic suggestions.
 
+**Extended Standards**: For detailed enterprise audit precision standards, see:
+- **EA_PRECISION Module**: `.copilot/instructions-ea-precision.md` (verification hierarchy, audit trails, security)
+- **Verification Checklist**: `.copilot/verification-checklist.md` (pre-commit checklist)
+- **Voice Audit Plan**: `docs/voice_mode_audit_plan.md` (comprehensive audit framework)
+- **Audit Scripts**: `scripts/audit/` (automated verification tools)
+
 ---
 
 ## 1. Repository Context Snapshot
