@@ -62,7 +62,7 @@ check_instance_ownership() {
 stop_tmux_sessions() {
   log "Stopping tmux sessions..."
 
-  local sessions=("reasoning-gateway" "orchestration" "planning" "research" "artifact" "execmon" "qa")
+  local sessions=("voice-service" "reasoning-gateway" "orchestration" "planning" "research" "artifact" "execmon" "qa")
   local stopped=0
 
   for session in "${sessions[@]}"; do
@@ -83,6 +83,48 @@ stop_tmux_sessions() {
   done
 
   log_success "Stopped $stopped/7 tmux sessions"
+}
+
+# Stop Copilot Round-Robin service
+stop_copilot_roundrobin() {
+  log "Stopping Copilot Round-Robin..."
+
+  if [[ -f "$ROOT_DIR/tmp/copilot_roundrobin.pid" ]]; then
+    local pid=$(cat "$ROOT_DIR/tmp/copilot_roundrobin.pid" 2>/dev/null)
+    
+    if [[ -n "$pid" ]] && ps -p "$pid" >/dev/null 2>&1; then
+      log "  Stopping Copilot Round-Robin (PID: $pid)..."
+      kill -TERM "$pid" 2>/dev/null || true
+      sleep 2
+
+      if ps -p "$pid" >/dev/null 2>&1; then
+        kill -9 "$pid" 2>/dev/null || true
+        log_warning "  Force killed Copilot Round-Robin"
+      else
+        log_success "  Stopped Copilot Round-Robin"
+      fi
+    fi
+
+    rm -f "$ROOT_DIR/tmp/copilot_roundrobin.pid"
+  else
+    # Fallback: try to find and kill by process name
+    local pids=$(pgrep -f "copilot_roundrobin.cjs" 2>/dev/null || true)
+    if [[ -n "$pids" ]]; then
+      for pid in $pids; do
+        log "  Stopping Copilot Round-Robin (PID: $pid)..."
+        kill -TERM "$pid" 2>/dev/null || true
+        sleep 1
+        if ps -p "$pid" >/dev/null 2>&1; then
+          kill -9 "$pid" 2>/dev/null || true
+          log_warning "  Force killed Copilot Round-Robin"
+        else
+          log_success "  Stopped Copilot Round-Robin"
+        fi
+      done
+    else
+      log "  Copilot Round-Robin not running"
+    fi
+  fi
 }
 
 # Stop Docker services
@@ -230,6 +272,7 @@ cleanup_files() {
     "$ROOT_DIR/tmp/claude_tier1_auto_save.lock"
     "$ROOT_DIR/tmp/tier1_supervisor.lock"
     "$ROOT_DIR/tmp/auto_save_local.lock"
+    "$ROOT_DIR/tmp/copilot_roundrobin.pid"
     "$ROOT_DIR/.claude/instance_lock.json"
   )
 
@@ -354,6 +397,7 @@ main() {
 
   # Graceful shutdown sequence
   stop_tmux_sessions
+  stop_copilot_roundrobin
   stop_docker_services
   stop_redis
   kill_watchdogs

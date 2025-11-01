@@ -16,6 +16,13 @@ setup_environment() {
     set -a  # Automatically export all variables
     source "$root_dir/.env"
     set +a
+
+  # Load ELEVENLABS_API_KEY for voice-service Docker
+  if [[ -z "${ELEVENLABS_API_KEY:-}" ]] && command -v op >/dev/null 2>&1; then
+    if op whoami >/dev/null 2>&1; then
+      export ELEVENLABS_API_KEY=$(op item get ELEVENLABS_API_KEY --vault LivHana-Ops-Keys --reveal --fields credential 2>/dev/null || echo "")
+    fi
+  fi
   fi
 
   # M4 Max Optimization (2025)

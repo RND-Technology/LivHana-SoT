@@ -4,8 +4,10 @@
 start_services() {
   echo "🚀 Starting services..."
   start_redis
+  start_voice_service
   start_reasoning_gateway
   start_orchestration
+  start_copilot_roundrobin
   start_whisper
   start_vocode
   echo "✅ Services started"
@@ -40,6 +42,37 @@ start_orchestration() {
 
   sleep 3
   echo "  ✅ Orchestration started"
+}
+
+start_copilot_roundrobin() {
+  if [[ -f "${ROOT_DIR}/tmp/copilot_roundrobin.pid" ]]; then
+    local pid=$(cat "${ROOT_DIR}/tmp/copilot_roundrobin.pid" 2>/dev/null)
+    if ps -p "$pid" >/dev/null 2>&1; then
+      echo "  ℹ️  Copilot Round-Robin running (PID: $pid)"
+      return
+    fi
+  fi
+
+  cd "${ROOT_DIR}"
+  node scripts/integrations/copilot_roundrobin.cjs > logs/copilot_roundrobin.log 2>&1 &
+  local pid=$!
+  echo "$pid" > tmp/copilot_roundrobin.pid
+  sleep 2
+
+  if ps -p "$pid" >/dev/null 2>&1; then
+    echo "  ✅ Copilot Round-Robin started (PID: $pid)"
+  else
+    echo "  ⚠️  Copilot Round-Robin failed to start (check logs/copilot_roundrobin.log)"
+    rm -f tmp/copilot_roundrobin.pid
+  fi
+}
+
+start_voice_service() {
+  tmux has-session -t voice-service 2>/dev/null && { echo "  ℹ️  Voice service running"; return; }
+
+  bash "$ROOT_DIR/scripts/voice/start_voice_service.sh" || {
+    echo "  ⚠️  Voice service failed to start"
+  }
 }
 
 start_whisper() {
