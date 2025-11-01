@@ -1,0 +1,19 @@
+backend/integration-service/src/lib/lightspeed-client.js:    // TODO: Implement real LightSpeed API call
+backend/integration-service/src/lib/lightspeed-client.js:    // TODO: Implement real LightSpeed API call
+backend/integration-service/src/lib/sendgrid-client.js:    // TODO: Implement real SendGrid API call
+backend/integration-service/src/lib/kaja-refund-client.js:    // TODO: Implement real Kaja API call
+backend/integration-service/src/lib/kaja-refund-client.js:    // TODO: Implement real Kaja API call
+backend/integration-service/src/routes/post-purchase.js:    // TODO: Store in BigQuery for persistence
+backend/integration-service/src/routes/post-purchase.js:    // TODO: Schedule reminder email for 48 hours before deadline
+backend/integration-service/src/routes/post-purchase.js:    // TODO: Update order status in LightSpeed (mark as verified)
+backend/integration-service/src/routes/post-purchase.js:    // TODO: Trigger shipment processing
+backend/integration-service/src/routes/veriff-webhook.js:    // TODO: Call post-purchase verification API
+backend/integration-service/src/routes/veriff-webhook.js:    // TODO: Update verification record status to 'failed'
+backend/integration-service/src/routes/veriff-webhook.js:    // TODO: Send email with new Veriff session link
+backend/integration-service/src/routes/veriff-webhook.js:    // TODO: Update verification record
+backend/delivery-service/src/provider-comparison.js:  // TODO: Replace with real API call once keys available
+backend/delivery-service/src/provider-comparison.js:  // TODO: Replace with real API call once keys available
+backend/delivery-service/src/provider-comparison.js:  // TODO: Implement once API keys available
+backend/delivery-service/src/provider-comparison.js:  // TODO: Implement once API keys available
+backend/reasoning-gateway/src/index.js:// app.use('/api/swarm', swarmIntegrationRoutes); // TODO: Implement swarm integration
+backend/reasoning-gateway/src/index.js:// Queue job processor - TODO: Implement when BullMQ worker is needed
