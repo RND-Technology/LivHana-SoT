@@ -1,0 +1,1094 @@
+backend/journey-optimizer/src/index.js:app.post('/api/v1/optimize-journey', async (req, res) => {
+backend/journey-optimizer/src/index.js-    const { customerId, currentState, behaviorData } = req.body;
+backend/journey-optimizer/src/index.js-    
+backend/journey-optimizer/src/index.js-    // AI-powered journey optimization
+backend/journey-optimizer/src/index.js-    const recommendations = [];
+--
+backend/integration-service/1.6.2.1_lightspeed-webhook-listener_20251008.js:    this.app.post('/webhook/lightspeed', async (req, res) => {
+backend/integration-service/1.6.2.1_lightspeed-webhook-listener_20251008.js-        // Get raw body for signature verification
+backend/integration-service/1.6.2.1_lightspeed-webhook-listener_20251008.js-        const signature = req.headers['x-lightspeed-signature'];
+backend/integration-service/1.6.2.1_lightspeed-webhook-listener_20251008.js-        const rawBody = JSON.stringify(req.body);
+backend/integration-service/1.6.2.1_lightspeed-webhook-listener_20251008.js-
+--
+backend/integration-service/1.6.2.1_lightspeed-webhook-listener_20251008.js:    this.app.post('/webhook/test', async (req, res) => {
+backend/integration-service/1.6.2.1_lightspeed-webhook-listener_20251008.js-        console.log('🧪 Test webhook triggered');
+backend/integration-service/1.6.2.1_lightspeed-webhook-listener_20251008.js-        await this.handleOrderCreated(req.body);
+backend/integration-service/1.6.2.1_lightspeed-webhook-listener_20251008.js-        res.json({ success: true });
+--
+backend/integration-service/1.6.2.1_lightspeed-webhook-listener_20251008.js:  async handleOrderCreated(orderData) {
+backend/integration-service/1.6.2.1_lightspeed-webhook-listener_20251008.js-    console.log(`🛒 Processing order: ${orderData.id}`);
+backend/integration-service/1.6.2.1_lightspeed-webhook-listener_20251008.js-
+backend/integration-service/1.6.2.1_lightspeed-webhook-listener_20251008.js-      // Extract order details
+backend/integration-service/1.6.2.1_lightspeed-webhook-listener_20251008.js-      const order = {
+--
+backend/integration-service/1.6.2.1_lightspeed-webhook-listener_20251008.js:  async triggerDeliveryService(order) {
+backend/integration-service/1.6.2.1_lightspeed-webhook-listener_20251008.js-    if (!this.deliveryServiceUrl) {
+backend/integration-service/1.6.2.1_lightspeed-webhook-listener_20251008.js-      console.warn('⚠️  DELIVERY_SERVICE_URL not configured');
+backend/integration-service/1.6.2.1_lightspeed-webhook-listener_20251008.js-      return;
+backend/integration-service/1.6.2.1_lightspeed-webhook-listener_20251008.js-    }
+backend/integration-service/1.6.2.1_lightspeed-webhook-listener_20251008.js-
+--
+backend/integration-service/1.6.2.1_lightspeed-webhook-listener_20251008.js:  async storeOrderToBigQuery(order) {
+backend/integration-service/1.6.2.1_lightspeed-webhook-listener_20251008.js-      const row = {
+backend/integration-service/1.6.2.1_lightspeed-webhook-listener_20251008.js-        order_id: order.orderId,
+backend/integration-service/1.6.2.1_lightspeed-webhook-listener_20251008.js-        customer_id: order.customerId,
+backend/integration-service/1.6.2.1_lightspeed-webhook-listener_20251008.js-        customer_name: order.customerName,
+--
+backend/integration-service/src/lib/lightspeed-client.js:  async getProducts() {
+backend/integration-service/src/lib/lightspeed-client.js-    if (!this.apiKey) {
+backend/integration-service/src/lib/lightspeed-client.js-      // Mock data for development
+backend/integration-service/src/lib/lightspeed-client.js-      return [
+backend/integration-service/src/lib/lightspeed-client.js-        {
+backend/integration-service/src/lib/lightspeed-client.js-          id: 'premium-flower-001',
+--
+backend/integration-service/src/lib/lightspeed-client.js:  async getCustomer(customerId) {
+backend/integration-service/src/lib/lightspeed-client.js-    if (!this.apiKey) {
+backend/integration-service/src/lib/lightspeed-client.js-      // Mock customer data
+backend/integration-service/src/lib/lightspeed-client.js-      return {
+backend/integration-service/src/lib/lightspeed-client.js-        id: customerId,
+backend/integration-service/src/lib/lightspeed-client.js-        name: 'Test Customer',
+--
+backend/integration-service/src/lib/cloud-tasks.js:  async createTask(queueName, payload, delaySeconds = 0) {
+backend/integration-service/src/lib/cloud-tasks.js-    logger.info(`Creating task in queue ${queueName}`, { payload, delaySeconds });
+backend/integration-service/src/lib/cloud-tasks.js-    
+backend/integration-service/src/lib/cloud-tasks.js-    // Mock implementation - in production this would use Google Cloud Tasks API
+backend/integration-service/src/lib/cloud-tasks.js-    return {
+backend/integration-service/src/lib/cloud-tasks.js-      success: true,
+--
+backend/integration-service/src/lib/cloud-tasks.js:  async scheduleEmailTask(email, subject, delaySeconds = 0) {
+backend/integration-service/src/lib/cloud-tasks.js-    return this.createTask('email-queue', {
+backend/integration-service/src/lib/cloud-tasks.js-      type: 'send-email',
+backend/integration-service/src/lib/cloud-tasks.js-      email,
+backend/integration-service/src/lib/cloud-tasks.js-      subject
+backend/integration-service/src/lib/cloud-tasks.js-    }, delaySeconds);
+--
+backend/integration-service/src/lib/cloud-tasks.js:  async scheduleRefundTask(orderId, amount, delaySeconds = 0) {
+backend/integration-service/src/lib/cloud-tasks.js-    return this.createTask('refund-queue', {
+backend/integration-service/src/lib/cloud-tasks.js-      type: 'process-refund',
+backend/integration-service/src/lib/cloud-tasks.js-      orderId,
+backend/integration-service/src/lib/cloud-tasks.js-      amount
+backend/integration-service/src/lib/cloud-tasks.js-    }, delaySeconds);
+--
+backend/integration-service/src/lib/sendgrid-client.js:  async sendEmail(to, subject, _html, _text) {
+backend/integration-service/src/lib/sendgrid-client.js-    if (!this.apiKey) {
+backend/integration-service/src/lib/sendgrid-client.js-      logger.info('Mock email sent', { to, subject });
+backend/integration-service/src/lib/sendgrid-client.js-      return { success: true, messageId: 'mock-' + Date.now() };
+backend/integration-service/src/lib/sendgrid-client.js-    }
+backend/integration-service/src/lib/sendgrid-client.js-
+--
+backend/integration-service/src/lib/sendgrid-client.js:  async sendVerificationEmail(customerEmail, verificationLink) {
+backend/integration-service/src/lib/sendgrid-client.js-    const subject = 'Age Verification Required - Reggie & Dro';
+backend/integration-service/src/lib/sendgrid-client.js-    const html = `
+backend/integration-service/src/lib/sendgrid-client.js-      <h2>Age Verification Required</h2>
+backend/integration-service/src/lib/sendgrid-client.js-      <p>Please complete your age verification to continue shopping:</p>
+backend/integration-service/src/lib/sendgrid-client.js-      <a href="${verificationLink}" style="background: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Verify Age</a>
+--
+backend/integration-service/src/lib/kaja-refund-client.js:  async processRefund(orderId, amount, reason) {
+backend/integration-service/src/lib/kaja-refund-client.js-    if (!this.apiKey) {
+backend/integration-service/src/lib/kaja-refund-client.js-      logger.info('Mock refund processed', { orderId, amount, reason });
+backend/integration-service/src/lib/kaja-refund-client.js-      return { 
+backend/integration-service/src/lib/kaja-refund-client.js-        success: true, 
+backend/integration-service/src/lib/kaja-refund-client.js-        refundId: 'mock-refund-' + Date.now(),
+--
+backend/integration-service/src/lib/kaja-refund-client.js:  async getOrderStatus(orderId) {
+backend/integration-service/src/lib/kaja-refund-client.js-    if (!this.apiKey) {
+backend/integration-service/src/lib/kaja-refund-client.js-      return {
+backend/integration-service/src/lib/kaja-refund-client.js-        orderId,
+backend/integration-service/src/lib/kaja-refund-client.js-        status: 'completed',
+backend/integration-service/src/lib/kaja-refund-client.js-        amount: 45.00,
+--
+backend/integration-service/src/lib/veriff-client.js:  async createSession({ orderId, email, firstName = '', lastName = '' }) {
+backend/integration-service/src/lib/veriff-client.js-    const startTime = Date.now();
+backend/integration-service/src/lib/veriff-client.js-
+backend/integration-service/src/lib/veriff-client.js-      logger.info('Creating Veriff session', { orderId, email });
+backend/integration-service/src/lib/veriff-client.js-
+--
+backend/integration-service/src/lib/veriff-client.js:  async getSession(sessionId) {
+backend/integration-service/src/lib/veriff-client.js-      logger.info('Getting Veriff session', { sessionId });
+backend/integration-service/src/lib/veriff-client.js-
+backend/integration-service/src/lib/veriff-client.js-      const response = await fetch(`${this.baseUrl}/v1/sessions/${sessionId}`, {
+backend/integration-service/src/lib/veriff-client.js-        method: 'GET',
+--
+backend/integration-service/src/lib/veriff-client.js:  async getDecision(sessionId) {
+backend/integration-service/src/lib/veriff-client.js-      logger.info('Getting Veriff decision', { sessionId });
+backend/integration-service/src/lib/veriff-client.js-
+backend/integration-service/src/lib/veriff-client.js-      const response = await fetch(`${this.baseUrl}/v1/sessions/${sessionId}/decision`, {
+backend/integration-service/src/lib/veriff-client.js-        method: 'GET',
+--
+backend/integration-service/src/routes/post-purchase.js:router.post('/webhook', async (req, res) => {
+backend/integration-service/src/routes/post-purchase.js-  const startTime = Date.now();
+backend/integration-service/src/routes/post-purchase.js-
+backend/integration-service/src/routes/post-purchase.js-    const { event, orderId, customerId, customerEmail, orderTotal, createdAt } = req.body;
+backend/integration-service/src/routes/post-purchase.js-    
+--
+backend/integration-service/src/routes/post-purchase.js:router.post('/verify', async (req, res) => {
+backend/integration-service/src/routes/post-purchase.js-  const startTime = Date.now();
+backend/integration-service/src/routes/post-purchase.js-
+backend/integration-service/src/routes/post-purchase.js-    const { orderId, customerEmail, ageVerified, membershipOptIn, verificationMethod } = req.body;
+backend/integration-service/src/routes/post-purchase.js-
+--
+backend/integration-service/src/routes/post-purchase.js:router.get('/status/:orderId', async (req, res) => {
+backend/integration-service/src/routes/post-purchase.js-    const { orderId } = req.params;
+backend/integration-service/src/routes/post-purchase.js-
+backend/integration-service/src/routes/post-purchase.js-    logger.info('Status check', { orderId });
+backend/integration-service/src/routes/post-purchase.js-
+--
+backend/integration-service/src/routes/post-purchase.js:router.post('/check-expired', async (req, res) => {
+backend/integration-service/src/routes/post-purchase.js-  const startTime = Date.now();
+backend/integration-service/src/routes/post-purchase.js-
+backend/integration-service/src/routes/post-purchase.js-    logger.info('🕐 Checking for expired verifications');
+backend/integration-service/src/routes/post-purchase.js-
+--
+backend/integration-service/src/routes/post-purchase.js:async function enrollInLoyaltyProgram(verificationRecord) {
+backend/integration-service/src/routes/post-purchase.js-    logger.info('Enrolling customer in loyalty program', {
+backend/integration-service/src/routes/post-purchase.js-      orderId: verificationRecord.order_id,
+backend/integration-service/src/routes/post-purchase.js-      customerEmail: verificationRecord.customer_email,
+backend/integration-service/src/routes/post-purchase.js-      customerId: verificationRecord.customer_id
+--
+backend/integration-service/src/routes/post-purchase.js:async function processAutoRefund(verificationRecord) {
+backend/integration-service/src/routes/post-purchase.js-    logger.info('Processing auto-refund', {
+backend/integration-service/src/routes/post-purchase.js-      orderId: verificationRecord.order_id,
+backend/integration-service/src/routes/post-purchase.js-      orderTotal: verificationRecord.order_total
+backend/integration-service/src/routes/post-purchase.js-    });
+--
+backend/integration-service/src/routes/post-purchase.js:router.get('/stats', async (req, res) => {
+backend/integration-service/src/routes/post-purchase.js-    // Get stats from durable storage
+backend/integration-service/src/routes/post-purchase.js-    const pendingVerifications = await durableState.getAllPendingVerifications();
+backend/integration-service/src/routes/post-purchase.js-    const expiredVerifications = await durableState.getExpiredVerifications();
+backend/integration-service/src/routes/post-purchase.js-    
+--
+backend/integration-service/src/routes/veriff-webhook.js:router.post('/webhook', async (req, res) => {
+backend/integration-service/src/routes/veriff-webhook.js-  const startTime = Date.now();
+backend/integration-service/src/routes/veriff-webhook.js-
+backend/integration-service/src/routes/veriff-webhook.js-    const signature = req.headers['x-hmac-signature'];
+backend/integration-service/src/routes/veriff-webhook.js-    const payload = req.body;
+--
+backend/integration-service/src/routes/veriff-webhook.js:async function completeVerification(orderId, email, veriffSessionId) {
+backend/integration-service/src/routes/veriff-webhook.js-    // TODO: Call post-purchase verification API
+backend/integration-service/src/routes/veriff-webhook.js-    // This will trigger loyalty enrollment and mark order as verified
+backend/integration-service/src/routes/veriff-webhook.js-
+backend/integration-service/src/routes/veriff-webhook.js-    logger.info('Completing post-purchase verification', {
+--
+backend/integration-service/src/routes/veriff-webhook.js:async function failVerification(orderId, email, reason) {
+backend/integration-service/src/routes/veriff-webhook.js-    logger.info('Marking verification as failed', {
+backend/integration-service/src/routes/veriff-webhook.js-      orderId,
+backend/integration-service/src/routes/veriff-webhook.js-      email,
+backend/integration-service/src/routes/veriff-webhook.js-      reason
+--
+backend/integration-service/src/routes/veriff-webhook.js:async function sendResubmissionEmail(orderId, email, veriffSessionId) {
+backend/integration-service/src/routes/veriff-webhook.js-    logger.info('Sending resubmission email', {
+backend/integration-service/src/routes/veriff-webhook.js-      orderId,
+backend/integration-service/src/routes/veriff-webhook.js-      email,
+backend/integration-service/src/routes/veriff-webhook.js-      veriffSessionId
+--
+backend/integration-service/src/routes/veriff-webhook.js:async function markVerificationAbandoned(orderId, email) {
+backend/integration-service/src/routes/veriff-webhook.js-    logger.info('Marking verification as abandoned', {
+backend/integration-service/src/routes/veriff-webhook.js-      orderId,
+backend/integration-service/src/routes/veriff-webhook.js-      email
+backend/integration-service/src/routes/veriff-webhook.js-    });
+--
+backend/integration-service/src/routes/veriff-webhook.js:router.get('/session/:sessionId', async (req, res) => {
+backend/integration-service/src/routes/veriff-webhook.js-    const { sessionId } = req.params;
+backend/integration-service/src/routes/veriff-webhook.js-
+backend/integration-service/src/routes/veriff-webhook.js-    logger.info('Getting Veriff session', { sessionId });
+backend/integration-service/src/routes/veriff-webhook.js-
+--
+backend/integration-service/src/routes/veriff-webhook.js:router.get('/decision/:sessionId', async (req, res) => {
+backend/integration-service/src/routes/veriff-webhook.js-    const { sessionId } = req.params;
+backend/integration-service/src/routes/veriff-webhook.js-
+backend/integration-service/src/routes/veriff-webhook.js-    logger.info('Getting Veriff decision', { sessionId });
+backend/integration-service/src/routes/veriff-webhook.js-
+--
+backend/integration-service/src/index.js:app.post('/api/v1/sync-inventory', async (req, res) => {
+backend/integration-service/src/index.js-    logger.info('Starting inventory sync...');
+backend/integration-service/src/index.js-    
+backend/integration-service/src/index.js-    // Get inventory from Square
+backend/integration-service/src/index.js-    const result = await squareClient.inventoryApi.batchRetrieveInventoryCounts({
+--
+backend/integration-service/src/index.js:app.post('/api/v1/process-order', async (req, res) => {
+backend/integration-service/src/index.js-    const { order_id, customer_id, items } = req.body;
+backend/integration-service/src/index.js-    
+backend/integration-service/src/index.js-    logger.info(`Processing order ${order_id} for customer ${customer_id}`);
+backend/integration-service/src/index.js-    
+--
+backend/customer-intelligence/src/index.js:app.get('/api/v1/customer-insights', async (req, res) => {
+backend/customer-intelligence/src/index.js-    const insights = {
+backend/customer-intelligence/src/index.js-      totalCustomers: 3024,
+backend/customer-intelligence/src/index.js-      segments: customerSegments,
+backend/customer-intelligence/src/index.js-      predictions: {
+--
+backend/customer-intelligence/src/index.js:app.post('/api/v1/recommendations', async (req, res) => {
+backend/customer-intelligence/src/index.js-    const { customerId, context } = req.body;
+backend/customer-intelligence/src/index.js-    
+backend/customer-intelligence/src/index.js-    const recommendations = [
+backend/customer-intelligence/src/index.js-      {
+--
+backend/analytics-engine/src/dashboard-api.js:app.get('/api/v1/dashboard/revenue/realtime', async (req, res) => {
+backend/analytics-engine/src/dashboard-api.js-    const query = `SELECT * FROM \`commerce.realtime_revenue_today\` LIMIT 1`;
+backend/analytics-engine/src/dashboard-api.js-    const [rows] = await bigquery.query(query);
+backend/analytics-engine/src/dashboard-api.js-
+backend/analytics-engine/src/dashboard-api.js-    res.json({
+--
+backend/analytics-engine/src/dashboard-api.js:app.get('/api/v1/dashboard/revenue/monthly', async (req, res) => {
+backend/analytics-engine/src/dashboard-api.js-    const query = `
+backend/analytics-engine/src/dashboard-api.js-      SELECT * FROM \`commerce.monthly_revenue_trend\`
+backend/analytics-engine/src/dashboard-api.js-      ORDER BY month DESC
+backend/analytics-engine/src/dashboard-api.js-      LIMIT 12
+--
+backend/analytics-engine/src/dashboard-api.js:app.get('/api/v1/dashboard/revenue/daily', async (req, res) => {
+backend/analytics-engine/src/dashboard-api.js-    const days = parseInt(req.query.days) || 90;
+backend/analytics-engine/src/dashboard-api.js-
+backend/analytics-engine/src/dashboard-api.js-    const query = `
+backend/analytics-engine/src/dashboard-api.js-      SELECT
+--
+backend/analytics-engine/src/dashboard-api.js:app.get('/api/v1/dashboard/revenue/summary', async (req, res) => {
+backend/analytics-engine/src/dashboard-api.js-    const query = `SELECT * FROM \`commerce.dashboard_metrics_summary\` LIMIT 1`;
+backend/analytics-engine/src/dashboard-api.js-    const [rows] = await bigquery.query(query);
+backend/analytics-engine/src/dashboard-api.js-
+backend/analytics-engine/src/dashboard-api.js-    const summary = rows[0] || {
+--
+backend/analytics-engine/src/dashboard-api.js:app.get('/api/v1/dashboard/customers/segments', async (req, res) => {
+backend/analytics-engine/src/dashboard-api.js-    const query = `
+backend/analytics-engine/src/dashboard-api.js-      SELECT * FROM \`commerce.customer_segment_summary\`
+backend/analytics-engine/src/dashboard-api.js-      ORDER BY segment_revenue DESC
+backend/analytics-engine/src/dashboard-api.js-    `;
+--
+backend/analytics-engine/src/dashboard-api.js:app.get('/api/v1/dashboard/customers/high-value', async (req, res) => {
+backend/analytics-engine/src/dashboard-api.js-    const limit = parseInt(req.query.limit) || 50;
+backend/analytics-engine/src/dashboard-api.js-
+backend/analytics-engine/src/dashboard-api.js-    const query = `
+backend/analytics-engine/src/dashboard-api.js-      SELECT * FROM \`commerce.high_value_customers\`
+--
+backend/analytics-engine/src/dashboard-api.js:app.get('/api/v1/dashboard/customers/at-risk', async (req, res) => {
+backend/analytics-engine/src/dashboard-api.js-    const riskLevel = req.query.risk || 'HIGH_RISK';
+backend/analytics-engine/src/dashboard-api.js-
+backend/analytics-engine/src/dashboard-api.js-    const query = `
+backend/analytics-engine/src/dashboard-api.js-      SELECT * FROM \`commerce.at_risk_customers\`
+--
+backend/analytics-engine/src/dashboard-api.js:app.get('/api/v1/dashboard/customers/ltv-leaderboard', async (req, res) => {
+backend/analytics-engine/src/dashboard-api.js-    const limit = parseInt(req.query.limit) || 100;
+backend/analytics-engine/src/dashboard-api.js-
+backend/analytics-engine/src/dashboard-api.js-    const query = `
+backend/analytics-engine/src/dashboard-api.js-      SELECT * FROM \`commerce.ltv_leaderboard\`
+--
+backend/analytics-engine/src/dashboard-api.js:app.get('/api/v1/dashboard/predictions/reorders', async (req, res) => {
+backend/analytics-engine/src/dashboard-api.js-    const query = `
+backend/analytics-engine/src/dashboard-api.js-      SELECT * FROM \`commerce.reorder_triggers_upcoming\`
+backend/analytics-engine/src/dashboard-api.js-      ORDER BY urgency_score DESC
+backend/analytics-engine/src/dashboard-api.js-      LIMIT 200
+--
+backend/analytics-engine/src/dashboard-api.js:app.get('/api/v1/dashboard/predictions/model-performance', async (req, res) => {
+backend/analytics-engine/src/dashboard-api.js-    const query = `SELECT * FROM \`commerce.reorder_model_performance\``;
+backend/analytics-engine/src/dashboard-api.js-    const [rows] = await bigquery.query(query);
+backend/analytics-engine/src/dashboard-api.js-
+backend/analytics-engine/src/dashboard-api.js-    res.json({
+--
+backend/analytics-engine/src/dashboard-api.js:app.get('/api/v1/dashboard/predictions/product-recommendations/:customerId', async (req, res) => {
+backend/analytics-engine/src/dashboard-api.js-    const { customerId } = req.params;
+backend/analytics-engine/src/dashboard-api.js-
+backend/analytics-engine/src/dashboard-api.js-    const query = `
+backend/analytics-engine/src/dashboard-api.js-      SELECT * FROM \`commerce.customer_product_recommendations\`
+--
+backend/analytics-engine/src/dashboard-api.js:app.get('/api/v1/dashboard/products/performance', async (req, res) => {
+backend/analytics-engine/src/dashboard-api.js-    const limit = parseInt(req.query.limit) || 50;
+backend/analytics-engine/src/dashboard-api.js-
+backend/analytics-engine/src/dashboard-api.js-    const query = `
+backend/analytics-engine/src/dashboard-api.js-      SELECT * FROM \`commerce.product_performance_ranking\`
+--
+backend/analytics-engine/src/dashboard-api.js:app.get('/api/v1/dashboard/products/top-sellers', async (req, res) => {
+backend/analytics-engine/src/dashboard-api.js-    const query = `SELECT * FROM \`commerce.top_sellers_weekly\` LIMIT 20`;
+backend/analytics-engine/src/dashboard-api.js-    const [rows] = await bigquery.query(query);
+backend/analytics-engine/src/dashboard-api.js-
+backend/analytics-engine/src/dashboard-api.js-    res.json({
+--
+backend/analytics-engine/src/dashboard-api.js:app.get('/api/v1/dashboard/products/demand-forecast', async (req, res) => {
+backend/analytics-engine/src/dashboard-api.js-    const limit = parseInt(req.query.limit) || 50;
+backend/analytics-engine/src/dashboard-api.js-
+backend/analytics-engine/src/dashboard-api.js-    const query = `
+backend/analytics-engine/src/dashboard-api.js-      SELECT * FROM \`commerce.product_demand_forecast\`
+--
+backend/analytics-engine/src/dashboard-api.js:app.get('/api/v1/dashboard/path-to-100k', async (req, res) => {
+backend/analytics-engine/src/dashboard-api.js-    const query = `
+backend/analytics-engine/src/dashboard-api.js-      SELECT * FROM \`commerce.revenue_path_to_100k\`
+backend/analytics-engine/src/dashboard-api.js-      ORDER BY month DESC
+backend/analytics-engine/src/dashboard-api.js-    `;
+--
+backend/analytics-engine/src/dashboard-api.js:app.get('/api/v1/dashboard/content/sales-correlation', async (req, res) => {
+backend/analytics-engine/src/dashboard-api.js-    const days = parseInt(req.query.days) || 30;
+backend/analytics-engine/src/dashboard-api.js-
+backend/analytics-engine/src/dashboard-api.js-    const query = `
+backend/analytics-engine/src/dashboard-api.js-      SELECT * FROM \`commerce.content_sales_correlation\`
+--
+backend/analytics-engine/src/dashboard-api.js:app.get('/api/v1/dashboard/delivery/cost-analysis', async (req, res) => {
+backend/analytics-engine/src/dashboard-api.js-    const days = parseInt(req.query.days) || 30;
+backend/analytics-engine/src/dashboard-api.js-
+backend/analytics-engine/src/dashboard-api.js-    const query = `
+backend/analytics-engine/src/dashboard-api.js-      SELECT * FROM \`commerce.delivery_cost_analysis\`
+--
+backend/analytics-engine/src/index.js:app.get('/api/v1/dashboard', async (req, res) => {
+backend/analytics-engine/src/index.js-    const query = `
+backend/analytics-engine/src/index.js-      SELECT 
+backend/analytics-engine/src/index.js-        DATE(timestamp) as date,
+backend/analytics-engine/src/index.js-        COUNT(*) as total_orders,
+--
+backend/analytics-engine/src/index.js:app.get('/api/v1/customer-analytics', async (req, res) => {
+backend/analytics-engine/src/index.js-    const query = `
+backend/analytics-engine/src/index.js-      SELECT 
+backend/analytics-engine/src/index.js-        customer_segment,
+backend/analytics-engine/src/index.js-        COUNT(*) as customer_count,
+--
+backend/compliance-monitor/src/index.js:app.get('/api/v1/compliance-status', async (req, res) => {
+backend/compliance-monitor/src/index.js-    const complianceStatus = {};
+backend/compliance-monitor/src/index.js-    
+backend/compliance-monitor/src/index.js-    for (const [rule, config] of Object.entries(complianceRules)) {
+backend/compliance-monitor/src/index.js-      complianceStatus[rule] = {
+--
+backend/compliance-monitor/src/index.js:app.post('/api/v1/generate-report', async (req, res) => {
+backend/compliance-monitor/src/index.js-    const { reportType, dateRange } = req.body;
+backend/compliance-monitor/src/index.js-    
+backend/compliance-monitor/src/index.js-    const report = {
+backend/compliance-monitor/src/index.js-      reportType,
+--
+backend/delivery-service/test/nash-beating-test.js:async function testHealthCheck() {
+backend/delivery-service/test/nash-beating-test.js-  console.log('🏥 Testing health check...');
+backend/delivery-service/test/nash-beating-test.js-    const response = await axios.get(`${BASE_URL}/health`);
+backend/delivery-service/test/nash-beating-test.js-    console.log('✅ Health check passed:', response.data);
+backend/delivery-service/test/nash-beating-test.js-    return true;
+--
+backend/delivery-service/test/nash-beating-test.js:async function testProviderComparison() {
+backend/delivery-service/test/nash-beating-test.js-  console.log('🏆 Testing Nash-beating provider comparison...');
+backend/delivery-service/test/nash-beating-test.js-    const response = await axios.post(`${BASE_URL}/api/delivery/providers/compare`, testOrder);
+backend/delivery-service/test/nash-beating-test.js-    const data = response.data;
+backend/delivery-service/test/nash-beating-test.js-    
+--
+backend/delivery-service/test/nash-beating-test.js:async function testSingleQuote() {
+backend/delivery-service/test/nash-beating-test.js-  console.log('💰 Testing single best quote...');
+backend/delivery-service/test/nash-beating-test.js-    const response = await axios.post(`${BASE_URL}/api/delivery/quote`, testOrder);
+backend/delivery-service/test/nash-beating-test.js-    const data = response.data;
+backend/delivery-service/test/nash-beating-test.js-    
+--
+backend/delivery-service/test/nash-beating-test.js:async function testLightspeedWebhook() {
+backend/delivery-service/test/nash-beating-test.js-  console.log('🔌 Testing Lightspeed webhook integration...');
+backend/delivery-service/test/nash-beating-test.js-    const response = await axios.post(`${BASE_URL}/api/delivery/lightspeed/webhook`, lightspeedWebhookPayload, {
+backend/delivery-service/test/nash-beating-test.js-      headers: {
+backend/delivery-service/test/nash-beating-test.js-        'x-lightspeed-signature': 'test-signature'
+--
+backend/delivery-service/test/nash-beating-test.js:async function testDeliveryStatus(deliveryId, provider) {
+backend/delivery-service/test/nash-beating-test.js-  console.log(`📊 Testing delivery status for ${deliveryId}...`);
+backend/delivery-service/test/nash-beating-test.js-    const response = await axios.get(`${BASE_URL}/api/delivery/status/${deliveryId}?provider=${provider}`);
+backend/delivery-service/test/nash-beating-test.js-    const data = response.data;
+backend/delivery-service/test/nash-beating-test.js-    
+--
+backend/delivery-service/test/nash-beating-test.js:async function testDeliveryCancellation(deliveryId, provider) {
+backend/delivery-service/test/nash-beating-test.js-  console.log(`❌ Testing delivery cancellation for ${deliveryId}...`);
+backend/delivery-service/test/nash-beating-test.js-    const response = await axios.post(`${BASE_URL}/api/delivery/cancel`, {
+backend/delivery-service/test/nash-beating-test.js-      deliveryId,
+backend/delivery-service/test/nash-beating-test.js-      provider,
+--
+backend/delivery-service/test/nash-beating-test.js:async function runEndToEndTest() {
+backend/delivery-service/test/nash-beating-test.js-  console.log('🚀 Starting Nash-beating delivery service end-to-end test...');
+backend/delivery-service/test/nash-beating-test.js-  console.log('=' .repeat(60));
+backend/delivery-service/test/nash-beating-test.js-  
+backend/delivery-service/test/nash-beating-test.js-  // Test 1: Health Check
+backend/delivery-service/test/nash-beating-test.js-  const healthOk = await testHealthCheck();
+--
+backend/delivery-service/src/end-to-end-testing.js:async function testLightspeedWebhook() {
+backend/delivery-service/src/end-to-end-testing.js-  console.log('🧪 Testing Lightspeed webhook integration...');
+backend/delivery-service/src/end-to-end-testing.js-
+backend/delivery-service/src/end-to-end-testing.js-  const testOrder = {
+backend/delivery-service/src/end-to-end-testing.js-    order: {
+backend/delivery-service/src/end-to-end-testing.js-      id: `test-${Date.now()}`,
+--
+backend/delivery-service/src/end-to-end-testing.js:async function testProviderComparison() {
+backend/delivery-service/src/end-to-end-testing.js-  console.log('🧪 Testing provider comparison API...');
+backend/delivery-service/src/end-to-end-testing.js-
+backend/delivery-service/src/end-to-end-testing.js-  const testRequest = {
+backend/delivery-service/src/end-to-end-testing.js-    cartTotal: 75.00,
+backend/delivery-service/src/end-to-end-testing.js-    deliveryAddress: {
+--
+backend/delivery-service/src/end-to-end-testing.js:async function testSmartRouting() {
+backend/delivery-service/src/end-to-end-testing.js-  console.log('🧪 Testing smart routing algorithm...');
+backend/delivery-service/src/end-to-end-testing.js-
+backend/delivery-service/src/end-to-end-testing.js-  for (const scenario of TEST_SCENARIOS) {
+backend/delivery-service/src/end-to-end-testing.js-    console.log(`   Testing: ${scenario.name}`);
+backend/delivery-service/src/end-to-end-testing.js-
+--
+backend/delivery-service/src/end-to-end-testing.js:async function testCostOptimization() {
+backend/delivery-service/src/end-to-end-testing.js-  console.log('🧪 Testing cost optimization...');
+backend/delivery-service/src/end-to-end-testing.js-
+backend/delivery-service/src/end-to-end-testing.js-  // Simulate historical data
+backend/delivery-service/src/end-to-end-testing.js-  const historicalData = [
+backend/delivery-service/src/end-to-end-testing.js-    { provider: 'doordash', cost: 5.50, estimatedMinutes: 35, status: 'delivered' },
+--
+backend/delivery-service/src/end-to-end-testing.js:async function testFailoverMechanism() {
+backend/delivery-service/src/end-to-end-testing.js-  console.log('🧪 Testing failover mechanism...');
+backend/delivery-service/src/end-to-end-testing.js-
+backend/delivery-service/src/end-to-end-testing.js-  // Simulate DoorDash failure
+backend/delivery-service/src/end-to-end-testing.js-  const originalDoorDashEnabled = process.env.DOORDASH_DEVELOPER_ID;
+backend/delivery-service/src/end-to-end-testing.js-  process.env.DOORDASH_DEVELOPER_ID = ''; // Disable DoorDash
+--
+backend/delivery-service/src/end-to-end-testing.js:export async function runEndToEndTests() {
+backend/delivery-service/src/end-to-end-testing.js-  console.log('🚀 Starting comprehensive end-to-end tests...');
+backend/delivery-service/src/end-to-end-testing.js-  console.log('');
+backend/delivery-service/src/end-to-end-testing.js-
+backend/delivery-service/src/end-to-end-testing.js-  const tests = [
+backend/delivery-service/src/end-to-end-testing.js-    { name: 'Lightspeed Webhook', fn: testLightspeedWebhook },
+--
+backend/delivery-service/src/end-to-end-testing.js:export async function healthCheck() {
+backend/delivery-service/src/end-to-end-testing.js-    const response = await axios.get(`${BASE_URL}/health`);
+backend/delivery-service/src/end-to-end-testing.js-    return response.status === 200;
+backend/delivery-service/src/end-to-end-testing.js-    return false;
+--
+backend/delivery-service/src/lightspeed-webhook-listener.js:router.post('/lightspeed/webhook', async (req, res) => {
+backend/delivery-service/src/lightspeed-webhook-listener.js-    const signature = req.headers['x-lightspeed-signature'];
+backend/delivery-service/src/lightspeed-webhook-listener.js-    const payload = JSON.stringify(req.body);
+backend/delivery-service/src/lightspeed-webhook-listener.js-
+backend/delivery-service/src/lightspeed-webhook-listener.js-    // Validate webhook signature
+--
+backend/delivery-service/src/lightspeed-webhook-listener.js:router.get('/lightspeed/test', async (req, res) => {
+backend/delivery-service/src/lightspeed-webhook-listener.js-    const testOrder = {
+backend/delivery-service/src/lightspeed-webhook-listener.js-      order: {
+backend/delivery-service/src/lightspeed-webhook-listener.js-        id: `test-${Date.now()}`,
+backend/delivery-service/src/lightspeed-webhook-listener.js-        total: '75.00',
+--
+backend/delivery-service/src/nash-beating-middleware.js:async function getDoorDashQuote(deliveryRequest) {
+backend/delivery-service/src/nash-beating-middleware.js-  if (!PROVIDERS.doordash.enabled) {
+backend/delivery-service/src/nash-beating-middleware.js-    throw new Error('DoorDash not configured');
+backend/delivery-service/src/nash-beating-middleware.js-  }
+backend/delivery-service/src/nash-beating-middleware.js-
+--
+backend/delivery-service/src/nash-beating-middleware.js:async function getUberQuote(deliveryRequest) {
+backend/delivery-service/src/nash-beating-middleware.js-  if (!PROVIDERS.uber.enabled) {
+backend/delivery-service/src/nash-beating-middleware.js-    throw new Error('Uber not configured');
+backend/delivery-service/src/nash-beating-middleware.js-  }
+backend/delivery-service/src/nash-beating-middleware.js-
+--
+backend/delivery-service/src/nash-beating-middleware.js:router.post('/providers/compare', async (req, res) => {
+backend/delivery-service/src/nash-beating-middleware.js-    const { cartTotal, deliveryAddress, customerPhone, customerName, specialInstructions } = req.body;
+backend/delivery-service/src/nash-beating-middleware.js-
+backend/delivery-service/src/nash-beating-middleware.js-    if (!cartTotal || !deliveryAddress) {
+backend/delivery-service/src/nash-beating-middleware.js-      return res.status(400).json({
+--
+backend/delivery-service/src/nash-beating-middleware.js:router.post('/quote', async (req, res) => {
+backend/delivery-service/src/nash-beating-middleware.js-    const { cartTotal, deliveryAddress, customerPhone, customerName, specialInstructions } = req.body;
+backend/delivery-service/src/nash-beating-middleware.js-
+backend/delivery-service/src/nash-beating-middleware.js-    if (!cartTotal || !deliveryAddress) {
+backend/delivery-service/src/nash-beating-middleware.js-      return res.status(400).json({
+--
+backend/delivery-service/src/nash-beating-middleware.js:router.post('/lightspeed/webhook', async (req, res) => {
+backend/delivery-service/src/nash-beating-middleware.js-    const order = req.body;
+backend/delivery-service/src/nash-beating-middleware.js-
+backend/delivery-service/src/nash-beating-middleware.js-    // Validate Lightspeed webhook signature
+backend/delivery-service/src/nash-beating-middleware.js-    const signature = req.headers['x-lightspeed-signature'];
+--
+backend/delivery-service/src/nash-beating-middleware.js:router.get('/status/:deliveryId', async (req, res) => {
+backend/delivery-service/src/nash-beating-middleware.js-    const { deliveryId } = req.params;
+backend/delivery-service/src/nash-beating-middleware.js-    const { provider } = req.query;
+backend/delivery-service/src/nash-beating-middleware.js-
+backend/delivery-service/src/nash-beating-middleware.js-    if (!provider) {
+--
+backend/delivery-service/src/nash-beating-middleware.js:router.post('/cancel', async (req, res) => {
+backend/delivery-service/src/nash-beating-middleware.js-    const { deliveryId, reason, provider } = req.body;
+backend/delivery-service/src/nash-beating-middleware.js-
+backend/delivery-service/src/nash-beating-middleware.js-    if (!deliveryId || !provider) {
+backend/delivery-service/src/nash-beating-middleware.js-      return res.status(400).json({
+--
+backend/delivery-service/src/provider-comparison.js:export async function getAllProviderQuotes(deliveryAddress, cartTotal, providers) {
+backend/delivery-service/src/provider-comparison.js-  const enabledProviders = Object.entries(providers).filter(([_, p]) => p.enabled);
+backend/delivery-service/src/provider-comparison.js-
+backend/delivery-service/src/provider-comparison.js-  const quotes = await Promise.allSettled(
+backend/delivery-service/src/provider-comparison.js:    enabledProviders.map(async ([key, provider]) => {
+backend/delivery-service/src/provider-comparison.js-        // Get real-time quote from provider
+backend/delivery-service/src/provider-comparison.js-        const quote = await getProviderQuote(key, provider, deliveryAddress, cartTotal);
+backend/delivery-service/src/provider-comparison.js-
+backend/delivery-service/src/provider-comparison.js-        // Calculate score
+--
+backend/delivery-service/src/provider-comparison.js:async function getProviderQuote(providerKey, providerConfig, address, cartTotal) {
+backend/delivery-service/src/provider-comparison.js-  switch (providerKey) {
+backend/delivery-service/src/provider-comparison.js-    case 'doordash':
+backend/delivery-service/src/provider-comparison.js-      return await getDoorDashQuote(providerConfig, address, cartTotal);
+backend/delivery-service/src/provider-comparison.js-
+backend/delivery-service/src/provider-comparison.js-    case 'uber':
+--
+backend/delivery-service/src/provider-comparison.js:async function getDoorDashQuote(provider, address, cartTotal) {
+backend/delivery-service/src/provider-comparison.js-  // TODO: Replace with real API call once keys available
+backend/delivery-service/src/provider-comparison.js-  // For now, return simulated quote
+backend/delivery-service/src/provider-comparison.js-  return {
+backend/delivery-service/src/provider-comparison.js-    cost: 5.50,
+backend/delivery-service/src/provider-comparison.js-    estimatedMinutes: 35,
+--
+backend/delivery-service/src/provider-comparison.js:async function getUberQuote(provider, address, cartTotal) {
+backend/delivery-service/src/provider-comparison.js-  // TODO: Replace with real API call once keys available
+backend/delivery-service/src/provider-comparison.js-  return {
+backend/delivery-service/src/provider-comparison.js-    cost: 5.00,
+backend/delivery-service/src/provider-comparison.js-    estimatedMinutes: 40,
+backend/delivery-service/src/provider-comparison.js-    features: ['Live tracking', 'Flexible scheduling', 'In-app tips']
+--
+backend/delivery-service/src/provider-comparison.js:async function getPostmatesQuote(provider, address, cartTotal) {
+backend/delivery-service/src/provider-comparison.js-  // TODO: Implement once API keys available
+backend/delivery-service/src/provider-comparison.js-  return {
+backend/delivery-service/src/provider-comparison.js-    cost: 5.25,
+backend/delivery-service/src/provider-comparison.js-    estimatedMinutes: 38,
+backend/delivery-service/src/provider-comparison.js-    features: ['Real-time GPS', 'Photo delivery proof', 'Customer rating system']
+--
+backend/delivery-service/src/provider-comparison.js:async function getGrubhubQuote(provider, address, cartTotal) {
+backend/delivery-service/src/provider-comparison.js-  // TODO: Implement once API keys available
+backend/delivery-service/src/provider-comparison.js-  return {
+backend/delivery-service/src/provider-comparison.js-    cost: 6.00,
+backend/delivery-service/src/provider-comparison.js-    estimatedMinutes: 40,
+backend/delivery-service/src/provider-comparison.js-    features: ['Restaurant network', 'Marketing exposure', 'Customer insights']
+--
+backend/delivery-service/src/lightspeed-delivery-middleware.js:router.post('/lightspeed/webhook', async (req, res) => {
+backend/delivery-service/src/lightspeed-delivery-middleware.js-    const order = req.body;
+backend/delivery-service/src/lightspeed-delivery-middleware.js-
+backend/delivery-service/src/lightspeed-delivery-middleware.js-    // Validate order is delivery type
+backend/delivery-service/src/lightspeed-delivery-middleware.js-    if (order.deliveryMethod !== 'delivery' && order.fulfillmentType !== 'delivery') {
+--
+backend/delivery-service/src/lightspeed-delivery-middleware.js:router.post('/quote', async (req, res) => {
+backend/delivery-service/src/lightspeed-delivery-middleware.js-    const { cartTotal, deliveryAddress, preferences } = req.body;
+backend/delivery-service/src/lightspeed-delivery-middleware.js-
+backend/delivery-service/src/lightspeed-delivery-middleware.js-    // Get quotes from all enabled providers
+backend/delivery-service/src/lightspeed-delivery-middleware.js-    const allQuotes = await getAllProviderQuotes(deliveryAddress, cartTotal, PROVIDERS);
+--
+backend/delivery-service/src/lightspeed-delivery-middleware.js:router.post('/providers/compare', async (req, res) => {
+backend/delivery-service/src/lightspeed-delivery-middleware.js-    const { cartTotal, deliveryAddress } = req.body;
+backend/delivery-service/src/lightspeed-delivery-middleware.js-
+backend/delivery-service/src/lightspeed-delivery-middleware.js-    // Validate required fields
+backend/delivery-service/src/lightspeed-delivery-middleware.js-    if (!deliveryAddress || !cartTotal) {
+--
+backend/delivery-service/src/lightspeed-delivery-middleware.js:router.post('/create', async (req, res) => {
+backend/delivery-service/src/lightspeed-delivery-middleware.js-    const deliveryRequest = req.body;
+backend/delivery-service/src/lightspeed-delivery-middleware.js-
+backend/delivery-service/src/lightspeed-delivery-middleware.js-    // Validate delivery address is in zone
+backend/delivery-service/src/lightspeed-delivery-middleware.js-    const inZone = await validateDeliveryZone(deliveryRequest.dropoff.address);
+--
+backend/delivery-service/src/lightspeed-delivery-middleware.js:router.get('/status/:deliveryId', async (req, res) => {
+backend/delivery-service/src/lightspeed-delivery-middleware.js-    const { deliveryId } = req.params;
+backend/delivery-service/src/lightspeed-delivery-middleware.js-
+backend/delivery-service/src/lightspeed-delivery-middleware.js-    // Get status from provider (DoorDash or Uber)
+backend/delivery-service/src/lightspeed-delivery-middleware.js-    const status = await getDeliveryStatus(deliveryId);
+--
+backend/delivery-service/src/lightspeed-delivery-middleware.js:router.post('/cancel', async (req, res) => {
+backend/delivery-service/src/lightspeed-delivery-middleware.js-    const { deliveryId, reason } = req.body;
+backend/delivery-service/src/lightspeed-delivery-middleware.js-
+backend/delivery-service/src/lightspeed-delivery-middleware.js-    // Cancel with provider
+backend/delivery-service/src/lightspeed-delivery-middleware.js-    const result = await cancelDelivery(deliveryId, reason);
+--
+backend/delivery-service/src/lightspeed-delivery-middleware.js:async function createDeliveryWithBestProvider(deliveryRequest) {
+backend/delivery-service/src/lightspeed-delivery-middleware.js-  // Get quotes from all providers and select best
+backend/delivery-service/src/lightspeed-delivery-middleware.js-  const comparison = await getAllProviderQuotes(
+backend/delivery-service/src/lightspeed-delivery-middleware.js-    deliveryRequest.dropoff.address,
+backend/delivery-service/src/lightspeed-delivery-middleware.js-    deliveryRequest.orderValue,
+backend/delivery-service/src/lightspeed-delivery-middleware.js-    PROVIDERS
+--
+backend/delivery-service/src/lightspeed-delivery-middleware.js:async function createDeliveryWithProvider(providerKey, deliveryRequest) {
+backend/delivery-service/src/lightspeed-delivery-middleware.js-  switch (providerKey) {
+backend/delivery-service/src/lightspeed-delivery-middleware.js-    case 'doordash':
+backend/delivery-service/src/lightspeed-delivery-middleware.js-      return await createDoorDashDelivery(deliveryRequest);
+backend/delivery-service/src/lightspeed-delivery-middleware.js-    case 'uber':
+backend/delivery-service/src/lightspeed-delivery-middleware.js-      return await createUberDelivery(deliveryRequest);
+--
+backend/delivery-service/src/lightspeed-delivery-middleware.js:async function createDoorDashDelivery(request) {
+backend/delivery-service/src/lightspeed-delivery-middleware.js-  // DoorDash Drive API integration with JWT authentication
+backend/delivery-service/src/lightspeed-delivery-middleware.js-  const jwt = generateDoorDashJWT();
+backend/delivery-service/src/lightspeed-delivery-middleware.js-
+backend/delivery-service/src/lightspeed-delivery-middleware.js-  const response = await axios.post(
+backend/delivery-service/src/lightspeed-delivery-middleware.js-    `${PROVIDERS.doordash.baseUrl}/deliveries`,
+--
+backend/delivery-service/src/lightspeed-delivery-middleware.js:async function createUberDelivery(request) {
+backend/delivery-service/src/lightspeed-delivery-middleware.js-  // Uber Direct API integration
+backend/delivery-service/src/lightspeed-delivery-middleware.js-  const response = await axios.post(
+backend/delivery-service/src/lightspeed-delivery-middleware.js-    `${PROVIDERS.uber.baseUrl}`,
+backend/delivery-service/src/lightspeed-delivery-middleware.js-    {
+backend/delivery-service/src/lightspeed-delivery-middleware.js-      pickup: {
+--
+backend/delivery-service/src/lightspeed-delivery-middleware.js:async function createPostmatesDelivery(request) {
+backend/delivery-service/src/lightspeed-delivery-middleware.js-  // Postmates Fleet API integration
+backend/delivery-service/src/lightspeed-delivery-middleware.js-  const response = await axios.post(
+backend/delivery-service/src/lightspeed-delivery-middleware.js-    `${PROVIDERS.postmates.baseUrl}/deliveries`,
+backend/delivery-service/src/lightspeed-delivery-middleware.js-    {
+backend/delivery-service/src/lightspeed-delivery-middleware.js-      pickup_name: request.pickup.name,
+--
+backend/delivery-service/src/lightspeed-delivery-middleware.js:async function createGrubhubDelivery(request) {
+backend/delivery-service/src/lightspeed-delivery-middleware.js-  // Grubhub Enterprise API integration
+backend/delivery-service/src/lightspeed-delivery-middleware.js-  const response = await axios.post(
+backend/delivery-service/src/lightspeed-delivery-middleware.js-    `${PROVIDERS.grubhub.baseUrl}/orders`,
+backend/delivery-service/src/lightspeed-delivery-middleware.js-    {
+backend/delivery-service/src/lightspeed-delivery-middleware.js-      external_order_id: request.orderId,
+--
+backend/delivery-service/src/lightspeed-delivery-middleware.js:async function getDoorDashQuote(address, orderValue) {
+backend/delivery-service/src/lightspeed-delivery-middleware.js-  const jwt = generateDoorDashJWT();
+backend/delivery-service/src/lightspeed-delivery-middleware.js-
+backend/delivery-service/src/lightspeed-delivery-middleware.js-  const response = await axios.post(
+backend/delivery-service/src/lightspeed-delivery-middleware.js-    `${PROVIDERS.doordash.baseUrl}/quotes`,
+backend/delivery-service/src/lightspeed-delivery-middleware.js-    {
+--
+backend/delivery-service/src/lightspeed-delivery-middleware.js:async function getUberQuote(address, orderValue) {
+backend/delivery-service/src/lightspeed-delivery-middleware.js-  const response = await axios.post(
+backend/delivery-service/src/lightspeed-delivery-middleware.js-    `${PROVIDERS.uber.baseUrl}/quote`,
+backend/delivery-service/src/lightspeed-delivery-middleware.js-    {
+backend/delivery-service/src/lightspeed-delivery-middleware.js-      pickup: { location: formatAddressForUber(STORE_CONFIG.storeAddress) },
+backend/delivery-service/src/lightspeed-delivery-middleware.js-      dropoff: { location: formatAddressForUber(address) }
+--
+backend/delivery-service/src/lightspeed-delivery-middleware.js:async function getDeliveryStatus(deliveryId) {
+backend/delivery-service/src/lightspeed-delivery-middleware.js-  // Determine provider from deliveryId prefix
+backend/delivery-service/src/lightspeed-delivery-middleware.js-  const provider = deliveryId.startsWith('dd_') ? 'doordash' : 'uber';
+backend/delivery-service/src/lightspeed-delivery-middleware.js-
+backend/delivery-service/src/lightspeed-delivery-middleware.js-  if (provider === 'doordash') {
+backend/delivery-service/src/lightspeed-delivery-middleware.js-    const jwt = generateDoorDashJWT();
+--
+backend/delivery-service/src/lightspeed-delivery-middleware.js:async function cancelDelivery(deliveryId, reason) {
+backend/delivery-service/src/lightspeed-delivery-middleware.js-  const provider = deliveryId.startsWith('dd_') ? 'doordash' : 'uber';
+backend/delivery-service/src/lightspeed-delivery-middleware.js-
+backend/delivery-service/src/lightspeed-delivery-middleware.js-  if (provider === 'doordash') {
+backend/delivery-service/src/lightspeed-delivery-middleware.js-    const jwt = generateDoorDashJWT();
+backend/delivery-service/src/lightspeed-delivery-middleware.js-
+--
+backend/delivery-service/src/lightspeed-delivery-middleware.js:async function validateDeliveryZone(address) {
+backend/delivery-service/src/lightspeed-delivery-middleware.js-  // Calculate distance from store
+backend/delivery-service/src/lightspeed-delivery-middleware.js-  const distance = calculateDistance(
+backend/delivery-service/src/lightspeed-delivery-middleware.js-    STORE_CONFIG.storeAddress.lat,
+backend/delivery-service/src/lightspeed-delivery-middleware.js-    STORE_CONFIG.storeAddress.lng,
+backend/delivery-service/src/lightspeed-delivery-middleware.js-    address.lat || 29.4241, // Fallback to San Antonio center
+--
+backend/delivery-service/src/smart-routing-algorithm.js:export async function selectBestProvider(deliveryRequest) {
+backend/delivery-service/src/smart-routing-algorithm.js-  const availableProviders = Object.entries(PROVIDERS)
+backend/delivery-service/src/smart-routing-algorithm.js-    .filter(([key, provider]) => provider.enabled)
+backend/delivery-service/src/smart-routing-algorithm.js-    .map(([key, provider]) => ({ key, ...provider }));
+backend/delivery-service/src/smart-routing-algorithm.js-
+backend/delivery-service/src/smart-routing-algorithm.js-  if (availableProviders.length === 0) {
+--
+backend/delivery-service/src/smart-routing-algorithm.js:async function getDoorDashQuote(deliveryRequest) {
+backend/delivery-service/src/smart-routing-algorithm.js-  // Placeholder implementation
+backend/delivery-service/src/smart-routing-algorithm.js-  // In production, this would call DoorDash Drive API
+backend/delivery-service/src/smart-routing-algorithm.js-  return {
+backend/delivery-service/src/smart-routing-algorithm.js-    cost: 5.50,
+backend/delivery-service/src/smart-routing-algorithm.js-    estimatedMinutes: 35,
+--
+backend/delivery-service/src/smart-routing-algorithm.js:async function getUberQuote(deliveryRequest) {
+backend/delivery-service/src/smart-routing-algorithm.js-  // Placeholder implementation
+backend/delivery-service/src/smart-routing-algorithm.js-  // In production, this would call Uber Direct API
+backend/delivery-service/src/smart-routing-algorithm.js-  return {
+backend/delivery-service/src/smart-routing-algorithm.js-    cost: 5.00,
+backend/delivery-service/src/smart-routing-algorithm.js-    estimatedMinutes: 40,
+--
+backend/delivery-service/src/index.js:app.get('/health', async (req, res) => {
+backend/delivery-service/src/index.js-    const isHealthy = await healthCheck();
+backend/delivery-service/src/index.js-    res.status(isHealthy ? 200 : 503).json({
+backend/delivery-service/src/index.js-      status: isHealthy ? 'healthy' : 'unhealthy',
+backend/delivery-service/src/index.js-      timestamp: new Date().toISOString(),
+--
+backend/delivery-service/src/index.js:app.get('/api/test/end-to-end', async (req, res) => {
+backend/delivery-service/src/index.js-    console.log('🧪 Running end-to-end tests...');
+backend/delivery-service/src/index.js-    const success = await runEndToEndTests();
+backend/delivery-service/src/index.js-    
+backend/delivery-service/src/index.js-    res.json({
+--
+backend/reasoning-gateway/services/swarm-coordinator.js:  async submitTask(taskData) {
+backend/reasoning-gateway/services/swarm-coordinator.js-    const taskId = `task-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+backend/reasoning-gateway/services/swarm-coordinator.js-
+backend/reasoning-gateway/services/swarm-coordinator.js-    const task = {
+backend/reasoning-gateway/services/swarm-coordinator.js-      id: taskId,
+backend/reasoning-gateway/services/swarm-coordinator.js-      ...taskData,
+--
+backend/reasoning-gateway/services/swarm-coordinator.js:  async assignTasks() {
+backend/reasoning-gateway/services/swarm-coordinator.js-    const availableTasks = this.taskQueue.filter(taskId => {
+backend/reasoning-gateway/services/swarm-coordinator.js-      const task = this.tasks.get(taskId);
+backend/reasoning-gateway/services/swarm-coordinator.js-      return task.status === 'queued';
+backend/reasoning-gateway/services/swarm-coordinator.js-    });
+backend/reasoning-gateway/services/swarm-coordinator.js-
+--
+backend/reasoning-gateway/services/swarm-coordinator.js:  async assignTaskToAgent(taskId, agentId) {
+backend/reasoning-gateway/services/swarm-coordinator.js-    const task = this.tasks.get(taskId);
+backend/reasoning-gateway/services/swarm-coordinator.js-    const agent = this.agents.get(agentId);
+backend/reasoning-gateway/services/swarm-coordinator.js-
+backend/reasoning-gateway/services/swarm-coordinator.js-    if (!task || !agent) {
+backend/reasoning-gateway/services/swarm-coordinator.js-      logger.error(`Failed to assign task: ${taskId} to agent: ${agentId}`);
+--
+backend/reasoning-gateway/services/swarm-coordinator.js:  async startTask(taskId) {
+backend/reasoning-gateway/services/swarm-coordinator.js-    const task = this.tasks.get(taskId);
+backend/reasoning-gateway/services/swarm-coordinator.js-
+backend/reasoning-gateway/services/swarm-coordinator.js-    if (!task) {
+backend/reasoning-gateway/services/swarm-coordinator.js-      throw new Error(`Task not found: ${taskId}`);
+backend/reasoning-gateway/services/swarm-coordinator.js-    }
+--
+backend/reasoning-gateway/services/swarm-coordinator.js:  async submitResult(taskId, resultData) {
+backend/reasoning-gateway/services/swarm-coordinator.js-    const task = this.tasks.get(taskId);
+backend/reasoning-gateway/services/swarm-coordinator.js-
+backend/reasoning-gateway/services/swarm-coordinator.js-    if (!task) {
+backend/reasoning-gateway/services/swarm-coordinator.js-      throw new Error(`Task not found: ${taskId}`);
+backend/reasoning-gateway/services/swarm-coordinator.js-    }
+--
+backend/reasoning-gateway/services/swarm-coordinator.js:  async quickStartHNC() {
+backend/reasoning-gateway/services/swarm-coordinator.js-    const hncPipeline = [
+backend/reasoning-gateway/services/swarm-coordinator.js-      {
+backend/reasoning-gateway/services/swarm-coordinator.js-        type: 'script-validation',
+backend/reasoning-gateway/services/swarm-coordinator.js-        description: 'Validate episode scripts and character consistency',
+backend/reasoning-gateway/services/swarm-coordinator.js-        requiredCapabilities: ['file-operations'],
+--
+backend/reasoning-gateway/routes/swarm-integration.js:router.post('/tasks', authenticateRequest, async (req, res) => {
+backend/reasoning-gateway/routes/swarm-integration.js-    const { type, description, requiredCapabilities, priority, metadata } = req.body;
+backend/reasoning-gateway/routes/swarm-integration.js-
+backend/reasoning-gateway/routes/swarm-integration.js-    if (!type || !description) {
+backend/reasoning-gateway/routes/swarm-integration.js-      return res.status(400).json({
+--
+backend/reasoning-gateway/routes/swarm-integration.js:router.get('/status/:taskId', authenticateRequest, async (req, res) => {
+backend/reasoning-gateway/routes/swarm-integration.js-    const { taskId } = req.params;
+backend/reasoning-gateway/routes/swarm-integration.js-
+backend/reasoning-gateway/routes/swarm-integration.js-    const status = swarmCoordinator.getTaskStatus(taskId);
+backend/reasoning-gateway/routes/swarm-integration.js-
+--
+backend/reasoning-gateway/routes/swarm-integration.js:router.post('/results', authenticateRequest, async (req, res) => {
+backend/reasoning-gateway/routes/swarm-integration.js-    const { taskId, success, result, error, metadata } = req.body;
+backend/reasoning-gateway/routes/swarm-integration.js-
+backend/reasoning-gateway/routes/swarm-integration.js-    if (!taskId) {
+backend/reasoning-gateway/routes/swarm-integration.js-      return res.status(400).json({
+--
+backend/reasoning-gateway/routes/swarm-integration.js:router.get('/capabilities', authenticateRequest, async (req, res) => {
+backend/reasoning-gateway/routes/swarm-integration.js-    const capabilities = swarmCoordinator.getCapabilities();
+backend/reasoning-gateway/routes/swarm-integration.js-
+backend/reasoning-gateway/routes/swarm-integration.js-    res.json({
+backend/reasoning-gateway/routes/swarm-integration.js-      success: true,
+--
+backend/reasoning-gateway/routes/swarm-integration.js:router.get('/health', async (req, res) => {
+backend/reasoning-gateway/routes/swarm-integration.js-    const health = swarmCoordinator.getHealth();
+backend/reasoning-gateway/routes/swarm-integration.js-
+backend/reasoning-gateway/routes/swarm-integration.js-    res.json(health);
+backend/reasoning-gateway/routes/swarm-integration.js-
+--
+backend/reasoning-gateway/routes/swarm-integration.js:router.post('/quick-start/hnc', authenticateRequest, async (req, res) => {
+backend/reasoning-gateway/routes/swarm-integration.js-    logger.info('HNC Quick Start initiated by ' + req.agentId);
+backend/reasoning-gateway/routes/swarm-integration.js-
+backend/reasoning-gateway/routes/swarm-integration.js-    const pipeline = await swarmCoordinator.quickStartHNC();
+backend/reasoning-gateway/routes/swarm-integration.js-
+--
+backend/reasoning-gateway/routes/swarm-integration.js:router.post('/tasks/:taskId/start', authenticateRequest, async (req, res) => {
+backend/reasoning-gateway/routes/swarm-integration.js-    const { taskId } = req.params;
+backend/reasoning-gateway/routes/swarm-integration.js-
+backend/reasoning-gateway/routes/swarm-integration.js-    const task = await swarmCoordinator.startTask(taskId);
+backend/reasoning-gateway/routes/swarm-integration.js-
+--
+backend/reasoning-gateway/routes/swarm-integration.js:router.get('/tasks', authenticateRequest, async (req, res) => {
+backend/reasoning-gateway/routes/swarm-integration.js-    const { status, agent, limit = 100 } = req.query;
+backend/reasoning-gateway/routes/swarm-integration.js-
+backend/reasoning-gateway/routes/swarm-integration.js-    let tasks = Array.from(swarmCoordinator.tasks.values());
+backend/reasoning-gateway/routes/swarm-integration.js-
+--
+backend/reasoning-gateway/routes/swarm-integration.js:router.get('/agents', authenticateRequest, async (req, res) => {
+backend/reasoning-gateway/routes/swarm-integration.js-    const agents = Array.from(swarmCoordinator.agents.entries()).map(([id, agent]) => ({
+backend/reasoning-gateway/routes/swarm-integration.js-      id,
+backend/reasoning-gateway/routes/swarm-integration.js-      type: agent.type,
+backend/reasoning-gateway/routes/swarm-integration.js-      capabilities: agent.capabilities,
+--
+backend/reasoning-gateway/common/queue/index.js:export async function enqueueJob(queue, jobName, jobData, opts = {}) {
+backend/reasoning-gateway/common/queue/index.js-  const job = await queue.add(jobName, jobData, opts);
+backend/reasoning-gateway/common/queue/index.js-  return {
+backend/reasoning-gateway/common/queue/index.js-    id: job.id,
+backend/reasoning-gateway/common/queue/index.js-    name: job.name,
+backend/reasoning-gateway/common/queue/index.js-    data: job.data,
+--
+backend/reasoning-gateway/common/queue/index.js:export async function getJobStatus(queue, jobId) {
+backend/reasoning-gateway/common/queue/index.js-  const job = await queue.getJob(jobId);
+backend/reasoning-gateway/common/queue/index.js-
+backend/reasoning-gateway/common/queue/index.js-  if (!job) {
+backend/reasoning-gateway/common/queue/index.js-    return { found: false, jobId };
+backend/reasoning-gateway/common/queue/index.js-  }
+--
+backend/reasoning-gateway/common/queue/index.js:export async function waitForJob(job, timeout = 60000) {
+backend/reasoning-gateway/common/queue/index.js-  return await job.waitUntilFinished(queueEvents, timeout);
+backend/reasoning-gateway/common/queue/index.js-}
+backend/reasoning-gateway/common/queue/index.js-
+backend/reasoning-gateway/common/queue/index.js-export default {
+backend/reasoning-gateway/common/queue/index.js-  createQueue,
+--
+backend/reasoning-gateway/tests/voice-commerce.test.js:        it('should reject empty transcript', async () => {
+backend/reasoning-gateway/tests/voice-commerce.test.js-            const result = await engine.processVoiceCommand('', '12345');
+backend/reasoning-gateway/tests/voice-commerce.test.js-            expect(result.success).toBe(false);
+backend/reasoning-gateway/tests/voice-commerce.test.js-            expect(result.message).toContain('Empty transcript');
+backend/reasoning-gateway/tests/voice-commerce.test.js-        });
+backend/reasoning-gateway/tests/voice-commerce.test.js:        it('should reject empty customerId', async () => {
+backend/reasoning-gateway/tests/voice-commerce.test.js-            const result = await engine.processVoiceCommand('test', '');
+backend/reasoning-gateway/tests/voice-commerce.test.js-            expect(result.success).toBe(false);
+backend/reasoning-gateway/tests/voice-commerce.test.js-            expect(result.message).toContain('Customer ID required');
+backend/reasoning-gateway/tests/voice-commerce.test.js-        });
+backend/reasoning-gateway/tests/voice-commerce.test.js:        it('should extract intent from transcript', async () => {
+backend/reasoning-gateway/tests/voice-commerce.test.js-            const result = await engine.processVoiceCommand('I need more sleep gummies', '12345');
+backend/reasoning-gateway/tests/voice-commerce.test.js-            expect(result).toHaveProperty('success');
+backend/reasoning-gateway/tests/voice-commerce.test.js-            expect(result).toHaveProperty('message');
+backend/reasoning-gateway/tests/voice-commerce.test.js-            expect(result).toHaveProperty('intent');
+backend/reasoning-gateway/tests/voice-commerce.test.js-            expect(result).toHaveProperty('confidence');
+--
+backend/reasoning-gateway/tests/voice-commerce.test.js:        it('should handle reorder intent', async () => {
+backend/reasoning-gateway/tests/voice-commerce.test.js-            // Mock Claude response for reorder intent
+backend/reasoning-gateway/tests/voice-commerce.test.js-            mockClaude.messages.create.mockResolvedValueOnce({
+backend/reasoning-gateway/tests/voice-commerce.test.js-                content: [{
+backend/reasoning-gateway/tests/voice-commerce.test.js-                        type: 'text',
+backend/reasoning-gateway/tests/voice-commerce.test.js-                        text: JSON.stringify({
+--
+backend/reasoning-gateway/tests/voice-commerce.test.js:        it('should handle question intent', async () => {
+backend/reasoning-gateway/tests/voice-commerce.test.js-            const result = await engine.processVoiceCommand('What is my order status?', '12345');
+backend/reasoning-gateway/tests/voice-commerce.test.js-            expect(result.intent).toBe('question');
+backend/reasoning-gateway/tests/voice-commerce.test.js-            expect(result.success).toBe(false);
+backend/reasoning-gateway/tests/voice-commerce.test.js-        });
+backend/reasoning-gateway/tests/voice-commerce.test.js:        it('should handle errors gracefully', async () => {
+backend/reasoning-gateway/tests/voice-commerce.test.js-            // Mock error
+backend/reasoning-gateway/tests/voice-commerce.test.js-            mockClaude.messages.create.mockRejectedValueOnce(new Error('API Error'));
+backend/reasoning-gateway/tests/voice-commerce.test.js-            const result = await engine.processVoiceCommand('test', '12345');
+backend/reasoning-gateway/tests/voice-commerce.test.js-            expect(result.success).toBe(false);
+backend/reasoning-gateway/tests/voice-commerce.test.js-            expect(result.message).toContain('Failed to process');
+--
+backend/reasoning-gateway/tests/voice-commerce.test.js:        it('should return health status', async () => {
+backend/reasoning-gateway/tests/voice-commerce.test.js-            const health = await engine.healthCheck();
+backend/reasoning-gateway/tests/voice-commerce.test.js-            expect(health).toHaveProperty('status');
+backend/reasoning-gateway/tests/voice-commerce.test.js-            expect(health).toHaveProperty('timestamp');
+backend/reasoning-gateway/tests/voice-commerce.test.js-            expect(health).toHaveProperty('claude_configured');
+backend/reasoning-gateway/tests/voice-commerce.test.js-            expect(health).toHaveProperty('lightspeed_connected');
+--
+backend/reasoning-gateway/tests/voice-commerce.test.js:        it('should report healthy when all services connected', async () => {
+backend/reasoning-gateway/tests/voice-commerce.test.js-            const health = await engine.healthCheck();
+backend/reasoning-gateway/tests/voice-commerce.test.js-            expect(health.claude_configured).toBe(true);
+backend/reasoning-gateway/tests/voice-commerce.test.js-        });
+backend/reasoning-gateway/tests/voice-commerce.test.js-    });
+backend/reasoning-gateway/tests/voice-commerce.test.js-});
+--
+backend/reasoning-gateway/tests/si-recommendations.test.js:        it('should throw error if customerId is empty', async () => {
+backend/reasoning-gateway/tests/si-recommendations.test.js-            await expect(engine.getRecommendations('')).rejects.toThrow('Customer ID is required');
+backend/reasoning-gateway/tests/si-recommendations.test.js-        });
+backend/reasoning-gateway/tests/si-recommendations.test.js:        it('should throw error if limit is out of range', async () => {
+backend/reasoning-gateway/tests/si-recommendations.test.js-            await expect(engine.getRecommendations('12345', 0)).rejects.toThrow('Limit must be between 1 and 50');
+backend/reasoning-gateway/tests/si-recommendations.test.js-            await expect(engine.getRecommendations('12345', 51)).rejects.toThrow('Limit must be between 1 and 50');
+backend/reasoning-gateway/tests/si-recommendations.test.js-        });
+backend/reasoning-gateway/tests/si-recommendations.test.js:        it('should return recommendations array', async () => {
+backend/reasoning-gateway/tests/si-recommendations.test.js-            const recommendations = await engine.getRecommendations('12345');
+backend/reasoning-gateway/tests/si-recommendations.test.js-            expect(Array.isArray(recommendations)).toBe(true);
+backend/reasoning-gateway/tests/si-recommendations.test.js-            recommendations.forEach(rec => {
+backend/reasoning-gateway/tests/si-recommendations.test.js-                expect(rec).toHaveProperty('product_id');
+backend/reasoning-gateway/tests/si-recommendations.test.js-                expect(rec).toHaveProperty('reason');
+--
+backend/reasoning-gateway/tests/si-recommendations.test.js:        it('should respect limit parameter', async () => {
+backend/reasoning-gateway/tests/si-recommendations.test.js-            const recommendations = await engine.getRecommendations('12345', 5);
+backend/reasoning-gateway/tests/si-recommendations.test.js-            expect(recommendations.length).toBeLessThanOrEqual(5);
+backend/reasoning-gateway/tests/si-recommendations.test.js-        });
+backend/reasoning-gateway/tests/si-recommendations.test.js:        it('should fallback to popular products on error', async () => {
+backend/reasoning-gateway/tests/si-recommendations.test.js-            // Mock BigQuery error
+backend/reasoning-gateway/tests/si-recommendations.test.js-            mockBigQuery.query.mockRejectedValueOnce(new Error('Query failed'));
+backend/reasoning-gateway/tests/si-recommendations.test.js-            const recommendations = await engine.getRecommendations('12345');
+backend/reasoning-gateway/tests/si-recommendations.test.js-            // Should return fallback recommendations
+backend/reasoning-gateway/tests/si-recommendations.test.js-            expect(Array.isArray(recommendations)).toBe(true);
+--
+backend/reasoning-gateway/tests/si-recommendations.test.js:        it('should handle multiple customers', async () => {
+backend/reasoning-gateway/tests/si-recommendations.test.js-            const customerIds = ['12345', '67890'];
+backend/reasoning-gateway/tests/si-recommendations.test.js-            const results = await engine.batchRecommendations(customerIds);
+backend/reasoning-gateway/tests/si-recommendations.test.js-            expect(typeof results).toBe('object');
+backend/reasoning-gateway/tests/si-recommendations.test.js-            expect(Object.keys(results).length).toBeGreaterThan(0);
+backend/reasoning-gateway/tests/si-recommendations.test.js-        });
+backend/reasoning-gateway/tests/si-recommendations.test.js:        it('should handle failures gracefully', async () => {
+backend/reasoning-gateway/tests/si-recommendations.test.js-            const customerIds = ['12345', 'invalid'];
+backend/reasoning-gateway/tests/si-recommendations.test.js-            const results = await engine.batchRecommendations(customerIds);
+backend/reasoning-gateway/tests/si-recommendations.test.js-            // Should return results for successful customers only
+backend/reasoning-gateway/tests/si-recommendations.test.js-            expect(typeof results).toBe('object');
+backend/reasoning-gateway/tests/si-recommendations.test.js-        });
+--
+backend/reasoning-gateway/tests/si-recommendations.test.js:        it('should return health status', async () => {
+backend/reasoning-gateway/tests/si-recommendations.test.js-            const health = await engine.healthCheck();
+backend/reasoning-gateway/tests/si-recommendations.test.js-            expect(health).toHaveProperty('status');
+backend/reasoning-gateway/tests/si-recommendations.test.js-            expect(health).toHaveProperty('timestamp');
+backend/reasoning-gateway/tests/si-recommendations.test.js-            expect(health).toHaveProperty('bigquery_connected');
+backend/reasoning-gateway/tests/si-recommendations.test.js-        });
+--
+backend/reasoning-gateway/src/index.js:app.post('/api/v1/generate', async (req, res) => {
+backend/reasoning-gateway/src/index.js-    const { prompt, task_type = 'general', max_budget = 0.01 } = req.body;
+backend/reasoning-gateway/src/index.js-    
+backend/reasoning-gateway/src/index.js-    if (!prompt) {
+backend/reasoning-gateway/src/index.js-      return res.status(400).json({ error: 'Prompt is required' });
+--
+backend/reasoning-gateway/src/index.js:app.post('/api/v1/generate-email', async (req, res) => {
+backend/reasoning-gateway/src/index.js-    const { recipient, subject, context, tone = 'professional' } = req.body;
+backend/reasoning-gateway/src/index.js-    
+backend/reasoning-gateway/src/index.js-    const prompt = `Write a ${tone} email to ${recipient} about ${subject}. Context: ${context}`;
+backend/reasoning-gateway/src/index.js-    
+--
+backend/reasoning-gateway/src/index.js:// reasoningQueue.process('reasoning-task', async (job) => {
+backend/reasoning-gateway/src/index.js-//   const { prompt, userId, sessionId, metadata } = job.data;
+backend/reasoning-gateway/src/index.js-//   // Process reasoning with appropriate model
+backend/reasoning-gateway/src/index.js-//   // Implementation pending - currently using direct API calls
+backend/reasoning-gateway/src/index.js-// });
+backend/reasoning-gateway/src/index.js-
+--
+backend/voice-service/src/routers/reasoning-router.js:router.post('/enqueue', async (req, res) => {
+backend/voice-service/src/routers/reasoning-router.js-    const { prompt, userId, sessionId, metadata } = req.body;
+backend/voice-service/src/routers/reasoning-router.js-
+backend/voice-service/src/routers/reasoning-router.js-    if (!prompt) {
+backend/voice-service/src/routers/reasoning-router.js-      return res.status(400).json({
+--
+backend/voice-service/src/routers/reasoning-router.js:router.get('/result/:jobId', async (req, res) => {
+backend/voice-service/src/routers/reasoning-router.js-    const { jobId } = req.params;
+backend/voice-service/src/routers/reasoning-router.js-
+backend/voice-service/src/routers/reasoning-router.js-    const status = await getJobStatus(reasoningQueue, jobId);
+backend/voice-service/src/routers/reasoning-router.js-
+--
+backend/voice-service/src/routers/reasoning-router.js:router.get('/stream/:jobId', async (req, res) => {
+backend/voice-service/src/routers/reasoning-router.js-    const { jobId } = req.params;
+backend/voice-service/src/routers/reasoning-router.js-
+backend/voice-service/src/routers/reasoning-router.js-    // Set SSE headers
+backend/voice-service/src/routers/reasoning-router.js-    res.setHeader('Content-Type', 'text/event-stream');
+--
+backend/voice-service/src/routers/reasoning-router.js:router.post('/cancel', async (req, res) => {
+backend/voice-service/src/routers/reasoning-router.js-    const { jobId } = req.body;
+backend/voice-service/src/routers/reasoning-router.js-
+backend/voice-service/src/routers/reasoning-router.js-    if (!jobId) {
+backend/voice-service/src/routers/reasoning-router.js-      return res.status(400).json({
+--
+backend/voice-service/src/routers/reasoning-router.js:router.get('/queue/stats', async (req, res) => {
+backend/voice-service/src/routers/reasoning-router.js-    const counts = await reasoningQueue.getJobCounts(
+backend/voice-service/src/routers/reasoning-router.js-      'waiting',
+backend/voice-service/src/routers/reasoning-router.js-      'active',
+backend/voice-service/src/routers/reasoning-router.js-      'completed',
+--
+backend/voice-service/src/routers/elevenlabs-router.js:router.post('/synthesize', async (req, res) => {
+backend/voice-service/src/routers/elevenlabs-router.js-    const { text, voiceId, modelId, voiceSettings } = req.body;
+backend/voice-service/src/routers/elevenlabs-router.js-
+backend/voice-service/src/routers/elevenlabs-router.js-    if (!text) {
+backend/voice-service/src/routers/elevenlabs-router.js-      return res.status(400).json({
+--
+backend/voice-service/src/routers/elevenlabs-router.js:router.get('/voices', async (req, res) => {
+backend/voice-service/src/routers/elevenlabs-router.js-    if (!ELEVENLABS_API_KEY) {
+backend/voice-service/src/routers/elevenlabs-router.js-      return res.status(500).json({
+backend/voice-service/src/routers/elevenlabs-router.js-        success: false,
+backend/voice-service/src/routers/elevenlabs-router.js-        error: 'ElevenLabs API key not configured'
+--
+backend/voice-service/src/routers/elevenlabs-router.js:router.get('/models', async (req, res) => {
+backend/voice-service/src/routers/elevenlabs-router.js-    if (!ELEVENLABS_API_KEY) {
+backend/voice-service/src/routers/elevenlabs-router.js-      return res.status(500).json({
+backend/voice-service/src/routers/elevenlabs-router.js-        success: false,
+backend/voice-service/src/routers/elevenlabs-router.js-        error: 'ElevenLabs API key not configured'
+--
+backend/analytics-service/1.6.3.1_youtube-analyzer-integration_20251008.js:  async searchViralContent(query = 'cannabis dispensary', maxResults = 50) {
+backend/analytics-service/1.6.3.1_youtube-analyzer-integration_20251008.js-    // MOCK MODE: Return sample data if no API key
+backend/analytics-service/1.6.3.1_youtube-analyzer-integration_20251008.js-    if (this.mockMode) {
+backend/analytics-service/1.6.3.1_youtube-analyzer-integration_20251008.js-      console.log('🧪 MOCK MODE: Returning sample viral patterns');
+backend/analytics-service/1.6.3.1_youtube-analyzer-integration_20251008.js-      return this.generateMockData(query, maxResults);
+backend/analytics-service/1.6.3.1_youtube-analyzer-integration_20251008.js-    }
+--
+backend/analytics-service/1.6.3.1_youtube-analyzer-integration_20251008.js:  async storeToBigQuery(analysis) {
+backend/analytics-service/1.6.3.1_youtube-analyzer-integration_20251008.js-      const rows = analysis.topPerformers.map(video => ({
+backend/analytics-service/1.6.3.1_youtube-analyzer-integration_20251008.js-        video_id: video.videoId,
+backend/analytics-service/1.6.3.1_youtube-analyzer-integration_20251008.js-        title: video.title,
+backend/analytics-service/1.6.3.1_youtube-analyzer-integration_20251008.js-        channel_title: video.channelTitle,
+--
+backend/analytics-service/1.6.3.1_youtube-analyzer-integration_20251008.js:  async runAnalysis(query = 'cannabis dispensary') {
+backend/analytics-service/1.6.3.1_youtube-analyzer-integration_20251008.js-    console.log(`🔍 Starting viral pattern analysis for: "${query}"`);
+backend/analytics-service/1.6.3.1_youtube-analyzer-integration_20251008.js-
+backend/analytics-service/1.6.3.1_youtube-analyzer-integration_20251008.js-    // Search for videos
+backend/analytics-service/1.6.3.1_youtube-analyzer-integration_20251008.js-    const videos = await this.searchViralContent(query, 50);
+backend/analytics-service/1.6.3.1_youtube-analyzer-integration_20251008.js-
+--
+backend/analytics-service/1.6.3.1_youtube-analyzer-integration_20251008.js:  (async () => {
+backend/analytics-service/1.6.3.1_youtube-analyzer-integration_20251008.js-    for (const query of queries) {
+backend/analytics-service/1.6.3.1_youtube-analyzer-integration_20251008.js-      await analyzer.runAnalysis(query);
+backend/analytics-service/1.6.3.1_youtube-analyzer-integration_20251008.js-      console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
+backend/analytics-service/1.6.3.1_youtube-analyzer-integration_20251008.js-    }
+backend/analytics-service/1.6.3.1_youtube-analyzer-integration_20251008.js-  })();
+--
+backend/analytics-service/1.6.3.2_newsapi-integration_20251008.js:  async fetchNews(options = {}) {
+backend/analytics-service/1.6.3.2_newsapi-integration_20251008.js-    const {
+backend/analytics-service/1.6.3.2_newsapi-integration_20251008.js-      query = 'cannabis OR marijuana OR CBD OR hemp',
+backend/analytics-service/1.6.3.2_newsapi-integration_20251008.js-      language = 'en',
+backend/analytics-service/1.6.3.2_newsapi-integration_20251008.js-      sortBy = 'publishedAt',
+backend/analytics-service/1.6.3.2_newsapi-integration_20251008.js-      pageSize = 100
+--
+backend/analytics-service/1.6.3.2_newsapi-integration_20251008.js:  async storeToBigQuery(articles) {
+backend/analytics-service/1.6.3.2_newsapi-integration_20251008.js-      const rows = articles.map(article => ({
+backend/analytics-service/1.6.3.2_newsapi-integration_20251008.js-        title: article.title,
+backend/analytics-service/1.6.3.2_newsapi-integration_20251008.js-        description: article.description,
+backend/analytics-service/1.6.3.2_newsapi-integration_20251008.js-        content: article.content,
+--
+backend/analytics-service/1.6.3.2_newsapi-integration_20251008.js:  async runPipeline() {
+backend/analytics-service/1.6.3.2_newsapi-integration_20251008.js-    console.log('📰 Starting cannabis news pipeline...');
+backend/analytics-service/1.6.3.2_newsapi-integration_20251008.js-
+backend/analytics-service/1.6.3.2_newsapi-integration_20251008.js-    // Fetch news
+backend/analytics-service/1.6.3.2_newsapi-integration_20251008.js-    const rawArticles = await this.fetchNews();
+backend/analytics-service/1.6.3.2_newsapi-integration_20251008.js-
+--
+backend/analytics-service/1.6.3.2_newsapi-integration_20251008.js:  (async () => {
+backend/analytics-service/1.6.3.2_newsapi-integration_20251008.js-    const results = await newsAPI.runPipeline();
+backend/analytics-service/1.6.3.2_newsapi-integration_20251008.js-
+backend/analytics-service/1.6.3.2_newsapi-integration_20251008.js-    console.log('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+backend/analytics-service/1.6.3.2_newsapi-integration_20251008.js-    console.log('📊 Pipeline Results:');
+backend/analytics-service/1.6.3.2_newsapi-integration_20251008.js-    console.log(`   Raw articles: ${results.rawCount}`);
+--
+backend/common/queue/index.js:export async function enqueueJob(queue, jobName, jobData, opts = {}) {
+backend/common/queue/index.js-  const job = await queue.add(jobName, jobData, opts);
+backend/common/queue/index.js-  return {
+backend/common/queue/index.js-    id: job.id,
+backend/common/queue/index.js-    name: job.name,
+backend/common/queue/index.js-    data: job.data,
+--
+backend/common/queue/index.js:export async function getJobStatus(queue, jobId) {
+backend/common/queue/index.js-  const job = await queue.getJob(jobId);
+backend/common/queue/index.js-
+backend/common/queue/index.js-  if (!job) {
+backend/common/queue/index.js-    return { found: false, jobId };
+backend/common/queue/index.js-  }
+--
+backend/common/queue/index.js:export async function waitForJob(job, timeout = 60000) {
+backend/common/queue/index.js-  return await job.waitUntilFinished(queueEvents, timeout);
+backend/common/queue/index.js-}
+backend/common/queue/index.js-
+backend/common/queue/index.js-export default {
+backend/common/queue/index.js-  createQueue,
+--
+backend/payment-optimizer/src/index.js:app.post('/api/v1/optimize-payment', async (req, res) => {
+backend/payment-optimizer/src/index.js-    const { amount, customerId, riskScore } = req.body;
+backend/payment-optimizer/src/index.js-    
+backend/payment-optimizer/src/index.js-    // Fraud detection
+backend/payment-optimizer/src/index.js-    const fraudRisk = riskScore || Math.random() * 0.1;
+--
+backend/payment-optimizer/src/index.js:app.post('/api/v1/fraud-detection', async (req, res) => {
+backend/payment-optimizer/src/index.js-    const { transactionData } = req.body;
+backend/payment-optimizer/src/index.js-    
+backend/payment-optimizer/src/index.js-    // Mock fraud detection
+backend/payment-optimizer/src/index.js-    const riskScore = Math.random() * 0.1;
+--
+backend/inventory-sync/src/index.js:app.post('/api/v1/sync-inventory', async (req, res) => {
+backend/inventory-sync/src/index.js-    const { source, force = false } = req.body;
+backend/inventory-sync/src/index.js-    
+backend/inventory-sync/src/index.js-    const syncResults = [];
+backend/inventory-sync/src/index.js-    
+--
+backend/inventory-sync/src/index.js:async function syncInventorySource(source) {
+backend/inventory-sync/src/index.js-  // Simulate inventory sync
+backend/inventory-sync/src/index.js-  const startTime = Date.now();
+backend/inventory-sync/src/index.js-  
+backend/inventory-sync/src/index.js-  // Mock sync process
+backend/inventory-sync/src/index.js-  await new Promise(resolve => setTimeout(resolve, 1000));
+--
+backend/inventory-sync/src/index.js:app.get('/api/v1/inventory-status', async (req, res) => {
+backend/inventory-sync/src/index.js-    const status = {};
+backend/inventory-sync/src/index.js-    
+backend/inventory-sync/src/index.js-    for (const [source, config] of Object.entries(inventorySources)) {
+backend/inventory-sync/src/index.js-      status[source] = {
+--
+backend/llm-orchestrator/src/index.js:app.post('/api/v1/generate', async (req, res) => {
+backend/llm-orchestrator/src/index.js-    const { prompt, taskType = 'general', complexity = 'medium', model } = req.body;
+backend/llm-orchestrator/src/index.js-    
+backend/llm-orchestrator/src/index.js-    const startTime = Date.now();
+backend/llm-orchestrator/src/index.js-    const selectedModel = model || 'claude-3-sonnet';
+--
+backend/content-engine/src/index.js:app.post('/api/v1/generate-content', async (req, res) => {
+backend/content-engine/src/index.js-    const { contentType, topic, targetAudience } = req.body;
+backend/content-engine/src/index.js-    
+backend/content-engine/src/index.js-    // Mock content generation
+backend/content-engine/src/index.js-    const content = {
+--
+backend/content-engine/src/index.js:app.post('/api/v1/distribute-content', async (req, res) => {
+backend/content-engine/src/index.js-    const { content, platforms } = req.body;
+backend/content-engine/src/index.js-    
+backend/content-engine/src/index.js-    const distributionResults = [];
+backend/content-engine/src/index.js-    
+--
+backend/content-engine/src/index.js:app.get('/api/v1/content-analytics', async (req, res) => {
+backend/content-engine/src/index.js-    const analytics = {
+backend/content-engine/src/index.js-      totalPosts: 1247,
+backend/content-engine/src/index.js-      engagementRate: 0.084,
+backend/content-engine/src/index.js-      reach: 45632,
